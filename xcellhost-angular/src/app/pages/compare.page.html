@@ -1,0 +1,182 @@
+<div class="ppage as-page" id="cmpPage">
+  <div class="pp-hero">
+    <span class="orb orb-1" aria-hidden="true"></span>
+    <div class="wrap">
+      <div class="pp-crumb">Side by side</div>
+      <h1>Compare services</h1>
+      <p class="pp-tagline">Everything that matters, in one view — so you can choose without opening five tabs.</p>
+    </div>
+  </div>
+
+  <div class="pp-body">
+    <div class="wrap">
+      <!-- picker: new to the routed page, since the search dialog no longer fills the table in -->
+      <div class="cmp-wrap" style="background: #fff; margin-bottom: 26px">
+        <div class="srch-in">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#51607A"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="7" />
+            <path d="M20 20l-3.5-3.5" />
+          </svg>
+          <input
+            id="cmpPick"
+            placeholder="Find a service to compare…"
+            autocomplete="off"
+            aria-label="Find a service to compare"
+            [value]="pickQuery()"
+            (input)="onPickInput($event)"
+          />
+          <span class="sr-cat">{{ countLabel() }}</span>
+        </div>
+
+        <div class="srch-res" style="max-height: 320px">
+          @for (r of pickRows(); track r.name) {
+            <div
+              class="sr"
+              role="button"
+              tabindex="0"
+              [style.opacity]="!isSelected(r.name) && atLimit() ? 0.45 : null"
+              [attr.aria-pressed]="isSelected(r.name)"
+              [attr.aria-disabled]="!isSelected(r.name) && atLimit() ? 'true' : null"
+              [attr.aria-label]="(isSelected(r.name) ? 'Remove ' : 'Add ') + r.name + ' — ' + r.cat"
+              (click)="toggle(r.name)"
+              (keydown.enter)="toggle(r.name)"
+              (keydown.space)="$event.preventDefault(); toggle(r.name)"
+            >
+              <span class="sr-c" [style.background]="r.color"></span>
+              <span class="sr-t"><b>{{ r.name }}</b><span>{{ r.desc }}</span></span>
+              <span class="sr-cat">{{ r.cat }}</span>
+              <span class="sr-cmp" [class.on]="isSelected(r.name)" aria-hidden="true">✓</span>
+            </div>
+          } @empty {
+            <div class="srch-empty">No match. Try “backup”, “ssl”, “compliance”…</div>
+          }
+        </div>
+      </div>
+
+      @if (columns().length) {
+        <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 18px">
+          <button class="btn btn-primary" type="button" (click)="addAll()">Add all to quote</button>
+          <button class="btn btn-ghost" type="button" (click)="clear()">Clear selection</button>
+        </div>
+
+        <div class="cmp-wrap">
+          <table class="cmp" id="cmpTable">
+            <thead>
+              <tr>
+                <th></th>
+                @for (c of columns(); track c.slug) {
+                  <th><span class="cmp-name">{{ c.name }}</span></th>
+                }
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Category</th>
+                @for (c of columns(); track c.slug) {
+                  <td>
+                    <span
+                      class="sr-c"
+                      style="display: inline-block; margin-right: 8px"
+                      [style.background]="c.color"
+                    ></span
+                    >{{ c.cat }}
+                  </td>
+                }
+              </tr>
+              <tr>
+                <th scope="row">What it does</th>
+                @for (c of columns(); track c.slug) {
+                  <td>{{ c.desc }}</td>
+                }
+              </tr>
+              <tr>
+                <th scope="row">Starting price</th>
+                @for (c of columns(); track c.slug) {
+                  <td class="cmp-price">{{ c.price }}</td>
+                }
+              </tr>
+              <tr>
+                <th scope="row">Key features</th>
+                @for (c of columns(); track c.slug) {
+                  <td>
+                    <ul>
+                      @for (f of c.features; track f) {
+                        <li>{{ f }}</li>
+                      }
+                    </ul>
+                  </td>
+                }
+              </tr>
+              <tr>
+                <th scope="row">Why XcellHost</th>
+                @for (c of columns(); track c.slug) {
+                  <td>
+                    <ul>
+                      @for (w of c.why; track w) {
+                        <li>{{ w }}</li>
+                      }
+                    </ul>
+                  </td>
+                }
+              </tr>
+              <tr>
+                <th scope="row">Support</th>
+                @for (c of columns(); track c.slug) {
+                  <td>24×7 · English &amp; Hindi</td>
+                }
+              </tr>
+              <tr>
+                <th scope="row">Data location</th>
+                @for (c of columns(); track c.slug) {
+                  <td>India · Tier-4</td>
+                }
+              </tr>
+              <tr>
+                <th></th>
+                @for (c of columns(); track c.slug) {
+                  <td>
+                    <a class="btn btn-primary cmp-btn" [routerLink]="['/', c.slug]">View details</a>
+                  </td>
+                }
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      } @else {
+        <div class="cmp-wrap" style="background: #fff">
+          <div class="srch-empty">
+            Pick up to {{ max }} services above and they will line up side by side here.
+          </div>
+        </div>
+      }
+
+      <div class="pp-cta">
+        <div>
+          <h3>Not sure which fits?</h3>
+          <p>A 15-minute call with an architect usually settles it.</p>
+        </div>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap">
+          <a class="btn btn-primary" href="#" id="cmpCb" (click)="openCallback($event)">Request a callback</a>
+          <a
+            class="btn btn-ghost"
+            style="border-color: rgba(255, 255, 255, 0.4); color: #fff"
+            id="cmpWa"
+            [href]="waHref()"
+            target="_blank"
+            rel="noopener"
+            >Talk on WhatsApp</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

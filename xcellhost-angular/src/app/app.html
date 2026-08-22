@@ -1,0 +1,25 @@
+<xh-intro-splash />
+<xh-utility-bar />
+<xh-promo-bar />
+<xh-header />
+
+<router-outlet />
+
+<xh-footer />
+
+<!-- =====================================================================
+     GLOBAL OVERLAY HOSTS
+
+     Everything that floats above the page lives outside the router outlet so
+     it survives navigation. Escape is bound once on the app host (app.ts) and
+     calls OverlayService.closeTop() — overlays must not re-bind it.
+     ===================================================================== -->
+<xh-cart-drawer />
+<xh-chatbot />
+<xh-search-dialog />
+<xh-callback-modal />
+<xh-trial-modal />
+<xh-auth-modal />
+<xh-partner-modal />
+<xh-doc-modal />
+<xh-whatsapp-fab />

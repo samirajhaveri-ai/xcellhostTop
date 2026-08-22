@@ -1,0 +1,53 @@
+@if (view(); as v) {
+  <div class="ppage catpage as-page" id="catpage">
+    <section class="cat-hero"><div class="wrap">
+      <p class="cat-kick" id="catKick">Services</p>
+      <h1 id="catTitle">{{ v.label }}</h1>
+      <p class="cat-lede" id="catLede">{{ v.lede }}</p>
+      <div class="cat-stats" id="catStats">
+        <span class="cs"><b>{{ v.serviceCount }}</b> services</span>
+        @if (v.groups.length) {
+          <span class="cs"><b>{{ v.groups.length }}</b> groups</span>
+        }
+        <span class="cs"><b>24×7</b> support</span>
+      </div>
+    </div></section>
+    <div class="wrap"><div class="cat-body" id="catBody">
+      <div class="dir-cat">
+        <div class="dir-grid">
+          @for (g of v.groups; track g.name) {
+            <details class="dg">
+              <summary>{{ g.name }} <i>{{ g.items.length }}</i></summary>
+              <div class="dgroup">
+                <h5 class="dg-hid">{{ g.name }}</h5>
+                <ul>
+                  @for (s of g.items; track s.name) {
+                    <li><a [routerLink]="s.link"><b>{{ s.name }}@if (s.core) {<span class="xh-core">Core service</span>}</b><small>{{ s.desc }}</small></a></li>
+                  }
+                </ul>
+              </div>
+            </details>
+          }
+        </div>
+      </div>
+
+      <div class="pp-sec">Frequently asked questions</div>
+      <div class="pp-faq">
+        @for (f of v.faqs; track $index) {
+          <details [open]="$first"><summary [innerHTML]="f[0]"></summary><div class="ans" [innerHTML]="f[1]"></div></details>
+        }
+      </div>
+    </div></div>
+    <section class="pp-cta"><div class="wrap">
+      <div>
+        <h2 id="catCtaH">Not sure which {{ v.lowerLabel }} service you need?</h2>
+        <p>Tell us the problem rather than the product — we will point you at the right one, or tell you that you do not need it.</p>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn btn-primary" href="#" id="catCtaCall" (click)="openCallback($event)">Request a callback</a>
+        <a class="btn btn-ghost" style="border-color:rgba(255,255,255,.4);color:#fff" id="catCtaWa" [href]="waHref()" target="_blank" rel="noopener">Talk on WhatsApp</a>
+        <a class="btn btn-ghost" style="border-color:rgba(255,255,255,.4);color:#fff" id="catCtaMail" [href]="mailHref()">Email us</a>
+      </div>
+    </div></section>
+  </div>
+}

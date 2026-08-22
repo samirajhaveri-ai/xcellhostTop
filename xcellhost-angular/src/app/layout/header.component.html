@@ -1,0 +1,90 @@
+<header class="xh-header">
+  <div class="xh-nav-wrap">
+    <a class="xh-brand" routerLink="/" aria-label="XcellHost home" (click)="onNavigate()">
+      <img src="/assets/images/xcellhost-logo.png" alt="XcellHost — Global Reach · Personal Touch" />
+    </a>
+
+    <button
+      class="xh-mobile-toggle"
+      type="button"
+      aria-label="Toggle navigation"
+      aria-controls="xh-main-nav"
+      [class.open]="mobileOpen()"
+      [attr.aria-expanded]="mobileOpen()"
+      (click)="toggleMobile()"
+    ><span></span><span></span><span></span></button>
+
+    <nav
+      id="xh-main-nav"
+      class="xh-main-nav"
+      [class.mobile-open]="mobileOpen()"
+      [class.suppress-menu]="menuSuppressed()"
+      aria-label="Primary navigation"
+      (mouseleave)="releaseMenuSuppression()"
+      (focusin)="releaseMenuSuppression()"
+    >
+      @for (top of tops; track top.label) {
+        <div class="xh-menu-item" [class.open]="openTop() === top.label" (mouseenter)="onTopEnter(top.label)">
+          <button
+            class="xh-menu-link"
+            type="button"
+            [attr.aria-expanded]="openTop() === top.label"
+            [attr.aria-controls]="top.megaId"
+            (click)="toggleTop(top.label)"
+          >{{ top.label }} <span aria-hidden="true">⌄</span></button>
+
+          <div class="xh-mega" [id]="top.megaId">
+            <nav class="xh-tabs" [attr.aria-label]="top.label + ' categories'">
+              @for (tab of top.tabs; track tab.g) {
+                <button
+                  class="xh-tab"
+                  type="button"
+                  [class.active]="isOn(top.label, tab.g)"
+                  [attr.aria-selected]="isOn(top.label, tab.g)"
+                  (mouseover)="setTab(top.label, tab.g)"
+                  (click)="onTabClick($event, top.label, tab.g)"
+                >{{ tab.label }}</button>
+              }
+            </nav>
+
+            <div class="xh-panels">
+              @for (tab of top.tabs; track tab.g) {
+                <section class="xh-panel" [class.active]="isOn(top.label, tab.g)">
+                  @for (group of tab.groups; track $index) {
+                    @if (group.heading) { <h3>{{ group.heading }}</h3> }
+                    <ul class="xh-link-grid">
+                      @for (item of group.items; track $index) {
+                        <li>
+                          @if (item.link) {
+                            <a [routerLink]="item.link" (click)="onNavigate()"><span>{{ item.title }}</span>@if (item.pill) {<em>{{ item.pill }}</em>}@if (item.desc) {<small>{{ item.desc }}</small>}</a>
+                          } @else {
+                            <a href="#" (click)="$event.preventDefault()" aria-disabled="true"><span>{{ item.title }}</span>@if (item.pill) {<em>{{ item.pill }}</em>}@if (item.desc) {<small>{{ item.desc }}</small>}</a>
+                          }
+                        </li>
+                      }
+                    </ul>
+                  }
+                </section>
+              }
+            </div>
+
+            <aside class="xh-feature">
+              <b>Featured</b>
+              <h3>{{ top.feature.title }}</h3>
+              <p>{{ top.feature.body }}</p>
+              <a [routerLink]="top.link" (click)="onNavigate()">Explore <span aria-hidden="true">→</span></a>
+            </aside>
+          </div>
+        </div>
+      }
+    </nav>
+
+    <div class="xh-actions">
+      <button class="xh-search" aria-label="Search services" (click)="openSearch()">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      </button>
+      <a class="xh-login" href="#" (click)="openLayer($event, 'auth')">Login</a>
+      <a class="xh-trial" href="#" (click)="openLayer($event, 'trial')">Free Trial</a>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,78 @@
+@if (module(); as m) {
+  <div class="ppage dp as-page" id="mpage">
+    <div class="dp-hero">
+      <span class="orb orb-1"></span>
+      <div class="wrap dp-hgrid">
+        <div>
+          <div class="pp-crumb">Home › SecureSetu › <span id="mCrumb" [innerHTML]="m.t"></span></div>
+          <div class="dp-eyebrow" id="mTier">{{ m.tier }}</div>
+          <h1 id="mTitle" [innerHTML]="m.t"></h1>
+          <h2 class="pp-tagline" id="mTag" [innerHTML]="m.tag"></h2>
+          <div class="m-sect" id="mSect" [innerHTML]="m.sec"></div>
+          <a class="dp-shield" href="https://dpdpashield.in/" target="_blank" rel="noopener" style="margin-top:12px">🛡️ See this module live on <b>DPDPAShield.in</b> ↗</a>
+          <div class="hero-ctas">
+            <a class="btn btn-primary dp-cta" href="#" (click)="openCallback($event)">⚡ Free Assessment</a>
+            <a class="btn atc" href="#" id="mAtc" (click)="addToCart($event)">{{ atcLabel() }}</a>
+            <a class="btn btn-ghost" style="border-color:rgba(255,255,255,.35);color:#fff" href="#" id="mDemo" (click)="openCallback($event)">📞 Book a Demo</a>
+          </div>
+          <div class="pp-hero-pts">
+            <span>India hosted</span><span>DPDP Rules ready</span><span>Certified consultants</span
+            ><span>Immutable evidence</span>
+          </div>
+        </div>
+        <div class="m-vis" id="mVis">
+          <div class="mv-h">{{ m.vis[0] }}<i>● live</i></div>
+          @for (r of m.vis[1]; track $index) {
+            <div class="mv-r"><span [innerHTML]="r[0]"></span><b class="mv-{{ r[2] }}" [innerHTML]="r[1]"></b></div>
+          }
+          <div class="mv-bar"><i [style.width.%]="m.vis[3]"></i></div>
+          <div class="mv-f">{{ m.vis[2] }} — {{ m.vis[3] }}%</div>
+        </div>
+      </div>
+    </div>
+    <div class="pp-body"><div class="wrap">
+      <div class="pp-sec">The problem it solves</div>
+      <div class="m-prob" id="mProb" [innerHTML]="m.prob"></div>
+      <div class="pp-sec">What it does</div>
+      <div class="pp-feats" id="mCaps">
+        @for (c of m.caps; track $index) {
+          <div class="pp-feat"><span class="ic">✓</span><p><b [innerHTML]="c[0]"></b>{{ c[1] }}</p></div>
+        }
+      </div>
+      <div class="pp-sec">How it works</div>
+      <div class="pp-steps" id="mSteps">
+        @for (s of m.steps; track $index) {
+          <div class="pst"><div class="n">{{ $index + 1 }}</div><b [innerHTML]="s[0]"></b><span [innerHTML]="s[1]"></span></div>
+        }
+      </div>
+      <div class="pp-sec">Evidence it produces</div>
+      <div class="m-eviw"><div class="m-evi" id="mEvi">
+          @for (e of m.evi; track $index) {
+            <div class="mev"><span>{{ e[0] }}</span><b [innerHTML]="e[1]"></b></div>
+          }
+        </div>
+        <p class="pv-note">📁 Every artefact is timestamped, hashed and stored immutably — the difference between saying you complied and proving it.</p></div>
+      <div class="pp-sec">Frequently asked questions</div>
+      <div class="pp-faq" id="mFaq">
+        @for (f of m.faq; track $index) {
+          <details [open]="$first"><summary [innerHTML]="f[0]"></summary><div class="ans" [innerHTML]="f[1]"></div></details>
+        }
+      </div>
+      <div class="pp-sec">Related modules</div>
+      <div class="m-rel" id="mRel">
+        @for (r of related(); track r.slug) {
+          <div class="mrl" [routerLink]="['/securesetu-dpdpa', r.slug]"><b [innerHTML]="r.t"></b><span>{{ r.tier }}</span></div>
+        }
+      </div>
+      <div class="pp-cta">
+        <div><h3 id="mCtaT" [innerHTML]="ctaTitle()"></h3><p>Free assessment · Platform + certified consultants · Reply within one business day</p></div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn btn-primary dp-cta" href="#" (click)="openCallback($event)">Start Free Assessment</a>
+          <a class="btn btn-ghost" style="border-color:rgba(255,255,255,.4);color:#fff" [href]="waHref()" target="_blank" rel="noopener" id="mWa">Talk on WhatsApp</a>
+        </div>
+      </div>
+      <div class="pp-proof"><span>🏅 ISO 27001</span><span>🇮🇳 Indian data residency</span><span>⚖️ DPDP Rules 2025 aligned</span><span>🔒 Immutable evidence vault</span></div>
+
+    </div></div>
+  </div>
+}

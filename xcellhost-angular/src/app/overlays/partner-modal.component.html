@@ -1,0 +1,104 @@
+@if (overlay.isOpen('partner')) {
+  <div class="tr-back open" id="pnBack" (click)="close()"></div>
+  <div class="trial open" id="partner" (click)="onBackdrop($event)" role="dialog" aria-modal="true" aria-labelledby="pnTitle">
+    <div class="tr-card">
+      <button class="cart-x tr-x" id="pnX" aria-label="Close" (click)="close()">✕</button>
+
+      @if (!done()) {
+        <div class="pn-step" id="pnForm" [formGroup]="form">
+          <div
+            class="tr-badge"
+            style="
+              color: #1565d8;
+              background: rgba(21, 101, 216, 0.1);
+              border-color: rgba(21, 101, 216, 0.35);
+            "
+          >
+            🤝 PARTNER PROGRAM
+          </div>
+          <h3 class="tr-title" id="pnTitle">Join us as a Partner</h3>
+          <p class="tr-sub">
+            Resell the full XcellHost portfolio with recurring margins, technical backing and deal
+            support.
+          </p>
+          <label class="ck-l"
+            >Company name *<input
+              class="ck-i"
+              id="pnCo"
+              formControlName="company"
+              placeholder="Your company"
+          /></label>
+          <label class="ck-l"
+            >Contact person *<input
+              class="ck-i"
+              id="pnName"
+              formControlName="contact"
+              placeholder="Full name"
+          /></label>
+          <label class="ck-l"
+            >Email *<input
+              class="ck-i"
+              id="pnEmail"
+              type="email"
+              formControlName="email"
+              placeholder="you@company.com"
+          /></label>
+          <label class="ck-l"
+            >Phone / WhatsApp *<input
+              class="ck-i"
+              id="pnPhone"
+              type="tel"
+              formControlName="phone"
+              placeholder="+91 98XXXXXXXX"
+          /></label>
+          <label class="ck-l"
+            >City<input class="ck-i" id="pnCity" formControlName="city" placeholder="Mumbai"
+          /></label>
+          <label class="ck-l"
+            >Partner type *
+            <select class="ck-i" id="pnType" formControlName="type">
+              @for (t of types; track t) {
+                <option [value]="t">{{ t }}</option>
+              }
+            </select>
+          </label>
+          <label class="ck-l"
+            >Which products interest you?<input
+              class="ck-i"
+              id="pnProd"
+              formControlName="products"
+              placeholder="e.g. Cybird, Acronis, Tally on Cloud"
+          /></label>
+          <div class="ck-err" id="pnErr">{{ error() }}</div>
+          <button
+            class="btn atc"
+            id="pnGo"
+            style="width: 100%"
+            [class.ck-busy]="busy()"
+            (click)="submit()"
+          >
+            {{ submitLabel() }}
+          </button>
+          <p class="cart-draft" style="margin-top: 10px">
+            Our partner team responds within 1 business day on email &amp; WhatsApp.
+          </p>
+        </div>
+      } @else {
+        <div class="pn-step" id="pnDone" style="text-align: center">
+          <div class="ck-tick" style="margin: 0 auto">✓</div>
+          <h3 class="tr-title" id="pnTitle" style="margin-top: 14px">Application received!</h3>
+          <p class="tr-sub">Our partner team will contact you within 1 business day.</p>
+          <span class="ck-ref" id="pnRef">Ref: {{ reference() }}</span>
+          <button
+            class="btn btn-ghost"
+            id="pnClose"
+            style="width: 100%; margin-top: 16px"
+            (click)="close()"
+          >
+            Done
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+}

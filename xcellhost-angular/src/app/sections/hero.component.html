@@ -1,0 +1,39 @@
+<div class="hero">
+  <span class="orb orb-1" [style.translate]="orb1Shift()" aria-hidden="true"></span>
+  <span class="orb orb-2" [style.translate]="orb2Shift()" aria-hidden="true"></span>
+  <span class="aur a1" aria-hidden="true"></span><span class="aur a2" aria-hidden="true"></span><span class="aur a3" aria-hidden="true"></span>
+  <span class="beams" aria-hidden="true"></span>
+  <canvas id="netbg" #netbg aria-hidden="true"></canvas>
+  <span class="grid-floor" aria-hidden="true"></span>
+  <span class="cube-wrap" [style.translate]="cube1Shift()" aria-hidden="true"><span class="cube"><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
+  <span class="cube-wrap c2" [style.translate]="cube2Shift()" aria-hidden="true"><span class="cube"><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Engineering India’s Digital Future · Since 1999</div>
+      <h1>The infrastructure your <em class="shine">next decade</em> runs on.</h1>
+      <p class="lead">From Tally on Cloud to enterprise SOC — XcellHost has run managed cloud and security for 10,000+ Indian businesses since 1999. ISO 27001 certified. DPDPA ready.</p>
+      <div class="rot-line">Right now on XcellHost&nbsp;→&nbsp;<span class="rot" id="rotWords">@for (w of words; track w; let i = $index) {<span [class.on]="i === current()" [class.out]="i === leaving()">{{ w }}</span>}</span></div>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#flagship">Explore services</a>
+        <a class="btn btn-ghost" href="#">Book a 1:1 demo</a>
+      </div>
+      <div class="stat-line">
+        @for (s of stats; track s.label; let i = $index) {
+          <div class="sl"><b>{{ counters()[i] }}</b><span>{{ s.label }}</span></div>
+        }
+      </div>
+      <div class="hero-live"><i></i> all systems operational · backups every 8 hrs · SOC live · incidents: 0</div>
+    </div>
+    <div class="hero-play">
+      <div class="orbit">
+        <span class="orb-ring2"></span>
+        <div class="orb-core"><img class="xh-logo" src="/assets/images/xcellhost-logo.png" alt="XcellHost"><span class="oring r1"></span><span class="oring r2"></span></div>
+        <div class="orb-path">
+          @for (o of orbs; track o.service) {
+            <button class="orb-ic" [class]="o.pos" [class.has-img]="!!o.img" [attr.data-p]="o.service" [routerLink]="o.link">@if (o.img) {<img class="oimg" [src]="o.img" [alt]="o.label">} @else {<span class="oemj">{{ o.emoji }}</span>}<span class="olbl">{{ o.label }}</span></button>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

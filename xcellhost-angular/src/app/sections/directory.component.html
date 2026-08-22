@@ -1,0 +1,31 @@
+<section class="directory" id="directory">
+  <div class="wrap">
+    <div class="sec-head" xhReveal>
+      <div class="eyebrow">Complete portfolio</div>
+      <h2>One command center. 150+ services.</h2>
+      <p id="dirNote" class="dir-note">Marked services are the ones we run at scale and support deepest. The rest we supply, configure and support — ask and we will tell you honestly how much of it we do ourselves.</p>
+      <p>The full XcellHost catalog — 150+ services across six practices, each with what it does, all on one page.</p>
+    </div>
+    @for (c of cats(); track c.cat) {
+      <div class="dir-cat" xhReveal>
+        <h3>{{ c.cat }} <span class="cnt">{{ c.count }}</span></h3>
+        <div class="sub">{{ c.sub }}</div>
+        <div class="dir-grid">
+          @for (g of c.groups; track g.name) {
+            <details class="dg" [open]="isOpen(c.cat, g.name)">
+              <summary (click)="onSummary($event, c.cat, g.name)">{{ g.name }} <i>{{ g.items.length }}</i>@for (r of rippleIn(c.cat, g.name); track r.id) {<span class="dg-ripple" [style.left.px]="r.x" [style.top.px]="r.y"></span>}</summary>
+              <div class="dgroup" [style.--rx]="burstX(c.cat, g.name)">
+                <h5 class="dg-hid">{{ g.name }}</h5>
+                <ul>
+                  @for (s of g.items; track s.name; let i = $index) {
+                    <li [style.animationDelay]="dominoDelay(i)"><a [routerLink]="s.link"><b>{{ s.name }}@if (s.core) {<span class="xh-core">Core service</span>}</b><small>{{ s.desc }}</small></a></li>
+                  }
+                </ul>
+              </div>
+            </details>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</section>

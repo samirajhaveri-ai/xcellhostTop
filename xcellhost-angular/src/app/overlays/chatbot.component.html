@@ -1,0 +1,99 @@
+<button
+  class="bot-fab"
+  id="botFab"
+  type="button"
+  aria-label="Open website assistant"
+  aria-controls="bot"
+  [attr.aria-expanded]="overlay.isOpen('chat')"
+  (click)="toggle()"
+>
+  <svg
+    viewBox="0 0 24 24"
+    width="24"
+    height="24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <rect x="4" y="8" width="16" height="12" rx="3" />
+    <path d="M12 8V5" />
+    <circle cx="12" cy="3.5" r="1.5" fill="currentColor" stroke="none" />
+    <circle cx="9" cy="14" r="1.2" fill="currentColor" stroke="none" />
+    <circle cx="15" cy="14" r="1.2" fill="currentColor" stroke="none" />
+    <path d="M9.5 17.2h5" />
+  </svg>
+  <span class="bot-ping"></span>
+  <span class="fab-tip">Ask our website assistant</span>
+</button>
+
+<div
+  class="bot"
+  id="bot"
+  aria-label="XcellHost assistant"
+  [class.open]="overlay.isOpen('chat')"
+  [attr.aria-hidden]="overlay.isOpen('chat') ? null : 'true'"
+>
+  <div class="bot-head">
+    <div class="bh-l">
+      <span class="bh-av">AI</span>
+      <div>
+        <b>XcellHost Assistant</b
+        ><span class="bh-st"><i></i> <span id="botStatus">{{ status() }}</span></span>
+      </div>
+    </div>
+    <button class="cart-x" id="botX" type="button" aria-label="Close" (click)="close()">✕</button>
+  </div>
+
+  <div class="bot-body" id="botBody" #botBody>
+    @for (m of bubbles(); track $index) {
+      <div class="msg" [class.bot]="m.role === 'bot'" [class.me]="m.role === 'user'" [innerHTML]="m.html"></div>
+    }
+
+    @if (showQuick()) {
+      <div class="bot-quick">
+        <div class="bq-lbl">Quick questions</div>
+        <div class="bq-row">
+          @for (q of quick; track q.key) {
+            <button class="bq" type="button" (click)="askQuick(q.key)">{{ q.label }}</button>
+          }
+        </div>
+      </div>
+    }
+
+    @if (chat.busy()) {
+      <div class="msg bot typing" aria-hidden="true"><i></i><i></i><i></i></div>
+    }
+  </div>
+
+  <div class="bot-chips" id="botChips">
+    @for (c of chat.chips(); track c) {
+      <button class="bchip" type="button" [disabled]="chat.busy()" (click)="sendText(c)">{{ c }}</button>
+    }
+  </div>
+
+  <div class="bot-in">
+    <input
+      id="botInput"
+      #botInput
+      placeholder="Ask about any product…"
+      autocomplete="off"
+      aria-label="Ask about any product"
+      [value]="draft()"
+      [disabled]="chat.busy()"
+      (input)="onInput($event)"
+      (keydown.enter)="send()"
+    />
+    <button id="botSend" type="button" aria-label="Send" [disabled]="chat.busy()" (click)="send()">➤</button>
+  </div>
+
+  <div class="bot-foot">
+    <span class="bf-l">Need a human?</span>
+    <button class="bchip" type="button" (click)="openCallback()">Request a callback</button>
+    <a class="bot-esc" id="botEsc" [href]="escHref()" target="_blank" rel="noopener"
+      >Hand over to sales team on WhatsApp →</a
+    >
+  </div>
+</div>

@@ -1,0 +1,177 @@
+<button
+  class="cart-fab"
+  id="cartFab"
+  aria-label="Cart"
+  aria-controls="cart"
+  [attr.aria-expanded]="cart.isOpen()"
+  [class.pop]="popping()"
+  (animationend)="popping.set(false)"
+  (click)="open()"
+>
+  <svg
+    width="22"
+    height="22"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <circle cx="9" cy="21" r="1" />
+    <circle cx="20" cy="21" r="1" />
+    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+  </svg>
+  <span class="cart-count" id="cartCount" [class.show]="cart.count() > 0">{{ cart.count() }}</span>
+</button>
+
+<div class="cart-back" id="cartBack" [class.open]="cart.isOpen()" (click)="close()"></div>
+
+<aside class="cart" id="cart" aria-label="Your quote cart" [class.open]="cart.isOpen()">
+  <div class="cart-head">
+    <h3>Your Quote Cart</h3>
+    <button class="cart-x" id="cartX" aria-label="Close" (click)="close()">✕</button>
+  </div>
+
+  @if (!cart.showCheckout() && !done()) {
+    <div class="cart-body" id="cartBody">
+      @if (cart.isEmpty()) {
+        <div class="cart-empty" id="cartEmpty">
+          <div class="ce-ic">🛒</div>
+          <b>Your cart is empty</b>
+          <span>Add services you're interested in — then request one combined quote.</span>
+        </div>
+      }
+      <ul class="cart-items" id="cartItems">
+        @for (line of cart.lines(); track line.name) {
+          <li>
+            <div class="ci-info">
+              <div class="ci-name">{{ line.name }}</div>
+              <div class="ci-price">{{ line.price || 'Quote on request' }}</div>
+            </div>
+            <div class="ci-qty">
+              <button [attr.aria-label]="'Fewer ' + line.name" (click)="dec(line)">−</button>
+              <b>{{ line.qty }}</b>
+              <button [attr.aria-label]="'More ' + line.name" (click)="inc(line)">+</button>
+            </div>
+            <button class="ci-rm" aria-label="Remove" (click)="remove(line)">🗑</button>
+          </li>
+        }
+      </ul>
+    </div>
+
+    @if (!cart.isEmpty()) {
+      <div class="cart-foot" id="cartFoot">
+        <button class="btn atc" id="goCheckout" style="width: 100%" (click)="toCheckout()">
+          Proceed to Checkout →
+        </button>
+        <a class="btn cart-wa" id="cartWA" [href]="whatsapp()" target="_blank" rel="noopener"
+          >or Quick Quote on WhatsApp</a
+        >
+      </div>
+    }
+  }
+
+  <!-- STEP 2: customer details -->
+  @if (cart.showCheckout() && !done()) {
+    <div class="cart-step" id="ckForm" [formGroup]="form">
+      <div class="cart-body">
+        <div class="ck-head">Checkout — your details</div>
+        <label class="ck-l"
+          >Full name *<input
+            class="ck-i"
+            id="ckName"
+            formControlName="name"
+            placeholder="Rajesh Patel"
+        /></label>
+        <label class="ck-l"
+          >Company<input
+            class="ck-i"
+            id="ckCo"
+            formControlName="company"
+            placeholder="Patel Industries Pvt Ltd"
+        /></label>
+        <label class="ck-l"
+          >Email *<input
+            class="ck-i"
+            id="ckEmail"
+            type="email"
+            formControlName="email"
+            placeholder="rajesh@company.com"
+        /></label>
+        <label class="ck-l"
+          >Phone / WhatsApp *<input
+            class="ck-i"
+            id="ckPhone"
+            type="tel"
+            formControlName="phone"
+            placeholder="+91 98XXXXXXXX"
+        /></label>
+        <label class="ck-l"
+          >GSTIN (optional)<input
+            class="ck-i"
+            id="ckGst"
+            formControlName="gstin"
+            placeholder="27XXXXXXXXXXXXX"
+        /></label>
+        <div class="ck-l" style="margin-bottom: 4px">Payment link will be sent to:</div>
+        <div class="ck-channels">
+          <span class="ck-ch">📧 Email</span><span class="ck-ch wa">💬 WhatsApp</span>
+        </div>
+        <div class="ck-err" id="ckErr">{{ error() }}</div>
+      </div>
+      <div class="cart-foot">
+        <button
+          class="btn atc"
+          id="ckSubmit"
+          style="width: 100%"
+          [class.ck-busy]="busy()"
+          (click)="submit()"
+        >
+          {{ submitLabel() }}
+        </button>
+        <button class="btn btn-ghost" id="ckBack" style="width: 100%" (click)="back()">
+          ← Back to cart
+        </button>
+        <p class="cart-draft">
+          🔒 On submit, a Zoho Books estimate is created with your items and a payment link (UPI ·
+          Cards · NetBanking) is sent to your email &amp; WhatsApp.
+        </p>
+      </div>
+    </div>
+  }
+
+  <!-- STEP 3: success -->
+  @if (done()) {
+    <div class="cart-step" id="ckDone">
+      <div
+        class="cart-body"
+        style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          gap: 12px;
+        "
+      >
+        <div class="ck-tick">✓</div>
+        <b style="font-family: var(--disp); font-size: 19px; color: var(--navy)">Order received!</b>
+        <span style="font-size: 14px; color: var(--slate); max-width: 30ch"
+          >Your <b>Zoho Books estimate</b> is being created. The payment link will arrive on your
+          <b>email &amp; WhatsApp</b> within minutes.</span
+        >
+        <span class="ck-ref" id="ckRef">Ref: {{ reference() }}</span>
+        <p class="cart-draft" style="margin-top: 14px">
+          📝 Draft mode: no real order was created. On the live site this fires the Zoho pipeline
+          automatically (spec attached).
+        </p>
+      </div>
+      <div class="cart-foot">
+        <button class="btn btn-ghost" id="ckClose" style="width: 100%" (click)="finish()">
+          Done
+        </button>
+      </div>
+    </div>
+  }
+</aside>

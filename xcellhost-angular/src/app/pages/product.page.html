@@ -1,0 +1,933 @@
+@if (view(); as v) {
+  <div class="ppage as-page" id="ppage">
+    <div class="pp-hero">
+      <div class="pph-map" aria-hidden="true" [innerHTML]="worldMap"></div>
+      <span class="pph-grid" aria-hidden="true"></span>
+      <span class="pph-aur pph-a1" aria-hidden="true"></span>
+      <span class="pph-aur pph-a2" aria-hidden="true"></span>
+      <span class="pph-aur pph-a3" aria-hidden="true"></span>
+      <span class="pph-scan" aria-hidden="true"></span>
+
+      @if (isAdvancedEdr()) {
+        <div class="pph-scene has-illus pph-edr-illus" aria-hidden="true">
+          <div class="pph-illus">
+            <img
+              class="pph-illus-img"
+              src="/assets/images/hero-advanced-endpoint-security-edr.svg"
+              alt="Advanced Endpoint Security and EDR"
+            />
+            <div class="pph-powered-mark pph-edr-powered">
+              <span class="pw-lbl">Powered By:</span>
+              <span class="pw-name">Acronis</span>
+              <span class="pw-sub">Advanced Endpoint Security + EDR</span>
+            </div>
+          </div>
+        </div>
+      } @else if (v.heroImage) {
+        <div
+          class="pph-scene has-illus"
+          [class.standalone-illus]="!v.poweredBy || v.name === 'Tally on Cloud'"
+          id="pphScene"
+          aria-hidden="true"
+        >
+          <div class="pph-illus">
+            <img
+              class="pph-illus-img"
+              [class.tally-hero-image]="v.name === 'Tally on Cloud'"
+              [src]="v.heroImage"
+              [alt]="v.poweredBy || v.name"
+            />
+            @if (v.poweredBy) {
+              <div class="pph-powered-mark">
+                <span class="pw-lbl">Powered By</span>
+                @if (v.poweredMark === 'tally') {
+                  <span class="pw-name pw-tally">Tally<span class="pw-cloud">on Cloud</span></span>
+                } @else {
+                  <span class="pw-name">Acronis</span><span class="pw-sub">Cyber Protect Cloud</span>
+                }
+              </div>
+            }
+          </div>
+        </div>
+      } @else {
+        <div class="pph-scene" id="pphScene" aria-hidden="true" [innerHTML]="sceneHtml()"></div>
+      }
+
+      <canvas class="pph-net" xhHeroNet aria-hidden="true"></canvas>
+      <span class="orb orb-1" aria-hidden="true"></span>
+
+      <div class="wrap">
+        <div class="pp-crumb" id="ppCrumb">{{ v.crumb }}</div>
+        <h1 id="ppTitle">
+          <span class="pp-title-brand">XcellSecure |</span>
+          <span class="pp-title-name" [class.pp-title-name-stacked]="stackHeroTitle()">{{ v.name }}</span>
+        </h1>
+        <h2
+          class="pp-tagline"
+          [class.pp-tagline-reference]="isAdvancedEdr() || v.name === 'Tally on Cloud'"
+          id="ppTag"
+        >
+          {{ v.tagline }}
+        </h2>
+        @if (v.heroHighlight) {
+          <p class="pp-tagline-support">{{ v.heroHighlight }}</p>
+        }
+        @if (v.heroMessages.length) {
+          <div class="pp-typewriter" aria-live="polite">
+            <span>{{ typedHeroText() }}</span><i aria-hidden="true"></i>
+          </div>
+        }
+        
+        <div class="pp-hero-grid">
+          <div class="pp-hero-l">
+            @if (v.heroPoints.length) {
+              <div class="pp-hpoints">
+                @for (p of v.heroPoints; track p; let i = $index) {
+                  <div class="pp-hpoint">
+                    <span class="tick" [style.animation-delay]="i * 0.1 + 's'">✓</span>{{ p }}
+                  </div>
+                }
+              </div>
+            }
+
+            <div class="hero-ctas">
+              <a class="btn ppd-info" [href]="v.infosheetUrl" id="ppInfo" target="_blank" rel="noopener noreferrer"
+                ><span class="ppd-ic">⬇</span> Infosheet</a
+              >
+              <a class="btn ppd-pres" href="#" id="ppPres" (click)="requestDoc('presentation', $event)"
+                ><span class="ppd-ic">📖</span> Presentation</a
+              >
+              <a class="btn btn-primary" href="#" id="ppBuy" (click)="buyNow($event)">⚡ Buy Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pp-trust">
+      <div class="wrap">
+        <span><b>ISO 27001</b> &amp; <b>20000-1</b> certified</span>
+        <span>Microsoft <b>Gold Partner</b></span>
+        <span><b>10,000+</b> customers</span>
+        <span><b>Since 1999</b></span>
+        <span><b>24×7</b> NOC + SOC</span>
+      </div>
+    </div>
+
+    <div class="pp-body">
+      <div class="wrap">
+        <div class="pp-sec">Overview</div>
+        <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
+
+        <div class="pp-sec">Watch it in action</div>
+        <div class="pp-vids" [class.pp-vids-compact]="v.offerSection">
+          <xh-product-video [videos]="v.videos" [labels]="v.videoLabels" [name]="v.name" />
+        </div>
+
+        @if (v.offerSection; as offer) {
+          <section class="pp-offer" aria-labelledby="ppOfferTitle">
+            <h2 id="ppOfferTitle">{{ offer.title }}</h2>
+            <p class="pp-offer-subtitle">{{ offer.subtitle }}</p>
+            <div class="pp-offer-heading">
+              <h3>{{ offer.lead }}</h3>
+              <img class="pp-offer-price" [src]="offer.priceImage" alt="Remote monitoring price offer" />
+            </div>
+            <img class="pp-offer-contracts" [src]="offer.offersImage" alt="Remote monitoring annual contract offers" />
+          </section>
+        }
+
+        @if (isAdvancedEdr()) {
+          <section class="edr-pricing" id="ppPlans" aria-labelledby="edr-pricing-title">
+            <h2 id="edr-pricing-title">Advanced Security + EDR</h2>
+            <p class="edr-pricing-tagline">Hackers don't wait Neither should you. Smarter detection Stronger defense</p>
+            <div class="edr-pricing-summary">
+              <h3>Enterprise-grade security SMB-friendly pricing</h3>
+              <div class="edr-price"><b>₹999</b><span>per user/year</span></div>
+            </div>
+            <div class="edr-offers">
+            @for (p of v.plans; track p.term) {
+              <a class="edr-offer" href="#" (click)="buyPlan(p, $event)">
+                <span>{{ p.ribbon }}</span>
+                <b>Buy {{ p.term }}</b>
+                <em>{{ p.tag }}</em>
+              </a>
+            }
+            </div>
+          </section>
+        }
+
+        @if (!isAdvancedEdr() && !isSmbCyber()) {
+          <div class="pp-sec">Plans &amp; pricing</div>
+          <div class="pp-plans" id="ppPlans">
+            @for (p of v.plans; track p.term) {
+              <div class="ppl" [class.hot]="p.hot || p.ribbon">
+                @if (p.ribbon || p.hot) {
+                  <span class="tag">{{ p.ribbon || 'Most Popular' }}</span>
+                }
+                <h4>{{ p.term }} Plan</h4>
+                <div class="amt"><b>{{ p.amount }}</b><span>{{ p.unit }}</span></div>
+                <div class="save">{{ p.tag || (p.quoteOnly ? p.badge : '') }}</div>
+                <div class="btns">
+                  <a class="btn btn-primary pl-buy" href="#" (click)="isRmm() ? viewPlan(p, $event) : buyPlan(p, $event)">{{
+                    isRmm() ? 'View Plan' : (p.quoteOnly ? 'Get Quote' : '⚡ Buy Now')
+                  }}</a>
+                  @if (!p.quoteOnly && !isRmm()) {
+                    <a class="btn btn-ghost pl-add" href="#" (click)="addPlan(p, $event)">🛒 Add to Cart</a>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+          <p class="pv-note">
+            💳 Pay online via UPI · Cards · NetBanking (Zoho payment link) — or add to cart for a
+            combined quote. Multi-year discounts are indicative and confirmed on the quote.
+          </p>
+        }
+
+        @if (isRmm()) {
+          <section class="pp-rmm-benefits" id="ppFeats" aria-labelledby="rmm-features-title">
+            <h2 id="rmm-features-title">Features</h2>
+            <div class="pp-rmm-benefit-grid">
+              @for (benefit of v.benefitGrid; track benefit.title; let i = $index) {
+                <article class="pp-rmm-benefit">
+                  <span class="pp-rmm-benefit-number">{{ i + 1 }}</span>
+                  <div class="pp-rmm-benefit-copy">
+                    <b>{{ benefit.title }} <i aria-hidden="true">{{ benefit.icon }}</i></b>
+                  </div>
+                </article>
+              }
+            </div>
+          </section>
+        } @else {
+          @if (isAdvancedEdr()) {
+            <section class="edr-feature-heading" aria-labelledby="edr-feature-title">
+              <div class="edr-feature-copy">
+                <span class="edr-feature-brand">Acronis</span>
+                <h2 id="edr-feature-title">Advanced Security + EDR</h2>
+                <span class="edr-feature-kicker">Top 20 Features</span>
+                <p>AI-Powered. All-in-One. Built for Modern Cyber Resilience</p>
+              </div>
+              <div class="edr-feature-emblem" aria-hidden="true">
+                <span class="edr-emblem-ring ring-one"></span>
+                <span class="edr-emblem-ring ring-two"></span>
+                <span class="edr-emblem-ring ring-three"></span>
+                <span class="edr-emblem-shadow"></span>
+                <span class="edr-emblem-shield"><b>A</b></span>
+              </div>
+            </section>
+          } @else {
+            <div class="pp-sec">
+              {{ v.name === 'Tally on Cloud' ? 'Tally On Cloud Security Features' : 'Key features' }}
+            </div>
+          }
+          <div
+            class="pp-feats"
+            id="ppFeats"
+            [class.pp-feats-four]="isAdvancedEdr() || isSmbCyber() || v.name === 'Tally on Cloud'"
+            [class.smb-feats]="isSmbCyber()"
+          >
+            @for (f of v.features; track f.title) {
+              <div class="pp-feat">
+                <span class="fic">{{ f.icon }}</span>
+                <div><b [innerHTML]="f.title"></b><span [innerHTML]="f.body"></span></div>
+              </div>
+            }
+          </div>
+        }
+
+        @if (v.featureSpotlight; as spotlight) {
+          <section class="pp-feature-spotlight">
+            <div class="pp-feature-spotlight-copy"><h2>{{ spotlight.title }}</h2><p>{{ spotlight.body }}</p></div>
+            <img class="pp-feature-spotlight-image" [src]="spotlight.image" alt="Acronis monitoring and patch management dashboard" />
+          </section>
+        }
+
+        @if (v.featureDetail; as detail) {
+          <section class="pp-feature-detail">
+            <img class="pp-feature-detail-image" [src]="detail.image" alt="Acronis security posture dashboard" />
+            <div class="pp-feature-detail-copy">
+              <h2>{{ detail.title }}</h2>
+              <ul>@for (item of detail.bullets; track item) { <li>{{ item }}</li> }</ul>
+            </div>
+          </section>
+        }
+
+        @if (!isRmm() && v.frameworkSection; as framework) {
+          <section class="pp-framework">
+            <h2>{{ framework.title }}</h2><p>{{ framework.subtitle }}</p>
+            <img class="pp-framework-image" [src]="framework.image" alt="Framework for effective cyber hygiene" />
+            @if (framework.secondaryImage) { <img class="pp-framework-image pp-framework-image-secondary" [src]="framework.secondaryImage" alt="Cyber hygiene scorecard" /> }
+            @if (framework.tertiaryImage) { <img class="pp-framework-image pp-framework-image-secondary" [src]="framework.tertiaryImage" alt="RMM implementation roadmap" /> }
+          </section>
+        }
+
+        @if (!isRmm() && v.advancedSection; as advanced) {
+          <section class="pp-advanced-rmm">
+            <div class="pp-advanced-rmm-copy"><h2>{{ advanced.title }}</h2><h3>{{ advanced.tagline }}</h3><p>{{ advanced.body }}</p></div>
+            <img class="pp-advanced-rmm-image" [src]="advanced.image" alt="Acronis Advanced RMM platform" />
+            @if (advanced.secondaryImage) { <img class="pp-advanced-rmm-secondary" [src]="advanced.secondaryImage" alt="RMM problems and solutions" /> }
+            @if (advanced.tertiaryImage) { <img class="pp-advanced-rmm-secondary" [src]="advanced.tertiaryImage" alt="RMM capabilities and business benefits" /> }
+          </section>
+        }
+
+        @if (isSmbCyber()) {
+          <div class="smb-showcase">
+            <section class="smb-block smb-pricing" id="ppPlans" aria-labelledby="smb-pricing-title">
+              <div class="smb-price-heading">
+                <span>Hardware + Security Bundle</span>
+                <h2 id="smb-pricing-title">Cybird Security Appliance Bundles</h2>
+                <p>Choose a billing period, then select the security bundle that fits your team.</p>
+              </div>
+
+              <div class="smb-term-tabs" role="tablist" aria-label="Choose Cybird billing period">
+                @for (term of cybirdTerms; track term.key) {
+                  <button
+                    type="button"
+                    role="tab"
+                    [class.is-active]="selectedCybirdTerm() === term.key"
+                    [attr.aria-selected]="selectedCybirdTerm() === term.key"
+                    (click)="selectCybirdTerm(term.key)"
+                  >{{ term.label }}</button>
+                }
+              </div>
+              <p class="smb-prorata-note">Multi-year savings are included in the displayed bundle price.</p>
+
+              <div class="smb-price-wrap">
+                @for (plan of cybirdPlans; track plan.name) {
+                  <article class="smb-price-plan" [class.smb-plan-featured]="plan.accent === 'pro'">
+                    <div [class]="'smb-plan-band smb-band-' + plan.accent">Up to {{ plan.users }} users</div>
+                    <div class="smb-plan-main">
+                      <div class="smb-plan-name">
+                        <span [class]="'smb-plan-icon smb-plan-icon-' + plan.accent" aria-hidden="true">C</span>
+                        <b>Cybird <em>{{ plan.name }}</em></b>
+                      </div>
+                      <p class="smb-starting">Bundle price for {{ activeCybirdTerm().label }}</p>
+                      <div class="smb-selected-price"><span>&#8377;</span>{{ formatInr(cybirdPrice(plan)) }}</div>
+                      <small class="smb-gst">+GST</small>
+                      <a class="smb-select-plan" href="#" (click)="selectCybirdPlan(plan, $event)">Select plan</a>
+                    </div>
+                    <ul class="smb-plan-features">
+                      <li><b>Hardware + security</b> bundle</li>
+                      <li>Protects up to <b>{{ plan.users }} users</b></li>
+                      <li>Hardware appliance <b>&#8377;16,999 +GST</b></li>
+                      <li>Optional support for <b>{{ plan.supportRange }}</b>: <b>&#8377;{{ formatInr(plan.support) }}/month</b></li>
+                    </ul>
+                  </article>
+                }
+              </div>
+              <div class="smb-appliance-price"><span class="smb-appliance-icon" aria-hidden="true">C</span><b>Cybird Cyber Security Customer Hardware Appliance</b><strong>&#8377;16,999</strong><small>+GST</small></div>
+              <div class="smb-price-actions"><a class="btn btn-primary" href="#" (click)="openCallback($event)">Ask for a FREE Trial | Schedule 1:1 DEMO</a></div>
+            </section>
+
+            <section class="smb-block" aria-labelledby="smb-ideal-title">
+              <header class="smb-section-head"><h2 id="smb-ideal-title">Ideal for businesses up to 50 users</h2></header>
+              <div class="smb-ideal-grid">
+                <article><i>▥</i><b>Small Offices<br />&amp; Enterprises</b></article>
+                <article><i>⌂</i><b>Work From<br />Home (WFH)</b></article>
+                <article><i>♢</i><b>Schools &amp;<br />Colleges</b></article>
+                <article><i>▱</i><b>Retail Stores<br />&amp; Chains</b></article>
+                <article><i>＋</i><b>Healthcare<br />Clinics</b></article>
+                <article><i>▥</i><b>SMBs &amp;<br />Manufacturing</b></article>
+                <article><i>▤</i><b>Branch Offices<br />&amp; More</b></article>
+              </div>
+              <header class="smb-section-head smb-subhead"><h2>Benefits</h2></header>
+              <div class="smb-benefit-grid">
+                <article><i>✓</i><b>Multi-Layer Protection</b><p>Defend against phishing, malware, ransomware and cyber threats.</p></article>
+                <article><i>↘</i><b>Reduced Cyber Risk</b><p>Proactive threat detection and filtering keeps your business safe.</p></article>
+                <article><i>◎</i><b>Safe Browsing for Users</b><p>Ensure a secure and productive internet experience.</p></article>
+                <article><i>↔</i><b>Scalable for Any Environment</b><p>One platform for office, remote, multi-site or growing businesses.</p></article>
+              </div>
+            </section>
+
+            <section class="smb-block" aria-labelledby="smb-how-title">
+              <header class="smb-section-head"><h2 id="smb-how-title">How Cybird works</h2></header>
+              <div class="smb-network-flow">
+                <article class="smb-network-list">
+                  <h3>Your Business Network</h3>
+                  <ul><li>Employees</li><li>Laptops &amp; Desktops</li><li>Mobile Devices</li><li>Printers &amp; IoT Devices</li><li>Guests</li><li>IP Phones &amp; Cameras</li></ul>
+                </article>
+                <div class="smb-cybird-hub">
+                  <div class="smb-cloud"><b>Cybird Cloud</b><span>Centralized Management &amp; Threat Intelligence</span></div>
+                  <img class="smb-product-image smb-product-image-flow" src="/assets/images/cybird-x2-product.png" alt="Cybird X2 cyber security appliance" loading="lazy" />
+                  <b>Cybird X2</b><p>All-in-one Security Platform<br />Security · Wi-Fi · Controls · Connectivity</p>
+                </div>
+                <article class="smb-network-list">
+                  <h3>The Internet</h3>
+                  <ul><li>Microsoft 365</li><li>Google Workspace</li><li>Cloud Applications</li><li>Web Browsing</li><li>Banking &amp; Finance</li><li>E-commerce</li></ul>
+                </article>
+              </div>
+              <div class="smb-capability-grid">
+                <article><i>◇</i><b>Threat Protection</b><p>Blocks malicious sites, phishing, malware and harmful downloads.</p></article>
+                <article><i>◎</i><b>Web Security</b><p>DNS filtering and safe browsing to protect users online.</p></article>
+                <article><i>▦</i><b>Application Controls</b><p>Manage and control apps for better productivity.</p></article>
+                <article><i>↗</i><b>Visibility &amp; Insights</b><p>Real-time dashboards, reports, alerts and usage analytics.</p></article>
+                <article><i>♙</i><b>User Access</b><p>Per-user identities with roles and access policies.</p></article>
+                <article><i>☁</i><b>Cloud Managed</b><p>Manage all your sites from anywhere, anytime.</p></article>
+              </div>
+            </section>
+
+            <section class="smb-block" aria-labelledby="smb-platform-title">
+              <header class="smb-section-head"><h2 id="smb-platform-title">Everything your business needs in one simple platform</h2></header>
+              <div class="smb-pillar-grid">
+                <article><i>⌁</i><b>Business Wi-Fi</b><p>Fast, reliable Wi-Fi with secure, per-user access.</p></article>
+                <article><i>◇</i><b>Security</b><p>Multi-layer protection for your network and users.</p></article>
+                <article><i>☷</i><b>Controls</b><p>Application, content and bandwidth controls that are easy to use.</p></article>
+                <article><i>▣</i><b>Visibility</b><p>See what’s happening on your network in real-time.</p></article>
+                <article><i>◉</i><b>Cloud Management</b><p>One dashboard to manage all your sites and devices.</p></article>
+              </div>
+              <div class="smb-product-panel">
+                <div class="smb-product-copy">
+                  <span>Powerful protection. Built for small business.</span>
+                  <h3>Cybird X2</h3><b>Small Business Security Platform</b>
+                  <p>An all-in-one security platform that combines Wi-Fi, firewall, web security and smart controls—managed from the cloud for better protection and visibility.</p>
+                  <img class="smb-product-image smb-product-image-panel" src="/assets/images/cybird-x2-product.png" alt="Cybird X2 small business security appliance" loading="lazy" />
+                </div>
+                <div class="smb-specs">
+                  <h3>Technical specifications</h3>
+                  <dl>
+                    <div><dt>Processor</dt><dd>MediaTek 1.3 GHz Dual-Core ARM</dd></div><div><dt>Memory</dt><dd>1 GB DDR4</dd></div>
+                    <div><dt>Storage</dt><dd>128 MB NAND Flash</dd></div><div><dt>Interfaces</dt><dd>1× WAN, 4× LAN, 2× USB 2.0</dd></div>
+                    <div><dt>Wi-Fi</dt><dd>Dual Band Wi-Fi 6 (2.4 &amp; 5 GHz)</dd></div><div><dt>Firewall</dt><dd>Up to 900 Mbps*</dd></div>
+                    <div><dt>VPN</dt><dd>Up to 300 Mbps*</dd></div><div><dt>Power</dt><dd>DC 12V / 2A</dd></div>
+                    <div><dt>Dimensions</dt><dd>200 × 120 × 35 mm</dd></div><div><dt>Warranty</dt><dd>1 Year (Extendable)</dd></div>
+                  </dl>
+                  <small>* Performance depends on enabled services, configuration and deployment conditions.</small>
+                </div>
+              </div>
+            </section>
+
+            <section class="smb-block smb-safer" aria-labelledby="smb-safer-title">
+              <header class="smb-section-head"><h2 id="smb-safer-title">Help Small Businesses Run Safer Networks</h2><p>Cybird delivers security, business Wi-Fi and visibility in one right-sized platform.</p></header>
+              <div class="smb-safer-grid">
+                <article><i>⌁</i><b>Secure Business Wi-Fi</b><p>Reliable and protected for staff and guests.</p></article>
+                <article><i>◇</i><b>Phishing &amp; Malicious Site Blocking</b><p>Stops threats before they reach your clients.</p></article>
+                <div class="smb-dashboard"><span>Built for MSP Partners</span><div><b>Cybird</b><strong>All Secure</strong></div><span>Grow Revenue. Deliver Value.</span></div>
+                <article><i>♙</i><b>Separate Staff &amp; Guest Access</b><p>Keep networks organized and secure.</p></article>
+                <article><i>▣</i><b>Better Visibility &amp; Control</b><p>See everything. Manage remotely. Support faster.</p></article>
+              </div>
+              <div class="smb-business-grid"><span>CA Firm</span><span>Clinic</span><span>Digital Agency</span><span>Legal Office</span></div>
+            </section>
+          </div>
+        }
+
+        @if (isAdvancedEdr()) {
+          <section class="edr-need" aria-labelledby="edr-need-title">
+            <header class="edr-need-head">
+              <span>Beyond traditional antivirus</span>
+              <h2 id="edr-need-title">Why You Need Acronis Advanced EDR</h2>
+              <p>Traditional antivirus is no longer adequate for today’s connected, fast-moving threats.</p>
+            </header>
+
+            <div class="edr-compare-lines">
+              <section class="edr-limitations" aria-labelledby="edr-limitations-title">
+                <h3 id="edr-limitations-title">Limitations of traditional antivirus</h3>
+                <ol>
+                  <li><b>Signature-based detection</b><span>Detects only known threats and fails against new or unknown attacks.</span></li>
+                  <li><b>Slow response to zero-day attacks</b><span>No protection against zero-day exploits and fileless malware.</span></li>
+                  <li><b>No visibility across systems</b><span>Limited visibility into attack origin, lateral movement, and user behavior.</span></li>
+                  <li><b>Cannot detect advanced threats</b><span>Fails to stop ransomware variants, APTs, and insider threats.</span></li>
+                  <li><b>No context or correlation</b><span>Cannot connect multiple events to understand the full attack story.</span></li>
+                  <li><b>Reactive, not proactive</b><span>Acts after infection, not before.</span></li>
+                  <li><b>Endpoint-only protection</b><span>No integration with network, cloud, or identity systems.</span></li>
+                  <li><b>High false positives / missed threats</b><span>Leads to alert fatigue and missed real attacks.</span></li>
+                  <li><b>No automated response</b><span>Requires manual intervention, slowing response time.</span></li>
+                  <li><b>Ineffective against modern ransomware</b><span>Modern attacks encrypt data fast and spread across the network.</span></li>
+                </ol>
+              </section>
+
+              <section class="edr-advantages" aria-labelledby="edr-advantages-title">
+                <h3 id="edr-advantages-title">Why you need Acronis Advanced EDR</h3>
+                <ol>
+                  <li><b>Behavioral &amp; AI-based detection</b><span>Detects unknown threats using behavioral analysis and machine learning.</span></li>
+                  <li><b>Full attack visibility</b><span>See the entire attack timeline, entry point, and spread across endpoints.</span></li>
+                  <li><b>Real-time threat detection &amp; response</b><span>Identify and stop threats in real time before damage occurs.</span></li>
+                  <li><b>Correlation of events</b><span>Connect multiple signals and alerts into a complete attack story.</span></li>
+                  <li><b>Advanced ransomware protection</b><span>Detect encryption behavior, stop the attack, and roll back to a clean state.</span></li>
+                  <li><b>Automated incident response</b><span>Isolate infected devices, kill malicious processes, and remediate instantly.</span></li>
+                  <li><b>Cross-platform protection</b><span>Protect endpoints, servers, and cloud workloads across your environment.</span></li>
+                  <li><b>Deep forensic insights</b><span>Root-cause analysis, detailed reporting, and compliance support.</span></li>
+                  <li><b>Continuous monitoring (24/7)</b><span>Always-on monitoring, threat hunting, and protection.</span></li>
+                  <li><b>Integrated cyber protection platform</b><span>Acronis combines EDR, anti-malware, backup, and disaster recovery in one platform.</span></li>
+                </ol>
+              </section>
+            </div>
+
+            <div class="edr-false-positive">
+              <h2>Advanced Endpoint Security <span>+ EDR</span></h2>
+              <p>Another critical enhancement offered by full-stack anti-malware is the reduction of false positives, a persistent issue for users and IT administrators alike. Through refined heuristic analysis and behavior-based detection mechanisms, the system can more accurately discern between genuine threats and benign activities, thereby streamlining security operations and minimizing disruptions to business continuity.</p>
+            </div>
+
+            <div class="edr-story">
+              <div class="edr-story-copy">
+                <span class="edr-story-kicker">Generative AI governance</span>
+                <h3>Monitor, control, and report on GenAI usage across clients</h3>
+                <p>Quickly experience the power of Acronis EDR and see how easy it is to analyze attacks, guided by AI, and to respond and recover with a single click — without having to deploy, configure, or populate with data.</p>
+              </div>
+              <figure class="edr-product-shot">
+                <img src="/assets/images/edr-genai-dashboard.png" alt="Acronis Cyber Protect Cloud Generative AI usage dashboard" loading="lazy" />
+              </figure>
+            </div>
+
+            <div class="edr-story edr-story-reverse">
+              <div class="edr-story-copy">
+                <span class="edr-story-kicker">NIST-aligned protection</span>
+                <h3>The most complete EDR solution for customers: comprehensive protection across NIST</h3>
+                <p>Unlike pure-play cybersecurity solutions, Acronis Cyber Protect Cloud brings the full power of its platform with integrated capabilities across leading cybersecurity frameworks, like NIST, for unmatched business continuity.</p>
+              </div>
+              <figure class="edr-product-shot">
+                <img src="/assets/images/edr-attack-stages.png" alt="Acronis EDR attack stages and process timeline" loading="lazy" />
+              </figure>
+            </div>
+          </section>
+        }
+
+        @if (!isSmbCyber() && !isRmm()) {
+        <div class="pp-sec">
+          {{
+            v.name === 'Tally on Cloud'
+              ? 'Why to Choose XcellHost for your Tally On Cloud'
+              : 'Benefits for your business'
+          }}
+        </div>
+        <div class="pp-bens" id="ppBens" [class.pp-bens-four]="v.name === 'Tally on Cloud'">
+          @for (b of v.benefits; track b[1]) {
+            <div class="pb">
+              <span class="ic">{{ b[0] }}</span>
+              <p><b [innerHTML]="b[1]"></b><span [innerHTML]="b[2]"></span></p>
+            </div>
+          }
+        </div>
+        }
+
+        @if (isRmm()) {
+          <section class="rmm-operations" aria-labelledby="rmm-operations-title">
+            <h2 id="rmm-operations-title">Simplify IT operations with Acronis Advanced RMM</h2>
+            <div class="rmm-problem-solution">
+              <article class="rmm-problem">
+                <header><span aria-hidden="true">!</span><div><h3>The Problem</h3><p>IT management is complex, time-consuming and reactive.</p></div></header>
+                <ul>
+                  <li>Lack of visibility into device health and performance.</li>
+                  <li>Manual processes lead to errors and inefficiencies.</li>
+                  <li>Unplanned downtime and slow issue resolution impact productivity.</li>
+                  <li>Managing patches, software and configurations across devices is difficult.</li>
+                  <li>Rising costs and limited resources reduce service quality and scalability.</li>
+                </ul>
+              </article>
+              <article class="rmm-solution">
+                <header><span aria-hidden="true">✓</span><div><h3>The Solution</h3><p>Acronis Advanced RMM simplifies IT operations, proactive management and service delivery.</p></div></header>
+                <ul>
+                  <li>Real-time monitoring and alerts for proactive issue resolution.</li>
+                  <li>Remote access and control to resolve issues faster.</li>
+                  <li>Automated patching and maintenance to keep systems secure and up to date.</li>
+                  <li>Centralized management of endpoints, software and configurations.</li>
+                  <li>Powerful automation and reporting to improve efficiency, reduce costs and scale your business.</li>
+                </ul>
+              </article>
+            </div>
+
+            <div class="rmm-capabilities">
+              <h3>Powerful RMM Capabilities</h3>
+              <div class="rmm-capability-grid">
+                <article><i>⌁</i><b>Real-Time Monitoring</b><p>Track device health, disk status, performance metrics and critical alerts in real time.</p></article>
+                <article><i>↔</i><b>Remote Access &amp; Control</b><p>Securely access and control endpoints to troubleshoot and resolve issues remotely.</p></article>
+                <article><i>⚙</i><b>Automation &amp; Task Management</b><p>Automate routine tasks, execute scripts and manage maintenance with ease.</p></article>
+                <article><i>◇</i><b>Patch Management &amp; IT Automation</b><p>Automate patch deployment and IT maintenance to reduce vulnerabilities and remediate faster.</p></article>
+                <article><i>▣</i><b>Software Management &amp; Deployment</b><p>Deploy, update and manage software applications across all devices remotely.</p></article>
+                <article><i>▧</i><b>Reporting &amp; Dashboards</b><p>Get actionable insights with customizable reports and dashboards.</p></article>
+              </div>
+            </div>
+
+            <div class="rmm-outcomes">
+              <section aria-labelledby="rmm-benefits-title">
+                <h3 id="rmm-benefits-title">Business Benefits</h3>
+                <div class="rmm-business-grid">
+                  <article><i>✓</i><b>Improved Efficiency</b><p>Automate tasks and reduce manual effort to save valuable time.</p></article>
+                  <article><i>₹</i><b>Lower Costs</b><p>Reduce downtime and operational costs with proactive IT management.</p></article>
+                  <article><i>↗</i><b>Higher Productivity</b><p>Keep systems healthy and users productive with fewer disruptions.</p></article>
+                  <article><i>☆</i><b>Better Service Delivery</b><p>Resolve issues faster and deliver superior client satisfaction.</p></article>
+                  <article><i>⤢</i><b>Scalable Growth</b><p>Easily manage more devices and clients as your business grows.</p></article>
+                </div>
+              </section>
+            </div>
+          </section>
+        }
+
+        @if (v.name === 'Tally on Cloud') {
+          <section class="tally-extra" aria-label="Tally on Cloud migration information">
+            <section class="tally-bundle" aria-labelledby="tally-bundle-title">
+              <header class="tally-bundle-head">
+                <span>Exclusive bundle</span>
+                <h2 id="tally-bundle-title">Bundled Offers with XcellHost <strong>Tally on Cloud</strong></h2>
+                <p>Cloud Tally and mobile business intelligence in one practical SMB package.</p>
+              </header>
+
+              <div class="tally-bundle-grid">
+                <article class="tally-bundle-cloud">
+                  <div class="tally-bundle-product">
+                    <div>
+                      <span class="tally-bundle-kicker">Tally on Cloud</span>
+                      <h3>Work on Tally from anywhere</h3>
+                    </div>
+                    <div class="tally-bundle-price">
+                      <small>At just</small><strong>₹499</strong><span>/user/month</span>
+                    </div>
+                  </div>
+
+                  <h4>Tally on Cloud — key features</h4>
+                  <ul class="tally-bundle-features">
+                    <li>Access Tally anytime, anywhere</li>
+                    <li>Access from laptop, desktop and other devices</li>
+                    <li>Secure and encrypted cloud environment</li>
+                    <li>Automatic updates and maintenance</li>
+                    <li>Multi-user access</li>
+                    <li>Work from office, home or while travelling</li>
+                    <li>High-speed performance</li>
+                    <li>24×7 cloud availability</li>
+                    <li>Automatic daily backups</li>
+                    <li>Built on ISO 27001 and PCI DSS Level 1 infrastructure</li>
+                    <li>Disaster recovery assurance</li>
+                  </ul>
+                </article>
+
+                <article class="tally-bundle-insights">
+                  <div class="tally-insights-brand">
+                    <span aria-hidden="true">AI</span>
+                    <div><small>Mobile business insights</small><h3>FinlyticZ</h3></div>
+                  </div>
+                  <div class="tally-bundle-free">Worth ₹4,999/year <strong>Bundled free</strong></div>
+                  <p>Get powerful AI business insights on your mobile, included free with XcellHost Tally on Cloud.</p>
+                  <ul class="tally-insights-list">
+                    <li>Sales and business analytics</li>
+                    <li>Real-time business insights</li>
+                    <li>Outstanding receivables and payables</li>
+                    <li>Cash and bank position</li>
+                    <li>Stock and inventory overview</li>
+                    <li>Customer and supplier insights</li>
+                    <li>Daily business performance</li>
+                    <li>Important business metrics and updates</li>
+                    <li>Access reports anytime, anywhere</li>
+                    <li>Secure, encrypted and private</li>
+                    <li>Works on mobile, tablet and desktop</li>
+                  </ul>
+                </article>
+              </div>
+            </section>
+
+            <h2 class="tally-extra-title">Tally On-Premises <span>VS</span> Tally On Cloud</h2>
+            <div class="tally-compare">
+              <div class="tally-compare-item on-prem">Needs Manual Updates</div>
+              <div class="tally-compare-item on-cloud">Automatic Updates</div>
+              <div class="tally-compare-item on-prem">No Real-Time Syncing</div>
+              <div class="tally-compare-item on-cloud">Yes, Real-Time Syncing</div>
+              <div class="tally-compare-item on-prem">Data Recovery Takes Time</div>
+              <div class="tally-compare-item on-cloud">Instant Data Recovery</div>
+              <div class="tally-compare-item on-prem">Manual Backups</div>
+              <div class="tally-compare-item on-cloud">Automatic Backups Every 3 Hrs</div>
+              <div class="tally-compare-item on-prem">Multiple Tally Licences</div>
+              <div class="tally-compare-item on-cloud">Single Tally On Cloud Licence</div>
+              <div class="tally-compare-item on-prem">Requires IT Staff To Manage</div>
+              <div class="tally-compare-item on-cloud">Managed 24×7 By Certified Experts</div>
+              <div class="tally-compare-item on-prem">No Integrated Cyber Attack Prevention Software</div>
+              <div class="tally-compare-item on-cloud">Integrated Cyber Attack Prevention Software</div>
+              <div class="tally-compare-item on-prem">Interconnected At Only One Location Via Wi-Fi or LAN</div>
+              <div class="tally-compare-item on-cloud">Interconnected At Many Locations Via Cloud</div>
+            </div>
+
+            <h2 class="tally-extra-title">Migrate Tally To The Cloud <span>5 Easy Steps</span></h2>
+            <div class="tally-migration-steps">
+              <div class="tally-migration-step"><i>01</i><span>🚀</span><b>Deliver Tally Server</b></div>
+              <div class="tally-migration-step"><i>02</i><span>👤</span><b>Create Dynamic User</b></div>
+              <div class="tally-migration-step"><i>03</i><span>☁️</span><b>Migrate Tally Data To The Cloud</b></div>
+              <div class="tally-migration-step"><i>04</i><span>🏆</span><b>Tally Licence Activation</b></div>
+              <div class="tally-migration-step"><i>05</i><span>🧩</span><b>Install Any Third Application</b></div>
+            </div>
+
+            <h2 class="tally-extra-title">What You Can Install On <span>Windows Server</span></h2>
+            <div class="tally-apps" role="region" aria-roledescription="carousel" aria-label="Supported Windows Server applications" tabindex="0">
+              <div class="tally-app-track">
+                <div class="tally-app-group">
+                  <div class="tally-app-logo"><img src="/assets/images/tally-app-2.png" alt="ClearTax" /></div>
+                  <div class="tally-app-logo"><img src="/assets/images/tally-app-1.png" alt="TDSMAN" /></div>
+                  <div class="tally-app-logo"><img src="/assets/images/tally-app-8.png" alt="CredFlow" /></div>
+                  <div class="tally-app-logo"><img src="/assets/images/tally-app-7.png" alt="Biz Analyst" /></div>
+                  <div class="tally-app-logo"><img src="/assets/images/tally-app-6.png" alt="Winman" /></div>
+                  <div class="tally-app-logo"><img src="/assets/images/tally-app-5.png" alt="XcellDrive" /></div>
+                  <div class="tally-app-logo"><img src="/assets/images/tally-app-4.png" alt="Saral" /></div>
+                  <div class="tally-app-logo"><img src="/assets/images/tally-app-3.png" alt="CompuTax" /></div>
+                </div>
+                <div class="tally-app-group" aria-hidden="true">
+                  <div class="tally-app-logo"><img src="/assets/images/tally-app-2.png" alt="" /></div>
+                  <div class="tally-app-logo"><img src="/assets/images/tally-app-1.png" alt="" /></div>
+                  <div class="tally-app-logo"><img src="/assets/images/tally-app-8.png" alt="" /></div>
+                  <div class="tally-app-logo"><img src="/assets/images/tally-app-7.png" alt="" /></div>
+                  <div class="tally-app-logo"><img src="/assets/images/tally-app-6.png" alt="" /></div>
+                  <div class="tally-app-logo"><img src="/assets/images/tally-app-5.png" alt="" /></div>
+                  <div class="tally-app-logo"><img src="/assets/images/tally-app-4.png" alt="" /></div>
+                  <div class="tally-app-logo"><img src="/assets/images/tally-app-3.png" alt="" /></div>
+                </div>
+              </div>
+            </div>
+          </section>
+        }
+
+        @if (v.name !== 'Tally on Cloud' && !isSmbCyber()) {
+          <div class="pp-sec">Use cases</div>
+          <div class="pp-uses" id="ppUses">
+            @for (u of v.uses; track u[1]) {
+              <div class="pu"><span class="pu-ic">{{ u[0] }}</span><b>{{ u[1] }}</b>{{ u[2] }}</div>
+            }
+          </div>
+
+          @if (v.honest; as honest) {
+            <div class="pp-honest" id="ppHonest">
+              <div class="ph-tag">Straight answer</div>
+              <b>When {{ v.name }} is not the right fit</b>
+              <p>{{ honest }}</p>
+            </div>
+          }
+        }
+
+        @if (v.edr; as edr) {
+          <div id="ppTimeline">
+            <div class="pp-sec">How it works</div>
+            <ol class="pp-timeline">
+              @for (t of edr.timeline; track t[0]) {
+                <li><b>{{ t[0] }}</b><p>{{ t[1] }}</p></li>
+              }
+            </ol>
+          </div>
+          <div id="ppCompare">
+            <div class="pp-sec">Which one do you actually need?</div>
+            <div class="pp-compare-wrap">
+              <table class="pp-compare">
+                <thead>
+                  <tr>
+                    <th></th>
+                    @for (c of edr.compare.cols; track c) {
+                      <th>{{ c }}</th>
+                    }
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (r of compareRows(); track r.head) {
+                    <tr>
+                      <th scope="row">{{ r.head }}</th>
+                      @for (c of r.cells; track $index) {
+                        <td>{{ c }}</td>
+                      }
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        }
+
+        @if (v.name !== 'Tally on Cloud') {
+        @if (!isSmbCyber() && !isRmm()) {
+        <div class="pp-sec">How it works</div>
+        <div class="pp-steps" id="ppSteps">
+          @for (s of v.steps; track s[0]; let i = $index) {
+            <div class="pst">
+              <div class="n">{{ i + 1 }}</div>
+              <b [innerHTML]="s[0]"></b><span [innerHTML]="s[1]"></span>
+            </div>
+          }
+        </div>
+        }
+
+        @if (!isSmbCyber() && !isRmm()) {
+          <div class="pp-sec" id="ppSecHead">{{ v.security.head }}</div>
+          <div id="ppSecWrap">
+            <p class="pp-ov">{{ v.security.intro }}</p>
+            <div class="pp-secrows">
+              @for (r of v.security.rows; track r[0]) {
+                <div class="psrow"><span class="psk">{{ r[0] }}</span><span class="psv">{{ r[1] }}</span></div>
+              }
+            </div>
+            <p class="pp-secfoot">
+              XcellHost is ISO 27001 and ISO 20000-1 certified · Indian Tier-4 datacenters · DPDPA and
+              RBI aligned · 24×7 NOC and SOC.
+            </p>
+          </div>
+        }
+
+        }
+
+        @if (v.name !== 'Tally on Cloud' && !isSmbCyber() && !isRmm()) {
+          <div class="pp-sec" id="ppWhyHead">Why XcellHost for {{ v.name }}</div>
+          <div class="pp-why" id="ppWhy">
+            @for (w of v.why; track w.title) {
+              <div class="pw">
+                <span class="pw-ic">{{ w.icon }}</span>
+                <b [innerHTML]="w.title"></b><span [innerHTML]="w.body"></span>
+              </div>
+            }
+          </div>
+        }
+
+        <div id="ppRich">
+          @if (v.packages.length) {
+            <div class="pp-sec">Included with {{ v.name }}</div>
+            <div class="pp-pkg">
+              @for (item of v.packages; track item.title) {
+                <div class="pkg">
+                  @if (item.image) { <img class="pi pi-image" [src]="item.image" [alt]="item.title" /> }
+                  @else { <span class="pi">{{ item.icon }}</span> }
+                  <b>{{ item.title }}</b>
+                </div>
+              }
+            </div>
+          }
+          @if (v.name !== 'Tally on Cloud') {
+            @if (v.activeProtection; as ap) {
+              <div class="pp-active pp-active-noimg">
+                <div>
+                  <h3 [innerHTML]="ap.title.replace('Free', '<b>Free</b>')"></h3>
+                  <p>{{ ap.body }}</p>
+                </div>
+              </div>
+            }
+          }
+          @if (platforms().length) {
+            <div class="pp-sec">Platforms &amp; workloads covered</div>
+            <div class="pp-plat">
+              @for (p of platforms(); track p.name) {
+                <div class="plat"><span class="pl-ic">{{ p.icon }}</span><span>{{ p.name }}</span></div>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="pp-sec">What customers say</div>
+        @if (isFlagship()) {
+          <div class="pp-tcards" id="ppRevs">
+            @for (r of v.reviews; track r.name) {
+              <div class="tcard">
+                <div class="quote-badge">”</div>
+                <div class="tav">{{ r.initials }}</div>
+                <div class="tname">{{ r.name }}</div>
+                <div class="trole">{{ r.role }}</div>
+                <div class="tstars">
+                  @for (s of starSlots; track s) {
+                    @if (s < r.stars) {
+                      <span>★</span>
+                    } @else {
+                      <span class="off">★</span>
+                    }
+                  }
+                </div>
+                <p>{{ r.quote }}</p>
+              </div>
+            }
+          </div>
+        } @else {
+          <div class="pp-revs" id="ppRevs">
+            @for (r of v.reviews; track r.name) {
+              <div class="prv">
+                <div class="stars">
+                  @for (s of starSlots; track s) {
+                    @if (s < r.stars) {
+                      <span>★</span>
+                    } @else {
+                      <span class="off">★</span>
+                    }
+                  }
+                </div>
+                <p>“{{ r.quote }}”</p>
+                <cite><span class="rav">{{ r.initials }}</span><span><b>{{ r.name }}</b>{{ r.role }}</span></cite>
+              </div>
+            }
+          </div>
+        }
+
+        <div class="pp-sec">Frequently asked questions</div>
+        <div class="pp-faq" id="ppFaq">
+          <xh-product-faq [faqs]="v.faqs" />
+        </div>
+
+        <div class="pp-sec">From our blog</div>
+        <div class="pp-blog" id="ppBlog">
+          @for (b of blogs(); track b.title) {
+            <a class="pbl pbl-link" [routerLink]="b.link">
+              @if (b.imageUrl) {
+                <img class="blog-cover" [src]="b.imageUrl" [alt]="b.imageAlt" />
+              }
+              <div class="pbl-top">
+                <span class="k">{{ b.kicker }}</span><span class="rt">{{ b.meta }}</span>
+              </div>
+              <b>{{ b.title }}</b>
+              <p class="pbl-x">{{ b.excerpt }}</p>
+              <span class="pbl-go">Read article →</span>
+            </a>
+          } @empty {
+            <div class="pp-blog-empty">
+              <b>No {{ v.name }} articles published yet.</b>
+              <span>New articles assigned to this page in Strapi will appear here automatically.</span>
+            </div>
+          }
+        </div>
+        <div class="pp-blogbtn-wrap">
+          <a class="btn pp-blogbtn" id="ppBlogBtn" routerLink="/insights"
+            >View all blogs</a
+          >
+        </div>
+
+        <div class="pp-cta">
+          <div>
+            <h3 id="ppCtaT">Ready to start with {{ v.name }}?</h3>
+            <p>Free consultation · free migration · 24×7 support in English &amp; Hindi</p>
+          </div>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap">
+            <a class="btn btn-primary" href="#" id="ppCtaCall" (click)="openCallback($event)"
+              >Request a callback</a
+            >
+            <a
+              class="btn btn-ghost"
+              style="border-color: rgba(255, 255, 255, 0.4); color: #fff"
+              href="#"
+              (click)="buyNow($event)"
+              >⚡ Buy Now</a
+            >
+            <a
+              class="btn btn-ghost"
+              style="border-color: rgba(255, 255, 255, 0.4); color: #fff"
+              [href]="v.infosheetUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              >⬇ Infosheet</a
+            >
+            <a
+              class="btn btn-ghost"
+              style="border-color: rgba(255, 255, 255, 0.4); color: #fff"
+              href="#"
+              (click)="requestDoc('presentation', $event)"
+              >📖 Presentation</a
+            >
+            <a
+              class="btn btn-ghost"
+              style="border-color: rgba(255, 255, 255, 0.4); color: #fff"
+              id="ppCtaWa"
+              [href]="waHref()"
+              target="_blank"
+              rel="noopener"
+              >Talk on WhatsApp</a
+            >
+            <a
+              class="btn btn-ghost"
+              style="border-color: rgba(255, 255, 255, 0.4); color: #fff"
+              id="ppCtaMail"
+              [href]="mailHref()"
+              >Email us</a
+            >
+          </div>
+        </div>
+
+        <div class="pp-proof">
+          <span>🏅 ISO 27001</span><span>🏅 ISO 20000-1</span><span>🤝 Microsoft Gold Partner</span
+          ><span>🕰 Since 1999</span><span>🔒 Secure Payments — UPI · Cards · NetBanking</span>
+        </div>
+      </div>
+    </div>
+  </div>
+}

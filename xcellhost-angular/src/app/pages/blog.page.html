@@ -1,0 +1,63 @@
+@if (loading()) {
+  <div class="ppage as-page"><div class="pp-body"><div class="wrap"><p role="status">Loading article...</p></div></div></div>
+} @else if (error()) {
+  <div class="ppage as-page"><div class="pp-body"><div class="wrap">
+    <h1>Article unavailable</h1>
+    <p role="alert">The blog service could not be reached. Please try again shortly.</p>
+    <a class="btn primary" routerLink="/insights">Back to insights</a>
+  </div></div></div>
+} @else if (post(); as p) {
+  <div class="bpage as-page" id="bpage">
+    <div class="bp-bar"><div class="wrap">
+      <span style="font:600 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--slate)">XcellHost Insights</span>
+      <div class="bp-prog" id="bpProg" [style.width.%]="progress()"></div>
+    </div></div>
+    <div class="bp-hero"><div class="wrap">
+      @if (p.coverImageUrl) {
+        <img
+          class="bp-cover"
+          [src]="p.coverImageUrl"
+          [alt]="p.coverImage?.alternativeText || p.title"
+        />
+      }
+      <div class="bp-kick">
+        <span>{{ p.category }}</span><span class="dot"></span>
+        <span>{{ p.author }}</span><span class="dot"></span>
+        <span>{{ formatDate(p.date) }}</span><span class="dot"></span>
+        <span>{{ formatTime(p.time) }}</span>
+      </div>
+      <h1>{{ p.title }}</h1>
+      <p class="lede">{{ p.description }}</p>
+    </div></div>
+    <div class="wrap"><div class="bp-body">
+      @for (block of blocks(); track $index) {
+        @switch (block.kind) {
+          @case ('p') { <p>{{ block.text }}</p> }
+          @case ('h') { <h2>{{ block.text }}</h2> }
+          @case ('ul') {
+            <ul>@for (item of block.items; track $index) { <li>{{ item }}</li> }</ul>
+          }
+        }
+      }
+      <div class="bp-cta">
+        <p>Want to discuss this with an XCELLHOST specialist?</p>
+        <div class="row">
+          <button class="btn primary" (click)="openCallback()">Talk to us</button>
+          <a class="btn" [href]="waHref()" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+    </div></div>
+    <div class="bp-more"><div class="wrap">
+      <h3>More from our blog</h3>
+      <div class="bp-grid">
+        @for (item of more(); track item.documentId) {
+          <button class="bp-card" [routerLink]="['/insights', item.slug]">
+            <span class="k">{{ item.category }} · {{ formatDate(item.date) }}</span>
+            <b>{{ item.title }}</b>
+            <p>{{ item.description }}</p>
+          </button>
+        }
+      </div>
+    </div></div>
+  </div>
+}

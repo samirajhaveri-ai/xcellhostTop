@@ -1,0 +1,124 @@
+@if (overlay.isOpen('auth')) {
+  <div class="tr-back open" id="auBack" (click)="close()"></div>
+  <div class="trial open" id="auth" (click)="onBackdrop($event)" role="dialog" aria-modal="true" aria-label="Customer account">
+    <div class="tr-card">
+      <button class="cart-x tr-x" id="auX" aria-label="Close" (click)="close()">✕</button>
+      <div class="au-tabs">
+        <button class="au-tab" [class.on]="tab() === 'in'" (click)="select('in')">
+          Customer Login
+        </button>
+        <button class="au-tab" [class.on]="tab() === 'up'" (click)="select('up')">
+          New Account
+        </button>
+      </div>
+
+      <div class="au-pane" [class.on]="tab() === 'in'">
+        <h3 class="tr-title">Welcome back</h3>
+        <p class="tr-sub">Access your services, invoices and tickets.</p>
+        <div class="au-portals">
+          <a
+            class="au-portal"
+            href="https://billing.xcellhost.cloud"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="ap-ic">💳</span><b>Billing Portal</b
+            ><span>Invoices, renewals, payments</span></a
+          >
+          <a
+            class="au-portal"
+            href="https://support.xcellhost.cloud"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="ap-ic">🎧</span><b>Support Portal</b
+            ><span>Tickets &amp; knowledge base</span></a
+          >
+          <a class="au-portal" href="#" (click)="requestCallback($event, 'Cloud Control Panel access')">
+            <span class="ap-ic">☁️</span><b>Cloud Control Panel</b
+            ><span>Manage servers &amp; services</span></a
+          >
+          <a
+            class="au-portal"
+            href="#"
+            (click)="requestCallback($event, 'Acronis Backup Portal access')"
+          >
+            <span class="ap-ic">🛡️</span><b>Acronis Backup Portal</b
+            ><span>Backups &amp; recovery</span></a
+          >
+        </div>
+        <p class="cart-draft">
+          🔐 Login is handled securely by your XcellHost portal — the website never stores passwords.
+        </p>
+      </div>
+
+      <div class="au-pane" [class.on]="tab() === 'up'" [formGroup]="form">
+        @if (!submitted()) {
+          <h3 class="tr-title">Create your account</h3>
+          <p class="tr-sub">One account for services, billing and support.</p>
+          <label class="ck-l"
+            >Full name *<input
+              class="ck-i"
+              id="suName"
+              formControlName="name"
+              placeholder="Rajesh Patel"
+          /></label>
+          <label class="ck-l"
+            >Company<input
+              class="ck-i"
+              id="suCo"
+              formControlName="company"
+              placeholder="Patel Industries Pvt Ltd"
+          /></label>
+          <label class="ck-l"
+            >Work email *<input
+              class="ck-i"
+              id="suEmail"
+              type="email"
+              formControlName="email"
+              placeholder="rajesh@company.com"
+          /></label>
+          <label class="ck-l"
+            >Phone / WhatsApp *<input
+              class="ck-i"
+              id="suPhone"
+              type="tel"
+              formControlName="phone"
+              placeholder="+91 98XXXXXXXX"
+          /></label>
+          <label class="ck-l"
+            >GSTIN (optional)<input
+              class="ck-i"
+              id="suGst"
+              formControlName="gstin"
+              placeholder="27XXXXXXXXXXXXX"
+          /></label>
+          <div class="ck-err" id="suErr">{{ error() }}</div>
+          <button class="btn atc" id="suGo" style="width: 100%" (click)="submit()">
+            Create Account
+          </button>
+          <p class="cart-draft" style="margin-top: 10px">
+            Your details create a <b>Zoho CRM contact</b>; portal credentials arrive by email &amp;
+            WhatsApp.
+          </p>
+        } @else {
+          <div style="text-align: center">
+            <div class="ck-tick" style="margin: 0 auto">✓</div>
+            <h3 class="tr-title" style="margin-top: 14px">Account request received!</h3>
+            <p class="tr-sub">
+              Portal credentials will arrive on your email &amp; WhatsApp.<br />Draft demo — no real
+              account was created.
+            </p>
+            <button
+              class="btn btn-ghost"
+              style="width: 100%; margin-top: 16px"
+              (click)="close()"
+            >
+              Done
+            </button>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+}

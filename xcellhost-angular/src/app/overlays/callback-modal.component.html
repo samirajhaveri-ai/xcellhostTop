@@ -1,0 +1,125 @@
+<button
+  class="cb-tab"
+  id="cbTab"
+  aria-label="Request a callback"
+  aria-controls="callback"
+  [attr.aria-expanded]="overlay.isOpen('callback')"
+  (click)="open()"
+>
+  <span class="cb-ring"></span>📞 Request a Callback
+</button>
+
+@if (overlay.isOpen('callback')) {
+  <div class="tr-back open" id="cbBack" (click)="close()"></div>
+  <div class="trial open" id="callback" (click)="onBackdrop($event)" role="dialog" aria-modal="true" aria-labelledby="cbTitle">
+    <div class="tr-card">
+      <button class="cart-x tr-x" id="cbX" aria-label="Close" (click)="close()">✕</button>
+
+      @if (!done()) {
+        <div class="cb-step" id="cbForm" [formGroup]="form">
+          <div
+            class="tr-badge"
+            style="
+              color: #1565d8;
+              background: rgba(21, 101, 216, 0.1);
+              border-color: rgba(21, 101, 216, 0.35);
+            "
+          >
+            📞 FREE CONSULTATION
+          </div>
+          <h3 class="tr-title" id="cbTitle">Request a callback</h3>
+          <p class="tr-sub">
+            Tell us when suits you — a cloud &amp; security expert will call. No obligation.
+          </p>
+          <label class="ck-l"
+            >Full name *<input
+              class="ck-i"
+              id="cbName"
+              formControlName="name"
+              placeholder="Rajesh Patel"
+          /></label>
+          <label class="ck-l"
+            >Phone / WhatsApp *<input
+              class="ck-i"
+              id="cbPhone"
+              type="tel"
+              formControlName="phone"
+              placeholder="+91 98XXXXXXXX"
+          /></label>
+          <label class="ck-l"
+            >Email<input
+              class="ck-i"
+              id="cbEmail"
+              type="email"
+              formControlName="email"
+              placeholder="rajesh@company.com"
+          /></label>
+          <label class="ck-l"
+            >Company<input
+              class="ck-i"
+              id="cbCo"
+              formControlName="company"
+              placeholder="Patel Industries Pvt Ltd"
+          /></label>
+          <label class="ck-l"
+            >What is this about?<input
+              class="ck-i"
+              id="cbTopic"
+              formControlName="topic"
+              placeholder="e.g. Tally on Cloud pricing"
+          /></label>
+          <div class="ck-l">Best time to call *</div>
+          <div class="cb-slots" id="cbSlots" role="group" aria-label="Best time to call">
+            @for (s of slots; track s.value) {
+              <button
+                class="cb-slot"
+                [class.on]="slot() === s.value"
+                [attr.aria-pressed]="slot() === s.value"
+                (click)="pick(s.value)"
+              >
+                {{ s.label }}
+              </button>
+            }
+          </div>
+          <div class="ck-err" id="cbErr">{{ error() }}</div>
+          <button
+            class="btn atc"
+            id="cbGo"
+            style="width: 100%"
+            [class.ck-busy]="busy()"
+            (click)="submit()"
+          >
+            {{ submitLabel() }}
+          </button>
+          <p class="cart-draft" style="margin-top: 10px">
+            ⏱️ Typical response: <b>under 30 minutes</b> during business hours (Mon–Sat, 9 AM–8 PM
+            IST). Urgent? Use the WhatsApp button.
+          </p>
+        </div>
+      } @else {
+        <div class="cb-step" id="cbDone" style="text-align: center">
+          <div class="ck-tick" style="margin: 0 auto">✓</div>
+          <h3 class="tr-title" id="cbTitle" style="margin-top: 14px">Callback requested!</h3>
+          <p class="tr-sub">
+            Our team will call <b id="cbDonePhone">{{ confirmedPhone() }}</b
+            ><br /><span id="cbDoneWhen">{{ confirmedWhen() }}</span>
+          </p>
+          <div class="tr-channels">
+            <span class="tr-ch">📞 Phone call</span><span class="tr-ch wa">💬 WhatsApp confirm</span>
+          </div>
+          <span class="ck-ref" id="cbRef" style="display: inline-block; margin-top: 12px"
+            >Ref: {{ reference() }}</span
+          >
+          <button
+            class="btn btn-ghost"
+            id="cbClose"
+            style="width: 100%; margin-top: 16px"
+            (click)="close()"
+          >
+            Done
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+}

@@ -1,0 +1,93 @@
+@if (overlay.isOpen('trial')) {
+  <div class="tr-back open" id="trBack" (click)="close()"></div>
+  <div class="trial open" id="trial" (click)="onBackdrop($event)" role="dialog" aria-modal="true" aria-labelledby="trTitle">
+    <div class="tr-card" id="trCard">
+      <button class="cart-x tr-x" id="trX" aria-label="Close" (click)="close()">✕</button>
+
+      @if (!done()) {
+        <div class="tr-step" id="trForm" [formGroup]="form">
+          <div class="tr-badge">🎁 FREE TRIAL</div>
+          <h3 class="tr-title" id="trTitle">Start your free trial</h3>
+          <p class="tr-sub">
+            No payment needed. Login details arrive on <b>Email + WhatsApp</b>.
+          </p>
+          <label class="ck-l"
+            >Product<input
+              class="ck-i"
+              id="trProduct"
+              formControlName="product"
+              placeholder="e.g. Tally on Cloud"
+          /></label>
+          <label class="ck-l"
+            >Full name *<input
+              class="ck-i"
+              id="trName"
+              formControlName="name"
+              placeholder="Rajesh Patel"
+          /></label>
+          <label class="ck-l"
+            >Work email *<input
+              class="ck-i"
+              id="trEmail"
+              type="email"
+              formControlName="email"
+              placeholder="rajesh@company.com"
+          /></label>
+          <label class="ck-l"
+            >Phone / WhatsApp *<input
+              class="ck-i"
+              id="trPhone"
+              type="tel"
+              formControlName="phone"
+              placeholder="+91 98XXXXXXXX"
+          /></label>
+          <label class="ck-l"
+            >Company<input
+              class="ck-i"
+              id="trCo"
+              formControlName="company"
+              placeholder="Patel Industries Pvt Ltd"
+          /></label>
+          <div class="ck-err" id="trErr">{{ error() }}</div>
+          <button
+            class="btn atc"
+            id="trSubmit"
+            style="width: 100%"
+            [class.ck-busy]="busy()"
+            (click)="submit()"
+          >
+            {{ submitLabel() }}
+          </button>
+          <p class="cart-draft" style="margin-top: 10px">
+            🔒 Trial provisioning is handled by our team — you'll be contacted on WhatsApp to
+            complete setup. No card required.
+          </p>
+        </div>
+      } @else {
+        <div class="tr-step" id="trDone" style="text-align: center">
+          <div class="ck-tick" style="margin: 0 auto">✓</div>
+          <h3 class="tr-title" id="trTitle" style="margin-top: 14px">Trial request received!</h3>
+          <p class="tr-sub">
+            We're provisioning your trial of <b id="trDoneProd">{{ product() }}</b
+            >.<br />Setup details will arrive on:
+          </p>
+          <div class="tr-channels">
+            <span class="tr-ch">📧 Email</span>
+            <span class="tr-ch wa">💬 WhatsApp</span>
+          </div>
+          <span class="ck-ref" id="trRef" style="display: inline-block; margin-top: 12px"
+            >Ref: {{ reference() }}</span
+          >
+          <button
+            class="btn btn-ghost"
+            id="trClose"
+            style="width: 100%; margin-top: 16px"
+            (click)="close()"
+          >
+            Done
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+}

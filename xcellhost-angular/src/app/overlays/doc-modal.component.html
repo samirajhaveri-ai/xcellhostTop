@@ -1,0 +1,57 @@
+@if (overlay.isOpen('doc')) {
+  <div class="tr-back open" id="docBack" (click)="close()"></div>
+  <div class="trial open" id="docModal" (click)="onBackdrop($event)" role="dialog" aria-modal="true" aria-labelledby="docTitle">
+    <div class="tr-card" [formGroup]="form">
+      <button class="cart-x tr-x" id="docX" aria-label="Close" (click)="close()">✕</button>
+      <div class="ppd-hero" id="docHero">
+        <span class="ppd-hero-ic" id="docHeroIc">{{ meta().emoji }}</span>
+      </div>
+      <div class="tr-badge" id="docBadge">{{ meta().badge }}</div>
+      <h3 class="tr-title" id="docTitle">{{ title() }}</h3>
+      <p class="tr-sub" id="docSub">{{ sub() }}</p>
+
+      @if (!done()) {
+        <label class="ck-l"
+          >Full name *<input
+            class="ck-i"
+            id="docName"
+            formControlName="name"
+            placeholder="Rajesh Patel"
+        /></label>
+        <label class="ck-l"
+          >Work email *<input
+            class="ck-i"
+            id="docEmail"
+            type="email"
+            formControlName="email"
+            placeholder="rajesh@company.com"
+        /></label>
+        <label class="ck-l"
+          >Phone / WhatsApp *<input
+            class="ck-i"
+            id="docPhone"
+            type="tel"
+            formControlName="phone"
+            placeholder="+91 98XXXXXXXX"
+        /></label>
+        <div class="ck-err" id="docErr">{{ error() }}</div>
+        <button
+          class="btn atc"
+          id="docGo"
+          style="width: 100%"
+          [class.ck-busy]="busy()"
+          (click)="submit()"
+        >
+          <span id="docGoLabel">{{ submitLabel() }}</span>
+        </button>
+      } @else {
+        <span class="ck-ref" id="docRef" style="display: inline-block">Ref: {{ reference() }}</span>
+      }
+
+      <p class="cart-draft" id="docNote" style="margin-top: 10px">
+        📄 Draft: the PDF slot is ready — attach the real file at build time, or it will be emailed
+        by your team.
+      </p>
+    </div>
+  </div>
+}

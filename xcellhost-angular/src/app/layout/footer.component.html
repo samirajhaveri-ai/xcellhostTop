@@ -1,0 +1,94 @@
+<footer>
+<div class="wrap">
+  <div class="nf-top">
+    <!-- Left: about + socials -->
+    <div class="nf-about">
+      <div class="nf-logo"><img class="xh-logo" src="/assets/images/xcellhost-logo.png" alt="XcellHost"><span class="nf-tag">Secure Cloud Services for your online business since {{ site.since }}<br><em>Reliable · Secure · Speed · Scalable · Manageable · Compliant</em></span></div>
+      <p class="nf-desc">XcellHost Cloud Services — a leading Managed Cloud Service Provider since {{ site.since }} based out of {{ site.city }}, INDIA, providing Managed Cloud Services across the globe. We help customers manage Public Clouds (AWS, Azure, GCP, Oracle) + Private Clouds across the entire Cloud Management Lifecycle: Assessment, Migration, Deployment, Management, Monitoring, Security and DevOps — delivered through a Cloud-based ServiceDesk + Management Platform. Our SaaS-based Cloud Marketplace helps enterprises consume 100+ Cloud Services and simplifies Cloud Billing + Provisioning + Partner Management, combined with Managed 24×7 NOC + SOC Services.</p>
+      <div class="nf-social">
+        <a href="#" aria-label="LinkedIn" class="nfs" style="background:#0A66C2">in</a>
+        <a href="#" aria-label="YouTube" class="nfs" style="background:#FF0000">▶</a>
+        <a href="#" aria-label="Instagram" class="nfs" style="background:linear-gradient(45deg,#F09433,#E6683C,#DC2743,#CC2366,#BC1888)">◎</a>
+        <a href="#" aria-label="Pinterest" class="nfs" style="background:#E60023">P</a>
+        <a href="#" aria-label="Facebook" class="nfs" style="background:#1877F2">f</a>
+        <a href="#" aria-label="X" class="nfs" style="background:#000">𝕏</a>
+        <a href="#" aria-label="Reddit" class="nfs" style="background:#FF4500">r</a>
+        <a href="#" aria-label="Rumble" class="nfs" style="background:#85C742">▷</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- horizontal rows: About Us / Catalog / Ebooks / Legal / Quick Links -->
+  <div class="nf-rows">
+    <div class="nf-row"><h4 class="nf-rlbl">About Us</h4>
+      <div class="nf-links">
+        <a routerLink="/why-xcellhost">Why Xcellhost</a><a routerLink="/about">About Xcellhost</a>
+        <a href="#">Our Team</a><a href="#">Our Story</a><a href="#">Our Support</a>
+        <a routerLink="/contact">Contact Us</a><a href="#">Payment Methods</a>
+        <a href="#">Promos &amp; Offers</a><a href="#">Company Profile</a>
+        <a href="#">Career HandBook</a><a href="#">Partner Program</a>
+      </div>
+    </div>
+    <div class="nf-row"><h4 class="nf-rlbl">Catalog</h4>
+      <div class="nf-links">
+        @for (entry of catalogLinks; track entry.name) {
+          <a [href]="entry.href" target="_blank" rel="noopener noreferrer">{{ entry.name }}</a>
+        }
+      </div>
+    </div>
+    <div class="nf-row"><span class="nf-rlbl">Ebooks</span>
+      <div class="nf-links"><a href="https://flipbooks.officeinfra.com/books/wout/" target="_blank" rel="noopener noreferrer">State Infrastructure</a>
+        <a href="https://flipbooks.officeinfra.com/books/zrdc/" target="_blank" rel="noopener noreferrer">State of Security</a>
+        <a href="https://online.fliphtml5.com/dzuan/dtiq/" target="_blank" rel="noopener noreferrer">Unified Cyber Defense Platform</a>
+        <a href="https://online.fliphtml5.com/dzuan/qgnd/#p=1" target="_blank" rel="noopener noreferrer">how it works security</a>
+        <a href="https://online.fliphtml5.com/dzuan/zyzu/#p=1" target="_blank" rel="noopener noreferrer">how it works infrastructure</a></div>
+    </div>
+    <div class="nf-row"><span class="nf-rlbl">Legal</span>
+      <div class="nf-links"><a routerLink="/company/terms-of-service">Terms &amp; Conditions</a><a routerLink="/company/acceptable-use-policy">Acceptable Use Policy</a><a routerLink="/company/privacy-policy">Privacy &amp; Cookie Policy</a><a routerLink="/company/refund-policy">Refund Policy</a><a routerLink="/company/ekyc-verification">eKYC Verification</a></div>
+    </div>
+    <div class="nf-row"><span class="nf-rlbl">Quick Links</span>
+      <div class="nf-links"><a routerLink="/company/escalation-matrix">Escalation Matrix</a><a routerLink="/company/customer-stories">Testimonials</a><a class="nf-hot" routerLink="/company/apply-for-job">We are Hiring</a><a routerLink="/company/knowledge-base">Knowledgebase</a><a routerLink="/company/glossary">Glossary</a><a routerLink="/company/qr-codes">QR Codes</a><a routerLink="/company/sitemap">Sitemap</a><a routerLink="/company/media-kit">Media Kit</a><a routerLink="/company/service-index">Service Index</a></div>
+    </div>
+  </div>
+
+  <!-- certified + payment -->
+  <div class="nf-cert-row">
+    <span class="nf-rlbl">Certified By</span>
+    <div class="nf-isos">
+      <span class="nf-iso"><b>ISO</b>9001<em>CERTIFIED</em></span>
+      <span class="nf-iso"><b>ISO</b>27001<em>CERTIFIED</em></span>
+      <span class="nf-iso"><b>ISO</b>27002<em>CERTIFIED</em></span>
+      <span class="nf-iso"><b>ISO</b>27017<em>CERTIFIED</em></span>
+      <span class="nf-iso"><b>ISO</b>27018<em>CERTIFIED</em></span>
+      <span class="nf-iso"><b>ISO</b>29100<em>CERTIFIED</em></span>
+      <span class="nf-iso"><b>ISO</b>20000-1<em>CERTIFIED</em></span>
+    </div>
+  </div>
+  <div class="nf-cert-row">
+    <span class="nf-rlbl">Payment Options</span>
+    <div class="nf-pays">
+      <span class="nf-pay">VISA</span><span class="nf-pay">MasterCard</span><span class="nf-pay">Amex</span>
+      <span class="nf-pay">Maestro</span><span class="nf-pay">PayPal</span><span class="nf-pay">Amazon Pay</span>
+      <span class="nf-pay">Bank Transfer</span><span class="nf-pay">Cheque</span><span class="nf-pay">PhonePe</span><span class="nf-pay">UPI</span>
+    </div>
+  </div>
+  <div class="nf-cert-row">
+    <span class="nf-rlbl">Protected By</span>
+    <div class="nf-prot">
+      <span class="nf-sitelock">🔒 SiteLock — MALWARE-FREE · xcellhost.cloud</span>
+      <span class="nf-review">★★★★★ Trustpilot</span>
+      <span class="nf-review">★★★★★ Facebook Reviews</span>
+    </div>
+  </div>
+
+  <div class="nf-partner">
+    <div><b>Grow with XcellHost</b><span>Resell 150+ services with recurring margins, technical backing and deal support.</span></div>
+    <button class="btn btn-primary" id="pnOpen" (click)="openPartner()">🤝 Join Us as Partner</button>
+  </div>
+
+  <div class="nf-bottom">
+    <span>© {{ site.since }}–{{ year }} {{ site.company }} All rights reserved.</span>
+    <span style="font-family:var(--mono)">ISO 27001 · ISO 20000-1 · Microsoft Gold Partner</span>
+  </div>
+</div>
+</footer>

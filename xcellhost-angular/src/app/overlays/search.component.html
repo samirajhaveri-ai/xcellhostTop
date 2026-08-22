@@ -1,0 +1,86 @@
+<div
+  class="srch"
+  id="srch"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Search services"
+  [class.open]="overlay.isOpen('search')"
+  [attr.aria-hidden]="overlay.isOpen('search') ? null : 'true'"
+  (click)="onBackdrop($event)"
+>
+  <div class="srch-box">
+    <div class="srch-in">
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#51607A"
+        stroke-width="2.2"
+        stroke-linecap="round"
+        aria-hidden="true"
+      >
+        <circle cx="11" cy="11" r="7" />
+        <path d="M20 20l-3.5-3.5" />
+      </svg>
+      <input
+        id="srchI"
+        #srchI
+        placeholder="Search products, solutions, compliance…"
+        autocomplete="off"
+        aria-label="Search products, solutions, compliance"
+        [value]="q()"
+        (input)="onInput($event)"
+      />
+      <button class="srch-x" id="srchX" type="button" aria-label="Close search" (click)="close()">esc</button>
+    </div>
+
+    <div class="srch-res" id="srchR" role="listbox" aria-label="Search results">
+      @for (r of results(); track r.slug; let i = $index) {
+        <a
+          class="sr"
+          role="option"
+          [class.on]="i === cur()"
+          [attr.aria-selected]="i === cur()"
+          [routerLink]="['/', r.slug]"
+          (mouseenter)="cur.set(i)"
+          (click)="close()"
+        >
+          <span class="sr-c" [style.background]="r.color"></span>
+          <span class="sr-t"><b>{{ r.name }}</b><span>{{ r.desc }}</span></span>
+          <span class="sr-cat">{{ r.cat }}</span>
+          <span
+            class="sr-cmp"
+            [class.on]="isPicked(r.name)"
+            role="button"
+            tabindex="0"
+            title="Add to compare"
+            [attr.aria-label]="'Add ' + r.name + ' to compare'"
+            [attr.aria-pressed]="isPicked(r.name)"
+            (click)="toggle(r.name, $event)"
+            (keydown.enter)="toggle(r.name, $event)"
+            (keydown.space)="toggle(r.name, $event)"
+            >✓</span
+          >
+        </a>
+      } @empty {
+        <div class="srch-empty">No match. Try “backup”, “ssl”, “compliance”…</div>
+      }
+    </div>
+
+    <div class="srch-foot">
+      <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+      <span><kbd>↵</kbd> open</span>
+      <span id="cmpCount">{{ countLabel() }}</span>
+      <button
+        class="btn btn-primary srch-cmp"
+        id="cmpGo"
+        type="button"
+        [disabled]="!canCompare()"
+        (click)="goCompare()"
+      >
+        Compare →
+      </button>
+    </div>
+  </div>
+</div>

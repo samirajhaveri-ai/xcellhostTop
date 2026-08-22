@@ -1,0 +1,57 @@
+@if (page(); as page) {
+  <main class="ppage as-page company-page">
+    <section class="pp-hero company-hero">
+      <span class="company-orb company-orb-one"></span>
+      <span class="company-orb company-orb-two"></span>
+      <div class="wrap">
+        <div class="pp-crumb">Home › Company › {{ page.eyebrow }}</div>
+        <span class="company-kicker">{{ page.eyebrow }}</span>
+        <h1>{{ page.title }}</h1>
+        <p class="pp-tagline">{{ page.tagline }}</p>
+      </div>
+    </section>
+
+    <section class="company-body">
+      <div class="wrap company-wrap">
+        <p class="company-intro">{{ page.intro }}</p>
+
+        <div class="company-card-grid">
+          @for (card of page.cards; track card.title) {
+            <article class="company-card">
+              <span class="company-icon" aria-hidden="true">{{ card.icon }}</span>
+              <h2>{{ card.title }}</h2>
+              <p>{{ card.body }}</p>
+            </article>
+          }
+        </div>
+
+        @for (section of page.sections; track section.title; let index = $index) {
+          <section class="company-section" [class.company-section-tint]="index % 2 === 1">
+            <div>
+              <span class="company-section-number">0{{ index + 1 }}</span>
+              <h2>{{ section.title }}</h2>
+            </div>
+            <div>
+              <p>{{ section.body }}</p>
+              @if (section.points?.length) {
+                <ul>
+                  @for (point of section.points; track point) {
+                    <li>{{ point }}</li>
+                  }
+                </ul>
+              }
+            </div>
+          </section>
+        }
+
+        <section class="company-cta">
+          <div>
+            <span>Let’s move forward</span>
+            <h2>{{ page.cta }}</h2>
+          </div>
+          <a class="btn btn-primary" routerLink="/contact">{{ page.ctaLabel }} <span aria-hidden="true">→</span></a>
+        </section>
+      </div>
+    </section>
+  </main>
+}
