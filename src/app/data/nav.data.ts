@@ -199,30 +199,16 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": "Top seller",
                 "desc": null
               },
+              
               {
                 "title": "Cloud Backup",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Cloud Drive — File Share & Sync",
+                "title": "Cloud Drive",
                 "pill": null,
                 "desc": null
-              },
-              {
-                "title": "SMB Cloud Desktop",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "WhatsApp SMB",
-                "pill": "New",
-                "desc": "Official WhatsApp Business API for sales, support and automation"
-              },
-              {
-                "title": "Microsoft 365",
-                "pill": null,
-                "desc": "Cloud productivity tools with migration and 24/7 support"
               },
               {
                 "title": "Advanced Endpoint Security (EDR)",
@@ -235,18 +221,34 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Acronis True Image",
-                "pill": null,
-                "desc": null
-              },
-              {
                 "title": "SMB Cyber Security Appliance",
                 "pill": "New",
                 "desc": null
               },
+               {
+                "title": "Microsoft 365",
+                "pill": null,
+                "desc": "Cloud productivity tools with migration and 24/7 support"
+              },
+              {
+                "title": "SMB Cloud Desktop",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "WhatsApp SMB",
+                "pill": "New",
+                "desc": "Official WhatsApp Business API for sales, support and automation"
+              },
+             
               {
                 "title": "Acronis GenAI",
                 "pill": "New",
+                "desc": null
+              },
+              {
+                "title": "Acronis True Image",
+                "pill": null,
                 "desc": null
               }
             ]
