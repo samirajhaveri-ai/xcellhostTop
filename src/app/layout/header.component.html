@@ -56,9 +56,15 @@
                       @for (item of group.items; track $index) {
                         <li>
                           @if (item.link) {
-                            <a [routerLink]="item.link" (click)="onNavigate()"><span>{{ item.title }}</span>@if (item.pill) {<em>{{ item.pill }}</em>}@if (item.desc) {<small>{{ item.desc }}</small>}</a>
+                            <a [routerLink]="item.link" [class]="item.pillClass" (click)="onNavigate()">
+                              <span class="xh-item-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path [attr.d]="item.iconPath" /></svg></span>
+                              <span class="xh-item-copy"><span class="xh-item-heading"><strong>{{ item.title }}</strong>@if (item.pill) {<em [class]="item.pillClass">{{ item.pill }}</em>}</span>@if (item.desc) {<small>{{ item.desc }}</small>}</span>
+                            </a>
                           } @else {
-                            <a href="#" (click)="$event.preventDefault()" aria-disabled="true"><span>{{ item.title }}</span>@if (item.pill) {<em>{{ item.pill }}</em>}@if (item.desc) {<small>{{ item.desc }}</small>}</a>
+                            <a href="#" [class]="item.pillClass" (click)="$event.preventDefault()" aria-disabled="true">
+                              <span class="xh-item-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path [attr.d]="item.iconPath" /></svg></span>
+                              <span class="xh-item-copy"><span class="xh-item-heading"><strong>{{ item.title }}</strong>@if (item.pill) {<em [class]="item.pillClass">{{ item.pill }}</em>}</span>@if (item.desc) {<small>{{ item.desc }}</small>}</span>
+                            </a>
                           }
                         </li>
                       }

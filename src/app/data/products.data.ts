@@ -214,8 +214,8 @@ export const RICH_PRODUCTS: Record<string, RichProduct> = {
       "Access anything, anywhere, anytime"
     ],
     "videos": [
-      "rya4Q4IZniA",
-      "nIMbqdbGxao"
+      "wM30-q5bGIk",
+      "l63eOmbyaAw"
     ],
     "videoLabels": [
       "Product Intro",
@@ -1274,7 +1274,7 @@ export const PRODUCT_VIDEOS: Record<string, string[]> = {
 
   // Product aliases used by this Angular catalogue.
   "Tally on Cloud": ["eb8jyqFV6fM", "WRvy9w6V8TI"],
-  "Cloud Backup (Acronis)": ["rya4Q4IZniA", "nIMbqdbGxao"],
+  "Cloud Backup (Acronis)": ["uTZighRxLPc", "FO7O0V4eP1w"],
   "Cloud Drive — File Share & Sync": ["a-Jy7VV13Do", ""],
   "Advanced Endpoint Security (EDR)": ["iaHAyNSXCPc", "2PZzQIUxpMo"],
   "Remote Monitoring & Mgmt (RMM)": ["LLxYfEH-Oh0", "v7v4p0Pikhw"],
@@ -1327,13 +1327,6 @@ export const PRODUCT_VIDEOS: Record<string, string[]> = {
   "Web Security (SiteLock)": ["5fyYUqz3MQY", "DIfurSvEINY"]
 };
 
-/**
- * Product infosheets published in the XcellHost Service Index.
- *
- * Keep these as direct document links: the product-page Infosheet actions use
- * them without opening the document-request form. Products not listed here
- * link to the Service Index, where XcellHost can publish a document later.
- */
 export const SERVICE_INDEX_URL = 'https://www.xcellhost.cloud/service-index/';
 
 export const PRODUCT_INFOSHEETS: Record<string, string> = {

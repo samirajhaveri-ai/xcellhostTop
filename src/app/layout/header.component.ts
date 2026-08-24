@@ -16,6 +16,86 @@ import { MEGA_MENU } from '../data/nav.data';
 /** Pills the original rendered in the blue variant (`class="pill b"`). */
 const BLUE_PILLS = new Set(['1-yr free ext.', 'Soon']);
 
+function menuPillClass(pill: string | null): string {
+  if (!pill) return '';
+
+  const normalized = pill.toLowerCase();
+  if (normalized === 'top seller' || normalized === 'best seller') {
+    return 'has-menu-pill is-seller';
+  }
+  if (normalized === 'new') return 'has-menu-pill is-new';
+  if (BLUE_PILLS.has(pill)) return 'has-menu-pill is-blue';
+  return 'has-menu-pill';
+}
+
+/** Small, dependency-free line icons used by the mega-menu service cards. */
+const MENU_ICON_PATHS = {
+  globe: 'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM3 12h18M12 3c2.2 2.5 3.4 5.5 3.4 9s-1.2 6.5-3.4 9c-2.2-2.5-3.4-5.5-3.4-9S9.8 5.5 12 3Z',
+  domainAdd: 'M16 19a8 8 0 1 1 2.9-3.8M4 11h14M11 3c2 2.2 3 4.9 3 8m-3 8c-2-2.2-3-4.9-3-8s1-5.8 3-8m8 12v6m-3-3h6',
+  transfer: 'M16 3h5v5m0-5-6 6M8 21H3v-5m0 5 6-6M18 12a6 6 0 0 0-10.2-4.3M6 12a6 6 0 0 0 10.2 4.3',
+  bulkSearch: 'M4 5h12v12H4V5Zm3-3h12v12m-3.5 3.5L21 23m-2.5-5.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z',
+  parking: 'M12 22a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm0-4V9m0 0h2.5a2.5 2.5 0 0 1 0 5H12M9 2h6',
+  extensions: 'M4 4h6v4a2 2 0 1 0 4 0V4h6v6h-4a2 2 0 1 0 0 4h4v6h-6v-4a2 2 0 1 0-4 0v4H4v-6h4a2 2 0 1 0 0-4H4V4Z',
+  award: 'm12 3 2.2 4.5 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5-3.6-3.5 5-.7L12 3Zm-3 13-1 6 4-2 4 2-1-6',
+  lookup: 'M4 3h12v18H4V3Zm3 4h6M7 11h4m7.5 6.5L22 21m-1.5-5.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z',
+  price: 'M3 11V4h7l10 10-7 7L3 11Zm5-3h.01M11 12h5m-2.5-2.5v5',
+  backorder: 'M4 5h16v16H4V5Zm0 5h16M8 3v4m8-4v4m-4 7v3l2 1',
+  server: 'M4 4h16v6H4V4Zm0 10h16v6H4v-6Zm3-7h.01M7 17h.01M11 7h6M11 17h6',
+  cloud: 'M7 18h11a4 4 0 0 0 .7-7.9A7 7 0 0 0 5.4 8.2 5 5 0 0 0 7 18Z',
+  shield: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Zm-3.5-10 2.2 2.2 4.8-4.8',
+  mail: 'M3 5h18v14H3V5Zm0 1 9 7 9-7',
+  database: 'M20 5c0 1.7-3.6 3-8 3S4 6.7 4 5s3.6-3 8-3 8 1.3 8 3Zm0 0v7c0 1.7-3.6 3-8 3s-8-1.3-8-3V5m16 7v7c0 1.7-3.6 3-8 3s-8-1.3-8-3v-7',
+  monitor: 'M3 4h18v13H3V4Zm6 17h6m-3-4v4',
+  code: 'm8 9-4 3 4 3m8-6 4 3-4 3m-2-9-4 12',
+  network: 'M12 8V5m0 3-6 4m6-4 6 4M6 12v3m12-3v3M3 15h6v5H3v-5Zm12 0h6v5h-6v-5ZM9 2h6v5H9V2Z',
+  chart: 'M4 20V10m6 10V4m6 16v-7m4 7H2',
+  users: 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2m7-10a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm13 10v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8',
+  file: 'M6 2h8l4 4v16H6V2Zm8 0v5h5M9 12h6m-6 4h6',
+  support: 'M4 13v-2a8 8 0 0 1 16 0v2M4 13H2v6h4v-6H4Zm16 0h2v6h-4v-6h2Zm0 6c0 2-2 3-5 3',
+  settings: 'M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm7.4-3.5 2-1.5-2-3.5-2.4 1a8 8 0 0 0-1.7-1L15 4.5h-4L10.7 7A8 8 0 0 0 9 8L6.6 7l-2 3.5 2 1.5a8 8 0 0 0 0 2l-2 1.5 2 3.5L9 18a8 8 0 0 0 1.7 1l.3 2.5h4l.3-2.5a8 8 0 0 0 1.7-1l2.4 1 2-3.5-2-1.5a8 8 0 0 0 0-2Z',
+} as const;
+
+function menuIconAccent(identity: string): string {
+  let hash = 0;
+  for (const character of identity) hash = (hash * 31 + character.charCodeAt(0)) >>> 0;
+  const firstX = 18 + (hash & 3) * 0.65;
+  const firstY = 2.5 + ((hash >>> 2) & 3) * 0.65;
+  const secondX = 18 + ((hash >>> 4) & 3) * 0.65;
+  const secondY = 5 + ((hash >>> 6) & 3) * 0.65;
+  return `M${firstX} ${firstY}h.01M${secondX} ${secondY}h.01`;
+}
+
+function menuIconPath(title: string, identity: string): string {
+  const value = title.toLowerCase();
+  let path: string;
+
+  if (/register a domain/.test(value)) path = MENU_ICON_PATHS.domainAdd;
+  else if (/transfer your domain/.test(value)) path = MENU_ICON_PATHS.transfer;
+  else if (/bulk domain/.test(value)) path = MENU_ICON_PATHS.bulkSearch;
+  else if (/domain parking/.test(value)) path = MENU_ICON_PATHS.parking;
+  else if (/latest domain extension/.test(value)) path = MENU_ICON_PATHS.extensions;
+  else if (/premium domain/.test(value)) path = MENU_ICON_PATHS.award;
+  else if (/domain whois/.test(value)) path = MENU_ICON_PATHS.lookup;
+  else if (/domain name price/.test(value)) path = MENU_ICON_PATHS.price;
+  else if (/backorder domain/.test(value)) path = MENU_ICON_PATHS.backorder;
+  else if (/support|assist|help|contact|ticket/.test(value)) path = MENU_ICON_PATHS.support;
+  else if (/mail|e-mail|email|dmarc|smtp|exchange|bimi|mime/.test(value)) path = MENU_ICON_PATHS.mail;
+  else if (/backup|storage|database|warehouse|archiv/.test(value)) path = MENU_ICON_PATHS.database;
+  else if (/security|threat|risk|protect|firewall|malware|phishing|ransom|penetration|vapt|soc|siem|edr|privacy|compliance|certificate|ssl/.test(value)) path = MENU_ICON_PATHS.shield;
+  else if (/server|vps|bare metal|colocation|infrastructure|compute|virtual machine|gpu/.test(value)) path = MENU_ICON_PATHS.server;
+  else if (/monitor|analytics|visualization|insight|report|score|assessment/.test(value)) path = MENU_ICON_PATHS.chart;
+  else if (/network|dns|connect|sd-wan|iot|telecom/.test(value)) path = MENU_ICON_PATHS.network;
+  else if (/code|api|developer|software|application|app |wordpress/.test(value)) path = MENU_ICON_PATHS.code;
+  else if (/desktop|workspace|device|remote access/.test(value)) path = MENU_ICON_PATHS.monitor;
+  else if (/partner|team|customer|identity|employee|career|job/.test(value)) path = MENU_ICON_PATHS.users;
+  else if (/blog|case stud|whitepaper|ebook|catalog|document|policy|terms|guide|knowledge|glossary/.test(value)) path = MENU_ICON_PATHS.file;
+  else if (/cloud|azure|aws|google|microsoft 365|tally/.test(value)) path = MENU_ICON_PATHS.cloud;
+  else if (/domain|hosting|website|web |seo|internet/.test(value)) path = MENU_ICON_PATHS.globe;
+  else path = MENU_ICON_PATHS.settings;
+
+  return `${path}${menuIconAccent(identity)}`;
+}
+
 /** Top-level labels that go straight to a page instead of a category listing. */
 const DIRECT_LINKS: Record<string, string> = {
   Insights: '/insights',
@@ -24,6 +104,7 @@ const DIRECT_LINKS: Record<string, string> = {
 
 interface NavItemVm {
   title: string;
+  iconPath: string;
   pill: string | null;
   pillClass: string;
   desc: string | null;
@@ -199,8 +280,12 @@ export class HeaderComponent {
         heading: group.heading,
         items: group.items.map((item) => ({
           title: item.title,
+          iconPath: menuIconPath(
+            item.title,
+            `${top.label}-${tab.g}-${group.heading ?? ''}-${item.title}`,
+          ),
           pill: item.pill,
-          pillClass: item.pill && BLUE_PILLS.has(item.pill) ? 'pill b' : 'pill',
+          pillClass: menuPillClass(item.pill),
           desc: this.menuDescription(item.title, item.desc),
           link: this.serviceLink(item.title, top.label),
         })),
@@ -321,11 +406,11 @@ export class HeaderComponent {
 
   /** Every visible menu card gets concise supporting copy. */
   private menuDescription(title: string, description: string | null): string {
-    if (description) return description;
-    return (
+    const resolved = description ?? (
       this.catalog.findInDirectory(title)?.desc ??
       MENU_DESCRIPTIONS[title] ??
       `Explore ${title} services, features and solutions.`
     );
+    return resolved.replace(/\s*[\p{Extended_Pictographic}\uFE0F\u200D]+$/gu, '').trim();
   }
 }

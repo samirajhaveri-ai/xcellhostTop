@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { CatalogService } from './catalog.service';
 import {
   CATEGORY_BENEFITS, CATEGORY_BLOG, CATEGORY_FAQ_BASE, CATEGORY_FAQ_EXTRA,
-  CATEGORY_MOCK, CATEGORY_REVIEWS, CATEGORY_STEPS,
+  CATEGORY_MOCK, CATEGORY_STEPS,
   CATEGORY_WHY, WHY_ICONS,
 } from '../data/category.data';
 import {
@@ -19,6 +19,7 @@ import {
 } from '../data/products.data';
 import { EDR_COMPARE, EDR_PRODUCTS, EDR_TIMELINE, HERO_SCENES } from '../data/site.data';
 import { BlogCard, Category, Faq, IconItem, Pair, RichProduct } from '../data/models';
+import { buildContextualProductReviews } from '../data/product-reviews.data';
 
 /** What the caller knows before the page is built. */
 export interface ProductRequest {
@@ -542,9 +543,11 @@ export class ProductPageService {
       ? product.reviews.map((r) => ({
           initials: r[0], name: r[1], role: r[2], stars: parseFloat(r[3]) || 5, quote: r[4],
         }))
-      : (CATEGORY_REVIEWS[cat] ?? []).map((r) => ({
-          initials: r[0], name: r[1], role: r[2], stars: 5, quote: r[3],
-        }));
+      : buildContextualProductReviews(
+          name,
+          cat,
+          features.map((feature) => feature.title),
+        );
 
     return {
       name,

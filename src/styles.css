@@ -3066,7 +3066,8 @@ body.xh-locked{overflow:hidden}
 }
 @media(max-width:480px){.smb-ideal-grid,.smb-benefit-grid,.smb-pillar-grid,.smb-capability-grid,.smb-safer-grid{grid-template-columns:1fr}.smb-safer-grid article{grid-column:1}.smb-dashboard{grid-column:1}.smb-business-grid{grid-template-columns:1fr 1fr}.smb-specs dl div{grid-template-columns:90px 1fr}}
 
-/* Cybird pricing selector — tabbed plan pattern */
+/* Tally on Cloud — source plan content in the four-card pricing pattern */
+/* Cybird pricing selector - tabbed plan pattern */
 .smb-pricing{padding:clamp(36px,4.5vw,64px) clamp(18px,3vw,38px);border-radius:0;background:#fff;overflow:visible}
 .smb-price-heading{text-align:center;margin:0 auto 32px}
 .smb-price-heading>span{display:inline-block;margin-bottom:10px;color:var(--blue);font:700 12px/1.2 'Poppins',sans-serif;letter-spacing:.1em;text-transform:uppercase}
@@ -3127,3 +3128,74 @@ body.xh-locked{overflow:hidden}
   .smb-price-actions{padding:0 16px}
   .smb-price-actions .btn{width:100%;text-align:center}
 }
+
+.tally-pricing{margin:44px 0 64px;color:var(--navy);font-family:'Poppins',var(--body)}
+.tally-price-heading{text-align:center;margin:0 auto 32px}
+.tally-price-heading>span{display:inline-block;margin-bottom:10px;color:var(--blue);font:700 12px/1.2 'Poppins',sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.tally-price-heading h2{margin:0;color:#080d2c;font:600 clamp(32px,3.5vw,48px)/1.15 'Poppins',sans-serif;letter-spacing:-.035em}
+.tally-price-heading p{margin:12px auto 0;color:var(--slate);font:400 15px/1.6 'Poppins',sans-serif}
+.tally-term-tabs{display:grid;grid-template-columns:repeat(4,1fr);max-width:900px;margin:0 auto 36px;border-bottom:1px solid #cfd5df}
+.tally-term-tabs button{position:relative;display:flex;align-items:center;justify-content:center;min-height:64px;padding:17px 12px 11px;border:0;background:transparent;color:#5e6672;cursor:pointer;font:500 16px/1.2 'Poppins',sans-serif;transition:color .2s ease,background .2s ease}
+.tally-term-tabs button:after{content:'';position:absolute;right:0;bottom:-1px;left:0;height:3px;background:transparent;transition:background .2s ease}
+.tally-term-tabs button small{position:absolute;top:-8px;padding:4px 8px;border-radius:12px;background:#ed1b24;color:#fff;font:600 9px/1 'Poppins',sans-serif;white-space:nowrap}
+.tally-term-tabs button:hover{color:var(--blue);background:#f8fbff}
+.tally-term-tabs button:focus-visible{outline:3px solid rgba(0,91,187,.24);outline-offset:2px}
+.tally-term-tabs button.is-active{color:var(--blue);font-weight:600}
+.tally-term-tabs button.is-active:after{background:var(--blue)}
+.tally-plan-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;align-items:stretch}
+.tally-plan-card{display:flex;flex-direction:column;min-width:0;border:1px solid #c8ced7;border-radius:5px;background:#fff;overflow:hidden;text-align:center}
+.tally-plan-card.tally-plan-featured{border-color:#70afe9;box-shadow:0 10px 28px rgba(0,91,187,.1)}
+.tally-plan-band{padding:12px 10px;background:#edf6ff;color:var(--blue);font:650 12px/1.2 'Poppins',sans-serif;letter-spacing:.035em;text-transform:uppercase}
+.tally-plan-card:nth-child(4n+2) .tally-plan-band{background:#f3efff;color:#7040c4}
+.tally-plan-card:nth-child(4n+3) .tally-plan-band{background:#eaf8ef;color:#168f46}
+.tally-plan-card:nth-child(4n+4) .tally-plan-band{background:#fff1e5;color:#e66b00}
+.tally-plan-main{display:flex;flex-direction:column;align-items:center;padding:27px 20px 24px}
+.tally-plan-name{display:flex;align-items:center;justify-content:center;gap:11px;min-height:52px;text-align:left}
+.tally-plan-name>span{display:grid;place-items:center;width:42px;height:42px;border-radius:9px;background:var(--blue);color:#fff;font-size:18px;font-weight:700}
+.tally-plan-card:nth-child(4n+2) .tally-plan-name>span{background:#7040c4}
+.tally-plan-card:nth-child(4n+3) .tally-plan-name>span{background:#70b927}
+.tally-plan-card:nth-child(4n+4) .tally-plan-name>span{background:#ff870e}
+.tally-plan-name b{display:block;color:#080d2c;font:600 18px/1.25 'Poppins',sans-serif}
+.tally-plan-name small{display:block;margin-top:2px;color:var(--blue);font:550 13px/1.3 'Poppins',sans-serif}
+.tally-plan-main>p{margin:21px 0 7px;color:#111827;font-size:12px}
+.tally-plan-main>strong{min-height:54px;color:#080d2c;font:650 clamp(22px,1.8vw,27px)/1.15 'Poppins',sans-serif;letter-spacing:-.025em}
+.tally-plan-main>small{display:block;margin:3px 0 18px;color:#6b7280;font-size:10px}
+.tally-plan-main>a{display:block;width:100%;padding:13px 10px;border:1px solid var(--blue);border-radius:4px;background:var(--blue);color:#fff;text-decoration:none;text-transform:uppercase;font:600 13px/1.2 'Poppins',sans-serif;transition:background .2s ease,border-color .2s ease,transform .2s ease}
+.tally-plan-main>a:hover{background:var(--navy);border-color:var(--navy);transform:translateY(-1px)}
+.tally-plan-main>a:focus-visible{outline:3px solid rgba(0,91,187,.24);outline-offset:3px}
+.tally-plan-specs{display:flex;flex-direction:column;flex:1;margin:0;text-align:left}
+.tally-plan-specs>div{position:relative;display:grid;grid-template-columns:1fr auto;gap:8px;align-items:start;min-height:60px;padding:13px 15px 13px 40px;background:#f5f6f8;color:#111827}
+.tally-plan-specs>div:nth-child(even){background:#fff}
+.tally-plan-specs>div:before{content:'✓';position:absolute;left:16px;top:13px;color:#00a94f;font-size:17px;font-weight:700}
+.tally-plan-specs dt{font:500 11px/1.4 'Poppins',sans-serif}
+.tally-plan-specs dd{margin:0;color:#080d2c;text-align:right;font:650 11px/1.4 'Poppins',sans-serif}
+
+@media(max-width:1050px){
+  .tally-plan-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:700px){
+  .tally-pricing{margin:34px 0 48px}
+  .tally-price-heading{padding:0 16px;margin-bottom:26px}
+  .tally-price-heading h2{font-size:clamp(29px,8vw,37px)}
+  .tally-term-tabs{overflow-x:auto;grid-template-columns:repeat(4,minmax(110px,1fr));margin:0 0 28px}
+  .tally-term-tabs button{min-height:58px;padding-right:8px;padding-left:8px;font-size:14px;white-space:nowrap}
+  .tally-plan-grid{grid-template-columns:1fr;gap:16px}
+  .tally-plan-main{padding:24px 20px 22px}
+  .tally-plan-main>strong{font-size:27px}
+  .tally-plan-specs>div{min-height:55px}
+}
+
+.tally-addons{margin-top:32px;padding:26px;border:1px solid #d6dde7;border-radius:8px;background:#f8fbff}
+.tally-addons-heading{text-align:center;margin-bottom:20px}
+.tally-addons-heading>span{color:var(--blue);font:700 11px/1.2 'Poppins',sans-serif;letter-spacing:.09em;text-transform:uppercase}
+.tally-addons-heading h3{margin:6px 0 0;color:#080d2c;font:600 clamp(22px,2.2vw,30px)/1.25 'Poppins',sans-serif}
+.tally-addons-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.tally-addons-grid article{display:grid;grid-template-columns:34px minmax(0,1fr);align-items:center;gap:9px;padding:14px 12px;border:1px solid #d6dde7;border-radius:7px;background:#fff;text-align:left}
+.tally-addons-grid article>span{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:#e8f3ff;color:var(--blue);font-size:20px;font-weight:700}
+.tally-addons-grid b,.tally-addons-grid small{display:block}
+.tally-addons-grid b{color:#080d2c;font-size:12px;line-height:1.3}
+.tally-addons-grid small{margin-top:2px;color:var(--slate);font-size:9px;line-height:1.35}
+.tally-addons-grid strong{grid-column:2;color:var(--blue);font-size:11px;line-height:1.3}
+.tally-addons>p{margin:20px 0 0;color:#e31d2d;text-align:center;font:600 14px/1.4 'Poppins',sans-serif}
+@media(max-width:1050px){.tally-addons-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.tally-addons{margin-top:24px;padding:20px 14px}.tally-addons-grid{grid-template-columns:1fr}}

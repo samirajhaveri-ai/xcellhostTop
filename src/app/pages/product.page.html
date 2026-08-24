@@ -156,7 +156,79 @@
           </section>
         }
 
-        @if (!isAdvancedEdr() && !isSmbCyber()) {
+        @if (isTally()) {
+          <section class="tally-pricing" id="ppPlans" aria-labelledby="tally-pricing-title">
+            <div class="tally-price-heading">
+              <span>Flexible plans for every team size</span>
+              <h2 id="tally-pricing-title">Tally on Cloud Plans</h2>
+              <p>Select your billing period and choose the cloud configuration that fits your users.</p>
+            </div>
+
+            <div class="tally-term-tabs" role="tablist" aria-label="Choose Tally on Cloud billing period">
+              @for (term of tallyTerms; track term.key) {
+                <button
+                  type="button"
+                  role="tab"
+                  [class.is-active]="selectedTallyTerm() === term.key"
+                  [attr.aria-selected]="selectedTallyTerm() === term.key"
+                  (click)="selectTallyTerm(term.key)"
+                >
+                  @if (term.saving) { <small>{{ term.saving }}</small> }
+                  <span>{{ term.label }}</span>
+                </button>
+              }
+            </div>
+
+            <div class="tally-plan-grid">
+              @for (plan of tallyPlans; track plan.users; let i = $index) {
+                <article class="tally-plan-card" [class.tally-plan-featured]="i === 3">
+                  <div class="tally-plan-band">For {{ plan.users }} users</div>
+                  <div class="tally-plan-main">
+                    <div class="tally-plan-name">
+                      <span aria-hidden="true">T</span>
+                      <div><b>{{ plan.name }}</b><small>{{ plan.edition }}</small></div>
+                    </div>
+                    <p>Plan for {{ activeTallyTerm().label }}</p>
+                    <strong>Pricing on request</strong>
+                    <small>Configuration-based quote</small>
+                    <a href="#" (click)="selectTallyPlan(plan, $event)">Select plan</a>
+                  </div>
+                  <dl class="tally-plan-specs">
+                    <div><dt>Server Type</dt><dd>{{ plan.serverType }}</dd></div>
+                    <div><dt>Virtual CPU</dt><dd>{{ plan.cpu }}</dd></div>
+                    <div><dt>Virtual Memory</dt><dd>{{ plan.memory }}</dd></div>
+                    <div><dt>Disk Space</dt><dd>{{ plan.disk }}</dd></div>
+                    <div><dt>Data Transfer</dt><dd>Unlimited</dd></div>
+                    <div><dt>Backup</dt><dd>Every 8 Hrs</dd></div>
+                    <div><dt>Dedicated IP</dt><dd>1</dd></div>
+                    <div><dt>Storage</dt><dd>SSD</dd></div>
+                    <div><dt>Operating System</dt><dd>Windows Server 2025</dd></div>
+                    <div><dt>Endpoint Security</dt><dd>Acronis Cyber Protect Cloud</dd></div>
+                    <div><dt>Firewall HA</dt><dd>Fortinet</dd></div>
+                    <div><dt>Support</dt><dd>24×7</dd></div>
+                  </dl>
+                </article>
+              }
+            </div>
+
+            <section class="tally-addons" aria-labelledby="tally-addons-title">
+              <div class="tally-addons-heading">
+                <span>Optional add-ons</span>
+                <h3 id="tally-addons-title">Complete your Tally cloud setup</h3>
+              </div>
+              <div class="tally-addons-grid">
+                @for (addOn of tallyAddOns; track addOn.name) {
+                  <article>
+                    <span aria-hidden="true">+</span>
+                    <div><b>{{ addOn.name }}</b><small>{{ addOn.detail }}</small></div>
+                    <strong>{{ addOn.price }}</strong>
+                  </article>
+                }
+              </div>
+              <p>Migrate Tally to the Cloud in 5 easy steps.</p>
+            </section>
+          </section>
+        } @else if (!isAdvancedEdr() && !isSmbCyber()) {
           <div class="pp-sec">Plans &amp; pricing</div>
           <div class="pp-plans" id="ppPlans">
             @for (p of v.plans; track p.term) {

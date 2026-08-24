@@ -200,7 +200,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Cloud Backup (Acronis)",
+                "title": "Cloud Backup",
                 "pill": null,
                 "desc": null
               },
@@ -517,17 +517,12 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "SSL by Brand",
             "items": [
               {
-                "title": "GeoTrust",
+                "title": "GeoTrust SSL Certificates",
                 "pill": "Popular",
                 "desc": null
               },
               {
                 "title": "DigiCert",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "eMudhra (Indian CA)",
                 "pill": null,
                 "desc": null
               },

@@ -97,7 +97,7 @@ export const DIRECTORY: DirectoryEntry[] = [
   },
   {
     "name": "Remote Monitoring & Mgmt (RMM)",
-    "desc": "ARE YOU STRUGGLING TO MANAGE MULTIPLE SYSTEMS AND ENDPOINTS? Monitor, manage, and secure your IT infrastructure with a powerful RMM solution.",
+    "desc": "Manage, monitor, and secure all your IT endpoints with a powerful RMM solution.",
     "cat": "Cloud",
     "group": "SMB Cloud",
     "heroImage": "/assets/images/hero-rmm.png",

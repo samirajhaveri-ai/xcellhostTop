@@ -34,6 +34,18 @@ interface CybirdPlan {
   accent: 'essentials' | 'plus' | 'pro' | 'max';
 }
 
+type TallyTerm = 'monthly' | '3m' | '6m' | '1y';
+
+interface TallyPlan {
+  users: string;
+  name: string;
+  edition: string;
+  serverType: string;
+  cpu: string;
+  memory: string;
+  disk: string;
+}
+
 /**
  * The routed service / product page — everything the original `#ppage` overlay
  * rendered through its six-script `__ppExtras` pipeline, in one component.
@@ -98,6 +110,38 @@ export class ProductPage {
     () => this.cybirdTerms.find((term) => term.key === this.selectedCybirdTerm()) ?? this.cybirdTerms[0]
   );
 
+  readonly tallyTerms: readonly { key: TallyTerm; label: string; saving: string }[] = [
+    { key: 'monthly', label: 'Monthly', saving: '' },
+    { key: '3m', label: '3 Months', saving: 'Save 5%' },
+    { key: '6m', label: '6 Months', saving: 'Save 7.5%' },
+    { key: '1y', label: '1 Year', saving: 'Save 10%' },
+  ];
+
+  readonly tallyPlans: readonly TallyPlan[] = [
+    { users: '3 to 4', name: 'Tally Private', edition: 'Cloud Lite', serverType: 'Dedicated VM', cpu: '4 vCPU', memory: '6 GB', disk: '100 GB' },
+    { users: '5', name: 'Tally Private', edition: 'Cloud X Small', serverType: 'Dedicated VM', cpu: '4 vCPU', memory: '8 GB', disk: '150 GB' },
+    { users: '10', name: 'Tally Private', edition: 'Cloud Small', serverType: 'Dedicated VM', cpu: '6 vCPU', memory: '12 GB', disk: '150 GB' },
+    { users: '11 to 15', name: 'Tally Private', edition: 'Cloud Medium', serverType: 'Dedicated VM', cpu: '8 vCPU', memory: '16 GB', disk: '200 GB' },
+    { users: '16 to 20', name: 'Tally Private', edition: 'Cloud X Large', serverType: 'Dedicated VM', cpu: '12 vCPU', memory: '32 GB', disk: '300 GB' },
+    { users: '21+ to 30', name: 'Tally Private', edition: 'Cloud XX Large', serverType: 'Dedicated VM', cpu: '16 vCPU', memory: '64 GB', disk: '400 GB' },
+    { users: '31+ to 50', name: 'Tally Private', edition: 'Cloud XXX Large', serverType: 'Dedicated VM', cpu: '20 vCPU', memory: '96 GB', disk: '500 GB' },
+    { users: '51+ to 75', name: 'Tally Private', edition: 'Cloud XXX Large', serverType: 'Dedicated VM', cpu: '24 vCPU', memory: '128 GB', disk: '750 GB' },
+  ];
+
+  readonly tallyAddOns: readonly { name: string; detail: string; price: string }[] = [
+    { name: 'TS Plus', detail: 'Enterprise Edition', price: '₹175 per user' },
+    { name: 'XcellDrive', detail: 'Starter (10 GB)', price: '₹349 per user' },
+    { name: 'Microsoft 365', detail: 'Business Edition', price: '₹555 per user' },
+    { name: 'SSL VPN Client', detail: 'Secure remote access', price: '₹250 per user' },
+    { name: 'Site-to-Site VPN Tunnel', detail: 'Secure office connection', price: '₹1,999 per tunnel' },
+  ];
+
+  readonly selectedTallyTerm = signal<TallyTerm>('monthly');
+
+  readonly activeTallyTerm = computed(
+    () => this.tallyTerms.find((term) => term.key === this.selectedTallyTerm()) ?? this.tallyTerms[0]
+  );
+
   /** Names that have a page of their own but are missing from the directory. */
   private static readonly EXTRA_NAMES: readonly string[] = [
     ...new Set([...Object.keys(DEEP_CONTENT), ...Object.keys(RICH_PRODUCTS)]),
@@ -132,6 +176,8 @@ export class ProductPage {
   readonly isSmbCyber = computed(
     () => this.view()?.name === 'SMB Cyber Security Appliance'
   );
+
+  readonly isTally = computed(() => this.view()?.name === 'Tally on Cloud');
 
   readonly isRmm = computed(
     () => this.view()?.name === 'Remote Monitoring & Mgmt (RMM)'
@@ -350,6 +396,16 @@ export class ProductPage {
   selectCybirdPlan(plan: CybirdPlan, ev: Event): void {
     ev.preventDefault();
     this.topics.ask(`Cybird ${plan.name} - ${this.activeCybirdTerm().label}`);
+    this.overlay.open('callback');
+  }
+
+  selectTallyTerm(term: TallyTerm): void {
+    this.selectedTallyTerm.set(term);
+  }
+
+  selectTallyPlan(plan: TallyPlan, ev: Event): void {
+    ev.preventDefault();
+    this.topics.ask(`${plan.name} (${plan.edition}) - ${plan.users} users - ${this.activeTallyTerm().label}`);
     this.overlay.open('callback');
   }
 
