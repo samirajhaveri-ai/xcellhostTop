@@ -78,6 +78,18 @@ export class ProductPage {
   /** five star slots, so the template does not rebuild an array on every check */
   readonly starSlots = [0, 1, 2, 3, 4];
 
+  readonly edrPlanCoverage = ['15 months coverage', '30 months coverage', '48 months coverage'];
+  readonly edrPlanFeatures = [
+    'Advanced Security + EDR licence',
+    'Behavioral and AI-based detection',
+    'Anti-ransomware protection with rollback',
+    'Exploit prevention and URL filtering',
+    'Continuous endpoint monitoring',
+    'Endpoint isolation and response actions',
+    'Free deployment and onboarding',
+    'XcellHost engineer support',
+  ];
+
   readonly cybirdTerms: readonly { key: CybirdTerm; label: string }[] = [
     { key: '1y', label: '1 Year' },
     { key: '2y', label: '2 Years · 10% Saving' },
@@ -126,14 +138,6 @@ export class ProductPage {
     { users: '21+ to 30', name: 'Tally Private', edition: 'Cloud XX Large', serverType: 'Dedicated VM', cpu: '16 vCPU', memory: '64 GB', disk: '400 GB' },
     { users: '31+ to 50', name: 'Tally Private', edition: 'Cloud XXX Large', serverType: 'Dedicated VM', cpu: '20 vCPU', memory: '96 GB', disk: '500 GB' },
     { users: '51+ to 75', name: 'Tally Private', edition: 'Cloud XXX Large', serverType: 'Dedicated VM', cpu: '24 vCPU', memory: '128 GB', disk: '750 GB' },
-  ];
-
-  readonly tallyAddOns: readonly { name: string; detail: string; price: string }[] = [
-    { name: 'TS Plus', detail: 'Enterprise Edition', price: '₹175 per user' },
-    { name: 'XcellDrive', detail: 'Starter (10 GB)', price: '₹349 per user' },
-    { name: 'Microsoft 365', detail: 'Business Edition', price: '₹555 per user' },
-    { name: 'SSL VPN Client', detail: 'Secure remote access', price: '₹250 per user' },
-    { name: 'Site-to-Site VPN Tunnel', detail: 'Secure office connection', price: '₹1,999 per tunnel' },
   ];
 
   readonly selectedTallyTerm = signal<TallyTerm>('monthly');
