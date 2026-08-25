@@ -97,7 +97,9 @@
               <a class="btn ppd-pres" href="#" id="ppPres" (click)="requestDoc('presentation', $event)"
                 ><span class="ppd-ic">📖</span> Presentation</a
               >
-              <a class="btn btn-primary" href="#" id="ppBuy" (click)="buyNow($event)">⚡ Buy Now</a>
+              @if (!isTally()) {
+                <a class="btn btn-primary" href="#" id="ppBuy" (click)="buyNow($event)">⚡ Buy Now</a>
+              }
             </div>
           </div>
         </div>
@@ -211,22 +213,13 @@
               }
             </div>
 
-            <section class="tally-addons" aria-labelledby="tally-addons-title">
-              <div class="tally-addons-heading">
-                <span>Optional add-ons</span>
-                <h3 id="tally-addons-title">Complete your Tally cloud setup</h3>
-              </div>
-              <div class="tally-addons-grid">
-                @for (addOn of tallyAddOns; track addOn.name) {
-                  <article>
-                    <span aria-hidden="true">+</span>
-                    <div><b>{{ addOn.name }}</b><small>{{ addOn.detail }}</small></div>
-                    <strong>{{ addOn.price }}</strong>
-                  </article>
-                }
-              </div>
-              <p>Migrate Tally to the Cloud in 5 easy steps.</p>
-            </section>
+          </section>
+
+          <section class="tally-mobile-insights" aria-label="Real-time Tally insights on mobile devices">
+            <img
+              src="/assets/images/tally-mobile-insights.png"
+              alt="Real-time Tally insights available securely on a mobile device"
+            />
           </section>
         } @else if (!isAdvancedEdr() && !isSmbCyber()) {
           <div class="pp-sec">Plans &amp; pricing</div>

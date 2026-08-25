@@ -128,14 +128,6 @@ export class ProductPage {
     { users: '51+ to 75', name: 'Tally Private', edition: 'Cloud XXX Large', serverType: 'Dedicated VM', cpu: '24 vCPU', memory: '128 GB', disk: '750 GB' },
   ];
 
-  readonly tallyAddOns: readonly { name: string; detail: string; price: string }[] = [
-    { name: 'TS Plus', detail: 'Enterprise Edition', price: '₹175 per user' },
-    { name: 'XcellDrive', detail: 'Starter (10 GB)', price: '₹349 per user' },
-    { name: 'Microsoft 365', detail: 'Business Edition', price: '₹555 per user' },
-    { name: 'SSL VPN Client', detail: 'Secure remote access', price: '₹250 per user' },
-    { name: 'Site-to-Site VPN Tunnel', detail: 'Secure office connection', price: '₹1,999 per tunnel' },
-  ];
-
   readonly selectedTallyTerm = signal<TallyTerm>('monthly');
 
   readonly activeTallyTerm = computed(
