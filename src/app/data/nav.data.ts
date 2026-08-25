@@ -529,22 +529,22 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "DigiCert",
+                "title": "DigiCert  SSL Certificates",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Sectigo",
+                "title": "Sectigo SSL Certificates" ,
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Thawte",
+                "title": "Thawte  SSL Certificates",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "RapidSSL",
+                "title": "RapidSSL  SSL Certificates",
                 "pill": null,
                 "desc": null
               }
@@ -1277,11 +1277,11 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "1",
-        "label": "Flipbook Catalogs",
+        "label": "Flipbook",
         "on": false,
         "groups": [
           {
-            "heading": "Flipbook Catalogs",
+            "heading": "Flipbook ",
             "items": [
               {
                 "title": "SMB Catalog · Enterprise Catalog",
