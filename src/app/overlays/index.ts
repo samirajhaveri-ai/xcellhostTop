@@ -8,3 +8,4 @@ export { CallbackTopicService } from './callback-topic.service';
 export { ChatbotComponent } from './chatbot.component';
 export { SearchDialogComponent } from './search-dialog.component';
 export { WhatsappFabComponent } from './whatsapp-fab.component';
+export { BackToTopComponent } from './back-to-top.component';

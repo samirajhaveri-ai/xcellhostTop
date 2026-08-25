@@ -4,6 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { OverlayService } from './core/overlay.service';
 import {
   AuthModalComponent,
+  BackToTopComponent,
   CallbackModalComponent,
   CartDrawerComponent,
   ChatbotComponent,
@@ -48,6 +49,7 @@ import {
     PartnerModalComponent,
     DocModalComponent,
     WhatsappFabComponent,
+    BackToTopComponent,
   ],
   templateUrl: './app.html',
   host: {
