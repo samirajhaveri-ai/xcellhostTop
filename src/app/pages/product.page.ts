@@ -78,6 +78,18 @@ export class ProductPage {
   /** five star slots, so the template does not rebuild an array on every check */
   readonly starSlots = [0, 1, 2, 3, 4];
 
+  readonly edrPlanCoverage = ['15 months coverage', '30 months coverage', '48 months coverage'];
+  readonly edrPlanFeatures = [
+    'Advanced Security + EDR licence',
+    'Behavioral and AI-based detection',
+    'Anti-ransomware protection with rollback',
+    'Exploit prevention and URL filtering',
+    'Continuous endpoint monitoring',
+    'Endpoint isolation and response actions',
+    'Free deployment and onboarding',
+    'XcellHost engineer support',
+  ];
+
   readonly cybirdTerms: readonly { key: CybirdTerm; label: string }[] = [
     { key: '1y', label: '1 Year' },
     { key: '2y', label: '2 Years · 10% Saving' },
