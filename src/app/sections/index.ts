@@ -8,5 +8,7 @@ export { WhyComponent } from './why.component';
 export { IndustriesComponent } from './industries.component';
 export { CasesComponent } from './cases.component';
 export { InsightsSectionComponent } from './insights-section.component';
+export { GlobalLocationsMapComponent } from './global-locations-map.component';
+export { SatisfactionGuaranteeComponent } from './satisfaction-guarantee.component';
 export { QuoteComponent } from './quote.component';
 export { CtaBandComponent } from './cta-band.component';

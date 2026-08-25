@@ -265,4 +265,22 @@ export const COMPANY_PAGES: Record<string, CompanyPageContent> = {
     ],
     cta: 'Contact billing with your order details to confirm whether a service is eligible.', ctaLabel: 'Request a refund review',
   },
+  'acceptable-use-policy': {
+    eyebrow: 'Legal', title: 'Acceptable Use Policy', tagline: 'The responsible-use requirements that help keep XcellHost services safe and reliable.',
+    intro: 'Customers and authorised users must use XcellHost services lawfully, securely and without disrupting other customers, systems or networks. Account owners are responsible for activity performed through their services and credentials.', cards: legalCards,
+    sections: [
+      { title: 'Prohibited activity', body: 'Services must not be used for unlawful, abusive, deceptive or harmful activity.', points: ['Do not distribute malware, phishing content or unsolicited bulk messages', 'Do not attempt unauthorised access, scanning or exploitation', 'Do not host or distribute content that violates applicable law or third-party rights', 'Do not interfere with platform availability, security or other customers', 'Do not conceal, falsify or misuse identities and service information'] },
+      { title: 'Responding to misuse', body: 'XcellHost may investigate credible reports, request corrective action, restrict affected services or cooperate with lawful authorities where required. Urgent action may be necessary to protect customers and infrastructure.' },
+    ],
+    cta: 'If you are uncertain whether an intended use is permitted, contact XcellHost before deploying it.', ctaLabel: 'Ask an acceptable-use question',
+  },
+  'ekyc-verification': {
+    eyebrow: 'Legal', title: 'eKYC Verification', tagline: 'How electronic identity checks support secure account and service activation.',
+    intro: 'Some XcellHost services or transactions may require electronic Know Your Customer verification. The requested information depends on the customer type, service, payment method and applicable legal or vendor requirements.', cards: legalCards,
+    sections: [
+      { title: 'Preparing for verification', body: 'Submit current information through the approved XcellHost verification channel only.', points: ['Use accurate legal name and contact information', 'Provide valid, readable documents when requested', 'Ensure the submitting person is authorised to act for the account or organisation', 'Do not send identity documents through unapproved chat or email channels', 'Respond to clarification requests so the review can be completed'] },
+      { title: 'Verification outcome', body: 'Additional information may be requested if details are incomplete or inconsistent. Service activation can remain pending until required checks are completed successfully.' },
+    ],
+    cta: 'Need help completing verification? Contact the XcellHost team through an official support channel.', ctaLabel: 'Get eKYC help',
+  },
 };

@@ -15,6 +15,7 @@ import {
   WhatsappFabComponent,
 } from './overlays';
 import {
+  ContactOptionsComponent,
   FooterComponent,
   HeaderComponent,
   IntroSplashComponent,
@@ -39,6 +40,7 @@ import {
     UtilityBarComponent,
     PromoBarComponent,
     HeaderComponent,
+    ContactOptionsComponent,
     FooterComponent,
     CartDrawerComponent,
     ChatbotComponent,
