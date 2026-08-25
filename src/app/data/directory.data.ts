@@ -1167,7 +1167,7 @@ export const DIRECTORY: DirectoryEntry[] = [
     "desc": "Comprehensive digital safety for your site",
     "cat": "Web Presence",
     "group": "Hosting",
-    "heroImage": "/assets/images/hero-web-security-sitelock.png"
+    "heroImage": "/assets/images/hero-web-security-sitelock-wide.png"
   },
   {
     "name": "cPanel / Plesk",

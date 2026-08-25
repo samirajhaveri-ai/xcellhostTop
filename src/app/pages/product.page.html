@@ -1,6 +1,6 @@
 @if (view(); as v) {
   <div class="ppage as-page" id="ppage" [class.edr-page]="isAdvancedEdr()">
-    <div class="pp-hero">
+    <div class="pp-hero" [class.sitelock-hero]="v.name === 'Web Security (SiteLock)'">
       <div class="pph-map" aria-hidden="true" [innerHTML]="worldMap"></div>
       <span class="pph-grid" aria-hidden="true"></span>
       <span class="pph-aur pph-a1" aria-hidden="true"></span>
@@ -23,11 +23,10 @@
             </div>
           </div>
         </div>
-      } @else if (v.heroImage) {
+      } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
         <div
           class="pph-scene has-illus"
           [class.standalone-illus]="!v.poweredBy || v.name === 'Tally on Cloud'"
-          [class.sitelock-hero-scene]="v.name === 'Web Security (SiteLock)'"
           id="pphScene"
           aria-hidden="true"
         >
@@ -35,7 +34,6 @@
             <img
               class="pph-illus-img"
               [class.tally-hero-image]="v.name === 'Tally on Cloud'"
-              [class.sitelock-hero-image]="v.name === 'Web Security (SiteLock)'"
               [src]="v.heroImage"
               [alt]="v.poweredBy || v.name"
             />
@@ -51,7 +49,7 @@
             }
           </div>
         </div>
-      } @else {
+      } @else if (v.name !== 'Web Security (SiteLock)') {
         <div class="pph-scene" id="pphScene" aria-hidden="true" [innerHTML]="sceneHtml()"></div>
       }
 
