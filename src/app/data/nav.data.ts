@@ -250,6 +250,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Acronis True Image",
                 "pill": null,
                 "desc": null
+              },
+              {
+                "title": "Cloud Disaster for SMB",
+                "pill": null,
+                "desc": null
               }
             ]
           }
@@ -341,7 +346,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Cloud Disaster Recovery",
+                "title": "Cloud Disaster Enterprise",
                 "pill": null,
                 "desc": null
               },
@@ -1381,6 +1386,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Contact Us",
+                "pill": null,
+                "desc": "We'd love to hear from you"
+              },
+              {
+                "title": "Enquiry Now",
                 "pill": null,
                 "desc": "We'd love to hear from you"
               }

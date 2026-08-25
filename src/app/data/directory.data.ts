@@ -52,24 +52,13 @@ export const DIRECTORY: DirectoryEntry[] = [
     "group": "SMB Cloud"
   },
   {
-    "name": "Cloud Backup (Acronis)",
-    "desc": "Store important data securely online, preventing loss from unexpected failures",
+    "name": "SMB Cyber Security Appliance",
+    "desc": "All-in-one security device designed for SMBs — new launch",
     "cat": "Cloud",
-    "group": "SMB Cloud"
+    "group": "SMB Cloud",
+    "heroImage": "/assets/images/hero-smb-cyber-security-appliance.png"
   },
-  {
-    "name": "Cloud Drive",
-    "desc": "Share and access files online with secure collaboration across devices",
-    "cat": "Cloud",
-    "group": "SMB Cloud"
-  },
-  {
-    "name": "SMB Cloud Desktop",
-    "desc": "Secure, scalable access to apps and data anytime, anywhere",
-    "cat": "Cloud",
-    "group": "SMB Cloud"
-  },
-  {
+ {
     "name": "WhatsApp SMB",
     "desc": "Official WhatsApp Business API for SMB sales, support and automation",
     "cat": "Cloud",
@@ -89,9 +78,11 @@ export const DIRECTORY: DirectoryEntry[] = [
       "Consent-led customer engagement"
     ]
   },
-  {
-    "name": "Advanced Endpoint Security (EDR)",
-    "desc": "Identify, protect, detect, respond and recover framework for endpoints",
+  
+
+    {
+    "name": "Cloud Drive",
+    "desc": "Share and access files online with secure collaboration across devices",
     "cat": "Cloud",
     "group": "SMB Cloud"
   },
@@ -200,25 +191,41 @@ export const DIRECTORY: DirectoryEntry[] = [
       ]
     ]
   },
+
+    {
+    "name": "SMB Cloud Desktop",
+    "desc": "Secure, scalable access to apps and data anytime, anywhere",
+    "cat": "Cloud",
+    "group": "SMB Cloud"
+  },
+  {
+     "name": "Acronis GenAI",
+    "desc": "Monitors unauthorized consumer-grade AI apps on client endpoints",
+    "cat": "Cloud",
+    "group": "SMB Cloud"
+   },
+  {
+    "name": "Cloud Backup ",
+    "desc": "Store important data securely online, preventing loss from unexpected failures",
+    "cat": "Cloud",
+    "group": "SMB Cloud"
+  },
+
+  {
+    "name": "Advanced Endpoint Security (EDR)",
+    "desc": "Identify, protect, detect, respond and recover framework for endpoints",
+    "cat": "Cloud",
+    "group": "SMB Cloud"
+  },
   {
     "name": "Acronis True Image",
     "desc": "Cyber protection and privacy tools for home users",
     "cat": "Cloud",
     "group": "SMB Cloud"
   },
-  {
-    "name": "SMB Cyber Security Appliance",
-    "desc": "All-in-one security device designed for SMBs — new launch",
-    "cat": "Cloud",
-    "group": "SMB Cloud",
-    "heroImage": "/assets/images/hero-smb-cyber-security-appliance.png"
-  },
-  {
-    "name": "Acronis GenAI",
-    "desc": "Monitors unauthorized consumer-grade AI apps on client endpoints",
-    "cat": "Cloud",
-    "group": "SMB Cloud"
-  },
+  
+  // 
+ 
   {
     "name": "Bare Metal Server",
     "desc": "High-performance single-tenant dedicated servers — from ₹8,264/mo",
@@ -1159,7 +1166,8 @@ export const DIRECTORY: DirectoryEntry[] = [
     "name": "Web Security (SiteLock)",
     "desc": "Comprehensive digital safety for your site",
     "cat": "Web Presence",
-    "group": "Hosting"
+    "group": "Hosting",
+    "heroImage": "/assets/images/hero-web-security-sitelock.png"
   },
   {
     "name": "cPanel / Plesk",

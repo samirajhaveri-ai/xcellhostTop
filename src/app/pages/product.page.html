@@ -27,6 +27,7 @@
         <div
           class="pph-scene has-illus"
           [class.standalone-illus]="!v.poweredBy || v.name === 'Tally on Cloud'"
+          [class.sitelock-hero-scene]="v.name === 'Web Security (SiteLock)'"
           id="pphScene"
           aria-hidden="true"
         >
@@ -34,6 +35,7 @@
             <img
               class="pph-illus-img"
               [class.tally-hero-image]="v.name === 'Tally on Cloud'"
+              [class.sitelock-hero-image]="v.name === 'Web Security (SiteLock)'"
               [src]="v.heroImage"
               [alt]="v.poweredBy || v.name"
             />
