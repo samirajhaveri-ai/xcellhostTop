@@ -3,14 +3,14 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { SeoService } from '../core/seo.service';
 import {
   CasesComponent,
-  CtaBandComponent,
   DirectoryComponent,
   FlagshipComponent,
+  GlobalLocationsMapComponent,
   HeroComponent,
   IndustriesComponent,
   InsightsSectionComponent,
   MarqueeComponent,
-  QuoteComponent,
+  SatisfactionGuaranteeComponent,
   TrustBarComponent,
   WhyComponent,
 } from '../sections';
@@ -38,8 +38,8 @@ const DESCRIPTION =
     IndustriesComponent,
     CasesComponent,
     InsightsSectionComponent,
-    QuoteComponent,
-    CtaBandComponent,
+    GlobalLocationsMapComponent,
+    SatisfactionGuaranteeComponent,
   ],
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -53,8 +53,8 @@ const DESCRIPTION =
     <xh-industries />
     <xh-cases />
     <xh-insights-section />
-    <xh-quote />
-    <xh-cta-band />
+    <xh-global-locations-map />
+    <xh-satisfaction-guarantee />
   `,
 })
 export class HomePage {
