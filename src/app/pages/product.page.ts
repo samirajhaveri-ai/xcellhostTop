@@ -16,6 +16,7 @@ import { DEEP_CONTENT, PLATFORM_ICONS, RICH_PRODUCTS } from '../data/products.da
 import { SITE, WORLD_MAP_HTML } from '../data/site.data';
 import { HeroNetDirective, ProductFaqComponent, ProductVideoComponent } from '../sections/product';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
+import { LottieDirective } from '../shared/lottie.directive';
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -57,7 +58,7 @@ interface TallyPlan {
 @Component({
   selector: 'xh-product-page',
   standalone: true,
-  imports: [RouterLink, HeroNetDirective, ProductVideoComponent, ProductFaqComponent],
+  imports: [RouterLink, HeroNetDirective, LottieDirective, ProductVideoComponent, ProductFaqComponent],
   templateUrl: './product.page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -169,7 +170,7 @@ export class ProductPage {
     this.sanitizer.bypassSecurityTrustHtml(this.view()?.heroScene ?? '')
   );
 
-  /** `Tally on Cloud` and `Cloud Backup (Acronis)` get the illustrated hero. */
+  /** Every resolved product gets a localized or category-level hero illustration. */
   readonly isFlagship = computed(() => !!this.view()?.heroImage);
 
   /** The EDR campaign places its commercial offer immediately after the videos. */
@@ -187,9 +188,9 @@ export class ProductPage {
     () => this.view()?.name === 'Remote Monitoring & Mgmt (RMM)'
   );
 
-  /** Long product names sit below the XcellSecure brand in every product hero. */
-  readonly stackHeroTitle = computed(
-    () => (this.view()?.name.trim().split(/\s+/).filter(Boolean).length ?? 0) > 3
+  /** Product names longer than two words use the compact single-line hero treatment. */
+  readonly compactHeroTitle = computed(
+    () => (this.view()?.name.trim().split(/\s+/).filter(Boolean).length ?? 0) > 2
   );
 
   readonly platforms = computed(() =>

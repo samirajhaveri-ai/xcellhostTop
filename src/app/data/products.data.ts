@@ -206,7 +206,7 @@ export const RICH_PRODUCTS: Record<string, RichProduct> = {
     "tagline": "Recover data from Backup Cloud, best ransomware defense.",
     "highlight": "Anti-Ransomware feature protects data from attacks.",
     "poweredBy": "Acronis Cyber Protect Cloud",
-    "heroImage": "/assets/images/hero-cloud-backup-acronis.png",
+    "heroImage": "/assets/images/product-intros/reference-8dce69ace7fa.png",
     "heroPoints": [
       "Backup Any Device Securely",
       "Web Based Admin Console",

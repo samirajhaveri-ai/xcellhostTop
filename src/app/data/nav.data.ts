@@ -346,17 +346,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Cloud Disaster Enterprise",
+                "title": "Cloud Disaster Recoovery",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "Intelligent Backup (AI)",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Metallic Backup Cloud",
                 "pill": null,
                 "desc": null
               },
@@ -381,7 +376,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "E-Mail Backup / Archiving",
+                "title": "E-Mail Archiving",
                 "pill": null,
                 "desc": null
               }
