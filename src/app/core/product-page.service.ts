@@ -20,6 +20,11 @@ import {
 import { EDR_COMPARE, EDR_PRODUCTS, EDR_TIMELINE, HERO_SCENES } from '../data/site.data';
 import { BlogCard, Category, Faq, IconItem, Pair, RichProduct } from '../data/models';
 import { buildContextualProductReviews } from '../data/product-reviews.data';
+import {
+  CATEGORY_HERO_IMAGES,
+  PRODUCT_HERO_IMAGES,
+  VISIBLE_PRODUCT_HERO_IMAGE_PATHS,
+} from '../data/product-hero-images.generated';
 
 /** What the caller knows before the page is built. */
 export interface ProductRequest {
@@ -45,9 +50,18 @@ export interface PricingPlan {
   quoteOnly?: boolean;
 }
 
+export interface ProductHeroBrand {
+  name: string;
+  subtitle: string | null;
+  kind: 'vendor' | 'xcell' | 'tally';
+  logoImage: string;
+}
+
 /** Everything the product page template needs. Nothing is computed in the view. */
 export interface ProductView {
   name: string;
+  /** Xcell product-family wordmark shown before the product name in the hero. */
+  brandSuffix: string;
   crumb: string;
   cat: Category;
   tagline: string;
@@ -109,6 +123,8 @@ export interface ProductView {
   } | null;
   poweredBy: string | null;
   poweredMark: string | null;
+  /** Logo-style provider mark displayed below every right-side hero illustration. */
+  heroBrand: ProductHeroBrand;
   activeProtection: { title: string; body: string } | null;
   platforms: string[];
   edr: { timeline: [string, string][]; compare: { cols: string[]; rows: string[][] } } | null;
@@ -622,6 +638,11 @@ export class ProductPageService {
 
     /* -------- hero scene -------- */
     const heroScene = product ? null : HERO_SCENES[sceneKey(name, cat)] ?? null;
+    const referenceHeroImage = PRODUCT_HERO_IMAGES[name];
+    const visibleReferenceHeroImage =
+      referenceHeroImage && VISIBLE_PRODUCT_HERO_IMAGE_PATHS.has(referenceHeroImage)
+        ? referenceHeroImage
+        : null;
 
     /* -------- reviews -------- */
     const reviews = product
@@ -646,9 +667,11 @@ export class ProductPageService {
       title: benefit[1],
       body: benefit[2],
     }));
+    const brandSuffix = resolveBrandSuffix(name, cat, dirEntry?.group ?? req.crumb ?? '', product?.brandLine);
 
     return {
       name,
+      brandSuffix,
       crumb: 'Home › ' + (req.crumb || (dirEntry ? `${dirEntry.cat} › ${dirEntry.group}` : 'Services')),
       cat,
       tagline: heroTagline,
@@ -679,7 +702,12 @@ export class ProductPageService {
       videoLabels: product?.videoLabels ?? ['Product Intro', 'Use Cases'],
       infosheetUrl: PRODUCT_INFOSHEETS[name] ?? SERVICE_INDEX_URL,
       heroScene,
-      heroImage: product?.heroImage ?? dirEntry?.heroImage ?? null,
+      heroImage:
+        product?.heroImage ??
+        dirEntry?.heroImage ??
+        visibleReferenceHeroImage ??
+        CATEGORY_HERO_IMAGES[cat] ??
+        null,
       heroMessages,
       heroPoints:
         name === 'SMB Cyber Security Appliance'
@@ -692,6 +720,7 @@ export class ProductPageService {
       advancedSection: dirEntry?.advancedSection ?? null,
       poweredBy: product?.poweredBy ?? null,
       poweredMark: product?.poweredMark ?? null,
+      heroBrand: resolveHeroBrand(name, brandSuffix, product?.poweredBy, product?.poweredMark),
       activeProtection: product?.activeProtection ?? null,
       platforms: product?.platforms ?? [],
       edr: EDR_PRODUCTS.includes(name)
@@ -699,6 +728,119 @@ export class ProductPageService {
         : null,
     };
   }
+}
+
+/** External product vendors used by the reference catalogue; Xcell is the universal fallback. */
+function resolveHeroBrand(
+  name: string,
+  brandSuffix: string,
+  poweredBy?: string,
+  poweredMark?: string
+): ProductHeroBrand {
+  if (poweredMark === 'tally' || /tally/i.test(name)) {
+    return {
+      name: 'Tally on Cloud', subtitle: null, kind: 'tally',
+      logoImage: '/assets/images/product-intros/reference-708cd01d9929.png',
+    };
+  }
+
+  if (/cloud drive/i.test(name)) {
+    return {
+      name: 'XcellDrive', subtitle: null, kind: 'vendor',
+      logoImage: '/assets/images/product-intros/reference-54ea5391cf7f.png',
+    };
+  }
+
+  if (poweredBy) {
+    const [vendor, ...rest] = poweredBy.trim().split(/\s+/);
+    return {
+      name: vendor,
+      subtitle: rest.join(' ') || name,
+      kind: 'vendor',
+      logoImage: vendor.toLowerCase() === 'acronis'
+        ? '/assets/images/product-brands-acronis.png'
+        : '/assets/images/xcellhost-logo.png',
+    };
+  }
+
+  const vendorMatchers: readonly [RegExp, string, string?][] = [
+    [/acronis|cloud backup|cloud disaster|advanced endpoint security|remote monitoring\s*&\s*mgmt/i, 'Acronis', 'Cyber Protect Cloud'],
+    [/sentinelone/i, 'SentinelOne'],
+    [/microsoft|azure|entra|intune|copilot|windows/i, 'Microsoft'],
+    [/google|gcp/i, 'Google'],
+    [/amazon web services|\baws\b/i, 'AWS'],
+    [/oracle/i, 'Oracle'],
+    [/digicert/i, 'DigiCert'],
+    [/geotrust/i, 'GeoTrust'],
+    [/sectigo|comodo/i, 'Sectigo'],
+    [/rapidssl/i, 'RapidSSL'],
+    [/thawte/i, 'Thawte'],
+    [/emudhra/i, 'eMudhra'],
+    [/globalsign/i, 'GlobalSign'],
+    [/entrust/i, 'Entrust'],
+    [/sitelock/i, 'SiteLock'],
+    [/cpanel/i, 'cPanel'],
+    [/plesk/i, 'Plesk'],
+    [/wordpress/i, 'WordPress'],
+    [/kaspersky/i, 'Kaspersky'],
+    [/sophos/i, 'Sophos'],
+    [/fortinet/i, 'Fortinet'],
+    [/cisco/i, 'Cisco'],
+    [/veeam/i, 'Veeam'],
+    [/vmware/i, 'VMware'],
+    [/nutanix/i, 'Nutanix'],
+    [/citrix/i, 'Citrix'],
+    [/tsplus/i, 'TSplus'],
+    [/zoho/i, 'Zoho'],
+    [/whatsapp/i, 'WhatsApp'],
+  ];
+  const match = vendorMatchers.find(([pattern]) => pattern.test(name));
+
+  if (match) {
+    return {
+      name: match[1],
+      subtitle: match[2] ?? name,
+      kind: 'vendor',
+      logoImage: match[1] === 'Acronis'
+        ? '/assets/images/product-brands-acronis.png'
+        : '/assets/images/xcellhost-logo.png',
+    };
+  }
+
+  return {
+    name: `Xcell${brandSuffix}`,
+    subtitle: name,
+    kind: 'xcell',
+    logoImage: '/assets/images/xcellhost-logo.png',
+  };
+}
+
+/** Product-family names follow the wordmarks used on the reference XcellHost site. */
+function resolveBrandSuffix(
+  name: string,
+  cat: Category,
+  group: string,
+  brandLine?: string
+): string {
+  const explicitBrand = brandLine?.split('|')[0].trim().replace(/^Xcell\s*/i, '');
+  if (explicitBrand) return explicitBrand;
+
+  const product = name.toLowerCase();
+  const family = group.toLowerCase();
+
+  if (product.includes('tally')) return 'Tally';
+  if (product === 'cloud drive') return 'Drive';
+  if (product.includes('desktop') || product.includes('vdi')) return 'Desktop';
+  if (product.includes('co-location') || product.includes('colocation')) return 'Colo';
+  if (product === 'business e-mail' || product === 'business email') return 'BizMail';
+  if (product.includes('entra id') || family.includes('identity')) return 'Identity';
+  if (product === 'cloud management portal') return 'Managed';
+  if (family.includes('data protect') || product.includes('backup')) return 'Backup';
+  if (family.includes('consulting') || family.includes('compliance') || cat === 'Solutions') {
+    return 'Consult';
+  }
+  if (cat === 'Cloud') return 'Cloud';
+  return 'Secure';
 }
 
 /** Same regex ladder the original used to choose a hero illustration. */

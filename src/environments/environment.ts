@@ -6,7 +6,7 @@
  * form falls back to opening WhatsApp / email instead, exactly as before.
  */
 export const environment = {
-  production: false,
+  production: true,
 
   /** Base href the site is served from. '/' for a domain root. */
   baseHref: '/',
@@ -28,5 +28,5 @@ export const environment = {
   faqApi: '',
 
   /** Strapi CMS base URL (without /api). */
-  strapiUrl: 'http://localhost:1337',
+  strapiUrl: 'https://admin.xcellhost.top/api',
 };

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { SITE } from '../data/site.data';
 
-export type LeadKind = 'checkout' | 'trial' | 'callback' | 'doc' | 'partner';
+export type LeadKind = 'checkout' | 'trial' | 'callback' | 'doc' | 'partner' | 'newsletter';
 
 const ENDPOINTS: Record<LeadKind, () => string> = {
   checkout: () => environment.checkoutWebhook,
@@ -10,6 +10,8 @@ const ENDPOINTS: Record<LeadKind, () => string> = {
   callback: () => environment.callbackWebhook,
   doc: () => environment.docWebhook,
   partner: () => environment.partnerWebhook,
+  newsletter: () =>
+    (environment as typeof environment & { newsletterWebhook?: string }).newsletterWebhook ?? '',
 };
 
 export interface LeadResult {
