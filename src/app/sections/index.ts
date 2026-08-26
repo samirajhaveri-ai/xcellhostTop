@@ -4,6 +4,7 @@ export { TrustBarComponent } from './trust-bar.component';
 export { MarqueeComponent } from './marquee.component';
 export { FlagshipComponent } from './flagship.component';
 export { DirectoryComponent } from './directory.component';
+export { HostCredibilityComponent } from './host-credibility.component';
 export { WhyComponent } from './why.component';
 export { IndustriesComponent } from './industries.component';
 export { CasesComponent } from './cases.component';

@@ -252,7 +252,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Cloud Disaster for SMB",
+                "title": "Cloud Disaster Recovery SMB",
                 "pill": null,
                 "desc": null
               }
@@ -346,7 +346,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Cloud Disaster Recoovery",
+                "title": "Cloud Disaster Recovery Enterprise",
                 "pill": null,
                 "desc": null
               },
@@ -654,6 +654,27 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               }
+            ]
+          }
+        ]
+      },{
+        "g": "4",
+        "label": "Mark Certificate",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Mark Certificate",
+            "items": [
+              {
+                "title": "OMC",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "CMC",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
@@ -1279,7 +1300,7 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Flipbook ",
             "items": [
               {
-                "title": "SMB Catalog · Enterprise Catalog",
+                "title": "SMB Catalog ",
                 "pill": null,
                 "desc": null
               },
@@ -1294,7 +1315,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Bare Metal · GPU · Performance Cloud",
+                "title": "Performance Cloud",
                 "pill": null,
                 "desc": null
               },

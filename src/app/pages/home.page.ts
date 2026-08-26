@@ -7,6 +7,7 @@ import {
   FlagshipComponent,
   GlobalLocationsMapComponent,
   HeroComponent,
+  HostCredibilityComponent,
   IndustriesComponent,
   InsightsSectionComponent,
   MarqueeComponent,
@@ -34,6 +35,7 @@ const DESCRIPTION =
     MarqueeComponent,
     FlagshipComponent,
     DirectoryComponent,
+    HostCredibilityComponent,
     WhyComponent,
     IndustriesComponent,
     CasesComponent,
@@ -49,6 +51,7 @@ const DESCRIPTION =
     <xh-marquee />
     <xh-flagship />
     <xh-directory />
+    <xh-host-credibility />
     <xh-why />
     <xh-industries />
     <xh-cases />
