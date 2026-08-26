@@ -24,7 +24,7 @@
       (focusin)="releaseMenuSuppression()"
     >
       @for (top of tops; track top.label) {
-        <div class="xh-menu-item" [class.open]="openTop() === top.label" (mouseenter)="onTopEnter(top.label)">
+        <div class="xh-menu-item" [class.open]="openTop() === top.label" (mouseenter)="onTopEnter(top.label, $event)">
           <button
             class="xh-menu-link"
             type="button"
@@ -81,12 +81,35 @@
               }
             </div>
 
-            <aside class="xh-feature">
-              <b>Featured</b>
-              <h3>{{ top.feature.title }}</h3>
-              <p>{{ top.feature.body }}</p>
-              <a [routerLink]="top.link" (click)="onNavigate()">Explore <span aria-hidden="true">→</span></a>
-            </aside>
+            @if (top.featureCards.length) {
+              <aside class="xh-feature-stack" aria-label="Explore Web Presence services">
+                @for (feature of top.featureCards; track feature.title) {
+                  <a class="xh-feature-card" [routerLink]="feature.link" (click)="onNavigate()">
+                    @if (feature.fresh) { <span class="xh-feature-ribbon">New</span> }
+                    <span class="xh-feature-media">
+                      <img
+                        [src]="feature.image"
+                        [alt]="feature.title"
+                        [style.object-position]="feature.imagePosition ?? 'center'"
+                      />
+                    </span>
+                    <span class="xh-feature-copy">
+                      <small>{{ feature.label }}</small>
+                      <strong>{{ feature.title }}</strong>
+                      <span>{{ feature.body }}</span>
+                      <b>Explore <i aria-hidden="true">→</i></b>
+                    </span>
+                  </a>
+                }
+              </aside>
+            } @else {
+              <aside class="xh-feature">
+                <b>Featured</b>
+                <h3>{{ top.feature.title }}</h3>
+                <p>{{ top.feature.body }}</p>
+                <a [routerLink]="top.link" (click)="onNavigate()">Explore <span aria-hidden="true">→</span></a>
+              </aside>
+            }
           </div>
         </div>
       }

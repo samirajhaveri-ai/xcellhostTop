@@ -127,6 +127,14 @@ interface NavFeatureVm {
   body: string;
 }
 
+interface NavFeatureCardVm extends NavFeatureVm {
+  label: string;
+  image: string;
+  link: string;
+  imagePosition?: string;
+  fresh?: boolean;
+}
+
 const MENU_FEATURES: Record<string, NavFeatureVm> = {
   'Web Presence': { title: 'AI Website Builder', body: 'Describe your business and get a complete website in minutes.' },
   Cloud: { title: 'Tally on Cloud', body: 'Access Tally securely from any device, wherever your team works.' },
@@ -136,6 +144,116 @@ const MENU_FEATURES: Record<string, NavFeatureVm> = {
   Solutions: { title: 'CA Cloud', body: 'A complete cloud workspace built for accounting firms.' },
   Insights: { title: 'DPDPA Readiness Checklist', body: 'Score your privacy readiness using 26 practical checkpoints.' },
   Company: { title: 'Partner Program', body: 'Resell the XcellHost portfolio with recurring margins.' },
+};
+
+/** Two visual Explore cards for every top-level mega-menu section. */
+const MENU_FEATURE_CARDS: Readonly<Record<string, readonly NavFeatureCardVm[]>> = {
+  'Web Presence': [
+    {
+      label: 'Popular hosting', title: 'WordPress Hosting',
+      body: 'Fast, managed WordPress hosting with security and expert support.',
+      image: '/assets/images/product-intros/reference-b657997eaab0.jpg',
+      link: '/wordpress-hosting', fresh: true,
+    },
+    {
+      label: 'Website security', title: 'Web Security (SiteLock)',
+      body: 'Protect your website from malware, attacks and online threats.',
+      image: '/assets/images/hero-web-security-sitelock-wide.png',
+      link: '/web-security-sitelock', imagePosition: '72% center',
+    },
+  ],
+  Cloud: [
+    {
+      label: 'Top seller', title: 'Tally on Cloud',
+      body: 'Run Tally securely from any device with managed cloud support.',
+      image: '/assets/images/hero-tally-on-cloud.png',
+      link: '/tally-on-cloud', fresh: true,
+    },
+    {
+      label: 'File collaboration', title: 'Cloud Drive',
+      body: 'Secure file sharing, team folders and access from every device.',
+      image: '/assets/images/product-intros/reference-54ea5391cf7f.png',
+      link: '/cloud-drive',
+    },
+  ],
+  'Digital Trust': [
+    {
+      label: 'SSL certificates', title: 'GeoTrust SSL',
+      body: 'Protect websites with trusted encryption and verified identity.',
+      image: '/assets/images/product-intros/reference-9a75e56032c8.png',
+      link: '/geotrust', fresh: true,
+    },
+    {
+      label: 'Email trust', title: 'Secure DMARC',
+      body: 'Stop domain spoofing with managed SPF, DKIM and DMARC.',
+      image: '/assets/images/product-intros/reference-5728a592b032.png',
+      link: '/secure-dmarc',
+    },
+  ],
+  Security: [
+    {
+      label: 'Endpoint security', title: 'Advanced EDR',
+      body: 'Detect, investigate and respond to advanced endpoint threats.',
+      image: '/assets/images/hero-advanced-endpoint-security-edr.svg',
+      link: '/advanced-endpoint-security-edr', fresh: true,
+    },
+    {
+      label: 'SMB protection', title: 'Cyber Security Appliance',
+      body: 'Cloud-managed firewall and threat protection for growing teams.',
+      image: '/assets/images/hero-smb-cyber-security-appliance.png',
+      link: '/smb-cyber-security-appliance', imagePosition: 'center 28%',
+    },
+  ],
+  Software: [
+    {
+      label: 'Remote access', title: 'TSplus Remote Access',
+      body: 'Deliver Windows applications and desktops securely from anywhere.',
+      image: '/assets/images/menu-tsplus-remote-access.svg',
+      link: '/tsplus-remote-access', fresh: true,
+    },
+    {
+      label: 'Cloud analytics', title: 'Data Analytics',
+      body: 'Turn operational data into clear, actionable business insight.',
+      image: '/assets/images/menu-data-analytics.svg',
+      link: '/data-analytics',
+    },
+  ],
+  Solutions: [
+    {
+      label: 'Accounting cloud', title: 'CA Cloud',
+      body: 'A complete cloud workspace for accounting and audit practices.',
+      image: '/assets/images/menu-ca-cloud.svg',
+      link: '/ca-cloud', fresh: true,
+    },
+    {
+      label: 'Industry solution', title: 'Manufacturing',
+      body: 'Production-ready cloud, security and continuity for manufacturers.',
+      image: '/assets/images/product-intros/reference-b660d1a63828.jpg',
+      link: '/manufacturing',
+    },
+  ],
+  Insights: [
+    {
+      label: 'Expert guidance', title: 'Blogs',
+      body: 'Practical cloud, security and infrastructure guidance from experts.',
+      image: '/assets/images/menu-blogs.svg',
+      link: '/insights', fresh: true,
+    },
+  ],
+  Company: [
+    {
+      label: 'Talk to our team', title: 'Contact Us',
+      body: 'Connect with our cloud and security specialists for expert help.',
+      image: '/assets/images/contact-call.webp',
+      link: '/contact', fresh: true,
+    },
+    {
+      label: 'Meet XcellHost', title: 'Our Team · Our Story',
+      body: 'Discover the people and journey behind XcellHost since 1999.',
+      image: '/assets/images/menu-our-team.svg',
+      link: '/company/our-team-our-story',
+    },
+  ],
 };
 
 /** Reference-site descriptions for combined or menu-only entries. */
@@ -253,6 +371,7 @@ interface NavTopVm {
   megaId: string;
   tabs: NavTabVm[];
   feature: NavFeatureVm;
+  featureCards: readonly NavFeatureCardVm[];
 }
 
 /**
@@ -284,6 +403,7 @@ export class HeaderComponent {
     link: DIRECT_LINKS[top.label] ?? `/category/${slugify(top.label)}`,
     megaId: `mega-${slugify(top.label)}`,
     feature: MENU_FEATURES[top.label],
+    featureCards: MENU_FEATURE_CARDS[top.label] ?? [],
     tabs: top.tabs.map((tab) => ({
       g: tab.g,
       label: tab.label,
@@ -366,7 +486,21 @@ export class HeaderComponent {
   }
 
   /** Hovering one menu closes any other that was clicked open. */
-  onTopEnter(label: string): void {
+  onTopEnter(label: string, event: MouseEvent): void {
+    const hoveredMenu = event.currentTarget;
+    const focused = this.doc.activeElement;
+
+    // A focused button in the previous menu keeps its `:focus-within` panel
+    // visible underneath the newly hovered menu. Release that stale focus so
+    // only one mega menu can be displayed at a time.
+    if (
+      hoveredMenu instanceof HTMLElement &&
+      focused instanceof HTMLElement &&
+      !hoveredMenu.contains(focused)
+    ) {
+      focused.blur();
+    }
+
     if (this.openTop() !== label) this.openTop.set(null);
   }
 
