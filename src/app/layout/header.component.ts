@@ -109,6 +109,7 @@ interface NavItemVm {
   pillClass: string;
   desc: string | null;
   link: string | null;
+  external: boolean;
 }
 interface NavGroupVm {
   heading: string | null;
@@ -234,6 +235,14 @@ const CONTENT_LINKS: Record<string, string> = {
   'Privacy Policy': '/company/privacy-policy',
   'Terms of Services': '/company/terms-of-service',
   'Refund Policy': '/company/refund-policy',
+  'GeoTrust SSL Certificate SLA': 'https://supportdesk.xcellhost.cloud/portal/en/kb/articles/geotrust-ssl-certificate-sla',
+  'eMudhra SSL Certificate SLA': 'https://supportdesk.xcellhost.cloud/portal/en/kb/articles/emudhra-ssl-certificate-sla',
+  'DigiCert SSL Certificate SLA': 'https://supportdesk.xcellhost.cloud/portal/en/kb/articles/digicert-ssl-certificate-sla',
+  'Sectigo SSL Certificate SLA': 'https://supportdesk.xcellhost.cloud/portal/en/kb/articles/sectigo-ssl-certificate-sla',
+  'Thawte SSL Certificate SLA': 'https://supportdesk.xcellhost.cloud/portal/en/kb/articles/thawte-ssl-certificate-sla-4-8-2026',
+  'RapidSSL Certificate SLA': 'https://supportdesk.xcellhost.cloud/portal/en/kb/articles/rapidssl-certificate-sla',
+  'SMB Cloud SLA': 'https://supportdesk.xcellhost.cloud/portal/en/kb/cloud/smb-cloud/sla',
+  'Acronis Cyber Frame SLA': 'https://supportdesk.xcellhost.cloud/portal/en/kb/cloud/cloud-infra/sla-4',
   'Pricing': '/pricing',
 };
 
@@ -288,6 +297,7 @@ export class HeaderComponent {
           pillClass: menuPillClass(item.pill),
           desc: this.menuDescription(item.title, item.desc),
           link: this.serviceLink(item.title, top.label),
+          external: this.serviceLink(item.title, top.label)?.startsWith('http') ?? false,
         })),
       })),
     })),

@@ -1517,6 +1517,58 @@ export const MEGA_MENU: MenuTop[] = [
             ]
           }
         ]
+      },
+      {
+        "g": "5",
+        "label": "SLA'S",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Service Level Agreements",
+            "items": [
+              {
+                "title": "GeoTrust SSL Certificate SLA",
+                "pill": null,
+                "desc": "GeoTrust SSL certificate service commitments"
+              },
+              {
+                "title": "eMudhra SSL Certificate SLA",
+                "pill": null,
+                "desc": "eMudhra SSL certificate service commitments"
+              },
+              {
+                "title": "DigiCert SSL Certificate SLA",
+                "pill": null,
+                "desc": "DigiCert SSL certificate service commitments"
+              },
+              {
+                "title": "Sectigo SSL Certificate SLA",
+                "pill": null,
+                "desc": "Sectigo SSL certificate service commitments"
+              },
+              {
+                "title": "Thawte SSL Certificate SLA",
+                "pill": null,
+                "desc": "Thawte SSL certificate service commitments"
+              },
+              {
+                "title": "RapidSSL Certificate SLA",
+                "pill": null,
+                "desc": "RapidSSL certificate service commitments"
+              },
+              {
+                "title": "SMB Cloud SLA",
+                "pill": null,
+                "desc": "SMB Cloud service-level information"
+              },
+              {
+                "title": "Acronis Cyber Frame SLA",
+                "pill": null,
+                "desc": "Cloud infrastructure service-level information"
+              }
+            ]
+          }
+        ]
       }
     ]
   }
