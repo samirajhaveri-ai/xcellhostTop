@@ -56,10 +56,17 @@
                       @for (item of group.items; track $index) {
                         <li>
                           @if (item.link) {
-                            <a [routerLink]="item.link" [class]="item.pillClass" (click)="onNavigate()">
-                              <span class="xh-item-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path [attr.d]="item.iconPath" /></svg></span>
-                              <span class="xh-item-copy"><span class="xh-item-heading"><strong>{{ item.title }}</strong>@if (item.pill) {<em [class]="item.pillClass">{{ item.pill }}</em>}</span>@if (item.desc) {<small>{{ item.desc }}</small>}</span>
-                            </a>
+                            @if (item.external) {
+                              <a [href]="item.link" target="_blank" rel="noopener noreferrer" [class]="item.pillClass" (click)="onNavigate()">
+                                <span class="xh-item-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path [attr.d]="item.iconPath" /></svg></span>
+                                <span class="xh-item-copy"><span class="xh-item-heading"><strong>{{ item.title }}</strong>@if (item.pill) {<em [class]="item.pillClass">{{ item.pill }}</em>}</span>@if (item.desc) {<small>{{ item.desc }}</small>}</span>
+                              </a>
+                            } @else {
+                              <a [routerLink]="item.link" [class]="item.pillClass" (click)="onNavigate()">
+                                <span class="xh-item-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path [attr.d]="item.iconPath" /></svg></span>
+                                <span class="xh-item-copy"><span class="xh-item-heading"><strong>{{ item.title }}</strong>@if (item.pill) {<em [class]="item.pillClass">{{ item.pill }}</em>}</span>@if (item.desc) {<small>{{ item.desc }}</small>}</span>
+                              </a>
+                            }
                           } @else {
                             <a href="#" [class]="item.pillClass" (click)="$event.preventDefault()" aria-disabled="true">
                               <span class="xh-item-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path [attr.d]="item.iconPath" /></svg></span>
