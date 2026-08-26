@@ -103,11 +103,15 @@
   .badge{position:absolute;top:24px;right:22px;max-width:calc(100% - 96px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:600 10px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:var(--blue-soft);padding:4px 10px;border-radius:99px}
   .badge.hot{color:#B25400;background:#FFF0DE}
   .card h3{font-family:var(--disp);font-size:17px;font-weight:600;color:var(--navy);margin-bottom:6px}
-  .card p{font-size:13.5px;color:var(--slate);margin-bottom:10px}
-  .price{font-family:var(--mono);font-size:12.5px;color:var(--slate);margin-bottom:18px}
+  .card p{display:-webkit-box;min-height:3.1em;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:2;font-size:13.5px;line-height:1.55;color:var(--slate);margin-bottom:10px}
+  .price{font-family:var(--mono);font-size:12.5px;color:var(--slate);margin-bottom:18px;white-space:nowrap}
   .price b{font-size:18px;color:var(--navy)}
-  .price .price-note{display:block;margin-top:4px;color:var(--slate);font-family:var(--body);font-size:12px;line-height:1.35}
   .card .more{margin-top:auto;border-top:1px dashed var(--line);padding-top:12px;font-weight:600;font-size:13.5px;color:var(--blue)}
+
+  /* Keep every flagship card row compact and vertically aligned. */
+  #flagship .card h3{display:-webkit-box;min-height:2.8em;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:2}
+  #flagship .card .price{min-height:24px;margin-bottom:0}
+  #flagship .card .more{margin-top:0}
 
   /* ===== FULL SERVICE DIRECTORY — every product visible on page ===== */
   .directory{background:var(--ice)}

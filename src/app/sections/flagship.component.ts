@@ -16,8 +16,6 @@ interface FlagshipCard {
   readonly lead: string;
   readonly amount: string;
   readonly tail: string;
-  /** optional supporting price text displayed on its own line */
-  readonly priceNote?: string;
   /** the `a.more` label */
   readonly cta: string;
   /** which practice the card belongs to */
@@ -127,12 +125,12 @@ const FLAGSHIP_CARDS: readonly FlagshipCard[] = [
   
   {
     icon: 'chart', badge: 'Top seller', hot: true, title: 'Tally on Cloud',
-    blurb: 'Run Tally from any device, anywhere — ransomware-proof backups every 3 hours.',
+    blurb: 'Run Tally anywhere with ransomware-proof backups every 3 hours.',
     lead: 'from ', amount: '₹499', tail: '/user/mo', cta: 'View plans →', category: 'Cloud',
   },
   {
     icon: 'shield', badge: 'Flagship', hot: true, title: 'Advanced EDR',
-    blurb: 'AI-powered Endpoint Detection & Response — detect, analyse and stop advanced threats across every endpoint, backed by our 24×7 SOC.',
+    blurb: 'AI-powered endpoint detection and response, backed by our 24×7 SOC.',
     lead: 'from ', amount: '₹999', tail: ' quote', cta: 'View plans →', category: 'Security',
     service: 'Advanced Endpoint Security (EDR)',
   },
@@ -144,22 +142,22 @@ const FLAGSHIP_CARDS: readonly FlagshipCard[] = [
   },
   {
     icon: 'desktop', badge: 'Workspace', title: 'SMB Cloud Desktop',
-    blurb: 'Secure desktop, apps and files from any device — work from anywhere.',
+    blurb: 'Secure desktop, apps and files from any device, anywhere.',
     lead: 'from ', amount: '₹999', tail: '/user/mo', cta: 'View plans →', category: 'Cloud',
   },
   {
     icon: 'folder', badge: 'File share', title: 'Cloud Drive',
-    blurb: 'Secure file sync, team folders and controlled sharing across every device.',
-    lead: 'from ', amount: '₹499/-', tail: '', priceNote: '50 GB with unlimited users', cta: 'Explore →', category: 'Cloud',
+    blurb: 'Secure file sync, team folders and controlled sharing on every device.',
+    lead: '', amount: '₹499/-', tail: ' /50 GB · unlimited users', cta: 'Explore →', category: 'Cloud',
   },
   {
     icon: 'lock', badge: 'New', hot: true, title: 'SMB Cyber Security Appliance',
-    blurb: 'Cloud-managed firewall, secure Wi-Fi and threat protection for businesses with up to 50 users.',
+    blurb: 'Cloud firewall, secure Wi-Fi Routers & threat protection for Small Businesses up to 100 users.',
     lead: 'from ', amount: '₹24,999', tail: '/year', cta: 'View plans →', category: 'Security',
   },
   {
     icon: 'message', badge: 'Business messaging', title: 'WhatsApp SMB',
-    blurb: 'Official WhatsApp Business API with campaigns, automation and a shared team inbox.',
+    blurb: 'WhatsApp Business API for campaigns, automation and a shared inbox.',
     lead: 'from ', amount: '₹1,249', tail: '/month', cta: 'View plans →', category: 'Cloud',
   },
   {
@@ -185,54 +183,54 @@ const FLAGSHIP_CARDS: readonly FlagshipCard[] = [
   },
   {
     icon: 'globe', badge: 'Multi-region', title: 'Global Cloud',
-    blurb: 'Deploy workloads closer to customers across international regions from one management plane.',
+    blurb: 'Deploy and manage workloads across multiple global cloud regions.',
     lead: '', amount: 'Regional', tail: ' pricing', cta: 'Explore →', category: 'Cloud',
   },
   {
     icon: 'database', badge: 'Object storage', title: 'Cloud Object Storage',
-    blurb: 'S3-compatible storage for media, logs, backups and datasets with Indian data residency.',
+    blurb: 'S3 storage for media, backups and datasets with Indian data residency.',
     lead: '', amount: 'Per-GB', tail: ' slabs', cta: 'Explore →', category: 'Cloud',
   },
   {
     icon: 'recovery', badge: 'Business continuity', title: 'Cloud Disaster Recovery',
-    blurb: 'Automated server replication with defined RPO/RTO, tested failover and one-click recovery.',
+    blurb: 'Automated replication, tested failover and one-click disaster recovery.',
     lead: '', amount: 'Per-VM', tail: ' plans', cta: 'Explore →', category: 'Cloud',
   },
   {
     icon: 'backup', badge: 'Best seller', hot: true, title: 'Microsoft 365 Backup',
-    blurb: 'Independent protection for Exchange, SharePoint, OneDrive and Teams with granular recovery.',
+    blurb: 'Backup Exchange, SharePoint, OneDrive and Teams with granular recovery.',
     lead: '', amount: 'Per-user', tail: '/month', cta: 'Explore →', category: 'Cloud',
   },
   {
     icon: 'mobile', badge: 'Device security', title: 'Cloud Mobile Device Mgmt',
-    blurb: 'Enroll, secure and manage mobile devices with encryption, app controls and remote wipe.',
+    blurb: 'Manage mobile devices with encryption, app controls and remote wipe.',
     lead: '', amount: 'Per-device', tail: '/month', cta: 'Explore →', category: 'Cloud',
   },
   {
     icon: 'mail', badge: 'Business mail', title: 'Business Email',
-    blurb: 'Professional email on your domain with spam protection, mobile sync and dependable uptime.',
+    blurb: 'Professional business email with spam protection and mobile sync.',
     lead: '', amount: 'Per-mailbox', tail: '/month', cta: 'Explore →', category: 'Cloud',
     service: 'Business E-Mail',
   },
   {
     icon: 'shield', badge: 'Email defence', title: 'Advanced Email Security',
-    blurb: 'AI-powered protection against targeted phishing, impersonation, BEC and zero-day attachments.',
+    blurb: 'AI protection against phishing, impersonation, BEC and zero-day threats.',
     lead: '', amount: 'Per-user', tail: '/month', cta: 'Explore →', category: 'Security',
   },
   {
     icon: 'workspace', badge: 'Collaboration', title: 'Google Workspace',
-    blurb: 'Gmail, Drive, Meet and Docs with plan selection, migration and local support in INR.',
+    blurb: 'Gmail, Drive, Meet and Docs with migration and local support.',
     lead: '', amount: 'Per-user', tail: '/month', cta: 'Explore →', category: 'Cloud',
   },
   {
     icon: 'verified', badge: 'Best seller', hot: true, title: 'DMARC',
-    blurb: 'Stop domain spoofing with managed SPF, DKIM and DMARC monitoring through enforcement.',
+    blurb: 'Stop domain spoofing with managed SPF, DKIM and DMARC enforcement.',
     lead: '', amount: 'Per-domain', tail: ' plans', cta: 'Explore →', category: 'Security',
     service: 'Secure DMARC',
   },
   {
     icon: 'settings', badge: 'Remote management', title: 'Advanced RMM',
-    blurb: 'Monitor, manage and secure endpoints with proactive alerts, remote access, patching and automation.',
+    blurb: 'Manage endpoints with alerts, remote access, patching and automation.',
     lead: 'from ', amount: '₹1,199', tail: '/user/year', cta: 'View plans →', category: 'Cloud',
     service: 'Remote Monitoring & Mgmt (RMM)',
   },
@@ -301,12 +299,7 @@ const FLAGSHIP_CARDS: readonly FlagshipCard[] = [
               <span class="badge" [class.hot]="c.hot">{{ c.badge }}</span>
               <h3>{{ c.title }}</h3>
               <p>{{ c.blurb }}</p>
-              <div class="price">
-                {{ c.lead }}<b>{{ c.amount }}</b>{{ c.tail }}
-                @if (c.priceNote) {
-                  <span class="price-note">{{ c.priceNote }}</span>
-                }
-              </div>
+              <div class="price">{{ c.lead }}<b>{{ c.amount }}</b>{{ c.tail }}</div>
               <span class="more">{{ c.cta }}</span>
             </a>
           }
