@@ -2170,6 +2170,8 @@
   #ppage .pph-illus-img{width:56%;max-width:200px}
   #ppage .pph-scene.has-illus.standalone-illus .pph-illus-img{width:82%;max-width:430px}
   #ppage .pph-scene.has-illus .tally-hero-image{width:82%;max-width:430px;aspect-ratio:1.35;object-fit:cover;object-position:60% center}
+  #ppage .pp-hero.sitelock-hero{background-image:url('/assets/images/hero-web-security-sitelock-wide.png');
+    background-size:cover;background-position:center;background-repeat:no-repeat}
   /* make the Powered By / Tally on Cloud mark clearly readable */
   #ppage .pph-powered-mark{margin-top:2px}
   #ppage .pph-powered-mark .pw-lbl{font-size:12px;color:#CFE0F7;letter-spacing:.06em}
@@ -2262,6 +2264,13 @@
     #ppage .pph-illus-img{width:44%;max-width:180px}
     #ppage .pph-scene.has-illus.standalone-illus .pph-illus-img{width:58%;max-width:240px}
     #ppage .pph-scene.has-illus .tally-hero-image{width:58%;max-width:240px}
+    #ppage .pp-hero.sitelock-hero{background-image:none;background-color:#03132e}
+    #ppage .pp-hero.sitelock-hero::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+      background:url('/assets/images/hero-web-security-sitelock-wide.png') no-repeat 90% 42%;background-size:1100px auto;opacity:.56}
+    #ppage .sitelock-hero > .wrap{padding-inline:clamp(20px,5vw,34px)}
+    #ppage .sitelock-hero .pp-hero-grid{gap:20px}
+    #ppage .sitelock-hero .pp-hpoints{grid-template-columns:repeat(2,minmax(0,1fr));width:100%;gap:10px 18px}
+    #ppage .sitelock-hero .pp-hpoint{min-width:0}
     #ppage .pph-scene.pph-edr-illus{width:100%;top:0}
     #ppage .pph-edr-illus .pph-illus-img{width:58%;max-width:240px}
     #ppage .pph-edr-powered{margin-top:-8px}
@@ -2277,6 +2286,19 @@
     #ppage .edr-story-reverse .edr-story-copy{order:0}
   }
   @media(max-width:620px){
+    #ppage .pp-hero.sitelock-hero{padding:32px 0 38px}
+    #ppage .pp-hero.sitelock-hero::before{background-position:89% 38%;background-size:1020px auto;opacity:.48}
+    #ppage .sitelock-hero > .wrap{padding-inline:20px}
+    #ppage .sitelock-hero .pp-crumb{margin-bottom:12px;font-size:9.5px;line-height:1.6;letter-spacing:.12em}
+    #ppage .sitelock-hero h1{margin-bottom:12px;font-size:clamp(27px,8.5vw,34px);line-height:1.08;text-wrap:balance}
+    #ppage .sitelock-hero .pp-title-brand,#ppage .sitelock-hero .pp-title-name{display:block;margin:0}
+    #ppage .sitelock-hero .pp-title-brand{margin-bottom:5px}
+    #ppage .sitelock-hero .pp-tagline{max-width:32ch;margin-bottom:18px;font-size:15px;line-height:1.55}
+    #ppage .sitelock-hero .pp-typewriter{min-height:44px;margin-bottom:8px;font-size:18px;line-height:1.3}
+    #ppage .sitelock-hero .pp-hpoints{grid-template-columns:1fr;width:100%;gap:9px;margin:8px 0 20px}
+    #ppage .sitelock-hero .pp-hpoint{font-size:13px;line-height:1.35}
+    #ppage .sitelock-hero .hero-ctas{display:grid;grid-template-columns:1fr;gap:10px;width:100%}
+    #ppage .sitelock-hero .hero-ctas .btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:46px;margin:0}
     #ppage .edr-offers{flex-direction:column;align-items:center;gap:20px}
     #ppage .edr-offer{width:min(270px,90%)}
     #ppage .edr-compare-lines ol{grid-template-columns:1fr}
@@ -3094,6 +3116,132 @@ body.xh-locked{overflow:hidden}
   .smb-capability-grid{grid-template-columns:repeat(3,1fr)}.smb-capability-grid article:nth-child(3){border-right:0}
   .smb-pillar-grid{grid-template-columns:repeat(3,1fr);gap:16px}.smb-pillar-grid article{border:0;background:#f7faff;border-radius:12px}
   .smb-safer-grid{grid-template-columns:1fr 1fr}.smb-dashboard{grid-column:1/-1;grid-row:1}.smb-dashboard>div{max-width:380px;margin:auto}.smb-business-grid{width:100%}
+}
+
+/* ===== Advanced EDR cohesive redesign ===== */
+
+/* Modern EDR feature icons. */
+#ppage .edr-feats .fic-svg{--edr-icon:#1769e0;position:relative;display:grid;width:48px;height:48px;min-width:48px;place-items:center;border:1px solid color-mix(in srgb,var(--edr-icon) 22%,white);border-radius:14px;background:linear-gradient(145deg,#fff,color-mix(in srgb,var(--edr-icon) 9%,white));color:var(--edr-icon);box-shadow:0 8px 20px color-mix(in srgb,var(--edr-icon) 12%,transparent);transition:transform .24s ease}
+#ppage .edr-feats .pp-feat:nth-child(4n+2) .fic-svg{--edr-icon:#7759e7}
+#ppage .edr-feats .pp-feat:nth-child(4n+3) .fic-svg{--edr-icon:#079c83}
+#ppage .edr-feats .pp-feat:nth-child(4n+4) .fic-svg{--edr-icon:#e67c13}
+#ppage .edr-feats .fic-svg::after{content:"";position:absolute;top:7px;right:7px;width:4px;height:4px;border-radius:50%;background:currentColor;opacity:.42}
+#ppage .edr-feats .fic-svg svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#ppage .edr-feats .pp-feat:hover .fic-svg{transform:translateY(-2px) rotate(-3deg)}
+
+/* EDR pricing: original ribbon offer followed by detailed plan cards. */
+#ppage .edr-pricing{position:relative;margin:48px 0 24px;padding:16px 0 0;overflow:visible;border:0;border-radius:0;background:none;box-shadow:none;text-align:center}
+#ppage .edr-offers{margin-bottom:52px}
+#ppage .edr-card-heading{position:relative;z-index:1;margin:0 0 22px;text-align:center}
+#ppage .edr-card-heading h3{margin:0;color:var(--navy);font:800 clamp(22px,2.2vw,30px)/1.2 var(--body);letter-spacing:-.02em}
+#ppage .edr-card-heading p{margin:7px auto 0;color:var(--slate);font-size:13.5px;line-height:1.5}
+#ppage .edr-plan-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch;text-align:left}
+#ppage .edr-plan-card{--plan-accent:#1b6ee0;--plan-soft:#eaf3ff;position:relative;display:flex;min-width:0;overflow:hidden;flex-direction:column;border:1px solid #d4e0f0;border-radius:19px;background:#fff;box-shadow:0 10px 28px rgba(4,30,66,.075);transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+#ppage .edr-plan-card:nth-child(2){--plan-accent:#7257df;--plan-soft:#f1eeff}
+#ppage .edr-plan-card:nth-child(3){--plan-accent:#079c81;--plan-soft:#eaf9f5}
+#ppage .edr-plan-card:hover{transform:translateY(-5px);border-color:var(--plan-accent);box-shadow:0 18px 38px rgba(4,30,66,.13)}
+#ppage .edr-plan-card.is-featured{border-color:var(--plan-accent);box-shadow:0 16px 36px color-mix(in srgb,var(--plan-accent) 15%,transparent)}
+#ppage .edr-plan-accent{height:5px;background:linear-gradient(90deg,var(--plan-accent),color-mix(in srgb,var(--plan-accent) 55%,white))}
+#ppage .edr-plan-card header{padding:20px 20px 12px}
+#ppage .edr-plan-labels{display:flex;min-height:23px;align-items:center;justify-content:space-between;gap:8px;margin-bottom:15px}
+#ppage .edr-plan-labels span,#ppage .edr-plan-labels b{display:inline-flex;padding:5px 9px;border-radius:99px;background:var(--plan-soft);color:var(--plan-accent);font-size:9px;font-weight:750;line-height:1;letter-spacing:.08em;text-transform:uppercase}
+#ppage .edr-plan-labels b{background:#fff1dd;color:#c46200}
+#ppage .edr-plan-card h3{margin:0;color:var(--navy);font-size:24px;font-weight:800;line-height:1.15;letter-spacing:-.02em}
+#ppage .edr-plan-card header p{margin:5px 0 0;color:var(--slate);font-size:12px;font-weight:600;line-height:1.4}
+#ppage .edr-plan-price{display:flex;align-items:flex-end;gap:6px;padding:4px 20px;color:var(--navy)}
+#ppage .edr-plan-price strong{font-size:34px;font-weight:850;line-height:1;letter-spacing:-.035em}
+#ppage .edr-plan-price small{max-width:65px;padding-bottom:3px;color:var(--slate);font-size:10px;font-weight:600;line-height:1.2}
+#ppage .edr-plan-saving{align-self:flex-start;margin:11px 20px 18px;padding:7px 11px;border-radius:9px;background:#eaf9f1;color:#087c4b;font-size:11px;font-weight:750;line-height:1}
+#ppage .edr-plan-cta{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 20px 18px;padding:12px 15px;border:0;border-radius:10px;background:var(--plan-accent);color:#fff;font-size:13px;font-weight:750;cursor:pointer;box-shadow:0 8px 18px color-mix(in srgb,var(--plan-accent) 22%,transparent);transition:transform .2s ease,box-shadow .2s ease}
+#ppage .edr-plan-cta:hover{transform:translateY(-2px);box-shadow:0 12px 24px color-mix(in srgb,var(--plan-accent) 30%,transparent)}
+#ppage .edr-plan-card ul{margin:auto 0 0;padding:0;border-top:1px solid #e2e9f3;list-style:none}
+#ppage .edr-plan-card li{display:flex;align-items:center;gap:9px;min-height:43px;padding:9px 16px;color:#344766;font-size:11.5px;line-height:1.35}
+#ppage .edr-plan-card li:nth-child(odd){background:#f7f9fc}
+#ppage .edr-plan-card li i{display:grid;flex:0 0 19px;width:19px;height:19px;place-items:center;border-radius:50%;background:var(--plan-soft);color:var(--plan-accent);font-size:11px;font-weight:800;font-style:normal}
+#ppage .edr-plan-note{margin:18px 0 0;color:var(--slate);font-size:11px;line-height:1.5;text-align:center}
+
+/* Compact side-by-side antivirus comparison. */
+#ppage .edr-compare-lines{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:stretch;padding:8px 0 0;border:0;background:none}
+#ppage .edr-compare-lines section{min-width:0;margin:0;padding:21px 22px;border:1px solid;border-radius:18px;box-shadow:0 12px 32px rgba(4,30,66,.07);overflow:hidden}
+#ppage .edr-limitations{background:linear-gradient(155deg,#fff2f4 0,#fff 42%);border-color:#f1c4cb!important}
+#ppage .edr-advantages{background:linear-gradient(155deg,#edfbf5 0,#fff 42%);border-color:#bce4d2!important}
+#ppage .edr-compare-lines h3{display:flex;align-items:center;min-height:44px;margin:0 0 4px;padding:0 0 12px;border-bottom:2px solid currentColor;font-size:clamp(15px,1.35vw,19px);font-weight:800;line-height:1.25;letter-spacing:.01em;text-transform:uppercase}
+#ppage .edr-limitations h3{color:#c72637}#ppage .edr-advantages h3{color:#087d50}
+#ppage .edr-compare-lines ol{display:grid;grid-template-columns:1fr;gap:0;margin:0;padding:0;list-style:none;counter-reset:none}
+#ppage .edr-compare-lines li{position:relative;min-height:64px;padding:10px 4px 10px 26px;border:0;border-bottom:1px solid rgba(184,198,218,.72);background:transparent;box-shadow:none;counter-increment:none}
+#ppage .edr-compare-lines li:last-child{border-bottom:0}
+#ppage .edr-compare-lines li::before{content:"";position:absolute;left:3px;top:13px;width:13px;height:16px;background:currentColor;clip-path:polygon(0 0,38% 0,100% 50%,38% 100%,0 100%,62% 50%);filter:drop-shadow(0 3px 3px rgba(4,30,66,.16))}
+#ppage .edr-limitations li::before{color:#d9233d}#ppage .edr-advantages li::before{color:#0c915c}
+#ppage .edr-compare-lines li b{display:block;margin:0 0 3px;color:var(--navy);font-size:12px;font-weight:750;line-height:1.3;text-transform:uppercase}
+#ppage .edr-compare-lines li span{display:block;color:var(--slate);font-size:11.5px;line-height:1.4}
+
+/* Modern benefit cards and SVG icons. */
+#ppage .pp-bens{gap:16px}
+#ppage .pp-bens .pb{--benefit-accent:#1769e0;--benefit-soft:#edf5ff;position:relative;display:flex;flex-direction:row;align-items:center;gap:20px;min-height:142px;padding:24px 26px;overflow:hidden;border:1px solid #d8e4f4;border-radius:18px;background:linear-gradient(135deg,#fff 55%,var(--benefit-soft));box-shadow:0 8px 24px rgba(4,30,66,.055);transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+#ppage .pp-bens .pb:nth-child(2){--benefit-accent:#7157e8;--benefit-soft:#f4f1ff}#ppage .pp-bens .pb:nth-child(3){--benefit-accent:#069c83;--benefit-soft:#edfbf7}#ppage .pp-bens .pb:nth-child(4){--benefit-accent:#e67c13;--benefit-soft:#fff6eb}
+#ppage .pp-bens .pb:hover{transform:translateY(-4px);border-color:var(--benefit-accent);box-shadow:0 16px 36px rgba(4,30,66,.11)}
+#ppage .pp-bens .pb .ic{flex:0 0 52px;display:grid;width:52px;height:52px;min-width:52px;margin:0;place-items:center;border:1px solid color-mix(in srgb,var(--benefit-accent) 24%,white);border-radius:15px;background:var(--benefit-soft);color:var(--benefit-accent);box-shadow:0 8px 20px color-mix(in srgb,var(--benefit-accent) 13%,transparent)}
+#ppage .pp-bens .pb .ic svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#ppage .pp-bens .pb p{margin:0;color:var(--slate);font-size:14px;line-height:1.55}#ppage .pp-bens .pb p b{display:block;margin:0 0 6px;color:var(--navy);font-size:16px;font-weight:750;line-height:1.3}
+#ppage .pp-bens.pp-bens-four .pb{flex-direction:column;align-items:flex-start;gap:16px;min-height:190px;padding:22px}
+
+/* Purpose-matched EDR use-case icons. */
+#ppage .pp-uses .pu{--use-accent:#1769e0;--use-soft:#eaf3ff;position:relative;overflow:hidden;transition:transform .24s ease,border-color .24s ease,box-shadow .24s ease}
+#ppage .pp-uses .pu:nth-child(4n+2){--use-accent:#7655e8;--use-soft:#f2efff}#ppage .pp-uses .pu:nth-child(4n+3){--use-accent:#079c83;--use-soft:#eafaf6}#ppage .pp-uses .pu:nth-child(4n+4){--use-accent:#e67c13;--use-soft:#fff4e8}
+#ppage .pp-uses .pu:hover{transform:translateY(-3px);border-color:var(--use-accent);box-shadow:0 12px 28px rgba(4,30,66,.09)}
+#ppage .pp-uses .pu .pu-ic-svg{display:grid;width:46px;height:46px;margin:0 0 13px;place-items:center;border:1px solid color-mix(in srgb,var(--use-accent) 24%,white);border-radius:14px;background:var(--use-soft);color:var(--use-accent);box-shadow:0 7px 16px color-mix(in srgb,var(--use-accent) 12%,transparent)}
+#ppage .pp-uses .pu .pu-ic-svg svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* EDR process: 1–3 left, 4–6 right. */
+#ppage #ppTimeline{margin-top:42px}#ppage #ppCompare{margin-top:42px}
+#ppage .pp-timeline{counter-reset:xhstep;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));grid-auto-flow:column;gap:16px 20px;margin:0;padding:0;list-style:none}
+#ppage .pp-timeline::before{display:none}
+#ppage .pp-timeline li{--step-accent:#1769e0;--step-soft:#edf5ff;counter-increment:xhstep;position:relative;min-height:132px;padding:22px 22px 22px 76px;overflow:hidden;border:1px solid #d7e3f3;border-radius:17px;background:linear-gradient(135deg,#fff 54%,var(--step-soft));box-shadow:0 7px 22px rgba(4,30,66,.05);transition:transform .24s ease,border-color .24s ease,box-shadow .24s ease}
+#ppage .pp-timeline li:nth-child(n+4){--step-accent:#6f56df;--step-soft:#f3f0ff}
+#ppage .pp-timeline li::before{content:counter(xhstep,decimal-leading-zero);position:absolute;left:20px;top:22px;display:grid;width:40px;height:40px;place-items:center;border-radius:12px;background:var(--step-accent);color:#fff;font-size:12px;font-weight:700;line-height:1;box-shadow:0 8px 18px color-mix(in srgb,var(--step-accent) 25%,transparent)}
+#ppage .pp-timeline li::after{content:"";position:absolute;left:39px;top:68px;bottom:18px;width:2px;border-radius:2px;background:linear-gradient(var(--step-accent),transparent);opacity:.3}
+#ppage .pp-timeline li:hover{transform:translateY(-3px);border-color:var(--step-accent);box-shadow:0 14px 32px rgba(4,30,66,.1)}
+#ppage .pp-timeline b{display:block;margin:1px 0 7px;color:var(--navy);font-size:17px;font-weight:750;line-height:1.3}#ppage .pp-timeline p{max-width:none;margin:0;color:var(--slate);font-size:14px;line-height:1.58}
+
+/* Why XcellHost: one unified premium panel, not six separate cards. */
+#ppage .pp-why{counter-reset:why-item;position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;padding:12px 16px;overflow:hidden;border:0;border-radius:22px;background:radial-gradient(circle at 92% 10%,rgba(45,119,230,.34),transparent 34%),linear-gradient(135deg,#061c3b,#092c5d 58%,#0b3d7b);box-shadow:0 18px 42px rgba(4,30,66,.18)}
+#ppage .pp-why .pw{--why-accent:#67a5ff;counter-increment:why-item;position:relative;display:grid;grid-template-columns:52px minmax(0,1fr);grid-template-rows:auto auto;column-gap:16px;align-items:start;min-width:0;padding:25px 24px;border:0;border-radius:0;background:transparent;transition:background .22s ease}
+#ppage .pp-why .pw:nth-child(3n+2){--why-accent:#aa91ff}#ppage .pp-why .pw:nth-child(3n+3){--why-accent:#54d9c0}
+#ppage .pp-why .pw:not(:nth-child(3n)){border-right:1px solid rgba(194,216,247,.18)}#ppage .pp-why .pw:nth-child(-n+3){border-bottom:1px solid rgba(194,216,247,.18)}
+#ppage .pp-why .pw:hover{background:rgba(255,255,255,.055)}
+#ppage .pp-why .pw::after{content:"0" counter(why-item);position:absolute;right:17px;bottom:7px;color:#fff;font-size:34px;font-weight:800;line-height:1;letter-spacing:-.08em;opacity:.055}
+#ppage .pp-why .pw .pw-ic{grid-row:1/3;display:grid;width:48px;height:48px;margin:0;place-items:center;border:1px solid color-mix(in srgb,var(--why-accent) 38%,transparent);border-radius:50%;background:color-mix(in srgb,var(--why-accent) 14%,transparent);color:var(--why-accent)}
+#ppage .pp-why .pw .pw-ic svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#ppage .pp-why .pw b{grid-column:2;display:block;margin:2px 0 5px;color:#fff;font-size:15.5px;font-weight:750;line-height:1.3}#ppage .pp-why .pw>span:last-child{grid-column:2;display:block;color:#c5d6ed;font-size:13px;line-height:1.55}
+
+/* One typography family throughout the EDR route. */
+#ppage.edr-page{font-family:var(--body)}
+#ppage.edr-page *,#ppage.edr-page button,#ppage.edr-page input,#ppage.edr-page select,#ppage.edr-page textarea{font-family:inherit!important}
+
+/* The quote cart is opened from the header beside Search. */
+.cart-fab{display:none!important}
+
+@media(max-width:900px){
+  #ppage .edr-plan-grid{grid-template-columns:1fr;max-width:560px;margin:0 auto}
+  #ppage .edr-plan-card.is-featured{order:-1}
+  #ppage .edr-compare-lines{grid-template-columns:1fr}
+  #ppage .pp-why{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #ppage .pp-why .pw{border-right:0;border-bottom:0}
+  #ppage .pp-why .pw:nth-child(odd){border-right:1px solid rgba(194,216,247,.18)}
+  #ppage .pp-why .pw:nth-child(-n+4){border-bottom:1px solid rgba(194,216,247,.18)}
+}
+@media(max-width:760px){
+  #ppage .pp-timeline{grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row;gap:14px}
+  #ppage .pp-timeline li{min-height:0;padding:20px 18px 20px 68px}
+  #ppage #ppTimeline,#ppage #ppCompare{margin-top:32px}
+  #ppage .pp-why{grid-template-columns:1fr;padding:8px 16px;border-radius:18px}
+  #ppage .pp-why .pw{padding:22px 4px;border-right:0!important;border-bottom:1px solid rgba(194,216,247,.18)}
+  #ppage .pp-why .pw:last-child{border-bottom:0}
+  #ppage .pp-bens .pb{min-height:0;padding:21px;gap:16px}
+}
+@media(max-width:620px){
+  #ppage .edr-pricing{padding:12px 0 0}
+  #ppage .edr-offers{margin-bottom:42px}
 }
 @media(max-width:760px){
   .smb-showcase{gap:44px;margin-top:30px}.smb-block{padding:0;border-radius:0}.smb-section-head{margin-bottom:20px}

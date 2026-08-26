@@ -94,7 +94,7 @@ export const EDR_TIMELINE: [string, string][] = [
 export const EDR_COMPARE: { cols: string[]; rows: string[][] } = {
   "cols": [
     "Antivirus",
-    "EDR (this)",
+    "EDR (Acronis)",
     "Managed detection"
   ],
   "rows": [

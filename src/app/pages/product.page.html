@@ -1,6 +1,6 @@
 @if (view(); as v) {
-  <div class="ppage as-page" id="ppage">
-    <div class="pp-hero">
+  <div class="ppage as-page" id="ppage" [class.edr-page]="isAdvancedEdr()">
+    <div class="pp-hero" [class.sitelock-hero]="v.name === 'Web Security (SiteLock)'">
       <div class="pph-map" aria-hidden="true" [innerHTML]="worldMap"></div>
       <span class="pph-grid" aria-hidden="true"></span>
       <span class="pph-aur pph-a1" aria-hidden="true"></span>
@@ -23,7 +23,7 @@
             </div>
           </div>
         </div>
-      } @else if (v.heroImage) {
+      } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
         <div
           class="pph-scene has-illus"
           [class.standalone-illus]="!v.poweredBy || v.name === 'Tally on Cloud'"
@@ -49,7 +49,7 @@
             }
           </div>
         </div>
-      } @else {
+      } @else if (v.name !== 'Web Security (SiteLock)') {
         <div class="pph-scene" id="pphScene" aria-hidden="true" [innerHTML]="sceneHtml()"></div>
       }
 
@@ -147,14 +147,46 @@
               <div class="edr-price"><b>₹999</b><span>per user/year</span></div>
             </div>
             <div class="edr-offers">
-            @for (p of v.plans; track p.term) {
-              <a class="edr-offer" href="#" (click)="buyPlan(p, $event)">
-                <span>{{ p.ribbon }}</span>
-                <b>Buy {{ p.term }}</b>
-                <em>{{ p.tag }}</em>
-              </a>
-            }
+              @for (p of v.plans; track p.term) {
+                <a class="edr-offer" href="#" (click)="buyPlan(p, $event)">
+                  <span>{{ p.ribbon }}</span>
+                  <b>Buy {{ p.term }}</b>
+                  <em>{{ p.tag }}</em>
+                </a>
+              }
             </div>
+
+            <div class="edr-card-heading">
+              <h3>Choose your protection term</h3>
+              <p>Every plan includes the same complete EDR protection and XcellHost support.</p>
+            </div>
+
+            <div class="edr-plan-grid">
+              @for (p of v.plans; track p.term; let i = $index) {
+                <article class="edr-plan-card" [class.is-featured]="p.hot">
+                  <div class="edr-plan-accent"></div>
+                  <header>
+                    <div class="edr-plan-labels">
+                      <span>{{ p.ribbon }}</span>
+                      @if (p.hot) { <b>Most popular</b> }
+                    </div>
+                    <h3>{{ p.term }}</h3>
+                    <p>{{ edrPlanCoverage[i] }}</p>
+                  </header>
+                  <div class="edr-plan-price"><strong>{{ p.amount }}</strong><small>{{ p.unit }}</small></div>
+                  <div class="edr-plan-saving">{{ p.tag }}</div>
+                  <button type="button" class="edr-plan-cta" (click)="buyPlan(p, $event)">
+                    Select plan <span aria-hidden="true">→</span>
+                  </button>
+                  <ul>
+                    @for (feature of edrPlanFeatures; track feature) {
+                      <li><i aria-hidden="true">✓</i><span>{{ feature }}</span></li>
+                    }
+                  </ul>
+                </article>
+              }
+            </div>
+            <p class="edr-plan-note">Price is per user/year. Free months are added after the paid term. Taxes are additional.</p>
           </section>
         }
 
@@ -289,11 +321,18 @@
             class="pp-feats"
             id="ppFeats"
             [class.pp-feats-four]="isAdvancedEdr() || isSmbCyber() || v.name === 'Tally on Cloud'"
+            [class.edr-feats]="isAdvancedEdr()"
             [class.smb-feats]="isSmbCyber()"
           >
             @for (f of v.features; track f.title) {
               <div class="pp-feat">
-                <span class="fic">{{ f.icon }}</span>
+                <span class="fic" [class.fic-svg]="f.svg" aria-hidden="true">
+                  @if (f.svg) {
+                    <svg viewBox="0 0 24 24"><path [attr.d]="f.icon" /></svg>
+                  } @else {
+                    {{ f.icon }}
+                  }
+                </span>
                 <div><b [innerHTML]="f.title"></b><span [innerHTML]="f.body"></span></div>
               </div>
             }
@@ -555,11 +594,11 @@
           }}
         </div>
         <div class="pp-bens" id="ppBens" [class.pp-bens-four]="v.name === 'Tally on Cloud'">
-          @for (b of v.benefits; track b[1]) {
-            <div class="pb">
-              <span class="ic">{{ b[0] }}</span>
-              <p><b [innerHTML]="b[1]"></b><span [innerHTML]="b[2]"></span></p>
-            </div>
+          @for (b of v.benefits; track b.title) {
+            <article class="pb">
+              <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path [attr.d]="b.icon" /></svg></span>
+              <p><b [innerHTML]="b.title"></b><span [innerHTML]="b.body"></span></p>
+            </article>
           }
         </div>
         }
@@ -679,8 +718,14 @@
         @if (v.name !== 'Tally on Cloud' && !isSmbCyber()) {
           <div class="pp-sec">Use cases</div>
           <div class="pp-uses" id="ppUses">
-            @for (u of v.uses; track u[1]) {
-              <div class="pu"><span class="pu-ic">{{ u[0] }}</span><b>{{ u[1] }}</b>{{ u[2] }}</div>
+            @for (u of v.uses; track u.title) {
+              <div class="pu">
+                <span class="pu-ic" [class.pu-ic-svg]="u.svg" aria-hidden="true">
+                  @if (u.svg) { <svg viewBox="0 0 24 24"><path [attr.d]="u.icon" /></svg> }
+                  @else { {{ u.icon }} }
+                </span>
+                <b>{{ u.title }}</b>{{ u.body }}
+              </div>
             }
           </div>
 
@@ -731,18 +776,6 @@
 
         @if (v.name !== 'Tally on Cloud') {
         @if (!isSmbCyber() && !isRmm()) {
-        <div class="pp-sec">How it works</div>
-        <div class="pp-steps" id="ppSteps">
-          @for (s of v.steps; track s[0]; let i = $index) {
-            <div class="pst">
-              <div class="n">{{ i + 1 }}</div>
-              <b [innerHTML]="s[0]"></b><span [innerHTML]="s[1]"></span>
-            </div>
-          }
-        </div>
-        }
-
-        @if (!isSmbCyber() && !isRmm()) {
           <div class="pp-sec" id="ppSecHead">{{ v.security.head }}</div>
           <div id="ppSecWrap">
             <p class="pp-ov">{{ v.security.intro }}</p>
@@ -765,7 +798,7 @@
           <div class="pp-why" id="ppWhy">
             @for (w of v.why; track w.title) {
               <div class="pw">
-                <span class="pw-ic">{{ w.icon }}</span>
+                <span class="pw-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path [attr.d]="w.icon" /></svg></span>
                 <b [innerHTML]="w.title"></b><span [innerHTML]="w.body"></span>
               </div>
             }

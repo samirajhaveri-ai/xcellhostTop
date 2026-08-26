@@ -12,9 +12,9 @@ type AuthTab = 'in' | 'up';
  *
  * There is no authentication here and never was: the login tab is four links —
  * two straight to the hosted billing and support portals, two that hand over to
- * the callback modal with a subject. The signup tab captures a contact and
- * confirms in place; it has no webhook, exactly like the original.
- */
+ * the callback modal with a subject. The signup tab captures anal.
+//  */ 
+//  * confirms in place; it has no webhook, exactly like the origi
 @Component({
   selector: 'xh-auth-modal',
   standalone: true,

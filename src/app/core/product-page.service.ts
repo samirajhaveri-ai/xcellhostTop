@@ -3,7 +3,7 @@ import { CatalogService } from './catalog.service';
 import {
   CATEGORY_BENEFITS, CATEGORY_BLOG, CATEGORY_FAQ_BASE, CATEGORY_FAQ_EXTRA,
   CATEGORY_MOCK, CATEGORY_STEPS,
-  CATEGORY_WHY, WHY_ICONS,
+  CATEGORY_WHY,
 } from '../data/category.data';
 import {
   SEC_EXTRA, SEC_OPENERS, SEC_OVERRIDE, SEC_POOL, SecuritySection,
@@ -54,10 +54,10 @@ export interface ProductView {
   heroHighlight: string | null;
   chips: { label: string; kind: 'badge' | 'price' | 'plain' }[];
   overview: string;
-  features: { icon: string; title: string; body: string }[];
-  benefits: IconItem[];
+  features: { icon: string; title: string; body: string; svg?: boolean }[];
+  benefits: { icon: string; title: string; body: string }[];
   benefitGrid: { title: string; body?: string; icon?: string; image?: string }[];
-  uses: IconItem[];
+  uses: { icon: string; title: string; body: string; svg?: boolean }[];
   security: { head: string; intro: string; rows: Pair[] };
   honest: string | null;
   steps: Pair[];
@@ -113,6 +113,59 @@ export interface ProductView {
   platforms: string[];
   edr: { timeline: [string, string][]; compare: { cols: string[]; rows: string[][] } } | null;
 }
+
+const BENEFIT_ICON_PATHS: Record<Category, readonly string[]> = {
+  Cloud: [
+    'M12 2v20M17 6.5h-7.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H7',
+    'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18ZM3 12h18M12 3c2.4 2.5 3.7 5.5 3.7 9S14.4 18.5 12 21c-2.4-2.5-3.7-5.5-3.7-9S9.6 5.5 12 3Z',
+    'M20 7h-5V2M4 17h5v5M5.8 9a7 7 0 0 1 11.7-3.5L20 7M4 17l2.5 1.5A7 7 0 0 0 18.2 15',
+    'M3 18 9 12l4 4 8-9M15 7h6v6',
+  ],
+  Security: [
+    'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10ZM8.5 12l2.2 2.2 4.8-5',
+    'M12 3l2.1 2.6 3.3-.1.7 3.2 2.7 1.9-1.5 3 1.1 3.1-3 1.5-.4 3.3-3.3-.1L12 22l-2.1-2.6-3.3.1-.7-3.2-2.7-1.9 1.5-3-1.1-3.1 3-1.5.4-3.3 3.3.1L12 3ZM8.5 12l2.2 2.2 4.8-5',
+    'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM17 11l2 2 4-4',
+    'M22 12h-4M6 12H2M12 2v4M12 18v4M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8M18.4 18.4l-2.8-2.8M8.4 8.4 5.6 5.6M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z',
+  ],
+  'Digital Trust': [
+    'M4 19V9M10 19V5M16 19v-7M22 19V3M2 19h22',
+    'M20 7h-5V2M4 17h5v5M5.8 9a7 7 0 0 1 11.7-3.5L20 7M4 17l2.5 1.5A7 7 0 0 0 18.2 15',
+    'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10ZM8.5 12l2.2 2.2 4.8-5',
+    'M12 3v18M5 7h14M6 7l-3 6h6L6 7ZM18 7l-3 6h6l-3-6ZM8 21h8',
+  ],
+  'Web Presence': [
+    'M12 3l1.8 4.7L19 9.5l-4.1 3.2.1 5.3-3-1.8L9 18l.1-5.3L5 9.5l5.2-1.8L12 3Z',
+    'M11 19a8 8 0 1 1 5.7-2.3L22 22M8 11h6M11 8v6',
+    'm13 2-9 12h7l-1 8 10-13h-7V2Z',
+    'M8.5 12.5 11 15l4.5-5M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z',
+  ],
+  Solutions: [
+    'M22 12h-4l-2 7L8 5l-2 7H2M12 2v3M12 19v3',
+    'M5 17 19 3M12 3h7v7M19 14v5H5V5h5',
+    'M12 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4 21a8 8 0 0 1 16 0M19 8h4M21 6v4',
+    'M3 18 9 12l4 4 8-9M15 7h6v6',
+  ],
+};
+
+const EDR_USE_CASE_ICON_PATHS: readonly string[] = [
+  'M4 3h11l5 5v13H4V3ZM15 3v5h5M8 12h8M8 16h6',
+  'M12 21a9 9 0 1 0-9-9M12 17a5 5 0 1 0-5-5M12 13a1 1 0 1 0-1-1M12 12l6-6',
+  'M15.5 7.5a4.5 4.5 0 1 1-8.5 2L2 14.5V19h4v-2h3v-3h2.5l1-1',
+  'M5 3h14v6H5V3ZM5 15h14v6H5v-6ZM8 6h.01M8 18h.01M12 6h4M12 18h4',
+  'M3 5h18v12H3V5ZM8 21h8M12 17v4M16 9a5 5 0 0 0-8 0M14 11a2.5 2.5 0 0 0-4 0',
+  'M8 18h8M9 3h6l1 3a7 7 0 0 1 3 6v3H5v-3a7 7 0 0 1 3-6l1-3ZM3 18h18M12 8v4M12 15h.01',
+  'M20 7h-5V2M4 17h5v5M5.8 9a7 7 0 0 1 11.7-3.5L20 7M4 17l2.5 1.5A7 7 0 0 0 18.2 15',
+  'M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11',
+];
+
+const WHY_ICON_PATHS: readonly string[] = [
+  'M12 15a6 6 0 1 0 0-12 6 6 0 0 0 0 12ZM9 14l-2 7 5-2 5 2-2-7M9 8.5l2 2 4-4',
+  'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10ZM8 9h8M8 13h8M10 17h4',
+  'M4 17h11M12 14l3 3-3 3M20 7H9M12 4 9 7l3 3',
+  'M3 12h4l2-5 4 10 2-5h6M5 21h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2Z',
+  'M4 14v-2a8 8 0 0 1 16 0v2M4 14h3v6H5a2 2 0 0 1-2-2v-2a2 2 0 0 1 1-2ZM20 14h-3v6h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-1-2ZM17 20c0 1-2 2-5 2',
+  'M8 12l3 3 5-6M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20ZM4.9 19.1 3 21M19.1 19.1 21 21',
+];
 
 /* ---------------------------------------------------------------- seeding */
 /** djb2 — the original site's hash, kept so pages render identically. */
@@ -292,6 +345,29 @@ const EDR_TOP_FEATURES: ProductView['features'] = [
   { icon: '🛡️', title: 'Unified cyber protection platform', body: 'Combines backup, security, and EDR in one solution' },
 ];
 
+const EDR_TOP_FEATURES_MODERN: ProductView['features'] = [
+  { svg: true, icon: 'M9.5 4.5A3.5 3.5 0 0 0 6 8v.4A3.2 3.2 0 0 0 4 11.5 3.5 3.5 0 0 0 7.5 15H9m5.5-10.5A3.5 3.5 0 0 1 18 8v.4a3.2 3.2 0 0 1 2 3.1 3.5 3.5 0 0 1-3.5 3.5H15M12 3v18m-3-9h6m-5 5h4', title: 'Behavior-based threat detection', body: 'Detects unknown threats using behavioral analysis' },
+  { svg: true, icon: 'M7 10V7a5 5 0 0 1 10 0v3m-11 0h12v10H6V10Zm6 4v2m7-9v4h-4', title: 'Anti-ransomware with rollback', body: 'Restores affected files instantly after attack' },
+  { svg: true, icon: 'm13 2-9 12h7l-1 8 10-13h-7V2Z', title: 'Exploit prevention', body: 'Blocks zero-day and fileless attacks' },
+  { svg: true, icon: 'M3 12h18M12 3a15 15 0 0 1 0 18m0-18a15 15 0 0 0 0 18M5 7h14M5 17h14', title: 'URL filtering & web protection', body: 'Prevents access to malicious websites' },
+  { svg: true, icon: 'M8 3h8v7H8V3Zm4 7v4m-5 7h10v-7H7v7Zm2-18V1m6 2V1', title: 'Device control', body: 'Controls USB and removable media usage' },
+  { svg: true, icon: 'M12 21a9 9 0 1 0-9-9m9 5a5 5 0 1 0-5-5m5 1a1 1 0 1 0-1-1m1 0 8-8m-4 0h4v4', title: 'Real-time threat intelligence feed', body: 'Constant updates on emerging threats' },
+  { svg: true, icon: 'M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Zm10 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z', title: 'Continuous endpoint monitoring', body: 'Tracks all activities on endpoints' },
+  { svg: true, icon: 'M8 3h8l1 3h2v15H5V6h2l1-3Zm1 0v4h6V3M8 11h8M8 15h8', title: 'Forensic data collection', body: 'Captures detailed attack evidence' },
+  { svg: true, icon: 'M7 3h10v3H7V3ZM5 6h14v15H5V6Zm4 4h6M9 14h6M9 18h4', title: 'Event monitoring & logging', body: 'Deep visibility into system events' },
+  { svg: true, icon: 'M8 7h8a4 4 0 0 1 0 8h-3M16 17H8a4 4 0 0 1 0-8h3M9 12h6', title: 'Automated event correlation', body: 'Links related events into one incident view' },
+  { svg: true, icon: 'M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8M9 12a3 3 0 1 0 6 0 3 3 0 0 0-6 0Z', title: 'AI-based attack analysis', body: 'Guided interpretation simplifies investigation' },
+  { svg: true, icon: 'M4 5l5-2 6 2 5-2v16l-5 2-6-2-5 2V5Zm5-2v16m6-14v16M7 14l3-3 3 2 4-5', title: 'MITRE ATT&CK mapping & visualization', body: 'Visual attack chain tracking' },
+  { svg: true, icon: 'M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9ZM10 21h4M12 4V2', title: 'Prioritized incident alerts', body: 'Reduces alert fatigue with smart prioritization' },
+  { svg: true, icon: 'M11 19a8 8 0 1 1 5.7-2.3L22 22M8 11h6M11 8v6', title: 'Threat hunting capabilities', body: 'IoC search to find indicators of compromise' },
+  { svg: true, icon: 'm13 2-9 12h7l-1 8 10-13h-7V2Z', title: 'Single-click response actions', body: 'Fast containment and mitigation' },
+  { svg: true, icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10ZM8 8l8 8M16 8l-8 8', title: 'Endpoint isolation & quarantine', body: 'Stops lateral movement instantly' },
+  { svg: true, icon: 'M9 7H4v-5M4 7a9 9 0 1 1-1 8M8 12l3 3 5-6', title: 'Attack-specific rollback & remediation', body: 'Reverts malicious changes' },
+  { svg: true, icon: 'M3 4h18v13H3V4Zm5 17h8M12 17v4M8 9h8M8 12h5', title: 'Full system reimaging & recovery', body: 'Restores compromised systems completely' },
+  { svg: true, icon: 'M6 18a4 4 0 0 1 0-8 6 6 0 0 1 11.5-1.5A4.5 4.5 0 1 1 18 18H6Zm6-6v8m-3-3 3 3 3-3', title: 'Integrated backup & disaster recovery', body: 'Ensures rapid business recovery and data resilience' },
+  { svg: true, icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10ZM8 12h8M12 8v8', title: 'Unified cyber protection platform', body: 'Combines backup, security, and EDR in one solution' },
+];
+
 /** Security capabilities supplied for the Tally on Cloud feature section. */
 const TALLY_SECURITY_FEATURES: ProductView['features'] = [
   { icon: '🏅', title: 'Secure Infrastructure', body: 'ISO 27001 Certified, Multi-Tier Security Infrastructure. Hosting in Tier 4 Datacenters' },
@@ -415,7 +491,7 @@ export class ProductPageService {
     const featSrc: Pair[] = rich?.f ?? CATEGORY_FEATURES[cat] ?? CATEGORY_FEATURES['Cloud'];
     const features =
       name === 'Advanced Endpoint Security (EDR)'
-        ? EDR_TOP_FEATURES.map((feature) => ({ ...feature }))
+        ? EDR_TOP_FEATURES_MODERN.map((feature) => ({ ...feature }))
         : name === 'Tally on Cloud'
           ? TALLY_SECURITY_FEATURES.map((feature) => ({ ...feature }))
         : featSrc.map((f, i) => ({
@@ -452,6 +528,15 @@ export class ProductPageService {
       const shortfall = Math.max(0, 8 - out.length);
       uses = (shortfall ? out.concat(pick(USE_POOL[cat] ?? [], seed, shortfall)) : out).slice(0, 8);
     }
+    const useCases = uses.map((useCase, index) => ({
+      icon:
+        name === 'Advanced Endpoint Security (EDR)'
+          ? EDR_USE_CASE_ICON_PATHS[index % EDR_USE_CASE_ICON_PATHS.length]
+          : useCase[0],
+      title: useCase[1],
+      body: useCase[2],
+      svg: name === 'Advanced Endpoint Security (EDR)',
+    }));
 
     /* -------- security section -------- */
     let security: ProductView['security'];
@@ -549,6 +634,19 @@ export class ProductPageService {
           features.map((feature) => feature.title),
         );
 
+    const rawBenefits =
+      name === 'Tally on Cloud'
+        ? TALLY_WHY_CHOOSE
+        : name === 'SMB Cyber Security Appliance'
+          ? SMB_CYBER_BENEFITS
+          : CATEGORY_BENEFITS[cat] ?? [];
+    const benefitIcons = BENEFIT_ICON_PATHS[cat];
+    const benefits = rawBenefits.map((benefit, index) => ({
+      icon: benefitIcons[index % benefitIcons.length],
+      title: benefit[1],
+      body: benefit[2],
+    }));
+
     return {
       name,
       crumb: 'Home › ' + (req.crumb || (dirEntry ? `${dirEntry.cat} › ${dirEntry.group}` : 'Services')),
@@ -558,20 +656,15 @@ export class ProductPageService {
       chips,
       overview,
       features,
-      benefits:
-        name === 'Tally on Cloud'
-          ? TALLY_WHY_CHOOSE
-          : name === 'SMB Cyber Security Appliance'
-            ? SMB_CYBER_BENEFITS
-            : CATEGORY_BENEFITS[cat] ?? [],
+      benefits,
       benefitGrid: dirEntry?.benefitGrid ?? [],
-      uses,
+      uses: useCases,
       security,
       honest: deep?.not_for ?? null,
       steps: CATEGORY_STEPS[cat] ?? [],
       mock: CATEGORY_MOCK[cat] ?? [],
       why: (CATEGORY_WHY[cat] ?? []).map((w, i) => ({
-        icon: WHY_ICONS[i % WHY_ICONS.length], title: w[0], body: w[1],
+        icon: WHY_ICON_PATHS[i % WHY_ICON_PATHS.length], title: w[0], body: w[1],
       })),
       reviews,
       faqs,
