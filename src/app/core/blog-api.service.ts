@@ -50,7 +50,11 @@ export class BlogApiService {
   );
 
   watchBySlug(slug: string): Observable<CmsBlogPost | null> {
-    return timer(0, 30_000).pipe(switchMap(() => this.findBySlug(slug)));
+    // The hosting WAF rejects Strapi filter parameters containing `$eq` with a
+    // 403 response. Reuse the published list and resolve the slug client-side.
+    return this.posts$.pipe(
+      map((posts) => posts.find((post) => post.slug === slug) ?? null)
+    );
   }
 
   private list(): Observable<readonly CmsBlogPost[]> {
@@ -63,17 +67,6 @@ export class BlogApiService {
     return this.http
       .get<StrapiListResponse>(this.endpoint, { params })
       .pipe(map((response) => response.data.map((post) => this.normalise(post))));
-  }
-
-  private findBySlug(slug: string): Observable<CmsBlogPost | null> {
-    const params = new HttpParams()
-      .set('filters[slug][$eq]', slug)
-      .set('populate', 'coverImage')
-      .set('pagination[pageSize]', '1');
-
-    return this.http
-      .get<StrapiListResponse>(this.endpoint, { params })
-      .pipe(map((response) => (response.data[0] ? this.normalise(response.data[0]) : null)));
   }
 
   private normalise(post: CmsBlogPost): CmsBlogPost {
