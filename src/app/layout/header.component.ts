@@ -205,6 +205,11 @@ const MENU_DESCRIPTIONS: Record<string, string> = {
  * matching page is built; until then the link renders inert.
  */
 const CONTENT_LINKS: Record<string, string> = {
+  'SMB Catalog · Enterprise Catalog': 'https://flipbooks.officeinfra.com/books/SMB-Cloud-Services/',
+  'Acronis Cyber Protect Cloud': 'https://flipbooks.officeinfra.com/books/Acronis-Cyber-Protect-Cloud-compressed/',
+  'Microsoft 365 · Tally on Cloud': 'https://flipbooks.officeinfra.com/books/Microsoft-365-Platfrom/',
+  'Bare Metal · GPU · Performance Cloud': 'https://flipbooks.officeinfra.com/books/guzk/',
+  'Company Profile · Career Handbook': 'https://flipbooks.officeinfra.com/books/Career-Handbook-MRmA/',
   'Blogs': '/insights',
   'Blog': '/insights',
   'Insights': '/insights',
