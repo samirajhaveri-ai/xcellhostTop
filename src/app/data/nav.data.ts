@@ -1302,27 +1302,32 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "SMB Catalog ",
                 "pill": null,
-                "desc": null
+                "desc": null,
+                "href": "https://flipbooks.officeinfra.com/books/SMB-Cloud-Services/"
               },
               {
                 "title": "Acronis Cyber Protect Cloud",
                 "pill": null,
-                "desc": null
+                "desc": null,
+                "href": "https://flipbooks.officeinfra.com/books/Acronis-Cyber-Protect-Cloud-compressed/"
               },
               {
                 "title": "Microsoft 365 · Tally on Cloud",
                 "pill": null,
-                "desc": null
+                "desc": null,
+                "href": "https://flipbooks.officeinfra.com/books/Microsoft-365-Platfrom/"
               },
               {
                 "title": "Performance Cloud",
                 "pill": null,
-                "desc": null
+                "desc": null,
+                "href": "https://flipbooks.officeinfra.com/books/guzk/"
               },
               {
                 "title": "Company Profile · Career Handbook",
                 "pill": null,
-                "desc": null
+                "desc": null,
+                "href": "https://flipbooks.officeinfra.com/books/Career-Handbook-MRmA/"
               }
             ]
           }

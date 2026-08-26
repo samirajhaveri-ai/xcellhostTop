@@ -150,6 +150,8 @@ export interface MenuItem {
   title: string;
   pill: string | null;
   desc: string | null;
+  /** Optional explicit destination for editorial or external menu entries. */
+  href?: string;
 }
 export interface MenuGroup {
   heading: string | null;

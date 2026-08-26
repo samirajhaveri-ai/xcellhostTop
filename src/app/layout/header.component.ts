@@ -423,8 +423,8 @@ export class HeaderComponent {
           pill: item.pill,
           pillClass: menuPillClass(item.pill),
           desc: this.menuDescription(item.title, item.desc),
-          link: this.serviceLink(item.title, top.label),
-          external: this.serviceLink(item.title, top.label)?.startsWith('http') ?? false,
+          link: this.serviceLink(item.title, top.label, item.href),
+          external: this.serviceLink(item.title, top.label, item.href)?.startsWith('http') ?? false,
         })),
       })),
     })),
@@ -548,7 +548,8 @@ export class HeaderComponent {
    * inert `href="#"`, so anything without a known destination stays inert
    * rather than routing to a page that would 404.
    */
-  private serviceLink(title: string, menu: string): string | null {
+  private serviceLink(title: string, menu: string, explicitLink?: string): string | null {
+    if (explicitLink) return explicitLink;
     if (menu === 'Insights' || menu === 'Company') return CONTENT_LINKS[title] ?? null;
     const entry = this.catalog.findInDirectory(title);
     const slug = slugify(entry ? entry.name : title);
