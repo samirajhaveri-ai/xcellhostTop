@@ -16,37 +16,38 @@
               src="/assets/images/hero-advanced-endpoint-security-edr.svg"
               alt="Advanced Endpoint Security and EDR"
             />
-            <div class="pph-powered-mark pph-edr-powered">
-              <span class="pw-lbl">Powered By:</span>
-              <span class="pw-name">Acronis</span>
-              <span class="pw-sub">Advanced Endpoint Security + EDR</span>
+            <div class="pph-powered-mark pph-powered-image pph-edr-powered">
+              <img src="/assets/images/product-brands-acronis.png" alt="Acronis Cyber Protect Cloud" />
             </div>
           </div>
         </div>
       } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
         <div
-          class="pph-scene has-illus"
-          [class.standalone-illus]="!v.poweredBy || v.name === 'Tally on Cloud'"
+          class="pph-scene has-illus standalone-illus"
           id="pphScene"
           aria-hidden="true"
         >
           <div class="pph-illus">
             <img
               class="pph-illus-img"
+              [class.pph-cloud-drive-static]="v.name === 'Cloud Drive'"
               [class.tally-hero-image]="v.name === 'Tally on Cloud'"
               [src]="v.heroImage"
-              [alt]="v.poweredBy || v.name"
+              [alt]="v.name"
             />
-            @if (v.poweredBy) {
-              <div class="pph-powered-mark">
-                <span class="pw-lbl">Powered By</span>
-                @if (v.poweredMark === 'tally') {
-                  <span class="pw-name pw-tally">Tally<span class="pw-cloud">on Cloud</span></span>
-                } @else {
-                  <span class="pw-name">Acronis</span><span class="pw-sub">Cyber Protect Cloud</span>
-                }
-              </div>
+            @if (v.name === 'Cloud Drive') {
+              <div class="pph-cloud-drive-animation" [xhLottie]="'/assets/animations/cloud-drive.json'"></div>
             }
+            <div class="pph-powered-mark pph-powered-image">
+              <img [src]="v.heroBrand.logoImage" [alt]="v.heroBrand.name" />
+            </div>
+          </div>
+        </div>
+      } @else if (v.name === 'Web Security (SiteLock)') {
+        <div class="pph-scene has-illus pph-brand-only" aria-hidden="true">
+          <div class="pph-powered-mark pph-powered-image pph-fallback-brand">
+            <span class="pw-lbl">Powered By</span>
+            <img [src]="v.heroBrand.logoImage" [alt]="v.heroBrand.name" />
           </div>
         </div>
       } @else if (v.name !== 'Web Security (SiteLock)') {
@@ -58,9 +59,12 @@
 
       <div class="wrap">
         <div class="pp-crumb" id="ppCrumb">{{ v.crumb }}</div>
-        <h1 id="ppTitle">
-          <span class="pp-title-brand">XcellSecure |</span>
-          <span class="pp-title-name" [class.pp-title-name-stacked]="stackHeroTitle()">{{ v.name }}</span>
+        <h1 id="ppTitle" [class.pp-title-compact]="compactHeroTitle()">
+          <span class="pp-title-brand" [attr.aria-label]="'Xcell' + v.brandSuffix">
+            <span class="pp-brand-xcell">Xcell</span><span class="pp-brand-family">{{ v.brandSuffix }}</span>
+          </span>
+          <span class="pp-title-divider" aria-hidden="true">|</span>
+          <span class="pp-title-name">{{ v.name }}</span>
         </h1>
         <h2
           class="pp-tagline"
@@ -98,7 +102,7 @@
                 ><span class="ppd-ic">📖</span> Presentation</a
               >
               @if (!isTally()) {
-                <a class="btn btn-primary" href="#" id="ppBuy" (click)="buyNow($event)">⚡ Buy Now</a>
+                <a class="btn btn-primary" href="#" id="ppEnquiry" (click)="openCallback($event)">Enquiry Now</a>
               }
             </div>
           </div>

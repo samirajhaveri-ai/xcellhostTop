@@ -10,8 +10,9 @@ import { RevealDirective } from '../shared/reveal.directive';
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <section class="global-locations" aria-label="XcellHost global locations">
+    <section class="global-locations" aria-labelledby="global-locations-title">
       <div class="wrap" xhReveal>
+        <h2 id="global-locations-title">Global Data Centers</h2>
         <img
           src="assets/images/xcellhost-global-locations-map.png"
           width="1146"
@@ -32,7 +33,18 @@ import { RevealDirective } from '../shared/reveal.directive';
 
     .global-locations .wrap {
       display: flex;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
+    }
+
+    .global-locations h2 {
+      width: min(100%, 1146px);
+      margin: 0 0 30px;
+      color: var(--navy);
+      font: 700 clamp(27px, 3vw, 34px) / 1.2 var(--disp);
+      letter-spacing: -0.015em;
+      text-align: center;
     }
 
     .global-locations img {
@@ -53,6 +65,10 @@ import { RevealDirective } from '../shared/reveal.directive';
 
       .global-locations img {
         width: 100%;
+      }
+
+      .global-locations h2 {
+        margin-bottom: 22px;
       }
     }
   `,

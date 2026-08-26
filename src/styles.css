@@ -106,6 +106,7 @@
   .card p{font-size:13.5px;color:var(--slate);margin-bottom:10px}
   .price{font-family:var(--mono);font-size:12.5px;color:var(--slate);margin-bottom:18px}
   .price b{font-size:18px;color:var(--navy)}
+  .price .price-note{display:block;margin-top:4px;color:var(--slate);font-family:var(--body);font-size:12px;line-height:1.35}
   .card .more{margin-top:auto;border-top:1px dashed var(--line);padding-top:12px;font-weight:600;font-size:13.5px;color:var(--blue)}
 
   /* ===== FULL SERVICE DIRECTORY — every product visible on page ===== */
@@ -2165,10 +2166,10 @@
 
   /* ============ v56: SHRINK ILLUSTRATION SO POWERED-BY MARK IS VISIBLE ============ */
   /* smaller illustration, guaranteed room for the wordmark beneath it */
-  #ppage .pph-scene.has-illus{width:44%;top:4%;align-items:center}
+  #ppage .pph-scene.has-illus{width:48%;top:4%;align-items:center}
   #ppage .pph-illus{gap:10px}
   #ppage .pph-illus-img{width:56%;max-width:200px}
-  #ppage .pph-scene.has-illus.standalone-illus .pph-illus-img{width:82%;max-width:430px}
+  #ppage .pph-scene.has-illus.standalone-illus .pph-illus-img{width:88%;max-width:560px;max-height:315px;background:transparent}
   #ppage .pph-scene.has-illus .tally-hero-image{width:82%;max-width:430px;aspect-ratio:1.35;object-fit:cover;object-position:60% center}
   #ppage .pp-hero.sitelock-hero{background-image:url('/assets/images/hero-web-security-sitelock-wide.png');
     background-size:cover;background-position:center;background-repeat:no-repeat}
@@ -2179,18 +2180,33 @@
   #ppage .pph-powered-mark .pw-name.pw-tally .pw-cloud{font-size:15px;padding:2px 9px}
   #ppage .pph-powered-mark .pw-name:not(.pw-tally){font-size:26px}
   #ppage .pph-powered-mark .pw-sub{font-size:13px}
+  #ppage .pph-powered-mark .pw-name.pw-xcell{font-weight:800;letter-spacing:-.045em}
+  #ppage .pph-powered-mark .pw-name.pw-xcell span{color:#e60012}
+  #ppage .pph-powered-mark .pw-name.pw-vendor{letter-spacing:-.025em}
+  #ppage .pph-powered-image{display:inline-flex;flex-direction:column;align-items:center;padding:5px 10px;border-radius:7px;background:#fff;box-shadow:0 5px 16px rgba(0,20,55,.18)}
+  #ppage .pph-powered-image img{display:block;width:auto;max-width:210px;max-height:76px;margin:0 auto;object-fit:contain;filter:none}
+  #ppage .pph-powered-image.pph-fallback-brand img{max-width:150px;max-height:58px}
+  #ppage .pph-cloud-drive-static{display:none}
+  #ppage .pph-cloud-drive-animation{width:min(86%,430px);height:250px;overflow:hidden}
+  #ppage .pph-cloud-drive-animation svg{width:100%!important;height:100%!important}
+  #ppage .pph-brand-only{top:auto;bottom:4%;height:auto;justify-content:center;align-items:flex-end;padding-right:10%}
+  #ppage .pph-brand-only .pph-powered-mark{min-width:220px}
   #ppage .pph-scene.pph-edr-illus{top:2%;width:44%}
   #ppage .pph-edr-illus .pph-illus-img{width:72%;max-width:310px}
   #ppage .pph-edr-powered{margin-top:-12px}
   #ppage .pph-edr-powered .pw-lbl{font-size:13px}
   #ppage .pph-edr-powered .pw-name{font-size:34px;letter-spacing:-.035em}
   #ppage .pph-edr-powered .pw-sub{font-size:12px;font-weight:700;letter-spacing:0}
-  #ppage .pp-hero > .wrap{width:100%}
+  #ppage .pp-hero > .wrap{width:100%;max-width:1240px;margin-inline:auto;padding-inline:24px}
   #ppage .pp-hero > .wrap > .pp-crumb,#ppage .pp-hero > .wrap > h1,#ppage .pp-hero > .wrap > .pp-tagline,#ppage .pp-hero > .wrap > .pp-tagline-support,#ppage .pp-hero > .wrap > .pp-chips,#ppage .pp-hero > .wrap > .pp-hero-grid{max-width:58%}
   #ppage .pp-hero > .wrap > h1{max-width:none}
-  #ppage .pp-hero h1{max-width:none;margin:0 0 14px;color:#fff;font:800 clamp(28px,3.8vw,42px)/1.12 var(--disp);letter-spacing:-.025em;white-space:normal;text-wrap:balance}
+  #ppage .pp-hero h1{display:flex;align-items:baseline;max-width:none;margin:0 0 14px;color:#fff;font:800 clamp(15px,3.8vw,42px)/1.12 var(--disp);letter-spacing:-.025em;white-space:nowrap}
+  #ppage .pp-hero h1.pp-title-compact{font-size:clamp(12px,3vw,34px)}
+  #ppage .pp-title-brand{display:inline-flex;align-items:baseline;flex:none;font-size:42px;line-height:1;letter-spacing:-.045em}
+  #ppage .pp-brand-xcell{display:inline-block;width:2.4em;color:#e60012}
+  #ppage .pp-brand-family{color:#fff}
+  #ppage .pp-title-divider{margin-left:.18em;color:#fff}
   #ppage .pp-title-name{margin-left:.18em}
-  #ppage .pp-title-name-stacked{display:block;margin:.12em 0 0}
   #ppage .pp-tagline,#mpage .pp-tagline{width:fit-content;max-width:60ch;margin:0 0 24px;padding:0;color:#c7d5ec;background:none;-webkit-text-fill-color:currentColor;font:400 17px/1.65 var(--body);font-style:normal;letter-spacing:0;text-transform:none;text-wrap:balance}
   #ppage .pp-tagline::after,#mpage .pp-tagline::after{display:none}
   #ppage .pp-tagline-support{width:fit-content;margin:0 0 18px;color:#67b7ff;font:700 clamp(18px,1.7vw,23px)/1.35 var(--body);letter-spacing:0;text-wrap:balance}
@@ -2267,6 +2283,7 @@
     #ppage .pp-hero.sitelock-hero{background-image:none;background-color:#03132e}
     #ppage .pp-hero.sitelock-hero::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
       background:url('/assets/images/hero-web-security-sitelock-wide.png') no-repeat 90% 42%;background-size:1100px auto;opacity:.56}
+    #ppage .pph-brand-only{position:relative;bottom:auto;padding:8px 0 4px;align-items:center}
     #ppage .sitelock-hero > .wrap{padding-inline:clamp(20px,5vw,34px)}
     #ppage .sitelock-hero .pp-hero-grid{gap:20px}
     #ppage .sitelock-hero .pp-hpoints{grid-template-columns:repeat(2,minmax(0,1fr));width:100%;gap:10px 18px}
@@ -2275,7 +2292,8 @@
     #ppage .pph-edr-illus .pph-illus-img{width:58%;max-width:240px}
     #ppage .pph-edr-powered{margin-top:-8px}
     #ppage .pp-hero > .wrap > .pp-crumb,#ppage .pp-hero > .wrap > h1,#ppage .pp-hero > .wrap > .pp-tagline,#ppage .pp-hero > .wrap > .pp-tagline-support,#ppage .pp-hero > .wrap > .pp-chips,#ppage .pp-hero > .wrap > .pp-hero-grid,#ppage .pp-tagline.pp-tagline-reference,#ppage .pp-typewriter{max-width:100%}
-    #ppage .pp-hero h1{white-space:normal}
+    #ppage .pp-title-brand{font-size:clamp(24px,5vw,34px)}
+    #ppage .pp-hero h1{white-space:nowrap}
     #ppage .pp-tagline,#mpage .pp-tagline{font-size:16px}
     #ppage .pp-tagline.pp-tagline-reference,#ppage .pp-tagline.pp-tagline-reference + .pp-tagline-support{white-space:normal}
     #ppage .edr-feature-heading{min-height:0;margin-top:34px;padding:28px 24px}
@@ -2290,9 +2308,8 @@
     #ppage .pp-hero.sitelock-hero::before{background-position:89% 38%;background-size:1020px auto;opacity:.48}
     #ppage .sitelock-hero > .wrap{padding-inline:20px}
     #ppage .sitelock-hero .pp-crumb{margin-bottom:12px;font-size:9.5px;line-height:1.6;letter-spacing:.12em}
-    #ppage .sitelock-hero h1{margin-bottom:12px;font-size:clamp(27px,8.5vw,34px);line-height:1.08;text-wrap:balance}
-    #ppage .sitelock-hero .pp-title-brand,#ppage .sitelock-hero .pp-title-name{display:block;margin:0}
-    #ppage .sitelock-hero .pp-title-brand{margin-bottom:5px}
+    #ppage .sitelock-hero h1{margin-bottom:12px;line-height:1.08}
+    #ppage .sitelock-hero .pp-title-brand{display:inline-flex;margin:0}
     #ppage .sitelock-hero .pp-tagline{max-width:32ch;margin-bottom:18px;font-size:15px;line-height:1.55}
     #ppage .sitelock-hero .pp-typewriter{min-height:44px;margin-bottom:8px;font-size:18px;line-height:1.3}
     #ppage .sitelock-hero .pp-hpoints{grid-template-columns:1fr;width:100%;gap:9px;margin:8px 0 20px}

@@ -16,6 +16,8 @@ interface FlagshipCard {
   readonly lead: string;
   readonly amount: string;
   readonly tail: string;
+  /** optional supporting price text displayed on its own line */
+  readonly priceNote?: string;
   /** the `a.more` label */
   readonly cta: string;
   /** which practice the card belongs to */
@@ -43,10 +45,10 @@ const FLAGSHIP_TABS: readonly FlagshipTab[] = [
 
 const FLAGSHIP_CARD_GROUPS: Readonly<Record<string, readonly FlagshipGroup[]>> = {
   'Tally on Cloud': ['business'],
-  'Cloud Backup': ['business'],
+  'Backup Cloud': ['business'],
   'Cloud Drive': ['business'],
-  EDR: ['business'],
-  RMM: ['business'],
+  'Advanced EDR': ['business'],
+  'Advanced RMM': ['business'],
   'SMB Cyber Security Appliance': ['business'],
   'SMB Cloud Desktop': ['business'],
   'WhatsApp SMB': ['business'],
@@ -68,10 +70,10 @@ const FLAGSHIP_CARD_GROUPS: Readonly<Record<string, readonly FlagshipGroup[]>> =
 
 const SMB_CLOUD_ORDER = [
   'Tally on Cloud',
-  'Cloud Backup',
+  'Backup Cloud',
   'Cloud Drive',
-  'EDR',
-  'RMM',
+  'Advanced EDR',
+  'Advanced RMM',
   'SMB Cyber Security Appliance',
   'SMB Cloud Desktop',
   'WhatsApp SMB',
@@ -129,13 +131,13 @@ const FLAGSHIP_CARDS: readonly FlagshipCard[] = [
     lead: 'from ', amount: '₹499', tail: '/user/mo', cta: 'View plans →', category: 'Cloud',
   },
   {
-    icon: 'shield', badge: 'Flagship', hot: true, title: 'EDR',
+    icon: 'shield', badge: 'Flagship', hot: true, title: 'Advanced EDR',
     blurb: 'AI-powered Endpoint Detection & Response — detect, analyse and stop advanced threats across every endpoint, backed by our 24×7 SOC.',
     lead: 'from ', amount: '₹999', tail: ' quote', cta: 'View plans →', category: 'Security',
     service: 'Advanced Endpoint Security (EDR)',
   },
   {
-    icon: 'backup', badge: 'Data protection', title: 'Cloud Backup',
+    icon: 'backup', badge: 'Data protection', title: 'Backup Cloud',
     blurb: 'Encrypted, ransomware-proof backup for servers, endpoints and M365.',
     lead: 'from ', amount: '₹6', tail: '/GB/mo', cta: 'View plans →', category: 'Cloud',
     service: 'Cloud Backup (Acronis)',
@@ -148,7 +150,7 @@ const FLAGSHIP_CARDS: readonly FlagshipCard[] = [
   {
     icon: 'folder', badge: 'File share', title: 'Cloud Drive',
     blurb: 'Secure file sync, team folders and controlled sharing across every device.',
-    lead: '', amount: 'Get quote', tail: '', cta: 'Explore →', category: 'Cloud',
+    lead: 'from ', amount: '₹499/-', tail: '', priceNote: '50 GB with unlimited users', cta: 'Explore →', category: 'Cloud',
   },
   {
     icon: 'lock', badge: 'New', hot: true, title: 'SMB Cyber Security Appliance',
@@ -229,7 +231,7 @@ const FLAGSHIP_CARDS: readonly FlagshipCard[] = [
     service: 'Secure DMARC',
   },
   {
-    icon: 'settings', badge: 'Remote management', title: 'RMM',
+    icon: 'settings', badge: 'Remote management', title: 'Advanced RMM',
     blurb: 'Monitor, manage and secure endpoints with proactive alerts, remote access, patching and automation.',
     lead: 'from ', amount: '₹1,199', tail: '/user/year', cta: 'View plans →', category: 'Cloud',
     service: 'Remote Monitoring & Mgmt (RMM)',
@@ -299,7 +301,12 @@ const FLAGSHIP_CARDS: readonly FlagshipCard[] = [
               <span class="badge" [class.hot]="c.hot">{{ c.badge }}</span>
               <h3>{{ c.title }}</h3>
               <p>{{ c.blurb }}</p>
-              <div class="price">{{ c.lead }}<b>{{ c.amount }}</b>{{ c.tail }}</div>
+              <div class="price">
+                {{ c.lead }}<b>{{ c.amount }}</b>{{ c.tail }}
+                @if (c.priceNote) {
+                  <span class="price-note">{{ c.priceNote }}</span>
+                }
+              </div>
               <span class="more">{{ c.cta }}</span>
             </a>
           }

@@ -102,12 +102,12 @@ const PROMISES: readonly SatisfactionPromise[] = [
       position: relative;
       overflow: hidden;
       padding: 34px;
-      border: 1px solid rgba(127, 178, 255, 0.2);
+      border-block: 1px solid var(--line);
       border-radius: 0;
       background:
-        radial-gradient(circle at 50% 0%, rgba(21, 101, 216, 0.34), transparent 38%),
-        linear-gradient(135deg, #041e42 0%, #082b5d 55%, #0c3e8f 100%);
-      box-shadow: 0 24px 60px rgba(4, 30, 66, 0.16);
+        radial-gradient(circle at 50% 0%, rgba(21, 101, 216, 0.08), transparent 38%),
+        #fff;
+      box-shadow: 0 18px 48px rgba(4, 30, 66, 0.07);
     }
 
     .satisfaction-panel::before {
@@ -116,7 +116,7 @@ const PROMISES: readonly SatisfactionPromise[] = [
       background: repeating-linear-gradient(
         115deg,
         transparent 0 82px,
-        rgba(127, 178, 255, 0.035) 82px 84px
+        rgba(21, 101, 216, 0.025) 82px 84px
       );
       content: '';
       pointer-events: none;
@@ -138,17 +138,18 @@ const PROMISES: readonly SatisfactionPromise[] = [
       min-width: 0;
       min-height: 218px;
       padding: 22px 18px;
-      border: 1px solid rgba(127, 178, 255, 0.18);
+      border: 1px solid var(--line);
       border-radius: 16px;
-      background: rgba(255, 255, 255, 0.055);
+      background: #fff;
+      box-shadow: 0 10px 28px rgba(4, 30, 66, 0.06);
       text-align: center;
       transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
     }
 
     .promise-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(255, 140, 26, 0.65);
-      background: rgba(255, 255, 255, 0.09);
+      border-color: rgba(21, 101, 216, 0.45);
+      background: var(--ice);
     }
 
     .promise-icon {
@@ -157,10 +158,10 @@ const PROMISES: readonly SatisfactionPromise[] = [
       height: 54px;
       margin: 0 auto 14px;
       place-items: center;
-      border: 1px solid rgba(127, 178, 255, 0.32);
+      border: 1px solid #bfd3f3;
       border-radius: 15px;
-      background: rgba(21, 101, 216, 0.24);
-      color: #7fb2ff;
+      background: var(--blue-soft);
+      color: var(--blue);
       font-family: 'Material Symbols Outlined';
       font-size: 30px;
       font-style: normal;
@@ -177,7 +178,7 @@ const PROMISES: readonly SatisfactionPromise[] = [
     .promise-kicker {
       display: block;
       margin-bottom: 7px;
-      color: #ffb25e;
+      color: #c86600;
       font: 600 10px/1.2 var(--mono);
       letter-spacing: 0.13em;
       text-transform: uppercase;
@@ -185,12 +186,12 @@ const PROMISES: readonly SatisfactionPromise[] = [
 
     .promise-card h3 {
       margin-bottom: 8px;
-      color: #fff;
+      color: var(--navy);
       font: 600 15px/1.3 var(--disp);
     }
 
     .promise-card p {
-      color: #aabdd8;
+      color: var(--slate);
       font-size: 12.5px;
       line-height: 1.55;
     }

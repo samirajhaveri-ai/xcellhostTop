@@ -8,5 +8,5 @@ export const environment = {
   partnerWebhook: '',
   chatEndpoint: '',
   faqApi: '',
-  strapiUrl: 'https://admin.xcellhost.top/',
+  strapiUrl: 'https://admin.xcellhost.top/api',
 };
