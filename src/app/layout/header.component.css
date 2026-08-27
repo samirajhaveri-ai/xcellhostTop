@@ -211,6 +211,15 @@
   box-shadow: 0 3px 8px rgba(194, 118, 0, .2);
 }
 .xh-link-grid em::before { content: '★'; font-size: 8px; }
+.xh-link-grid em.is-blue {
+  color: #075dcc;
+  background: #dbeafe;
+  border: 1px solid #b8d5ff;
+  box-shadow: 0 3px 8px rgba(18, 102, 220, .12);
+  font-weight: 900;
+}
+.xh-link-grid.xh-link-grid-two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.xh-link-grid em.is-blue::before { display: none; }
 .xh-link-grid small { display: block; margin-top: 7px; color: var(--xh-muted); font-size: 11.5px; line-height: 1.45; }
 
 .xh-feature {

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, inject, signal, ViewChild } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 
@@ -23,7 +23,9 @@ import { RevealDirective } from '../shared/reveal.directive';
             who do the work.
           </p>
         </div>
-        <div class="blog-grid">
+        <div class="blog-carousel" role="region" aria-roledescription="carousel" aria-label="Latest insights">
+          <button class="blog-nav blog-nav-prev" type="button" aria-label="Previous insights" (click)="scrollCarousel(-1)">‹</button>
+          <div class="blog-grid" #blogGrid>
           @for (post of posts(); track post.documentId; let first = $first) {
             <article class="bl" [class.feat]="first" [routerLink]="['/insights', post.slug]">
               @if (post.coverImageUrl) {
@@ -39,6 +41,8 @@ import { RevealDirective } from '../shared/reveal.directive';
               <span class="bl-m">{{ post.author }} · {{ formatDate(post.date) }}</span>
             </article>
           }
+          </div>
+          <button class="blog-nav blog-nav-next" type="button" aria-label="Next insights" (click)="scrollCarousel(1)">›</button>
         </div>
         <div class="blog-cta">
           <button class="btn btn-ghost" id="allBlogs" routerLink="/insights">
@@ -52,6 +56,7 @@ import { RevealDirective } from '../shared/reveal.directive';
 export class InsightsSectionComponent {
   private readonly blogApi = inject(BlogApiService);
   readonly posts = signal<readonly CmsBlogPost[]>([]);
+  @ViewChild('blogGrid') private blogGrid?: ElementRef<HTMLElement>;
 
   constructor() {
     this.blogApi.posts$.pipe(takeUntilDestroyed()).subscribe({
@@ -64,5 +69,9 @@ export class InsightsSectionComponent {
     return new Intl.DateTimeFormat('en-IN', { dateStyle: 'medium' }).format(
       new Date(`${value}T00:00:00`)
     );
+  }
+
+  scrollCarousel(direction: number): void {
+    this.blogGrid?.nativeElement.scrollBy({ left: direction * 331, behavior: 'smooth' });
   }
 }

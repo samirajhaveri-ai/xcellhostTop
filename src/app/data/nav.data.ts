@@ -226,7 +226,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
                {
-                "title": "Microsoft 365",
+                "title": "Microsoft 365 SMB",
                 "pill": null,
                 "desc": "Cloud productivity tools with migration and 24/7 support"
               },
@@ -398,7 +398,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Microsoft 365",
+                "title": "Microsoft 365 Enterprise",
                 "pill": null,
                 "desc": null
               },
@@ -876,7 +876,7 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Consulting & Compliance",
             "items": [
               {
-                "title": "DPDPA Platform & Consulting",
+                "title": "DPDPA Consulting",
                 "pill": "In focus",
                 "desc": null
               },
@@ -925,6 +925,37 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               }
+            ]
+          }
+        ]
+      },{
+        "g": "4",
+        "label": "Security Platforms",
+        "on": false,
+        "groups": [
+          {
+            "heading": "",
+            "items": [
+              {
+                "title": "Vortex Soc",
+                "pill": "In focus",
+                "desc": null
+              },
+              {
+                "title": "Cyber Security Audit",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "ISO 27001 Consulting",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Compliance Consulting",
+                "pill": null,
+                "desc": null
+              }     
             ]
           }
         ]
@@ -1350,6 +1381,7 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       }
+
     ]
   },
   {
@@ -1401,7 +1433,7 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "1",
-        "label": "Flipbook",
+        "label": "Flipbooks",
         "on": false,
         "groups": [
           {
@@ -1420,7 +1452,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "https://flipbooks.officeinfra.com/books/Acronis-Cyber-Protect-Cloud-compressed/"
               },
               {
-                "title": "Microsoft 365 · Tally on Cloud",
+                "title": "Microsoft 365 ",
                 "pill": null,
                 "desc": null,
                 "href": "https://flipbooks.officeinfra.com/books/Microsoft-365-Platfrom/"
@@ -1432,7 +1464,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "https://flipbooks.officeinfra.com/books/guzk/"
               },
               {
-                "title": "Company Profile · Career Handbook",
+                "title": "Company Profile",
                 "pill": null,
                 "desc": null,
                 "href": "https://flipbooks.officeinfra.com/books/Career-Handbook-MRmA/"

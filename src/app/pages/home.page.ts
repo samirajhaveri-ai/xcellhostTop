@@ -13,6 +13,7 @@ import {
   MarqueeComponent,
   SatisfactionGuaranteeComponent,
   TrustBarComponent,
+  TestimonialsComponent,
   WhyComponent,
 } from '../sections';
 
@@ -42,6 +43,7 @@ const DESCRIPTION =
     InsightsSectionComponent,
     GlobalLocationsMapComponent,
     SatisfactionGuaranteeComponent,
+    TestimonialsComponent,
   ],
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -56,6 +58,7 @@ const DESCRIPTION =
     <xh-industries />
     <xh-cases />
     <xh-insights-section />
+    <xh-testimonials />
     <xh-global-locations-map />
     <xh-satisfaction-guarantee />
   `,

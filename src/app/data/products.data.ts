@@ -7,7 +7,29 @@
 
 import { RichProduct, DeepContent } from './models';
 
+/**
+ * Optional brand heading overrides for any product page.
+ *
+ * The key must match the product name exactly. The value supports the same
+ * format as rich product `brandLine`: "XcellFamily | Display Name".
+ * Only the first part is used in the hero brand heading.
+ */
+export const PRODUCT_BRAND_LINES: Record<string, string> = {
+  "Tally on Cloud": "XcellTally | Tally On Cloud",
+  "Cloud Backup (Acronis)": "XcellBackup | Backup Cloud",
+  "Cloud Drive": "XcellDrive | Cloud Drive",
+  "Microsoft 365": "XcellOfiice | Microsoft 365",
+  "Bare Metal Server": "XcellBareMetal | Bare Metal Server",
+  "SMB Cyber Security Appliance" : "XcellSecure | SMB Cyber Security Appliance " ,
+  "Advanced Endpoint Security (EDR)" : "XcellSecure | Advanced Endpoint Security (EDR)",
+  "Remote Monitoring & Mgmt (RMM)" : "XcellSecure | Remote Monitoring & Mgmt (RMM)",
+
+
+};
+
 export const RICH_PRODUCTS: Record<string, RichProduct> = {
+  
+
   "Tally on Cloud": {
     "brandLine": "XcellTally | Tally On Cloud",
     "eyebrow": "EASY MANAGEMENT AND SECURITY",

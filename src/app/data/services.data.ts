@@ -115,7 +115,7 @@ export const SERVICES_RICH: Record<string, ServiceRich> = {
       "acronis true image"
     ],
     "price": "₹6/GB/mo",
-    "ov": "One infected attachment can encrypt years of business data. Acronis Cloud Backup from XcellHost keeps immutable, encrypted copies of your servers, endpoints, VMs and Microsoft 365 data in Indian Tier-4 datacenters — so ransomware, hardware failure or human error never means data loss.",
+    "ov": "Helps organizations protect servers, endpoints, applications and business-critical workloads against accidental deletion, hardware failure, ransomware and other causes of data loss.Automated backup schedules, configurable retention and recovery capabilities help businesses maintain recoverable copies of important data while reducing dependence on manual backup processes",
     "f": [
       [
         "Immutable backups",

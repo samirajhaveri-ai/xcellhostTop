@@ -21,34 +21,44 @@ interface IndustryCard {
 
 const INDUSTRY_CARDS: readonly IndustryCard[] = [
   {
-    icon: 'bank', label: 'BFSI',
-    blurb: 'RBI-aligned cloud, DPDPA readiness, regulated-grade security',
-    service: 'BFSI / Financial Services',
-  },
-  {
-    icon: 'factory', label: 'Manufacturing',
-    blurb: 'IT + OT security, ERP hosting, production-aware DR',
-    service: 'Manufacturing',
-  },
-  {
-    icon: 'accounting', label: 'CA & Accounting',
-    blurb: 'The whole practice on cloud — Tally, tax tools, client files',
-    service: 'CA Cloud',
-  },
-  {
-    icon: 'government', label: 'Government',
-    blurb: 'Indian data residency, tender-ready certifications',
-    service: 'Government',
-  },
-  {
-    icon: 'education', label: 'Education',
-    blurb: 'Cloud labs, research computing, campus security',
+    icon: 'education', label: 'Schools & Education',
+    blurb: 'Secure learning, labs and campus collaboration',
     service: 'Higher Education & University',
   },
   {
-    icon: 'pharma', label: 'Pharma & More',
-    blurb: 'Validation trails, multi-site connectivity, sector-fit solutions',
-    service: 'Pharma · Construction · F&B · Logistics',
+    icon: 'healthcare', label: 'Healthcare & Clinics',
+    blurb: 'Protected patient data and reliable clinical systems',
+    service: 'Healthcare',
+  },
+  {
+    icon: 'business', label: 'SMBs & Startups',
+    blurb: 'Scalable cloud and security built for growing teams',
+    service: 'SMB Cloud',
+  },
+  {
+    icon: 'retail', label: 'Retail & E-commerce',
+    blurb: 'Always-on storefronts, payments and customer data',
+    service: 'Retail & E-commerce',
+  },
+  {
+    icon: 'factory', label: 'Manufacturing',
+    blurb: 'Production-ready cloud, ERP and operational resilience',
+    service: 'Manufacturing',
+  },
+  {
+    icon: 'bank', label: 'BFSI',
+    blurb: 'RBI-aligned cloud and regulated-grade security',
+    service: 'BFSI / Financial Services',
+  },
+  {
+    icon: 'logistics', label: 'Logistics & Supply Chain',
+    blurb: 'Connected operations across warehouses and fleets',
+    service: 'Logistics',
+  },
+  {
+    icon: 'accounting', label: 'CAs & Professional Services',
+    blurb: 'Tally, tax tools and client workspaces in the cloud',
+    service: 'CA Cloud',
   },
 ];
 
@@ -56,9 +66,11 @@ const INDUSTRY_ICON_PATHS: Readonly<Record<string, string>> = {
   bank: 'M3 10h18M5 10v8m4-8v8m6-8v8m4-8v8M3 21h18M12 3 3 8h18l-9-5Z',
   factory: 'M3 21V9l6 4V9l6 4V6h6v15H3Zm3-3h2m3 0h2m3 0h2M18 6V3h3v3',
   accounting: 'M4 3h16v18H4V3Zm4 4h8M8 11h2m4 0h2m-8 4h2m4 0h2m-8 4h8',
-  government: 'M5 21V5h10v16M15 9h4v12M8 8h4m-4 4h4m-4 4h4M3 21h18M15 5l4-2v6',
   education: 'm2 9 10-5 10 5-10 5L2 9Zm4 2v5c3 3 9 3 12 0v-5m4-2v6',
-  pharma: 'M8.5 4.5a4.95 4.95 0 0 1 7 0l4 4a4.95 4.95 0 0 1-7 7l-4-4a4.95 4.95 0 0 1 0-7ZM6.5 13.5l7-7',
+  healthcare: 'M9 4v6a3 3 0 0 0 6 0V4m-8 0h4m2 0h4m-5 9v2a4 4 0 0 0 8 0v-1m0 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z',
+  business: 'M4 21V8h10v13M8 12h2m-2 4h2m7 5V4h3v17M3 21h19',
+  retail: 'M5 8h14l-1 13H6L5 8Zm3 0V6a4 4 0 0 1 8 0v2',
+  logistics: 'M3 6h11v11H3V6Zm11 4h4l3 4v3h-7v-7ZM7 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm11 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z',
 };
 
 /**
@@ -75,22 +87,18 @@ const INDUSTRY_ICON_PATHS: Readonly<Record<string, string>> = {
   template: `
     <section class="inds" id="industries">
       <div class="wrap">
-        <div class="sec-head" xhReveal>
-          <div class="eyebrow">Built for your sector</div>
-          <h2>We know how your industry actually works</h2>
-          <p>
-            Compliance, uptime and workflows differ by sector. Our solutions are shaped by real
-            deployments, not generic templates.
-          </p>
+        <div class="sec-head ind-head" xhReveal>
+          <div class="ind-eyebrow">Industries</div>
+          <h2>Built for how Indian businesses work</h2>
+          <p>From a 10-person CA firm to a 1,000-student school — we tailor cloud and SaaS solutions to your industry.</p>
         </div>
         <div class="ind-grid">
           @for (i of cards; track i.service) {
-            <div class="ind" [attr.data-p]="i.service" [routerLink]="i.link">
+            <a class="ind" [attr.data-p]="i.service" [routerLink]="i.link">
               <span class="ind-i" [attr.data-icon]="i.icon" aria-hidden="true"
                 ><svg viewBox="0 0 24 24"><path [attr.d]="i.iconPath" /></svg></span
-              ><b>{{ i.label }}</b
-              ><span>{{ i.blurb }}</span>
-            </div>
+              ><span class="ind-copy"><b>{{ i.label }}</b></span>
+            </a>
           }
         </div>
       </div>
