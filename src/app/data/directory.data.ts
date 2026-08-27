@@ -39,8 +39,8 @@ export const DIRECTORY_CATEGORIES: DirectoryCategory[] = [
   },
   {
     "name": "Solutions",
-    "count": "By industry, use case & capability",
-    "sub": "Purpose-built for your sector and security challenge"
+    "count": "By vendor & technology",
+    "sub": "Explore solutions by vendor, technology, industry, use case or capability"
   }
 ];
 

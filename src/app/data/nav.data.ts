@@ -1273,26 +1273,152 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-       {
+      {
         "g": "3",
+        "label": "By Vendors",
+        "on": false,
+        "groups": [
+          {
+            "heading": "By Vendors",
+            "items": [
+              {
+                "title": "Acronis",
+                "pill": null,
+                "desc": "Cyber protection, backup and endpoint management",
+                "href": "/vendor-partners/acronis"
+              },
+              {
+                "title": "Microsoft 365",
+                "pill": null,
+                "desc": "Productivity, collaboration and business applications",
+                "href": "/vendor-partners/microsoft-365"
+              },
+              {
+                "title": "DPO Genie",
+                "pill": null,
+                "desc": "Privacy operations and data-protection compliance",
+                "href": "/vendor-partners/dpo-genie"
+              },
+              {
+                "title": "Microsoft Azure",
+                "pill": null,
+                "desc": "Cloud infrastructure, applications and identity services",
+                "href": "/vendor-partners/microsoft-azure"
+              },
+              {
+                "title": "Amazon Web Services",
+                "pill": null,
+                "desc": "Scalable public-cloud infrastructure and services",
+                "href": "/vendor-partners/amazon-web-services"
+              },
+              {
+                "title": "Google Cloud",
+                "pill": null,
+                "desc": "Cloud computing, data and AI services",
+                "href": "/vendor-partners/google-cloud"
+              },
+              {
+                "title": "IBM Multicloud",
+                "pill": null,
+                "desc": "Hybrid and multicloud infrastructure solutions",
+                "href": "/vendor-partners/ibm-multicloud"
+              },
+              {
+                "title": "Red Hat",
+                "pill": null,
+                "desc": "Enterprise open-source and hybrid-cloud platforms",
+                "href": "/vendor-partners/red-hat"
+              },
+              {
+                "title": "SentinelOne",
+                "pill": null,
+                "desc": "AI-powered endpoint security and response",
+                "href": "/vendor-partners/sentinelone"
+              },
+              {
+                "title": "DigiCert",
+                "pill": null,
+                "desc": "Enterprise certificates, PKI and digital trust",
+                "href": "/vendor-partners/digicert"
+              },
+              {
+                "title": "Sectigo",
+                "pill": null,
+                "desc": "SSL, certificate lifecycle and digital identity",
+                "href": "/vendor-partners/sectigo"
+              },
+              {
+                "title": "TSplus",
+                "pill": null,
+                "desc": "Secure remote access and application delivery",
+                "href": "/vendor-partners/tsplus"
+              },
+              {
+                "title": "Kaspersky",
+                "pill": null,
+                "desc": "Endpoint and industrial cybersecurity solutions",
+                "href": "/vendor-partners/kaspersky"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "g": "4",
         "label": "By Technology",
         "on": false,
         "groups": [
           {
             "heading": "By Technology",
             "items": [
-              
-            ]
-          }
-        ]
-      },  {
-        "g": "4",
-        "label": "By Vendor",
-        "on": false,
-        "groups": [
-          {
-            "heading": "By Vendor",
-            "items": [
+              {
+                "title": "Cloud Infrastructure",
+                "pill": null,
+                "desc": "High-performance compute, storage and hosting",
+                "href": "/performance-cloud"
+              },
+              {
+                "title": "Backup & Disaster Recovery",
+                "pill": null,
+                "desc": "Protected workloads and rapid service recovery",
+                "href": "/cloud-disaster-recovery"
+              },
+              {
+                "title": "AI & Automation",
+                "pill": null,
+                "desc": "AI-assisted operations, security and productivity",
+                "href": "/acronis-genai"
+              },
+              {
+                "title": "Email & Collaboration",
+                "pill": null,
+                "desc": "Cloud productivity, messaging and teamwork",
+                "href": "/microsoft-365"
+              },
+              {
+                "title": "Identity & Access",
+                "pill": null,
+                "desc": "Secure identities, access policies and authentication",
+                "href": "/microsoft-entra-id"
+              },
+              {
+                "title": "Virtual Desktop & Remote Work",
+                "pill": null,
+                "desc": "Secure desktops and applications from anywhere",
+                "href": "/azure-virtual-desktop"
+              },
+              {
+                "title": "Networking & SASE",
+                "pill": null,
+                "desc": "Cloud-managed connectivity and secure access",
+                "href": "/cloud-sase"
+              },
+              {
+                "title": "Digital Trust & PKI",
+                "pill": null,
+                "desc": "Certificates, signing and trusted digital identity",
+                "href": "/digicert"
+              }
             ]
           }
         ]
@@ -1614,44 +1740,72 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Service Level Agreements",
             "items": [
               {
-                "title": "GeoTrust SSL Certificate SLA",
+                "title": "Acronis Advanced EDR SLA",
                 "pill": null,
-                "desc": "GeoTrust SSL certificate service commitments"
+                "desc": "Endpoint detection and response service commitments"
               },
               {
-                "title": "eMudhra SSL Certificate SLA",
+                "title": "Acronis Advanced MDR SLA",
                 "pill": null,
-                "desc": "eMudhra SSL certificate service commitments"
+                "desc": "Managed detection and response service commitments"
               },
               {
-                "title": "DigiCert SSL Certificate SLA",
+                "title": "Acronis Advanced XDR SLA",
                 "pill": null,
-                "desc": "DigiCert SSL certificate service commitments"
+                "desc": "Extended detection and response service commitments"
               },
               {
-                "title": "Sectigo SSL Certificate SLA",
+                "title": "Acronis Backup Cloud SLA",
                 "pill": null,
-                "desc": "Sectigo SSL certificate service commitments"
+                "desc": "Cloud backup service commitments"
               },
               {
-                "title": "Thawte SSL Certificate SLA",
+                "title": "Acronis Disaster Recovery (DR) SLA",
                 "pill": null,
-                "desc": "Thawte SSL certificate service commitments"
+                "desc": "Disaster recovery service commitments",
+                "href": "/acronis-disaster-recovery-dr-sla"
               },
               {
-                "title": "RapidSSL Certificate SLA",
+                "title": "Acronis Remote Monitoring and Management SLA",
                 "pill": null,
-                "desc": "RapidSSL certificate service commitments"
+                "desc": "Remote monitoring and management commitments",
+                "href": "/acronis-remote-monitoring-management-rmm-sla"
               },
               {
-                "title": "SMB Cloud SLA",
+                "title": "Email Backup for Microsoft 365 SLA",
                 "pill": null,
-                "desc": "SMB Cloud service-level information"
+                "desc": "Microsoft 365 email backup commitments",
+                "href": "/email-backup-for-microsoft-365-sla"
               },
               {
-                "title": "Acronis Cyber Frame SLA",
+                "title": "File Cloud SLA",
                 "pill": null,
-                "desc": "Cloud infrastructure service-level information"
+                "desc": "Cloud file service commitments",
+                "href": "/file-cloud-sla"
+              },
+              {
+                "title": "Performance Cloud SLA",
+                "pill": null,
+                "desc": "Performance cloud service commitments",
+                "href": "/performance-cloud-sla"
+              },
+              {
+                "title": "Tally on Cloud SLA",
+                "pill": null,
+                "desc": "Tally cloud service commitments",
+                "href": "/tally-on-cloud-sla"
+              },
+              {
+                "title": "Video Surveillance as a Service (VSaaS) SLA",
+                "pill": null,
+                "desc": "Cloud video surveillance service commitments",
+                "href": "/video-surveillance-as-a-service-vsaas-sla"
+              },
+              {
+                "title": "WhatsApp Marketing Service SLA",
+                "pill": null,
+                "desc": "WhatsApp marketing service commitments",
+                "href": "/whatsapp-marketing-service-sla"
               }
             ]
           }
