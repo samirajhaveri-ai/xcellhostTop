@@ -3370,36 +3370,44 @@ body.xh-locked{overflow:hidden}
 .tally-term-tabs button:focus-visible{outline:3px solid rgba(0,91,187,.24);outline-offset:2px}
 .tally-term-tabs button.is-active{color:var(--blue);font-weight:600}
 .tally-term-tabs button.is-active:after{background:var(--blue)}
-.tally-plan-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;align-items:stretch}
-.tally-plan-card{display:flex;flex-direction:column;min-width:0;border:1px solid #c8ced7;border-radius:5px;background:#fff;overflow:hidden;text-align:center}
+.tally-plan-grid{display:grid;grid-template-columns:1fr;gap:18px;align-items:stretch}
+.tally-plan-card{display:grid;grid-template-columns:220px minmax(0,1fr) 170px;min-width:0;border:1px solid #d3dce8;border-radius:14px;background:#fff;overflow:hidden;text-align:center;box-shadow:0 8px 24px rgba(16,43,79,.06);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+.tally-plan-card:hover{border-color:#9fc3ef;box-shadow:0 14px 32px rgba(16,78,155,.12);transform:translateY(-2px)}
+.tally-plan-card .tally-plan-band{background:linear-gradient(135deg,#edf6ff,#e5f0ff)}
+.tally-plan-card:nth-child(4n+2) .tally-plan-band{background:linear-gradient(135deg,#f4f0ff,#eee8ff)}
+.tally-plan-card:nth-child(4n+3) .tally-plan-band{background:linear-gradient(135deg,#ebfaf1,#e2f6ea)}
+.tally-plan-card:nth-child(4n+4) .tally-plan-band{background:linear-gradient(135deg,#fff3e8,#ffebd8)}
 .tally-plan-card.tally-plan-featured{border-color:#70afe9;box-shadow:0 10px 28px rgba(0,91,187,.1)}
-.tally-plan-band{padding:12px 10px;background:#edf6ff;color:var(--blue);font:650 12px/1.2 'Poppins',sans-serif;letter-spacing:.035em;text-transform:uppercase}
+.tally-plan-band{grid-column:1;grid-row:1;padding:12px 10px;background:#edf6ff;color:var(--blue);font:650 12px/1.2 'Poppins',sans-serif;letter-spacing:.035em;text-transform:uppercase}
 .tally-plan-card:nth-child(4n+2) .tally-plan-band{background:#f3efff;color:#7040c4}
 .tally-plan-card:nth-child(4n+3) .tally-plan-band{background:#eaf8ef;color:#168f46}
 .tally-plan-card:nth-child(4n+4) .tally-plan-band{background:#fff1e5;color:#e66b00}
-.tally-plan-main{display:flex;flex-direction:column;align-items:center;padding:27px 20px 24px}
-.tally-plan-name{display:flex;align-items:center;justify-content:center;gap:11px;min-height:52px;text-align:left}
+.tally-plan-main{grid-column:1;grid-row:2;display:flex;flex-direction:column;align-items:center;padding:12px 18px 14px;border-right:1px solid #e0e6ee;background:linear-gradient(180deg,#fff 0%,#fbfdff 100%)}
+.tally-plan-name{display:flex;align-items:center;justify-content:flex-start;gap:9px;width:100%;min-height:40px;text-align:left}
 .tally-plan-name>span{display:grid;place-items:center;width:42px;height:42px;border-radius:9px;background:var(--blue);color:#fff;font-size:18px;font-weight:700}
 .tally-plan-card:nth-child(4n+2) .tally-plan-name>span{background:#7040c4}
 .tally-plan-card:nth-child(4n+3) .tally-plan-name>span{background:#70b927}
 .tally-plan-card:nth-child(4n+4) .tally-plan-name>span{background:#ff870e}
 .tally-plan-name b{display:block;color:#080d2c;font:600 18px/1.25 'Poppins',sans-serif}
 .tally-plan-name small{display:block;margin-top:2px;color:var(--blue);font:550 13px/1.3 'Poppins',sans-serif}
-.tally-plan-main>p{margin:21px 0 7px;color:#111827;font-size:12px}
-.tally-plan-main>strong{min-height:54px;color:#080d2c;font:650 clamp(22px,1.8vw,27px)/1.15 'Poppins',sans-serif;letter-spacing:-.025em}
-.tally-plan-main>small{display:block;margin:3px 0 18px;color:#6b7280;font-size:10px}
-.tally-plan-main>a{display:block;width:100%;padding:13px 10px;border:1px solid var(--blue);border-radius:4px;background:var(--blue);color:#fff;text-decoration:none;text-transform:uppercase;font:600 13px/1.2 'Poppins',sans-serif;transition:background .2s ease,border-color .2s ease,transform .2s ease}
-.tally-plan-main>a:hover{background:var(--navy);border-color:var(--navy);transform:translateY(-1px)}
-.tally-plan-main>a:focus-visible{outline:3px solid rgba(0,91,187,.24);outline-offset:3px}
-.tally-plan-specs{display:flex;flex-direction:column;flex:1;margin:0;text-align:left}
-.tally-plan-specs>div{position:relative;display:grid;grid-template-columns:1fr auto;gap:8px;align-items:start;min-height:60px;padding:13px 15px 13px 40px;background:#f5f6f8;color:#111827}
-.tally-plan-specs>div:nth-child(even){background:#fff}
-.tally-plan-specs>div:before{content:'✓';position:absolute;left:16px;top:13px;color:#00a94f;font-size:17px;font-weight:700}
-.tally-plan-specs dt{font:500 11px/1.4 'Poppins',sans-serif}
-.tally-plan-specs dd{margin:0;color:#080d2c;text-align:right;font:650 11px/1.4 'Poppins',sans-serif}
+.tally-plan-main>p{margin:7px 0 3px;color:#111827;font-size:11px}
+.tally-plan-main>strong{min-height:38px;color:#080d2c;font:650 clamp(21px,1.8vw,25px)/1.08 'Poppins',sans-serif;letter-spacing:-.025em}
+.tally-plan-main>small{display:block;margin:2px 0 4px;color:#6b7280;font-size:9px}
+.tally-plan-action{position:relative;grid-column:3;grid-row:1 / span 2;align-self:center;justify-self:center;display:block;width:142px;padding:11px 10px;border:0;border-radius:9px;background:linear-gradient(135deg,#1670e8,#0b55c7);color:#fff;text-decoration:none;text-transform:uppercase;font:650 13px/1.2 'Poppins',sans-serif;box-shadow:0 7px 16px rgba(21,101,216,.24);transition:background .2s ease,box-shadow .2s ease,transform .2s ease}
+.tally-plan-action::before{position:absolute;top:-90px;bottom:-90px;left:-36px;width:1px;background:#e0e6ee;content:''}
+.tally-plan-action:hover{background:linear-gradient(135deg,#0b55c7,#083d98);box-shadow:0 10px 20px rgba(21,101,216,.3);transform:translateY(-2px)}
+.tally-plan-action:focus-visible{outline:3px solid rgba(0,91,187,.24);outline-offset:3px}
+.tally-plan-specs{grid-column:2;grid-row:1 / span 2;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-content:stretch;margin:0;text-align:left;border-left:0}
+.tally-plan-specs>div{position:relative;display:grid;grid-template-columns:1fr;gap:3px;align-content:center;justify-items:center;min-height:46px;padding:6px 10px;background:#f5f6f8;color:#111827;text-align:center}
+.tally-plan-specs>div:nth-child(4n+2),.tally-plan-specs>div:nth-child(4n+4){background:#fff}
+.tally-plan-specs>div:nth-child(4n+1),.tally-plan-specs>div:nth-child(4n+3){background:#f5f6f8}
+.tally-plan-specs>div:nth-child(4n+2),.tally-plan-specs>div:nth-child(4n+4){border-left:1px solid #e4e8ee}
+.tally-plan-specs>div:before{display:none}
+.tally-plan-specs dt{font:500 11px/1.35 'Poppins',sans-serif}
+.tally-plan-specs dd{margin:0;color:#080d2c;text-align:center;font:650 11px/1.35 'Poppins',sans-serif}
 
 @media(max-width:1050px){
-  .tally-plan-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tally-plan-specs{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 @media(max-width:700px){
   .tally-pricing{margin:34px 0 12px}
@@ -3408,9 +3416,12 @@ body.xh-locked{overflow:hidden}
   .tally-price-heading h2{font-size:clamp(29px,8vw,37px)}
   .tally-term-tabs{overflow-x:auto;grid-template-columns:repeat(4,minmax(110px,1fr));margin:0 0 28px}
   .tally-term-tabs button{min-height:58px;padding-right:8px;padding-left:8px;font-size:14px;white-space:nowrap}
-  .tally-plan-grid{grid-template-columns:1fr;gap:16px}
+  .tally-plan-card{display:flex;flex-direction:column}
+  .tally-plan-action::before{display:none}
+  .tally-plan-grid{gap:16px}
   .tally-plan-main{padding:24px 20px 22px}
   .tally-plan-main>strong{font-size:27px}
+  .tally-plan-specs{display:flex;flex-direction:column}
   .tally-plan-specs>div{min-height:55px}
 }
 
