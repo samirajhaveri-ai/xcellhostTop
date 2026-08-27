@@ -188,10 +188,13 @@ export class ProductPage {
     () => this.view()?.name === 'Remote Monitoring & Mgmt (RMM)'
   );
 
-  /** Product names longer than two words use the compact single-line hero treatment. */
-  readonly compactHeroTitle = computed(
-    () => (this.view()?.name.trim().split(/\s+/).filter(Boolean).length ?? 0) > 2
-  );
+  /** Long hero headings use the compact single-line treatment as one whole title. */
+  readonly compactHeroTitle = computed(() => {
+    const v = this.view();
+    if (!v) return false;
+    const title = `Xcell${v.brandSuffix} | ${v.name}`;
+    return title.length > 34 || title.trim().split(/\s+/).filter(Boolean).length > 5;
+  });
 
   readonly platforms = computed(() =>
     (this.view()?.platforms ?? []).map((name) => ({ name, icon: PLATFORM_ICONS[name] ?? '🔹' }))

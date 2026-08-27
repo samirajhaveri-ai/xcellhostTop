@@ -231,7 +231,6 @@
                     <p>Plan for {{ activeTallyTerm().label }}</p>
                     <strong>Pricing on request</strong>
                     <small>Configuration-based quote</small>
-                    <a href="#" (click)="selectTallyPlan(plan, $event)">Select plan</a>
                   </div>
                   <dl class="tally-plan-specs">
                     <div><dt>Server Type</dt><dd>{{ plan.serverType }}</dd></div>
@@ -247,6 +246,7 @@
                     <div><dt>Firewall HA</dt><dd>Fortinet</dd></div>
                     <div><dt>Support</dt><dd>24×7</dd></div>
                   </dl>
+                  <a class="tally-plan-action" href="#" (click)="selectTallyPlan(plan, $event)">Select plan</a>
                 </article>
               }
             </div>

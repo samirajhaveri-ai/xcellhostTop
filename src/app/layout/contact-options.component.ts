@@ -15,13 +15,8 @@ import { LeadService } from '../core/lead.service';
       <div class="wrap newsletter-inner">
         <div class="newsletter-copy">
           <h2 id="newsletter-title">
-            Stay ahead with
-            <span>infrastructure insights</span>
+            Get the latest updates on new features, tutorials, and cloud hosting tips.
           </h2>
-          <p>
-            Receive expert hosting strategies, cloud trends, and product updates trusted by
-            5,000+ businesses.
-          </p>
         </div>
 
         <form class="newsletter-form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
@@ -53,20 +48,25 @@ import { LeadService } from '../core/lead.service';
   styles: `
     .newsletter {
       position: relative;
-      padding: 58px 0;
+      padding: 0 24px;
       overflow: hidden;
-      background:
-        radial-gradient(circle at 82% 20%, rgba(21, 101, 216, 0.5), transparent 32%),
-        linear-gradient(105deg, var(--navy), var(--navy-2));
+      background: linear-gradient(to bottom, #f4f8f7 0 50%, #3b63e8 50% 100%);
       color: #fff;
     }
 
     .newsletter-inner {
       position: relative;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(420px, 520px);
-      gap: 30px 72px;
-      align-items: center;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      align-items: stretch;
+      width: min(850px, 100%);
+      max-width: none;
+      margin-inline: auto;
+      padding: 32px;
+      border-radius: 6px;
+      background: #32456d;
+      box-shadow: 0 18px 38px rgba(105, 165, 255, 0.22);
     }
 
     .newsletter-copy {
@@ -75,24 +75,12 @@ import { LeadService } from '../core/lead.service';
     }
 
     .newsletter-copy h2 {
-      max-width: 550px;
-      margin: 0 0 14px;
+      max-width: 1120px;
+      margin: 0 auto;
       color: #fff;
-      font: 700 clamp(28px, 3vw, 40px) / 1.12 var(--disp);
-      letter-spacing: -0.025em;
-    }
-
-    .newsletter-copy h2 span {
-      display: block;
-      color: #7fb2ff;
-    }
-
-    .newsletter-copy p {
-      max-width: 620px;
-      margin: 0;
-      color: #c7d5ec;
-      font-size: 16px;
-      line-height: 1.6;
+      text-align: center;
+      font: 800 clamp(19px, 1.45vw, 1px) / 1.28 var(--disp);
+      letter-spacing: 0;
     }
 
     .newsletter-form {
@@ -100,8 +88,8 @@ import { LeadService } from '../core/lead.service';
       z-index: 1;
       display: grid;
       min-height: 52px;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 10px;
+      grid-template-columns: minmax(0, 1fr) 124px;
+      gap: 8px;
       align-items: center;
     }
 
@@ -109,11 +97,11 @@ import { LeadService } from '../core/lead.service';
       min-width: 0;
       min-height: 52px;
       padding: 0 18px;
-      border: 1px solid rgba(255, 255, 255, 0.34);
+      border: 1px solid #344257;
       border-radius: 8px;
       outline: 0;
-      background: #fff;
-      color: var(--ink);
+      background: #e9eaeb;
+      
       font: 500 15px var(--body);
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
@@ -124,18 +112,18 @@ import { LeadService } from '../core/lead.service';
     }
 
     .newsletter-form input::placeholder {
-      color: #7c8798;
+      color: #212d3f;
       opacity: 1;
     }
 
     .newsletter-form button {
-      min-width: 164px;
-      min-height: 52px;
+      min-width: 0;
+      min-height: 50px;
       padding: 13px 22px;
-      border: 0;
+      border: 0; 
       border-radius: 8px;
-      background: var(--orange);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+      background: #3b63e8;
+      box-shadow: none;
       color: #fff;
       cursor: pointer;
       font: 700 15px var(--body);
@@ -144,8 +132,8 @@ import { LeadService } from '../core/lead.service';
 
     .newsletter-form button:hover:not(:disabled),
     .newsletter-form button:focus-visible {
-      background: #e97a08;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+      background: #3b63e8;
+      box-shadow: 0 10px 24px rgba(8, 122, 98, 0.25);
       transform: translateY(-2px);
       outline: none;
     }
@@ -158,9 +146,9 @@ import { LeadService } from '../core/lead.service';
     .form-message {
       position: absolute;
       right: 24px;
-      bottom: -25px;
+      bottom: 10px;
       margin: 0;
-      color: #ffb4b4;
+      color: #fca5a5;
       font-size: 13px;
     }
 
@@ -169,7 +157,7 @@ import { LeadService } from '../core/lead.service';
     }
 
     .form-message.success {
-      color: #86f1c0;
+      color: #86efac;
     }
 
     .sr-only {
@@ -187,32 +175,31 @@ import { LeadService } from '../core/lead.service';
     @media (max-width: 960px) {
       .newsletter-inner {
         grid-template-columns: 1fr;
-        gap: 34px;
+        gap: 14px;
       }
 
       .newsletter-form {
         width: 100%;
-        max-width: 620px;
       }
 
       .form-message {
         right: auto;
-        bottom: -26px;
+        bottom: 10px;
         left: 24px;
       }
     }
 
     @media (max-width: 600px) {
       .newsletter {
-        padding: 44px 0 54px;
+        padding: 0 16px;
+      }
+
+      .newsletter-inner {
+        padding: 24px 18px 42px;
       }
 
       .newsletter-copy h2 {
-        font-size: 31px;
-      }
-
-      .newsletter-copy p {
-        font-size: 15px;
+        font-size: 18px;
       }
 
       .newsletter-form {
@@ -228,10 +215,9 @@ import { LeadService } from '../core/lead.service';
       }
 
       .form-message {
-        bottom: -32px;
+        bottom: 14px;
       }
     }
-
     @media (prefers-reduced-motion: reduce) {
       .newsletter-form button {
         transition: none;
