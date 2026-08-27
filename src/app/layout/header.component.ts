@@ -323,6 +323,14 @@ const MENU_DESCRIPTIONS: Record<string, string> = {
  * matching page is built; until then the link renders inert.
  */
 const CONTENT_LINKS: Record<string, string> = {
+  'Acronis Advanced EDR SLA': '/acronis-advanced-edr-sla',
+  'Acronis Advanced MDR SLA': '/acronis-advanced-mdr-sla',
+  'Acronis Advanced XDR SLA': '/acronis-advanced-xdr-sla',
+  'Acronis Backup Cloud SLA': '/acronis-backup-cloud-sla',
+  'Acronis Disaster Recovery (DR) SLA': '/acronis-disaster-recovery-dr-sla',
+  'Acronis Remote Monitoring and Management SLA': '/acronis-remote-monitoring-management-rmm-sla',
+  'Email Backup for Microsoft 365 SLA': '/email-backup-for-microsoft-365-sla',
+  'File Cloud SLA': '/file-cloud-sla',
   'SMB Catalog · Enterprise Catalog': 'https://flipbooks.officeinfra.com/books/SMB-Cloud-Services/',
   'Acronis Cyber Protect Cloud': 'https://flipbooks.officeinfra.com/books/Acronis-Cyber-Protect-Cloud-compressed/',
   'Microsoft 365 · Tally on Cloud': 'https://flipbooks.officeinfra.com/books/Microsoft-365-Platfrom/',
@@ -359,14 +367,6 @@ const CONTENT_LINKS: Record<string, string> = {
   'Privacy Policy': '/company/privacy-policy',
   'Terms of Services': '/company/terms-of-service',
   'Refund Policy': '/company/refund-policy',
-  'GeoTrust SSL Certificate SLA': 'https://supportdesk.xcellhost.cloud/portal/en/kb/articles/geotrust-ssl-certificate-sla',
-  'eMudhra SSL Certificate SLA': 'https://supportdesk.xcellhost.cloud/portal/en/kb/articles/emudhra-ssl-certificate-sla',
-  'DigiCert SSL Certificate SLA': 'https://supportdesk.xcellhost.cloud/portal/en/kb/articles/digicert-ssl-certificate-sla',
-  'Sectigo SSL Certificate SLA': 'https://supportdesk.xcellhost.cloud/portal/en/kb/articles/sectigo-ssl-certificate-sla',
-  'Thawte SSL Certificate SLA': 'https://supportdesk.xcellhost.cloud/portal/en/kb/articles/thawte-ssl-certificate-sla-4-8-2026',
-  'RapidSSL Certificate SLA': 'https://supportdesk.xcellhost.cloud/portal/en/kb/articles/rapidssl-certificate-sla',
-  'SMB Cloud SLA': 'https://supportdesk.xcellhost.cloud/portal/en/kb/cloud/smb-cloud/sla',
-  'Acronis Cyber Frame SLA': 'https://supportdesk.xcellhost.cloud/portal/en/kb/cloud/cloud-infra/sla-4',
   'Pricing': '/pricing',
 };
 
@@ -550,6 +550,7 @@ export class HeaderComponent {
    */
   private serviceLink(title: string, menu: string, explicitLink?: string): string | null {
     if (explicitLink) return explicitLink;
+    if (CONTENT_LINKS[title]) return CONTENT_LINKS[title];
     if (menu === 'Insights' || menu === 'Company') return CONTENT_LINKS[title] ?? null;
     const entry = this.catalog.findInDirectory(title);
     const slug = slugify(entry ? entry.name : title);

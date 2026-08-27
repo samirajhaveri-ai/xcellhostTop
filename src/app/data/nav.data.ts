@@ -1558,44 +1558,65 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Service Level Agreements",
             "items": [
               {
-                "title": "GeoTrust SSL Certificate SLA",
+                "title": "Acronis Advanced EDR SLA",
                 "pill": null,
-                "desc": "GeoTrust SSL certificate service commitments"
+                "desc": "Endpoint detection and response service commitments"
               },
               {
-                "title": "eMudhra SSL Certificate SLA",
+                "title": "Acronis Advanced MDR SLA",
                 "pill": null,
-                "desc": "eMudhra SSL certificate service commitments"
+                "desc": "Managed detection and response service commitments"
               },
               {
-                "title": "DigiCert SSL Certificate SLA",
+                "title": "Acronis Advanced XDR SLA",
                 "pill": null,
-                "desc": "DigiCert SSL certificate service commitments"
+                "desc": "Extended detection and response service commitments"
               },
               {
-                "title": "Sectigo SSL Certificate SLA",
+                "title": "Acronis Backup Cloud SLA",
                 "pill": null,
-                "desc": "Sectigo SSL certificate service commitments"
+                "desc": "Cloud backup service commitments"
               },
               {
-                "title": "Thawte SSL Certificate SLA",
+                "title": "Acronis Disaster Recovery (DR) SLA",
                 "pill": null,
-                "desc": "Thawte SSL certificate service commitments"
+                "desc": "Disaster recovery service commitments",
+                "href": "/acronis-disaster-recovery-dr-sla"
               },
               {
-                "title": "RapidSSL Certificate SLA",
+                "title": "Acronis Remote Monitoring and Management SLA",
                 "pill": null,
-                "desc": "RapidSSL certificate service commitments"
+                "desc": "Remote monitoring and management commitments"
               },
               {
-                "title": "SMB Cloud SLA",
+                "title": "Email Backup for Microsoft 365 SLA",
                 "pill": null,
-                "desc": "SMB Cloud service-level information"
+                "desc": "Microsoft 365 email backup commitments"
               },
               {
-                "title": "Acronis Cyber Frame SLA",
+                "title": "File Cloud SLA",
                 "pill": null,
-                "desc": "Cloud infrastructure service-level information"
+                "desc": "Cloud file service commitments"
+              },
+              {
+                "title": "Performance Cloud SLA",
+                "pill": null,
+                "desc": "Performance cloud service commitments"
+              },
+              {
+                "title": "Tally on Cloud SLA",
+                "pill": null,
+                "desc": "Tally cloud service commitments"
+              },
+              {
+                "title": "Video Surveillance as a Service (VSaaS) SLA",
+                "pill": null,
+                "desc": "Cloud video surveillance service commitments"
+              },
+              {
+                "title": "WhatsApp Marketing Service SLA",
+                "pill": null,
+                "desc": "WhatsApp marketing service commitments"
               }
             ]
           }
