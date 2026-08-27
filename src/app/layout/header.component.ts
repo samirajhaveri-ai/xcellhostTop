@@ -15,7 +15,14 @@ import { OverlayService } from '../core/overlay.service';
 import { MEGA_MENU } from '../data/nav.data';
 
 /** Pills the original rendered in the blue variant (`class="pill b"`). */
-const BLUE_PILLS = new Set(['1-yr free ext.', 'Soon']);
+const BLUE_PILLS = new Set([
+  '1-yr free ext.',
+  'Soon',
+  'SOC PLATFORM',
+  'ENDPOINT',
+  'DATA LOSS',
+  'EMAIL',
+]);
 
 function menuPillClass(pill: string | null): string {
   if (!pill) return '';
