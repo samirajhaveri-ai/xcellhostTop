@@ -313,6 +313,7 @@
   .pp-sec{font:700 15px/1.35 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:38px 0 16px}
   .pp-sec:first-child{margin-top:0}
   .pp-ov{font-size:16.5px;color:var(--ink);line-height:1.75;max-width:75ch}
+  #ppage #ppOv{max-width:100%}
   .pp-feats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
   .pp-feats.pp-feats-four{grid-template-columns:repeat(4,minmax(0,1fr))}
   .pp-feats.pp-feats-four .pp-feat{height:100%;min-width:0}
@@ -2221,6 +2222,8 @@
   @keyframes ppcursor{50%{opacity:0}}
   #ppage .pp-hpoints{margin:8px 0 18px}
   #ppage .pp-hero-l > .hero-ctas{margin-top:0}
+  #ppage .tally-hero-ctas{position:relative;z-index:4;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  #ppage .tally-hero-ctas .btn-primary{box-shadow:0 12px 30px rgba(244,128,12,.28)}
   #ppage .edr-pricing{margin:42px 0 20px;padding:0;text-align:center}
   #ppage .edr-pricing h2{margin:0;color:var(--navy);font:700 clamp(28px,3vw,42px)/1.15 var(--disp);letter-spacing:-.025em}
   #ppage .edr-pricing-tagline{margin:3px 0 18px;color:var(--ink);font:600 13px/1.4 var(--body)}
@@ -2300,6 +2303,8 @@
     #ppage .pp-hero h1{white-space:nowrap}
     #ppage .pp-tagline,#mpage .pp-tagline{font-size:16px}
     #ppage .pp-tagline.pp-tagline-reference,#ppage .pp-tagline.pp-tagline-reference + .pp-tagline-support{white-space:normal}
+    #ppage .tally-hero-ctas{display:grid;grid-template-columns:1fr;gap:10px;width:100%}
+    #ppage .tally-hero-ctas .btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:46px;margin:0}
     #ppage .edr-feature-heading{min-height:0;margin-top:34px;padding:28px 24px}
     #ppage .edr-feature-emblem{display:none}
     #ppage .edr-pricing-summary{flex-direction:column;gap:12px}

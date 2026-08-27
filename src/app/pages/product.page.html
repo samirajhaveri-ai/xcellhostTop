@@ -1,6 +1,10 @@
 @if (view(); as v) {
   <div class="ppage as-page" id="ppage" [class.edr-page]="isAdvancedEdr()">
-    <div class="pp-hero" [class.sitelock-hero]="v.name === 'Web Security (SiteLock)'">
+    <div
+      class="pp-hero"
+      [class.sitelock-hero]="v.name === 'Web Security (SiteLock)'"
+      [class.tally-product-hero]="v.name === 'Tally on Cloud'"
+    >
       <div class="pph-map" aria-hidden="true" [innerHTML]="worldMap"></div>
       <span class="pph-grid" aria-hidden="true"></span>
       <span class="pph-aur pph-a1" aria-hidden="true"></span>
@@ -94,14 +98,14 @@
               </div>
             }
 
-            <div class="hero-ctas">
+            <div class="hero-ctas" [class.tally-hero-ctas]="v.name === 'Tally on Cloud'">
               <a class="btn ppd-info" [href]="v.infosheetUrl" id="ppInfo" target="_blank" rel="noopener noreferrer"
                 ><span class="ppd-ic">⬇</span> Infosheet</a
               >
               <a class="btn ppd-pres" href="#" id="ppPres" (click)="requestDoc('presentation', $event)"
                 ><span class="ppd-ic">📖</span> Presentation</a
               >
-              <a class="btn btn-primary" href="#" id="ppEnquiry" (click)="openCallback($event)">Inquiry Now</a>
+              <a class="btn btn-primary" href="#" id="ppEnquiry" (click)="openCallback($event)">Let's Talk</a>
             </div>
           </div>
         </div>

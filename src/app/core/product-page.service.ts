@@ -12,6 +12,7 @@ import {
 import { CATEGORY_FAQS, CATEGORY_FEATURES, FEATURE_ICONS } from '../data/services.data';
 import {
   DEEP_CONTENT,
+  PRODUCT_BRAND_LINES,
   PRODUCT_INFOSHEETS,
   PRODUCT_VIDEOS,
   RICH_PRODUCTS,
@@ -667,7 +668,12 @@ export class ProductPageService {
       title: benefit[1],
       body: benefit[2],
     }));
-    const brandSuffix = resolveBrandSuffix(name, cat, dirEntry?.group ?? req.crumb ?? '', product?.brandLine);
+    const brandSuffix = resolveBrandSuffix(
+      name,
+      cat,
+      dirEntry?.group ?? req.crumb ?? '',
+      PRODUCT_BRAND_LINES[name] ?? product?.brandLine
+    );
 
     return {
       name,
