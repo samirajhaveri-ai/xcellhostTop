@@ -1,0 +1,118 @@
+<main class="sla-page">
+  <section class="sla-hero">
+    <div class="sla-orb sla-orb-one"></div><div class="sla-orb sla-orb-two"></div>
+    <div class="wrap sla-hero-inner">
+      <div class="sla-breadcrumb"><a routerLink="/">Home</a><span>›</span><span>Service Level Agreements</span></div>
+      <span class="sla-kicker">Service Level Agreement</span>
+      <h1>Acronis Advanced <span>EDR SLA</span></h1>
+      <p>Clear service commitments for endpoint protection, threat detection, incident response and security support.</p>
+      <div class="sla-hero-metrics">
+        <div><strong>99.9%</strong><span>Console availability</span></div>
+        <div><strong>15 min</strong><span>Critical response</span></div>
+        <div><strong>24×7</strong><span>Emergency support</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap sla-layout">
+    <aside class="sla-nav" aria-label="SLA sections">
+      <strong>On this page</strong>
+      @for (topic of pageTopics; track topic[0]) {
+        <a [href]="'#' + topic[0]" (click)="scrollToSection(topic[0], $event)">{{ topic[1] }}</a>
+      }
+    </aside>
+
+    <article class="sla-content">
+      <section id="purpose" class="sla-section">
+        <span class="sla-number">01</span><div><h2>Purpose</h2>
+        <p>This Service Level Agreement defines the service commitments, support standards, incident response, security monitoring and customer responsibilities for the Acronis Advanced EDR Security service provided by XcellHost Cloud Services Pvt. Ltd.</p>
+        <p>Acronis Advanced EDR (Endpoint Detection and Response) delivers AI-powered threat detection, endpoint protection, behavioral analysis, incident investigation, automated response and ransomware protection to help organizations defend against advanced cyber threats.</p></div>
+      </section>
+
+      <section id="service-description" class="sla-section">
+        <span class="sla-number">02</span><div><h2>Service Description</h2><p>The service includes:</p>
+        <ul class="sla-check-grid">@for (item of serviceFeatures; track item) { <li>{{ item }}</li> }</ul></div>
+      </section>
+
+      <section id="service-availability" class="sla-section">
+        <span class="sla-number">03</span><div><h2>Service Availability</h2>
+        <div class="sla-table-wrap"><table><thead><tr><th>Service</th><th>Commitment</th></tr></thead><tbody>
+          @for (row of availability; track row[0]) { <tr><td>{{ row[0] }}</td><td><strong>{{ row[1] }}</strong></td></tr> }
+        </tbody></table></div>
+        <div class="sla-notice"><strong>Scheduled maintenance</strong><p>Minimum 48 hours’ advance notice. Maintenance is performed during planned windows and excluded from uptime calculations.</p></div></div>
+      </section>
+
+      <section id="support-hours" class="sla-section">
+        <span class="sla-number">04</span><div><h2>Support Hours</h2>
+        <p>24×7 emergency support is available for active malware infection, ransomware attacks, security breaches, endpoint compromise, critical security incidents, EDR platform failure and threat containment assistance.</p></div>
+      </section>
+
+      <section id="incident-priority-matrix" class="sla-section">
+        <span class="sla-number">05</span><div><h2>Incident Priority Matrix</h2>
+        <div class="sla-table-wrap"><table class="sla-priority"><thead><tr><th>Priority</th><th>Description</th><th>Response</th><th>Resolution target</th></tr></thead><tbody>
+          @for (row of incidentPriorities; track row[0]) { <tr><td><strong>{{ row[0] }}</strong></td><td>{{ row[1] }}</td><td>{{ row[2] }}</td><td>{{ row[3] }}</td></tr> }
+        </tbody></table></div></div>
+      </section>
+
+      <section id="threat-monitoring-detection" class="sla-section"><span class="sla-number">06</span><div><h2>Threat Monitoring & Detection</h2>
+        <p>The platform continuously monitors:</p><ul class="sla-check-grid">@for (item of monitoring; track item) { <li>{{ item }}</li> }</ul>
+        <p class="sla-footnote">Security events are analyzed using AI-driven behavioral analytics and threat intelligence.</p></div></section>
+
+      <section id="incident-response" class="sla-section"><span class="sla-number">07</span><div><h2>Incident Response</h2>
+        <p>For detected threats, XcellHost provides assistance with:</p><ul class="sla-check-grid">@for (item of incidentResponse; track item) { <li>{{ item }}</li> }</ul>
+        <p class="sla-footnote">Complete remediation depends on the customer’s environment and cooperation.</p></div></section>
+
+      <section id="security-features" class="sla-section"><span class="sla-number">08</span><div><h2>Security Features</h2>
+        <ul class="sla-check-grid">@for (item of securityFeatures; track item) { <li>{{ item }}</li> }</ul></div></section>
+
+      <section id="performance-commitment" class="sla-section"><span class="sla-number">09</span><div><h2>Performance Commitment</h2>
+        <p>The EDR platform is designed to provide:</p><ul class="sla-check-grid">@for (item of performance; track item) { <li>{{ item }}</li> }</ul>
+        <p class="sla-footnote">Performance may vary depending on endpoint hardware, operating system, network connectivity and workload.</p></div></section>
+
+      <section id="customer-responsibilities" class="sla-section"><span class="sla-number">10</span><div><h2>Customer Responsibilities</h2>
+        <div class="sla-responsibility-card"><ul>@for (item of customerResponsibilities; track item) { <li>{{ item }}</li> }</ul></div></div></section>
+
+      <section id="xcellhost-responsibilities" class="sla-section"><span class="sla-number">11</span><div><h2>XcellHost Responsibilities</h2>
+        <div class="sla-responsibility-card sla-responsibility-card-accent"><ul>@for (item of xcellhostResponsibilities; track item) { <li>{{ item }}</li> }</ul></div></div></section>
+
+      <section id="service-exclusions" class="sla-section"><span class="sla-number">12</span><div><h2>Service Exclusions</h2>
+        <p>This SLA does not cover:</p><ul class="sla-exclusion-grid">@for (item of exclusions; track item) { <li>{{ item }}</li> }</ul></div></section>
+
+      <section id="security-maintenance" class="sla-section"><span class="sla-number">13</span><div><h2>Security Maintenance</h2>
+        <p>Scheduled maintenance may include:</p><ul class="sla-check-grid">@for (item of maintenance; track item) { <li>{{ item }}</li> }</ul>
+        <div class="sla-notice"><strong>48-hour notice</strong><p>Customers will receive at least 48 hours’ advance notice for planned maintenance affecting service availability.</p></div></div></section>
+
+      <section id="reporting" class="sla-section"><span class="sla-number">14</span><div><h2>Reporting</h2>
+        <p>Available reports include:</p><ul class="sla-check-grid">@for (item of reports; track item) { <li>{{ item }}</li> }</ul></div></section>
+
+      <section id="escalation-matrix" class="sla-section"><span class="sla-number">15</span><div><h2>Escalation Matrix</h2>
+        <div class="sla-escalation">@for (item of escalation; track item.level) { <article><span>{{ item.level }}</span><h3>{{ item.team }}</h3><ul>@for (action of item.actions; track action) { <li>{{ action }}</li> }</ul></article> }</div></div></section>
+
+      <section id="service-credits" class="sla-section"><span class="sla-number">16</span><div><h2>Service Credits</h2>
+        <p>If Security Management Console availability falls below the committed 99.9%, customers may be eligible for service credits. Scheduled maintenance, customer-side failures, internet connectivity issues, force majeure events and third-party outages are excluded.</p>
+        <div class="sla-table-wrap"><table><thead><tr><th>Monthly availability</th><th>Service credit</th></tr></thead><tbody>
+          @for (row of serviceCredits; track row[0]) { <tr><td>{{ row[0] }}</td><td><strong>{{ row[1] }}</strong></td></tr> }
+        </tbody></table></div><p class="sla-footnote">Service credits are applied to future invoices and are not redeemable for cash.</p></div></section>
+
+      <section id="contact-information" class="sla-section"><span class="sla-number">17</span><div><h2>Contact Information</h2>
+        <div class="sla-contact-card"><div><span>Company</span><strong>XcellHost Cloud Services Pvt. Ltd.</strong></div>
+        <div><span>Support</span><a href="mailto:support@xcellhost.cloud">support@xcellhost.cloud</a></div>
+        <div><span>Sales</span><a href="mailto:sales@xcellhost.cloud">sales@xcellhost.cloud</a></div>
+        <div><span>Support portal</span><a href="https://supportdesk.xcellhost.cloud/" target="_blank" rel="noopener">supportdesk.xcellhost.cloud</a></div>
+        <div><span>Emergency support</span><strong>+91-22-67111555 · +91-8657032540</strong></div></div></div></section>
+
+      <section id="sla-review" class="sla-section"><span class="sla-number">18</span><div><h2>SLA Review</h2>
+        <p>This SLA is reviewed periodically and may be updated to reflect changes in technology, security practices or service offerings. Customers will be notified of any material changes.</p></div></section>
+
+      <section id="sla-summary" class="sla-summary"><span class="sla-kicker">At a glance</span><h2>SLA Summary</h2>
+        <div class="sla-summary-grid">@for (row of summary; track row[0]) { <div><span>{{ row[0] }}</span><strong>{{ row[1] }}</strong></div> }</div></section>
+
+      <section class="sla-notes"><h2>Important Notes</h2>
+        <p>This SLA covers the management, monitoring and support of the Acronis Advanced EDR platform. It does not guarantee prevention of every cyberattack or malware incident.</p>
+        <p>If XcellHost provides this as a Managed Detection and Response (MDR) service, additional SLAs can be defined for continuous SOC monitoring, proactive threat hunting and incident remediation activities.</p>
+        <p>Customer cooperation is required for endpoint deployment, incident investigation and remediation to achieve the stated response and recovery objectives.</p></section>
+    </article>
+  </div>
+
+  <section class="sla-cta"><div class="wrap"><div><span>Need help with this SLA?</span><h2>Talk to our security specialists</h2></div><a class="btn btn-primary" routerLink="/contact">Contact XcellHost <span aria-hidden="true">→</span></a></div></section>
+</main>

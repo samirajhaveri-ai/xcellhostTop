@@ -330,6 +330,14 @@ const MENU_DESCRIPTIONS: Record<string, string> = {
  * matching page is built; until then the link renders inert.
  */
 const CONTENT_LINKS: Record<string, string> = {
+  'Acronis Advanced EDR SLA': '/acronis-advanced-edr-sla',
+  'Acronis Advanced MDR SLA': '/acronis-advanced-mdr-sla',
+  'Acronis Advanced XDR SLA': '/acronis-advanced-xdr-sla',
+  'Acronis Backup Cloud SLA': '/acronis-backup-cloud-sla',
+  'Acronis Disaster Recovery (DR) SLA': '/acronis-disaster-recovery-dr-sla',
+  'Acronis Remote Monitoring and Management SLA': '/acronis-remote-monitoring-management-rmm-sla',
+  'Email Backup for Microsoft 365 SLA': '/email-backup-for-microsoft-365-sla',
+  'File Cloud SLA': '/file-cloud-sla',
   'SMB Catalog · Enterprise Catalog': 'https://flipbooks.officeinfra.com/books/SMB-Cloud-Services/',
   'Acronis Cyber Protect Cloud': 'https://flipbooks.officeinfra.com/books/Acronis-Cyber-Protect-Cloud-compressed/',
   'Microsoft 365 · Tally on Cloud': 'https://flipbooks.officeinfra.com/books/Microsoft-365-Platfrom/',
@@ -366,14 +374,6 @@ const CONTENT_LINKS: Record<string, string> = {
   'Privacy Policy': '/company/privacy-policy',
   'Terms of Services': '/company/terms-of-service',
   'Refund Policy': '/company/refund-policy',
-  'GeoTrust SSL Certificate SLA': 'https://supportdesk.xcellhost.cloud/portal/en/kb/articles/geotrust-ssl-certificate-sla',
-  'eMudhra SSL Certificate SLA': 'https://supportdesk.xcellhost.cloud/portal/en/kb/articles/emudhra-ssl-certificate-sla',
-  'DigiCert SSL Certificate SLA': 'https://supportdesk.xcellhost.cloud/portal/en/kb/articles/digicert-ssl-certificate-sla',
-  'Sectigo SSL Certificate SLA': 'https://supportdesk.xcellhost.cloud/portal/en/kb/articles/sectigo-ssl-certificate-sla',
-  'Thawte SSL Certificate SLA': 'https://supportdesk.xcellhost.cloud/portal/en/kb/articles/thawte-ssl-certificate-sla-4-8-2026',
-  'RapidSSL Certificate SLA': 'https://supportdesk.xcellhost.cloud/portal/en/kb/articles/rapidssl-certificate-sla',
-  'SMB Cloud SLA': 'https://supportdesk.xcellhost.cloud/portal/en/kb/cloud/smb-cloud/sla',
-  'Acronis Cyber Frame SLA': 'https://supportdesk.xcellhost.cloud/portal/en/kb/cloud/cloud-infra/sla-4',
   'Pricing': '/pricing',
 };
 
@@ -384,6 +384,41 @@ interface NavTopVm {
   tabs: NavTabVm[];
   feature: NavFeatureVm;
   featureCards: readonly NavFeatureCardVm[];
+}
+
+/** Preferred order for the five Solutions views in the mega-menu sidebar. */
+const SOLUTION_TAB_ORDER = [
+  'By Industry',
+  'By Use Case',
+  'By Capability',
+  'By Vendors',
+  'By Technology',
+] as const;
+
+function solutionTabRank(label: string): number {
+  const rank = SOLUTION_TAB_ORDER.indexOf(label as (typeof SOLUTION_TAB_ORDER)[number]);
+  return rank === -1 ? SOLUTION_TAB_ORDER.length : rank;
+}
+
+/** SMB-first order: daily cloud services, continuity, management, then specialist security. */
+const SMB_SLA_ORDER = [
+  'Tally on Cloud SLA',
+  'Performance Cloud SLA',
+  'File Cloud SLA',
+  'Email Backup for Microsoft 365 SLA',
+  'Acronis Backup Cloud SLA',
+  'Acronis Disaster Recovery (DR) SLA',
+  'Acronis Remote Monitoring and Management SLA',
+  'WhatsApp Marketing Service SLA',
+  'Video Surveillance as a Service (VSaaS) SLA',
+  'Acronis Advanced EDR SLA',
+  'Acronis Advanced MDR SLA',
+  'Acronis Advanced XDR SLA',
+] as const;
+
+function smbSlaRank(title: string): number {
+  const rank = SMB_SLA_ORDER.indexOf(title as (typeof SMB_SLA_ORDER)[number]);
+  return rank === -1 ? SMB_SLA_ORDER.length : rank;
 }
 
 /**
@@ -416,12 +451,17 @@ export class HeaderComponent {
     megaId: `mega-${slugify(top.label)}`,
     feature: MENU_FEATURES[top.label],
     featureCards: MENU_FEATURE_CARDS[top.label] ?? [],
-    tabs: top.tabs.map((tab) => ({
+    tabs: (top.label === 'Solutions'
+      ? [...top.tabs].sort((a, b) => solutionTabRank(a.label) - solutionTabRank(b.label))
+      : top.tabs)
+      .map((tab) => ({
       g: tab.g,
       label: tab.label,
       groups: tab.groups.map((group) => ({
         heading: group.heading,
-        items: group.items.map((item) => ({
+        items: (tab.label === "SLA'S"
+          ? [...group.items].sort((a, b) => smbSlaRank(a.title) - smbSlaRank(b.title))
+          : group.items).map((item) => ({
           title: item.title,
           iconPath: menuIconPath(
             item.title,
@@ -434,7 +474,7 @@ export class HeaderComponent {
           external: this.serviceLink(item.title, top.label, item.href)?.startsWith('http') ?? false,
         })),
       })),
-    })),
+      })),
   }));
 
   /** Which top-level panel is open, if any. */
@@ -446,7 +486,15 @@ export class HeaderComponent {
   /** Active tab per top-level menu, seeded from the `on` flag in the data. */
   private readonly tabs = signal<Record<string, string>>(
     Object.fromEntries(
-      MEGA_MENU.map((top) => [top.label, (top.tabs.find((t) => t.on) ?? top.tabs[0]).g]),
+      MEGA_MENU.map((top) => {
+        const visibleTabs = top.label === 'Solutions'
+          ? [...top.tabs].sort((a, b) => solutionTabRank(a.label) - solutionTabRank(b.label))
+          : top.tabs;
+        const defaultTab = top.label === 'Solutions'
+          ? visibleTabs.find((tab) => tab.label === 'By Vendors')
+          : visibleTabs.find((tab) => tab.on);
+        return [top.label, (defaultTab ?? visibleTabs[0]).g];
+      }),
     ),
   );
 
@@ -557,6 +605,7 @@ export class HeaderComponent {
    */
   private serviceLink(title: string, menu: string, explicitLink?: string): string | null {
     if (explicitLink) return explicitLink;
+    if (CONTENT_LINKS[title]) return CONTENT_LINKS[title];
     if (menu === 'Insights' || menu === 'Company') return CONTENT_LINKS[title] ?? null;
     const entry = this.catalog.findInDirectory(title);
     const slug = slugify(entry ? entry.name : title);

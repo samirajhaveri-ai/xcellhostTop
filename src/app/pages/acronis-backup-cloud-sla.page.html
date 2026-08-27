@@ -1,0 +1,56 @@
+<main class="sla-page">
+  <section class="sla-hero"><div class="sla-orb sla-orb-one"></div><div class="sla-orb sla-orb-two"></div><div class="wrap sla-hero-inner">
+    <div class="sla-breadcrumb"><a routerLink="/">Home</a><span>›</span><span>Service Level Agreements</span></div><span class="sla-kicker">Service Level Agreement</span>
+    <h1>Acronis <span>Backup Cloud SLA</span></h1><p>Reliable backup availability, retention, recovery objectives and enterprise-grade support for business continuity.</p>
+    <div class="sla-hero-metrics"><div><strong>99.9%</strong><span>Service availability</span></div><div><strong>15 min</strong><span>Critical response</span></div><div><strong>24×7</strong><span>Backup monitoring</span></div></div>
+  </div></section>
+
+  <div class="wrap sla-layout"><aside class="sla-nav" aria-label="SLA sections"><strong>On this page</strong>@for (topic of pageTopics; track topic[0]) { <a [href]="'#' + topic[0]" (click)="scrollToSection(topic[0], $event)">{{ topic[1] }}</a> }</aside>
+  <article class="sla-content">
+    <section id="purpose" class="sla-section"><span class="sla-number">01</span><div><h2>Purpose</h2><p>This Service Level Agreement outlines the service commitments, availability, backup policies, recovery objectives, support standards and customer responsibilities for Acronis Backup Cloud services provided by XcellHost Cloud Services Pvt. Ltd.</p><p>The objective is to ensure reliable, secure and efficient protection of customer workloads, including servers, virtual machines, Microsoft 365, endpoints, databases and cloud applications.</p></div></section>
+
+    <section id="service-description" class="sla-section"><span class="sla-number">02</span><div><h2>Service Description</h2><p>The Acronis Backup Cloud service includes:</p><ul class="sla-check-grid">@for (item of serviceFeatures; track item) { <li>{{ item }}</li> }</ul></div></section>
+
+    <section id="service-availability" class="sla-section"><span class="sla-number">03</span><div><h2>Service Availability</h2><div class="sla-table-wrap"><table><thead><tr><th>Service</th><th>Commitment</th></tr></thead><tbody>@for (row of availability; track row[0]) { <tr><td>{{ row[0] }}</td><td><strong>{{ row[1] }}</strong></td></tr> }</tbody></table></div><div class="sla-notice"><strong>Scheduled maintenance</strong><p>Minimum 48-hour advance notice. Maintenance is conducted during non-business hours whenever possible and excluded from uptime calculations.</p></div></div></section>
+
+    <section id="support-hours" class="sla-section"><span class="sla-number">04</span><div><h2>Support Hours</h2><p>24×7 support is available for:</p><ul class="sla-check-grid">@for (item of supportCases; track item) { <li>{{ item }}</li> }</ul></div></section>
+
+    <section id="incident-priority-matrix" class="sla-section"><span class="sla-number">05</span><div><h2>Incident Priority Matrix</h2><div class="sla-table-wrap"><table class="sla-priority"><thead><tr><th>Priority</th><th>Description</th><th>Response time</th><th>Resolution target</th></tr></thead><tbody>@for (row of incidentPriorities; track row[0]) { <tr><td><strong>{{ row[0] }}</strong></td><td>{{ row[1] }}</td><td>{{ row[2] }}</td><td>{{ row[3] }}</td></tr> }</tbody></table></div></div></section>
+
+    <section id="backup-policy" class="sla-section"><span class="sla-number">06</span><div><h2>Backup Policy</h2><p>Backups are configured according to the selected subscription plan and customer requirements.</p><div class="sla-table-wrap"><table><thead><tr><th>Backup type</th><th>Frequency</th></tr></thead><tbody>@for (row of backupPolicy; track row[0]) { <tr><td>{{ row[0] }}</td><td><strong>{{ row[1] }}</strong></td></tr> }</tbody></table></div></div></section>
+
+    <section id="backup-retention" class="sla-section"><span class="sla-number">07</span><div><h2>Backup Retention</h2><div class="sla-table-wrap"><table><thead><tr><th>Backup type</th><th>Standard retention</th></tr></thead><tbody>@for (row of retention; track row[0]) { <tr><td>{{ row[0] }}</td><td><strong>{{ row[1] }}</strong></td></tr> }</tbody></table></div><p class="sla-footnote">Custom retention policies can be configured based on compliance or business requirements.</p></div></section>
+
+    <section id="recovery-objectives" class="sla-section"><span class="sla-number">08</span><div><h2>Recovery Objectives</h2><div class="sla-table-wrap"><table><thead><tr><th>Parameter</th><th>Commitment</th></tr></thead><tbody>@for (row of recoveryObjectives; track row[0]) { <tr><td>{{ row[0] }}</td><td><strong>{{ row[1] }}</strong></td></tr> }</tbody></table></div></div></section>
+
+    <section id="security-standards" class="sla-section"><span class="sla-number">09</span><div><h2>Security Standards</h2><p>The Acronis Backup Cloud platform includes:</p><ul class="sla-check-grid">@for (item of securityStandards; track item) { <li>{{ item }}</li> }</ul></div></section>
+
+    <section id="backup-monitoring" class="sla-section"><span class="sla-number">10</span><div><h2>Backup Monitoring</h2><p>XcellHost continuously monitors:</p><ul class="sla-check-grid">@for (item of monitoring; track item) { <li>{{ item }}</li> }</ul><div class="sla-notice"><strong>Critical alerts</strong><p>Customers are notified of critical backup failures requiring action.</p></div></div></section>
+
+    <section id="restore-services" class="sla-section"><span class="sla-number">11</span><div><h2>Restore Services</h2><p>Supported recovery options include:</p><ul class="sla-check-grid">@for (item of restoreServices; track item) { <li>{{ item }}</li> }</ul></div></section>
+
+    <section id="customer-responsibilities" class="sla-section"><span class="sla-number">12</span><div><h2>Customer Responsibilities</h2><div class="sla-responsibility-card"><ul>@for (item of customerResponsibilities; track item) { <li>{{ item }}</li> }</ul></div></div></section>
+
+    <section id="xcellhost-responsibilities" class="sla-section"><span class="sla-number">13</span><div><h2>XcellHost Responsibilities</h2><div class="sla-responsibility-card sla-responsibility-card-accent"><ul>@for (item of xcellhostResponsibilities; track item) { <li>{{ item }}</li> }</ul></div></div></section>
+
+    <section id="disaster-recovery-support" class="sla-section"><span class="sla-number">14</span><div><h2>Disaster Recovery Support</h2><p>During a disaster event, XcellHost will assist with:</p><ul class="sla-check-grid">@for (item of disasterRecovery; track item) { <li>{{ item }}</li> }</ul></div></section>
+
+    <section id="service-exclusions" class="sla-section"><span class="sla-number">15</span><div><h2>Service Exclusions</h2><p>This SLA does not cover:</p><ul class="sla-exclusion-grid">@for (item of exclusions; track item) { <li>{{ item }}</li> }</ul></div></section>
+
+    <section id="maintenance-policy" class="sla-section"><span class="sla-number">16</span><div><h2>Maintenance Policy</h2><p>Scheduled maintenance may include:</p><ul class="sla-check-grid">@for (item of maintenance; track item) { <li>{{ item }}</li> }</ul><p class="sla-footnote">Advance notice of at least 48 hours will be provided where practicable.</p></div></section>
+
+    <section id="restore-request-targets" class="sla-section"><span class="sla-number">17</span><div><h2>Restore Request Targets</h2><div class="sla-table-wrap"><table><thead><tr><th>Request type</th><th>Target completion</th></tr></thead><tbody>@for (row of restoreTargets; track row[0]) { <tr><td>{{ row[0] }}</td><td><strong>{{ row[1] }}</strong></td></tr> }</tbody></table></div><p class="sla-footnote">Actual recovery time depends on data volume, network bandwidth, infrastructure performance and recovery complexity.</p></div></section>
+
+    <section id="service-credits" class="sla-section"><span class="sla-number">18</span><div><h2>Service Credits</h2><p>If monthly service availability falls below 99.9%, customers may be eligible for service credits. Scheduled maintenance, customer-side issues, force majeure events and third-party disruptions are excluded.</p><div class="sla-table-wrap"><table><thead><tr><th>Monthly availability</th><th>Service credit</th></tr></thead><tbody>@for (row of serviceCredits; track row[0]) { <tr><td>{{ row[0] }}</td><td><strong>{{ row[1] }}</strong></td></tr> }</tbody></table></div><p class="sla-footnote">Service credits apply to future invoices and are not redeemable for cash.</p></div></section>
+
+    <section id="contact-information" class="sla-section"><span class="sla-number">19</span><div><h2>Contact Information</h2><div class="sla-contact-card"><div><span>Company</span><strong>XcellHost Cloud Services Pvt. Ltd.</strong></div><div><span>Support</span><a href="mailto:support@xcellhost.cloud">support@xcellhost.cloud</a></div><div><span>Sales</span><a href="mailto:sales@xcellhost.cloud">sales@xcellhost.cloud</a></div><div><span>Support portal</span><a href="https://supportdesk.xcellhost.cloud/" target="_blank" rel="noopener">supportdesk.xcellhost.cloud</a></div><div><span>Website</span><a href="https://www.xcellhost.cloud" target="_blank" rel="noopener">www.xcellhost.cloud</a></div><div><span>Emergency support</span><strong>+91 22 67111555</strong></div></div></div></section>
+
+    <section id="sla-review" class="sla-section"><span class="sla-number">20</span><div><h2>SLA Review</h2><p>This SLA is reviewed periodically and may be updated to reflect service enhancements, technology changes or operational requirements. Customers will be notified of any material revisions.</p></div></section>
+
+    <section id="sla-summary" class="sla-summary"><span class="sla-kicker">At a glance</span><h2>SLA Summary</h2><div class="sla-summary-grid">@for (row of summary; track row[0]) { <div><span>{{ row[0] }}</span><strong>{{ row[1] }}</strong></div> }</div><p class="sla-footnote">*Recovery objectives are subject to backup size, available bandwidth and infrastructure conditions.</p></section>
+
+    <section class="sla-notes"><h2>Operational Framework</h2><p>This SLA establishes a clear operational framework for Acronis Backup Cloud services, ensuring predictable service quality, strong data protection, defined recovery objectives and enterprise-grade support for business continuity.</p></section>
+  </article></div>
+
+  <section class="sla-cta"><div class="wrap"><div><span>Need help with this SLA?</span><h2>Talk to our backup specialists</h2></div><a class="btn btn-primary" routerLink="/contact">Contact XcellHost <span aria-hidden="true">→</span></a></div></section>
+</main>

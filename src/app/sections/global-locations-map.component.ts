@@ -60,7 +60,7 @@ const DATA_CENTER_LOCATIONS: readonly DataCenterLocation[] = [
             @for (pass of passes; track pass) {
               @for (location of locations; track location.code) {
                 <div class="location-chip" [attr.aria-hidden]="pass === 1 ? 'true' : null">
-                  <span class="location-flag" aria-hidden="true">{{ location.flag }}</span>
+                  <img class="location-flag" [src]="flagUrl(location.code)" [alt]="location.name + ' flag'" loading="lazy" />
                   <strong>{{ location.name }}</strong>
                 </div>
               }
@@ -169,8 +169,13 @@ const DATA_CENTER_LOCATIONS: readonly DataCenterLocation[] = [
 
     .location-flag {
       flex: 0 0 auto;
-      font-size: 27px;
-      line-height: 1;
+      width: 34px;
+      height: 23px;
+      display: inline-block;
+      overflow: hidden;
+      border-radius: 3px;
+      box-shadow: 0 1px 4px rgba(4, 30, 66, .18);
+      object-fit: cover;
     }
 
     .location-chip strong {
@@ -224,4 +229,8 @@ const DATA_CENTER_LOCATIONS: readonly DataCenterLocation[] = [
 export class GlobalLocationsMapComponent {
   readonly locations = DATA_CENTER_LOCATIONS;
   readonly passes = [0, 1];
+
+  flagUrl(code: string): string {
+    return `https://flagcdn.com/w40/${code.toLowerCase()}.png`;
+  }
 }
