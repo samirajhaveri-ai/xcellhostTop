@@ -71,7 +71,7 @@ const COUNTER_THRESHOLD = 0.5;
             <div class="why-stats">
               <div><b>500+</b><span>Businesses served</span></div>
               <div><b>10+</b><span>OEM partnerships</span></div>
-              <div><b>5+</b><span>Years in cloud</span></div>
+              <div><b>27+</b><span>Years in cloud</span></div>
             </div>
             <small>Trusted by businesses, schools and organizations across India.</small>
           </div>

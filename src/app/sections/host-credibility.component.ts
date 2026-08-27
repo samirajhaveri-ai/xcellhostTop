@@ -10,7 +10,9 @@ interface CredibilityFeature {
 
 const CREDIBILITY_FEATURES: readonly CredibilityFeature[] = [
   {
-    icon: 'domain_verified',
+    // Keep this as a single, compact glyph; `domain_verified` renders as a
+    // wide composite mark that collides with the card text at this size.
+    icon: 'domain',
     title: 'Tier-4 datacenters',
     body: 'Enterprise facilities engineered for availability, resilience and dependable performance.',
   },

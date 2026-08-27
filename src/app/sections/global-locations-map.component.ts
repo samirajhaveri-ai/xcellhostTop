@@ -60,7 +60,7 @@ const DATA_CENTER_LOCATIONS: readonly DataCenterLocation[] = [
             @for (pass of passes; track pass) {
               @for (location of locations; track location.code) {
                 <div class="location-chip" [attr.aria-hidden]="pass === 1 ? 'true' : null">
-                  <span class="location-flag" [attr.data-code]="location.code" aria-hidden="true"></span>
+                  <img class="location-flag" [src]="flagUrl(location.code)" [alt]="location.name + ' flag'" loading="lazy" />
                   <strong>{{ location.name }}</strong>
                 </div>
               }
@@ -171,19 +171,12 @@ const DATA_CENTER_LOCATIONS: readonly DataCenterLocation[] = [
       flex: 0 0 auto;
       width: 34px;
       height: 23px;
-      position: relative;
       display: inline-block;
       overflow: hidden;
       border-radius: 3px;
       box-shadow: 0 1px 4px rgba(4, 30, 66, .18);
-      background: linear-gradient(#ff9933 0 33%, #fff 33% 66%, #138808 66%);
+      object-fit: cover;
     }
-    .location-flag::after { content: attr(data-code); position:absolute; inset:0; display:grid; place-items:center; color:#17345f; font:800 8px/1 var(--mono); letter-spacing:.02em; }
-    .location-flag[data-code="US"] { background: repeating-linear-gradient(#b22234 0 11%, #fff 11% 22%); }
-    .location-flag[data-code="GB"] { background: linear-gradient(33deg, transparent 43%, #fff 44% 56%, transparent 57%), linear-gradient(-33deg, transparent 43%, #fff 44% 56%, transparent 57%), #153d8a; }
-    .location-flag[data-code="CA"] { background: linear-gradient(90deg,#d52b1e 0 25%,#fff 25% 75%,#d52b1e 75%); }
-    .location-flag[data-code="DE"] { background: linear-gradient(#111 0 33%,#d00 33% 66%,#ffce00 66%); }
-    .location-flag[data-code="AU"],.location-flag[data-code="SG"],.location-flag[data-code="HK"],.location-flag[data-code="NL"],.location-flag[data-code="FR"],.location-flag[data-code="AE"] { background:#e8eef8; }
 
     .location-chip strong {
       overflow: hidden;
@@ -236,4 +229,8 @@ const DATA_CENTER_LOCATIONS: readonly DataCenterLocation[] = [
 export class GlobalLocationsMapComponent {
   readonly locations = DATA_CENTER_LOCATIONS;
   readonly passes = [0, 1];
+
+  flagUrl(code: string): string {
+    return `https://flagcdn.com/w40/${code.toLowerCase()}.png`;
+  }
 }
