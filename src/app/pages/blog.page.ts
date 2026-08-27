@@ -17,6 +17,12 @@ interface BodyBlock {
   readonly items: readonly string[];
 }
 
+interface HeadingEntry {
+  readonly index: number;
+  readonly text: string;
+  readonly id: string;
+}
+
 @Component({
   selector: 'xh-blog-page',
   standalone: true,
@@ -45,6 +51,15 @@ export class BlogPage {
   readonly progress = signal(0);
 
   readonly blocks = computed(() => this.parseContent(this.post()?.content ?? ''));
+  readonly headings = computed<readonly HeadingEntry[]>(() =>
+    this.blocks()
+      .map((block, index) =>
+        block.kind === 'h'
+          ? { index, text: block.text, id: this.headingId(block.text, index) }
+          : null
+      )
+      .filter((value): value is HeadingEntry => value !== null)
+  );
   readonly more = computed(() =>
     this.allPosts()
       .filter((candidate) => candidate.slug !== this.slug())
@@ -84,7 +99,7 @@ export class BlogPage {
       if (!post) return;
 
       const canonical = `/insights/${post.slug}/`;
-      this.seo.set(`${post.title} — XcellHost`, post.description, canonical);
+      this.seo.set(`${post.title} - XcellHost`, post.description, canonical);
       this.seo.setJsonLd('article', {
         '@context': 'https://schema.org',
         '@type': 'Article',
@@ -126,6 +141,22 @@ export class BlogPage {
     );
   }
 
+  readTime(post: CmsBlogPost | null): string {
+    if (!post) return '3 min read';
+    const text = `${post.title} ${post.description} ${post.content}`.trim();
+    const words = text ? text.split(/\s+/).length : 0;
+    return `${Math.max(3, Math.round(words / 180) || 3)} min read`;
+  }
+
+  headingAnchor(index: number): string {
+    return `#${this.headingBlockId(index)}`;
+  }
+
+  headingBlockId(index: number): string {
+    const heading = this.headings().find((entry) => entry.index === index);
+    return heading?.id ?? `section-${index}`;
+  }
+
   /** Converts Strapi's Markdown-style rich text into safe Angular template blocks. */
   private parseContent(content: string): BodyBlock[] {
     const blocks: BodyBlock[] = [];
@@ -163,5 +194,13 @@ export class BlogPage {
     flushParagraph();
     flushList();
     return blocks;
+  }
+
+  private headingId(text: string, index: number): string {
+    const base = text
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+    return base ? `${base}-${index}` : `section-${index}`;
   }
 }

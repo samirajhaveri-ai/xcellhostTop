@@ -7,57 +7,130 @@
     <a class="btn primary" routerLink="/insights">Back to insights</a>
   </div></div></div>
 } @else if (post(); as p) {
-  <div class="bpage as-page" id="bpage">
-    <div class="bp-bar"><div class="wrap">
-      <span style="font:600 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--slate)">XcellHost Insights</span>
-      <div class="bp-prog" id="bpProg" [style.width.%]="progress()"></div>
-    </div></div>
-    <div class="bp-hero"><div class="wrap">
-      @if (p.coverImageUrl) {
-        <img
-          class="bp-cover"
-          [src]="p.coverImageUrl"
-          [alt]="p.coverImage?.alternativeText || p.title"
-        />
-      }
-      <div class="bp-kick">
-        <span>{{ p.category }}</span><span class="dot"></span>
-        <span>{{ p.author }}</span><span class="dot"></span>
-        <span>{{ formatDate(p.date) }}</span><span class="dot"></span>
-        <span>{{ formatTime(p.time) }}</span>
+  <div class="bpage as-page xh-blog-article" id="bpage">
+    <div class="bp-bar">
+      <div class="wrap">
+        <div class="bp-bar-brand">
+          <span>XcellHost Insights</span>
+          <small>{{ p.category }}</small>
+        </div>
+        <a class="bp-bar-link" routerLink="/insights">View all insights</a>
+        <div class="bp-prog" id="bpProg" [style.width.%]="progress()"></div>
       </div>
-      <h1>{{ p.title }}</h1>
-      <p class="lede">{{ p.description }}</p>
-    </div></div>
-    <div class="wrap"><div class="bp-body">
-      @for (block of blocks(); track $index) {
-        @switch (block.kind) {
-          @case ('p') { <p>{{ block.text }}</p> }
-          @case ('h') { <h2>{{ block.text }}</h2> }
-          @case ('ul') {
-            <ul>@for (item of block.items; track $index) { <li>{{ item }}</li> }</ul>
-          }
+    </div>
+
+    <div class="bp-hero article-hero">
+      <div class="wrap">
+        <div class="article-hero-copy">
+          <div class="bp-kick">
+            <span>{{ p.category }}</span><span class="dot"></span>
+            <span>{{ formatDate(p.date) }}</span><span class="dot"></span>
+            <span>{{ readTime(p) }}</span>
+          </div>
+          <h1>{{ p.title }}</h1>
+          <p class="lede">{{ p.description }}</p>
+          <div class="article-author-row">
+            <div class="article-author-badge">{{ p.author.charAt(0) }}</div>
+            <div>
+              <b>{{ p.author }}</b>
+              <span>Published {{ formatTime(p.time) }}</span>
+            </div>
+          </div>
+        </div>
+
+        @if (p.coverImageUrl) {
+          <div class="article-hero-media">
+            <img
+              class="bp-cover article-cover"
+              [src]="p.coverImageUrl"
+              [alt]="p.coverImage?.alternativeText || p.title"
+            />
+          </div>
         }
-      }
-      <div class="bp-cta">
-        <p>Want to discuss this with an XCELLHOST specialist?</p>
-        <div class="row">
-          <button class="btn primary" (click)="openCallback()">Talk to us</button>
-          <a class="btn" [href]="waHref()" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="article-main">
+      <div class="wrap article-grid">
+        <aside class="article-sidebar">
+          <div class="article-side-card">
+            <span class="article-side-kicker">Quick overview</span>
+            <h3>Article details</h3>
+            <ul class="article-facts">
+              <li><span>Category</span><b>{{ p.category }}</b></li>
+              <li><span>Author</span><b>{{ p.author }}</b></li>
+              <li><span>Read time</span><b>{{ readTime(p) }}</b></li>
+              <li><span>Published</span><b>{{ formatDate(p.date) }}</b></li>
+            </ul>
+          </div>
+
+          @if (headings().length) {
+            <div class="article-side-card">
+              <span class="article-side-kicker">On this page</span>
+              <h3>Table of contents</h3>
+              <nav class="article-toc" aria-label="Table of contents">
+                @for (heading of headings(); track heading.id) {
+                  <a [href]="headingAnchor(heading.index)">{{ heading.text }}</a>
+                }
+              </nav>
+            </div>
+          }
+
+          <div class="article-side-card article-side-cta">
+            <span class="article-side-kicker">Need help?</span>
+            <h3>Talk with our team</h3>
+            <p>If this topic matches something you are planning, we can help you work through it.</p>
+            <div class="row">
+              <button class="btn btn-primary" (click)="openCallback()">Talk to us</button>
+              <a class="btn btn-ghost" [href]="waHref()" target="_blank" rel="noopener">WhatsApp</a>
+            </div>
+          </div>
+        </aside>
+
+        <div class="article-content">
+          <article class="bp-body article-body">
+            @for (block of blocks(); track $index) {
+              @switch (block.kind) {
+                @case ('p') { <p>{{ block.text }}</p> }
+                @case ('h') { <h2 [attr.id]="headingBlockId($index)">{{ block.text }}</h2> }
+                @case ('ul') {
+                  <ul>@for (item of block.items; track $index) { <li>{{ item }}</li> }</ul>
+                }
+              }
+            }
+
+            <div class="bp-cta article-bottom-cta">
+              <span class="article-side-kicker">Next step</span>
+              <p>Want to discuss this with an XcellHost specialist?</p>
+              <div class="row">
+                <button class="btn btn-primary" (click)="openCallback()">Request a callback</button>
+                <a class="btn btn-ghost" [href]="waHref()" target="_blank" rel="noopener">Chat on WhatsApp</a>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
-    </div></div>
-    <div class="bp-more"><div class="wrap">
-      <h3>More from our blog</h3>
-      <div class="bp-grid">
-        @for (item of more(); track item.documentId) {
-          <button class="bp-card" [routerLink]="['/insights', item.slug]">
-            <span class="k">{{ item.category }} · {{ formatDate(item.date) }}</span>
-            <b>{{ item.title }}</b>
-            <p>{{ item.description }}</p>
-          </button>
-        }
+    </div>
+
+    <div class="bp-more article-more">
+      <div class="wrap">
+        <div class="article-more-head">
+          <div>
+            <span class="article-side-kicker">Continue reading</span>
+            <h3>More from our blog</h3>
+          </div>
+          <a class="bp-bar-link" routerLink="/insights">Explore all articles</a>
+        </div>
+        <div class="bp-grid article-more-grid">
+          @for (item of more(); track item.documentId) {
+            <button class="bp-card article-more-card" [routerLink]="['/insights', item.slug]">
+              <span class="k">{{ item.category }} · {{ formatDate(item.date) }}</span>
+              <b>{{ item.title }}</b>
+              <p>{{ item.description }}</p>
+            </button>
+          }
+        </div>
       </div>
-    </div></div>
+    </div>
   </div>
 }
