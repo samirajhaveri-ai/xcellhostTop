@@ -27,6 +27,6 @@ export const environment = {
   /** Optional live-answer endpoint for product FAQ blocks. */
   faqApi: '',
 
-  /** Strapi CMS base URL (without /api). */
-  strapiUrl: 'https://admin.xcellhost.top/api',
+  /** Local development uses Angular's proxy.conf.json to avoid browser CORS blocking. */
+  strapiUrl: '',
 };
