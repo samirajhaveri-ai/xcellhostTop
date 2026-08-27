@@ -24,6 +24,11 @@ export const routes: Routes = [
   { path: 'company/:slug', loadComponent: () => import('./pages/company.page').then((m) => m.CompanyPage) },
   { path: 'category/:name', loadComponent: () => import('./pages/category.page').then((m) => m.CategoryPage) },
   {
+    path: 'vendor-partners/:slug',
+    loadComponent: () =>
+      import('./pages/vendor-partner.page').then((m) => m.VendorPartnerPage),
+  },
+  {
     path: 'acronis-advanced-edr-sla',
     loadComponent: () => import('./pages/acronis-advanced-edr-sla.page').then((m) => m.AcronisAdvancedEdrSlaPage),
   },
@@ -55,18 +60,46 @@ export const routes: Routes = [
   },
   {
     path: 'acronis-remote-monitoring-management-rmm-sla',
-    data: { slaKey: 'rmm' },
-    loadComponent: () => import('./pages/sla-document.page').then((m) => m.SlaDocumentPage),
+    loadComponent: () =>
+      import('./pages/acronis-remote-monitoring-management-rmm-sla.page').then(
+        (m) => m.AcronisRemoteMonitoringManagementRmmSlaPage,
+      ),
   },
   {
     path: 'email-backup-for-microsoft-365-sla',
-    data: { slaKey: 'emailBackup' },
-    loadComponent: () => import('./pages/sla-document.page').then((m) => m.SlaDocumentPage),
+    loadComponent: () =>
+      import('./pages/email-backup-for-microsoft-365-sla.page').then(
+        (m) => m.EmailBackupForMicrosoft365SlaPage,
+      ),
   },
   {
     path: 'file-cloud-sla',
-    data: { slaKey: 'fileCloud' },
-    loadComponent: () => import('./pages/sla-document.page').then((m) => m.SlaDocumentPage),
+    loadComponent: () =>
+      import('./pages/file-cloud-sla.page').then((m) => m.FileCloudSlaPage),
+  },
+  {
+    path: 'performance-cloud-sla',
+    loadComponent: () =>
+      import('./pages/performance-cloud-sla.page').then((m) => m.PerformanceCloudSlaPage),
+  },
+  {
+    path: 'tally-on-cloud-sla',
+    loadComponent: () =>
+      import('./pages/tally-on-cloud-sla.page').then((m) => m.TallyOnCloudSlaPage),
+  },
+  {
+    path: 'video-surveillance-as-a-service-vsaas-sla',
+    loadComponent: () =>
+      import('./pages/video-surveillance-as-a-service-vsaas-sla.page').then(
+        (m) => m.VideoSurveillanceAsAServiceVsaasSlaPage,
+      ),
+  },
+  {
+    path: 'whatsapp-marketing-service-sla',
+    loadComponent: () =>
+      import('./pages/whatsapp-marketing-service-sla.page').then(
+        (m) => m.WhatsappMarketingServiceSlaPage,
+      ),
   },
   // service pages sit at the root, so this must stay last
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },

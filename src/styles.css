@@ -243,7 +243,9 @@
   .marquee .lab{text-align:center;font:600 10.5px var(--mono);letter-spacing:.2em;color:var(--slate);text-transform:uppercase;margin-bottom:12px}
   .marquee .track{display:flex;gap:64px;width:max-content;animation:scrollx 28s linear infinite;font:600 16px var(--disp);color:#7E93B4;white-space:nowrap;align-items:center}
   .marquee:hover .track{animation-play-state:paused}
-  .marquee .track span{display:flex;align-items:center;gap:9px}
+  .marquee .track a{display:flex;align-items:center;gap:9px;border-radius:8px;transition:color .2s,transform .2s}
+  .marquee .track a:hover,.marquee .track a:focus-visible{color:var(--blue);transform:translateY(-2px)}
+  .marquee .track a:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
   .marquee .track i{width:7px;height:7px;border-radius:2px;background:var(--orange);display:inline-block;transform:rotate(45deg)}
   @keyframes scrollx{to{transform:translateX(-50%)}}
 
@@ -1469,13 +1471,13 @@
   .mega::after{content:"";position:absolute;top:-20px;left:0;right:0;height:20px} /* hover bridge so it doesn't vanish */
 
   /* ============ brand marquee: logo tiles + featured brands ============ */
-  .track span{display:inline-flex;align-items:center;gap:9px}
+  .track a{display:inline-flex;align-items:center;gap:9px}
   .blg{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:6px;
     background:#fff;box-shadow:0 2px 8px rgba(4,30,66,.12);font:800 10.5px var(--disp);flex:none}
   .blg svg{display:block}
-  .track span.feat{background:#fff;border:1.5px solid var(--line);border-radius:99px;padding:8px 18px;
+  .track a.feat{background:#fff;border:1.5px solid var(--line);border-radius:99px;padding:8px 18px;
     color:var(--navy);font-weight:700;box-shadow:0 6px 18px rgba(4,30,66,.08)}
-  .track span.feat .blg{width:24px;height:24px}
+  .track a.feat .blg{width:24px;height:24px}
 
   /* ============ chatbot LEFT · callback pill LEFT-BOTTOM ============ */
   .cb-tab{top:auto !important;bottom:22px;left:22px;right:auto !important;transform:none !important;

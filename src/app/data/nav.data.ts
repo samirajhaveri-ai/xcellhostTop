@@ -1241,6 +1241,114 @@ export const MEGA_MENU: MenuTop[] = [
             ]
           }
         ]
+      },
+      {
+        "g": "3",
+        "label": "By Vendors",
+        "on": false,
+        "groups": [
+          {
+            "heading": "By Vendors",
+            "items": [
+              {
+                "title": "Acronis",
+                "pill": null,
+                "desc": "Cyber protection, backup and endpoint management",
+                "href": "/acronis-cyber-protect-enterprise"
+              },
+              {
+                "title": "Microsoft",
+                "pill": null,
+                "desc": "Microsoft 365, Azure and identity solutions",
+                "href": "/microsoft-365"
+              },
+              {
+                "title": "AWS · Azure · GCP · Oracle",
+                "pill": null,
+                "desc": "Managed public-cloud platforms and services",
+                "href": "/managed-aws-azure-gcp-oracle"
+              },
+              {
+                "title": "SentinelOne",
+                "pill": null,
+                "desc": "AI-powered endpoint security and response",
+                "href": "/sentinelone"
+              },
+              {
+                "title": "DigiCert",
+                "pill": null,
+                "desc": "Enterprise certificates, PKI and digital trust",
+                "href": "/digicert"
+              },
+              {
+                "title": "Sectigo",
+                "pill": null,
+                "desc": "SSL, certificate lifecycle and digital identity",
+                "href": "/sectigo"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "g": "4",
+        "label": "By Technology",
+        "on": false,
+        "groups": [
+          {
+            "heading": "By Technology",
+            "items": [
+              {
+                "title": "Cloud Infrastructure",
+                "pill": null,
+                "desc": "High-performance compute, storage and hosting",
+                "href": "/performance-cloud"
+              },
+              {
+                "title": "Backup & Disaster Recovery",
+                "pill": null,
+                "desc": "Protected workloads and rapid service recovery",
+                "href": "/cloud-disaster-recovery"
+              },
+              {
+                "title": "AI & Automation",
+                "pill": null,
+                "desc": "AI-assisted operations, security and productivity",
+                "href": "/acronis-genai"
+              },
+              {
+                "title": "Email & Collaboration",
+                "pill": null,
+                "desc": "Cloud productivity, messaging and teamwork",
+                "href": "/microsoft-365"
+              },
+              {
+                "title": "Identity & Access",
+                "pill": null,
+                "desc": "Secure identities, access policies and authentication",
+                "href": "/microsoft-entra-id"
+              },
+              {
+                "title": "Virtual Desktop & Remote Work",
+                "pill": null,
+                "desc": "Secure desktops and applications from anywhere",
+                "href": "/azure-virtual-desktop"
+              },
+              {
+                "title": "Networking & SASE",
+                "pill": null,
+                "desc": "Cloud-managed connectivity and secure access",
+                "href": "/cloud-sase"
+              },
+              {
+                "title": "Digital Trust & PKI",
+                "pill": null,
+                "desc": "Certificates, signing and trusted digital identity",
+                "href": "/digicert"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -1586,37 +1694,44 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Acronis Remote Monitoring and Management SLA",
                 "pill": null,
-                "desc": "Remote monitoring and management commitments"
+                "desc": "Remote monitoring and management commitments",
+                "href": "/acronis-remote-monitoring-management-rmm-sla"
               },
               {
                 "title": "Email Backup for Microsoft 365 SLA",
                 "pill": null,
-                "desc": "Microsoft 365 email backup commitments"
+                "desc": "Microsoft 365 email backup commitments",
+                "href": "/email-backup-for-microsoft-365-sla"
               },
               {
                 "title": "File Cloud SLA",
                 "pill": null,
-                "desc": "Cloud file service commitments"
+                "desc": "Cloud file service commitments",
+                "href": "/file-cloud-sla"
               },
               {
                 "title": "Performance Cloud SLA",
                 "pill": null,
-                "desc": "Performance cloud service commitments"
+                "desc": "Performance cloud service commitments",
+                "href": "/performance-cloud-sla"
               },
               {
                 "title": "Tally on Cloud SLA",
                 "pill": null,
-                "desc": "Tally cloud service commitments"
+                "desc": "Tally cloud service commitments",
+                "href": "/tally-on-cloud-sla"
               },
               {
                 "title": "Video Surveillance as a Service (VSaaS) SLA",
                 "pill": null,
-                "desc": "Cloud video surveillance service commitments"
+                "desc": "Cloud video surveillance service commitments",
+                "href": "/video-surveillance-as-a-service-vsaas-sla"
               },
               {
                 "title": "WhatsApp Marketing Service SLA",
                 "pill": null,
-                "desc": "WhatsApp marketing service commitments"
+                "desc": "WhatsApp marketing service commitments",
+                "href": "/whatsapp-marketing-service-sla"
               }
             ]
           }

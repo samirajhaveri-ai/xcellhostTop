@@ -379,6 +379,20 @@ interface NavTopVm {
   featureCards: readonly NavFeatureCardVm[];
 }
 
+/** Preferred order for the five Solutions views in the mega-menu sidebar. */
+const SOLUTION_TAB_ORDER = [
+  'By Industry',
+  'By Use Case',
+  'By Capability',
+  'By Vendors',
+  'By Technology',
+] as const;
+
+function solutionTabRank(label: string): number {
+  const rank = SOLUTION_TAB_ORDER.indexOf(label as (typeof SOLUTION_TAB_ORDER)[number]);
+  return rank === -1 ? SOLUTION_TAB_ORDER.length : rank;
+}
+
 /**
  * The sticky site header: logo, the eight mega menus built from `MEGA_MENU`,
  * the search trigger, the hamburger + mobile nav, and the login / trial CTAs.
@@ -409,7 +423,10 @@ export class HeaderComponent {
     megaId: `mega-${slugify(top.label)}`,
     feature: MENU_FEATURES[top.label],
     featureCards: MENU_FEATURE_CARDS[top.label] ?? [],
-    tabs: top.tabs.map((tab) => ({
+    tabs: (top.label === 'Solutions'
+      ? [...top.tabs].sort((a, b) => solutionTabRank(a.label) - solutionTabRank(b.label))
+      : top.tabs)
+      .map((tab) => ({
       g: tab.g,
       label: tab.label,
       groups: tab.groups.map((group) => ({
@@ -427,7 +444,7 @@ export class HeaderComponent {
           external: this.serviceLink(item.title, top.label, item.href)?.startsWith('http') ?? false,
         })),
       })),
-    })),
+      })),
   }));
 
   /** Which top-level panel is open, if any. */
@@ -439,7 +456,15 @@ export class HeaderComponent {
   /** Active tab per top-level menu, seeded from the `on` flag in the data. */
   private readonly tabs = signal<Record<string, string>>(
     Object.fromEntries(
-      MEGA_MENU.map((top) => [top.label, (top.tabs.find((t) => t.on) ?? top.tabs[0]).g]),
+      MEGA_MENU.map((top) => {
+        const visibleTabs = top.label === 'Solutions'
+          ? [...top.tabs].sort((a, b) => solutionTabRank(a.label) - solutionTabRank(b.label))
+          : top.tabs;
+        const defaultTab = top.label === 'Solutions'
+          ? visibleTabs.find((tab) => tab.label === 'By Vendors')
+          : visibleTabs.find((tab) => tab.on);
+        return [top.label, (defaultTab ?? visibleTabs[0]).g];
+      }),
     ),
   );
 
