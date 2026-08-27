@@ -928,6 +928,37 @@ export const MEGA_MENU: MenuTop[] = [
             ]
           }
         ]
+      },{
+        "g": "4",
+        "label": "Security Platforms",
+        "on": false,
+        "groups": [
+          {
+            "heading": "",
+            "items": [
+              {
+                "title": "Vortex Soc",
+                "pill": "In focus",
+                "desc": null
+              },
+              {
+                "title": "Cyber Security Audit",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "ISO 27001 Consulting",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Compliance Consulting",
+                "pill": null,
+                "desc": null
+              }     
+            ]
+          }
+        ]
       }
     ]
   },
