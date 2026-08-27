@@ -37,6 +37,13 @@ const WHY_CARDS: readonly WhyCard[] = [
   },
 ];
 
+const WHY_FEATURES = [
+  ['✥', 'Certified Partner Expertise', 'Authorised partner for Google, Microsoft, Zoho, Cisco and Sophos — backed by certified engineers.'],
+  ['→', 'Zero-Downtime Migrations', 'Email, files and apps moved to cloud with full data integrity and proper SPF, DKIM and DMARC.'],
+  ['⚙', 'Managed Services Built In', 'User provisioning, security policies, MDM, backup and monitoring — all included beyond licenses.'],
+  ['♧', 'Local Support, India Hours', 'Real engineers in India — call, WhatsApp or email, with same-day response every business day.'],
+] as const;
+
 /** The original counted a `.why .k` up once it was half in view. */
 const COUNTER_THRESHOLD = 0.5;
 
@@ -56,18 +63,23 @@ const COUNTER_THRESHOLD = 0.5;
   template: `
     <section class="why">
       <div class="wrap">
-        <div class="sec-head" xhReveal>
-          <div class="eyebrow">Why XcellHost</div>
-          <h2>The numbers we're held to</h2>
-        </div>
-        <div class="why-grid">
-          @for (c of cards; track c.title; let i = $index) {
-            <article class="card" xhReveal>
-              <div class="k" #k>{{ counters()[i] }}</div>
-              <h3>{{ c.title }}</h3>
-              <p>{{ c.blurb }}</p>
-            </article>
-          }
+        <div class="why-layout">
+          <div class="why-intro" xhReveal>
+            <div class="why-badge">Why Xcellhost</div>
+            <h2>A cloud partner that owns the outcome.</h2>
+            <p>We choose, deploy and manage the right stack — end to end.</p>
+            <div class="why-stats">
+              <div><b>500+</b><span>Businesses served</span></div>
+              <div><b>10+</b><span>OEM partnerships</span></div>
+              <div><b>5+</b><span>Years in cloud</span></div>
+            </div>
+            <small>Trusted by businesses, schools and organizations across India.</small>
+          </div>
+          <div class="why-features">
+            @for (f of features; track f[1]) {
+              <article class="why-feature" xhReveal><span class="why-feature-icon">{{ f[0] }}</span><h3>{{ f[1] }}</h3><p>{{ f[2] }}</p></article>
+            }
+          </div>
         </div>
       </div>
     </section>
@@ -75,6 +87,7 @@ const COUNTER_THRESHOLD = 0.5;
 })
 export class WhyComponent implements AfterViewInit, OnDestroy {
   readonly cards = WHY_CARDS;
+  readonly features = WHY_FEATURES;
 
   private readonly kEls = viewChildren<ElementRef<HTMLElement>>('k');
 
