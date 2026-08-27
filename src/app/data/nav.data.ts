@@ -1285,37 +1285,79 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Acronis",
                 "pill": null,
                 "desc": "Cyber protection, backup and endpoint management",
-                "href": "/acronis-cyber-protect-enterprise"
+                "href": "/vendor-partners/acronis"
               },
               {
-                "title": "Microsoft",
+                "title": "Microsoft 365",
                 "pill": null,
-                "desc": "Microsoft 365, Azure and identity solutions",
-                "href": "/microsoft-365"
+                "desc": "Productivity, collaboration and business applications",
+                "href": "/vendor-partners/microsoft-365"
               },
               {
-                "title": "AWS · Azure · GCP · Oracle",
+                "title": "DPO Genie",
                 "pill": null,
-                "desc": "Managed public-cloud platforms and services",
-                "href": "/managed-aws-azure-gcp-oracle"
+                "desc": "Privacy operations and data-protection compliance",
+                "href": "/vendor-partners/dpo-genie"
+              },
+              {
+                "title": "Microsoft Azure",
+                "pill": null,
+                "desc": "Cloud infrastructure, applications and identity services",
+                "href": "/vendor-partners/microsoft-azure"
+              },
+              {
+                "title": "Amazon Web Services",
+                "pill": null,
+                "desc": "Scalable public-cloud infrastructure and services",
+                "href": "/vendor-partners/amazon-web-services"
+              },
+              {
+                "title": "Google Cloud",
+                "pill": null,
+                "desc": "Cloud computing, data and AI services",
+                "href": "/vendor-partners/google-cloud"
+              },
+              {
+                "title": "IBM Multicloud",
+                "pill": null,
+                "desc": "Hybrid and multicloud infrastructure solutions",
+                "href": "/vendor-partners/ibm-multicloud"
+              },
+              {
+                "title": "Red Hat",
+                "pill": null,
+                "desc": "Enterprise open-source and hybrid-cloud platforms",
+                "href": "/vendor-partners/red-hat"
               },
               {
                 "title": "SentinelOne",
                 "pill": null,
                 "desc": "AI-powered endpoint security and response",
-                "href": "/sentinelone"
+                "href": "/vendor-partners/sentinelone"
               },
               {
                 "title": "DigiCert",
                 "pill": null,
                 "desc": "Enterprise certificates, PKI and digital trust",
-                "href": "/digicert"
+                "href": "/vendor-partners/digicert"
               },
               {
                 "title": "Sectigo",
                 "pill": null,
                 "desc": "SSL, certificate lifecycle and digital identity",
-                "href": "/sectigo"
+                "href": "/vendor-partners/sectigo"
+              },
+              {
+                "title": "TSplus",
+                "pill": null,
+                "desc": "Secure remote access and application delivery",
+                "href": "/vendor-partners/tsplus"
+              },
+              {
+                "title": "Kaspersky",
+                "pill": null,
+                "desc": "Endpoint and industrial cybersecurity solutions",
+                "href": "/vendor-partners/kaspersky"
               }
             ]
           }

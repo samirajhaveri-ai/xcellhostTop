@@ -400,6 +400,27 @@ function solutionTabRank(label: string): number {
   return rank === -1 ? SOLUTION_TAB_ORDER.length : rank;
 }
 
+/** SMB-first order: daily cloud services, continuity, management, then specialist security. */
+const SMB_SLA_ORDER = [
+  'Tally on Cloud SLA',
+  'Performance Cloud SLA',
+  'File Cloud SLA',
+  'Email Backup for Microsoft 365 SLA',
+  'Acronis Backup Cloud SLA',
+  'Acronis Disaster Recovery (DR) SLA',
+  'Acronis Remote Monitoring and Management SLA',
+  'WhatsApp Marketing Service SLA',
+  'Video Surveillance as a Service (VSaaS) SLA',
+  'Acronis Advanced EDR SLA',
+  'Acronis Advanced MDR SLA',
+  'Acronis Advanced XDR SLA',
+] as const;
+
+function smbSlaRank(title: string): number {
+  const rank = SMB_SLA_ORDER.indexOf(title as (typeof SMB_SLA_ORDER)[number]);
+  return rank === -1 ? SMB_SLA_ORDER.length : rank;
+}
+
 /**
  * The sticky site header: logo, the eight mega menus built from `MEGA_MENU`,
  * the search trigger, the hamburger + mobile nav, and the login / trial CTAs.
@@ -438,7 +459,9 @@ export class HeaderComponent {
       label: tab.label,
       groups: tab.groups.map((group) => ({
         heading: group.heading,
-        items: group.items.map((item) => ({
+        items: (tab.label === "SLA'S"
+          ? [...group.items].sort((a, b) => smbSlaRank(a.title) - smbSlaRank(b.title))
+          : group.items).map((item) => ({
           title: item.title,
           iconPath: menuIconPath(
             item.title,
