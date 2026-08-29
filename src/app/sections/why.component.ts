@@ -69,8 +69,8 @@ const COUNTER_THRESHOLD = 0.5;
             <h2>A cloud partner that owns the outcome.</h2>
             <p>We choose, deploy and manage the right stack — end to end.</p>
             <div class="why-stats">
-              <div><b>500+</b><span>Businesses served</span></div>
-              <div><b>10+</b><span>OEM partnerships</span></div>
+              <div><b>10000+</b><span>Businesses served</span></div>
+              <div><b>50+</b><span>OEM partnerships</span></div>
               <div><b>27+</b><span>Years in cloud</span></div>
             </div>
             <small>Trusted by businesses, schools and organizations across India.</small>

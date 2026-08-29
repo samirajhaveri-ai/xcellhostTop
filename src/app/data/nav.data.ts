@@ -146,12 +146,22 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Marketing",
             "items": [
               {
+                "title": "WhatsApp SMB",
+                "pill": "New",
+                "desc": "Official WhatsApp Business API for sales, support and automation"
+              },
+              {
+                "title": "Google My Business Listing",
+                "pill": null,
+                "desc": "Improve your business visibility on Google 👋"
+              },
+              {
                 "title": "E-mail Marketing",
                 "pill": null,
                 "desc": "Engage customers effectively with targeted email campaigns 🎯"
               },
               {
-                "title": "WhatsApp Marketing",
+                "title": "AI SEO",
                 "pill": "Free trial",
                 "desc": "Promote products and services using WhatsApp 💬"
               },
@@ -170,11 +180,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Enhance your online presence and direct visitors 👋"
               },
-              {
-                "title": "Google My Business Listing",
-                "pill": null,
-                "desc": "Improve your business visibility on Google 👋"
-              }
+              
             ]
           }
         ]
@@ -235,11 +241,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "WhatsApp SMB",
-                "pill": "New",
-                "desc": "Official WhatsApp Business API for sales, support and automation"
-              },
+              
              
               {
                 "title": "Acronis GenAI",
@@ -253,6 +255,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Cloud Disaster Recovery SMB",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "DPDPA For SMB",
                 "pill": null,
                 "desc": null
               }
@@ -269,15 +276,16 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Cloud Infra",
             "items": [
               {
-                "title": "Bare Metal Server",
-                "pill": null,
-                "desc": null
-              },
-              {
                 "title": "Performance Cloud",
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "Bare Metal Server",
+                "pill": null,
+                "desc": null
+              },
+              
               {
                 "title": "GPU Cloud",
                 "pill": "High demand",
@@ -355,11 +363,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "Cloud Mobile Device Mgmt",
-                "pill": null,
-                "desc": null
-              },
+              
               {
                 "title": "Microsoft 365 Backup",
                 "pill": "Best seller",
@@ -441,7 +445,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Microsoft Copilot Studio",
                 "pill": "Soon",
                 "desc": null
-              }
+              },
+              {
+                "title": "Cloud Mobile Device Mgmt",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
@@ -499,6 +508,38 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               }
+            ]
+          }
+        ]
+      },
+      {
+        "g": "5",
+        "label": "Cloud ERP",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Cloud ERP",
+            "items": [
+              {
+                "title": "SAP Hosting",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Odo Hosting",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "ERP Next Hosting",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Sage Hosting",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
@@ -666,12 +707,12 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Mark Certificate",
             "items": [
               {
-                "title": "OMC",
+                "title": "OMC Digicert",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "CMC",
+                "title": "CMC Digicert",
                 "pill": null,
                 "desc": null
               },
@@ -755,11 +796,11 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "1",
-        "label": "Risk Assessment",
+        "label": "Security Assessment",
         "on": false,
         "groups": [
           {
-            "heading": "Risk Assessment",
+            "heading": "Security Assessment",
             "items": [
               {
                 "title": "Patch Mgmt-as-a-Service",
@@ -928,7 +969,8 @@ export const MEGA_MENU: MenuTop[] = [
             ]
           }
         ]
-      },{
+      },
+      {
         "g": "4",
         "label": "Security Platforms",
         "on": false,
@@ -956,6 +998,60 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               }     
+            ]
+          }
+        ]
+      },
+      {
+        "g": "5",
+        "label": "Cyber Tool",
+        "on": false,
+        "groups": [
+          {
+            "heading": "",
+            "items": [
+              {
+                "title": "No Data",
+                "pill": "In focus",
+                "desc": null
+              },
+               
+            ]
+          }
+        ]
+      },
+      {
+        "g": "6",
+        "label": "Security Traning",
+        "on": false,
+        "groups": [
+          {
+            "heading": "",
+            "items": [
+              {
+                "title": "No Data",
+                "pill": "In focus",
+                "desc": null
+              },
+                  
+            ]
+          }
+        ]
+      },
+      {
+        "g": "7",
+        "label": "Security Certificate",
+        "on": false,
+        "groups": [
+          {
+            "heading": "",
+            "items": [
+              {
+                "title": "No data",
+                "pill": "In focus",
+                "desc": null
+              },
+                  
             ]
           }
         ]
@@ -1352,13 +1448,13 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/vendor-partners/acronis"
               },
               {
-                "title": "Microsoft 365",
+                "title": "Microsoft",
                 "pill": null,
                 "desc": "Productivity, collaboration and business applications",
                 "href": "/vendor-partners/microsoft-365"
               },
               {
-                "title": "DPO Genie",
+                "title": "DPO Genie 365",
                 "pill": null,
                 "desc": "Privacy operations and data-protection compliance",
                 "href": "/vendor-partners/dpo-genie"
@@ -1602,6 +1698,23 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               }
+            ]
+          }
+        ]
+      },
+      {
+        "g": "3",
+        "label": "Service Index",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Service Index",
+            "items": [
+              {
+                "title": "no Data",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]

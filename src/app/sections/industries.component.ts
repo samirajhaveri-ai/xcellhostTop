@@ -89,15 +89,15 @@ const INDUSTRY_ICON_PATHS: Readonly<Record<string, string>> = {
       <div class="wrap">
         <div class="sec-head ind-head" xhReveal>
           <div class="ind-eyebrow">Industries</div>
-          <h2>Built for how Indian businesses work</h2>
-          <p>From a 10-person CA firm to a 1,000-student school — we tailor cloud and SaaS solutions to your industry.</p>
+          <h2>Cloud Server Solutions for Every Indian Industry</h2>
+          <p>Reliable, secure, and scalable cloud servers in India designed for BFSI, healthcare, e-commerce, SaaS, and more.</p>
         </div>
         <div class="ind-grid">
           @for (i of cards; track i.service) {
             <a class="ind" [attr.data-p]="i.service" [routerLink]="i.link">
               <span class="ind-i" [attr.data-icon]="i.icon" aria-hidden="true"
                 ><svg viewBox="0 0 24 24"><path [attr.d]="i.iconPath" /></svg></span
-              ><span class="ind-copy"><b>{{ i.label }}</b></span>
+              ><span class="ind-copy"><b>{{ i.label }}</b><span>{{ i.blurb }}</span></span>
             </a>
           }
         </div>

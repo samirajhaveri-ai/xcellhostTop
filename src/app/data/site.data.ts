@@ -24,7 +24,7 @@ export const SITE = {
 /** Words cycled in the hero headline. */
 export const HERO_WORDS: string[] = [
   "Tally on Cloud — from ₹499/user",
-  "SecureSetu · DPDPA compliance",
+  "DPO Genie 365 · DPDPA compliance",
   "24×7 SOC & managed security",
   "GPU Cloud for AI workloads",
   "SSL, PKI & digital trust",

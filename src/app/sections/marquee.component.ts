@@ -17,7 +17,7 @@ interface Brand {
 const BRANDS: readonly Brand[] = [
   { name: 'Acronis', slug: 'acronis', feat: true, mark: 'A', bg: '#143BEB', fg: '#fff' },
   { name: 'Microsoft 365', slug: 'microsoft-365', feat: true, ms: true },
-  { name: 'DPO Genie', slug: 'dpo-genie', feat: true, mark: 'DP', bg: '#7C3AED', fg: '#fff' },
+  { name: 'DPO Genie 365', slug: 'dpo-genie', feat: true, mark: 'DP', bg: '#7C3AED', fg: '#fff' },
   { name: 'Microsoft Azure', slug: 'microsoft-azure', ms: true },
   { name: 'Amazon Web Services', slug: 'amazon-web-services', mark: 'aws', bg: '#232F3E', fg: '#FF9900' },
   { name: 'Google Cloud', slug: 'google-cloud', mark: 'G', bg: '#fff', fg: '#4285F4' },
@@ -28,6 +28,10 @@ const BRANDS: readonly Brand[] = [
   { name: 'TSplus', slug: 'tsplus', mark: 'TS', bg: '#0D6EFD', fg: '#fff' },
   { name: 'Kaspersky', slug: 'kaspersky', mark: 'K', bg: '#006D5C', fg: '#fff' },
   { name: 'SentinelOne', slug: 'sentinelone', mark: 'S1', bg: '#6B4EFF', fg: '#fff' },
+  { name: 'Fortinet', slug: 'fortinet', mark: 'F', bg: '#EE3124', fg: '#fff' },
+  { name: 'HPE', slug: 'hpe', mark: 'H', bg: '#01A982', fg: '#fff' },
+  { name: 'Dell', slug: 'dell', mark: 'D', bg: '#0672CB', fg: '#fff' },
+  { name: 'Cybird', slug: 'cybird', mark: 'C', bg: '#5B3CC4', fg: '#fff' },
 ];
 
 /**
