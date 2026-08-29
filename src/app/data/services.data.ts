@@ -11,7 +11,7 @@ import { ServiceRich, Pair, Faq, Category } from './models';
 export const SERVICES_RICH: Record<string, ServiceRich> = {
   "tally on cloud": {
     "price": "₹499/user/mo",
-    "ov": "Stop being chained to one office desktop. XcellHost Tally on Cloud puts your Tally and TallyPrime on secure Indian cloud servers, so your accountants, auditors and branch teams work on the same live data — from a laptop in Mumbai, a browser in Dubai, or a tablet at the factory gate. Free migration, 15-day money-back guarantee.",
+    "ov": "Stop being tied to one office desktop. XcellHost Tally on Cloud puts your Tally and TallyPrime on secure Indian cloud servers, giving your team access to the same live data wherever they work. Accountants can work from the office, auditors can review records remotely, and branch teams can stay connected from anywhere — Mumbai, Dubai, or even the factory floor. With free migration and a 15-day money-back guarantee, moving to the cloud is simple and risk-free.",
     "f": [
       [
         "Any device, any OS",
