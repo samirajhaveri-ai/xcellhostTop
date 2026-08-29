@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 
@@ -41,6 +41,7 @@ interface TallyPlan {
   users: string;
   name: string;
   edition: string;
+  prices: Record<TallyTerm, number>;
   serverType: string;
   cpu: string;
   memory: string;
@@ -131,14 +132,14 @@ export class ProductPage {
   ];
 
   readonly tallyPlans: readonly TallyPlan[] = [
-    { users: '3 to 4', name: 'Tally Private', edition: 'Cloud Lite', serverType: 'Dedicated VM', cpu: '4 vCPU', memory: '6 GB', disk: '100 GB' },
-    { users: '5', name: 'Tally Private', edition: 'Cloud X Small', serverType: 'Dedicated VM', cpu: '4 vCPU', memory: '8 GB', disk: '150 GB' },
-    { users: '10', name: 'Tally Private', edition: 'Cloud Small', serverType: 'Dedicated VM', cpu: '6 vCPU', memory: '12 GB', disk: '150 GB' },
-    { users: '11 to 15', name: 'Tally Private', edition: 'Cloud Medium', serverType: 'Dedicated VM', cpu: '8 vCPU', memory: '16 GB', disk: '200 GB' },
-    { users: '16 to 20', name: 'Tally Private', edition: 'Cloud X Large', serverType: 'Dedicated VM', cpu: '12 vCPU', memory: '32 GB', disk: '300 GB' },
-    { users: '21+ to 30', name: 'Tally Private', edition: 'Cloud XX Large', serverType: 'Dedicated VM', cpu: '16 vCPU', memory: '64 GB', disk: '400 GB' },
-    { users: '31+ to 50', name: 'Tally Private', edition: 'Cloud XXX Large', serverType: 'Dedicated VM', cpu: '20 vCPU', memory: '96 GB', disk: '500 GB' },
-    { users: '51+ to 75', name: 'Tally Private', edition: 'Cloud XXX Large', serverType: 'Dedicated VM', cpu: '24 vCPU', memory: '128 GB', disk: '750 GB' },
+    { users: '3 to 4', name: 'Tally Private', edition: 'Cloud Lite', prices: { monthly: 1776, '3m': 5061.6, '6m': 9856.8, '1y': 19180.8 }, serverType: 'Dedicated VM', cpu: '4 vCPU', memory: '6 GB', disk: '100 GB' },
+    { users: '5', name: 'Tally Private', edition: 'Cloud X Small', prices: { monthly: 2616, '3m': 7455.6, '6m': 14518.8, '1y': 28252.8 }, serverType: 'Dedicated VM', cpu: '4 vCPU', memory: '8 GB', disk: '150 GB' },
+    { users: '10', name: 'Tally Private', edition: 'Cloud Small', prices: { monthly: 5520, '3m': 15732, '6m': 30636, '1y': 59616 }, serverType: 'Dedicated VM', cpu: '6 vCPU', memory: '12 GB', disk: '150 GB' },
+    { users: '11 to 15', name: 'Tally Private', edition: 'Cloud Medium', prices: { monthly: 7200, '3m': 20520, '6m': 39960, '1y': 77760 }, serverType: 'Dedicated VM', cpu: '8 vCPU', memory: '16 GB', disk: '200 GB' },
+    { users: '16 to 20', name: 'Tally Private', edition: 'Cloud X Large', prices: { monthly: 11664, '3m': 33242.4, '6m': 64735.2, '1y': 125971.2 }, serverType: 'Dedicated VM', cpu: '12 vCPU', memory: '32 GB', disk: '300 GB' },
+    { users: '21+ to 30', name: 'Tally Private', edition: 'Cloud XX Large', prices: { monthly: 21168, '3m': 60328.8, '6m': 117482.4, '1y': 228614.4 }, serverType: 'Dedicated VM', cpu: '16 vCPU', memory: '64 GB', disk: '400 GB' },
+    { users: '31+ to 50', name: 'Tally Private', edition: 'Cloud XXX Large', prices: { monthly: 26640, '3m': 75924, '6m': 147852, '1y': 287712 }, serverType: 'Dedicated VM', cpu: '20 vCPU', memory: '96 GB', disk: '500 GB' },
+    { users: '51+ to 75', name: 'Tally Private', edition: 'Cloud XXX Large', prices: { monthly: 48912, '3m': 139399.2, '6m': 271461.6, '1y': 528249.6 }, serverType: 'Dedicated VM', cpu: '24 vCPU', memory: '128 GB', disk: '750 GB' },
   ];
 
   readonly selectedTallyTerm = signal<TallyTerm>('monthly');
@@ -146,6 +147,10 @@ export class ProductPage {
   readonly activeTallyTerm = computed(
     () => this.tallyTerms.find((term) => term.key === this.selectedTallyTerm()) ?? this.tallyTerms[0]
   );
+
+  tallyPrice(plan: TallyPlan): number {
+    return plan.prices[this.selectedTallyTerm()];
+  }
 
   /** Names that have a page of their own but are missing from the directory. */
   private static readonly EXTRA_NAMES: readonly string[] = [
@@ -183,6 +188,22 @@ export class ProductPage {
   );
 
   readonly isTally = computed(() => this.view()?.name === 'Tally on Cloud');
+
+  /** The Tally page presents both videos together, immediately before reviews. */
+  readonly tallyVideos = computed<readonly { label: string; url: SafeResourceUrl }[]>(() => {
+    const view = this.view();
+    if (view?.name !== 'Tally on Cloud') return [];
+
+    return view.videos.slice(0, 2).flatMap((video, index) => {
+      if (!video) return [];
+      return [{
+        label: view.videoLabels[index] ?? (index === 0 ? 'Product Intro' : 'Use Cases'),
+        url: this.sanitizer.bypassSecurityTrustResourceUrl(
+          `https://www.youtube-nocookie.com/embed/${video}?rel=0&playsinline=1`,
+        ),
+      }];
+    });
+  });
 
   readonly isRmm = computed(
     () => this.view()?.name === 'Remote Monitoring & Mgmt (RMM)'

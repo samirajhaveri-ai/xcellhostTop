@@ -1728,11 +1728,11 @@ export const MEGA_MENU: MenuTop[] = [
     "tabs": [
       {
         "g": "0",
-        "label": "About",
+        "label": "About Us",
         "on": true,
         "groups": [
           {
-            "heading": "About",
+            "heading": "About Us",
             "items": [
               {
                 "title": "Why XcellHost",
