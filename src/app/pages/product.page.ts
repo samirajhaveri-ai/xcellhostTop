@@ -92,6 +92,27 @@ export class ProductPage {
     'XcellHost engineer support',
   ];
 
+  readonly selectedEdrPlanIndex = signal(0);
+  readonly edrQuantity = signal(1);
+
+  selectEdrPlan(index: number): void {
+    this.selectedEdrPlanIndex.set(index);
+  }
+
+  changeEdrQuantity(change: number): void {
+    this.edrQuantity.update((quantity) => Math.max(1, quantity + change));
+  }
+
+  edrPlanTotal(plan: PricingPlan): string {
+    return `₹${this.edrPlanTotalValue(plan).toLocaleString('en-IN')}`;
+  }
+
+  private edrPlanTotalValue(plan: PricingPlan): number {
+    const annualPrice = Number(plan.amount.replace(/[^0-9.]/g, '')) || 0;
+    const years = Number.parseInt(plan.term, 10) || 1;
+    return annualPrice * years * this.edrQuantity();
+  }
+
   readonly cybirdTerms: readonly { key: CybirdTerm; label: string }[] = [
     { key: '1y', label: '1 Year' },
     { key: '2y', label: '2 Years · 10% Saving' },
@@ -377,6 +398,17 @@ export class ProductPage {
   buyPlan(plan: PricingPlan, ev: Event): void {
     ev.preventDefault();
     this.cart.add(plan.cartName, plan.cartPrice);
+    this.cart.open();
+    this.cart.toCheckout();
+  }
+
+  buyEdrPlan(plan: PricingPlan, ev: Event): void {
+    ev.preventDefault();
+    const quantity = this.edrQuantity();
+    const total = this.edrPlanTotalValue(plan);
+    const price = total ? `₹${total.toLocaleString('en-IN')} total` : plan.cartPrice;
+
+    this.cart.add(`${plan.cartName} × ${quantity} users`, price);
     this.cart.open();
     this.cart.toCheckout();
   }
