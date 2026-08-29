@@ -1156,17 +1156,54 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "3",
-        "label": "Network / Mail / SSL Tools",
+        "label": "Network Tools",
         "on": false,
         "groups": [
           {
-            "heading": "Network / Mail / SSL Tools",
+            "heading": "Network Tools",
             "items": [
               {
-                "title": "Speed Test · Looking Glass",
+                "title": "Speed Test",
                 "pill": null,
-                "desc": null
+                "desc": "Test download speed, upload speed and latency"
               },
+              {
+                "title": "Looking Glass",
+                "pill": null,
+                "desc": "Inspect routing and reachability from our network"
+              },
+              {
+                "title": "DNS Lookup",
+                "pill": null,
+                "desc": "Inspect A, AAAA, MX, TXT and nameserver records"
+              },
+              {
+                "title": "Traceroute",
+                "pill": null,
+                "desc": "Trace the network path and identify routing delays"
+              },
+              {
+                "title": "IP & WHOIS Lookup",
+                "pill": null,
+                "desc": "Check IP ownership, location and registration details"
+              },
+              {
+                "title": "Port Checker",
+                "pill": null,
+                "desc": "Test whether a public TCP port is reachable"
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "4",
+        "label": "Mail Tools",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Mail Tools",
+            "items": [
               {
                 "title": "DMARC Monitoring & Reporting",
                 "pill": null,
@@ -1182,6 +1219,33 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "MX Lookup",
+                "pill": null,
+                "desc": "Check mail exchangers, priority and DNS health"
+              },
+              {
+                "title": "Email Header Analyzer",
+                "pill": null,
+                "desc": "Inspect delivery hops, authentication and delays"
+              },
+              {
+                "title": "Email Blacklist Check",
+                "pill": null,
+                "desc": "Check whether a mail server appears on major blocklists"
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "5",
+        "label": "SSL Tools",
+        "on": false,
+        "groups": [
+          {
+            "heading": "SSL Tools",
+            "items": [
               {
                 "title": "CSR Generator / Decoder",
                 "pill": null,
