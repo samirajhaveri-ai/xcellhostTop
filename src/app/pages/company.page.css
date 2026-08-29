@@ -2,6 +2,71 @@
   display: contents;
 }
 
+/* Privacy & Cookie Policy: mirrors the simple document layout of the legacy page. */
+.privacy-policy-page {
+  padding: 34px 24px 80px;
+  background: #fff;
+}
+
+.privacy-policy-wrap {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.privacy-policy-title {
+  margin: 0 0 32px;
+  color: #09255e;
+  font-family: 'Poppins', var(--body), sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.privacy-policy-document {
+  padding: 30px 32px 38px;
+  border: 1px solid #8caeff;
+  border-radius: 15px;
+  color: #050505;
+  font-family: 'Poppins', var(--body), sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Global section spacing is for page sections, not paragraphs in this document. */
+.privacy-policy-document section { padding: 0; }
+.privacy-policy-document section + section { margin-top: 38px; }
+
+.privacy-policy-document h1,
+.privacy-policy-document h2,
+.privacy-policy-document h3 {
+  margin: 0 0 8px;
+  color: #0c255d;
+  font-family: 'Poppins', var(--body), sans-serif;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.privacy-policy-document h1 {
+  font-size: 20px;
+  letter-spacing: 0;
+}
+
+.privacy-policy-document h2 { font-size: 20px; }
+.privacy-policy-document h3 { margin-top: 18px; font-size: 17px; }
+.privacy-policy-document p { margin: 0 0 16px; }
+.privacy-policy-document p:last-child { margin-bottom: 0; }
+.privacy-policy-document a { color: #075ec9; text-decoration: underline; }
+
+@media (max-width: 640px) {
+  .privacy-policy-page { padding: 30px 14px 54px; }
+  .privacy-policy-title { margin-bottom: 22px; font-size: 23px; }
+  .privacy-policy-document { padding: 24px 20px 28px; font-size: 15px; }
+  .privacy-policy-document section + section { margin-top: 30px; }
+  .privacy-policy-document h1,
+  .privacy-policy-document h2 { font-size: 18px; }
+}
+
 .company-hero {
   min-height: 390px;
   display: flex;
