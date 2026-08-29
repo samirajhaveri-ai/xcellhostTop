@@ -2,10 +2,10 @@
   <section class="pp-hero">
     <span class="orb orb-1"></span>
     <div class="wrap">
-      <div class="pp-crumb">Home › Contact</div>
+      <div class="pp-crumb">Home &rsaquo; Contact</div>
       <h1>Contact Us</h1>
       <p class="pp-tagline">
-        No forms that vanish into a void. Call, WhatsApp, or ask for a callback—a real
+        No forms that vanish into a void. Call, WhatsApp, or ask for a callback; a real
         engineer or consultant will get back to you.
       </p>
     </div>
@@ -22,22 +22,22 @@
 
         <div class="contact-channel-grid">
           <a href="tel:+912267111555" class="contact-channel">
-            <span class="contact-channel-icon contact-blue" aria-hidden="true">☎</span>
-            <span><b>Call us</b><small>+91-22-6711 1555</small><em>Mon–Sat, 9 AM–8 PM IST</em></span>
-            <strong aria-hidden="true">→</strong>
+            <span class="contact-channel-icon contact-blue" aria-hidden="true">&#9742;</span>
+            <span><b>Call us</b><small>+91-22-6711 1555</small><em>Mon-Sat, 9 AM-8 PM IST</em></span>
+            <strong aria-hidden="true">&rarr;</strong>
           </a>
           <a href="https://wa.me/918657032540" target="_blank" rel="noopener" class="contact-channel">
-            <span class="contact-channel-icon contact-green" aria-hidden="true">◉</span>
+            <span class="contact-channel-icon contact-green" aria-hidden="true">&#9673;</span>
             <span><b>WhatsApp</b><small>+91 86570 32540</small><em>Fastest for quick questions</em></span>
-            <strong aria-hidden="true">→</strong>
+            <strong aria-hidden="true">&rarr;</strong>
           </a>
           <a href="mailto:sales@xcellhost.cloud" class="contact-channel">
-            <span class="contact-channel-icon contact-orange" aria-hidden="true">✉</span>
+            <span class="contact-channel-icon contact-orange" aria-hidden="true">&#9993;</span>
             <span><b>Email</b><small>sales&#64;xcellhost.cloud</small><em>Replies within one business day</em></span>
-            <strong aria-hidden="true">→</strong>
+            <strong aria-hidden="true">&rarr;</strong>
           </a>
           <article class="contact-channel">
-            <span class="contact-channel-icon contact-violet" aria-hidden="true">⌖</span>
+            <span class="contact-channel-icon contact-violet" aria-hidden="true">&#8982;</span>
             <span><b>Office</b><small>Mumbai, Maharashtra</small><em>XcellHost Cloud Services Pvt. Ltd.</em></span>
           </article>
         </div>
@@ -46,114 +46,150 @@
       <section class="contact-form-section" aria-labelledby="contact-form-title">
         <div class="contact-form-copy">
           <span class="contact-kicker">Get in touch</span>
-          <h2>Tell us what you need.<br /><strong>We’ll take it from here.</strong></h2>
+          <h2>Tell us what you need.<br /><strong>We&apos;ll take it from here.</strong></h2>
           <p>
             Complete the form for a sales enquiry, partnership discussion, free trial,
-            demo or callback. We’ll connect you with the right specialist.
+            demo or callback. We&apos;ll connect you with the right specialist.
           </p>
           <div class="contact-form-methods">
             <a href="tel:+912267111555">
-              <span class="method-icon method-blue" aria-hidden="true">☎</span>
-              <span><small>Call us — 24×7</small><strong>+91-22-6711 1555</strong></span>
-              <b aria-hidden="true">→</b>
+              <span class="method-icon method-blue" aria-hidden="true">&#9742;</span>
+              <span><small>Call us - 24x7</small><strong>+91-22-6711 1555</strong></span>
+              <b aria-hidden="true">&rarr;</b>
             </a>
             <a href="https://wa.me/918657032540" target="_blank" rel="noopener">
-              <span class="method-icon method-green" aria-hidden="true">◉</span>
+              <span class="method-icon method-green" aria-hidden="true">&#9673;</span>
               <span><small>WhatsApp</small><strong>+91 86570 32540</strong></span>
-              <b aria-hidden="true">→</b>
+              <b aria-hidden="true">&rarr;</b>
             </a>
             <a href="mailto:sales@xcellhost.cloud">
-              <span class="method-icon method-orange" aria-hidden="true">✉</span>
-              <span><small>Email — reply in one business day</small><strong>sales&#64;xcellhost.cloud</strong></span>
-              <b aria-hidden="true">→</b>
+              <span class="method-icon method-orange" aria-hidden="true">&#9993;</span>
+              <span><small>Email - reply in one business day</small><strong>sales&#64;xcellhost.cloud</strong></span>
+              <b aria-hidden="true">&rarr;</b>
             </a>
             <div>
-              <span class="method-icon method-violet" aria-hidden="true">⌖</span>
+              <span class="method-icon method-violet" aria-hidden="true">&#8982;</span>
               <span><small>Office</small><strong>Mumbai, Maharashtra</strong></span>
             </div>
           </div>
           <div class="contact-trust">
-            <span>ISO 27001</span><span>ISO 20000-1</span><span>Microsoft Gold Partner</span><span>24×7 Support</span>
+            <span>ISO 27001</span><span>ISO 20000-1</span><span>Microsoft Gold Partner</span><span>24x7 Support</span>
           </div>
         </div>
 
         <div class="contact-form-card">
           @if (done()) {
             <div class="contact-success" role="status">
-              <span aria-hidden="true">✓</span>
+              <span aria-hidden="true">&#10003;</span>
               <h2>Thank you!</h2>
               <p>Your enquiry is ready. Our team will get back to you shortly.</p>
               <small>Reference: {{ reference() }}</small>
             </div>
           } @else {
-            <div class="contact-form-head">
-              <span>Contact XcellHost</span>
-              <h2 id="contact-form-title">Send us a message</h2>
-              <p>Fields marked with * are required.</p>
+            <div class="xch-form-shell">
+              <div class="contact-form-head xch-form-head">
+                <span>Contact XcellHost</span>
+                <h2 id="contact-form-title">Get in touch with our team</h2>
+                <p>Our sales team can answer questions about our products, services and managed cloud solutions.</p>
+              </div>
+
+              <form class="xch-form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+                <div class="xch-field-grid">
+                  <div class="xch-field">
+                    <label class="xch-label" for="contact-first">First name <span class="xch-required">*</span></label>
+                    <input id="contact-first" type="text" class="xch-input" formControlName="firstName" autocomplete="given-name" />
+                  </div>
+
+                  <div class="xch-field">
+                    <label class="xch-label" for="contact-last">Last name <span class="xch-required">*</span></label>
+                    <input id="contact-last" type="text" class="xch-input" formControlName="lastName" autocomplete="family-name" />
+                  </div>
+
+                  <div class="xch-field xch-field-full">
+                    <label class="xch-label" for="contact-company">Company name <span class="xch-required">*</span></label>
+                    <input id="contact-company" type="text" class="xch-input" formControlName="company" autocomplete="organization" />
+                  </div>
+
+                  <div class="xch-field">
+                    <label class="xch-label" for="contact-phone">Phone number <span class="xch-required">*</span></label>
+                    <div class="xch-phone-grid">
+                      <select id="contact-country" class="xch-select" formControlName="countryCode" aria-label="Country code">
+                        <option value="+91">India +91</option>
+                        <option value="+971">UAE +971</option>
+                        <option value="+1">USA/Canada +1</option>
+                        <option value="+44">UK +44</option>
+                        <option value="+65">Singapore +65</option>
+                        <option value="+61">Australia +61</option>
+                      </select>
+
+                      <input id="contact-phone" type="tel" class="xch-input" formControlName="phone" autocomplete="tel" inputmode="numeric" />
+                    </div>
+                  </div>
+
+                  <div class="xch-field">
+                    <label class="xch-label" for="contact-email">Email <span class="xch-required">*</span></label>
+                    <input id="contact-email" type="email" class="xch-input" formControlName="email" autocomplete="email" />
+                  </div>
+                </div>
+
+                <div class="xch-option-section">
+                  <span class="xch-option-title">I am a <span class="xch-required">*</span></span>
+                  <div class="xch-radio-list">
+                    @for (option of personaOptions; track option) {
+                      <label class="xch-radio-item">
+                        <input type="radio" formControlName="contactType" [value]="option" />
+                        <span>{{ option }}</span>
+                      </label>
+                    }
+                  </div>
+                </div>
+
+                <div class="xch-option-section">
+                  <span class="xch-option-title">How can we help? <span class="xch-required">*</span></span>
+                  <div class="xch-radio-list">
+                    @for (option of helpOptions; track option) {
+                      <label class="xch-radio-item">
+                        <input type="radio" formControlName="helpType" [value]="option" />
+                        <span>{{ option === 'Ask for Free Trial' ? 'Ask for FREE Trial' : option }}</span>
+                      </label>
+                    }
+                  </div>
+                </div>
+
+                <div class="xch-captcha-wrap">
+                  <span class="xch-captcha-label">Captcha</span>
+                  <span class="xch-captcha-number">{{ captchaFirst() }}</span>
+                  <span class="xch-captcha-symbol">+</span>
+                  <span class="xch-captcha-number">{{ captchaSecond() }}</span>
+                  <span class="xch-captcha-symbol">=</span>
+                  <input
+                    id="contact-captcha"
+                    type="text"
+                    class="xch-captcha-input"
+                    formControlName="captcha"
+                    placeholder="Answer"
+                    inputmode="numeric"
+                    maxlength="2"
+                    aria-label="Captcha answer"
+                  />
+                </div>
+
+                <p class="xch-policy">
+                  XcellHost will use your information to respond to your enquiry and communicate relevant products and services.
+                  See our <a routerLink="/company/privacy-policy">Privacy Policy</a> and
+                  <a routerLink="/company/terms-of-service">Terms of Service</a>.
+                </p>
+
+                @if (error()) { <p class="contact-error xch-error" role="alert">{{ error() }}</p> }
+
+                <div class="xch-submit-row">
+                  <button class="xch-submit-button" type="submit" [disabled]="busy()">
+                    <span>{{ busy() ? 'Submitting...' : 'Submit' }}</span>
+                    <span class="xch-submit-arrow" aria-hidden="true">&rarr;</span>
+                  </button>
+                </div>
+              </form>
             </div>
-
-            <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
-              <div class="contact-field">
-                <label for="contact-first">First name *</label>
-                <input id="contact-first" type="text" formControlName="firstName" autocomplete="given-name" placeholder="First name" />
-              </div>
-              <div class="contact-field">
-                <label for="contact-last">Last name *</label>
-                <input id="contact-last" type="text" formControlName="lastName" autocomplete="family-name" placeholder="Last name" />
-              </div>
-              <div class="contact-field contact-field-wide">
-                <label for="contact-email">Business email *</label>
-                <input id="contact-email" type="email" formControlName="email" autocomplete="email" placeholder="name&#64;company.com" />
-              </div>
-              <div class="contact-phone contact-field-wide">
-                <div class="contact-field">
-                  <label for="contact-country">Country code *</label>
-                  <select id="contact-country" formControlName="countryCode">
-                    <option value="+91">India (+91)</option>
-                    <option value="+1">USA/Canada (+1)</option>
-                    <option value="+44">UK (+44)</option>
-                    <option value="+971">UAE (+971)</option>
-                    <option value="+65">Singapore (+65)</option>
-                  </select>
-                </div>
-                <div class="contact-field">
-                  <label for="contact-phone">Phone number *</label>
-                  <input id="contact-phone" type="tel" formControlName="phone" autocomplete="tel" placeholder="Phone number" />
-                </div>
-              </div>
-              <div class="contact-field contact-field-wide">
-                <label for="contact-company">Company name *</label>
-                <input id="contact-company" type="text" formControlName="company" autocomplete="organization" placeholder="Company name" />
-              </div>
-
-              <fieldset class="contact-interest contact-field-wide">
-                <legend>Select enquiry type *</legend>
-                <div class="contact-interest-grid">
-                  @for (option of enquiryOptions; track option) {
-                    <label>
-                      <input type="radio" formControlName="enquiryType" [value]="option" />
-                      <span>{{ option }}</span>
-                    </label>
-                  }
-                </div>
-              </fieldset>
-
-              <div class="contact-captcha contact-field-wide">
-                <label for="contact-captcha">Security check: <strong>4 + 5 =</strong></label>
-                <input id="contact-captcha" type="text" inputmode="numeric" maxlength="2" formControlName="captcha" placeholder="Answer" />
-              </div>
-
-              <label class="contact-consent contact-field-wide">
-                <input type="checkbox" formControlName="consent" />
-                <span>By continuing, you accept our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</span>
-              </label>
-
-              @if (error()) { <p class="contact-error contact-field-wide" role="alert">{{ error() }}</p> }
-
-              <button class="contact-submit contact-field-wide" type="submit" [disabled]="busy()">
-                {{ busy() ? 'Sending…' : 'Submit enquiry' }} <span aria-hidden="true">→</span>
-              </button>
-            </form>
           }
         </div>
       </section>
@@ -167,15 +203,15 @@
 
       <section class="contact-callback">
         <div><span>Prefer we call you?</span><h2>Request a callback at a convenient time</h2><p>We typically call back within 30 minutes during business hours.</p></div>
-        <button type="button" class="btn btn-primary" (click)="openCallback()">Request a Callback →</button>
+        <button type="button" class="btn btn-primary" (click)="openCallback()">Request a Callback &rarr;</button>
       </section>
 
       <section class="contact-section contact-existing" aria-labelledby="existing-title">
         <div class="contact-heading compact"><span>Customer care</span><h2 id="existing-title">Existing customer?</h2></div>
         <div class="contact-existing-grid">
-          <article><span>🎧</span><div><h3>Support Portal</h3><p>Raise a ticket, track its status and browse the knowledge base.</p></div></article>
-          <article><span>💳</span><div><h3>Billing Portal</h3><p>Access invoices, renewals and secure payment options.</p></div></article>
-          <article><span>🚨</span><div><h3>Emergency</h3><p>For a breach or outage, call and say “emergency” for the on-call team.</p></div></article>
+          <article><span>&#127911;</span><div><h3>Support Portal</h3><p>Raise a ticket, track its status and browse the knowledge base.</p></div></article>
+          <article><span>&#128179;</span><div><h3>Billing Portal</h3><p>Access invoices, renewals and secure payment options.</p></div></article>
+          <article><span>&#128680;</span><div><h3>Emergency</h3><p>For a breach or outage, call and say "emergency" for the on-call team.</p></div></article>
         </div>
       </section>
     </div>

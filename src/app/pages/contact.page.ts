@@ -22,31 +22,27 @@ export class ContactPage {
   private readonly seo = inject(SeoService);
   private readonly doc = inject(DOCUMENT);
 
-  readonly enquiryOptions = [
-    'Customer',
-    'Partner',
-    'Vendor',
-    'Schedule 1:1 Demo',
-    'Ask for Free Trial',
-    'Request a Callback',
-  ];
+  readonly personaOptions = ['Customer', 'Partner', 'Vendor'];
+  readonly helpOptions = ['Schedule 1:1 Demo', 'Ask for Free Trial', 'Request a Callback'];
 
   readonly form = this.fb.nonNullable.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
+    company: ['', Validators.required],
     countryCode: ['+91', Validators.required],
     phone: ['', [Validators.required, Validators.pattern(/^[0-9\s()+-]{7,18}$/)]],
-    company: ['', Validators.required],
-    enquiryType: ['Customer', Validators.required],
-    captcha: ['', [Validators.required, Validators.pattern(/^9$/)]],
-    consent: [false, Validators.requiredTrue],
+    email: ['', [Validators.required, Validators.email]],
+    contactType: ['Customer', Validators.required],
+    helpType: ['Schedule 1:1 Demo', Validators.required],
+    captcha: ['', [Validators.required, Validators.pattern(/^[0-9]{1,2}$/)]],
   });
 
   readonly busy = signal(false);
   readonly done = signal(false);
   readonly error = signal('');
   readonly reference = signal('');
+  readonly captchaFirst = signal(4);
+  readonly captchaSecond = signal(5);
 
   constructor() {
     this.seo.set(
@@ -54,6 +50,7 @@ export class ContactPage {
       'Talk to XcellHost about cloud, cybersecurity, support, partnerships and free trials.',
       '/contact/',
     );
+    this.regenerateCaptcha();
   }
 
   openCallback(): void {
@@ -64,25 +61,38 @@ export class ContactPage {
     if (this.busy()) return;
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      this.error.set('Please complete all required fields, solve the captcha and accept the privacy terms.');
+      this.error.set('Please complete all required fields and solve the captcha.');
+      return;
+    }
+
+    const value = this.form.getRawValue();
+    const captchaAnswer = Number(value.captcha.trim());
+    if (captchaAnswer !== this.captchaFirst() + this.captchaSecond()) {
+      this.error.set('Please enter the correct captcha answer.');
+      this.form.controls.captcha.markAsTouched();
+      this.form.controls.captcha.setValue('');
+      this.regenerateCaptcha();
       return;
     }
 
     this.error.set('');
     this.busy.set(true);
-    const value = this.form.getRawValue();
+
     const fullName = `${value.firstName} ${value.lastName}`.trim();
     const phone = `${value.countryCode} ${value.phone}`.trim();
+    const enquiryType = `${value.contactType} — ${value.helpType}`;
+
     const result = await this.leads.submit('callback', {
       customer: { name: fullName, email: value.email, phone, company: value.company },
-      topic: value.enquiryType,
+      topic: enquiryType,
       source_page: 'contact',
-      consent: value.consent,
+      consent: true,
     });
     this.busy.set(false);
 
     if (!result.ok && !result.skipped) {
       this.error.set('We could not send your message. Please call or WhatsApp us instead.');
+      this.regenerateCaptcha();
       return;
     }
 
@@ -91,10 +101,19 @@ export class ContactPage {
 
     if (result.skipped) {
       const href = this.leads.mailtoLink(
-        `Website enquiry: ${value.enquiryType}`,
-        `Name: ${fullName}\nCompany: ${value.company}\nEmail: ${value.email}\nPhone: ${phone}\nEnquiry: ${value.enquiryType}\nReference: ${result.ref}`,
+        `Website enquiry: ${enquiryType}`,
+        `Name: ${fullName}\nCompany: ${value.company}\nEmail: ${value.email}\nPhone: ${phone}\nEnquiry: ${enquiryType}\nReference: ${result.ref}`,
       );
       this.doc.defaultView?.open(href, '_self');
     }
+  }
+
+  private regenerateCaptcha(): void {
+    this.captchaFirst.set(this.randomCaptchaNumber());
+    this.captchaSecond.set(this.randomCaptchaNumber());
+  }
+
+  private randomCaptchaNumber(): number {
+    return Math.floor(Math.random() * 9) + 1;
   }
 }
