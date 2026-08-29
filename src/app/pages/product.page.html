@@ -147,53 +147,75 @@
         }
 
         @if (isAdvancedEdr()) {
-          <section class="edr-pricing" id="ppPlans" aria-labelledby="edr-pricing-title">
-            <h2 id="edr-pricing-title">Acronis Advanced Security + EDR</h2>
-            <p class="edr-pricing-tagline">Hackers don't wait Neither should you. Smarter detection Stronger defense</p>
-            <div class="edr-pricing-summary">
-              <h3>Enterprise-grade security SMB-friendly pricing</h3>
-              <div class="edr-price"><b>₹999</b><span>per user/year</span></div>
-            </div>
-            <div class="edr-offers">
-              @for (p of v.plans; track p.term) {
-                <a class="edr-offer" href="#" (click)="buyPlan(p, $event)">
-                  <span>{{ p.ribbon }}</span>
-                  <b>Buy {{ p.term }}</b>
-                  <em>{{ p.tag }}</em>
-                </a>
-              }
-            </div>
-
+          <section class="edr-pricing" id="ppPlans" aria-label="EDR protection plans">
             <div class="edr-card-heading">
               <h3>Choose your protection term</h3>
               <p>Every plan includes the same complete EDR protection and XcellHost support.</p>
             </div>
 
-            <div class="edr-plan-grid">
+            <div class="edr-term-tabs" role="tablist" aria-label="Choose protection term">
               @for (p of v.plans; track p.term; let i = $index) {
-                <article class="edr-plan-card" [class.is-featured]="p.hot">
-                  <div class="edr-plan-accent"></div>
+                <button
+                  type="button"
+                  role="tab"
+                  [class.edr-term-one]="i === 0"
+                  [class.edr-term-two]="i === 1"
+                  [class.edr-term-three]="i === 2"
+                  [class.is-active]="selectedEdrPlanIndex() === i"
+                  [attr.aria-selected]="selectedEdrPlanIndex() === i"
+                  (click)="selectEdrPlan(i)"
+                >
+                  <span>{{ p.tag }}</span>
+                  <b>{{ p.term }}</b>
+                </button>
+              }
+            </div>
+
+            @let p = v.plans[selectedEdrPlanIndex()];
+            @if (p) {
+              <article
+                class="edr-plan-card edr-selected-plan"
+                [class.edr-plan-one]="selectedEdrPlanIndex() === 0"
+                [class.edr-plan-two]="selectedEdrPlanIndex() === 1"
+                [class.edr-plan-three]="selectedEdrPlanIndex() === 2"
+                [class.is-featured]="p.hot"
+              >
+                <div class="edr-plan-accent"></div>
+                <div class="edr-selected-summary">
                   <header>
                     <div class="edr-plan-labels">
                       <span>{{ p.ribbon }}</span>
                       @if (p.hot) { <b>Most popular</b> }
                     </div>
                     <h3>{{ p.term }}</h3>
-                    <p>{{ edrPlanCoverage[i] }}</p>
+                    <p>{{ edrPlanCoverage[selectedEdrPlanIndex()] }}</p>
+                    <div class="edr-plan-price">
+                      <strong>{{ edrPlanTotal(p) }}</strong>
+                      <small>total for {{ edrQuantity() }} {{ edrQuantity() === 1 ? 'user' : 'users' }}</small>
+                    </div>
+                    <div class="edr-plan-saving">{{ p.tag }}</div>
                   </header>
-                  <div class="edr-plan-price"><strong>{{ p.amount }}</strong><small>{{ p.unit }}</small></div>
-                  <div class="edr-plan-saving">{{ p.tag }}</div>
-                  <button type="button" class="edr-plan-cta" (click)="buyPlan(p, $event)">
-                    Select plan <span aria-hidden="true">→</span>
-                  </button>
-                  <ul>
-                    @for (feature of edrPlanFeatures; track feature) {
-                      <li><i aria-hidden="true">✓</i><span>{{ feature }}</span></li>
-                    }
-                  </ul>
-                </article>
-              }
-            </div>
+
+                  <div class="edr-plan-purchase">
+                    <label for="edrQuantity">No. of users / devices</label>
+                    <div class="edr-quantity">
+                      <button type="button" aria-label="Decrease users" (click)="changeEdrQuantity(-1)" [disabled]="edrQuantity() === 1">−</button>
+                      <output id="edrQuantity" aria-live="polite">{{ edrQuantity() }}</output>
+                      <button type="button" aria-label="Increase users" (click)="changeEdrQuantity(1)">+</button>
+                    </div>
+                    <button type="button" class="edr-plan-cta" (click)="buyEdrPlan(p, $event)">
+                      Select plan <span aria-hidden="true">→</span>
+                    </button>
+                  </div>
+                </div>
+
+                <ul>
+                  @for (feature of edrPlanFeatures; track feature) {
+                    <li><i aria-hidden="true">✓</i><span>{{ feature }}</span></li>
+                  }
+                </ul>
+              </article>
+            }
             <p class="edr-plan-note">Price is per user/year. Free months are added after the paid term. Taxes are additional.</p>
           </section>
         }
