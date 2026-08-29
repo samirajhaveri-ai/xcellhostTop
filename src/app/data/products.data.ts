@@ -1317,7 +1317,7 @@ export const PRODUCT_VIDEOS: Record<string, string[]> = {
   "Video Surveillance aaS / Cloud CCTV": ["0TMEj1DYNqI", "m3yp9rIz1Gg"],
   "Cloud Monitoring": ["kTStm_DzhAY", ""],
   "WAAP as-a-Service": ["aeA5UOLPYNE", ""],
-  "Managed AWS / Azure / GCP / Oracle": ["2hge3p84d9g", "imWVKWFXIdY"],
+  "Managed AWS": ["2hge3p84d9g", "imWVKWFXIdY"],
   "E-mail / Server Migration": ["JA853EQFwzY", ""],
   "DigiCert": ["0Hz0C3Uvar4", "YeEUauXwxf8"],
   "Certificate Mgmt Solutions": ["Nj7ASZgega8", "mrtRhggy8b4"],

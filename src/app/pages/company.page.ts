@@ -20,7 +20,7 @@ export class CompanyPage {
   private readonly router = inject(Router);
   private readonly seo = inject(SeoService);
 
-  private readonly slug = toSignal(
+  readonly slug = toSignal(
     this.route.paramMap.pipe(map((params) => params.get('slug') ?? '')),
     { initialValue: '' },
   );

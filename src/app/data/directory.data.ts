@@ -527,7 +527,7 @@ export const DIRECTORY: DirectoryEntry[] = [
     "group": "Managed Cloud & Migration"
   },
   {
-    "name": "Managed AWS / Azure / GCP / Oracle",
+    "name": "Managed AWS",
     "desc": "Tailored management of your cloud by certified experts",
     "cat": "Cloud",
     "group": "Managed Cloud & Migration"

@@ -14,6 +14,7 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   { path: '', pathMatch: 'full', loadComponent: () => import('./pages/home.page').then((m) => m.HomePage) },
   { path: 'compare', loadComponent: () => import('./pages/compare.page').then((m) => m.ComparePage) },
+  { path: 'case-studies', loadComponent: () => import('./pages/case-studies.page').then((m) => m.CaseStudiesPage) },
   { path: 'insights', loadComponent: () => import('./pages/insights.page').then((m) => m.InsightsPage) },
   { path: 'insights/:slug', loadComponent: () => import('./pages/blog.page').then((m) => m.BlogPage) },
   { path: 'securesetu-dpdpa', loadComponent: () => import('./pages/dpdpa.page').then((m) => m.DpdpaPage) },
