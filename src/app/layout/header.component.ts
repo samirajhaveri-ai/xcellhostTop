@@ -347,7 +347,7 @@ const CONTENT_LINKS: Record<string, string> = {
   'Blog': '/insights',
   'Insights': '/insights',
   'Whitepapers': '/insights',
-  'Case Studies': '/insights',
+  'Case Studies': '/case-studies',
   'Customer Stories': '/company/customer-stories',
   'About XcellHost': '/about',
   'About Us': '/about',
