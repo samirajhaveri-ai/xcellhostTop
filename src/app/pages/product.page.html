@@ -158,6 +158,9 @@
                 <button
                   type="button"
                   role="tab"
+                  [class.edr-term-one]="i === 0"
+                  [class.edr-term-two]="i === 1"
+                  [class.edr-term-three]="i === 2"
                   [class.is-active]="selectedEdrPlanIndex() === i"
                   [attr.aria-selected]="selectedEdrPlanIndex() === i"
                   (click)="selectEdrPlan(i)"
@@ -170,7 +173,13 @@
 
             @let p = v.plans[selectedEdrPlanIndex()];
             @if (p) {
-              <article class="edr-plan-card edr-selected-plan" [class.is-featured]="p.hot">
+              <article
+                class="edr-plan-card edr-selected-plan"
+                [class.edr-plan-one]="selectedEdrPlanIndex() === 0"
+                [class.edr-plan-two]="selectedEdrPlanIndex() === 1"
+                [class.edr-plan-three]="selectedEdrPlanIndex() === 2"
+                [class.is-featured]="p.hot"
+              >
                 <div class="edr-plan-accent"></div>
                 <div class="edr-selected-summary">
                   <header>
