@@ -707,12 +707,12 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Mark Certificate",
             "items": [
               {
-                "title": "OMC Digicert",
+                "title": "Digicert OMC ",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "CMC Digicert",
+                "title": "Digicert CMC",
                 "pill": null,
                 "desc": null
               },
@@ -1661,6 +1661,23 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "1",
         "label": "Flipbooks",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Ebook",
+            "title": "State of Infrastructure",
+            "body": "Insights into modern infrastructure priorities and change.",
+            "image": "/assets/images/menu-blogs.svg",
+            "link": "https://flipbooks.officeinfra.com/books/wout/#p=1",
+            "fresh": true
+          },
+          {
+            "label": "Ebook",
+            "title": "State of Security",
+            "body": "Insights into today's threats, controls and security priorities.",
+            "image": "/assets/images/menu-blogs.svg",
+            "link": "https://flipbooks.officeinfra.com/books/zrdc/#p=1"
+          }
+        ],
         "groups": [
           {
             "heading": "Flipbook ",

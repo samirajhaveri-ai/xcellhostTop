@@ -339,7 +339,8 @@
   .pp-faq details[open] summary::after{transform:rotate(45deg)}
   .pp-faq details[open]{border-color:var(--blue)}
   .pp-faq .ans{padding:0 20px 18px;font-size:14.5px;color:var(--slate);line-height:1.65}
-  .pp-cta{margin-top:44px;background:linear-gradient(105deg,var(--blue),#0C3E8F);color:#fff;border-radius:16px;padding:36px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+  .pp-cta{position:relative;margin-top:44px;min-height:174px;background:linear-gradient(105deg,var(--blue),#0C3E8F);color:#fff;border-radius:16px;padding:32px 150px 32px 36px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+  .pp-cta-buddha{position:absolute;top:50%;right:26px;width:104px;height:104px;transform:translateY(-50%);object-fit:contain;flex:none;pointer-events:none}
   .pp-cta h3{font-family:var(--disp);font-size:22px;font-weight:700}
   .pp-cta p{color:#CFE0FA;font-size:14.5px;margin-top:4px}
   .pp-draftnote{margin-top:26px;font-size:12px;color:#8FA2BD;border-top:1px dashed var(--line);padding-top:16px}
@@ -658,7 +659,8 @@
     .pp-tagline{font-size:15px}
     .pp-chips .pp-chip{font-size:10.5px;padding:6px 12px}
     .pp-body{padding:40px 0 56px}
-    .pp-cta{padding:28px 22px}
+    .pp-cta{min-height:0;padding:28px 22px}
+    .pp-cta-buddha{position:static;width:72px;height:72px;transform:none;margin-left:auto}
     .pp-cta h3{font-size:19px}
     .pv-frame{border-radius:12px;box-shadow:0 12px 30px rgba(4,30,66,.2)}
     .pp-bar .wrap{height:50px}

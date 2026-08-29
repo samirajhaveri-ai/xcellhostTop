@@ -89,7 +89,7 @@
             @if (activeFeatureCards(top).length) {
               <aside class="xh-feature-stack" aria-label="Explore Web Presence services">
                 @for (feature of activeFeatureCards(top); track feature.title) {
-                  <a class="xh-feature-card" [href]="feature.link" (click)="onNavigate()">
+                  <a class="xh-feature-card" [href]="feature.link" [attr.target]="feature.link.startsWith('http') ? '_blank' : null" [attr.rel]="feature.link.startsWith('http') ? 'noopener noreferrer' : null" (click)="onNavigate()">
                     @if (feature.fresh) { <span class="xh-feature-ribbon">New</span> }
                     <span class="xh-feature-media">
                       <img
