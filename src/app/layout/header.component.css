@@ -303,6 +303,24 @@
 .xh-actions a { white-space: nowrap; padding: 10px 15px; border-radius: 9px; font-weight: 700; font-size: 12px; text-decoration: none; }
 .xh-login { border: 1px solid #cfd8e8; color: #263552; }
 .xh-trial { background: linear-gradient(135deg, #1769ff, #0c4bd9); color: #fff; box-shadow: 0 8px 18px rgba(23, 105, 255, .25); }
+.xh-blog {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid #1769ff;
+  border-radius: 11px;
+  color: #fff;
+  background: linear-gradient(135deg, #2a7bff, #0f5fe8);
+  box-shadow: 0 8px 18px rgba(23, 105, 255, .22);
+  transition: transform .2s, box-shadow .2s, filter .2s;
+}
+.xh-blog:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 11px 24px rgba(23, 105, 255, .28);
+  filter: saturate(1.05);
+}
 .xh-search { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid #dce3ef; border-radius: 9px; color: #263552; background: #fff; cursor: pointer; }
 .xh-search:hover { color: var(--xh-blue); border-color: var(--xh-blue); }
 .xh-cart { position: relative; width: 38px; height: 38px; display: grid; place-items: center; padding: 0; border: 1px solid #dce3ef; border-radius: 9px; color: #263552; background: #fff; cursor: pointer; transition: color .2s, border-color .2s, transform .2s; }
@@ -346,7 +364,7 @@
 @media (max-width: 480px) {
   .xh-nav-wrap { gap: 10px; }
   .xh-brand { flex: 1 1 auto; }
-  .xh-search, .xh-cart { width: 42px; height: 42px; }
+  .xh-blog, .xh-search, .xh-cart { width: 42px; height: 42px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

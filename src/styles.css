@@ -2746,12 +2746,19 @@
 
   /* ============ v66: NEW DETAILED FOOTER (matches live site) ============ */
   footer{background:#3B63E8;color:#fff;padding:48px 0 28px;margin-top:0}
-  .nf-top{margin-bottom:28px}
+  .nf-top{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(320px,.95fr);gap:28px;align-items:start;margin-bottom:28px}
+  .nf-about{min-width:0}
   .nf-logo{display:flex;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap}
   .nf-logo .xh-logo{height:46px;width:auto;background:#fff;padding:5px 8px;border-radius:8px}
   .nf-tag{font-size:12px;color:#DCE6FF;line-height:1.5}.nf-tag em{color:#BBD0FF;font-style:normal;font-size:11px}
   .nf-desc{font-size:13px;line-height:1.7;color:#E4ECFF;margin:0 0 20px;max-width:94ch;text-align:justify;text-align-last:left;text-wrap:pretty}
   .nf-social{display:flex;gap:10px;flex-wrap:wrap}
+  .nf-video{display:grid;gap:12px;justify-self:stretch}
+  .nf-video-frame{position:relative;overflow:hidden;border-radius:22px;background:linear-gradient(160deg,rgba(17,34,94,.55),rgba(10,22,69,.82));border:1px solid rgba(255,255,255,.18);box-shadow:0 18px 42px rgba(7,18,53,.25)}
+  .nf-video-frame::before{content:"";display:block;padding-top:56.25%}
+  .nf-video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .nf-video-link{justify-self:start;color:#fff;text-decoration:none;font-size:13px;font-weight:700;padding:9px 14px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);transition:background .2s,transform .2s}
+  .nf-video-link:hover{background:rgba(255,255,255,.2);transform:translateY(-1px)}
   .nfs{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:15px;text-decoration:none;transition:transform .2s}
   .nfs:hover{transform:translateY(-3px) scale(1.08)}
   .nf-col h4{font-family:var(--disp);font-size:22px;color:#fff;margin:0 0 18px;font-weight:700}
@@ -2778,16 +2785,30 @@
   .nf-iso em{font-size:7px;font-style:normal;color:#9FBBFF;letter-spacing:.08em;margin-top:1px}
   .nf-pays{display:flex;gap:8px;flex-wrap:wrap;flex:1}
   .nf-pay{background:#fff;color:#1C2A3A;font-size:11px;font-weight:700;padding:7px 12px;border-radius:6px}
-  .nf-prot{display:flex;gap:12px;flex-wrap:wrap;flex:1}
+  .nf-prot{display:flex;gap:12px;flex-wrap:wrap;flex:1;align-items:flex-start}
   .nf-sitelock{background:#0F1621;color:#4ADE80;font-size:11.5px;font-weight:600;padding:8px 14px;border-radius:8px}
-  .nf-review{background:#fff;color:#1C2A3A;font-size:11.5px;font-weight:600;padding:8px 14px;border-radius:8px}
+  .nf-review-band{display:grid;gap:12px;flex:1;min-width:min(100%,720px)}
+  .nf-review-kicker{text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:800;color:#D7E4FF}
+  .nf-review-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+  .nf-review-card{display:flex;align-items:center;gap:14px;padding:18px 20px;border-radius:18px;background:linear-gradient(180deg,rgba(28,59,149,.55),rgba(17,33,94,.92));border:1px solid rgba(186,210,255,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 14px 28px rgba(8,17,47,.24);color:#F7FAFF;text-decoration:none;min-height:86px;transition:transform .18s,border-color .18s,box-shadow .18s}
+  .nf-review-card:hover{transform:translateY(-2px);border-color:rgba(150,193,255,.42);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 18px 34px rgba(8,17,47,.3)}
+  .nf-review-icon{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;font-size:21px;font-weight:900;line-height:1;flex:none}
+  .nf-review-card.is-google .nf-review-icon{background:#123F9C;color:#FBBF24}
+  .nf-review-card.is-trustpilot .nf-review-icon{background:#0B5A71;color:#7EF3C5}
+  .nf-review-card.is-facebook .nf-review-icon{background:#103B8E;color:#79B4FF}
+  .nf-review-copy{display:grid;gap:6px;min-width:0}
+  .nf-review-copy strong{font-size:18px;line-height:1.15;color:#fff}
+  .nf-review-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .nf-review-meta b{color:#FBBF24;font-size:11px;letter-spacing:.18em}
+  .nf-review-meta small{color:#BFD0F9;font-size:12px;line-height:1.35}
 
   .nf-partner{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin:26px 0;padding:22px 26px;border-radius:16px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18)}
   .nf-partner b{display:block;font-family:var(--disp);font-size:18px;color:#fff}
   .nf-partner span{font-size:13px;color:#E4ECFF}
   .nf-bottom{border-top:1px solid rgba(255,255,255,.18);padding-top:20px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px;color:#C3D3FF}
 
-  @media(max-width:600px){.nf-top{grid-template-columns:1fr}.nf-row{flex-direction:column;gap:8px}.nf-rlbl{min-width:0}.nf-cert-row{flex-direction:column;align-items:flex-start}}
+  @media(max-width:900px){.nf-top{grid-template-columns:1fr}.nf-video{max-width:760px}.nf-review-grid{grid-template-columns:1fr}}
+  @media(max-width:600px){.nf-top{grid-template-columns:1fr}.nf-row{flex-direction:column;gap:8px}.nf-rlbl{min-width:0}.nf-cert-row{flex-direction:column;align-items:flex-start}.nf-video-frame{border-radius:18px}.nf-review-card{padding:16px 16px;border-radius:16px}.nf-review-copy strong{font-size:16px}}
 
   /* v67: single-line stat strip on LEFT, below CTAs */
   /* v85: was navy-on-navy and therefore invisible. Now light, on one line,
