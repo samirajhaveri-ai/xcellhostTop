@@ -127,10 +127,12 @@
         <div class="pp-sec">Overview</div>
         <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
 
-        <div class="pp-sec">Watch it in action</div>
-        <div class="pp-vids" [class.pp-vids-compact]="v.offerSection">
-          <xh-product-video [videos]="v.videos" [labels]="v.videoLabels" [name]="v.name" />
-        </div>
+        @if (!isTally()) {
+          <div class="pp-sec">Watch it in action</div>
+          <div class="pp-vids" [class.pp-vids-compact]="v.offerSection">
+            <xh-product-video [videos]="v.videos" [labels]="v.videoLabels" [name]="v.name" />
+          </div>
+        }
 
         @if (v.offerSection; as offer) {
           <section class="pp-offer" aria-labelledby="ppOfferTitle">
@@ -228,9 +230,11 @@
                       <span aria-hidden="true">T</span>
                       <div><b>{{ plan.name }}</b><small>{{ plan.edition }}</small></div>
                     </div>
-                    <p>Plan for {{ activeTallyTerm().label }}</p>
-                    <strong>Pricing on request</strong>
-                    <small>Configuration-based quote</small>
+                    @if (selectedTallyTerm() === 'monthly') {
+                      <p>Plan for Monthly</p>
+                    }
+                    <strong>&#8377;{{ formatInr(tallyPrice(plan)) }}</strong>
+                    <small>+GST · {{ activeTallyTerm().label }} billing</small>
                   </div>
                   <dl class="tally-plan-specs">
                     <div><dt>Server Type</dt><dd>{{ plan.serverType }}</dd></div>
@@ -843,6 +847,28 @@
             </div>
           }
         </div>
+
+        @if (isTally() && tallyVideos().length) {
+          <section class="tally-videos" aria-labelledby="tallyVideosTitle">
+            <div class="pp-sec" id="tallyVideosTitle">Watch it in action</div>
+            <div class="tally-video-grid">
+              @for (video of tallyVideos(); track video.label) {
+                <article class="tally-video-card">
+                  <h3>{{ video.label }}</h3>
+                  <div class="tally-video-frame">
+                    <iframe
+                      [src]="video.url"
+                      [title]="'Tally on Cloud — ' + video.label"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerpolicy="strict-origin-when-cross-origin"
+                      allowfullscreen
+                    ></iframe>
+                  </div>
+                </article>
+              }
+            </div>
+          </section>
+        }
 
         <div class="pp-sec">What customers say</div>
         @if (isFlagship()) {
