@@ -78,119 +78,146 @@
         </div>
 
         <div class="contact-form-card">
-          @if (done()) {
-            <div class="contact-success" role="status">
-              <span aria-hidden="true">&#10003;</span>
-              <h2>Thank you!</h2>
-              <p>Your enquiry is ready. Our team will get back to you shortly.</p>
-              <small>Reference: {{ reference() }}</small>
-            </div>
-          } @else {
+          <section class="xch-sales-page" id="xch-sales-enquiry-section">
             <div class="xch-form-shell">
               <div class="contact-form-head xch-form-head">
                 <span>Contact XcellHost</span>
                 <h2 id="contact-form-title">Get in touch with our team</h2>
-                <p>Our sales team can answer questions about our products, services and managed cloud solutions.</p>
+                <p data-xch-custom-text>Our sales team can answer questions about our products, services and managed cloud solutions.</p>
               </div>
 
-              <form class="xch-form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+              <form
+                class="xch-form"
+                action="https://forms.zohopublic.in/xcellhostcloudservicespvtltd1/form/xcellhostform/formperma/bZ5rEp9aOJGgQGNccOrarg3MksQYykD8HUut8dl-c5w/htmlRecords/submit"
+                name="xch_sales_enquiry_form"
+                id="xch-sales-enquiry-form"
+                method="POST"
+                accept-charset="UTF-8"
+                enctype="multipart/form-data"
+              >
+                <input type="hidden" name="zf_referrer_name" value="">
+                <input type="hidden" name="zf_redirect_url" value="">
+                <input type="hidden" name="zc_gad" value="">
+
                 <div class="xch-field-grid">
                   <div class="xch-field">
-                    <label class="xch-label" for="contact-first">First name <span class="xch-required">*</span></label>
-                    <input id="contact-first" type="text" class="xch-input" formControlName="firstName" autocomplete="given-name" />
+                    <label class="xch-label" for="xch-sales-first-name">First name <span class="xch-required">*</span></label>
+                    <input id="xch-sales-first-name" type="text" name="Name_First" class="xch-input" autocomplete="given-name" required>
                   </div>
 
                   <div class="xch-field">
-                    <label class="xch-label" for="contact-last">Last name <span class="xch-required">*</span></label>
-                    <input id="contact-last" type="text" class="xch-input" formControlName="lastName" autocomplete="family-name" />
+                    <label class="xch-label" for="xch-sales-last-name">Last name <span class="xch-required">*</span></label>
+                    <input id="xch-sales-last-name" type="text" name="Name_Last" class="xch-input" autocomplete="family-name" required>
                   </div>
 
                   <div class="xch-field xch-field-full">
-                    <label class="xch-label" for="contact-company">Company name <span class="xch-required">*</span></label>
-                    <input id="contact-company" type="text" class="xch-input" formControlName="company" autocomplete="organization" />
+                    <label class="xch-label" for="xch-sales-company">Company name <span class="xch-required">*</span></label>
+                    <input id="xch-sales-company" type="text" name="SingleLine" class="xch-input" autocomplete="organization" required>
                   </div>
 
                   <div class="xch-field">
-                    <label class="xch-label" for="contact-phone">Phone number <span class="xch-required">*</span></label>
+                    <label class="xch-label" for="xch-sales-phone">Phone number <span class="xch-required">*</span></label>
                     <div class="xch-phone-grid">
-                      <select id="contact-country" class="xch-select" formControlName="countryCode" aria-label="Country code">
-                        <option value="+91">India +91</option>
-                        <option value="+971">UAE +971</option>
-                        <option value="+1">USA/Canada +1</option>
-                        <option value="+44">UK +44</option>
-                        <option value="+65">Singapore +65</option>
-                        <option value="+61">Australia +61</option>
+                      <select name="CountryCode" class="xch-select" aria-label="Country code">
+                        <option value="91" selected>India +91</option>
+                        <option value="971">UAE +971</option>
+                        <option value="1">USA/Canada +1</option>
+                        <option value="44">UK +44</option>
+                        <option value="65">Singapore +65</option>
+                        <option value="61">Australia +61</option>
+                        <option value="254">Kenya +254</option>
+                        <option value="256">Uganda +256</option>
+                        <option value="243">DR Congo +243</option>
                       </select>
 
-                      <input id="contact-phone" type="tel" class="xch-input" formControlName="phone" autocomplete="tel" inputmode="numeric" />
+                      <input id="xch-sales-phone" type="tel" name="PhoneNumber_countrycode" class="xch-input" autocomplete="tel" inputmode="numeric" maxlength="15" pattern="[0-9]{7,15}" required>
                     </div>
                   </div>
 
                   <div class="xch-field">
-                    <label class="xch-label" for="contact-email">Email <span class="xch-required">*</span></label>
-                    <input id="contact-email" type="email" class="xch-input" formControlName="email" autocomplete="email" />
+                    <label class="xch-label" for="xch-sales-email">Email <span class="xch-required">*</span></label>
+                    <input id="xch-sales-email" type="email" name="Email" class="xch-input" autocomplete="email" required>
                   </div>
                 </div>
+
+                <input type="hidden" name="SingleLine1" data-xch-product-field value="Website Enquiry">
+                <input type="hidden" name="Number" value="1">
+                <input type="hidden" name="SingleLine2" data-xch-service-field value="Website Enquiry">
 
                 <div class="xch-option-section">
                   <span class="xch-option-title">I am a <span class="xch-required">*</span></span>
                   <div class="xch-radio-list">
-                    @for (option of personaOptions; track option) {
-                      <label class="xch-radio-item">
-                        <input type="radio" formControlName="contactType" [value]="option" />
-                        <span>{{ option }}</span>
-                      </label>
-                    }
+                    <label class="xch-radio-item">
+                      <input type="radio" name="Radio1" value="Customer C" required>
+                      <span>Customer</span>
+                    </label>
+                    <label class="xch-radio-item">
+                      <input type="radio" name="Radio1" value="Partner P">
+                      <span>Partner</span>
+                    </label>
+                    <label class="xch-radio-item">
+                      <input type="radio" name="Radio1" value="Vendor V">
+                      <span>Vendor</span>
+                    </label>
                   </div>
                 </div>
 
                 <div class="xch-option-section">
                   <span class="xch-option-title">How can we help? <span class="xch-required">*</span></span>
                   <div class="xch-radio-list">
-                    @for (option of helpOptions; track option) {
-                      <label class="xch-radio-item">
-                        <input type="radio" formControlName="helpType" [value]="option" />
-                        <span>{{ option === 'Ask for Free Trial' ? 'Ask for FREE Trial' : option }}</span>
-                      </label>
-                    }
+                    <label class="xch-radio-item">
+                      <input type="radio" name="Radio" value="Schedule 1:1 Demo" required>
+                      <span>Schedule 1:1 Demo</span>
+                    </label>
+                    <label class="xch-radio-item">
+                      <input type="radio" name="Radio" value="Ask For FREE Trial">
+                      <span>Ask for <span class="xch-free">FREE</span> Trial</span>
+                    </label>
+                    <label class="xch-radio-item">
+                      <input type="radio" name="Radio" value="Request a CallBack">
+                      <span>Request Callback</span>
+                    </label>
                   </div>
                 </div>
 
-                <div class="xch-captcha-wrap">
+                <div class="xch-captcha-wrap" data-xch-captcha>
                   <span class="xch-captcha-label">Captcha</span>
-                  <span class="xch-captcha-number">{{ captchaFirst() }}</span>
+                  <span class="xch-captcha-number" data-xch-captcha-first></span>
                   <span class="xch-captcha-symbol">+</span>
-                  <span class="xch-captcha-number">{{ captchaSecond() }}</span>
+                  <span class="xch-captcha-number" data-xch-captcha-second></span>
                   <span class="xch-captcha-symbol">=</span>
                   <input
-                    id="contact-captcha"
                     type="text"
+                    name="captcha_answer"
                     class="xch-captcha-input"
-                    formControlName="captcha"
+                    data-xch-captcha-answer
                     placeholder="Answer"
+                    autocomplete="off"
                     inputmode="numeric"
-                    maxlength="2"
+                    pattern="[0-9]*"
                     aria-label="Captcha answer"
-                  />
+                    required
+                  >
+                  <span class="xch-captcha-message" data-xch-captcha-message aria-live="polite"></span>
                 </div>
 
                 <p class="xch-policy">
                   XcellHost will use your information to respond to your enquiry and communicate relevant products and services.
-                  See our <a routerLink="/company/privacy-policy">Privacy Policy</a> and
-                  <a routerLink="/company/terms-of-service">Terms of Service</a>.
+                  See our
+                  <a href="https://www.xcellhost.cloud/privacy-cookie-policy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+                  and
+                  <a href="https://www.xcellhost.cloud/terms-of-service/" target="_blank" rel="noopener noreferrer">Terms of Service</a>.
                 </p>
 
-                @if (error()) { <p class="contact-error xch-error" role="alert">{{ error() }}</p> }
-
                 <div class="xch-submit-row">
-                  <button class="xch-submit-button" type="submit" [disabled]="busy()">
-                    <span>{{ busy() ? 'Submitting...' : 'Submit' }}</span>
+                  <button type="submit" class="xch-submit-button" data-xch-submit-button disabled>
+                    <span data-xch-submit-text>Submit</span>
                     <span class="xch-submit-arrow" aria-hidden="true">&rarr;</span>
                   </button>
                 </div>
               </form>
             </div>
-          }
+          </section>
         </div>
       </section>
 

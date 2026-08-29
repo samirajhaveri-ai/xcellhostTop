@@ -1,48 +1,20 @@
-import { DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, inject } from '@angular/core';
 
-import { LeadService } from '../core/lead.service';
 import { OverlayService } from '../core/overlay.service';
 import { SeoService } from '../core/seo.service';
 
 @Component({
   selector: 'xh-contact-page',
   standalone: true,
-  imports: [ReactiveFormsModule],
   templateUrl: './contact.page.html',
   styleUrl: './contact.page.css',
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ContactPage {
-  private readonly fb = inject(FormBuilder);
-  private readonly leads = inject(LeadService);
+export class ContactPage implements AfterViewInit, OnDestroy {
   private readonly overlay = inject(OverlayService);
   private readonly seo = inject(SeoService);
-  private readonly doc = inject(DOCUMENT);
-
-  readonly personaOptions = ['Customer', 'Partner', 'Vendor'];
-  readonly helpOptions = ['Schedule 1:1 Demo', 'Ask for Free Trial', 'Request a Callback'];
-
-  readonly form = this.fb.nonNullable.group({
-    firstName: ['', Validators.required],
-    lastName: ['', Validators.required],
-    company: ['', Validators.required],
-    countryCode: ['+91', Validators.required],
-    phone: ['', [Validators.required, Validators.pattern(/^[0-9\s()+-]{7,18}$/)]],
-    email: ['', [Validators.required, Validators.email]],
-    contactType: ['Customer', Validators.required],
-    helpType: ['Schedule 1:1 Demo', Validators.required],
-    captcha: ['', [Validators.required, Validators.pattern(/^[0-9]{1,2}$/)]],
-  });
-
-  readonly busy = signal(false);
-  readonly done = signal(false);
-  readonly error = signal('');
-  readonly reference = signal('');
-  readonly captchaFirst = signal(4);
-  readonly captchaSecond = signal(5);
+  private readonly timers: number[] = [];
 
   constructor() {
     this.seo.set(
@@ -50,70 +22,157 @@ export class ContactPage {
       'Talk to XcellHost about cloud, cybersecurity, support, partnerships and free trials.',
       '/contact/',
     );
-    this.regenerateCaptcha();
+  }
+
+  ngAfterViewInit(): void {
+    this.initializeCrmForm();
+    this.timers.push(window.setTimeout(() => this.initializeCrmForm(), 300));
+    this.timers.push(window.setTimeout(() => this.initializeCrmForm(), 1000));
+  }
+
+  ngOnDestroy(): void {
+    for (const timer of this.timers) window.clearTimeout(timer);
   }
 
   openCallback(): void {
     this.overlay.open('callback');
   }
 
-  async submit(): Promise<void> {
-    if (this.busy()) return;
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
-      this.error.set('Please complete all required fields and solve the captcha.');
-      return;
-    }
+  private initializeCrmForm(): void {
+    const section = document.getElementById('xch-sales-enquiry-section');
+    if (!section) return;
 
-    const value = this.form.getRawValue();
-    const captchaAnswer = Number(value.captcha.trim());
-    if (captchaAnswer !== this.captchaFirst() + this.captchaSecond()) {
-      this.error.set('Please enter the correct captcha answer.');
-      this.form.controls.captcha.markAsTouched();
-      this.form.controls.captcha.setValue('');
-      this.regenerateCaptcha();
-      return;
-    }
+    const form = section.querySelector<HTMLFormElement>('#xch-sales-enquiry-form');
+    if (!form || form.dataset['xchInitialized'] === 'true') return;
+    form.dataset['xchInitialized'] = 'true';
 
-    this.error.set('');
-    this.busy.set(true);
+    const firstNumberElement = form.querySelector<HTMLElement>('[data-xch-captcha-first]');
+    const secondNumberElement = form.querySelector<HTMLElement>('[data-xch-captcha-second]');
+    const captchaInput = form.querySelector<HTMLInputElement>('[data-xch-captcha-answer]');
+    const captchaMessage = form.querySelector<HTMLElement>('[data-xch-captcha-message]');
+    const submitButton = form.querySelector<HTMLButtonElement>('[data-xch-submit-button]');
+    const submitText = form.querySelector<HTMLElement>('[data-xch-submit-text]');
+    const productField = form.querySelector<HTMLInputElement>('[data-xch-product-field]');
+    const serviceField = form.querySelector<HTMLInputElement>('[data-xch-service-field]');
+    const customText = section.querySelector<HTMLElement>('[data-xch-custom-text]');
 
-    const fullName = `${value.firstName} ${value.lastName}`.trim();
-    const phone = `${value.countryCode} ${value.phone}`.trim();
-    const enquiryType = `${value.contactType} — ${value.helpType}`;
+    if (!firstNumberElement || !secondNumberElement || !captchaInput || !submitButton) return;
 
-    const result = await this.leads.submit('callback', {
-      customer: { name: fullName, email: value.email, phone, company: value.company },
-      topic: enquiryType,
-      source_page: 'contact',
-      consent: true,
+    let expectedCaptchaAnswer = 0;
+    let captchaIsValid = false;
+    let formIsSubmitting = false;
+
+    const generateRandomNumber = () => Math.floor(Math.random() * 9) + 1;
+
+    const showCaptchaMessage = (message: string, state: '' | 'is-correct' | 'is-wrong') => {
+      if (!captchaMessage) return;
+      captchaMessage.textContent = message;
+      captchaMessage.classList.remove('is-correct', 'is-wrong');
+      if (state) captchaMessage.classList.add(state);
+    };
+
+    const resetCaptchaState = () => {
+      captchaIsValid = false;
+      captchaInput.value = '';
+      captchaInput.classList.remove('is-correct', 'is-wrong');
+      showCaptchaMessage('', '');
+      submitButton.disabled = true;
+    };
+
+    const generateCaptcha = () => {
+      const firstNumber = generateRandomNumber();
+      const secondNumber = generateRandomNumber();
+      expectedCaptchaAnswer = firstNumber + secondNumber;
+      firstNumberElement.textContent = String(firstNumber);
+      secondNumberElement.textContent = String(secondNumber);
+      resetCaptchaState();
+    };
+
+    const validateCaptcha = () => {
+      const value = captchaInput.value.trim();
+      captchaInput.classList.remove('is-correct', 'is-wrong');
+
+      if (!value) {
+        captchaIsValid = false;
+        submitButton.disabled = true;
+        showCaptchaMessage('', '');
+        return false;
+      }
+
+      const enteredAnswer = Number(value);
+      if (Number.isFinite(enteredAnswer) && enteredAnswer === expectedCaptchaAnswer) {
+        captchaIsValid = true;
+        captchaInput.classList.add('is-correct');
+        showCaptchaMessage('Correct', 'is-correct');
+        submitButton.disabled = false;
+        return true;
+      }
+
+      captchaIsValid = false;
+      captchaInput.classList.add('is-wrong');
+      showCaptchaMessage('Try again', 'is-wrong');
+      submitButton.disabled = true;
+      return false;
+    };
+
+    const getProductName = () => {
+      const pageTitle = document.title ? document.title.trim() : '';
+      const genericTitles = [
+        '',
+        'Home - Xcellhost',
+        'Home - XcellHost',
+        'Contact-Us - Xcellhost',
+        'Contact Us - XcellHost',
+        'Checkout - Xcellhost',
+        'Enquiry - Xcellhost',
+        'Enquiry - XcellHost',
+      ];
+
+      if (genericTitles.includes(pageTitle)) return 'Website Enquiry';
+      const titleParts = pageTitle.split(' - ');
+      return titleParts[0].trim() || 'Website Enquiry';
+    };
+
+    const updateProductFields = () => {
+      const productName = getProductName();
+      if (productField) productField.value = productName;
+      if (serviceField) serviceField.value = productName;
+      if (customText && productName !== 'Website Enquiry') {
+        customText.innerHTML = `Our sales team can answer questions about <strong>${productName}</strong> and recommend the right solution.`;
+      }
+    };
+
+    captchaInput.addEventListener('input', function () {
+      this.value = this.value.replace(/[^0-9]/g, '');
+      validateCaptcha();
     });
-    this.busy.set(false);
 
-    if (!result.ok && !result.skipped) {
-      this.error.set('We could not send your message. Please call or WhatsApp us instead.');
-      this.regenerateCaptcha();
-      return;
-    }
+    captchaInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' && !validateCaptcha()) event.preventDefault();
+    });
 
-    this.reference.set(result.ref);
-    this.done.set(true);
+    form.addEventListener('submit', (event) => {
+      if (formIsSubmitting) {
+        event.preventDefault();
+        return;
+      }
 
-    if (result.skipped) {
-      const href = this.leads.mailtoLink(
-        `Website enquiry: ${enquiryType}`,
-        `Name: ${fullName}\nCompany: ${value.company}\nEmail: ${value.email}\nPhone: ${phone}\nEnquiry: ${enquiryType}\nReference: ${result.ref}`,
-      );
-      this.doc.defaultView?.open(href, '_self');
-    }
-  }
+      if (!captchaIsValid || !validateCaptcha()) {
+        event.preventDefault();
+        captchaInput.focus();
+        showCaptchaMessage('Enter correct answer', 'is-wrong');
+        return;
+      }
 
-  private regenerateCaptcha(): void {
-    this.captchaFirst.set(this.randomCaptchaNumber());
-    this.captchaSecond.set(this.randomCaptchaNumber());
-  }
+      if (productField && !productField.value.trim()) productField.value = 'Website Enquiry';
+      if (serviceField && !serviceField.value.trim()) serviceField.value = productField?.value.trim() || 'Website Enquiry';
 
-  private randomCaptchaNumber(): number {
-    return Math.floor(Math.random() * 9) + 1;
+      formIsSubmitting = true;
+      submitButton.disabled = true;
+      if (submitText) submitText.textContent = 'Submitting...';
+    });
+
+    updateProductFields();
+    generateCaptcha();
   }
 }
