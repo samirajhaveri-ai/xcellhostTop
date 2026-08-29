@@ -49,8 +49,12 @@
 
             <div class="xh-panels">
               @for (tab of top.tabs; track tab.g) {
-                <section class="xh-panel" [class.active]="isOn(top.label, tab.g)">
+                <section
+                  class="xh-panel"
+                  [class.active]="isOn(top.label, tab.g)"
+                >
                   @for (group of tab.groups; track $index) {
+                    <div class="xh-link-group">
                     @if (group.heading) { <h3>{{ group.heading }}</h3> }
                     <ul class="xh-link-grid" [class.xh-link-grid-two]="tab.label === 'Security Platforms'">
                       @for (item of group.items; track $index) {
@@ -76,6 +80,7 @@
                         </li>
                       }
                     </ul>
+                    </div>
                   }
                 </section>
               }

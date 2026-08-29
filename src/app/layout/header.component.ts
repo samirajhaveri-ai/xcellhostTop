@@ -327,7 +327,7 @@ const MENU_DESCRIPTIONS: Record<string, string> = {
 };
 /**
  * Destinations for the Insights and Company menus. Add an entry here when the
- * matching page is built; until then the link renders inert.
+ * matching page is built; missing destinations use the shared construction page.
  */
 const CONTENT_LINKS: Record<string, string> = {
   'Acronis Advanced EDR SLA': '/acronis-advanced-edr-sla',
@@ -346,7 +346,6 @@ const CONTENT_LINKS: Record<string, string> = {
   'Blogs': '/insights',
   'Blog': '/insights',
   'Insights': '/insights',
-  'Whitepapers': '/insights',
   'Case Studies': '/case-studies',
   'Customer Stories': '/company/customer-stories',
   'About XcellHost': '/about',
@@ -603,13 +602,13 @@ export class HeaderComponent {
    * inert `href="#"`, so anything without a known destination stays inert
    * rather than routing to a page that would 404.
    */
-  private serviceLink(title: string, menu: string, explicitLink?: string): string | null {
+  private serviceLink(title: string, menu: string, explicitLink?: string): string {
     if (explicitLink) return explicitLink;
     if (CONTENT_LINKS[title]) return CONTENT_LINKS[title];
-    if (menu === 'Insights' || menu === 'Company') return CONTENT_LINKS[title] ?? null;
+    if (menu === 'Insights' || menu === 'Company') return `/under-construction/${slugify(title)}`;
     const entry = this.catalog.findInDirectory(title);
     const slug = slugify(entry ? entry.name : title);
-    return this.catalog.entryBySlug(slug) ? `/${slug}` : null;
+    return this.catalog.entryBySlug(slug) ? `/${slug}` : `/under-construction/${slugify(title)}`;
   }
 
   /** Every visible menu card gets concise supporting copy. */
