@@ -19,6 +19,10 @@ const PARTNERS: Readonly<Record<string, string>> = {
   tsplus: 'TSplus',
   kaspersky: 'Kaspersky',
   sentinelone: 'SentinelOne',
+  fortinet: 'Fortinet',
+  hpe: 'HPE',
+  dell: 'Dell',
+  cybird: 'Cybird',
 };
 
 @Component({

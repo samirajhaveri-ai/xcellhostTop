@@ -153,6 +153,15 @@ export interface MenuItem {
   /** Optional explicit destination for editorial or external menu entries. */
   href?: string;
 }
+export interface MenuFeatureCard {
+  label: string;
+  title: string;
+  body: string;
+  image: string;
+  link: string;
+  imagePosition?: string;
+  fresh?: boolean;
+}
 export interface MenuGroup {
   heading: string | null;
   items: MenuItem[];
@@ -162,6 +171,7 @@ export interface MenuTab {
   label: string;
   on: boolean;
   groups: MenuGroup[];
+  featureCards?: MenuFeatureCard[];
 }
 export interface MenuTop {
   label: string;
