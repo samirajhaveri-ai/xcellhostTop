@@ -526,7 +526,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Odo Hosting",
+                "title": "Odoo Hosting",
                 "pill": null,
                 "desc": null
               },
@@ -537,6 +537,73 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Sage Hosting",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "8",
+        "label": "Managed Migration",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Managed Migration",
+            "items": [
+              {
+                "title": "MailBox Migration",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "File Migration",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Site Migration",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Archive Migration",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Teams Migration",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Slack Migration",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Google Chat",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "GALSync",
+                "pill": null,
+                "desc": null
+              },
+                  {
+                "title": "Free/Busy",
+                "pill": null,
+                "desc": null
+              },
+                  {
+                "title": "Mail Routing",
+                "pill": null,
+                "desc": null
+              },
+                  {
+                "title": "Intune Migration",
                 "pill": null,
                 "desc": null
               },
@@ -728,7 +795,131 @@ export const MEGA_MENU: MenuTop[] = [
     "feature": null,
     "tabs": [
       {
-        "g": "0",
+        "g": "10",
+        "label": "EndPoint Security",
+        "on": true,
+        "groups": [
+          {
+            "heading": "EndPoint Security",
+            "items": [
+              {
+                "title": "EDR",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "MDR",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "XDR",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "DLP",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "MDM",
+                "pill": "Free trial",
+                "desc": null
+              },
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "8",
+        "label": "Cloud Security",
+        "on": true,
+        "groups": [
+          {
+            "heading": "Cloud Security",
+            "items": [
+              {
+                "title": "No Data",
+                "pill": "Free trial",
+                "desc": null
+              },
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "9",
+        "label": "Network Security",
+        "on": true,
+        "groups": [
+          {
+            "heading": "Network Security",
+            "items": [
+              {
+                "title": "VAPT Services",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "Continuous Threat Exposure (CTEM)",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Source Code Review",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Web, Mobile & API Testing",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Network Penetration Testing",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Web App Penetration Testing",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Mobile App Penetration Testing",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "API Penetration Testing",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "IoT Penetration Testing",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Application Security Services",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Acronis CyberFit Score",
+                "pill": null,
+                "desc": null
+              }
+            ]
+          }
+        ]
+      },
+      
+      {
+        "g": "11",
         "label": "Security Testing",
         "on": true,
         "groups": [
@@ -910,11 +1101,11 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "3",
-        "label": "Consulting & Compliance",
+        "label": "Security Consulting",
         "on": false,
         "groups": [
           {
-            "heading": "Consulting & Compliance",
+            "heading": "Security Consulting",
             "items": [
               {
                 "title": "DPDPA Consulting",
@@ -1004,7 +1195,7 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "5",
-        "label": "Cyber Tool",
+        "label": "Security Tool",
         "on": false,
         "groups": [
           {
@@ -1056,6 +1247,73 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       }
+    ]
+  },
+  {
+    "label": "AI",
+    "noDrop": false,
+    "feature": null,
+    "tabs": [
+      {
+        "g": "0",
+        "label": "AI Tool",
+        "on": true,
+        "groups": [
+          {
+            "heading": "AI Tool",
+            "items": [
+              {
+                "title": "AI Chat Bot",
+                "pill": null,
+                "desc": "Get your Bot name now 🚀"
+              },
+              {
+                "title": "AI Voice Bot",
+                "pill": "1-yr free ext.",
+                "desc": "Get Voice Free Extension 🆓"
+              },
+              {
+                "title": "AI Sales Bot",
+                "pill": null,
+                "desc": "Sale and manage multiple easily 🔎"
+              },
+              {
+                "title": "AI Lab As Service",
+                "pill": null,
+                "desc": "Secure your Bot until ready for use 🕰️"
+              },
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "1",
+        "label": "AI Build",
+        "on": false,
+        "groups": [
+          {
+            "heading": "AI Build",
+            "items": [
+              {
+                "title": "AI App Builder",
+                "pill": null,
+                "desc": "Reliable AI App Builder hosting 💻"
+              },
+              {
+                "title": "AI Website Builder",
+                "pill": null,
+                "desc": "Reliable AI Website Builder hosting 🐧"
+              },
+              {
+                "title": "AI IDE Lab",
+                "pill": null,
+                "desc": "Optimized AI IDE Lab ⚡"
+              },
+            ]
+          }
+        ]
+      },
     ]
   },
   {
@@ -1454,7 +1712,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/vendor-partners/microsoft-365"
               },
               {
-                "title": "DPO Genie 365",
+                "title": "DPO Genie365",
                 "pill": null,
                 "desc": "Privacy operations and data-protection compliance",
                 "href": "/vendor-partners/dpo-genie"
