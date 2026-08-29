@@ -13,6 +13,7 @@ import { CartService } from '../core/cart.service';
 import { CatalogService, slugify } from '../core/catalog.service';
 import { OverlayService } from '../core/overlay.service';
 import { MEGA_MENU } from '../data/nav.data';
+import { MenuFeatureCard } from '../data/models';
 
 /** Pills the original rendered in the blue variant (`class="pill b"`). */
 const BLUE_PILLS = new Set([
@@ -127,6 +128,7 @@ interface NavTabVm {
   g: string;
   label: string;
   groups: NavGroupVm[];
+  featureCards: readonly NavFeatureCardVm[];
 }
 
 interface NavFeatureVm {
@@ -241,10 +243,16 @@ const MENU_FEATURE_CARDS: Readonly<Record<string, readonly NavFeatureCardVm[]>> 
   ],
   Insights: [
     {
-      label: 'Expert guidance', title: 'Blogs',
-      body: 'Practical cloud, security and infrastructure guidance from experts.',
+      label: 'Ebook', title: 'State of Infrastructure',
+      body: 'Insights into modern infrastructure priorities and change.',
       image: '/assets/images/menu-blogs.svg',
-      link: '/insights', fresh: true,
+      link: 'https://flipbooks.officeinfra.com/books/wout/#p=1', fresh: true,
+    },
+    {
+      label: 'Ebook', title: 'State of Security',
+      body: 'Insights into today\'s threats, controls and security priorities.',
+      image: '/assets/images/menu-blogs.svg',
+      link: 'https://flipbooks.officeinfra.com/books/zrdc/#p=1',
     },
   ],
   Company: [
@@ -385,6 +393,27 @@ interface NavTopVm {
   featureCards: readonly NavFeatureCardVm[];
 }
 
+function defaultFeatureCards(
+  topLabel: string,
+  groups: readonly NavGroupVm[],
+  fallbackCards: readonly NavFeatureCardVm[],
+): readonly NavFeatureCardVm[] {
+  const fallbackImage = fallbackCards[0]?.image ?? '/assets/images/menu-blogs.svg';
+  const fallbackSecondImage = fallbackCards[1]?.image ?? fallbackImage;
+  const fallbackPosition = fallbackCards[0]?.imagePosition;
+  const fallbackSecondPosition = fallbackCards[1]?.imagePosition ?? fallbackPosition;
+  const seeds = groups.flatMap((group) => group.items).slice(0, 2);
+
+  return seeds.map((item, index) => ({
+    label: topLabel,
+    title: item.title,
+    body: item.desc ?? 'Explore this service and its key business use cases.',
+    image: index === 0 ? fallbackImage : fallbackSecondImage,
+    imagePosition: index === 0 ? fallbackPosition : fallbackSecondPosition,
+    link: item.link ?? '#',
+  }));
+}
+
 /** Preferred order for the five Solutions views in the mega-menu sidebar. */
 const SOLUTION_TAB_ORDER = [
   'By Industry',
@@ -453,27 +482,35 @@ export class HeaderComponent {
     tabs: (top.label === 'Solutions'
       ? [...top.tabs].sort((a, b) => solutionTabRank(a.label) - solutionTabRank(b.label))
       : top.tabs)
-      .map((tab) => ({
-      g: tab.g,
-      label: tab.label,
-      groups: tab.groups.map((group) => ({
-        heading: group.heading,
-        items: (tab.label === "SLA'S"
-          ? [...group.items].sort((a, b) => smbSlaRank(a.title) - smbSlaRank(b.title))
-          : group.items).map((item) => ({
-          title: item.title,
-          iconPath: menuIconPath(
-            item.title,
-            `${top.label}-${tab.g}-${group.heading ?? ''}-${item.title}`,
-          ),
-          pill: item.pill,
-          pillClass: menuPillClass(item.pill),
-          desc: this.menuDescription(item.title, item.desc),
-          link: this.serviceLink(item.title, top.label, item.href),
-          external: this.serviceLink(item.title, top.label, item.href)?.startsWith('http') ?? false,
-        })),
-      })),
-      })),
+      .map((tab) => {
+        const groups = tab.groups.map((group) => ({
+          heading: group.heading,
+          items: (tab.label === "SLA'S"
+            ? [...group.items].sort((a, b) => smbSlaRank(a.title) - smbSlaRank(b.title))
+            : group.items).map((item) => ({
+            title: item.title,
+            iconPath: menuIconPath(
+              item.title,
+              `${top.label}-${tab.g}-${group.heading ?? ''}-${item.title}`,
+            ),
+            pill: item.pill,
+            pillClass: menuPillClass(item.pill),
+            desc: this.menuDescription(item.title, item.desc),
+            link: this.serviceLink(item.title, top.label, item.href),
+            external: this.serviceLink(item.title, top.label, item.href)?.startsWith('http') ?? false,
+          })),
+        }));
+        const featureCards = (tab.featureCards ?? []).map((feature: MenuFeatureCard) => ({
+          ...feature,
+        }));
+
+        return {
+          g: tab.g,
+          label: tab.label,
+          groups,
+          featureCards: featureCards.length ? featureCards : defaultFeatureCards(top.label, groups, MENU_FEATURE_CARDS[top.label] ?? []),
+        };
+      }),
   }));
 
   /** Which top-level panel is open, if any. */
@@ -526,6 +563,11 @@ export class HeaderComponent {
 
   isOn(label: string, g: string): boolean {
     return this.tabs()[label] === g;
+  }
+
+  activeFeatureCards(top: NavTopVm): readonly NavFeatureCardVm[] {
+    const activeTab = top.tabs.find((tab) => tab.g === this.tabs()[top.label]);
+    return activeTab?.featureCards?.length ? activeTab.featureCards : top.featureCards;
   }
 
   setTab(label: string, g: string): void {

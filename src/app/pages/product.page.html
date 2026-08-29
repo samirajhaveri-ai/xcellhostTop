@@ -230,9 +230,6 @@
                       <span aria-hidden="true">T</span>
                       <div><b>{{ plan.name }}</b><small>{{ plan.edition }}</small></div>
                     </div>
-                    @if (selectedTallyTerm() === 'monthly') {
-                      <p>Plan for Monthly</p>
-                    }
                     <strong>&#8377;{{ formatInr(tallyPrice(plan)) }}</strong>
                     <small>+GST · {{ activeTallyTerm().label }} billing</small>
                   </div>
@@ -258,6 +255,7 @@
           </section>
 
           <section class="tally-mobile-insights" aria-label="Real-time Tally insights on mobile devices">
+            <h2 class="tally-mobile-insights-title">Get Finlytics Tally on Mobile App Free with Every Tally on Cloud Server</h2>
             <img
               src="/assets/images/tally-mobile-insights.png"
               alt="Real-time Tally insights available securely on a mobile device"
@@ -854,7 +852,7 @@
             <div class="tally-video-grid">
               @for (video of tallyVideos(); track video.label) {
                 <article class="tally-video-card">
-                  <h3>{{ video.label }}</h3>
+                  <h3><span>{{ video.label }}</span></h3>
                   <div class="tally-video-frame">
                     <iframe
                       [src]="video.url"

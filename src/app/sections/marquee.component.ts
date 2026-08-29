@@ -17,7 +17,7 @@ interface Brand {
 const BRANDS: readonly Brand[] = [
   { name: 'Acronis', slug: 'acronis', feat: true, mark: 'A', bg: '#143BEB', fg: '#fff' },
   { name: 'Microsoft 365', slug: 'microsoft-365', feat: true, ms: true },
-  { name: 'DPO Genie 365', slug: 'dpo-genie', feat: true, mark: 'DP', bg: '#7C3AED', fg: '#fff' },
+  { name: 'DPOGenie 365', slug: 'dpo-genie', feat: true, mark: 'DP', bg: '#7C3AED', fg: '#fff' },
   { name: 'Microsoft Azure', slug: 'microsoft-azure', ms: true },
   { name: 'Amazon Web Services', slug: 'amazon-web-services', mark: 'aws', bg: '#232F3E', fg: '#FF9900' },
   { name: 'Google Cloud', slug: 'google-cloud', mark: 'G', bg: '#fff', fg: '#4285F4' },

@@ -1518,6 +1518,30 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Endpoint and industrial cybersecurity solutions",
                 "href": "/vendor-partners/kaspersky"
+              },
+              {
+                "title": "Fortinet",
+                "pill": null,
+                "desc": "Network security, firewall and secure access solutions",
+                "href": "/vendor-partners/fortinet"
+              },
+              {
+                "title": "HPE",
+                "pill": null,
+                "desc": "Enterprise compute, storage and hybrid IT platforms",
+                "href": "/vendor-partners/hpe"
+              },
+              {
+                "title": "Dell",
+                "pill": null,
+                "desc": "Servers, storage, infrastructure and business IT solutions",
+                "href": "/vendor-partners/dell"
+              },
+              {
+                "title": "Cybird",
+                "pill": null,
+                "desc": "Cybersecurity solutions, protection services and digital resilience",
+                "href": "/vendor-partners/cybird"
               }
             ]
           }
