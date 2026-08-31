@@ -5,13 +5,10 @@ import {
   ElementRef,
   OnDestroy,
   computed,
-  inject,
   signal,
   viewChild,
 } from '@angular/core';
-import { RouterLink } from '@angular/router';
 
-import { CatalogService, slugify } from '../core/catalog.service';
 import { HERO_WORDS } from '../data/site.data';
 import { CountUpFigure, finalCount, runCountUp } from '../shared/count-up';
 
@@ -55,6 +52,18 @@ const ORB_ITEMS: readonly OrbItem[] = [
 
 const ROTATE_MS = 2400;
 const LEAVE_MS = 520;
+const HERO_SLIDE_MS = 5200;
+
+interface HeroVisualSlide {
+  readonly image: string;
+  readonly alt: string;
+}
+
+const HERO_VISUAL_SLIDES: readonly HeroVisualSlide[] = [
+  { image: '/assets/images/home-performance-cloud.png', alt: 'Performance Cloud infrastructure' },
+  { image: '/assets/images/home-gpu-cloud.png', alt: 'GPU Cloud infrastructure' },
+  { image: '/assets/images/home-acronis-edr.png', alt: 'Acronis advanced endpoint security' },
+];
 
 /**
  * Scroll parallax factors from `script_07`: the first `.orb` drifts down at
@@ -73,7 +82,6 @@ const CUBE_2_FACTOR = 0.1;
 @Component({
   selector: 'xh-hero',
   standalone: true,
-  imports: [RouterLink],
   templateUrl: './hero.component.html',
   // display:contents keeps the extra host element out of the layout, so the
   // rendered box tree is identical to the original `<div class="hero">`.
@@ -81,18 +89,12 @@ const CUBE_2_FACTOR = 0.1;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroComponent implements AfterViewInit, OnDestroy {
-  private readonly catalog = inject(CatalogService);
-
   private readonly canvas = viewChild.required<ElementRef<HTMLCanvasElement>>('netbg');
 
   readonly words = HERO_WORDS;
   readonly stats = HERO_STATS;
-
-  /** every orbit icon, with its resolved product route */
-  readonly orbs = ORB_ITEMS.map((o) => ({
-    ...o,
-    link: '/' + slugify(this.catalog.findInDirectory(o.service)?.name ?? o.service),
-  }));
+  readonly visualSlides = HERO_VISUAL_SLIDES;
+  readonly activeVisualSlide = signal(0);
 
   /** index of the word currently shown */
   readonly current = signal(0);
@@ -124,6 +126,7 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
     typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   private rotateTimer: ReturnType<typeof setInterval> | undefined;
+  private visualSlideTimer: ReturnType<typeof setInterval> | undefined;
   private leaveTimer: ReturnType<typeof setTimeout> | undefined;
   private cancelCount: (() => void) | undefined;
   private netRaf = 0;
@@ -140,12 +143,14 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
     }
     this.cancelCount = runCountUp(this.figures, (v) => this.counters.set(v));
     this.rotateWords();
+    this.startVisualCarousel();
     this.startParticles();
     this.startParallax();
   }
 
   ngOnDestroy(): void {
     clearInterval(this.rotateTimer);
+    clearInterval(this.visualSlideTimer);
     clearTimeout(this.leaveTimer);
     this.cancelCount?.();
     cancelAnimationFrame(this.netRaf);
@@ -186,6 +191,24 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
       clearTimeout(this.leaveTimer);
       this.leaveTimer = setTimeout(() => this.leaving.set(-1), LEAVE_MS);
     }, ROTATE_MS);
+  }
+
+  selectVisualSlide(index: number): void {
+    this.activeVisualSlide.set(index);
+    this.startVisualCarousel();
+  }
+
+  previousVisualSlide(): void {
+    this.selectVisualSlide((this.activeVisualSlide() + this.visualSlides.length - 1) % this.visualSlides.length);
+  }
+
+  nextVisualSlide(): void {
+    this.selectVisualSlide((this.activeVisualSlide() + 1) % this.visualSlides.length);
+  }
+
+  private startVisualCarousel(): void {
+    clearInterval(this.visualSlideTimer);
+    this.visualSlideTimer = setInterval(() => this.nextVisualSlide(), HERO_SLIDE_MS);
   }
 
   /* ------------------------------------------------------------ particles */

@@ -3,7 +3,7 @@ export const PRODUCT_HERO_IMAGES: Readonly<Record<string, string>> = {
   "Tally on Cloud": "/assets/images/product-intros/reference-708cd01d9929.png",
   "SMB Cyber Security Appliance": "/assets/images/product-intros/reference-5d5e9a256253.png",
   "Cloud Drive": "/assets/images/product-intros/reference-54ea5391cf7f.png",
-  "SMB Cloud Desktop": "/assets/images/product-intros/reference-c385b38b872e.webp",
+  // "SMB Cloud Desktop": "/assets/images/product-intros/reference-c385b38b872e.webp",
   "Acronis GenAI": "/assets/images/product-intros/reference-75ff2860d816.png",
   "Cloud Backup": "/assets/images/product-intros/reference-75ff2860d816.png",
   "Acronis True Image": "/assets/images/product-intros/reference-62051e022598.png",
