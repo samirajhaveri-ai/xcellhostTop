@@ -132,7 +132,8 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Website Backup",
                 "pill": null,
                 "desc": "Secure, automated backups to safeguard your website 🔒"
-              }
+              },
+              
             ]
           }
         ]
@@ -151,8 +152,8 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Official WhatsApp Business API for sales, support and automation"
               },
               {
-                "title": "Google My Business Listing",
-                "pill": null,
+                "title": "Google My Business",
+                "pill": "AI Powerd",
                 "desc": "Improve your business visibility on Google 👋"
               },
               {
@@ -168,9 +169,43 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Managedn AI SEO",
-                "pill": null,
+                "pill": "AI Powerd",
                 "desc": "Maximise online visibility and reach your target audience 🎯"
               },
+              
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "3",
+        "label": "VPS Servers",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Virtual Private Servers",
+            "items": [
+              {
+                "title": "Linux VPS",
+                "pill": "New",
+                "desc": "Secure, automated backups to safeguard your website 🔒"
+              },
+              {
+                "title": "Windows VPS",
+                "pill": "New",
+                "desc": "Secure, automated backups to safeguard your website 🔒"
+              },
+              {
+                "title": "n8n VPS",
+                "pill": "New",
+                "desc": "Secure, automated backups to safeguard your website 🔒"
+              },
+              {
+                "title": "OpenClaw VPS",
+                "pill": "New",
+                "desc": "Secure, automated backups to safeguard your website 🔒"
+              }
               
               
             ]
@@ -250,7 +285,13 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "DPDPA For SMB",
                 "pill": null,
                 "desc": null
-              }
+              },
+              {
+                "title": "Workforce Analytics",
+                "pill": null,
+                "desc": null
+              },
+              
             ]
           }
         ]
@@ -300,12 +341,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Cloud Management Portal",
+                "title": "Multi Cloud Manager",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Age Cloud",
+                "title": "Edge Cloud",
                 "pill": null,
                 "desc": null
               },
@@ -412,6 +453,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
+                "title": "Microsoft Copilot",
+                "pill": "Soon",
+                "desc": null
+              },
+              {
                 "title": "Google Workspace",
                 "pill": null,
                 "desc": null
@@ -442,6 +488,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
+                "title": "Cloud Mobile Device Mgmt",
+                "pill": null,
+                "desc": null
+              },
+                   {
                 "title": "Cloud Conferencing",
                 "pill": null,
                 "desc": null
@@ -449,16 +500,6 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Cloud PBX",
                 "pill": "Soon",
-                "desc": null
-              },
-              {
-                "title": "Microsoft Copilot Studio",
-                "pill": "Soon",
-                "desc": null
-              },
-              {
-                "title": "Cloud Mobile Device Mgmt",
-                "pill": null,
                 "desc": null
               },
                
@@ -500,7 +541,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Managed Multi-Cloud",
+                "title": "Multi-Cloud Manager ",
                 "pill": null,
                 "desc": null
               },
@@ -923,7 +964,50 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "3",
-        "label": "IOT Security",
+        "label": "Identity",
+        "on": true,
+        "groups": [
+          {
+            "heading": "identity Security",
+            "items": [
+              {
+                "title": "Multi-Factor Authentication",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "Identity & Access Management",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "Privileged Access Management",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "privileged identity management",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "Identity Governance and Administration",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "Identity Governance and Administration",
+                "pill": "Free trial",
+                "desc": null
+              },
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "3",
+        "label": "OT+IOT Security",
         "on": true,
         "groups": [
           {
@@ -1093,10 +1177,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Managed XDR",
+                "title": "Managed Extended Detection Response (XDR)",
                 "pill": null,
                 "desc": null
               },
+              
               {
                 "title": "Managed NDR",
                 "pill": null,
@@ -1105,6 +1190,11 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Managed Microsoft Sentinel",
                 "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Managed Microsoft XDR",
+                "pill": "In focus",
                 "desc": null
               },
               {
@@ -1135,6 +1225,16 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
+                "title": "vDPO-as-a-Service",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "vCISO-as-a-Service",
+                "pill": null,
+                "desc": null
+              },
+              {
                 "title": "Cyber Security Audit",
                 "pill": null,
                 "desc": null
@@ -1149,6 +1249,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              
               {
                 "title": "Third-Party Risk Mgmt (TPRM)",
                 "pill": null,
@@ -1165,56 +1266,30 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Privacy as-a-Service",
+                "title": "Cyber Insurance",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "vCISO-as-a-Service",
+                "title": "ISO 22301",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "vDPO-as-a-Service",
+                "title": "ISO 42001",
                 "pill": null,
                 "desc": null
-              }
+              },
+              {
+                "title": "ISO 27701",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
       },
-      {
-        "g": "9",
-        "label": "Security Platforms",
-        "on": false,
-        "groups": [
-          {
-            "heading": "",
-            "items": [
-              {
-                "title": "Vortex Soc",
-                "pill": "In focus",
-                "desc": null
-              },
-              {
-                "title": "Cyber Security Audit",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "ISO 27001 Consulting",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Compliance Consulting",
-                "pill": null,
-                "desc": null
-              }     
-            ]
-          }
-        ]
-      },
+      
     ]
   },
   {
@@ -1232,6 +1307,11 @@ export const MEGA_MENU: MenuTop[] = [
             "items": [
               {
                 "title": "AI Chat Bot",
+                "pill": null,
+                "desc": "Get your Bot name now 🚀"
+              },
+              {
+                "title": "AI Receptionist",
                 "pill": null,
                 "desc": "Get your Bot name now 🚀"
               },
