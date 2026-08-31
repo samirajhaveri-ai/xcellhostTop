@@ -902,7 +902,7 @@ export const SERVICES_RICH: Record<string, ServiceRich> = {
   },
   "cloud drive": {
     "price": "Per-user/mo",
-    "ov": "Dropbox-style file share and sync, but with your data in Indian datacenters under your control. Team folders, external sharing links, version history and device sync — minus the compliance headaches.",
+    "ov": " Cloud Drive by XcellHost is a secure cloud-based file storage and collaboration solution that enables businesses to store, access, share, and manage their important files from anywhere, anytime. It eliminates dependency on traditional file servers while providing enterprise-grade security, centralized control, and seamless collaboration. Dropbox-style file share and sync, but with your data in Indian datacenters under your control. Team folders, external sharing links, version history and device sync — minus the compliance headaches.",
     "f": [
       [
         "Sync everywhere",

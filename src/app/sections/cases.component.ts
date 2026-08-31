@@ -88,6 +88,11 @@ const CASE_CARDS: readonly CaseCard[] = [
             </a>
           }
         </div>
+        <div class="cases-cta">
+          <a class="btn btn-ghost" routerLink="/case-studies">
+            View all case studies <span aria-hidden="true">→</span>
+          </a>
+        </div>
       </div>
     </section>
   `,

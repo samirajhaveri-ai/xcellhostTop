@@ -48,6 +48,16 @@ interface TallyPlan {
   disk: string;
 }
 
+type CloudDriveTerm = 'monthly' | '3m' | '6m' | '1y';
+
+interface CloudDrivePlan {
+  storage: string;
+  unit: string;
+  qty: number;
+  prices: Record<CloudDriveTerm, number>;
+  comments: string;
+}
+
 /**
  * The routed service / product page — everything the original `#ppage` overlay
  * rendered through its six-script `__ppExtras` pipeline, in one component.
@@ -184,6 +194,54 @@ export class ProductPage {
     return plan.prices[this.selectedTallyTerm()];
   }
 
+  readonly cloudDriveTerms: readonly { key: CloudDriveTerm; label: string; saving: string }[] = [
+    { key: 'monthly', label: 'Monthly', saving: '' },
+    { key: '3m', label: '3 Months', saving: 'Save 5%' },
+    { key: '6m', label: '6 Months', saving: 'Save 7.5%' },
+    { key: '1y', label: '1 Year', saving: 'Save 10%' },
+  ];
+
+  readonly cloudDrivePlans: readonly CloudDrivePlan[] = [
+    {
+      storage: '500 GB',
+      unit: 'per customer',
+      qty: 1,
+      prices: { monthly: 4999, '3m': 14247.15, '6m': 27744.45, '1y': 53989.2 },
+      comments: 'Enterprise File & Sync with 500 GB Storage | Unlimited Users',
+    },
+    {
+      storage: '1 TB',
+      unit: 'per customer',
+      qty: 1,
+      prices: { monthly: 9999, '3m': 28497.15, '6m': 55494.45, '1y': 107989.2 },
+      comments: 'Enterprise File & Sync with 1 TB Storage | Unlimited Users',
+    },
+    {
+      storage: '2 TB',
+      unit: 'per customer',
+      qty: 1,
+      prices: { monthly: 19000, '3m': 54150, '6m': 105450, '1y': 205200 },
+      comments: 'Enterprise File & Sync with 2 TB Storage | Unlimited Users',
+    },
+    {
+      storage: '5 TB',
+      unit: 'per customer',
+      qty: 1,
+      prices: { monthly: 35625, '3m': 101531.25, '6m': 197718.75, '1y': 384750 },
+      comments: 'Enterprise File & Sync with 5 TB Storage | Unlimited Users',
+    },
+  ];
+
+  readonly selectedCloudDriveTerm = signal<CloudDriveTerm>('monthly');
+
+  readonly activeCloudDriveTerm = computed(
+    () => this.cloudDriveTerms.find((term) => term.key === this.selectedCloudDriveTerm()) ?? this.cloudDriveTerms[0]
+  );
+
+  cloudDrivePrice(plan: CloudDrivePlan): number {
+    return plan.prices[this.selectedCloudDriveTerm()];
+  }
+
   /** Names that have a page of their own but are missing from the directory. */
   private static readonly EXTRA_NAMES: readonly string[] = [
     ...new Set([...Object.keys(DEEP_CONTENT), ...Object.keys(RICH_PRODUCTS)]),
@@ -221,10 +279,12 @@ export class ProductPage {
 
   readonly isTally = computed(() => this.view()?.name === 'Tally on Cloud');
 
-  /** The Tally page presents both videos together, immediately before reviews. */
-  readonly tallyVideos = computed<readonly { label: string; url: SafeResourceUrl }[]>(() => {
+  readonly isCloudDrive = computed(() => this.view()?.name === 'Cloud Drive');
+
+  /** Tally and Cloud Drive present their videos together immediately before reviews. */
+  readonly showcaseVideos = computed<readonly { label: string; url: SafeResourceUrl }[]>(() => {
     const view = this.view();
-    if (view?.name !== 'Tally on Cloud') return [];
+    if (view?.name !== 'Tally on Cloud' && view?.name !== 'Cloud Drive') return [];
 
     return view.videos.slice(0, 2).flatMap((video, index) => {
       if (!video) return [];
@@ -478,6 +538,16 @@ export class ProductPage {
   selectTallyPlan(plan: TallyPlan, ev: Event): void {
     ev.preventDefault();
     this.topics.ask(`${plan.name} (${plan.edition}) - ${plan.users} users - ${this.activeTallyTerm().label}`);
+    this.overlay.open('callback');
+  }
+
+  selectCloudDriveTerm(term: CloudDriveTerm): void {
+    this.selectedCloudDriveTerm.set(term);
+  }
+
+  selectCloudDrivePlan(plan: CloudDrivePlan, ev: Event): void {
+    ev.preventDefault();
+    this.topics.ask(`Cloud Drive ${plan.storage} - ${this.activeCloudDriveTerm().label}`);
     this.overlay.open('callback');
   }
 
