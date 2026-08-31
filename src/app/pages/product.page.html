@@ -196,13 +196,9 @@
                     <h3>{{ p.term }}</h3>
                     <p>{{ edrPlanCoverage[selectedEdrPlanIndex()] }}</p>
                     <div class="edr-plan-price">
-                      <strong>{{ isRmm() ? p.amount : edrPlanTotal(p) }}</strong>
+                      <strong>{{ edrPlanTotal(p) }}</strong>
                       <small>
-                        @if (isRmm()) {
-                          {{ p.unit }}
-                        } @else {
-                          total for {{ edrQuantity() }} {{ edrQuantity() === 1 ? 'user' : 'users' }}
-                        }
+                        total for {{ edrQuantity() }} {{ edrQuantity() === 1 ? 'user' : 'users' }}
                       </small>
                     </div>
                     <div class="edr-plan-saving">{{ p.tag }}</div>
@@ -218,7 +214,7 @@
                     <button
                       type="button"
                       class="edr-plan-cta"
-                      (click)="isRmm() ? viewPlan(p, $event) : buyEdrPlan(p, $event)"
+                      (click)="isRmm() ? viewRmmPlan(p, $event) : buyEdrPlan(p, $event)"
                     >
                       {{ isRmm() ? 'View Plan' : 'Select plan' }} <span aria-hidden="true">→</span>
                     </button>
@@ -299,7 +295,6 @@
               alt="Real-time Tally insights available securely on a mobile device"
             />
           </section>
-<<<<<<< HEAD
         } @else if (isCloudDrive()) {
           <section class="cloud-drive-pricing" id="ppPlans" aria-labelledby="cloudDrivePricingTitle">
             <div class="cloud-drive-price-heading">
@@ -344,10 +339,7 @@
               }
             </div>
           </section>
-        } @else if (!isAdvancedEdr() && !isSmbCyber()) {
-=======
         } @else if (!isAdvancedEdr() && !isSmbCyber() && !isRmm()) {
->>>>>>> 82f822d1671867f368f14a7594f33cca55947d3d
           <div class="pp-sec">Plans &amp; pricing</div>
           <div class="pp-plans" id="ppPlans">
             @for (p of v.plans; track p.term) {
@@ -359,10 +351,10 @@
                 <div class="amt"><b>{{ p.amount }}</b><span>{{ p.unit }}</span></div>
                 <div class="save">{{ p.tag || (p.quoteOnly ? p.badge : '') }}</div>
                 <div class="btns">
-                  <a class="btn btn-primary pl-buy" href="#" (click)="isRmm() ? viewPlan(p, $event) : buyPlan(p, $event)">{{
-                    isRmm() ? 'View Plan' : (p.quoteOnly ? 'Get Quote' : '⚡ Buy Now')
+                  <a class="btn btn-primary pl-buy" href="#" (click)="buyPlan(p, $event)">{{
+                    p.quoteOnly ? 'Get Quote' : '⚡ Buy Now'
                   }}</a>
-                  @if (!p.quoteOnly && !isRmm()) {
+                  @if (!p.quoteOnly) {
                     <a class="btn btn-ghost pl-add" href="#" (click)="addPlan(p, $event)">🛒 Add to Cart</a>
                   }
                 </div>

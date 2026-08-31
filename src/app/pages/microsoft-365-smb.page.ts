@@ -6,10 +6,7 @@ import { SeoService } from '../core/seo.service';
   selector: 'xh-microsoft-365-smb-page',
   standalone: true,
   templateUrl: './microsoft-365-smb.page.html',
-  styleUrls: [
-    './microsoft-365-smb.page.css',
-    './microsoft-365-smb-sections.page.css',
-  ],
+  styleUrl: './microsoft-365-smb.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Microsoft365SmbPage {

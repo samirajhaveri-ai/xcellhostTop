@@ -459,9 +459,13 @@ export class ProductPage {
   }
 
   /** RMM "View Plan" keeps the visitor on-page and opens the selected plan in the cart. */
-  viewPlan(plan: PricingPlan, ev: Event): void {
+  viewRmmPlan(plan: PricingPlan, ev: Event): void {
     ev.preventDefault();
-    this.cart.add(plan.cartName, plan.cartPrice);
+    const quantity = this.edrQuantity();
+    const total = this.edrPlanTotalValue(plan);
+    const price = total ? `â‚¹${total.toLocaleString('en-IN')} total` : plan.cartPrice;
+
+    this.cart.add(`${plan.cartName} Ã— ${quantity} users`, price);
     this.cart.open();
   }
 
