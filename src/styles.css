@@ -1440,7 +1440,12 @@
   @keyframes beamdrift{from{background-position:0% 0%}to{background-position:100% 100%}}
 
   /* orbit system */
-  .hero-play{display:flex;flex-direction:column;align-items:center;gap:26px;position:relative;z-index:2}
+  .hero-play{display:flex;flex-direction:column;align-items:center;position:relative;z-index:2}
+  .hero-visual-carousel{position:relative;width:min(150%,1150px);height:500px;overflow:hidden;margin-right: 150px;}
+  .hero-visual-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transform:translateX(16px) scale(1.01);filter:drop-shadow(0 20px 28px rgba(0,10,45,.3));transition:opacity .5s ease,transform .55s ease;pointer-events:none}
+  .hero-visual-slide.is-active{opacity:1;transform:translateX(0) scale(1.05)}
+  .hero-visual-arrow{position:absolute;z-index:2;top:50%;width:34px;height:34px;border:1px solid rgba(191,218,255,.55);border-radius:8px;background:rgba(6,27,68,.4);color:#fff;font:300 30px/.8 Arial;cursor:pointer;transform:translateY(-50%);opacity:.76;transition:opacity .2s,background .2s}.hero-visual-arrow:hover{opacity:1;background:rgba(21,101,216,.5)}.hero-visual-prev{left:4px}.hero-visual-next{right:4px}
+  .hero-visual-dots{position:absolute;z-index:2;bottom:4px;left:50%;display:flex;gap:7px;transform:translateX(-50%)}.hero-visual-dots button{width:8px;height:8px;padding:0;border:0;border-radius:999px;background:rgba(255,255,255,.4);cursor:pointer;transition:width .2s,background .2s}.hero-visual-dots button.is-active{width:24px;background:#8FE3B0}
   .orbit{position:relative;width:290px;height:290px}
   .orb-core{position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);width:86px;height:86px;border-radius:50%;
     background:linear-gradient(135deg,#1565D8,#0C3E8F);display:flex;align-items:center;justify-content:center;
@@ -1487,8 +1492,9 @@
   .rot span.on{opacity:1;transform:none}
   .rot span.out{opacity:0;transform:translateY(-110%)}
 
-  @media(max-width:1024px){.hero-play{margin-top:8px}}
+  @media(max-width:1024px){.hero-play{margin-top:8px}.hero-visual-carousel{width:min(108%,580px);height:350px}}
   @media(max-width:700px){
+    .hero-visual-carousel{height:280px;max-width:420px}.hero-visual-arrow{display:none}
     .orbit{width:220px;height:220px}
     .orb-core{width:70px;height:70px}.orb-core b{font-size:18px}
     .orb-ic{width:44px;height:44px;font-size:18px}
@@ -1612,6 +1618,7 @@
     transform:translateY(-50%) rotate(180deg) !important;writing-mode:vertical-rl !important;
     border-radius:0 12px 12px 0 !important;padding:18px 11px !important;font-size:13px !important;
     box-shadow:-6px 0 22px rgba(255,140,26,.35) !important}
+  .cb-phone-icon{display:inline-block;width:16px;height:16px;margin:0 0 7px;overflow:visible;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle;transform:rotate(180deg)}
   .cb-ring{border-radius:0 12px 12px 0 !important}
   /* Keep the assistant separate from the left-side cart/WhatsApp stack. */
   .bot-fab{right:22px;left:auto;bottom:22px}
@@ -3592,7 +3599,9 @@ body.xh-locked{overflow:hidden}
 
   /* Keep the callback available without covering service-card content. */
   .cb-tab{top:auto !important;right:14px !important;bottom:140px !important;left:auto !important;width:48px;height:48px;padding:0 !important;border-radius:50% !important;transform:none !important;writing-mode:horizontal-tb !important;font-size:0 !important}
-  .cb-tab::before{content:"📞";font-size:18px;line-height:1}
+  .cb-tab::before{content:none}
+  .cb-phone-icon{width:21px;height:21px;margin:0;transform:none}
+  .cb-tab-label{display:none}
   .cb-ring{border-radius:50% !important}
 }
 

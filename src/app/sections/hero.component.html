@@ -25,14 +25,10 @@
       <div class="hero-live"><i></i> all systems operational · backups every 8 hrs · SOC live · incidents: 0</div>
     </div>
     <div class="hero-play">
-      <div class="orbit">
-        <span class="orb-ring2"></span>
-        <div class="orb-core"><img class="xh-logo" src="/assets/images/xcellhost-logo.png" alt="XcellHost"><span class="oring r1"></span><span class="oring r2"></span></div>
-        <div class="orb-path">
-          @for (o of orbs; track o.service) {
-            <button class="orb-ic" [class]="o.pos" [class.has-img]="!!o.img" [attr.data-p]="o.service" [routerLink]="o.link">@if (o.img) {<img class="oimg" [src]="o.img" [alt]="o.label">} @else {<span class="oemj">{{ o.emoji }}</span>}<span class="olbl">{{ o.label }}</span></button>
-          }
-        </div>
+      <div class="hero-visual-carousel" aria-label="Featured cloud and security services">
+        @for (slide of visualSlides; track slide.image; let i = $index) {
+          <img class="hero-visual-slide" [class.is-active]="i === activeVisualSlide()" [src]="slide.image" [alt]="slide.alt" [attr.aria-hidden]="i !== activeVisualSlide()" />
+        }
       </div>
     </div>
   </div>
