@@ -134,11 +134,11 @@ export class ProductPage {
     return annualPrice * years * this.edrQuantity();
   }
 
-  readonly cybirdTerms: readonly { key: CybirdTerm; label: string }[] = [
-    { key: '1y', label: '1 Year' },
-    { key: '2y', label: '2 Years · 10% Saving' },
-    { key: '3y', label: '3 Years · 15% Saving' },
-    { key: '5y', label: '5 Years · 20% Saving' },
+  readonly cybirdTerms: readonly { key: CybirdTerm; label: string; saving: string }[] = [
+    { key: '1y', label: '1 Year', saving: '' },
+    { key: '2y', label: '2 Years', saving: 'Save 10%' },
+    { key: '3y', label: '3 Years', saving: 'Save 15%' },
+    { key: '5y', label: '5 Years', saving: 'Save 20%' },
   ];
 
   readonly cybirdPlans: readonly CybirdPlan[] = [
@@ -281,10 +281,14 @@ export class ProductPage {
 
   readonly isCloudDrive = computed(() => this.view()?.name === 'Cloud Drive');
 
-  /** Tally and Cloud Drive present their videos together immediately before reviews. */
+  /** Flagship product videos shown together immediately before reviews. */
   readonly showcaseVideos = computed<readonly { label: string; url: SafeResourceUrl }[]>(() => {
     const view = this.view();
-    if (view?.name !== 'Tally on Cloud' && view?.name !== 'Cloud Drive') return [];
+    if (
+      view?.name !== 'Tally on Cloud' &&
+      view?.name !== 'Cloud Drive' &&
+      view?.name !== 'SMB Cyber Security Appliance'
+    ) return [];
 
     return view.videos.slice(0, 2).flatMap((video, index) => {
       if (!video) return [];

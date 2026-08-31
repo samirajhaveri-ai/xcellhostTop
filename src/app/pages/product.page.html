@@ -127,7 +127,7 @@
         <div class="pp-sec">Overview</div>
         <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
 
-        @if (!isTally() && !isCloudDrive()) {
+        @if (!isTally() && !isCloudDrive() && !isSmbCyber()) {
           <div class="pp-sec">Watch it in action</div>
           <div class="pp-vids" [class.pp-vids-compact]="v.offerSection">
             <xh-product-video [videos]="v.videos" [labels]="v.videoLabels" [name]="v.name" />
@@ -408,7 +408,6 @@
             id="ppFeats"
             [class.pp-feats-four]="isAdvancedEdr() || isSmbCyber() || v.name === 'Tally on Cloud'"
             [class.edr-feats]="isAdvancedEdr()"
-            [class.smb-feats]="isSmbCyber()"
           >
             @for (f of v.features; track f.title) {
               <div class="pp-feat">
@@ -462,14 +461,14 @@
 
         @if (isSmbCyber()) {
           <div class="smb-showcase">
-            <section class="smb-block smb-pricing" id="ppPlans" aria-labelledby="smb-pricing-title">
-              <div class="smb-price-heading">
+            <section class="smb-block tally-pricing smb-cybird-pricing" id="ppPlans" aria-labelledby="smb-pricing-title">
+              <div class="tally-price-heading">
                 <span>Hardware + Security Bundle</span>
                 <h2 id="smb-pricing-title">Cybird Security Appliance Bundles</h2>
                 <p>Choose a billing period, then select the security bundle that fits your team.</p>
               </div>
 
-              <div class="smb-term-tabs" role="tablist" aria-label="Choose Cybird billing period">
+              <div class="tally-term-tabs" role="tablist" aria-label="Choose Cybird billing period">
                 @for (term of cybirdTerms; track term.key) {
                   <button
                     type="button"
@@ -477,31 +476,32 @@
                     [class.is-active]="selectedCybirdTerm() === term.key"
                     [attr.aria-selected]="selectedCybirdTerm() === term.key"
                     (click)="selectCybirdTerm(term.key)"
-                  >{{ term.label }}</button>
+                  >
+                    @if (term.saving) { <small>{{ term.saving }}</small> }
+                    <span>{{ term.label }}</span>
+                  </button>
                 }
               </div>
-              <p class="smb-prorata-note">Multi-year savings are included in the displayed bundle price.</p>
 
-              <div class="smb-price-wrap">
-                @for (plan of cybirdPlans; track plan.name) {
-                  <article class="smb-price-plan" [class.smb-plan-featured]="plan.accent === 'pro'">
-                    <div [class]="'smb-plan-band smb-band-' + plan.accent">Up to {{ plan.users }} users</div>
-                    <div class="smb-plan-main">
-                      <div class="smb-plan-name">
-                        <span [class]="'smb-plan-icon smb-plan-icon-' + plan.accent" aria-hidden="true">C</span>
-                        <b>Cybird <em>{{ plan.name }}</em></b>
+              <div class="tally-plan-grid">
+                @for (plan of cybirdPlans; track plan.name; let i = $index) {
+                  <article class="tally-plan-card" [class.tally-plan-featured]="plan.accent === 'pro'">
+                    <div class="tally-plan-band">Up to {{ plan.users }} users</div>
+                    <div class="tally-plan-main">
+                      <div class="tally-plan-name">
+                        <span aria-hidden="true">C</span>
+                        <div><b>Cybird {{ plan.name }}</b><small>Security appliance bundle</small></div>
                       </div>
-                      <p class="smb-starting">Bundle price for {{ activeCybirdTerm().label }}</p>
-                      <div class="smb-selected-price"><span>&#8377;</span>{{ formatInr(cybirdPrice(plan)) }}</div>
-                      <small class="smb-gst">+GST</small>
-                      <a class="smb-select-plan" href="#" (click)="selectCybirdPlan(plan, $event)">Select plan</a>
+                      <strong>&#8377;{{ formatInr(cybirdPrice(plan)) }}</strong>
+                      <small>+GST · {{ activeCybirdTerm().label }} billing</small>
                     </div>
-                    <ul class="smb-plan-features">
-                      <li><b>Hardware + security</b> bundle</li>
-                      <li>Protects up to <b>{{ plan.users }} users</b></li>
-                      <li>Hardware appliance <b>&#8377;16,999 +GST</b></li>
-                      <li>Optional support for <b>{{ plan.supportRange }}</b>: <b>&#8377;{{ formatInr(plan.support) }}/month</b></li>
-                    </ul>
+                    <dl class="tally-plan-specs smb-cybird-specs">
+                      <div><dt>Bundle</dt><dd>Hardware + Security</dd></div>
+                      <div><dt>User Coverage</dt><dd>Up to {{ plan.users }} users</dd></div>
+                      <div><dt>Hardware Appliance</dt><dd>&#8377;16,999 +GST</dd></div>
+                      <div><dt>Optional Support</dt><dd>{{ plan.supportRange }}<br />&#8377;{{ formatInr(plan.support) }}/month</dd></div>
+                    </dl>
+                    <a class="tally-plan-action" href="#" (click)="selectCybirdPlan(plan, $event)">Select plan</a>
                   </article>
                 }
               </div>
@@ -927,9 +927,9 @@
           }
         </div>
 
-        @if ((isTally() || isCloudDrive()) && showcaseVideos().length) {
-          <section class="tally-videos" aria-labelledby="tallyVideosTitle">
-            <div class="pp-sec" id="tallyVideosTitle">Watch it in action</div>
+        @if ((isTally() || isCloudDrive() || isSmbCyber()) && showcaseVideos().length) {
+          <section class="tally-videos" aria-labelledby="showcaseVideosTitle">
+            <div class="pp-sec" id="showcaseVideosTitle">Watch it in action</div>
             <div class="tally-video-grid" [class.single-video]="showcaseVideos().length === 1">
               @for (video of showcaseVideos(); track video.label) {
                 <article class="tally-video-card">
