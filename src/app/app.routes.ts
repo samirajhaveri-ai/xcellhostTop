@@ -24,6 +24,21 @@ export const routes: Routes = [
   { path: 'about', loadComponent: () => import('./pages/simple.page').then((m) => m.SimplePage), data: { key: 'about' } },
   { path: 'contact', loadComponent: () => import('./pages/contact.page').then((m) => m.ContactPage) },
   {
+    path: 'microsoft-365-smb',
+    loadComponent: () =>
+      import('./pages/microsoft-365-smb.page').then((m) => m.Microsoft365SmbPage),
+  },
+  {
+    path: 'google-workspace',
+    loadComponent: () =>
+      import('./pages/google-workspace.page').then((m) => m.GoogleWorkspacePage),
+  },
+  {
+    path: 'dpdpa-for-smb',
+    loadComponent: () =>
+      import('./pages/dpdpa-for-smb.page').then((m) => m.DpdpaForSmbPage),
+  },
+  {
     path: 'payment-methods',
     loadComponent: () =>
       import('./pages/payment-methods.page').then((m) => m.PaymentMethodsPage),
