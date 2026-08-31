@@ -120,7 +120,7 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "AI Website Builder",
-                "pill": "New",
+                "pill": "",
                 "desc": "Make your website in minutes ✨"
               },
               {
@@ -160,26 +160,18 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Engage customers effectively with targeted email campaigns 🎯"
               },
-              {
-                "title": "AI SEO",
-                "pill": "Free trial",
-                "desc": "Promote products and services using WhatsApp 💬"
-              },
+              
               {
                 "title": "SMS Marketing",
                 "pill": null,
                 "desc": "Reach customers instantly with impactful text campaigns 📲"
               },
               {
-                "title": "Managed SEO",
+                "title": "Managedn AI SEO",
                 "pill": null,
                 "desc": "Maximise online visibility and reach your target audience 🎯"
               },
-              {
-                "title": "HeyItsME",
-                "pill": null,
-                "desc": "Enhance your online presence and direct visitors 👋"
-              },
+              
               
             ]
           }
@@ -248,11 +240,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": "New",
                 "desc": null
               },
-              {
-                "title": "Acronis True Image",
-                "pill": null,
-                "desc": null
-              },
+              
               {
                 "title": "Cloud Disaster Recovery SMB",
                 "pill": null,
@@ -317,7 +305,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Data as a Service",
+                "title": "Age Cloud",
                 "pill": null,
                 "desc": null
               },
@@ -358,11 +346,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "Intelligent Backup (AI)",
-                "pill": null,
-                "desc": null
-              },
+              
               
               {
                 "title": "Microsoft 365 Backup",
@@ -383,7 +367,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "E-Mail Archiving",
                 "pill": null,
                 "desc": null
-              }
+              },
+              {
+                "title": "Acronis True Image",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
@@ -392,6 +381,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "3",
         "label": "Cloud Productivity",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Cloud",
+            "title": "Business E-Mail",
+            "body": "Professional email services for business communication",
+            "image": "/assets/images/contact-mail.webp",
+            "link": "/business-e-mail"
+          },
+          {
+            "label": "Cloud",
+            "title": "Microsoft 365 Enterprise",
+            "body": "Explore Microsoft 365 Enterprise services, features and solutions.",
+            "image": "/assets/images/orb-microsoft-365.png",
+            "link": "/microsoft-365"
+          }
+        ],
         "groups": [
           {
             "heading": "Cloud Productivity",
@@ -408,6 +413,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Google Workspace",
+                "pill": null,
+                "desc": null
+              },
+               {
+                "title": "Zoho Workspace",
                 "pill": null,
                 "desc": null
               },
@@ -451,6 +461,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+               
             ]
           }
         ]
@@ -512,40 +523,9 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
+      
       {
         "g": "5",
-        "label": "Cloud ERP",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Cloud ERP",
-            "items": [
-              {
-                "title": "SAP Hosting",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Odoo Hosting",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "ERP Next Hosting",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Sage Hosting",
-                "pill": null,
-                "desc": null
-              },
-            ]
-          }
-        ]
-      },
-      {
-        "g": "8",
         "label": "Managed Migration",
         "on": false,
         "groups": [
@@ -610,7 +590,63 @@ export const MEGA_MENU: MenuTop[] = [
             ]
           }
         ]
-      }
+      },
+      
+      {
+        "g": "7",
+        "label": "Managed Monitoring",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Managed Msonitoring",
+            "items": [
+              {
+                "title": "Cloud Monitoring",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Cloud Observability",
+                "pill": null,
+                "desc": null
+              },
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "6",
+        "label": "Cloud ERP",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Cloud ERP",
+            "items": [
+              {
+                "title": "SAP Hosting",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Odoo Hosting",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "ERP Next Hosting",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Sage Hosting",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
     ]
   },
   {
@@ -774,7 +810,7 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Mark Certificate",
             "items": [
               {
-                "title": "Digicert OMC ",
+                "title": "Digicert VMC ",
                 "pill": null,
                 "desc": null
               },
@@ -795,9 +831,26 @@ export const MEGA_MENU: MenuTop[] = [
     "feature": null,
     "tabs": [
       {
-        "g": "10",
+        "g": "0",
         "label": "EndPoint Security",
         "on": true,
+        "featureCards": [
+          {
+            "label": "Security",
+            "title": "MDM",
+            "body": "Explore MDM services, features and solutions.",
+            "image": "/assets/images/product-intros/reference-d3a8bae5f3f4.png",
+            "link": "/cloud-mobile-device-mgmt"
+          },
+          {
+            "label": "Security",
+            "title": "MDR",
+            "body": "24×7 outsourced monitoring with rapid response",
+            "image": "/assets/images/hero-smb-cyber-security-appliance.png",
+            "link": "/mdr",
+            "imagePosition": "center 28%"
+          }
+        ],
         "groups": [
           {
             "heading": "EndPoint Security",
@@ -833,7 +886,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "8",
+        "g": "1",
         "label": "Cloud Security",
         "on": true,
         "groups": [
@@ -851,7 +904,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "9",
+        "g": "2",
         "label": "Network Security",
         "on": true,
         "groups": [
@@ -859,67 +912,36 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Network Security",
             "items": [
               {
-                "title": "VAPT Services",
+                "title": "No Data",
                 "pill": "Free trial",
                 "desc": null
               },
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "3",
+        "label": "IOT Security",
+        "on": true,
+        "groups": [
+          {
+            "heading": "IOT Security",
+            "items": [
               {
-                "title": "Continuous Threat Exposure (CTEM)",
-                "pill": null,
+                "title": "No Data",
+                "pill": "Free trial",
                 "desc": null
               },
-              {
-                "title": "Source Code Review",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Web, Mobile & API Testing",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Network Penetration Testing",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Web App Penetration Testing",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Mobile App Penetration Testing",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "API Penetration Testing",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "IoT Penetration Testing",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Application Security Services",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Acronis CyberFit Score",
-                "pill": null,
-                "desc": null
-              }
+              
             ]
           }
         ]
       },
       
       {
-        "g": "11",
+        "g": "4",
         "label": "Security Testing",
         "on": true,
         "groups": [
@@ -986,7 +1008,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "1",
+        "g": "5",
         "label": "Security Assessment",
         "on": false,
         "groups": [
@@ -1043,7 +1065,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "2",
+        "g": "6",
         "label": "Security Operations",
         "on": false,
         "groups": [
@@ -1100,7 +1122,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "3",
+        "g": "7",
         "label": "Security Consulting",
         "on": false,
         "groups": [
@@ -1162,7 +1184,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "4",
+        "g": "9",
         "label": "Security Platforms",
         "on": false,
         "groups": [
@@ -1193,60 +1215,6 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      {
-        "g": "5",
-        "label": "Security Tool",
-        "on": false,
-        "groups": [
-          {
-            "heading": "",
-            "items": [
-              {
-                "title": "No Data",
-                "pill": "In focus",
-                "desc": null
-              },
-               
-            ]
-          }
-        ]
-      },
-      {
-        "g": "6",
-        "label": "Security Traning",
-        "on": false,
-        "groups": [
-          {
-            "heading": "",
-            "items": [
-              {
-                "title": "No Data",
-                "pill": "In focus",
-                "desc": null
-              },
-                  
-            ]
-          }
-        ]
-      },
-      {
-        "g": "7",
-        "label": "Security Certificate",
-        "on": false,
-        "groups": [
-          {
-            "heading": "",
-            "items": [
-              {
-                "title": "No data",
-                "pill": "In focus",
-                "desc": null
-              },
-                  
-            ]
-          }
-        ]
-      }
     ]
   },
   {

@@ -53,22 +53,22 @@
           </p>
           <div class="contact-form-methods">
             <a href="tel:+912267111555">
-              <span class="method-icon method-blue" aria-hidden="true">&#9742;</span>
+              <span class="method-icon method-blue material-symbols-outlined" aria-hidden="true">phone_in_talk</span>
               <span><small>Call us - 24x7</small><strong>+91-22-6711 1555</strong></span>
               <b aria-hidden="true">&rarr;</b>
             </a>
             <a href="https://wa.me/918657032540" target="_blank" rel="noopener">
-              <span class="method-icon method-green" aria-hidden="true">&#9673;</span>
+              <span class="method-icon method-green material-symbols-outlined" aria-hidden="true">chat</span>
               <span><small>WhatsApp</small><strong>+91 86570 32540</strong></span>
               <b aria-hidden="true">&rarr;</b>
             </a>
             <a href="mailto:sales@xcellhost.cloud">
-              <span class="method-icon method-orange" aria-hidden="true">&#9993;</span>
+              <span class="method-icon method-orange material-symbols-outlined" aria-hidden="true">mail</span>
               <span><small>Email - reply in one business day</small><strong>sales&#64;xcellhost.cloud</strong></span>
               <b aria-hidden="true">&rarr;</b>
             </a>
             <div>
-              <span class="method-icon method-violet" aria-hidden="true">&#8982;</span>
+              <span class="method-icon method-violet material-symbols-outlined" aria-hidden="true">location_on</span>
               <span><small>Office</small><strong>Mumbai, Maharashtra</strong></span>
             </div>
           </div>
@@ -81,9 +81,8 @@
           <section class="xch-sales-page" id="xch-sales-enquiry-section">
             <div class="xch-form-shell">
               <div class="contact-form-head xch-form-head">
-                <span>Contact XcellHost</span>
                 <h2 id="contact-form-title">Get in touch with our team</h2>
-                <p data-xch-custom-text>Our sales team can answer questions about our products, services and managed cloud solutions.</p>
+                <!-- <p data-xch-custom-text>Our sales team can answer questions about our products, services and managed cloud solutions.</p> -->
               </div>
 
               <form
@@ -116,7 +115,7 @@
                   </div>
 
                   <div class="xch-field">
-                    <label class="xch-label" for="xch-sales-phone">Phone number <span class="xch-required">*</span></label>
+                    <label class="xch-label" for="xch-sales-phone">Phone Number <span class="xch-required">*</span></label>
                     <div class="xch-phone-grid">
                       <select name="CountryCode" class="xch-select" aria-label="Country code">
                         <option value="91" selected>India +91</option>
@@ -130,7 +129,7 @@
                         <option value="243">DR Congo +243</option>
                       </select>
 
-                      <input id="xch-sales-phone" type="tel" name="PhoneNumber_countrycode" class="xch-input" autocomplete="tel" inputmode="numeric" maxlength="15" pattern="[0-9]{7,15}" required>
+                      <input id="xch-sales-phone" type="tel" name="PhoneNumber_countrycode" class="xch-input" autocomplete="tel" inputmode="numeric" maxlength="15" pattern="[0-9]{7,15}" placeholder="Phone Number" required>
                     </div>
                   </div>
 
@@ -138,13 +137,14 @@
                     <label class="xch-label" for="xch-sales-email">Email <span class="xch-required">*</span></label>
                     <input id="xch-sales-email" type="email" name="Email" class="xch-input" autocomplete="email" required>
                   </div>
+
                 </div>
 
                 <input type="hidden" name="SingleLine1" data-xch-product-field value="Website Enquiry">
                 <input type="hidden" name="Number" value="1">
                 <input type="hidden" name="SingleLine2" data-xch-service-field value="Website Enquiry">
 
-                <div class="xch-option-section">
+                <div class="xch-option-section xch-role-section">
                   <span class="xch-option-title">I am a <span class="xch-required">*</span></span>
                   <div class="xch-radio-list">
                     <label class="xch-radio-item">
