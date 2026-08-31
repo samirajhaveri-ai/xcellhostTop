@@ -1302,9 +1302,10 @@
   .ind-i svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
   .ind-copy{min-width:0}.ind-copy b{display:block;color:var(--navy);font-family:var(--disp);font-size:14.5px;line-height:1.25}.ind-copy span{display:block;margin-top:5px;color:var(--slate);font-size:11px;line-height:1.35}
   .case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  .cs{border:1px solid var(--line);border-radius:16px;padding:26px;background:#fff;transition:.35s;position:relative;overflow:hidden}
+  .cs{display:block;border:1px solid var(--line);border-radius:16px;padding:26px;background:#fff;color:inherit;text-decoration:none;cursor:pointer;transition:.35s;position:relative;overflow:hidden}
   .cs::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--orange))}
   .cs:hover{transform:translateY(-4px);box-shadow:0 20px 44px rgba(4,30,66,.1)}
+  .cs:focus-visible{outline:3px solid color-mix(in srgb,var(--blue) 35%,transparent);outline-offset:3px;transform:translateY(-4px);box-shadow:0 20px 44px rgba(4,30,66,.1)}
   .cs-tag{font:600 10.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin-bottom:14px}
   .cs-num{font-family:var(--disp);font-weight:800;font-size:32px;
     background:linear-gradient(100deg,var(--blue),var(--orange));-webkit-background-clip:text;background-clip:text;color:transparent;
