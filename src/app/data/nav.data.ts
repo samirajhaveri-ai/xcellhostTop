@@ -392,6 +392,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "3",
         "label": "Cloud Productivity",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Cloud",
+            "title": "Business E-Mail",
+            "body": "Professional email services for business communication",
+            "image": "/assets/images/contact-mail.webp",
+            "link": "/business-e-mail"
+          },
+          {
+            "label": "Cloud",
+            "title": "Microsoft 365 Enterprise",
+            "body": "Explore Microsoft 365 Enterprise services, features and solutions.",
+            "image": "/assets/images/orb-microsoft-365.png",
+            "link": "/microsoft-365"
+          }
+        ],
         "groups": [
           {
             "heading": "Cloud Productivity",
@@ -408,6 +424,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Google Workspace",
+                "pill": null,
+                "desc": null
+              },
+               {
+                "title": "Zoho Workspace",
                 "pill": null,
                 "desc": null
               },
@@ -451,6 +472,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+               
             ]
           }
         ]
@@ -798,6 +820,23 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "10",
         "label": "EndPoint Security",
         "on": true,
+        "featureCards": [
+          {
+            "label": "Security",
+            "title": "MDM",
+            "body": "Explore MDM services, features and solutions.",
+            "image": "/assets/images/product-intros/reference-d3a8bae5f3f4.png",
+            "link": "/cloud-mobile-device-mgmt"
+          },
+          {
+            "label": "Security",
+            "title": "MDR",
+            "body": "24×7 outsourced monitoring with rapid response",
+            "image": "/assets/images/hero-smb-cyber-security-appliance.png",
+            "link": "/mdr",
+            "imagePosition": "center 28%"
+          }
+        ],
         "groups": [
           {
             "heading": "EndPoint Security",
