@@ -415,6 +415,15 @@ const TALLY_WHY_CHOOSE: IconItem[] = [
   ['🆓', 'No Maintenance Cost', 'No server-maintenance expense—XcellHost manages the cloud-based Tally environment.'],
 ];
 
+const CLOUD_DRIVE_WHY: Pair[] = [
+  ['Managed by XcellHost cloud experts', ''],
+  ['24×7 monitoring and support', ''],
+  ['Secure access from anywhere', ''],
+  ['Business-focused storage solution', ''],
+  ['No hardware investment required', ''],
+  ['Easy migration from existing file servers', ''],
+];
+
 const SMB_CYBER_HERO_POINTS = [
   'Secure Business Wi-Fi',
   'Advanced Firewall',
@@ -675,6 +684,8 @@ export class ProductPageService {
       PRODUCT_BRAND_LINES[name] ?? product?.brandLine
     );
 
+    const whySource = name === 'Cloud Drive' ? CLOUD_DRIVE_WHY : (CATEGORY_WHY[cat] ?? []);
+
     return {
       name,
       brandSuffix,
@@ -692,7 +703,7 @@ export class ProductPageService {
       honest: deep?.not_for ?? null,
       steps: CATEGORY_STEPS[cat] ?? [],
       mock: CATEGORY_MOCK[cat] ?? [],
-      why: (CATEGORY_WHY[cat] ?? []).map((w, i) => ({
+      why: whySource.map((w, i) => ({
         icon: WHY_ICON_PATHS[i % WHY_ICON_PATHS.length], title: w[0], body: w[1],
       })),
       reviews,
