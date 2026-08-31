@@ -757,6 +757,13 @@ function resolveHeroBrand(
     };
   }
 
+  if (/^SMB Cyber Security Appliance$/i.test(name)) {
+    return {
+      name: 'Cybird', subtitle: null, kind: 'vendor',
+      logoImage: '/assets/images/cybird-powered-by.png',
+    };
+  }
+
   if (poweredBy) {
     const [vendor, ...rest] = poweredBy.trim().split(/\s+/);
     return {
