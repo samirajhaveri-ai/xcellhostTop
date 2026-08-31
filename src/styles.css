@@ -1612,6 +1612,7 @@
     transform:translateY(-50%) rotate(180deg) !important;writing-mode:vertical-rl !important;
     border-radius:0 12px 12px 0 !important;padding:18px 11px !important;font-size:13px !important;
     box-shadow:-6px 0 22px rgba(255,140,26,.35) !important}
+  .cb-phone-icon{display:inline-block;width:16px;height:16px;margin:0 0 7px;overflow:visible;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle;transform:rotate(180deg)}
   .cb-ring{border-radius:0 12px 12px 0 !important}
   /* Keep the assistant separate from the left-side cart/WhatsApp stack. */
   .bot-fab{right:22px;left:auto;bottom:22px}
@@ -3591,7 +3592,9 @@ body.xh-locked{overflow:hidden}
 
   /* Keep the callback available without covering service-card content. */
   .cb-tab{top:auto !important;right:14px !important;bottom:140px !important;left:auto !important;width:48px;height:48px;padding:0 !important;border-radius:50% !important;transform:none !important;writing-mode:horizontal-tb !important;font-size:0 !important}
-  .cb-tab::before{content:"📞";font-size:18px;line-height:1}
+  .cb-tab::before{content:none}
+  .cb-phone-icon{width:21px;height:21px;margin:0;transform:none}
+  .cb-tab-label{display:none}
   .cb-ring{border-radius:50% !important}
 }
 
