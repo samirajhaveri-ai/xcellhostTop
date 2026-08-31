@@ -146,11 +146,17 @@
           </section>
         }
 
-        @if (isAdvancedEdr()) {
-          <section class="edr-pricing" id="ppPlans" aria-label="EDR protection plans">
+        @if (isAdvancedEdr() || isRmm()) {
+          <section class="edr-pricing" id="ppPlans" [attr.aria-label]="isRmm() ? 'RMM plans' : 'EDR protection plans'">
             <div class="edr-card-heading">
-              <h3>Choose your protection term</h3>
-              <p>Every plan includes the same complete EDR protection and XcellHost support.</p>
+              <h3>{{ isRmm() ? 'Choose your RMM term' : 'Choose your protection term' }}</h3>
+              <p>
+                {{
+                  isRmm()
+                    ? 'Every plan includes the same complete remote monitoring capabilities and XcellHost support.'
+                    : 'Every plan includes the same complete EDR protection and XcellHost support.'
+                }}
+              </p>
             </div>
 
             <div class="edr-term-tabs" role="tablist" aria-label="Choose protection term">
@@ -190,8 +196,14 @@
                     <h3>{{ p.term }}</h3>
                     <p>{{ edrPlanCoverage[selectedEdrPlanIndex()] }}</p>
                     <div class="edr-plan-price">
-                      <strong>{{ edrPlanTotal(p) }}</strong>
-                      <small>total for {{ edrQuantity() }} {{ edrQuantity() === 1 ? 'user' : 'users' }}</small>
+                      <strong>{{ isRmm() ? p.amount : edrPlanTotal(p) }}</strong>
+                      <small>
+                        @if (isRmm()) {
+                          {{ p.unit }}
+                        } @else {
+                          total for {{ edrQuantity() }} {{ edrQuantity() === 1 ? 'user' : 'users' }}
+                        }
+                      </small>
                     </div>
                     <div class="edr-plan-saving">{{ p.tag }}</div>
                   </header>
@@ -203,14 +215,18 @@
                       <output id="edrQuantity" aria-live="polite">{{ edrQuantity() }}</output>
                       <button type="button" aria-label="Increase users" (click)="changeEdrQuantity(1)">+</button>
                     </div>
-                    <button type="button" class="edr-plan-cta" (click)="buyEdrPlan(p, $event)">
-                      Select plan <span aria-hidden="true">→</span>
+                    <button
+                      type="button"
+                      class="edr-plan-cta"
+                      (click)="isRmm() ? viewPlan(p, $event) : buyEdrPlan(p, $event)"
+                    >
+                      {{ isRmm() ? 'View Plan' : 'Select plan' }} <span aria-hidden="true">→</span>
                     </button>
                   </div>
                 </div>
 
                 <ul>
-                  @for (feature of edrPlanFeatures; track feature) {
+                  @for (feature of (isRmm() ? rmmPlanFeatures : edrPlanFeatures); track feature) {
                     <li><i aria-hidden="true">✓</i><span>{{ feature }}</span></li>
                   }
                 </ul>
@@ -283,7 +299,7 @@
               alt="Real-time Tally insights available securely on a mobile device"
             />
           </section>
-        } @else if (!isAdvancedEdr() && !isSmbCyber()) {
+        } @else if (!isAdvancedEdr() && !isSmbCyber() && !isRmm()) {
           <div class="pp-sec">Plans &amp; pricing</div>
           <div class="pp-plans" id="ppPlans">
             @for (p of v.plans; track p.term) {

@@ -92,6 +92,17 @@ export class ProductPage {
     'XcellHost engineer support',
   ];
 
+  readonly rmmPlanFeatures = [
+    'Device discovery and asset management',
+    'Vulnerability assessment and patch management',
+    'System and hardware monitoring',
+    'AI-assisted scripting and automation',
+    'Software deployment with DeployPilot',
+    'Remote desktop and assistance',
+    'Microsoft 365 security posture management',
+    'XcellHost engineer support',
+  ];
+
   readonly selectedEdrPlanIndex = signal(0);
   readonly edrQuantity = signal(1);
 
