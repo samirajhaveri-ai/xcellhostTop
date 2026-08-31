@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { RevealDirective } from '../shared/reveal.directive';
 
@@ -50,7 +51,7 @@ const CASE_CARDS: readonly CaseCard[] = [
 /** The "proof, not promises" case-study grid. */
 @Component({
   selector: 'xh-cases',
-  imports: [RevealDirective],
+  imports: [RouterLink, RevealDirective],
   standalone: true,
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -76,6 +77,11 @@ const CASE_CARDS: readonly CaseCard[] = [
               </div>
             </div>
           }
+        </div>
+        <div class="cases-cta">
+          <a class="btn btn-ghost" routerLink="/case-studies">
+            View all case studies <span aria-hidden="true">→</span>
+          </a>
         </div>
       </div>
     </section>

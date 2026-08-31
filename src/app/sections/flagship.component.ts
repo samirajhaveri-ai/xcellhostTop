@@ -148,7 +148,7 @@ const FLAGSHIP_CARDS: readonly FlagshipCard[] = [
   {
     icon: 'folder', badge: 'File share', title: 'Cloud Drive',
     blurb: 'Secure file sync, team folders and controlled sharing on every device.',
-    lead: '', amount: '₹499/-', tail: ' per month/500GB', cta: 'Explore →', category: 'Cloud',
+    lead: '', amount: '₹4999/-', tail: ' per month/500GB', cta: 'Explore →', category: 'Cloud',
   },
   {
     icon: 'lock', badge: 'New', hot: true, title: 'SMB Cyber Security Appliance',
