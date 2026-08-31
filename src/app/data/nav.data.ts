@@ -200,7 +200,7 @@ export const MEGA_MENU: MenuTop[] = [
               
               {
                 "title": "Cloud Backup",
-                "pill": null,
+                "pill": "",
                 "desc": null
               },
               {
