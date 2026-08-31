@@ -1,9 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { RevealDirective } from '../shared/reveal.directive';
 
 /** One `.cs` case-study card. */
 interface CaseCard {
+  /** anchor of the matching story on the case-studies page */
+  readonly id: string;
   /** the small uppercase `.cs-tag` line */
   readonly tag: string;
   /** the headline figure in `.cs-num` */
@@ -17,6 +20,7 @@ interface CaseCard {
 
 const CASE_CARDS: readonly CaseCard[] = [
   {
+    id: 'tally-cloud',
     tag: 'Manufacturing · 3 branches',
     num: '2 days → 0',
     title: 'Month-end reconciliation disappeared',
@@ -27,6 +31,7 @@ const CASE_CARDS: readonly CaseCard[] = [
     services: ['Tally on Cloud', 'Cloud Backup'],
   },
   {
+    id: 'ca-continuity',
     tag: 'CA Firm · Pune',
     num: '10 minutes',
     title: 'From office PC crash to back at work',
@@ -36,6 +41,7 @@ const CASE_CARDS: readonly CaseCard[] = [
     services: ['Cloud Desktop', 'Acronis Backup'],
   },
   {
+    id: 'dpdpa-readiness',
     tag: 'BFSI · Enterprise',
     num: '8 weeks',
     title: 'DPDPA audit-ready before the deadline',
@@ -50,7 +56,7 @@ const CASE_CARDS: readonly CaseCard[] = [
 /** The "proof, not promises" case-study grid. */
 @Component({
   selector: 'xh-cases',
-  imports: [RevealDirective],
+  imports: [RouterLink, RevealDirective],
   standalone: true,
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -64,7 +70,12 @@ const CASE_CARDS: readonly CaseCard[] = [
         </div>
         <div class="case-grid">
           @for (c of cases; track c.title) {
-            <div class="cs">
+            <a
+              class="cs"
+              routerLink="/case-studies"
+              [fragment]="c.id"
+              [attr.aria-label]="'Read case study: ' + c.title"
+            >
               <div class="cs-tag">{{ c.tag }}</div>
               <div class="cs-num">{{ c.num }}</div>
               <b>{{ c.title }}</b>
@@ -74,7 +85,7 @@ const CASE_CARDS: readonly CaseCard[] = [
                   <span>{{ s }}</span>
                 }
               </div>
-            </div>
+            </a>
           }
         </div>
       </div>
