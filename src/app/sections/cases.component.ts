@@ -70,12 +70,14 @@ const CASE_CARDS: readonly CaseCard[] = [
         </div>
         <div class="case-grid">
           @for (c of cases; track c.title) {
-            <a
-              class="cs"
-              routerLink="/case-studies"
-              [fragment]="c.id"
-              [attr.aria-label]="'Read case study: ' + c.title"
-            >
+<a
+  class="cs"
+  routerLink="/case-studies"
+  [fragment]="c.id"
+  target="_blank"
+  rel="noopener"
+  [attr.aria-label]="'Read case study: ' + c.title"
+>
               <div class="cs-tag">{{ c.tag }}</div>
               <div class="cs-num">{{ c.num }}</div>
               <b>{{ c.title }}</b>
