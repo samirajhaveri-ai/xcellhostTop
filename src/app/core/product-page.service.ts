@@ -768,6 +768,19 @@ function resolveHeroBrand(
     };
   }
 
+  if (/SMB Cloud Desktop/i.test(name)) {
+    return {
+      name: 'XcellDesktop', subtitle: null, kind: 'vendor',
+      logoImage: '/assets/images/XcellConnect-min-2000x485.png',
+    };
+  }
+  if (/Advanced Endpoint Security (EDR)/i.test(name)) {
+    return {
+      name: 'XcellSecure', subtitle: null, kind: 'vendor',
+      logoImage: '/assets/images/EDR.png',
+    };
+  }
+
   if (/^SMB Cyber Security Appliance$/i.test(name)) {
     return {
       name: 'Cybird', subtitle: null, kind: 'vendor',
