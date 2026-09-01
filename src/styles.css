@@ -70,8 +70,10 @@
   .home-hero-copy{min-width:0}.home-hero-spotlight{position:static!important;display:inline!important;color:#ffb35b!important;font:700 13px/1.5 var(--body)!important;letter-spacing:0!important;white-space:normal!important;transform:none!important;opacity:1!important}
   .home-hero-slide .hero-play{min-width:0;width:100%;justify-content:center}
   .home-hero-slide-art{display:block;width:100%;max-width:620px;height:clamp(320px,30vw,420px);margin:0 auto;object-fit:contain;filter:drop-shadow(0 20px 28px rgba(0,10,45,.3));transform:scale(1.05)}
+  .home-hero-dots{position:absolute;z-index:3;bottom:-52px;left:50%;display:flex;align-items:center;gap:6px;transform:translateX(-50%)}
+  .home-hero-dots button{width:6px;height:6px;padding:0;border:0;border-radius:50%;background:rgba(194,218,250,.55);cursor:pointer;transition:background .2s ease,transform .2s ease}.home-hero-dots button:hover{background:#fff;transform:scale(1.15)}.home-hero-dots button.is-active{background:#fff;transform:scale(1.18)}.home-hero-dots button:focus-visible{outline:2px solid #fff;outline-offset:4px}
   @media(max-width:1024px){.home-hero-carousel{min-height:770px}.home-hero-slide{grid-template-columns:1fr;align-content:start;gap:20px}.home-hero-copy{padding-top:0}.home-hero-slide .hero-play{margin-top:0}.home-hero-slide-art{height:330px;max-width:580px}}
-  @media(max-width:700px){.home-hero-carousel{min-height:810px}.home-hero-slide{gap:12px}.home-hero-slide-art{height:280px;max-width:420px}.home-hero-slide .stat-line{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.home-hero-slide .hero-live{font-size:10px;white-space:normal}}
+  @media(max-width:700px){.home-hero-carousel{min-height:810px}.home-hero-slide{gap:12px}.home-hero-slide-art{height:280px;max-width:420px}.home-hero-slide .stat-line{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.home-hero-slide .hero-live{font-size:10px;white-space:normal}.home-hero-dots{bottom:-42px}}
   @media(max-width:480px){.home-hero-carousel{min-height:850px}.home-hero-slide-art{height:240px}.home-hero-slide h1{font-size:clamp(32px,10vw,42px)}}
 
   .console{background:#06182F;border:1px solid #17395F;border-radius:14px;box-shadow:0 24px 60px rgba(0,0,0,.4);overflow:hidden}

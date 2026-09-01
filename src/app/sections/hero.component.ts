@@ -55,6 +55,7 @@ const LEAVE_MS = 520;
 const HERO_SLIDE_MS = 5200;
 
 interface HeroCarouselSlide {
+  readonly tab: string;
   readonly eyebrow: string;
   readonly title: string;
   readonly accent: string;
@@ -69,6 +70,7 @@ interface HeroCarouselSlide {
 
 const HERO_CAROUSEL_SLIDES: readonly HeroCarouselSlide[] = [
   {
+    tab: 'Overview',
     eyebrow: 'Engineering India’s Digital Future · Since 1999',
     title: 'The infrastructure your',
     accent: 'next decade',
@@ -81,6 +83,7 @@ const HERO_CAROUSEL_SLIDES: readonly HeroCarouselSlide[] = [
     alt: 'XcellHost cloud and security infrastructure',
   },
   {
+    tab: 'Performance Cloud',
     eyebrow: 'Built for business-critical workloads',
     title: 'Performance',
     accent: 'Cloud',
@@ -93,6 +96,7 @@ const HERO_CAROUSEL_SLIDES: readonly HeroCarouselSlide[] = [
     alt: 'Performance Cloud infrastructure',
   },
   {
+    tab: 'GPU Cloud',
     eyebrow: 'Accelerate your AI ambition',
     title: 'GPU',
     accent: 'Cloud',
@@ -105,6 +109,7 @@ const HERO_CAROUSEL_SLIDES: readonly HeroCarouselSlide[] = [
     alt: 'GPU Cloud infrastructure',
   },
   {
+    tab: 'Acronis EDR',
     eyebrow: 'Stop threats before they spread',
     title: 'Acronis',
     accent: 'EDR',
