@@ -1,6 +1,9 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 
+import { DocRequestService } from '../core/doc-request.service';
+import { OverlayService } from '../core/overlay.service';
 import { SeoService } from '../core/seo.service';
+import { CallbackTopicService } from '../overlays/callback-topic.service';
 
 @Component({
   selector: 'xh-microsoft-365-smb-page',
@@ -10,7 +13,10 @@ import { SeoService } from '../core/seo.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Microsoft365SmbPage {
+  private readonly docs = inject(DocRequestService);
+  private readonly overlay = inject(OverlayService);
   private readonly seo = inject(SeoService);
+  private readonly topics = inject(CallbackTopicService);
 
   readonly openFaq = signal<number | null>(0);
   readonly callbackMessage = signal(
@@ -27,6 +33,17 @@ export class Microsoft365SmbPage {
 
   toggleFaq(index: number): void {
     this.openFaq.update((current) => (current === index ? null : index));
+  }
+
+  requestPresentation(event: Event): void {
+    event.preventDefault();
+    this.docs.ask('presentation', 'Microsoft 365');
+  }
+
+  openCallback(event: Event): void {
+    event.preventDefault();
+    this.topics.ask('Microsoft 365');
+    this.overlay.open('callback');
   }
 
   submitCallback(event: SubmitEvent): void {

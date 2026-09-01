@@ -1935,9 +1935,10 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Case Studies",
+                "title": "Customer Stories",
                 "pill": null,
-                "desc": null
+                "desc": "See how customers transform with our services",
+                "href": "/case-studies"
               },
               {
                 "title": "Whitepapers",
@@ -2090,11 +2091,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Our Team · Our Story",
                 "pill": null,
                 "desc": "Meet the people and story behind XcellHost"
-              },
-              {
-                "title": "Customer Stories",
-                "pill": null,
-                "desc": "See how customers transform with our services"
               },
               {
                 "title": "Certifications & Awards",
