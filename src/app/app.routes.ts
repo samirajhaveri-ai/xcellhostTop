@@ -16,6 +16,11 @@ export const routes: Routes = [
   { path: 'compare', loadComponent: () => import('./pages/compare.page').then((m) => m.ComparePage) },
   { path: 'under-construction/:slug', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
   { path: 'under-construction', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
+  {
+    path: 'case-studies/:id',
+    loadComponent: () =>
+      import('./pages/case-study-detail.page').then((m) => m.CaseStudyDetailPage),
+  },
   { path: 'case-studies', loadComponent: () => import('./pages/case-studies.page').then((m) => m.CaseStudiesPage) },
   { path: 'insights', loadComponent: () => import('./pages/insights.page').then((m) => m.InsightsPage) },
   { path: 'insights/:slug', loadComponent: () => import('./pages/blog.page').then((m) => m.BlogPage) },

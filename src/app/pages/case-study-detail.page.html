@@ -1,0 +1,154 @@
+<main class="csd-page">
+  @if (study(); as study) {
+    <section class="csd-top">
+      <div class="wrap">
+        <div class="csd-titlebar">
+          <strong>{{ study.customer }}</strong>
+          <a routerLink="/case-studies">All customer stories <span aria-hidden="true">⌄</span></a>
+        </div>
+        <nav class="csd-crumb" aria-label="Breadcrumb">
+          <a routerLink="/" aria-label="Home">⌂</a><i aria-hidden="true"></i>
+          <a routerLink="/case-studies">Case Studies</a><i aria-hidden="true"></i>
+          <span>{{ study.customer }}</span>
+        </nav>
+      </div>
+    </section>
+
+    <article>
+      <header class="csd-hero wrap">
+        <span class="csd-sample">Sample customer story · Fictional data</span>
+        <h1>{{ study.headline }}</h1>
+        <p>{{ study.relationship }}</p>
+      </header>
+
+      <section class="wrap">
+        <div class="csd-visual" [class]="'csd-visual ' + study.visualClass">
+          <span>{{ study.industry }}</span>
+          <strong>{{ study.customer }}</strong>
+          <p>{{ study.visualTitle }}</p>
+          <svg viewBox="0 0 520 190" aria-hidden="true">
+            <path d="M34 157h452M78 157V91h86v66m31 0V48h193v109m-166-76h41m35 0h41m-117 35h41m35 0h41" />
+            <circle cx="408" cy="51" r="20" />
+          </svg>
+        </div>
+      </section>
+
+      <section class="csd-stats" aria-label="Outcome summary">
+        <div class="wrap csd-stats-grid">
+          @for (stat of study.stats; track stat.label) {
+            <article>
+              <strong>{{ stat.value }}</strong>
+              <span>{{ stat.label }}</span>
+            </article>
+          }
+        </div>
+      </section>
+
+      <section class="csd-story wrap">
+        <aside class="csd-sidebar">
+          <div class="csd-side-card">
+            <span>Customer profile</span>
+            <dl>
+              <div><dt>Customer</dt><dd>{{ study.customer }}</dd></div>
+              <div><dt>Industry</dt><dd>{{ study.industry }}</dd></div>
+              <div><dt>Profile</dt><dd>{{ study.profile }}</dd></div>
+            </dl>
+          </div>
+          <div class="csd-side-card">
+            <span>Solutions used</span>
+            <ul>
+              @for (service of study.services; track service) {
+                <li>{{ service }}</li>
+              }
+            </ul>
+          </div>
+        </aside>
+
+        <div class="csd-copy">
+          <section>
+            <span class="csd-section-number">01</span>
+            <h2>The background</h2>
+            <h3>{{ study.backgroundTitle }}</h3>
+            @for (paragraph of study.background; track paragraph) {
+              <p>{{ paragraph }}</p>
+            }
+          </section>
+
+          <section>
+            <span class="csd-section-number">02</span>
+            <h2>The challenge</h2>
+            <h3>{{ study.challengeTitle }}</h3>
+            @for (paragraph of study.challenge; track paragraph) {
+              <p>{{ paragraph }}</p>
+            }
+          </section>
+
+          <blockquote>
+            <p>“{{ study.quote }}”</p>
+            <cite>{{ study.quoteBy }}</cite>
+            <span>Illustrative quotation</span>
+          </blockquote>
+
+          <section>
+            <span class="csd-section-number">03</span>
+            <h2>The solution</h2>
+            <h3>{{ study.solutionTitle }}</h3>
+            @for (paragraph of study.solution; track paragraph) {
+              <p>{{ paragraph }}</p>
+            }
+            <div class="csd-service-flow" aria-label="Solution flow">
+              @for (service of study.services; track service; let last = $last) {
+                <span>{{ service }}</span>
+                @if (!last) { <i aria-hidden="true">→</i> }
+              }
+            </div>
+          </section>
+
+          <section>
+            <span class="csd-section-number">04</span>
+            <h2>The result</h2>
+            <h3>{{ study.resultTitle }}</h3>
+            <ul class="csd-results">
+              @for (result of study.results; track result) {
+                <li><i aria-hidden="true">✓</i><span>{{ result }}</span></li>
+              }
+            </ul>
+          </section>
+        </div>
+      </section>
+    </article>
+
+    <section class="csd-related">
+      <div class="wrap">
+        <div class="csd-related-head">
+          <div><span>Continue exploring</span><h2>Related customer stories</h2></div>
+          <a routerLink="/case-studies">View all stories →</a>
+        </div>
+        <div class="csd-related-grid">
+          @for (item of relatedStudies(); track item.id) {
+            <a [routerLink]="['/case-studies', item.id]">
+              <div [class]="'csd-related-visual ' + item.visualClass" aria-hidden="true">
+                <span>{{ item.industry }}</span><strong>{{ item.customer }}</strong>
+              </div>
+              <div><span>{{ item.profile }}</span><h3>{{ item.headline }}</h3><b>Read the story →</b></div>
+            </a>
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="csd-cta">
+      <div class="wrap csd-cta-inner">
+        <div><span>Have a similar challenge?</span><h2>Let’s define the next practical step.</h2></div>
+        <button type="button" (click)="openCallback()">Request a callback</button>
+      </div>
+    </section>
+  } @else {
+    <section class="csd-not-found wrap">
+      <span>404</span>
+      <h1>Customer story not found</h1>
+      <p>The story may have moved or the address may be incorrect.</p>
+      <a routerLink="/case-studies">Return to customer stories</a>
+    </section>
+  }
+</main>

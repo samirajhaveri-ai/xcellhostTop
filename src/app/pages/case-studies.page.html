@@ -1,16 +1,22 @@
 <main class="case-page">
   <section class="case-hero">
-    <span class="case-hero-orb case-hero-orb-one" aria-hidden="true"></span>
-    <span class="case-hero-orb case-hero-orb-two" aria-hidden="true"></span>
-    <div class="wrap case-hero-grid">
+    <div class="wrap">
+      <h1>Case Studies</h1>
+      <nav class="case-crumb" aria-label="Breadcrumb">
+        <a routerLink="/" aria-label="Home"><span aria-hidden="true">⌂</span></a>
+        <i aria-hidden="true"></i>
+        <a routerLink="/insights">Insights</a>
+        <i aria-hidden="true"></i>
+        <span>Case Studies</span>
+      </nav>
+    </div>
+  </section>
+
+  <section class="case-intro">
+    <div class="wrap case-intro-grid">
       <div class="case-hero-copy">
-        <nav class="case-crumb" aria-label="Breadcrumb">
-          <a routerLink="/">Home</a><span aria-hidden="true">/</span>
-          <a routerLink="/insights">Insights</a><span aria-hidden="true">/</span>
-          <span>Case Studies</span>
-        </nav>
         <span class="case-kicker">Customer outcomes</span>
-        <h1>Proof in the work.<br /><em>Progress in the numbers.</em></h1>
+        <h2>Proof in the work.<br /><em>Progress in the numbers.</em></h2>
         <p>
           See how Indian businesses removed operational friction, recovered faster and turned
           compliance into a working system with XcellHost.
@@ -62,20 +68,65 @@
         <p>Real operational outcomes from businesses that moved to XcellHost.</p>
       </header>
 
+      <div class="case-filter-row">
+        <div class="case-filter">
+          <label for="case-industry">Filter by industry</label>
+          <div class="case-select">
+            <select id="case-industry" [value]="selectedIndustry" (change)="filterStudies($event)">
+              <option value="all">All case studies</option>
+              <option value="Manufacturing">Manufacturing</option>
+              <option value="CA firm">CA firm</option>
+              <option value="BFSI">BFSI</option>
+            </select>
+          </div>
+        </div>
+        <div class="case-search">
+          <label for="case-search">Search case studies</label>
+          <div class="case-search-field">
+            <input
+              id="case-search"
+              type="search"
+              placeholder="Search by outcome or service"
+              [value]="searchQuery"
+              (input)="searchStudies($event)"
+            />
+            <span aria-hidden="true">⌕</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="case-related">Related posts</h3>
+
       <div class="case-overview-grid">
-        @for (study of studies; track study.id) {
-          <a class="outcome-card" [href]="'#' + study.id">
-            <div class="outcome-tag">{{ study.industry }} <i></i> {{ study.profile }}</div>
-            <strong>{{ study.metric }}</strong>
-            <h3>{{ study.metricLabel }}</h3>
-            <p>{{ study.summary }}</p>
-            <div class="outcome-services">
-              @for (service of study.services; track service) {
-                <span>{{ service }}</span>
+        @for (study of visibleStudies; track study.id) {
+          <a class="outcome-card" [routerLink]="['/case-studies', study.id]">
+            <div class="outcome-visual" [class]="'outcome-visual visual-' + study.id" aria-hidden="true">
+              @if (study.id === 'tally-cloud') {
+                <svg viewBox="0 0 360 190"><path d="M35 151h290M69 151V79h72v72M87 79V55h37v24M165 151V40h128v111M190 68h26m28 0h25m-79 29h26m28 0h25m-79 29h26m28 0h25"/><circle cx="266" cy="29" r="12"/></svg>
+              } @else if (study.id === 'ca-continuity') {
+                <svg viewBox="0 0 360 190"><rect x="55" y="38" width="250" height="114" rx="5"/><path d="M150 152v21m60-21v21m-91 0h122M82 65h196v61H82z"/><path class="accent" d="M145 96l23 22 49-51"/></svg>
+              } @else {
+                <svg viewBox="0 0 360 190"><path d="M180 28l92 34v47c0 42-35 65-92 78-57-13-92-36-92-78V62z"/><path class="accent" d="M142 104l25 25 53-55"/></svg>
               }
             </div>
-            <b class="outcome-link">Read the outcome <span aria-hidden="true">&rarr;</span></b>
+            <div class="outcome-body">
+              <div class="outcome-services">
+                @for (service of study.services; track service) {
+                  <span>{{ service }}</span>
+                }
+              </div>
+              <div class="outcome-tag">{{ study.industry }} <i></i> {{ study.profile }}</div>
+              <strong>{{ study.metric }}</strong>
+              <h3>{{ study.metricLabel }}</h3>
+              <p>{{ study.summary }}</p>
+              <b class="outcome-link">Read the outcome <span aria-hidden="true">→</span></b>
+            </div>
           </a>
+        } @empty {
+          <div class="case-empty">
+            <h3>No matching case studies</h3>
+            <p>Try another industry, outcome or service.</p>
+          </div>
         }
       </div>
       <p class="case-privacy-note">
@@ -113,6 +164,43 @@
           </div>
         </article>
       }
+    </div>
+  </section>
+
+  <section class="case-guide" aria-labelledby="case-guide-title">
+    <div class="wrap">
+      <header class="case-guide-head">
+        <span>Understanding the stories</span>
+        <h2 id="case-guide-title">Questions about our case studies?</h2>
+        <p>
+          Each story connects a business constraint to the practical change that removed it and
+          the outcome the customer could measure afterwards.
+        </p>
+      </header>
+      <div class="case-guide-grid">
+        <article>
+          <span>01</span>
+          <div>
+            <h3>How are our case studies created?</h3>
+            <p>
+              We begin with the customer’s operating challenge, document the technology and
+              transition work, and then validate the business result. Sensitive identities and
+              operational details remain anonymised where required.
+            </p>
+          </div>
+        </article>
+        <article>
+          <span>02</span>
+          <div>
+            <h3>Case study or use case?</h3>
+            <p>
+              A use case explains what a solution can do in a common scenario. A case study shows
+              what changed in a real engagement, including the starting problem, the implemented
+              approach and the resulting impact.
+            </p>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 
