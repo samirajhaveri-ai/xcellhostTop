@@ -50,10 +50,16 @@ export class CallbackModalComponent {
   }
 
   submit(event: SubmitEvent): void {
-    if (this.form.invalid) { event.preventDefault(); this.form.markAllAsTouched(); return; }
+    event.preventDefault();
+    if (this.form.invalid) { this.form.markAllAsTouched(); return; }
     if (Number(this.form.controls.captcha.value) !== this.captchaAnswer()) {
-      event.preventDefault(); this.captchaMessage.set('Enter the correct answer'); this.form.controls.captcha.markAsTouched();
+      this.captchaMessage.set('Enter the correct answer'); this.form.controls.captcha.markAsTouched();
+      return;
     }
+
+    // FormGroup intercepts the normal submit event; use the native form method
+    // after validation so the existing Zoho endpoint receives this lead.
+    (event.currentTarget as HTMLFormElement).submit();
   }
 
   captchaAnswer(): number { return this.firstCaptchaNumber() + this.secondCaptchaNumber(); }

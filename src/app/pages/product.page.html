@@ -106,19 +106,21 @@
                 ><span class="ppd-ic">📖</span> Presentation</a
               >
               <a class="btn btn-primary" href="#" id="ppEnquiry" (click)="openCallback($event)">Let's Talk</a>
+              @if (isCloudDisasterRecoverySmb()) {
+                <button class="btn btn-ghost cdr-tour-trigger" type="button" (click)="openCdrTour()">Screenshot Tour</button>
+              }
             </div>
 
             <section class="pp-ask-ai" aria-labelledby="ppAskAiTitle">
               <div class="pp-ask-ai-copy">
-                <span class="pp-ask-ai-kicker">Ask AI About {{ v.name }}</span>
-                <h3 id="ppAskAiTitle">Get an instant AI-generated overview</h3>
+                <span class="pp-ask-ai-kicker" id="ppAskAiTitle">Ask AI About {{ v.name }}</span>
               </div>
               <div class="pp-ask-ai-actions">
-                <a class="pp-ask-ai-chip" [href]="askAiHref('chatgpt')" target="_blank" rel="noopener noreferrer">ChatGPT</a>
-                <a class="pp-ask-ai-chip" [href]="askAiHref('perplexity')" target="_blank" rel="noopener noreferrer">Perplexity</a>
-                <a class="pp-ask-ai-chip" [href]="askAiHref('claude')" target="_blank" rel="noopener noreferrer">Claude</a>
-                <a class="pp-ask-ai-chip" [href]="askAiHref('google')" target="_blank" rel="noopener noreferrer">Google AI</a>
-                <a class="pp-ask-ai-chip" [href]="askAiHref('grok')" target="_blank" rel="noopener noreferrer">Grok</a>
+                <a class="pp-ask-ai-chip" aria-label="ChatGPT" [href]="askAiHref('chatgpt')" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=chatgpt.com&amp;sz=64" alt="" aria-hidden="true"></a>
+                <a class="pp-ask-ai-chip" aria-label="Perplexity" [href]="askAiHref('perplexity')" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=perplexity.ai&amp;sz=64" alt="" aria-hidden="true"></a>
+                <a class="pp-ask-ai-chip" aria-label="Claude" [href]="askAiHref('claude')" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=claude.ai&amp;sz=64" alt="" aria-hidden="true"></a>
+                <a class="pp-ask-ai-chip" aria-label="Google AI" [href]="askAiHref('google')" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=gemini.google.com&amp;sz=64" alt="" aria-hidden="true"></a>
+                <a class="pp-ask-ai-chip" aria-label="Grok" [href]="askAiHref('grok')" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=grok.com&amp;sz=64" alt="" aria-hidden="true"></a>
               </div>
             </section>
           </div>
@@ -386,14 +388,21 @@
                 <div class="tally-plan-band">For SMB workloads</div>
                 <div class="tally-plan-main">
                   <div class="tally-plan-name"><span aria-hidden="true">A</span><div><b>Acronis CyberFit</b><small>Disaster Recovery</small></div></div>
-                  <strong>&#8377;9,999</strong><small>+GST · per server / month</small>
+                  <strong>{{ cdrPlanTotal() }}</strong><small>+GST · total for {{ cdrQuantity() }} {{ cdrQuantity() === 1 ? 'server' : 'servers' }} / month</small>
+                </div>
+                <div class="cdr-plan-purchase">
+                  <label for="cdrQuantity">No. of users / devices</label>
+                  <div class="cdr-quantity">
+                    <button type="button" aria-label="Decrease users or devices" (click)="changeCdrQuantity(-1)" [disabled]="cdrQuantity() === 1">−</button>
+                    <output id="cdrQuantity" aria-live="polite">{{ cdrQuantity() }}</output>
+                    <button type="button" aria-label="Increase users or devices" (click)="changeCdrQuantity(1)">+</button>
+                  </div>
                 </div>
                 <dl class="tally-plan-specs">
                   <div><dt>Recovery Type</dt><dd>Acronis Cloud</dd></div><div><dt>RPO</dt><dd>15 Minutes</dd></div><div><dt>RTO</dt><dd>30 Minutes</dd></div><div><dt>Backup + DR</dt><dd>3 TB Storage</dd></div>
                   <div><dt>Test Failover</dt><dd>Included</dd></div><div><dt>Production Failover</dt><dd>On Demand</dd></div><div><dt>Cloud-only VPN</dt><dd>Included</dd></div><div><dt>VPN-less Deployment</dt><dd>Supported</dd></div>
                   <div><dt>IPsec Multisite VPN</dt><dd>Supported</dd></div><div><dt>Custom DNS</dt><dd>Included</dd></div><div><dt>Anti-ransomware</dt><dd>Included</dd></div><div><dt>Support</dt><dd>24×7</dd></div>
                 </dl>
-                <a class="tally-plan-action" href="#" (click)="openCallback($event)">Select a Plan</a>
               </article>
             </div>
             <p class="cdr-smb-note">Pay only for backup and disaster recovery storage. Compute run-time charges apply only when a disaster strikes.</p>
@@ -1142,4 +1151,33 @@
       </div>
     </div>
   </div>
+
+  @if (isCdrTourOpen()) {
+    <div class="cdr-tour-overlay" role="presentation">
+      <button class="cdr-tour-backdrop" type="button" aria-label="Close screenshot tour" (click)="closeCdrTour()"></button>
+      <section class="cdr-tour-modal" role="dialog" aria-modal="true" aria-labelledby="cdrTourTitle">
+        <button class="cdr-tour-close" type="button" aria-label="Close screenshot tour" (click)="closeCdrTour()">×</button>
+        <div class="cdr-tour-heading">
+          <span>Cloud Disaster Recovery SMB</span>
+          <h2 id="cdrTourTitle">Screenshot tour</h2>
+          <p>Explore how recovery planning, failover, and readiness testing work together.</p>
+        </div>
+        <div class="cdr-tour-stage">
+          @for (slide of cdrTourSlides; track slide.image; let i = $index) {
+            <figure class="cdr-tour-slide" [class.is-active]="i === activeCdrTourSlide()" [attr.aria-hidden]="i !== activeCdrTourSlide()">
+              <img [src]="slide.image" [alt]="slide.title" />
+              <figcaption><strong>{{ slide.title }}</strong><span>{{ slide.description }}</span></figcaption>
+            </figure>
+          }
+          <button class="cdr-tour-arrow cdr-tour-prev" type="button" aria-label="Previous screenshot" (click)="previousCdrTourSlide()">‹</button>
+          <button class="cdr-tour-arrow cdr-tour-next" type="button" aria-label="Next screenshot" (click)="nextCdrTourSlide()">›</button>
+        </div>
+        <div class="cdr-tour-dots" role="tablist" aria-label="Screenshot tour slides">
+          @for (slide of cdrTourSlides; track slide.image; let i = $index) {
+            <button type="button" role="tab" [class.is-active]="i === activeCdrTourSlide()" [attr.aria-selected]="i === activeCdrTourSlide()" [attr.aria-label]="'Show ' + slide.title" (click)="selectCdrTourSlide(i)"></button>
+          }
+        </div>
+      </section>
+    </div>
+  }
 }

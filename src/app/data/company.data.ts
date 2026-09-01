@@ -68,15 +68,15 @@ export const COMPANY_PAGES: Record<string, CompanyPageContent> = {
   'our-team-our-story': {
     eyebrow: 'About',
     title: 'Our Team · Our Story',
-    tagline: 'A Mumbai-born cloud company built around long-term customer relationships.',
-    intro: 'XcellHost began as a hosting company in 1999 and grew with the needs of its customers into managed cloud, cybersecurity, backup, productivity and digital trust. Today, cross-functional teams work together so advice, migration and ongoing operations stay connected.',
+    tagline: 'A cloud and security company shaped by long-term relationships, practical expertise and steady service.',
+    intro: 'XcellHost started in 1999 as a hosting company and evolved with customer needs into managed cloud, cybersecurity, backup, productivity and digital trust. The page below introduces the people and principles behind that journey.',
     cards: [
-      { icon: '1999', title: 'Where we began', body: 'Helping Indian businesses establish a reliable online presence.' },
-      { icon: '☁', title: 'How we evolved', body: 'From hosting into complete public, private and hybrid cloud operations.' },
-      { icon: '🛡', title: 'Where we are going', body: 'Bringing security, compliance and automation into every managed service.' },
+      { icon: '1999', title: 'Where we began', body: 'Helping Indian businesses establish a dependable online presence.' },
+      { icon: '☁', title: 'How we evolved', body: 'From hosting into cloud, security and managed operations.' },
+      { icon: '🛡', title: 'Where we are going', body: 'Bringing security, compliance and automation into every service.' },
     ],
     sections: [
-      { title: 'One connected team', body: 'Cloud architects, support engineers, security specialists and customer teams collaborate across the service lifecycle.', points: ['Solution discovery and architecture', 'Migration and onboarding', '24×7 monitoring and response', 'Service reviews and continuous improvement'] },
+      { title: 'One connected team', body: 'Cloud architects, support engineers, security specialists and customer-facing teams collaborate across the full service lifecycle.', points: ['Solution discovery and architecture', 'Migration and onboarding', '24×7 monitoring and response', 'Service reviews and continuous improvement'] },
       { title: 'The values behind the work', body: 'Be clear, own the outcome, keep learning and recommend what genuinely fits the customer.' },
     ],
     cta: 'Meet the people behind your cloud journey by starting a conversation with us.',

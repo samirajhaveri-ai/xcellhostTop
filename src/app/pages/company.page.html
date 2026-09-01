@@ -373,6 +373,204 @@
         </article>
       </div>
     </main>
+  } @else if (slug() === 'our-team-our-story') {
+  <main class="ppage as-page company-page team-page">
+    <section class="team-hero">
+      <div class="pph-map" aria-hidden="true" [innerHTML]="worldMap"></div>
+      <span class="pph-grid" aria-hidden="true"></span>
+      <span class="pph-aur pph-a1" aria-hidden="true"></span>
+      <span class="pph-aur pph-a2" aria-hidden="true"></span>
+      <span class="pph-aur pph-a3" aria-hidden="true"></span>
+      <span class="pph-scan" aria-hidden="true"></span>
+      <canvas class="pph-net" xhHeroNet aria-hidden="true"></canvas>
+      <div class="wrap team-hero-grid">
+        <div class="team-hero-copy">
+          <span class="team-hero-eyebrow">Our Team</span>
+          <h1>Meet the people behind <em>XcellHost</em>.</h1>
+          <p class="team-lead">
+            Meet the people behind reliable cloud, security and support at XcellHost.
+          </p>
+
+          <div class="team-highlight-strip" aria-label="Team strengths">
+            <div class="team-highlight-list">
+              <span>Leadership</span>
+              <span>Expertise</span>
+              <span>Innovation</span>
+              <span>Support</span>
+              <span>Security</span>
+              <span>Collaboration</span>
+            </div>
+          </div>
+
+          <div class="team-actions">
+            <a class="btn btn-primary" routerLink="/contact">Let's Talk</a>
+            <a class="team-secondary-link" routerLink="/contact">Tell us about your project</a>
+          </div>
+        </div>
+
+        <aside class="team-hero-panel">
+          <img class="team-hero-secondary-image" src="/assets/images/team-hero-animation.svg" alt="Cloud technology illustration" />
+        </aside>
+      </div>
+    </section>
+
+    <section class="company-founder-section">
+      <div class="wrap company-founder-grid">
+        <div class="company-founder-visual">
+          <img
+            src="/assets/images/website-photo-frame-samir-jhaveri-1.png"
+            alt="Dr. Samir Jhaveri portrait"
+            loading="eager"
+          />
+        </div>
+
+        <div class="company-founder-copy">
+          <h2>Dr. Samir Jhaveri</h2>
+          <p class="company-founder-highlights">
+            Managing Director XcellHost Cloud Services Pvt Ltd Cloud,<br>
+            Cybersecurity, AI, Digital Marketing Expert<br>
+            College Dropout like Bill Gates<br>
+            Honorory Doctorate (Honoris Causa) in Artificial Intelligence
+          </p>
+          <p class="company-founder-summary">
+            College dropout like Bill Gates. With over two decades of experience in the cloud industry, Samir Jhaveri
+            has been at the forefront of digital transformation since 1999. As the Managing Director of XcellHost
+            Cloud Services, he has empowered over 10,000 SMBs and enterprises with cutting-edge cloud, security,
+            digital marketing, and AI solutions.His leadership and vision continue to drive innovation and
+            excellence in the industry.  Let’s transform together!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="team-section">
+      <div class="wrap">
+        <header class="team-section-heading">
+          <span>Our Management Team</span>
+          <h2>Driven by vision and experience.</h2>
+          <p>Strategic leadership keeps operations smooth, customer expectations clear and growth steady.</p>
+        </header>
+
+        <div class="team-grid team-grid-four">
+          @for (member of managementTeam; track member.name) {
+            <article class="team-card">
+              <img class="team-avatar team-photo" [src]="member.image" [alt]="member.name" />
+              <h3>{{ member.name }}</h3>
+              <p>{{ member.role }}</p>
+            </article>
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="team-section team-section-alt">
+      <div class="wrap">
+        <header class="team-section-heading">
+          <span>Our Advisory Team</span>
+          <h2>Advice that keeps decisions grounded.</h2>
+          <p>We review risk, opportunity and practical constraints before recommending a next step.</p>
+        </header>
+
+        <div class="team-grid team-grid-two">
+          @for (member of advisoryTeam; track member.name) {
+            <article class="team-card team-card-small">
+              <img class="team-avatar team-photo" [src]="member.image" [alt]="member.name" />
+              <h3>{{ member.name }}</h3>
+              <p>{{ member.role }}</p>
+            </article>
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="team-section">
+      <div class="wrap">
+        <header class="team-section-heading">
+          <span>Our Sales Team</span>
+          <h2>Commercial conversations handled with care.</h2>
+          <p>Clear pricing, proper handoffs and a direct path to the right specialist.</p>
+        </header>
+
+        <div class="team-grid team-grid-three">
+          @for (member of salesTeam; track member.name) {
+            <article class="team-card team-card-small">
+              <img class="team-avatar team-photo" [src]="member.image" [alt]="member.name" />
+              <h3>{{ member.name }}</h3>
+              <p>{{ member.role }}</p>
+            </article>
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="team-section team-values">
+      <div class="wrap">
+        <header class="team-section-heading">
+          <span>The Core Values We Live By</span>
+          <h2>What shapes the way we work.</h2>
+        </header>
+
+        <div class="team-grid team-grid-four">
+          @for (value of values; track value.title) {
+            <article class="team-value-card">
+              <h3>{{ value.title }}</h3>
+              <p>{{ value.body }}</p>
+            </article>
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="team-section team-commitment">
+      <div class="wrap team-commitment-grid">
+        <div class="team-commitment-copy">
+          <span class="team-section-label">Our commitment</span>
+          <h2>The best effort for every customer.</h2>
+          <p>
+            We aim to be the easiest team to work with when the work is simple and the most reliable team when the
+            work is urgent. Customers should always know who owns the next step.
+          </p>
+          <p>
+            That means careful planning, honest expectations and support that does not disappear once the project is
+            live.
+          </p>
+        </div>
+
+        <div class="team-stats-grid">
+          @for (item of commitmentStats; track item.label) {
+            <article class="team-stat-card">
+              <strong>{{ item.value }}</strong>
+              <span>{{ item.label }}</span>
+            </article>
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="team-contact-band">
+      <div class="wrap team-contact-grid">
+        <div class="team-contact-copy">
+          <span class="team-section-label">Don't hesitate to contact us</span>
+          <h2>Grow your business with a team that stays with you.</h2>
+          <p>
+            If you want a quick answer, a formal quote or help choosing the right service, reach out and we will route
+            you to the right person.
+          </p>
+          <a class="btn btn-primary" routerLink="/contact">Contact Us</a>
+        </div>
+
+        <div class="team-contact-cards">
+          @for (card of contactCards; track card.label) {
+            <a class="team-contact-card" [href]="card.href" target="_blank" rel="noopener">
+              <span>{{ card.label }}</span>
+              <strong>{{ card.value }}</strong>
+              <p>{{ card.note }}</p>
+            </a>
+          }
+        </div>
+      </div>
+    </section>
+  </main>
   } @else {
   <main class="ppage as-page company-page">
     <section class="pp-hero company-hero">
@@ -385,6 +583,37 @@
         <p class="pp-tagline">{{ page.tagline }}</p>
       </div>
     </section>
+
+    @if (slug() === 'our-team-our-story') {
+      <section class="company-founder-section">
+        <div class="wrap company-founder-grid">
+          <div class="company-founder-visual">
+            <img
+              src="/assets/images/website-photo-frame-samir-jhaveri-1.png"
+              alt="Dr. Samir Jhaveri portrait"
+              loading="eager"
+            />
+          </div>
+
+          <div class="company-founder-copy">
+            <h2>Dr. Samir Jhaveri</h2>
+            <p class="company-founder-highlights">
+              Managing Director XcellHost Cloud Services Pvt Ltd Cloud,<br>
+              Cybersecurity, AI, Digital Marketing Expert<br>
+              College Dropout like Bill Gates<br>
+              Honorory Doctorate (Honoris Causa) in Artificial Intelligence
+            </p>
+            <p class="company-founder-summary">
+              College dropout like Bill Gates. With over two decades of experience in the cloud industry, Samir Jhaveri
+              has been at the forefront of digital transformation since 1999. As the Managing Director of XcellHost
+              Cloud Services, he has empowered over 10,000 SMBs and enterprises with cutting-edge cloud,🔥 security,
+              digital marketing, and AI solutions.✨ His leadership and vision continue to drive innovation and
+              excellence in the industry. 🌟💫 Let’s transform together!🔥
+            </p>
+          </div>
+        </div>
+      </section>
+    }
 
     <section class="company-body">
       <div class="wrap company-wrap">

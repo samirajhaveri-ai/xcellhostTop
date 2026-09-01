@@ -2312,13 +2312,14 @@
   #ppage .pp-hero-l > .hero-ctas{margin-top:0}
   #ppage .tally-hero-ctas{position:relative;z-index:4;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
   #ppage .tally-hero-ctas .btn-primary{box-shadow:0 12px 30px rgba(244,128,12,.28)}
-  #ppage .pp-ask-ai{margin-top:24px;padding:22px 0 12px;border-top:1px solid rgba(144,180,233,.2)}
+  #ppage .pp-ask-ai{display:flex;align-items:center;gap:10px;margin-top:24px;padding:22px 0 12px;border-top:1px solid rgba(144,180,233,.2)}
   #ppage .pp-ask-ai-copy{max-width:none}
-  #ppage .pp-ask-ai-kicker{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border:1px solid rgba(75,165,255,.26);border-radius:999px;background:rgba(8,31,68,.46);color:#71c0ff;font:700 11px/1 var(--mono);letter-spacing:.04em}
+  #ppage .pp-ask-ai-kicker{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border:1px solid rgba(75,165,255,.26);border-radius:999px;background:rgba(8,31,68,.46);color:#fff;font:700 11px/1 var(--mono);letter-spacing:.04em}
   #ppage .pp-ask-ai-kicker::before{content:"✦";font-size:12px}
-  #ppage .pp-ask-ai h3{margin:14px 0 16px;color:#fff;font:750 clamp(24px,2.6vw,32px)/1.12 var(--disp);letter-spacing:-.03em;white-space:nowrap}
+  #ppage .pp-ask-ai h3{margin:12px 0 14px;color:#fff;font:750 clamp(20px,2vw,24px)/1.16 var(--disp);letter-spacing:-.025em;white-space:nowrap}
   #ppage .pp-ask-ai-actions{display:flex;align-items:center;gap:8px;flex-wrap:nowrap}
-  #ppage .pp-ask-ai-chip{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 12px;border:1px solid rgba(161,184,219,.28);border-radius:14px;background:rgba(11,24,53,.58);box-shadow:inset 0 1px 0 rgba(255,255,255,.04);color:#fff;font:700 12px/1 var(--body);text-decoration:none;white-space:nowrap;transition:transform .18s ease,border-color .18s ease,background .18s ease}
+  #ppage .pp-ask-ai-chip{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;padding:0;border:1px solid rgba(161,184,219,.28);border-radius:14px;background:rgba(11,24,53,.58);box-shadow:inset 0 1px 0 rgba(255,255,255,.04);color:#fff;text-decoration:none;white-space:nowrap;transition:transform .18s ease,border-color .18s ease,background .18s ease}
+  #ppage .pp-ask-ai-chip img{width:19px;height:19px;border-radius:4px;object-fit:contain;background:#fff}
   #ppage .pp-ask-ai-chip:hover{transform:translateY(-2px);border-color:rgba(113,192,255,.65);background:rgba(17,42,84,.78)}
   #ppage .edr-pricing{margin:42px 0 20px;padding:0;text-align:center}
   #ppage .edr-pricing h2{margin:0;color:var(--navy);font:700 clamp(28px,3vw,42px)/1.15 var(--disp);letter-spacing:-.025em}
@@ -2401,7 +2402,7 @@
     #ppage .pp-tagline.pp-tagline-reference,#ppage .pp-tagline.pp-tagline-reference + .pp-tagline-support{white-space:normal}
     #ppage .tally-hero-ctas{display:grid;grid-template-columns:1fr;gap:10px;width:100%}
     #ppage .tally-hero-ctas .btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:46px;margin:0}
-    #ppage .pp-ask-ai{padding-bottom:0}
+    #ppage .pp-ask-ai{flex-wrap:wrap;padding-bottom:0}
     #ppage .pp-ask-ai-copy{max-width:none}
     #ppage .pp-ask-ai-actions{justify-content:flex-start;flex-wrap:wrap}
     #ppage .edr-feature-heading{min-height:0;margin-top:34px;padding:28px 24px}
@@ -2419,9 +2420,9 @@
     #ppage .sitelock-hero h1{margin-bottom:12px;line-height:1.08}
     #ppage .sitelock-hero .pp-title-brand{display:inline-flex;margin:0}
     #ppage .sitelock-hero .pp-tagline{max-width:32ch;margin-bottom:18px;font-size:15px;line-height:1.55}
-    #ppage .pp-ask-ai h3{font-size:22px}
+    #ppage .pp-ask-ai h3{font-size:20px}
     #ppage .pp-ask-ai-actions{width:100%}
-    #ppage .pp-ask-ai-chip{flex:1 1 calc(50% - 8px);min-width:140px}
+    #ppage .pp-ask-ai-chip{flex:0 0 40px;min-width:40px}
     #ppage .sitelock-hero .pp-typewriter{min-height:44px;margin-bottom:8px;font-size:18px;line-height:1.3}
     #ppage .sitelock-hero .pp-hpoints{grid-template-columns:1fr;width:100%;gap:9px;margin:8px 0 20px}
     #ppage .sitelock-hero .pp-hpoint{font-size:13px;line-height:1.35}
@@ -3586,6 +3587,56 @@ body.xh-locked{overflow:hidden}
   .tally-plan-main>strong{font-size:27px}
   .tally-plan-specs{display:flex;flex-direction:column}
   .tally-plan-specs>div{min-height:55px}
+}
+
+/* Cloud Disaster Recovery SMB — RMM-style plan presentation, preserving plan content. */
+.cdr-smb-pricing{max-width:1120px;margin:42px auto 18px;padding:12px 0 0}
+.cdr-smb-pricing .tally-price-heading{max-width:760px;margin-bottom:34px}
+.cdr-smb-pricing .tally-price-heading>span{display:inline-flex;align-items:center;min-height:26px;padding:0 12px;border-radius:999px;background:#eaf3ff;color:#1565d8;letter-spacing:.08em}
+.cdr-smb-pricing .tally-price-heading h2{color:#0a274f}
+.cdr-smb-pricing .tally-price-heading p{max-width:680px}
+.cdr-smb-pricing .tally-plan-grid{max-width:980px;margin:0 auto}
+.cdr-smb-pricing .tally-plan-card{position:relative;display:grid;grid-template-columns:minmax(0,1.7fr) minmax(265px,.82fr);grid-template-rows:auto auto;overflow:hidden;border-color:#cfdef1;border-radius:20px;box-shadow:0 16px 34px rgba(10,52,111,.1);text-align:left}
+.cdr-smb-pricing .tally-plan-card::before{position:absolute;top:0;right:0;left:0;height:5px;background:linear-gradient(90deg,#1565d8,#74aef8);content:''}
+.cdr-smb-pricing .tally-plan-card:hover{border-color:#9dc5f7;box-shadow:0 20px 42px rgba(10,52,111,.14);transform:none}
+.cdr-smb-pricing .tally-plan-band{z-index:1;grid-column:1;grid-row:1;align-self:start;justify-self:start;margin:30px 28px 0;padding:5px 11px;border-radius:999px;background:#eaf3ff;color:#1565d8;font-size:10px;letter-spacing:.08em}
+.cdr-smb-pricing .tally-plan-main{grid-column:1;grid-row:1;align-items:flex-start;min-height:198px;padding:72px 28px 24px;border-right:0;background:linear-gradient(110deg,#fff 0%,#fbfdff 100%);text-align:left}
+.cdr-smb-pricing .tally-plan-name{max-width:100%;min-height:0}
+.cdr-smb-pricing .tally-plan-name>span{width:46px;height:46px;border-radius:11px;background:linear-gradient(135deg,#176ce1,#0d54bd)}
+.cdr-smb-pricing .tally-plan-name b{font-size:21px}.cdr-smb-pricing .tally-plan-name small{font-size:13px}
+.cdr-smb-pricing .tally-plan-main>strong{min-height:0;margin:20px 0 2px;font-size:35px}.cdr-smb-pricing .tally-plan-main>small{margin:0;color:#526a8d;font-size:11px}
+.cdr-smb-pricing .cdr-plan-purchase{grid-column:2;grid-row:1;align-self:center;margin:0 28px;padding-left:28px;border-left:1px solid #dce6f3}
+.cdr-smb-pricing .cdr-plan-purchase label{display:block;margin-bottom:10px;color:#0a274f;font-size:12px;font-weight:750;text-align:center}
+.cdr-smb-pricing .cdr-quantity{display:grid;grid-template-columns:44px minmax(80px,1fr) 44px;height:40px;overflow:hidden;border:1px solid #cad5e4;border-radius:6px;background:#fff}
+.cdr-smb-pricing .cdr-quantity button{border:0;background:#f5f8fc;color:var(--navy);font-size:20px;line-height:1;cursor:pointer;transition:background .2s ease,color .2s ease}
+.cdr-smb-pricing .cdr-quantity button:hover:not(:disabled){background:var(--blue);color:#fff}.cdr-smb-pricing .cdr-quantity button:disabled{color:#aab4c2;cursor:not-allowed}
+.cdr-smb-pricing .cdr-quantity output{display:grid;place-items:center;border-right:1px solid #cad5e4;border-left:1px solid #cad5e4;color:var(--navy);font-size:14px;font-weight:700}
+.cdr-smb-pricing .tally-plan-specs{grid-column:1 / -1;grid-row:2;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:38px;align-content:start;gap:0;border-top:1px solid #dce6f3;background:#fbfdff}
+.cdr-smb-pricing .tally-plan-specs>div{grid-template-columns:22px max-content minmax(0,1fr);gap:7px;min-height:0;padding:5px 18px;background:transparent!important;text-align:left;justify-items:start}
+.cdr-smb-pricing .tally-plan-specs>div:nth-child(3n+2),.cdr-smb-pricing .tally-plan-specs>div:nth-child(3n+3){border-left:1px solid #dce6f3}
+.cdr-smb-pricing .tally-plan-specs>div::before{display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:#e8f3ff;color:#1971e8;content:'✓';font:700 12px/1 Arial}
+.cdr-smb-pricing .tally-plan-specs dt{align-self:center;font-size:11px;white-space:nowrap}.cdr-smb-pricing .tally-plan-specs dd{align-self:center;color:#183964;text-align:left;font-size:11px;white-space:nowrap}
+.cdr-smb-pricing .cdr-smb-note{max-width:980px;margin:14px auto 0;border:0;border-radius:8px;background:#f2f7ff;color:#31547e;font-weight:600}
+.cdr-tour-trigger{border-color:rgba(255,255,255,.58)!important;background:rgba(255,255,255,.08);color:#fff!important;cursor:pointer}
+.cdr-tour-trigger:hover{border-color:#fff!important;background:rgba(255,255,255,.18)}
+.cdr-tour-overlay{position:fixed;z-index:10020;inset:0;display:grid;place-items:center;padding:24px}
+.cdr-tour-backdrop{position:absolute;inset:0;border:0;background:rgba(2,12,32,.76);backdrop-filter:blur(8px);cursor:default}
+.cdr-tour-modal{position:relative;z-index:1;width:min(1080px,100%);max-height:min(820px,calc(100vh - 48px));overflow:auto;padding:30px;border:1px solid rgba(177,208,249,.36);border-radius:24px;background:linear-gradient(145deg,#f8fbff,#fff);box-shadow:0 30px 90px rgba(0,0,0,.44)}
+.cdr-tour-close{position:absolute;z-index:3;top:16px;right:16px;display:grid;place-items:center;width:36px;height:36px;border:1px solid #cbd9eb;border-radius:50%;background:#fff;color:#0c315f;font-size:28px;line-height:1;cursor:pointer;transition:background .2s,color .2s,transform .2s}.cdr-tour-close:hover{background:#1565d8;color:#fff;transform:rotate(90deg)}
+.cdr-tour-heading{padding:2px 48px 22px 2px}.cdr-tour-heading>span{display:inline-block;margin-bottom:7px;color:#1565d8;font:800 10px/1.2 var(--mono);letter-spacing:.13em;text-transform:uppercase}.cdr-tour-heading h2{margin:0;color:#0a274f;font:800 clamp(28px,4vw,42px)/1.1 var(--disp);letter-spacing:-.035em}.cdr-tour-heading p{max-width:620px;margin:10px 0 0;color:#516b8e;font-size:15px;line-height:1.6}
+.cdr-tour-stage{position:relative;aspect-ratio:16/10;min-height:360px;overflow:hidden;border:1px solid #cbd9eb;border-radius:15px;background:#0a1f42;box-shadow:0 14px 30px rgba(8,45,90,.16)}
+.cdr-tour-slide{position:absolute;inset:0;margin:0;opacity:0;transform:translateX(30px);pointer-events:none;transition:opacity .4s ease,transform .45s ease}.cdr-tour-slide.is-active{opacity:1;transform:translateX(0);pointer-events:auto}.cdr-tour-slide img{display:block;width:100%;height:100%;object-fit:cover}.cdr-tour-slide::after{position:absolute;right:0;bottom:0;left:0;height:36%;background:linear-gradient(transparent,rgba(3,15,38,.82));content:''}.cdr-tour-slide figcaption{position:absolute;z-index:1;right:26px;bottom:22px;left:26px;color:#fff}.cdr-tour-slide strong{display:block;font:800 clamp(18px,2vw,25px)/1.2 var(--disp)}.cdr-tour-slide span{display:block;max-width:70ch;margin-top:5px;color:#d7e7ff;font-size:13px;line-height:1.5}
+.cdr-tour-arrow{position:absolute;z-index:2;top:50%;display:grid;place-items:center;width:42px;height:42px;border:1px solid rgba(255,255,255,.72);border-radius:50%;background:rgba(5,27,68,.55);color:#fff;font:300 32px/.8 Arial;cursor:pointer;transform:translateY(-50%);transition:background .2s,transform .2s}.cdr-tour-arrow:hover{background:#1565d8;transform:translateY(-50%) scale(1.08)}.cdr-tour-prev{left:18px}.cdr-tour-next{right:18px}
+.cdr-tour-dots{display:flex;justify-content:center;gap:8px;margin-top:17px}.cdr-tour-dots button{width:9px;height:9px;padding:0;border:0;border-radius:50%;background:#b8c9df;cursor:pointer;transition:background .2s,width .2s}.cdr-tour-dots button.is-active{width:28px;border-radius:99px;background:#1565d8}
+@media(max-width:700px){
+  .cdr-smb-pricing .tally-plan-card{display:grid;grid-template-columns:1fr;grid-template-rows:auto auto auto;border-radius:16px}
+  .cdr-smb-pricing .tally-plan-band{grid-column:1;grid-row:1;margin:26px 20px 0}
+  .cdr-smb-pricing .tally-plan-main{grid-column:1;grid-row:1;min-height:0;padding:64px 20px 22px}
+  .cdr-smb-pricing .cdr-plan-purchase{grid-column:1;grid-row:2;margin:0 20px 20px;padding:0;border-left:0}
+  .cdr-smb-pricing .tally-plan-specs{grid-column:1;grid-row:3;grid-template-columns:1fr;grid-auto-rows:44px}
+  .cdr-smb-pricing .tally-plan-specs>div:nth-child(3n+2),.cdr-smb-pricing .tally-plan-specs>div:nth-child(3n+3){border-left:0}
+  .cdr-smb-pricing .tally-plan-main>strong{font-size:31px}
+  .cdr-tour-overlay{padding:12px}.cdr-tour-modal{max-height:calc(100vh - 24px);padding:22px 16px 18px;border-radius:18px}.cdr-tour-heading{padding:2px 42px 17px 2px}.cdr-tour-heading p{font-size:13px}.cdr-tour-stage{min-height:0;aspect-ratio:4/3}.cdr-tour-slide figcaption{right:18px;bottom:15px;left:18px}.cdr-tour-slide span{font-size:12px}.cdr-tour-arrow{width:36px;height:36px}.cdr-tour-prev{left:10px}.cdr-tour-next{right:10px}
 }
 
 .tally-addons{margin-top:32px;padding:26px;border:1px solid #d6dde7;border-radius:8px;background:#f8fbff}

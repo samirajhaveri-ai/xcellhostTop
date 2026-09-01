@@ -414,6 +414,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+                 {
+                "title": "Veeam",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
@@ -2368,28 +2373,28 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-       {
-        "g": "7",
-        "label": "Data Centers",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Data Centers",
-            "items": [
-              {
-                "title": "View Acronics DC",
-                "pill": null,
-                "desc": "How we handle personal information"
-              },
-              {
-                "title": "View Xcellhost DC",
-                "pill": null,
-                "desc": "How we handle personal information"
-              }
-            ]
-          }
-        ]
-      },
+      //  {
+      //   "g": "7",
+      //   "label": "Data Centers",
+      //   "on": false,
+      //   "groups": [
+      //     {
+      //       "heading": "Data Centers",
+      //       "items": [
+      //         {
+      //           "title": "View Acronics DC",
+      //           "pill": null,
+      //           "desc": "How we handle personal information"
+      //         },
+      //         {
+      //           "title": "View Xcellhost DC",
+      //           "pill": null,
+      //           "desc": "How we handle personal information"
+      //         }
+      //       ]
+      //     }
+      //   ]
+      // },
     ]
   }
 ];
