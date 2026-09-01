@@ -14,7 +14,7 @@ import { PricingPlan, ProductPageService, ProductView } from '../core/product-pa
 import { SeoService } from '../core/seo.service';
 import { DEEP_CONTENT, PLATFORM_ICONS, RICH_PRODUCTS } from '../data/products.data';
 import { SITE, WORLD_MAP_HTML } from '../data/site.data';
-import { HeroNetDirective, ProductFaqComponent, ProductVideoComponent } from '../sections/product';
+import { HeroNetDirective, ProductFaqComponent } from '../sections/product';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { LottieDirective } from '../shared/lottie.directive';
 
@@ -69,7 +69,7 @@ interface CloudDrivePlan {
 @Component({
   selector: 'xh-product-page',
   standalone: true,
-  imports: [RouterLink, HeroNetDirective, LottieDirective, ProductVideoComponent, ProductFaqComponent],
+  imports: [RouterLink, HeroNetDirective, LottieDirective, ProductFaqComponent],
   templateUrl: './product.page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -281,14 +281,10 @@ export class ProductPage {
 
   readonly isCloudDrive = computed(() => this.view()?.name === 'Cloud Drive');
 
-  /** Flagship product videos shown together immediately before reviews. */
+  /** Every product's available videos, shown together immediately before reviews. */
   readonly showcaseVideos = computed<readonly { label: string; url: SafeResourceUrl }[]>(() => {
     const view = this.view();
-    if (
-      view?.name !== 'Tally on Cloud' &&
-      view?.name !== 'Cloud Drive' &&
-      view?.name !== 'SMB Cyber Security Appliance'
-    ) return [];
+    if (!view) return [];
 
     return view.videos.slice(0, 2).flatMap((video, index) => {
       if (!video) return [];

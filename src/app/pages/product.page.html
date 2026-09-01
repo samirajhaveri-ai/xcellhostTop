@@ -127,13 +127,6 @@
         <div class="pp-sec">Overview</div>
         <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
 
-        @if (!isTally() && !isCloudDrive() && !isSmbCyber()) {
-          <div class="pp-sec">Watch it in action</div>
-          <div class="pp-vids" [class.pp-vids-compact]="v.offerSection">
-            <xh-product-video [videos]="v.videos" [labels]="v.videoLabels" [name]="v.name" />
-          </div>
-        }
-
         @if (v.offerSection; as offer) {
           <section class="pp-offer" aria-labelledby="ppOfferTitle">
             <h2 id="ppOfferTitle">{{ offer.title }}</h2>
@@ -927,7 +920,7 @@
           }
         </div>
 
-        @if ((isTally() || isCloudDrive() || isSmbCyber()) && showcaseVideos().length) {
+        @if (showcaseVideos().length) {
           <section class="tally-videos" aria-labelledby="showcaseVideosTitle">
             <div class="pp-sec" id="showcaseVideosTitle">Watch it in action</div>
             <div class="tally-video-grid" [class.single-video]="showcaseVideos().length === 1">

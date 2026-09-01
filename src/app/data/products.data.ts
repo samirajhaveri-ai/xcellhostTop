@@ -236,8 +236,8 @@ export const RICH_PRODUCTS: Record<string, RichProduct> = {
       "Access anything, anywhere, anytime"
     ],
     "videos": [
-      "wM30-q5bGIk",
-      "l63eOmbyaAw"
+      "rya4Q4IZniA",
+      "nIMbqdbGxao"
     ],
     "videoLabels": [
       "Product Intro",
@@ -1205,7 +1205,7 @@ export const DEEP_CONTENT: Record<string, DeepContent> = {
  */
 export const PRODUCT_VIDEOS: Record<string, string[]> = {
   "Tally On Cloud": ["eb8jyqFV6fM", "WRvy9w6V8TI"],
-  "Cloud Backup": ["uTZighRxLPc", "FO7O0V4eP1w"],
+  "Cloud Backup": ["rya4Q4IZniA", "nIMbqdbGxao"],
   "Cloud Drive": ["a-Jy7VV13Do", "E6xAHz6_TXw"],
   "SMB Cloud Desktop": ["iz1BsU1SHQc", "5Ht7EXApSxM"],
   "Advanced Endpoint Security + EDR": ["iaHAyNSXCPc", "2PZzQIUxpMo"],
@@ -1296,7 +1296,7 @@ export const PRODUCT_VIDEOS: Record<string, string[]> = {
 
   // Product aliases used by this Angular catalogue.
   "Tally on Cloud": ["eb8jyqFV6fM", "WRvy9w6V8TI"],
-  "Cloud Backup (Acronis)": ["uTZighRxLPc", "FO7O0V4eP1w"],
+  "Cloud Backup (Acronis)": ["rya4Q4IZniA", "nIMbqdbGxao"],
   "Cloud Drive — File Share & Sync": ["a-Jy7VV13Do", "E6xAHz6_TXw"],
   "Advanced Endpoint Security (EDR)": ["iaHAyNSXCPc", "2PZzQIUxpMo"],
   "Remote Monitoring & Mgmt (RMM)": ["LLxYfEH-Oh0", "v7v4p0Pikhw"],
