@@ -18,12 +18,12 @@ export const PRODUCT_BRAND_LINES: Record<string, string> = {
   "Tally on Cloud": "XcellTally | Tally On Cloud",
   "Cloud Backup (Acronis)": "XcellBackup | Backup Cloud",
   "Cloud Drive": "XcellDrive | Cloud Drive",
-  "Microsoft 365": "XcellCloud | Microsoft 365",
+  "Microsoft 365": "XcellOffice | Microsoft 365",
   "Bare Metal Server": "XcellBareMetal | Bare Metal Server",
   "SMB Cyber Security Appliance" : "XcellSecure | SMB Cyber Security Appliance " ,
   "Advanced Endpoint Security (EDR)" : "XcellSecure | Advanced Endpoint Security (EDR)",
   "Remote Monitoring & Mgmt (RMM)" : "XcellSecure | Remote Monitoring & Mgmt (RMM)",
-  "Cloud Disaster Recovery SMB" : "XcellSecure | Cloud Disaster Recovery SMB", 
+  "Cloud Disaster Recovery SMB" : "XcellProtect | Cloud Disaster Recovery SMB", 
 
 
 
@@ -1220,6 +1220,7 @@ export const PRODUCT_VIDEOS: Record<string, string[]> = {
   "Cloud Backup vs Cloud Drive vs Cloud Object Storage": ["uTZighRxLPc", ""],
   "Cloud Object Storage Services": ["AX-v6bPKo8c", "p3ctPLzHyvE"],
   "Advanced Disaster Recovery": ["y5mQNQijoIk", ""],
+  "Cloud Disaster Recovery SMB": ["y5mQNQijoIk", ""],
   "Intelligent Backup": ["lMeUBxADIw0", "yULgeRarTg0"],
   "Acronis Microsoft 365 Backup": ["", "d8Gcpno-yXg"],
   "Microsoft Entra ID": ["E__PpPf59nQ", ""],

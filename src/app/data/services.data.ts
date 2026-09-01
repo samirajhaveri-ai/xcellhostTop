@@ -794,7 +794,7 @@ export const SERVICES_RICH: Record<string, ServiceRich> = {
   },
   "cloud disaster recovery smb": {
     "price": "Per-VM plans",
-    "ov": "Single-click disaster recovery to Acronis Cloud for small businesses. Protect files, applications and production workloads with tested failover, secure connectivity and rapid recovery options that fit an SMB environment.",
+    "ov": "Disaster Recovery protects your ability to continue operating. With XcellHost Cloud Disaster Recovery, organizations can maintain protected copies of important workloads and establish recovery procedures designed to reduce downtime and minimize data loss during a disruption. XcellHost Cloud Disaster Recovery provides a cloud-based approach that allows businesses to build a disaster recovery strategy without maintaining an entire secondary physical datacenter.",
     "f": [
       [
         "File, Image & Application Backup",

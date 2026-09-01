@@ -48,6 +48,14 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/payment-methods.page').then((m) => m.PaymentMethodsPage),
   },
+  {
+    path: 'geotrust-ssl-certificates',
+    data: { productSlug: 'geotrust' },
+    loadComponent: () =>
+      import('./pages/geotrust-ssl-certificates.page').then(
+        (m) => m.GeoTrustSslCertificatesPage,
+      ),
+  },
   { path: 'pricing', loadComponent: () => import('./pages/simple.page').then((m) => m.SimplePage), data: { key: 'pricing' } },
   { path: 'company/:slug', loadComponent: () => import('./pages/company.page').then((m) => m.CompanyPage) },
   { path: 'category/:name', loadComponent: () => import('./pages/category.page').then((m) => m.CategoryPage) },

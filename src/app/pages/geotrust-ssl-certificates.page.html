@@ -1,0 +1,223 @@
+<!-- Keep the original XcellHost GeoTrust product hero and trust strip. -->
+<xh-product-page class="geotrust-original-hero" />
+
+<!-- ============ BODY ============ -->
+<div class="pp-body"><div class="wrap">
+
+  <!-- OVERVIEW -->
+  <div class="pp-sec">Overview &mdash; What is a GeoTrust SSL certificate?</div>
+  <p class="pp-ov">A <b>GeoTrust SSL/TLS certificate</b> encrypts the connection between your website and your visitors, so passwords, payments and personal data can't be intercepted. GeoTrust — part of the DigiCert family of certificate authorities — is trusted by 99.9% of browsers and mobile devices, and shows the padlock (and, for EV, your verified business name) that customers look for before they buy.</p>
+  <p class="pp-ov">XcellHost is an authorised GeoTrust partner in India. We handle CSR generation, validation, issuance, installation and lifecycle renewal for you — with a GST invoice on every order and 24×7 support from our Mumbai NOC.</p>
+
+  <!-- VALIDATION LEVELS -->
+  <div class="pp-sec">Choose your validation level</div>
+  <div class="pp-vgrid">
+    <div class="vcard dv rv" data-d="1"><span class="vb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3" stroke-linecap="round"/></svg>Domain Validation</span><h3>DV SSL</h3><p>Fastest way to encrypt — validated against domain ownership only, issued in minutes.</p><ul><li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Ideal for blogs &amp; small sites</li><li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Padlock in the address bar</li><li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Issued within minutes</li></ul></div>
+    <div class="vcard ov rv" data-d="2"><span class="vb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>Organization Validation</span><h3>OV SSL</h3><p>Business-verified trust — GeoTrust confirms your organization before issuing.</p><ul><li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Company details in the cert</li><li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Great for business sites</li><li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Issued in 1–3 days</li></ul></div>
+    <div class="vcard ev rv" data-d="3"><span class="vb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4" stroke-linecap="round"/></svg>Extended Validation</span><h3>EV SSL</h3><p>The highest assurance — rigorous vetting for maximum customer confidence at checkout.</p><ul><li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Maximum buyer trust</li><li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Best for e-commerce &amp; banking</li><li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Highest warranty coverage</li></ul></div>
+  </div>
+
+  <!-- VIDEO -->
+  <div class="pp-sec">See GeoTrust SSL in action</div>
+  <div class="pp-vids">
+    <div class="pv-tabs"><button class="pv-tab active" type="button">&#9654; How SSL works</button><button class="pv-tab" type="button">&#9654; Installing a certificate</button><button class="pv-tab" type="button">&#9654; DV vs OV vs EV</button></div>
+    <div class="pv-frame rv"><div class="grid"></div><div class="pv-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></div><div class="pv-cap">How GeoTrust SSL protects your website</div></div>
+  </div>
+
+  <!-- PRICING / CATALOG -->
+  <div class="pp-sec" id="products">GeoTrust certificate pricing (INR)</div>
+  <p class="pp-ov" style="margin-bottom:18px">Configure a term, add SAN domains and buy in a few clicks. All prices per certificate, excluding GST — GST invoice included on every order.</p>
+  <div class="filter" id="filter">
+    @for (option of filters; track option.value) {
+      <button class="fchip" type="button" [class.on]="filter() === option.value" (click)="filter.set(option.value)">{{ option.label }}</button>
+    }
+  </div>
+  <div class="pgrid" id="pgrid">
+    @for (product of visibleProducts(); track product.id) {
+      <article class="pcard rv in">
+        <div class="ptop">
+          <span class="tierbadge" [class.dv]="product.tier === 'DV'" [class.ov]="product.tier === 'OV'" [class.ev]="product.tier === 'EV'">{{ product.tier }}</span>
+          @for (tag of product.tags; track tag) { <span class="tagchip">{{ tag === 'Multi' ? 'Multi-Domain' : tag }}</span> }
+        </div>
+        <h3>{{ product.name }}</h3><p class="pdesc">{{ product.desc }}</p>
+        <div class="pmeta"><div><span>Warranty</span><b>{{ product.warranty }}</b></div><div><span>Issued</span><b>{{ product.issue }}</b></div></div>
+        <ul class="pfeat">@for (feature of product.features; track feature) { <li><span class="ck">✓</span>{{ feature }}</li> }</ul>
+        <div class="pprice"><div><span class="from">From</span><span class="amt">{{ inr(product.prices[2]) }}</span><span class="yr">/year</span></div><span class="save">Save up to 84%</span></div>
+        <button class="btn btn-orange" type="button" (click)="configure(product)">Configure &amp; Buy <span class="ar">→</span></button>
+      </article>
+    }
+  </div>
+  <p class="pv-note">&#128179; Approximate INR pricing excluding GST. Pay online via UPI · Cards · NetBanking. Contact XcellHost for exact pricing, volume discounts and multi-year deals.</p>
+
+  <!-- COMPARISON TABLE -->
+  <div class="pp-sec">Compare DV, OV &amp; EV certificates</div>
+  <div class="pp-tablewrap"><table class="pp-table">
+    <thead><tr><th>Feature</th><th>DV SSL</th><th>OV SSL</th><th>EV SSL</th></tr></thead>
+    <tbody>
+      <tr><td>Validation</td><td>Domain only</td><td>Domain + Business</td><td>Extended (full vetting)</td></tr>
+      <tr><td>Issuance time</td><td>Minutes</td><td>1–3 days</td><td>1–5 days</td></tr>
+      <tr><td>256-bit encryption</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+      <tr><td>Address-bar padlock</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+      <tr><td>Business name in certificate</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+      <tr><td>Highest buyer trust</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+      <tr><td>Warranty</td><td>$500K</td><td>up to $1.25M</td><td>up to $1.75M</td></tr>
+      <tr><td>Best for</td><td>Blogs, dev sites</td><td>Business sites</td><td>E-commerce, banking</td></tr>
+    </tbody>
+  </table></div>
+
+  <!-- ADD-ONS -->
+  <div class="pp-sec">Add-ons &amp; managed services</div>
+  <div class="pp-addons">
+    <div class="pp-addon rv" data-d="1"><span class="aic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span><b>Additional SAN domains</b><p>Secure multiple domains under one certificate — added right in the configurator.</p></div>
+    <div class="pp-addon rv" data-d="2"><span class="aic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg></span><b>Trust site seal</b><p>Display the GeoTrust dynamic seal to boost visitor confidence and conversions.</p></div>
+    <div class="pp-addon rv" data-d="3"><span class="aic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4" stroke-linecap="round"/></svg></span><b>Malware &amp; vuln scan</b><p>Daily website scanning to catch malware and vulnerabilities before attackers do.</p></div>
+    <div class="pp-addon rv" data-d="4"><span class="aic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12a8 8 0 018-8 8 8 0 017 4" stroke-linecap="round"/><path d="M20 12a8 8 0 01-8 8 8 8 0 01-7-4" stroke-linecap="round"/><path d="M19 4v4h-4M5 20v-4h4"/></svg></span><b>SSL automation (ACME)</b><p>Automatic renewal and re-issuance so a certificate never silently expires.</p></div>
+  </div>
+
+  <!-- KEY FEATURES -->
+  <div class="pp-sec">Everything in a GeoTrust certificate</div>
+  <div class="pp-feats">
+    <div class="pp-feat rv" data-d="1"><span class="fic" style="background:linear-gradient(135deg,#1565D8,#0C3E8F)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3" stroke-linecap="round"/></svg></span><div><b>256-bit encryption</b><p>Strong SHA-2, up to 256-bit session encryption on RSA 2048-bit and ECC keys.</p></div></div>
+    <div class="pp-feat rv" data-d="2"><span class="fic" style="background:linear-gradient(135deg,#FF8C1A,#F57C00)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4" stroke-linecap="round"/></svg></span><div><b>Million-dollar warranty</b><p>Up to $1.75M relying-party warranty backs every EV certificate you buy.</p></div></div>
+    <div class="pp-feat rv" data-d="3"><span class="fic" style="background:linear-gradient(135deg,#16a34a,#2ECC71)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M2 12h20M12 3a15 15 0 010 18 15 15 0 010-18"/></svg></span><div><b>99.9% browser trust</b><p>Ubiquitous root recognised by all major browsers, servers and mobile devices.</p></div></div>
+    <div class="pp-feat rv" data-d="1"><span class="fic" style="background:linear-gradient(135deg,#1565D8,#0C3E8F)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8V6a2 2 0 012-2h12a2 2 0 012 2v2M4 8h16v10a2 2 0 01-2 2H6a2 2 0 01-2-2z"/></svg></span><div><b>Unlimited reissues</b><p>Reissue as many times as you need during the term, at no extra cost.</p></div></div>
+    <div class="pp-feat rv" data-d="2"><span class="fic" style="background:linear-gradient(135deg,#FF8C1A,#F57C00)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span><div><b>SAN &amp; wildcard options</b><p>Cover multiple domains or unlimited subdomains from a single certificate.</p></div></div>
+    <div class="pp-feat rv" data-d="3"><span class="fic" style="background:linear-gradient(135deg,#16a34a,#2ECC71)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg></span><div><b>Free managed install</b><p>Our engineers generate the CSR and install on your server — 24×7.</p></div></div>
+  </div>
+
+  <!-- BENEFITS -->
+  <div class="pp-sec">Benefits for your business</div>
+  <div class="pp-bens">
+    <div class="pb rv" data-d="1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4" stroke-linecap="round"/></svg></span><b>Win customer trust</b><p>The padlock and verified name reassure visitors and lift conversions.</p></div>
+    <div class="pb rv" data-d="2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 7-8" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 7v5h-5"/></svg></span><b>Better SEO ranking</b><p>Google favours HTTPS — encrypted sites get a search-ranking edge.</p></div>
+    <div class="pb rv" data-d="3"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3" stroke-linecap="round"/></svg></span><b>Protect user data</b><p>Encrypt logins, forms and payments so data can't be intercepted.</p></div>
+    <div class="pb rv" data-d="4"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><path d="M12 3l7 3v6c0 5-3 8-7 9-4-1-7-4-7-9V6z"/></svg></span><b>Stay compliant</b><p>Meet PCI-DSS and data-protection requirements for handling sensitive data.</p></div>
+  </div>
+
+  <!-- SSL AUTOMATION PANEL -->
+  <div class="pp-sec">Never miss a renewal again</div>
+  <div class="pp-auto rv">
+    <div class="glow"></div>
+    <div class="al">
+      <span class="tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12a8 8 0 018-8 8 8 0 017 4" stroke-linecap="round"/><path d="M19 4v4h-4"/></svg>SSL Automation</span>
+      <h3>Automated certificate lifecycle management</h3>
+      <p>As certificate lifetimes shrink, manual renewals become a liability. XcellHost's ACME-based automation issues, installs and renews your GeoTrust certificates — before they ever expire.</p>
+      <ul>
+        <li><span class="k">✓</span>Auto-renewal &amp; re-issue</li>
+        <li><span class="k">✓</span>Expiry monitoring &amp; alerts</li>
+        <li><span class="k">✓</span>Multi-server deployment</li>
+        <li><span class="k">✓</span>Central dashboard</li>
+      </ul>
+    </div>
+    <div class="ar-visual">
+      <div class="ar-step done"><span class="n">✓</span>Certificate issued &amp; installed</div>
+      <div class="ar-step done"><span class="n">✓</span>Expiry detected — 30 days out</div>
+      <div class="ar-step"><span class="n">3</span>Auto-renewed &amp; redeployed</div>
+    </div>
+  </div>
+
+  <!-- USE CASES -->
+  <div class="pp-sec">Who needs a GeoTrust SSL certificate?</div>
+  <div class="pp-uses">
+    <div class="pu rv" data-d="1"><span class="pu-ic">&#128179;</span><b>E-commerce</b><span>Secure checkout &amp; payment pages</span></div>
+    <div class="pu rv" data-d="2"><span class="pu-ic">&#127974;</span><b>Banking &amp; Fintech</b><span>EV trust for high-value transactions</span></div>
+    <div class="pu rv" data-d="3"><span class="pu-ic">&#127973;</span><b>Healthcare</b><span>Protect patient data &amp; portals</span></div>
+    <div class="pu rv" data-d="4"><span class="pu-ic">&#9729;</span><b>SaaS &amp; Web Apps</b><span>Wildcard cover for every subdomain</span></div>
+    <div class="pu rv" data-d="1"><span class="pu-ic">&#127979;</span><b>Government &amp; Edu</b><span>Verified identity for public sites</span></div>
+    <div class="pu rv" data-d="2"><span class="pu-ic">&#128100;</span><b>Corporate</b><span>Secure intranets &amp; mail servers</span></div>
+    <div class="pu rv" data-d="3"><span class="pu-ic">&#128241;</span><b>Startups &amp; SMBs</b><span>Affordable DV to launch fast</span></div>
+    <div class="pu rv" data-d="4"><span class="pu-ic">&#128230;</span><b>Marketplaces</b><span>Multi-domain SAN coverage</span></div>
+  </div>
+
+  <!-- SECURITY -->
+  <div class="pp-sec">Security &amp; compliance</div>
+  <div class="pp-secrows">
+    <div class="psr"><span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3" stroke-linecap="round"/></svg></span><div><b>256-bit / SHA-2 encryption</b><p>Modern SHA-256 signatures with up to 256-bit session keys on RSA 2048+ and ECC.</p></div></div>
+    <div class="psr"><span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg></span><div><b>CA/Browser Forum compliant</b><p>Issued to the latest CA/B Forum baseline requirements and industry standards.</p></div></div>
+    <div class="psr"><span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M2 12h20M12 3a15 15 0 010 18 15 15 0 010-18"/></svg></span><div><b>Ubiquitous root trust</b><p>Recognised by 99.9% of desktop &amp; mobile browsers, servers and applications.</p></div></div>
+    <div class="psr"><span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><path d="M12 3l7 3v6c0 5-3 8-7 9-4-1-7-4-7-9V6z"/></svg></span><div><b>PCI-DSS ready</b><p>Helps meet PCI-DSS and data-protection obligations for handling cardholder data.</p></div></div>
+  </div>
+
+  <!-- WHY XCELLHOST -->
+  <div class="pp-sec">Why buy GeoTrust from XcellHost?</div>
+  <p class="pp-ov" style="margin-bottom:20px">Any reseller can sell you a certificate. XcellHost issues it, installs it, and keeps it renewed — with local support and a GST invoice.</p>
+  <div class="pp-why">
+    <div class="pw rv" data-d="1"><span class="pw-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><path d="M12 3l7 3v6c0 5-3 8-7 9-4-1-7-4-7-9V6z"/></svg></span><b>Authorised partner</b><p>Direct GeoTrust / DigiCert partner pricing — up to 84% below vendor list.</p></div>
+    <div class="pw rv" data-d="2"><span class="pw-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20v-6M6 20v-4M18 20V8" stroke-linecap="round"/><path d="M3 20h18"/></svg></span><b>Free managed install</b><p>We generate the CSR, complete validation and install on your server for you.</p></div>
+    <div class="pw rv" data-d="3"><span class="pw-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12a8 8 0 018-8 8 8 0 017 4" stroke-linecap="round"/><path d="M19 4v4h-4"/></svg></span><b>SSL automation</b><p>ACME-based auto-renewal so certificates never lapse or break your site.</p></div>
+    <div class="pw rv" data-d="1"><span class="pw-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg></span><b>24×7 support</b><p>Round-the-clock help from our Mumbai NOC + SOC, since 1999.</p></div>
+    <div class="pw rv" data-d="2"><span class="pw-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 4v16M4 9h4M4 15h4"/></svg></span><b>GST invoice</b><p>Compliant GST invoice on every order — pay via UPI, cards or NetBanking.</p></div>
+    <div class="pw rv" data-d="3"><span class="pw-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8V6a2 2 0 012-2h12a2 2 0 012 2v2M4 8h16v10a2 2 0 01-2 2H6a2 2 0 01-2-2z"/></svg></span><b>Full lifecycle</b><p>Discovery, issuance, deployment and renewal managed end-to-end.</p></div>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <div class="pp-sec">What customers say</div>
+  <div class="pp-tcards">
+    <div class="tcard rv tilt" data-d="1"><div class="quote-badge">&rdquo;</div><div class="tav">RS</div><div class="tname">Retail &amp; Payments Team</div><div class="trole">E-commerce · EV SSL</div><div class="tstars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>The EV certificate lifted checkout trust noticeably. XcellHost handled the whole business validation and installed it on our load balancer the same week.</p></div>
+    <div class="tcard rv tilt" data-d="2"><div class="quote-badge">&rdquo;</div><div class="tav">IT</div><div class="tname">IT Operations</div><div class="trole">SaaS · Wildcard SSL</div><div class="tstars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>One wildcard now covers all our subdomains and the automation renews it for us. We haven't had a single expiry incident since we moved to XcellHost.</p></div>
+    <div class="tcard rv tilt" data-d="3"><div class="quote-badge">&rdquo;</div><div class="tav">FC</div><div class="tname">Finance Controller</div><div class="trole">NBFC · OV SSL</div><div class="tstars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>Transparent INR pricing, a proper GST invoice and quick support. Renewals are now completely hands-off for our team.</p></div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="pp-sec">Frequently asked questions</div>
+  <div class="pp-faq" id="faq">
+    <div class="faq2 open rv" data-d="1"><button class="faq2-q" type="button" (click)="toggleFaq($event)">What is a GeoTrust SSL certificate?<span class="faq2-ic">+</span></button><div class="faq2-a"><p>It's a digital certificate from the GeoTrust certificate authority (part of DigiCert) that encrypts traffic between your website and its visitors and verifies your site's identity. It shows the padlock in browsers and — for EV — your verified business name.</p></div></div>
+    <div class="faq2 rv" data-d="2"><button class="faq2-q" type="button" (click)="toggleFaq($event)">Is XcellHost an authorised GeoTrust partner in India?<span class="faq2-ic">+</span></button><div class="faq2-a"><p>Yes. XcellHost is an authorised GeoTrust / DigiCert partner and has delivered SSL and cloud security to Indian businesses since 1999. Every order includes a GST invoice and 24×7 support from our Mumbai NOC.</p></div></div>
+    <div class="faq2 rv" data-d="1"><button class="faq2-q" type="button" (click)="toggleFaq($event)">What's the difference between DV, OV and EV?<span class="faq2-ic">+</span></button><div class="faq2-a"><p>DV validates domain ownership only and issues in minutes. OV also verifies your organization and shows business details in the certificate. EV is the highest assurance with rigorous vetting and the largest warranties — ideal for e-commerce and banking.</p></div></div>
+    <div class="faq2 rv" data-d="2"><button class="faq2-q" type="button" (click)="toggleFaq($event)">How quickly is a certificate issued?<span class="faq2-ic">+</span></button><div class="faq2-a"><p>DV certificates are typically issued within minutes of validation. OV takes 1–3 business days and EV 1–5 business days, depending on how quickly business verification documents are provided.</p></div></div>
+    <div class="faq2 rv" data-d="1"><button class="faq2-q" type="button" (click)="toggleFaq($event)">Do you install the certificate for me?<span class="faq2-ic">+</span></button><div class="faq2-a"><p>Yes — free managed installation is included. Our engineers generate the CSR, complete validation and install the certificate on your web server or load balancer, and can automate future renewals.</p></div></div>
+    <div class="faq2 rv" data-d="2"><button class="faq2-q" type="button" (click)="toggleFaq($event)">What is a SAN or wildcard certificate?<span class="faq2-ic">+</span></button><div class="faq2-a"><p>A SAN (multi-domain) certificate secures several different domains under one certificate — add them in the configurator. A wildcard secures unlimited subdomains of a single domain (e.g. *.yourbusiness.com).</p></div></div>
+    <div class="faq2 rv" data-d="1"><button class="faq2-q" type="button" (click)="toggleFaq($event)">Do I get a GST invoice?<span class="faq2-ic">+</span></button><div class="faq2-a"><p>Yes. Every purchase includes a compliant GST invoice. You can pay online via UPI, credit/debit cards or NetBanking, and we're happy to share exact pricing and multi-year discounts.</p></div></div>
+    <div class="faq2 rv" data-d="2"><button class="faq2-q" type="button" (click)="toggleFaq($event)">What happens when my certificate expires?<span class="faq2-ic">+</span></button><div class="faq2-a"><p>With XcellHost SSL automation, we monitor expiry and auto-renew and redeploy before the certificate lapses. Without automation, we send renewal reminders and can handle the renewal and re-installation for you.</p></div></div>
+  </div>
+
+  <!-- BLOG -->
+  <div class="pp-sec">Learn more about SSL</div>
+  <div class="pp-blog" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+    <a class="bl rv" data-d="1" href="/" style="border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;transition:.2s;display:block">
+      <div style="height:8px;background:linear-gradient(90deg,var(--blue),var(--orange))"></div>
+      <div style="padding:20px"><div style="font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:8px">Guide</div><h3 style="font-size:16px;margin-bottom:8px">DV vs OV vs EV SSL — which certificate does your business need?</h3><p style="font-size:12.8px;color:var(--slate)">A plain-English guide to validation levels, trust and pricing for Indian businesses.</p></div>
+    </a>
+    <a class="bl rv" data-d="2" href="/" style="border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;transition:.2s;display:block">
+      <div style="height:8px;background:linear-gradient(90deg,var(--blue),var(--orange))"></div>
+      <div style="padding:20px"><div style="font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:8px">How-to</div><h3 style="font-size:16px;margin-bottom:8px">How to generate a CSR and install an SSL certificate</h3><p style="font-size:12.8px;color:var(--slate)">Step-by-step CSR generation and installation across Apache, Nginx and IIS.</p></div>
+    </a>
+    <a class="bl rv" data-d="3" href="/" style="border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;transition:.2s;display:block">
+      <div style="height:8px;background:linear-gradient(90deg,var(--blue),var(--orange))"></div>
+      <div style="padding:20px"><div style="font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:8px">Automation</div><h3 style="font-size:16px;margin-bottom:8px">Why SSL certificate lifetimes are shrinking — and how to automate</h3><p style="font-size:12.8px;color:var(--slate)">What shorter cert lifetimes mean and how ACME automation keeps you covered.</p></div>
+    </a>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="pp-sec" id="contact">Get a GeoTrust SSL certificate — transparent INR pricing</div>
+  <div class="pp-contact">
+    <div class="pp-ccard">
+      <h3>SSL Consultation</h3>
+      <p>Not sure which certificate fits? We'll recommend the right validation, issue it, install it and keep it renewed — GST invoice same day.</p>
+      <ul class="pp-clist">
+        <li><a href="tel:+912267111555"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg></span><span><b>Call us</b><span>+91 22 6711 1555</span></span></a></li>
+        <li><a href="https://wa.me/918657032540"><span class="ci"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.8-1.4A10 10 0 1012 2z"/></svg></span><span><b>WhatsApp</b><span>+91 86570 32540</span></span></a></li>
+        <li><a href="mailto:sales&#64;xcellhost.cloud"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></svg></span><span><b>Email</b><span>sales&#64;xcellhost.cloud</span></span></a></li>
+      </ul>
+    </div>
+    <form class="pp-form" (submit)="requestCallback($event)">
+      <h3>Request a Callback</h3>
+      <div class="row"><div class="fg"><input type="text" placeholder="Full name" required></div><div class="fg"><input type="text" placeholder="Company" required></div></div>
+      <div class="row"><div class="fg"><input type="email" placeholder="Work email" required></div><div class="fg"><input type="tel" placeholder="Phone" required></div></div>
+      <div class="fg"><select><option value="">Which certificate?</option><option>DV SSL</option><option>OV SSL</option><option>EV SSL</option><option>Wildcard</option><option>Multi-Domain (SAN)</option><option>Not sure — advise me</option></select></div>
+      <div class="fg"><textarea rows="3" placeholder="Tell us about your website / domains"></textarea></div>
+      <button type="submit" class="btn btn-primary">Request Callback <span class="ar">→</span></button>
+      <p class="fnote">GST invoice included · UPI · Cards · NetBanking</p>
+    </form>
+  </div>
+
+  <!-- CTA -->
+  <div class="pp-cta">
+    <div class="cl"><h3>Ready to secure your website?</h3><p>Pick a certificate above, or talk to our SSL experts — we'll handle issuance, installation and renewals for you.</p></div>
+    <div class="cr"><a href="#products" class="btn btn-primary mag">Browse Certificates <span class="ar">→</span></a><a href="https://wa.me/918657032540" class="btn btn-outline mag">Chat on WhatsApp</a></div>
+  </div>
+
+</div></div>
+
+
+

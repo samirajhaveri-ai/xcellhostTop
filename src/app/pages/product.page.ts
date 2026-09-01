@@ -115,6 +115,26 @@ export class ProductPage {
 
   readonly selectedEdrPlanIndex = signal(0);
   readonly edrQuantity = signal(1);
+  readonly cdrQuantity = signal(1);
+  readonly activeCdrTourSlide = signal(0);
+  readonly cdrTourSlides = [
+    {
+      title: 'Build your recovery plan',
+      description: 'See protected workloads, recovery points and readiness status in one place.',
+      image: '/assets/images/cdr-tour-recovery-plan.png',
+    },
+    {
+      title: 'Orchestrate failover',
+      description: 'Follow a guided runbook to bring critical workloads online in the recovery cloud.',
+      image: '/assets/images/cdr-tour-failover.png',
+    },
+    {
+      title: 'Test recovery readiness',
+      description: 'Validate RPO and RTO targets with non-disruptive recovery testing and reporting.',
+      image: '/assets/images/cdr-tour-testing.png',
+    },
+  ] as const;
+  readonly isCdrTourOpen = computed(() => this.overlay.isOpen('screenshotTour'));
 
   selectEdrPlan(index: number): void {
     this.selectedEdrPlanIndex.set(index);
@@ -122,6 +142,35 @@ export class ProductPage {
 
   changeEdrQuantity(change: number): void {
     this.edrQuantity.update((quantity) => Math.max(1, quantity + change));
+  }
+
+  changeCdrQuantity(change: number): void {
+    this.cdrQuantity.update((quantity) => Math.max(1, quantity + change));
+  }
+
+  cdrPlanTotal(): string {
+    return `₹${(9999 * this.cdrQuantity()).toLocaleString('en-IN')}`;
+  }
+
+  openCdrTour(): void {
+    this.activeCdrTourSlide.set(0);
+    this.overlay.open('screenshotTour');
+  }
+
+  closeCdrTour(): void {
+    this.overlay.close('screenshotTour');
+  }
+
+  selectCdrTourSlide(index: number): void {
+    this.activeCdrTourSlide.set(index);
+  }
+
+  previousCdrTourSlide(): void {
+    this.activeCdrTourSlide.set((this.activeCdrTourSlide() + this.cdrTourSlides.length - 1) % this.cdrTourSlides.length);
+  }
+
+  nextCdrTourSlide(): void {
+    this.activeCdrTourSlide.set((this.activeCdrTourSlide() + 1) % this.cdrTourSlides.length);
   }
 
   edrPlanTotal(plan: PricingPlan): string {
@@ -260,7 +309,9 @@ export class ProductPage {
     ...new Set([...Object.keys(DEEP_CONTENT), ...Object.keys(RICH_PRODUCTS)]),
   ];
 
-  readonly slug = toSignal(this.route.paramMap.pipe(map((p) => p.get('slug') ?? '')), {
+  readonly slug = toSignal(this.route.paramMap.pipe(
+    map((p) => p.get('slug') ?? this.route.snapshot.data['productSlug'] ?? ''),
+  ), {
     initialValue: '',
   });
 

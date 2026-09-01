@@ -2355,7 +2355,46 @@ export const MEGA_MENU: MenuTop[] = [
             ]
           }
         ]
-      }
+      },
+      {
+        "g": "6",
+        "label": "Media & PR",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Media & PR",
+            "items": [
+              {
+                "title": "Media Kit",
+                "pill": null,
+                "desc": "How we handle personal information"
+              }
+            ]
+          }
+        ]
+      },
+      //  {
+      //   "g": "7",
+      //   "label": "Data Centers",
+      //   "on": false,
+      //   "groups": [
+      //     {
+      //       "heading": "Data Centers",
+      //       "items": [
+      //         {
+      //           "title": "View Acronics DC",
+      //           "pill": null,
+      //           "desc": "How we handle personal information"
+      //         },
+      //         {
+      //           "title": "View Xcellhost DC",
+      //           "pill": null,
+      //           "desc": "How we handle personal information"
+      //         }
+      //       ]
+      //     }
+      //   ]
+      // },
     ]
   }
 ];
