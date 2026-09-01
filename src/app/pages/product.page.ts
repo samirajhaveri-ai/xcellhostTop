@@ -277,6 +277,10 @@ export class ProductPage {
     () => this.view()?.name === 'SMB Cyber Security Appliance'
   );
 
+  readonly isCloudDisasterRecoverySmb = computed(
+    () => this.view()?.name === 'Cloud Disaster Recovery SMB'
+  );
+
   readonly isTally = computed(() => this.view()?.name === 'Tally on Cloud');
 
   readonly isCloudDrive = computed(() => this.view()?.name === 'Cloud Drive');
@@ -356,6 +360,39 @@ export class ProductPage {
       ].join('\n')
     );
   });
+
+  readonly askAiPrompt = computed(() => {
+    const view = this.view();
+    const productName = view?.name ?? 'this service';
+    const tagline = view?.tagline ?? '';
+    const overview = view?.overview ?? '';
+
+    return [
+      `Give me a quick overview of XcellHost's ${productName} service.`,
+      tagline ? `Tagline: ${tagline}` : '',
+      overview ? `Context: ${overview}` : '',
+      'Summarize the ideal use cases, benefits, and what a business buyer should ask before purchasing.',
+    ]
+      .filter(Boolean)
+      .join(' ');
+  });
+
+  askAiHref(platform: 'chatgpt' | 'perplexity' | 'claude' | 'google' | 'grok'): string {
+    const prompt = encodeURIComponent(this.askAiPrompt());
+
+    switch (platform) {
+      case 'chatgpt':
+        return `https://chatgpt.com/?q=${prompt}`;
+      case 'perplexity':
+        return `https://www.perplexity.ai/search/new?q=${prompt}`;
+      case 'claude':
+        return `https://claude.ai/new?q=${prompt}`;
+      case 'google':
+        return `https://gemini.google.com/app`;
+      case 'grok':
+        return `https://grok.com/?q=${prompt}`;
+    }
+  }
 
   constructor() {
     this.blogApi.posts$.pipe(takeUntilDestroyed()).subscribe({

@@ -18,11 +18,13 @@ export const PRODUCT_BRAND_LINES: Record<string, string> = {
   "Tally on Cloud": "XcellTally | Tally On Cloud",
   "Cloud Backup (Acronis)": "XcellBackup | Backup Cloud",
   "Cloud Drive": "XcellDrive | Cloud Drive",
-  "Microsoft 365": "XcellOfiice | Microsoft 365",
+  "Microsoft 365": "XcellCloud | Microsoft 365",
   "Bare Metal Server": "XcellBareMetal | Bare Metal Server",
   "SMB Cyber Security Appliance" : "XcellSecure | SMB Cyber Security Appliance " ,
   "Advanced Endpoint Security (EDR)" : "XcellSecure | Advanced Endpoint Security (EDR)",
   "Remote Monitoring & Mgmt (RMM)" : "XcellSecure | Remote Monitoring & Mgmt (RMM)",
+  "Cloud Disaster Recovery SMB" : "XcellSecure | Cloud Disaster Recovery SMB", 
+
 
 
 };

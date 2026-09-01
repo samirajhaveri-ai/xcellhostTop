@@ -433,6 +433,18 @@ export const USE_OVERRIDE: Record<string, IconItem[]> = {
       "Fixed pricing instead of variable consumption bills"
     ]
   ],
+  "Cloud Disaster Recovery SMB": [
+    ["⚡", "Instant Failover", ""],
+    ["⏱️", "Minimal Downtime", ""],
+    ["🛡️", "Continuous Data Protection", ""],
+    ["↺", "Universal Restore", ""],
+    ["✓", "Compliance Assurance", ""],
+    ["⚙️", "Auto Patch Management", ""],
+    ["◉", "AI based Threat Detection", ""],
+    ["⌕", "Incident Investigation", ""],
+    ["🔒", "Secure File Sync & Share", ""],
+    ["☁️", "Cloud based Recovery", ""]
+  ],
   "Cloud Disaster Recovery": [
     [
       "🔥",

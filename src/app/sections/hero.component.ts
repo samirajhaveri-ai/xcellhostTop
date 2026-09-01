@@ -55,14 +55,47 @@ const LEAVE_MS = 520;
 const HERO_SLIDE_MS = 5200;
 
 interface HeroVisualSlide {
+  readonly eyebrow: string;
+  readonly title: string;
+  readonly accent: string;
+  readonly description: string;
+  readonly cta: string;
+  readonly href: string;
   readonly image: string;
   readonly alt: string;
 }
 
 const HERO_VISUAL_SLIDES: readonly HeroVisualSlide[] = [
-  { image: '/assets/images/home-performance-cloud.png', alt: 'Performance Cloud infrastructure' },
-  { image: '/assets/images/home-gpu-cloud.png', alt: 'GPU Cloud infrastructure' },
-  { image: '/assets/images/home-acronis-edr.png', alt: 'Acronis advanced endpoint security' },
+  {
+    eyebrow: 'Built for business-critical workloads',
+    title: 'Performance',
+    accent: 'Cloud',
+    description: 'High-performance cloud infrastructure with dedicated resources, NVMe storage and expert support from India.',
+    cta: 'Explore Performance Cloud',
+    href: '/performance-cloud',
+    image: '/assets/images/home-performance-cloud.png',
+    alt: 'Performance Cloud infrastructure',
+  },
+  {
+    eyebrow: 'Accelerate your AI ambition',
+    title: 'GPU',
+    accent: 'Cloud',
+    description: 'Run AI, machine learning, rendering and compute-intensive workloads on scalable GPU infrastructure.',
+    cta: 'Explore GPU Cloud',
+    href: '/gpu-cloud',
+    image: '/assets/images/home-gpu-cloud.png',
+    alt: 'GPU Cloud infrastructure',
+  },
+  {
+    eyebrow: 'Stop threats before they spread',
+    title: 'Acronis Advanced',
+    accent: 'EDR',
+    description: 'Detect, investigate and respond to endpoint threats with AI-driven protection managed by security experts.',
+    cta: 'Explore Acronis EDR',
+    href: '/advanced-endpoint-security-edr',
+    image: '/assets/images/home-acronis-edr.png',
+    alt: 'Acronis advanced endpoint security',
+  },
 ];
 
 /**
