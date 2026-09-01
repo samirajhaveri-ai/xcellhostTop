@@ -56,6 +56,16 @@ export const routes: Routes = [
         (m) => m.GeoTrustSslCertificatesPage,
       ),
   },
+  {
+    path: 'digicert-vmc',
+    data: { productSlug: 'digicert-vmc' },
+    loadComponent: () => import('./pages/digicert-vmc.page').then((m) => m.DigicertVmcPage),
+  },
+  {
+    path: 'digicert-cmc',
+    data: { productSlug: 'digicert-cmc' },
+    loadComponent: () => import('./pages/digicert-cmc.page').then((m) => m.DigicertCmcPage),
+  },
   { path: 'pricing', loadComponent: () => import('./pages/simple.page').then((m) => m.SimplePage), data: { key: 'pricing' } },
   { path: 'company/:slug', loadComponent: () => import('./pages/company.page').then((m) => m.CompanyPage) },
   { path: 'category/:name', loadComponent: () => import('./pages/category.page').then((m) => m.CategoryPage) },
