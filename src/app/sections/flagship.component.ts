@@ -131,7 +131,7 @@ const FLAGSHIP_CARDS: readonly FlagshipCard[] = [
   {
     icon: 'shield', badge: 'Flagship', hot: true, title: 'Advanced EDR',
     blurb: 'AI-powered endpoint detection and response, backed by our 24×7 SOC.',
-    lead: 'from ', amount: '₹999', tail: ' quote', cta: 'View plans →', category: 'Security',
+    lead: 'from ', amount: '₹999', tail: '', cta: 'View plans →', category: 'Security',
     service: 'Advanced Endpoint Security (EDR)',
   },
   {
@@ -148,12 +148,12 @@ const FLAGSHIP_CARDS: readonly FlagshipCard[] = [
   {
     icon: 'folder', badge: 'File share', title: 'Cloud Drive',
     blurb: 'Secure file sync, team folders and controlled sharing on every device.',
-    lead: '', amount: '₹4999/-', tail: ' per month/500GB', cta: 'Explore →', category: 'Cloud',
+    lead: '', amount: '₹4999/-', tail: ' per month/500GB/Unlimiteds Users', cta: 'Explore →', category: 'Cloud',
   },
   {
     icon: 'lock', badge: 'New', hot: true, title: 'SMB Cyber Security Appliance',
     blurb: 'Cloud firewall, secure Wi-Fi Routers & threat protection for Small Businesses up to 100 users.',
-    lead: 'from ', amount: '₹24,999', tail: '/year', cta: 'View plans →', category: 'Security',
+    lead: 'from ', amount: '₹14,999', tail: '/year', cta: 'View plans →', category: 'Security',
   },
   {
     icon: 'message', badge: 'Business messaging', title: 'WhatsApp SMB',
