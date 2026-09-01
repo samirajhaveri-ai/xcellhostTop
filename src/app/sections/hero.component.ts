@@ -54,47 +54,67 @@ const ROTATE_MS = 2400;
 const LEAVE_MS = 520;
 const HERO_SLIDE_MS = 5200;
 
-interface HeroVisualSlide {
+interface HeroCarouselSlide {
   readonly eyebrow: string;
   readonly title: string;
   readonly accent: string;
+  readonly titleEnd: string;
   readonly description: string;
-  readonly cta: string;
-  readonly href: string;
+  readonly spotlight: string;
+  readonly primaryCta: string;
+  readonly primaryHref: string;
   readonly image: string;
   readonly alt: string;
 }
 
-const HERO_VISUAL_SLIDES: readonly HeroVisualSlide[] = [
+const HERO_CAROUSEL_SLIDES: readonly HeroCarouselSlide[] = [
+  {
+    eyebrow: 'Engineering India’s Digital Future · Since 1999',
+    title: 'The infrastructure your',
+    accent: 'next decade',
+    titleEnd: 'runs on.',
+    description: 'From Tally on Cloud to enterprise SOC — XcellHost has run managed cloud and security for 10,000+ Indian businesses since 1999. ISO 27001 certified. DPDPA ready.',
+    spotlight: 'free migration · 15-day guarantee',
+    primaryCta: 'Explore services',
+    primaryHref: '#flagship',
+    image: '/assets/images/home-performance-cloud.png',
+    alt: 'XcellHost cloud and security infrastructure',
+  },
   {
     eyebrow: 'Built for business-critical workloads',
     title: 'Performance',
     accent: 'Cloud',
-    description: 'High-performance cloud infrastructure with dedicated resources, NVMe storage and expert support from India.',
-    cta: 'Explore Performance Cloud',
-    href: '/performance-cloud',
-    image: '/assets/images/home-performance-cloud.png',
+    titleEnd: 'without compromise.',
+    description: 'Run your most demanding applications on dedicated, NVMe-powered cloud infrastructure with dependable performance and expert support.',
+    spotlight: 'NVMe-powered compute · 99.95% SLA',
+    primaryCta: 'Explore Performance Cloud',
+    primaryHref: '/performance-cloud',
+    image: '/assets/images/hero-performance-cloud-v2.png',
     alt: 'Performance Cloud infrastructure',
   },
   {
     eyebrow: 'Accelerate your AI ambition',
     title: 'GPU',
     accent: 'Cloud',
-    description: 'Run AI, machine learning, rendering and compute-intensive workloads on scalable GPU infrastructure.',
-    cta: 'Explore GPU Cloud',
-    href: '/gpu-cloud',
-    image: '/assets/images/home-gpu-cloud.png',
+    titleEnd: 'for intensive workloads.',
+    description: 'Scale AI, machine learning, rendering and high-performance computing on flexible GPU infrastructure designed for real business outcomes.',
+    spotlight: 'AI-ready GPU compute · on-demand scale',
+    primaryCta: 'Explore GPU Cloud',
+    primaryHref: '/gpu-cloud',
+    image: '/assets/images/hero-gpu-cloud-v2.png',
     alt: 'GPU Cloud infrastructure',
   },
   {
     eyebrow: 'Stop threats before they spread',
-    title: 'Acronis Advanced',
+    title: 'Acronis',
     accent: 'EDR',
-    description: 'Detect, investigate and respond to endpoint threats with AI-driven protection managed by security experts.',
-    cta: 'Explore Acronis EDR',
-    href: '/advanced-endpoint-security-edr',
-    image: '/assets/images/home-acronis-edr.png',
-    alt: 'Acronis advanced endpoint security',
+    titleEnd: 'that protects every endpoint.',
+    description: 'Detect, investigate and respond to endpoint threats with AI-driven protection and security expertise that keeps your business moving.',
+    spotlight: 'AI-powered endpoint protection · 24×7 support',
+    primaryCta: 'Explore Acronis EDR',
+    primaryHref: '/advanced-endpoint-security-edr',
+    image: '/assets/images/hero-acronis-edr-v2.png',
+    alt: 'Acronis EDR endpoint security',
   },
 ];
 
@@ -126,7 +146,7 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
 
   readonly words = HERO_WORDS;
   readonly stats = HERO_STATS;
-  readonly visualSlides = HERO_VISUAL_SLIDES;
+  readonly carouselSlides = HERO_CAROUSEL_SLIDES;
   readonly activeVisualSlide = signal(0);
 
   /** index of the word currently shown */
@@ -231,12 +251,8 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
     this.startVisualCarousel();
   }
 
-  previousVisualSlide(): void {
-    this.selectVisualSlide((this.activeVisualSlide() + this.visualSlides.length - 1) % this.visualSlides.length);
-  }
-
   nextVisualSlide(): void {
-    this.selectVisualSlide((this.activeVisualSlide() + 1) % this.visualSlides.length);
+    this.selectVisualSlide((this.activeVisualSlide() + 1) % this.carouselSlides.length);
   }
 
   private startVisualCarousel(): void {

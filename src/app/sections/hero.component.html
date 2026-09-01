@@ -1,24 +1,35 @@
-<section class="home-product-carousel" aria-label="Featured XcellHost services">
+<div class="hero">
+  <span class="orb orb-1" [style.translate]="orb1Shift()" aria-hidden="true"></span>
+  <span class="orb orb-2" [style.translate]="orb2Shift()" aria-hidden="true"></span>
+  <span class="aur a1" aria-hidden="true"></span><span class="aur a2" aria-hidden="true"></span><span class="aur a3" aria-hidden="true"></span>
+  <span class="beams" aria-hidden="true"></span>
   <canvas id="netbg" #netbg aria-hidden="true"></canvas>
-  <div class="home-product-carousel-promo"><span>✦</span> Managed cloud infrastructure and cyber security for growing businesses</div>
-  <div class="home-product-carousel-shell">
-    @for (slide of visualSlides; track slide.image; let i = $index) {
-      <article class="home-product-carousel-slide" [class.is-active]="i === activeVisualSlide()" [attr.aria-hidden]="i !== activeVisualSlide()">
-        <div class="home-product-carousel-copy">
-          <p class="home-product-carousel-kicker">{{ slide.eyebrow }}</p>
-          <h1>{{ slide.title }} <em>{{ slide.accent }}</em></h1>
-          <p>{{ slide.description }}</p>
-          <a [href]="slide.href" class="home-product-carousel-cta">{{ slide.cta }} <span aria-hidden="true">→</span></a>
+  <span class="grid-floor" aria-hidden="true"></span>
+  <span class="cube-wrap" [style.translate]="cube1Shift()" aria-hidden="true"><span class="cube"><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
+  <span class="cube-wrap c2" [style.translate]="cube2Shift()" aria-hidden="true"><span class="cube"><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
+  <div class="wrap home-hero-carousel">
+    @for (slide of carouselSlides; track slide.primaryHref; let i = $index) {
+      <article class="home-hero-slide" [class.is-active]="i === activeVisualSlide()" [attr.aria-hidden]="i !== activeVisualSlide()">
+        <div class="home-hero-copy">
+          <div class="eyebrow">{{ slide.eyebrow }}</div>
+          <h1>{{ slide.title }} <em class="shine">{{ slide.accent }}</em> {{ slide.titleEnd }}</h1>
+          <p class="lead">{{ slide.description }}</p>
+          <div class="rot-line">Right now on XcellHost&nbsp;→&nbsp;<span class="rot home-hero-spotlight">{{ slide.spotlight }}</span></div>
+          <div class="hero-ctas">
+            <a class="btn btn-primary" [href]="slide.primaryHref">{{ slide.primaryCta }}</a>
+            <a class="btn btn-ghost" href="#">Book a 1:1 demo</a>
+          </div>
+          <div class="stat-line">
+            @for (s of stats; track s.label; let statIndex = $index) {
+              <div class="sl"><b>{{ counters()[statIndex] }}</b><span>{{ s.label }}</span></div>
+            }
+          </div>
+          <div class="hero-live"><i></i> all systems operational · backups every 8 hrs · SOC live · incidents: 0</div>
         </div>
-        <img class="home-product-carousel-art" [src]="slide.image" [alt]="slide.alt" />
+        <div class="hero-play">
+          <img class="home-hero-slide-art" [src]="slide.image" [alt]="slide.alt" />
+        </div>
       </article>
     }
-    <button class="home-product-carousel-arrow previous" type="button" (click)="previousVisualSlide()" aria-label="Previous slide">‹</button>
-    <button class="home-product-carousel-arrow next" type="button" (click)="nextVisualSlide()" aria-label="Next slide">›</button>
-    <div class="home-product-carousel-dots" role="tablist" aria-label="Choose a featured service">
-      @for (slide of visualSlides; track slide.image; let i = $index) {
-        <button type="button" role="tab" [class.is-active]="i === activeVisualSlide()" [attr.aria-selected]="i === activeVisualSlide()" [attr.aria-label]="'Show ' + slide.title + ' ' + slide.accent" (click)="selectVisualSlide(i)"></button>
-      }
-    </div>
   </div>
-</section>
+</div>
