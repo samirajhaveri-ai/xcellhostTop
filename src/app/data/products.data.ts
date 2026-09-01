@@ -18,11 +18,13 @@ export const PRODUCT_BRAND_LINES: Record<string, string> = {
   "Tally on Cloud": "XcellTally | Tally On Cloud",
   "Cloud Backup (Acronis)": "XcellBackup | Backup Cloud",
   "Cloud Drive": "XcellDrive | Cloud Drive",
-  "Microsoft 365": "XcellOfiice | Microsoft 365",
+  "Microsoft 365": "XcellCloud | Microsoft 365",
   "Bare Metal Server": "XcellBareMetal | Bare Metal Server",
   "SMB Cyber Security Appliance" : "XcellSecure | SMB Cyber Security Appliance " ,
   "Advanced Endpoint Security (EDR)" : "XcellSecure | Advanced Endpoint Security (EDR)",
   "Remote Monitoring & Mgmt (RMM)" : "XcellSecure | Remote Monitoring & Mgmt (RMM)",
+  "Cloud Disaster Recovery SMB" : "XcellSecure | Cloud Disaster Recovery SMB", 
+
 
 
 };
@@ -1279,7 +1281,7 @@ export const PRODUCT_VIDEOS: Record<string, string[]> = {
   "Cloud Hardware Security Module (HSM)": ["I23j6iWe0EI", ""],
   "Cloud Security Posture Management (AccuKnox)": ["evyAqE9oJmg", ""],
   "Cloud Services for CA's": ["-1Du_6t2InI", ""],
-  "Cyber Security Appliance for SMB": ["kC98aNCRl8Y", ""],
+  "Cyber Security Appliance for SMB": ["kC98aNCRl8Y", "2twYC4nD6ks"],
   "Domain Registration": ["uDId9wUMGa8", "h1noV0n-_f4"],
   "Employee Verification Tools": ["vhTFtp2MTS4", ""],
   "Google My Business": ["_P6VITH891M", ""],
@@ -1341,7 +1343,7 @@ export const PRODUCT_VIDEOS: Record<string, string[]> = {
   "Acronis Cyber Protect Enterprise": ["grcogaaGLXo", ""],
   "Cloud Security Posture Mgmt": ["evyAqE9oJmg", ""],
   "CA Cloud": ["-1Du_6t2InI", ""],
-  "SMB Cyber Security Appliance": ["kC98aNCRl8Y", ""],
+  "SMB Cyber Security Appliance": ["kC98aNCRl8Y", "2twYC4nD6ks"],
   "Register a Domain": ["uDId9wUMGa8", "h1noV0n-_f4"],
   "Cloud Mobile Device Mgmt": ["Or6B8rY1k2M", "qYX86EGm7Zg"],
   "Malware & OT Security": ["HglepHky4bA", "2DrHwguVO0A"],
