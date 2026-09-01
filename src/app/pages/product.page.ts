@@ -160,6 +160,19 @@ export class ProductPage {
     },
   ];
 
+  readonly smbIndustries = [
+    'CA Firm',
+    'Clinic',
+    'Digital Agency',
+    'Legal Office',
+    'Retail Store',
+    'Manufacturing Unit',
+    'School',
+    'Hospitality',
+    'Logistics',
+    'Startup Office',
+  ];
+
   readonly selectedCybirdTerm = signal<CybirdTerm>('1y');
 
   readonly activeCybirdTerm = computed(
