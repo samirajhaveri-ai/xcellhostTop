@@ -767,6 +767,13 @@ function resolveHeroBrand(
   poweredBy?: string,
   poweredMark?: string
 ): ProductHeroBrand {
+  if (name === 'Cloud Disaster Recovery SMB') {
+    return {
+      name: 'Acronis Disaster Recovery', subtitle: null, kind: 'vendor',
+      logoImage: '/assets/images/acronis-disaster-recovery.png',
+    };
+  }
+
   if (poweredMark === 'tally' || /tally/i.test(name)) {
     return {
       name: 'Tally on Cloud', subtitle: null, kind: 'tally',
