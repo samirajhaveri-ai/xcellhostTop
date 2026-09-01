@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { OverlayService } from './core/overlay.service';
+import { CallbackTopicService } from './overlays/callback-topic.service';
 import {
   AuthModalComponent,
   BackToTopComponent,
@@ -57,13 +58,31 @@ import {
   host: {
     style: 'display:contents',
     '(document:keydown.escape)': 'onEscape()',
+    '(document:click)': 'onDocumentClick($event)',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {
   private readonly overlay = inject(OverlayService);
+  private readonly topics = inject(CallbackTopicService);
 
   onEscape(): void {
     this.overlay.closeTop();
+  }
+
+  /** Future pages only need a CTA labelled "Let's Talk" or "Talk to Sales". */
+  onDocumentClick(event: MouseEvent): void {
+    if (event.defaultPrevented || event.button !== 0) return;
+
+    const target = event.target as Element | null;
+    const cta = target?.closest<HTMLElement>('a, button');
+    if (!cta || cta.hasAttribute('disabled')) return;
+
+    const label = (cta.textContent ?? '').replace(/\s+/g, ' ').trim();
+    if (!/^(let'?s talk|talk to sales|talk to us)$/i.test(label)) return;
+
+    event.preventDefault();
+    this.topics.ask(cta.dataset['cbtopic']?.trim() || '');
+    this.overlay.open('callback');
   }
 }

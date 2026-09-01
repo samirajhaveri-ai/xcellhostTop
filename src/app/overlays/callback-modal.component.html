@@ -1,129 +1,24 @@
-<button
-  class="cb-tab"
-  id="cbTab"
-  aria-label="Request a callback"
-  aria-controls="callback"
-  [attr.aria-expanded]="overlay.isOpen('callback')"
-  (click)="open()"
->
-  <span class="cb-ring"></span>
-  <svg class="cb-phone-icon" viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0 1 22 16.92z" />
-  </svg>
-  <span class="cb-tab-label">Request a Callback</span>
+<button class="cb-tab" id="cbTab" aria-label="Request a callback" aria-controls="callback" [attr.aria-expanded]="overlay.isOpen('callback')" (click)="open()">
+  <span class="cb-ring"></span><svg class="cb-phone-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0 1 22 16.92z" /></svg><span class="cb-tab-label">Request a Callback</span>
 </button>
 
 @if (overlay.isOpen('callback')) {
   <div class="tr-back open" id="cbBack" (click)="close()"></div>
-  <div class="trial open" id="callback" (click)="onBackdrop($event)" role="dialog" aria-modal="true" aria-labelledby="cbTitle">
-    <div class="tr-card">
-      <button class="cart-x tr-x" id="cbX" aria-label="Close" (click)="close()">✕</button>
-
-      @if (!done()) {
-        <div class="cb-step" id="cbForm" [formGroup]="form">
-          <div
-            class="tr-badge"
-            style="
-              color: #1565d8;
-              background: rgba(21, 101, 216, 0.1);
-              border-color: rgba(21, 101, 216, 0.35);
-            "
-          >
-            📞 FREE CONSULTATION
-          </div>
-          <h3 class="tr-title" id="cbTitle">Request a callback</h3>
-          <p class="tr-sub">
-            Tell us when suits you — a cloud &amp; security expert will call. No obligation.
-          </p>
-          <label class="ck-l"
-            >Full name *<input
-              class="ck-i"
-              id="cbName"
-              formControlName="name"
-              placeholder="Rajesh Patel"
-          /></label>
-          <label class="ck-l"
-            >Phone / WhatsApp *<input
-              class="ck-i"
-              id="cbPhone"
-              type="tel"
-              formControlName="phone"
-              placeholder="+91 98XXXXXXXX"
-          /></label>
-          <label class="ck-l"
-            >Email<input
-              class="ck-i"
-              id="cbEmail"
-              type="email"
-              formControlName="email"
-              placeholder="rajesh@company.com"
-          /></label>
-          <label class="ck-l"
-            >Company<input
-              class="ck-i"
-              id="cbCo"
-              formControlName="company"
-              placeholder="Patel Industries Pvt Ltd"
-          /></label>
-          <label class="ck-l"
-            >What is this about?<input
-              class="ck-i"
-              id="cbTopic"
-              formControlName="topic"
-              placeholder="e.g. Tally on Cloud pricing"
-          /></label>
-          <div class="ck-l">Best time to call *</div>
-          <div class="cb-slots" id="cbSlots" role="group" aria-label="Best time to call">
-            @for (s of slots; track s.value) {
-              <button
-                class="cb-slot"
-                [class.on]="slot() === s.value"
-                [attr.aria-pressed]="slot() === s.value"
-                (click)="pick(s.value)"
-              >
-                {{ s.label }}
-              </button>
-            }
-          </div>
-          <div class="ck-err" id="cbErr">{{ error() }}</div>
-          <button
-            class="btn atc"
-            id="cbGo"
-            style="width: 100%"
-            [class.ck-busy]="busy()"
-            (click)="submit()"
-          >
-            {{ submitLabel() }}
-          </button>
-          <p class="cart-draft" style="margin-top: 10px">
-            ⏱️ Typical response: <b>under 30 minutes</b> during business hours (Mon–Sat, 9 AM–8 PM
-            IST). Urgent? Use the WhatsApp button.
-          </p>
+  <div class="trial open enquiry-modal" id="callback" (click)="onBackdrop($event)" role="dialog" aria-modal="true" aria-labelledby="cbTitle">
+    <div class="tr-card enquiry-card">
+      <button class="cart-x tr-x" id="cbX" type="button" aria-label="Close" (click)="close()">&times;</button>
+      <div class="enquiry-head"><span>Free consultation</span><h3 id="cbTitle">Let's talk about {{ productLabel() }}</h3><p>Your enquiry will go directly to our team.</p></div>
+      <form class="enquiry-form" [formGroup]="form" (submit)="submit($event)" action="https://forms.zohopublic.in/xcellhostcloudservicespvtltd1/form/xcellhostform/formperma/bZ5rEp9aOJGgQGNccOrarg3MksQYykD8HUut8dl-c5w/htmlRecords/submit" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
+        <input type="hidden" name="zf_referrer_name" value=""><input type="hidden" name="zf_redirect_url" value=""><input type="hidden" name="zc_gad" value=""><input type="hidden" name="SingleLine1" [value]="productLabel()"><input type="hidden" name="SingleLine2" [value]="productLabel()"><input type="hidden" name="Number" value="1">
+        <div class="field-grid">
+          <label>First name <b>*</b><input type="text" name="Name_First" formControlName="firstName" autocomplete="given-name" required></label><label>Last name <b>*</b><input type="text" name="Name_Last" formControlName="lastName" autocomplete="family-name" required></label><label class="full">Company name <b>*</b><input type="text" name="SingleLine" formControlName="company" autocomplete="organization" required></label>
+          <label>Phone number <b>*</b><span class="phone-fields"><select name="CountryCode" aria-label="Country code"><option value="91" selected>India +91</option><option value="971">UAE +971</option><option value="1">USA +1</option><option value="44">UK +44</option><option value="65">Singapore +65</option></select><input type="tel" name="PhoneNumber_countrycode" formControlName="phone" autocomplete="tel" inputmode="numeric" maxlength="15" placeholder="Phone number" required></span></label><label>Email <b>*</b><input type="email" name="Email" formControlName="email" autocomplete="email" required></label>
         </div>
-      } @else {
-        <div class="cb-step" id="cbDone" style="text-align: center">
-          <div class="ck-tick" style="margin: 0 auto">✓</div>
-          <h3 class="tr-title" id="cbTitle" style="margin-top: 14px">Callback requested!</h3>
-          <p class="tr-sub">
-            Our team will call <b id="cbDonePhone">{{ confirmedPhone() }}</b
-            ><br /><span id="cbDoneWhen">{{ confirmedWhen() }}</span>
-          </p>
-          <div class="tr-channels">
-            <span class="tr-ch">📞 Phone call</span><span class="tr-ch wa">💬 WhatsApp confirm</span>
-          </div>
-          <span class="ck-ref" id="cbRef" style="display: inline-block; margin-top: 12px"
-            >Ref: {{ reference() }}</span
-          >
-          <button
-            class="btn btn-ghost"
-            id="cbClose"
-            style="width: 100%; margin-top: 16px"
-            (click)="close()"
-          >
-            Done
-          </button>
-        </div>
-      }
+        <fieldset><legend>I am a <b>*</b></legend><div class="choice-grid three"><label><input type="radio" name="Radio1" value="Customer C" formControlName="role" required> Customer</label><label><input type="radio" name="Radio1" value="Vendor V" formControlName="role"> Vendor</label><label><input type="radio" name="Radio1" value="Partner P" formControlName="role"> Partner</label></div></fieldset>
+        <fieldset><legend>How can we help? <b>*</b></legend><div class="choice-grid"><label><input type="radio" name="Radio" value="Schedule 1:1 Demo" formControlName="help" required> Schedule 1:1 Demo</label><label><input type="radio" name="Radio" value="Ask For FREE Trial" formControlName="help"> Ask for FREE Trial</label><label><input type="radio" name="Radio" value="Request a CallBack" formControlName="help"> Request Callback</label></div></fieldset>
+        <div class="captcha"><span>Captcha</span><strong>{{ firstCaptchaNumber() }}</strong><i>+</i><strong>{{ secondCaptchaNumber() }}</strong><i>=</i><input type="text" name="captcha_answer" formControlName="captcha" (input)="validateCaptcha()" placeholder="Answer" autocomplete="off" inputmode="numeric" aria-label="Captcha answer" required><em [class.ok]="captchaMessage() === 'Correct'" [class.bad]="captchaMessage() && captchaMessage() !== 'Correct'">{{ captchaMessage() }}</em></div>
+        <p class="policy">XcellHost will use your information to respond to your enquiry. See our <a href="https://www.xcellhost.cloud/privacy-cookie-policy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a> and <a href="https://www.xcellhost.cloud/terms-of-service/" target="_blank" rel="noopener noreferrer">Terms of Service</a>.</p><button class="submit" type="submit">Submit <span>&rarr;</span></button>
+      </form>
     </div>
   </div>
 }

@@ -651,6 +651,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "Video Surveillance as a Service",
+                "pill": null,
+                "desc": null
+              },
               
             ]
           }
@@ -844,7 +849,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },{
         "g": "4",
-        "label": "Mark Certificate",
+        "label": "Mark Certificates",
         "on": false,
         "groups": [
           {
@@ -964,12 +969,17 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "3",
-        "label": "Identity",
+        "label": "Identity Security",
         "on": true,
         "groups": [
           {
             "heading": "identity Security",
             "items": [
+              {
+                "title": "Microsoft Entra ID",
+                "pill": "Free trial",
+                "desc": null
+              },
               {
                 "title": "Multi-Factor Authentication",
                 "pill": "Free trial",
@@ -986,7 +996,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "privileged identity management",
+                "title": "Privileged Identity Management",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -1014,7 +1024,17 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "IOT Security",
             "items": [
               {
-                "title": "No Data",
+                "title": "Acronis OT",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "kaspersky OT",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "IOT Security",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -2117,7 +2137,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "We'd love to hear from you"
               },
               {
-                "title": "Enquiry Now",
+                "title": "Inquiry Now",
                 "pill": null,
                 "desc": "We'd love to hear from you"
               }
