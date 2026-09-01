@@ -409,13 +409,14 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              
               {
-                "title": "Acronis True Image",
+                "title": "Veeam Data Protection",
                 "pill": null,
                 "desc": null
               },
-                 {
-                "title": "Veeam",
+              {
+                "title": "Druva Data Protection",
                 "pill": null,
                 "desc": null
               },
@@ -579,6 +580,31 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Managed Migration",
             "items": [
               {
+                "title": "AWS Migration",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Azure Migration ",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "GCP Migration",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Database Migration",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Active Directory",
+                "pill": null,
+                "desc": null
+              },
+              {
                 "title": "MailBox Migration",
                 "pill": null,
                 "desc": null
@@ -608,17 +634,8 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              
               {
-                "title": "Google Chat",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "GALSync",
-                "pill": null,
-                "desc": null
-              },
-                  {
                 "title": "Free/Busy",
                 "pill": null,
                 "desc": null
@@ -644,7 +661,7 @@ export const MEGA_MENU: MenuTop[] = [
         "on": false,
         "groups": [
           {
-            "heading": "Managed Msonitoring",
+            "heading": "Managed Monitoring",
             "items": [
               {
                 "title": "Cloud Monitoring",
@@ -735,6 +752,48 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "RapidSSL  SSL Certificates",
+                "pill": null,
+                "desc": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "g": "0",
+        "label": "SSL by Types",
+        "on": true,
+        "groups": [
+          {
+            "heading": "SSL by Types",
+            "items": [
+              {
+                "title": "SSL Certificates",
+                "pill": "Popular",
+                "desc": null
+              },
+              {
+                "title": "Code Signing Certificates",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Email Signing Certificates" ,
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Mark Certificates",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Website Security Solutions",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Certificate Management",
                 "pill": null,
                 "desc": null
               }
@@ -1063,6 +1122,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
+                "title": "Continuous Pen Testing As a Services",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
                 "title": "Continuous Threat Exposure (CTEM)",
                 "pill": null,
                 "desc": null
@@ -1107,11 +1171,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "Acronis CyberFit Score",
-                "pill": null,
-                "desc": null
-              }
+              
             ]
           }
         ]
@@ -1228,7 +1288,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Unified Security Platform",
+                "title": "Cyber Ranger as a Service",
                 "pill": null,
                 "desc": null
               }
@@ -1324,11 +1384,11 @@ export const MEGA_MENU: MenuTop[] = [
     "tabs": [
       {
         "g": "0",
-        "label": "AI Tool",
+        "label": "AI Tools",
         "on": true,
         "groups": [
           {
-            "heading": "AI Tool",
+            "heading": "AI Tools",
             "items": [
               {
                 "title": "AI Chat Bot",
@@ -1367,6 +1427,114 @@ export const MEGA_MENU: MenuTop[] = [
         "groups": [
           {
             "heading": "AI Build",
+            "items": [
+              {
+                "title": "AI App Builder",
+                "pill": null,
+                "desc": "Reliable AI App Builder hosting 💻"
+              },
+              {
+                "title": "AI Website Builder",
+                "pill": null,
+                "desc": "Reliable AI Website Builder hosting 🐧"
+              },
+              {
+                "title": "AI IDE Lab",
+                "pill": null,
+                "desc": "Optimized AI IDE Lab ⚡"
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "1",
+        "label": "AI Training",
+        "on": false,
+        "groups": [
+          {
+            "heading": "AI Traning",
+            "items": [
+              {
+                "title": "AI App Builder",
+                "pill": null,
+                "desc": "Reliable AI App Builder hosting 💻"
+              },
+              {
+                "title": "AI Website Builder",
+                "pill": null,
+                "desc": "Reliable AI Website Builder hosting 🐧"
+              },
+              {
+                "title": "AI IDE Lab",
+                "pill": null,
+                "desc": "Optimized AI IDE Lab ⚡"
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "1",
+        "label": "AI Consulting",
+        "on": false,
+        "groups": [
+          {
+            "heading": "AI Consulting",
+            "items": [
+              {
+                "title": "AI App Builder",
+                "pill": null,
+                "desc": "Reliable AI App Builder hosting 💻"
+              },
+              {
+                "title": "AI Website Builder",
+                "pill": null,
+                "desc": "Reliable AI Website Builder hosting 🐧"
+              },
+              {
+                "title": "AI IDE Lab",
+                "pill": null,
+                "desc": "Optimized AI IDE Lab ⚡"
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "1",
+        "label": "AI Security",
+        "on": false,
+        "groups": [
+          {
+            "heading": "AI Security",
+            "items": [
+              {
+                "title": "AI App Builder",
+                "pill": null,
+                "desc": "Reliable AI App Builder hosting 💻"
+              },
+              {
+                "title": "AI Website Builder",
+                "pill": null,
+                "desc": "Reliable AI Website Builder hosting 🐧"
+              },
+              {
+                "title": "AI IDE Lab",
+                "pill": null,
+                "desc": "Optimized AI IDE Lab ⚡"
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "1",
+        "label": "AI Governance",
+        "on": false,
+        "groups": [
+          {
+            "heading": "AI Governance",
             "items": [
               {
                 "title": "AI App Builder",
@@ -1435,21 +1603,26 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Backup Tools",
             "items": [
               {
-                "title": "Acronis Cyber Protect for Enterprise",
+                "title": "Acronis Backup Advance",
                 "pill": null,
                 "desc": null
-              }
+              },
+              {
+                "title": "Acronis True Image",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
       },
       {
         "g": "2",
-        "label": "Cloud Analytics",
+        "label": "Data A as Services",
         "on": false,
         "groups": [
           {
-            "heading": "Cloud Analytics",
+            "heading": "Data A as Services",
             "items": [
               {
                 "title": "Data Analytics",
@@ -1981,10 +2154,15 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Glossary",
+                "title": "Coud Glossary",
                 "pill": null,
                 "desc": null
-              }
+              },
+              {
+                "title": "Glossary Security",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
@@ -2070,7 +2248,17 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Unified Cyber Defense Platform",
                 "pill": null,
                 "desc": null
-              }
+              },
+              {
+                "title": "DPDP Act Gaid",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "DPDP Handbook",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
@@ -2091,7 +2279,8 @@ export const MEGA_MENU: MenuTop[] = [
             ]
           }
         ]
-      }
+      },
+      
     ]
   },
   {
@@ -2106,6 +2295,53 @@ export const MEGA_MENU: MenuTop[] = [
         "groups": [
           {
             "heading": "About Us",
+            "items": [
+              {
+                "title": "Why XcellHost",
+                "pill": null,
+                "desc": "Secure, scalable cloud expertise since 1999"
+              },
+              {
+                "title": "Our Team · Our Story",
+                "pill": null,
+                "desc": "Meet the people and story behind XcellHost"
+              },
+              {
+                "title": "Certifications & Awards",
+                "pill": null,
+                "desc": "Credentials that reflect trusted delivery"
+              },
+              {
+                "title": "Data Centers (Global)",
+                "pill": null,
+                "desc": "Global locations for resilient workloads"
+              },
+              {
+                "title": "Vendor Partners",
+                "pill": null,
+                "desc": "Technology partnerships across cloud and security"
+              },
+              {
+                "title": "Contact Us",
+                "pill": null,
+                "desc": "We'd love to hear from you"
+              },
+              {
+                "title": "Inquiry Now",
+                "pill": null,
+                "desc": "We'd love to hear from you"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "g": "0",
+        "label": "Infrastructure",
+        "on": true,
+        "groups": [
+          {
+            "heading": "Infrastructure",
             "items": [
               {
                 "title": "Why XcellHost",
@@ -2355,46 +2591,7 @@ export const MEGA_MENU: MenuTop[] = [
             ]
           }
         ]
-      },
-      {
-        "g": "6",
-        "label": "Media & PR",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Media & PR",
-            "items": [
-              {
-                "title": "Media Kit",
-                "pill": null,
-                "desc": "How we handle personal information"
-              }
-            ]
-          }
-        ]
-      },
-      //  {
-      //   "g": "7",
-      //   "label": "Data Centers",
-      //   "on": false,
-      //   "groups": [
-      //     {
-      //       "heading": "Data Centers",
-      //       "items": [
-      //         {
-      //           "title": "View Acronics DC",
-      //           "pill": null,
-      //           "desc": "How we handle personal information"
-      //         },
-      //         {
-      //           "title": "View Xcellhost DC",
-      //           "pill": null,
-      //           "desc": "How we handle personal information"
-      //         }
-      //       ]
-      //     }
-      //   ]
-      // },
+      }
     ]
   }
 ];
