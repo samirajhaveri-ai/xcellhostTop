@@ -414,6 +414,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+                 {
+                "title": "Veeam",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
