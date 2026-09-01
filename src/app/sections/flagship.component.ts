@@ -20,6 +20,8 @@ interface FlagshipCard {
   readonly cta: string;
   /** which practice the card belongs to */
   readonly category: 'Cloud' | 'Security';
+  /** Explicit route for offers that do not yet have a catalogue product page. */
+  readonly link?: string;
   /**
    * Catalogue service this card opens. Defaults to `title`; set explicitly
    * where the card headline is shorter than the catalogue name.
@@ -62,7 +64,9 @@ const FLAGSHIP_CARD_GROUPS: Readonly<Record<string, readonly FlagshipGroup[]>> =
   'Business Email': ['workplace'],
   'Advanced Email Security': ['workplace'],
   'Google Workspace': ['workplace'],
-  DMARC: ['workplace'],
+  'Microsoft 365 for Enterprise': ['workplace'],
+  'Zoho Workplace': ['workplace'],
+  'Enterprise DMARC': ['workplace'],
   'Microsoft 365': [],
 };
 
@@ -95,7 +99,9 @@ const CLOUD_PRODUCTIVITY_ORDER = [
   'Business Email',
   'Advanced Email Security',
   'Google Workspace',
-  'DMARC',
+  'Microsoft 365 for Enterprise',
+  'Zoho Workplace',
+  'Enterprise DMARC',
 ] as const;
 
 /** Lightweight line icons used by the flagship cards (24px view box). */
@@ -199,7 +205,7 @@ const FLAGSHIP_CARDS: readonly FlagshipCard[] = [
   {
     icon: 'backup', badge: 'Best seller', hot: true, title: 'Microsoft 365 Backup',
     blurb: 'Backup Exchange, SharePoint, OneDrive and Teams with granular recovery.',
-    lead: '', amount: 'Per-user', tail: '/month', cta: 'Explore →', category: 'Cloud',
+    lead: '', amount: 'per-user', tail: '/month', cta: 'Explore →', category: 'Cloud',
   },
   {
     icon: 'mobile', badge: 'Device security', title: 'Cloud Mobile Device Mgmt',
@@ -209,25 +215,38 @@ const FLAGSHIP_CARDS: readonly FlagshipCard[] = [
   {
     icon: 'mail', badge: 'Business mail', title: 'Business Email',
     blurb: 'Professional business email with spam protection and mobile sync.',
-    lead: '', amount: 'Per-mailbox', tail: '/month', cta: 'Explore →', category: 'Cloud',
+    lead: '', amount: 'per-mailbox', tail: '/month', cta: 'Explore →', category: 'Cloud',
     service: 'Business E-Mail',
   },
   {
     icon: 'shield', badge: 'Email defence', title: 'Advanced Email Security',
     blurb: 'AI protection against phishing, impersonation, BEC and zero-day threats.',
-    lead: '', amount: 'Per-user', tail: '/month', cta: 'Explore →', category: 'Security',
+    lead: '', amount: 'per-user', tail: '/month', cta: 'Explore →', category: 'Security',
   },
   {
     icon: 'workspace', badge: 'Collaboration', title: 'Google Workspace',
     blurb: 'Gmail, Drive, Meet and Docs with migration and local support.',
-    lead: '', amount: 'Per-user', tail: '/month', cta: 'Explore →', category: 'Cloud',
+    lead: '', amount: 'per-user', tail: '/month', cta: 'Explore →', category: 'Cloud',
   },
   {
-    icon: 'verified', badge: 'Best seller', hot: true, title: 'DMARC',
+    icon: 'workspace', badge: 'Enterprise suite', title: 'Microsoft 365 for Enterprise',
+    blurb: 'Enterprise Microsoft 365 licensing, migration and local expert support.',
+    lead: '', amount: 'per-user', tail: '/month', cta: 'Explore', category: 'Cloud',
+    service: 'Microsoft 365',
+  },
+  {
+    icon: 'workspace', badge: 'Business suite', title: 'Zoho Workplace',
+    blurb: 'Business email, collaboration and productivity tools for growing teams.',
+    lead: '', amount: 'Talk to us', tail: '', cta: 'Explore', category: 'Cloud',
+    link: '/contact',
+  },
+  {
+    icon: 'verified', badge: 'Best seller', hot: true, title: 'Enterprise DMARC',
     blurb: 'Stop domain spoofing with managed SPF, DKIM and DMARC enforcement.',
-    lead: '', amount: 'Per-domain', tail: ' plans', cta: 'Explore →', category: 'Security',
+    lead: '', amount: 'per-domain', tail: ' plans', cta: 'Explore →', category: 'Security',
     service: 'Secure DMARC',
   },
+
   {
     icon: 'settings', badge: 'Remote management', title: 'Advanced RMM',
     blurb: 'Manage endpoints with alerts, remote access, patching and automation.',
@@ -322,7 +341,7 @@ export class FlagshipComponent {
       cta: 'Explore →',
       iconPath: FLAGSHIP_ICON_PATHS[c.icon],
       groups: FLAGSHIP_CARD_GROUPS[c.title],
-      link: '/' + slugify(this.catalog.findInDirectory(name)?.name ?? name),
+      link: c.link ?? '/' + slugify(this.catalog.findInDirectory(name)?.name ?? name),
     };
   });
 
