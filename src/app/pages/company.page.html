@@ -414,6 +414,35 @@
       </div>
     </section>
 
+    <section class="company-founder-section">
+      <div class="wrap company-founder-grid">
+        <div class="company-founder-visual">
+          <img
+            src="/assets/images/website-photo-frame-samir-jhaveri-1.png"
+            alt="Dr. Samir Jhaveri portrait"
+            loading="eager"
+          />
+        </div>
+
+        <div class="company-founder-copy">
+          <h2>Dr. Samir Jhaveri</h2>
+          <p class="company-founder-highlights">
+            Managing Director XcellHost Cloud Services Pvt Ltd Cloud,<br>
+            Cybersecurity, AI, Digital Marketing Expert<br>
+            College Dropout like Bill Gates<br>
+            Honorory Doctorate (Honoris Causa) in Artificial Intelligence
+          </p>
+          <p class="company-founder-summary">
+            College dropout like Bill Gates. With over two decades of experience in the cloud industry, Samir Jhaveri
+            has been at the forefront of digital transformation since 1999. As the Managing Director of XcellHost
+            Cloud Services, he has empowered over 10,000 SMBs and enterprises with cutting-edge cloud, security,
+            digital marketing, and AI solutions.His leadership and vision continue to drive innovation and
+            excellence in the industry.  Let’s transform together!
+          </p>
+        </div>
+      </div>
+    </section>
+
     <section class="team-section">
       <div class="wrap">
         <header class="team-section-heading">
@@ -425,7 +454,7 @@
         <div class="team-grid team-grid-four">
           @for (member of managementTeam; track member.name) {
             <article class="team-card">
-              <div class="team-avatar">{{ member.initials }}</div>
+              <img class="team-avatar team-photo" [src]="member.image" [alt]="member.name" />
               <h3>{{ member.name }}</h3>
               <p>{{ member.role }}</p>
             </article>
@@ -445,7 +474,7 @@
         <div class="team-grid team-grid-two">
           @for (member of advisoryTeam; track member.name) {
             <article class="team-card team-card-small">
-              <div class="team-avatar">{{ member.initials }}</div>
+              <img class="team-avatar team-photo" [src]="member.image" [alt]="member.name" />
               <h3>{{ member.name }}</h3>
               <p>{{ member.role }}</p>
             </article>
@@ -465,7 +494,7 @@
         <div class="team-grid team-grid-three">
           @for (member of salesTeam; track member.name) {
             <article class="team-card team-card-small">
-              <div class="team-avatar">{{ member.initials }}</div>
+              <img class="team-avatar team-photo" [src]="member.image" [alt]="member.name" />
               <h3>{{ member.name }}</h3>
               <p>{{ member.role }}</p>
             </article>
@@ -554,6 +583,37 @@
         <p class="pp-tagline">{{ page.tagline }}</p>
       </div>
     </section>
+
+    @if (slug() === 'our-team-our-story') {
+      <section class="company-founder-section">
+        <div class="wrap company-founder-grid">
+          <div class="company-founder-visual">
+            <img
+              src="/assets/images/website-photo-frame-samir-jhaveri-1.png"
+              alt="Dr. Samir Jhaveri portrait"
+              loading="eager"
+            />
+          </div>
+
+          <div class="company-founder-copy">
+            <h2>Dr. Samir Jhaveri</h2>
+            <p class="company-founder-highlights">
+              Managing Director XcellHost Cloud Services Pvt Ltd Cloud,<br>
+              Cybersecurity, AI, Digital Marketing Expert<br>
+              College Dropout like Bill Gates<br>
+              Honorory Doctorate (Honoris Causa) in Artificial Intelligence
+            </p>
+            <p class="company-founder-summary">
+              College dropout like Bill Gates. With over two decades of experience in the cloud industry, Samir Jhaveri
+              has been at the forefront of digital transformation since 1999. As the Managing Director of XcellHost
+              Cloud Services, he has empowered over 10,000 SMBs and enterprises with cutting-edge cloud,🔥 security,
+              digital marketing, and AI solutions.✨ His leadership and vision continue to drive innovation and
+              excellence in the industry. 🌟💫 Let’s transform together!🔥
+            </p>
+          </div>
+        </div>
+      </section>
+    }
 
     <section class="company-body">
       <div class="wrap company-wrap">

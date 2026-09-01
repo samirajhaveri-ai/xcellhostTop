@@ -113,15 +113,14 @@
 
             <section class="pp-ask-ai" aria-labelledby="ppAskAiTitle">
               <div class="pp-ask-ai-copy">
-                <span class="pp-ask-ai-kicker">Ask AI About {{ v.name }}</span>
-                <h3 id="ppAskAiTitle">Get an instant AI-generated overview</h3>
+                <span class="pp-ask-ai-kicker" id="ppAskAiTitle">Ask AI About {{ v.name }}</span>
               </div>
               <div class="pp-ask-ai-actions">
-                <a class="pp-ask-ai-chip" [href]="askAiHref('chatgpt')" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=chatgpt.com&amp;sz=64" alt="" aria-hidden="true">ChatGPT</a>
-                <a class="pp-ask-ai-chip" [href]="askAiHref('perplexity')" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=perplexity.ai&amp;sz=64" alt="" aria-hidden="true">Perplexity</a>
-                <a class="pp-ask-ai-chip" [href]="askAiHref('claude')" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=claude.ai&amp;sz=64" alt="" aria-hidden="true">Claude</a>
-                <a class="pp-ask-ai-chip" [href]="askAiHref('google')" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=gemini.google.com&amp;sz=64" alt="" aria-hidden="true">Google AI</a>
-                <a class="pp-ask-ai-chip" [href]="askAiHref('grok')" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=grok.com&amp;sz=64" alt="" aria-hidden="true">Grok</a>
+                <a class="pp-ask-ai-chip" aria-label="ChatGPT" [href]="askAiHref('chatgpt')" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=chatgpt.com&amp;sz=64" alt="" aria-hidden="true"></a>
+                <a class="pp-ask-ai-chip" aria-label="Perplexity" [href]="askAiHref('perplexity')" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=perplexity.ai&amp;sz=64" alt="" aria-hidden="true"></a>
+                <a class="pp-ask-ai-chip" aria-label="Claude" [href]="askAiHref('claude')" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=claude.ai&amp;sz=64" alt="" aria-hidden="true"></a>
+                <a class="pp-ask-ai-chip" aria-label="Google AI" [href]="askAiHref('google')" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=gemini.google.com&amp;sz=64" alt="" aria-hidden="true"></a>
+                <a class="pp-ask-ai-chip" aria-label="Grok" [href]="askAiHref('grok')" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=grok.com&amp;sz=64" alt="" aria-hidden="true"></a>
               </div>
             </section>
           </div>

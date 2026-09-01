@@ -1,0 +1,120 @@
+<!-- Preserve the existing XcellHost product hero and trust strip. -->
+<xh-product-page class="vmc-original-hero" />
+
+<main class="vmc-page">
+  <section class="vmc-intro section-pad">
+    <div class="wrap intro-grid">
+      <div>
+        <span class="eyebrow">DigiCert VMC · BIMI email branding</span>
+        <h2>Put your verified logo where customers see every email.</h2>
+        <p class="lead">A DigiCert Verified Mark Certificate connects your authenticated sending domain to your registered brand mark. In participating inboxes, customers can see your logo beside the sender—helping legitimate messages look recognisable and harder to imitate.</p>
+        <div class="trust-pills">
+          <span>Registered logo validation</span>
+          <span>DMARC enforcement</span>
+          <span>Unlimited reissues</span>
+          <span>3–7 day target issuance</span>
+        </div>
+      </div>
+      <aside class="inbox-preview" aria-label="Example BIMI inbox appearance">
+        <div class="mail-bar"><i></i><i></i><i></i><span>Inbox</span></div>
+        <div class="mail-row featured"><div class="brand-avatar">X</div><div><b>XcellHost</b><span>Security update for your account</span></div><strong>✓</strong></div>
+        <div class="mail-row"><div class="plain-avatar">A</div><div><b>Another sender</b><span>Weekly newsletter</span></div></div>
+        <div class="preview-note">Illustrative BIMI experience. Display varies by mailbox provider.</div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section-pad soft" id="vmc-quote">
+    <div class="wrap purchase-grid">
+      <div class="purchase-copy">
+        <span class="eyebrow">Configure your VMC</span>
+        <h2>One verified logo. Up to 250 validated domains.</h2>
+        <p>Choose a certificate term and tell us how many certificates you need. We’ll confirm DigiCert eligibility, SAN requirements, GST and the final INR quote before you buy.</p>
+        <ul class="check-list">
+          <li>Organization and identity validation</li>
+          <li>Trademark and logo evidence review</li>
+          <li>DMARC, SPF and DKIM readiness check</li>
+          <li>BIMI SVG and DNS publishing assistance</li>
+        </ul>
+      </div>
+      <div class="config-card">
+        <div class="config-head"><div class="dc-mark">DC</div><div><b>DigiCert Verified Mark Certificate</b><span>Validation type: VMC</span></div></div>
+        <div class="term-list">
+          @for (term of terms; track term.years) {
+            <button type="button" [class.selected]="selectedTerm() === term.years" (click)="selectedTerm.set(term.years)">
+              <i></i><span><b>{{ term.label }}</b><small>{{ term.note }}</small></span>
+              @if (term.years === 3) { <em>BEST VALUE</em> }
+            </button>
+          }
+        </div>
+        <div class="qty-row"><span><b>Quantity</b><small>Separate VMC orders</small></span><div class="stepper"><button type="button" (click)="changeQuantity(-1)" aria-label="Decrease quantity">−</button><b>{{ quantity() }}</b><button type="button" (click)="changeQuantity(1)" aria-label="Increase quantity">+</button></div></div>
+        <div class="quote-total"><span>India pricing</span><b>Custom quote</b><small>GST invoice provided</small></div>
+        <button type="button" class="primary-btn" (click)="requestQuote('DigiCert VMC quote')">Request exact quote <span>→</span></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow">Product summary</span><h2>What your DigiCert VMC includes</h2><p>A complete route from domain authentication and brand validation to a published BIMI record.</p></div>
+      <div class="feature-grid">
+        <article><span class="icon">®</span><h3>Registered mark validation</h3><p>DigiCert verifies your organization and confirms that the logo is an eligible registered trademark or official government mark.</p></article>
+        <article><span class="icon">✓</span><h3>Verified inbox identity</h3><p>Qualifying providers can present your authenticated logo and may add their own verified sender indicator.</p></article>
+        <article><span class="icon">@</span><h3>BIMI email branding</h3><p>Your brand mark can appear beside messages in Gmail, Yahoo and other BIMI-supporting inboxes.</p></article>
+        <article><span class="icon">250</span><h3>Multi-domain support</h3><p>Use the same validated logo across additional sending domains, with SAN coverage available up to the product limit.</p></article>
+        <article><span class="icon">↻</span><h3>Unlimited reissues</h3><p>Reissue during the certificate term when approved domain or deployment details need to change.</p></article>
+        <article><span class="icon">SVG</span><h3>Logo file assistance</h3><p>We help prepare the square BIMI-compatible SVG and publish the certificate and logo references correctly.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad dark-section">
+    <div class="wrap benefit-grid">
+      <div>
+        <span class="eyebrow light">Brand and marketing</span>
+        <h2>Make legitimate mail instantly recognisable.</h2>
+        <div class="benefit-list"><div><i>01</i><p><b>Consistent brand presence</b><span>Carry your approved logo from campaigns to supported inboxes.</span></p></div><div><i>02</i><p><b>Stronger first impression</b><span>Replace generic initials with a familiar, professionally verified mark.</span></p></div><div><i>03</i><p><b>Stand out in crowded inboxes</b><span>Give recipients a visual cue before they open the message.</span></p></div></div>
+      </div>
+      <div>
+        <span class="eyebrow light">IT and security</span>
+        <h2>Back the logo with enforced email authentication.</h2>
+        <div class="benefit-list"><div><i>01</i><p><b>DMARC is mandatory</b><span>VMC deployment requires an enforcement policy, improving control over domain misuse.</span></p></div><div><i>02</i><p><b>Harder to impersonate</b><span>Attackers cannot simply claim your certified logo for an unauthenticated domain.</span></p></div><div><i>03</i><p><b>Better visibility</b><span>DMARC reporting helps your team identify legitimate senders and abuse attempts.</span></p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad soft" id="requirements">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow">Before you order</span><h2>VMC readiness checklist</h2><p>Completing these items first keeps validation predictable.</p></div>
+      <div class="steps">
+        <article><b>1</b><div><h3>Enforce DMARC</h3><p>Publish a DMARC policy of <code>p=quarantine</code> or <code>p=reject</code>, with SPF and DKIM aligned for your approved senders.</p></div></article>
+        <article><b>2</b><div><h3>Confirm trademark eligibility</h3><p>Your logo must be registered with an accepted intellectual-property office, such as IP India, or qualify as an official government mark.</p></div></article>
+        <article><b>3</b><div><h3>Prepare the logo</h3><p>Convert the approved square mark to the BIMI-compatible SVG profile without changing the registered design.</p></div></article>
+        <article><b>4</b><div><h3>Complete DigiCert validation</h3><p>Provide organization and identity evidence. Validation may include notarised identification and a verification call.</p></div></article>
+        <article><b>5</b><div><h3>Publish BIMI DNS</h3><p>Add the BIMI record pointing to the hosted logo and VMC files, then verify DNS and mailbox-provider checks.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad">
+    <div class="wrap sizing-grid">
+      <div>
+        <span class="eyebrow">Certificate sizing</span><h2>How many VMCs do you need?</h2><p>The number is driven mainly by how many different logos you send with—not simply by the number of domains.</p>
+      </div>
+      <div class="table-wrap"><table><thead><tr><th>Sending setup</th><th>Logos</th><th>Typical requirement</th></tr></thead><tbody><tr><td>One domain</td><td>One</td><td>One VMC</td></tr><tr><td>Several domains</td><td>One shared logo</td><td>One VMC with validated SANs</td></tr><tr><td>One or more domains</td><td>Several logos</td><td>One VMC per logo</td></tr><tr><td>Several subdomains</td><td>One shared logo</td><td>One VMC, subject to validation</td></tr></tbody></table></div>
+    </div>
+  </section>
+
+  <section class="section-pad faq-section">
+    <div class="wrap faq-grid">
+      <div><span class="eyebrow">Frequently asked questions</span><h2>Plan your BIMI rollout with confidence.</h2><p>We validate readiness before ordering so trademark, authentication and DNS issues are found early.</p><button type="button" class="outline-btn" (click)="requestQuote('DigiCert VMC readiness assessment')">Request a readiness check</button></div>
+      <div class="faq-list">
+        @for (faq of faqs; track faq.question; let i = $index) {
+          <article [class.open]="openFaq() === i"><button type="button" (click)="openFaq.set(openFaq() === i ? -1 : i)"><span>{{ faq.question }}</span><i>+</i></button><div><p>{{ faq.answer }}</p></div></article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta"><div class="wrap"><div><span class="eyebrow light">DigiCert VMC with XcellHost</span><h2>Ready to put your verified brand in the inbox?</h2><p>Get help with DMARC, trademark evidence, DigiCert validation, SVG preparation and BIMI deployment.</p></div><button type="button" class="primary-btn" (click)="requestQuote()">Talk to a VMC specialist <span>→</span></button></div></section>
+</main>

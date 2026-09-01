@@ -133,6 +133,57 @@
   color: #c9d9ee;
 }
 
+.company-founder-section {
+  padding: 28px 0 12px;
+  background: #fff;
+}
+
+.company-founder-grid {
+  display: grid;
+  grid-template-columns: minmax(240px, 320px) minmax(0, 680px);
+  gap: 38px;
+  align-items: center;
+  max-width: 1040px;
+}
+
+.company-founder-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.company-founder-visual img {
+  display: block;
+  width: min(100%, 330px);
+  height: auto;
+}
+
+.company-founder-copy {
+  max-width: 720px;
+}
+
+.company-founder-copy h2 {
+  margin: 0 0 14px;
+  color: #0b1736;
+  font-size: clamp(30px, 2.5vw, 40px);
+  line-height: 1.08;
+  letter-spacing: -.03em;
+}
+
+.company-founder-highlights {
+  margin: 0 0 18px;
+  color: #1769ff;
+  font-size: clamp(15px, 1.15vw, 18px);
+  line-height: 1.28;
+  font-weight: 800;
+}
+
+.company-founder-summary {
+  margin: 0;
+  color: #546276;
+  font-size: clamp(14px, .95vw, 16px);
+  line-height: 1.5;
+}
+
 .company-orb {
   position: absolute;
   border: 1px solid rgba(120, 180, 255, .16);
@@ -294,6 +345,11 @@
 
 @media (max-width: 800px) {
   .company-hero { min-height: 340px; }
+  .company-founder-section { padding: 24px 0 8px; }
+  .company-founder-grid { grid-template-columns: 1fr; gap: 24px; }
+  .company-founder-copy { max-width: none; }
+  .company-founder-copy h2 { margin-bottom: 14px; }
+  .company-founder-highlights { margin-bottom: 18px; }
   .company-body { padding: 48px 0 60px; }
   .company-card-grid { grid-template-columns: 1fr; margin-bottom: 42px; }
   .certification-grid,
@@ -304,6 +360,9 @@
 }
 
 @media (max-width: 560px) {
+  .company-founder-visual img { width: min(100%, 280px); }
+  .company-founder-copy h2 { font-size: 30px; }
+  .company-founder-highlights { font-size: 17px; }
   .recognition-section { margin-top: 52px; }
   .recognition-heading { margin-bottom: 25px; }
   .certification-grid,
@@ -313,7 +372,7 @@
 }
 
 .team-page {
-  background: #f7f9fd;
+  background: #fff;
 }
 
 .team-hero {
@@ -543,7 +602,7 @@
 .team-founder-section,
 .team-section,
 .team-contact-band {
-  padding: 70px 0 0;
+  padding: 42px 0 0;
 }
 
 .team-founder-grid,
@@ -652,12 +711,20 @@
 
 .team-grid {
   display: grid;
-  gap: 18px;
+  gap: 24px;
 }
 
 .team-grid-four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.team-grid-three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.team-grid-two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.team-grid-three {
+  grid-template-columns: repeat(3, minmax(180px, 260px));
+  justify-content: center;
+  gap: 40px;
+}
+.team-grid-two {
+  grid-template-columns: repeat(2, minmax(180px, 280px));
+  justify-content: center;
+  gap: 40px;
+}
 
 .team-card,
 .team-value-card,
@@ -673,6 +740,11 @@
   background: linear-gradient(135deg, #e8f1ff, #effaf5);
   color: #0b1736;
   font-size: 18px;
+}
+
+.team-photo {
+  display: block;
+  object-fit: cover;
 }
 
 .team-card h3,
@@ -692,6 +764,37 @@
 }
 
 .team-card-small { padding: 22px; }
+
+.team-grid .team-card {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  text-align: center;
+}
+
+.team-grid .team-photo {
+  width: min(100%, 196px);
+  height: auto;
+  aspect-ratio: 1;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+}
+
+.team-grid .team-card h3 {
+  margin: 0 0 5px;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.team-grid .team-card p {
+  max-width: 220px;
+  margin: 0 auto;
+  font-size: 14px;
+  line-height: 1.45;
+}
 
 .team-values {
   padding-top: 78px;
