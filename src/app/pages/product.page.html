@@ -652,7 +652,11 @@
                 <article><i>♙</i><b>Separate Staff &amp; Guest Access</b><p>Keep networks organized and secure.</p></article>
                 <article><i>▣</i><b>Better Visibility &amp; Control</b><p>See everything. Manage remotely. Support faster.</p></article>
               </div>
-              <div class="smb-business-grid"><span>CA Firm</span><span>Clinic</span><span>Digital Agency</span><span>Legal Office</span></div>
+              <div class="smb-business-grid">
+                @for (industry of smbIndustries; track industry) {
+                  <span>{{ industry }}</span>
+                }
+              </div>
             </section>
           </div>
         }

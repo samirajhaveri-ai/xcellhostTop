@@ -1954,7 +1954,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              {
+                {
                 "title": "Customer Stories",
                 "pill": null,
                 "desc": "See how customers transform with our services",
