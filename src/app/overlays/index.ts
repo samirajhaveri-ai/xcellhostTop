@@ -2,7 +2,7 @@ export { CartDrawerComponent } from './cart-drawer.component';
 export { TrialModalComponent } from './trial-modal.component';
 export { AuthModalComponent } from './auth-modal.component';
 export { PartnerModalComponent } from './partner-modal.component';
-export { CallbackModalComponent, CALLBACK_SLOTS } from './callback-modal.component';
+export { CallbackModalComponent } from './callback-modal.component';
 export { DocModalComponent } from './doc-modal.component';
 export { CallbackTopicService } from './callback-topic.service';
 export { ChatbotComponent } from './chatbot.component';
