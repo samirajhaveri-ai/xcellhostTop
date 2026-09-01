@@ -374,6 +374,30 @@
               }
             </div>
           </section>
+        } @else if (isCloudDisasterRecoverySmb()) {
+          <section class="tally-pricing cdr-smb-pricing" id="ppPlans" aria-labelledby="cdrSmbPricingTitle">
+            <div class="tally-price-heading">
+              <span>Cloud Disaster Recovery SMB</span>
+              <h2 id="cdrSmbPricingTitle">Get CyberFit &amp; Achieve Cyber Resilience</h2>
+              <p>Rapidly recover from cyberattacks and hardware failures within minutes for your on-premise servers and VMs.</p>
+            </div>
+            <div class="tally-plan-grid">
+              <article class="tally-plan-card tally-plan-featured">
+                <div class="tally-plan-band">For SMB workloads</div>
+                <div class="tally-plan-main">
+                  <div class="tally-plan-name"><span aria-hidden="true">A</span><div><b>Acronis CyberFit</b><small>Disaster Recovery</small></div></div>
+                  <strong>&#8377;9,999</strong><small>+GST · per server / month</small>
+                </div>
+                <dl class="tally-plan-specs">
+                  <div><dt>Recovery Type</dt><dd>Acronis Cloud</dd></div><div><dt>RPO</dt><dd>15 Minutes</dd></div><div><dt>RTO</dt><dd>30 Minutes</dd></div><div><dt>Backup + DR</dt><dd>3 TB Storage</dd></div>
+                  <div><dt>Test Failover</dt><dd>Included</dd></div><div><dt>Production Failover</dt><dd>On Demand</dd></div><div><dt>Cloud-only VPN</dt><dd>Included</dd></div><div><dt>VPN-less Deployment</dt><dd>Supported</dd></div>
+                  <div><dt>IPsec Multisite VPN</dt><dd>Supported</dd></div><div><dt>Custom DNS</dt><dd>Included</dd></div><div><dt>Anti-ransomware</dt><dd>Included</dd></div><div><dt>Support</dt><dd>24×7</dd></div>
+                </dl>
+                <a class="tally-plan-action" href="#" (click)="openCallback($event)">Select a Plan</a>
+              </article>
+            </div>
+            <p class="cdr-smb-note">Pay only for backup and disaster recovery storage. Compute run-time charges apply only when a disaster strikes.</p>
+          </section>
         } @else if (!isAdvancedEdr() && !isSmbCyber() && !isRmm()) {
           <div class="pp-sec">Plans &amp; pricing</div>
           <div class="pp-plans" id="ppPlans">
@@ -441,7 +465,7 @@
           <div
             class="pp-feats"
             id="ppFeats"
-            [class.pp-feats-four]="isAdvancedEdr() || isSmbCyber() || v.name === 'Tally on Cloud'"
+            [class.pp-feats-four]="isAdvancedEdr() || isSmbCyber() || isCloudDisasterRecoverySmb() || v.name === 'Tally on Cloud'"
             [class.edr-feats]="isAdvancedEdr()"
           >
             @for (f of v.features; track f.title) {
@@ -716,7 +740,7 @@
               : 'Benefits for your business'
           }}
         </div>
-        <div class="pp-bens" id="ppBens" [class.pp-bens-four]="v.name === 'Tally on Cloud'">
+        <div class="pp-bens" id="ppBens" [class.pp-bens-four]="v.name === 'Tally on Cloud' || isCloudDisasterRecoverySmb()" [class.cdr-smb-benefits]="isCloudDisasterRecoverySmb()">
           @for (b of v.benefits; track b.title) {
             <article class="pb">
               <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path [attr.d]="b.icon" /></svg></span>
@@ -840,7 +864,7 @@
 
         @if (v.name !== 'Tally on Cloud' && !isSmbCyber()) {
           <div class="pp-sec">Use cases</div>
-          <div class="pp-uses" id="ppUses">
+          <div class="pp-uses" id="ppUses" [class.cdr-smb-uses]="isCloudDisasterRecoverySmb()">
             @for (u of v.uses; track u.title) {
               <div class="pu">
                 <span class="pu-ic" [class.pu-ic-svg]="u.svg" aria-hidden="true">

@@ -290,6 +290,10 @@ export class ProductPage {
     () => this.view()?.name === 'SMB Cyber Security Appliance'
   );
 
+  readonly isCloudDisasterRecoverySmb = computed(
+    () => this.view()?.name === 'Cloud Disaster Recovery SMB'
+  );
+
   readonly isTally = computed(() => this.view()?.name === 'Tally on Cloud');
 
   readonly isCloudDrive = computed(() => this.view()?.name === 'Cloud Drive');

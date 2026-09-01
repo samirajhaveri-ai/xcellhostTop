@@ -444,6 +444,17 @@ const SMB_CYBER_BENEFITS: IconItem[] = [
   ['☁️', 'Built to Scale', 'Add users and sites easily as the business grows.'],
 ];
 
+const CLOUD_DISASTER_RECOVERY_SMB_BENEFITS: IconItem[] = [
+  ['⚙️', 'All-in-One Flexibility', ''],
+  ['✅', 'Guaranteed Flexible RTO', ''],
+  ['🗄️', 'AnyData Engine', ''],
+  ['🖥️', 'Single Pane of Glass', ''],
+  ['👆', 'Push-Button Recovery', ''],
+  ['🤝', 'White Glove Support', ''],
+  ['🔄', 'Automated Testing', ''],
+  ['🌐', 'Broad Choice of Recovery Options', ''],
+];
+
 @Injectable({ providedIn: 'root' })
 export class ProductPageService {
   private catalog = inject(CatalogService);
@@ -670,7 +681,9 @@ export class ProductPageService {
         ? TALLY_WHY_CHOOSE
         : name === 'SMB Cyber Security Appliance'
           ? SMB_CYBER_BENEFITS
-          : CATEGORY_BENEFITS[cat] ?? [];
+          : name === 'Cloud Disaster Recovery SMB'
+            ? CLOUD_DISASTER_RECOVERY_SMB_BENEFITS
+            : CATEGORY_BENEFITS[cat] ?? [];
     const benefitIcons = BENEFIT_ICON_PATHS[cat];
     const benefits = rawBenefits.map((benefit, index) => ({
       icon: benefitIcons[index % benefitIcons.length],

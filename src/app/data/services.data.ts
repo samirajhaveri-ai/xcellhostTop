@@ -792,6 +792,58 @@ export const SERVICES_RICH: Record<string, ServiceRich> = {
       ]
     ]
   },
+  "cloud disaster recovery smb": {
+    "price": "Per-VM plans",
+    "ov": "Single-click disaster recovery to Acronis Cloud for small businesses. Protect files, applications and production workloads with tested failover, secure connectivity and rapid recovery options that fit an SMB environment.",
+    "f": [
+      [
+        "File, Image & Application Backup",
+        "Protect business files, complete system images and critical applications from one managed recovery platform."
+      ],
+      [
+        "Local Recovery with Instant Restore",
+        "Restore priority workloads locally when you need them back quickly without waiting for a full rebuild."
+      ],
+      [
+        "Test Failover",
+        "Validate recovery readiness in an isolated environment without interrupting your live production systems."
+      ],
+      [
+        "Cloud-only VPN Connection",
+        "Provide secure access to recovered cloud workloads through a dedicated cloud-based VPN connection."
+      ],
+      [
+        "Production & Test Failover",
+        "Run a planned recovery test or move production workloads to the cloud during an actual disruption."
+      ],
+      [
+        "VPN-Less Deployment Option",
+        "Deploy selected recovery workflows without a traditional site-to-site VPN where the use case permits it."
+      ],
+      [
+        "IPsec Multisite VPN Support",
+        "Connect branches and recovered workloads securely with IPsec-based multisite connectivity."
+      ],
+      [
+        "Custom DNS Configuration",
+        "Use custom DNS settings so users and applications can reach recovered services with minimal change."
+      ]
+    ],
+    "q": [
+      [
+        "Can we test recovery without affecting production?",
+        "Yes. Test failover runs in an isolated environment, so your production workloads stay online."
+      ],
+      [
+        "Can workloads fail over to Acronis Cloud?",
+        "Yes. The service supports production failover to the cloud when your primary environment is unavailable."
+      ],
+      [
+        "Can multiple sites connect after recovery?",
+        "Yes. IPsec multisite VPN support can securely connect branches and recovered cloud workloads."
+      ]
+    ]
+  },
   "google workspace backup": {
     "price": "Per-user/mo",
     "ov": "Gmail, Drive, Calendar and Contacts are not backed up long-term by Google. Independent, unlimited-retention copies with point-in-time restore — down to a single email or file.",

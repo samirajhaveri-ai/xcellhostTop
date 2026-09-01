@@ -1,35 +1,24 @@
-<div class="hero">
-  <span class="orb orb-1" [style.translate]="orb1Shift()" aria-hidden="true"></span>
-  <span class="orb orb-2" [style.translate]="orb2Shift()" aria-hidden="true"></span>
-  <span class="aur a1" aria-hidden="true"></span><span class="aur a2" aria-hidden="true"></span><span class="aur a3" aria-hidden="true"></span>
-  <span class="beams" aria-hidden="true"></span>
+<section class="home-product-carousel" aria-label="Featured XcellHost services">
   <canvas id="netbg" #netbg aria-hidden="true"></canvas>
-  <span class="grid-floor" aria-hidden="true"></span>
-  <span class="cube-wrap" [style.translate]="cube1Shift()" aria-hidden="true"><span class="cube"><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
-  <span class="cube-wrap c2" [style.translate]="cube2Shift()" aria-hidden="true"><span class="cube"><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
-  <div class="wrap">
-    <div>
-      <div class="eyebrow">Engineering India’s Digital Future · Since 1999</div>
-      <h1>The infrastructure your <em class="shine">next decade</em> runs on.</h1>
-      <p class="lead">From Tally on Cloud to enterprise SOC — XcellHost has run managed cloud and security for 10,000+ Indian businesses since 1999. ISO 27001 certified. DPDPA ready.</p>
-      <div class="rot-line">Right now on XcellHost&nbsp;→&nbsp;<span class="rot" id="rotWords">@for (w of words; track w; let i = $index) {<span [class.on]="i === current()" [class.out]="i === leaving()">{{ w }}</span>}</span></div>
-      <div class="hero-ctas">
-        <a class="btn btn-primary" href="#flagship">Explore services</a>
-        <a class="btn btn-ghost" href="#">Book a 1:1 demo</a>
-      </div>
-      <div class="stat-line">
-        @for (s of stats; track s.label; let i = $index) {
-          <div class="sl"><b>{{ counters()[i] }}</b><span>{{ s.label }}</span></div>
-        }
-      </div>
-      <div class="hero-live"><i></i> all systems operational · backups every 8 hrs · SOC live · incidents: 0</div>
-    </div>
-    <div class="hero-play">
-      <div class="hero-visual-carousel" aria-label="Featured cloud and security services">
-        @for (slide of visualSlides; track slide.image; let i = $index) {
-          <img class="hero-visual-slide" [class.is-active]="i === activeVisualSlide()" [src]="slide.image" [alt]="slide.alt" [attr.aria-hidden]="i !== activeVisualSlide()" />
-        }
-      </div>
+  <div class="home-product-carousel-promo"><span>✦</span> Managed cloud infrastructure and cyber security for growing businesses</div>
+  <div class="home-product-carousel-shell">
+    @for (slide of visualSlides; track slide.image; let i = $index) {
+      <article class="home-product-carousel-slide" [class.is-active]="i === activeVisualSlide()" [attr.aria-hidden]="i !== activeVisualSlide()">
+        <div class="home-product-carousel-copy">
+          <p class="home-product-carousel-kicker">{{ slide.eyebrow }}</p>
+          <h1>{{ slide.title }} <em>{{ slide.accent }}</em></h1>
+          <p>{{ slide.description }}</p>
+          <a [href]="slide.href" class="home-product-carousel-cta">{{ slide.cta }} <span aria-hidden="true">→</span></a>
+        </div>
+        <img class="home-product-carousel-art" [src]="slide.image" [alt]="slide.alt" />
+      </article>
+    }
+    <button class="home-product-carousel-arrow previous" type="button" (click)="previousVisualSlide()" aria-label="Previous slide">‹</button>
+    <button class="home-product-carousel-arrow next" type="button" (click)="nextVisualSlide()" aria-label="Next slide">›</button>
+    <div class="home-product-carousel-dots" role="tablist" aria-label="Choose a featured service">
+      @for (slide of visualSlides; track slide.image; let i = $index) {
+        <button type="button" role="tab" [class.is-active]="i === activeVisualSlide()" [attr.aria-selected]="i === activeVisualSlide()" [attr.aria-label]="'Show ' + slide.title + ' ' + slide.accent" (click)="selectVisualSlide(i)"></button>
+      }
     </div>
   </div>
-</div>
+</section>
