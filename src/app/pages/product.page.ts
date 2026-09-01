@@ -309,7 +309,9 @@ export class ProductPage {
     ...new Set([...Object.keys(DEEP_CONTENT), ...Object.keys(RICH_PRODUCTS)]),
   ];
 
-  readonly slug = toSignal(this.route.paramMap.pipe(map((p) => p.get('slug') ?? '')), {
+  readonly slug = toSignal(this.route.paramMap.pipe(
+    map((p) => p.get('slug') ?? this.route.snapshot.data['productSlug'] ?? ''),
+  ), {
     initialValue: '',
   });
 

@@ -1,15 +1,18 @@
 import { ChangeDetectionStrategy, Component, computed, effect, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 
 import { SeoService } from '../core/seo.service';
 import { COMPANY_PAGES } from '../data/company.data';
+import { WORLD_MAP_HTML } from '../data/site.data';
+import { HeroNetDirective } from '../sections/product';
 
 @Component({
   selector: 'xh-company-page',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, HeroNetDirective],
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './company.page.html',
@@ -19,6 +22,7 @@ export class CompanyPage {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly seo = inject(SeoService);
+  private readonly sanitizer = inject(DomSanitizer);
 
   readonly slug = toSignal(
     this.route.paramMap.pipe(map((params) => params.get('slug') ?? '')),
@@ -26,6 +30,70 @@ export class CompanyPage {
   );
 
   readonly page = computed(() => COMPANY_PAGES[this.slug()] ?? null);
+  readonly worldMap: SafeHtml = this.sanitizer.bypassSecurityTrustHtml(WORLD_MAP_HTML);
+
+  readonly founder = {
+    name: 'Dr. Samir Jhaveri',
+    role: 'Managing Director, XcellHost Cloud Services Pvt. Ltd.',
+    specialties: 'Cloud, cybersecurity, AI and digital marketing',
+    summary:
+      'A long-time technology leader with over two decades in the industry, guiding XcellHost since 1999 and helping SMBs and enterprises simplify cloud operations.',
+    note:
+      'Our approach is simple: give customers practical guidance, deliver what was promised and stay accountable after go-live.',
+  } as const;
+
+  readonly managementTeam = [
+    { initials: 'YJ', name: 'Yogendra Jagger', role: 'Regional Director - Middle East & Africa' },
+    { initials: 'JP', name: 'Jaynam Pandya', role: 'Chief Marketing Officer' },
+    { initials: 'AN', name: 'Abhishek Nimbalkar', role: 'Chief AI Officer' },
+    { initials: 'PN', name: 'Prashant N.V', role: 'Service Delivery Director' },
+  ] as const;
+
+  readonly advisoryTeam = [
+    { initials: 'SJ', name: 'Suraj Jain', role: 'Financial Advisor' },
+    { initials: 'SM', name: 'Surendra Mehra', role: 'Chartered Accountant' },
+  ] as const;
+
+  readonly salesTeam = [
+    { initials: 'SJ', name: 'Sanjay Jade', role: 'Accounts Payable Manager' },
+    { initials: 'RS', name: 'Rizwan Shaikh', role: 'Cloud Pre-Sales Manager' },
+    { initials: 'AP', name: 'Abhishek Pandey', role: 'Billing Manager' },
+  ] as const;
+
+  readonly values = [
+    { title: 'Teamwork', body: 'We work across functions so customers get one coordinated answer.' },
+    { title: 'Integrity', body: 'We say what we can do, do what we say and keep the record clear.' },
+    { title: 'Respect', body: 'People and customer situations are handled with care and fairness.' },
+    { title: 'Diligence', body: 'The small details matter, especially in operational work that others depend on.' },
+  ] as const;
+
+  readonly commitmentStats = [
+    { value: '1999', label: 'Serving customers since' },
+    { value: '10,000+', label: 'Businesses supported' },
+    { value: '24x7', label: 'Monitoring and response' },
+    { value: '1 team', label: 'For cloud, security and support' },
+  ] as const;
+
+  readonly contactCards = [
+    {
+      label: 'Call us',
+      value: '+91 22 6711 1555',
+      note: 'Best for sales, service guidance and urgent issues.',
+      href: 'tel:+912267111555',
+    },
+    {
+      label: 'Email us',
+      value: 'sales@xcellhost.cloud',
+      note: 'For a project conversation or written details.',
+      href: 'mailto:sales@xcellhost.cloud',
+    },
+    {
+      label: 'WhatsApp',
+      value: '+91 86570 32540',
+      note: 'Fastest route for a quick introduction.',
+      href: 'https://wa.me/918657032540',
+    },
+  ] as const;
 
   readonly certifications = [
     {
