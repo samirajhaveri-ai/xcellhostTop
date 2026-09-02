@@ -4,7 +4,7 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 export type OverlayId =
   | 'product' | 'category' | 'blog' | 'dpdpa' | 'dpdpaModule' | 'simple' | 'compare'
   | 'cart' | 'trial' | 'auth' | 'partner' | 'callback' | 'doc' | 'search' | 'chat' | 'mobileNav'
-  | 'intro' | 'screenshotTour';
+  | 'intro' | 'screenshotTour' | 'genAiScreenshotTour' | 'rmmScreenshotTour' | 'edrScreenshotTour';
 
 /**
  * One owner for "is something covering the page".

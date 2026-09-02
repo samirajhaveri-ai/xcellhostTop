@@ -236,7 +236,7 @@ export class ContactOptionsComponent {
   readonly busy = signal(false);
   readonly done = signal(false);
   readonly message = signal('');
-  readonly buttonLabel = computed(() => (this.busy() ? 'Subscribing…' : 'Subscribe Now'));
+  readonly buttonLabel = computed(() => (this.busy() ? 'Subscribing…' : 'Subscribe '));
 
   emailInvalid(): boolean {
     return this.form.controls.email.invalid && this.form.controls.email.touched;

@@ -25,23 +25,23 @@
             }
           </div>
           <div class="hero-live"><i></i> all systems operational · backups every 8 hrs · SOC live · incidents: 0</div>
+          <div class="home-hero-dots" role="tablist" aria-label="Homepage hero slides">
+            @for (navSlide of carouselSlides; track navSlide.primaryHref; let navIndex = $index) {
+              <button
+                type="button"
+                role="tab"
+                [class.is-active]="navIndex === activeVisualSlide()"
+                [attr.aria-selected]="navIndex === activeVisualSlide()"
+                [attr.aria-label]="'Show ' + navSlide.tab"
+                (click)="selectVisualSlide(navIndex)"
+              ></button>
+            }
+          </div>
         </div>
         <div class="hero-play">
           <img class="home-hero-slide-art" [src]="slide.image" [alt]="slide.alt" />
         </div>
       </article>
     }
-    <div class="home-hero-dots" role="tablist" aria-label="Homepage hero slides">
-      @for (slide of carouselSlides; track slide.primaryHref; let i = $index) {
-        <button
-          type="button"
-          role="tab"
-          [class.is-active]="i === activeVisualSlide()"
-          [attr.aria-selected]="i === activeVisualSlide()"
-          [attr.aria-label]="'Show ' + slide.tab"
-          (click)="selectVisualSlide(i)"
-        ></button>
-      }
-    </div>
   </div>
 </div>
