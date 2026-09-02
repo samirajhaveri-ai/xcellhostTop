@@ -537,7 +537,11 @@ export class ProductPageService {
 
     /* -------- overview + features -------- */
     const overview =
-      name === 'Remote Monitoring & Mgmt (RMM)'
+      name === 'SMB Cyber Security Appliance'
+        ? 'The XcellSecure SMB Cyber Security Appliance is an affordable, cloud-managed security gateway designed for businesses with up to 50 users. It combines secure business Wi-Fi, advanced firewall protection, and web & DNS security in one platform. Application controls and bandwidth management help businesses maintain secure and efficient network usage. Get real-time visibility into network activity with centralized cloud management. Automatic security updates help keep your environment protected against evolving threats. Enjoy enterprise-grade security without the cost and complexity of a traditional security stack.'
+        : name === 'Advanced Endpoint Security (EDR)'
+        ? 'XcellHost Advanced Endpoint Security (EDR) helps organizations identify, protect, detect, respond to, and recover from endpoint threats. It provides continuous security monitoring to detect suspicious activity and potential threats. Endpoints are protected with advanced security capabilities designed to reduce cyber risks. Delivered from secure Indian Tier-4 datacenters, the solution provides reliable and centralized protection. Your environment is monitored 24×7 by experienced security professionals. Get direct assistance from real engineers whenever you need support.'
+        : name === 'Remote Monitoring & Mgmt (RMM)'
         ? 'Acronis RMM software helps customers deliver better IT management with powerful tools for monitoring, managing, and supporting devices remotely. It enables IT teams to monitor device performance, identify issues, and provide efficient remote support. Deploy high-performance remote desktop capabilities for fast and reliable remote access. Provide secure remote assistance at no additional cost, helping teams resolve IT issues quickly and efficiently. With centralized management and proactive monitoring, businesses can improve productivity, minimize downtime, and maintain a more reliable IT environment.'
         : rich?.ov ||
           `${name} from XcellHost. ${tag} Delivered from Indian Tier-4 datacenters, ` +

@@ -494,7 +494,7 @@
               }
             </div>
           </section>
-        } @else {
+        } @else if (!isSmbCyber()) {
           @if (isAdvancedEdr()) {
             <section class="edr-feature-heading" aria-labelledby="edr-feature-title">
               <div class="edr-feature-copy">
@@ -712,6 +712,24 @@
                 }
               </div>
             </section>
+          </div>
+        }
+
+        @if (isSmbCyber()) {
+          <div class="pp-sec">Key features</div>
+          <div class="pp-feats pp-feats-four" id="ppFeats">
+            @for (f of v.features; track f.title) {
+              <div class="pp-feat">
+                <span class="fic" [class.fic-svg]="f.svg" aria-hidden="true">
+                  @if (f.svg) {
+                    <svg viewBox="0 0 24 24"><path [attr.d]="f.icon" /></svg>
+                  } @else {
+                    {{ f.icon }}
+                  }
+                </span>
+                <div><b [innerHTML]="f.title"></b><span [innerHTML]="f.body"></span></div>
+              </div>
+            }
           </div>
         }
 

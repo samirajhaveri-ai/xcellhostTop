@@ -310,7 +310,7 @@ export const SERVICES_RICH: Record<string, ServiceRich> = {
   },
   "smb cloud desktop": {
     "price": "₹999/user/mo",
-    "ov": "Your team’s office PC, now in the cloud. Every employee gets a secure Windows desktop accessible from any laptop, tablet or thin client — company data stays in the datacenter, never on the device. If a laptop is lost or fails, work resumes from another device in five minutes.",
+    "ov": "SMB Cloud Desktop puts your team’s office PC securely in the cloud, giving every employee access to a Windows desktop from anywhere. Access your desktop using a laptop, tablet, or thin client without being tied to a physical device. Company data stays securely in the datacenter instead of being stored on individual devices. Employees can work securely from the office, home, or while travelling. If a laptop is lost or fails, users can quickly switch to another device and continue working. This provides a secure, flexible, and reliable desktop experience for growing businesses.",
     "f": [
       [
         "Any device, anywhere",
