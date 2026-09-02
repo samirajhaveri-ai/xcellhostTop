@@ -619,30 +619,7 @@
       <div class="wrap company-wrap">
         <p class="company-intro">{{ page.intro }}</p>
 
-        @if (slug() === 'certifications-awards') {
-          <section class="recognition-section" aria-labelledby="certifications-title">
-            <header class="recognition-heading">
-              <span>Validated operations</span>
-              <h2 id="certifications-title">Our Certifications</h2>
-              <p>Independent credentials supporting our information-security, service-management and technology leadership.</p>
-            </header>
-
-            <div class="certification-grid">
-              @for (certificate of certifications; track certificate.title) {
-                <article class="certificate-card">
-                  <div class="certificate-image-wrap">
-                    <img [src]="certificate.image" [alt]="certificate.alt" loading="lazy" />
-                  </div>
-                  <div class="recognition-card-copy">
-                    <span>Certificate</span>
-                    <h3>{{ certificate.title }}</h3>
-                    <p>{{ certificate.type }}</p>
-                  </div>
-                </article>
-              }
-            </div>
-          </section>
-
+        @if (slug() === 'awards') {
           <section class="recognition-section awards-section" aria-labelledby="awards-title">
             <header class="recognition-heading">
               <span>Recognition through the years</span>
@@ -661,7 +638,7 @@
               }
             </div>
           </section>
-        } @else {
+        } @else if (slug() !== 'certifications-awards') {
           <div class="company-card-grid">
             @for (card of page.cards; track card.title) {
               <article class="company-card">
