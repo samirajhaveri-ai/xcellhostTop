@@ -153,7 +153,7 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Google My Business",
-                "pill": "AI Powerd",
+                "pill": "AI Powered",
                 "desc": "Improve your business visibility on Google 👋"
               },
               {
@@ -168,8 +168,8 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Reach customers instantly with impactful text campaigns 📲"
               },
               {
-                "title": "Managedn AI SEO",
-                "pill": "AI Powerd",
+                "title": "Managed AI SEO",
+                "pill": "AI Powered",
                 "desc": "Maximise online visibility and reach your target audience 🎯"
               },
               
@@ -235,7 +235,7 @@ export const MEGA_MENU: MenuTop[] = [
               
               {
                 "title": "Cloud Backup",
-                "pill": "Poppular",
+                "pill": "Popular",
                 "desc": null
               },
               {
@@ -268,8 +268,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              
-             
               {
                 "title": "Acronis GenAI Protected",
                 "pill": "New",
@@ -571,7 +569,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "4",
+        "g": "5",
         "label": "Cloud DevOps",
         "on": false,
         "groups": [
@@ -597,9 +595,8 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      
       {
-        "g": "5",
+        "g": "6",
         "label": "Managed Migration",
         "on": false,
         "groups": [
@@ -681,7 +678,6 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      
       {
         "g": "7",
         "label": "Managed Monitoring",
@@ -711,7 +707,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "6",
+        "g": "8",
         "label": "Cloud ERP",
         "on": false,
         "groups": [
@@ -1685,127 +1681,7 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      {
-        "g": "3",
-        "label": "Network Tools",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Network Tools",
-            "items": [
-              {
-                "title": "Speed Test",
-                "pill": null,
-                "desc": "Test download speed, upload speed and latency"
-              },
-              {
-                "title": "Looking Glass",
-                "pill": null,
-                "desc": "Inspect routing and reachability from our network"
-              },
-              {
-                "title": "DNS Lookup",
-                "pill": null,
-                "desc": "Inspect A, AAAA, MX, TXT and nameserver records"
-              },
-              {
-                "title": "Traceroute",
-                "pill": null,
-                "desc": "Trace the network path and identify routing delays"
-              },
-              {
-                "title": "IP & WHOIS Lookup",
-                "pill": null,
-                "desc": "Check IP ownership, location and registration details"
-              },
-              {
-                "title": "Port Checker",
-                "pill": null,
-                "desc": "Test whether a public TCP port is reachable"
-              },
-            ]
-          }
-        ]
-      },
-      {
-        "g": "4",
-        "label": "Mail Tools",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Mail Tools",
-            "items": [
-              {
-                "title": "DMARC Monitoring & Reporting",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "SPF · DKIM · DMARC · BIMI Tools",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "MTA-STS · TLS-RPT Tools",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "MX Lookup",
-                "pill": null,
-                "desc": "Check mail exchangers, priority and DNS health"
-              },
-              {
-                "title": "Email Header Analyzer",
-                "pill": null,
-                "desc": "Inspect delivery hops, authentication and delays"
-              },
-              {
-                "title": "Email Blacklist Check",
-                "pill": null,
-                "desc": "Check whether a mail server appears on major blocklists"
-              },
-            ]
-          }
-        ]
-      },
-      {
-        "g": "5",
-        "label": "SSL Tools",
-        "on": false,
-        "groups": [
-          {
-            "heading": "SSL Tools",
-            "items": [
-              {
-                "title": "CSR Generator / Decoder",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "SSL Checker / Converter",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Certificate Key Matcher",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "CAA Record Generator",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Why No Padlock?",
-                "pill": null,
-                "desc": null
-              }
-            ]
-          }
-        ]
-      }
+      
     ]
   },
   {
@@ -2312,6 +2188,127 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
+      {
+        "g": "4",
+        "label": "Network Tools",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Network Tools",
+            "items": [
+              {
+                "title": "Speed Test",
+                "pill": null,
+                "desc": "Test download speed, upload speed and latency"
+              },
+              {
+                "title": "Looking Glass",
+                "pill": null,
+                "desc": "Inspect routing and reachability from our network"
+              },
+              {
+                "title": "DNS Lookup",
+                "pill": null,
+                "desc": "Inspect A, AAAA, MX, TXT and nameserver records"
+              },
+              {
+                "title": "Traceroute",
+                "pill": null,
+                "desc": "Trace the network path and identify routing delays"
+              },
+              {
+                "title": "IP & WHOIS Lookup",
+                "pill": null,
+                "desc": "Check IP ownership, location and registration details"
+              },
+              {
+                "title": "Port Checker",
+                "pill": null,
+                "desc": "Test whether a public TCP port is reachable"
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "5",
+        "label": "Mail Tools",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Mail Tools",
+            "items": [
+              {
+                "title": "DMARC Monitoring & Reporting",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "SPF · DKIM · DMARC · BIMI Tools",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "MTA-STS · TLS-RPT Tools",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "MX Lookup",
+                "pill": null,
+                "desc": "Check mail exchangers, priority and DNS health"
+              },
+              {
+                "title": "Email Header Analyzer",
+                "pill": null,
+                "desc": "Inspect delivery hops, authentication and delays"
+              },
+              {
+                "title": "Email Blacklist Check",
+                "pill": null,
+                "desc": "Check whether a mail server appears on major blocklists"
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "6",
+        "label": "SSL Tools",
+        "on": false,
+        "groups": [
+          {
+            "heading": "SSL Tools",
+            "items": [
+              {
+                "title": "CSR Generator / Decoder",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "SSL Checker / Converter",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Certificate Key Matcher",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "CAA Record Generator",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Why No Padlock?",
+                "pill": null,
+                "desc": null
+              }
+            ]
+          }
+        ]
+      }
       
     ]
   },
@@ -2339,10 +2336,16 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Meet the people and story behind XcellHost"
               },
               {
-                "title": "Certifications & Awards",
+                "title": "Certifications",
                 "pill": null,
                 "desc": "Credentials that reflect trusted delivery"
               },
+              {
+                "title": "Awards",
+                "pill": null,
+                "desc": "Credentials that reflect trusted delivery"
+              },
+               
               {
                 "title": "Data Centers (Global)",
                 "pill": null,
@@ -2368,7 +2371,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "0",
+        "g": "1",
         "label": "Infrastructure",
         "on": true,
         "groups": [
@@ -2415,7 +2418,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "1",
+        "g": "2",
         "label": "Partner",
         "on": false,
         "groups": [
@@ -2463,7 +2466,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "2",
+        "g": "3",
         "label": "Careers",
         "on": false,
         "groups": [
@@ -2485,7 +2488,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "3",
+        "g": "4",
         "label": "Support",
         "on": false,
         "groups": [
@@ -2517,7 +2520,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "4",
+        "g": "5",
         "label": "Legal",
         "on": false,
         "groups": [
@@ -2545,7 +2548,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "5",
+        "g": "6",
         "label": "SLA'S",
         "on": false,
         "groups": [
@@ -2625,7 +2628,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "4",
+        "g": "7",
         "label": "Event",
         "on": false,
         "groups": [

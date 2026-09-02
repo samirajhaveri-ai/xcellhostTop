@@ -802,6 +802,13 @@ function resolveHeroBrand(
     };
   }
 
+  if (name === 'Acronis GenAI Protected') {
+    return {
+      name: 'Acronis GenAI Protection', subtitle: null, kind: 'vendor',
+      logoImage: '/assets/images/acronis-genai-protection.png',
+    };
+  }
+
   if (poweredMark === 'tally' || /tally/i.test(name)) {
     return {
       name: 'Tally on Cloud', subtitle: null, kind: 'tally',
