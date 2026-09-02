@@ -809,6 +809,13 @@ function resolveHeroBrand(
     };
   }
 
+  if (name === 'Remote Monitoring & Mgmt (RMM)') {
+    return {
+      name: 'Acronis Remote Monitoring & Management', subtitle: null, kind: 'vendor',
+      logoImage: '/assets/images/acronis-rmm-protection.png',
+    };
+  }
+
   if (poweredMark === 'tally' || /tally/i.test(name)) {
     return {
       name: 'Tally on Cloud', subtitle: null, kind: 'tally',
@@ -826,7 +833,7 @@ function resolveHeroBrand(
   if (/SMB Cloud Desktop/i.test(name)) {
     return {
       name: 'XcellDesktop', subtitle: null, kind: 'vendor',
-      logoImage: '/assets/images/XcellConnect-min-2000x485.png',
+      logoImage: '/assets/images/xcell-desktop-powered-by.png',
     };
   }
   if (/Advanced Endpoint Security (EDR)/i.test(name)) {
