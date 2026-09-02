@@ -75,6 +75,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Backorder Domain",
                 "pill": null,
                 "desc": "Reserve a domain name for future availability 🕰️"
+              },
+              {
+                "title": "Web Design for CA, CS & Lawyers",
+                "pill": null,
+                "desc": null
               }
             ]
           }
@@ -349,6 +354,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
+                "title": "CDN Cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
                 "title": "Data Center Build Services",
                 "pill": null,
                 "desc": null
@@ -500,13 +510,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Cloud Conferencing",
                 "pill": null,
                 "desc": null
-              },
-              {
-                "title": "Cloud PBX",
-                "pill": "Soon",
-                "desc": null
-              },
-               
+              }, 
             ]
           }
         ]
@@ -570,11 +574,11 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "5",
-        "label": "Cloud DevOps",
+        "label": "Managed DevOps",
         "on": false,
         "groups": [
           {
-            "heading": "Cloud DevOps",
+            "heading": "Managed DevOps",
             "items": [
               {
                 "title": "AWS DevOps",
@@ -1109,7 +1113,7 @@ export const MEGA_MENU: MenuTop[] = [
         "on": true,
         "groups": [
           {
-            "heading": "IOT Security",
+            "heading": "OT+IOT Security",
             "items": [
               {
                 "title": "Acronis OT",
@@ -1159,11 +1163,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "Web, Mobile & API Testing",
-                "pill": null,
-                "desc": null
-              },
+              
               {
                 "title": "Network Penetration Testing",
                 "pill": null,
@@ -1207,11 +1207,7 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "Security Assessment",
             "items": [
-              {
-                "title": "Patch Mgmt-as-a-Service",
-                "pill": null,
-                "desc": null
-              },
+              
               {
                 "title": "Cloud Security Posture Mgmt",
                 "pill": null,
@@ -1249,6 +1245,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Managed Bug Bounty",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Cloud Security Assessment",
                 "pill": null,
                 "desc": null
               }
@@ -1311,10 +1312,15 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Cyber Ranger as a Service",
+                "title": "Cyber Range as a Service",
                 "pill": null,
                 "desc": null
-              }
+              },
+              {
+                "title": "Patch Mgmt-as-a-Service",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
@@ -1397,7 +1403,111 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      
+      {
+        "g": "8",
+        "label": "Security Training",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Security Training",
+            "items": [
+              {
+                "title": "security Awareness Training",
+                "pill": "In focus",
+                "desc": null
+              },
+              {
+                "title": "Incident Response Training",
+                "pill": "In focus",
+                "desc": null
+              },
+              {
+                "title": "Data Privacy Training",
+                "pill": "In focus",
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "8",
+        "label": "Cyber Insurance",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Cyber Insurance",
+            "items": [
+              {
+                "title": "DPDPA Consulting",
+                "pill": "In focus",
+                "desc": null
+              },
+              {
+                "title": "vDPO-as-a-Service",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "vCISO-as-a-Service",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Cyber Security Audit",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "ISO 27001 Consulting",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Compliance Consulting",
+                "pill": null,
+                "desc": null
+              },
+              
+              {
+                "title": "Third-Party Risk Mgmt (TPRM)",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Managed GRC",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "PCI Consulting",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Cyber Insurance",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "ISO 22301",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "ISO 42001",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "ISO 27701",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
     ]
   },
   {
@@ -1476,7 +1586,7 @@ export const MEGA_MENU: MenuTop[] = [
         "on": false,
         "groups": [
           {
-            "heading": "AI Traning",
+            "heading": "AI Training",
             "items": [
               {
                 "title": "AI App Builder",
@@ -1578,6 +1688,48 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
+      {
+        "g": "2",
+        "label": "Data as a services",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Data as a services",
+            "items": [
+              {
+                "title": "Data Analytics",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Data Engineering",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Data Visualization",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Data Warehouse",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Data Governance",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Data Modernization",
+                "pill": null,
+                "desc": null
+              }
+            ]
+          }
+        ]
+      },
     ]
   },
   {
@@ -1640,43 +1792,45 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "2",
-        "label": "Data as a services",
+        "g": "1",
+        "label": "Microsoft Tools",
         "on": false,
         "groups": [
           {
-            "heading": "Data as a services",
+            "heading": "Backup Tools",
             "items": [
               {
-                "title": "Data Analytics",
+                "title": "Acronis Backup Advanced",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Data Engineering",
+                "title": "Acronis True Image",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "1",
+        "label": "Adobe Tools",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Backup Tools",
+            "items": [
+              {
+                "title": "Acronis Backup Advanced",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Data Visualization",
+                "title": "Acronis True Image",
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "Data Warehouse",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Data Governance",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Data Modernization",
-                "pill": null,
-                "desc": null
-              }
             ]
           }
         ]
@@ -1748,10 +1902,16 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Web Design for CA, CS & Lawyers",
+                "title": "Helth Care",
                 "pill": null,
                 "desc": null
-              }
+              },
+              {
+                "title": "Retails",
+                "pill": null,
+                "desc": null
+              },
+              
             ]
           }
         ]
@@ -2553,7 +2713,7 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "6",
-        "label": "SLA'S",
+        "label": "SLA's",
         "on": false,
         "groups": [
           {
@@ -2633,14 +2793,14 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "7",
-        "label": "Event",
+        "label": "Events",
         "on": false,
         "groups": [
           {
-            "heading": "Event",
+            "heading": "Events",
             "items": [
               {
-                "title": "No Event",
+                "title": "No Events",
                 "pill": null,
                 "desc": ""
               },
