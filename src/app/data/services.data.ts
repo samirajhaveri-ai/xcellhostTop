@@ -1024,42 +1024,6 @@ export const SERVICES_RICH: Record<string, ServiceRich> = {
       ]
     ]
   },
-  "metallic backup cloud": {
-    "price": "Per-workload plans",
-    "ov": "Commvault-powered enterprise backup as a service — deployed in minutes, not months. For organisations that need enterprise-grade data protection without running backup infrastructure.",
-    "f": [
-      [
-        "Commvault engine",
-        "Enterprise-grade, delivered as a service"
-      ],
-      [
-        "Minutes to deploy",
-        "No backup servers to build"
-      ],
-      [
-        "Broad coverage",
-        "M365, endpoints, VMs, databases, files"
-      ],
-      [
-        "Ransomware-ready",
-        "Air-gapped, immutable copies"
-      ]
-    ],
-    "q": [
-      [
-        "Do we need a separate Commvault license?",
-        "No — it is included in the service."
-      ],
-      [
-        "Is on-prem data covered too?",
-        "Yes — VMs, file servers and databases."
-      ],
-      [
-        "Can we migrate from our existing backup?",
-        "Yes — a parallel-run approach ensures a seamless cutover."
-      ]
-    ]
-  },
   "cloud mobile device mgmt": {
     "price": "Per-device/mo",
     "ov": "Company data on personal phones is a breach waiting to happen. Cloud MDM enrolls, secures and manages every mobile device — enforce encryption, push apps, and remote-wipe lost devices in seconds.",

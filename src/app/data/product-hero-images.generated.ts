@@ -18,7 +18,6 @@ export const PRODUCT_HERO_IMAGES: Readonly<Record<string, string>> = {
   "Cloud Object Storage": "/assets/images/product-intros/reference-9537a2e9b0a9.png",
   "Cloud Disaster Recovery": "/assets/images/product-intros/reference-049961d8d149.png",
   "Intelligent Backup": "/assets/images/product-intros/reference-05dcc785464d.png",
-  "Metallic Backup Cloud": "/assets/images/product-intros/reference-cf3920661ca8.png",
   "Cloud Mobile Device Mgmt": "/assets/images/product-intros/reference-d3a8bae5f3f4.png",
   "Microsoft 365 Backup": "/assets/images/product-intros/reference-8adac7d97527.png",
   "Google Workspace Backup": "/assets/images/product-intros/reference-a8375fab4fd8.png",

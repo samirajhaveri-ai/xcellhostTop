@@ -14,31 +14,16 @@ import {
 } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 
-import { CatalogService, slugify } from '../core/catalog.service';
+import { slugify } from '../core/catalog.service';
 import { OverlayService } from '../core/overlay.service';
-import { CATEGORY_COLORS } from '../data/category.data';
-import { Category, DirectoryEntry } from '../data/models';
-
-/** One rendered `.sr` row. */
-interface Hit {
-  name: string;
-  desc: string;
-  cat: Category;
-  slug: string;
-  color: string;
-}
-
-/** Names the original showed before anything was typed. */
-const FEATURED =
-  /Tally on Cloud|DPDPA|Cloud Backup \(Acronis\)|VAPT Services|Secure DMARC|Microsoft 365|Bare Metal Server|SMB Cyber/;
+import { SiteSearchResult, SiteSearchService } from '../core/site-search.service';
 
 const DEBOUNCE_MS = 120;
 const MAX_COMPARE = 4;
 
 /**
- * The full-screen `#srch` dialog: free-text search across the 205-service
- * catalogue, arrow-key navigation, and the compare basket that hands two to
- * four services over to `/compare`.
+ * The full-screen `#srch` dialog: free-text search across products, pages and
+ * live CMS blogs, plus keyboard navigation and product comparison.
  *
  * Visibility is owned by `OverlayService` under the id `'search'`. Escape is
  * bound once on the app shell (`OverlayService.closeTop()`), so this component
@@ -56,7 +41,7 @@ const MAX_COMPARE = 4;
   templateUrl: './search.component.html',
 })
 export class SearchDialogComponent {
-  private readonly catalog = inject(CatalogService);
+  private readonly search = inject(SiteSearchService);
   private readonly router = inject(Router);
   private readonly injector = inject(Injector);
   readonly overlay = inject(OverlayService);
@@ -74,20 +59,11 @@ export class SearchDialogComponent {
 
   private timer: ReturnType<typeof setTimeout> | null = null;
 
-  private readonly featured: DirectoryEntry[] = this.catalog.entries
-    .filter((e) => FEATURED.test(e.name))
-    .slice(0, 8);
+  private readonly featured = this.search.featured();
 
-  readonly results = computed<Hit[]>(() => {
+  readonly results = computed<SiteSearchResult[]>(() => {
     const s = this.query().trim();
-    const hits = s ? this.catalog.search(s, 12) : this.featured;
-    return hits.map((e) => ({
-      name: e.name,
-      desc: e.desc,
-      cat: e.cat,
-      slug: slugify(e.name),
-      color: CATEGORY_COLORS[e.cat] ?? '#1565D8',
-    }));
+    return s ? this.search.search(s) : this.featured;
   });
 
   readonly countLabel = computed(() => {
@@ -175,9 +151,9 @@ export class SearchDialogComponent {
     this.overlay.close('search');
   }
 
-  go(hit: Hit): void {
+  go(hit: SiteSearchResult): void {
     this.close();
-    void this.router.navigate(['/', hit.slug]);
+    void this.router.navigateByUrl(hit.url);
   }
 
   isPicked(name: string): boolean {

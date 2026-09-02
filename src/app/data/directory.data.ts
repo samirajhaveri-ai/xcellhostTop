@@ -317,12 +317,6 @@ export const DIRECTORY: DirectoryEntry[] = [
     "group": "Cloud Data Protect"
   },
   {
-    "name": "Metallic Backup Cloud",
-    "desc": "Secure, scalable cloud backup in minutes",
-    "cat": "Cloud",
-    "group": "Cloud Data Protect"
-  },
-  {
     "name": "Cloud Mobile Device Mgmt",
     "desc": "Tools for efficient device management",
     "cat": "Cloud",

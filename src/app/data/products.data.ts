@@ -1311,7 +1311,6 @@ export const PRODUCT_VIDEOS: Record<string, string[]> = {
   "Microsoft 365 Backup": ["", "d8Gcpno-yXg"],
   "Entra ID Backup": ["E__PpPf59nQ", ""],
   "E-Mail Backup / Archiving": ["Tfy4oyLe1UI", ""],
-  "Metallic Backup Cloud": ["FO7O0V4eP1w", ""],
   "Business E-Mail": ["sgZQYm-MR8g", ""],
   "Microsoft 365": ["sQpgrUYpZvQ", ""],
   "Advanced Email Security": ["Jl7JzsNuosI", ""],

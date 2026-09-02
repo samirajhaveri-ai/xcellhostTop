@@ -114,6 +114,16 @@ export const COMPANY_PAGES: Record<string, CompanyPageContent> = {
     cta: 'Need certification evidence for procurement or due diligence? Ask our team for the current documents.',
     ctaLabel: 'Request documents',
   },
+  'awards': {
+    eyebrow: 'About',
+    title: 'Awards',
+    tagline: 'Recognition earned throughout XcellHost\'s cloud and technology journey.',
+    intro: 'Our awards, memberships and partner recognition reflect long-standing relationships, technical expertise and consistent service delivery.',
+    cards: [],
+    sections: [],
+    cta: 'Want to learn more about XcellHost and our technology partnerships?',
+    ctaLabel: 'Get in touch',
+  },
   'data-centers-global': {
     eyebrow: 'About',
     title: 'Data Centers (Global)',
