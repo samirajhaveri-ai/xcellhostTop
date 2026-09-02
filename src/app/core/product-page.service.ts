@@ -184,6 +184,24 @@ const WHY_ICON_PATHS: readonly string[] = [
   'M8 12l3 3 5-6M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20ZM4.9 19.1 3 21M19.1 19.1 21 21',
 ];
 
+const CLOUD_BACKUP_WHY: readonly [string, string][] = [
+  ['Reliable Data Protection', 'Protect servers, endpoints, applications, and critical workloads from data loss.'],
+  ['Automated Backups', 'Schedule regular backups automatically and reduce manual backup efforts.'],
+  ['Ransomware Protection', 'Safeguard critical data from ransomware, accidental deletion, and hardware failure.'],
+  ['Flexible Retention', 'Maintain recoverable backup copies with configurable retention policies.'],
+  ['Fast Data Recovery', 'Restore critical data and workloads quickly to minimize downtime.'],
+  ['Secure & Scalable Backup', 'Protect growing data volumes with secure and scalable cloud backup.'],
+];
+
+const CLOUD_BACKUP_FEATURES: readonly [string, string][] = [
+  ['Full Image Backup', 'Back up complete systems for dependable disaster recovery.'],
+  ['File & Folder Backup', 'Protect individual files and folders with granular recovery options.'],
+  ['Cloud Backup', 'Store secure off-site copies of critical business data.'],
+  ['End-to-End Encryption', 'Keep backup data protected in transit and at rest.'],
+  ['Ransomware Protection', 'Safeguard recoverable copies from ransomware and accidental deletion.'],
+  ['Bare-Metal Recovery', 'Restore an entire system to new or recovered hardware quickly.'],
+];
+
 /* ---------------------------------------------------------------- seeding */
 /** djb2 — the original site's hash, kept so pages render identically. */
 function hash(s: string): number {
@@ -520,12 +538,14 @@ export class ProductPageService {
     /* -------- overview + features -------- */
     const overview =
       name === 'Remote Monitoring & Mgmt (RMM)'
-        ? 'Acronis RMM software helps Customer deliver better IT management. Deploy high-performance and secure remote desktop and assistance at no additional cost.'
+        ? 'Acronis RMM software helps customers deliver better IT management with powerful tools for monitoring, managing, and supporting devices remotely. It enables IT teams to monitor device performance, identify issues, and provide efficient remote support. Deploy high-performance remote desktop capabilities for fast and reliable remote access. Provide secure remote assistance at no additional cost, helping teams resolve IT issues quickly and efficiently. With centralized management and proactive monitoring, businesses can improve productivity, minimize downtime, and maintain a more reliable IT environment.'
         : rich?.ov ||
           `${name} from XcellHost. ${tag} Delivered from Indian Tier-4 datacenters, ` +
             `monitored around the clock, and backed by engineers who answer the phone.`;
 
-    const featSrc: Pair[] = rich?.f ?? CATEGORY_FEATURES[cat] ?? CATEGORY_FEATURES['Cloud'];
+    const featSrc: readonly Pair[] = name.toLowerCase().startsWith('cloud backup')
+      ? CLOUD_BACKUP_FEATURES
+      : rich?.f ?? CATEGORY_FEATURES[cat] ?? CATEGORY_FEATURES['Cloud'];
     const features =
       name === 'Advanced Endpoint Security (EDR)'
         ? EDR_TOP_FEATURES_MODERN.map((feature) => ({ ...feature }))
@@ -697,7 +717,11 @@ export class ProductPageService {
       PRODUCT_BRAND_LINES[name] ?? product?.brandLine
     );
 
-    const whySource = name === 'Cloud Drive' ? CLOUD_DRIVE_WHY : (CATEGORY_WHY[cat] ?? []);
+    const whySource = name.toLowerCase().startsWith('cloud backup')
+      ? CLOUD_BACKUP_WHY
+      : name === 'Cloud Drive'
+        ? CLOUD_DRIVE_WHY
+        : (CATEGORY_WHY[cat] ?? []);
 
     return {
       name,

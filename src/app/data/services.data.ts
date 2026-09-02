@@ -11,7 +11,7 @@ import { ServiceRich, Pair, Faq, Category } from './models';
 export const SERVICES_RICH: Record<string, ServiceRich> = {
   "tally on cloud": {
     "price": "₹499/user/mo",
-    "ov": "Stop being tied to one office desktop. XcellHost Tally on Cloud puts your Tally and TallyPrime on secure Indian cloud servers, giving your team access to the same live data wherever they work. Accountants can work from the office, auditors can review records remotely, and branch teams can stay connected from anywhere — Mumbai, Dubai, or even the factory floor. With free migration and a 15-day money-back guarantee, moving to the cloud is simple and risk-free.",
+    "ov": "Stop being tied to a single office desktop with XcellHost Tally on Cloud. Host your Tally and TallyPrime on secure Indian cloud servers and access the same live data from anywhere. Your accountants can work from the office, auditors can review records remotely, and branch teams can stay connected from any location. Access your business data securely across Mumbai, Dubai, or even the factory floor. With reliable cloud infrastructure, your team can collaborate efficiently without being limited by location. Free migration makes the transition simple and hassle-free. Plus, with a 15-day money-back guarantee, you can move your Tally to the cloud with confidence.",
     "f": [
       [
         "Any device, any OS",
@@ -115,7 +115,7 @@ export const SERVICES_RICH: Record<string, ServiceRich> = {
       "acronis true image"
     ],
     "price": "₹6/GB/mo",
-    "ov": "Helps organizations protect servers, endpoints, applications and business-critical workloads against accidental deletion, hardware failure, ransomware and other causes of data loss.Automated backup schedules, configurable retention and recovery capabilities help businesses maintain recoverable copies of important data while reducing dependence on manual backup processes",
+    "ov": "Cloud Backup helps organizations protect servers, endpoints, applications, and business-critical workloads against data loss. It safeguards critical data from accidental deletion, hardware failure, ransomware, and other causes of data loss. Automated backup schedules ensure important data is backed up regularly with minimal manual effort. Configurable retention policies help businesses maintain recoverable copies of critical data when needed. Reliable recovery capabilities enable fast data restoration while reducing downtime and dependence on manual backup processes.",
     "f": [
       [
         "Immutable backups",
