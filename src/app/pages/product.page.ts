@@ -58,6 +58,14 @@ interface CloudDrivePlan {
   comments: string;
 }
 
+type CloudBackupTerm = 'monthly' | 'yearly';
+
+interface CloudBackupPlan {
+  storage: string;
+  monthly: number;
+  yearly: number;
+}
+
 /**
  * The routed service / product page — everything the original `#ppage` overlay
  * rendered through its six-script `__ppExtras` pipeline, in one component.
@@ -444,6 +452,8 @@ export class ProductPage {
 
   readonly isCloudDrive = computed(() => this.view()?.name === 'Cloud Drive');
 
+  readonly isCloudBackup = computed(() => this.view()?.name.toLowerCase().startsWith('cloud backup') ?? false);
+
   /** Every product's available videos, shown together immediately before reviews. */
   readonly showcaseVideos = computed<readonly { label: string; url: SafeResourceUrl }[]>(() => {
     const view = this.view();
@@ -749,6 +759,41 @@ export class ProductPage {
     ev.preventDefault();
     this.topics.ask(`Cloud Drive ${plan.storage} - ${this.activeCloudDriveTerm().label}`);
     this.overlay.open('callback');
+  }
+
+  readonly cloudBackupTerms: readonly { key: CloudBackupTerm; label: string }[] = [
+    { key: 'monthly', label: 'Monthly' },
+    { key: 'yearly', label: 'Yearly' },
+  ];
+
+  readonly cloudBackupPlans: readonly CloudBackupPlan[] = [
+    { storage: '50 GB', monthly: 297, yearly: 3563 },
+    { storage: '100 GB', monthly: 594, yearly: 7125 },
+    { storage: '250 GB', monthly: 1484, yearly: 17812 },
+    { storage: '500 GB', monthly: 2850, yearly: 34200 },
+    { storage: '1 TB', monthly: 5700, yearly: 68400 },
+  ];
+
+  readonly selectedCloudBackupTerm = signal<CloudBackupTerm>('monthly');
+
+  readonly activeCloudBackupTerm = computed(
+    () => this.cloudBackupTerms.find((term) => term.key === this.selectedCloudBackupTerm()) ?? this.cloudBackupTerms[0]
+  );
+
+  cloudBackupPrice(plan: CloudBackupPlan): number {
+    return plan[this.selectedCloudBackupTerm()];
+  }
+
+  selectCloudBackupTerm(term: CloudBackupTerm): void {
+    this.selectedCloudBackupTerm.set(term);
+  }
+
+  selectCloudBackupPlan(plan: CloudBackupPlan, ev: Event): void {
+    ev.preventDefault();
+    const term = this.activeCloudBackupTerm().label;
+    const price = `₹${this.formatInr(this.cloudBackupPrice(plan))}/${term.toLowerCase()}`;
+    this.cart.add(`Cloud Backup - ${plan.storage} - ${term}`, price);
+    this.cart.open();
   }
 
   /* ----------------------------------------------------------------- seo */
