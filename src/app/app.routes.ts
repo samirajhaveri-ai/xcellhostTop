@@ -49,6 +49,30 @@ export const routes: Routes = [
       import('./pages/payment-methods.page').then((m) => m.PaymentMethodsPage),
   },
   {
+    path: 'promo-offers',
+    data: { title: 'Promos & Offers' },
+    loadComponent: () =>
+      import('./pages/under-construction.page').then((m) => m.UnderConstructionPage),
+  },
+  {
+    path: 'company-profile',
+    data: { title: 'Company Profile' },
+    loadComponent: () =>
+      import('./pages/under-construction.page').then((m) => m.UnderConstructionPage),
+  },
+  {
+    path: 'career-handbook',
+    data: { title: 'Career Handbook' },
+    loadComponent: () =>
+      import('./pages/under-construction.page').then((m) => m.UnderConstructionPage),
+  },
+  {
+    path: 'partner-program',
+    data: { title: 'Partner Program' },
+    loadComponent: () =>
+      import('./pages/under-construction.page').then((m) => m.UnderConstructionPage),
+  },
+  {
     path: 'geotrust-ssl-certificates',
     data: { productSlug: 'geotrust' },
     loadComponent: () =>

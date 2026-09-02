@@ -32,20 +32,23 @@ function pageNameFromSlug(slug: string): string {
 export class UnderConstructionPage {
   private readonly route = inject(ActivatedRoute);
   private readonly seo = inject(SeoService);
+  private readonly routeTitle = this.route.snapshot.data['title'] as string | undefined;
 
   private readonly slug = toSignal(
     this.route.paramMap.pipe(map((params) => params.get('slug') ?? '')),
     { initialValue: '' },
   );
 
-  readonly pageName = computed(() => pageNameFromSlug(this.slug()));
+  readonly pageName = computed(() => this.routeTitle ?? pageNameFromSlug(this.slug()));
   readonly pageInitial = computed(() => this.pageName().charAt(0).toUpperCase());
 
   constructor() {
+    const pageName = this.routeTitle ?? pageNameFromSlug(this.route.snapshot.paramMap.get('slug') ?? '');
+    const pagePath = this.route.snapshot.routeConfig?.path?.split('/:')[0] ?? 'under-construction';
     this.seo.set(
-      'Page Under Construction - XcellHost',
-      'This XcellHost page is currently being prepared. Explore our available services or contact our team for help.',
-      '/under-construction/',
+      `${pageName} - Under Construction | XcellHost`,
+      `The ${pageName} page is currently being prepared. Please check back soon.`,
+      `/${pagePath}/`,
     );
   }
 

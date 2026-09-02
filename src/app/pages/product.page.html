@@ -48,11 +48,8 @@
           </div>
         </div>
       } @else if (v.name === 'Web Security (SiteLock)') {
-        <div class="pph-scene has-illus pph-brand-only" aria-hidden="true">
-          <div class="pph-powered-mark pph-powered-image pph-fallback-brand">
-            <span class="pw-lbl">Powered By</span>
-            <img [src]="v.heroBrand.logoImage" [alt]="v.heroBrand.name" />
-          </div>
+        <div class="pph-scene pph-brand-only pph-sitelock-brand" aria-hidden="true">
+          <img class="pph-sitelock-logo" src="/assets/images/sitelock-logo.png" alt="SiteLock" />
         </div>
       } @else if (v.name !== 'Web Security (SiteLock)') {
         <div class="pph-scene" id="pphScene" aria-hidden="true" [innerHTML]="sceneHtml()"></div>
@@ -62,6 +59,35 @@
       <span class="orb orb-1" aria-hidden="true"></span>
 
       <div class="wrap">
+        @if (v.name === 'Web Security (SiteLock)') {
+          <div class="sitelock-copy">
+            <div class="pp-crumb" id="ppCrumb">Home › Security › Website Security › SiteLock</div>
+            <span class="sitelock-eyebrow"><span class="dot"></span>Website Security · Find · Fix · Prevent</span>
+            <h1 id="ppTitle">
+              <span class="pp-title-brand" aria-label="XcellSecure">
+                <span class="pp-brand-xcell">Xcell</span><span class="pp-brand-family">Secure</span>
+              </span>
+              <span class="pp-title-divider" aria-hidden="true">|</span>
+              <span class="pp-title-name">SiteLock Website Security</span>
+            </h1>
+            <p class="sitelock-lead">Your website is always open — keep it always protected.</p>
+            <p class="sitelock-sub">Daily malware scanning, automatic removal and a web application firewall that stops attacks before they reach your site.</p>
+            <div class="sitelock-tech">Malware Scan · Auto-Removal · WAF · CDN · Trust Seal</div>
+            <div class="sitelock-checks">
+              <div class="sitelock-check"><span>✓</span>Daily Malware Scanning</div>
+              <div class="sitelock-check"><span>✓</span>Web Application Firewall</div>
+              <div class="sitelock-check"><span>✓</span>Automatic Malware Removal</div>
+              <div class="sitelock-check"><span>✓</span>CDN Speed Acceleration</div>
+              <div class="sitelock-check"><span>✓</span>Vulnerability Patching</div>
+              <div class="sitelock-check"><span>✓</span>SiteLock Trust Seal</div>
+            </div>
+            <div class="hero-ctas sitelock-ctas">
+              <a class="btn ppd-info" [href]="v.infosheetUrl" id="ppInfo" target="_blank" rel="noopener noreferrer"><span class="ppd-ic">⬇</span> Infosheet</a>
+              <a class="btn ppd-pres" href="#" id="ppPres" (click)="requestDoc('presentation', $event)"><span class="ppd-ic">📖</span> Presentation</a>
+              <a class="btn btn-primary" href="#" id="ppEnquiry" (click)="openCallback($event)">Let's Talk</a>
+            </div>
+          </div>
+        } @else {
         <div class="pp-crumb" id="ppCrumb">{{ v.crumb }}</div>
         <h1 id="ppTitle" [class.pp-title-compact]="compactHeroTitle()">
           <span class="pp-title-brand" [attr.aria-label]="'Xcell' + v.brandSuffix">
@@ -125,6 +151,7 @@
             </section>
           </div>
         </div>
+        }
       </div>
     </div>
 
