@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
 import { RevealDirective } from '../shared/reveal.directive';
 
@@ -22,6 +22,49 @@ const DATA_CENTER_LOCATIONS: readonly DataCenterLocation[] = [
   { flag: '🇳🇱', code: 'NL', name: 'Netherlands' },
 ];
 
+const ACRONIS_LOCATIONS: readonly DataCenterLocation[] = [
+  { flag: '🇦🇺', code: 'AU', name: 'Australia' },
+  { flag: '🇦🇹', code: 'AT', name: 'Austria' },
+  { flag: '🇧🇹', code: 'BT', name: 'Bhutan' },
+  { flag: '🇧🇷', code: 'BR', name: 'Brazil' },
+  { flag: '🇧🇬', code: 'BG', name: 'Bulgaria' },
+  { flag: '🇨🇦', code: 'CA', name: 'Canada' },
+  { flag: '🇨🇿', code: 'CZ', name: 'Czech Republic' },
+  { flag: '🇩🇰', code: 'DK', name: 'Denmark' },
+  { flag: '🇫🇮', code: 'FI', name: 'Finland' },
+  { flag: '🇫🇷', code: 'FR', name: 'France' },
+  { flag: '🇩🇪', code: 'DE', name: 'Germany' },
+  { flag: '🇬🇷', code: 'GR', name: 'Greece' },
+  { flag: '🇭🇺', code: 'HU', name: 'Hungary' },
+  { flag: '🇮🇳', code: 'IN', name: 'India' },
+  { flag: '🇮🇩', code: 'ID', name: 'Indonesia' },
+  { flag: '🇮🇪', code: 'IE', name: 'Ireland' },
+  { flag: '🇮🇱', code: 'IL', name: 'Israel' },
+  { flag: '🇮🇹', code: 'IT', name: 'Italy' },
+  { flag: '🇯🇵', code: 'JP', name: 'Japan' },
+  { flag: '🇱🇮', code: 'LI', name: 'Liechtenstein' },
+  { flag: '🇲🇾', code: 'MY', name: 'Malaysia' },
+  { flag: '🇲🇽', code: 'MX', name: 'Mexico' },
+  { flag: '🇳🇱', code: 'NL', name: 'Netherlands' },
+  { flag: '🇳🇿', code: 'NZ', name: 'New Zealand' },
+  { flag: '🇳🇬', code: 'NG', name: 'Nigeria' },
+  { flag: '🇳🇴', code: 'NO', name: 'Norway' },
+  { flag: '🇵🇱', code: 'PL', name: 'Poland' },
+  { flag: '🇵🇹', code: 'PT', name: 'Portugal' },
+  { flag: '🇷🇴', code: 'RO', name: 'Romania' },
+  { flag: '🇸🇬', code: 'SG', name: 'Singapore' },
+  { flag: '🇿🇦', code: 'ZA', name: 'South Africa' },
+  { flag: '🇰🇷', code: 'KR', name: 'South Korea' },
+  { flag: '🇪🇸', code: 'ES', name: 'Spain' },
+  { flag: '🇸🇪', code: 'SE', name: 'Sweden' },
+  { flag: '🇨🇭', code: 'CH', name: 'Switzerland' },
+  { flag: '🇹🇼', code: 'TW', name: 'Taiwan' },
+  { flag: '🇹🇷', code: 'TR', name: 'Türkiye' },
+  { flag: '🇦🇪', code: 'AE', name: 'United Arab Emirates' },
+  { flag: '🇬🇧', code: 'GB', name: 'United Kingdom' },
+  { flag: '🇺🇸', code: 'US', name: 'United States' },
+] as const;
+
 /** Global datacenter network presented between homepage insights and guarantees. */
 @Component({
   selector: 'xh-global-locations-map',
@@ -35,12 +78,39 @@ const DATA_CENTER_LOCATIONS: readonly DataCenterLocation[] = [
         <header class="sec-head" xhReveal>
           <div class="eyebrow">Global infrastructure</div>
           <h2 id="data-centers-title">Global Data Centers</h2>
-          <p>
-            Our globally distributed facilities use advanced technology to provide secure,
-            stable environments with the performance and reliability your business depends on.
-          </p>
+          @if (activeView() === 'xcellhost') {
+            <p>
+              Our globally distributed facilities use advanced technology to provide secure,
+              stable environments with the performance and reliability your business depends on.
+            </p>
+          } @else {
+            <p>
+              Explore the Acronis Cyber Cloud footprint and the regional infrastructure options
+              available for cyber protection and data residency.
+            </p>
+          }
+          <div class="dc-view-switch" role="tablist" aria-label="Choose a data center network">
+            <button
+              type="button"
+              role="tab"
+              [class.active]="activeView() === 'xcellhost'"
+              [attr.aria-selected]="activeView() === 'xcellhost'"
+              aria-controls="xcellhost-dcs"
+              (click)="activeView.set('xcellhost')"
+            >View XcellHost DC’s</button>
+            <button
+              type="button"
+              role="tab"
+              [class.active]="activeView() === 'acronis'"
+              [attr.aria-selected]="activeView() === 'acronis'"
+              aria-controls="acronis-dcs"
+              (click)="activeView.set('acronis')"
+            >View Acronis DC’s</button>
+          </div>
         </header>
 
+        @if (activeView() === 'xcellhost') {
+        <div id="xcellhost-dcs" class="dc-tab-panel" role="tabpanel" aria-label="XcellHost data centers">
         <div class="map-stage" xhReveal>
           <div class="location-count" aria-label="More than 10 datacenter locations">
             
@@ -67,6 +137,38 @@ const DATA_CENTER_LOCATIONS: readonly DataCenterLocation[] = [
             }
           </div>
         </div>
+        </div>
+        } @else {
+        <div id="acronis-dcs" class="dc-tab-panel" role="tabpanel" aria-label="Acronis data centers">
+          <div class="map-stage" xhReveal>
+            <div class="location-count" aria-label="More than 50 Acronis data center locations">
+            
+            </div>
+            <img
+              src="assets/images/xcellhost-global-locations-map.png"
+              width="1146"
+              height="540"
+              loading="lazy"
+              decoding="async"
+              alt="World map showing the global Acronis data center footprint"
+            />
+          </div>
+
+          <div class="location-marquee" aria-label="Acronis data center countries" xhReveal>
+            <div class="location-track acronis-location-track">
+              @for (pass of passes; track pass) {
+                @for (location of acronisLocations; track location.code) {
+                  <div class="location-chip" [attr.aria-hidden]="pass === 1 ? 'true' : null">
+                    <img class="location-flag" [src]="flagUrl(location.code)" [alt]="location.name + ' flag'" loading="lazy" />
+                    <strong>{{ location.name }}</strong>
+                  </div>
+                }
+              }
+            </div>
+          </div>
+          <a class="acronis-source" href="https://www.acronis.com/en/data-centers/" target="_blank" rel="noopener noreferrer">View current locations on Acronis.com ↗</a>
+        </div>
+        }
       </div>
     </section>
   `,
@@ -94,6 +196,40 @@ const DATA_CENTER_LOCATIONS: readonly DataCenterLocation[] = [
     .data-centers .eyebrow::after {
       margin-inline: auto;
     }
+
+    .dc-view-switch {
+      display: inline-flex;
+      gap: 5px;
+      margin-top: 22px;
+      padding: 5px;
+      border: 1px solid #c9d8ed;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .78);
+      box-shadow: 0 8px 22px rgba(4, 30, 66, .08);
+    }
+
+    .dc-view-switch button {
+      min-height: 42px;
+      padding: 9px 19px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--slate);
+      font: 700 13px/1 var(--body);
+      cursor: pointer;
+      transition: background .2s, color .2s, box-shadow .2s, transform .2s;
+    }
+
+    .dc-view-switch button:hover { color: var(--blue); }
+    .dc-view-switch button.active {
+      background: var(--blue);
+      color: #fff;
+      box-shadow: 0 7px 16px rgba(21, 101, 216, .25);
+    }
+    .dc-view-switch button:focus-visible { outline: 3px solid rgba(21, 101, 216, .25); outline-offset: 2px; }
+
+    .dc-tab-panel { animation: dc-panel-in .35s ease both; }
+    @keyframes dc-panel-in { from { opacity: 0; transform: translateY(8px); } }
 
     .map-stage {
       display: grid;
@@ -185,6 +321,17 @@ const DATA_CENTER_LOCATIONS: readonly DataCenterLocation[] = [
       text-overflow: ellipsis;
     }
 
+    .acronis-location-track { animation-duration: 80s; }
+    .acronis-source {
+      display: block;
+      width: max-content;
+      margin: 10px auto 0;
+      color: var(--blue);
+      font: 700 12px/1.3 var(--body);
+      text-decoration: none;
+    }
+    .acronis-source:hover { text-decoration: underline; }
+
     @keyframes locations-scroll {
       to {
         transform: translateX(calc(-50% - 7px));
@@ -207,6 +354,9 @@ const DATA_CENTER_LOCATIONS: readonly DataCenterLocation[] = [
         margin: 0 auto -18px;
         align-items: center;
       }
+
+      .dc-view-switch { width: 100%; }
+      .dc-view-switch button { flex: 1; padding-inline: 10px; }
     }
 
     @media (max-width: 430px) {
@@ -223,12 +373,15 @@ const DATA_CENTER_LOCATIONS: readonly DataCenterLocation[] = [
       .location-track {
         animation: none;
       }
+      .dc-tab-panel { animation: none; }
     }
   `,
 })
 export class GlobalLocationsMapComponent {
   readonly locations = DATA_CENTER_LOCATIONS;
+  readonly acronisLocations = ACRONIS_LOCATIONS;
   readonly passes = [0, 1];
+  readonly activeView = signal<'xcellhost' | 'acronis'>('xcellhost');
 
   flagUrl(code: string): string {
     return `https://flagcdn.com/w40/${code.toLowerCase()}.png`;

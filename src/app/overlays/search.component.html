@@ -3,7 +3,7 @@
   id="srch"
   role="dialog"
   aria-modal="true"
-  aria-label="Search services"
+  aria-label="Search the website"
   [class.open]="overlay.isOpen('search')"
   [attr.aria-hidden]="overlay.isOpen('search') ? null : 'true'"
   (click)="onBackdrop($event)"
@@ -26,9 +26,9 @@
       <input
         id="srchI"
         #srchI
-        placeholder="Search products, solutions, compliance…"
+        placeholder="Search products, pages and blogs…"
         autocomplete="off"
-        aria-label="Search products, solutions, compliance"
+        aria-label="Search products, pages and blogs"
         [value]="q()"
         (input)="onInput($event)"
       />
@@ -36,35 +36,37 @@
     </div>
 
     <div class="srch-res" id="srchR" role="listbox" aria-label="Search results">
-      @for (r of results(); track r.slug; let i = $index) {
+      @for (r of results(); track r.url; let i = $index) {
         <a
           class="sr"
           role="option"
           [class.on]="i === cur()"
           [attr.aria-selected]="i === cur()"
-          [routerLink]="['/', r.slug]"
+          [routerLink]="r.url"
           (mouseenter)="cur.set(i)"
           (click)="close()"
         >
           <span class="sr-c" [style.background]="r.color"></span>
           <span class="sr-t"><b>{{ r.name }}</b><span>{{ r.desc }}</span></span>
-          <span class="sr-cat">{{ r.cat }}</span>
-          <span
-            class="sr-cmp"
-            [class.on]="isPicked(r.name)"
-            role="button"
-            tabindex="0"
-            title="Add to compare"
-            [attr.aria-label]="'Add ' + r.name + ' to compare'"
-            [attr.aria-pressed]="isPicked(r.name)"
-            (click)="toggle(r.name, $event)"
-            (keydown.enter)="toggle(r.name, $event)"
-            (keydown.space)="toggle(r.name, $event)"
-            >✓</span
-          >
+          <span class="sr-cat">{{ r.label }}</span>
+          @if (r.compareName) {
+            <span
+              class="sr-cmp"
+              [class.on]="isPicked(r.compareName)"
+              role="button"
+              tabindex="0"
+              title="Add to compare"
+              [attr.aria-label]="'Add ' + r.name + ' to compare'"
+              [attr.aria-pressed]="isPicked(r.compareName)"
+              (click)="toggle(r.compareName, $event)"
+              (keydown.enter)="toggle(r.compareName, $event)"
+              (keydown.space)="toggle(r.compareName, $event)"
+              >✓</span
+            >
+          }
         </a>
       } @empty {
-        <div class="srch-empty">No match. Try “backup”, “ssl”, “compliance”…</div>
+        <div class="srch-empty">No match. Try “backup”, “SSL”, “pricing” or a blog topic.</div>
       }
     </div>
 
