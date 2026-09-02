@@ -135,6 +135,42 @@ export class ProductPage {
     },
   ] as const;
   readonly isCdrTourOpen = computed(() => this.overlay.isOpen('screenshotTour'));
+  readonly activeGenAiTourSlide = signal(0);
+  readonly genAiTourSlides = [
+    { title: 'GenAI usage reports', description: 'Review generative AI activity, application usage and sensitive-data trends across protected devices.', image: '/assets/images/genai-tour-reports.png' },
+    { title: 'Sensitive-data protection', description: 'See how policy controls can stop sensitive data from being shared through public GenAI tools.', image: '/assets/images/genai-tour-protection.png' },
+    { title: 'GenAI protection events', description: 'Track allowed and blocked events with the device, application and event status in one view.', image: '/assets/images/genai-tour-events.png' },
+    { title: 'Data flow policy', description: 'Define rules for sensitive information and control how data can move between users and destinations.', image: '/assets/images/genai-tour-policy.png' },
+  ] as const;
+  readonly isGenAiTourOpen = computed(() => this.overlay.isOpen('genAiScreenshotTour'));
+  readonly activeRmmTourSlide = signal(0);
+  readonly rmmTourSlides = [
+    {
+      title: 'Patch management dashboard',
+      description: 'Review available patches, their severity, and endpoint health from a single management view.',
+      image: '/assets/images/rmm-tour-patches.png',
+    },
+    {
+      title: 'Security posture',
+      description: 'Monitor security baselines, configuration risks and user account health across your organization.',
+      image: '/assets/images/rmm-tour-security-posture.png',
+    },
+  ] as const;
+  readonly isRmmTourOpen = computed(() => this.overlay.isOpen('rmmScreenshotTour'));
+  readonly activeEdrTourSlide = signal(0);
+  readonly edrTourSlides = [
+    {
+      title: 'Security overview',
+      description: 'Review endpoint activity, Generative AI usage and protection insights from one security dashboard.',
+      image: '/assets/images/edr-tour-overview.png',
+    },
+    {
+      title: 'Attack-stage investigation',
+      description: 'Follow suspicious activity through each attack stage to investigate and respond faster.',
+      image: '/assets/images/edr-tour-attack-stages.png',
+    },
+  ] as const;
+  readonly isEdrTourOpen = computed(() => this.overlay.isOpen('edrScreenshotTour'));
 
   selectEdrPlan(index: number): void {
     this.selectedEdrPlanIndex.set(index);
@@ -171,6 +207,57 @@ export class ProductPage {
 
   nextCdrTourSlide(): void {
     this.activeCdrTourSlide.set((this.activeCdrTourSlide() + 1) % this.cdrTourSlides.length);
+  }
+
+  openGenAiTour(): void {
+    this.activeGenAiTourSlide.set(0);
+    this.overlay.open('genAiScreenshotTour');
+  }
+
+  closeGenAiTour(): void { this.overlay.close('genAiScreenshotTour'); }
+
+  selectGenAiTourSlide(index: number): void { this.activeGenAiTourSlide.set(index); }
+
+  previousGenAiTourSlide(): void {
+    this.activeGenAiTourSlide.set((this.activeGenAiTourSlide() + this.genAiTourSlides.length - 1) % this.genAiTourSlides.length);
+  }
+
+  nextGenAiTourSlide(): void {
+    this.activeGenAiTourSlide.set((this.activeGenAiTourSlide() + 1) % this.genAiTourSlides.length);
+  }
+
+  openRmmTour(): void {
+    this.activeRmmTourSlide.set(0);
+    this.overlay.open('rmmScreenshotTour');
+  }
+
+  closeRmmTour(): void { this.overlay.close('rmmScreenshotTour'); }
+
+  selectRmmTourSlide(index: number): void { this.activeRmmTourSlide.set(index); }
+
+  previousRmmTourSlide(): void {
+    this.activeRmmTourSlide.set((this.activeRmmTourSlide() + this.rmmTourSlides.length - 1) % this.rmmTourSlides.length);
+  }
+
+  nextRmmTourSlide(): void {
+    this.activeRmmTourSlide.set((this.activeRmmTourSlide() + 1) % this.rmmTourSlides.length);
+  }
+
+  openEdrTour(): void {
+    this.activeEdrTourSlide.set(0);
+    this.overlay.open('edrScreenshotTour');
+  }
+
+  closeEdrTour(): void { this.overlay.close('edrScreenshotTour'); }
+
+  selectEdrTourSlide(index: number): void { this.activeEdrTourSlide.set(index); }
+
+  previousEdrTourSlide(): void {
+    this.activeEdrTourSlide.set((this.activeEdrTourSlide() + this.edrTourSlides.length - 1) % this.edrTourSlides.length);
+  }
+
+  nextEdrTourSlide(): void {
+    this.activeEdrTourSlide.set((this.activeEdrTourSlide() + 1) % this.edrTourSlides.length);
   }
 
   edrPlanTotal(plan: PricingPlan): string {
@@ -344,6 +431,14 @@ export class ProductPage {
   readonly isCloudDisasterRecoverySmb = computed(
     () => this.view()?.name === 'Cloud Disaster Recovery SMB'
   );
+
+  /** Both catalogue routes use the CyberFit disaster-recovery pricing section. */
+  readonly isCloudDisasterRecovery = computed(() => {
+    const name = this.view()?.name;
+    return name === 'Cloud Disaster Recovery' || name === 'Cloud Disaster Recovery SMB';
+  });
+
+  readonly isAcronisGenAi = computed(() => this.view()?.name === 'Acronis GenAI');
 
   readonly isTally = computed(() => this.view()?.name === 'Tally on Cloud');
 

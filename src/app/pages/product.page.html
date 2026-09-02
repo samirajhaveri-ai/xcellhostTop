@@ -105,10 +105,19 @@
               <a class="btn ppd-pres" href="#" id="ppPres" (click)="requestDoc('presentation', $event)"
                 ><span class="ppd-ic">📖</span> Presentation</a
               >
-              <a class="btn btn-primary" href="#" id="ppEnquiry" (click)="openCallback($event)">Let's Talk</a>
               @if (isCloudDisasterRecoverySmb()) {
                 <button class="btn btn-ghost cdr-tour-trigger" type="button" (click)="openCdrTour()">Screenshot Tour</button>
               }
+              @if (isAcronisGenAi()) {
+                <button class="btn btn-ghost cdr-tour-trigger" type="button" (click)="openGenAiTour()">Screenshot Tour</button>
+              }
+              @if (isRmm()) {
+                <button class="btn btn-ghost cdr-tour-trigger" type="button" (click)="openRmmTour()">Screenshot Tour</button>
+              }
+              @if (isAdvancedEdr()) {
+                <button class="btn btn-ghost cdr-tour-trigger" type="button" (click)="openEdrTour()">Screenshot Tour</button>
+              }
+              <a class="btn btn-primary" href="#" id="ppEnquiry" (click)="openCallback($event)">Let's Talk</a>
             </div>
 
             <section class="pp-ask-ai" aria-labelledby="ppAskAiTitle">
@@ -376,18 +385,18 @@
               }
             </div>
           </section>
-        } @else if (isCloudDisasterRecoverySmb()) {
+        } @else if (isCloudDisasterRecovery()) {
           <section class="tally-pricing cdr-smb-pricing" id="ppPlans" aria-labelledby="cdrSmbPricingTitle">
             <div class="tally-price-heading">
               <span>Cloud Disaster Recovery SMB</span>
-              <h2 id="cdrSmbPricingTitle">Get CyberFit &amp; Achieve Cyber Resilience</h2>
+              <h2 id="cdrSmbPricingTitle">Get #CyberFit &amp; Achieve #Cyber Resilience</h2>
               <p>Rapidly recover from cyberattacks and hardware failures within minutes for your on-premise servers and VMs.</p>
             </div>
             <div class="tally-plan-grid">
               <article class="tally-plan-card tally-plan-featured">
                 <div class="tally-plan-band">For SMB workloads</div>
                 <div class="tally-plan-main">
-                  <div class="tally-plan-name"><span aria-hidden="true">A</span><div><b>Acronis CyberFit</b><small>Disaster Recovery</small></div></div>
+                  <div class="tally-plan-name"><span aria-hidden="true">A</span><div><b>Acronis Cloud Disaster Recovery </b><small>SMB</small></div></div>
                   <strong>{{ cdrPlanTotal() }}</strong><small>+GST · total for {{ cdrQuantity() }} {{ cdrQuantity() === 1 ? 'server' : 'servers' }} / month</small>
                 </div>
                 <div class="cdr-plan-purchase">
@@ -1175,6 +1184,93 @@
         <div class="cdr-tour-dots" role="tablist" aria-label="Screenshot tour slides">
           @for (slide of cdrTourSlides; track slide.image; let i = $index) {
             <button type="button" role="tab" [class.is-active]="i === activeCdrTourSlide()" [attr.aria-selected]="i === activeCdrTourSlide()" [attr.aria-label]="'Show ' + slide.title" (click)="selectCdrTourSlide(i)"></button>
+          }
+        </div>
+      </section>
+    </div>
+  }
+
+  @if (isGenAiTourOpen()) {
+    <div class="cdr-tour-overlay" role="presentation">
+      <button class="cdr-tour-backdrop" type="button" aria-label="Close screenshot tour" (click)="closeGenAiTour()"></button>
+      <section class="cdr-tour-modal" role="dialog" aria-modal="true" aria-labelledby="genAiTourTitle">
+        <button class="cdr-tour-close" type="button" aria-label="Close screenshot tour" (click)="closeGenAiTour()">×</button>
+        <div class="cdr-tour-heading">
+          <span>Acronis GenAI</span>
+          <h2 id="genAiTourTitle">Screenshot tour</h2>
+          <p>Explore reporting, policy controls, and event visibility for Generative AI protection.</p>
+        </div>
+        <div class="cdr-tour-stage">
+          @for (slide of genAiTourSlides; track slide.image; let i = $index) {
+            <figure class="cdr-tour-slide" [class.is-active]="i === activeGenAiTourSlide()" [attr.aria-hidden]="i !== activeGenAiTourSlide()">
+              <img [src]="slide.image" [alt]="slide.title" />
+              <figcaption><strong>{{ slide.title }}</strong><span>{{ slide.description }}</span></figcaption>
+            </figure>
+          }
+          <button class="cdr-tour-arrow cdr-tour-prev" type="button" aria-label="Previous screenshot" (click)="previousGenAiTourSlide()">‹</button>
+          <button class="cdr-tour-arrow cdr-tour-next" type="button" aria-label="Next screenshot" (click)="nextGenAiTourSlide()">›</button>
+        </div>
+        <div class="cdr-tour-dots" role="tablist" aria-label="GenAI screenshot tour slides">
+          @for (slide of genAiTourSlides; track slide.image; let i = $index) {
+            <button type="button" role="tab" [class.is-active]="i === activeGenAiTourSlide()" [attr.aria-selected]="i === activeGenAiTourSlide()" [attr.aria-label]="'Show ' + slide.title" (click)="selectGenAiTourSlide(i)"></button>
+          }
+        </div>
+      </section>
+    </div>
+  }
+
+  @if (isRmmTourOpen()) {
+    <div class="cdr-tour-overlay" role="presentation">
+      <button class="cdr-tour-backdrop" type="button" aria-label="Close screenshot tour" (click)="closeRmmTour()"></button>
+      <section class="cdr-tour-modal" role="dialog" aria-modal="true" aria-labelledby="rmmTourTitle">
+        <button class="cdr-tour-close" type="button" aria-label="Close screenshot tour" (click)="closeRmmTour()">×</button>
+        <div class="cdr-tour-heading">
+          <span>Remote Monitoring &amp; Management</span>
+          <h2 id="rmmTourTitle">Screenshot tour</h2>
+          <p>Explore patching, security posture and endpoint management in Acronis RMM.</p>
+        </div>
+        <div class="cdr-tour-stage">
+          @for (slide of rmmTourSlides; track slide.image; let i = $index) {
+            <figure class="cdr-tour-slide" [class.is-active]="i === activeRmmTourSlide()" [attr.aria-hidden]="i !== activeRmmTourSlide()">
+              <img [src]="slide.image" [alt]="slide.title" />
+              <figcaption><strong>{{ slide.title }}</strong><span>{{ slide.description }}</span></figcaption>
+            </figure>
+          }
+          <button class="cdr-tour-arrow cdr-tour-prev" type="button" aria-label="Previous screenshot" (click)="previousRmmTourSlide()">‹</button>
+          <button class="cdr-tour-arrow cdr-tour-next" type="button" aria-label="Next screenshot" (click)="nextRmmTourSlide()">›</button>
+        </div>
+        <div class="cdr-tour-dots" role="tablist" aria-label="RMM screenshot tour slides">
+          @for (slide of rmmTourSlides; track slide.image; let i = $index) {
+            <button type="button" role="tab" [class.is-active]="i === activeRmmTourSlide()" [attr.aria-selected]="i === activeRmmTourSlide()" [attr.aria-label]="'Show ' + slide.title" (click)="selectRmmTourSlide(i)"></button>
+          }
+        </div>
+      </section>
+    </div>
+  }
+
+  @if (isEdrTourOpen()) {
+    <div class="cdr-tour-overlay" role="presentation">
+      <button class="cdr-tour-backdrop" type="button" aria-label="Close screenshot tour" (click)="closeEdrTour()"></button>
+      <section class="cdr-tour-modal" role="dialog" aria-modal="true" aria-labelledby="edrTourTitle">
+        <button class="cdr-tour-close" type="button" aria-label="Close screenshot tour" (click)="closeEdrTour()">×</button>
+        <div class="cdr-tour-heading">
+          <span>Advanced Endpoint Security</span>
+          <h2 id="edrTourTitle">Screenshot tour</h2>
+          <p>Explore security visibility and guided attack investigation with Acronis EDR.</p>
+        </div>
+        <div class="cdr-tour-stage">
+          @for (slide of edrTourSlides; track slide.image; let i = $index) {
+            <figure class="cdr-tour-slide" [class.is-active]="i === activeEdrTourSlide()" [attr.aria-hidden]="i !== activeEdrTourSlide()">
+              <img [src]="slide.image" [alt]="slide.title" />
+              <figcaption><strong>{{ slide.title }}</strong><span>{{ slide.description }}</span></figcaption>
+            </figure>
+          }
+          <button class="cdr-tour-arrow cdr-tour-prev" type="button" aria-label="Previous screenshot" (click)="previousEdrTourSlide()">‹</button>
+          <button class="cdr-tour-arrow cdr-tour-next" type="button" aria-label="Next screenshot" (click)="nextEdrTourSlide()">›</button>
+        </div>
+        <div class="cdr-tour-dots" role="tablist" aria-label="EDR screenshot tour slides">
+          @for (slide of edrTourSlides; track slide.image; let i = $index) {
+            <button type="button" role="tab" [class.is-active]="i === activeEdrTourSlide()" [attr.aria-selected]="i === activeEdrTourSlide()" [attr.aria-label]="'Show ' + slide.title" (click)="selectEdrTourSlide(i)"></button>
           }
         </div>
       </section>
