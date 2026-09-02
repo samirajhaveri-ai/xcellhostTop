@@ -2339,9 +2339,14 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Meet the people and story behind XcellHost"
               },
               {
-                "title": "Certifications & Awards",
+                "title": "Certifications",
                 "pill": null,
                 "desc": "Credentials that reflect trusted delivery"
+              },
+              {
+                "title": "Awards",
+                "pill": null,
+                "desc": "Recognition for our cloud and security expertise"
               },
               {
                 "title": "Data Centers (Global)",
@@ -2386,9 +2391,14 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Meet the people and story behind XcellHost"
               },
               {
-                "title": "Certifications & Awards",
+                "title": "Certifications",
                 "pill": null,
                 "desc": "Credentials that reflect trusted delivery"
+              },
+              {
+                "title": "Awards",
+                "pill": null,
+                "desc": "Recognition for our cloud and security expertise"
               },
               {
                 "title": "Data Centers (Global)",
