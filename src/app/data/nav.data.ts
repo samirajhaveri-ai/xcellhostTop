@@ -235,7 +235,7 @@ export const MEGA_MENU: MenuTop[] = [
               
               {
                 "title": "Cloud Backup",
-                "pill": "",
+                "pill": "Poppular",
                 "desc": null
               },
               {
@@ -271,7 +271,7 @@ export const MEGA_MENU: MenuTop[] = [
               
              
               {
-                "title": "Acronis GenAI",
+                "title": "Acronis GenAI Protected",
                 "pill": "New",
                 "desc": null
               },
@@ -570,6 +570,33 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
+      {
+        "g": "4",
+        "label": "Cloud DevOps",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Cloud DevOps",
+            "items": [
+              {
+                "title": "AWS DevOps",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Azure Cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "GCP DevOps",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
       
       {
         "g": "5",
@@ -760,7 +787,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "0",
+        "g": "1",
         "label": "SSL by Types",
         "on": true,
         "groups": [
@@ -802,7 +829,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "1",
+        "g": "2",
         "label": "Managed PKI",
         "on": false,
         "groups": [
@@ -839,7 +866,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "2",
+        "g": "3",
         "label": "Code Signing",
         "on": false,
         "groups": [
@@ -881,7 +908,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "3",
+        "g": "4",
         "label": "Email Signing",
         "on": false,
         "groups": [
@@ -911,8 +938,9 @@ export const MEGA_MENU: MenuTop[] = [
             ]
           }
         ]
-      },{
-        "g": "4",
+      },
+      {
+        "g": "5",
         "label": "Mark Certificates",
         "on": false,
         "groups": [
@@ -932,7 +960,7 @@ export const MEGA_MENU: MenuTop[] = [
             ]
           }
         ]
-      }
+      },
     ]
   },
   {
@@ -1080,7 +1108,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "3",
+        "g": "4",
         "label": "OT+IOT Security",
         "on": true,
         "groups": [
@@ -1107,9 +1135,8 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      
       {
-        "g": "4",
+        "g": "5",
         "label": "Security Testing",
         "on": true,
         "groups": [
@@ -1177,7 +1204,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "5",
+        "g": "6",
         "label": "Security Assessment",
         "on": false,
         "groups": [
@@ -1234,7 +1261,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "6",
+        "g": "7",
         "label": "Security Operations",
         "on": false,
         "groups": [
@@ -1297,7 +1324,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "7",
+        "g": "8",
         "label": "Security Consulting",
         "on": false,
         "groups": [
@@ -1448,7 +1475,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "1",
+        "g": "2",
         "label": "AI Training",
         "on": false,
         "groups": [
@@ -1475,7 +1502,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "1",
+        "g": "3",
         "label": "AI Consulting",
         "on": false,
         "groups": [
@@ -1502,7 +1529,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "1",
+        "g": "4",
         "label": "AI Security",
         "on": false,
         "groups": [
@@ -1529,7 +1556,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "1",
+        "g": "5",
         "label": "AI Governance",
         "on": false,
         "groups": [
@@ -1603,7 +1630,7 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Backup Tools",
             "items": [
               {
-                "title": "Acronis Backup Advance",
+                "title": "Acronis Backup Advanced",
                 "pill": null,
                 "desc": null
               },
@@ -1618,11 +1645,11 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "2",
-        "label": "Data A as Services",
+        "label": "Data as a services",
         "on": false,
         "groups": [
           {
-            "heading": "Data A as Services",
+            "heading": "Data as a services",
             "items": [
               {
                 "title": "Data Analytics",
@@ -2154,12 +2181,17 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Coud Glossary",
+                "title": "Cloud Glossary",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Glossary Security",
+                "title": "Security Glossary ",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Developer Tools ",
                 "pill": null,
                 "desc": null
               },
@@ -2250,7 +2282,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "DPDP Act Gaid",
+                "title": "DPDP Act  Guide",
                 "pill": null,
                 "desc": null
               },
@@ -2591,7 +2623,25 @@ export const MEGA_MENU: MenuTop[] = [
             ]
           }
         ]
-      }
+      },
+      {
+        "g": "4",
+        "label": "Event",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Event",
+            "items": [
+              {
+                "title": "No Event",
+                "pill": null,
+                "desc": ""
+              },
+              
+            ]
+          }
+        ]
+      },
     ]
   }
 ];

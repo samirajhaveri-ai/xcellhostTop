@@ -33,7 +33,7 @@ const BRANDS: readonly Brand[] = [
   { name: 'Dell', slug: 'dell', mark: 'D', bg: '#0672CB', fg: '#fff' },
   { name: 'Cybird', slug: 'cybird', mark: 'C', bg: '#5B3CC4', fg: '#fff' },
   { name: 'Veeam', slug: 'veeam', mark: 'C', bg: '#0a8a59', fg: '#fff' },
-  { name: 'Dhurva', slug: 'Druva', mark: 'D', bg: '#0a5491', fg: '#fff' },
+  { name: 'Druva', slug: 'Druva', mark: 'D', bg: '#0a5491', fg: '#fff' },
   { name: 'Oracle Cloud', slug: 'dpo-genie', mark: 'DP', bg: '#7C3AED', fg: '#fff' },
 ];
 
