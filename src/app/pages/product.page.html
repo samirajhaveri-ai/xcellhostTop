@@ -1,5 +1,5 @@
 @if (view(); as v) {
-  <div class="ppage as-page" id="ppage" [class.edr-page]="isAdvancedEdr()" [class.rmm-page]="isRmm()">
+  <div class="ppage as-page" id="ppage" [class.edr-page]="isAdvancedEdr()" [class.rmm-page]="isRmm()" [class.cctv-page]="slug() === 'video-surveillance-as-a-service'">
     <div
       class="pp-hero"
       [class.sitelock-hero]="v.name === 'Web Security (SiteLock)'"
@@ -168,6 +168,9 @@
 
     <div class="pp-body">
       <div class="wrap">
+        @if (slug() === 'video-surveillance-as-a-service') {
+          <xh-cloud-cctv-content />
+        }
         <div class="pp-sec">Overview</div>
         <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
 
@@ -1126,12 +1129,12 @@
           </div>
         }
 
-        <div class="pp-sec">Frequently asked questions</div>
+        <div class="pp-sec pp-faq-heading">Frequently asked questions</div>
         <div class="pp-faq" id="ppFaq">
           <xh-product-faq [faqs]="v.faqs" />
         </div>
 
-        <div class="pp-sec">From our blog</div>
+        <div class="pp-sec pp-blog-heading">From our blog</div>
         <div class="pp-blog" id="ppBlog">
           @for (b of blogs(); track b.title) {
             <a class="pbl pbl-link" [routerLink]="b.link">

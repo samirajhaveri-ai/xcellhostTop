@@ -17,6 +17,7 @@ import { SITE, WORLD_MAP_HTML } from '../data/site.data';
 import { HeroNetDirective, ProductFaqComponent } from '../sections/product';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { LottieDirective } from '../shared/lottie.directive';
+import { CloudCctvContentComponent } from '../sections/cloud-cctv-content.component';
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -83,7 +84,7 @@ interface ProductTourSlide {
 @Component({
   selector: 'xh-product-page',
   standalone: true,
-  imports: [RouterLink, HeroNetDirective, LottieDirective, ProductFaqComponent],
+  imports: [RouterLink, HeroNetDirective, LottieDirective, ProductFaqComponent, CloudCctvContentComponent],
   templateUrl: './product.page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -94,6 +94,21 @@ export const routes: Routes = [
     data: { productSlug: 'digicert-cmc' },
     loadComponent: () => import('./pages/digicert-cmc.page').then((m) => m.DigicertCmcPage),
   },
+  {
+    path: 'mdm',
+    data: { productSlug: 'cloud-mobile-device-mgmt' },
+    loadComponent: () => import('./pages/cloud-mdm.page').then((m) => m.CloudMdmPage),
+  },
+  {
+    path: 'cloud-mdm',
+    data: { productSlug: 'cloud-mobile-device-mgmt' },
+    loadComponent: () => import('./pages/cloud-mdm.page').then((m) => m.CloudMdmPage),
+  },
+  {
+    path: 'cloud-mobile-device-mgmt',
+    data: { productSlug: 'cloud-mobile-device-mgmt' },
+    loadComponent: () => import('./pages/cloud-mdm.page').then((m) => m.CloudMdmPage),
+  },
   { path: 'pricing', loadComponent: () => import('./pages/simple.page').then((m) => m.SimplePage), data: { key: 'pricing' } },
   { path: 'company/:slug', loadComponent: () => import('./pages/company.page').then((m) => m.CompanyPage) },
   { path: 'category/:name', loadComponent: () => import('./pages/category.page').then((m) => m.CategoryPage) },
