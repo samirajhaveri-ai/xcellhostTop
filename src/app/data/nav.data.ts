@@ -2574,18 +2574,10 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Eligibility and the refund review process"
               },
               {
-<<<<<<< HEAD
-                "title": "Cookis Policy",
-                "pill": null,
-                "desc": "Eligibility and the refund review process"
-              },
-              
-=======
                 "title": "Cookie Policy",
                 "pill": null,
                 "desc": "How cookies are used on the XcellHost website"
               }
->>>>>>> d94b5e2b065c1f3fd26f8c94306e34f6e0e446d4
             ]
           }
         ]
