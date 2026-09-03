@@ -19,6 +19,7 @@ export class Microsoft365SmbPage {
   private readonly topics = inject(CallbackTopicService);
 
   readonly openFaq = signal<number | null>(0);
+  readonly includesTeams = signal(true);
   readonly callbackMessage = signal(
     'We respond within one business day · No spam, ever.',
   );
@@ -33,6 +34,10 @@ export class Microsoft365SmbPage {
 
   toggleFaq(index: number): void {
     this.openFaq.update((current) => (current === index ? null : index));
+  }
+
+  setTeamsOption(includesTeams: boolean): void {
+    this.includesTeams.set(includesTeams);
   }
 
   requestPresentation(event: Event): void {

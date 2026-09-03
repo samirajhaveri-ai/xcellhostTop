@@ -355,7 +355,10 @@
   .pp-faq details[open]{border-color:var(--blue)}
   .pp-faq .ans{padding:0 20px 18px;font-size:14.5px;color:var(--slate);line-height:1.65}
   .pp-cta{position:relative;margin-top:44px;min-height:174px;background:linear-gradient(105deg,var(--blue),#0C3E8F);color:#fff;border-radius:16px;padding:32px 150px 32px 36px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
-  .pp-cta-buddha{position:absolute;top:50%;right:26px;width:104px;height:104px;transform:translateY(-50%);object-fit:contain;flex:none;pointer-events:none}
+  .pp-cta-buddha-link{position:absolute;top:50%;right:26px;width:104px;height:104px;transform:translateY(-50%);border-radius:50%;transition:transform .2s ease,filter .2s ease}
+  .pp-cta-buddha-link:hover{transform:translateY(-50%) scale(1.06);filter:drop-shadow(0 6px 12px rgba(0,0,0,.22))}
+  .pp-cta-buddha-link:focus-visible{outline:3px solid #fff;outline-offset:4px}
+  .pp-cta-buddha{display:block;width:100%;height:100%;object-fit:contain}
   .pp-cta h3{font-family:var(--disp);font-size:22px;font-weight:700}
   .pp-cta p{color:#CFE0FA;font-size:14.5px;margin-top:4px}
   .pp-draftnote{margin-top:26px;font-size:12px;color:#8FA2BD;border-top:1px dashed var(--line);padding-top:16px}
@@ -675,7 +678,8 @@
     .pp-chips .pp-chip{font-size:10.5px;padding:6px 12px}
     .pp-body{padding:40px 0 56px}
     .pp-cta{min-height:0;padding:28px 22px}
-    .pp-cta-buddha{position:static;width:72px;height:72px;transform:none;margin-left:auto}
+    .pp-cta-buddha-link{position:static;width:72px;height:72px;transform:none;margin-left:auto}
+    .pp-cta-buddha-link:hover{transform:scale(1.06)}
     .pp-cta h3{font-size:19px}
     .pv-frame{border-radius:12px;box-shadow:0 12px 30px rgba(4,30,66,.2)}
     .pp-bar .wrap{height:50px}
@@ -3310,7 +3314,7 @@ body.xh-locked{overflow:hidden}
 #ppage .edr-plan-price{display:flex;align-items:flex-end;gap:6px;padding:4px 20px;color:var(--navy)}
 #ppage .edr-plan-price strong{font-size:34px;font-weight:850;line-height:1;letter-spacing:-.035em}
 #ppage .edr-plan-price small{max-width:65px;padding-bottom:3px;color:var(--slate);font-size:10px;font-weight:600;line-height:1.2}
-#ppage .edr-plan-saving{align-self:flex-start;margin:11px 20px 18px;padding:7px 11px;border-radius:9px;background:#eaf9f1;color:#087c4b;font-size:11px;font-weight:750;line-height:1}
+#ppage .edr-plan-saving{align-self:flex-start;margin:11px 20px 18px;padding:7px 11px;border-radius:9px;background:#fff0f0;color:#d62828;font-size:11px;font-weight:750;line-height:1}
 #ppage .edr-plan-cta{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 20px 18px;padding:12px 15px;border:0;border-radius:10px;background:var(--plan-accent);color:#fff;font-size:13px;font-weight:750;cursor:pointer;box-shadow:0 8px 18px color-mix(in srgb,var(--plan-accent) 22%,transparent);transition:transform .2s ease,box-shadow .2s ease}
 #ppage .edr-plan-cta:hover{transform:translateY(-2px);box-shadow:0 12px 24px color-mix(in srgb,var(--plan-accent) 30%,transparent)}
 #ppage .edr-plan-card ul{margin:auto 0 0;padding:0;border-top:1px solid #e2e9f3;list-style:none}
@@ -3325,7 +3329,7 @@ body.xh-locked{overflow:hidden}
 #ppage .edr-term-tabs button:after{position:absolute;right:0;bottom:-1px;left:0;height:3px;background:var(--term-accent);content:"";opacity:0;transform:scaleX(.45);transition:opacity .2s ease,transform .2s ease}
 #ppage .edr-term-tabs button:hover,#ppage .edr-term-tabs button.is-active{color:var(--term-accent);background:linear-gradient(180deg,transparent,var(--term-soft))}
 #ppage .edr-term-tabs button.is-active:after{opacity:1;transform:scaleX(1)}
-#ppage .edr-term-tabs span{min-height:19px;padding:4px 8px;border-radius:99px;background:var(--term-soft);color:var(--term-accent);font-size:9px;font-weight:800;line-height:1.1;text-transform:uppercase}
+#ppage .edr-term-tabs span{min-height:19px;padding:4px 8px;border-radius:99px;background:#fff0f0;color:#d62828;font-size:9px;font-weight:800;line-height:1.1;text-transform:uppercase}
 #ppage .edr-term-tabs b{font-size:17px;font-weight:750}
 #ppage.rmm-page .edr-term-tabs span{background:#fff0f0;color:#d62828}
 #ppage.rmm-page .edr-plan-saving{background:#fff0f0;color:#d62828}
