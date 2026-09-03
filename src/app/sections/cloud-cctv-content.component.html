@@ -1,0 +1,52 @@
+<div class="cctv-content">
+  <section class="cctv-section why-section">
+    <div class="section-head"><h2>Why Choose XcellHost <span>Cloud CCTV?</span></h2><i></i></div>
+    <div class="reason-grid">
+      @for (item of reasons; track item[1]) {
+        <article><b class="reason-icon">{{ item[0] }}</b><h3>{{ item[1] }}</h3><p>{{ item[2] }}</p></article>
+      }
+    </div>
+  </section>
+
+  <section class="cctv-section feature-section">
+    <div class="feature-copy">
+      <div class="section-head left"><h2>Powerful Features</h2><i></i></div>
+      <div class="feature-list">
+        @for (item of features; track item[0]; let first = $first) {
+          <article [class.active]="first"><b>{{ $index + 1 }}</b><div><h3>{{ item[0] }}</h3><p>{{ item[1] }}</p></div><span>›</span></article>
+        }
+      </div>
+    </div>
+    <div class="camera-console" aria-label="Cloud CCTV camera overview illustration">
+      <div class="console-head"><strong>Camera Overview</strong><span>● Live</span></div>
+      <div class="feeds">
+        @for (feed of ['Main Entrance', 'Parking Area', 'Warehouse', 'Office Floor']; track feed) {
+          <div class="feed"><span>{{ feed }}</span><i></i><b>LIVE</b></div>
+        }
+      </div>
+    </div>
+    <aside class="alert-card"><span>Alert Triggered</span><strong>Motion Detected</strong><small>Warehouse · Camera 04</small><div class="alert-image">PERSON DETECTED</div><button type="button">View Clip</button></aside>
+  </section>
+
+  <section class="cctv-section benefits-section">
+    <div><div class="section-head left"><h2>Key Benefits for <span>Your Business</span></h2><i></i></div>
+      <div class="benefit-grid">@for (item of benefits; track item[0]) {<article><b>✓</b><div><h3>{{ item[0] }}</h3><p>{{ item[1] }}</p></div></article>}</div>
+    </div>
+    <div class="security-panel"><div class="mini-feeds">@for (n of [1,2,3,4]; track n) {<i></i>}</div><strong>🛡️ Your Security.<br>Our Priority.</strong></div>
+  </section>
+
+  <section class="cctv-section pricing-section">
+    <div class="section-head"><h2>Simple, <span>Transparent Pricing</span></h2><i></i><p>Per camera, per month, billed annually in INR. Free site survey and installation planning included.</p></div>
+    <div class="plans">
+      @for (plan of plans; track plan.name) {
+        <article [class.popular]="plan.popular">@if (plan.popular) {<em>MOST POPULAR</em>}<h3>{{ plan.name }}</h3><p>{{ plan.sub }}</p><div class="amount">@if (plan.price !== 'Custom') {<small>₹</small>}{{ plan.price }}</div><span class="unit">{{ plan.unit }}</span><ul>@for (feature of plan.features; track feature) {<li>✓ <span>{{ feature }}</span></li>}</ul><a href="#ppCtaT">{{ plan.name === 'Enterprise' ? 'Contact Sales' : 'Get Started' }}</a></article>
+      }
+    </div>
+    <p class="price-note">All prices exclude 18% GST · GST invoice on every purchase · Pay via UPI, Cards or NetBanking</p>
+  </section>
+
+  <section class="cctv-section integrations-section">
+    <div class="section-head"><h2>Seamless <span>Integrations</span></h2><i></i></div>
+    <div class="integration-grid">@for (item of integrations; track item) {<span><i></i>{{ item }}</span>}</div>
+  </section>
+</div>
