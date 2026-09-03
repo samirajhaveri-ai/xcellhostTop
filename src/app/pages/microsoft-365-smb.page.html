@@ -192,19 +192,35 @@
       <!-- PRICING -->
       <div class="pp-sec" id="pricing">Microsoft 365 pricing in India</div>
       <p class="pp-ov" style="margin-bottom:18px">All plans billed annually per user in INR, excluding GST. GST invoice included on every purchase.</p>
+      <div class="pp-toggle-wrap">
+        <div class="pp-toggle" role="group" aria-label="Choose Microsoft 365 plans with or without Teams">
+          <button
+            type="button"
+            [class.active]="includesTeams()"
+            [attr.aria-pressed]="includesTeams()"
+            (click)="setTeamsOption(true)"
+          >With Microsoft Teams</button>
+          <button
+            type="button"
+            [class.active]="!includesTeams()"
+            [attr.aria-pressed]="!includesTeams()"
+            (click)="setTeamsOption(false)"
+          >Without Teams</button>
+        </div>
+      </div>
       <div class="pp-plans">
         <div class="ppl">
           <span class="tag">Entry</span>
           <h4>Business Basic</h4>
-          <div class="sub">Email, Teams &amp; cloud apps</div>
-          <div class="amt"><b>&#8377;145</b><span>per user / month &middot; annual + GST</span></div>
+          <div class="sub">Email, {{ includesTeams() ? 'Teams & ' : '' }}cloud apps</div>
+          <div class="amt"><b>&#8377;{{ includesTeams() ? '145' : '105' }}</b><span>per user / month &middot; annual + GST</span></div>
           <span class="save">Web &amp; mobile apps</span>
           <ul>
             <li>Outlook email on @yourcompany.com</li>
             <li>1 TB OneDrive storage per user</li>
             <li>Web &amp; mobile Office apps</li>
             <li>50 GB Exchange mailbox</li>
-            <li>SharePoint &amp; Teams included</li>
+            <li>SharePoint{{ includesTeams() ? ' & Teams included' : ' included; Teams excluded' }}</li>
           </ul>
           <div class="btns"><a class="btn btn-primary" href="#contact">Get a Quote</a><a class="btn btn-ghost" href="#contact">Add to quote</a></div>
         </div>
@@ -212,14 +228,14 @@
         <div class="ppl hot">
           <span class="tag">Most Popular</span>
           <h4>Business Standard</h4>
-          <div class="sub">Full desktop apps + Teams</div>
-          <div class="amt"><b>&#8377;770</b><span>per user / month &middot; annual + GST</span></div>
+          <div class="sub">Full desktop apps{{ includesTeams() ? ' + Teams' : '' }}</div>
+          <div class="amt"><b>&#8377;{{ includesTeams() ? '770' : '570' }}</b><span>per user / month &middot; annual + GST</span></div>
           <span class="save">BEST VALUE</span>
           <ul>
             <li>Everything in Business Basic</li>
             <li>Full desktop Word, Excel &amp; PowerPoint</li>
             <li>Install on 5 PCs/Macs + 5 mobile devices</li>
-            <li>Teams webinars &amp; meeting recordings</li>
+            <li>{{ includesTeams() ? 'Teams webinars & meeting recordings' : 'Microsoft Teams not included' }}</li>
             <li>Bookings &amp; Clipchamp included</li>
           </ul>
           <div class="btns"><a class="btn btn-primary" href="#contact">Get a Quote</a><a class="btn btn-ghost" href="#contact">Add to quote</a></div>
@@ -229,7 +245,7 @@
           <span class="tag">Security Ready</span>
           <h4>Business Premium</h4>
           <div class="sub">Standard + enterprise security</div>
-          <div class="amt"><b>&#8377;1,830</b><span>per user / month &middot; annual + GST</span></div>
+          <div class="amt"><b>&#8377;{{ includesTeams() ? '1,830' : '1,565' }}</b><span>per user / month &middot; annual + GST</span></div>
           <span class="save">Defender + Intune</span>
           <ul>
             <li>Everything in Business Standard</li>

@@ -384,6 +384,7 @@ const CONTENT_LINKS: Record<string, string> = {
   'Privacy Policy': '/company/privacy-policy',
   'Terms of Services': '/company/terms-of-service',
   'Refund Policy': '/company/refund-policy',
+  'Cookie Policy': '/company/privacy-policy',
   'Pricing': '/pricing',
 };
 
