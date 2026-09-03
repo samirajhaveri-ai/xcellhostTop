@@ -44,7 +44,7 @@ interface OrbItem {
 const ORB_ITEMS: readonly OrbItem[] = [
   { service: 'Tally on Cloud', pos: 'op1', label: 'Tally on Cloud', img: '/assets/images/orb-tally-on-cloud.png' },
   { service: 'Cloud Backup (Acronis)', pos: 'op2', label: 'Cloud Backup', img: '/assets/images/orb-cloud-backup.png' },
-  { service: 'Microsoft 365', pos: 'op3', label: 'Microsoft 365', img: '/assets/images/orb-microsoft-365.png' },
+  { service: 'Microsoft 365 SMB', pos: 'op3', label: 'Microsoft 365 SMB', img: '/assets/images/orb-microsoft-365.png' },
   { service: 'DPDPA Platform & Consulting', pos: 'op4', label: 'DPDPA', emoji: '⚖️' },
   { service: 'GPU Cloud', pos: 'op5', label: 'GPU Cloud', img: '/assets/images/orb-gpu-cloud.png' },
   { service: 'SMB Cloud Desktop', pos: 'op6', label: 'Cloud Desktop', img: '/assets/images/orb-smb-cloud-desktop.png' },
