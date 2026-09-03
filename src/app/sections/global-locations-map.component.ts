@@ -111,16 +111,14 @@ const ACRONIS_LOCATIONS: readonly DataCenterLocation[] = [
 
         @if (activeView() === 'xcellhost') {
         <div id="xcellhost-dcs" class="dc-tab-panel" role="tabpanel" aria-label="XcellHost data centers">
-        <div class="map-stage" xhReveal>
-          <div class="location-count" aria-label="More than 10 datacenter locations">
-            
-          </div>
+        <div class="map-stage">
           <img
-            src="assets/images/xcellhost-global-locations-map.png"
+            class="global-dc-map"
+            src="/assets/images/xcellhost-global-locations-map.png"
             width="1146"
             height="540"
-            loading="lazy"
-            decoding="async"
+            loading="eager"
+            decoding="sync"
             alt="World map showing XcellHost datacenter locations across North America, Europe, Asia and Australia"
           />
         </div>
@@ -140,16 +138,14 @@ const ACRONIS_LOCATIONS: readonly DataCenterLocation[] = [
         </div>
         } @else {
         <div id="acronis-dcs" class="dc-tab-panel" role="tabpanel" aria-label="Acronis data centers">
-          <div class="map-stage" xhReveal>
-            <div class="location-count" aria-label="More than 50 Acronis data center locations">
-            
-            </div>
+          <div class="map-stage">
             <img
-              src="assets/images/xcellhost-global-locations-map.png"
+              class="global-dc-map"
+              src="/assets/images/xcellhost-global-locations-map.png"
               width="1146"
               height="540"
-              loading="lazy"
-              decoding="async"
+              loading="eager"
+              decoding="sync"
               alt="World map showing the global Acronis data center footprint"
             />
           </div>
@@ -235,8 +231,9 @@ const ACRONIS_LOCATIONS: readonly DataCenterLocation[] = [
       display: grid;
       max-width: 1180px;
       margin: 0 auto;
-      grid-template-columns: 180px minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1fr);
       align-items: center;
+      isolation: isolate;
     }
 
     .location-count {
@@ -262,12 +259,18 @@ const ACRONIS_LOCATIONS: readonly DataCenterLocation[] = [
       text-transform: uppercase;
     }
 
-    .map-stage img {
-      display: block;
+    .map-stage .global-dc-map {
+      position: relative;
+      z-index: 1;
+      display: block !important;
       width: min(100%, 1146px);
       height: auto;
       margin: 0 auto;
       object-fit: contain;
+      opacity: 1 !important;
+      visibility: visible !important;
+      filter: none !important;
+      mix-blend-mode: normal !important;
     }
 
     .location-marquee {

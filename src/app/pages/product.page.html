@@ -131,18 +131,7 @@
               <a class="btn ppd-pres" href="#" id="ppPres" (click)="requestDoc('presentation', $event)"
                 ><span class="ppd-ic">📖</span> Presentation</a
               >
-              @if (isCloudDisasterRecoverySmb()) {
-                <button class="btn btn-ghost cdr-tour-trigger" type="button" (click)="openCdrTour()">Screenshot Tour</button>
-              }
-              @if (isAcronisGenAi()) {
-                <button class="btn btn-ghost cdr-tour-trigger" type="button" (click)="openGenAiTour()">Screenshot Tour</button>
-              }
-              @if (isRmm()) {
-                <button class="btn btn-ghost cdr-tour-trigger" type="button" (click)="openRmmTour()">Screenshot Tour</button>
-              }
-              @if (isAdvancedEdr()) {
-                <button class="btn btn-ghost cdr-tour-trigger" type="button" (click)="openEdrTour()">Screenshot Tour</button>
-              }
+              <button class="btn btn-ghost cdr-tour-trigger" type="button" (click)="openProductScreenshotTour()">Screenshot Tour</button>
               <a class="btn btn-primary" href="#" id="ppEnquiry" (click)="openCallback($event)">Let's Talk</a>
             </div>
 
@@ -573,14 +562,14 @@
           </div>
         }
 
-        @if (v.featureSpotlight; as spotlight) {
+        @if (!isRmm() && v.featureSpotlight; as spotlight) {
           <section class="pp-feature-spotlight">
             <div class="pp-feature-spotlight-copy"><h2>{{ spotlight.title }}</h2><p>{{ spotlight.body }}</p></div>
             <img class="pp-feature-spotlight-image" [src]="spotlight.image" alt="Acronis monitoring and patch management dashboard" />
           </section>
         }
 
-        @if (v.featureDetail; as detail) {
+        @if (!isRmm() && v.featureDetail; as detail) {
           <section class="pp-feature-detail">
             <img class="pp-feature-detail-image" [src]="detail.image" alt="Acronis security posture dashboard" />
             <div class="pp-feature-detail-copy">
@@ -811,32 +800,6 @@
               </section>
             </div>
 
-            <div class="edr-false-positive">
-              <h2>Advanced Endpoint Security <span>+ EDR</span></h2>
-              <p>Another critical enhancement offered by full-stack anti-malware is the reduction of false positives, a persistent issue for users and IT administrators alike. Through refined heuristic analysis and behavior-based detection mechanisms, the system can more accurately discern between genuine threats and benign activities, thereby streamlining security operations and minimizing disruptions to business continuity.</p>
-            </div>
-
-            <div class="edr-story">
-              <div class="edr-story-copy">
-                <span class="edr-story-kicker">Generative AI governance</span>
-                <h3>Monitor, control, and report on GenAI usage across clients</h3>
-                <p>Quickly experience the power of Acronis EDR and see how easy it is to analyze attacks, guided by AI, and to respond and recover with a single click — without having to deploy, configure, or populate with data.</p>
-              </div>
-              <figure class="edr-product-shot">
-                <img src="/assets/images/edr-genai-dashboard.png" alt="Acronis Cyber Protect Cloud Generative AI usage dashboard" loading="lazy" />
-              </figure>
-            </div>
-
-            <div class="edr-story edr-story-reverse">
-              <div class="edr-story-copy">
-                <span class="edr-story-kicker">NIST-aligned protection</span>
-                <h3>The most complete EDR solution for customers: comprehensive protection across NIST</h3>
-                <p>Unlike pure-play cybersecurity solutions, Acronis Cyber Protect Cloud brings the full power of its platform with integrated capabilities across leading cybersecurity frameworks, like NIST, for unmatched business continuity.</p>
-              </div>
-              <figure class="edr-product-shot">
-                <img src="/assets/images/edr-attack-stages.png" alt="Acronis EDR attack stages and process timeline" loading="lazy" />
-              </figure>
-            </div>
           </section>
         }
 
@@ -1363,6 +1326,41 @@
             <button type="button" role="tab" [class.is-active]="i === activeEdrTourSlide()" [attr.aria-selected]="i === activeEdrTourSlide()" [attr.aria-label]="'Show ' + slide.title" (click)="selectEdrTourSlide(i)"></button>
           }
         </div>
+      </section>
+    </div>
+  }
+
+  @if (isProductTourOpen()) {
+    <div class="cdr-tour-overlay" role="presentation">
+      <button class="cdr-tour-backdrop" type="button" aria-label="Close screenshot tour" (click)="closeProductTour()"></button>
+      <section class="cdr-tour-modal" role="dialog" aria-modal="true" aria-labelledby="productTourTitle">
+        <button class="cdr-tour-close" type="button" aria-label="Close screenshot tour" (click)="closeProductTour()">×</button>
+        <div class="cdr-tour-heading">
+          <span>{{ v.name }}</span>
+          <h2 id="productTourTitle">Screenshot tour</h2>
+          <p>Explore the product experience, key capabilities and available solution options.</p>
+        </div>
+        <div class="cdr-tour-stage">
+          @for (slide of productTourSlides(); track slide.image; let i = $index) {
+            <figure class="cdr-tour-slide" [class.is-active]="i === activeProductTourSlide()" [attr.aria-hidden]="i !== activeProductTourSlide()">
+              <img [src]="slide.image" [alt]="slide.title" />
+              <figcaption><strong>{{ slide.title }}</strong><span>{{ slide.description }}</span></figcaption>
+            </figure>
+          } @empty {
+            <div class="product-tour-empty">Product screenshots are being prepared.</div>
+          }
+          @if (productTourSlides().length > 1) {
+            <button class="cdr-tour-arrow cdr-tour-prev" type="button" aria-label="Previous screenshot" (click)="previousProductTourSlide()">‹</button>
+            <button class="cdr-tour-arrow cdr-tour-next" type="button" aria-label="Next screenshot" (click)="nextProductTourSlide()">›</button>
+          }
+        </div>
+        @if (productTourSlides().length > 1) {
+          <div class="cdr-tour-dots" role="tablist" aria-label="Product screenshot tour slides">
+            @for (slide of productTourSlides(); track slide.image; let i = $index) {
+              <button type="button" role="tab" [class.is-active]="i === activeProductTourSlide()" [attr.aria-selected]="i === activeProductTourSlide()" [attr.aria-label]="'Show ' + slide.title" (click)="selectProductTourSlide(i)"></button>
+            }
+          </div>
+        }
       </section>
     </div>
   }
