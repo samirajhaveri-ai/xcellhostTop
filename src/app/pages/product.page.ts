@@ -17,6 +17,7 @@ import { SITE, WORLD_MAP_HTML } from '../data/site.data';
 import { HeroNetDirective, ProductFaqComponent } from '../sections/product';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { LottieDirective } from '../shared/lottie.directive';
+import { CloudCctvContentComponent } from '../sections/cloud-cctv-content.component';
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -83,7 +84,7 @@ interface ProductTourSlide {
 @Component({
   selector: 'xh-product-page',
   standalone: true,
-  imports: [RouterLink, HeroNetDirective, LottieDirective, ProductFaqComponent],
+  imports: [RouterLink, HeroNetDirective, LottieDirective, ProductFaqComponent, CloudCctvContentComponent],
   templateUrl: './product.page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -172,26 +173,81 @@ export class ProductPage {
   ] as const;
   readonly isRmmTourOpen = computed(() => this.overlay.isOpen('rmmScreenshotTour'));
   readonly activeEdrTourSlide = signal(0);
-  readonly edrTourSlides = [
-    {
-      title: 'Security overview',
-      description: 'Review endpoint activity, Generative AI usage and protection insights from one security dashboard.',
-      image: '/assets/images/edr-tour-overview.png',
-    },
-    {
-      title: 'Attack-stage investigation',
-      description: 'Follow suspicious activity through each attack stage to investigate and respond faster.',
-      image: '/assets/images/edr-tour-attack-stages.png',
-    },
-  ] as const;
+  readonly edrTourSlides: readonly ProductTourSlide[] = [
+    'What is EDR?',
+    'The need for EDR',
+    'How EDR protects against more threats',
+    'Launching an EDR service',
+    'Advanced Security + EDR',
+    'Cross-NIST cybersecurity and data protection',
+    'Multi-layered endpoint detection engines',
+    'Copilot for Acronis EDR',
+    'Analyze attacks in minutes',
+    'EDR remediation and business continuity',
+    'Automated response playbooks',
+    'Cyber insurance and compliance',
+    'Acronis service provider partnership',
+    'Award-winning endpoint protection',
+    'Top four EDR use cases',
+    'Cyber Protect Cloud use cases',
+    'Extended XDR visibility',
+    'Managed EDR service',
+    'Acronis and Novacoast partnership',
+    '24/7 outsourced SOC',
+    'Acronis Cyber Protect Cloud platform',
+    'EDR licensing and pricing',
+    'MDR licensing and pricing',
+  ].map((title, index) => ({
+    title,
+    description: 'Explore Advanced Security + EDR capabilities, operations and service options.',
+    image: `/assets/images/advanced-security-edr-tour-${index + 1}.jpg`,
+  }));
   readonly isEdrTourOpen = computed(() => this.overlay.isOpen('edrScreenshotTour'));
   readonly activeProductTourSlide = signal(0);
   readonly isProductTourOpen = computed(() => this.overlay.isOpen('productScreenshotTour'));
+  readonly microsoft365BackupTourSlides: readonly ProductTourSlide[] = [
+    {
+      title: 'Why Microsoft 365 data needs protection',
+      description: 'Understand the scale of Microsoft 365 usage and the growing need for an additional data-protection layer.',
+      image: '/assets/images/microsoft-365-backup-tour-1.jpg',
+    },
+    {
+      title: 'Microsoft shared responsibility model',
+      description: 'See which infrastructure responsibilities belong to Microsoft and which data-protection responsibilities remain with your organization.',
+      image: '/assets/images/microsoft-365-backup-tour-2.jpg',
+    },
+    {
+      title: 'Close Microsoft 365 protection gaps',
+      description: 'Address data-protection, security and compliance risks with backup, immutable storage and reporting.',
+      image: '/assets/images/microsoft-365-backup-tour-3.jpg',
+    },
+    {
+      title: 'Acronis backup and data protection',
+      description: 'Explore data control, rapid recovery, scalability and cost-efficiency benefits for Microsoft 365 workloads.',
+      image: '/assets/images/microsoft-365-backup-tour-4.jpg',
+    },
+    {
+      title: 'Additional protection layers',
+      description: 'Extend backup with email security, anti-ransomware, endpoint management and endpoint protection.',
+      image: '/assets/images/microsoft-365-backup-tour-5.jpg',
+    },
+    {
+      title: 'Advantages of a managed service',
+      description: 'Review the expertise, support, tools, compliance and predictable operations included with managed backup.',
+      image: '/assets/images/microsoft-365-backup-tour-6.jpg',
+    },
+    {
+      title: 'Entra ID backup',
+      description: 'Protect identities, roles, policies and other Entra ID objects with point-in-time recovery.',
+      image: '/assets/images/microsoft-365-backup-tour-7.jpg',
+    },
+  ];
 
   /** Product-owned artwork used when a page does not have a dedicated UI screenshot set. */
   readonly productTourSlides = computed<readonly ProductTourSlide[]>(() => {
     const view = this.view();
     if (!view) return [];
+    if (view.name === 'Microsoft 365 Backup') return this.microsoft365BackupTourSlides;
 
     const candidates: ProductTourSlide[] = [];
     const add = (title: string, description: string, image: string | null | undefined): void => {

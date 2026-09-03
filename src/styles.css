@@ -4479,3 +4479,13 @@ html.dark-mode.dark-mode.dark-mode router-outlet + * :is(
 
 html.dark-mode .ind-copy > span { color: var(--theme-muted) !important; }
 html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
+/* CCTV uses its dedicated source-page content while retaining the shared FAQ, blog and support CTA. */
+.ppage.cctv-page .pp-body>.wrap>*{display:none}
+.ppage.cctv-page .pp-body>.wrap>xh-cloud-cctv-content,
+.ppage.cctv-page .pp-body>.wrap>.pp-faq-heading,
+.ppage.cctv-page .pp-body>.wrap>.pp-faq,
+.ppage.cctv-page .pp-body>.wrap>.pp-blog-heading,
+.ppage.cctv-page .pp-body>.wrap>.pp-blog,
+.ppage.cctv-page .pp-body>.wrap>.pp-blogbtn-wrap,
+.ppage.cctv-page .pp-body>.wrap>.pp-cta,
+.ppage.cctv-page .pp-body>.wrap>.pp-proof{display:block}
