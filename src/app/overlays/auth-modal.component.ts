@@ -6,6 +6,13 @@ import { CallbackTopicService } from './callback-topic.service';
 import { EMAIL_VALIDATORS, PHONE_VALIDATORS, firstError } from './form.util';
 
 type AuthTab = 'in' | 'up';
+type LoginRole = 'customer' | 'partner' | 'vendor' | 'employee';
+
+const LOGIN_ROLE_COPY: Record<Exclude<LoginRole, 'customer'>, { title: string; description: string; topic: string }> = {
+  partner: { title: 'Partner login', description: 'Access partner resources, opportunities and programme support.', topic: 'Partner portal access' },
+  vendor: { title: 'Vendor login', description: 'Access vendor coordination, service and account resources.', topic: 'Vendor portal access' },
+  employee: { title: 'Employee login', description: 'Request secure access to XcellHost employee systems.', topic: 'Employee portal access' },
+};
 
 /**
  * The customer login / new-account modal (`#auth`).
@@ -37,6 +44,14 @@ export class AuthModalComponent {
   });
 
   readonly tab = signal<AuthTab>('in');
+  readonly loginRole = signal<LoginRole>('customer');
+  readonly loginMenuOpen = signal(false);
+  readonly loginRoles: ReadonlyArray<{ value: LoginRole; label: string }> = [
+    { value: 'customer', label: 'Customer Login' },
+    { value: 'partner', label: 'Partner Login' },
+    { value: 'vendor', label: 'Vendor Login' },
+    { value: 'employee', label: 'Employee Login' },
+  ];
   readonly error = signal('');
   readonly submitted = signal(false);
 
@@ -62,6 +77,27 @@ export class AuthModalComponent {
 
   select(tab: AuthTab): void {
     this.tab.set(tab);
+    this.loginMenuOpen.set(false);
+  }
+
+  selectRole(role: LoginRole): void {
+    this.loginRole.set(role);
+    this.tab.set('in');
+    this.loginMenuOpen.set(false);
+  }
+
+  toggleLoginMenu(): void {
+    this.tab.set('in');
+    this.loginMenuOpen.update((open) => !open);
+  }
+
+  loginRoleLabel(): string {
+    return this.loginRoles.find((role) => role.value === this.loginRole())?.label ?? 'Customer Login';
+  }
+
+  roleCopy(): { title: string; description: string; topic: string } | null {
+    const role = this.loginRole();
+    return role === 'customer' ? null : LOGIN_ROLE_COPY[role];
   }
 
   /** The two portals with no hosted login route to a callback instead. */
@@ -90,6 +126,8 @@ export class AuthModalComponent {
 
   private reset(): void {
     this.tab.set('in');
+    this.loginRole.set('customer');
+    this.loginMenuOpen.set(false);
     this.submitted.set(false);
     this.error.set('');
     this.form.reset();

@@ -135,6 +135,10 @@ nav a:hover{color:var(--blue)}nav a:hover:after{width:100%}nav a:hover .car{bord
 .pp-sec{font:700 15px/1.35 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:52px 0 16px}
 .pp-sec:first-child{margin-top:0}
 .pp-ov{font-size:16.5px;color:var(--ink);line-height:1.75;max-width:75ch}.pp-ov+.pp-ov{margin-top:14px}.pp-ov b{color:var(--navy)}
+.pp-overview{padding:28px 32px 30px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(135deg,#fff 0%,#f7faff 100%);box-shadow:var(--shadow-s)}
+.pp-overview .pp-sec{margin:0 0 20px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.pp-overview-copy{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.9fr);gap:40px;align-items:start}
+.pp-overview .pp-ov{max-width:none;margin:0;font-size:15.5px;line-height:1.75}
 
 /* validation levels */
 .pp-vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px}
@@ -418,6 +422,7 @@ nav a:hover{color:var(--blue)}nav a:hover:after{width:100%}nav a:hover .car{bord
   .pp-addons,.pp-bens,.pp-uses{grid-template-columns:1fr 1fr}
   .pp-auto,.pp-contact{grid-template-columns:1fr}.pp-auto ul{grid-template-columns:1fr 1fr}
   .foot-top{grid-template-columns:1fr;gap:30px}
+  .pp-overview-copy{grid-template-columns:1fr;gap:14px}
 }
 @media (max-width:860px){
   nav ul,.nav .btn.desk{display:none}.burger{display:flex}
@@ -431,6 +436,8 @@ nav a:hover{color:var(--blue)}nav a:hover:after{width:100%}nav a:hover .car{bord
   .pp-form .row{grid-template-columns:1fr}.pp-cta{padding:26px}
   .flrow,.foot-strip{grid-template-columns:1fr;gap:8px}
   .nl-panel{padding:22px}.partner-band{flex-direction:column;align-items:flex-start;text-align:left}
+  .pp-overview{padding:22px 20px 24px;border-radius:16px}
+  .pp-overview .pp-sec{font-size:13px;letter-spacing:.1em}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
 

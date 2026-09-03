@@ -850,6 +850,13 @@ function resolveHeroBrand(
     };
   }
 
+  if (/^GeoTrust$/i.test(name)) {
+    return {
+      name: 'GeoTrust', subtitle: 'Secured by DigiCert', kind: 'vendor',
+      logoImage: '/assets/images/geotrust-secured.png',
+    };
+  }
+
   if (poweredBy) {
     const [vendor, ...rest] = poweredBy.trim().split(/\s+/);
     return {

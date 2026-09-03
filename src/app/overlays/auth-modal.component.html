@@ -4,18 +4,46 @@
     <div class="tr-card">
       <button class="cart-x tr-x" id="auX" aria-label="Close" (click)="close()">✕</button>
       <div class="au-tabs">
-        <button class="au-tab" [class.on]="tab() === 'in'" (click)="select('in')">
-          Customer Login
-        </button>
+        <div class="au-login-menu" [class.on]="tab() === 'in'">
+          <button
+            class="au-login-trigger"
+            type="button"
+            aria-haspopup="listbox"
+            [attr.aria-expanded]="loginMenuOpen()"
+            (click)="toggleLoginMenu()"
+          >
+            <span>{{ loginRoleLabel() }}</span>
+            <span class="au-login-chevron" aria-hidden="true"></span>
+          </button>
+          @if (loginMenuOpen()) {
+            <div class="au-login-options" role="listbox" aria-label="Choose login type">
+              @for (role of loginRoles; track role.value) {
+                <button
+                  type="button"
+                  role="option"
+                  [attr.aria-selected]="loginRole() === role.value"
+                  [class.selected]="loginRole() === role.value"
+                  (click)="selectRole(role.value)"
+                >
+                  <span>{{ role.label }}</span>
+                  @if (loginRole() === role.value) {
+                    <span class="au-login-check" aria-hidden="true">✓</span>
+                  }
+                </button>
+              }
+            </div>
+          }
+        </div>
         <button class="au-tab" [class.on]="tab() === 'up'" (click)="select('up')">
           New Account
         </button>
       </div>
 
       <div class="au-pane" [class.on]="tab() === 'in'">
-        <h3 class="tr-title">Welcome back</h3>
-        <p class="tr-sub">Access your services, invoices and tickets.</p>
-        <div class="au-portals">
+        @if (loginRole() === 'customer') {
+          <h3 class="tr-title">Welcome back</h3>
+          <p class="tr-sub">Access your services, invoices and tickets.</p>
+          <div class="au-portals">
           <a
             class="au-portal"
             href="https://billing.xcellhost.cloud"
@@ -46,10 +74,21 @@
             <span class="ap-ic">🛡️</span><b>Acronis Backup Portal</b
             ><span>Backups &amp; recovery</span></a
           >
-        </div>
-        <p class="cart-draft">
-          🔐 Login is handled securely by your XcellHost portal — the website never stores passwords.
-        </p>
+          </div>
+          <p class="cart-draft">
+            🔐 Login is handled securely by your XcellHost portal — the website never stores passwords.
+          </p>
+        } @else if (roleCopy(); as role) {
+          <div class="au-role-access">
+            <span class="au-role-icon" aria-hidden="true">&#128274;</span>
+            <h3 class="tr-title">{{ role.title }}</h3>
+            <p class="tr-sub">{{ role.description }}</p>
+            <button class="btn atc" type="button" (click)="requestCallback($event, role.topic)">
+              Request access
+            </button>
+            <p class="cart-draft">Access is verified by our team before portal details are issued.</p>
+          </div>
+        }
       </div>
 
       <div class="au-pane" [class.on]="tab() === 'up'" [formGroup]="form">

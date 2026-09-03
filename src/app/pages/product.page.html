@@ -42,7 +42,10 @@
             @if (v.name === 'Cloud Drive') {
               <div class="pph-cloud-drive-animation" [xhLottie]="'/assets/animations/cloud-drive.json'"></div>
             }
-            <div class="pph-powered-mark pph-powered-image">
+            <div
+              class="pph-powered-mark pph-powered-image"
+              [class.pph-geotrust-powered]="v.name === 'GeoTrust'"
+            >
               <img [src]="v.heroBrand.logoImage" [alt]="v.heroBrand.name" />
             </div>
           </div>
@@ -94,7 +97,7 @@
             <span class="pp-brand-xcell">Xcell</span><span class="pp-brand-family">{{ v.brandSuffix }}</span>
           </span>
           <span class="pp-title-divider" aria-hidden="true">|</span>
-          <span class="pp-title-name">{{ v.name }}</span>
+          <span class="pp-title-name">{{ v.name }}@if (slug() === 'geotrust') { SSL}</span>
         </h1>
         <h2
           class="pp-tagline"
