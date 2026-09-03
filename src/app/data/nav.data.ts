@@ -87,11 +87,11 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "1",
-        "label": "Hosting",
+        "label": "Web Hosting",
         "on": false,
         "groups": [
           {
-            "heading": "Hosting",
+            "heading": "Web Hosting",
             "items": [
               {
                 "title": "Windows Hosting",
@@ -145,11 +145,11 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "2",
-        "label": "Marketing",
+        "label": "Web Marketing",
         "on": false,
         "groups": [
           {
-            "heading": "Marketing",
+            "heading": "Web Marketing",
             "items": [
               {
                 "title": "WhatsApp SMB",
@@ -274,7 +274,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Acronis GenAI Protected",
+                "title": "Acronis GenAI Protection",
                 "pill": "New",
                 "desc": null
               },
@@ -367,7 +367,17 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Cyber Frames (HCI/IaaS)",
                 "pill": null,
                 "desc": null
-              }
+              },
+              {
+                "title": "AI Inference Cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "AI Developer Cloud",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
@@ -628,7 +638,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Active Directory",
+                "title": "Active Directory Migration ",
                 "pill": null,
                 "desc": null
               },
@@ -994,12 +1004,12 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "EndPoint Security",
             "items": [
               {
-                "title": "EDR",
+                "title": "Scrutiny EDR",
                 "pill": "Free trial",
                 "desc": null
               },
               {
-                "title": "MDR",
+                "title": "Scrutiny MDR",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -1690,11 +1700,11 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "2",
-        "label": "Data as a services",
+        "label": "Data as a Services",
         "on": false,
         "groups": [
           {
-            "heading": "Data as a services",
+            "heading": "Data as a Services",
             "items": [
               {
                 "title": "Data Analytics",
@@ -2332,6 +2342,23 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
+        "g": "0",
+        "label": "Product Tour",
+        "on": true,
+        "groups": [
+          {
+            "heading": "Product Tour",
+            "items": [
+              {
+                "title": "No Product Tour",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      {
         "g": "3",
         "label": "Service Index",
         "on": false,
@@ -2348,127 +2375,7 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      {
-        "g": "4",
-        "label": "Network Tools",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Network Tools",
-            "items": [
-              {
-                "title": "Speed Test",
-                "pill": null,
-                "desc": "Test download speed, upload speed and latency"
-              },
-              {
-                "title": "Looking Glass",
-                "pill": null,
-                "desc": "Inspect routing and reachability from our network"
-              },
-              {
-                "title": "DNS Lookup",
-                "pill": null,
-                "desc": "Inspect A, AAAA, MX, TXT and nameserver records"
-              },
-              {
-                "title": "Traceroute",
-                "pill": null,
-                "desc": "Trace the network path and identify routing delays"
-              },
-              {
-                "title": "IP & WHOIS Lookup",
-                "pill": null,
-                "desc": "Check IP ownership, location and registration details"
-              },
-              {
-                "title": "Port Checker",
-                "pill": null,
-                "desc": "Test whether a public TCP port is reachable"
-              },
-            ]
-          }
-        ]
-      },
-      {
-        "g": "5",
-        "label": "Mail Tools",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Mail Tools",
-            "items": [
-              {
-                "title": "DMARC Monitoring & Reporting",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "SPF · DKIM · DMARC · BIMI Tools",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "MTA-STS · TLS-RPT Tools",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "MX Lookup",
-                "pill": null,
-                "desc": "Check mail exchangers, priority and DNS health"
-              },
-              {
-                "title": "Email Header Analyzer",
-                "pill": null,
-                "desc": "Inspect delivery hops, authentication and delays"
-              },
-              {
-                "title": "Email Blacklist Check",
-                "pill": null,
-                "desc": "Check whether a mail server appears on major blocklists"
-              },
-            ]
-          }
-        ]
-      },
-      {
-        "g": "6",
-        "label": "SSL Tools",
-        "on": false,
-        "groups": [
-          {
-            "heading": "SSL Tools",
-            "items": [
-              {
-                "title": "CSR Generator / Decoder",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "SSL Checker / Converter",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Certificate Key Matcher",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "CAA Record Generator",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Why No Padlock?",
-                "pill": null,
-                "desc": null
-              }
-            ]
-          }
-        ]
-      }
+      
       
     ]
   },
@@ -2524,59 +2431,19 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Inquiry Now",
                 "pill": null,
                 "desc": "We'd love to hear from you"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "g": "1",
-        "label": "Infrastructure",
-        "on": true,
-        "groups": [
-          {
-            "heading": "Infrastructure",
-            "items": [
-              {
-                "title": "Why XcellHost",
-                "pill": null,
-                "desc": "Secure, scalable cloud expertise since 1999"
               },
               {
-                "title": "Our Team · Our Story",
-                "pill": null,
-                "desc": "Meet the people and story behind XcellHost"
-              },
-              {
-                "title": "Certifications",
-                "pill": null,
-                "desc": "Credentials that reflect trusted delivery"
-              },
-              {
-                "title": "Awards",
-                "pill": null,
-                "desc": "Recognition for our cloud and security expertise"
-              },
-              {
-                "title": "Data Centers (Global)",
-                "pill": null,
-                "desc": "Global locations for resilient workloads"
-              },
-              {
-                "title": "Vendor Partners",
-                "pill": null,
-                "desc": "Technology partnerships across cloud and security"
-              },
-              {
-                "title": "Contact Us",
+                "title": "Infrastructure",
                 "pill": null,
                 "desc": "We'd love to hear from you"
               },
               {
-                "title": "Inquiry Now",
+                "title": "Corporate Social Responsibility",
                 "pill": null,
                 "desc": "We'd love to hear from you"
-              }
+              },
+              
+
             ]
           }
         ]
@@ -2706,6 +2573,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Eligibility and the refund review process"
               },
+              {
+                "title": "Cookis Policy",
+                "pill": null,
+                "desc": "Eligibility and the refund review process"
+              },
               
             ]
           }
@@ -2793,11 +2665,11 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "7",
-        "label": "Events",
+        "label": "Events & Webinars",
         "on": false,
         "groups": [
           {
-            "heading": "Events",
+            "heading": "Events & Webinars",
             "items": [
               {
                 "title": "No Events",
@@ -2809,6 +2681,127 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
+      {
+        "g": "4",
+        "label": "Network Tools",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Network Tools",
+            "items": [
+              {
+                "title": "Speed Test",
+                "pill": null,
+                "desc": "Test download speed, upload speed and latency"
+              },
+              {
+                "title": "Looking Glass",
+                "pill": null,
+                "desc": "Inspect routing and reachability from our network"
+              },
+              {
+                "title": "DNS Lookup",
+                "pill": null,
+                "desc": "Inspect A, AAAA, MX, TXT and nameserver records"
+              },
+              {
+                "title": "Traceroute",
+                "pill": null,
+                "desc": "Trace the network path and identify routing delays"
+              },
+              {
+                "title": "IP & WHOIS Lookup",
+                "pill": null,
+                "desc": "Check IP ownership, location and registration details"
+              },
+              {
+                "title": "Port Checker",
+                "pill": null,
+                "desc": "Test whether a public TCP port is reachable"
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "5",
+        "label": "Mail Tools",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Mail Tools",
+            "items": [
+              {
+                "title": "DMARC Monitoring & Reporting",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "SPF · DKIM · DMARC · BIMI Tools",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "MTA-STS · TLS-RPT Tools",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "MX Lookup",
+                "pill": null,
+                "desc": "Check mail exchangers, priority and DNS health"
+              },
+              {
+                "title": "Email Header Analyzer",
+                "pill": null,
+                "desc": "Inspect delivery hops, authentication and delays"
+              },
+              {
+                "title": "Email Blacklist Check",
+                "pill": null,
+                "desc": "Check whether a mail server appears on major blocklists"
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "6",
+        "label": "SSL Tools",
+        "on": false,
+        "groups": [
+          {
+            "heading": "SSL Tools",
+            "items": [
+              {
+                "title": "CSR Generator / Decoder",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "SSL Checker / Converter",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Certificate Key Matcher",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "CAA Record Generator",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Why No Padlock?",
+                "pill": null,
+                "desc": null
+              }
+            ]
+          }
+        ]
+      }
     ]
   }
 ];
