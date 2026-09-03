@@ -50,7 +50,11 @@ export const routes: Routes = [
   },
   {
     path: 'promo-offers',
-    data: { title: 'Promos & Offers' },
+    loadComponent: () => import('./pages/promo-offers.page').then((m) => m.PromoOffersPage),
+  },
+  {
+    path: 'our-team',
+    data: { title: 'Our Team' },
     loadComponent: () =>
       import('./pages/under-construction.page').then((m) => m.UnderConstructionPage),
   },

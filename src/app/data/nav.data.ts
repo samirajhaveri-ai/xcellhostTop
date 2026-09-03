@@ -2706,7 +2706,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Eligibility and the refund review process"
               },
-              
+              {
+                "title": "Cookie Policy",
+                "pill": null,
+                "desc": "How cookies are used on the XcellHost website"
+              }
             ]
           }
         ]
@@ -2793,11 +2797,11 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "7",
-        "label": "Events",
+        "label": "Events & Webinars",
         "on": false,
         "groups": [
           {
-            "heading": "Events",
+            "heading": "Events & Webinars",
             "items": [
               {
                 "title": "No Events",
