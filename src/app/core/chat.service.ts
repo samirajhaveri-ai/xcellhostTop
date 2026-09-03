@@ -118,7 +118,7 @@ export class ChatService {
 
   greet(): void {
     if (this.messages().length) return;
-    this.pushText('bot', `Hi — I am the XcellHost assistant. Ask me about our services, pricing or how to get started.`);
+    this.pushText('bot', `Hi — I am Xcell Genie. Ask me about our services, pricing or how to get started.`);
   }
 
   quick(key: string): void {
