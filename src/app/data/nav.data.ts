@@ -678,16 +678,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-                  {
-                "title": "Mail Routing",
-                "pill": null,
-                "desc": null
-              },
-                  {
-                "title": "Intune Migration",
-                "pill": null,
-                "desc": null
-              },
             ]
           }
         ]
@@ -745,6 +735,75 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Sage Hosting",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "8",
+        "label": "Cloud Desktop",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Cloud Desktop",
+            "items": [
+              {
+                "title": "SMB Cloud Desktop",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Cloud Desktop Enterprise",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Asure Cloud Desktop",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Sage Hosting",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "8",
+        "label": "Connectivity",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Connectivity",
+            "items": [
+              {
+                "title": "Cloud Connectivity",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Cloud Cloud Router",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "private Connect",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "IP Transite",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Virtual Edge",
                 "pill": null,
                 "desc": null
               },
@@ -2442,15 +2501,13 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "We'd love to hear from you"
               },
-              
-
             ]
           }
         ]
       },
       {
         "g": "2",
-        "label": "Partner",
+        "label": "Partner Center",
         "on": false,
         "groups": [
           {
@@ -2552,11 +2609,11 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "5",
-        "label": "Legal",
+        "label": "Legal Center",
         "on": false,
         "groups": [
           {
-            "heading": "Legal",
+            "heading": "Legal Center",
             "items": [
               {
                 "title": "Privacy Policy",
@@ -2800,7 +2857,143 @@ export const MEGA_MENU: MenuTop[] = [
             ]
           }
         ]
-      }
+      },
+      {
+        "g": "6",
+        "label": "Tools Center",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Tools Center",
+            "items": [
+              {
+                "title": "NO Tools",
+                "pill": null,
+                "desc": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "g": "6",
+        "label": "Tools Center",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Tools Center",
+            "items": [
+              {
+                "title": "NO Tools",
+                "pill": null,
+                "desc": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "g": "6",
+        "label": "learning Center",
+        "on": false,
+        "groups": [
+          {
+            "heading": "learning Center",
+            "items": [
+              {
+                "title": "NO Tools",
+                "pill": null,
+                "desc": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "g": "6",
+        "label": "Experience Center",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Tools Center",
+            "items": [
+              {
+                "title": "NO Tools",
+                "pill": null,
+                "desc": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "g": "6",
+        "label": "Experience Center",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Experience Center",
+            "items": [
+              {
+                "title": "NO Tools",
+                "pill": null,
+                "desc": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "g": "6",
+        "label": "Trust Center",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Tools Center",
+            "items": [
+              {
+                "title": "NO Tools",
+                "pill": null,
+                "desc": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "g": "6",
+        "label": "Media center",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Media center",
+            "items": [
+              {
+                "title": "NO Tools",
+                "pill": null,
+                "desc": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "g": "6",
+        "label": "Brand center",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Brand center",
+            "items": [
+              {
+                "title": "NO Tools",
+                "pill": null,
+                "desc": null
+              }
+            ]
+          }
+        ]
+      },
     ]
   }
 ];
