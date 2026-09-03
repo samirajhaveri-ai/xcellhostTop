@@ -360,6 +360,13 @@ export class ProductPage {
 
   readonly cloudDrivePlans: readonly CloudDrivePlan[] = [
     {
+      storage: '250 GB',
+      unit: 'per customer',
+      qty: 1,
+      prices: { monthly: 2499, '3m': 7122.15, '6m': 13869.45, '1y': 26989.2 },
+      comments: 'Enterprise File & Sync with 250 GB Storage | Unlimited Users',
+    },
+    {
       storage: '500 GB',
       unit: 'per customer',
       qty: 1,
