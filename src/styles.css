@@ -3451,6 +3451,251 @@ body.xh-locked{overflow:hidden}
   #ppage .edr-term-tabs b{font-size:14px}
   #ppage .edr-selected-plan ul{grid-template-columns:1fr}
 }
+
+/* ==========================================================================
+   SITE COLOUR THEME
+   The header's theme switch adds .dark-mode to <html>. These late overrides
+   use higher-specificity selectors so older light-only pages inherit the same
+   accessible dark surfaces without changing their layout or branding.
+   ========================================================================== */
+:root {
+  --theme-page: #ffffff;
+  --theme-surface: #ffffff;
+  --theme-surface-raised: #f5f8fd;
+  --theme-text: #1c2a3a;
+  --theme-muted: #51607a;
+  --theme-border: #dce5f2;
+}
+
+html.dark-mode {
+  /* CloudPe-inspired neutral dark hierarchy: canvas, card, muted surface. */
+  --theme-page: hsl(240 24% 5%);
+  --theme-surface: hsl(240 18% 13%);
+  --theme-surface-raised: hsl(240 15% 18%);
+  --theme-text: hsl(228 25% 96%);
+  --theme-muted: hsl(228 20% 78%);
+  --theme-border: hsl(240 14% 30%);
+  --theme-accent: hsl(258 88% 72%);
+  --ink: var(--theme-text);
+  --slate: var(--theme-muted);
+  --line: var(--theme-border);
+  --ice: hsl(240 15% 18%);
+  --blue-soft: hsl(240 18% 16%);
+  color-scheme: dark;
+}
+
+html.dark-mode body {
+  color: var(--theme-text);
+  background: var(--theme-page);
+}
+
+html.dark-mode body,
+html.dark-mode header,
+html.dark-mode main,
+html.dark-mode section,
+html.dark-mode article,
+html.dark-mode aside,
+html.dark-mode nav,
+html.dark-mode footer,
+html.dark-mode input,
+html.dark-mode textarea,
+html.dark-mode select,
+html.dark-mode button {
+  transition: background-color .25s ease, border-color .25s ease, color .25s ease;
+}
+
+/* Main page canvases and the site's recurring light bands. */
+html.dark-mode :is(
+  .ppage, .sla-page, .case-page, .csd-page, .privacy-policy-page,
+  .contact-page, .vmc-page, .resource-page, .construction-page,
+  .testimonials, .directory, .trust, .case-hero, .case-intro,
+  .case-overview, .article-main, .article-more, .payment-intro
+) {
+  background-color: var(--theme-page);
+  color: var(--theme-text);
+}
+
+/* Remap the page-specific design tokens used by newer routed pages. */
+html.dark-mode .sla-page {
+  --sla-navy: var(--theme-text);
+  --sla-text: var(--theme-muted);
+  --sla-line: var(--theme-border);
+  --sla-soft: var(--theme-surface-raised);
+}
+html.dark-mode .case-page {
+  --case-navy: var(--theme-text);
+  --case-slate: var(--theme-muted);
+  --case-line: var(--theme-border);
+  --case-ice: var(--theme-surface-raised);
+}
+html.dark-mode .csd-page {
+  --csd-navy: var(--theme-text);
+  --csd-slate: var(--theme-muted);
+  --csd-line: var(--theme-border);
+  --csd-ice: var(--theme-surface-raised);
+}
+html.dark-mode .contact-page {
+  --c-navy: var(--theme-text);
+  --c-slate: var(--theme-muted);
+  --c-line: var(--theme-border);
+  --c-ice: var(--theme-surface-raised);
+}
+html.dark-mode .payment-page {
+  --pay-navy: var(--theme-text);
+  --pay-slate: var(--theme-muted);
+  --pay-line: var(--theme-border);
+  --pay-ice: var(--theme-surface-raised);
+}
+html.dark-mode .resource-page {
+  --navy: var(--theme-text);
+  --ink: var(--theme-text);
+  --slate: var(--theme-muted);
+  --line: var(--theme-border);
+  --ice: var(--theme-surface-raised);
+}
+html.dark-mode .vmc-page {
+  --ink: var(--theme-text);
+  --slate: var(--theme-muted);
+  --line: var(--theme-border);
+  --ice: var(--theme-surface-raised);
+}
+
+/* Reusable cards, readers, navigation blocks, forms, and data surfaces. */
+html.dark-mode :is(
+  .card, .dir-cat, .why-feature, .testimonial-card, .flag-tabs,
+  .pp-app, .ppl, .ppl2, .pp-tablewrap, .pp-addon, .pp-feat, .pb,
+  .pp-badge, .tcard, .faq2, .bl, .pp-clist a, .pp-proof span,
+  .sla-check-grid li, .sla-dual > div, .sla-contact-card div,
+  .sla-responsibility-card, .document-index, .reader-toolbar, .reader-footer,
+  .payment-method-card, .payment-note, .business-id-grid > div,
+  .case-scorecard, .case-select select, .case-search input,
+  .detail-solution, .article-side-card, .article-toc a
+) {
+  background-color: var(--theme-surface);
+  border-color: var(--theme-border);
+  color: var(--theme-text);
+}
+
+html.dark-mode :is(
+  .sla-nav, .sla-escalation article, .sla-table-wrap th, .sla-footnote,
+  .bank-detail-card, .outcome-body, .case-empty, .case-trust,
+  .article-body ul li, .article-bottom-cta, .document-section
+) {
+  background-color: var(--theme-surface-raised);
+  border-color: var(--theme-border);
+}
+
+html.dark-mode :is(input, textarea, select) {
+  background-color: #101e32;
+  border-color: var(--theme-border);
+  color: var(--theme-text);
+}
+
+html.dark-mode :is(input, textarea)::placeholder { color: #8292aa; }
+
+/* Headings and copy inside light content areas; hero/CTA copy keeps its own colours. */
+html.dark-mode :is(
+  .card, .dir-cat, .why-feature, .testimonial-card, .pp-body, .pp-section,
+  .sla-layout, .case-overview, .case-intro, .csd-body, .contact-main,
+  .payment-intro, .payment-methods-section, .bank-section, .document-section,
+  .article-main, .article-more
+) :is(h1, h2, h3, h4, strong, b) {
+  color: var(--theme-text);
+}
+
+html.dark-mode :is(
+  .card, .dir-cat, .why-feature, .testimonial-card, .pp-body, .pp-section,
+  .sla-layout, .case-overview, .case-intro, .csd-body, .contact-main,
+  .payment-intro, .payment-methods-section, .bank-section, .document-section,
+  .article-main, .article-more
+) :is(p, li, small, label, td, dt, dd) {
+  color: var(--theme-muted);
+}
+
+html.dark-mode :is(.card, .dir-cat, .why-feature, .testimonial-card):hover {
+  border-color: #3e7bd8;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .3);
+}
+
+/*
+ * Angular inserts every routed page immediately after router-outlet. Scoping
+ * here catches both <main> pages and older div-based product pages while the
+ * permanently white site header remains completely outside the dark theme.
+ */
+html.dark-mode.dark-mode router-outlet + * :where(section) {
+  background-color: var(--theme-page);
+  border-color: var(--theme-border);
+}
+
+html.dark-mode.dark-mode router-outlet + * :where(
+  article,
+  [class*="card"]:not(.card-brand),
+  [class*="panel"],
+  [class*="tile"],
+  [class*="box"]
+) {
+  background-color: var(--theme-surface);
+  border-color: var(--theme-border);
+}
+
+html.dark-mode.dark-mode router-outlet + * :where(h1, h2, h3, h4, h5, h6, strong, b) {
+  color: var(--theme-text);
+}
+
+html.dark-mode.dark-mode router-outlet + * :where(p, li, small, label, td, th, dt, dd) {
+  color: var(--theme-muted);
+}
+
+/* Preserve the white payment-brand swatches and their official logo colours. */
+html.dark-mode.dark-mode router-outlet + * .card-brand { background-color: #fff; }
+
+/* Older product templates define their own light-only tokens on .ppage. */
+html.dark-mode .ppage:not(#dppage) {
+  --ink: var(--theme-text);
+  --slate: var(--theme-muted);
+  --line: var(--theme-border);
+  --ice: var(--theme-surface-raised);
+}
+
+/* Keep navy as a background token wherever those templates use it as a fill. */
+html.dark-mode .ppage :is(
+  .pp-hero, .bp-hero, .cat-hero, .pd-head, .pv-frame, .pp-suite,
+  .pp-gemini, .pp-auto, .nl-panel, .bot-head, .msg.me,
+  .pv-tab.active, .pp-toggle button.active, .pp-compare thead th
+) {
+  --navy: #090910;
+}
+
+html.dark-mode.dark-mode router-outlet + * :where(a:not(.btn):not([class*="button"])) {
+  text-underline-offset: 3px;
+}
+
+html.dark-mode.dark-mode router-outlet + * :where(:focus-visible) {
+  outline-color: var(--theme-accent);
+}
+
+html.dark-mode .nf-review-meta small { color: #d7d9e4; }
+
+html.dark-mode :is(.credibility-card, .promise-card) h3 {
+  color: var(--theme-text) !important;
+}
+
+html.dark-mode ::selection { background: #245fae; color: #fff; }
+
+@media (prefers-reduced-motion: reduce) {
+  html.dark-mode body,
+  html.dark-mode header,
+  html.dark-mode main,
+  html.dark-mode section,
+  html.dark-mode article,
+  html.dark-mode aside,
+  html.dark-mode nav,
+  html.dark-mode footer,
+  html.dark-mode input,
+  html.dark-mode textarea,
+  html.dark-mode select,
+  html.dark-mode button { transition: none; }
+}
 @media(max-width:760px){
   .smb-showcase{gap:44px;margin-top:30px}.smb-block{padding:0;border-radius:0}.smb-section-head{margin-bottom:20px}
   .smb-pricing{padding:32px 16px;border-radius:20px}.smb-price-title{grid-template-columns:1fr;gap:14px;margin-bottom:26px;font-size:clamp(30px,8.5vw,38px)}.smb-price-title span{max-width:310px;justify-self:start;font-size:.47em}.smb-price-wrap{grid-template-columns:1fr;gap:14px}.smb-price-periods{display:none}.smb-price-plan{min-height:0;padding:24px 20px}.smb-plan-name{padding:0}.smb-price-plan .smb-users{margin:22px 0 16px;padding:0;text-align:left}.smb-price-option small{min-height:0;margin:0;color:var(--slate);font:500 11px/1.4 'Poppins',sans-serif}.smb-price-option strong{font-size:clamp(22px,6.5vw,27px)}.smb-appliance-price{flex-wrap:wrap;padding:22px 8px}.smb-appliance-price strong{margin-left:5px}.smb-support{padding:26px 8px 18px}.smb-support h3{margin-bottom:20px}.smb-support-grid{grid-template-columns:1fr;gap:0}.smb-support-grid article{grid-template-columns:44px minmax(0,1fr);width:100%;padding:16px 8px;border-right:0;border-bottom:1px solid var(--line)}.smb-support-grid article:last-child{border-bottom:0}.smb-support-grid article:nth-child(3){grid-column:auto;grid-row:auto}.smb-support-grid strong{grid-column:2;width:auto}.smb-price-actions{padding-bottom:22px}.smb-price-actions>small{right:50%;transform:translateX(50%);bottom:0}.smb-ideal-grid,.smb-benefit-grid,.smb-pillar-grid,.smb-product-panel,.smb-network-flow{grid-template-columns:1fr 1fr}
@@ -3950,3 +4195,272 @@ body.xh-locked{overflow:hidden}
   #ppage .sitelock-ctas{display:grid;grid-template-columns:1fr;width:100%}
   #ppage .sitelock-ctas .btn{width:100%;min-height:46px}
 }
+
+/* ==========================================================================
+   UNIFORM NIGHT-MODE CONTENT SURFACES
+   Every routed page follows the same near-black section + charcoal card
+   hierarchy. Important declarations are intentional: several legacy pages
+   ship lazy component styles with literal white backgrounds after this file.
+   The permanent site header is outside router-outlet and remains white.
+   ========================================================================== */
+html.dark-mode.dark-mode.dark-mode router-outlet + * :where(section) {
+  background-color: var(--theme-page) !important;
+  border-color: var(--theme-border) !important;
+}
+
+html.dark-mode.dark-mode.dark-mode router-outlet + * :is(
+  article,
+  details,
+  .card,
+  .dir-cat,
+  .faq2,
+  .tcard,
+  .ppl,
+  .ppl2,
+  .dpp,
+  .dpt,
+  .sp-c,
+  .sp-ct,
+  .spp,
+  .pp-feat,
+  .pp-addon,
+  .pp-badge,
+  .pp-tablewrap,
+  .tally-plan-card,
+  .cloud-backup-plan-card,
+  .smb-price-plan,
+  [class$="-card"]:not(.card-brand),
+  [class*="-card "]:not(.card-brand),
+  [class$="-panel"],
+  [class*="-panel "],
+  [class$="-tile"],
+  [class$="-box"]
+) {
+  background: var(--theme-surface) !important;
+  border-color: var(--theme-border) !important;
+  color: var(--theme-text) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .28) !important;
+}
+
+/* Pricing cards contain nested light columns, so convert those as surfaces too. */
+html.dark-mode.dark-mode.dark-mode router-outlet + * :is(
+  .tally-plan-main,
+  .cloud-backup-plan-main,
+  .smb-plan-main,
+  .tally-plan-specs,
+  .tally-plan-specs > div,
+  .smb-plan-features li,
+  .smb-appliance-price,
+  .cdr-plan-purchase,
+  .cdr-quantity,
+  .edr-plan-purchase,
+  .edr-quantity
+) {
+  background: var(--theme-surface-raised) !important;
+  border-color: var(--theme-border) !important;
+  color: var(--theme-text) !important;
+}
+
+html.dark-mode.dark-mode.dark-mode router-outlet + * :is(
+  article,
+  details,
+  .card,
+  .dir-cat,
+  .faq2,
+  .tcard,
+  .ppl,
+  .ppl2,
+  .dpp,
+  .dpt,
+  .sp-c,
+  .sp-ct,
+  .spp,
+  .pp-feat,
+  .pp-addon,
+  .pp-badge,
+  .pp-tablewrap,
+  .tally-plan-card,
+  .cloud-backup-plan-card,
+  .smb-price-plan,
+  [class$="-card"]:not(.card-brand),
+  [class*="-card "]:not(.card-brand),
+  [class$="-panel"],
+  [class*="-panel "],
+  [class$="-tile"],
+  [class$="-box"]
+) :is(h1, h2, h3, h4, h5, h6, strong, b, summary, .faq2-q) {
+  color: var(--theme-text) !important;
+}
+
+html.dark-mode.dark-mode.dark-mode router-outlet + * :is(
+  article,
+  details,
+  .card,
+  .dir-cat,
+  .faq2,
+  .tcard,
+  .ppl,
+  .ppl2,
+  .dpp,
+  .dpt,
+  .sp-c,
+  .sp-ct,
+  .spp,
+  .pp-feat,
+  .pp-addon,
+  .pp-badge,
+  .pp-tablewrap,
+  .tally-plan-card,
+  .cloud-backup-plan-card,
+  .smb-price-plan,
+  [class$="-card"]:not(.card-brand),
+  [class*="-card "]:not(.card-brand),
+  [class$="-panel"],
+  [class*="-panel "],
+  [class$="-tile"],
+  [class$="-box"]
+) :is(p, li, small, label, dt, dd, td, th) {
+  color: var(--theme-muted) !important;
+}
+
+html.dark-mode.dark-mode.dark-mode router-outlet + * :is(
+  .tally-plan-name b,
+  .tally-plan-main > strong,
+  .tally-plan-specs dd,
+  .smb-plan-name b,
+  .smb-selected-price,
+  .smb-price-option strong,
+  .faq2-q,
+  .tcard .tname
+) {
+  color: var(--theme-text) !important;
+}
+
+html.dark-mode.dark-mode.dark-mode router-outlet + * :is(
+  .tally-plan-main > p,
+  .tally-plan-main > small,
+  .tally-plan-specs dt,
+  .smb-starting,
+  .smb-gst,
+  .smb-plan-features li,
+  .tcard .trole,
+  .tcard p,
+  .faq2-a p
+) {
+  color: var(--theme-muted) !important;
+}
+
+/* Keep functional accents recognizable against the uniform cards. */
+html.dark-mode router-outlet + * :is(.eyebrow, [class*="kicker"], [class*="section-label"]) {
+  color: #69a3ff !important;
+}
+html.dark-mode router-outlet + * :is(.tstars, .testimonial-stars, [class*="stars"]) {
+  color: var(--orange) !important;
+}
+html.dark-mode router-outlet + * .card-brand,
+html.dark-mode router-outlet + * .card-brand * {
+  background-color: #fff !important;
+  color: inherit !important;
+}
+
+/* The Global DC map is a visualization, not a content card. */
+html.dark-mode.dark-mode.dark-mode router-outlet + * .dc-tab-panel {
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.product-tour-empty {
+  display: grid;
+  min-height: 300px;
+  place-items: center;
+  padding: 32px;
+  color: #d7e7ff;
+  text-align: center;
+}
+
+/* Legacy homepage/service tiles use short class names rather than "card". */
+html.dark-mode.dark-mode.dark-mode router-outlet + * :is(
+  .ind,
+  .cs,
+  .mev,
+  .mrl,
+  .pst,
+  .dpr,
+  .dm,
+  .ds,
+  .prv,
+  .pbl,
+  .plat,
+  .bq,
+  .au-portal,
+  .tally-compare-item,
+  .tally-migration-step,
+  .pp-compare-wrap,
+  .smb-network-list,
+  .smb-specs,
+  .insights-lead,
+  .outcome-body,
+  .detail-solution,
+  .tally-addons-grid article
+) {
+  background: var(--theme-surface) !important;
+  border-color: var(--theme-border) !important;
+  color: var(--theme-text) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .28) !important;
+}
+
+html.dark-mode.dark-mode.dark-mode router-outlet + * :is(
+  .ind,
+  .cs,
+  .mev,
+  .mrl,
+  .pst,
+  .dpr,
+  .dm,
+  .ds,
+  .prv,
+  .pbl,
+  .plat,
+  .bq,
+  .au-portal,
+  .tally-compare-item,
+  .tally-migration-step,
+  .pp-compare-wrap,
+  .smb-network-list,
+  .smb-specs,
+  .insights-lead,
+  .outcome-body,
+  .detail-solution
+) :is(h1, h2, h3, h4, h5, h6, strong, b) {
+  color: var(--theme-text) !important;
+}
+
+html.dark-mode.dark-mode.dark-mode router-outlet + * :is(
+  .ind,
+  .cs,
+  .mev,
+  .mrl,
+  .pst,
+  .dpr,
+  .dm,
+  .ds,
+  .prv,
+  .pbl,
+  .plat,
+  .bq,
+  .au-portal,
+  .tally-compare-item,
+  .tally-migration-step,
+  .pp-compare-wrap,
+  .smb-network-list,
+  .smb-specs,
+  .insights-lead,
+  .outcome-body,
+  .detail-solution
+) :is(p, small, li, dt, dd, td, th) {
+  color: var(--theme-muted) !important;
+}
+
+html.dark-mode .ind-copy > span { color: var(--theme-muted) !important; }
+html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }

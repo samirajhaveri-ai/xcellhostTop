@@ -1121,7 +1121,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "kaspersky OT",
+                "title": "Kaspersky OT",
                 "pill": "Free trial",
                 "desc": null
               },

@@ -66,6 +66,12 @@ interface CloudBackupPlan {
   yearly: number;
 }
 
+interface ProductTourSlide {
+  title: string;
+  description: string;
+  image: string;
+}
+
 /**
  * The routed service / product page — everything the original `#ppage` overlay
  * rendered through its six-script `__ppExtras` pipeline, in one component.
@@ -179,6 +185,35 @@ export class ProductPage {
     },
   ] as const;
   readonly isEdrTourOpen = computed(() => this.overlay.isOpen('edrScreenshotTour'));
+  readonly activeProductTourSlide = signal(0);
+  readonly isProductTourOpen = computed(() => this.overlay.isOpen('productScreenshotTour'));
+
+  /** Product-owned artwork used when a page does not have a dedicated UI screenshot set. */
+  readonly productTourSlides = computed<readonly ProductTourSlide[]>(() => {
+    const view = this.view();
+    if (!view) return [];
+
+    const candidates: ProductTourSlide[] = [];
+    const add = (title: string, description: string, image: string | null | undefined): void => {
+      if (!image || candidates.some((slide) => slide.image === image)) return;
+      candidates.push({ title, description, image });
+    };
+
+    add(`${view.name} overview`, view.tagline, view.heroImage);
+    add(view.featureSpotlight?.title ?? 'Feature spotlight', view.featureSpotlight?.body ?? view.overview, view.featureSpotlight?.image);
+    add(view.featureDetail?.title ?? 'Product capabilities', view.featureDetail?.bullets.join(' ') ?? view.overview, view.featureDetail?.image);
+    add(view.frameworkSection?.title ?? 'Product framework', view.frameworkSection?.subtitle ?? view.overview, view.frameworkSection?.image);
+    add('Framework detail', view.frameworkSection?.subtitle ?? view.overview, view.frameworkSection?.secondaryImage);
+    add('Framework overview', view.frameworkSection?.subtitle ?? view.overview, view.frameworkSection?.tertiaryImage);
+    add(view.advancedSection?.title ?? 'Advanced capabilities', view.advancedSection?.body ?? view.overview, view.advancedSection?.image);
+    add('Advanced feature detail', view.advancedSection?.body ?? view.overview, view.advancedSection?.secondaryImage);
+    add('Advanced feature overview', view.advancedSection?.body ?? view.overview, view.advancedSection?.tertiaryImage);
+
+    for (const item of view.benefitGrid) add(item.title, item.body ?? view.overview, item.image);
+    for (const item of view.packages) add(item.title, `Explore the ${item.title} package for ${view.name}.`, item.image);
+
+    return candidates.slice(0, 6);
+  });
 
   selectEdrPlan(index: number): void {
     this.selectedEdrPlanIndex.set(index);
@@ -266,6 +301,30 @@ export class ProductPage {
 
   nextEdrTourSlide(): void {
     this.activeEdrTourSlide.set((this.activeEdrTourSlide() + 1) % this.edrTourSlides.length);
+  }
+
+  openProductScreenshotTour(): void {
+    if (this.isCloudDisasterRecoverySmb()) return this.openCdrTour();
+    if (this.isAcronisGenAi()) return this.openGenAiTour();
+    if (this.isRmm()) return this.openRmmTour();
+    if (this.isAdvancedEdr()) return this.openEdrTour();
+
+    this.activeProductTourSlide.set(0);
+    this.overlay.open('productScreenshotTour');
+  }
+
+  closeProductTour(): void { this.overlay.close('productScreenshotTour'); }
+
+  selectProductTourSlide(index: number): void { this.activeProductTourSlide.set(index); }
+
+  previousProductTourSlide(): void {
+    const count = this.productTourSlides().length;
+    if (count) this.activeProductTourSlide.set((this.activeProductTourSlide() + count - 1) % count);
+  }
+
+  nextProductTourSlide(): void {
+    const count = this.productTourSlides().length;
+    if (count) this.activeProductTourSlide.set((this.activeProductTourSlide() + 1) % count);
   }
 
   edrPlanTotal(plan: PricingPlan): string {
@@ -359,6 +418,13 @@ export class ProductPage {
   ];
 
   readonly cloudDrivePlans: readonly CloudDrivePlan[] = [
+    {
+      storage: '250 GB',
+      unit: 'per customer',
+      qty: 1,
+      prices: { monthly: 2499, '3m': 7122.15, '6m': 13869.45, '1y': 26989.2 },
+      comments: 'Enterprise File & Sync with 250 GB Storage | Unlimited Users',
+    },
     {
       storage: '500 GB',
       unit: 'per customer',
