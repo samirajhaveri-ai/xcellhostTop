@@ -1827,6 +1827,19 @@
   .ub2 > a{white-space:nowrap;font-size:13px;color:#B9C9E2;flex:0 0 auto}
   .ub2 > a:hover{color:#fff}
   .ub2-push{flex:1 1 auto;min-width:12px}
+  .ub2-tools{display:inline-flex;align-items:center;gap:8px;flex:0 0 auto}
+  .ub2-tool{
+    display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:30px;
+    padding:5px 11px;border:1px solid rgba(255,255,255,.16);border-radius:999px;
+    background:rgba(255,255,255,.08);color:#fff;font:700 11px/1 var(--mono);cursor:pointer;
+    flex:0 0 auto;transition:transform .18s ease,background .18s ease,border-color .18s ease,box-shadow .18s ease
+  }
+  .ub2-tool svg{width:14px;height:14px;flex:none}
+  .ub2-tool:hover{transform:translateY(-1px);background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.3);box-shadow:0 6px 14px rgba(0,0,0,.12)}
+  .ub2-tool:focus-visible{outline:3px solid rgba(255,255,255,.26);outline-offset:2px}
+  .ub2-theme{width:32px;padding:0}
+  .ub2-lang{padding-right:12px;padding-left:10px}
+  .ub2-lang span{letter-spacing:.08em}
   .ub2 .phone{white-space:nowrap;color:#fff;font-weight:600;font-size:13px;flex:0 0 auto}
   .ub2 .uwa{white-space:nowrap;flex:0 0 auto;display:inline-flex;align-items:center;gap:6px}
   @media(max-width:900px){.ub2{gap:16px}.ub2 > a,.ub2 .phone,.ub2 .uwa{font-size:12px}}
@@ -1842,6 +1855,7 @@
   .utility .wrap.ub2{max-width:100%;padding-left:24px !important;padding-right:24px !important;
     gap:18px !important;box-sizing:border-box}
   .ub2 > a{font-size:12.5px !important}
+  .ub2-tools{gap:7px}
   .ub2 .phone,.ub2 .uwa{font-size:12.5px !important}
   .ub2 .uwa{padding-right:6px}
   @media(max-width:1200px){.ub2 > a{font-size:12px !important}.ub2{gap:14px !important}}

@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { LanguageService } from '../core/language.service';
+import { ThemeService } from '../core/theme.service';
 import { SITE } from '../data/site.data';
 
 /**
@@ -13,5 +15,7 @@ import { SITE } from '../data/site.data';
 })
 export class UtilityBarComponent {
   readonly site = SITE;
+  readonly theme = inject(ThemeService);
+  readonly language = inject(LanguageService);
   readonly whatsappHref = `https://wa.me/${SITE.whatsapp}`;
 }
