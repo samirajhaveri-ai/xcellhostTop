@@ -10,7 +10,6 @@ import {
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CartService } from '../core/cart.service';
-import { ThemeService } from '../core/theme.service';
 import { CatalogService, slugify } from '../core/catalog.service';
 import { OverlayService } from '../core/overlay.service';
 import { MEGA_MENU } from '../data/nav.data';
@@ -475,8 +474,6 @@ export class HeaderComponent {
   private readonly destroyRef = inject(DestroyRef);
   readonly overlay = inject(OverlayService);
   readonly cart = inject(CartService);
-  readonly theme = inject(ThemeService);
-
   /** The whole menu, pre-resolved once: no per-render slug lookups. */
   readonly tops: NavTopVm[] = MEGA_MENU.map((top) => ({
     label: top.label,

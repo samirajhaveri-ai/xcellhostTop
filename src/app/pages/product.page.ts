@@ -214,6 +214,23 @@ export class ProductPage {
   readonly isEdrTourOpen = computed(() => this.overlay.isOpen('edrScreenshotTour'));
   readonly activeProductTourSlide = signal(0);
   readonly isProductTourOpen = computed(() => this.overlay.isOpen('productScreenshotTour'));
+  readonly acronisTrueImageTourSlides: readonly ProductTourSlide[] = [
+    {
+      title: 'Easy management',
+      description: 'Manage protection, detected issues, quarantine and exclusions from one clear dashboard.',
+      image: '/assets/images/Easy-Management.png',
+    },
+    {
+      title: 'Cybersecurity',
+      description: 'Monitor active protection, antivirus scans and vulnerability assessments in one place.',
+      image: '/assets/images/Cybersecurity.png',
+    },
+    {
+      title: 'Backup',
+      description: 'Choose what to protect, from an entire PC or disk to individual files and folders.',
+      image: '/assets/images/Backup.png',
+    },
+  ];
   readonly microsoft365BackupTourSlides: readonly ProductTourSlide[] = [
     {
       title: 'Why Microsoft 365 data needs protection',
@@ -256,6 +273,7 @@ export class ProductPage {
   readonly productTourSlides = computed<readonly ProductTourSlide[]>(() => {
     const view = this.view();
     if (!view) return [];
+    if (view.name === 'Acronis True Image') return this.acronisTrueImageTourSlides;
     if (view.name === 'Microsoft 365 Backup') return this.microsoft365BackupTourSlides;
 
     const candidates: ProductTourSlide[] = [];
