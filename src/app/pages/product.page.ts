@@ -19,6 +19,7 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { LottieDirective } from '../shared/lottie.directive';
 import { CloudCctvContentComponent } from '../sections/cloud-cctv-content.component';
 import { AcronisTrueImageContentComponent } from '../sections/acronis-true-image-content.component';
+import { SiteLockContentComponent } from '../sections/sitelock-content.component';
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -93,6 +94,7 @@ interface ProductTourSlide {
     ProductFaqComponent,
     CloudCctvContentComponent,
     AcronisTrueImageContentComponent,
+    SiteLockContentComponent,
   ],
   templateUrl: './product.page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -609,6 +611,8 @@ export class ProductPage {
   readonly isTally = computed(() => this.view()?.name === 'Tally on Cloud');
 
   readonly isAcronisTrueImage = computed(() => this.view()?.name === 'Acronis True Image');
+
+  readonly isSiteLock = computed(() => this.view()?.name === 'Web Security (SiteLock)');
 
   readonly isCloudDrive = computed(() => this.view()?.name === 'Cloud Drive');
 
