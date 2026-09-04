@@ -131,6 +131,7 @@ export class ProductPage {
   readonly selectedEdrPlanIndex = signal(0);
   readonly edrQuantity = signal(1);
   readonly cdrQuantity = signal(1);
+  readonly cloudDriveQuantity = signal(1);
   readonly activeCdrTourSlide = signal(0);
   readonly cdrTourSlides = [
     {
@@ -281,6 +282,10 @@ export class ProductPage {
 
   changeCdrQuantity(change: number): void {
     this.cdrQuantity.update((quantity) => Math.max(1, quantity + change));
+  }
+
+  changeCloudDriveQuantity(change: number): void {
+    this.cloudDriveQuantity.update((quantity) => Math.max(1, quantity + change));
   }
 
   cdrPlanTotal(): string {
@@ -519,6 +524,10 @@ export class ProductPage {
 
   cloudDrivePrice(plan: CloudDrivePlan): number {
     return plan.prices[this.selectedCloudDriveTerm()];
+  }
+
+  cloudDriveTotal(plan: CloudDrivePlan): number {
+    return Math.round(this.cloudDrivePrice(plan) * this.cloudDriveQuantity());
   }
 
   /** Names that have a page of their own but are missing from the directory. */
@@ -879,7 +888,7 @@ export class ProductPage {
 
   selectCloudDrivePlan(plan: CloudDrivePlan, ev: Event): void {
     ev.preventDefault();
-    this.topics.ask(`Cloud Drive ${plan.storage} - ${this.activeCloudDriveTerm().label}`);
+    this.topics.ask(`Cloud Drive ${plan.storage} - ${this.activeCloudDriveTerm().label} - ${this.cloudDriveQuantity()} users`);
     this.overlay.open('callback');
   }
 
