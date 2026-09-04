@@ -18,6 +18,7 @@ import { HeroNetDirective, ProductFaqComponent } from '../sections/product';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { LottieDirective } from '../shared/lottie.directive';
 import { CloudCctvContentComponent } from '../sections/cloud-cctv-content.component';
+import { AcronisTrueImageContentComponent } from '../sections/acronis-true-image-content.component';
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -84,7 +85,14 @@ interface ProductTourSlide {
 @Component({
   selector: 'xh-product-page',
   standalone: true,
-  imports: [RouterLink, HeroNetDirective, LottieDirective, ProductFaqComponent, CloudCctvContentComponent],
+  imports: [
+    RouterLink,
+    HeroNetDirective,
+    LottieDirective,
+    ProductFaqComponent,
+    CloudCctvContentComponent,
+    AcronisTrueImageContentComponent,
+  ],
   templateUrl: './product.page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -571,6 +579,8 @@ export class ProductPage {
   readonly isAcronisGenAi = computed(() => this.view()?.name === 'Acronis GenAI');
 
   readonly isTally = computed(() => this.view()?.name === 'Tally on Cloud');
+
+  readonly isAcronisTrueImage = computed(() => this.view()?.name === 'Acronis True Image');
 
   readonly isCloudDrive = computed(() => this.view()?.name === 'Cloud Drive');
 
