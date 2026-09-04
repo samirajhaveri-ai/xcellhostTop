@@ -174,6 +174,10 @@
         <div class="pp-sec">Overview</div>
         <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
 
+        @if (isAcronisTrueImage()) {
+          <xh-acronis-true-image-content />
+        }
+
         @if (v.offerSection; as offer) {
           <section class="pp-offer" aria-labelledby="ppOfferTitle">
             <h2 id="ppOfferTitle">{{ offer.title }}</h2>
@@ -489,7 +493,7 @@
               }
             </div>
           </section>
-        } @else if (!isAdvancedEdr() && !isSmbCyber() && !isRmm()) {
+        } @else if (!isAdvancedEdr() && !isSmbCyber() && !isRmm() && !isAcronisTrueImage()) {
           <div class="pp-sec">Plans &amp; pricing</div>
           <div class="pp-plans" id="ppPlans">
             @for (p of v.plans; track p.term) {
@@ -531,7 +535,7 @@
               }
             </div>
           </section>
-        } @else if (!isSmbCyber()) {
+        } @else if (!isSmbCyber() && !isAcronisTrueImage()) {
           @if (isAdvancedEdr()) {
             <section class="edr-feature-heading" aria-labelledby="edr-feature-title">
               <div class="edr-feature-copy">
@@ -815,7 +819,7 @@
           </section>
         }
 
-        @if (!isSmbCyber() && !isRmm()) {
+        @if (!isSmbCyber() && !isRmm() && !isAcronisTrueImage()) {
         <div class="pp-sec">
           {{
             v.name === 'Tally on Cloud'
@@ -945,7 +949,7 @@
           </section>
         }
 
-        @if (v.name !== 'Tally on Cloud' && !isSmbCyber()) {
+        @if (v.name !== 'Tally on Cloud' && !isSmbCyber() && !isAcronisTrueImage()) {
           <div class="pp-sec">Use cases</div>
           <div class="pp-uses" id="ppUses" [class.cdr-smb-uses]="isCloudDisasterRecoverySmb()">
             @for (u of v.uses; track u.title) {
@@ -966,6 +970,14 @@
               <p>{{ honest }}</p>
             </div>
           }
+        }
+
+        @if (isAcronisTrueImage() && v.honest; as honest) {
+          <div class="pp-honest" id="ppHonest">
+            <div class="ph-tag">Straight answer</div>
+            <b>When {{ v.name }} is not the right fit</b>
+            <p>{{ honest }}</p>
+          </div>
         }
 
         @if (v.edr; as edr) {

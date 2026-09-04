@@ -1,0 +1,889 @@
+<div class="ati-content">
+  <svg width="0" height="0" class="ati-icon-sprite" aria-hidden="true">
+    <defs>
+      <symbol
+        id="ati-check"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="3"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M5 12l5 5L20 6" />
+      </symbol>
+      <symbol
+        id="ati-x"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.4"
+        stroke-linecap="round"
+      >
+        <path d="M6 6l12 12M18 6 6 18" />
+      </symbol>
+      <symbol
+        id="ati-shield"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z" />
+        <path d="m9 12 2 2 4-4" />
+      </symbol>
+      <symbol
+        id="ati-backup"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <ellipse cx="12" cy="6" rx="8" ry="3" />
+        <path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6" />
+        <path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3" />
+      </symbol>
+      <symbol
+        id="ati-recovery"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M3 12a9 9 0 1 0 3-6.7L3 8" />
+        <path d="M3 3v5h5M12 8v4l3 2" />
+      </symbol>
+      <symbol
+        id="ati-mobile"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <rect x="6" y="2" width="12" height="20" rx="2.5" />
+        <path d="M11 18h2" />
+      </symbol>
+      <symbol
+        id="ati-mail"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <rect x="3" y="5" width="18" height="14" rx="2" />
+        <path d="m3 7 9 6 9-6" />
+      </symbol>
+      <symbol
+        id="ati-cyber"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z" />
+        <circle cx="12" cy="10" r="2" />
+        <path d="M12 12v3" />
+      </symbol>
+      <symbol
+        id="ati-image"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <rect x="3" y="4" width="18" height="16" rx="2" />
+        <circle cx="8.5" cy="9.5" r="1.6" />
+        <path d="m4 18 5-5 4 4 3-3 4 4" />
+      </symbol>
+      <symbol
+        id="ati-virus"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="12" cy="12" r="5" />
+        <path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2M19 5l-2 2M7 17l-2 2" />
+      </symbol>
+      <symbol
+        id="ati-malware"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z" />
+        <circle cx="12" cy="11" r="2.4" />
+        <path d="M12 8.6V6.5M9.6 9.6 8.2 8.2m6.2 1.4 1.4-1.4m-6.2 4.2-1.4 1.4m6.2-1.4 1.4 1.4" />
+      </symbol>
+      <symbol
+        id="ati-lock"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <rect x="4" y="10" width="16" height="11" rx="2.5" />
+        <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+      </symbol>
+      <symbol
+        id="ati-clone"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <rect x="8" y="8" width="12" height="12" rx="2" />
+        <path d="M4 16V6a2 2 0 0 1 2-2h10" />
+      </symbol>
+      <symbol
+        id="ati-migrate"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M4 7h11m-4-4 4 4-4 4M20 17H9m4 4-4-4 4-4" />
+      </symbol>
+      <symbol
+        id="ati-cloud-restore"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path
+          d="M7 18a4.5 4.5 0 0 1-.5-8.97A6 6 0 0 1 18 9.5a3.5 3.5 0 0 1-.5 8.5M12 21v-7m-3 3 3 3 3-3"
+        />
+      </symbol>
+      <symbol
+        id="ati-sync"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M21 8A9 9 0 0 0 6 5L3 8M3 3v5h5M3 16a9 9 0 0 0 15 3l3-3m0 5v-5h-5" />
+      </symbol>
+      <symbol
+        id="ati-grid"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+      >
+        <rect x="3" y="3" width="7" height="7" rx="1.4" />
+        <rect x="14" y="3" width="7" height="7" rx="1.4" />
+        <rect x="3" y="14" width="7" height="7" rx="1.4" />
+        <rect x="14" y="14" width="7" height="7" rx="1.4" />
+      </symbol>
+      <symbol
+        id="ati-dual"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M12 3 4 6v5c0 5 8 9 8 9M12 3l8 3v5c0 5-8 9-8 9" opacity=".75" />
+      </symbol>
+      <symbol
+        id="ati-recdrive"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <rect x="2" y="7" width="20" height="12" rx="2" />
+        <path d="M12 11v4m-2-2 2 2 2-2" />
+      </symbol>
+      <symbol
+        id="ati-folder"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M3 7a2 2 0 0 1 2-2h4l2 2.5h8A2 2 0 0 1 21 11v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+      </symbol>
+      <symbol
+        id="ati-dash"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+      >
+        <rect x="3" y="3" width="18" height="18" rx="2" />
+        <path d="M3 9h18M9 21V9" />
+      </symbol>
+      <symbol
+        id="ati-flex"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+      >
+        <path d="M4 12a8 8 0 0 1 8-8m8 8a8 8 0 0 1-8 8" />
+        <circle cx="12" cy="4" r="1.6" />
+        <circle cx="12" cy="20" r="1.6" />
+        <path d="m8 15-2 2m12-10-2 2" />
+      </symbol>
+      <symbol
+        id="ati-storage"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M4 6a8 3 0 0 0 16 0 8 3 0 0 0-16 0zm0 0v6a8 3 0 0 0 16 0V6M12 16v5m-3-2 3 3 3-3" />
+      </symbol>
+      <symbol
+        id="ati-devices"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+      >
+        <rect x="2" y="4" width="14" height="10" rx="1.6" />
+        <rect x="16" y="9" width="6" height="11" rx="1.4" />
+        <path d="M2 18h9" />
+      </symbol>
+      <symbol
+        id="ati-remote"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+      >
+        <circle cx="12" cy="12" r="9" />
+        <path d="M3 12h18M12 3c2.6 2.4 4 5.6 4 9s-1.4 6.6-4 9c-2.6-2.4-4-5.6-4-9s1.4-6.6 4-9z" />
+      </symbol>
+      <symbol
+        id="ati-module"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+      >
+        <path
+          d="M9 3h6v3a2 2 0 0 0 4 0h2v6h-3a2 2 0 0 0 0 4h3v3H9v-3a2 2 0 0 0-4 0H2v-6h3a2 2 0 0 0 0-4H2V3z"
+        />
+      </symbol>
+    </defs>
+  </svg>
+
+  <section class="ati-section" aria-labelledby="atiFeaturesTitle">
+    <header class="ati-heading">
+      <h2 id="atiFeaturesTitle">One app for backup, security &amp; <span>privacy</span></h2>
+      <i></i>
+      <p>
+        Everything you need to keep your data safe, recoverable and protected against modern
+        threats.
+      </p>
+    </header>
+    <div class="ati-tile-grid ati-six">
+      <article class="ati-tile">
+        <span
+          ><svg><use href="#ati-backup" /></svg></span
+        ><b>Backup</b>
+      </article>
+      <article class="ati-tile">
+        <span
+          ><svg><use href="#ati-recovery" /></svg></span
+        ><b>Data Recovery</b>
+      </article>
+      <article class="ati-tile">
+        <span
+          ><svg><use href="#ati-mobile" /></svg></span
+        ><b>Mobile Backup</b>
+      </article>
+      <article class="ati-tile">
+        <span
+          ><svg><use href="#ati-mail" /></svg></span
+        ><b>Email Backup</b>
+      </article>
+      <article class="ati-tile">
+        <span
+          ><svg><use href="#ati-cyber" /></svg></span
+        ><b>Cybersecurity</b>
+      </article>
+      <article class="ati-tile">
+        <span
+          ><svg><use href="#ati-image" /></svg></span
+        ><b>Imaging</b>
+      </article>
+      <article class="ati-tile">
+        <span
+          ><svg><use href="#ati-virus" /></svg></span
+        ><b>Anti-Virus</b>
+      </article>
+      <article class="ati-tile">
+        <span
+          ><svg><use href="#ati-malware" /></svg></span
+        ><b>Anti-Malware</b>
+      </article>
+      <article class="ati-tile">
+        <span
+          ><svg><use href="#ati-lock" /></svg></span
+        ><b>Data Protection</b>
+      </article>
+      <article class="ati-tile">
+        <span
+          ><svg><use href="#ati-clone" /></svg></span
+        ><b>Cloning</b>
+      </article>
+      <article class="ati-tile">
+        <span
+          ><svg><use href="#ati-migrate" /></svg></span
+        ><b>Data Migration</b>
+      </article>
+      <article class="ati-tile">
+        <span
+          ><svg><use href="#ati-shield" /></svg></span
+        ><b>Active Protection</b>
+      </article>
+    </div>
+  </section>
+
+  <section class="ati-section ati-ice" aria-labelledby="atiBenefitsTitle">
+    <header class="ati-heading ati-narrow">
+      <h2 id="atiBenefitsTitle">Why Customers Choose Acronis True Image</h2>
+      <i></i>
+      <p>
+        Full-image protection with cloud and local copies—so a single failure never means lost data.
+      </p>
+    </header>
+    <div class="ati-tile-grid ati-four ati-narrow">
+      <article class="ati-tile">
+        <span
+          ><svg><use href="#ati-image" /></svg></span
+        ><b>Full Image Backups</b>
+      </article>
+      <article class="ati-tile">
+        <span
+          ><svg><use href="#ati-clone" /></svg></span
+        ><b>Active Disk Cloning</b>
+      </article>
+      <article class="ati-tile">
+        <span
+          ><svg><use href="#ati-grid" /></svg></span
+        ><b>Microsoft 365 Backup</b>
+      </article>
+      <article class="ati-tile">
+        <span
+          ><svg><use href="#ati-sync" /></svg></span
+        ><b>File Sync &amp; Share</b>
+      </article>
+      <article class="ati-tile">
+        <span
+          ><svg><use href="#ati-recdrive" /></svg></span
+        ><b>All-in-one Recovery Drive</b>
+      </article>
+      <article class="ati-tile">
+        <span
+          ><svg><use href="#ati-folder" /></svg></span
+        ><b>File &amp; Folder Backups</b>
+      </article>
+      <article class="ati-tile">
+        <span
+          ><svg><use href="#ati-cloud-restore" /></svg></span
+        ><b>Cloud Restores</b>
+      </article>
+      <article class="ati-tile">
+        <span
+          ><svg><use href="#ati-dual" /></svg></span
+        ><b>Dual Protection</b>
+      </article>
+    </div>
+  </section>
+
+  <section class="ati-section" aria-labelledby="atiCapabilitiesTitle">
+    <header class="ati-heading">
+      <h2 id="atiCapabilitiesTitle">Acronis True Image <span>capabilities</span></h2>
+      <i></i>
+      <p>Three pillars in one app—protect, secure and manage all your data from a single place.</p>
+    </header>
+    <div class="ati-tabs" role="tablist" aria-label="Acronis True Image capabilities">
+      <button
+        type="button"
+        role="tab"
+        [attr.aria-selected]="activeCapability() === 'backup'"
+        (click)="selectCapability('backup')"
+      >
+        Backup
+      </button>
+      <button
+        type="button"
+        role="tab"
+        [attr.aria-selected]="activeCapability() === 'cyber'"
+        (click)="selectCapability('cyber')"
+      >
+        Cybersecurity
+      </button>
+      <button
+        type="button"
+        role="tab"
+        [attr.aria-selected]="activeCapability() === 'manage'"
+        (click)="selectCapability('manage')"
+      >
+        Easy management
+      </button>
+    </div>
+
+    @if (activeCapability() === 'backup') {
+      <div class="ati-capability-panel">
+        <div class="ati-capability-copy">
+          <h3>Complete, reliable backup</h3>
+          <p>
+            Protect everything—your full system, individual files or your phone—to local drives and
+            the Acronis Cloud.
+          </p>
+          <div class="ati-capability-list">
+            <article>
+              <span
+                ><svg><use href="#ati-image" /></svg
+              ></span>
+              <div>
+                <b>Full-image backup</b>
+                <p>
+                  Capture your entire system—OS, apps, settings and files—in one recoverable image.
+                </p>
+              </div>
+            </article>
+            <article>
+              <span
+                ><svg><use href="#ati-dual" /></svg
+              ></span>
+              <div>
+                <b>Dual protection</b>
+                <p>Keep local and cloud copies at once for on-site speed and off-site safety.</p>
+              </div>
+            </article>
+            <article>
+              <span
+                ><svg><use href="#ati-clone" /></svg
+              ></span>
+              <div>
+                <b>Active disk cloning</b>
+                <p>Clone to a new SSD or HDD while you keep working—no reinstall needed.</p>
+              </div>
+            </article>
+            <article>
+              <span
+                ><svg><use href="#ati-mobile" /></svg
+              ></span>
+              <div>
+                <b>Mobile &amp; Microsoft 365 backup</b>
+                <p>Back up iPhone, Android, Microsoft 365 mailboxes and OneDrive.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="ati-capability-visual">
+          <div class="ati-scanline"></div>
+          <div>
+            <img src="/assets/images/Backup.png" alt="" style="max-width: 1925px;" height="380px;">
+          </div>
+        </div>
+      </div>
+    } @else if (activeCapability() === 'cyber') {
+      <div class="ati-capability-panel">
+        <div class="ati-capability-copy">
+          <h3>Integrated cybersecurity</h3>
+          <p>
+            Real-time protection built into your backup stops ransomware, malware and cryptojacking
+            before they reach your data.
+          </p>
+          <div class="ati-capability-list">
+            <article>
+              <span
+                ><svg><use href="#ati-cyber" /></svg
+              ></span>
+              <div>
+                <b>Anti-ransomware</b>
+                <p>
+                  Detects and reverses ransomware in real time and auto-restores affected files.
+                </p>
+              </div>
+            </article>
+            <article>
+              <span
+                ><svg><use href="#ati-virus" /></svg
+              ></span>
+              <div>
+                <b>Anti-virus &amp; anti-malware</b>
+                <p>On-demand and real-time scanning blocks known and emerging threats.</p>
+              </div>
+            </article>
+            <article>
+              <span
+                ><svg><use href="#ati-shield" /></svg
+              ></span>
+              <div>
+                <b>Vulnerability assessment</b>
+                <p>Flags missing patches and weak spots attackers could exploit.</p>
+              </div>
+            </article>
+            <article>
+              <span
+                ><svg><use href="#ati-lock" /></svg
+              ></span>
+              <div>
+                <b>AES-256 encryption</b>
+                <p>Your backups are encrypted end-to-end, in transit and at rest.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="ati-capability-visual">
+          <div class="ati-scanline"></div>
+          <div>
+            <img src="/assets/images/Cybersecurity.png" alt="" style="max-width: 1925px;" height="380px;">
+          </div>
+        </div>
+      </div>
+    } @else {
+      <div class="ati-capability-panel">
+        <div class="ati-capability-copy">
+          <h3>Easy management</h3>
+          <p>
+            One clear dashboard controls every backup and device—schedule it once and manage it from
+            anywhere.
+          </p>
+          <div class="ati-capability-list">
+            <article>
+              <span
+                ><svg><use href="#ati-dash" /></svg
+              ></span>
+              <div>
+                <b>Single protection dashboard</b>
+                <p>See the status of every device and backup at a glance.</p>
+              </div>
+            </article>
+            <article>
+              <span
+                ><svg><use href="#ati-flex" /></svg
+              ></span>
+              <div>
+                <b>Flexible scheduling</b>
+                <p>Automatic, continuous or on-demand—backups run the way you want.</p>
+              </div>
+            </article>
+            <article>
+              <span
+                ><svg><use href="#ati-remote" /></svg
+              ></span>
+              <div>
+                <b>Remote management</b>
+                <p>Manage and restore data from anywhere via the web console.</p>
+              </div>
+            </article>
+            <article>
+              <span
+                ><svg><use href="#ati-module" /></svg
+              ></span>
+              <div>
+                <b>Modular install</b>
+                <p>Install only the components you need to keep it light and fast.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="ati-capability-visual">
+          <div class="ati-scanline"></div>
+          <div>
+            <img src="/assets/images/Easy-Management.png" alt="" style="max-width: 1925px;" height="380px;">
+          </div>
+        </div>
+      </div>
+    }
+  </section>
+
+  <section class="ati-section" aria-labelledby="atiPlansTitle">
+    <header class="ati-heading">
+      <h2 id="atiPlansTitle">Choose a cyber protection plan that <span>meets your needs</span></h2>
+      <i></i>
+      <p>
+        Pick your devices, subscription length and cloud storage—the price updates instantly. All
+        prices are in Indian Rupees.
+      </p>
+    </header>
+    <div class="ati-price-grid">
+      <article class="ati-tier ati-essentials">
+        <h3>Essentials</h3>
+        <p class="ati-subtitle">Local backup &amp; anti-ransomware protection</p>
+        <div class="ati-amount">
+          <span>₹</span><b>{{ formatInr(essentialsPrice()) }}</b>
+        </div>
+        <p class="ati-period">
+          <b>{{ essentialsDevices() }} computer{{ essentialsDevices() > 1 ? 's' : '' }}</b> ·
+          {{ essentialsTerm() }}-year subscription
+        </p>
+        <div class="ati-config">
+          <label>Devices</label>
+          <div class="ati-segment">
+            @for (device of [1, 3, 5]; track device) {
+              <button
+                type="button"
+                [attr.aria-pressed]="essentialsDevices() === device"
+                (click)="essentialsDevices.set(device)"
+              >
+                {{ device }} PC{{ device > 1 ? 's' : '' }}
+              </button>
+            }
+          </div>
+          <label>Subscription</label>
+          <div class="ati-segment">
+            @for (term of [1, 3, 5]; track term) {
+              <button
+                type="button"
+                [attr.aria-pressed]="essentialsTerm() === term"
+                (click)="essentialsTerm.set(term)"
+              >
+                {{ term }} year{{ term > 1 ? 's' : '' }}
+              </button>
+            }
+          </div>
+        </div>
+        <ul>
+          <li><i>✓</i>Flexible backups</li>
+          <li><i>✓</i>Active disk cloning</li>
+          <li><i>✓</i>Quick recovery / Universal restore</li>
+          <li><i>✓</i>Ransomware protection</li>
+          <li class="ati-unavailable"><i>×</i>Cloud storage not included</li>
+        </ul>
+        <a href="#" class="ati-button ati-button-outline" (click)="openTrial($event)"
+          >Start free trial</a
+        >
+      </article>
+
+      <article class="ati-tier ati-advanced">
+        <span class="ati-popular">MOST POPULAR</span>
+        <h3>Advanced</h3>
+        <p class="ati-subtitle">Local &amp; cloud backup &amp; security</p>
+        <div class="ati-amount">
+          <span>₹</span><b>{{ formatInr(advancedPrice()) }}</b>
+        </div>
+        <p class="ati-period">
+          <b>{{ advancedDevices() }} computer{{ advancedDevices() > 1 ? 's' : '' }}</b> ·
+          {{ advancedStorage() }} GB cloud · {{ advancedTerm() }}-year
+        </p>
+        <div class="ati-config">
+          <label>Cloud storage</label>
+          <div class="ati-segment">
+            @for (storage of [50, 250, 500]; track storage) {
+              <button
+                type="button"
+                [attr.aria-pressed]="advancedStorage() === storage"
+                (click)="selectAdvancedStorage(storage)"
+              >
+                {{ storage }} GB
+              </button>
+            }
+          </div>
+          <label>Subscription</label>
+          <div class="ati-segment">
+            <button
+              type="button"
+              [attr.aria-pressed]="advancedTerm() === 1"
+              (click)="advancedTerm.set(1)"
+            >
+              1 year</button
+            ><button
+              type="button"
+              [disabled]="advancedStorage() !== 50"
+              [attr.aria-pressed]="advancedTerm() === 3"
+              (click)="advancedTerm.set(3)"
+            >
+              3 years
+            </button>
+          </div>
+          <label>Devices</label>
+          <div class="ati-segment">
+            @for (device of [1, 3, 5]; track device) {
+              <button
+                type="button"
+                [attr.aria-pressed]="advancedDevices() === device"
+                (click)="advancedDevices.set(device)"
+              >
+                {{ device }} PC{{ device > 1 ? 's' : '' }}
+              </button>
+            }
+          </div>
+        </div>
+        <ul>
+          <li><i>✓</i>Flexible backups</li>
+          <li><i>✓</i>Active disk cloning</li>
+          <li><i>✓</i>Quick recovery / Universal restore</li>
+          <li><i>✓</i>Ransomware protection</li>
+          <li class="ati-group">Plus cloud &amp; security</li>
+          <li><i>✓</i>Identity protection</li>
+          <li><i>✓</i>Block viruses and malware</li>
+          <li><i>✓</i>Cloud backup and features</li>
+          <li><i>✓</i>Automatic cloud replication</li>
+          <li><i>✓</i>Microsoft 365 backups</li>
+        </ul>
+        <a href="#" class="ati-button ati-button-primary" (click)="openTrial($event)"
+          >Start free trial →</a
+        >
+      </article>
+
+      <article class="ati-tier ati-premium">
+        <h3>Premium</h3>
+        <p class="ati-subtitle">Up to 10 TB of cloud &amp; local backup &amp; security</p>
+        <div class="ati-amount">
+          <span>₹</span><b>{{ formatInr(premiumPrice()) }}</b>
+        </div>
+        <p class="ati-period">
+          <b>{{ premiumDevices() }} computer{{ premiumDevices() > 1 ? 's' : '' }}</b> · 1 TB cloud ·
+          1-year
+        </p>
+        <div class="ati-config">
+          <label>Devices</label>
+          <div class="ati-segment">
+            @for (device of [1, 3, 5]; track device) {
+              <button
+                type="button"
+                [attr.aria-pressed]="premiumDevices() === device"
+                (click)="premiumDevices.set(device)"
+              >
+                {{ device }} PC{{ device > 1 ? 's' : '' }}
+              </button>
+            }
+          </div>
+          <label>Subscription</label>
+          <div class="ati-segment"><button type="button" aria-pressed="true">1 year</button></div>
+        </div>
+        <ul>
+          <li><i>✓</i>Everything in Advanced</li>
+          <li class="ati-group">Plus premium protection</li>
+          <li><i>✓</i>Blockchain certification of files</li>
+          <li><i>✓</i>Electronic signatures on files</li>
+          <li><i>✓</i>Add up to 10 TB of cloud storage</li>
+        </ul>
+        <a href="#" class="ati-button ati-button-outline" (click)="openTrial($event)"
+          >Start free trial</a
+        >
+      </article>
+    </div>
+    <p class="ati-price-note">
+      All plans include free upgrades to the latest version · Phone, email &amp; chat support ·
+      Available for Windows &amp; macOS
+    </p>
+  </section>
+
+  <section class="ati-section ati-ice" aria-labelledby="atiUseCasesTitle">
+    <header class="ati-heading">
+      <h2 id="atiUseCasesTitle">Built to fit how you <span>work and live</span></h2>
+      <i></i>
+      <p>From a single laptop to every device in the house—manage it all from one dashboard.</p>
+    </header>
+    <div class="ati-tile-grid ati-four">
+      <article class="ati-tile ati-amber">
+        <span
+          ><svg><use href="#ati-dash" /></svg></span
+        ><b>User-Friendly Protection Dashboard</b>
+      </article>
+      <article class="ati-tile ati-amber">
+        <span
+          ><svg><use href="#ati-flex" /></svg></span
+        ><b>Flexible Management</b>
+      </article>
+      <article class="ati-tile ati-amber">
+        <span
+          ><svg><use href="#ati-storage" /></svg></span
+        ><b>Cloud Storage Upgrades</b>
+      </article>
+      <article class="ati-tile ati-amber">
+        <span
+          ><svg><use href="#ati-devices" /></svg></span
+        ><b>Unlimited Mobile Devices</b>
+      </article>
+      <article class="ati-tile ati-amber">
+        <span
+          ><svg><use href="#ati-mobile" /></svg></span
+        ><b>Device Flexibility</b>
+      </article>
+      <article class="ati-tile ati-amber">
+        <span
+          ><svg><use href="#ati-remote" /></svg></span
+        ><b>Remote Data Management</b>
+      </article>
+      <article class="ati-tile ati-amber">
+        <span
+          ><svg><use href="#ati-module" /></svg></span
+        ><b>Modular Component Installation</b>
+      </article>
+      <article class="ati-tile ati-amber">
+        <span
+          ><svg><use href="#ati-dual" /></svg></span
+        ><b>Local + Cloud Redundancy</b>
+      </article>
+    </div>
+  </section>
+
+  <section class="ati-section ati-mobile-section" aria-labelledby="atiMobileTitle">
+    <div class="ati-mobile-copy">
+      <span class="ati-eyebrow"><i></i>Acronis Mobile App</span>
+      <h2 id="atiMobileTitle">Acronis Mobile: easy, <em>secure</em> and portable</h2>
+      <p>
+        Never worry about losing your photos, videos, contacts or important files again. Back up
+        everything that matters on your phone and keep it safe in the Acronis Cloud.
+      </p>
+      <div class="ati-store-badges">
+        <a href="https://apps.apple.com/us/app/acronis-mobile/id978342143" (click)="$event.preventDefault()"
+          ><span>●</span><small>Download on the<b>App Store</b></small></a
+        >
+        <a href="https://play.google.com/store/apps/details?id=com.acronis.cyberb2c&_gl=1%2A1xn3dwk%2A_gcl_aw%2AR0NMLjE3ODg1MDU2NDcuQ2owS0NRancyT25VQmhDMkFSSXNBQ0t5ZmFIa3JGZklGMzdoMWZFR2ZBUmpmR25zOGt2R3MyMHZzSFZmSjB6YUxQa0ZUVXdyenlOTHdyZ2FBb2FuRUFMd193Y0I.%2A_gcl_au%2AMTUyNjMyNDg2Mi4xNzg4MjYyMjQ1%2A_up%2AMQ..%2A_gs%2AMQ..%2A_ga%2ANjU5NzM4NDgxLjE3Nzk4NzgxMzg.%2A_ga_HLFTTSZW7L%2AczE3ODg1MDU2NDMkbzE5JGcxJHQxNzg4NTA2NDkxJGo2MCRsMCRoMTczODU1NDUxNw..%2A_fplc%2AeXhQQ2FNcDJid01Ec0dyOHhEQkJNYjZFQ2VqbjhFS0clMkZrJTJGMG5jJTJCVXVsOFFadXJpamw4UUttSGtheE4lMkJqQkdrY2Q2UXpveU1CVU5Bc05PWmUySE1ObGZzWnJ0ZjRkSSUyRkdoUGNZOGVqaElLMTVzc2RCOFAwRUF3aU4zcE9XUSUzRCUzRA..&gbraid=0AAAAAD7eew-uPD-NpxY8W6fxMt_9RA8AM&gclid=Cj0KCQjw2OnUBhC2ARIsACKyfaHkrFfIF37h1fEGfARjfGns8kvGs20vsHVfJ0zaLPkFTUwrzyNLwrgaAoanEALw_wcB&utm_source=go.acronis.com&utm_medium=referral&utm_campaign=atimobile_download_Android" (click)="$event.preventDefault()"
+          ><span>▶</span><small>GET IT ON<b>Google Play</b></small></a
+        >
+      </div>
+      <a href="https://www.acronis.com/en/products/true-image/features/backup-your-mobile/?_gl=1*gaohmm*_up*MQ..*_gs*MQ..&gclid=Cj0KCQjw2OnUBhC2ARIsACKyfaHkrFfIF37h1fEGfARjfGns8kvGs20vsHVfJ0zaLPkFTUwrzyNLwrgaAoanEALw_wcB&gbraid=0AAAAAD7eew-uPD-NpxY8W6fxMt_9RA8AM" class="ati-mobile-link" (click)="$event.preventDefault()"
+        >How to back up your mobile device via Wi-Fi to a PC or Mac →</a
+      >
+    </div>
+    <div class="ati-mobile-image">
+      <div></div>
+      <img
+        src="/assets/images/acronis-true-image-mobile.jpg"
+        alt="Acronis mobile backup application shown on a smartphone"
+      />
+    </div>
+  </section>
+</div>
