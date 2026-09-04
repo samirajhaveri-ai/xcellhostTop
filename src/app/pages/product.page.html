@@ -322,7 +322,6 @@
                       <span aria-hidden="true">T</span>
                       <div><b>{{ plan.name }}</b><small>{{ plan.edition }}</small></div>
                     </div>
-                    <strong>&#8377;{{ formatInr(tallyPrice(plan)) }}</strong>
                     <small>+GST · {{ activeTallyTerm().label }} billing</small>
                   </div>
                   <dl class="tally-plan-specs">
@@ -339,7 +338,10 @@
                     <div><dt>Firewall HA</dt><dd>Fortinet</dd></div>
                     <div><dt>Support</dt><dd>24×7</dd></div>
                   </dl>
-                  <a class="tally-plan-action" href="#" (click)="selectTallyPlan(plan, $event)">Select plan</a>
+                  <a class="tally-plan-action" href="#" (click)="selectTallyPlan(plan, $event)">
+                    <strong>&#8377;{{ formatInr(tallyPrice(plan)) }}</strong>
+                    <span>Buy now <span aria-hidden="true">→</span></span>
+                  </a>
                 </article>
               }
             </div>
@@ -488,18 +490,18 @@
                   <div class="cloud-backup-plan-band">Acronis Cyber Protect Cloud</div>
                   <div class="cloud-backup-plan-main">
                     <div class="cloud-backup-plan-name">
-                      <span aria-hidden="true">A</span>
-                      <div><b>Cyber Backup</b><small>Standard Storage Subscription</small></div>
+                      <div><b>Cloud Backup</b><small>Standard Storage Subscription</small></div>
+                      <p class="cloud-backup-plan-details">
+                        Storage: <span class="cloud-backup-highlight">{{ plan.storage }}</span>
+                        · Recovery: <span class="cloud-backup-highlight">Unlimited backup agents</span>
+                      </p>
                     </div>
                     <small>+GST Â· {{ activeCloudBackupTerm().label }} billing</small>
                   </div>
-                  <dl class="cloud-backup-plan-specs">
-                    <div><dt>Storage</dt><dd>{{ plan.storage }}</dd></div>
-                    <div><dt>Recovery</dt><dd>Flexible restore</dd></div>
-                  </dl>
                   <a class="cloud-backup-plan-action" href="#" (click)="selectCloudBackupPlan(plan, $event)">
                     <strong>&#8377;{{ formatInr(cloudBackupPrice(plan)) }}</strong>
                     <span>Select plan</span>
+                    <small>+GST · {{ activeCloudBackupTerm().label }} Billing</small>
                   </a>
                 </article>
               }
