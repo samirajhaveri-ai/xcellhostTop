@@ -743,7 +743,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "8",
+        "g": "9",
         "label": "Cloud Desktop",
         "on": false,
         "groups": [
@@ -761,7 +761,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Asure Cloud Desktop",
+                "title": "Azure Cloud Desktop",
                 "pill": null,
                 "desc": null
               },
@@ -775,12 +775,12 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "8",
-        "label": "Connectivity",
+        "g": "10",
+        "label": "Cloud Connectivity",
         "on": false,
         "groups": [
           {
-            "heading": "Connectivity",
+            "heading": "Cloud Connectivity",
             "items": [
               {
                 "title": "Cloud Connectivity",
@@ -1130,6 +1130,24 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "3",
+        "label": "Cloud Security",
+        "on": true,
+        "groups": [
+          {
+            "heading": "Cloud Security",
+            "items": [
+              {
+                "title": "Managed NDR",
+                "pill": "Free trial",
+                "desc": null
+              },
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "4",
         "label": "Identity Security",
         "on": true,
         "groups": [
@@ -1177,7 +1195,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "4",
+        "g": "5",
         "label": "OT+IOT Security",
         "on": true,
         "groups": [
@@ -1205,7 +1223,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "5",
+        "g": "6",
         "label": "Security Testing",
         "on": true,
         "groups": [
@@ -1269,7 +1287,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "6",
+        "g": "7",
         "label": "Security Assessment",
         "on": false,
         "groups": [
@@ -1321,13 +1339,18 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Cloud Security Assessment",
                 "pill": null,
                 "desc": null
-              }
+              },
+              {
+                "title": "Third Party Risk Management",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
       },
       {
-        "g": "7",
+        "g": "8",
         "label": "Security Operations",
         "on": false,
         "groups": [
@@ -1395,7 +1418,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "8",
+        "g": "9",
         "label": "Security Consulting",
         "on": false,
         "groups": [
@@ -1473,7 +1496,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "8",
+        "g": "10",
         "label": "Security Training",
         "on": false,
         "groups": [
@@ -1500,7 +1523,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "8",
+        "g": "11",
         "label": "Cyber Insurance",
         "on": false,
         "groups": [
@@ -1758,7 +1781,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "2",
+        "g": "6",
         "label": "Data as a Services",
         "on": false,
         "groups": [
@@ -1861,7 +1884,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "1",
+        "g": "2",
         "label": "Microsoft Tools",
         "on": false,
         "groups": [
@@ -1883,7 +1906,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "1",
+        "g": "3",
         "label": "Adobe Tools",
         "on": false,
         "groups": [
@@ -1900,6 +1923,41 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "4",
+        "label": "Microsoft Software",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Microsoft Software",
+            "items": [
+              {
+                "title": "No Data",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "5",
+        "label": "Microsoft Security",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Microsoft Security",
+            "items": [
+              {
+                "title": "No Data",
+                "pill": null,
+                "desc": null
+              },
+              
             ]
           }
         ]
@@ -2401,7 +2459,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "0",
+        "g": "3",
         "label": "Product Tour",
         "on": true,
         "groups": [
@@ -2418,7 +2476,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "3",
+        "g": "4",
         "label": "Service Index",
         "on": false,
         "groups": [
@@ -2506,7 +2564,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "2",
+        "g": "1",
         "label": "Partner Center",
         "on": false,
         "groups": [
@@ -2554,7 +2612,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "3",
+        "g": "2",
         "label": "Careers",
         "on": false,
         "groups": [
@@ -2576,7 +2634,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "4",
+        "g": "3",
         "label": "Support",
         "on": false,
         "groups": [
@@ -2608,7 +2666,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "5",
+        "g": "4",
         "label": "Legal Center",
         "on": false,
         "groups": [
@@ -2640,7 +2698,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "6",
+        "g": "5",
         "label": "SLA's",
         "on": false,
         "groups": [
@@ -2720,7 +2778,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "7",
+        "g": "6",
         "label": "Events & Webinars",
         "on": false,
         "groups": [
@@ -2738,7 +2796,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "4",
+        "g": "7",
         "label": "Network Tools",
         "on": false,
         "groups": [
@@ -2780,7 +2838,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "5",
+        "g": "8",
         "label": "Mail Tools",
         "on": false,
         "groups": [
@@ -2822,7 +2880,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "6",
+        "g": "9",
         "label": "SSL Tools",
         "on": false,
         "groups": [
@@ -2859,7 +2917,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "6",
+        "g": "10",
         "label": "Tools Center",
         "on": false,
         "groups": [
@@ -2876,7 +2934,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "6",
+        "g": "11",
         "label": "Tools Center",
         "on": false,
         "groups": [
@@ -2893,7 +2951,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "6",
+        "g": "12",
         "label": "learning Center",
         "on": false,
         "groups": [
@@ -2910,7 +2968,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "6",
+        "g": "13",
         "label": "Experience Center",
         "on": false,
         "groups": [
@@ -2927,7 +2985,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "6",
+        "g": "14",
         "label": "Experience Center",
         "on": false,
         "groups": [
@@ -2944,7 +3002,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "6",
+        "g": "15",
         "label": "Trust Center",
         "on": false,
         "groups": [
@@ -2961,7 +3019,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "6",
+        "g": "16",
         "label": "Media center",
         "on": false,
         "groups": [
@@ -2978,7 +3036,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "6",
+        "g": "17",
         "label": "Brand center",
         "on": false,
         "groups": [
