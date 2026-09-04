@@ -394,19 +394,25 @@
                 <article class="cloud-drive-price-card">
                   <div class="cloud-drive-price-top">
                     <span class="cloud-drive-storage">XcellDrive | {{ plan.storage }}</span>
-                    <div class="cloud-drive-amount">
-                      <strong>&#8377;{{ formatInr(cloudDrivePrice(plan)) }}</strong>
-                      <small>+GST · {{ activeCloudDriveTerm().label }} billing</small>
-                    </div>
+                    <dl class="cloud-drive-price-meta">
+                      <div><dt>Unit</dt><dd>{{ plan.unit }}</dd></div>
+                    </dl>
                   </div>
-
-                  <dl class="cloud-drive-price-meta">
-                    <div><dt>Unit</dt><dd>{{ plan.unit }}</dd></div>
-                  </dl>
 
                   <p class="cloud-drive-price-copy">{{ plan.comments }}</p>
 
-                  <a class="btn btn-primary" href="#" (click)="selectCloudDrivePlan(plan, $event)">Select plan</a>
+                  <div class="cloud-drive-purchase">
+                    <div class="cloud-drive-total">
+                      <strong>&#8377;{{ formatInr(cloudDriveTotal(plan)) }}</strong>
+                    </div>
+                    <label [attr.for]="'cloudDriveQuantity-' + plan.storage">No. of users / devices</label>
+                    <div class="edr-quantity cloud-drive-quantity">
+                      <button type="button" aria-label="Decrease users" (click)="changeCloudDriveQuantity(-1)" [disabled]="cloudDriveQuantity() === 1">−</button>
+                      <output [id]="'cloudDriveQuantity-' + plan.storage" aria-live="polite">{{ cloudDriveQuantity() }}</output>
+                      <button type="button" aria-label="Increase users" (click)="changeCloudDriveQuantity(1)">+</button>
+                    </div>
+                    <a class="btn btn-primary" href="#" (click)="selectCloudDrivePlan(plan, $event)">Buy now</a>
+                  </div>
                 </article>
               }
             </div>

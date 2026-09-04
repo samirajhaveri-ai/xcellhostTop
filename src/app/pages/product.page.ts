@@ -139,6 +139,7 @@ export class ProductPage {
   readonly selectedEdrPlanIndex = signal(0);
   readonly edrQuantity = signal(1);
   readonly cdrQuantity = signal(1);
+  readonly cloudDriveQuantity = signal(1);
   readonly activeCdrTourSlide = signal(0);
   readonly cdrTourSlides = [
     {
@@ -213,6 +214,23 @@ export class ProductPage {
   readonly isEdrTourOpen = computed(() => this.overlay.isOpen('edrScreenshotTour'));
   readonly activeProductTourSlide = signal(0);
   readonly isProductTourOpen = computed(() => this.overlay.isOpen('productScreenshotTour'));
+  readonly acronisTrueImageTourSlides: readonly ProductTourSlide[] = [
+    {
+      title: 'Easy management',
+      description: 'Manage protection, detected issues, quarantine and exclusions from one clear dashboard.',
+      image: '/assets/images/Easy-Management.png',
+    },
+    {
+      title: 'Cybersecurity',
+      description: 'Monitor active protection, antivirus scans and vulnerability assessments in one place.',
+      image: '/assets/images/Cybersecurity.png',
+    },
+    {
+      title: 'Backup',
+      description: 'Choose what to protect, from an entire PC or disk to individual files and folders.',
+      image: '/assets/images/Backup.png',
+    },
+  ];
   readonly microsoft365BackupTourSlides: readonly ProductTourSlide[] = [
     {
       title: 'Why Microsoft 365 data needs protection',
@@ -255,6 +273,7 @@ export class ProductPage {
   readonly productTourSlides = computed<readonly ProductTourSlide[]>(() => {
     const view = this.view();
     if (!view) return [];
+    if (view.name === 'Acronis True Image') return this.acronisTrueImageTourSlides;
     if (view.name === 'Microsoft 365 Backup') return this.microsoft365BackupTourSlides;
 
     const candidates: ProductTourSlide[] = [];
@@ -289,6 +308,10 @@ export class ProductPage {
 
   changeCdrQuantity(change: number): void {
     this.cdrQuantity.update((quantity) => Math.max(1, quantity + change));
+  }
+
+  changeCloudDriveQuantity(change: number): void {
+    this.cloudDriveQuantity.update((quantity) => Math.max(1, quantity + change));
   }
 
   cdrPlanTotal(): string {
@@ -527,6 +550,10 @@ export class ProductPage {
 
   cloudDrivePrice(plan: CloudDrivePlan): number {
     return plan.prices[this.selectedCloudDriveTerm()];
+  }
+
+  cloudDriveTotal(plan: CloudDrivePlan): number {
+    return Math.round(this.cloudDrivePrice(plan) * this.cloudDriveQuantity());
   }
 
   /** Names that have a page of their own but are missing from the directory. */
@@ -889,7 +916,7 @@ export class ProductPage {
 
   selectCloudDrivePlan(plan: CloudDrivePlan, ev: Event): void {
     ev.preventDefault();
-    this.topics.ask(`Cloud Drive ${plan.storage} - ${this.activeCloudDriveTerm().label}`);
+    this.topics.ask(`Cloud Drive ${plan.storage} - ${this.activeCloudDriveTerm().label} - ${this.cloudDriveQuantity()} users`);
     this.overlay.open('callback');
   }
 
