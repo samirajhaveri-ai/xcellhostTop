@@ -170,8 +170,13 @@
       <xh-sitelock-content />
     }
 
+    @if (isVmc()) {
+      <xh-vmc-content />
+    }
+
     <div class="pp-body">
       <div class="wrap">
+        @if (!isVmc()) {
         @if (slug() === 'video-surveillance-as-a-service') {
           <xh-cloud-cctv-content />
         }
@@ -1076,6 +1081,7 @@
               </table>
             </div>
           </div>
+        }
         }
 
         @if (v.name !== 'Tally on Cloud') {
