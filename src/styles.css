@@ -3379,6 +3379,9 @@ body.xh-locked{overflow:hidden}
 #ppage .edr-term-tabs b{font-size:17px;font-weight:750}
 #ppage.rmm-page .edr-term-tabs span{background:#fff0f0;color:#d62828}
 #ppage.rmm-page .edr-plan-saving{background:#fff0f0;color:#d62828}
+#ppage.rmm-page .edr-selected-summary h3{display:flex;align-items:center;gap:12px;flex-wrap:nowrap;white-space:nowrap}
+#ppage.rmm-page .edr-selected-summary h3 .edr-plan-saving-separator{color:var(--navy);font-size:inherit;font-weight:800;line-height:1}
+#ppage.rmm-page .edr-selected-summary h3 .edr-plan-saving{display:inline-flex;align-items:center;width:max-content;margin:0;padding:0;border-radius:0;background:transparent;color:#d62828;font-size:inherit;font-weight:800;line-height:1;letter-spacing:inherit;white-space:nowrap}
 #ppage .edr-selected-plan{max-width:900px;margin:0 auto;text-align:left}
 #ppage .edr-selected-plan.edr-plan-one{--plan-accent:#1b6ee0;--plan-soft:#eaf3ff}
 #ppage .edr-selected-plan.edr-plan-two{--plan-accent:#7257df;--plan-soft:#f1eeff}
@@ -3924,7 +3927,7 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
 .cloud-backup-pricing .tally-price-heading{max-width:800px;margin-bottom:30px}
 .cloud-backup-pricing .tally-price-heading>span{display:inline-flex;align-items:center;min-height:26px;padding:0 12px;border-radius:999px;background:#eaf3ff;color:#1565d8;letter-spacing:.08em}
 .cloud-backup-pricing .tally-price-heading h2{color:#080d2c}
-.cloud-backup-term-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,220px));max-width:440px;margin:0 auto 30px;border-bottom:1px solid #cfd5df}
+.cloud-backup-term-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,220px));max-width:660px;margin:0 auto 30px;border-bottom:1px solid #cfd5df}
 .cloud-backup-term-tabs button{position:relative;min-height:58px;padding:14px 12px 11px;border:0;background:transparent;color:#5e6672;cursor:pointer;font:500 16px/1.2 'Poppins',sans-serif}
 .cloud-backup-term-tabs button::after{position:absolute;right:0;bottom:-1px;left:0;height:3px;background:transparent;content:''}
 .cloud-backup-term-tabs button.is-active{color:var(--blue);font-weight:600}
@@ -3939,17 +3942,19 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
 .cloud-backup-plan-name>span{display:grid;place-items:center;width:42px;height:42px;border-radius:9px;background:var(--blue);color:#fff;font-size:18px;font-weight:700}
 .cloud-backup-plan-name b{display:block;color:#080d2c;font:600 17px/1.25 'Poppins',sans-serif}
 .cloud-backup-plan-name small{display:block;margin-top:2px;color:var(--blue);font:550 11px/1.3 'Poppins',sans-serif}
+.cloud-backup-plan-name small,.cloud-backup-plan-main>small{display:none}
 .cloud-backup-plan-main>strong{min-height:38px;margin-top:7px;color:#080d2c;font:650 clamp(21px,1.8vw,25px)/1.08 'Poppins',sans-serif;letter-spacing:-.025em}
-.cloud-backup-plan-main>small{display:block;margin:2px 0 4px;color:#6b7280;font-size:9px}
-.cloud-backup-plan-specs{grid-column:2;grid-row:1 / span 2;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-content:stretch;margin:0;text-align:left}
+.cloud-backup-plan-main>small{display:none}
+.cloud-backup-plan-specs{grid-column:2;grid-row:1 / span 2;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:stretch;margin:0;text-align:left}
 .cloud-backup-plan-specs>div{display:grid;grid-template-columns:1fr;gap:3px;align-content:center;justify-items:center;min-height:46px;padding:6px 10px;background:#f5f6f8;color:#111827;text-align:center}
 .cloud-backup-plan-specs>div:nth-child(even){border-left:1px solid #e4e8ee;background:#fff}
 .cloud-backup-plan-specs dt{font:500 11px/1.35 'Poppins',sans-serif}
 .cloud-backup-plan-specs dd{margin:0;color:#080d2c;text-align:center;font:650 11px/1.35 'Poppins',sans-serif}
-.cloud-backup-plan-action{position:relative;grid-column:3;grid-row:1 / span 2;align-self:center;justify-self:center;display:block;width:130px;padding:11px 10px;border-radius:9px;background:linear-gradient(135deg,#1670e8,#0b55c7);color:#fff;text-decoration:none;text-transform:uppercase;font:650 12px/1.2 'Poppins',sans-serif;box-shadow:0 7px 16px rgba(21,101,216,.24);transition:background .2s ease,box-shadow .2s ease,transform .2s ease}
+.cloud-backup-plan-action{position:relative;grid-column:3;grid-row:1 / span 2;align-self:center;justify-self:center;display:flex;flex-direction:column;align-items:center;gap:14px;width:130px;color:#080d2c;text-decoration:none}
+.cloud-backup-plan-action strong{font:650 clamp(21px,1.8vw,25px)/1.08 'Poppins',sans-serif;letter-spacing:-.025em}
+.cloud-backup-plan-action span{display:block;width:130px;padding:11px 10px;border-radius:9px;background:linear-gradient(135deg,#1670e8,#0b55c7);color:#fff;text-align:center;text-transform:uppercase;font:650 12px/1.2 'Poppins',sans-serif;box-shadow:0 7px 16px rgba(21,101,216,.24);transition:background .2s ease,box-shadow .2s ease,transform .2s ease}
 .cloud-backup-plan-action::before{position:absolute;top:-90px;bottom:-90px;left:-28px;width:1px;background:#e0e6ee;content:''}
-.cloud-backup-plan-action:hover{background:linear-gradient(135deg,#0b55c7,#083d98);box-shadow:0 10px 20px rgba(21,101,216,.3);transform:translateY(-2px)}
-.cloud-backup-plan-main>.cloud-backup-agent-note{align-self:flex-start;margin:8px 0 0;color:#ed1b24;text-align:left;font:700 10px/1.2 'Poppins',sans-serif}
+.cloud-backup-plan-action:hover span{background:linear-gradient(135deg,#0b55c7,#083d98);box-shadow:0 10px 20px rgba(21,101,216,.3);transform:translateY(-2px)}
 .cdr-tour-trigger{border-color:rgba(255,255,255,.58)!important;background:rgba(255,255,255,.08);color:#fff!important;cursor:pointer}
 .cdr-tour-trigger:hover{border-color:#fff!important;background:rgba(255,255,255,.18)}
 .cdr-tour-overlay{position:fixed;z-index:10020;inset:0;display:grid;place-items:center;padding:24px}

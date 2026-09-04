@@ -60,11 +60,12 @@ interface CloudDrivePlan {
   comments: string;
 }
 
-type CloudBackupTerm = 'monthly' | 'yearly';
+type CloudBackupTerm = 'monthly' | 'quarterly' | 'yearly';
 
 interface CloudBackupPlan {
   storage: string;
   monthly: number;
+  quarterly: number;
   yearly: number;
 }
 
@@ -922,15 +923,16 @@ export class ProductPage {
 
   readonly cloudBackupTerms: readonly { key: CloudBackupTerm; label: string }[] = [
     { key: 'monthly', label: 'Monthly' },
+    { key: 'quarterly', label: 'Quarterly' },
     { key: 'yearly', label: 'Yearly' },
   ];
 
   readonly cloudBackupPlans: readonly CloudBackupPlan[] = [
-    { storage: '50 GB', monthly: 297, yearly: 3563 },
-    { storage: '100 GB', monthly: 594, yearly: 7125 },
-    { storage: '250 GB', monthly: 1484, yearly: 17812 },
-    { storage: '500 GB', monthly: 2850, yearly: 34200 },
-    { storage: '1 TB', monthly: 5700, yearly: 68400 },
+    { storage: '50 GB', monthly: 297, quarterly: 891, yearly: 3563 },
+    { storage: '100 GB', monthly: 594, quarterly: 1782, yearly: 7125 },
+    { storage: '250 GB', monthly: 1484, quarterly: 4452, yearly: 17812 },
+    { storage: '500 GB', monthly: 2850, quarterly: 8550, yearly: 34200 },
+    { storage: '1 TB', monthly: 5700, quarterly: 17100, yearly: 68400 },
   ];
 
   readonly selectedCloudBackupTerm = signal<CloudBackupTerm>('monthly');

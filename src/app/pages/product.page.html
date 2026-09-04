@@ -237,7 +237,13 @@
                       <span>{{ p.ribbon }}</span>
                       @if (p.hot) { <b>Most popular</b> }
                     </div>
-                    <h3>{{ p.term }}</h3>
+                    <h3>
+                      {{ p.term }}
+                      @if (isRmm() && p.tag) {
+                        <span class="edr-plan-saving-separator" aria-hidden="true">+</span>
+                        <span class="edr-plan-saving">{{ p.tag }}</span>
+                      }
+                    </h3>
                     <p>{{ edrPlanCoverage[selectedEdrPlanIndex()] }}</p>
                     <div class="edr-plan-price">
                       <strong>{{ edrPlanTotal(p) }}</strong>
@@ -245,7 +251,9 @@
                         total for {{ edrQuantity() }} {{ edrQuantity() === 1 ? 'user' : 'users' }}
                       </small>
                     </div>
-                    <div class="edr-plan-saving">{{ p.tag }}</div>
+                    @if (!isRmm()) {
+                      <div class="edr-plan-saving">{{ p.tag }}</div>
+                    }
                   </header>
 
                   <div class="edr-plan-purchase">
@@ -477,17 +485,16 @@
                       <span aria-hidden="true">A</span>
                       <div><b>Cyber Backup</b><small>Standard Storage Subscription</small></div>
                     </div>
-                    <strong>&#8377;{{ formatInr(cloudBackupPrice(plan)) }}</strong>
                     <small>+GST Â· {{ activeCloudBackupTerm().label }} billing</small>
-                    <small class="cloud-backup-agent-note">*with Unlimited Backup Agents</small>
                   </div>
                   <dl class="cloud-backup-plan-specs">
                     <div><dt>Storage</dt><dd>{{ plan.storage }}</dd></div>
-                    <div><dt>Backup agents</dt><dd>Unlimited</dd></div>
-                    <div><dt>Protection</dt><dd>Servers, endpoints &amp; apps</dd></div>
                     <div><dt>Recovery</dt><dd>Flexible restore</dd></div>
                   </dl>
-                  <a class="cloud-backup-plan-action" href="#" (click)="selectCloudBackupPlan(plan, $event)">Select plan</a>
+                  <a class="cloud-backup-plan-action" href="#" (click)="selectCloudBackupPlan(plan, $event)">
+                    <strong>&#8377;{{ formatInr(cloudBackupPrice(plan)) }}</strong>
+                    <span>Select plan</span>
+                  </a>
                 </article>
               }
             </div>
@@ -528,7 +535,7 @@
                 <article class="pp-rmm-benefit">
                   <span class="pp-rmm-benefit-number">{{ i + 1 }}</span>
                   <div class="pp-rmm-benefit-copy">
-                    <b>{{ benefit.title }} <i aria-hidden="true">{{ benefit.icon }}</i></b>
+                    <b>{{ benefit.title }}</b>
                   </div>
                 </article>
               }
