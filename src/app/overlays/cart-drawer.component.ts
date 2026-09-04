@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { CartLine, CartService } from '../core/cart.service';
 import { LeadService } from '../core/lead.service';
@@ -40,6 +41,10 @@ export class CartDrawerComponent {
   private readonly overlay = inject(OverlayService);
   private readonly leads = inject(LeadService);
   private readonly fb = inject(FormBuilder);
+  private readonly router = inject(Router);
+
+  readonly siteLockCheckoutUrl =
+    'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-WP-SL-BAS';
 
   readonly form = this.fb.nonNullable.group({
     name: ['', Validators.required],
@@ -107,6 +112,10 @@ export class CartDrawerComponent {
 
   toCheckout(): void {
     this.cart.toCheckout();
+  }
+
+  isSiteLockPage(): boolean {
+    return this.router.url.split(/[?#]/, 1)[0].replace(/\/$/, '') === '/web-security-sitelock';
   }
 
   back(): void {

@@ -1,7 +1,12 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
 
+import { CartService } from '../core/cart.service';
 import { OverlayService } from '../core/overlay.service';
-import { CallbackTopicService } from '../overlays/callback-topic.service';
+
+interface SiteLockTerm {
+  years: number;
+  pricePerYear: number;
+}
 
 interface SiteLockPlan {
   name: string;
@@ -10,6 +15,7 @@ interface SiteLockPlan {
   intro?: string;
   tone: 'basic' | 'pro' | 'business';
   features: readonly string[];
+  terms: readonly SiteLockTerm[];
 }
 
 @Component({
@@ -21,7 +27,19 @@ interface SiteLockPlan {
 })
 export class SiteLockContentComponent {
   private readonly overlay = inject(OverlayService);
-  private readonly topics = inject(CallbackTopicService);
+  private readonly cart = inject(CartService);
+
+  readonly activePlan = signal<SiteLockPlan | null>(null);
+  readonly selectedTermIndex = signal(2);
+  readonly websiteCount = signal(1);
+  readonly selectedTerm = computed(() => {
+    const plan = this.activePlan();
+    return plan?.terms[this.selectedTermIndex()] ?? null;
+  });
+  readonly configuredTotal = computed(() => {
+    const term = this.selectedTerm();
+    return term ? term.pricePerYear * term.years * this.websiteCount() : 0;
+  });
 
   readonly protectionLevels = [
     {
@@ -57,6 +75,11 @@ export class SiteLockContentComponent {
       annual: '7,870.10',
       tone: 'basic',
       features: ['2GB Website Backup', 'Malware Detection', 'Malware Removal'],
+      terms: [
+        { years: 1, pricePerYear: 7870.10 },
+        { years: 2, pricePerYear: 7083.09 },
+        { years: 3, pricePerYear: 6296.08 },
+      ],
     },
     {
       name: 'Pro',
@@ -65,6 +88,11 @@ export class SiteLockContentComponent {
       intro: 'All Basic Features, Plus:',
       tone: 'pro',
       features: ['5GB Website Backup', 'Repair Existing Malware Infection', 'Block Malicious DDoS Traffic', 'CDN Acceleration'],
+      terms: [
+        { years: 1, pricePerYear: 13120.10 },
+        { years: 2, pricePerYear: 11808.09 },
+        { years: 3, pricePerYear: 10496.08 },
+      ],
     },
     {
       name: 'Business',
@@ -73,6 +101,11 @@ export class SiteLockContentComponent {
       intro: 'All Pro Features, Plus:',
       tone: 'business',
       features: ['10GB Website Backup', 'CMS Vulnerability Detection & Patching', 'Database Protection', 'Advanced CDN Acceleration'],
+      terms: [
+        { years: 1, pricePerYear: 18370.10 },
+        { years: 2, pricePerYear: 16533.09 },
+        { years: 3, pricePerYear: 14696.08 },
+      ],
     },
   ];
 
@@ -114,9 +147,78 @@ export class SiteLockContentComponent {
     ['📦', 'Agencies', 'Protect many client sites at once'],
   ] as const;
 
-  configurePlan(plan: string, event: Event): void {
+  constructor() {
+    effect(() => {
+      const configuratorIsLayered = this.overlay.stack().includes('sitelockConfigurator');
+      if (!configuratorIsLayered && this.activePlan()) this.activePlan.set(null);
+    });
+  }
+
+  configurePlan(plan: SiteLockPlan, event: Event): void {
     event.preventDefault();
-    this.topics.ask(`SiteLock ${plan} plan`);
-    this.overlay.open('callback');
+    this.selectedTermIndex.set(2);
+    this.websiteCount.set(1);
+    this.activePlan.set(plan);
+    this.overlay.open('sitelockConfigurator');
+  }
+
+  closeConfigurator(): void {
+    this.activePlan.set(null);
+    this.overlay.close('sitelockConfigurator');
+  }
+
+  closeFromBackdrop(event: MouseEvent): void {
+    if (event.target === event.currentTarget) this.closeConfigurator();
+  }
+
+  selectTerm(index: number): void {
+    this.selectedTermIndex.set(index);
+  }
+
+  changeWebsiteCount(amount: number): void {
+    this.websiteCount.update((count) => Math.max(1, Math.min(99, count + amount)));
+  }
+
+  updateWebsiteCount(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const count = Number.parseInt(input.value, 10);
+    this.websiteCount.set(Number.isFinite(count) ? Math.max(1, Math.min(99, count)) : 1);
+    input.value = String(this.websiteCount());
+  }
+
+  listPrice(plan: SiteLockPlan, term: SiteLockTerm): number {
+    return plan.terms[0].pricePerYear * term.years;
+  }
+
+  savings(plan: SiteLockPlan, term: SiteLockTerm): number {
+    return this.listPrice(plan, term) - term.pricePerYear * term.years;
+  }
+
+  discount(plan: SiteLockPlan, term: SiteLockTerm): number {
+    const list = this.listPrice(plan, term);
+    return list ? Math.round((this.savings(plan, term) / list) * 100) : 0;
+  }
+
+  formatInr(value: number): string {
+    return Math.round(value).toLocaleString('en-IN');
+  }
+
+  addConfiguredToCart(): void {
+    const plan = this.activePlan();
+    const term = this.selectedTerm();
+    if (!plan || !term) return;
+
+    const yearsLabel = `${term.years} Year${term.years > 1 ? 's' : ''}`;
+    const lineName = `SiteLock ${plan.name} — ${yearsLabel}`;
+    const previousQuantity = this.cart.lines().find((line) => line.name === lineName)?.qty ?? 0;
+    const termTotal = term.pricePerYear * term.years;
+
+    this.cart.add(
+      lineName,
+      `₹${this.formatInr(termTotal)} / website for ${yearsLabel.toLowerCase()} + GST`,
+    );
+    this.cart.setQty(lineName, previousQuantity + this.websiteCount());
+    this.closeConfigurator();
+    this.cart.open();
   }
 }

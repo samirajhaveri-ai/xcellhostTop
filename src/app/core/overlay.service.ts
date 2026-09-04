@@ -5,7 +5,7 @@ export type OverlayId =
   | 'product' | 'category' | 'blog' | 'dpdpa' | 'dpdpaModule' | 'simple' | 'compare'
   | 'cart' | 'trial' | 'auth' | 'partner' | 'callback' | 'doc' | 'search' | 'chat' | 'mobileNav'
   | 'intro' | 'screenshotTour' | 'genAiScreenshotTour' | 'rmmScreenshotTour' | 'edrScreenshotTour'
-  | 'productScreenshotTour';
+  | 'productScreenshotTour' | 'sitelockConfigurator';
 
 /**
  * One owner for "is something covering the page".
