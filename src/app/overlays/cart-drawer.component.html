@@ -62,9 +62,22 @@
 
     @if (!cart.isEmpty()) {
       <div class="cart-foot" id="cartFoot">
-        <button class="btn atc" id="goCheckout" style="width: 100%" (click)="toCheckout()">
-          Proceed to Checkout →
-        </button>
+        @if (isSiteLockPage()) {
+          <a
+            class="btn atc"
+            id="goCheckout"
+            style="width: 100%"
+            [href]="siteLockCheckoutUrl"
+            target="_blank"
+            rel="noopener"
+          >
+            Proceed to Checkout →
+          </a>
+        } @else {
+          <button class="btn atc" id="goCheckout" style="width: 100%" (click)="toCheckout()">
+            Proceed to Checkout →
+          </button>
+        }
         <a class="btn cart-wa" id="cartWA" [href]="whatsapp()" target="_blank" rel="noopener"
           >or Quick Quote on WhatsApp</a
         >
