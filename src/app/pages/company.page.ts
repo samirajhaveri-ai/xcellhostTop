@@ -45,7 +45,7 @@ export class CompanyPage {
   readonly managementTeam = [
     { initials: 'YJ', name: 'Yogendra Jagger', role: 'Regional Director - Middle East & Africa', image: '/assets/images/team-yogendra-jagger.png' },
     { initials: 'JP', name: 'Jaynam Pandya', role: 'Chief Marketing Officer', image: '/assets/images/team-jaynam-pandya.png' },
-    { initials: 'AN', name: 'Abhishek Nimbalkar', role: 'Chief AI Officer', image: '/assets/images/team-abhishek-pandey.png' },
+    { initials: 'AN', name: 'Abhishek Nimbalkar', role: 'Chief AI Officer', image: '/assets/images/team-abhishek-nimbalkar.jpg' },
     { initials: 'PN', name: 'Prashant N.V', role: 'Service Delivery Director', image: '/assets/images/team-prashant-nv.png' },
   ] as const;
 
@@ -57,7 +57,7 @@ export class CompanyPage {
   readonly salesTeam = [
     { initials: 'SJ', name: 'Sanjay Jade', role: 'Accounts Payable Manager', image: '/assets/images/team-sanjay-jade.png' },
     { initials: 'RS', name: 'Rizwan Shaikh', role: 'Cloud Pre-Sales Manager', image: '/assets/images/team-rizwan-shaikh.png' },
-    { initials: 'AP', name: 'Abhishek Pandey', role: 'Billing Manager', image: '/assets/images/team-abhishek-pandey.png' },
+    { initials: 'AP', name: 'Abhishek Pandey', role: 'Cloud Sales Manager', image: '/assets/images/team-abhishek-pandey.png' },
   ] as const;
 
   readonly values = [

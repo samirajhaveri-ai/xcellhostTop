@@ -140,7 +140,7 @@
 
             <section class="pp-ask-ai" aria-labelledby="ppAskAiTitle">
               <div class="pp-ask-ai-copy">
-                <span class="pp-ask-ai-kicker" id="ppAskAiTitle">Ask AI About {{ v.name }} from xcellhost</span>
+                <span class="pp-ask-ai-kicker" id="ppAskAiTitle">Ask AI About {{ v.name }} from Xcellhost</span>
               </div>
               <div class="pp-ask-ai-actions">
                 <a class="pp-ask-ai-chip" aria-label="ChatGPT" [href]="askAiHref('chatgpt')" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=chatgpt.com&amp;sz=64" alt="" aria-hidden="true"></a>
@@ -166,16 +166,27 @@
       </div>
     </div>
 
+    @if (isSiteLock()) {
+      <xh-sitelock-content />
+    }
+
+    @if (isVmc()) {
+      <xh-vmc-content />
+    }
+
     <div class="pp-body">
       <div class="wrap">
+        @if (!isVmc()) {
         @if (slug() === 'video-surveillance-as-a-service') {
           <xh-cloud-cctv-content />
         }
-        <div class="pp-sec">Overview</div>
-        <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
+        @if (!isSiteLock()) {
+          <div class="pp-sec">Overview</div>
+          <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
 
-        @if (isAcronisTrueImage()) {
-          <xh-acronis-true-image-content />
+          @if (isAcronisTrueImage()) {
+            <xh-acronis-true-image-content />
+          }
         }
 
         @if (v.offerSection; as offer) {
@@ -237,7 +248,13 @@
                       <span>{{ p.ribbon }}</span>
                       @if (p.hot) { <b>Most popular</b> }
                     </div>
-                    <h3>{{ p.term }}</h3>
+                    <h3>
+                      {{ p.term }}
+                      @if (isRmm() && p.tag) {
+                        <span class="edr-plan-saving-separator" aria-hidden="true">+</span>
+                        <span class="edr-plan-saving">{{ p.tag }}</span>
+                      }
+                    </h3>
                     <p>{{ edrPlanCoverage[selectedEdrPlanIndex()] }}</p>
                     <div class="edr-plan-price">
                       <strong>{{ edrPlanTotal(p) }}</strong>
@@ -245,7 +262,9 @@
                         total for {{ edrQuantity() }} {{ edrQuantity() === 1 ? 'user' : 'users' }}
                       </small>
                     </div>
-                    <div class="edr-plan-saving">{{ p.tag }}</div>
+                    @if (!isRmm()) {
+                      <div class="edr-plan-saving">{{ p.tag }}</div>
+                    }
                   </header>
 
                   <div class="edr-plan-purchase">
@@ -308,7 +327,6 @@
                       <span aria-hidden="true">T</span>
                       <div><b>{{ plan.name }}</b><small>{{ plan.edition }}</small></div>
                     </div>
-                    <strong>&#8377;{{ formatInr(tallyPrice(plan)) }}</strong>
                     <small>+GST · {{ activeTallyTerm().label }} billing</small>
                   </div>
                   <dl class="tally-plan-specs">
@@ -325,7 +343,10 @@
                     <div><dt>Firewall HA</dt><dd>Fortinet</dd></div>
                     <div><dt>Support</dt><dd>24×7</dd></div>
                   </dl>
-                  <a class="tally-plan-action" href="#" (click)="selectTallyPlan(plan, $event)">Select plan</a>
+                  <a class="tally-plan-action" href="#" (click)="selectTallyPlan(plan, $event)">
+                    <strong>&#8377;{{ formatInr(tallyPrice(plan)) }}</strong>
+                    <span>Buy now <span aria-hidden="true">→</span></span>
+                  </a>
                 </article>
               }
             </div>
@@ -394,24 +415,23 @@
                 <article class="cloud-drive-price-card">
                   <div class="cloud-drive-price-top">
                     <span class="cloud-drive-storage">XcellDrive | {{ plan.storage }}</span>
-                    <dl class="cloud-drive-price-meta">
-                      <div><dt>Unit</dt><dd>{{ plan.unit }}</dd></div>
-                    </dl>
+                    <p class="cloud-drive-description">{{ plan.comments }}</p>
                   </div>
 
-                  <p class="cloud-drive-price-copy">{{ plan.comments }}</p>
-
-                  <div class="cloud-drive-purchase">
-                    <div class="cloud-drive-total">
-                      <strong>&#8377;{{ formatInr(cloudDriveTotal(plan)) }}</strong>
-                    </div>
+                  <div class="cloud-drive-price-copy">
                     <label [attr.for]="'cloudDriveQuantity-' + plan.storage">No. of users / devices</label>
                     <div class="edr-quantity cloud-drive-quantity">
                       <button type="button" aria-label="Decrease users" (click)="changeCloudDriveQuantity(-1)" [disabled]="cloudDriveQuantity() === 1">−</button>
                       <output [id]="'cloudDriveQuantity-' + plan.storage" aria-live="polite">{{ cloudDriveQuantity() }}</output>
                       <button type="button" aria-label="Increase users" (click)="changeCloudDriveQuantity(1)">+</button>
                     </div>
-                    <a class="btn btn-primary" href="#" (click)="selectCloudDrivePlan(plan, $event)">Buy now</a>
+                  </div>
+
+                  <div class="cloud-drive-purchase">
+                    <div class="cloud-drive-total">
+                      <strong>&#8377;{{ formatInr(cloudDriveTotal(plan)) }}</strong>
+                    </div>
+                    <a class="btn btn-primary" href="#" (click)="selectCloudDrivePlan(plan, $event)">Buy now <span aria-hidden="true">→</span></a>
                   </div>
                 </article>
               }
@@ -475,25 +495,24 @@
                   <div class="cloud-backup-plan-band">Acronis Cyber Protect Cloud</div>
                   <div class="cloud-backup-plan-main">
                     <div class="cloud-backup-plan-name">
-                      <span aria-hidden="true">A</span>
-                      <div><b>Cyber Backup</b><small>Standard Storage Subscription</small></div>
+                      <div><b>Cloud Backup</b><small>Standard Storage Subscription</small></div>
+                      <p class="cloud-backup-plan-details">
+                        Storage: <span class="cloud-backup-highlight">{{ plan.storage }}</span>
+                        · Recovery: <span class="cloud-backup-highlight">Unlimited backup agents</span>
+                      </p>
                     </div>
-                    <strong>&#8377;{{ formatInr(cloudBackupPrice(plan)) }}</strong>
                     <small>+GST Â· {{ activeCloudBackupTerm().label }} billing</small>
-                    <small class="cloud-backup-agent-note">*with Unlimited Backup Agents</small>
                   </div>
-                  <dl class="cloud-backup-plan-specs">
-                    <div><dt>Storage</dt><dd>{{ plan.storage }}</dd></div>
-                    <div><dt>Backup agents</dt><dd>Unlimited</dd></div>
-                    <div><dt>Protection</dt><dd>Servers, endpoints &amp; apps</dd></div>
-                    <div><dt>Recovery</dt><dd>Flexible restore</dd></div>
-                  </dl>
-                  <a class="cloud-backup-plan-action" href="#" (click)="selectCloudBackupPlan(plan, $event)">Select plan</a>
+                  <a class="cloud-backup-plan-action" href="#" (click)="selectCloudBackupPlan(plan, $event)">
+                    <strong>&#8377;{{ formatInr(cloudBackupPrice(plan)) }}</strong>
+                    <span>Select plan</span>
+                    <small>+GST · {{ activeCloudBackupTerm().label }} Billing</small>
+                  </a>
                 </article>
               }
             </div>
           </section>
-        } @else if (!isAdvancedEdr() && !isSmbCyber() && !isRmm() && !isAcronisTrueImage()) {
+        } @else if (!isAdvancedEdr() && !isSmbCyber() && !isRmm() && !isAcronisTrueImage() && !isSiteLock()) {
           <div class="pp-sec">Plans &amp; pricing</div>
           <div class="pp-plans" id="ppPlans">
             @for (p of v.plans; track p.term) {
@@ -529,13 +548,13 @@
                 <article class="pp-rmm-benefit">
                   <span class="pp-rmm-benefit-number">{{ i + 1 }}</span>
                   <div class="pp-rmm-benefit-copy">
-                    <b>{{ benefit.title }} <i aria-hidden="true">{{ benefit.icon }}</i></b>
+                    <b>{{ benefit.title }}</b>
                   </div>
                 </article>
               }
             </div>
           </section>
-        } @else if (!isSmbCyber() && !isAcronisTrueImage()) {
+        } @else if (!isSmbCyber() && !isAcronisTrueImage() && !isSiteLock()) {
           @if (isAdvancedEdr()) {
             <section class="edr-feature-heading" aria-labelledby="edr-feature-title">
               <div class="edr-feature-copy">
@@ -819,7 +838,7 @@
           </section>
         }
 
-        @if (!isSmbCyber() && !isRmm() && !isAcronisTrueImage()) {
+        @if (!isSmbCyber() && !isRmm() && !isAcronisTrueImage() && !isSiteLock()) {
         <div class="pp-sec">
           {{
             v.name === 'Tally on Cloud'
@@ -949,7 +968,7 @@
           </section>
         }
 
-        @if (v.name !== 'Tally on Cloud' && !isSmbCyber() && !isAcronisTrueImage()) {
+        @if (v.name !== 'Tally on Cloud' && !isSmbCyber() && !isAcronisTrueImage() && !isSiteLock()) {
           <div class="pp-sec">Use cases</div>
           <div class="pp-uses" id="ppUses" [class.cdr-smb-uses]="isCloudDisasterRecoverySmb()">
             @for (u of v.uses; track u.title) {
@@ -963,6 +982,54 @@
             }
           </div>
 
+          @if (isCloudDisasterRecoverySmb()) {
+            <section class="cdr-global-cloud" aria-labelledby="cdrGlobalCloudTitle">
+              <div class="pp-sec" id="cdrGlobalCloudTitle">Disaster Recovery to Acronis Global Cloud</div>
+              <div
+                class="cdr-cloud-diagram"
+                role="img"
+                aria-label="Customer virtual servers, physical servers and applications connect securely to an Acronis cloud recovery site for replication, failover and failback"
+              >
+                <div class="cdr-customer-site">
+                  <h3>Customers’ Sites</h3>
+                  <div class="cdr-workload-stack">
+                    <article>
+                      <span class="cdr-server-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+                      <div><b>Virtual Servers</b><small>VMware vSphere, Microsoft Hyper-V,<br />Linux KVM, Red Hat Virtualization</small></div>
+                    </article>
+                    <article>
+                      <span class="cdr-server-icon cdr-server-tower" aria-hidden="true"><i></i><i></i><i></i></span>
+                      <div><b>Physical Servers</b><small>Windows, Linux</small></div>
+                    </article>
+                    <article>
+                      <span class="cdr-app-icon" aria-hidden="true">⚙</span>
+                      <div><b>Applications</b><small>With built-in replication like<br />SQL Server Always On</small></div>
+                    </article>
+                  </div>
+                </div>
+
+                <div class="cdr-transfer-paths" aria-hidden="true">
+                  <div class="cdr-transfer cdr-transfer-back dashed"><span></span><b>Secure VPN</b></div>
+                  <div class="cdr-transfer cdr-transfer-forward"><span></span><b>Full Image Backup<br />App Replication</b></div>
+                  <div class="cdr-transfer cdr-transfer-back"><span></span><b>Failback</b></div>
+                </div>
+
+                <div class="cdr-recovery-site">
+                  <h3>Cloud<br />Recovery Site</h3>
+                  <div class="cdr-cloud-shape" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="cdr-recovery-stack">
+                    <div class="cdr-cloud-servers" aria-hidden="true">
+                      <span></span><span></span><span></span><span></span>
+                    </div>
+                    <small>Recovery &amp; Primary Servers</small>
+                    <div class="cdr-storage"><span aria-hidden="true">▰</span><b>Hot and Cold Storage</b></div>
+                    <ul><li>Production Failover</li><li>Failover Testing</li><li>Cloud Servers Backup</li></ul>
+                  </div>
+                </div>
+              </div>
+            </section>
+          }
+
           @if (v.honest; as honest) {
             <div class="pp-honest" id="ppHonest">
               <div class="ph-tag">Straight answer</div>
@@ -972,7 +1039,7 @@
           }
         }
 
-        @if (isAcronisTrueImage() && v.honest; as honest) {
+        @if ((isAcronisTrueImage() || isSiteLock()) && v.honest; as honest) {
           <div class="pp-honest" id="ppHonest">
             <div class="ph-tag">Straight answer</div>
             <b>When {{ v.name }} is not the right fit</b>
@@ -1014,6 +1081,7 @@
               </table>
             </div>
           </div>
+        }
         }
 
         @if (v.name !== 'Tally on Cloud') {

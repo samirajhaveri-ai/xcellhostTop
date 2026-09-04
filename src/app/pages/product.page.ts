@@ -19,6 +19,8 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { LottieDirective } from '../shared/lottie.directive';
 import { CloudCctvContentComponent } from '../sections/cloud-cctv-content.component';
 import { AcronisTrueImageContentComponent } from '../sections/acronis-true-image-content.component';
+import { SiteLockContentComponent } from '../sections/sitelock-content.component';
+import { VmcContentComponent } from '../sections/vmc-content.component';
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -60,11 +62,13 @@ interface CloudDrivePlan {
   comments: string;
 }
 
-type CloudBackupTerm = 'monthly' | 'yearly';
+type CloudBackupTerm = 'monthly' | 'quarterly' | '6m' | 'yearly';
 
 interface CloudBackupPlan {
   storage: string;
   monthly: number;
+  quarterly: number;
+  '6m': number;
   yearly: number;
 }
 
@@ -92,6 +96,8 @@ interface ProductTourSlide {
     ProductFaqComponent,
     CloudCctvContentComponent,
     AcronisTrueImageContentComponent,
+    SiteLockContentComponent,
+    VmcContentComponent,
   ],
   templateUrl: './product.page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -609,6 +615,10 @@ export class ProductPage {
 
   readonly isAcronisTrueImage = computed(() => this.view()?.name === 'Acronis True Image');
 
+  readonly isSiteLock = computed(() => this.view()?.name === 'Web Security (SiteLock)');
+
+  readonly isVmc = computed(() => this.view()?.name === 'Verified Mark Certificates (VMC)');
+
   readonly isCloudDrive = computed(() => this.view()?.name === 'Cloud Drive');
 
   readonly isCloudBackup = computed(() => this.view()?.name.toLowerCase().startsWith('cloud backup') ?? false);
@@ -891,7 +901,7 @@ export class ProductPage {
   }
 
   formatInr(value: number): string {
-    return new Intl.NumberFormat('en-IN').format(value);
+    return new Intl.NumberFormat('en-IN').format(Math.round(value));
   }
 
   selectCybirdPlan(plan: CybirdPlan, ev: Event): void {
@@ -922,15 +932,17 @@ export class ProductPage {
 
   readonly cloudBackupTerms: readonly { key: CloudBackupTerm; label: string }[] = [
     { key: 'monthly', label: 'Monthly' },
+    { key: 'quarterly', label: 'Quarterly' },
+    { key: '6m', label: '6 Months' },
     { key: 'yearly', label: 'Yearly' },
   ];
 
   readonly cloudBackupPlans: readonly CloudBackupPlan[] = [
-    { storage: '50 GB', monthly: 297, yearly: 3563 },
-    { storage: '100 GB', monthly: 594, yearly: 7125 },
-    { storage: '250 GB', monthly: 1484, yearly: 17812 },
-    { storage: '500 GB', monthly: 2850, yearly: 34200 },
-    { storage: '1 TB', monthly: 5700, yearly: 68400 },
+    { storage: '50 GB', monthly: 297, quarterly: 891, '6m': 1782, yearly: 3563 },
+    { storage: '100 GB', monthly: 594, quarterly: 1782, '6m': 3564, yearly: 7125 },
+    { storage: '250 GB', monthly: 1484, quarterly: 4452, '6m': 8904, yearly: 17812 },
+    { storage: '500 GB', monthly: 2850, quarterly: 8550, '6m': 17100, yearly: 34200 },
+    { storage: '1 TB', monthly: 5700, quarterly: 17100, '6m': 34200, yearly: 68400 },
   ];
 
   readonly selectedCloudBackupTerm = signal<CloudBackupTerm>('monthly');

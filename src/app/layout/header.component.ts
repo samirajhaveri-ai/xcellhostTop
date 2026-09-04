@@ -338,6 +338,7 @@ const MENU_DESCRIPTIONS: Record<string, string> = {
  * matching page is built; missing destinations use the shared construction page.
  */
 const CONTENT_LINKS: Record<string, string> = {
+  'Digicert VMC ': '/digicert-vmc',
   'Acronis Advanced EDR SLA': '/acronis-advanced-edr-sla',
   'Acronis Advanced MDR SLA': '/acronis-advanced-mdr-sla',
   'Acronis Advanced XDR SLA': '/acronis-advanced-xdr-sla',
