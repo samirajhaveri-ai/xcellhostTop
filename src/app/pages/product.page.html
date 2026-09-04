@@ -166,16 +166,22 @@
       </div>
     </div>
 
+    @if (isSiteLock()) {
+      <xh-sitelock-content />
+    }
+
     <div class="pp-body">
       <div class="wrap">
         @if (slug() === 'video-surveillance-as-a-service') {
           <xh-cloud-cctv-content />
         }
-        <div class="pp-sec">Overview</div>
-        <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
+        @if (!isSiteLock()) {
+          <div class="pp-sec">Overview</div>
+          <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
 
-        @if (isAcronisTrueImage()) {
-          <xh-acronis-true-image-content />
+          @if (isAcronisTrueImage()) {
+            <xh-acronis-true-image-content />
+          }
         }
 
         @if (v.offerSection; as offer) {
@@ -492,7 +498,7 @@
               }
             </div>
           </section>
-        } @else if (!isAdvancedEdr() && !isSmbCyber() && !isRmm() && !isAcronisTrueImage()) {
+        } @else if (!isAdvancedEdr() && !isSmbCyber() && !isRmm() && !isAcronisTrueImage() && !isSiteLock()) {
           <div class="pp-sec">Plans &amp; pricing</div>
           <div class="pp-plans" id="ppPlans">
             @for (p of v.plans; track p.term) {
@@ -534,7 +540,7 @@
               }
             </div>
           </section>
-        } @else if (!isSmbCyber() && !isAcronisTrueImage()) {
+        } @else if (!isSmbCyber() && !isAcronisTrueImage() && !isSiteLock()) {
           @if (isAdvancedEdr()) {
             <section class="edr-feature-heading" aria-labelledby="edr-feature-title">
               <div class="edr-feature-copy">
@@ -818,7 +824,7 @@
           </section>
         }
 
-        @if (!isSmbCyber() && !isRmm() && !isAcronisTrueImage()) {
+        @if (!isSmbCyber() && !isRmm() && !isAcronisTrueImage() && !isSiteLock()) {
         <div class="pp-sec">
           {{
             v.name === 'Tally on Cloud'
@@ -948,7 +954,7 @@
           </section>
         }
 
-        @if (v.name !== 'Tally on Cloud' && !isSmbCyber() && !isAcronisTrueImage()) {
+        @if (v.name !== 'Tally on Cloud' && !isSmbCyber() && !isAcronisTrueImage() && !isSiteLock()) {
           <div class="pp-sec">Use cases</div>
           <div class="pp-uses" id="ppUses" [class.cdr-smb-uses]="isCloudDisasterRecoverySmb()">
             @for (u of v.uses; track u.title) {
@@ -962,6 +968,54 @@
             }
           </div>
 
+          @if (isCloudDisasterRecoverySmb()) {
+            <section class="cdr-global-cloud" aria-labelledby="cdrGlobalCloudTitle">
+              <div class="pp-sec" id="cdrGlobalCloudTitle">Disaster Recovery to Acronis Global Cloud</div>
+              <div
+                class="cdr-cloud-diagram"
+                role="img"
+                aria-label="Customer virtual servers, physical servers and applications connect securely to an Acronis cloud recovery site for replication, failover and failback"
+              >
+                <div class="cdr-customer-site">
+                  <h3>Customers’ Sites</h3>
+                  <div class="cdr-workload-stack">
+                    <article>
+                      <span class="cdr-server-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+                      <div><b>Virtual Servers</b><small>VMware vSphere, Microsoft Hyper-V,<br />Linux KVM, Red Hat Virtualization</small></div>
+                    </article>
+                    <article>
+                      <span class="cdr-server-icon cdr-server-tower" aria-hidden="true"><i></i><i></i><i></i></span>
+                      <div><b>Physical Servers</b><small>Windows, Linux</small></div>
+                    </article>
+                    <article>
+                      <span class="cdr-app-icon" aria-hidden="true">⚙</span>
+                      <div><b>Applications</b><small>With built-in replication like<br />SQL Server Always On</small></div>
+                    </article>
+                  </div>
+                </div>
+
+                <div class="cdr-transfer-paths" aria-hidden="true">
+                  <div class="cdr-transfer cdr-transfer-back dashed"><span></span><b>Secure VPN</b></div>
+                  <div class="cdr-transfer cdr-transfer-forward"><span></span><b>Full Image Backup<br />App Replication</b></div>
+                  <div class="cdr-transfer cdr-transfer-back"><span></span><b>Failback</b></div>
+                </div>
+
+                <div class="cdr-recovery-site">
+                  <h3>Cloud<br />Recovery Site</h3>
+                  <div class="cdr-cloud-shape" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="cdr-recovery-stack">
+                    <div class="cdr-cloud-servers" aria-hidden="true">
+                      <span></span><span></span><span></span><span></span>
+                    </div>
+                    <small>Recovery &amp; Primary Servers</small>
+                    <div class="cdr-storage"><span aria-hidden="true">▰</span><b>Hot and Cold Storage</b></div>
+                    <ul><li>Production Failover</li><li>Failover Testing</li><li>Cloud Servers Backup</li></ul>
+                  </div>
+                </div>
+              </div>
+            </section>
+          }
+
           @if (v.honest; as honest) {
             <div class="pp-honest" id="ppHonest">
               <div class="ph-tag">Straight answer</div>
@@ -971,7 +1025,7 @@
           }
         }
 
-        @if (isAcronisTrueImage() && v.honest; as honest) {
+        @if ((isAcronisTrueImage() || isSiteLock()) && v.honest; as honest) {
           <div class="pp-honest" id="ppHonest">
             <div class="ph-tag">Straight answer</div>
             <b>When {{ v.name }} is not the right fit</b>

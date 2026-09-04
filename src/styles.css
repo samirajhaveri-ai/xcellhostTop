@@ -3433,6 +3433,46 @@ body.xh-locked{overflow:hidden}
 @media(max-width:700px){#ppage .pp-uses.cdr-smb-uses{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:480px){#ppage .pp-uses.cdr-smb-uses{grid-template-columns:1fr}}
 
+/* Cloud Disaster Recovery SMB architecture diagram. */
+#ppage .cdr-global-cloud{--cdr-diagram-box-height:260px;margin-top:8px}
+#ppage .cdr-global-cloud>#cdrGlobalCloudTitle{font-size:clamp(10px,1.3vw,15px);letter-spacing:clamp(.04em,.7vw,.14em);white-space:nowrap}
+#ppage .cdr-cloud-diagram{display:grid;grid-template-columns:minmax(250px,1fr) minmax(250px,.9fr) minmax(250px,1fr);align-items:center;gap:24px;min-height:390px;padding:38px;border:1px solid #d6e2f2;border-radius:22px;background:linear-gradient(135deg,#fff 0%,#f8fbff 55%,#eef5ff 100%);box-shadow:0 18px 42px rgba(10,52,111,.09)}
+#ppage .cdr-cloud-diagram h3{margin:0 0 22px;color:#e31621;font-size:20px;font-weight:750;text-align:center}
+#ppage .cdr-workload-stack{position:relative;display:grid;min-height:var(--cdr-diagram-box-height);gap:10px;padding:0 12px 12px 0}
+#ppage .cdr-workload-stack::after{position:absolute;z-index:0;top:18px;right:0;bottom:0;width:12px;border-radius:0 4px 4px 0;background:linear-gradient(180deg,#95bdf2,#c6dcf7);content:''}
+#ppage .cdr-workload-stack article{position:relative;z-index:1;display:flex;align-items:center;gap:14px;min-height:76px;padding:11px 14px;border:1px solid #91b6e8;background:#fff;box-shadow:6px 6px 0 #d7e7fa}
+#ppage .cdr-workload-stack article b{display:block;color:#0a3f8c;font-size:15px;line-height:1.2}
+#ppage .cdr-workload-stack article small{display:block;margin-top:4px;color:#17355d;font-size:9px;line-height:1.3}
+#ppage .cdr-server-icon{display:grid;flex:0 0 48px;gap:3px;padding:6px;border-radius:3px;background:#dcecff}
+#ppage .cdr-server-icon i{position:relative;display:block;height:7px;border:1px solid #4f91df;background:linear-gradient(90deg,#67a7ed,#bdd9f8)}
+#ppage .cdr-server-icon i::before{position:absolute;top:2px;left:3px;width:3px;height:3px;border-radius:50%;background:#1769d8;content:''}
+#ppage .cdr-server-tower{grid-template-columns:repeat(3,1fr);height:44px;align-items:stretch}.cdr-server-tower i{height:auto!important}
+#ppage .cdr-app-icon{display:grid;flex:0 0 48px;height:44px;place-items:center;border-radius:6px;background:linear-gradient(135deg,#deecff,#9fc7f8);color:#357ed5;font-size:27px}
+#ppage .cdr-transfer-paths{display:grid;gap:46px;padding-top:38px}
+#ppage .cdr-transfer{position:relative;min-height:44px;text-align:center}
+#ppage .cdr-transfer span{position:absolute;top:4px;right:0;left:0;height:1px;background:#4e89cf}
+#ppage .cdr-transfer span::after{position:absolute;top:-4px;right:-1px;width:8px;height:8px;border-top:1px solid #4e89cf;border-right:1px solid #4e89cf;content:'';transform:rotate(45deg)}
+#ppage .cdr-transfer-back span::after{right:auto;left:-1px;border:0;border-bottom:1px solid #4e89cf;border-left:1px solid #4e89cf}
+#ppage .cdr-transfer.dashed span{height:0;border-top:1px dashed #7ba4d3;background:none}
+#ppage .cdr-transfer b{position:relative;top:16px;display:inline-block;padding:0 8px;background:#f8fbff;color:#0a3f8c;font-size:12px;font-weight:500;line-height:1.25}
+#ppage .cdr-recovery-site{position:relative;min-height:285px;padding:0 28px}
+#ppage .cdr-recovery-site h3{position:relative;z-index:2;margin-bottom:12px}
+#ppage .cdr-cloud-shape{position:absolute;z-index:0;right:0;bottom:18px;left:0;height:180px}
+#ppage .cdr-cloud-shape::before,#ppage .cdr-cloud-shape::after,#ppage .cdr-cloud-shape i{position:absolute;border-radius:50%;background:#9ec6f6;content:''}
+#ppage .cdr-cloud-shape::before{bottom:0;left:5%;width:74%;height:120px;border-radius:60px}
+#ppage .cdr-cloud-shape::after{top:14px;right:3%;width:118px;height:118px}
+#ppage .cdr-cloud-shape i:nth-child(1){top:0;left:14%;width:132px;height:132px}.cdr-cloud-shape i:nth-child(2){right:15%;bottom:0;width:110px;height:110px}.cdr-cloud-shape i:nth-child(3){display:none}
+#ppage .cdr-recovery-stack{position:relative;z-index:1;display:grid;grid-template-rows:auto auto 54px 1fr;width:100%;max-width:260px;min-height:var(--cdr-diagram-box-height);margin:auto;border:1px solid #397bc9;background:#fff;box-shadow:7px 7px 0 rgba(255,255,255,.55)}
+#ppage .cdr-cloud-servers{display:flex;justify-content:center;gap:8px;padding:15px 14px 5px}
+#ppage .cdr-cloud-servers span{position:relative;width:30px;height:36px;border:1px solid #5594d9;background:repeating-linear-gradient(180deg,#72a9e8 0 7px,#dcecff 7px 9px)}
+#ppage .cdr-cloud-servers span::before{position:absolute;top:3px;left:3px;width:3px;height:3px;border-radius:50%;background:#fff;box-shadow:0 9px #fff,0 18px #fff;content:''}
+#ppage .cdr-recovery-stack>small{display:block;padding:0 8px 8px;color:#16345c;font-size:9px;text-align:center}
+#ppage .cdr-storage{display:flex;align-items:center;justify-content:center;gap:10px;min-height:54px;border-top:1px solid #397bc9;border-bottom:1px solid #397bc9;color:#0a3f8c}
+#ppage .cdr-storage span{font-size:25px}.cdr-storage b{font-size:11px}
+#ppage .cdr-recovery-stack ul{margin:0;padding:10px 28px 11px;color:#174278;font-size:9px;line-height:1.45}
+@media(max-width:900px){#ppage .cdr-cloud-diagram{grid-template-columns:1fr;gap:20px;padding:28px}#ppage .cdr-transfer-paths{grid-template-columns:repeat(3,1fr);gap:18px;padding:0 12px}#ppage .cdr-transfer{min-height:60px}#ppage .cdr-recovery-site{min-height:290px;max-width:420px;width:100%;margin:auto}}
+@media(max-width:600px){#ppage .cdr-cloud-diagram{padding:22px 16px;border-radius:16px}#ppage .cdr-transfer-paths{grid-template-columns:1fr;gap:18px}#ppage .cdr-transfer{min-height:42px}#ppage .cdr-recovery-site{padding:0 10px}#ppage .cdr-workload-stack article{gap:10px;padding:10px}#ppage .cdr-workload-stack article b{font-size:13px}}
+
 /* Purpose-matched EDR use-case icons. */
 #ppage .pp-uses .pu{--use-accent:#1769e0;--use-soft:#eaf3ff;position:relative;overflow:hidden;transition:transform .24s ease,border-color .24s ease,box-shadow .24s ease}
 #ppage .pp-uses .pu:nth-child(4n+2){--use-accent:#7655e8;--use-soft:#f2efff}#ppage .pp-uses .pu:nth-child(4n+3){--use-accent:#079c83;--use-soft:#eafaf6}#ppage .pp-uses .pu:nth-child(4n+4){--use-accent:#e67c13;--use-soft:#fff4e8}

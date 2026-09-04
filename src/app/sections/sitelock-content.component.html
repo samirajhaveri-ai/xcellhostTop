@@ -1,0 +1,97 @@
+<section class="sl-content" aria-label="SiteLock website security details">
+  <div class="sl-wrap">
+    <div class="sl-section-title">Overview — What is SiteLock?</div>
+    <p class="sl-overview"><b>SiteLock</b> is a cloud-based website security service that scans your site every day for malware, vulnerabilities and blacklisting, removes threats automatically, and blocks attacks with a web application firewall (WAF). Its built-in CDN also makes your site faster while it protects it—and the <b>SiteLock Trust Seal</b> shows visitors your site is verified safe.</p>
+    <p class="sl-overview">XcellHost is an authorised SiteLock partner in India. We provision, configure and monitor SiteLock for you—tuning the firewall, handling malware clean-up and keeping the seal live—with a GST invoice on every order and 24×7 support from our Mumbai SOC.</p>
+
+    <div class="sl-section-title">Find · Fix · Prevent — how SiteLock protects you</div>
+    <div class="sl-protection-grid">
+      @for (level of protectionLevels; track level.name) {
+        <article class="sl-protection-card" [class]="'sl-protection-card ' + level.tone">
+          <span class="sl-level"><i>{{ level.icon }}</i>{{ level.name }}</span>
+          <h2>{{ level.title }}</h2>
+          <p>{{ level.description }}</p>
+          <ul>
+            @for (feature of level.features; track feature) {
+              <li><span>✓</span>{{ feature }}</li>
+            }
+          </ul>
+        </article>
+      }
+    </div>
+
+    <div class="sl-section-title" id="sitelock-plans">SiteLock plans &amp; pricing (INR)</div>
+    <p class="sl-overview sl-plan-intro">Simple annual plans—pick the level of protection your website needs.</p>
+    <div class="sl-plans">
+      @for (plan of plans; track plan.name) {
+        <article class="sl-plan" [class]="'sl-plan ' + plan.tone">
+          <header><span aria-hidden="true">▱</span><h2>{{ plan.name }}</h2></header>
+          <div class="sl-plan-body">
+            <div class="sl-price">₹{{ plan.price }}<small>/mo</small></div>
+            <p class="sl-billed">billed annually at ₹{{ plan.annual }}</p>
+            @if (plan.intro) { <p class="sl-plus">{{ plan.intro }}</p> }
+            <ul>
+              @for (feature of plan.features; track feature) {
+                <li><span>✓</span>{{ feature }}</li>
+              }
+            </ul>
+            <button type="button" (click)="configurePlan(plan.name, $event)">Configure &amp; Buy</button>
+          </div>
+        </article>
+      }
+    </div>
+    <p class="sl-payment">💳 Pay online via UPI · Cards · NetBanking. GST invoice included on every order. Contact XcellHost for multi-site bundles.</p>
+
+    <div class="sl-section-title">Compare Basic, Pro &amp; Business</div>
+    <div class="sl-table-wrap">
+      <table>
+        <thead><tr><th>Feature</th><th>Basic</th><th>Pro</th><th>Business</th></tr></thead>
+        <tbody>
+          @for (row of comparison; track row[0]) {
+            <tr>
+              @for (cell of row; track $index) {
+                <td [class.sl-yes]="cell === '✓'" [class.sl-no]="cell === '—'">{{ cell }}</td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sl-section-title">Add-ons &amp; managed services</div>
+    <div class="sl-addon-grid">
+      @for (item of addOns; track item[1]) {
+        <article><i>{{ item[0] }}</i><h3>{{ item[1] }}</h3><p>{{ item[2] }}</p></article>
+      }
+    </div>
+
+    <div class="sl-section-title">Everything SiteLock protects</div>
+    <div class="sl-feature-grid">
+      @for (feature of features; track feature[1]) {
+        <article><i [class]="feature[3]">{{ feature[0] }}</i><div><h3>{{ feature[1] }}</h3><p>{{ feature[2] }}</p></div></article>
+      }
+    </div>
+
+    <div class="sl-section-title">Automatic malware removal that never sleeps</div>
+    <section class="sl-smart" aria-labelledby="sl-smart-title">
+      <div class="sl-smart-copy">
+        <span class="sl-smart-tag">◇ SiteLock SMART</span>
+        <h2 id="sl-smart-title">Find it, fix it—automatically</h2>
+        <p>SMART (Secure Malware Alert &amp; Removal Tool) scans your website's files every day, detects malicious code and removes it automatically—so an infection is cleaned before it can spread or get you blacklisted.</p>
+        <ul><li>✓ Daily automated scans</li><li>✓ Automatic file clean-up</li><li>✓ Instant threat alerts</li><li>✓ SOC-monitored 24×7</li></ul>
+      </div>
+      <div class="sl-smart-steps">
+        <div><i>✓</i>Daily scan complete</div>
+        <div><i>✓</i>Malware detected in 2 files</div>
+        <div><i>3</i>Threats removed automatically</div>
+      </div>
+    </section>
+
+    <div class="sl-section-title">Who needs SiteLock?</div>
+    <div class="sl-use-grid">
+      @for (item of useCases; track item[1]) {
+        <article><i>{{ item[0] }}</i><h3>{{ item[1] }}</h3><p>{{ item[2] }}</p></article>
+      }
+    </div>
+  </div>
+</section>
