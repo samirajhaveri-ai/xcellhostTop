@@ -3939,8 +3939,8 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
 .cdr-smb-pricing{max-width:1120px;margin:42px auto 18px;padding:12px 0 0}
 .cdr-smb-pricing .tally-price-heading{max-width:760px;margin-bottom:34px}
 .cdr-smb-pricing .tally-price-heading>span{display:inline-flex;align-items:center;min-height:26px;padding:0 12px;border-radius:999px;background:#eaf3ff;color:#1565d8;letter-spacing:.08em}
-.cdr-smb-pricing .tally-price-heading h2{color:#0a274f}
-.cdr-smb-pricing .tally-price-heading p{max-width:680px}
+.cdr-smb-pricing .tally-price-heading h2{width:max-content;max-width:none;color:#0a274f;white-space:nowrap;margin-left:-14%;}
+.cdr-smb-pricing .tally-price-heading p{width:max-content;max-width:none;white-space:nowrap}
 .cdr-smb-pricing .tally-plan-grid{max-width:980px;margin:0 auto}
 .cdr-smb-pricing .tally-plan-card{position:relative;display:grid;grid-template-columns:minmax(0,1.7fr) minmax(265px,.82fr);grid-template-rows:auto auto;overflow:hidden;border-color:#cfdef1;border-radius:20px;box-shadow:0 16px 34px rgba(10,52,111,.1);text-align:left}
 .cdr-smb-pricing .tally-plan-card::before{position:absolute;top:0;right:0;left:0;height:5px;background:linear-gradient(90deg,#1565d8,#74aef8);content:''}
@@ -3963,6 +3963,9 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
 .cdr-smb-pricing .tally-plan-specs>div::before{display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:#e8f3ff;color:#1971e8;content:'✓';font:700 12px/1 Arial}
 .cdr-smb-pricing .tally-plan-specs dt{align-self:center;font-size:11px;white-space:nowrap}.cdr-smb-pricing .tally-plan-specs dd{align-self:center;color:#183964;text-align:left;font-size:11px;white-space:nowrap}
 .cdr-smb-pricing .cdr-smb-note{max-width:980px;margin:14px auto 0;border:0;border-radius:8px;background:#f2f7ff;color:#31547e;font-weight:600}
+@media(max-width:700px){
+  .cdr-smb-pricing .tally-price-heading h2,.cdr-smb-pricing .tally-price-heading p{width:auto;max-width:100%;white-space:normal}
+}
 
 /* Cloud Backup pricing based on the Acronis storage subscription sheet. */
 .cloud-backup-pricing{margin:0 0 12px;color:var(--navy);font-family:'Poppins',var(--body)}
