@@ -85,7 +85,7 @@ export const routes: Routes = [
   },
   {
     path: 'digicert-vmc',
-    data: { productSlug: 'digicert-vmc' },
+    data: { productSlug: 'verified-mark-certificates-vmc' },
     loadComponent: () => import('./pages/digicert-vmc.page').then((m) => m.DigicertVmcPage),
   },
   {

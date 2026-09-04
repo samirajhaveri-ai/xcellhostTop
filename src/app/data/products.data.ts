@@ -1348,7 +1348,8 @@ export const PRODUCT_VIDEOS: Record<string, string[]> = {
   "Cloud Mobile Device Mgmt": ["Or6B8rY1k2M", "qYX86EGm7Zg"],
   "Malware & OT Security": ["HglepHky4bA", "2DrHwguVO0A"],
   "WordPress Hosting": ["43F79JzYKzo", ""],
-  "Web Security (SiteLock)": ["5fyYUqz3MQY", "DIfurSvEINY"]
+  "Web Security (SiteLock)": ["5fyYUqz3MQY", "DIfurSvEINY"],
+  "Verified Mark Certificates (VMC)": ["u12LxQ2Tmn0", ""]
 };
 
 export const SERVICE_INDEX_URL = 'https://www.xcellhost.cloud/service-index/';
