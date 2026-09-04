@@ -54,9 +54,8 @@ export const routes: Routes = [
   },
   {
     path: 'our-team',
-    data: { title: 'Our Team' },
-    loadComponent: () =>
-      import('./pages/under-construction.page').then((m) => m.UnderConstructionPage),
+    redirectTo: 'company/our-team-our-story',
+    pathMatch: 'full',
   },
   {
     path: 'company-profile',

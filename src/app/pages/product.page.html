@@ -140,7 +140,7 @@
 
             <section class="pp-ask-ai" aria-labelledby="ppAskAiTitle">
               <div class="pp-ask-ai-copy">
-                <span class="pp-ask-ai-kicker" id="ppAskAiTitle">Ask AI About {{ v.name }} from xcellhost</span>
+                <span class="pp-ask-ai-kicker" id="ppAskAiTitle">Ask AI About {{ v.name }} from Xcellhost</span>
               </div>
               <div class="pp-ask-ai-actions">
                 <a class="pp-ask-ai-chip" aria-label="ChatGPT" [href]="askAiHref('chatgpt')" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=chatgpt.com&amp;sz=64" alt="" aria-hidden="true"></a>
@@ -394,24 +394,23 @@
                 <article class="cloud-drive-price-card">
                   <div class="cloud-drive-price-top">
                     <span class="cloud-drive-storage">XcellDrive | {{ plan.storage }}</span>
-                    <dl class="cloud-drive-price-meta">
-                      <div><dt>Unit</dt><dd>{{ plan.unit }}</dd></div>
-                    </dl>
+                    <p class="cloud-drive-description">{{ plan.comments }}</p>
                   </div>
 
-                  <p class="cloud-drive-price-copy">{{ plan.comments }}</p>
-
-                  <div class="cloud-drive-purchase">
-                    <div class="cloud-drive-total">
-                      <strong>&#8377;{{ formatInr(cloudDriveTotal(plan)) }}</strong>
-                    </div>
+                  <div class="cloud-drive-price-copy">
                     <label [attr.for]="'cloudDriveQuantity-' + plan.storage">No. of users / devices</label>
                     <div class="edr-quantity cloud-drive-quantity">
                       <button type="button" aria-label="Decrease users" (click)="changeCloudDriveQuantity(-1)" [disabled]="cloudDriveQuantity() === 1">−</button>
                       <output [id]="'cloudDriveQuantity-' + plan.storage" aria-live="polite">{{ cloudDriveQuantity() }}</output>
                       <button type="button" aria-label="Increase users" (click)="changeCloudDriveQuantity(1)">+</button>
                     </div>
-                    <a class="btn btn-primary" href="#" (click)="selectCloudDrivePlan(plan, $event)">Buy now</a>
+                  </div>
+
+                  <div class="cloud-drive-purchase">
+                    <div class="cloud-drive-total">
+                      <strong>&#8377;{{ formatInr(cloudDriveTotal(plan)) }}</strong>
+                    </div>
+                    <a class="btn btn-primary" href="#" (click)="selectCloudDrivePlan(plan, $event)">Buy now <span aria-hidden="true">→</span></a>
                   </div>
                 </article>
               }
