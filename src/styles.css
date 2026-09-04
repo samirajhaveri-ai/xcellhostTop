@@ -1845,6 +1845,13 @@
   .ub2-theme{width:32px;padding:0}
   .ub2-lang{padding-right:12px;padding-left:10px}
   .ub2-lang span{letter-spacing:.08em}
+  .ub2-language-menu{position:absolute;z-index:250;top:calc(100% - 2px);right:92px;display:grid;grid-template-columns:repeat(2, minmax(112px, 1fr));gap:4px;width:250px;padding:8px;border:1px solid rgba(255,255,255,.18);border-radius:12px;background:#092b5b;box-shadow:0 14px 30px rgba(0,0,0,.24)}
+  .ub2-language-menu button{display:flex;align-items:center;justify-content:space-between;gap:8px;border:0;border-radius:7px;padding:8px 9px;background:transparent;color:#dbe8fb;font:600 11px var(--body);text-align:left;cursor:pointer}
+  .ub2-language-menu button:hover,.ub2-language-menu button.is-selected{background:#1565d8;color:#fff}
+  .ub2-language-menu button span{font:700 9px var(--mono);opacity:.72}
+  .google-translate-host{position:absolute;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none}
+  .goog-te-banner-frame,.skiptranslate iframe{display:none !important}
+  body{top:0 !important}
   .ub2 .phone{white-space:nowrap;color:#fff;font-weight:600;font-size:13px;flex:0 0 auto}
   .ub2 .uwa{white-space:nowrap;flex:0 0 auto;display:inline-flex;align-items:center;gap:6px}
   @media(max-width:900px){.ub2{gap:16px}.ub2 > a,.ub2 .phone,.ub2 .uwa{font-size:12px}}
@@ -1856,7 +1863,7 @@
 
   /* ============ v41: LOGO CLARITY + BAR FIT ============ */
   /* Utility bar: use container wrap padding, cap the WhatsApp piece, shrink long text if needed */
-  .utility{overflow:hidden}
+  .utility{position:relative;overflow:hidden}
   .utility .wrap.ub2{max-width:100%;padding-left:24px !important;padding-right:24px !important;
     gap:18px !important;box-sizing:border-box}
   .ub2 > a{font-size:12.5px !important}
@@ -1865,6 +1872,7 @@
   .ub2 .uwa{padding-right:6px}
   @media(max-width:1200px){.ub2 > a{font-size:12px !important}.ub2{gap:14px !important}}
   @media(max-width:900px){.ub2 > a{font-size:11.5px !important}.ub2 .phone,.ub2 .uwa{font-size:11.5px !important}}
+  @media(max-width:700px){.ub2{justify-content:flex-end;gap:8px !important;padding-left:12px !important;padding-right:12px !important}.ub2-push{min-width:0}.ub2 .phone{display:none}.ub2 .uwa{max-width:124px;overflow:hidden;text-overflow:ellipsis}.ub2-language-menu{right:45px;grid-template-columns:1fr;width:190px}}
 
   /* Logo: transparent-look on any dark bar/orbit background via blend mode.
      No ugly halo (PNG artefacts gone), no white square, and it also renders normally on white. */

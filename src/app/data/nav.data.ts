@@ -192,23 +192,24 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Virtual Private Servers",
             "items": [
               {
-                "title": "Linux VPS",
-                "pill": "New",
-                "desc": "Secure, automated backups to safeguard your website 🔒"
-              },
-              {
                 "title": "Windows VPS",
                 "pill": "New",
                 "desc": "Secure, automated backups to safeguard your website 🔒"
               },
               {
-                "title": "n8n VPS",
+                "title": "Linux VPS",
                 "pill": "New",
+                "desc": "Secure, automated backups to safeguard your website 🔒"
+              },
+              
+              {
+                "title": "n8n VPS",
+                "pill": "1-Click",
                 "desc": "Secure, automated backups to safeguard your website 🔒"
               },
               {
                 "title": "OpenClaw VPS",
-                "pill": "New",
+                "pill": "1-Click",
                 "desc": "Secure, automated backups to safeguard your website 🔒"
               }
               
@@ -216,16 +217,9 @@ export const MEGA_MENU: MenuTop[] = [
             ]
           }
         ]
-      }
-    ]
-  },
-  {
-    "label": "Cloud",
-    "noDrop": false,
-    "feature": null,
-    "tabs": [
+      },
       {
-        "g": "0",
+        "g": "4",
         "label": "SMB Cloud",
         "on": true,
         "groups": [
@@ -299,6 +293,89 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
+      {
+        "g": "4",
+        "label": "Managed DNS",
+        "on": true,
+        "groups": [
+          {
+            "heading": "Managed DNS",
+            "items": [
+              {
+                "title": "Tally on Cloud",
+                "pill": "Top seller",
+                "desc": null
+              },
+              
+              {
+                "title": "Cloud Backup",
+                "pill": "Popular",
+                "desc": null
+              },
+              {
+                "title": "Cloud Drive",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Advanced Endpoint Security (EDR)",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Remote Monitoring & Mgmt (RMM)",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "SMB Cyber Security Appliance",
+                "pill": "New",
+                "desc": null
+              },
+               {
+                "title": "Microsoft 365 SMB",
+                "pill": null,
+                "desc": "Cloud productivity tools with migration and 24/7 support"
+              },
+              {
+                "title": "SMB Cloud Desktop",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Acronis GenAI Protection",
+                "pill": "New",
+                "desc": null
+              },
+              
+              {
+                "title": "Cloud Disaster Recovery SMB",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "DPDPA For SMB",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Workforce Analytics",
+                "pill": null,
+                "desc": null
+              },
+              
+            ]
+          }
+        ]
+      },
+    ]
+  },
+  {
+    "label": "Cloud",
+    "noDrop": false,
+    "feature": null,
+    "tabs": [
+      
       {
         "g": "1",
         "label": "Cloud Infra",
@@ -813,6 +890,181 @@ export const MEGA_MENU: MenuTop[] = [
       },
     ]
   },
+
+
+
+
+
+
+
+
+
+
+
+
+  {
+    "label": "Data Protect",
+    "noDrop": false,
+    "feature": null,
+    "tabs": [
+      
+      {
+        "g": "0",
+        "label": "Acronis",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Cloud Infra",
+            "items": [
+              {
+                "title": "Performance Cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Bare Metal Server",
+                "pill": null,
+                "desc": null
+              },
+              
+              {
+                "title": "GPU Cloud",
+                "pill": "High demand",
+                "desc": null
+              },
+              {
+                "title": "Dedicated Private Cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Global Cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Co-Location",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Hybrid Cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Multi Cloud Manager",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Edge Cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "CDN Cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Data Center Build Services",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Cyber Frames (HCI/IaaS)",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "AI Inference Cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "AI Developer Cloud",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "1",
+        "label": "Resilience Cloud",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Resilience Cloud",
+            "items": [
+              {
+                "title": "No data",
+                "pill": null,
+                "desc": null
+              },
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "2",
+        "label": "AI Resilience",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Resilience Cloud",
+            "items": [
+              {
+                "title": "No data",
+                "pill": null,
+                "desc": null
+              },
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "3",
+        "label": "Identity Resilience",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Resilience Cloud",
+            "items": [
+              {
+                "title": "No data",
+                "pill": null,
+                "desc": null
+              },
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "4",
+        "label": "eDiscovery & Compliance",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Resilience Cloud",
+            "items": [
+              {
+                "title": "No data",
+                "pill": null,
+                "desc": null
+              },
+              
+            ]
+          }
+        ]
+      },
+    ]
+  },
   {
     "label": "Digital Trust",
     "noDrop": false,
@@ -1068,7 +1320,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Scrutiny MDR",
+                "title": "MDR",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -1078,7 +1330,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "DLP",
+                "title": "Scrutiny  DLP",
                 "pill": "Free trial",
                 "desc": null
               },
