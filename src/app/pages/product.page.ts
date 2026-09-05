@@ -22,6 +22,7 @@ import { AcronisTrueImageContentComponent } from '../sections/acronis-true-image
 import { SiteLockContentComponent } from '../sections/sitelock-content.component';
 import { VmcContentComponent } from '../sections/vmc-content.component';
 import { CmcContentComponent } from '../sections/cmc-content.component';
+import { TsplusServerMonitoringContentComponent } from '../sections/tsplus-server-monitoring-content.component';
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -100,6 +101,7 @@ interface ProductTourSlide {
     SiteLockContentComponent,
     VmcContentComponent,
     CmcContentComponent,
+    TsplusServerMonitoringContentComponent,
   ],
   templateUrl: './product.page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -288,6 +290,28 @@ export class ProductPage {
       image: '/assets/images/vmc-tour-verified-mark.png',
     },
   ];
+  readonly tsplusServerMonitoringTourSlides: readonly ProductTourSlide[] = [
+    {
+      title: 'Real-time server dashboard',
+      description: 'Review live CPU, memory, disk-read and disk-write performance across monitored servers.',
+      image: '/assets/images/tsplus-server-monitoring-tour-dashboard.png',
+    },
+    {
+      title: 'Server reports and scheduling',
+      description: 'Build, customise, export and schedule performance, availability and application-usage reports.',
+      image: '/assets/images/tsplus-server-monitoring-tour-reports.png',
+    },
+    {
+      title: 'Website availability history',
+      description: 'Track website availability and response performance over time from a central dashboard.',
+      image: '/assets/images/tsplus-server-monitoring-tour-websites.png',
+    },
+    {
+      title: 'Alert management',
+      description: 'Configure and manage threshold alerts for server resources and monitored websites.',
+      image: '/assets/images/tsplus-server-monitoring-tour-alerts.png',
+    },
+  ];
 
   /** Product-owned artwork used when a page does not have a dedicated UI screenshot set. */
   readonly productTourSlides = computed<readonly ProductTourSlide[]>(() => {
@@ -296,6 +320,7 @@ export class ProductPage {
     if (view.name === 'Acronis True Image') return this.acronisTrueImageTourSlides;
     if (view.name === 'Microsoft 365 Backup') return this.microsoft365BackupTourSlides;
     if (this.isVmc()) return this.vmcTourSlides;
+    if (this.isTsplusServerMonitoring()) return this.tsplusServerMonitoringTourSlides;
 
     const candidates: ProductTourSlide[] = [];
     const add = (title: string, description: string, image: string | null | undefined): void => {
@@ -635,6 +660,8 @@ export class ProductPage {
   readonly isVmc = computed(() => this.view()?.name === 'Verified Mark Certificates (VMC)');
 
   readonly isCmc = computed(() => this.view()?.name === 'DigiCert Common Mark Certificate (CMC)');
+
+  readonly isTsplusServerMonitoring = computed(() => this.view()?.name === 'TSplus Server Monitoring');
 
   readonly isCloudDrive = computed(() => this.view()?.name === 'Cloud Drive');
 

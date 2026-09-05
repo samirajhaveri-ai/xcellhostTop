@@ -1,5 +1,5 @@
 @if (view(); as v) {
-  <div class="ppage as-page" id="ppage" [class.edr-page]="isAdvancedEdr()" [class.rmm-page]="isRmm()" [class.cctv-page]="slug() === 'video-surveillance-as-a-service'">
+  <div class="ppage as-page" id="ppage" [class.edr-page]="isAdvancedEdr()" [class.rmm-page]="isRmm()" [class.cctv-page]="slug() === 'video-surveillance-as-a-service'" [class.cmc-page]="isCmc()" [class.tsplus-monitoring-page]="isTsplusServerMonitoring()">
     <div
       class="pp-hero"
       [class.sitelock-hero]="v.name === 'Web Security (SiteLock)'"
@@ -24,6 +24,38 @@
               <img src="/assets/images/acronis-advanced-security-edr.png" alt="Powered by Acronis Advanced Security and EDR" />
             </div>
           </div>
+        </div>
+      } @else if (isCmc()) {
+        <div class="pph-scene pph-cmc-visual" aria-hidden="true">
+          <div class="cmc-stage">
+            <span class="cmc-orbit"></span>
+            <div class="cmc-mail">
+              <div class="cmc-mail-bar"><span><i></i><i></i><i></i></span><b>Inbox · 3 new</b></div>
+              <div class="cmc-mail-body">
+                <div class="cmc-message featured"><span class="cmc-avatar">◇</span><div><b>Your Brand <em>✓</em></b><small>Your September statement is ready</small></div></div>
+                <div class="cmc-message"><span class="cmc-avatar amber">A</span><div><b>Acme Team</b><small>Welcome aboard — let's get started</small></div></div>
+                <div class="cmc-message"><span class="cmc-avatar green">N</span><div><b>Newsletter</b><small>This week in tech, curated for you</small></div></div>
+              </div>
+            </div>
+            <div class="cmc-float cmc-verified"><i>✓</i><span><b>Verified</b><small>authentic sender</small></span></div>
+            <div class="cmc-float cmc-no-mark"><i>✓</i><span><b>No trademark</b><small>not required</small></span></div>
+            <div class="cmc-float cmc-inboxes"><i>✉</i><span><b>Every inbox</b><small>Gmail · Apple · Yahoo</small></span></div>
+            <div class="cmc-powered"><small>Powered By</small><span class="cmc-digicert"><svg viewBox="0 0 48 48" fill="none"><path d="M9 33q11 12 30-3" stroke="#57b0e8" stroke-width="4" stroke-linecap="round" opacity=".5"/><rect x="14" y="21" width="20" height="16" rx="3.2" fill="#123f6b"/><path d="M18 21v-3.5a6 6 0 0112 0V21" stroke="#123f6b" stroke-width="3.2" stroke-linecap="round"/><path d="M20.5 29l2.8 2.8 5-5.4" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>digicert<sup>®</sup></b><em>VERIFIED</em></span><i>i</i></span></div>
+          </div>
+        </div>
+      } @else if (isTsplusServerMonitoring()) {
+        <div class="pph-scene pph-tsplus-monitoring" aria-hidden="true">
+          <div class="tsm-arch">
+            <div class="tsm-tier"><b>IT &amp; Server Administrators</b><div class="tsm-devices"><span>▣</span><span>▱</span></div></div>
+            <div class="tsm-flow">Access reports &amp; receive alerts</div>
+            <div class="tsm-tier">
+              <div class="tsm-brand"><span>TS</span> SERVER <b>MONITORING</b></div>
+              <div class="tsm-cards"><span>Server<br>Performance<i>⌁</i></span><span>User<br>Activity<i>☷</i></span><span>Application<br>Usage<i>▥</i></span><span>Website<br>Status<i>77%</i></span><span>Real-time<br>Alerts<i>△</i></span></div>
+            </div>
+            <div class="tsm-flow">A small agent installed on each server</div>
+            <div class="tsm-tier"><b>Corporate Servers</b><div class="tsm-racks"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+          </div>
+          <div class="tsm-powered"><small>Powered By</small><span class="tsm-logo"><i>TS</i><b>TS<span>plus</span></b></span></div>
         </div>
       } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
         <div
@@ -178,9 +210,13 @@
       <xh-cmc-content />
     }
 
+    @if (isTsplusServerMonitoring()) {
+      <xh-tsplus-server-monitoring-content />
+    }
+
     <div class="pp-body">
       <div class="wrap">
-        @if (!isVmc() && !isCmc()) {
+        @if (!isVmc() && !isCmc() && !isTsplusServerMonitoring()) {
         @if (slug() === 'video-surveillance-as-a-service') {
           <xh-cloud-cctv-content />
         }
@@ -1161,6 +1197,22 @@
                   </div>
                 </article>
               }
+            </div>
+          </section>
+        }
+
+        @if (isTsplusServerMonitoring()) {
+          <section class="tally-videos" aria-labelledby="tsplusMonitoringVideoTitle">
+            <div class="pp-sec" id="tsplusMonitoringVideoTitle">Watch it in action</div>
+            <div class="tally-video-grid single-video">
+              <article class="tally-video-card">
+                <h3><span>TSplus Server Monitoring</span></h3>
+                <div class="tally-video-frame">
+                  <video controls preload="metadata" playsinline>
+                    <source src="https://assets.tsplus.net/f/1020006/x/c952d2bf01/server-monitoring.mp4" type="video/mp4" />
+                  </video>
+                </div>
+              </article>
             </div>
           </section>
         }

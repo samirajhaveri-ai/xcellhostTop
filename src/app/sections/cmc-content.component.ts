@@ -7,7 +7,7 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
   selector: 'xh-cmc-content',
   standalone: true,
   templateUrl: './cmc-content.component.html',
-  styleUrl: './vmc-content.component.css',
+  styleUrls: ['./vmc-content.component.css', './cmc-content.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CmcContentComponent {
