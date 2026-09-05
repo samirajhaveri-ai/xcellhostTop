@@ -437,34 +437,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Cloud Object Storage",
                 "pill": null,
                 "desc": null
-              },
-              {
-                "title": "Cloud Disaster Recovery Enterprise",
-                "pill": null,
-                "desc": null
-              },
-              
-              
-              {
-                "title": "Microsoft 365 Backup",
-                "pill": "Best seller",
-                "desc": null
-              },
-              {
-                "title": "Google Workspace Backup",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Entra ID Backup",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "E-Mail Archiving",
-                "pill": null,
-                "desc": null
-              },
+              },   
               
               {
                 "title": "Veeam Data Protection",
@@ -559,6 +532,38 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               }, 
+            ]
+          }
+        ]
+      },
+      {
+        "g": "9",
+        "label": "Cloud Desktop",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Cloud Desktop",
+            "items": [
+              {
+                "title": "SMB Cloud Desktop",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Cloud Desktop Enterprise",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Azure Cloud Desktop",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Sage Hosting",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
@@ -780,38 +785,7 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      {
-        "g": "9",
-        "label": "Cloud Desktop",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Cloud Desktop",
-            "items": [
-              {
-                "title": "SMB Cloud Desktop",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Cloud Desktop Enterprise",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Azure Cloud Desktop",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Sage Hosting",
-                "pill": null,
-                "desc": null
-              },
-            ]
-          }
-        ]
-      },
+      
       {
         "g": "10",
         "label": "Cloud Connectivity",
@@ -826,22 +800,27 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Cloud Cloud Router",
+                "title": "Cloud Router",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "private Connect",
+                "title": "Private Connect",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "IP Transite",
+                "title": "IP Transit",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "Virtual Edge",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Managed Wifi",
                 "pill": null,
                 "desc": null
               },
@@ -853,98 +832,41 @@ export const MEGA_MENU: MenuTop[] = [
   },
 
 
-
-
-
-
-
-
-
-
-
-
   {
     "label": "Data Protect",
     "noDrop": false,
     "feature": null,
     "tabs": [
-      
       {
-        "g": "0",
-        "label": "Acronis",
+        "g": "2",
+        "label": "SaaS Backup",
         "on": false,
         "groups": [
           {
-            "heading": "Cloud Infra",
+            "heading": "Saas Backup",
             "items": [
+               {
+                "title": "Microsoft 365 Backup",
+                "pill": "Best seller",
+                "desc": null
+              },
               {
-                "title": "Performance Cloud",
+                "title": "Google Workspace Backup",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Bare Metal Server",
-                "pill": null,
-                "desc": null
-              },
-              
-              {
-                "title": "GPU Cloud",
-                "pill": "High demand",
-                "desc": null
-              },
-              {
-                "title": "Dedicated Private Cloud",
+                "title": "Entra ID Backup",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Global Cloud",
+                "title": "E-Mail Archiving",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Co-Location",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Hybrid Cloud",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Multi Cloud Manager",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Edge Cloud",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "CDN Cloud",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Data Center Build Services",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Cyber Frames (HCI/IaaS)",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "AI Inference Cloud",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "AI Developer Cloud",
+                "title": "SalesForce Backup",
                 "pill": null,
                 "desc": null
               },
@@ -953,13 +875,36 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "1",
-        "label": "Druva",
+        "g": "0",
+        "label": "Acronis Cyber Protect",
         "on": false,
         "groups": [
           {
-            "heading": "Druva",
+            "heading": "Acronis Cyber Protect",
             "items": [
+              {
+                "title": "No Data",
+                "pill": null,
+                "desc": null
+              },
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "1",
+        "label": "Druva Resilience",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Druva Resilience",
+            "items": [
+              {
+                "title": "AI Resilience",
+                "pill": null,
+                "desc": null
+              },
               {
                 "title": "Identity Resilience",
                 "pill": null,
@@ -986,7 +931,75 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       
-      
+      {
+        "g": "3",
+        "label": "Veeam Platform",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Saas Backup",
+            "items": [
+               {
+                "title": "No Data",
+                "pill": "Best seller",
+                "desc": null
+              },
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "4",
+        "label": "CommVault Platform",
+        "on": false,
+        "groups": [
+          {
+            "heading": "CommVault Data Platform",
+            "items": [
+               {
+                "title": "No Data",
+                "pill": "Best seller",
+                "desc": null
+              },
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "4",
+        "label": "Cloud Disaster Recovery",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Cloud Disaster Recovery",
+            "items": [
+              {
+                "title": "Cloud Disaster Recovery for SMB",
+                "pill": "Best seller",
+                "desc": null
+              },
+              {
+                "title": "AWS Cloud Disaster Recovery",
+                "pill": "Best seller",
+                "desc": null
+              },
+              {
+                "title": "Azure Cloud Disaster Recovery",
+                "pill": "Best seller",
+                "desc": null
+              },
+              {
+                "title": "GCP Cloud Disaster Recovery",
+                "pill": "Best seller",
+                "desc": null
+              },
+              
+            ]
+          }
+        ]
+      },
     ]
   },
   {
@@ -1244,12 +1257,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "MDR",
+                "title": "Acronis MDR",
                 "pill": "Free trial",
                 "desc": null
               },
               {
-                "title": "XDR",
+                "title": "Acronis XDR",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -1370,6 +1383,23 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               
+            ]
+          }
+        ]
+      },
+      {
+        "g": "4",
+        "label": "Data Security",
+        "on": true,
+        "groups": [
+          {
+            "heading": "identity Security",
+            "items": [
+              {
+                "title": "No Data",
+                "pill": "Free trial",
+                "desc": null
+              },
             ]
           }
         ]
@@ -1684,7 +1714,7 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Security Training",
             "items": [
               {
-                "title": "security Awareness Training",
+                "title": "Security Awareness Training",
                 "pill": "In focus",
                 "desc": null
               },
@@ -1987,23 +2017,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       
-      {
-        "g": "3",
-        "label": "Adobe Tools",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Adobe Tools",
-            "items": [
-              {
-                "title": "No Data",
-                "pill": null,
-                "desc": null
-              },
-            ]
-          }
-        ]
-      },
+      
       {
         "g": "4",
         "label": "Microsoft Software",
@@ -2061,6 +2075,23 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Information Protection",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "3",
+        "label": "Adobe Tools",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Adobe Tools",
+            "items": [
+              {
+                "title": "No Data",
                 "pill": null,
                 "desc": null
               },
@@ -2415,6 +2446,11 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "By Role",
             "items": [
+               {
+                "title": "CIO",
+                "pill": null,
+                "desc": null
+              },
               {
                 "title": "CTO",
                 "pill": "In focus",
@@ -2429,7 +2465,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "DPO",
                 "pill": null,
                 "desc": null
-              },
+              },  
               
             ]
           }
