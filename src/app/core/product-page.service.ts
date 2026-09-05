@@ -487,7 +487,9 @@ export class ProductPageService {
     const product: RichProduct | undefined = RICH_PRODUCTS[name];
     const seed = hash(name);
     const heroTagline =
-      name === 'Advanced Endpoint Security (EDR)'
+      name === 'Scrutiny EDR'
+        ? 'Detect. Investigate. Respond. Recover.'
+        : name === 'Advanced Endpoint Security (EDR)'
         ? 'Monitors endpoints continuously'
         : name === 'Tally on Cloud'
           ? 'Run Tally On Cloud 24/7 - Safety & Data Security Guranteed !!!'
@@ -495,7 +497,9 @@ export class ProductPageService {
             ? 'Allow organizations to manage complex defenses through a unified interface.'
             : product?.tagline || tag || `${name} from XcellHost`;
     const heroHighlight =
-      name === 'Advanced Endpoint Security (EDR)'
+      name === 'Scrutiny EDR'
+        ? 'Behavioural endpoint detection with rapid remote response across Windows, macOS and Linux'
+        : name === 'Advanced Endpoint Security (EDR)'
         ? 'Quickly experience the power of Acronis EDR and see how easy it is to analyze attacks'
         : name === 'Tally on Cloud'
           ? 'Your Business runs on Tally, Make your Tally run on our Cloud'
@@ -505,7 +509,9 @@ export class ProductPageService {
               ? null
               : product?.highlight || rich?.f?.[0]?.[1] || tag || null;
     const heroMessages =
-      name === 'Advanced Endpoint Security (EDR)'
+      name === 'Scrutiny EDR'
+        ? ['Self-learning behavioural analytics', 'Real-time isolation', 'MITRE ATT&CK mapped investigations', '24×7 managed security']
+        : name === 'Advanced Endpoint Security (EDR)'
         ? ['Behavioral analysis', 'Threat hunting', 'Real-time isolation', 'Root-cause analysis']
         : name === 'Tally on Cloud'
           ? [

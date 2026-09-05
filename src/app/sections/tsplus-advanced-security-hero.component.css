@@ -1,0 +1,15 @@
+:host { display: block; width: min(100%, 480px); }
+.security-hero-art { position: relative; padding: 16px; border: 1px solid rgba(255,255,255,.15); border-radius: 18px; background: linear-gradient(180deg,#0a2a57,#04162e); box-shadow: var(--shadow-lg); color: #fff; }
+.security-art-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.security-art-grid article { min-height: 110px; padding: 12px; border: 1.5px solid var(--orange); border-radius: 12px; background: rgba(255,255,255,.04); }
+.security-art-grid article b { display: block; padding-bottom: 7px; border-bottom: 1px solid rgba(255,140,26,.4); font: 700 11px var(--disp); }
+.art-icon,.art-shield { display: block; margin: 14px auto 4px; color: var(--orange); font-size: 34px; text-align: center; }
+.security-art-grid small,.art-code { display: block; color: #c9d8f2; font: 8px/1.6 var(--mono); text-align: center; }
+.art-code em { color: var(--orange); font-style: normal; }
+.art-access { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-top: 14px; }
+.art-access span { padding: 9px 5px; border-radius: 7px; background: #fff; color: var(--navy); font: 700 8px var(--disp); text-align: center; }
+.security-art-core { position: absolute; inset: 50% auto auto 50%; z-index: 2; transform: translate(-50%,-50%); text-align: center; pointer-events: none; }
+.core-shield { display: grid; place-items: center; width: 76px; height: 84px; margin: auto; clip-path: polygon(50% 0,100% 16%,100% 60%,50% 100%,0 60%,0 16%); background: linear-gradient(#fff,#dce9fa); color: var(--green); font: 800 28px var(--disp); }
+.security-art-core b { display: block; margin-top: 6px; font: 800 9px var(--disp); white-space: nowrap; }.security-art-core em { color: var(--orange); font-style: normal; }.security-art-core small { display: block; color: #c9d8f2; font: 8px var(--mono); }
+.security-art-powered { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 13px; color: #c9d8f2; }.security-art-powered small { font: 600 9px var(--mono); text-transform: uppercase; }.ts-logo { display: flex; align-items: center; gap: 6px; }.ts-logo i { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 7px; background: linear-gradient(135deg,#22b8cf,#0b7285); font: 800 8px var(--disp); font-style: normal; }.ts-logo b { font: 800 18px var(--disp); }.ts-logo b span { color: #3bd1df; }
+@media (max-width: 520px) { .security-art-grid { grid-template-columns: 1fr; }.security-art-core { position: static; transform: none; margin: 10px auto; }.security-art-grid article { min-height: 90px; } }

@@ -4648,6 +4648,38 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 @media(max-width:900px){.ppage.tsplus-monitoring-page .pph-scene.pph-tsplus-monitoring{width:100%;right:0;opacity:.22}.tsm-arch{width:min(74%,430px)}}
 @media(max-width:620px){.tsm-cards{grid-template-columns:repeat(3,1fr)}.tsm-cards>span:nth-child(n+4){display:none}}
 
+/* The TSplus source-page “Why buy…” copy remains, while its duplicate six-card
+   provider panel is intentionally omitted on each of the four TSplus pages. */
+#ppage.tsplus-monitoring-page xh-tsplus-server-monitoring-content .pp-why,
+#ppage.tsplus-support-page xh-tsplus-remote-support-content .pp-why,
+#ppage.tsplus-advanced-security-page xh-tsplus-advanced-security-content .pp-why,
+#ppage.tsplus-remote-access-page xh-tsplus-remote-access-content .pp-why{display:none}
+
+/* Keep the four TSplus benefits blocks in the compact, four-card layout used
+   by the supplied reference: icon first, then title and readable copy. */
+#ppage.tsplus-monitoring-page xh-tsplus-server-monitoring-content .pp-bens,
+#ppage.tsplus-support-page xh-tsplus-remote-support-content .pp-bens,
+#ppage.tsplus-advanced-security-page xh-tsplus-advanced-security-content .pp-bens,
+#ppage.tsplus-remote-access-page xh-tsplus-remote-access-content .pp-bens{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+#ppage.tsplus-monitoring-page xh-tsplus-server-monitoring-content .pp-bens .pb,
+#ppage.tsplus-support-page xh-tsplus-remote-support-content .pp-bens .pb,
+#ppage.tsplus-advanced-security-page xh-tsplus-advanced-security-content .pp-bens .pb,
+#ppage.tsplus-remote-access-page xh-tsplus-remote-access-content .pp-bens .pb{display:flex;min-height:154px;flex-direction:column;align-items:flex-start;gap:9px;padding:18px;border:1px solid var(--line);border-radius:12px;background:#fff;box-shadow:none}
+#ppage.tsplus-monitoring-page xh-tsplus-server-monitoring-content .pp-bens .pb .ic,
+#ppage.tsplus-support-page xh-tsplus-remote-support-content .pp-bens .pb .ic,
+#ppage.tsplus-advanced-security-page xh-tsplus-advanced-security-content .pp-bens .pb .ic,
+#ppage.tsplus-remote-access-page xh-tsplus-remote-access-content .pp-bens .pb .ic{display:grid;width:40px;height:40px;min-width:40px;margin:0;place-items:center;border:0;border-radius:10px;background:var(--blue-soft);color:var(--blue);font-size:21px;line-height:1}
+#ppage.tsplus-monitoring-page xh-tsplus-server-monitoring-content .pp-bens .pb>b,
+#ppage.tsplus-support-page xh-tsplus-remote-support-content .pp-bens .pb>b,
+#ppage.tsplus-advanced-security-page xh-tsplus-advanced-security-content .pp-bens .pb>b,
+#ppage.tsplus-remote-access-page xh-tsplus-remote-access-content .pp-bens .pb>b{display:block;margin:0;color:var(--navy);font:700 14.5px/1.3 var(--disp)}
+#ppage.tsplus-monitoring-page xh-tsplus-server-monitoring-content .pp-bens .pb>p,
+#ppage.tsplus-support-page xh-tsplus-remote-support-content .pp-bens .pb>p,
+#ppage.tsplus-advanced-security-page xh-tsplus-advanced-security-content .pp-bens .pb>p,
+#ppage.tsplus-remote-access-page xh-tsplus-remote-access-content .pp-bens .pb>p{margin:0;color:var(--slate);font:400 12.7px/1.5 var(--body)}
+@media(max-width:1024px){#ppage.tsplus-monitoring-page xh-tsplus-server-monitoring-content .pp-bens,#ppage.tsplus-support-page xh-tsplus-remote-support-content .pp-bens,#ppage.tsplus-advanced-security-page xh-tsplus-advanced-security-content .pp-bens,#ppage.tsplus-remote-access-page xh-tsplus-remote-access-content .pp-bens{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){#ppage.tsplus-monitoring-page xh-tsplus-server-monitoring-content .pp-bens,#ppage.tsplus-support-page xh-tsplus-remote-support-content .pp-bens,#ppage.tsplus-advanced-security-page xh-tsplus-advanced-security-content .pp-bens,#ppage.tsplus-remote-access-page xh-tsplus-remote-access-content .pp-bens{grid-template-columns:1fr}}
+
 .ppage.tsplus-support-page .pph-scene.pph-tsplus-support {
   top: 4%;
   right: 2%;
@@ -4670,6 +4702,43 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
   object-fit: contain;
 }
 
+.ppage.tsplus-advanced-security-page .pph-scene.pph-tsplus-advanced-security {
+  top: 4%;
+  right: 2%;
+  bottom: auto;
+  display: flex;
+  width: 40%;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  mask-image: none;
+}
+
+.ppage.tsplus-remote-access-page .pph-scene.pph-tsplus-remote-access {
+  top: 4%; right: 2%; bottom: auto; display: flex; width: 40%;
+  align-items: center; justify-content: center; opacity: 1; mask-image: none;
+}
+
+@media (max-width: 900px) {
+  .ppage.tsplus-advanced-security-page > .pp-hero {
+    flex-direction: column;
+  }
+
+  .ppage.tsplus-advanced-security-page .pph-scene.pph-tsplus-advanced-security {
+    position: relative;
+    top: auto;
+    right: auto;
+    order: 1;
+    width: 100%;
+    padding: 28px 24px 0;
+  }
+
+  .ppage.tsplus-remote-access-page > .pp-hero { flex-direction: column; }
+  .ppage.tsplus-remote-access-page .pph-scene.pph-tsplus-remote-access {
+    position: relative; top: auto; right: auto; order: 1; width: 100%; padding: 28px 24px 0;
+  }
+}
+
 @media (max-width: 900px) {
   .ppage.tsplus-support-page > .pp-hero {
     flex-direction: column;
@@ -4685,3 +4754,4 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
   }
 }
 
+.pph-scrutiny-illus .pph-illus-img{filter:drop-shadow(0 22px 34px rgba(10,42,87,.24))}.scrutiny-powered{display:flex;flex-direction:column;align-items:center;gap:3px}.scrutiny-powered strong{font-size:22px;letter-spacing:-.05em;color:#0a2a57}.scrutiny-powered strong::first-letter{color:#19c46a}.scrutiny-powered .pw-sub{font-size:10px}

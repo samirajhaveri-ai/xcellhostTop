@@ -1,5 +1,5 @@
 @if (view(); as v) {
-  <div class="ppage as-page" id="ppage" [class.edr-page]="isAdvancedEdr()" [class.rmm-page]="isRmm()" [class.cctv-page]="slug() === 'video-surveillance-as-a-service'" [class.cmc-page]="isCmc()" [class.tsplus-monitoring-page]="isTsplusServerMonitoring()" [class.tsplus-support-page]="isTsplusRemoteSupport()">
+  <div class="ppage as-page" id="ppage" [class.edr-page]="isAdvancedEdr()" [class.scrutiny-edr-page]="isScrutinyEdr()" [class.rmm-page]="isRmm()" [class.cctv-page]="slug() === 'video-surveillance-as-a-service'" [class.cmc-page]="isCmc()" [class.tsplus-monitoring-page]="isTsplusServerMonitoring()" [class.tsplus-support-page]="isTsplusRemoteSupport()" [class.tsplus-advanced-security-page]="isTsplusAdvancedSecurity()" [class.tsplus-remote-access-page]="isTsplusRemoteAccess()">
     <div
       class="pp-hero"
       [class.sitelock-hero]="v.name === 'Web Security (SiteLock)'"
@@ -12,7 +12,9 @@
       <span class="pph-aur pph-a3" aria-hidden="true"></span>
       <span class="pph-scan" aria-hidden="true"></span>
 
-      @if (isAdvancedEdr()) {
+      @if (isScrutinyEdr()) {
+        <div class="pph-scene has-illus pph-scrutiny-illus" aria-hidden="true"><div class="pph-illus"><img class="pph-illus-img" src="/assets/images/hero-advanced-endpoint-security-edr.svg" alt="Scrutiny EDR endpoint detection and response" /><div class="pph-powered-mark pph-powered-image scrutiny-powered"><span class="pw-lbl">Powered by</span><strong>cyberstanc</strong><span class="pw-sub">Delivered &amp; managed by XcellHost</span></div></div></div>
+      } @else if (isAdvancedEdr()) {
         <div class="pph-scene has-illus pph-edr-illus" aria-hidden="true">
           <div class="pph-illus">
             <img
@@ -60,6 +62,14 @@
       } @else if (isTsplusRemoteSupport()) {
         <div class="pph-scene pph-tsplus-support" aria-hidden="true">
           <xh-tsplus-remote-support-hero />
+        </div>
+      } @else if (isTsplusAdvancedSecurity()) {
+        <div class="pph-scene pph-tsplus-advanced-security" aria-hidden="true">
+          <xh-tsplus-advanced-security-hero />
+        </div>
+      } @else if (isTsplusRemoteAccess()) {
+        <div class="pph-scene pph-tsplus-remote-access" aria-hidden="true">
+          <xh-tsplus-remote-access-hero />
         </div>
       } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
         <div
@@ -222,9 +232,38 @@
       <xh-tsplus-remote-support-content />
     }
 
+    @if (isTsplusAdvancedSecurity()) {
+      <xh-tsplus-advanced-security-content />
+    }
+
+    @if (isTsplusRemoteAccess()) {
+      <xh-tsplus-remote-access-content />
+    }
+
+    @if (isScrutinyEdr()) {
+      <xh-scrutiny-edr-content />
+      @if (showcaseVideos().length) {
+        <section class="tally-videos scrutiny-watch" aria-labelledby="scrutinyVideosTitle">
+          <div class="wrap">
+            <div class="pp-sec" id="scrutinyVideosTitle">Watch it in action</div>
+            <div class="tally-video-grid" [class.single-video]="showcaseVideos().length === 1">
+              @for (video of showcaseVideos(); track video.label) {
+                <article class="tally-video-card">
+                  <h3><span>{{ video.label }}</span></h3>
+                  <div class="tally-video-frame">
+                    <iframe [src]="video.url" [title]="'Scrutiny EDR — ' + video.label" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                  </div>
+                </article>
+              }
+            </div>
+          </div>
+        </section>
+      }
+    }
+
     <div class="pp-body">
       <div class="wrap">
-        @if (!isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport()) {
+        @if (!isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess() && !isScrutinyEdr()) {
         @if (slug() === 'video-surveillance-as-a-service') {
           <xh-cloud-cctv-content />
         }
@@ -1189,7 +1228,7 @@
           }
         </div>
 
-        @if (showcaseVideos().length && !isTsplusRemoteSupport()) {
+        @if (showcaseVideos().length && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess()) {
           <section class="tally-videos" aria-labelledby="showcaseVideosTitle">
             <div class="pp-sec" id="showcaseVideosTitle">Watch it in action</div>
             <div class="tally-video-grid" [class.single-video]="showcaseVideos().length === 1">
@@ -1214,15 +1253,44 @@
         @if (isTsplusRemoteSupport()) {
           <section class="tally-videos" aria-labelledby="tsplusSupportVideoTitle">
             <div class="pp-sec" id="tsplusSupportVideoTitle">Watch it in action</div>
-            <div class="tally-video-grid single-video">
+            <div class="tally-video-grid">
               <article class="tally-video-card">
-                <h3><span>TSplus Remote Support — The All-in-One Remote IT Tool</span></h3>
+                <h3><span>TSplus Remote Support - Introduction</span></h3>
                 <div class="tally-video-frame">
-                  <video controls preload="none" playsinline poster="/assets/images/tsplus-remote-support-tour-windows.png" aria-label="TSplus Remote Support product demonstration">
-                    <source src="https://assets.tsplus.net/f/1020006/x/f7daa502d2/tsplus-remote-support-all-in-one-remote-it-tool.webm" type="video/webm" />
-                    Your browser does not support this video.
-                    <a href="https://assets.tsplus.net/f/1020006/x/f7daa502d2/tsplus-remote-support-all-in-one-remote-it-tool.webm" target="_blank" rel="noopener noreferrer">Open the TSplus Remote Support demo</a>.
-                  </video>
+                  <iframe src="https://www.youtube-nocookie.com/embed/Wz1Po60yZAE?rel=0&amp;playsinline=1" title="TSplus Remote Support introduction" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+              </article>
+              <article class="tally-video-card">
+                <h3><span>TSplus Remote Support - Use cases</span></h3>
+                <div class="tally-video-frame">
+                  <iframe src="https://www.youtube-nocookie.com/embed/IVOcO7vpFvE?rel=0&amp;playsinline=1" title="TSplus Remote Support use cases" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+              </article>
+            </div>
+          </section>
+        }
+
+        @if (isTsplusAdvancedSecurity()) {
+          <section class="tally-videos" aria-labelledby="tsplusAdvancedSecurityVideoTitle">
+            <div class="pp-sec" id="tsplusAdvancedSecurityVideoTitle">Watch it in action</div>
+            <div class="tally-video-grid single-video"><article class="tally-video-card"><h3><span>TSplus Advanced Security</span></h3><div class="tally-video-frame"><video controls preload="none" playsinline poster="/assets/images/tsplus-advanced-security-tour-dashboard.png" aria-label="TSplus Advanced Security demonstration"><source src="https://assets.tsplus.net/f/1020006/x/0af48cc30d/tsplus-advanced-security-protect-windows-rdp-servers.webm" type="video/webm" />Your browser does not support this video.</video></div></article></div>
+          </section>
+        }
+
+        @if (isTsplusRemoteAccess()) {
+          <section class="tally-videos" aria-labelledby="tsplusRemoteAccessVideoTitle">
+            <div class="pp-sec" id="tsplusRemoteAccessVideoTitle">Watch it in action</div>
+            <div class="tally-video-grid">
+              <article class="tally-video-card">
+                <h3><span>TSplus Remote Access - Introduction</span></h3>
+                <div class="tally-video-frame">
+                  <iframe src="https://www.youtube-nocookie.com/embed/bYb3kxj4wsM?rel=0&amp;playsinline=1" title="TSplus Remote Access introduction" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+              </article>
+              <article class="tally-video-card">
+                <h3><span>TSplus Remote Access - Use cases</span></h3>
+                <div class="tally-video-frame">
+                  <iframe src="https://www.youtube-nocookie.com/embed/kcWVIAJK2Qs?rel=0&amp;playsinline=1" title="TSplus Remote Access use cases" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
               </article>
             </div>
