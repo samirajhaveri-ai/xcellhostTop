@@ -1,5 +1,5 @@
 @if (view(); as v) {
-  <div class="ppage as-page" id="ppage" [class.edr-page]="isAdvancedEdr()" [class.rmm-page]="isRmm()" [class.cctv-page]="slug() === 'video-surveillance-as-a-service'" [class.cmc-page]="isCmc()" [class.tsplus-monitoring-page]="isTsplusServerMonitoring()" [class.tsplus-support-page]="isTsplusRemoteSupport()">
+  <div class="ppage as-page" id="ppage" [class.edr-page]="isAdvancedEdr()" [class.rmm-page]="isRmm()" [class.scrutiny-page]="slug() === 'scrutiny-dlp' || slug() === 'scrutiny-edr' || slug() === 'vortex-soc' || slug() === 'vortex-seg'" [class.cctv-page]="slug() === 'video-surveillance-as-a-service'" [class.cmc-page]="isCmc()" [class.tsplus-monitoring-page]="isTsplusServerMonitoring()" [class.tsplus-support-page]="isTsplusRemoteSupport()">
     <div
       class="pp-hero"
       [class.sitelock-hero]="v.name === 'Web Security (SiteLock)'"
@@ -1291,6 +1291,19 @@
         <div class="pp-faq" id="ppFaq">
           <xh-product-faq [faqs]="v.faqs" />
         </div>
+
+        @if (slug() === 'scrutiny-dlp') {
+          <xh-scrutiny-dlp-content />
+        }
+        @if (slug() === 'scrutiny-edr') {
+          <xh-scrutiny-edr-content />
+        }
+        @if (slug() === 'vortex-soc') {
+          <xh-vortex-soc-content />
+        }
+        @if (slug() === 'vortex-seg') {
+          <xh-vortex-seg-content />
+        }
 
         <div class="pp-sec pp-blog-heading">From our blog</div>
         <div class="pp-blog" id="ppBlog">

@@ -3756,6 +3756,54 @@ export const SERVICES_RICH: Record<string, ServiceRich> = {
       ]
     ]
   },
+  "scrutiny dlp": {
+    "price": "On-premise and managed deployments",
+    "ov": "Most data does not leave through a dramatic breach. It walks out on a USB stick, in a personal webmail attachment, in a screenshot, in a photo taken of the screen, or pasted into a public AI chatbot. Scrutiny DLP covers every one of those channels from a single policy engine, and can run fully on-premise when your compliance position requires it. Discover. Classify. Monitor. Protect.",
+    "f": [
+      [
+        "Every exit route, one policy engine",
+        "USB, print, clipboard, web upload, RDP, screenshots, email and removable media"
+      ],
+      [
+        "Built for how data leaks today",
+        "GenAI upload governance, anti-photo protection, hidden watermarking and OCR inspection"
+      ],
+      [
+        "Evidence that stands up later",
+        "Screenshots, screen video, offline sync, quarantine and immutable audit logs"
+      ],
+      [
+        "A genuine on-premise option",
+        "Local console, private cloud, hybrid environments and BYOD support"
+      ]
+    ],
+    "q": [
+      [
+        "Does this make us DPDP compliant?",
+        "It provides the control and evidence layer for discovering, classifying, restricting and auditing personal data. Legal, consent and process obligations still need to be handled by your organisation."
+      ],
+      [
+        "Will it disrupt how people work?",
+        "Policies can start in monitor mode so your team can review activity and tune rules before enforcement."
+      ],
+      [
+        "How does anti-photo protection work?",
+        "The agent detects a camera or phone lens pointing at a sensitive screen and can black out the displayed document."
+      ],
+      [
+        "Can it run without a cloud connection?",
+        "Yes. On-premise deployment, local or private LLM classification and offline evidence sync are supported."
+      ],
+      [
+        "Can it protect GenAI usage?",
+        "It analyses prompts, files and pasted content before upload to public AI platforms and applies your policy."
+      ],
+      [
+        "How do we investigate an incident later?",
+        "Evidence capture, encrypted quarantine and immutable logs help reconstruct and prove what happened."
+      ]
+    ]
+  },
   "kaspersky industrial cs": {
     "price": "Per-node licensing",
     "ov": "Industrial control systems need security that understands PLCs will not tolerate a heavy agent or a false-positive shutdown. Kaspersky Industrial CyberSecurity protects OT networks and nodes with ICS-aware detection designed for production environments.",

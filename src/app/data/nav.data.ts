@@ -1292,6 +1292,18 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "Vortex SOC",
+                "pill": null,
+                "desc": null,
+                "href": "/vortex-soc"
+              },
+              {
+                "title": "Vortex SEG",
+                "pill": null,
+                "desc": "Advanced email security, DLP and archival",
+                "href": "/vortex-seg"
+              },
             ]
           }
         ]
@@ -3629,6 +3641,552 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
+<<<<<<< HEAD
+=======
+      
+      
+    ]
+  },
+  {
+    "label": "Company",
+    "noDrop": false,
+    "feature": null,
+    "tabs": [
+      {
+        "g": "0",
+        "label": "About Us",
+        "on": true,
+        "groups": [
+          {
+            "heading": "About Us",
+            "items": [
+              {
+                "title": "Why XcellHost",
+                "pill": null,
+                "desc": "Secure, scalable cloud expertise since 1999"
+              },
+              {
+                "title": "Our Team · Our Story",
+                "pill": null,
+                "desc": "Meet the people and story behind XcellHost"
+              },
+              {
+                "title": "Certifications",
+                "pill": null,
+                "desc": "Credentials that reflect trusted delivery"
+              },
+              {
+                "title": "Awards",
+                "pill": null,
+                "desc": "Recognition for our cloud and security expertise"
+              },
+              {
+                "title": "Data Centers (Global)",
+                "pill": null,
+                "desc": "Global locations for resilient workloads"
+              },
+              {
+                "title": "Vendor Partners",
+                "pill": null,
+                "desc": "Technology partnerships across cloud and security"
+              },
+              {
+                "title": "Contact Us",
+                "pill": null,
+                "desc": "We'd love to hear from you"
+              },
+              {
+                "title": "Inquiry Now",
+                "pill": null,
+                "desc": "We'd love to hear from you"
+              },
+              {
+                "title": "Infrastructure",
+                "pill": null,
+                "desc": "We'd love to hear from you"
+              },
+              {
+                "title": "Corporate Social Responsibility",
+                "pill": null,
+                "desc": "We'd love to hear from you"
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "1",
+        "label": "Partner Center",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Partner",
+            "items": [
+              {
+                "title": "Partner Signup ",
+                "pill": null,
+                "desc": "Start your XcellHost partner journey"
+              },
+              {
+                "title": "Partnership Models",
+                "pill": null,
+                "desc": "Choose a model that fits your business"
+              },
+              {
+                "title": "Resources & Services",
+                "pill": null,
+                "desc": "Sales, solution and delivery enablement"
+              },
+              {
+                "title": "Partner Advancement",
+                "pill": null,
+                "desc": "Grow your capability and partner benefits"
+              },
+              {
+                "title": "Partner Portal",
+                "pill": null,
+                "desc": "Access partner opportunities and resources"
+              },
+              {
+                "title": "Partner Guide",
+                "pill": null,
+                "desc": "A practical guide to working with us"
+              },
+              {
+                "title": "Affiliate Program",
+                "pill": null,
+                "desc": "Introduce customers to XcellHost services"
+              },
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "2",
+        "label": "Careers",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Careers",
+            "items": [
+              {
+                "title": "Career Handbook",
+                "pill": null,
+                "desc": "Discover our culture and ways of working"
+              },
+              {
+                "title": "Apply For Job",
+                "pill": null,
+                "desc": "Build your future with XcellHost"
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "3",
+        "label": "Support",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Support",
+            "items": [
+              {
+                "title": "Customer Support",
+                "pill": "24×7",
+                "desc": "Find the right route to technical help"
+              },
+              {
+                "title": "Submit a Ticket",
+                "pill": null,
+                "desc": "Create a trackable service request"
+              },
+              {
+                "title": "Knowledge Base",
+                "pill": null,
+                "desc": "Guidance for common service tasks"
+              },
+              {
+                "title": "Remote Assist",
+                "pill": null,
+                "desc": "Secure attended troubleshooting"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "g": "4",
+        "label": "Legal Center",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Legal Center",
+            "items": [
+              {
+                "title": "Privacy Policy",
+                "pill": null,
+                "desc": "How we handle personal information"
+              },
+              {
+                "title": "Terms of Services",
+                "pill": null,
+                "desc": "The terms that govern XcellHost services"
+              },
+              {
+                "title": "Refund Policy",
+                "pill": null,
+                "desc": "Eligibility and the refund review process"
+              },
+              {
+                "title": "Cookie Policy",
+                "pill": null,
+                "desc": "How cookies are used on the XcellHost website"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "g": "5",
+        "label": "SLA's",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Service Level Agreements",
+            "items": [
+              {
+                "title": "Acronis Advanced EDR SLA",
+                "pill": null,
+                "desc": "Endpoint detection and response service commitments"
+              },
+              {
+                "title": "Acronis Advanced MDR SLA",
+                "pill": null,
+                "desc": "Managed detection and response service commitments"
+              },
+              {
+                "title": "Acronis Advanced XDR SLA",
+                "pill": null,
+                "desc": "Extended detection and response service commitments"
+              },
+              {
+                "title": "Acronis Backup Cloud SLA",
+                "pill": null,
+                "desc": "Cloud backup service commitments"
+              },
+              {
+                "title": "Acronis Disaster Recovery (DR) SLA",
+                "pill": null,
+                "desc": "Disaster recovery service commitments",
+                "href": "/acronis-disaster-recovery-dr-sla"
+              },
+              {
+                "title": "Acronis Remote Monitoring and Management SLA",
+                "pill": null,
+                "desc": "Remote monitoring and management commitments",
+                "href": "/acronis-remote-monitoring-management-rmm-sla"
+              },
+              {
+                "title": "Email Backup for Microsoft 365 SLA",
+                "pill": null,
+                "desc": "Microsoft 365 email backup commitments",
+                "href": "/email-backup-for-microsoft-365-sla"
+              },
+              {
+                "title": "File Cloud SLA",
+                "pill": null,
+                "desc": "Cloud file service commitments",
+                "href": "/file-cloud-sla"
+              },
+              {
+                "title": "Performance Cloud SLA",
+                "pill": null,
+                "desc": "Performance cloud service commitments",
+                "href": "/performance-cloud-sla"
+              },
+              {
+                "title": "Tally on Cloud SLA",
+                "pill": null,
+                "desc": "Tally cloud service commitments",
+                "href": "/tally-on-cloud-sla"
+              },
+              {
+                "title": "Video Surveillance as a Service (VSaaS) SLA",
+                "pill": null,
+                "desc": "Cloud video surveillance service commitments",
+                "href": "/video-surveillance-as-a-service-vsaas-sla"
+              },
+              {
+                "title": "WhatsApp Marketing Service SLA",
+                "pill": null,
+                "desc": "WhatsApp marketing service commitments",
+                "href": "/whatsapp-marketing-service-sla"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "g": "6",
+        "label": "Events & Webinars",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Events & Webinars",
+            "items": [
+              {
+                "title": "No Events",
+                "pill": null,
+                "desc": ""
+              },
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "7",
+        "label": "Network Tools",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Network Tools",
+            "items": [
+              {
+                "title": "Speed Test",
+                "pill": null,
+                "desc": "Test download speed, upload speed and latency"
+              },
+              {
+                "title": "Looking Glass",
+                "pill": null,
+                "desc": "Inspect routing and reachability from our network"
+              },
+              {
+                "title": "DNS Lookup",
+                "pill": null,
+                "desc": "Inspect A, AAAA, MX, TXT and nameserver records"
+              },
+              {
+                "title": "Traceroute",
+                "pill": null,
+                "desc": "Trace the network path and identify routing delays"
+              },
+              {
+                "title": "IP & WHOIS Lookup",
+                "pill": null,
+                "desc": "Check IP ownership, location and registration details"
+              },
+              {
+                "title": "Port Checker",
+                "pill": null,
+                "desc": "Test whether a public TCP port is reachable"
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "8",
+        "label": "Mail Tools",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Mail Tools",
+            "items": [
+              {
+                "title": "DMARC Monitoring & Reporting",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "SPF · DKIM · DMARC · BIMI Tools",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "MTA-STS · TLS-RPT Tools",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "MX Lookup",
+                "pill": null,
+                "desc": "Check mail exchangers, priority and DNS health"
+              },
+              {
+                "title": "Email Header Analyzer",
+                "pill": null,
+                "desc": "Inspect delivery hops, authentication and delays"
+              },
+              {
+                "title": "Email Blacklist Check",
+                "pill": null,
+                "desc": "Check whether a mail server appears on major blocklists"
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "9",
+        "label": "SSL Tools",
+        "on": false,
+        "groups": [
+          {
+            "heading": "SSL Tools",
+            "items": [
+              {
+                "title": "CSR Generator / Decoder",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "SSL Checker / Converter",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Certificate Key Matcher",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "CAA Record Generator",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Why No Padlock?",
+                "pill": null,
+                "desc": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "g": "10",
+        "label": "Tools Center",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Tools Center",
+            "items": [
+              {
+                "title": "NO Tools",
+                "pill": null,
+                "desc": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "g": "12",
+        "label": "learning Center",
+        "on": false,
+        "groups": [
+          {
+            "heading": "learning Center",
+            "items": [
+              {
+                "title": "NO Tools",
+                "pill": null,
+                "desc": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "g": "13",
+        "label": "Experience Center",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Tools Center",
+            "items": [
+              {
+                "title": "NO Tools",
+                "pill": null,
+                "desc": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "g": "14",
+        "label": "Experience Center",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Experience Center",
+            "items": [
+              {
+                "title": "NO Tools",
+                "pill": null,
+                "desc": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "g": "15",
+        "label": "Trust Center",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Trust Center",
+            "items": [
+              {
+                "title": "Trust Center",
+                "pill": null,
+                "desc": "Explore our security, privacy and service commitments"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "g": "16",
+        "label": "Media center",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Media center",
+            "items": [
+              {
+                "title": "NO Tools",
+                "pill": null,
+                "desc": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "g": "17",
+        "label": "Brand center",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Brand center",
+            "items": [
+              {
+                "title": "NO Tools",
+                "pill": null,
+                "desc": null
+              }
+            ]
+          }
+        ]
+      },
+>>>>>>> c4bd9d80474dfae190f9d33b4c60ad749dba2062
     ]
   }
 ];

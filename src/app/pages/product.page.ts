@@ -25,6 +25,10 @@ import { CmcContentComponent } from '../sections/cmc-content.component';
 import { TsplusServerMonitoringContentComponent } from '../sections/tsplus-server-monitoring-content.component';
 import { TsplusRemoteSupportContentComponent } from '../sections/tsplus-remote-support-content.component';
 import { TsplusRemoteSupportHeroComponent } from '../sections/tsplus-remote-support-hero.component';
+import { ScrutinyDlpContentComponent } from './scrutiny-dlp-content.component';
+import { ScrutinyEdrContentComponent } from './scrutiny-edr-content.component';
+import { VortexSocContentComponent } from './vortex-soc-content.component';
+import { VortexSegContentComponent } from './vortex-seg-content.component';
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -106,6 +110,10 @@ interface ProductTourSlide {
     TsplusServerMonitoringContentComponent,
     TsplusRemoteSupportContentComponent,
     TsplusRemoteSupportHeroComponent,
+    ScrutinyDlpContentComponent,
+    ScrutinyEdrContentComponent,
+    VortexSocContentComponent,
+    VortexSegContentComponent,
   ],
   templateUrl: './product.page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
