@@ -9,6 +9,7 @@
   }
   *{margin:0;padding:0;box-sizing:border-box}
   body{font-family:var(--body);color:var(--ink);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .site-progress{position:fixed;top:0;left:0;z-index:1000;width:0;height:3px;pointer-events:none;background:linear-gradient(90deg,var(--blue),var(--orange));box-shadow:0 0 12px rgba(21,101,216,.6);transition:width .08s linear}
   a{text-decoration:none;color:inherit}
   ul{list-style:none}
   .wrap{max-width:1240px;margin:0 auto;padding:0 24px}
@@ -858,7 +859,7 @@
   .pp-revs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
   .prv{border:1px solid var(--line);border-radius:14px;padding:18px;background:#fff}
   .prv .stars{color:var(--orange);letter-spacing:2px;font-size:13px;margin-bottom:8px}
-  .prv p{font-size:13.5px;color:var(--ink);line-height:1.55;margin-bottom:10px}
+  .prv p{font-size:13.5px;color:var(--ink);line-height:1.55;margin-bottom:10px;text-align:left}
   .prv cite{font-style:normal;font-size:12px;color:var(--slate)}
   .prv cite b{display:block;color:var(--navy)}
   .pp-blog{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
@@ -889,7 +890,7 @@
   .cloud-drive-term-tabs button.is-active{color:var(--blue);background:#f7faff}
   .cloud-drive-term-tabs button.is-active::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:3px;background:var(--blue)}
   .cloud-drive-price-grid{display:grid;grid-template-columns:1fr;gap:16px}
-  .cloud-drive-price-card{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;max-width:980px;margin-inline:auto;align-items:stretch;min-width:0;overflow:hidden;padding:0;border:1px solid #d3dce8;border-radius:14px;background:#fff;box-shadow:0 8px 24px rgba(16,43,79,.06);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+   .cloud-drive-price-card{display:grid;grid-template-columns:minmax(0,1fr) 220px;width:60%;max-width:980px;margin-inline:auto;align-items:stretch;min-width:0;overflow:hidden;padding:0;border:1px solid #d3dce8;border-radius:14px;background:#fff;box-shadow:0 8px 24px rgba(16,43,79,.06);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
   .cloud-drive-price-card:hover{transform:translateY(-2px);border-color:#9fc3ef;box-shadow:0 14px 32px rgba(16,78,155,.12)}
   .cloud-drive-price-top{display:flex;flex-direction:column;justify-content:center;padding:16px 24px;border-right:1px solid #e0e6ee;background:linear-gradient(180deg,#fff 0%,#fbfdff 100%)}
   .cloud-drive-storage{display:block;margin-bottom:12px;color:var(--navy);font:800 16px/1.3 var(--body)}
@@ -903,6 +904,7 @@
   .cloud-drive-price-copy{display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0;padding:16px 24px;border-left:1px solid #e4e8ee;color:var(--ink);font-size:13.5px;line-height:1.55}
   .cloud-drive-price-copy label{display:block;margin-bottom:8px;color:var(--navy);font-size:11px;font-weight:750;text-align:center}
   .cloud-drive-price-copy .cloud-drive-quantity{width:100%;max-width:220px;margin-bottom:0}
+  .cloud-drive-price-copy .cloud-drive-quantity{grid-template-columns:1fr}
   .cloud-drive-customer-unit{display:block;margin-top:8px;color:var(--blue);font:700 11px/1 var(--mono);text-transform:lowercase}
   .cloud-drive-purchase{display:flex;flex-direction:column;justify-content:center;padding:12px 18px;border-left:1px solid #e0e6ee}
   .cloud-drive-total{margin-bottom:14px;text-align:center}
@@ -3382,6 +3384,8 @@ body.xh-locked{overflow:hidden}
 #ppage.rmm-page .edr-selected-summary h3{display:flex;align-items:center;gap:12px;flex-wrap:nowrap;white-space:nowrap}
 #ppage.rmm-page .edr-selected-summary h3 .edr-plan-saving-separator{color:var(--navy);font-size:inherit;font-weight:800;line-height:1}
 #ppage.rmm-page .edr-selected-summary h3 .edr-plan-saving{display:inline-flex;align-items:center;width:max-content;margin:0;padding:0;border-radius:0;background:transparent;color:#d62828;font-size:inherit;font-weight:800;line-height:1;letter-spacing:inherit;white-space:nowrap}
+#ppage:not(.rmm-page) .edr-selected-summary h3{display:flex;align-items:center;gap:12px;flex-wrap:nowrap;white-space:nowrap}
+#ppage:not(.rmm-page) .edr-selected-summary h3 .edr-plan-saving-inline{display:inline;font-size:inherit;font-weight:800;line-height:1;letter-spacing:inherit;margin:0;padding:0;border-radius:0;background:transparent;color:#d62828;white-space:nowrap}
 #ppage .edr-selected-plan{max-width:900px;margin:0 auto;text-align:left}
 #ppage .edr-selected-plan.edr-plan-one{--plan-accent:#1b6ee0;--plan-soft:#eaf3ff}
 #ppage .edr-selected-plan.edr-plan-two{--plan-accent:#7257df;--plan-soft:#f1eeff}
@@ -3391,6 +3395,8 @@ body.xh-locked{overflow:hidden}
 #ppage .edr-selected-summary .edr-plan-price{padding:15px 0 0}
 #ppage .edr-selected-summary .edr-plan-saving{margin:12px 0 0}
 #ppage .edr-plan-purchase{padding:24px 28px;border-left:1px solid #e2e9f3}
+#ppage .edr-plan-purchase .edr-plan-price{justify-content:center;padding:0 0 16px}
+#ppage .edr-plan-purchase .edr-plan-price small{max-width:none;white-space:nowrap}
 #ppage .edr-plan-purchase label{display:block;margin-bottom:10px;color:var(--navy);font-size:12px;font-weight:750;text-align:center}
 #ppage .edr-quantity{display:grid;grid-template-columns:44px minmax(80px,1fr) 44px;height:40px;margin-bottom:14px;overflow:hidden;border:1px solid #cad5e4;border-radius:6px;background:#fff}
 #ppage .edr-quantity button{border:0;background:#f5f8fc;color:var(--navy);font-size:20px;line-height:1;cursor:pointer;transition:background .2s ease,color .2s ease}
@@ -3901,7 +3907,8 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
 .tally-plan-action{position:relative;grid-column:3;grid-row:1 / span 2;align-self:center;justify-self:center;display:flex;flex-direction:column;align-items:center;gap:14px;width:142px;color:#080d2c;text-decoration:none}
 .tally-plan-action strong{font:650 clamp(21px,1.8vw,25px)/1.08 'Poppins',sans-serif;letter-spacing:-.025em}
 .tally-plan-action>span{display:block;width:142px;padding:11px 10px;border-radius:9px;background:linear-gradient(135deg,#1670e8,#0b55c7);color:#fff;text-align:center;text-transform:uppercase;font:650 13px/1.2 'Poppins',sans-serif;box-shadow:0 7px 16px rgba(21,101,216,.24);transition:background .2s ease,box-shadow .2s ease,transform .2s ease}
-.tally-plan-action::before{position:absolute;top:-90px;bottom:-90px;left:-36px;width:1px;background:#e0e6ee;content:''}
+.smb-cybird-pricing .tally-plan-action>small{color:#526a8d;font-size:9px;white-space:nowrap}
+.tally-plan-action::before{position:absolute;top:-90px;bottom:-90px;left:-14px;width:1px;background:#e0e6ee;content:''}
 .tally-plan-action:hover>span{background:linear-gradient(135deg,#0b55c7,#083d98);box-shadow:0 10px 20px rgba(21,101,216,.3);transform:translateY(-2px)}
 .tally-plan-action:focus-visible{outline:3px solid rgba(0,91,187,.24);outline-offset:3px}
 .tally-plan-specs{grid-column:2;grid-row:1 / span 2;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-content:stretch;margin:0;text-align:left;border-left:0}
@@ -3969,20 +3976,22 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
 
 /* Cloud Backup pricing based on the Acronis storage subscription sheet. */
 .cloud-backup-pricing{margin:0 0 12px;color:var(--navy);font-family:'Poppins',var(--body)}
-.cloud-backup-pricing .tally-price-heading{max-width:800px;margin-bottom:30px}
+.cloud-backup-pricing .tally-price-heading{max-width:940px;margin:0 auto 34px;padding:0 12px}
 .cloud-backup-pricing .tally-price-heading>span{display:inline-flex;align-items:center;min-height:26px;padding:0 12px;border-radius:999px;background:#eaf3ff;color:#1565d8;letter-spacing:.08em}
 .cloud-backup-pricing .tally-price-heading h2{color:#080d2c}
-.cloud-backup-term-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,240px));max-width:960px;margin:0 auto 30px;border-bottom:1px solid #cfd5df}
-.cloud-backup-term-tabs button{position:relative;min-height:58px;padding:14px 12px 11px;border:0;background:transparent;color:#5e6672;cursor:pointer;font:500 16px/1.2 'Poppins',sans-serif}
+.cloud-backup-term-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,240px));width:70%;max-width:1020px;margin:0 auto 30px;border-bottom:1px solid #cfd5df}
+.cloud-backup-term-tabs button{position:relative;display:flex;min-height:78px;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:8px 12px 15px;border:0;background:transparent;color:#5e6672;cursor:pointer;font:500 16px/1.1 'Poppins',sans-serif;transition:color .2s ease,background .2s ease}
+.cloud-backup-term-tabs button small{display:inline-flex;padding:4px 10px;border-radius:999px;background:#f13131;color:#fff;font:700 10px/1 var(--mono);letter-spacing:.02em}
 .cloud-backup-term-tabs button::after{position:absolute;right:0;bottom:-1px;left:0;height:3px;background:transparent;content:''}
-.cloud-backup-term-tabs button.is-active{color:var(--blue);font-weight:600}
+.cloud-backup-term-tabs button.is-active{color:var(--blue);background:#f7faff;font-weight:600}
 .cloud-backup-term-tabs button.is-active::after{background:var(--blue)}
 .cloud-backup-term-tabs button:focus-visible{outline:3px solid rgba(0,91,187,.24);outline-offset:2px}
-.cloud-backup-plan-grid{display:grid;grid-template-columns:1fr;gap:16px}
-.cloud-backup-plan-card{display:grid;grid-template-columns:max-content 155px;grid-template-rows:auto auto;width:fit-content;max-width:100%;margin-inline:auto;min-width:0;overflow:hidden;border:1px solid #d3dce8;border-radius:14px;background:#fff;text-align:center;box-shadow:0 8px 24px rgba(16,43,79,.06);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+.cloud-backup-plan-grid{display:grid;grid-template-columns:1fr;gap:18px;width:70%;max-width:1020px;margin:0 auto}
+.cloud-backup-plan-card{display:grid;grid-template-columns:minmax(0,320px) 220px;grid-template-rows:auto;width:min(540px,100%);min-width:0;margin-inline:auto;overflow:hidden;border:1px solid #d3dce8;border-radius:14px;background:#fff;text-align:center;box-shadow:0 8px 24px rgba(16,43,79,.06);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
 .cloud-backup-plan-card:hover{border-color:#9fc3ef;box-shadow:0 14px 32px rgba(16,78,155,.12);transform:translateY(-2px)}
-.cloud-backup-plan-band{grid-column:1;grid-row:1;padding:8px 10px;background:linear-gradient(135deg,#edf6ff,#e5f0ff);color:var(--blue);font:650 11px/1.2 'Poppins',sans-serif;letter-spacing:.035em;text-transform:uppercase}
-.cloud-backup-plan-main{grid-column:1;grid-row:2;display:flex;flex-direction:column;align-items:center;padding:8px 18px 10px;border-right:1px solid #e0e6ee;background:linear-gradient(180deg,#fff 0%,#fbfdff 100%)}
+.cloud-backup-plan-card{grid-template-columns:minmax(0,400px) 240px;width:min(640px,100%)}
+.cloud-backup-plan-band{grid-column:1;grid-row:1;padding:10px 18px;background:linear-gradient(135deg,#edf6ff,#e5f0ff);color:var(--blue);font:650 11px/1.2 'Poppins',sans-serif;letter-spacing:.035em;text-transform:uppercase}
+.cloud-backup-plan-main{grid-column:1;grid-row:2;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:14px 26px 16px;border-right:1px solid #e0e6ee;background:linear-gradient(180deg,#fff 0%,#fbfdff 100%);text-align:left}
 .cloud-backup-plan-name{display:flex;align-items:center;gap:16px;width:100%;min-height:40px;text-align:left}
 .cloud-backup-plan-name>span{display:grid;place-items:center;width:42px;height:42px;border-radius:9px;background:var(--blue);color:#fff;font-size:18px;font-weight:700}
 .cloud-backup-plan-name b{display:block;color:#080d2c;font:600 17px/1.25 'Poppins',sans-serif}
@@ -3995,16 +4004,19 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
 .cloud-backup-plan-main .cloud-backup-plan-specs{order:2}
 .cloud-backup-plan-main .cloud-backup-plan-specs>div{min-height:45px;padding:8px 6px;background:#f5f6f8}
 .cloud-backup-plan-main .cloud-backup-plan-specs>div+div{border-left:1px solid #e4e8ee;background:#fff}
-.cloud-backup-plan-details{flex:0 0 auto;width:auto;margin:0;color:var(--ink);font:600 10.5px/1.35 var(--body);text-align:left;white-space:nowrap}
+.cloud-backup-plan-details{flex:0 0 auto;width:auto;margin:0;padding-right:16px;transform:translateX(-8px);color:var(--ink);font:600 13.5px/1.35 var(--body);text-align:left;white-space:nowrap}
+.cloud-backup-plan-name>div b{display:block;color:#080d2c;font:600 17px/1.25 'Poppins',sans-serif}
+.cloud-backup-plan-name>div small{display:none}
+.cloud-backup-plan-details strong{color:#080d2c;font:800 16px/1.3 var(--body)}
 .cloud-backup-highlight{color:#d62828;font-weight:800}
 .cloud-backup-plan-specs{grid-column:2;grid-row:1 / span 2;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:stretch;margin:0;text-align:left}
 .cloud-backup-plan-specs>div{display:grid;grid-template-columns:1fr;gap:3px;align-content:center;justify-items:center;min-height:46px;padding:6px 10px;background:#f5f6f8;color:#111827;text-align:center}
 .cloud-backup-plan-specs>div:nth-child(even){border-left:1px solid #e4e8ee;background:#fff}
 .cloud-backup-plan-specs dt{font:500 11px/1.35 'Poppins',sans-serif}
 .cloud-backup-plan-specs dd{margin:0;color:#080d2c;text-align:center;font:650 11px/1.35 'Poppins',sans-serif}
-.cloud-backup-plan-action{position:relative;grid-column:2;grid-row:1 / span 2;align-self:center;justify-self:center;display:flex;flex-direction:column;align-items:center;gap:14px;width:130px;color:#080d2c;text-decoration:none}
+.cloud-backup-plan-action{position:relative;grid-column:2;grid-row:1 / span 2;align-self:stretch;justify-self:stretch;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;width:100%;padding:12px 18px;border-left:1px solid #e0e6ee;color:#080d2c;text-decoration:none}
 .cloud-backup-plan-action strong{font:650 clamp(21px,1.8vw,25px)/1.08 'Poppins',sans-serif;letter-spacing:-.025em}
-.cloud-backup-plan-action span{display:block;width:130px;padding:11px 10px;border-radius:9px;background:linear-gradient(135deg,#1670e8,#0b55c7);color:#fff;text-align:center;text-transform:uppercase;font:650 12px/1.2 'Poppins',sans-serif;box-shadow:0 7px 16px rgba(21,101,216,.24);transition:background .2s ease,box-shadow .2s ease,transform .2s ease}
+.cloud-backup-plan-action span{display:block;width:100%;max-width:150px;padding:12px 12px;border-radius:10px;background:linear-gradient(135deg,#1670e8,#0b55c7);color:#fff;text-align:center;text-transform:uppercase;font:650 12px/1.2 'Poppins',sans-serif;box-shadow:0 7px 16px rgba(21,101,216,.24);transition:background .2s ease,box-shadow .2s ease,transform .2s ease}
 .cloud-backup-plan-action small{color:#5e6672;font:500 10px/1.3 'Poppins',sans-serif;white-space:nowrap}
 .cloud-backup-plan-action::before{display:none}
 .cloud-backup-plan-action:hover span{background:linear-gradient(135deg,#0b55c7,#083d98);box-shadow:0 10px 20px rgba(21,101,216,.3);transform:translateY(-2px)}
@@ -4032,8 +4044,9 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
   .cdr-tour-overlay{padding:12px}.cdr-tour-modal{max-height:calc(100vh - 24px);padding:22px 16px 18px;border-radius:18px}.cdr-tour-heading{padding:2px 42px 17px 2px}.cdr-tour-heading p{font-size:13px}.cdr-tour-slide img{max-height:calc(100vh - 275px)}.cdr-tour-slide figcaption{padding:14px 46px 15px 18px}.cdr-tour-slide span{font-size:12px}.cdr-tour-arrow{width:36px;height:36px}.cdr-tour-prev{left:10px}.cdr-tour-next{right:10px}
   
   .cloud-backup-pricing .tally-price-heading{padding:0 16px;margin-bottom:26px}
+  .cloud-backup-plan-grid{width:100%}
   .cloud-backup-pricing .tally-price-heading h2{font-size:clamp(29px,8vw,37px)}
-  .cloud-backup-term-tabs{grid-template-columns:repeat(2,minmax(0,1fr));margin-bottom:24px}
+  .cloud-backup-term-tabs{width:100%;grid-template-columns:repeat(2,minmax(0,1fr));margin-bottom:24px}
   .cloud-backup-plan-card{display:flex;flex-direction:column;width:100%}
   .cloud-backup-plan-main{padding:24px 20px 22px;border-right:0}
   .cloud-backup-plan-details{white-space:normal}
@@ -4527,7 +4540,14 @@ html.dark-mode.dark-mode.dark-mode router-outlet + * :is(
   color: var(--theme-text) !important;
   box-shadow: 0 8px 24px rgba(0, 0, 0, .28) !important;
 }
-
+.tcard p {
+    font-size: 13.5px;
+    color: var(--slate);
+    line-height: 1.6;
+    text-align: center;
+    margin: 0;
+    text-align: justify;
+}
 html.dark-mode.dark-mode.dark-mode router-outlet + * :is(
   .ind,
   .cs,
@@ -4592,3 +4612,4 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 .ppage.cctv-page .pp-body>.wrap>.pp-blogbtn-wrap,
 .ppage.cctv-page .pp-body>.wrap>.pp-cta,
 .ppage.cctv-page .pp-body>.wrap>.pp-proof{display:block}
+

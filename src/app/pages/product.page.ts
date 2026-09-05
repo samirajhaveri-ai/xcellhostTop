@@ -930,11 +930,11 @@ export class ProductPage {
     this.overlay.open('callback');
   }
 
-  readonly cloudBackupTerms: readonly { key: CloudBackupTerm; label: string }[] = [
-    { key: 'monthly', label: 'Monthly' },
-    { key: 'quarterly', label: 'Quarterly' },
-    { key: '6m', label: '6 Months' },
-    { key: 'yearly', label: 'Yearly' },
+  readonly cloudBackupTerms: readonly { key: CloudBackupTerm; label: string; saving: string }[] = [
+    { key: 'monthly', label: 'Monthly', saving: '' },
+    { key: 'quarterly', label: 'Quarterly', saving: 'Save 5%' },
+    { key: '6m', label: '6 Months', saving: 'Save 7.5%' },
+    { key: 'yearly', label: 'Yearly', saving: 'Save 10%' },
   ];
 
   readonly cloudBackupPlans: readonly CloudBackupPlan[] = [
