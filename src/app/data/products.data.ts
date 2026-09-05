@@ -145,25 +145,25 @@ export const RICH_PRODUCTS: Record<string, RichProduct> = {
     },
     "reviews": [
       [
-        "MJ",
-        "Manish Joshi",
-        "MD, Trading Co.",
+        "RM",
+        "Rajesh Mehta",
+        "Owner, Mehta Trading Co.",
         "5",
-        "XcellHost provides Tally on cloud to access Tally anywhere at a low rate. Very quick response to issues — a satisfied customer for 2 years, recommending to all."
+        "Moving Tally to the cloud has made our daily work much easier. I can check reports even when I’m away from the office, and our accounts team can work without depending on one computer. The support team is also quick whenever we need help."
       ],
       [
-        "PA",
-        "Pradeep Agarwal",
-        "MD, Excellent Electronics Pvt Ltd",
+        "NS",
+        "Neha Shah",
+        "Finance Manager, Sunrise Distributors",
         "5",
-        "We have been associated with XcellHost for the last decade. Thanks to them we serve our customers with excellent service — one provider for all our solutions."
+        "We were facing problems with our office system and accessing Tally from different locations. After shifting to Tally on Cloud, our team can work smoothly from the office and remotely. The setup was simple and the support has been very helpful."
       ],
       [
-        "SK",
-        "Sunita Kadam",
-        "Partner, CA Firm",
+        "AP",
+        "Amit Patel",
+        "Partner, Patel & Associates",
         "5",
-        "Really delighted with their services. In a year we increased our work capacity and efficiency by running on cloud. The team is kind and quick to assist."
+        "The biggest advantage for us is being able to access Tally from anywhere. We no longer have to worry about maintaining a local server, and having regular backups gives us extra peace of mind. Overall, it has made our accounting work much more convenient."
       ]
     ],
     "faqs": [

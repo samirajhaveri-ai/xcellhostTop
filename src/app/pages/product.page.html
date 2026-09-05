@@ -208,7 +208,7 @@
         @if (isAdvancedEdr() || isRmm()) {
           <section class="edr-pricing" id="ppPlans" [attr.aria-label]="isRmm() ? 'RMM plans' : 'EDR protection plans'">
             <div class="edr-card-heading">
-              <h3>{{ isRmm() ? 'Choose your RMM term' : 'Choose your protection term' }}</h3>
+              <h3>{{ isRmm() ? 'Choose your Acronis RMM term' : 'Choose your protection term' }}</h3>
               <p>
                 {{
                   isRmm()
@@ -254,24 +254,21 @@
                     </div>
                     <h3>
                       {{ p.term }}
-                      @if (isRmm() && p.tag) {
+                      @if (p.tag) {
                         <span class="edr-plan-saving-separator" aria-hidden="true">+</span>
-                        <span class="edr-plan-saving">{{ p.tag }}</span>
+                        <span class="edr-plan-saving edr-plan-saving-inline">{{ p.tag }}</span>
                       }
                     </h3>
                     <p>{{ edrPlanCoverage[selectedEdrPlanIndex()] }}</p>
+                  </header>
+
+                  <div class="edr-plan-purchase">
                     <div class="edr-plan-price">
                       <strong>{{ edrPlanTotal(p) }}</strong>
                       <small>
                         total for {{ edrQuantity() }} {{ edrQuantity() === 1 ? 'user' : 'users' }}
                       </small>
                     </div>
-                    @if (!isRmm()) {
-                      <div class="edr-plan-saving">{{ p.tag }}</div>
-                    }
-                  </header>
-
-                  <div class="edr-plan-purchase">
                     <label for="edrQuantity">No. of users / devices</label>
                     <div class="edr-quantity">
                       <button type="button" aria-label="Decrease users" (click)="changeEdrQuantity(-1)" [disabled]="edrQuantity() === 1">−</button>
@@ -422,15 +419,6 @@
                     <p class="cloud-drive-description">{{ plan.comments }}</p>
                   </div>
 
-                  <div class="cloud-drive-price-copy">
-                    <label [attr.for]="'cloudDriveQuantity-' + plan.storage">No. of users / devices</label>
-                    <div class="edr-quantity cloud-drive-quantity">
-                      <button type="button" aria-label="Decrease users" (click)="changeCloudDriveQuantity(-1)" [disabled]="cloudDriveQuantity() === 1">−</button>
-                      <output [id]="'cloudDriveQuantity-' + plan.storage" aria-live="polite">{{ cloudDriveQuantity() }}</output>
-                      <button type="button" aria-label="Increase users" (click)="changeCloudDriveQuantity(1)">+</button>
-                    </div>
-                  </div>
-
                   <div class="cloud-drive-purchase">
                     <div class="cloud-drive-total">
                       <strong>&#8377;{{ formatInr(cloudDriveTotal(plan)) }}</strong>
@@ -488,6 +476,7 @@
                   [attr.aria-selected]="selectedCloudBackupTerm() === term.key"
                   (click)="selectCloudBackupTerm(term.key)"
                 >
+                  @if (term.saving) { <small>{{ term.saving }}</small> }
                   <span>{{ term.label }}</span>
                 </button>
               }
@@ -499,13 +488,11 @@
                   <div class="cloud-backup-plan-band">Acronis Cyber Protect Cloud</div>
                   <div class="cloud-backup-plan-main">
                     <div class="cloud-backup-plan-name">
-                      <div><b>Cloud Backup</b><small>Standard Storage Subscription</small></div>
                       <p class="cloud-backup-plan-details">
                         Storage: <span class="cloud-backup-highlight">{{ plan.storage }}</span>
-                        · Recovery: <span class="cloud-backup-highlight">Unlimited backup agents</span>
+                        with <span class="cloud-backup-highlight">Unlimited backup agents</span>
                       </p>
                     </div>
-                    <small>+GST Â· {{ activeCloudBackupTerm().label }} billing</small>
                   </div>
                   <a class="cloud-backup-plan-action" href="#" (click)="selectCloudBackupPlan(plan, $event)">
                     <strong>&#8377;{{ formatInr(cloudBackupPrice(plan)) }}</strong>
@@ -546,7 +533,7 @@
 
         @if (isRmm()) {
           <section class="pp-rmm-benefits" id="ppFeats" aria-labelledby="rmm-features-title">
-            <h2 id="rmm-features-title">Acronis RMM Features</h2>
+            <h2 id="rmm-features-title">Acronis Advanced RMM Features</h2>
             <div class="pp-rmm-benefit-grid">
               @for (benefit of v.benefitGrid; track benefit.title; let i = $index) {
                 <article class="pp-rmm-benefit">
@@ -669,19 +656,20 @@
                         <span aria-hidden="true">C</span>
                         <div><b>Cybird {{ plan.name }}</b></div>
                       </div>
-                      <strong>&#8377;{{ formatInr(cybirdPrice(plan)) }}</strong>
-                      <small>+GST · {{ activeCybirdTerm().label }} billing</small>
                     </div>
                     <dl class="tally-plan-specs smb-cybird-specs">
                       <div><dt>User Coverage</dt><dd>Up to {{ plan.users }} users</dd></div>
                       <div><dt>Hardware Appliance</dt><dd>&#8377;16,999 +GST</dd></div>
                       <div><dt>Optional Support</dt><dd>{{ plan.supportRange }}<br />&#8377;{{ formatInr(plan.support) }}/month</dd></div>
                     </dl>
-                    <a class="tally-plan-action" href="#" (click)="selectCybirdPlan(plan, $event)">Select plan</a>
+                    <a class="tally-plan-action" href="#" (click)="selectCybirdPlan(plan, $event)">
+                      <strong>&#8377;{{ formatInr(cybirdPrice(plan)) }}</strong>
+                      <span>Select plan</span>
+                      <small>+GST · {{ activeCybirdTerm().label }} billing</small>
+                    </a>
                   </article>
                 }
               </div>
-              <div class="smb-price-actions"><a class="btn btn-primary" href="#" (click)="openCallback($event)">Ask for a FREE Trial | Schedule 1:1 DEMO</a></div>
             </section>
 
             <section class="smb-block" aria-labelledby="smb-ideal-title">
