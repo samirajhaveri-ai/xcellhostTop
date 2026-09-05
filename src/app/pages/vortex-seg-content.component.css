@@ -1,0 +1,16 @@
+:host .dlp-content{gap:42px;padding-bottom:40px}
+:host .dlp-content>section:nth-last-child(2){padding-top:18px;scroll-margin-top:120px}
+:host .dlp-content>section:nth-last-child(2) h2{margin-bottom:22px;font-size:clamp(30px,3.1vw,42px)}
+:host .dlp-faq{gap:12px;margin-top:0}
+:host .dlp-faq article{border-color:#cbdcf2;border-radius:14px;transition:border-color .2s,box-shadow .2s}
+:host .dlp-faq article:hover{border-color:#83ade4;box-shadow:0 7px 20px rgba(18,67,128,.08)}
+:host .dlp-faq button{align-items:center;min-height:58px;padding:16px 18px;font-size:15px}
+:host .dlp-faq button span{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#edf4ff;color:var(--blue);transition:transform .2s,background .2s}
+:host .dlp-faq article.open button span{transform:rotate(45deg);background:var(--blue);color:#fff}
+:host .dlp-faq article.open p{padding:0 58px 18px 18px}
+:host .dlp-contact{display:grid;grid-template-columns:minmax(0,1fr) auto;min-height:0;padding:34px 36px;gap:28px;margin-top:0}
+:host .dlp-contact h2{max-width:760px;margin:8px 0 12px;font-size:clamp(30px,3vw,42px);line-height:1.12}
+:host .dlp-contact p{margin:0;max-width:760px}
+:host .dlp-contact>div:last-child{display:grid;align-content:center;gap:10px;min-width:205px}
+:host .dlp-contact .btn{justify-content:center;width:100%}
+@media(max-width:760px){:host .dlp-content{gap:34px}:host .dlp-content>section:nth-last-child(2){padding-top:8px}:host .dlp-contact{grid-template-columns:1fr;padding:26px 20px}:host .dlp-contact>div:last-child{display:flex;min-width:0}:host .dlp-contact .btn{width:auto;flex:1 1 170px}:host .dlp-faq article.open p{padding-right:18px}}
