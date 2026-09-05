@@ -25,8 +25,12 @@ import { CmcContentComponent } from '../sections/cmc-content.component';
 import { TsplusServerMonitoringContentComponent } from '../sections/tsplus-server-monitoring-content.component';
 import { TsplusRemoteSupportContentComponent } from '../sections/tsplus-remote-support-content.component';
 import { TsplusRemoteSupportHeroComponent } from '../sections/tsplus-remote-support-hero.component';
+import { TsplusAdvancedSecurityContentComponent } from '../sections/tsplus-advanced-security-content.component';
+import { TsplusAdvancedSecurityHeroComponent } from '../sections/tsplus-advanced-security-hero.component';
+import { TsplusRemoteAccessContentComponent } from '../sections/tsplus-remote-access-content.component';
+import { TsplusRemoteAccessHeroComponent } from '../sections/tsplus-remote-access-hero.component';
+import { ScrutinyEdrContentComponent } from '../sections/scrutiny-edr-content.component';
 import { ScrutinyDlpContentComponent } from './scrutiny-dlp-content.component';
-import { ScrutinyEdrContentComponent } from './scrutiny-edr-content.component';
 import { VortexSocContentComponent } from './vortex-soc-content.component';
 import { VortexSegContentComponent } from './vortex-seg-content.component';
 
@@ -110,8 +114,12 @@ interface ProductTourSlide {
     TsplusServerMonitoringContentComponent,
     TsplusRemoteSupportContentComponent,
     TsplusRemoteSupportHeroComponent,
-    ScrutinyDlpContentComponent,
+    TsplusAdvancedSecurityContentComponent,
+    TsplusAdvancedSecurityHeroComponent,
+    TsplusRemoteAccessContentComponent,
+    TsplusRemoteAccessHeroComponent,
     ScrutinyEdrContentComponent,
+    ScrutinyDlpContentComponent,
     VortexSocContentComponent,
     VortexSegContentComponent,
   ],
@@ -343,6 +351,22 @@ export class ProductPage {
     },
   ];
 
+  readonly tsplusAdvancedSecurityTourSlides: readonly ProductTourSlide[] = [
+    { title: 'Advanced Security dashboard', description: 'Monitor incoming connections and review security events from one dashboard.', image: '/assets/images/tsplus-advanced-security-tour-dashboard.png' },
+    { title: 'Firewall brute-force protection', description: 'Set failed-login thresholds and automatically block attacking IP addresses.', image: '/assets/images/tsplus-advanced-security-tour-firewall.png' },
+    { title: 'Geographic protection', description: 'Allow remote connections only from trusted countries and approved addresses.', image: '/assets/images/tsplus-advanced-security-tour-geographic.png' },
+    { title: 'Working-hours controls', description: 'Authorize user and group access only during approved time ranges.', image: '/assets/images/tsplus-advanced-security-tour-sessions.png' },
+  ];
+
+  readonly tsplusRemoteAccessTourSlides: readonly ProductTourSlide[] = [
+    { title: 'Remote Access portal', description: 'Give users secure browser access to published applications and desktops.', image: '/assets/images/tsplus-remote-access-tour-portal.png' },
+    { title: 'Remote Access console', description: 'Manage servers, users, applications and security from one administration console.', image: '/assets/images/tsplus-remote-access-tour-console.png' },
+    { title: 'Business dashboard', description: 'Review usage, activity and service status at a glance.', image: '/assets/images/tsplus-remote-access-tour-dashboard.png' },
+    { title: 'Published business application', description: 'Run accounting and ERP applications remotely from a familiar Windows interface.', image: '/assets/images/tsplus-remote-access-tour-erp.png' },
+    { title: 'Remote session', description: 'Connect to a remote Windows desktop securely when full desktop access is needed.', image: '/assets/images/tsplus-remote-access-tour-session.png' },
+    { title: 'Secure sign-in', description: 'Keep Windows credentials protected while users connect to their assigned resources.', image: '/assets/images/tsplus-remote-access-tour-credentials.png' },
+  ];
+
   /** Product-owned artwork used when a page does not have a dedicated UI screenshot set. */
   readonly productTourSlides = computed<readonly ProductTourSlide[]>(() => {
     const view = this.view();
@@ -352,6 +376,8 @@ export class ProductPage {
     if (this.isVmc()) return this.vmcTourSlides;
     if (this.isTsplusServerMonitoring()) return this.tsplusServerMonitoringTourSlides;
     if (this.isTsplusRemoteSupport()) return this.tsplusRemoteSupportTourSlides;
+    if (this.isTsplusAdvancedSecurity()) return this.tsplusAdvancedSecurityTourSlides;
+    if (this.isTsplusRemoteAccess()) return this.tsplusRemoteAccessTourSlides;
 
     const candidates: ProductTourSlide[] = [];
     const add = (title: string, description: string, image: string | null | undefined): void => {
@@ -676,6 +702,8 @@ export class ProductPage {
     () => this.view()?.name === 'Advanced Endpoint Security (EDR)'
   );
 
+  readonly isScrutinyEdr = computed(() => this.view()?.name === 'Scrutiny EDR');
+
   readonly isSmbCyber = computed(
     () => this.view()?.name === 'SMB Cyber Security Appliance'
   );
@@ -705,6 +733,10 @@ export class ProductPage {
   readonly isTsplusServerMonitoring = computed(() => this.view()?.name === 'TSplus Server Monitoring');
 
   readonly isTsplusRemoteSupport = computed(() => this.view()?.name === 'TSplus Remote Support');
+
+  readonly isTsplusAdvancedSecurity = computed(() => this.view()?.name === 'TSplus Advanced Security');
+
+  readonly isTsplusRemoteAccess = computed(() => this.view()?.name === 'TSplus Remote Access');
 
   readonly isCloudDrive = computed(() => this.view()?.name === 'Cloud Drive');
 

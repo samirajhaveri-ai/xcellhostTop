@@ -487,33 +487,39 @@ export class ProductPageService {
     const product: RichProduct | undefined = RICH_PRODUCTS[name];
     const seed = hash(name);
     const heroTagline =
-      name === 'Scrutiny DLP'
-        ? 'Stop sensitive data leaking across endpoints, email, cloud and removable media.'
+      name === 'Scrutiny EDR'
+        ? 'Detect. Investigate. Respond. Recover.'
+        : name === 'Scrutiny DLP'
+          ? 'Stop sensitive data leaking across endpoints, email, cloud and removable media.'
         : name === 'Advanced Endpoint Security (EDR)'
-          ? 'Monitors endpoints continuously'
-          : name === 'Tally on Cloud'
-            ? 'Run Tally On Cloud 24/7 - Safety & Data Security Guranteed !!!'
-            : name === 'SMB Cyber Security Appliance'
-              ? 'Allow organizations to manage complex defenses through a unified interface.'
-              : product?.tagline || tag || `${name} from XcellHost`;
+        ? 'Monitors endpoints continuously'
+        : name === 'Tally on Cloud'
+          ? 'Run Tally On Cloud 24/7 - Safety & Data Security Guranteed !!!'
+          : name === 'SMB Cyber Security Appliance'
+            ? 'Allow organizations to manage complex defenses through a unified interface.'
+            : product?.tagline || tag || `${name} from XcellHost`;
     const heroHighlight =
-      name === 'Scrutiny DLP'
-        ? 'Endpoint · Email · Cloud · Removable media · GenAI'
+      name === 'Scrutiny EDR'
+        ? 'Behavioural endpoint detection with rapid remote response across Windows, macOS and Linux'
+        : name === 'Scrutiny DLP'
+          ? 'Endpoint · Email · Cloud · Removable media · GenAI'
         : name === 'Advanced Endpoint Security (EDR)'
-          ? 'Quickly experience the power of Acronis EDR and see how easy it is to analyze attacks'
-          : name === 'Tally on Cloud'
-            ? 'Your Business runs on Tally, Make your Tally run on our Cloud'
-            : name === 'SMB Cyber Security Appliance'
-              ? 'Next-Generation Cyber Security for SMB Infrastructure.'
-              : name === 'Remote Monitoring & Mgmt (RMM)'
-                ? null
-                : product?.highlight || rich?.f?.[0]?.[1] || tag || null;
+        ? 'Quickly experience the power of Acronis EDR and see how easy it is to analyze attacks'
+        : name === 'Tally on Cloud'
+          ? 'Your Business runs on Tally, Make your Tally run on our Cloud'
+          : name === 'SMB Cyber Security Appliance'
+            ? 'Next-Generation Cyber Security for SMB Infrastructure.'
+            : name === 'Remote Monitoring & Mgmt (RMM)'
+              ? null
+              : product?.highlight || rich?.f?.[0]?.[1] || tag || null;
     const heroMessages =
       name === 'Scrutiny DLP'
         ? []
+        : name === 'Scrutiny EDR'
+        ? ['Self-learning behavioural analytics', 'Real-time isolation', 'MITRE ATT&CK mapped investigations', '24×7 managed security']
         : name === 'Advanced Endpoint Security (EDR)'
-          ? ['Behavioral analysis', 'Threat hunting', 'Real-time isolation', 'Root-cause analysis']
-          : name === 'Tally on Cloud'
+        ? ['Behavioral analysis', 'Threat hunting', 'Real-time isolation', 'Root-cause analysis']
+        : name === 'Tally on Cloud'
           ? [
               'Every 8 Hours Backups and Highly Secured Financial Data',
               'Ultra-fast Flash NVMe AMD EPYC Servers',
