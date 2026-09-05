@@ -4643,3 +4643,40 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 @media(max-width:900px){.ppage.tsplus-monitoring-page .pph-scene.pph-tsplus-monitoring{width:100%;right:0;opacity:.22}.tsm-arch{width:min(74%,430px)}}
 @media(max-width:620px){.tsm-cards{grid-template-columns:repeat(3,1fr)}.tsm-cards>span:nth-child(n+4){display:none}}
 
+.ppage.tsplus-support-page .pph-scene.pph-tsplus-support {
+  top: 4%;
+  right: 2%;
+  bottom: auto;
+  display: flex;
+  width: 40%;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  mask-image: none;
+}
+
+.ppage.tsplus-support-page .tally-video-frame video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #061b35;
+  object-fit: contain;
+}
+
+@media (max-width: 900px) {
+  .ppage.tsplus-support-page > .pp-hero {
+    flex-direction: column;
+  }
+
+  .ppage.tsplus-support-page .pph-scene.pph-tsplus-support {
+    position: relative;
+    top: auto;
+    right: auto;
+    order: 1;
+    width: 100%;
+    padding: 28px 24px 0;
+  }
+}
+

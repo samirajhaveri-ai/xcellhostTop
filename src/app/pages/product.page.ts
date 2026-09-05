@@ -23,6 +23,8 @@ import { SiteLockContentComponent } from '../sections/sitelock-content.component
 import { VmcContentComponent } from '../sections/vmc-content.component';
 import { CmcContentComponent } from '../sections/cmc-content.component';
 import { TsplusServerMonitoringContentComponent } from '../sections/tsplus-server-monitoring-content.component';
+import { TsplusRemoteSupportContentComponent } from '../sections/tsplus-remote-support-content.component';
+import { TsplusRemoteSupportHeroComponent } from '../sections/tsplus-remote-support-hero.component';
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -102,6 +104,8 @@ interface ProductTourSlide {
     VmcContentComponent,
     CmcContentComponent,
     TsplusServerMonitoringContentComponent,
+    TsplusRemoteSupportContentComponent,
+    TsplusRemoteSupportHeroComponent,
   ],
   templateUrl: './product.page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -313,6 +317,24 @@ export class ProductPage {
     },
   ];
 
+  readonly tsplusRemoteSupportTourSlides: readonly ProductTourSlide[] = [
+    {
+      title: 'Remote support on Windows',
+      description: 'Share your screen or start a remote-control session from the Windows client.',
+      image: '/assets/images/tsplus-remote-support-tour-windows.png',
+    },
+    {
+      title: 'Remote support on macOS',
+      description: 'Share access details and connect to a remote computer from your Mac.',
+      image: '/assets/images/tsplus-remote-support-tour-macos.png',
+    },
+    {
+      title: 'Remote support on Android',
+      description: 'Connect to a remote desktop and chat with users from the Android app.',
+      image: '/assets/images/tsplus-remote-support-tour-mobile.png',
+    },
+  ];
+
   /** Product-owned artwork used when a page does not have a dedicated UI screenshot set. */
   readonly productTourSlides = computed<readonly ProductTourSlide[]>(() => {
     const view = this.view();
@@ -321,6 +343,7 @@ export class ProductPage {
     if (view.name === 'Microsoft 365 Backup') return this.microsoft365BackupTourSlides;
     if (this.isVmc()) return this.vmcTourSlides;
     if (this.isTsplusServerMonitoring()) return this.tsplusServerMonitoringTourSlides;
+    if (this.isTsplusRemoteSupport()) return this.tsplusRemoteSupportTourSlides;
 
     const candidates: ProductTourSlide[] = [];
     const add = (title: string, description: string, image: string | null | undefined): void => {
@@ -662,6 +685,8 @@ export class ProductPage {
   readonly isCmc = computed(() => this.view()?.name === 'DigiCert Common Mark Certificate (CMC)');
 
   readonly isTsplusServerMonitoring = computed(() => this.view()?.name === 'TSplus Server Monitoring');
+
+  readonly isTsplusRemoteSupport = computed(() => this.view()?.name === 'TSplus Remote Support');
 
   readonly isCloudDrive = computed(() => this.view()?.name === 'Cloud Drive');
 

@@ -1,5 +1,5 @@
 @if (view(); as v) {
-  <div class="ppage as-page" id="ppage" [class.edr-page]="isAdvancedEdr()" [class.rmm-page]="isRmm()" [class.cctv-page]="slug() === 'video-surveillance-as-a-service'" [class.cmc-page]="isCmc()" [class.tsplus-monitoring-page]="isTsplusServerMonitoring()">
+  <div class="ppage as-page" id="ppage" [class.edr-page]="isAdvancedEdr()" [class.rmm-page]="isRmm()" [class.cctv-page]="slug() === 'video-surveillance-as-a-service'" [class.cmc-page]="isCmc()" [class.tsplus-monitoring-page]="isTsplusServerMonitoring()" [class.tsplus-support-page]="isTsplusRemoteSupport()">
     <div
       class="pp-hero"
       [class.sitelock-hero]="v.name === 'Web Security (SiteLock)'"
@@ -56,6 +56,10 @@
             <div class="tsm-tier"><b>Corporate Servers</b><div class="tsm-racks"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
           </div>
           <div class="tsm-powered"><small>Powered By</small><span class="tsm-logo"><i>TS</i><b>TS<span>plus</span></b></span></div>
+        </div>
+      } @else if (isTsplusRemoteSupport()) {
+        <div class="pph-scene pph-tsplus-support" aria-hidden="true">
+          <xh-tsplus-remote-support-hero />
         </div>
       } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
         <div
@@ -214,9 +218,13 @@
       <xh-tsplus-server-monitoring-content />
     }
 
+    @if (isTsplusRemoteSupport()) {
+      <xh-tsplus-remote-support-content />
+    }
+
     <div class="pp-body">
       <div class="wrap">
-        @if (!isVmc() && !isCmc() && !isTsplusServerMonitoring()) {
+        @if (!isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport()) {
         @if (slug() === 'video-surveillance-as-a-service') {
           <xh-cloud-cctv-content />
         }
@@ -1179,7 +1187,7 @@
           }
         </div>
 
-        @if (showcaseVideos().length) {
+        @if (showcaseVideos().length && !isTsplusRemoteSupport()) {
           <section class="tally-videos" aria-labelledby="showcaseVideosTitle">
             <div class="pp-sec" id="showcaseVideosTitle">Watch it in action</div>
             <div class="tally-video-grid" [class.single-video]="showcaseVideos().length === 1">
@@ -1197,6 +1205,24 @@
                   </div>
                 </article>
               }
+            </div>
+          </section>
+        }
+
+        @if (isTsplusRemoteSupport()) {
+          <section class="tally-videos" aria-labelledby="tsplusSupportVideoTitle">
+            <div class="pp-sec" id="tsplusSupportVideoTitle">Watch it in action</div>
+            <div class="tally-video-grid single-video">
+              <article class="tally-video-card">
+                <h3><span>TSplus Remote Support — The All-in-One Remote IT Tool</span></h3>
+                <div class="tally-video-frame">
+                  <video controls preload="none" playsinline poster="/assets/images/tsplus-remote-support-tour-windows.png" aria-label="TSplus Remote Support product demonstration">
+                    <source src="https://assets.tsplus.net/f/1020006/x/f7daa502d2/tsplus-remote-support-all-in-one-remote-it-tool.webm" type="video/webm" />
+                    Your browser does not support this video.
+                    <a href="https://assets.tsplus.net/f/1020006/x/f7daa502d2/tsplus-remote-support-all-in-one-remote-it-tool.webm" target="_blank" rel="noopener noreferrer">Open the TSplus Remote Support demo</a>.
+                  </video>
+                </div>
+              </article>
             </div>
           </section>
         }

@@ -7,7 +7,7 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
   selector: 'xh-tsplus-remote-support-content',
   standalone: true,
   templateUrl: './tsplus-remote-support-content.component.html',
-  styleUrls: ['./vmc-content.component.css', './tsplus-server-monitoring-content.component.css'],
+  styleUrls: ['./vmc-content.component.css', './tsplus-server-monitoring-content.component.css', './tsplus-remote-support-content.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TsplusRemoteSupportContentComponent {
