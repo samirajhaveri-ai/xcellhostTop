@@ -487,27 +487,33 @@ export class ProductPageService {
     const product: RichProduct | undefined = RICH_PRODUCTS[name];
     const seed = hash(name);
     const heroTagline =
-      name === 'Advanced Endpoint Security (EDR)'
-        ? 'Monitors endpoints continuously'
-        : name === 'Tally on Cloud'
-          ? 'Run Tally On Cloud 24/7 - Safety & Data Security Guranteed !!!'
-          : name === 'SMB Cyber Security Appliance'
-            ? 'Allow organizations to manage complex defenses through a unified interface.'
-            : product?.tagline || tag || `${name} from XcellHost`;
+      name === 'Scrutiny DLP'
+        ? 'Stop sensitive data leaking across endpoints, email, cloud and removable media.'
+        : name === 'Advanced Endpoint Security (EDR)'
+          ? 'Monitors endpoints continuously'
+          : name === 'Tally on Cloud'
+            ? 'Run Tally On Cloud 24/7 - Safety & Data Security Guranteed !!!'
+            : name === 'SMB Cyber Security Appliance'
+              ? 'Allow organizations to manage complex defenses through a unified interface.'
+              : product?.tagline || tag || `${name} from XcellHost`;
     const heroHighlight =
-      name === 'Advanced Endpoint Security (EDR)'
-        ? 'Quickly experience the power of Acronis EDR and see how easy it is to analyze attacks'
-        : name === 'Tally on Cloud'
-          ? 'Your Business runs on Tally, Make your Tally run on our Cloud'
-          : name === 'SMB Cyber Security Appliance'
-            ? 'Next-Generation Cyber Security for SMB Infrastructure.'
-            : name === 'Remote Monitoring & Mgmt (RMM)'
-              ? null
-              : product?.highlight || rich?.f?.[0]?.[1] || tag || null;
+      name === 'Scrutiny DLP'
+        ? 'Endpoint · Email · Cloud · Removable media · GenAI'
+        : name === 'Advanced Endpoint Security (EDR)'
+          ? 'Quickly experience the power of Acronis EDR and see how easy it is to analyze attacks'
+          : name === 'Tally on Cloud'
+            ? 'Your Business runs on Tally, Make your Tally run on our Cloud'
+            : name === 'SMB Cyber Security Appliance'
+              ? 'Next-Generation Cyber Security for SMB Infrastructure.'
+              : name === 'Remote Monitoring & Mgmt (RMM)'
+                ? null
+                : product?.highlight || rich?.f?.[0]?.[1] || tag || null;
     const heroMessages =
-      name === 'Advanced Endpoint Security (EDR)'
-        ? ['Behavioral analysis', 'Threat hunting', 'Real-time isolation', 'Root-cause analysis']
-        : name === 'Tally on Cloud'
+      name === 'Scrutiny DLP'
+        ? []
+        : name === 'Advanced Endpoint Security (EDR)'
+          ? ['Behavioral analysis', 'Threat hunting', 'Real-time isolation', 'Root-cause analysis']
+          : name === 'Tally on Cloud'
           ? [
               'Every 8 Hours Backups and Highly Secured Financial Data',
               'Ultra-fast Flash NVMe AMD EPYC Servers',
@@ -534,6 +540,13 @@ export class ProductPageService {
     if (req.badge) chips.push({ label: req.badge, kind: 'badge' });
     const priceStr = rich?.price || req.price || (/from\s*(₹[\d,]+[^\s—]*)/i.exec(tag) || [])[1] || '';
     if (priceStr) chips.push({ label: `from ${priceStr}`, kind: 'price' });
+    if (name === 'Scrutiny DLP') {
+      chips.push(
+        { label: 'DPDP Act, 2023 ready', kind: 'badge' },
+        { label: '100% on-premise option', kind: 'badge' },
+        { label: 'GenAI upload governance', kind: 'badge' },
+      );
+    }
 
     /* -------- overview + features -------- */
     const overview =
@@ -543,6 +556,8 @@ export class ProductPageService {
         ? 'XcellHost Advanced Endpoint Security (EDR) helps organizations identify, protect, detect, respond to, and recover from endpoint threats. It provides continuous security monitoring to detect suspicious activity and potential threats. Endpoints are protected with advanced security capabilities designed to reduce cyber risks. Delivered from secure Indian Tier-4 datacenters, the solution provides reliable and centralized protection. Your environment is monitored 24×7 by experienced security professionals. Get direct assistance from real engineers whenever you need support.'
         : name === 'Remote Monitoring & Mgmt (RMM)'
         ? 'Acronis RMM software helps customers deliver better IT management with powerful tools for monitoring, managing, and supporting devices remotely. It enables IT teams to monitor device performance, identify issues, and provide efficient remote support. Deploy high-performance remote desktop capabilities for fast and reliable remote access. Provide secure remote assistance at no additional cost, helping teams resolve IT issues quickly and efficiently. With centralized management and proactive monitoring, businesses can improve productivity, minimize downtime, and maintain a more reliable IT environment.'
+        : name === 'Scrutiny DLP'
+        ? 'Most data does not leave through a dramatic breach. It walks out on a USB stick, in a personal webmail attachment, in a screenshot, in a photo taken of the screen, or pasted into a public AI chatbot. Scrutiny DLP covers every one of those channels from a single policy engine, and can run fully on-premise when your compliance position requires it. Discover. Classify. Monitor. Protect.'
         : rich?.ov ||
           `${name} from XcellHost. ${tag} Delivered from Indian Tier-4 datacenters, ` +
             `monitored around the clock, and backed by engineers who answer the phone.`;
@@ -601,7 +616,19 @@ export class ProductPageService {
 
     /* -------- security section -------- */
     let security: ProductView['security'];
-    if (deep) {
+    if (name === 'Scrutiny DLP') {
+      security = {
+        head: 'Platform support, AI assistance and compliance',
+        intro: 'Scrutiny DLP keeps policy and evidence close to the data, with local or private deployment options and audit-ready reporting for DPDP-driven projects.',
+        rows: [
+          ['Platform support', 'Windows, macOS and Linux with native endpoint controls'],
+          ['Deployment', '100% on-premise, private cloud or hybrid'],
+          ['Offline evidence', 'Securely store evidence while disconnected and sync later'],
+          ['AI assistance', 'Local or private LLM classification, risk scoring and policy recommendations'],
+          ['Compliance', 'Audit-ready reporting mapped to your obligations'],
+        ],
+      };
+    } else if (deep) {
       security = { head: `Security & compliance — ${name}`, intro: deep.sec[0], rows: deep.sec[1] };
     } else {
       const ovr: SecuritySection | undefined = SEC_OVERRIDE[name];
@@ -721,7 +748,14 @@ export class ProductPageService {
       PRODUCT_BRAND_LINES[name] ?? product?.brandLine
     );
 
-    const whySource = name.toLowerCase().startsWith('cloud backup')
+    const whySource = name === 'Scrutiny DLP'
+      ? [
+          ['Since 1999', 'Mumbai-based managed cloud and security provider'],
+          ['ISO 27001 & ISO 20000-1', 'Certified security and service management'],
+          ['One accountable vendor', 'Licence, deployment, tuning and support in a single contract'],
+          ['INR billing', 'GST-compliant invoicing with local support hours'],
+        ]
+      : name.toLowerCase().startsWith('cloud backup')
       ? CLOUD_BACKUP_WHY
       : name === 'Cloud Drive'
         ? CLOUD_DRIVE_WHY
@@ -768,9 +802,16 @@ export class ProductPageService {
         null,
       heroMessages,
       heroPoints:
-        name === 'SMB Cyber Security Appliance'
-          ? SMB_CYBER_HERO_POINTS
-          : product?.heroPoints ?? dirEntry?.heroPoints ?? deep?.heroPoints ?? rich?.f?.slice(0, 6).map(([title]) => title) ?? [],
+        name === 'Scrutiny DLP'
+          ? [
+              'Fifteen control points across every route data can take out of the business',
+              'GenAI upload governance, anti-photo protection and hidden watermarking',
+              'OCR inspection finds sensitive text inside images and scans',
+              'Immutable audit trails and evidence capture that survive a wiped endpoint',
+            ]
+          : name === 'SMB Cyber Security Appliance'
+            ? SMB_CYBER_HERO_POINTS
+            : product?.heroPoints ?? dirEntry?.heroPoints ?? deep?.heroPoints ?? rich?.f?.slice(0, 6).map(([title]) => title) ?? [],
       offerSection: dirEntry?.offerSection ?? null,
       featureSpotlight: dirEntry?.featureSpotlight ?? null,
       featureDetail: dirEntry?.featureDetail ?? null,
@@ -795,6 +836,13 @@ function resolveHeroBrand(
   poweredBy?: string,
   poweredMark?: string
 ): ProductHeroBrand {
+  if (/^Scrutiny DLP$/i.test(name)) {
+    return {
+      name: 'Scrutiny DLP', subtitle: 'Delivered & managed by XcellHost', kind: 'vendor',
+      logoImage: '/assets/images/scrutiny-dlp-logo.svg',
+    };
+  }
+
   if (name === 'Cloud Disaster Recovery SMB') {
     return {
       name: 'Acronis Disaster Recovery', subtitle: null, kind: 'vendor',

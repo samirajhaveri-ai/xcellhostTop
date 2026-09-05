@@ -893,6 +893,12 @@ export const DIRECTORY: DirectoryEntry[] = [
     "group": "Security Products"
   },
   {
+    "name": "Scrutiny DLP",
+    "desc": "Discover, classify, monitor and protect sensitive data",
+    "cat": "Security",
+    "group": "Endpoint Security"
+  },
+  {
     "name": "Kaspersky Industrial CS",
     "desc": "Security for industrial control systems",
     "cat": "Security",

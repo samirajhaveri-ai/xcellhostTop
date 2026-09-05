@@ -51,6 +51,12 @@ const legalCards: CompanyCard[] = [
   { icon: '✉', title: 'Questions welcome', body: 'Contact the XcellHost team before ordering if anything is unclear.' },
 ];
 
+const trustCards: CompanyCard[] = [
+  { icon: 'ISO', title: 'Certified controls', body: 'Security and service processes aligned to ISO 27001 and ISO 20000-1.' },
+  { icon: '24×7', title: 'Always-on operations', body: 'NOC and SOC coverage designed to keep eyes on critical services around the clock.' },
+  { icon: 'DPDPA', title: 'Privacy and compliance', body: 'Data handling, retention and customer rights framed around DPDPA responsibilities.' },
+];
+
 export const COMPANY_PAGES: Record<string, CompanyPageContent> = {
   'why-xcellhost': {
     eyebrow: 'About',
@@ -155,6 +161,42 @@ export const COMPANY_PAGES: Record<string, CompanyPageContent> = {
     ],
     cta: 'Ask us how your preferred platform can fit into a managed solution.',
     ctaLabel: 'Speak with a specialist',
+  },
+
+  'trust-center': {
+    eyebrow: 'Legal',
+    title: 'Trust Center',
+    tagline: 'A clear view of the security, privacy and service controls that support XcellHost customers.',
+    intro: 'The Trust Center brings together the commitments, controls and documents customers usually ask for during procurement, security review and due diligence. It is designed to make the trust conversation easier to verify, not harder to understand.',
+    cards: trustCards,
+    sections: [
+      {
+        title: 'What we publish',
+        body: 'This page is the starting point for security, privacy and service questions. It points customers to the controls and evidence that help explain how we operate.',
+        points: [
+          'Security and service-management certifications',
+          'Privacy policy and data-handling commitments',
+          'Service-level agreements and support expectations',
+          'Vendor, continuity and escalation information',
+        ],
+      },
+      {
+        title: 'How we protect services',
+        body: 'We focus on layered protection: identity controls, monitored infrastructure, secure support processes and practical incident handling. The goal is to reduce risk before it reaches production services.',
+        points: [
+          '24x7 monitoring and response for managed environments',
+          'Identity, access and device controls for internal systems',
+          'Documented escalation for incidents and service-impacting issues',
+          'Security reviews that align with the service being delivered',
+        ],
+      },
+      {
+        title: 'How customers can review us',
+        body: 'If you need documentation for a procurement, audit or vendor assessment, use this page as the first reference point and ask our team for the current evidence set.',
+      },
+    ],
+    cta: 'Need a current document pack or want to discuss a control in more detail? Our team can help.',
+    ctaLabel: 'Request trust documents',
   },
 
   'partner-signup': {
