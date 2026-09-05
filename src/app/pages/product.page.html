@@ -174,9 +174,13 @@
       <xh-vmc-content />
     }
 
+    @if (isCmc()) {
+      <xh-cmc-content />
+    }
+
     <div class="pp-body">
       <div class="wrap">
-        @if (!isVmc()) {
+        @if (!isVmc() && !isCmc()) {
         @if (slug() === 'video-surveillance-as-a-service') {
           <xh-cloud-cctv-content />
         }

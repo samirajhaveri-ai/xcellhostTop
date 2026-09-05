@@ -173,7 +173,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Reach customers instantly with impactful text campaigns 📲"
               },
               {
-                "title": "Managed AI SEO",
+                "title": "Managed SEO",
                 "pill": "AI Powered",
                 "desc": "Maximise online visibility and reach your target audience 🎯"
               },
@@ -299,10 +299,28 @@ export const MEGA_MENU: MenuTop[] = [
         "on": true,
         "groups": [
           {
-            "heading": "No Data",
+            "heading": "Managed DNS",
             "items": [
               {
-                "title": "Tally on Cloud",
+                "title": "No Data",
+                "pill": "Top seller",
+                "desc": null
+              },
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "6",
+        "label": "Tools",
+        "on": true,
+        "groups": [
+          {
+            "heading": "Tools",
+            "items": [
+              {
+                "title": "No Data",
                 "pill": "Top seller",
                 "desc": null
               },
@@ -936,14 +954,29 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "1",
-        "label": "Resilience Cloud",
+        "label": "Druva",
         "on": false,
         "groups": [
           {
-            "heading": "Resilience Cloud",
+            "heading": "Druva",
             "items": [
               {
-                "title": "No data",
+                "title": "Identity Resilience",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "eDiscovery & Compliance",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Data Resilience",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Cyber Resilience",
                 "pill": null,
                 "desc": null
               },
@@ -1960,15 +1993,10 @@ export const MEGA_MENU: MenuTop[] = [
         "on": false,
         "groups": [
           {
-            "heading": "Backup Tools",
+            "heading": "Adobe Tools",
             "items": [
               {
-                "title": "Acronis Backup Advanced",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Acronis True Image",
+                "title": "No Data",
                 "pill": null,
                 "desc": null
               },
@@ -2385,7 +2413,7 @@ export const MEGA_MENU: MenuTop[] = [
         "on": false,
         "groups": [
           {
-            "heading": "CIO",
+            "heading": "By Role",
             "items": [
               {
                 "title": "CTO",
@@ -2408,7 +2436,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "11",
+        "g": "12",
         "label": "Cyber Insurance",
         "on": false,
         "groups": [
@@ -3102,23 +3130,6 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "10",
-        "label": "Tools Center",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Tools Center",
-            "items": [
-              {
-                "title": "NO Tools",
-                "pill": null,
-                "desc": null
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "g": "11",
         "label": "Tools Center",
         "on": false,
         "groups": [
