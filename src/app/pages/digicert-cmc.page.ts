@@ -10,7 +10,6 @@ import { ProductPage } from './product.page';
   standalone: true,
   imports: [ProductPage],
   templateUrl: './digicert-cmc.page.html',
-  styleUrl: './digicert-vmc.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DigicertCmcPage {

@@ -1349,7 +1349,8 @@ export const PRODUCT_VIDEOS: Record<string, string[]> = {
   "Malware & OT Security": ["HglepHky4bA", "2DrHwguVO0A"],
   "WordPress Hosting": ["43F79JzYKzo", ""],
   "Web Security (SiteLock)": ["5fyYUqz3MQY", "DIfurSvEINY"],
-  "Verified Mark Certificates (VMC)": ["u12LxQ2Tmn0", ""]
+  "Verified Mark Certificates (VMC)": ["u12LxQ2Tmn0", ""],
+  "DigiCert Common Mark Certificate (CMC)": ["u12LxQ2Tmn0", ""]
 };
 
 export const SERVICE_INDEX_URL = 'https://www.xcellhost.cloud/service-index/';

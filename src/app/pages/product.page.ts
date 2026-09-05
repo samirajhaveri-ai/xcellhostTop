@@ -21,6 +21,7 @@ import { CloudCctvContentComponent } from '../sections/cloud-cctv-content.compon
 import { AcronisTrueImageContentComponent } from '../sections/acronis-true-image-content.component';
 import { SiteLockContentComponent } from '../sections/sitelock-content.component';
 import { VmcContentComponent } from '../sections/vmc-content.component';
+import { CmcContentComponent } from '../sections/cmc-content.component';
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -98,6 +99,7 @@ interface ProductTourSlide {
     AcronisTrueImageContentComponent,
     SiteLockContentComponent,
     VmcContentComponent,
+    CmcContentComponent,
   ],
   templateUrl: './product.page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -274,6 +276,18 @@ export class ProductPage {
       image: '/assets/images/microsoft-365-backup-tour-7.jpg',
     },
   ];
+  readonly vmcTourSlides: readonly ProductTourSlide[] = [
+    {
+      title: 'Inbox branding before and after VMC',
+      description: 'Compare a standard inbox with the branded sender logos and verification indicators shown after VMC and BIMI deployment.',
+      image: '/assets/images/vmc-tour-before-after.png',
+    },
+    {
+      title: 'Verified mark across inbox experiences',
+      description: 'See how a verified brand mark helps recipients recognise authenticated email on desktop and mobile.',
+      image: '/assets/images/vmc-tour-verified-mark.png',
+    },
+  ];
 
   /** Product-owned artwork used when a page does not have a dedicated UI screenshot set. */
   readonly productTourSlides = computed<readonly ProductTourSlide[]>(() => {
@@ -281,6 +295,7 @@ export class ProductPage {
     if (!view) return [];
     if (view.name === 'Acronis True Image') return this.acronisTrueImageTourSlides;
     if (view.name === 'Microsoft 365 Backup') return this.microsoft365BackupTourSlides;
+    if (this.isVmc()) return this.vmcTourSlides;
 
     const candidates: ProductTourSlide[] = [];
     const add = (title: string, description: string, image: string | null | undefined): void => {
@@ -619,6 +634,8 @@ export class ProductPage {
 
   readonly isVmc = computed(() => this.view()?.name === 'Verified Mark Certificates (VMC)');
 
+  readonly isCmc = computed(() => this.view()?.name === 'DigiCert Common Mark Certificate (CMC)');
+
   readonly isCloudDrive = computed(() => this.view()?.name === 'Cloud Drive');
 
   readonly isCloudBackup = computed(() => this.view()?.name.toLowerCase().startsWith('cloud backup') ?? false);
@@ -810,6 +827,15 @@ export class ProductPage {
    */
   private resolve(slug: string): ProductView | null {
     if (!slug) return null;
+
+    if (slug === 'digicert-cmc') {
+      return this.products.build({
+        name: 'DigiCert Common Mark Certificate (CMC)',
+        tag: 'Display your established brand logo in supported inboxes without a registered trademark.',
+        cat: 'Digital Trust',
+        crumb: 'Digital Trust › Mark Certificates',
+      });
+    }
 
     const entry = this.catalog.entryBySlug(slug);
     if (entry) {
