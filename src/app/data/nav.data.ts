@@ -294,73 +294,16 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "4",
+        "g": "5",
         "label": "Managed DNS",
         "on": true,
         "groups": [
           {
-            "heading": "Managed DNS",
+            "heading": "No Data",
             "items": [
               {
                 "title": "Tally on Cloud",
                 "pill": "Top seller",
-                "desc": null
-              },
-              
-              {
-                "title": "Cloud Backup",
-                "pill": "Popular",
-                "desc": null
-              },
-              {
-                "title": "Cloud Drive",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Advanced Endpoint Security (EDR)",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Remote Monitoring & Mgmt (RMM)",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "SMB Cyber Security Appliance",
-                "pill": "New",
-                "desc": null
-              },
-               {
-                "title": "Microsoft 365 SMB",
-                "pill": null,
-                "desc": "Cloud productivity tools with migration and 24/7 support"
-              },
-              {
-                "title": "SMB Cloud Desktop",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Acronis GenAI Protection",
-                "pill": "New",
-                "desc": null
-              },
-              
-              {
-                "title": "Cloud Disaster Recovery SMB",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "DPDPA For SMB",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Workforce Analytics",
-                "pill": null,
                 "desc": null
               },
               
@@ -1009,60 +952,8 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      {
-        "g": "2",
-        "label": "AI Resilience",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Resilience Cloud",
-            "items": [
-              {
-                "title": "No data",
-                "pill": null,
-                "desc": null
-              },
-              
-            ]
-          }
-        ]
-      },
-      {
-        "g": "3",
-        "label": "Identity Resilience",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Resilience Cloud",
-            "items": [
-              {
-                "title": "No data",
-                "pill": null,
-                "desc": null
-              },
-              
-            ]
-          }
-        ]
-      },
-      {
-        "g": "4",
-        "label": "eDiscovery & Compliance",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Resilience Cloud",
-            "items": [
-              {
-                "title": "No data",
-                "pill": null,
-                "desc": null
-              },
-              
-            ]
-          }
-        ]
-      },
+      
+      
     ]
   },
   {
@@ -1371,11 +1262,15 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Network Security",
             "items": [
               {
-                "title": "No Data",
+                "title": "Network Access Control(NAC)",
                 "pill": "Free trial",
                 "desc": null
               },
-              
+              {
+                "title": "Network Detection & Response (NDR)",
+                "pill": "Free trial",
+                "desc": null
+              },
             ]
           }
         ]
@@ -1389,7 +1284,7 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Cloud Security",
             "items": [
               {
-                "title": "Managed NDR",
+                "title": "No Data",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -1774,84 +1669,7 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      {
-        "g": "11",
-        "label": "Cyber Insurance",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Cyber Insurance",
-            "items": [
-              {
-                "title": "DPDPA Consulting",
-                "pill": "In focus",
-                "desc": null
-              },
-              {
-                "title": "vDPO-as-a-Service",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "vCISO-as-a-Service",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Cyber Security Audit",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "ISO 27001 Consulting",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Compliance Consulting",
-                "pill": null,
-                "desc": null
-              },
-              
-              {
-                "title": "Third-Party Risk Mgmt (TPRM)",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Managed GRC",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "PCI Consulting",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Cyber Insurance",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "ISO 22301",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "ISO 42001",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "ISO 27701",
-                "pill": null,
-                "desc": null
-              },
-            ]
-          }
-        ]
-      },
+      
     ]
   },
   {
@@ -2135,28 +1953,7 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      {
-        "g": "2",
-        "label": "Microsoft Tools",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Backup Tools",
-            "items": [
-              {
-                "title": "Acronis Backup Advanced",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Acronis True Image",
-                "pill": null,
-                "desc": null
-              },
-            ]
-          }
-        ]
-      },
+      
       {
         "g": "3",
         "label": "Adobe Tools",
@@ -2205,11 +2002,40 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Microsoft Security",
             "items": [
               {
-                "title": "No Data",
+                "title": "Microsoft Defender",
                 "pill": null,
                 "desc": null
               },
-              
+              {
+                "title": "Microsoft Identity & Access",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Microsoft SIEM & XDR",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Microsoft Cloud Security",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Endpoint Security & Management",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Risk Management & Privacy",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Information Protection",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
@@ -2552,7 +2378,113 @@ export const MEGA_MENU: MenuTop[] = [
             ]
           }
         ]
-      }
+      },
+      {
+        "g": "11",
+        "label": "By Role",
+        "on": false,
+        "groups": [
+          {
+            "heading": "CIO",
+            "items": [
+              {
+                "title": "CTO",
+                "pill": "In focus",
+                "desc": null
+              },
+              {
+                "title": "CISO",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "DPO",
+                "pill": null,
+                "desc": null
+              },
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "11",
+        "label": "Cyber Insurance",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Cyber Insurance",
+            "items": [
+              {
+                "title": "DPDPA Consulting",
+                "pill": "In focus",
+                "desc": null
+              },
+              {
+                "title": "vDPO-as-a-Service",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "vCISO-as-a-Service",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Cyber Security Audit",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "ISO 27001 Consulting",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Compliance Consulting",
+                "pill": null,
+                "desc": null
+              },
+              
+              {
+                "title": "Third-Party Risk Mgmt (TPRM)",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Managed GRC",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "PCI Consulting",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Cyber Insurance",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "ISO 22301",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "ISO 42001",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "ISO 27701",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
 
     ]
   },
