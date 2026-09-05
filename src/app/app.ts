@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { OverlayService } from './core/overlay.service';
@@ -59,12 +59,22 @@ import {
     style: 'display:contents',
     '(document:keydown.escape)': 'onEscape()',
     '(document:click)': 'onDocumentClick($event)',
+    '(window:scroll)': 'updateScrollProgress()',
+    '(window:resize)': 'updateScrollProgress()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {
+  readonly scrollProgress = signal(0);
   private readonly overlay = inject(OverlayService);
   private readonly topics = inject(CallbackTopicService);
+
+  updateScrollProgress(): void {
+    const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+    this.scrollProgress.set(
+      documentHeight > 0 ? Math.min(100, Math.max(0, (window.scrollY / documentHeight) * 100)) : 0,
+    );
+  }
 
   onEscape(): void {
     this.overlay.closeTop();
