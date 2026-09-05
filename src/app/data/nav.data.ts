@@ -870,6 +870,18 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "Vortex SOC",
+                "pill": null,
+                "desc": null,
+                "href": "/vortex-soc"
+              },
+              {
+                "title": "Vortex SEG",
+                "pill": null,
+                "desc": "Advanced email security, DLP and archival",
+                "href": "/vortex-seg"
+              },
             ]
           }
         ]

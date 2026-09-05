@@ -347,6 +347,18 @@ export const DIRECTORY: DirectoryEntry[] = [
     "group": "Cloud Data Protect"
   },
   {
+    "name": "Vortex SOC",
+    "desc": "Unified SIEM, SOAR, UEBA and security operations suite",
+    "cat": "Cloud",
+    "group": "Cloud Data Protect"
+  },
+  {
+    "name": "Vortex SEG",
+    "desc": "Advanced email security, DLP and archival gateway",
+    "cat": "Cloud",
+    "group": "Cloud Data Protect"
+  },
+  {
     "name": "Business E-Mail",
     "desc": "Professional email services for business communication",
     "cat": "Cloud",
