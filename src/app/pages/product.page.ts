@@ -25,11 +25,18 @@ import { CmcContentComponent } from '../sections/cmc-content.component';
 import { TsplusServerMonitoringContentComponent } from '../sections/tsplus-server-monitoring-content.component';
 import { TsplusRemoteSupportContentComponent } from '../sections/tsplus-remote-support-content.component';
 import { TsplusRemoteSupportHeroComponent } from '../sections/tsplus-remote-support-hero.component';
+<<<<<<< HEAD
 import { TsplusAdvancedSecurityContentComponent } from '../sections/tsplus-advanced-security-content.component';
 import { TsplusAdvancedSecurityHeroComponent } from '../sections/tsplus-advanced-security-hero.component';
 import { TsplusRemoteAccessContentComponent } from '../sections/tsplus-remote-access-content.component';
 import { TsplusRemoteAccessHeroComponent } from '../sections/tsplus-remote-access-hero.component';
 import { ScrutinyEdrContentComponent } from '../sections/scrutiny-edr-content.component';
+=======
+import { ScrutinyDlpContentComponent } from './scrutiny-dlp-content.component';
+import { ScrutinyEdrContentComponent } from './scrutiny-edr-content.component';
+import { VortexSocContentComponent } from './vortex-soc-content.component';
+import { VortexSegContentComponent } from './vortex-seg-content.component';
+>>>>>>> ff20ac6a7a4288a6e5c937afa8c6cab8f6b60c0e
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -111,11 +118,18 @@ interface ProductTourSlide {
     TsplusServerMonitoringContentComponent,
     TsplusRemoteSupportContentComponent,
     TsplusRemoteSupportHeroComponent,
+<<<<<<< HEAD
     TsplusAdvancedSecurityContentComponent,
     TsplusAdvancedSecurityHeroComponent,
     TsplusRemoteAccessContentComponent,
     TsplusRemoteAccessHeroComponent,
     ScrutinyEdrContentComponent,
+=======
+    ScrutinyDlpContentComponent,
+    ScrutinyEdrContentComponent,
+    VortexSocContentComponent,
+    VortexSegContentComponent,
+>>>>>>> ff20ac6a7a4288a6e5c937afa8c6cab8f6b60c0e
   ],
   templateUrl: './product.page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
