@@ -3641,10 +3641,6 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-<<<<<<< HEAD
-=======
-      
-      
     ]
   },
   {
@@ -4186,7 +4182,6 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
->>>>>>> c4bd9d80474dfae190f9d33b4c60ad749dba2062
     ]
   }
 ];
