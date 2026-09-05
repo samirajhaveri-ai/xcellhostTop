@@ -387,6 +387,16 @@ export class ProductPage {
     return `₹${(9999 * this.cdrQuantity()).toLocaleString('en-IN')}`;
   }
 
+  buyCdrPlan(ev: Event): void {
+    ev.preventDefault();
+    const quantity = this.cdrQuantity();
+    this.cart.add(
+      `Cloud Disaster Recovery SMB × ${quantity} ${quantity === 1 ? 'server' : 'servers'}`,
+      `${this.cdrPlanTotal()}/month`,
+    );
+    this.cart.open();
+  }
+
   openCdrTour(): void {
     this.activeCdrTourSlide.set(0);
     this.overlay.open('screenshotTour');
