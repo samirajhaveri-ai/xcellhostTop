@@ -1,5 +1,6 @@
 /** Official product intro artwork localized from the XcellHost reference site. */
 export const PRODUCT_HERO_IMAGES: Readonly<Record<string, string>> = {
+  "Scrutiny DLP": "/assets/images/scrutiny-dlp-hero.svg",
   "Tally on Cloud": "/assets/images/product-intros/reference-708cd01d9929.png",
   "SMB Cyber Security Appliance": "/assets/images/product-intros/reference-5d5e9a256253.png",
   "Cloud Drive": "/assets/images/product-intros/reference-54ea5391cf7f.png",
@@ -141,6 +142,7 @@ export const PRODUCT_HERO_IMAGES: Readonly<Record<string, string>> = {
 
 /** Localized sources verified to have transparent or visibility-safe backgrounds. */
 export const VISIBLE_PRODUCT_HERO_IMAGE_PATHS: ReadonlySet<string> = new Set([
+  '/assets/images/scrutiny-dlp-hero.svg',
   '/assets/images/product-intros/reference-182fce598601.png',
   '/assets/images/product-intros/reference-42208df29a1d.png',
   '/assets/images/product-intros/reference-54ea5391cf7f.png',
