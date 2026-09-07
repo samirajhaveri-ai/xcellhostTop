@@ -196,6 +196,13 @@ h2{font-family:var(--disp);font-weight:700;font-size:clamp(25px,3vw,34px);color:
 .ppl ul li:before{content:"\2713";position:absolute;left:0;top:5px;color:var(--ok);font-weight:700;font-size:11px}
 .ppl .btns{display:flex;flex-direction:column;gap:8px}
 .ppl .btn{padding:10px 14px;font-size:13px}
+.quote-quantity{display:flex;align-items:center;height:42px;border:1px solid #bfd3f3;border-radius:7px;background:#f8fbff;overflow:hidden}
+.quote-quantity button{width:44px;height:100%;flex:none;border:0;background:transparent;color:#075dbd;font:500 20px/1 var(--body);cursor:pointer}
+.quote-quantity button:first-child{border-right:1px solid #bfd3f3;color:#91a4bd}
+.quote-quantity button:last-child{border-left:1px solid #bfd3f3}
+.quote-quantity button:hover{background:#edf4ff;color:var(--blue)}
+.quote-quantity button:focus-visible{outline:2px solid var(--navy);outline-offset:-3px}
+.quote-quantity output{flex:1;min-width:54px;color:#071c39;font:500 16px var(--body);text-align:center}
 
 /* small plan pair */
 .pp-plans2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}

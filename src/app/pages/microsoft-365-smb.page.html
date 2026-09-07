@@ -202,7 +202,7 @@
             <li>50 GB Exchange mailbox</li>
             <li>SharePoint{{ includesTeams() ? ' & Teams included' : ' included; Teams excluded' }}</li>
           </ul>
-          <div class="btns"><a class="btn btn-primary" href="#contact">Get a Quote</a><a class="btn btn-ghost" href="#contact">Add to quote</a></div>
+          <div class="btns"><div class="quote-quantity" role="group" aria-label="Business Basic quantity"><button type="button" aria-label="Decrease Business Basic quantity" (click)="adjustQuantity('basic', -1)">−</button><output>{{ quoteQuantities()['basic'] }}</output><button type="button" aria-label="Increase Business Basic quantity" (click)="adjustQuantity('basic', 1)">+</button></div><a class="btn btn-ghost" [href]="includesTeams() ? basicTeamsCheckoutUrl : basicNoTeamsCheckoutUrl" target="_blank" rel="noopener noreferrer">Buy Now</a></div>
         </div>
 
         <div class="ppl hot">
@@ -218,7 +218,7 @@
             <li>{{ includesTeams() ? 'Teams webinars & meeting recordings' : 'Microsoft Teams not included' }}</li>
             <li>Bookings &amp; Clipchamp included</li>
           </ul>
-          <div class="btns"><a class="btn btn-primary" href="#contact">Get a Quote</a><a class="btn btn-ghost" href="#contact">Add to quote</a></div>
+          <div class="btns"><div class="quote-quantity" role="group" aria-label="Business Standard quantity"><button type="button" aria-label="Decrease Business Standard quantity" (click)="adjustQuantity('standard', -1)">−</button><output>{{ quoteQuantities()['standard'] }}</output><button type="button" aria-label="Increase Business Standard quantity" (click)="adjustQuantity('standard', 1)">+</button></div><a class="btn btn-ghost" [href]="includesTeams() ? standardTeamsCheckoutUrl : standardNoTeamsCheckoutUrl" target="_blank" rel="noopener noreferrer">Buy Now</a></div>
         </div>
 
         <div class="ppl">
@@ -234,7 +234,7 @@
             <li>Entra ID Premium &mdash; MFA &amp; SSO</li>
             <li>Microsoft Purview &mdash; DLP &amp; compliance</li>
           </ul>
-          <div class="btns"><a class="btn btn-primary" href="#contact">Get a Quote</a><a class="btn btn-ghost" href="#contact">Add to quote</a></div>
+          <div class="btns"><div class="quote-quantity" role="group" aria-label="Business Premium quantity"><button type="button" aria-label="Decrease Business Premium quantity" (click)="adjustQuantity('premium', -1)">−</button><output>{{ quoteQuantities()['premium'] }}</output><button type="button" aria-label="Increase Business Premium quantity" (click)="adjustQuantity('premium', 1)">+</button></div><a class="btn btn-ghost" [href]="includesTeams() ? premiumTeamsCheckoutUrl : premiumNoTeamsCheckoutUrl" target="_blank" rel="noopener noreferrer">Buy Now</a></div>
         </div>
       </div>
 

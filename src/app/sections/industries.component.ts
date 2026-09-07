@@ -20,47 +20,19 @@ interface IndustryCard {
 }
 
 const INDUSTRY_CARDS: readonly IndustryCard[] = [
-  {
-    icon: 'education', label: 'Schools & Education',
-    blurb: 'Secure learning, labs and campus collaboration',
-    service: 'Higher Education & University',
-  },
-  {
-    icon: 'healthcare', label: 'Healthcare & Clinics',
-    blurb: 'Protected patient data and reliable clinical systems',
-    service: 'Healthcare',
-  },
-  {
-    icon: 'business', label: 'SMBs & Startups',
-    blurb: 'Scalable cloud and security built for growing teams',
-    service: 'SMB Cloud',
-  },
-  {
-    icon: 'retail', label: 'Retail & E-commerce',
-    blurb: 'Always-on storefronts, payments and customer data',
-    service: 'Retail & E-commerce',
-  },
-  {
-    icon: 'factory', label: 'Manufacturing',
-    blurb: 'Production-ready cloud, ERP and operational resilience',
-    service: 'Manufacturing',
-  },
-  {
-    icon: 'bank', label: 'BFSI',
-    blurb: 'RBI-aligned cloud and regulated-grade security',
-    service: 'BFSI / Financial Services',
-  },
-  {
-    icon: 'logistics', label: 'Logistics & Supply Chain',
-    blurb: 'Connected operations across warehouses and fleets',
-    service: 'Logistics',
-  },
-  {
-    icon: 'accounting', label: 'CAs & Professional Services',
-    blurb: 'Tally, tax tools and client workspaces in the cloud',
-    service: 'CA Cloud',
-  },
-];
+  { icon: 'business', label: 'CA Cloud', blurb: 'Accounting & audit automation for CAs - free trial', service: 'CA Cloud' },
+  { icon: 'business', label: 'SMB Cloud', blurb: 'Simplify operations, mitigate risk', service: 'SMB Cloud' },
+  { icon: 'bank', label: 'BFSI / Financial Services', blurb: 'Enhance operations with compliant cloud', service: 'BFSI / Financial Services' },
+  { icon: 'factory', label: 'Manufacturing', blurb: 'Innovative technologies for industry', service: 'Manufacturing' },
+  { icon: 'business', label: 'Government', blurb: 'Secure, reliable public-sector technology', service: 'Government' },
+  { icon: 'education', label: 'Higher Education - University Program', blurb: 'Technology and support designed for higher education', service: 'Higher Education · University Program' },
+  { icon: 'business', label: 'Pharmaceutical', blurb: 'Technology solutions tailored to pharmaceutical operations', service: 'Pharmaceutical' },
+  { icon: 'business', label: 'Construction', blurb: 'Cloud and digital solutions for construction businesses', service: 'Construction' },
+  { icon: 'business', label: 'Food & Beverage', blurb: 'Technology designed for food and beverage operations', service: 'Food & Beverage' },
+  { icon: 'logistics', label: 'Logistics', blurb: 'Reliable digital solutions for modern logistics operations', service: 'Logistics' },
+  { icon: 'healthcare', label: 'Health Care', blurb: 'Explore Health Care services, features and solutions.', service: 'Health Care' },
+  { icon: 'retail', label: 'Retails & E-Commerce', blurb: 'Explore Retails services, features and solutions.', service: 'Retails & E-Commerce' },
+]; 
 
 const INDUSTRY_ICON_PATHS: Readonly<Record<string, string>> = {
   bank: 'M3 10h18M5 10v8m4-8v8m6-8v8m4-8v8M3 21h18M12 3 3 8h18l-9-5Z',
@@ -89,7 +61,7 @@ const INDUSTRY_ICON_PATHS: Readonly<Record<string, string>> = {
       <div class="wrap">
         <div class="sec-head ind-head" xhReveal>
           <div class="ind-eyebrow">Industries</div>
-          <h2>Cloud Server Solutions for Every Indian Industry</h2>
+          <h2>Cloud, Cyber Security & AI Server Solutions for Every Indian Industry</h2>
           <p>Reliable, secure, and scalable cloud servers in India designed for BFSI, healthcare, e-commerce, SaaS, and more.</p>
         </div>
         <div class="ind-grid">

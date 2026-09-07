@@ -8,6 +8,7 @@ export { HostCredibilityComponent } from './host-credibility.component';
 export { WhyComponent } from './why.component';
 export { IndustriesComponent } from './industries.component';
 export { OutcomesComponent } from './outcomes.component';
+export { NewCategoryComponent } from './new-category.component';
 export { TrustedByComponent } from './trusted-by.component';
 export { TestimonialsComponent } from './testimonials.component';
 export { CasesComponent } from './cases.component';

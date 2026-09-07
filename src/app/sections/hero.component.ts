@@ -26,7 +26,7 @@ interface HeroStat {
 const HERO_STATS: readonly HeroStat[] = [
   { value: 10000, dec: 0, suffix: '+', label: 'businesses served' },
   { value: 99.95, dec: 2, suffix: '%', label: 'uptime SLA' },
-  { value: 155, dec: 0, suffix: '+', label: 'services' },
+  { value: 200, dec: 0, suffix: '+', label: 'services' },
   { value: 27, dec: 0, suffix: '', label: 'years · since 1999' },
 ];
 
