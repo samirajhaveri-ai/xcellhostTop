@@ -1,5 +1,5 @@
 @if (view(); as v) {
-  <div class="ppage as-page" id="ppage" [class.edr-page]="isAdvancedEdr()" [class.scrutiny-edr-page]="isScrutinyEdr()" [class.rmm-page]="isRmm()" [class.scrutiny-page]="slug() === 'scrutiny-dlp' || slug() === 'scrutiny-edr' || slug() === 'vortex-soc' || slug() === 'vortex-seg'" [class.cctv-page]="slug() === 'video-surveillance-as-a-service'" [class.cmc-page]="isCmc()" [class.tsplus-monitoring-page]="isTsplusServerMonitoring()" [class.tsplus-support-page]="isTsplusRemoteSupport()" [class.tsplus-advanced-security-page]="isTsplusAdvancedSecurity()" [class.tsplus-remote-access-page]="isTsplusRemoteAccess()">
+  <div class="ppage as-page" id="ppage" [class.infrastructure-page]="isInfrastructure()" [class.edr-page]="isAdvancedEdr()" [class.scrutiny-edr-page]="isScrutinyEdr()" [class.rmm-page]="isRmm()" [class.scrutiny-page]="slug() === 'scrutiny-dlp' || slug() === 'scrutiny-edr' || slug() === 'vortex-soc' || slug() === 'vortex-seg'" [class.cctv-page]="slug() === 'video-surveillance-as-a-service'" [class.cmc-page]="isCmc()" [class.tsplus-monitoring-page]="isTsplusServerMonitoring()" [class.tsplus-support-page]="isTsplusRemoteSupport()" [class.tsplus-advanced-security-page]="isTsplusAdvancedSecurity()" [class.tsplus-remote-access-page]="isTsplusRemoteAccess()">
     <div
       class="pp-hero"
       [class.sitelock-hero]="v.name === 'Web Security (SiteLock)'"
@@ -263,7 +263,10 @@
 
     <div class="pp-body">
       <div class="wrap">
-        @if (!isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess() && !isScrutinyEdr()) {
+        @if (isInfrastructure()) {
+          <xh-infrastructure-content />
+        }
+        @if (!isInfrastructure() && !isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess() && !isScrutinyEdr()) {
         @if (slug() === 'video-surveillance-as-a-service') {
           <xh-cloud-cctv-content />
         }
