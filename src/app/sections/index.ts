@@ -7,6 +7,8 @@ export { DirectoryComponent } from './directory.component';
 export { HostCredibilityComponent } from './host-credibility.component';
 export { WhyComponent } from './why.component';
 export { IndustriesComponent } from './industries.component';
+export { OutcomesComponent } from './outcomes.component';
+export { TrustedByComponent } from './trusted-by.component';
 export { TestimonialsComponent } from './testimonials.component';
 export { CasesComponent } from './cases.component';
 export { InsightsSectionComponent } from './insights-section.component';
