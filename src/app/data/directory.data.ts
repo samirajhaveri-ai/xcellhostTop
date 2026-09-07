@@ -61,8 +61,8 @@ export const DIRECTORY: DirectoryEntry[] = [
  {
     "name": "WhatsApp SMB",
     "desc": "Official WhatsApp Business API for SMB sales, support and automation",
-    "cat": "Cloud",
-    "group": "SMB Cloud",
+    "cat": "Web Presence",
+    "group": "Web Marketing",
     "heroMessages": [
       "Turn WhatsApp conversations into business",
       "Automate campaigns, support and follow-ups",

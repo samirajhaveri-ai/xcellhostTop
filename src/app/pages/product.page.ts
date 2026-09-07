@@ -34,6 +34,7 @@ import { ScrutinyDlpContentComponent } from './scrutiny-dlp-content.component';
 import { VortexSocContentComponent } from './vortex-soc-content.component';
 import { VortexSegContentComponent } from './vortex-seg-content.component';
 import { InfrastructureContentComponent } from '../sections/infrastructure-content.component';
+import { WhatsAppSmbContentComponent } from '../sections/whatsapp-smb-content.component';
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -124,6 +125,7 @@ interface ProductTourSlide {
     VortexSocContentComponent,
     VortexSegContentComponent,
     InfrastructureContentComponent,
+    WhatsAppSmbContentComponent,
   ],
   templateUrl: './product.page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -246,6 +248,18 @@ export class ProductPage {
   readonly isEdrTourOpen = computed(() => this.overlay.isOpen('edrScreenshotTour'));
   readonly activeProductTourSlide = signal(0);
   readonly isProductTourOpen = computed(() => this.overlay.isOpen('productScreenshotTour'));
+  readonly whatsAppSmbTourSlides: readonly ProductTourSlide[] = [
+    { title: 'Workflow dashboard', description: 'Review and manage WhatsApp automation workflows from one place.', image: '/assets/images/whatsapp-smb-tour-1.png' },
+    { title: 'Capture trigger responses', description: 'Save message-trigger responses into customer traits or workflow variables.', image: '/assets/images/whatsapp-smb-tour-2.png' },
+    { title: 'AI intent and keyword matching', description: 'Start automations from exact, partial or AI-matched customer messages.', image: '/assets/images/whatsapp-smb-tour-3.png' },
+    { title: 'Campaign response triggers', description: 'Continue a workflow when a customer replies to a campaign or selects a button.', image: '/assets/images/whatsapp-smb-tour-4.png' },
+    { title: 'No-code workflow builder', description: 'Build and configure multi-step customer journeys on a visual canvas.', image: '/assets/images/whatsapp-smb-tour-5.png' },
+    { title: 'Rich message attachments', description: 'Add videos and other supported media to automated WhatsApp messages.', image: '/assets/images/whatsapp-smb-tour-6.png' },
+    { title: 'Reusable message actions', description: 'Edit, duplicate, delete or reuse nodes while building a workflow.', image: '/assets/images/whatsapp-smb-tour-7.png' },
+    { title: 'Personalised variables', description: 'Personalise messages with customer details and workflow variables.', image: '/assets/images/whatsapp-smb-tour-8.png' },
+    { title: 'Interactive lists', description: 'Give customers structured choices with list-based message actions.', image: '/assets/images/whatsapp-smb-tour-9.png' },
+    { title: 'Webhooks and error handling', description: 'Connect external services and define safe responses when an integration fails.', image: '/assets/images/whatsapp-smb-tour-10.png' },
+  ];
   readonly acronisTrueImageTourSlides: readonly ProductTourSlide[] = [
     {
       title: 'Easy management',
@@ -369,10 +383,59 @@ export class ProductPage {
     { title: 'Secure sign-in', description: 'Keep Windows credentials protected while users connect to their assigned resources.', image: '/assets/images/tsplus-remote-access-tour-credentials.png' },
   ];
 
+  readonly tsplusRemoteAccessExperiences = [
+    {
+      title: 'RDP – Full Desktop Standard MSTSC',
+      description: 'The user accesses the full desktop via the standard Microsoft RDP client.',
+      video: '/assets/video/tsplus-ra-rdp-standard.mp4',
+    },
+    {
+      title: 'RDP – Full Desktop 1-click Connection',
+      description: 'The user accesses the full desktop via the TSplus Client in one click.',
+      video: '/assets/video/tsplus-ra-rdp-one-click.mp4',
+    },
+    {
+      title: 'RemoteApp – Floating Panel',
+      description: 'The user launches an app in one click from the floating panel on their local desktop.',
+      video: '/assets/video/tsplus-ra-remoteapp-floating-panel.mp4',
+    },
+    {
+      title: 'RemoteApp – Application Panel',
+      description: 'The user launches an app in one click from the application panel on their local desktop.',
+      video: '/assets/video/tsplus-ra-remoteapp-application-panel.mp4',
+    },
+    {
+      title: 'RemoteApp – Single Application Launch',
+      description: 'The application starts automatically when the user connects.',
+      video: '/assets/video/tsplus-ra-remoteapp-single-app.mp4',
+    },
+    {
+      title: 'HTML5 – Full Desktop',
+      description: 'The user signs in through the web portal and accesses the full desktop in any browser.',
+      video: '/assets/video/tsplus-ra-html5-full-desktop.mp4',
+    },
+    {
+      title: 'HTML5 – Single Application Launch',
+      description: 'The user signs in through the web portal and the application launches automatically in the browser.',
+      video: '/assets/video/tsplus-ra-html5-single-app.mp4',
+    },
+    {
+      title: 'HTML5 – Progressive Web App',
+      description: 'The user accesses the full desktop through a focused Progressive Web App experience.',
+      video: '/assets/video/tsplus-ra-html5-progressive-web-app.mp4',
+    },
+    {
+      title: 'HTML5 – Web Portal',
+      description: 'The user signs in through the web portal and opens applications in separate browser tabs.',
+      video: '/assets/video/tsplus-ra-html5-web-portal.mp4',
+    },
+  ] as const;
+
   /** Product-owned artwork used when a page does not have a dedicated UI screenshot set. */
   readonly productTourSlides = computed<readonly ProductTourSlide[]>(() => {
     const view = this.view();
     if (!view) return [];
+    if (this.isWhatsAppSmb()) return this.whatsAppSmbTourSlides;
     if (view.name === 'Acronis True Image') return this.acronisTrueImageTourSlides;
     if (view.name === 'Microsoft 365 Backup') return this.microsoft365BackupTourSlides;
     if (this.isVmc()) return this.vmcTourSlides;
@@ -745,6 +808,8 @@ export class ProductPage {
   readonly isCloudBackup = computed(() => this.view()?.name.toLowerCase().startsWith('cloud backup') ?? false);
 
   readonly isInfrastructure = computed(() => this.view()?.name === 'Infrastructure');
+
+  readonly isWhatsAppSmb = computed(() => this.view()?.name === 'WhatsApp SMB');
 
   /** Every product's available videos, shown together immediately before reviews. */
   readonly showcaseVideos = computed<readonly { label: string; url: SafeResourceUrl }[]>(() => {

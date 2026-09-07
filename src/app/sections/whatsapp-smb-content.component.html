@@ -1,0 +1,98 @@
+<section class="wa-smb-content" aria-label="WhatsApp Business Automation features and plans">
+  <h2 class="pp-sec">Overview</h2>
+  <div class="wa-overview">
+    <p><strong>XcellHost WhatsApp Business SMB</strong> is a full-stack growth engine for marketing, sales and support on WhatsApp, Instagram and RCS. Run broadcast campaigns and no-code chatbots, handle every conversation from a shared team inbox, deploy AI agents that reply 24/7, and close deals with a WhatsApp-first Sales CRM—all from one platform.</p>
+    <p>You get an official <strong>Green Tick</strong> verified WhatsApp Business API, click-to-WhatsApp ads, catalogues and payments, and 100+ integrations with the tools you already use. XcellHost handles the setup, Green Tick verification and onboarding, and can manage it for you—with a GST invoice and local support.</p>
+  </div>
+
+  <h2 class="pp-sec">One platform for marketing, support &amp; sales</h2>
+  <div class="wa-hub-grid">
+    @for (hub of hubs; track hub.title) {
+      <article class="wa-hub-card" [attr.data-tone]="hub.tone">
+        <span class="wa-eyebrow"><i>{{ hub.icon }}</i>{{ hub.eyebrow }}</span>
+        <h3>{{ hub.title }}</h3><p>{{ hub.body }}</p>
+        <ul>@for (item of hub.items; track item) { <li><span>✓</span>{{ item }}</li> }</ul>
+      </article>
+    }
+  </div>
+
+  <h2 class="pp-sec">Powerful capabilities that maximise your reach</h2>
+  <div class="wa-cap-grid">
+    @for (item of capabilities; track item.title) {
+      <article class="wa-cap-card" [attr.data-tone]="item.tone">
+        <span class="wa-cap-label">{{ item.eyebrow }}</span><i class="wa-cap-icon">{{ item.icon }}</i>
+        <h3>{{ item.title }}</h3><p>{{ item.body }}</p>
+      </article>
+    }
+  </div>
+
+  <h2 class="pp-sec">Tailored solutions by industry</h2>
+  <p class="wa-lead">Scalable, secure and smart automation for every kind of business.</p>
+  <div class="wa-industry-grid">
+    @for (item of industries; track item[1]; let i = $index) {
+      <article><i [attr.data-tone]="i % 6">{{ item[0] }}</i><h3>{{ item[1] }}</h3><p>{{ item[2] }}</p></article>
+    }
+  </div>
+  <p class="wa-note centered">Also tailored for Beauty &amp; Cosmetics, Home Decor &amp; Furnishing, Marketing Agencies, Freelancers &amp; Consultants and Banking &amp; Finance.</p>
+
+  <h2 class="pp-sec">Seamlessly integrate WhatsApp with your tech stack</h2>
+  <p class="wa-lead">Connect the e-commerce platforms, CRMs and tools you already use—with 100+ integrations.</p>
+  <div class="wa-integration-grid">
+    @for (item of integrations; track item[0]) {
+      <article><i [style.background]="item[2]">{{ item[0].slice(0, 1) }}</i><span><strong>{{ item[0] }}</strong><small>{{ item[1] }}</small></span></article>
+    }
+  </div>
+
+  <h2 class="pp-sec">WhatsApp at the centre of your business</h2>
+  <p class="wa-lead">One platform connected to the e-commerce, CRM and productivity tools you already run.</p>
+  <div class="wa-network" role="img" aria-label="WhatsApp Business API connected to Shopify, HubSpot, WooCommerce, Zoho CRM, Salesforce and Google Sheets">
+    <span class="wa-network-line l1"></span><span class="wa-network-line l2"></span><span class="wa-network-line l3"></span>
+    <div class="wa-network-centre"><strong>WhatsApp</strong><small>Business API</small></div>
+    @for (item of integrations.slice(0, 6); track item[0]; let i = $index) {
+      <div class="wa-network-node" [class]="'n' + i"><i [style.background]="item[2]">{{ item[0].slice(0, 1) }}</i><strong>{{ item[0] }}</strong></div>
+    }
+  </div>
+
+  <h2 class="pp-sec" id="whatsappPlans">Marketing &amp; Support Hub plans (INR)</h2>
+  <p class="wa-lead">The best WhatsApp &amp; Instagram automation tools with affordable plans. Prices shown per month (excl. taxes)—commit quarterly to save 8% or yearly to save 20%.</p>
+  <div class="wa-billing" role="tablist" aria-label="Billing term">
+    @for (term of billingTerms; track term.key) {
+      <button type="button" role="tab" [class.active]="billingTerm() === term.key" [attr.aria-selected]="billingTerm() === term.key" (click)="selectBillingTerm(term.key)">{{ term.label }} @if (term.saving) { <small>{{ term.saving }}</small> }</button>
+    }
+  </div>
+  <div class="wa-plan-grid">
+    @for (plan of plans; track plan.name) {
+      <article class="wa-plan-card" [class.hot]="plan.hot">
+        <header><span>{{ plan.name }}</span>@if (plan.hot) { <b>Most popular</b> }</header>
+        <h3>{{ plan.name }}</h3><p>{{ plan.desc }}</p>
+        <div class="wa-plan-meta"><span>Agents<strong>{{ plan.meta }}</strong></span><span>Billing<strong>{{ billingTerm() }}</strong></span></div>
+        <ul>@for (feature of plan.features; track feature) { <li><span>✓</span>{{ feature }}</li> }</ul>
+        <div class="wa-price">@if (plan.prices) { <strong>₹{{ plan.prices[billingTerm()] }}</strong><small>/mo</small> } @else { <strong class="request">On request</strong> }</div>
+        <button type="button" (click)="configure(plan.name)">{{ plan.prices ? 'Start / Configure' : 'Get in Touch' }} <span>→</span></button>
+      </article>
+    }
+  </div>
+  <p class="wa-note">💳 Prices per month, excl. taxes · unlimited messages based on your WhatsApp number · message/conversation charges billed by Meta on top. Pay via UPI · Cards · NetBanking. GST invoice on every order.</p>
+
+  <h2 class="pp-sec">Also available</h2>
+  <div class="wa-addon-grid">
+    @for (addon of addons; track addon.name) {
+      <article class="wa-plan-card">
+        <header><span>{{ addon.label }}</span></header><h3>{{ addon.name }}</h3><p>{{ addon.desc }}</p>
+        <div class="wa-addon-meta">Includes <strong>{{ addon.meta }}</strong></div>
+        <ul>@for (feature of addon.features; track feature) { <li><span>✓</span>{{ feature }}</li> }</ul>
+        <div class="wa-price"><strong>{{ addon.price }}</strong><small>/mo (+GST)</small></div>
+        <button type="button" (click)="configure(addon.name)">Start / Configure <span>→</span></button>
+      </article>
+    }
+  </div>
+  <p class="wa-note">💳 Add-on plans billed monthly (excl. taxes). Upgrade to Growth or Advanced to activate WhatsApp AI Agents.</p>
+
+  <h2 class="pp-sec">More reasons to choose XcellHost + Interakt</h2>
+  <p class="wa-lead">Get a Green Tick verified WhatsApp Business API account, set up and managed by XcellHost.</p>
+  <div class="wa-reasons">
+    @for (reason of reasons; track reason[0]; let i = $index) {
+      <article><span>{{ (i + 1).toString().padStart(2, '0') }}</span><h3>{{ reason[0] }}</h3><p>{{ reason[1] }}</p></article>
+    }
+  </div>
+</section>

@@ -56,7 +56,7 @@ export class InfrastructureContentComponent {
   readonly tabs: readonly ArchitectureTab[] = [
     {
       key: 'security',
-      label: 'Infrastructure',
+      label: 'Security Architecture',
       title: 'Security Architecture',
       description: 'From the global network and DDoS protection to application security, monitoring and disaster recovery, each layer is designed to reduce risk without slowing your business down.',
       image: '/assets/images/infrastructure-security-architecture.jpg',
@@ -64,7 +64,7 @@ export class InfrastructureContentComponent {
     },
     {
       key: 'cloud',
-      label: 'Infrastructure',
+      label: 'Cloud Architecture',
       title: 'Cloud Architecture',
       description: 'Flexible compute, resilient storage and secure networking work together across our cloud platform so you can launch quickly, scale on demand and keep workloads available.',
       image: '/assets/images/infrastructure-cloud-architecture.jpg',

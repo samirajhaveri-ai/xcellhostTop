@@ -1,5 +1,5 @@
 @if (view(); as v) {
-  <div class="ppage as-page" id="ppage" [class.infrastructure-page]="isInfrastructure()" [class.edr-page]="isAdvancedEdr()" [class.scrutiny-edr-page]="isScrutinyEdr()" [class.rmm-page]="isRmm()" [class.scrutiny-page]="slug() === 'scrutiny-dlp' || slug() === 'scrutiny-edr' || slug() === 'vortex-soc' || slug() === 'vortex-seg'" [class.cctv-page]="slug() === 'video-surveillance-as-a-service'" [class.cmc-page]="isCmc()" [class.tsplus-monitoring-page]="isTsplusServerMonitoring()" [class.tsplus-support-page]="isTsplusRemoteSupport()" [class.tsplus-advanced-security-page]="isTsplusAdvancedSecurity()" [class.tsplus-remote-access-page]="isTsplusRemoteAccess()">
+  <div class="ppage as-page" id="ppage" [class.infrastructure-page]="isInfrastructure()" [class.edr-page]="isAdvancedEdr()" [class.scrutiny-edr-page]="isScrutinyEdr()" [class.rmm-page]="isRmm()" [class.whatsapp-smb-page]="isWhatsAppSmb()" [class.scrutiny-page]="slug() === 'scrutiny-dlp' || slug() === 'scrutiny-edr' || slug() === 'vortex-soc' || slug() === 'vortex-seg'" [class.cctv-page]="slug() === 'video-surveillance-as-a-service'" [class.cmc-page]="isCmc()" [class.tsplus-monitoring-page]="isTsplusServerMonitoring()" [class.tsplus-support-page]="isTsplusRemoteSupport()" [class.tsplus-advanced-security-page]="isTsplusAdvancedSecurity()" [class.tsplus-remote-access-page]="isTsplusRemoteAccess()">
     <div
       class="pp-hero"
       [class.sitelock-hero]="v.name === 'Web Security (SiteLock)'"
@@ -70,6 +70,28 @@
       } @else if (isTsplusRemoteAccess()) {
         <div class="pph-scene pph-tsplus-remote-access" aria-hidden="true">
           <xh-tsplus-remote-access-hero />
+        </div>
+      } @else if (isWhatsAppSmb()) {
+        <div class="pph-scene pph-whatsapp-smb" aria-hidden="true">
+          <div class="wa-hero-stage">
+            <span class="wa-hero-orbit"></span>
+            <div class="wa-hero-phone">
+              <div class="wa-hero-screen">
+                <div class="wa-hero-top"><span>X</span><div><b>XcellHost Business</b><small>● Online</small></div></div>
+                <div class="wa-hero-chat">
+                  <p class="out">Hi! I need help with my order.<small>10:30 AM ✓✓</small></p>
+                  <p>Hello! 👋 Thanks for reaching out. How can we help you today?<small>10:30 AM</small></p>
+                  <p class="out">I want to track my order.<small>10:31 AM ✓✓</small></p>
+                  <p>Sure! Please share your order number.<small>10:31 AM</small></p>
+                  <i class="wa-hero-typing"><span></span><span></span><span></span></i>
+                </div>
+              </div>
+            </div>
+            <div class="wa-hero-float wa-hero-instagram"><i>◎</i><span><b>Instagram</b><small>DMs automated</small></span></div>
+            <div class="wa-hero-float wa-hero-rcs"><i>▣</i><span><b>RCS</b><small>rich messaging</small></span></div>
+            <div class="wa-hero-float wa-hero-ai"><i>✦</i><span><b>AI Agents</b><small>24/7 replies</small></span></div>
+            <div class="wa-hero-powered"><small>Powered By</small><span><i><svg viewBox="0 0 24 24" fill="none"><path d="M6 8h12l-1 12H7zM9 8a3 3 0 016 0" stroke="currentColor" stroke-width="2" /></svg></i><b>interakt</b></span></div>
+          </div>
         </div>
       } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
         <div
@@ -267,6 +289,9 @@
           <xh-infrastructure-content />
         }
         @if (!isInfrastructure() && !isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess() && !isScrutinyEdr()) {
+        @if (isWhatsAppSmb()) {
+          <xh-whatsapp-smb-content />
+        } @else {
         @if (slug() === 'video-surveillance-as-a-service') {
           <xh-cloud-cctv-content />
         }
@@ -1213,6 +1238,7 @@
           </div>
         }
         }
+        }
 
         @if (v.name !== 'Tally on Cloud') {
         @if (!isSmbCyber() && !isRmm()) {
@@ -1281,6 +1307,16 @@
           }
         </div>
 
+        @if (isWhatsAppSmb()) {
+          <section class="wa-action-tour" aria-labelledby="waActionTourTitle">
+            <div class="pp-sec" id="waActionTourTitle">Watch it in action</div>
+            <button type="button" class="wa-action-preview" (click)="openProductScreenshotTour()">
+              <img src="/assets/images/whatsapp-smb-tour-5.png" alt="WhatsApp SMB no-code workflow builder" />
+              <span><b>Explore the WhatsApp automation workspace</b><small>Open the 10-step screenshot tour</small><i>View tour →</i></span>
+            </button>
+          </section>
+        }
+
         @if (showcaseVideos().length && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess()) {
           <section class="tally-videos" aria-labelledby="showcaseVideosTitle">
             <div class="pp-sec" id="showcaseVideosTitle">Watch it in action</div>
@@ -1346,6 +1382,27 @@
                   <iframe src="https://www.youtube-nocookie.com/embed/kcWVIAJK2Qs?rel=0&amp;playsinline=1" title="TSplus Remote Access use cases" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
               </article>
+            </div>
+          </section>
+
+          <section class="tsplus-connection-experiences" aria-labelledby="tsplusConnectionExperiencesTitle">
+            <div class="pp-sec" id="tsplusConnectionExperiencesTitle">Connection experiences</div>
+            <p class="tsplus-connection-kicker">Enable ideal user experiences</p>
+            <div class="tsplus-connection-grid">
+              @for (experience of tsplusRemoteAccessExperiences; track experience.video) {
+                <article class="tsplus-connection-card">
+                  <div class="tsplus-connection-video">
+                    <video controls muted playsinline preload="metadata" [attr.aria-label]="experience.title">
+                      <source [src]="experience.video" type="video/mp4" />
+                      Your browser does not support this video.
+                    </video>
+                  </div>
+                  <div class="tsplus-connection-copy">
+                    <h3>{{ experience.title }}</h3>
+                    <p>{{ experience.description }}</p>
+                  </div>
+                </article>
+              }
             </div>
           </section>
         }
