@@ -2167,8 +2167,11 @@
   .tally-video-card{min-width:0;text-align:center}
   .tally-video-frame{position:relative;aspect-ratio:16/9;overflow:hidden;border:4px solid #fff;border-radius:7px;background:#0a2140;box-shadow:0 3px 12px rgba(0,0,0,.45)}
   .tally-video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+  .tally-video-frame>img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover}
+  .scrutiny-dlp-action-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
   .tally-video-card h3{display:flex;justify-content:center;margin:0 0 18px;color:#050505;font:700 20px/1.25 var(--disp)}
   .tally-video-card h3 span{display:inline-flex;align-items:center;justify-content:center;padding:10px 20px;border:1px solid #cfe0f5;border-radius:999px;background:linear-gradient(180deg,#fff,#f4f8ff);box-shadow:0 10px 24px rgba(7,45,96,.08);color:var(--navy);font:800 13px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+  @media(max-width:900px){.scrutiny-dlp-action-grid{grid-template-columns:1fr}}
   @media(max-width:760px){.tally-video-grid{grid-template-columns:1fr;gap:26px;margin-bottom:30px}.tally-video-card h3{margin-bottom:14px}.tally-video-card h3 span{padding:9px 16px;font-size:12px}}
 
   /* use cases list */
@@ -4864,3 +4867,29 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 
 
 .pph-scrutiny-illus .pph-illus-img{filter:drop-shadow(0 22px 34px rgba(10,42,87,.24))}.scrutiny-powered{display:flex;flex-direction:column;align-items:center;gap:3px}.scrutiny-powered strong{font-size:22px;letter-spacing:-.05em;color:#0a2a57}.scrutiny-powered strong::first-letter{color:#19c46a}.scrutiny-powered .pw-sub{font-size:10px}
+/* Infrastructure architecture tabs */
+.ppage.infrastructure-page .pp-body{padding-top:40px}
+.infra-architecture{padding:18px 0 72px}
+.ppage.infrastructure-page .infra-architecture{padding-top:0}
+.ppage.infrastructure-page .infra-architecture-heading .pp-sec{margin-top:0}
+.infra-architecture-heading{text-align:center;max-width:760px;margin:0 auto 30px}
+.infra-architecture-heading .pp-sec{margin-bottom:12px}
+.infra-architecture-heading h2{margin:0;color:var(--navy);font:700 clamp(36px,3vw,18px)/1.15 var(--disp);max-width:760px;}
+.infra-architecture-heading p{margin:14px auto 0;color:var(--slate);font-size:16px;line-height:1.65}
+.infra-architecture-layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:34px;align-items:stretch;max-width:1120px;margin:0 auto}
+.infra-architecture-tabs{display:flex;flex-direction:column;gap:4px;border-right:1px solid #d6deeb;padding:8px 18px 8px 0}
+.infra-architecture-tabs button{position:relative;padding:18px 20px;border:0;border-radius:8px;background:transparent;color:#a1a7b0;cursor:pointer;text-align:left;font:600 16px/1.2 var(--body);transition:color .2s ease,background .2s ease}
+.infra-architecture-tabs button:hover{color:var(--blue);background:#f7faff}
+.infra-architecture-tabs button.is-active{color:var(--navy);background:#f7faff}
+.infra-architecture-tabs button.is-active::after{position:absolute;top:8px;right:-19px;bottom:8px;width:3px;border-radius:2px;background:var(--blue);content:''}
+.infra-architecture-panel{display:block;max-width:1120px;margin:0 auto;padding:34px;border:1px solid #d6e1f1;border-radius:22px;background:#fff;box-shadow:0 16px 40px rgba(4,30,66,.08)}
+.infra-architecture-copy{max-width:780px;padding:0 10px 26px 14px}
+.infra-architecture-kicker{display:inline-block;margin-bottom:12px;color:var(--blue);font:700 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase}
+.infra-architecture-copy h3{margin:0;color:var(--navy);font:700 clamp(24px,2.5vw,34px)/1.2 var(--disp)}
+.infra-architecture-copy p{margin:16px 0 22px;color:var(--slate);font-size:16px;line-height:1.7}
+.infra-architecture-points{display:grid;gap:10px;color:var(--navy);font-weight:600}
+.infra-architecture-points span::before{display:inline-grid;place-items:center;width:20px;height:20px;margin-right:9px;border-radius:50%;background:#e8f1ff;color:var(--blue);content:'✓';font-size:12px}
+.infra-architecture-figure{margin:0;overflow:hidden;border-radius:14px;background:#f5f8fc}
+.infra-architecture-figure img{display:block;width:100%;height:auto;max-height:720px;object-fit:contain}
+.infra-architecture-figure figcaption{padding:10px 14px;color:#71809a;font-size:11px;text-align:center}
+@media(max-width:760px){.infra-architecture{padding-bottom:46px}.infra-architecture-layout{grid-template-columns:1fr;gap:18px}.infra-architecture-tabs{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid #d6deeb;padding:0 0 8px}.infra-architecture-tabs button{min-width:210px;padding:14px 16px;text-align:center}.infra-architecture-tabs button.is-active::after{top:auto;right:8px;bottom:-9px;left:8px;width:auto;height:3px}.infra-architecture-panel{padding:18px;border-radius:16px}.infra-architecture-copy{padding:6px 6px 20px}.infra-architecture-figure{order:initial}}

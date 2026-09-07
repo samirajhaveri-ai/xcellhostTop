@@ -5,6 +5,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   standalone: true,
   templateUrl: './scrutiny-dlp-content.component.html',
   styleUrl: './scrutiny-dlp-content.component.css',
+  styles: [`
+    :host{display:grid;gap:36px}
+    :host .dlp-overview,:host .dlp-section,:host .dlp-platform{margin:0}
+    :host .dlp-overview>.pp-sec,:host .dlp-section>.pp-sec,:host .dlp-platform>.pp-sec{margin-top:0}
+    @media(max-width:700px){:host{gap:30px}}
+  `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ScrutinyDlpContentComponent {
