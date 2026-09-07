@@ -20,6 +20,23 @@ export class Microsoft365SmbPage {
 
   readonly openFaq = signal<number | null>(0);
   readonly includesTeams = signal(true);
+  readonly quoteQuantities = signal<Record<string, number>>({
+    basic: 1,
+    standard: 1,
+    premium: 1,
+  });
+  readonly basicTeamsCheckoutUrl =
+    'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-M365-BB-WT-A';
+  readonly standardTeamsCheckoutUrl =
+    'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-M365-BS-WT-A';
+  readonly premiumTeamsCheckoutUrl =
+    'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-M365-BP-WT-A';
+  readonly basicNoTeamsCheckoutUrl =
+    'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-M365-BB-NT-A';
+  readonly standardNoTeamsCheckoutUrl =
+    'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-M365-BS-NT-A';
+  readonly premiumNoTeamsCheckoutUrl =
+    'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-M365-BP-NT-A';
   readonly callbackMessage = signal(
     'We respond within one business day · No spam, ever.',
   );
@@ -38,6 +55,13 @@ export class Microsoft365SmbPage {
 
   setTeamsOption(includesTeams: boolean): void {
     this.includesTeams.set(includesTeams);
+  }
+
+  adjustQuantity(plan: string, change: number): void {
+    this.quoteQuantities.update((quantities) => ({
+      ...quantities,
+      [plan]: Math.min(300, Math.max(0, (quantities[plan] ?? 0) + change)),
+    }));
   }
 
   requestPresentation(event: Event): void {

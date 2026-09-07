@@ -29,19 +29,33 @@ interface FlagshipCard {
   readonly service?: string;
 }
 
-type FlagshipGroup = 'business' | 'infrastructure' | 'protection' | 'workplace';
+type FlagshipGroup = 'business' | 'infrastructure' | 'protection' | 'workplace' | 'digital-trust' | 'security' | 'ai';
+type FlagshipTabId = 'web-presence' | 'cloud' | 'productivity' | 'data-protect' | 'digital-trust' | 'security' | 'ai';
 
 interface FlagshipTab {
-  readonly id: FlagshipGroup;
+  readonly id: FlagshipTabId;
   readonly label: string;
 }
 
 const FLAGSHIP_TABS: readonly FlagshipTab[] = [
-  { id: 'business', label: 'SMB Cloud' },
-  { id: 'infrastructure', label: 'Cloud Infra' },
-  { id: 'protection', label: 'Cloud Data Protect' },
-  { id: 'workplace', label: 'Cloud Productivity' },
+  { id: 'web-presence', label: 'Web Presence' },
+  { id: 'cloud', label: 'Cloud' },
+  { id: 'productivity', label: 'Productivity' },
+  { id: 'data-protect', label: 'Data Protect' },
+  { id: 'digital-trust', label: 'Digital Trust' },
+  { id: 'security', label: 'Security' },
+  { id: 'ai', label: 'AI' },
 ];
+
+const FLAGSHIP_TAB_SOURCES: Readonly<Record<FlagshipTabId, FlagshipGroup | null>> = {
+  'web-presence': 'business',
+  cloud: 'infrastructure',
+  productivity: 'protection',
+  'data-protect': 'workplace',
+  'digital-trust': null,
+  security: null,
+  ai: null,
+};
 
 const FLAGSHIP_CARD_GROUPS: Readonly<Record<string, readonly FlagshipGroup[]>> = {
   'Tally on Cloud': ['business'],
@@ -54,19 +68,19 @@ const FLAGSHIP_CARD_GROUPS: Readonly<Record<string, readonly FlagshipGroup[]>> =
   'WhatsApp SMB': ['business'],
   'Performance Cloud': ['infrastructure'],
   'Bare Metal Server': ['infrastructure'],
-  'GPU Cloud': ['infrastructure'],
+  'GPU Cloud': ['infrastructure', 'ai'],
   'Global Cloud': ['infrastructure'],
   'Cloud Object Storage': ['protection'],
   'Cloud Disaster Recovery': ['protection'],
   'Microsoft 365 Backup': ['protection'],
   'Cloud Mobile Device Mgmt': ['protection'],
-  'DPDPA Platform': [],
+  'DPDPA Platform': ['digital-trust'],
   'Business Email': ['workplace'],
-  'Advanced Email Security': ['workplace'],
+  'Advanced Email Security': ['workplace', 'security'],
   'Google Workspace': ['workplace'],
   'Microsoft 365 for Enterprise': ['workplace'],
   'Zoho Workplace': ['workplace'],
-  'Enterprise DMARC': ['workplace'],
+  'Enterprise DMARC': ['workplace', 'digital-trust'],
   'Microsoft 365': [],
 };
 
@@ -293,10 +307,10 @@ const FLAGSHIP_CARDS: readonly FlagshipCard[] = [
         </div>
         <div
           class="prod-grid prod-grid-tabbed"
-          [class.smb-grid]="activeTab() === 'business'"
-          [class.infra-grid]="activeTab() === 'infrastructure'"
-          [class.protect-grid]="activeTab() === 'protection'"
-          [class.productivity-grid]="activeTab() === 'workplace'"
+          [class.smb-grid]="activeSourceGroup() === 'business'"
+          [class.infra-grid]="activeSourceGroup() === 'infrastructure'"
+          [class.protect-grid]="activeSourceGroup() === 'protection'"
+          [class.productivity-grid]="activeSourceGroup() === 'workplace'"
           role="tabpanel"
           [id]="'flag-panel-' + activeTab()"
           [attr.aria-labelledby]="'flag-tab-' + activeTab()"
@@ -331,7 +345,8 @@ export class FlagshipComponent {
   private readonly catalog = inject(CatalogService);
 
   readonly tabs = FLAGSHIP_TABS;
-  readonly activeTab = signal<FlagshipGroup>('business');
+  readonly activeTab = signal<FlagshipTabId>('web-presence');
+  readonly activeSourceGroup = computed(() => FLAGSHIP_TAB_SOURCES[this.activeTab()]);
 
   /** every card, with the product route resolved through the catalogue */
   readonly cards = FLAGSHIP_CARDS.map((c) => {
@@ -346,7 +361,8 @@ export class FlagshipComponent {
   });
 
   readonly visibleCards = computed(() => {
-    const group = this.activeTab();
+    const group = this.activeSourceGroup();
+    if (!group) return [];
     const cards = this.cards.filter((card) => card.groups.includes(group));
 
     if (group === 'business') {
@@ -380,7 +396,7 @@ export class FlagshipComponent {
     return cards;
   });
 
-  selectTab(tab: FlagshipGroup): void {
+  selectTab(tab: FlagshipTabId): void {
     this.activeTab.set(tab);
   }
 }

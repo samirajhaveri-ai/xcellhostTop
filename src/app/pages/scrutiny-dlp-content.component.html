@@ -1,40 +1,69 @@
-<div class="dlp-content">
-  <section>
-    <span class="dlp-kicker">What Scrutiny DLP does</span><h2>Discover. Classify. Monitor. Protect.</h2>
-    <p>Most data does not leave through a dramatic breach. It walks out on a USB stick, in personal webmail, in a screenshot, in a photo of a screen, or pasted into a public AI chatbot. Scrutiny DLP covers those channels from one policy engine and can run fully on-premise.</p>
-    <div class="dlp-feature-grid">
-      <article><b>Every exit route, one policy engine</b><p>Control USB, print, clipboard, web and application uploads, RDP, screenshots, email and removable media.</p></article>
-      <article><b>Built for how data leaks today</b><p>Govern GenAI uploads, detect screen photography, add hidden watermarks and inspect images with OCR.</p></article>
-      <article><b>Evidence that stands up later</b><p>Capture screens, window changes and video, sync evidence offline, quarantine risky files and retain immutable logs.</p></article>
-      <article><b>A genuine on-premise option</b><p>Choose a local console, your private cloud or hybrid deployment, with support for employee-owned devices.</p></article>
-    </div>
-  </section>
-  <section>
-    <span class="dlp-kicker">Complete coverage</span><h2>Fifteen data-movement control points</h2><p>Walk this list through with whoever owns your audit obligation.</p>
-    <div class="dlp-cap-grid">
-      @for (item of capabilities; track item.title) { <article><span>✓</span><h3>{{ item.title }}</h3><p>{{ item.text }}</p></article> }
-    </div>
-  </section>
-  <section class="dlp-band">
-    <span class="dlp-kicker">Platform, AI and compliance</span><h2>Protect data without creating another blind spot</h2>
-    <div class="dlp-columns">
-      <article><h3>Platform support</h3><ul><li>Windows, macOS and Linux native agents</li><li>On-premise, private-cloud and hybrid deployment</li><li>Offline evidence sync</li><li>BYOD support</li></ul></article>
-      <article><h3>Smart AI / LLM assistance</h3><ul><li>Local or private-LLM classification</li><li>AI-based risk scoring</li><li>Automatic incident summaries</li><li>Policy recommendations</li></ul></article>
-      <article><h3>DPDP Act, 2023 ready</h3><ul><li>Discover personal data</li><li>Audit processor activity</li><li>Immutable access and transfer trails</li><li>Audit-ready mapped enforcement</li></ul></article>
-    </div>
-  </section>
-  <section>
-    <span class="dlp-kicker">Policy follows the data</span><h2>The data path Scrutiny DLP watches</h2>
-    <div class="dlp-flow"><span><b>1</b>User / device</span><span><b>2</b>Endpoints</span><span><b>3</b>Applications</span><span><b>4</b>Web / cloud</span><span><b>5</b>Email</span><span><b>6</b>Removable</span></div>
-    <div class="dlp-tags"><span>Cross-platform agent</span><span>AI / LLM classification</span><span>Anti-photo protection</span><span>Hidden watermarking</span><span>OCR inspection</span><span>GenAI protection</span><span>Offline evidence</span><span>100% on-premise option</span></div>
-  </section>
-  <section class="dlp-band">
-    <span class="dlp-kicker">Flexible operations</span><h2>Run it yourself, or let XcellHost run it</h2><p>License the platform for your team or take it as a managed service with deployment, policy tuning, 24×7 monitoring, triage and compliance reporting.</p>
-    <div class="dlp-columns two"><article><h3>What we do</h3><ul><li>Scope and license to your estate</li><li>Deploy, integrate and tune policy</li><li>Monitor through a staffed Mumbai SOC</li><li>Triage and document response</li><li>Monthly reports and quarterly reviews</li></ul></article><article><h3>Why XcellHost</h3><ul><li>Managed cloud and security since 1999</li><li>ISO 27001 and ISO 20000-1 certified</li><li>One vendor for license, deployment and support</li><li>INR billing and GST-compliant invoices</li></ul></article></div>
-  </section>
-  <section>
-    <span class="dlp-kicker">Questions we get asked</span><h2>Scrutiny DLP FAQs</h2>
-    <div class="dlp-faq">@for (faq of faqs; track faq.q) { <article><button type="button" (click)="toggleFaq($event)">{{ faq.q }}<span>+</span></button><p>{{ faq.a }}</p></article> }</div>
-  </section>
-  <section class="dlp-contact" id="contact"><div><span class="dlp-kicker">Talk to the security team</span><h2>Protect the routes your sensitive data actually takes</h2><p>Tell us what you need to protect, your endpoint and mailbox counts, and whether deployment must be on-premise, private cloud, hybrid or air-gapped.</p></div><div><a class="btn btn-primary" href="tel:+912267111555">Call +91 22 6711 1555</a><a class="btn btn-ghost" href="mailto:sales@xcellhost.cloud">Email sales</a></div></section>
-</div>
+<section class="dlp-overview" aria-labelledby="dlpOverviewTitle">
+  <div class="pp-sec" id="dlpOverviewTitle">What Scrutiny DLP does</div>
+  <p class="pp-ov">Most data does not leave through a dramatic breach. It walks out on a USB stick, in a personal webmail attachment, in a screenshot, in a photo taken of the screen, or pasted into a public AI chatbot. Scrutiny DLP covers every one of those channels from a single policy engine, and runs fully on-premise if your compliance position requires it. <b>Discover. Classify. Monitor. Protect.</b></p>
+  <div class="dlp-feature-grid">
+    <article>
+      <span class="dlp-feature-icon amber" aria-hidden="true">USB</span>
+      <div><h3>Every exit route, one policy engine</h3><p class="dlp-feature-lead">Not a separate product per channel</p><ul><li>USB, print, clipboard, web upload, RDP and screenshots</li><li>Inbound and outbound email content</li><li>Removable media, external disks and SD cards</li><li>Application uploads and SaaS destinations</li></ul></div>
+    </article>
+    <article>
+      <span class="dlp-feature-icon purple" aria-hidden="true">AI</span>
+      <div><h3>Built for how data actually leaks today</h3><p class="dlp-feature-lead">Including the channels older DLP never covered</p><ul><li>GenAI upload governance for ChatGPT, Copilot, Gemini and others</li><li>Anti-photo protection when a camera lens points at the screen</li><li>Hidden watermarking to trace a leaked screenshot to a user</li><li>OCR inspection of images, scans and documents</li></ul></div>
+    </article>
+    <article>
+      <span class="dlp-feature-icon blue" aria-hidden="true">01</span>
+      <div><h3>Evidence that stands up later</h3><p class="dlp-feature-lead">Immutable, and it survives a wiped laptop</p><ul><li>Evidence capture including screenshots, window changes and screen video</li><li>Offline evidence sync when a device is disconnected</li><li>DLP quarantine vault with a reviewer workflow</li><li>Immutable logs and audit-ready reporting</li></ul></div>
+    </article>
+    <article>
+      <span class="dlp-feature-icon green" aria-hidden="true">✓</span>
+      <div><h3>A genuine on-premise option</h3><p class="dlp-feature-lead">Nothing has to leave the building</p><ul><li>100% on-premise deployment with a local console</li><li>Private cloud inside your own tenancy</li><li>Cloud-ready support for hybrid environments</li><li>BYOD support for employee-owned devices</li></ul></div>
+    </article>
+  </div>
+</section>
+
+<section class="dlp-section">
+  <div class="pp-sec">Complete coverage across every data-movement channel</div>
+  <p class="pp-ov">Fifteen control points. This is the list to walk through with whoever owns your audit obligation.</p>
+  <div class="dlp-cap-grid">
+    @for (item of capabilities; track item.title; let i = $index) {
+      <article><span class="dlp-cap-icon" aria-hidden="true">{{ i + 1 }}</span><h3>{{ item.title }}</h3><p>{{ item.text }}</p></article>
+    }
+  </div>
+</section>
+
+<section class="dlp-section">
+  <div class="pp-sec">Platform support, AI assistance and compliance</div>
+  <div class="dlp-panes">
+    <article><h3>Platform support</h3><ul><li><b>Windows, macOS, Linux</b><span>Native endpoint agent and controls on all three</span></li><li><b>On-premise / private cloud</b><span>100% on-premise deployment with a local console</span></li><li><b>Cloud ready</b><span>Supports hybrid environments</span></li><li><b>Offline evidence sync</b><span>Store evidence securely while offline and sync when reconnected</span></li><li><b>BYOD support</b><span>Protect corporate data on employee-owned devices</span></li></ul></article>
+    <article class="purple"><h3>Smart AI / LLM assistance</h3><ul><li><b>Document classification</b><span>Classify documents using local or private LLMs</span></li><li><b>Risk scoring</b><span>AI-based risk scoring for users, files and activities</span></li><li><b>Activity summaries</b><span>Auto-generated incident summaries and insights</span></li><li><b>Policy recommendations</b><span>AI suggests policies from observed behaviour patterns</span></li></ul></article>
+    <article class="orange"><h3>DPDP Act, 2023 ready</h3><ul><li><span>Discover personal data across endpoints and shares</span></li><li><span>Audit data processors and evidence their activity</span></li><li><span>Keep immutable trails of file modification, access and transfer</span></li><li><span>Generate audit-ready reports out of the box</span></li><li><span>Map policy enforcement to your obligations</span></li></ul></article>
+  </div>
+
+  <div class="dlp-path-copy"><h3>The data path Scrutiny DLP watches</h3><p>Policy follows the data rather than the device, so the same rule applies whether a file is copied to a USB stick, dragged into a browser upload or pasted into a chatbot prompt.</p></div>
+  <div class="dlp-flow">
+    <article><i>1</i><b>User / device</b><span>Identity and device posture</span></article><article><i>2</i><b>Endpoints</b><span>Files at rest and in use</span></article><article><i>3</i><b>Applications</b><span>Copy, paste, print, screenshot</span></article><article><i>4</i><b>Web / cloud</b><span>Uploads, SaaS and GenAI tools</span></article><article><i>5</i><b>Email</b><span>Inbound and outbound content</span></article><article><i>6</i><b>Removable</b><span>USB and external media</span></article>
+  </div>
+  <div class="dlp-actions"><article><b>Detect</b><span>Discover and classify sensitive data wherever it lives</span></article><article><b>Monitor</b><span>Watch every data-movement channel continuously</span></article><article><b>Control</b><span>Block or allow based on policy rules and context</span></article><article><b>Protect</b><span>Prevent leakage and protect business data</span></article><article><b>Audit</b><span>Maintain logs and generate compliance reports</span></article></div>
+</section>
+
+<section class="dlp-section">
+  <div class="pp-sec">Key differentiators and where it fits</div>
+  <div class="dlp-tags"><span>Cross-platform native agent</span><span>AI / LLM powered classification</span><span>Anti-photo camera protection</span><span>Hidden metadata watermarking</span><span>OCR-enabled deep inspection</span><span>GenAI prompt and upload protection</span><span>Offline evidence collection</span><span>100% on-premise deployment option</span><span>Rich reports and dashboards</span></div>
+  <div class="dlp-tags industries"><span>CA / CS &amp; legal firms</span><span>Healthcare</span><span>BFSI &amp; finance</span><span>IT / software companies</span><span>BPO / KPO</span><span>Education</span><span>Manufacturing</span><span>Government &amp; public sector</span><span>Managed cloud customers</span></div>
+  <p class="dlp-note">Scrutiny DLP is usually chosen when an audit, a client contract or the DPDP Act is driving the project, or when an organisation has already had a leak it could not trace. Watermarking and evidence capture exist precisely for that second case.</p>
+</section>
+
+<section class="dlp-section">
+  <div class="pp-sec">Run it yourself, or let XcellHost run it</div>
+  <p class="pp-ov">Every module can be licensed for your own team to operate, or taken as a managed service. Most customers choose managed—the platform earns its keep when somebody is tuning detections and working alerts at three in the morning.</p>
+  <div class="dlp-panes two">
+    <article><h3>What we do</h3><ul><li><b>Scope and licence</b><span>Sized to your estate, not a headcount guess</span></li><li><b>Deploy and integrate</b><span>Connectors, policy design and tuning</span></li><li><b>Monitor 24×7</b><span>Staffed SOC in Mumbai, not an answering service</span></li><li><b>Triage and respond</b><span>We work the case and tell you what we did</span></li><li><b>Report</b><span>Monthly compliance packs and quarterly strategy review</span></li></ul></article>
+    <article class="green"><h3>Why XcellHost</h3><ul><li><b>Since 1999</b><span>Mumbai-based managed cloud and security provider</span></li><li><b>ISO 27001 &amp; ISO 20000-1</b><span>Certified security and service management</span></li><li><b>One accountable vendor</b><span>Licence, deployment, tuning and support in one contract</span></li><li><b>INR billing</b><span>GST-compliant invoicing and local support hours</span></li></ul></article>
+  </div>
+</section>
+
+<section class="dlp-platform">
+  <div class="pp-sec">The rest of the Cyberstanc platform</div>
+  <p class="pp-ov">Each module stands on its own, and each makes the others sharper because they share the same data lake, detection engine and case management.</p>
+  <div class="dlp-module-grid"><a href="/vortex-soc"><b>VORTEX <em>SOC</em></b><small>Security Operations Suite</small><p>SIEM, SOAR, UEBA, CSPM, CNVM, NBAD and case management in one suite.</p></a><a href="/vortex-seg"><b>VORTEX <em>SEG</em></b><small>Secure Email Gateway</small><p>Anti-phishing, anti-spoofing, anti-malware, email DLP and archival.</p></a><a href="/scrutiny-edr"><b>SCRUTINY <em>EDR</em></b><small>Endpoint Detection &amp; Response</small><p>Behavioural detection and response across Windows, macOS and Linux.</p></a></div>
+</section>

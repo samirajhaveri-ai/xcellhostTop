@@ -10,6 +10,7 @@ import {
   HostCredibilityComponent,
   IndustriesComponent,
   OutcomesComponent,
+  NewCategoryComponent,
   InsightsSectionComponent,
   MarqueeComponent,
   SatisfactionGuaranteeComponent,
@@ -42,6 +43,7 @@ const DESCRIPTION =
     WhyComponent,
     IndustriesComponent,
     OutcomesComponent,
+    NewCategoryComponent,
     CasesComponent,
     InsightsSectionComponent,
     GlobalLocationsMapComponent,
@@ -56,11 +58,12 @@ const DESCRIPTION =
     <xh-trust-bar />
     <xh-marquee />
     <xh-flagship />
-    <xh-directory />
     <xh-host-credibility />
     <xh-why />
     <xh-industries />
     <xh-outcomes />
+    <xh-new-category />
+    <xh-directory />
     <xh-cases />
     <xh-trusted-by />
     <xh-insights-section />

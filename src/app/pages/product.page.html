@@ -296,8 +296,16 @@
           <xh-cloud-cctv-content />
         }
         @if (!isSiteLock()) {
-          <div class="pp-sec">Overview</div>
-          <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
+          @if (slug() === 'scrutiny-dlp') {
+            <xh-scrutiny-dlp-content />
+          } @else if (slug() === 'vortex-seg') {
+            <xh-vortex-seg-content />
+          } @else if (slug() === 'vortex-soc') {
+            <xh-vortex-soc-content />
+          } @else {
+            <div class="pp-sec">Overview</div>
+            <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
+          }
 
           @if (isAcronisTrueImage()) {
             <xh-acronis-true-image-content />
@@ -472,6 +480,59 @@
               alt="Real-time Tally insights available securely on a mobile device"
             />
           </section>
+        } @else if (isSmbCloudDesktop()) {
+          <section class="tally-pricing smb-desktop-pricing" id="ppPlans" aria-labelledby="smbDesktopPricingTitle">
+            <div class="tally-price-heading">
+              <span>Flexible plans for every team size</span>
+              <h2 id="smbDesktopPricingTitle">SMB Cloud Desktop Plans</h2>
+              <p>Choose your billing period and get a secure Windows desktop for every user, from any device.</p>
+            </div>
+
+            <div class="tally-term-tabs" role="tablist" aria-label="Choose SMB Cloud Desktop billing period">
+              @for (term of tallyTerms; track term.key) {
+                <button
+                  type="button"
+                  role="tab"
+                  [class.is-active]="selectedTallyTerm() === term.key"
+                  [attr.aria-selected]="selectedTallyTerm() === term.key"
+                  (click)="selectTallyTerm(term.key)"
+                >
+                  @if (term.saving) { <small>{{ term.saving }}</small> }
+                  <span>{{ term.label }}</span>
+                </button>
+              }
+            </div>
+
+            <div class="tally-plan-grid">
+              @for (plan of smbDesktopPlans; track plan.users; let i = $index) {
+                <article class="tally-plan-card" [class.tally-plan-featured]="i === 1">
+                  <div class="tally-plan-band">For {{ plan.users }} users</div>
+                  <div class="tally-plan-main">
+                    <div class="tally-plan-name">
+                      <span aria-hidden="true">D</span>
+                      <div><b>{{ plan.name }}</b><small>{{ plan.edition }}</small></div>
+                    </div>
+                    <small>+GST · {{ activeTallyTerm().label }} billing</small>
+                  </div>
+                  <dl class="tally-plan-specs">
+                    <div><dt>Server Type</dt><dd>{{ plan.serverType }}</dd></div>
+                    <div><dt>Virtual CPU</dt><dd>{{ plan.cpu }}</dd></div>
+                    <div><dt>Virtual Memory</dt><dd>{{ plan.memory }}</dd></div>
+                    <div><dt>Disk Space</dt><dd>{{ plan.disk }}</dd></div>
+                    <div><dt>Data Transfer</dt><dd>Unlimited</dd></div>
+                    <div><dt>Backup</dt><dd>Every 8 Hrs</dd></div>
+                    <div><dt>Windows Desktop</dt><dd>Included</dd></div>
+                    <div><dt>Support</dt><dd>24×7</dd></div>
+                  </dl>
+                  <a class="tally-plan-action" href="#" (click)="selectSmbDesktopPlan(plan, $event)">
+                    <strong>&#8377;{{ formatInr(smbDesktopPrice(plan)) }}</strong>
+                    <span>Buy now <span aria-hidden="true">→</span></span>
+                  </a>
+                </article>
+              }
+            </div>
+            <p class="smb-desktop-plan-note">Plans are billed per team configuration. Taxes are additional. Contact us for custom user counts and application setup.</p>
+          </section>
         } @else if (isCloudDrive()) {
           <section class="cloud-drive-compare" aria-labelledby="cloudDriveCompareTitle">
             <div class="cloud-drive-compare-card">
@@ -616,7 +677,7 @@
               }
             </div>
           </section>
-        } @else if (!isAdvancedEdr() && !isSmbCyber() && !isRmm() && !isAcronisTrueImage() && !isSiteLock()) {
+        } @else if (!isAdvancedEdr() && !isSmbCyber() && !isRmm() && !isAcronisTrueImage() && !isSiteLock() && slug() !== 'scrutiny-dlp' && slug() !== 'vortex-seg' && slug() !== 'vortex-soc') {
           <div class="pp-sec">Plans &amp; pricing</div>
           <div class="pp-plans" id="ppPlans">
             @for (p of v.plans; track p.term) {
@@ -658,7 +719,7 @@
               }
             </div>
           </section>
-        } @else if (!isSmbCyber() && !isAcronisTrueImage() && !isSiteLock()) {
+        } @else if (!isSmbCyber() && !isAcronisTrueImage() && !isSiteLock() && slug() !== 'scrutiny-dlp' && slug() !== 'vortex-seg' && slug() !== 'vortex-soc') {
           @if (isAdvancedEdr()) {
             <section class="edr-feature-heading" aria-labelledby="edr-feature-title">
               <div class="edr-feature-copy">
@@ -877,55 +938,6 @@
                 }
               </div>
 
-              <section class="xh-outcomes" aria-labelledby="xh-outcomes-title">
-                <header class="xh-outcomes-head">
-                  <span class="xh-outcomes-kicker">THE XCELLHOST PLATFORM</span>
-                  <h2 id="xh-outcomes-title">How XcellHost builds outcomes</h2>
-                  <p>A proven process that turns your goals into measurable results.</p>
-                </header>
-                <div class="xh-outcomes-flow">
-                  <article class="xh-outcome-step">
-                    <span class="xh-outcome-icon" aria-hidden="true">&#9671;</span>
-                    <h3>1. Understand</h3>
-                    <p>We understand your business goals and requirements.</p>
-                  </article>
-                  <span class="xh-outcome-arrow" aria-hidden="true">&#8594;</span>
-                  <article class="xh-outcome-step">
-                    <span class="xh-outcome-icon" aria-hidden="true">&#8226;</span>
-                    <h3>2. Architect</h3>
-                    <p>XcellHost designs the optimal architecture and selects the right components.</p>
-                  </article>
-                  <span class="xh-outcome-arrow" aria-hidden="true">&#8594;</span>
-                  <article class="xh-outcome-platform">
-                    <div class="xh-outcome-brand">XcellHost</div>
-                    <span class="xh-outcome-platform-kicker">THE PLATFORM ASSEMBLES</span>
-                    <div class="xh-outcome-capabilities">
-                      <span><i aria-hidden="true">&#9632;</i>Compute</span>
-                      <span><i aria-hidden="true">&#9679;</i>Storage</span>
-                      <span><i aria-hidden="true">&#9670;</i>Network</span>
-                      <span><i aria-hidden="true">&#9674;</i>Security</span>
-                      <span><i aria-hidden="true">&#9638;</i>Database</span>
-                      <span><i aria-hidden="true">&#8635;</i>Backup</span>
-                      <span><i aria-hidden="true">&#10022;</i>AI/ML</span>
-                      <span><i aria-hidden="true">&#10003;</i>Compliance</span>
-                      <span><i aria-hidden="true">&#8764;</i>Monitoring</span>
-                      <span><i aria-hidden="true">&#9881;</i>Managed<br />Services</span>
-                    </div>
-                  </article>
-                  <span class="xh-outcome-arrow" aria-hidden="true">&#8594;</span>
-                  <article class="xh-outcome-step">
-                    <span class="xh-outcome-icon" aria-hidden="true">&#10003;</span>
-                    <h3>3. Deliver</h3>
-                    <p>Your outcome is live, with expert teams and industry best practice.</p>
-                  </article>
-                  <span class="xh-outcome-arrow" aria-hidden="true">&#8594;</span>
-                  <article class="xh-outcome-step">
-                    <span class="xh-outcome-icon" aria-hidden="true">&#8593;</span>
-                    <h3>4. Optimize</h3>
-                    <p>We continuously monitor, optimise and enhance for ongoing impact.</p>
-                  </article>
-                </div>
-              </section>
             </section>
           </div>
         }
@@ -993,7 +1005,7 @@
           </section>
         }
 
-        @if (!isSmbCyber() && !isRmm() && !isAcronisTrueImage() && !isSiteLock()) {
+        @if (!isSmbCyber() && !isRmm() && !isAcronisTrueImage() && !isSiteLock() && slug() !== 'scrutiny-dlp' && slug() !== 'vortex-seg' && slug() !== 'vortex-soc') {
         <div class="pp-sec">
           {{
             v.name === 'Tally on Cloud'
@@ -1123,7 +1135,7 @@
           </section>
         }
 
-        @if (v.name !== 'Tally on Cloud' && !isSmbCyber() && !isAcronisTrueImage() && !isSiteLock()) {
+        @if (v.name !== 'Tally on Cloud' && !isSmbCyber() && !isAcronisTrueImage() && !isSiteLock() && slug() !== 'scrutiny-dlp' && slug() !== 'vortex-seg' && slug() !== 'vortex-soc') {
           <div class="pp-sec">Use cases</div>
           <div class="pp-uses" id="ppUses" [class.cdr-smb-uses]="isCloudDisasterRecoverySmb()">
             @for (u of v.uses; track u.title) {
@@ -1241,7 +1253,7 @@
         }
 
         @if (v.name !== 'Tally on Cloud') {
-        @if (!isSmbCyber() && !isRmm()) {
+        @if (!isSmbCyber() && !isRmm() && slug() !== 'scrutiny-dlp') {
           <div class="pp-sec" id="ppSecHead">{{ v.security.head }}</div>
           <div id="ppSecWrap">
             <p class="pp-ov">{{ v.security.intro }}</p>
@@ -1259,7 +1271,7 @@
 
         }
 
-        @if (v.name !== 'Tally on Cloud' && !isSmbCyber() && !isRmm()) {
+        @if (v.name !== 'Tally on Cloud' && !isSmbCyber() && !isRmm() && slug() !== 'scrutiny-dlp' && slug() !== 'vortex-seg' && slug() !== 'vortex-soc') {
           <div class="pp-sec" id="ppWhyHead">Why XcellHost for {{ v.name }}</div>
           <div class="pp-why" id="ppWhy">
             @for (w of v.why; track w.title) {
@@ -1307,6 +1319,7 @@
           }
         </div>
 
+<<<<<<< HEAD
         @if (isWhatsAppSmb()) {
           <section class="wa-action-tour" aria-labelledby="waActionTourTitle">
             <div class="pp-sec" id="waActionTourTitle">Watch it in action</div>
@@ -1314,6 +1327,26 @@
               <img src="/assets/images/whatsapp-smb-tour-5.png" alt="WhatsApp SMB no-code workflow builder" />
               <span><b>Explore the WhatsApp automation workspace</b><small>Open the 10-step screenshot tour</small><i>View tour →</i></span>
             </button>
+=======
+        @if (slug() === 'scrutiny-dlp') {
+          <section class="tally-videos scrutiny-dlp-action" aria-labelledby="scrutinyDlpActionTitle">
+            <div class="pp-sec" id="scrutinyDlpActionTitle">Watch it in action</div>
+            <div class="tally-video-grid scrutiny-dlp-action-grid">
+              @for (slide of scrutinyDlpTourSlides; track slide.image) {
+                <article class="tally-video-card">
+                  <h3><span>{{ slide.title }}</span></h3>
+                  <div class="tally-video-frame"><img [src]="slide.image" [alt]="slide.description" loading="lazy" /></div>
+                </article>
+              }
+            </div>
+          </section>
+        }
+
+        @if (slug() === 'vortex-seg' && !showcaseVideos().length) {
+          <section class="tally-videos" aria-labelledby="vortexSegActionTitle">
+            <div class="pp-sec" id="vortexSegActionTitle">Watch it in action</div>
+            <div class="tally-video-grid single-video"><article class="tally-video-card"><h3><span>Vortex SEG message protection</span></h3><div class="tally-video-frame"><img src="/assets/images/vortex-seg-hero.svg" alt="Vortex SEG inspects and protects email before delivery" loading="lazy" /></div></article></div>
+>>>>>>> 1db3d30520a7c2545852bb466f7ef90f710afe5a
           </section>
         }
 
@@ -1470,19 +1503,9 @@
           <xh-product-faq [faqs]="v.faqs" />
         </div>
 
-        @if (slug() === 'scrutiny-dlp') {
-          <xh-scrutiny-dlp-content />
-        }
         @if (slug() === 'scrutiny-edr') {
           <xh-scrutiny-edr-content />
         }
-        @if (slug() === 'vortex-soc') {
-          <xh-vortex-soc-content />
-        }
-        @if (slug() === 'vortex-seg') {
-          <xh-vortex-seg-content />
-        }
-
         <div class="pp-sec pp-blog-heading">From our blog</div>
         <div class="pp-blog" id="ppBlog">
           @for (b of blogs(); track b.title) {

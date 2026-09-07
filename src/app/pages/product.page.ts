@@ -383,6 +383,7 @@ export class ProductPage {
     { title: 'Secure sign-in', description: 'Keep Windows credentials protected while users connect to their assigned resources.', image: '/assets/images/tsplus-remote-access-tour-credentials.png' },
   ];
 
+<<<<<<< HEAD
   readonly tsplusRemoteAccessExperiences = [
     {
       title: 'RDP – Full Desktop Standard MSTSC',
@@ -430,6 +431,13 @@ export class ProductPage {
       video: '/assets/video/tsplus-ra-html5-web-portal.mp4',
     },
   ] as const;
+=======
+  readonly scrutinyDlpTourSlides: readonly ProductTourSlide[] = [
+    { title: 'Data protection overview', description: 'Monitor protected endpoints, policy activity, blocked transfers and overall risk posture.', image: '/assets/images/scrutiny-dlp-tour-dashboard.svg' },
+    { title: 'One policy across every channel', description: 'Control removable media, web and cloud uploads, public GenAI tools, screenshots and screen photography.', image: '/assets/images/scrutiny-dlp-tour-policies.svg' },
+    { title: 'Audit-ready incident evidence', description: 'Reconstruct a blocked event with classification details, captured evidence and an immutable activity timeline.', image: '/assets/images/scrutiny-dlp-tour-evidence.svg' },
+  ];
+>>>>>>> 1db3d30520a7c2545852bb466f7ef90f710afe5a
 
   /** Product-owned artwork used when a page does not have a dedicated UI screenshot set. */
   readonly productTourSlides = computed<readonly ProductTourSlide[]>(() => {
@@ -443,6 +451,7 @@ export class ProductPage {
     if (this.isTsplusRemoteSupport()) return this.tsplusRemoteSupportTourSlides;
     if (this.isTsplusAdvancedSecurity()) return this.tsplusAdvancedSecurityTourSlides;
     if (this.isTsplusRemoteAccess()) return this.tsplusRemoteAccessTourSlides;
+    if (view.name === 'Scrutiny DLP') return this.scrutinyDlpTourSlides;
 
     const candidates: ProductTourSlide[] = [];
     const add = (title: string, description: string, image: string | null | undefined): void => {
@@ -665,6 +674,13 @@ export class ProductPage {
     { users: '51+ to 75', name: 'Tally Private', edition: 'Cloud XXX Large', prices: { monthly: 48912, '3m': 139399.2, '6m': 271461.6, '1y': 528249.6 }, serverType: 'Dedicated VM', cpu: '24 vCPU', memory: '128 GB', disk: '750 GB' },
   ];
 
+  readonly smbDesktopPlans: readonly TallyPlan[] = [
+    { users: '1 to 5', name: 'SMB Cloud Desktop', edition: 'Starter', prices: { monthly: 4995, '3m': 14985, '6m': 29970, '1y': 59940 }, serverType: 'Shared VM', cpu: '4 vCPU', memory: '8 GB', disk: '100 GB' },
+    { users: '6 to 10', name: 'SMB Cloud Desktop', edition: 'Business', prices: { monthly: 9990, '3m': 29970, '6m': 59940, '1y': 119880 }, serverType: 'Dedicated VM', cpu: '6 vCPU', memory: '16 GB', disk: '200 GB' },
+    { users: '11 to 20', name: 'SMB Cloud Desktop', edition: 'Professional', prices: { monthly: 19980, '3m': 59940, '6m': 119880, '1y': 239760 }, serverType: 'Dedicated VM', cpu: '8 vCPU', memory: '32 GB', disk: '300 GB' },
+    { users: '21 to 50', name: 'SMB Cloud Desktop', edition: 'Enterprise', prices: { monthly: 49950, '3m': 149850, '6m': 299700, '1y': 599400 }, serverType: 'Dedicated VM', cpu: '12 vCPU', memory: '64 GB', disk: '500 GB' },
+  ];
+
   readonly selectedTallyTerm = signal<TallyTerm>('monthly');
 
   readonly activeTallyTerm = computed(
@@ -786,6 +802,8 @@ export class ProductPage {
   readonly isAcronisGenAi = computed(() => this.view()?.name === 'Acronis GenAI');
 
   readonly isTally = computed(() => this.view()?.name === 'Tally on Cloud');
+
+  readonly isSmbCloudDesktop = computed(() => this.view()?.name === 'SMB Cloud Desktop');
 
   readonly isAcronisTrueImage = computed(() => this.view()?.name === 'Acronis True Image');
 
@@ -1124,6 +1142,16 @@ export class ProductPage {
     ev.preventDefault();
     this.topics.ask(`${plan.name} (${plan.edition}) - ${plan.users} users - ${this.activeTallyTerm().label}`);
     this.overlay.open('callback');
+  }
+
+  selectSmbDesktopPlan(plan: TallyPlan, ev: Event): void {
+    ev.preventDefault();
+    this.topics.ask(`${plan.name} (${plan.edition}) - ${plan.users} users - ${this.activeTallyTerm().label}`);
+    this.overlay.open('callback');
+  }
+
+  smbDesktopPrice(plan: TallyPlan): number {
+    return plan.prices[this.selectedTallyTerm()];
   }
 
   selectCloudDriveTerm(term: CloudDriveTerm): void {

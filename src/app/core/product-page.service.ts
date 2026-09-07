@@ -624,7 +624,7 @@ export class ProductPageService {
     let security: ProductView['security'];
     if (name === 'Scrutiny DLP') {
       security = {
-        head: 'Platform support, AI assistance and compliance',
+        head: 'Security & compliance',
         intro: 'Scrutiny DLP keeps policy and evidence close to the data, with local or private deployment options and audit-ready reporting for DPDP-driven projects.',
         rows: [
           ['Platform support', 'Windows, macOS and Linux with native endpoint controls'],
@@ -846,6 +846,20 @@ function resolveHeroBrand(
     return {
       name: 'Scrutiny DLP', subtitle: 'Delivered & managed by XcellHost', kind: 'vendor',
       logoImage: '/assets/images/scrutiny-dlp-logo.svg',
+    };
+  }
+
+  if (/^Vortex SEG$/i.test(name)) {
+    return {
+      name: 'Vortex SEG', subtitle: 'Delivered & managed by XcellHost', kind: 'vendor',
+      logoImage: '/assets/images/vortex-seg-logo.svg',
+    };
+  }
+
+  if (/^Vortex SOC$/i.test(name)) {
+    return {
+      name: 'Vortex SOC', subtitle: 'Delivered & managed by XcellHost', kind: 'vendor',
+      logoImage: '/assets/images/vortex-soc-logo.svg',
     };
   }
 
