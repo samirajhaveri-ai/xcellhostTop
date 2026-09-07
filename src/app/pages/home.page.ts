@@ -9,11 +9,13 @@ import {
   HeroComponent,
   HostCredibilityComponent,
   IndustriesComponent,
+  OutcomesComponent,
   InsightsSectionComponent,
   MarqueeComponent,
   SatisfactionGuaranteeComponent,
   TrustBarComponent,
   TestimonialsComponent,
+  TrustedByComponent,
   WhyComponent,
 } from '../sections';
 
@@ -39,11 +41,13 @@ const DESCRIPTION =
     HostCredibilityComponent,
     WhyComponent,
     IndustriesComponent,
+    OutcomesComponent,
     CasesComponent,
     InsightsSectionComponent,
     GlobalLocationsMapComponent,
     SatisfactionGuaranteeComponent,
     TestimonialsComponent,
+    TrustedByComponent,
   ],
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -56,7 +60,9 @@ const DESCRIPTION =
     <xh-host-credibility />
     <xh-why />
     <xh-industries />
+    <xh-outcomes />
     <xh-cases />
+    <xh-trusted-by />
     <xh-insights-section />
     <xh-testimonials />
     <xh-global-locations-map />
