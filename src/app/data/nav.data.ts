@@ -14,7 +14,6 @@ export const MEGA_MENU: MenuTop[] = [
     "feature": null,
     "tabs": [
       {
-<<<<<<< HEAD
         "g": "0",
         "label": "Domains",
         "on": true,
@@ -220,8 +219,6 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-=======
->>>>>>> cb0acc939c610dfb996ae046ca8e08ddfc04df33
         "g": "4",
         "label": "SMB Cloud",
         "on": true,
@@ -297,215 +294,6 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "0",
-        "label": "Domains",
-        "on": true,
-        "groups": [
-          {
-            "heading": "Domains",
-            "items": [
-              {
-                "title": "Register a Domain Name",
-                "pill": null,
-                "desc": "Get your domain name now 🚀"
-              },
-              {
-                "title": "Transfer Your Domain",
-                "pill": "1-yr free ext.",
-                "desc": "Get a 1 Year Free Extension 🆓"
-              },
-              {
-                "title": "Bulk Domain Search",
-                "pill": null,
-                "desc": "Search and manage multiple domains easily 🔎"
-              },
-              {
-                "title": "Domain Parking Services",
-                "pill": null,
-                "desc": "Secure your domain until ready for use 🕰️"
-              },
-              {
-                "title": "Whois Privacy Protection",
-                "pill": null,
-                "desc": "Protect your personal information online 🕵️"
-              },
-              {
-                "title": "Latest Domain Extensions",
-                "pill": null,
-                "desc": "Explore new and relevant domain options 🌐"
-              },
-              {
-                "title": "Premium Domains",
-                "pill": null,
-                "desc": "Get a headstart with a prime domain name 🏆"
-              },
-              {
-                "title": "Domain Protect+",
-                "pill": null,
-                "desc": "Hide your contact info from spammers 🚫"
-              },
-              {
-                "title": "Domain Whois Lookup",
-                "pill": null,
-                "desc": "Take a look at a domain's registry record 📋"
-              },
-              {
-                "title": "Domain Name Prices",
-                "pill": null,
-                "desc": "Compare prices across TLDs 🔄"
-              },
-              {
-                "title": "Backorder Domain",
-                "pill": null,
-                "desc": "Reserve a domain name for future availability 🕰️"
-              },
-              {
-                "title": "TLD Directory",
-                "pill": null,
-                "desc": "Reserve a domain name for future availability 🕰️"
-              },
-              
-            ]
-          }
-        ]
-      },
-      {
-        "g": "9",
-        "label": "Web Hosting",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Web Hosting",
-            "items": [
-              {
-                "title": "Windows Hosting",
-                "pill": null,
-                "desc": "Reliable Microsoft-certified hosting 💻"
-              },
-              {
-                "title": "Linux Hosting",
-                "pill": null,
-                "desc": "Reliable Linux-certified hosting 🐧"
-              },
-              {
-                "title": "WordPress Hosting",
-                "pill": null,
-                "desc": "Optimized hosting for WordPress sites ⚡"
-              },
-              {
-                "title": "Web Security (SiteLock)",
-                "pill": null,
-                "desc": "Digital safety with our comprehensive web solutions 🌐"
-              },
-              
-              {
-                "title": "AI Website Builder",
-                "pill": "",
-                "desc": "Make your website in minutes ✨"
-              },
-              {
-                "title": "Migrate to XcellHost",
-                "pill": null,
-                "desc": "Seamless migration to XcellHost's cloud services 🌐"
-              },
-              {
-                "title": "Website Backup",
-                "pill": null,
-                "desc": "Secure, automated backups to safeguard your website 🔒"
-              },
-              
-            ]
-          }
-        ]
-      },
-      {
-        "g": "2",
-        "label": "Web Marketing",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Web Marketing",
-            "items": [
-              {
-                "title": "WhatsApp For Business",
-                "pill": "New",
-                "desc": "Official WhatsApp Business API for sales, support and automation"
-              },
-              {
-                "title": "Google My Business",
-                "pill": "AI Powered",
-                "desc": "Improve your business visibility on Google 👋"
-              },
-              {
-                "title": "E-mail Marketing",
-                "pill": null,
-                "desc": "Engage customers effectively with targeted email campaigns 🎯"
-              },
-              
-              {
-                "title": "SMS Marketing",
-                "pill": null,
-                "desc": "Reach customers instantly with impactful text campaigns 📲"
-              },
-              {
-                "title": "Managed SEO",
-                "pill": "AI Powered",
-                "desc": "Maximise online visibility and reach your target audience 🎯"
-              },
-              {
-                "title": "Whatsapp Broadcasting",
-                "pill": "AI Powered",
-                "desc": "Maximise online visibility and reach your target audience 🎯"
-              },
-              
-              
-            ]
-          }
-        ]
-      },
-      {
-        "g": "3",
-        "label": "VPS Servers",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Virtual Private Servers",
-            "items": [
-              {
-                "title": "Windows VPS",
-                "pill": "New",
-                "desc": "Secure, automated backups to safeguard your website 🔒"
-              },
-              {
-                "title": "Linux VPS",
-                "pill": "New",
-                "desc": "Secure, automated backups to safeguard your website 🔒"
-              },
-              
-              {
-                "title": "n8n VPS",
-                "pill": "1-Click",
-                "desc": "Secure, automated backups to safeguard your website 🔒"
-              },
-              {
-                "title": "OpenClaw VPS",
-                "pill": "1-Click",
-                "desc": "Secure, automated backups to safeguard your website 🔒"
-              },
-              {
-                "title": "Trading VPS",
-                "pill": "1-Click",
-                "desc": "Secure, automated backups to safeguard your website 🔒"
-              }
-
-              
-              
-            ]
-          }
-        ]
-      },
-      
-      {
         "g": "5",
         "label": "Managed DNS",
         "on": true,
@@ -531,48 +319,11 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "Tools",
             "items": [
-<<<<<<< HEAD
-=======
-              
               {
-                "title": "cPanel Control Panel",
-                "pill": null,
-                "desc": "Manage your hosting easily with a user-friendly control panel 🖱️"
-              },
-              {
-                "title": "Plesk Control Panel",
-                "pill": null,
-                "desc": "A powerful web hosting control panel 🎛️"
-              },
-              {
-                "title": "Webuzo Control Panel",
-                "pill": null,
-                "desc": "A powerful web hosting control panel 🎛️"
-              },
-              {
-                "title": "Cloud Linux",
-                "pill": null,
-                "desc": "A powerful web hosting control panel 🎛️"
-              },
-              
-            ]
-          }
-        ]
-      },
-      {
-        "g": "6",
-        "label": "Web Design",
-        "on": true,
-        "groups": [
-          {
-            "heading": "Web Design",
-            "items": [
->>>>>>> cb0acc939c610dfb996ae046ca8e08ddfc04df33
-              {
-                "title": "Web Design for CA, CS & Lawyers",
-                "pill": null,
+                "title": "No Data",
+                "pill": "Top seller",
                 "desc": null
-              }
+              },
               
             ]
           }
@@ -778,511 +529,12 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "Managed Cloud",
             "items": [
-              
-              {
-                "title": "Managed AWS",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Managed Azure",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Managed Google Cloud (GCP)",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Managed Oracle Cloud",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Multi-Cloud Manager ",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Managed Kubernetes",
-                "pill": null,
-                "desc": null
-              },
-              
-            ]
-          }
-        ]
-      },
-      {
-        "g": "5",
-        "label": "Managed DevOps",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Managed DevOps",
-            "items": [
-              {
-                "title": "AWS DevOps",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Azure Cloud",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "GCP DevOps",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Managed DevOps",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Terraform",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Ansible",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Pappet",
-                "pill": null,
-                "desc": null
-              },
-            ]
-          }
-        ]
-      },
-      {
-        "g": "6",
-        "label": "Managed Migration",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Managed Migration",
-            "items": [
-              {
-                "title": "AWS Migration",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Azure Migration ",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "GCP Migration",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Database Migration",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Active Directory Migration ",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "MailBox Migration",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "File Migration",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Site Migration",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Archive Migration",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Teams Migration",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Slack Migration",
-                "pill": null,
-                "desc": null
-              },
-              
-            ]
-          }
-        ]
-      },
-      {
-        "g": "7",
-        "label": "Managed Monitoring",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Managed Monitoring",
-            "items": [
-              {
-                "title": "Cloud Monitoring",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Cloud Observability",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Video Surveillance as a Service",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "IOT Monitoring",
-                "pill": null,
-                "desc": null
-              },
-              
-            ]
-          }
-        ]
-      },
-      {
-        "g": "8",
-        "label": "Cloud ERP",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Cloud ERP",
-            "items": [
-              {
-                "title": "SAP Hosting",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Odoo Hosting",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "ERP Next Hosting",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Sage Hosting",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "SAP B1 Cloud",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "SAP S4 Cloud",
-                "pill": null,
-                "desc": null
-              },
-            ]
-          }
-        ]
-      },
-      
-      {
-        "g": "10",
-        "label": "Cloud Connectivity",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Cloud Connectivity",
-            "items": [
-              {
-                "title": "Cloud Connectivity",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Cloud Router",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Private Connect",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "IP Transit",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Virtual Edge",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Managed Wi-Fi",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Managed SG VAN",
-                "pill": null,
-                "desc": null
-              },
-            ]
-          }
-        ]
-      },
-    ]
-  },
-  {
-    "label": "Productivity",
-    "noDrop": false,
-    "feature": null,
-    "tabs": [
-      
-      {
-        "g": "1",
-        "label": "Email Services",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Email Services",
-            "items": [
-              {
-                "title": "Performance Cloud",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Bare Metal Server",
-                "pill": null,
-                "desc": null
-              },
-              
-              {
-                "title": "GPU Cloud",
-                "pill": "High demand",
-                "desc": null
-              },
-              {
-                "title": "AI Inference Cloud",
-                "pill": null,
-                "desc": null
-              },
-              {
-<<<<<<< HEAD
-                "title": "AI Developer Cloud",
-=======
-                "title": "Google Workspace",
->>>>>>> cb0acc939c610dfb996ae046ca8e08ddfc04df33
-                "pill": null,
-                "desc": null
-              },
-              {
-<<<<<<< HEAD
-                "title": "Private Cloud",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Global Cloud",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Co-Location",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Hybrid Cloud",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Multi Cloud Manager",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Edge Cloud",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "CDN Cloud",
-=======
-                "title": "Zoho Workspace",
->>>>>>> cb0acc939c610dfb996ae046ca8e08ddfc04df33
-                "pill": null,
-                "desc": null
-              },
-              
-            ]
-          }
-        ]
-      },
-      {
-        "g": "3",
-        "label": "Email Security",
-        "on": false,
-        "featureCards": [
-          {
-            "label": "Cloud",
-            "title": "Business E-Mail",
-            "body": "Professional email services for business communication",
-            "image": "/assets/images/contact-mail.webp",
-            "link": "/business-e-mail"
-          },
-          {
-            "label": "Cloud",
-            "title": "Microsoft 365 Enterprise",
-            "body": "Explore Microsoft 365 Enterprise services, features and solutions.",
-            "image": "/assets/images/orb-microsoft-365.png",
-            "link": "/microsoft-365"
-          }
-        ],
-        "groups": [
-          {
-            "heading": "Email Security",
-            "items": [
-<<<<<<< HEAD
-              {
-                "title": "Business E-Mail",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Microsoft 365 Enterprise",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Microsoft Copilot",
-                "pill": "Soon",
-                "desc": null
-              },
-              {
-                "title": "Google Workspace",
-                "pill": null,
-                "desc": null
-              },
-               {
-                "title": "Zoho Workspace",
-                "pill": null,
-                "desc": null
-              },
-=======
->>>>>>> cb0acc939c610dfb996ae046ca8e08ddfc04df33
-              {
-                "title": "Advanced Email Security",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Secure DMARC",
-                "pill": "Best seller",
-                "desc": null
-              },
-              
-              {
-                "title": "Email Encryption",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Cloud Mobile Device Mgmt",
-                "pill": null,
-                "desc": null
-              },
-<<<<<<< HEAD
-                   {
-                "title": "Cloud Conferencing",
-                "pill": null,
-                "desc": null
-              }, 
-=======
-              {
-                "title": "Email Security Enterprise",
-                "pill": null,
-                "desc": "Advanced email security, DLP and archival",
-                "href": "/vortex-seg"
-              },
-              
->>>>>>> cb0acc939c610dfb996ae046ca8e08ddfc04df33
-            ]
-          }
-        ]
-      },
-      {
-        "g": "9",
-        "label": "Cloud Desktop",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Cloud Desktop",
-            "items": [
-              {
-                "title": "SMB Cloud Desktop",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Cloud Desktop Enterprise (VDI)",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Accops Digital Workspace",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Windows 365",
-                "pill": null,
-                "desc": null
-              },
-              
-              
-            ]
-          }
-        ]
-      },
-      {
-        "g": "4",
-        "label": "Collaboration Services",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Collaboration Services",
-            "items": [
               {
                 "title": "Managed Microsoft 365",
                 "pill": null,
                 "desc": null
               },
               {
-<<<<<<< HEAD
                 "title": "Managed AWS",
                 "pill": null,
                 "desc": null
@@ -1322,13 +574,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               }
-=======
-                "title": "Zoom Conferenceing",
-                "pill": null,
-                "desc": null
-              },  
-              
->>>>>>> cb0acc939c610dfb996ae046ca8e08ddfc04df33
             ]
           }
         ]
@@ -1342,7 +587,6 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Managed DevOps",
             "items": [
               {
-<<<<<<< HEAD
                 "title": "AWS DevOps",
                 "pill": null,
                 "desc": null
@@ -1371,14 +615,6 @@ export const MEGA_MENU: MenuTop[] = [
             "items": [
               {
                 "title": "AWS Migration",
-=======
-                "title": "Email Signature",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Email Migration",
->>>>>>> cb0acc939c610dfb996ae046ca8e08ddfc04df33
                 "pill": null,
                 "desc": null
               },
@@ -1471,43 +707,15 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-<<<<<<< HEAD
         "g": "8",
         "label": "Cloud ERP",
         "on": false,
         "groups": [
           {
             "heading": "Cloud ERP",
-=======
-        "g": "4",
-        "label": "Microsoft Copilot",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Microsoft Copilot",
->>>>>>> cb0acc939c610dfb996ae046ca8e08ddfc04df33
             "items": [
               {
-<<<<<<< HEAD
                 "title": "SAP Hosting",
-=======
-                "title": "Microsoft Copilot ",
-                "pill": "Hot Sales",
-                "desc": null
-              },
-              {
-                "title": "Copilot Studio",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Microsoft Cunsulting ",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Microsoft Training",
->>>>>>> cb0acc939c610dfb996ae046ca8e08ddfc04df33
                 "pill": null,
                 "desc": null
               },
@@ -1530,22 +738,286 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
+      
       {
-        "g": "4",
-        "label": "Managed Productivity",
+        "g": "10",
+        "label": "Cloud Connectivity",
         "on": false,
         "groups": [
           {
-            "heading": "Managed Productivity",
+            "heading": "Cloud Connectivity",
             "items": [
+              {
+                "title": "Cloud Connectivity",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Cloud Router",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Private Connect",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "IP Transit",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Virtual Edge",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Managed Wi-Fi",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+    ]
+  },
+  {
+    "label": "Productivity",
+    "noDrop": false,
+    "feature": null,
+    "tabs": [
+      
+      {
+        "g": "1",
+        "label": "Email Services",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Email Services",
+            "items": [
+              {
+                "title": "Performance Cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Bare Metal Server",
+                "pill": null,
+                "desc": null
+              },
               
+              {
+                "title": "GPU Cloud",
+                "pill": "High demand",
+                "desc": null
+              },
+              {
+                "title": "AI Inference Cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "AI Developer Cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Private Cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Global Cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Co-Location",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Hybrid Cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Multi Cloud Manager",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Edge Cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "CDN Cloud",
+                "pill": null,
+                "desc": null
+              },
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "3",
+        "label": "Email Security",
+        "on": false,
+        "featureCards": [
+          {
+            "label": "Cloud",
+            "title": "Business E-Mail",
+            "body": "Professional email services for business communication",
+            "image": "/assets/images/contact-mail.webp",
+            "link": "/business-e-mail"
+          },
+          {
+            "label": "Cloud",
+            "title": "Microsoft 365 Enterprise",
+            "body": "Explore Microsoft 365 Enterprise services, features and solutions.",
+            "image": "/assets/images/orb-microsoft-365.png",
+            "link": "/microsoft-365"
+          }
+        ],
+        "groups": [
+          {
+            "heading": "Email Security",
+            "items": [
+              {
+                "title": "Business E-Mail",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Microsoft 365 Enterprise",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Microsoft Copilot",
+                "pill": "Soon",
+                "desc": null
+              },
+              {
+                "title": "Google Workspace",
+                "pill": null,
+                "desc": null
+              },
+               {
+                "title": "Zoho Workspace",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Advanced Email Security",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Secure DMARC",
+                "pill": "Best seller",
+                "desc": null
+              },
+              {
+                "title": "Email Signature",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Email Encryption",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Cloud Mobile Device Mgmt",
+                "pill": null,
+                "desc": null
+              },
+                   {
+                "title": "Cloud Conferencing",
+                "pill": null,
+                "desc": null
+              }, 
+            ]
+          }
+        ]
+      },
+      {
+        "g": "9",
+        "label": "Cloud Desktop",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Cloud Desktop",
+            "items": [
+              {
+                "title": "SMB Cloud Desktop",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Cloud Desktop Enterprise",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Azure Cloud Desktop",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "4",
+        "label": "Collaboration Services",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Collaboration Services",
+            "items": [
               {
                 "title": "Managed Microsoft 365",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Managed MDM",
+                "title": "Managed AWS",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Managed Azure",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Managed Google Cloud (GCP)",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Managed Oracle Cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Multi-Cloud Manager ",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Managed DevOps",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Managed Kubernetes",
                 "pill": null,
                 "desc": null
               },
@@ -1554,8 +1026,166 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               }
+            ]
+          }
+        ]
+      },
+      {
+        "g": "5",
+        "label": "Managed DevOps",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Managed DevOps",
+            "items": [
+              {
+                "title": "AWS DevOps",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Azure Cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "GCP DevOps",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "6",
+        "label": "Managed Migration",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Managed Migration",
+            "items": [
+              {
+                "title": "AWS Migration",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Azure Migration ",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "GCP Migration",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Database Migration",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Active Directory Migration ",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "MailBox Migration",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "File Migration",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Site Migration",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Archive Migration",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Teams Migration",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Slack Migration",
+                "pill": null,
+                "desc": null
+              },
               
+              {
+                "title": "Free/Busy",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "7",
+        "label": "Managed Monitoring",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Managed Monitoring",
+            "items": [
+              {
+                "title": "Cloud Monitoring",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Cloud Observability",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Video Surveillance as a Service",
+                "pill": null,
+                "desc": null
+              },
               
+            ]
+          }
+        ]
+      },
+      {
+        "g": "8",
+        "label": "Cloud ERP",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Cloud ERP",
+            "items": [
+              {
+                "title": "SAP Hosting",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Odoo Hosting",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "ERP Next Hosting",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Sage Hosting",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
@@ -1663,19 +1293,16 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Claude Backup",
+                "title": "Vortex SOC",
                 "pill": null,
-                "desc": null
+                "desc": null,
+                "href": "/vortex-soc"
               },
               {
-                "title": "GitHub Backup",
+                "title": "Vortex SEG",
                 "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Zoho Backup",
-                "pill": null,
-                "desc": null
+                "desc": "Advanced email security, DLP and archival",
+                "href": "/vortex-seg"
               },
             ]
           }
@@ -1743,7 +1370,7 @@ export const MEGA_MENU: MenuTop[] = [
         "on": false,
         "groups": [
           {
-            "heading": "Veeam Platform",
+            "heading": "Saas Backup",
             "items": [
                {
                 "title": "No Data",
@@ -1774,13 +1401,8 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-<<<<<<< HEAD
         "g": "5",
         "label": "Cloud Disaster Recovery",
-=======
-        "g": "6",
-        "label": "Cloud DR",
->>>>>>> cb0acc939c610dfb996ae046ca8e08ddfc04df33
         "on": false,
         "groups": [
           {
@@ -2035,24 +1657,6 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      {
-        "g": "Quantum Cryptography",
-        "label": "Quantum Cryptography",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Quantum Cryptography",
-            "items": [
-              {
-                "title": "No Data",
-                "pill": null,
-                "desc": null
-              },
-              
-            ]
-          }
-        ]
-      },
     ]
   },
   {
@@ -2102,12 +1706,7 @@ export const MEGA_MENU: MenuTop[] = [
               },
               
               {
-                "title": "Mobile Device Management",
-                "pill": "Free trial",
-                "desc": null
-              },
-              {
-                "title": "Data Leak Prevention (DLP)",
+                "title": "MDM",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -2125,25 +1724,11 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Cloud Security",
             "items": [
               {
-                "title": "AWS Security",
+                "title": "No Data",
                 "pill": "Free trial",
                 "desc": null
               },
-              {
-                "title": "Azure Security",
-                "pill": "Free trial",
-                "desc": null
-              },
-              {
-                "title": "GCP Security",
-                "pill": "Free trial",
-                "desc": null
-              },
-              {
-                "title": "Cloud Security Posture (CSPM)",
-                "pill": "Free trial",
-                "desc": null
-              },
+              
             ]
           }
         ]
@@ -2244,7 +1829,11 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "Data Security",
             "items": [
-              
+              {
+                "title": "Data Leak Prevention (DLP)",
+                "pill": "Free trial",
+                "desc": null
+              },
               {
                 "title": "Data Encryption",
                 "pill": "Free trial",
@@ -2312,7 +1901,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Continuous Pen As a Services",
+                "title": "Continuous Pen Testing As a Services",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -2352,6 +1941,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "Application Security Services",
+                "pill": null,
+                "desc": null
+              },
+              
             ]
           }
         ]
@@ -2364,7 +1959,12 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "Security Assessment",
             "items": [
-            
+              
+              {
+                "title": "Cloud Security Posture Mgmt",
+                "pill": null,
+                "desc": null
+              },
               {
                 "title": "Digital Risk Monitoring",
                 "pill": null,
@@ -2478,25 +2078,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "Vortex SOC",
-                "pill": null,
-                "desc": null,
-                "href": "/vortex-soc"
-              },
-              {
-                "title": "Managed Threat Hunting",
-                "pill": null,
-                "desc": null,
-                "href": "/vortex-soc"
-              },
-              {
-                "title": "Managed Threat Intelligence",
-                "pill": null,
-                "desc": null,
-                "href": "/vortex-soc"
-              },
-              
             ]
           }
         ]
@@ -2552,6 +2133,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "PCI Consulting",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Cyber Insurance",
                 "pill": null,
                 "desc": null
               },
@@ -2737,22 +2323,17 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "AI Security",
             "items": [
               {
-                "title": "AI Red Teaming Services",
+                "title": "AI App Builder",
                 "pill": null,
-                "desc": "Optimized AI IDE Lab ⚡"
+                "desc": "Reliable AI App Builder hosting 💻"
               },
               {
-                "title": "AI Security Assessment",
+                "title": "AI Website Builder",
                 "pill": null,
-                "desc": "Optimized AI IDE Lab ⚡"
+                "desc": "Reliable AI Website Builder hosting 🐧"
               },
               {
-                "title": "AI Security Audit",
-                "pill": null,
-                "desc": "Optimized AI IDE Lab ⚡"
-              },
-              {
-                "title": "AI Security Platform",
+                "title": "AI IDE Lab",
                 "pill": null,
                 "desc": "Optimized AI IDE Lab ⚡"
               },
@@ -2948,7 +2529,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Microsoft Information Protection",
+                "title": "Information Protection",
                 "pill": null,
                 "desc": null
               },
@@ -2975,11 +2556,11 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "4",
-        "label": "Managed IT",
+        "label": "Services",
         "on": false,
         "groups": [
           {
-            "heading": "Managed IT",
+            "heading": "Services",
             "items": [
               {
                 "title": "Data Center Build Services",
@@ -3376,29 +2957,71 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Cyber Insurance",
             "items": [
               {
-                "title": "No Data",
+                "title": "DPDPA Consulting",
                 "pill": "In focus",
                 "desc": null
               },
-              
-            ]
-          }
-        ]
-      },
-      {
-        "g": "13",
-        "label": "Wimwre Migration",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Wimwre Migration",
-            "items": [
               {
-                "title": "No Data",
-                "pill": "In focus",
+                "title": "vDPO-as-a-Service",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "vCISO-as-a-Service",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Cyber Security Audit",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "ISO 27001 Consulting",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Compliance Consulting",
+                "pill": null,
                 "desc": null
               },
               
+              {
+                "title": "Third-Party Risk Mgmt (TPRM)",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Managed GRC",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "PCI Consulting",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Cyber Insurance",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "ISO 22301",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "ISO 42001",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "ISO 27701",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
@@ -3469,6 +3092,23 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Corporate Social Responsibility",
                 "pill": null,
                 "desc": "We'd love to hear from you"
+              },
+            ]
+          }
+        ]
+      },
+       {
+        "g": "0",
+        "label": "Insights",
+        "on": true,
+        "groups": [
+          {
+            "heading": "Insights",
+            "items": [
+              {
+                "title": "No Data",
+                "pill": null,
+                "desc": "Secure, scalable cloud expertise since 1999"
               },
             ]
           }
@@ -3707,7 +3347,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "7",
+        "g": "10",
         "label": "Tools Center",
         "on": false,
         "groups": [
@@ -3728,18 +3368,13 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "SSL Tools",
                 "pill": null,
                 "desc": null
-              },
-              {
-                "title": "Domain Tools",
-                "pill": null,
-                "desc": null
-              },
+              }
             ]
           }
         ]
       },
       {
-        "g": "8",
+        "g": "12",
         "label": "learning Center",
         "on": false,
         "groups": [
@@ -3747,7 +3382,6 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "learning Center",
             "items": [
               {
-<<<<<<< HEAD
                 "title": "NO Tools",
                 "pill": null,
                 "desc": null
@@ -3838,13 +3472,11 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Learn",
             "items": [
               {
-=======
->>>>>>> cb0acc939c610dfb996ae046ca8e08ddfc04df33
                 "title": "Blogs",
                 "pill": null,
                 "desc": null
               },
-              {
+                {
                 "title": "Customer Stories",
                 "pill": null,
                 "desc": "See how customers transform with our services",
@@ -3876,11 +3508,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "AI Glossary ",
-                "pill": null,
-                "desc": null
-              },
-              {
                 "title": "Developer Tools ",
                 "pill": null,
                 "desc": null
@@ -3890,82 +3517,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "9",
-        "label": "Experience Center",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Experience Center",
-            "items": [
-              {
-                "title": "NO Tools",
-                "pill": null,
-                "desc": null
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "g": "10",
-        "label": "Trust Center",
-        "on": false,
-        "groups": [
-          
-          {
-            "heading": "Tools Center",
-            "items": [
-              {
-                "title": "Trust Center",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "NO Tools",
-                "pill": null,
-                "desc": null
-              }
-            
-            ]
-          }
-        ]
-      },
-      {
-        "g": "11",
-        "label": "Media Center",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Media center",
-            "items": [
-              {
-                "title": "NO Tools",
-                "pill": null,
-                "desc": null
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "g": "12",
-        "label": "Brand Center",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Brand center",
-            "items": [
-              {
-                "title": "NO Tools",
-                "pill": null,
-                "desc": null
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "g": "13",
+        "g": "1",
         "label": "Flipbooks",
         "on": false,
         "featureCards": [
@@ -4024,7 +3576,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "14",
+        "g": "2",
         "label": "Ebooks",
         "on": false,
         "groups": [
@@ -4061,7 +3613,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "15",
+        "g": "3",
         "label": "Product Tour",
         "on": true,
         "groups": [
@@ -4078,7 +3630,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "16",
+        "g": "4",
         "label": "Service Index",
         "on": false,
         "groups": [
