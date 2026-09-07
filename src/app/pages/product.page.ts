@@ -383,7 +383,7 @@ export class ProductPage {
     { title: 'Secure sign-in', description: 'Keep Windows credentials protected while users connect to their assigned resources.', image: '/assets/images/tsplus-remote-access-tour-credentials.png' },
   ];
 
-<<<<<<< HEAD
+
   readonly tsplusRemoteAccessExperiences = [
     {
       title: 'RDP – Full Desktop Standard MSTSC',
@@ -431,13 +431,13 @@ export class ProductPage {
       video: '/assets/video/tsplus-ra-html5-web-portal.mp4',
     },
   ] as const;
-=======
+
   readonly scrutinyDlpTourSlides: readonly ProductTourSlide[] = [
     { title: 'Data protection overview', description: 'Monitor protected endpoints, policy activity, blocked transfers and overall risk posture.', image: '/assets/images/scrutiny-dlp-tour-dashboard.svg' },
     { title: 'One policy across every channel', description: 'Control removable media, web and cloud uploads, public GenAI tools, screenshots and screen photography.', image: '/assets/images/scrutiny-dlp-tour-policies.svg' },
     { title: 'Audit-ready incident evidence', description: 'Reconstruct a blocked event with classification details, captured evidence and an immutable activity timeline.', image: '/assets/images/scrutiny-dlp-tour-evidence.svg' },
   ];
->>>>>>> 1db3d30520a7c2545852bb466f7ef90f710afe5a
+
 
   /** Product-owned artwork used when a page does not have a dedicated UI screenshot set. */
   readonly productTourSlides = computed<readonly ProductTourSlide[]>(() => {
