@@ -1,5 +1,5 @@
 @if (view(); as v) {
-  <div class="ppage as-page" id="ppage" [class.edr-page]="isAdvancedEdr()" [class.scrutiny-edr-page]="isScrutinyEdr()" [class.rmm-page]="isRmm()" [class.scrutiny-page]="slug() === 'scrutiny-dlp' || slug() === 'scrutiny-edr' || slug() === 'vortex-soc' || slug() === 'vortex-seg'" [class.cctv-page]="slug() === 'video-surveillance-as-a-service'" [class.cmc-page]="isCmc()" [class.tsplus-monitoring-page]="isTsplusServerMonitoring()" [class.tsplus-support-page]="isTsplusRemoteSupport()" [class.tsplus-advanced-security-page]="isTsplusAdvancedSecurity()" [class.tsplus-remote-access-page]="isTsplusRemoteAccess()">
+  <div class="ppage as-page" id="ppage" [class.infrastructure-page]="isInfrastructure()" [class.edr-page]="isAdvancedEdr()" [class.scrutiny-edr-page]="isScrutinyEdr()" [class.rmm-page]="isRmm()" [class.scrutiny-page]="slug() === 'scrutiny-dlp' || slug() === 'scrutiny-edr' || slug() === 'vortex-soc' || slug() === 'vortex-seg'" [class.cctv-page]="slug() === 'video-surveillance-as-a-service'" [class.cmc-page]="isCmc()" [class.tsplus-monitoring-page]="isTsplusServerMonitoring()" [class.tsplus-support-page]="isTsplusRemoteSupport()" [class.tsplus-advanced-security-page]="isTsplusAdvancedSecurity()" [class.tsplus-remote-access-page]="isTsplusRemoteAccess()">
     <div
       class="pp-hero"
       [class.sitelock-hero]="v.name === 'Web Security (SiteLock)'"
@@ -186,7 +186,7 @@
 
             <section class="pp-ask-ai" aria-labelledby="ppAskAiTitle">
               <div class="pp-ask-ai-copy">
-                <span class="pp-ask-ai-kicker" id="ppAskAiTitle">Ask AI About {{ v.name }} from Xcellhost</span>
+                <span class="pp-ask-ai-kicker" id="ppAskAiTitle">Ask AI About {{ v.name }} from XcellHost</span>
               </div>
               <div class="pp-ask-ai-actions">
                 <a class="pp-ask-ai-chip" aria-label="ChatGPT" [href]="askAiHref('chatgpt')" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=chatgpt.com&amp;sz=64" alt="" aria-hidden="true"></a>
@@ -263,7 +263,10 @@
 
     <div class="pp-body">
       <div class="wrap">
-        @if (!isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess() && !isScrutinyEdr()) {
+        @if (isInfrastructure()) {
+          <xh-infrastructure-content />
+        }
+        @if (!isInfrastructure() && !isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess() && !isScrutinyEdr()) {
         @if (slug() === 'video-surveillance-as-a-service') {
           <xh-cloud-cctv-content />
         }
@@ -539,7 +542,7 @@
                 <dl class="tally-plan-specs">
                   <div><dt>Recovery Type</dt><dd>Acronis Cloud</dd></div><div><dt>RPO</dt><dd>15 Minutes</dd></div><div><dt>RTO</dt><dd>30 Minutes</dd></div><div><dt>Backup + DR</dt><dd>3 TB Storage</dd></div>
                   <div><dt>Test Failover</dt><dd>Included</dd></div><div><dt>Production Failover</dt><dd>On Demand</dd></div><div><dt>Cloud-only VPN</dt><dd>Included</dd></div><div><dt>VPN-less Deployment</dt><dd>Supported</dd></div>
-                  <div><dt>IPsec Multisite VPN</dt><dd>Supported</dd></div><div><dt>Custom DNS</dt><dd>Included</dd></div><div><dt>Anti-ransomware</dt><dd>Included</dd></div><div><dt>Support</dt><dd>24×7</dd></div>
+                  <div><dt>IPsec Multisite VPN</dt><dd>Supported</dd></div><div><dt>Custom DNS</dt><dd>Included</dd></div><div><dt>Anti-ransomware</dt><dd>Included</dd></div><div><dt>24×7 Managed DR Support</dt><dd></dd></div>
                 </dl>
               </article>
             </div>
@@ -848,6 +851,56 @@
                   <span>{{ industry }}</span>
                 }
               </div>
+
+              <section class="xh-outcomes" aria-labelledby="xh-outcomes-title">
+                <header class="xh-outcomes-head">
+                  <span class="xh-outcomes-kicker">THE XCELLHOST PLATFORM</span>
+                  <h2 id="xh-outcomes-title">How XcellHost builds outcomes</h2>
+                  <p>A proven process that turns your goals into measurable results.</p>
+                </header>
+                <div class="xh-outcomes-flow">
+                  <article class="xh-outcome-step">
+                    <span class="xh-outcome-icon" aria-hidden="true">&#9671;</span>
+                    <h3>1. Understand</h3>
+                    <p>We understand your business goals and requirements.</p>
+                  </article>
+                  <span class="xh-outcome-arrow" aria-hidden="true">&#8594;</span>
+                  <article class="xh-outcome-step">
+                    <span class="xh-outcome-icon" aria-hidden="true">&#8226;</span>
+                    <h3>2. Architect</h3>
+                    <p>XcellHost designs the optimal architecture and selects the right components.</p>
+                  </article>
+                  <span class="xh-outcome-arrow" aria-hidden="true">&#8594;</span>
+                  <article class="xh-outcome-platform">
+                    <div class="xh-outcome-brand">XcellHost</div>
+                    <span class="xh-outcome-platform-kicker">THE PLATFORM ASSEMBLES</span>
+                    <div class="xh-outcome-capabilities">
+                      <span><i aria-hidden="true">&#9632;</i>Compute</span>
+                      <span><i aria-hidden="true">&#9679;</i>Storage</span>
+                      <span><i aria-hidden="true">&#9670;</i>Network</span>
+                      <span><i aria-hidden="true">&#9674;</i>Security</span>
+                      <span><i aria-hidden="true">&#9638;</i>Database</span>
+                      <span><i aria-hidden="true">&#8635;</i>Backup</span>
+                      <span><i aria-hidden="true">&#10022;</i>AI/ML</span>
+                      <span><i aria-hidden="true">&#10003;</i>Compliance</span>
+                      <span><i aria-hidden="true">&#8764;</i>Monitoring</span>
+                      <span><i aria-hidden="true">&#9881;</i>Managed<br />Services</span>
+                    </div>
+                  </article>
+                  <span class="xh-outcome-arrow" aria-hidden="true">&#8594;</span>
+                  <article class="xh-outcome-step">
+                    <span class="xh-outcome-icon" aria-hidden="true">&#10003;</span>
+                    <h3>3. Deliver</h3>
+                    <p>Your outcome is live, with expert teams and industry best practice.</p>
+                  </article>
+                  <span class="xh-outcome-arrow" aria-hidden="true">&#8594;</span>
+                  <article class="xh-outcome-step">
+                    <span class="xh-outcome-icon" aria-hidden="true">&#8593;</span>
+                    <h3>4. Optimize</h3>
+                    <p>We continuously monitor, optimise and enhance for ongoing impact.</p>
+                  </article>
+                </div>
+              </section>
             </section>
           </div>
         }
