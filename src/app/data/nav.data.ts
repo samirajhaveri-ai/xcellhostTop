@@ -14,6 +14,81 @@ export const MEGA_MENU: MenuTop[] = [
     "feature": null,
     "tabs": [
       {
+        "g": "4",
+        "label": "SMB Cloud",
+        "on": true,
+        "groups": [
+          {
+            "heading": "SMB Cloud",
+            "items": [
+              {
+                "title": "Tally on Cloud",
+                "pill": "Top seller",
+                "desc": null
+              },
+              
+              {
+                "title": "Cloud Backup",
+                "pill": "Popular",
+                "desc": null
+              },
+              {
+                "title": "Cloud Drive",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Advanced Endpoint Security (EDR)",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Remote Monitoring & Mgmt (RMM)",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "SMB Cyber Security Appliance",
+                "pill": "New",
+                "desc": null
+              },
+               {
+                "title": "Microsoft 365 SMB",
+                "pill": null,
+                "desc": "Cloud productivity tools with migration and 24/7 support"
+              },
+              {
+                "title": "SMB Cloud Desktop",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Acronis GenAI Protection",
+                "pill": "New",
+                "desc": null
+              },
+              
+              {
+                "title": "Cloud Disaster Recovery SMB",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "DPDPA For SMB",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Workforce Analytics",
+                "pill": null,
+                "desc": null
+              },
+              
+            ]
+          }
+        ]
+      },
+      {
         "g": "0",
         "label": "Domains",
         "on": true,
@@ -77,10 +152,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Reserve a domain name for future availability 🕰️"
               },
               {
-                "title": "Web Design for CA, CS & Lawyers",
+                "title": "TLD Directory",
                 "pill": null,
-                "desc": null
-              }
+                "desc": "Reserve a domain name for future availability 🕰️"
+              },
+              
             ]
           }
         ]
@@ -202,88 +278,20 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "OpenClaw VPS",
                 "pill": "1-Click",
                 "desc": "Secure, automated backups to safeguard your website 🔒"
+              },
+              {
+                "title": "Trading VPS",
+                "pill": "1-Click",
+                "desc": "Secure, automated backups to safeguard your website 🔒"
               }
+
               
               
             ]
           }
         ]
       },
-      {
-        "g": "4",
-        "label": "SMB Cloud",
-        "on": true,
-        "groups": [
-          {
-            "heading": "SMB Cloud",
-            "items": [
-              {
-                "title": "Tally on Cloud",
-                "pill": "Top seller",
-                "desc": null
-              },
-              
-              {
-                "title": "Cloud Backup",
-                "pill": "Popular",
-                "desc": null
-              },
-              {
-                "title": "Cloud Drive",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Advanced Endpoint Security (EDR)",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Remote Monitoring & Mgmt (RMM)",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "SMB Cyber Security Appliance",
-                "pill": "New",
-                "desc": null
-              },
-               {
-                "title": "Microsoft 365 SMB",
-                "pill": null,
-                "desc": "Cloud productivity tools with migration and 24/7 support"
-              },
-              {
-                "title": "SMB Cloud Desktop",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Acronis GenAI Protection",
-                "pill": "New",
-                "desc": null
-              },
-              
-              {
-                "title": "Cloud Disaster Recovery SMB",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "DPDPA For SMB",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Workforce Analytics",
-                "pill": null,
-                "desc": null
-              },
-              
-            ]
-          }
-        ]
-      },
+      
       {
         "g": "5",
         "label": "Managed DNS",
@@ -321,6 +329,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "A powerful web hosting control panel 🎛️"
               },
+              {
+                "title": "Webuzo Control Panel",
+                "pill": null,
+                "desc": "A powerful web hosting control panel 🎛️"
+              },
               
             ]
           }
@@ -335,10 +348,10 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Web Design",
             "items": [
               {
-                "title": "No Data",
-                "pill": "Top seller",
+                "title": "Web Design for CA, CS & Lawyers",
+                "pill": null,
                 "desc": null
-              },
+              }
               
             ]
           }
@@ -434,11 +447,7 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "Managed Cloud",
             "items": [
-              {
-                "title": "Managed Microsoft 365",
-                "pill": null,
-                "desc": null
-              },
+              
               {
                 "title": "Managed AWS",
                 "pill": null,
@@ -474,11 +483,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "Managed Intune Services",
-                "pill": null,
-                "desc": null
-              }
+              
             ]
           }
         ]
@@ -574,11 +579,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               
-              {
-                "title": "Free/Busy",
-                "pill": null,
-                "desc": null
-              },
             ]
           }
         ]
@@ -639,6 +639,16 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "SAP B1",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "SAP S4 Cloud",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
@@ -682,6 +692,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "Managed SG Band",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
@@ -713,12 +728,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Microsoft Copilot",
-                "pill": "Soon",
+                "title": "Google Workspace",
+                "pill": null,
                 "desc": null
               },
               {
-                "title": "Google Workspace",
+                "title": "Zoho Workspace",
                 "pill": null,
                 "desc": null
               },
@@ -751,12 +766,6 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "Email Security",
             "items": [
-              
-               {
-                "title": "Zoho Workspace",
-                "pill": null,
-                "desc": null
-              },
               {
                 "title": "Advanced Email Security",
                 "pill": null,
@@ -767,11 +776,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": "Best seller",
                 "desc": null
               },
-              {
-                "title": "Email Signature",
-                "pill": null,
-                "desc": null
-              },
+              
               {
                 "title": "Email Encryption",
                 "pill": null,
@@ -781,6 +786,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Cloud Mobile Device Mgmt",
                 "pill": null,
                 "desc": null
+              },
+              {
+                "title": "Vortex SEG",
+                "pill": null,
+                "desc": "Advanced email security, DLP and archival",
+                "href": "/vortex-seg"
               },
               
             ]
@@ -843,26 +854,12 @@ export const MEGA_MENU: MenuTop[] = [
             "items": [
               
               {
-                "title": "No Data",
+                "title": "Email Signature",
                 "pill": null,
                 "desc": null
-              }, 
-              
-            ]
-          }
-        ]
-      },
-      {
-        "g": "12",
-        "label": "Managed Migration",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Managed Migration",
-            "items": [
-              
+              },
               {
-                "title": "No Data",
+                "title": "Email Migration",
                 "pill": null,
                 "desc": null
               }, 
@@ -873,18 +870,63 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "4",
-        "label": "Managed Microsoft 365",
+        "label": "Microsoft Copilot",
         "on": false,
         "groups": [
           {
-            "heading": "Managed Microsoft 365 ",
+            "heading": "Microsoft Copilot",
             "items": [
               
               {
-                "title": "No Data",
+                "title": "Microsoft Copilot ",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Copilot Studio",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Microsoft Cunsulting ",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Microsoft Training",
                 "pill": null,
                 "desc": null
               }, 
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "4",
+        "label": "Managed Productivity",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Managed Productivity",
+            "items": [
+              
+              {
+                "title": "Managed Microsoft 365",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Managed MDM",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Managed Intune Services",
+                "pill": null,
+                "desc": null
+              }
+              
               
             ]
           }
@@ -950,16 +992,19 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Vortex SOC",
+                "title": "Claude Backup",
                 "pill": null,
-                "desc": null,
-                "href": "/vortex-soc"
+                "desc": null
               },
               {
-                "title": "Vortex SEG",
+                "title": "GitHub Backup",
                 "pill": null,
-                "desc": "Advanced email security, DLP and archival",
-                "href": "/vortex-seg"
+                "desc": null
+              },
+              {
+                "title": "Zoho Backup",
+                "pill": null,
+                "desc": null
               },
             ]
           }
@@ -1320,6 +1365,24 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
+      {
+        "g": "Quantum Cryptography",
+        "label": "Quantum Cryptography",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Quantum Cryptography",
+            "items": [
+              {
+                "title": "No Data",
+                "pill": null,
+                "desc": null
+              },
+              
+            ]
+          }
+        ]
+      },
     ]
   },
   {
@@ -1387,11 +1450,25 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Cloud Security",
             "items": [
               {
-                "title": "No Data",
+                "title": "AWS Security",
                 "pill": "Free trial",
                 "desc": null
               },
-              
+              {
+                "title": "Azure Security",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "GCP Security",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "Cloud Security Posture (CSPM)",
+                "pill": "Free trial",
+                "desc": null
+              },
             ]
           }
         ]
@@ -1725,6 +1802,25 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "Vortex SOC",
+                "pill": null,
+                "desc": null,
+                "href": "/vortex-soc"
+              },
+              {
+                "title": "Managed Threat Hunting",
+                "pill": null,
+                "desc": null,
+                "href": "/vortex-soc"
+              },
+              {
+                "title": "Managed Threat Intelligence",
+                "pill": null,
+                "desc": null,
+                "href": "/vortex-soc"
+              },
+              
             ]
           }
         ]
@@ -1780,11 +1876,6 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "PCI Consulting",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Cyber Insurance",
                 "pill": null,
                 "desc": null
               },
@@ -1970,17 +2061,22 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "AI Security",
             "items": [
               {
-                "title": "AI App Builder",
+                "title": "AI Red Teaming Services",
                 "pill": null,
-                "desc": "Reliable AI App Builder hosting 💻"
+                "desc": "Optimized AI IDE Lab ⚡"
               },
               {
-                "title": "AI Website Builder",
+                "title": "AI Security Assessment",
                 "pill": null,
-                "desc": "Reliable AI Website Builder hosting 🐧"
+                "desc": "Optimized AI IDE Lab ⚡"
               },
               {
-                "title": "AI IDE Lab",
+                "title": "AI Security Audit",
+                "pill": null,
+                "desc": "Optimized AI IDE Lab ⚡"
+              },
+              {
+                "title": "AI Security Platform",
                 "pill": null,
                 "desc": "Optimized AI IDE Lab ⚡"
               },
@@ -2111,7 +2207,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Information Protection",
+                "title": "Microsoft Information Protection",
                 "pill": null,
                 "desc": null
               },
@@ -3133,6 +3229,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Security Glossary ",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "AI Glossary ",
                 "pill": null,
                 "desc": null
               },
