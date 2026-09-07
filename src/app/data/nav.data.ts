@@ -3046,14 +3046,21 @@ export const MEGA_MENU: MenuTop[] = [
         "label": "Trust Center",
         "on": false,
         "groups": [
+          
           {
             "heading": "Tools Center",
             "items": [
+              {
+                "title": "Trust Center",
+                "pill": null,
+                "desc": null
+              },
               {
                 "title": "NO Tools",
                 "pill": null,
                 "desc": null
               }
+            
             ]
           }
         ]
