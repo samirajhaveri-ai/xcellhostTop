@@ -474,11 +474,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Managed DevOps",
-                "pill": null,
-                "desc": null
-              },
-              {
                 "title": "Managed Kubernetes",
                 "pill": null,
                 "desc": null
@@ -508,6 +503,26 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "GCP DevOps",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Managed DevOps",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Terraform",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Ansible",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Pappet",
                 "pill": null,
                 "desc": null
               },
@@ -640,7 +655,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "SAP B1",
+                "title": "SAP B1 Cloud",
                 "pill": null,
                 "desc": null
               },
@@ -693,7 +708,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Managed SG Band",
+                "title": "Managed SG VAN",
                 "pill": null,
                 "desc": null
               },
@@ -788,7 +803,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Vortex SEG",
+                "title": "Email Security Enterprise",
                 "pill": null,
                 "desc": "Advanced email security, DLP and archival",
                 "href": "/vortex-seg"
@@ -812,15 +827,22 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Cloud Desktop Enterprise",
+                "title": "Cloud Desktop Enterprise (VDI)",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Azure Cloud Desktop",
+                "title": "Accops Digital Workspace",
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "Windows 365",
+                "pill": null,
+                "desc": null
+              },
+              
+              
             ]
           }
         ]
@@ -838,7 +860,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Cloud Conferencing",
                 "pill": null,
                 "desc": null
-              }, 
+              },
+              {
+                "title": "Zoom Conferenceing",
+                "pill": null,
+                "desc": null
+              },  
               
             ]
           }
@@ -879,7 +906,7 @@ export const MEGA_MENU: MenuTop[] = [
               
               {
                 "title": "Microsoft Copilot ",
-                "pill": null,
+                "pill": "Hot Sales",
                 "desc": null
               },
               {
@@ -1432,7 +1459,12 @@ export const MEGA_MENU: MenuTop[] = [
               },
               
               {
-                "title": "MDM",
+                "title": "Mobile Device Management",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "Data Leak Prevention (DLP)",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -1569,11 +1601,7 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "Data Security",
             "items": [
-              {
-                "title": "Data Leak Prevention (DLP)",
-                "pill": "Free trial",
-                "desc": null
-              },
+              
               {
                 "title": "Data Encryption",
                 "pill": "Free trial",
@@ -1641,7 +1669,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Continuous Pen Testing As a Services",
+                "title": "Continuous Pen As a Services",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -1681,12 +1709,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "Application Security Services",
-                "pill": null,
-                "desc": null
-              },
-              
             ]
           }
         ]
@@ -1699,12 +1721,7 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "Security Assessment",
             "items": [
-              
-              {
-                "title": "Cloud Security Posture Mgmt",
-                "pill": null,
-                "desc": null
-              },
+            
               {
                 "title": "Digital Risk Monitoring",
                 "pill": null,
@@ -2244,11 +2261,11 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "4",
-        "label": "Services",
+        "label": "Managed IT",
         "on": false,
         "groups": [
           {
-            "heading": "Services",
+            "heading": "Managed IT",
             "items": [
               {
                 "title": "Data Center Build Services",
@@ -2687,71 +2704,11 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Cyber Insurance",
             "items": [
               {
-                "title": "DPDPA Consulting",
+                "title": "No Data",
                 "pill": "In focus",
                 "desc": null
               },
-              {
-                "title": "vDPO-as-a-Service",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "vCISO-as-a-Service",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Cyber Security Audit",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "ISO 27001 Consulting",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Compliance Consulting",
-                "pill": null,
-                "desc": null
-              },
               
-              {
-                "title": "Third-Party Risk Mgmt (TPRM)",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Managed GRC",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "PCI Consulting",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Cyber Insurance",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "ISO 22301",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "ISO 42001",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "ISO 27701",
-                "pill": null,
-                "desc": null
-              },
             ]
           }
         ]
@@ -2979,7 +2936,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "5",
+        "g": "4",
         "label": "SLA's",
         "on": false,
         "groups": [
