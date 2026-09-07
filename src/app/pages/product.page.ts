@@ -367,6 +367,12 @@ export class ProductPage {
     { title: 'Secure sign-in', description: 'Keep Windows credentials protected while users connect to their assigned resources.', image: '/assets/images/tsplus-remote-access-tour-credentials.png' },
   ];
 
+  readonly scrutinyDlpTourSlides: readonly ProductTourSlide[] = [
+    { title: 'Data protection overview', description: 'Monitor protected endpoints, policy activity, blocked transfers and overall risk posture.', image: '/assets/images/scrutiny-dlp-tour-dashboard.svg' },
+    { title: 'One policy across every channel', description: 'Control removable media, web and cloud uploads, public GenAI tools, screenshots and screen photography.', image: '/assets/images/scrutiny-dlp-tour-policies.svg' },
+    { title: 'Audit-ready incident evidence', description: 'Reconstruct a blocked event with classification details, captured evidence and an immutable activity timeline.', image: '/assets/images/scrutiny-dlp-tour-evidence.svg' },
+  ];
+
   /** Product-owned artwork used when a page does not have a dedicated UI screenshot set. */
   readonly productTourSlides = computed<readonly ProductTourSlide[]>(() => {
     const view = this.view();
@@ -378,6 +384,7 @@ export class ProductPage {
     if (this.isTsplusRemoteSupport()) return this.tsplusRemoteSupportTourSlides;
     if (this.isTsplusAdvancedSecurity()) return this.tsplusAdvancedSecurityTourSlides;
     if (this.isTsplusRemoteAccess()) return this.tsplusRemoteAccessTourSlides;
+    if (view.name === 'Scrutiny DLP') return this.scrutinyDlpTourSlides;
 
     const candidates: ProductTourSlide[] = [];
     const add = (title: string, description: string, image: string | null | undefined): void => {

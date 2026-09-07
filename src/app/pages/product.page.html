@@ -268,8 +268,16 @@
           <xh-cloud-cctv-content />
         }
         @if (!isSiteLock()) {
-          <div class="pp-sec">Overview</div>
-          <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
+          @if (slug() === 'scrutiny-dlp') {
+            <xh-scrutiny-dlp-content />
+          } @else if (slug() === 'vortex-seg') {
+            <xh-vortex-seg-content />
+          } @else if (slug() === 'vortex-soc') {
+            <xh-vortex-soc-content />
+          } @else {
+            <div class="pp-sec">Overview</div>
+            <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
+          }
 
           @if (isAcronisTrueImage()) {
             <xh-acronis-true-image-content />
@@ -588,7 +596,7 @@
               }
             </div>
           </section>
-        } @else if (!isAdvancedEdr() && !isSmbCyber() && !isRmm() && !isAcronisTrueImage() && !isSiteLock()) {
+        } @else if (!isAdvancedEdr() && !isSmbCyber() && !isRmm() && !isAcronisTrueImage() && !isSiteLock() && slug() !== 'scrutiny-dlp' && slug() !== 'vortex-seg' && slug() !== 'vortex-soc') {
           <div class="pp-sec">Plans &amp; pricing</div>
           <div class="pp-plans" id="ppPlans">
             @for (p of v.plans; track p.term) {
@@ -630,7 +638,7 @@
               }
             </div>
           </section>
-        } @else if (!isSmbCyber() && !isAcronisTrueImage() && !isSiteLock()) {
+        } @else if (!isSmbCyber() && !isAcronisTrueImage() && !isSiteLock() && slug() !== 'scrutiny-dlp' && slug() !== 'vortex-seg' && slug() !== 'vortex-soc') {
           @if (isAdvancedEdr()) {
             <section class="edr-feature-heading" aria-labelledby="edr-feature-title">
               <div class="edr-feature-copy">
@@ -915,7 +923,7 @@
           </section>
         }
 
-        @if (!isSmbCyber() && !isRmm() && !isAcronisTrueImage() && !isSiteLock()) {
+        @if (!isSmbCyber() && !isRmm() && !isAcronisTrueImage() && !isSiteLock() && slug() !== 'scrutiny-dlp' && slug() !== 'vortex-seg' && slug() !== 'vortex-soc') {
         <div class="pp-sec">
           {{
             v.name === 'Tally on Cloud'
@@ -1045,7 +1053,7 @@
           </section>
         }
 
-        @if (v.name !== 'Tally on Cloud' && !isSmbCyber() && !isAcronisTrueImage() && !isSiteLock()) {
+        @if (v.name !== 'Tally on Cloud' && !isSmbCyber() && !isAcronisTrueImage() && !isSiteLock() && slug() !== 'scrutiny-dlp' && slug() !== 'vortex-seg' && slug() !== 'vortex-soc') {
           <div class="pp-sec">Use cases</div>
           <div class="pp-uses" id="ppUses" [class.cdr-smb-uses]="isCloudDisasterRecoverySmb()">
             @for (u of v.uses; track u.title) {
@@ -1162,7 +1170,7 @@
         }
 
         @if (v.name !== 'Tally on Cloud') {
-        @if (!isSmbCyber() && !isRmm()) {
+        @if (!isSmbCyber() && !isRmm() && slug() !== 'scrutiny-dlp') {
           <div class="pp-sec" id="ppSecHead">{{ v.security.head }}</div>
           <div id="ppSecWrap">
             <p class="pp-ov">{{ v.security.intro }}</p>
@@ -1180,7 +1188,7 @@
 
         }
 
-        @if (v.name !== 'Tally on Cloud' && !isSmbCyber() && !isRmm()) {
+        @if (v.name !== 'Tally on Cloud' && !isSmbCyber() && !isRmm() && slug() !== 'scrutiny-dlp' && slug() !== 'vortex-seg' && slug() !== 'vortex-soc') {
           <div class="pp-sec" id="ppWhyHead">Why XcellHost for {{ v.name }}</div>
           <div class="pp-why" id="ppWhy">
             @for (w of v.why; track w.title) {
@@ -1227,6 +1235,27 @@
             </div>
           }
         </div>
+
+        @if (slug() === 'scrutiny-dlp') {
+          <section class="tally-videos scrutiny-dlp-action" aria-labelledby="scrutinyDlpActionTitle">
+            <div class="pp-sec" id="scrutinyDlpActionTitle">Watch it in action</div>
+            <div class="tally-video-grid scrutiny-dlp-action-grid">
+              @for (slide of scrutinyDlpTourSlides; track slide.image) {
+                <article class="tally-video-card">
+                  <h3><span>{{ slide.title }}</span></h3>
+                  <div class="tally-video-frame"><img [src]="slide.image" [alt]="slide.description" loading="lazy" /></div>
+                </article>
+              }
+            </div>
+          </section>
+        }
+
+        @if (slug() === 'vortex-seg' && !showcaseVideos().length) {
+          <section class="tally-videos" aria-labelledby="vortexSegActionTitle">
+            <div class="pp-sec" id="vortexSegActionTitle">Watch it in action</div>
+            <div class="tally-video-grid single-video"><article class="tally-video-card"><h3><span>Vortex SEG message protection</span></h3><div class="tally-video-frame"><img src="/assets/images/vortex-seg-hero.svg" alt="Vortex SEG inspects and protects email before delivery" loading="lazy" /></div></article></div>
+          </section>
+        }
 
         @if (showcaseVideos().length && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess()) {
           <section class="tally-videos" aria-labelledby="showcaseVideosTitle">
@@ -1360,19 +1389,9 @@
           <xh-product-faq [faqs]="v.faqs" />
         </div>
 
-        @if (slug() === 'scrutiny-dlp') {
-          <xh-scrutiny-dlp-content />
-        }
         @if (slug() === 'scrutiny-edr') {
           <xh-scrutiny-edr-content />
         }
-        @if (slug() === 'vortex-soc') {
-          <xh-vortex-soc-content />
-        }
-        @if (slug() === 'vortex-seg') {
-          <xh-vortex-seg-content />
-        }
-
         <div class="pp-sec pp-blog-heading">From our blog</div>
         <div class="pp-blog" id="ppBlog">
           @for (b of blogs(); track b.title) {
