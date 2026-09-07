@@ -33,6 +33,7 @@ import { ScrutinyEdrContentComponent } from '../sections/scrutiny-edr-content.co
 import { ScrutinyDlpContentComponent } from './scrutiny-dlp-content.component';
 import { VortexSocContentComponent } from './vortex-soc-content.component';
 import { VortexSegContentComponent } from './vortex-seg-content.component';
+import { InfrastructureContentComponent } from '../sections/infrastructure-content.component';
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -122,6 +123,7 @@ interface ProductTourSlide {
     ScrutinyDlpContentComponent,
     VortexSocContentComponent,
     VortexSegContentComponent,
+    InfrastructureContentComponent,
   ],
   templateUrl: './product.page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -749,6 +751,8 @@ export class ProductPage {
 
   readonly isCloudBackup = computed(() => this.view()?.name.toLowerCase().startsWith('cloud backup') ?? false);
 
+  readonly isInfrastructure = computed(() => this.view()?.name === 'Infrastructure');
+
   /** Every product's available videos, shown together immediately before reviews. */
   readonly showcaseVideos = computed<readonly { label: string; url: SafeResourceUrl }[]>(() => {
     const view = this.view();
@@ -936,6 +940,15 @@ export class ProductPage {
    */
   private resolve(slug: string): ProductView | null {
     if (!slug) return null;
+
+    if (slug === 'infrastructure') {
+      return this.products.build({
+        name: 'Infrastructure',
+        tag: 'Reliable cloud infrastructure for business-critical workloads.',
+        cat: 'Cloud',
+        crumb: 'Cloud › Infrastructure',
+      });
+    }
 
     if (slug === 'digicert-cmc') {
       return this.products.build({
