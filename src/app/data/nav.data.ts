@@ -219,7 +219,7 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Web Marketing",
             "items": [
               {
-                "title": "WhatsApp SMB",
+                "title": "WhatsApp For Business",
                 "pill": "New",
                 "desc": "Official WhatsApp Business API for sales, support and automation"
               },
@@ -241,6 +241,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Managed SEO",
+                "pill": "AI Powered",
+                "desc": "Maximise online visibility and reach your target audience 🎯"
+              },
+              {
+                "title": "Whatsapp Broadcasting",
                 "pill": "AI Powered",
                 "desc": "Maximise online visibility and reach your target audience 🎯"
               },
@@ -331,6 +336,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Webuzo Control Panel",
+                "pill": null,
+                "desc": "A powerful web hosting control panel 🎛️"
+              },
+              {
+                "title": "Cloud Linux",
                 "pill": null,
                 "desc": "A powerful web hosting control panel 🎛️"
               },
@@ -618,6 +628,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Video Surveillance as a Service",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "IOT Monitoring",
                 "pill": null,
                 "desc": null
               },
@@ -1105,7 +1120,7 @@ export const MEGA_MENU: MenuTop[] = [
         "on": false,
         "groups": [
           {
-            "heading": "Saas Backup",
+            "heading": "Veeam Platform",
             "items": [
                {
                 "title": "No Data",
@@ -1137,7 +1152,7 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "6",
-        "label": "Cloud Disaster Recovery",
+        "label": "Cloud DR",
         "on": false,
         "groups": [
           {
@@ -2713,6 +2728,24 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
+      {
+        "g": "13",
+        "label": "Wimwre Migration",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Wimwre Migration",
+            "items": [
+              {
+                "title": "No Data",
+                "pill": "In focus",
+                "desc": null
+              },
+              
+            ]
+          }
+        ]
+      },
 
     ]
   },
@@ -2779,23 +2812,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Corporate Social Responsibility",
                 "pill": null,
                 "desc": "We'd love to hear from you"
-              },
-            ]
-          }
-        ]
-      },
-       {
-        "g": "0",
-        "label": "Insights",
-        "on": true,
-        "groups": [
-          {
-            "heading": "Insights",
-            "items": [
-              {
-                "title": "No Data",
-                "pill": null,
-                "desc": "Secure, scalable cloud expertise since 1999"
               },
             ]
           }
@@ -2936,7 +2952,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "4",
+        "g": "5",
         "label": "SLA's",
         "on": false,
         "groups": [
@@ -3034,7 +3050,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "10",
+        "g": "7",
         "label": "Tools Center",
         "on": false,
         "groups": [
@@ -3055,13 +3071,18 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "SSL Tools",
                 "pill": null,
                 "desc": null
-              }
+              },
+              {
+                "title": "Domain Tools",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
       },
       {
-        "g": "12",
+        "g": "8",
         "label": "learning Center",
         "on": false,
         "groups": [
@@ -3069,103 +3090,11 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "learning Center",
             "items": [
               {
-                "title": "NO Tools",
-                "pill": null,
-                "desc": null
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "g": "14",
-        "label": "Experience Center",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Experience Center",
-            "items": [
-              {
-                "title": "NO Tools",
-                "pill": null,
-                "desc": null
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "g": "15",
-        "label": "Trust Center",
-        "on": false,
-        "groups": [
-          
-          {
-            "heading": "Tools Center",
-            "items": [
-              {
-                "title": "Trust Center",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "NO Tools",
-                "pill": null,
-                "desc": null
-              }
-            
-            ]
-          }
-        ]
-      },
-      {
-        "g": "16",
-        "label": "Media center",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Media center",
-            "items": [
-              {
-                "title": "NO Tools",
-                "pill": null,
-                "desc": null
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "g": "17",
-        "label": "Brand center",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Brand center",
-            "items": [
-              {
-                "title": "NO Tools",
-                "pill": null,
-                "desc": null
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "g": "0",
-        "label": "Learn",
-        "on": true,
-        "groups": [
-          {
-            "heading": "Learn",
-            "items": [
-              {
                 "title": "Blogs",
                 "pill": null,
                 "desc": null
               },
-                {
+              {
                 "title": "Customer Stories",
                 "pill": null,
                 "desc": "See how customers transform with our services",
@@ -3211,7 +3140,82 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "1",
+        "g": "9",
+        "label": "Experience Center",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Experience Center",
+            "items": [
+              {
+                "title": "NO Tools",
+                "pill": null,
+                "desc": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "g": "10",
+        "label": "Trust Center",
+        "on": false,
+        "groups": [
+          
+          {
+            "heading": "Tools Center",
+            "items": [
+              {
+                "title": "Trust Center",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "NO Tools",
+                "pill": null,
+                "desc": null
+              }
+            
+            ]
+          }
+        ]
+      },
+      {
+        "g": "11",
+        "label": "Media Center",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Media center",
+            "items": [
+              {
+                "title": "NO Tools",
+                "pill": null,
+                "desc": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "g": "12",
+        "label": "Brand Center",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Brand center",
+            "items": [
+              {
+                "title": "NO Tools",
+                "pill": null,
+                "desc": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "g": "13",
         "label": "Flipbooks",
         "on": false,
         "featureCards": [
@@ -3270,7 +3274,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "2",
+        "g": "14",
         "label": "Ebooks",
         "on": false,
         "groups": [
@@ -3307,7 +3311,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "3",
+        "g": "15",
         "label": "Product Tour",
         "on": true,
         "groups": [
@@ -3324,7 +3328,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "4",
+        "g": "16",
         "label": "Service Index",
         "on": false,
         "groups": [
