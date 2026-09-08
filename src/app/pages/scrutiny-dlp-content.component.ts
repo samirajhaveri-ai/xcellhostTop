@@ -9,11 +9,54 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     :host{display:grid;gap:36px}
     :host .dlp-overview,:host .dlp-section,:host .dlp-platform{margin:0}
     :host .dlp-overview>.pp-sec,:host .dlp-section>.pp-sec,:host .dlp-platform>.pp-sec{margin-top:0}
+    :host .dlp-kicker{display:inline-flex;margin-bottom:10px;padding:6px 11px;border-radius:99px;background:#e9f2ff;color:#1565d8;font:800 11px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+    :host .dlp-kicker.light{background:rgba(255,255,255,.14);color:#c9e5ff}
+    :host .dlp-story-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin-top:24px}
+    :host .dlp-story-grid article{padding:22px;border:1px solid #d9e6f5;border-radius:16px;background:linear-gradient(145deg,#fff,#f6faff)}
+    :host .dlp-story-grid article>span{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:#1668d7;color:#fff;font:800 11px var(--mono)}
+    :host .dlp-story-grid h3{margin:15px 0 7px;color:var(--navy);font-size:16px}:host .dlp-story-grid p{margin:0;color:var(--slate);font-size:13px;line-height:1.6}
+    :host .dlp-advanced{padding:32px;border-radius:20px;background:linear-gradient(120deg,#0e3977,#126bca);color:#fff}
+    :host .dlp-advanced .pp-sec{color:#fff}:host .dlp-advanced-copy>p{max-width:800px;margin:10px 0 0;color:#d9ebff;line-height:1.7}
+    :host .dlp-advanced-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:25px}
+    :host .dlp-advanced-grid article{display:flex;gap:13px;padding:18px;border:1px solid rgba(255,255,255,.18);border-radius:14px;background:rgba(255,255,255,.1)}
+    :host .dlp-advanced-grid article>span{display:grid;place-items:center;flex:0 0 36px;width:36px;height:36px;border-radius:10px;background:#fff;color:#1565d8;font:900 9px var(--mono)}
+    :host .dlp-advanced-grid h3{margin:0 0 5px;color:#fff;font-size:15px}:host .dlp-advanced-grid p{margin:0;color:#dcecff;font-size:12px;line-height:1.55}
+    :host .dlp-table-wrap{overflow:hidden;margin-top:23px;border:1px solid #d8e4f2;border-radius:17px;background:#fff;box-shadow:var(--shadow-s)}
+    :host table{width:100%;border-collapse:collapse;text-align:left}:host th,:host td{padding:16px 18px;border-bottom:1px solid #e4ebf4;color:var(--slate);font-size:13px;line-height:1.5;vertical-align:top}
+    :host thead th{background:#f1f6fc;color:#17375f;font:800 11px var(--mono);letter-spacing:.05em;text-transform:uppercase}:host tbody th{width:23%;color:var(--navy);font-size:14px}
+    :host tbody td:nth-child(2){width:36%;background:#f3f8ff;color:#0c3e7a;font-weight:700}:host tr:last-child>*{border-bottom:0}
+    @media(max-width:950px){:host .dlp-story-grid,:host .dlp-advanced-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:700px){:host .dlp-table-wrap{overflow-x:auto}:host table{min-width:720px}:host .dlp-advanced{padding:24px 19px}}
+    @media(max-width:540px){:host .dlp-story-grid,:host .dlp-advanced-grid{grid-template-columns:1fr}}
     @media(max-width:700px){:host{gap:30px}}
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ScrutinyDlpContentComponent {
+  readonly evidenceCoverage = [
+    { title: 'Screen & video evidence', text: 'Capture screenshots, window changes, browser-tab switches and screen video around an incident.' },
+    { title: 'Messaging & collaboration', text: 'Follow sensitive text and files across chat, collaboration tools, web messengers and desktop clients.' },
+    { title: 'Activity feed & comparison', text: 'Compare activity across time periods and highlight deviations from normal department behaviour.' },
+    { title: 'Contacts & liaison graphs', text: 'Map communication relationships across email, chat and calls to expose suspicious data movement.' },
+    { title: 'Device & location context', text: 'Add external IP, country, device health, hardware changes and online status to every investigation.' },
+    { title: 'Remote administration', text: 'Lock sessions, cancel pending transfers and take controlled response actions from the central console.' },
+  ];
+  readonly advancedControls = [
+    { icon: 'CAM', title: 'Anti-photo protection', text: 'Detect a camera or phone lens and black out sensitive content before it can be photographed.' },
+    { icon: 'ID', title: 'Hidden watermarking', text: 'Embed user-specific invisible marks in screenshots and exports so escaped content remains traceable.' },
+    { icon: 'AI', title: 'GenAI upload protection', text: 'Inspect prompts, pasted text, screenshots and files before they reach public AI platforms.' },
+    { icon: 'LLM', title: 'Private classification', text: 'Classify PII, contracts, finance, HR and source code using local or private LLM deployment paths.' },
+    { icon: 'OFF', title: 'Encrypted offline buffer', text: 'Keep enforcing policy and preserve tamper-evident evidence until a remote endpoint reconnects.' },
+    { icon: 'Q', title: 'Quarantine vault', text: 'Move risky files into encrypted quarantine with reviewer release controls and a complete audit history.' },
+  ];
+  readonly comparison = [
+    { capability: 'Cross-platform endpoint DLP', scrutiny: 'Native policy coverage across Windows, macOS and Linux.', enterprise: 'Coverage parity can vary by operating system and module.' },
+    { capability: 'Anti-photo protection', scrutiny: 'Built-in screen blackout when a camera is detected.', enterprise: 'Often unavailable natively or handled by adjacent controls.' },
+    { capability: 'Hidden watermarking', scrutiny: 'User-specific invisible marks on screenshots and exports.', enterprise: 'Often limited to visible labels or separate classification tools.' },
+    { capability: 'GenAI governance', scrutiny: 'Prompt, paste, file and browser-upload inspection with private classification.', enterprise: 'Frequently cloud-centred or focused mainly on SaaS controls.' },
+    { capability: 'Offline evidence sync', scrutiny: 'Encrypted local storage and tamper-evident sync after reconnect.', enterprise: 'Disconnected evidence support varies in cloud-first platforms.' },
+    { capability: 'Deployment model', scrutiny: 'Complete on-premise, private-cloud and hybrid options.', enterprise: 'Many platforms favour SaaS-first or hybrid deployment.' },
+  ];
   readonly capabilities = [
     { title: 'Endpoint DLP', text: 'Control USB, print, clipboard, web and app uploads, RDP and screenshots.' },
     { title: 'Device Control', text: 'Allow, make read-only or block removable drives, SD cards and external disks.' },
