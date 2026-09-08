@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 
 import { BlogApiService, CmsBlogPost } from '../core/blog-api.service';
 import { RevealDirective } from '../shared/reveal.directive';
+import { CASE_STUDIES } from '../data/case-studies.data';
 
 /** Homepage teaser fed by the five newest posts in Strapi. */
 @Component({
@@ -15,14 +16,23 @@ import { RevealDirective } from '../shared/reveal.directive';
   template: `
     <section class="blogs" id="insights">
       <div class="wrap">
-        <div class="sec-head" xhReveal>
+        <div class="sec-head insights-heading" xhReveal>
           <div class="eyebrow">Insights</div>
-          <h2>Read before you need it</h2>
+          <div class="insights-heading-row">
+            <h2>Read before you need it</h2>
+            <div class="insights-actions" role="group" aria-label="Insight resources">
+              <button type="button" class="btn btn-ghost" [class.active]="activeView() === 'blogs'" [attr.aria-pressed]="activeView() === 'blogs'" aria-controls="insights-content" (click)="activeView.set('blogs')">Blogs</button>
+              <button type="button" class="btn btn-ghost" [class.active]="activeView() === 'videos'" [attr.aria-pressed]="activeView() === 'videos'" aria-controls="insights-content" (click)="activeView.set('videos')">Videos</button>
+              <button type="button" class="btn btn-ghost" [class.active]="activeView() === 'cases'" [attr.aria-pressed]="activeView() === 'cases'" aria-controls="insights-content" (click)="activeView.set('cases')">Case Studies</button>
+            </div>
+          </div>
           <p>
             Practical guidance on cloud, security and Indian compliance — written by the engineers
             who do the work.
           </p>
         </div>
+        <div id="insights-content">
+        @if (activeView() === 'blogs') {
         <div class="blog-carousel" role="region" aria-roledescription="carousel" aria-label="Latest insights">
           <button class="blog-nav blog-nav-prev" type="button" aria-label="Previous insights" (click)="scrollCarousel(-1)">‹</button>
           <div class="blog-grid" #blogGrid>
@@ -49,13 +59,80 @@ import { RevealDirective } from '../shared/reveal.directive';
             View all insights →
           </button>
         </div>
+        } @else if (activeView() === 'cases') {
+          <div class="case-grid">
+            @for (study of studies; track study.id) {
+              <a class="cs" routerLink="/case-studies" [fragment]="study.id" [attr.aria-label]="'Read case study: ' + study.metricLabel">
+                <div class="cs-tag">{{ study.industry }} · {{ study.profile }}</div>
+                <div class="cs-num">{{ study.metric.replace(' to ', ' → ') }}</div>
+                <b>{{ study.metricLabel }}</b>
+                <p>{{ study.summary }}</p>
+                <div class="cs-foot">
+                  @for (service of study.services; track service) {
+                    <span>{{ service }}</span>
+                  }
+                </div>
+              </a>
+            }
+          </div>
+          <div class="cases-cta"><a class="btn btn-ghost" routerLink="/case-studies">View all case studies →</a></div>
+        } @else {
+          <div class="insights-video-grid">
+            <article class="insights-video-card">
+              <div class="insights-video">
+                <iframe src="https://www.youtube-nocookie.com/embed/eb8jyqFV6fM?rel=0&playsinline=1" title="Tally on Cloud video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+              <h3>Tally on Cloud</h3>
+            </article>
+            <article class="insights-video-card">
+              <div class="insights-video">
+                <iframe src="https://www.youtube-nocookie.com/embed/a-Jy7VV13Do?rel=0&playsinline=1" title="Cloud Drive video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+              <h3>Cloud Drive</h3>
+            </article>
+            <article class="insights-video-card">
+              <div class="insights-video">
+                <iframe src="https://www.youtube-nocookie.com/embed/rya4Q4IZniA?rel=0&playsinline=1" title="Cloud Backup video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+              <h3>Cloud Backup</h3>
+            </article>
+          </div>
+          <div class="blog-cta"><a class="btn btn-ghost" href="https://www.youtube.com/@XcellHostCloudServices">View all videos →</a></div>
+        }
+        </div>
       </div>
     </section>
+  `,
+  styles: `
+    .insights-heading { max-width: none; }
+    .insights-heading-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 12px; }
+    .insights-heading-row h2 { margin-bottom: 0; }
+    .insights-heading p { max-width: 680px; }
+    .insights-actions { display: flex; flex-wrap: wrap; gap: 10px; flex-shrink: 0; }
+    .insights-actions .btn { background: #fff; white-space: nowrap; }
+    .insights-actions .btn.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+    .insights-video-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .insights-video-card { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 16px; background: #fff; }
+    .insights-video-card h3 { margin: 0; padding: 20px; font-family: var(--disp); font-size: 18px; color: var(--navy); }
+    .insights-video { aspect-ratio: 16 / 9; background: var(--navy); }
+    .insights-video iframe { display: block; width: 100%; height: 100%; border: 0; }
+    .insights-actions .btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+    @media (max-width: 1000px) {
+      .insights-video-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 640px) {
+      .insights-video-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 760px) {
+      .insights-heading-row { flex-direction: column; align-items: flex-start; gap: 16px; }
+    }
   `,
 })
 export class InsightsSectionComponent {
   private readonly blogApi = inject(BlogApiService);
   readonly posts = signal<readonly CmsBlogPost[]>([]);
+  readonly activeView = signal<'blogs' | 'cases' | 'videos'>('blogs');
+  readonly studies = CASE_STUDIES;
   @ViewChild('blogGrid') private blogGrid?: ElementRef<HTMLElement>;
 
   constructor() {

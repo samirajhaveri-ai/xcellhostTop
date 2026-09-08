@@ -1170,10 +1170,10 @@ export class ProductPage {
   }
 
   readonly cloudBackupTerms: readonly { key: CloudBackupTerm; label: string; saving: string }[] = [
-    { key: 'monthly', label: 'Monthly', saving: '' },
+    { key: 'monthly', label: 'Monthly (No Saving)', saving: '' },
     { key: 'quarterly', label: 'Quarterly', saving: 'Save 5%' },
     { key: '6m', label: '6 Months', saving: 'Save 7.5%' },
-    { key: 'yearly', label: 'Yearly', saving: 'Save 10%' },
+    { key: 'yearly', label: 'Yearly (No Saving)', saving: '' },
   ];
 
   readonly cloudBackupPlans: readonly CloudBackupPlan[] = [

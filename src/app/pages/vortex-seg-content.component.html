@@ -8,6 +8,16 @@
 
   <section><div class="pp-sec">Protection features in full</div><p class="pp-ov">Nine protection and compliance capabilities ship in the gateway. Powerful protection, complete control.</p><div class="seg-cap-grid">@for(item of capabilities;track item[0];let i=$index){<article><span>{{i+1}}</span><h3>{{item[0]}}</h3><p>{{item[1]}}</p></article>}</div></section>
 
+  <section class="seg-comparison" aria-labelledby="segComparisonTitle">
+    <div class="seg-kicker">Comparison</div>
+    <h2 id="segComparisonTitle">Vortex SEG vs enterprise email security gateways</h2>
+    <p class="seg-comparison-intro">Compare capability coverage and operating model against common secure email gateway approaches.</p>
+    <div class="seg-table-wrap"><table>
+      <thead><tr><th>Criteria</th><th>Vortex SEG</th><th>Enterprise SEG suites</th></tr></thead>
+      <tbody>@for (row of comparison; track row[0]) {<tr><th scope="row">{{row[0]}}</th><td>{{row[1]}}</td><td>{{row[2]}}</td></tr>}</tbody>
+    </table></div>
+  </section>
+
   <section><div class="pp-sec">Mail platforms, deployment and AI</div><div class="seg-panes"><article><h3>Multi mail-platform support</h3><ul><li><b>Microsoft 365</b><span>API, MX, journaling and transport rules</span></li><li><b>Google Workspace</b><span>SMTP relay, API and custom routing</span></li><li><b>Zoho Mail</b><span>SMTP relay and custom integration</span></li><li><b>Zimbra / Exchange / SMTP</b><span>On-premise or cloud mail environments</span></li></ul></article><article class="green"><h3>Deployment flexibility</h3><ul><li><b>Cloud</b><span>High availability, elastic scale and zero maintenance</span></li><li><b>On-premise</b><span>Complete control and internal data privacy</span></li><li><b>Hybrid ready</b><span>Integrates with your current infrastructure and security stack</span></li></ul></article><article class="purple"><h3>Smart inspection &amp; AI</h3><ul><li><b>AI/ML detection</b><span>Continuously analyses email patterns and threats</span></li><li><b>Local and cloud LLMs</b><span>Ollama, DeepSeek, Gemini, GPT and others</span></li><li><b>Threat intelligence</b><span>Real-time global feeds for proactive protection</span></li></ul></article></div>
     <div class="seg-path-copy"><h3>How a message travels through Vortex SEG</h3><p>Every message passes threat detection, policy enforcement, data protection and compliance logging. Verdicts and evidence can be forwarded to Vortex SOC.</p></div><div class="seg-flow"><article><i>1</i><b>Sender</b><span>External or internal originator</span></article><article><i>2</i><b>Internet</b><span>Arrives at your MX or relay</span></article><article><i>3</i><b>Vortex SEG</b><span>Detect, enforce, protect and log</span></article><article><i>4</i><b>Mail server</b><span>Microsoft 365, Google, Zoho or Exchange</span></article><article><i>5</i><b>Recipient</b><span>Clean message delivered</span></article><article><i>6</i><b>Vortex SOC</b><span>Verdicts and evidence correlated</span></article></div>
   </section>
