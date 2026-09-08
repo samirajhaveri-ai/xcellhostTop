@@ -1,0 +1,117 @@
+<main class="aws-body">
+  <div class="wrap">
+    <section>
+      <div class="pp-sec">Overview — What is an {{ provider() }} Managed Service Provider?</div>
+      <div class="pp-cols">
+        <p class="pp-ov">Running on {{ provider() }} is powerful — but keeping it secure, reliable and cost-efficient is a full-time job. As your <b>{{ provider() }} Managed Service Provider</b>, XcellHost takes that job off your plate: we plan and run your migration, then operate your {{ provider() }} environment day and night — monitoring, patching, securing, backing up and continuously optimising cost.</p>
+        <p class="pp-ov">Our {{ provider() }}-certified engineers become an extension of your team. You get one predictable monthly fee, a clear SLA, and experts on call 24×7 — so you can focus on building product while we keep the cloud fast, safe and lean, with a GST invoice and local support.</p>
+      </div>
+      <div class="aws-strip"><b>We manage</b>@if (provider() === 'Azure') {<span>Virtual Machines</span><span>Azure SQL &amp; Databases</span><span>Blob Storage</span><span>Virtual Network (VNet)</span>} @else {<span>EC2 &amp; Compute</span><span>RDS &amp; Databases</span><span>S3 &amp; Storage</span><span>VPC &amp; Networking</span>}<span>Security</span><span>Backups</span></div>
+    </section>
+
+    <section>
+      <div class="pp-sec">Assess · Migrate · Manage — how we run your {{ provider() }}</div>
+      <div class="aws-grid three">
+        <article><i>01</i><h3>Review &amp; plan</h3><p>We run a Well-Architected review of your current setup, map dependencies and build a right-sized, secure {{ provider() }} landing zone and migration plan.</p><ul><li>Cost and savings assessment</li><li>Architecture review</li><li>Migration roadmap</li></ul></article>
+        <article><i>02</i><h3>Move to {{ provider() }}</h3><p>We migrate your servers, databases and applications to {{ provider() }} with minimal downtime, then validate performance, security and backups before go-live.</p><ul><li>Servers, databases and apps</li><li>Minimal downtime</li><li>Validated and hardened</li></ul></article>
+        <article><i>03</i><h3>Run it 24×7</h3><p>Continuous monitoring, patching, incident response, backup and performance tuning.</p><ul><li>24×7 monitoring</li><li>Security and backups</li><li>Ongoing cost optimisation</li></ul></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="pp-sec">What our {{ provider() }} management covers</div>
+      <div class="aws-grid four">
+        <article><h3>Migration &amp; onboarding</h3><p>Discovery, landing-zone setup and workload migration.</p></article>
+        <article><h3>Monitoring &amp; response</h3><p>Round-the-clock health, alerting and incident handling.</p></article>
+        <article><h3>Security &amp; backup</h3><p>Hardening, patching, threat monitoring and tested recovery.</p></article>
+        <article><h3>FinOps &amp; reporting</h3><p>Right-sizing, savings plans and clear monthly reporting.</p></article>
+        <article><h3>DevOps automation</h3><p>CI/CD support, infrastructure as code and repeatable deployments.</p></article>
+        <article><h3>Database operations</h3><p>RDS availability, performance, maintenance and protection.</p></article>
+        <article><h3>Networking</h3><p>VPC design, connectivity, routing and access controls.</p></article>
+        <article><h3>High availability</h3><p>Resilient architecture, disaster recovery and continuity planning.</p></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="pp-sec">Benefits for your business</div>
+      <div class="aws-benefits"><article><b>Focus on product</b><span>Free your team from daily cloud operations.</span></article><article><b>Reduce cloud waste</b><span>Continuously tune capacity and commitment.</span></article><article><b>Improve resilience</b><span>Prevent issues and recover faster.</span></article><article><b>Get expert coverage</b><span>Cloud, NOC and SOC skills in one team.</span></article></div>
+    </section>
+
+    @if (provider() === 'Azure') {
+      <section>
+        <div class="pp-sec">Your cloud team, without the headcount</div>
+        <div class="azure-team-panel">
+          <div>
+            <span class="azure-kicker">Extension of your team</span>
+            <h3>Certified Azure engineers, on call.</h3>
+            <p>Hiring and retaining a full cloud operations team is expensive and slow. With XcellHost you get certified Azure engineers, proven runbooks and 24×7 coverage from day one — for a predictable monthly fee, backed by a clear SLA and a named account manager.</p>
+          </div>
+          <ul><li>Azure-certified engineers</li><li>24×7 coverage and on-call</li><li>Clear SLAs and reporting</li><li>One predictable monthly fee</li></ul>
+        </div>
+      </section>
+
+      <section>
+        <div class="pp-sec">From firefighting to a cloud that runs itself</div>
+        <div class="azure-before-after">
+          <article><span>Before</span><h3>Cloud becomes a second job</h3><ul><li>Late-night alerts with no clear owner</li><li>Surprise Azure bills</li><li>Patches and security work slip</li><li>Backups remain untested</li></ul></article>
+          <div aria-hidden="true">→</div>
+          <article class="after"><span>With XcellHost</span><h3>Managed, secure and optimised</h3><ul><li>24×7 incident ownership</li><li>Continuous cost optimisation</li><li>Patching and hardening handled</li><li>Restore-ready backups</li></ul></article>
+        </div>
+      </section>
+
+      <section>
+        <div class="pp-sec">Who we run Azure for</div>
+        <div class="azure-use-grid"><article><b>Startups &amp; SaaS</b><span>Scale without an ops team</span></article><article><b>E-commerce</b><span>Handle traffic spikes reliably</span></article><article><b>BFSI</b><span>Secure, compliant workloads</span></article><article><b>Healthcare</b><span>Data protection and uptime</span></article><article><b>Enterprises</b><span>Multi-account governance</span></article><article><b>Media &amp; apps</b><span>Global, low-latency delivery</span></article><article><b>Edtech</b><span>Scale for exams and sessions</span></article><article><b>Any Azure workload</b><span>Migrate and manage it all</span></article></div>
+      </section>
+    }
+
+    <section>
+      <div class="pp-sec">Security &amp; compliance</div>
+      <div class="aws-security"><div><h3>Secure by design, audit-ready by default.</h3><p>We apply AWS best practices across identity, network controls, logging, encryption, patching and recovery, then maintain the evidence your reviews need.</p></div><dl><div><dt>Identity</dt><dd>Least privilege and MFA</dd></div><div><dt>Data</dt><dd>Encryption and protected backups</dd></div><div><dt>Operations</dt><dd>Logging, monitoring and response</dd></div><div><dt>Standards</dt><dd>ISO, SOC and PCI support</dd></div></dl></div>
+    </section>
+
+    <section>
+      <div class="pp-sec">Why buy your Managed {{ provider() }} from XcellHost?</div>
+      <p class="pp-ov aws-lead">Anyone can spin up {{ provider() === 'Azure' ? 'a virtual machine' : 'an EC2 instance' }}; running {{ provider() }} securely, reliably and cost-efficiently is the hard part. XcellHost has managed cloud since 1999 — certified engineers, proven runbooks and 24×7 coverage — so your {{ provider() }} just works, with local billing and a GST invoice.</p>
+      <div class="aws-grid three why"><article><i>01</i><h3>AWS expertise</h3><p>Certified engineers backed by managed-cloud experience since 1999.</p></article><article><i>02</i><h3>Real cost savings</h3><p>Continuous optimisation keeps your AWS bill lean.</p></article><article><i>03</i><h3>Security first</h3><p>Hardened, monitored and audit-ready environments.</p></article><article><i>04</i><h3>24×7 support</h3><p>Round-the-clock help from our NOC and SOC.</p></article><article><i>05</i><h3>Local billing</h3><p>GST-compliant invoices and familiar payment options.</p></article><article><i>06</i><h3>Clear ownership</h3><p>A named team, transparent SLA and monthly reporting.</p></article></div>
+    </section>
+
+    <section class="aws-watch">
+      <div class="pp-sec">Watch it in action</div>
+      <button type="button" (click)="openTour()"><span>Managed {{ provider() }} operations</span><b>See how we monitor, secure and optimise {{ provider() }}</b><em>Open the 3-image screenshot tour →</em></button>
+    </section>
+
+    <section><div class="pp-sec">What customers say</div><div class="aws-quotes"><blockquote>“XcellHost migrated us to {{ provider() }} and now runs it 24×7. Our uptime improved and our monthly bill dropped by nearly a third.”<cite>Marketing Lead · E-commerce</cite></blockquote><blockquote>“During our biggest sale, XcellHost kept everything scaling smoothly. Not a single outage, and they caught issues before we noticed.”<cite>IT Security · SaaS</cite></blockquote><blockquote>“Security and compliance were non-negotiable for us. XcellHost hardened our {{ provider() }} and got us audit-ready, with a clear GST invoice each month.”<cite>Agency Owner · Fintech</cite></blockquote></div></section>
+
+    <section>
+      <div class="pp-sec">Frequently asked questions</div>
+      @if (provider() === 'Azure') {
+        <div class="aws-faq-grid">
+          <details><summary>What is an Azure Managed Service Provider?</summary><p>An Azure MSP runs your Azure cloud for you. XcellHost plans and delivers your migration, then handles 24×7 monitoring, security, patching, backups, cost optimisation and DevOps.</p></details>
+          <details><summary>Is the Azure bill included in the price?</summary><p>No. The plan price is the XcellHost management fee. Your Azure infrastructure usage is billed separately at cost.</p></details>
+          <details><summary>Can you migrate us to Azure from on-premise or another cloud?</summary><p>Yes. We migrate servers, databases and applications with minimal downtime, then validate performance, security and backups before go-live.</p></details>
+          <details><summary>Do we keep control of our Azure subscription?</summary><p>Absolutely. It is your Azure account and your data. You keep full ownership and visibility at all times.</p></details>
+          <details><summary>How do you reduce our cloud costs?</summary><p>We right-size resources, remove idle services, apply savings plans and reserved capacity, and review your Azure spend every month.</p></details>
+          <details><summary>What about security and compliance?</summary><p>We harden your environment, manage patching, monitor threats and help you meet standards such as ISO 27001, SOC 2 and PCI-DSS.</p></details>
+          <details><summary>What support and SLA do we get?</summary><p>You receive 24×7 monitoring and support from our NOC and SOC, a named account manager and response-time SLAs based on your plan.</p></details>
+          <details><summary>How is it priced, and do I get a GST invoice?</summary><p>Managed Azure uses a predictable monthly management fee, right-sized to your workloads. Every invoice is GST-compliant.</p></details>
+        </div>
+      } @else {
+        <div class="aws-faq-grid">
+          <details><summary>What is an AWS Managed Service Provider?</summary><p>An AWS MSP runs your AWS cloud for you, including migration, monitoring, security, patching, backups, cost optimisation and DevOps.</p></details>
+          <details><summary>Is the AWS bill included in the price?</summary><p>No. Your AWS infrastructure usage is billed separately at cost; the plan price is the XcellHost management fee.</p></details>
+          <details><summary>Can you migrate us to AWS from on-premise or another cloud?</summary><p>Yes. We migrate servers, databases and applications from on-premise, data centres or other clouds to AWS with minimal downtime, then validate performance, security and backups before go-live.</p></details>
+          <details><summary>Do we keep control of our AWS account?</summary><p>Absolutely. It is your AWS account and your data. We manage it using least-privilege access and clear guardrails while you retain full ownership and visibility.</p></details>
+          <details><summary>How do you reduce our cloud costs?</summary><p>We right-size instances, remove idle and orphaned resources, apply savings plans and reserved capacity, and review your AWS spend every month.</p></details>
+          <details><summary>What about security and compliance?</summary><p>We harden your environment, manage patching, monitor for threats and help you meet standards such as ISO 27001, SOC 2 and PCI-DSS.</p></details>
+          <details><summary>What support and SLA do we get?</summary><p>You receive 24×7 monitoring and support from our NOC and SOC, a named account manager and response-time SLAs based on your plan.</p></details>
+          <details><summary>How is it priced, and do I get a GST invoice?</summary><p>Managed AWS uses a predictable monthly management fee, right-sized to your workloads. Every invoice is GST-compliant.</p></details>
+        </div>
+      }
+    </section>
+
+    <section><div class="pp-sec">From our blog</div><div class="aws-blog"><article><span>Guide</span><h3>Should you use an {{ provider() }} Managed Service Provider?</h3><p>When it pays to hand {{ provider() }} operations to an expert.</p></article><article><span>How-to</span><h3>How we cut {{ provider() }} bills by 30% or more</h3><p>Practical cost-optimisation levers on {{ provider() }}.</p></article><article><span>Migration</span><h3>A checklist for a smooth {{ provider() }} migration</h3><p>The steps we follow to migrate with minimal downtime.</p></article></div></section>
+
+    <section class="aws-cta"><div><h2>Ready to let experts run your {{ provider() }}?</h2><p>Talk to our cloud team — we'll review your setup, plan the migration and manage {{ provider() }} for you 24×7, with real cost savings.</p></div><button type="button" (click)="requestCallback()">Request a callback</button></section>
+  </div>
+</main>

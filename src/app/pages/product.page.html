@@ -71,6 +71,26 @@
         <div class="pph-scene pph-tsplus-remote-access" aria-hidden="true">
           <xh-tsplus-remote-access-hero />
         </div>
+      } @else if (isManagedAws()) {
+        <div class="pph-scene managed-aws-hero-art" aria-hidden="true">
+          <div class="managed-aws-console">
+            <div class="managed-aws-console-head"><span></span><span></span><span></span><b>AWS · Managed by XcellHost</b></div>
+            <div class="managed-aws-console-row"><i>☁</i><span><b>Production workloads</b><small>EC2 · RDS · S3</small></span><em>Healthy</em></div>
+            <div class="managed-aws-console-row"><i>₹</i><span><b>Cloud cost</b><small>Optimised this month</small></span><em>Saving</em></div>
+            <div class="managed-aws-console-row"><i>✓</i><span><b>Security &amp; patching</b><small>No critical alerts</small></span><em>Secure</em></div>
+          </div>
+          <div class="managed-aws-powered"><small>Powered by</small><strong>aws</strong><span>⌣</span></div>
+        </div>
+      } @else if (isManagedAzure()) {
+        <div class="pph-scene managed-aws-hero-art" aria-hidden="true">
+          <div class="managed-aws-console">
+            <div class="managed-aws-console-head"><span></span><span></span><span></span><b>Azure · Managed by XcellHost</b></div>
+            <div class="managed-aws-console-row"><i>☁</i><span><b>Production workloads</b><small>VMs · Azure SQL · Blob</small></span><em>Healthy</em></div>
+            <div class="managed-aws-console-row"><i>₹</i><span><b>Cloud cost</b><small>32% lower after optimisation</small></span><em>Saving</em></div>
+            <div class="managed-aws-console-row"><i>✓</i><span><b>Security &amp; patching</b><small>All up to date · 0 alerts</small></span><em>Secure</em></div>
+          </div>
+          <div class="managed-azure-powered"><small>Powered by</small><span class="azure-mark">◢</span><strong>Azure</strong></div>
+        </div>
       } @else if (isWhatsAppSmb()) {
         <div class="pph-scene pph-whatsapp-smb" aria-hidden="true">
           <div class="wa-hero-stage">
@@ -309,6 +329,9 @@
       }
     }
 
+    @if (isManagedAws() || isManagedAzure()) {
+      <xh-managed-aws-content [provider]="isManagedAzure() ? 'Azure' : 'AWS'" />
+    } @else {
     <div class="pp-body">
       <div class="wrap">
         @if (isManagedMicrosoft365()) {
@@ -1704,6 +1727,7 @@
         </div>
       </div>
     </div>
+    }
   </div>
 
   @if (isCdrTourOpen()) {

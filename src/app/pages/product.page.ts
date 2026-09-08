@@ -35,7 +35,11 @@ import { VortexSocContentComponent } from './vortex-soc-content.component';
 import { VortexSegContentComponent } from './vortex-seg-content.component';
 import { InfrastructureContentComponent } from '../sections/infrastructure-content.component';
 import { WhatsAppSmbContentComponent } from '../sections/whatsapp-smb-content.component';
+
+import { ManagedAwsContentComponent } from '../sections/managed-aws-content.component';
+
 import { ManagedMicrosoft365ContentComponent } from '../sections/managed-microsoft-365-content.component';
+
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -127,6 +131,9 @@ interface ProductTourSlide {
     VortexSegContentComponent,
     InfrastructureContentComponent,
     WhatsAppSmbContentComponent,
+
+    ManagedAwsContentComponent,
+
     ManagedMicrosoft365ContentComponent,
   ],
   templateUrl: './product.page.html',
@@ -376,6 +383,17 @@ export class ProductPage {
     { title: 'Working-hours controls', description: 'Authorize user and group access only during approved time ranges.', image: '/assets/images/tsplus-advanced-security-tour-sessions.png' },
   ];
 
+  readonly managedAwsTourSlides: readonly ProductTourSlide[] = [
+    { title: 'AWS operations overview', description: 'Monitor workload health, availability and active alerts across the managed environment.', image: '/assets/images/managed-aws-tour-operations.svg' },
+    { title: 'Security and compliance', description: 'Review security posture, patching, backups and compliance controls in one view.', image: '/assets/images/managed-aws-tour-security.svg' },
+    { title: 'Cost optimisation', description: 'Track spend, savings opportunities and the impact of ongoing right-sizing.', image: '/assets/images/managed-aws-tour-cost.svg' },
+  ];
+  readonly managedAzureTourSlides: readonly ProductTourSlide[] = [
+    { title: 'Azure operations overview', description: 'Monitor virtual machines, Azure SQL, storage, availability and active alerts.', image: '/assets/images/managed-azure-tour-operations.svg' },
+    { title: 'Azure security and compliance', description: 'Review identity, patching, backup and compliance posture.', image: '/assets/images/managed-azure-tour-security.svg' },
+    { title: 'Azure cost optimisation', description: 'Track monthly spend, realised savings and right-sizing opportunities.', image: '/assets/images/managed-azure-tour-cost.svg' },
+  ];
+
   readonly tsplusRemoteAccessTourSlides: readonly ProductTourSlide[] = [
     { title: 'Remote Access portal', description: 'Give users secure browser access to published applications and desktops.', image: '/assets/images/tsplus-remote-access-tour-portal.png' },
     { title: 'Remote Access console', description: 'Manage servers, users, applications and security from one administration console.', image: '/assets/images/tsplus-remote-access-tour-console.png' },
@@ -454,6 +472,8 @@ export class ProductPage {
     if (this.isTsplusRemoteSupport()) return this.tsplusRemoteSupportTourSlides;
     if (this.isTsplusAdvancedSecurity()) return this.tsplusAdvancedSecurityTourSlides;
     if (this.isTsplusRemoteAccess()) return this.tsplusRemoteAccessTourSlides;
+    if (this.isManagedAws()) return this.managedAwsTourSlides;
+    if (this.isManagedAzure()) return this.managedAzureTourSlides;
     if (view.name === 'Scrutiny DLP') return this.scrutinyDlpTourSlides;
 
     const candidates: ProductTourSlide[] = [];
@@ -825,6 +845,12 @@ export class ProductPage {
   readonly isTsplusAdvancedSecurity = computed(() => this.view()?.name === 'TSplus Advanced Security');
 
   readonly isTsplusRemoteAccess = computed(() => this.view()?.name === 'TSplus Remote Access');
+
+  readonly isManagedAws = computed(() => this.view()?.name === 'Managed AWS');
+  readonly isManagedAzure = computed(() => {
+    const name = this.view()?.name;
+    return name === 'Managed Azure' || name === 'Managed Azure Services';
+  });
 
   readonly isCloudDrive = computed(() => this.view()?.name === 'Cloud Drive');
 

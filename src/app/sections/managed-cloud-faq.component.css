@@ -1,0 +1,54 @@
+.aws-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.aws-faq-grid details {
+  align-self: start;
+  border: 1px solid #dce5f2;
+  border-radius: 14px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.aws-faq-grid details[open] {
+  border-color: #1565d8;
+  box-shadow: 0 10px 26px rgba(21, 101, 216, .09);
+}
+
+.aws-faq-grid summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 18px 20px;
+  list-style: none;
+}
+
+.aws-faq-grid summary::-webkit-details-marker { display: none; }
+
+.aws-faq-grid summary::after {
+  content: '+';
+  display: grid;
+  flex: 0 0 26px;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+  border-radius: 50%;
+  background: #eef4fd;
+  color: #1565d8;
+  font-size: 18px;
+}
+
+.aws-faq-grid details[open] summary::after {
+  background: #1565d8;
+  color: #fff;
+  transform: rotate(45deg);
+}
+
+.aws-faq-grid details p { padding: 0 20px 18px; }
+
+@media (max-width: 640px) {
+  .aws-faq-grid { grid-template-columns: 1fr; }
+}

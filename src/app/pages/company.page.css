@@ -211,6 +211,22 @@
   text-wrap: balance;
 }
 
+.vendor-partners-static {
+  width: min(100%, 980px);
+  margin: 0 auto;
+}
+
+.vendor-partners-static img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 640px) {
+  .company-body:has(.vendor-partners-static) { padding: 36px 0 52px; }
+  .company-body:has(.vendor-partners-static) .company-wrap { padding-inline: 12px; }
+}
+
 .company-card-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
