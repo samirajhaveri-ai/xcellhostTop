@@ -191,11 +191,7 @@
             <span class="pp-brand-xcell">Xcell</span><span class="pp-brand-family">{{ v.brandSuffix }}</span>
           </span>
           <span class="pp-title-divider" aria-hidden="true">|</span>
-<<<<<<< HEAD
-          <span class="pp-title-name">{{ isWhatsAppSmb() ? 'WhatsApp For Business' : v.name }}@if (slug() === 'geotrust') { SSL}</span>
-=======
-          <span class="pp-title-name">{{ v.name }}@if (slug() === 'geotrust') { SSL Certificate}</span>
->>>>>>> ea8c3f89a0137fe4aa69dc3fec6cf6e6c7cad51c
+          <span class="pp-title-name">{{ isWhatsAppSmb() ? 'WhatsApp For Business' : v.name }}@if (slug() === 'geotrust') { SSL Certificate}</span>
         </h1>
         <h2
           class="pp-tagline"
@@ -435,7 +431,7 @@
                       class="edr-plan-cta"
                       (click)="isRmm() ? viewRmmPlan(p, $event) : buyEdrPlan(p, $event)"
                     >
-                      {{ isRmm() ? 'View Plan' : 'Select plan' }} <span aria-hidden="true">→</span>
+                      Buy Now <span aria-hidden="true">→</span>
                     </button>
                   </div>
                 </div>
