@@ -651,17 +651,17 @@
                   (click)="selectCloudBackupTerm(term.key)"
                 >
                   @if (term.saving) { <small>{{ term.saving }}</small> }
-                  <span>{{ term.label }}</span>
+                  <span>{{ term.label.replace(' (No Saving)', '') }}@if (term.label.endsWith('(No Saving)')) { <em class="cloud-backup-no-saving">(No Saving)</em> }</span>
                 </button>
               }
             </div>
 
             <div class="cloud-backup-plan-grid">
-              @for (plan of cloudBackupPlans; track plan.storage) {
-                <article class="cloud-backup-plan-card">
-                  <div class="cloud-backup-plan-band">Acronis Cyber Protect Cloud</div>
-                  <div class="cloud-backup-plan-main">
-                    <div class="cloud-backup-plan-name">
+                @for (plan of cloudBackupPlans; track plan.storage) {
+                  <article class="cloud-backup-plan-card">
+                    <div class="cloud-backup-plan-main">
+                    <div class="cloud-backup-plan-band">Acronis Cyber Protect Cloud</div>
+                      <div class="cloud-backup-plan-name">
                       <p class="cloud-backup-plan-details">
                         Storage: <span class="cloud-backup-highlight">{{ plan.storage }}</span>
                         with <span class="cloud-backup-highlight">Unlimited backup agents</span>
@@ -670,7 +670,7 @@
                   </div>
                   <a class="cloud-backup-plan-action" href="#" (click)="selectCloudBackupPlan(plan, $event)">
                     <strong>&#8377;{{ formatInr(cloudBackupPrice(plan)) }}</strong>
-                    <span>Select plan</span>
+                       <span>Order now</span>
                     <small>+GST · {{ activeCloudBackupTerm().label }} Billing</small>
                   </a>
                 </article>
@@ -832,13 +832,12 @@
                       </div>
                     </div>
                     <dl class="tally-plan-specs smb-cybird-specs">
-                      <div><dt>User Coverage</dt><dd>Up to {{ plan.users }} users</dd></div>
-                      <div><dt>Hardware Appliance</dt><dd>&#8377;16,999 +GST</dd></div>
-                      <div><dt>Optional Support</dt><dd>{{ plan.supportRange }}<br />&#8377;{{ formatInr(plan.support) }}/month</dd></div>
+                      <div><dt>Hardware Appliance<br> <span class="one-time-purchase">(one time purchase)</span></dt><dd>&#8377;16,999 +GST</dd></div>
+                      <div><dt>Security Bundle</dt><dd>&#8377;{{ formatInr(plan.support) }}/month</dd></div>
                     </dl>
                     <a class="tally-plan-action" href="#" (click)="selectCybirdPlan(plan, $event)">
                       <strong>&#8377;{{ formatInr(cybirdPrice(plan)) }}</strong>
-                      <span>Select plan</span>
+                      <span>Order now</span>
                       <small>+GST · {{ activeCybirdTerm().label }} billing</small>
                     </a>
                   </article>
