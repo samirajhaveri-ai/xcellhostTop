@@ -83,6 +83,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "SAP Cloud Disaster Recovery",
+                "pill": null,
+                "desc": null
+              },
               
             ]
           }
@@ -256,7 +261,22 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Web Design for CA, CS & Lawyers",
                 "pill": null,
                 "desc": null
-              }
+              },
+              {
+                "title": "Web Design for SMB",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Web Design for Enterprise",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "AI Website Builder",
+                "pill": null,
+                "desc": "Reliable AI Website Builder hosting 🐧"
+              },
               
             ]
           }
@@ -272,7 +292,7 @@ export const MEGA_MENU: MenuTop[] = [
             "items": [
               {
                 "title": "WhatsApp For Business",
-                "pill": "New",
+                "pill": "AI Powered",
                 "desc": "Official WhatsApp Business API for sales, support and automation"
               },
               {
@@ -292,13 +312,18 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Reach customers instantly with impactful text campaigns 📲"
               },
               {
-                "title": "Managed SEO",
+                "title": "Website SEO",
                 "pill": "AI Powered",
                 "desc": "Maximise online visibility and reach your target audience 🎯"
               },
               {
                 "title": "Whatsapp Broadcasting",
-                "pill": "AI Powered",
+                "pill": "New",
+                "desc": "Maximise online visibility and reach your target audience 🎯"
+              },
+              {
+                "title": "Transactional Emails",
+                "pill": "New",
                 "desc": "Maximise online visibility and reach your target audience 🎯"
               },
               
@@ -338,6 +363,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Trading VPS",
+                "pill": "1-Click",
+                "desc": "Secure, automated backups to safeguard your website 🔒"
+              },
+              {
+                "title": "Claude VPS",
                 "pill": "1-Click",
                 "desc": "Secure, automated backups to safeguard your website 🔒"
               }
@@ -508,7 +538,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Azure Cloud",
+                "title": "Azure DevOps",
                 "pill": null,
                 "desc": null
               },
@@ -739,7 +769,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Managed SD VAN",
+                "title": "Managed SD WAN",
                 "pill": null,
                 "desc": null
               },
@@ -782,6 +812,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Zoho Workspace",
                 "pill": null,
                 "desc": null
+              },
+              {
+                "title": "Microsoft 365 SMB",
+                "pill": null,
+                "desc": "Cloud productivity tools with migration and 24/7 support"
               },
               
             ]
@@ -830,7 +865,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Secure DMARC",
+                "title": "Secure Enterprise DMARC",
                 "pill": "Best seller",
                 "desc": null
               },
@@ -842,6 +877,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Cloud Mobile Device Mgmt",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Microsoft 365 Assessment",
                 "pill": null,
                 "desc": null
               },
@@ -887,6 +927,29 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
+        "g": "15",
+        "label": "Email Data Protection",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Email Data Protection",
+            "items": [
+              
+              {
+                "title": "Email Archival",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Email Backup",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      {
         "g": "10",
         "label": "Collaboration Services",
         "on": false,
@@ -902,6 +965,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Zoom Conferenceing",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Cloud Contct Center",
                 "pill": null,
                 "desc": null
               },  
@@ -924,8 +992,24 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              
               {
-                "title": "Email Migration",
+                "title": "Microsoft 365 Training",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Mcrosoft Project Server",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Microsoft Viva",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Microsoft Visio",
                 "pill": null,
                 "desc": null
               }, 
@@ -945,7 +1029,7 @@ export const MEGA_MENU: MenuTop[] = [
               
               {
                 "title": "Microsoft Copilot ",
-                "pill": "Hot Sales",
+                "pill": "Hot Saler",
                 "desc": null
               },
               {
@@ -997,6 +1081,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "Email Migration",
+                "pill": null,
+                "desc": null
+              },
               
               
             ]
@@ -1004,19 +1093,29 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "15",
-        "label": "Email Data Protection",
+        "g": "13",
+        "label": "Microsoft Power Platform",
         "on": false,
         "groups": [
           {
-            "heading": "Email Data Protection",
+            "heading": "Microsoft Power Platform",
             "items": [
               
               {
-                "title": "No Data",
+                "title": "Power Bi",
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "Power Automate",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Power Pages",
+                "pill": null,
+                "desc": null
+              }, 
             ]
           }
         ]
@@ -1026,7 +1125,7 @@ export const MEGA_MENU: MenuTop[] = [
   },
 
   {
-    "label": "Data Protect",
+    "label": "Data Protection",
     "noDrop": false,
     "feature": null,
     "tabs": [
@@ -1344,23 +1443,14 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "IoT Certificates Management",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Device Attestation Certificates",
-                "pill": null,
-                "desc": null
-              }
+              
             ]
           }
         ]
       },
       {
         "g": "3",
-        "label": "Code Signing",
+        "label": "Software Trust",
         "on": false,
         "groups": [
           {
@@ -1402,7 +1492,7 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "4",
-        "label": "Email Signing",
+        "label": "Messaging trust",
         "on": false,
         "groups": [
           {
@@ -1467,6 +1557,48 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "Divince Trust",
+        "label": "Divince Trust",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Divince Trust",
+            "items": [
+              {
+                "title": "IoT Certificates Management",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Device Attestation Certificates",
+                "pill": null,
+                "desc": null
+              }
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "Divince Trust",
+        "label": "Content Trust",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Content Trust",
+            "items": [
+              {
+                "title": "No Data",
+                "pill": null,
+                "desc": null
+              },
+              
               
             ]
           }
@@ -1576,7 +1708,7 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Network Security",
             "items": [
               {
-                "title": "Network Access Control(NAC)",
+                "title": "Network Access Control (NAC)",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -1624,6 +1756,16 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Identity Governance and Administration",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "I Am Assessment",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "Active Direct Assessment ",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -1765,7 +1907,11 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "Security Assessment",
             "items": [
-            
+              {
+                "title": "Cloud Security Assessment",
+                "pill": null,
+                "desc": null
+              },
               {
                 "title": "Digital Risk Monitoring",
                 "pill": null,
@@ -1801,11 +1947,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "Cloud Security Assessment",
-                "pill": null,
-                "desc": null
-              },
+              
               {
                 "title": "Third Party Risk Management",
                 "pill": null,
@@ -1888,11 +2030,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/vortex-soc"
               },
               {
-                "title": "Autonomous Threat Intelligence",
+                "title": "Autonomous Threat Management",
                 "pill": null,
                 "desc": null,
                 "href": "/vortex-soc"
-              }
+              },
               
             ]
           }
@@ -1944,27 +2086,27 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
                      {
-                "title": "ISO 20000",
+                "title": "ISO 20000 (ITSM)",
                 "pill": null,
                 "desc": null
               },
                      {
-                "title": "ISO 27017",
+                "title": "ISO 27017 (Cloud infosec)",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "ISO 22301",
+                "title": "ISO 22301 (BMC)",
                 "pill": null,
                 "desc": null
               },
                      {
-                "title": "ISO 27018",
+                "title": "ISO 27018 (PII Public Cloud)",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "ISO 42001",
+                "title": "ISO 42001(AI Risk)",
                 "pill": null,
                 "desc": null
               },
@@ -2003,6 +2145,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Data Privacy Training",
+                "pill": "In focus",
+                "desc": null
+              },
+              {
+                "title": "Tabletop Exercises",
                 "pill": "In focus",
                 "desc": null
               },
@@ -2068,11 +2215,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "AI App Builder",
                 "pill": null,
                 "desc": "Reliable AI App Builder hosting 💻"
-              },
-              {
-                "title": "AI Website Builder",
-                "pill": null,
-                "desc": "Reliable AI Website Builder hosting 🐧"
               },
               {
                 "title": "AI IDE Lab",
@@ -2311,6 +2453,25 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
+        "g": "5",
+        "label": "Cloudflare",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Cloudflare",
+            "items": [
+              {
+                "title": "No Data",
+                "pill": null,
+                "desc": null
+              },
+              
+              
+            ]
+          }
+        ]
+      },
+      {
         "g": "7",
         "label": "Fortinet Security",
         "on": false,
@@ -2375,7 +2536,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Cyber Frames (HCI/IaaS)",
+                "title": "Acronis Cyber Frame (HCI)",
                 "pill": null,
                 "desc": null
               },
@@ -2493,12 +2654,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Helth Care",
+                "title": "Health Care",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Retails",
+                "title": "Retail & E-Commerce",
                 "pill": null,
                 "desc": null
               },
@@ -2818,11 +2979,11 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "13",
-        "label": "VMWare Migration",
+        "label": "Vmware Migration",
         "on": false,
         "groups": [
           {
-            "heading": "Wimwre Migration",
+            "heading": "Vmware Migration",
             "items": [
               {
                 "title": "No Data",
@@ -3040,7 +3201,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "5",
+        "g": "4",
         "label": "SLA's",
         "on": false,
         "groups": [
@@ -3236,7 +3397,12 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Experience Center",
             "items": [
               {
-                "title": "NO Tools",
+                "title": "Ts Plus Experience Center",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Product Tour",
                 "pill": null,
                 "desc": null
               }
@@ -3391,23 +3557,6 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "DPDP Handbook",
-                "pill": null,
-                "desc": null
-              },
-            ]
-          }
-        ]
-      },
-      {
-        "g": "15",
-        "label": "Product Tour",
-        "on": true,
-        "groups": [
-          {
-            "heading": "Product Tour",
-            "items": [
-              {
-                "title": "No Product Tour",
                 "pill": null,
                 "desc": null
               },
