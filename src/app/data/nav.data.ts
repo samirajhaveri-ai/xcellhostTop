@@ -83,11 +83,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "SAP Cloud Disaster Recovery",
-                "pill": null,
-                "desc": null
-              },
+              
               
             ]
           }
@@ -296,6 +292,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Official WhatsApp Business API for sales, support and automation"
               },
               {
+                "title": "WhatsApp Broadcasting",
+                "pill": "New",
+                "desc": "Maximise online visibility and reach your target audience 🎯"
+              },
+              {
                 "title": "Google My Business",
                 "pill": "AI Powered",
                 "desc": "Improve your business visibility on Google 👋"
@@ -316,11 +317,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": "AI Powered",
                 "desc": "Maximise online visibility and reach your target audience 🎯"
               },
-              {
-                "title": "Whatsapp Broadcasting",
-                "pill": "New",
-                "desc": "Maximise online visibility and reach your target audience 🎯"
-              },
+              
               {
                 "title": "Transactional Emails",
                 "pill": "New",
@@ -525,6 +522,28 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
+        "g": "4",
+        "label": "On Premises Cloud",
+        "on": false,
+        "groups": [
+          {
+            "heading": "On Premises Cloud",
+            "items": [
+              {
+                "title": "Data Center Build Services",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Acronis Cyber Frame (HCI)",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      {
         "g": "5",
         "label": "Managed DevOps",
         "on": false,
@@ -563,7 +582,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Pappet",
+                "title": "Puppet",
                 "pill": null,
                 "desc": null
               },
@@ -865,7 +884,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Secure Enterprise DMARC",
+                "title": "Enterprise DMARC",
                 "pill": "Best seller",
                 "desc": null
               },
@@ -875,18 +894,63 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              
               {
-                "title": "Cloud Mobile Device Mgmt",
+                "title": "Microsoft 365 Security Assessment",
+                "pill": null,
+                "desc": null
+              },  
+            ]
+          }
+        ]
+      },
+      {
+        "g": "15",
+        "label": "Email Data Protection",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Email Data Protection",
+            "items": [
+              
+              {
+                "title": "Email Archiving ",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Microsoft 365 Assessment",
+                "title": "Email Backup",
                 "pill": null,
                 "desc": null
               },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "10",
+        "label": "Collaboration Services",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Collaboration Services",
+            "items": [
               
-              
+              {
+                "title": "Cloud Conferencing",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Zoom Conferenceing",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Cloud Contact Center",
+                "pill": null,
+                "desc": null
+              },  
               
             ]
           }
@@ -926,58 +990,7 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      {
-        "g": "15",
-        "label": "Email Data Protection",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Email Data Protection",
-            "items": [
-              
-              {
-                "title": "Email Archival",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Email Backup",
-                "pill": null,
-                "desc": null
-              },
-            ]
-          }
-        ]
-      },
-      {
-        "g": "10",
-        "label": "Collaboration Services",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Collaboration Services",
-            "items": [
-              
-              {
-                "title": "Cloud Conferencing",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Zoom Conferenceing",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Cloud Contct Center",
-                "pill": null,
-                "desc": null
-              },  
-              
-            ]
-          }
-        ]
-      },
+      
       {
         "g": "11",
         "label": "Email Addons",
@@ -1102,7 +1115,7 @@ export const MEGA_MENU: MenuTop[] = [
             "items": [
               
               {
-                "title": "Power Bi",
+                "title": "Power BI",
                 "pill": null,
                 "desc": null
               },
@@ -1113,6 +1126,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Power Pages",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Power Apps",
                 "pill": null,
                 "desc": null
               }, 
@@ -1329,6 +1347,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": "Best seller",
                 "desc": null
               },
+              {
+                "title": "SAP Cloud Disaster Recovery",
+                "pill": null,
+                "desc": null
+              },
               
             ]
           }
@@ -1523,6 +1546,48 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
+        "g": "Device Trust ",
+        "label": "Device Drust",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Device Drust",
+            "items": [
+              {
+                "title": "IoT Certificates Management",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Device Attestation Certificates",
+                "pill": null,
+                "desc": null
+              }
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "Content Trust",
+        "label": "Content Trust",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Content Trust",
+            "items": [
+              {
+                "title": "No Data",
+                "pill": null,
+                "desc": null
+              },
+              
+              
+            ]
+          }
+        ]
+      },
+      {
         "g": "5",
         "label": "Mark Certificates",
         "on": false,
@@ -1562,48 +1627,7 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      {
-        "g": "Divince Trust",
-        "label": "Divince Trust",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Divince Trust",
-            "items": [
-              {
-                "title": "IoT Certificates Management",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Device Attestation Certificates",
-                "pill": null,
-                "desc": null
-              }
-              
-            ]
-          }
-        ]
-      },
-      {
-        "g": "Divince Trust",
-        "label": "Content Trust",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Content Trust",
-            "items": [
-              {
-                "title": "No Data",
-                "pill": null,
-                "desc": null
-              },
-              
-              
-            ]
-          }
-        ]
-      },
+      
     ]
   },
   {
@@ -1651,12 +1675,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": "Free trial",
                 "desc": null
               },
-              
               {
-                "title": "Mobile Device Management",
-                "pill": "Free trial",
+                "title": "Mobile Mobile Device Mgmt",
+                "pill": null,
                 "desc": null
               },
+              
               {
                 "title": "Data Leak Prevention (DLP)",
                 "pill": "Free trial",
@@ -1760,12 +1784,17 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "I Am Assessment",
+                "title": "IAm Assessment",
                 "pill": "Free trial",
                 "desc": null
               },
               {
-                "title": "Active Direct Assessment ",
+                "title": "Active Directory Assessment ",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "Security Hardware Token",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -1800,6 +1829,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "AI Data Detection & Response",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "File Integrity Monitoring",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -1895,6 +1929,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "Application Testing Platform",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
@@ -1971,6 +2010,12 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Security Operations",
             "items": [
               {
+                "title": "Autonomous Threat Management",
+                "pill": null,
+                "desc": null,
+                "href": "/vortex-soc"
+              },
+              {
                 "title": "Cloud Security Log Monitoring",
                 "pill": null,
                 "desc": null
@@ -2029,12 +2074,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null,
                 "href": "/vortex-soc"
               },
-              {
-                "title": "Autonomous Threat Management",
-                "pill": null,
-                "desc": null,
-                "href": "/vortex-soc"
-              },
+              
               
             ]
           }
@@ -2063,23 +2103,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              
-              
-              {
-                "title": "Third-Party Risk Mgmt (TPRM)",
-                "pill": null,
-                "desc": null
-              },
               {
                 "title": "Managed GRC",
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "PCI Consulting",
-                "pill": null,
-                "desc": null
-              },
+              
               {
                 "title": "ISO 27001 (InfoSec)",
                 "pill": null,
@@ -2117,6 +2146,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "SOC 2",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "PCI Consulting",
                 "pill": null,
                 "desc": null
               },
@@ -2373,7 +2407,17 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "TSplus Server Monitoring",
                 "pill": null,
                 "desc": null
-              }
+              },
+              {
+                "title": "Anydesk",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Ultraviewer",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
@@ -2454,11 +2498,11 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "5",
-        "label": "Cloudflare",
+        "label": "Cloudflare Security",
         "on": false,
         "groups": [
           {
-            "heading": "Cloudflare",
+            "heading": "Cloudflare Security",
             "items": [
               {
                 "title": "No Data",
@@ -2522,28 +2566,7 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      {
-        "g": "4",
-        "label": "Managed IT",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Managed IT",
-            "items": [
-              {
-                "title": "Data Center Build Services",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Acronis Cyber Frame (HCI)",
-                "pill": null,
-                "desc": null
-              },
-            ]
-          }
-        ]
-      },
+      
       {
         "g": "6",
         "label": "Data as a Services",
@@ -2581,7 +2604,22 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Data Modernization",
                 "pill": null,
                 "desc": null
-              }
+              },
+              {
+                "title": "Data Modernization",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Show Flex Platform",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Databricks Platform",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
@@ -3062,6 +3100,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "We'd love to hear from you"
               },
+              {
+                "title": "Services Index",
+                "pill": null,
+                "desc": "We'd love to hear from you"
+              },
             ]
           }
         ]
@@ -3074,6 +3117,11 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "Partner",
             "items": [
+              {
+                "title": "Partner Overview",
+                "pill": null,
+                "desc": "Start your XcellHost partner journey"
+              },
               {
                 "title": "Partner Signup ",
                 "pill": null,
@@ -3110,6 +3158,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Introduce customers to XcellHost services"
               },
               
+              
             ]
           }
         ]
@@ -3122,6 +3171,11 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "Careers",
             "items": [
+              {
+                "title": "Careers Overview",
+                "pill": null,
+                "desc": "Discover our culture and ways of working"
+              },
               {
                 "title": "Career Handbook",
                 "pill": null,
@@ -3169,6 +3223,25 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
+        "g": "10",
+        "label": "Trust Center",
+        "on": false,
+        "groups": [
+          
+          {
+            "heading": "Trust Center",
+            "items": [
+              {
+                "title": "Trust Center",
+                "pill": null,
+                "desc": null
+              },
+            
+            ]
+          }
+        ]
+      },
+      {
         "g": "4",
         "label": "Legal Center",
         "on": false,
@@ -3202,7 +3275,7 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "4",
-        "label": "SLA's",
+        "label": "",
         "on": false,
         "groups": [
           {
@@ -3289,7 +3362,12 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Events & Webinars",
             "items": [
               {
-                "title": "No Events",
+                "title": "Events",
+                "pill": null,
+                "desc": ""
+              },
+              {
+                "title": "Webinars",
                 "pill": null,
                 "desc": ""
               },
@@ -3410,30 +3488,7 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      {
-        "g": "10",
-        "label": "Trust Center",
-        "on": false,
-        "groups": [
-          
-          {
-            "heading": "Tools Center",
-            "items": [
-              {
-                "title": "Trust Center",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "NO Tools",
-                "pill": null,
-                "desc": null
-              }
-            
-            ]
-          }
-        ]
-      },
+      
       {
         "g": "11",
         "label": "Media Center",
@@ -3443,7 +3498,12 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Media center",
             "items": [
               {
-                "title": "NO Tools",
+                "title": "Media Kit",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Press Release",
                 "pill": null,
                 "desc": null
               }
@@ -3457,10 +3517,10 @@ export const MEGA_MENU: MenuTop[] = [
         "on": false,
         "groups": [
           {
-            "heading": "Brand center",
+            "heading": "Brand Center",
             "items": [
               {
-                "title": "NO Tools",
+                "title": "Brand Kit",
                 "pill": null,
                 "desc": null
               }
@@ -3469,8 +3529,8 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "13",
-        "label": "Flipbooks",
+        "g": "8",
+        "label": "",
         "on": false,
         "featureCards": [
           {
@@ -3528,8 +3588,8 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "14",
-        "label": "Ebooks",
+        "g": "8",
+        "label": "",
         "on": false,
         "groups": [
           {
@@ -3557,23 +3617,6 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "DPDP Handbook",
-                "pill": null,
-                "desc": null
-              },
-            ]
-          }
-        ]
-      },
-      {
-        "g": "16",
-        "label": "Service Index",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Service Index",
-            "items": [
-              {
-                "title": "no Data",
                 "pill": null,
                 "desc": null
               },
