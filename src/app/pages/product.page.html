@@ -165,7 +165,7 @@
             <span class="pp-brand-xcell">Xcell</span><span class="pp-brand-family">{{ v.brandSuffix }}</span>
           </span>
           <span class="pp-title-divider" aria-hidden="true">|</span>
-          <span class="pp-title-name">{{ v.name }}@if (slug() === 'geotrust') { SSL}</span>
+          <span class="pp-title-name">{{ v.name }}@if (slug() === 'geotrust') { SSL Certificate}</span>
         </h1>
         <h2
           class="pp-tagline"
@@ -379,6 +379,9 @@
                       }
                     </h3>
                     <p>{{ edrPlanCoverage[selectedEdrPlanIndex()] }}</p>
+                    @if (selectedEdrPlanIndex() === 0) {
+                      <p class="plan-offer-validity">*Offer valid till 2026</p>
+                    }
                   </header>
 
                   <div class="edr-plan-purchase">
@@ -399,7 +402,7 @@
                       class="edr-plan-cta"
                       (click)="isRmm() ? viewRmmPlan(p, $event) : buyEdrPlan(p, $event)"
                     >
-                      {{ isRmm() ? 'View Plan' : 'Select plan' }} <span aria-hidden="true">→</span>
+                      {{ isRmm() ? 'Buy Now' : 'Select plan' }} <span aria-hidden="true">→</span>
                     </button>
                   </div>
                 </div>
@@ -432,8 +435,8 @@
                   [attr.aria-selected]="selectedTallyTerm() === term.key"
                   (click)="selectTallyTerm(term.key)"
                 >
-                  @if (term.saving) { <small>{{ term.saving }}</small> }
-                  <span>{{ term.label }}</span>
+                  @if (term.saving && term.key !== '1y') { <small>{{ term.saving }}</small> }
+                  <span>{{ term.label }}@if (term.key === 'monthly' || term.key === '1y') { <em class="tally-no-saving"> (No Saving)</em> }</span>
                 </button>
               }
             </div>
@@ -577,8 +580,8 @@
                   [attr.aria-selected]="selectedCloudDriveTerm() === term.key"
                   (click)="selectCloudDriveTerm(term.key)"
                 >
-                  @if (term.saving) { <small>{{ term.saving }}</small> }
-                  <span>{{ term.label }}</span>
+                  @if (term.saving && term.key !== '1y') { <small>{{ term.saving }}</small> }
+                  <span>{{ term.label }}@if (term.key === 'monthly' || term.key === '1y') { <em class="cloud-drive-no-saving"> (No Saving)</em> }</span>
                 </button>
               }
             </div>
@@ -670,7 +673,7 @@
                   </div>
                   <a class="cloud-backup-plan-action" href="#" (click)="selectCloudBackupPlan(plan, $event)">
                     <strong>&#8377;{{ formatInr(cloudBackupPrice(plan)) }}</strong>
-                       <span>Order now</span>
+                       <span>Order now <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:middle;margin-left:6px"><path d="M4 12h16m-6-6 6 6-6 6" /></svg></span>
                     <small>+GST · {{ activeCloudBackupTerm().label }} Billing</small>
                   </a>
                 </article>
@@ -1022,6 +1025,86 @@
         </div>
         }
 
+        @if (isCloudBackup()) {
+          <section class="cloud-backup-platforms" aria-labelledby="cloud-backup-platforms-title">
+            <h2 class="pp-sec" id="cloud-backup-platforms-title">Cloud Backup platforms &amp; applications</h2>
+            <ul class="cloud-backup-platform-grid">
+              <li class="cloud-backup-platform-card">
+                <img src="/assets/images/cloud-backup-platforms/microsoft-windows.svg" alt="" width="160" height="56" loading="lazy" decoding="async" />
+                <span>Windows</span>
+              </li>
+              <li class="cloud-backup-platform-card">
+                <img src="/assets/images/cloud-backup-platforms/linux-tux.svg" alt="" width="160" height="56" loading="lazy" decoding="async" />
+                <span>Linux</span>
+              </li>
+              <li class="cloud-backup-platform-card">
+                <img src="/assets/images/cloud-backup-platforms/microsoft-icon.svg" alt="" width="160" height="56" loading="lazy" decoding="async" />
+                <span>Microsoft Hyper-V</span>
+              </li>
+              <li class="cloud-backup-platform-card">
+                <img src="/assets/images/cloud-backup-platforms/vmware.svg" alt="" width="160" height="56" loading="lazy" decoding="async" />
+                <span>VMware</span>
+              </li>
+              <li class="cloud-backup-platform-card">
+                <img src="/assets/images/cloud-backup-platforms/nutanix.svg" alt="" width="160" height="56" loading="lazy" decoding="async" />
+                <span>Nutanix</span>
+              </li>
+              <li class="cloud-backup-platform-card">
+                <img src="/assets/images/cloud-backup-platforms/android.svg" alt="" width="160" height="56" loading="lazy" decoding="async" />
+                <span>Android</span>
+              </li>
+              <li class="cloud-backup-platform-card">
+                <img src="/assets/images/cloud-backup-platforms/microsoftoffice.svg" alt="" width="160" height="56" loading="lazy" decoding="async" />
+                <span>Microsoft 365</span>
+              </li>
+              <li class="cloud-backup-platform-card">
+                <img src="/assets/images/cloud-backup-platforms/google-workspace.svg" alt="" width="160" height="56" loading="lazy" decoding="async" />
+                <span>Google Workspace</span>
+              </li>
+              <li class="cloud-backup-platform-card">
+                <img src="/assets/images/cloud-backup-platforms/microsoftexchange.svg" alt="" width="160" height="56" loading="lazy" decoding="async" />
+                <span>Microsoft Exchange</span>
+              </li>
+              <li class="cloud-backup-platform-card">
+                <img src="/assets/images/cloud-backup-platforms/ios.svg" alt="" width="160" height="56" loading="lazy" decoding="async" />
+                <span>iOS</span>
+              </li>
+              <li class="cloud-backup-platform-card">
+                <img src="/assets/images/cloud-backup-platforms/macos.svg" alt="" width="160" height="56" loading="lazy" decoding="async" />
+                <span>macOS</span>
+              </li>
+              <li class="cloud-backup-platform-card">
+                <img src="/assets/images/cloud-backup-platforms/alibabacloud.svg" alt="" width="160" height="56" loading="lazy" decoding="async" />
+                <span>Alibaba Cloud</span>
+              </li>
+              <li class="cloud-backup-platform-card">
+                <img src="/assets/images/cloud-backup-platforms/microsoftsqlserver.svg" alt="" width="160" height="56" loading="lazy" decoding="async" />
+                <span>Microsoft SQL Server</span>
+              </li>
+              <li class="cloud-backup-platform-card">
+                <img src="/assets/images/cloud-backup-platforms/oracle.svg" alt="" width="160" height="56" loading="lazy" decoding="async" />
+                <span>Oracle Database</span>
+              </li>
+              <li class="cloud-backup-platform-card">
+                <img src="/assets/images/cloud-backup-platforms/sap.svg" alt="" width="160" height="56" loading="lazy" decoding="async" />
+                <span>SAP HANA</span>
+              </li>
+              <li class="cloud-backup-platform-card">
+                <img src="/assets/images/cloud-backup-platforms/google-cloud.svg" alt="" width="160" height="56" loading="lazy" decoding="async" />
+                <span>Google Cloud</span>
+              </li>
+              <li class="cloud-backup-platform-card">
+                <img src="/assets/images/cloud-backup-platforms/aws.svg" alt="" width="160" height="56" loading="lazy" decoding="async" />
+                <span>AWS</span>
+              </li>
+              <li class="cloud-backup-platform-card">
+                <img src="/assets/images/cloud-backup-platforms/microsoft-azure.svg" alt="" width="160" height="56" loading="lazy" decoding="async" />
+                <span>Microsoft Azure</span>
+              </li>
+            </ul>
+          </section>
+        }
+
         @if (isRmm()) {
           <section class="rmm-operations" aria-labelledby="rmm-operations-title">
             <h2 id="rmm-operations-title">Simplify IT operations with Acronis Advanced RMM</h2>
@@ -1255,7 +1338,7 @@
         @if (!isSmbCyber() && !isRmm() && slug() !== 'scrutiny-dlp') {
           <div class="pp-sec" id="ppSecHead">{{ v.security.head }}</div>
           <div id="ppSecWrap">
-            <p class="pp-ov">{{ v.security.intro }}</p>
+            <p class="pp-ov" [style.max-width]="isCloudBackup() ? '100%' : null">{{ v.security.intro }}</p>
             <div class="pp-secrows">
               @for (r of v.security.rows; track r[0]) {
                 <div class="psrow"><span class="psk">{{ r[0] }}</span><span class="psv">{{ r[1] }}</span></div>
