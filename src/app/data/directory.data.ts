@@ -530,7 +530,8 @@ export const DIRECTORY: DirectoryEntry[] = [
     "name": "Managed Microsoft 365",
     "desc": "Outsource M365 to certified experts",
     "cat": "Cloud",
-    "group": "Managed Cloud & Migration"
+    "group": "Managed Cloud & Migration",
+    "heroImage": "/assets/images/orb-microsoft-365.png"
   },
   {
     "name": "Managed AWS",

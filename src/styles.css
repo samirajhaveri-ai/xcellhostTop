@@ -3593,6 +3593,8 @@ body.xh-locked{overflow:hidden}
 /* One typography family throughout the EDR route. */
 #ppage.edr-page{font-family:var(--body)}
 #ppage.edr-page *,#ppage.edr-page button,#ppage.edr-page input,#ppage.edr-page select,#ppage.edr-page textarea{font-family:inherit!important}
+/* Let the EDR security introduction use the full content row; retain its existing typography. */
+#ppage.edr-page #ppSecWrap .pp-ov{max-width:100%}
 
 /* The quote cart is opened from the header beside Search. */
 .cart-fab{display:none!important}
@@ -3961,6 +3963,7 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
 .tally-term-tabs button.is-active{color:var(--blue);font-weight:600}
 .tally-term-tabs button.is-active:after{background:var(--blue)}
 .tally-plan-grid{display:grid;grid-template-columns:1fr;gap:18px;align-items:stretch}
+.smb-cybird-pricing .tally-plan-grid{width:100%;max-width:900px;margin:0 auto}
 .tally-plan-card{display:grid;grid-template-columns:220px minmax(0,1fr) 170px;min-width:0;border:1px solid #d3dce8;border-radius:14px;background:#fff;overflow:hidden;text-align:center;box-shadow:0 8px 24px rgba(16,43,79,.06);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
 .tally-plan-card:hover{border-color:#9fc3ef;box-shadow:0 14px 32px rgba(16,78,155,.12);transform:translateY(-2px)}
 .tally-plan-card .tally-plan-band{background:linear-gradient(135deg,#edf6ff,#e5f0ff)}
@@ -3991,7 +3994,8 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
 .tally-plan-action:hover>span{background:linear-gradient(135deg,#0b55c7,#083d98);box-shadow:0 10px 20px rgba(21,101,216,.3);transform:translateY(-2px)}
 .tally-plan-action:focus-visible{outline:3px solid rgba(0,91,187,.24);outline-offset:3px}
 .tally-plan-specs{grid-column:2;grid-row:1 / span 2;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-content:stretch;margin:0;text-align:left;border-left:0}
-.smb-cybird-specs{grid-template-columns:repeat(3,minmax(0,1fr))}
+.smb-cybird-specs{grid-template-columns:repeat(2,minmax(0,1fr))}
+.smb-cybird-specs .one-time-purchase{color:#ed1b24}
 .smb-cybird-specs>div+div{border-left:1px solid #e4e8ee}
 .tally-plan-specs>div{position:relative;display:grid;grid-template-columns:1fr;gap:3px;align-content:center;justify-items:center;min-height:46px;padding:6px 10px;background:#f5f6f8;color:#111827;text-align:center}
 .tally-plan-specs>div:nth-child(4n+2),.tally-plan-specs>div:nth-child(4n+4){background:#fff}
@@ -4069,6 +4073,7 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
 .cloud-backup-term-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,240px));width:70%;max-width:1020px;margin:0 auto 30px;border-bottom:1px solid #cfd5df}
 .cloud-backup-term-tabs button{position:relative;display:flex;min-height:78px;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:8px 12px 15px;border:0;background:transparent;color:#5e6672;cursor:pointer;font:500 16px/1.1 'Poppins',sans-serif;transition:color .2s ease,background .2s ease}
 .cloud-backup-term-tabs button small{display:inline-flex;padding:4px 10px;border-radius:999px;background:#f13131;color:#fff;font:700 10px/1 var(--mono);letter-spacing:.02em}
+.cloud-backup-no-saving{color:#ed1b24;font-style:normal;font-weight:700;font-size:12px}
 .cloud-backup-term-tabs button::after{position:absolute;right:0;bottom:-1px;left:0;height:3px;background:transparent;content:''}
 .cloud-backup-term-tabs button.is-active{color:var(--blue);background:#f7faff;font-weight:600}
 .cloud-backup-term-tabs button.is-active::after{background:var(--blue)}
@@ -4076,10 +4081,12 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
 .cloud-backup-plan-grid{display:grid;grid-template-columns:1fr;gap:18px;width:70%;max-width:1020px;margin:0 auto}
 .cloud-backup-plan-card{display:grid;grid-template-columns:minmax(0,320px) 220px;grid-template-rows:auto;width:min(540px,100%);min-width:0;margin-inline:auto;overflow:hidden;border:1px solid #d3dce8;border-radius:14px;background:#fff;text-align:center;box-shadow:0 8px 24px rgba(16,43,79,.06);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
 .cloud-backup-plan-card:hover{border-color:#9fc3ef;box-shadow:0 14px 32px rgba(16,78,155,.12);transform:translateY(-2px)}
-.cloud-backup-plan-card{grid-template-columns:minmax(0,400px) 240px;width:min(640px,100%)}
+.cloud-backup-plan-card{grid-template-columns:minmax(0,7fr) minmax(0,3fr);width:100%}
 .cloud-backup-plan-band{grid-column:1;grid-row:1;padding:10px 18px;background:linear-gradient(135deg,#edf6ff,#e5f0ff);color:var(--blue);font:650 11px/1.2 'Poppins',sans-serif;letter-spacing:.035em;text-transform:uppercase}
-.cloud-backup-plan-main{grid-column:1;grid-row:2;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:14px 26px 16px;border-right:1px solid #e0e6ee;background:linear-gradient(180deg,#fff 0%,#fbfdff 100%);text-align:left}
-.cloud-backup-plan-name{display:flex;align-items:center;gap:16px;width:100%;min-height:40px;text-align:left}
+.cloud-backup-plan-main{grid-column:1;grid-row:1 / span 2;display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;column-gap:8px;padding:14px 16px 16px;border-right:1px solid #e0e6ee;background:linear-gradient(180deg,#fff 0%,#fbfdff 100%);text-align:left}
+.cloud-backup-plan-main>.cloud-backup-plan-band{grid-column:1;grid-row:1;padding:10px 8px;background:transparent;text-align:center}
+.cloud-backup-plan-main>.cloud-backup-plan-name{grid-column:2;grid-row:1}
+.cloud-backup-plan-name{display:flex;align-items:center;gap:16px;width:100%;min-width:0;min-height:40px;text-align:left}
 .cloud-backup-plan-name>span{display:grid;place-items:center;width:42px;height:42px;border-radius:9px;background:var(--blue);color:#fff;font-size:18px;font-weight:700}
 .cloud-backup-plan-name b{display:block;color:#080d2c;font:600 17px/1.25 'Poppins',sans-serif}
 .cloud-backup-plan-name small{display:block;margin-top:2px;color:var(--blue);font:550 11px/1.3 'Poppins',sans-serif}
@@ -4091,7 +4098,7 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
 .cloud-backup-plan-main .cloud-backup-plan-specs{order:2}
 .cloud-backup-plan-main .cloud-backup-plan-specs>div{min-height:45px;padding:8px 6px;background:#f5f6f8}
 .cloud-backup-plan-main .cloud-backup-plan-specs>div+div{border-left:1px solid #e4e8ee;background:#fff}
-.cloud-backup-plan-details{flex:0 0 auto;width:auto;margin:0;padding-right:16px;transform:translateX(-8px);color:var(--ink);font:600 13.5px/1.35 var(--body);text-align:left;white-space:nowrap}
+.cloud-backup-plan-details{flex:1 1 auto;min-width:0;max-width:100%;margin:0;color:var(--ink);font:600 13.5px/1.35 var(--body);text-align:left;white-space:normal;overflow-wrap:anywhere}
 .cloud-backup-plan-name>div b{display:block;color:#080d2c;font:600 17px/1.25 'Poppins',sans-serif}
 .cloud-backup-plan-name>div small{display:none}
 .cloud-backup-plan-details strong{color:#080d2c;font:800 16px/1.3 var(--body)}
@@ -4104,7 +4111,7 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
 .cloud-backup-plan-action{position:relative;grid-column:2;grid-row:1 / span 2;align-self:stretch;justify-self:stretch;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;width:100%;padding:12px 18px;border-left:1px solid #e0e6ee;color:#080d2c;text-decoration:none}
 .cloud-backup-plan-action strong{font:650 clamp(21px,1.8vw,25px)/1.08 'Poppins',sans-serif;letter-spacing:-.025em}
 .cloud-backup-plan-action span{display:block;width:100%;max-width:150px;padding:12px 12px;border-radius:10px;background:linear-gradient(135deg,#1670e8,#0b55c7);color:#fff;text-align:center;text-transform:uppercase;font:650 12px/1.2 'Poppins',sans-serif;box-shadow:0 7px 16px rgba(21,101,216,.24);transition:background .2s ease,box-shadow .2s ease,transform .2s ease}
-.cloud-backup-plan-action small{color:#5e6672;font:500 10px/1.3 'Poppins',sans-serif;white-space:nowrap}
+.cloud-backup-plan-action small{color:#5e6672;font:500 10px/1.3 'Poppins',sans-serif;white-space:normal}
 .cloud-backup-plan-action::before{display:none}
 .cloud-backup-plan-action:hover span{background:linear-gradient(135deg,#0b55c7,#083d98);box-shadow:0 10px 20px rgba(21,101,216,.3);transform:translateY(-2px)}
 .cdr-tour-trigger{border-color:rgba(255,255,255,.58)!important;background:rgba(255,255,255,.08);color:#fff!important;cursor:pointer}
@@ -4135,7 +4142,8 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
   .cloud-backup-pricing .tally-price-heading h2{font-size:clamp(29px,8vw,37px)}
   .cloud-backup-term-tabs{width:100%;grid-template-columns:repeat(2,minmax(0,1fr));margin-bottom:24px}
   .cloud-backup-plan-card{display:flex;flex-direction:column;width:100%}
-  .cloud-backup-plan-main{padding:24px 20px 22px;border-right:0}
+  .cloud-backup-plan-main{display:flex;flex-direction:column;align-items:stretch;padding:24px 20px 22px;border-right:0}
+  .cloud-backup-plan-main>.cloud-backup-plan-band{padding:0 0 12px;text-align:left}
   .cloud-backup-plan-details{white-space:normal}
   .cloud-backup-plan-specs{display:flex;flex-direction:column}
   .cloud-backup-plan-specs>div{min-height:55px}
@@ -4363,6 +4371,9 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
 .article-body ul{display:grid;gap:14px;margin:0 0 28px;padding:0;list-style:none}
 .article-body ul li{padding:16px 18px 16px 54px;margin:0;border:1px solid #dce7f5;border-radius:18px;background:linear-gradient(180deg,#ffffff,#f8fbff);font-size:16px;line-height:1.75}
 .article-body ul li::before{left:18px;top:21px;width:20px;height:20px;background:linear-gradient(135deg,#1565d8,#0b4ca5)}
+.article-inline-media{margin:32px 0}
+.article-inline-media img{display:block;width:100%;height:auto;border-radius:18px;box-shadow:0 16px 42px rgba(4,30,66,.12)}
+.article-inline-media figcaption{margin-top:10px;color:#66778c;font-size:13px;line-height:1.5;text-align:center}
 .article-bottom-cta{margin-top:42px;padding:28px;border-radius:24px;background:linear-gradient(135deg,#f4f8ff,#edf5ff);border:1px solid #d3e2fb}
 .article-bottom-cta p{margin:0 0 16px;color:var(--navy);font:700 20px/1.45 var(--disp)}
 
@@ -4875,6 +4886,26 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 
 
 .pph-scrutiny-illus .pph-illus-img{filter:drop-shadow(0 22px 34px rgba(10,42,87,.24))}.scrutiny-powered{display:flex;flex-direction:column;align-items:center;gap:3px}.scrutiny-powered strong{font-size:22px;letter-spacing:-.05em;color:#0a2a57}.scrutiny-powered strong::first-letter{color:#19c46a}.scrutiny-powered .pw-sub{font-size:10px}
+
+/* Managed Microsoft 365: Copilot hero visual from the supplied reference. */
+#ppage .pph-scene.pph-managed-m365{top:2%;right:3%;bottom:auto;width:43%;display:flex;align-items:center;justify-content:center;overflow:visible;opacity:1}
+.m365-hero-stage{position:relative;display:flex;align-items:center;justify-content:center;width:min(100%,470px);min-height:390px}
+.m365-hero-orbit{position:absolute;inset:5% 6%;border:1.5px dashed rgba(127,176,255,.32);border-radius:50%;animation:m365Orbit 40s linear infinite}
+.m365-hero-orbit:after{content:"";position:absolute;top:-5px;left:50%;width:9px;height:9px;border-radius:50%;background:var(--orange);box-shadow:0 0 12px var(--orange)}
+@keyframes m365Orbit{to{transform:rotate(360deg)}}
+.m365-copilot-window{position:relative;z-index:2;width:min(84%,390px);overflow:hidden;border-radius:17px;background:#fff;box-shadow:0 28px 60px -20px rgba(0,0,0,.55);animation:m365Float 6s ease-in-out infinite}
+@keyframes m365Float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.m365-copilot-window header{display:flex;align-items:center;gap:15px;padding:12px 15px;border-bottom:1px solid var(--line);background:#f3f6fc}
+.m365-window-dots{display:flex;gap:5px}.m365-window-dots i{display:block;width:9px;height:9px;border-radius:50%;background:#d3ddef}.m365-window-dots i:first-child{background:#ff8c7f}.m365-window-dots i:nth-child(2){background:#ffc75f}.m365-window-dots i:last-child{background:#65d58b}
+.m365-copilot-window header>b{display:flex;align-items:center;gap:6px;color:var(--navy);font:700 12px var(--mono)}.m365-copilot-window header>b i{display:grid;place-items:center;width:19px;height:19px;border-radius:5px;background:conic-gradient(from 180deg,#0b6dff,#33c1ff,#7c4dff,#0b6dff);color:#fff;font-style:normal}
+.m365-window-body{display:grid;gap:10px;padding:14px}.m365-window-body article{display:flex;align-items:flex-start;gap:11px;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:#fff}.m365-window-body article.is-prompt{border-color:#bcd3f7;background:linear-gradient(90deg,#f5f9ff,#fff);box-shadow:0 10px 24px -14px rgba(21,101,216,.65)}
+.m365-window-body article>i{display:grid;place-items:center;flex:none;width:36px;height:36px;border-radius:50%;background:conic-gradient(from 180deg,#0b6dff,#33c1ff,#7c4dff,#0b6dff);color:#fff;font-style:normal;font-weight:800}.m365-window-body article>i.is-file{border-radius:10px;background:#57a94a}
+.m365-window-body article span{min-width:0}.m365-window-body article b,.m365-window-body article small{display:block}.m365-window-body article b{color:var(--navy);font:700 13px var(--disp)}.m365-window-body article small{max-width:245px;margin-top:3px;overflow:hidden;color:var(--slate);font-size:11px;line-height:1.35;text-overflow:ellipsis;white-space:nowrap}
+.m365-hero-float{position:absolute;z-index:4;display:flex;align-items:center;gap:9px;padding:10px 13px;border-radius:13px;background:#fff;box-shadow:0 16px 34px -12px rgba(4,18,42,.45)}.m365-hero-float>i{display:grid;place-items:center;width:31px;height:31px;border-radius:9px;font-style:normal;font-weight:800}.m365-hero-float b,.m365-hero-float small{display:block}.m365-hero-float b{color:var(--navy);font:700 12px var(--disp)}.m365-hero-float small{color:var(--slate);font:10px var(--mono)}
+.m365-ask{top:1%;left:-1%;animation:m365Float 7s ease-in-out infinite}.m365-ask>i{background:#e4f7ec;color:var(--green)}.m365-secure{top:9%;right:-3%;animation:m365Float 6.5s ease-in-out infinite}.m365-secure>i{background:#fff3e0;color:var(--orange)}.m365-seconds{right:-3%;bottom:16%;animation:m365Float 8s ease-in-out infinite}.m365-seconds>i{background:var(--blue-soft);color:var(--blue);font-size:20px}
+.m365-powered{position:absolute;bottom:-3px;left:50%;z-index:6;padding:9px 20px;border-radius:13px;background:#fff;box-shadow:0 16px 38px -15px rgba(4,18,42,.5);text-align:center;transform:translateX(-50%)}.m365-powered>small{display:block;margin-bottom:3px;color:var(--slate);font:9px var(--mono);letter-spacing:.13em;text-transform:uppercase}.m365-powered>span{display:flex;align-items:center;gap:7px}.m365-powered strong{color:#5e5e5e;font:600 15px var(--disp)}.m365-ms-grid{display:grid;grid-template-columns:repeat(2,9px);grid-template-rows:repeat(2,9px);gap:2px}.m365-ms-grid b:first-child{background:#f25022}.m365-ms-grid b:nth-child(2){background:#7fba00}.m365-ms-grid b:nth-child(3){background:#00a4ef}.m365-ms-grid b:last-child{background:#ffb900}
+@media(max-width:1100px){#ppage .pph-scene.pph-managed-m365{right:1%;width:40%}.m365-hero-float{display:none}.m365-copilot-window{width:94%}}
+@media(max-width:900px){#ppage .pph-scene.pph-managed-m365{position:absolute;top:0;right:0;width:100%;height:100%;opacity:.18;mask-image:none}.m365-hero-stage{width:min(72%,470px)}.m365-powered{display:none}}
 /* Infrastructure architecture tabs */
 .ts-remote-access-body>.wrap>.pgrid,.ts-remote-access-body>.wrap>.pgrid+.price-note{display:none}
 .tsplus-pricing-tabs{display:flex;justify-content:center;width:max-content;max-width:100%;margin:0 auto 28px;overflow:hidden;border-radius:10px;background:#24364b}
@@ -4930,3 +4961,17 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 
 /* TSplus Remote Access connection-experience gallery. */
 .tsplus-connection-experiences{margin-top:-40px}.tsplus-connection-experiences>.pp-sec{margin-bottom:7px}.tsplus-connection-kicker{margin:0 0 24px;color:var(--orange-d);font:700 11px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase}.tsplus-connection-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.tsplus-connection-card{overflow:hidden;border:1px solid var(--line);border-radius:17px;background:#fff;box-shadow:var(--shadow-s);transition:transform .22s var(--ease),border-color .22s,box-shadow .22s}.tsplus-connection-card:hover{transform:translateY(-4px);border-color:#b9cef0;box-shadow:var(--shadow)}.tsplus-connection-video{position:relative;aspect-ratio:16/9;overflow:hidden;background:linear-gradient(145deg,#061634,#0c2b63)}.tsplus-connection-video video{display:block;width:100%;height:100%;object-fit:cover}.tsplus-connection-copy{padding:18px 19px 20px}.tsplus-connection-copy h3{margin:0 0 8px;color:var(--navy);font:700 15px/1.35 var(--disp)}.tsplus-connection-copy p{margin:0;color:var(--slate);font-size:12.5px;line-height:1.6}@media(max-width:900px){.tsplus-connection-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.tsplus-connection-experiences{margin-top:40px}.tsplus-connection-grid{grid-template-columns:1fr}.tsplus-connection-copy{padding:16px}}
+
+.cloud-backup-platforms{margin:36px 0}
+.cloud-backup-platform-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px;margin:0;padding:0;list-style:none}
+.cloud-backup-platform-card{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;min-width:0;min-height:150px;padding:24px 16px;border:1px solid #d3dce8;border-radius:14px;background:#fff;text-align:center}
+.cloud-backup-platform-card img{display:block;width:100%;max-width:160px;height:56px;object-fit:contain}
+.cloud-backup-platform-card span{color:var(--ink);font:600 13px/1.4 var(--body)}
+@media(max-width:1100px){.cloud-backup-platform-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:600px){.cloud-backup-platform-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.cloud-backup-platform-card{padding:18px 12px;min-height:132px}}
+
+#ppage .edr-selected-summary .plan-offer-validity{display:inline-block;margin:14px 0 0;padding:8px 12px;border-radius:8px;background:#fff0f0;color:#b91c1c;font-size:18px;font-weight:700;line-height:1.4}
+
+.tally-term-tabs .tally-no-saving{color:#d62828;font-size:12px;font-style:normal;font-weight:600}
+
+.cloud-drive-term-tabs .cloud-drive-no-saving{color:#d62828;font-size:12px;font-style:normal;font-weight:600}

@@ -1887,6 +1887,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null,
                 "href": "/vortex-soc"
               },
+              {
+                "title": "Autonomous Threat Intelligence",
+                "pill": null,
+                "desc": null,
+                "href": "/vortex-soc"
+              }
               
             ]
           }

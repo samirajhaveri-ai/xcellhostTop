@@ -91,10 +91,25 @@
           <article class="bp-body article-body">
             @for (block of blocks(); track $index) {
               @switch (block.kind) {
-                @case ('p') { <p>{{ block.text }}</p> }
-                @case ('h') { <h2 [attr.id]="headingBlockId($index)">{{ block.text }}</h2> }
+                @case ('p') { <p [innerHTML]="inlineMarkdown(block.text)"></p> }
+                @case ('h') {
+                  <h2
+                    [attr.id]="headingBlockId($index)"
+                    [innerHTML]="inlineMarkdown(block.text)"
+                  ></h2>
+                }
                 @case ('ul') {
-                  <ul>@for (item of block.items; track $index) { <li>{{ item }}</li> }</ul>
+                  <ul>
+                    @for (item of block.items; track $index) {
+                      <li [innerHTML]="inlineMarkdown(item)"></li>
+                    }
+                  </ul>
+                }
+                @case ('img') {
+                  <figure class="article-inline-media">
+                    <img [src]="block.imageUrl" [alt]="block.text" loading="lazy" />
+                    @if (block.text) { <figcaption>{{ block.text }}</figcaption> }
+                  </figure>
                 }
               }
             }

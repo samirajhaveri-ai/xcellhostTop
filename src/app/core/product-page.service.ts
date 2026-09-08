@@ -863,6 +863,13 @@ function resolveHeroBrand(
     };
   }
 
+  if (name.trim() === 'Cloud Backup') {
+    return {
+      name: 'Acronis Backup Cloud', subtitle: null, kind: 'vendor',
+      logoImage: '/assets/images/acronis-backup-cloud.png',
+    };
+  }
+
   if (name === 'Cloud Disaster Recovery SMB') {
     return {
       name: 'Acronis Disaster Recovery', subtitle: null, kind: 'vendor',

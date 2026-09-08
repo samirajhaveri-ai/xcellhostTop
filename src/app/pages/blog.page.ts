@@ -12,9 +12,10 @@ import { SITE } from '../data/site.data';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 
 interface BodyBlock {
-  readonly kind: 'p' | 'h' | 'ul';
+  readonly kind: 'p' | 'h' | 'ul' | 'img';
   readonly text: string;
   readonly items: readonly string[];
+  readonly imageUrl?: string;
 }
 
 interface HeadingEntry {
@@ -157,6 +158,23 @@ export class BlogPage {
     return heading?.id ?? `section-${index}`;
   }
 
+  /** Renders a small, escaped subset of inline Markdown used by Strapi. */
+  inlineMarkdown(value: string): string {
+    const escaped = value
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+
+    return escaped
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(
+        /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+        '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>'
+      );
+  }
+
   /** Converts Strapi's Markdown-style rich text into safe Angular template blocks. */
   private parseContent(content: string): BodyBlock[] {
     const blocks: BodyBlock[] = [];
@@ -173,11 +191,22 @@ export class BlogPage {
       list = [];
     };
 
-    for (const rawLine of content.replace(/\r/g, '').split('\n')) {
+    // Strapi's editor can put the image URL on the following line. Markdown
+    // normally requires `](` to be adjacent, so normalize that form first.
+    const normalizedContent = content
+      .replace(/\r/g, '')
+      .replace(/!\[([^\]]*)\]\s*\n\s*\(\s*((?:https?:\/\/|\/)[^\s)]+)\s*\)/g, '![$1]($2)');
+
+    for (const rawLine of normalizedContent.split('\n')) {
       const line = rawLine.trim();
+      const image = line.match(/^(?:---\s*)?!\[([^\]]*)\]\(\s*((?:https?:\/\/|\/)[^\s)]+)\s*\)$/);
       if (!line) {
         flushParagraph();
         flushList();
+      } else if (image) {
+        flushParagraph();
+        flushList();
+        blocks.push({ kind: 'img', text: image[1], imageUrl: image[2], items: [] });
       } else if (/^#{1,6}\s+/.test(line)) {
         flushParagraph();
         flushList();

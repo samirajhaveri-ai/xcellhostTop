@@ -35,7 +35,11 @@ import { VortexSocContentComponent } from './vortex-soc-content.component';
 import { VortexSegContentComponent } from './vortex-seg-content.component';
 import { InfrastructureContentComponent } from '../sections/infrastructure-content.component';
 import { WhatsAppSmbContentComponent } from '../sections/whatsapp-smb-content.component';
+
 import { ManagedAwsContentComponent } from '../sections/managed-aws-content.component';
+
+import { ManagedMicrosoft365ContentComponent } from '../sections/managed-microsoft-365-content.component';
+
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -127,7 +131,10 @@ interface ProductTourSlide {
     VortexSegContentComponent,
     InfrastructureContentComponent,
     WhatsAppSmbContentComponent,
+
     ManagedAwsContentComponent,
+
+    ManagedMicrosoft365ContentComponent,
   ],
   templateUrl: './product.page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -825,6 +832,8 @@ export class ProductPage {
 
   readonly isSiteLock = computed(() => this.view()?.name === 'Web Security (SiteLock)');
 
+  readonly isManagedMicrosoft365 = computed(() => this.view()?.name === 'Managed Microsoft 365');
+
   readonly isVmc = computed(() => this.view()?.name === 'Verified Mark Certificates (VMC)');
 
   readonly isCmc = computed(() => this.view()?.name === 'DigiCert Common Mark Certificate (CMC)');
@@ -1187,10 +1196,10 @@ export class ProductPage {
   }
 
   readonly cloudBackupTerms: readonly { key: CloudBackupTerm; label: string; saving: string }[] = [
-    { key: 'monthly', label: 'Monthly', saving: '' },
+    { key: 'monthly', label: 'Monthly (No Saving)', saving: '' },
     { key: 'quarterly', label: 'Quarterly', saving: 'Save 5%' },
     { key: '6m', label: '6 Months', saving: 'Save 7.5%' },
-    { key: 'yearly', label: 'Yearly', saving: 'Save 10%' },
+    { key: 'yearly', label: 'Yearly (No Saving)', saving: '' },
   ];
 
   readonly cloudBackupPlans: readonly CloudBackupPlan[] = [

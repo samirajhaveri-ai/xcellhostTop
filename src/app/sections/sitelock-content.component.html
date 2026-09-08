@@ -27,7 +27,7 @@
         <article class="sl-plan" [class]="'sl-plan ' + plan.tone">
           <header><span aria-hidden="true">▱</span><h2>{{ plan.name }}</h2></header>
           <div class="sl-plan-body">
-            <div class="sl-price">₹{{ plan.price }}<small>/mo</small></div>
+            <div class="sl-price">₹{{ plan.price }}<small>/yr</small></div>
             <p class="sl-billed">billed annually at ₹{{ plan.annual }}</p>
             @if (plan.intro) { <p class="sl-plus">{{ plan.intro }}</p> }
             <ul>
