@@ -1502,9 +1502,6 @@
           <xh-product-faq [faqs]="v.faqs" />
         </div>
 
-        @if (slug() === 'scrutiny-edr') {
-          <xh-scrutiny-edr-content />
-        }
         <div class="pp-sec pp-blog-heading">From our blog</div>
         <div class="pp-blog" id="ppBlog">
           @for (b of blogs(); track b.title) {

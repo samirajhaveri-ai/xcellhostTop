@@ -21,6 +21,30 @@
   </div>
 </section>
 
+<section class="dlp-section dlp-evidence" aria-labelledby="dlpEvidenceTitle">
+  <span class="dlp-kicker">Evidence coverage</span>
+  <div class="pp-sec" id="dlpEvidenceTitle">Monitoring that explains the whole story</div>
+  <p class="pp-ov">Go beyond a blocked event. Reconstruct what happened, who was involved, what data moved and which workflow needs attention.</p>
+  <div class="dlp-story-grid">
+    @for (item of evidenceCoverage; track item.title; let i = $index) {
+      <article><span>{{ (i + 1).toString().padStart(2, '0') }}</span><h3>{{ item.title }}</h3><p>{{ item.text }}</p></article>
+    }
+  </div>
+</section>
+
+<section class="dlp-section dlp-advanced" aria-labelledby="dlpAdvancedTitle">
+  <div class="dlp-advanced-copy">
+    <span class="dlp-kicker light">Next-generation protection</span>
+    <div class="pp-sec" id="dlpAdvancedTitle">Advanced exfiltration countermeasures</div>
+    <p>Solve leakage paths that standard endpoint rules often miss—from a phone camera pointed at a screen to source code pasted into a public AI assistant.</p>
+  </div>
+  <div class="dlp-advanced-grid">
+    @for (item of advancedControls; track item.title) {
+      <article><span aria-hidden="true">{{ item.icon }}</span><div><h3>{{ item.title }}</h3><p>{{ item.text }}</p></div></article>
+    }
+  </div>
+</section>
+
 <section class="dlp-section">
   <div class="pp-sec">Complete coverage across every data-movement channel</div>
   <p class="pp-ov">Fifteen control points. This is the list to walk through with whoever owns your audit obligation.</p>
@@ -51,6 +75,22 @@
   <div class="dlp-tags"><span>Cross-platform native agent</span><span>AI / LLM powered classification</span><span>Anti-photo camera protection</span><span>Hidden metadata watermarking</span><span>OCR-enabled deep inspection</span><span>GenAI prompt and upload protection</span><span>Offline evidence collection</span><span>100% on-premise deployment option</span><span>Rich reports and dashboards</span></div>
   <div class="dlp-tags industries"><span>CA / CS &amp; legal firms</span><span>Healthcare</span><span>BFSI &amp; finance</span><span>IT / software companies</span><span>BPO / KPO</span><span>Education</span><span>Manufacturing</span><span>Government &amp; public sector</span><span>Managed cloud customers</span></div>
   <p class="dlp-note">Scrutiny DLP is usually chosen when an audit, a client contract or the DPDP Act is driving the project, or when an organisation has already had a leak it could not trace. Watermarking and evidence capture exist precisely for that second case.</p>
+</section>
+
+<section class="dlp-section dlp-comparison" aria-labelledby="dlpComparisonTitle">
+  <span class="dlp-kicker">Capability comparison</span>
+  <div class="pp-sec" id="dlpComparisonTitle">Scrutiny DLP vs enterprise data-security suites</div>
+  <p class="pp-ov">A practical capability check against common DLP, CASB and data-security platform approaches.</p>
+  <div class="dlp-table-wrap">
+    <table>
+      <thead><tr><th>Capability</th><th>Scrutiny DLP</th><th>Enterprise DLP / CASB suites</th></tr></thead>
+      <tbody>
+        @for (row of comparison; track row.capability) {
+          <tr><th scope="row">{{ row.capability }}</th><td>{{ row.scrutiny }}</td><td>{{ row.enterprise }}</td></tr>
+        }
+      </tbody>
+    </table>
+  </div>
 </section>
 
 <section class="dlp-section">
