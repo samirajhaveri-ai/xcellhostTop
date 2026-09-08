@@ -338,6 +338,7 @@ const MENU_DESCRIPTIONS: Record<string, string> = {
  * matching page is built; missing destinations use the shared construction page.
  */
 const CONTENT_LINKS: Record<string, string> = {
+  'WhatsApp For Business': '/whatsapp-smb',
   'Digicert VMC ': '/digicert-vmc',
   'Digicert CMC': '/digicert-cmc',
   'Acronis Advanced EDR SLA': '/acronis-advanced-edr-sla',

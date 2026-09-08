@@ -93,6 +93,30 @@
             <div class="wa-hero-powered"><small>Powered By</small><span><i><svg viewBox="0 0 24 24" fill="none"><path d="M6 8h12l-1 12H7zM9 8a3 3 0 016 0" stroke="currentColor" stroke-width="2" /></svg></i><b>interakt</b></span></div>
           </div>
         </div>
+      } @else if (isManagedMicrosoft365()) {
+        <div class="pph-scene pph-managed-m365" aria-hidden="true">
+          <div class="m365-hero-stage">
+            <span class="m365-hero-orbit"></span>
+            <div class="m365-copilot-window">
+              <header>
+                <span class="m365-window-dots"><i></i><i></i><i></i></span>
+                <b><i>✦</i> Copilot</b>
+              </header>
+              <div class="m365-window-body">
+                <article class="is-prompt"><i>✦</i><span><b>You</b><small>Summarise this 40-message thread and draft a reply</small></span></article>
+                <article><i>✦</i><span><b>Copilot</b><small>Here's a 3-point summary and a draft reply ready to send ✓</small></span></article>
+                <article><i class="is-file">▤</i><span><b>Turn doc into slides</b><small>5-slide deck created from Business plan.docx</small></span></article>
+              </div>
+            </div>
+            <div class="m365-hero-float m365-ask"><i>✦</i><span><b>Ask anything</b><small>in plain English</small></span></div>
+            <div class="m365-hero-float m365-seconds"><i>ϟ</i><span><b>Seconds</b><small>not hours</small></span></div>
+            <div class="m365-hero-float m365-secure"><i>◇</i><span><b>Your data</b><small>stays secure</small></span></div>
+            <div class="m365-powered">
+              <small>Powered By</small>
+              <span><i class="m365-ms-grid"><b></b><b></b><b></b><b></b></i><strong>Microsoft</strong></span>
+            </div>
+          </div>
+        </div>
       } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
         <div
           class="pph-scene has-illus standalone-illus"
@@ -110,12 +134,14 @@
             @if (v.name === 'Cloud Drive') {
               <div class="pph-cloud-drive-animation" [xhLottie]="'/assets/animations/cloud-drive.json'"></div>
             }
-            <div
-              class="pph-powered-mark pph-powered-image"
-              [class.pph-geotrust-powered]="v.name === 'GeoTrust'"
-            >
-              <img [src]="v.heroBrand.logoImage" [alt]="v.heroBrand.name" />
-            </div>
+            @if (!isManagedMicrosoft365()) {
+              <div
+                class="pph-powered-mark pph-powered-image"
+                [class.pph-geotrust-powered]="v.name === 'GeoTrust'"
+              >
+                <img [src]="v.heroBrand.logoImage" [alt]="v.heroBrand.name" />
+              </div>
+            }
           </div>
         </div>
       } @else if (v.name === 'Web Security (SiteLock)') {
@@ -165,7 +191,7 @@
             <span class="pp-brand-xcell">Xcell</span><span class="pp-brand-family">{{ v.brandSuffix }}</span>
           </span>
           <span class="pp-title-divider" aria-hidden="true">|</span>
-          <span class="pp-title-name">{{ v.name }}@if (slug() === 'geotrust') { SSL}</span>
+          <span class="pp-title-name">{{ isWhatsAppSmb() ? 'WhatsApp For Business' : v.name }}@if (slug() === 'geotrust') { SSL}</span>
         </h1>
         <h2
           class="pp-tagline"
@@ -285,6 +311,9 @@
 
     <div class="pp-body">
       <div class="wrap">
+        @if (isManagedMicrosoft365()) {
+          <xh-managed-microsoft-365-content />
+        }
         @if (isInfrastructure()) {
           <xh-infrastructure-content />
         }
@@ -302,7 +331,7 @@
             <xh-vortex-seg-content />
           } @else if (slug() === 'vortex-soc') {
             <xh-vortex-soc-content />
-          } @else {
+          } @else if (!isManagedMicrosoft365()) {
             <div class="pp-sec">Overview</div>
             <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
           }
@@ -677,7 +706,7 @@
               }
             </div>
           </section>
-        } @else if (!isAdvancedEdr() && !isSmbCyber() && !isRmm() && !isAcronisTrueImage() && !isSiteLock() && slug() !== 'scrutiny-dlp' && slug() !== 'vortex-seg' && slug() !== 'vortex-soc') {
+        } @else if (!isAdvancedEdr() && !isSmbCyber() && !isRmm() && !isAcronisTrueImage() && !isSiteLock() && !isManagedMicrosoft365() && slug() !== 'scrutiny-dlp' && slug() !== 'vortex-seg' && slug() !== 'vortex-soc') {
           <div class="pp-sec">Plans &amp; pricing</div>
           <div class="pp-plans" id="ppPlans">
             @for (p of v.plans; track p.term) {
@@ -719,7 +748,7 @@
               }
             </div>
           </section>
-        } @else if (!isSmbCyber() && !isAcronisTrueImage() && !isSiteLock() && slug() !== 'scrutiny-dlp' && slug() !== 'vortex-seg' && slug() !== 'vortex-soc') {
+        } @else if (!isSmbCyber() && !isAcronisTrueImage() && !isSiteLock() && !isManagedMicrosoft365() && slug() !== 'scrutiny-dlp' && slug() !== 'vortex-seg' && slug() !== 'vortex-soc') {
           @if (isAdvancedEdr()) {
             <section class="edr-feature-heading" aria-labelledby="edr-feature-title">
               <div class="edr-feature-copy">
@@ -1005,7 +1034,7 @@
           </section>
         }
 
-        @if (!isSmbCyber() && !isRmm() && !isAcronisTrueImage() && !isSiteLock() && slug() !== 'scrutiny-dlp' && slug() !== 'vortex-seg' && slug() !== 'vortex-soc') {
+        @if (!isSmbCyber() && !isRmm() && !isAcronisTrueImage() && !isSiteLock() && !isManagedMicrosoft365() && slug() !== 'scrutiny-dlp' && slug() !== 'vortex-seg' && slug() !== 'vortex-soc') {
         <div class="pp-sec">
           {{
             v.name === 'Tally on Cloud'
@@ -1135,7 +1164,7 @@
           </section>
         }
 
-        @if (v.name !== 'Tally on Cloud' && !isSmbCyber() && !isAcronisTrueImage() && !isSiteLock() && slug() !== 'scrutiny-dlp' && slug() !== 'vortex-seg' && slug() !== 'vortex-soc') {
+        @if (v.name !== 'Tally on Cloud' && !isSmbCyber() && !isAcronisTrueImage() && !isSiteLock() && !isManagedMicrosoft365() && slug() !== 'scrutiny-dlp' && slug() !== 'vortex-seg' && slug() !== 'vortex-soc') {
           <div class="pp-sec">Use cases</div>
           <div class="pp-uses" id="ppUses" [class.cdr-smb-uses]="isCloudDisasterRecoverySmb()">
             @for (u of v.uses; track u.title) {

@@ -4363,6 +4363,9 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
 .article-body ul{display:grid;gap:14px;margin:0 0 28px;padding:0;list-style:none}
 .article-body ul li{padding:16px 18px 16px 54px;margin:0;border:1px solid #dce7f5;border-radius:18px;background:linear-gradient(180deg,#ffffff,#f8fbff);font-size:16px;line-height:1.75}
 .article-body ul li::before{left:18px;top:21px;width:20px;height:20px;background:linear-gradient(135deg,#1565d8,#0b4ca5)}
+.article-inline-media{margin:32px 0}
+.article-inline-media img{display:block;width:100%;height:auto;border-radius:18px;box-shadow:0 16px 42px rgba(4,30,66,.12)}
+.article-inline-media figcaption{margin-top:10px;color:#66778c;font-size:13px;line-height:1.5;text-align:center}
 .article-bottom-cta{margin-top:42px;padding:28px;border-radius:24px;background:linear-gradient(135deg,#f4f8ff,#edf5ff);border:1px solid #d3e2fb}
 .article-bottom-cta p{margin:0 0 16px;color:var(--navy);font:700 20px/1.45 var(--disp)}
 
@@ -4867,6 +4870,26 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 
 
 .pph-scrutiny-illus .pph-illus-img{filter:drop-shadow(0 22px 34px rgba(10,42,87,.24))}.scrutiny-powered{display:flex;flex-direction:column;align-items:center;gap:3px}.scrutiny-powered strong{font-size:22px;letter-spacing:-.05em;color:#0a2a57}.scrutiny-powered strong::first-letter{color:#19c46a}.scrutiny-powered .pw-sub{font-size:10px}
+
+/* Managed Microsoft 365: Copilot hero visual from the supplied reference. */
+#ppage .pph-scene.pph-managed-m365{top:2%;right:3%;bottom:auto;width:43%;display:flex;align-items:center;justify-content:center;overflow:visible;opacity:1}
+.m365-hero-stage{position:relative;display:flex;align-items:center;justify-content:center;width:min(100%,470px);min-height:390px}
+.m365-hero-orbit{position:absolute;inset:5% 6%;border:1.5px dashed rgba(127,176,255,.32);border-radius:50%;animation:m365Orbit 40s linear infinite}
+.m365-hero-orbit:after{content:"";position:absolute;top:-5px;left:50%;width:9px;height:9px;border-radius:50%;background:var(--orange);box-shadow:0 0 12px var(--orange)}
+@keyframes m365Orbit{to{transform:rotate(360deg)}}
+.m365-copilot-window{position:relative;z-index:2;width:min(84%,390px);overflow:hidden;border-radius:17px;background:#fff;box-shadow:0 28px 60px -20px rgba(0,0,0,.55);animation:m365Float 6s ease-in-out infinite}
+@keyframes m365Float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.m365-copilot-window header{display:flex;align-items:center;gap:15px;padding:12px 15px;border-bottom:1px solid var(--line);background:#f3f6fc}
+.m365-window-dots{display:flex;gap:5px}.m365-window-dots i{display:block;width:9px;height:9px;border-radius:50%;background:#d3ddef}.m365-window-dots i:first-child{background:#ff8c7f}.m365-window-dots i:nth-child(2){background:#ffc75f}.m365-window-dots i:last-child{background:#65d58b}
+.m365-copilot-window header>b{display:flex;align-items:center;gap:6px;color:var(--navy);font:700 12px var(--mono)}.m365-copilot-window header>b i{display:grid;place-items:center;width:19px;height:19px;border-radius:5px;background:conic-gradient(from 180deg,#0b6dff,#33c1ff,#7c4dff,#0b6dff);color:#fff;font-style:normal}
+.m365-window-body{display:grid;gap:10px;padding:14px}.m365-window-body article{display:flex;align-items:flex-start;gap:11px;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:#fff}.m365-window-body article.is-prompt{border-color:#bcd3f7;background:linear-gradient(90deg,#f5f9ff,#fff);box-shadow:0 10px 24px -14px rgba(21,101,216,.65)}
+.m365-window-body article>i{display:grid;place-items:center;flex:none;width:36px;height:36px;border-radius:50%;background:conic-gradient(from 180deg,#0b6dff,#33c1ff,#7c4dff,#0b6dff);color:#fff;font-style:normal;font-weight:800}.m365-window-body article>i.is-file{border-radius:10px;background:#57a94a}
+.m365-window-body article span{min-width:0}.m365-window-body article b,.m365-window-body article small{display:block}.m365-window-body article b{color:var(--navy);font:700 13px var(--disp)}.m365-window-body article small{max-width:245px;margin-top:3px;overflow:hidden;color:var(--slate);font-size:11px;line-height:1.35;text-overflow:ellipsis;white-space:nowrap}
+.m365-hero-float{position:absolute;z-index:4;display:flex;align-items:center;gap:9px;padding:10px 13px;border-radius:13px;background:#fff;box-shadow:0 16px 34px -12px rgba(4,18,42,.45)}.m365-hero-float>i{display:grid;place-items:center;width:31px;height:31px;border-radius:9px;font-style:normal;font-weight:800}.m365-hero-float b,.m365-hero-float small{display:block}.m365-hero-float b{color:var(--navy);font:700 12px var(--disp)}.m365-hero-float small{color:var(--slate);font:10px var(--mono)}
+.m365-ask{top:1%;left:-1%;animation:m365Float 7s ease-in-out infinite}.m365-ask>i{background:#e4f7ec;color:var(--green)}.m365-secure{top:9%;right:-3%;animation:m365Float 6.5s ease-in-out infinite}.m365-secure>i{background:#fff3e0;color:var(--orange)}.m365-seconds{right:-3%;bottom:16%;animation:m365Float 8s ease-in-out infinite}.m365-seconds>i{background:var(--blue-soft);color:var(--blue);font-size:20px}
+.m365-powered{position:absolute;bottom:-3px;left:50%;z-index:6;padding:9px 20px;border-radius:13px;background:#fff;box-shadow:0 16px 38px -15px rgba(4,18,42,.5);text-align:center;transform:translateX(-50%)}.m365-powered>small{display:block;margin-bottom:3px;color:var(--slate);font:9px var(--mono);letter-spacing:.13em;text-transform:uppercase}.m365-powered>span{display:flex;align-items:center;gap:7px}.m365-powered strong{color:#5e5e5e;font:600 15px var(--disp)}.m365-ms-grid{display:grid;grid-template-columns:repeat(2,9px);grid-template-rows:repeat(2,9px);gap:2px}.m365-ms-grid b:first-child{background:#f25022}.m365-ms-grid b:nth-child(2){background:#7fba00}.m365-ms-grid b:nth-child(3){background:#00a4ef}.m365-ms-grid b:last-child{background:#ffb900}
+@media(max-width:1100px){#ppage .pph-scene.pph-managed-m365{right:1%;width:40%}.m365-hero-float{display:none}.m365-copilot-window{width:94%}}
+@media(max-width:900px){#ppage .pph-scene.pph-managed-m365{position:absolute;top:0;right:0;width:100%;height:100%;opacity:.18;mask-image:none}.m365-hero-stage{width:min(72%,470px)}.m365-powered{display:none}}
 /* Infrastructure architecture tabs */
 .ts-remote-access-body>.wrap>.pgrid,.ts-remote-access-body>.wrap>.pgrid+.price-note{display:none}
 .tsplus-pricing-tabs{display:flex;justify-content:center;width:max-content;max-width:100%;margin:0 auto 28px;overflow:hidden;border-radius:10px;background:#24364b}

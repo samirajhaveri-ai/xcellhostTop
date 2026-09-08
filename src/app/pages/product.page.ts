@@ -35,6 +35,7 @@ import { VortexSocContentComponent } from './vortex-soc-content.component';
 import { VortexSegContentComponent } from './vortex-seg-content.component';
 import { InfrastructureContentComponent } from '../sections/infrastructure-content.component';
 import { WhatsAppSmbContentComponent } from '../sections/whatsapp-smb-content.component';
+import { ManagedMicrosoft365ContentComponent } from '../sections/managed-microsoft-365-content.component';
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -126,6 +127,7 @@ interface ProductTourSlide {
     VortexSegContentComponent,
     InfrastructureContentComponent,
     WhatsAppSmbContentComponent,
+    ManagedMicrosoft365ContentComponent,
   ],
   templateUrl: './product.page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -809,6 +811,8 @@ export class ProductPage {
   readonly isAcronisTrueImage = computed(() => this.view()?.name === 'Acronis True Image');
 
   readonly isSiteLock = computed(() => this.view()?.name === 'Web Security (SiteLock)');
+
+  readonly isManagedMicrosoft365 = computed(() => this.view()?.name === 'Managed Microsoft 365');
 
   readonly isVmc = computed(() => this.view()?.name === 'Verified Mark Certificates (VMC)');
 
