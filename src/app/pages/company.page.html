@@ -652,9 +652,19 @@
 
     <section class="company-body">
       <div class="wrap company-wrap">
-        <p class="company-intro">{{ page.intro }}</p>
+        @if (slug() !== 'vendor-partners') {
+          <p class="company-intro">{{ page.intro }}</p>
+        }
 
-        @if (slug() === 'awards') {
+        @if (slug() === 'vendor-partners') {
+          <figure class="vendor-partners-static">
+            <img
+              src="/assets/images/vendor-partners-strategic-partnerships.png"
+              alt="XcellHost strategic partnerships and technology vendor ecosystem"
+              loading="eager"
+            />
+          </figure>
+        } @else if (slug() === 'awards') {
           <section class="recognition-section awards-section" aria-labelledby="awards-title">
             <header class="recognition-heading">
               <span>Recognition through the years</span>
@@ -704,6 +714,7 @@
           }
         }
 
+        @if (slug() !== 'vendor-partners') {
         <section class="company-cta">
           <div>
             <span>Let’s move forward</span>
@@ -711,6 +722,7 @@
           </div>
           <a class="btn btn-primary" routerLink="/contact">{{ page.ctaLabel }} <span aria-hidden="true">→</span></a>
         </section>
+        }
       </div>
     </section>
   </main>
