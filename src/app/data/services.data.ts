@@ -6278,7 +6278,7 @@ export const SERVICES_RICH: Record<string, ServiceRich> = {
       ]
     ]
   },
-  "bfsi / financial services": {
+  "bfsi / insurance services": {
     "price": "Custom programmes",
     "ov": "Banks, NBFCs and fintechs operate under the heaviest compliance load in Indian IT — RBI localisation, DPDPA, audit trails, uptime mandates. Our BFSI practice delivers cloud and security engineered for that reality, proven with banking clients.",
     "f": [
