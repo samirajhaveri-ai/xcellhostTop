@@ -113,7 +113,7 @@
             <div class="wa-hero-powered"><small>Powered By</small><span><i><svg viewBox="0 0 24 24" fill="none"><path d="M6 8h12l-1 12H7zM9 8a3 3 0 016 0" stroke="currentColor" stroke-width="2" /></svg></i><b>interakt</b></span></div>
           </div>
         </div>
-      } @else if (isManagedMicrosoft365()) {
+      } @else if (isManagedMicrosoft365() || isCopilotStudio()) {
         <div class="pph-scene pph-managed-m365" aria-hidden="true">
           <div class="m365-hero-stage">
             <span class="m365-hero-orbit"></span>
@@ -133,7 +133,11 @@
             <div class="m365-hero-float m365-secure"><i>◇</i><span><b>Your data</b><small>stays secure</small></span></div>
             <div class="m365-powered">
               <small>Powered By</small>
-              <span><i class="m365-ms-grid"><b></b><b></b><b></b><b></b></i><strong>Microsoft</strong></span>
+              @if (isCopilotStudio()) {
+                <span><img class="copilot-hero-logo" src="/assets/images/copilot-logo.png" alt="Microsoft Copilot" /></span>
+              } @else {
+                <span><i class="m365-ms-grid"><b></b><b></b><b></b><b></b></i><strong>Microsoft</strong></span>
+              }
             </div>
           </div>
         </div>
@@ -308,6 +312,16 @@
       <xh-tsplus-remote-access-content />
     }
 
+    @if (isCopilotStudio()) {
+      <xh-copilot-studio-content />
+      <section class="tally-videos copilot-watch" aria-labelledby="copilotVideosTitle">
+        <div class="wrap"><div class="pp-sec" id="copilotVideosTitle">Watch it in action</div><div class="tally-video-grid">
+          <article class="tally-video-card"><h3><span>Copilot Studio product tour</span></h3><div class="tally-video-frame"><iframe src="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?rel=0&amp;playsinline=1" title="Copilot Studio product tour" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></article>
+          <article class="tally-video-card"><h3><span>Build and publish an AI agent</span></h3><div class="tally-video-frame"><iframe src="https://www.youtube-nocookie.com/embed/ysz5S6PUM-U?rel=0&amp;playsinline=1" title="Build and publish an AI agent with Copilot Studio" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></article>
+        </div></div>
+      </section>
+    }
+
     @if (isScrutinyEdr()) {
       <xh-scrutiny-edr-content />
       @if (showcaseVideos().length) {
@@ -340,7 +354,7 @@
         @if (isInfrastructure()) {
           <xh-infrastructure-content />
         }
-        @if (!isInfrastructure() && !isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess() && !isScrutinyEdr()) {
+        @if (!isInfrastructure() && !isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess() && !isScrutinyEdr() && !isCopilotStudio()) {
         @if (isWhatsAppSmb()) {
           <xh-whatsapp-smb-content />
         } @else {

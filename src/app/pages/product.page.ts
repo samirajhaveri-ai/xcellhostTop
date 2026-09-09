@@ -39,6 +39,7 @@ import { WhatsAppSmbContentComponent } from '../sections/whatsapp-smb-content.co
 import { ManagedAwsContentComponent } from '../sections/managed-aws-content.component';
 
 import { ManagedMicrosoft365ContentComponent } from '../sections/managed-microsoft-365-content.component';
+import { CopilotStudioContentComponent } from '../sections/copilot-studio-content.component';
 
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
@@ -135,6 +136,7 @@ interface ProductTourSlide {
     ManagedAwsContentComponent,
 
     ManagedMicrosoft365ContentComponent,
+    CopilotStudioContentComponent,
   ],
   templateUrl: './product.page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -807,6 +809,11 @@ export class ProductPage {
   );
 
   readonly isScrutinyEdr = computed(() => this.view()?.name === 'Scrutiny EDR');
+
+  readonly isCopilotStudio = computed(() => {
+    const name = this.view()?.name;
+    return name === 'Copilot Studio' || name === 'Microsoft Copilot Studio';
+  });
 
   readonly isSmbCyber = computed(
     () => this.view()?.name === 'SMB Cyber Security Appliance'
