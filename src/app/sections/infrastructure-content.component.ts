@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, signal } from '@angular/core';
 
 interface ArchitectureTab {
-  key: 'security' | 'cloud';
+  key: 'security' | 'cloud' | 'data-center' | 'managed-security';
   label: string;
   title: string;
   description: string;
@@ -42,17 +42,46 @@ interface ArchitectureTab {
             <p>{{ active.description }}</p>
           </div>
           <figure class="infra-architecture-figure">
-            <img [src]="active.image" [alt]="active.alt" loading="lazy" />
+            <button
+              class="infra-architecture-image-button"
+              type="button"
+              (click)="openImage(active)"
+              [attr.aria-label]="'Zoom ' + active.title + ' image'"
+            >
+              <img [src]="active.image" [alt]="active.alt" loading="lazy" />
+              <span aria-hidden="true">Zoom image</span>
+            </button>
             <figcaption>{{ active.title }} — XcellHost infrastructure reference architecture.</figcaption>
           </figure>
         </article>
       </div>
     </section>
+
+    @if (zoomedTab(); as zoomed) {
+      <div
+        class="infra-image-modal"
+        role="dialog"
+        aria-modal="true"
+        [attr.aria-label]="zoomed.title + ' image preview'"
+        (click)="closeImage()"
+      >
+        <div class="infra-image-modal-dialog" (click)="$event.stopPropagation()">
+          <div class="infra-image-modal-header">
+            <h3>{{ zoomed.title }}</h3>
+            <button type="button" (click)="closeImage()" aria-label="Close image preview">&times;</button>
+          </div>
+          <div class="infra-image-modal-canvas">
+            <img [src]="zoomed.image" [alt]="zoomed.alt" />
+          </div>
+        </div>
+      </div>
+    }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InfrastructureContentComponent {
   readonly activeTab = signal<ArchitectureTab['key']>('security');
+  readonly zoomedTab = signal<ArchitectureTab | null>(null);
   readonly tabs: readonly ArchitectureTab[] = [
     {
       key: 'security',
@@ -70,9 +99,38 @@ export class InfrastructureContentComponent {
       image: '/assets/images/infrastructure-cloud-architecture.jpg',
       alt: 'XcellHost cloud architecture diagram',
     },
+    {
+      key: 'data-center',
+      label: 'Data Center',
+      title: 'Data Center',
+      description: 'Explore the resilient power, cooling, connectivity, physical security and operations behind XcellHost infrastructure at Equinix Mumbai data centers.',
+      image: '/assets/images/infrastructure-data-center.jpeg',
+      alt: 'Equinix Mumbai data center infrastructure overview',
+    },
+    {
+      key: 'managed-security',
+      label: 'Managed Security',
+      title: 'Managed Security',
+      description: 'See the XcellSecure managed security capabilities and the specialist SOC team structure that supports detection, response and ongoing protection.',
+      image: '/assets/images/infrastructure-managed-security.jpg',
+      alt: 'XcellSecure managed security capabilities and SOC team structure',
+    },
   ];
 
   selectedTab(): ArchitectureTab {
     return this.tabs.find((tab) => tab.key === this.activeTab()) ?? this.tabs[0];
+  }
+
+  openImage(tab: ArchitectureTab): void {
+    this.zoomedTab.set(tab);
+  }
+
+  closeImage(): void {
+    this.zoomedTab.set(null);
+  }
+
+  @HostListener('document:keydown.escape')
+  closeImageOnEscape(): void {
+    this.closeImage();
   }
 }
