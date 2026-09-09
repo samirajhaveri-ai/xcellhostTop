@@ -2652,7 +2652,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "BFSI / Financial Services",
+                "title": "BFSI / Insurance Services",
                 "pill": null,
                 "desc": null
               },

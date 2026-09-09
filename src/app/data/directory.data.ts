@@ -1297,7 +1297,7 @@ export const DIRECTORY: DirectoryEntry[] = [
     "group": "By Industry"
   },
   {
-    "name": "BFSI / Financial Services",
+    "name": "BFSI / Insurance Services",
     "desc": "Enhance operations with compliant cloud",
     "cat": "Solutions",
     "group": "By Industry"

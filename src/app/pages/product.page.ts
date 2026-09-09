@@ -637,7 +637,7 @@ export class ProductPage {
   }
 
   readonly cybirdTerms: readonly { key: CybirdTerm; label: string; saving: string }[] = [
-    { key: '1y', label: '1 Year', saving: '' },
+    { key: '1y', label: '1 Year', saving: 'No Saving' },
     { key: '2y', label: '2 Years', saving: 'Save 10%' },
     { key: '3y', label: '3 Years', saving: 'Save 15%' },
     { key: '5y', label: '5 Years', saving: 'Save 20%' },
@@ -717,7 +717,7 @@ export class ProductPage {
   }
 
   readonly cloudDriveTerms: readonly { key: CloudDriveTerm; label: string; saving: string }[] = [
-    { key: 'monthly', label: 'Monthly', saving: '' },
+    { key: 'monthly', label: 'Monthly', saving: 'No Saving' },
     { key: '3m', label: '3 Months', saving: 'Save 5%' },
     { key: '6m', label: '6 Months', saving: 'Save 7.5%' },
     { key: '1y', label: '1 Year', saving: 'Save 10%' },
@@ -1162,6 +1162,12 @@ export class ProductPage {
     return plan.prices[this.selectedCybirdTerm()];
   }
 
+  readonly cybirdHardwarePrice = 16999;
+
+  cybirdTotal(plan: CybirdPlan): number {
+    return this.cybirdHardwarePrice + this.cybirdPrice(plan);
+  }
+
   formatInr(value: number): string {
     return new Intl.NumberFormat('en-IN').format(Math.round(value));
   }
@@ -1203,10 +1209,10 @@ export class ProductPage {
   }
 
   readonly cloudBackupTerms: readonly { key: CloudBackupTerm; label: string; saving: string }[] = [
-    { key: 'monthly', label: 'Monthly (No Saving)', saving: '' },
+    { key: 'monthly', label: 'Monthly', saving: 'No Saving' },
     { key: 'quarterly', label: 'Quarterly', saving: 'Save 5%' },
     { key: '6m', label: '6 Months', saving: 'Save 7.5%' },
-    { key: 'yearly', label: 'Yearly (No Saving)', saving: '' },
+    { key: 'yearly', label: 'Yearly', saving: 'Save 10%' },
   ];
 
   readonly cloudBackupPlans: readonly CloudBackupPlan[] = [
@@ -1224,6 +1230,9 @@ export class ProductPage {
   );
 
   cloudBackupPrice(plan: CloudBackupPlan): number {
+    if (this.selectedCloudBackupTerm() === 'yearly') {
+      return Math.round(plan.monthly * 12 * 0.9);
+    }
     return plan[this.selectedCloudBackupTerm()];
   }
 

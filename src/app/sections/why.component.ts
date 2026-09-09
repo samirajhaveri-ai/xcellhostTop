@@ -70,7 +70,7 @@ const COUNTER_THRESHOLD = 0.5;
             <p>We choose, deploy and manage the right stack — end to end.</p>
             <div class="why-stats">
               <div><b>10000+</b><span>Businesses served</span></div>
-              <div><b>50+</b><span>OEM partnerships</span></div>
+              <div><b>200+</b><span>OEM partnerships</span></div>
               <div><b>27+</b><span>Years in cloud</span></div>
             </div>
             <small>Trusted by businesses, schools and organizations across India.</small>
