@@ -61,6 +61,37 @@ export class CompanyPage {
     { initials: 'AP', name: 'Abhishek Pandey', role: 'Cloud Sales Manager', image: '/assets/images/team-abhishek-pandey.png' },
   ] as const;
 
+  readonly teamTabs = [
+    { id: 'all', label: 'All Team' },
+    { id: 'management', label: 'Management' },
+    { id: 'advisory', label: 'Advisory' },
+    { id: 'sales', label: 'Sales' },
+  ] as const;
+  readonly activeTeamTab = signal<string>('all');
+  readonly teamMembers = [
+    ...this.managementTeam.map(member => ({ ...member, department: 'management' })),
+    ...this.advisoryTeam.map(member => ({ ...member, department: 'advisory' })),
+    ...this.salesTeam.map(member => ({ ...member, department: 'sales' })),
+  ];
+  readonly visibleTeamMembers = computed(() => this.teamMembers.filter(member =>
+    this.activeTeamTab() === 'all' || member.department === this.activeTeamTab(),
+  ));
+
+  onTeamTabKeydown(event: KeyboardEvent, index: number): void {
+    let next = index;
+    switch (event.key) {
+      case 'ArrowRight': next = (index + 1) % this.teamTabs.length; break;
+      case 'ArrowLeft': next = (index + this.teamTabs.length - 1) % this.teamTabs.length; break;
+      case 'Home': next = 0; break;
+      case 'End': next = this.teamTabs.length - 1; break;
+      default: return;
+    }
+    event.preventDefault();
+    this.activeTeamTab.set(this.teamTabs[next].id);
+    const tabList = (event.currentTarget as HTMLElement).parentElement;
+    tabList?.querySelectorAll<HTMLButtonElement>('[role="tab"]')[next]?.focus();
+  }
+
   readonly values = [
     { title: 'Teamwork', body: 'We work across functions so customers get one coordinated answer.' },
     { title: 'Integrity', body: 'We say what we can do, do what we say and keep the record clear.' },

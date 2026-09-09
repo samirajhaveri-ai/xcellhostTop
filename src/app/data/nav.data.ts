@@ -83,6 +83,17 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "Workforce Analytics",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Microsoft Defender",
+                "pill": null,
+                "desc": null
+              },
+
               
               
             ]
@@ -106,21 +117,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Transfer Your Domain",
                 "pill": "1-yr free ext.",
                 "desc": "Get a 1 Year Free Extension 🆓"
-              },
-              {
-                "title": "Bulk Domain Search",
-                "pill": null,
-                "desc": "Search and manage multiple domains easily 🔎"
-              },
-              {
-                "title": "Domain Parking Services",
-                "pill": null,
-                "desc": "Secure your domain until ready for use 🕰️"
-              },
-              {
-                "title": "Whois Privacy Protection",
-                "pill": null,
-                "desc": "Protect your personal information online 🕵️"
               },
               {
                 "title": "Latest Domain Extensions",
@@ -155,6 +151,16 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "TLD Directory",
                 "pill": null,
+                "desc": "Reserve a domain name for future availability 🕰️"
+              },
+              {
+                "title": "AI Domain Generator",
+                "pill": null,
+                "desc": "Reserve a domain name for future availability 🕰️"
+              },
+              {
+                "title": "Free Domain",
+                "pill": "FREE",
                 "desc": "Reserve a domain name for future availability 🕰️"
               },
               
@@ -369,36 +375,16 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Secure, automated backups to safeguard your website 🔒"
               },
               {
-                "title": "Window VPS",
+                "title": "Window 11 VPS",
                 "pill": "1-Click",
                 "desc": "Secure, automated backups to safeguard your website 🔒"
-              }
-
-              
-              
+              }, 
             ]
           }
         ]
       },
       
-      {
-        "g": "5",
-        "label": "Managed DNS",
-        "on": true,
-        "groups": [
-          {
-            "heading": "Managed DNS",
-            "items": [
-              {
-                "title": "No Data",
-                "pill": "Top seller",
-                "desc": null
-              },
-              
-            ]
-          }
-        ]
-      },
+      
       
     ]
   },
@@ -453,7 +439,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Co-Location",
+                "title": "Co-Location Service",
                 "pill": null,
                 "desc": null
               },
@@ -519,6 +505,11 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Managed Kubernetes",
                 "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Managed DNS",
+                "pill": "Top seller",
                 "desc": null
               },
               
@@ -720,24 +711,6 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "12",
-        "label": "Managed IT",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Managed IT",
-            "items": [
-              {
-                "title": "No data",
-                "pill": null,
-                "desc": null
-              },
-
-            ]
-          }
-        ]
-      },
-      {
         "g": "8",
         "label": "Cloud ERP",
         "on": false,
@@ -781,7 +754,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "SAP On Azure ",
+                "title": "SAP On GCP ",
                 "pill": null,
                 "desc": null
               },
@@ -864,6 +837,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
+                "title": "Microsoft 365 SMB",
+                "pill": null,
+                "desc": "Cloud productivity tools with migration and 24/7 support"
+              },
+              {
                 "title": "Microsoft 365 Enterprise",
                 "pill": null,
                 "desc": null
@@ -878,11 +856,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "Microsoft 365 SMB",
-                "pill": null,
-                "desc": "Cloud productivity tools with migration and 24/7 support"
-              },
+              
               
             ]
           }
@@ -1562,7 +1536,7 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "4",
-        "label": "Messaging trust",
+        "label": "Messaging Trust",
         "on": false,
         "groups": [
           {
@@ -1624,7 +1598,7 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Content Trust",
             "items": [
               {
-                "title": "No Data",
+                "title": "Document Security",
                 "pill": null,
                 "desc": null
               },
@@ -1785,6 +1759,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Network Detection & Response (NDR)",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "Unified Sase",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -1977,7 +1956,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Application Testing Platform",
+                "title": "Application Security Testing Platform",
                 "pill": null,
                 "desc": null
               },
@@ -2479,21 +2458,15 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-
+                "title": "TeamViewer",
+                "pill": null,
+                "desc": null
+              },
+              {
                 "title": "AnyDesk",
                 "pill": "Partner",
                 "desc": "Resell cloud, security and AI under your own brand",
                 "href": "/company/partnership-models"
-              },
-              {
-                "title": "Anydesk",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "TeamViewer",
-                "pill": null,
-                "desc": null
               },
             ]
           }
@@ -2524,11 +2497,7 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "Microsoft Security",
             "items": [
-              {
-                "title": "Microsoft Defender",
-                "pill": null,
-                "desc": null
-              },
+              
               {
                 "title": "Microsoft Identity & Access",
                 "pill": null,
@@ -2601,7 +2570,7 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Fortinet Security",
             "items": [
               {
-                "title": "No Data",
+                "title": "All Fortinet Security",
                 "pill": null,
                 "desc": null
               },
@@ -2626,23 +2595,6 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      {
-        "g": "3",
-        "label": "Adobe Tools",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Adobe Tools",
-            "items": [
-              {
-                "title": "No Data",
-                "pill": null,
-                "desc": null
-              },
-            ]
-          }
-        ]
-      },
       
       {
         "g": "6",
@@ -2652,6 +2604,21 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "Data as a Services",
             "items": [
+              {
+                "title": "Data Visualization",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Data Modernization",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Databricks Platform",
+                "pill": null,
+                "desc": null
+              },
               {
                 "title": "Data Analytics",
                 "pill": null,
@@ -2677,11 +2644,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "Data Modernization",
-                "pill": null,
-                "desc": null
-              },
+              
               {
                 "title": "Data Modernization",
                 "pill": null,
@@ -2692,8 +2655,26 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              
               {
-                "title": "Databricks Platform",
+                "title": "Data Fabric",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "3",
+        "label": "Adobe Tools",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Adobe Tools",
+            "items": [
+              {
+                "title": "No Data",
                 "pill": null,
                 "desc": null
               },
@@ -2912,6 +2893,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/vendor-partners/google-cloud"
               },
               {
+                "title": "Oracle Cloud",
+                "pill": null,
+                "desc": "Cybersecurity solutions, protection services and digital resilience",
+                "href": "/vendor-partners/cybird"
+              },
+              {
                 "title": "IBM Multicloud",
                 "pill": null,
                 "desc": "Hybrid and multicloud infrastructure solutions",
@@ -2976,7 +2963,8 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Cybersecurity solutions, protection services and digital resilience",
                 "href": "/vendor-partners/cybird"
-              }
+              },
+              
             ]
           }
         ]
@@ -3165,6 +3153,16 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "We'd love to hear from you"
               },
+              {
+                "title": "Are Platform",
+                "pill": null,
+                "desc": "We'd love to hear from you"
+              },
+              {
+                "title": "What New",
+                "pill": null,
+                "desc": "We'd love to hear from you"
+              },
             ]
           }
         ]
@@ -3179,6 +3177,11 @@ export const MEGA_MENU: MenuTop[] = [
             "items": [
               {
                 "title": "Partner Overview",
+                "pill": null,
+                "desc": "Start your XcellHost partner journey"
+              },
+              {
+                "title": "Partner Story ",
                 "pill": null,
                 "desc": "Start your XcellHost partner journey"
               },
@@ -3339,7 +3342,13 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Cookie Policy",
                 "pill": null,
                 "desc": "How cookies are used on the XcellHost website"
+              },
+              {
+                "title": "Fair Usage Policy",
+                "pill": null,
+                "desc": "How cookies are used on the XcellHost website"
               }
+
             ]
           }
         ]
@@ -3426,11 +3435,11 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "6",
-        "label": "Events & Webinars",
+        "label": "Events Center",
         "on": false,
         "groups": [
           {
-            "heading": "Events & Webinars",
+            "heading": "Events Center",
             "items": [
               {
                 "title": "Events",
