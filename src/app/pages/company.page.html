@@ -651,19 +651,76 @@
     }
 
     <section class="company-body">
+      @if (slug() === 'partnership-models') {
+        <xh-reseller-program-content />
+      } @else {
       <div class="wrap company-wrap">
         @if (slug() !== 'vendor-partners') {
           <p class="company-intro">{{ page.intro }}</p>
         }
 
         @if (slug() === 'vendor-partners') {
-          <figure class="vendor-partners-static">
-            <img
-              src="/assets/images/vendor-partners-strategic-partnerships.png"
-              alt="XcellHost strategic partnerships and technology vendor ecosystem"
-              loading="eager"
-            />
-          </figure>
+          <section class="vendor-partners" aria-labelledby="vendorPartnersTitle">
+            <header class="vendor-partners-heading">
+              <span>Technology ecosystem</span>
+              <h2 id="vendorPartnersTitle">Our strategic vendor partners</h2>
+              <p>{{ page.intro }}</p>
+            </header>
+
+            <div class="vendor-category-list">
+              @for (category of partnerCategories; track category.title) {
+                <section class="vendor-category" [attr.aria-labelledby]="'vendor-category-' + $index">
+                  <header>
+                    <span>{{ ($index + 1).toString().padStart(2, '0') }}</span>
+                    <div>
+                      <h3 [id]="'vendor-category-' + $index">{{ category.title }}</h3>
+                      <p>{{ category.description }}</p>
+                    </div>
+                  </header>
+                  <div class="vendor-logo-grid">
+                    @for (partner of category.partners; track partner[0]) {
+                      <article class="vendor-logo-card">
+                        <div class="vendor-logo-image">
+                          <img
+                            [src]="'/assets/images/vendor-partners/' + partner[1]"
+                            [alt]="partner[0] + ' logo'"
+                            loading="lazy"
+                          />
+                        </div>
+                        <h4>{{ partner[0] }}</h4>
+                      </article>
+                    }
+                  </div>
+                </section>
+              }
+            </div>
+          </section>
+        } @else if (slug() === 'certifications-awards') {
+          <section class="recognition-section certifications-section" aria-labelledby="certifications-title">
+            <header class="recognition-heading">
+              <span>Our certificates</span>
+              <h2 id="certifications-title">Our Certifications</h2>
+              <p>Check out our valuable ISO certifications.</p>
+            </header>
+
+            <div class="certification-grid">
+              @for (certification of certifications; track certification.title) {
+                <article class="certificate-card">
+                  <a [href]="certification.image" target="_blank" rel="noopener noreferrer">
+                    <div class="certificate-image-wrap">
+                      <img [src]="certification.image" [alt]="certification.alt" loading="lazy" />
+                    </div>
+                  </a>
+                  <div class="recognition-card-copy">
+                    <span>Certified credential</span>
+                    <h3>{{ certification.title }}</h3>
+                    <p>{{ certification.type }}</p>
+                    <a [href]="certification.image" target="_blank" rel="noopener noreferrer">View certificate →</a>
+                  </div>
+                </article>
+              }
+            </div>
+          </section>
         } @else if (slug() === 'awards') {
           <section class="recognition-section awards-section" aria-labelledby="awards-title">
             <header class="recognition-heading">
@@ -672,15 +729,41 @@
               <p>Milestones, memberships and partner recognition earned across XcellHost's cloud and technology journey.</p>
             </header>
 
-            <div class="award-grid">
-              @for (award of awards; track award.title) {
-                <article class="award-card">
-                  <div class="award-image-wrap">
-                    <img [src]="award.image" [alt]="award.title + ' recognition'" loading="lazy" />
-                  </div>
-                  <h3>{{ award.title }}</h3>
-                </article>
-              }
+            <div class="award-tabs-layout">
+              <div class="award-tabs" role="tablist" aria-label="Awards by year">
+                @for (year of awardYears; track year) {
+                  <button
+                    type="button"
+                    role="tab"
+                    [class.is-active]="activeAwardYear() === year"
+                    [attr.aria-selected]="activeAwardYear() === year"
+                    [attr.aria-controls]="'awards-panel-' + year"
+                    (click)="activeAwardYear.set(year)"
+                  >{{ year }}</button>
+                }
+              </div>
+
+              <section
+                class="award-year-panel"
+                [id]="'awards-panel-' + activeAwardYear()"
+                role="tabpanel"
+                [attr.aria-label]="activeAwardYear() + ' awards'"
+              >
+                <div class="award-year-heading">
+                  <span>Awards &amp; recognition</span>
+                  <h3>{{ activeAwardYear() }}</h3>
+                </div>
+                <div class="award-grid">
+                  @for (award of visibleAwards(); track award.title) {
+                    <article class="award-card">
+                      <div class="award-image-wrap">
+                        <img [src]="award.image" [alt]="award.title + ' recognition'" loading="lazy" />
+                      </div>
+                      <h3>{{ award.title }}</h3>
+                    </article>
+                  }
+                </div>
+              </section>
             </div>
           </section>
         } @else if (slug() !== 'certifications-awards') {
@@ -724,6 +807,7 @@
         </section>
         }
       </div>
+      }
     </section>
   </main>
   }

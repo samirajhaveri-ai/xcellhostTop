@@ -5958,6 +5958,21 @@ export const SERVICES_RICH: Record<string, ServiceRich> = {
       ]
     ]
   },
+  "reseller program": {
+    "price": "Free to apply",
+    "ov": "Sell more than 100 cloud, security and AI services under your own brand with wholesale pricing, recurring commissions and dedicated partner support.",
+    "f": [
+      ["Wholesale pricing", "Set your own margins"],
+      ["White-label ready", "Your branding on the portal and invoices"],
+      ["Recurring commissions", "Earn on every renewal"],
+      ["Partner support", "Onboarding and 24×7 assistance"]
+    ],
+    "q": [
+      ["Is the XcellHost Reseller Program free to join?", "Yes. There is no application or setup fee."],
+      ["Can I sell under my own brand?", "Yes. White-label options put your logo and name on the partner experience."],
+      ["What can I resell?", "More than 100 cloud, cybersecurity, Microsoft 365, WhatsApp, email, domain and web services."]
+    ]
+  },
   "acronis cyber protect enterprise": {
     "alias": [
       "acronis cyber protect for enterprise"

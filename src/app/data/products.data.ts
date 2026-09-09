@@ -15,6 +15,7 @@ import { RichProduct, DeepContent } from './models';
  * Only the first part is used in the hero brand heading.
  */
 export const PRODUCT_BRAND_LINES: Record<string, string> = {
+  "Reseller Program": "XcellPartner | Reseller Program",
   "Tally on Cloud": "XcellTally | Tally On Cloud",
   "Cloud Backup (Acronis)": "XcellBackup | Backup Cloud",
   "Cloud Drive": "XcellDrive | Cloud Drive",
@@ -30,6 +31,42 @@ export const PRODUCT_BRAND_LINES: Record<string, string> = {
 };
 
 export const RICH_PRODUCTS: Record<string, RichProduct> = {
+  "Reseller Program": {
+    brandLine: "XcellPartner | Reseller Program",
+    eyebrow: "PARTNERS · RESELLER & WHITE-LABEL PROGRAM",
+    tagline: "Sell cloud, security and AI — under your own brand.",
+    highlight: "Wholesale Pricing · White-Label · Recurring Commissions",
+    poweredBy: "XcellHost",
+    heroImage: "/assets/images/vendor-partners-strategic-partnerships.png",
+    heroPoints: ["100+ Services to Resell", "Wholesale / Margin Pricing", "White-Label & Your Branding", "Partner Portal & Billing", "Recurring Commissions", "Dedicated Partner Support"],
+    videos: [],
+    videoLabels: [],
+    useCases: ["IT service providers", "Digital agencies", "MSPs & consultants", "Web & hosting firms", "Telecom & ISPs", "Freelancers", "System integrators", "Entrepreneurs"],
+    packages: [["01", "Registered partner"], ["02", "Silver partner"], ["03", "Gold partner"]],
+    activeProtection: { title: "One partner. A hundred things to sell.", body: "Browse services, provision for clients, raise GST invoices and track recurring commissions from one partner portal." },
+    platforms: ["Cloud & Hosting", "Cybersecurity", "Microsoft 365", "WhatsApp API", "Email & Domains", "Websites & More"],
+    pricing: { title: "Partner levels", sub: "Free to join. Better margins and benefits unlock as your sales grow.", rows: [["Registered", "Free", "Standard margins"], ["Silver", "Volume based", "Higher margins"], ["Gold", "By invitation", "Best available margins"]] },
+    reviews: [
+      ["AK", "Amit Khanna", "IT Services Partner", "5", "The portal lets us quote, provision and manage services without juggling several vendors. Recurring commissions have become a dependable new revenue line."],
+      ["NS", "Neha Shah", "Digital Agency Director", "5", "White-label delivery means our clients see one consistent brand while XcellHost handles the infrastructure and round-the-clock support."],
+      ["RP", "Rohan Patel", "Managed Service Provider", "5", "The catalogue and pre-sales support helped us add cloud and security services quickly, without building a new operations team."]
+    ],
+    faqs: [
+      ["What is the XcellHost Reseller Program?", "It lets you resell 100+ cloud, security and AI services from one partner portal at wholesale prices, with optional white-label branding and recurring commissions."],
+      ["Is there a fee to join?", "No. It is free to apply, with no setup fee or minimum commitment to get started."],
+      ["Can I sell under my own brand?", "Yes. White-label options can place your logo and name on the portal and invoices."],
+      ["How do partner levels work?", "Everyone starts as a Registered Partner. Higher sales volumes unlock Silver and Gold benefits, including better margins and additional support."],
+      ["Do I set my own selling prices?", "Yes. You receive partner pricing and decide the margin and customer price."],
+      ["What support do partners receive?", "XcellHost provides onboarding, pre-sales assistance and 24×7 infrastructure and technical support."],
+      ["How are commissions paid?", "Recurring commissions are tracked through the partner programme and continue on eligible renewals."],
+      ["How do I get started?", "Apply free and our partner team will approve your account, configure pricing and walk you through the catalogue and portal."]
+    ],
+    blogs: [
+      ["PARTNER GROWTH", "6 min", "How IT partners build recurring cloud revenue", "A practical guide to moving from one-off projects to renewable managed-service income.", "build-recurring-cloud-revenue"],
+      ["WHITE LABEL", "5 min", "White-label cloud services: what clients actually notice", "How consistent branding, billing and support strengthen the customer relationship.", "white-label-cloud-services"],
+      ["CHANNEL SALES", "7 min", "Choosing the right reseller programme", "The commercial, operational and support questions every partner should ask.", "choosing-reseller-programme"]
+    ]
+  },
   
 
   "Tally on Cloud": {
@@ -1302,6 +1339,7 @@ export const PRODUCT_VIDEOS: Record<string, string[]> = {
   "Cloud Backup (Acronis)": ["rya4Q4IZniA", "nIMbqdbGxao"],
   "Cloud Drive — File Share & Sync": ["a-Jy7VV13Do", "E6xAHz6_TXw"],
   "Advanced Endpoint Security (EDR)": ["iaHAyNSXCPc", "2PZzQIUxpMo"],
+  "Scrutiny DLP": ["90ZQr9KpvL0", ""],
   "Remote Monitoring & Mgmt (RMM)": ["LLxYfEH-Oh0", "v7v4p0Pikhw"],
   "Performance Cloud": ["eFPWtETDYRQ", "U67bDvoR5ak"],
   "GPU Cloud": ["C8WfXTajKdU", "IC02IhCRBGI"],

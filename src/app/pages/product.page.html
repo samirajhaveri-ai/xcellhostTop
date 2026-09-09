@@ -308,6 +308,10 @@
       <xh-tsplus-remote-access-content />
     }
 
+    @if (isResellerProgram()) {
+      <xh-reseller-program-content />
+    }
+
     @if (isScrutinyEdr()) {
       <xh-scrutiny-edr-content />
       @if (showcaseVideos().length) {
@@ -340,7 +344,7 @@
         @if (isInfrastructure()) {
           <xh-infrastructure-content />
         }
-        @if (!isInfrastructure() && !isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess() && !isScrutinyEdr()) {
+        @if (!isInfrastructure() && !isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess() && !isResellerProgram() && !isScrutinyEdr()) {
         @if (isWhatsAppSmb()) {
           <xh-whatsapp-smb-content />
         } @else {
@@ -1478,13 +1482,46 @@
         }
 
         @if (slug() === 'vortex-seg' && !showcaseVideos().length) {
-          <section class="tally-videos" aria-labelledby="vortexSegActionTitle">
+          <section class="tally-videos vortex-seg-video" aria-labelledby="vortexSegActionTitle">
             <div class="pp-sec" id="vortexSegActionTitle">Watch it in action</div>
-            <div class="tally-video-grid single-video"><article class="tally-video-card"><h3><span>Vortex SEG message protection</span></h3><div class="tally-video-frame"><img src="/assets/images/vortex-seg-hero.svg" alt="Vortex SEG inspects and protects email before delivery" loading="lazy" /></div></article></div>
+            <div class="tally-video-grid single-video">
+              <article class="tally-video-card">
+                <h3><span>Elevate your email security with Vortex SEG</span></h3>
+                <div class="tally-video-frame">
+                  <iframe
+                    src="https://www.youtube-nocookie.com/embed/OQAmgvXsfyI?rel=0&amp;playsinline=1"
+                    title="Elevate your email security with Vortex SEG"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </article>
+            </div>
           </section>
         }
 
-        @if (showcaseVideos().length && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess()) {
+        @if (slug() === 'vortex-soc' && !showcaseVideos().length) {
+          <section class="tally-videos vortex-soc-video" aria-labelledby="vortexSocActionTitle">
+            <div class="pp-sec" id="vortexSocActionTitle">Watch it in action</div>
+            <div class="tally-video-grid single-video">
+              <article class="tally-video-card">
+                <h3><span>Vortex SOC security operations</span></h3>
+                <div class="tally-video-frame">
+                  <iframe
+                    src="https://www.youtube-nocookie.com/embed/0tdN-nnDMHk?rel=0&amp;playsinline=1"
+                    title="Vortex SOC security operations"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </article>
+            </div>
+          </section>
+        }
+
+        @if (showcaseVideos().length && slug() !== 'scrutiny-dlp' && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess()) {
           <section class="tally-videos" aria-labelledby="showcaseVideosTitle">
             <div class="pp-sec" id="showcaseVideosTitle">Watch it in action</div>
             <div class="tally-video-grid" [class.single-video]="showcaseVideos().length === 1">
@@ -1632,6 +1669,22 @@
           </div>
         }
 
+        @if (slug() === 'scrutiny-dlp' && showcaseVideos().length) {
+          <section class="tally-videos scrutiny-dlp-video" aria-labelledby="scrutinyDlpVideoTitle">
+            <div class="pp-sec" id="scrutinyDlpVideoTitle">Watch it in action</div>
+            <div class="tally-video-grid single-video">
+              @for (video of showcaseVideos(); track video.label) {
+                <article class="tally-video-card">
+                  <h3><span>{{ video.label }}</span></h3>
+                  <div class="tally-video-frame">
+                    <iframe [src]="video.url" [title]="'Scrutiny DLP — ' + video.label" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                  </div>
+                </article>
+              }
+            </div>
+          </section>
+        }
+
         <div class="pp-sec pp-faq-heading">Frequently asked questions</div>
         <div class="pp-faq" id="ppFaq">
           <xh-product-faq [faqs]="v.faqs" />
@@ -1652,10 +1705,24 @@
               <span class="pbl-go">Read article →</span>
             </a>
           } @empty {
-            <div class="pp-blog-empty">
-              <b>No {{ v.name }} articles published yet.</b>
-              <span>New articles assigned to this page in Strapi will appear here automatically.</span>
-            </div>
+            <a class="pbl pbl-link" routerLink="/insights">
+              <div class="pbl-top"><span class="k">Guide</span><span class="rt">6 min</span></div>
+              <b>How to choose the right {{ v.name }} solution</b>
+              <p class="pbl-x">The practical questions to ask about scope, security, support and long-term value.</p>
+              <span class="pbl-go">Read article →</span>
+            </a>
+            <a class="pbl pbl-link" routerLink="/insights">
+              <div class="pbl-top"><span class="k">How-to</span><span class="rt">5 min</span></div>
+              <b>Planning a smooth {{ v.name }} deployment</b>
+              <p class="pbl-x">A straightforward checklist for preparation, implementation and ongoing management.</p>
+              <span class="pbl-go">Read article →</span>
+            </a>
+            <a class="pbl pbl-link" routerLink="/insights">
+              <div class="pbl-top"><span class="k">Security</span><span class="rt">7 min</span></div>
+              <b>Security and compliance essentials for modern businesses</b>
+              <p class="pbl-x">Build practical controls that protect operations without adding unnecessary complexity.</p>
+              <span class="pbl-go">Read article →</span>
+            </a>
           }
         </div>
         <div class="pp-blogbtn-wrap">

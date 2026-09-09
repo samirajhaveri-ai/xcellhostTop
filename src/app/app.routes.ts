@@ -73,9 +73,9 @@ export const routes: Routes = [
   },
   {
     path: 'partner-program',
-    data: { title: 'Partner Program' },
+    data: { productSlug: 'reseller-program' },
     loadComponent: () =>
-      import('./pages/under-construction.page').then((m) => m.UnderConstructionPage),
+      import('./pages/product.page').then((m) => m.ProductPage),
   },
   {
     path: 'geotrust-ssl-certificates',
