@@ -60,6 +60,8 @@ export const PRODUCT_REVIEW_OVERRIDES: Record<string, ProductReviewContent[]> = 
       quote: 'We mainly use Cloud Drive for sharing project files with our team and clients. The access controls are useful, and being able to work with the latest files from anywhere has simplified our workflow.',
     },
   ],
+  
+  
   'Advanced Endpoint Security (EDR)': [
     {
       initials: 'AM',
@@ -198,6 +200,30 @@ export const PRODUCT_REVIEW_OVERRIDES: Record<string, ProductReviewContent[]> = 
       quote: 'Maintaining a separate recovery setup was becoming difficult for our business. Moving disaster recovery to the cloud has simplified the process and given us a better way to keep essential operations running.',
     },
   ],
+  'Cloud Object Storage': [
+    {
+      initials: 'VP',
+      name: 'Vivek Patel',
+      role: 'IT Manager, Mid-Sized Enterprise',
+      stars: 5,
+      quote: 'XcellHost Cloud Object Storage gives us a simple and scalable way to manage increasing volumes of business data. The platform is easy to use, and accessing stored files has been smooth and consistent.',
+    },
+    {
+      initials: 'KS',
+      name: 'Kunal Shah',
+      role: 'Head of Infrastructure, Technology Company',
+      stars: 5,
+      quote: 'We use object storage for backup copies, archives, and large datasets. The ability to keep everything centrally available has simplified our storage management considerably.',
+    },
+    {
+      initials: 'SK',
+      name: 'Sneha Kulkarni',
+      role: 'DevOps Manager, Software Company',
+      stars: 5,
+      quote: 'Our applications generate a large amount of media and unstructured content. XcellHost Cloud Object Storage provides a practical way to store and retrieve that data without relying on traditional file storage.',
+    },
+  
+]
 };
 
 const REVIEW_PROFILES: Record<Category, [string, string, string][]> = {

@@ -326,6 +326,10 @@
       </section>
     }
 
+    @if (isCloudObjectStorage()) {
+      <xh-cloud-object-storage-content />
+    }
+
     @if (isScrutinyEdr()) {
       <xh-scrutiny-edr-content />
       @if (showcaseVideos().length) {
@@ -358,7 +362,7 @@
         @if (isInfrastructure()) {
           <xh-infrastructure-content />
         }
-        @if (!isInfrastructure() && !isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess() && !isResellerProgram() && !isScrutinyEdr() && !isCopilotStudio()) {
+        @if (!isInfrastructure() && !isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess() && !isResellerProgram() && !isScrutinyEdr() && !isCopilotStudio() && !isCloudObjectStorage()) {
         @if (isWhatsAppSmb()) {
           <xh-whatsapp-smb-content />
         } @else {

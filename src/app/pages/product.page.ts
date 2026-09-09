@@ -41,6 +41,7 @@ import { ManagedAwsContentComponent } from '../sections/managed-aws-content.comp
 
 import { ManagedMicrosoft365ContentComponent } from '../sections/managed-microsoft-365-content.component';
 import { CopilotStudioContentComponent } from '../sections/copilot-studio-content.component';
+import { CloudObjectStorageContentComponent } from '../sections/cloud-object-storage-content.component';
 
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
@@ -139,6 +140,7 @@ interface ProductTourSlide {
 
     ManagedMicrosoft365ContentComponent,
     CopilotStudioContentComponent,
+    CloudObjectStorageContentComponent,
   ],
   templateUrl: './product.page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -822,6 +824,8 @@ export class ProductPage {
     const name = this.view()?.name;
     return name === 'Copilot Studio' || name === 'Microsoft Copilot Studio';
   });
+
+  readonly isCloudObjectStorage = computed(() => this.view()?.name === 'Cloud Object Storage');
 
   readonly isSmbCyber = computed(
     () => this.view()?.name === 'SMB Cyber Security Appliance'
