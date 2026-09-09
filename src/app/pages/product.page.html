@@ -1682,22 +1682,6 @@
           </div>
         }
 
-        @if (slug() === 'scrutiny-dlp' && showcaseVideos().length) {
-          <section class="tally-videos scrutiny-dlp-video" aria-labelledby="scrutinyDlpVideoTitle">
-            <div class="pp-sec" id="scrutinyDlpVideoTitle">Watch it in action</div>
-            <div class="tally-video-grid single-video">
-              @for (video of showcaseVideos(); track video.label) {
-                <article class="tally-video-card">
-                  <h3><span>{{ video.label }}</span></h3>
-                  <div class="tally-video-frame">
-                    <iframe [src]="video.url" [title]="'Scrutiny DLP — ' + video.label" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                  </div>
-                </article>
-              }
-            </div>
-          </section>
-        }
-
         <div class="pp-sec pp-faq-heading">Frequently asked questions</div>
         <div class="pp-faq" id="ppFaq">
           <xh-product-faq [faqs]="v.faqs" />
