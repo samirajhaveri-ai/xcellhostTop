@@ -29,6 +29,7 @@ import { TsplusAdvancedSecurityContentComponent } from '../sections/tsplus-advan
 import { TsplusAdvancedSecurityHeroComponent } from '../sections/tsplus-advanced-security-hero.component';
 import { TsplusRemoteAccessContentComponent } from '../sections/tsplus-remote-access-content.component';
 import { TsplusRemoteAccessHeroComponent } from '../sections/tsplus-remote-access-hero.component';
+import { ResellerProgramContentComponent } from '../sections/reseller-program-content.component';
 import { ScrutinyEdrContentComponent } from '../sections/scrutiny-edr-content.component';
 import { ScrutinyDlpContentComponent } from './scrutiny-dlp-content.component';
 import { VortexSocContentComponent } from './vortex-soc-content.component';
@@ -39,6 +40,7 @@ import { WhatsAppSmbContentComponent } from '../sections/whatsapp-smb-content.co
 import { ManagedAwsContentComponent } from '../sections/managed-aws-content.component';
 
 import { ManagedMicrosoft365ContentComponent } from '../sections/managed-microsoft-365-content.component';
+import { CopilotStudioContentComponent } from '../sections/copilot-studio-content.component';
 
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
@@ -125,6 +127,7 @@ interface ProductTourSlide {
     TsplusAdvancedSecurityHeroComponent,
     TsplusRemoteAccessContentComponent,
     TsplusRemoteAccessHeroComponent,
+    ResellerProgramContentComponent,
     ScrutinyEdrContentComponent,
     ScrutinyDlpContentComponent,
     VortexSocContentComponent,
@@ -135,6 +138,7 @@ interface ProductTourSlide {
     ManagedAwsContentComponent,
 
     ManagedMicrosoft365ContentComponent,
+    CopilotStudioContentComponent,
   ],
   templateUrl: './product.page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -402,6 +406,11 @@ export class ProductPage {
     { title: 'Remote session', description: 'Connect to a remote Windows desktop securely when full desktop access is needed.', image: '/assets/images/tsplus-remote-access-tour-session.png' },
     { title: 'Secure sign-in', description: 'Keep Windows credentials protected while users connect to their assigned resources.', image: '/assets/images/tsplus-remote-access-tour-credentials.png' },
   ];
+  readonly resellerProgramTourSlides: readonly ProductTourSlide[] = [
+    { title: 'Partner dashboard', description: 'Track clients, renewals and recurring commissions.', image: '/assets/images/reseller-tour-dashboard.svg' },
+    { title: 'Service catalogue', description: 'Browse and provision more than 100 services at partner rates.', image: '/assets/images/reseller-tour-catalogue.svg' },
+    { title: 'Clients and billing', description: 'Manage white-label billing and GST invoices.', image: '/assets/images/reseller-tour-billing.svg' },
+  ];
 
   readonly tsplusRemoteAccessExperiences = [
     {
@@ -472,6 +481,7 @@ export class ProductPage {
     if (this.isTsplusRemoteSupport()) return this.tsplusRemoteSupportTourSlides;
     if (this.isTsplusAdvancedSecurity()) return this.tsplusAdvancedSecurityTourSlides;
     if (this.isTsplusRemoteAccess()) return this.tsplusRemoteAccessTourSlides;
+    if (this.isResellerProgram()) return this.resellerProgramTourSlides;
     if (this.isManagedAws()) return this.managedAwsTourSlides;
     if (this.isManagedAzure()) return this.managedAzureTourSlides;
     if (view.name === 'Scrutiny DLP') return this.scrutinyDlpTourSlides;
@@ -635,7 +645,7 @@ export class ProductPage {
   }
 
   readonly cybirdTerms: readonly { key: CybirdTerm; label: string; saving: string }[] = [
-    { key: '1y', label: '1 Year', saving: '' },
+    { key: '1y', label: '1 Year', saving: 'No Saving' },
     { key: '2y', label: '2 Years', saving: 'Save 10%' },
     { key: '3y', label: '3 Years', saving: 'Save 15%' },
     { key: '5y', label: '5 Years', saving: 'Save 20%' },
@@ -715,7 +725,7 @@ export class ProductPage {
   }
 
   readonly cloudDriveTerms: readonly { key: CloudDriveTerm; label: string; saving: string }[] = [
-    { key: 'monthly', label: 'Monthly', saving: '' },
+    { key: 'monthly', label: 'Monthly', saving: 'No Saving' },
     { key: '3m', label: '3 Months', saving: 'Save 5%' },
     { key: '6m', label: '6 Months', saving: 'Save 7.5%' },
     { key: '1y', label: '1 Year', saving: 'Save 10%' },
@@ -808,6 +818,11 @@ export class ProductPage {
 
   readonly isScrutinyEdr = computed(() => this.view()?.name === 'Scrutiny EDR');
 
+  readonly isCopilotStudio = computed(() => {
+    const name = this.view()?.name;
+    return name === 'Copilot Studio' || name === 'Microsoft Copilot Studio';
+  });
+
   readonly isSmbCyber = computed(
     () => this.view()?.name === 'SMB Cyber Security Appliance'
   );
@@ -845,6 +860,7 @@ export class ProductPage {
   readonly isTsplusAdvancedSecurity = computed(() => this.view()?.name === 'TSplus Advanced Security');
 
   readonly isTsplusRemoteAccess = computed(() => this.view()?.name === 'TSplus Remote Access');
+  readonly isResellerProgram = computed(() => this.view()?.name === 'Reseller Program');
 
   readonly isManagedAws = computed(() => this.view()?.name === 'Managed AWS');
   readonly isManagedAzure = computed(() => {
@@ -895,9 +911,9 @@ export class ProductPage {
   /** Published Strapi posts, already sorted newest-first by BlogApiService. */
   private readonly cmsPosts = signal<readonly CmsBlogPost[]>([]);
 
-  /** The product-page row always shows the three newest CMS articles. */
-  readonly blogs = computed(() =>
-    this.cmsPosts()
+  /** Prefer assigned CMS posts; otherwise keep the page useful with its configured blog cards. */
+  readonly blogs = computed(() => {
+    const cmsBlogs = this.cmsPosts()
       .filter((post) => this.isForCurrentPage(post))
       .slice(0, 3)
       .map((post) => ({
@@ -908,8 +924,20 @@ export class ProductPage {
         title: post.title,
         excerpt: post.description,
         link: ['/insights', post.slug],
-      }))
-  );
+      }));
+
+    if (cmsBlogs.length) return cmsBlogs;
+
+    return (this.view()?.blogs ?? []).slice(0, 3).map(([kicker, meta, title, excerpt, slug]) => ({
+      kicker,
+      meta,
+      imageUrl: null,
+      imageAlt: title,
+      title,
+      excerpt,
+      link: ['/insights', slug],
+    }));
+  });
 
   readonly compareRows = computed<CompareRow[]>(() =>
     (this.view()?.edr?.compare.rows ?? []).map((r) => ({ head: r[0], cells: r.slice(1) }))
@@ -1155,6 +1183,12 @@ export class ProductPage {
     return plan.prices[this.selectedCybirdTerm()];
   }
 
+  readonly cybirdHardwarePrice = 16999;
+
+  cybirdTotal(plan: CybirdPlan): number {
+    return this.cybirdHardwarePrice + this.cybirdPrice(plan);
+  }
+
   formatInr(value: number): string {
     return new Intl.NumberFormat('en-IN').format(Math.round(value));
   }
@@ -1196,10 +1230,10 @@ export class ProductPage {
   }
 
   readonly cloudBackupTerms: readonly { key: CloudBackupTerm; label: string; saving: string }[] = [
-    { key: 'monthly', label: 'Monthly (No Saving)', saving: '' },
+    { key: 'monthly', label: 'Monthly', saving: 'No Saving' },
     { key: 'quarterly', label: 'Quarterly', saving: 'Save 5%' },
     { key: '6m', label: '6 Months', saving: 'Save 7.5%' },
-    { key: 'yearly', label: 'Yearly (No Saving)', saving: '' },
+    { key: 'yearly', label: 'Yearly', saving: 'Save 10%' },
   ];
 
   readonly cloudBackupPlans: readonly CloudBackupPlan[] = [
@@ -1217,6 +1251,9 @@ export class ProductPage {
   );
 
   cloudBackupPrice(plan: CloudBackupPlan): number {
+    if (this.selectedCloudBackupTerm() === 'yearly') {
+      return Math.round(plan.monthly * 12 * 0.9);
+    }
     return plan[this.selectedCloudBackupTerm()];
   }
 

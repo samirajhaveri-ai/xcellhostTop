@@ -2479,7 +2479,14 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
+
                 "title": "AnyDesk",
+                "pill": "Partner",
+                "desc": "Resell cloud, security and AI under your own brand",
+                "href": "/company/partnership-models"
+              },
+              {
+                "title": "Anydesk",
                 "pill": null,
                 "desc": null
               },
@@ -2722,7 +2729,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "BFSI / Financial Services",
+                "title": "BFSI / Insurance Services",
                 "pill": null,
                 "desc": null
               },

@@ -15,6 +15,7 @@ export const routes: Routes = [
   { path: '', pathMatch: 'full', loadComponent: () => import('./pages/home.page').then((m) => m.HomePage) },
   { path: 'compare', loadComponent: () => import('./pages/compare.page').then((m) => m.ComparePage) },
   { path: 'whatsapp-for-business', redirectTo: 'whatsapp-smb', pathMatch: 'full' },
+  { path: 'bfsi-financial-services', redirectTo: 'bfsi-insurance-services', pathMatch: 'full' },
   { path: 'under-construction/infrastructure', redirectTo: 'infrastructure', pathMatch: 'full' },
   { path: 'under-construction/escalation-matrix', redirectTo: 'escalation-matrix', pathMatch: 'full' },
   { path: 'escalation-matrix', loadComponent: () => import('./pages/escalation-matrix.page').then((m) => m.EscalationMatrixPage) },
@@ -75,9 +76,9 @@ export const routes: Routes = [
   },
   {
     path: 'partner-program',
-    data: { title: 'Partner Program' },
+    data: { productSlug: 'reseller-program' },
     loadComponent: () =>
-      import('./pages/under-construction.page').then((m) => m.UnderConstructionPage),
+      import('./pages/product.page').then((m) => m.ProductPage),
   },
   {
     path: 'geotrust-ssl-certificates',

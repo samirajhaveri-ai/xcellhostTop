@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@a
 
 import { CatalogService, slugify } from '../core/catalog.service';
 import { RevealDirective } from '../shared/reveal.directive';
+import { MEGA_MENU } from '../data/nav.data';
 
 /** One `#flagship .card`. */
 interface FlagshipCard {
@@ -41,7 +42,7 @@ const FLAGSHIP_TABS: readonly FlagshipTab[] = [
   { id: 'web-presence', label: 'Web Presence' },
   { id: 'cloud', label: 'Cloud' },
   { id: 'productivity', label: 'Productivity' },
-  { id: 'data-protect', label: 'Data Protect' },
+  { id: 'data-protect', label: 'Data Protection' },
   { id: 'digital-trust', label: 'Digital Trust' },
   { id: 'security', label: 'Security' },
   { id: 'ai', label: 'AI' },
@@ -52,9 +53,9 @@ const FLAGSHIP_TAB_SOURCES: Readonly<Record<FlagshipTabId, FlagshipGroup | null>
   cloud: 'infrastructure',
   productivity: 'protection',
   'data-protect': 'workplace',
-  'digital-trust': null,
-  security: null,
-  ai: null,
+  'digital-trust': 'digital-trust',
+  security: 'security',
+  ai: 'ai',
 };
 
 const FLAGSHIP_CARD_GROUPS: Readonly<Record<string, readonly FlagshipGroup[]>> = {
@@ -353,6 +354,8 @@ export class FlagshipComponent {
     const name = c.service ?? c.title;
     return {
       ...c,
+      // Demo pricing for cards whose final numeric price has not been supplied.
+      ...(!/\d/.test(c.amount) ? { lead: 'from ', amount: '₹999', tail: '/month' } : {}),
       cta: 'Explore →',
       iconPath: FLAGSHIP_ICON_PATHS[c.icon],
       groups: FLAGSHIP_CARD_GROUPS[c.title],
@@ -363,6 +366,40 @@ export class FlagshipComponent {
   readonly visibleCards = computed(() => {
     const group = this.activeSourceGroup();
     if (!group) return [];
+    if (group === 'digital-trust' || group === 'security' || group === 'ai') {
+      const label = this.tabs.find((tab) => tab.id === this.activeTab())?.label;
+      const menu = MEGA_MENU.find((item) => item.label === label);
+      const menuTabs = (menu?.tabs ?? []).filter((tab) =>
+        group !== 'digital-trust' || tab.label === 'SSL by Brand',
+      );
+      const seen = new Set<string>();
+      const icon = group === 'ai' ? 'chip' : group === 'digital-trust' ? 'verified' : 'shield';
+      return menuTabs.flatMap((tab) =>
+        tab.groups.flatMap((section) => section.items.flatMap((item) => {
+          if (group === 'security' && section.heading !== 'EndPoint Security') return [];
+          if (group === 'ai' && section.heading !== 'AI Tools') return [];
+          const link = item.href ?? '/' + slugify(this.catalog.findInDirectory(item.title)?.name ?? item.title);
+          if (seen.has(link)) return [];
+          seen.add(link);
+          return [{
+            title: item.title,
+            blurb: item.desc?.trim() || (group === 'digital-trust'
+              ? `Build customer confidence with ${item.title}, simple setup and expert support.`
+              : group === 'security'
+                ? `Protect your business with ${item.title}, centralised management and expert support.`
+                : `Simplify business workflows with ${item.title}, flexible deployment and expert support.`),
+            badge: item.pill ?? tab.label,
+            hot: item.pill === 'New' || item.pill === 'Top seller',
+            icon,
+            iconPath: FLAGSHIP_ICON_PATHS[icon],
+            // Demo price until service-specific pricing is supplied.
+            lead: 'from ', amount: '₹999', tail: group === 'digital-trust' ? '/year' : '/month',
+            cta: 'Explore →',
+            link,
+          }];
+        })),
+      );
+    }
     const cards = this.cards.filter((card) => card.groups.includes(group));
 
     if (group === 'business') {
