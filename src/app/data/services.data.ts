@@ -743,17 +743,46 @@ export const SERVICES_RICH: Record<string, ServiceRich> = {
     ],
     "q": [
       [
-        "Will my S3 tools work?",
-        "Yes — S3-compatible endpoints; existing SDKs and CLIs work as-is."
+        "What is XcellHost Cloud Object Storage?",
+        "XcellHost Cloud Object Storage is a scalable storage service designed for storing and managing unstructured data such as backups, media files, documents, logs, archives, and application data."
       ],
       [
-        "What about egress charges?",
-        "Transparent slab pricing — request the sheet from sales."
+        "What types of data can I store?",
+        "You can store a wide range of data, including images, videos, documents, backups, datasets, application files, website assets, and long-term archives."
       ],
       [
-        "Can I use it as a backup target?",
-        "Absolutely — Acronis and Veeam targets are supported."
+        "Can I increase my storage capacity as my business grows?",
+        "Yes. Cloud object storage is designed to scale as your data requirements increase, allowing you to add capacity without replacing your existing storage infrastructure."
+      ],
+      [
+        "Is XcellHost Cloud Object Storage suitable for backups?",
+        "Yes. It can be used to store backup copies, disaster recovery data, archives, and other files that need to remain securely available."
+      ],
+      [
+        "Can developers connect applications to the storage service?",
+        "Yes. Applications can be configured to upload, retrieve, and manage stored objects through supported access methods and APIs."
+      ],
+      [
+        "Is object storage different from traditional file storage?",
+        "Yes. Object storage manages data as individual objects with associated metadata, making it well suited for large-scale unstructured data, backups, media, and cloud-native applications."
+      ],
+      [
+        "Can I use object storage for media files?",
+        "Yes. Object storage is commonly used for images, videos, audio files, design assets, and other large media collections."
+      ],
+      [
+        "How can I access my stored data?",
+        "Stored data can typically be accessed through compatible tools, applications, management interfaces, or supported APIs, depending on your configuration."
+      ],
+      [
+        "Can XcellHost help with migration?",
+        "XcellHost support may be able to assist with planning and migration guidance. Contact the team to discuss your current environment and requirements."
+      ],
+      [
+        "How do I get started with XcellHost Cloud Object Storage?",
+        "Contact the XcellHost team to discuss your storage needs, expected data volume, access requirements, and preferred configuration. They can help recommend a suitable setup."
       ]
+    
     ]
   },
   "cloud disaster recovery": {
