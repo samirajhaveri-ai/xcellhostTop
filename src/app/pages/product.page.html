@@ -1,5 +1,5 @@
 @if (view(); as v) {
-  <div class="ppage as-page" id="ppage" [class.infrastructure-page]="isInfrastructure()" [class.edr-page]="isAdvancedEdr()" [class.scrutiny-edr-page]="isScrutinyEdr()" [class.rmm-page]="isRmm()" [class.whatsapp-smb-page]="isWhatsAppSmb()" [class.scrutiny-page]="slug() === 'scrutiny-dlp' || slug() === 'scrutiny-edr' || slug() === 'vortex-soc' || slug() === 'vortex-seg'" [class.cctv-page]="slug() === 'video-surveillance-as-a-service'" [class.cmc-page]="isCmc()" [class.tsplus-monitoring-page]="isTsplusServerMonitoring()" [class.tsplus-support-page]="isTsplusRemoteSupport()" [class.tsplus-advanced-security-page]="isTsplusAdvancedSecurity()" [class.tsplus-remote-access-page]="isTsplusRemoteAccess()">
+  <div class="ppage as-page" id="ppage" [class.infrastructure-page]="isInfrastructure()" [class.edr-page]="isAdvancedEdr()" [class.scrutiny-edr-page]="isScrutinyEdr()" [class.rmm-page]="isRmm()" [class.tally-page]="isTally()" [class.whatsapp-smb-page]="isWhatsAppSmb()" [class.scrutiny-page]="slug() === 'scrutiny-dlp' || slug() === 'scrutiny-edr' || slug() === 'vortex-soc' || slug() === 'vortex-seg'" [class.cctv-page]="slug() === 'video-surveillance-as-a-service'" [class.cmc-page]="isCmc()" [class.tsplus-monitoring-page]="isTsplusServerMonitoring()" [class.tsplus-support-page]="isTsplusRemoteSupport()" [class.tsplus-advanced-security-page]="isTsplusAdvancedSecurity()" [class.tsplus-remote-access-page]="isTsplusRemoteAccess()">
     <div
       class="pp-hero"
       [class.sitelock-hero]="v.name === 'Web Security (SiteLock)'"
@@ -332,7 +332,7 @@
     @if (isManagedAws() || isManagedAzure()) {
       <xh-managed-aws-content [provider]="isManagedAzure() ? 'Azure' : 'AWS'" />
     } @else {
-    <div class="pp-body">
+    <div class="pp-body" [class.cloud-backup-body]="isCloudBackup()" [class.cdr-smb-body]="isCloudDisasterRecoverySmb()">
       <div class="wrap">
         @if (isManagedMicrosoft365()) {
           <xh-managed-microsoft-365-content />
@@ -1390,7 +1390,7 @@
         @if (!isSmbCyber() && !isRmm() && slug() !== 'scrutiny-dlp') {
           <div class="pp-sec" id="ppSecHead">{{ v.security.head }}</div>
           <div id="ppSecWrap">
-            <p class="pp-ov" [style.max-width]="isCloudBackup() ? '100%' : null">{{ v.security.intro }}</p>
+            <p class="pp-ov" [style.max-width]="isCloudBackup() || isCloudDisasterRecoverySmb() ? '100%' : null">{{ v.security.intro }}</p>
             <div class="pp-secrows">
               @for (r of v.security.rows; track r[0]) {
                 <div class="psrow"><span class="psk">{{ r[0] }}</span><span class="psv">{{ r[1] }}</span></div>
