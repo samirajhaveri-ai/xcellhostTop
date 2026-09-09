@@ -487,7 +487,9 @@ export class ProductPageService {
     const product: RichProduct | undefined = RICH_PRODUCTS[name];
     const seed = hash(name);
     const heroTagline =
-      name === 'Scrutiny EDR'
+      name === 'Copilot Studio' || name === 'Microsoft Copilot Studio'
+        ? 'Build your own AI agents — no code, no data science.'
+        : name === 'Scrutiny EDR'
         ? 'Detect. Investigate. Respond. Recover.'
         : name === 'Scrutiny DLP'
           ? 'Stop sensitive data leaking across endpoints, email, cloud and removable media.'
@@ -499,7 +501,9 @@ export class ProductPageService {
             ? 'Allow organizations to manage complex defenses through a unified interface.'
             : product?.tagline || tag || `${name} from XcellHost`;
     const heroHighlight =
-      name === 'Scrutiny EDR'
+      name === 'Copilot Studio' || name === 'Microsoft Copilot Studio'
+        ? 'Design, ground and publish custom AI agents with Microsoft Copilot Studio'
+        : name === 'Scrutiny EDR'
         ? 'Behavioural endpoint detection with rapid remote response across Windows, macOS and Linux'
         : name === 'Scrutiny DLP'
           ? 'Endpoint · Email · Cloud · Removable media · GenAI'
@@ -513,7 +517,9 @@ export class ProductPageService {
               ? null
               : product?.highlight || rich?.f?.[0]?.[1] || tag || null;
     const heroMessages =
-      name === 'Scrutiny DLP'
+      name === 'Copilot Studio' || name === 'Microsoft Copilot Studio'
+        ? ['No-code agent builder', 'Grounded in your data', '1,000+ connectors', 'Actions and automation']
+        : name === 'Scrutiny DLP'
         ? []
         : name === 'Scrutiny EDR'
         ? ['Self-learning behavioural analytics', 'Real-time isolation', 'MITRE ATT&CK mapped investigations', '24×7 managed security']

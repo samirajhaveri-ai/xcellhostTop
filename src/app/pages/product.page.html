@@ -113,7 +113,7 @@
             <div class="wa-hero-powered"><small>Powered By</small><span><i><svg viewBox="0 0 24 24" fill="none"><path d="M6 8h12l-1 12H7zM9 8a3 3 0 016 0" stroke="currentColor" stroke-width="2" /></svg></i><b>interakt</b></span></div>
           </div>
         </div>
-      } @else if (isManagedMicrosoft365()) {
+      } @else if (isManagedMicrosoft365() || isCopilotStudio()) {
         <div class="pph-scene pph-managed-m365" aria-hidden="true">
           <div class="m365-hero-stage">
             <span class="m365-hero-orbit"></span>
@@ -133,7 +133,11 @@
             <div class="m365-hero-float m365-secure"><i>◇</i><span><b>Your data</b><small>stays secure</small></span></div>
             <div class="m365-powered">
               <small>Powered By</small>
-              <span><i class="m365-ms-grid"><b></b><b></b><b></b><b></b></i><strong>Microsoft</strong></span>
+              @if (isCopilotStudio()) {
+                <span><img class="copilot-hero-logo" src="/assets/images/copilot-logo.png" alt="Microsoft Copilot" /></span>
+              } @else {
+                <span><i class="m365-ms-grid"><b></b><b></b><b></b><b></b></i><strong>Microsoft</strong></span>
+              }
             </div>
           </div>
         </div>
@@ -308,6 +312,20 @@
       <xh-tsplus-remote-access-content />
     }
 
+    @if (isResellerProgram()) {
+      <xh-reseller-program-content />
+    }
+
+    @if (isCopilotStudio()) {
+      <xh-copilot-studio-content />
+      <section class="tally-videos copilot-watch" aria-labelledby="copilotVideosTitle">
+        <div class="wrap"><div class="pp-sec" id="copilotVideosTitle">Watch it in action</div><div class="tally-video-grid">
+          <article class="tally-video-card"><h3><span>Copilot Studio product tour</span></h3><div class="tally-video-frame"><iframe src="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?rel=0&amp;playsinline=1" title="Copilot Studio product tour" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></article>
+          <article class="tally-video-card"><h3><span>Build and publish an AI agent</span></h3><div class="tally-video-frame"><iframe src="https://www.youtube-nocookie.com/embed/ysz5S6PUM-U?rel=0&amp;playsinline=1" title="Build and publish an AI agent with Copilot Studio" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></article>
+        </div></div>
+      </section>
+    }
+
     @if (isScrutinyEdr()) {
       <xh-scrutiny-edr-content />
       @if (showcaseVideos().length) {
@@ -340,7 +358,7 @@
         @if (isInfrastructure()) {
           <xh-infrastructure-content />
         }
-        @if (!isInfrastructure() && !isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess() && !isScrutinyEdr()) {
+        @if (!isInfrastructure() && !isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess() && !isResellerProgram() && !isScrutinyEdr() && !isCopilotStudio()) {
         @if (isWhatsAppSmb()) {
           <xh-whatsapp-smb-content />
         } @else {
@@ -431,9 +449,7 @@
                       }
                     </h3>
                     <p>{{ edrPlanCoverage[selectedEdrPlanIndex()] }}</p>
-                    @if (selectedEdrPlanIndex() === 0) {
-                      <p class="plan-offer-validity">*Offer valid till 2026</p>
-                    }
+                    <p class="plan-offer-validity">*Offer valid till 31st Dec 2026</p>
                   </header>
 
                   <div class="edr-plan-purchase">
@@ -487,8 +503,8 @@
                   [attr.aria-selected]="selectedTallyTerm() === term.key"
                   (click)="selectTallyTerm(term.key)"
                 >
-                  @if (term.saving && term.key !== '1y') { <small>{{ term.saving }}</small> }
-                  <span>{{ term.label }}@if (term.key === 'monthly' || term.key === '1y') { <em class="tally-no-saving"> (No Saving)</em> }</span>
+                  <small>{{ term.saving || 'No Saving' }}</small>
+                  <span>{{ term.label }}</span>
                 </button>
               }
             </div>
@@ -632,8 +648,8 @@
                   [attr.aria-selected]="selectedCloudDriveTerm() === term.key"
                   (click)="selectCloudDriveTerm(term.key)"
                 >
-                  @if (term.saving && term.key !== '1y') { <small>{{ term.saving }}</small> }
-                  <span>{{ term.label }}@if (term.key === 'monthly' || term.key === '1y') { <em class="cloud-drive-no-saving"> (No Saving)</em> }</span>
+                  @if (term.saving) { <small>{{ term.saving }}</small> }
+                  <span>{{ term.label }}</span>
                 </button>
               }
             </div>
@@ -650,7 +666,7 @@
                     <div class="cloud-drive-total">
                       <strong>&#8377;{{ formatInr(cloudDriveTotal(plan)) }}</strong>
                     </div>
-                    <a class="btn btn-primary" href="#" (click)="selectCloudDrivePlan(plan, $event)">Buy now <span aria-hidden="true">→</span></a>
+                    <a class="btn btn-primary" href="#" (click)="selectCloudDrivePlan(plan, $event)">Buy Now <span aria-hidden="true">→</span></a>
                   </div>
                 </article>
               }
@@ -706,7 +722,7 @@
                   (click)="selectCloudBackupTerm(term.key)"
                 >
                   @if (term.saving) { <small>{{ term.saving }}</small> }
-                  <span>{{ term.label.replace(' (No Saving)', '') }}@if (term.label.endsWith('(No Saving)')) { <em class="cloud-backup-no-saving">(No Saving)</em> }</span>
+                  <span>{{ term.label }}</span>
                 </button>
               }
             </div>
@@ -719,7 +735,7 @@
                       <div class="cloud-backup-plan-name">
                       <p class="cloud-backup-plan-details">
                         Storage: <span class="cloud-backup-highlight">{{ plan.storage }}</span>
-                        with <span class="cloud-backup-highlight">Unlimited backup agents</span>
+                        With <span class="cloud-backup-highlight">Unlimited Backup Agents</span>
                       </p>
                     </div>
                   </div>
@@ -887,11 +903,11 @@
                       </div>
                     </div>
                     <dl class="tally-plan-specs smb-cybird-specs">
-                      <div><dt>Hardware Appliance<br> <span class="one-time-purchase">(one time purchase)</span></dt><dd>&#8377;16,999 +GST</dd></div>
-                      <div><dt>Security Bundle</dt><dd>&#8377;{{ formatInr(plan.support) }}/month</dd></div>
+                      <div><dt><span class="one-time-purchase">One-time purchase</span><span>Hardware Appliance</span></dt><dd>&#8377;{{ formatInr(cybirdHardwarePrice) }} +GST</dd></div>
+                      <div><dt>Security Bundle</dt><dd>&#8377;{{ formatInr(cybirdPrice(plan)) }}</dd></div>
                     </dl>
                     <a class="tally-plan-action" href="#" (click)="selectCybirdPlan(plan, $event)">
-                      <strong>&#8377;{{ formatInr(cybirdPrice(plan)) }}</strong>
+                      <strong>&#8377;{{ formatInr(cybirdTotal(plan)) }}</strong>
                       <span>Order now</span>
                       <small>+GST · {{ activeCybirdTerm().label }} billing</small>
                     </a>
@@ -986,6 +1002,7 @@
                 <article><i>♙</i><b>Separate Staff &amp; Guest Access</b><p>Keep networks organized and secure.</p></article>
                 <article><i>▣</i><b>Better Visibility &amp; Control</b><p>See everything. Manage remotely. Support faster.</p></article>
               </div>
+              <h3 class="smb-business-heading">Built for Your Business</h3>
               <div class="smb-business-grid">
                 @for (industry of smbIndustries; track industry) {
                   <span>{{ industry }}</span>
@@ -1478,13 +1495,46 @@
         }
 
         @if (slug() === 'vortex-seg' && !showcaseVideos().length) {
-          <section class="tally-videos" aria-labelledby="vortexSegActionTitle">
+          <section class="tally-videos vortex-seg-video" aria-labelledby="vortexSegActionTitle">
             <div class="pp-sec" id="vortexSegActionTitle">Watch it in action</div>
-            <div class="tally-video-grid single-video"><article class="tally-video-card"><h3><span>Vortex SEG message protection</span></h3><div class="tally-video-frame"><img src="/assets/images/vortex-seg-hero.svg" alt="Vortex SEG inspects and protects email before delivery" loading="lazy" /></div></article></div>
+            <div class="tally-video-grid single-video">
+              <article class="tally-video-card">
+                <h3><span>Elevate your email security with Vortex SEG</span></h3>
+                <div class="tally-video-frame">
+                  <iframe
+                    src="https://www.youtube-nocookie.com/embed/OQAmgvXsfyI?rel=0&amp;playsinline=1"
+                    title="Elevate your email security with Vortex SEG"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </article>
+            </div>
           </section>
         }
 
-        @if (showcaseVideos().length && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess()) {
+        @if (slug() === 'vortex-soc' && !showcaseVideos().length) {
+          <section class="tally-videos vortex-soc-video" aria-labelledby="vortexSocActionTitle">
+            <div class="pp-sec" id="vortexSocActionTitle">Watch it in action</div>
+            <div class="tally-video-grid single-video">
+              <article class="tally-video-card">
+                <h3><span>Vortex SOC security operations</span></h3>
+                <div class="tally-video-frame">
+                  <iframe
+                    src="https://www.youtube-nocookie.com/embed/0tdN-nnDMHk?rel=0&amp;playsinline=1"
+                    title="Vortex SOC security operations"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </article>
+            </div>
+          </section>
+        }
+
+        @if (showcaseVideos().length && slug() !== 'scrutiny-dlp' && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess()) {
           <section class="tally-videos" aria-labelledby="showcaseVideosTitle">
             <div class="pp-sec" id="showcaseVideosTitle">Watch it in action</div>
             <div class="tally-video-grid" [class.single-video]="showcaseVideos().length === 1">
@@ -1632,6 +1682,22 @@
           </div>
         }
 
+        @if (slug() === 'scrutiny-dlp' && showcaseVideos().length) {
+          <section class="tally-videos scrutiny-dlp-video" aria-labelledby="scrutinyDlpVideoTitle">
+            <div class="pp-sec" id="scrutinyDlpVideoTitle">Watch it in action</div>
+            <div class="tally-video-grid single-video">
+              @for (video of showcaseVideos(); track video.label) {
+                <article class="tally-video-card">
+                  <h3><span>{{ video.label }}</span></h3>
+                  <div class="tally-video-frame">
+                    <iframe [src]="video.url" [title]="'Scrutiny DLP — ' + video.label" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                  </div>
+                </article>
+              }
+            </div>
+          </section>
+        }
+
         <div class="pp-sec pp-faq-heading">Frequently asked questions</div>
         <div class="pp-faq" id="ppFaq">
           <xh-product-faq [faqs]="v.faqs" />
@@ -1652,10 +1718,24 @@
               <span class="pbl-go">Read article →</span>
             </a>
           } @empty {
-            <div class="pp-blog-empty">
-              <b>No {{ v.name }} articles published yet.</b>
-              <span>New articles assigned to this page in Strapi will appear here automatically.</span>
-            </div>
+            <a class="pbl pbl-link" routerLink="/insights">
+              <div class="pbl-top"><span class="k">Guide</span><span class="rt">6 min</span></div>
+              <b>How to choose the right {{ v.name }} solution</b>
+              <p class="pbl-x">The practical questions to ask about scope, security, support and long-term value.</p>
+              <span class="pbl-go">Read article →</span>
+            </a>
+            <a class="pbl pbl-link" routerLink="/insights">
+              <div class="pbl-top"><span class="k">How-to</span><span class="rt">5 min</span></div>
+              <b>Planning a smooth {{ v.name }} deployment</b>
+              <p class="pbl-x">A straightforward checklist for preparation, implementation and ongoing management.</p>
+              <span class="pbl-go">Read article →</span>
+            </a>
+            <a class="pbl pbl-link" routerLink="/insights">
+              <div class="pbl-top"><span class="k">Security</span><span class="rt">7 min</span></div>
+              <b>Security and compliance essentials for modern businesses</b>
+              <p class="pbl-x">Build practical controls that protect operations without adding unnecessary complexity.</p>
+              <span class="pbl-go">Read article →</span>
+            </a>
           }
         </div>
         <div class="pp-blogbtn-wrap">

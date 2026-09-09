@@ -105,7 +105,11 @@ const CREDIBILITY_FEATURES: readonly CredibilityFeature[] = [
     }
 
     .sec-head {
-      max-width: 760px;
+      max-width: none;
+    }
+
+    .sec-head p {
+      max-width: none;
     }
 
     .credibility-grid {
