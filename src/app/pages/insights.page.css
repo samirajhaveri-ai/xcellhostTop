@@ -1,0 +1,71 @@
+.insights-toolbar {
+  scroll-margin-top: 110px;
+}
+
+.insights-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #d3e1ff;
+}
+
+.insights-page-numbers {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.insights-pagination button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid #cbdcff;
+  border-radius: 10px;
+  background: #fff;
+  color: #164bba;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.insights-pagination button:hover:not(:disabled) {
+  background: #edf4ff;
+  border-color: #1261ff;
+}
+
+.insights-pagination button.active {
+  background: #1261ff;
+  border-color: #1261ff;
+  color: #fff;
+}
+
+.insights-pagination button.active:hover {
+  background: #084bd4;
+}
+
+.insights-pagination button:focus-visible {
+  outline: 3px solid #1261ff;
+  outline-offset: 3px;
+}
+
+.insights-pagination button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.insights-page-gap {
+  align-self: center;
+  color: #66738a;
+}
+
+@media (max-width: 480px) {
+  .insights-page-numbers {
+    order: -1;
+    width: 100%;
+  }
+}

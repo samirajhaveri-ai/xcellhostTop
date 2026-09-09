@@ -367,6 +367,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Claude VPS",
                 "pill": "1-Click",
                 "desc": "Secure, automated backups to safeguard your website 🔒"
+              },
+              {
+                "title": "Window VPS",
+                "pill": "1-Click",
+                "desc": "Secure, automated backups to safeguard your website 🔒"
               }
 
               
@@ -539,6 +544,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "Vmware Migration",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
@@ -692,6 +702,42 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
+        "g": "11",
+        "label": "Managed Database",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Managed Database",
+            "items": [
+              {
+                "title": "No data",
+                "pill": null,
+                "desc": null
+              },
+
+            ]
+          }
+        ]
+      },
+      {
+        "g": "12",
+        "label": "Managed IT",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Managed IT",
+            "items": [
+              {
+                "title": "No data",
+                "pill": null,
+                "desc": null
+              },
+
+            ]
+          }
+        ]
+      },
+      {
         "g": "8",
         "label": "Cloud ERP",
         "on": false,
@@ -748,7 +794,6 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      
       {
         "g": "10",
         "label": "Cloud Connectivity",
@@ -796,6 +841,7 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
+      
     ]
   },
   {
@@ -912,17 +958,17 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "Email Data Protection",
             "items": [
-              
-              {
-                "title": "Email Archiving ",
-                "pill": null,
-                "desc": null
-              },
               {
                 "title": "Email Backup",
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "Email Archiving ",
+                "pill": null,
+                "desc": null
+              },
+              
             ]
           }
         ]
@@ -941,13 +987,14 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              
               {
-                "title": "Zoom Conferenceing",
+                "title": "Cloud Contact Center",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Cloud Contact Center",
+                "title": "Zoom Conferenceing",
                 "pill": null,
                 "desc": null
               },  
@@ -1547,11 +1594,11 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "Device Trust ",
-        "label": "Device Drust",
+        "label": "Device Trust",
         "on": false,
         "groups": [
           {
-            "heading": "Device Drust",
+            "heading": "Device Trust",
             "items": [
               {
                 "title": "IoT Certificates Management",
@@ -2191,6 +2238,29 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
+      {
+        "g": "11",
+        "label": "Security Software",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Security Software",
+            "items": [
+              {
+                "title": "Certificate Disk Eraser",
+                "pill": "In focus",
+                "desc": null
+              },
+              {
+                "title": "Forensic Software",
+                "pill": "In focus",
+                "desc": null
+              },
+              
+            ]
+          }
+        ]
+      },
       
     ]
   },
@@ -2409,12 +2479,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Anydesk",
+                "title": "AnyDesk",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Ultraviewer",
+                "title": "TeamViewer",
                 "pill": null,
                 "desc": null
               },
@@ -2611,7 +2681,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Show Flex Platform",
+                "title": "Snowflake Platform",
                 "pill": null,
                 "desc": null
               },
@@ -3015,24 +3085,7 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      {
-        "g": "13",
-        "label": "Vmware Migration",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Vmware Migration",
-            "items": [
-              {
-                "title": "No Data",
-                "pill": "In focus",
-                "desc": null
-              },
-              
-            ]
-          }
-        ]
-      },
+      
 
     ]
   },
@@ -3199,6 +3252,11 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Support",
             "items": [
               {
+                "title": "Support Overview",
+                "pill": "24×7",
+                "desc": "Find the right route to technical help"
+              },
+              {
                 "title": "Customer Support",
                 "pill": "24×7",
                 "desc": "Find the right route to technical help"
@@ -3217,7 +3275,13 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Remote Assist",
                 "pill": null,
                 "desc": "Secure attended troubleshooting"
-              }
+              },
+              {
+                "title": "Escalation Matrix",
+                "pill": null,
+                "desc": "Support contacts and escalation levels"
+              },
+              
             ]
           }
         ]
@@ -3364,12 +3428,12 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Events",
                 "pill": null,
-                "desc": ""
+                "desc": "Event"
               },
               {
                 "title": "Webinars",
                 "pill": null,
-                "desc": ""
+                "desc": "Webinars"
               },
               
             ]
@@ -3475,7 +3539,7 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Experience Center",
             "items": [
               {
-                "title": "Ts Plus Experience Center",
+                "title": "Ts Plus Demo Center",
                 "pill": null,
                 "desc": null
               },

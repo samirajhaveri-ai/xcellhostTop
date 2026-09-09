@@ -23,7 +23,8 @@ export const PRODUCT_BRAND_LINES: Record<string, string> = {
   "SMB Cyber Security Appliance" : "XcellSecure | SMB Cyber Security Appliance " ,
   "Advanced Endpoint Security (EDR)" : "XcellSecure | Advanced Endpoint Security (EDR)",
   "Remote Monitoring & Mgmt (RMM)" : "XcellSecure | Remote Monitoring & Mgmt (RMM)",
-  "Cloud Disaster Recovery SMB" : "XcellProtect | Cloud Disaster Recovery SMB", 
+  "Cloud Disaster Recovery SMB" : "XcellProtect | Cloud Disaster Recovery SMB",
+  "Managed AWS" : "XcellManaged | Managed AWS", 
 
 
 

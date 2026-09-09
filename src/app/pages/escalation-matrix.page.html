@@ -1,0 +1,67 @@
+<div class="em-page">
+  <section class="em-hero">
+    <div class="em-wrap">
+      <nav class="em-breadcrumb" aria-label="Breadcrumb"><a routerLink="/">Home</a><span>/</span><span>Escalation Matrix</span></nav>
+      <div class="em-hero-grid">
+        <div>
+          <span class="em-eyebrow">CUSTOMER SUPPORT · ESCALATION DIRECTORY</span>
+          <h1>The right people.<br><span>The next step.</span></h1>
+          <p class="em-intro">Your direct line to the team behind your cloud. Find your department, connect with support, and follow the escalation path when you need more help.</p>
+          <div class="em-hero-actions">
+            <a class="em-button em-primary" href="https://supportdesk.xcellhost.cloud" target="_blank" rel="noopener noreferrer"><span class="material-symbols-outlined" aria-hidden="true">confirmation_number</span>Open support desk<span aria-hidden="true">↗</span></a>
+            <a class="em-button em-secondary" href="tel:+912267111555"><span class="material-symbols-outlined" aria-hidden="true">call</span>+91 22 6711 1555</a>
+          </div>
+        </div>
+        <aside class="em-guide" aria-labelledby="escalation-guide">
+          <span class="em-eyebrow">A CLEAR PATH TO SUPPORT</span>
+          <h2 id="escalation-guide">Start here. We’ll help you forward.</h2>
+          <ol>
+            <li><span>01</span><div><strong>Choose your department</strong><p>Find the team for your service or enquiry.</p></div></li>
+            <li><span>02</span><div><strong>Connect with your primary contact</strong><p>Open a ticket or contact the helpdesk.</p></div></li>
+            <li><span>03</span><div><strong>Follow the escalation levels</strong><p>Use the next contact if you need further assistance.</p></div></li>
+          </ol>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="em-directory em-wrap" aria-labelledby="matrix-title">
+    <div class="em-section-heading"><div><span class="em-eyebrow">FIND YOUR TEAM</span><h2 id="matrix-title">Escalation Matrix</h2></div><span class="em-count">9 departments · One support network</span></div>
+    <div class="em-layout">
+      <aside class="em-sidebar">
+        <h3>Departments</h3>
+        <div class="em-departments" role="group" aria-label="Choose a department">
+          @for (department of departments; track department.id) {
+            <button type="button" [class.is-active]="selectedId() === department.id" [attr.aria-pressed]="selectedId() === department.id" aria-controls="department-contacts" (click)="selectedId.set(department.id)">
+              <span class="material-symbols-outlined" aria-hidden="true">{{ department.icon }}</span><span>{{ department.name }}</span><span class="em-arrow" aria-hidden="true">›</span>
+            </button>
+          }
+        </div>
+        <div class="em-ticket-note"><span class="material-symbols-outlined" aria-hidden="true">info</span><p>Already have a ticket?<br><strong>Keep your ticket number handy</strong> when contacting the next level.</p></div>
+      </aside>
+
+      <div id="department-contacts" class="em-results">
+        <div class="em-department-heading"><div class="em-department-icon material-symbols-outlined" aria-hidden="true">{{ selected().icon }}</div><div><h3>{{ selected().name }}</h3><p role="status">{{ selected().contacts.length }} contacts · Primary contact followed by escalation levels</p></div></div>
+        @if (selected().coverage) { <div class="em-coverage"><strong>What this team covers</strong><p>{{ selected().coverage }}</p></div> }
+        <div class="em-contact-grid">
+          @for (contact of selected().contacts; track contact.level; let first = $first; let index = $index) {
+            <article class="em-contact" [class.em-first]="first">
+              <div class="em-card-top"><span class="em-level">{{ contact.level }}</span><span class="em-step">{{ first ? 'START HERE' : 'ESCALATION 0' + index }}</span></div>
+              <h4>{{ contact.name }}</h4><p class="em-role">{{ contact.role }}</p>
+              <div class="em-contact-links">
+                <a [href]="'mailto:' + contact.email"><span class="material-symbols-outlined" aria-hidden="true">mail</span><span><small>Email</small>{{ contact.email }}</span><span class="em-link-arrow" aria-hidden="true">↗</span></a>
+                <a [href]="'tel:' + contact.phone"><span class="material-symbols-outlined" aria-hidden="true">call</span><span><small>Office phone</small>{{ formatPhone(contact.phone) }}</span><span class="em-link-arrow" aria-hidden="true">↗</span></a>
+                @if (contact.mobile) { <a [href]="'tel:' + contact.mobile"><span class="material-symbols-outlined" aria-hidden="true">smartphone</span><span><small>Mobile</small>{{ formatPhone(contact.mobile) }}</span><span class="em-link-arrow" aria-hidden="true">↗</span></a> }
+              </div>
+            </article>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="em-wrap em-bottom" aria-label="Emergency escalation and management">
+    <article class="em-emergency"><span class="em-emergency-icon material-symbols-outlined" aria-hidden="true">priority_high</span><div><span class="em-eyebrow">NEED FURTHER ASSISTANCE?</span><h2>Emergency &amp; escalations</h2><p>Reach the XcellHost team directly for emergency or escalation assistance.</p><a href="mailto:escalation@xcellhost.cloud">escalation&#64;xcellhost.cloud <span aria-hidden="true">↗</span></a></div></article>
+    <article class="em-management"><span class="em-eyebrow">MANAGEMENT CONTACT</span><h2>Mr. Samir Javeri</h2><p>Managing Director</p><a href="mailto:samir@xcellhost.cloud"><span class="material-symbols-outlined" aria-hidden="true">mail</span>samir&#64;xcellhost.cloud</a><a href="tel:+919867256975"><span class="material-symbols-outlined" aria-hidden="true">call</span>+91 98672 56975</a></article>
+  </section>
+</div>

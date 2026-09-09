@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, linkedSignal, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 
@@ -12,6 +12,7 @@ const ALL = 'All';
   selector: 'xh-insights-page',
   standalone: true,
   imports: [RouterLink],
+  styleUrl: './insights.page.css',
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -73,7 +74,7 @@ const ALL = 'All';
                         class="insights-topic"
                         [class.active]="category === active()"
                         [attr.aria-pressed]="category === active()"
-                        (click)="active.set(category)"
+                        (click)="selectCategory(category)"
                       >
                         <span>{{ category }}</span>
                         <b>{{ categoryCount(category) }}</b>
@@ -83,12 +84,12 @@ const ALL = 'All';
                 </div>
               </aside>
               <div class="insights-main">
-                <div class="insights-toolbar">
+                <div class="insights-toolbar" #results tabindex="-1">
                   <div>
                     <span class="insights-toolbar-label">Showing</span>
                     <h2>{{ active() === allCategory ? 'All Insights' : active() }}</h2>
                   </div>
-                  <p>{{ visible().length }} article{{ visible().length === 1 ? '' : 's' }}</p>
+                  <p role="status">{{ rangeStart() }}–{{ rangeEnd() }} of {{ visible().length }} article{{ visible().length === 1 ? '' : 's' }}</p>
                 </div>
                 @if (featuredVisible(); as lead) {
                   <article class="insights-lead" [routerLink]="['/insights', lead.slug]">
@@ -133,9 +134,31 @@ const ALL = 'All';
                       <span class="bl-m">{{ post.author }} · {{ readTime(post) }} read</span>
                     </article>
                   } @empty {
-                    <p>No published posts are available in this category yet.</p>
+                    @if (!visible().length) {
+                      <p>No published posts are available in this category yet.</p>
+                    }
                   }
                 </div>
+                @if (visible().length) {
+                  <nav class="insights-pagination" aria-label="Blog pagination">
+                    <button type="button" [disabled]="currentPage() === 1"
+                      (click)="goToPage(currentPage() - 1, results)">Previous</button>
+                    <div class="insights-page-numbers">
+                      @for (pageNumber of pageNumbers(); track $index) {
+                        @if (pageNumber === null) {
+                          <span class="insights-page-gap" aria-hidden="true">…</span>
+                        } @else {
+                          <button type="button" [class.active]="pageNumber === currentPage()"
+                            [attr.aria-current]="pageNumber === currentPage() ? 'page' : null"
+                            [attr.aria-label]="'Page ' + pageNumber"
+                            (click)="goToPage(pageNumber, results)">{{ pageNumber }}</button>
+                        }
+                      }
+                    </div>
+                    <button type="button" [disabled]="currentPage() === totalPages()"
+                      (click)="goToPage(currentPage() + 1, results)">Next</button>
+                  </nav>
+                }
               </div>
             </section>
           }
@@ -165,8 +188,32 @@ export class InsightsPage {
       ? this.posts()
       : this.posts().filter((post) => post.category === this.active())
   );
-  readonly featuredVisible = computed(() => this.visible()[0] ?? null);
-  readonly gridPosts = computed(() => this.visible().slice(1));
+  readonly pageSize = 20;
+  readonly totalPages = computed(() => Math.max(1, Math.ceil(this.visible().length / this.pageSize)));
+  readonly currentPage = linkedSignal<number, number>({
+    source: this.totalPages,
+    computation: (total, previous) => Math.min(previous?.value ?? 1, total),
+  });
+  readonly pagedPosts = computed(() =>
+    this.visible().slice((this.currentPage() - 1) * this.pageSize, this.currentPage() * this.pageSize)
+  );
+  readonly rangeStart = computed(() => this.visible().length ? (this.currentPage() - 1) * this.pageSize + 1 : 0);
+  readonly rangeEnd = computed(() => Math.min(this.currentPage() * this.pageSize, this.visible().length));
+  readonly featuredVisible = computed(() => this.pagedPosts()[0] ?? null);
+  readonly gridPosts = computed(() => this.pagedPosts().slice(1));
+  readonly pageNumbers = computed(() => {
+    const total = this.totalPages();
+    const current = this.currentPage();
+    const pages: (number | null)[] = [];
+    for (let page = 1; page <= total; page++) {
+      if (total <= 7 || page === 1 || page === total || Math.abs(page - current) <= 1) {
+        pages.push(page);
+      } else if (pages[pages.length - 1] !== null) {
+        pages.push(null);
+      }
+    }
+    return pages;
+  });
 
   constructor() {
     this.seo.set(`${this.page.t} - XcellHost`, this.page.g, `/${this.page.u}/`);
@@ -175,13 +222,25 @@ export class InsightsPage {
         this.posts.set(posts);
         this.loading.set(false);
         this.error.set(false);
-        if (!this.categories().includes(this.active())) this.active.set(ALL);
+        if (!this.categories().includes(this.active())) this.selectCategory(ALL);
       },
       error: () => {
         this.loading.set(false);
         this.error.set(true);
       },
     });
+  }
+
+  selectCategory(category: string): void {
+    this.active.set(category);
+    this.currentPage.set(1);
+  }
+
+  goToPage(page: number, results: HTMLElement): void {
+    if (page < 1 || page > this.totalPages() || page === this.currentPage()) return;
+    this.currentPage.set(page);
+    results.focus({ preventScroll: true });
+    results.scrollIntoView({ block: 'start' });
   }
 
   formatDate(value: string): string {

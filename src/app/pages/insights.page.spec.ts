@@ -1,0 +1,67 @@
+import { TestBed } from '@angular/core/testing';
+import { BehaviorSubject } from 'rxjs';
+import { BlogApiService, CmsBlogPost } from '../core/blog-api.service';
+import { SeoService } from '../core/seo.service';
+import { InsightsPage } from './insights.page';
+
+describe('Insights pagination', () => {
+  let posts: BehaviorSubject<readonly CmsBlogPost[]>;
+  let page: InsightsPage;
+  const makePosts = (count: number) => Array.from({ length: count }, (_, index) => ({
+    documentId: String(index), category: index < 21 ? 'Cloud' : 'Security',
+  } as CmsBlogPost));
+
+  beforeEach(() => {
+    posts = new BehaviorSubject<readonly CmsBlogPost[]>(makePosts(41));
+    TestBed.configureTestingModule({ providers: [
+      { provide: BlogApiService, useValue: { posts$: posts } },
+      { provide: SeoService, useValue: { set: () => {} } },
+    ] });
+    page = TestBed.runInInjectionContext(() => new InsightsPage());
+  });
+
+  it('shows 20 distinct articles per full page, including the top story', () => {
+    const ids: string[] = [];
+    for (let number = 1; number <= 3; number++) {
+      page.currentPage.set(number);
+      const displayed = [page.featuredVisible()!, ...page.gridPosts()];
+      expect(displayed.length).toBe(number === 3 ? 1 : 20);
+      ids.push(...displayed.map(post => post.documentId));
+    }
+    expect(new Set(ids).size).toBe(41);
+    expect(page.rangeStart()).toBe(41);
+    expect(page.rangeEnd()).toBe(41);
+  });
+
+  it('resets pagination when changing topic and counts only matching posts', () => {
+    page.currentPage.set(3);
+    page.selectCategory('Cloud');
+    expect(page.currentPage()).toBe(1);
+    expect(page.visible().length).toBe(21);
+    expect(page.totalPages()).toBe(2);
+    expect(page.pagedPosts().every(post => post.category === 'Cloud')).toBeTrue();
+  });
+
+  it('clamps the current page after CMS posts are removed and handles an empty list', () => {
+    page.currentPage.set(3);
+    posts.next(makePosts(20));
+    expect(page.currentPage()).toBe(1);
+    expect(page.gridPosts().length).toBe(19);
+    posts.next([]);
+    expect(page.featuredVisible()).toBeNull();
+    expect(page.rangeStart()).toBe(0);
+    expect(page.rangeEnd()).toBe(0);
+  });
+
+  it('rejects invalid navigation and focuses the results for a valid page', () => {
+    const results = jasmine.createSpyObj<HTMLElement>('results', ['focus', 'scrollIntoView']);
+    page.goToPage(0, results);
+    page.goToPage(4, results);
+    expect(page.currentPage()).toBe(1);
+    expect(results.focus).not.toHaveBeenCalled();
+    page.goToPage(2, results);
+    expect(page.currentPage()).toBe(2);
+    expect(results.focus).toHaveBeenCalled();
+    expect(results.scrollIntoView).toHaveBeenCalled();
+  });
+});

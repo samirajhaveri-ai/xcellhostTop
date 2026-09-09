@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { map, Observable, shareReplay, switchMap, timer } from 'rxjs';
+import { EMPTY, expand, map, Observable, reduce, shareReplay, switchMap, timer } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 
@@ -34,6 +34,7 @@ export interface CmsImage {
 
 interface StrapiListResponse {
   readonly data: readonly CmsBlogPost[];
+  readonly meta?: { readonly pagination: { readonly page: number; readonly pageCount: number } };
 }
 
 /** The single source of truth for blog content displayed by the Angular app. */
@@ -58,15 +59,26 @@ export class BlogApiService {
   }
 
   private list(): Observable<readonly CmsBlogPost[]> {
+    return this.listPage(1).pipe(
+      expand((response) => {
+        const pagination = response.meta?.pagination;
+        return pagination && pagination.page < pagination.pageCount
+          ? this.listPage(pagination.page + 1)
+          : EMPTY;
+      }),
+      reduce((posts, response) => posts.concat(response.data.map((post) => this.normalise(post))), [] as CmsBlogPost[])
+    );
+  }
+
+  private listPage(page: number): Observable<StrapiListResponse> {
     const params = new HttpParams()
       .set('sort[0]', 'date:desc')
       .set('sort[1]', 'time:desc')
       .set('populate', 'coverImage')
+      .set('pagination[page]', page)
       .set('pagination[pageSize]', '100');
 
-    return this.http
-      .get<StrapiListResponse>(this.endpoint, { params })
-      .pipe(map((response) => response.data.map((post) => this.normalise(post))));
+    return this.http.get<StrapiListResponse>(this.endpoint, { params });
   }
 
   private normalise(post: CmsBlogPost): CmsBlogPost {
