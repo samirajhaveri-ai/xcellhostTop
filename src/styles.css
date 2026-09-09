@@ -4941,8 +4941,24 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 .infra-architecture-points span::before{display:inline-grid;place-items:center;width:20px;height:20px;margin-right:9px;border-radius:50%;background:#e8f1ff;color:var(--blue);content:'✓';font-size:12px}
 .infra-architecture-figure{margin:0;overflow:hidden;border-radius:14px;background:#f5f8fc}
 .infra-architecture-figure img{display:block;width:100%;height:auto;max-height:720px;object-fit:contain}
+.infra-architecture-image-button{position:relative;display:block;width:100%;padding:0;border:0;background:transparent;cursor:zoom-in}
+.infra-architecture-image-button>span{position:absolute;right:14px;bottom:14px;padding:8px 12px;border-radius:999px;background:rgba(4,30,66,.88);color:#fff;font:700 11px/1 var(--body);letter-spacing:.02em;box-shadow:0 6px 18px rgba(4,30,66,.25);transition:background .2s ease,transform .2s ease}
+.infra-architecture-image-button:hover>span{background:var(--blue);transform:translateY(-2px)}
+.infra-architecture-image-button:focus-visible{outline:3px solid rgba(21,101,216,.35);outline-offset:-3px}
 .infra-architecture-figure figcaption{padding:10px 14px;color:#71809a;font-size:11px;text-align:center}
+.infra-image-modal{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;padding:24px;background:rgba(2,12,29,.82);backdrop-filter:blur(7px);animation:infraModalIn .18s ease-out}
+.infra-image-modal-dialog{display:flex;width:min(1400px,96vw);max-height:94vh;flex-direction:column;overflow:hidden;border:1px solid rgba(255,255,255,.2);border-radius:18px;background:#fff;box-shadow:0 30px 90px rgba(0,0,0,.5)}
+.infra-image-modal-header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:13px 16px 13px 22px;border-bottom:1px solid #dce4ef}
+.infra-image-modal-header h3{margin:0;color:var(--navy);font:700 18px/1.3 var(--disp)}
+.infra-image-modal-header button{display:grid;width:40px;height:40px;flex:0 0 auto;place-items:center;border:0;border-radius:50%;background:#edf3fb;color:var(--navy);cursor:pointer;font:400 30px/1 var(--body);transition:background .2s ease,color .2s ease}
+.infra-image-modal-header button:hover{background:var(--blue);color:#fff}
+.infra-image-modal-header button:focus-visible{outline:3px solid rgba(21,101,216,.35);outline-offset:2px}
+.infra-image-modal-canvas{overflow:auto;background:#eef2f7}
+.infra-image-modal-canvas img{display:block;width:auto;max-width:100%;height:auto;max-height:calc(94vh - 67px);margin:auto;object-fit:contain}
+@keyframes infraModalIn{from{opacity:0}to{opacity:1}}
 @media(max-width:760px){.infra-architecture{padding-bottom:46px}.infra-architecture-layout{grid-template-columns:1fr;gap:18px}.infra-architecture-tabs{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid #d6deeb;padding:0 0 8px}.infra-architecture-tabs button{min-width:210px;padding:14px 16px;text-align:center}.infra-architecture-tabs button.is-active::after{top:auto;right:8px;bottom:-9px;left:8px;width:auto;height:3px}.infra-architecture-panel{padding:18px;border-radius:16px}.infra-architecture-copy{padding:6px 6px 20px}.infra-architecture-figure{order:initial}}
+@media(max-width:600px){.infra-image-modal{padding:10px}.infra-image-modal-dialog{width:100%;max-height:96vh;border-radius:13px}.infra-image-modal-header{padding:10px 10px 10px 16px}.infra-image-modal-header h3{font-size:15px}.infra-image-modal-canvas img{max-height:calc(96vh - 61px)}.infra-architecture-image-button>span{right:10px;bottom:10px}}
+@media(prefers-reduced-motion:reduce){.infra-image-modal{animation:none}}
 
 /* WhatsApp SMB: hero artwork recreated from the supplied page source. */
 .ppage.whatsapp-smb-page .pp-body{padding-top:28px}
