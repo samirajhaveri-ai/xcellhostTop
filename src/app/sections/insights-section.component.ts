@@ -19,17 +19,14 @@ import { CASE_STUDIES } from '../data/case-studies.data';
         <div class="sec-head insights-heading" xhReveal>
           <div class="eyebrow">Insights</div>
           <div class="insights-heading-row">
-            <h2>Read before you need it</h2>
+            <h2>{{ viewCopy[activeView()].heading }}</h2>
+            <p>{{ viewCopy[activeView()].description }}</p>
             <div class="insights-actions" role="group" aria-label="Insight resources">
               <button type="button" class="btn btn-ghost" [class.active]="activeView() === 'blogs'" [attr.aria-pressed]="activeView() === 'blogs'" aria-controls="insights-content" (click)="activeView.set('blogs')">Blogs</button>
               <button type="button" class="btn btn-ghost" [class.active]="activeView() === 'videos'" [attr.aria-pressed]="activeView() === 'videos'" aria-controls="insights-content" (click)="activeView.set('videos')">Videos</button>
               <button type="button" class="btn btn-ghost" [class.active]="activeView() === 'cases'" [attr.aria-pressed]="activeView() === 'cases'" aria-controls="insights-content" (click)="activeView.set('cases')">Case Studies</button>
             </div>
           </div>
-          <p>
-            Practical guidance on cloud, security and Indian compliance — written by the engineers
-            who do the work.
-          </p>
         </div>
         <div id="insights-content">
         @if (activeView() === 'blogs') {
@@ -104,11 +101,12 @@ import { CASE_STUDIES } from '../data/case-studies.data';
     </section>
   `,
   styles: `
-    .insights-heading { max-width: none; }
-    .insights-heading-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 12px; }
+    .insights-heading { max-width: none; text-align: center; }
+    .insights-heading .eyebrow::after { margin-left: auto; margin-right: auto; }
+    .insights-heading-row { display: flex; flex-direction: column; align-items: center; gap: 16px; margin-bottom: 12px; }
     .insights-heading-row h2 { margin-bottom: 0; }
-    .insights-heading p { max-width: 680px; }
-    .insights-actions { display: flex; flex-wrap: wrap; gap: 10px; flex-shrink: 0; }
+    .insights-heading p { max-width: 760px; margin: 0; }
+    .insights-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; flex-shrink: 0; margin-top: 8px; }
     .insights-actions .btn { background: #fff; white-space: nowrap; }
     .insights-actions .btn.active { background: var(--blue); border-color: var(--blue); color: #fff; }
     .insights-video-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
@@ -124,7 +122,7 @@ import { CASE_STUDIES } from '../data/case-studies.data';
       .insights-video-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 760px) {
-      .insights-heading-row { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .insights-heading-row { gap: 16px; }
     }
   `,
 })
@@ -132,6 +130,20 @@ export class InsightsSectionComponent {
   private readonly blogApi = inject(BlogApiService);
   readonly posts = signal<readonly CmsBlogPost[]>([]);
   readonly activeView = signal<'blogs' | 'cases' | 'videos'>('blogs');
+  readonly viewCopy = {
+    blogs: {
+      heading: 'Fresh perspectives for smarter IT decisions',
+      description: 'Explore practical guides and expert insights on cloud, cybersecurity and Indian compliance to help your business move forward.',
+    },
+    videos: {
+      heading: 'See our cloud solutions in action',
+      description: 'Watch product walkthroughs and quick explainers to discover how Tally on Cloud, Cloud Drive and Cloud Backup can simplify your day.',
+    },
+    cases: {
+      heading: 'Real businesses. Measurable results.',
+      description: 'Discover how businesses use XcellHost to protect their data, reduce downtime and make everyday operations simpler.',
+    },
+  } as const;
   readonly studies = CASE_STUDIES;
   @ViewChild('blogGrid') private blogGrid?: ElementRef<HTMLElement>;
 

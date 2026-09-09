@@ -22,16 +22,16 @@ interface IndustryCard {
 const INDUSTRY_CARDS: readonly IndustryCard[] = [
   { icon: 'business', label: 'CA Cloud', blurb: 'Accounting & audit automation for CAs - free trial', service: 'CA Cloud' },
   { icon: 'business', label: 'SMB Cloud', blurb: 'Simplify operations, mitigate risk', service: 'SMB Cloud' },
-  { icon: 'bank', label: 'BFSI / Financial Services', blurb: 'Enhance operations with compliant cloud', service: 'BFSI / Financial Services' },
+  { icon: 'bank', label: 'BFSI / Insurance Services', blurb: 'Enhance operations with compliant cloud', service: 'BFSI / Insurance Services' },
   { icon: 'factory', label: 'Manufacturing', blurb: 'Innovative technologies for industry', service: 'Manufacturing' },
-  { icon: 'business', label: 'Government', blurb: 'Secure, reliable public-sector technology', service: 'Government' },
+  { icon: 'business', label: 'Government (Public Sector)', blurb: 'Secure, reliable public-sector technology', service: 'Government' },
   { icon: 'education', label: 'Higher Education - University Program', blurb: 'Technology and support designed for higher education', service: 'Higher Education · University Program' },
   { icon: 'business', label: 'Pharmaceutical', blurb: 'Technology solutions tailored to pharmaceutical operations', service: 'Pharmaceutical' },
   { icon: 'business', label: 'Construction', blurb: 'Cloud and digital solutions for construction businesses', service: 'Construction' },
   { icon: 'business', label: 'Food & Beverage', blurb: 'Technology designed for food and beverage operations', service: 'Food & Beverage' },
   { icon: 'logistics', label: 'Logistics', blurb: 'Reliable digital solutions for modern logistics operations', service: 'Logistics' },
   { icon: 'healthcare', label: 'Health Care', blurb: 'Explore Health Care services, features and solutions.', service: 'Health Care' },
-  { icon: 'retail', label: 'Retails & E-Commerce', blurb: 'Explore Retails services, features and solutions.', service: 'Retails & E-Commerce' },
+  { icon: 'retail', label: 'Retail & E-Commerce', blurb: 'Explore Retails services, features and solutions.', service: 'Retails & E-Commerce' },
 ]; 
 
 const INDUSTRY_ICON_PATHS: Readonly<Record<string, string>> = {
@@ -61,7 +61,7 @@ const INDUSTRY_ICON_PATHS: Readonly<Record<string, string>> = {
       <div class="wrap">
         <div class="sec-head ind-head" xhReveal>
           <div class="ind-eyebrow">Industries</div>
-          <h2>Cloud, Cyber Security & AI Server Solutions for Every Indian Industry</h2>
+          <h2>Cloud, Cyber Security & AI Solutions for Every Indian Industry</h2>
           <p>Reliable, secure, and scalable cloud servers in India designed for BFSI, healthcare, e-commerce, SaaS, and more.</p>
         </div>
         <div class="ind-grid">

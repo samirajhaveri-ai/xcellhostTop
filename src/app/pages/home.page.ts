@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 import { SeoService } from '../core/seo.service';
 import {
-  CasesComponent,
   DirectoryComponent,
   FlagshipComponent,
   GlobalLocationsMapComponent,
@@ -44,7 +43,6 @@ const DESCRIPTION =
     IndustriesComponent,
     OutcomesComponent,
     NewCategoryComponent,
-    CasesComponent,
     InsightsSectionComponent,
     GlobalLocationsMapComponent,
     SatisfactionGuaranteeComponent,
@@ -64,7 +62,6 @@ const DESCRIPTION =
     <xh-outcomes />
     <xh-new-category />
     <xh-directory />
-    <xh-cases />
     <xh-trusted-by />
     <xh-insights-section />
     <xh-testimonials />
