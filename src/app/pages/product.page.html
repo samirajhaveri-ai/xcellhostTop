@@ -215,7 +215,7 @@
             <span class="pp-brand-xcell">Xcell</span><span class="pp-brand-family">{{ v.brandSuffix }}</span>
           </span>
           <span class="pp-title-divider" aria-hidden="true">|</span>
-          <span class="pp-title-name">{{ isWhatsAppSmb() ? 'WhatsApp For Business' : v.name }}@if (slug() === 'geotrust') { SSL Certificate}</span>
+          <span class="pp-title-name">{{ isWhatsAppSmb() ? 'WhatsApp For Business' : isAdvancedEdr() ? 'Acronis Endpoint Security (EDR)' : v.name }}@if (slug() === 'geotrust') { SSL Certificate}</span>
         </h1>
         <h2
           class="pp-tagline"
@@ -252,6 +252,9 @@
               <a class="btn ppd-pres" href="#" id="ppPres" (click)="requestDoc('presentation', $event)"
                 ><span class="ppd-ic">📖</span> Presentation</a
               >
+              @if (isAdvancedEdr()) {
+                <button class="btn btn-ghost cdr-tour-trigger" type="button" disabled>7 Day's Free Trial</button>
+              }
               <button class="btn btn-ghost cdr-tour-trigger" type="button" (click)="openProductScreenshotTour()">Screenshot Tour</button>
               <a class="btn btn-primary" href="#" id="ppEnquiry" (click)="openCallback($event)">Let's Talk</a>
             </div>
@@ -354,7 +357,7 @@
     @if (isManagedAws() || isManagedAzure()) {
       <xh-managed-aws-content [provider]="isManagedAzure() ? 'Azure' : 'AWS'" />
     } @else {
-    <div class="pp-body" [class.cloud-backup-body]="isCloudBackup()" [class.cdr-smb-body]="isCloudDisasterRecoverySmb()">
+    <div class="pp-body" [class.cloud-backup-body]="isCloudBackup()" [class.cdr-smb-body]="isCloudDisasterRecoverySmb()" [class.domain-registration-body]="slug() === 'register-a-domain-name'" [class.edr-body]="isAdvancedEdr()" [class.workforce-analytics-body]="slug() === 'workforce-analytics'" [class.rmm-body]="slug() === 'remote-monitoring-and-mgmt-rmm'" [class.smb-desktop-body]="isSmbCloudDesktop()" [class.microsoft-defender-body]="slug() === 'microsoft-defender'" [class.cloud-drive-body]="slug() === 'cloud-drive'" [class.smb-cyber-body]="slug() === 'smb-cyber-security-appliance'" [class.genai-body]="slug() === 'acronis-genai-protection'">
       <div class="wrap">
         @if (isManagedMicrosoft365()) {
           <xh-managed-microsoft-365-content />
@@ -549,7 +552,7 @@
           </section>
 
           <section class="tally-mobile-insights" aria-label="Real-time Tally insights on mobile devices">
-            <h2 class="tally-mobile-insights-title">Get Finlytics Tally on Mobile App Free with Every Tally on Cloud Server</h2>
+            <h2 class="tally-mobile-insights-title">Get Finlytics Tally on Mobile App Free with Every Tally on Cloud Server (For One User Only)</h2>
             <img
               src="/assets/images/tally-mobile-insights.png"
               alt="Real-time Tally insights available securely on a mobile device"
@@ -907,8 +910,8 @@
                       </div>
                     </div>
                     <dl class="tally-plan-specs smb-cybird-specs">
-                      <div><dt><span class="one-time-purchase">One-time purchase</span><span>Hardware Appliance</span></dt><dd>&#8377;{{ formatInr(cybirdHardwarePrice) }} +GST</dd></div>
-                      <div><dt>Security Bundle</dt><dd>&#8377;{{ formatInr(cybirdPrice(plan)) }}</dd></div>
+                      <div><dt>Hardware Appliance</dt><dd><span>&#8377;{{ formatInr(cybirdHardwarePrice) }}</span><span class="one-time-purchase">One-time purchase</span></dd></div>
+                      <div><dt>Security Bundle</dt><dd><span>&#8377;{{ formatInr(cybirdPrice(plan)) }}</span></dd></div>
                     </dl>
                     <a class="tally-plan-action" href="#" (click)="selectCybirdPlan(plan, $event)">
                       <strong>&#8377;{{ formatInr(cybirdTotal(plan)) }}</strong>

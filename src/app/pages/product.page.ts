@@ -771,7 +771,7 @@ export class ProductPage {
     },
   ];
 
-  readonly selectedCloudDriveTerm = signal<CloudDriveTerm>('monthly');
+  readonly selectedCloudDriveTerm = signal<CloudDriveTerm>('1y');
 
   readonly activeCloudDriveTerm = computed(
     () => this.cloudDriveTerms.find((term) => term.key === this.selectedCloudDriveTerm()) ?? this.cloudDriveTerms[0]
@@ -1002,6 +1002,10 @@ export class ProductPage {
   }
 
   constructor() {
+    effect(() => {
+      this.selectedTallyTerm.set(this.isTally() || this.isSmbCloudDesktop() ? '1y' : 'monthly');
+    });
+
     this.blogApi.posts$.pipe(takeUntilDestroyed()).subscribe({
       next: (posts) => this.cmsPosts.set(posts),
       error: () => this.cmsPosts.set([]),
@@ -1248,7 +1252,7 @@ export class ProductPage {
     { storage: '1 TB', monthly: 5700, quarterly: 17100, '6m': 34200, yearly: 68400 },
   ];
 
-  readonly selectedCloudBackupTerm = signal<CloudBackupTerm>('monthly');
+  readonly selectedCloudBackupTerm = signal<CloudBackupTerm>('yearly');
 
   readonly activeCloudBackupTerm = computed(
     () => this.cloudBackupTerms.find((term) => term.key === this.selectedCloudBackupTerm()) ?? this.cloudBackupTerms[0]
