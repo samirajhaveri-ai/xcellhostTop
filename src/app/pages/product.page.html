@@ -141,6 +141,10 @@
             </div>
           </div>
         </div>
+      } @else if (isMicrosoftEntraId()) {
+        <div class="pph-scene pph-entra-id" aria-hidden="true">
+          <xh-entra-id-hero />
+        </div>
       } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
         <div
           class="pph-scene has-illus standalone-illus"
@@ -362,7 +366,10 @@
         @if (isInfrastructure()) {
           <xh-infrastructure-content />
         }
-        @if (!isInfrastructure() && !isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess() && !isResellerProgram() && !isScrutinyEdr() && !isCopilotStudio() && !isCloudObjectStorage()) {
+        @if (isMicrosoftEntraId()) {
+          <xh-entra-id-content />
+        }
+        @if (!isInfrastructure() && !isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess() && !isResellerProgram() && !isScrutinyEdr() && !isCopilotStudio() && !isCloudObjectStorage() && !isMicrosoftEntraId()) {
         @if (isWhatsAppSmb()) {
           <xh-whatsapp-smb-content />
         } @else {

@@ -11,6 +11,7 @@ type StorageTab = { title: string; heading: string; body: string; items: string[
 })
 export class CloudObjectStorageContentComponent {
   readonly activeTab = signal(0);
+  readonly plansOpen = signal([true, true, true]);
   readonly tabs: StorageTab[] = [
     { title: 'Buckets', heading: 'Buckets & objects', body: 'Create buckets, browse folders and objects, and upload or download files right from the console — or leave it all to your apps over the S3 API.', items: ['Create & organise buckets', 'Browse, upload & download', 'Set public or private access', 'See size & object counts'], values: ['backups-prod · 2.4 TB · encrypted', 'media-assets · 860 GB · public', 'archive-2025 · 5.1 TB · cold'] },
     { title: 'Access Keys', heading: 'Access keys & endpoints', body: 'Generate S3 access keys, copy your region endpoint, and connect any S3-compatible app, backup tool or SDK in minutes.', items: ['S3 access key & secret', 'Region endpoint URL', 'Rotate or revoke keys', 'Works with any S3 client'], values: ['Access key · Created just now', 'Endpoint · s3.region.xcellhost…', 'Secret key · Copied securely'] },
@@ -20,4 +21,8 @@ export class CloudObjectStorageContentComponent {
   ];
 
   selectTab(index: number): void { this.activeTab.set(index); }
+
+  togglePlans(index: number): void {
+    this.plansOpen.update((plans) => plans.map((open, planIndex) => planIndex === index ? !open : open));
+  }
 }
