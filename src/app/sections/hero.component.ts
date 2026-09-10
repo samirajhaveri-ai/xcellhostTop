@@ -79,7 +79,7 @@ const HERO_CAROUSEL_SLIDES: readonly HeroCarouselSlide[] = [
     spotlight: 'free migration · 15-day guarantee',
     primaryCta: 'Explore services',
     primaryHref: '#flagship',
-    image: '/assets/images/home-performance-cloud.png',
+    image: '',
     alt: 'XcellHost cloud and security infrastructure',
   },
   {
@@ -92,7 +92,7 @@ const HERO_CAROUSEL_SLIDES: readonly HeroCarouselSlide[] = [
     spotlight: 'NVMe-powered compute · 99.95% SLA',
     primaryCta: 'Explore Performance Cloud',
     primaryHref: '/performance-cloud',
-    image: '/assets/images/hero-performance-cloud-v2.png',
+    image: '',
     alt: 'Performance Cloud infrastructure',
   },
   {
@@ -105,7 +105,7 @@ const HERO_CAROUSEL_SLIDES: readonly HeroCarouselSlide[] = [
     spotlight: 'AI-ready GPU compute · on-demand scale',
     primaryCta: 'Explore GPU Cloud',
     primaryHref: '/gpu-cloud',
-    image: '/assets/images/hero-gpu-cloud-v2.png',
+    image: '',
     alt: 'GPU Cloud infrastructure',
   },
   {
@@ -118,7 +118,7 @@ const HERO_CAROUSEL_SLIDES: readonly HeroCarouselSlide[] = [
     spotlight: 'AI-powered endpoint protection · 24×7 support',
     primaryCta: 'Explore Acronis EDR',
     primaryHref: '/advanced-endpoint-security-edr',
-    image: '/assets/images/hero-acronis-edr-v2.png',
+    image: '',
     alt: 'Acronis EDR endpoint security',
   },
 ];
