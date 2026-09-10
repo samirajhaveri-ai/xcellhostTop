@@ -141,6 +141,10 @@
             </div>
           </div>
         </div>
+      } @else if (isAutonomousThreatManagement()) {
+        <div class="pph-scene pph-autonomous-threat-management" aria-hidden="true">
+          <xh-autonomous-threat-management-hero />
+        </div>
       } @else if (isMicrosoftEntraId()) {
         <div class="pph-scene pph-entra-id" aria-hidden="true">
           <xh-entra-id-hero />
@@ -369,7 +373,10 @@
         @if (isMicrosoftEntraId()) {
           <xh-entra-id-content />
         }
-        @if (!isInfrastructure() && !isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess() && !isResellerProgram() && !isScrutinyEdr() && !isCopilotStudio() && !isCloudObjectStorage() && !isMicrosoftEntraId()) {
+        @if (isAutonomousThreatManagement()) {
+          <xh-autonomous-threat-management-content />
+        }
+        @if (!isInfrastructure() && !isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess() && !isResellerProgram() && !isScrutinyEdr() && !isCopilotStudio() && !isCloudObjectStorage() && !isMicrosoftEntraId() && !isAutonomousThreatManagement()) {
         @if (isWhatsAppSmb()) {
           <xh-whatsapp-smb-content />
         } @else {

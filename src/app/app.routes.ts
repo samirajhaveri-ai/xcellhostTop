@@ -81,6 +81,11 @@ export const routes: Routes = [
       import('./pages/product.page').then((m) => m.ProductPage),
   },
   {
+    path: 'autonomous-threat-management',
+    data: { productSlug: 'autonomous-threat-management' },
+    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+  },
+  {
     path: 'geotrust-ssl-certificates',
     data: { productSlug: 'geotrust' },
     loadComponent: () =>

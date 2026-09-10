@@ -44,6 +44,8 @@ import { CopilotStudioContentComponent } from '../sections/copilot-studio-conten
 import { CloudObjectStorageContentComponent } from '../sections/cloud-object-storage-content.component';
 import { EntraIdContentComponent } from '../sections/entra-id-content.component';
 import { EntraIdHeroComponent } from '../sections/entra-id-hero.component';
+import { AutonomousThreatManagementContentComponent } from '../sections/autonomous-threat-management-content.component';
+import { AutonomousThreatManagementHeroComponent } from '../sections/autonomous-threat-management-hero.component';
 
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
@@ -145,6 +147,8 @@ interface ProductTourSlide {
     CloudObjectStorageContentComponent,
     EntraIdContentComponent,
     EntraIdHeroComponent,
+    AutonomousThreatManagementContentComponent,
+    AutonomousThreatManagementHeroComponent,
   ],
   templateUrl: './product.page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -832,6 +836,10 @@ export class ProductPage {
   readonly isCloudObjectStorage = computed(() => this.view()?.name === 'Cloud Object Storage');
 
   readonly isMicrosoftEntraId = computed(() => this.view()?.name === 'Microsoft Entra ID');
+
+  readonly isAutonomousThreatManagement = computed(
+    () => this.view()?.name === 'Autonomous Threat Management'
+  );
 
   readonly isSmbCyber = computed(
     () => this.view()?.name === 'SMB Cyber Security Appliance'

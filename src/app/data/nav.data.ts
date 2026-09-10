@@ -2070,8 +2070,8 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Autonomous Threat Management",
                 "pill": null,
-                "desc": null,
-                "href": "/vortex-soc"
+                "desc": "AI-driven threat detection, investigation and automated response",
+                "href": "/autonomous-threat-management"
               },
               {
                 "title": "Cloud Security Log Monitoring",
