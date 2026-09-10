@@ -1,3 +1,5 @@
+import { EmailSignatureContentComponent } from '../sections/email-signature-content.component';
+import { EmailSignatureHeroComponent } from '../sections/email-signature-hero.component';
 import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
@@ -147,10 +149,27 @@ interface ProductTourSlide {
     CloudObjectStorageContentComponent,
     EntraIdContentComponent,
     EntraIdHeroComponent,
+
     AutonomousThreatManagementContentComponent,
     AutonomousThreatManagementHeroComponent,
+
+    EmailSignatureContentComponent,
+    EmailSignatureHeroComponent,
   ],
   templateUrl: './product.page.html',
+  styles: [`
+    #ppage .pph-scene.pph-email-signature {
+      top: calc(4% + 48px); right: 3%; bottom: auto; width: 40%; display: flex;
+      align-items: center; justify-content: center; opacity: 1; overflow: visible;
+      mask-image: none;
+    }
+    @media (max-width: 900px) {
+      #ppage .pph-scene.pph-email-signature {
+        position: relative; top: auto; right: auto; width: 100%;
+        max-width: 460px; margin: 48px auto 32px;
+      }
+    }
+  `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductPage {
@@ -929,7 +948,7 @@ export class ProductPage {
   /** Published Strapi posts, already sorted newest-first by BlogApiService. */
   private readonly cmsPosts = signal<readonly CmsBlogPost[]>([]);
 
-  /** Prefer assigned CMS posts; otherwise keep the page useful with its configured blog cards. */
+  /** Show only CMS posts assigned to the current product page. */
   readonly blogs = computed(() => {
     const cmsBlogs = this.cmsPosts()
       .filter((post) => this.isForCurrentPage(post))
@@ -944,17 +963,7 @@ export class ProductPage {
         link: ['/insights', post.slug],
       }));
 
-    if (cmsBlogs.length) return cmsBlogs;
-
-    return (this.view()?.blogs ?? []).slice(0, 3).map(([kicker, meta, title, excerpt, slug]) => ({
-      kicker,
-      meta,
-      imageUrl: null,
-      imageAlt: title,
-      title,
-      excerpt,
-      link: ['/insights', slug],
-    }));
+    return cmsBlogs;
   });
 
   readonly compareRows = computed<CompareRow[]>(() =>

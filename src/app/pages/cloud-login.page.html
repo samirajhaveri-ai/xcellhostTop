@@ -1,0 +1,28 @@
+<section class="login-hero">
+  <div class="login-wrap">
+    <nav aria-label="Breadcrumb"><a routerLink="/">Home</a><span aria-hidden="true">/</span><span>Cloud Login</span></nav>
+    <div class="eyebrow">ACRONIS CYBER PROTECT CLOUD</div>
+    <h1>Your cloud console.<br><span>One click away.</span></h1>
+    <p>Choose the country and data center associated with your Acronis account to access your regional console.</p>
+    <div class="hero-meta"><span>10 countries</span><i aria-hidden="true"></i><span>14 regional login options</span></div>
+  </div>
+</section>
+<section class="region-section login-wrap" aria-labelledby="region-heading">
+  <div class="section-heading"><div><span class="eyebrow">REGIONAL ACCESS</span><h2 id="region-heading">Where is your account hosted?</h2></div><p>Choose your assigned data center.<br>All login links open in a new tab.</p></div>
+  <div class="region-grid">
+    @for (region of regions; track region.country) {
+      <article class="region-card">
+        <div class="country-heading"><img [src]="'/assets/images/flags/' + region.flag + '.svg'" alt="" width="48" height="32"><div><h3>{{ region.country }}</h3><span>{{ region.centers.length === 1 ? '1 data center' : region.centers.length + ' data centers' }}</span></div></div>
+        <div class="login-links">
+          @for (center of region.centers; track center.code) {
+            <a [href]="center.url" target="_blank" rel="noopener noreferrer" [attr.aria-label]="'Log in to ' + region.country + ' ' + center.code + ' (opens in a new tab)'">
+              <span class="dc-code">{{ center.code }}</span><span>Open console</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          }
+        </div>
+      </article>
+    }
+  </div>
+  <div class="bookmark-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 4h12v17l-6-4-6 4z" stroke-linejoin="round"/></svg><p>Bookmark your regional URL for convenient access to your Acronis Cyber Protect Cloud console.</p></div>
+  <aside class="support-panel"><div><span class="eyebrow">WE’RE HERE TO HELP</span><h2>Need a hand getting connected?</h2><p>For assistance with Acronis backup, recovery, storage, or account access, contact the XcellHost Cloud support team.</p></div><a routerLink="/contact">Contact support <span aria-hidden="true">→</span></a></aside>
+</section>

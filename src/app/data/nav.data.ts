@@ -3203,6 +3203,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "We'd love to hear from you"
               },
+               {
+                "title": "Cloud login",
+                "pill": null,
+                "desc": "We'd love to hear from you"
+              },
             ]
           }
         ]
