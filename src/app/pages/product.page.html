@@ -150,6 +150,12 @@
             </div>
           </div>
         </div>
+      } @else if (isMicrosoftEntraId()) {
+        <div class="pph-scene pph-entra-id" aria-hidden="true">
+          <xh-entra-id-hero />
+        </div>
+      } @else if (slug() === 'email-signature') {
+        <div class="pph-scene pph-email-signature" aria-hidden="true"><xh-email-signature-hero /></div>
       } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
         <div
           class="pph-scene has-illus standalone-illus"
@@ -374,7 +380,13 @@
         @if (isZohoWorkspace()) {
           <xh-zoho-workspace-content />
         }
-        @if (!isInfrastructure() && !isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess() && !isResellerProgram() && !isScrutinyEdr() && !isCopilotStudio() && !isCloudObjectStorage() && !isZohoWorkspace()) {
+        @if (slug() === 'email-signature') {
+          <xh-email-signature-content />
+        }
+        @if (isMicrosoftEntraId()) {
+          <xh-entra-id-content />
+        }
+        @if (!isInfrastructure() && !isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess() && !isResellerProgram() && !isScrutinyEdr() && !isCopilotStudio() && !isCloudObjectStorage() && !isZohoWorkspace() && !isMicrosoftEntraId() && slug() !== 'email-signature') {
         @if (isWhatsAppSmb()) {
           <xh-whatsapp-smb-content />
         } @else {
@@ -1018,7 +1030,7 @@
                 <article><i>♙</i><b>Separate Staff &amp; Guest Access</b><p>Keep networks organized and secure.</p></article>
                 <article><i>▣</i><b>Better Visibility &amp; Control</b><p>See everything. Manage remotely. Support faster.</p></article>
               </div>
-              <h3 class="smb-business-heading">Built for Your Business</h3>
+              <h3 class="smb-business-heading">Built for Small Your Business</h3>
               <div class="smb-business-grid">
                 @for (industry of smbIndustries; track industry) {
                   <span>{{ industry }}</span>
@@ -1715,25 +1727,6 @@
               </div>
               <b>{{ b.title }}</b>
               <p class="pbl-x">{{ b.excerpt }}</p>
-              <span class="pbl-go">Read article →</span>
-            </a>
-          } @empty {
-            <a class="pbl pbl-link" routerLink="/insights">
-              <div class="pbl-top"><span class="k">Guide</span><span class="rt">6 min</span></div>
-              <b>How to choose the right {{ v.name }} solution</b>
-              <p class="pbl-x">The practical questions to ask about scope, security, support and long-term value.</p>
-              <span class="pbl-go">Read article →</span>
-            </a>
-            <a class="pbl pbl-link" routerLink="/insights">
-              <div class="pbl-top"><span class="k">How-to</span><span class="rt">5 min</span></div>
-              <b>Planning a smooth {{ v.name }} deployment</b>
-              <p class="pbl-x">A straightforward checklist for preparation, implementation and ongoing management.</p>
-              <span class="pbl-go">Read article →</span>
-            </a>
-            <a class="pbl pbl-link" routerLink="/insights">
-              <div class="pbl-top"><span class="k">Security</span><span class="rt">7 min</span></div>
-              <b>Security and compliance essentials for modern businesses</b>
-              <p class="pbl-x">Build practical controls that protect operations without adding unnecessary complexity.</p>
               <span class="pbl-go">Read article →</span>
             </a>
           }

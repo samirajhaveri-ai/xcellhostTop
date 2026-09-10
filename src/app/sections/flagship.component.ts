@@ -51,8 +51,8 @@ const FLAGSHIP_TABS: readonly FlagshipTab[] = [
 const FLAGSHIP_TAB_SOURCES: Readonly<Record<FlagshipTabId, FlagshipGroup | null>> = {
   'web-presence': 'business',
   cloud: 'infrastructure',
-  productivity: 'protection',
-  'data-protect': 'workplace',
+  productivity: 'workplace',
+  'data-protect': 'protection',
   'digital-trust': 'digital-trust',
   security: 'security',
   ai: 'ai',
@@ -74,7 +74,7 @@ const FLAGSHIP_CARD_GROUPS: Readonly<Record<string, readonly FlagshipGroup[]>> =
   'Cloud Object Storage': ['protection'],
   'Cloud Disaster Recovery': ['protection'],
   'Microsoft 365 Backup': ['protection'],
-  'Cloud Mobile Device Mgmt': ['protection'],
+  'Entra ID Backup': ['protection'],
   'DPDPA Platform': ['digital-trust'],
   'Business Email': ['workplace'],
   'Advanced Email Security': ['workplace', 'security'],
@@ -107,7 +107,7 @@ const CLOUD_DATA_PROTECT_ORDER = [
   'Cloud Object Storage',
   'Cloud Disaster Recovery',
   'Microsoft 365 Backup',
-  'Cloud Mobile Device Mgmt',
+  'Entra ID Backup',
 ] as const;
 
 const CLOUD_PRODUCTIVITY_ORDER = [
@@ -152,7 +152,7 @@ const FLAGSHIP_CARDS: readonly FlagshipCard[] = [
   {
     icon: 'shield', badge: 'Flagship', hot: true, title: 'Advanced EDR',
     blurb: 'AI-powered endpoint detection and response, backed by our 24×7 SOC.',
-    lead: 'from ', amount: '₹999', tail: '', cta: 'View plans →', category: 'Security',
+    lead: 'from ', amount: '₹999', tail: '/user/mo', cta: 'View plans →', category: 'Security',
     service: 'Advanced Endpoint Security (EDR)',
   },
   {
@@ -169,7 +169,7 @@ const FLAGSHIP_CARDS: readonly FlagshipCard[] = [
   {
     icon: 'folder', badge: 'File share', title: 'Cloud Drive',
     blurb: 'Secure file sync, team folders and controlled sharing on every device.',
-    lead: '', amount: '₹4999/-', tail: ' per month/500GB/Unlimiteds Users', cta: 'Explore →', category: 'Cloud',
+    lead: 'from ', amount: '₹2,999', tail: '/250GB', cta: 'Explore →', category: 'Cloud',
   },
   {
     icon: 'lock', badge: 'New', hot: true, title: 'SMB Cyber Security Appliance',
@@ -223,9 +223,9 @@ const FLAGSHIP_CARDS: readonly FlagshipCard[] = [
     lead: '', amount: 'per-user', tail: '/month', cta: 'Explore →', category: 'Cloud',
   },
   {
-    icon: 'mobile', badge: 'Device security', title: 'Cloud Mobile Device Mgmt',
-    blurb: 'Manage mobile devices with encryption, app controls and remote wipe.',
-    lead: '', amount: 'Per-device', tail: '/month', cta: 'Explore →', category: 'Cloud',
+    icon: 'backup', badge: 'Identity backup', title: 'Entra ID Backup',
+    blurb: 'Back up users, groups, roles and policies with object-level recovery.',
+    lead: '', amount: 'Per-tenant', tail: '/month', cta: 'Explore →', category: 'Cloud',
   },
   {
     icon: 'mail', badge: 'Business mail', title: 'Business Email',

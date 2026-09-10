@@ -10,7 +10,7 @@ export const SITE = {
   shortName: 'XcellHost',
   tagline: 'Global Reach · Personal Touch',
   since: '1999',
-  phone: '+91 22 6711 1555',
+  phone: '+91 2267111555',
   phoneHref: 'tel:+912267111555',
   whatsapp: '918657032540',
   whatsappLabel: '+91 86570 32540',
