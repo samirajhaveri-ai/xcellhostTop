@@ -2498,7 +2498,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "AnyDesk",
                 "pill": "Partner",
                 "desc": "Resell cloud, security and AI under your own brand",
-                "href": "/company/partnership-models"
+                "href": "/under-construction/partner-overview"
               },
             ]
           }

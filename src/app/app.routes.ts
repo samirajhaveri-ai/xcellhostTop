@@ -18,6 +18,11 @@ export const routes: Routes = [
   { path: 'bfsi-financial-services', redirectTo: 'bfsi-insurance-services', pathMatch: 'full' },
   { path: 'under-construction/infrastructure', redirectTo: 'infrastructure', pathMatch: 'full' },
   { path: 'under-construction/escalation-matrix', redirectTo: 'escalation-matrix', pathMatch: 'full' },
+  {
+    path: 'under-construction/partner-overview',
+    data: { pageSlug: 'partner-overview' },
+    loadComponent: () => import('./pages/company.page').then((m) => m.CompanyPage),
+  },
   { path: 'escalation-matrix', loadComponent: () => import('./pages/escalation-matrix.page').then((m) => m.EscalationMatrixPage) },
   { path: 'under-construction/cloud-login', redirectTo: 'cloud-login', pathMatch: 'full' },
   { path: 'cloud-login', loadComponent: () => import('./pages/cloud-login.page').then((m) => m.CloudLoginPage) },
@@ -35,6 +40,7 @@ export const routes: Routes = [
   { path: 'securesetu-dpdpa/:slug', loadComponent: () => import('./pages/dpdpa-module.page').then((m) => m.DpdpaModulePage) },
   { path: 'about', loadComponent: () => import('./pages/simple.page').then((m) => m.SimplePage), data: { key: 'about' } },
   { path: 'contact', loadComponent: () => import('./pages/contact.page').then((m) => m.ContactPage) },
+  { path: 'media-kit', loadComponent: () => import('./pages/media-kit.page').then((m) => m.MediaKitPage) },
   {
     path: 'microsoft-365-smb',
     loadComponent: () =>
@@ -121,6 +127,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/cloud-mdm.page').then((m) => m.CloudMdmPage),
   },
   { path: 'pricing', loadComponent: () => import('./pages/simple.page').then((m) => m.SimplePage), data: { key: 'pricing' } },
+  { path: 'company/partnership-models', redirectTo: 'under-construction/partner-overview', pathMatch: 'full' },
   { path: 'company/:slug', loadComponent: () => import('./pages/company.page').then((m) => m.CompanyPage) },
   { path: 'category/:name', loadComponent: () => import('./pages/category.page').then((m) => m.CategoryPage) },
   {

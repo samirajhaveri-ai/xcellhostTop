@@ -586,6 +586,22 @@
   </main>
   } @else {
   <main class="ppage as-page company-page">
+    @if (slug() === 'partner-overview') {
+    <section class="partner-overview-hero" aria-labelledby="partnerOverviewTitle">
+      <span class="partner-hero-glow" aria-hidden="true"></span>
+      <div class="wrap partner-hero-grid partner-model-hero-grid">
+        <div class="partner-hero-copy">
+          <div class="pp-crumb">Home › Company › Partner</div>
+          <span class="partner-hero-badge">Partner</span>
+          <h1 id="partnerOverviewTitle">Partnership Overview</h1>
+          <p>Choose the level of ownership and support that fits your business.</p>
+        </div>
+        <div class="partner-hero-visual" aria-hidden="true">
+          <img src="/assets/images/partner-overview-growth-hero.png" alt="" loading="eager" />
+        </div>
+      </div>
+    </section>
+    } @else {
     <section class="pp-hero company-hero">
       <span class="company-orb company-orb-one"></span>
       <span class="company-orb company-orb-two"></span>
@@ -596,6 +612,7 @@
         <p class="pp-tagline">{{ page.tagline }}</p>
       </div>
     </section>
+    }
 
     @if (slug() === 'our-team-our-story') {
       <section class="company-founder-section">
@@ -628,8 +645,8 @@
       </section>
     }
 
-    <section class="company-body">
-      @if (slug() === 'partnership-models') {
+    <section class="company-body" [id]="slug() === 'partner-overview' ? 'partner-overview-content' : null">
+      @if (slug() === 'partner-overview') {
         <xh-reseller-program-content />
       } @else {
       <div class="wrap company-wrap">
@@ -681,21 +698,43 @@
               <p>Check out our valuable ISO certifications.</p>
             </header>
 
-            <div class="certification-grid">
+            <div class="certification-tabs-layout">
+              <div class="certification-tabs" role="tablist" aria-label="Certification categories">
+                @for (certification of certifications; track certification.title) {
+                  <button
+                    type="button"
+                    role="tab"
+                    [class.is-active]="activeCertification() === $index"
+                    [attr.aria-selected]="activeCertification() === $index"
+                    [attr.aria-controls]="'certification-panel-' + $index"
+                    (click)="activeCertification.set($index)"
+                  >
+                    <span>{{ ($index + 1).toString().padStart(2, '0') }}</span>
+                    {{ certification.title }}
+                  </button>
+                }
+              </div>
+
               @for (certification of certifications; track certification.title) {
-                <article class="certificate-card">
-                  <a [href]="certification.image" target="_blank" rel="noopener noreferrer">
-                    <div class="certificate-image-wrap">
-                      <img [src]="certification.image" [alt]="certification.alt" loading="lazy" />
+                @if (activeCertification() === $index) {
+                  <article
+                    class="certificate-card certification-tab-panel"
+                    role="tabpanel"
+                    [id]="'certification-panel-' + $index"
+                  >
+                    <a [href]="certification.image" target="_blank" rel="noopener noreferrer">
+                      <div class="certificate-image-wrap">
+                        <img [src]="certification.image" [alt]="certification.alt" loading="eager" />
+                      </div>
+                    </a>
+                    <div class="recognition-card-copy">
+                      <span>Certified credential</span>
+                      <h3>{{ certification.title }}</h3>
+                      <p>{{ certification.type }}</p>
+                      <a [href]="certification.image" target="_blank" rel="noopener noreferrer">View certificate →</a>
                     </div>
-                  </a>
-                  <div class="recognition-card-copy">
-                    <span>Certified credential</span>
-                    <h3>{{ certification.title }}</h3>
-                    <p>{{ certification.type }}</p>
-                    <a [href]="certification.image" target="_blank" rel="noopener noreferrer">View certificate →</a>
-                  </div>
-                </article>
+                  </article>
+                }
               }
             </div>
           </section>

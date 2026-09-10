@@ -44,6 +44,7 @@ import { ManagedAwsContentComponent } from '../sections/managed-aws-content.comp
 import { ManagedMicrosoft365ContentComponent } from '../sections/managed-microsoft-365-content.component';
 import { CopilotStudioContentComponent } from '../sections/copilot-studio-content.component';
 import { CloudObjectStorageContentComponent } from '../sections/cloud-object-storage-content.component';
+import { ZohoWorkspaceContentComponent } from '../sections/zoho-workspace-content.component';
 import { EntraIdContentComponent } from '../sections/entra-id-content.component';
 import { EntraIdHeroComponent } from '../sections/entra-id-hero.component';
 import { AutonomousThreatManagementContentComponent } from '../sections/autonomous-threat-management-content.component';
@@ -147,6 +148,7 @@ interface ProductTourSlide {
     ManagedMicrosoft365ContentComponent,
     CopilotStudioContentComponent,
     CloudObjectStorageContentComponent,
+    ZohoWorkspaceContentComponent,
     EntraIdContentComponent,
     EntraIdHeroComponent,
 
@@ -885,6 +887,7 @@ export class ProductPage {
   readonly isSiteLock = computed(() => this.view()?.name === 'Web Security (SiteLock)');
 
   readonly isManagedMicrosoft365 = computed(() => this.view()?.name === 'Managed Microsoft 365');
+  readonly isZohoWorkspace = computed(() => this.slug() === 'zoho-workspace');
 
   readonly isVmc = computed(() => this.view()?.name === 'Verified Mark Certificates (VMC)');
 
