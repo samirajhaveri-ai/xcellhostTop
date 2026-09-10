@@ -83,18 +83,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "Workforce Analytics",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Microsoft Defender",
-                "pill": null,
-                "desc": null
-              },
-
-              
               
             ]
           }
@@ -160,6 +148,16 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Free Domain",
+                "pill": "FREE",
+                "desc": "Reserve a domain name for future availability 🕰️"
+              },
+              {
+                "title": "Ai Domain Advisor",
+                "pill": "FREE",
+                "desc": "Reserve a domain name for future availability 🕰️"
+              },
+              {
+                "title": "Bharat Domain",
                 "pill": "FREE",
                 "desc": "Reserve a domain name for future availability 🕰️"
               },
@@ -245,6 +243,25 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Cloud Linux",
                 "pill": null,
                 "desc": "A powerful web hosting control panel 🎛️"
+              },
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "20",
+        "label": "Web Security",
+        "on": true,
+        "groups": [
+          {
+            "heading": "Web Security",
+            "items": [
+              
+              {
+                "title": "No Data",
+                "pill": null,
+                "desc": "Manage your hosting easily with a user-friendly control panel 🖱️"
               },
               
             ]
@@ -584,6 +601,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Puppet",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Shaif",
                 "pill": null,
                 "desc": null
               },
@@ -1169,23 +1191,6 @@ export const MEGA_MENU: MenuTop[] = [
     "feature": null,
     "tabs": [
       {
-        "g": "0",
-        "label": "Information Archive",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Information Archive",
-            "items": [
-               {
-                "title": "Cloud Object Storage",
-                "pill": "Best seller",
-                "desc": null
-              },
-            ]
-          }
-        ]
-      },
-      {
         "g": "1",
         "label": "SaaS Backup",
         "on": false,
@@ -1237,6 +1242,28 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
+
+
+
+
+      {
+        "g": "0",
+        "label": "Information Archive",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Information Archive",
+            "items": [
+               {
+                "title": "Cloud Object Storage",
+                "pill": "Best seller",
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      
       {
         "g": "2",
         "label": "Acronis Cyber Protect",
@@ -1697,7 +1724,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Mobile Mobile Device Mgmt",
+                "title": "Mobile Device Mgmt",
                 "pill": null,
                 "desc": null
               },
@@ -1705,6 +1732,11 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Data Leak Prevention (DLP)",
                 "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "Microsoft Defender",
+                "pill": null,
                 "desc": null
               },
               
@@ -2226,7 +2258,7 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Security Software",
             "items": [
               {
-                "title": "Certificate Disk Eraser",
+                "title": "Certificate Disk Erasure",
                 "pill": "In focus",
                 "desc": null
               },
@@ -2555,8 +2587,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              
-              
             ]
           }
         ]
@@ -2580,7 +2610,7 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "7",
-        "label": "Palo Alto Security",
+        "label": "All Palo Alto Security",
         "on": false,
         "groups": [
           {
@@ -2588,6 +2618,11 @@ export const MEGA_MENU: MenuTop[] = [
             "items": [
               {
                 "title": "No Data",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "All Fortinet Security",
                 "pill": null,
                 "desc": null
               }, 
@@ -3154,12 +3189,17 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "We'd love to hear from you"
               },
               {
-                "title": "Are Platform",
+                "title": "Our Platform",
                 "pill": null,
                 "desc": "We'd love to hear from you"
               },
               {
-                "title": "What New",
+                "title": "Whats New",
+                "pill": null,
+                "desc": "We'd love to hear from you"
+              },
+              {
+                "title": "Platform Stetus",
                 "pill": null,
                 "desc": "We'd love to hear from you"
               },
@@ -3186,7 +3226,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Start your XcellHost partner journey"
               },
               {
-                "title": "Partner Story ",
+                "title": "Partner Storys",
                 "pill": null,
                 "desc": "Start your XcellHost partner journey"
               },
@@ -3206,11 +3246,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Sales, solution and delivery enablement"
               },
               {
-                "title": "Partner Advancement",
-                "pill": null,
-                "desc": "Grow your capability and partner benefits"
-              },
-              {
                 "title": "Partner Portal",
                 "pill": null,
                 "desc": "Access partner opportunities and resources"
@@ -3222,6 +3257,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Affiliate Program",
+                "pill": null,
+                "desc": "Introduce customers to XcellHost services"
+              },
+              {
+                "title": "Partner Matrix",
                 "pill": null,
                 "desc": "Introduce customers to XcellHost services"
               },
@@ -3367,6 +3407,11 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Service Level Agreements",
             "items": [
               {
+                "title": "Acronis Backup Cloud SLA",
+                "pill": null,
+                "desc": "Cloud backup service commitments"
+              },
+              {
                 "title": "Acronis Advanced EDR SLA",
                 "pill": null,
                 "desc": "Endpoint detection and response service commitments"
@@ -3381,11 +3426,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Extended detection and response service commitments"
               },
-              {
-                "title": "Acronis Backup Cloud SLA",
-                "pill": null,
-                "desc": "Cloud backup service commitments"
-              },
+              
               {
                 "title": "Acronis Disaster Recovery (DR) SLA",
                 "pill": null,
@@ -3447,12 +3488,12 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Events Center",
             "items": [
               {
-                "title": "Events",
+                "title": "Events Catalogue",
                 "pill": null,
                 "desc": "Event"
               },
               {
-                "title": "Webinars",
+                "title": "Webinars Catalogue",
                 "pill": null,
                 "desc": "Webinars"
               },
