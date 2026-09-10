@@ -19,11 +19,11 @@ import { OverlayService } from '../core/overlay.service';
     <nav class="contact-actions" aria-label="Contact XcellHost">
       <a class="contact-action call-action" href="tel:+912267111555" aria-label="Call +91 22 6711 1555" title="Call +91 22 6711 1555">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 3.1 5.2 2 2 0 0 1 5.1 3h3a2 2 0 0 1 2 1.7l.5 2.8a2 2 0 0 1-.6 1.7l-1.3 1.3a16 16 0 0 0 4.8 4.8l1.3-1.3a2 2 0 0 1 1.7-.6l2.8.5a2 2 0 0 1 2.7 3Z"/></svg>
-        <span class="contact-tip">Call +91 22 6711 1555</span>
+        <span class="contact-tip">Call +91 2267111555</span>
       </a>
       <button class="contact-action demo-action" type="button" (click)="overlay.open('callback')" aria-label="Book a demo" title="Book a demo">
         <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4m10-4v4M3 11h18m-13 5 3 3 5-5"/></svg>
-        <span class="contact-tip">Book a Demo</span>
+        <span class="contact-tip">Book a Meetings</span>
       </button>
     <a
       class="wa-fab"

@@ -372,7 +372,7 @@ const CONTENT_LINKS: Record<string, string> = {
   'Contact Us': '/contact',
   'Contact': '/contact',
   'Partner Signup ': '/company/partner-signup',
-  'Partnership Models': '/company/partnership-models',
+  'Partnership Models': '/under-construction/partner-overview',
   'Resources & Services': '/company/resources-services',
   'Partner Advancement': '/company/partner-advancement',
   'Partner Portal': '/company/partner-portal',

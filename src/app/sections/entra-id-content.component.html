@@ -1,0 +1,131 @@
+<div class="entra-content">
+  <section aria-labelledby="entra-overview-title">
+    <div class="pp-sec" id="entra-overview-title">Overview &mdash; What is Microsoft Entra ID?</div>
+    <div class="pp-cols">
+      <p class="pp-ov"><b>Microsoft Entra ID</b> (formerly Azure Active Directory) is Microsoft&rsquo;s cloud identity and access management service. It gives every employee, partner and customer a single, secure identity they use to sign in to your apps &mdash; Microsoft 365, thousands of SaaS tools and your own applications &mdash; with single sign-on, so there&rsquo;s one login instead of dozens of passwords.</p>
+      <p class="pp-ov">On top of sign-in, Entra ID adds the security controls modern organisations need: multi-factor authentication, conditional access based on user, device, location and risk, self-service password reset, and identity protection that spots and blocks suspicious sign-ins. XcellHost licenses Entra ID with local INR billing and a GST invoice, and helps you set up SSO, MFA and access policies the right way.</p>
+    </div>
+    <div class="prov-strip">
+      <span class="prov-lbl">Secures access to</span>
+      <span class="prov"><i class="microsoft"><b></b><b></b><b></b><b></b></i>Microsoft 365</span>
+      <span class="prov"><i class="purple">☁</i>SaaS apps</span>
+      <span class="prov"><i class="blue">&lt;/&gt;</i>Your own apps</span>
+      <span class="prov"><i class="grey">▤</i>On-prem apps</span>
+      <span class="prov"><i class="navy">▣</i>Any device</span>
+    </div>
+  </section>
+
+  <section aria-labelledby="entra-how-title">
+    <div class="pp-sec" id="entra-how-title">Connect &middot; Secure &middot; Govern &mdash; how Entra ID works</div>
+    <div class="pp-vgrid">
+      <article class="vcard connect"><span class="vb">♙ Connect</span><h3>One identity, all your apps</h3><p>Users sign in once and get single sign-on to Microsoft 365 and thousands of connected apps &mdash; no more juggling passwords across systems.</p><ul><li>Single sign-on (SSO)</li><li>Thousands of pre-integrated apps</li><li>Self-service password reset</li></ul></article>
+      <article class="vcard secure"><span class="vb">◆ Secure</span><h3>Verify every sign-in</h3><p>Multi-factor authentication and conditional access check who is signing in, from what device and location, and how risky it is &mdash; before granting access.</p><ul><li>Multi-factor authentication</li><li>Conditional access policies</li><li>Passwordless sign-in</li></ul></article>
+      <article class="vcard govern"><span class="vb">✓ Govern</span><h3>Control &amp; protect access</h3><p>Manage who has access to what, review it regularly, and let identity protection detect and block risky or compromised sign-ins automatically.</p><ul><li>Identity protection &amp; risk detection</li><li>Access reviews &amp; governance</li><li>Role-based access control</li></ul></article>
+    </div>
+  </section>
+
+  <section aria-labelledby="entra-compare-title">
+    <div class="pp-sec" id="entra-compare-title">Entra ID P1 vs P2 &mdash; compare plans</div>
+    <p class="pp-ov section-intro">Both plans include the full core of Microsoft Entra ID. <b>P1</b> adds advanced access controls like conditional access and self-service password reset; <b>P2</b> includes everything in P1 plus risk-based Identity Protection and identity governance. Here&rsquo;s how they compare.</p>
+    <div class="cmp-wrap">
+      <div class="cmp-row cmp-head"><div>Feature</div><div><b>Entra ID P1</b><span>₹528 /user/mo</span></div><div class="p2"><b>Entra ID P2</b><span>₹755 /user/mo</span><em>Most complete</em></div></div>
+      @for (row of compareRows; track row[0]) {
+        @if (!row[2]) {
+          <div class="cmp-sec">{{ row[0] }}</div>
+        } @else {
+          <div class="cmp-row"><div class="cmp-feat"><b>{{ row[0] }}</b><small>{{ row[1] }}</small></div><div class="cmp-val">@if (row[2] === 'both') {<span class="yes">✓</span>} @else {<span class="no">—</span>}</div><div class="cmp-val p2"><span class="yes">✓</span></div></div>
+        }
+      }
+      <div class="cmp-row cmp-ideal"><div><b>Ideal for</b></div><div>Secure access &amp; SSO</div><div class="p2">Zero-trust &amp; governance</div></div>
+      <div class="cmp-row cmp-actions"><div><b>Choose your plan</b></div><div><a href="#ppCtaT">Get P1 <span aria-hidden="true">&rarr;</span></a></div><div class="p2"><a class="p2-action" href="#ppCtaT">Get P2 <span aria-hidden="true">&rarr;</span></a></div></div>
+    </div>
+    <p class="cmp-note">💡 Not sure which fits? Most teams start with P1 for secure sign-on; choose P2 if you need risk-based protection, privileged-access management or access governance. Talk to XcellHost and we&rsquo;ll recommend the right plan.</p>
+  </section>
+
+  <section aria-labelledby="entra-plans-title">
+    <div class="pp-sec" id="entra-plans-title">Microsoft Entra ID plans (INR)</div>
+    <p class="pp-ov section-intro">Genuine Microsoft Entra ID licences, priced per user. Save vs Microsoft list pricing with XcellHost &mdash; local INR billing, GST invoice and expert setup. Add to cart, or request a quotation for volume pricing.</p>
+    <div class="ez-grid">
+      @for (plan of plans; track plan.sku) {
+        <article class="ez-card">
+          <div class="ez-off">Up to 12% off</div>
+          <div class="ez-top"><span class="ez-msbadge"><i class="microsoft"><b></b><b></b><b></b><b></b></i>Microsoft</span><span class="ez-ext">↗</span></div>
+          <div class="ez-fam">Microsoft Entra ID</div>
+          <h3>{{ plan.name }}</h3>
+          <div class="ez-sku">{{ plan.sku }}</div>
+          <div class="ez-list-row"><span>Microsoft official</span><s>{{ plan.list }}</s></div>
+          <div class="ez-gst">+ 18% GST</div>
+          <div class="ez-price-row"><span class="ez-tag monthly">Monthly</span><strong>{{ plan.monthly }}</strong></div>
+          <div class="ez-price-row"><span class="ez-tag yearly">Yearly</span><strong>{{ plan.yearly }}</strong></div>
+          <div class="ez-save"><span>You save</span><b>~9% vs Microsoft</b></div>
+          <div class="ez-cta"><a href="tel:+912267111555">☎ Call Now</a><a href="#ppCtaT">Get Quotation →</a></div>
+          <a class="ez-buy" href="#ppCtaT">🛒 Configure &amp; Buy</a>
+        </article>
+      }
+    </div>
+    <p class="ez-note">💳 Indicative INR pricing per user (excl. 18% GST). Monthly = per user / month; Yearly = per user / year. Savings shown vs Microsoft list pricing. Genuine Microsoft licences, GST invoice on every order. Contact XcellHost for exact and volume pricing.</p>
+  </section>
+
+  <section aria-labelledby="entra-addons-title">
+    <div class="pp-sec" id="entra-addons-title">Add-ons &amp; managed services</div>
+    <div class="pp-addons">
+      <article><i>↻</i><b>Free managed migration</b><p>We move your email, contacts, calendars and files from any provider with zero downtime.</p></article>
+      <article><i>✦</i><b>Copilot licences</b><p>Add Microsoft 365 Copilot for any user, any time &mdash; and we&rsquo;ll help your team get the most from it.</p></article>
+      <article><i>◇</i><b>Email security &amp; backup</b><p>Advanced threat protection, archiving and third-party backup for your mailboxes and files.</p></article>
+      <article><i>◷</i><b>Managed IT &amp; support</b><p>User onboarding, device setup and 24×7 helpdesk from our Mumbai NOC.</p></article>
+    </div>
+  </section>
+
+  <section aria-labelledby="m365-features-title">
+    <div class="pp-sec" id="m365-features-title">What Microsoft 365 gives your business</div>
+    <div class="pp-feats">
+      <article><i class="mail">✉</i><div><b>Professional email</b><p>Email on your own domain with large mailboxes, shared calendars and contacts.</p></div></article>
+      <article><i class="office">▤</i><div><b>The Office apps</b><p>Word, Excel, PowerPoint and Outlook on desktop, web and mobile &mdash; always up to date.</p></div></article>
+      <article><i class="teams">♙</i><div><b>Teams collaboration</b><p>Chat, meetings, channels and shared files keep everyone connected.</p></div></article>
+      <article><i class="drive">☁</i><div><b>1 TB OneDrive storage</b><p>Secure cloud storage for every user, with sharing and version history.</p></div></article>
+      <article><i class="copilot">✦</i><div><b>Copilot AI</b><p>Draft, analyse, create and catch up faster across your everyday apps.</p></div></article>
+      <article><i class="security">✓</i><div><b>Security &amp; management</b><p>MFA, threat protection and device management from one admin centre.</p></div></article>
+    </div>
+  </section>
+
+  <section class="explore" aria-labelledby="m365-explore-title">
+    <div class="explore-head"><div class="pp-sec" id="m365-explore-title">Explore Microsoft 365</div><p>Everything your team needs to get work done</p></div>
+    <div class="ft-tabs" role="tablist" aria-label="Explore Microsoft 365 features">
+      @for (tab of exploreTabs; track tab.label; let index = $index) {
+        <button type="button" role="tab" [class.active]="activeExploreTab() === index" [attr.aria-selected]="activeExploreTab() === index" (click)="selectExploreTab(index)">{{ tab.label }}</button>
+      }
+    </div>
+    @if (exploreTabs[activeExploreTab()]; as tab) {
+      <div class="ft-panel">
+        <div><h3>{{ tab.title }}</h3><p>{{ tab.body }}</p><ul>@for (bullet of tab.bullets; track bullet) {<li>{{ bullet }}</li>}</ul></div>
+        <div class="ft-shot"><header><span>M<small>365</small></span><b>{{ tab.label }}</b></header><div>@for (item of tab.items; track item[0]) {<article><i>✓</i><span><b>{{ item[0] }}</b><small>{{ item[1] }}</small></span></article>}</div></div>
+      </div>
+    }
+  </section>
+
+  <section aria-labelledby="m365-benefits-title">
+    <div class="pp-sec" id="m365-benefits-title">Benefits for your business</div>
+    <div class="pp-bens">
+      <article><i>✉</i><b>Look professional</b><p>Email on your own domain and polished documents build instant credibility.</p></article>
+      <article><i>↗</i><b>Do more, faster</b><p>Copilot handles the busywork so your team focuses on what matters.</p></article>
+      <article><i>▣</i><b>Work anywhere</b><p>Your apps, email and files follow you across desktop, web and mobile.</p></article>
+      <article><i>◇</i><b>Stay secure</b><p>Enterprise-grade security and backups protect your business data.</p></article>
+    </div>
+  </section>
+
+  <section aria-labelledby="m365-copilot-title">
+    <div class="pp-sec" id="m365-copilot-title">Meet your AI assistant &mdash; Copilot</div>
+    <div class="pp-auto"><div class="glow"></div><div class="al"><span class="tag">✦ Copilot AI</span><h3>Every app, now with AI.</h3><p>Microsoft 365 Copilot works alongside your team inside Word, Excel, PowerPoint, Outlook and Teams &mdash; turning a prompt into a first draft, a spreadsheet into insights, a document into a deck, and an hour-long meeting into a two-line summary.</p><ul><li>✓ Draft &amp; rewrite in seconds</li><li>✓ Analyse data &amp; build charts</li><li>✓ Summarise email &amp; meetings</li><li>✓ Works on your own content</li></ul></div><div class="ar-visual"><div><i>✓</i>&ldquo;Summarise this 40-message thread&rdquo;</div><div><i>✓</i>&ldquo;Turn this doc into a 5-slide deck&rdquo;</div><div><i>3</i>&ldquo;What did I miss in today&rsquo;s meeting?&rdquo;</div></div></div>
+  </section>
+
+  <section aria-labelledby="m365-workspace-title">
+    <div class="pp-sec" id="m365-workspace-title">From scattered tools to one workspace</div>
+    <div class="eng-grid"><div class="eng-copy"><p>Before Microsoft 365, teams juggle personal email, free apps and files scattered across laptops and USB drives &mdash; with no real security or backup.</p><p>With <b>XcellHost Microsoft 365</b>, everyone gets professional email, the full Office suite, Teams and 1 TB of cloud storage in one place &mdash; and Copilot to help them work faster.</p><p>The result: a more professional, secure and productive business &mdash; set up and managed for you.</p><div class="eng-stats"><div><b>1</b><span>login for everything</span></div><div><b>Free</b><span>managed migration</span></div></div></div><div class="workspace-visual"><div class="workspace-phone"><b>Before</b><span>Personal email <em>Unprofessional</em></span><span>Files on laptops <em>No backup</em></span><span>Random chat apps <em>Scattered</em></span><span>No security <em>Risky</em></span></div><div class="workspace-arrows">›››</div><div class="workspace-phone after"><b>After</b><span>Business email <em>&#64;yourcompany.com</em></span><span>Files in OneDrive <em>1 TB, backed up</em></span><span>Teams <em>Chat &amp; meetings</em></span><span>Copilot <em>AI in every app</em></span></div></div></div>
+  </section>
+
+  <section aria-labelledby="m365-audience-title"><div class="pp-sec" id="m365-audience-title">Who is Microsoft 365 for?</div><div class="pp-uses"><article><i>💼</i><b>Small businesses</b><span>Professional email &amp; apps</span></article><article><i>🏢</i><b>Growing teams</b><span>Scale users up or down</span></article><article><i>🏠</i><b>Remote &amp; hybrid teams</b><span>Work from anywhere</span></article><article><i>🏫</i><b>Education</b><span>Staff &amp; student collaboration</span></article><article><i>🏥</i><b>Healthcare</b><span>Secure email &amp; records</span></article><article><i>🏦</i><b>BFSI</b><span>Compliance-grade security</span></article><article><i>🏬</i><b>Retail &amp; branches</b><span>One workspace everywhere</span></article><article><i>☁</i><b>Google Workspace switch</b><span>Migrate to Microsoft 365</span></article></div></section>
+
+  <section aria-labelledby="m365-included-title"><div class="pp-sec" id="m365-included-title">What&rsquo;s included</div><div class="included-grid"><article><i>✓</i><div><b>Microsoft 365 licences</b><p>Genuine per-user Microsoft 365 licences (Basic, Standard or Premium), provisioned for your team.</p></div></article><article><i>✓</i><div><b>Free managed migration</b><p>We move your email, contacts, calendars and files from your old provider with zero downtime.</p></div></article><article><i>✓</i><div><b>Setup &amp; security config</b><p>Domain, mailboxes, MFA and security baselines configured and ready to use.</p></div></article><article><i>✓</i><div><b>Support &amp; management</b><p>24×7 support from our Mumbai NOC, user onboarding and ongoing admin.</p></div></article></div></section>
+
+  <section aria-labelledby="m365-xcellhost-title"><div class="pp-sec" id="m365-xcellhost-title">Why get Microsoft 365 from XcellHost?</div><p class="pp-ov section-intro">Buying licences is easy; migrating, securing and supporting them is the hard part. XcellHost handles the whole thing end-to-end &mdash; migration, security setup and day-to-day support &mdash; so your team just gets to work, with local billing and a GST invoice.</p><div class="why-grid"><article><i>✓</i><b>Microsoft partner</b><p>Genuine Microsoft licences with local billing and GST invoicing.</p></article><article><i>↗</i><b>Free migration</b><p>We move your email and files from any provider &mdash; no downtime, no charge.</p></article><article><i>✓</i><b>Right plan advice</b><p>We recommend the plan and Copilot that fit your team, so you don&rsquo;t over-buy.</p></article><article><i>◷</i><b>24×7 support</b><p>Round-the-clock help from our Mumbai NOC + SOC, since 1999.</p></article><article><i>▤</i><b>GST invoice</b><p>Compliant GST invoice on every order &mdash; pay via UPI, cards or NetBanking.</p></article><article><i>✉</i><b>Managed &amp; supported</b><p>Ongoing admin, user onboarding, security and 24×7 support from our team.</p></article></div></section>
+</div>

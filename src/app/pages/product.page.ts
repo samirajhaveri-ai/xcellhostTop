@@ -1,3 +1,5 @@
+import { EmailSignatureContentComponent } from '../sections/email-signature-content.component';
+import { EmailSignatureHeroComponent } from '../sections/email-signature-hero.component';
 import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
@@ -42,6 +44,11 @@ import { ManagedAwsContentComponent } from '../sections/managed-aws-content.comp
 import { ManagedMicrosoft365ContentComponent } from '../sections/managed-microsoft-365-content.component';
 import { CopilotStudioContentComponent } from '../sections/copilot-studio-content.component';
 import { CloudObjectStorageContentComponent } from '../sections/cloud-object-storage-content.component';
+import { ZohoWorkspaceContentComponent } from '../sections/zoho-workspace-content.component';
+import { EntraIdContentComponent } from '../sections/entra-id-content.component';
+import { EntraIdHeroComponent } from '../sections/entra-id-hero.component';
+import { AutonomousThreatManagementContentComponent } from '../sections/autonomous-threat-management-content.component';
+import { AutonomousThreatManagementHeroComponent } from '../sections/autonomous-threat-management-hero.component';
 
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
@@ -141,8 +148,30 @@ interface ProductTourSlide {
     ManagedMicrosoft365ContentComponent,
     CopilotStudioContentComponent,
     CloudObjectStorageContentComponent,
+    ZohoWorkspaceContentComponent,
+    EntraIdContentComponent,
+    EntraIdHeroComponent,
+
+    AutonomousThreatManagementContentComponent,
+    AutonomousThreatManagementHeroComponent,
+
+    EmailSignatureContentComponent,
+    EmailSignatureHeroComponent,
   ],
   templateUrl: './product.page.html',
+  styles: [`
+    #ppage .pph-scene.pph-email-signature {
+      top: calc(4% + 48px); right: 3%; bottom: auto; width: 40%; display: flex;
+      align-items: center; justify-content: center; opacity: 1; overflow: visible;
+      mask-image: none;
+    }
+    @media (max-width: 900px) {
+      #ppage .pph-scene.pph-email-signature {
+        position: relative; top: auto; right: auto; width: 100%;
+        max-width: 460px; margin: 48px auto 32px;
+      }
+    }
+  `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductPage {
@@ -827,6 +856,12 @@ export class ProductPage {
 
   readonly isCloudObjectStorage = computed(() => this.view()?.name === 'Cloud Object Storage');
 
+  readonly isMicrosoftEntraId = computed(() => this.view()?.name === 'Microsoft Entra ID');
+
+  readonly isAutonomousThreatManagement = computed(
+    () => this.view()?.name === 'Autonomous Threat Management'
+  );
+
   readonly isSmbCyber = computed(
     () => this.view()?.name === 'SMB Cyber Security Appliance'
   );
@@ -852,6 +887,7 @@ export class ProductPage {
   readonly isSiteLock = computed(() => this.view()?.name === 'Web Security (SiteLock)');
 
   readonly isManagedMicrosoft365 = computed(() => this.view()?.name === 'Managed Microsoft 365');
+  readonly isZohoWorkspace = computed(() => this.slug() === 'zoho-workspace');
 
   readonly isVmc = computed(() => this.view()?.name === 'Verified Mark Certificates (VMC)');
 
@@ -915,7 +951,7 @@ export class ProductPage {
   /** Published Strapi posts, already sorted newest-first by BlogApiService. */
   private readonly cmsPosts = signal<readonly CmsBlogPost[]>([]);
 
-  /** Prefer assigned CMS posts; otherwise keep the page useful with its configured blog cards. */
+  /** Show only CMS posts assigned to the current product page. */
   readonly blogs = computed(() => {
     const cmsBlogs = this.cmsPosts()
       .filter((post) => this.isForCurrentPage(post))
@@ -930,17 +966,7 @@ export class ProductPage {
         link: ['/insights', post.slug],
       }));
 
-    if (cmsBlogs.length) return cmsBlogs;
-
-    return (this.view()?.blogs ?? []).slice(0, 3).map(([kicker, meta, title, excerpt, slug]) => ({
-      kicker,
-      meta,
-      imageUrl: null,
-      imageAlt: title,
-      title,
-      excerpt,
-      link: ['/insights', slug],
-    }));
+    return cmsBlogs;
   });
 
   readonly compareRows = computed<CompareRow[]>(() =>

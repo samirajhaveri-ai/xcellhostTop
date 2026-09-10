@@ -205,8 +205,8 @@ export const COMPANY_PAGES: Record<string, CompanyPageContent> = {
     sections: [{ title: 'How to get started', body: 'Tell us about your company, customers and preferred engagement model.', points: ['Submit your business details', 'Discuss market focus and service fit', 'Agree the commercial and support model', 'Complete onboarding and begin enablement'] }],
     cta: 'Ready to explore a partnership? Our channel team will guide the next steps.', ctaLabel: 'Start partner signup',
   },
-  'partnership-models': {
-    eyebrow: 'Partner', title: 'Partnership Models', tagline: 'Choose the level of ownership and support that fits your business.',
+  'partner-overview': {
+    eyebrow: 'Partner', title: 'Partner Overview', tagline: 'Build recurring revenue with cloud, security and AI services your customers already need.',
     intro: 'Different partners need different ways to sell and deliver. XcellHost can support referral-led relationships, resale, co-selling and managed-service delivery depending on your skills, customer base and growth plan.', cards: [
       { icon: '→', title: 'Referral', body: 'Introduce qualified opportunities while XcellHost manages solution and delivery.' },
       { icon: '↗', title: 'Reseller', body: 'Own the customer relationship with commercial and technical backing.' },

@@ -53,7 +53,7 @@ import { CASE_STUDIES } from '../data/case-studies.data';
         </div>
         <div class="blog-cta">
           <button class="btn btn-ghost" id="allBlogs" routerLink="/insights">
-            View all insights →
+            View all Insights →
           </button>
         </div>
         } @else if (activeView() === 'cases') {
@@ -72,7 +72,7 @@ import { CASE_STUDIES } from '../data/case-studies.data';
               </a>
             }
           </div>
-          <div class="cases-cta"><a class="btn btn-ghost" routerLink="/case-studies">View all case studies →</a></div>
+          <div class="cases-cta"><a class="btn btn-ghost" routerLink="/case-studies">View all Case Studies →</a></div>
         } @else {
           <div class="insights-video-grid">
             <article class="insights-video-card">
@@ -94,7 +94,7 @@ import { CASE_STUDIES } from '../data/case-studies.data';
               <h3>Cloud Backup</h3>
             </article>
           </div>
-          <div class="blog-cta"><a class="btn btn-ghost" href="https://www.youtube.com/@XcellHostCloudServices">View all videos →</a></div>
+          <div class="blog-cta"><a class="btn btn-ghost" href="https://www.youtube.com/@XcellHostCloudServices">View all Videos →</a></div>
         }
         </div>
       </div>

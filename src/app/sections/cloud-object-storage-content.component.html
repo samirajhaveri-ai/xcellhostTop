@@ -1,9 +1,141 @@
 <div class="object-content"><div class="wrap">
   <section><div class="pp-sec">Overview — What is Object Storage?</div><div class="object-cols"><p><b>XcellHost Object Storage</b> is cloud storage built for unstructured data — files, images, video, backups, logs and archives. Store data as <b>objects</b> in <b>buckets</b> that scale without limits, and reach them over a standard <b>S3-compatible</b> API.</p><p>Every object is replicated for high durability, encrypted at rest and in transit, and available around the clock. Pay only for the storage and transfer you use, with Indian data-centre options, built-in CDN delivery, GST billing and 24×7 support.</p></div><div class="object-providers"><span>Use it for</span><b>Backups &amp; Snapshots</b><b>Media &amp; Streaming</b><b>App &amp; User Data</b><b>Archives &amp; Cold Data</b><b>Static Websites</b><b>Big Data &amp; Analytics</b></div></section>
   <section><div class="pp-sec">Create · Connect · Scale — how object storage works</div><div class="object-grid three"><article><strong>Create</strong><h3>Spin up a bucket</h3><p>Create a bucket in your chosen region in seconds, set it public or private, and store data without capacity planning.</p><ul><li>Buckets in seconds</li><li>Pick your region</li><li>Public or private access</li></ul></article><article><strong>Connect</strong><h3>Use the S3 API</h3><p>Point your apps, backup tools or scripts at the S3-compatible endpoint using access keys and familiar SDKs.</p><ul><li>S3-compatible endpoint</li><li>Access keys &amp; policies</li><li>Works with existing tools</li></ul></article><article><strong>Scale</strong><h3>Grow without limits</h3><p>Store from a few gigabytes to petabytes — capacity expands automatically and you pay only for what you use.</p><ul><li>Elastic, unlimited capacity</li><li>Pay only for what you use</li><li>Built-in CDN delivery</li></ul></article></div></section>
-  <section><div class="pp-sec">Storage built for every workload</div><p class="object-lead">Three tiers, one S3-compatible API. Start with Standard objects, add cross-zone replication when data must survive an outage, or publish to the edge behind a CDN.</p><div class="object-grid three"><article class="tier"><small>Tier 01 · Start here</small><h3>Standard Objects</h3><em>The everyday bucket</em><p>Versioned, in-zone object storage for application assets, uploads and backup targets.</p><b>Best for</b><div class="chips"><span>App assets</span><span>Backups</span><span>Static content</span></div></article><article class="tier"><small>Tier 02</small><h3>Replicated Objects</h3><em>Durability across zones</em><p>Cross-zone replication for data that must survive a zone, with the same endpoint and tooling.</p><b>Best for</b><div class="chips"><span>Regulated data</span><span>Recovery</span><span>Data lakes</span></div></article><article class="tier"><small>Tier 03</small><h3>Published Objects</h3><em>Objects on the edge</em><p>CDN-fronted buckets with signed URLs and instant invalidation for global delivery.</p><b>Best for</b><div class="chips"><span>Media</span><span>Downloads</span><span>Public assets</span></div></article></div></section>
+  <section class="storage-tiers" aria-labelledby="storage-tiers-title">
+    <div class="pp-sec" id="storage-tiers-title">Storage built for every workload</div>
+    <p class="object-lead">Three tiers, one S3-compatible API. Start with Standard objects, add cross-zone replication when data must survive an outage, or publish to the edge behind a CDN. Mix and match per bucket &mdash; and only pay for what you use.</p>
+    <div class="tiergrid">
+      <article class="tcardx feat">
+        <header class="tcardx-head">
+          <div class="tlbl">Tier 01 <span class="tstart">Start here</span></div>
+          <h3>Standard Objects</h3>
+          <div class="tsub">The everyday bucket</div>
+        </header>
+        <div class="tcardx-body">
+          <p>Versioned, in-zone object storage with the full S3 API &mdash; the default home for application assets, uploads and backup targets.</p>
+          <div class="tsec-lbl">Best for</div>
+          <div class="tbest"><span>App assets &amp; uploads</span><span>Backup targets</span><span>Static content</span></div>
+          <div class="tsec-lbl">Where it runs</div>
+          <div class="tregions"><span class="treg g"><i></i>Mumbai</span><span class="treg g"><i></i>Chennai</span><span class="treg g"><i></i>Delhi NCR</span><span class="treg b"><i></i>Hyderabad</span><span class="treg b"><i></i>Bengaluru</span><span class="treg b"><i></i>Pune</span><span class="treg b"><i></i>Kolkata</span><span class="treg o"><i></i>Singapore</span></div>
+          <button class="tsec-lbl plans" type="button" [attr.aria-expanded]="plansOpen()[0]" aria-controls="storage-plans-1" (click)="togglePlans(0)">Plans <span class="tp-toggle" aria-hidden="true">{{ plansOpen()[0] ? '−' : '+' }}</span></button>
+          <div class="tplans" id="storage-plans-1" [class.collapsed]="!plansOpen()[0]">
+            <div class="tplan"><div><div class="tpname">Bucket</div><div class="tpmeta">Versioning &middot; scoped keys &middot; lifecycle rules</div></div><a href="#contact" class="tpcta">Get a quote &rarr;</a></div>
+            <div class="tplan"><div><div class="tpname">Bucket Plus</div><div class="tpmeta">Adds object lock and event notifications</div></div><a href="#contact" class="tpcta">Get a quote &rarr;</a></div>
+            <div class="tplan"><div><div class="tpname">Custom</div><div class="tpmeta">Any capacity, policy and key structure</div></div><a href="#contact" class="tpcta">Get a quote &rarr;</a></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="tcardx">
+        <header class="tcardx-head">
+          <div class="tlbl">Tier 02</div>
+          <h3>Replicated Objects</h3>
+          <div class="tsub">Durability across zones</div>
+        </header>
+        <div class="tcardx-body">
+          <p>Cross-zone replication for data that must survive a zone, with the same endpoint and tooling your apps already use.</p>
+          <div class="tsec-lbl">Best for</div>
+          <div class="tbest"><span>Regulated datasets</span><span>Cross-zone recovery</span><span>Data lakes</span></div>
+          <div class="tsec-lbl">Where it runs</div>
+          <div class="tregions"><span class="treg g"><i></i>Mumbai</span><span class="treg g"><i></i>Chennai</span><span class="treg g"><i></i>Delhi NCR</span><span class="treg b"><i></i>Hyderabad</span><span class="treg b"><i></i>Bengaluru</span><span class="treg o"><i></i>Singapore</span></div>
+          <button class="tsec-lbl plans" type="button" [attr.aria-expanded]="plansOpen()[1]" aria-controls="storage-plans-2" (click)="togglePlans(1)">Plans <span class="tp-toggle" aria-hidden="true">{{ plansOpen()[1] ? '−' : '+' }}</span></button>
+          <div class="tplans" id="storage-plans-2" [class.collapsed]="!plansOpen()[1]">
+            <div class="tplan"><div><div class="tpname">Replicated</div><div class="tpmeta">Asynchronous cross-zone replication</div></div><a href="#contact" class="tpcta">Get a quote &rarr;</a></div>
+            <div class="tplan"><div><div class="tpname">Replicated Plus</div><div class="tpmeta">Replication + object lock + audit trail</div></div><a href="#contact" class="tpcta">Get a quote &rarr;</a></div>
+            <div class="tplan"><div><div class="tpname">Custom</div><div class="tpmeta">Any replication topology and RPO</div></div><a href="#contact" class="tpcta">Get a quote &rarr;</a></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="tcardx">
+        <header class="tcardx-head">
+          <div class="tlbl">Tier 03</div>
+          <h3>Published Objects</h3>
+          <div class="tsub">Objects on the edge</div>
+        </header>
+        <div class="tcardx-body">
+          <p>Buckets fronted by a CDN with signed URLs and instant invalidation &mdash; for content your users pull, not just your applications.</p>
+          <div class="tsec-lbl">Best for</div>
+          <div class="tbest"><span>Media &amp; downloads</span><span>Public assets</span><span>Software distribution</span></div>
+          <div class="tsec-lbl">Where it runs</div>
+          <div class="tregions"><span class="treg g"><i></i>Mumbai</span><span class="treg g"><i></i>Delhi NCR</span><span class="treg b"><i></i>Chennai</span><span class="treg b"><i></i>Bengaluru</span><span class="treg b"><i></i>Hyderabad</span><span class="treg o"><i></i>Singapore</span><span class="treg o"><i></i>Dubai</span></div>
+          <button class="tsec-lbl plans" type="button" [attr.aria-expanded]="plansOpen()[2]" aria-controls="storage-plans-3" (click)="togglePlans(2)">Plans <span class="tp-toggle" aria-hidden="true">{{ plansOpen()[2] ? '−' : '+' }}</span></button>
+          <div class="tplans" id="storage-plans-3" [class.collapsed]="!plansOpen()[2]">
+            <div class="tplan"><div><div class="tpname">Published</div><div class="tpmeta">CDN-fronted &middot; signed URLs &middot; purge API</div></div><a href="#contact" class="tpcta">Get a quote &rarr;</a></div>
+            <div class="tplan"><div><div class="tpname">Published Plus</div><div class="tpmeta">Custom domains &middot; cache rules &middot; WAF ready</div></div><a href="#contact" class="tpcta">Get a quote &rarr;</a></div>
+            <div class="tplan"><div><div class="tpname">Custom</div><div class="tpmeta">Any delivery, cache and origin policy</div></div><a href="#contact" class="tpcta">Get a quote &rarr;</a></div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
   <section><div class="pp-sec">Add-ons &amp; managed services</div><div class="object-grid four"><article><b>Free data migration</b><p>Move data from AWS S3, Google Cloud, on-premises or other providers safely.</p></article><article><b>Built-in CDN</b><p>Serve images, video and downloads fast worldwide with integrated delivery.</p></article><article><b>Managed backups</b><p>Automated, versioned backups and lifecycle rules keep data protected.</p></article><article><b>Data residency</b><p>Keep data in Indian data centres with encryption and access controls.</p></article></div></section>
   <section><div class="pp-sec">What XcellHost Object Storage gives you</div><div class="object-grid six"><article><b>S3-compatible API</b><p>Existing apps, backup tools and SDKs connect with little or no change.</p></article><article><b>Unlimited, elastic scale</b><p>Grow from gigabytes to petabytes without capacity planning.</p></article><article><b>High durability</b><p>Objects are replicated across storage nodes for resilient protection.</p></article><article><b>Encryption &amp; access control</b><p>Encryption at rest and in transit with fine-grained permissions.</p></article><article><b>Pay-as-you-go</b><p>Only pay for the storage and transfer you use.</p></article><article><b>Versioning &amp; lifecycle</b><p>Keep versions and automate expiration or tier movement.</p></article></div></section>
   <section class="object-console"><div class="console-head"><div class="pp-sec">Inside the storage console</div><p>Everything you need to manage your data in one place</p></div><div class="console-tabs" role="tablist">@for (tab of tabs; track tab.title; let index = $index) { <button type="button" role="tab" [class.active]="activeTab() === index" [attr.aria-selected]="activeTab() === index" (click)="selectTab(index)">{{ tab.title }}</button> }</div>@if (tabs[activeTab()]; as tab) {<article class="console-panel"><div><h3>{{ tab.heading }}</h3><p>{{ tab.body }}</p><ul>@for (item of tab.items; track item) { <li>{{ item }}</li> }</ul></div><div class="console-mock"><b>XSTORE · {{ tab.title }}</b>@for (value of tab.values; track value) { <span>{{ value }}</span> }</div></article>}</section>
+  <section class="s3-simple" aria-labelledby="s3-simple-title">
+    <div class="pp-sec" id="s3-simple-title">Standard S3 &mdash; without the surprise bills</div>
+    <div class="pp-auto">
+      <div class="glow" aria-hidden="true"></div>
+      <div class="al">
+        <span class="tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 4l-4 8 4 8M16 4l4 8-4 8" stroke-linecap="round" stroke-linejoin="round"/></svg>S3-compatible</span>
+        <h3>The API you know, made simple.</h3>
+        <p>XcellHost Object Storage speaks the same S3 API as the big public clouds, so your tools just work &mdash; but with clear, predictable pricing, Indian data-centre options and a real team you can call. Point your backups, apps and media at it, and we&rsquo;ll help you migrate and tune it.</p>
+        <ul>
+          <li><span class="k">✓</span>Drop-in S3 compatibility</li>
+          <li><span class="k">✓</span>Predictable, pay-as-you-go pricing</li>
+          <li><span class="k">✓</span>Indian data-residency options</li>
+          <li><span class="k">✓</span>Free migration &amp; local support</li>
+        </ul>
+      </div>
+      <div class="ar-visual">
+        <div class="ar-step done"><span class="n">✓</span>Bucket created &amp; keys issued</div>
+        <div class="ar-step done"><span class="n">✓</span>Apps &amp; backups connected</div>
+        <div class="ar-step"><span class="n">3</span>Scaling &amp; billed by usage</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="limitless-storage" aria-labelledby="limitless-storage-title">
+    <div class="pp-sec" id="limitless-storage-title">From full disks to limitless storage</div>
+    <div class="eng-grid">
+      <div class="eng-copy">
+        <p>With traditional storage you buy disks up front, run out of space at the worst moment, and worry about a single failure taking data with it &mdash; while paying for capacity you may never use.</p>
+        <p>With <b>XcellHost Object Storage</b>, capacity is effectively unlimited, every object is replicated and encrypted, and you pay only for what you actually store and transfer.</p>
+        <p>The result: no more capacity planning, better protection, and a bill that matches reality.</p>
+        <div class="eng-stats">
+          <div class="eng-stat"><b>Unlimited</b><span>elastic capacity</span></div>
+          <div class="eng-stat"><b>Pay-per-use</b><span>no waste</span></div>
+        </div>
+      </div>
+      <div class="eng-visual" aria-label="Traditional storage compared with object storage">
+        <div class="storage-phone before">
+          <span class="notch" aria-hidden="true"></span>
+          <div class="screen">
+            <div class="ph-top"><div class="ph-search">Storage</div></div>
+            <div class="ph-lbl">Traditional disk</div>
+            <div class="pmrow"><span class="pav gen">!</span><div class="pmtx"><b>Disk 96% full</b><span class="bad">Out of space</span></div></div>
+            <div class="pmrow"><span class="pav gen">₹</span><div class="pmtx"><b>Bought too much</b><span class="bad">Paying for idle</span></div></div>
+            <div class="pmrow"><span class="pav gen">?</span><div class="pmtx"><b>Single copy</b><span>Risk of loss</span></div></div>
+            <div class="pmrow"><span class="pav gen">!</span><div class="pmtx"><b>Hardware refresh</b><span>Costly &amp; slow</span></div></div>
+          </div>
+          <span class="cap">Traditional storage</span>
+        </div>
+        <div class="eng-arrows" aria-hidden="true"><svg viewBox="0 0 12 24" fill="currentColor"><path d="M2 3l8 9-8 9z"/></svg><svg viewBox="0 0 12 24" fill="currentColor"><path d="M2 3l8 9-8 9z"/></svg><svg viewBox="0 0 12 24" fill="currentColor"><path d="M2 3l8 9-8 9z"/></svg></div>
+        <div class="storage-phone after">
+          <span class="notch" aria-hidden="true"></span>
+          <div class="screen">
+            <div class="ph-top"><div class="ph-search">Storage</div></div>
+            <div class="ph-lbl">Object storage</div>
+            <div class="pmrow"><span class="pav b1">✓</span><div class="pmtx"><b>Never full <span class="pvck">✓</span></b><span class="good">Scales on demand</span></div></div>
+            <div class="pmrow"><span class="pav b2">✓</span><div class="pmtx"><b>Pay per GB <span class="pvck">✓</span></b><span class="good">No waste</span></div></div>
+            <div class="pmrow"><span class="pav b3">✓</span><div class="pmtx"><b>Replicated <span class="pvck">✓</span></b><span class="good">Highly durable</span></div></div>
+            <div class="pmrow"><span class="pav b4">✓</span><div class="pmtx"><b>No hardware <span class="pvck">✓</span></b><span class="good">Fully managed</span></div></div>
+          </div>
+          <span class="cap">Object storage</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section><div class="pp-sec">What’s included</div><div class="object-included"><article><b>Object storage provision</b><p>Capacity, regions and S3 access configured for your workload.</p></article><article><b>Migration &amp; integration</b><p>Move your data and connect apps, backup tools and SDKs.</p></article><article><b>Security &amp; governance</b><p>Encryption, access policies, versioning and lifecycle rules.</p></article><article><b>Support &amp; tuning</b><p>Usage reviews, optimisation and 24×7 local support.</p></article></div></section>
 </div></div>
