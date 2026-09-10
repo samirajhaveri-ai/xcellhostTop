@@ -113,6 +113,15 @@
             <div class="wa-hero-powered"><small>Powered By</small><span><i><svg viewBox="0 0 24 24" fill="none"><path d="M6 8h12l-1 12H7zM9 8a3 3 0 016 0" stroke="currentColor" stroke-width="2" /></svg></i><b>interakt</b></span></div>
           </div>
         </div>
+      } @else if (isZohoWorkspace()) {
+        <div class="pph-scene has-illus standalone-illus" aria-hidden="true">
+          <div class="pph-illus">
+            <img class="pph-illus-img" src="/assets/images/zoho-workspace-hero.svg" alt="Zoho Workspace inbox" />
+            <div class="pph-powered-mark pph-powered-image">
+              <span class="pw-lbl">Powered by</span><span class="pw-name">ZOHO</span><span class="pw-sub">Authorised Partner · India</span>
+            </div>
+          </div>
+        </div>
       } @else if (isManagedMicrosoft365() || isCopilotStudio()) {
         <div class="pph-scene pph-managed-m365" aria-hidden="true">
           <div class="m365-hero-stage">
@@ -362,7 +371,10 @@
         @if (isInfrastructure()) {
           <xh-infrastructure-content />
         }
-        @if (!isInfrastructure() && !isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess() && !isResellerProgram() && !isScrutinyEdr() && !isCopilotStudio() && !isCloudObjectStorage()) {
+        @if (isZohoWorkspace()) {
+          <xh-zoho-workspace-content />
+        }
+        @if (!isInfrastructure() && !isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess() && !isResellerProgram() && !isScrutinyEdr() && !isCopilotStudio() && !isCloudObjectStorage() && !isZohoWorkspace()) {
         @if (isWhatsAppSmb()) {
           <xh-whatsapp-smb-content />
         } @else {
@@ -1426,7 +1438,7 @@
 
         }
 
-        @if (v.name !== 'Tally on Cloud' && !isSmbCyber() && !isRmm() && slug() !== 'scrutiny-dlp' && slug() !== 'vortex-seg' && slug() !== 'vortex-soc') {
+        @if (v.name !== 'Tally on Cloud' && !isSmbCyber() && !isRmm() && !isZohoWorkspace() && slug() !== 'scrutiny-dlp' && slug() !== 'vortex-seg' && slug() !== 'vortex-soc') {
           <div class="pp-sec" id="ppWhyHead">Why XcellHost for {{ v.name }}</div>
           <div class="pp-why" id="ppWhy">
             @for (w of v.why; track w.title) {

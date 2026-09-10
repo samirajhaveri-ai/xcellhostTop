@@ -42,6 +42,7 @@ import { ManagedAwsContentComponent } from '../sections/managed-aws-content.comp
 import { ManagedMicrosoft365ContentComponent } from '../sections/managed-microsoft-365-content.component';
 import { CopilotStudioContentComponent } from '../sections/copilot-studio-content.component';
 import { CloudObjectStorageContentComponent } from '../sections/cloud-object-storage-content.component';
+import { ZohoWorkspaceContentComponent } from '../sections/zoho-workspace-content.component';
 
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
@@ -141,6 +142,7 @@ interface ProductTourSlide {
     ManagedMicrosoft365ContentComponent,
     CopilotStudioContentComponent,
     CloudObjectStorageContentComponent,
+    ZohoWorkspaceContentComponent,
   ],
   templateUrl: './product.page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -852,6 +854,7 @@ export class ProductPage {
   readonly isSiteLock = computed(() => this.view()?.name === 'Web Security (SiteLock)');
 
   readonly isManagedMicrosoft365 = computed(() => this.view()?.name === 'Managed Microsoft 365');
+  readonly isZohoWorkspace = computed(() => this.slug() === 'zoho-workspace');
 
   readonly isVmc = computed(() => this.view()?.name === 'Verified Mark Certificates (VMC)');
 
