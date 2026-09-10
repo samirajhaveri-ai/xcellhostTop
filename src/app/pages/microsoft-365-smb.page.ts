@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { DecimalPipe } from '@angular/common';
 
 import { DocRequestService } from '../core/doc-request.service';
 import { OverlayService } from '../core/overlay.service';
@@ -8,6 +9,7 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 @Component({
   selector: 'xh-microsoft-365-smb-page',
   standalone: true,
+  imports: [DecimalPipe],
   templateUrl: './microsoft-365-smb.page.html',
   styleUrl: './microsoft-365-smb.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
