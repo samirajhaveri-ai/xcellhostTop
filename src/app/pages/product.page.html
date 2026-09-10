@@ -390,7 +390,10 @@
         @if (isMicrosoftEntraId()) {
           <xh-entra-id-content />
         }
-        @if (!isInfrastructure() && !isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess() && !isResellerProgram() && !isScrutinyEdr() && !isCopilotStudio() && !isCloudObjectStorage() && !isMicrosoftEntraId() && slug() !== 'email-signature') {
+        @if (isAutonomousThreatManagement()) {
+          <xh-autonomous-threat-management-content />
+        }
+        @if (!isInfrastructure() && !isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess() && !isResellerProgram() && !isScrutinyEdr() && !isCopilotStudio() && !isCloudObjectStorage() && !isZohoWorkspace() && !isMicrosoftEntraId() && !isAutonomousThreatManagement() && slug() !== 'email-signature') {
         @if (isWhatsAppSmb()) {
           <xh-whatsapp-smb-content />
         } @else {
