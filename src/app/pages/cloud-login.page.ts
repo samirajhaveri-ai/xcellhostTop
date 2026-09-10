@@ -1,6 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SeoService } from '../core/seo.service';
+import { OverlayService } from '../core/overlay.service';
+import { DocKind, DocRequestService } from '../core/doc-request.service';
+import { LeadService } from '../core/lead.service';
+import { CallbackTopicService } from '../overlays/callback-topic.service';
 
 @Component({
   selector: 'xh-cloud-login-page',
@@ -11,6 +15,23 @@ import { SeoService } from '../core/seo.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CloudLoginPage {
+  private readonly overlay = inject(OverlayService);
+  private readonly docs = inject(DocRequestService);
+  private readonly topics = inject(CallbackTopicService);
+  private readonly leads = inject(LeadService);
+  readonly whatsappHref = this.leads.whatsappLink('Hi XcellHost, I need assistance with Acronis Cyber Protect Cloud.');
+  readonly emailHref = this.leads.mailtoLink('Acronis Cyber Protect Cloud enquiry', 'Hi XcellHost, I would like assistance with Acronis Cyber Protect Cloud.');
+
+  openCallback(): void {
+    this.topics.ask('Acronis Cyber Protect Cloud');
+    this.overlay.open('callback');
+  }
+
+  requestDoc(kind: DocKind): void {
+    this.docs.ask(kind, 'Acronis Cyber Protect Cloud');
+    this.overlay.open('doc');
+  }
+
   readonly regions = [
     { country: 'India', flag: 'in', centers: [{ code: 'IN01', url: 'https://in01-cloud.acronis.com' }] },
     { country: 'Singapore', flag: 'sg', centers: [{ code: 'SG', url: 'https://sg-cloud.acronis.com' }] },
