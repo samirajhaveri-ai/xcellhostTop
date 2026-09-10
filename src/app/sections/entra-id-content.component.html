@@ -24,6 +24,24 @@
     </div>
   </section>
 
+  <section aria-labelledby="entra-compare-title">
+    <div class="pp-sec" id="entra-compare-title">Entra ID P1 vs P2 &mdash; compare plans</div>
+    <p class="pp-ov section-intro">Both plans include the full core of Microsoft Entra ID. <b>P1</b> adds advanced access controls like conditional access and self-service password reset; <b>P2</b> includes everything in P1 plus risk-based Identity Protection and identity governance. Here&rsquo;s how they compare.</p>
+    <div class="cmp-wrap">
+      <div class="cmp-row cmp-head"><div>Feature</div><div><b>Entra ID P1</b><span>₹528 /user/mo</span></div><div class="p2"><b>Entra ID P2</b><span>₹755 /user/mo</span><em>Most complete</em></div></div>
+      @for (row of compareRows; track row[0]) {
+        @if (!row[2]) {
+          <div class="cmp-sec">{{ row[0] }}</div>
+        } @else {
+          <div class="cmp-row"><div class="cmp-feat"><b>{{ row[0] }}</b><small>{{ row[1] }}</small></div><div class="cmp-val">@if (row[2] === 'both') {<span class="yes">✓</span>} @else {<span class="no">—</span>}</div><div class="cmp-val p2"><span class="yes">✓</span></div></div>
+        }
+      }
+      <div class="cmp-row cmp-ideal"><div><b>Ideal for</b></div><div>Secure access &amp; SSO</div><div class="p2">Zero-trust &amp; governance</div></div>
+      <div class="cmp-row cmp-actions"><div><b>Choose your plan</b></div><div><a href="#ppCtaT">Get P1 <span aria-hidden="true">&rarr;</span></a></div><div class="p2"><a class="p2-action" href="#ppCtaT">Get P2 <span aria-hidden="true">&rarr;</span></a></div></div>
+    </div>
+    <p class="cmp-note">💡 Not sure which fits? Most teams start with P1 for secure sign-on; choose P2 if you need risk-based protection, privileged-access management or access governance. Talk to XcellHost and we&rsquo;ll recommend the right plan.</p>
+  </section>
+
   <section aria-labelledby="entra-plans-title">
     <div class="pp-sec" id="entra-plans-title">Microsoft Entra ID plans (INR)</div>
     <p class="pp-ov section-intro">Genuine Microsoft Entra ID licences, priced per user. Save vs Microsoft list pricing with XcellHost &mdash; local INR billing, GST invoice and expert setup. Add to cart, or request a quotation for volume pricing.</p>
@@ -46,21 +64,6 @@
       }
     </div>
     <p class="ez-note">💳 Indicative INR pricing per user (excl. 18% GST). Monthly = per user / month; Yearly = per user / year. Savings shown vs Microsoft list pricing. Genuine Microsoft licences, GST invoice on every order. Contact XcellHost for exact and volume pricing.</p>
-  </section>
-
-  <section aria-labelledby="entra-compare-title">
-    <div class="pp-sec" id="entra-compare-title">Entra ID P1 vs P2 &mdash; compare plans</div>
-    <p class="pp-ov section-intro">Both plans include the full core of Microsoft Entra ID. <b>P1</b> adds advanced access controls like conditional access and self-service password reset; <b>P2</b> includes everything in P1 plus risk-based Identity Protection and identity governance. Here&rsquo;s how they compare.</p>
-    <div class="cmp-wrap">
-      <div class="cmp-row cmp-head"><div>Feature</div><div><b>Entra ID P1</b><span>₹528 /user/mo</span></div><div class="p2"><b>Entra ID P2</b><span>₹755 /user/mo</span><em>Most complete</em></div></div>
-      @for (row of compareRows; track row[0]) {
-        @if (!row[2]) {
-          <div class="cmp-sec">{{ row[0] }}</div>
-        } @else {
-          <div class="cmp-row"><div class="cmp-feat"><b>{{ row[0] }}</b><small>{{ row[1] }}</small></div><div class="cmp-val">@if (row[2] === 'both') {<span class="yes">✓</span>} @else {<span class="no">—</span>}</div><div class="cmp-val p2"><span class="yes">✓</span></div></div>
-        }
-      }
-    </div>
   </section>
 
   <section aria-labelledby="entra-addons-title">
