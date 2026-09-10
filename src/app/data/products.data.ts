@@ -1340,7 +1340,7 @@ export const PRODUCT_VIDEOS: Record<string, string[]> = {
   "Cloud Backup (Acronis)": ["rya4Q4IZniA", "nIMbqdbGxao"],
   "Cloud Drive — File Share & Sync": ["a-Jy7VV13Do", "E6xAHz6_TXw"],
   "Advanced Endpoint Security (EDR)": ["iaHAyNSXCPc", "2PZzQIUxpMo"],
-  "Scrutiny DLP": ["90ZQr9KpvL0", ""],
+  "Scrutiny EDR": ["90ZQr9KpvL0", ""],
   "Remote Monitoring & Mgmt (RMM)": ["LLxYfEH-Oh0", "v7v4p0Pikhw"],
   "Performance Cloud": ["eFPWtETDYRQ", "U67bDvoR5ak"],
   "GPU Cloud": ["C8WfXTajKdU", "IC02IhCRBGI"],

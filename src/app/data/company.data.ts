@@ -106,7 +106,7 @@ export const COMPANY_PAGES: Record<string, CompanyPageContent> = {
   },
   'certifications-awards': {
     eyebrow: 'About',
-    title: 'Certifications & Awards',
+    title: 'Certifications',
     tagline: 'Credentials that reflect disciplined operations, security and technical capability.',
     intro: 'Certifications help customers evaluate how a provider manages information security, service quality and vendor technologies. XcellHost combines organisational standards with platform expertise across its cloud and security portfolio.',
     cards: [
