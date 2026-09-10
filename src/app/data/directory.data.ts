@@ -696,6 +696,12 @@ export const DIRECTORY: DirectoryEntry[] = [
     "group": "Risk Assessment"
   },
   {
+    "name": "Autonomous Threat Management",
+    "desc": "AI-driven threat detection, investigation and automated response",
+    "cat": "Security",
+    "group": "Security Operations"
+  },
+  {
     "name": "Cloud Security Log Monitoring",
     "desc": "Continuous log monitoring for incident detection",
     "cat": "Security",

@@ -26,7 +26,7 @@ export class CompanyPage {
   private readonly sanitizer = inject(DomSanitizer);
 
   readonly slug = toSignal(
-    this.route.paramMap.pipe(map((params) => params.get('slug') ?? '')),
+    this.route.paramMap.pipe(map((params) => params.get('slug') ?? this.route.snapshot.data['pageSlug'] ?? '')),
     { initialValue: '' },
   );
 
@@ -147,6 +147,7 @@ export class CompanyPage {
       alt: 'Honorary Doctorate in Artificial Intelligence awarded to Samir Jhaveri',
     },
   ] as const;
+  readonly activeCertification = signal(0);
 
   readonly awardYears = ['2025', '2024', '2023', '2022', '2018'] as const;
   readonly activeAwardYear = signal<(typeof this.awardYears)[number]>('2025');
@@ -169,13 +170,13 @@ export class CompanyPage {
 
   readonly partnerCategories = [
     { title: 'Strategic cloud & infrastructure', description: 'Cloud platforms, hyperscalers and datacentre infrastructure.', partners: [
-      ['Azure', '01-azure.png'], ['Microsoft Partner', '02-microsoft-partner.png'], ['AWS', '21-aws.png'], ['Google Cloud Platform', '41-google-cloud-platform.png'], ['Oracle Cloud Infrastructure', '61-oracle-cloud-infrastructure.png'], ['Equinix', '42-equinix.png'],
+      ['Microsoft Partner', '02-microsoft-partner.png'], ['Azure', '01-azure.png'], ['AWS', '21-aws.png'], ['Google Cloud Platform', '41-google-cloud-platform.png'], ['Oracle Cloud Infrastructure', '61-oracle-cloud-infrastructure.png'], ['Equinix', '42-equinix.png'],
     ] },
     { title: 'SSL certificates & PKI', description: 'Public trust, TLS certificates and digital identity.', partners: [
-      ['DigiCert', '03-digicert.png'], ['Sectigo', '23-sectigo.png'], ['GeoTrust', '62-geotrust.png'],
+      ['DigiCert', '03-digicert.png'], ['GeoTrust', '62-geotrust.png'], ['Sectigo', '23-sectigo.png'],
     ] },
     { title: 'Web, network & DNS security', description: 'WAF, DDoS protection, firewalls and secure network services.', partners: [
-      ['cWatch', '43-cwatch.png'], ['Prophaze', '63-prophaze.png'], ['Fortinet', '64-fortinet.png'], ['Palo Alto Networks', '05-palo-alto-networks-1.png'], ['Infoblox', '12-infoblox.png'],
+      ['Cybird', '../cybird-powered-by.png'], ['cWatch', '43-cwatch.png'], ['Prophaze', '63-prophaze.png'], ['Fortinet', '64-fortinet.png'], ['Palo Alto Networks', '05-palo-alto-networks-1.png'], ['Infoblox', '12-infoblox.png'],
     ] },
     { title: 'Digital risk & threat intelligence', description: 'External risk monitoring and actionable threat intelligence.', partners: [
       ['Foresiet', '04-foresiet.png'], ['Kaspersky Digital Footprint Intelligence', '24-kaspersky-digital-footprint-intelligence.png'], ['Kaspersky Threat Intelligence', '44-kaspersky-threat-intelligence.png'],
@@ -190,25 +191,25 @@ export class CompanyPage {
       ['Kite Cyber', '07-kite-cyber.png'], ['Data Resolve', '66-data-resolve.png'],
     ] },
     { title: 'Data protection', description: 'Backup, cyber resilience and SaaS data recovery.', partners: [
-      ['Druva', '27-druva.png'], ['Veeam', '47-veeam.png'], ['Dropsuite', '67-dropsuite.png'],
+      ['Druva', '27-druva.png'], ['Veeam', '47-veeam.png'], ['NinjaOne', '81-ninjaone.svg'],
     ] },
     { title: 'Network access, vulnerability & patching', description: 'Asset visibility, exposure management and remediation.', partners: [
-      ['Genians', '08-genians.png'], ['SecPod', '28-secpod.png'], ['Qualys', '48-qualys.png'], ['Rapid7', '68-rapid7.png'],
+      ['Genians', '08-genians.png'], ['SecPod', '28-secpod.png'], ['Qualys', '48-qualys.png'],
     ] },
     { title: 'SIEM, XDR, SOC & SOAR', description: 'Security analytics, detection, orchestration and response.', partners: [
-      ['Wazuh', '09-wazuh.png'], ['Seceon', '29-seceon.png'], ['Azure Sentinel', '30-azure-sentinel.png'], ['Logsign', '49-logsign.png'], ['Xcell AI SIEM', '50-xcell-ai-siem.png'], ['FortiSIEM', '69-fortisiem.png'],
+      ['Wazuh', '09-wazuh.png'], ['Azure Sentinel', '30-azure-sentinel.png'], ['FortiSIEM', '69-fortisiem.png'],
     ] },
     { title: 'Identity, governance & cloud posture', description: 'IAM, privileged access, compliance automation and CSPM.', partners: [
       ['Arcon', '11-arcon.png'], ['Scrut Automation', '31-scrut-automation.png'], ['CloudWize', '32-cloudwize.png'], ['Drata', '51-drata.png'], ['OneLogin', '70-onelogin.png'], ['Prisma Cloud', '71-prisma-cloud.png'],
     ] },
     { title: 'Remote work & collaboration', description: 'Secure remote access, support and digital workspaces.', partners: [
-      ['TeamViewer', '13-teamviewer.png'], ['TSplus', '16-tsplus.png'], ['AnyDesk', '33-anydesk.png'], ['GoTo', '52-goto.png'], ['Accops', '72-accops.png'],
+      ['TSplus', '16-tsplus.png'], ['TeamViewer', '13-teamviewer.png'], ['AnyDesk', '33-anydesk.png'], ['GoTo', '52-goto.png'], ['Accops', '72-accops.png'],
     ] },
     { title: 'Cloud & security monitoring', description: 'Infrastructure, application and service observability.', partners: [
       ['New Relic', '14-new-relic.png'], ['Datadog', '34-datadog.png'], ['Site24x7', '53-site24x7.png'], ['Elastic', '73-elastic.png'],
     ] },
     { title: 'OT & industrial security', description: 'Protection for operational technology and industrial environments.', partners: [
-      ['Kaspersky Industrial CyberSecurity', '15-kaspersky-industrial-cybersecurity.png'], ['Nozomi Networks', '35-nozomi-networks.png'], ['Acronis Cyber Protect OT', '74-acronis-cyber-protect-ot.png'],
+      ['Acronis Cyber Protect OT', '74-acronis-cyber-protect-ot.png'], ['Kaspersky Industrial CyberSecurity', '15-kaspersky-industrial-cybersecurity.png'], ['Nozomi Networks', '35-nozomi-networks.png'],
     ] },
     { title: 'Network segmentation', description: 'Zero-trust segmentation and lateral-movement containment.', partners: [
       ['ColorTokens', '17-colortokens.png'], ['Illumio', '36-illumio.png'],
@@ -237,7 +238,10 @@ export class CompanyPage {
         void this.router.navigate(['/']);
         return;
       }
-      this.seo.set(`${page.title} — XcellHost`, page.tagline, `/company/${this.slug()}/`);
+      const path = this.slug() === 'partner-overview'
+        ? '/under-construction/partner-overview/'
+        : `/company/${this.slug()}/`;
+      this.seo.set(`${page.title} — XcellHost`, page.tagline, path);
     });
   }
 }

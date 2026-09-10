@@ -1,0 +1,62 @@
+<section class="login-hero">
+  <div class="login-wrap">
+    <nav aria-label="Breadcrumb"><a routerLink="/">Home</a><span aria-hidden="true">/</span><span>Cloud Login</span></nav>
+    <div class="hero-layout">
+      <div class="hero-copy">
+        <div class="hero-label"><span aria-hidden="true"></span>ACRONIS CYBER PROTECT CLOUD</div>
+        <h1>Your cloud.<br>Your region.<br><span>Your console.</span></h1>
+        <p>Access your Acronis workspace through the data center associated with your account.</p>
+        <a class="hero-region-button" href="#region-heading">Choose your region <span aria-hidden="true">&#8595;</span></a>
+        <div class="hero-meta"><span><b>10</b> countries</span><i aria-hidden="true"></i><span><b>14</b> regional login options</span></div>
+      </div>
+      <div class="hero-network" aria-hidden="true">
+        <div class="network-orbit orbit-one"></div><div class="network-orbit orbit-two"></div>
+        <svg class="network-lines" viewBox="0 0 500 400" fill="none"><path d="M250 190 85 80M250 190 410 90M250 190 80 310M250 190 415 310" stroke="#639fff" stroke-width="1.5" stroke-dasharray="5 7"/></svg>
+        <div class="network-hub"><svg viewBox="0 0 64 64" fill="none"><path d="M18 44H15a11 11 0 0 1-1-22 18 18 0 0 1 35-2 12 12 0 0 1 0 24h-3" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="m32 29 11 5v8c0 8-11 13-11 13s-11-5-11-13v-8z" fill="#123b72" stroke="currentColor" stroke-width="2.5"/><path d="m27 41 4 4 7-8" stroke="#74e3bc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><strong>Acronis</strong><span>CYBER PROTECT CLOUD</span></div>
+        <div class="network-region region-india"><img src="/assets/images/flags/in.svg" alt=""><div><b>India</b><small>IN01</small></div></div>
+        <div class="network-region region-europe"><img src="/assets/images/flags/de.svg" alt=""><div><b>Germany</b><small>EU2 &middot; EU4</small></div></div>
+        <div class="network-region region-singapore"><img src="/assets/images/flags/sg.svg" alt=""><div><b>Singapore</b><small>SG</small></div></div>
+        <div class="network-region region-usa"><img src="/assets/images/flags/us.svg" alt=""><div><b>USA</b><small>US2 &middot; US3 &middot; US4 &middot; US5</small></div></div>
+        <div class="network-caption">GLOBAL ACCESS. YOUR REGIONAL CONSOLE.</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="region-section login-wrap" aria-labelledby="region-heading">
+  <div class="section-heading"><div><span class="eyebrow">REGIONAL ACCESS</span><h2 id="region-heading">Where is your account hosted?</h2></div><p>Choose your assigned data center.<br>All login links open in a new tab.</p></div>
+  <div class="region-grid">
+    @for (region of regions; track region.country) {
+      <article class="region-card">
+        <div class="country-heading"><img [src]="'/assets/images/flags/' + region.flag + '.svg'" alt="" width="48" height="32"><div><h3>{{ region.country }}</h3><span>{{ region.centers.length === 1 ? '1 data center' : region.centers.length + ' data centers' }}</span></div></div>
+        <div class="login-links">
+          @for (center of region.centers; track center.code) {
+            <a [href]="center.url" target="_blank" rel="noopener noreferrer" [attr.aria-label]="'Log in to ' + region.country + ' ' + center.code + ' (opens in a new tab)'">
+              <span class="dc-code">{{ center.code }}</span><span>Open console</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          }
+        </div>
+      </article>
+    }
+  </div>
+  <!-- <div class="bookmark-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 4h12v17l-6-4-6 4z" stroke-linejoin="round"/></svg><p>Bookmark your regional URL for convenient access to your Acronis Cyber Protect Cloud console.</p></div> -->
+  <aside class="cloud-cta" aria-labelledby="cloud-cta-title">
+    <div class="cta-copy">
+      <h2 id="cloud-cta-title">Ready to start with Acronis Cyber Protect Cloud?</h2>
+      <p>Free consultation &middot; free migration &middot; 24&times;7 support in English &amp; Hindi</p>
+    </div>
+    <div class="cta-actions">
+      <button type="button" class="cta-primary" (click)="openCallback()">Request a callback</button>
+      <a routerLink="/pricing"><span aria-hidden="true">&#9889;</span> Buy Now</a>
+      <button type="button" (click)="requestDoc('infosheet')"><span aria-hidden="true">&#8595;</span> Infosheet</button>
+      <button type="button" (click)="requestDoc('presentation')"><span aria-hidden="true">&#9635;</span> Presentation</button>
+      <a [href]="whatsappHref" target="_blank" rel="noopener noreferrer">Talk on WhatsApp</a>
+      <a [href]="emailHref">Email Us</a>
+    </div>
+    <a class="cta-support" routerLink="/company/support-overview" aria-label="Visit XcellHost customer support">
+      <img src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost 24-hour delightful support" width="104" height="104">
+    </a>
+  </aside>
+  <div class="pp-proof" aria-label="XcellHost credentials and payment options">
+    <span>&#127941; ISO 27001</span><span>&#127941; ISO 20000-1</span><span>&#129309; Microsoft Gold Partner</span><span>&#9679; Since 1999</span><span>&#128274; Secure Payments &mdash; UPI &middot; Cards &middot; NetBanking</span>
+  </div>
+</section>

@@ -2070,8 +2070,8 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Autonomous Threat Management",
                 "pill": null,
-                "desc": null,
-                "href": "/vortex-soc"
+                "desc": "AI-driven threat detection, investigation and automated response",
+                "href": "/autonomous-threat-management"
               },
               {
                 "title": "Cloud Security Log Monitoring",
@@ -2498,7 +2498,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "AnyDesk",
                 "pill": "Partner",
                 "desc": "Resell cloud, security and AI under your own brand",
-                "href": "/company/partnership-models"
+                "href": "/under-construction/partner-overview"
               },
             ]
           }
@@ -3200,6 +3200,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Platform Stetus",
+                "pill": null,
+                "desc": "We'd love to hear from you"
+              },
+               {
+                "title": "Cloud login",
                 "pill": null,
                 "desc": "We'd love to hear from you"
               },

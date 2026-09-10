@@ -1,0 +1,8 @@
+<div class="agent-stage" aria-label="XcellSecure autonomous agent network">
+  <span class="orbit orbit-one"></span><span class="orbit orbit-two"></span><span class="pulse pulse-one"></span><span class="pulse pulse-two"></span>
+  @for (agent of agents; track agent[0]; let index = $index) {
+    <div class="agent" [class]="'agent agent-' + index"><i>{{ agent[2] }}</i><span><b>{{ agent[0] }}</b><small>{{ agent[1] }}</small></span></div>
+  }
+  <div class="core"><i>✓</i><b>XcellSecure<br>Core</b><small>AI orchestration</small></div>
+  <div class="powered"><small>Powered by</small><strong>XcellSecure</strong><span>by XcellHost</span></div>
+</div>
