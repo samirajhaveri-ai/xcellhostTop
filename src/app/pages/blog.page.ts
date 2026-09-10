@@ -5,9 +5,11 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { map, switchMap } from 'rxjs';
 
 import { BlogApiService, CmsBlogPost } from '../core/blog-api.service';
+import { DocRequestService } from '../core/doc-request.service';
 import { LeadService } from '../core/lead.service';
 import { OverlayService } from '../core/overlay.service';
 import { SeoService } from '../core/seo.service';
+import { PRODUCT_INFOSHEETS } from '../data/products.data';
 import { SITE } from '../data/site.data';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 
@@ -37,6 +39,7 @@ export class BlogPage {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly overlay = inject(OverlayService);
+  private readonly docs = inject(DocRequestService);
   private readonly leads = inject(LeadService);
   private readonly seo = inject(SeoService);
   private readonly blogApi = inject(BlogApiService);
@@ -70,6 +73,11 @@ export class BlogPage {
     this.leads.whatsappLink(
       `Hi XcellHost, I have just read "${this.post()?.title ?? 'your insights'}" and would like to talk.`
     )
+  );
+  readonly tallyInfosheet = PRODUCT_INFOSHEETS['Tally on Cloud'];
+  readonly mailHref = this.leads.mailtoLink(
+    'Enquiry: Tally on Cloud',
+    'Hi XcellHost,\n\nI would like to know more about Tally on Cloud.\n\nCompany:\nNumber of users:\nBest time to call:'
   );
 
   constructor() {
@@ -127,6 +135,12 @@ export class BlogPage {
   openCallback(): void {
     this.topics.ask(this.post()?.title ?? 'Insights');
     this.overlay.open('callback');
+  }
+
+  requestPresentation(event: Event): void {
+    event.preventDefault();
+    this.docs.ask('presentation', 'Tally on Cloud');
+    this.overlay.open('doc');
   }
 
   formatDate(value: string): string {

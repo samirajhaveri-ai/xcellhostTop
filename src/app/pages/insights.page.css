@@ -1,3 +1,187 @@
+.insights-discovery {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 30px 0 0;
+}
+
+.insights-tabs {
+  display: inline-flex;
+  gap: 8px;
+  padding: 6px;
+  border: 1px solid #d5e2f3;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 12px 32px rgba(4, 30, 66, 0.07);
+}
+
+.insights-tabs button {
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 11px;
+  background: transparent;
+  color: #253852;
+  font: 700 13px/1 var(--body);
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+.insights-tabs button span {
+  display: inline-grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  margin-left: 6px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: #edf4ff;
+  color: #1565d8;
+  font: 700 10px/1 var(--mono);
+}
+
+.insights-tabs button:hover:not(.active) {
+  background: #f0f5fc;
+}
+
+.insights-tabs button.active {
+  background: linear-gradient(135deg, #1565d8, #0b4da9);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(21, 101, 216, 0.24);
+}
+
+.insights-tabs button.active span {
+  background: rgba(255, 255, 255, 0.17);
+  color: #fff;
+}
+
+.insights-tabs button:focus-visible,
+.insights-search:focus-within {
+  outline: 3px solid rgba(21, 101, 216, 0.28);
+  outline-offset: 3px;
+}
+
+.insights-search {
+  display: flex;
+  align-items: center;
+  width: min(360px, 100%);
+  min-height: 54px;
+  padding: 0 14px;
+  border: 1px solid #cfddf0;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 12px 32px rgba(4, 30, 66, 0.07);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.insights-search:focus-within {
+  border-color: #1565d8;
+  box-shadow: 0 14px 34px rgba(21, 101, 216, 0.12);
+}
+
+.insights-search > span {
+  color: #517091;
+  font-size: 22px;
+}
+
+.insights-search input {
+  min-width: 0;
+  flex: 1;
+  padding: 14px 10px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #08234a;
+  font: 600 14px/1.2 var(--body);
+}
+
+.insights-search input::placeholder {
+  color: #7c8da5;
+}
+
+.insights-search button {
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 50%;
+  background: #edf4ff;
+  color: #164bba;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.insights-lead,
+.insights-card {
+  color: inherit;
+  text-decoration: none;
+}
+
+.insights-lead-media,
+.insights-card-media {
+  position: relative;
+}
+
+.insights-card-media {
+  overflow: hidden;
+  margin: -18px -18px 16px;
+  border-radius: 15px 15px 0 0;
+}
+
+.insights-card .insights-card-media .blog-cover {
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
+}
+
+.insights-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 66px;
+  height: 66px;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  border-radius: 50%;
+  background: rgba(5, 39, 87, 0.82);
+  color: #fff;
+  font: 38px/1 'Material Symbols Rounded';
+  box-shadow: 0 12px 30px rgba(2, 20, 48, 0.28);
+  transform: translate(-50%, -50%);
+  transition: transform 0.22s, background 0.22s;
+}
+
+.insights-lead:hover .insights-play,
+.insights-card:hover .insights-play {
+  background: #1565d8;
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.insights-empty {
+  grid-column: 1 / -1;
+  padding: 56px 24px;
+  border: 1px dashed #b9cce5;
+  border-radius: 22px;
+  background: #f8fbff;
+  text-align: center;
+}
+
+.insights-empty > span {
+  color: #3972b7;
+  font-size: 40px;
+}
+
+.insights-empty h3 {
+  margin: 10px 0 5px;
+  color: #08234a;
+}
+
+.insights-empty p {
+  margin: 0;
+  color: #657b96;
+}
+
 .insights-toolbar {
   scroll-margin-top: 110px;
 }
@@ -64,8 +248,37 @@
 }
 
 @media (max-width: 480px) {
+  .insights-discovery {
+    padding-top: 22px;
+  }
+
+  .insights-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+  }
+
+  .insights-tabs button {
+    padding-inline: 8px;
+  }
+
+  .insights-tabs button span {
+    display: none;
+  }
+
   .insights-page-numbers {
     order: -1;
+    width: 100%;
+  }
+}
+
+@media (max-width: 760px) {
+  .insights-discovery {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .insights-search {
     width: 100%;
   }
 }

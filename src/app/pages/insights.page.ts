@@ -2,11 +2,29 @@ import { ChangeDetectionStrategy, Component, computed, inject, linkedSignal, sig
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 
-import { BlogApiService, CmsBlogPost } from '../core/blog-api.service';
+import { BlogApiService, CmsBlogPost, CmsInsightResource } from '../core/blog-api.service';
 import { SeoService } from '../core/seo.service';
 import { SIMPLE_PAGES } from '../data/site.data';
 
 const ALL = 'All';
+type InsightTab = 'Blogs' | 'Videos' | 'Use Cases';
+
+interface InsightItem {
+  readonly id: number;
+  readonly documentId: string;
+  readonly kind: 'blog' | 'video' | 'use-case';
+  readonly title: string;
+  readonly slug: string;
+  readonly description: string;
+  readonly content: string;
+  readonly author: string;
+  readonly date: string;
+  readonly time: string;
+  readonly category: string;
+  readonly coverImage: CmsBlogPost['coverImage'];
+  readonly coverImageUrl: string | null;
+  readonly actionUrl: string | null;
+}
 
 @Component({
   selector: 'xh-insights-page',
@@ -64,6 +82,33 @@ const ALL = 'All';
           } @else if (error()) {
             <p role="alert">Blog content is temporarily unavailable. Please try again shortly.</p>
           } @else {
+            <section class="insights-discovery" aria-label="Insight content filters">
+              <div class="insights-tabs" role="tablist" aria-label="Insight content type">
+                @for (tab of tabs; track tab) {
+                  <button
+                    type="button"
+                    role="tab"
+                    [class.active]="tab === activeTab()"
+                    [attr.aria-selected]="tab === activeTab()"
+                    (click)="selectTab(tab)"
+                  >
+                    {{ tab }} <span>{{ tabCount(tab) }}</span>
+                  </button>
+                }
+              </div>
+              <label class="insights-search">
+                <span class="material-symbols-rounded" aria-hidden="true">search</span>
+                <input
+                  type="search"
+                  placeholder="Search insights..."
+                  [value]="query()"
+                  (input)="search($event)"
+                />
+                @if (query()) {
+                  <button type="button" aria-label="Clear search" (click)="clearSearch()">&times;</button>
+                }
+              </label>
+            </section>
             <section class="insights-shell">
               <aside class="insights-sidebar">
                 <div class="insights-sidebar-card">
@@ -87,12 +132,18 @@ const ALL = 'All';
                 <div class="insights-toolbar" #results tabindex="-1">
                   <div>
                     <span class="insights-toolbar-label">Showing</span>
-                    <h2>{{ active() === allCategory ? 'All Insights' : active() }}</h2>
+                    <h2>{{ resultHeading() }}</h2>
                   </div>
                   <p role="status">{{ rangeStart() }}–{{ rangeEnd() }} of {{ visible().length }} article{{ visible().length === 1 ? '' : 's' }}</p>
                 </div>
                 @if (featuredVisible(); as lead) {
-                  <article class="insights-lead" [routerLink]="['/insights', lead.slug]">
+                  <a
+                    class="insights-lead"
+                    [routerLink]="lead.kind === 'blog' ? ['/insights', lead.slug] : null"
+                    [href]="lead.kind === 'blog' ? null : lead.actionUrl"
+                    [target]="lead.kind === 'video' ? '_blank' : undefined"
+                    [attr.rel]="lead.kind === 'video' ? 'noopener noreferrer' : null"
+                  >
                     <div class="insights-lead-media">
                       @if (lead.coverImageUrl) {
                         <img
@@ -101,9 +152,12 @@ const ALL = 'All';
                           [alt]="lead.coverImage?.alternativeText || lead.title"
                         />
                       }
+                      @if (lead.kind === 'video') {
+                        <span class="insights-play" aria-hidden="true">play_arrow</span>
+                      }
                     </div>
                     <div class="insights-lead-copy">
-                      <span class="insights-feature-label">Top story</span>
+                      <span class="insights-feature-label">{{ leadLabel() }}</span>
                       <span class="bl-k">{{ lead.category }}</span>
                       <h3>{{ lead.title }}</h3>
                       <p>{{ lead.description }}</p>
@@ -113,11 +167,18 @@ const ALL = 'All';
                         <span>{{ formatTime(lead.time) }}</span>
                       </div>
                     </div>
-                  </article>
+                  </a>
                 }
                 <div class="insights-grid">
                   @for (post of gridPosts(); track post.documentId) {
-                    <article class="bl insights-card" tabindex="0" [routerLink]="['/insights', post.slug]">
+                    <a
+                      class="bl insights-card"
+                      [routerLink]="post.kind === 'blog' ? ['/insights', post.slug] : null"
+                      [href]="post.kind === 'blog' ? null : post.actionUrl"
+                      [target]="post.kind === 'video' ? '_blank' : undefined"
+                      [attr.rel]="post.kind === 'video' ? 'noopener noreferrer' : null"
+                    >
+                      <div class="insights-card-media">
                       @if (post.coverImageUrl) {
                         <img
                           class="blog-cover"
@@ -125,6 +186,10 @@ const ALL = 'All';
                           [alt]="post.coverImage?.alternativeText || post.title"
                         />
                       }
+                        @if (post.kind === 'video') {
+                          <span class="insights-play" aria-hidden="true">play_arrow</span>
+                        }
+                      </div>
                       <div class="insights-card-meta">
                         <span class="bl-k">{{ post.category }}</span>
                         <span class="insights-card-date">{{ formatDate(post.date) }}</span>
@@ -132,10 +197,14 @@ const ALL = 'All';
                       <h3>{{ post.title }}</h3>
                       <p>{{ post.description }}</p>
                       <span class="bl-m">{{ post.author }} · {{ readTime(post) }} read</span>
-                    </article>
+                    </a>
                   } @empty {
                     @if (!visible().length) {
-                      <p>No published posts are available in this category yet.</p>
+                      <div class="insights-empty">
+                        <span class="material-symbols-rounded" aria-hidden="true">search_off</span>
+                        <h3>No matching {{ activeTab().toLowerCase() }}</h3>
+                        <p>Try another topic or search term. New Strapi content will appear here automatically.</p>
+                      </div>
                     }
                   }
                 </div>
@@ -172,22 +241,46 @@ export class InsightsPage {
   private readonly blogApi = inject(BlogApiService);
 
   readonly page = SIMPLE_PAGES['blog'];
+  readonly tabs: readonly InsightTab[] = ['Blogs', 'Videos', 'Use Cases'];
   readonly posts = signal<readonly CmsBlogPost[]>([]);
+  readonly videos = signal<readonly CmsInsightResource[]>([]);
+  readonly useCases = signal<readonly CmsInsightResource[]>([]);
   readonly loading = signal(true);
   readonly error = signal(false);
+  readonly activeTab = signal<InsightTab>('Blogs');
   readonly active = signal(ALL);
+  readonly query = signal('');
   readonly allCategory = ALL;
 
+  readonly blogItems = computed<readonly InsightItem[]>(() =>
+    this.posts().map((post) => this.toBlogItem(post))
+  );
+  readonly videoItems = computed<readonly InsightItem[]>(() =>
+    this.videos().map((item) => this.toResourceItem(item))
+  );
+  readonly useCaseItems = computed<readonly InsightItem[]>(() =>
+    this.useCases().map((item) => this.toResourceItem(item))
+  );
+  readonly sourceItems = computed<readonly InsightItem[]>(() => {
+    switch (this.activeTab()) {
+      case 'Videos': return this.videoItems();
+      case 'Use Cases': return this.useCaseItems();
+      default: return this.blogItems();
+    }
+  });
   readonly categories = computed<readonly string[]>(() => [
     ALL,
-    ...new Set(this.posts().map((post) => post.category)),
+    ...new Set(this.sourceItems().map((item) => item.category)),
   ]);
   readonly featured = computed(() => this.posts()[0] ?? null);
-  readonly visible = computed(() =>
-    this.active() === ALL
-      ? this.posts()
-      : this.posts().filter((post) => post.category === this.active())
-  );
+  readonly visible = computed(() => {
+    const query = this.query().trim().toLocaleLowerCase();
+    return this.sourceItems().filter((item) => {
+      const matchesCategory = this.active() === ALL || item.category === this.active();
+      const haystack = `${item.title} ${item.description} ${item.category} ${item.author}`.toLocaleLowerCase();
+      return matchesCategory && (!query || haystack.includes(query));
+    });
+  });
   readonly pageSize = 20;
   readonly totalPages = computed(() => Math.max(1, Math.ceil(this.visible().length / this.pageSize)));
   readonly currentPage = linkedSignal<number, number>({
@@ -229,10 +322,29 @@ export class InsightsPage {
         this.error.set(true);
       },
     });
+
+    this.blogApi.videos$.pipe(takeUntilDestroyed()).subscribe((items) => this.videos.set(items));
+    this.blogApi.useCases$.pipe(takeUntilDestroyed()).subscribe((items) => this.useCases.set(items));
+  }
+
+  selectTab(tab: InsightTab): void {
+    this.activeTab.set(tab);
+    this.active.set(ALL);
+    this.currentPage.set(1);
   }
 
   selectCategory(category: string): void {
     this.active.set(category);
+    this.currentPage.set(1);
+  }
+
+  search(event: Event): void {
+    this.query.set((event.target as HTMLInputElement).value);
+    this.currentPage.set(1);
+  }
+
+  clearSearch(): void {
+    this.query.set('');
     this.currentPage.set(1);
   }
 
@@ -258,13 +370,40 @@ export class InsightsPage {
 
   categoryCount(category: string): number {
     return category === ALL
-      ? this.posts().length
-      : this.posts().filter((post) => post.category === category).length;
+      ? this.sourceItems().length
+      : this.sourceItems().filter((item) => item.category === category).length;
   }
 
-  readTime(post: CmsBlogPost): string {
+  tabCount(tab: InsightTab): number {
+    if (tab === 'Videos') return this.videos().length;
+    if (tab === 'Use Cases') return this.useCases().length;
+    return this.posts().length;
+  }
+
+  resultHeading(): string {
+    return `${this.active() === ALL ? 'All' : this.active()} ${this.activeTab()}`;
+  }
+
+  leadLabel(): string {
+    if (this.activeTab() === 'Videos') return 'Featured video';
+    if (this.activeTab() === 'Use Cases') return 'Featured use case';
+    return 'Top story';
+  }
+
+  readTime(post: Pick<InsightItem, 'title' | 'description' | 'content'> | CmsBlogPost): string {
     const text = `${post.title} ${post.description} ${post.content}`.trim();
     const words = text ? text.split(/\s+/).length : 0;
     return `${Math.max(3, Math.round(words / 180) || 3)} min`;
+  }
+
+  private toBlogItem(post: CmsBlogPost): InsightItem {
+    return { ...post, kind: 'blog', actionUrl: null };
+  }
+
+  private toResourceItem(item: CmsInsightResource): InsightItem {
+    return {
+      ...item,
+      actionUrl: item.kind === 'video' ? item.videoUrl : item.relatedPage,
+    };
   }
 }

@@ -114,13 +114,41 @@
               }
             }
 
-            <div class="bp-cta article-bottom-cta">
-              <span class="article-side-kicker">Next step</span>
-              <p>Want to discuss this with an XcellHost specialist?</p>
-              <div class="row">
-                <button class="btn btn-primary" (click)="openCallback()">Request a callback</button>
-                <a class="btn btn-ghost" [href]="waHref()" target="_blank" rel="noopener">Chat on WhatsApp</a>
+            <div class="pp-cta article-product-cta">
+              <div class="article-product-cta-copy">
+                <h3>Ready to start with Tally on Cloud?</h3>
+                <p>Free consultation &middot; free migration &middot; 24&times;7 support in English &amp; Hindi</p>
               </div>
+              <div class="article-product-cta-actions">
+                <button class="btn btn-primary" type="button" (click)="openCallback()">
+                  Request a callback
+                </button>
+                <a class="btn btn-ghost" routerLink="/tally-on-cloud">&#9889; Buy Now</a>
+                <a
+                  class="btn btn-ghost"
+                  [href]="tallyInfosheet"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >&#11015; Infosheet</a>
+                <button class="btn btn-ghost" type="button" (click)="requestPresentation($event)">
+                  &#128214; Presentation
+                </button>
+                <a class="btn btn-ghost" [href]="waHref()" target="_blank" rel="noopener">
+                  Talk on WhatsApp
+                </a>
+                <a class="btn btn-ghost" [href]="mailHref">Email Us</a>
+              </div>
+              <a
+                class="pp-cta-buddha-link"
+                routerLink="/company/support-overview"
+                aria-label="Visit XcellHost customer support"
+              >
+                <img
+                  class="pp-cta-buddha"
+                  src="/assets/images/laughing-buddha-white-text-transparent.png"
+                  alt="XcellHost customer support"
+                />
+              </a>
             </div>
           </article>
         </div>

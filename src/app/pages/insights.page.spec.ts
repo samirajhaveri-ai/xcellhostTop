@@ -1,11 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 import { BehaviorSubject } from 'rxjs';
-import { BlogApiService, CmsBlogPost } from '../core/blog-api.service';
+import { BlogApiService, CmsBlogPost, CmsInsightResource } from '../core/blog-api.service';
 import { SeoService } from '../core/seo.service';
 import { InsightsPage } from './insights.page';
 
 describe('Insights pagination', () => {
   let posts: BehaviorSubject<readonly CmsBlogPost[]>;
+  let videos: BehaviorSubject<readonly CmsInsightResource[]>;
+  let useCases: BehaviorSubject<readonly CmsInsightResource[]>;
   let page: InsightsPage;
   const makePosts = (count: number) => Array.from({ length: count }, (_, index) => ({
     documentId: String(index), category: index < 21 ? 'Cloud' : 'Security',
@@ -13,8 +15,10 @@ describe('Insights pagination', () => {
 
   beforeEach(() => {
     posts = new BehaviorSubject<readonly CmsBlogPost[]>(makePosts(41));
+    videos = new BehaviorSubject<readonly CmsInsightResource[]>([]);
+    useCases = new BehaviorSubject<readonly CmsInsightResource[]>([]);
     TestBed.configureTestingModule({ providers: [
-      { provide: BlogApiService, useValue: { posts$: posts } },
+      { provide: BlogApiService, useValue: { posts$: posts, videos$: videos, useCases$: useCases } },
       { provide: SeoService, useValue: { set: () => {} } },
     ] });
     page = TestBed.runInInjectionContext(() => new InsightsPage());
@@ -63,5 +67,18 @@ describe('Insights pagination', () => {
     expect(page.currentPage()).toBe(2);
     expect(results.focus).toHaveBeenCalled();
     expect(results.scrollIntoView).toHaveBeenCalled();
+  });
+
+  it('filters the selected tab by search text and resets pagination', () => {
+    videos.next([
+      { documentId: 'video-1', kind: 'video', title: 'Tally setup guide', category: 'Tally' },
+      { documentId: 'video-2', kind: 'video', title: 'Backup walkthrough', category: 'Backup' },
+    ] as CmsInsightResource[]);
+    page.selectTab('Videos');
+    page.currentPage.set(2);
+    page.search({ target: { value: 'tally' } } as unknown as Event);
+    expect(page.currentPage()).toBe(1);
+    expect(page.visible().map(item => item.documentId)).toEqual(['video-1']);
+    expect(page.resultHeading()).toBe('All Videos');
   });
 });
