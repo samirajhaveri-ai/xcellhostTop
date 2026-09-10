@@ -3241,11 +3241,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Sales, solution and delivery enablement"
               },
               {
-                "title": "Partner Advancement",
-                "pill": null,
-                "desc": "Grow your capability and partner benefits"
-              },
-              {
                 "title": "Partner Portal",
                 "pill": null,
                 "desc": "Access partner opportunities and resources"
