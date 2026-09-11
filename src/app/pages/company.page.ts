@@ -60,18 +60,36 @@ export class CompanyPage {
     { initials: 'RS', name: 'Rizwan Shaikh', role: 'Cloud Pre-Sales Manager', image: '/assets/images/team-rizwan-shaikh.png' },
     { initials: 'AP', name: 'Abhishek Pandey', role: 'Cloud Sales Manager', image: '/assets/images/team-abhishek-pandey.png' },
   ] as const;
+  
+  readonly marketing = [
+    { initials: 'SJ', name: 'Sanjay Jade', role: 'Accounts Payable Manager', image: '/assets/images/team-sanjay-jade.png' },
+    { initials: 'RS', name: 'Rizwan Shaikh', role: 'Cloud Pre-Sales Manager', image: '/assets/images/team-rizwan-shaikh.png' },
+    { initials: 'AP', name: 'Abhishek Pandey', role: 'Cloud Sales Manager', image: '/assets/images/team-abhishek-pandey.png' },
+  ] as const;
+
+  readonly AITeams = [
+    { initials: 'SJ', name: 'Sanjay Jade', role: 'Accounts Payable Manager', image: '/assets/images/team-sanjay-jade.png' },
+    { initials: 'RS', name: 'Rizwan Shaikh', role: 'Cloud Pre-Sales Manager', image: '/assets/images/team-rizwan-shaikh.png' },
+    { initials: 'AP', name: 'Abhishek Pandey', role: 'Cloud Sales Manager', image: '/assets/images/team-abhishek-pandey.png' },
+  ] as const;
 
   readonly teamTabs = [
     { id: 'all', label: 'All Team' },
     { id: 'management', label: 'Management' },
     { id: 'advisory', label: 'Advisory' },
     { id: 'sales', label: 'Sales' },
+    { id: 'marketing', label: 'Marketing' },
+    { id: 'AITeams', label: 'AI Teams' },
+
   ] as const;
   readonly activeTeamTab = signal<string>('all');
   readonly teamMembers = [
     ...this.managementTeam.map(member => ({ ...member, department: 'management' })),
     ...this.advisoryTeam.map(member => ({ ...member, department: 'advisory' })),
     ...this.salesTeam.map(member => ({ ...member, department: 'sales' })),
+    ...this.marketing.map(member => ({ ...member, department: 'marketing' })),
+    ...this.AITeams.map(member => ({ ...member, department: 'AI Teams' })),
+    
   ];
   readonly visibleTeamMembers = computed(() => this.teamMembers.filter(member =>
     this.activeTeamTab() === 'all' || member.department === this.activeTeamTab(),
