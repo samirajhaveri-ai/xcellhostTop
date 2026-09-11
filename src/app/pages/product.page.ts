@@ -16,6 +16,7 @@ import { OverlayService } from '../core/overlay.service';
 import { PricingPlan, ProductPageService, ProductView } from '../core/product-page.service';
 import { SeoService } from '../core/seo.service';
 import { DEEP_CONTENT, PLATFORM_ICONS, RICH_PRODUCTS } from '../data/products.data';
+import { Faq } from '../data/models';
 import { SITE, WORLD_MAP_HTML } from '../data/site.data';
 import { HeroNetDirective, ProductFaqComponent } from '../sections/product';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
@@ -929,6 +930,17 @@ export class ProductPage {
 
   readonly isManagedMicrosoft365 = computed(() => this.view()?.name === 'Managed Microsoft 365');
   readonly isZohoWorkspace = computed(() => this.slug() === 'zoho-workspace');
+
+  readonly zohoWorkspaceFaqs: Faq[] = [
+    ['What is included with Zoho Workspace?', 'Zoho Workspace combines professional business email with Mail, Cliq, Meeting, WorkDrive, Connect and Calendar in one managed subscription.'],
+    ['Can XcellHost migrate our existing business email?', 'Yes. We migrate mailboxes from Microsoft 365, Google Workspace, cPanel, Rediffmail and other supported platforms with a planned approach designed to minimise downtime.'],
+    ['Will XcellHost configure our domain and DNS records?', 'Yes. Our team handles domain verification and configures MX, SPF, DKIM and DMARC records for secure mail delivery.'],
+    ['Which Zoho Workspace plan should we choose?', 'Mail Lite suits straightforward business email, Mail Premium adds retention and compliance features, while Workplace Standard and Professional include the broader collaboration suite.'],
+    ['Can we use Zoho Workspace with Outlook and mobile devices?', 'Yes. Supported plans provide web and mobile access, with IMAP, POP3 or ActiveSync availability depending on the selected plan.'],
+    ['Do you provide security and compliance features?', 'Yes. Available capabilities include S/MIME, two-factor authentication, TLS, spam and phishing protection, eDiscovery, legal hold, retention policies and audit logs.'],
+    ['How is Zoho Workspace billed?', 'Plans are billed in INR on an annual basis, excluding 18% GST. XcellHost provides a GST-compliant invoice and can confirm volume or multi-year pricing.'],
+    ['What support is included?', 'XcellHost provides migration assistance, technical setup and 24×7 support through phone, WhatsApp and tickets.'],
+  ];
 
   readonly isVmc = computed(() => this.view()?.name === 'Verified Mark Certificates (VMC)');
 

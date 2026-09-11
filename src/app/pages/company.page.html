@@ -589,15 +589,74 @@
     @if (slug() === 'partner-overview') {
     <section class="partner-overview-hero" aria-labelledby="partnerOverviewTitle">
       <span class="partner-hero-glow" aria-hidden="true"></span>
+      <span class="partner-hero-network" aria-hidden="true"></span>
+      <span class="partner-hero-orbit partner-orbit-one" aria-hidden="true"></span>
+      <span class="partner-hero-orbit partner-orbit-two" aria-hidden="true"></span>
+      <span class="partner-hero-scan" aria-hidden="true"></span>
+      <canvas class="partner-hero-net" xhHeroNet aria-hidden="true"></canvas>
       <div class="wrap partner-hero-grid partner-model-hero-grid">
         <div class="partner-hero-copy">
           <div class="pp-crumb">Home › Company › Partner</div>
-          <span class="partner-hero-badge">Partner</span>
+          <span class="partner-hero-kicker">XcellHost partner ecosystem</span>
           <h1 id="partnerOverviewTitle">Partnership Overview</h1>
-          <p>Choose the level of ownership and support that fits your business.</p>
+          <p>Build recurring revenue with 200+ cloud, security and AI services your customers already need.</p>
+          <p class="partner-hero-spotlight">Right now for partners → <strong>free onboarding · recurring commissions</strong></p>
+          <div class="partner-hero-actions">
+            <a class="partner-primary-action" routerLink="/contact">Become a partner <span>→</span></a>
+            <a class="partner-secondary-action" href="#partnership-types-title">Explore the programme</a>
+          </div>
+          <div class="partner-hero-stats" aria-label="Partner programme highlights">
+            <div><b>200+</b><span>products &amp; services</span></div>
+            <div><b>4</b><span>partnership types</span></div>
+            <div><b>24×7</b><span>technical support</span></div>
+            <div><b>1999</b><span>cloud expertise since</span></div>
+          </div>
+          <div class="partner-hero-live"><i aria-hidden="true"></i>Partner portal live · wholesale pricing · white-label ready</div>
         </div>
         <div class="partner-hero-visual" aria-hidden="true">
-          <img src="/assets/images/partner-overview-growth-hero.png" alt="" loading="eager" />
+          <div class="partner-visual-stage">
+            <span class="partner-program-visual-label">XcellHost Cloud Partner Program</span>
+            <span class="partner-float-node node-one"><i>✦</i><b>200+ services</b></span>
+            <span class="partner-float-node node-two"><i>₹</i><b>Recurring revenue</b></span>
+            <span class="partner-float-node node-three"><i>24</i><b>24×7 support</b></span>
+            <span class="partner-pulse-ring"></span>
+            <img src="/assets/images/partner-overview-growth-hero.png" alt="" loading="eager" />
+          </div>
+        </div>
+      </div>
+    </section>
+    } @else if (slug() === 'certifications-awards') {
+    <section class="cert-hero" aria-labelledby="certHeroTitle">
+      <canvas class="cert-hero-net" xhHeroNet aria-hidden="true"></canvas>
+      <span class="cert-world" aria-hidden="true"></span><span class="cert-orbit cert-orbit-one" aria-hidden="true"></span><span class="cert-orbit cert-orbit-two" aria-hidden="true"></span>
+      <div class="wrap cert-hero-grid">
+        <div class="cert-hero-copy">
+          <div class="pp-crumb">HOME &nbsp;›&nbsp; COMPANY &nbsp;›&nbsp; CERTIFICATIONS</div>
+          <span class="cert-kicker">Verified standards &amp; credentials</span>
+          <h1 id="certHeroTitle">Certifications that prove our <em>commitment.</em></h1>
+          <p>Independent credentials that reflect disciplined operations, information security and technical capability.</p>
+          <div class="cert-hero-points"><span>✓ ISO-certified operations</span><span>✓ Independently verified</span></div>
+          <div class="cert-hero-actions">
+            <a class="primary" href="#certifications-title"><span>↓</span> View Certificates</a>
+            <a href="mailto:sales@xcellhost.cloud?subject=XcellHost%20certification%20profile"><span>▣</span> Certification Profile</a>
+            <a class="talk" href="mailto:sales@xcellhost.cloud?subject=XcellHost%20compliance%20enquiry">Compliance Enquiry</a>
+          </div>
+          <div class="cert-ask-ai"><span class="cert-ai-label">✦ Ask AI About XcellHost Certifications</span><div>
+            <a aria-label="Ask ChatGPT" [href]="companyAskAiHref('chatgpt')" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=chatgpt.com&amp;sz=64" alt=""/></a>
+            <a aria-label="Ask Perplexity" [href]="companyAskAiHref('perplexity')" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=perplexity.ai&amp;sz=64" alt=""/></a>
+            <a aria-label="Ask Claude" [href]="companyAskAiHref('claude')" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=claude.ai&amp;sz=64" alt=""/></a>
+            <a aria-label="Ask Gemini" [href]="companyAskAiHref('google')" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=gemini.google.com&amp;sz=64" alt=""/></a>
+          </div></div>
+        </div>
+        <div class="cert-hero-visual">
+          <span class="cert-float cert-float-one">✓ Controls verified</span><span class="cert-float cert-float-two">24×7 Operations</span>
+          <div class="cert-assurance-card" aria-label="XcellHost assurance and compliance overview">
+            <div class="cert-card-top"><span></span><span></span><span></span><b>Trust &amp; Assurance</b></div>
+            <div class="cert-shield"><span>✓</span></div>
+            <strong>Verified operational standards</strong>
+            <p>Security · Service quality · Technical capability</p>
+            <div class="cert-status-row"><span><i></i> Controls active</span><span><i></i> Audit ready</span></div>
+          </div>
         </div>
       </div>
     </section>
@@ -692,10 +751,10 @@
           </section>
         } @else if (slug() === 'certifications-awards') {
           <section class="recognition-section certifications-section" aria-labelledby="certifications-title">
-            <header class="recognition-heading">
-              <span>Our certificates</span>
-              <h2 id="certifications-title">Our Certifications</h2>
-              <p>Check out our valuable ISO certifications.</p>
+            <header class="recognition-heading certification-heading">
+              <span>Certification architecture</span>
+              <h2 id="certifications-title">Standards behind trusted operations</h2>
+              <p>Select a credential to review its scope, details and official certificate.</p>
             </header>
 
             <div class="certification-tabs-layout">

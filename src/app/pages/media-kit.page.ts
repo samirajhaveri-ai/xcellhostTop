@@ -1,14 +1,15 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SeoService } from '../core/seo.service';
+import { HeroNetDirective } from '../sections/product/hero-net.directive';
 
 @Component({
   selector: 'xh-media-kit-page',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, HeroNetDirective],
   host: { style: 'display:contents' },
   templateUrl: './media-kit.page.html',
-  styleUrl: './media-kit.page.css',
+  styleUrls: ['./media-kit.page.css', './media-kit-enhanced.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MediaKitPage {
@@ -31,6 +32,18 @@ export class MediaKitPage {
     ['XcellConsult', 'XcellConsult-2000x484.png'], ['XcellDataProtect', 'XcellDataProtect-2000x369.png'],
     ['XcellConnect', 'XcellCoonect.png'], ['XcellOffice', 'xcellOffice.png'], ['XcellDesign', 'XcellDesign.png'],
   ] as const;
+
+  askAiHref(platform: 'chatgpt' | 'perplexity' | 'claude' | 'google' | 'grok'): string {
+    const prompt = encodeURIComponent('Tell me about the XcellHost Media Kit, official brand resources, company profile and press information.');
+    switch (platform) {
+      case 'chatgpt': return `https://chatgpt.com/?q=${prompt}`;
+      case 'perplexity': return `https://www.perplexity.ai/search/new?q=${prompt}`;
+      case 'claude': return `https://claude.ai/new?q=${prompt}`;
+      case 'grok': return `https://grok.com/?q=${prompt}`;
+      default: return 'https://gemini.google.com/app';
+    }
+  }
+
   constructor() {
     this.seo.set('Media Kit — XcellHost', 'Official XcellHost biographies, leadership information, trademarks, service marks and press contact details.', '/media-kit/');
   }
