@@ -3211,6 +3211,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "We'd love to hear from you"
               },
+              {
+                "title": "Watch Tower",
+                "pill": null,
+                "desc": "One intelligence layer"
+              },
             ]
           }
         ]
