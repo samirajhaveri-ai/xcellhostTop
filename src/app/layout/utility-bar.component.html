@@ -4,14 +4,15 @@
       rel="noopener noreferrer">Billing Portal</a><a href="https://supportdesk.xcellhost.cloud/portal/en/home"
       target="_blank" rel="noopener noreferrer">Support Portal</a><a
       href="https://supportdesk.xcellhost.cloud/portal/en/signin" target="_blank" rel="noopener noreferrer">Submit a
-      Ticket</a><a href="https://m365.cloud.microsoft/chat" target="_blank" rel="noopener noreferrer">Microsoft 365
+      Ticket</a><a href="https://www.microsoft.com/en-in/microsoft-365" target="_blank" rel="noopener noreferrer">Microsoft 365
       Login</a><a href="https://supportdesk.xcellhost.cloud/portal/en/kb" target="_blank"
       rel="noopener noreferrer">Knowledgebase</a><a
       href="https://assist.zoho.in/install-customer-plugin?cxp_token=abb9fe4a68f6868fd49a081392f89115d7268dfc361a9370005a494a1fde5742&amp;type=exe"
       target="_blank" rel="noopener noreferrer">Remote Assist</a><a href="https://vcloud.officeinfra.com:4085/"
-      target="_blank" rel="noopener noreferrer">VPS Login</a><a href="/cloud-login">Cloud Login</a><a href="https://sg-cloud.acronis.com/login"
-      target="_blank" rel="noopener noreferrer">Acronis Cyber Console</a><a
-      href="https://www.whatsapp.com/channel/0029Vais2U4ICVffW7i82V1z" target="_blank" rel="noopener noreferrer"> WhatsApp Channel</a>
+      target="_blank" rel="noopener noreferrer">VPS Login</a><a href="https://cp.cloudbaba.ai/login">Cloud Login</a><a
+      href="/cloud-login" target="_blank" rel="noopener noreferrer">Acronis Cyber Console</a><a
+      href="https://www.whatsapp.com/channel/0029Vais2U4ICVffW7i82V1z" target="_blank" rel="noopener noreferrer">
+      WhatsApp Channel</a>
     <span class="ub2-push"></span>
     <div class="ub2-tools" role="group" aria-label="Display settings">
       <button class="ub2-tool ub2-theme" type="button"
@@ -34,6 +35,17 @@
       </button>
       <xh-language-picker [options]="language.options()" [selected]="language.selected()" [status]="language.status()"
         (selectLanguage)="language.choose($event)" (retry)="retryTranslation()" />
+      <div class="ub2-translate notranslate" translate="no" role="group" aria-label="Google Translate">
+        <div id="google_translate_element" class="google-translate-host"></div>
+        @if (language.status() === 'loading') {
+        <span class="ub2-translate-status" role="status">Loading languages...</span>
+        } @else if (language.status() === 'error') {
+        <button class="ub2-tool" type="button" (click)="retryTranslation()"
+          title="Google Translate could not load. Check your connection and try again.">
+          Retry Google Translate
+        </button>
+        }
+      </div>
     </div>
     <a class="phone" [href]="site.phoneHref">Phone {{ site.phone }}</a>
     <a class="uwa" [href]="whatsappHref" target="_blank" rel="noopener" aria-label="WhatsApp XcellHost"><svg
