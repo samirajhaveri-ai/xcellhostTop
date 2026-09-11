@@ -1646,9 +1646,7 @@
         }
 
 
-        @if (v.name !== 'Enterprise DMARC' && (showcaseVideos().length || isAutonomousThreatSolution()) && slug() !== 'scrutiny-dlp' && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess()) {
-
-        @if ((showcaseVideos().length || isAutonomousThreatSolution() || isOurPlatform()) && slug() !== 'scrutiny-dlp' && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess()) {
+        @if (v.name !== 'Enterprise DMARC' && (showcaseVideos().length || isAutonomousThreatSolution() || isOurPlatform()) && slug() !== 'scrutiny-dlp' && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess()) {
 
           <section class="tally-videos" aria-labelledby="showcaseVideosTitle">
             <div class="pp-sec" id="showcaseVideosTitle">Watch it in action</div>
