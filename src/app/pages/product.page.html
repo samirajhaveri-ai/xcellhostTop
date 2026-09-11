@@ -2,6 +2,8 @@
   <div class="ppage as-page" id="ppage" [class.infrastructure-page]="isInfrastructure()" [class.edr-page]="isAdvancedEdr()" [class.scrutiny-edr-page]="isScrutinyEdr()" [class.rmm-page]="isRmm()" [class.tally-page]="isTally()" [class.whatsapp-smb-page]="isWhatsAppSmb()" [class.atm-solution-page]="isAutonomousThreatSolution()" [class.scrutiny-page]="slug() === 'scrutiny-dlp' || slug() === 'scrutiny-edr' || slug() === 'vortex-soc' || slug() === 'vortex-seg'" [class.cctv-page]="slug() === 'video-surveillance-as-a-service'" [class.cmc-page]="isCmc()" [class.tsplus-monitoring-page]="isTsplusServerMonitoring()" [class.tsplus-support-page]="isTsplusRemoteSupport()" [class.tsplus-advanced-security-page]="isTsplusAdvancedSecurity()" [class.tsplus-remote-access-page]="isTsplusRemoteAccess()">
     @if (isOurPlatform()) {
       <xh-our-platform-reference />
+    } @else if (isWatchtower()) {
+      <xh-watchtower-reference />
     } @else {
     <div
       class="pp-hero"
@@ -235,6 +237,7 @@
             <div class="hero-ctas sitelock-ctas">
               <a class="btn ppd-info" [href]="v.infosheetUrl" id="ppInfo" target="_blank" rel="noopener noreferrer"><span class="ppd-ic">⬇</span> Infosheet</a>
               <a class="btn ppd-pres" href="#" id="ppPres" (click)="requestDoc('presentation', $event)"><span class="ppd-ic">📖</span> Presentation</a>
+              <button class="btn btn-ghost" type="button" disabled>7 Day's Free Trial</button>
               <a class="btn btn-primary" href="#" id="ppEnquiry" (click)="openCallback($event)">Let's Talk</a>
             </div>
           </div>
@@ -275,20 +278,15 @@
               </div>
             }
 
-            <div class="hero-ctas" [class.tally-hero-ctas]="v.name === 'Tally on Cloud'">
+            <div class="hero-ctas product-hero-ctas">
               <a class="btn ppd-info" [href]="v.infosheetUrl" id="ppInfo" target="_blank" rel="noopener noreferrer"
                 ><span class="ppd-ic">⬇</span> Infosheet</a
               >
               <a class="btn ppd-pres" href="#" id="ppPres" (click)="requestDoc('presentation', $event)"
                 ><span class="ppd-ic">📖</span> Presentation</a
               >
-              @if (isAdvancedEdr()) {
-                <button class="btn btn-ghost cdr-tour-trigger" type="button" disabled>7 Day's Free Trial</button>
-              }
               <button class="btn btn-ghost cdr-tour-trigger" type="button" (click)="openProductScreenshotTour()">Screenshot Tour</button>
-              @if (isTally()) {
-                <button class="btn btn-ghost cdr-tour-trigger" type="button" disabled>7 Day's Free Trial</button>
-              }
+              <button class="btn btn-ghost cdr-tour-trigger" type="button" disabled>7 Day's Free Trial</button>
               <a class="btn btn-primary" href="#" id="ppEnquiry" (click)="openCallback($event)">Let's Talk</a>
             </div>
 
@@ -428,7 +426,7 @@
         @if (isAutonomousThreatManagement()) {
           <xh-autonomous-threat-management-content />
         }
-        @if (!isInfrastructure() && !isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess() && !isResellerProgram() && !isScrutinyEdr() && !isCopilotStudio() && !isCloudObjectStorage() && !isZohoWorkspace() && !isMicrosoftEntraId() && !isAutonomousThreatManagement() && !isAutonomousThreatSolution() && !isOurPlatform() && slug() !== 'email-signature') {
+        @if (!isInfrastructure() && !isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess() && !isResellerProgram() && !isScrutinyEdr() && !isCopilotStudio() && !isCloudObjectStorage() && !isZohoWorkspace() && !isMicrosoftEntraId() && !isAutonomousThreatManagement() && !isAutonomousThreatSolution() && !isOurPlatform() && !isWatchtower() && slug() !== 'email-signature') {
         @if (isWhatsAppSmb()) {
           <xh-whatsapp-smb-content />
         } @else {
@@ -1518,7 +1516,7 @@
         @if (!isSmbCyber() && !isRmm() && slug() !== 'scrutiny-dlp') {
           <div class="pp-sec" id="ppSecHead">{{ v.security.head }}</div>
           <div id="ppSecWrap">
-            <p class="pp-ov" [style.max-width]="isCloudBackup() || isCloudDisasterRecoverySmb() || slug() === 'premium-domains-and-new-tlds' || slug() === 'domain-name-prices' || slug() === 'ai-domain-generator' || slug() === 'bharat-domain' || slug() === 'transfer-your-domain' || slug() === 'domain-protect' || slug() === 'backorder-domain' || slug() === 'free-domain' || slug() === 'latest-domain-extensions' || slug() === 'domain-whois-lookup' || slug() === 'tld-directory' || slug() === 'ai-domain-advisor' || slug() === 'windows-hosting' || slug() === 'web-security-sitelock' || slug() === 'website-backup' || slug() === 'linux-hosting' || slug() === 'ai-website-builder' || slug() === 'wordpress-hosting' || slug() === 'migrate-to-xcellhost' || slug() === 'cpanel-control-panel' || slug() === 'cloud-linux' || slug() === 'plesk-control-panel' || slug() === 'webuzo-control-panel' || slug() === 'no-data' || slug() === 'web-design-for-ca-cs-and-lawyers' || slug() === 'web-design-for-smb' || slug() === 'web-design-for-enterprise' || slug() === 'whatsapp-smb' || slug() === 'whatsapp-broadcasting' || slug() === 'google-my-business' || slug() === 'e-mail-marketing' || slug() === 'sms-marketing' || slug() === 'website-seo' || slug() === 'transactional-emails' || slug() === 'windows-vps' || slug() === 'linux-vps' || slug() === 'n8n-vps' || slug() === 'openclaw-vps' || slug() === 'trading-vps' || slug() === 'claude-vps' || slug() === 'window-11-vps' ? '100%' : null">{{ v.security.intro }}</p>
+            <p class="pp-ov">{{ v.security.intro }}</p>
             <div class="pp-secrows">
               @for (r of v.security.rows; track r[0]) {
                 <div class="psrow"><span class="psk">{{ r[0] }}</span><span class="psv">{{ r[1] }}</span></div>
@@ -1645,9 +1643,7 @@
           </section>
         }
 
-
-        @if ((showcaseVideos().length || isAutonomousThreatSolution() || isOurPlatform()) && slug() !== 'scrutiny-dlp' && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess()) {
-
+        @if (v.name !== 'Enterprise DMARC' && (showcaseVideos().length || isAutonomousThreatSolution() || isOurPlatform() || isWatchtower()) && slug() !== 'scrutiny-dlp' && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess()) {
           <section class="tally-videos" aria-labelledby="showcaseVideosTitle">
             <div class="pp-sec" id="showcaseVideosTitle">Watch it in action</div>
             <div class="tally-video-grid" [class.single-video]="showcaseVideos().length === 1">
@@ -1682,6 +1678,16 @@
                 <article class="tally-video-card">
                   <h3><span>Cloud console walkthrough</span></h3>
                   <div class="tally-video-frame"><iframe src="https://www.youtube-nocookie.com/embed/ysz5S6PUM-U?rel=0&amp;playsinline=1" title="Cloud console walkthrough placeholder video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                </article>
+              }
+              @if (isWatchtower()) {
+                <article class="tally-video-card">
+                  <h3><span>Watchtower overview</span></h3>
+                  <div class="tally-video-frame"><iframe src="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?rel=0&amp;playsinline=1" title="Watchtower overview placeholder video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                </article>
+                <article class="tally-video-card">
+                  <h3><span>Unified intelligence workflow</span></h3>
+                  <div class="tally-video-frame"><iframe src="https://www.youtube-nocookie.com/embed/ysz5S6PUM-U?rel=0&amp;playsinline=1" title="Watchtower unified intelligence workflow placeholder video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
                 </article>
               }
             </div>
@@ -1817,9 +1823,9 @@
         <div class="pp-sec pp-faq-heading">Frequently asked questions</div>
         <div class="pp-faq" id="ppFaq">
 
-          <xh-product-faq [faqs]="isOurPlatform() ? ourPlatformFaqs : v.faqs" />
-
-          <xh-product-faq [faqs]="isZohoWorkspace() ? zohoWorkspaceFaqs : v.faqs" />
+          <xh-product-faq
+            [faqs]="isWatchtower() ? watchtowerFaqs : isOurPlatform() ? ourPlatformFaqs : isZohoWorkspace() ? zohoWorkspaceFaqs : v.faqs"
+          />
 
         </div>
 

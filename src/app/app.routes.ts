@@ -136,6 +136,11 @@ export const routes: Routes = [
     data: { productSlug: 'our-platform' },
     loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
   },
+  {
+    path: 'company/watchtower',
+    data: { productSlug: 'watchtower' },
+    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+  },
   { path: 'company/:slug', loadComponent: () => import('./pages/company.page').then((m) => m.CompanyPage) },
   { path: 'category/:name', loadComponent: () => import('./pages/category.page').then((m) => m.CategoryPage) },
   {

@@ -1,0 +1,19 @@
+<button #trigger class="language-trigger" type="button" aria-haspopup="dialog" [attr.aria-expanded]="opened()" aria-label="Choose website language" (click)="open()">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M5 6h14M5 18h14"/></svg>
+  <span>{{ current()?.nativeName || 'English' }}</span><span aria-hidden="true">⌄</span>
+</button>
+<dialog #dialog class="language-dialog" aria-labelledby="language-title" (close)="onClose()" (click)="backdrop($event)">
+  <div class="language-panel">
+    <header><div><span class="language-eyebrow">XCELLHOST WORLDWIDE</span><h2 id="language-title">Choose your language</h2><p>Explore XcellHost in the language you prefer.</p></div><button class="language-close" type="button" aria-label="Close language selector" (click)="close()">×</button></header>
+    <label class="language-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></svg><input autofocus type="search" placeholder="Search languages or regions" aria-label="Search languages or regions" [value]="query()" (input)="query.set($any($event.target).value)"/></label>
+    @if (status() === 'loading') { <p class="language-status" role="status">Loading available languages…</p> }
+    @if (status() === 'error') { <div class="language-status" role="status">Languages could not load. <button type="button" (click)="retry.emit()">Try again</button></div> }
+    <div class="language-grid" aria-label="Available languages">
+      @for (item of filtered(); track item.code) {
+        <button class="language-option" type="button" [class.selected]="selected() === item.code" [attr.aria-pressed]="selected() === item.code" [disabled]="status() !== 'ready' && item.code !== 'en'" (click)="choose(item.code)">
+          <span class="language-flag" aria-hidden="true">{{ item.flag || '◎' }}</span><span class="language-copy"><b>{{ item.region || item.name }}</b><span [lang]="item.code">{{ item.nativeName }}</span></span><span class="language-check" aria-hidden="true">{{ selected() === item.code ? '✓' : '' }}</span>
+        </button>
+      } @empty { @if (status() === 'ready') { <p class="language-status">No languages match your search.</p> } }
+    </div>
+  </div>
+</dialog>
