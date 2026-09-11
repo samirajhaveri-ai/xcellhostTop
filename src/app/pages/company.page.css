@@ -35,7 +35,7 @@
 
 /* Global section spacing is for page sections, not paragraphs in this document. */
 .privacy-policy-document section { padding: 0; }
-.privacy-policy-document section + section { margin-top: 38px; }
+.privacy-policy-document section + section { margin-top: 19px; }
 
 .privacy-policy-document h1,
 .privacy-policy-document h2,
@@ -208,7 +208,10 @@
 .partner-hero-scan { position:absolute;z-index:0;inset:0 auto 0 -28%;width:24%;background:linear-gradient(90deg,transparent,rgba(80,160,255,.07),transparent);transform:skewX(-12deg);animation:partnerScan 9s ease-in-out infinite;pointer-events:none; }
 .partner-hero-net { position:absolute;z-index:0;inset:0;width:100%;height:100%;opacity:.8;pointer-events:none; }
 .partner-visual-stage { position:relative;width:min(100%,600px);min-height:430px;display:flex;align-items:center;justify-content:center;isolation:isolate; }
-.partner-program-visual-label { position:absolute;top:0;left:50%;z-index:5;transform:translateX(-50%);padding:9px 18px;border:1px solid rgba(139,195,255,.55);border-radius:999px;background:rgba(5,35,80,.92);box-shadow:0 12px 30px rgba(0,0,0,.24);color:#fff;font:800 13px/1.2 var(--disp);letter-spacing:.04em;text-align:center;white-space:nowrap; }
+.partner-program-visual-label { position:absolute;top:0;left:50%;z-index:5;display:flex;transform:translateX(-50%);padding:7px 9px 7px 18px;align-items:center;gap:12px;border:1px solid rgba(139,195,255,.55);border-radius:999px;background:rgba(5,35,80,.92);box-shadow:0 12px 30px rgba(0,0,0,.24);color:#fff;font:800 13px/1.2 var(--disp);letter-spacing:.04em;text-align:center;white-space:nowrap; }
+.partner-program-icons { display:flex;align-items:center;gap:5px; }
+.partner-program-icons svg { width:28px;height:28px;padding:5px;border:1px solid rgba(255,255,255,.18);border-radius:9px;background:linear-gradient(135deg,#1973ed,#0d4ba8);fill:none;stroke:#fff;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round; }
+.partner-program-icons svg:last-child { background:linear-gradient(135deg,#ff9a22,#e76b00); }
 .partner-float-node { position:absolute;z-index:4;display:flex;min-height:48px;align-items:center;gap:9px;padding:7px 13px 7px 7px;border:1px solid rgba(148,197,255,.52);border-radius:14px;background:rgba(7,35,78,.92);color:#dcebff;box-shadow:0 15px 34px rgba(0,0,0,.32),inset 0 0 20px rgba(64,154,255,.12);backdrop-filter:blur(9px);pointer-events:none;white-space:nowrap; }
 .partner-float-node i { display:grid;width:34px;height:34px;place-items:center;border-radius:10px;background:#1768db;color:#fff;font-style:normal;font-size:15px;font-weight:900; }
 .partner-float-node b { font-size:12px;letter-spacing:.01em; }
@@ -366,7 +369,7 @@
 .company-orb-two { width: 280px; height: 280px; right: 18%; bottom: -210px; }
 
 .company-body {
-  padding: 70px 0 84px;
+  padding: 35px 0 42px 0;
   background: linear-gradient(#fff, #f7f9fd);
 }
 
@@ -405,7 +408,7 @@
 }
 
 @media (max-width: 640px) {
-  .company-body:has(.vendor-partners) { padding: 40px 0 54px; }
+  .company-body:has(.vendor-partners) { padding: 20px 0 27px 0; }
   .company-body:has(.vendor-partners) .company-wrap { padding-inline: 14px; }
   .vendor-partners-heading { margin-bottom: 32px; }
   .vendor-partners-heading p { font-size: 15px; }
@@ -456,7 +459,7 @@
 .company-card h2 { margin: 0 0 9px; font-size: 19px; }
 .company-card p { margin: 0; color: #667085; font-size: 14px; line-height: 1.65; }
 
-.recognition-section { margin-top: 68px; }
+.recognition-section { margin-top: 34px; }
 .recognition-section:first-of-type { margin-top: 0; }
 .recognition-heading { max-width: 760px; margin: 0 auto 34px; text-align: center; }
 .recognition-heading > span { color: #1769ff; font-size: 10px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
@@ -493,7 +496,7 @@
 .recognition-card-copy a { display: inline-block; margin-top: 14px; color: #1769ff; font-size: 13px; font-weight: 800; text-decoration: none; }
 .recognition-card-copy a:hover { text-decoration: underline; }
 
-.awards-section { padding-top: 64px; border-top: 1px solid #dfe7f2; }
+.awards-section { padding-top: 32px; border-top: 1px solid #dfe7f2; }
 .award-tabs-layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 36px; align-items: start; }
 .award-tabs { display: grid; gap: 6px; padding-right: 16px; border-right: 1px solid #d8e2ef; }
 .award-tabs button { position: relative; width: 100%; padding: 17px 20px; border: 0; border-radius: 10px; background: transparent; color: #98a2b3; cursor: pointer; font: inherit; font-size: 16px; font-weight: 800; text-align: left; transition: color .2s ease, background .2s ease; }
@@ -557,7 +560,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 35px;
-  margin-top: 54px;
+  margin-top: 27px;
   padding: 42px;
   border-radius: 22px;
   background: linear-gradient(135deg, #0b234e, #1057b7);
@@ -601,7 +604,7 @@
   .company-founder-copy { max-width: none; }
   .company-founder-copy h2 { margin-bottom: 14px; }
   .company-founder-highlights { margin-bottom: 18px; }
-  .company-body { padding: 48px 0 60px; }
+  .company-body { padding: 24px 0 30px 0; }
   .company-card-grid { grid-template-columns: 1fr; margin-bottom: 42px; }
   .certification-grid { grid-template-columns: 1fr 1fr; }
   .certification-tabs-layout { grid-template-columns:1fr; }
@@ -630,7 +633,7 @@
   .company-founder-visual img { width: min(100%, 280px); }
   .company-founder-copy h2 { font-size: 30px; }
   .company-founder-highlights { font-size: 17px; }
-  .recognition-section { margin-top: 52px; }
+  .recognition-section { margin-top: 26px; }
   .recognition-heading { margin-bottom: 25px; }
   .certification-grid,
   .award-grid { grid-template-columns: 1fr; }
@@ -669,7 +672,7 @@
 .team-page > .company-founder-section { display: none; }
 
 .team-directory {
-  padding: 76px 0 64px;
+  padding: 38px 0 32px 0;
   background: linear-gradient(180deg, #f5f9ff 0%, #fff 38%);
 }
 
@@ -708,7 +711,7 @@
   .team-portrait-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 @media (max-width: 760px) {
-  .team-directory { padding: 48px 0; }
+  .team-directory { padding: 24px 0 24px 0; }
   .team-portrait-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 16px; }
   .team-tabs { gap: 8px; margin-bottom: 28px; }
   .team-tabs button { padding: 11px 16px; }
@@ -726,7 +729,7 @@
 .team-management-section {
   position: relative;
   overflow: hidden;
-  padding: 34px 0 60px;
+  padding: 17px 0 30px 0;
   background:
     radial-gradient(260px 240px at -2% 0%, rgba(191, 223, 255, .42), transparent 72%),
     radial-gradient(220px 240px at 101% 100%, rgba(224, 239, 255, .52), transparent 72%),
@@ -935,6 +938,9 @@
 .team-impact-grid article { display: flex; min-height: 105px; flex-direction: column; justify-content: center; padding: 14px 16px; border: 1px solid #c9def8; border-radius: 15px; background: rgba(255, 255, 255, .78); }
 .team-impact-grid strong { color: #126be0; font: 800 clamp(22px, 2vw, 30px)/1 var(--disp); }
 .team-impact-grid span { margin-top: 7px; color: #2f4361; font-size: 12px; line-height: 1.25; }
+.team-certificate-link { align-self: flex-start; margin-top: 10px; padding: 6px 9px; border: 1px solid #c9def8; border-radius: 6px; background: #edf5ff; color: #0755b8; font-size: 11px; font-weight: 600; line-height: 1.4; text-decoration: none; }
+.team-certificate-link:hover { background: #dcecff; border-color: #126be0; }
+.team-certificate-link:focus-visible { outline: 2px solid #126be0; outline-offset: 3px; }
 
 .team-hero {
   position: relative;
@@ -1163,7 +1169,7 @@
 .team-founder-section,
 .team-section,
 .team-contact-band {
-  padding: 42px 0 0;
+  padding: 21px 0 0 0;
 }
 
 .team-founder-grid,
@@ -1358,7 +1364,7 @@
 }
 
 .team-values {
-  padding-top: 78px;
+  padding-top: 39px;
 }
 
 .team-commitment-grid {
@@ -1369,12 +1375,22 @@
 }
 
 .team-commitment-copy {
+  container-type: inline-size;
   padding: 32px;
   border-radius: 24px;
   background:
     radial-gradient(circle at top right, rgba(23, 105, 255, .08), transparent 38%),
     linear-gradient(180deg, #fff, #f5f8fd);
   border: 1px solid #dfe6f1;
+}
+
+.team-commitment-copy h2 {
+  font-size: clamp(18px, 4.5cqw, 42px);
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .team-commitment-copy h2 { font-size: 26px; white-space: normal; }
 }
 
 .team-stats-grid {
@@ -1402,7 +1418,7 @@
 }
 
 .team-contact-band {
-  padding: 78px 0 84px;
+  padding: 39px 0 42px 0;
 }
 
 .team-contact-copy {
@@ -1506,7 +1522,7 @@
 }
 
 @media (max-width: 560px) {
-  .team-management-section { padding: 28px 0 44px; }
+  .team-management-section { padding: 28px 0 22px 0; }
   .team-management-section .team-section-heading > span { font-size: 16px; }
   .team-management-section .team-section-heading h2 { font-size: 34px; }
   .team-management-section .team-section-heading p { font-size: 15px; }

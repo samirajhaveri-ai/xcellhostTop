@@ -1,7 +1,5 @@
 import { ChangeDetectionStrategy, Component, ElementRef, ViewChild, computed, inject, input, signal } from '@angular/core';
 import { CartService } from '../core/cart.service';
-import { OverlayService } from '../core/overlay.service';
-import { CallbackTopicService } from '../overlays/callback-topic.service';
 
 @Component({
   selector: 'xh-enterprise-dmarc-content',
@@ -13,13 +11,6 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 export class EnterpriseDmarcContentComponent {
   readonly heroOnly = input(false);
   readonly dashboardTab = signal(0);
-  readonly demoTab = signal(0);
-  readonly demoLabels = ['Product tour', 'The DMARC dashboard', 'From monitor to reject'];
-  readonly demoDescriptions = [
-    'How XcellHost secures your domain and improves email deliverability with DMARC',
-    'Explore sending sources, authentication reports and policy controls',
-    'See the staged journey from monitoring to full enforcement',
-  ];
   readonly plans = {
     basic: { name: 'Basic', monthly: 1499, annualMonthly: 1349 },
     standard: { name: 'Standard', monthly: 4999, annualMonthly: 4499 },
@@ -32,8 +23,6 @@ export class EnterpriseDmarcContentComponent {
   readonly plan = computed(() => this.plans[this.selectedPlan()]);
   readonly total = computed(() => (this.annual() ? this.plan().annualMonthly * 12 : this.plan().monthly) * this.quantity());
   private readonly cart = inject(CartService);
-  private readonly overlay = inject(OverlayService);
-  private readonly topics = inject(CallbackTopicService);
   @ViewChild('configuration') private configuration?: ElementRef<HTMLDialogElement>;
 
   configure(key: keyof typeof this.plans): void {
@@ -57,8 +46,4 @@ export class EnterpriseDmarcContentComponent {
     this.cart.open();
   }
 
-  requestDemo(): void {
-    this.topics.ask(`Enterprise DMARC - ${this.demoLabels[this.demoTab()]} demo`);
-    this.overlay.open('callback');
-  }
 }

@@ -1,4 +1,5 @@
 import { EnterpriseDmarcContentComponent } from '../sections/enterprise-dmarc-content.component';
+import { BusinessEmailContentComponent } from '../sections/business-email-content.component';
 import { InsightsSectionComponent } from '../sections/insights-section.component';
 import { EmailSignatureContentComponent } from '../sections/email-signature-content.component';
 import { EmailSignatureHeroComponent } from '../sections/email-signature-hero.component';
@@ -126,6 +127,7 @@ interface ProductTourSlide {
   standalone: true,
   imports: [
     EnterpriseDmarcContentComponent,
+    BusinessEmailContentComponent,
     InsightsSectionComponent,
     RouterLink,
     HeroNetDirective,
@@ -1343,7 +1345,7 @@ export class ProductPage {
 
   formatCloudBackupPrice(plan: CloudBackupPlan): string {
     const amount = this.cloudBackupRegionalPrice(plan);
-    if (amount === undefined) return 'Pricing coming soon';
+    if (amount === undefined) return 'Coming soon';
     const country = this.activeCloudBackupCountry();
     return new Intl.NumberFormat(country.locale, {
       style: 'currency', currency: country.currency, maximumFractionDigits: 2,
