@@ -1,0 +1,99 @@
+<div class="pm-page">
+  <section class="pm-hero">
+    <div class="pm-wrap">
+      <nav class="pm-breadcrumb" aria-label="Breadcrumb">
+        <a routerLink="/">Home</a><span>/</span><span>Partner Matrix</span>
+      </nav>
+      <div class="pm-hero-grid">
+        <div>
+          <span class="pm-eyebrow">XCELLHOST CHANNEL NETWORK</span>
+          <h1>Your partner team.<br><span>One clear path.</span></h1>
+          <p class="pm-intro">Connect directly with the right XcellHost specialist for sales, solution design, support, billing or strategic partnership guidance.</p>
+          <div class="pm-hero-actions">
+            <a class="pm-button pm-primary" routerLink="/company/partner-signup">
+              <span class="material-symbols-outlined" aria-hidden="true">handshake</span>Become a partner
+            </a>
+            <a class="pm-button pm-secondary" href="tel:+912267111555">
+              <span class="material-symbols-outlined" aria-hidden="true">call</span>+91 22 6711 1555
+            </a>
+          </div>
+        </div>
+        <aside class="pm-guide" aria-labelledby="partner-guide-title">
+          <span class="pm-eyebrow">FIND THE RIGHT CONTACT</span>
+          <h2 id="partner-guide-title">Move opportunities forward, faster.</h2>
+          <ol>
+            <li><span>01</span><div><strong>Choose a team</strong><p>Filter the directory by the help you need.</p></div></li>
+            <li><span>02</span><div><strong>Find your specialist</strong><p>Review their role, location and contact purpose.</p></div></li>
+            <li><span>03</span><div><strong>Connect directly</strong><p>Email or call from any contact card.</p></div></li>
+          </ol>
+        </aside>
+      </div>
+      <div class="pm-stats" aria-label="Partner directory overview">
+        <div><b>{{ contactCount }}</b><span>Partner contacts</span></div>
+        <div><b>{{ teams.length }}</b><span>Specialist teams</span></div>
+        <div><b>3</b><span>Indian locations</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pm-directory pm-wrap" aria-labelledby="partner-matrix-title">
+    <div class="pm-section-heading">
+      <div><span class="pm-eyebrow">PARTNER DIRECTORY</span><h2 id="partner-matrix-title">Channel Partner Contact Matrix</h2></div>
+      <label class="pm-search">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg>
+        <input type="search" placeholder="Search name, city or service..." [value]="query()" (input)="search($event)" />
+        @if (query()) { <button type="button" aria-label="Clear search" (click)="clearSearch()">&times;</button> }
+      </label>
+    </div>
+
+    <div class="pm-layout">
+      <aside class="pm-sidebar">
+        <h3>Teams</h3>
+        <div class="pm-team-list" role="group" aria-label="Filter partner contacts by team">
+          <button type="button" [class.is-active]="selectedId() === 'all'" [attr.aria-pressed]="selectedId() === 'all'" (click)="selectTeam('all')">
+            <span class="material-symbols-outlined" aria-hidden="true">groups</span><span>All contacts</span><b>{{ teamCount('all') }}</b>
+          </button>
+          @for (team of teams; track team.id) {
+            <button type="button" [class.is-active]="selectedId() === team.id" [attr.aria-pressed]="selectedId() === team.id" (click)="selectTeam(team.id)">
+              <span class="material-symbols-outlined" aria-hidden="true">{{ team.icon }}</span><span>{{ team.name }}</span><b>{{ teamCount(team.id) }}</b>
+            </button>
+          }
+        </div>
+        <div class="pm-note"><span class="material-symbols-outlined" aria-hidden="true">info</span><p>Choose the contact whose purpose best matches your requirement.</p></div>
+      </aside>
+
+      <div class="pm-results" aria-live="polite">
+        <div class="pm-results-bar"><span>{{ visibleCount() }} matching contact{{ visibleCount() === 1 ? '' : 's' }}</span><span>Updated from the partner contact matrix</span></div>
+        @for (team of visibleTeams(); track team.id) {
+          <section class="pm-team-section" [attr.aria-labelledby]="team.id + '-title'">
+            <div class="pm-team-heading">
+              <span class="material-symbols-outlined" aria-hidden="true">{{ team.icon }}</span>
+              <div><h3 [id]="team.id + '-title'">{{ team.name }}</h3><p>{{ team.description }}</p></div>
+            </div>
+            <div class="pm-contact-grid">
+              @for (contact of team.contacts; track contact.email) {
+                <article class="pm-contact">
+                  <div class="pm-card-top"><span>{{ contact.purpose }}</span><b><span class="material-symbols-outlined" aria-hidden="true">location_on</span>{{ contact.city }}</b></div>
+                  <h4>{{ contact.name }}</h4>
+                  <p class="pm-role">{{ contact.designation }}</p>
+                  <div class="pm-contact-links">
+                    <a [href]="'mailto:' + contact.email"><span class="material-symbols-outlined" aria-hidden="true">mail</span><span><small>Email &amp; Teams</small>{{ contact.email }}</span><b aria-hidden="true">&#8599;</b></a>
+                    @if (contact.officePhone) { <a [href]="'tel:' + contact.officePhone"><span class="material-symbols-outlined" aria-hidden="true">business_center</span><span><small>Office</small>{{ formatPhone(contact.officePhone) }}</span><b aria-hidden="true">&#8599;</b></a> }
+                    <a [href]="'tel:' + contact.mobile"><span class="material-symbols-outlined" aria-hidden="true">smartphone</span><span><small>Mobile</small>{{ formatPhone(contact.mobile) }}</span><b aria-hidden="true">&#8599;</b></a>
+                  </div>
+                </article>
+              }
+            </div>
+          </section>
+        } @empty {
+          <div class="pm-empty"><span class="material-symbols-outlined" aria-hidden="true">person_search</span><h3>No contacts found</h3><p>Try a different search or select all contacts.</p><button type="button" (click)="clearSearch(); selectTeam('all')">Reset directory</button></div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="pm-wrap pm-bottom" aria-label="Partner assistance">
+    <article><span class="material-symbols-outlined" aria-hidden="true">rocket_launch</span><div><span class="pm-eyebrow">START A CONVERSATION</span><h2>Ready to grow with XcellHost?</h2><p>Join our partner ecosystem and build new cloud, security and digital-trust opportunities with specialist support.</p></div><a class="pm-button pm-primary" routerLink="/company/partner-signup">Apply to partner</a></article>
+    <aside><span class="pm-eyebrow">GENERAL ENQUIRY</span><h2>Not sure who to contact?</h2><p>Our central team will route your request.</p><a href="mailto:sales@xcellhost.cloud"><span class="material-symbols-outlined" aria-hidden="true">mail</span>sales&#64;xcellhost.cloud</a><a href="tel:+912267111555"><span class="material-symbols-outlined" aria-hidden="true">call</span>+91 22 6711 1555</a></aside>
+  </section>
+</div>

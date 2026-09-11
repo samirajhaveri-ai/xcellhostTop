@@ -22,4 +22,36 @@ describe('Blog API pagination', () => {
     subscription.unsubscribe();
     http.verify();
   }));
+
+  it('maps new YouTube channel uploads into categorised insight cards', fakeAsync(() => {
+    TestBed.configureTestingModule({ providers: [provideHttpClient(), provideHttpClientTesting()] });
+    const http = TestBed.inject(HttpTestingController);
+    const service = TestBed.inject(BlogApiService);
+    let received: readonly CmsBlogPost[] = [];
+    const subscription = service.videos$.subscribe(videos => received = videos as readonly CmsBlogPost[]);
+    tick(0);
+
+    const request = http.expectOne(req => req.url.includes('api.rss2json.com'));
+    expect(request.request.params.get('rss_url')).toContain('UCChA2em9-NJFlof3MuOe8Qg');
+    request.flush({
+      status: 'ok',
+      items: [{
+        title: 'DPDPA &amp; Consent Management',
+        pubDate: '2026-07-23 14:40:47',
+        link: 'https://www.youtube.com/watch?v=xpDGGwaCiWM',
+        guid: 'yt:video:xpDGGwaCiWM',
+        author: 'XcellHost Cloud Services',
+        thumbnail: 'https://i.ytimg.com/vi/xpDGGwaCiWM/hqdefault.jpg',
+        description: '',
+        content: '',
+      }],
+    });
+
+    expect(received.length).toBe(1);
+    expect(received[0].title).toBe('DPDPA & Consent Management');
+    expect(received[0].category).toBe('DPDPA');
+    expect(received[0].coverImageUrl).toContain('xpDGGwaCiWM');
+    subscription.unsubscribe();
+    http.verify();
+  }));
 });
