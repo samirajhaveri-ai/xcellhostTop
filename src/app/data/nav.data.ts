@@ -3206,6 +3206,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "We'd love to hear from you"
               },
+              {
+                "title": "Promotion Offer",
+                "pill": null,
+                "desc": "We'd love to hear from you"
+              },
             ]
           }
         ]
@@ -3486,12 +3491,12 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Events Center",
             "items": [
               {
-                "title": "Events Catalogue",
+                "title": "Events Catalog",
                 "pill": null,
                 "desc": "Event"
               },
               {
-                "title": "Webinars Catalogue",
+                "title": "Webinars Catalog",
                 "pill": null,
                 "desc": "Webinars"
               },
