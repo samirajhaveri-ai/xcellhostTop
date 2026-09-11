@@ -1,0 +1,48 @@
+<section class="team-structure" aria-labelledby="team-structure-title">
+  <div class="wrap">
+    <header class="structure-heading">
+      <span class="structure-eyebrow">How our team works together</span>
+      <h2 id="team-structure-title">XcellHost Cloud Team Structure</h2>
+      <p class="structure-principles">People <span>·</span> Technology <span>·</span> Security <span>·</span> Service <span>·</span> Growth</p>
+    </header>
+
+    <div class="structure-leader"><span class="material-symbols-outlined" aria-hidden="true">person</span>Managing Director / CEO</div>
+
+    <div class="structure-controls">
+      <p>Select a department to explore its roles.</p>
+      <div><button type="button" (click)="setExpanded(true)" aria-controls="structure-divisions">Expand all roles</button><button type="button" (click)="setExpanded(false)" aria-controls="structure-divisions">Collapse all</button></div>
+    </div>
+
+    <ol class="structure-divisions" id="structure-divisions" aria-label="Divisions reporting to the Managing Director / CEO">
+      @for (division of divisions; track division.id) {
+        <li class="structure-division" [attr.data-division]="division.id">
+          <header class="division-heading">
+            <span class="material-symbols-outlined" aria-hidden="true">{{ division.icon }}</span>
+            <div><h3>{{ division.name }}</h3><p>{{ division.motto }}</p></div>
+          </header>
+          <ul class="structure-departments" [attr.aria-label]="division.name + ' departments'">
+            @for (department of division.departments; track department.name) {
+              <li>
+                <details>
+                  <summary><h4>{{ department.name }}</h4><span class="department-chevron" aria-hidden="true">+</span></summary>
+                  <ul class="department-roles">
+                    @for (role of department.roles; track role) { <li>{{ role }}</li> }
+                  </ul>
+                </details>
+              </li>
+            }
+          </ul>
+        </li>
+      }
+    </ol>
+
+    <div class="structure-services" aria-label="Our service pillars">
+      <div><span class="material-symbols-outlined" aria-hidden="true">cloud</span><p><b>Cloud</b><span>Flexible infrastructure for a brighter future</span></p></div>
+      <div><span class="material-symbols-outlined" aria-hidden="true">shield</span><p><b>Security</b><span>Protection you can trust</span></p></div>
+      <div><span class="material-symbols-outlined" aria-hidden="true">database</span><p><b>Backup &amp; DR</b><span>Business continuity, always on</span></p></div>
+      <div><span class="material-symbols-outlined" aria-hidden="true">support_agent</span><p><b>Managed Services</b><span>Expert support every step</span></p></div>
+      <div><span class="material-symbols-outlined" aria-hidden="true">grid_view</span><p><b>SaaS</b><span>Tools for a smarter tomorrow</span></p></div>
+    </div>
+    <p class="structure-signoff">Together, we go further.</p>
+  </div>
+</section>

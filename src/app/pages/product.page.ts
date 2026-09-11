@@ -1,4 +1,5 @@
 import { EnterpriseDmarcContentComponent } from '../sections/enterprise-dmarc-content.component';
+import { BusinessEmailContentComponent } from '../sections/business-email-content.component';
 import { InsightsSectionComponent } from '../sections/insights-section.component';
 import { EmailSignatureContentComponent } from '../sections/email-signature-content.component';
 import { EmailSignatureHeroComponent } from '../sections/email-signature-hero.component';
@@ -16,6 +17,7 @@ import { OverlayService } from '../core/overlay.service';
 import { PricingPlan, ProductPageService, ProductView } from '../core/product-page.service';
 import { SeoService } from '../core/seo.service';
 import { DEEP_CONTENT, PLATFORM_ICONS, RICH_PRODUCTS } from '../data/products.data';
+import { Faq } from '../data/models';
 import { SITE, WORLD_MAP_HTML } from '../data/site.data';
 import { HeroNetDirective, ProductFaqComponent } from '../sections/product';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
@@ -52,6 +54,7 @@ import { AutonomousThreatManagementContentComponent } from '../sections/autonomo
 import { AutonomousThreatManagementHeroComponent } from '../sections/autonomous-threat-management-hero.component';
 import { AutonomousThreatSolutionDetailComponent } from '../sections/autonomous-threat-solution-detail.component';
 import { ATM_SOLUTION_DETAILS } from '../data/atm-solution-detail.data';
+import { OurPlatformReferenceComponent } from '../sections/our-platform-reference.component';
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -123,6 +126,7 @@ interface ProductTourSlide {
   standalone: true,
   imports: [
     EnterpriseDmarcContentComponent,
+    BusinessEmailContentComponent,
     InsightsSectionComponent,
     RouterLink,
     HeroNetDirective,
@@ -160,6 +164,7 @@ interface ProductTourSlide {
     AutonomousThreatManagementContentComponent,
     AutonomousThreatManagementHeroComponent,
     AutonomousThreatSolutionDetailComponent,
+    OurPlatformReferenceComponent,
 
     EmailSignatureContentComponent,
     EmailSignatureHeroComponent,
@@ -890,6 +895,17 @@ export class ProductPage {
     () => Object.prototype.hasOwnProperty.call(ATM_SOLUTION_DETAILS, this.slug())
   );
 
+  readonly isOurPlatform = computed(() => this.slug() === 'our-platform');
+
+  readonly ourPlatformFaqs: [string, string][] = [
+    ['What can I manage from the XcellHost Cloud Platform?', 'You can manage compute, storage, networking, databases, security controls and managed services from one console.'],
+    ['Can the platform scale as our requirements grow?', 'Yes. Resources can be expanded as workloads, users and traffic increase.'],
+    ['Where is the platform hosted?', 'Platform services are available from Indian data centres with options selected according to workload and residency requirements.'],
+    ['Can XcellHost manage the environment for us?', 'Yes. You can use the platform as self-service infrastructure or engage XcellHost for deployment, monitoring and ongoing management.'],
+    ['Does the platform support migration from another provider?', 'Yes. The team can assess existing workloads and plan a phased migration with validation and rollback considerations.'],
+    ['How do we request a platform demonstration?', 'Use the callback or Let’s Talk option and the team will arrange a guided demonstration for your use case.'],
+  ];
+
   readonly isSmbCyber = computed(
     () => this.view()?.name === 'SMB Cyber Security Appliance'
   );
@@ -916,6 +932,17 @@ export class ProductPage {
 
   readonly isManagedMicrosoft365 = computed(() => this.view()?.name === 'Managed Microsoft 365');
   readonly isZohoWorkspace = computed(() => this.slug() === 'zoho-workspace');
+
+  readonly zohoWorkspaceFaqs: Faq[] = [
+    ['What is included with Zoho Workspace?', 'Zoho Workspace combines professional business email with Mail, Cliq, Meeting, WorkDrive, Connect and Calendar in one managed subscription.'],
+    ['Can XcellHost migrate our existing business email?', 'Yes. We migrate mailboxes from Microsoft 365, Google Workspace, cPanel, Rediffmail and other supported platforms with a planned approach designed to minimise downtime.'],
+    ['Will XcellHost configure our domain and DNS records?', 'Yes. Our team handles domain verification and configures MX, SPF, DKIM and DMARC records for secure mail delivery.'],
+    ['Which Zoho Workspace plan should we choose?', 'Mail Lite suits straightforward business email, Mail Premium adds retention and compliance features, while Workplace Standard and Professional include the broader collaboration suite.'],
+    ['Can we use Zoho Workspace with Outlook and mobile devices?', 'Yes. Supported plans provide web and mobile access, with IMAP, POP3 or ActiveSync availability depending on the selected plan.'],
+    ['Do you provide security and compliance features?', 'Yes. Available capabilities include S/MIME, two-factor authentication, TLS, spam and phishing protection, eDiscovery, legal hold, retention policies and audit logs.'],
+    ['How is Zoho Workspace billed?', 'Plans are billed in INR on an annual basis, excluding 18% GST. XcellHost provides a GST-compliant invoice and can confirm volume or multi-year pricing.'],
+    ['What support is included?', 'XcellHost provides migration assistance, technical setup and 24×7 support through phone, WhatsApp and tickets.'],
+  ];
 
   readonly isVmc = computed(() => this.view()?.name === 'Verified Mark Certificates (VMC)');
 
@@ -1109,6 +1136,15 @@ export class ProductPage {
       });
     }
 
+    if (slug === 'our-platform') {
+      return this.products.build({
+        name: 'Attack Surface Management',
+        tag: 'Continuous external asset discovery and vulnerability monitoring',
+        cat: 'Security',
+        crumb: 'Security › Autonomous Threat Management',
+      });
+    }
+
     const entry = this.catalog.entryBySlug(slug);
     if (entry) {
       return this.products.build({
@@ -1287,7 +1323,7 @@ export class ProductPage {
 
   formatCloudBackupPrice(plan: CloudBackupPlan): string {
     const amount = this.cloudBackupRegionalPrice(plan);
-    if (amount === undefined) return 'Pricing coming soon';
+    if (amount === undefined) return 'Coming soon';
     const country = this.activeCloudBackupCountry();
     return new Intl.NumberFormat(country.locale, {
       style: 'currency', currency: country.currency, maximumFractionDigits: 2,

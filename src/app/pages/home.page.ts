@@ -58,11 +58,11 @@ const DESCRIPTION =
     <xh-flagship />
     <xh-host-credibility />
     <xh-why />
-    <xh-industries />
     <xh-outcomes />
     <xh-new-category />
     <xh-directory />
     <xh-trusted-by />
+    <xh-industries />
     <xh-insights-section />
     <xh-testimonials />
     <xh-global-locations-map />

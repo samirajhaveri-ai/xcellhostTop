@@ -21,20 +21,20 @@
     <section>
       <div class="pp-sec">What our {{ provider() }} management covers</div>
       <div class="aws-grid four">
-        <article><h3>Migration &amp; onboarding</h3><p>Discovery, landing-zone setup and workload migration.</p></article>
-        <article><h3>Monitoring &amp; response</h3><p>Round-the-clock health, alerting and incident handling.</p></article>
-        <article><h3>Security &amp; backup</h3><p>Hardening, patching, threat monitoring and tested recovery.</p></article>
-        <article><h3>FinOps &amp; reporting</h3><p>Right-sizing, savings plans and clear monthly reporting.</p></article>
-        <article><h3>DevOps automation</h3><p>CI/CD support, infrastructure as code and repeatable deployments.</p></article>
-        <article><h3>Database operations</h3><p>RDS availability, performance, maintenance and protection.</p></article>
-        <article><h3>Networking</h3><p>VPC design, connectivity, routing and access controls.</p></article>
-        <article><h3>High availability</h3><p>Resilient architecture, disaster recovery and continuity planning.</p></article>
+        <article><span class="aws-card-icon">↗</span><h3>Migration &amp; onboarding</h3><p>Discovery, landing-zone setup and workload migration.</p></article>
+        <article><span class="aws-card-icon">◉</span><h3>Monitoring &amp; response</h3><p>Round-the-clock health, alerting and incident handling.</p></article>
+        <article><span class="aws-card-icon">◇</span><h3>Security &amp; backup</h3><p>Hardening, patching, threat monitoring and tested recovery.</p></article>
+        <article><span class="aws-card-icon">₹</span><h3>FinOps &amp; reporting</h3><p>Right-sizing, savings plans and clear monthly reporting.</p></article>
+        <article><span class="aws-card-icon">⚙</span><h3>DevOps automation</h3><p>CI/CD support, infrastructure as code and repeatable deployments.</p></article>
+        <article><span class="aws-card-icon">▤</span><h3>Database operations</h3><p>RDS availability, performance, maintenance and protection.</p></article>
+        <article><span class="aws-card-icon">⌘</span><h3>Networking</h3><p>VPC design, connectivity, routing and access controls.</p></article>
+        <article><span class="aws-card-icon">∞</span><h3>High availability</h3><p>Resilient architecture, disaster recovery and continuity planning.</p></article>
       </div>
     </section>
 
     <section>
       <div class="pp-sec">Benefits for your business</div>
-      <div class="aws-benefits"><article><b>Focus on product</b><span>Free your team from daily cloud operations.</span></article><article><b>Reduce cloud waste</b><span>Continuously tune capacity and commitment.</span></article><article><b>Improve resilience</b><span>Prevent issues and recover faster.</span></article><article><b>Get expert coverage</b><span>Cloud, NOC and SOC skills in one team.</span></article></div>
+      <div class="aws-benefits"><article><span class="aws-card-icon">◎</span><b>Focus on product</b><span>Free your team from daily cloud operations.</span></article><article><span class="aws-card-icon">↘</span><b>Reduce cloud waste</b><span>Continuously tune capacity and commitment.</span></article><article><span class="aws-card-icon">◆</span><b>Improve resilience</b><span>Prevent issues and recover faster.</span></article><article><span class="aws-card-icon">♟</span><b>Get expert coverage</b><span>Cloud, NOC and SOC skills in one team.</span></article></div>
     </section>
 
     @if (provider() === 'Azure') {
@@ -76,11 +76,6 @@
       <div class="aws-grid three why"><article><i>01</i><h3>AWS expertise</h3><p>Certified engineers backed by managed-cloud experience since 1999.</p></article><article><i>02</i><h3>Real cost savings</h3><p>Continuous optimisation keeps your AWS bill lean.</p></article><article><i>03</i><h3>Security first</h3><p>Hardened, monitored and audit-ready environments.</p></article><article><i>04</i><h3>24×7 support</h3><p>Round-the-clock help from our NOC and SOC.</p></article><article><i>05</i><h3>Local billing</h3><p>GST-compliant invoices and familiar payment options.</p></article><article><i>06</i><h3>Clear ownership</h3><p>A named team, transparent SLA and monthly reporting.</p></article></div>
     </section>
 
-    <section class="aws-watch">
-      <div class="pp-sec">Watch it in action</div>
-      <button type="button" (click)="openTour()"><span>Managed {{ provider() }} operations</span><b>See how we monitor, secure and optimise {{ provider() }}</b><em>Open the 3-image screenshot tour →</em></button>
-    </section>
-
     <section><div class="pp-sec">What customers say</div><div class="aws-quotes"><blockquote>“XcellHost migrated us to {{ provider() }} and now runs it 24×7. Our uptime improved and our monthly bill dropped by nearly a third.”<cite>Marketing Lead · E-commerce</cite></blockquote><blockquote>“During our biggest sale, XcellHost kept everything scaling smoothly. Not a single outage, and they caught issues before we noticed.”<cite>IT Security · SaaS</cite></blockquote><blockquote>“Security and compliance were non-negotiable for us. XcellHost hardened our {{ provider() }} and got us audit-ready, with a clear GST invoice each month.”<cite>Agency Owner · Fintech</cite></blockquote></div></section>
 
     <section>
@@ -112,6 +107,25 @@
 
     <xh-insights-section [pageSlug]="provider() === 'Azure' ? 'managed-azure' : 'managed-aws'" />
 
-    <section class="aws-cta"><div><h2>Ready to let experts run your {{ provider() }}?</h2><p>Talk to our cloud team — we'll review your setup, plan the migration and manage {{ provider() }} for you 24×7, with real cost savings.</p></div><button type="button" (click)="requestCallback()">Request a callback</button></section>
+    <section class="azure-final-cta">
+      <div class="azure-final-copy">
+        <h2>Ready to start with Managed {{ provider() }}?</h2>
+        <p>Free consultation · free migration · 24×7 support in English &amp; Hindi</p>
+        <div class="azure-final-actions">
+          <button class="azure-primary" type="button" (click)="requestCallback()">Request a callback</button>
+          <a routerLink="/contact">⚡ Buy Now</a>
+          <a routerLink="/contact">⬇ Infosheet</a>
+          <a routerLink="/contact">▣ Presentation</a>
+          <a href="https://wa.me/918657032540" target="_blank" rel="noopener">Talk on WhatsApp</a>
+          <a href="mailto:sales@xcellhost.cloud">Email Us</a>
+        </div>
+      </div>
+      <a class="azure-buddha" routerLink="/company/support-overview" aria-label="Visit XcellHost customer support">
+        <img src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost Laughing Buddha" />
+      </a>
+    </section>
+    <div class="azure-proof" aria-label="XcellHost credentials">
+      <span>🏅 ISO 27001</span><span>🏅 ISO 20000-1</span><span>🤝 Microsoft Gold Partner</span><span>♟ Since 1999</span><span>🔒 Secure Payments — UPI · Cards · NetBanking</span>
+    </div>
   </div>
 </main>
