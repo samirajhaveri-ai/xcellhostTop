@@ -1,3 +1,4 @@
+import { InsightsSectionComponent } from '../sections/insights-section.component';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 
@@ -9,7 +10,7 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 @Component({
   selector: 'xh-microsoft-365-smb-page',
   standalone: true,
-  imports: [DecimalPipe],
+  imports: [InsightsSectionComponent, DecimalPipe],
   templateUrl: './microsoft-365-smb.page.html',
   styleUrl: './microsoft-365-smb.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
