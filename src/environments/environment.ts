@@ -29,4 +29,8 @@ export const environment = {
 
   /** Local development uses Angular's proxy.conf.json to avoid browser CORS blocking. */
   strapiUrl: '',
+
+  /** Public XcellHost YouTube feed; no API key is exposed in the browser. */
+  youtubeChannelId: 'UCChA2em9-NJFlof3MuOe8Qg',
+  youtubeFeedApi: 'https://api.rss2json.com/v1/api.json',
 };

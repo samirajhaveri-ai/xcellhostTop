@@ -342,14 +342,19 @@
   .pp-chip.price{background:rgba(255,140,26,.16);border-color:rgba(255,140,26,.5);color:#FFD9AC}
   .pp-body{padding:35px 0 0px}
   .pp-body.domain-registration-body{padding-top:28px}
+  .pp-body.domain-registration-body #ppSecWrap .pp-ov{max-width:100%}
   .pp-body.edr-body{padding-top:28px}
   .pp-body.workforce-analytics-body{padding-top:28px}
+  .pp-body.workforce-analytics-body #ppSecWrap .pp-ov{max-width:100%}
   .pp-body.rmm-body{padding-top:28px}
   .pp-body.smb-desktop-body{padding-top:28px}
+  .pp-body.smb-desktop-body #ppSecWrap .pp-ov{max-width:100%}
   .pp-body.microsoft-defender-body{padding-top:28px}
   .pp-body.cloud-drive-body{padding-top:28px}
+  .pp-body.cloud-drive-body #ppSecWrap .pp-ov{max-width:100%}
   .pp-body.smb-cyber-body{padding-top:28px}
   .pp-body.genai-body{padding-top:28px}
+  .pp-body.genai-body #ppSecWrap .pp-ov{max-width:100%}
   .pp-body.genai-body > .wrap > .pp-sec:first-child{margin-top:19px}
   .pp-body.smb-cyber-body > .wrap > .pp-sec:first-child{margin-top:19px}
   .pp-body.cloud-drive-body > .wrap > .pp-sec:first-child{margin-top:19px}
@@ -3025,9 +3030,22 @@
   .nf-iso{display:flex;flex-direction:column;align-items:center;justify-content:center;background:#2E4FC4;border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:8px 12px;min-width:62px;color:#fff}
   .nf-iso b{font-size:9px;letter-spacing:.05em;color:#BBD0FF}.nf-iso{font-family:var(--disp);font-weight:700;font-size:14px}
   .nf-iso em{font-size:7px;font-style:normal;color:#9FBBFF;letter-spacing:.08em;margin-top:1px}
-  .nf-pays{display:flex;gap:8px;flex-wrap:wrap;flex:1}
+  .nf-pays{display:flex;gap:9px;flex-wrap:wrap;flex:1;align-items:center}
   @media(max-width:700px){.nf-logo{flex-wrap:wrap}.nf-buddha{height:64px}}
-  .nf-pay{background:#fff;color:#1C2A3A;font-size:11px;font-weight:700;padding:7px 12px;border-radius:6px}
+  .nf-pay{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:40px;padding:7px 11px;border:1px solid rgba(255,255,255,.82);border-radius:8px;background:linear-gradient(180deg,#fff,#f6f8fb);box-shadow:0 4px 12px rgba(6,27,74,.14),inset 0 0 0 1px rgba(12,43,94,.04);color:#1c2a3a;font-size:10px;font-weight:750;white-space:nowrap;transition:transform .18s,box-shadow .18s}
+  .nf-pay:hover{transform:translateY(-2px);box-shadow:0 7px 17px rgba(6,27,74,.22),inset 0 0 0 1px rgba(12,43,94,.04)}
+  .nf-pay i{font-style:normal;line-height:1}
+  .pay-visa i{position:relative;color:#17357d;font:italic 900 18px/1 var(--body);letter-spacing:-1px}.pay-visa i::after{content:"";position:absolute;left:1px;right:0;bottom:-3px;height:2px;background:#f6a500;transform:skewX(-25deg)}
+  .pay-circles{position:relative;width:29px;height:18px}.pay-circles::before,.pay-circles::after{content:"";position:absolute;top:1px;width:16px;height:16px;border-radius:50%;opacity:.94}.pay-circles::before{left:0;background:#eb001b}.pay-circles::after{right:0;background:#f79e1b;mix-blend-mode:multiply}
+  .pay-mastercard span,.pay-maestro span{font-size:9px}.pay-maestro .pay-circles::before{background:#0099df}.pay-maestro .pay-circles::after{background:#ed1c24}
+  .pay-amex i{padding:4px 5px;border-radius:3px;background:#1677b8;color:#fff;font:900 11px/1 var(--body);letter-spacing:-.4px}
+  .pay-paypal i{display:grid;place-items:center;width:22px;height:22px;border-radius:5px;background:linear-gradient(135deg,#003087 45%,#009cde 46%);color:#fff;font:italic 900 16px/1 Georgia,serif}.pay-paypal span{color:#073b85}
+  .pay-amazon span{position:relative;padding-bottom:3px;color:#111820;font:700 11px/1 var(--body)}.pay-amazon span::after{content:"";position:absolute;left:7px;right:1px;bottom:0;height:5px;border-bottom:2px solid #ff9900;border-radius:0 0 50% 50%;transform:rotate(-2deg)}.pay-amazon b{color:#ff9900}
+  .pay-bank i,.pay-cheque i{font-size:20px}.pay-bank i{color:#1769aa}.pay-cheque i{color:#168267}.pay-bank span,.pay-cheque span{font-size:9px}
+  .pay-phonepe i{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#5f259f;color:#fff;font:800 14px/1 var(--body)}.pay-phonepe span{color:#54248f}
+  .pay-paytm i{color:#00baf2;font:900 16px/1 var(--body);letter-spacing:-1.4px}.pay-paytm i b{color:#092e6e}
+  .pay-upi i{position:relative;width:18px;height:20px;transform:skewX(-18deg)}.pay-upi i::before,.pay-upi i::after{content:"";position:absolute;top:1px;width:7px;height:18px}.pay-upi i::before{left:1px;background:#f26b21}.pay-upi i::after{right:1px;background:#0a9f49}.pay-upi b{color:#34383e;font-size:12px}
+  .pay-rupay i{color:#21409a;font:italic 900 15px/1 var(--body);letter-spacing:-1px}.pay-rupay i span{color:#0877bd}.pay-rupay>b{width:0;height:0;border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:8px solid #f58220;filter:drop-shadow(5px 0 #43a047)}
   .nf-prot{display:flex;gap:12px;flex-wrap:nowrap;flex:1;align-items:center;min-width:0}
   .nf-sitelock{display:none}
   .nf-sitelock-image{width:120px;height:61px;object-fit:contain;object-position:center;flex:none}
@@ -3055,7 +3073,7 @@
   .nf-bottom{border-top:1px solid rgba(255,255,255,.18);padding-top:20px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px;color:#C3D3FF}
 
   @media(max-width:900px){.nf-top{grid-template-columns:1fr}.nf-video{max-width:760px}.nf-prot{flex-wrap:wrap;align-items:flex-start}.nf-review-band{width:100%;flex-wrap:wrap}.nf-review-grid{grid-template-columns:repeat(3,minmax(0,1fr));flex-basis:100%}}
-  @media(max-width:600px){.nf-top{grid-template-columns:1fr}.nf-row{flex-direction:column;gap:8px}.nf-rlbl{min-width:0}.nf-cert-row{flex-direction:column;align-items:flex-start}.nf-sitelock-image{width:120px}.nf-video-frame{border-radius:18px}.nf-review-grid{grid-template-columns:1fr}.nf-review-card{padding:16px 16px;border-radius:16px}.nf-review-copy strong{font-size:16px}}
+  @media(max-width:600px){.nf-top{grid-template-columns:1fr}.nf-row{flex-direction:column;gap:8px}.nf-rlbl{min-width:0}.nf-cert-row{flex-direction:column;align-items:flex-start}.nf-pays{width:100%;flex-wrap:nowrap;overflow-x:auto;padding:2px 2px 10px;scrollbar-width:thin}.nf-pay{flex:none}.nf-sitelock-image{width:120px}.nf-video-frame{border-radius:18px}.nf-review-grid{grid-template-columns:1fr}.nf-review-card{padding:16px 16px;border-radius:16px}.nf-review-copy strong{font-size:16px}}
 
   /* v67: single-line stat strip on LEFT, below CTAs */
   /* v85: was navy-on-navy and therefore invisible. Now light, on one line,
@@ -4001,7 +4019,7 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
 
 .tally-pricing{margin:0 0 12px;color:var(--navy);font-family:'Poppins',var(--body)}
 .tally-mobile-insights{margin:-60px 0 12px;overflow:hidden;border:0;border-radius:0;background:transparent;container-type:inline-size}
-.tally-mobile-insights-title{margin:0 0 16px;text-align:center;color:var(--navy);font:700 2cqw/1.2 var(--disp);letter-spacing:-.03em;white-space:nowrap}
+.tally-mobile-insights-title{margin:0 0 16px;text-align:center;color:var(--navy);font:700 1.5cqw/1.2 var(--disp);letter-spacing:-.03em;white-space:nowrap}
 .tally-mobile-insights img{display:block;width:100%;height:auto}
 .tally-mobile-insights + .pp-sec{margin-top:0}
 .tally-price-heading{text-align:center;margin:0 auto 32px}
@@ -4071,7 +4089,7 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
 @media(max-width:700px){
   .tally-pricing{margin:4px 0 12px}
   .tally-mobile-insights{margin-bottom:12px}
-  .tally-mobile-insights-title{margin-bottom:12px;font-size:clamp(20px,6.5vw,28px);white-space:normal}
+  .tally-mobile-insights-title{margin-bottom:12px}
   .tally-price-heading{padding:0 16px;margin-bottom:26px}
   .tally-price-heading h2{font-size:clamp(29px,8vw,37px)}
   .tally-term-tabs{overflow-x:auto;grid-template-columns:repeat(4,minmax(110px,1fr));margin:0 0 28px}
@@ -5037,7 +5055,7 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 @media(prefers-reduced-motion:reduce){.infra-image-modal{animation:none}}
 
 /* WhatsApp SMB: hero artwork recreated from the supplied page source. */
-.ppage.whatsapp-smb-page .pp-body{padding-top:28px}
+.ppage.whatsapp-smb-page .pp-body{padding-top:14px}
 .ppage.whatsapp-smb-page .pph-scene.pph-whatsapp-smb{top:1%;right:3%;bottom:auto;width:42%;display:flex;align-items:center;justify-content:center;overflow:visible;opacity:1}
 .wa-hero-stage{position:relative;width:min(100%,500px);height:390px;display:grid;place-items:center}
 .wa-hero-orbit{position:absolute;width:350px;height:350px;border:1px solid rgba(127,176,255,.25);border-radius:50%;box-shadow:0 0 0 38px rgba(21,101,216,.04)}

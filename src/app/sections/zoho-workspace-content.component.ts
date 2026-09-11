@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'xh-zoho-workspace-content',
   standalone: true,
   templateUrl: './zoho-workspace-content.component.html',
-  styleUrl: './zoho-workspace-content.component.css',
+  styleUrls: ['./zoho-workspace-content.component.css', './zoho-workspace-cards.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ZohoWorkspaceContentComponent {}

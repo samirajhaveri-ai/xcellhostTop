@@ -189,11 +189,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Optimized hosting for WordPress sites ⚡"
               },
-              {
-                "title": "Web Security (SiteLock)",
-                "pill": null,
-                "desc": "Digital safety with our comprehensive web solutions 🌐"
-              },
+              
               
               {
                 "title": "AI Website Builder",
@@ -257,11 +253,20 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "Web Security",
             "items": [
-              
               {
-                "title": "No Data",
+                "title": "Web Security (SiteLock)",
                 "pill": null,
-                "desc": "Manage your hosting easily with a user-friendly control panel 🖱️"
+                "desc": "Digital safety with our comprehensive web solutions 🌐"
+              },
+              {
+                "title": "Thawte  SSL Certificates",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "RapidSSL  SSL Certificates",
+                "pill": null,
+                "desc": null
               },
               
             ]
@@ -1436,16 +1441,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "Thawte  SSL Certificates",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "RapidSSL  SSL Certificates",
-                "pill": null,
-                "desc": null
-              }
+              
             ]
           }
         ]
@@ -3210,6 +3206,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "We'd love to hear from you"
               },
+              {
+                "title": "Promotion Offer",
+                "pill": null,
+                "desc": "We'd love to hear from you"
+              },
             ]
           }
         ]
@@ -3490,12 +3491,12 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Events Center",
             "items": [
               {
-                "title": "Events Catalogue",
+                "title": "Events Catalog",
                 "pill": null,
                 "desc": "Event"
               },
               {
-                "title": "Webinars Catalogue",
+                "title": "Webinars Catalog",
                 "pill": null,
                 "desc": "Webinars"
               },
@@ -3628,7 +3629,8 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Media Kit",
                 "pill": null,
-                "desc": null
+                "desc": null,
+                "href": "/media-kit"
               },
               {
                 "title": "Press Release",

@@ -6,7 +6,7 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
   selector: 'xh-reseller-program-content',
   standalone: true,
   templateUrl: './reseller-program-content.component.html',
-  styleUrls: ['./vmc-content.component.css', './reseller-program-content.component.css'],
+  styleUrls: ['./vmc-content.component.css', './reseller-program-content.component.css', './reseller-program-spacing.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResellerProgramContentComponent {

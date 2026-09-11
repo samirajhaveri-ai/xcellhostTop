@@ -339,6 +339,7 @@ const MENU_DESCRIPTIONS: Record<string, string> = {
  */
 const CONTENT_LINKS: Record<string, string> = {
   'Escalation Matrix': '/escalation-matrix',
+  'Partner Matrix': '/partner-matrix',
   'WhatsApp For Business': '/whatsapp-smb',
   'Digicert VMC ': '/digicert-vmc',
   'Digicert CMC': '/digicert-cmc',
@@ -364,6 +365,7 @@ const CONTENT_LINKS: Record<string, string> = {
   'About Us': '/about',
   'Why XcellHost': '/company/why-xcellhost',
   'Our Team · Our Story': '/company/our-team-our-story',
+  'Our Platform': '/company/our-platform',
   'Certifications & Awards': '/company/certifications-awards',
   'Certifications': '/company/certifications-awards',
   'Awards': '/company/awards',

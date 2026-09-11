@@ -19,12 +19,14 @@ export const routes: Routes = [
   { path: 'bfsi-financial-services', redirectTo: 'bfsi-insurance-services', pathMatch: 'full' },
   { path: 'under-construction/infrastructure', redirectTo: 'infrastructure', pathMatch: 'full' },
   { path: 'under-construction/escalation-matrix', redirectTo: 'escalation-matrix', pathMatch: 'full' },
+  { path: 'under-construction/partner-matrix', redirectTo: 'partner-matrix', pathMatch: 'full' },
   {
     path: 'under-construction/partner-overview',
     data: { pageSlug: 'partner-overview' },
     loadComponent: () => import('./pages/company.page').then((m) => m.CompanyPage),
   },
   { path: 'escalation-matrix', loadComponent: () => import('./pages/escalation-matrix.page').then((m) => m.EscalationMatrixPage) },
+  { path: 'partner-matrix', loadComponent: () => import('./pages/partner-matrix.page').then((m) => m.PartnerMatrixPage) },
   { path: 'under-construction/cloud-login', redirectTo: 'cloud-login', pathMatch: 'full' },
   { path: 'cloud-login', loadComponent: () => import('./pages/cloud-login.page').then((m) => m.CloudLoginPage) },
   { path: 'under-construction/:slug', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
@@ -129,6 +131,11 @@ export const routes: Routes = [
   },
   { path: 'pricing', loadComponent: () => import('./pages/simple.page').then((m) => m.SimplePage), data: { key: 'pricing' } },
   { path: 'company/partnership-models', redirectTo: 'under-construction/partner-overview', pathMatch: 'full' },
+  {
+    path: 'company/our-platform',
+    data: { productSlug: 'our-platform' },
+    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+  },
   { path: 'company/:slug', loadComponent: () => import('./pages/company.page').then((m) => m.CompanyPage) },
   { path: 'category/:name', loadComponent: () => import('./pages/category.page').then((m) => m.CategoryPage) },
   {
