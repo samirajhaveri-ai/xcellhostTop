@@ -97,7 +97,10 @@ interface InsightItem {
                 }
               </div>
               <label class="insights-search">
-                <span class="material-symbols-rounded" aria-hidden="true">search</span>
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <circle cx="11" cy="11" r="6.5"></circle>
+                  <path d="m16 16 4 4"></path>
+                </svg>
                 <input
                   type="search"
                   placeholder="Search insights..."
@@ -153,7 +156,7 @@ interface InsightItem {
                         />
                       }
                       @if (lead.kind === 'video') {
-                        <span class="insights-play" aria-hidden="true">play_arrow</span>
+                        <span class="insights-play" aria-hidden="true">&#9654;</span>
                       }
                     </div>
                     <div class="insights-lead-copy">
@@ -187,7 +190,7 @@ interface InsightItem {
                         />
                       }
                         @if (post.kind === 'video') {
-                          <span class="insights-play" aria-hidden="true">play_arrow</span>
+                          <span class="insights-play" aria-hidden="true">&#9654;</span>
                         }
                       </div>
                       <div class="insights-card-meta">
@@ -201,9 +204,12 @@ interface InsightItem {
                   } @empty {
                     @if (!visible().length) {
                       <div class="insights-empty">
-                        <span class="material-symbols-rounded" aria-hidden="true">search_off</span>
+                        <svg aria-hidden="true" viewBox="0 0 48 48">
+                          <circle cx="21" cy="21" r="12"></circle>
+                          <path d="m30 30 9 9M8 8l32 32"></path>
+                        </svg>
                         <h3>No matching {{ activeTab().toLowerCase() }}</h3>
-                        <p>Try another topic or search term. New Strapi content will appear here automatically.</p>
+                        <p>{{ emptyHelp() }}</p>
                       </div>
                     }
                   }
@@ -388,6 +394,12 @@ export class InsightsPage {
     if (this.activeTab() === 'Videos') return 'Featured video';
     if (this.activeTab() === 'Use Cases') return 'Featured use case';
     return 'Top story';
+  }
+
+  emptyHelp(): string {
+    return this.activeTab() === 'Videos'
+      ? 'Try another topic or search term. New YouTube uploads will appear here automatically.'
+      : 'Try another topic or search term. New Strapi content will appear here automatically.';
   }
 
   readTime(post: Pick<InsightItem, 'title' | 'description' | 'content'> | CmsBlogPost): string {

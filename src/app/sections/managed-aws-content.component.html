@@ -105,10 +105,7 @@
       }
     </section>
 
-    <section class="aws-blog-section azure-blog-section">
-      <div class="pp-sec">From our blog</div>
-      <a class="btn aws-blog-all" routerLink="/insights">View all blogs</a>
-    </section>
+    <xh-insights-section [pageSlug]="provider() === 'Azure' ? 'managed-azure' : 'managed-aws'" />
 
     <section class="azure-final-cta">
       <div class="azure-final-copy">

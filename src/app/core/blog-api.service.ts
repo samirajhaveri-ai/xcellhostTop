@@ -70,6 +70,22 @@ interface StrapiResourceListResponse {
   readonly meta?: { readonly pagination: { readonly page: number; readonly pageCount: number } };
 }
 
+interface YouTubeFeedResponse {
+  readonly status: 'ok' | 'error';
+  readonly items?: readonly YouTubeFeedItem[];
+}
+
+interface YouTubeFeedItem {
+  readonly title: string;
+  readonly pubDate: string;
+  readonly link: string;
+  readonly guid: string;
+  readonly author: string;
+  readonly thumbnail: string;
+  readonly description: string;
+  readonly content: string;
+}
+
 /** The single source of truth for blog content displayed by the Angular app. */
 @Injectable({ providedIn: 'root' })
 export class BlogApiService {
@@ -83,8 +99,15 @@ export class BlogApiService {
     shareReplay({ bufferSize: 1, refCount: true })
   );
 
-  /** Optional Strapi collection: title, slug, description, category, videoUrl and coverImage. */
-  readonly videos$ = this.resourceStream('videos', 'video');
+  /** Latest channel uploads, with the optional Strapi collection as a fallback. */
+  readonly videos$ = timer(0, 15 * 60_000).pipe(
+    switchMap(() =>
+      this.listYouTubeVideos().pipe(
+        catchError(() => this.listResources('videos', 'video').pipe(catchError(() => of([]))))
+      )
+    ),
+    shareReplay({ bufferSize: 1, refCount: true })
+  );
 
   /** Optional Strapi collection: title, slug, description, category, relatedPage and coverImage. */
   readonly useCases$ = this.resourceStream('use-cases', 'use-case');
@@ -155,6 +178,17 @@ export class BlogApiService {
     return this.http.get<StrapiResourceListResponse>(`${this.baseUrl}/api/${endpoint}`, { params });
   }
 
+  private listYouTubeVideos(): Observable<readonly CmsInsightResource[]> {
+    const feedUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${environment.youtubeChannelId}`;
+    const params = new HttpParams().set('rss_url', feedUrl);
+    return this.http.get<YouTubeFeedResponse>(environment.youtubeFeedApi, { params }).pipe(
+      map((response) => {
+        if (response.status !== 'ok') throw new Error('YouTube feed unavailable');
+        return (response.items ?? []).map((item) => this.normaliseYouTubeVideo(item));
+      })
+    );
+  }
+
   private normalise(post: CmsBlogPost): CmsBlogPost {
     const url = post.coverImage?.url;
     return {
@@ -192,6 +226,63 @@ export class BlogApiService {
           : `${this.baseUrl}${imageUrl}`
         : this.fallbackCover(item.category ?? kind),
     };
+  }
+
+  private normaliseYouTubeVideo(item: YouTubeFeedItem): CmsInsightResource {
+    const videoId = item.guid.replace(/^yt:video:/, '') || this.youtubeVideoId(item.link);
+    const published = new Date(item.pubDate.replace(' ', 'T') + 'Z');
+    const title = this.decodeEntities(item.title);
+    const description = this.decodeEntities(item.description || item.content).replace(/<[^>]+>/g, '').trim();
+    return {
+      id: 0,
+      documentId: `youtube-${videoId}`,
+      kind: 'video',
+      title,
+      slug: videoId,
+      description: description || `Watch ${title} from XcellHost Cloud Services.`,
+      content: description,
+      author: item.author || 'XcellHost Cloud Services',
+      date: Number.isNaN(published.valueOf()) ? new Date().toISOString().slice(0, 10) : published.toISOString().slice(0, 10),
+      time: Number.isNaN(published.valueOf()) ? '09:00' : published.toISOString().slice(11, 16),
+      category: this.youtubeCategory(`${title} ${description}`),
+      videoUrl: item.link || `https://www.youtube.com/watch?v=${videoId}`,
+      relatedPage: null,
+      publishedAt: Number.isNaN(published.valueOf()) ? '' : published.toISOString(),
+      updatedAt: '',
+      coverImage: null,
+      coverImageUrl: item.thumbnail || `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
+    };
+  }
+
+  private youtubeCategory(value: string): string {
+    const text = value.toLowerCase();
+    const categories: readonly [RegExp, string][] = [
+      [/dpdpa|data protection|privacy|consent|ropa|breach notification/, 'DPDPA'],
+      [/tally/, 'Tally on Cloud'],
+      [/microsoft 365|m365|office 365|copilot/, 'Microsoft 365'],
+      [/backup|disaster recovery|ransomware/, 'Backup & Recovery'],
+      [/email|dmarc|domain|ssl|certificate|digicert/, 'Digital Trust'],
+      [/cyber|security|soc|siem|edr|malware|firewall/, 'Cybersecurity'],
+      [/partner|reseller|cybird/, 'Partner Program'],
+      [/cloud|server|hosting|storage|desktop/, 'Cloud'],
+      [/\bai\b|artificial intelligence/, 'AI'],
+    ];
+    return categories.find(([pattern]) => pattern.test(text))?.[1] ?? 'Technology';
+  }
+
+  private youtubeVideoId(url: string): string {
+    return url.match(/[?&]v=([^&]+)/)?.[1] ?? url.split('/').pop() ?? '';
+  }
+
+  private decodeEntities(value: string): string {
+    const named: Record<string, string> = { amp: '&', apos: "'", quot: '"', lt: '<', gt: '>' };
+    return value.replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (entity, code: string) => {
+      if (code[0] !== '#') return named[code.toLowerCase()] ?? entity;
+      const point = code[1].toLowerCase() === 'x'
+        ? Number.parseInt(code.slice(2), 16)
+        : Number.parseInt(code.slice(1), 10);
+      return Number.isFinite(point) ? String.fromCodePoint(point) : entity;
+    });
   }
 
   /** Keeps older posts attractive until an editor uploads their own cover. */

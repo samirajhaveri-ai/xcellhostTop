@@ -1,13 +1,14 @@
+import { EnterpriseDmarcContentComponent } from '../sections/enterprise-dmarc-content.component';
+import { InsightsSectionComponent } from '../sections/insights-section.component';
 import { EmailSignatureContentComponent } from '../sections/email-signature-content.component';
 import { EmailSignatureHeroComponent } from '../sections/email-signature-hero.component';
 import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
-import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 
 import { CartService } from '../core/cart.service';
-import { BlogApiService, CmsBlogPost } from '../core/blog-api.service';
 import { CatalogService, slugify } from '../core/catalog.service';
 import { DocKind, DocRequestService } from '../core/doc-request.service';
 import { LeadService } from '../core/lead.service';
@@ -50,7 +51,8 @@ import { EntraIdContentComponent } from '../sections/entra-id-content.component'
 import { EntraIdHeroComponent } from '../sections/entra-id-hero.component';
 import { AutonomousThreatManagementContentComponent } from '../sections/autonomous-threat-management-content.component';
 import { AutonomousThreatManagementHeroComponent } from '../sections/autonomous-threat-management-hero.component';
-
+import { AutonomousThreatSolutionDetailComponent } from '../sections/autonomous-threat-solution-detail.component';
+import { ATM_SOLUTION_DETAILS } from '../data/atm-solution-detail.data';
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -93,6 +95,7 @@ interface CloudDrivePlan {
 }
 
 type CloudBackupTerm = 'monthly' | 'quarterly' | '6m' | 'yearly';
+type CloudBackupCountry = 'IN' | 'UK' | 'AE' | 'US';
 
 interface CloudBackupPlan {
   storage: string;
@@ -120,6 +123,8 @@ interface ProductTourSlide {
   selector: 'xh-product-page',
   standalone: true,
   imports: [
+    EnterpriseDmarcContentComponent,
+    InsightsSectionComponent,
     RouterLink,
     HeroNetDirective,
     LottieDirective,
@@ -155,6 +160,7 @@ interface ProductTourSlide {
 
     AutonomousThreatManagementContentComponent,
     AutonomousThreatManagementHeroComponent,
+    AutonomousThreatSolutionDetailComponent,
 
     EmailSignatureContentComponent,
     EmailSignatureHeroComponent,
@@ -166,10 +172,32 @@ interface ProductTourSlide {
       align-items: center; justify-content: center; opacity: 1; overflow: visible;
       mask-image: none;
     }
+    #ppage .pph-scene.pph-autonomous-threat-solution {
+      top: 0; right: 1%; bottom: auto; width: 48%; height: 100%; display: flex;
+      align-items: center; justify-content: center; opacity: 1; overflow: visible;
+      mask-image: none;
+    }
+    #ppage.atm-solution-page > .pp-hero { min-height: 660px; }
+    #ppage.atm-solution-page .pp-hero h1 { font-size: clamp(19px, 2.2vw, 28px); }
+    #ppage.atm-solution-page .pp-hero > .wrap > h1 { max-width: 58%; white-space: normal; }
+    #ppage.atm-solution-page .pp-tagline { color: #67b7ff; }
+    #ppage.atm-solution-page .pp-tagline-support { color: #fff; }
+    #ppage .atm-demo-preview { max-width: 760px; margin-inline: auto; }
+    #ppage .atm-demo-preview .tally-video-frame { min-height: 360px; background: #041e42; }
+    #ppage .atm-demo-preview > .btn { align-self: center; margin: 18px auto 4px; }
+    #ppage .atm-default-overview { padding-bottom: 18px; }
+    #ppage .atm-default-overview .pp-sec { margin-top: 0; }
+    #ppage .atm-default-overview .pp-ov {
+      width: 100%; max-width: 100%; margin-top: 10px; margin-bottom: 0;
+    }
     @media (max-width: 900px) {
       #ppage .pph-scene.pph-email-signature {
         position: relative; top: auto; right: auto; width: 100%;
         max-width: 460px; margin: 48px auto 32px;
+      }
+      #ppage .pph-scene.pph-autonomous-threat-solution {
+        position: absolute; top: 0; right: 0; width: 100%; height: 100%;
+        opacity: .16; overflow: hidden;
       }
     }
   `],
@@ -187,7 +215,6 @@ export class ProductPage {
   private readonly leads = inject(LeadService);
   private readonly seo = inject(SeoService);
   private readonly sanitizer = inject(DomSanitizer);
-  private readonly blogApi = inject(BlogApiService);
 
   /** five star slots, so the template does not rebuild an array on every check */
   readonly starSlots = [0, 1, 2, 3, 4];
@@ -492,14 +519,11 @@ export class ProductPage {
     },
   ] as const;
 
-
   readonly scrutinyDlpTourSlides: readonly ProductTourSlide[] = [
     { title: 'Data protection overview', description: 'Monitor protected endpoints, policy activity, blocked transfers and overall risk posture.', image: '/assets/images/scrutiny-dlp-tour-dashboard.svg' },
     { title: 'One policy across every channel', description: 'Control removable media, web and cloud uploads, public GenAI tools, screenshots and screen photography.', image: '/assets/images/scrutiny-dlp-tour-policies.svg' },
     { title: 'Audit-ready incident evidence', description: 'Reconstruct a blocked event with classification details, captured evidence and an immutable activity timeline.', image: '/assets/images/scrutiny-dlp-tour-evidence.svg' },
   ];
-
-
 
   /** Product-owned artwork used when a page does not have a dedicated UI screenshot set. */
   readonly productTourSlides = computed<readonly ProductTourSlide[]>(() => {
@@ -863,6 +887,10 @@ export class ProductPage {
     () => this.view()?.name === 'Autonomous Threat Management'
   );
 
+  readonly isAutonomousThreatSolution = computed(
+    () => Object.prototype.hasOwnProperty.call(ATM_SOLUTION_DETAILS, this.slug())
+  );
+
   readonly isSmbCyber = computed(
     () => this.view()?.name === 'SMB Cyber Security Appliance'
   );
@@ -960,27 +988,6 @@ export class ProductPage {
     (this.view()?.platforms ?? []).map((name) => ({ name, icon: PLATFORM_ICONS[name] ?? '🔹' }))
   );
 
-  /** Published Strapi posts, already sorted newest-first by BlogApiService. */
-  private readonly cmsPosts = signal<readonly CmsBlogPost[]>([]);
-
-  /** Show only CMS posts assigned to the current product page. */
-  readonly blogs = computed(() => {
-    const cmsBlogs = this.cmsPosts()
-      .filter((post) => this.isForCurrentPage(post))
-      .slice(0, 3)
-      .map((post) => ({
-        kicker: post.category,
-        meta: this.formatBlogDate(post.date),
-        imageUrl: post.coverImageUrl,
-        imageAlt: post.coverImage?.alternativeText || post.title,
-        title: post.title,
-        excerpt: post.description,
-        link: ['/insights', post.slug],
-      }));
-
-    return cmsBlogs;
-  });
-
   readonly compareRows = computed<CompareRow[]>(() =>
     (this.view()?.edr?.compare.rows ?? []).map((r) => ({ head: r[0], cells: r.slice(1) }))
   );
@@ -1044,11 +1051,6 @@ export class ProductPage {
       this.selectedTallyTerm.set(this.isTally() || this.isSmbCloudDesktop() ? '1y' : 'monthly');
     });
 
-    this.blogApi.posts$.pipe(takeUntilDestroyed()).subscribe({
-      next: (posts) => this.cmsPosts.set(posts),
-      error: () => this.cmsPosts.set([]),
-    });
-
     effect(() => {
       const v = this.view();
       if (!v) {
@@ -1090,27 +1092,6 @@ export class ProductPage {
       timer = setTimeout(typeNextCharacter, 300);
       onCleanup(() => clearTimeout(timer));
     });
-  }
-
-  private formatBlogDate(value: string): string {
-    return new Intl.DateTimeFormat('en-IN', { dateStyle: 'medium' }).format(
-      new Date(`${value}T00:00:00`)
-    );
-  }
-
-  /** Exact targeting prevents Tally posts appearing on Bare Metal or Acronis pages. */
-  private isForCurrentPage(post: CmsBlogPost): boolean {
-    const currentSlug = this.slug();
-    const assignedSlugs = (post.relatedPages ?? '')
-      .split(',')
-      .map((value) => value.trim().toLowerCase().replace(/^\/+|\/+$/g, ''))
-      .filter(Boolean);
-
-    // A category matching the exact service name remains a convenient fallback.
-    return (
-      assignedSlugs.includes(currentSlug) ||
-      (!assignedSlugs.length && slugify(post.category) === currentSlug)
-    );
   }
 
   /* -------------------------------------------------------------- routing */
@@ -1291,6 +1272,40 @@ export class ProductPage {
   ];
 
   readonly selectedCloudBackupTerm = signal<CloudBackupTerm>('yearly');
+  readonly cloudBackupCountries = [
+    { key: 'IN', label: 'India', flag: 'in', currency: 'INR', locale: 'en-IN' },
+    { key: 'UK', label: 'UK', flag: 'gb', currency: 'GBP', locale: 'en-GB' },
+    { key: 'AE', label: 'UAE', flag: 'ae', currency: 'AED', locale: 'en-AE' },
+    { key: 'US', label: 'USA', flag: 'us', currency: 'USD', locale: 'en-US' },
+  ] as const;
+  readonly selectedCloudBackupCountry = signal<CloudBackupCountry>('IN');
+  readonly activeCloudBackupCountry = computed(() =>
+    this.cloudBackupCountries.find(country => country.key === this.selectedCloudBackupCountry())!
+  );
+
+  // Enter final billing-period totals by storage size, in each country's currency.
+  // Example entry: '50 GB': { monthly: ..., quarterly: ..., '6m': ..., yearly: ... }
+  readonly cloudBackupRegionalPrices: Record<Exclude<CloudBackupCountry, 'IN'>, Record<string, Partial<Record<CloudBackupTerm, number>>>> = {
+    UK: {},
+    AE: {},
+    US: {},
+  };
+
+  cloudBackupRegionalPrice(plan: CloudBackupPlan): number | undefined {
+    const country = this.selectedCloudBackupCountry();
+    return country === 'IN' ? this.cloudBackupPrice(plan)
+      : this.cloudBackupRegionalPrices[country][plan.storage]?.[this.selectedCloudBackupTerm()];
+  }
+
+  formatCloudBackupPrice(plan: CloudBackupPlan): string {
+    const amount = this.cloudBackupRegionalPrice(plan);
+    if (amount === undefined) return 'Pricing coming soon';
+    const country = this.activeCloudBackupCountry();
+    return new Intl.NumberFormat(country.locale, {
+      style: 'currency', currency: country.currency, maximumFractionDigits: 2,
+      minimumFractionDigits: 0,
+    }).format(amount);
+  }
 
   readonly activeCloudBackupTerm = computed(
     () => this.cloudBackupTerms.find((term) => term.key === this.selectedCloudBackupTerm()) ?? this.cloudBackupTerms[0]
@@ -1309,9 +1324,10 @@ export class ProductPage {
 
   selectCloudBackupPlan(plan: CloudBackupPlan, ev: Event): void {
     ev.preventDefault();
+    if (this.cloudBackupRegionalPrice(plan) === undefined) return;
     const term = this.activeCloudBackupTerm().label;
-    const price = `₹${this.formatInr(this.cloudBackupPrice(plan))}/${term.toLowerCase()}`;
-    this.cart.add(`Cloud Backup - ${plan.storage} - ${term}`, price);
+    const price = `${this.formatCloudBackupPrice(plan)}/${term.toLowerCase()}`;
+    this.cart.add(`Cloud Backup - ${plan.storage} - ${term} - ${this.activeCloudBackupCountry().label}`, price);
     this.cart.open();
   }
 

@@ -1,3 +1,4 @@
+import { InsightsSectionComponent } from '../sections/insights-section.component';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { OverlayService } from '../core/overlay.service';
@@ -8,7 +9,7 @@ import { ProductPage } from './product.page';
 @Component({
   selector: 'xh-cloud-mdm-page',
   standalone: true,
-  imports: [ProductPage, RouterLink],
+  imports: [InsightsSectionComponent, ProductPage, RouterLink],
   templateUrl: './cloud-mdm.page.html',
   styleUrl: './cloud-mdm.page.css',
   host: { class: 'cloud-mdm-page' },

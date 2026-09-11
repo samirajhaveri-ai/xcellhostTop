@@ -1,3 +1,4 @@
+import { InsightsSectionComponent } from '../sections/insights-section.component';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -12,6 +13,7 @@ import { SeoService } from '../core/seo.service';
 @Component({
   selector: 'xh-google-workspace-page',
   standalone: true,
+  imports: [InsightsSectionComponent],
   templateUrl: './google-workspace.page.html',
   styleUrl: './google-workspace.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
