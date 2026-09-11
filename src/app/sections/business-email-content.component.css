@@ -1,0 +1,267 @@
+/* Content and inbox illustration adapted from the user-provided xcellhost-bizmail.html. */
+:host{display:block;min-width:0;--navy:#041E42;--navy-2:#0A2A57;--blue:#1565D8;--blue-d:#0C3E8F;--blue-soft:#E8F0FD;--orange:#FF8C1A;--orange-d:#F57C00;--ice:#F2F6FC;--white:#fff;--ink:#1C2A3A;--slate:#51607A;--line:#DCE5F2;--ok:#2ECC71;--green:#16a34a;--shadow-s:0 6px 18px rgba(4,30,66,.06);--shadow:0 18px 50px rgba(4,30,66,.10);--shadow-lg:0 34px 80px -20px rgba(4,30,66,.34);--ease:cubic-bezier(.22,.7,.2,1);font-family:var(--body);color:var(--ink);line-height:1.6}
+:host *{box-sizing:border-box}
+:host h2,:host h3,:host p,:host ul{margin:0;padding:0}
+:host h2,:host h3{font-family:var(--disp);color:var(--navy);line-height:1.12;letter-spacing:-.02em;font-weight:700}
+:host svg{display:block}:host button{font-family:inherit}
+
+/* buttons */
+@keyframes glow{0%,100%{box-shadow:0 10px 26px -10px rgba(255,140,26,.7)}50%{box-shadow:0 14px 34px -8px rgba(255,140,26,.95)}}
+:host .bizmail-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:9px;overflow:hidden;font-weight:600;font-size:14.5px;padding:12px 22px;border-radius:12px;cursor:pointer;border:1px solid transparent;white-space:nowrap;will-change:transform;transition:transform .18s var(--ease),box-shadow .28s,background .25s,color .25s,border-color .25s}
+:host .bizmail-btn:before{content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-18deg);transition:left .55s var(--ease)}
+:host .bizmail-btn:hover:before{left:130%}
+:host .btn-primary{background:var(--orange);color:#fff;animation:glow 2.8s ease-in-out infinite}
+:host .btn-primary:hover{background:#e97a08;transform:translateY(-2px)}
+:host .btn-blue{background:linear-gradient(135deg,var(--blue),var(--blue-d));color:#fff;box-shadow:0 14px 28px -12px rgba(21,101,216,.75)}
+:host .btn-blue:hover{transform:translateY(-2px)}
+:host .bizmail-btn-orange{background:linear-gradient(135deg,var(--orange),var(--orange-d));color:#fff;box-shadow:0 14px 28px -12px rgba(255,140,26,.7)}
+:host .bizmail-btn-orange:hover{transform:translateY(-2px)}
+:host .bizmail-btn-green{background:linear-gradient(135deg,var(--ok),var(--green));color:#fff;box-shadow:0 14px 28px -12px rgba(22,163,74,.6)}
+:host .bizmail-btn-green:hover{transform:translateY(-2px)}
+:host .btn-goutline{background:#fff;color:var(--green);border:1.5px solid var(--green)}:host .btn-goutline:hover{background:var(--green);color:#fff}
+:host .btn-ghost{background:#fff;border-color:var(--line);color:var(--navy);box-shadow:var(--shadow-s)}:host .btn-ghost:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-2px)}
+:host .btn-wa{background:#25D366;color:#fff;border-color:#25D366}:host .btn-wa:hover{background:#1eb955;border-color:#1eb955;transform:translateY(-2px)}
+:host .btn-dark{background:rgba(255,255,255,.06);color:#fff;border-color:rgba(255,255,255,.28)}:host .btn-dark:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.5);transform:translateY(-2px)}
+:host .btn-outline{background:transparent;color:#fff;border-color:rgba(255,255,255,.42)}:host .btn-outline:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}
+:host .bizmail-btn .bizmail-ar{transition:transform .25s}:host .bizmail-btn:hover .bizmail-ar{transform:translateX(3px)}
+:host .btn-sm{padding:8px 15px;font-size:12.5px}
+
+:host .bizmail-mail{position:relative;background:#fff;border-radius:16px;box-shadow:var(--shadow-lg);overflow:hidden;width:100%}
+:host .bizmail-mail-bar{display:flex;align-items:center;gap:12px;padding:12px 16px;background:#f3f6fc;border-bottom:1px solid var(--line)}
+:host .bizmail-mail-bar .bizmail-dots{display:flex;gap:6px}:host .bizmail-mail-bar .bizmail-dots i{width:10px;height:10px;border-radius:50%;background:#d3ddef}
+:host .bizmail-mail-title{font-family:var(--mono);font-size:12px;color:var(--slate);letter-spacing:.05em}
+:host .bizmail-mail-body{position:relative;padding:14px;display:flex;flex-direction:column;gap:10px;background:#fff}
+:host .bizmail-mrow{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:12px;background:#fff;border:1px solid var(--line)}
+:host .bizmail-mrow.bizmail-hot{border-color:#bcd3f7;box-shadow:0 10px 24px -14px rgba(21,101,216,.65);background:linear-gradient(90deg,#f5f9ff,#fff)}
+:host .bizmail-mav{width:38px;height:38px;border-radius:50%;flex-shrink:0;display:grid;place-items:center;font-family:var(--disp);font-weight:800;color:#fff;font-size:15px}
+:host .bizmail-mrow.bizmail-hot .bizmail-mav{background:linear-gradient(135deg,var(--blue),var(--navy))}:host .bizmail-mav svg{width:20px;height:20px;color:#fff}
+:host .bizmail-mav.bizmail-g1{background:#f0a53a}:host .bizmail-mav.bizmail-g2{background:#57a94a}
+:host .bizmail-mtx{min-width:0}:host .bizmail-mtx b{font-family:var(--disp);font-size:14px;color:var(--navy);display:flex;align-items:center;gap:6px}
+:host .bizmail-mtx>span{font-size:12px;color:var(--slate);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:210px}
+:host .vck{width:16px;height:16px;border-radius:50%;background:var(--blue);display:inline-grid;place-items:center}:host .vck svg{width:10px;height:10px;color:#fff}
+:host .bizmail-prov-strip{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin:32px 0 30px}
+:host .bizmail-prov-lbl{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:42px;padding:10px 16px;margin-right:4px;border:1px solid #c8dcfa;border-radius:9px;background:linear-gradient(135deg,#edf5ff,#e1edff);font-family:var(--mono);font-size:11px;font-weight:700;line-height:1.4;text-transform:uppercase;letter-spacing:.1em;color:#0c55b5;white-space:nowrap;box-shadow:0 3px 8px rgba(21,101,216,.06)}
+:host .bizmail-prov-lbl::before{content:'';flex:none;width:7px;height:7px;border-radius:50%;background:#1565d8;box-shadow:0 0 0 4px rgba(21,101,216,.1)}
+:host .bizmail-prov{font-family:var(--disp);font-weight:700;font-size:14px;color:var(--navy);background:#fff;border:1px solid var(--line);border-radius:9px;padding:8px 16px;box-shadow:0 4px 12px -8px rgba(4,18,42,.4)}
+/* engagement before/after */
+:host .bizmail-eng-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;margin-top:6px}
+:host .bizmail-eng-copy p{color:var(--slate);font-size:15px;line-height:1.7;margin-bottom:14px}
+:host .bizmail-eng-stats{display:flex;gap:14px;margin-top:20px;flex-wrap:wrap}
+:host .bizmail-eng-stat{background:var(--blue-soft);border:1px solid #cfe0fb;border-radius:14px;padding:14px 18px;min-width:132px}
+:host .bizmail-eng-stat b{display:block;font-family:var(--disp);font-weight:800;font-size:26px;color:var(--blue);line-height:1}
+:host .bizmail-eng-stat span{font-size:12.5px;color:var(--slate)}
+:host .bizmail-eng-visual{display:flex;align-items:center;justify-content:center;gap:6px}
+:host .bizmail-phone{position:relative;width:186px;flex:0 0 186px;background:#0e1b33;border-radius:30px;padding:9px;box-shadow:0 30px 60px -24px rgba(4,18,42,.55)}
+:host .bizmail-phone .bizmail-screen{background:#f4f7fb;border-radius:22px;overflow:hidden;position:relative;height:340px}
+:host .bizmail-phone .bizmail-notch{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:52px;height:5px;border-radius:6px;background:rgba(255,255,255,.5);z-index:3}
+:host .bizmail-ph-top{background:#fff;padding:16px 12px 10px;border-bottom:1px solid var(--line)}
+:host .bizmail-ph-search{background:#eef2f9;border-radius:20px;height:26px;display:flex;align-items:center;padding:0 12px;font-size:10px;color:#9aa8c0;font-family:var(--body)}
+:host .bizmail-ph-lbl{font-family:var(--mono);font-size:8px;letter-spacing:.14em;color:#b7c2d6;padding:8px 12px 2px;text-transform:uppercase}
+:host .bizmail-pmrow{display:flex;align-items:center;gap:9px;padding:8px 12px}
+:host .bizmail-pav{width:26px;height:26px;border-radius:50%;flex-shrink:0;display:grid;place-items:center;font-family:var(--disp);font-weight:800;font-size:11px;color:#fff}
+:host .bizmail-pav.bizmail-gen{background:#c3ccdb}
+:host .bizmail-pav.bizmail-b1{background:linear-gradient(135deg,#1565D8,#0C3E8F)}:host .bizmail-pav.bizmail-b2{background:linear-gradient(135deg,#FF8C1A,#F57C00)}:host .bizmail-pav.bizmail-b3{background:linear-gradient(135deg,#16a34a,#12823a)}:host .bizmail-pav.bizmail-b4{background:linear-gradient(135deg,#0A2A57,#1565D8)}
+:host .bizmail-pav svg{width:15px;height:15px;color:#fff}
+:host .bizmail-pmtx{min-width:0;flex:1}
+:host .bizmail-pmtx b{font-family:var(--disp);font-size:11px;color:var(--navy);display:flex;align-items:center;gap:4px;line-height:1.2}
+:host .bizmail-pmtx span{display:block;font-size:9px;color:#8391a8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+:host .bizmail-pvck{width:12px;height:12px;border-radius:50%;background:var(--blue);display:inline-grid;place-items:center;flex-shrink:0}
+:host .bizmail-pvck svg{width:8px;height:8px;color:#fff}
+:host .bizmail-phone .bizmail-cap{position:absolute;left:0;right:0;bottom:-30px;text-align:center;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
+:host .bizmail-phone.bizmail-after{box-shadow:0 30px 60px -20px rgba(21,101,216,.6)}
+:host .bizmail-phone.bizmail-after .bizmail-cap{color:var(--blue)}
+:host .bizmail-eng-arrows{display:flex;gap:1px;color:var(--blue);flex:0 0 auto}
+:host .bizmail-eng-arrows svg{width:16px;height:26px;opacity:.35;animation:engflow 1.4s infinite}
+:host .bizmail-eng-arrows svg:nth-child(2){animation-delay:.2s}:host .bizmail-eng-arrows svg:nth-child(3){animation-delay:.4s}
+@keyframes engflow{0%,100%{opacity:.25}50%{opacity:1}}
+:host .bizmail-pmrow.bizmail-pop .bizmail-pav,:host .bizmail-pmrow.bizmail-pop .bizmail-pvck{animation:tickpop .5s both}
+@media(max-width:900px){:host .bizmail-eng-grid{grid-template-columns:1fr;gap:34px}:host .bizmail-eng-visual{gap:2px}:host .bizmail-phone{width:160px;flex-basis:160px}}
+@media(max-width:420px){:host .bizmail-phone{width:140px;flex-basis:140px}:host .bizmail-eng-arrows svg{width:12px}}
+/* hero visual */
+:host .bizmail-ssl-stage{position:relative;min-height:380px;display:flex;align-items:center;justify-content:center}
+:host .bizmail-orbit-ring{position:absolute;inset:6% 8%;border:1.5px dashed rgba(127,176,255,.3);border-radius:50%;z-index:0;animation:orbit 40s linear infinite}
+:host .bizmail-orbit-ring:after{content:"";position:absolute;top:-5px;left:50%;width:9px;height:9px;border-radius:50%;background:var(--orange);box-shadow:0 0 12px var(--orange)}
+@keyframes orbit{to{transform:rotate(360deg)}}
+:host .browser{position:relative;z-index:2;width:100%;max-width:430px;background:#fff;border-radius:18px;box-shadow:var(--shadow-lg);overflow:hidden;animation:scfloat 6s ease-in-out infinite}
+@keyframes scfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-11px)}}
+:host .browser .bar{display:flex;align-items:center;gap:8px;padding:11px 14px;background:var(--ice);border-bottom:1px solid var(--line)}
+:host .browser .bizmail-dots{display:flex;gap:5px}:host .browser .bizmail-dots i{width:9px;height:9px;border-radius:50%;background:#cdd8ea;display:block}
+:host .browser .url{flex:1;display:flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-family:var(--mono);font-size:11px;color:var(--navy)}
+:host .browser .url .lock{color:var(--green)}:host .browser .url .lock svg{width:12px;height:12px}:host .browser .url b{color:var(--green)}
+:host .browser .body{position:relative;height:220px;background:linear-gradient(160deg,#08163a,#123776 60%,#1c56c8);overflow:hidden}
+:host .browser .body .bizmail-scanline{position:absolute;left:0;right:0;height:100px;background:linear-gradient(180deg,transparent,rgba(90,150,255,.28),transparent);animation:pphscan 4.5s var(--ease) infinite}
+@keyframes pphscan{0%{top:-100px}100%{top:100%}}
+:host .seal{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:126px;height:126px}
+:host .seal .ring{animation:orbit 24s linear infinite;transform-origin:63px 63px}
+:host .seal .lens-glow{animation:lensGlow 2.4s ease-in-out infinite}@keyframes lensGlow{0%,100%{opacity:.55}50%{opacity:1}}
+:host .bizmail-float-card{position:absolute;background:#fff;border-radius:13px;box-shadow:var(--shadow);padding:11px 14px;z-index:4;display:flex;align-items:center;gap:10px}
+:host .bizmail-float-card .bizmail-fi{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;flex-shrink:0}:host .bizmail-float-card .bizmail-fi svg{width:17px;height:17px}
+:host .bizmail-float-card b{font-family:var(--disp);font-size:13px;color:var(--navy);display:block;line-height:1.2}:host .bizmail-float-card span{font-family:var(--mono);font-size:10px;color:var(--slate)}
+:host .bizmail-fc-secured{left:-16px;top:-30px;bottom:auto;animation:scfloat 7s ease-in-out infinite}:host .bizmail-fc-secured .bizmail-fi{background:#e4f7ec;color:var(--green)}
+:host .bizmail-fc-warranty{right:-26px;bottom:12%;animation:scfloat 8s ease-in-out infinite}:host .bizmail-fc-warranty .bizmail-fi{background:var(--blue-soft);color:var(--blue)}
+:host .bizmail-fc-issued{right:-26px;top:2%;animation:scfloat 6.5s ease-in-out infinite}:host .bizmail-fc-issued .bizmail-fi{background:#fff3e0;color:var(--orange)}
+
+/* body + section titles */
+:host .pp-body{padding:52px 0 56px}
+:host .bizmail-pp-sec{font:700 15px/1.35 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:52px 0 16px}
+:host .bizmail-pp-sec:first-child{margin-top:0;padding-top:clamp(32px,4vw,52px)}
+:host .bizmail-pp-ov{font-size:16.5px;color:var(--ink);line-height:1.75;max-width:none}:host .bizmail-pp-ov+.bizmail-pp-ov{margin-top:14px}:host .bizmail-pp-ov b{color:var(--navy)}
+:host .bizmail-pp-cols{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;align-items:start}:host .bizmail-pp-cols .bizmail-pp-ov{margin:0;max-width:none}
+@media(max-width:820px){:host .bizmail-pp-cols{grid-template-columns:1fr;gap:14px}}
+
+/* validation levels */
+:host .bizmail-pp-vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px}
+:host .bizmail-vcard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:var(--shadow-s);transition:.3s var(--ease)}
+:host .bizmail-vcard:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:#c9dcfb}
+:host .bizmail-vcard .bizmail-vb{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:12px;font-weight:600;padding:6px 12px;border-radius:99px;margin-bottom:16px}
+:host .bizmail-vcard.bizmail-dv .bizmail-vb{background:var(--blue-soft);color:var(--blue)}:host .bizmail-vcard.bizmail-ov .bizmail-vb{background:#eaeff9;color:#2b4a8f}:host .bizmail-vcard.bizmail-ev .bizmail-vb{background:#fff3e0;color:var(--orange-d)}
+:host .bizmail-vcard .bizmail-vb svg{width:14px;height:14px}
+:host .bizmail-vcard h3{font-size:18px;margin-bottom:8px}:host .bizmail-vcard p{font-size:13.5px;color:var(--slate);margin-bottom:16px}
+:host .bizmail-vcard ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+:host .bizmail-vcard li{display:flex;gap:9px;font-size:13px;color:var(--ink)}
+:host .bizmail-vcard li .bizmail-ck,:host .bizmail-pfeat li .bizmail-ck{width:17px;height:17px;border-radius:50%;background:#e4f7ec;color:var(--green);display:grid;place-items:center;flex-shrink:0;margin-top:2px}
+:host .bizmail-vcard li .bizmail-ck svg,:host .bizmail-pfeat li .bizmail-ck svg{width:10px;height:10px}
+
+:host .bizmail-pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+:host .bizmail-pcard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:var(--shadow-s);display:flex;flex-direction:column;transition:.3s var(--ease);position:relative;overflow:hidden}
+:host .bizmail-pcard:before{content:"";position:absolute;left:0;top:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--orange));transform:scaleX(0);transform-origin:left;transition:.35s var(--ease)}
+:host .bizmail-pcard:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:#c9dcfb}:host .bizmail-pcard:hover:before{transform:scaleX(1)}
+:host .bizmail-pcard .bizmail-ptop{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+:host .bizmail-tierbadge{font-family:var(--mono);font-size:10.5px;font-weight:600;padding:4px 10px;border-radius:99px}
+:host .bizmail-tierbadge.bizmail-dv{background:var(--blue-soft);color:var(--blue)}:host .bizmail-tierbadge.bizmail-ov{background:#eaeff9;color:#2b4a8f}:host .bizmail-tierbadge.bizmail-ev{background:#fff3e0;color:var(--orange-d)}
+:host .bizmail-tierbadge.find{background:var(--blue-soft);color:var(--blue)}:host .bizmail-tierbadge.fix{background:#fff3e0;color:var(--orange-d)}:host .bizmail-tierbadge.prevent{background:#e8f7ee;color:var(--green)}
+:host .bizmail-tagchip{font-family:var(--mono);font-size:10px;color:var(--slate);background:var(--ice);border:1px solid var(--line);padding:4px 9px;border-radius:99px}
+:host .bizmail-pcard h3{font-size:16px;margin-bottom:6px;min-height:42px}
+:host .bizmail-pcard .bizmail-pdesc{font-size:12.5px;color:var(--slate);margin-bottom:12px;min-height:34px}
+:host .bizmail-pmeta{display:flex;gap:16px;margin-bottom:12px;font-size:11.5px}
+:host .bizmail-pmeta span{color:var(--slate);display:block}:host .bizmail-pmeta b{font-family:var(--disp);font-size:13px;color:var(--navy)}
+:host .bizmail-pfeat{list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+:host .bizmail-pfeat li{display:flex;gap:9px;font-size:12.5px;color:var(--ink)}
+:host .bizmail-pprice{margin-top:auto;padding-top:14px;border-top:1px solid var(--line);display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:14px}
+:host .bizmail-pprice .bizmail-from{font-size:11px;color:var(--slate);display:block}:host .bizmail-pprice .bizmail-amt{font-family:var(--disp);font-size:23px;font-weight:800;color:var(--navy)}
+:host .bizmail-pprice .yr{font-family:var(--mono);font-size:11px;color:var(--slate)}
+:host .bizmail-pprice .save{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--green);background:#e4f7ec;padding:4px 9px;border-radius:99px}
+:host .bizmail-pcard .bizmail-btn{width:100%}
+:host .bizmail-pv-note{margin-top:16px;font-size:13px;color:var(--slate);font-family:var(--mono)}
+:host .bizmail-pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:6px 0}
+:host .bizmail-pcard.bizmail-hot{border-color:var(--orange);box-shadow:0 20px 44px -20px rgba(255,140,26,.55)}
+:host .bizmail-tagchip.bizmail-best{background:#fff3e0;color:var(--orange-d);border-color:#ffd9a8;font-weight:700}
+
+/* add-ons */
+:host .bizmail-pp-addons{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:8px}
+:host .bizmail-pp-addon{border:1px solid var(--line);border-radius:12px;padding:18px;background:#fff;transition:.2s var(--ease)}
+:host .bizmail-pp-addon:hover{border-color:var(--blue);box-shadow:0 8px 20px rgba(21,101,216,.08);transform:translateY(-4px)}
+:host .bizmail-pp-addon .bizmail-aic{width:34px;height:34px;border-radius:9px;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;margin-bottom:10px}:host .bizmail-pp-addon .bizmail-aic svg{width:18px;height:18px}
+:host .bizmail-pp-addon b{display:block;font-family:var(--disp);font-size:14px;color:var(--navy);margin-bottom:4px}
+:host .bizmail-pp-addon p{font-size:12.5px;color:var(--slate);line-height:1.5}
+
+/* features */
+:host .bizmail-pp-feats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:8px}
+:host .bizmail-pp-feat{border:1px solid var(--line);border-radius:12px;padding:18px 20px;display:flex;gap:14px;align-items:flex-start;transition:.2s var(--ease);background:#fff}
+:host .bizmail-pp-feat:hover{border-color:var(--blue);box-shadow:0 8px 22px rgba(21,101,216,.1);transform:translateY(-4px)}
+:host .bizmail-pp-feat .bizmail-fic{flex:none;width:38px;height:38px;border-radius:10px;display:grid;place-items:center;color:#fff}
+:host .bizmail-pp-feat .bizmail-fic svg{width:19px;height:19px}
+:host .bizmail-pp-feat b{font-family:var(--disp);font-size:14.5px;color:var(--navy);display:block;margin-bottom:3px}
+:host .bizmail-pp-feat p{font-size:12.7px;color:var(--slate);line-height:1.5}
+
+/* benefits */
+:host .bizmail-pp-bens{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:8px}
+:host .bizmail-pb{border:1px solid var(--line);border-radius:12px;padding:18px;background:#fff;transition:.2s var(--ease)}
+:host .bizmail-pb:hover{border-color:var(--blue);box-shadow:var(--shadow-s);transform:translateY(-4px)}
+:host .bizmail-pb .bizmail-ic{width:40px;height:40px;border-radius:11px;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;margin-bottom:12px}:host .bizmail-pb .bizmail-ic svg{width:20px;height:20px}
+:host .bizmail-pb b{font-family:var(--disp);font-size:14px;color:var(--navy);display:block;margin-bottom:4px}:host .bizmail-pb p{font-size:12.5px;color:var(--slate);line-height:1.5}
+
+/* automation panel */
+:host .bizmail-pp-auto{margin-top:16px;background:linear-gradient(120deg,var(--navy),#123776 60%,var(--blue));border-radius:20px;padding:34px;color:#fff;position:relative;overflow:hidden;display:grid;grid-template-columns:1.2fr 1fr;gap:30px;align-items:center;box-shadow:var(--shadow-lg)}
+:host .bizmail-pp-auto:before{content:"";position:absolute;inset:0;opacity:.5;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:34px 34px;animation:gridmove 30s linear infinite}
+:host .bizmail-pp-auto .bizmail-glow{position:absolute;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(255,140,26,.4),transparent 65%);filter:blur(30px);right:-40px;top:-60px;animation:aflow2 12s ease-in-out infinite}
+:host .bizmail-pp-auto .bizmail-al{position:relative;z-index:2}
+:host .bizmail-pp-auto .bizmail-tag{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#ffd9ac;background:rgba(255,140,26,.16);border:1px solid rgba(255,140,26,.35);padding:6px 12px;border-radius:99px;margin-bottom:14px}
+:host .bizmail-pp-auto h3{color:#fff;font-size:24px;margin-bottom:10px}
+:host .bizmail-pp-auto p{color:#c9d8f2;font-size:14.5px;margin-bottom:16px;max-width:46ch}
+:host .bizmail-pp-auto ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:9px}
+:host .bizmail-pp-auto li{display:flex;gap:8px;font-size:13px;color:#e7eefb}
+:host .bizmail-pp-auto li .bizmail-k{color:#5FE08D;flex:none}
+:host .bizmail-pp-auto .bizmail-ar-visual{position:relative;z-index:2;display:flex;flex-direction:column;gap:10px}
+:host .bizmail-ar-step{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:12px;font-size:13px;color:#fff}
+:host .bizmail-ar-step .bizmail-n{width:26px;height:26px;border-radius:8px;background:var(--orange);color:#fff;display:grid;place-items:center;font-family:var(--disp);font-weight:700;font-size:13px;flex-shrink:0}
+:host .bizmail-ar-step.done .bizmail-n{background:var(--ok)}
+
+/* use cases */
+:host .bizmail-pp-uses{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:8px}
+:host .bizmail-pu{border:1px solid var(--line);border-radius:12px;padding:18px;background:#fff;transition:.2s var(--ease)}
+:host .bizmail-pu:hover{border-color:var(--blue);box-shadow:var(--shadow-s);transform:translateY(-4px)}
+:host .bizmail-pu-ic{width:40px;height:40px;border-radius:11px;background:var(--ice);display:grid;place-items:center;font-size:20px;margin-bottom:12px}
+:host .bizmail-pu b{font-family:var(--disp);font-size:14px;color:var(--navy);display:block;margin-bottom:3px}:host .bizmail-pu span{font-size:12.3px;color:var(--slate)}
+:host .bizmail-pu .bizmail-pu-ic{color:#1565d8;background:#eaf2ff;border:1px solid #d6e5fc}
+:host .bizmail-pu-ic svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+:host .bizmail-pu:nth-child(4n+2) .bizmail-pu-ic{color:#7157d9;background:#f1edff;border-color:#e2d9fc}
+:host .bizmail-pu:nth-child(4n+3) .bizmail-pu-ic{color:#078c7b;background:#e9f8f3;border-color:#cceee4}
+:host .bizmail-pu:nth-child(4n+4) .bizmail-pu-ic{color:#c16c0e;background:#fff4e6;border-color:#f7e0c1}
+
+/* security rows */
+:host .bizmail-pp-secrows{display:grid;grid-template-columns:repeat(2,1fr);gap:0 34px;margin-top:8px}
+:host .bizmail-psr{display:flex;gap:13px;padding:16px 0;border-bottom:1px solid var(--line)}
+:host .bizmail-psr .bizmail-si{width:38px;height:38px;border-radius:10px;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;flex-shrink:0}:host .bizmail-psr .bizmail-si svg{width:19px;height:19px}
+:host .bizmail-psr b{font-family:var(--disp);font-size:14.5px;color:var(--navy);display:block;margin-bottom:3px}:host .bizmail-psr p{font-size:12.7px;color:var(--slate);line-height:1.5}
+
+/* ===== more amazing features (tabs) ===== */
+:host .bizmail-ft-head{text-align:center;margin-bottom:22px}
+:host .bizmail-ft-sub{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-d);font-weight:700}
+:host .bizmail-ft-tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:-1px}
+:host .bizmail-ft-tab{font-family:var(--disp);font-weight:600;font-size:14px;color:var(--slate);background:#eef2f9;border:1px solid var(--line);border-radius:12px 12px 0 0;padding:12px 20px;cursor:pointer;transition:.18s}
+:host .bizmail-ft-tab:hover{color:var(--blue)}
+:host .bizmail-ft-tab.active{background:#fff;color:var(--navy);border-bottom-color:#fff;position:relative;z-index:2}
+:host .bizmail-ft-panels{background:#fff;border:1px solid var(--line);border-radius:0 16px 16px 16px;box-shadow:0 24px 50px -30px rgba(4,18,42,.4)}
+:host .bizmail-ft-panel{display:none;grid-template-columns:1fr 1fr;gap:34px;align-items:center;padding:34px}
+:host .bizmail-ft-panel.active{display:grid}
+:host .bizmail-ft-panel h3{font-size:22px;color:var(--navy);margin-bottom:12px}
+:host .bizmail-ft-panel p{font-size:14.5px;color:var(--slate);line-height:1.7;margin-bottom:16px}
+:host .bizmail-ft-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+:host .bizmail-ft-list li{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--ink)}
+:host .bizmail-ft-list li .bizmail-ck{width:20px;height:20px;border-radius:50%;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;flex-shrink:0;margin-top:1px}:host .bizmail-ft-list li .bizmail-ck svg{width:12px;height:12px}
+:host .bizmail-ft-shot{background:linear-gradient(135deg,#101826,#1c2942);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:0 16px 34px -22px rgba(4,18,42,.5)}
+:host .bizmail-ft-win{background:#0f1a2e;border-radius:10px;overflow:hidden;box-shadow:0 10px 26px -14px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.08)}
+:host .bizmail-ft-win .bizmail-wb{display:flex;align-items:center;gap:6px;background:linear-gradient(90deg,#0f1a2e,#1c2942);padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.06)}
+:host .bizmail-ft-win .bizmail-wb .bizmail-tsm{font-family:var(--disp);font-weight:800;font-size:8px;color:var(--orange);line-height:.8;text-align:center}:host .bizmail-ft-win .bizmail-wb .bizmail-tsm small{font-size:5px;letter-spacing:.14em;color:#8ea4c6;display:block}
+:host .bizmail-ft-win .bizmail-wb b{margin-left:auto;font-family:var(--mono);font-size:8px;color:#8ea4c6;font-weight:600}
+:host .bizmail-ft-win .bizmail-wbody{padding:16px;min-height:150px;display:flex;flex-direction:column;justify-content:center;gap:11px;background:radial-gradient(circle at 78% 30%,#20345c,#0f1a2e 70%)}
+:host .bizmail-ft-win .bizmail-wfield{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:9px 11px;display:flex;align-items:center;gap:9px;color:#c9d8f2;font-size:9px}
+:host .bizmail-ft-win .bizmail-wfield .bizmail-ic{width:18px;height:18px;color:var(--orange);flex-shrink:0}:host .bizmail-ft-win .bizmail-wfield .bizmail-ic svg{width:18px;height:18px}
+:host .bizmail-ft-win .bizmail-wfield .bizmail-fl{flex:1;min-width:0}:host .bizmail-ft-win .bizmail-wfield .bizmail-fl b{display:block;font-family:var(--disp);font-size:10px;color:#fff}:host .bizmail-ft-win .bizmail-wfield .bizmail-fl span{font-size:8px;color:#8ea4c6}
+:host .bizmail-ft-win .wgo{font-family:var(--disp);font-weight:700;font-size:9px;color:#fff;background:var(--orange);border-radius:6px;padding:8px 0;text-align:center}
+:host .bizmail-ft-shotcap{font-family:var(--mono);font-size:10px;color:#8ea4c6;text-align:center;margin-top:10px}
+@media(max-width:820px){:host .bizmail-ft-panel{grid-template-columns:1fr;gap:22px;padding:24px}:host .bizmail-ft-panels{border-radius:16px}}
+
+/* XcellBizMail badge */
+:host .bizmail-bm-badge{display:inline-flex;align-items:center;gap:8px}
+:host .bizmail-bm-badge .bizmail-bm-mark{width:24px;height:24px;border-radius:6px;background:linear-gradient(135deg,#1565D8,#0C3E8F);display:grid;place-items:center;flex-shrink:0}
+:host .bizmail-bm-badge .bizmail-bm-mark svg{width:15px;height:15px;color:#fff}
+:host .bizmail-bm-badge .bizmail-bm-word{font-family:var(--disp);font-weight:800;font-size:16px;color:var(--navy);letter-spacing:.01em}
+:host .bizmail-bm-badge .bizmail-bm-word span{color:var(--blue)}
+
+:host .bizmail-hero-visual{width:100%;max-width:440px;margin:auto;padding:30px 20px}
+:host .bizmail-powered{position:absolute;left:50%;transform:translateX(-50%);bottom:-16px;z-index:6;background:#fff;border-radius:14px;padding:11px 22px;box-shadow:var(--shadow-lg);text-align:center;white-space:nowrap}
+:host .bizmail-powered small{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);display:block;margin-bottom:3px}
+:host .bizmail-pv-note>svg{display:inline-block;width:18px;height:18px;vertical-align:middle;margin-right:6px}
+:host .bizmail-pcard .bizmail-permo{font-size:12px;color:var(--slate);margin-left:6px}
+:host .bizmail-ft-panel{display:none}:host .bizmail-ft-panel.active{display:grid}
+:host .bizmail-ft-tabs{overflow-x:auto}:host .bizmail-ft-tab{flex-shrink:0}
+:host .bizmail-pp-bens .bizmail-pb{display:block;min-height:0;box-shadow:none}
+:host .bizmail-pp-bens .bizmail-pb::before,:host .bizmail-pp-bens .bizmail-pb::after{display:none}
+:host .bizmail-pp-bens .bizmail-pb>.bizmail-ic{margin-bottom:14px}
+:host .bizmail-pp-bens .bizmail-pb>b{display:block;margin-bottom:8px}
+:host .bizmail-pp-bens .bizmail-pb>p{font-size:13px;line-height:1.6}
+:host .bizmail-config{position:fixed;inset:0;margin:auto;width:min(540px,calc(100% - 32px));max-height:90vh;overflow:auto;border:1px solid var(--line);border-radius:18px;padding:30px;background:#fff;color:var(--ink);box-shadow:var(--shadow-lg)}
+:host .bizmail-config::backdrop{background:rgba(4,30,66,.65)}
+:host .bizmail-config h2{font-size:22px;margin:0 24px 12px 0}
+:host .bizmail-config p{font-size:14px;margin:10px 0 20px;color:var(--slate)}
+:host .bizmail-close{position:absolute;right:12px;top:8px;border:0;background:transparent;font-size:28px;cursor:pointer;color:var(--navy)}
+:host .bizmail-config label{display:block;margin-top:20px;font-weight:600}
+:host .bizmail-config input{width:100%;padding:12px;border:1px solid var(--line);border-radius:8px;margin:8px 0 20px;font:inherit}
+:host .bizmail-total{font-size:28px;font-weight:700}:host .bizmail-total small{font-size:13px;font-weight:400}
+:host button:focus-visible,:host a:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+@media(max-width:1024px){:host .bizmail-pp-vgrid,:host .bizmail-pgrid,:host .bizmail-pp-feats{grid-template-columns:repeat(2,minmax(0,1fr))}:host .bizmail-pp-addons,:host .bizmail-pp-bens,:host .bizmail-pp-uses{grid-template-columns:repeat(2,minmax(0,1fr))}:host .bizmail-pp-auto{grid-template-columns:1fr}:host .bizmail-pp-auto ul{grid-template-columns:1fr 1fr}}
+@media(max-width:860px){:host .bizmail-pp-secrows{grid-template-columns:1fr}}
+@media(max-width:640px){:host .bizmail-pp-vgrid,:host .bizmail-pgrid,:host .bizmail-pp-feats,:host .bizmail-pp-addons,:host .bizmail-pp-bens,:host .bizmail-pp-uses,:host .bizmail-pp-auto ul{grid-template-columns:1fr}:host .bizmail-ft-panel.active{grid-template-columns:1fr;padding:20px;gap:22px}:host .bizmail-eng-visual{flex-wrap:wrap}:host .bizmail-pp-auto{overflow:hidden}}
+@media(prefers-reduced-motion:reduce){:host *,:host *::before,:host *::after{animation:none!important;transition:none!important}}

@@ -46,6 +46,65 @@
 
   
 
+  <section class="dm-outcomes" aria-label="DMARC impact and enforcement journey">
+    <div class="dm-outcomes-top">
+      <div class="dm-impact">
+        <h2 class="dm-kicker">DMARC impacts what matters most</h2>
+        <div class="dm-impact-grid">
+          @for (item of [
+            {label: 'Protect your customers', icon: 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M13 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0M18 8h4M20 6v4'},
+            {label: 'Protect your brand', icon: 'M12 3l9 9-9 9-9-9 9-9Z'},
+            {label: 'Build trust & reputation', icon: 'm12 3 3 6 6 1-4.5 4.5 1 6L12 18l-5.5 2.5 1-6L3 10l6-1 3-6Z'},
+            {label: 'Boost inbox placement', icon: 'm5 12 4 4L19 6'},
+            {label: 'Drive business results', icon: 'M12 2v20M18 5H9a4 4 0 0 0 0 8h6a4 4 0 0 1 0 8H6'}
+          ]; track item.label) {
+            <div class="dm-impact-item"><span class="dm-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path [attr.d]="item.icon" /></svg></span><b>{{ item.label }}</b></div>
+          }
+        </div>
+      </div>
+      <div class="dm-journey">
+        <h2 class="dm-kicker">The DMARC enforcement journey</h2>
+        <ol class="dm-journey-grid">
+          @for (step of [
+            {policy: 'p=none', title: 'Monitor', body: 'Gain visibility into your email ecosystem.'},
+            {policy: 'p=quarantine', title: 'Protect', body: 'Unauthenticated email goes to spam or junk.'},
+            {policy: 'p=reject', title: 'Enforce', body: 'Unauthenticated email is rejected — stronger protection, better reputation.'}
+          ]; track step.policy) {
+            <li><span class="dm-shield"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><code>{{ step.policy }}</code><h3>{{ step.title }}</h3><p>{{ step.body }}</p></li>
+          }
+        </ol>
+      </div>
+    </div>
+    <div class="dm-outcomes-bottom">
+      <div class="dm-key-benefits">
+        <h2 class="dm-kicker">Key benefits</h2>
+        <ul>
+          @for (benefit of ['Protect against domain spoofing and phishing', 'Improve email deliverability and inbox placement', 'Meet the requirements of Google, Yahoo, Microsoft and other major mailbox providers', 'Maintain a strong domain and IP reputation', 'Ensure ongoing compliance and brand protection']; track benefit) {
+            <li><span aria-hidden="true">&#10003;</span>{{ benefit }}</li>
+          }
+        </ul>
+      </div>
+      <div class="dm-control">
+        <h2>DMARC gives you <em>visibility.</em> XcellHost gives you <em>control.</em></h2>
+        <div class="dm-equation">
+          @for (item of [
+            {label: 'Visibility', icon: 'M2 12s3-7 10-7 10 7 10 7-3 7-10 7S2 12 2 12ZM15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0'},
+            {label: 'Control', icon: 'M12 3 4 7v5c0 5 8 9 8 9s8-4 8-9V7l-8-4ZM8 12l3 3 5-6'},
+            {label: 'Results', icon: 'M4 4v16h16M8 16l4-5 4 2 4-7'}
+          ]; track item.label) {
+            <div><span class="dm-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path [attr.d]="item.icon" /></svg></span><b>{{ item.label }}</b></div>
+          }
+        </div>
+      </div>
+      <div class="dm-get-started">
+        <span class="dm-kicker">Get started</span>
+        <h2>Take control of your email deliverability today</h2>
+        <p>XcellHost makes DMARC simple, actionable and effective — so your emails land where they should.</p>
+        <ul>@for (item of ['Protect your domain', 'Build trust with recipients', 'Get more emails to the inbox']; track item) {<li><span aria-hidden="true">&#10003;</span>{{ item }}</li>}</ul>
+      </div>
+    </div>
+  </section>
+
   <div class="pp-sec">Why DMARC matters</div>
   <div class="eu-wrap ">
     <div class="eu-why"><div class="di-h" style="text-align:left">Why DMARC matters</div><ul class="kb-list"><li><span class="kc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Prevents fake invoices sent from your domain</li><li><span class="kc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Stops CEO-fraud and impersonation emails</li><li><span class="kc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Protects your brand and reputation</li><li><span class="kc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Improves email deliverability</li><li><span class="kc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Blocks phishing that abuses your domain</li><li><span class="kc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Builds trust with customers, partners and investors</li></ul></div>
@@ -53,14 +112,6 @@
       <div class="eu-flow"><div class="eu-node"><div class="eu-badge"><svg viewBox="0 0 64 70" fill="none"><path d="M32 3l26 11v20c0 18-13 29-26 34C19 63 6 52 6 34V14z" fill="url(#eg_spf)"/><defs><linearGradient id="eg_spf" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#4fae6e"/><stop offset="1" stop-color="#2f8a4f"/></linearGradient></defs></svg><b>SPF</b></div><p>Checks the sending server.</p></div><span class="eu-op">+</span><div class="eu-node"><div class="eu-badge"><svg viewBox="0 0 64 70" fill="none"><path d="M32 3l26 11v20c0 18-13 29-26 34C19 63 6 52 6 34V14z" fill="url(#eg_dkim)"/><defs><linearGradient id="eg_dkim" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#2aa4e0"/><stop offset="1" stop-color="#1668b0"/></linearGradient></defs></svg><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:26px;height:26px"><path d="M15 9a4 4 0 10-4 4l-5 5v3h3v-2h2v-2h2l2-2a4 4 0 001-6z"/></svg></div><p>Checks the email signature.</p></div><span class="eu-op">+</span><div class="eu-node"><div class="eu-badge"><svg viewBox="0 0 64 70" fill="none"><path d="M32 3l26 11v20c0 18-13 29-26 34C19 63 6 52 6 34V14z" fill="url(#eg_dmarc)"/><defs><linearGradient id="eg_dmarc" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#7b3fd0"/><stop offset="1" stop-color="#5a1fb0"/></linearGradient></defs></svg><b>DMARC</b></div><p>Tells the world what to do if either check fails.</p></div><span class="eu-op">=</span><div class="eu-node"><div class="eu-badge"><svg viewBox="0 0 64 70" fill="none"><path d="M32 3l26 11v20c0 18-13 29-26 34C19 63 6 52 6 34V14z" fill="url(#eg_prot)"/><defs><linearGradient id="eg_prot" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#1565D8"/><stop offset="1" stop-color="#0C3E8F"/></linearGradient></defs></svg><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:26px;height:26px"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/></svg></div><p>Your domain is protected.</p></div></div>
       <div class="eu-strip"><b>Start with <span class="b">p=none</span> &rarr; move to <span class="b">p=quarantine</span> &rarr; finally <span class="b">p=reject</span></b><span>Monitor &middot; Analyse &middot; Protect</span></div>
     </div>
-  </div>
-
-  
-
-  <div class="pp-sec">See Enterprise DMARC in action</div>
-  <div class="pp-vids">
-    <div class="pv-tabs" role="group" aria-label="DMARC demonstrations">@for (label of demoLabels; track label; let i = $index) {<button class="pv-tab" type="button" [class.active]="demoTab() === i" [attr.aria-pressed]="demoTab() === i" (click)="demoTab.set(i)">&#9654; {{ label }}</button>}</div>
-    <div class="pv-frame "><div class="grid"></div><button type="button" class="pv-play" aria-label="Request an Enterprise DMARC demonstration" (click)="requestDemo()"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></button><div class="pv-cap">{{ demoDescriptions[demoTab()] }} &mdash; request a guided demo</div></div>
   </div>
 
   
@@ -105,7 +156,7 @@
       <button class="btn btn-orange mag" type="button" (click)="configure('enterprise')">Configure &amp; Buy <span class="ar">&rarr;</span></button>
     </div>
   </div>
-  <p class="pv-note">&#128179; Indicative INR pricing, per month (excl. GST). Add-ons: &#8377;15 per extra 100K email volume &middot; &#8377;9 per additional domain (per month). Setup &amp; onboarding included. Pay via UPI &middot; Cards &middot; NetBanking. GST invoice on every order.</p>
+  <p class="pv-note"><svg class="dmarc-payment-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 9h20M6 15h4m4 0h4"/></svg> Indicative INR pricing, per month (excl. GST). Add-ons: &#8377;15 per extra 100K email volume &middot; &#8377;9 per additional domain (per month). Setup &amp; onboarding included. Pay via UPI &middot; Cards &middot; NetBanking. GST invoice on every order.</p>
 
   
 
@@ -169,10 +220,10 @@
 
   <div class="pp-sec">Benefits for your business</div>
   <div class="pp-bens">
-    <div class="pb " data-d="1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4" stroke-linecap="round"/></svg></span><b>Stop impersonation</b><p>Prevent criminals from sending phishing and fraud in your company&rsquo;s name &mdash; protecting your customers and brand.</p></div>
-    <div class="pb " data-d="2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 7-8" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 7v5h-5"/></svg></span><b>Reach the inbox</b><p>Authenticated email is trusted by Gmail, Outlook and others &mdash; so more of your real mail lands where it should.</p></div>
-    <div class="pb " data-d="3"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5M4 19h16M8 16v-5M12 16V8M16 16v-9" stroke-linecap="round"/></svg></span><b>Full visibility</b><p>Finally see every service sending as your domain &mdash; and shut down the ones that shouldn&rsquo;t be.</p></div>
-    <div class="pb " data-d="4"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6" stroke-linejoin="round"/></svg></span><b>Meet requirements</b><p>Satisfy sender requirements from major mailbox providers and support your compliance obligations.</p></div>
+    <div class="dmarc-benefit " data-d="1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4" stroke-linecap="round"/></svg></span><b>Stop impersonation</b><p>Prevent criminals from sending phishing and fraud in your company&rsquo;s name &mdash; protecting your customers and brand.</p></div>
+    <div class="dmarc-benefit " data-d="2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 7-8" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 7v5h-5"/></svg></span><b>Reach the inbox</b><p>Authenticated email is trusted by Gmail, Outlook and others &mdash; so more of your real mail lands where it should.</p></div>
+    <div class="dmarc-benefit " data-d="3"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5M4 19h16M8 16v-5M12 16V8M16 16v-9" stroke-linecap="round"/></svg></span><b>Full visibility</b><p>Finally see every service sending as your domain &mdash; and shut down the ones that shouldn&rsquo;t be.</p></div>
+    <div class="dmarc-benefit " data-d="4"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6" stroke-linejoin="round"/></svg></span><b>Meet requirements</b><p>Satisfy sender requirements from major mailbox providers and support your compliance obligations.</p></div>
   </div>
 
   
@@ -244,14 +295,14 @@
 
   <div class="pp-sec">Who needs DMARC</div>
   <div class="pp-uses">
-    <div class="pu " data-d="1"><span class="pu-ic">&#127974;</span><b>BFSI &amp; fintech</b><span>Prime phishing targets</span></div>
-    <div class="pu " data-d="2"><span class="pu-ic">&#128722;</span><b>E-commerce &amp; retail</b><span>Protect customer trust</span></div>
-    <div class="pu " data-d="3"><span class="pu-ic">&#127973;</span><b>Healthcare</b><span>Sensitive communications</span></div>
-    <div class="pu " data-d="4"><span class="pu-ic">&#128231;</span><b>High-volume senders</b><span>Marketing &amp; transactional mail</span></div>
-    <div class="pu " data-d="1"><span class="pu-ic">&#127979;</span><b>Government &amp; education</b><span>Widely impersonated</span></div>
-    <div class="pu " data-d="2"><span class="pu-ic">&#128225;</span><b>Marketing teams</b><span>Boost deliverability</span></div>
-    <div class="pu " data-d="3"><span class="pu-ic">&#128736;</span><b>IT &amp; security teams</b><span>Visibility &amp; control</span></div>
-    <div class="pu " data-d="4"><span class="pu-ic">&#127970;</span><b>Any brand with a domain</b><span>Everyone sending email</span></div>
+    <div class="pu " data-d="1"><span class="dmarc-use-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-6 9 6H3ZM4 21h16M6 10v7m6-7v7m6-7v7M3 18h18"/></svg></span><b>BFSI &amp; fintech</b><span>Prime phishing targets</span></div>
+    <div class="pu " data-d="2"><span class="dmarc-use-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h2l3 12h11l2-8H6M9 18h10"/><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/></svg></span><b>E-commerce &amp; retail</b><span>Protect customer trust</span></div>
+    <div class="pu " data-d="3"><span class="dmarc-use-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6m-3-3v6m-3 10v-6h6v6"/></svg></span><b>Healthcare</b><span>Sensitive communications</span></div>
+    <div class="pu " data-d="4"><span class="dmarc-use-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6M7 2h10M7 22h10"/></svg></span><b>High-volume senders</b><span>Marketing &amp; transactional mail</span></div>
+    <div class="pu " data-d="1"><span class="dmarc-use-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m2 8 10-5 10 5-10 5L2 8Zm4 3v6c4 3 8 3 12 0v-6m4-3v9"/></svg></span><b>Government &amp; education</b><span>Widely impersonated</span></div>
+    <div class="pu " data-d="2"><span class="dmarc-use-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m4 10 15-5v14L4 14v-4Zm4 5 2 6H6l-2-7m15-5 3 1v4l-3 1"/></svg></span><b>Marketing teams</b><span>Boost deliverability</span></div>
+    <div class="pu " data-d="3"><span class="dmarc-use-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 8 4v5c0 5-8 9-8 9s-8-4-8-9V7l8-4Z"/><path d="m8 12 3 3 5-6"/></svg></span><b>IT &amp; security teams</b><span>Visibility &amp; control</span></div>
+    <div class="pu " data-d="4"><span class="dmarc-use-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c5 5 5 13 0 18-5-5-5-13 0-18Z"/></svg></span><b>Any brand with a domain</b><span>Everyone sending email</span></div>
   </div>
 
   
