@@ -50,6 +50,8 @@ import { EntraIdContentComponent } from '../sections/entra-id-content.component'
 import { EntraIdHeroComponent } from '../sections/entra-id-hero.component';
 import { AutonomousThreatManagementContentComponent } from '../sections/autonomous-threat-management-content.component';
 import { AutonomousThreatManagementHeroComponent } from '../sections/autonomous-threat-management-hero.component';
+import { AutonomousThreatSolutionDetailComponent } from '../sections/autonomous-threat-solution-detail.component';
+import { ATM_SOLUTION_DETAILS } from '../data/atm-solution-detail.data';
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -157,6 +159,7 @@ interface ProductTourSlide {
 
     AutonomousThreatManagementContentComponent,
     AutonomousThreatManagementHeroComponent,
+    AutonomousThreatSolutionDetailComponent,
 
     EmailSignatureContentComponent,
     EmailSignatureHeroComponent,
@@ -168,10 +171,32 @@ interface ProductTourSlide {
       align-items: center; justify-content: center; opacity: 1; overflow: visible;
       mask-image: none;
     }
+    #ppage .pph-scene.pph-autonomous-threat-solution {
+      top: 0; right: 1%; bottom: auto; width: 48%; height: 100%; display: flex;
+      align-items: center; justify-content: center; opacity: 1; overflow: visible;
+      mask-image: none;
+    }
+    #ppage.atm-solution-page > .pp-hero { min-height: 660px; }
+    #ppage.atm-solution-page .pp-hero h1 { font-size: clamp(19px, 2.2vw, 28px); }
+    #ppage.atm-solution-page .pp-hero > .wrap > h1 { max-width: 58%; white-space: normal; }
+    #ppage.atm-solution-page .pp-tagline { color: #67b7ff; }
+    #ppage.atm-solution-page .pp-tagline-support { color: #fff; }
+    #ppage .atm-demo-preview { max-width: 760px; margin-inline: auto; }
+    #ppage .atm-demo-preview .tally-video-frame { min-height: 360px; background: #041e42; }
+    #ppage .atm-demo-preview > .btn { align-self: center; margin: 18px auto 4px; }
+    #ppage .atm-default-overview { padding-bottom: 18px; }
+    #ppage .atm-default-overview .pp-sec { margin-top: 0; }
+    #ppage .atm-default-overview .pp-ov {
+      width: 100%; max-width: 100%; margin-top: 10px; margin-bottom: 0;
+    }
     @media (max-width: 900px) {
       #ppage .pph-scene.pph-email-signature {
         position: relative; top: auto; right: auto; width: 100%;
         max-width: 460px; margin: 48px auto 32px;
+      }
+      #ppage .pph-scene.pph-autonomous-threat-solution {
+        position: absolute; top: 0; right: 0; width: 100%; height: 100%;
+        opacity: .16; overflow: hidden;
       }
     }
   `],
@@ -859,6 +884,10 @@ export class ProductPage {
 
   readonly isAutonomousThreatManagement = computed(
     () => this.view()?.name === 'Autonomous Threat Management'
+  );
+
+  readonly isAutonomousThreatSolution = computed(
+    () => Object.prototype.hasOwnProperty.call(ATM_SOLUTION_DETAILS, this.slug())
   );
 
   readonly isSmbCyber = computed(
