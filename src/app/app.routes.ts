@@ -14,6 +14,7 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   { path: '', pathMatch: 'full', loadComponent: () => import('./pages/home.page').then((m) => m.HomePage) },
   { path: 'compare', loadComponent: () => import('./pages/compare.page').then((m) => m.ComparePage) },
+  { path: 'compare-providers', loadComponent: () => import('./pages/compare-providers.page').then((m) => m.CompareProvidersPage) },
   { path: 'whatsapp-for-business', redirectTo: 'whatsapp-smb', pathMatch: 'full' },
   { path: 'bfsi-financial-services', redirectTo: 'bfsi-insurance-services', pathMatch: 'full' },
   { path: 'under-construction/infrastructure', redirectTo: 'infrastructure', pathMatch: 'full' },

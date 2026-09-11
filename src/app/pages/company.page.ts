@@ -9,11 +9,12 @@ import { COMPANY_PAGES } from '../data/company.data';
 import { WORLD_MAP_HTML } from '../data/site.data';
 import { HeroNetDirective } from '../sections/product';
 import { ResellerProgramContentComponent } from '../sections/reseller-program-content.component';
+import { TeamStructureComponent } from '../sections/team-structure.component';
 
 @Component({
   selector: 'xh-company-page',
   standalone: true,
-  imports: [RouterLink, HeroNetDirective, ResellerProgramContentComponent],
+  imports: [RouterLink, HeroNetDirective, ResellerProgramContentComponent, TeamStructureComponent],
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './company.page.html',
@@ -51,8 +52,8 @@ export class CompanyPage {
   ] as const;
 
   readonly advisoryTeam = [
-    { initials: 'SJ', name: 'Suraj Jain', role: 'Financial Advisor', image: '/assets/images/team-suraj-jain.png' },
-    { initials: 'SM', name: 'Surendra Mehra', role: 'Chartered Accountant', image: '/assets/images/team-surendra-mehra.png' },
+    { initials: 'SJ', name: 'CA Suraj Jain', role: 'Financial Advisor', image: '/assets/images/team-suraj-jain.png' },
+    { initials: 'SM', name: 'CA Surendra Mehra', role: 'Chartered Accountant', image: '/assets/images/team-surendra-mehra.png' },
   ] as const;
 
   readonly salesTeam = [
