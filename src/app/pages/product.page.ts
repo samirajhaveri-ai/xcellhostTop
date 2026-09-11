@@ -52,6 +52,7 @@ import { AutonomousThreatManagementContentComponent } from '../sections/autonomo
 import { AutonomousThreatManagementHeroComponent } from '../sections/autonomous-threat-management-hero.component';
 import { AutonomousThreatSolutionDetailComponent } from '../sections/autonomous-threat-solution-detail.component';
 import { ATM_SOLUTION_DETAILS } from '../data/atm-solution-detail.data';
+import { OurPlatformReferenceComponent } from '../sections/our-platform-reference.component';
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -160,6 +161,7 @@ interface ProductTourSlide {
     AutonomousThreatManagementContentComponent,
     AutonomousThreatManagementHeroComponent,
     AutonomousThreatSolutionDetailComponent,
+    OurPlatformReferenceComponent,
 
     EmailSignatureContentComponent,
     EmailSignatureHeroComponent,
@@ -890,6 +892,17 @@ export class ProductPage {
     () => Object.prototype.hasOwnProperty.call(ATM_SOLUTION_DETAILS, this.slug())
   );
 
+  readonly isOurPlatform = computed(() => this.slug() === 'our-platform');
+
+  readonly ourPlatformFaqs: [string, string][] = [
+    ['What can I manage from the XcellHost Cloud Platform?', 'You can manage compute, storage, networking, databases, security controls and managed services from one console.'],
+    ['Can the platform scale as our requirements grow?', 'Yes. Resources can be expanded as workloads, users and traffic increase.'],
+    ['Where is the platform hosted?', 'Platform services are available from Indian data centres with options selected according to workload and residency requirements.'],
+    ['Can XcellHost manage the environment for us?', 'Yes. You can use the platform as self-service infrastructure or engage XcellHost for deployment, monitoring and ongoing management.'],
+    ['Does the platform support migration from another provider?', 'Yes. The team can assess existing workloads and plan a phased migration with validation and rollback considerations.'],
+    ['How do we request a platform demonstration?', 'Use the callback or Let’s Talk option and the team will arrange a guided demonstration for your use case.'],
+  ];
+
   readonly isSmbCyber = computed(
     () => this.view()?.name === 'SMB Cyber Security Appliance'
   );
@@ -1106,6 +1119,15 @@ export class ProductPage {
         tag: 'Display your established brand logo in supported inboxes without a registered trademark.',
         cat: 'Digital Trust',
         crumb: 'Digital Trust › Mark Certificates',
+      });
+    }
+
+    if (slug === 'our-platform') {
+      return this.products.build({
+        name: 'Attack Surface Management',
+        tag: 'Continuous external asset discovery and vulnerability monitoring',
+        cat: 'Security',
+        crumb: 'Security › Autonomous Threat Management',
       });
     }
 

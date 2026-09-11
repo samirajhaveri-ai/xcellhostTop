@@ -1,5 +1,8 @@
 @if (view(); as v) {
   <div class="ppage as-page" id="ppage" [class.infrastructure-page]="isInfrastructure()" [class.edr-page]="isAdvancedEdr()" [class.scrutiny-edr-page]="isScrutinyEdr()" [class.rmm-page]="isRmm()" [class.tally-page]="isTally()" [class.whatsapp-smb-page]="isWhatsAppSmb()" [class.atm-solution-page]="isAutonomousThreatSolution()" [class.scrutiny-page]="slug() === 'scrutiny-dlp' || slug() === 'scrutiny-edr' || slug() === 'vortex-soc' || slug() === 'vortex-seg'" [class.cctv-page]="slug() === 'video-surveillance-as-a-service'" [class.cmc-page]="isCmc()" [class.tsplus-monitoring-page]="isTsplusServerMonitoring()" [class.tsplus-support-page]="isTsplusRemoteSupport()" [class.tsplus-advanced-security-page]="isTsplusAdvancedSecurity()" [class.tsplus-remote-access-page]="isTsplusRemoteAccess()">
+    @if (isOurPlatform()) {
+      <xh-our-platform-reference />
+    } @else {
     <div
       class="pp-hero"
       [class.sitelock-hero]="v.name === 'Web Security (SiteLock)'"
@@ -321,6 +324,7 @@
       </div>
       <xh-autonomous-threat-solution-detail [slug]="slug()" mode="content" />
     }
+    }
 
     @if (isSiteLock()) {
       <xh-sitelock-content />
@@ -415,7 +419,7 @@
         @if (isAutonomousThreatManagement()) {
           <xh-autonomous-threat-management-content />
         }
-        @if (!isInfrastructure() && !isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess() && !isResellerProgram() && !isScrutinyEdr() && !isCopilotStudio() && !isCloudObjectStorage() && !isZohoWorkspace() && !isMicrosoftEntraId() && !isAutonomousThreatManagement() && !isAutonomousThreatSolution() && slug() !== 'email-signature') {
+        @if (!isInfrastructure() && !isVmc() && !isCmc() && !isTsplusServerMonitoring() && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess() && !isResellerProgram() && !isScrutinyEdr() && !isCopilotStudio() && !isCloudObjectStorage() && !isZohoWorkspace() && !isMicrosoftEntraId() && !isAutonomousThreatManagement() && !isAutonomousThreatSolution() && !isOurPlatform() && slug() !== 'email-signature') {
         @if (isWhatsAppSmb()) {
           <xh-whatsapp-smb-content />
         } @else {
@@ -1610,7 +1614,7 @@
           </section>
         }
 
-        @if ((showcaseVideos().length || isAutonomousThreatSolution()) && slug() !== 'scrutiny-dlp' && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess()) {
+        @if ((showcaseVideos().length || isAutonomousThreatSolution() || isOurPlatform()) && slug() !== 'scrutiny-dlp' && !isTsplusRemoteSupport() && !isTsplusAdvancedSecurity() && !isTsplusRemoteAccess()) {
           <section class="tally-videos" aria-labelledby="showcaseVideosTitle">
             <div class="pp-sec" id="showcaseVideosTitle">Watch it in action</div>
             <div class="tally-video-grid" [class.single-video]="showcaseVideos().length === 1">
@@ -1635,6 +1639,16 @@
                     <xh-autonomous-threat-solution-detail [slug]="slug()" mode="hero" />
                   </div>
                   <button class="btn btn-primary" type="button" (click)="openCallback($event)">Book a live demo</button>
+                </article>
+              }
+              @if (isOurPlatform()) {
+                <article class="tally-video-card">
+                  <h3><span>Our Platform overview</span></h3>
+                  <div class="tally-video-frame"><iframe src="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?rel=0&amp;playsinline=1" title="Our Platform overview placeholder video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                </article>
+                <article class="tally-video-card">
+                  <h3><span>Cloud console walkthrough</span></h3>
+                  <div class="tally-video-frame"><iframe src="https://www.youtube-nocookie.com/embed/ysz5S6PUM-U?rel=0&amp;playsinline=1" title="Cloud console walkthrough placeholder video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
                 </article>
               }
             </div>
@@ -1769,7 +1783,7 @@
 
         <div class="pp-sec pp-faq-heading">Frequently asked questions</div>
         <div class="pp-faq" id="ppFaq">
-          <xh-product-faq [faqs]="v.faqs" />
+          <xh-product-faq [faqs]="isOurPlatform() ? ourPlatformFaqs : v.faqs" />
         </div>
 
         <div id="ppBlog"><xh-insights-section [pageSlug]="slug()" /></div>
