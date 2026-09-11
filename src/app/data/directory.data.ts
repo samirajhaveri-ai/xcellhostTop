@@ -702,6 +702,72 @@ export const DIRECTORY: DirectoryEntry[] = [
     "group": "Security Operations"
   },
   {
+    "name": "Attack Surface Management",
+    "desc": "Continuous external asset discovery and vulnerability monitoring",
+    "cat": "Security",
+    "group": "Autonomous Threat Management"
+  },
+  {
+    "name": "DMARC+",
+    "desc": "Managed email authentication and domain impersonation protection",
+    "cat": "Security",
+    "group": "Autonomous Threat Management"
+  },
+  {
+    "name": "Human Risk Management",
+    "desc": "AI phishing simulations and security-awareness training",
+    "cat": "Security",
+    "group": "Autonomous Threat Management"
+  },
+  {
+    "name": "Autonomous SOC",
+    "desc": "AI-powered investigation and round-the-clock security operations",
+    "cat": "Security",
+    "group": "Autonomous Threat Management"
+  },
+  {
+    "name": "Brand Intelligence",
+    "desc": "Continuous intelligence for phishing, impersonation and brand abuse",
+    "cat": "Security",
+    "group": "Autonomous Threat Management"
+  },
+  {
+    "name": "Takedown",
+    "desc": "Managed removal of phishing sites, fake apps and fraudulent domains",
+    "cat": "Security",
+    "group": "Autonomous Threat Management"
+  },
+  {
+    "name": "Dark Web Monitoring",
+    "desc": "Early warning for leaked credentials, stolen data and planned attacks",
+    "cat": "Security",
+    "group": "Autonomous Threat Management"
+  },
+  {
+    "name": "Business Email Protection",
+    "desc": "AI protection against phishing, BEC and account takeover",
+    "cat": "Security",
+    "group": "Autonomous Threat Management"
+  },
+  {
+    "name": "Third Party Risk Monitoring",
+    "desc": "Continuous governance and risk scoring across third-party portfolios",
+    "cat": "Security",
+    "group": "Autonomous Threat Management"
+  },
+  {
+    "name": "Vendor Risk Monitoring",
+    "desc": "Continuous vendor posture, compliance and breach monitoring",
+    "cat": "Security",
+    "group": "Autonomous Threat Management"
+  },
+  {
+    "name": "Fraud Protection",
+    "desc": "AI monitoring for fraudulent transactions, accounts and payments",
+    "cat": "Security",
+    "group": "Autonomous Threat Management"
+  },
+  {
     "name": "Cloud Security Log Monitoring",
     "desc": "Continuous log monitoring for incident detection",
     "cat": "Security",

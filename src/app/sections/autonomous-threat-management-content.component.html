@@ -13,7 +13,7 @@
           <div class="solution-top"><i>{{ solution.icon }}</i><span [class]="'risk-tag ' + solution.risk">{{ solution.riskLabel }}</span></div>
           <h3>{{ solution.name }}</h3><p>{{ solution.description }}</p>
           <div class="solution-tags">@for (tag of solution.tags; track tag) {<span>{{ tag }}</span>}</div>
-          <div class="solution-footer"><b>Explore →</b><span>From {{ solution.price }} / yr</span></div>
+          <div class="solution-footer"><span>From {{ solution.price }} / yr</span><b>Explore →</b></div>
         </a>
       }
     </div>
