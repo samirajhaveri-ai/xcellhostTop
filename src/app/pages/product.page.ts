@@ -55,6 +55,7 @@ import { AutonomousThreatManagementHeroComponent } from '../sections/autonomous-
 import { AutonomousThreatSolutionDetailComponent } from '../sections/autonomous-threat-solution-detail.component';
 import { ATM_SOLUTION_DETAILS } from '../data/atm-solution-detail.data';
 import { OurPlatformReferenceComponent } from '../sections/our-platform-reference.component';
+import { WatchtowerReferenceComponent } from '../sections/watchtower-reference.component';
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -165,6 +166,7 @@ interface ProductTourSlide {
     AutonomousThreatManagementHeroComponent,
     AutonomousThreatSolutionDetailComponent,
     OurPlatformReferenceComponent,
+    WatchtowerReferenceComponent,
 
     EmailSignatureContentComponent,
     EmailSignatureHeroComponent,
@@ -897,6 +899,8 @@ export class ProductPage {
 
   readonly isOurPlatform = computed(() => this.slug() === 'our-platform');
 
+  readonly isWatchtower = computed(() => this.slug() === 'watchtower');
+
   readonly ourPlatformFaqs: [string, string][] = [
     ['What can I manage from the XcellHost Cloud Platform?', 'You can manage compute, storage, networking, databases, security controls and managed services from one console.'],
     ['Can the platform scale as our requirements grow?', 'Yes. Resources can be expanded as workloads, users and traffic increase.'],
@@ -904,6 +908,15 @@ export class ProductPage {
     ['Can XcellHost manage the environment for us?', 'Yes. You can use the platform as self-service infrastructure or engage XcellHost for deployment, monitoring and ongoing management.'],
     ['Does the platform support migration from another provider?', 'Yes. The team can assess existing workloads and plan a phased migration with validation and rollback considerations.'],
     ['How do we request a platform demonstration?', 'Use the callback or Let’s Talk option and the team will arrange a guided demonstration for your use case.'],
+  ];
+
+  readonly watchtowerFaqs: [string, string][] = [
+    ['What does Watchtower monitor?', 'Watchtower brings signals from connected cloud, security, infrastructure and business tools into one operational view.'],
+    ['Can Watchtower connect to our existing tools?', 'Yes. Connectors can ingest events from supported products while custom integration requirements can be reviewed during onboarding.'],
+    ['How are alerts prioritised?', 'Incoming events are normalised and grouped by severity, source and operational context to help teams focus on the most important items.'],
+    ['Can different teams receive different notifications?', 'Yes. Routing can be aligned to teams, clients, services and escalation requirements.'],
+    ['Does Watchtower replace our current monitoring products?', 'It can complement existing products by providing one consolidated intelligence and action layer across them.'],
+    ['How can we see a Watchtower demonstration?', 'Use the callback or Let’s Talk option and the team will arrange a guided demonstration using representative workflows.'],
   ];
 
   readonly isSmbCyber = computed(
@@ -1137,6 +1150,15 @@ export class ProductPage {
     }
 
     if (slug === 'our-platform') {
+      return this.products.build({
+        name: 'Attack Surface Management',
+        tag: 'Continuous external asset discovery and vulnerability monitoring',
+        cat: 'Security',
+        crumb: 'Security › Autonomous Threat Management',
+      });
+    }
+
+    if (slug === 'watchtower') {
       return this.products.build({
         name: 'Attack Surface Management',
         tag: 'Continuous external asset discovery and vulnerability monitoring',
