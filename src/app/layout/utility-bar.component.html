@@ -32,17 +32,8 @@
         </svg>
         }
       </button>
-      <div class="ub2-translate notranslate" translate="no" role="group" aria-label="Google Translate">
-        <div id="google_translate_element" class="google-translate-host"></div>
-        @if (language.status() === 'loading') {
-          <span class="ub2-translate-status" role="status">Loading languages...</span>
-        } @else if (language.status() === 'error') {
-          <button class="ub2-tool" type="button" (click)="retryTranslation()"
-            title="Google Translate could not load. Check your connection and try again.">
-            Retry Google Translate
-          </button>
-        }
-      </div>
+      <xh-language-picker [options]="language.options()" [selected]="language.selected()" [status]="language.status()"
+        (selectLanguage)="language.choose($event)" (retry)="retryTranslation()" />
     </div>
     <a class="phone" [href]="site.phoneHref">Phone {{ site.phone }}</a>
     <a class="uwa" [href]="whatsappHref" target="_blank" rel="noopener" aria-label="WhatsApp XcellHost"><svg
@@ -53,6 +44,6 @@
   </div>
 
 
-  <div id="google_translate_element" class="google-translate-host" aria-hidden="true"></div>
+  <div id="google_translate_element" class="google-translate-host" hidden aria-hidden="true" inert></div>
 
 </div>
