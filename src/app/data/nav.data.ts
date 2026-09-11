@@ -605,7 +605,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Shaif",
+                "title": "Chef",
                 "pill": null,
                 "desc": null
               },
@@ -970,6 +970,46 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
+        "g": "11",
+        "label": "Email Addons",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Email Addons",
+            "items": [
+              
+              {
+                "title": "Email Signature",
+                "pill": null,
+                "desc": null
+              },
+              
+              {
+                "title": "Microsoft 365 Training",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Mcrosoft Project Server",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Microsoft Viva",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Microsoft Visio",
+                "pill": null,
+                "desc": null
+              }, 
+              
+            ]
+          }
+        ]
+      },
+      {
         "g": "10",
         "label": "Collaboration Services",
         "on": false,
@@ -1034,46 +1074,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       
-      {
-        "g": "11",
-        "label": "Email Addons",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Email Addons",
-            "items": [
-              
-              {
-                "title": "Email Signature",
-                "pill": null,
-                "desc": null
-              },
-              
-              {
-                "title": "Microsoft 365 Training",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Mcrosoft Project Server",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Microsoft Viva",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Microsoft Visio",
-                "pill": null,
-                "desc": null
-              }, 
-              
-            ]
-          }
-        ]
-      },
+      
       {
         "g": "12",
         "label": "Microsoft Copilot",
@@ -1724,13 +1725,13 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Mobile Device Mgmt",
+                "title": "MDM",
                 "pill": null,
-                "desc": null
+                "desc": null,
               },
               
               {
-                "title": "Data Leak Prevention (DLP)",
+                "title": "Scrutiny DLP",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -3134,6 +3135,11 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "About Us",
             "items": [
               {
+                "title": "Contact Us",
+                "pill": null,
+                "desc": "We'd love to hear from you"
+              },
+              {
                 "title": "Why XcellHost",
                 "pill": null,
                 "desc": "Secure, scalable cloud expertise since 1999"
@@ -3163,11 +3169,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Technology partnerships across cloud and security"
               },
-              {
-                "title": "Contact Us",
-                "pill": null,
-                "desc": "We'd love to hear from you"
-              },
+              
               {
                 "title": "Inquiry Now",
                 "pill": null,
@@ -3199,7 +3201,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "We'd love to hear from you"
               },
               {
-                "title": "Platform Stetus",
+                "title": "Platform Status",
                 "pill": null,
                 "desc": "We'd love to hear from you"
               },
@@ -3226,7 +3228,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Start your XcellHost partner journey"
               },
               {
-                "title": "Partner Storys",
+                "title": "Partner Stories",
                 "pill": null,
                 "desc": "Start your XcellHost partner journey"
               },
@@ -3677,7 +3679,7 @@ export const MEGA_MENU: MenuTop[] = [
         ],
         "groups": [
           {
-            "heading": "Flipbook ",
+            "heading": "Flipbooks ",
             "items": [
               {
                 "title": "SMB Catalog ",
@@ -3707,7 +3709,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Company Profile",
                 "pill": null,
                 "desc": null,
-                "href": "https://flipbooks.officeinfra.com/books/Career-Handbook-MRmA/"
+                "href": ""
               }
             ]
           }
