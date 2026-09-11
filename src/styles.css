@@ -103,7 +103,7 @@
   .trust .item b{color:var(--navy);font-family:var(--mono)}
   .tick{width:15px;height:15px;border-radius:50%;background:var(--blue);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:9px;flex:none}
 
-  section{padding:76px 0}
+  section{padding:40px 0}
   .sec-head{max-width:680px;margin-bottom:42px}
   .sec-head .eyebrow{color:var(--blue)}
   h2{font-family:var(--disp);font-weight:700;font-size:clamp(25px,3vw,34px);color:var(--navy);letter-spacing:-.015em;line-height:1.2;margin-bottom:12px}
@@ -340,7 +340,7 @@
   .pp-chips{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:26px}
   .pp-chip{font:600 12px var(--mono);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:99px;padding:7px 16px}
   .pp-chip.price{background:rgba(255,140,26,.16);border-color:rgba(255,140,26,.5);color:#FFD9AC}
-  .pp-body{padding:56px 0 70px}
+  .pp-body{padding:35px 0 0px}
   .pp-body.domain-registration-body{padding-top:28px}
   .pp-body.domain-registration-body #ppSecWrap .pp-ov{max-width:100%}
   .pp-body.edr-body{padding-top:28px}
@@ -407,7 +407,7 @@
   h1 .shine{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:1.08em}
   .eyebrow{letter-spacing:.26em;font-size:11px}
   .sec-head .eyebrow::after,.hero .eyebrow::after{content:"";display:block;width:44px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--orange),transparent);margin-top:12px}
-  section{padding:40px 0}
+  /* section{padding:40px 0} */
   #netbg{position:absolute;inset:0;z-index:1;opacity:.5}
 
   /* colorful ambient blobs in light sections */
@@ -925,7 +925,7 @@
   .cloud-drive-wordmark-dropbox strong{color:#0a6adf}
   .cloud-drive-wordmark-gdrive strong{color:#7a7a7a;font-weight:500}
   .cloud-drive-compare-copy{margin:16px 0 0;color:#f04d23;font:500 clamp(19px,2.3vw,31px)/1.22 var(--body)}
-  .cloud-drive-pricing{margin:0 0 14px}
+  .cloud-drive-pricing{margin:-82px 0 14px}
   .cloud-drive-price-heading{margin:0 auto 24px;text-align:center}
   .cloud-drive-price-heading .pp-sec{margin-bottom:10px}
   .cloud-drive-price-heading p{margin:0 auto;max-width:700px;color:var(--slate);font-size:15px;line-height:1.65}
@@ -1452,7 +1452,7 @@
   @keyframes trusted-by-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
   @media(prefers-reduced-motion:reduce){.trusted-by-track{animation:none}}
   @media(max-width:640px){.trusted-by{padding-bottom:56px}.trusted-by-panel{align-items:flex-start;flex-direction:column;gap:18px;padding:20px 18px}.trusted-by-label{font-size:10px}.trusted-by-viewport{width:100%}.trusted-by-track{gap:36px}.trusted-logo{font-size:16px}}
-  .blogs{background:var(--ice)}
+  /* .blogs{background:var(--ice)} */
   .blog-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
   .bl{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;cursor:pointer;
     transition:transform .35s cubic-bezier(.19,1,.22,1),box-shadow .35s,border-color .3s;display:flex;flex-direction:column}
@@ -2162,6 +2162,10 @@
     display:flex;align-items:center;justify-content:center;opacity:.9;
     mask-image:linear-gradient(90deg,transparent,#000 22%,#000);}
   .pph-scene svg{width:100%;height:100%;max-height:340px}
+  .pph-scene.dmarc-hero-art{width:38%;right:2%;mask-image:none;opacity:1}
+  .dmarc-hero-art xh-enterprise-dmarc-content{width:100%}
+  @media(max-width:1100px){.pph-scene.dmarc-hero-art{width:34%;right:1%;opacity:.6}}
+  @media(max-width:900px){.pph-scene.dmarc-hero-art{display:none}}
   @media(max-width:900px){.pph-scene{width:100%;opacity:.28;mask-image:radial-gradient(circle at 70% 40%,#000,transparent 72%)}}
   /* float + drift animations shared by scene pieces */
   .sc-float{animation:scfloat 5s ease-in-out infinite}
@@ -3022,9 +3026,22 @@
   .nf-iso{display:flex;flex-direction:column;align-items:center;justify-content:center;background:#2E4FC4;border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:8px 12px;min-width:62px;color:#fff}
   .nf-iso b{font-size:9px;letter-spacing:.05em;color:#BBD0FF}.nf-iso{font-family:var(--disp);font-weight:700;font-size:14px}
   .nf-iso em{font-size:7px;font-style:normal;color:#9FBBFF;letter-spacing:.08em;margin-top:1px}
-  .nf-pays{display:flex;gap:8px;flex-wrap:wrap;flex:1}
+  .nf-pays{display:flex;gap:9px;flex-wrap:wrap;flex:1;align-items:center}
   @media(max-width:700px){.nf-logo{flex-wrap:wrap}.nf-buddha{height:64px}}
-  .nf-pay{background:#fff;color:#1C2A3A;font-size:11px;font-weight:700;padding:7px 12px;border-radius:6px}
+  .nf-pay{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:40px;padding:7px 11px;border:1px solid rgba(255,255,255,.82);border-radius:8px;background:linear-gradient(180deg,#fff,#f6f8fb);box-shadow:0 4px 12px rgba(6,27,74,.14),inset 0 0 0 1px rgba(12,43,94,.04);color:#1c2a3a;font-size:10px;font-weight:750;white-space:nowrap;transition:transform .18s,box-shadow .18s}
+  .nf-pay:hover{transform:translateY(-2px);box-shadow:0 7px 17px rgba(6,27,74,.22),inset 0 0 0 1px rgba(12,43,94,.04)}
+  .nf-pay i{font-style:normal;line-height:1}
+  .pay-visa i{position:relative;color:#17357d;font:italic 900 18px/1 var(--body);letter-spacing:-1px}.pay-visa i::after{content:"";position:absolute;left:1px;right:0;bottom:-3px;height:2px;background:#f6a500;transform:skewX(-25deg)}
+  .pay-circles{position:relative;width:29px;height:18px}.pay-circles::before,.pay-circles::after{content:"";position:absolute;top:1px;width:16px;height:16px;border-radius:50%;opacity:.94}.pay-circles::before{left:0;background:#eb001b}.pay-circles::after{right:0;background:#f79e1b;mix-blend-mode:multiply}
+  .pay-mastercard span,.pay-maestro span{font-size:9px}.pay-maestro .pay-circles::before{background:#0099df}.pay-maestro .pay-circles::after{background:#ed1c24}
+  .pay-amex i{padding:4px 5px;border-radius:3px;background:#1677b8;color:#fff;font:900 11px/1 var(--body);letter-spacing:-.4px}
+  .pay-paypal i{display:grid;place-items:center;width:22px;height:22px;border-radius:5px;background:linear-gradient(135deg,#003087 45%,#009cde 46%);color:#fff;font:italic 900 16px/1 Georgia,serif}.pay-paypal span{color:#073b85}
+  .pay-amazon span{position:relative;padding-bottom:3px;color:#111820;font:700 11px/1 var(--body)}.pay-amazon span::after{content:"";position:absolute;left:7px;right:1px;bottom:0;height:5px;border-bottom:2px solid #ff9900;border-radius:0 0 50% 50%;transform:rotate(-2deg)}.pay-amazon b{color:#ff9900}
+  .pay-bank i,.pay-cheque i{font-size:20px}.pay-bank i{color:#1769aa}.pay-cheque i{color:#168267}.pay-bank span,.pay-cheque span{font-size:9px}
+  .pay-phonepe i{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#5f259f;color:#fff;font:800 14px/1 var(--body)}.pay-phonepe span{color:#54248f}
+  .pay-paytm i{color:#00baf2;font:900 16px/1 var(--body);letter-spacing:-1.4px}.pay-paytm i b{color:#092e6e}
+  .pay-upi i{position:relative;width:18px;height:20px;transform:skewX(-18deg)}.pay-upi i::before,.pay-upi i::after{content:"";position:absolute;top:1px;width:7px;height:18px}.pay-upi i::before{left:1px;background:#f26b21}.pay-upi i::after{right:1px;background:#0a9f49}.pay-upi b{color:#34383e;font-size:12px}
+  .pay-rupay i{color:#21409a;font:italic 900 15px/1 var(--body);letter-spacing:-1px}.pay-rupay i span{color:#0877bd}.pay-rupay>b{width:0;height:0;border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:8px solid #f58220;filter:drop-shadow(5px 0 #43a047)}
   .nf-prot{display:flex;gap:12px;flex-wrap:nowrap;flex:1;align-items:center;min-width:0}
   .nf-sitelock{display:none}
   .nf-sitelock-image{width:120px;height:61px;object-fit:contain;object-position:center;flex:none}
@@ -3052,7 +3069,7 @@
   .nf-bottom{border-top:1px solid rgba(255,255,255,.18);padding-top:20px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px;color:#C3D3FF}
 
   @media(max-width:900px){.nf-top{grid-template-columns:1fr}.nf-video{max-width:760px}.nf-prot{flex-wrap:wrap;align-items:flex-start}.nf-review-band{width:100%;flex-wrap:wrap}.nf-review-grid{grid-template-columns:repeat(3,minmax(0,1fr));flex-basis:100%}}
-  @media(max-width:600px){.nf-top{grid-template-columns:1fr}.nf-row{flex-direction:column;gap:8px}.nf-rlbl{min-width:0}.nf-cert-row{flex-direction:column;align-items:flex-start}.nf-sitelock-image{width:120px}.nf-video-frame{border-radius:18px}.nf-review-grid{grid-template-columns:1fr}.nf-review-card{padding:16px 16px;border-radius:16px}.nf-review-copy strong{font-size:16px}}
+  @media(max-width:600px){.nf-top{grid-template-columns:1fr}.nf-row{flex-direction:column;gap:8px}.nf-rlbl{min-width:0}.nf-cert-row{flex-direction:column;align-items:flex-start}.nf-pays{width:100%;flex-wrap:nowrap;overflow-x:auto;padding:2px 2px 10px;scrollbar-width:thin}.nf-pay{flex:none}.nf-sitelock-image{width:120px}.nf-video-frame{border-radius:18px}.nf-review-grid{grid-template-columns:1fr}.nf-review-card{padding:16px 16px;border-radius:16px}.nf-review-copy strong{font-size:16px}}
 
   /* v67: single-line stat strip on LEFT, below CTAs */
   /* v85: was navy-on-navy and therefore invisible. Now light, on one line,
@@ -4039,6 +4056,7 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
 .tally-plan-main>small{display:block;margin:2px 0 4px;color:#6b7280;font-size:9px}
 .tally-plan-action{position:relative;grid-column:3;grid-row:1 / span 2;align-self:center;justify-self:center;display:flex;flex-direction:column;align-items:center;gap:14px;width:142px;color:#080d2c;text-decoration:none}
 .tally-plan-action strong{font:650 clamp(21px,1.8vw,25px)/1.08 'Poppins',sans-serif;letter-spacing:-.025em}
+.tally-plan-action>.tally-billing-note{margin-top:-7px;color:#6b7280;font-size:9px;text-align:center;white-space:nowrap}
 .tally-plan-action>span{display:block;width:142px;padding:11px 10px;border-radius:9px;background:linear-gradient(135deg,#1670e8,#0b55c7);color:#fff;text-align:center;text-transform:uppercase;font:650 13px/1.2 'Poppins',sans-serif;box-shadow:0 7px 16px rgba(21,101,216,.24);transition:background .2s ease,box-shadow .2s ease,transform .2s ease}
 .smb-cybird-pricing .tally-plan-action>small{color:#526a8d;font-size:9px;white-space:nowrap}
 .tally-plan-action::before{position:absolute;top:-90px;bottom:-90px;left:-14px;width:1px;background:#e0e6ee;content:''}
@@ -4048,7 +4066,7 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
 .smb-cybird-specs{grid-template-columns:repeat(2,minmax(0,1fr))}
 .smb-cybird-pricing .smb-cybird-specs dt{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:15px;line-height:1.4}
 .smb-cybird-pricing .smb-cybird-specs dd{display:grid;grid-template-rows:27px minmax(23px,auto);justify-items:center;align-items:center;gap:8px;margin-top:8px;font-size:19px;line-height:1.4;font-weight:750}
-.smb-cybird-specs .one-time-purchase{display:inline-flex;align-items:center;justify-content:center;padding:5px 10px;border-radius:999px;background:#fff0f0;color:#d62828;font-size:9px;line-height:1.4;font-weight:700}
+.smb-cybird-specs .one-time-purchase,.smb-cybird-specs .annual-recurring{display:inline-flex;align-items:center;justify-content:center;padding:5px 10px;border-radius:999px;background:#fff0f0;color:#d62828;font-size:9px;line-height:1.4;font-weight:700}
 .smb-cybird-specs>div+div{border-left:1px solid #e4e8ee}
 .tally-plan-specs>div{position:relative;display:grid;grid-template-columns:1fr;gap:3px;align-content:center;justify-items:center;min-height:46px;padding:6px 10px;background:#f5f6f8;color:#111827;text-align:center}
 .tally-plan-specs>div:nth-child(4n+2),.tally-plan-specs>div:nth-child(4n+4){background:#fff}
@@ -4120,6 +4138,13 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
 
 /* Cloud Backup pricing based on the Acronis storage subscription sheet. */
 .cloud-backup-pricing{margin:0 0 12px;color:var(--navy);font-family:'Poppins',var(--body)}
+.cloud-backup-country-tabs{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin:0 auto 22px;padding:0 12px}
+.cloud-backup-country-tabs button{min-width:80px;padding:10px 18px;border:1px solid #cfd5df;border-radius:8px;background:#fff;color:#5e6672;font:600 14px/1.2 'Poppins',sans-serif;cursor:pointer}
+.cloud-backup-country-tabs button.is-active{border-color:var(--blue);background:var(--blue);color:#fff}
+.cloud-backup-country-tabs button{display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.cloud-backup-country-tabs img{display:block;width:24px;height:16px;object-fit:cover;border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,.1)}
+.cloud-backup-country-tabs button:focus-visible{outline:3px solid #9fc3ef;outline-offset:3px}
+.cloud-backup-plan-action strong.cloud-backup-price-pending{font-size:16px;line-height:1.4;text-align:center}
 .cloud-backup-pricing .tally-price-heading{max-width:940px;margin:0 auto 34px;padding:0 12px}
 .cloud-backup-pricing .tally-price-heading>span{display:inline-flex;align-items:center;min-height:26px;padding:0 12px;border-radius:999px;background:#eaf3ff;color:#1565d8;letter-spacing:.08em}
 .cloud-backup-pricing .tally-price-heading h2{color:#080d2c}

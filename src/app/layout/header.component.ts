@@ -339,6 +339,7 @@ const MENU_DESCRIPTIONS: Record<string, string> = {
  */
 const CONTENT_LINKS: Record<string, string> = {
   'Escalation Matrix': '/escalation-matrix',
+  'Partner Matrix': '/partner-matrix',
   'WhatsApp For Business': '/whatsapp-smb',
   'Digicert VMC ': '/digicert-vmc',
   'Digicert CMC': '/digicert-cmc',

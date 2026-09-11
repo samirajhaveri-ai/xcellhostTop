@@ -1,3 +1,4 @@
+import { InsightsSectionComponent } from '../sections/insights-section.component';
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
@@ -22,7 +23,7 @@ interface GeoTrustProduct {
 @Component({
   selector: 'xh-geotrust-ssl-certificates-page',
   standalone: true,
-  imports: [ProductPage],
+  imports: [InsightsSectionComponent, ProductPage],
   templateUrl: './geotrust-ssl-certificates.page.html',
   styleUrl: './geotrust-ssl-certificates.page.css',
   host: { class: 'geotrust-page' },

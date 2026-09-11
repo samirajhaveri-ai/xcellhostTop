@@ -21,6 +21,7 @@ import {
 import { EDR_COMPARE, EDR_PRODUCTS, EDR_TIMELINE, HERO_SCENES } from '../data/site.data';
 import { BlogCard, Category, Faq, IconItem, Pair, RichProduct } from '../data/models';
 import { buildContextualProductReviews } from '../data/product-reviews.data';
+import { ATM_SOLUTION_DETAILS } from '../data/atm-solution-detail.data';
 import {
   CATEGORY_HERO_IMAGES,
   PRODUCT_HERO_IMAGES,
@@ -479,6 +480,7 @@ export class ProductPageService {
 
   build(req: ProductRequest): ProductView {
     const name = req.name.trim();
+    const atmDetail = Object.values(ATM_SOLUTION_DETAILS).find((detail) => detail.name === name);
     const rich = this.catalog.rich(name);
     const dirEntry = this.catalog.findInDirectory(name);
     const cat: Category = req.cat ?? (dirEntry?.cat as Category) ?? 'Cloud';
@@ -487,7 +489,8 @@ export class ProductPageService {
     const product: RichProduct | undefined = RICH_PRODUCTS[name];
     const seed = hash(name);
     const heroTagline =
-      name === 'Copilot Studio' || name === 'Microsoft Copilot Studio'
+      atmDetail?.tagline ||
+      (name === 'Copilot Studio' || name === 'Microsoft Copilot Studio'
         ? 'Build your own AI agents — no code, no data science.'
         : name === 'Scrutiny EDR'
         ? 'Detect. Investigate. Respond. Recover.'
@@ -499,9 +502,10 @@ export class ProductPageService {
           ? 'Run Tally On Cloud 24/7 - Safety & Data Security Guranteed !!!'
           : name === 'SMB Cyber Security Appliance'
             ? 'Allow organizations to manage complex defenses through a unified interface.'
-            : product?.tagline || tag || `${name} from XcellHost`;
+            : product?.tagline || tag || `${name} from XcellHost`);
     const heroHighlight =
-      name === 'Copilot Studio' || name === 'Microsoft Copilot Studio'
+      atmDetail?.summary ||
+      (name === 'Copilot Studio' || name === 'Microsoft Copilot Studio'
         ? 'Design, ground and publish custom AI agents with Microsoft Copilot Studio'
         : name === 'Scrutiny EDR'
         ? 'Behavioural endpoint detection with rapid remote response across Windows, macOS and Linux'
@@ -515,7 +519,7 @@ export class ProductPageService {
             ? 'Next-Generation Cyber Security for SMB Infrastructure.'
             : name === 'Remote Monitoring & Mgmt (RMM)'
               ? null
-              : product?.highlight || rich?.f?.[0]?.[1] || tag || null;
+              : product?.highlight || rich?.f?.[0]?.[1] || tag || null);
     const heroMessages =
       name === 'Copilot Studio' || name === 'Microsoft Copilot Studio'
         ? ['No-code agent builder', 'Grounded in your data', '1,000+ connectors', 'Actions and automation']
@@ -562,7 +566,8 @@ export class ProductPageService {
 
     /* -------- overview + features -------- */
     const overview =
-      name === 'SMB Cyber Security Appliance'
+      atmDetail?.overview ||
+      (name === 'SMB Cyber Security Appliance'
         ? 'The XcellSecure SMB Cyber Security Appliance is an affordable, cloud-managed security gateway designed for businesses with up to 50 users. It combines secure business Wi-Fi, advanced firewall protection, and web & DNS security in one platform. Application controls and bandwidth management help businesses maintain secure and efficient network usage. Get real-time visibility into network activity with centralized cloud management. Automatic security updates help keep your environment protected against evolving threats. Enjoy enterprise-grade security without the cost and complexity of a traditional security stack.'
         : name === 'Advanced Endpoint Security (EDR)'
         ? 'XcellHost Advanced Endpoint Security (EDR) helps organizations identify, protect, detect, respond to, and recover from endpoint threats. It provides continuous security monitoring to detect suspicious activity and potential threats. Endpoints are protected with advanced security capabilities designed to reduce cyber risks. Delivered from secure Indian Tier-4 datacenters, the solution provides reliable and centralized protection. Your environment is monitored 24×7 by experienced security professionals. Get direct assistance from real engineers whenever you need support.'
@@ -572,7 +577,7 @@ export class ProductPageService {
         ? 'Most data does not leave through a dramatic breach. It walks out on a USB stick, in a personal webmail attachment, in a screenshot, in a photo taken of the screen, or pasted into a public AI chatbot. Scrutiny DLP covers every one of those channels from a single policy engine, and can run fully on-premise when your compliance position requires it. Discover. Classify. Monitor. Protect.'
         : rich?.ov ||
           `${name} from XcellHost. ${tag} Delivered from Indian Tier-4 datacenters, ` +
-            `monitored around the clock, and backed by engineers who answer the phone.`;
+            `monitored around the clock, and backed by engineers who answer the phone.`);
 
     const featSrc: readonly Pair[] = name.toLowerCase().startsWith('cloud backup')
       ? CLOUD_BACKUP_FEATURES

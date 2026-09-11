@@ -1,12 +1,13 @@
-import { ChangeDetectionStrategy, Component, ElementRef, inject, signal, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, ElementRef, inject, input, signal, ViewChild } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 
 import { BlogApiService, CmsBlogPost } from '../core/blog-api.service';
 import { RevealDirective } from '../shared/reveal.directive';
 import { CASE_STUDIES } from '../data/case-studies.data';
+import { slugify } from '../core/catalog.service';
 
-/** Homepage teaser fed by the five newest posts in Strapi. */
+/** Shared Insights carousel; service pages show only their assigned CMS posts. */
 @Component({
   selector: 'xh-insights-section',
   standalone: true,
@@ -30,6 +31,7 @@ import { CASE_STUDIES } from '../data/case-studies.data';
         </div>
         <div id="insights-content">
         @if (activeView() === 'blogs') {
+        @if (posts().length) {
         <div class="blog-carousel" role="region" aria-roledescription="carousel" aria-label="Latest insights">
           <button class="blog-nav blog-nav-prev" type="button" aria-label="Previous insights" (click)="scrollCarousel(-1)">‹</button>
           <div class="blog-grid" #blogGrid>
@@ -51,6 +53,9 @@ import { CASE_STUDIES } from '../data/case-studies.data';
           </div>
           <button class="blog-nav blog-nav-next" type="button" aria-label="Next insights" (click)="scrollCarousel(1)">›</button>
         </div>
+        } @else {
+          <p class="insights-empty" role="status">{{ loading() ? 'Loading insights…' : 'New insights are on the way. Explore all insights for more guides and articles.' }}</p>
+        }
         <div class="blog-cta">
           <button class="btn btn-ghost" id="allBlogs" routerLink="/insights">
             View all Insights →
@@ -101,6 +106,7 @@ import { CASE_STUDIES } from '../data/case-studies.data';
     </section>
   `,
   styles: `
+    .insights-empty { text-align: center; color: var(--slate); padding: 24px 16px; }
     .insights-heading { max-width: none; text-align: center; }
     .insights-heading .eyebrow::after { margin-left: auto; margin-right: auto; }
     .insights-heading-row { display: flex; flex-direction: column; align-items: center; gap: 16px; margin-bottom: 12px; }
@@ -128,7 +134,20 @@ import { CASE_STUDIES } from '../data/case-studies.data';
 })
 export class InsightsSectionComponent {
   private readonly blogApi = inject(BlogApiService);
-  readonly posts = signal<readonly CmsBlogPost[]>([]);
+  readonly pageSlug = input('');
+  readonly pageAliases = input<readonly string[]>([]);
+  private readonly allPosts = signal<readonly CmsBlogPost[]>([]);
+  readonly loading = signal(true);
+  readonly posts = computed(() => {
+    const slugs = [this.pageSlug(), ...this.pageAliases()]
+      .map(value => value.trim().toLowerCase().replace(/^\/+|\/+$/g, '')).filter(Boolean);
+    return this.allPosts().filter(post => {
+      if (!slugs.length) return true;
+      const assigned = (post.relatedPages ?? '').split(',')
+        .map(value => value.trim().toLowerCase().replace(/^\/+|\/+$/g, '')).filter(Boolean);
+      return assigned.length ? assigned.some(slug => slugs.includes(slug)) : slugs.includes(slugify(post.category));
+    }).slice(0, 5);
+  });
   readonly activeView = signal<'blogs' | 'cases' | 'videos'>('blogs');
   readonly viewCopy = {
     blogs: {
@@ -149,8 +168,8 @@ export class InsightsSectionComponent {
 
   constructor() {
     this.blogApi.posts$.pipe(takeUntilDestroyed()).subscribe({
-      next: (posts) => this.posts.set(posts.slice(0, 5)),
-      error: () => this.posts.set([]),
+      next: (posts) => { this.allPosts.set(posts); this.loading.set(false); },
+      error: () => { this.allPosts.set([]); this.loading.set(false); },
     });
   }
 
