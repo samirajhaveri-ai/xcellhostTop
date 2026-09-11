@@ -1350,7 +1350,8 @@ export const PRODUCT_VIDEOS: Record<string, string[]> = {
   "Microsoft 365 Backup": ["", "d8Gcpno-yXg"],
   "Entra ID Backup": ["E__PpPf59nQ", ""],
   "E-Mail Backup / Archiving": ["Tfy4oyLe1UI", ""],
-  "Business E-Mail": ["sgZQYm-MR8g", ""],
+  // Reuse the intro as a placeholder until the Business E-Mail use-cases video is ready.
+  "Business E-Mail": ["sgZQYm-MR8g", "sgZQYm-MR8g"],
   "Microsoft 365": ["sQpgrUYpZvQ", ""],
   "Advanced Email Security": ["Jl7JzsNuosI", ""],
   "Secure DMARC": ["VaeJSHETwSI", "KJ6o1KORE20"],

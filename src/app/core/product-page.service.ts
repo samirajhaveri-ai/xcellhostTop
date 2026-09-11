@@ -185,6 +185,37 @@ const WHY_ICON_PATHS: readonly string[] = [
   'M8 12l3 3 5-6M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20ZM4.9 19.1 3 21M19.1 19.1 21 21',
 ];
 
+const ENTERPRISE_DMARC_FAQS: Faq[] = [
+  ['What is Enterprise DMARC?', 'Enterprise DMARC helps organisations manage email authentication across their domains, understand who is sending email on their behalf and apply policies for messages that fail authentication.'],
+  ['How do SPF, DKIM and DMARC work together?', 'SPF identifies authorised sending servers, while DKIM adds a digital signature to messages. DMARC checks whether a passing SPF or DKIM result aligns with the domain in the visible From address.'],
+  ['Can DMARC help protect our brand from email spoofing?', 'DMARC helps receiving mail servers identify unauthorised use of your domain. A quarantine or reject policy can reduce direct domain spoofing, although it does not stop every type of phishing or lookalike-domain attack.'],
+  ['Do we need to change our existing email provider?', 'DMARC works through DNS records and email authentication settings, so you can usually keep your existing email provider. Each service that sends email for your domain needs to be reviewed and configured correctly.'],
+  ['What is the difference between none, quarantine and reject?', 'A none policy requests monitoring without asking receivers to block messages. Quarantine asks receivers to treat failing messages as suspicious, while reject asks them to refuse delivery. Receiving servers apply their own handling rules.'],
+  ['Will enabling DMARC block legitimate business emails?', 'Legitimate messages can be affected if their authentication is not aligned. Start with monitoring, identify approved senders and resolve configuration issues before moving gradually to quarantine or reject.'],
+  ['Can we manage multiple domains and subdomains?', 'An enterprise deployment can cover multiple domains and subdomains. The setup should account for each domain, its sending services and any separate policies needed for subdomains. Confirm domain limits when choosing a plan.'],
+  ['What information is available in DMARC reports?', 'Aggregate reports show sending sources, message counts and authentication results. Dashboards help teams identify unfamiliar senders, investigate failures and track progress towards enforcement.'],
+  ['How long does a DMARC rollout take?', 'Timing depends on the number of domains, sending services and authentication issues. Allow enough monitoring time to include regular and occasional business emails before tightening your policy.'],
+  ['Can XcellHost help with setup and ongoing management?', 'XcellHost offers managed DMARC services for setup, enforcement, monitoring and ongoing changes. BIMI setup and Verified Mark Certificate assistance are also available as add-ons; confirm the scope with your selected plan.'],
+];
+
+const BUSINESS_EMAIL_WHY: readonly [string, string][] = [
+  ['Hosted in India', 'Tier IV data centre with a 99.99% uptime SLA and local INR billing.'],
+  ['Free migration', 'We move your mail, contacts and calendars from any provider — no downtime.'],
+  ['Right plan advice', 'Mix mailbox sizes across your team, so you only pay for the storage you need.'],
+  ['24×7 support', 'Round-the-clock help from our Mumbai NOC + SOC, since 1999.'],
+  ['GST invoice', 'Compliant GST invoice on every order — pay via UPI, cards or NetBanking.'],
+  ['Managed & supported', 'Ongoing admin, onboarding, security and 24×7 support from our Mumbai team.'],
+];
+
+const ENTERPRISE_DMARC_WHY: readonly [string, string][] = [
+  ['Expert DMARC Setup', 'Identify legitimate senders and align SPF, DKIM and DMARC with help from our team.'],
+  ['Guided Policy Enforcement', 'Move from monitoring to quarantine and reject with report checks at every stage.'],
+  ['Managed DMARC Services', 'Choose managed support for setup, policy changes and ongoing domain monitoring.'],
+  ['Clear Sender Visibility', 'Turn authentication reports into readable dashboards to track senders and investigate failures.'],
+  ['Local Support', 'Get help from our Mumbai team, with priority email and call support on the Enterprise plan.'],
+  ['BIMI & VMC Assistance', 'Add BIMI setup and Verified Mark Certificate support to display your logo in supported inboxes.'],
+];
+
 const CLOUD_BACKUP_WHY: readonly [string, string][] = [
   ['Reliable Data Protection', 'Protect servers, endpoints, applications, and critical workloads from data loss.'],
   ['Automated Backups', 'Schedule regular backups automatically and reduce manual backup efforts.'],
@@ -664,9 +695,11 @@ export class ProductPageService {
       }
     }
 
-    /* -------- FAQs: rich + category, deduped, capped at 8 -------- */
+    /* -------- FAQs: product-specific, or category fallback capped at 8 -------- */
     let faqs: Faq[];
-    if (product) {
+    if (name === 'Enterprise DMARC') {
+      faqs = ENTERPRISE_DMARC_FAQS;
+    } else if (product) {
       faqs = product.faqs;
     } else if (deep) {
       faqs = deep.faq;
@@ -765,7 +798,11 @@ export class ProductPageService {
       PRODUCT_BRAND_LINES[name] ?? product?.brandLine
     );
 
-    const whySource = name === 'Scrutiny DLP'
+    const whySource = name === 'Business E-Mail'
+      ? BUSINESS_EMAIL_WHY
+      : name === 'Enterprise DMARC'
+      ? ENTERPRISE_DMARC_WHY
+      : name === 'Scrutiny DLP'
       ? [
           ['Since 1999', 'Mumbai-based managed cloud and security provider'],
           ['ISO 27001 & ISO 20000-1', 'Certified security and service management'],
@@ -819,7 +856,25 @@ export class ProductPageService {
         null,
       heroMessages,
       heroPoints:
-        name === 'Scrutiny DLP'
+        name === 'Business E-Mail'
+          ? [
+              'Email @yourdomain',
+              'Hosted in India, Tier IV DC',
+              'DKIM · SPF · DMARC',
+              'Anti-Spam & Anti-Phishing',
+              'Chat, Video & File Sync',
+              '99.99% Uptime SLA',
+            ]
+          : name === 'Enterprise DMARC'
+          ? [
+              'Stop Email Spoofing & Phishing',
+              'Boost Email Deliverability',
+              'DMARC, SPF, DKIM & BIMI',
+              'Clear RUA / RUF Reporting',
+              'Works With Any Mail Provider',
+              'Expert Setup & Support',
+            ]
+          : name === 'Scrutiny DLP'
           ? [
               'Fifteen control points across every route data can take out of the business',
               'GenAI upload governance, anti-photo protection and hidden watermarking',

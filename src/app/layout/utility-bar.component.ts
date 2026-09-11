@@ -2,6 +2,7 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, inject } from '@angu
 import { LanguageService } from '../core/language.service';
 import { ThemeService } from '../core/theme.service';
 import { SITE } from '../data/site.data';
+import { LanguagePickerComponent } from './language-picker.component';
 
 /**
  * The navy strip above the header: portal shortcuts on the left, phone number
@@ -12,6 +13,7 @@ import { SITE } from '../data/site.data';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { style: 'display: contents' },
   templateUrl: './utility-bar.component.html',
+  imports: [LanguagePickerComponent],
 })
 export class UtilityBarComponent implements AfterViewInit {
   readonly site = SITE;
