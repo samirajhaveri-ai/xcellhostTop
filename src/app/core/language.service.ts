@@ -2,6 +2,8 @@ import { DOCUMENT } from '@angular/common';
 import { DestroyRef, Injectable, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router } from '@angular/router';
+import { LANGUAGE_DETAILS } from './languages.data';
+import type { LanguageOption } from '../layout/language-picker.component';
 
 type TranslateWindow = Window & {
   google?: {
@@ -14,7 +16,7 @@ type TranslateWindow = Window & {
 
 const SCRIPT_ID = 'google-translate-script';
 
-/** Loads Google's visible website translator. Google owns language selection and persistence. */
+/** Connects the site's language picker to the existing translation provider. */
 @Injectable({ providedIn: 'root' })
 export class LanguageService {
   private readonly doc = inject(DOCUMENT);
@@ -26,6 +28,35 @@ export class LanguageService {
   private previousUrl: string | undefined = this.router.navigated ? this.router.url : undefined;
 
   readonly status = signal<'loading' | 'ready' | 'error'>('loading');
+  readonly selected = signal(this.readLanguage());
+  readonly options = signal<readonly LanguageOption[]>([{ code: 'en', name: 'English', ...LANGUAGE_DETAILS['en'] }]);
+  private readonly connected = new WeakSet<HTMLSelectElement>();
+
+  private readLanguage(): string {
+    const cookie = this.doc.cookie.split('; ').find(value => value.startsWith('googtrans='));
+    return cookie ? decodeURIComponent(cookie.slice(10)).split('/').pop() || 'en' : 'en';
+  }
+
+  choose(code: string): void {
+    if (code === this.selected()) return;
+    if (code === 'en') {
+      const win = this.doc.defaultView;
+      if (!win) return;
+      const domains = win.location.hostname.split('.');
+      this.doc.cookie = 'googtrans=; Max-Age=0; path=/';
+      for (let i = 0; i < domains.length; i++) {
+        this.doc.cookie = `googtrans=; Max-Age=0; path=/; domain=${domains.slice(i).join('.')}`;
+      }
+      this.selected.set('en');
+      win.location.reload();
+      return;
+    }
+    const select = this.doc.querySelector<HTMLSelectElement>('#google_translate_element .goog-te-combo');
+    if (this.status() !== 'ready' || !select || !this.options().some(item => item.code === code)) return;
+    select.value = code;
+    select.dispatchEvent(new Event('change', { bubbles: true }));
+    this.selected.set(code);
+  }
 
   constructor() {
     // A fresh document lets Google translate the destination reliably and avoids
@@ -52,6 +83,22 @@ export class LanguageService {
       const select = host.querySelector<HTMLSelectElement>('.goog-te-combo');
       if (!select || select.options.length < 2) return false;
       select.setAttribute('aria-label', 'Translate website language');
+      this.options.set([
+        { code: 'en', name: 'English', ...LANGUAGE_DETAILS['en'] },
+        ...Array.from(select.options).filter(option => option.value && option.value !== 'en').map(option => ({
+          code: option.value,
+          name: option.text,
+          ...LANGUAGE_DETAILS[option.value],
+          nativeName: LANGUAGE_DETAILS[option.value]?.nativeName ?? option.text,
+        })),
+      ]);
+      if (!this.connected.has(select)) {
+        const onChange = () => this.selected.set(select.value || this.readLanguage());
+        select.addEventListener('change', onChange);
+        this.destroyRef.onDestroy(() => select.removeEventListener('change', onChange));
+        this.connected.add(select);
+      }
+      this.selected.set(select.value || this.readLanguage());
       this.stopWaiting();
       this.loading = false;
       this.status.set('ready');
