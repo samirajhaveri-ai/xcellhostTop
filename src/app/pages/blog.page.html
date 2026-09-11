@@ -166,11 +166,21 @@
         </div>
         <div class="bp-grid article-more-grid">
           @for (item of more(); track item.documentId) {
-            <button class="bp-card article-more-card" [routerLink]="['/insights', item.slug]">
-              <span class="k">{{ item.category }} · {{ formatDate(item.date) }}</span>
-              <b>{{ item.title }}</b>
-              <p>{{ item.description }}</p>
-            </button>
+            <a class="bp-card article-more-card" [routerLink]="['/insights', item.slug]">
+              <div class="article-more-media">
+                <img
+                  [src]="item.coverImageUrl"
+                  [alt]="item.coverImage?.alternativeText || item.title"
+                  loading="lazy"
+                />
+                <span class="article-more-arrow" aria-hidden="true">&#8599;</span>
+              </div>
+              <div class="article-more-content">
+                <span class="k">{{ item.category }} &middot; {{ formatDate(item.date) }}</span>
+                <h4>{{ item.title }}</h4>
+                <p>{{ item.description }}</p>
+              </div>
+            </a>
           }
         </div>
       </div>
