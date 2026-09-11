@@ -3628,7 +3628,8 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Media Kit",
                 "pill": null,
-                "desc": null
+                "desc": null,
+                "href": "/media-kit"
               },
               {
                 "title": "Press Release",

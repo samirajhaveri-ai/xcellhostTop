@@ -33,6 +33,14 @@ export class CompanyPage {
   readonly page = computed(() => COMPANY_PAGES[this.slug()] ?? null);
   readonly worldMap: SafeHtml = this.sanitizer.bypassSecurityTrustHtml(WORLD_MAP_HTML);
 
+  companyAskAiHref(platform: 'chatgpt' | 'perplexity' | 'claude' | 'google'): string {
+    const prompt = encodeURIComponent('Tell me about XcellHost certifications, including ISO 27001 and ISO 20000-1, and what they mean for customers.');
+    if (platform === 'chatgpt') return `https://chatgpt.com/?q=${prompt}`;
+    if (platform === 'perplexity') return `https://www.perplexity.ai/search/new?q=${prompt}`;
+    if (platform === 'claude') return `https://claude.ai/new?q=${prompt}`;
+    return 'https://gemini.google.com/app';
+  }
+
   readonly founder = {
     name: 'Dr. Samir Jhaveri',
     role: 'Managing Director, XcellHost Cloud Services Pvt. Ltd.',

@@ -8,7 +8,7 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
   standalone: true,
   imports: [RouterLink],
   templateUrl: './managed-aws-content.component.html',
-  styleUrls: ['./managed-aws-content.component.css', './managed-cloud-faq.component.css'],
+  styleUrls: ['./managed-aws-content.component.css', './managed-cloud-faq.component.css', './managed-azure-ending.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ManagedAwsContentComponent {
@@ -19,9 +19,5 @@ export class ManagedAwsContentComponent {
   requestCallback(): void {
     this.topics.ask(`Managed ${this.provider()} Services`);
     this.overlay.open('callback');
-  }
-
-  openTour(): void {
-    this.overlay.open('productScreenshotTour');
   }
 }
