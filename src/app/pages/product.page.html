@@ -12,7 +12,9 @@
       <span class="pph-aur pph-a3" aria-hidden="true"></span>
       <span class="pph-scan" aria-hidden="true"></span>
 
-      @if (isScrutinyEdr()) {
+      @if (slug() === 'enterprise-dmarc') {
+        <div class="pph-scene dmarc-hero-art" aria-hidden="true"><xh-enterprise-dmarc-content [heroOnly]="true" /></div>
+      } @else if (isScrutinyEdr()) {
         <div class="pph-scene has-illus pph-scrutiny-illus" aria-hidden="true"><div class="pph-illus"><img class="pph-illus-img" src="/assets/images/hero-advanced-endpoint-security-edr.svg" alt="Scrutiny EDR endpoint detection and response" /><div class="pph-powered-mark pph-powered-image scrutiny-powered"><span class="pw-lbl">Powered by</span><strong>cyberstanc</strong><span class="pw-sub">Delivered &amp; managed by XcellHost</span></div></div></div>
       } @else if (isAdvancedEdr()) {
         <div class="pph-scene has-illus pph-edr-illus" aria-hidden="true">
@@ -392,6 +394,9 @@
     } @else {
     <div class="pp-body" [class.cloud-backup-body]="isCloudBackup()" [class.cdr-smb-body]="isCloudDisasterRecoverySmb()" [class.domain-registration-body]="slug() === 'register-a-domain-name'" [class.edr-body]="isAdvancedEdr()" [class.workforce-analytics-body]="slug() === 'workforce-analytics'" [class.rmm-body]="slug() === 'remote-monitoring-and-mgmt-rmm'" [class.smb-desktop-body]="isSmbCloudDesktop()" [class.microsoft-defender-body]="slug() === 'microsoft-defender'" [class.cloud-drive-body]="slug() === 'cloud-drive'" [class.smb-cyber-body]="slug() === 'smb-cyber-security-appliance'" [class.genai-body]="slug() === 'acronis-genai-protection'">
       <div class="wrap">
+        @if (slug() === 'enterprise-dmarc') {
+          <xh-enterprise-dmarc-content />
+        } @else {
         @if (isManagedMicrosoft365()) {
           <xh-managed-microsoft-365-content />
         }
@@ -570,7 +575,6 @@
                       <span aria-hidden="true">T</span>
                       <div><b>{{ plan.name }}</b><small>{{ plan.edition }}</small></div>
                     </div>
-                    <small>+GST · {{ activeTallyTerm().label }} billing</small>
                   </div>
                   <dl class="tally-plan-specs">
                     <div><dt>Server Type</dt><dd>{{ plan.serverType }}</dd></div>
@@ -589,6 +593,7 @@
                   <a class="tally-plan-action" href="#" (click)="selectTallyPlan(plan, $event)">
                     <strong>&#8377;{{ formatInr(tallyPrice(plan)) }}</strong>
                     <span>Buy now <span aria-hidden="true">→</span></span>
+                    <small class="tally-billing-note">+GST · {{ activeTallyTerm().label }} billing</small>
                   </a>
                 </article>
               }
@@ -764,6 +769,17 @@
               <p>Select your billing period and choose the Acronis storage subscription that fits your workloads.</p>
             </div>
 
+            <div class="cloud-backup-country-tabs" role="group" aria-label="Choose Cloud Backup country">
+              @for (country of cloudBackupCountries; track country.key) {
+                <button type="button" [class.is-active]="selectedCloudBackupCountry() === country.key"
+                  [attr.aria-pressed]="selectedCloudBackupCountry() === country.key"
+                  (click)="selectedCloudBackupCountry.set(country.key)">
+                  <img [src]="'/assets/images/flags/' + country.flag + '.svg'" alt="" width="24" height="16" />
+                  {{ country.label }}
+                </button>
+              }
+            </div>
+
             <div class="cloud-backup-term-tabs" role="tablist" aria-label="Choose Cloud Backup billing period">
               @for (term of cloudBackupTerms; track term.key) {
                 <button
@@ -791,10 +807,16 @@
                       </p>
                     </div>
                   </div>
-                  <a class="cloud-backup-plan-action" href="#" (click)="selectCloudBackupPlan(plan, $event)">
-                    <strong>&#8377;{{ formatInr(cloudBackupPrice(plan)) }}</strong>
+                  <a class="cloud-backup-plan-action" [attr.href]="cloudBackupRegionalPrice(plan) === undefined ? null : '#'"
+                    [attr.aria-disabled]="cloudBackupRegionalPrice(plan) === undefined"
+                    (click)="selectCloudBackupPlan(plan, $event)">
+                    <strong [class.cloud-backup-price-pending]="cloudBackupRegionalPrice(plan) === undefined">{{ formatCloudBackupPrice(plan) }}</strong>
+                    @if (cloudBackupRegionalPrice(plan) !== undefined) {
                        <span>Order now <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:middle;margin-left:6px"><path d="M4 12h16m-6-6 6 6-6 6" /></svg></span>
-                    <small>+GST · {{ activeCloudBackupTerm().label }} Billing</small>
+                    <small>{{ selectedCloudBackupCountry() === 'IN' ? '+GST · ' : '' }}{{ activeCloudBackupTerm().label }} Billing</small>
+                    } @else {
+                      <small>{{ activeCloudBackupCountry().label }} · {{ activeCloudBackupCountry().currency }}</small>
+                    }
                   </a>
                 </article>
               }
@@ -925,7 +947,7 @@
             <section class="smb-block tally-pricing smb-cybird-pricing" id="ppPlans" aria-labelledby="smb-pricing-title">
               <div class="tally-price-heading">
                 <span>Hardware + Security Bundle</span>
-                <h2 id="smb-pricing-title">Cybird Security Appliance Bundles</h2>
+                <h2 id="smb-pricing-title">Cybird Security Appliance</h2>
                 <p>Choose a billing period, then select the security bundle that fits your team.</p>
               </div>
 
@@ -956,7 +978,7 @@
                     </div>
                     <dl class="tally-plan-specs smb-cybird-specs">
                       <div><dt>Hardware Appliance</dt><dd><span>&#8377;{{ formatInr(cybirdHardwarePrice) }}</span><span class="one-time-purchase">One-time purchase</span></dd></div>
-                      <div><dt>Security Bundle</dt><dd><span>&#8377;{{ formatInr(cybirdPrice(plan)) }}</span></dd></div>
+                      <div><dt>Security Bundle</dt><dd><span>&#8377;{{ formatInr(cybirdPrice(plan)) }}</span><span class="annual-recurring">Annual Recurring</span></dd></div>
                     </dl>
                     <a class="tally-plan-action" href="#" (click)="selectCybirdPlan(plan, $event)">
                       <strong>&#8377;{{ formatInr(cybirdTotal(plan)) }}</strong>
@@ -1455,6 +1477,8 @@
         }
         }
 
+        }
+
         @if (v.name !== 'Tally on Cloud') {
         @if (!isSmbCyber() && !isRmm() && slug() !== 'scrutiny-dlp') {
           <div class="pp-sec" id="ppSecHead">{{ v.security.head }}</div>
@@ -1748,27 +1772,7 @@
           <xh-product-faq [faqs]="v.faqs" />
         </div>
 
-        <div class="pp-sec pp-blog-heading">From our blog</div>
-        <div class="pp-blog" id="ppBlog">
-          @for (b of blogs(); track b.title) {
-            <a class="pbl pbl-link" [routerLink]="b.link">
-              @if (b.imageUrl) {
-                <img class="blog-cover" [src]="b.imageUrl" [alt]="b.imageAlt" />
-              }
-              <div class="pbl-top">
-                <span class="k">{{ b.kicker }}</span><span class="rt">{{ b.meta }}</span>
-              </div>
-              <b>{{ b.title }}</b>
-              <p class="pbl-x">{{ b.excerpt }}</p>
-              <span class="pbl-go">Read article →</span>
-            </a>
-          }
-        </div>
-        <div class="pp-blogbtn-wrap">
-          <a class="btn pp-blogbtn" id="ppBlogBtn" routerLink="/insights"
-            >View all blogs</a
-          >
-        </div>
+        <div id="ppBlog"><xh-insights-section [pageSlug]="slug()" /></div>
 
         <div class="pp-cta">
           <div>
