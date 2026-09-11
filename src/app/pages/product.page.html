@@ -275,6 +275,9 @@
                 <button class="btn btn-ghost cdr-tour-trigger" type="button" disabled>7 Day's Free Trial</button>
               }
               <button class="btn btn-ghost cdr-tour-trigger" type="button" (click)="openProductScreenshotTour()">Screenshot Tour</button>
+              @if (isTally()) {
+                <button class="btn btn-ghost cdr-tour-trigger" type="button" disabled>7 Day's Free Trial</button>
+              }
               <a class="btn btn-primary" href="#" id="ppEnquiry" (click)="openCallback($event)">Let's Talk</a>
             </div>
 
@@ -583,7 +586,7 @@
           </section>
 
           <section class="tally-mobile-insights" aria-label="Real-time Tally insights on mobile devices">
-            <h2 class="tally-mobile-insights-title">Get Finlytics Tally on Mobile App Free with Every Tally on Cloud Server (For One User Only)</h2>
+            <h2 class="tally-mobile-insights-title">Get Finlytics Tally on Mobile App Free with Every Tally on Cloud Server (*On Annual Plan Terms with Conditions For One User Only)</h2>
             <img
               src="/assets/images/tally-mobile-insights.png"
               alt="Real-time Tally insights available securely on a mobile device"
@@ -1445,7 +1448,7 @@
         @if (!isSmbCyber() && !isRmm() && slug() !== 'scrutiny-dlp') {
           <div class="pp-sec" id="ppSecHead">{{ v.security.head }}</div>
           <div id="ppSecWrap">
-            <p class="pp-ov" [style.max-width]="isCloudBackup() || isCloudDisasterRecoverySmb() ? '100%' : null">{{ v.security.intro }}</p>
+            <p class="pp-ov" [style.max-width]="isCloudBackup() || isCloudDisasterRecoverySmb() || slug() === 'premium-domains-and-new-tlds' || slug() === 'domain-name-prices' || slug() === 'ai-domain-generator' || slug() === 'bharat-domain' || slug() === 'transfer-your-domain' || slug() === 'domain-protect' || slug() === 'backorder-domain' || slug() === 'free-domain' || slug() === 'latest-domain-extensions' || slug() === 'domain-whois-lookup' || slug() === 'tld-directory' || slug() === 'ai-domain-advisor' || slug() === 'windows-hosting' || slug() === 'web-security-sitelock' || slug() === 'website-backup' || slug() === 'linux-hosting' || slug() === 'ai-website-builder' || slug() === 'wordpress-hosting' || slug() === 'migrate-to-xcellhost' || slug() === 'cpanel-control-panel' || slug() === 'cloud-linux' || slug() === 'plesk-control-panel' || slug() === 'webuzo-control-panel' || slug() === 'no-data' || slug() === 'web-design-for-ca-cs-and-lawyers' || slug() === 'web-design-for-smb' || slug() === 'web-design-for-enterprise' || slug() === 'whatsapp-smb' || slug() === 'whatsapp-broadcasting' || slug() === 'google-my-business' || slug() === 'e-mail-marketing' || slug() === 'sms-marketing' || slug() === 'website-seo' || slug() === 'transactional-emails' || slug() === 'windows-vps' || slug() === 'linux-vps' || slug() === 'n8n-vps' || slug() === 'openclaw-vps' || slug() === 'trading-vps' || slug() === 'claude-vps' || slug() === 'window-11-vps' ? '100%' : null">{{ v.security.intro }}</p>
             <div class="pp-secrows">
               @for (r of v.security.rows; track r[0]) {
                 <div class="psrow"><span class="psk">{{ r[0] }}</span><span class="psv">{{ r[1] }}</span></div>
