@@ -613,7 +613,7 @@
           </section>
 
           <section class="tally-mobile-insights" aria-label="Real-time Tally insights on mobile devices">
-            <h2 class="tally-mobile-insights-title">Get Finlytics Tally on Mobile App Free with Every Tally on Cloud Server (*On Annual Plan Terms with Conditions For One User Only)</h2>
+            <h2 class="tally-mobile-insights-title">Get Finlytics Tally on Mobile App Free with Every Tally on Cloud Server (*On Annual Plan Only For One User)</h2>
             <img
               src="/assets/images/tally-mobile-insights.png"
               alt="Real-time Tally insights available securely on a mobile device"
@@ -1829,7 +1829,7 @@
 
         </div>
 
-        <div id="ppBlog"><xh-insights-section [pageSlug]="slug()" /></div>
+        <div id="ppBlog" [class.scrutiny-dlp-insights]="slug() === 'scrutiny-dlp'"><xh-insights-section [pageSlug]="slug()" /></div>
 
         <div class="pp-cta">
           <div>

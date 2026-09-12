@@ -4015,7 +4015,7 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
 }
 
 .tally-pricing{margin:0 0 12px;color:var(--navy);font-family:'Poppins',var(--body)}
-.tally-mobile-insights{margin:-60px 0 12px;overflow:hidden;border:0;border-radius:0;background:transparent;container-type:inline-size}
+.tally-mobile-insights{margin:-26px 0 12px;overflow:hidden;border:0;border-radius:0;background:transparent;container-type:inline-size}
 .tally-mobile-insights-title{margin:0 0 16px;text-align:center;color:var(--navy);font:700 1.5cqw/1.2 var(--disp);letter-spacing:-.03em;white-space:nowrap}
 .tally-mobile-insights img{display:block;width:100%;height:auto}
 .tally-mobile-insights + .pp-sec{margin-top:0}
@@ -4835,6 +4835,8 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 .ppage.scrutiny-page .pp-body>.wrap>.pp-blogbtn-wrap,
 .ppage.scrutiny-page .pp-body>.wrap>.pp-cta,
 .ppage.scrutiny-page .pp-body>.wrap>.pp-proof{display:block}
+.ppage.scrutiny-edr-page .pp-body>.wrap>#ppBlog,
+.ppage.scrutiny-page .pp-body>.wrap>#ppBlog.scrutiny-dlp-insights{display:block}
 .ppage.scrutiny-page .pp-body>.wrap>.pp-blog{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 @media(max-width:900px){.ppage.scrutiny-page .pp-body>.wrap>.pp-blog{grid-template-columns:1fr}}
 
@@ -5091,3 +5093,5 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 #ppage .edr-selected-summary .plan-offer-validity{display:inline-block;margin:14px 0 0;padding:8px 12px;border-radius:8px;background:#fff0f0;color:#b91c1c;font-size:18px;font-weight:700;line-height:1.4}
 
 
+
+@media(min-width:1101px){#flagship .prod-grid-tabbed.productivity-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
