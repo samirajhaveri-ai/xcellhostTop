@@ -1,4 +1,4 @@
-@if (view(); as v) {
+﻿@if (view(); as v) {
   <div
     class="ppage as-page"
     id="ppage"
@@ -1203,7 +1203,7 @@
                   >
                     <h2 class="tally-mobile-insights-title">
                       Get Finlytics Tally on Mobile App Free with Every Tally on Cloud Server (*On
-                      Annual Plan Terms with Conditions For One User Only)
+                      Annual Plan Only For One User)
                     </h2>
                     <img
                       src="/assets/images/tally-mobile-insights.png"
@@ -3602,7 +3602,9 @@
             />
           </div>
 
-          <div id="ppBlog"><xh-insights-section [pageSlug]="slug()" /></div>
+          <div id="ppBlog" [class.scrutiny-dlp-insights]="slug() === 'scrutiny-dlp'">
+            <xh-insights-section [pageSlug]="slug()" />
+          </div>
 
           <div class="pp-cta">
             <div>

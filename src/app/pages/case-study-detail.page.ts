@@ -3,7 +3,9 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
 import { OverlayService } from '../core/overlay.service';
+import { CaseStudiesApiService } from '../core/case-studies-api.service';
 import { SeoService } from '../core/seo.service';
+import { CASE_STUDIES, CaseStudy } from '../data/case-studies.data';
 
 interface StudyStat {
   readonly value: string;
@@ -166,18 +168,29 @@ export class CaseStudyDetailPage {
   private readonly route = inject(ActivatedRoute);
   private readonly overlay = inject(OverlayService);
   private readonly seo = inject(SeoService);
+  private readonly caseStudiesApi = inject(CaseStudiesApiService);
   private readonly paramMap = toSignal(this.route.paramMap, {
     initialValue: this.route.snapshot.paramMap,
   });
+  private readonly availableStudies = toSignal(this.caseStudiesApi.studies$, { initialValue: CASE_STUDIES });
 
   readonly study = computed(() => {
     const id = this.paramMap().get('id');
-    return CASE_STUDY_DETAILS.find((item) => item.id === id);
+    const cmsStudy = this.availableStudies().find((item) => item.id === id);
+    if (cmsStudy?.documentId) return this.toDetail(cmsStudy);
+    const detailed = CASE_STUDY_DETAILS.find((item) => item.id === id);
+    if (detailed) return detailed;
+    return cmsStudy ? this.toDetail(cmsStudy) : undefined;
   });
 
   readonly relatedStudies = computed(() => {
     const activeId = this.study()?.id;
-    return CASE_STUDY_DETAILS.filter((item) => item.id !== activeId);
+    return this.availableStudies()
+      .filter((item) => item.id !== activeId)
+      .slice(0, 3)
+      .map((item) => item.documentId
+        ? this.toDetail(item)
+        : CASE_STUDY_DETAILS.find((detail) => detail.id === item.id) ?? this.toDetail(item));
   });
 
   constructor() {
@@ -198,5 +211,32 @@ export class CaseStudyDetailPage {
 
   openCallback(): void {
     this.overlay.open('callback');
+  }
+
+  private toDetail(study: CaseStudy): CaseStudyDetail {
+    const customer = study.customer || study.profile || 'XcellHost customer';
+    const summary = study.summary || study.metricLabel;
+    return {
+      id: study.id,
+      customer,
+      industry: study.industry,
+      profile: study.profile,
+      headline: study.headline || `${customer}: ${study.metricLabel}`,
+      relationship: `${customer} and XcellHost`,
+      visualTitle: study.metricLabel,
+      visualClass: study.mainCategory.includes('Data Protection') ? 'detail-visual-privacy' : 'detail-visual-continuity',
+      services: study.services,
+      stats: [{ value: study.metric, label: study.metricLabel }],
+      backgroundTitle: 'The customer context',
+      background: [summary],
+      challengeTitle: 'The operational challenge',
+      challenge: [study.challenge || summary],
+      solutionTitle: 'The XcellHost approach',
+      solution: [study.solution || 'XcellHost designed and delivered a solution around the customer\'s requirements.'],
+      resultTitle: study.metricLabel,
+      results: study.impact.length ? study.impact : [summary],
+      quote: study.quote || summary,
+      quoteBy: study.quoteBy || `${customer} customer story`,
+    };
   }
 }

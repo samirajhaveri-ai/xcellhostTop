@@ -32,7 +32,7 @@
       <div class="case-scorecard" aria-label="Featured customer outcomes">
         <div class="scorecard-head">
           <span>Outcome snapshot</span>
-          <b>3 customer stories</b>
+          <b>{{ studies().length }} customer stories</b>
         </div>
         <article>
           <strong>0</strong>
@@ -69,17 +69,7 @@
       </header>
 
       <div class="case-filter-row">
-        <div class="case-filter">
-          <label for="case-industry">Filter by industry</label>
-          <div class="case-select">
-            <select id="case-industry" [value]="selectedIndustry" (change)="filterStudies($event)">
-              <option value="all">All case studies</option>
-              <option value="Manufacturing">Manufacturing</option>
-              <option value="CA firm">CA firm</option>
-              <option value="BFSI">BFSI</option>
-            </select>
-          </div>
-        </div>
+        <div class="case-filter-intro"><span>Explore by category</span><p>Open a main category to choose a more specific customer segment.</p></div>
         <div class="case-search">
           <label for="case-search">Search case studies</label>
           <div class="case-search-field">
@@ -87,7 +77,7 @@
               id="case-search"
               type="search"
               placeholder="Search by outcome or service"
-              [value]="searchQuery"
+              [value]="searchQuery()"
               (input)="searchStudies($event)"
             />
             <span aria-hidden="true">⌕</span>
@@ -95,10 +85,45 @@
         </div>
       </div>
 
-      <h3 class="case-related">Related posts</h3>
+      <div class="case-library-layout">
+        <aside class="case-category-card" aria-label="Case study categories">
+          <span class="case-category-label">Browse customer stories</span>
+          <button type="button" class="case-category-all" [class.active]="!selectedMain()"
+            [attr.aria-pressed]="!selectedMain()" (click)="selectAllCategories()">
+            <span>All case studies</span><b>{{ studies().length }}</b>
+          </button>
+          @for (branch of categoryTree(); track branch.name) {
+            <div class="case-category-branch">
+              <button type="button" class="case-category-main"
+                [class.active]="selectedMain() === branch.name && !selectedSub()"
+                [class.has-selection]="selectedMain() === branch.name"
+                [attr.aria-expanded]="expandedMain() === branch.name"
+                [attr.aria-controls]="categoryPanelId(branch.name)"
+                (click)="selectMainCategory(branch.name)">
+                <span>{{ branch.name }}</span><b>{{ branch.count }}</b><i aria-hidden="true">&#8964;</i>
+              </button>
+              @if (expandedMain() === branch.name) {
+                <div class="case-subcategories" [id]="categoryPanelId(branch.name)">
+                  @for (child of branch.children; track child.name) {
+                    <button type="button" [class.active]="selectedSub() === child.name"
+                      [attr.aria-pressed]="selectedSub() === child.name"
+                      (click)="selectSubCategory(branch.name, child.name)">
+                      <span>{{ child.name }}</span><b>{{ child.count }}</b>
+                    </button>
+                  }
+                </div>
+              }
+            </div>
+          }
+        </aside>
 
-      <div class="case-overview-grid">
-        @for (study of visibleStudies; track study.id) {
+        <div class="case-library-results">
+          <div class="case-results-head">
+            <div><span>Showing</span><h3>{{ selectedSub() || selectedMain() || 'All case studies' }}</h3></div>
+            <p role="status">{{ visibleStudies().length }} stor{{ visibleStudies().length === 1 ? 'y' : 'ies' }}</p>
+          </div>
+          <div class="case-overview-grid">
+        @for (study of visibleStudies(); track study.documentId || study.id) {
           <a class="outcome-card" [routerLink]="['/case-studies', study.id]">
             <div class="outcome-visual" [class]="'outcome-visual visual-' + study.id" aria-hidden="true">
               @if (study.id === 'tally-cloud') {
@@ -128,6 +153,8 @@
             <p>Try another industry, outcome or service.</p>
           </div>
         }
+          </div>
+        </div>
       </div>
       <p class="case-privacy-note">
         Customer identities are anonymised to protect operational and compliance information.
@@ -137,7 +164,7 @@
 
   <section class="case-detail-section">
     <div class="wrap">
-      @for (study of studies; track study.id; let index = $index) {
+      @for (study of studies(); track study.documentId || study.id; let index = $index) {
         <article class="case-detail" [class.case-detail-reverse]="index % 2 === 1" [id]="study.id">
           <div class="detail-metric">
             <span>{{ study.industry }} / {{ study.profile }}</span>

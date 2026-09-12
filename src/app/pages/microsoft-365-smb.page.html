@@ -194,7 +194,7 @@
           <span class="tag">Entry</span>
           <h4>Business Basic</h4>
           <div class="sub">Email, {{ includesTeams() ? 'Teams & ' : '' }}cloud apps</div>
-          <div class="amt"><b>&#8377;{{ (includesTeams() ? 145 : 105) * 12 * quoteQuantities()['basic'] | number:'1.0-0' }}</b><span>{{ quoteQuantities()['basic'] === 1 ? 'per user' : 'for ' + quoteQuantities()['basic'] + ' users' }} / year + GST</span></div>
+          <div class="amt"><b>&#8377;{{ (includesTeams() ? 145 : 105) * quoteQuantities()['basic'] | number:'1.0-0' }}</b><span>{{ quoteQuantities()['basic'] === 1 ? 'per user' : 'for ' + quoteQuantities()['basic'] + ' users' }} / month + GST</span></div>
           <span class="save">Web &amp; mobile apps</span>
           <ul>
             <li>Outlook email on @yourcompany.com</li>
@@ -210,7 +210,7 @@
           <span class="tag">Most Popular</span>
           <h4>Business Standard</h4>
           <div class="sub">Full desktop apps{{ includesTeams() ? ' + Teams' : '' }}</div>
-          <div class="amt"><b>&#8377;{{ (includesTeams() ? 770 : 570) * 12 * quoteQuantities()['standard'] | number:'1.0-0' }}</b><span>{{ quoteQuantities()['standard'] === 1 ? 'per user' : 'for ' + quoteQuantities()['standard'] + ' users' }} / year + GST</span></div>
+          <div class="amt"><b>&#8377;{{ (includesTeams() ? 770 : 570) * quoteQuantities()['standard'] | number:'1.0-0' }}</b><span>{{ quoteQuantities()['standard'] === 1 ? 'per user' : 'for ' + quoteQuantities()['standard'] + ' users' }} / month + GST</span></div>
           <span class="save">BEST VALUE</span>
           <ul>
             <li>Everything in Business Basic</li>
@@ -226,7 +226,7 @@
           <span class="tag">Security Ready</span>
           <h4>Business Premium</h4>
           <div class="sub">Standard + enterprise security</div>
-          <div class="amt"><b>&#8377;{{ (includesTeams() ? 1830 : 1565) * 12 * quoteQuantities()['premium'] | number:'1.0-0' }}</b><span>{{ quoteQuantities()['premium'] === 1 ? 'per user' : 'for ' + quoteQuantities()['premium'] + ' users' }} / year + GST</span></div>
+          <div class="amt"><b>&#8377;{{ (includesTeams() ? 1830 : 1565) * quoteQuantities()['premium'] | number:'1.0-0' }}</b><span>{{ quoteQuantities()['premium'] === 1 ? 'per user' : 'for ' + quoteQuantities()['premium'] + ' users' }} / month + GST</span></div>
           <span class="save">Defender + Intune</span>
           <ul>
             <li>Everything in Business Standard</li>
@@ -255,7 +255,7 @@
           <b>Microsoft 365 + Copilot AI bundles</b>
           <span>Add Copilot to any Business plan &mdash; GPT-powered AI across Word, Excel, Teams and Outlook</span>
         </div>
-        <a class="btn btn-primary" href="#contact">Ask about Copilot</a>
+        <a class="btn btn-primary" href="#contact" (click)="openCallback($event)">Ask about Copilot</a>
       </div>
 
       <!-- ENTERPRISE TABLE -->
@@ -267,9 +267,9 @@
             <tr><th>Plan</th><th>With Teams</th><th>Without Teams</th><th></th></tr>
           </thead>
           <tbody>
-            <tr><td>Microsoft 365 E3</td><td>&#8377;2,995 /user/mo</td><td>&#8377;2,285 /user/mo</td><td><a class="btn btn-ghost btn-sm" href="#contact">Quote &rarr;</a></td></tr>
-            <tr><td>Microsoft 365 E5</td><td>&#8377;4,740 /user/mo</td><td>&#8377;4,030 /user/mo</td><td><a class="btn btn-ghost btn-sm" href="#contact">Quote &rarr;</a></td></tr>
-            <tr><td>Microsoft 365 F3 (Frontline)</td><td>&#8377;665 /user/mo</td><td>&#8377;575 /user/mo</td><td><a class="btn btn-ghost btn-sm" href="#contact">Quote &rarr;</a></td></tr>
+            <tr><td>Microsoft 365 E3</td><td>&#8377;2,995 /user/mo</td><td>&#8377;2,285 /user/mo</td><td><a class="btn btn-ghost btn-sm" href="#contact" (click)="openCallback($event)">Quote &rarr;</a></td></tr>
+            <tr><td>Microsoft 365 E5</td><td>&#8377;4,740 /user/mo</td><td>&#8377;4,030 /user/mo</td><td><a class="btn btn-ghost btn-sm" href="#contact" (click)="openCallback($event)">Quote &rarr;</a></td></tr>
+            <tr><td>Microsoft 365 F3 (Frontline)</td><td>&#8377;665 /user/mo</td><td>&#8377;575 /user/mo</td><td><a class="btn btn-ghost btn-sm" href="#contact" (click)="openCallback($event)">Quote &rarr;</a></td></tr>
           </tbody>
         </table>
       </div>
@@ -279,7 +279,7 @@
           <b>Nonprofit &amp; education pricing available</b>
           <span>Business Basic free for up to 300 users &middot; Standard &#8377;250/user/mo &middot; Premium &#8377;460/user/mo</span>
         </div>
-        <a class="btn btn-primary" href="#contact">Check eligibility &rarr;</a>
+        <a class="btn btn-primary" href="#contact" (click)="openCallback($event)">Check eligibility &rarr;</a>
       </div>
 
       <!-- ADD-ONS -->
@@ -399,7 +399,7 @@
             <span>Enterprise privacy on Azure</span>
           </div>
           <div class="hero-ctas" style="animation:none">
-            <a class="btn btn-primary" href="#contact">Ask About Copilot Licensing</a>
+            <a class="btn btn-primary" href="#contact" (click)="openCallback($event)">Ask About Copilot Licensing</a>
             <a class="btn btn-ghost" href="#pricing">See Copilot pricing</a>
           </div>
         </div>
@@ -571,54 +571,23 @@
 
       <xh-insights-section pageSlug="microsoft-365-smb" />
 
-  <!-- CONTACT -->
-      <div class="pp-sec" id="contact">Get Microsoft 365 for your business &mdash; transparent INR pricing</div>
-      <div class="pp-contact">
-        <div class="pp-ccard">
-          <h3>M365 Consultation</h3>
-          <p>Licensing, email migration, Teams setup and managed support &mdash; all in one engagement. GST invoice same day.</p>
-          <ul class="pp-clist">
-            <li><a href="tel:+912267111555"><span class="ci">&#9742;</span><span><b>Call us</b><span>+91 22 6711 1555</span></span></a></li>
-            <li><a href="https://wa.me/918657032540"><span class="ci">&#128172;</span><span><b>WhatsApp</b><span>+91 86570 32540 &mdash; start a chat</span></span></a></li>
-            <li><a href="mailto:sales@xcellhost.cloud"><span class="ci">&#9993;</span><span><b>Email us</b><span>sales@xcellhost.cloud</span></span></a></li>
-            <li><a href="#"><span class="ci">&#128203;</span><span><b>Submit a ticket</b><span>Trackable request &middot; 24&times;7 response</span></span></a></li>
-          </ul>
-          <div class="pp-proof" style="justify-content:flex-start;margin-top:18px">
-            <span>Microsoft Partner</span><span>Google Cloud Partner</span><span>Zoho Authorised</span>
-          </div>
-        </div>
-
-        <div class="pp-ccard">
-          <h3>Request a Callback</h3>
-          <p>Fill the form &mdash; we'll get back within one business day.</p>
-          <form class="pp-form" (submit)="submitCallback($event)">
-            <div class="row2">
-              <div><label for="f1">Full Name *</label><input id="f1" required></div>
-              <div><label for="f2">Company Name *</label><input id="f2" required></div>
-            </div>
-            <div class="row2">
-              <div><label for="f3">Work Email *</label><input id="f3" type="email" required></div>
-              <div><label for="f4">Mobile Number *</label><input id="f4" type="tel" required></div>
-            </div>
-            <div><label for="f5">Message</label><textarea id="f5" placeholder="Number of users, current email platform, plan of interest…"></textarea></div>
-            <button class="btn btn-primary" type="submit">Request a Callback</button>
-            <p class="pp-formnote" id="fmsg" role="status">{{ callbackMessage() }}</p>
-          </form>
-        </div>
-      </div>
-
-      <!-- CTA -->
-      <div class="pp-cta">
-        <div>
-          <h3>Ready to move your team to Microsoft 365?</h3>
-          <p>Free consultation &middot; free migration &middot; 24&times;7 support in English &amp; Hindi &middot; GST invoice in INR</p>
+      <!-- Standard product CTA -->
+      <div class="pp-cta" id="contact">
+        <div class="pp-cta-copy">
+          <h3>Ready to start with Microsoft 365?</h3>
+          <p>Free consultation &middot; free migration &middot; 24&times;7 support in English &amp; Hindi</p>
         </div>
         <div class="pp-ctabtns">
-          <a class="btn btn-primary" href="#contact">Request a callback</a>
+          <a class="btn btn-primary" href="#contact" (click)="openCallback($event)">Request a callback</a>
           <a class="btn btn-ghost" href="#pricing">&#9889; Buy Now</a>
-          <a class="btn btn-ghost" href="#">&#11015; Infosheet</a>
-          <a class="btn btn-wa" href="https://wa.me/918657032540">Talk on WhatsApp</a>
+          <a class="btn btn-ghost" href="https://flipbooks.officeinfra.com/books/Microsoft-365-Platfrom/" target="_blank" rel="noopener noreferrer">&#11015; Infosheet</a>
+          <a class="btn btn-ghost" href="#" (click)="requestPresentation($event)">&#128214; Presentation</a>
+          <a class="btn btn-ghost" href="https://wa.me/918657032540" target="_blank" rel="noopener noreferrer">Talk on WhatsApp</a>
+          <a class="btn btn-ghost" href="mailto:sales@xcellhost.cloud">Email Us</a>
         </div>
+        <a class="pp-cta-buddha-link" href="/company/support-overview" aria-label="Visit XcellHost customer support">
+          <img class="pp-cta-buddha" src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost Laughing Buddha" />
+        </a>
       </div>
 
       <div class="pp-proof">

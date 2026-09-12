@@ -1,4 +1,4 @@
-@if (page(); as page) {
+﻿@if (page(); as page) {
   @if (slug() === 'privacy-policy') {
     <main class="privacy-policy-page">
       <div class="privacy-policy-wrap">
@@ -789,16 +789,27 @@
                     role="tabpanel"
                     [id]="'certification-panel-' + $index"
                   >
+                    @if (certification.image) {
                     <a [href]="certification.image" target="_blank" rel="noopener noreferrer">
                       <div class="certificate-image-wrap">
                         <img [src]="certification.image" [alt]="certification.alt" loading="eager" />
                       </div>
                     </a>
+                    } @else {
+                      <div class="certificate-text-preview">
+                        <strong>{{ certification.title }}</strong>
+                        <span>{{ certification.type }}</span>
+                      </div>
+                    }
                     <div class="recognition-card-copy">
-                      <span>Certified credential</span>
+                      <span>Credential details</span>
                       <h3>{{ certification.title }}</h3>
                       <p>{{ certification.type }}</p>
-                      <a [href]="certification.image" target="_blank" rel="noopener noreferrer">View certificate →</a>
+                      @if (certification.image) {
+                        <a [href]="certification.image" target="_blank" rel="noopener noreferrer">View certificate &rarr;</a>
+                      } @else {
+                        <p>Certificate document not yet available on this page.</p>
+                      }
                     </div>
                   </article>
                 }
@@ -881,7 +892,23 @@
           }
         }
 
-        @if (slug() !== 'vendor-partners') {
+        @if (slug() === 'certifications-awards') {
+        <section class="pp-cta certification-buddha-strip" aria-labelledby="certification-cta-title">
+          <div>
+            <h2 id="certification-cta-title">Ready to start with XcellHost?</h2>
+            <p>Free consultation &middot; free migration &middot; 24&times;7 support in English &amp; Hindi</p>
+            <div class="certification-buddha-actions">
+              <a class="btn btn-primary" routerLink="/contact">Request documents &rarr;</a>
+              <a class="btn btn-ghost" routerLink="/contact">Contact team</a>
+              <a class="btn btn-ghost" href="https://wa.me/918657032540" target="_blank" rel="noopener">Talk on WhatsApp</a>
+              <a class="btn btn-ghost" href="mailto:sales@xcellhost.com?subject=Certification%20documents%20enquiry">Email Us</a>
+            </div>
+          </div>
+          <a class="pp-cta-buddha-link" routerLink="/company/support-overview" aria-label="Visit XcellHost customer support">
+            <img class="pp-cta-buddha" src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost Laughing Buddha" width="104" height="104" loading="lazy" />
+          </a>
+        </section>
+        } @else if (slug() !== 'vendor-partners') {
         <section class="company-cta">
           <div>
             <span>Let’s move forward</span>
@@ -896,3 +923,5 @@
   </main>
   }
 }
+
+

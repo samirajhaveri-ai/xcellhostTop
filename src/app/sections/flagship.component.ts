@@ -77,6 +77,7 @@ const FLAGSHIP_CARD_GROUPS: Readonly<Record<string, readonly FlagshipGroup[]>> =
   'Entra ID Backup': ['protection'],
   'DPDPA Platform': ['digital-trust'],
   'Business Email': ['workplace'],
+  'Microsoft 365 SMB': ['workplace'],
   'Advanced Email Security': ['workplace', 'security'],
   'Google Workspace': ['workplace'],
   'Microsoft 365 for Enterprise': ['workplace'],
@@ -112,9 +113,10 @@ const CLOUD_DATA_PROTECT_ORDER = [
 
 const CLOUD_PRODUCTIVITY_ORDER = [
   'Business Email',
+  'Microsoft 365 SMB',
+  'Microsoft 365 for Enterprise',
   'Advanced Email Security',
   'Google Workspace',
-  'Microsoft 365 for Enterprise',
   'Zoho Workplace',
   'Enterprise DMARC',
 ] as const;
@@ -242,6 +244,12 @@ const FLAGSHIP_CARDS: readonly FlagshipCard[] = [
     icon: 'workspace', badge: 'Collaboration', title: 'Google Workspace',
     blurb: 'Gmail, Drive, Meet and Docs with migration and local support.',
     lead: '', amount: 'per-user', tail: '/month', cta: 'Explore →', category: 'Cloud',
+  },
+  {
+    icon: 'workspace', badge: 'SMB suite', title: 'Microsoft 365 SMB',
+    blurb: 'Microsoft 365 apps, business email and collaboration for small and medium businesses.',
+    lead: '', amount: 'per-user', tail: '/month', cta: 'Explore', category: 'Cloud',
+    link: '/microsoft-365-smb',
   },
   {
     icon: 'workspace', badge: 'Enterprise suite', title: 'Microsoft 365 for Enterprise',

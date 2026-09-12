@@ -26,7 +26,16 @@ h2{font-family:var(--disp);font-weight:700;font-size:clamp(25px,3vw,34px);color:
 .btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
 .pp-hero .btn-ghost{border-color:rgba(255,255,255,.35);color:#fff}
 .pp-hero .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08);color:#fff}
-.pp-cta .btn-ghost{border-color:rgba(255,255,255,.45);color:#fff}
+.pp-cta .btn-ghost{border-color:rgba(255,255,255,.4);color:#fff}
+.pp-cta{display:grid;grid-template-columns:minmax(0,1fr) 104px;column-gap:20px;row-gap:24px;padding:32px 26px 32px 36px;background:linear-gradient(105deg,var(--blue),#0C3E8F);border-radius:16px;color:#fff}
+.pp-cta-copy{grid-column:1;grid-row:1}
+.pp-cta-copy h3{margin:0;color:#fff;font-family:var(--disp);font-size:22px;font-weight:700;line-height:1.6}
+.pp-cta-copy p{margin:4px 0 0;color:#CFE0FA;font-size:14.5px;line-height:1.6}
+.pp-cta .pp-ctabtns{grid-column:1;grid-row:2;justify-content:flex-start;align-items:center}
+.pp-cta .btn{line-height:1.6;white-space:nowrap}
+.pp-cta .pp-cta-buddha-link{position:static;grid-column:2;grid-row:1 / 3;align-self:center;width:104px;height:104px;margin:0;transform:none}
+.pp-cta .pp-cta-buddha-link:hover{transform:scale(1.06)}
+.pp-cta .btn-primary{animation:none}
 .pp-cta .btn-ghost:hover{background:rgba(255,255,255,.12);color:#fff;border-color:#fff}
 .btn-wa{background:#25D366;color:#fff;border-color:#25D366}
 .btn-wa:hover{background:#1eb955;border-color:#1eb955;color:#fff}
@@ -351,10 +360,7 @@ h2{font-family:var(--disp);font-weight:700;font-size:clamp(25px,3vw,34px);color:
 .pp-form .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .pp-formnote{font-size:12px;color:var(--slate);text-align:center}
 
-.pp-cta{margin-top:22px;background:linear-gradient(105deg,var(--blue),#0C3E8F);color:#fff;border-radius:16px;padding:36px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
-.pp-cta h3{font-family:var(--disp);font-size:22px;font-weight:700}
-.pp-cta p{color:#cfe0fa;font-size:14.5px;margin-top:4px}
-.pp-ctabtns{display:flex;gap:10px;flex-wrap:wrap}
+.pp-ctabtns{display:flex;gap:12px;flex-wrap:wrap}
 .pp-proof{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px}
 .pp-proof span{font:600 12px var(--body);color:var(--slate);border:1px solid var(--line);border-radius:99px;padding:8px 16px;background:#fff}
 
@@ -439,15 +445,16 @@ footer{background:#3B63E8;color:#fff;padding:48px 0 28px;font-size:14px}
   .pp-hero{flex-direction:column;align-items:stretch}
 }
 @media(max-width:760px){
+  .pp-cta{grid-template-columns:minmax(0,1fr);padding:28px 22px}
+  .pp-cta-copy h3{font-size:19px}
+  .pp-cta .pp-cta-buddha-link{grid-column:1;grid-row:3;width:72px;height:72px;justify-self:end}
   .pp-feats,.pp-bens,.pp-plans,.pp-plans2,.pp-why,.pp-blog,.pp-uses,.pp-secrows,.pp-faq,.pp-stats{grid-template-columns:1fr}
   .pp-apps{grid-template-columns:repeat(2,minmax(0,1fr))}
   .pp-hero{min-height:340px;padding:40px 0}
   .pp-hero h1{font-size:26px}
   .pp-tagline{font-size:15px}
   .pp-body{padding:20px 0 28px 0}
-  .pp-cta{padding:28px 22px}
-  .pp-cta h3{font-size:19px}
-  .hero-ctas .btn,.pp-ctabtns .btn{width:100%;text-align:center}
+  .hero-ctas .btn{width:100%;text-align:center}
   .pv-frame{border-radius:12px}
   .m365-video-grid{grid-template-columns:1fr}
   .nf-bottom{flex-direction:column;align-items:flex-start;gap:8px}

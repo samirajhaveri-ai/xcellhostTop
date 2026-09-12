@@ -1,5 +1,12 @@
 export interface CaseStudy {
   readonly id: string;
+  readonly documentId?: string;
+  readonly mainCategory: string;
+  readonly subCategory: string;
+  readonly customer?: string;
+  readonly headline?: string;
+  readonly quote?: string;
+  readonly quoteBy?: string;
   readonly industry: string;
   readonly profile: string;
   readonly metric: string;
@@ -14,6 +21,8 @@ export interface CaseStudy {
 export const CASE_STUDIES: readonly CaseStudy[] = [
   {
     id: 'tally-cloud',
+    mainCategory: 'Cloud & Infrastructure',
+    subCategory: 'Manufacturing',
     industry: 'Manufacturing',
     profile: '3 branches',
     metric: '2 days to 0',
@@ -33,6 +42,8 @@ export const CASE_STUDIES: readonly CaseStudy[] = [
   },
   {
     id: 'ca-continuity',
+    mainCategory: 'Cloud & Infrastructure',
+    subCategory: 'Professional Services',
     industry: 'CA firm',
     profile: 'Pune',
     metric: '10 minutes',
@@ -52,6 +63,8 @@ export const CASE_STUDIES: readonly CaseStudy[] = [
   },
   {
     id: 'dpdpa-readiness',
+    mainCategory: 'Data Protection & Compliance',
+    subCategory: 'BFSI',
     industry: 'BFSI',
     profile: 'Enterprise',
     metric: '8 weeks',
