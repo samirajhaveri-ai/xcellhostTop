@@ -198,21 +198,17 @@ export class CompanyPage {
   readonly existingCertifications = [
     {
       title: 'ISO/IEC 27001:2013',
+      status: 'Certified',
       type: 'Information Security Management System',
       image: '/assets/images/company-recognition/iso-27001-certificate.jpg',
       alt: 'XcellHost ISO IEC 27001:2013 certificate',
     },
     {
       title: 'ISO/IEC 20000-1:2018',
+      status: 'Certified',
       type: 'IT Service Management System',
       image: '/assets/images/company-recognition/iso-20000-certificate.jpg',
       alt: 'XcellHost ISO IEC 20000-1:2018 certificate',
-    },
-    {
-      title: 'Honorary Doctorate in Artificial Intelligence',
-      type: 'Leadership recognition Â· Samir Jhaveri, Managing Director',
-      image: '/assets/images/company-recognition/ai-certification.jpeg',
-      alt: 'Honorary Doctorate in Artificial Intelligence awarded to Samir Jhaveri',
     },
   ] as const;
   readonly certifications = [
@@ -222,6 +218,7 @@ export class CompanyPage {
       .map(badge => ({
         title: [badge.label, badge.name].filter(Boolean).join(' '),
         type: badge.status,
+        status: badge.status,
         image: '',
         alt: '',
       })),

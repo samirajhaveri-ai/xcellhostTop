@@ -72,6 +72,9 @@ const COUNTER_THRESHOLD = 0.5;
               <div><b>10000+</b><span>Businesses served</span></div>
               <div><b>200+</b><span>OEM partnerships</span></div>
               <div><b>27+</b><span>Years in cloud</span></div>
+              <div><b>99.95%</b><span>Uptime SLA</span></div>
+              <div><b>24×7</b><span>Expert support</span></div>
+              <div><b>Free</b><span>Migration assistance</span></div>
             </div>
             <small>Trusted by businesses, schools and organizations across India.</small>
           </div>
@@ -81,10 +84,14 @@ const COUNTER_THRESHOLD = 0.5;
   `,
   styles: `
     .why .why-layout { display: block; }
-    .why .why-intro { max-width: 850px; margin: 0 auto; text-align: center; }
-    .why .why-intro h2 { max-width: 760px; margin: 17px auto 12px; }
+    .why .why-intro { max-width: none; margin: 0 auto; text-align: center; }
+    .why .why-intro h2 { max-width: none; margin: 17px auto 12px; font-size: clamp(26px, 3.1vw, 43px); }
     .why .why-intro > p { max-width: none; }
-    .why .why-stats { justify-content: center; flex-wrap: wrap; }
+    .why .why-stats { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 24px; margin: 40px 0 32px; }
+    .why .why-stats > div { min-width: 0; }
+    .why .why-stats span { white-space: normal; line-height: 1.5; }
+    @media (max-width: 980px) { .why .why-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 28px; } }
+    @media (max-width: 480px) { .why .why-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   `,
 })
 export class WhyComponent implements AfterViewInit, OnDestroy {
