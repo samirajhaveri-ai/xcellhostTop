@@ -146,11 +146,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Reserve a domain name for future availability 🕰️"
               },
-              {
-                "title": "Free Domain",
-                "pill": "FREE",
-                "desc": "Reserve a domain name for future availability 🕰️"
-              },
+              
               {
                 "title": "Ai Domain Advisor",
                 "pill": "FREE",
@@ -189,8 +185,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Optimized hosting for WordPress sites ⚡"
               },
-              
-              
+              {
+                "title": "Free Domain",
+                "pill": "FREE",
+                "desc": "Reserve a domain name for future availability 🕰️"
+              },
               {
                 "title": "AI Website Builder",
                 "pill": "",
@@ -451,6 +450,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
+                "title": "AI Model library",
+                "pill": null,
+                "desc": null
+              },
+              {
                 "title": "Private Cloud",
                 "pill": null,
                 "desc": null
@@ -482,6 +486,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "CDN Cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "IOT Cloud",
                 "pill": null,
                 "desc": null
               },
@@ -837,6 +846,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "Edge Network",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
@@ -946,7 +960,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Microsoft 365 Security Assessment",
                 "pill": null,
                 "desc": null
-              },  
+              },
+              {
+                "title": "Google Security Assessment",
+                "pill": null,
+                "desc": null
+              },   
             ]
           }
         ]
@@ -1095,7 +1114,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Copilot Studio",
+                "title": "Microsoft Copilot Studio",
                 "pill": null,
                 "desc": null
               },
@@ -1125,6 +1144,11 @@ export const MEGA_MENU: MenuTop[] = [
               
               {
                 "title": "Managed Microsoft 365",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Managed GWS",
                 "pill": null,
                 "desc": null
               },
@@ -1219,11 +1243,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "E-Mail Archiving",
-                "pill": null,
-                "desc": null
-              },
+              
               {
                 "title": "SalesForce Backup",
                 "pill": null,
@@ -1249,9 +1269,6 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
 
-
-
-
       {
         "g": "0",
         "label": "Information Archive",
@@ -1263,6 +1280,11 @@ export const MEGA_MENU: MenuTop[] = [
                {
                 "title": "Cloud Object Storage",
                 "pill": "Best seller",
+                "desc": null
+              },
+              {
+                "title": "E-Mail Archiving",
+                "pill": null,
                 "desc": null
               },
             ]
@@ -1706,6 +1728,11 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "EndPoint Security",
             "items": [
               {
+                "title": "Scrutiny DLP",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
                 "title": "Scrutiny EDR",
                 "pill": "Free trial",
                 "desc": null
@@ -1726,11 +1753,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null,
               },
               
-              {
-                "title": "Scrutiny DLP",
-                "pill": "Free trial",
-                "desc": null
-              },
+              
               {
                 "title": "Microsoft Defender",
                 "pill": null,
@@ -1792,7 +1815,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Unified Sase",
+                "title": "Unified SaSe",
+                "pill": "Free trial",
+                "desc": null
+              },
+              {
+                "title": "IP Security Mgmt",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -2195,12 +2223,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "SOC 1",
+                "title": "SOC 1 Cunsulting",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "SOC 2",
+                "title": "SOC 2 Cunsulting",
                 "pill": null,
                 "desc": null
               },
@@ -2310,6 +2338,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Secure your Bot until ready for use 🕰️"
               },
+              {
+                "title": "Agentic AI",
+                "pill": null,
+                "desc": "Secure your Bot until ready for use 🕰️"
+              },
               
             ]
           }
@@ -2416,6 +2449,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "AI Security Platform",
+                "pill": null,
+                "desc": "Optimized AI IDE Lab ⚡"
+              },
+              {
+                "title": "AI Identity Security",
                 "pill": null,
                 "desc": "Optimized AI IDE Lab ⚡"
               },
@@ -2573,11 +2611,11 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "5",
-        "label": "Cloudflare Security",
+        "label": "CloudFlare Security",
         "on": false,
         "groups": [
           {
-            "heading": "Cloudflare Security",
+            "heading": "CloudFlare Security",
             "items": [
               {
                 "title": "No Data",
@@ -2597,7 +2635,7 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Fortinet Security",
             "items": [
               {
-                "title": "All Fortinet Security",
+                "title": "All Fortinet Products",
                 "pill": null,
                 "desc": null
               },
@@ -2607,14 +2645,14 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "7",
-        "label": "All Palo Alto Security",
+        "label": "Palo Alto Security",
         "on": false,
         "groups": [
           {
             "heading": "Palo Alto Security",
             "items": [
               {
-                "title": "No Data",
+                "title": "All Palo Alto Security",
                 "pill": null,
                 "desc": null
               },
@@ -2742,32 +2780,37 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "BFSI / Insurance Services",
+                "title": "BFSI Cloud",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Manufacturing",
+                "title": "Insurance Cloud",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Government",
+                "title": "Manufacturing Cloud",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Higher Education · University Program",
+                "title": "Government Cloud",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Pharmaceutical",
+                "title": "Higher Education Cloud",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Construction",
+                "title": "Pharmaceutical Cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Construction Cloud",
                 "pill": null,
                 "desc": null
               },
@@ -2777,17 +2820,17 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Logistics",
+                "title": "Logistics Cloud",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Health Care",
+                "title": "HealthCare Cloud",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Retail & E-Commerce",
+                "title": "Retail Cloud",
                 "pill": null,
                 "desc": null
               },
@@ -2901,17 +2944,18 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/vendor-partners/microsoft-365"
               },
               {
-                "title": "DPO Genie365",
-                "pill": null,
-                "desc": "Privacy operations and data-protection compliance",
-                "href": "/vendor-partners/dpo-genie"
-              },
-              {
                 "title": "Microsoft Azure",
                 "pill": null,
                 "desc": "Cloud infrastructure, applications and identity services",
                 "href": "/vendor-partners/microsoft-azure"
               },
+              {
+                "title": "DPO Genie365",
+                "pill": null,
+                "desc": "Privacy operations and data-protection compliance",
+                "href": "/vendor-partners/dpo-genie"
+              },
+              
               {
                 "title": "Amazon Web Services",
                 "pill": null,
@@ -2950,6 +2994,12 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "DigiCert",
+                "pill": null,
+                "desc": "Enterprise certificates, PKI and digital trust",
+                "href": "/vendor-partners/digicert"
+              },
+              {
+                "title": "Geocert",
                 "pill": null,
                 "desc": "Enterprise certificates, PKI and digital trust",
                 "href": "/vendor-partners/digicert"
@@ -3056,6 +3106,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Certificates, signing and trusted digital identity",
                 "href": "/digicert"
+              },
+              {
+                "title": "Blockchain as a Service",
+                "pill": null,
+                "desc": "Certificates, signing and trusted digital identity",
+                "href": "/digicert"
               }
             ]
           }
@@ -3156,7 +3212,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Recognition for our cloud and security expertise"
               },
               {
-                "title": "Data Centers (Global)",
+                "title": "Association",
+                "pill": null,
+                "desc": "Recognition for our cloud and security expertise"
+              },
+              {
+                "title": "Global Data Centers",
                 "pill": null,
                 "desc": "Global locations for resilient workloads"
               },
@@ -3164,12 +3225,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Vendor Partners",
                 "pill": null,
                 "desc": "Technology partnerships across cloud and security"
-              },
-              
-              {
-                "title": "Inquiry Now",
-                "pill": null,
-                "desc": "We'd love to hear from you"
               },
               {
                 "title": "Infrastructure",
@@ -3207,15 +3262,17 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "We'd love to hear from you"
               },
               {
-                "title": "Promotion Offer",
+                "title": "Promotion & Offer",
                 "pill": null,
                 "desc": "We'd love to hear from you"
               },
               {
-                "title": "Watch Tower",
+                "title": "Company Profile",
                 "pill": null,
-                "desc": "One intelligence layer"
+                "desc": null,
+                "href": ""
               },
+              
             ]
           }
         ]
@@ -3239,7 +3296,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Start your XcellHost partner journey"
               },
               {
-                "title": "Partner Signup ",
+                "title": "Partner Matrix",
+                "pill": null,
+                "desc": "Introduce customers to XcellHost services"
+              },
+              {
+                "title": "Partner/Signup ",
                 "pill": null,
                 "desc": "Start your XcellHost partner journey"
               },
@@ -3268,11 +3330,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Introduce customers to XcellHost services"
               },
-              {
-                "title": "Partner Matrix",
-                "pill": null,
-                "desc": "Introduce customers to XcellHost services"
-              },
+              
               
               
             ]
@@ -3330,7 +3388,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Create a trackable service request"
               },
               {
-                "title": "Knowledge Base",
+                "title": "Knowledgebase",
                 "pill": null,
                 "desc": "Guidance for common service tasks"
               },
@@ -3362,6 +3420,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Trust Center",
                 "pill": null,
                 "desc": null
+              },
+              {
+                "title": "Trust Watch",
+                "pill": null,
+                "desc": "One intelligence layer"
               },
             
             ]
@@ -3505,6 +3568,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Webinars"
               },
+              {
+                "title": "Poscat",
+                "pill": null,
+                "desc": "Webinars"
+              },
+
               
             ]
           }
@@ -3609,7 +3678,7 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Experience Center",
             "items": [
               {
-                "title": "Ts Plus Demo Center",
+                "title": "TsPlus Demo Center",
                 "pill": null,
                 "desc": null
               },
@@ -3641,19 +3710,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Press Release",
                 "pill": null,
                 "desc": null
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "g": "12",
-        "label": "Brand Center",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Brand Center",
-            "items": [
+              },
               {
                 "title": "Brand Kit",
                 "pill": null,
@@ -3712,12 +3769,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null,
                 "href": "https://flipbooks.officeinfra.com/books/guzk/"
               },
-              {
-                "title": "Company Profile",
-                "pill": null,
-                "desc": null,
-                "href": ""
-              }
+              
             ]
           }
         ]
