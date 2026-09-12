@@ -29,6 +29,11 @@ export const routes: Routes = [
   { path: 'partner-matrix', loadComponent: () => import('./pages/partner-matrix.page').then((m) => m.PartnerMatrixPage) },
   { path: 'under-construction/cloud-login', redirectTo: 'cloud-login', pathMatch: 'full' },
   { path: 'cloud-login', loadComponent: () => import('./pages/cloud-login.page').then((m) => m.CloudLoginPage) },
+  {
+    path: 'under-construction/data-processing-agreement',
+    loadComponent: () =>
+      import('./pages/data-processing-agreement.page').then((m) => m.DataProcessingAgreementPage),
+  },
   { path: 'under-construction/:slug', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
   { path: 'under-construction', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
   {

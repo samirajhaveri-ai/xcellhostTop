@@ -3330,9 +3330,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Introduce customers to XcellHost services"
               },
-              
-              
-              
             ]
           }
         ]
@@ -3463,7 +3460,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Fair Usage Policy",
                 "pill": null,
                 "desc": "How cookies are used on the XcellHost website"
-              }
+              },
+              {
+                "title": "Data Processing Agreement",
+                "pill": null,
+                "desc": "How customer personal data is processed and protected"
+              },
 
             ]
           }
