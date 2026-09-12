@@ -1,0 +1,90 @@
+<div class="digicert-content">
+  <section aria-labelledby="digicert-overview">
+    <div class="pp-sec" id="digicert-overview">Overview &mdash; Why DigiCert?</div>
+    <p class="pp-ov">DigiCert eliminates the frustration with PKI and simplifies SSL/TLS. It is one of the most trusted, most relied-upon Certificate Authorities in the world &mdash; it has perfected validation, invests millions in its infrastructure yearly, and continues to lead on post-quantum cryptography, IoT and blockchain. With the <b>CertCentral&reg;</b> management platform and a top-of-the-line product suite, there is a reason the Fortune 100 trust DigiCert to secure their identities.</p>
+    <p class="pp-ov">XcellHost supplies the full DigiCert range in India: we generate the CSR, run the validation with you, install the certificate on your server, and track the renewal so an expiry never becomes an outage. Billed in INR with a GST-compliant invoice.</p>
+    <div class="dc-stats">
+      <div><b>500M+</b><span>Seal impressions per day</span></div><div><b>$2M</b><span>Highest warranty available</span></div><div><b>27 mo</b><span>Validation reuse window</span></div><div><b>17%</b><span>Off list price, every term</span></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="digicert-types">
+    <div class="pp-sec" id="digicert-types">Every kind of certificate</div>
+    <div class="dc-apps">
+      <article><i class="teal">&#128274;</i><div><b>SSL/TLS</b><span>DV, OV and EV for single, multi-domain and wildcard</span></div></article>
+      <article><i class="blue">&lt;/&gt;</i><div><b>Code Signing</b><span>Standard and EV, with SmartScreen reputation</span></div></article>
+      <article><i class="amber">&#10003;</i><div><b>Document Signing</b><span>Adobe AATL trusted, tamper-evident signatures</span></div></article>
+      <article><i class="purple">&#9993;</i><div><b>S/MIME</b><span>Signed and encrypted email, business or individual</span></div></article>
+      <article><i class="green">&#9881;</i><div><b>IoT &amp; Device</b><span>Device identity at scale, private and public roots</span></div></article>
+      <article><i class="slate">&#9671;</i><div><b>Private &amp; White-Label CAs</b><span>Dedicated intermediates for internal PKI</span></div></article>
+      <article><i class="red">&#9733;</i><div><b>Verified &amp; Common Marks</b><span>Your logo in the inbox via BIMI</span></div></article>
+      <article><i class="blue">&#9638;</i><div><b>CertCentral&reg;</b><span>Discovery, automation and lifecycle management</span></div></article>
+    </div>
+  </section>
+
+  <section aria-labelledby="catalogue">
+    <div class="pp-sec" id="catalogue">DigiCert certificates &mdash; world's fastest validation &amp; issuance</div>
+    <p class="pp-ov catalogue-intro">Choose a certificate family below, then select a product to request pricing or purchase assistance.</p>
+    <div class="dc-tabs" role="tablist" aria-label="Filter DigiCert certificates">
+      <button type="button" role="tab" [class.active]="activeGroup() === 'all'" [attr.aria-selected]="activeGroup() === 'all'" (click)="selectGroup('all')">All certificates <span>25</span></button>
+      @for (group of groups; track group.id) {
+        <button type="button" role="tab" [class.active]="activeGroup() === group.id" [attr.aria-selected]="activeGroup() === group.id" (click)="selectGroup(group.id)">{{ group.label }} <span>{{ groupCount(group.id) }}</span></button>
+      }
+    </div>
+    @for (group of groups; track group.id) {
+      @if (showGroup(group.id)) {
+        <div class="dc-group">
+          <div class="dc-group-head" [class]="'dc-group-head ' + group.id"><b>{{ group.label }}</b><p>{{ group.blurb }}</p></div>
+          <div class="dc-plans">
+            @for (certificate of certificatesFor(group.id); track certificate.name) {
+              <article class="dc-plan" [class.featured]="certificate.group === 'pro'">
+                @if (certificate.group === 'pro') { <span class="best">Best Seller</span> }
+                <h3>{{ certificate.name }}</h3>
+                <div class="price"><b>{{ certificate.price | currency:'USD':'symbol':'1.2-2' }}</b><span>per year &middot; 3-year term</span></div>
+                <em>Save {{ certificate.save | currency:'USD':'symbol':'1.2-2' }}</em>
+                <dl><div><dt>Warranty</dt><dd>{{ certificate.warranty }}</dd></div><div><dt>Validation</dt><dd>{{ certificate.validation }}</dd></div><div><dt>SANs</dt><dd>{{ certificate.sans ? 'Supported' : 'Not applicable' }}</dd></div></dl>
+                <div class="actions"><a class="btn btn-primary" href="#ppCtaT">Add to Cart</a><a class="btn btn-ghost" href="#ppCtaT">Full details</a></div>
+              </article>
+            }
+          </div>
+        </div>
+      }
+    }
+    <p class="dc-note">&#128179; Prices in USD per year at the 3-year rate, as published by the certificate authority's distributor. XcellHost bills in INR at the prevailing rate with a GST-compliant invoice.</p>
+    <div class="dc-recommend"><div><b>Not sure which one?</b><span>Tell us what you are securing &mdash; we will size it, price it in INR and install it for you.</span></div><a class="btn btn-primary" href="#ppCtaT">Get a Recommendation</a></div>
+  </section>
+
+  <section aria-labelledby="digicert-comparison">
+    <div class="pp-sec" id="digicert-comparison">Full comparison</div>
+    <div class="dc-table-wrap"><table><thead><tr><th>Products</th><th>Lowest Price</th><th>Save</th><th>Warranty</th><th>Validation</th></tr></thead><tbody>
+      @for (group of groups; track group.id) {
+        <tr class="group-row"><td colspan="5">{{ group.label }}</td></tr>
+        @for (certificate of certificatesFor(group.id); track certificate.name) {
+          <tr><td>{{ certificate.name }}</td><td>{{ certificate.price | currency:'USD':'symbol':'1.2-2' }}/yr.</td><td>{{ certificate.save | currency:'USD':'symbol':'1.2-2' }}</td><td>{{ certificate.warranty }}</td><td><a href="#ppCtaT">{{ certificate.validation }} &middot; Buy</a></td></tr>
+        }
+      }
+    </tbody></table></div>
+  </section>
+
+  <section aria-labelledby="digicert-included">
+    <div class="pp-sec" id="digicert-included">What you get with every certificate</div>
+    <div class="dc-features">
+      <article><i class="teal">&#9201;</i><div><h3>Validate once, issue instantly</h3><p>What takes other CAs days takes DigiCert minutes.</p><ul><li>Business validation completed in minutes, not days</li><li>Skip validation on your next order for 27 months</li><li>Subsequent certificates issue instantly</li><li>Critical if you issue at any volume</li></ul></div></article>
+      <article><i class="blue">&#9638;</i><div><h3>CertCentral&reg; management</h3><p>Included with Secure Site and Secure Site Pro.</p><ul><li>Inventory every certificate on your network</li><li>Sub-user access control and delegated permissions</li><li>Request, issue, renew and revoke from one interface</li><li>ACME automation for hands-off renewal</li></ul></div></article>
+      <article><i class="green">&#10003;</i><div><h3>The DigiCert Secured seal</h3><p>Seen over half a billion times per day.</p><ul><li>Leveraged by most Fortune 100 companies</li><li>Synonymous with trust and integrity</li><li>Proven to increase conversions when deployed well</li><li>Smart Seal on Secure Site and above</li></ul></div></article>
+      <article><i class="purple">&#9733;</i><div><h3>Quantum-proof encryption</h3><p>Secure today, still secure tomorrow.</p><ul><li>RSA, ECC and post-quantum cryptography</li><li>Every certificate signed with a PQC algorithm too</li><li>No scramble when quantum computing arrives</li><li>DigiCert is charting the industry's course here</li></ul></div></article>
+      <article><i class="amber">$</i><div><h3>Warranty up to $2 million</h3><p>Relying-party protection from the CA.</p><ul><li>$1M, $1.25M, $1.75M or $2M depending on product</li><li>Covers losses from a mis-issued certificate</li><li>Higher assurance products carry higher cover</li><li>Stated per product on every card</li></ul></div></article>
+      <article><i class="red">&#9742;</i><div><h3>XcellHost does the work</h3><p>Not just a licence key in an email.</p><ul><li>CSR generated for your server type</li><li>Validation run with you, not left to you</li><li>Installed and chain-tested on Apache, NGINX or IIS</li><li>Renewal tracked before it becomes urgent</li></ul></div></article>
+    </div>
+  </section>
+
+  <section aria-labelledby="digicert-benefits"><div class="pp-sec" id="digicert-benefits">Benefits for your business</div><div class="dc-benefits">
+    <article><i>&#128274;</i><p><b>Visitor trust, immediately</b>The padlock and the seal both do work your marketing copy cannot.</p></article><article><i>&#9889;</i><p><b>No wasted project time</b>Minutes to validate instead of days waiting on a CA.</p></article><article><i>&#128200;</i><p><b>Fewer outages</b>Expiry tracked and automated, so a certificate never takes the site down.</p></article><article><i>&#8377;</i><p><b>Predictable cost</b>Multi-year terms lock the rate, billed in INR with GST.</p></article>
+  </div></section>
+
+  <section aria-labelledby="digicert-certcentral"><div class="pp-sec" id="digicert-certcentral">CertCentral&reg; certificate management</div><div class="dc-suite"><div><small>No more outages</small><h3>Say goodbye to the certificate spreadsheet</h3><p>79% of organisations have suffered at least one certificate-related outage in the past year, and 71% do not even know how many certificates they hold. CertCentral&reg; gives you granular control over every digital certificate on your network through its entire lifecycle &mdash; included with Secure Site and Secure Site Pro.</p><div class="suite-grid"><span>Scan &amp; inventory your network</span><span>Delegate control per team</span><span>Alerts &amp; remediation advice</span><span>Prevent shadow certificates</span><span>Automate requests &amp; renewals</span><span>ACME protocol integration</span></div><div class="suite-actions"><a class="btn btn-primary" href="#ppCtaT">Ask About CertCentral</a><a class="btn btn-ghost" href="#catalogue">See which plans include it</a></div></div><aside><b>79%<br>hit an outage</b><span>Certificate expiry<br>is an avoidable incident</span></aside></div></section>
+
+  <section aria-labelledby="digicert-audience"><div class="pp-sec" id="digicert-audience">Who buys which certificate</div><div class="dc-uses">
+    <article><i>&#127974;</i><b>Banking &amp; BFSI</b><span>EV on every customer-facing property</span></article><article><i>&#128722;</i><b>E-commerce</b><span>EV or Secure Site Pro on checkout</span></article><article><i>&#9729;</i><b>SaaS platforms</b><span>Wildcard or FLEX for tenant subdomains</span></article><article><i>&#127970;</i><b>Multi-brand groups</b><span>Multi-domain across every property</span></article><article><i>&#128187;</i><b>Software vendors</b><span>Code signing, EV for driver publishing</span></article><article><i>&#9878;</i><b>Legal &amp; professional</b><span>Document signing and S/MIME</span></article><article><i>&#128231;</i><b>High-volume senders</b><span>Verified Mark Certificate for BIMI</span></article><article><i>&#127981;</i><b>Manufacturing &amp; IoT</b><span>Device identity at scale</span></article>
+  </div></section>
+</div>

@@ -110,6 +110,16 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'digicert-ssl-certificates',
+    data: { productSlug: 'digicert-ssl-certificates' },
+    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+  },
+  {
+    path: 'digicert',
+    redirectTo: 'digicert-ssl-certificates',
+    pathMatch: 'full',
+  },
+  {
     path: 'digicert-vmc',
     data: { productSlug: 'verified-mark-certificates-vmc' },
     loadComponent: () => import('./pages/digicert-vmc.page').then((m) => m.DigicertVmcPage),

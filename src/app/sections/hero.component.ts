@@ -48,6 +48,7 @@ const ORB_ITEMS: readonly OrbItem[] = [
   { service: 'DPDPA Platform & Consulting', pos: 'op4', label: 'DPDPA', emoji: '⚖️' },
   { service: 'GPU Cloud', pos: 'op5', label: 'GPU Cloud', img: '/assets/images/orb-gpu-cloud.png' },
   { service: 'SMB Cloud Desktop', pos: 'op6', label: 'Cloud Desktop', img: '/assets/images/orb-smb-cloud-desktop.png' },
+  
 ];
 
 const ROTATE_MS = 2400;
@@ -120,6 +121,32 @@ const HERO_CAROUSEL_SLIDES: readonly HeroCarouselSlide[] = [
     primaryHref: '/advanced-endpoint-security-edr',
     image: '',
     alt: 'Acronis EDR endpoint security',
+  },
+  {
+    tab: 'Cloud Backup',
+    eyebrow: 'Protect your data. Keep business moving.',
+    title: 'Cloud',
+    accent: 'Backup',
+    titleEnd: 'for peace of mind.',
+    description: 'Protect servers, endpoints and Microsoft 365 with encrypted cloud backups, flexible recovery and expert support when you need it.',
+    spotlight: 'Automated backups · granular recovery · expert support',
+    primaryCta: 'Explore Cloud Backup',
+    primaryHref: '/cloud-backup',
+    image: '',
+    alt: 'Cloud Backup data protection',
+  },
+  {
+    tab: 'SMB Cybird',
+    eyebrow: 'Cybersecurity built for growing businesses',
+    title: 'SMB',
+    accent: 'Cybird',
+    titleEnd: 'for a safer workplace.',
+    description: 'Secure your business network with the SMB Cyber Security Appliance, bringing network protection and expert guidance together for your growing team.',
+    spotlight: 'SMB network security · centralised protection · expert support',
+    primaryCta: 'Explore SMB Cybird',
+    primaryHref: '/smb-cyber-security-appliance',
+    image: '',
+    alt: 'SMB Cybird cybersecurity appliance',
   },
 ];
 
