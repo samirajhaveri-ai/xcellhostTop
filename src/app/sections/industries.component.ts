@@ -20,18 +20,19 @@ interface IndustryCard {
 }
 
 const INDUSTRY_CARDS: readonly IndustryCard[] = [
-  { icon: 'business', label: 'CA Cloud', blurb: 'Accounting & audit automation for CAs - free trial', service: 'CA Cloud' },
+  { icon: 'business', label: 'CA Cloud', blurb: 'Accounting & audit automation for CAs — free trial', service: 'CA Cloud' },
   { icon: 'business', label: 'SMB Cloud', blurb: 'Simplify operations, mitigate risk', service: 'SMB Cloud' },
-  { icon: 'bank', label: 'BFSI / Insurance Services', blurb: 'Enhance operations with compliant cloud', service: 'BFSI / Insurance Services' },
-  { icon: 'factory', label: 'Manufacturing', blurb: 'Innovative technologies for industry', service: 'Manufacturing' },
-  { icon: 'business', label: 'Government (Public Sector)', blurb: 'Secure, reliable public-sector technology', service: 'Government' },
-  { icon: 'education', label: 'Higher Education - University Program', blurb: 'Technology and support designed for higher education', service: 'Higher Education · University Program' },
-  { icon: 'business', label: 'Pharmaceutical', blurb: 'Technology solutions tailored to pharmaceutical operations', service: 'Pharmaceutical' },
-  { icon: 'business', label: 'Construction', blurb: 'Cloud and digital solutions for construction businesses', service: 'Construction' },
+  { icon: 'bank', label: 'BFSI Cloud', blurb: 'Explore BFSI Cloud services, features and solutions.', service: 'BFSI Cloud' },
+  { icon: 'bank', label: 'Insurance Cloud', blurb: 'Explore Insurance Cloud services, features and solutions.', service: 'Insurance Cloud' },
+  { icon: 'factory', label: 'Manufacturing Cloud', blurb: 'Explore Manufacturing Cloud services, features and solutions.', service: 'Manufacturing Cloud' },
+  { icon: 'business', label: 'Government Cloud', blurb: 'Explore Government Cloud services, features and solutions.', service: 'Government Cloud' },
+  { icon: 'education', label: 'Higher Education Cloud', blurb: 'Explore Higher Education Cloud services, features and solutions.', service: 'Higher Education Cloud' },
+  { icon: 'business', label: 'Pharmaceutical Cloud', blurb: 'Explore Pharmaceutical Cloud services, features and solutions.', service: 'Pharmaceutical Cloud' },
+  { icon: 'business', label: 'Construction Cloud', blurb: 'Explore Construction Cloud services, features and solutions.', service: 'Construction Cloud' },
   { icon: 'business', label: 'Food & Beverage', blurb: 'Technology designed for food and beverage operations', service: 'Food & Beverage' },
-  { icon: 'logistics', label: 'Logistics', blurb: 'Reliable digital solutions for modern logistics operations', service: 'Logistics' },
-  { icon: 'healthcare', label: 'Health Care', blurb: 'Explore Health Care services, features and solutions.', service: 'Health Care' },
-  { icon: 'retail', label: 'Retail & E-Commerce', blurb: 'Explore Retails services, features and solutions.', service: 'Retails & E-Commerce' },
+  { icon: 'logistics', label: 'Logistics Cloud', blurb: 'Explore Logistics Cloud services, features and solutions.', service: 'Logistics Cloud' },
+  { icon: 'healthcare', label: 'HealthCare Cloud', blurb: 'Explore HealthCare Cloud services, features and solutions.', service: 'HealthCare Cloud' },
+  { icon: 'retail', label: 'Retail Cloud', blurb: 'Explore Retail Cloud services, features and solutions.', service: 'Retail Cloud' },
 ]; 
 
 const INDUSTRY_ICON_PATHS: Readonly<Record<string, string>> = {

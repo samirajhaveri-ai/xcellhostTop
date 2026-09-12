@@ -482,7 +482,7 @@
       <div class="wrap">
         <header class="team-section-heading">
           <span class="team-section-label">The people behind XcellHost</span>
-          <h2 id="team-directory-title">Meet our <em>Xcellators.</em></h2>
+          <h2 id="team-directory-title">Meet our <em>Xccelerators.</em></h2>
           <p>Meet the people bringing experience, ideas and care to your cloud journey.</p>
         </header>
         <div class="team-tabs" role="tablist" aria-label="Team departments">
@@ -789,7 +789,7 @@
                     (click)="activeCertification.set($index)"
                   >
                     <span>{{ ($index + 1).toString().padStart(2, '0') }}</span>
-                    {{ certification.title }}
+                    <span class="certification-tab-label">{{ certification.title }}<small>{{ certification.status }}</small></span>
                   </button>
                 }
               </div>
