@@ -1,4 +1,4 @@
-﻿import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -77,10 +77,18 @@ export class CompanyPage {
   ] as const;
 
   readonly AITeams = [
-    { initials: 'SJ', name: 'Sanjay Jade', role: 'Accounts Payable Manager', image: '/assets/images/team-sanjay-jade.png' },
-    { initials: 'RS', name: 'Rizwan Shaikh', role: 'Cloud Pre-Sales Manager', image: '/assets/images/team-rizwan-shaikh.png' },
-    { initials: 'AP', name: 'Abhishek Pandey', role: 'Cloud Sales Manager', image: '/assets/images/team-abhishek-pandey.png' },
+    { initials: 'AI1', name: 'AI Member 1', role: '', image: '' },
+    { initials: 'AI2', name: 'AI Member 2', role: '', image: '' },
+    { initials: 'AI3', name: 'AI Member 3', role: '', image: '' },
+    { initials: 'AI4', name: 'AI Member 4', role: '', image: '' },
   ] as const;
+
+  readonly developers: readonly { initials: string; name: string; role: string; image: string }[] = [
+    { initials: 'D1', name: 'Developer 1', role: '', image: '' },
+    { initials: 'D2', name: 'Developer 2', role: '', image: '' },
+    { initials: 'D3', name: 'Developer 3', role: '', image: '' },
+    { initials: 'D4', name: 'Developer 4', role: '', image: '' },
+  ];
 
   readonly teamTabs = [
     { id: 'all', label: 'All Team' },
@@ -88,16 +96,28 @@ export class CompanyPage {
     { id: 'advisory', label: 'Advisory' },
     { id: 'sales', label: 'Sales' },
     { id: 'marketing', label: 'Marketing' },
-    { id: 'AITeams', label: 'AI Teams' },
+    { id: 'AITeams', label: 'AI' },
+    { id: 'developers', label: 'Developers' },
 
   ] as const;
   readonly activeTeamTab = signal<string>('all');
+  teamDepartmentLabel(department: string): string {
+    return this.teamTabs.find(tab => tab.id === department)?.label ?? department;
+  }
+  teamDepartmentIcon(department: string): string {
+    const icons: Record<string, string> = {
+      all: 'groups', management: 'business_center', advisory: 'forum',
+      sales: 'trending_up', marketing: 'campaign', AITeams: 'psychology', developers: 'code',
+    };
+    return icons[department] ?? 'groups';
+  }
   readonly teamMembers = [
     ...this.managementTeam.map(member => ({ ...member, department: 'management' })),
     ...this.advisoryTeam.map(member => ({ ...member, department: 'advisory' })),
     ...this.salesTeam.map(member => ({ ...member, department: 'sales' })),
     ...this.marketing.map(member => ({ ...member, department: 'marketing' })),
-    ...this.AITeams.map(member => ({ ...member, department: 'AI Teams' })),
+    ...this.AITeams.map(member => ({ ...member, department: 'AITeams' })),
+    ...this.developers.map(member => ({ ...member, department: 'developers' })),
     
   ];
   readonly visibleTeamMembers = computed(() => this.teamMembers.filter(member =>

@@ -50,6 +50,7 @@ import { CloudObjectStorageContentComponent } from '../sections/cloud-object-sto
 import { ZohoWorkspaceContentComponent } from '../sections/zoho-workspace-content.component';
 import { EntraIdContentComponent } from '../sections/entra-id-content.component';
 import { EntraIdHeroComponent } from '../sections/entra-id-hero.component';
+import { DigicertContentComponent } from '../sections/digicert-content.component';
 import { AutonomousThreatManagementContentComponent } from '../sections/autonomous-threat-management-content.component';
 import { AutonomousThreatManagementHeroComponent } from '../sections/autonomous-threat-management-hero.component';
 import { AutonomousThreatSolutionDetailComponent } from '../sections/autonomous-threat-solution-detail.component';
@@ -161,6 +162,7 @@ interface ProductTourSlide {
     ZohoWorkspaceContentComponent,
     EntraIdContentComponent,
     EntraIdHeroComponent,
+    DigicertContentComponent,
 
     AutonomousThreatManagementContentComponent,
     AutonomousThreatManagementHeroComponent,
@@ -196,6 +198,10 @@ interface ProductTourSlide {
     #ppage .atm-default-overview .pp-ov {
       width: 100%; max-width: 100%; margin-top: 10px; margin-bottom: 0;
     }
+    #ppage .pph-digicert-brand strong {
+      color: #0f5b9e; font: 700 22px/1 var(--disp); letter-spacing: -.03em;
+    }
+    #ppage .pph-digicert-brand sup { font-size: 9px; vertical-align: super; }
     @media (max-width: 900px) {
       #ppage .pph-scene.pph-email-signature {
         position: relative; top: auto; right: auto; width: 100%;
@@ -889,6 +895,8 @@ export class ProductPage {
 
   readonly isMicrosoftEntraId = computed(() => this.view()?.name === 'Microsoft Entra ID');
 
+  readonly isDigiCert = computed(() => this.view()?.name === 'DigiCert');
+
   readonly isAutonomousThreatManagement = computed(
     () => this.view()?.name === 'Autonomous Threat Management'
   );
@@ -1146,6 +1154,15 @@ export class ProductPage {
         tag: 'Display your established brand logo in supported inboxes without a registered trademark.',
         cat: 'Digital Trust',
         crumb: 'Digital Trust › Mark Certificates',
+      });
+    }
+
+    if (slug === 'digicert' || slug === 'digicert-ssl-certificates') {
+      return this.products.build({
+        name: 'DigiCert',
+        tag: 'SSL made simple. PKI done right.',
+        cat: 'Digital Trust',
+        crumb: 'Digital Trust › SSL by Brand',
       });
     }
 

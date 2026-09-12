@@ -15,6 +15,8 @@ export interface CmsBlogPost {
   readonly date: string;
   readonly time: string;
   readonly category: string;
+  readonly mainCategory?: string | null;
+  readonly subCategory?: string | null;
   /** Comma-separated service URL slugs, e.g. tally-on-cloud,bare-metal-server. */
   readonly relatedPages: string | null;
   readonly publishedAt: string;
@@ -47,6 +49,8 @@ export interface CmsInsightResource {
   readonly date: string;
   readonly time: string;
   readonly category: string;
+  readonly mainCategory?: string | null;
+  readonly subCategory?: string | null;
   readonly videoUrl: string | null;
   readonly relatedPage: string | null;
   readonly publishedAt: string;
@@ -193,6 +197,8 @@ export class BlogApiService {
     const url = post.coverImage?.url;
     return {
       ...post,
+      mainCategory: post.mainCategory?.trim() || this.parentCategory(post.category),
+      subCategory: post.subCategory?.trim() || post.category,
       coverImageUrl: url
         ? url.startsWith('http')
           ? url
@@ -203,6 +209,7 @@ export class BlogApiService {
 
   private normaliseResource(item: RawCmsInsightResource, kind: CmsResourceKind): CmsInsightResource {
     const imageUrl = item.coverImage?.url;
+    const category = item.category ?? (kind === 'video' ? 'Videos' : 'Use Cases');
     return {
       id: item.id ?? 0,
       documentId: item.documentId ?? `${kind}-${item.slug ?? item.title ?? 'item'}`,
@@ -214,7 +221,9 @@ export class BlogApiService {
       author: item.author ?? 'XcellHost Team',
       date: item.date ?? item.publishedAt?.slice(0, 10) ?? new Date().toISOString().slice(0, 10),
       time: item.time ?? '09:00',
-      category: item.category ?? (kind === 'video' ? 'Videos' : 'Use Cases'),
+      category,
+      mainCategory: item.mainCategory?.trim() || this.parentCategory(category),
+      subCategory: item.subCategory?.trim() || category,
       videoUrl: item.videoUrl ?? item.youtubeUrl ?? (kind === 'video' ? item.link ?? null : null),
       relatedPage: item.relatedPage ?? (kind === 'use-case' ? item.link ?? null : null),
       publishedAt: item.publishedAt ?? '',
@@ -233,6 +242,7 @@ export class BlogApiService {
     const published = new Date(item.pubDate.replace(' ', 'T') + 'Z');
     const title = this.decodeEntities(item.title);
     const description = this.decodeEntities(item.description || item.content).replace(/<[^>]+>/g, '').trim();
+    const category = this.youtubeCategory(`${title} ${description}`);
     return {
       id: 0,
       documentId: `youtube-${videoId}`,
@@ -244,7 +254,9 @@ export class BlogApiService {
       author: item.author || 'XcellHost Cloud Services',
       date: Number.isNaN(published.valueOf()) ? new Date().toISOString().slice(0, 10) : published.toISOString().slice(0, 10),
       time: Number.isNaN(published.valueOf()) ? '09:00' : published.toISOString().slice(11, 16),
-      category: this.youtubeCategory(`${title} ${description}`),
+      category,
+      mainCategory: this.parentCategory(category),
+      subCategory: category,
       videoUrl: item.link || `https://www.youtube.com/watch?v=${videoId}`,
       relatedPage: null,
       publishedAt: Number.isNaN(published.valueOf()) ? '' : published.toISOString(),
@@ -268,6 +280,18 @@ export class BlogApiService {
       [/\bai\b|artificial intelligence/, 'AI'],
     ];
     return categories.find(([pattern]) => pattern.test(text))?.[1] ?? 'Technology';
+  }
+
+  private parentCategory(category: string): string {
+    const value = category.toLowerCase();
+    if (/dpdpa|privacy|compliance|data protection/.test(value)) return 'Data Protection';
+    if (/dmarc|domain|email|ssl|certificate|digital trust/.test(value)) return 'Digital Trust';
+    if (/cyber|security|soc|siem|edr|malware|firewall/.test(value)) return 'Security';
+    if (/microsoft 365|m365|tally|productivity|workspace/.test(value)) return 'Productivity';
+    if (/backup|recovery|cloud|server|hosting|storage|desktop/.test(value)) return 'Cloud';
+    if (/partner|reseller/.test(value)) return 'Partner Program';
+    if (/\bai\b|artificial intelligence|automation/.test(value)) return 'AI & Automation';
+    return 'Technology';
   }
 
   private youtubeVideoId(url: string): string {

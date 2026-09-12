@@ -71,10 +71,6 @@ const CREDIBILITY_FEATURES: readonly CredibilityFeature[] = [
         <header class="sec-head" xhReveal>
           <div class="eyebrow">Infrastructure you can trust</div>
           <h2 id="credibility-title">Host With Credibility</h2>
-          <p>
-            Certified facilities, enterprise-grade infrastructure and always-on expertise keep
-            your business secure, available and ready to scale.
-          </p>
         </header>
 
         <div class="credibility-grid">
@@ -85,7 +81,6 @@ const CREDIBILITY_FEATURES: readonly CredibilityFeature[] = [
               </span>
               <div>
                 <h3>{{ feature.title }}</h3>
-                <p>{{ feature.body }}</p>
               </div>
             </article>
           }
@@ -108,23 +103,23 @@ const CREDIBILITY_FEATURES: readonly CredibilityFeature[] = [
       max-width: none;
     }
 
-    .sec-head p {
-      max-width: none;
-    }
-
     .credibility-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(9, minmax(0, 1fr));
+      gap: 10px;
+      padding: 6px 0 18px;
     }
 
     .credibility-card {
       position: relative;
       display: flex;
       min-width: 0;
-      min-height: 176px;
-      gap: 18px;
-      padding: 26px 24px;
+      min-height: 136px;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 12px;
+      padding: 18px 10px;
       overflow: hidden;
       border: 1px solid var(--line);
       border-radius: 14px;
@@ -179,19 +174,13 @@ const CREDIBILITY_FEATURES: readonly CredibilityFeature[] = [
     .credibility-card h3 {
       margin: 1px 0 8px;
       color: var(--navy);
-      font: 600 17px/1.35 var(--disp);
-    }
-
-    .credibility-card p {
-      margin: 0;
-      color: var(--slate);
-      font-size: 13.5px;
-      line-height: 1.6;
+      font: 600 14px/1.35 var(--disp);
+      overflow-wrap: anywhere;
     }
 
     @media (max-width: 980px) {
       .credibility-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
     }
 
@@ -201,7 +190,7 @@ const CREDIBILITY_FEATURES: readonly CredibilityFeature[] = [
       }
 
       .credibility-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
       .credibility-card {

@@ -1,0 +1,194 @@
+<main class="dpa-page">
+  <section class="dpa-hero" aria-labelledby="dpa-title">
+    <div class="dpa-shell">
+      <nav class="dpa-breadcrumb" aria-label="Breadcrumb">
+        <a routerLink="/">Home</a><span aria-hidden="true">/</span><span>Legal</span><span aria-hidden="true">/</span><span>Data Processing Agreement</span>
+      </nav>
+
+      <div class="dpa-hero-grid">
+        <div class="dpa-hero-copy">
+          <span class="dpa-kicker"><span class="material-symbols-outlined" aria-hidden="true">verified_user</span>Legal document</span>
+          <h1 id="dpa-title">Data Processing<br><span>Agreement</span></h1>
+          <p>This agreement sets out how XcellHost processes and protects personal data on a customer&rsquo;s behalf while delivering cloud, hosting, security and managed services.</p>
+          <div class="dpa-meta"><span>Version 1.0</span><span>Last updated 12 September 2026</span></div>
+          <div class="dpa-actions">
+            <a class="dpa-button dpa-button-primary" href="#introduction">Read agreement<span aria-hidden="true">&darr;</span></a>
+            <button class="dpa-button dpa-button-secondary" type="button" (click)="printAgreement()"><span class="material-symbols-outlined" aria-hidden="true">print</span>Print or save PDF</button>
+          </div>
+        </div>
+
+        <aside class="dpa-role-card" aria-label="Agreement roles">
+          <div class="dpa-role-heading"><span class="material-symbols-outlined" aria-hidden="true">handshake</span><div><small>THE WORKING RELATIONSHIP</small><strong>Clear roles. Shared responsibility.</strong></div></div>
+          <div class="dpa-role"><span>01</span><div><strong>Customer</strong><p>Controller or Data Fiduciary</p></div></div>
+          <div class="dpa-role-line" aria-hidden="true"><i></i><em>documented instructions</em><i></i></div>
+          <div class="dpa-role"><span>02</span><div><strong>XcellHost</strong><p>Processor or Data Processor</p></div></div>
+          <p class="dpa-role-note">The applicable service order defines the selected services, locations and any service-specific processing details.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="dpa-summary" aria-label="Agreement summary">
+    <div class="dpa-shell dpa-summary-grid">
+      <div><span class="material-symbols-outlined" aria-hidden="true">gavel</span><strong>DPDPA aligned</strong><small>Indian data protection framework</small></div>
+      <div><span class="material-symbols-outlined" aria-hidden="true">policy</span><strong>Instruction based</strong><small>Processing for contracted services</small></div>
+      <div><span class="material-symbols-outlined" aria-hidden="true">encrypted</span><strong>Security focused</strong><small>Technical and organisational controls</small></div>
+      <div><span class="material-symbols-outlined" aria-hidden="true">support_agent</span><strong>Rights assistance</strong><small>Support for valid customer requests</small></div>
+    </div>
+  </section>
+
+  <div class="dpa-shell dpa-layout">
+    <aside class="dpa-toc" aria-label="Agreement sections">
+      <div class="dpa-toc-card">
+        <span class="dpa-toc-label">On this page</span>
+        <nav>
+          @for (section of sections; track section.id) {
+            <a [href]="'#' + section.id"><span>{{ section.number }}</span>{{ section.title }}</a>
+          }
+        </nav>
+        <div class="dpa-help"><span class="material-symbols-outlined" aria-hidden="true">contact_support</span><p>Questions about this agreement?<a href="mailto:dpo@xcellhost.cloud">dpo&#64;xcellhost.cloud</a></p></div>
+      </div>
+    </aside>
+
+    <article class="dpa-document">
+      <div class="dpa-notice"><span class="material-symbols-outlined" aria-hidden="true">info</span><p><strong>How this agreement applies</strong>This DPA forms part of the agreement governing the services purchased by the Customer. If a signed agreement or service order contains a more specific data-processing term, that term applies to the extent of the inconsistency.</p></div>
+
+      <section id="introduction" class="dpa-section">
+        <span class="dpa-section-number">01</span>
+        <div><span class="dpa-section-kicker">FOUNDATION</span><h2>Introduction</h2>
+          <p>This Data Processing Agreement (&ldquo;DPA&rdquo;) supplements the applicable services agreement, order form or statement of work between XcellHost Cloud Services Pvt. Ltd. (&ldquo;XcellHost&rdquo;) and the customer identified in that agreement (&ldquo;Customer&rdquo;).</p>
+          <p>It governs XcellHost&rsquo;s processing of personal data on behalf of the Customer in connection with the contracted services. The parties intend this DPA to support compliance with the Digital Personal Data Protection Act, 2023 and applicable rules, and with other data-protection requirements expressly agreed for the services.</p>
+        </div>
+      </section>
+
+      <section id="definitions" class="dpa-section">
+        <span class="dpa-section-number">02</span>
+        <div><span class="dpa-section-kicker">SHARED LANGUAGE</span><h2>Definitions</h2>
+          <dl class="dpa-definitions">
+            <div><dt>Personal Data</dt><dd>Digital data about an individual who is identifiable by or in relation to that data.</dd></div>
+            <div><dt>Processing</dt><dd>Any operation performed on Personal Data, including collection, recording, storage, use, retrieval, disclosure, transfer or deletion.</dd></div>
+            <div><dt>Customer</dt><dd>The party that determines why and how Customer Personal Data is processed, acting as Controller or Data Fiduciary as applicable.</dd></div>
+            <div><dt>XcellHost</dt><dd>The party processing Customer Personal Data on documented instructions, acting as Processor or Data Processor as applicable.</dd></div>
+            <div><dt>Sub-processor</dt><dd>A third party appointed by XcellHost to process Customer Personal Data for part of the services.</dd></div>
+            <div><dt>Personal Data Breach</dt><dd>A confirmed breach of security leading to accidental or unlawful destruction, loss, alteration, unauthorised disclosure of, or access to Customer Personal Data.</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section id="scope" class="dpa-section">
+        <span class="dpa-section-number">03</span>
+        <div><span class="dpa-section-kicker">PROCESSING DETAILS</span><h2>Scope and nature of processing</h2>
+          <p>XcellHost processes Customer Personal Data only as needed to deliver, secure, monitor, maintain and support the contracted services; manage the Customer account; prevent abuse; and meet applicable legal obligations.</p>
+          <div class="dpa-detail-grid">
+            <div><span>Purpose</span><p>Provisioning and operating the selected cloud, hosting, cybersecurity, backup, communications or managed services.</p></div>
+            <div><span>Duration</span><p>For the service term and any limited period required for return, deletion, backup expiry or lawful retention.</p></div>
+            <div><span>Data subjects</span><p>Customer personnel, authorised users, end customers and other individuals whose data the Customer places in the services.</p></div>
+            <div><span>Data categories</span><p>Account and contact data, service content, credentials, logs, support records and other data determined by the Customer.</p></div>
+          </div>
+          <p>XcellHost does not use Customer Personal Data for independent advertising or sell it. Additional processing details may be set out in the applicable service order.</p>
+        </div>
+      </section>
+
+      <section id="customer-obligations" class="dpa-section">
+        <span class="dpa-section-number">04</span>
+        <div><span class="dpa-section-kicker">CUSTOMER RESPONSIBILITY</span><h2>Customer obligations</h2>
+          <p>The Customer is responsible for the lawfulness, quality and accuracy of Customer Personal Data and for its use of the services. The Customer will:</p>
+          <ul class="dpa-check-list">
+            <li>provide lawful, complete and documented processing instructions;</li>
+            <li>give required notices and obtain valid consent or another lawful basis where applicable;</li>
+            <li>configure its accounts, access permissions, endpoints and applications securely;</li>
+            <li>avoid uploading data prohibited by the service agreement or not needed for the stated purpose; and</li>
+            <li>respond to Data Principal requests and regulatory enquiries for which it is responsible.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="processor-obligations" class="dpa-section">
+        <span class="dpa-section-number">05</span>
+        <div><span class="dpa-section-kicker">XCELLHOST RESPONSIBILITY</span><h2>XcellHost obligations</h2>
+          <p>XcellHost will:</p>
+          <ul class="dpa-check-list">
+            <li>process Customer Personal Data only on documented instructions, unless processing is required by applicable law;</li>
+            <li>ensure personnel authorised to process the data are subject to confidentiality obligations;</li>
+            <li>maintain appropriate technical and organisational safeguards proportionate to the service and risk;</li>
+            <li>provide reasonable assistance with security, impact assessments, lawful regulatory consultations and Data Principal requests;</li>
+            <li>notify the Customer without undue delay after confirming a Personal Data Breach affecting Customer Personal Data and provide available information needed for the Customer&rsquo;s response; and</li>
+            <li>maintain processing records where required by applicable law.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="security" class="dpa-section dpa-security-section">
+        <span class="dpa-section-number">06</span>
+        <div><span class="dpa-section-kicker">SAFEGUARDS</span><h2>Technical and organisational security measures</h2>
+          <p>Controls are selected according to the contracted service, deployment model and risk. They may include the following:</p>
+          <div class="dpa-security-grid">
+            <article><span class="material-symbols-outlined" aria-hidden="true">domain</span><h3>Physical</h3><ul><li>Controlled facility access</li><li>Visitor management</li><li>Environmental monitoring</li><li>Power, cooling and fire controls</li></ul></article>
+            <article><span class="material-symbols-outlined" aria-hidden="true">shield_lock</span><h3>Logical</h3><ul><li>Role-based access controls</li><li>Multi-factor authentication where supported</li><li>Tenant and network segmentation</li><li>Encryption in transit and at rest where applicable</li></ul></article>
+            <article><span class="material-symbols-outlined" aria-hidden="true">monitor_heart</span><h3>Operational</h3><ul><li>Monitoring and logging</li><li>Vulnerability and patch management</li><li>Incident-response procedures</li><li>Security awareness and access reviews</li></ul></article>
+          </div>
+          <p class="dpa-small-note">Specific controls, certifications, recovery objectives and service levels are governed by the relevant service description, architecture and SLA.</p>
+        </div>
+      </section>
+
+      <section id="subprocessors" class="dpa-section">
+        <span class="dpa-section-number">07</span>
+        <div><span class="dpa-section-kicker">SERVICE DELIVERY</span><h2>Sub-processors</h2>
+          <p>The Customer gives XcellHost general authorisation to appoint Sub-processors needed to deliver the services, including infrastructure, software, connectivity, support and specialist service providers.</p>
+          <ul class="dpa-check-list">
+            <li>XcellHost will require each Sub-processor to protect Customer Personal Data through written obligations appropriate to its processing.</li>
+            <li>XcellHost remains responsible for its Sub-processors&rsquo; performance to the extent required by the applicable agreement and law.</li>
+            <li>Where contractually required, XcellHost will provide advance notice of a material new Sub-processor and a reasonable opportunity to raise a documented data-protection objection.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="transfers" class="dpa-section">
+        <span class="dpa-section-number">08</span>
+        <div><span class="dpa-section-kicker">DATA LOCATION</span><h2>International transfers</h2>
+          <p>Service locations and data-residency commitments are those selected in the service order. XcellHost will not transfer Customer Personal Data contrary to an agreed location restriction or applicable law.</p>
+          <p>If an authorised transfer requires additional safeguards, XcellHost will use an appropriate lawful transfer mechanism and require the recipient to provide protections consistent with this DPA. Remote support access does not change the primary hosting location unless the parties agree otherwise.</p>
+        </div>
+      </section>
+
+      <section id="rights" class="dpa-section">
+        <span class="dpa-section-number">09</span>
+        <div><span class="dpa-section-kicker">INDIVIDUAL REQUESTS</span><h2>Data Principal rights</h2>
+          <p>The Customer is responsible for responding to requests concerning Customer Personal Data. If XcellHost receives a request directly, it will not independently respond on the Customer&rsquo;s behalf unless legally required. XcellHost will promptly forward the request where the Customer can be identified.</p>
+          <p>Taking account of the nature of the processing, XcellHost will provide reasonable assistance through available service functionality or support processes for valid requests involving access, correction, completion, updating, erasure, grievance handling or nomination.</p>
+        </div>
+      </section>
+
+      <section id="audits" class="dpa-section">
+        <span class="dpa-section-number">10</span>
+        <div><span class="dpa-section-kicker">ASSURANCE</span><h2>Audits and compliance information</h2>
+          <p>On reasonable written request, XcellHost will provide information needed to demonstrate compliance with this DPA. Where available and appropriate, this may include certifications, control summaries, independent assessment reports or responses to security questionnaires.</p>
+          <p>If that information is insufficient, the Customer may request an audit no more than once in a 12-month period, unless a confirmed breach or regulator requires otherwise. Audits require reasonable advance notice, must protect other customers&rsquo; information, avoid service disruption and be conducted during normal business hours at the requesting Customer&rsquo;s cost.</p>
+        </div>
+      </section>
+
+      <section id="liability" class="dpa-section">
+        <span class="dpa-section-number">11</span>
+        <div><span class="dpa-section-kicker">SERVICE END</span><h2>Return, deletion and liability</h2>
+          <p>At the end of the services, XcellHost will return or delete Customer Personal Data in accordance with the Customer&rsquo;s documented choice, available service functionality and the applicable agreement. Data may remain temporarily in protected backups until ordinary expiry and may be retained where required by law.</p>
+          <p>Each party&rsquo;s liability arising from this DPA is subject to the exclusions and limitations in the agreement governing the services, except where those limitations are prohibited by applicable law. Nothing in this DPA reduces a party&rsquo;s independent obligations to individuals or regulators.</p>
+        </div>
+      </section>
+
+      <section id="contact" class="dpa-section dpa-contact-section">
+        <span class="dpa-section-number">12</span>
+        <div><span class="dpa-section-kicker">GET IN TOUCH</span><h2>Data protection contact</h2>
+          <p>Send DPA questions, rights-assistance requests and data-protection notices to:</p>
+          <div class="dpa-contact-card">
+            <div><span class="material-symbols-outlined" aria-hidden="true">corporate_fare</span><p><small>Company</small><strong>XcellHost Cloud Services Pvt. Ltd.</strong></p></div>
+            <a href="mailto:dpo@xcellhost.cloud"><span class="material-symbols-outlined" aria-hidden="true">mail</span><p><small>Data protection email</small><strong>dpo&#64;xcellhost.cloud</strong></p><em aria-hidden="true">&nearr;</em></a>
+            <a href="tel:+912267111555"><span class="material-symbols-outlined" aria-hidden="true">call</span><p><small>Office phone</small><strong>+91 22 6711 1555</strong></p><em aria-hidden="true">&nearr;</em></a>
+            <div><span class="material-symbols-outlined" aria-hidden="true">location_on</span><p><small>Registered office</small><strong>209, Laxmi Plaza, Building No. 9, Laxmi Industrial Estate, Andheri (W), Mumbai 400053, Maharashtra, India</strong></p></div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="dpa-document-footer"><span class="material-symbols-outlined" aria-hidden="true">description</span><p><strong>Contract note</strong>This online DPA is a standard form. Enterprise or regulated-service requirements may be documented in a signed addendum or service order.</p><a routerLink="/contact">Contact our team<span aria-hidden="true">&rarr;</span></a></footer>
+    </article>
+  </div>
+</main>
