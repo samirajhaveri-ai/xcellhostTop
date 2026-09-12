@@ -14,7 +14,7 @@ export const MEGA_MENU: MenuTop[] = [
     "feature": null,
     "tabs": [
       {
-        "g": "4",
+        "g": "0",
         "label": "SMB Cloud",
         "on": true,
         "groups": [
@@ -26,7 +26,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": "Top seller",
                 "desc": null
               },
-              
               {
                 "title": "Cloud Backup",
                 "pill": "Popular",
@@ -89,7 +88,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "0",
+        "g": "1",
         "label": "Domains",
         "on": true,
         "groups": [
@@ -163,7 +162,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "9",
+        "g": "2",
         "label": "Web Hosting",
         "on": false,
         "groups": [
@@ -211,7 +210,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "20",
+        "g": "3",
         "label": "Web Tools",
         "on": true,
         "groups": [
@@ -245,7 +244,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "20",
+        "g": "4",
         "label": "Web Security",
         "on": true,
         "groups": [
@@ -273,7 +272,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "6",
+        "g": "5",
         "label": "Web Design",
         "on": true,
         "groups": [
@@ -306,7 +305,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "2",
+        "g": "6",
         "label": "Web Marketing",
         "on": false,
         "groups": [
@@ -357,7 +356,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "3",
+        "g": "7",
         "label": "VPS Servers",
         "on": false,
         "groups": [
@@ -404,9 +403,6 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      
-      
-      
     ]
   },
   {
@@ -584,26 +580,6 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Managed DevOps",
             "items": [
               {
-                "title": "AWS DevOps",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Azure DevOps",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "GCP DevOps",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Managed DevOps",
-                "pill": null,
-                "desc": null
-              },
-              {
                 "title": "Terraform",
                 "pill": null,
                 "desc": null
@@ -623,6 +599,39 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "5",
+        "label": "",
+        "on": false,
+        "groups": [
+          {
+            "heading": "DevOps Tools",
+            "items": [
+              {
+                "title": "AWS DevOps",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Azure DevOps",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "GCP DevOps",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Managed DevOps",
+                "pill": null,
+                "desc": null
+              },
+              
             ]
           }
         ]
@@ -865,7 +874,7 @@ export const MEGA_MENU: MenuTop[] = [
     "tabs": [
       
       {
-        "g": "1",
+        "g": "0",
         "label": "Email Services",
         "on": false,
         "groups": [
@@ -904,7 +913,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "3",
+        "g": "1",
         "label": "Email Security",
         "on": false,
         "featureCards": [
@@ -971,7 +980,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "15",
+        "g": "2",
         "label": "Email Data Protection",
         "on": false,
         "groups": [
@@ -994,7 +1003,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "11",
+        "g": "3",
         "label": "Email Addons",
         "on": false,
         "groups": [
@@ -1034,7 +1043,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "10",
+        "g": "4",
         "label": "Collaboration Services",
         "on": false,
         "groups": [
@@ -1064,7 +1073,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "9",
+        "g": "5",
         "label": "Cloud Desktop",
         "on": false,
         "groups": [
@@ -1096,11 +1105,9 @@ export const MEGA_MENU: MenuTop[] = [
             ]
           }
         ]
-      },
-      
-      
+      },  
       {
-        "g": "12",
+        "g": "6",
         "label": "Microsoft Copilot",
         "on": false,
         "groups": [
@@ -1134,7 +1141,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "13",
+        "g": "7",
         "label": "Managed Productivity",
         "on": false,
         "groups": [
@@ -1179,7 +1186,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "13",
+        "g": "8",
         "label": "Microsoft Power Platform",
         "on": false,
         "groups": [
@@ -1211,7 +1218,6 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      
     ]
   },
 
@@ -2540,7 +2546,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "4",
+        "g": "1",
         "label": "Microsoft Software",
         "on": false,
         "groups": [
@@ -2557,7 +2563,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "5",
+        "g": "2",
         "label": "Microsoft Security",
         "on": false,
         "groups": [
@@ -2610,7 +2616,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "5",
+        "g": "3",
         "label": "CloudFlare Security",
         "on": false,
         "groups": [
@@ -2627,7 +2633,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "7",
+        "g": "4",
         "label": "Fortinet Security",
         "on": false,
         "groups": [
@@ -2644,7 +2650,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "7",
+        "g": "5",
         "label": "Palo Alto Security",
         "on": false,
         "groups": [
@@ -2665,7 +2671,6 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      
       {
         "g": "6",
         "label": "Data as a Services",
@@ -2736,7 +2741,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "3",
+        "g": "8",
         "label": "Adobe Tools",
         "on": false,
         "groups": [
@@ -2752,8 +2757,6 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      
-      
     ]
   },
   {
@@ -3212,7 +3215,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Recognition for our cloud and security expertise"
               },
               {
-                "title": "Association",
+                "title": "Associations ",
                 "pill": null,
                 "desc": "Recognition for our cloud and security expertise"
               },
@@ -3251,18 +3254,9 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "We'd love to hear from you"
               },
+              
               {
-                "title": "Platform Status",
-                "pill": null,
-                "desc": "We'd love to hear from you"
-              },
-               {
-                "title": "Cloud login",
-                "pill": null,
-                "desc": "We'd love to hear from you"
-              },
-              {
-                "title": "Promotion & Offer",
+                "title": "Promotion & Offers",
                 "pill": null,
                 "desc": "We'd love to hear from you"
               },
@@ -3309,11 +3303,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Partnership Models",
                 "pill": null,
                 "desc": "Choose a model that fits your business"
-              },
-              {
-                "title": "Resources & Services",
-                "pill": null,
-                "desc": "Sales, solution and delivery enablement"
               },
               {
                 "title": "Partner Portal",
@@ -3414,7 +3403,7 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Trust Center",
             "items": [
               {
-                "title": "Trust Center",
+                "title": "Trust Center",  
                 "pill": null,
                 "desc": null
               },
@@ -3571,9 +3560,9 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Webinars"
               },
               {
-                "title": "Poscat",
+                "title": "Podcast",
                 "pill": null,
-                "desc": "Webinars"
+                "desc": "Podcast"
               },
 
               
