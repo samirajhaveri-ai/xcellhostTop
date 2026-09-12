@@ -81,4 +81,17 @@ describe('Insights pagination', () => {
     expect(page.visible().map(item => item.documentId)).toEqual(['video-1']);
     expect(page.resultHeading()).toBe('All Videos');
   });
+
+  it('expands main categories and filters their subcategories', () => {
+    expect(page.categoryTree().map(branch => branch.name)).toEqual(['Technology']);
+    page.selectMainCategory('Technology');
+    expect(page.expandedMain()).toBe('Technology');
+    expect(page.visible().length).toBe(41);
+    page.selectSubCategory('Technology', 'Security');
+    expect(page.visible().length).toBe(20);
+    expect(page.visible().every(item => item.subCategory === 'Security')).toBeTrue();
+    page.selectMainCategory('Technology');
+    expect(page.expandedMain()).toBeNull();
+    expect(page.activeSub()).toBe('');
+  });
 });

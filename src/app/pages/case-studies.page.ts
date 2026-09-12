@@ -1,11 +1,19 @@
 import { DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, afterNextRender, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, afterNextRender, computed, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
 import { OverlayService } from '../core/overlay.service';
+import { CaseStudiesApiService } from '../core/case-studies-api.service';
 import { SeoService } from '../core/seo.service';
 
 import { CASE_STUDIES, CaseStudy } from '../data/case-studies.data';
+
+interface CaseCategoryBranch {
+  readonly name: string;
+  readonly count: number;
+  readonly children: readonly { readonly name: string; readonly count: number }[];
+}
 
 @Component({
   selector: 'xh-case-studies-page',
@@ -21,20 +29,39 @@ export class CaseStudiesPage {
   private readonly seo = inject(SeoService);
   private readonly route = inject(ActivatedRoute);
   private readonly document = inject(DOCUMENT);
+  private readonly caseStudiesApi = inject(CaseStudiesApiService);
 
-  readonly studies = CASE_STUDIES;
-  selectedIndustry = 'all';
-  searchQuery = '';
+  readonly studies = toSignal(this.caseStudiesApi.studies$, { initialValue: CASE_STUDIES });
+  readonly selectedMain = signal('');
+  readonly selectedSub = signal('');
+  readonly expandedMain = signal<string | null>(null);
+  readonly searchQuery = signal('');
 
-  get visibleStudies(): readonly CaseStudy[] {
-    const query = this.searchQuery.trim().toLowerCase();
+  readonly categoryTree = computed<readonly CaseCategoryBranch[]>(() => {
+    const branches = new Map<string, Map<string, number>>();
+    for (const study of this.studies()) {
+      const children = branches.get(study.mainCategory) ?? new Map<string, number>();
+      children.set(study.subCategory, (children.get(study.subCategory) ?? 0) + 1);
+      branches.set(study.mainCategory, children);
+    }
+    return [...branches.entries()].map(([name, children]) => ({
+      name,
+      count: [...children.values()].reduce((total, count) => total + count, 0),
+      children: [...children.entries()].map(([childName, count]) => ({ name: childName, count })),
+    }));
+  });
 
-    return this.studies.filter((study) => {
-      const matchesIndustry =
-        this.selectedIndustry === 'all' || study.industry === this.selectedIndustry;
+  readonly visibleStudies = computed<readonly CaseStudy[]>(() => {
+    const query = this.searchQuery().trim().toLowerCase();
+    return this.studies().filter((study) => {
+      const matchesCategory = !this.selectedMain() || (
+        study.mainCategory === this.selectedMain() && (!this.selectedSub() || study.subCategory === this.selectedSub())
+      );
       const matchesQuery =
         !query ||
         [
+          study.mainCategory,
+          study.subCategory,
           study.industry,
           study.profile,
           study.metric,
@@ -43,9 +70,9 @@ export class CaseStudiesPage {
           ...study.services,
         ].some((value) => value.toLowerCase().includes(query));
 
-      return matchesIndustry && matchesQuery;
+      return matchesCategory && matchesQuery;
     });
-  }
+  });
 
   constructor() {
     this.seo.set(
@@ -71,11 +98,29 @@ export class CaseStudiesPage {
     this.overlay.open('callback');
   }
 
-  filterStudies(event: Event): void {
-    this.selectedIndustry = (event.target as HTMLSelectElement).value;
+  selectAllCategories(): void {
+    this.selectedMain.set('');
+    this.selectedSub.set('');
+    this.expandedMain.set(null);
+  }
+
+  selectMainCategory(category: string): void {
+    this.selectedMain.set(category);
+    this.selectedSub.set('');
+    this.expandedMain.update((expanded) => expanded === category ? null : category);
+  }
+
+  selectSubCategory(mainCategory: string, subCategory: string): void {
+    this.selectedMain.set(mainCategory);
+    this.selectedSub.set(subCategory);
+    this.expandedMain.set(mainCategory);
+  }
+
+  categoryPanelId(category: string): string {
+    return `case-category-${category.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
   }
 
   searchStudies(event: Event): void {
-    this.searchQuery = (event.target as HTMLInputElement).value;
+    this.searchQuery.set((event.target as HTMLInputElement).value);
   }
 }

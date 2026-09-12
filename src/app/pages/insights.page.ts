@@ -21,9 +21,17 @@ interface InsightItem {
   readonly date: string;
   readonly time: string;
   readonly category: string;
+  readonly mainCategory: string;
+  readonly subCategory: string;
   readonly coverImage: CmsBlogPost['coverImage'];
   readonly coverImageUrl: string | null;
   readonly actionUrl: string | null;
+}
+
+interface InsightCategoryBranch {
+  readonly name: string;
+  readonly count: number;
+  readonly children: readonly { readonly name: string; readonly count: number }[];
 }
 
 @Component({
@@ -50,7 +58,7 @@ interface InsightItem {
                   <span>Published articles</span>
                 </article>
                 <article>
-                  <b>{{ categories().length - 1 }}</b>
+                  <b>{{ categoryTree().length }}</b>
                   <span>Topic collections</span>
                 </article>
                 <article>
@@ -117,16 +125,33 @@ interface InsightItem {
                 <div class="insights-sidebar-card">
                   <div class="pp-sec">Browse by topic</div>
                   <div class="insights-topics" role="group" aria-label="Filter insights by category">
-                    @for (category of categories(); track category) {
-                      <button
-                        class="insights-topic"
-                        [class.active]="category === active()"
-                        [attr.aria-pressed]="category === active()"
-                        (click)="selectCategory(category)"
-                      >
-                        <span>{{ category }}</span>
-                        <b>{{ categoryCount(category) }}</b>
-                      </button>
+                    <button class="insights-topic insights-topic-all" [class.active]="active() === allCategory"
+                      [attr.aria-pressed]="active() === allCategory" (click)="selectAllCategories()">
+                      <span>All {{ activeTab() }}</span><b>{{ sourceItems().length }}</b>
+                    </button>
+                    @for (branch of categoryTree(); track branch.name) {
+                      <div class="insights-topic-branch">
+                        <button class="insights-topic insights-topic-main"
+                          [class.active]="activeMain() === branch.name && !activeSub()"
+                          [class.has-selection]="activeMain() === branch.name"
+                          [attr.aria-expanded]="expandedMain() === branch.name"
+                          [attr.aria-controls]="categoryPanelId(branch.name)"
+                          (click)="selectMainCategory(branch.name)">
+                          <span>{{ branch.name }}</span><b>{{ branch.count }}</b>
+                          <i aria-hidden="true">&#8964;</i>
+                        </button>
+                        @if (expandedMain() === branch.name) {
+                          <div class="insights-subtopics" [id]="categoryPanelId(branch.name)">
+                            @for (child of branch.children; track child.name) {
+                              <button type="button" [class.active]="activeSub() === child.name"
+                                [attr.aria-pressed]="activeSub() === child.name"
+                                (click)="selectSubCategory(branch.name, child.name)">
+                                <span>{{ child.name }}</span><b>{{ child.count }}</b>
+                              </button>
+                            }
+                          </div>
+                        }
+                      </div>
                     }
                   </div>
                 </div>
@@ -255,6 +280,9 @@ export class InsightsPage {
   readonly error = signal(false);
   readonly activeTab = signal<InsightTab>('Blogs');
   readonly active = signal(ALL);
+  readonly activeMain = signal('');
+  readonly activeSub = signal('');
+  readonly expandedMain = signal<string | null>(null);
   readonly query = signal('');
   readonly allCategory = ALL;
 
@@ -278,12 +306,29 @@ export class InsightsPage {
     ALL,
     ...new Set(this.sourceItems().map((item) => item.category)),
   ]);
+  readonly categoryTree = computed<readonly InsightCategoryBranch[]>(() => {
+    const branches = new Map<string, Map<string, number>>();
+    for (const item of this.sourceItems()) {
+      const main = item.mainCategory;
+      const sub = item.subCategory;
+      const children = branches.get(main) ?? new Map<string, number>();
+      children.set(sub, (children.get(sub) ?? 0) + 1);
+      branches.set(main, children);
+    }
+    return [...branches.entries()].map(([name, children]) => ({
+      name,
+      count: [...children.values()].reduce((total, count) => total + count, 0),
+      children: [...children.entries()].map(([childName, count]) => ({ name: childName, count })),
+    }));
+  });
   readonly featured = computed(() => this.posts()[0] ?? null);
   readonly visible = computed(() => {
     const query = this.query().trim().toLocaleLowerCase();
     return this.sourceItems().filter((item) => {
-      const matchesCategory = this.active() === ALL || item.category === this.active();
-      const haystack = `${item.title} ${item.description} ${item.category} ${item.author}`.toLocaleLowerCase();
+      const matchesCategory = !this.activeMain() || (
+        item.mainCategory === this.activeMain() && (!this.activeSub() || item.subCategory === this.activeSub())
+      );
+      const haystack = `${item.title} ${item.description} ${item.mainCategory} ${item.subCategory} ${item.author}`.toLocaleLowerCase();
       return matchesCategory && (!query || haystack.includes(query));
     });
   });
@@ -321,7 +366,7 @@ export class InsightsPage {
         this.posts.set(posts);
         this.loading.set(false);
         this.error.set(false);
-        if (!this.categories().includes(this.active())) this.selectCategory(ALL);
+        if (this.active() !== ALL && this.categoryCount(this.active()) === 0) this.selectAllCategories();
       },
       error: () => {
         this.loading.set(false);
@@ -335,13 +380,50 @@ export class InsightsPage {
 
   selectTab(tab: InsightTab): void {
     this.activeTab.set(tab);
-    this.active.set(ALL);
+    this.selectAllCategories();
     this.currentPage.set(1);
   }
 
   selectCategory(category: string): void {
-    this.active.set(category);
+    if (category === ALL) {
+      this.selectAllCategories();
+      return;
+    }
+    const main = this.categoryTree().find((branch) => branch.name === category);
+    if (main) {
+      this.selectMainCategory(main.name);
+      return;
+    }
+    const parent = this.categoryTree().find((branch) => branch.children.some((child) => child.name === category));
+    if (parent) this.selectSubCategory(parent.name, category);
+  }
+
+  selectAllCategories(): void {
+    this.active.set(ALL);
+    this.activeMain.set('');
+    this.activeSub.set('');
+    this.expandedMain.set(null);
     this.currentPage.set(1);
+  }
+
+  selectMainCategory(category: string): void {
+    this.active.set(category);
+    this.activeMain.set(category);
+    this.activeSub.set('');
+    this.expandedMain.update((expanded) => expanded === category ? null : category);
+    this.currentPage.set(1);
+  }
+
+  selectSubCategory(mainCategory: string, subCategory: string): void {
+    this.active.set(subCategory);
+    this.activeMain.set(mainCategory);
+    this.activeSub.set(subCategory);
+    this.expandedMain.set(mainCategory);
+    this.currentPage.set(1);
+  }
+
+  categoryPanelId(category: string): string {
+    return `insights-category-${category.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
   }
 
   search(event: Event): void {
@@ -377,7 +459,9 @@ export class InsightsPage {
   categoryCount(category: string): number {
     return category === ALL
       ? this.sourceItems().length
-      : this.sourceItems().filter((item) => item.category === category).length;
+      : this.sourceItems().filter((item) =>
+        item.category === category || item.mainCategory === category || item.subCategory === category
+      ).length;
   }
 
   tabCount(tab: InsightTab): number {
@@ -409,12 +493,20 @@ export class InsightsPage {
   }
 
   private toBlogItem(post: CmsBlogPost): InsightItem {
-    return { ...post, kind: 'blog', actionUrl: null };
+    return {
+      ...post,
+      kind: 'blog',
+      mainCategory: post.mainCategory?.trim() || 'Technology',
+      subCategory: post.subCategory?.trim() || post.category,
+      actionUrl: null,
+    };
   }
 
   private toResourceItem(item: CmsInsightResource): InsightItem {
     return {
       ...item,
+      mainCategory: item.mainCategory?.trim() || 'Technology',
+      subCategory: item.subCategory?.trim() || item.category,
       actionUrl: item.kind === 'video' ? item.videoUrl : item.relatedPage,
     };
   }
