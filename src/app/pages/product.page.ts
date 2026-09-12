@@ -1,3 +1,4 @@
+import { WaapContentComponent } from '../sections/waap-content.component';
 import { EnterpriseDmarcContentComponent } from '../sections/enterprise-dmarc-content.component';
 import { BusinessEmailContentComponent } from '../sections/business-email-content.component';
 import { InsightsSectionComponent } from '../sections/insights-section.component';
@@ -157,6 +158,7 @@ interface ProductTourSlide {
     ManagedAwsContentComponent,
 
     ManagedMicrosoft365ContentComponent,
+    WaapContentComponent,
     CopilotStudioContentComponent,
     CloudObjectStorageContentComponent,
     ZohoWorkspaceContentComponent,

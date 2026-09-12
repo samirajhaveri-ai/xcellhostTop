@@ -1,4 +1,4 @@
-﻿@if (view(); as v) {
+@if (view(); as v) {
   <div
     class="ppage as-page"
     id="ppage"
@@ -470,7 +470,7 @@
                 class="pph-illus-img"
                 [class.pph-cloud-drive-static]="v.name === 'Cloud Drive'"
                 [class.tally-hero-image]="v.name === 'Tally on Cloud'"
-                [src]="v.heroImage"
+                [src]="slug() === 'waap-as-a-service' ? '/assets/images/waap/hero.svg' : v.heroImage"
                 [alt]="v.name"
               />
               @if (v.name === 'Cloud Drive') {
@@ -484,7 +484,7 @@
                   class="pph-powered-mark pph-powered-image"
                   [class.pph-geotrust-powered]="v.name === 'GeoTrust'"
                 >
-                  <img [src]="v.heroBrand.logoImage" [alt]="v.heroBrand.name" />
+                  <img [src]="slug() === 'waap-as-a-service' ? '/assets/images/waap/logo.png' : v.heroBrand.logoImage" [alt]="v.heroBrand.name" />
                 </div>
               }
             </div>
@@ -919,6 +919,9 @@
         [class.genai-body]="slug() === 'acronis-genai-protection'"
       >
         <div class="wrap">
+          @if (slug() === 'waap-as-a-service') {
+            <xh-waap-content />
+          } @else {
           @if (slug() === 'enterprise-dmarc') {
             <xh-enterprise-dmarc-content />
           } @else if (slug() === 'business-e-mail') {
@@ -3098,6 +3101,8 @@
                 }
               </div>
             </section>
+          }
+
           }
 
           @if (v.name !== 'Tally on Cloud') {
