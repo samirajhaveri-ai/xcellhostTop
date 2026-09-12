@@ -1454,7 +1454,8 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "DigiCert  SSL Certificates",
+                "title": "DigiCert SSL Certificates",
+                "href": "/digicert-ssl-certificates",
                 "pill": null,
                 "desc": null
               },

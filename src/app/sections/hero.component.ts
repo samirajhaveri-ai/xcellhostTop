@@ -48,6 +48,7 @@ const ORB_ITEMS: readonly OrbItem[] = [
   { service: 'DPDPA Platform & Consulting', pos: 'op4', label: 'DPDPA', emoji: '⚖️' },
   { service: 'GPU Cloud', pos: 'op5', label: 'GPU Cloud', img: '/assets/images/orb-gpu-cloud.png' },
   { service: 'SMB Cloud Desktop', pos: 'op6', label: 'Cloud Desktop', img: '/assets/images/orb-smb-cloud-desktop.png' },
+  
 ];
 
 const ROTATE_MS = 2400;
