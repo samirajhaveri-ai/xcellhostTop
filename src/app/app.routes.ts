@@ -156,6 +156,11 @@ export const routes: Routes = [
     data: { productSlug: 'watchtower' },
     loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
   },
+  {
+    path: 'company/trust-center',
+    loadComponent: () =>
+      import('./pages/trust-center.page').then((m) => m.TrustCenterPage),
+  },
   { path: 'company/:slug', loadComponent: () => import('./pages/company.page').then((m) => m.CompanyPage) },
   { path: 'category/:name', loadComponent: () => import('./pages/category.page').then((m) => m.CategoryPage) },
   {
