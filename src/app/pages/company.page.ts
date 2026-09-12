@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
+﻿import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -154,7 +154,28 @@ export class CompanyPage {
     },
   ] as const;
 
-  readonly certifications = [
+  private readonly additionalCredentials = [
+    { label: 'ISO', name: '9001', status: 'Certified' },
+    { label: 'ISO', name: '27001', status: 'Certified' },
+    { label: 'ISO', name: '27002', status: 'Certified' },
+    { label: 'ISO', name: '27017', status: 'Certified' },
+    { label: 'ISO', name: '27018', status: 'Certified' },
+    { label: 'ISO', name: '29100', status: 'Certified' },
+    { label: 'ISO', name: '20000-1', status: 'Certified' },
+    { label: 'SOC 2', name: 'Type I', status: 'Certified' },
+    { label: 'SOC 2', name: 'Type II', status: 'Certified' },
+    { label: '', name: 'MEITY', status: 'Certified' },
+    { label: '', name: 'TIER IV', status: 'Certified' },
+    { label: 'CMM1', name: 'LEVEL 3', status: 'Certified' },
+    { label: '', name: 'DPDPA', status: 'Compliant' },
+    { label: '', name: 'GEM', status: 'Registered' },
+    { label: '', name: 'VAPT', status: 'Certified' },
+    { label: '', name: 'DUNS', status: 'Registered' },
+    { label: '', name: 'Justdial', status: 'Verified Supplier' },
+    { label: '', name: 'IndiaMart', status: 'Verified Supplier' },
+  ] as const;
+
+  readonly existingCertifications = [
     {
       title: 'ISO/IEC 27001:2013',
       type: 'Information Security Management System',
@@ -169,11 +190,22 @@ export class CompanyPage {
     },
     {
       title: 'Honorary Doctorate in Artificial Intelligence',
-      type: 'Leadership recognition · Samir Jhaveri, Managing Director',
+      type: 'Leadership recognition Â· Samir Jhaveri, Managing Director',
       image: '/assets/images/company-recognition/ai-certification.jpeg',
       alt: 'Honorary Doctorate in Artificial Intelligence awarded to Samir Jhaveri',
     },
   ] as const;
+  readonly certifications = [
+    ...this.existingCertifications,
+    ...this.additionalCredentials
+      .filter(badge => !(badge.label === 'ISO' && ['27001', '20000-1'].includes(badge.name)))
+      .map(badge => ({
+        title: [badge.label, badge.name].filter(Boolean).join(' '),
+        type: badge.status,
+        image: '',
+        alt: '',
+      })),
+  ];
   readonly activeCertification = signal(0);
 
   readonly awardYears = ['2025', '2024', '2023', '2022', '2018'] as const;
@@ -181,7 +213,7 @@ export class CompanyPage {
 
   readonly awards = [
     { year: '2025', title: 'Asian-African Iconic Awards', image: '/assets/images/company-recognition/asian-african.png' },
-    { year: '2024', title: 'Emerging Partner of the Year — India West', image: '/assets/images/company-recognition/emerging-partner-of-the-year.png' },
+    { year: '2024', title: 'Emerging Partner of the Year â€” India West', image: '/assets/images/company-recognition/emerging-partner-of-the-year.png' },
     { year: '2024', title: 'IT Expo 2024', image: '/assets/images/company-recognition/it-expo.png' },
     { year: '2023', title: 'MSP India Summit 2023', image: '/assets/images/company-recognition/india-summit-2023.png' },
     { year: '2023', title: 'TAIT Membership', image: '/assets/images/company-recognition/tait-membership.png' },
@@ -268,7 +300,8 @@ export class CompanyPage {
       const path = this.slug() === 'partner-overview'
         ? '/under-construction/partner-overview/'
         : `/company/${this.slug()}/`;
-      this.seo.set(`${page.title} — XcellHost`, page.tagline, path);
+      this.seo.set(`${page.title} â€” XcellHost`, page.tagline, path);
     });
   }
 }
+

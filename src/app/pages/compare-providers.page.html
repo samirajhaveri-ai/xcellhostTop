@@ -1,34 +1,57 @@
-<section class="providers-hero">
+﻿<section class="providers-hero">
   <div class="wrap">
     <nav aria-label="Breadcrumb"><a routerLink="/">Home</a><span aria-hidden="true">/</span> Compare Providers</nav>
     <span class="providers-eyebrow">Your shortlist. One clear view.</span>
     <h1>Compare Providers</h1>
-    <p>Bring your quotes together. Compare the cost, service and support that matter to your business.</p>
-    <div class="providers-hero-actions"><button class="btn btn-primary" type="button" (click)="requestHelp()">Get comparison help</button><a routerLink="/compare" class="providers-service-link">Compare XcellHost services instead →</a></div>
+    <p>Compare the cost, service and support that matter to your business.</p>
+    <div class="providers-hero-actions"><button class="btn btn-primary" type="button" (click)="requestHelp()">Get comparison help</button><a routerLink="/compare" class="providers-service-link">Compare XcellHost services instead &rarr;</a></div>
   </div>
 </section>
 
 <section class="providers-content" aria-labelledby="providers-table-title">
-  <div class="wrap">
-    <div class="providers-intro"><div><span class="providers-eyebrow">Side-by-side comparison</span><h2 id="providers-table-title">Compare what’s included</h2><p>Rename the providers and enter details from their quotes. Use the same currency and billing period for prices.</p></div><span class="providers-count">{{ providers().length }} / 4 providers</span></div>
-    <div class="providers-toolbar">
-      <label><input type="checkbox" [checked]="differencesOnly()" (change)="differencesOnly.set($any($event.target).checked)" /> Show differences only</label>
-      <div><button type="button" class="btn btn-ghost" (click)="addProvider()" [disabled]="providers().length >= 4">+ Add provider</button><button type="button" class="btn btn-blue" (click)="download()" [disabled]="!hasValues()">Download comparison</button></div>
+  <div class="providers-comparison-wrap">
+    <div class="providers-intro">
+      <h2 id="providers-table-title">Witness the XcellHost Difference</h2>
+      <p>XcellHost brings predictable pricing, India-hosted infrastructure, human support and migration expertise together for teams running production workloads.</p>
     </div>
-    <p class="providers-note">Fill in every provider’s value in a row to compare differences. Entries stay on this page during your visit; download a copy before leaving.</p>
-    <div class="providers-table-scroll" tabindex="0" role="region" aria-label="Editable provider comparison; scroll horizontally to view all providers">
+    <div class="providers-table-scroll" tabindex="0" role="region" aria-label="Cloud provider comparison; scroll horizontally to view all providers">
       <table class="providers-table">
-        <caption class="providers-sr-only">Provider quotes. All values are entered by you from your selected plans.</caption>
-        <thead><tr><th scope="col">What to compare</th>@for (provider of providers(); track provider.id) {<th scope="col"><label [for]="'provider-name-' + provider.id">Provider name</label><input [id]="'provider-name-' + provider.id" [value]="provider.name" (input)="updateName(provider.id, $any($event.target).value)" maxlength="80" />@if (providers().length > 2) {<button class="providers-remove" type="button" (click)="removeProvider(provider.id)" [attr.aria-label]="'Remove ' + provider.name">Remove</button>}</th>}</tr></thead>
+        <caption class="providers-sr-only">Cloud provider comparison across cost, egress, GPU provisioning, support, migration, data ownership and vendor lock-in.</caption>
+        <colgroup><col class="providers-feature-column" /><col class="providers-featured-column" /><col span="6" /></colgroup>
+        <thead>
+          <tr>
+            <th scope="col">Feature / Capability</th>
+            @for (provider of providers; track provider; let first = $first) {
+              <th scope="col" [class.providers-featured]="first">{{ provider }}@if (first) {<small>India's Sovereign Cloud</small>}</th>
+            }
+          </tr>
+        </thead>
         <tbody>
-          @for (row of visibleCriteria(); track row.key) {
-            <tr [class.providers-different]="isDifferent(row.key)"><th scope="row">{{ row.label }}<small>{{ row.hint }}</small></th>@for (provider of providers(); track provider.id) {<td><textarea rows="2" [value]="provider.values[row.key] || ''" (change)="updateValue(provider.id, row.key, $any($event.target).value)" [attr.aria-label]="provider.name + ': ' + row.label" placeholder="Enter quote details"></textarea></td>}</tr>
-          } @empty {
-            <tr><td [attr.colspan]="providers().length + 1" class="providers-empty">No completed rows have different values yet. Turn off “Show differences only” to enter or review your quotes.</td></tr>
+          @for (row of comparison; track row.feature) {
+            <tr>
+              <th scope="row">{{ row.feature }}</th>
+              @for (value of row.cells; track $index; let first = $first) {
+                <td [class.providers-featured]="first"><span class="providers-value"><span class="providers-status" [class]="'providers-status providers-status-' + value.status" aria-hidden="true"></span><span>{{ value.text }}</span></span></td>
+              }
+            </tr>
           }
         </tbody>
       </table>
     </div>
-    <div class="providers-help"><div><h2>Need a second opinion?</h2><p>Talk through your requirements and provider quotes with our team.</p></div><button type="button" class="btn btn-primary" (click)="requestHelp()">Let’s Talk</button></div>
+    <div class="pp-cta providers-buddha-strip">
+      <div>
+        <h2>Ready to start with XcellHost?</h2>
+        <p>Free consultation &middot; free migration &middot; 24&times;7 support in English &amp; Hindi</p>
+        <div class="providers-buddha-actions">
+          <button type="button" class="btn btn-primary" (click)="requestHelp()">Request a callback</button>
+          <a class="btn btn-ghost" routerLink="/contact">Contact team</a>
+          <a class="btn btn-ghost" href="https://wa.me/918657032540" target="_blank" rel="noopener">Talk on WhatsApp</a>
+          <a class="btn btn-ghost" href="mailto:sales@xcellhost.com?subject=Provider%20comparison%20enquiry">Email Us</a>
+        </div>
+      </div>
+      <a class="pp-cta-buddha-link" routerLink="/company/support-overview" aria-label="Visit XcellHost customer support">
+        <img class="pp-cta-buddha" src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost Laughing Buddha" width="104" height="104" loading="lazy" />
+      </a>
+    </div>
   </div>
 </section>
