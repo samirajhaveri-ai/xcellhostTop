@@ -1,0 +1,65 @@
+<main class="ppage as-page trust-page" id="ppage">
+  <iframe
+    #trustFrame
+    class="trust-experience"
+    src="/assets/trust-center.html"
+    title="XcellHost Trust Center"
+    scrolling="no"
+    (load)="onFrameLoad()"
+  ></iframe>
+
+  <section class="pp-body trust-default-sections">
+    <div class="wrap">
+      <div class="pp-sec">Security &amp; compliance — Trust Center</div>
+      <div id="ppSecWrap">
+        <p class="pp-ov">A concise view of the safeguards and operating commitments behind XcellHost services.</p>
+        <div class="pp-secrows">
+          @for (row of securityRows; track row[0]) {
+            <div class="psrow"><span class="psk">{{ row[0] }}</span><span class="psv">{{ row[1] }}</span></div>
+          }
+        </div>
+        <p class="pp-secfoot">XcellHost is ISO 27001 and ISO 20000-1 certified · DPDPA aligned · 24×7 NOC and SOC.</p>
+      </div>
+
+      <div class="pp-sec">Why XcellHost for Trust Center</div>
+      <div class="pp-why">
+        @for (reason of reasons; track reason.title) {
+          <div class="pw">
+            <span class="pw-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path [attr.d]="reason.icon" /></svg></span>
+            <b>{{ reason.title }}</b><span>{{ reason.body }}</span>
+          </div>
+        }
+      </div>
+
+      <section class="tally-videos" aria-labelledby="trustVideosTitle">
+        <div class="pp-sec" id="trustVideosTitle">Watch it in action</div>
+        <div class="tally-video-grid">
+          <article class="tally-video-card">
+            <h3><span>Data protection &amp; compliance</span></h3>
+            <div class="tally-video-frame"><iframe src="https://www.youtube-nocookie.com/embed/s1Rxs7rWd2I?rel=0&amp;playsinline=1" title="XcellHost data protection and compliance" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+          </article>
+          <article class="tally-video-card">
+            <h3><span>Vulnerability assessment</span></h3>
+            <div class="tally-video-frame"><iframe src="https://www.youtube-nocookie.com/embed/oE8P7XnPGbI?rel=0&amp;playsinline=1" title="XcellHost vulnerability assessment and penetration testing" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+          </article>
+        </div>
+      </section>
+
+      <div class="pp-sec">What customers say</div>
+      <div class="pp-revs" id="ppRevs">
+        @for (review of reviews; track review.name) {
+          <div class="prv">
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p>“{{ review.quote }}”</p>
+            <cite><span class="rav">{{ review.initials }}</span><span><b>{{ review.name }}</b>{{ review.role }}</span></cite>
+          </div>
+        }
+      </div>
+
+      <div class="pp-sec pp-faq-heading">Frequently asked questions</div>
+      <div class="pp-faq" id="ppFaq"><xh-product-faq [faqs]="faqs" /></div>
+
+      <div id="ppBlog"><xh-insights-section pageSlug="trust-center" [pageAliases]="['security', 'compliance']" /></div>
+    </div>
+  </section>
+</main>

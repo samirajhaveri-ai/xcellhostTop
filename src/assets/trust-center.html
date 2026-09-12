@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XcellHost Trust Center — security, compliance & operating posture | XcellHost</title>
+<meta name="description" content="XcellHost Trust Center: transparent, evidence-backed visibility into our ISO 27001 and ISO 20000-1 controls, subprocessors, vulnerability management and uptime. Managed cloud and security since 1999.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Fraunces:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#041E42;--navy2:#062A5C;--blue:#1565D8;--blue2:#3B82F6;--sky:#8AB4FF;--soft:#E8F0FD;--ice:#F2F6FC;--orange:#FF8C1A;--orange2:#FFB15C;--green:#16A34A;--ink:#0B1730;--mute:#5B6B85;--line:#DCE5F3;--font-h:'Sora',sans-serif;--font-b:'IBM Plex Sans',sans-serif;--font-m:'IBM Plex Mono',monospace;--font-s:'Instrument Serif',serif;--font-d:'Fraunces',Georgia,serif;--royal:#1F5BD9;--royal2:#163F9E;--royal3:#0E2A66;--r:16px;--sh:0 10px 30px rgba(4,30,66,.08);--sh2:0 22px 60px rgba(4,30,66,.16)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:var(--font-b);color:var(--ink);background:#fff;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+ul{list-style:none}
+.wrap{width:min(1200px,92vw);margin:0 auto}
+h1,h2,h3,h4{font-family:var(--font-h);line-height:1.15;letter-spacing:-.01em;color:var(--navy)}
+:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+/* hero */
+.pp-hero{position:relative;background:radial-gradient(1200px 640px at 18% 8%,#0A3A80 0%,var(--navy) 52%,#02122B 100%);color:#fff;overflow:hidden;min-height:660px;display:flex;align-items:center;padding:84px 0 96px}
+.aur{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;pointer-events:none;mix-blend-mode:screen}
+.aur.a1{width:540px;height:540px;background:#1565D8;top:-170px;left:-130px;animation:aur1 14s ease-in-out infinite}
+.aur.a2{width:440px;height:440px;background:#FF8C1A;bottom:-170px;right:4%;opacity:.32;animation:aur2 18s ease-in-out infinite}
+.aur.a3{width:380px;height:380px;background:#6D5BFF;top:18%;right:28%;opacity:.22;animation:aur1 22s ease-in-out infinite reverse}
+@keyframes aur1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(60px,40px) scale(1.15)}}
+@keyframes aur2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-50px,-60px) scale(1.1)}}
+.grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:56px 56px;animation:gdrift 30s linear infinite;pointer-events:none;-webkit-mask-image:radial-gradient(ellipse at 60% 40%,#000 25%,transparent 75%);mask-image:radial-gradient(ellipse at 60% 40%,#000 25%,transparent 75%)}
+@keyframes gdrift{to{background-position:56px 56px}}
+#pcv{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.spot{position:absolute;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(21,101,216,.3),transparent 60%);pointer-events:none;transform:translate(-50%,-50%);transition:opacity .4s;opacity:0}
+.pp-hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+.crumb{font:500 12px var(--font-m);color:#8AB4FF;letter-spacing:.06em;margin-bottom:18px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.crumb span{opacity:.45}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.badge{font:600 11.5px var(--font-m);padding:6px 11px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.07);color:#DCE7FF;display:inline-flex;gap:6px;align-items:center}
+.badge svg{width:12px;height:12px}
+.badge.or{border-color:rgba(255,140,26,.55);color:#FFC98A;background:rgba(255,140,26,.14)}
+.eyeb{font:600 13px var(--font-m);letter-spacing:.28em;text-transform:uppercase;color:#FF9A3C;margin-bottom:18px}
+.pp-hero h1{font-family:var(--font-d);font-weight:800;font-size:clamp(38px,4.5vw,62px);line-height:1.08;letter-spacing:-.01em;color:#fff;margin-bottom:14px}
+.pp-hero h1 .h1b{display:block;color:#FF9A3C;font-size:.6em;font-weight:700;margin-top:8px;line-height:1.18}
+.pp-hero h1.big{font-size:clamp(46px,6vw,84px);line-height:1.02}
+.pp-hero h1.big .h1b{font-size:1em;margin-top:0}
+.pp-hero .sub{font-size:19px;color:#DCE7FF;max-width:620px;margin-bottom:20px;font-weight:400;line-height:1.6}
+.hnow{margin:0 0 26px;font:700 16px var(--font-b);color:#fff}.hnow i{font-style:normal;color:#8AB4FF;margin:0 6px}.hnow b{color:#FFB15C}
+.hstats{display:flex;gap:44px;flex-wrap:wrap;margin-top:36px}
+.hstats div b{display:block;font:700 40px/1 var(--font-m);color:#fff;letter-spacing:-.03em}
+.hstats div b em{font-style:normal}
+.hstats div span{display:block;font:500 14px var(--font-b);color:#DCE7FF;margin-top:6px}
+.hstats div::after{content:"";display:block;width:44px;height:3px;background:#FF8C1A;margin-top:12px;border-radius:2px}
+.hmeta{margin-top:28px;display:flex;gap:28px;flex-wrap:wrap;font:500 11.5px var(--font-m);color:#8AB4FF;letter-spacing:.04em}
+.hmeta span b{color:#fff;font:700 18px var(--font-h);display:block;letter-spacing:0}
+/* hero visual */
+.hvis{position:relative;perspective:1400px}
+.console{background:linear-gradient(160deg,rgba(255,255,255,.1),rgba(255,255,255,.035));border:1px solid rgba(255,255,255,.16);border-radius:20px;box-shadow:0 40px 90px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.2);backdrop-filter:blur(10px);overflow:hidden;transform:rotateY(-7deg) rotateX(3deg);transition:transform .6s;animation:scfloat 7s ease-in-out infinite}
+.hvis:hover .console{transform:rotateY(0) rotateX(0)}
+@keyframes scfloat{0%,100%{translate:0 0}50%{translate:0 -12px}}
+.c-bar{display:flex;align-items:center;gap:7px;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.1);background:rgba(0,0,0,.22)}
+.c-bar i{width:10px;height:10px;border-radius:50%;display:block}
+.c-bar .t{margin-left:8px;font:600 11.5px var(--font-m);color:#B9C8E4;letter-spacing:.08em}
+.c-bar .live{margin-left:auto;font:600 10px var(--font-m);color:#4ADE80;display:flex;gap:6px;align-items:center;letter-spacing:.08em}
+.c-bar .live::before{content:"";width:7px;height:7px;border-radius:50%;background:#4ADE80;animation:pulse 1.6s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(74,222,128,.6)}100%{box-shadow:0 0 0 10px rgba(74,222,128,0)}}
+.c-body{display:grid;grid-template-columns:1.05fr .95fr;gap:12px;padding:14px}
+.c-kpis{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.kpi{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:10px 12px}
+.kpi b{font:700 21px var(--font-h);color:#fff;display:block;letter-spacing:-.01em}
+.kpi span{font:500 10px var(--font-m);color:#8AB4FF;letter-spacing:.06em;text-transform:uppercase}
+.kpi.or b{color:#FFB15C}.kpi.gr b{color:#4ADE80}.kpi.rd b{color:#F87171}
+.c-list{display:grid;gap:8px;align-content:start}
+.c-row{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:8px 10px;font-size:12px;color:#DCE7FF;animation:pprise .7s both}
+.c-row:nth-child(2){animation-delay:.15s}.c-row:nth-child(3){animation-delay:.3s}.c-row:nth-child(4){animation-delay:.45s}
+.c-row .ic{width:26px;height:26px;border-radius:8px;background:rgba(21,101,216,.35);display:grid;place-items:center;color:#8AB4FF;flex:none}
+.c-row .ic svg{width:13px;height:13px}
+.c-row .nm{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+.c-row .nm small{display:block;font:500 9.5px var(--font-m);color:#7F94BB;letter-spacing:.02em}
+.pill{font:600 9.5px var(--font-m);padding:3px 8px;border-radius:999px;letter-spacing:.05em;white-space:nowrap}
+.pill.gr{background:rgba(34,197,94,.18);color:#4ADE80}.pill.or{background:rgba(255,140,26,.22);color:#FFB15C}.pill.rd{background:rgba(239,68,68,.22);color:#F87171}.pill.bl{background:rgba(59,130,246,.25);color:#93C5FD}.pill.gy{background:rgba(255,255,255,.1);color:#B9C8E4}
+.c-vis{background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:8px;display:grid;place-items:center;min-height:190px}
+.c-vis svg{width:100%;height:auto}
+.fcard{position:absolute;background:#fff;color:var(--navy);border-radius:14px;padding:10px 14px;box-shadow:0 20px 40px rgba(0,0,0,.35);display:flex;gap:10px;align-items:center;font-size:12px;animation:scfloat 6s ease-in-out infinite;z-index:3;white-space:nowrap}
+.fcard b{font:700 18px var(--font-h);display:block;color:var(--navy);line-height:1.05;letter-spacing:-.01em}
+.fcard span{color:var(--mute);font:500 10.5px var(--font-m)}
+.fcard .fi{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--blue),#0B3E9C);flex:none}
+.fcard .fi svg{width:16px;height:16px}
+.fcard .fi.or{background:linear-gradient(135deg,#FF9A3C,#FF7A00)}.fcard .fi.gr{background:linear-gradient(135deg,#22C55E,#15803D)}
+.fcard.f1{top:-28px;right:-6px;animation-delay:.6s}.fcard.f2{bottom:-24px;left:-28px;animation-delay:1.4s}.fcard.f3{top:-56px;left:-30px;animation-delay:2.2s}
+.seal{position:absolute;bottom:-40px;right:-16px;width:96px;height:96px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff,#DCE7FF);display:grid;place-items:center;text-align:center;font:700 9px/1.3 var(--font-m);color:var(--navy);box-shadow:0 14px 30px rgba(0,0,0,.4);z-index:4;letter-spacing:.06em}
+.seal::before{content:"";position:absolute;inset:-5px;border-radius:50%;border:3px dashed var(--orange);animation:rot 24s linear infinite}
+.seal svg{width:22px;height:22px;color:var(--blue);margin:0 auto 3px}
+@keyframes rot{to{transform:rotate(360deg)}}
+/* sections */
+.pp-sec{padding:32px 0}
+.pp-sec.ice{background:var(--ice)}
+.pp-sec.navy{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+.pp-sec.navy::before{content:"";position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(21,101,216,.35),transparent 65%);left:-200px;top:-200px}
+.pp-sec.navy .wrap{position:relative}
+.sec-h{max-width:780px;margin:0 auto 52px;text-align:center}
+.sec-h.left{text-align:left;margin-left:0}
+.eyebrow{font:600 12px var(--font-m);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:14px;display:inline-flex;gap:10px;align-items:center}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--orange)}
+.navy .eyebrow{color:#8AB4FF}
+.sec-h h2{font-size:clamp(28px,3.4vw,30px);margin-bottom:14px;letter-spacing:-.02em}
+.navy h2,.navy h3,.navy h4{color:#fff}
+.sec-h p{font-size:17px;color:var(--mute)}.navy .sec-h p{color:#B9C8E4}
+.hl{position:relative;display:inline-block;z-index:0}
+.hl::after{content:"";position:absolute;left:-2px;right:-2px;bottom:2px;height:12px;width:0;background:rgba(255,140,26,.38);z-index:-1;border-radius:4px;transition:width 1s cubic-bezier(.2,.8,.2,1) .3s}
+.in .hl::after{width:calc(100% + 4px)}
+/* trust strip */
+.pp-trust{background:#fff;border-bottom:1px solid var(--line);padding:26px 0;position:relative;z-index:3}
+.pp-trust .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.tstat{text-align:center;padding:10px;border-right:1px solid var(--line)}
+.tstat:last-child{border:0}
+.tstat b{font:800 34px var(--font-h);color:var(--navy);display:block;line-height:1.1;letter-spacing:-.02em}
+.tstat b em{color:var(--orange);font-style:normal}
+.tstat span{font:500 11.5px var(--font-m);color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
+/* grids & cards */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px;box-shadow:var(--sh);transition:transform .35s,box-shadow .35s,border-color .35s;position:relative;overflow:hidden}
+.card:hover{transform:translateY(-6px);box-shadow:var(--sh2);border-color:#BFD3F5}
+.card::before{content:"";position:absolute;left:0;top:0;height:3px;width:0;background:linear-gradient(90deg,var(--blue),var(--orange));transition:width .5s}
+.card:hover::before{width:100%}
+.fic{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,var(--soft),#fff);border:1px solid #D5E3F8;display:grid;place-items:center;color:var(--blue);margin-bottom:18px;transition:.35s;flex:none}
+.card:hover .fic{background:linear-gradient(135deg,var(--blue),#0B3E9C);color:#fff;transform:rotate(-6deg) scale(1.05);border-color:transparent}
+.fic svg{width:24px;height:24px}
+.card h3{font-size:19px;margin-bottom:10px}
+.card p{color:var(--mute);font-size:15px}
+/* solutions hub grid */
+.sol-cat{margin-bottom:56px}
+.sol-cat:last-child{margin-bottom:0}
+.sol-cat .ch{display:flex;align-items:center;gap:16px;margin-bottom:22px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.sol-cat .ch .fic{margin:0;width:48px;height:48px;background:linear-gradient(135deg,var(--blue),#0B3E9C);color:#fff;border:0}
+.sol-cat .ch h3{font-size:24px}
+.sol-cat .ch p{color:var(--mute);font-size:14.5px}
+.sol-cat .ch .cnt{margin-left:auto;font:600 12px var(--font-m);color:var(--blue);background:var(--soft);padding:6px 12px;border-radius:999px;white-space:nowrap}
+.sol{display:flex;flex-direction:column;gap:12px;padding:26px;background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);transition:transform .35s,box-shadow .35s,border-color .35s;position:relative;overflow:hidden;min-height:230px}
+.sol::after{content:"";position:absolute;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(21,101,216,.16),transparent 65%);right:-60px;top:-60px;transition:.4s}
+.sol:hover{transform:translateY(-7px);box-shadow:var(--sh2);border-color:#BFD3F5}
+.sol:hover::after{background:radial-gradient(circle,rgba(255,140,26,.28),transparent 65%);transform:scale(1.4)}
+.sol .fic{margin:0}
+.sol h4{font-size:19px;margin-top:4px}
+.sol p{font-size:14.5px;color:var(--mute);flex:1}
+.sol .go{display:inline-flex;gap:8px;align-items:center;font:700 13.5px var(--font-b);color:var(--blue);margin-top:4px}
+.sol .go svg{width:15px;height:15px;transition:transform .3s}
+.sol:hover .go svg{transform:translateX(5px)}
+.sol .st{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.rtag{font:600 11px var(--font-m);padding:5px 10px;border-radius:999px;letter-spacing:.04em;white-space:nowrap}
+.rtag.owned{background:var(--soft);color:var(--blue);border:1px solid #BFD3F5}
+.rtag.external{background:#FFF7ED;color:#9A3412;border:1px solid #FDBA74}
+.rtag.third{background:#ECFDF5;color:#047857;border:1px solid #A7F3D0}
+.chips2{display:flex;gap:6px;flex-wrap:wrap}
+.chips2 span{font:500 11.5px var(--font-m);padding:5px 10px;border-radius:8px;background:var(--ice);border:1px solid var(--line);color:var(--mute)}
+.sfoot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:4px;flex-wrap:wrap}
+.sol .from{font:600 11px var(--font-m);color:#9A3412;background:#FFF7ED;border:1px solid #FDBA74;padding:4px 9px;border-radius:999px;white-space:nowrap}
+.pillar{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px;box-shadow:var(--sh);transition:.35s;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:8px}
+.pillar::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,var(--blue),var(--orange));transform:scaleX(0);transform-origin:left;transition:transform .5s}
+.pillar:hover{transform:translateY(-6px);box-shadow:var(--sh2)}.pillar:hover::after{transform:scaleX(1)}
+.pillar .fic{margin:0 0 6px}
+.pillar .pk{font:600 11.5px var(--font-m);color:var(--orange);letter-spacing:.08em;text-transform:uppercase}
+.pillar h3{font-size:19px}.pillar p{font-size:14px;color:var(--mute);flex:1}
+.pillar ul{display:grid;gap:5px;margin-top:6px}.pillar li{font-size:13.5px;color:var(--navy);display:flex;gap:8px;align-items:center}
+.pillar li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--blue);flex:none}
+.ptile{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 20px;background:#fff;border:1px solid var(--line);border-radius:14px;transition:.3s}
+.ptile:hover{border-color:var(--orange);transform:translateY(-4px);box-shadow:var(--sh)}
+.ptile b{display:block;font:700 15px var(--font-h);color:var(--navy)}.ptile small{font:500 11px var(--font-m);color:var(--mute)}
+.ptile .pv{font:800 18px var(--font-h);color:var(--blue);white-space:nowrap;text-align:right;letter-spacing:-.01em}.ptile .pv small{display:block;color:var(--mute)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:-16px 0 44px}
+.chips button{font:600 13px var(--font-m);padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--navy);transition:.2s}
+.chips button:hover,.chips button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.sol-cat.hide{display:none}
+.sol.hide{display:none}
+.sol-grid{margin-top:4px}
+/* overview */
+.ov{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.ov .lead{font-size:18px;color:var(--mute);margin-bottom:22px}
+.ov-pts{display:grid;gap:14px}
+.ov-pt{display:flex;gap:14px;padding:16px;border-radius:14px;background:var(--ice);border:1px solid var(--line);transition:.3s}
+.ov-pt:hover{border-color:var(--blue);transform:translateX(6px)}
+.ov-pt .fic{width:44px;height:44px;margin:0}
+.ov-pt h4{font-size:16px;margin-bottom:4px}.ov-pt p{font-size:14px;color:var(--mute)}
+.ov-panel{background:var(--navy);color:#fff;border-radius:22px;padding:32px;position:relative;overflow:hidden;box-shadow:var(--sh2)}
+.ov-panel::after{content:"";position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(255,140,26,.38),transparent 65%);right:-110px;top:-110px}
+.ov-panel h4{color:#fff;font-size:21px;margin-bottom:6px;position:relative}
+.ov-panel .pm{font:500 11.5px var(--font-m);color:#8AB4FF;letter-spacing:.08em;margin-bottom:16px;position:relative}
+.ov-panel ul{position:relative}
+.ov-panel li{display:flex;gap:10px;align-items:flex-start;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:14.5px;color:#DCE7FF}
+.ov-panel li:last-child{border:0}
+.ov-panel li i{color:#4ADE80;flex:none;margin-top:3px;width:18px;height:18px;border-radius:50%;background:rgba(34,197,94,.18);display:grid;place-items:center}
+.ov-panel li i svg{width:10px;height:10px}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.steps.s3{grid-template-columns:repeat(3,1fr)}
+.step{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px 24px;position:relative;box-shadow:var(--sh);transition:.3s}
+.step:hover{transform:translateY(-6px);border-color:var(--orange)}
+.step .n{font:800 52px var(--font-h);color:var(--soft);position:absolute;right:18px;top:6px;line-height:1;letter-spacing:-.04em}
+.step .sn{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--blue),#0B3E9C);color:#fff;display:grid;place-items:center;margin-bottom:16px;box-shadow:0 8px 18px rgba(21,101,216,.3)}
+.step .sn svg{width:19px;height:19px}
+.step h3{font-size:18px;margin-bottom:8px}.step p{color:var(--mute);font-size:14.5px}
+.step::after{content:"";position:absolute;right:-22px;top:50%;width:22px;height:2px;background:linear-gradient(90deg,var(--orange),transparent)}
+.step:last-child::after{display:none}
+/* benefits */
+.pp-ben{display:flex;gap:16px;padding:22px;border-radius:var(--r);background:#fff;border:1px solid var(--line);transition:.3s}
+.pp-ben:hover{border-color:var(--orange);transform:translateX(6px);box-shadow:var(--sh)}
+.pp-ben .fic{margin:0}
+.pp-ben h4{font-size:16.5px;margin-bottom:4px}.pp-ben p{font-size:14px;color:var(--mute)}
+/* before/after */
+.ba{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:#fff;box-shadow:var(--sh)}
+.ba-h,.ba-r{display:grid;grid-template-columns:1.2fr 1fr 1fr;align-items:center}
+.ba-h{background:var(--navy);color:#fff;font:600 12px var(--font-m);letter-spacing:.08em;text-transform:uppercase}
+.ba-h div,.ba-r div{padding:15px 20px}
+.ba-h .a{color:#FFB15C}
+.ba-r{border-top:1px solid var(--line);font-size:15px}
+.ba-r:nth-child(odd){background:var(--ice)}
+.ba-r .m{font-weight:600;color:var(--navy)}
+.ba-r .b{color:#9F1239;display:flex;gap:9px;align-items:center}
+.ba-r .a{color:#166534;font-weight:600;display:flex;gap:9px;align-items:center}
+.ba-r .b i,.ba-r .a i{width:8px;height:8px;border-radius:50%;background:currentColor;flex:none}
+/* pricing */
+.pp-plans{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch;padding-top:14px}
+.pp-plan{background:#fff;border:1.5px solid var(--line);border-radius:22px;padding:30px;position:relative;display:flex;flex-direction:column;transition:.35s;box-shadow:var(--sh)}
+.pp-plan:hover{transform:translateY(-8px);box-shadow:var(--sh2)}
+.pp-plan.pop{border-color:var(--orange);box-shadow:0 24px 60px rgba(255,140,26,.22);transform:scale(1.03)}
+.pp-plan.pop:hover{transform:scale(1.03) translateY(-8px)}
+.pp-plan .ptag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,#FF9A3C,#FF7A00);color:#fff;font:700 11px var(--font-m);letter-spacing:.1em;padding:7px 14px;border-radius:999px;text-transform:uppercase;box-shadow:0 8px 20px rgba(255,140,26,.4);white-space:nowrap}
+.pp-plan .pn{font:700 22px var(--font-h);color:var(--navy);margin-bottom:6px}
+.pp-plan .pd{font-size:13.5px;color:var(--mute);min-height:42px;margin-bottom:14px}
+.pp-plan .pr{display:flex;align-items:baseline;gap:6px;margin-bottom:2px}
+.pp-plan .pr b{font:800 36px var(--font-h);color:var(--navy);letter-spacing:-.02em}
+.pp-plan .pr span{font:500 13px var(--font-m);color:var(--mute)}
+.pp-plan .pl{font:500 12px var(--font-m);color:var(--mute);margin-bottom:8px}
+.pp-plan .pl s{color:#B91C1C}
+.pp-plan .inc{font:600 12px var(--font-m);color:var(--blue);background:var(--soft);border-radius:8px;padding:8px 10px;margin:6px 0 14px;display:inline-block}
+.pp-plan .terms{display:flex;gap:6px;margin-bottom:16px}
+.pp-plan .terms button{flex:1;font:600 11.5px var(--font-m);padding:7px 4px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--navy);transition:.2s;line-height:1.3}
+.pp-plan .terms button:hover,.pp-plan .terms button.on{border-color:var(--blue);background:var(--soft);color:var(--blue)}
+.pp-plan .terms button small{display:block;font-size:9.5px;color:#15803D;font-weight:700}
+.pp-plan ul{display:grid;gap:9px;margin-bottom:22px;flex:1}
+.pp-plan li{display:flex;gap:10px;font-size:14px;color:#33415C;align-items:flex-start}
+.pp-plan li i{width:18px;height:18px;border-radius:50%;background:#DCFCE7;color:#15803D;display:grid;place-items:center;flex:none;margin-top:2px;transform:scale(0);transition:transform .45s cubic-bezier(.3,1.6,.5,1)}
+.pp-plan.in li i,.in .pp-plan li i{transform:scale(1)}
+.pp-plan li:nth-child(2) i{transition-delay:.08s}.pp-plan li:nth-child(3) i{transition-delay:.16s}.pp-plan li:nth-child(4) i{transition-delay:.24s}.pp-plan li:nth-child(5) i{transition-delay:.32s}.pp-plan li:nth-child(6) i{transition-delay:.4s}
+.pp-plan li i svg{width:10px;height:10px}
+.pp-plan .btn{width:100%}
+.pv-note{margin:26px auto 0;max-width:820px;text-align:center;font:500 12.5px/1.5 var(--font-m);color:#9A3412;background:#FFF7ED;border:1px dashed #FDBA74;border-radius:10px;padding:10px 16px}
+.gst-note{margin-top:10px;text-align:center;font-size:13.5px;color:var(--mute)}
+/* table */
+.tbl-w{overflow-x:auto;border-radius:var(--r);box-shadow:var(--sh);border:1px solid var(--line)}
+.tbl{width:100%;border-collapse:collapse;background:#fff;min-width:640px}
+.tbl th,.tbl td{padding:14px 18px;text-align:center;font-size:14px;border-bottom:1px solid var(--line)}
+.tbl th{background:var(--navy);color:#fff;font:600 12px var(--font-m);letter-spacing:.08em;text-transform:uppercase}
+.tbl th.pop{background:var(--orange)}
+.tbl td:first-child,.tbl th:first-child{text-align:left;font-weight:600;color:var(--navy)}
+.tbl th:first-child{color:#fff}
+.tbl tr:nth-child(even) td{background:var(--ice)}
+.tbl tr:last-child td{border:0}
+.tbl .y{color:#15803D;font-weight:700}.tbl .n{color:#CBD5E1;font-weight:700}
+/* addons */
+.addon{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px;background:#fff;border:1px solid var(--line);border-radius:var(--r);transition:.3s}
+.addon:hover{border-color:var(--blue);transform:translateY(-4px);box-shadow:var(--sh)}
+.addon h4{font-size:16px;margin-bottom:4px}.addon p{font-size:13.5px;color:var(--mute)}
+.addon .ap{font:700 17px var(--font-h);color:var(--blue);white-space:nowrap;text-align:right;letter-spacing:-.01em}
+.addon .ap small{display:block;font:500 11px var(--font-m);color:var(--mute)}
+/* use cases */
+.pp-usecard{padding:26px;border-radius:var(--r);background:#fff;border:1px solid var(--line);position:relative;overflow:hidden;transition:.35s}
+.pp-usecard:hover{background:var(--navy);transform:translateY(-6px);border-color:var(--navy)}
+.pp-usecard:hover h4{color:#fff}.pp-usecard:hover p{color:#C9D6EE}
+.pp-usecard .fic{margin-bottom:14px}.pp-usecard:hover .fic{background:rgba(255,255,255,.12);color:#FFB15C;border-color:transparent}
+.pp-usecard h4{font-size:17px;margin-bottom:6px}.pp-usecard p{font-size:14px;color:var(--mute)}
+/* integrations */
+.intg{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.intg span{font:600 13px var(--font-m);padding:10px 16px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--navy);transition:.25s;display:inline-flex;gap:8px;align-items:center}
+.intg span::before{content:"";width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--orange))}
+.intg span:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-3px);box-shadow:var(--sh)}
+/* why */
+.pp-whycard{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--r);padding:26px;transition:.3s}
+.pp-whycard:hover{background:rgba(255,255,255,.1);transform:translateY(-6px);border-color:rgba(255,140,26,.55)}
+.pp-whycard .fic{background:rgba(21,101,216,.3);border-color:rgba(255,255,255,.1);color:#8AB4FF}
+.pp-whycard h4{color:#fff;font-size:17px;margin-bottom:6px}.pp-whycard p{color:#B9C8E4;font-size:14px}
+/* testimonials */
+.pp-tcards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.tc{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px;box-shadow:var(--sh);position:relative;transition:.3s}
+.tc:hover{transform:translateY(-6px);box-shadow:var(--sh2)}
+.tc .q{font:italic 400 60px var(--font-s);color:var(--orange);line-height:1;position:absolute;top:14px;right:22px;opacity:.35}
+.tc .stars{color:var(--orange);font-size:13px;letter-spacing:2px;margin-bottom:12px}
+.tc p{font-size:15px;color:#33415C;margin-bottom:18px;font-style:italic}
+.tc .who{display:flex;gap:12px;align-items:center}
+.tc .av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--blue),#0B3E9C);color:#fff;display:grid;place-items:center;font:700 14px var(--font-h);flex:none}
+.tc .who b{display:block;font-size:14px;color:var(--navy)}.tc .who span{font:500 11.5px var(--font-m);color:var(--mute)}
+/* faq */
+.faq2{max-width:860px;margin:0 auto;display:grid;gap:10px}
+.faq-i{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.3s}
+.faq-i.open{border-color:var(--blue);box-shadow:var(--sh)}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 22px;text-align:left;font:600 16px var(--font-h);color:var(--navy)}
+.faq-q i{width:28px;height:28px;border-radius:50%;background:var(--soft);color:var(--blue);display:grid;place-items:center;flex:none;transition:.3s;font-style:normal;font-weight:700;font-family:var(--font-m)}
+.faq-i.open .faq-q i{transform:rotate(45deg);background:var(--orange);color:#fff}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-a p{padding:0 22px 20px;color:var(--mute);font-size:15px}
+/* blog */
+.blog{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:.3s;box-shadow:var(--sh);display:flex;flex-direction:column}
+.blog:hover{transform:translateY(-6px);box-shadow:var(--sh2)}
+.blog .bi{height:150px;background:linear-gradient(135deg,var(--navy),var(--blue));position:relative;display:grid;place-items:center;color:#fff}
+.blog .bi svg{width:44px;height:44px;opacity:.9;position:relative}
+.blog .bi::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:24px 24px}
+.blog .bb{padding:22px;display:flex;flex-direction:column;flex:1}
+.blog .bt{font:600 11px var(--font-m);color:var(--orange);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.blog h4{font-size:17px;margin-bottom:8px}.blog p{font-size:14px;color:var(--mute);margin-bottom:14px;flex:1}
+.blog .rm{font:600 13px var(--font-b);color:var(--blue);display:inline-flex;gap:6px;align-items:center}
+.blog .rm svg{width:14px;height:14px}
+/* reveal */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+@keyframes pprise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* agent network diagram */
+.agentnet,.dg{position:relative;width:100%;aspect-ratio:600/520;max-width:640px;margin:0 auto;perspective:1200px}
+.dg .an-stage svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.hot{cursor:pointer;transition:filter .3s}
+.hot .hb{transition:stroke .3s,filter .3s}
+.hot:hover,.hot.on{filter:drop-shadow(0 0 9px rgba(255,140,26,.85))}
+.hot:hover .hb,.hot.on .hb{stroke:#FFB15C!important}.hot.on .hb-keep{filter:brightness(1.25)}
+.hot:focus{outline:none}
+.an-stage{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .35s ease-out}
+.an-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.an-link{fill:none;stroke:rgba(138,180,255,.3);stroke-width:1.5;transition:stroke .3s,stroke-width .3s}
+.an-link.hot{stroke:#FFB15C;stroke-width:2.5;filter:drop-shadow(0 0 6px rgba(255,140,26,.9))}
+.an-core{position:absolute;left:50%;top:48%;width:118px;height:118px;transform:translate(-50%,-50%);border-radius:50%;display:grid;place-items:center;text-align:center;color:#fff;background:radial-gradient(circle at 35% 30%,#3B82F6,#0B3E9C 70%);box-shadow:0 0 0 1px rgba(255,255,255,.22),0 20px 50px rgba(0,0,0,.45),0 0 70px rgba(21,101,216,.6);z-index:2}
+.an-core svg{width:30px;height:30px;margin:0 auto 4px}
+.an-core b{display:block;font:700 11px/1.2 var(--font-h)}
+.an-core small{font:500 8.5px var(--font-m);color:#BFD3F5;letter-spacing:.08em}
+.an-ring{position:absolute;left:50%;top:48%;border-radius:50%;border:1px dashed rgba(138,180,255,.35);transform:translate(-50%,-50%);pointer-events:none}
+.an-ring.r1{width:172px;height:172px;animation:anrot 30s linear infinite}
+.an-ring.r2{width:224px;height:224px;border-style:solid;border-color:rgba(138,180,255,.12);animation:anrot 45s linear infinite reverse}
+@keyframes anrot{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.an-pulse{position:absolute;left:50%;top:48%;width:118px;height:118px;border-radius:50%;transform:translate(-50%,-50%);border:2px solid rgba(138,180,255,.6);animation:anpulse 2.6s ease-out infinite;pointer-events:none}
+.an-pulse.p2{animation-delay:1.3s}
+@keyframes anpulse{0%{transform:translate(-50%,-50%) scale(1);opacity:.8}100%{transform:translate(-50%,-50%) scale(2.6);opacity:0}}
+.an-node{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;gap:8px;padding:6px 12px 6px 7px;border-radius:999px;background:rgba(4,30,66,.78);border:1px solid rgba(138,180,255,.38);color:#fff;font:600 11.5px/1.15 var(--font-h);white-space:nowrap;cursor:pointer;backdrop-filter:blur(8px);box-shadow:0 10px 30px rgba(0,0,0,.35);transition:transform .3s,box-shadow .3s,border-color .3s,background .3s;z-index:3;animation:nfloat 6s ease-in-out infinite}
+.an-node .ni{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;flex:none;color:#fff}
+.an-node .ni svg{width:13px;height:13px}
+.an-node small{display:block;font:500 8.5px var(--font-m);color:#8AB4FF;letter-spacing:.06em;text-transform:uppercase}
+.c-infra .ni,.ni.c-infra{background:linear-gradient(135deg,#3B82F6,#1049B3)}.c-brand .ni,.ni.c-brand{background:linear-gradient(135deg,#FF9A3C,#FF6A00)}.c-risk .ni,.ni.c-risk{background:linear-gradient(135deg,#22C55E,#15803D)}.c-human .ni,.ni.c-human{background:linear-gradient(135deg,#A78BFA,#6D28D9)}
+.an-node:hover,.an-node.on{transform:translate(-50%,-50%) scale(1.1);border-color:#FFB15C;background:rgba(21,101,216,.6);box-shadow:0 14px 40px rgba(0,0,0,.45),0 0 30px rgba(255,140,26,.4);animation-play-state:paused;z-index:4}
+@keyframes nfloat{0%,100%{margin-top:0}50%{margin-top:-6px}}
+.an-glow{position:absolute;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(255,140,26,.22),transparent 60%);pointer-events:none;transform:translate(-50%,-50%);opacity:0;transition:opacity .3s;z-index:1}
+.an-info{position:absolute;left:-30px;top:-26px;width:262px;background:#fff;color:var(--navy);border-radius:16px;padding:13px 15px;box-shadow:0 24px 50px rgba(0,0,0,.42);z-index:6}
+.an-info.flash{animation:infoflash .5s}
+@keyframes infoflash{0%{transform:scale(.96);opacity:.5}100%{transform:none;opacity:1}}
+.an-info .ih{display:flex;gap:10px;align-items:center;margin-bottom:7px}
+.an-info .ih .ni{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;color:#fff;flex:none}
+.an-info .ih .ni svg{width:18px;height:18px}
+.an-info .ih b{display:block;font:700 14px var(--font-h)}.an-info .ih span{font:500 9.5px var(--font-m);color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
+.an-info p{font-size:12px;color:var(--mute);margin-bottom:9px;line-height:1.45}
+.an-info .im{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:9px}
+.an-info .im div{background:var(--ice);border-radius:8px;padding:5px 7px}
+.an-info .im b{display:block;font:700 13px var(--font-h);color:var(--navy)}.an-info .im span{font:500 8.5px var(--font-m);color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.an-info a{font:700 12.5px var(--font-b);color:var(--blue);display:inline-flex;gap:6px;align-items:center}
+.an-info a svg{width:13px;height:13px}
+.an-tick{position:absolute;right:-24px;bottom:-18px;background:rgba(4,30,66,.88);border:1px solid rgba(138,180,255,.4);color:#DCE7FF;border-radius:999px;padding:7px 13px;font:500 10.5px var(--font-m);display:flex;gap:8px;align-items:center;z-index:6;backdrop-filter:blur(6px);max-width:380px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.an-tick i{width:7px;height:7px;border-radius:50%;background:#4ADE80;animation:pulse 1.6s infinite;flex:none}
+.an-tick span{overflow:hidden;text-overflow:ellipsis}
+/* ghost cursor (auto demo) */
+.ghost{position:absolute;left:0;top:0;z-index:20;pointer-events:none;transition:transform 1s cubic-bezier(.65,0,.35,1),opacity .4s;opacity:0;filter:drop-shadow(0 4px 8px rgba(0,0,0,.55));transform:translate(50%,50%)}
+.ghost.show{opacity:1}
+.ghost svg{width:22px;height:26px;display:block}
+.ghost .rp{position:absolute;left:-12px;top:-12px;width:28px;height:28px;border-radius:50%;border:2px solid #FFB15C;opacity:0;transform:scale(.4)}
+.ghost.click .rp{animation:gclick .6s ease-out}
+.ghost.click svg{animation:gpress .3s}
+@keyframes gclick{0%{opacity:.9;transform:scale(.4)}100%{opacity:0;transform:scale(1.7)}}
+@keyframes gpress{0%,100%{transform:scale(1)}50%{transform:scale(.82)}}
+.hvis .console .c-row{transition:transform .3s,border-color .3s,background .3s}
+.hvis .console .c-row.on{border-color:#FFB15C;background:rgba(255,140,26,.16);transform:translateX(4px)}
+.hvis .console .c-row.on .pill{box-shadow:0 0 0 2px rgba(255,177,92,.45)}
+@media(max-width:1100px){.agentnet,.dg{max-width:560px}}
+@media(max-width:860px){.agentnet,.dg{max-width:100%;margin-top:120px}.an-info{left:0;top:-112px;width:100%;position:absolute}.an-tick{display:none}.an-node{font-size:10px;padding:4px 9px 4px 5px}.an-node small{display:none}.an-node .ni{width:22px;height:22px}}
+/* motion prefs */
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.rv{opacity:1;transform:none}.pp-plan li i{transform:scale(1)}.hl::after{width:100%}}
+/* responsive */
+@media(max-width:1100px){.pp-hero .wrap{grid-template-columns:1fr;gap:56px}.hvis{max-width:600px;margin:10px auto 0}.grid4{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.step::after{display:none}.ov{grid-template-columns:1fr}}
+@media(max-width:860px){.hstats{gap:24px}.hstats div b{font-size:30px}.grid3,.grid2,.grid4,.pp-plans,.pp-tcards,.steps{grid-template-columns:1fr}.pp-trust .wrap{grid-template-columns:repeat(2,1fr)}.tstat:nth-child(2){border:0}.pp-plan.pop{transform:none}.pp-plan.pop:hover{transform:translateY(-8px)}.cfg-b{grid-template-columns:1fr}.ba-h{display:none}.ba-r{grid-template-columns:1fr;padding:10px 0}.ba-r div{padding:5px 18px}.ba-r .m{font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute)}.fcard.f3{display:none}.pp-hero{padding:56px 0 76px;min-height:0}.pp-sec{padding:64px 0}.sol-cat .ch{flex-wrap:wrap}.c-body{grid-template-columns:1fr}}
+
+.tc-hero{background:radial-gradient(1200px 640px at 22% 12%,#06371F 0%,#04140A 62%,#020A05 100%)}
+.tc-hero .h1b{background:none;-webkit-text-fill-color:#4ADE80;color:#4ADE80;display:inline;font-size:1em;margin:0}
+.tc-hero h1{font-family:var(--font-d);font-weight:800;font-size:clamp(38px,4.6vw,64px);line-height:1.06;color:#fff;margin-bottom:16px}
+.tc-hero .aur.a1{background:#16A34A}.tc-hero .aur.a2{background:#0EA5E9;opacity:.22}
+.tc-hero .hstats div::after{background:#22C55E}
+.tc-hero .hot:hover,.tc-hero .hot.on{filter:drop-shadow(0 0 9px rgba(34,197,94,.9))}
+.tc-hero .hot:hover .hb,.tc-hero .hot.on .hb{stroke:#4ADE80!important}
+.tc-hero .an-info .ih .ni{background:linear-gradient(135deg,#22C55E,#15803D)!important}
+.tc-hero .an-tick i{background:#4ADE80}
+.tc-badge{display:inline-flex;align-items:center;gap:8px;font:600 12px var(--font-m);letter-spacing:.14em;color:#4ADE80;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.4);padding:7px 14px;border-radius:999px}
+.tc-badge::before{content:"";width:8px;height:8px;border-radius:50%;background:#4ADE80;box-shadow:0 0 0 0 rgba(74,222,128,.6);animation:pulse 1.8s infinite}
+/* Trust hero — dark intelligence-dashboard treatment */
+.tc-hero{min-height:720px;padding:78px 0 82px;background:radial-gradient(720px 720px at 7% 35%,rgba(20,145,72,.64),transparent 62%),radial-gradient(620px 520px at 92% 96%,rgba(8,104,131,.48),transparent 67%),linear-gradient(105deg,#032519 0%,#00150d 48%,#000b08 100%)}
+.tc-hero .grid-bg{background-image:linear-gradient(rgba(94,185,139,.075) 1px,transparent 1px),linear-gradient(90deg,rgba(94,185,139,.075) 1px,transparent 1px);background-size:56px 56px;animation:none;-webkit-mask-image:none;mask-image:none}
+.tc-hero .aur{filter:blur(105px);mix-blend-mode:screen}
+.tc-hero .aur.a1{width:660px;height:660px;left:-390px;top:-110px;background:#19B65C;opacity:.42}
+.tc-hero .aur.a2{width:560px;height:480px;right:-160px;bottom:-270px;background:#0EA5C6;opacity:.3}
+.tc-hero #pcv{opacity:.2}
+.tc-hero .spot{background:radial-gradient(circle,rgba(27,170,91,.2),transparent 62%)}
+.tc-hero .wrap{grid-template-columns:minmax(0,1.16fr) minmax(420px,.84fr);gap:72px;align-items:center}
+.tc-hero .crumb{margin-bottom:18px;color:#79AFFF;font-size:11px;font-weight:600}
+.tc-hero .eyeb{margin-bottom:18px}
+.tc-hero .tc-badge{padding:0;border:0;border-radius:0;background:none;color:#51E594;font-size:12px;letter-spacing:.24em}
+.tc-hero .tc-badge::before{display:none}
+.tc-hero h1{max-width:760px;font-size:clamp(48px,4.2vw,66px);line-height:1.02;letter-spacing:-.025em;margin-bottom:18px;text-wrap:balance}
+.tc-hero h1 .h1b{display:block;color:#38DF7A;font-size:.68em;line-height:1.08;margin-top:10px;letter-spacing:-.02em}
+.tc-hero .sub{max-width:680px;margin-bottom:22px;color:#C8D7D2;font-size:18px;font-weight:500;line-height:1.68}
+.tc-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+.tc-pills span{display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border:1px solid rgba(196,224,214,.28);border-radius:999px;background:rgba(255,255,255,.045);color:#D2E2DD;font:600 10.5px var(--font-m);white-space:nowrap}
+.tc-pills span:first-child{border-color:rgba(255,156,30,.58);background:rgba(255,140,26,.12);color:#FFD089}
+.tc-pills i{width:6px;height:6px;border-radius:50%;background:#46E38A;box-shadow:0 0 12px rgba(70,227,138,.8)}
+.tc-hero .hstats{display:grid;grid-template-columns:minmax(150px,1.2fr) minmax(125px,1fr) minmax(110px,1fr) minmax(90px,.85fr);column-gap:32px;row-gap:24px;margin-top:36px}
+.tc-hero .hstats div{min-width:0}
+.tc-hero .hstats div b{font-size:clamp(26px,1.85vw,32px);font-family:var(--font-m);letter-spacing:-.055em;white-space:nowrap}
+.tc-hero .hstats div span{font-size:12.5px;color:#CAD8D4;font-weight:600;line-height:1.35}
+.tc-hero .hstats div::after{width:42px;height:3px;margin-top:10px;background:#32DB77}
+.tc-hero .hvis{max-width:540px;width:100%;justify-self:end}
+.tc-hero .dg{max-width:540px}
+.tc-hero .an-info{display:none}
+.tc-hero .ghost{display:none}
+.tc-hero .an-tick{right:1%;bottom:-8px;max-width:360px;background:rgba(9,33,68,.88);border-color:rgba(80,140,238,.7);color:#D9E6FF}
+/* Trust hero — match the blue treatment used by the default product pages. */
+.tc-hero{background:radial-gradient(900px 520px at 80% -20%,#0E3A78 0%,#041E42 60%,#02122B 100%)}
+.tc-hero .grid-bg{background-image:linear-gradient(rgba(127,178,255,.075) 1px,transparent 1px),linear-gradient(90deg,rgba(127,178,255,.075) 1px,transparent 1px)}
+.tc-hero .aur.a1{background:#1565D8;opacity:.5}
+.tc-hero .aur.a2{background:#3B82F6;opacity:.3}
+.tc-hero .spot{background:radial-gradient(circle,rgba(21,101,216,.26),transparent 62%)}
+.tc-hero .tc-badge,.tc-hero h1 .h1b{color:#8AB4FF;-webkit-text-fill-color:#8AB4FF}
+.tc-hero .sub,.tc-hero .hstats div span{color:#C7D5EC}
+.tc-hero .hstats div::after{background:#3B82F6}
+.tc-hero .hot:hover,.tc-hero .hot.on{filter:drop-shadow(0 0 9px rgba(59,130,246,.9))}
+.tc-hero .hot:hover .hb,.tc-hero .hot.on .hb{stroke:#8AB4FF!important}
+.tc-hero .an-info .ih .ni{background:linear-gradient(135deg,#3B82F6,#1049B3)!important}
+.tc-hero .an-tick i,.tc-hero .tc-pills i{background:#8AB4FF;box-shadow:0 0 12px rgba(138,180,255,.8)}
+.tc-hero .tc-pills span{border-color:rgba(138,180,255,.3);color:#DCE7FF}
+.tc-hero [stroke="#22C55E"],.tc-hero [stroke^="rgba(34,197,94"]{stroke:#3B82F6}
+.tc-hero [fill="#22C55E"],.tc-hero [fill="#4ADE80"]{fill:#8AB4FF}
+.tc-hero [fill="#052e16"]{fill:#06182F}
+.tc-hero [fill="#86efac"]{fill:#B9D2FF}
+.tc-hero stop[stop-color="#22C55E"]{stop-color:#3B82F6}
+@media(max-width:1100px){.tc-hero{padding:68px 0 78px}.tc-hero .wrap{grid-template-columns:1fr;gap:42px}.tc-hero .hvis{justify-self:center}.tc-hero .dg{margin-top:0}}
+@media(max-width:700px){.tc-hero{min-height:0;padding:52px 0 64px}.tc-hero h1{font-size:clamp(42px,12vw,58px)}.tc-hero h1 .h1b{font-size:.62em}.tc-hero .sub{font-size:16px}.tc-hero .hstats{grid-template-columns:repeat(2,1fr);gap:24px 18px}.tc-pills span{white-space:normal}.tc-hero .an-tick{display:none}}
+/* certifications */
+.cert-card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px;box-shadow:var(--sh);transition:.3s}
+.cert-card:hover{transform:translateY(-6px);box-shadow:var(--sh2);border-color:#BFD3F5}
+.cert-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.cert-ic{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,var(--soft),#fff);border:1px solid #D5E3F8;display:grid;place-items:center;color:var(--blue)}
+.cert-ic svg{width:22px;height:22px}
+.cert-badge{font:700 10.5px var(--font-m);padding:5px 11px;border-radius:999px;letter-spacing:.04em}
+.cert-badge.on{background:#DCFCE7;color:#15803D}.cert-badge.road{background:#FFF7ED;color:#9A3412;border:1px solid #FDBA74}
+.cert-card h3{font-size:18px;margin-bottom:8px}.cert-card p{color:var(--mute);font-size:14px}
+.cert-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+@media(max-width:1100px){.cert-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:640px){.cert-grid{grid-template-columns:repeat(2,1fr)}}
+.cert-grid .cert-card{padding:20px}
+.cert-grid .cert-card h3{font-size:16px}
+.cert-grid .cert-card p{font-size:12.5px}
+.cert-grid .cert-badge{font-size:9.5px;padding:4px 9px}
+/* separation of responsibilities */
+.sr-legend{display:flex;gap:22px;flex-wrap:wrap;justify-content:center;margin:-14px 0 34px;font:500 13px var(--font-b);color:var(--navy);align-items:center}
+.sr-legend span{display:inline-flex;gap:8px;align-items:center}
+.sr-legend i{width:14px;height:14px;border-radius:4px}.sr-legend i.you{background:#1565D8}.sr-legend i.prov{background:#16A34A}
+.sr-hint{color:var(--mute);font-size:12.5px;font-family:var(--font-m)}
+.sr-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.sr-col{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:var(--sh);transition:.35s;position:relative}
+.sr-col:hover{transform:translateY(-6px);box-shadow:var(--sh2)}
+.sr-col.feat{border:2px solid #16A34A;box-shadow:0 22px 50px rgba(22,163,74,.18)}
+.sr-col.feat .sr-head{background:linear-gradient(135deg,#16A34A,#15803D);color:#fff;border-radius:10px}
+.sr-col.feat .sr-head b,.sr-col.feat .sr-head span{color:#fff}
+.sr-head{text-align:center;padding:12px 8px;margin-bottom:12px}
+.sr-head b{display:block;font:700 18px var(--font-h);color:var(--navy)}
+.sr-head span{font:500 12px var(--font-m);color:var(--mute)}
+.sr-stack{display:grid;gap:7px}
+.sr-cell{padding:11px 12px;border-radius:8px;font:600 13px var(--font-b);text-align:center;border:1px solid transparent;transition:.25s;cursor:default}
+.sr-cell.you{background:#EAF1FE;color:#1049B3;border-color:#CADEFB}
+.sr-cell.prov{background:#E9F9EF;color:#15803D;border-color:#BBEBCB}
+.sr-col:hover .sr-cell.prov{background:#16A34A;color:#fff;border-color:#16A34A}
+.sr-col:hover .sr-cell.you{background:#1565D8;color:#fff;border-color:#1565D8}
+.sr-sides{display:flex;justify-content:space-between;margin-top:12px;gap:6px}
+.sr-side{font:700 9.5px var(--font-m);letter-spacing:.06em;padding:5px 8px;border-radius:6px;text-transform:uppercase}
+.sr-side.you{background:#EAF1FE;color:#1049B3}.sr-side.prov{background:#E9F9EF;color:#15803D;margin-left:auto}
+/* vuln findings */
+.vuln-panel{margin-top:26px;background:var(--navy);color:#fff;border-radius:var(--r);padding:28px;box-shadow:var(--sh2);position:relative;overflow:hidden}
+.vuln-panel::after{content:"";position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(34,197,94,.3),transparent 65%);right:-120px;top:-120px}
+.vuln-panel h4{color:#fff;font-size:18px;margin-bottom:16px;position:relative}
+.vuln-nums{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative}
+.vuln-nums div{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:16px;text-align:center}
+.vuln-nums b{display:block;font:800 34px var(--font-h);color:#fff}
+.vuln-nums span{font:500 11px var(--font-m);color:#8AB4FF;text-transform:uppercase;letter-spacing:.06em}
+.vuln-nums span.w{color:#FFB15C}
+.vuln-foot{margin-top:16px;font-size:13px;color:#B9C8E4;position:relative}
+/* status */
+.st-card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:30px;text-align:center;box-shadow:var(--sh);transition:.3s}
+.st-card:hover{transform:translateY(-6px);box-shadow:var(--sh2)}
+.st-card .st-lab{display:inline-flex;gap:7px;align-items:center;font:600 11px var(--font-m);color:var(--mute);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.st-card .st-lab svg{width:14px;height:14px;color:#16A34A}
+.st-card b{display:block;font:800 42px var(--font-h);color:#16A34A;letter-spacing:-.02em}
+.st-card span{display:block}
+.st-card small{font:500 12px var(--font-m);color:var(--mute);margin-top:4px;display:block}
+.inc-panel{margin-top:24px;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px;box-shadow:var(--sh)}
+.inc-head{display:flex;gap:12px;align-items:center;margin-bottom:8px}
+.inc-ic{width:40px;height:40px;border-radius:10px;background:#FFF7ED;color:#EA580C;display:grid;place-items:center;flex:none}
+.inc-ic svg{width:20px;height:20px}
+.inc-head h3{font-size:18px}
+.inc-row{padding:18px 0;border-top:1px solid var(--line)}
+.inc-row:first-of-type{border-top:0}
+.inc-when{font:600 12px var(--font-m);color:#16A34A;margin-bottom:6px}
+.inc-when span{color:var(--mute);font-weight:500;margin-left:6px}
+.inc-row h4{font-size:16px;margin-bottom:8px}
+.inc-row p{font-size:14px;color:var(--mute);margin-bottom:4px}
+.inc-row p b{color:var(--navy);font-weight:700}
+@media(max-width:960px){.sr-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.sr-grid,.vuln-nums{grid-template-columns:1fr 1fr}}
+/* trust service criteria */
+.tsc-grid{align-items:stretch}
+.tsc-card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px;box-shadow:var(--sh);transition:.3s;display:flex;flex-direction:column}
+.tsc-card:hover{transform:translateY(-6px);box-shadow:var(--sh2)}
+.tsc-card.off{background:var(--ice);opacity:.9}
+.tsc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.tsc-ab{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#16A34A,#15803D);color:#fff;display:grid;place-items:center;font:800 14px var(--font-h)}
+.tsc-card.off .tsc-ab{background:#CBD5E1;color:#fff}
+.tsc-in{font:700 11px var(--font-m);color:#15803D;background:#DCFCE7;padding:5px 11px;border-radius:999px}
+.tsc-out{font:700 10.5px var(--font-m);color:#64748B;background:#EEF2F7;padding:5px 11px;border-radius:999px}
+.tsc-card h3{font-size:19px;margin-bottom:8px}.tsc-card p{color:var(--mute);font-size:14px;flex:1}
+.tsc-n{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.tsc-n span{font:500 11px var(--font-m);color:var(--mute);text-transform:uppercase;letter-spacing:.06em}
+.tsc-n b{display:block;font:800 30px var(--font-h);color:var(--navy);letter-spacing:-.02em}
+/* subprocessors bar */
+.sp-bar{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:20px;align-items:center}
+.sp-search{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:0 16px;flex:1;min-width:240px;max-width:360px}
+.sp-search svg{width:17px;height:17px;color:var(--mute);flex:none}
+.sp-search input{border:0;outline:none;padding:13px 0;font:400 14px var(--font-b);width:100%;background:transparent;color:var(--ink)}
+.sp-tabs{display:flex;gap:8px;flex-wrap:wrap}
+.sp-tabs button{font:600 12.5px var(--font-m);padding:9px 15px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--navy);transition:.2s}
+.sp-tabs button:hover,.sp-tabs button.on{background:#16A34A;border-color:#16A34A;color:#fff}
+.sp-tbl td:first-child small{display:block;font:600 10.5px var(--font-m);color:#15803D;text-transform:uppercase;letter-spacing:.04em;margin-top:3px}
+.sp-tbl .sp-visit a{color:var(--blue);font:600 13px var(--font-b);display:inline-flex;gap:5px;align-items:center;white-space:nowrap}
+.sp-tbl .sp-visit svg{width:13px;height:13px}
+.sp-tbl tr.hide{display:none}
+.sp-empty{text-align:center;color:var(--mute);padding:30px;font-size:14px}
+/* training */
+.tr-wrap{display:grid;grid-template-columns:1.35fr .65fr;gap:24px;align-items:start}
+.tr-panel{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px;box-shadow:var(--sh)}
+.tr-head{display:flex;gap:16px;margin-bottom:22px}
+.tr-head .fic{margin:0;flex:none;background:linear-gradient(135deg,#16A34A,#15803D);color:#fff;border:0}
+.tr-head h3{font-size:19px;margin-bottom:6px}.tr-head p{color:var(--mute);font-size:14px}
+.tr-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px}
+.tr-stat{background:var(--ice);border:1px solid var(--line);border-radius:12px;padding:16px}
+.tr-stat span{font:500 11px var(--font-m);color:var(--mute);text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:6px;line-height:1.3}
+.tr-stat b{font:800 28px var(--font-h);color:#16A34A;letter-spacing:-.02em}
+.tr-meta{display:grid;grid-template-columns:1fr 1fr;gap:16px;border-top:1px solid var(--line);padding-top:18px}
+.tr-m span{font:600 11px var(--font-m);color:var(--mute);text-transform:uppercase;letter-spacing:.05em}
+.tr-m p{font-size:14px;color:var(--navy);margin-top:4px}
+.tr-curric{background:var(--navy);color:#fff;border-radius:var(--r);padding:28px;box-shadow:var(--sh2)}
+.tr-curric h3{color:#fff;font-size:19px;margin-bottom:16px}
+.tr-topics{display:grid;gap:12px}
+.tr-topics li{display:flex;gap:11px;font-size:14px;color:#DCE7FF;align-items:flex-start;line-height:1.5}
+.tr-topics li i{width:20px;height:20px;border-radius:50%;background:rgba(34,197,94,.2);color:#4ADE80;display:grid;place-items:center;flex:none;margin-top:1px}
+.tr-topics li i svg{width:11px;height:11px}
+/* calendar */
+.cal-list{display:grid;gap:14px;max-width:960px;margin:0 auto}
+.cal-row{display:flex;gap:18px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;box-shadow:var(--sh);transition:.3s}
+.cal-row:hover{transform:translateX(5px);border-color:#BFD3F5;box-shadow:var(--sh2)}
+.cal-row.hide{display:none}
+.cal-ic{width:52px;height:52px;border-radius:12px;display:grid;place-items:center;flex:none;color:#fff}
+.cal-ic.upcoming{background:linear-gradient(135deg,#2F7BEF,#1049B3)}.cal-ic.completed{background:linear-gradient(135deg,#16A34A,#15803D)}
+.cal-ic svg{width:22px;height:22px}
+.cal-tags{display:flex;gap:12px;align-items:center;margin-bottom:6px;flex-wrap:wrap}
+.cal-kind{font:700 10.5px var(--font-m);letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+.cal-state{font:600 10px var(--font-m);text-transform:uppercase;letter-spacing:.06em;padding:3px 9px;border-radius:999px}
+.cal-state.upcoming{background:#EAF1FE;color:#1049B3}.cal-state.completed{background:#DCFCE7;color:#15803D}
+.cal-when{margin-left:auto;font:500 12px var(--font-m);color:var(--mute)}
+.cal-body{flex:1;min-width:0}.cal-body h4{font-size:17px;margin-bottom:5px}.cal-body p{font-size:14px;color:var(--mute)}
+@media(max-width:860px){.tr-wrap{grid-template-columns:1fr}.tr-stats{grid-template-columns:1fr}.tr-meta{grid-template-columns:1fr}.cal-when{margin-left:0}.sp-tbl thead{display:none}.sp-tbl td{display:block;text-align:left}.sp-tbl td:before{content:attr(data-l);display:block;font:600 10px var(--font-m);color:var(--mute);text-transform:uppercase}}
+</style>
+</head>
+<body>
+<section class="pp-hero tc-hero"><div class="aur a1"></div><div class="aur a2"></div><div class="grid-bg"></div><canvas id="pcv"></canvas><div class="spot"></div><div class="wrap"><div><div class="crumb"><a href="#">Home</a><span>/</span>Trust Center</div><div class="eyeb"><span class="tc-badge">ISO 27001 · ISO 20000-1 · ACTIVE</span></div><h1>Security and trust.<span class="h1b">Built into how we operate.</span></h1><p class="sub">XcellHost delivers managed cloud, security and AI-driven operations to businesses across India and beyond. This Trust Center gives customers, prospects and auditors transparent, evidence-backed visibility into our controls, certifications and operating posture.</p><div class="tc-pills"><span><i></i>24×7 NOC + SOC · Mumbai</span><span><i></i>Continuous control monitoring</span><span><i></i>ISO 27001 · Since 1999</span></div><div class="hstats"><div><b>ISO 27001<em></em></b><span>Certified · active</span></div><div><b>141<em>/142</em></b><span>Controls monitored</span></div><div><b>99.95<em>%</em></b><span>Uptime SLA · 12 mo</span></div><div><b>100<em>%</em></b><span>MFA on workforce IDs</span></div></div></div><div class="hvis"><div class="dg" data-kind="trust" aria-label="Interactive diagram"><div class="an-stage"><svg viewBox="0 0 600 520" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="tsweep" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#22C55E" stop-opacity="0"/><stop offset="1" stop-color="#22C55E" stop-opacity=".45"/></linearGradient><radialGradient id="tglow"><stop offset="0" stop-color="#22C55E" stop-opacity=".3"/><stop offset="1" stop-color="#22C55E" stop-opacity="0"/></radialGradient><clipPath id="tclip"><rect x="0" y="0" width="600" height="520" rx="20"/></clipPath></defs><g clip-path="url(#tclip)"><circle cx="300" cy="262" r="78" fill="none" stroke="rgba(34,197,94,.14)" stroke-dasharray="2 5"/><circle cx="300" cy="262" r="138" fill="none" stroke="rgba(34,197,94,.14)" stroke-dasharray="2 5"/><circle cx="300" cy="262" r="196" fill="none" stroke="rgba(34,197,94,.14)" stroke-dasharray="2 5"/><circle cx="300" cy="262" r="224" fill="none" stroke="rgba(34,197,94,.14)" stroke-dasharray="2 5"/><g><path d="M300 262L524 262A224 224 0 0 1 458 420Z" fill="url(#tsweep)"/><line x1="300" y1="262" x2="524" y2="262" stroke="#22C55E" stroke-width="1.5" opacity=".6"/><animateTransform attributeName="transform" type="rotate" from="0 300 262" to="360 300 262" dur="7s" repeatCount="indefinite"/></g><circle cx="300" cy="262" r="150" fill="url(#tglow)"/><g class="hot" data-i="0" tabindex="0"><circle cx="158" cy="180" r="10" fill="none" stroke="#22C55E" stroke-opacity=".5"><animate attributeName="r" values="8;15" dur="2.4s" begin="0.0s" repeatCount="indefinite"/><animate attributeName="opacity" values=".6;0" dur="2.4s" begin="0.0s" repeatCount="indefinite"/></circle><circle class="hb" cx="158" cy="180" r="7" fill="#052e16" stroke="#22C55E" stroke-width="2"/><circle cx="158" cy="180" r="3" fill="#4ADE80"/><text x="158" y="165" fill="#DCE7FF" font-size="9" font-family="IBM Plex Mono, monospace" text-anchor="middle" font-weight="600">M365</text></g><g class="hot" data-i="1" tabindex="0"><circle cx="242" cy="82" r="10" fill="none" stroke="#22C55E" stroke-opacity=".5"><animate attributeName="r" values="8;15" dur="2.4s" begin="0.3s" repeatCount="indefinite"/><animate attributeName="opacity" values=".6;0" dur="2.4s" begin="0.3s" repeatCount="indefinite"/></circle><circle class="hb" cx="242" cy="82" r="7" fill="#052e16" stroke="#22C55E" stroke-width="2"/><circle cx="242" cy="82" r="3" fill="#4ADE80"/><text x="242" y="67" fill="#DCE7FF" font-size="9" font-family="IBM Plex Mono, monospace" text-anchor="middle" font-weight="600">GitHub</text></g><g class="hot" data-i="2" tabindex="0"><circle cx="382" cy="120" r="10" fill="none" stroke="#22C55E" stroke-opacity=".5"><animate attributeName="r" values="8;15" dur="2.4s" begin="0.6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".6;0" dur="2.4s" begin="0.6s" repeatCount="indefinite"/></circle><circle class="hb" cx="382" cy="120" r="7" fill="#052e16" stroke="#22C55E" stroke-width="2"/><circle cx="382" cy="120" r="3" fill="#4ADE80"/><text x="382" y="105" fill="#DCE7FF" font-size="9" font-family="IBM Plex Mono, monospace" text-anchor="middle" font-weight="600">Azure</text></g><g class="hot" data-i="3" tabindex="0"><circle cx="479" cy="190" r="10" fill="none" stroke="#22C55E" stroke-opacity=".5"><animate attributeName="r" values="8;15" dur="2.4s" begin="0.9s" repeatCount="indefinite"/><animate attributeName="opacity" values=".6;0" dur="2.4s" begin="0.9s" repeatCount="indefinite"/></circle><circle class="hb" cx="479" cy="190" r="7" fill="#052e16" stroke="#22C55E" stroke-width="2"/><circle cx="479" cy="190" r="3" fill="#4ADE80"/><text x="479" y="175" fill="#DCE7FF" font-size="9" font-family="IBM Plex Mono, monospace" text-anchor="middle" font-weight="600">Endpoints</text></g><g class="hot" data-i="4" tabindex="0"><circle cx="451" cy="336" r="10" fill="none" stroke="#22C55E" stroke-opacity=".5"><animate attributeName="r" values="8;15" dur="2.4s" begin="1.2s" repeatCount="indefinite"/><animate attributeName="opacity" values=".6;0" dur="2.4s" begin="1.2s" repeatCount="indefinite"/></circle><circle class="hb" cx="451" cy="336" r="7" fill="#052e16" stroke="#22C55E" stroke-width="2"/><circle cx="451" cy="336" r="3" fill="#4ADE80"/><text x="451" y="358" fill="#DCE7FF" font-size="9" font-family="IBM Plex Mono, monospace" text-anchor="middle" font-weight="600">Cloudflare</text></g><g class="hot" data-i="5" tabindex="0"><circle cx="352" cy="444" r="10" fill="none" stroke="#22C55E" stroke-opacity=".5"><animate attributeName="r" values="8;15" dur="2.4s" begin="1.5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".6;0" dur="2.4s" begin="1.5s" repeatCount="indefinite"/></circle><circle class="hb" cx="352" cy="444" r="7" fill="#052e16" stroke="#22C55E" stroke-width="2"/><circle cx="352" cy="444" r="3" fill="#4ADE80"/><text x="352" y="466" fill="#DCE7FF" font-size="9" font-family="IBM Plex Mono, monospace" text-anchor="middle" font-weight="600">Zoho</text></g><g class="hot" data-i="6" tabindex="0"><circle cx="224" cy="393" r="10" fill="none" stroke="#22C55E" stroke-opacity=".5"><animate attributeName="r" values="8;15" dur="2.4s" begin="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".6;0" dur="2.4s" begin="1.8s" repeatCount="indefinite"/></circle><circle class="hb" cx="224" cy="393" r="7" fill="#052e16" stroke="#22C55E" stroke-width="2"/><circle cx="224" cy="393" r="3" fill="#4ADE80"/><text x="224" y="415" fill="#DCE7FF" font-size="9" font-family="IBM Plex Mono, monospace" text-anchor="middle" font-weight="600">Entra ID</text></g><g class="hot" data-i="7" tabindex="0"><circle cx="195" cy="269" r="10" fill="none" stroke="#22C55E" stroke-opacity=".5"><animate attributeName="r" values="8;15" dur="2.4s" begin="2.1s" repeatCount="indefinite"/><animate attributeName="opacity" values=".6;0" dur="2.4s" begin="2.1s" repeatCount="indefinite"/></circle><circle class="hb" cx="195" cy="269" r="7" fill="#052e16" stroke="#22C55E" stroke-width="2"/><circle cx="195" cy="269" r="3" fill="#4ADE80"/><text x="195" y="291" fill="#DCE7FF" font-size="9" font-family="IBM Plex Mono, monospace" text-anchor="middle" font-weight="600">Sentinel</text></g><g class="hot" data-i="8" tabindex="0"><circle cx="255" cy="140" r="10" fill="none" stroke="#22C55E" stroke-opacity=".5"><animate attributeName="r" values="8;15" dur="2.4s" begin="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values=".6;0" dur="2.4s" begin="2.4s" repeatCount="indefinite"/></circle><circle class="hb" cx="255" cy="140" r="7" fill="#052e16" stroke="#22C55E" stroke-width="2"/><circle cx="255" cy="140" r="3" fill="#4ADE80"/><text x="255" y="125" fill="#DCE7FF" font-size="9" font-family="IBM Plex Mono, monospace" text-anchor="middle" font-weight="600">Defender</text></g><circle cx="300" cy="262" r="46" fill="none" stroke="#22C55E" stroke-opacity=".4"><animate attributeName="r" values="40;62" dur="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".6;0" dur="2.6s" repeatCount="indefinite"/></circle><circle cx="300" cy="262" r="40" fill="#052e16" stroke="#22C55E" stroke-width="2.5"/><text x="300" y="260" fill="#4ADE80" font-size="15" font-family="Sora, sans-serif" text-anchor="middle" font-weight="800">ISO</text><text x="300" y="277" fill="#86efac" font-size="9" font-family="IBM Plex Mono, monospace" text-anchor="middle" font-weight="600">27001</text><text x="24" y="30" fill="#4ADE80" font-size="8.5" font-family="IBM Plex Mono, monospace">CONTINUOUS CONTROL MONITORING</text><text x="576" y="30" fill="#7F94BB" font-size="8.5" font-family="IBM Plex Mono, monospace" text-anchor="end">141/142 controls green</text></g></svg></div><div class="an-glow"></div><div class="an-info" id="anInfo"><div class="ih"><span class="ni c-infra"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 000-9 6 6 0 00-11.6 1.5A3.8 3.8 0 006.5 19h11z"/></svg></span><div><b>Microsoft 365 E5</b><span>Identity & productivity</span></div></div><p>Email, files and identity on Microsoft 365 E5 security — the backbone of our workforce controls and conditional access.</p><div class="im"><div><b>E5</b><span>security</span></div><div><b>MFA</b><span>100%</span></div><div><b>CA</b><span>enforced</span></div></div><a href="#" style="display:none">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div><div class="an-tick" id="anTick"><i></i><span>M365 · conditional access enforced · MFA 100% of identities</span></div></div></div></div></section>
+
+<div class="pp-body">
+<section class="pp-sec " id="posture"><div class="wrap"><div class="sec-h rv"><div class="eyebrow">Security posture</div><h2>How we protect your data, end to end.</h2><p>Our security program is built on layered defense, zero-trust access and continuous monitoring — operationalised through Microsoft 365 E5 security, Azure-native controls and documented policies.</p></div><div class="grid3"><div class="card tilt rv" style="--d:0.0s"><span class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l10 5-10 5L2 7l10-5z"/><path d="M2 12l10 5 10-5M2 17l10 5 10-5"/></svg></span><h3>Defense in depth</h3><p>Layered controls across identity, endpoint, network, application and data — built on Microsoft 365 E5 security, Defender XDR and continuous SIEM monitoring.</p></div><div class="card tilt rv" style="--d:0.1s"><span class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><h3>Encryption by default</h3><p>TLS 1.2+ in transit, AES-256 at rest. Customer secrets isolated in cloud-native key vaults with role-based access and audit logging.</p></div><div class="card tilt rv" style="--d:0.2s"><span class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.6 7.6a5.5 5.5 0 11-7.8 7.8 5.5 5.5 0 017.8-7.8zm0 0L19 3m-4 4l3 3"/></svg></span><h3>Zero-trust access</h3><p>MFA enforced for 100% of workforce identities. Conditional access, device compliance and least-privilege roles reviewed quarterly.</p></div><div class="card tilt rv" style="--d:0.0s"><span class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8a6 6 0 010 8.4M7.8 16.2a6 6 0 010-8.4M19.1 4.9a10 10 0 010 14.2M4.9 19.1a10 10 0 010-14.2"/></svg></span><h3>Continuous monitoring</h3><p>24×7 SIEM aggregation of identity, endpoint, network and SaaS logs from our Mumbai SOC, triaged through documented runbooks.</p></div><div class="card tilt rv" style="--d:0.1s"><span class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M17 11l2 2 4-4"/></svg></span><h3>Personnel security</h3><p>Background checks for employees and contractors. Annual security-awareness training with documented completion tracking.</p></div><div class="card tilt rv" style="--d:0.2s"><span class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg></span><h3>Documented program</h3><p>Written information-security policy, vendor-management standard, incident-response plan and BCP/DR reviewed at least annually.</p></div></div></div></section><section class="pp-sec ice" id="compliance"><div class="wrap"><div class="sec-h rv"><div class="eyebrow">Certifications & registrations</div><h2>Independently certified, end to end.</h2><p>XcellHost holds a full stack of security, quality, service-management and privacy certifications, backed by government empanelment and verified-supplier registrations. Reports and certificates are shared with customers and auditors on request.</p></div><div class="cert-grid"><div class="cert-card rv" style="--d:0.00s"><div class="cert-top"><span class="cert-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.2 13.9L7 23l5-3 5 3-1.2-9.1"/></svg></span><span class="cert-badge on">Certified</span></div><h3>ISO 9001</h3><p>Quality Management System</p></div><div class="cert-card rv" style="--d:0.06s"><div class="cert-top"><span class="cert-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.2 13.9L7 23l5-3 5 3-1.2-9.1"/></svg></span><span class="cert-badge on">Certified</span></div><h3>ISO 27001</h3><p>Information Security Management System</p></div><div class="cert-card rv" style="--d:0.12s"><div class="cert-top"><span class="cert-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.2 13.9L7 23l5-3 5 3-1.2-9.1"/></svg></span><span class="cert-badge on">Certified</span></div><h3>ISO 27002</h3><p>Information Security Controls</p></div><div class="cert-card rv" style="--d:0.18s"><div class="cert-top"><span class="cert-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.2 13.9L7 23l5-3 5 3-1.2-9.1"/></svg></span><span class="cert-badge on">Certified</span></div><h3>ISO 27017</h3><p>Cloud Security Controls</p></div><div class="cert-card rv" style="--d:0.24s"><div class="cert-top"><span class="cert-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.2 13.9L7 23l5-3 5 3-1.2-9.1"/></svg></span><span class="cert-badge on">Certified</span></div><h3>ISO 27018</h3><p>Protection of PII in Public Clouds</p></div><div class="cert-card rv" style="--d:0.00s"><div class="cert-top"><span class="cert-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.2 13.9L7 23l5-3 5 3-1.2-9.1"/></svg></span><span class="cert-badge on">Certified</span></div><h3>ISO 29100</h3><p>Privacy Framework</p></div><div class="cert-card rv" style="--d:0.06s"><div class="cert-top"><span class="cert-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.2 13.9L7 23l5-3 5 3-1.2-9.1"/></svg></span><span class="cert-badge on">Certified</span></div><h3>ISO 20000-1</h3><p>IT Service Management System</p></div><div class="cert-card rv" style="--d:0.12s"><div class="cert-top"><span class="cert-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.2 13.9L7 23l5-3 5 3-1.2-9.1"/></svg></span><span class="cert-badge on">Certified</span></div><h3>SOC 2 Type I</h3><p>Security, Availability & Confidentiality — point in time</p></div><div class="cert-card rv" style="--d:0.18s"><div class="cert-top"><span class="cert-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.2 13.9L7 23l5-3 5 3-1.2-9.1"/></svg></span><span class="cert-badge on">Certified</span></div><h3>SOC 2 Type II</h3><p>Security, Availability & Confidentiality — observation period</p></div><div class="cert-card rv" style="--d:0.24s"><div class="cert-top"><span class="cert-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.2 13.9L7 23l5-3 5 3-1.2-9.1"/></svg></span><span class="cert-badge on">Certified</span></div><h3>MEITY</h3><p>Ministry of Electronics & IT empanelment</p></div><div class="cert-card rv" style="--d:0.00s"><div class="cert-top"><span class="cert-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.2 13.9L7 23l5-3 5 3-1.2-9.1"/></svg></span><span class="cert-badge on">Certified</span></div><h3>TIER IV</h3><p>Data-centre resiliency classification</p></div><div class="cert-card rv" style="--d:0.06s"><div class="cert-top"><span class="cert-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.2 13.9L7 23l5-3 5 3-1.2-9.1"/></svg></span><span class="cert-badge on">Certified</span></div><h3>CMMI Level 3</h3><p>Capability Maturity Model Integration</p></div><div class="cert-card rv" style="--d:0.12s"><div class="cert-top"><span class="cert-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.2 13.9L7 23l5-3 5 3-1.2-9.1"/></svg></span><span class="cert-badge on">Registered</span></div><h3>GEM</h3><p>Government e-Marketplace supplier</p></div><div class="cert-card rv" style="--d:0.18s"><div class="cert-top"><span class="cert-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.2 13.9L7 23l5-3 5 3-1.2-9.1"/></svg></span><span class="cert-badge on">Certified</span></div><h3>VAPT</h3><p>Vulnerability Assessment & Penetration Testing</p></div><div class="cert-card rv" style="--d:0.24s"><div class="cert-top"><span class="cert-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.2 13.9L7 23l5-3 5 3-1.2-9.1"/></svg></span><span class="cert-badge on">Registered</span></div><h3>DUNS</h3><p>Dun & Bradstreet business identity</p></div><div class="cert-card rv" style="--d:0.00s"><div class="cert-top"><span class="cert-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.2 13.9L7 23l5-3 5 3-1.2-9.1"/></svg></span><span class="cert-badge on">Verified Supplier</span></div><h3>Justdial</h3><p>Verified business listing</p></div><div class="cert-card rv" style="--d:0.06s"><div class="cert-top"><span class="cert-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.2 13.9L7 23l5-3 5 3-1.2-9.1"/></svg></span><span class="cert-badge on">Verified Supplier</span></div><h3>IndiaMart</h3><p>Verified business listing</p></div></div></div></section><section class="pp-sec " id="criteria"><div class="wrap"><div class="sec-h rv"><div class="eyebrow">Trust service criteria</div><h2>Scoped, mapped, and monitored.</h2><p>Our control program covers Security, Availability, Confidentiality and Privacy, mapped to ISO 27001, ISO 20000-1 and the DPDP Act. Processing Integrity is assessed per engagement rather than as a standing control set today.</p></div><div class="grid3 tsc-grid"><div class="tsc-card rv" style="--d:0.00s"><div class="tsc-top"><span class="tsc-ab">SEC</span><span class="tsc-in">✓ In scope</span></div><h3>Security</h3><p>Information and systems are protected against unauthorised access, disclosure and damage that could compromise availability, integrity, confidentiality and privacy.</p><div class="tsc-n"><span>Controls in this criterion</span><b>64</b></div></div><div class="tsc-card rv" style="--d:0.08s"><div class="tsc-top"><span class="tsc-ab">AV</span><span class="tsc-in">✓ In scope</span></div><h3>Availability</h3><p>Information and systems are available for operation and use to meet business objectives, backed by our 99.95% uptime SLA.</p><div class="tsc-n"><span>Controls in this criterion</span><b>18</b></div></div><div class="tsc-card rv" style="--d:0.16s"><div class="tsc-top"><span class="tsc-ab">CO</span><span class="tsc-in">✓ In scope</span></div><h3>Confidentiality</h3><p>Information designated as confidential is protected in line with contractual and regulatory obligations.</p><div class="tsc-n"><span>Controls in this criterion</span><b>22</b></div></div><div class="tsc-card rv off" style="--d:0.00s"><div class="tsc-top"><span class="tsc-ab">PI</span><span class="tsc-out">— Assessed per engagement</span></div><h3>Processing Integrity</h3><p>System processing is complete, valid, accurate, timely and authorised. Assessed per-engagement rather than as a standing control set today.</p></div><div class="tsc-card rv" style="--d:0.08s"><div class="tsc-top"><span class="tsc-ab">PR</span><span class="tsc-in">✓ In scope</span></div><h3>Privacy</h3><p>Personal information is collected, used, retained, disclosed and disposed of in line with the DPDP Act and ISO 29100.</p><div class="tsc-n"><span>Controls in this criterion</span><b>19</b></div></div></div></div></section><section class="pp-sec ice" id="responsibility"><div class="wrap"><div class="sec-h rv"><div class="eyebrow">Separation of responsibilities</div><h2>You focus on your business. We manage the stack.</h2><p>Across every delivery model, this is exactly who runs what. With XcellHost managed cloud, more of the stack moves from you to us — and every layer we manage sits under our ISO 27001 controls.</p></div><div class="sr-legend"><span><i class="you"></i>You manage</span><span><i class="prov"></i>XcellHost manages</span><span class="sr-hint">Hover a column — the more you move right, the more XcellHost runs for you.</span></div><div class="sr-grid"><div class="sr-col"><div class="sr-head"><b>On-Premises</b><span>You manage everything</span></div><div class="sr-stack"><div class="sr-cell you" data-m="you">Applications</div><div class="sr-cell you" data-m="you">Data</div><div class="sr-cell you" data-m="you">Runtime</div><div class="sr-cell you" data-m="you">Middleware</div><div class="sr-cell you" data-m="you">O/S</div><div class="sr-cell you" data-m="you">Virtualization</div><div class="sr-cell you" data-m="you">Server</div><div class="sr-cell you" data-m="you">Storage</div><div class="sr-cell you" data-m="you">Networking</div></div><div class="sr-sides"><span class="sr-side you">You manage</span></div></div><div class="sr-col feat"><div class="sr-head"><b>Infrastructure</b><span>as a Service</span></div><div class="sr-stack"><div class="sr-cell you" data-m="you">Applications</div><div class="sr-cell you" data-m="you">Data</div><div class="sr-cell you" data-m="you">Runtime</div><div class="sr-cell you" data-m="you">Middleware</div><div class="sr-cell you" data-m="you">O/S</div><div class="sr-cell prov" data-m="prov">Virtualization</div><div class="sr-cell prov" data-m="prov">Server</div><div class="sr-cell prov" data-m="prov">Storage</div><div class="sr-cell prov" data-m="prov">Networking</div></div><div class="sr-sides"><span class="sr-side you">You manage</span><span class="sr-side prov">XcellHost manages</span></div></div><div class="sr-col"><div class="sr-head"><b>Platforms</b><span>as a Service</span></div><div class="sr-stack"><div class="sr-cell you" data-m="you">Applications</div><div class="sr-cell you" data-m="you">Data</div><div class="sr-cell you" data-m="you">Runtime</div><div class="sr-cell prov" data-m="prov">Middleware</div><div class="sr-cell prov" data-m="prov">O/S</div><div class="sr-cell prov" data-m="prov">Virtualization</div><div class="sr-cell prov" data-m="prov">Server</div><div class="sr-cell prov" data-m="prov">Storage</div><div class="sr-cell prov" data-m="prov">Networking</div></div><div class="sr-sides"><span class="sr-side you">You manage</span><span class="sr-side prov">XcellHost manages</span></div></div><div class="sr-col"><div class="sr-head"><b>Software</b><span>as a Service</span></div><div class="sr-stack"><div class="sr-cell prov" data-m="prov">Applications</div><div class="sr-cell prov" data-m="prov">Data</div><div class="sr-cell prov" data-m="prov">Runtime</div><div class="sr-cell prov" data-m="prov">Middleware</div><div class="sr-cell prov" data-m="prov">O/S</div><div class="sr-cell prov" data-m="prov">Virtualization</div><div class="sr-cell prov" data-m="prov">Server</div><div class="sr-cell prov" data-m="prov">Storage</div><div class="sr-cell prov" data-m="prov">Networking</div></div><div class="sr-sides"><span class="sr-side prov">XcellHost manages</span></div></div></div></div></section><section class="pp-sec ice" id="subprocessors"><div class="wrap"><div class="sec-h rv"><div class="eyebrow">Subprocessors</div><h2>Vendors who process data on our behalf.</h2><p>We select subprocessors carefully and review them annually. Email privacy@xcellhost.cloud to be notified of additions or material changes.</p></div><div class="sp-bar rv"><div class="sp-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg><input type="text" id="spSearch" placeholder="Search subprocessors…"></div><div class="sp-tabs"><button class="on" data-sp="all">All</button><button class="" data-sp="infra">Cloud Infrastructure</button><button class="" data-sp="prod">Productivity</button><button class="" data-sp="biz">Business Systems</button><button class="" data-sp="ai">AI / Analytics</button><button class="" data-sp="dev">Developer Tools</button></div></div><div class="tbl-w rv"><table class="tbl sp-tbl"><thead><tr><th>Subprocessor</th><th>Purpose</th><th>Data categories</th><th>Region</th><th></th></tr></thead><tbody id="spBody"><tr data-cat="infra"><td><b>Microsoft Azure</b><small>Cloud infrastructure</small></td><td>Primary cloud hosting and managed-services delivery</td><td>Customer configuration, telemetry, application data</td><td>India · Global</td><td class="sp-visit"><a href="#">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></td></tr><tr data-cat="prod"><td><b>Microsoft 365</b><small>Productivity & identity</small></td><td>Email, document collaboration and workforce identity</td><td>Business email content, correspondence, files</td><td>India</td><td class="sp-visit"><a href="#">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></td></tr><tr data-cat="infra"><td><b>Microsoft Defender XDR</b><small>Endpoint & identity</small></td><td>Endpoint protection, EDR and identity threat detection</td><td>Endpoint and identity telemetry</td><td>Global</td><td class="sp-visit"><a href="#">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></td></tr><tr data-cat="infra"><td><b>Microsoft Sentinel</b><small>SIEM</small></td><td>Security log aggregation and correlation</td><td>Security event logs and metadata</td><td>India</td><td class="sp-visit"><a href="#">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></td></tr><tr data-cat="infra"><td><b>Cloudflare</b><small>Edge / network</small></td><td>DNS, CDN and DDoS protection for customer-facing properties</td><td>Connection metadata, request logs</td><td>Global edge</td><td class="sp-visit"><a href="#">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></td></tr><tr data-cat="infra"><td><b>Acronis</b><small>Backup & recovery</small></td><td>Backup, disaster recovery and endpoint protection</td><td>Backup images and recovery metadata</td><td>India</td><td class="sp-visit"><a href="#">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></td></tr><tr data-cat="biz"><td><b>Zoho Corporation</b><small>Business systems</small></td><td>Business operations (Books, Desk, People, Projects, CRM)</td><td>Customer business contact and engagement data</td><td>India</td><td class="sp-visit"><a href="#">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></td></tr><tr data-cat="biz"><td><b>Razorpay</b><small>Business systems</small></td><td>Payment collection and subscription billing</td><td>Billing contact and transaction metadata</td><td>India</td><td class="sp-visit"><a href="#">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></td></tr><tr data-cat="ai"><td><b>Perplexity</b><small>AI / Analytics</small></td><td>AI-assisted internal research and operations tooling</td><td>Internal research prompts (no customer data submitted)</td><td>Global</td><td class="sp-visit"><a href="#">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></td></tr><tr data-cat="dev"><td><b>GitHub</b><small>Developer tools</small></td><td>Source-code management and CI/CD</td><td>Source code, deployment artifacts (no customer data)</td><td>Global</td><td class="sp-visit"><a href="#">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></td></tr></tbody></table></div></div></section><section class="pp-sec ice" id="vulnerability"><div class="wrap"><div class="sec-h rv"><div class="eyebrow">Vulnerability management</div><h2>Continuous detection. Honest disclosure.</h2><p>Our program focuses on continuous detection, prioritisation and remediation across endpoints, identity, cloud workloads and SaaS systems.</p></div><div class="grid2"><div class="pp-ben rv" style="--d:0.0s"><span class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg></span><div><h4>Continuous scanning</h4><p>Defender Vulnerability Management runs continuously across enrolled endpoints, matching CVEs against installed software.</p></div></div><div class="pp-ben rv" style="--d:0.1s"><span class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 000-9 6 6 0 00-11.6 1.5A3.8 3.8 0 006.5 19h11z"/></svg></span><div><h4>Cloud posture management</h4><p>Defender for Cloud monitors every Azure subscription against the Microsoft Cloud Security Benchmark.</p></div></div><div class="pp-ben rv" style="--d:0.0s"><span class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><div><h4>Endpoint detection & response</h4><p>Defender for Endpoint provides EDR on 100% of managed devices, with automated isolation on high-severity detections.</p></div></div><div class="pp-ben rv" style="--d:0.1s"><span class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8a6 6 0 010 8.4M7.8 16.2a6 6 0 010-8.4M19.1 4.9a10 10 0 010 14.2M4.9 19.1a10 10 0 010-14.2"/></svg></span><div><h4>SIEM correlation</h4><p>Sentinel ingests identity, endpoint, network and SaaS logs; alerts are triaged through documented runbooks 24×7.</p></div></div><div class="pp-ben rv" style="--d:0.0s"><span class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.5 9a9 9 0 0114.9-3.4L23 10M1 14l4.6 4.4A9 9 0 0020.5 15"/></svg></span><div><h4>Patch management</h4><p>Critical OS and browser patches within 14 days, high within 30, standard within 90 — tracked to closure.</p></div></div><div class="pp-ben rv" style="--d:0.1s"><span class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></span><div><h4>Responsible disclosure</h4><p>Researchers can report findings to security@xcellhost.cloud. We acknowledge within 2 business days.</p></div></div></div><div class="vuln-panel rv"><h4>Open findings · this quarter</h4><div class="vuln-nums"><div><b>0</b><span>Critical</span></div><div><b>1</b><span class="w">High</span></div><div><b>6</b><span>Medium</span></div><div><b>14</b><span>Low</span></div></div><p class="vuln-foot">Average remediation: 4.2 days for high+, 18 days for medium. Responsible disclosure: security@xcellhost.cloud — acknowledged within 2 business days.</p></div></div></section><section class="pp-sec " id="training"><div class="wrap"><div class="sec-h rv"><div class="eyebrow">Security awareness</div><h2>Training across every role.</h2><p>Our security-awareness program is built into onboarding, refreshed annually and reinforced with quarterly phishing simulations across the entire workforce.</p></div><div class="tr-wrap"><div class="tr-panel rv"><div class="tr-head"><span class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></span><div><h3>Program at a glance</h3><p>Internal Zoho-based learning paths combined with role-specific modules. Phishing simulations delivered through Microsoft Defender for Office 365 Attack Simulation Training.</p></div></div><div class="tr-stats"><div class="tr-stat"><span>Workforce trained</span><b>100%</b></div><div class="tr-stat"><span>Phishing simulation click rate</span><b>2.4%</b></div><div class="tr-stat"><span>Average reporting time</span><b>52 sec</b></div></div><div class="tr-meta"><div class="tr-m"><span>Cadence</span><p>Onboarding + annual refresh; targeted phishing simulations quarterly</p></div><div class="tr-m"><span>Audience</span><p>All XcellHost employees and long-term contractors</p></div><div class="tr-m"><span>Workforce coverage</span><p>100%</p></div><div class="tr-m"><span>Tracking</span><p>Documented in Zoho People with evidence retained for audit</p></div></div></div><div class="tr-curric rv"><span class="cert-badge on" style="margin-bottom:14px;display:inline-block">Curriculum</span><h3>Topics covered</h3><ul class="tr-topics"><li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></i>Acceptable use, password hygiene and MFA</li><li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></i>Phishing, smishing, vishing and AI-enabled social engineering</li><li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></i>Data classification, handling and confidentiality under DPDP</li><li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></i>Endpoint and physical device security</li><li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></i>Incident reporting expectations and channels</li><li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></i>Secure collaboration and AI tool-usage standards</li><li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></i>Customer-data handling for support and NOC teams</li></ul></div></div></div></section><section class="pp-sec ice" id="calendar"><div class="wrap"><div class="sec-h rv"><div class="eyebrow">Update calendar</div><h2>A shared view of what’s next.</h2><p>Past and upcoming compliance milestones — audits, policy refreshes, training cycles and program changes — visible to customers and auditors at any time.</p></div><div class="chips rv"><button class="on" data-cal="all">All</button><button data-cal="upcoming">Upcoming</button><button data-cal="completed">Completed</button></div><div class="cal-list"><div class="cal-row rv" data-state="upcoming" style="--d:0.00s"><div class="cal-ic upcoming"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg></div><div class="cal-body"><div class="cal-tags"><span class="cal-kind">Audit</span><span class="cal-state upcoming">Upcoming</span><span class="cal-when">Mar 2027</span></div><h4>ISO 27001 surveillance audit</h4><p>Annual surveillance audit against the ISO 27001 ISMS by our accredited certification body.</p></div></div><div class="cal-row rv" data-state="upcoming" style="--d:0.06s"><div class="cal-ic upcoming"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div><div class="cal-body"><div class="cal-tags"><span class="cal-kind">Program</span><span class="cal-state upcoming">Upcoming</span><span class="cal-when">Sep 2026</span></div><h4>First third-party penetration test</h4><p>Initial external penetration test engagement scheduled. A redacted summary will be published here on completion.</p></div></div><div class="cal-row rv" data-state="upcoming" style="--d:0.12s"><div class="cal-ic upcoming"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg></div><div class="cal-body"><div class="cal-tags"><span class="cal-kind">Audit</span><span class="cal-state upcoming">Upcoming</span><span class="cal-when">Jul 2026</span></div><h4>Mid-year controls checkpoint</h4><p>Internal control walkthroughs and evidence sampling against ISO 27001 and ISO 20000-1.</p></div></div><div class="cal-row rv" data-state="upcoming" style="--d:0.18s"><div class="cal-ic upcoming"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div><div class="cal-body"><div class="cal-tags"><span class="cal-kind">Training</span><span class="cal-state upcoming">Upcoming</span><span class="cal-when">Jun 2026</span></div><h4>Q2 phishing simulation</h4><p>Quarterly phishing simulation across all workforce mailboxes.</p></div></div><div class="cal-row rv" data-state="completed" style="--d:0.00s"><div class="cal-ic completed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg></div><div class="cal-body"><div class="cal-tags"><span class="cal-kind">Audit</span><span class="cal-state completed">Completed</span><span class="cal-when">Feb 2026</span></div><h4>ISO 27001 & 20000-1 recertification</h4><p>Recertification audits completed; both management systems renewed as active.</p></div></div><div class="cal-row rv" data-state="completed" style="--d:0.06s"><div class="cal-ic completed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5.5-3.5 9.7-8 11-4.5-1.3-8-5.5-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg></div><div class="cal-body"><div class="cal-tags"><span class="cal-kind">Policy</span><span class="cal-state completed">Completed</span><span class="cal-when">Feb 2026</span></div><h4>Annual policy refresh</h4><p>Information Security Policy, Access Control Standard and Incident Response Plan reviewed and re-approved by leadership.</p></div></div><div class="cal-row rv" data-state="completed" style="--d:0.12s"><div class="cal-ic completed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div><div class="cal-body"><div class="cal-tags"><span class="cal-kind">Training</span><span class="cal-state completed">Completed</span><span class="cal-when">Jan 2026</span></div><h4>Annual security-awareness cycle</h4><p>All employees and active contractors completed annual training and acknowledgement.</p></div></div><div class="cal-row rv" data-state="completed" style="--d:0.18s"><div class="cal-ic completed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007 0l3-3a5 5 0 00-7-7l-1 1"/><path d="M14 11a5 5 0 00-7 0l-3 3a5 5 0 007 7l1-1"/></svg></div><div class="cal-body"><div class="cal-tags"><span class="cal-kind">Subprocessor</span><span class="cal-state completed">Completed</span><span class="cal-when">Jan 2026</span></div><h4>Subprocessor list review</h4><p>Subprocessor inventory reviewed; changes reflected in this Trust Center.</p></div></div></div></div></section><section class="pp-sec " id="status"><div class="wrap"><div class="sec-h rv"><div class="eyebrow">Status & availability</div><h2>System availability, in the open.</h2><p>Service availability and a transparent summary of any incidents across our managed platform over the trailing 12 months, backed by a 99.95% uptime SLA and 24×7 NOC coverage from Mumbai.</p></div><div class="grid3 st-grid"><div class="st-card rv"><span class="st-lab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Last 30 days</span><b>100%</b><small>0 incidents</small></div><div class="st-card rv"><span class="st-lab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Last 90 days</span><b>99.99%</b><small>1 incident</small></div><div class="st-card rv"><span class="st-lab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Last 12 months</span><b>99.95%</b><small>2 incidents</small></div></div><div class="inc-panel rv"><div class="inc-head"><span class="inc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></span><h3>Recent incidents</h3></div><div class="inc-row rv" style="--d:0.00s"><div class="inc-when">Nov 4, 2025<span>· Duration: 27 min</span></div><h4>Brief degraded performance on customer ticket portal</h4><p><b>Impact —</b> Slow response from one regional endpoint; no data loss.</p><p><b>Resolution —</b> Capacity issue with an upstream SaaS provider. Failed over to a secondary region and coordinated remediation with the provider.</p></div><div class="inc-row rv" style="--d:0.08s"><div class="inc-when">Jun 18, 2025<span>· Duration: 1h 12min</span></div><h4>Email delivery delay</h4><p><b>Impact —</b> Outbound notifications delayed; queued and re-delivered.</p><p><b>Resolution —</b> Upstream Microsoft 365 transport delay. No customer data exposure. Internal alerting tuned.</p></div></div></div></section>
+</div>
+
+
+<script>window.AGENTS=[{"name": "Microsoft 365 E5", "cat": "Identity & productivity", "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M17.5 19a4.5 4.5 0 000-9 6 6 0 00-11.6 1.5A3.8 3.8 0 006.5 19h11z\"/><\/svg>", "cls": "infra", "desc": "Email, files and identity on Microsoft 365 E5 security — the backbone of our workforce controls and conditional access.", "metrics": [["E5", "security"], ["MFA", "100%"], ["CA", "enforced"]], "tick": "M365 · conditional access enforced · MFA 100% of identities"}, {"name": "GitHub", "cat": "Developer tools", "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"18\" cy=\"18\" r=\"3\"/><circle cx=\"6\" cy=\"6\" r=\"3\"/><path d=\"M6 21V9a9 9 0 009 9\"/><\/svg>", "cls": "infra", "desc": "Source code and CI/CD. No customer data stored; branch protection, signed commits and least-privilege access.", "metrics": [["SSO", "on"], ["2FA", "required"], ["No", "cust. data"]], "tick": "GitHub · branch protection on · no customer data stored"}, {"name": "Microsoft Azure", "cat": "Cloud infrastructure", "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"2\" width=\"20\" height=\"8\" rx=\"2\"/><rect x=\"2\" y=\"14\" width=\"20\" height=\"8\" rx=\"2\"/><path d=\"M6 6h.01M6 18h.01\"/><\/svg>", "cls": "infra", "desc": "Primary hosting. Defender for Cloud benchmarks every subscription against the Microsoft Cloud Security Benchmark.", "metrics": [["Defender", "for Cloud"], ["CSPM", "on"], ["IN", "region"]], "tick": "Azure · Defender for Cloud posture green · benchmark aligned"}, {"name": "Managed endpoints", "cat": "Devices", "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"3\" width=\"20\" height=\"14\" rx=\"2\"/><path d=\"M8 21h8M12 17v4\"/><\/svg>", "cls": "infra", "desc": "Every managed device runs Defender for Endpoint EDR with device-compliance gating for access.", "metrics": [["100%", "EDR"], ["Compliant", "gated"], ["Patched", "14d"]], "tick": "Endpoints · Defender EDR on 100% of devices · patch SLA met"}, {"name": "Cloudflare", "cat": "Edge / network", "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20\"/><\/svg>", "cls": "brand", "desc": "DNS, CDN and DDoS protection in front of customer-facing properties; only connection metadata processed.", "metrics": [["DDoS", "shielded"], ["TLS", "1.3"], ["Edge", "global"]], "tick": "Cloudflare · DDoS protection active · TLS 1.3 enforced"}, {"name": "Zoho Corporation", "cat": "Business systems", "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 2l10 5-10 5L2 7l10-5z\"/><path d=\"M2 12l10 5 10-5M2 17l10 5 10-5\"/><\/svg>", "cls": "risk", "desc": "Books, Desk, People, Projects and CRM run the business. Reviewed annually as a subprocessor.", "metrics": [["Annual", "review"], ["RBAC", "on"], ["Audit", "logs"]], "tick": "Zoho · subprocessor reviewed annually · RBAC enforced"}, {"name": "Microsoft Entra ID", "cat": "Identity", "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 2l-2 2m-7.6 7.6a5.5 5.5 0 11-7.8 7.8 5.5 5.5 0 017.8-7.8zm0 0L19 3m-4 4l3 3\"/><\/svg>", "cls": "infra", "desc": "Conditional access, least-privilege roles and quarterly access reviews across all workforce identities.", "metrics": [["Least", "privilege"], ["Quarterly", "review"], ["CA", "policies"]], "tick": "Entra ID · access reviews quarterly · least-privilege enforced"}, {"name": "Microsoft Sentinel", "cat": "SIEM", "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"2\"/><path d=\"M16.2 7.8a6 6 0 010 8.4M7.8 16.2a6 6 0 010-8.4M19.1 4.9a10 10 0 010 14.2M4.9 19.1a10 10 0 010-14.2\"/><\/svg>", "cls": "infra", "desc": "24×7 SIEM aggregation of identity, endpoint, network and SaaS logs, triaged through documented runbooks.", "metrics": [["24×7", "SIEM"], ["Runbooks", "IR"], ["All", "logs"]], "tick": "Sentinel · 24×7 SIEM correlation · incident runbooks active"}, {"name": "Microsoft Defender XDR", "cat": "Threat protection", "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 2l8 3v6c0 5.5-3.5 9.7-8 11-4.5-1.3-8-5.5-8-11V5l8-3z\"/><path d=\"M9 12l2 2 4-4\"/><\/svg>", "cls": "brand", "desc": "Endpoint, identity and email threat detection correlated across the estate for one XDR picture.", "metrics": [["XDR", "unified"], ["EDR+ITDR", "on"], ["Auto", "triage"]], "tick": "Defender XDR · endpoint + identity + email correlated"}];window.HOTS=[];</script>
+<script>
+(function(){'use strict';
+const $=(s,c)=>(c||document).querySelector(s),$$=(s,c)=>Array.from((c||document).querySelectorAll(s));
+/* reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+$$('.rv').forEach(el=>io.observe(el));
+/* count up */
+const cio=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target;cio.unobserve(el);const raw=el.dataset.count,end=parseFloat(raw),dec=(raw.split('.')[1]||'').length,pre=el.dataset.prefix||'',suf=el.dataset.suffix||'',t0=performance.now(),dur=1700;
+(function step(t){const p=Math.min(1,(t-t0)/dur),v=end*(1-Math.pow(1-p,3));el.textContent=pre+(dec?v.toFixed(dec):Math.round(v).toLocaleString('en-IN'))+suf;if(p<1)requestAnimationFrame(step);})(t0);}),{threshold:.5});
+$$('[data-count]').forEach(el=>cio.observe(el));
+/* magnetic buttons */
+$$('.mag').forEach(b=>{b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.16}px,${(e.clientY-r.top-r.height/2)*.3}px)`;});b.addEventListener('mouseleave',()=>b.style.transform='');});
+/* 3D tilt */
+$$('.tilt').forEach(c=>{c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(900px) rotateX(${-y*6}deg) rotateY(${x*6}deg) translateY(-6px)`;});c.addEventListener('mouseleave',()=>c.style.transform='');});
+/* cursor spotlight */
+const hero=$('.pp-hero'),spot=$('.spot');if(hero&&spot){hero.addEventListener('mousemove',e=>{const r=hero.getBoundingClientRect();spot.style.left=(e.clientX-r.left)+'px';spot.style.top=(e.clientY-r.top)+'px';spot.style.opacity=1;});hero.addEventListener('mouseleave',()=>spot.style.opacity=0);}
+/* particle network */
+(function(){const c=$('#pcv');if(!c||matchMedia('(prefers-reduced-motion:reduce)').matches)return;const x=c.getContext('2d');let w,h,P=[];const m={x:-9999,y:-9999};
+function rs(){w=c.width=c.offsetWidth;h=c.height=c.offsetHeight;const N=Math.min(110,Math.floor(w*h/13000));P=[];for(let i=0;i<N;i++)P.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35});}
+rs();addEventListener('resize',rs);c.parentElement.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();m.x=e.clientX-r.left;m.y=e.clientY-r.top;});c.parentElement.addEventListener('mouseleave',()=>{m.x=-9999;m.y=-9999;});
+function f(){x.clearRect(0,0,w,h);for(const p of P){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;}
+for(let i=0;i<P.length;i++){const a=P[i];for(let j=i+1;j<P.length;j++){const b=P[j];const d=Math.hypot(a.x-b.x,a.y-b.y);if(d<120){x.strokeStyle='rgba(138,180,255,'+(0.16*(1-d/120)).toFixed(3)+')';x.lineWidth=1;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke();}}
+const dm=Math.hypot(a.x-m.x,a.y-m.y);if(dm<170){x.strokeStyle='rgba(255,140,26,'+(0.4*(1-dm/170)).toFixed(3)+')';x.beginPath();x.moveTo(a.x,a.y);x.lineTo(m.x,m.y);x.stroke();}
+x.fillStyle='rgba(138,180,255,.85)';x.beginPath();x.arc(a.x,a.y,1.6,0,6.283);x.fill();}
+requestAnimationFrame(f);}f();})();
+/* faq */
+$$('.faq-q').forEach(q=>q.addEventListener('click',()=>{const it=q.parentElement,open=it.classList.contains('open');$$('.faq-i.open').forEach(o=>{o.classList.remove('open');$('.faq-a',o).style.maxHeight=null;});if(!open){it.classList.add('open');const a=$('.faq-a',it);a.style.maxHeight=a.scrollHeight+'px';}}));
+/* solution filter chips (hub) */
+$$('.chips button').forEach(b=>b.addEventListener('click',()=>{$$('.chips button').forEach(x=>x.classList.remove('on'));b.classList.add('on');const k=b.dataset.f;$$('.sol-cat').forEach(c=>c.classList.toggle('hide',k!=='all'&&c.dataset.cat!==k));$$('.sol-grid .sol').forEach(c=>c.classList.toggle('hide',k!=='all'&&c.dataset.risk!==k));}));
+
+/* ===== ghost cursor helpers ===== */
+const GHOST='<svg viewBox="0 0 22 26"><path d="M2 1.5L2 19l4.6-3.8 3 6.8 3.2-1.4-2.9-6.7H16z" fill="#fff" stroke="#041E42" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="rp"></span>';
+function ghostTo(g,host,el,fx,fy){const r=host.getBoundingClientRect(),b=el.getBoundingClientRect();g.style.transform=`translate(${b.left-r.left+b.width*fx}px,${b.top-r.top+b.height*fy}px)`;g.classList.add('show');}
+function ghostClick(g){g.classList.remove('click');void g.offsetWidth;g.classList.add('click');}
+/* ===== interactive diagram (hub agent network + solution diagrams) ===== */
+(function(){const an=$('.agentnet')||$('.dg');if(!an)return;const stage=$('.an-stage',an),nodes=$$('.an-node,.hot',an),links=$$('.an-link',an),info=$('#anInfo'),glow=$('.an-glow',an),tick=$('#anTick');
+const DATA=window.AGENTS&&window.AGENTS.length?window.AGENTS:(window.HOTS||[]);const g=document.createElement('div');g.className='ghost';g.innerHTML=GHOST;an.appendChild(g);
+function select(i,flash){nodes.forEach((n,j)=>n.classList.toggle('on',j===i));links.forEach((l,j)=>l.classList.toggle('hot',j===i));const a=DATA[i];if(!a||!info)return;const ni=$('.ih .ni',info);ni.className='ni c-'+a.cls;ni.innerHTML=a.icon;$('.ih b',info).textContent=a.name;$('.ih div span',info).textContent=a.cat;$('p',info).textContent=a.desc;$('.im',info).innerHTML=a.metrics.map(m=>`<div><b>${m[0]}</b><span>${m[1]}</span></div>`).join('');const lk=$('a',info);if(lk){if(a.href){lk.style.display='';lk.href=a.href;lk.firstChild.textContent='Open '+a.short+' ';}else lk.style.display='none';}if(tick)$('span',tick).textContent=a.tick;if(flash){info.classList.remove('flash');void info.offsetWidth;info.classList.add('flash');}}
+nodes.forEach((n,i)=>{n.addEventListener('mouseenter',()=>select(i,true));n.addEventListener('click',()=>{if(DATA[i]&&DATA[i].href)location.href=DATA[i].href;else select(i,true);});});
+let inside=false;
+an.addEventListener('mousemove',e=>{const r=an.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;stage.style.transform=`rotateY(${(x*10).toFixed(2)}deg) rotateX(${(-y*10).toFixed(2)}deg)`;glow.style.left=(e.clientX-r.left)+'px';glow.style.top=(e.clientY-r.top)+'px';glow.style.opacity=1;});
+an.addEventListener('mouseenter',()=>{inside=true;g.classList.remove('show');});
+an.addEventListener('mouseleave',()=>{inside=false;stage.style.transform='';glow.style.opacity=0;});
+let gi=0;function tour(){if(inside||document.hidden){setTimeout(tour,1200);return;}ghostTo(g,an,nodes[gi],.62,.55);setTimeout(()=>{if(inside)return;ghostClick(g);select(gi,true);gi=(gi+1)%nodes.length;setTimeout(tour,2300);},1050);}
+if(nodes.length){select(0,false);setTimeout(tour,900);}
+/* live counters inside diagrams */
+$$('[data-live]').forEach(el=>{let v=+el.dataset.live;setInterval(()=>{v+=1+Math.floor(Math.random()*9);el.textContent=v.toLocaleString('en-IN');},1400);});
+$$('[data-countdown]').forEach(el=>{const [a,b]=el.dataset.countdown.split(':').map(Number);const t0=performance.now();(function st(t){const p=Math.min(1,(t-t0)/2800);el.textContent=Math.round(a+(b-a)*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(st);})(t0);});
+})();
+/* ===== console auto-demo (solution heroes) ===== */
+(function(){const host=$('.hvis'),c=host&&$('.console',host);if(!c||$('.agentnet')||$('.dg'))return;const rows=$$('.c-row',c);if(rows.length<2)return;const g=document.createElement('div');g.className='ghost';g.innerHTML=GHOST;host.appendChild(g);
+let i=0,inside=false;host.addEventListener('mouseenter',()=>{inside=true;g.classList.remove('show');});host.addEventListener('mouseleave',()=>{inside=false;});
+function step(){if(inside||document.hidden){setTimeout(step,1200);return;}ghostTo(g,host,rows[i],.55,.62);setTimeout(()=>{if(inside)return;ghostClick(g);rows.forEach((x,j)=>x.classList.toggle('on',j===i));i=(i+1)%rows.length;setTimeout(step,2100);},1050);}
+setTimeout(step,1600);})();
+
+})();
+
+(function(){
+var $=function(s,c){return (c||document).querySelector(s)},$$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+// subprocessor filter + search
+var spTabs=$$('.sp-tabs button'), spRows=$$('#spBody tr'), spSearch=$('#spSearch'), spCat='all';
+function spApply(){var q=(spSearch&&spSearch.value||'').toLowerCase();var shown=0;
+ spRows.forEach(function(r){var okc=(spCat==='all'||r.getAttribute('data-cat')===spCat);var okq=!q||r.textContent.toLowerCase().indexOf(q)>-1;var ok=okc&&okq;r.classList.toggle('hide',!ok);if(ok)shown++;});
+ var body=$('#spBody');var e=$('#spEmpty');if(!shown){if(!e){e=document.createElement('tr');e.id='spEmpty';e.innerHTML='<td colspan="5" class="sp-empty">No subprocessors match your search.</td>';body.appendChild(e);}}else if(e){e.remove();}}
+spTabs.forEach(function(b){b.addEventListener('click',function(){spTabs.forEach(function(x){x.classList.remove('on')});b.classList.add('on');spCat=b.getAttribute('data-sp');spApply();});});
+if(spSearch)spSearch.addEventListener('input',spApply);
+// calendar filter
+var calTabs=$$('.chips [data-cal]'), calRows=$$('.cal-row');
+calTabs.forEach(function(b){b.addEventListener('click',function(){calTabs.forEach(function(x){x.classList.remove('on')});b.classList.add('on');var k=b.getAttribute('data-cal');calRows.forEach(function(r){r.classList.toggle('hide',k!=='all'&&r.getAttribute('data-state')!==k);});});});
+})();
+</script>
+<script>
+/* Keep the complete Trust Center aligned with the default product-page blue palette. */
+(function(){
+  var swaps=[
+    [/#16a34a/gi,'#1565D8'],[/#15803d/gi,'#0C3E8F'],[/#22c55e/gi,'#3B82F6'],
+    [/#4ade80/gi,'#8AB4FF'],[/#2ecc71/gi,'#3B82F6'],[/#19b65c/gi,'#1565D8'],
+    [/#32db77/gi,'#3B82F6'],[/#38df7a/gi,'#8AB4FF'],[/#46e38a/gi,'#8AB4FF'],
+    [/#51e594/gi,'#8AB4FF'],[/#86efac/gi,'#B9D2FF'],[/#dcfce7/gi,'#E8F0FD'],
+    [/rgba\(22,\s*163,\s*74/gi,'rgba(21,101,216'],
+    [/rgba\(34,\s*197,\s*94/gi,'rgba(59,130,246'],
+    [/rgba\(46,\s*204,\s*113/gi,'rgba(59,130,246'],
+    [/rgba\(74,\s*222,\s*128/gi,'rgba(138,180,255']
+  ];
+  function blue(value){return swaps.reduce(function(result,swap){return result.replace(swap[0],swap[1]);},value);}
+  document.querySelectorAll('style').forEach(function(style){style.textContent=blue(style.textContent);});
+  document.querySelectorAll('*').forEach(function(element){
+    Array.from(element.attributes).forEach(function(attribute){
+      var changed=blue(attribute.value);
+      if(changed!==attribute.value)element.setAttribute(attribute.name,changed);
+    });
+  });
+})();
+</script>
+</body>
+</html>
