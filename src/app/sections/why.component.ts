@@ -75,14 +75,16 @@ const COUNTER_THRESHOLD = 0.5;
             </div>
             <small>Trusted by businesses, schools and organizations across India.</small>
           </div>
-          <div class="why-features">
-            @for (f of features; track f[1]) {
-              <article class="why-feature" xhReveal><span class="why-feature-icon">{{ f[0] }}</span><h3>{{ f[1] }}</h3><p>{{ f[2] }}</p></article>
-            }
-          </div>
         </div>
       </div>
     </section>
+  `,
+  styles: `
+    .why .why-layout { display: block; }
+    .why .why-intro { max-width: 850px; margin: 0 auto; text-align: center; }
+    .why .why-intro h2 { max-width: 760px; margin: 17px auto 12px; }
+    .why .why-intro > p { max-width: none; }
+    .why .why-stats { justify-content: center; flex-wrap: wrap; }
   `,
 })
 export class WhyComponent implements AfterViewInit, OnDestroy {

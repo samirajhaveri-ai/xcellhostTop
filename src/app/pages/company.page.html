@@ -482,7 +482,7 @@
       <div class="wrap">
         <header class="team-section-heading">
           <span class="team-section-label">The people behind XcellHost</span>
-          <h2 id="team-directory-title">Meet our <em>team.</em></h2>
+          <h2 id="team-directory-title">Meet our <em>Xcellators.</em></h2>
           <p>Meet the people bringing experience, ideas and care to your cloud journey.</p>
         </header>
         <div class="team-tabs" role="tablist" aria-label="Team departments">
@@ -499,15 +499,27 @@
         </div>
         <div id="team-members-panel" class="team-members-panel" role="tabpanel"
           [attr.aria-labelledby]="'team-tab-' + activeTeamTab()" tabindex="0">
+          <div class="team-group-heading">
+            <span class="team-group-label"><span class="material-symbols-outlined team-label-icon" aria-hidden="true">{{ teamDepartmentIcon(activeTeamTab()) }}</span>{{ teamDepartmentLabel(activeTeamTab()) }}</span>
+            <span class="team-group-rule" aria-hidden="true"></span>
+            <span class="team-group-count">{{ visibleTeamMembers().length }} members</span>
+          </div>
           <div class="team-portrait-grid">
-            @for (member of visibleTeamMembers(); track member.name) {
+            @for (member of visibleTeamMembers(); track member.department + member.name) {
               <article class="team-portrait-card">
                 <div class="team-portrait-image">
-                  <img [src]="member.image" [alt]="member.name" width="320" height="320" loading="lazy" decoding="async" />
+                  @if (member.image) {
+                    <img [src]="member.image" [alt]="member.name" width="320" height="320" loading="lazy" decoding="async" />
+                  } @else {
+                    <div class="team-portrait-placeholder" aria-hidden="true">
+                      <svg viewBox="0 0 160 160" fill="currentColor"><circle cx="80" cy="55" r="29" /><path d="M24 150v-18a56 56 0 0 1 112 0v18Z" /></svg>
+                    </div>
+                  }
                 </div>
                 <div class="team-portrait-caption">
+                  <span class="team-role-badge">{{ teamDepartmentLabel(member.department) }}</span>
                   <h3>{{ member.name }}</h3>
-                  <p>{{ member.role }}</p>
+                  @if (member.role) { <p>{{ member.role }}</p> }
                 </div>
               </article>
             }
@@ -717,7 +729,7 @@
         <xh-reseller-program-content />
       } @else {
       <div class="wrap company-wrap">
-        @if (slug() !== 'vendor-partners') {
+        @if (slug() !== 'vendor-partners' && slug() !== 'certifications-awards') {
           <p class="company-intro">{{ page.intro }}</p>
         }
 

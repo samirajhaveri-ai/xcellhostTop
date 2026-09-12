@@ -121,6 +121,32 @@ const HERO_CAROUSEL_SLIDES: readonly HeroCarouselSlide[] = [
     image: '',
     alt: 'Acronis EDR endpoint security',
   },
+  {
+    tab: 'Cloud Backup',
+    eyebrow: 'Protect your data. Keep business moving.',
+    title: 'Cloud',
+    accent: 'Backup',
+    titleEnd: 'for peace of mind.',
+    description: 'Protect servers, endpoints and Microsoft 365 with encrypted cloud backups, flexible recovery and expert support when you need it.',
+    spotlight: 'Automated backups · granular recovery · expert support',
+    primaryCta: 'Explore Cloud Backup',
+    primaryHref: '/cloud-backup',
+    image: '',
+    alt: 'Cloud Backup data protection',
+  },
+  {
+    tab: 'SMB Cybird',
+    eyebrow: 'Cybersecurity built for growing businesses',
+    title: 'SMB',
+    accent: 'Cybird',
+    titleEnd: 'for a safer workplace.',
+    description: 'Secure your business network with the SMB Cyber Security Appliance, bringing network protection and expert guidance together for your growing team.',
+    spotlight: 'SMB network security · centralised protection · expert support',
+    primaryCta: 'Explore SMB Cybird',
+    primaryHref: '/smb-cyber-security-appliance',
+    image: '',
+    alt: 'SMB Cybird cybersecurity appliance',
+  },
 ];
 
 /**
