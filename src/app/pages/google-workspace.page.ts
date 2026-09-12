@@ -9,6 +9,8 @@ import {
 } from '@angular/core';
 
 import { SeoService } from '../core/seo.service';
+import { OverlayService } from '../core/overlay.service';
+import { CallbackTopicService } from '../overlays/callback-topic.service';
 
 @Component({
   selector: 'xh-google-workspace-page',
@@ -20,6 +22,8 @@ import { SeoService } from '../core/seo.service';
 })
 export class GoogleWorkspacePage implements AfterViewInit, OnDestroy {
   private readonly seo = inject(SeoService);
+  private readonly overlay = inject(OverlayService);
+  private readonly topics = inject(CallbackTopicService);
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly cleanups: Array<() => void> = [];
   private typewriterTimer?: ReturnType<typeof setTimeout>;
@@ -70,6 +74,12 @@ export class GoogleWorkspacePage implements AfterViewInit, OnDestroy {
       tab.addEventListener('click', onClick);
       this.cleanups.push(() => tab.removeEventListener('click', onClick));
     });
+  }
+
+  openCallback(event: Event): void {
+    event.preventDefault();
+    this.topics.ask('Google Workspace');
+    this.overlay.open('callback');
   }
 
   submitForm(event: SubmitEvent): void {

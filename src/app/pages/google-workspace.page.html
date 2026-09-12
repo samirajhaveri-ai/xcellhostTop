@@ -105,9 +105,10 @@
             <div class="pp-hpoint"><span class="tick"></span>MX, SPF, DKIM &amp; DMARC set up by us</div>
           </div>
           <div class="hero-ctas">
-            <a class="btn btn-primary" href="#contact">Get a Quote</a>
+            <a class="btn btn-primary" href="#contact" (click)="openCallback($event)">Get a Quote</a>
             <a class="btn btn-ghost" href="#pricing">View Plans</a>
             <a class="btn btn-ghost" href="#">&#11015; Infosheet</a>
+            <button class="btn btn-ghost" type="button" disabled>7 Day's Free Trail</button>
           </div>
         </div>
       </div>
@@ -276,7 +277,7 @@
             <li class="no">Meeting recording</li>
             <li class="no">eSignature</li>
           </ul>
-          <div class="btns"><a class="btn btn-primary" href="#contact">Get Base &rarr;</a></div>
+          <div class="btns"><a class="btn btn-primary" href="#contact" (click)="openCallback($event)">Get Base &rarr;</a></div>
         </div>
 
         <div class="ppl hot">
@@ -292,7 +293,7 @@
             <li>Workspace Studio automation</li>
             <li>Manage up to 300 users</li>
           </ul>
-          <div class="btns"><a class="btn btn-primary" href="#contact">Get Starter &rarr;</a><a class="btn btn-ghost" href="#contact">Buy Now &mdash; Online</a></div>
+          <div class="btns"><a class="btn btn-primary" href="#contact" (click)="openCallback($event)">Get Starter &rarr;</a><a class="btn btn-ghost" href="#contact" (click)="openCallback($event)">Buy Now &mdash; Online</a></div>
         </div>
 
         <div class="ppl">
@@ -309,7 +310,7 @@
             <li>Workspace Migrate tool</li>
             <li>Mail merge + custom email layouts</li>
           </ul>
-          <div class="btns"><a class="btn btn-primary" href="#contact">Get Standard &rarr;</a></div>
+          <div class="btns"><a class="btn btn-primary" href="#contact" (click)="openCallback($event)">Get Standard &rarr;</a></div>
         </div>
 
         <div class="ppl">
@@ -327,7 +328,7 @@
             <li>Context-aware access policies</li>
             <li>Enterprise data regions</li>
           </ul>
-          <div class="btns"><a class="btn btn-primary" href="#contact">Talk to Sales &rarr;</a></div>
+          <div class="btns"><a class="btn btn-primary" href="#contact" (click)="openCallback($event)">Talk to Sales &rarr;</a></div>
         </div>
 
       </div>
@@ -350,7 +351,7 @@
             <b>XcellHost &mdash; authorised Google Workspace reseller in India</b>
             <span>Beat-any-quote pricing &middot; GST invoice same day &middot; free migration included with every plan.</span>
           </div>
-          <a class="btn btn-primary" href="#contact">Get Best Price</a>
+          <a class="btn btn-primary" href="#contact" (click)="openCallback($event)">Get Best Price</a>
         </div>
         <div class="pp-partnergrid">
           <div><b>Authorised Partner</b><span>Genuine licences from a verified Google partner. Full support entitlements, no third-party risk.</span></div>
@@ -499,50 +500,14 @@
 
       <xh-insights-section pageSlug="google-workspace" />
 
-  <!-- CONTACT -->
-      <div class="pp-sec" id="contact">Get Google Workspace for your business &mdash; India's authorised partner</div>
-      <div class="pp-contact">
-        <div class="pp-ccard">
-          <h3>Get Started</h3>
-          <p>We verify your domain, migrate your email and train your team &mdash; all included. Transparent INR pricing, GST invoice, no middlemen.</p>
-          <ul class="pp-clist">
-            <li><a href="tel:+912267111555"><span class="ci">&#9742;</span><span><b>Call us</b><span>+91 22 6711 1555</span></span></a></li>
-            <li><a href="https://wa.me/918657032540"><span class="ci">&#128172;</span><span><b>WhatsApp</b><span>+91 86570 32540 &mdash; start a chat</span></span></a></li>
-            <li><a href="mailto:sales@xcellhost.cloud"><span class="ci">&#9993;</span><span><b>Email us</b><span>sales@xcellhost.cloud</span></span></a></li>
-            <li><a href="#"><span class="ci">&#128203;</span><span><b>Submit a ticket</b><span>Trackable request &middot; 24&times;7 response</span></span></a></li>
-          </ul>
-          <div class="pp-proof" style="justify-content:flex-start;margin-top:18px">
-            <span>Google Cloud Partner</span><span>Microsoft Partner</span><span>Zoho Authorised</span>
-          </div>
-        </div>
-
-        <div class="pp-ccard">
-          <h3>Request a Callback</h3>
-          <p>Fill the form &mdash; we'll get back within one business day.</p>
-          <form class="pp-form" (submit)="submitForm($event)">
-            <div class="row2">
-              <div><label for="f1">Full Name *</label><input id="f1" required></div>
-              <div><label for="f2">Company Name *</label><input id="f2" required></div>
-            </div>
-            <div class="row2">
-              <div><label for="f3">Work Email *</label><input id="f3" type="email" required></div>
-              <div><label for="f4">Mobile Number *</label><input id="f4" type="tel" required></div>
-            </div>
-            <div><label for="f5">Message</label><textarea id="f5" placeholder="Number of users, current email platform, plan of interest…"></textarea></div>
-            <button class="btn btn-primary" type="submit">Request a Callback</button>
-            <p class="pp-formnote" id="fmsg">We respond within one business day &middot; No spam, ever.</p>
-          </form>
-        </div>
-      </div>
-
       <!-- CTA -->
-      <div class="pp-cta">
+      <div class="pp-cta" id="contact">
         <div>
           <h3>Ready to move your team to Google Workspace?</h3>
           <p>Free consultation &middot; free migration &middot; 24&times;7 support in English &amp; Hindi &middot; GST invoice in INR</p>
         </div>
         <div class="pp-ctabtns">
-          <a class="btn btn-primary" href="#contact">Request a callback</a>
+          <a class="btn btn-primary" href="#contact" (click)="openCallback($event)">Request a callback</a>
           <a class="btn btn-ghost" href="#pricing">&#9889; Buy Now</a>
           <a class="btn btn-ghost" href="#">&#11015; Infosheet</a>
           <a class="btn btn-wa" href="https://wa.me/918657032540">Talk on WhatsApp</a>

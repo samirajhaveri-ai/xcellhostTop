@@ -302,6 +302,51 @@
                 <a class="pp-ask-ai-chip" aria-label="Grok" [href]="askAiHref('grok')" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=grok.com&amp;sz=64" alt="" aria-hidden="true"></a>
               </div>
             </section>
+            @if (isAdvancedEdr()) {
+              <div class="edr-hero-song">
+                <span id="edrSongTitle">Listen to our Endpoint Security Song</span>
+                <audio controls preload="metadata" aria-labelledby="edrSongTitle">
+                  <source src="/assets/audio/advanced-endpoint-security-song.mp3" type="audio/mpeg">
+                  <a href="/assets/audio/advanced-endpoint-security-song.mp3">Listen to the Endpoint Security Song</a>
+                </audio>
+              </div>
+            }
+            @if (isSmbCloudDesktop()) {
+              <div class="smb-cloud-desktop-hero-song">
+                <span id="smbCloudDesktopSongTitle">Listen to our SMB Cloud Desktop Song</span>
+                <audio controls preload="metadata" aria-labelledby="smbCloudDesktopSongTitle">
+                  <source src="/assets/audio/smb-cloud-desktop-song.mp3" type="audio/mpeg">
+                  <a href="/assets/audio/smb-cloud-desktop-song.mp3">Listen to the SMB Cloud Desktop Song</a>
+                </audio>
+              </div>
+            }
+            @if (isCloudDrive()) {
+              <div class="cloud-drive-hero-song">
+                <span id="cloudDriveSongTitle">Listen to our Cloud Drive Song</span>
+                <audio controls preload="metadata" aria-labelledby="cloudDriveSongTitle">
+                  <source src="/assets/audio/cloud-drive-song.mp3" type="audio/mpeg">
+                  <a href="/assets/audio/cloud-drive-song.mp3">Listen to the Cloud Drive Song</a>
+                </audio>
+              </div>
+            }
+            @if (isCloudBackup()) {
+              <div class="cloud-backup-hero-song">
+                <span id="cloudBackupSongTitle">Listen to our Cloud Backup Song</span>
+                <audio controls preload="metadata" aria-labelledby="cloudBackupSongTitle">
+                  <source src="/assets/audio/cloud-backup-song.mp3" type="audio/mpeg">
+                  <a href="/assets/audio/cloud-backup-song.mp3">Listen to the Cloud Backup Song</a>
+                </audio>
+              </div>
+            }
+            @if (isTally()) {
+              <div class="tally-hero-song">
+                <span id="tallySongTitle">Listen to our Tally On Cloud Song</span>
+                <audio controls preload="metadata" aria-labelledby="tallySongTitle">
+                  <source src="/assets/audio/tally-on-cloud-song.mp3" type="audio/mpeg">
+                  <a href="/assets/audio/tally-on-cloud-song.mp3">Listen to the Tally On Cloud Song</a>
+                </audio>
+              </div>
+            }
           </div>
         </div>
         }
@@ -1829,7 +1874,7 @@
 
         </div>
 
-        <div id="ppBlog" [class.scrutiny-dlp-insights]="slug() === 'scrutiny-dlp'"><xh-insights-section [pageSlug]="slug()" /></div>
+        <div id="ppBlog" [class.scrutiny-dlp-insights]="slug() === 'scrutiny-dlp'" [class.vortex-seg-insights]="slug() === 'vortex-seg'"><xh-insights-section [pageSlug]="slug()" /></div>
 
         <div class="pp-cta">
           <div>
