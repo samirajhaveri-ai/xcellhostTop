@@ -40,9 +40,6 @@ export class Microsoft365SmbPage {
     'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-M365-BS-NT-A';
   readonly premiumNoTeamsCheckoutUrl =
     'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-M365-BP-NT-A';
-  readonly callbackMessage = signal(
-    'We respond within one business day · No spam, ever.',
-  );
 
   constructor() {
     this.seo.set(
@@ -78,12 +75,4 @@ export class Microsoft365SmbPage {
     this.overlay.open('callback');
   }
 
-  submitCallback(event: SubmitEvent): void {
-    event.preventDefault();
-    const form = event.currentTarget as HTMLFormElement;
-    form.reset();
-    this.callbackMessage.set(
-      'Thanks — our team will call you within one business day.',
-    );
-  }
 }
