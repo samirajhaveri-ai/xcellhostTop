@@ -5094,4 +5094,9 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 
 
 
-@media(min-width:1101px){#flagship .prod-grid-tabbed.productivity-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:1101px){
+  #flagship .prod-grid-tabbed.productivity-grid{grid-template-columns:repeat(12,minmax(0,1fr))}
+  #flagship .productivity-grid .card{grid-column:span 3}
+}
+
+@media(min-width:1101px){#flagship .prod-grid-tabbed.protect-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}

@@ -60,7 +60,7 @@ const FLAGSHIP_TAB_SOURCES: Readonly<Record<FlagshipTabId, FlagshipGroup | null>
 
 const FLAGSHIP_CARD_GROUPS: Readonly<Record<string, readonly FlagshipGroup[]>> = {
   'Tally on Cloud': ['business'],
-  'Backup Cloud': ['business'],
+  'Backup Cloud': ['business', 'protection'],
   'Cloud Drive': ['business'],
   'Advanced EDR': ['business'],
   'Advanced RMM': ['business'],
@@ -73,7 +73,8 @@ const FLAGSHIP_CARD_GROUPS: Readonly<Record<string, readonly FlagshipGroup[]>> =
   'Global Cloud': ['infrastructure'],
   'Cloud Object Storage': ['protection'],
   'Cloud Disaster Recovery': ['protection'],
-  'Microsoft 365 Backup': ['protection'],
+  'Microsoft 365 Backup': ['protection', 'workplace'],
+  'Microsoft 365 Archiving': ['protection'],
   'Entra ID Backup': ['protection'],
   'DPDPA Platform': ['digital-trust'],
   'Business Email': ['workplace'],
@@ -105,9 +106,11 @@ const CLOUD_INFRA_ORDER = [
 ] as const;
 
 const CLOUD_DATA_PROTECT_ORDER = [
+  'Backup Cloud',
   'Cloud Object Storage',
   'Cloud Disaster Recovery',
   'Microsoft 365 Backup',
+  'Microsoft 365 Archiving',
   'Entra ID Backup',
 ] as const;
 
@@ -115,9 +118,10 @@ const CLOUD_PRODUCTIVITY_ORDER = [
   'Business Email',
   'Microsoft 365 SMB',
   'Microsoft 365 for Enterprise',
-  'Advanced Email Security',
-  'Google Workspace',
+  'Microsoft 365 Backup',
   'Zoho Workplace',
+  'Google Workspace',
+  'Advanced Email Security',
   'Enterprise DMARC',
 ] as const;
 
@@ -221,8 +225,15 @@ const FLAGSHIP_CARDS: readonly FlagshipCard[] = [
   },
   {
     icon: 'backup', badge: 'Best seller', hot: true, title: 'Microsoft 365 Backup',
+    link: '/microsoft-365-backup',
     blurb: 'Backup Exchange, SharePoint, OneDrive and Teams with granular recovery.',
     lead: '', amount: 'per-user', tail: '/month', cta: 'Explore →', category: 'Cloud',
+  },
+  {
+    icon: 'backup', badge: 'Email archiving', title: 'Microsoft 365 Archiving',
+    blurb: 'Email archiving for Microsoft 365 with long-term retention and easy retrieval.',
+    lead: '', amount: 'per-user', tail: '/month', cta: 'Explore', category: 'Cloud',
+    service: 'E-Mail Backup / Archiving',
   },
   {
     icon: 'backup', badge: 'Identity backup', title: 'Entra ID Backup',
@@ -377,13 +388,13 @@ export class FlagshipComponent {
     if (group === 'digital-trust' || group === 'security' || group === 'ai') {
       const label = this.tabs.find((tab) => tab.id === this.activeTab())?.label;
       const menu = MEGA_MENU.find((item) => item.label === label);
-      const menuTabs = (menu?.tabs ?? []).filter((tab) =>
-        group !== 'digital-trust' || tab.label === 'SSL by Brand',
-      );
+      const menuTabs = menu?.tabs ?? [];
       const seen = new Set<string>();
       const icon = group === 'ai' ? 'chip' : group === 'digital-trust' ? 'verified' : 'shield';
       return menuTabs.flatMap((tab) =>
         tab.groups.flatMap((section) => section.items.flatMap((item) => {
+          if (group === 'digital-trust' && tab.label !== 'SSL by Brand'
+            && !['Certificate Mgmt Solutions', 'Digicert VMC', 'Digicert CMC'].includes(item.title.trim())) return [];
           if (group === 'security' && section.heading !== 'EndPoint Security') return [];
           if (group === 'ai' && section.heading !== 'AI Tools') return [];
           const link = item.href ?? '/' + slugify(this.catalog.findInDirectory(item.title)?.name ?? item.title);
