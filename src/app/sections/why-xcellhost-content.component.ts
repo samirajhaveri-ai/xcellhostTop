@@ -10,6 +10,7 @@ import { RouterLink } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WhyXcellhostContentComponent {
+  readonly chapterHeadings = ['Experience you can count on', 'Keep your business running smoothly', 'Infrastructure for your next big idea', 'Grow with confidence', 'One partner for the long run'];
   readonly groups = [
   {
     "title": "Built on trust",
