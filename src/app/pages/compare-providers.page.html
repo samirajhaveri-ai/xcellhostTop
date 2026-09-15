@@ -1,10 +1,48 @@
 ﻿<section class="providers-hero">
-  <div class="wrap">
-    <nav aria-label="Breadcrumb"><a routerLink="/">Home</a><span aria-hidden="true">/</span> Compare Providers</nav>
-    <span class="providers-eyebrow">Your shortlist. One clear view.</span>
-    <h1>Compare Providers</h1>
-    <p>Compare the cost, service and support that matter to your business.</p>
-    <div class="providers-hero-actions"><button class="btn btn-primary" type="button" (click)="requestHelp()">Get comparison help</button><a routerLink="/compare" class="providers-service-link">Compare XcellHost services instead &rarr;</a></div>
+  <div class="compare-orb compare-orb-one" aria-hidden="true"></div>
+  <div class="compare-orb compare-orb-two" aria-hidden="true"></div>
+  <div class="compare-grid" aria-hidden="true"></div>
+  <div class="compare-landing-wrap">
+    <nav class="compare-breadcrumb" aria-label="Breadcrumb"><a routerLink="/">Home</a><span aria-hidden="true">/</span><span>Compare</span></nav>
+    <div class="compare-heading">
+      <span class="compare-kicker"><i aria-hidden="true"></i> 6 head-to-head comparisons</span>
+      <h1 id="compare-title">CloudBaba vs <span>the competition</span></h1>
+      <p>See how CloudBaba's predictable pricing, India-first infrastructure and hands-on cloud expertise stack up against leading cloud providers.</p>
+    </div>
+    <div class="compare-metrics" aria-label="CloudBaba highlights">
+      <div><strong>~60%</strong><span>Lower cost</span></div>
+      <div><strong>Zero</strong><span>Egress charges</span></div>
+      <div><strong>Same-day</strong><span>GPU provisioning</span></div>
+      <div><strong>24&times;7</strong><span>Human support</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="provider-picker" aria-labelledby="provider-picker-title">
+  <div class="provider-picker-wrap">
+    <div class="provider-picker-heading">
+      <span>Choose a provider</span>
+      <h2 id="provider-picker-title">Pick your comparison</h2>
+      <p>Select a cloud provider to explore the differences, or jump to the complete feature-by-feature table.</p>
+    </div>
+    <div class="provider-cards">
+      @for (provider of providerCards; track provider.slug) {
+        <article class="provider-card" [style.--provider-accent]="provider.accent" [id]="provider.slug">
+          <div class="provider-card-top">
+            <span class="provider-logo" aria-hidden="true">{{ provider.initials }}</span>
+            <span class="provider-category">{{ provider.category }}</span>
+          </div>
+          <p class="provider-versus">CloudBaba <span>vs</span></p>
+          <h3>{{ provider.name }}</h3>
+          <p class="provider-description">{{ provider.description }}</p>
+          <div class="provider-card-footer">
+            <div><strong>{{ provider.stat }}</strong><span>{{ provider.statLabel }}</span></div>
+            <a [routerLink]="['/', provider.slug]" [attr.aria-label]="'Compare CloudBaba with ' + provider.name">View comparison <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </article>
+      }
+    </div>
+    <a class="provider-table-jump" href="#providers-table-title">Compare every provider in one view <span aria-hidden="true">&darr;</span></a>
   </div>
 </section>
 
