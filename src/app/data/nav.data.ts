@@ -590,38 +590,6 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Managed DevOps",
             "items": [
               {
-                "title": "Terraform",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Ansible",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Puppet",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Chef",
-                "pill": null,
-                "desc": null
-              },
-            ]
-          }
-        ]
-      },
-      {
-        "g": "5",
-        "label": "",
-        "on": false,
-        "groups": [
-          {
-            "heading": "DevOps Tools",
-            "items": [
-              {
                 "title": "AWS DevOps",
                 "pill": null,
                 "desc": null
@@ -641,7 +609,39 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "5",
+        "label": "",
+        "on": false,
+        "groups": [
+          {
+            "heading": "DevOps Tools",
+            "items": [
+
+              {
+                "title": "Terraform",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Ansible",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Puppet",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Chef",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
@@ -1837,7 +1837,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "IP Security Mgmt",
+                "title": "IP Address Mgmt",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -2669,15 +2669,10 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Palo Alto Security",
             "items": [
               {
-                "title": "All Palo Alto Security",
+                "title": "All Palo Alto Products",
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "All Fortinet Security",
-                "pill": null,
-                "desc": null
-              }, 
             ]
           }
         ]
@@ -2757,6 +2752,7 @@ export const MEGA_MENU: MenuTop[] = [
         "on": false,
         "groups": [
           {
+        
             "heading": "Adobe Tools",
             "items": [
               {
@@ -3571,9 +3567,9 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Webinars"
               },
               {
-                "title": "Podcast",
+                "title": "Podcasts",
                 "pill": null,
-                "desc": "Podcast"
+                "desc": "Podcasts"
               },
 
               
