@@ -26,6 +26,7 @@ import { slugify } from '../core/catalog.service';
               <button type="button" class="btn btn-ghost" [class.active]="activeView() === 'blogs'" [attr.aria-pressed]="activeView() === 'blogs'" aria-controls="insights-content" (click)="activeView.set('blogs')">Blogs</button>
               <button type="button" class="btn btn-ghost" [class.active]="activeView() === 'videos'" [attr.aria-pressed]="activeView() === 'videos'" aria-controls="insights-content" (click)="activeView.set('videos')">Videos</button>
               <button type="button" class="btn btn-ghost" [class.active]="activeView() === 'cases'" [attr.aria-pressed]="activeView() === 'cases'" aria-controls="insights-content" (click)="activeView.set('cases')">Case Studies</button>
+              <button type="button" class="btn btn-ghost" [class.active]="activeView() === 'datasheets'" [attr.aria-pressed]="activeView() === 'datasheets'" aria-controls="insights-content" (click)="activeView.set('datasheets')">Datasheet</button>
             </div>
           </div>
         </div>
@@ -79,6 +80,12 @@ import { slugify } from '../core/catalog.service';
           </div>
           <div class="cases-cta"><a class="btn btn-ghost" routerLink="/case-studies">View all Case Studies →</a></div>
         } @else {
+          @if (activeView() === 'datasheets') {
+            <div class="insights-empty">
+              <p>Contact our team for the latest product datasheets and technical specifications.</p>
+              <a class="btn btn-ghost" routerLink="/contact" [queryParams]="{ resource: 'datasheet', service: pageSlug() || undefined }">Request a datasheet</a>
+            </div>
+          } @else {
           <div class="insights-video-grid">
             <article class="insights-video-card">
               <div class="insights-video">
@@ -101,6 +108,7 @@ import { slugify } from '../core/catalog.service';
           </div>
           <div class="blog-cta"><a class="btn btn-ghost" href="https://www.youtube.com/@XcellHostCloudServices">View all Videos →</a></div>
         }
+          }
         </div>
       </div>
     </section>
@@ -148,8 +156,12 @@ export class InsightsSectionComponent {
       return assigned.length ? assigned.some(slug => slugs.includes(slug)) : slugs.includes(slugify(post.category));
     }).slice(0, 5);
   });
-  readonly activeView = signal<'blogs' | 'cases' | 'videos'>('blogs');
+  readonly activeView = signal<'blogs' | 'cases' | 'videos' | 'datasheets'>('blogs');
   readonly viewCopy = {
+    datasheets: {
+      heading: 'Product details at a glance',
+      description: 'Explore features, specifications and deployment requirements for XcellHost solutions.',
+    },
     blogs: {
       heading: 'Fresh perspectives for smarter IT decisions',
       description: 'Explore practical guides and expert insights on cloud, cybersecurity and Indian compliance to help your business move forward.',
