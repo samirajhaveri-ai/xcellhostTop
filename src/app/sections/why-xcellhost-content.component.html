@@ -1,45 +1,50 @@
 <main class="why-page">
   <section class="why-hero" aria-labelledby="why-title">
     <div class="why-wrap">
-      <nav class="why-crumb" aria-label="Breadcrumb"><a routerLink="/">Home</a><span>/</span><span>Company</span><span>/</span><span>Why XcellHost</span></nav>
       <div class="why-hero-grid">
-        <div>
-          <span class="why-eyebrow">THE XCELLHOST DIFFERENCE</span>
-          <h1 id="why-title">Your cloud.<br>Your growth.<br><em>Our commitment.</em></h1>
-          <p>Why XcellHost Cloud? Discover 25 reasons to choose a partner that brings infrastructure, security and managed support together.</p>
-          <div class="why-actions"><a class="why-button" href="#why-reasons">Explore the 25 reasons <span aria-hidden="true">↓</span></a><a class="why-link" routerLink="/contact">Talk to our team <span aria-hidden="true">↗</span></a></div>
+        <div class="why-hero-copy">
+          <span class="why-eyebrow"><span aria-hidden="true">&#10024;</span> WHY XCELLHOST</span>
+          <h1 id="why-title">Built for your<br>next <em>big move.</em></h1>
+          <p>Reliable infrastructure. Powerful people. Your ambitions deserve a partner who&rsquo;s always one step ahead.</p>
+          <div class="why-hero-actions"><a class="why-button" [routerLink]="[]" fragment="why-reasons">Discover the Difference <span aria-hidden="true">&#8594;</span></a><a class="why-story" href="https://www.youtube.com/@XcellHostCloudServices" target="_blank" rel="noopener noreferrer"><span class="material-symbols-outlined" aria-hidden="true">play_circle</span>Watch Our Story</a></div>
         </div>
-        <div class="why-hero-panel">
-          <div class="why-panel-top"><span class="why-status"></span> YOUR BUSINESS, BACKED BY XCELLHOST</div>
-          <div class="why-big-number">25<span>reasons to<br>move forward.</span></div>
-          <div class="why-panel-services"><span><i class="material-symbols-outlined" aria-hidden="true">cloud</i>Cloud</span><span><i class="material-symbols-outlined" aria-hidden="true">shield</i>Security</span><span><i class="material-symbols-outlined" aria-hidden="true">support_agent</i>People</span></div>
-          <p>One partner. Every step of your cloud journey.</p>
+        <div class="why-hero-visual">
+          <img src="/assets/images/why-xcellhost-hero.png" alt="XcellHost cloud infrastructure: scalable solutions, global infrastructure, advanced security and trusted by thousands" width="1672" height="941" fetchpriority="high" />
         </div>
       </div>
-      <div class="why-proof"><div><strong>Since 1999</strong><span>Managed cloud experience</span></div><div><strong>24×7</strong><span>NOC &amp; SOC support</span></div><div><strong>India</strong><span>Secure cloud infrastructure</span></div><div><strong>One partner</strong><span>Cloud, security &amp; support</span></div></div>
+      <div class="why-proof">
+        <span><i class="material-symbols-outlined" aria-hidden="true">verified_user</i><span><b>99.9%</b><small>Uptime Guarantee</small></span></span>
+        <span><i class="material-symbols-outlined" aria-hidden="true">speed</i><span><b>Blazing Fast</b><small>SSD Performance</small></span></span>
+        <span><i class="material-symbols-outlined" aria-hidden="true">headset_mic</i><span><b>24/7</b><small>Expert Support</small></span></span>
+        <span><i class="material-symbols-outlined" aria-hidden="true">lock</i><span><b>Safe &amp; Secure</b><small>Your Data, Our Priority</small></span></span>
+      </div>
     </div>
   </section>
-
   <section class="why-reasons why-wrap" id="why-reasons" aria-labelledby="reasons-title">
-    <div class="why-intro"><div><span class="why-eyebrow">THE ADVANTAGE IS YOURS</span><h2 id="reasons-title">25 reasons to<br><span>think bigger.</span></h2></div><div class="why-intro-copy"><span class="why-intro-label">WHY XCELLHOST CLOUD?</span><p>From your first cloud server to your next big idea, get the technology and support to keep your business moving.</p><span class="why-intro-note">Built in India. Ready for your ambition.</span></div></div>
-    <nav class="why-jumps" aria-label="Explore reasons by theme">
-      @for (group of groups; track group.title; let index = $index) {
-        <a [href]="'#reason-group-' + index"><span>0{{ index + 1 }}</span>{{ group.title }}</a>
-      }
-    </nav>
-    @for (group of groups; track group.title; let index = $index) {
-      <section class="why-group" [id]="'reason-group-' + index" [attr.aria-labelledby]="'reason-title-' + index">
-        <header class="why-group-heading"><span class="why-group-index">0{{ index + 1 }}</span><div><h3 [id]="'reason-title-' + index">{{ group.title }}</h3><p>{{ group.subtitle }}</p></div><span class="why-range">{{ group.reasons[0].number }} — {{ group.reasons[4].number }}</span></header>
-        <div class="why-card-grid">
-          @for (reason of group.reasons; track reason.number) {
-            <article class="why-card" [class.why-card-featured]="reason.number === '25'">
-              <div class="why-card-top"><span class="why-icon material-symbols-outlined" aria-hidden="true">{{ reason.icon }}</span><span class="why-number">{{ reason.number }}</span></div>
-              <h4>{{ reason.title }}</h4><p>{{ reason.body }}</p>
-            </article>
-          }
-        </div>
-      </section>
-    }
-    <section class="why-cta" aria-labelledby="why-cta-title"><div><span class="why-eyebrow">LET’S BUILD WHAT’S NEXT</span><h2 id="why-cta-title">Your next chapter starts in the cloud.</h2><p>Tell us what your business needs. We’ll help you find the right fit.</p></div><a class="why-button" routerLink="/contact">Let’s talk cloud <span aria-hidden="true">↗</span></a></section>
+    <header class="why-intro">
+      <div class="why-intro-text"><h2 id="reasons-title">Built on Experience. <em>Driven by What&rsquo;s Next.</em></h2></div>
+    </header>
+    <div class="why-editorial">
+      <aside class="why-index"><span class="why-eyebrow">EXPLORE THE CHAPTERS</span><nav aria-label="Reasons by theme">@for (group of groups; track group.title; let index = $index) {<a [routerLink]="[]" [fragment]="'reason-group-' + index"><span>0{{ index + 1 }}</span>{{ group.title }}</a>}</nav><a class="why-index-contact" routerLink="/contact">Find your cloud solution</a></aside>
+      <div class="why-chapters">
+        @for (group of groups; track group.title; let index = $index) {
+          <section class="why-group" [id]="'reason-group-' + index" [attr.aria-labelledby]="'reason-title-' + index">
+            <header class="why-group-heading"><span class="why-chapter-number">0{{ index + 1 }}</span><div><span class="why-eyebrow">{{ group.title }}</span><h3 [id]="'reason-title-' + index">{{ chapterHeadings[index] }}</h3></div></header>
+            <div class="why-reason-list">@for (reason of group.reasons; track reason.number) {<article class="why-reason"><span class="why-reason-icon material-symbols-outlined" aria-hidden="true">{{ reason.icon }}</span><h4>{{ reason.title }}</h4><p>{{ reason.body }}</p></article>}</div>
+          </section>
+        }
+      </div>
+    </div>
   </section>
+  <div class="why-wrap why-contact-wrap">
+    <section class="pp-cta why-buddha-strip" aria-labelledby="why-contact-title">
+      <div><h2 id="why-contact-title">Ready to start with XcellHost?</h2><p>Free consultation &middot; free migration &middot; 24&#215;7 support in English &amp; Hindi</p></div>
+      <div class="why-contact-actions">
+        <a class="btn btn-primary" routerLink="/contact">Talk to our team</a>
+        <a class="btn btn-ghost" href="https://wa.me/918657032540" target="_blank" rel="noopener noreferrer">Talk on WhatsApp</a>
+        <a class="btn btn-ghost" href="mailto:sales@xcellhost.com">Email Us</a>
+      </div>
+      <a class="pp-cta-buddha-link" routerLink="/company/support-overview" aria-label="Visit XcellHost customer support"><img class="pp-cta-buddha" src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost Laughing Buddha" width="104" height="104" loading="lazy" /></a>
+    </section>
+  </div>
 </main>

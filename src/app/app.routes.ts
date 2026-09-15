@@ -12,6 +12,7 @@ import { Routes } from '@angular/router';
  *   /compare/
  */
 export const routes: Routes = [
+  { path: 'why-xcellhost', redirectTo: 'company/why-xcellhost', pathMatch: 'full' },
   { path: '', pathMatch: 'full', loadComponent: () => import('./pages/home.page').then((m) => m.HomePage) },
   { path: 'compare', loadComponent: () => import('./pages/compare.page').then((m) => m.ComparePage) },
   { path: 'compare-providers', loadComponent: () => import('./pages/compare-providers.page').then((m) => m.CompareProvidersPage) },
