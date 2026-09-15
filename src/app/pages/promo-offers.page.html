@@ -1,17 +1,48 @@
 <main class="promo-page">
-  <section class="construction-page" aria-labelledby="construction-title">
-    <span class="construction-orb construction-orb-blue" aria-hidden="true"></span>
-    <span class="construction-orb construction-orb-orange" aria-hidden="true"></span>
-
-    <div class="construction-card">
-      <span class="construction-kicker">XcellHost resource</span>
-      <span class="construction-icon" aria-hidden="true">P</span>
-      <h1 id="construction-title">Promos &amp; Offers</h1>
-      <h2>Under Construction</h2>
-      <p>We&rsquo;re preparing this page now. Please check back soon.</p>
-      <a class="construction-home" routerLink="/">
-        <span aria-hidden="true">&larr;</span> Back to home
-      </a>
+  <section class="promo-hero" aria-labelledby="promo-title"><div class="wrap promo-hero-grid">
+    <div class="promo-hero-copy">
+      <nav class="promo-crumb" aria-label="Breadcrumb"><a routerLink="/">Home</a><span aria-hidden="true">›</span><span>Promos &amp; Offers</span></nav>
+      <span class="promo-kicker">XCELLHOST PRODUCT CATALOGUE</span>
+      <h1 id="promo-title"><span>Popular</span> products. Better value.</h1>
+      <p>Discover customer-favourite cloud, security, productivity and digital trust services—all backed by XcellHost experts.</p>
+      <strong class="promo-hero-line">Choose confidently. Deploy with expert support.</strong>
+      <div class="promo-hero-points" aria-label="Offer benefits">
+        <span><i>✓</i> Curated popular products</span><span><i>✓</i> Transparent service details</span>
+        <span><i>✓</i> Free consultation</span><span><i>✓</i> 24×7 expert support</span>
+      </div>
+      <div class="promo-hero-actions">
+        <a class="promo-primary-action" routerLink="/promo-offers" fragment="promo-catalogue">Browse offers <span aria-hidden="true">↓</span></a>
+        <a class="promo-secondary-action" routerLink="/contact">Let&rsquo;s talk <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="promo-hero-links"><span>Explore company trust:</span><a routerLink="/company/certifications-awards">Certifications</a><a routerLink="/company/awards">Awards</a></div>
     </div>
-  </section>
+    <div class="promo-hero-visual" aria-hidden="true">
+      <span class="promo-visual-orbit"></span><img class="promo-main-visual" src="/assets/images/promo-offers-hero-v2.png" alt="">
+      <span class="promo-moving-logo logo-xcellhost"><img src="/assets/images/xcellhost-logo.png" alt=""><small>Popular offers</small></span>
+      <span class="promo-moving-logo logo-acronis"><img src="/assets/images/product-brands-acronis.png" alt=""></span>
+      <span class="promo-moving-logo logo-value"><b>%</b><small>Better value</small></span>
+    </div>
+  </div></section>
+  <section class="promo-catalogue" id="promo-catalogue" aria-labelledby="catalogue-title"><div class="wrap">
+    <header class="promo-heading"><span>POPULAR PRODUCTS &amp; SOLUTIONS</span><h2 id="catalogue-title">Our most popular products</h2><p>Browse customer favourites by category and open a product page for full features, pricing and service details.</p></header>
+    <div class="promo-tabs-layout">
+      <div class="promo-tabs" role="tablist" aria-label="Product categories">
+        @for (category of categories; track category.label; let i = $index) {
+          <button type="button" role="tab" [id]="'promo-tab-' + i" [attr.aria-selected]="activeTab() === i" [attr.aria-controls]="'promo-panel-' + i" [class.active]="activeTab() === i" (click)="selectTab(i)">
+            <span>{{ (i + 1).toString().padStart(2, '0') }}</span><b>{{ category.label }}</b><small>{{ category.products.length }} popular</small>
+          </button>
+        }
+      </div>
+      @if (activeCategory(); as category) {
+        <div class="promo-panel" role="tabpanel" [id]="'promo-panel-' + activeTab()" [attr.aria-labelledby]="'promo-tab-' + activeTab()">
+          <header class="promo-panel-head"><div><span>POPULAR IN THIS CATEGORY</span><h3>{{ category.label }}</h3></div><span class="promo-count">{{ category.products.length }} products</span></header>
+          <div class="promo-product-grid">
+            @for (product of category.products; track product.name) {
+              <a class="promo-product-card" [routerLink]="product.link"><span class="promo-product-icon" aria-hidden="true">{{ product.icon }}</span><span class="promo-product-copy"><span class="promo-product-title"><b>{{ product.name }}</b>@if (product.pill) { <em>{{ product.pill }}</em> }</span><small>{{ product.description }}</small></span><span class="promo-arrow" aria-hidden="true">→</span></a>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div></section>
 </main>

@@ -1,0 +1,47 @@
+<main class="glossary-page">
+  <section class="glossary-hero" aria-labelledby="glossary-title">
+    <span class="hero-grid" aria-hidden="true"></span>
+    <div class="wrap hero-layout">
+      <div class="hero-copy">
+        <nav class="crumb" aria-label="Breadcrumb"><a routerLink="/">Home</a><span>›</span><span>Cloud Glossary</span></nav>
+        <span class="eyebrow">XCELLHOST CLOUD KNOWLEDGE</span>
+        <h1 id="glossary-title"><span>XcellCloud</span> | Cloud Glossary</h1>
+        <p class="hero-tagline">Cloud Glossary from XcellHost</p>
+        <strong class="hero-emphasis">Cloud terms explained in plain English<span class="typing-caret" aria-hidden="true"></span></strong>
+        <div class="hero-actions product-actions"><a class="primary" href="#glossary">↓ Infosheet</a><a class="secondary" routerLink="/contact">▣ Presentation</a><a class="secondary" href="#glossary">Screenshot Tour</a><a class="secondary" href="#glossary">7 Day's Free Trial</a><a class="talk-action" routerLink="/contact">Let's Talk</a></div>
+        <div class="hero-ai"><span>✦ Ask AI About Cloud Glossary from XcellHost</span><div><a href="https://chatgpt.com/?q=Explain%20the%20XcellHost%20Cloud%20Glossary" target="_blank" rel="noopener noreferrer" aria-label="Ask ChatGPT"><img src="https://www.google.com/s2/favicons?domain=chatgpt.com&amp;sz=64" alt=""></a><a href="https://grok.com/?q=XcellHost%20Cloud%20Glossary" target="_blank" rel="noopener noreferrer" aria-label="Ask Grok"><img src="https://www.google.com/s2/favicons?domain=grok.com&amp;sz=64" alt=""></a><a href="https://claude.ai/new?q=XcellHost%20Cloud%20Glossary" target="_blank" rel="noopener noreferrer" aria-label="Ask Claude"><img src="https://www.google.com/s2/favicons?domain=claude.ai&amp;sz=64" alt=""></a><a href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer" aria-label="Ask Gemini"><img src="https://www.google.com/s2/favicons?domain=gemini.google.com&amp;sz=64" alt=""></a><a href="https://www.perplexity.ai/search?q=XcellHost%20Cloud%20Glossary" target="_blank" rel="noopener noreferrer" aria-label="Ask Perplexity"><img src="https://www.google.com/s2/favicons?domain=perplexity.ai&amp;sz=64" alt=""></a></div></div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <span class="orbit one"></span><span class="orbit two"></span>
+        <img class="hero-image" src="/assets/images/cloud-glossary-hero-diagram.svg" alt="Cloud glossary concepts connected in one knowledge map">
+        <span class="floating-term term-a">CLOUD</span><span class="floating-term term-b">SECURITY</span><span class="floating-term term-c">AI</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="content-shell">
+    <section id="overview" class="section intro-section">
+      <div><span class="section-label">OVERVIEW</span><p class="overview-copy">A cloud glossary is a plain-language reference for the technologies, services and operating models used in modern IT. It helps business and technical teams share a common vocabulary, compare solutions and make confident decisions. Use this guide to understand essential terms—from compute, storage and networking to cybersecurity, compliance, automation and artificial intelligence. Each explanation connects technical language with practical business context, helping everyone from decision-makers to IT teams communicate more clearly.</p></div>
+    </section>
+
+    <section class="glossary-directory" id="glossary" aria-labelledby="directory-title">
+      <div class="directory-wrap">
+        <div class="directory-heading"><div><span class="section-label" id="directory-title">CLOUD A–Z</span><p>Search instantly, filter by topic or jump directly to a letter.</p></div><strong>{{ resultCount() }}<small>terms shown</small></strong></div>
+        <label class="directory-search" aria-label="Search cloud glossary"><span>⌕</span><input type="search" placeholder="Search a term… e.g. IaaS, Kubernetes, VPC" [value]="search()" (input)="search.set($any($event.target).value)"></label>
+        <div class="category-filters" role="group" aria-label="Filter glossary by category">@for (category of categories; track category.key) {<button type="button" [class.active]="activeCategory() === category.key" (click)="selectCategory(category.key)">{{ category.label }}</button>}</div>
+        <nav class="alphabet-nav" aria-label="Jump to glossary letter">@for (letter of alphabet; track letter) {<a [href]="'#glossary-' + letter" [class.disabled]="!hasGlossaryLetter(letter)">{{ letter }}</a>}</nav>
+        @if (glossaryGroups().length) {
+          <div class="glossary-groups">@for (group of glossaryGroups(); track group.letter) {<section class="glossary-group" [id]="'glossary-' + group.letter"><h3>{{ group.letter }}</h3><div class="glossary-grid">@for (term of group.terms; track term.term) {<article class="glossary-card"><div class="glossary-card-head"><span class="term-icon tag-{{ term.category }}" aria-hidden="true">@switch (termIcon(term.term, term.category)) {@case ('aws') {<b class="aws-mark">aws</b>} @case ('link') {<svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>} @case ('grid') {<svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg>} @case ('refresh') {<svg viewBox="0 0 24 24"><path d="M20 7v5h-5M4 17v-5h5"/><path d="M6.1 9A7 7 0 0 1 18 6l2 1M18 15a7 7 0 0 1-12 3l-2-1"/></svg>} @case ('server') {<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="7" rx="2"/><rect x="3" y="14" width="18" height="7" rx="2"/><path d="M7 6.5h.01M7 17.5h.01"/></svg>} @case ('database') {<svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v7c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12v7c0 1.7 3.6 3 8 3s8-1.3 8-3v-7"/></svg>} @case ('shield') {<svg viewBox="0 0 24 24"><path d="M12 3 20 6v6c0 5-3.2 8.3-8 10-4.8-1.7-8-5-8-10V6l8-3Z"/><path d="m9 12 2 2 4-5"/></svg>} @case ('network') {<svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="m8 7 3 9m5-9-3 9M8 6h8"/></svg>} @case ('code') {<svg viewBox="0 0 24 24"><path d="m8 9-4 3 4 3m8-6 4 3-4 3m-2-9-4 12"/></svg>} @case ('cost') {<svg viewBox="0 0 24 24"><path d="M16 4H8l-2 4h12l-2-4ZM7 8c-2 3-3 5-3 8 0 3 3 5 8 5s8-2 8-5c0-3-1-5-3-8"/><path d="M9 13h6m-3-2v7"/></svg>} @case ('pulse') {<svg viewBox="0 0 24 24"><path d="M3 12h4l2-7 4 14 2-7h6"/></svg>} @default {<svg viewBox="0 0 24 24"><path d="M17.5 19a4.5 4.5 0 0 0 0-9 6 6 0 0 0-11.6 1.5A3.8 3.8 0 0 0 6.5 19h11Z"/></svg>}}</span><h4>{{ term.term }}</h4><small class="glossary-tag tag-{{ term.category }}">{{ categoryLabels[term.category] }}</small></div><p>{{ term.definition }}</p></article>}</div></section>}</div>
+        } @else {<div class="no-results"><b>No matching cloud term found.</b><span>Try another search or choose “All”.</span></div>}
+      </div>
+    </section>
+
+    <section class="section default-faq-section" aria-labelledby="glossaryFaqTitle"><div class="pp-sec pp-faq-heading" id="glossaryFaqTitle">Frequently asked questions</div><div class="pp-faq"><xh-product-faq [faqs]="faqs" /></div></section>
+
+    <section class="section services-band"><div class="services-heading"><span class="section-label">PUT IT TO WORK</span><h2>From glossary to the cloud.</h2><p>Know the terms, then let XcellHost run the cloud for you.</p></div><div class="four-grid"><a class="service-link" routerLink="/colocation"><i>▦</i><b>Colocation</b><span>House your hardware in our Mumbai data centre.</span><em>Explore →</em></a><a class="service-link" routerLink="/iot-infrastructure"><i>⌁</i><b>IoT Infrastructure</b><span>Connect every device and process at the edge.</span><em>Explore →</em></a><a class="service-link" routerLink="/agentic-ai"><i>✦</i><b>Agentic AI</b><span>Autonomous AI agents for your business.</span><em>Explore →</em></a><a class="service-link" routerLink="/domains"><i>◎</i><b>Domains</b><span>Register your brand across 500+ extensions.</span><em>Explore →</em></a></div></section>
+
+    <xh-insights-section pageSlug="cloud-glossary" />
+
+    <section class="section final-cta" id="contact" aria-labelledby="glossaryCtaTitle"><div><span class="cta-kicker">XCELLHOST DELIGHTFUL SUPPORT</span><h2 id="glossaryCtaTitle">Ready to start with Cloud Glossary?</h2><p>Free consultation · cloud guidance · 24×7 support in English &amp; Hindi</p><div class="cta-actions"><a class="cta-primary" routerLink="/contact">Request a callback</a><a routerLink="/contact">⚡ Get Advice</a><a href="#glossary">↓ Browse Terms</a><a routerLink="/contact">▣ Presentation</a><a href="https://wa.me/918657032540" target="_blank" rel="noopener noreferrer">Talk on WhatsApp</a><a href="mailto:sales@xcellhost.cloud">Email Us</a></div></div><a class="buddha-link" routerLink="/company/support-overview" aria-label="Visit XcellHost 24 by 7 delightful support"><span class="buddha-glow" aria-hidden="true"></span><img src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost 24 by 7 Delightful Support" width="140" height="140" loading="lazy"></a></section>
+  </div>
+</main>

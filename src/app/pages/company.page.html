@@ -680,6 +680,27 @@
         </div>
       </div>
     </section>
+    } @else if (slug() === 'awards') {
+    <section class="awards-hero" aria-labelledby="awardsHeroTitle">
+      <span class="awards-hero-glow" aria-hidden="true"></span>
+      <span class="awards-hero-dots" aria-hidden="true"></span>
+      <div class="wrap awards-hero-grid">
+        <div class="awards-hero-copy">
+          <div class="pp-crumb">HOME &nbsp;›&nbsp; COMPANY &nbsp;›&nbsp; AWARDS</div>
+          <span class="awards-hero-kicker">XCELLHOST RECOGNITION</span>
+          <h1 id="awardsHeroTitle"><span>XcellHost</span> | Awards</h1>
+          <p>Awards and recognition from XcellHost</p>
+          <strong class="awards-hero-line">Celebrating excellence. Inspiring what’s next.<i aria-hidden="true"></i></strong>
+          <div class="awards-hero-actions awards-product-actions"><a class="awards-primary-action" href="#awards-title">↓ Awards</a><a class="awards-secondary-action" routerLink="/company/certifications-awards">▣ Certifications</a><a class="awards-secondary-action" href="#awards-title">Recognition Tour</a><a class="awards-secondary-action" routerLink="/contact">Company Profile</a><a class="awards-talk-action" routerLink="/contact">Let's Talk</a></div>
+          <div class="awards-ask-ai"><span>✦ Ask AI About XcellHost Awards</span><div><a [href]="companyAskAiHref('chatgpt')" target="_blank" rel="noopener noreferrer" aria-label="Ask ChatGPT"><img src="https://www.google.com/s2/favicons?domain=chatgpt.com&amp;sz=64" alt=""></a><a href="https://grok.com/?q=XcellHost%20Awards" target="_blank" rel="noopener noreferrer" aria-label="Ask Grok"><img src="https://www.google.com/s2/favicons?domain=grok.com&amp;sz=64" alt=""></a><a [href]="companyAskAiHref('claude')" target="_blank" rel="noopener noreferrer" aria-label="Ask Claude"><img src="https://www.google.com/s2/favicons?domain=claude.ai&amp;sz=64" alt=""></a><a [href]="companyAskAiHref('google')" target="_blank" rel="noopener noreferrer" aria-label="Ask Gemini"><img src="https://www.google.com/s2/favicons?domain=gemini.google.com&amp;sz=64" alt=""></a><a [href]="companyAskAiHref('perplexity')" target="_blank" rel="noopener noreferrer" aria-label="Ask Perplexity"><img src="https://www.google.com/s2/favicons?domain=perplexity.ai&amp;sz=64" alt=""></a></div></div>
+        </div>
+        <div class="awards-hero-visual" aria-label="Original cloud excellence trophy illustration">
+          <span class="awards-orbit awards-orbit-one" aria-hidden="true"></span><span class="awards-orbit awards-orbit-two" aria-hidden="true"></span>
+          <img class="awards-trophy" src="/assets/images/awards-hero-original.png" alt="Original cloud excellence trophy illustration" width="430" height="430" loading="eager" />
+          <span class="awards-topic awards-topic-one">EXCELLENCE</span><span class="awards-topic awards-topic-two">INNOVATION</span><span class="awards-topic awards-topic-three">TRUST</span>
+        </div>
+      </div>
+    </section>
     } @else {
     <section class="pp-hero company-hero">
       <span class="company-orb company-orb-one"></span>

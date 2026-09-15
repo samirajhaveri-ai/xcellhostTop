@@ -20,7 +20,7 @@ export const PRODUCT_BRAND_LINES: Record<string, string> = {
   "Cloud Backup (Acronis)": "XcellBackup | Backup Cloud",
   "Cloud Drive": "XcellDrive | Cloud Drive",
   "Microsoft 365": "XcellOffice | Microsoft 365",
-  "Bare Metal Server": "XcellBareMetal | Bare Metal Server",
+  "Bare Metal Server": "XcellDedicated | Bare Metal Server",
   "SMB Cyber Security Appliance" : "XcellSecure | SMB Cyber Security Appliance " ,
   "Advanced Endpoint Security (EDR)" : "XcellSecure | Advanced Endpoint Security (EDR)",
   "Remote Monitoring & Mgmt (RMM)" : "XcellSecure | Remote Monitoring & Mgmt (RMM)",
