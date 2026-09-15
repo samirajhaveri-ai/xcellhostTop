@@ -46,6 +46,20 @@ export const DIRECTORY_CATEGORIES: DirectoryCategory[] = [
 
 export const DIRECTORY: DirectoryEntry[] = [
   {
+    "name": "Domains",
+    "desc": "Explore domain extensions, pricing and included features",
+    "cat": "Web Presence",
+    "group": "Domains",
+    "heroImage": "/assets/images/domains/hero.svg"
+  },
+  {
+    "name": "IoT Infrastructure",
+    "desc": "Managed device connectivity, edge processing and IoT platforms",
+    "cat": "Cloud",
+    "group": "Cloud Infrastructure",
+    "heroImage": "/assets/images/iot-infrastructure/hero.svg"
+  },
+  {
     "name": "Tally on Cloud",
     "desc": "Access Tally from anywhere, anytime, any device — from ₹499/user/mo",
     "cat": "Cloud",

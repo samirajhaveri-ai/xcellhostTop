@@ -5104,3 +5104,52 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 }
 
 @media(min-width:1101px){#flagship .prod-grid-tabbed.protect-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* Spacing for the standard lower sections on Domains and IoT Infrastructure. */
+.pp-body:is(.domains-body, .iot-infrastructure-body, .agentic-ai-body) > .wrap > .pp-sec,
+.pp-body:is(.domains-body, .iot-infrastructure-body, .agentic-ai-body) #ppSecHead,
+.pp-body:is(.domains-body, .iot-infrastructure-body, .agentic-ai-body) #ppWhyHead,
+.pp-body:is(.domains-body, .iot-infrastructure-body, .agentic-ai-body) #showcaseVideosTitle { margin-top: 56px; }
+.pp-body:is(.domains-body, .iot-infrastructure-body, .agentic-ai-body) #ppBlog,
+.pp-body:is(.domains-body, .iot-infrastructure-body, .agentic-ai-body) .pp-cta { margin-top: 64px; }
+@media (max-width: 640px) {
+  .pp-body:is(.domains-body, .iot-infrastructure-body, .agentic-ai-body) > .wrap > .pp-sec,
+  .pp-body:is(.domains-body, .iot-infrastructure-body, .agentic-ai-body) #ppSecHead,
+  .pp-body:is(.domains-body, .iot-infrastructure-body, .agentic-ai-body) #ppWhyHead,
+  .pp-body:is(.domains-body, .iot-infrastructure-body, .agentic-ai-body) #showcaseVideosTitle { margin-top: 36px; }
+  .pp-body:is(.domains-body, .iot-infrastructure-body, .agentic-ai-body) #ppBlog,
+  .pp-body:is(.domains-body, .iot-infrastructure-body, .agentic-ai-body) .pp-cta { margin-top: 40px; }
+}
+
+.pp-body.agentic-ai-body { padding-top: 0; }
+.pp-body.agentic-ai-body > .wrap > .pp-sec,
+.pp-body.agentic-ai-body #ppSecHead,
+.pp-body.agentic-ai-body #ppWhyHead,
+.pp-body.agentic-ai-body #showcaseVideosTitle { margin-top: 32px; }
+.pp-body.agentic-ai-body #ppBlog,
+.pp-body.agentic-ai-body .pp-cta { margin-top: 36px; }
+@media(max-width:640px) {
+  .pp-body.agentic-ai-body > .wrap > .pp-sec,
+  .pp-body.agentic-ai-body #ppSecHead,
+  .pp-body.agentic-ai-body #ppWhyHead,
+  .pp-body.agentic-ai-body #showcaseVideosTitle { margin-top: 24px; }
+  .pp-body.agentic-ai-body #ppBlog,
+  .pp-body.agentic-ai-body .pp-cta { margin-top: 28px; }
+}
+
+/* Compact top spacing throughout the Domains page. */
+.pp-body.domains-body { padding-top: 0; }
+.pp-body.domains-body > .wrap > .pp-sec,
+.pp-body.domains-body #ppSecHead,
+.pp-body.domains-body #ppWhyHead,
+.pp-body.domains-body #showcaseVideosTitle,
+.pp-body.domains-body #ppBlog,
+.pp-body.domains-body .pp-cta { margin-top: 36px; }
+@media(max-width:760px) {
+  .pp-body.domains-body > .wrap > .pp-sec,
+  .pp-body.domains-body #ppSecHead,
+  .pp-body.domains-body #ppWhyHead,
+  .pp-body.domains-body #showcaseVideosTitle,
+  .pp-body.domains-body #ppBlog,
+  .pp-body.domains-body .pp-cta { margin-top: 24px; }
+}
