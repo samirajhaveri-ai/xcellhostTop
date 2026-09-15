@@ -34,6 +34,10 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/data-processing-agreement.page').then((m) => m.DataProcessingAgreementPage),
   },
+  { path: 'under-construction/security-glossary', redirectTo: 'security-glossary', pathMatch: 'full' },
+  { path: 'security-glossary', loadComponent: () => import('./pages/security-glossary.page').then((m) => m.SecurityGlossaryPage) },
+  { path: 'under-construction/ai-glossary', redirectTo: 'ai-glossary', pathMatch: 'full' },
+  { path: 'ai-glossary', loadComponent: () => import('./pages/ai-glossary.page').then((m) => m.AiGlossaryPage) },
   { path: 'under-construction/:slug', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
   { path: 'under-construction', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
   {

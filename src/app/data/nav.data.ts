@@ -3643,12 +3643,14 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Security Glossary ",
+                "title": "Security Glossary",
+                "href": "/security-glossary",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "AI Glossary ",
+                "title": "AI Glossary",
+                "href": "/ai-glossary",
                 "pill": null,
                 "desc": null
               },

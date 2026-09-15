@@ -47,6 +47,12 @@
           <div class="pph-scene bizmail-hero-art" aria-hidden="true">
             <xh-business-email-content [heroOnly]="true" />
           </div>
+        } @else if (slug() === 'co-location') {
+          <div class="pph-scene has-illus standalone-illus" aria-hidden="true">
+            <div class="pph-illus">
+              <img class="pph-illus-img" src="/assets/images/colocation-hero.svg" alt="Managed colocation server racks with redundant power and networking" />
+            </div>
+          </div>
         } @else if (isScrutinyEdr()) {
           <div class="pph-scene has-illus pph-scrutiny-illus" aria-hidden="true">
             <div class="pph-illus">
@@ -933,6 +939,9 @@
             @if (isInfrastructure()) {
               <xh-infrastructure-content />
             }
+            @if (slug() === 'co-location') {
+              <xh-colocation-content />
+            }
             @if (isZohoWorkspace()) {
               <xh-zoho-workspace-content />
             }
@@ -950,6 +959,7 @@
             }
             @if (
               !isInfrastructure() &&
+              slug() !== 'co-location' &&
               !isVmc() &&
               !isCmc() &&
               !isTsplusServerMonitoring() &&
