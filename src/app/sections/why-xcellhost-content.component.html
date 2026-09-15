@@ -1,0 +1,50 @@
+<main class="why-page">
+  <section class="why-hero" aria-labelledby="why-title">
+    <div class="why-wrap">
+      <div class="why-hero-grid">
+        <div class="why-hero-copy">
+          <span class="why-eyebrow"><span aria-hidden="true">&#10024;</span> WHY XCELLHOST</span>
+          <h1 id="why-title">Built for your<br>next <em>big move.</em></h1>
+          <p>Reliable infrastructure. Powerful people. Your ambitions deserve a partner who&rsquo;s always one step ahead.</p>
+          <div class="why-hero-actions"><a class="why-button" [routerLink]="[]" fragment="why-reasons">Discover the Difference <span aria-hidden="true">&#8594;</span></a><a class="why-story" href="https://www.youtube.com/@XcellHostCloudServices" target="_blank" rel="noopener noreferrer"><span class="material-symbols-outlined" aria-hidden="true">play_circle</span>Watch Our Story</a></div>
+        </div>
+        <div class="why-hero-visual">
+          <img src="/assets/images/why-xcellhost-hero.png" alt="XcellHost cloud infrastructure: scalable solutions, global infrastructure, advanced security and trusted by thousands" width="1672" height="941" fetchpriority="high" />
+        </div>
+      </div>
+      <div class="why-proof">
+        <span><i class="material-symbols-outlined" aria-hidden="true">verified_user</i><span><b>99.9%</b><small>Uptime Guarantee</small></span></span>
+        <span><i class="material-symbols-outlined" aria-hidden="true">speed</i><span><b>Blazing Fast</b><small>SSD Performance</small></span></span>
+        <span><i class="material-symbols-outlined" aria-hidden="true">headset_mic</i><span><b>24/7</b><small>Expert Support</small></span></span>
+        <span><i class="material-symbols-outlined" aria-hidden="true">lock</i><span><b>Safe &amp; Secure</b><small>Your Data, Our Priority</small></span></span>
+      </div>
+    </div>
+  </section>
+  <section class="why-reasons why-wrap" id="why-reasons" aria-labelledby="reasons-title">
+    <header class="why-intro">
+      <div class="why-intro-text"><h2 id="reasons-title">Built on Experience. <em>Driven by What&rsquo;s Next.</em></h2></div>
+    </header>
+    <div class="why-editorial">
+      <aside class="why-index"><span class="why-eyebrow">EXPLORE THE CHAPTERS</span><nav aria-label="Reasons by theme">@for (group of groups; track group.title; let index = $index) {<a [routerLink]="[]" [fragment]="'reason-group-' + index"><span>0{{ index + 1 }}</span>{{ group.title }}</a>}</nav><a class="why-index-contact" routerLink="/contact">Find your cloud solution</a></aside>
+      <div class="why-chapters">
+        @for (group of groups; track group.title; let index = $index) {
+          <section class="why-group" [id]="'reason-group-' + index" [attr.aria-labelledby]="'reason-title-' + index">
+            <header class="why-group-heading"><span class="why-chapter-number">0{{ index + 1 }}</span><div><span class="why-eyebrow">{{ group.title }}</span><h3 [id]="'reason-title-' + index">{{ chapterHeadings[index] }}</h3></div></header>
+            <div class="why-reason-list">@for (reason of group.reasons; track reason.number) {<article class="why-reason"><span class="why-reason-icon material-symbols-outlined" aria-hidden="true">{{ reason.icon }}</span><h4>{{ reason.title }}</h4><p>{{ reason.body }}</p></article>}</div>
+          </section>
+        }
+      </div>
+    </div>
+  </section>
+  <div class="why-wrap why-contact-wrap">
+    <section class="pp-cta why-buddha-strip" aria-labelledby="why-contact-title">
+      <div><h2 id="why-contact-title">Ready to start with XcellHost?</h2><p>Free consultation &middot; free migration &middot; 24&#215;7 support in English &amp; Hindi</p></div>
+      <div class="why-contact-actions">
+        <a class="btn btn-primary" routerLink="/contact">Talk to our team</a>
+        <a class="btn btn-ghost" href="https://wa.me/918657032540" target="_blank" rel="noopener noreferrer">Talk on WhatsApp</a>
+        <a class="btn btn-ghost" href="mailto:sales@xcellhost.com">Email Us</a>
+      </div>
+      <a class="pp-cta-buddha-link" routerLink="/company/support-overview" aria-label="Visit XcellHost customer support"><img class="pp-cta-buddha" src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost Laughing Buddha" width="104" height="104" loading="lazy" /></a>
+    </section>
+  </div>
+</main>

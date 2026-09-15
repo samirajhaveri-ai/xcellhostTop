@@ -1,0 +1,132 @@
+<main>
+  <section class="pp-hero glossary-hero">
+    <div class="pph-map" aria-hidden="true" [innerHTML]="worldMap"></div>
+    <span class="pph-grid" aria-hidden="true"></span>
+    <div class="wrap glossary-hero-grid">
+      <div class="glossary-hero-copy">
+        <nav class="pp-crumb" aria-label="Breadcrumb"><a routerLink="/">Home</a> &rsaquo; Resources &rsaquo; Security Glossary</nav>
+        <h1><span class="hero-brand"><span>Xcell</span>Secure</span><span aria-hidden="true"> | </span>Security Glossary</h1>
+        <p class="pp-tagline">Security Glossary from XcellHost</p>
+        <div class="pp-typewriter">Security terms explained in plain English<i aria-hidden="true"></i></div>
+        <div class="hero-ctas product-hero-ctas">
+          <button class="btn ppd-info" type="button" (click)="requestDoc('infosheet')">&#11015; Infosheet</button>
+          <button class="btn ppd-pres" type="button" (click)="requestDoc('presentation')">&#128214; Presentation</button>
+          <button class="btn btn-ghost" type="button" (click)="tour.showModal()">Screenshot Tour</button>
+          <button class="btn btn-ghost" type="button" disabled>7 Day's Free Trial</button>
+          <button class="btn btn-primary" type="button" (click)="requestCallback()">Let's Talk</button>
+        </div>
+        <section class="pp-ask-ai" aria-label="Ask AI about Security Glossary">
+          <span class="pp-ask-ai-kicker">Ask AI About Security Glossary from XcellHost</span>
+          <div class="pp-ask-ai-actions">@for (platform of aiPlatforms; track platform.name) {
+            <a class="pp-ask-ai-chip" [attr.aria-label]="platform.name" [href]="platform.url + (platform.name === 'Google Gemini' ? '' : aiPrompt)" target="_blank" rel="noopener noreferrer"><img [src]="'https://www.google.com/s2/favicons?domain=' + platform.domain + '&sz=64'" alt="" aria-hidden="true"></a>
+          }</div>
+        </section>
+      </div>
+      <img class="glossary-art" src="/assets/images/security-glossary-hero.svg" width="600" height="520" alt="Connected security concepts surrounding a central shield: firewall, encryption, identity, network and monitoring">
+    </div>
+  </section>
+  <dialog #tour class="glossary-tour" aria-labelledby="glossary-tour-title"><button class="tour-close" type="button" (click)="tour.close()" aria-label="Close screenshot tour">&times;</button><h2 id="glossary-tour-title">Explore the Security Glossary</h2><img src="/assets/images/security-glossary-hero.svg" alt="Security glossary concepts"><p>Search all {{ terms.length }} terms, choose a security category, or use A&ndash;Z to browse by first letter.</p><a class="btn btn-primary" href="#glossary" (click)="tour.close()">Browse glossary</a></dialog>
+  <xh-trust-bar />
+
+  <section class="glossary-section" id="glossary" aria-labelledby="glossary-heading">
+    <div class="wrap">
+      <div class="sec-head"><div class="eyebrow">Your security reference</div><h2 id="glossary-heading">Every term. Clearly explained.</h2><p>Search a term or browse the categories to build your security vocabulary.</p></div>
+      <div class="search-row"><label class="search-box"><span class="material-symbols-outlined" aria-hidden="true">search</span><input type="search" aria-label="Search security terms" placeholder="Search phishing, zero trust, WAAP…" [value]="query()" (input)="search($event)"></label><button class="reset-button" type="button" (click)="reset()">Reset filters</button></div>
+      <div class="category-tabs" role="group" aria-label="Security categories">
+        @for (item of categories; track item.id) { <button type="button" [class.active]="category() === item.id" [attr.aria-pressed]="category() === item.id" (click)="selectCategory(item.id)">{{ item.label }}</button> }
+      </div>
+      <div class="alphabet" role="group" aria-label="Browse by first letter">
+        <button type="button" [class.active]="letter() === 'all'" [attr.aria-pressed]="letter() === 'all'" (click)="letter.set('all')">All</button>
+        @for (item of letters; track item) { <button type="button" [disabled]="!availableLetters().has(item)" [class.active]="letter() === item" [attr.aria-pressed]="letter() === item" (click)="letter.set(item)">{{ item }}</button> }
+      </div>
+      <p class="result-count" role="status" aria-live="polite">Showing {{ count() }} of {{ terms.length }} terms</p>
+      @for (group of groups(); track group.letter) {
+        <section class="term-group" [attr.aria-label]="'Terms beginning with ' + group.letter"><h3 class="letter-heading">{{ group.letter }}</h3><div class="term-grid">
+          @for (term of group.terms; track term.term) { <article class="term-card" [attr.data-category]="term.category"><div class="term-card-top"><img class="term-icon" [src]="term.icon" alt="" aria-hidden="true"><span class="term-category">{{ term.label }}</span></div><h4>{{ term.term }}</h4><p>{{ term.definition }}</p></article> }
+        </div></section>
+      } @empty { <div class="empty-state"><h3>No matching terms</h3><p>Try another word or reset your filters to browse the full glossary.</p><button class="btn btn-primary" type="button" (click)="reset()">Show all terms</button></div> }
+    </div>
+  </section>
+
+  <section class="glossary-section related-section"><div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Put it to work</div><h2>From glossary to a defended business.</h2><p>Know the terms, then let XcellHost put the defences in place — protection, monitoring, zero trust and compliance.</p></div>
+    <div class="solution-grid">@for (solution of solutions; track solution.title) { <a class="solution-card" [routerLink]="solution.path"><img class="section-icon" [src]="'/assets/images/security-glossary/related-' + $index + '.svg'" alt="" aria-hidden="true"><h3>{{ solution.title }}</h3><p>{{ solution.description }}</p><strong>Explore <span aria-hidden="true">→</span></strong></a> }</div>
+  </div></section>
+  <section class="glossary-section guides-section"><div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Keep learning</div><h2>Guides and briefings from our security team</h2><p>Explore practical guidance on layered defence, zero trust and data protection.</p></div>
+    <div class="term-grid guide-grid">
+      <article class="solution-card"><img class="section-icon" src="/assets/images/security-glossary/blog-0.svg" alt="" aria-hidden="true"><span class="term-category">Guide</span><h3>Building defense-in-depth for an Indian SMB</h3><p>How the glossary terms fit together into a practical, layered defence you can actually run.</p><a routerLink="/insights">Browse security guides →</a></article>
+      <article class="solution-card"><img class="section-icon" src="/assets/images/security-glossary/blog-1.svg" alt="" aria-hidden="true"><span class="term-category">Explainer</span><h3>Zero trust, explained without the buzzwords</h3><p>What “never trust, always verify” means in practice, and where to start.</p><a routerLink="/insights">Browse security explainers →</a></article>
+      <article class="solution-card"><img class="section-icon" src="/assets/images/security-glossary/blog-2.svg" alt="" aria-hidden="true"><span class="term-category">Compliance</span><h3>What the DPDP Act means for your security program</h3><p>Turning India’s data-protection law into concrete controls, in plain terms.</p><a routerLink="/securesetu-dpdpa">Explore DPDP resources →</a></article>
+    </div>
+  </div></section>
+  <xh-insights-section pageSlug="security-glossary" [pageAliases]="['autonomous-threat-management']" />
+  <xh-testimonials />
+  <section class="glossary-section glossary-closing"><div class="wrap">
+        <div class="pp-cta">
+            <div>
+              <h3>Ready to start with Security Glossary?</h3>
+              <p>Free consultation · free migration · 24×7 support in English &amp; Hindi</p>
+            </div>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap">
+              <a class="btn btn-primary" href="#" (click)="$event.preventDefault(); requestCallback()"
+                >Request a callback</a
+              >
+              <a
+                class="btn btn-ghost"
+                style="border-color: rgba(255, 255, 255, 0.4); color: #fff"
+                href="#"
+                (click)="$event.preventDefault(); requestCallback()"
+                >⚡ Buy Now</a
+              >
+              <a
+                class="btn btn-ghost"
+                style="border-color: rgba(255, 255, 255, 0.4); color: #fff"
+                href="#" (click)="$event.preventDefault(); requestDoc('infosheet')"
+                target="_blank"
+                rel="noopener noreferrer"
+                >⬇ Infosheet</a
+              >
+              <a
+                class="btn btn-ghost"
+                style="border-color: rgba(255, 255, 255, 0.4); color: #fff"
+                href="#"
+                (click)="$event.preventDefault(); requestDoc('presentation')"
+                >📖 Presentation</a
+              >
+              <a
+                class="btn btn-ghost"
+                style="border-color: rgba(255, 255, 255, 0.4); color: #fff"
+                href="https://wa.me/918657032540?text=Hello%2C%20I%20have%20a%20security%20enquiry"
+                target="_blank"
+                rel="noopener"
+                >Talk on WhatsApp</a
+              >
+              <a
+                class="btn btn-ghost"
+                style="border-color: rgba(255, 255, 255, 0.4); color: #fff"
+                href="mailto:sales@xcellhost.com?subject=Security%20Glossary%20enquiry"
+                >Email Us</a
+              >
+            </div>
+            <a
+              class="pp-cta-buddha-link"
+              routerLink="/company/support-overview"
+              aria-label="Visit XcellHost customer support"
+            >
+              <img
+                class="pp-cta-buddha"
+                src="/assets/images/laughing-buddha-white-text-transparent.png"
+                alt="XcellHost Laughing Buddha"
+              />
+            </a>
+
+          </div>
+
+          <div class="pp-proof">
+            <span>🏅 ISO 27001</span><span>🏅 ISO 20000-1</span
+            ><span>🤝 Microsoft Gold Partner</span><span>🕰 Since 1999</span
+            ><span>🔒 Secure Payments — UPI · Cards · NetBanking</span>
+          </div>
+  </div></section>
+</main>

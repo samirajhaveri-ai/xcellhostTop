@@ -15,7 +15,8 @@ import { LeadService } from '../core/lead.service';
       <div class="wrap newsletter-inner">
         <div class="newsletter-copy">
           <h2 id="newsletter-title">
-            Get the latest updates on new features, tutorials, and cloud hosting tips.
+            Get the latest updates on Blog Posts, Industry News, Products, and Guidance on Cloud,
+            Cyber Security, AI &amp; Digital Transformation.
           </h2>
         </div>
 

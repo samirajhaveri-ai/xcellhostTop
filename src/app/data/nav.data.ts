@@ -96,6 +96,11 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Domains",
             "items": [
               {
+                "title": "Domains",
+                "pill": "NEW",
+                "desc": "Extensions, pricing and everything to get online"
+              },
+              {
                 "title": "Register a Domain Name",
                 "pill": null,
                 "desc": "Get your domain name now 🚀"
@@ -489,6 +494,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "IOT Cloud",
                 "pill": null,
                 "desc": null
+              },
+              {
+                "title": "IoT Infrastructure",
+                "pill": null,
+                "desc": "Managed device connectivity, edge processing and IoT platforms"
               },
               
             ]
@@ -3643,12 +3653,14 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Security Glossary ",
+                "title": "Security Glossary",
+                "href": "/security-glossary",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "AI Glossary ",
+                "title": "AI Glossary",
+                "href": "/ai-glossary",
                 "pill": null,
                 "desc": null
               },

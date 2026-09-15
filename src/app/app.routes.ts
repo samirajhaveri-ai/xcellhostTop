@@ -12,9 +12,40 @@ import { Routes } from '@angular/router';
  *   /compare/
  */
 export const routes: Routes = [
+  { path: 'why-xcellhost', redirectTo: 'company/why-xcellhost', pathMatch: 'full' },
   { path: '', pathMatch: 'full', loadComponent: () => import('./pages/home.page').then((m) => m.HomePage) },
   { path: 'compare', loadComponent: () => import('./pages/compare.page').then((m) => m.ComparePage) },
   { path: 'compare-providers', loadComponent: () => import('./pages/compare-providers.page').then((m) => m.CompareProvidersPage) },
+  {
+    path: 'cloudbaba-vs-vultr',
+    data: { comparison: 'vultr' },
+    loadComponent: () => import('./pages/compare-provider-detail.page').then((m) => m.CompareProviderDetailPage),
+  },
+  {
+    path: 'cloudbaba-vs-ovhcloud',
+    data: { comparison: 'ovhcloud' },
+    loadComponent: () => import('./pages/compare-provider-detail.page').then((m) => m.CompareProviderDetailPage),
+  },
+  {
+    path: 'cloudbaba-vs-digitalocean',
+    data: { comparison: 'digitalocean' },
+    loadComponent: () => import('./pages/compare-provider-detail.page').then((m) => m.CompareProviderDetailPage),
+  },
+  {
+    path: 'cloudbaba-vs-aws',
+    data: { comparison: 'aws' },
+    loadComponent: () => import('./pages/compare-provider-detail.page').then((m) => m.CompareProviderDetailPage),
+  },
+  {
+    path: 'cloudbaba-vs-gcp',
+    data: { comparison: 'gcp' },
+    loadComponent: () => import('./pages/compare-provider-detail.page').then((m) => m.CompareProviderDetailPage),
+  },
+  {
+    path: 'cloudbaba-vs-azure',
+    data: { comparison: 'azure' },
+    loadComponent: () => import('./pages/compare-provider-detail.page').then((m) => m.CompareProviderDetailPage),
+  },
   { path: 'whatsapp-for-business', redirectTo: 'whatsapp-smb', pathMatch: 'full' },
   { path: 'bfsi-financial-services', redirectTo: 'bfsi-insurance-services', pathMatch: 'full' },
   { path: 'under-construction/infrastructure', redirectTo: 'infrastructure', pathMatch: 'full' },
@@ -39,6 +70,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/cloud-glossary.page').then((m) => m.CloudGlossaryPage),
   },
+  { path: 'under-construction/security-glossary', redirectTo: 'security-glossary', pathMatch: 'full' },
+  { path: 'security-glossary', loadComponent: () => import('./pages/security-glossary.page').then((m) => m.SecurityGlossaryPage) },
+  { path: 'under-construction/ai-glossary', redirectTo: 'ai-glossary', pathMatch: 'full' },
+  { path: 'ai-glossary', loadComponent: () => import('./pages/ai-glossary.page').then((m) => m.AiGlossaryPage) },
+
   { path: 'under-construction/:slug', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
   { path: 'under-construction', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
   {

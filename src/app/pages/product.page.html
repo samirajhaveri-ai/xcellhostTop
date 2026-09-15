@@ -47,6 +47,12 @@
           <div class="pph-scene bizmail-hero-art" aria-hidden="true">
             <xh-business-email-content [heroOnly]="true" />
           </div>
+        } @else if (slug() === 'co-location') {
+          <div class="pph-scene has-illus standalone-illus" aria-hidden="true">
+            <div class="pph-illus">
+              <img class="pph-illus-img" src="/assets/images/colocation-hero.svg" alt="Managed colocation server racks with redundant power and networking" />
+            </div>
+          </div>
         } @else if (isScrutinyEdr()) {
           <div class="pph-scene has-illus pph-scrutiny-illus" aria-hidden="true">
             <div class="pph-illus">
@@ -767,7 +773,7 @@
         </div>
       }
 
-      @if (isAutonomousThreatSolution()) {
+@if (isAutonomousThreatSolution()) {
         <div class="pp-body atm-default-overview">
           <div class="wrap">
             <div class="pp-sec">Overview</div>
@@ -910,6 +916,9 @@
         [class.cloud-backup-body]="isCloudBackup()"
         [class.cdr-smb-body]="isCloudDisasterRecoverySmb()"
         [class.domain-registration-body]="slug() === 'register-a-domain-name'"
+        [class.domains-body]="slug() === 'domains'"
+        [class.iot-infrastructure-body]="slug() === 'iot-infrastructure'"
+        [class.agentic-ai-body]="slug() === 'agentic-ai'"
         [class.edr-body]="isAdvancedEdr()"
         [class.workforce-analytics-body]="slug() === 'workforce-analytics'"
         [class.rmm-body]="slug() === 'remote-monitoring-and-mgmt-rmm'"
@@ -923,6 +932,13 @@
           @if (slug() === 'waap-as-a-service') {
             <xh-waap-content />
           } @else {
+          @if (slug() === 'iot-infrastructure') {
+            <xh-iot-infrastructure-content />
+          } @else if (slug() === 'domains') {
+            <xh-domains-content />
+          } @else if (slug() === 'agentic-ai') {
+            <xh-agentic-ai-content />
+          } @else {
           @if (slug() === 'enterprise-dmarc') {
             <xh-enterprise-dmarc-content />
           } @else if (slug() === 'business-e-mail') {
@@ -933,6 +949,9 @@
             }
             @if (isInfrastructure()) {
               <xh-infrastructure-content />
+            }
+            @if (slug() === 'co-location') {
+              <xh-colocation-content />
             }
             @if (isZohoWorkspace()) {
               <xh-zoho-workspace-content />
@@ -951,6 +970,7 @@
             }
             @if (
               !isInfrastructure() &&
+              slug() !== 'co-location' &&
               !isVmc() &&
               !isCmc() &&
               !isTsplusServerMonitoring() &&
@@ -3072,6 +3092,8 @@
             }
           }
 
+          }
+
           @if (v.name === 'Enterprise DMARC' && showcaseVideos().length) {
             <section class="tally-videos" aria-labelledby="dmarcVideosTitle">
               <div class="pp-sec" id="dmarcVideosTitle">Watch it in action</div>
@@ -3289,7 +3311,8 @@
             (showcaseVideos().length ||
               isAutonomousThreatSolution() ||
               isOurPlatform() ||
-              isWatchtower()) &&
+              isWatchtower() ||
+              slug() === 'iot-infrastructure') &&
             slug() !== 'scrutiny-dlp' &&
             !isTsplusRemoteSupport() &&
             !isTsplusAdvancedSecurity() &&
