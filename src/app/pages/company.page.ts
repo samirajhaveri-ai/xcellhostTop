@@ -10,11 +10,12 @@ import { WORLD_MAP_HTML } from '../data/site.data';
 import { HeroNetDirective } from '../sections/product';
 import { ResellerProgramContentComponent } from '../sections/reseller-program-content.component';
 import { TeamStructureComponent } from '../sections/team-structure.component';
+import { WhyXcellhostContentComponent } from '../sections/why-xcellhost-content.component';
 
 @Component({
   selector: 'xh-company-page',
   standalone: true,
-  imports: [RouterLink, HeroNetDirective, ResellerProgramContentComponent, TeamStructureComponent],
+  imports: [RouterLink, HeroNetDirective, ResellerProgramContentComponent, TeamStructureComponent, WhyXcellhostContentComponent],
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './company.page.html',

@@ -1,4 +1,8 @@
 import { WaapContentComponent } from '../sections/waap-content.component';
+import { IotInfrastructureContentComponent } from '../sections/iot-infrastructure-content.component';
+import { DomainsContentComponent } from '../sections/domains-content.component';
+import { AgenticAiContentComponent } from '../sections/agentic-ai-content.component';
+import { AGENTIC_AI_SAMPLE_FAQS, AGENTIC_AI_SAMPLE_WHY } from '../data/agentic-ai-sample.data';
 import { EnterpriseDmarcContentComponent } from '../sections/enterprise-dmarc-content.component';
 import { BusinessEmailContentComponent } from '../sections/business-email-content.component';
 import { InsightsSectionComponent } from '../sections/insights-section.component';
@@ -100,7 +104,7 @@ interface CloudDrivePlan {
 }
 
 type CloudBackupTerm = 'monthly' | 'quarterly' | '6m' | 'yearly';
-type CloudBackupCountry = 'IN' | 'UK' | 'AE' | 'US';
+type CloudBackupCountry = 'IN' | 'UK' | 'AE' | 'US' | 'SG';
 
 interface CloudBackupPlan {
   storage: string;
@@ -159,6 +163,9 @@ interface ProductTourSlide {
 
     ManagedMicrosoft365ContentComponent,
     WaapContentComponent,
+    IotInfrastructureContentComponent,
+    DomainsContentComponent,
+    AgenticAiContentComponent,
     CopilotStudioContentComponent,
     CloudObjectStorageContentComponent,
     ZohoWorkspaceContentComponent,
@@ -865,7 +872,19 @@ export class ProductPage {
   });
 
   /** `null` while the slug matches nothing — the effect below sends those home. */
-  readonly view = computed<ProductView | null>(() => this.resolve(this.slug()));
+  readonly view = computed<ProductView | null>(() => {
+    const view = this.resolve(this.slug());
+    if (!view || this.slug() !== 'agentic-ai') return view;
+    return {
+      ...view,
+      heroImage: '/assets/images/agentic-ai/hero.svg',
+      why: AGENTIC_AI_SAMPLE_WHY,
+      faqs: AGENTIC_AI_SAMPLE_FAQS,
+      heroBrand: { ...view.heroBrand, logoImage: '/assets/images/agentic-ai/logo.png' },
+      videos: ['ScMzIvxBSi4', 'ScMzIvxBSi4'],
+      videoLabels: ['Introduction', 'Use Case'],
+    };
+  });
 
   /** Current portion of an optional rotating product hero message. */
   readonly typedHeroText = signal('');
@@ -1140,6 +1159,37 @@ export class ProductPage {
    */
   private resolve(slug: string): ProductView | null {
     if (!slug) return null;
+    if (slug === 'domains') {
+      const view = this.products.build({
+        name: 'Domains',
+        tag: 'Find the right domain for your next big idea.',
+        cat: 'Web Presence',
+        crumb: 'Web Presence › Domains',
+      });
+      return {
+        ...view,
+        heroImage: '/assets/images/domains/hero.svg',
+        heroBrand: { ...view.heroBrand, logoImage: '/assets/images/domains/logo.png' },
+        videos: ['ScMzIvxBSi4', 'ScMzIvxBSi4'],
+        videoLabels: ['Introduction', 'Use Case'],
+      };
+    }
+    if (slug === 'iot-infrastructure') {
+      const view = this.products.build({
+        name: 'IoT Infrastructure',
+        tag: 'Connect every device. Process at the edge.',
+        cat: 'Cloud',
+        crumb: 'Cloud › IoT Infrastructure',
+      });
+      return {
+        ...view,
+        heroImage: '/assets/images/iot-infrastructure/hero.svg',
+        // Placeholder clips, matching the demo video used on other product pages.
+        videos: ['ScMzIvxBSi4', 'ScMzIvxBSi4'],
+        videoLabels: ['Introduction', 'Use Case'],
+        heroBrand: { ...view.heroBrand, logoImage: '/assets/images/iot-infrastructure/logo.png' },
+      };
+    }
 
     if (slug === 'infrastructure') {
       return this.products.build({
@@ -1342,24 +1392,28 @@ export class ProductPage {
     { key: 'UK', label: 'UK', flag: 'gb', currency: 'GBP', locale: 'en-GB' },
     { key: 'AE', label: 'UAE', flag: 'ae', currency: 'AED', locale: 'en-AE' },
     { key: 'US', label: 'USA', flag: 'us', currency: 'USD', locale: 'en-US' },
+    { key: 'SG', label: 'Singapore', flag: 'sg', currency: 'SGD', locale: 'en-SG' },
   ] as const;
   readonly selectedCloudBackupCountry = signal<CloudBackupCountry>('IN');
   readonly activeCloudBackupCountry = computed(() =>
     this.cloudBackupCountries.find(country => country.key === this.selectedCloudBackupCountry())!
   );
 
-  // Enter final billing-period totals by storage size, in each country's currency.
-  // Example entry: '50 GB': { monthly: ..., quarterly: ..., '6m': ..., yearly: ... }
-  readonly cloudBackupRegionalPrices: Record<Exclude<CloudBackupCountry, 'IN'>, Record<string, Partial<Record<CloudBackupTerm, number>>>> = {
-    UK: {},
-    AE: {},
-    US: {},
+  // Fixed local-currency units per INR; refresh this snapshot when updating prices.
+  // Source: https://www.xe.com/en-us/currencytables/?from=INR&date=2026-09-14
+  // Rates as of 2026-09-14 16:00 UTC.
+  readonly cloudBackupExchangeRates: Record<Exclude<CloudBackupCountry, 'IN'>, number> = {
+    UK: 0.0077416692863518325,
+    AE: 0.03836205294583207,
+    US: 0.010445759821873948,
+    SG: 0.01326886632649924,
   };
 
-  cloudBackupRegionalPrice(plan: CloudBackupPlan): number | undefined {
+  cloudBackupRegionalPrice(plan: CloudBackupPlan): number {
     const country = this.selectedCloudBackupCountry();
-    return country === 'IN' ? this.cloudBackupPrice(plan)
-      : this.cloudBackupRegionalPrices[country][plan.storage]?.[this.selectedCloudBackupTerm()];
+    const basePrice = this.cloudBackupPrice(plan);
+    return country === 'IN' ? basePrice
+      : Math.round(basePrice * 1.2 * this.cloudBackupExchangeRates[country] * 100) / 100;
   }
 
   formatCloudBackupPrice(plan: CloudBackupPlan): string {
