@@ -1,0 +1,82 @@
+:host {
+  display: block;
+  background: #fff;
+}
+
+.source-comparison-shell {
+  width: 100%;
+  overflow: hidden;
+  background: #fff;
+}
+
+.source-comparison-frame {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  border: 0;
+  background: #fff;
+}
+
+.comparison-default-sections {
+  display: block;
+  background: #fff;
+}
+
+.comparison-default-sections .pp-body {
+  padding: 36px 0 42px;
+}
+
+.comparison-default-sections .pp-sec:first-child {
+  margin-top: 0;
+}
+
+.comparison-default-sections #ppSecWrap,
+.comparison-default-sections #ppWhy,
+.comparison-default-sections .tally-videos,
+.comparison-default-sections #ppRevs,
+.comparison-default-sections #ppFaq,
+.comparison-default-sections #ppBlog {
+  margin-bottom: 42px;
+}
+
+.comparison-default-sections .pw-ic svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.comparison-default-sections .comparison-cta-actions {
+  display: flex;
+  max-width: 560px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.comparison-default-sections .pp-cta .btn-ghost {
+  border-color: rgba(255, 255, 255, 0.42);
+  color: #fff;
+}
+
+.comparison-default-sections .pp-cta .btn-ghost:hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+@media (max-width: 760px) {
+  .comparison-default-sections .pp-body {
+    padding-top: 26px;
+  }
+
+  .comparison-default-sections #ppSecWrap,
+  .comparison-default-sections #ppWhy,
+  .comparison-default-sections .tally-videos,
+  .comparison-default-sections #ppRevs,
+  .comparison-default-sections #ppFaq,
+  .comparison-default-sections #ppBlog {
+    margin-bottom: 32px;
+  }
+}

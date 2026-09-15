@@ -1,0 +1,105 @@
+<main class="source-comparison-shell">
+  <iframe
+    #comparisonFrame
+    class="source-comparison-frame"
+    [src]="sourceUrl"
+    [title]="'CloudBaba vs ' + provider + ' comparison'"
+    (load)="onFrameLoad()"
+  ></iframe>
+
+  <section id="ppage" class="comparison-default-sections" aria-label="Cloud Backup information">
+    <div class="pp-body cloud-backup-body">
+      <div class="wrap">
+        <div class="pp-sec">Security &amp; compliance — {{ comparisonTitle }}</div>
+        <div id="ppSecWrap">
+          <p class="pp-ov">
+            Backups are what ransomware attacks first, so the copy is placed beyond reach of your
+            production network and written in immutable form. Once a recovery point exists it
+            cannot be modified or deleted inside its retention window.
+          </p>
+          <div class="pp-secrows">
+            @for (row of securityRows; track row[0]) {
+              <div class="psrow"><span class="psk">{{ row[0] }}</span><span class="psv">{{ row[1] }}</span></div>
+            }
+          </div>
+          <p class="pp-secfoot">
+            XcellHost is ISO 27001 and ISO 20000-1 certified · Indian Tier-4 datacenters · DPDPA
+            and RBI aligned · 24×7 NOC and SOC.
+          </p>
+        </div>
+
+        <div class="pp-sec" id="ppWhyHead">Why XcellHost for {{ comparisonTitle }}</div>
+        <div class="pp-why" id="ppWhy">
+          @for (item of whyCloudBackup; track item[0]) {
+            <article class="pw">
+              <span class="pw-ic" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Zm-3.5-10 2.2 2.2 4.8-5" /></svg>
+              </span>
+              <b>{{ item[0] }}</b><span>{{ item[1] }}</span>
+            </article>
+          }
+        </div>
+
+        <section class="tally-videos" aria-labelledby="comparisonVideosTitle">
+          <div class="pp-sec" id="comparisonVideosTitle">Watch it in action</div>
+          <div class="tally-video-grid">
+            <article class="tally-video-card">
+              <h3><span>Product Intro</span></h3>
+              <div class="tally-video-frame">
+                <iframe src="https://www.youtube-nocookie.com/embed/rya4Q4IZniA?rel=0&amp;playsinline=1" title="Cloud Backup product introduction" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+            </article>
+            <article class="tally-video-card">
+              <h3><span>Use Cases</span></h3>
+              <div class="tally-video-frame">
+                <iframe src="https://www.youtube-nocookie.com/embed/nIMbqdbGxao?rel=0&amp;playsinline=1" title="Cloud Backup use cases" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <div class="pp-sec">What customers say about {{ comparisonTitle }}</div>
+        <div class="pp-tcards" id="ppRevs">
+          @for (review of reviews; track review.name) {
+            <article class="tcard">
+              <div class="quote-badge">”</div>
+              <div class="tav">{{ review.initials }}</div>
+              <div class="tname">{{ review.name }}</div>
+              <div class="trole">{{ review.role }}</div>
+              <div class="tstars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p>{{ review.quote }}</p>
+            </article>
+          }
+        </div>
+
+        <div class="pp-sec pp-faq-heading">Frequently asked questions about {{ comparisonTitle }}</div>
+        <div class="pp-faq" id="ppFaq"><xh-product-faq [faqs]="faqs" /></div>
+
+        <div id="ppBlog">
+          <xh-insights-section pageSlug="cloud-backup" [pageAliases]="['cloud-backup-acronis', 'data-protection']" />
+        </div>
+
+        <div class="pp-cta">
+          <div>
+            <h3>Ready to explore {{ comparisonTitle }}?</h3>
+            <p>Free consultation · free migration · 24×7 support in English &amp; Hindi</p>
+          </div>
+          <div class="comparison-cta-actions">
+            <a class="btn btn-primary" href="#" (click)="openCallback($event)">Request a callback</a>
+            <a class="btn btn-ghost" href="tel:+912267111555">Call +91 22 6711 1555</a>
+            <a class="btn btn-ghost" href="https://wa.me/918657032540" target="_blank" rel="noopener">Talk on WhatsApp</a>
+            <a class="btn btn-ghost" [href]="'mailto:sales@xcellhost.cloud?subject=' + comparisonTitle + ' enquiry'">Email Us</a>
+          </div>
+          <a class="pp-cta-buddha-link" routerLink="/company/support-overview" aria-label="Visit XcellHost customer support">
+            <img class="pp-cta-buddha" src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost Laughing Buddha" />
+          </a>
+        </div>
+
+        <div class="pp-proof">
+          <span>🏅 ISO 27001</span><span>🏅 ISO 20000-1</span><span>🤝 Microsoft Gold Partner</span>
+          <span>🕰 Since 1999</span><span>🔒 Secure Payments — UPI · Cards · NetBanking</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

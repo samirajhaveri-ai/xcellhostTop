@@ -68,13 +68,14 @@ const COUNTER_THRESHOLD = 0.5;
             <div class="why-badge">Why Xcellhost</div>
             <h2>A cloud partner that owns the outcome.</h2>
             <p>We choose, deploy and manage the right stack — end to end.</p>
-            <div class="why-stats">
-              <div><b>10000+</b><span>Businesses served</span></div>
-              <div><b>200+</b><span>OEM partnerships</span></div>
-              <div><b>27+</b><span>Years in cloud</span></div>
-              <div><b>99.95%</b><span>Uptime SLA</span></div>
-              <div><b>24×7</b><span>Expert support</span></div>
-              <div><b>Free</b><span>Migration assistance</span></div>
+            <div class="why-benefits">
+              @for (benefit of benefits; track benefit.title) {
+                <article class="why-benefit">
+                  <span class="why-benefit-icon material-symbols-outlined" aria-hidden="true">{{ benefit.icon }}</span>
+                  <h3>{{ benefit.title }}</h3>
+                  <p>{{ benefit.body }}</p>
+                </article>
+              }
             </div>
             <small>Trusted by businesses, schools and organizations across India.</small>
           </div>
@@ -87,14 +88,24 @@ const COUNTER_THRESHOLD = 0.5;
     .why .why-intro { max-width: none; margin: 0 auto; text-align: center; }
     .why .why-intro h2 { max-width: none; margin: 17px auto 12px; font-size: clamp(26px, 3.1vw, 43px); }
     .why .why-intro > p { max-width: none; }
-    .why .why-stats { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 24px; margin: 40px 0 32px; }
-    .why .why-stats > div { min-width: 0; }
-    .why .why-stats span { white-space: normal; line-height: 1.5; }
-    @media (max-width: 980px) { .why .why-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 28px; } }
-    @media (max-width: 480px) { .why .why-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    .why .why-benefits { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 26px; margin: 40px 0 32px; }
+    .why .why-benefit { min-width: 0; text-align: center; }
+    .why .why-benefit-icon { display: grid; place-items: center; width: 58px; height: 58px; margin: 0 auto 18px; border-radius: 50%; background: #eaf2ff; color: #1565d8; font-size: 30px; }
+    .why .why-benefit h3 { margin: 0 0 12px; color: #000; font-size: 18px; font-weight: 700; line-height: 1.3; }
+    .why .why-benefit p { margin: 0 auto; max-width: 220px; color: #000; font-size: 14px; line-height: 1.65; }
+    @media (max-width: 980px) { .why .why-benefits { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px 22px; } }
+    @media (max-width: 600px) { .why .why-benefits { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 380px) { .why .why-benefits { grid-template-columns: 1fr; } }
   `,
 })
 export class WhyComponent implements AfterViewInit, OnDestroy {
+  readonly benefits = [
+    { icon: 'public', title: 'Local & Global', body: 'Data centers in India, Europe, US, and Asia.' },
+    { icon: 'attach_money', title: 'Transparent Pricing', body: 'No hidden costs, pay only for what you use.' },
+    { icon: 'headphones', title: 'Personal Support', body: '24/7 engineering support with real humans.' },
+    { icon: 'settings', title: 'Customizable', body: 'Tailored setups, not cookie-cutter infrastructure.' },
+    { icon: 'shield', title: 'Secure & Compliant', body: 'PCI-DSS & global compliance standards.' },
+  ];
   readonly cards = WHY_CARDS;
   readonly features = WHY_FEATURES;
 
