@@ -46,14 +46,14 @@ export const DIRECTORY_CATEGORIES: DirectoryCategory[] = [
 
 export const DIRECTORY: DirectoryEntry[] = [
   {
-    "name": "Domains",
+    "name": "Register a Domain Name",
     "desc": "Explore domain extensions, pricing and included features",
     "cat": "Web Presence",
     "group": "Domains",
     "heroImage": "/assets/images/domains/hero.svg"
   },
   {
-    "name": "IoT Infrastructure",
+    "name": "IoT Cloud",
     "desc": "Managed device connectivity, edge processing and IoT platforms",
     "cat": "Cloud",
     "group": "Cloud Infrastructure",

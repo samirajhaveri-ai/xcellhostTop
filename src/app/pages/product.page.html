@@ -610,6 +610,12 @@
                   </div>
                 }
 
+                @if (showAiPoweredBadge()) {
+                  <div class="pp-ai-powered-row">
+                    <span class="pp-ai-powered"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="m14 2 2.7 6.3L23 11l-6.3 2.7L14 20l-2.7-6.3L5 11l6.3-2.7L14 2ZM5 1l1.2 2.8L9 5 6.2 6.2 5 9 3.8 6.2 1 5l2.8-1.2L5 1ZM4 15l1.2 2.8L8 19l-2.8 1.2L4 23l-1.2-2.8L0 19l2.8-1.2L4 15Z"/></svg> AI-POWERED</span>
+                  </div>
+                }
+
                 <div class="hero-ctas product-hero-ctas">
                   <a
                     class="btn ppd-info"
@@ -644,7 +650,7 @@
                 <section class="pp-ask-ai" aria-labelledby="ppAskAiTitle">
                   <div class="pp-ask-ai-copy">
                     <span class="pp-ask-ai-kicker" id="ppAskAiTitle"
-                      >Ask AI About {{ isCloudBackup() ? 'Acronis Cloud Backup' : v.name }} from
+                      >Ask AI About {{ isSmbCyber() ? 'Cybird SMB Cyber Security Appliance' : isCloudBackup() ? 'Acronis Cloud Backup' : v.name }} from
                       XcellHost</span
                     >
                   </div>
@@ -916,8 +922,8 @@
         [class.cloud-backup-body]="isCloudBackup()"
         [class.cdr-smb-body]="isCloudDisasterRecoverySmb()"
         [class.domain-registration-body]="slug() === 'register-a-domain-name'"
-        [class.domains-body]="slug() === 'domains'"
-        [class.iot-infrastructure-body]="slug() === 'iot-infrastructure'"
+        [class.domains-body]="slug() === 'register-a-domain-name'"
+        [class.iot-infrastructure-body]="slug() === 'iot-cloud'"
         [class.agentic-ai-body]="slug() === 'agentic-ai'"
         [class.edr-body]="isAdvancedEdr()"
         [class.workforce-analytics-body]="slug() === 'workforce-analytics'"
@@ -932,9 +938,9 @@
           @if (slug() === 'waap-as-a-service') {
             <xh-waap-content />
           } @else {
-          @if (slug() === 'iot-infrastructure') {
+          @if (slug() === 'iot-cloud') {
             <xh-iot-infrastructure-content />
-          } @else if (slug() === 'domains') {
+          } @else if (slug() === 'register-a-domain-name') {
             <xh-domains-content />
           } @else if (slug() === 'agentic-ai') {
             <xh-agentic-ai-content />
@@ -1996,53 +2002,7 @@
                       </div>
                     </section>
 
-                    <section class="smb-block" aria-labelledby="smb-ideal-title">
-                      <header class="smb-section-head">
-                        <h2 id="smb-ideal-title">Ideal for businesses up to 100 users</h2>
-                      </header>
-                      <div class="smb-ideal-grid">
-                        <article>
-                          <i>▥</i><b>Small Offices<br />&amp; Enterprises</b>
-                        </article>
-                        <article>
-                          <i>⌂</i><b>Work From<br />Home (WFH)</b>
-                        </article>
-                        <article>
-                          <i>♢</i><b>Schools &amp;<br />Colleges</b>
-                        </article>
-                        <article>
-                          <i>▱</i><b>Retail Stores<br />&amp; Chains</b>
-                        </article>
-                        <article>
-                          <i>＋</i><b>Healthcare<br />Clinics</b>
-                        </article>
-                        <article>
-                          <i>▥</i><b>SMBs &amp;<br />Manufacturing</b>
-                        </article>
-                        <article>
-                          <i>▤</i><b>Branch Offices<br />&amp; More</b>
-                        </article>
-                      </div>
-                      <header class="smb-section-head smb-subhead"><h2>Benefits</h2></header>
-                      <div class="smb-benefit-grid">
-                        <article>
-                          <i>✓</i><b>Multi-Layer Protection</b>
-                          <p>Defend against phishing, malware, ransomware and cyber threats.</p>
-                        </article>
-                        <article>
-                          <i>↘</i><b>Reduced Cyber Risk</b>
-                          <p>Proactive threat detection and filtering keeps your business safe.</p>
-                        </article>
-                        <article>
-                          <i>◎</i><b>Safe Browsing for Users</b>
-                          <p>Ensure a secure and productive internet experience.</p>
-                        </article>
-                        <article>
-                          <i>↔</i><b>Scalable for Any Environment</b>
-                          <p>One platform for office, remote, multi-site or growing businesses.</p>
-                        </article>
-                      </div>
-                    </section>
+
 
                     <section class="smb-block" aria-labelledby="smb-how-title">
                       <header class="smb-section-head">
@@ -2247,8 +2207,8 @@
                       </div>
                       <h3 class="smb-business-heading">Built for Small Your Business</h3>
                       <div class="smb-business-grid">
-                        @for (industry of smbIndustries; track industry) {
-                          <span>{{ industry }}</span>
+                        @for (industry of smbIndustries; track industry.name) {
+                          <span class="smb-business-item" [class.smb-business-manufacturing]="industry.name === 'Manufacturing Unit'"><i class="material-symbols-outlined" aria-hidden="true">{{ industry.icon }}</i>{{ industry.name }}</span>
                         }
                       </div>
                     </section>
@@ -3312,7 +3272,7 @@
               isAutonomousThreatSolution() ||
               isOurPlatform() ||
               isWatchtower() ||
-              slug() === 'iot-infrastructure') &&
+              slug() === 'iot-cloud') &&
             slug() !== 'scrutiny-dlp' &&
             !isTsplusRemoteSupport() &&
             !isTsplusAdvancedSecurity() &&

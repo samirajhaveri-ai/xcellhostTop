@@ -12,6 +12,11 @@ import { Routes } from '@angular/router';
  *   /compare/
  */
 export const routes: Routes = [
+  { path: 'promo-offers', redirectTo: 'promotion-and-offers', pathMatch: 'full' },
+  { path: 'under-construction/promotion-and-offers', redirectTo: 'promotion-and-offers', pathMatch: 'full' },
+  { path: 'under-construction/trust-watch', redirectTo: 'company/trust-watch', pathMatch: 'full' },
+  { path: 'domains', redirectTo: 'register-a-domain-name', pathMatch: 'full' },
+  { path: 'iot-infrastructure', redirectTo: 'iot-cloud', pathMatch: 'full' },
   { path: 'why-xcellhost', redirectTo: 'company/why-xcellhost', pathMatch: 'full' },
   { path: '', pathMatch: 'full', loadComponent: () => import('./pages/home.page').then((m) => m.HomePage) },
   { path: 'compare', loadComponent: () => import('./pages/compare.page').then((m) => m.ComparePage) },
@@ -111,7 +116,7 @@ export const routes: Routes = [
       import('./pages/payment-methods.page').then((m) => m.PaymentMethodsPage),
   },
   {
-    path: 'promo-offers',
+    path: 'promotion-and-offers',
     loadComponent: () => import('./pages/promo-offers.page').then((m) => m.PromoOffersPage),
   },
   {
@@ -193,10 +198,11 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
   },
   {
-    path: 'company/watchtower',
+    path: 'company/trust-watch',
     data: { productSlug: 'watchtower' },
     loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
   },
+  { path: 'company/watchtower', redirectTo: 'company/trust-watch', pathMatch: 'full' },
   {
     path: 'company/trust-center',
     loadComponent: () =>
