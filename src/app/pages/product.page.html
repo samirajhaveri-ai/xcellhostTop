@@ -708,6 +708,33 @@
                 </section>
               
 
+            @if (slug() === 'acronis-genai-protection') {
+              <div class="genai-hero-song">
+                <span id="genaiSongTitle">Listen to our Acronis GenAI Protection Song</span>
+                <audio controls preload="metadata" aria-labelledby="genaiSongTitle">
+                  <source src="/assets/audio/cloud-backup-song.mp3" type="audio/mpeg">
+                  <a href="/assets/audio/cloud-backup-song.mp3">Listen to the Acronis GenAI Protection Song</a>
+                </audio>
+              </div>
+            }
+            @if (isSmbCyber()) {
+              <div class="smb-cyber-hero-song">
+                <span id="smbCyberSongTitle">Listen to our SMB Cyber Security Appliance Song</span>
+                <audio controls preload="metadata" aria-labelledby="smbCyberSongTitle">
+                  <source src="/assets/audio/cloud-backup-song.mp3" type="audio/mpeg">
+                  <a href="/assets/audio/cloud-backup-song.mp3">Listen to the SMB Cyber Security Appliance Song</a>
+                </audio>
+              </div>
+            }
+            @if (isRmm()) {
+              <div class="rmm-hero-song">
+                <span id="rmmSongTitle">Listen to our RMM Song</span>
+                <audio controls preload="metadata" aria-labelledby="rmmSongTitle">
+                  <source src="/assets/audio/cloud-backup-song.mp3" type="audio/mpeg">
+                  <a href="/assets/audio/cloud-backup-song.mp3">Listen to the RMM Song</a>
+                </audio>
+              </div>
+            }
             @if (isAdvancedEdr()) {
               <div class="edr-hero-song">
                 <span id="edrSongTitle">Listen to our Endpoint Security Song</span>
