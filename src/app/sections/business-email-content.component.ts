@@ -19,6 +19,17 @@ export class BusinessEmailContentComponent {
     enterprise: { name: 'Enterprise', storage: 50, price: 999 },
   } as const;
   readonly selectedPlan = signal<keyof typeof this.plans>('essential');
+  readonly quantities = signal({ essential: 1, standard: 1, stdplus: 1, pro: 1, enterprise: 1 });
+
+  adjustQuantity(key: keyof typeof this.plans, change: number): void {
+    this.quantities.update(values => ({ ...values, [key]: Math.max(1, Math.min(9999, values[key] + change)) }));
+  }
+
+  addPlanToCart(key: keyof typeof this.plans): void {
+    this.selectedPlan.set(key);
+    this.users.set(this.quantities()[key]);
+    this.addToCart();
+  }
   readonly users = signal(1);
   readonly plan = computed(() => this.plans[this.selectedPlan()]);
   readonly total = computed(() => this.plan().price * this.users());

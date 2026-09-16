@@ -29,8 +29,12 @@
 
   <!-- COLLABORATION HUB STRIP -->
   <div class="bizmail-prov-strip">
-    <span class="bizmail-prov-lbl">All in one hub</span>
-    <span class="bizmail-prov">Email &amp; Calendars</span><span class="bizmail-prov">Chat &amp; Video</span><span class="bizmail-prov">File Sync</span><span class="bizmail-prov">Web Documents</span><span class="bizmail-prov">Office Suite</span>
+    <span class="bizmail-prov-lbl"><svg class="bizmail-prov-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>All in one hub</span>
+    <span class="bizmail-prov"><svg class="bizmail-prov-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg>Email &amp; Calendars</span>
+    <span class="bizmail-prov"><svg class="bizmail-prov-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="12" height="14" rx="2"/><path d="m15 10 6-4v12l-6-4"/></svg>Chat &amp; Video</span>
+    <span class="bizmail-prov"><svg class="bizmail-prov-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7a9 9 0 0 0-15-2L2 8m0-5v5h5M4 17a9 9 0 0 0 15 2l3-3m0 5v-5h-5"/></svg>File Sync</span>
+    <span class="bizmail-prov"><svg class="bizmail-prov-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H5v18h14V8zM14 3v5h5M8 12h8M8 16h8"/></svg>Web Documents</span>
+    <span class="bizmail-prov"><svg class="bizmail-prov-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V3h8v4M3 12h18M10 12v3h4v-3"/></svg>Office Suite</span>
   </div>
 
   <!-- HOW IT WORKS -->
@@ -52,7 +56,12 @@
       <div class="bizmail-pmeta"><div><span>Mailbox storage</span><b>1 GB</b></div><div><span>Billed</span><b>per user / year</b></div></div>
       <ul class="bizmail-pfeat"><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Email &#64;yourdomain</li><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Calendars &amp; contacts</li><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>DKIM, SPF &amp; DMARC</li><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Anti-spam &amp; anti-phishing</li><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Web, desktop &amp; mobile</li><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Ideal for light email use</li></ul>
       <div class="bizmail-pprice"><div><span class="bizmail-from">From</span><span class="bizmail-amt">&#8377;349</span><span class="bizmail-permo">/user/yr</span></div></div>
-      <button class="bizmail-btn bizmail-btn-orange" type="button" (click)="configure('essential')">Configure &amp; Buy <span class="bizmail-ar">&rarr;</span></button>
+      <div class="bizmail-quantity" role="group" aria-label="essential mailbox quantity">
+        <button type="button" (click)="adjustQuantity('essential', -1)" [disabled]="quantities().essential === 1" aria-label="Decrease essential mailbox quantity">&minus;</button>
+        <output aria-live="polite">{{ quantities().essential }}</output>
+        <button type="button" (click)="adjustQuantity('essential', 1)" [disabled]="quantities().essential === 9999" aria-label="Increase essential mailbox quantity">+</button>
+      </div>
+      <button class="bizmail-btn bizmail-btn-orange" type="button" (click)="addPlanToCart('essential')">Add to Cart <span class="bizmail-ar">&rarr;</span></button>
     </div>
     <div class="bizmail-pcard">
       <div class="bizmail-ptop"><span class="bizmail-tierbadge bizmail-dv">Standard</span><span class="bizmail-tagchip">Popular</span></div>
@@ -61,7 +70,12 @@
       <div class="bizmail-pmeta"><div><span>Mailbox storage</span><b>5 GB</b></div><div><span>Billed</span><b>per user / year</b></div></div>
       <ul class="bizmail-pfeat"><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Email &#64;yourdomain</li><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Calendars &amp; contacts</li><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>DKIM, SPF &amp; DMARC</li><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Anti-spam &amp; anti-phishing</li><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Web, desktop &amp; mobile</li><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Great for regular users</li></ul>
       <div class="bizmail-pprice"><div><span class="bizmail-from">From</span><span class="bizmail-amt">&#8377;449</span><span class="bizmail-permo">/user/yr</span></div></div>
-      <button class="bizmail-btn bizmail-btn-orange" type="button" (click)="configure('standard')">Configure &amp; Buy <span class="bizmail-ar">&rarr;</span></button>
+      <div class="bizmail-quantity" role="group" aria-label="standard mailbox quantity">
+        <button type="button" (click)="adjustQuantity('standard', -1)" [disabled]="quantities().standard === 1" aria-label="Decrease standard mailbox quantity">&minus;</button>
+        <output aria-live="polite">{{ quantities().standard }}</output>
+        <button type="button" (click)="adjustQuantity('standard', 1)" [disabled]="quantities().standard === 9999" aria-label="Increase standard mailbox quantity">+</button>
+      </div>
+      <button class="bizmail-btn bizmail-btn-orange" type="button" (click)="addPlanToCart('standard')">Add to Cart <span class="bizmail-ar">&rarr;</span></button>
     </div>
     <div class="bizmail-pcard bizmail-hot">
       <div class="bizmail-ptop"><span class="bizmail-tierbadge bizmail-dv">Standard Plus</span><span class="bizmail-tagchip">Best value</span><span class="bizmail-tagchip bizmail-best">Most popular</span></div>
@@ -70,7 +84,12 @@
       <div class="bizmail-pmeta"><div><span>Mailbox storage</span><b>10 GB</b></div><div><span>Billed</span><b>per user / year</b></div></div>
       <ul class="bizmail-pfeat"><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Email &#64;yourdomain</li><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Calendars &amp; contacts</li><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>DKIM, SPF &amp; DMARC</li><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Anti-spam &amp; anti-phishing</li><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Web, desktop &amp; mobile</li><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Room for attachments &amp; archives</li></ul>
       <div class="bizmail-pprice"><div><span class="bizmail-from">From</span><span class="bizmail-amt">&#8377;649</span><span class="bizmail-permo">/user/yr</span></div></div>
-      <button class="bizmail-btn bizmail-btn-orange" type="button" (click)="configure('stdplus')">Configure &amp; Buy <span class="bizmail-ar">&rarr;</span></button>
+      <div class="bizmail-quantity" role="group" aria-label="stdplus mailbox quantity">
+        <button type="button" (click)="adjustQuantity('stdplus', -1)" [disabled]="quantities().stdplus === 1" aria-label="Decrease stdplus mailbox quantity">&minus;</button>
+        <output aria-live="polite">{{ quantities().stdplus }}</output>
+        <button type="button" (click)="adjustQuantity('stdplus', 1)" [disabled]="quantities().stdplus === 9999" aria-label="Increase stdplus mailbox quantity">+</button>
+      </div>
+      <button class="bizmail-btn bizmail-btn-orange" type="button" (click)="addPlanToCart('stdplus')">Add to Cart <span class="bizmail-ar">&rarr;</span></button>
     </div>
     <div class="bizmail-pcard">
       <div class="bizmail-ptop"><span class="bizmail-tierbadge bizmail-dv">Professional</span><span class="bizmail-tagchip">Power users</span></div>
@@ -79,7 +98,12 @@
       <div class="bizmail-pmeta"><div><span>Mailbox storage</span><b>25 GB</b></div><div><span>Billed</span><b>per user / year</b></div></div>
       <ul class="bizmail-pfeat"><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Email &#64;yourdomain</li><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Calendars &amp; contacts</li><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>DKIM, SPF &amp; DMARC</li><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Anti-spam &amp; anti-phishing</li><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Web, desktop &amp; mobile</li><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>ActiveSync included</li><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>For heavy email users</li></ul>
       <div class="bizmail-pprice"><div><span class="bizmail-from">From</span><span class="bizmail-amt">&#8377;849</span><span class="bizmail-permo">/user/yr</span></div></div>
-      <button class="bizmail-btn bizmail-btn-orange" type="button" (click)="configure('pro')">Configure &amp; Buy <span class="bizmail-ar">&rarr;</span></button>
+      <div class="bizmail-quantity" role="group" aria-label="pro mailbox quantity">
+        <button type="button" (click)="adjustQuantity('pro', -1)" [disabled]="quantities().pro === 1" aria-label="Decrease pro mailbox quantity">&minus;</button>
+        <output aria-live="polite">{{ quantities().pro }}</output>
+        <button type="button" (click)="adjustQuantity('pro', 1)" [disabled]="quantities().pro === 9999" aria-label="Increase pro mailbox quantity">+</button>
+      </div>
+      <button class="bizmail-btn bizmail-btn-orange" type="button" (click)="addPlanToCart('pro')">Add to Cart <span class="bizmail-ar">&rarr;</span></button>
     </div>
     <div class="bizmail-pcard">
       <div class="bizmail-ptop"><span class="bizmail-tierbadge bizmail-dv">Enterprise</span><span class="bizmail-tagchip">Large mailboxes</span></div>
@@ -88,7 +112,12 @@
       <div class="bizmail-pmeta"><div><span>Mailbox storage</span><b>50 GB</b></div><div><span>Billed</span><b>per user / year</b></div></div>
       <ul class="bizmail-pfeat"><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Email &#64;yourdomain</li><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Calendars &amp; contacts</li><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>DKIM, SPF &amp; DMARC</li><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Anti-spam &amp; anti-phishing</li><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Web, desktop &amp; mobile</li><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>ActiveSync included</li><li><span class="bizmail-ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Largest mailbox &amp; archive</li></ul>
       <div class="bizmail-pprice"><div><span class="bizmail-from">From</span><span class="bizmail-amt">&#8377;999</span><span class="bizmail-permo">/user/yr</span></div></div>
-      <button class="bizmail-btn bizmail-btn-orange" type="button" (click)="configure('enterprise')">Configure &amp; Buy <span class="bizmail-ar">&rarr;</span></button>
+      <div class="bizmail-quantity" role="group" aria-label="enterprise mailbox quantity">
+        <button type="button" (click)="adjustQuantity('enterprise', -1)" [disabled]="quantities().enterprise === 1" aria-label="Decrease enterprise mailbox quantity">&minus;</button>
+        <output aria-live="polite">{{ quantities().enterprise }}</output>
+        <button type="button" (click)="adjustQuantity('enterprise', 1)" [disabled]="quantities().enterprise === 9999" aria-label="Increase enterprise mailbox quantity">+</button>
+      </div>
+      <button class="bizmail-btn bizmail-btn-orange" type="button" (click)="addPlanToCart('enterprise')">Add to Cart <span class="bizmail-ar">&rarr;</span></button>
     </div>
   </div>
   <p class="bizmail-pv-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 9h20M6 15h4M15 15h3"/></svg> Indicative INR pricing, per user / year (excl. GST). All plans include the full email &amp; collaboration suite; higher plans add storage. Professional &amp; Enterprise include ActiveSync. Pay via UPI &middot; Cards &middot; NetBanking. GST invoice on every order.</p>

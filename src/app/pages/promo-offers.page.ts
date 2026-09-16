@@ -31,7 +31,7 @@ export class PromoOffersPage {
     return {label:menu.label,products:popular};
   }).filter(category=>category.products.length>0);
   readonly activeCategory=computed(()=>this.categories[this.activeTab()]??this.categories[0]);
-  constructor(){this.seo.set('Promos & Offers - XcellHost','Browse XcellHost cloud, security, productivity and digital trust products and open their dedicated product pages.','/promo-offers/');}
+  constructor(){this.seo.set('Promos & Offers - XcellHost','Browse XcellHost cloud, security, productivity and digital trust products and open their dedicated product pages.','/promotion-and-offers/');}
   selectTab(index:number):void{this.activeTab.set(index)}
   private productIcon(name:string):string{return name.split(/\s+/).filter(word=>/^[a-z0-9]/i.test(word)).slice(0,2).map(word=>word[0].toUpperCase()).join('')}
 }

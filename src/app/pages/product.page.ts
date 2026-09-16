@@ -1,3 +1,4 @@
+import { ServiceEnquiryButtonsComponent } from '../sections/service-enquiry-buttons.component';
 import { WaapContentComponent } from '../sections/waap-content.component';
 import { IotInfrastructureContentComponent } from '../sections/iot-infrastructure-content.component';
 import { DomainsContentComponent } from '../sections/domains-content.component';
@@ -132,7 +133,7 @@ interface ProductTourSlide {
 @Component({
   selector: 'xh-product-page',
   standalone: true,
-  imports: [
+  imports: [ServiceEnquiryButtonsComponent, 
     EnterpriseDmarcContentComponent,
     BusinessEmailContentComponent,
     InsightsSectionComponent,
@@ -606,10 +607,18 @@ export class ProductPage {
     { title: 'Audit-ready incident evidence', description: 'Reconstruct a blocked event with classification details, captured evidence and an immutable activity timeline.', image: '/assets/images/scrutiny-dlp-tour-evidence.svg' },
   ];
 
+  readonly smbCyberTourSlides: readonly ProductTourSlide[] = [
+    { title: 'Bandwidth usage and router health', description: 'Review upload and download trends, WAN connectivity and appliance health in one dashboard.', image: '/assets/images/smb-cyber-tour-bandwidth.png' },
+    { title: 'Application priority controls', description: 'See bandwidth usage by priority and prioritize business-critical communication apps.', image: '/assets/images/smb-cyber-tour-app-priority.png' },
+    { title: 'Network security and device insights', description: 'Monitor blocked threats, DNS activity and connected devices with a network health summary.', image: '/assets/images/smb-cyber-tour-security.png' },
+    { title: 'Internet activity and top applications', description: 'Compare activity across profiles and identify the applications driving network traffic.', image: '/assets/images/smb-cyber-tour-activity.png' },
+  ];
+
   /** Product-owned artwork used when a page does not have a dedicated UI screenshot set. */
   readonly productTourSlides = computed<readonly ProductTourSlide[]>(() => {
     const view = this.view();
     if (!view) return [];
+    if (this.slug() === 'smb-cyber-security-appliance') return this.smbCyberTourSlides;
     if (this.isWhatsAppSmb()) return this.whatsAppSmbTourSlides;
     if (view.name === 'Acronis True Image') return this.acronisTrueImageTourSlides;
     if (view.name === 'Microsoft 365 Backup') return this.microsoft365BackupTourSlides;
@@ -808,16 +817,16 @@ export class ProductPage {
   ];
 
   readonly smbIndustries = [
-    'CA Firm',
-    'Clinic',
-    'Digital Agency',
-    'Legal Office',
-    'Retail Store',
-    'Manufacturing Unit',
-    'School',
-    'Hospitality',
-    'Logistics',
-    'Startup Office',
+    { name: 'CA Firm', icon: 'account_balance' },
+    { name: 'Clinic', icon: 'medical_services' },
+    { name: 'Digital Agency', icon: 'campaign' },
+    { name: 'Legal Office', icon: 'gavel' },
+    { name: 'Retail Store', icon: 'storefront' },
+    { name: 'Manufacturing Unit', icon: 'factory' },
+    { name: 'School', icon: 'school' },
+    { name: 'Hospitality', icon: 'hotel' },
+    { name: 'Logistics', icon: 'local_shipping' },
+    { name: 'Startup Office', icon: 'rocket_launch' },
   ];
 
   readonly selectedCybirdTerm = signal<CybirdTerm>('1y');
@@ -959,6 +968,20 @@ export class ProductPage {
 
   /** Every resolved product gets a localized or category-level hero illustration. */
   readonly isFlagship = computed(() => !!this.view()?.heroImage);
+
+  readonly showAiPoweredBadge = computed(() => {
+    const name = this.view()?.name.trim() ?? '';
+    return [
+      'MDR', 'Managed XDR', 'Advanced Endpoint Security (EDR)',
+      'Advanced Email Security', 'Cloud Security Posture Mgmt',
+      'Security Awareness Training', 'Cloud DLP', 'Scrutiny DLP',
+      'Cyber Frames', 'Cloud Backup', 'Microsoft 365 Backup',
+      'E-Mail Backup / Archiving', 'Cloud Disaster Recovery',
+      'Cloud Object Storage', 'Cloud Drive', 'Acronis GenAI',
+      'Remote Monitoring & Mgmt (RMM)',
+    ].includes(name);
+  });
+
 
   /** The EDR campaign places its commercial offer immediately after the videos. */
   readonly isAdvancedEdr = computed(
@@ -1215,9 +1238,9 @@ export class ProductPage {
    */
   private resolve(slug: string): ProductView | null {
     if (!slug) return null;
-    if (slug === 'domains') {
+    if (slug === 'register-a-domain-name') {
       const view = this.products.build({
-        name: 'Domains',
+        name: 'Register a Domain Name',
         tag: 'Find the right domain for your next big idea.',
         cat: 'Web Presence',
         crumb: 'Web Presence › Domains',
@@ -1230,12 +1253,12 @@ export class ProductPage {
         videoLabels: ['Introduction', 'Use Case'],
       };
     }
-    if (slug === 'iot-infrastructure') {
+    if (slug === 'iot-cloud') {
       const view = this.products.build({
-        name: 'IoT Infrastructure',
+        name: 'IoT Cloud',
         tag: 'Connect every device. Process at the edge.',
         cat: 'Cloud',
-        crumb: 'Cloud › IoT Infrastructure',
+        crumb: 'Cloud › IoT Cloud',
       });
       return {
         ...view,
@@ -1367,9 +1390,10 @@ export class ProductPage {
     this.overlay.open('trial');
   }
 
-  openCallback(ev: Event): void {
+  openCallback(ev: Event, request?: string): void {
     ev.preventDefault();
-    this.topics.ask(this.view()?.name ?? "");
+    const name = this.view()?.name ?? "";
+    this.topics.ask(request ? `${name} - ${request}` : name);
     this.overlay.open('callback');
   }
 

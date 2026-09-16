@@ -14,6 +14,7 @@ import { LeadService } from '../core/lead.service';
     <section class="newsletter" aria-labelledby="newsletter-title">
       <div class="wrap newsletter-inner">
         <div class="newsletter-copy">
+          <p class="newsletter-label">Xcellhost New's letter</p>
           <h2 id="newsletter-title">
             Get the latest updates on Blog Posts, Industry News, Products, and Guidance on Cloud,
             Cyber Security, AI &amp; Digital Transformation.
@@ -73,6 +74,15 @@ import { LeadService } from '../core/lead.service';
     .newsletter-copy {
       position: relative;
       z-index: 1;
+      min-width: 0;
+      container-type: inline-size;
+    }
+
+    .newsletter-label {
+      margin: 0 0 10px;
+      color: #fff;
+      text-align: center;
+      font: 800 17px / 1.35 var(--disp);
     }
 
     .newsletter-copy h2 {
@@ -80,7 +90,8 @@ import { LeadService } from '../core/lead.service';
       margin: 0 auto;
       color: #fff;
       text-align: center;
-      font: 800 clamp(19px, 1.45vw, 1px) / 1.28 var(--disp);
+      font: 600 min(13px, 1.4cqw) / 1.4 var(--body);
+      white-space: nowrap;
       letter-spacing: 0;
     }
 
@@ -199,8 +210,8 @@ import { LeadService } from '../core/lead.service';
         padding: 24px 18px 42px;
       }
 
-      .newsletter-copy h2 {
-        font-size: 18px;
+      .newsletter-label {
+        font-size: 16px;
       }
 
       .newsletter-form {

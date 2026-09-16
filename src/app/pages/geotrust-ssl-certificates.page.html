@@ -47,7 +47,12 @@
         <div class="pmeta"><div><span>Warranty</span><b>{{ product.warranty }}</b></div><div><span>Issued</span><b>{{ product.issue }}</b></div></div>
         <ul class="pfeat">@for (feature of product.features; track feature) { <li><span class="ck">✓</span>{{ feature }}</li> }</ul>
         <div class="pprice"><div><span class="from">From</span><span class="amt">{{ inr(product.prices[2]) }}</span><span class="yr">/year</span></div><span class="save">Save up to 84%</span></div>
-        <button class="btn btn-orange" type="button" (click)="configure(product)">Configure &amp; Buy <span class="ar">→</span></button>
+        <div class="certificate-quantity" role="group" [attr.aria-label]="product.name + ' quantity'">
+          <button type="button" (click)="adjustQuantity(product, -1)" [disabled]="quantity(product) === 1" [attr.aria-label]="'Decrease ' + product.name + ' quantity'">&minus;</button>
+          <output aria-live="polite">{{ quantity(product) }}</output>
+          <button type="button" (click)="adjustQuantity(product, 1)" [disabled]="quantity(product) === 9999" [attr.aria-label]="'Increase ' + product.name + ' quantity'">+</button>
+        </div>
+        <button class="btn btn-orange" type="button" (click)="configure(product)">Buy Now <span class="ar">→</span></button>
       </article>
     }
   </div>
@@ -117,6 +122,7 @@
       <div class="ar-step done"><span class="n">✓</span>Certificate issued &amp; installed</div>
       <div class="ar-step done"><span class="n">✓</span>Expiry detected — 30 days out</div>
       <div class="ar-step"><span class="n">3</span>Auto-renewed &amp; redeployed</div>
+      <a class="btn btn-primary ar-explore" href="#" (click)="$event.preventDefault()">Explore</a>
     </div>
   </div>
 
@@ -203,7 +209,8 @@
   <!-- CTA -->
   <div class="pp-cta">
     <div class="cl"><h3>Ready to secure your website?</h3><p>Pick a certificate above, or talk to our SSL experts — we'll handle issuance, installation and renewals for you.</p></div>
-    <div class="cr"><a href="#products" class="btn btn-primary mag">Browse Certificates <span class="ar">→</span></a><a href="https://wa.me/918657032540" class="btn btn-outline mag">Chat on WhatsApp</a></div>
+    <div class="cr"><a href="#products" class="btn btn-primary mag">Browse Certificates <span class="ar">→</span></a><a href="https://wa.me/918657032540" class="btn btn-outline mag">Chat on WhatsApp</a><xh-service-enquiry-buttons product="GeoTrust SSL Certificates" />
+</div>
   </div>
 
 </div></div>

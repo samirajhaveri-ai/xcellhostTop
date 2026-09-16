@@ -1,6 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 const TRUSTED_CLIENTS: readonly { name: string; className: string; src: string }[] = [
+  { name: 'Canara HSBC Life Insurance', className: 'trusted-logo-image', src: '/assets/images/trusted-clients/canara-hsbc.png' },
+  { name: 'Blue Star Infotech', className: 'trusted-logo-image', src: '/assets/images/trusted-clients/blue-star-infotech.webp' },
+  { name: 'IIFL Finance', className: 'trusted-logo-image', src: '/assets/images/trusted-clients/iifl-finance.png' },
+  { name: 'Telos', className: 'trusted-logo-image', src: '/assets/images/trusted-clients/telos.png' },
+  { name: 'Danone', className: 'trusted-logo-image', src: '/assets/images/trusted-clients/danone-2013.png' },
+  { name: 'K Raheja Corp', className: 'trusted-logo-image', src: '/assets/images/trusted-clients/k-raheja.png' },
+  { name: 'PIBM', className: 'trusted-logo-image', src: '/assets/images/trusted-clients/pibm.png' },
   { name: 'Sushil Finance', className: 'trusted-logo-image', src: '/assets/images/trusted-clients/sushil-finance.png' },
   { name: 'Nilkamal', className: 'trusted-logo-image', src: '/assets/images/trusted-clients/nilkamal.png' },
   { name: 'Abhijeet', className: 'trusted-logo-image', src: '/assets/images/trusted-clients/abhijeet.webp' },
