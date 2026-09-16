@@ -1,3 +1,4 @@
+import { ServiceEnquiryButtonsComponent } from '../sections/service-enquiry-buttons.component';
 import { InsightsSectionComponent } from '../sections/insights-section.component';
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { OverlayService } from '../core/overlay.service';
@@ -23,7 +24,7 @@ interface GeoTrustProduct {
 @Component({
   selector: 'xh-geotrust-ssl-certificates-page',
   standalone: true,
-  imports: [InsightsSectionComponent, ProductPage],
+  imports: [ServiceEnquiryButtonsComponent, InsightsSectionComponent, ProductPage],
   templateUrl: './geotrust-ssl-certificates.page.html',
   styleUrl: './geotrust-ssl-certificates.page.css',
   host: { class: 'geotrust-page' },
@@ -35,6 +36,18 @@ export class GeoTrustSslCertificatesPage {
   private readonly topics = inject(CallbackTopicService);
 
   readonly filter = signal<CertificateFilter>('all');
+  readonly quantities = signal<Record<string, number>>({});
+
+  quantity(product: GeoTrustProduct): number {
+    return this.quantities()[product.id] ?? 1;
+  }
+
+  adjustQuantity(product: GeoTrustProduct, change: number): void {
+    this.quantities.update(values => ({
+      ...values,
+      [product.id]: Math.max(1, Math.min(9999, (values[product.id] ?? 1) + change)),
+    }));
+  }
   readonly filters: Array<{ value: CertificateFilter; label: string }> = [
     { value: 'all', label: 'All' },
     { value: 'DV', label: 'DV' },
@@ -77,7 +90,7 @@ export class GeoTrustSslCertificatesPage {
   }
 
   configure(product: GeoTrustProduct): void {
-    this.topics.ask(product.name);
+    this.topics.ask(`${product.name} - ${this.quantity(product)} certificate(s)`);
     this.overlay.open('callback');
   }
 

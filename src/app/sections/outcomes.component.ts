@@ -81,7 +81,7 @@ const PLATFORM_CAPABILITIES: readonly PlatformCapability[] = [
           <div class="outcome-connector" aria-hidden="true">arrow_forward</div>
 
           <article class="platform-core">
-            <span class="platform-badge"><span class="material-symbols-outlined" aria-hidden="true">cloud</span> XcellHost</span>
+            <span class="platform-badge"><span class="material-symbols-outlined" aria-hidden="true">cloud</span><span style="text-align:center">Xcellhost AI Powered Cloud Platform</span></span>
             <h3>THE PLATFORM ASSEMBLES</h3>
             <div class="platform-grid">
               @for (capability of capabilities; track capability.label) {
