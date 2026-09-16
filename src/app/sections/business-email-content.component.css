@@ -16,6 +16,11 @@
 :host .btn-blue:hover{transform:translateY(-2px)}
 :host .bizmail-btn-orange{background:linear-gradient(135deg,var(--orange),var(--orange-d));color:#fff;box-shadow:0 14px 28px -12px rgba(255,140,26,.7)}
 :host .bizmail-btn-orange:hover{transform:translateY(-2px)}
+:host .bizmail-quantity{display:flex;align-items:center;justify-content:space-between;margin:12px 0 10px;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#f7faff}
+:host .bizmail-quantity button{width:44px;height:40px;border:0;background:transparent;color:#1565d8;font-size:20px;cursor:pointer}
+:host .bizmail-quantity button:disabled{opacity:.4;cursor:not-allowed}
+:host .bizmail-quantity button:focus-visible{outline:2px solid #1565d8;outline-offset:-3px}
+:host .bizmail-quantity output{font-size:14px;font-weight:700;color:var(--navy)}
 :host .bizmail-btn-green{background:linear-gradient(135deg,var(--ok),var(--green));color:#fff;box-shadow:0 14px 28px -12px rgba(22,163,74,.6)}
 :host .bizmail-btn-green:hover{transform:translateY(-2px)}
 :host .btn-goutline{background:#fff;color:var(--green);border:1.5px solid var(--green)}:host .btn-goutline:hover{background:var(--green);color:#fff}
@@ -41,7 +46,8 @@
 :host .vck{width:16px;height:16px;border-radius:50%;background:var(--blue);display:inline-grid;place-items:center}:host .vck svg{width:10px;height:10px;color:#fff}
 :host .bizmail-prov-strip{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin:32px 0 30px}
 :host .bizmail-prov-lbl{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:42px;padding:10px 16px;margin-right:4px;border:1px solid #c8dcfa;border-radius:9px;background:linear-gradient(135deg,#edf5ff,#e1edff);font-family:var(--mono);font-size:11px;font-weight:700;line-height:1.4;text-transform:uppercase;letter-spacing:.1em;color:#0c55b5;white-space:nowrap;box-shadow:0 3px 8px rgba(21,101,216,.06)}
-:host .bizmail-prov-lbl::before{content:'';flex:none;width:7px;height:7px;border-radius:50%;background:#1565d8;box-shadow:0 0 0 4px rgba(21,101,216,.1)}
+:host .bizmail-prov{display:inline-flex;align-items:center;gap:8px}
+:host .bizmail-prov-icon{width:18px;height:18px;flex:0 0 18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;color:#1565d8}
 :host .bizmail-prov{font-family:var(--disp);font-weight:700;font-size:14px;color:var(--navy);background:#fff;border:1px solid var(--line);border-radius:9px;padding:8px 16px;box-shadow:0 4px 12px -8px rgba(4,18,42,.4)}
 /* engagement before/after */
 :host .bizmail-eng-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;margin-top:6px}

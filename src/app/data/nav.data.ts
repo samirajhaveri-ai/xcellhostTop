@@ -96,9 +96,14 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Domains",
             "items": [
               {
+
                 "title": "Register a Domain Name",
                 "pill": null,
                 "desc": "Get your domain name now 🚀"
+
+                "title": "Domains",
+                "pill": "NEW",
+                "desc": "Extensions, pricing and everything to get online"
               },
               {
                 "title": "Transfer Your Domain",
@@ -152,7 +157,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Reserve a domain name for future availability 🕰️"
               },
               {
-                "title": "Bharat Domain",
+                "title": "Bharats Domain",
                 "pill": "FREE",
                 "desc": "Reserve a domain name for future availability 🕰️"
               },
@@ -234,7 +239,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "A powerful web hosting control panel 🎛️"
               },
               {
-                "title": "Cloud Linux",
+                "title": "CloudLinux",
                 "pill": null,
                 "desc": "A powerful web hosting control panel 🎛️"
               },
@@ -1874,7 +1879,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "IAm Assessment",
+                "title": "IAM Assessment",
                 "pill": "Free trial",
                 "desc": null
               },
