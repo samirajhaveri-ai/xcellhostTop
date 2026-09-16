@@ -14,6 +14,7 @@ import { CatalogService, slugify } from '../core/catalog.service';
 import { OverlayService } from '../core/overlay.service';
 import { MEGA_MENU } from '../data/nav.data';
 import { MenuFeatureCard } from '../data/models';
+import { CallbackTopicService } from '../overlays/callback-topic.service';
 
 /** Pills the original rendered in the blue variant (`class="pill b"`). */
 const BLUE_PILLS = new Set([
@@ -483,6 +484,7 @@ export class HeaderComponent {
   private readonly destroyRef = inject(DestroyRef);
   readonly overlay = inject(OverlayService);
   readonly cart = inject(CartService);
+  private readonly topics = inject(CallbackTopicService);
   /** The whole menu, pre-resolved once: no per-render slug lookups. */
   readonly tops: NavTopVm[] = MEGA_MENU.map((top) => ({
     label: top.label,
@@ -527,6 +529,9 @@ export class HeaderComponent {
   /** Which top-level panel is open, if any. */
   readonly openTop = signal<string | null>(null);
 
+  /** Whether the customer-login menu in the header is open. */
+  readonly loginMenuOpen = signal(false);
+
   /** Keeps hover/focus CSS from reopening a menu immediately after navigation. */
   readonly menuSuppressed = signal(false);
 
@@ -552,16 +557,24 @@ export class HeaderComponent {
     if (win) {
       const onScroll = () => {
         if (this.openTop() !== null) this.openTop.set(null);
+        if (this.loginMenuOpen()) this.loginMenuOpen.set(false);
       };
       const onDocClick = (e: Event) => {
         const t = e.target;
-        if (t instanceof Element && !t.closest('.xh-main-nav')) this.openTop.set(null);
+        if (!(t instanceof Element)) return;
+        if (!t.closest('.xh-main-nav')) this.openTop.set(null);
+        if (!t.closest('.xh-login-menu')) this.loginMenuOpen.set(false);
+      };
+      const onKeydown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') this.loginMenuOpen.set(false);
       };
       win.addEventListener('scroll', onScroll, { passive: true });
       this.doc.addEventListener('click', onDocClick);
+      this.doc.addEventListener('keydown', onKeydown);
       this.destroyRef.onDestroy(() => {
         win.removeEventListener('scroll', onScroll);
         this.doc.removeEventListener('click', onDocClick);
+        this.doc.removeEventListener('keydown', onKeydown);
       });
     }
 
@@ -593,6 +606,7 @@ export class HeaderComponent {
 
   /** Clicking a label toggles its panel; the routerLink still navigates. */
   toggleTop(label: string): void {
+    this.loginMenuOpen.set(false);
     this.menuSuppressed.set(false);
     this.openTop.update((cur) => (cur === label ? null : label));
   }
@@ -623,6 +637,7 @@ export class HeaderComponent {
   /** Following a menu link dismisses whatever was covering the page. */
   onNavigate(): void {
     this.openTop.set(null);
+    this.loginMenuOpen.set(false);
     this.menuSuppressed.set(true);
     const active = this.doc.activeElement;
     if (active instanceof HTMLElement) active.blur();
@@ -638,11 +653,26 @@ export class HeaderComponent {
   }
 
   openSearch(): void {
+    this.loginMenuOpen.set(false);
     this.overlay.open('search');
   }
 
-  openLayer(event: Event, id: 'auth' | 'trial'): void {
+  toggleLoginMenu(event: Event): void {
     event.preventDefault();
+    this.openTop.set(null);
+    this.loginMenuOpen.update((open) => !open);
+  }
+
+  requestPortalAccess(event: Event, topic: string): void {
+    event.preventDefault();
+    this.loginMenuOpen.set(false);
+    this.topics.ask(topic);
+    this.overlay.open('callback');
+  }
+
+  openLayer(event: Event, id: 'trial'): void {
+    event.preventDefault();
+    this.loginMenuOpen.set(false);
     this.overlay.open(id);
   }
 

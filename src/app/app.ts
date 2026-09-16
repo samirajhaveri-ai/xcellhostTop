@@ -4,7 +4,6 @@ import { RouterOutlet } from '@angular/router';
 import { OverlayService } from './core/overlay.service';
 import { CallbackTopicService } from './overlays/callback-topic.service';
 import {
-  AuthModalComponent,
   BackToTopComponent,
   CallbackModalComponent,
   CartDrawerComponent,
@@ -48,7 +47,6 @@ import {
     SearchDialogComponent,
     CallbackModalComponent,
     TrialModalComponent,
-    AuthModalComponent,
     PartnerModalComponent,
     DocModalComponent,
     WhatsappFabComponent,
