@@ -1371,9 +1371,7 @@
                           [attr.aria-selected]="selectedTallyTerm() === term.key"
                           (click)="selectTallyTerm(term.key)"
                         >
-                          @if (term.saving) {
-                            <small>{{ term.saving }}</small>
-                          }
+                          <small>{{ term.saving || 'No Saving' }}</small>
                           <span>{{ term.label }}</span>
                         </button>
                       }

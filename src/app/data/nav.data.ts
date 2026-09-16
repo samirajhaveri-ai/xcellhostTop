@@ -100,10 +100,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Register a Domain Name",
                 "pill": null,
                 "desc": "Get your domain name now 🚀"
-
-                "title": "Domains",
-                "pill": "NEW",
-                "desc": "Extensions, pricing and everything to get online"
               },
               {
                 "title": "Transfer Your Domain",
