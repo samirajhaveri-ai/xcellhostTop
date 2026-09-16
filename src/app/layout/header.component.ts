@@ -339,6 +339,7 @@ const MENU_DESCRIPTIONS: Record<string, string> = {
  * matching page is built; missing destinations use the shared construction page.
  */
 const CONTENT_LINKS: Record<string, string> = {
+  'Microsoft Copilot ': '/microsoft-copilot',
   'Escalation Matrix': '/escalation-matrix',
   'Partner Matrix': '/partner-matrix',
   'WhatsApp For Business': '/whatsapp-smb',
@@ -668,6 +669,11 @@ export class HeaderComponent {
     this.loginMenuOpen.set(false);
     this.topics.ask(topic);
     this.overlay.open('callback');
+  }
+
+  openCustomerLogin(): void {
+    this.loginMenuOpen.set(false);
+    this.overlay.open('auth');
   }
 
   openLayer(event: Event, id: 'trial'): void {

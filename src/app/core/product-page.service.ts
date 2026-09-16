@@ -521,9 +521,7 @@ export class ProductPageService {
     const seed = hash(name);
     const heroTagline =
       atmDetail?.tagline ||
-      (name === 'Copilot Studio' || name === 'Microsoft Copilot Studio'
-        ? 'Build your own AI agents — no code, no data science.'
-        : name === 'Scrutiny EDR'
+      (name === 'Scrutiny EDR'
         ? 'Detect. Investigate. Respond. Recover.'
         : name === 'Scrutiny DLP'
           ? 'Stop sensitive data leaking across endpoints, email, cloud and removable media.'
@@ -536,9 +534,7 @@ export class ProductPageService {
             : product?.tagline || tag || `${name} from XcellHost`);
     const heroHighlight =
       atmDetail?.summary ||
-      (name === 'Copilot Studio' || name === 'Microsoft Copilot Studio'
-        ? 'Design, ground and publish custom AI agents with Microsoft Copilot Studio'
-        : name === 'Scrutiny EDR'
+      (name === 'Scrutiny EDR'
         ? 'Behavioural endpoint detection with rapid remote response across Windows, macOS and Linux'
         : name === 'Scrutiny DLP'
           ? 'Endpoint · Email · Cloud · Removable media · GenAI'
@@ -552,9 +548,7 @@ export class ProductPageService {
               ? null
               : product?.highlight || rich?.f?.[0]?.[1] || tag || null);
     const heroMessages =
-      name === 'Copilot Studio' || name === 'Microsoft Copilot Studio'
-        ? ['No-code agent builder', 'Grounded in your data', '1,000+ connectors', 'Actions and automation']
-        : name === 'Scrutiny DLP'
+      name === 'Scrutiny DLP'
         ? []
         : name === 'Scrutiny EDR'
         ? ['Self-learning behavioural analytics', 'Real-time isolation', 'MITRE ATT&CK mapped investigations', '24×7 managed security']
@@ -598,7 +592,9 @@ export class ProductPageService {
     /* -------- overview + features -------- */
     const overview =
       atmDetail?.overview ||
-      (name === 'SMB Cyber Security Appliance'
+      (name === 'Microsoft Copilot'
+        ? 'Copilot for Microsoft 365 is an AI assistant built into Word, Excel, PowerPoint, Outlook and Teams, grounded in your organisation’s work data and protected by enterprise-grade Microsoft 365 security.'
+        : name === 'SMB Cyber Security Appliance'
         ? 'The XcellSecure SMB Cyber Security Appliance is an affordable, cloud-managed security gateway designed for businesses with up to 50 users. It combines secure business Wi-Fi, advanced firewall protection, and web & DNS security in one platform. Application controls and bandwidth management help businesses maintain secure and efficient network usage. Get real-time visibility into network activity with centralized cloud management. Automatic security updates help keep your environment protected against evolving threats. Enjoy enterprise-grade security without the cost and complexity of a traditional security stack.'
         : name === 'Advanced Endpoint Security (EDR)'
         ? 'XcellHost Advanced Endpoint Security (EDR) helps organizations identify, protect, detect, respond to, and recover from endpoint threats. It provides continuous security monitoring to detect suspicious activity and potential threats. Endpoints are protected with advanced security capabilities designed to reduce cyber risks. Delivered from secure Indian Tier-4 datacenters, the solution provides reliable and centralized protection. Your environment is monitored 24×7 by experienced security professionals. Get direct assistance from real engineers whenever you need support.'

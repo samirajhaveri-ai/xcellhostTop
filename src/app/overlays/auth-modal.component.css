@@ -1,0 +1,199 @@
+.customer-auth-modal {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(520px, .95fr);
+  width: min(1120px, 100%);
+  height: min(740px, calc(100vh - 40px));
+  max-height: none;
+  padding: 0;
+  border: 1px solid rgba(15, 35, 70, .08);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 28px 80px rgba(4, 30, 66, .28);
+}
+
+.customer-auth-showcase {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 27px 34px 25px;
+  background:
+    radial-gradient(circle at 78% 18%, rgba(59, 130, 246, .24), transparent 35%),
+    radial-gradient(circle at 8% 88%, rgba(255, 140, 26, .12), transparent 30%),
+    linear-gradient(145deg, #041e42 0%, #062a5c 58%, #041e42 100%);
+  color: #fff;
+}
+.customer-showcase-grid {
+  position: absolute;
+  inset: 0;
+  opacity: .18;
+  background-image: linear-gradient(rgba(138, 180, 255, .11) 1px, transparent 1px), linear-gradient(90deg, rgba(138, 180, 255, .11) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to bottom right, #000, transparent 72%);
+}
+.customer-showcase-logo { position: relative; z-index: 1; width: 190px; height: auto; margin-bottom: auto; }
+.customer-showcase-content { position: relative; z-index: 1; width: 100%; max-width: 510px; margin: 28px 0; }
+.customer-showcase-badge { display: inline-flex; margin-bottom: 13px; padding: 5px 12px; border-radius: 6px; background: linear-gradient(135deg, #1565d8, #3b82f6); font-size: 10px; font-weight: 800; }
+.customer-showcase-content > h2 { margin: 0 0 9px; color: #fff; font-size: clamp(27px, 2.7vw, 39px); line-height: 1.08; letter-spacing: -.035em; }
+.customer-showcase-content > p { max-width: 440px; margin: 0 0 20px; color: rgba(255, 255, 255, .58); font-size: 13px; line-height: 1.65; }
+
+.customer-service-carousel { min-height: 222px; padding: 17px 19px; border: 1px solid rgba(138, 180, 255, .2); border-radius: 13px; background: rgba(255, 255, 255, .055); backdrop-filter: blur(10px); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .05); }
+.customer-carousel-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.customer-carousel-icon { display: grid; width: 36px; height: 36px; place-items: center; border: 1px solid rgba(138, 180, 255, .34); border-radius: 8px; background: rgba(21, 101, 216, .25); color: #fff; font-size: 16px; }
+.customer-carousel-top > div { display: flex; gap: 5px; }
+.customer-carousel-top button { display: grid; width: 29px; height: 29px; place-items: center; border: 1px solid rgba(255, 255, 255, .13); border-radius: 50%; background: rgba(255, 255, 255, .04); color: rgba(255, 255, 255, .62); font-size: 18px; cursor: pointer; }
+.customer-carousel-top button:hover { background: rgba(255, 255, 255, .1); color: #fff; }
+.customer-service-slide { animation: customerSlideIn .35s ease both; }
+.customer-service-slide > span { color: #8ab4ff; font-size: 9px; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
+.customer-service-slide h3 { margin: 3px 0 6px; color: #fff; font-size: 17px; }
+.customer-service-slide p { min-height: 57px; margin: 0 0 9px; color: rgba(255, 255, 255, .56); font-size: 11px; line-height: 1.55; }
+.customer-service-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.customer-service-tags span { display: inline-flex; align-items: center; gap: 5px; padding: 4px 8px; border: 1px solid rgba(255, 255, 255, .08); border-radius: 5px; background: rgba(255, 255, 255, .055); color: rgba(255, 255, 255, .67); font-size: 9px; }
+.customer-service-tags i { width: 5px; height: 5px; border-radius: 50%; background: #ff8c1a; }
+@keyframes customerSlideIn { from { opacity: 0; transform: translateX(12px); } }
+
+.customer-carousel-dots { display: flex; gap: 5px; margin: 11px 0; }
+.customer-carousel-dots button { width: 5px; height: 5px; padding: 0; border: 0; border-radius: 5px; background: rgba(255, 255, 255, .22); transition: width .2s, background .2s; cursor: pointer; }
+.customer-carousel-dots button.active { width: 16px; background: #ff8c1a; }
+.customer-more-services { display: inline-flex; align-items: center; gap: 5px; padding: 6px 11px; border: 1px solid rgba(255, 255, 255, .14); border-radius: 6px; color: rgba(255, 255, 255, .7); font-size: 11px; font-weight: 700; text-decoration: none; }
+.customer-more-services:hover { border-color: rgba(255, 255, 255, .3); color: #fff; }
+.customer-showcase-benefits {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  margin-top: auto;
+  padding: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.customer-showcase-benefits span { white-space: nowrap; }
+
+.customer-auth-form-panel { position: relative; overflow-y: auto; padding: 32px 36px 26px; background: #fff; }
+
+.customer-auth-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: #f1f5f9;
+  color: #334155;
+  font: 400 25px/1 Arial, sans-serif;
+  cursor: pointer;
+}
+
+.customer-auth-close:hover { background: #e5edfa; color: #0066ff; }
+
+.customer-auth-header { margin-bottom: 22px; padding-right: 40px; }
+.customer-auth-header > span {
+  display: inline-flex;
+  margin-bottom: 8px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: #eaf2ff;
+  color: #0066ff;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.customer-auth-header h2 { margin: 0 0 5px; color: #0b132b; font-size: 27px; line-height: 1.2; }
+.customer-auth-header p { margin: 0; color: #64748b; font-size: 14px; }
+
+.customer-auth-form { display: grid; gap: 13px; }
+.customer-auth-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.customer-auth-form label { display: block; min-width: 0; }
+.customer-auth-form label > span:first-child {
+  display: block;
+  margin-bottom: 5px;
+  color: #56657b;
+  font-size: 12px;
+  font-weight: 700;
+}
+.customer-auth-form label i { color: #ef4444; font-style: normal; }
+.customer-auth-form input:not([type='checkbox']) {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  outline: 0;
+  color: #1e293b;
+  background: #fff;
+  font: 500 13px/1.3 var(--body, Arial, sans-serif);
+  transition: border-color .18s, box-shadow .18s;
+}
+.customer-auth-form input::placeholder { color: #a7b1c0; }
+.customer-auth-form input:not([type='checkbox']):focus { border-color: #0066ff; box-shadow: 0 0 0 3px rgba(0, 102, 255, .13); }
+.customer-auth-form input.ng-touched.ng-invalid { border-color: #ef4444; }
+.customer-auth-form label > small, .customer-terms-error { display: block; margin-top: 4px; color: #dc2626; font-size: 10.5px; line-height: 1.25; }
+
+.customer-password { position: relative; display: block; }
+.customer-password input { padding-right: 52px !important; }
+.customer-password button {
+  position: absolute;
+  top: 50%;
+  right: 9px;
+  padding: 3px;
+  border: 0;
+  background: transparent;
+  color: #64748b;
+  font-size: 10px;
+  font-weight: 700;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.customer-auth-terms { display: flex !important; align-items: flex-start; gap: 8px; margin-top: 1px; }
+.customer-auth-terms input { width: 15px; height: 15px; margin-top: 2px; flex: 0 0 auto; accent-color: #0066ff; }
+.customer-auth-terms span { color: #64748b !important; font-size: 11px !important; font-weight: 500 !important; line-height: 1.45; }
+.customer-auth-terms a { color: #0066ff; font-weight: 700; }
+.customer-auth-error { min-height: 16px; margin: -2px 0 0; color: #dc2626; font-size: 11px; }
+.customer-auth-submit, .customer-auth-success button {
+  width: 100%;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 8px;
+  background: #0066ff;
+  color: #fff;
+  font: 700 14px/1.2 var(--body, Arial, sans-serif);
+  box-shadow: 0 8px 20px rgba(0, 102, 255, .22);
+  cursor: pointer;
+}
+.customer-auth-submit:hover, .customer-auth-success button:hover { background: #0057da; }
+.customer-auth-note { margin: -3px 0 0; color: #94a3b8; font-size: 10.5px; text-align: center; }
+
+.customer-auth-success { padding: 44px 20px 34px; text-align: center; }
+.customer-auth-success > span { display: grid; width: 58px; height: 58px; margin: 0 auto 15px; place-items: center; border: 2px solid #22c55e; border-radius: 50%; background: #effcf4; color: #16a34a; font-size: 25px; }
+.customer-auth-success h2 { margin: 0 0 8px; color: #0b132b; font-size: 24px; }
+.customer-auth-success p { margin: 0 auto 22px; max-width: 440px; color: #64748b; font-size: 14px; line-height: 1.55; }
+.customer-auth-success button { max-width: 260px; }
+
+@media (max-width: 640px) {
+  .customer-auth-layer { padding: 10px; }
+  .customer-auth-modal { display: block; height: auto; max-height: calc(100vh - 20px); border-radius: 15px; overflow-y: auto; }
+  .customer-auth-showcase { min-height: 390px; padding: 22px 18px; }
+  .customer-showcase-logo { width: 155px; }
+  .customer-showcase-content { margin: 22px 0 16px; }
+  .customer-showcase-content > h2 { font-size: 27px; }
+  .customer-showcase-content > p { font-size: 12px; }
+  .customer-service-carousel { min-height: 215px; }
+  .customer-auth-form-panel { overflow: visible; padding: 27px 18px 22px; }
+  .customer-auth-grid { grid-template-columns: 1fr; }
+  .customer-auth-header h2 { font-size: 23px; }
+}
+
+@media (min-width: 641px) and (max-width: 900px) {
+  .customer-auth-modal { grid-template-columns: minmax(0, .85fr) minmax(450px, 1.15fr); }
+  .customer-auth-showcase { padding: 25px 24px; }
+  .customer-showcase-content > h2 { font-size: 28px; }
+}
