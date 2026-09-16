@@ -708,6 +708,33 @@
                 </section>
               
 
+            @if (slug() === 'latest-domain-extensions') {
+              <div class="domain-hero-song">
+                <span id="domainExtensionsSongTitle">Listen to our Latest Domain Extensions Song</span>
+                <audio controls preload="metadata" aria-labelledby="domainExtensionsSongTitle">
+                  <source src="/assets/audio/latest-domain-extensions-song.mp3" type="audio/mpeg">
+                  <a href="/assets/audio/latest-domain-extensions-song.mp3">Listen to the Latest Domain Extensions Song</a>
+                </audio>
+              </div>
+            }
+            @if (slug() === 'transfer-your-domain') {
+              <div class="domain-hero-song">
+                <span id="domainTransferSongTitle">Listen to our Domain Transfer Song</span>
+                <audio controls preload="metadata" aria-labelledby="domainTransferSongTitle">
+                  <source src="/assets/audio/domain-transfer-song.mp3" type="audio/mpeg">
+                  <a href="/assets/audio/domain-transfer-song.mp3">Listen to the Domain Transfer Song</a>
+                </audio>
+              </div>
+            }
+            @if (slug() === 'register-a-domain-name') {
+              <div class="domain-hero-song">
+                <span id="domainSongTitle">Listen to our Domain Registration Song</span>
+                <audio controls preload="metadata" aria-labelledby="domainSongTitle">
+                  <source src="/assets/audio/domain-registration-song.mp3" type="audio/mpeg">
+                  <a href="/assets/audio/domain-registration-song.mp3">Listen to the Domain Registration Song</a>
+                </audio>
+              </div>
+            }
             @if (slug() === 'acronis-genai-protection') {
               <div class="genai-hero-song">
                 <span id="genaiSongTitle">Listen to our Acronis GenAI Protection Song</span>
@@ -726,7 +753,7 @@
                 </audio>
               </div>
             }
-            @if (isRmm()) {
+            @if (slug() === 'remote-monitoring-and-mgmt-rmm') {
               <div class="rmm-hero-song">
                 <span id="rmmSongTitle">Listen to our RMM Song</span>
                 <audio controls preload="metadata" aria-labelledby="rmmSongTitle">
@@ -3750,6 +3777,7 @@
                 [href]="mailHref()"
                 >Email Us</a
               >
+              <xh-service-enquiry-buttons [product]="v.name" />
             </div>
             <a
               class="pp-cta-buddha-link"

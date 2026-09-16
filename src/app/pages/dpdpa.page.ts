@@ -1,3 +1,4 @@
+import { ServiceEnquiryButtonsComponent } from '../sections/service-enquiry-buttons.component';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
@@ -84,7 +85,7 @@ const DESCRIPTION =
 @Component({
   selector: 'xh-dpdpa-page',
   standalone: true,
-  imports: [RouterLink],
+  imports: [ServiceEnquiryButtonsComponent, RouterLink],
   templateUrl: './dpdpa.page.html',
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,

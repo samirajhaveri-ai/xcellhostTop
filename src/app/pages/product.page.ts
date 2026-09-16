@@ -1,3 +1,4 @@
+import { ServiceEnquiryButtonsComponent } from '../sections/service-enquiry-buttons.component';
 import { WaapContentComponent } from '../sections/waap-content.component';
 import { IotInfrastructureContentComponent } from '../sections/iot-infrastructure-content.component';
 import { DomainsContentComponent } from '../sections/domains-content.component';
@@ -132,7 +133,7 @@ interface ProductTourSlide {
 @Component({
   selector: 'xh-product-page',
   standalone: true,
-  imports: [
+  imports: [ServiceEnquiryButtonsComponent, 
     EnterpriseDmarcContentComponent,
     BusinessEmailContentComponent,
     InsightsSectionComponent,
@@ -1313,9 +1314,10 @@ export class ProductPage {
     this.overlay.open('trial');
   }
 
-  openCallback(ev: Event): void {
+  openCallback(ev: Event, request?: string): void {
     ev.preventDefault();
-    this.topics.ask(this.view()?.name ?? "");
+    const name = this.view()?.name ?? "";
+    this.topics.ask(request ? `${name} - ${request}` : name);
     this.overlay.open('callback');
   }
 
