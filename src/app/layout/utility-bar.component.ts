@@ -3,6 +3,7 @@ import { LanguageService } from '../core/language.service';
 import { ThemeService } from '../core/theme.service';
 import { SITE } from '../data/site.data';
 import { LanguagePickerComponent } from './language-picker.component';
+import { RouterLink } from '@angular/router';
 
 /**
  * The navy strip above the header: portal shortcuts on the left, phone number
@@ -13,7 +14,7 @@ import { LanguagePickerComponent } from './language-picker.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { style: 'display: contents' },
   templateUrl: './utility-bar.component.html',
-  imports: [LanguagePickerComponent],
+  imports: [LanguagePickerComponent, RouterLink],
 })
 export class UtilityBarComponent implements AfterViewInit {
   readonly site = SITE;

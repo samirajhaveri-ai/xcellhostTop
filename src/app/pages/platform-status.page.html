@@ -1,0 +1,36 @@
+<section class="status-hero">
+  <div class="wrap">
+    <nav class="status-breadcrumb" aria-label="Breadcrumb">
+      <a routerLink="/">Home</a><span aria-hidden="true">/</span><a routerLink="/about">About Us</a><span aria-hidden="true">/</span><span>Platform Status</span>
+    </nav>
+    <div class="eyebrow">XCELLHOST SERVICE AVAILABILITY</div>
+    <h1>Platform Status</h1>
+    <p>A central place for service availability, maintenance information and platform updates.</p>
+  </div>
+</section>
+
+<section class="status-body">
+  <div class="wrap status-content">
+    <div class="status-summary">
+      <span class="summary-icon" aria-hidden="true">i</span>
+      <div><h2>Live status is currently unavailable</h2><p>Service status has not been published on this page yet. Please contact our support team to confirm availability or report an issue.</p></div>
+      <a class="status-button" href="https://supportdesk.xcellhost.cloud/portal/en/home" target="_blank" rel="noopener noreferrer">Contact Support <span aria-hidden="true">↗</span></a>
+    </div>
+
+    <section class="status-panel" aria-labelledby="services-heading">
+      <div class="panel-heading"><div><h2 id="services-heading">Service Status</h2><p>Availability across the XcellHost platform</p></div><span class="status-label">Awaiting updates</span></div>
+      <ul class="service-list">
+        @for (service of services; track service.name) {
+          <li><div><h3>{{ service.name }}</h3><p>{{ service.description }}</p></div><span class="service-state"><span class="state-dot" aria-hidden="true"></span>Status unavailable</span></li>
+        }
+      </ul>
+    </section>
+
+    <div class="status-grid">
+      <section class="status-panel update-panel" aria-labelledby="maintenance-heading"><span class="section-label">PLANNED WORK</span><h2 id="maintenance-heading">Scheduled Maintenance</h2><p>Maintenance information is not available yet. Contact support for planned work that may affect your services.</p></section>
+      <section class="status-panel update-panel" aria-labelledby="incidents-heading"><span class="section-label">SERVICE UPDATES</span><h2 id="incidents-heading">Incident History</h2><p>Incident history has not been published yet. For an existing issue, follow your ticket in the support portal.</p></section>
+    </div>
+
+    <aside class="status-help"><div><h2>Experiencing an issue?</h2><p>Share the affected service and details with our support team.</p></div><div class="help-links"><a class="status-button" href="https://supportdesk.xcellhost.cloud/portal/en/signin" target="_blank" rel="noopener noreferrer">Submit a Ticket <span aria-hidden="true">↗</span></a><a routerLink="/escalation-matrix">View escalation matrix →</a></div></aside>
+  </div>
+</section>

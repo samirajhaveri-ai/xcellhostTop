@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 interface EntraPlan {
   name: string;
@@ -6,14 +6,6 @@ interface EntraPlan {
   list: string;
   monthly: string;
   yearly: string;
-}
-
-interface ExploreTab {
-  label: string;
-  title: string;
-  body: string;
-  bullets: string[];
-  items: [string, string][];
 }
 
 @Component({
@@ -24,8 +16,6 @@ interface ExploreTab {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EntraIdContentComponent {
-  readonly activeExploreTab = signal(0);
-
   readonly plans: EntraPlan[] = [
     { name: 'Microsoft Entra Workload ID', sku: 'CFQ7TTC0R9QB:0002', list: '₹250/mo', monthly: '₹228', yearly: '₹2,640' },
     { name: 'Microsoft Entra Internet Access', sku: 'MS-ENTRA-INTERNET', list: '₹415/mo', monthly: '₹378', yearly: '₹4,382' },
@@ -56,15 +46,4 @@ export class EntraIdContentComponent {
     ['Entitlement management', 'Automated access packages and workflows', 'p2'],
   ] as const;
 
-  readonly exploreTabs: ExploreTab[] = [
-    { label: 'Email', title: 'Professional business email', body: 'Run secure email on your own domain with shared calendars, contacts and reliable anywhere access.', bullets: ['Custom-domain email', 'Large cloud mailboxes', 'Shared calendars and contacts', 'Spam and malware protection'], items: [['Inbox', 'Priority mail protected'], ['Calendar', 'Team meeting at 3:00 PM'], ['Contacts', 'Company directory synced']] },
-    { label: 'Office apps', title: 'The Office apps, everywhere', body: 'Create and collaborate in Word, Excel, PowerPoint and Outlook across desktop, web and mobile.', bullets: ['Always-up-to-date Office apps', 'Desktop, web and mobile', 'Cloud autosave', 'Real-time co-authoring'], items: [['Business plan.docx', 'Auto-saved · 1 min ago'], ['Budget-FY.xlsx', 'Edited by 2 people'], ['Pitch deck.pptx', 'Shared link ready']] },
-    { label: 'Teams', title: 'Teams for chat & meetings', body: 'Bring chat, video calls and file sharing together in Microsoft Teams, with every project in its own channel.', bullets: ['HD video calls and webinars', 'Chat and channels', 'Screen share and recordings', 'Files and apps in one place'], items: [['Sales team', '5 members · active now'], ['Client call', 'Recording available'], ['Shared: agenda.docx', 'In General channel']] },
-    { label: 'Copilot', title: 'Copilot — your AI assistant', body: 'Draft and rewrite, analyse data, build slides and summarise email and meetings from a simple prompt.', bullets: ['Draft in Word and Outlook', 'Analyse data in Excel', 'Create PowerPoint decks', 'Catch up on Teams meetings'], items: [['Summarise this thread', 'Done in 3 seconds'], ['Draft a reply', 'Professional · friendly'], ['Create a 5-slide deck', 'From your document']] },
-    { label: 'Security & Admin', title: 'Security & simple admin', body: 'Protect accounts and data with MFA, threat protection and device management from one admin centre.', bullets: ['Multi-factor authentication', 'Advanced threat protection', 'Device management (Intune)', 'One admin centre'], items: [['MFA enforced', 'All users protected'], ['Threat protection', 'On · 0 incidents'], ['Add / remove users', 'Manage licences']] },
-  ];
-
-  selectExploreTab(index: number): void {
-    this.activeExploreTab.set(index);
-  }
 }

@@ -676,7 +676,7 @@
                 <section class="pp-ask-ai" aria-labelledby="ppAskAiTitle">
                   <div class="pp-ask-ai-copy">
                     <span class="pp-ask-ai-kicker" id="ppAskAiTitle"
-                      >Ask AI About {{ isSmbCyber() ? 'Cybird SMB Cyber Security Appliance' : isCloudBackup() ? 'Acronis Cloud Backup' : v.name }} from
+                      >Ask AI About {{ isSmbCyber() ? 'Cybird SMB Cyber Security Appliance' : isCloudBackup() ? 'Acronis Cloud Backup' : isAdvancedEdr() ? 'Acronis Advanced Endpoint Security (EDR)' : v.name }} from
                       XcellHost</span
                     >
                   </div>
@@ -3392,11 +3392,11 @@
                 }
                 @if (isWatchtower()) {
                   <article class="tally-video-card">
-                    <h3><span>Watchtower overview</span></h3>
+                    <h3><span>Trust Watch overview</span></h3>
                     <div class="tally-video-frame">
                       <iframe
                         src="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?rel=0&amp;playsinline=1"
-                        title="Watchtower overview placeholder video"
+                        title="Trust Watch overview placeholder video"
                         allow="
                           accelerometer;
                           autoplay;
@@ -3416,7 +3416,7 @@
                     <div class="tally-video-frame">
                       <iframe
                         src="https://www.youtube-nocookie.com/embed/ysz5S6PUM-U?rel=0&amp;playsinline=1"
-                        title="Watchtower unified intelligence workflow placeholder video"
+                        title="Trust Watch unified intelligence workflow placeholder video"
                         allow="
                           accelerometer;
                           autoplay;
@@ -3669,7 +3669,7 @@
         <div class="pp-cta">
             <div>
               <h3 id="ppCtaT">Ready to start with {{ v.name }}?</h3>
-              <p>Free consultation · free migration · 24×7 support in English &amp; Hindi</p>
+              <p>FREE Consultation &middot; FREE Demo &middot; FREE Trial &middot; 24&times;7 support in English &amp; Hindi</p>
             </div>
             <div style="display: flex; gap: 12px; flex-wrap: wrap">
               <a class="btn btn-primary" href="#" id="ppCtaCall" (click)="openCallback($event)"
@@ -3713,7 +3713,6 @@
                 [href]="mailHref()"
                 >Email Us</a
               >
-              <xh-service-enquiry-buttons [product]="v.name" />
             </div>
             <a
               class="pp-cta-buddha-link"
