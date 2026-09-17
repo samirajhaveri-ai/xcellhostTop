@@ -1,4 +1,3 @@
-import { ServiceEnquiryButtonsComponent } from '../sections/service-enquiry-buttons.component';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -39,7 +38,7 @@ function plain(html: string): string {
 @Component({
   selector: 'xh-dpdpa-module-page',
   standalone: true,
-  imports: [ServiceEnquiryButtonsComponent, RouterLink],
+  imports: [RouterLink],
   templateUrl: './dpdpa-module.page.html',
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,

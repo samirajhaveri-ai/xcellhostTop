@@ -26,7 +26,7 @@ const WA_MESSAGE = 'Hello XcellHost, I would like to speak to someone about your
         <div class="cta-band" xhReveal>
           <div>
             <h2>Build what’s next, with us</h2>
-            <p>Free consultation · free migration · WhatsApp {{ phone }}</p>
+            <p>FREE Consultation &middot; FREE Demo &middot; FREE Trial &middot; 24&times;7 support in English &amp; Hindi &middot; WhatsApp {{ phone }}</p>
           </div>
           <div style="display:flex;gap:12px;flex-wrap:wrap">
             <a class="btn btn-primary" href="#" id="dpCtaCall" (click)="requestCallback($event)"

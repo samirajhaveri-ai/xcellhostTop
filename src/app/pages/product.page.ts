@@ -1,4 +1,3 @@
-import { ServiceEnquiryButtonsComponent } from '../sections/service-enquiry-buttons.component';
 import { WaapContentComponent } from '../sections/waap-content.component';
 import { IotInfrastructureContentComponent } from '../sections/iot-infrastructure-content.component';
 import { DomainsContentComponent } from '../sections/domains-content.component';
@@ -133,7 +132,7 @@ interface ProductTourSlide {
 @Component({
   selector: 'xh-product-page',
   standalone: true,
-  imports: [ServiceEnquiryButtonsComponent, 
+  imports: [
     EnterpriseDmarcContentComponent,
     BusinessEmailContentComponent,
     InsightsSectionComponent,

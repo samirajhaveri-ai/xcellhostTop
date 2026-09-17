@@ -1,4 +1,3 @@
-import { ServiceEnquiryButtonsComponent } from '../sections/service-enquiry-buttons.component';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -13,7 +12,7 @@ import { SeoService } from '../core/seo.service';
 @Component({
   selector: 'xh-dpdpa-for-smb-page',
   standalone: true,
-  imports: [ServiceEnquiryButtonsComponent],
+  imports: [],
   templateUrl: './dpdpa-for-smb.page.html',
   styleUrl: './dpdpa-for-smb.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
