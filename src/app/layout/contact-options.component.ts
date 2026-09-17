@@ -14,7 +14,13 @@ import { LeadService } from '../core/lead.service';
     <section class="newsletter" aria-labelledby="newsletter-title">
       <div class="wrap newsletter-inner">
         <div class="newsletter-copy">
-          <p class="newsletter-label">Xcellhost New's letter</p>
+          <p class="newsletter-label">
+            <svg class="newsletter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M4 3h14v16a2 2 0 0 0 4 0V7h-4M4 3v16a2 2 0 0 0 2 2h14" />
+              <path d="M8 7h6M8 11h6M8 15h2M13 15h1" />
+            </svg>
+            Xcellhost Newsletter
+          </p>
           <h2 id="newsletter-title">
             Get the latest updates on Blog Posts, Industry News, Products, and Guidance on Cloud,
             Cyber Security, AI &amp; Digital Transformation.
@@ -52,7 +58,7 @@ import { LeadService } from '../core/lead.service';
       position: relative;
       padding: 0 24px;
       overflow: hidden;
-      background: linear-gradient(to bottom, #f4f8f7 0 50%, #3b63e8 50% 100%);
+      background: linear-gradient(to bottom, var(--ice) 0 50%, #3b63e8 50% 100%);
       color: #fff;
     }
 
@@ -66,32 +72,42 @@ import { LeadService } from '../core/lead.service';
       max-width: none;
       margin-inline: auto;
       padding: 32px;
-      border-radius: 6px;
-      background: #32456d;
-      box-shadow: 0 18px 38px rgba(105, 165, 255, 0.22);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #87ceeb;
+      box-shadow: 0 12px 28px rgba(4, 30, 66, 0.18);
     }
 
     .newsletter-copy {
       position: relative;
       z-index: 1;
       min-width: 0;
-      container-type: inline-size;
     }
 
     .newsletter-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       margin: 0 0 10px;
-      color: #fff;
+      color: var(--navy);
       text-align: center;
       font: 800 17px / 1.35 var(--disp);
+    }
+
+    .newsletter-icon {
+      color: var(--orange);
+      width: 25px;
+      height: 25px;
+      flex-shrink: 0;
     }
 
     .newsletter-copy h2 {
       max-width: 1120px;
       margin: 0 auto;
-      color: #fff;
+      color: var(--ink);
       text-align: center;
-      font: 600 min(13px, 1.4cqw) / 1.4 var(--body);
-      white-space: nowrap;
+      font: 600 15px / 1.5 var(--body);
       letter-spacing: 0;
     }
 
@@ -109,11 +125,11 @@ import { LeadService } from '../core/lead.service';
       min-width: 0;
       min-height: 52px;
       padding: 0 18px;
-      border: 1px solid #344257;
+      border: 1px solid var(--line);
       border-radius: 8px;
       outline: 0;
-      background: #e9eaeb;
-      
+      background: var(--white);
+      color: var(--ink);
       font: 500 15px var(--body);
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
@@ -124,7 +140,7 @@ import { LeadService } from '../core/lead.service';
     }
 
     .newsletter-form input::placeholder {
-      color: #212d3f;
+      color: var(--slate);
       opacity: 1;
     }
 
@@ -134,20 +150,24 @@ import { LeadService } from '../core/lead.service';
       padding: 13px 22px;
       border: 0; 
       border-radius: 8px;
-      background: #3b63e8;
+      background: var(--blue);
       box-shadow: none;
       color: #fff;
       cursor: pointer;
       font: 700 15px var(--body);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+      transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
     }
 
     .newsletter-form button:hover:not(:disabled),
     .newsletter-form button:focus-visible {
-      background: #3b63e8;
-      box-shadow: 0 10px 24px rgba(8, 122, 98, 0.25);
+      background: #0e4cab;
+      box-shadow: 0 8px 20px rgba(21, 101, 216, 0.3);
       transform: translateY(-2px);
-      outline: none;
+    }
+
+    .newsletter-form button:focus-visible {
+      outline: 2px solid var(--navy);
+      outline-offset: 3px;
     }
 
     .newsletter-form button:disabled {
@@ -160,7 +180,7 @@ import { LeadService } from '../core/lead.service';
       right: 24px;
       bottom: 10px;
       margin: 0;
-      color: #fca5a5;
+      color: #b91c1c;
       font-size: 13px;
     }
 
@@ -169,7 +189,7 @@ import { LeadService } from '../core/lead.service';
     }
 
     .form-message.success {
-      color: #86efac;
+      color: #166534;
     }
 
     .sr-only {
