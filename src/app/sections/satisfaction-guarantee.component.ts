@@ -12,7 +12,7 @@ interface SatisfactionPromise {
 const PROMISES: readonly SatisfactionPromise[] = [
   {
     icon: 'currency_rupee',
-    kicker: '30 days',
+    kicker: '15 days',
     title: 'Money-back guarantee',
     body: 'A straightforward start, backed by clear terms.',
   },
@@ -31,7 +31,7 @@ const PROMISES: readonly SatisfactionPromise[] = [
   {
     icon: 'verified_user',
     kicker: 'Proven trust',
-    title: 'Trusted & secure',
+    title: 'Trusted & Secure',
     body: 'Cloud services built around security and reliability.',
   },
 ];

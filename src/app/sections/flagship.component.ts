@@ -248,6 +248,7 @@ const FLAGSHIP_CARDS: readonly FlagshipCard[] = [
   },
   {
     icon: 'shield', badge: 'Email defence', title: 'Advanced Email Security',
+    link: '/vortex-seg',
     blurb: 'AI protection against phishing, impersonation, BEC and zero-day threats.',
     lead: '', amount: 'per-user', tail: '/month', cta: 'Explore →', category: 'Security',
   },

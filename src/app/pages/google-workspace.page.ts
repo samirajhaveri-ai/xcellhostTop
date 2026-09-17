@@ -1,4 +1,3 @@
-import { ServiceEnquiryButtonsComponent } from '../sections/service-enquiry-buttons.component';
 import { InsightsSectionComponent } from '../sections/insights-section.component';
 import {
   AfterViewInit,
@@ -16,7 +15,7 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 @Component({
   selector: 'xh-google-workspace-page',
   standalone: true,
-  imports: [ServiceEnquiryButtonsComponent, InsightsSectionComponent],
+  imports: [InsightsSectionComponent],
   templateUrl: './google-workspace.page.html',
   styleUrl: './google-workspace.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

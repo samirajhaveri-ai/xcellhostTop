@@ -160,10 +160,6 @@
     </nav>
 
     <div class="xh-actions">
-      <span class="xh-status" role="img" aria-label="Platform status icon" title="Platform status">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 8-6-16-3 8H2"/></svg>
-        <span class="xh-status-dot" aria-hidden="true"></span>
-      </span>
       <button class="xh-search" aria-label="Search services" (click)="openSearch()">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
       </button>
@@ -175,25 +171,20 @@
           aria-controls="xh-customer-login-menu"
           [attr.aria-expanded]="loginMenuOpen()"
           (click)="toggleLoginMenu($event)"
-        >Login <span aria-hidden="true">⌄</span></button>
+        >Login <span aria-hidden="true"></span></button>
         <div id="xh-customer-login-menu" class="xh-login-dropdown" role="menu" aria-label="Customer login">
-          <span class="xh-login-heading">Customer Login</span>
-          <a href="https://billing.xcellhost.cloud" target="_blank" rel="noopener noreferrer" role="menuitem" (click)="onNavigate()">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3V6Zm0 4h18M7 15h4"/></svg>
-            <span><b>Billing Portal</b><small>Invoices, renewals and payments</small></span>
-          </a>
-          <a href="https://support.xcellhost.cloud" target="_blank" rel="noopener noreferrer" role="menuitem" (click)="onNavigate()">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13v-2a8 8 0 0 1 16 0v2M4 13H2v6h4v-6H4Zm16 0h2v6h-4v-6h2Zm0 6c0 2-2 3-5 3"/></svg>
-            <span><b>Support Portal</b><small>Tickets and knowledge base</small></span>
-          </a>
-          <button type="button" role="menuitem" (click)="requestPortalAccess($event, 'Cloud Control Panel access')">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18h11a4 4 0 0 0 .7-7.9A7 7 0 0 0 5.4 8.2 5 5 0 0 0 7 18Z"/></svg>
-            <span><b>Cloud Control Panel</b><small>Manage servers and services</small></span>
+          <button class="selected" type="button" role="menuitem" (click)="openCustomerLogin()">
+            <span>Customer Login</span><b class="xh-login-check" aria-hidden="true">✓</b>
           </button>
-          <a routerLink="/cloud-login" role="menuitem" (click)="onNavigate()">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Zm-3.5-10 2.2 2.2 4.8-4.8"/></svg>
-            <span><b>Acronis Backup Portal</b><small>Backups and recovery</small></span>
-          </a>
+          <button type="button" role="menuitem" (click)="requestPortalAccess($event, 'Partner portal access')">
+            <span>Partner Login</span>
+          </button>
+          <button type="button" role="menuitem" (click)="requestPortalAccess($event, 'Vendor portal access')">
+            <span>Vendor Login</span>
+          </button>
+          <button type="button" role="menuitem" (click)="requestPortalAccess($event, 'Employee portal access')">
+            <span>Employee Login</span>
+          </button>
         </div>
       </div>
       <a class="xh-trial" href="#" (click)="openLayer($event, 'trial')">Sign Up</a>

@@ -88,21 +88,6 @@
     </div>
   </section>
 
-  <section class="explore" aria-labelledby="m365-explore-title">
-    <div class="explore-head"><div class="pp-sec" id="m365-explore-title">Explore Microsoft 365</div><p>Everything your team needs to get work done</p></div>
-    <div class="ft-tabs" role="tablist" aria-label="Explore Microsoft 365 features">
-      @for (tab of exploreTabs; track tab.label; let index = $index) {
-        <button type="button" role="tab" [class.active]="activeExploreTab() === index" [attr.aria-selected]="activeExploreTab() === index" (click)="selectExploreTab(index)">{{ tab.label }}</button>
-      }
-    </div>
-    @if (exploreTabs[activeExploreTab()]; as tab) {
-      <div class="ft-panel">
-        <div><h3>{{ tab.title }}</h3><p>{{ tab.body }}</p><ul>@for (bullet of tab.bullets; track bullet) {<li>{{ bullet }}</li>}</ul></div>
-        <div class="ft-shot"><header><span>M<small>365</small></span><b>{{ tab.label }}</b></header><div>@for (item of tab.items; track item[0]) {<article><i>✓</i><span><b>{{ item[0] }}</b><small>{{ item[1] }}</small></span></article>}</div></div>
-      </div>
-    }
-  </section>
-
   <section aria-labelledby="m365-benefits-title">
     <div class="pp-sec" id="m365-benefits-title">Benefits for your business</div>
     <div class="pp-bens">

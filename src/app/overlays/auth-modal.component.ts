@@ -1,135 +1,115 @@
 import { ChangeDetectionStrategy, Component, effect, inject, signal } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 import { OverlayService } from '../core/overlay.service';
-import { CallbackTopicService } from './callback-topic.service';
-import { EMAIL_VALIDATORS, PHONE_VALIDATORS, firstError } from './form.util';
+import { EMAIL_VALIDATORS, PHONE_VALIDATORS } from './form.util';
 
-type AuthTab = 'in' | 'up';
-type LoginRole = 'customer' | 'partner' | 'vendor' | 'employee';
+const PASSWORD_PATTERN = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
 
-const LOGIN_ROLE_COPY: Record<Exclude<LoginRole, 'customer'>, { title: string; description: string; topic: string }> = {
-  partner: { title: 'Partner login', description: 'Access partner resources, opportunities and programme support.', topic: 'Partner portal access' },
-  vendor: { title: 'Vendor login', description: 'Access vendor coordination, service and account resources.', topic: 'Vendor portal access' },
-  employee: { title: 'Employee login', description: 'Request secure access to XcellHost employee systems.', topic: 'Employee portal access' },
+const matchingPasswords: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
+  const password = group.get('password')?.value;
+  const confirmation = group.get('confirmPassword')?.value;
+  return password && confirmation && password !== confirmation ? { passwordMismatch: true } : null;
 };
 
-/**
- * The customer login / new-account modal (`#auth`).
- *
- * There is no authentication here and never was: the login tab is four links —
- * two straight to the hosted billing and support portals, two that hand over to
- * the callback modal with a subject. The signup tab captures anal.
-//  */ 
-//  * confirms in place; it has no webhook, exactly like the origi
+/** Customer account form displayed from the header's Customer Login menu item. */
 @Component({
   selector: 'xh-auth-modal',
   standalone: true,
   host: { style: 'display:contents' },
   imports: [ReactiveFormsModule],
   templateUrl: './auth-modal.component.html',
+  styleUrl: './auth-modal.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AuthModalComponent {
   readonly overlay = inject(OverlayService);
-  private readonly topics = inject(CallbackTopicService);
   private readonly fb = inject(FormBuilder);
 
   readonly form = this.fb.nonNullable.group({
-    name: ['', Validators.required],
-    company: [''],
+    firstName: ['', [Validators.required, Validators.minLength(2)]],
+    lastName: ['', Validators.required],
     email: ['', EMAIL_VALIDATORS],
     phone: ['', PHONE_VALIDATORS],
-    gstin: [''],
-  });
+    company: ['', Validators.required],
+    city: [''],
+    password: ['', [Validators.required, Validators.pattern(PASSWORD_PATTERN)]],
+    confirmPassword: ['', Validators.required],
+    terms: [false, Validators.requiredTrue],
+  }, { validators: matchingPasswords });
 
-  readonly tab = signal<AuthTab>('in');
-  readonly loginRole = signal<LoginRole>('customer');
-  readonly loginMenuOpen = signal(false);
-  readonly loginRoles: ReadonlyArray<{ value: LoginRole; label: string }> = [
-    { value: 'customer', label: 'Customer Login' },
-    { value: 'partner', label: 'Partner Login' },
-    { value: 'vendor', label: 'Vendor Login' },
-    { value: 'employee', label: 'Employee Login' },
-  ];
-  readonly error = signal('');
+  readonly showPassword = signal(false);
+  readonly showConfirmation = signal(false);
   readonly submitted = signal(false);
+  readonly error = signal('');
+  readonly activeService = signal(0);
+  readonly serviceSlides = [
+    { icon: '☁', eyebrow: 'Managed Cloud Services', title: 'Cloud Infrastructure', description: 'Multi-cloud management across AWS, Azure, GCP and Oracle, backed by migration, monitoring, DevOps and a 24×7 NOC.', tags: ['AWS', 'Azure', 'GCP', 'Oracle'] },
+    { icon: '⌾', eyebrow: 'Cybersecurity Platform', title: 'Managed SOC & Threat Defence', description: 'Autonomous threat management, attack-surface monitoring, dark-web intelligence, brand protection and 24×7 SOC operations.', tags: ['SOC 24×7', 'ATM', 'Dark Web Intel'] },
+    { icon: '◆', eyebrow: 'Endpoint Security', title: 'Scrutiny EDR & DLP', description: 'Endpoint detection and response with data-loss prevention, device control, email protection and DPDPA compliance.', tags: ['EDR', 'DLP', 'Cyberstanc'] },
+    { icon: '▣', eyebrow: 'Data Protection', title: 'Backup & Disaster Recovery', description: 'Acronis Cyber Protect Cloud with geo-redundant disaster recovery, Microsoft 365 backup and one-click restore.', tags: ['Acronis', 'M365 Backup', 'Geo-DR'] },
+    { icon: '◇', eyebrow: 'Digital Trust', title: 'SSL & Certificate Management', description: 'Multi-CA certificate lifecycle management with DigiCert, Sectigo and GlobalSign, including private PKI.', tags: ['DigiCert', 'Sectigo', 'GlobalSign'] },
+    { icon: '✉', eyebrow: 'Email Security', title: 'DMARC+ Email Protection', description: 'Valimail-powered DMARC enforcement with SPF and DKIM management, BEC protection and phishing defence.', tags: ['DMARC', 'SPF / DKIM', 'Valimail'] },
+    { icon: '✓', eyebrow: 'Compliance Platform', title: 'SecureSetu — DPDPA Compliance', description: 'End-to-end compliance with data mapping, consent management, DPIA and breach-notification workflows.', tags: ['DPDPA', 'Consent Mgmt', 'DPIA'] },
+    { icon: '₹', eyebrow: 'Cloud ERP', title: 'Tally on Cloud', description: 'Access Tally ERP from any device with multi-user, multi-branch support, automatic backup and zero downtime.', tags: ['Tally ERP', 'From ₹499', 'Multi-User'] },
+    { icon: 'M', eyebrow: 'Productivity & Collaboration', title: 'Managed Microsoft 365', description: 'Provisioning, migration, email backup, compliance and ongoing management of Microsoft 365 tenants.', tags: ['Microsoft 365', 'Exchange', 'Gold Partner'] },
+    { icon: '▤', eyebrow: 'Infrastructure', title: 'Performance Cloud & FileCloud', description: 'High-performance VPS, dedicated cloud servers and enterprise file sharing across hybrid environments.', tags: ['VPS', 'FileCloud', 'Dedicated'] },
+    { icon: '⬡', eyebrow: 'SMB Security', title: 'Cybird Security Appliance', description: 'Plug-and-play cybersecurity for SMBs with firewall, UTM, VPN and threat prevention in one appliance.', tags: ['Firewall', 'UTM', 'Plug & Play'] },
+    { icon: '⚙', eyebrow: 'Managed IT Services', title: 'RMM, VAPT & IT Operations', description: 'Remote monitoring, vulnerability testing, WhatsApp marketing and video surveillance as a service.', tags: ['RMM', 'VAPT', 'VSaaS', 'WhatsApp'] },
+  ] as const;
 
   constructor() {
-    effect(() => {
-      // the original opened on the login tab every time
-      if (this.overlay.isOpen('auth')) this.reset();
+    effect((onCleanup) => {
+      if (!this.overlay.isOpen('auth')) return;
+      this.reset();
+      const timer = setInterval(() => this.nextService(1), 4500);
+      onCleanup(() => clearInterval(timer));
     });
   }
 
-  /**
-   * The `.trial` layer sits above `.tr-back` in the stacking order, so the
-   * backdrop never receives the click itself. Close only when the press
-   * landed on the layer rather than inside the card.
-   */
-  onBackdrop(ev: Event): void {
-    if (ev.target === ev.currentTarget) this.close();
+  onBackdrop(event: Event): void {
+    if (event.target === event.currentTarget) this.close();
   }
 
   close(): void {
     this.overlay.close('auth');
   }
 
-  select(tab: AuthTab): void {
-    this.tab.set(tab);
-    this.loginMenuOpen.set(false);
+  togglePassword(): void {
+    this.showPassword.update((show) => !show);
   }
 
-  selectRole(role: LoginRole): void {
-    this.loginRole.set(role);
-    this.tab.set('in');
-    this.loginMenuOpen.set(false);
+  toggleConfirmation(): void {
+    this.showConfirmation.update((show) => !show);
   }
 
-  toggleLoginMenu(): void {
-    this.tab.set('in');
-    this.loginMenuOpen.update((open) => !open);
+  nextService(direction: number): void {
+    const length = this.serviceSlides.length;
+    this.activeService.update((current) => (current + direction + length) % length);
   }
 
-  loginRoleLabel(): string {
-    return this.loginRoles.find((role) => role.value === this.loginRole())?.label ?? 'Customer Login';
+  setService(index: number): void {
+    this.activeService.set(index);
   }
 
-  roleCopy(): { title: string; description: string; topic: string } | null {
-    const role = this.loginRole();
-    return role === 'customer' ? null : LOGIN_ROLE_COPY[role];
-  }
-
-  /** The two portals with no hosted login route to a callback instead. */
-  requestCallback(event: Event, topic: string): void {
-    event.preventDefault();
-    this.topics.ask(topic);
-    this.overlay.close('auth');
-    this.overlay.open('callback');
-  }
-
-  /**
-   * No endpoint exists for signups, so this only validates and confirms — the
-   * original posted to an empty webhook and showed a native `alert()`.
-   */
   submit(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      this.error.set(
-        firstError(Object.values(this.form.controls), 'Please fill name, email and phone.'),
-      );
+      this.error.set('Please correct the highlighted fields and accept the terms.');
       return;
     }
+
     this.error.set('');
     this.submitted.set(true);
   }
 
   private reset(): void {
-    this.tab.set('in');
-    this.loginRole.set('customer');
-    this.loginMenuOpen.set(false);
+    this.form.reset();
+    this.showPassword.set(false);
+    this.showConfirmation.set(false);
     this.submitted.set(false);
     this.error.set('');
-    this.form.reset();
+    this.activeService.set(0);
   }
 }

@@ -13,6 +13,13 @@
       href="/cloud-login" target="_blank" rel="noopener noreferrer">Acronis Cyber Console</a>
     <span class="ub2-push"></span>
     <div class="ub2-tools" role="group" aria-label="Display settings">
+      <a class="ub2-status" routerLink="/company/platform-status" aria-label="View platform status" title="Platform Status">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 12h-4l-3 8-6-16-3 8H2" />
+        </svg>
+        <span class="ub2-status-dot" aria-hidden="true"></span>
+      </a>
       <button class="ub2-tool ub2-theme" type="button"
         [attr.aria-label]="theme.isDark() ? 'Switch to light mode' : 'Switch to dark mode'"
         [attr.title]="theme.isDark() ? 'Light mode' : 'Dark mode'" [attr.aria-pressed]="theme.isDark()"

@@ -208,6 +208,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/trust-center.page').then((m) => m.TrustCenterPage),
   },
+  { path: 'platform-status', redirectTo: 'company/platform-status', pathMatch: 'full' },
+  {
+    path: 'company/platform-status',
+    loadComponent: () => import('./pages/platform-status.page').then((m) => m.PlatformStatusPage),
+  },
   { path: 'company/:slug', loadComponent: () => import('./pages/company.page').then((m) => m.CompanyPage) },
   { path: 'category/:name', loadComponent: () => import('./pages/category.page').then((m) => m.CategoryPage) },
   {

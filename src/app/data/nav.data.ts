@@ -3245,6 +3245,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "We'd love to hear from you"
               },
               {
+                "title": "Platform Status",
+                "pill": null,
+                "desc": "Service availability, incidents and maintenance",
+                "href": "/company/platform-status"
+              },
+              {
                 "title": "Whats New",
                 "pill": null,
                 "desc": "We'd love to hear from you"
