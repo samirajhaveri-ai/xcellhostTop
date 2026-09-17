@@ -1018,12 +1018,12 @@ export class ProductPage {
   ];
 
   readonly watchtowerFaqs: [string, string][] = [
-    ['What does Watchtower monitor?', 'Watchtower brings signals from connected cloud, security, infrastructure and business tools into one operational view.'],
-    ['Can Watchtower connect to our existing tools?', 'Yes. Connectors can ingest events from supported products while custom integration requirements can be reviewed during onboarding.'],
+    ['What does Trust Watch monitor?', 'Trust Watch brings signals from connected cloud, security, infrastructure and business tools into one operational view.'],
+    ['Can Trust Watch connect to our existing tools?', 'Yes. Connectors can ingest events from supported products while custom integration requirements can be reviewed during onboarding.'],
     ['How are alerts prioritised?', 'Incoming events are normalised and grouped by severity, source and operational context to help teams focus on the most important items.'],
     ['Can different teams receive different notifications?', 'Yes. Routing can be aligned to teams, clients, services and escalation requirements.'],
-    ['Does Watchtower replace our current monitoring products?', 'It can complement existing products by providing one consolidated intelligence and action layer across them.'],
-    ['How can we see a Watchtower demonstration?', 'Use the callback or Let’s Talk option and the team will arrange a guided demonstration using representative workflows.'],
+    ['Does Trust Watch replace our current monitoring products?', 'It can complement existing products by providing one consolidated intelligence and action layer across them.'],
+    ['How can we see a Trust Watch demonstration?', 'Use the callback or Let’s Talk option and the team will arrange a guided demonstration using representative workflows.'],
   ];
 
   readonly isSmbCyber = computed(

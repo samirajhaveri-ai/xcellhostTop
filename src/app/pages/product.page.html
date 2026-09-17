@@ -676,7 +676,7 @@
                 <section class="pp-ask-ai" aria-labelledby="ppAskAiTitle">
                   <div class="pp-ask-ai-copy">
                     <span class="pp-ask-ai-kicker" id="ppAskAiTitle"
-                      >Ask AI About {{ isSmbCyber() ? 'Cybird SMB Cyber Security Appliance' : isCloudBackup() ? 'Acronis Cloud Backup' : v.name }} from
+                      >Ask AI About {{ isSmbCyber() ? 'Cybird SMB Cyber Security Appliance' : isCloudBackup() ? 'Acronis Cloud Backup' : isAdvancedEdr() ? 'Acronis Advanced Endpoint Security (EDR)' : v.name }} from
                       XcellHost</span
                     >
                   </div>
@@ -3392,11 +3392,11 @@
                 }
                 @if (isWatchtower()) {
                   <article class="tally-video-card">
-                    <h3><span>Watchtower overview</span></h3>
+                    <h3><span>Trust Watch overview</span></h3>
                     <div class="tally-video-frame">
                       <iframe
                         src="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?rel=0&amp;playsinline=1"
-                        title="Watchtower overview placeholder video"
+                        title="Trust Watch overview placeholder video"
                         allow="
                           accelerometer;
                           autoplay;
@@ -3416,7 +3416,7 @@
                     <div class="tally-video-frame">
                       <iframe
                         src="https://www.youtube-nocookie.com/embed/ysz5S6PUM-U?rel=0&amp;playsinline=1"
-                        title="Watchtower unified intelligence workflow placeholder video"
+                        title="Trust Watch unified intelligence workflow placeholder video"
                         allow="
                           accelerometer;
                           autoplay;
