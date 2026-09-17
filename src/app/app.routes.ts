@@ -5,7 +5,8 @@ import { Routes } from '@angular/router';
  *   /                          home
  *   /<service-slug>/           a service page   (e.g. /tally-on-cloud/)
  *   /category/<name>/          a category landing page
- *   /insights/<slug>/          an article
+ *   /insights/<slug>/          a blog article
+ *   /use-cases/<slug>/         a use case
  *   /securesetu-dpdpa/         the DPDPA platform page
  *   /securesetu-dpdpa/<slug>/  one DPDPA module
  *   /about|/contact|/pricing|/insights
@@ -89,7 +90,16 @@ export const routes: Routes = [
   },
   { path: 'case-studies', loadComponent: () => import('./pages/case-studies.page').then((m) => m.CaseStudiesPage) },
   { path: 'insights', loadComponent: () => import('./pages/insights.page').then((m) => m.InsightsPage) },
-  { path: 'insights/:slug', loadComponent: () => import('./pages/blog.page').then((m) => m.BlogPage) },
+  {
+    path: 'insights/:slug',
+    data: { contentType: 'blog' },
+    loadComponent: () => import('./pages/blog.page').then((m) => m.BlogPage),
+  },
+  {
+    path: 'use-cases/:slug',
+    data: { contentType: 'use-case' },
+    loadComponent: () => import('./pages/blog.page').then((m) => m.BlogPage),
+  },
   { path: 'securesetu-dpdpa', loadComponent: () => import('./pages/dpdpa.page').then((m) => m.DpdpaPage) },
   { path: 'securesetu-dpdpa/:slug', loadComponent: () => import('./pages/dpdpa-module.page').then((m) => m.DpdpaModulePage) },
   { path: 'about', loadComponent: () => import('./pages/simple.page').then((m) => m.SimplePage), data: { key: 'about' } },

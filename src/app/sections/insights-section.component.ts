@@ -153,7 +153,8 @@ export class InsightsSectionComponent {
       if (!slugs.length) return true;
       const assigned = (post.relatedPages ?? '').split(',')
         .map(value => value.trim().toLowerCase().replace(/^\/+|\/+$/g, '')).filter(Boolean);
-      return assigned.length ? assigned.some(slug => slugs.includes(slug)) : slugs.includes(slugify(post.category));
+      const productSlug = slugify(post.product?.trim() || post.category);
+      return assigned.length ? assigned.some(slug => slugs.includes(slug)) : slugs.includes(productSlug);
     }).slice(0, 5);
   });
   readonly activeView = signal<'blogs' | 'cases' | 'videos' | 'datasheets'>('blogs');

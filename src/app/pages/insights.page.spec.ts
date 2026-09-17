@@ -82,16 +82,36 @@ describe('Insights pagination', () => {
     expect(page.resultHeading()).toBe('All Videos');
   });
 
-  it('expands main categories and filters their subcategories', () => {
-    expect(page.categoryTree().map(branch => branch.name)).toEqual(['Technology']);
-    page.selectMainCategory('Technology');
-    expect(page.expandedMain()).toBe('Technology');
-    expect(page.visible().length).toBe(41);
-    page.selectSubCategory('Technology', 'Security');
+  it('mirrors menu categories, expands submenus and filters their products', () => {
+    expect(page.categoryTree().map(branch => branch.name)).toContain('Web Presence');
+    expect(page.categoryTree().map(branch => branch.name)).toContain('Cloud');
+    const webPresence = page.categoryTree().find(branch => branch.name === 'Web Presence')!;
+    expect(webPresence.children.find(child => child.name === 'SMB Cloud')?.products
+      .some(product => product.name === 'Tally on Cloud')).toBeTrue();
+
+    page.selectMainCategory('Security');
+    expect(page.expandedMain()).toBe('Security');
     expect(page.visible().length).toBe(20);
-    expect(page.visible().every(item => item.subCategory === 'Security')).toBeTrue();
-    page.selectMainCategory('Technology');
+    page.selectSubCategory('Security', 'General');
+    expect(page.visible().length).toBe(20);
+    expect(page.visible().every(item => item.subCategory === 'General')).toBeTrue();
+    page.selectProduct('Security', 'General', 'General');
+    expect(page.activeProduct()).toBe('General');
+    expect(page.visible().length).toBe(20);
+    page.selectMainCategory('Security');
     expect(page.expandedMain()).toBeNull();
     expect(page.activeSub()).toBe('');
+    expect(page.activeProduct()).toBe('');
+  });
+
+  it('assigns a blog to a menu product through relatedPages', () => {
+    posts.next([{
+      documentId: 'tally-blog',
+      category: 'Accounting',
+      relatedPages: 'tally-on-cloud',
+    } as CmsBlogPost]);
+
+    page.selectProduct('Web Presence', 'SMB Cloud', 'Tally on Cloud');
+    expect(page.visible().map(item => item.documentId)).toEqual(['tally-blog']);
   });
 });
