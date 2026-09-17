@@ -251,6 +251,15 @@ export const COMPANY_PAGES: Record<string, CompanyPageContent> = {
     cta: 'Contact the channel team to check availability and current eligibility terms.', ctaLabel: 'Join the affiliate program',
   },
 
+  'careers-overview': {
+    eyebrow: 'Careers', title: 'Careers Overview', tagline: 'Build your future with XcellHost.',
+    intro: 'Explore careers in cloud, cybersecurity, development and customer support. Get to know our teams, discover how we work and take the next step in your career.', cards: careerCards,
+    sections: [
+      { title: 'Life at XcellHost', body: 'Our teams bring curiosity, teamwork and care to the work they do. Learn together, share ideas and help solve practical challenges for customers.' },
+      { title: 'Find your next opportunity', body: 'Whether your interests are technical, creative or business-focused, introduce yourself and tell us where you would like to contribute.', points: ['Cloud engineering and technical support', 'Software development and AI', 'Design, sales and marketing', 'Finance and administration'] },
+    ],
+    cta: 'Tell us about your skills and career interests.', ctaLabel: 'Contact the careers team',
+  },
   'career-handbook': {
     eyebrow: 'Careers', title: 'Career Handbook', tagline: 'Learn how we work, grow and serve customers together.',
     intro: 'XcellHost brings together people interested in cloud, cybersecurity and dependable customer service. The career handbook introduces the workplace, expectations and development opportunities before you apply.', cards: careerCards,

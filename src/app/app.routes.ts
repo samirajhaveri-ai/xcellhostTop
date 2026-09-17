@@ -12,6 +12,7 @@ import { Routes } from '@angular/router';
  *   /compare/
  */
 export const routes: Routes = [
+  { path: 'under-construction/careers-overview', redirectTo: 'company/careers-overview', pathMatch: 'full' },
   { path: 'promo-offers', redirectTo: 'promotion-and-offers', pathMatch: 'full' },
   { path: 'under-construction/promotion-and-offers', redirectTo: 'promotion-and-offers', pathMatch: 'full' },
   { path: 'under-construction/trust-watch', redirectTo: 'company/trust-watch', pathMatch: 'full' },

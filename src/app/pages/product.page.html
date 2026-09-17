@@ -71,17 +71,37 @@
         } @else if (isAdvancedEdr()) {
           <div class="pph-scene has-illus pph-edr-illus" aria-hidden="true">
             <div class="pph-illus">
-              <img
-                class="pph-illus-img"
-                src="/assets/images/hero-advanced-endpoint-security-edr.svg"
-                alt="Advanced Endpoint Security and EDR"
-              />
-              <div class="pph-powered-mark pph-powered-image pph-edr-powered">
-                <img
-                  src="/assets/images/acronis-advanced-security-edr.png"
-                  alt="Powered by Acronis Advanced Security and EDR"
-                />
-              </div>
+              <iframe
+                class="edr-hero-animation"
+                src="/assets/animations/edr-animation.html"
+                title="Acronis EDR endpoint detection and response animation"
+                sandbox="allow-scripts"
+                tabindex="-1"
+              ></iframe>
+            </div>
+          </div>
+        } @else if (isRmm()) {
+          <div class="pph-scene has-illus" aria-hidden="true">
+            <div class="pph-illus">
+              <iframe
+                class="rmm-hero-animation"
+                src="/assets/animations/rmm-animation.html"
+                title="Remote Monitoring and Management dashboard animation"
+                sandbox="allow-scripts"
+                tabindex="-1"
+              ></iframe>
+            </div>
+          </div>
+        } @else if (isSmbCyber()) {
+          <div class="pph-scene has-illus" aria-hidden="true">
+            <div class="pph-illus">
+              <iframe
+                class="cybird-hero-animation"
+                src="/assets/animations/cybird-animation.html"
+                title="Cybird SMB Cyber Security traffic protection animation"
+                sandbox="allow-scripts"
+                tabindex="-1"
+              ></iframe>
             </div>
           </div>
         } @else if (isCmc()) {
@@ -482,20 +502,31 @@
         } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
           <div class="pph-scene has-illus standalone-illus" id="pphScene" aria-hidden="true">
             <div class="pph-illus">
+              @if (isTally()) {
+                <iframe
+                  class="tally-hero-animation"
+                  src="/assets/animations/tally-on-cloud-animation.html"
+                  title="Tally on Cloud secure infrastructure animation"
+                  sandbox="allow-scripts"
+                  tabindex="-1"
+                ></iframe>
+              } @else if (v.name === 'Cloud Drive') {
+                <iframe
+                  class="cloud-drive-hero-animation"
+                  src="/assets/animations/cloud-drive-animation.html"
+                  title="Cloud Drive file sharing and secure sync animation"
+                  sandbox="allow-scripts"
+                  tabindex="-1"
+                ></iframe>
+              } @else {
               <img
                 class="pph-illus-img"
-                [class.pph-cloud-drive-static]="v.name === 'Cloud Drive'"
                 [class.tally-hero-image]="v.name === 'Tally on Cloud'"
                 [src]="slug() === 'waap-as-a-service' ? '/assets/images/waap/hero.svg' : v.heroImage"
                 [alt]="v.name"
               />
-              @if (v.name === 'Cloud Drive') {
-                <div
-                  class="pph-cloud-drive-animation"
-                  [xhLottie]="'/assets/animations/cloud-drive.json'"
-                ></div>
               }
-              @if (!isManagedMicrosoft365()) {
+              @if (!isManagedMicrosoft365() && v.name !== 'Cloud Drive') {
                 <div
                   class="pph-powered-mark pph-powered-image"
                   [class.pph-geotrust-powered]="v.name === 'GeoTrust'"
@@ -2007,7 +2038,7 @@
                                 <dt>Hardware Appliance</dt>
                                 <dd>
                                   <span>&#8377;{{ formatInr(cybirdHardwarePrice) }}</span
-                                  ><span class="one-time-purchase">One-time purchase</span>
+                                  ><span class="one-time-purchase">One-Time purchase</span>
                                 </dd>
                               </div>
                               <div>

@@ -468,6 +468,29 @@ export const RICH_PRODUCTS: Record<string, RichProduct> = {
  * including the honest "not right for you if" section.
  */
 export const DEEP_CONTENT: Record<string, DeepContent> = {
+  "Cloud Migration": {
+    not_for: "A migration should not begin until workload ownership, application compatibility, backup requirements and an acceptable cutover window are agreed.",
+    heroPoints: ["Readiness assessment", "Dependency mapping", "Phased migration", "Cutover planning", "Data validation", "Support handover"],
+    uses: [
+      ["☁", "On-premises to cloud", "Move workloads from ageing servers to a planned cloud environment."],
+      ["⇄", "Cloud-to-cloud migration", "Relocate applications and data when your hosting requirements change."],
+      ["▤", "Data center consolidation", "Bring distributed workloads together with a coordinated migration plan."],
+      ["⚙", "Application modernisation", "Assess where to retain, rehost or adapt applications as part of the move."]
+    ],
+    sec: ["A structured migration journey with review points before each workload moves into production.", [
+      ["1. Discover", "Inventory workloads, owners, dependencies and data volumes."],
+      ["2. Design", "Prepare destination architecture, security controls and connectivity."],
+      ["3. Pilot", "Test a representative workload and confirm acceptance criteria."],
+      ["4. Migrate", "Transfer workloads in agreed waves and track progress."],
+      ["5. Cut over", "Complete final synchronisation and switch traffic after validation."],
+      ["6. Validate & support", "Confirm application health, document the environment and hand over operations."]
+    ]],
+    faq: [
+      ["What information is needed to get started?", "Share your server and application inventory, current hosting platform, approximate data volumes, business dependencies and preferred migration window."],
+      ["Is rollback included in the migration plan?", "Rollback requirements, decision points and source retention are agreed during planning so the team has a defined response if validation fails."],
+      ["Can legacy applications be migrated?", "Compatibility, licensing and vendor support need to be checked first. Some applications can be rehosted; others may need changes before migration."]
+    ]
+  },
   "Tally on Cloud": {
     "not_for": "A single accountant, one machine, no branches, no CA needing remote access, and a stable internet connection you do not have. In that case a local install is cheaper and simpler, and we will tell you so on the call.",
     "uses": [

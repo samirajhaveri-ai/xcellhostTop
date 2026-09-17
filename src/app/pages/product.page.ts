@@ -26,7 +26,6 @@ import { Faq } from '../data/models';
 import { SITE, WORLD_MAP_HTML } from '../data/site.data';
 import { HeroNetDirective, ProductFaqComponent } from '../sections/product';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
-import { LottieDirective } from '../shared/lottie.directive';
 import { CloudCctvContentComponent } from '../sections/cloud-cctv-content.component';
 import { AcronisTrueImageContentComponent } from '../sections/acronis-true-image-content.component';
 import { SiteLockContentComponent } from '../sections/sitelock-content.component';
@@ -138,7 +137,6 @@ interface ProductTourSlide {
     InsightsSectionComponent,
     RouterLink,
     HeroNetDirective,
-    LottieDirective,
     ProductFaqComponent,
     CloudCctvContentComponent,
     AcronisTrueImageContentComponent,

@@ -2419,6 +2419,7 @@
   #ppage .pph-illus-img{width:56%;max-width:200px}
   #ppage .pph-scene.has-illus.standalone-illus .pph-illus-img{width:88%;max-width:560px;max-height:315px;background:transparent}
   #ppage .pph-scene.has-illus .tally-hero-image{width:82%;max-width:430px;aspect-ratio:1.35;object-fit:cover;object-position:60% center}
+  #ppage .tally-hero-animation{display:block;width:100%;max-width:600px;aspect-ratio:10/7;border:0;background:transparent;pointer-events:none}
   #ppage .pp-hero.sitelock-hero{background-image:url('/assets/images/hero-web-security-sitelock-wide.png');
     background-size:cover;background-position:center;background-repeat:no-repeat}
   /* make the Powered By / Tally on Cloud mark clearly readable */
@@ -2445,9 +2446,21 @@
   #ppage .zoho-wordmark i:nth-child(2){background:#2684ff;transform:rotate(3deg)}
   #ppage .zoho-wordmark i:nth-child(3){background:#f6b91d;color:#15294b;transform:rotate(-2deg)}
   #ppage .zoho-wordmark i:nth-child(4){background:#24a148;transform:rotate(4deg)}
-  #ppage .pph-cloud-drive-static{display:none}
-  #ppage .pph-cloud-drive-animation{width:min(86%,430px);height:250px;overflow:hidden}
-  #ppage .pph-cloud-drive-animation svg{width:100%!important;height:100%!important}
+  #ppage .pph-scene.has-illus:has(.cloud-drive-hero-animation){top:0;bottom:0;align-items:center;padding:0;mask-image:none}
+  #ppage .pph-illus:has(.cloud-drive-hero-animation){padding:0;gap:0}
+  #ppage .cloud-drive-hero-animation{display:block;width:82%;max-width:600px;aspect-ratio:5/3;border:0;background:transparent;pointer-events:none}
+  #ppage .pph-scene.has-illus:has(.edr-hero-animation){top:0;bottom:0;align-items:center;padding:0;mask-image:none}
+  #ppage .pph-illus:has(.edr-hero-animation){padding:0;gap:0}
+  #ppage .edr-hero-animation{display:block;width:82%;max-width:600px;aspect-ratio:5/3;border:0;background:transparent;pointer-events:none}
+  #ppage .pph-scene.has-illus:has(.rmm-hero-animation){top:0;bottom:0;align-items:center;padding:0;mask-image:none}
+  #ppage .pph-illus:has(.rmm-hero-animation){padding:0;gap:0}
+  #ppage .rmm-hero-animation{display:block;width:82%;max-width:600px;aspect-ratio:5/3;border:0;background:transparent;pointer-events:none}
+  #ppage .pph-scene.has-illus:has(.cybird-hero-animation){top:0;bottom:0;align-items:center;padding:0;mask-image:none}
+  #ppage .pph-illus:has(.cybird-hero-animation){padding:0;gap:0}
+  #ppage .cybird-hero-animation{display:block;width:82%;max-width:600px;aspect-ratio:5/3;border:0;background:transparent;pointer-events:none}
+  #ppage .pph-scene.has-illus:has(.microsoft365-hero-animation){top:0;bottom:0;align-items:center;padding:0;mask-image:none}
+  #ppage .pph-illus:has(.microsoft365-hero-animation){padding:0;gap:0}
+  #ppage .microsoft365-hero-animation{display:block;width:94%;max-width:690px;aspect-ratio:5/3;border:0;background:transparent;pointer-events:none}
   #ppage .pph-brand-only{top:auto;bottom:4%;height:auto;justify-content:center;align-items:flex-end;padding-right:10%}
   #ppage .pph-brand-only .pph-powered-mark{min-width:220px}
   #ppage .pph-scene.pph-edr-illus{top:2%;width:44%}

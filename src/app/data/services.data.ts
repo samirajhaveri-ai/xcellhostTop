@@ -9,6 +9,26 @@
 import { ServiceRich, Pair, Faq, Category } from './models';
 
 export const SERVICES_RICH: Record<string, ServiceRich> = {
+  "cloud migration": {
+    "price": "",
+    "ov": "Move your applications, servers and data to the cloud with a migration plan built around your business. XcellHost helps assess your current environment, map dependencies and prepare the destination before moving workloads in manageable stages. From on-premises infrastructure to cloud-to-cloud moves, the process includes validation, an agreed cutover window and a rollback plan so your team can make the transition with confidence.",
+    "f": [
+      ["Discovery & readiness assessment", "Inventory servers, applications, databases and dependencies to define migration scope and identify compatibility risks."],
+      ["Cloud architecture & planning", "Choose an appropriate destination and plan compute, storage, networking, access controls and capacity around your workloads."],
+      ["Secure data transfer", "Plan access permissions, encrypted transfer and backup checkpoints to protect data during the move."],
+      ["Pilot & phased migration", "Validate a pilot workload before moving applications in agreed waves, with clear acceptance criteria for each stage."],
+      ["Controlled cutover & rollback", "Coordinate the final synchronisation, application checks and traffic switch within an agreed window, with a documented rollback plan."],
+      ["Validation & handover", "Check application functionality, data integrity, monitoring and backups, then document the new environment and support responsibilities."]
+    ],
+    "q": [
+      ["What types of cloud migration can you help with?", "The assessment can cover on-premises-to-cloud, cloud-to-cloud and hybrid environments, including virtual machines, applications, databases and file workloads. The final scope depends on source and destination compatibility."],
+      ["Can you help choose a destination cloud?", "Yes. We review application requirements, existing licences, data location preferences, connectivity and budget to help plan a suitable destination."],
+      ["Will my applications experience downtime?", "Some workloads need a maintenance window for final synchronisation and cutover. The plan identifies expected interruption, testing steps and rollback criteria before the migration begins."],
+      ["How long does a migration take?", "Timelines depend on workload count, data volume, transfer bandwidth, dependencies and testing requirements. A schedule is agreed after discovery and assessment."],
+      ["How is migration pricing determined?", "Pricing is scoped around the workloads, source and destination platforms, data volumes and level of assistance required. Contact our team for an assessment and a tailored proposal."],
+      ["What happens after migration?", "We validate the agreed workloads and provide a handover. Ongoing monitoring, optimisation, backup and managed support can be included in the agreed service scope."]
+    ]
+  },
   "tally on cloud": {
     "price": "₹499/user/mo",
     "ov": "Stop being tied to a single office desktop with XcellHost Tally on Cloud. Host your Tally and TallyPrime on secure Indian cloud servers and access the same live data from anywhere. Your accountants can work from the office, auditors can review records remotely, and branch teams can stay connected from any location. Access your business data securely across Mumbai, Dubai, or even the factory floor. With reliable cloud infrastructure, your team can collaborate efficiently without being limited by location. Free migration makes the transition simple and hassle-free. Plus, with a 15-day money-back guarantee, you can move your Tally to the cloud with confidence.",
