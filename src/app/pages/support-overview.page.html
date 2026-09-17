@@ -1,0 +1,200 @@
+<main class="support-page ppage as-page support-overview-page" id="ppage">
+  <section class="pp-hero support-default-hero" aria-labelledby="support-title">
+    <span class="pph-grid" aria-hidden="true"></span>
+    <span class="pph-aur pph-a1" aria-hidden="true"></span>
+    <span class="pph-aur pph-a2" aria-hidden="true"></span>
+    <span class="pph-aur pph-a3" aria-hidden="true"></span>
+    <span class="pph-scan" aria-hidden="true"></span>
+    <div class="support-hero-symbol" aria-hidden="true">
+      <span></span>
+      <svg viewBox="0 0 24 24"><path d="M4 13v-2a8 8 0 0 1 16 0v2"></path><path d="M20 13v5a2 2 0 0 1-2 2h-3"></path><rect x="2" y="12" width="4" height="7" rx="2"></rect><rect x="18" y="12" width="4" height="7" rx="2"></rect></svg>
+    </div>
+    <div class="wrap support-hero-inner">
+      <div class="pp-crumb">Support › Support Overview</div>
+      <h1 id="support-title">
+        <span class="pp-title-brand" aria-label="XcellSupport">
+          <span class="pp-brand-xcell">Xcell</span><span class="pp-brand-family">Support</span>
+        </span>
+        <span class="pp-title-divider" aria-hidden="true">|</span>
+        <span class="pp-title-name">Support Overview</span>
+      </h1>
+      <h2 class="pp-tagline">How can we help you?</h2>
+      <p class="pp-tagline-support">Search our help center or choose the support channel that fits your request.</p>
+      <div class="pp-hpoints support-hero-points">
+        <div class="pp-hpoint"><span class="tick">✓</span>24×7 support</div>
+        <div class="pp-hpoint"><span class="tick">✓</span>Tracked tickets</div>
+        <div class="pp-hpoint"><span class="tick">✓</span>Secure remote assistance</div>
+      </div>
+
+      <form class="support-search" role="search" (submit)="searchKnowledgeBase($event, searchInput.value)">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="m20 20-4-4"></path>
+        </svg>
+        <label class="sr-only" for="support-search-input">Search the XcellHost knowledge base</label>
+        <input
+          #searchInput
+          id="support-search-input"
+          type="search"
+          placeholder="Search help articles, guides and common questions..."
+          autocomplete="off"
+        />
+        <button type="submit">Search</button>
+      </form>
+
+      <div class="support-quick-links" aria-label="Quick support links">
+        <span>Popular:</span>
+        <a href="https://supportdesk.xcellhost.cloud/portal/en/kb" target="_blank" rel="noopener noreferrer">Account access</a>
+        <a href="https://supportdesk.xcellhost.cloud/portal/en/kb" target="_blank" rel="noopener noreferrer">Email</a>
+        <a href="https://supportdesk.xcellhost.cloud/portal/en/kb" target="_blank" rel="noopener noreferrer">Cloud services</a>
+        <a href="https://supportdesk.xcellhost.cloud/portal/en/kb" target="_blank" rel="noopener noreferrer">Backup</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="support-channels" aria-labelledby="support-channels-title">
+    <div class="support-wrap">
+      <header class="support-section-heading">
+        <span>Choose a support route</span>
+        <h2 id="support-channels-title">Help is only a click away</h2>
+        <p>Use self-service guidance for quick answers or contact our team when you need hands-on help.</p>
+      </header>
+
+      <div class="support-grid">
+        @for (channel of channels; track channel.title) {
+          <a
+            class="support-card"
+            [class]="'support-card support-card-' + channel.accent"
+            [href]="channel.href"
+            [attr.target]="channel.external ? '_blank' : null"
+            [attr.rel]="channel.external ? 'noopener noreferrer' : null"
+          >
+            <span class="support-card-icon" aria-hidden="true">
+              @switch (channel.icon) {
+                @case ('portal') {
+                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"></rect><path d="M8 8h8M8 12h5M8 16h3"></path></svg>
+                }
+                @case ('book') {
+                  <svg viewBox="0 0 24 24"><path d="M4 5a3 3 0 0 1 3-3h5v18H7a3 3 0 0 0-3 2zM20 5a3 3 0 0 0-3-3h-5v18h5a3 3 0 0 1 3 2z"></path></svg>
+                }
+                @case ('ticket') {
+                  <svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4z"></path><path d="M12 7v2M12 11v2M12 15v2"></path></svg>
+                }
+                @case ('whatsapp') {
+                  <svg viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-11.8 7L3 20l1.5-5A8 8 0 1 1 20 11.5z"></path><path d="M8.5 8.5c.7 2.8 2.2 4.3 5 5"></path></svg>
+                }
+                @case ('remote') {
+                  <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4M8 10h8M12 6v8"></path></svg>
+                }
+                @case ('email') {
+                  <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg>
+                }
+              }
+            </span>
+            <span class="support-card-copy">
+              <strong>{{ channel.title }}</strong>
+              <span>{{ channel.description }}</span>
+            </span>
+            <span class="support-card-action">{{ channel.action }} <b aria-hidden="true">→</b></span>
+          </a>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="support-metrics" aria-label="XcellHost support highlights">
+    <div class="support-wrap support-metrics-grid">
+      @for (metric of metrics; track metric.label) {
+        <div class="support-metric">
+          <strong>{{ metric.value }}</strong>
+          <span>{{ metric.label }}</span>
+        </div>
+      }
+    </div>
+  </section>
+
+  <section class="support-prepare">
+    <div class="support-wrap support-prepare-grid">
+      <div class="support-prepare-copy">
+        <span class="support-section-label">Faster resolution</span>
+        <h2>Help us understand the issue quickly</h2>
+        <p>A clear first message lets the service desk route and prioritise your request with less back-and-forth.</p>
+      </div>
+      <div class="support-checklist">
+        <div><span>01</span><p><strong>Name the service</strong>Include the product, account or affected system.</p></div>
+        <div><span>02</span><p><strong>Describe the impact</strong>Tell us who is affected and what they cannot do.</p></div>
+        <div><span>03</span><p><strong>Add useful context</strong>Share the start time, exact error and any recent change.</p></div>
+        <div><span>04</span><p><strong>Keep credentials private</strong>Never include passwords, private keys or one-time codes.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="support-default-section support-testimonials" aria-labelledby="support-testimonials-title">
+    <div class="support-wrap">
+      <div class="support-default-title" id="support-testimonials-title">What customers say</div>
+      <div class="support-testimonial-grid">
+        @for (testimonial of testimonials; track testimonial.name) {
+          <article class="support-testimonial-card">
+            <span class="support-quote-corner" aria-hidden="true">”</span>
+            <span class="support-testimonial-avatar">{{ testimonial.initials }}</span>
+            <h3>{{ testimonial.name }}</h3>
+            <span class="support-testimonial-role">{{ testimonial.role }}</span>
+            <div class="support-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote>{{ testimonial.quote }}</blockquote>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="support-default-section support-faq-section" aria-labelledby="support-faq-title">
+    <div class="support-wrap">
+      <div class="support-default-title" id="support-faq-title">Frequently asked questions</div>
+      <div class="support-faq-list">
+        @for (faq of faqs; track faq.question) {
+          <details>
+            <summary>{{ faq.question }}</summary>
+            <div><p>{{ faq.answer }}</p></div>
+          </details>
+        }
+      </div>
+    </div>
+  </section>
+
+  <div class="support-blog-section">
+    <xh-insights-section
+      pageSlug="support-overview"
+      [pageAliases]="['support', 'data-protection', 'cloud-strategy', 'incident-readiness']"
+    />
+  </div>
+
+  <section class="support-final" aria-labelledby="support-contact-title">
+    <div class="support-wrap">
+      <div class="support-default-title" id="support-contact-title">Contact</div>
+      <div class="support-final-card">
+        <div class="support-final-copy">
+          <h2>Ready to get help from XcellHost Support?</h2>
+          <p>24×7 support in English &amp; Hindi · tracked requests · secure remote assistance</p>
+          <div class="support-final-actions">
+            <a class="support-callback" routerLink="/contact">Request a callback</a>
+            <a href="https://supportdesk.xcellhost.cloud/portal/en/home" target="_blank" rel="noopener noreferrer">Support Portal</a>
+            <a href="https://supportdesk.xcellhost.cloud/portal/en/signin" target="_blank" rel="noopener noreferrer">Submit a Ticket</a>
+            <a href="https://supportdesk.xcellhost.cloud/portal/en/kb" target="_blank" rel="noopener noreferrer">Knowledgebase</a>
+            <a href="https://wa.me/918657032540?text=Hello%2C%20I%20need%20support%20with%20an%20XcellHost%20service." target="_blank" rel="noopener noreferrer">Talk on WhatsApp</a>
+            <a href="mailto:support@xcellhost.cloud">Email Us</a>
+          </div>
+        </div>
+        <a class="support-buddha-link" routerLink="/support-overview" aria-label="XcellHost 24 by 7 delightful support">
+          <img src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost 24 by 7 Delightful Support" width="116" height="116" loading="lazy" />
+        </a>
+      </div>
+      <div class="support-proof" aria-label="XcellHost trust credentials">
+        <span>🏅 ISO 27001</span>
+        <span>🏅 ISO 20000-1</span>
+        <span>🤝 Microsoft Gold Partner</span>
+        <span>☁ Since 1999</span>
+        <span>🔒 Secure Payments — UPI · Cards · NetBanking</span>
+      </div>
+    </div>
+  </section>
+</main>

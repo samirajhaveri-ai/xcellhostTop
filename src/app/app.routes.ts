@@ -79,6 +79,17 @@ export const routes: Routes = [
   { path: 'security-glossary', loadComponent: () => import('./pages/security-glossary.page').then((m) => m.SecurityGlossaryPage) },
   { path: 'under-construction/ai-glossary', redirectTo: 'ai-glossary', pathMatch: 'full' },
   { path: 'ai-glossary', loadComponent: () => import('./pages/ai-glossary.page').then((m) => m.AiGlossaryPage) },
+  { path: 'under-construction/associations', redirectTo: 'associations', pathMatch: 'full' },
+  {
+    path: 'associations',
+    loadComponent: () => import('./pages/associations.page').then((m) => m.AssociationsPage),
+  },
+  { path: 'under-construction/support-overview', redirectTo: 'support-overview', pathMatch: 'full' },
+  { path: 'company/support-overview', redirectTo: 'support-overview', pathMatch: 'full' },
+  {
+    path: 'support-overview',
+    loadComponent: () => import('./pages/support-overview.page').then((m) => m.SupportOverviewPage),
+  },
 
   { path: 'under-construction/:slug', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
   { path: 'under-construction', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },

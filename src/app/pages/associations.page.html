@@ -1,0 +1,86 @@
+<main class="associations-page">
+  <section class="associations-hero" aria-labelledby="associations-title">
+    <div class="associations-wrap associations-hero-inner">
+      <span class="associations-eyebrow">XcellHost network</span>
+      <h1 id="associations-title">Associations that connect us <em>across markets.</em></h1>
+      <p>
+        Our chamber and trade-association relationships help us stay connected to business
+        communities, technology leaders and emerging opportunities.
+      </p>
+    </div>
+  </section>
+
+  <section class="associations-content" aria-labelledby="association-groups-title">
+    <div class="associations-wrap">
+      <header class="associations-heading">
+        <span>Our associations</span>
+        <h2 id="association-groups-title">Explore our association network</h2>
+        <p>Select a group to view the organisations associated with XcellHost.</p>
+      </header>
+
+      <div class="associations-layout">
+        <div class="associations-tabs" role="tablist" aria-label="Association groups" aria-orientation="vertical">
+          @for (tab of tabs; track tab.id; let index = $index) {
+            <button
+              type="button"
+              role="tab"
+              [id]="'association-tab-' + tab.id"
+              [class.is-active]="activeTab() === tab.id"
+              [attr.aria-selected]="activeTab() === tab.id"
+              [attr.aria-controls]="'association-panel-' + tab.id"
+              [attr.tabindex]="activeTab() === tab.id ? 0 : -1"
+              (click)="selectTab(tab.id)"
+              (keydown)="onTabKeydown($event, index)"
+            >
+              {{ tab.label }}
+            </button>
+          }
+        </div>
+
+        @if (activeTab() === 'country') {
+          <div
+            class="associations-panel"
+            id="association-panel-country"
+            role="tabpanel"
+            aria-labelledby="association-tab-country"
+          >
+            <div class="associations-panel-heading">
+              <span>International chambers</span>
+              <h3>Country Associated</h3>
+              <p>Chambers strengthening international business relationships and collaboration.</p>
+            </div>
+            <div class="associations-grid associations-grid-country">
+              @for (association of countryAssociations; track association.name) {
+                <article class="association-card">
+                  <img [src]="association.image" [alt]="association.name + ' logo'" loading="lazy" />
+                  <h4>{{ association.name }}</h4>
+                </article>
+              }
+            </div>
+          </div>
+        } @else {
+          <div
+            class="associations-panel"
+            id="association-panel-trade"
+            role="tabpanel"
+            aria-labelledby="association-tab-trade"
+          >
+            <div class="associations-panel-heading">
+              <span>Industry network</span>
+              <h3>Trade Associate</h3>
+              <p>Technology and trade communities supporting collaboration across the industry.</p>
+            </div>
+            <div class="associations-grid">
+              @for (association of tradeAssociations; track association.name) {
+                <article class="association-card">
+                  <img [src]="association.image" [alt]="association.name + ' logo'" loading="lazy" />
+                  <h4>{{ association.name }}</h4>
+                </article>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+</main>

@@ -2741,10 +2741,10 @@ export const MEGA_MENU: MenuTop[] = [
         "groups": [
           {
         
-            "heading": "View Marketplace",
+            "heading": "Explore Marketplace",
             "items": [
               {
-                "title": "No Data",
+                "title": "",
                 "pill": null,
                 "desc": null
               },
