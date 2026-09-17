@@ -153,7 +153,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Reserve a domain name for future availability 🕰️"
               },
               {
-                "title": "Bharats Domain",
+                "title": "Bharat Domains",
                 "pill": "FREE",
                 "desc": "Reserve a domain name for future availability 🕰️"
               },
@@ -426,13 +426,13 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Bare Metal Server",
+                "title": "Bare Metal Servers",
                 "pill": null,
                 "desc": null
               },
               
               {
-                "title": "GPU Cloud",
+                "title": "GPU Servers",
                 "pill": "High demand",
                 "desc": null
               },
@@ -497,7 +497,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "4",
+        "g": "20",
         "label": "Managed Cloud",
         "on": false,
         "groups": [
@@ -805,7 +805,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "GCP On Azure ",
+                "title": "SAP On Azure ",
                 "pill": null,
                 "desc": null
               },
@@ -1188,7 +1188,7 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "8",
-        "label": "Microsoft Power Platform",
+        "label": "Microsoft Power",
         "on": false,
         "groups": [
           {
@@ -1828,7 +1828,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "IP Address Mgmt",
+                "title": "IP Address Mgmt (IPAM)",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -1837,7 +1837,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "4",
+        "g": "39",
         "label": "Identity Security",
         "on": true,
         "groups": [
@@ -2346,11 +2346,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Secure your Bot until ready for use 🕰️"
               },
-              {
-                "title": "Agentic AI",
-                "pill": null,
-                "desc": "Secure your Bot until ready for use 🕰️"
-              },
+              
               
             ]
           }
@@ -2626,7 +2622,7 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "CloudFlare Security",
             "items": [
               {
-                "title": "No Data",
+                "title": "All CloudFlare Products",
                 "pill": null,
                 "desc": null
               },
@@ -2653,14 +2649,14 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "5",
-        "label": "Palo Alto Security",
+        "label": "PaloAlto Security",
         "on": false,
         "groups": [
           {
-            "heading": "Palo Alto Security",
+            "heading": "PaloAlto Security",
             "items": [
               {
-                "title": "All Palo Alto Products",
+                "title": "All PaloAlto Products",
                 "pill": null,
                 "desc": null
               },
@@ -2676,6 +2672,11 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "Data as a Services",
             "items": [
+              {
+                "title": "Snowflake Platform",
+                "pill": null,
+                "desc": null
+              },
               {
                 "title": "Data Visualization",
                 "pill": null,
@@ -2722,11 +2723,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "Snowflake Platform",
-                "pill": null,
-                "desc": null
-              },
+              
               
               {
                 "title": "Data Fabric",
@@ -2739,12 +2736,12 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "8",
-        "label": "Adobe Tools",
+        "label": "View Marketplace",
         "on": false,
         "groups": [
           {
         
-            "heading": "Adobe Tools",
+            "heading": "View Marketplace",
             "items": [
               {
                 "title": "No Data",
@@ -3294,7 +3291,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Start your XcellHost partner journey"
               },
               {
-                "title": "Partner Matrix",
+                "title": "Partner Contact Matrix",
                 "pill": null,
                 "desc": "Introduce customers to XcellHost services"
               },
@@ -3308,11 +3305,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Choose a model that fits your business"
               },
-              {
-                "title": "Partner Portal",
-                "pill": null,
-                "desc": "Access partner opportunities and resources"
-              },
+              
               {
                 "title": "Partner Guide",
                 "pill": null,
@@ -3675,7 +3668,7 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Experience Center",
             "items": [
               {
-                "title": "TsPlus Demo Center",
+                "title": "TSPlus Demo Center",
                 "pill": null,
                 "desc": null
               },
