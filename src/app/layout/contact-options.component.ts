@@ -74,7 +74,7 @@ import { LeadService } from '../core/lead.service';
       padding: 32px;
       border: 1px solid var(--line);
       border-radius: 12px;
-      background: #87ceeb;
+      background: linear-gradient(135deg, var(--blue-soft) 0%, #dcecff 62%, #fff0de 100%);
       box-shadow: 0 12px 28px rgba(4, 30, 66, 0.18);
     }
 
