@@ -2,9 +2,9 @@ import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
 import { takeUntilDestroyed, toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { map, switchMap } from 'rxjs';
+import { map, Observable, switchMap } from 'rxjs';
 
-import { BlogApiService, CmsBlogPost } from '../core/blog-api.service';
+import { BlogApiService, CmsArticle } from '../core/blog-api.service';
 import { DocRequestService } from '../core/doc-request.service';
 import { LeadService } from '../core/lead.service';
 import { OverlayService } from '../core/overlay.service';
@@ -26,6 +26,11 @@ interface HeadingEntry {
   readonly id: string;
 }
 
+interface ArticleNeighbors {
+  readonly previous: CmsArticle | null;
+  readonly next: CmsArticle | null;
+}
+
 @Component({
   selector: 'xh-blog-page',
   standalone: true,
@@ -45,11 +50,15 @@ export class BlogPage {
   private readonly blogApi = inject(BlogApiService);
   private readonly doc = inject(DOCUMENT);
 
+  readonly isUseCase = this.route.snapshot.data['contentType'] === 'use-case';
+  readonly detailBase = this.isUseCase ? '/use-cases' : '/insights';
+  readonly contentLabel = this.isUseCase ? 'Use Case' : 'Insights';
+  readonly contentPlural = this.isUseCase ? 'use cases' : 'blogs';
   readonly slug = toSignal(this.route.paramMap.pipe(map((params) => params.get('slug') ?? '')), {
     initialValue: '',
   });
-  readonly post = signal<CmsBlogPost | null>(null);
-  readonly allPosts = signal<readonly CmsBlogPost[]>([]);
+  readonly post = signal<CmsArticle | null>(null);
+  readonly allPosts = signal<readonly CmsArticle[]>([]);
   readonly loading = signal(true);
   readonly error = signal(false);
   readonly progress = signal(0);
@@ -64,30 +73,59 @@ export class BlogPage {
       )
       .filter((value): value is HeadingEntry => value !== null)
   );
-  readonly more = computed(() =>
-    this.allPosts()
-      .filter((candidate) => candidate.slug !== this.slug())
+  readonly neighbors = computed<ArticleNeighbors>(() => {
+    const posts = this.allPosts();
+    const currentIndex = posts.findIndex((candidate) => candidate.slug === this.slug());
+    if (currentIndex < 0) return { previous: null, next: null };
+    return {
+      // The API is newest-first: the preceding article is older and the next is newer.
+      previous: posts[currentIndex + 1] ?? null,
+      next: posts[currentIndex - 1] ?? null,
+    };
+  });
+  readonly relatedBlogs = computed(() => {
+    const current = this.post();
+    if (!current) return [];
+
+    return this.allPosts()
+      .map((candidate, index) => ({
+        candidate,
+        index,
+        score: candidate.slug === current.slug ? -1 : this.relatedScore(current, candidate),
+      }))
+      .filter(({ score }) => score >= 0)
+      .sort((left, right) => right.score - left.score || left.index - right.index)
       .slice(0, 3)
-  );
+      .map(({ candidate }) => candidate);
+  });
   readonly waHref = computed(() =>
     this.leads.whatsappLink(
       `Hi XcellHost, I have just read "${this.post()?.title ?? 'your insights'}" and would like to talk.`
     )
   );
   readonly tallyInfosheet = PRODUCT_INFOSHEETS['Tally on Cloud'];
-  readonly mailHref = this.leads.mailtoLink(
-    'Enquiry: Tally on Cloud',
-    'Hi XcellHost,\n\nI would like to know more about Tally on Cloud.\n\nCompany:\nNumber of users:\nBest time to call:'
+  readonly mailHref = computed(() => this.leads.mailtoLink(
+    `Enquiry: ${this.post()?.product || this.post()?.title || 'XcellHost services'}`,
+    `Hi XcellHost,\n\nI would like to know more about ${this.post()?.product || this.post()?.title || 'your services'}.\n\nCompany:\nNumber of users:\nBest time to call:`
+  ));
+  readonly primaryRelatedPage = computed(() =>
+    (this.post()?.relatedPages ?? '')
+      .split(',')
+      .map((value) => value.trim().replace(/^\/+|\/+$/g, ''))
+      .find(Boolean) ?? null
   );
 
   constructor() {
-    this.blogApi.posts$.pipe(takeUntilDestroyed()).subscribe({
+    const articles$: Observable<readonly CmsArticle[]> = this.isUseCase
+      ? this.blogApi.useCases$
+      : this.blogApi.posts$;
+    articles$.pipe(takeUntilDestroyed()).subscribe({
       next: (posts) => this.allPosts.set(posts),
     });
 
     toObservable(this.slug)
       .pipe(
-        switchMap((slug) => this.blogApi.watchBySlug(slug)),
+        switchMap((slug) => this.watchArticle(slug)),
         takeUntilDestroyed()
       )
       .subscribe({
@@ -107,7 +145,7 @@ export class BlogPage {
       const post = this.post();
       if (!post) return;
 
-      const canonical = `/insights/${post.slug}/`;
+      const canonical = `${this.detailBase}/${post.slug}/`;
       this.seo.set(`${post.title} - XcellHost`, post.description, canonical);
       this.seo.setJsonLd('article', {
         '@context': 'https://schema.org',
@@ -156,7 +194,7 @@ export class BlogPage {
     );
   }
 
-  readTime(post: CmsBlogPost | null): string {
+  readTime(post: CmsArticle | null): string {
     if (!post) return '3 min read';
     const text = `${post.title} ${post.description} ${post.content}`.trim();
     const words = text ? text.split(/\s+/).length : 0;
@@ -245,5 +283,32 @@ export class BlogPage {
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-+|-+$/g, '');
     return base ? `${base}-${index}` : `section-${index}`;
+  }
+
+  private relatedScore(current: CmsArticle, candidate: CmsArticle): number {
+    let score = 0;
+    const currentPages = this.relatedPageKeys(current);
+    const candidatePages = this.relatedPageKeys(candidate);
+    if ([...currentPages].some((page) => candidatePages.has(page))) score += 16;
+    if (current.product && candidate.product === current.product) score += 12;
+    if (current.subCategory && candidate.subCategory === current.subCategory) score += 8;
+    if (current.mainCategory && candidate.mainCategory === current.mainCategory) score += 4;
+    if (candidate.category === current.category) score += 6;
+    return score;
+  }
+
+  private relatedPageKeys(post: CmsArticle): ReadonlySet<string> {
+    return new Set(
+      (post.relatedPages ?? '')
+        .split(',')
+        .map((value) => value.trim().toLowerCase().replace(/^\/+|\/+$/g, ''))
+        .filter(Boolean)
+    );
+  }
+
+  private watchArticle(slug: string): Observable<CmsArticle | null> {
+    return this.isUseCase
+      ? this.blogApi.watchUseCaseBySlug(slug)
+      : this.blogApi.watchBySlug(slug);
   }
 }

@@ -62,6 +62,7 @@ import { AutonomousThreatSolutionDetailComponent } from '../sections/autonomous-
 import { ATM_SOLUTION_DETAILS } from '../data/atm-solution-detail.data';
 import { OurPlatformReferenceComponent } from '../sections/our-platform-reference.component';
 import { WatchtowerReferenceComponent } from '../sections/watchtower-reference.component';
+import { BareMetalContentComponent } from '../sections/bare-metal-content.component';
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -178,6 +179,7 @@ interface ProductTourSlide {
     AutonomousThreatSolutionDetailComponent,
     OurPlatformReferenceComponent,
     WatchtowerReferenceComponent,
+    BareMetalContentComponent,
 
     EmailSignatureContentComponent,
     EmailSignatureHeroComponent,

@@ -1,9 +1,9 @@
 @if (loading()) {
-  <div class="ppage as-page"><div class="pp-body"><div class="wrap"><p role="status">Loading article...</p></div></div></div>
+  <div class="ppage as-page"><div class="pp-body"><div class="wrap"><p role="status">Loading {{ isUseCase ? 'use case' : 'article' }}...</p></div></div></div>
 } @else if (error()) {
   <div class="ppage as-page"><div class="pp-body"><div class="wrap">
-    <h1>Article unavailable</h1>
-    <p role="alert">The blog service could not be reached. Please try again shortly.</p>
+    <h1>{{ isUseCase ? 'Use case' : 'Article' }} unavailable</h1>
+    <p role="alert">The content service could not be reached. Please try again shortly.</p>
     <a class="btn primary" routerLink="/insights">Back to insights</a>
   </div></div></div>
 } @else if (post(); as p) {
@@ -11,7 +11,7 @@
     <div class="bp-bar">
       <div class="wrap">
         <div class="bp-bar-brand">
-          <span>XcellHost Insights</span>
+          <span>XcellHost {{ contentLabel }}</span>
           <small>{{ p.category }}</small>
         </div>
         <a class="bp-bar-link" routerLink="/insights">View all insights</a>
@@ -114,6 +114,25 @@
               }
             }
 
+            @if (isUseCase) {
+            <div class="pp-cta article-product-cta">
+              <div class="article-product-cta-copy">
+                <h3>Want results like these for your business?</h3>
+                <p>Talk with our specialists about {{ p.product || p.category }} and your requirements.</p>
+              </div>
+              <div class="article-product-cta-actions">
+                <button class="btn btn-primary" type="button" (click)="openCallback()">Request a callback</button>
+                @if (primaryRelatedPage(); as pageSlug) {
+                  <a class="btn btn-ghost" [routerLink]="['/', pageSlug]">Explore the solution</a>
+                }
+                <a class="btn btn-ghost" [href]="waHref()" target="_blank" rel="noopener">Talk on WhatsApp</a>
+                <a class="btn btn-ghost" [href]="mailHref()">Email Us</a>
+              </div>
+              <a class="pp-cta-buddha-link" routerLink="/company/support-overview" aria-label="Visit XcellHost customer support">
+                <img class="pp-cta-buddha" src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost customer support" />
+              </a>
+            </div>
+            } @else {
             <div class="pp-cta article-product-cta">
               <div class="article-product-cta-copy">
                 <h3>Ready to start with Tally on Cloud?</h3>
@@ -136,7 +155,7 @@
                 <a class="btn btn-ghost" [href]="waHref()" target="_blank" rel="noopener">
                   Talk on WhatsApp
                 </a>
-                <a class="btn btn-ghost" [href]="mailHref">Email Us</a>
+                <a class="btn btn-ghost" [href]="mailHref()">Email Us</a>
               </div>
               <a
                 class="pp-cta-buddha-link"
@@ -150,6 +169,7 @@
                 />
               </a>
             </div>
+            }
           </article>
         </div>
       </div>
@@ -157,32 +177,40 @@
 
     <div class="bp-more article-more">
       <div class="wrap">
-        <div class="article-more-head">
-          <div>
-            <span class="article-side-kicker">Continue reading</span>
-            <h3>More from our blog</h3>
-          </div>
-          <a class="bp-bar-link" routerLink="/insights">Explore all articles</a>
-        </div>
-        <div class="bp-grid article-more-grid">
-          @for (item of more(); track item.documentId) {
-            <a class="bp-card article-more-card" [routerLink]="['/insights', item.slug]">
-              <div class="article-more-media">
-                <img
-                  [src]="item.coverImageUrl"
-                  [alt]="item.coverImage?.alternativeText || item.title"
-                  loading="lazy"
-                />
-                <span class="article-more-arrow" aria-hidden="true">&#8599;</span>
-              </div>
-              <div class="article-more-content">
-                <span class="k">{{ item.category }} &middot; {{ formatDate(item.date) }}</span>
-                <h4>{{ item.title }}</h4>
-                <p>{{ item.description }}</p>
-              </div>
-            </a>
-          }
-        </div>
+        @if (neighbors().previous || neighbors().next) {
+          <nav class="article-sibling-nav" [attr.aria-label]="'Previous and next ' + contentPlural">
+            @if (neighbors().previous; as previous) {
+              <a class="article-sibling article-previous" [routerLink]="[detailBase, previous.slug]">
+                <span><i aria-hidden="true">&#8592;</i> Previous</span>
+                <strong>{{ previous.title }}</strong>
+              </a>
+            }
+            @if (neighbors().next; as next) {
+              <a class="article-sibling article-next" [routerLink]="[detailBase, next.slug]">
+                <span>Next <i aria-hidden="true">&#8594;</i></span>
+                <strong>{{ next.title }}</strong>
+              </a>
+            }
+          </nav>
+        }
+
+        @if (relatedBlogs().length) {
+          <section class="article-related" aria-labelledby="related-content-heading">
+            <div class="article-related-head">
+              <h2 id="related-content-heading">Related {{ contentPlural }}</h2>
+              <a class="bp-bar-link" routerLink="/insights">Explore all insights</a>
+            </div>
+            <div class="article-related-grid">
+              @for (item of relatedBlogs(); track item.documentId) {
+                <a class="article-related-card" [routerLink]="[detailBase, item.slug]">
+                  <span>{{ item.category }}</span>
+                  <h3>{{ item.title }}</h3>
+                  <small>{{ readTime(item) }}</small>
+                </a>
+              }
+            </div>
+          </section>
+        }
       </div>
     </div>
   </div>

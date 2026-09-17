@@ -33,7 +33,7 @@
       <div class="pp-typewriter"><span>Everything your team needs to work, meet and create.</span><i></i></div>
 
       <div class="pp-chips">
-        <span class="pp-chip price">Business Basic from &#8377;145/user/mo</span>
+        <span class="pp-chip price">Business Basic from &#8377;1,740/user/year</span>
         <span class="pp-chip">Copilot AI add-on available</span>
         <span class="pp-chip">GST invoice &middot; INR billing</span>
       </div>
@@ -138,7 +138,7 @@
           <span class="tag">Entry</span>
           <h4>Business Basic</h4>
           <div class="sub">Email, {{ includesTeams() ? 'Teams & ' : '' }}cloud apps</div>
-          <div class="amt"><b>&#8377;{{ (includesTeams() ? 145 : 105) * quoteQuantities()['basic'] | number:'1.0-0' }}</b><span>{{ quoteQuantities()['basic'] === 1 ? 'per user' : 'for ' + quoteQuantities()['basic'] + ' users' }} / month + GST</span></div>
+          <div class="amt"><b>&#8377;{{ (includesTeams() ? 1740 : 1260) * quoteQuantities()['basic'] | number:'1.0-0' }}</b><span>{{ quoteQuantities()['basic'] === 1 ? 'per user' : 'for ' + quoteQuantities()['basic'] + ' users' }} / year + GST</span></div>
           <span class="save">Web &amp; mobile apps</span>
           <ul>
             <li>Outlook email on @yourcompany.com</li>
@@ -154,7 +154,7 @@
           <span class="tag">Most Popular</span>
           <h4>Business Standard</h4>
           <div class="sub">Full desktop apps{{ includesTeams() ? ' + Teams' : '' }}</div>
-          <div class="amt"><b>&#8377;{{ (includesTeams() ? 770 : 570) * quoteQuantities()['standard'] | number:'1.0-0' }}</b><span>{{ quoteQuantities()['standard'] === 1 ? 'per user' : 'for ' + quoteQuantities()['standard'] + ' users' }} / month + GST</span></div>
+          <div class="amt"><b>&#8377;{{ (includesTeams() ? 9240 : 6840) * quoteQuantities()['standard'] | number:'1.0-0' }}</b><span>{{ quoteQuantities()['standard'] === 1 ? 'per user' : 'for ' + quoteQuantities()['standard'] + ' users' }} / year + GST</span></div>
           <span class="save">BEST VALUE</span>
           <ul>
             <li>Everything in Business Basic</li>
@@ -170,7 +170,7 @@
           <span class="tag">Security Ready</span>
           <h4>Business Premium</h4>
           <div class="sub">Standard + enterprise security</div>
-          <div class="amt"><b>&#8377;{{ (includesTeams() ? 1830 : 1565) * quoteQuantities()['premium'] | number:'1.0-0' }}</b><span>{{ quoteQuantities()['premium'] === 1 ? 'per user' : 'for ' + quoteQuantities()['premium'] + ' users' }} / month + GST</span></div>
+          <div class="amt"><b>&#8377;{{ (includesTeams() ? 21960 : 18780) * quoteQuantities()['premium'] | number:'1.0-0' }}</b><span>{{ quoteQuantities()['premium'] === 1 ? 'per user' : 'for ' + quoteQuantities()['premium'] + ' users' }} / year + GST</span></div>
           <span class="save">Defender + Intune</span>
           <ul>
             <li>Everything in Business Standard</li>

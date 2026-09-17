@@ -4,7 +4,7 @@ import { catchError, EMPTY, expand, map, Observable, of, reduce, shareReplay, sw
 
 import { environment } from '../../environments/environment';
 
-export interface CmsBlogPost {
+export interface CmsArticle {
   readonly id: number;
   readonly documentId: string;
   readonly title: string;
@@ -17,6 +17,8 @@ export interface CmsBlogPost {
   readonly category: string;
   readonly mainCategory?: string | null;
   readonly subCategory?: string | null;
+  /** Product label from the website menu. `category` remains supported for older entries. */
+  readonly product?: string | null;
   /** Comma-separated service URL slugs, e.g. tally-on-cloud,bare-metal-server. */
   readonly relatedPages: string | null;
   readonly publishedAt: string;
@@ -24,6 +26,8 @@ export interface CmsBlogPost {
   readonly coverImage: CmsImage | null;
   readonly coverImageUrl: string | null;
 }
+
+export interface CmsBlogPost extends CmsArticle {}
 
 export interface CmsImage {
   readonly id: number;
@@ -37,26 +41,11 @@ export interface CmsImage {
 export type CmsResourceKind = 'video' | 'use-case';
 
 /** Shared Strapi shape for the optional Videos and Use Cases collections. */
-export interface CmsInsightResource {
-  readonly id: number;
-  readonly documentId: string;
+export interface CmsInsightResource extends CmsArticle {
   readonly kind: CmsResourceKind;
-  readonly title: string;
-  readonly slug: string;
-  readonly description: string;
-  readonly content: string;
-  readonly author: string;
-  readonly date: string;
-  readonly time: string;
-  readonly category: string;
-  readonly mainCategory?: string | null;
-  readonly subCategory?: string | null;
   readonly videoUrl: string | null;
+  /** Legacy external service link retained for older Video/Use Case entries. */
   readonly relatedPage: string | null;
-  readonly publishedAt: string;
-  readonly updatedAt: string;
-  readonly coverImage: CmsImage | null;
-  readonly coverImageUrl: string | null;
 }
 
 interface RawCmsInsightResource extends Partial<Omit<CmsInsightResource, 'kind'>> {
@@ -113,7 +102,7 @@ export class BlogApiService {
     shareReplay({ bufferSize: 1, refCount: true })
   );
 
-  /** Optional Strapi collection: title, slug, description, category, relatedPage and coverImage. */
+  /** Strapi Use Case collection, presented alongside blogs in the Insights hub. */
   readonly useCases$ = this.resourceStream('use-cases', 'use-case');
 
   watchBySlug(slug: string): Observable<CmsBlogPost | null> {
@@ -121,6 +110,12 @@ export class BlogApiService {
     // 403 response. Reuse the published list and resolve the slug client-side.
     return this.posts$.pipe(
       map((posts) => posts.find((post) => post.slug === slug) ?? null)
+    );
+  }
+
+  watchUseCaseBySlug(slug: string): Observable<CmsInsightResource | null> {
+    return this.useCases$.pipe(
+      map((items) => items.find((item) => item.slug === slug) ?? null)
     );
   }
 
@@ -224,8 +219,10 @@ export class BlogApiService {
       category,
       mainCategory: item.mainCategory?.trim() || this.parentCategory(category),
       subCategory: item.subCategory?.trim() || category,
+      product: item.product?.trim() || null,
       videoUrl: item.videoUrl ?? item.youtubeUrl ?? (kind === 'video' ? item.link ?? null : null),
       relatedPage: item.relatedPage ?? (kind === 'use-case' ? item.link ?? null : null),
+      relatedPages: item.relatedPages ?? item.relatedPage ?? (kind === 'use-case' ? item.link ?? null : null),
       publishedAt: item.publishedAt ?? '',
       updatedAt: item.updatedAt ?? '',
       coverImage: item.coverImage ?? null,
@@ -257,8 +254,10 @@ export class BlogApiService {
       category,
       mainCategory: this.parentCategory(category),
       subCategory: category,
+      product: null,
       videoUrl: item.link || `https://www.youtube.com/watch?v=${videoId}`,
       relatedPage: null,
+      relatedPages: null,
       publishedAt: Number.isNaN(published.valueOf()) ? '' : published.toISOString(),
       updatedAt: '',
       coverImage: null,
