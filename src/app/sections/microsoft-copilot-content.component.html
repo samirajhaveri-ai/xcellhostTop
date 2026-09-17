@@ -1,0 +1,95 @@
+<section class="copilot-content" aria-label="Copilot for Microsoft 365 details">
+  <div class="pp-sec">Overview — What is Copilot for Microsoft 365?</div>
+  <p class="pp-ov"><b>Copilot for Microsoft 365</b> is an AI assistant built right into the apps your team already uses every day — Word, Excel, PowerPoint, Outlook and Teams — plus a secure Copilot Chat for work. Ask it in plain language and it drafts documents, analyses spreadsheets, builds slide decks, summarises long email threads and recaps meetings you missed, in seconds. Because it works on <b>your own</b> documents, emails and chats — grounded in Microsoft Graph and protected by enterprise-grade security — the answers are relevant to your business, and your data stays yours. XcellHost handles licensing, readiness and rollout, and helps your team actually adopt it — with a GST invoice and local support.</p>
+
+  <div class="app-strip" aria-label="Works in Microsoft 365 applications">
+    <span class="strip-label">Works in</span>
+    <span><i class="word">W</i>Word</span><span><i class="excel">X</i>Excel</span>
+    <span><i class="powerpoint">P</i>PowerPoint</span><span><i class="outlook">O</i>Outlook</span>
+    <span><i class="teams">T</i>Teams</span><span><i class="copilot">✦</i>Copilot Chat</span>
+  </div>
+
+  <div class="pp-sec">Assess · Enable · Adopt — how we roll out Copilot</div>
+  <div class="stage-grid">
+    <article><span>Assess</span><h3>Check you're ready</h3><p>We review your Microsoft 365 licences, data access and permissions so Copilot is set up safely and gives accurate, well-governed answers.</p><ul><li>Licence &amp; readiness check</li><li>Data access &amp; permissions review</li><li>Security &amp; governance baseline</li></ul></article>
+    <article><span>Enable</span><h3>Turn Copilot on</h3><p>We assign Copilot licences to the right users and switch it on across Word, Excel, PowerPoint, Outlook and Teams — no disruption to your team.</p><ul><li>Licences assigned per user</li><li>Enabled in every app</li><li>Zero downtime</li></ul></article>
+    <article><span>Adopt</span><h3>Get the whole team using it</h3><p>We run onboarding, share prompt playbooks for each role, and support your team so Copilot becomes a habit — and you see real time savings.</p><ul><li>Onboarding &amp; training</li><li>Prompt playbooks per role</li><li>Ongoing 24×7 support</li></ul></article>
+  </div>
+
+  <div class="pp-sec" id="products">Copilot for Microsoft 365 pricing (INR)</div>
+  <p class="pp-ov pricing-intro">Add Copilot for any user, priced per user / month. Copilot needs an eligible Microsoft 365 plan — XcellHost can license it standalone or bundle it with Microsoft 365 in one invoice.</p>
+  <div class="price-grid">
+    <article class="price-card">
+      <div class="price-top"><span>Copilot</span><em>AI Assistant</em></div>
+      <h3>Copilot for Microsoft 365</h3><p>Your AI assistant across Word, Excel, PowerPoint, Outlook and Teams, plus Copilot Chat for work.</p>
+      <div class="price-meta"><div><span>Works in</span><b>All Office apps</b></div><div><span>Billed</span><b>per user / mo</b></div></div>
+      <ul><li>Draft &amp; rewrite in Word</li><li>Analyse data &amp; build charts in Excel</li><li>Create decks in PowerPoint</li><li>Summarise &amp; draft in Outlook</li><li>Recap meetings in Teams</li><li>Secure Copilot Chat for work</li></ul>
+      <div class="price"><span>From</span><b>₹2,610</b><small>/user/mo</small></div>
+      <button type="button" (click)="addCopilot()">Configure &amp; Buy <span>→</span></button>
+    </article>
+  </div>
+  <p class="pv-note">💳 Indicative INR pricing, per user / month (billed annually, excl. GST). Requires an eligible Microsoft 365 plan. Pay via UPI · Cards · NetBanking. GST invoice on every order. Contact XcellHost for exact Microsoft pricing and Microsoft 365 bundles.</p>
+
+  <div class="pp-sec">Services XcellHost adds on top</div>
+  <div class="four-grid">
+    <article><i>⌕</i><b>Copilot readiness</b><p>We check your licences, data access and permissions so Copilot is safe, governed and accurate from day one.</p></article>
+    <article><i>✦</i><b>Licensing &amp; bundles</b><p>Copilot standalone, or bundled with Microsoft 365 Business plans — on one simple GST invoice.</p></article>
+    <article><i>♙</i><b>Training &amp; adoption</b><p>Onboarding sessions and prompt playbooks per role so your team actually uses Copilot every day.</p></article>
+    <article><i>◷</i><b>Managed support</b><p>Ongoing admin, usage guidance and 24×7 helpdesk from our Mumbai team.</p></article>
+  </div>
+
+  <div class="pp-sec">What Copilot does for your team</div>
+  <div class="feature-grid">
+    <article><i class="word">W</i><div><b>Write &amp; summarise</b><p>Draft documents and emails from a prompt, rewrite for tone, and summarise long files in seconds.</p></div></article>
+    <article><i class="excel">X</i><div><b>Analyse data</b><p>Ask questions of a spreadsheet in plain English — Copilot spots trends, writes formulas and builds charts.</p></div></article>
+    <article><i class="powerpoint">P</i><div><b>Create presentations</b><p>Turn a document or a prompt into a designed deck with speaker notes — then restyle it in a click.</p></div></article>
+    <article><i class="outlook">O</i><div><b>Manage email &amp; meetings</b><p>Summarise threads, draft replies in your voice, and recap Teams meetings with clear action items.</p></div></article>
+    <article><i class="copilot">✦</i><div><b>Copilot Chat for work</b><p>A secure chat grounded in your work data — ask questions, get answers, and take action fast.</p></div></article>
+    <article><i class="secure">✓</i><div><b>Secure &amp; governed</b><p>Copilot respects your existing permissions and keeps your data inside your tenant — nothing is used to train public models.</p></div></article>
+  </div>
+
+  <div class="app-heading"><div class="pp-sec">Copilot in every app</div><p>See what Copilot does across Microsoft 365</p></div>
+  <div class="tabs" role="tablist" aria-label="Copilot Microsoft 365 apps">
+    @for (app of apps; track app.name; let i = $index) {
+      <button type="button" role="tab" [class.active]="activeApp() === i" [attr.aria-selected]="activeApp() === i" (click)="selectApp(i)">{{ app.name }}</button>
+    }
+  </div>
+  <div class="app-panel">
+    @for (app of apps; track app.name; let i = $index) {
+      @if (activeApp() === i) {
+        <div class="app-copy"><h3>{{ app.title }}</h3><p>{{ app.description }}</p><ul>@for (bullet of app.bullets; track bullet) { <li>{{ bullet }}</li> }</ul></div>
+        <div class="app-shot"><div class="app-window"><header><span>✦ <small>COPILOT</small></span><b>{{ app.name }}</b></header><div>@for (prompt of app.prompts; track prompt[0]) { <article><i>✦</i><span><b>{{ prompt[0] }}</b><small>{{ prompt[1] }}</small></span></article> }</div></div><span>{{ app.caption }}</span></div>
+      }
+    }
+  </div>
+
+  <div class="pp-sec">Benefits for your business</div>
+  <div class="four-grid benefits">
+    <article><i>◷</i><b>Save hours every week</b><p>Copilot handles the first draft, the summary and the busywork — giving your team time back.</p></article>
+    <article><i>↗</i><b>Better-quality work</b><p>Clearer writing, sharper analysis and more polished decks — a helpful second brain for everyone.</p></article>
+    <article><i>♙</i><b>Everyone works like a pro</b><p>Copilot levels up your whole team — no special skills or new tools to learn.</p></article>
+    <article><i>◇</i><b>Secure by design</b><p>Your data stays in your tenant, honours existing permissions, and isn't used to train public models.</p></article>
+  </div>
+
+  <div class="pp-sec">Grounded in your work — and your rules</div>
+  <div class="grounded-panel">
+    <div><span>◇ Secure &amp; grounded</span><h3>Smart, because it knows your work.</h3><p>Copilot draws on your own documents, emails, chats and meetings through Microsoft Graph — so answers are specific to your business, not generic. It honours the permissions you already have, keeps your data inside your Microsoft 365 tenant, and never uses it to train public AI models.</p><ul><li>Answers from your content</li><li>Respects existing permissions</li><li>Data stays in your tenant</li><li>Enterprise-grade compliance</li></ul></div>
+    <ol><li><b>✓</b>Reads only what you can access</li><li><b>✓</b>Your data never leaves your tenant</li><li><b>3</b>Not used to train public models</li></ol>
+  </div>
+
+  <div class="pp-sec">From busywork to done in seconds</div>
+  <div class="before-after">
+    <div class="before-copy"><p>Before Copilot, the day fills up with the small stuff — staring at a blank page, wrangling a spreadsheet, rebuilding a deck, and reading through 40-message email threads.</p><p>With <b>Copilot for Microsoft 365</b>, that work becomes a single prompt. Ask, review, tweak, done — right inside the apps your team already uses.</p><p>The result: less busywork, faster output and more time for the work that actually needs a human.</p><div><span><b>Seconds</b><small>not hours</small></span><span><b>In-app</b><small>no new tools</small></span></div></div>
+    <div class="phones"><article class="phone before"><span>Before Copilot</span><div><p><i>W</i><b>Write the proposal<small>Blank page</small></b></p><p><i>X</i><b>Analyse the data<small>Hours in Excel</small></b></p><p><i>P</i><b>Build the deck<small>From scratch</small></b></p><p><i>@</i><b>Read 40 emails<small>Catching up</small></b></p></div><em>Without Copilot</em></article><strong aria-hidden="true">›››</strong><article class="phone after"><span>With Copilot</span><div><p><i>✦</i><b>Draft ready ✓<small>In seconds</small></b></p><p><i>✦</i><b>Insights + chart ✓<small>Auto-generated</small></b></p><p><i>✦</i><b>5-slide deck ✓<small>From your doc</small></b></p><p><i>✦</i><b>Inbox summarised ✓<small>Caught up</small></b></p></div><em>With Copilot</em></article></div>
+  </div>
+
+  <div class="pp-sec">Who gets the most from Copilot?</div>
+  <div class="use-grid"><article><i>💼</i><b>Sales teams</b><span>Proposals &amp; follow-ups faster</span></article><article><i>📣</i><b>Marketing</b><span>Content &amp; campaigns in minutes</span></article><article><i>📊</i><b>Finance &amp; ops</b><span>Analyse data &amp; reports</span></article><article><i>🤝</i><b>HR &amp; admin</b><span>Policies, docs &amp; comms</span></article><article><i>🎧</i><b>Customer support</b><span>Faster, clearer replies</span></article><article><i>👤</i><b>Founders &amp; execs</b><span>Catch up &amp; decide faster</span></article><article><i>🛠</i><b>Consultants</b><span>Research, docs &amp; decks</span></article><article><i>🏫</i><b>Education</b><span>Lesson plans &amp; admin</span></article></div>
+
+  <div class="pp-sec">What's included</div>
+  <div class="included-grid"><article><i>✓</i><div><b>Copilot licences</b><p>Genuine per-user Copilot for Microsoft 365 licences, provisioned for your team (standalone or bundled with M365).</p></div></article><article><i>✓</i><div><b>Readiness &amp; enablement</b><p>Licence and data-access review, then Copilot switched on safely across your apps.</p></div></article><article><i>✓</i><div><b>Training &amp; playbooks</b><p>Onboarding sessions and role-based prompt playbooks so your team adopts Copilot fast.</p></div></article><article><i>✓</i><div><b>Support &amp; management</b><p>24×7 support from our Mumbai NOC, usage guidance and ongoing admin.</p></div></article></div>
+
+  <div class="pp-sec">Why roll out Copilot with XcellHost?</div>
+  <p class="pp-ov why-intro">Buying Copilot licences is easy; getting real value from them is the hard part. XcellHost handles readiness, secure enablement, training and adoption end-to-end — so your team actually uses Copilot and sees the time savings, with local billing and a GST invoice.</p>
+  <div class="why-grid"><article><i>◇</i><b>Microsoft partner</b><p>Genuine Copilot &amp; Microsoft 365 licences with local billing and GST invoicing.</p></article><article><i>↗</i><b>Readiness &amp; governance</b><p>We make sure your data access and permissions are right before switching Copilot on.</p></article><article><i>✓</i><b>Adoption that sticks</b><p>Role-based training and prompt playbooks so Copilot becomes a daily habit, not shelfware.</p></article><article><i>24</i><b>24×7 support</b><p>Round-the-clock help from our Mumbai NOC + SOC, since 1999.</p></article><article><i>₹</i><b>GST invoice</b><p>Compliant GST invoice on every order — pay via UPI, cards or NetBanking.</p></article><article><i>◎</i><b>Managed &amp; supported</b><p>Ongoing admin, usage guidance, security and 24×7 support from our team.</p></article></div>
+</section>

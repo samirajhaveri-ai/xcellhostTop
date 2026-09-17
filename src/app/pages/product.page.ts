@@ -52,7 +52,7 @@ import { WhatsAppSmbContentComponent } from '../sections/whatsapp-smb-content.co
 import { ManagedAwsContentComponent } from '../sections/managed-aws-content.component';
 
 import { ManagedMicrosoft365ContentComponent } from '../sections/managed-microsoft-365-content.component';
-import { CopilotStudioContentComponent } from '../sections/copilot-studio-content.component';
+import { MicrosoftCopilotContentComponent } from '../sections/microsoft-copilot-content.component';
 import { CloudObjectStorageContentComponent } from '../sections/cloud-object-storage-content.component';
 import { ZohoWorkspaceContentComponent } from '../sections/zoho-workspace-content.component';
 import { EntraIdContentComponent } from '../sections/entra-id-content.component';
@@ -165,11 +165,11 @@ interface ProductTourSlide {
     ManagedAwsContentComponent,
 
     ManagedMicrosoft365ContentComponent,
+    MicrosoftCopilotContentComponent,
     WaapContentComponent,
     IotInfrastructureContentComponent,
     DomainsContentComponent,
     AgenticAiContentComponent,
-    CopilotStudioContentComponent,
     CloudObjectStorageContentComponent,
     ZohoWorkspaceContentComponent,
     EntraIdContentComponent,
@@ -187,6 +187,57 @@ interface ProductTourSlide {
   ],
   templateUrl: './product.page.html',
   styles: [`
+    #ppage.microsoft-copilot-page > .pp-hero { min-height: 650px; padding: 60px 0 72px; background: linear-gradient(135deg,#061634 0%,#0c2b63 55%,#12408f 100%); }
+    #ppage .copilot-hero-copy { position: relative; z-index: 3; max-width: 56%; padding: 0; }
+    #ppage .copilot-source-crumb { margin-bottom: 22px; color: #9fb6de; font: 500 12px var(--mono); }
+    #ppage .copilot-source-crumb a:hover { color: #fff; }
+    #ppage .copilot-source-crumb strong { color: #fff; font-weight: 500; }
+    #ppage .copilot-eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border: 1px solid rgba(255,255,255,.16); border-radius: 99px; background: rgba(255,255,255,.08); color: #bcd4ff; font: 500 11.5px var(--mono); letter-spacing: .16em; text-transform: uppercase; }
+    #ppage .copilot-eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: #5fe08d; box-shadow: 0 0 0 7px rgba(95,224,141,.1); }
+    #ppage .copilot-hero-copy h1 { display: block; max-width: 620px; margin: 20px 0 8px; color: #fff; font-size: clamp(30px,4vw,46px); font-weight: 800; line-height: 1.08; white-space: normal; }
+    #ppage .copilot-hero-copy h1 .xr { color: #ff3b3b; }
+    #ppage .copilot-hero-copy h1 .prod { color: #fff; }
+    #ppage .copilot-lead { max-width: 540px; margin: 16px 0 4px; color: #eaf2ff; font-size: 18px; font-weight: 600; line-height: 1.6; }
+    #ppage .copilot-lead2 { max-width: 540px; margin: 0 0 16px; color: #c9d8f2; font-size: 15.5px; line-height: 1.6; }
+    #ppage .copilot-tech { margin: 6px 0 18px; color: #7fb0ff; font: 700 19px var(--disp); }
+    #ppage .copilot-hero-points { display: grid; grid-template-columns: 1fr 1fr; gap: 11px 22px; max-width: 540px; margin-bottom: 26px; color: #eaf2ff; font-size: 14.5px; }
+    #ppage .copilot-hero-points span { display: flex; align-items: center; gap: 10px; }
+    #ppage .copilot-hero-points span::first-letter { color: #fff; }
+    #ppage .copilot-hero-art { top: 145px; right: 4%; bottom: auto; width: 42%; min-height: 380px; display: flex; align-items: center; justify-content: center; opacity: 1; overflow: visible; mask-image: none; }
+    #ppage .copilot-orbit-ring { position: absolute; inset: 6% 8%; z-index: 0; border: 1.5px dashed rgba(127,176,255,.3); border-radius: 50%; animation: copilotOrbit 40s linear infinite; }
+    #ppage .copilot-orbit-ring::after { content: ''; position: absolute; top: -5px; left: 50%; width: 9px; height: 9px; border-radius: 50%; background: #ff8c1a; box-shadow: 0 0 12px #ff8c1a; }
+    @keyframes copilotOrbit { to { transform: rotate(360deg); } }
+    #ppage .copilot-mail { position: relative; z-index: 2; width: 100%; max-width: 430px; overflow: hidden; border-radius: 16px; background: #fff; box-shadow: 0 34px 80px -20px rgba(4,30,66,.34); animation: copilotFloat 6s ease-in-out infinite; }
+    @keyframes copilotFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-11px); } }
+    #ppage .copilot-mail-bar { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid #dce5f2; background: #f3f6fc; }
+    #ppage .copilot-mail-bar .dots { display: flex; gap: 6px; }
+    #ppage .copilot-mail-bar .dots i { width: 10px; height: 10px; border-radius: 50%; background: #d3ddef; }
+    #ppage .copilot-mail-title { display: flex; align-items: center; gap: 6px; color: #51607a; font: 400 12px var(--mono); letter-spacing: .05em; }
+    #ppage .copilot-mini-mark { display: grid; place-items: center; width: 16px; height: 16px; border-radius: 4px; background: conic-gradient(from 180deg,#0b6dff,#33c1ff,#7c4dff,#0b6dff); color: #fff; font-size: 9px; }
+    #ppage .copilot-mail-body { position: relative; display: flex; flex-direction: column; gap: 10px; padding: 14px; background: #fff; }
+    #ppage .copilot-scanline { position: absolute; right: 0; left: 0; z-index: 0; height: 80px; background: linear-gradient(180deg,transparent,rgba(90,150,255,.13),transparent); animation: copilotScan 4.5s linear infinite; }
+    @keyframes copilotScan { from { top: -80px; } to { top: 100%; } }
+    #ppage .copilot-mrow { position: relative; z-index: 1; display: flex; align-items: flex-start; gap: 12px; padding: 11px 12px; border: 1px solid #dce5f2; border-radius: 12px; background: #fff; }
+    #ppage .copilot-mrow.hot { border-color: #bcd3f7; background: linear-gradient(90deg,#f5f9ff,#fff); box-shadow: 0 10px 24px -14px rgba(21,101,216,.65); }
+    #ppage .copilot-mav { display: grid; place-items: center; flex: none; width: 38px; height: 38px; border-radius: 50%; background: conic-gradient(from 180deg,#0b6dff,#33c1ff,#7c4dff,#0b6dff); }
+    #ppage .copilot-mav.doc { background: #57a94a; }
+    #ppage .copilot-mav svg { width: 20px; height: 20px; }
+    #ppage .copilot-mtx { min-width: 0; }
+    #ppage .copilot-mtx b { display: block; color: #041e42; font: 700 14px var(--disp); }
+    #ppage .copilot-mtx span { display: block; max-width: 230px; overflow: hidden; color: #51607a; font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+    #ppage .copilot-float-card { position: absolute; z-index: 4; display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-radius: 13px; background: #fff; box-shadow: 0 18px 50px rgba(4,30,66,.1); }
+    #ppage .copilot-float-card .fi { display: grid; place-items: center; flex: none; width: 32px; height: 32px; border-radius: 9px; font-style: normal; }
+    #ppage .copilot-float-card b, #ppage .copilot-float-card span { display: block; }
+    #ppage .copilot-float-card b { color: #041e42; font: 700 13px/1.2 var(--disp); }
+    #ppage .copilot-float-card div span { color: #51607a; font: 400 10px var(--mono); }
+    #ppage .copilot-float-card.ask { top: -30px; left: -16px; animation: copilotFloat 7s ease-in-out infinite; } #ppage .copilot-float-card.ask .fi { background: #e4f7ec; color: #16a34a; }
+    #ppage .copilot-float-card.seconds { right: -26px; bottom: 12%; animation: copilotFloat 8s ease-in-out infinite; } #ppage .copilot-float-card.seconds .fi { background: #e8f0fd; color: #1565d8; }
+    #ppage .copilot-float-card.secure { top: 2%; right: -26px; animation: copilotFloat 6.5s ease-in-out infinite; } #ppage .copilot-float-card.secure .fi { background: #fff3e0; color: #ff8c1a; }
+    #ppage .copilot-powered { position: absolute; bottom: -16px; left: 50%; z-index: 6; min-width: 145px; padding: 11px 22px; transform: translateX(-50%); border-radius: 14px; background: #fff; box-shadow: 0 34px 80px -20px rgba(4,30,66,.34); text-align: center; }
+    #ppage .copilot-powered>small { display: block; margin-bottom: 3px; color: #51607a; font: 400 9.5px var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+    #ppage .copilot-ms-badge { display: inline-flex; align-items: center; gap: 8px; color: #041e42; font: 700 16px var(--disp); }
+    #ppage .ms-squares { display: grid; grid-template: 1fr 1fr/1fr 1fr; gap: 2px; width: 22px; height: 22px; }
+    #ppage .ms-squares i:nth-child(1) { background: #f25022; } #ppage .ms-squares i:nth-child(2) { background: #7fba00; } #ppage .ms-squares i:nth-child(3) { background: #00a4ef; } #ppage .ms-squares i:nth-child(4) { background: #ffb900; }
     #ppage .pph-scene.pph-email-signature {
       top: calc(4% + 48px); right: 3%; bottom: auto; width: 40%; display: flex;
       align-items: center; justify-content: center; opacity: 1; overflow: visible;
@@ -215,6 +266,8 @@ interface ProductTourSlide {
     }
     #ppage .pph-digicert-brand sup { font-size: 9px; vertical-align: super; }
     @media (max-width: 900px) {
+      #ppage .copilot-hero-copy { max-width: none; padding: 68px 0 410px; }
+      #ppage .copilot-hero-art { top: auto; right: 8%; bottom: 35px; width: 84%; }
       #ppage .pph-scene.pph-email-signature {
         position: relative; top: auto; right: auto; width: 100%;
         max-width: 460px; margin: 48px auto 32px;
@@ -223,6 +276,11 @@ interface ProductTourSlide {
         position: absolute; top: 0; right: 0; width: 100%; height: 100%;
         opacity: .16; overflow: hidden;
       }
+    }
+    @media (max-width: 560px) {
+      #ppage .copilot-hero-points { grid-template-columns: 1fr; }
+      #ppage .copilot-hero-copy { padding-bottom: 390px; }
+      #ppage .copilot-hero-art { right: 4%; width: 92%; }
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -549,10 +607,18 @@ export class ProductPage {
     { title: 'Audit-ready incident evidence', description: 'Reconstruct a blocked event with classification details, captured evidence and an immutable activity timeline.', image: '/assets/images/scrutiny-dlp-tour-evidence.svg' },
   ];
 
+  readonly smbCyberTourSlides: readonly ProductTourSlide[] = [
+    { title: 'Bandwidth usage and router health', description: 'Review upload and download trends, WAN connectivity and appliance health in one dashboard.', image: '/assets/images/smb-cyber-tour-bandwidth.png' },
+    { title: 'Application priority controls', description: 'See bandwidth usage by priority and prioritize business-critical communication apps.', image: '/assets/images/smb-cyber-tour-app-priority.png' },
+    { title: 'Network security and device insights', description: 'Monitor blocked threats, DNS activity and connected devices with a network health summary.', image: '/assets/images/smb-cyber-tour-security.png' },
+    { title: 'Internet activity and top applications', description: 'Compare activity across profiles and identify the applications driving network traffic.', image: '/assets/images/smb-cyber-tour-activity.png' },
+  ];
+
   /** Product-owned artwork used when a page does not have a dedicated UI screenshot set. */
   readonly productTourSlides = computed<readonly ProductTourSlide[]>(() => {
     const view = this.view();
     if (!view) return [];
+    if (this.slug() === 'smb-cyber-security-appliance') return this.smbCyberTourSlides;
     if (this.isWhatsAppSmb()) return this.whatsAppSmbTourSlides;
     if (view.name === 'Acronis True Image') return this.acronisTrueImageTourSlides;
     if (view.name === 'Microsoft 365 Backup') return this.microsoft365BackupTourSlides;
@@ -751,16 +817,16 @@ export class ProductPage {
   ];
 
   readonly smbIndustries = [
-    'CA Firm',
-    'Clinic',
-    'Digital Agency',
-    'Legal Office',
-    'Retail Store',
-    'Manufacturing Unit',
-    'School',
-    'Hospitality',
-    'Logistics',
-    'Startup Office',
+    { name: 'CA Firm', icon: 'account_balance' },
+    { name: 'Clinic', icon: 'medical_services' },
+    { name: 'Digital Agency', icon: 'campaign' },
+    { name: 'Legal Office', icon: 'gavel' },
+    { name: 'Retail Store', icon: 'storefront' },
+    { name: 'Manufacturing Unit', icon: 'factory' },
+    { name: 'School', icon: 'school' },
+    { name: 'Hospitality', icon: 'hotel' },
+    { name: 'Logistics', icon: 'local_shipping' },
+    { name: 'Startup Office', icon: 'rocket_launch' },
   ];
 
   readonly selectedCybirdTerm = signal<CybirdTerm>('1y');
@@ -903,17 +969,26 @@ export class ProductPage {
   /** Every resolved product gets a localized or category-level hero illustration. */
   readonly isFlagship = computed(() => !!this.view()?.heroImage);
 
+  readonly showAiPoweredBadge = computed(() => {
+    const name = this.view()?.name.trim() ?? '';
+    return [
+      'MDR', 'Managed XDR', 'Advanced Endpoint Security (EDR)',
+      'Advanced Email Security', 'Cloud Security Posture Mgmt',
+      'Security Awareness Training', 'Cloud DLP', 'Scrutiny DLP',
+      'Cyber Frames', 'Cloud Backup', 'Microsoft 365 Backup',
+      'E-Mail Backup / Archiving', 'Cloud Disaster Recovery',
+      'Cloud Object Storage', 'Cloud Drive', 'Acronis GenAI',
+      'Remote Monitoring & Mgmt (RMM)',
+    ].includes(name);
+  });
+
+
   /** The EDR campaign places its commercial offer immediately after the videos. */
   readonly isAdvancedEdr = computed(
     () => this.view()?.name === 'Advanced Endpoint Security (EDR)'
   );
 
   readonly isScrutinyEdr = computed(() => this.view()?.name === 'Scrutiny EDR');
-
-  readonly isCopilotStudio = computed(() => {
-    const name = this.view()?.name;
-    return name === 'Copilot Studio' || name === 'Microsoft Copilot Studio';
-  });
 
   readonly isCloudObjectStorage = computed(() => this.view()?.name === 'Cloud Object Storage');
 
@@ -976,6 +1051,7 @@ export class ProductPage {
   readonly isSiteLock = computed(() => this.view()?.name === 'Web Security (SiteLock)');
 
   readonly isManagedMicrosoft365 = computed(() => this.view()?.name === 'Managed Microsoft 365');
+  readonly isMicrosoftCopilot = computed(() => this.slug() === 'microsoft-copilot');
   readonly isZohoWorkspace = computed(() => this.slug() === 'zoho-workspace');
 
   readonly zohoWorkspaceFaqs: Faq[] = [
@@ -1162,9 +1238,9 @@ export class ProductPage {
    */
   private resolve(slug: string): ProductView | null {
     if (!slug) return null;
-    if (slug === 'domains') {
+    if (slug === 'register-a-domain-name') {
       const view = this.products.build({
-        name: 'Domains',
+        name: 'Register a Domain Name',
         tag: 'Find the right domain for your next big idea.',
         cat: 'Web Presence',
         crumb: 'Web Presence › Domains',
@@ -1177,12 +1253,12 @@ export class ProductPage {
         videoLabels: ['Introduction', 'Use Case'],
       };
     }
-    if (slug === 'iot-infrastructure') {
+    if (slug === 'iot-cloud') {
       const view = this.products.build({
-        name: 'IoT Infrastructure',
+        name: 'IoT Cloud',
         tag: 'Connect every device. Process at the edge.',
         cat: 'Cloud',
-        crumb: 'Cloud › IoT Infrastructure',
+        crumb: 'Cloud › IoT Cloud',
       });
       return {
         ...view,

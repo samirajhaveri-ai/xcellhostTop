@@ -20,6 +20,7 @@ const PARTNERS: Readonly<Record<string, string>> = {
   kaspersky: 'Kaspersky',
   sentinelone: 'SentinelOne',
   fortinet: 'Fortinet',
+  'palo-alto': 'Palo Alto',
   hpe: 'HPE',
   dell: 'Dell',
   cybird: 'Cybird',

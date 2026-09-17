@@ -29,6 +29,7 @@ const BRANDS: readonly Brand[] = [
   { name: 'Kaspersky', slug: 'kaspersky', mark: 'K', bg: '#006D5C', fg: '#fff' },
   { name: 'SentinelOne', slug: 'sentinelone', mark: 'S1', bg: '#6B4EFF', fg: '#fff' },
   { name: 'Fortinet', slug: 'fortinet', mark: 'F', bg: '#EE3124', fg: '#fff' },
+  { name: 'Palo Alto', slug: 'palo-alto', mark: 'PA', bg: '#F97316', fg: '#fff' },
   { name: 'HPE', slug: 'hpe', mark: 'H', bg: '#01A982', fg: '#fff' },
   { name: 'Dell', slug: 'dell', mark: 'D', bg: '#0672CB', fg: '#fff' },
   { name: 'Cybird', slug: 'cybird', mark: 'C', bg: '#5B3CC4', fg: '#fff' },

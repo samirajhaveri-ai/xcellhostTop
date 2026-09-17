@@ -96,11 +96,7 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Domains",
             "items": [
               {
-                "title": "Domains",
-                "pill": "NEW",
-                "desc": "Extensions, pricing and everything to get online"
-              },
-              {
+
                 "title": "Register a Domain Name",
                 "pill": null,
                 "desc": "Get your domain name now 🚀"
@@ -157,7 +153,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Reserve a domain name for future availability 🕰️"
               },
               {
-                "title": "Bharat Domain",
+                "title": "Bharats Domain",
                 "pill": "FREE",
                 "desc": "Reserve a domain name for future availability 🕰️"
               },
@@ -239,7 +235,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "A powerful web hosting control panel 🎛️"
               },
               {
-                "title": "Cloud Linux",
+                "title": "CloudLinux",
                 "pill": null,
                 "desc": "A powerful web hosting control panel 🎛️"
               },
@@ -491,12 +487,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "IOT Cloud",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "IoT Infrastructure",
+                "title": "IoT Cloud",
                 "pill": null,
                 "desc": "Managed device connectivity, edge processing and IoT platforms"
               },
@@ -1884,7 +1875,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "IAm Assessment",
+                "title": "IAM Assessment",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -3009,7 +3000,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/vendor-partners/digicert"
               },
               {
-                "title": "Geocert",
+                "title": "GeoTrust",
                 "pill": null,
                 "desc": "Enterprise certificates, PKI and digital trust",
                 "href": "/vendor-partners/digicert"

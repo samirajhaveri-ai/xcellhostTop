@@ -339,6 +339,7 @@ const MENU_DESCRIPTIONS: Record<string, string> = {
  * matching page is built; missing destinations use the shared construction page.
  */
 const CONTENT_LINKS: Record<string, string> = {
+  'Microsoft Copilot ': '/microsoft-copilot',
   'Escalation Matrix': '/escalation-matrix',
   'Partner Matrix': '/partner-matrix',
   'WhatsApp For Business': '/whatsapp-smb',
@@ -367,7 +368,9 @@ const CONTENT_LINKS: Record<string, string> = {
   'Why XcellHost': '/company/why-xcellhost',
   'Our Team · Our Story': '/company/our-team-our-story',
   'Our Platform': '/company/our-platform',
-  'Watch Tower': '/company/watchtower',
+  'Watch Tower': '/company/trust-watch',
+  'Trust Watch': '/company/trust-watch',
+  'Promotion & Offers': '/promotion-and-offers',
   'Certifications & Awards': '/company/certifications-awards',
   'Certifications': '/company/certifications-awards',
   'Awards': '/company/awards',
@@ -668,6 +671,11 @@ export class HeaderComponent {
     this.loginMenuOpen.set(false);
     this.topics.ask(topic);
     this.overlay.open('callback');
+  }
+
+  openCustomerLogin(): void {
+    this.loginMenuOpen.set(false);
+    this.overlay.open('auth');
   }
 
   openLayer(event: Event, id: 'trial'): void {

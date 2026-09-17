@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
+import { ExperienceHubComponent } from '../sections/experience-hub.component';
+
 import { SeoService } from '../core/seo.service';
 import {
   DirectoryComponent,
@@ -43,6 +45,7 @@ const DESCRIPTION =
     IndustriesComponent,
     OutcomesComponent,
     NewCategoryComponent,
+    ExperienceHubComponent,
     InsightsSectionComponent,
     GlobalLocationsMapComponent,
     SatisfactionGuaranteeComponent,
@@ -60,6 +63,7 @@ const DESCRIPTION =
     <xh-why />
     <xh-outcomes />
     <xh-new-category />
+    <xh-experience-hub />
     <xh-directory />
     <xh-trusted-by />
     <xh-industries />

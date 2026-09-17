@@ -21,6 +21,7 @@
     [class.tsplus-support-page]="isTsplusRemoteSupport()"
     [class.tsplus-advanced-security-page]="isTsplusAdvancedSecurity()"
     [class.tsplus-remote-access-page]="isTsplusRemoteAccess()"
+    [class.microsoft-copilot-page]="isMicrosoftCopilot()"
   >
     @if (isOurPlatform()) {
       <xh-our-platform-reference />
@@ -303,7 +304,24 @@
               </div>
             </div>
           </div>
-        } @else if (isManagedMicrosoft365() || isCopilotStudio()) {
+        } @else if (isMicrosoftCopilot()) {
+          <div class="pph-scene copilot-hero-art" aria-hidden="true">
+            <div class="copilot-orbit-ring"></div>
+            <div class="copilot-mail tilt">
+              <div class="copilot-mail-bar"><div class="dots"><i></i><i></i><i></i></div><div class="copilot-mail-title"><span class="copilot-mini-mark">✦</span> Copilot</div></div>
+              <div class="copilot-mail-body">
+                <div class="copilot-scanline"></div>
+                <div class="copilot-mrow hot"><span class="copilot-mav"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" stroke-linejoin="round"/></svg></span><div class="copilot-mtx"><b>You</b><span>Summarise this 40-message thread and draft a reply</span></div></div>
+                <div class="copilot-mrow"><span class="copilot-mav"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" stroke-linejoin="round"/></svg></span><div class="copilot-mtx"><b>Copilot</b><span>Here's a 3-point summary and a draft reply ready to send ✓</span></div></div>
+                <div class="copilot-mrow"><span class="copilot-mav doc"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6" stroke-linejoin="round"/></svg></span><div class="copilot-mtx"><b>Turn doc into slides</b><span>5-slide deck created from Business plan.docx</span></div></div>
+              </div>
+            </div>
+            <div class="copilot-float-card ask"><span class="fi">✧</span><div><b>Ask anything</b><span>in plain English</span></div></div>
+            <div class="copilot-float-card seconds"><span class="fi">ϟ</span><div><b>Seconds</b><span>not hours</span></div></div>
+            <div class="copilot-float-card secure"><span class="fi">◇</span><div><b>Your data</b><span>stays secure</span></div></div>
+            <div class="copilot-powered"><small>Powered By</small><span class="copilot-ms-badge"><span class="ms-squares"><i></i><i></i><i></i><i></i></span><span>Microsoft</span></span></div>
+          </div>
+        } @else if (isManagedMicrosoft365()) {
           <div class="pph-scene pph-managed-m365" aria-hidden="true">
             <div class="m365-hero-stage">
               <span class="m365-hero-orbit"></span>
@@ -349,19 +367,10 @@
               </div>
               <div class="m365-powered">
                 <small>Powered By</small>
-                @if (isCopilotStudio()) {
-                  <span
-                    ><img
-                      class="copilot-hero-logo"
-                      src="/assets/images/copilot-logo.png"
-                      alt="Microsoft Copilot"
-                  /></span>
-                } @else {
-                  <span
-                    ><i class="m365-ms-grid"><b></b><b></b><b></b><b></b></i
-                    ><strong>Microsoft</strong></span
-                  >
-                }
+                <span
+                  ><i class="m365-ms-grid"><b></b><b></b><b></b><b></b></i
+                  ><strong>Microsoft</strong></span
+                >
               </div>
             </div>
           </div>
@@ -558,6 +567,23 @@
                 >
               </div>
             </div>
+          } @else if (isMicrosoftCopilot()) {
+            <div class="copilot-hero-copy">
+              <div class="copilot-source-crumb"><a routerLink="/">HOME</a> › <span>SOLUTIONS</span> › <span>PRODUCTIVITY</span> › <strong>COPILOT FOR MICROSOFT 365</strong></div>
+              <span class="copilot-eyebrow"><span class="dot"></span>Productivity · AI Assistant for Microsoft 365</span>
+              <h1 id="ppTitle"><span class="xr">Xcell</span><span class="prod">Work</span> | Copilot for Microsoft 365</h1>
+              <p class="copilot-lead">Your everyday AI assistant — right inside the apps you already use.</p>
+              <p class="copilot-lead2">Copilot for Microsoft 365 works alongside your team in Word, Excel, PowerPoint, Outlook and Teams — turning a simple prompt into a first draft, a spreadsheet into insights, and a long meeting into a two-line recap. Licensed, enabled and managed by XcellHost.</p>
+              <div class="copilot-tech">Word · Excel · PowerPoint · Outlook · Teams</div>
+              <div class="copilot-hero-points"><span>✓ Draft &amp; rewrite in Word</span><span>✓ Analyse data in Excel</span><span>✓ Build decks in PowerPoint</span><span>✓ Clear your Outlook inbox</span><span>✓ Recap Teams meetings</span><span>✓ Enterprise-grade data security</span></div>
+              <div class="hero-ctas product-hero-ctas">
+                <a class="btn ppd-info" [href]="v.infosheetUrl" target="_blank" rel="noopener noreferrer"><span class="ppd-ic">⬇</span> Infosheet</a>
+                <a class="btn ppd-pres" href="#" (click)="requestDoc('presentation', $event)"><span class="ppd-ic">📖</span> Presentation</a>
+                <button class="btn btn-ghost cdr-tour-trigger" type="button" (click)="openProductScreenshotTour()">Screenshot Tour</button>
+                <button class="btn btn-ghost cdr-tour-trigger" type="button" disabled>7 Day's Free Trial</button>
+                <a class="btn btn-primary" href="#" (click)="openCallback($event)">Let's Talk</a>
+              </div>
+            </div>
           } @else {
             <div class="pp-crumb" id="ppCrumb">{{ v.crumb }}</div>
             <h1 id="ppTitle" [class.pp-title-compact]="compactHeroTitle()">
@@ -610,6 +636,12 @@
                   </div>
                 }
 
+                @if (showAiPoweredBadge()) {
+                  <div class="pp-ai-powered-row">
+                    <span class="pp-ai-powered"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="m14 2 2.7 6.3L23 11l-6.3 2.7L14 20l-2.7-6.3L5 11l6.3-2.7L14 2ZM5 1l1.2 2.8L9 5 6.2 6.2 5 9 3.8 6.2 1 5l2.8-1.2L5 1ZM4 15l1.2 2.8L8 19l-2.8 1.2L4 23l-1.2-2.8L0 19l2.8-1.2L4 15Z"/></svg> AI-POWERED</span>
+                  </div>
+                }
+
                 <div class="hero-ctas product-hero-ctas">
                   <a
                     class="btn ppd-info"
@@ -644,7 +676,7 @@
                 <section class="pp-ask-ai" aria-labelledby="ppAskAiTitle">
                   <div class="pp-ask-ai-copy">
                     <span class="pp-ask-ai-kicker" id="ppAskAiTitle"
-                      >Ask AI About {{ isCloudBackup() ? 'Acronis Cloud Backup' : v.name }} from
+                      >Ask AI About {{ isSmbCyber() ? 'Cybird SMB Cyber Security Appliance' : isCloudBackup() ? 'Acronis Cloud Backup' : v.name }} from
                       XcellHost</span
                     >
                   </div>
@@ -870,57 +902,6 @@
       <xh-reseller-program-content />
     }
 
-    @if (isCopilotStudio()) {
-      <xh-copilot-studio-content />
-      <section class="tally-videos copilot-watch" aria-labelledby="copilotVideosTitle">
-        <div class="wrap">
-          <div class="pp-sec" id="copilotVideosTitle">Watch it in action</div>
-          <div class="tally-video-grid">
-            <article class="tally-video-card">
-              <h3><span>Copilot Studio product tour</span></h3>
-              <div class="tally-video-frame">
-                <iframe
-                  src="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?rel=0&amp;playsinline=1"
-                  title="Copilot Studio product tour"
-                  allow="
-                    accelerometer;
-                    autoplay;
-                    clipboard-write;
-                    encrypted-media;
-                    gyroscope;
-                    picture-in-picture;
-                    web-share;
-                  "
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allowfullscreen
-                ></iframe>
-              </div>
-            </article>
-            <article class="tally-video-card">
-              <h3><span>Build and publish an AI agent</span></h3>
-              <div class="tally-video-frame">
-                <iframe
-                  src="https://www.youtube-nocookie.com/embed/ysz5S6PUM-U?rel=0&amp;playsinline=1"
-                  title="Build and publish an AI agent with Copilot Studio"
-                  allow="
-                    accelerometer;
-                    autoplay;
-                    clipboard-write;
-                    encrypted-media;
-                    gyroscope;
-                    picture-in-picture;
-                    web-share;
-                  "
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allowfullscreen
-                ></iframe>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-    }
-
     @if (isCloudObjectStorage()) {
       <xh-cloud-object-storage-content />
     }
@@ -970,8 +951,8 @@
         [class.cloud-backup-body]="isCloudBackup()"
         [class.cdr-smb-body]="isCloudDisasterRecoverySmb()"
         [class.domain-registration-body]="slug() === 'register-a-domain-name'"
-        [class.domains-body]="slug() === 'domains'"
-        [class.iot-infrastructure-body]="slug() === 'iot-infrastructure'"
+        [class.domains-body]="slug() === 'register-a-domain-name'"
+        [class.iot-infrastructure-body]="slug() === 'iot-cloud'"
         [class.agentic-ai-body]="slug() === 'agentic-ai'"
         [class.edr-body]="isAdvancedEdr()"
         [class.workforce-analytics-body]="slug() === 'workforce-analytics'"
@@ -986,9 +967,9 @@
           @if (slug() === 'waap-as-a-service') {
             <xh-waap-content />
           } @else {
-          @if (slug() === 'iot-infrastructure') {
+          @if (slug() === 'iot-cloud') {
             <xh-iot-infrastructure-content />
-          } @else if (slug() === 'domains') {
+          } @else if (slug() === 'register-a-domain-name') {
             <xh-domains-content />
           } @else if (slug() === 'agentic-ai') {
             <xh-agentic-ai-content />
@@ -998,6 +979,9 @@
           } @else if (slug() === 'business-e-mail') {
             <xh-business-email-content />
           } @else {
+            @if (isMicrosoftCopilot()) {
+              <xh-microsoft-copilot-content />
+            }
             @if (isManagedMicrosoft365()) {
               <xh-managed-microsoft-365-content />
             }
@@ -1033,8 +1017,8 @@
               !isTsplusRemoteAccess() &&
               !isResellerProgram() &&
               !isScrutinyEdr() &&
-              !isCopilotStudio() &&
               !isCloudObjectStorage() &&
+              !isMicrosoftCopilot() &&
               !isZohoWorkspace() &&
               !isMicrosoftEntraId() &&
               !isDigiCert() &&
@@ -1365,9 +1349,7 @@
                           [attr.aria-selected]="selectedTallyTerm() === term.key"
                           (click)="selectTallyTerm(term.key)"
                         >
-                          @if (term.saving) {
-                            <small>{{ term.saving }}</small>
-                          }
+                          <small>{{ term.saving || 'No Saving' }}</small>
                           <span>{{ term.label }}</span>
                         </button>
                       }
@@ -2050,53 +2032,7 @@
                       </div>
                     </section>
 
-                    <section class="smb-block" aria-labelledby="smb-ideal-title">
-                      <header class="smb-section-head">
-                        <h2 id="smb-ideal-title">Ideal for businesses up to 100 users</h2>
-                      </header>
-                      <div class="smb-ideal-grid">
-                        <article>
-                          <i>▥</i><b>Small Offices<br />&amp; Enterprises</b>
-                        </article>
-                        <article>
-                          <i>⌂</i><b>Work From<br />Home (WFH)</b>
-                        </article>
-                        <article>
-                          <i>♢</i><b>Schools &amp;<br />Colleges</b>
-                        </article>
-                        <article>
-                          <i>▱</i><b>Retail Stores<br />&amp; Chains</b>
-                        </article>
-                        <article>
-                          <i>＋</i><b>Healthcare<br />Clinics</b>
-                        </article>
-                        <article>
-                          <i>▥</i><b>SMBs &amp;<br />Manufacturing</b>
-                        </article>
-                        <article>
-                          <i>▤</i><b>Branch Offices<br />&amp; More</b>
-                        </article>
-                      </div>
-                      <header class="smb-section-head smb-subhead"><h2>Benefits</h2></header>
-                      <div class="smb-benefit-grid">
-                        <article>
-                          <i>✓</i><b>Multi-Layer Protection</b>
-                          <p>Defend against phishing, malware, ransomware and cyber threats.</p>
-                        </article>
-                        <article>
-                          <i>↘</i><b>Reduced Cyber Risk</b>
-                          <p>Proactive threat detection and filtering keeps your business safe.</p>
-                        </article>
-                        <article>
-                          <i>◎</i><b>Safe Browsing for Users</b>
-                          <p>Ensure a secure and productive internet experience.</p>
-                        </article>
-                        <article>
-                          <i>↔</i><b>Scalable for Any Environment</b>
-                          <p>One platform for office, remote, multi-site or growing businesses.</p>
-                        </article>
-                      </div>
-                    </section>
+
 
                     <section class="smb-block" aria-labelledby="smb-how-title">
                       <header class="smb-section-head">
@@ -2301,8 +2237,8 @@
                       </div>
                       <h3 class="smb-business-heading">Built for Small Your Business</h3>
                       <div class="smb-business-grid">
-                        @for (industry of smbIndustries; track industry) {
-                          <span>{{ industry }}</span>
+                        @for (industry of smbIndustries; track industry.name) {
+                          <span class="smb-business-item" [class.smb-business-manufacturing]="industry.name === 'Manufacturing Unit'"><i class="material-symbols-outlined" aria-hidden="true">{{ industry.icon }}</i>{{ industry.name }}</span>
                         }
                       </div>
                     </section>
@@ -3366,7 +3302,7 @@
               isAutonomousThreatSolution() ||
               isOurPlatform() ||
               isWatchtower() ||
-              slug() === 'iot-infrastructure') &&
+              slug() === 'iot-cloud') &&
             slug() !== 'scrutiny-dlp' &&
             !isTsplusRemoteSupport() &&
             !isTsplusAdvancedSecurity() &&
