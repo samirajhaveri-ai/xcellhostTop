@@ -49,7 +49,9 @@ const PLATFORM_CAPABILITIES: readonly PlatformCapability[] = [
   { label: 'AI/ML', icon: 'auto_awesome' },
   { label: 'Compliance', icon: 'verified_user' },
   { label: 'Monitoring', icon: 'monitoring' },
-  { label: 'Managed Services', icon: 'settings_suggest' },
+  { label: 'Managed Cloud', icon: 'settings_suggest' },
+  { label: 'Managed Security', icon: 'admin_panel_settings' },
+  { label: 'AI Agent', icon: 'smart_toy' },
 ];
 
 /** The homepage process section showing how XcellHost turns goals into outcomes. */
@@ -81,7 +83,13 @@ const PLATFORM_CAPABILITIES: readonly PlatformCapability[] = [
           <div class="outcome-connector" aria-hidden="true">arrow_forward</div>
 
           <article class="platform-core">
-            <span class="platform-badge"><span class="material-symbols-outlined" aria-hidden="true">cloud</span><span style="text-align:center">Xcellhost AI Powered Cloud Platform</span></span>
+            <span class="platform-badge">
+              <span class="material-symbols-outlined" aria-hidden="true">cloud</span>
+              <span class="platform-badge-copy">
+                <span>XcellHost Cloud Platform</span>
+                <span class="pp-ai-powered"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="m14 2 2.7 6.3L23 11l-6.3 2.7L14 20l-2.7-6.3L5 11l6.3-2.7L14 2ZM5 1l1.2 2.8L9 5 6.2 6.2 5 9 3.8 6.2 1 5l2.8-1.2L5 1ZM4 15l1.2 2.8L8 19l-2.8 1.2L4 23l-1.2-2.8L0 19l2.8-1.2L4 15Z"/></svg> AI-POWERED</span>
+              </span>
+            </span>
             <h3>THE PLATFORM ASSEMBLES</h3>
             <div class="platform-grid">
               @for (capability of capabilities; track capability.label) {

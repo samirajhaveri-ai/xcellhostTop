@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, HostListener, signal } from '@angular/core';
 
 interface ArchitectureTab {
-  key: 'security' | 'cloud' | 'data-center' | 'managed-security';
+  key: 'security' | 'cloud' | 'data-center' | 'managed-security' | 'support-escalation' | 'observability';
   label: string;
   title: string;
   description: string;
@@ -83,6 +83,22 @@ export class InfrastructureContentComponent {
   readonly activeTab = signal<ArchitectureTab['key']>('security');
   readonly zoomedTab = signal<ArchitectureTab | null>(null);
   readonly tabs: readonly ArchitectureTab[] = [
+    {
+      key: 'support-escalation',
+      label: 'Cloud Support Escalation',
+      title: 'A clear path from ticket to resolution',
+      description: 'Our cloud support escalation process connects every issue with the right team, from initial triage and advanced troubleshooting to specialist, manager and vendor support. Severity-based prioritisation, proactive communication and documented resolution keep customers informed through closure and review.',
+      image: '/assets/images/infrastructure-support-escalation.jpg',
+      alt: 'Cloud support escalation process showing eight stages from ticket creation to closure, support responsibilities, example severity matrix and communication channels',
+    },
+    {
+      key: 'observability',
+      label: 'Monitoring & Observability',
+      title: 'Unified visibility. Faster incident resolution.',
+      description: 'Explore how Zabbix, Wazuh, Acronis and cloud-native monitoring feed the XcellHost AIOps integration hub. Event correlation and noise suppression help prioritise incidents, while Zoho Desk ticketing, Zoho Cliq alerts and automated remediation connect monitoring with action across your infrastructure.',
+      image: '/assets/images/infrastructure-monitoring-observability.jpg',
+      alt: 'Monitoring and observability architecture linking infrastructure data sources to the XcellHost AIOps hub, Zoho Desk incident management, Zoho Cliq alerts and observability dashboards',
+    },
     {
       key: 'security',
       label: 'Security Architecture',

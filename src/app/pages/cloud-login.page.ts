@@ -1,4 +1,3 @@
-import { ServiceEnquiryButtonsComponent } from '../sections/service-enquiry-buttons.component';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SeoService } from '../core/seo.service';
@@ -10,7 +9,7 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 @Component({
   selector: 'xh-cloud-login-page',
   standalone: true,
-  imports: [ServiceEnquiryButtonsComponent, RouterLink],
+  imports: [RouterLink],
   templateUrl: './cloud-login.page.html',
   styleUrl: './cloud-login.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
