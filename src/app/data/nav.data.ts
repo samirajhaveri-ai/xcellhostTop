@@ -646,6 +646,12 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Managed Migration",
             "items": [
               {
+                "title": "Cloud Migration",
+                "pill": null,
+                "desc": "Plan, migrate and validate your cloud workloads",
+                "href": "/cloud-migration"
+              },
+              {
                 "title": "AWS Migration",
                 "pill": null,
                 "desc": null

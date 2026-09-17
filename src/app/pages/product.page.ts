@@ -26,7 +26,6 @@ import { Faq } from '../data/models';
 import { SITE, WORLD_MAP_HTML } from '../data/site.data';
 import { HeroNetDirective, ProductFaqComponent } from '../sections/product';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
-import { LottieDirective } from '../shared/lottie.directive';
 import { CloudCctvContentComponent } from '../sections/cloud-cctv-content.component';
 import { AcronisTrueImageContentComponent } from '../sections/acronis-true-image-content.component';
 import { SiteLockContentComponent } from '../sections/sitelock-content.component';
@@ -63,6 +62,7 @@ import { AutonomousThreatSolutionDetailComponent } from '../sections/autonomous-
 import { ATM_SOLUTION_DETAILS } from '../data/atm-solution-detail.data';
 import { OurPlatformReferenceComponent } from '../sections/our-platform-reference.component';
 import { WatchtowerReferenceComponent } from '../sections/watchtower-reference.component';
+import { BareMetalContentComponent } from '../sections/bare-metal-content.component';
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -138,7 +138,6 @@ interface ProductTourSlide {
     InsightsSectionComponent,
     RouterLink,
     HeroNetDirective,
-    LottieDirective,
     ProductFaqComponent,
     CloudCctvContentComponent,
     AcronisTrueImageContentComponent,
@@ -180,6 +179,7 @@ interface ProductTourSlide {
     AutonomousThreatSolutionDetailComponent,
     OurPlatformReferenceComponent,
     WatchtowerReferenceComponent,
+    BareMetalContentComponent,
 
     EmailSignatureContentComponent,
     EmailSignatureHeroComponent,

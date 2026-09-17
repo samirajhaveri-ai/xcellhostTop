@@ -11,7 +11,7 @@ import { RouterLink } from '@angular/router';
       <div class="wrap">
         <div class="hub-heading">
           <div><span class="hub-kicker">XCELLHOST MARKETPLACE</span>
-            <h2 id="experience-hub-title">The marketplace</h2>
+            <h2 id="experience-hub-title">Xcellhost Marketplace</h2>
             <p>Build. Buy. Deploy. Explore cloud experiences, services and software with XcellHost.</p>
           </div>
         </div>
@@ -45,10 +45,10 @@ export class ExperienceHubComponent {
   readonly cards = [
     { title: 'AI Marketplace', label: 'INTELLIGENCE FOR YOUR BUSINESS', description: 'Explore AI solutions for smarter everyday work.', icon: 'auto_awesome', art: 'neurology', theme: 'hub-ai', link: '/agentic-ai' },
     { title: 'Managed Services', label: 'EXPERTS BY YOUR SIDE', description: 'Keep your cloud running with expert support.', icon: 'support_agent', art: 'headset_mic', theme: 'hub-managed', link: '/category/cloud' },
-    { title: 'Licenses', label: 'EQUIP YOUR TEAM', description: 'Find the software your business needs.', icon: 'apps', art: 'verified_user', theme: 'hub-licenses', link: '/promotion-and-offers' },
+    { title: 'Software License', label: 'EQUIP YOUR TEAM', description: 'Find the software your business needs.', icon: 'apps', art: 'verified_user', theme: 'hub-licenses', link: '/promotion-and-offers' },
     { title: 'Professional Services', label: 'PLAN. IMPLEMENT. GROW.', description: 'Get expert guidance for your next project.', icon: 'person', art: 'extension', theme: 'hub-professional', link: '/contact' },
     { title: 'Accelerators', label: 'MOVE YOUR IDEAS FORWARD', description: 'Find a faster path from planning to delivery.', icon: 'rocket_launch', art: 'rocket_launch', theme: 'hub-accelerators', link: '/contact' },
-    { title: 'Explore Souq', label: 'DISCOVER YOUR NEXT SOLUTION', description: 'Browse our curated products and offers.', icon: 'shopping_bag', art: 'shopping_bag', theme: 'hub-souq', link: '/promotion-and-offers' },
+    { title: 'Explore Marketplace', label: 'DISCOVER YOUR NEXT SOLUTION', description: 'Browse our curated products and offers.', icon: 'shopping_bag', art: 'shopping_bag', theme: 'hub-souq', link: '/promotion-and-offers' },
     { title: 'Alliances', label: 'STRONGER TOGETHER', description: 'Connect with our partner ecosystem.', icon: 'groups', art: 'handshake', theme: 'hub-alliances', link: '/partner-program' },
   ];
 }

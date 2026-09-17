@@ -387,6 +387,7 @@ const CONTENT_LINKS: Record<string, string> = {
   'Partner Portal': '/company/partner-portal',
   'Partner Guide': '/company/partner-guide',
   'Affiliate Program': '/company/affiliate-program',
+  'Careers Overview': '/company/careers-overview',
   'Career Handbook': '/company/career-handbook',
   'Apply For Job': '/company/apply-for-job',
   'Support Overview': '/support-overview',

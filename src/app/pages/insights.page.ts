@@ -4,6 +4,10 @@ import { RouterLink } from '@angular/router';
 
 import { BlogApiService, CmsBlogPost, CmsInsightResource } from '../core/blog-api.service';
 import { SeoService } from '../core/seo.service';
+import {
+  INSIGHTS_MENU_TAXONOMY,
+  resolveInsightPlacement,
+} from '../data/insights-taxonomy.data';
 import { SIMPLE_PAGES } from '../data/site.data';
 
 const ALL = 'All';
@@ -23,6 +27,7 @@ interface InsightItem {
   readonly category: string;
   readonly mainCategory: string;
   readonly subCategory: string;
+  readonly product: string;
   readonly coverImage: CmsBlogPost['coverImage'];
   readonly coverImageUrl: string | null;
   readonly actionUrl: string | null;
@@ -31,7 +36,11 @@ interface InsightItem {
 interface InsightCategoryBranch {
   readonly name: string;
   readonly count: number;
-  readonly children: readonly { readonly name: string; readonly count: number }[];
+  readonly children: readonly {
+    readonly name: string;
+    readonly count: number;
+    readonly products: readonly { readonly name: string; readonly count: number }[];
+  }[];
 }
 
 @Component({
@@ -143,11 +152,26 @@ interface InsightCategoryBranch {
                         @if (expandedMain() === branch.name) {
                           <div class="insights-subtopics" [id]="categoryPanelId(branch.name)">
                             @for (child of branch.children; track child.name) {
-                              <button type="button" [class.active]="activeSub() === child.name"
+                              <button type="button" class="insights-submenu"
+                                [class.active]="activeSub() === child.name && !activeProduct()"
+                                [class.has-selection]="activeSub() === child.name"
                                 [attr.aria-pressed]="activeSub() === child.name"
+                                [attr.aria-expanded]="expandedSub() === submenuKey(branch.name, child.name)"
                                 (click)="selectSubCategory(branch.name, child.name)">
-                                <span>{{ child.name }}</span><b>{{ child.count }}</b>
+                                <span>{{ child.name }}</span><b>{{ child.count }}</b><i aria-hidden="true">&#8964;</i>
                               </button>
+                              @if (expandedSub() === submenuKey(branch.name, child.name)) {
+                                <div class="insights-products">
+                                  @for (product of child.products; track product.name) {
+                                    <button type="button"
+                                      [class.active]="activeProduct() === product.name"
+                                      [attr.aria-pressed]="activeProduct() === product.name"
+                                      (click)="selectProduct(branch.name, child.name, product.name)">
+                                      <span>{{ product.name }}</span><b>{{ product.count }}</b>
+                                    </button>
+                                  }
+                                </div>
+                              }
                             }
                           </div>
                         }
@@ -167,8 +191,8 @@ interface InsightCategoryBranch {
                 @if (featuredVisible(); as lead) {
                   <a
                     class="insights-lead"
-                    [routerLink]="lead.kind === 'blog' ? ['/insights', lead.slug] : null"
-                    [href]="lead.kind === 'blog' ? null : lead.actionUrl"
+                    [routerLink]="lead.kind === 'blog' ? ['/insights', lead.slug] : lead.kind === 'use-case' ? ['/use-cases', lead.slug] : null"
+                    [href]="lead.kind === 'video' ? lead.actionUrl : null"
                     [target]="lead.kind === 'video' ? '_blank' : undefined"
                     [attr.rel]="lead.kind === 'video' ? 'noopener noreferrer' : null"
                   >
@@ -201,8 +225,8 @@ interface InsightCategoryBranch {
                   @for (post of gridPosts(); track post.documentId) {
                     <a
                       class="bl insights-card"
-                      [routerLink]="post.kind === 'blog' ? ['/insights', post.slug] : null"
-                      [href]="post.kind === 'blog' ? null : post.actionUrl"
+                      [routerLink]="post.kind === 'blog' ? ['/insights', post.slug] : post.kind === 'use-case' ? ['/use-cases', post.slug] : null"
+                      [href]="post.kind === 'video' ? post.actionUrl : null"
                       [target]="post.kind === 'video' ? '_blank' : undefined"
                       [attr.rel]="post.kind === 'video' ? 'noopener noreferrer' : null"
                     >
@@ -282,7 +306,9 @@ export class InsightsPage {
   readonly active = signal(ALL);
   readonly activeMain = signal('');
   readonly activeSub = signal('');
+  readonly activeProduct = signal('');
   readonly expandedMain = signal<string | null>(null);
+  readonly expandedSub = signal<string | null>(null);
   readonly query = signal('');
   readonly allCategory = ALL;
 
@@ -307,28 +333,63 @@ export class InsightsPage {
     ...new Set(this.sourceItems().map((item) => item.category)),
   ]);
   readonly categoryTree = computed<readonly InsightCategoryBranch[]>(() => {
-    const branches = new Map<string, Map<string, number>>();
-    for (const item of this.sourceItems()) {
-      const main = item.mainCategory;
-      const sub = item.subCategory;
-      const children = branches.get(main) ?? new Map<string, number>();
-      children.set(sub, (children.get(sub) ?? 0) + 1);
-      branches.set(main, children);
-    }
-    return [...branches.entries()].map(([name, children]) => ({
-      name,
-      count: [...children.values()].reduce((total, count) => total + count, 0),
-      children: [...children.entries()].map(([childName, count]) => ({ name: childName, count })),
+    const items = this.sourceItems();
+    const branches = INSIGHTS_MENU_TAXONOMY.map((menu) => ({
+      name: menu.name,
+      count: items.filter((item) => item.mainCategory === menu.name).length,
+      children: menu.submenus.map((submenu) => ({
+        name: submenu.name,
+        count: items.filter((item) =>
+          item.mainCategory === menu.name && item.subCategory === submenu.name
+        ).length,
+        products: submenu.products.map((product) => ({
+          name: product.name,
+          count: items.filter((item) =>
+            item.mainCategory === menu.name && item.subCategory === submenu.name && item.product === product.name
+          ).length,
+        })),
+      })),
     }));
+
+    // Keep editorial content visible even when it has not yet been assigned to a menu product.
+    for (const item of items) {
+      let branch = branches.find((candidate) => candidate.name === item.mainCategory);
+      if (!branch) {
+        const related = items.filter((candidate) => candidate.mainCategory === item.mainCategory);
+        branch = { name: item.mainCategory, count: related.length, children: [] };
+        branches.push(branch);
+      }
+      let submenu = branch.children.find((candidate) => candidate.name === item.subCategory);
+      if (!submenu) {
+        const related = items.filter((candidate) =>
+          candidate.mainCategory === item.mainCategory && candidate.subCategory === item.subCategory
+        );
+        submenu = { name: item.subCategory, count: related.length, products: [] };
+        branch.children.push(submenu);
+      }
+      if (!submenu.products.some((candidate) => candidate.name === item.product)) {
+        submenu.products.push({
+          name: item.product,
+          count: items.filter((candidate) =>
+            candidate.mainCategory === item.mainCategory &&
+            candidate.subCategory === item.subCategory &&
+            candidate.product === item.product
+          ).length,
+        });
+      }
+    }
+    return branches;
   });
   readonly featured = computed(() => this.posts()[0] ?? null);
   readonly visible = computed(() => {
     const query = this.query().trim().toLocaleLowerCase();
     return this.sourceItems().filter((item) => {
       const matchesCategory = !this.activeMain() || (
-        item.mainCategory === this.activeMain() && (!this.activeSub() || item.subCategory === this.activeSub())
+        item.mainCategory === this.activeMain() &&
+        (!this.activeSub() || item.subCategory === this.activeSub()) &&
+        (!this.activeProduct() || item.product === this.activeProduct())
       );
-      const haystack = `${item.title} ${item.description} ${item.mainCategory} ${item.subCategory} ${item.author}`.toLocaleLowerCase();
+      const haystack = `${item.title} ${item.description} ${item.mainCategory} ${item.subCategory} ${item.product} ${item.author}`.toLocaleLowerCase();
       return matchesCategory && (!query || haystack.includes(query));
     });
   });
@@ -395,14 +456,28 @@ export class InsightsPage {
       return;
     }
     const parent = this.categoryTree().find((branch) => branch.children.some((child) => child.name === category));
-    if (parent) this.selectSubCategory(parent.name, category);
+    if (parent) {
+      this.selectSubCategory(parent.name, category);
+      return;
+    }
+    for (const branch of this.categoryTree()) {
+      const child = branch.children.find((submenu) =>
+        submenu.products.some((product) => product.name === category)
+      );
+      if (child) {
+        this.selectProduct(branch.name, child.name, category);
+        return;
+      }
+    }
   }
 
   selectAllCategories(): void {
     this.active.set(ALL);
     this.activeMain.set('');
     this.activeSub.set('');
+    this.activeProduct.set('');
     this.expandedMain.set(null);
+    this.expandedSub.set(null);
     this.currentPage.set(1);
   }
 
@@ -410,7 +485,9 @@ export class InsightsPage {
     this.active.set(category);
     this.activeMain.set(category);
     this.activeSub.set('');
+    this.activeProduct.set('');
     this.expandedMain.update((expanded) => expanded === category ? null : category);
+    this.expandedSub.set(null);
     this.currentPage.set(1);
   }
 
@@ -418,8 +495,25 @@ export class InsightsPage {
     this.active.set(subCategory);
     this.activeMain.set(mainCategory);
     this.activeSub.set(subCategory);
+    this.activeProduct.set('');
     this.expandedMain.set(mainCategory);
+    const key = this.submenuKey(mainCategory, subCategory);
+    this.expandedSub.update((expanded) => expanded === key ? null : key);
     this.currentPage.set(1);
+  }
+
+  selectProduct(mainCategory: string, subCategory: string, product: string): void {
+    this.active.set(product);
+    this.activeMain.set(mainCategory);
+    this.activeSub.set(subCategory);
+    this.activeProduct.set(product);
+    this.expandedMain.set(mainCategory);
+    this.expandedSub.set(this.submenuKey(mainCategory, subCategory));
+    this.currentPage.set(1);
+  }
+
+  submenuKey(mainCategory: string, subCategory: string): string {
+    return `${mainCategory}::${subCategory}`;
   }
 
   categoryPanelId(category: string): string {
@@ -461,6 +555,7 @@ export class InsightsPage {
       ? this.sourceItems().length
       : this.sourceItems().filter((item) =>
         item.category === category || item.mainCategory === category || item.subCategory === category
+        || item.product === category
       ).length;
   }
 
@@ -493,21 +588,21 @@ export class InsightsPage {
   }
 
   private toBlogItem(post: CmsBlogPost): InsightItem {
+    const placement = resolveInsightPlacement(post);
     return {
       ...post,
       kind: 'blog',
-      mainCategory: post.mainCategory?.trim() || 'Technology',
-      subCategory: post.subCategory?.trim() || post.category,
+      ...placement,
       actionUrl: null,
     };
   }
 
   private toResourceItem(item: CmsInsightResource): InsightItem {
+    const placement = resolveInsightPlacement(item);
     return {
       ...item,
-      mainCategory: item.mainCategory?.trim() || 'Technology',
-      subCategory: item.subCategory?.trim() || item.category,
-      actionUrl: item.kind === 'video' ? item.videoUrl : item.relatedPage,
+      ...placement,
+      actionUrl: item.kind === 'video' ? item.videoUrl : null,
     };
   }
 }

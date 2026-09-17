@@ -46,6 +46,12 @@ export const DIRECTORY_CATEGORIES: DirectoryCategory[] = [
 
 export const DIRECTORY: DirectoryEntry[] = [
   {
+    name: 'Cloud Migration',
+    desc: 'Plan, migrate and validate your cloud workloads',
+    cat: 'Cloud',
+    group: 'Managed Migration',
+  },
+  {
     "name": "Register a Domain Name",
     "desc": "Explore domain extensions, pricing and included features",
     "cat": "Web Presence",

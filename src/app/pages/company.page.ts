@@ -43,6 +43,87 @@ export class CompanyPage {
     return 'https://gemini.google.com/app';
   }
 
+  readonly careerLifeCards = [
+    { title: 'Everyday at XcellHost', caption: 'A look inside our everyday workspace.', image: '/assets/images/career-workplace.webp', alt: 'XcellHost colleagues working at office workstations' },
+    { title: 'Working together', caption: 'Shared ideas and teamwork in action.', image: '/assets/images/career-teamwork.webp', alt: 'XcellHost team working alongside one another' },
+    { title: 'Connecting with our community', caption: 'Representing XcellHost and building connections.', image: '/assets/images/career-event.jpg', alt: 'Team members at the XcellHost managed cloud exhibition stand' },
+    { title: 'Life in our office', caption: 'Moments of collaboration from around our office.', image: '/assets/images/career-office.jpg', alt: 'Photo collage of XcellHost office meetings and workspaces' },
+  ] as const;
+  readonly careerValues = [
+    { icon: 'volunteer_activism', title: 'Empathy', subtitle: 'Humanity', body: 'We listen to colleagues and customers, take time to understand their needs and treat people with kindness. Care and respect help everyone feel they belong.' },
+    { icon: 'verified_user', title: 'Integrity', subtitle: 'Honesty', body: 'We say what we mean and follow through on our commitments. Fair decisions, clear expectations and accountability help us earn trust every day.' },
+    { icon: 'forum', title: 'Transparency', subtitle: 'Openness', body: 'We share information, communicate clearly and welcome questions. Every voice matters, and feedback helps us learn and improve together.' },
+    { icon: 'handshake', title: 'Dedication', subtitle: 'Commitment', body: 'We take ownership of our work and keep learning. We work through challenges together and focus on dependable outcomes for customers and colleagues.' },
+  ] as const;
+  readonly activeCareerSlide = signal(0);
+  readonly careerStories = [
+    { title: 'Growing through new challenges', text: 'A career story can start with one new challenge: learning a platform, helping a customer or taking ownership of a project. Use this space to share an employee’s experience of building confidence, learning from colleagues and discovering the next step in their career.', name: 'Employee story', topic: 'Professional growth' },
+    { title: 'Finding strength in teamwork', text: 'The best team stories show how people work together. Use this space for an employee’s account of a shared challenge, the support they received and what they learned along the way. Add their own words to show what collaboration means in everyday work.', name: 'Employee story', topic: 'Teamwork' },
+    { title: 'Turning ideas into impact', text: 'Every improvement has a story behind it. Use this space for an employee to describe an idea they explored, the steps they took and the difference it made. Their perspective can help future colleagues understand the work and the people behind it.', name: 'Employee story', topic: 'Ideas and innovation' },
+    { title: 'Learning something new', text: 'Learning happens through questions, practice and conversations with others. Use this space for an employee’s personal reflection on a skill they developed, a colleague who helped them and how that experience shaped their work.', name: 'Employee story', topic: 'Continuous learning' },
+  ] as const;
+  readonly activeCareerStory = signal(0);
+  readonly currentCareerStory = computed(() => this.careerStories[this.activeCareerStory()]);
+  readonly currentCareerStoryEmployee = computed(() =>
+    [this.developers[0], this.developers[1], this.graphicDesignerTeam[1], this.technicalSupportTeam[0]][this.activeCareerStory()],
+  );
+  moveCareerStory(direction: number): void {
+    this.activeCareerStory.update(index => (index + direction + this.careerStories.length) % this.careerStories.length);
+  }
+  readonly careerCareTabs = [
+    { id: 'learning', label: 'Learning & Development', intro: 'Build your skills, share your knowledge and explore the next step in your career.', cards: [
+      { icon: 'explore', title: 'Leadership Development', body: 'Grow the communication, planning and people skills that help teams succeed.' },
+      { icon: 'menu_book', title: 'Continuous Learning', body: 'Keep exploring cloud platforms, technical concepts and professional skills.' },
+      { icon: 'groups', title: 'Starting Your Career', body: 'Build confidence as you move from learning concepts to solving workplace challenges.' },
+      { icon: 'forum', title: 'Learning Conversations', body: 'Discuss your interests, ask questions and learn from the experience of colleagues.' },
+      { icon: 'smart_toy', title: 'AI & Technical Skills', body: 'Explore evolving tools and practical approaches to technology.' },
+      { icon: 'lightbulb', title: 'Ideas & Innovation', body: 'Bring fresh perspectives to everyday problems and share what you discover.' },
+      { icon: 'school', title: 'Professional Growth', body: 'Identify the knowledge and capabilities that support your next career step.' },
+      { icon: 'track_changes', title: 'Personal Development', body: 'Build habits that support focus, collaboration and meaningful progress.' },
+      { icon: 'star', title: 'Growing Together', body: 'Learn through shared challenges and contribute to the success of your team.' },
+    ] },
+    { id: 'rewards', label: 'Rewards & Benefits', intro: 'Explore how your contribution, career goals and role fit together at XcellHost.', cards: [
+      { icon: 'trending_up', title: 'Performance & Progress', body: 'Discuss role expectations, goals and how your contribution will be evaluated.' },
+      { icon: 'workspace_premium', title: 'Recognition & Growth', body: 'Bring your achievements and career ambitions into conversations with your team.' },
+      { icon: 'redeem', title: 'Your Benefits Package', body: 'Our careers team can explain the benefits and eligibility that apply to your role.' },
+    ] },
+    { id: 'health', label: 'Health & Security', intro: 'Your wellbeing matters. Talk with our careers team about the support available for your role.', cards: [
+      { icon: 'health_and_safety', title: 'Health Coverage', body: 'Ask about available health benefits, coverage and eligibility during the hiring process.' },
+      { icon: 'family_restroom', title: 'Family Support', body: 'Discuss family-related needs and the policies relevant to your circumstances.' },
+      { icon: 'child_care', title: 'Parenthood & Leave', body: 'Get clarity on applicable parental leave and support as your family grows.' },
+      { icon: 'favorite', title: 'Everyday Wellbeing', body: 'Make space for conversations about wellbeing and sustainable working habits.' },
+      { icon: 'support_agent', title: 'Finding Support', body: 'Connect with the right team to discuss workplace concerns and available assistance.' },
+      { icon: 'verified_user', title: 'A Respectful Workplace', body: 'Help build a working environment shaped by care, respect and responsibility.' },
+    ] },
+  ] as const;
+  readonly activeCareerCareTab = signal(0);
+  readonly careerCareContent = computed(() => this.careerCareTabs[this.activeCareerCareTab()]);
+
+  onCareerCareKeydown(event: KeyboardEvent, index: number): void {
+    let next = index;
+    switch (event.key) {
+      case 'ArrowRight': next = (index + 1) % this.careerCareTabs.length; break;
+      case 'ArrowLeft': next = (index + this.careerCareTabs.length - 1) % this.careerCareTabs.length; break;
+      case 'Home': next = 0; break;
+      case 'End': next = this.careerCareTabs.length - 1; break;
+      default: return;
+    }
+    event.preventDefault();
+    this.activeCareerCareTab.set(next);
+    (event.currentTarget as HTMLElement).parentElement?.querySelectorAll<HTMLButtonElement>('[role="tab"]')[next]?.focus();
+  }
+  readonly visibleCareerLifeCards = computed(() =>
+    Array.from({ length: 3 }, (_, offset) =>
+      this.careerLifeCards[(this.activeCareerSlide() + offset) % this.careerLifeCards.length],
+    ),
+  );
+
+  readonly careerCertificationPeriods = [
+    'NOV 2025–NOV 2026', 'OCT 2024–OCT 2025', 'NOV 2023–NOV 2024',
+    'NOV 2022–NOV 2023', 'OCT 2021–OCT 2022', 'OCT 2020–SEPT 2021',
+    'OCT 2019–SEP 2020', 'NOV 2018–OCT 2019',
+  ] as const;
+
   readonly founder = {
     name: 'Dr. Samir Jhaveri',
     role: 'Managing Director, XcellHost Cloud Services Pvt. Ltd.',
@@ -78,18 +159,37 @@ export class CompanyPage {
   ] as const;
 
   readonly AITeams = [
-    { initials: 'AI1', name: 'AI Member 1', role: '', image: '' },
-    { initials: 'AI2', name: 'AI Member 2', role: '', image: '' },
-    { initials: 'AI3', name: 'AI Member 3', role: '', image: '' },
-    { initials: 'AI4', name: 'AI Member 4', role: '', image: '' },
+    { initials: 'AT', name: 'Advet Thambe', role: '', image: '/assets/images/team-advet-thambe.jpeg' },
+    { initials: 'AN', name: 'Aryan Nair', role: '', image: '/assets/images/team-aryan-nair.png' },
+    { initials: 'VC', name: 'Vishal Chaubey', role: '', image: '/assets/images/team-vishal-chaubey.png' },
+    { initials: 'RS', name: 'Ravi Sharma', role: '', image: '/assets/images/team-ravi-sharma.png' },
   ] as const;
 
   readonly developers: readonly { initials: string; name: string; role: string; image: string }[] = [
-    { initials: 'D1', name: 'Developer 1', role: '', image: '' },
-    { initials: 'D2', name: 'Developer 2', role: '', image: '' },
-    { initials: 'D3', name: 'Developer 3', role: '', image: '' },
+    { initials: 'VG', name: 'Vaishnavi Ghaghare', role: '', image: '/assets/images/team-vaishnavi-ghaghare.png' },
+    { initials: 'DV', name: 'Divya Varma', role: '', image: '/assets/images/team-divya-varma.jpeg' },
+    { initials: 'SV', name: 'Sujeet Vishwakarma', role: '', image: '/assets/images/team-sujeet-vishwakarma.jpeg' },
     { initials: 'D4', name: 'Developer 4', role: '', image: '' },
   ];
+
+  readonly accountantTeam = [
+    { initials: 'SJ', name: 'Sanjay Jade', role: '', image: '/assets/images/team-sanjay-jade.png' },
+    { initials: 'RB', name: 'Rutuja Bhoga', role: '', image: '/assets/images/team-rutuja-bhoga.jpeg' },
+  ] as const;
+
+  readonly graphicDesignerTeam = [
+    { initials: 'SV', name: 'Shakshita Vangade', role: '', image: '/assets/images/team-shakshita-vangade.jpeg' },
+    { initials: 'NS', name: 'Nishant Shinde', role: '', image: '/assets/images/team-nishant-shinde.png' },
+    { initials: 'SP', name: 'Shantaram Palkar', role: '', image: '/assets/images/team-shantaram-palkar.png' },
+  ] as const;
+
+  readonly adminTeam = [
+    { initials: 'MS', name: 'Mayuri Shinde', role: '', image: '/assets/images/team-mayuri-shinde.png' },
+  ] as const;
+
+  readonly technicalSupportTeam = [
+    { initials: 'PA', name: 'Purva Angre', role: '', image: '/assets/images/team-purva-angre.png' },
+  ] as const;
 
   readonly teamTabs = [
     { id: 'all', label: 'All Team' },
@@ -99,7 +199,10 @@ export class CompanyPage {
     { id: 'marketing', label: 'Marketing' },
     { id: 'AITeams', label: 'AI' },
     { id: 'developers', label: 'Developers' },
-
+    { id: 'accountant', label: 'Accountant' },
+    { id: 'graphic-designer', label: 'Graphic Designer' },
+    { id: 'admin', label: 'Admin' },
+    { id: 'technical-support', label: 'Technical Support' },
   ] as const;
   readonly activeTeamTab = signal<string>('all');
   teamDepartmentLabel(department: string): string {
@@ -109,6 +212,8 @@ export class CompanyPage {
     const icons: Record<string, string> = {
       all: 'groups', management: 'business_center', advisory: 'forum',
       sales: 'trending_up', marketing: 'campaign', AITeams: 'psychology', developers: 'code',
+      accountant: 'calculate', 'graphic-designer': 'palette', admin: 'admin_panel_settings',
+      'technical-support': 'support_agent',
     };
     return icons[department] ?? 'groups';
   }
@@ -119,6 +224,10 @@ export class CompanyPage {
     ...this.marketing.map(member => ({ ...member, department: 'marketing' })),
     ...this.AITeams.map(member => ({ ...member, department: 'AITeams' })),
     ...this.developers.map(member => ({ ...member, department: 'developers' })),
+    ...this.accountantTeam.map(member => ({ ...member, department: 'accountant' })),
+    ...this.graphicDesignerTeam.map(member => ({ ...member, department: 'graphic-designer' })),
+    ...this.adminTeam.map(member => ({ ...member, department: 'admin' })),
+    ...this.technicalSupportTeam.map(member => ({ ...member, department: 'technical-support' })),
     
   ];
   readonly visibleTeamMembers = computed(() => this.teamMembers.filter(member =>
@@ -226,7 +335,7 @@ export class CompanyPage {
   ];
   readonly activeCertification = signal(0);
 
-  readonly awardYears = ['2025', '2024', '2023', '2022', '2018'] as const;
+  readonly awardYears = ['2026', '2025', '2024', '2023', '2022', '2018'] as const;
   readonly activeAwardYear = signal<(typeof this.awardYears)[number]>('2025');
 
   readonly awards = [
