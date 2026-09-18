@@ -1,0 +1,130 @@
+@if (heroOnly()) {
+  <div class="genai-hero-art" aria-hidden="true">
+    <svg class="genai-radar-svg" viewBox="0 0 600 520" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="genaiSweep" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8ab4ff" stop-opacity="0"/><stop offset="1" stop-color="#8ab4ff" stop-opacity=".45"/></linearGradient>
+        <radialGradient id="genaiGlow"><stop offset="0" stop-color="#1565d8" stop-opacity=".35"/><stop offset="1" stop-color="#1565d8" stop-opacity="0"/></radialGradient>
+      </defs>
+      <circle cx="300" cy="255" r="210" fill="url(#genaiGlow)"/>
+      <circle cx="300" cy="255" r="92" fill="none" stroke="rgba(138,180,255,.16)"/>
+      <circle cx="300" cy="255" r="140" fill="none" stroke="rgba(138,180,255,.16)" stroke-dasharray="4 6"/>
+      <circle cx="300" cy="255" r="188" fill="none" stroke="rgba(138,180,255,.16)"/>
+      <path d="M300 255V67M300 255l163-94M300 255l163 94M300 255v188M300 255l-163 94M300 255l-163-94" fill="none" stroke="rgba(138,180,255,.1)"/>
+      <g><path d="M300 255h188a188 188 0 0 0-80-154Z" fill="url(#genaiSweep)"/><line x1="300" y1="255" x2="488" y2="255" stroke="#8ab4ff" stroke-width="1.5"/><animateTransform attributeName="transform" type="rotate" from="0 300 255" to="360 300 255" dur="9s" repeatCount="indefinite"/></g>
+      <g class="radar-node"><circle cx="300" cy="67" r="26" fill="none" stroke="#4ade80" stroke-width="1.5"><animate attributeName="r" values="24;40" dur="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values=".7;0" dur="2.4s" repeatCount="indefinite"/></circle><rect x="275" y="42" width="50" height="50" rx="14" fill="#071a38" stroke="#4ade80" stroke-width="2.5"/><g transform="translate(289 56) scale(.9167)" fill="none" stroke="#4ade80" stroke-width="2.18" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></g><text x="300" y="108">Discover</text></g>
+      <g class="radar-node"><rect x="438" y="136" width="50" height="50" rx="14" fill="#071a38" stroke="#8ab4ff" stroke-width="2.5"/><g transform="translate(452 150) scale(.9167)" fill="none" stroke="#8ab4ff" stroke-width="2.18" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z"/><circle cx="12" cy="12" r="3"/></g><text x="463" y="202">Monitor</text></g>
+      <g class="radar-node"><circle cx="463" cy="349" r="26" fill="none" stroke="#ffb15c" stroke-width="1.5"><animate attributeName="r" values="24;40" dur="2.4s" begin=".8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".7;0" dur="2.4s" begin=".8s" repeatCount="indefinite"/></circle><rect x="438" y="324" width="50" height="50" rx="14" fill="#071a38" stroke="#ffb15c" stroke-width="2.5"/><g transform="translate(452 338) scale(.9167)" fill="none" stroke="#ffb15c" stroke-width="2.18" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></g><text x="463" y="390">Protect</text></g>
+      <g class="radar-node"><rect x="275" y="418" width="50" height="50" rx="14" fill="#071a38" stroke="#a78bfa" stroke-width="2.5"/><g transform="translate(289 432) scale(.9167)" fill="none" stroke="#a78bfa" stroke-width="2.18" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></g><text x="300" y="484">Enforce</text></g>
+      <g class="radar-node"><rect x="112" y="324" width="50" height="50" rx="14" fill="#071a38" stroke="#8ab4ff" stroke-width="2.5"/><g transform="translate(126 338) scale(.9167)" fill="none" stroke="#8ab4ff" stroke-width="2.18" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></g><text x="137" y="390">Report</text></g>
+      <g class="radar-node"><circle cx="137" cy="161" r="26" fill="none" stroke="#4ade80" stroke-width="1.5"><animate attributeName="r" values="24;40" dur="2.4s" begin="2s" repeatCount="indefinite"/><animate attributeName="opacity" values=".7;0" dur="2.4s" begin="2s" repeatCount="indefinite"/></circle><rect x="112" y="136" width="50" height="50" rx="14" fill="#071a38" stroke="#4ade80" stroke-width="2.5"/><g transform="translate(126 150) scale(.9167)" fill="none" stroke="#4ade80" stroke-width="2.18" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="m5.6 5.6 12.8 12.8"/></g><text x="137" y="202">Block</text></g>
+      <circle cx="300" cy="255" r="70" fill="url(#genaiGlow)"/><circle cx="300" cy="255" r="54" fill="none" stroke="#3b82f6"><animate attributeName="r" values="46;66" dur="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".7;0" dur="2.6s" repeatCount="indefinite"/></circle><circle cx="300" cy="255" r="50" fill="#0b2a5c" stroke="#3b82f6" stroke-width="2"/><g transform="translate(281 230) scale(1.5833)" fill="none" stroke="#8ab4ff" stroke-width="1.14" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 8 3v6c0 5.5-3.5 9.7-8 11-4.5-1.3-8-5.5-8-11V5Z"/><path d="M12 8v4M12 15h.01"/></g><text class="radar-brand" x="300" y="283">XcellAI</text>
+      <text class="radar-status" x="24" y="30">LIVE · GENAI GUARD ONLINE</text><text class="radar-meta" x="576" y="30">discover · protect · block</text>
+    </svg>
+    <div class="hero-alert"><i></i><span>Blocked · Sensitive data stopped before it left</span></div>
+  </div>
+} @else {
+  <section class="genai-section genai-overview" id="overview" aria-labelledby="genai-overview-label">
+    <div class="genai-heading genai-overview-copy">
+      <span id="genai-overview-label">Overview</span>
+      <p>It governs and protects how your people—and, for MSPs, your clients’ people—use generative AI. Instead of banning AI or leaving it uncontrolled, it turns the chaos into a safe, managed service: see where GenAI is used, block sensitive data before it’s pasted into public tools, and detect harmful prompts—with clear reporting and consistent policy, set up by XcellHost on our cloud with a GST invoice and 24×7 support.</p>
+    </div>
+    <div class="genai-chips" aria-label="GenAI Protection highlights">
+      <span><i class="material-symbols-outlined">search</i>Discover Shadow AI</span>
+      <span><i class="material-symbols-outlined">visibility</i>Monitor usage</span>
+      <span><i class="material-symbols-outlined">lock</i>Protect sensitive data</span>
+      <span><i class="material-symbols-outlined">block</i>Block harmful prompts</span>
+      <span><i class="material-symbols-outlined">policy</i>Enforce policy</span>
+    </div>
+  </section>
+
+  <section class="genai-section genai-tinted" id="capabilities" aria-labelledby="genai-capabilities-title">
+    <div class="genai-heading centered">
+      <span>Capabilities</span>
+      <h2 id="genai-capabilities-title">Turn GenAI chaos into controlled, secure services</h2>
+      <p>Three jobs, one managed service—see it, protect it, stop the abuse.</p>
+    </div>
+    <div class="genai-pillar-grid">
+      <article class="genai-pillar discover">
+        <span class="pillar-label">Discover</span><i class="material-symbols-outlined">search</i>
+        <h3>Shadow AI visibility &amp; governance</h3>
+        <p>Discover and monitor the browser-based GenAI tools people actually use, spot trends and risk exposure, and enforce policy before issues escalate.</p>
+        <ul><li>Discover browser-based GenAI tools</li><li>See trends &amp; risk exposure</li><li>Enforce policy consistently</li></ul>
+      </article>
+      <article class="genai-pillar protect">
+        <span class="pillar-label">Protect</span><i class="material-symbols-outlined">lock</i>
+        <h3>Sensitive data protection for AI</h3>
+        <p>Monitor and block the unauthorised transmission of sensitive data—like PII and PHI—into AI tools, cutting data-leak and compliance risk.</p>
+        <ul><li>Inspect prompts for sensitive content</li><li>Block PII / PHI submissions</li><li>Reduce leakage &amp; compliance risk</li></ul>
+      </article>
+      <article class="genai-pillar prevent">
+        <span class="pillar-label">Prevent</span><i class="material-symbols-outlined">block</i>
+        <h3>Harmful prompts &amp; AI abuse prevention</h3>
+        <p>Detect and block malicious prompt techniques like prompt injection that try to manipulate AI behaviour or slip harmful content into your workflows.</p>
+        <ul><li>Detect prompt injection</li><li>Block abusive prompts</li><li>Protect users &amp; systems</li></ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="genai-section genai-console-section" id="console" aria-labelledby="genai-console-title">
+    <div class="genai-heading centered">
+      <span>Inside GenAI Protection</span>
+      <h2 id="genai-console-title">Discover, monitor, protect and prove—in one console</h2>
+      <p>Everything runs from a single console. Switch views to see how it works.</p>
+    </div>
+    <div class="genai-console">
+      <div class="console-tabs" role="tablist" aria-label="GenAI Protection console views">
+        @for (view of consoleViews; track view.id) {
+          <button type="button" role="tab" [class.is-active]="activeConsoleView() === view.id" [attr.aria-selected]="activeConsoleView() === view.id" (click)="selectConsoleView(view.id)">{{ view.label }}</button>
+        }
+      </div>
+      <div class="console-body">
+        <div class="console-copy">
+          <small>{{ currentConsoleView().eyebrow }}</small>
+          <h3>{{ currentConsoleView().title }}</h3>
+          <p>{{ currentConsoleView().description }}</p>
+          <ul>@for (bullet of currentConsoleView().bullets; track bullet) { <li>{{ bullet }}</li> }</ul>
+        </div>
+        <div class="console-dashboard" aria-hidden="true">
+          <div class="dashboard-top"><span><i></i><i></i><i></i></span><b>GenAI Protection</b><em>LIVE</em></div>
+          <div class="dashboard-grid">
+            <div class="dashboard-metric"><small>{{ currentConsoleView().metricLabel }}</small><strong>{{ currentConsoleView().metric }}</strong><span>↑ Protected by policy</span></div>
+            <div class="dashboard-chart"><span style="--h:42%"></span><span style="--h:68%"></span><span style="--h:51%"></span><span style="--h:82%"></span><span style="--h:64%"></span><span style="--h:91%"></span><span style="--h:74%"></span></div>
+            <div class="dashboard-events"><b>Recent policy events</b><span><i class="risk-high"></i>Sensitive data blocked <em>High</em></span><span><i class="risk-mid"></i>New AI application <em>Review</em></span><span><i class="risk-low"></i>Approved usage <em>Safe</em></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="genai-section genai-tinted" id="benefits" aria-labelledby="genai-benefits-title">
+    <div class="genai-heading centered"><span>What you get</span><h2 id="genai-benefits-title">What XcellHost GenAI Protection gives you</h2></div>
+    <div class="genai-benefit-grid">
+      <article><i class="material-symbols-outlined">travel_explore</i><h3>Shadow AI discovery</h3><p>Finds the browser-based GenAI tools in use across your estate, so nothing runs unseen.</p></article>
+      <article><i class="material-symbols-outlined">encrypted</i><h3>Data-leak prevention</h3><p>Blocks PII, PHI, credentials and confidential data from being pasted into public AI tools.</p></article>
+      <article><i class="material-symbols-outlined">security</i><h3>Prompt-injection protection</h3><p>Detects and blocks malicious prompts that try to manipulate AI or introduce harmful content.</p></article>
+      <article><i class="material-symbols-outlined">policy</i><h3>Policy enforcement</h3><p>Turns your acceptable-use rules into enforced controls—consistently, across every user.</p></article>
+      <article><i class="material-symbols-outlined">hub</i><h3>Multi-client, MSP-ready</h3><p>Manage GenAI risk across many clients from one place—ideal for managed-service providers.</p></article>
+      <article><i class="material-symbols-outlined">analytics</i><h3>Dashboards &amp; reporting</h3><p>Usage trends, risky domains and blocked events in clear reports for clients and auditors.</p></article>
+    </div>
+  </section>
+
+  <section class="genai-section" id="how-it-works" aria-labelledby="genai-how-title">
+    <div class="genai-heading centered"><span>How it works</span><h2 id="genai-how-title">Secure the path forward—make GenAI adoption safe</h2><p>Four steps, set up by XcellHost.</p></div>
+    <div class="genai-steps">
+      <article><b>01</b><i class="material-symbols-outlined">search</i><h3>Discover Shadow AI</h3><p>See where GenAI is used across your business or every client, and spot anomalies.</p></article>
+      <article><b>02</b><i class="material-symbols-outlined">lock</i><h3>Protect sensitive data</h3><p>Inspect prompts and block unauthorised submissions to public or unsanctioned AI.</p></article>
+      <article><b>03</b><i class="material-symbols-outlined">block</i><h3>Block harmful prompts</h3><p>Detect and block prompt injection and abusive techniques automatically.</p></article>
+      <article><b>04</b><i class="material-symbols-outlined">fact_check</i><h3>Report &amp; prove compliance</h3><p>Clear dashboards and logs show usage, risks and blocked actions as audit evidence.</p></article>
+    </div>
+  </section>
+
+  <section class="genai-section genai-tinted" id="plans" aria-labelledby="genai-plans-title">
+    <div class="genai-heading centered"><span>Plans &amp; pricing</span><h2 id="genai-plans-title">XcellHost GenAI Protection plans</h2><p>Priced per user / month. Every plan includes Shadow AI discovery, monitoring and reporting; higher plans add data-leak prevention, prompt protection and multi-client management. Indicative INR pricing, excl. GST—set up by XcellHost.</p></div>
+    <div class="genai-plan-grid">
+      <article class="genai-plan"><span class="plan-tier">Visibility</span><h3>Discover</h3><div class="plan-price"><b>₹299</b><small>/user/mo</small></div><p>See and monitor GenAI usage across your business.</p><strong>Up to 25 users · 30-day history</strong><ul><li>Shadow AI discovery</li><li>GenAI usage monitoring</li><li>Risk &amp; trend dashboards</li><li>Basic policy alerts</li><li>Email support</li></ul><button type="button" (click)="configurePlan()">Configure &amp; buy</button></article>
+      <article class="genai-plan featured"><span class="popular">Most popular</span><span class="plan-tier">Protection</span><h3>Enforce</h3><div class="plan-price"><b>₹599</b><small>/user/mo</small></div><p>Adds data-leak and prompt protection with enforced policy.</p><strong>Up to 100 users · 90-day history</strong><ul><li>Everything in Visibility</li><li>Sensitive-data (PII/PHI) blocking</li><li>Harmful-prompt protection</li><li>Enforced acceptable-use policy</li><li>Priority email &amp; call support</li></ul><button type="button" (click)="configurePlan()">Configure &amp; buy</button></article>
+      <article class="genai-plan"><span class="plan-tier">MSP / Enterprise</span><h3>Multi-client</h3><div class="plan-price"><b>₹999</b><small>/user/mo</small></div><p>Multi-client management, custom policy and a dedicated manager.</p><strong>Unlimited users · 12-month history</strong><ul><li>Everything in Protection</li><li>Multi-client management</li><li>Custom policies &amp; API</li><li>Client-ready compliance reports</li><li>Dedicated manager &amp; 24×7 support</li></ul><button type="button" (click)="configurePlan()">Configure &amp; buy</button></article>
+    </div>
+    <p class="genai-plan-note">Setup &amp; onboarding included · Pay via UPI, Cards or NetBanking · GST invoice on every order · Contact us for volume / MSP pricing.</p>
+  </section>
+}

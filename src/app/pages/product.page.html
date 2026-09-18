@@ -503,6 +503,10 @@
           <div class="pph-scene" aria-hidden="true">
             <xh-bare-metal-content [heroOnly]="true" />
           </div>
+        } @else if (slug() === 'acronis-genai-protection') {
+          <div class="pph-scene genai-protection-hero-art" aria-hidden="true">
+            <xh-genai-protection-content [heroOnly]="true" />
+          </div>
         } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
           <div class="pph-scene has-illus standalone-illus" id="pphScene" aria-hidden="true">
             <div class="pph-illus">
@@ -642,13 +646,20 @@
                 }
               </span>
             </h1>
-            <h2
-              class="pp-tagline"
-              [class.pp-tagline-reference]="isAdvancedEdr() || v.name === 'Tally on Cloud'"
-              id="ppTag"
-            >
-              {{ v.tagline }}
-            </h2>
+            @if (slug() === 'acronis-genai-protection') {
+              <p class="pp-tagline genai-hero-summary" id="ppTag">
+                Generative AI is spreading fast — often through unsanctioned, consumer-grade tools
+                that open new attack surfaces, compliance exposure and data-leak risk.
+              </p>
+            } @else {
+              <h2
+                class="pp-tagline"
+                [class.pp-tagline-reference]="isAdvancedEdr() || v.name === 'Tally on Cloud'"
+                id="ppTag"
+              >
+                {{ v.tagline }}
+              </h2>
+            }
             @if (v.heroHighlight) {
               <p class="pp-tagline-support">{{ v.heroHighlight }}</p>
             }
@@ -1053,9 +1064,13 @@
             @if (slug() === 'bare-metal-servers') {
               <xh-bare-metal-content />
             }
+            @if (slug() === 'acronis-genai-protection') {
+              <xh-genai-protection-content />
+            }
             @if (
               !isInfrastructure() &&
               slug() !== 'bare-metal-servers' &&
+              slug() !== 'acronis-genai-protection' &&
               slug() !== 'co-location' &&
               !isVmc() &&
               !isCmc() &&

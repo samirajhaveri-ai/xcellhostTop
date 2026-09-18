@@ -63,6 +63,7 @@ import { ATM_SOLUTION_DETAILS } from '../data/atm-solution-detail.data';
 import { OurPlatformReferenceComponent } from '../sections/our-platform-reference.component';
 import { WatchtowerReferenceComponent } from '../sections/watchtower-reference.component';
 import { BareMetalContentComponent } from '../sections/bare-metal-content.component';
+import { GenaiProtectionContentComponent } from '../sections/genai-protection-content.component';
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -180,6 +181,7 @@ interface ProductTourSlide {
     OurPlatformReferenceComponent,
     WatchtowerReferenceComponent,
     BareMetalContentComponent,
+    GenaiProtectionContentComponent,
 
     EmailSignatureContentComponent,
     EmailSignatureHeroComponent,
@@ -247,6 +249,17 @@ interface ProductTourSlide {
       align-items: center; justify-content: center; opacity: 1; overflow: visible;
       mask-image: none;
     }
+    #ppage .pph-scene.genai-protection-hero-art {
+      top: 4%; right: 1.5%; bottom: auto; width: min(47%, 640px); height: 92%;
+      overflow: visible; opacity: 1; border: 0; border-radius: 0; background: transparent;
+      box-shadow: none; mask-image: none;
+    }
+    #ppage .pph-scene.genai-protection-hero-art xh-genai-protection-content {
+      position: absolute; inset: 0; display: block;
+    }
+    #ppage .genai-hero-summary {
+      width: 48%; max-width: 540px !important; text-wrap: pretty;
+    }
     #ppage.atm-solution-page > .pp-hero { min-height: 660px; }
     #ppage.atm-solution-page .pp-hero h1 { font-size: clamp(19px, 2.2vw, 28px); }
     #ppage.atm-solution-page .pp-hero > .wrap > h1 { max-width: 58%; white-space: normal; }
@@ -275,6 +288,10 @@ interface ProductTourSlide {
         position: absolute; top: 0; right: 0; width: 100%; height: 100%;
         opacity: .16; overflow: hidden;
       }
+      #ppage .pph-scene.genai-protection-hero-art {
+        top: auto; right: 2%; bottom: 2%; width: 48%; height: 58%; opacity: .24;
+      }
+      #ppage .genai-hero-summary { width: 100%; max-width: 58ch !important; }
     }
     @media (max-width: 560px) {
       #ppage .copilot-hero-points { grid-template-columns: 1fr; }
