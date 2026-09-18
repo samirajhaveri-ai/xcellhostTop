@@ -38,7 +38,7 @@ export const RICH_PRODUCTS: Record<string, RichProduct> = {
     tagline: "Sell cloud, security and AI — under your own brand.",
     highlight: "Wholesale Pricing · White-Label · Recurring Commissions",
     poweredBy: "XcellHost",
-    heroImage: "/assets/images/vendor-partners-strategic-partnerships.png",
+    heroImage: "/assets/images/reseller-partner-network.svg",
     heroPoints: ["100+ Services to Resell", "Wholesale / Margin Pricing", "White-Label & Your Branding", "Partner Portal & Billing", "Recurring Commissions", "Dedicated Partner Support"],
     videos: [],
     videoLabels: [],
