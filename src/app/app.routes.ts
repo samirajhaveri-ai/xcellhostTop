@@ -21,6 +21,10 @@ export const routes: Routes = [
   { path: 'iot-infrastructure', redirectTo: 'iot-cloud', pathMatch: 'full' },
   { path: 'why-xcellhost', redirectTo: 'company/why-xcellhost', pathMatch: 'full' },
   { path: '', pathMatch: 'full', loadComponent: () => import('./pages/home.page').then((m) => m.HomePage) },
+  {
+    path: 'gpu-servers',
+    loadComponent: () => import('./pages/gpu-servers.page').then((m) => m.GpuServersPage),
+  },
   { path: 'compare', loadComponent: () => import('./pages/compare.page').then((m) => m.ComparePage) },
   { path: 'compare-providers', loadComponent: () => import('./pages/compare-providers.page').then((m) => m.CompareProvidersPage) },
   {
@@ -198,7 +202,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/digicert-cmc.page').then((m) => m.DigicertCmcPage),
   },
   {
-    path: 'mdm',
+    path: 'mobile-device-mgmt',
     data: { productSlug: 'cloud-mobile-device-mgmt' },
     loadComponent: () => import('./pages/cloud-mdm.page').then((m) => m.CloudMdmPage),
   },
@@ -315,6 +319,8 @@ export const routes: Routes = [
         (m) => m.WhatsappMarketingServiceSlaPage,
       ),
   },
+  { path: 'bare-metal-server', redirectTo: 'bare-metal-servers', pathMatch: 'full' },
+  { path: 'acronis-edr', redirectTo: '', pathMatch: 'full' },
   // service pages sit at the root, so this must stay last
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
   { path: '**', redirectTo: '' },

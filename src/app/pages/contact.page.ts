@@ -1,7 +1,21 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, inject } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, inject, signal } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { OverlayService } from '../core/overlay.service';
 import { SeoService } from '../core/seo.service';
+
+interface ContactOffice {
+  city: string;
+  country: string;
+  label: string;
+  company: string;
+  address: string;
+  phoneDisplay: string;
+  phoneHref: string;
+  email: string;
+  mapUrl: SafeResourceUrl;
+  directionsUrl: string;
+}
 
 @Component({
   selector: 'xh-contact-page',
@@ -14,7 +28,54 @@ import { SeoService } from '../core/seo.service';
 export class ContactPage implements AfterViewInit, OnDestroy {
   private readonly overlay = inject(OverlayService);
   private readonly seo = inject(SeoService);
+  private readonly sanitizer = inject(DomSanitizer);
   private readonly timers: number[] = [];
+
+  readonly offices: readonly ContactOffice[] = [
+    this.createOffice({
+      city: 'Mumbai',
+      country: 'India',
+      label: 'Head office',
+      company: 'XcellHost Cloud Services Pvt. Ltd.',
+      address: '209, Laxmi Plaza, Building No. 9, Laxmi Industrial Estate, Andheri West, Mumbai 400053, Maharashtra, India',
+      phoneDisplay: '+91 22 6711 1555',
+      phoneHref: '+912267111555',
+      email: 'sales@xcellhost.cloud',
+    }),
+    this.createOffice({
+      city: 'Bangalore',
+      country: 'India',
+      label: 'India office',
+      company: 'XcellHost Cloud Services Pvt. Ltd.',
+      address: 'Janardhan Towers, First Floor, A Wing, #562/640, Bilekahalli, Bannerghatta Road, Bangalore 560076, Karnataka, India',
+      phoneDisplay: '+91 22 6711 1555',
+      phoneHref: '+912267111555',
+      email: 'sales@xcellhost.cloud',
+    }),
+    this.createOffice({
+      city: 'Dubai',
+      country: 'UAE',
+      label: 'Middle East office',
+      company: 'Virtue Cloud & IT Solutions LLC',
+      address: '102-16, 1st Floor, CBD Bank Building, Al Mankhool, Dubai, United Arab Emirates',
+      phoneDisplay: '+971 4 341 3811 · +971 58 594 1802',
+      phoneHref: '+97143413811',
+      email: 'yogendra@xcellhost.cloud',
+    }),
+    this.createOffice({
+      city: 'Singapore',
+      country: 'Singapore',
+      label: 'Asia office',
+      company: 'XcellHost Cloud Services Pte. Ltd.',
+      address: '320 Serangoon Road, Serangoon Plaza #04-46, Singapore 218108',
+      phoneDisplay: '+91 22 6711 1555',
+      phoneHref: '+912267111555',
+      email: 'sales@xcellhost.cloud',
+    }),
+  ];
+
+  readonly selectedOfficeIndex = signal(0);
+  readonly selectedOffice = () => this.offices[this.selectedOfficeIndex()];
 
   constructor() {
     this.seo.set(
@@ -36,6 +97,23 @@ export class ContactPage implements AfterViewInit, OnDestroy {
 
   openCallback(): void {
     this.overlay.open('callback');
+  }
+
+  selectOffice(index: number): void {
+    this.selectedOfficeIndex.set(index);
+  }
+
+  private createOffice(
+    office: Omit<ContactOffice, 'mapUrl' | 'directionsUrl'>,
+  ): ContactOffice {
+    const query = encodeURIComponent(`${office.company}, ${office.address}`);
+    return {
+      ...office,
+      mapUrl: this.sanitizer.bypassSecurityTrustResourceUrl(
+        `https://www.google.com/maps?q=${query}&output=embed`,
+      ),
+      directionsUrl: `https://www.google.com/maps/search/?api=1&query=${query}`,
+    };
   }
 
   private initializeCrmForm(): void {

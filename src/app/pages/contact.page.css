@@ -121,3 +121,29 @@ a.contact-channel:hover{border-color:#9fc4f5;transform:translateY(-3px);box-shad
 .contact-hero-image{overflow:visible;isolation:auto;mix-blend-mode:lighten;pointer-events:none}
 .contact-hero-image img{position:absolute;right:30px;top:-20%;height:140%;width:auto;max-width:none;mask-image:linear-gradient(to right,transparent 30%,#000 52%,#000 92%,transparent),linear-gradient(to bottom,transparent 3%,#000 23%,#000 78%,transparent 98%);mask-composite:intersect;pointer-events:none}
 @media(max-width:800px){.contact-hero-image img{right:0;top:-10%;height:120%}}
+
+/* Unified office tabs, contact details and location map. */
+.office-locator{overflow:hidden;border:1px solid #c9dcf4;border-radius:22px;background:#fff;box-shadow:0 20px 52px rgba(7,31,69,.1)}
+.office-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;padding:8px;border-bottom:1px solid #dbe7f5;background:#f5f9ff}
+.office-tabs button{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;min-width:0;min-height:70px;padding:12px 16px;border:0;border-radius:14px;color:#536987;background:transparent;font-family:var(--body);text-align:left;cursor:pointer;transition:color .2s,background-color .2s,box-shadow .2s}
+.office-tabs button::after{content:"";position:absolute;right:18px;bottom:5px;left:18px;height:3px;border-radius:99px;background:#1467dc;opacity:0;transform:scaleX(.35);transition:opacity .2s,transform .2s}
+.office-tabs button:hover{color:#0a315f;background:#eaf3ff}
+.office-tabs button:focus-visible{outline:3px solid rgba(20,103,220,.24);outline-offset:-3px}
+.office-tabs button.is-active{color:#07336c;background:#fff;box-shadow:0 6px 20px rgba(20,103,220,.12)}
+.office-tabs button.is-active::after{opacity:1;transform:scaleX(1)}
+.office-tabs .material-symbols-outlined{flex:0 0 auto;display:grid;place-items:center;width:36px;height:36px;border-radius:10px;color:#1467dc;background:#e5f0ff;font-size:20px}
+.office-tabs b,.office-tabs small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.office-tabs b{font-size:14px}.office-tabs small{margin-top:3px;color:#7385a0;font:650 9px/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.office-locator-body{display:grid;grid-template-columns:minmax(320px,.82fr) minmax(0,1.48fr);min-height:500px}
+.office-contact-panel{display:flex;flex-direction:column;padding:38px 34px;border-right:1px solid #dbe7f5;background:linear-gradient(150deg,#fff 40%,#f4f9ff)}
+.office-contact-heading{display:flex;align-items:center;gap:14px;padding-bottom:25px;border-bottom:1px solid #dbe7f5}
+.office-contact-heading>.material-symbols-outlined{display:grid;place-items:center;width:50px;height:50px;flex:0 0 50px;border:1px solid #b7d4f8;border-radius:14px;color:#1467dc;background:#ebf4ff;font-size:27px}
+.office-contact-heading small{display:block;margin-bottom:5px;color:#3971b7;font:750 9px/1 var(--mono);letter-spacing:.13em;text-transform:uppercase}.office-contact-heading h3{margin:0;color:var(--c-navy);font:800 24px/1.15 var(--disp)}
+.office-contact-list{display:grid;gap:24px;margin:28px 0}
+.office-contact-row{display:grid;grid-template-columns:38px minmax(0,1fr);gap:13px;align-items:start}
+.office-contact-row>.material-symbols-outlined{display:grid;place-items:center;width:38px;height:38px;border-radius:11px;color:#1467dc;background:#eaf3ff;font-size:19px}
+.office-contact-row small{display:block;margin:1px 0 6px;color:#72829a;font:750 9px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase}.office-contact-row strong{display:block;color:var(--c-navy);font-size:14px;line-height:1.45}.office-contact-row p{margin:5px 0 0;color:#566984;font-size:13px;line-height:1.65}.office-contact-row a{color:#0c61ce;font-size:13px;font-weight:750;line-height:1.55;text-decoration:none}.office-contact-row a:hover{text-decoration:underline}
+.office-directions{display:inline-flex;align-items:center;justify-content:center;gap:9px;width:max-content;margin-top:auto;padding:12px 17px;border-radius:9px;color:#fff;background:linear-gradient(90deg,#1467dc,#0752b4);box-shadow:0 10px 22px rgba(20,103,220,.2);font-size:12px;font-weight:800;text-decoration:none;transition:transform .2s,box-shadow .2s}.office-directions:hover{transform:translateY(-2px);box-shadow:0 14px 28px rgba(20,103,220,.28)}
+.office-map-panel{position:relative;min-width:0;min-height:500px;background:#e8f0f8}.office-map-panel::before{content:"Google Maps";position:absolute;top:14px;right:14px;z-index:1;padding:7px 10px;border:1px solid rgba(183,205,231,.85);border-radius:8px;color:#49627f;background:rgba(255,255,255,.92);box-shadow:0 6px 16px rgba(7,31,69,.1);font:700 9px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;pointer-events:none}.office-map-panel iframe{display:block;width:100%;height:100%;min-height:500px;border:0}
+
+@media(max-width:900px){.office-tabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.office-locator-body{grid-template-columns:1fr}.office-contact-panel{border-right:0;border-bottom:1px solid #dbe7f5}.office-map-panel,.office-map-panel iframe{min-height:410px}}
+@media(max-width:560px){.contact-offices{padding-inline:0}.office-locator{border-radius:16px}.office-tabs{padding:6px}.office-tabs button{justify-content:flex-start;min-height:60px;padding:9px}.office-tabs .material-symbols-outlined{width:31px;height:31px;font-size:18px}.office-tabs b{font-size:12px}.office-contact-panel{padding:27px 20px}.office-contact-heading h3{font-size:21px}.office-map-panel,.office-map-panel iframe{min-height:340px}}

@@ -499,7 +499,7 @@
           <div class="pph-scene pph-email-signature" aria-hidden="true">
             <xh-email-signature-hero />
           </div>
-        } @else if (slug() === 'bare-metal-server') {
+        } @else if (slug() === 'bare-metal-servers') {
           <div class="pph-scene" aria-hidden="true">
             <xh-bare-metal-content [heroOnly]="true" />
           </div>
@@ -1050,12 +1050,12 @@
             @if (isAutonomousThreatManagement()) {
               <xh-autonomous-threat-management-content />
             }
-            @if (slug() === 'bare-metal-server') {
+            @if (slug() === 'bare-metal-servers') {
               <xh-bare-metal-content />
             }
             @if (
               !isInfrastructure() &&
-              slug() !== 'bare-metal-server' &&
+              slug() !== 'bare-metal-servers' &&
               slug() !== 'co-location' &&
               !isVmc() &&
               !isCmc() &&

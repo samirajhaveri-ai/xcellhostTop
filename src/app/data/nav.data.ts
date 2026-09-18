@@ -462,7 +462,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Co-Location Service",
+                "title": "Co-Location",
                 "pill": null,
                 "desc": null
               },
@@ -1762,7 +1762,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "MDM",
+                "title": "Mobile Device Mgmt",
                 "pill": null,
                 "desc": null,
               },
