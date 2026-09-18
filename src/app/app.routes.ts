@@ -198,7 +198,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/digicert-cmc.page').then((m) => m.DigicertCmcPage),
   },
   {
-    path: 'mdm',
+    path: 'mobile-device-mgmt',
     data: { productSlug: 'cloud-mobile-device-mgmt' },
     loadComponent: () => import('./pages/cloud-mdm.page').then((m) => m.CloudMdmPage),
   },
@@ -315,6 +315,8 @@ export const routes: Routes = [
         (m) => m.WhatsappMarketingServiceSlaPage,
       ),
   },
+  { path: 'bare-metal-server', redirectTo: 'bare-metal-servers', pathMatch: 'full' },
+  { path: 'acronis-edr', redirectTo: '', pathMatch: 'full' },
   // service pages sit at the root, so this must stay last
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
   { path: '**', redirectTo: '' },
