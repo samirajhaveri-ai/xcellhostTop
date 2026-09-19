@@ -37,7 +37,28 @@
           }
         </div>
 
-        @if (activeTab() === 'country') {
+        @if (activeTab() === 'it-trade') {
+          <div
+            class="associations-panel"
+            id="association-panel-it-trade"
+            role="tabpanel"
+            aria-labelledby="association-tab-it-trade"
+          >
+            <div class="associations-panel-heading">
+              <span>Technology network</span>
+              <h3>IT Trade</h3>
+              <p>IT trade communities supporting collaboration across the technology industry.</p>
+            </div>
+            <div class="associations-grid">
+              @for (association of itTradeAssociations; track association.name) {
+                <article class="association-card">
+                  <img [src]="association.image" [alt]="association.name + ' logo'" loading="lazy" />
+                  <h4>{{ association.name }}</h4>
+                </article>
+              }
+            </div>
+          </div>
+        } @else if (activeTab() === 'country') {
           <div
             class="associations-panel"
             id="association-panel-country"
@@ -46,7 +67,7 @@
           >
             <div class="associations-panel-heading">
               <span>International chambers</span>
-              <h3>Country Associated</h3>
+              <h3>Country Association</h3>
               <p>Chambers strengthening international business relationships and collaboration.</p>
             </div>
             <div class="associations-grid associations-grid-country">
@@ -61,17 +82,17 @@
         } @else {
           <div
             class="associations-panel"
-            id="association-panel-trade"
+            id="association-panel-industry"
             role="tabpanel"
-            aria-labelledby="association-tab-trade"
+            aria-labelledby="association-tab-industry"
           >
             <div class="associations-panel-heading">
-              <span>Industry network</span>
-              <h3>Trade Associate</h3>
-              <p>Technology and trade communities supporting collaboration across the industry.</p>
+              <span>Professional network</span>
+              <h3>Industry Association</h3>
+              <p>Professional bodies connecting XcellHost with wider business and industry communities.</p>
             </div>
-            <div class="associations-grid">
-              @for (association of tradeAssociations; track association.name) {
+            <div class="associations-grid associations-grid-industry">
+              @for (association of industryAssociations; track association.name) {
                 <article class="association-card">
                   <img [src]="association.image" [alt]="association.name + ' logo'" loading="lazy" />
                   <h4>{{ association.name }}</h4>

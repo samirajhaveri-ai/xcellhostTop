@@ -57,10 +57,10 @@
 .genai-steps article:hover i{background:linear-gradient(135deg,#ff9a3c,#ff7a00);transform:rotate(-5deg) scale(1.06);box-shadow:0 10px 24px rgba(255,140,26,.35)}
 .genai-steps article:hover b{color:#ff8c1a}
 
-.genai-plan{overflow:hidden;transition:transform .3s,box-shadow .3s,border-color .3s}
-.genai-plan::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 32%,rgba(138,180,255,.12) 50%,transparent 68%);transform:translateX(-120%);transition:transform .8s;pointer-events:none}
+.genai-plan{overflow:visible;transition:transform .3s,box-shadow .3s,border-color .3s}
+.genai-plan::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(115deg,transparent 32%,rgba(138,180,255,.12) 50%,transparent 68%);background-position:100% 0;background-size:250% 100%;transition:background-position .8s;pointer-events:none}
 .genai-plan:hover{transform:translateY(-7px);border-color:#8ab4ff;box-shadow:0 22px 60px rgba(4,30,66,.16)}
-.genai-plan:hover::after{transform:translateX(120%)}
+.genai-plan:hover::after{background-position:-100% 0}
 .genai-plan.featured:hover{transform:translateY(-14px);box-shadow:0 24px 60px rgba(21,101,216,.2)}
 .genai-plan button{position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s,background .2s}
 .genai-plan button::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.4) 50%,transparent 70%);transform:translateX(-120%);transition:transform .7s}

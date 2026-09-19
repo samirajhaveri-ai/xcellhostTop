@@ -1,17 +1,27 @@
 @if (heroOnly()) {
   <div class="bm-hero-art">
     <span class="bm-orbit"></span>
+    <div class="bm-hero-badge bm-hero-badge-metal">
+      <span class="bm-badge-icon bm-badge-icon-green" aria-hidden="true">▤</span>
+      <span><b>Bare metal</b><small>all yours</small></span>
+    </div>
+    <div class="bm-hero-badge bm-hero-badge-india">
+      <span class="bm-badge-icon bm-badge-icon-orange" aria-hidden="true">⌁</span>
+      <span><b>Hosted in India</b><small>Tier IV DC</small></span>
+    </div>
     <div class="bm-server-card">
       <header><span class="bm-dots"><i></i><i></i><i></i></span><b>Server · DS-Xeon-01 · XcellHost</b></header>
       <div class="bm-server-body">
-        <div class="bm-status"><span><i></i> Online</span><em>99.99% SLA</em></div>
-        <div class="bm-resource"><span class="bm-resource-icon">CPU</span><div><b>Intel Xeon · 16 cores</b><small>32 threads · 3.4 GHz</small></div><strong>22%</strong></div>
-        <div class="bm-resource"><span class="bm-resource-icon">RAM</span><div><b>128 GB DDR4 ECC</b><small>2 × 1 TB NVMe · RAID 1</small></div><strong>38%</strong></div>
-        <div class="bm-resource"><span class="bm-resource-icon">NET</span><div><b>1 Gbps protected network</b><small>Free DDoS protection</small></div><strong>Live</strong></div>
+        <div class="bm-resource bm-resource-cpu"><span class="bm-resource-icon" aria-hidden="true">▣</span><div><b>Intel Xeon &middot; 16 cores</b><small>32 threads &middot; 3.4 GHz</small></div><strong>Online</strong></div>
+        <div class="bm-resource bm-resource-ram"><span class="bm-resource-icon" aria-hidden="true">▥</span><div><b>128 GB DDR4 ECC RAM</b><small>2 &times; 1 TB NVMe SSD (RAID 1)</small></div><strong>Ready</strong></div>
+        <div class="bm-resource bm-resource-network"><span class="bm-resource-icon" aria-hidden="true">◇</span><div><b>DDoS protection active</b><small>1 Gbps port &middot; unmetered</small></div><strong>Protected</strong></div>
       </div>
     </div>
-    <div class="bm-float bm-float-a"><span>✓</span><b>Server secured</b><small>DDoS protection active</small></div>
-    <div class="bm-float bm-float-b"><span>↯</span><b>NVMe storage</b><small>Enterprise performance</small></div>
+    <div class="bm-hero-badge bm-hero-badge-nvme">
+      <span class="bm-badge-icon bm-badge-icon-blue" aria-hidden="true">ϟ</span>
+      <span><b>NVMe SSD</b><small>blazing fast</small></span>
+    </div>
+    <div class="bm-powered"><small>Powered by</small><b><span aria-hidden="true">▣</span> XcellServers</b></div>
   </div>
 } @else {
   <section class="bm-section bm-overview-section" aria-labelledby="bmOverviewTitle">
@@ -51,10 +61,10 @@
     <div class="pp-sec" id="bmPlansTitle">Dedicated server plans (INR)</div>
     <p class="bm-lead">Full bare-metal servers hosted in Mumbai, India. Every server includes full root access, free DDoS protection and a 99.99% uptime SLA.</p>
     <div class="bm-tabs" role="tablist" aria-label="Processor families">
-      <button type="button" [class.active]="selectedFamily() === 'ryzen'" (click)="selectedFamily.set('ryzen')">Ryzen</button>
-      <button type="button" [class.active]="selectedFamily() === 'intel'" (click)="selectedFamily.set('intel')">Intel Gold</button>
-      <button type="button" [class.active]="selectedFamily() === 'epyc'" (click)="selectedFamily.set('epyc')">AMD EPYC</button>
-      <button type="button" [class.active]="selectedFamily() === 'legacy'" (click)="selectedFamily.set('legacy')">Legacy</button>
+      <button type="button" [class.active]="selectedFamily() === 'ryzen'" (click)="selectedFamily.set('ryzen')"><span class="bm-tab-icon ryzen" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" stroke-linejoin="round"/></svg></span>Ryzen</button>
+      <button type="button" [class.active]="selectedFamily() === 'intel'" (click)="selectedFamily.set('intel')"><span class="bm-tab-icon intel" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 1v5M15 1v5M9 18v5M15 18v5M1 9h5M1 15h5M18 9h5M18 15h5" stroke-linecap="round"/></svg></span>Intel Gold</button>
+      <button type="button" [class.active]="selectedFamily() === 'epyc'" (click)="selectedFamily.set('epyc')"><span class="bm-tab-icon epyc" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 8h3v3H8zM13 8h3v3h-3zM8 13h3v3H8zM13 13h3v3h-3z"/></svg></span>AMD EPYC</button>
+      <button type="button" [class.active]="selectedFamily() === 'legacy'" (click)="selectedFamily.set('legacy')"><span class="bm-tab-icon legacy" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2M7 3L4 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Legacy</button>
     </div>
     <div class="bm-table-wrap">
       <table>
@@ -117,7 +127,41 @@
 
   <section class="bm-section" aria-labelledby="bmJourneyTitle">
     <div class="pp-sec" id="bmJourneyTitle">From shared hosting to bare metal</div>
-    <div class="bm-compare"><div><p>On shared or oversold hosting, workloads compete for resources. That means inconsistent performance, limited control and less room to grow.</p><p>With an <b>XcellHost dedicated server</b>, the whole physical machine is yours.</p><div class="bm-stats"><span><b>100%</b>resources yours</span><span><b>Root</b>full control</span></div></div><div class="bm-compare-cards"><article class="before"><small>Shared hosting</small><h3>Competing for capacity</h3><ul><li>Shared resources</li><li>Slow under load</li><li>No root access</li><li>Hard to scale</li></ul></article><span class="bm-arrow">→</span><article class="after"><small>Dedicated server</small><h3>The whole server is yours</h3><ul><li>Dedicated resources</li><li>Fast and consistent</li><li>Full root access</li><li>Scales with you</li></ul></article></div></div>
+    <div class="bm-eng-grid">
+      <div class="bm-eng-copy">
+        <p>On shared or oversold hosting you fight for resources with everyone else on the box &mdash; slow response times under load, no root access, and no room to grow when traffic spikes.</p>
+        <p>With an <b>XcellHost dedicated server</b>, the entire machine is yours: consistent performance, full control, and headroom to scale.</p>
+        <p>The result: a faster, more reliable platform your business can count on.</p>
+        <div class="bm-eng-stats"><div><b>100%</b><span>resources yours</span></div><div><b>Root</b><span>full control</span></div></div>
+      </div>
+      <div class="bm-eng-visual" aria-label="Comparison of shared hosting and a dedicated server">
+        <article class="bm-phone bm-phone-before">
+          <div class="bm-phone-screen">
+            <span class="bm-phone-notch"></span>
+            <div class="bm-phone-top"><div class="bm-phone-search">Your hosting</div></div>
+            <div class="bm-phone-label">Shared hosting</div>
+            <div class="bm-phone-row"><span class="bm-phone-avatar">!</span><span><b>Shared resources</b><small>Noisy neighbours</small></span></div>
+            <div class="bm-phone-row"><span class="bm-phone-avatar">!</span><span><b>Slow under load</b><small>Inconsistent</small></span></div>
+            <div class="bm-phone-row"><span class="bm-phone-avatar">?</span><span><b>No root access</b><small>Limited control</small></span></div>
+            <div class="bm-phone-row"><span class="bm-phone-avatar">?</span><span><b>Hard to scale</b><small>Hits a ceiling</small></span></div>
+          </div>
+          <span class="bm-phone-caption">Shared hosting</span>
+        </article>
+        <div class="bm-eng-arrows" aria-hidden="true"><span>›</span><span>›</span><span>›</span></div>
+        <article class="bm-phone bm-phone-after">
+          <div class="bm-phone-screen">
+            <span class="bm-phone-notch"></span>
+            <div class="bm-phone-top"><div class="bm-phone-search">Your hosting</div></div>
+            <div class="bm-phone-label">Dedicated server</div>
+            <div class="bm-phone-row"><span class="bm-phone-avatar">✓</span><span><b>All yours</b><small>Full machine</small></span></div>
+            <div class="bm-phone-row"><span class="bm-phone-avatar">✓</span><span><b>Fast &amp; consistent</b><small>Under any load</small></span></div>
+            <div class="bm-phone-row"><span class="bm-phone-avatar">✓</span><span><b>Full root access</b><small>Total control</small></span></div>
+            <div class="bm-phone-row"><span class="bm-phone-avatar">✓</span><span><b>Scales with you</b><small>Room to grow</small></span></div>
+          </div>
+          <span class="bm-phone-caption">Dedicated server</span>
+        </article>
+      </div>
+    </div>
   </section>
 
   <section class="bm-section" aria-labelledby="bmUsesTitle">

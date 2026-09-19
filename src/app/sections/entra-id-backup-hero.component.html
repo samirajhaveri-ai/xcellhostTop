@@ -1,0 +1,49 @@
+<div class="backup-hero-stage">
+  <svg viewBox="0 0 600 470" role="img" aria-label="Microsoft Entra ID objects flowing into an immutable XcellHost backup vault">
+    <defs>
+      <radialGradient id="backupGlow"><stop offset="0" stop-color="#1565d8" stop-opacity=".34"/><stop offset="1" stop-color="#1565d8" stop-opacity="0"/></radialGradient>
+      <linearGradient id="vaultFill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#16a34a"/><stop offset="1" stop-color="#08723b"/></linearGradient>
+      <filter id="vaultShadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#00142f" flood-opacity=".55"/></filter>
+    </defs>
+
+    <ellipse cx="300" cy="224" rx="260" ry="170" fill="url(#backupGlow)"/>
+    <text class="diagram-label" x="160" y="64">MICROSOFT ENTRA ID</text>
+    <text class="diagram-label vault-label" x="462" y="64">XCELLHOST BACKUP VAULT</text>
+
+    <g class="identity-lines">
+      <path d="M160 210V112"/><path d="M160 210l79-48"/><path d="M160 210l79 48"/>
+      <path d="M160 210v98"/><path d="M160 210l-79 48"/><path d="M160 210l-79-48"/>
+    </g>
+
+    <g class="identity-node node-users" transform="translate(160 112)"><circle r="18"/><path d="M-8 8c0-7 16-7 16 0M0-3a5 5 0 1 0 0-10 5 5 0 0 0 0 10"/><text y="-27">users</text></g>
+    <g class="identity-node node-groups" transform="translate(239 162)"><circle r="18"/><path d="M-9-5h18v10H-9zM-6-9h12"/><text y="-27">groups</text></g>
+    <g class="identity-node node-apps" transform="translate(239 258)"><circle r="18"/><path d="M-9-9h7v7h-7zM2-9h7v7H2zM-9 2h7v7h-7zM2 2h7v7H2z"/><text y="31">apps</text></g>
+    <g class="identity-node node-roles" transform="translate(160 308)"><circle r="18"/><path d="M-7 0a7 7 0 1 1 12 5l-5 5-3-3 5-5"/><text y="31">roles</text></g>
+    <g class="identity-node node-policy" transform="translate(81 258)"><circle r="18"/><path d="M0-10l9 4v7c0 7-5 10-9 12-4-2-9-5-9-12v-7zM-4 1l3 3 5-6"/><text y="31">CA policies</text></g>
+    <g class="identity-node node-services" transform="translate(81 162)"><circle r="18"/><path d="M-7 2a7 7 0 0 1 7-7h5M7-2a7 7 0 0 1-7 7h-5"/><text y="-27">service principals</text></g>
+
+    <g class="identity-core" transform="translate(160 210)"><circle r="34"/><path d="M-9 6a10 10 0 1 1 17 7l-7 7-5-5 7-7"/><text y="48">identity</text></g>
+
+    <path class="backup-path" d="M198 194C270 125 348 130 409 194"/>
+    <path class="restore-path" d="M409 232C345 300 270 302 198 226"/>
+    <circle class="flow-dot dot-one" r="5"><animateMotion dur="2.5s" repeatCount="indefinite" path="M198 194C270 125 348 130 409 194"/></circle>
+    <circle class="flow-dot dot-two" r="5"><animateMotion dur="2.5s" begin=".8s" repeatCount="indefinite" path="M198 194C270 125 348 130 409 194"/></circle>
+    <circle class="restore-dot" r="4"><animateMotion dur="2.8s" repeatCount="indefinite" path="M409 232C345 300 270 302 198 226"/></circle>
+    <text class="path-label backup-text" x="305" y="139">automated backup</text>
+    <text class="path-label restore-text" x="305" y="303">granular restore</text>
+
+    <g class="vault" transform="translate(462 210)" filter="url(#vaultShadow)">
+      <circle class="vault-pulse" r="55"/>
+      <rect x="-43" y="-46" width="86" height="96" rx="15" fill="url(#vaultFill)"/>
+      <rect x="-14" y="-2" width="28" height="24" rx="4"/>
+      <path d="M-9-2v-9a9 9 0 0 1 18 0v9"/>
+      <text y="38">immutable</text>
+    </g>
+
+    <g class="status-pill retention" transform="translate(68 382)"><rect width="135" height="30" rx="15"/><text x="67.5" y="19">unlimited retention</text></g>
+    <g class="status-pill airgap" transform="translate(233 382)"><rect width="135" height="30" rx="15"/><text x="67.5" y="19">air-gapped</text></g>
+    <g class="status-pill point" transform="translate(398 382)"><rect width="135" height="30" rx="15"/><text x="67.5" y="19">point-in-time</text></g>
+    <text class="corner-copy" x="28" y="30">ENTRA ID BACKUP · YOUR IDENTITY, PROTECTED</text>
+    <text class="corner-copy live-copy" x="572" y="30">6× daily backups</text>
+  </svg>
+</div>

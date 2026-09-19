@@ -25,7 +25,9 @@ const TRUSTED_CLIENTS: readonly { name: string; className: string; src: string }
     <section class="trusted-by" aria-label="Trusted by our clients">
       <div class="wrap">
         <div class="trusted-by-panel">
-          <span class="trusted-by-label">Trusted by</span>
+          <span class="trusted-by-label">
+            <span>Trusted by over<strong class="trusted-by-count">10K</strong><br />businesses worldwide</span>
+          </span>
           <div class="trusted-by-viewport">
             <div class="trusted-by-track">
               @for (client of clients; track $index) {

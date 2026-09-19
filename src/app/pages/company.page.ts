@@ -57,19 +57,26 @@ export class CompanyPage {
   ] as const;
   readonly activeCareerSlide = signal(0);
   readonly careerStories = [
-    { title: 'Growing through new challenges', text: 'A career story can start with one new challenge: learning a platform, helping a customer or taking ownership of a project. Use this space to share an employee’s experience of building confidence, learning from colleagues and discovering the next step in their career.', name: 'Employee story', topic: 'Professional growth' },
-    { title: 'Finding strength in teamwork', text: 'The best team stories show how people work together. Use this space for an employee’s account of a shared challenge, the support they received and what they learned along the way. Add their own words to show what collaboration means in everyday work.', name: 'Employee story', topic: 'Teamwork' },
-    { title: 'Turning ideas into impact', text: 'Every improvement has a story behind it. Use this space for an employee to describe an idea they explored, the steps they took and the difference it made. Their perspective can help future colleagues understand the work and the people behind it.', name: 'Employee story', topic: 'Ideas and innovation' },
+    { title: 'Growing through new challenges', text: 'Every new challenge is a chance to learn, take ownership and build confidence with support from the team.', name: 'Employee story', topic: 'Professional growth' },
+    { title: 'Finding strength in teamwork', text: 'Strong teamwork helps us solve difficult problems, share knowledge and keep moving forward together.', name: 'Employee story', topic: 'Teamwork' },
+    { title: 'Turning ideas into impact', text: 'Ideas are welcomed here. We explore improvements, put them into practice and focus on meaningful customer impact.', name: 'Employee story', topic: 'Ideas and innovation' },
     { title: 'Learning something new', text: 'Learning happens through questions, practice and conversations with others. Use this space for an employee’s personal reflection on a skill they developed, a colleague who helped them and how that experience shaped their work.', name: 'Employee story', topic: 'Continuous learning' },
   ] as const;
+
+  readonly careerStoryCards = computed(() => {
+    const employees = [this.developers[0], this.developers[1], this.graphicDesignerTeam[1]];
+    return this.careerStories.slice(0, 3).map((story, index) => ({ story, employee: employees[index] }));
+  });
+
   readonly activeCareerStory = signal(0);
   readonly currentCareerStory = computed(() => this.careerStories[this.activeCareerStory()]);
   readonly currentCareerStoryEmployee = computed(() =>
-    [this.developers[0], this.developers[1], this.graphicDesignerTeam[1], this.technicalSupportTeam[0]][this.activeCareerStory()],
+    [this.developers[1], this.developers[2], this.graphicDesignerTeam[1], this.technicalSupportTeam[1]][this.activeCareerStory()],
   );
   moveCareerStory(direction: number): void {
     this.activeCareerStory.update(index => (index + direction + this.careerStories.length) % this.careerStories.length);
   }
+
   readonly careerCareTabs = [
     { id: 'learning', label: 'Learning & Development', intro: 'Build your skills, share your knowledge and explore the next step in your career.', cards: [
       { icon: 'explore', title: 'Leadership Development', body: 'Grow the communication, planning and people skills that help teams succeed.' },
@@ -147,8 +154,8 @@ export class CompanyPage {
   ] as const;
 
   readonly salesTeam = [
-    { initials: 'AG', name: 'Ajay Gupta', role: '', image: '' },
     { initials: 'AP', name: 'Abhishek Pandey', role: 'Cloud Sales Manager', image: '/assets/images/team-abhishek-pandey.png' },
+    { initials: 'AG', name: 'Ajay Gupta', role: '', image: '' },
   ] as const;
   
   readonly marketing = [
@@ -162,9 +169,9 @@ export class CompanyPage {
   ] as const;
 
   readonly developers: readonly { initials: string; name: string; role: string; image: string }[] = [
+    { initials: 'SV', name: 'Sujeet Vishwakarma', role: '', image: '/assets/images/team-sujeet-vishwakarma.jpeg' },
     { initials: 'VG', name: 'Vaishnavi Ghaghare', role: '', image: '/assets/images/team-vaishnavi-ghaghare.png' },
     { initials: 'DV', name: 'Divya Varma', role: '', image: '/assets/images/team-divya-varma.jpeg' },
-    { initials: 'SV', name: 'Sujeet Vishwakarma', role: '', image: '/assets/images/team-sujeet-vishwakarma.jpeg' },
     { initials: 'VT', name: 'Vibha Tiwari', role: '', image: '/assets/images/team-vibha-tiwari.png' },
   ];
 
@@ -185,9 +192,9 @@ export class CompanyPage {
   ] as const;
 
   readonly technicalSupportTeam = [
+    { initials: 'RS', name: 'Rizwan Shaikh', role: '', image: '/assets/images/team-rizwan-shaikh.png' },
     { initials: 'PA', name: 'Purva Angre', role: '', image: '/assets/images/team-purva-angre.png' },
     { initials: 'SY', name: 'Saurav Yadav', role: '', image: '' },
-    { initials: 'RS', name: 'Rizwan Shaikh', role: '', image: '/assets/images/team-rizwan-shaikh.png' },
     { initials: 'TM', name: 'Talha Mohammad', role: '', image: '' },
     { initials: 'AY', name: 'Amit Yadav', role: '', image: '' },
 
@@ -337,6 +344,17 @@ export class CompanyPage {
       })),
   ];
   readonly activeCertification = signal(0);
+  private readonly requestedCertification = toSignal(
+    this.route.queryParamMap.pipe(map(params => params.get('certification'))),
+    { initialValue: null },
+  );
+  private readonly syncRequestedCertification = effect(() => {
+    if (this.slug() !== 'certifications-awards') return;
+    const index = Number(this.requestedCertification());
+    if (Number.isInteger(index) && index >= 0 && index < this.certifications.length) {
+      this.activeCertification.set(index);
+    }
+  });
 
   readonly awardYears = ['2026', '2025', '2024', '2023', '2022', '2018'] as const;
   readonly activeAwardYear = signal<(typeof this.awardYears)[number]>('2025');

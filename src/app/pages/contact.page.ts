@@ -1,5 +1,6 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, inject, signal } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { RouterLink } from '@angular/router';
 
 import { OverlayService } from '../core/overlay.service';
 import { SeoService } from '../core/seo.service';
@@ -20,6 +21,7 @@ interface ContactOffice {
 @Component({
   selector: 'xh-contact-page',
   standalone: true,
+  imports: [RouterLink],
   templateUrl: './contact.page.html',
   styleUrl: './contact.page.css',
   host: { style: 'display:contents' },

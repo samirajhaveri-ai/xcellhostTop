@@ -40,8 +40,8 @@
               <article class="dc-plan" [class.featured]="certificate.group === 'pro'">
                 @if (certificate.group === 'pro') { <span class="best">Best Seller</span> }
                 <h3>{{ certificate.name }}</h3>
-                <div class="price"><b>{{ certificate.price | currency:'USD':'symbol':'1.2-2' }}</b><span>per year &middot; 3-year term</span></div>
-                <em>Save {{ certificate.save | currency:'USD':'symbol':'1.2-2' }}</em>
+                <div class="price"><b>{{ formatInr(certificate.price) }}</b><span>per year &middot; 3-year term</span></div>
+                <em>Save {{ formatInr(certificate.save) }}</em>
                 <dl><div><dt>Warranty</dt><dd>{{ certificate.warranty }}</dd></div><div><dt>Validation</dt><dd>{{ certificate.validation }}</dd></div><div><dt>SANs</dt><dd>{{ certificate.sans ? 'Supported' : 'Not applicable' }}</dd></div></dl>
                 <div class="actions"><a class="btn btn-primary" href="#ppCtaT">Add to Cart</a><a class="btn btn-ghost" href="#ppCtaT">Full details</a></div>
               </article>
@@ -50,7 +50,7 @@
         </div>
       }
     }
-    <p class="dc-note">&#128179; Prices in USD per year at the 3-year rate, as published by the certificate authority's distributor. XcellHost bills in INR at the prevailing rate with a GST-compliant invoice.</p>
+    <p class="dc-note">&#128179; Prices shown in INR per year at the 3-year rate, converted at ₹95.65 per USD and rounded to the nearest rupee. XcellHost provides a GST-compliant invoice.</p>
     <div class="dc-recommend"><div><b>Not sure which one?</b><span>Tell us what you are securing &mdash; we will size it, price it in INR and install it for you.</span></div><a class="btn btn-primary" href="#ppCtaT">Get a Recommendation</a></div>
   </section>
 
@@ -60,7 +60,7 @@
       @for (group of groups; track group.id) {
         <tr class="group-row"><td colspan="5">{{ group.label }}</td></tr>
         @for (certificate of certificatesFor(group.id); track certificate.name) {
-          <tr><td>{{ certificate.name }}</td><td>{{ certificate.price | currency:'USD':'symbol':'1.2-2' }}/yr.</td><td>{{ certificate.save | currency:'USD':'symbol':'1.2-2' }}</td><td>{{ certificate.warranty }}</td><td><a href="#ppCtaT">{{ certificate.validation }} &middot; Buy</a></td></tr>
+          <tr><td>{{ certificate.name }}</td><td>{{ formatInr(certificate.price) }}/yr.</td><td>{{ formatInr(certificate.save) }}</td><td>{{ certificate.warranty }}</td><td><a href="#ppCtaT">{{ certificate.validation }} &middot; Buy</a></td></tr>
         }
       }
     </tbody></table></div>
