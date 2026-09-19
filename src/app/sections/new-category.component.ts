@@ -36,6 +36,11 @@ const PROVIDER_CARDS: readonly ProviderCard[] = [
           <span class="new-category-kicker">A new category</span>
           <h2 id="new-category-title">The market sells you parts. You are accountable for the whole.</h2>
           <p>So we stopped selling a layer. XcellHost is a Cloud Experience Platform: the outcome is the product, and everything beneath it is ours to assemble and operate.</p>
+          <article class="provider-outcome new-category-intro-outcome">
+            <h3><span class="material-symbols-outlined" aria-hidden="true">cloud</span> XcellHost</h3>
+            <strong>Delivers sovereign, intelligent business experiences.</strong>
+            <p>You bring the objective.<br />We deliver everything under it.</p>
+          </article>
         </div>
 
         <div class="category-cards">
@@ -66,11 +71,6 @@ const PROVIDER_CARDS: readonly ProviderCard[] = [
               <p>{{ provider.body }}</p>
             </article>
           }
-          <article class="provider-outcome">
-            <h3><span class="material-symbols-outlined" aria-hidden="true">cloud</span> XcellHost</h3>
-            <strong>Delivers sovereign, intelligent business experiences.</strong>
-            <p>You bring the objective.<br />We deliver everything under it.</p>
-          </article>
         </div>
       </div>
     </section>

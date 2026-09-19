@@ -721,6 +721,62 @@
         </div>
         <p class="career-hero-note">Grow<br />Belong<br /><span>Make an Impact</span></p>
       </section>
+      <section class="career-impact-strip" aria-label="XcellHost business impact">
+        <div class="career-impact-inner">
+          <div class="career-impact-item">
+            <div><strong>05+</strong><span>Years In Business</span></div>
+          </div>
+          <div class="career-impact-item">
+            <span class="material-symbols-outlined" aria-hidden="true">public</span>
+            <div><strong>38+</strong><span>Countries Served Worldwide</span></div>
+          </div>
+          <div class="career-impact-item">
+            <span class="material-symbols-outlined" aria-hidden="true">groups</span>
+            <div><strong>350+</strong><span>Clients Secured Worldwide</span></div>
+          </div>
+          <div class="career-impact-item">
+            <span class="material-symbols-outlined" aria-hidden="true">verified_user</span>
+            <div><strong>2500+</strong><span>Penetration Reports Delivered</span></div>
+          </div>
+        </div>
+      </section>
+      <section class="career-why" aria-labelledby="career-why-title">
+        <div class="career-why-inner">
+          <div class="career-why-intro">
+            <span>Why join XcellHost?</span>
+            <h2 id="career-why-title">More Than a Job, <em>It&rsquo;s a Mission</em></h2>
+            <p>We empower our people to learn, grow and make an impact in the world of cloud and cybersecurity.</p>
+            <a href="#career-life-gallery">Learn More About Us</a>
+          </div>
+          <div class="career-why-cards">
+            <article class="career-why-card">
+              <i class="material-symbols-outlined" aria-hidden="true">rocket_launch</i>
+              <h3>Fast Growth Opportunities</h3>
+              <p>We are scaling rapidly, giving you exposure to leadership and growth.</p>
+            </article>
+            <article class="career-why-card">
+              <i class="material-symbols-outlined" aria-hidden="true">shield</i>
+              <h3>Real-World Challenges</h3>
+              <p>Solve meaningful cloud and security problems for businesses worldwide.</p>
+            </article>
+            <article class="career-why-card">
+              <i class="material-symbols-outlined" aria-hidden="true">menu_book</i>
+              <h3>Continuous Learning</h3>
+              <p>Mentorship, training and certifications help fuel your growth.</p>
+            </article>
+            <article class="career-why-card">
+              <i class="material-symbols-outlined" aria-hidden="true">groups</i>
+              <h3>Collaborative Culture</h3>
+              <p>We believe in teamwork, transparency and mutual respect.</p>
+            </article>
+            <article class="career-why-card">
+              <i class="material-symbols-outlined" aria-hidden="true">lightbulb</i>
+              <h3>Innovation Driven</h3>
+              <p>Work with evolving cloud, cybersecurity and AI technologies.</p>
+            </article>
+          </div>
+        </div>
+      </section>
     } @else {
     <section class="pp-hero company-hero">
       <span class="company-orb company-orb-one"></span>
@@ -776,10 +832,6 @@
         }
 
         @if (slug() === 'careers-overview') {
-          <p class="company-intro">{{ page.intro }}</p>
-        }
-
-        @if (slug() === 'careers-overview') {
           <section class="career-life" aria-labelledby="career-life-title">
             <header>
               <h2 id="career-life-title">Life at <em>XcellHost</em></h2>
@@ -807,30 +859,82 @@
         }
 
         @if (slug() === 'careers-overview') {
-          <section class="career-care" aria-labelledby="career-care-title">
-            <header>
-              <h2 id="career-care-title">#<span>We</span>Care</h2>
-              <p>Your wellbeing. Your growth. Your future. Discover what matters to you as you build your career with XcellHost.</p>
-            </header>
-            <div class="career-care-tabs" role="tablist" aria-label="Employee growth and wellbeing">
-              @for (tab of careerCareTabs; track tab.id; let index = $index) {
-                <button type="button" role="tab" [id]="'career-care-tab-' + tab.id"
-                  [attr.aria-selected]="activeCareerCareTab() === index"
-                  [tabIndex]="activeCareerCareTab() === index ? 0 : -1"
-                  aria-controls="career-care-panel" (click)="activeCareerCareTab.set(index)"
-                  (keydown)="onCareerCareKeydown($event, index)">{{ tab.label }}</button>
+          <section class="career-stories" aria-label="Stories from XcellHost employees">
+            <div class="career-story-grid">
+              @for (item of careerStoryCards(); track item.story.title) {
+                <article class="career-story-card">
+                  <div class="career-story-top">
+                    <img [src]="item.employee.image" [alt]="item.employee.name" width="82" height="82" loading="lazy" decoding="async" />
+                    <p>&ldquo;{{ item.story.text }}&rdquo;</p>
+                  </div>
+                  <h3>{{ item.employee.name }}</h3>
+                  <span>{{ item.story.topic }}</span>
+                  <i class="material-symbols-outlined" aria-hidden="true">format_quote</i>
+                </article>
               }
             </div>
-            <div id="career-care-panel" role="tabpanel" tabindex="0" [attr.aria-labelledby]="'career-care-tab-' + careerCareContent().id">
-              <p class="career-care-intro">{{ careerCareContent().intro }}</p>
-              <div class="career-care-grid">
-                @for (card of careerCareContent().cards; track card.title) {
-                  <article class="career-care-card">
-                    <span class="material-symbols-outlined" aria-hidden="true">{{ card.icon }}</span>
-                    <h3>{{ card.title }}</h3>
-                    <p>{{ card.body }}</p>
+          </section>
+        }
+
+        @if (slug() === 'careers-overview') {
+          <section class="career-next-step" aria-labelledby="career-next-step-title">
+            <div class="career-switch-banner">
+              <div class="career-switch-photo" aria-hidden="true">
+                <img src="/assets/images/career-hero-team.png" alt="" loading="lazy" decoding="async" />
+              </div>
+              <div class="career-switch-copy">
+                <h2 id="career-next-step-title">Switch Your Career</h2>
+                <p>Explore exciting opportunities at XcellHost and become part of a team building a safer, smarter digital world.</p>
+              </div>
+              <div class="career-switch-actions">
+                <div class="career-switch-features">
+                  <span><i class="material-symbols-outlined" aria-hidden="true">menu_book</i>Continuous<br />Learning</span>
+                  <span><i class="material-symbols-outlined" aria-hidden="true">groups</i>Work with<br />Experts</span>
+                  <span><i class="material-symbols-outlined" aria-hidden="true">code</i>Real-World<br />Projects</span>
+                </div>
+                <a routerLink="/company/apply-for-job">Explore Career Opportunities <span aria-hidden="true">→</span></a>
+              </div>
+            </div>
+
+            <div class="career-process-perks">
+              <div class="career-process">
+                <span class="career-block-label">Our hiring process</span>
+                <h2>Simple &amp; Transparent</h2>
+                <div class="career-process-list">
+                  <article>
+                    <i class="material-symbols-outlined" aria-hidden="true">description</i>
+                    <h3><b>1</b> Application Review</h3>
+                    <p>We review your application.</p>
                   </article>
-                }
+                  <article>
+                    <i class="material-symbols-outlined" aria-hidden="true">assignment_turned_in</i>
+                    <h3><b>2</b> Assessment</h3>
+                    <p>Technical and skill evaluation.</p>
+                  </article>
+                  <article>
+                    <i class="material-symbols-outlined" aria-hidden="true">person</i>
+                    <h3><b>3</b> Interview</h3>
+                    <p>Discussion with our team.</p>
+                  </article>
+                  <article>
+                    <i class="material-symbols-outlined" aria-hidden="true">redeem</i>
+                    <h3><b>4</b> Offer &amp; Onboarding</h3>
+                    <p>Welcome to XcellHost!</p>
+                  </article>
+                </div>
+              </div>
+
+              <div class="career-perks">
+                <span class="career-block-label">Perks &amp; benefits</span>
+                <h2>We Take Care of Our People</h2>
+                <div class="career-perks-grid">
+                  <span><i class="material-symbols-outlined" aria-hidden="true">payments</i>Competitive Salary</span>
+                  <span><i class="material-symbols-outlined" aria-hidden="true">menu_book</i>Learning &amp; Development</span>
+                  <span><i class="material-symbols-outlined" aria-hidden="true">workspaces</i>Flexible Environment</span>
+                  <span><i class="material-symbols-outlined" aria-hidden="true">workspace_premium</i>Recognition &amp; Rewards</span>
+                  <span><i class="material-symbols-outlined" aria-hidden="true">rocket_launch</i>Career Growth Opportunities</span>
+                  <span><i class="material-symbols-outlined" aria-hidden="true">celebration</i>Team Outings &amp; Events</span>
+                </div>
               </div>
             </div>
           </section>
@@ -852,54 +956,6 @@
               }
             </div>
             <p class="career-values-note">These values guide how we work, make decisions and support one another. They shape the everyday moments that bring us together at XcellHost.</p>
-          </section>
-        }
-
-        @if (slug() === 'careers-overview') {
-          <section class="career-stories" aria-labelledby="career-stories-title" aria-roledescription="carousel">
-            <header>
-              <h2 id="career-stories-title">#XcellHostChronicles: Stories from Our People</h2>
-              <p>Professional growth. Real talk about challenges and wins. This is what life at XcellHost looks like.</p>
-            </header>
-            <div class="career-story-shell">
-              <div class="career-story-card" id="career-story-panel" aria-live="polite" aria-atomic="true">
-                <div class="career-story-copy">
-                  <span class="career-story-sample">Sample story · {{ currentCareerStory().topic }}</span>
-                  <h3>{{ currentCareerStory().title }}</h3>
-                  <p>{{ currentCareerStory().text }}</p>
-                  <div class="career-story-name">{{ currentCareerStoryEmployee().name }}</div>
-                </div>
-                <div class="career-story-portrait">
-                  <img [src]="currentCareerStoryEmployee().image" [alt]="currentCareerStoryEmployee().name" width="420" height="400" loading="lazy" decoding="async" />
-                </div>
-              </div>
-              <button class="career-story-arrow career-story-prev" type="button" aria-label="Previous employee story" aria-controls="career-story-panel" (click)="moveCareerStory(-1)"><span aria-hidden="true">‹</span></button>
-              <button class="career-story-arrow career-story-next" type="button" aria-label="Next employee story" aria-controls="career-story-panel" (click)="moveCareerStory(1)"><span aria-hidden="true">›</span></button>
-            </div>
-            <div class="career-story-dots" role="group" aria-label="Choose an employee story">
-              @for (story of careerStories; track story.title; let index = $index) {
-                <button type="button" [attr.aria-label]="'Show story ' + (index + 1) + ': ' + story.title" [attr.aria-pressed]="activeCareerStory() === index" aria-controls="career-story-panel" (click)="activeCareerStory.set(index)"><span aria-hidden="true"></span></button>
-              }
-            </div>
-          </section>
-        }
-
-        @if (slug() === 'careers-overview') {
-          <section class="career-roles" aria-labelledby="career-roles-title">
-            <header>
-              <h2 id="career-roles-title">Find Your <span>Role</span></h2>
-              <p>Bring your skills and ideas to XcellHost. Explore our teams and tell us where you would like to contribute.</p>
-            </header>
-            <div class="career-roles-grid">
-              @for (team of teamTabs; track team.id) {
-                @if (team.id !== 'all') {
-                  <a class="career-role-card" routerLink="/company/apply-for-job" [queryParams]="{ department: team.label }" [attr.aria-label]="'Apply for a role in ' + team.label">
-                    <span class="material-symbols-outlined" aria-hidden="true">{{ teamDepartmentIcon(team.id) }}</span>
-                    <h3>{{ team.label }}</h3>
-                  </a>
-                }
-              }
-            </div>
           </section>
         }
 

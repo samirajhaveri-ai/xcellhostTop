@@ -57,19 +57,15 @@ export class CompanyPage {
   ] as const;
   readonly activeCareerSlide = signal(0);
   readonly careerStories = [
-    { title: 'Growing through new challenges', text: 'A career story can start with one new challenge: learning a platform, helping a customer or taking ownership of a project. Use this space to share an employee’s experience of building confidence, learning from colleagues and discovering the next step in their career.', name: 'Employee story', topic: 'Professional growth' },
-    { title: 'Finding strength in teamwork', text: 'The best team stories show how people work together. Use this space for an employee’s account of a shared challenge, the support they received and what they learned along the way. Add their own words to show what collaboration means in everyday work.', name: 'Employee story', topic: 'Teamwork' },
-    { title: 'Turning ideas into impact', text: 'Every improvement has a story behind it. Use this space for an employee to describe an idea they explored, the steps they took and the difference it made. Their perspective can help future colleagues understand the work and the people behind it.', name: 'Employee story', topic: 'Ideas and innovation' },
+    { title: 'Growing through new challenges', text: 'Every new challenge is a chance to learn, take ownership and build confidence with support from the team.', name: 'Employee story', topic: 'Professional growth' },
+    { title: 'Finding strength in teamwork', text: 'Strong teamwork helps us solve difficult problems, share knowledge and keep moving forward together.', name: 'Employee story', topic: 'Teamwork' },
+    { title: 'Turning ideas into impact', text: 'Ideas are welcomed here. We explore improvements, put them into practice and focus on meaningful customer impact.', name: 'Employee story', topic: 'Ideas and innovation' },
     { title: 'Learning something new', text: 'Learning happens through questions, practice and conversations with others. Use this space for an employee’s personal reflection on a skill they developed, a colleague who helped them and how that experience shaped their work.', name: 'Employee story', topic: 'Continuous learning' },
   ] as const;
-  readonly activeCareerStory = signal(0);
-  readonly currentCareerStory = computed(() => this.careerStories[this.activeCareerStory()]);
-  readonly currentCareerStoryEmployee = computed(() =>
-    [this.developers[0], this.developers[1], this.graphicDesignerTeam[1], this.technicalSupportTeam[0]][this.activeCareerStory()],
-  );
-  moveCareerStory(direction: number): void {
-    this.activeCareerStory.update(index => (index + direction + this.careerStories.length) % this.careerStories.length);
-  }
+  readonly careerStoryCards = computed(() => {
+    const employees = [this.developers[0], this.developers[1], this.graphicDesignerTeam[1]];
+    return this.careerStories.slice(0, 3).map((story, index) => ({ story, employee: employees[index] }));
+  });
   readonly careerCareTabs = [
     { id: 'learning', label: 'Learning & Development', intro: 'Build your skills, share your knowledge and explore the next step in your career.', cards: [
       { icon: 'explore', title: 'Leadership Development', body: 'Grow the communication, planning and people skills that help teams succeed.' },
