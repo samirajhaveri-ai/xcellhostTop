@@ -377,33 +377,26 @@
     </main>
   } @else if (slug() === 'our-team-our-story') {
   <main class="ppage as-page company-page team-page">
-    <section class="team-hero">
-      <div class="pph-map" aria-hidden="true" [innerHTML]="worldMap"></div>
-      <span class="pph-grid" aria-hidden="true"></span>
-      <span class="pph-aur pph-a1" aria-hidden="true"></span>
-      <span class="pph-aur pph-a2" aria-hidden="true"></span>
-      <span class="pph-aur pph-a3" aria-hidden="true"></span>
-      <span class="pph-scan" aria-hidden="true"></span>
-      <canvas class="pph-net" xhHeroNet aria-hidden="true"></canvas>
-      <div class="wrap team-hero-grid">
-        <div class="team-hero-copy">
-          <span class="team-hero-eyebrow">Home &gt; Company &gt; Our Team</span>
-          <h1>XcellHost <em>| Our Team &amp; Our Story</em></h1>
-          <p class="team-lead">Meet the people behind reliable cloud, security and support at XcellHost.</p>
-          <div class="team-highlight-strip" aria-label="Team strengths">
-            <div class="team-highlight-list">
-              <span>Leadership</span><span>Expertise</span><span>Innovation</span>
-              <span>Support</span><span>Security</span><span>Collaboration</span>
-            </div>
+    <section class="people-banner" aria-labelledby="people-banner-title">
+      <img class="people-banner-photo" src="/assets/images/career-hero-team.png" alt="Colleagues collaborating around a laptop" fetchpriority="high" />
+      <div class="people-banner-shade" aria-hidden="true"></div>
+      <div class="wrap people-banner-inner">
+        <div class="people-banner-copy">
+          <div class="people-banner-eyebrow">People behind the technology <span></span></div>
+          <h1 id="people-banner-title">Meet the Team<br>Behind <em>XcellHost</em></h1>
+          <p>Passionate people. Deep expertise. One team committed to helping businesses stay secure, connected and ready for what&rsquo;s next.</p>
+          <div class="people-banner-strengths" aria-label="Team strengths">
+            <span><i class="material-symbols-outlined" aria-hidden="true">groups</i>Leadership</span>
+            <span><i class="material-symbols-outlined" aria-hidden="true">lightbulb</i>Expertise</span>
+            <span><i class="material-symbols-outlined" aria-hidden="true">bar_chart</i>Innovation</span>
+            <span><i class="material-symbols-outlined" aria-hidden="true">handshake</i>Collaboration</span>
           </div>
-          <div class="team-actions">
-            <a class="btn btn-primary" routerLink="/contact">Let's Talk</a>
-            <a class="team-secondary-link" routerLink="/contact">Tell us about your project</a>
+          <div class="people-banner-actions">
+            <a class="btn btn-primary" href="#team-directory">Meet Our People <span aria-hidden="true">&rarr;</span></a>
+            <a class="people-banner-story" href="#team-story">Discover Our Story</a>
           </div>
         </div>
-        <aside class="team-hero-panel">
-          <img class="team-hero-secondary-image" src="/assets/images/team-hero-animation.svg" alt="XcellHost team and cloud technology illustration" />
-        </aside>
+        <div class="people-banner-purpose">Different<br>People<br>Shared Purpose<span></span></div>
       </div>
     </section>
     <div class="team-trust-strip" aria-label="XcellHost trust points">
@@ -416,7 +409,7 @@
       </div>
     </div>
 
-    <section class="team-founder-hero">
+    <section class="team-founder-hero" id="team-story">
       <div class="team-founder-orb team-founder-orb-one" aria-hidden="true"></div>
       <div class="team-founder-orb team-founder-orb-two" aria-hidden="true"></div>
       <div class="wrap team-founder-hero-grid">
@@ -480,7 +473,7 @@
       </div>
     </section>
 
-    <section class="team-directory" aria-labelledby="team-directory-title">
+    <section class="team-directory" id="team-directory" aria-labelledby="team-directory-title">
       <div class="wrap">
         <header class="team-section-heading">
           <span class="team-section-label">The people behind XcellHost</span>
@@ -580,7 +573,7 @@
 
     <section class="team-contact-band">
       <div class="wrap team-contact-grid">
-        <div class="team-contact-copy">
+        <div class="team-contact-copy team-support-stripe">
           <span class="team-section-label">Don't hesitate to contact us</span>
           <h2>Grow your business with a team that stays with you.</h2>
           <p>
@@ -588,6 +581,9 @@
             you to the right person.
           </p>
           <a class="btn btn-primary" routerLink="/contact">Contact Us</a>
+          <a class="pp-cta-buddha-link" routerLink="/company/support-overview" aria-label="Visit XcellHost customer support">
+            <img class="pp-cta-buddha" src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost Laughing Buddha" loading="lazy" />
+          </a>
         </div>
 
         <div class="team-contact-cards">

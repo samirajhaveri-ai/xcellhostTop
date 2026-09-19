@@ -147,29 +147,25 @@ export class CompanyPage {
   ] as const;
 
   readonly salesTeam = [
-    { initials: 'SJ', name: 'Sanjay Jade', role: 'Accounts Payable Manager', image: '/assets/images/team-sanjay-jade.png' },
-    { initials: 'RS', name: 'Rizwan Shaikh', role: 'Cloud Pre-Sales Manager', image: '/assets/images/team-rizwan-shaikh.png' },
+    { initials: 'AG', name: 'Ajay Gupta', role: '', image: '' },
     { initials: 'AP', name: 'Abhishek Pandey', role: 'Cloud Sales Manager', image: '/assets/images/team-abhishek-pandey.png' },
   ] as const;
   
   readonly marketing = [
-    { initials: 'SJ', name: 'Sanjay Jade', role: 'Accounts Payable Manager', image: '/assets/images/team-sanjay-jade.png' },
-    { initials: 'RS', name: 'Rizwan Shaikh', role: 'Cloud Pre-Sales Manager', image: '/assets/images/team-rizwan-shaikh.png' },
-    { initials: 'AP', name: 'Abhishek Pandey', role: 'Cloud Sales Manager', image: '/assets/images/team-abhishek-pandey.png' },
+    { initials: 'AN', name: 'Aryan Nair', role: '', image: '/assets/images/team-aryan-nair.png' },
+    { initials: 'RS', name: 'Ravi Sharma', role: '', image: '/assets/images/team-ravi-sharma.png' },
   ] as const;
 
   readonly AITeams = [
     { initials: 'AT', name: 'Advet Thambe', role: '', image: '/assets/images/team-advet-thambe.jpeg' },
-    { initials: 'AN', name: 'Aryan Nair', role: '', image: '/assets/images/team-aryan-nair.png' },
     { initials: 'VC', name: 'Vishal Chaubey', role: '', image: '/assets/images/team-vishal-chaubey.png' },
-    { initials: 'RS', name: 'Ravi Sharma', role: '', image: '/assets/images/team-ravi-sharma.png' },
   ] as const;
 
   readonly developers: readonly { initials: string; name: string; role: string; image: string }[] = [
     { initials: 'VG', name: 'Vaishnavi Ghaghare', role: '', image: '/assets/images/team-vaishnavi-ghaghare.png' },
     { initials: 'DV', name: 'Divya Varma', role: '', image: '/assets/images/team-divya-varma.jpeg' },
     { initials: 'SV', name: 'Sujeet Vishwakarma', role: '', image: '/assets/images/team-sujeet-vishwakarma.jpeg' },
-    { initials: 'D4', name: 'Developer 4', role: '', image: '' },
+    { initials: 'VT', name: 'Vibha Tiwari', role: '', image: '/assets/images/team-vibha-tiwari.png' },
   ];
 
   readonly accountantTeam = [
@@ -178,32 +174,38 @@ export class CompanyPage {
   ] as const;
 
   readonly graphicDesignerTeam = [
+    { initials: 'SP', name: 'Shantaram Palkar', role: '', image: '/assets/images/team-shantaram-palkar.png' },
     { initials: 'SV', name: 'Shakshita Vangade', role: '', image: '/assets/images/team-shakshita-vangade.jpeg' },
     { initials: 'NS', name: 'Nishant Shinde', role: '', image: '/assets/images/team-nishant-shinde.png' },
-    { initials: 'SP', name: 'Shantaram Palkar', role: '', image: '/assets/images/team-shantaram-palkar.png' },
   ] as const;
 
   readonly adminTeam = [
     { initials: 'MS', name: 'Mayuri Shinde', role: '', image: '/assets/images/team-mayuri-shinde.png' },
+    { initials: 'T', name: 'Tejas', role: '', image: '' },
   ] as const;
 
   readonly technicalSupportTeam = [
     { initials: 'PA', name: 'Purva Angre', role: '', image: '/assets/images/team-purva-angre.png' },
+    { initials: 'SY', name: 'Saurav Yadav', role: '', image: '' },
+    { initials: 'RS', name: 'Rizwan Shaikh', role: '', image: '/assets/images/team-rizwan-shaikh.png' },
+    { initials: 'TM', name: 'Talha Mohammad', role: '', image: '' },
+    { initials: 'AY', name: 'Amit Yadav', role: '', image: '' },
+
     { initials: 'SB', name: 'Santosh Behra', role: 'Technical Support Executive - L2', image: '' },
   ] as const;
 
   readonly teamTabs = [
     { id: 'all', label: 'All Team' },
     { id: 'management', label: 'Management' },
+    { id: 'technical-support', label: 'Technical Support' },
     { id: 'advisory', label: 'Advisory' },
     { id: 'sales', label: 'Sales' },
     { id: 'marketing', label: 'Marketing' },
     { id: 'AITeams', label: 'AI' },
     { id: 'developers', label: 'Developers' },
-    { id: 'accountant', label: 'Accountant' },
+    { id: 'accountant', label: 'Accounts' },
     { id: 'graphic-designer', label: 'Graphic Designer' },
     { id: 'admin', label: 'Admin' },
-    { id: 'technical-support', label: 'Technical Support' },
   ] as const;
   readonly activeTeamTab = signal<string>('all');
   teamDepartmentLabel(department: string): string {
@@ -220,6 +222,7 @@ export class CompanyPage {
   }
   readonly teamMembers = [
     ...this.managementTeam.map(member => ({ ...member, department: 'management' })),
+    ...this.technicalSupportTeam.map(member => ({ ...member, department: 'technical-support' })),
     ...this.advisoryTeam.map(member => ({ ...member, department: 'advisory' })),
     ...this.salesTeam.map(member => ({ ...member, department: 'sales' })),
     ...this.marketing.map(member => ({ ...member, department: 'marketing' })),
@@ -228,7 +231,6 @@ export class CompanyPage {
     ...this.accountantTeam.map(member => ({ ...member, department: 'accountant' })),
     ...this.graphicDesignerTeam.map(member => ({ ...member, department: 'graphic-designer' })),
     ...this.adminTeam.map(member => ({ ...member, department: 'admin' })),
-    ...this.technicalSupportTeam.map(member => ({ ...member, department: 'technical-support' })),
     
   ];
   readonly visibleTeamMembers = computed(() => this.teamMembers.filter(member =>
