@@ -48,7 +48,6 @@ export class ResourceLibraryPage {
     { title: 'Cloud CCTV Platform', description: 'A cloud video-management system compatible with all camera brands.', badge: 'Ask for a free demo', price: 'Call Sales' },
     { title: 'Performance Cloud', description: 'High-performance cloud infrastructure at up to 50% less than AWS or Azure.', badge: 'Most popular', price: '₹499', unit: 'per server/month' },
     { title: 'Bare Metal Cloud', description: 'Super-fast, dedicated high-performance servers with straightforward pricing.', badge: 'Call for best pricing', price: '₹9,999', unit: 'per server/month' },
-    { title: 'GPU Cloud', description: 'Access the power of NVIDIA GPUs for AI and machine-learning workloads.', badge: 'Ask for a free demo', price: '₹14,999', unit: 'per server/month' },
     { title: 'Managed Colocation', description: '24×7 managed security, backup and DBA services in a Tier IV data centre with a 99.99% uptime SLA.', badge: 'Ask for a free trial', price: 'Call Sales', unit: 'per server/month' },
     { title: 'Cloud Object Storage', description: 'Cut cloud storage costs by up to 50% with free egress and unlimited bandwidth.', badge: 'Ask for a free quote', details: ['IP camera backup', 'NAS backup'], price: '₹1.25', unit: 'per GB/month' },
   ];

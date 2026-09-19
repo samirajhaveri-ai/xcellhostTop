@@ -214,11 +214,6 @@ export const CLOUD_GLOSSARY_TERMS: CloudGlossaryTerm[] = [
   },
   {
     "category": "infra",
-    "term": "GPU Cloud",
-    "definition": "On-demand access to cloud GPUs for AI/ML training, inference and high-performance computing."
-  },
-  {
-    "category": "infra",
     "term": "High Availability (HA)",
     "definition": "Designing systems to minimise downtime through redundancy so services stay accessible near-continuously."
   },

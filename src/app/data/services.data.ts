@@ -232,54 +232,6 @@ export const SERVICES_RICH: Record<string, ServiceRich> = {
       ]
     ]
   },
-  "gpu cloud": {
-    "price": "₹14,999/mo",
-    "ov": "Train models, render scenes and crunch scientific workloads without buying hardware that is obsolete in two years. NVIDIA GPUs in Indian datacenters, provisioned in minutes, billed predictably in INR — close to your data, with no cross-border latency or transfer costs.",
-    "f": [
-      [
-        "NVIDIA GPUs",
-        "Configurations for training, inference and rendering"
-      ],
-      [
-        "ML stacks ready",
-        "CUDA, PyTorch and TensorFlow images pre-configured"
-      ],
-      [
-        "NVMe scratch storage",
-        "Built for dataset-heavy jobs"
-      ],
-      [
-        "India-resident data",
-        "Important for regulated AI workloads (BFSI, healthcare)"
-      ],
-      [
-        "Hourly + monthly billing",
-        "Scale up or down as needed"
-      ],
-      [
-        "Access in minutes",
-        "Jupyter or SSH, ready immediately"
-      ]
-    ],
-    "q": [
-      [
-        "Which GPUs are available?",
-        "Inventory is updated regularly — confirm current configurations with our sales team."
-      ],
-      [
-        "Does my dataset stay in India?",
-        "Yes — both compute and storage reside in Indian datacenters."
-      ],
-      [
-        "Is short-term usage possible?",
-        "Yes, hourly billing is available."
-      ],
-      [
-        "Do you support multi-GPU training?",
-        "Multi-GPU nodes with private networking are available for distributed training."
-      ]
-    ]
-  },
   "performance cloud": {
     "price": "₹999/mo",
     "ov": "Shared hosting is cheap until it costs you customers. Performance Cloud gives your applications dedicated vCPU, RAM and NVMe storage — consistent speed under load, without bare-metal prices. Perfect for business sites, e-commerce, SaaS and staging.",

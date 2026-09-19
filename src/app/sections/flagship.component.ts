@@ -69,7 +69,6 @@ const FLAGSHIP_CARD_GROUPS: Readonly<Record<string, readonly FlagshipGroup[]>> =
   'WhatsApp SMB': ['business'],
   'Performance Cloud': ['infrastructure'],
   'Bare Metal Server': ['infrastructure'],
-  'GPU Cloud': ['infrastructure', 'ai'],
   'Global Cloud': ['infrastructure'],
   'Cloud Object Storage': ['protection'],
   'Cloud Disaster Recovery': ['protection'],
@@ -101,7 +100,6 @@ const SMB_CLOUD_ORDER = [
 const CLOUD_INFRA_ORDER = [
   'Bare Metal Server',
   'Performance Cloud',
-  'GPU Cloud',
   'Global Cloud',
 ] as const;
 
@@ -202,11 +200,6 @@ const FLAGSHIP_CARDS: readonly FlagshipCard[] = [
     blurb: 'Single-tenant dedicated hardware in Indian Tier-4 datacenters.',
     lead: 'from ', amount: '₹6,999', tail: '/server/mo', cta: 'View plans →', category: 'Cloud',
     service: 'Bare Metal Server',
-  },
-  {
-    icon: 'chip', badge: 'AI / ML', title: 'GPU Cloud',
-    blurb: 'NVIDIA GPU servers for ML, rendering and scientific computing.',
-    lead: 'from ', amount: '₹14,999', tail: '/server/mo', cta: 'View plans →', category: 'Cloud',
   },
   {
     icon: 'globe', badge: 'Multi-region', title: 'Global Cloud',

@@ -139,48 +139,6 @@ export const USE_OVERRIDE: Record<string, IconItem[]> = {
       "Add users, roles and policies as the business expands"
     ]
   ],
-  "GPU Cloud": [
-    [
-      "🧠",
-      "Model training runs",
-      "Spin up multi-GPU capacity for a training cycle, release it after"
-    ],
-    [
-      "🎬",
-      "Render pipelines",
-      "Studio-grade rendering without buying a render farm"
-    ],
-    [
-      "🔬",
-      "Scientific simulation",
-      "Compute-heavy research workloads without a university cluster"
-    ],
-    [
-      "📊",
-      "Inference at scale",
-      "Serve a trained model to production traffic with predictable latency"
-    ],
-    [
-      "🧪",
-      "Experiment bursts",
-      "Run twenty variants overnight instead of two over a fortnight"
-    ],
-    [
-      "🎓",
-      "Teaching and lab work",
-      "Give a cohort GPU access for a term without lab hardware"
-    ],
-    [
-      "💰",
-      "Avoiding capex approval",
-      "Rent the accelerator instead of raising a purchase case"
-    ],
-    [
-      "🔄",
-      "Hardware generation jumps",
-      "Move to newer GPUs without writing off owned equipment"
-    ]
-  ],
   "Microsoft 365": [
     [
       "📧",

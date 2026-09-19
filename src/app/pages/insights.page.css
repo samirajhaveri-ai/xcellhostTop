@@ -154,8 +154,19 @@
   background: #edf5ff;
 }
 
-.insights-topic-main.active i {
-  color: #fff;
+.insights-topic-branch .insights-topic-main.active,
+.insights-topic-branch .insights-topic-main.active:hover {
+  color: #1565d8;
+  background: #edf5ff;
+}
+
+.insights-topic-branch .insights-topic-main.active b {
+  background: #dcecff;
+  color: #1565d8;
+}
+
+.insights-topic-branch .insights-topic-main.active i {
+  color: #1565d8;
 }
 
 .insights-subtopics {
@@ -235,7 +246,7 @@
 .insights-subtopics button:hover,
 .insights-subtopics button.active {
   background: #fff;
-  color: #0c58bd;
+  color: #1565d8;
   box-shadow: 0 5px 16px rgba(12, 71, 145, 0.08);
 }
 
@@ -244,8 +255,13 @@
 }
 
 .insights-subtopics b {
-  color: #1670db;
+  color: #1565d8;
   font: 700 9px/1 var(--mono);
+}
+
+.insights-subtopics button:hover i,
+.insights-subtopics button.active i {
+  color: #1565d8;
 }
 
 @keyframes insight-category-open {

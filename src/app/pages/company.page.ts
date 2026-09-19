@@ -190,6 +190,8 @@ export class CompanyPage {
     { initials: 'RS', name: 'Rizwan Shaikh', role: '', image: '/assets/images/team-rizwan-shaikh.png' },
     { initials: 'TM', name: 'Talha Mohammad', role: '', image: '' },
     { initials: 'AY', name: 'Amit Yadav', role: '', image: '' },
+
+    { initials: 'SB', name: 'Santosh Behra', role: 'Technical Support Executive - L2', image: '' },
   ] as const;
 
   readonly teamTabs = [
