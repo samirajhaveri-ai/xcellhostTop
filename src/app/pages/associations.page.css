@@ -186,6 +186,10 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.associations-grid-industry {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .association-card {
   display: grid;
   min-width: 0;
@@ -242,7 +246,8 @@
   .associations-content { padding: 48px 0 60px; }
   .associations-panel { min-height: 0; padding: 20px; border-radius: 17px; }
   .associations-grid,
-  .associations-grid-country { grid-template-columns: 1fr; }
+  .associations-grid-country,
+  .associations-grid-industry { grid-template-columns: 1fr; }
   .association-card { min-height: 176px; grid-template-rows: 116px auto; }
   .association-card img { height: 92px; }
 }

@@ -160,18 +160,31 @@
     </nav>
 
     <div class="xh-actions">
-      <button class="xh-search" aria-label="Search services" (click)="openSearch()">
+      <div class="xh-search-action">
+      <button class="xh-search" type="button" aria-label="Search services" (click)="openSearch()">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
       </button>
+      <span class="xh-support-tooltip" aria-hidden="true">Search</span>
+      </div>
+      <div class="xh-support-action">
+        <a class="xh-support-icon" routerLink="/support-overview" aria-label="Support">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="3" y="12" width="4" height="7" rx="2"/><rect x="17" y="12" width="4" height="7" rx="2"/><path d="M19 19a3 3 0 0 1-3 3h-3"/></svg>
+        </a>
+        <span class="xh-support-tooltip" aria-hidden="true">Support</span>
+      </div>
       <div class="xh-login-menu" [class.open]="loginMenuOpen()">
         <button
           class="xh-login"
+          aria-label="Login"
           type="button"
           aria-haspopup="menu"
           aria-controls="xh-customer-login-menu"
           [attr.aria-expanded]="loginMenuOpen()"
           (click)="toggleLoginMenu($event)"
-        >Login <span aria-hidden="true"></span></button>
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3v9M6.3 5.7a8 8 0 1 0 11.4 0" /></svg>
+        </button>
+        <span class="xh-login-tooltip" aria-hidden="true">Login</span>
         <div id="xh-customer-login-menu" class="xh-login-dropdown" role="menu" aria-label="Customer login">
           <button class="selected" type="button" role="menuitem" (click)="openLogin()">
             <span>Customer Login</span><b class="xh-login-check" aria-hidden="true">✓</b>

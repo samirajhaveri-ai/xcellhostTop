@@ -418,6 +418,10 @@
           <div class="pph-scene pph-entra-id" aria-hidden="true">
             <xh-entra-id-hero />
           </div>
+        } @else if (isEntraIdBackup()) {
+          <div class="pph-scene pph-entra-id-backup" aria-hidden="true">
+            <xh-entra-id-backup-hero />
+          </div>
         } @else if (isDigiCert()) {
           <div class="pph-scene has-illus standalone-illus pph-digicert" aria-hidden="true">
             <div class="pph-illus">
@@ -508,7 +512,7 @@
             <xh-email-signature-hero />
           </div>
         } @else if (slug() === 'bare-metal-servers') {
-          <div class="pph-scene" aria-hidden="true">
+          <div class="pph-scene pph-bare-metal" aria-hidden="true">
             <xh-bare-metal-content [heroOnly]="true" />
           </div>
         } @else if (slug() === 'acronis-genai-protection') {
@@ -676,6 +680,18 @@
               <p class="pp-tagline genai-hero-summary" id="ppTag">
                 Generative AI is spreading fast — often through unsanctioned, consumer-grade tools
                 that open new attack surfaces, compliance exposure and data-leak risk.
+              </p>
+            } @else if (isEntraIdBackup()) {
+              <p class="pp-tagline entra-backup-hero-summary" id="ppTag">
+                Microsoft keeps Entra ID running &mdash; but under the Shared Responsibility Model,
+                protecting what&rsquo;s inside your directory is your job, and native recovery only
+                holds deleted objects for 30 days.
+              </p>
+            } @else if (slug() === 'bare-metal-servers') {
+              <p class="pp-tagline bare-metal-hero-summary" id="ppTag">
+                Get the raw power of a dedicated bare-metal machine &mdash; enterprise Intel Xeon CPUs,
+                DDR4 ECC RAM, blazing NVMe/SSD storage and high bandwidth &mdash; with full root access,
+                free DDoS protection and a 99.99% uptime SLA.
               </p>
             } @else {
               <h2
@@ -1086,6 +1102,9 @@
             @if (isMicrosoftEntraId()) {
               <xh-entra-id-content />
             }
+            @if (isEntraIdBackup()) {
+              <xh-entra-id-backup-content />
+            }
             @if (isDigiCert()) {
               <xh-digicert-content />
             }
@@ -1136,7 +1155,7 @@
                     <xh-vortex-seg-content />
                   } @else if (slug() === 'vortex-soc') {
                     <xh-vortex-soc-content />
-                  } @else if (!isManagedMicrosoft365()) {
+                  } @else if (!isManagedMicrosoft365() && !isEntraIdBackup()) {
                     <div class="pp-sec">Overview</div>
                     <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
                   }
@@ -1843,6 +1862,7 @@
                   !isAcronisTrueImage() &&
                   !isSiteLock() &&
                   !isManagedMicrosoft365() &&
+                  !isEntraIdBackup() &&
                   slug() !== 'scrutiny-dlp' &&
                   slug() !== 'vortex-seg' &&
                   slug() !== 'vortex-soc'
@@ -1903,6 +1923,7 @@
                   !isAcronisTrueImage() &&
                   !isSiteLock() &&
                   !isManagedMicrosoft365() &&
+                  !isEntraIdBackup() &&
                   slug() !== 'scrutiny-dlp' &&
                   slug() !== 'vortex-seg' &&
                   slug() !== 'vortex-soc'
@@ -2512,6 +2533,7 @@
                   !isAcronisTrueImage() &&
                   !isSiteLock() &&
                   !isManagedMicrosoft365() &&
+                  !isEntraIdBackup() &&
                   slug() !== 'scrutiny-dlp' &&
                   slug() !== 'vortex-seg' &&
                   slug() !== 'vortex-soc'

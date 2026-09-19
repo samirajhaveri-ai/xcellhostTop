@@ -1,11 +1,9 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter, map } from 'rxjs';
 
 import { CatalogService } from '../core/catalog.service';
-import { OverlayService } from '../core/overlay.service';
-import { CallbackTopicService } from '../overlays/callback-topic.service';
 
 const SPECIAL_PRODUCT_ROUTES: Readonly<Record<string, string>> = {
   'microsoft-365-smb': 'Microsoft 365 for SMB',
@@ -48,6 +46,7 @@ const PRODUCT_ACRONYMS: Readonly<Record<string, string>> = {
  */
 @Component({
   selector: 'xh-promo-bar',
+  imports: [RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { style: 'display: contents' },
   template: `
@@ -56,7 +55,7 @@ const PRODUCT_ACRONYMS: Readonly<Record<string, string>> = {
       <b>{{ productName() }} — free consultation + tailored solution review</b>
       <span class="code">FREE CONSULT</span>
       <span aria-hidden="true">·</span>
-      <a href="#" (click)="claimOffer($event)">Claim offer →</a>
+      <a routerLink="/promotion-and-offers">Claim offer →</a>
     </div>
   `,
   styles: [`
@@ -94,8 +93,6 @@ const PRODUCT_ACRONYMS: Readonly<Record<string, string>> = {
 export class PromoBarComponent {
   private readonly router = inject(Router);
   private readonly catalog = inject(CatalogService);
-  private readonly overlay = inject(OverlayService);
-  private readonly topics = inject(CallbackTopicService);
 
   private readonly currentUrl = toSignal(
     this.router.events.pipe(
@@ -125,9 +122,5 @@ export class PromoBarComponent {
     return 'XcellHost Cloud & Security';
   });
 
-  claimOffer(event: Event): void {
-    event.preventDefault();
-    this.topics.ask(`${this.productName()} offer`);
-    this.overlay.open('callback');
-  }
+
 }

@@ -1,4 +1,3 @@
-import { CurrencyPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
 type CertificateGroupId = 'pro' | 'biz' | 'basic' | 'other';
@@ -22,12 +21,12 @@ interface Certificate {
 @Component({
   selector: 'xh-digicert-content',
   standalone: true,
-  imports: [CurrencyPipe],
   templateUrl: './digicert-content.component.html',
   styleUrl: './digicert-content.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DigicertContentComponent {
+  private readonly usdToInrRate = 95.65;
   readonly activeGroup = signal<'all' | CertificateGroupId>('all');
 
   readonly groups: readonly CertificateGroup[] = [
@@ -79,5 +78,13 @@ export class DigicertContentComponent {
 
   showGroup(group: CertificateGroupId): boolean {
     return this.activeGroup() === 'all' || this.activeGroup() === group;
+  }
+
+  formatInr(usdAmount: number): string {
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      maximumFractionDigits: 0,
+    }).format(Math.round(usdAmount * this.usdToInrRate));
   }
 }
