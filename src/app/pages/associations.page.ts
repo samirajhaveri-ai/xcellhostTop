@@ -7,7 +7,7 @@ interface Association {
   image: string;
 }
 
-type AssociationTab = 'country' | 'trade';
+type AssociationTab = 'it-trade' | 'country' | 'industry';
 
 @Component({
   selector: 'xh-associations-page',
@@ -20,32 +20,41 @@ type AssociationTab = 'country' | 'trade';
 export class AssociationsPage {
   private readonly seo = inject(SeoService);
 
-  readonly activeTab = signal<AssociationTab>('country');
+  readonly activeTab = signal<AssociationTab>('it-trade');
   readonly tabs: readonly { id: AssociationTab; label: string }[] = [
-    { id: 'country', label: 'Country Associated' },
-    { id: 'trade', label: 'Trade Associate' },
+    { id: 'it-trade', label: 'IT Trade' },
+    { id: 'industry', label: 'Industry Association' },
+    { id: 'country', label: 'Country Association' },
+    
   ];
 
   readonly countryAssociations: readonly Association[] = [
-    { name: 'Indo-African Chamber of Commerce & Industry', image: '/assets/images/associations/country/indo-african-chamber.jpg' },
-    { name: 'Indo-American Chamber of Commerce', image: '/assets/images/associations/country/indo-american-chamber.png' },
-    { name: 'Indo-French Chamber of Commerce', image: '/assets/images/associations/country/indo-french-chamber.jpg' },
     { name: 'Indo-German Chamber of Commerce', image: '/assets/images/associations/country/indo-german-chamber.png' },
+    { name: 'Indo-French Chamber of Commerce', image: '/assets/images/associations/country/indo-french-chamber.jpg' },
+    { name: 'Indo-American Chamber of Commerce', image: '/assets/images/associations/country/indo-american-chamber.png' },
+    { name: 'Indo-African Chamber of Commerce & Industry', image: '/assets/images/associations/country/indo-african-chamber.jpg' },
   ];
 
-  readonly tradeAssociations: readonly Association[] = [
-    { name: 'COMPASS', image: '/assets/images/associations/trade/compass.jpg' },
-    { name: 'GESIA', image: '/assets/images/associations/trade/gesia.png' },
-    { name: 'PCAIT', image: '/assets/images/associations/trade/pcait.png' },
-    { name: 'ISODA', image: '/assets/images/associations/trade/isoda.png' },
-    { name: 'TAIT', image: '/assets/images/associations/trade/tait.png' },
+  readonly itTradeAssociations: readonly Association[] = [
     { name: 'ASIRT', image: '/assets/images/associations/trade/asirt.jpg' },
+    { name: 'TAIT', image: '/assets/images/associations/trade/tait.png' },
+    { name: 'ISODA', image: '/assets/images/associations/trade/isoda.png' },
+    { name: 'PCAIT', image: '/assets/images/associations/trade/pcait.png' },
+    { name: 'GESIA', image: '/assets/images/associations/trade/gesia.png' },
+    { name: 'COMPASS', image: '/assets/images/associations/trade/compass.jpg' },
+  ];
+
+  readonly industryAssociations: readonly Association[] = [
+    {
+      name: 'Institute of Cost Accountants of India',
+      image: '/assets/images/company-recognition/institute-cost-accountants-india.png',
+    },
   ];
 
   constructor() {
     this.seo.set(
       'Associations | XcellHost',
-      'Explore the country chambers and trade associations connected with XcellHost.',
+      'Explore the IT trade, country and industry associations connected with XcellHost.',
       '/associations/',
     );
   }

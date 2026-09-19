@@ -201,6 +201,14 @@ export class BlogPage {
     return `${Math.max(3, Math.round(words / 180) || 3)} min read`;
   }
 
+  titleCase(value: string): string {
+    return value
+      .toLowerCase()
+      .replace(/(^|[\s(/&-])([a-z])/g, (_, separator: string, letter: string) =>
+        `${separator}${letter.toUpperCase()}`
+      );
+  }
+
   headingAnchor(index: number): string {
     return `#${this.headingBlockId(index)}`;
   }

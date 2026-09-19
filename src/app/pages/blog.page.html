@@ -197,14 +197,14 @@
         @if (relatedBlogs().length) {
           <section class="article-related" aria-labelledby="related-content-heading">
             <div class="article-related-head">
-              <h2 id="related-content-heading">Related {{ contentPlural }}</h2>
+              <h2 id="related-content-heading">Related {{ titleCase(contentPlural) }}</h2>
               <a class="bp-bar-link" routerLink="/insights">Explore all insights</a>
             </div>
             <div class="article-related-grid">
               @for (item of relatedBlogs(); track item.documentId) {
                 <a class="article-related-card" [routerLink]="[detailBase, item.slug]">
-                  <span>{{ item.category }}</span>
-                  <h3>{{ item.title }}</h3>
+                  <span>{{ titleCase(item.category) }}</span>
+                  <h3>{{ titleCase(item.title) }}</h3>
                   <small>{{ readTime(item) }}</small>
                 </a>
               }

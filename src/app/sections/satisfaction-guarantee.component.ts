@@ -13,7 +13,7 @@ const PROMISES: readonly SatisfactionPromise[] = [
   {
     icon: 'currency_rupee',
     kicker: '15 days',
-    title: 'Money-back guarantee',
+    title: 'Money-back Gurantee on Selected Products',
     body: 'A straightforward start, backed by clear terms.',
   },
   {
