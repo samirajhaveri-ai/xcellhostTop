@@ -57,6 +57,8 @@ import { CloudObjectStorageContentComponent } from '../sections/cloud-object-sto
 import { ZohoWorkspaceContentComponent } from '../sections/zoho-workspace-content.component';
 import { EntraIdContentComponent } from '../sections/entra-id-content.component';
 import { EntraIdHeroComponent } from '../sections/entra-id-hero.component';
+import { EntraIdBackupContentComponent } from '../sections/entra-id-backup-content.component';
+import { EntraIdBackupHeroComponent } from '../sections/entra-id-backup-hero.component';
 import { DigicertContentComponent } from '../sections/digicert-content.component';
 import { AutonomousThreatManagementContentComponent } from '../sections/autonomous-threat-management-content.component';
 import { AutonomousThreatManagementHeroComponent } from '../sections/autonomous-threat-management-hero.component';
@@ -176,6 +178,8 @@ interface ProductTourSlide {
     ZohoWorkspaceContentComponent,
     EntraIdContentComponent,
     EntraIdHeroComponent,
+    EntraIdBackupContentComponent,
+    EntraIdBackupHeroComponent,
     DigicertContentComponent,
 
     AutonomousThreatManagementContentComponent,
@@ -261,6 +265,24 @@ interface ProductTourSlide {
       align-items: center; justify-content: center; opacity: 1; overflow: visible;
       mask-image: none;
     }
+    #ppage .pph-scene.pph-entra-id-backup {
+      top: 1%; right: 1%; bottom: auto; width: 48%; height: 96%; display: flex;
+      align-items: center; justify-content: center; opacity: 1; overflow: visible;
+      mask-image: none;
+    }
+    #ppage .pph-scene.pph-entra-id-backup xh-entra-id-backup-hero { width: 100%; }
+    #ppage .entra-backup-hero-summary { max-width: 54ch; }
+    #ppage .pph-scene.pph-bare-metal {
+      top: 1%; right: 1%; bottom: auto; width: 48%; height: 96%; display: flex;
+      align-items: center; justify-content: center; opacity: 1; overflow: visible;
+      mask-image: none;
+    }
+    #ppage .pph-scene.pph-bare-metal xh-bare-metal-content { width: 100%; }
+    #ppage .pp-hero > .wrap > .bare-metal-hero-summary {
+      position: relative; z-index: 3; box-sizing: border-box;
+      width: min(46%, 560px); max-width: 52ch !important;
+      line-height: 1.58; overflow-wrap: break-word; text-wrap: pretty;
+    }
     #ppage .pph-scene.genai-protection-hero-art {
       top: 4%; right: 1.5%; bottom: auto; width: min(47%, 640px); height: 92%;
       overflow: visible; opacity: 1; border: 0; border-radius: 0; background: transparent;
@@ -299,6 +321,17 @@ interface ProductTourSlide {
       #ppage .pph-scene.pph-autonomous-threat-solution {
         position: absolute; top: 0; right: 0; width: 100%; height: 100%;
         opacity: .16; overflow: hidden;
+      }
+      #ppage .pph-scene.pph-entra-id-backup {
+        position: absolute; top: 0; right: 0; width: 100%; height: 100%;
+        opacity: .16; overflow: hidden;
+      }
+      #ppage .pph-scene.pph-bare-metal {
+        position: absolute; top: 0; right: 0; width: 100%; height: 100%;
+        opacity: .16; overflow: hidden;
+      }
+      #ppage .pp-hero > .wrap > .bare-metal-hero-summary {
+        width: 100%; max-width: 58ch !important;
       }
       #ppage .pph-scene.genai-protection-hero-art {
         top: auto; right: 2%; bottom: 2%; width: 48%; height: 58%; opacity: .24;
@@ -1025,6 +1058,8 @@ export class ProductPage {
 
   readonly isMicrosoftEntraId = computed(() => this.view()?.name === 'Microsoft Entra ID');
 
+  readonly isEntraIdBackup = computed(() => this.view()?.name === 'Entra ID Backup');
+
   readonly isDigiCert = computed(() => this.view()?.name === 'DigiCert');
 
   readonly isAutonomousThreatManagement = computed(
@@ -1215,7 +1250,7 @@ export class ProductPage {
 
   constructor() {
     effect(() => {
-      this.selectedTallyTerm.set(this.isTally() || this.isSmbCloudDesktop() ? '1y' : 'monthly');
+      this.selectedTallyTerm.set(this.isSmbCloudDesktop() ? '1y' : 'monthly');
     });
 
     effect(() => {

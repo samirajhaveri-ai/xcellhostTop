@@ -337,6 +337,17 @@ export class CompanyPage {
       })),
   ];
   readonly activeCertification = signal(0);
+  private readonly requestedCertification = toSignal(
+    this.route.queryParamMap.pipe(map(params => params.get('certification'))),
+    { initialValue: null },
+  );
+  private readonly syncRequestedCertification = effect(() => {
+    if (this.slug() !== 'certifications-awards') return;
+    const index = Number(this.requestedCertification());
+    if (Number.isInteger(index) && index >= 0 && index < this.certifications.length) {
+      this.activeCertification.set(index);
+    }
+  });
 
   readonly awardYears = ['2026', '2025', '2024', '2023', '2022', '2018'] as const;
   readonly activeAwardYear = signal<(typeof this.awardYears)[number]>('2025');

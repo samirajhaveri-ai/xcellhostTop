@@ -51,7 +51,7 @@ const PLATFORM_CAPABILITIES: readonly PlatformCapability[] = [
   { label: 'Monitoring', icon: 'monitoring' },
   { label: 'Managed Cloud', icon: 'settings_suggest' },
   { label: 'Managed Security', icon: 'admin_panel_settings' },
-  { label: 'AI Agent', icon: 'smart_toy' },
+  { label: 'AI Agents', icon: 'smart_toy' },
 ];
 
 /** The homepage process section showing how XcellHost turns goals into outcomes. */

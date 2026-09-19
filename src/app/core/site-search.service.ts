@@ -79,6 +79,9 @@ export class SiteSearchService {
 
     // Includes both directory products and menu-only products.
     for (const slug of this.catalog.slugs) {
+      // The plural menu entry points to the same product as the canonical
+      // singular directory entry, so do not show it as a second search result.
+      if (slug === 'bare-metal-servers') continue;
       const entry = this.catalog.entryBySlug(slug);
       if (!entry) continue;
       add({
