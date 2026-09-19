@@ -3,6 +3,7 @@
     class="ppage as-page"
     id="ppage"
     [class.infrastructure-page]="isInfrastructure()"
+    [class.disaster-recovery-page]="isCloudDisasterRecoverySmb()"
     [class.edr-page]="isAdvancedEdr()"
     [class.scrutiny-edr-page]="isScrutinyEdr()"
     [class.rmm-page]="isRmm()"
@@ -40,7 +41,14 @@
         <span class="pph-aur pph-a3" aria-hidden="true"></span>
         <span class="pph-scan" aria-hidden="true"></span>
 
-        @if (slug() === 'enterprise-dmarc') {
+        @if (slug() === 'e-mail-archiving') {
+          <div class="pph-scene has-illus standalone-illus" aria-hidden="true">
+            <div class="pph-illus">
+              <img class="pph-illus-img" src="/assets/images/email-archiving-hero.svg" alt="" />
+              <img src="/assets/images/email-archiving-xcellhost-logo.png" alt="XcellHost" style="width:150px;height:auto;margin:0 auto" />
+            </div>
+          </div>
+        } @else if (slug() === 'enterprise-dmarc') {
           <div class="pph-scene dmarc-hero-art" aria-hidden="true">
             <xh-enterprise-dmarc-content [heroOnly]="true" />
           </div>
@@ -507,6 +515,24 @@
           <div class="pph-scene genai-protection-hero-art" aria-hidden="true">
             <xh-genai-protection-content [heroOnly]="true" />
           </div>
+        } @else if (slug() === 'workforce-analytics') {
+          <div class="pph-scene workforce-hero-animation">
+            <iframe src="/assets/animations/workforce-analytics-animation.html"
+              title="Workforce Analytics productivity dashboard animation"
+              sandbox="allow-scripts" tabindex="-1"></iframe>
+          </div>
+        } @else if (isCloudDisasterRecoverySmb()) {
+          <div class="pph-scene disaster-recovery-hero-animation">
+            <iframe src="/assets/animations/disaster-recovery-animation.html"
+              title="Cloud Disaster Recovery replication and failover animation"
+              sandbox="allow-scripts" tabindex="-1"></iframe>
+          </div>
+        } @else if (isSmbCloudDesktop()) {
+          <div class="pph-scene cloud-desktop-hero-animation">
+            <iframe src="/assets/animations/cloud-desktop-animation.html"
+              title="Cloud Desktop virtual workspace animation"
+              sandbox="allow-scripts" tabindex="-1"></iframe>
+          </div>
         } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
           <div class="pph-scene has-illus standalone-illus" id="pphScene" aria-hidden="true">
             <div class="pph-illus">
@@ -534,7 +560,7 @@
                 [alt]="v.name"
               />
               }
-              @if (!isManagedMicrosoft365() && v.name !== 'Cloud Drive') {
+              @if (!isManagedMicrosoft365() && !isTally() && v.name !== 'Cloud Drive') {
                 <div
                   class="pph-powered-mark pph-powered-image"
                   [class.pph-geotrust-powered]="v.name === 'GeoTrust'"
@@ -957,6 +983,10 @@
       <xh-reseller-program-content />
     }
 
+    @if (slug() === 'e-mail-archiving') {
+      <xh-email-archiving-content />
+    }
+
     @if (isCloudObjectStorage()) {
       <xh-cloud-object-storage-content />
     }
@@ -1017,6 +1047,7 @@
         [class.cloud-drive-body]="slug() === 'cloud-drive'"
         [class.smb-cyber-body]="slug() === 'smb-cyber-security-appliance'"
         [class.genai-body]="slug() === 'acronis-genai-protection'"
+        [class.email-archiving-body]="slug() === 'e-mail-archiving'"
       >
         <div class="wrap">
           @if (slug() === 'waap-as-a-service') {
@@ -1081,6 +1112,7 @@
               !isResellerProgram() &&
               !isScrutinyEdr() &&
               !isCloudObjectStorage() &&
+              slug() !== 'e-mail-archiving' &&
               !isMicrosoftCopilot() &&
               !isZohoWorkspace() &&
               !isMicrosoftEntraId() &&
@@ -3671,7 +3703,7 @@
           }
 
           <div class="pp-sec">What customers say</div>
-          @if (isFlagship() || v.name === 'Enterprise DMARC') {
+          @if (isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'e-mail-archiving') {
             <div class="pp-tcards" id="ppRevs">
               @for (r of v.reviews; track r.name) {
                 <div class="tcard">
