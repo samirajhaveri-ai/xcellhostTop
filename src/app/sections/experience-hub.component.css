@@ -32,16 +32,24 @@
 .experience-hub .hub-feature .hub-arrow{background:#1565d8;color:#fff}
 .experience-hub .hub-card:hover{border-color:#8ab4ee;box-shadow:0 12px 28px rgba(21,101,216,.12)}
 
-/* Dark blue marketplace cards. */
-.experience-hub .hub-card,.experience-hub .hub-feature{background:linear-gradient(135deg,#041e42 0%,#123f7b 100%);border-color:#28558b;color:#fff}
-.experience-hub .hub-card h3{color:#fff}
-.experience-hub .hub-card .hub-mini,.experience-hub .hub-label{color:#9fc5ff}
-.experience-hub .hub-card p{color:#d0dff2}
-.experience-hub .hub-icon{background:#ffffff14;color:#b9d7ff}
-.experience-hub .hub-card .hub-art{color:#8ab4ff;opacity:.24}
-.experience-hub .hub-arrow{background:#ffffff1f;color:#fff}
-.experience-hub .hub-link{color:#b9d7ff}
-.experience-hub .hub-card:hover{border-color:#6ba5f1;box-shadow:0 12px 28px rgba(4,30,66,.22)}
+/* Distinct warm and botanical colors for each marketplace category. */
+.experience-hub .hub-card{background:linear-gradient(135deg,var(--card-start),var(--card-end));border-color:var(--card-border);color:#172b38}
+.experience-hub .hub-feature{--card-start:#fff0df;--card-end:#f4cba8;--card-border:#e8b98e;--card-accent:#934611}
+.experience-hub .hub-ai{--card-start:#ffe7ef;--card-end:#f5bfd1;--card-border:#e8a6be;--card-accent:#982d58}
+.experience-hub .hub-managed{--card-start:#fff3c9;--card-end:#edda94;--card-border:#d7c074;--card-accent:#735614}
+.experience-hub .hub-licenses{--card-start:#ddf5f3;--card-end:#a9dcd6;--card-border:#8fc9c2;--card-accent:#19685f}
+.experience-hub .hub-professional{--card-start:#f1e6f7;--card-end:#d9bce8;--card-border:#c7a4db;--card-accent:#704191}
+.experience-hub .hub-accelerators{--card-start:#eef4d5;--card-end:#c9dea0;--card-border:#b2cb83;--card-accent:#4d6926}
+.experience-hub .hub-souq{--card-start:#f8e7dc;--card-end:#dcb9a5;--card-border:#cba18a;--card-accent:#794b35}
+.experience-hub .hub-alliances{--card-start:#e4eef4;--card-end:#b6cbd9;--card-border:#9bb6c8;--card-accent:#395f77}
+.experience-hub .hub-card h3{color:#172b38}
+.experience-hub .hub-card .hub-mini,.experience-hub .hub-label{color:var(--card-accent)}
+.experience-hub .hub-card p{color:#374b56}
+.experience-hub .hub-icon{background:#fffffff0;color:var(--card-accent)}
+.experience-hub .hub-card .hub-art{color:var(--card-accent);opacity:.22}
+.experience-hub .hub-arrow{background:#ffffffc9;color:var(--card-accent)}
+.experience-hub .hub-link{color:var(--card-accent)}
+.experience-hub .hub-card:hover{border-color:var(--card-accent);box-shadow:0 12px 28px rgba(35,48,54,.16)}
 
 /* Compact spacing for the smaller marketplace cards. */
 .experience-hub .hub-small{padding:16px}

@@ -7,12 +7,11 @@ import { Routes } from '@angular/router';
  *   /category/<name>/          a category landing page
  *   /insights/<slug>/          a blog article
  *   /use-cases/<slug>/         a use case
- *   /securesetu-dpdpa/         the DPDPA platform page
- *   /securesetu-dpdpa/<slug>/  one DPDPA module
  *   /about|/contact|/pricing|/insights
  *   /compare/
  */
 export const routes: Routes = [
+  { path: 'explore-marketplace', loadComponent: () => import('./pages/explore-marketplace.page').then((m) => m.ExploreMarketplacePage) },
   { path: 'under-construction/careers-overview', redirectTo: 'company/careers-overview', pathMatch: 'full' },
   { path: 'promo-offers', redirectTo: 'promotion-and-offers', pathMatch: 'full' },
   { path: 'under-construction/promotion-and-offers', redirectTo: 'promotion-and-offers', pathMatch: 'full' },
@@ -112,8 +111,6 @@ export const routes: Routes = [
     data: { contentType: 'use-case' },
     loadComponent: () => import('./pages/blog.page').then((m) => m.BlogPage),
   },
-  { path: 'securesetu-dpdpa', loadComponent: () => import('./pages/dpdpa.page').then((m) => m.DpdpaPage) },
-  { path: 'securesetu-dpdpa/:slug', loadComponent: () => import('./pages/dpdpa-module.page').then((m) => m.DpdpaModulePage) },
   { path: 'about', loadComponent: () => import('./pages/simple.page').then((m) => m.SimplePage), data: { key: 'about' } },
   { path: 'contact', loadComponent: () => import('./pages/contact.page').then((m) => m.ContactPage) },
   { path: 'media-kit', loadComponent: () => import('./pages/media-kit.page').then((m) => m.MediaKitPage) },

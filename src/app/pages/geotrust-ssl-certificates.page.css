@@ -146,6 +146,8 @@ nav a:hover{color:var(--blue)}nav a:hover:after{width:100%}nav a:hover .car{bord
 .vcard:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:#c9dcfb}
 .vcard .vb{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:12px;font-weight:600;padding:6px 12px;border-radius:99px;margin-bottom:16px}
 .vcard.dv .vb{background:var(--blue-soft);color:var(--blue)}.vcard.ov .vb{background:#eaeff9;color:#2b4a8f}.vcard.ev .vb{background:#fff3e0;color:var(--orange-d)}
+.vcard.wildcard .vb{background:#edf8f3;color:#18754c}
+.vcard.multi .vb{background:#f3edff;color:#7041ab}
 .vcard .vb svg{width:14px;height:14px}
 .vcard h3{font-size:18px;margin-bottom:8px}.vcard p{font-size:13.5px;color:var(--slate);margin-bottom:16px}
 .vcard ul{list-style:none;display:flex;flex-direction:column;gap:9px}
@@ -153,18 +155,12 @@ nav a:hover{color:var(--blue)}nav a:hover:after{width:100%}nav a:hover .car{bord
 .vcard li .ck,.pfeat li .ck{width:17px;height:17px;border-radius:50%;background:#e4f7ec;color:var(--green);display:grid;place-items:center;flex-shrink:0;margin-top:2px}
 .vcard li .ck svg,.pfeat li .ck svg{width:10px;height:10px}
 
-/* video */
-.pp-vids{margin-top:8px}
-.pv-tabs{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}
-.pv-tab{font-family:var(--mono);font-size:12.5px;font-weight:500;color:var(--slate);background:#fff;border:1px solid var(--line);padding:9px 16px;border-radius:99px;cursor:pointer;transition:.2s}
-.pv-tab:hover{border-color:var(--blue);color:var(--blue)}
-.pv-tab.active{background:linear-gradient(135deg,var(--blue),var(--blue-d));color:#fff;border-color:transparent}
-.pv-frame{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:16/7;background:linear-gradient(160deg,#08163a,#12408f);box-shadow:var(--shadow-lg);display:grid;place-items:center;cursor:pointer}
-.pv-frame .grid{position:absolute;inset:0;opacity:.4;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:40px 40px}
-.pv-play{position:relative;z-index:2;width:74px;height:74px;border-radius:50%;background:rgba(255,255,255,.16);backdrop-filter:blur(4px);display:grid;place-items:center;transition:.25s}
-.pv-frame:hover .pv-play{transform:scale(1.08);background:var(--orange)}
-.pv-play svg{width:26px;height:26px;color:#fff;margin-left:3px}
-.pv-cap{position:absolute;bottom:16px;left:18px;z-index:2;color:#fff;font-family:var(--disp);font-weight:600;font-size:15px}
+/* Video cards reuse the shared product-page layout. */
+.geotrust-videos .tally-video-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.geotrust-videos .geotrust-video-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:linear-gradient(135deg,#081d3e,#154780);color:#fff}
+.geotrust-video-placeholder svg{width:36px;height:36px;opacity:.65}
+.geotrust-video-placeholder p{margin:0;color:#dce9ff;font-size:14px}
+@media(max-width:900px){.geotrust-videos .tally-video-grid{grid-template-columns:1fr;max-width:580px;margin-inline:auto}}
 
 /* product catalog + cart */
 .filter{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 26px}

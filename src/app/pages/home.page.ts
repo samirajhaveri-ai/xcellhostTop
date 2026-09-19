@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 import { ExperienceHubComponent } from '../sections/experience-hub.component';
+import { PlatformStripComponent } from '../sections/platform-strip.component';
 
 import { SeoService } from '../core/seo.service';
 import {
@@ -46,6 +47,7 @@ const DESCRIPTION =
     OutcomesComponent,
     NewCategoryComponent,
     ExperienceHubComponent,
+    PlatformStripComponent,
     InsightsSectionComponent,
     GlobalLocationsMapComponent,
     SatisfactionGuaranteeComponent,
@@ -63,6 +65,7 @@ const DESCRIPTION =
     <xh-why />
     <xh-outcomes />
     <xh-new-category />
+    <xh-platform-strip />
     <xh-experience-hub />
     <xh-directory />
     <xh-trusted-by />

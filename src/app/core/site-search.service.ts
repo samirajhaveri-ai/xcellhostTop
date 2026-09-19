@@ -6,7 +6,6 @@ import { BlogApiService, CmsBlogPost } from './blog-api.service';
 import { CatalogService, slugify } from './catalog.service';
 import { CATEGORY_COLORS } from '../data/category.data';
 import { COMPANY_PAGES } from '../data/company.data';
-import { DPDPA_MODULES } from '../data/dpdpa.data';
 import { DEEP_CONTENT, RICH_PRODUCTS } from '../data/products.data';
 import { SIMPLE_PAGES } from '../data/site.data';
 
@@ -118,9 +117,6 @@ export class SiteSearchService {
     // Pages backed by keyed content collections cannot be inferred from a :slug route.
     for (const [slug, page] of Object.entries(COMPANY_PAGES)) {
       add(this.pageResult(page.title, `${page.tagline} ${page.intro}`, `/company/${slug}`));
-    }
-    for (const module of Object.values(DPDPA_MODULES)) {
-      add(this.pageResult(module.t, module.tag, `/securesetu-dpdpa/${module.slug}`));
     }
     for (const category of this.catalog.categories) {
       add(this.pageResult(category.name, category.sub, `/category/${encodeURIComponent(category.name)}`));

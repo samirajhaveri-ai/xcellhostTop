@@ -65,7 +65,7 @@ export class CompanyPage {
   readonly activeCareerStory = signal(0);
   readonly currentCareerStory = computed(() => this.careerStories[this.activeCareerStory()]);
   readonly currentCareerStoryEmployee = computed(() =>
-    [this.developers[0], this.developers[1], this.graphicDesignerTeam[1], this.technicalSupportTeam[0]][this.activeCareerStory()],
+    [this.developers[1], this.developers[2], this.graphicDesignerTeam[1], this.technicalSupportTeam[1]][this.activeCareerStory()],
   );
   moveCareerStory(direction: number): void {
     this.activeCareerStory.update(index => (index + direction + this.careerStories.length) % this.careerStories.length);
@@ -147,8 +147,8 @@ export class CompanyPage {
   ] as const;
 
   readonly salesTeam = [
-    { initials: 'AG', name: 'Ajay Gupta', role: '', image: '' },
     { initials: 'AP', name: 'Abhishek Pandey', role: 'Cloud Sales Manager', image: '/assets/images/team-abhishek-pandey.png' },
+    { initials: 'AG', name: 'Ajay Gupta', role: '', image: '' },
   ] as const;
   
   readonly marketing = [
@@ -162,9 +162,9 @@ export class CompanyPage {
   ] as const;
 
   readonly developers: readonly { initials: string; name: string; role: string; image: string }[] = [
+    { initials: 'SV', name: 'Sujeet Vishwakarma', role: '', image: '/assets/images/team-sujeet-vishwakarma.jpeg' },
     { initials: 'VG', name: 'Vaishnavi Ghaghare', role: '', image: '/assets/images/team-vaishnavi-ghaghare.png' },
     { initials: 'DV', name: 'Divya Varma', role: '', image: '/assets/images/team-divya-varma.jpeg' },
-    { initials: 'SV', name: 'Sujeet Vishwakarma', role: '', image: '/assets/images/team-sujeet-vishwakarma.jpeg' },
     { initials: 'VT', name: 'Vibha Tiwari', role: '', image: '/assets/images/team-vibha-tiwari.png' },
   ];
 
@@ -185,9 +185,9 @@ export class CompanyPage {
   ] as const;
 
   readonly technicalSupportTeam = [
+    { initials: 'RS', name: 'Rizwan Shaikh', role: '', image: '/assets/images/team-rizwan-shaikh.png' },
     { initials: 'PA', name: 'Purva Angre', role: '', image: '/assets/images/team-purva-angre.png' },
     { initials: 'SY', name: 'Saurav Yadav', role: '', image: '' },
-    { initials: 'RS', name: 'Rizwan Shaikh', role: '', image: '/assets/images/team-rizwan-shaikh.png' },
     { initials: 'TM', name: 'Talha Mohammad', role: '', image: '' },
     { initials: 'AY', name: 'Amit Yadav', role: '', image: '' },
 
