@@ -9,7 +9,7 @@ interface PromoCategory { label:string;products:PromoProduct[] }
 
 const POPULAR_PRODUCT_NAMES = new Set([
   'tally on cloud','cloud backup','cloud drive','advanced endpoint security (edr)','microsoft 365 smb','smb cyber security appliance','windows hosting','linux hosting','wordpress hosting','whatsapp for business',
-  'performance cloud','gpu cloud','private cloud','managed aws','managed azure','managed google cloud (gcp)','managed kubernetes','cloud sase',
+  'performance cloud','private cloud','managed aws','managed azure','managed google cloud (gcp)','managed kubernetes','cloud sase',
   'microsoft 365','google workspace','business email','microsoft teams','zoho workplace','cloud desktop','azure virtual desktop',
   'microsoft 365 backup','google workspace backup','acronis cyber protect cloud','cloud disaster recovery','website backup','file cloud','backup cloud',
   'digicert ssl certificates','sectigo ssl certificates','code signing certificates','enterprise dmarc','email signature','verified mark certificates (vmc)',

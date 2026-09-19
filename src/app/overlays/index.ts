@@ -1,6 +1,7 @@
 export { CartDrawerComponent } from './cart-drawer.component';
 export { TrialModalComponent } from './trial-modal.component';
 export { AuthModalComponent } from './auth-modal.component';
+export { SigninModalComponent } from './signin-modal.component';
 export { PartnerModalComponent } from './partner-modal.component';
 export { CallbackModalComponent } from './callback-modal.component';
 export { DocModalComponent } from './doc-modal.component';

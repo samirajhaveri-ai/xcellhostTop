@@ -3,7 +3,7 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 
 export type OverlayId =
   | 'product' | 'category' | 'blog' | 'dpdpa' | 'dpdpaModule' | 'simple' | 'compare'
-  | 'cart' | 'trial' | 'auth' | 'partner' | 'callback' | 'doc' | 'search' | 'chat' | 'mobileNav'
+  | 'cart' | 'trial' | 'auth' | 'signin' | 'partner' | 'callback' | 'doc' | 'search' | 'chat' | 'mobileNav'
   | 'intro' | 'screenshotTour' | 'genAiScreenshotTour' | 'rmmScreenshotTour' | 'edrScreenshotTour'
   | 'productScreenshotTour' | 'sitelockConfigurator';
 

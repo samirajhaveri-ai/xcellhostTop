@@ -101,12 +101,6 @@ export class WhyXcellhostContentComponent {
         "body": "Powerful dedicated infrastructure for performance-sensitive applications."
       },
       {
-        "number": "13",
-        "icon": "memory",
-        "title": "GPU Cloud & AI-Ready Infrastructure",
-        "body": "Infrastructure support for AI, ML, rendering, and advanced workloads."
-      },
-      {
         "number": "14",
         "icon": "verified",
         "title": "ISO-Certified Processes",

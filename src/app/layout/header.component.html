@@ -173,21 +173,21 @@
           (click)="toggleLoginMenu($event)"
         >Login <span aria-hidden="true"></span></button>
         <div id="xh-customer-login-menu" class="xh-login-dropdown" role="menu" aria-label="Customer login">
-          <button class="selected" type="button" role="menuitem" (click)="openCustomerLogin()">
+          <button class="selected" type="button" role="menuitem" (click)="openLogin()">
             <span>Customer Login</span><b class="xh-login-check" aria-hidden="true">✓</b>
           </button>
-          <button type="button" role="menuitem" (click)="requestPortalAccess($event, 'Partner portal access')">
+          <button type="button" role="menuitem" (click)="openLogin()">
             <span>Partner Login</span>
           </button>
-          <button type="button" role="menuitem" (click)="requestPortalAccess($event, 'Vendor portal access')">
+          <button type="button" role="menuitem" (click)="openLogin()">
             <span>Vendor Login</span>
           </button>
-          <button type="button" role="menuitem" (click)="requestPortalAccess($event, 'Employee portal access')">
+          <button type="button" role="menuitem" (click)="openLogin()">
             <span>Employee Login</span>
           </button>
         </div>
       </div>
-      <a class="xh-trial" href="#" (click)="openLayer($event, 'trial')">Sign Up</a>
+      <a class="xh-trial" href="#" (click)="openSignup($event)">Sign Up</a>
     </div>
   </div>
 </header>

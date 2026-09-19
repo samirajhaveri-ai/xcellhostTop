@@ -358,6 +358,12 @@
   .pp-body.cloud-drive-body{padding-top:28px}
   .pp-body.cloud-drive-body #ppSecWrap .pp-ov{max-width:100%}
   .pp-body.smb-cyber-body{padding-top:28px}
+  .pp-body.email-archiving-body > .wrap > .pp-sec{margin-top:40px}
+  .pp-body.email-archiving-body #ppBlog{margin-top:40px}
+  @media(max-width:768px){
+    .pp-body.email-archiving-body > .wrap > .pp-sec{margin-top:28px}
+    .pp-body.email-archiving-body #ppBlog{margin-top:28px}
+  }
   .pp-body.genai-body{padding-top:28px}
   .pp-body.genai-body #ppSecWrap .pp-ov{max-width:100%}
   .pp-body.genai-body > .wrap > .pp-sec:first-child{margin-top:19px}
@@ -4063,7 +4069,8 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
 
 .tally-pricing{margin:0 0 12px;color:var(--navy);font-family:'Poppins',var(--body)}
 .tally-mobile-insights{margin:-26px 0 12px;overflow:hidden;border:0;border-radius:0;background:transparent;container-type:inline-size}
-.tally-mobile-insights-title{margin:0 0 16px;text-align:center;color:var(--navy);font:700 1.5cqw/1.2 var(--disp);letter-spacing:-.03em;white-space:nowrap}
+.tally-mobile-insights-title{margin:0 0 16px;text-align:center;color:var(--navy);font:700 clamp(18px,2cqw,28px)/1.2 var(--disp);letter-spacing:-.03em;white-space:normal}
+.tally-mobile-insights-note{color:#7126e8}
 .tally-mobile-insights img{display:block;width:100%;height:auto}
 .tally-mobile-insights + .pp-sec{margin-top:0}
 .tally-price-heading{text-align:center;margin:0 auto 32px}

@@ -1,3 +1,5 @@
+import { EmailArchivingContentComponent } from '../sections/email-archiving-content.component';
+import { EMAIL_ARCHIVING_SAMPLE_FAQS, EMAIL_ARCHIVING_SAMPLE_WHY } from '../data/email-archiving-sample.data';
 import { WaapContentComponent } from '../sections/waap-content.component';
 import { IotInfrastructureContentComponent } from '../sections/iot-infrastructure-content.component';
 import { DomainsContentComponent } from '../sections/domains-content.component';
@@ -172,6 +174,7 @@ interface ProductTourSlide {
     DomainsContentComponent,
     AgenticAiContentComponent,
     CloudObjectStorageContentComponent,
+    EmailArchivingContentComponent,
     ZohoWorkspaceContentComponent,
     EntraIdContentComponent,
     EntraIdHeroComponent,
@@ -192,6 +195,15 @@ interface ProductTourSlide {
   ],
   templateUrl: './product.page.html',
   styles: [`
+    #ppage.tally-page .pph-scene.has-illus.standalone-illus { top: 50%; bottom: auto; transform: translateY(-50%); }
+    @media(max-width:900px) { #ppage.tally-page .pph-scene.has-illus.standalone-illus { top: auto; bottom: auto; transform: none; margin: 24px auto; } }
+    #ppage.disaster-recovery-page .pp-tagline-support,
+    #ppage.disaster-recovery-page .pp-typewriter { width: 55% !important; max-width: 700px !important; white-space: normal; overflow-wrap: break-word; line-height: 1.45; }
+    @media(max-width:900px) { #ppage.disaster-recovery-page .pp-tagline-support, #ppage.disaster-recovery-page .pp-typewriter { width: 100% !important; max-width: 100% !important; } }
+    #ppage .pph-scene.cloud-desktop-hero-animation, #ppage .pph-scene.disaster-recovery-hero-animation, #ppage .pph-scene.workforce-hero-animation { width: 40%; right: 2%; top: 50%; bottom: auto; height: 420px; transform: translateY(-50%); opacity: 1; mask-image: none; overflow: hidden; background: transparent; }
+    .cloud-desktop-hero-animation iframe, .disaster-recovery-hero-animation iframe, .workforce-hero-animation iframe { display: block; width: 100%; height: 100%; border: 0; }
+    @media(max-width:900px) { #ppage .pph-scene.cloud-desktop-hero-animation, #ppage .pph-scene.disaster-recovery-hero-animation, #ppage .pph-scene.workforce-hero-animation { position: relative; width: calc(100% - 32px); max-width: 620px; right: auto; top: auto; transform: none; margin: 24px auto; height: 360px; } }
+
     #ppage.microsoft-copilot-page > .pp-hero { min-height: 650px; padding: 60px 0 72px; background: linear-gradient(135deg,#061634 0%,#0c2b63 55%,#12408f 100%); }
     #ppage .copilot-hero-copy { position: relative; z-index: 3; max-width: 56%; padding: 0; }
     #ppage .copilot-source-crumb { margin-bottom: 22px; color: #9fb6de; font: 500 12px var(--mono); }
@@ -840,7 +852,7 @@ export class ProductPage {
   }
 
   readonly cybirdTerms: readonly { key: CybirdTerm; label: string; saving: string }[] = [
-    { key: '1y', label: '1 Year', saving: 'No Saving' },
+    { key: '1y', label: '1 Year', saving: 'No Savings' },
     { key: '2y', label: '2 Years', saving: 'Save 10%' },
     { key: '3y', label: '3 Years', saving: 'Save 15%' },
     { key: '5y', label: '5 Years', saving: 'Save 20%' },
@@ -920,7 +932,7 @@ export class ProductPage {
   }
 
   readonly cloudDriveTerms: readonly { key: CloudDriveTerm; label: string; saving: string }[] = [
-    { key: 'monthly', label: 'Monthly', saving: 'No Saving' },
+    { key: 'monthly', label: 'Monthly', saving: 'No Savings' },
     { key: '3m', label: '3 Months', saving: 'Save 5%' },
     { key: '6m', label: '6 Months', saving: 'Save 7.5%' },
     { key: '1y', label: '1 Year', saving: 'Save 10%' },
@@ -992,6 +1004,9 @@ export class ProductPage {
   /** `null` while the slug matches nothing — the effect below sends those home. */
   readonly view = computed<ProductView | null>(() => {
     const view = this.resolve(this.slug());
+    if (view && this.slug() === 'e-mail-archiving') {
+      return { ...view, why: EMAIL_ARCHIVING_SAMPLE_WHY, faqs: EMAIL_ARCHIVING_SAMPLE_FAQS };
+    }
     if (!view || this.slug() !== 'agentic-ai') return view;
     return {
       ...view,
@@ -1503,7 +1518,7 @@ export class ProductPage {
   }
 
   readonly cloudBackupTerms: readonly { key: CloudBackupTerm; label: string; saving: string }[] = [
-    { key: 'monthly', label: 'Monthly', saving: 'No Saving' },
+    { key: 'monthly', label: 'Monthly', saving: '' },
     { key: 'quarterly', label: 'Quarterly', saving: 'Save 5%' },
     { key: '6m', label: '6 Months', saving: 'Save 7.5%' },
     { key: 'yearly', label: 'Yearly', saving: 'Save 10%' },

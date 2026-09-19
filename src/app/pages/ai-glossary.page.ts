@@ -96,11 +96,6 @@ export class AiGlossaryPage {
     "description": "One intelligence layer across every tool in your stack.",
     "path": "/company/watchtower"
   },
-  {
-    "title": "GPU Cloud",
-    "description": "On-demand NVIDIA GPUs for training and inference.",
-    "path": "/gpu-cloud"
-  }
 ];
   constructor() {
     inject(SeoService).set('AI Glossary | XcellHost',

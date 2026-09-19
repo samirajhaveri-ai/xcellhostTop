@@ -1,0 +1,33 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>DPDPA Compliance — XcellHost</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}body{background:#0B132B;font-family:'Segoe UI',system-ui,sans-serif;overflow:hidden;min-height:100vh}.scene{position:relative;width:100vw;height:100vh;overflow:hidden}canvas#bg{position:absolute;inset:0;z-index:0}.grid{position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(0,102,255,.05) 1px,transparent 0);background-size:28px 28px;z-index:0}.grid::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 30%,#0B132B 75%)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes dash{to{stroke-dashoffset:-20}}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}@keyframes fadeIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+.badge{position:absolute;z-index:12;padding:4px 10px;border-radius:5px;font-size:.48rem;font-weight:700;letter-spacing:.06em;animation:pulse 3s ease-in-out infinite}.bg{background:rgba(34,197,94,.1);color:#22c55e;border:1px solid rgba(34,197,94,.15)}.bb{background:rgba(0,102,255,.1);color:#0066FF;border:1px solid rgba(0,102,255,.15)}.bo{background:rgba(255,138,0,.1);color:#FF8A00;border:1px solid rgba(255,138,0,.15)}
+.lc{position:absolute;z-index:11;background:rgba(255,255,255,.03);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:8px 12px;animation:float 5s ease-in-out infinite}.lcd{width:5px;height:5px;border-radius:50%;animation:blink 1.5s ease-in-out infinite;display:inline-block;margin-right:4px}.lct{color:rgba(255,255,255,.5);font-size:.48rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase}.lcv{color:#fff;font-size:.78rem;font-weight:700;margin-top:2px}.lcs{color:rgba(255,255,255,.28);font-size:.44rem;margin-top:1px}
+.checklist{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;width:500px}
+.cl-head{text-align:center;margin-bottom:20px}.cl-title{color:#fff;font-size:1.2rem;font-weight:800}.cl-sub{color:rgba(255,255,255,.35);font-size:.55rem}
+.cl-progress{width:100%;height:6px;background:rgba(255,255,255,.05);border-radius:6px;margin:12px 0;overflow:hidden}.cl-fill{height:100%;background:linear-gradient(90deg,#0066FF,#22c55e);border-radius:6px;width:94%;transition:width 1s}
+.cl-score{text-align:center;font-size:.55rem;color:rgba(255,255,255,.4);margin-bottom:16px}.cl-score strong{color:#22c55e;font-size:1rem}
+.cl-items{display:flex;flex-direction:column;gap:6px}
+.cl-item{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:10px 14px;animation:fadeIn .4s ease-out both}
+.cl-check{width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0}
+.ck-done{background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.2);color:#22c55e}
+.ck-prog{background:rgba(255,138,0,.12);border:1px solid rgba(255,138,0,.2);color:#FF8A00}
+.cl-txt{color:#fff;font-size:.68rem;font-weight:600}.cl-txt span{display:block;color:rgba(255,255,255,.3);font-size:.48rem}
+.checklist{width:min(500px,calc(100vw - 32px))}
+.badge.bg{left:16px}.badge.bb{right:16px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style></head><body><div class="scene"><canvas id="bg"></canvas><div class="grid"></div><div class="checklist">
+<div class="cl-head"><div class="cl-title">SecureSetu — DPDPA Compliance</div><div class="cl-sub">Digital Personal Data Protection Act 2023</div></div>
+<div class="cl-progress"><div class="cl-fill"></div></div>
+<div class="cl-score">Compliance Score: <strong>94 / 100</strong></div>
+<div class="cl-items">
+<div class="cl-item" style="animation-delay:.1s"><div class="cl-check ck-done">✓</div><div class="cl-txt">Data Mapping<span>All personal data sources identified</span></div></div>
+<div class="cl-item" style="animation-delay:.2s"><div class="cl-check ck-done">✓</div><div class="cl-txt">Consent Management<span>Collection & tracking active — 96.2% consent rate</span></div></div>
+<div class="cl-item" style="animation-delay:.3s"><div class="cl-check ck-done">✓</div><div class="cl-txt">DPIA Completed<span>Data Protection Impact Assessments done</span></div></div>
+<div class="cl-item" style="animation-delay:.4s"><div class="cl-check ck-done">✓</div><div class="cl-txt">Breach Notification Workflow<span>72-hour automated response armed</span></div></div>
+<div class="cl-item" style="animation-delay:.5s"><div class="cl-check ck-done">✓</div><div class="cl-txt">DSR Portal<span>Data subject rights requests — 7 pending</span></div></div>
+<div class="cl-item" style="animation-delay:.6s"><div class="cl-check ck-done">✓</div><div class="cl-txt">Data Residency<span>India-first storage enforced</span></div></div>
+<div class="cl-item" style="animation-delay:.7s"><div class="cl-check ck-prog">◔</div><div class="cl-txt">Staff Training<span>3 modules remaining — 89% completion</span></div></div>
+<div class="cl-item" style="animation-delay:.8s"><div class="cl-check ck-done">✓</div><div class="cl-txt">Policy Engine<span>Auto-generated privacy policies active</span></div></div>
+</div></div>
+<div class="badge bg" style="bottom:5%;left:30%">● COMPLIANT</div><div class="badge bb" style="bottom:5%;right:30%">● 12,847 DATA SUBJECTS</div></div><script>const cv=document.getElementById('bg'),cx=cv.getContext('2d');let W,H;function rsz(){W=cv.width=innerWidth;H=cv.height=innerHeight}rsz();addEventListener('resize',rsz);const pts=Array.from({length:35},()=>({x:Math.random()*2000,y:Math.random()*1200,r:Math.random()*1.1+.3,a:Math.random(),s:Math.random()*.004+.002,d:Math.random()>.5?1:-1}));(function draw(){cx.clearRect(0,0,W,H);pts.forEach(p=>{p.a+=p.s*p.d;if(p.a>=1||p.a<=.08)p.d*=-1;cx.beginPath();cx.arc(p.x,p.y,p.r,0,6.28);cx.fillStyle=`rgba(0,102,255,${p.a.toFixed(2)})`;cx.fill()});for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<80){cx.beginPath();cx.moveTo(pts[i].x,pts[i].y);cx.lineTo(pts[j].x,pts[j].y);cx.strokeStyle=`rgba(0,102,255,${(.02*(1-d/80)).toFixed(3)})`;cx.lineWidth=.3;cx.stroke()}}if(!matchMedia('(prefers-reduced-motion: reduce)').matches)requestAnimationFrame(draw)})();</script></body></html>
