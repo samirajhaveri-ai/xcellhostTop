@@ -189,6 +189,7 @@ export class CompanyPage {
 
   readonly technicalSupportTeam = [
     { initials: 'PA', name: 'Purva Angre', role: '', image: '/assets/images/team-purva-angre.png' },
+    { initials: 'SB', name: 'Santosh Behra', role: 'Technical Support Executive - L2', image: '' },
   ] as const;
 
   readonly teamTabs = [
