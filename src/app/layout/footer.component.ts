@@ -8,7 +8,7 @@ import { SITE } from '../data/site.data';
 const CATALOG_LINKS = [
   { name: 'SMB Catalog', href: 'https://flipbooks.officeinfra.com/books/SMB-Cloud-Services/' },
   { name: 'SMB Cyber Security', href: 'https://flipbooks.officeinfra.com/books/Cyber-Security-Platform-DXew/' },
-  { name: 'Acronis Cyber Protect Cloud', href: 'https://flipbooks.officeinfra.com/books/Acronis-Cyber-Protect-Cloud-compressed/' },
+  { name: 'Acronis Cyber Protect Cloud', href: 'https://flipbooks.officeinfra.com/books/Acronis-Cyber-Protect-Cloud-kxeF/' },
   { name: 'Managed Cloud Service', href: 'https://flipbooks.officeinfra.com/books/tnuv/' },
   { name: 'Managed Cloud Security', href: 'https://flipbooks.officeinfra.com/books/ycah/' },
   { name: 'Microsoft 365', href: 'https://flipbooks.officeinfra.com/books/Microsoft-365-Platfrom/' },

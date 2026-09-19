@@ -3206,6 +3206,21 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Meet the people and story behind XcellHost"
               },
               {
+                "title": "Global Data Centers",
+                "pill": null,
+                "desc": "Global locations for resilient workloads"
+              },
+              {
+                "title": "Vendor Partners",
+                "pill": null,
+                "desc": "Technology partnerships across cloud and security"
+              },
+              {
+                "title": "Our Platform",
+                "pill": null,
+                "desc": "We'd love to hear from you"
+              },
+              {
                 "title": "Certifications",
                 "pill": null,
                 "desc": "Credentials that reflect trusted delivery"
@@ -3219,16 +3234,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Associations ",
                 "pill": null,
                 "desc": "Recognition for our cloud and security expertise"
-              },
-              {
-                "title": "Global Data Centers",
-                "pill": null,
-                "desc": "Global locations for resilient workloads"
-              },
-              {
-                "title": "Vendor Partners",
-                "pill": null,
-                "desc": "Technology partnerships across cloud and security"
               },
               {
                 "title": "Infrastructure",
@@ -3245,11 +3250,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "We'd love to hear from you"
               },
-              {
-                "title": "Our Platform",
-                "pill": null,
-                "desc": "We'd love to hear from you"
-              },
+              
               {
                 "title": "Platform Status",
                 "pill": null,
@@ -3273,7 +3274,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null,
                 "href": ""
               },
-              
             ]
           }
         ]
