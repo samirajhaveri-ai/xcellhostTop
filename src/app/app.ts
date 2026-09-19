@@ -12,6 +12,7 @@ import {
   DocModalComponent,
   PartnerModalComponent,
   SearchDialogComponent,
+  SigninModalComponent,
   TrialModalComponent,
   WhatsappFabComponent,
 } from './overlays';
@@ -49,6 +50,7 @@ import {
     CallbackModalComponent,
     TrialModalComponent,
     AuthModalComponent,
+    SigninModalComponent,
     PartnerModalComponent,
     DocModalComponent,
     WhatsappFabComponent,
@@ -89,6 +91,12 @@ export class App {
     if (!cta || cta.hasAttribute('disabled')) return;
 
     const label = (cta.textContent ?? '').replace(/\s+/g, ' ').trim();
+    if (/^(?:start(?: your)?(?: \d+-day)?|ask for|\d+ day's)?\s*free trial(?:\s*→)?$/i.test(label)) {
+      event.preventDefault();
+      this.overlay.open('trial');
+      return;
+    }
+
     if (!/^(let'?s talk|talk to sales|talk to us)$/i.test(label)) return;
 
     event.preventDefault();

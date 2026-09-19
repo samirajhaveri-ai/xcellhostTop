@@ -319,7 +319,7 @@ export class BlogApiService {
     }
     if (value.includes('payroll')) return '/assets/images/orb-smb-cloud-desktop.png';
     if (value.includes('gst')) return '/assets/images/orb-microsoft-365.png';
-    if (value.includes('account')) return '/assets/images/orb-gpu-cloud.png';
+    if (value.includes('account')) return '/assets/images/orb-cloud-backup.png';
     return '/assets/images/hero-tally-on-cloud.png';
   }
 }

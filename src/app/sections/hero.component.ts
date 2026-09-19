@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  inject,
   OnDestroy,
   computed,
   signal,
@@ -10,6 +11,7 @@ import {
 } from '@angular/core';
 
 import { HERO_WORDS } from '../data/site.data';
+import { OverlayService } from '../core/overlay.service';
 import { CountUpFigure, finalCount, runCountUp } from '../shared/count-up';
 
 /** One count-up figure in `.stat-line`. */
@@ -46,7 +48,6 @@ const ORB_ITEMS: readonly OrbItem[] = [
   { service: 'Cloud Backup (Acronis)', pos: 'op2', label: 'Cloud Backup', img: '/assets/images/orb-cloud-backup.png' },
   { service: 'Microsoft 365 SMB', pos: 'op3', label: 'Microsoft 365 SMB', img: '/assets/images/orb-microsoft-365.png' },
   { service: 'DPDPA Platform & Consulting', pos: 'op4', label: 'DPDPA', emoji: '⚖️' },
-  { service: 'GPU Cloud', pos: 'op5', label: 'GPU Cloud', img: '/assets/images/orb-gpu-cloud.png' },
   { service: 'SMB Cloud Desktop', pos: 'op6', label: 'Cloud Desktop', img: '/assets/images/orb-smb-cloud-desktop.png' },
   
 ];
@@ -95,19 +96,6 @@ const HERO_CAROUSEL_SLIDES: readonly HeroCarouselSlide[] = [
     primaryHref: '/performance-cloud',
     image: '',
     alt: 'Performance Cloud infrastructure',
-  },
-  {
-    tab: 'GPU Cloud',
-    eyebrow: 'Accelerate your AI ambition',
-    title: 'GPU',
-    accent: 'Cloud',
-    titleEnd: 'for intensive workloads.',
-    description: 'Scale AI, machine learning, rendering and high-performance computing on flexible GPU infrastructure designed for real business outcomes.',
-    spotlight: 'AI-ready GPU compute · on-demand scale',
-    primaryCta: 'Explore GPU Cloud',
-    primaryHref: '/gpu-cloud',
-    image: '',
-    alt: 'GPU Cloud infrastructure',
   },
   {
     tab: 'Acronis EDR',
@@ -174,6 +162,7 @@ const CUBE_2_FACTOR = 0.1;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroComponent implements AfterViewInit, OnDestroy {
+  private readonly overlay = inject(OverlayService);
   private readonly canvas = viewChild.required<ElementRef<HTMLCanvasElement>>('netbg');
 
   readonly words = HERO_WORDS;
@@ -285,6 +274,11 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
 
   nextVisualSlide(): void {
     this.selectVisualSlide((this.activeVisualSlide() + 1) % this.carouselSlides.length);
+  }
+
+  openTrial(event: Event): void {
+    event.preventDefault();
+    this.overlay.open('trial');
   }
 
   private startVisualCarousel(): void {

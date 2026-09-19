@@ -875,94 +875,6 @@ export const DEEP_CONTENT: Record<string, DeepContent> = {
       ]
     ]
   },
-  "GPU Cloud": {
-    "not_for": "Light experimentation. If you are fine-tuning a small model occasionally, a cheaper cloud instance or even a decent workstation will serve you better. Dedicated GPU capacity is worth it when the hardware is busy, not idle.",
-    "uses": [
-      [
-        "🧠",
-        "A training run that would take three weeks locally",
-        "Multi-GPU capacity for the cycle, released when it finishes."
-      ],
-      [
-        "🎬",
-        "Render deadlines",
-        "Studio-grade rendering without buying and housing a render farm."
-      ],
-      [
-        "🔬",
-        "Simulation without a university cluster",
-        "Compute-heavy research on hardware you rent by the month."
-      ],
-      [
-        "📊",
-        "Serving a model to real traffic",
-        "Inference with predictable latency rather than a shared instance that stalls at peak."
-      ],
-      [
-        "🧪",
-        "Twenty experiments overnight",
-        "Run variants in parallel instead of queuing them for a fortnight."
-      ],
-      [
-        "🎓",
-        "A cohort that needs GPUs for one term",
-        "Access for the students, no lab hardware to buy or maintain."
-      ],
-      [
-        "💰",
-        "Avoiding a capital purchase",
-        "Rent the accelerator rather than raising a case for buying one."
-      ],
-      [
-        "🔄",
-        "Moving to newer GPUs",
-        "Change generation without writing off equipment you own."
-      ]
-    ],
-    "sec": [
-      "GPU workloads often carry the most sensitive data a company has — training sets, customer records, proprietary models. Instances are single-tenant, storage is encrypted, and GPU memory is wiped between customers rather than merely reallocated.",
-      [
-        [
-          "Tenancy",
-          "Single-tenant instances, no GPU sharing"
-        ],
-        [
-          "Memory handling",
-          "Wiped between allocations"
-        ],
-        [
-          "Storage",
-          "AES-256 encrypted volumes"
-        ],
-        [
-          "Network",
-          "Private VLAN per customer"
-        ],
-        [
-          "Access",
-          "Key-based SSH, 2FA on the console"
-        ],
-        [
-          "Data residency",
-          "India · Tier-4 datacenters"
-        ]
-      ]
-    ],
-    "faq": [
-      [
-        "Which GPUs?",
-        "Depends on availability and what you are running. Tell us the workload and we will tell you honestly what suits it and what it costs."
-      ],
-      [
-        "Can I run it only when needed?",
-        "Yes. Monthly commitment is cheaper; short bursts cost more per hour. We will do the maths both ways for your usage."
-      ],
-      [
-        "Do you help with setup?",
-        "Frameworks and drivers, yes. We do not write your model."
-      ]
-    ]
-  },
   "VAPT Services": {
     "not_for": "A brochure website with no login and no customer data. A vulnerability scan would cost a fraction and tell you the same thing. We will say so rather than sell you a full test.",
     "uses": [
@@ -1175,7 +1087,6 @@ export const PRODUCT_VIDEOS: Record<string, string[]> = {
   "Endpoint Security + RMM": ["LLxYfEH-Oh0", "v7v4p0Pikhw"],
   "Bare Metal Server": ["3dg2_3NsJ9Y", ""],
   "Performance Cloud Servers": ["eFPWtETDYRQ", "U67bDvoR5ak"],
-  "GPU Cloud Server": ["C8WfXTajKdU", "IC02IhCRBGI"],
   "Dedicated Private Cloud": ["N_8tgYyJ_FM", ""],
   "Managed Colocation Services": ["ZynwE-xyY1o", "9ZlACRCpWLM"],
   "Cloud Backup vs Cloud Drive vs Cloud Object Storage": ["uTZighRxLPc", ""],
@@ -1266,7 +1177,6 @@ export const PRODUCT_VIDEOS: Record<string, string[]> = {
   "Scrutiny EDR": ["90ZQr9KpvL0", ""],
   "Remote Monitoring & Mgmt (RMM)": ["LLxYfEH-Oh0", "v7v4p0Pikhw"],
   "Performance Cloud": ["eFPWtETDYRQ", "U67bDvoR5ak"],
-  "GPU Cloud": ["C8WfXTajKdU", "IC02IhCRBGI"],
   "Co-Location": ["ZynwE-xyY1o", "9ZlACRCpWLM"],
   "Cloud Object Storage": ["AX-v6bPKo8c", "p3ctPLzHyvE"],
   "Cloud Disaster Recovery": ["y5mQNQijoIk", "y5mQNQijoIk"],
@@ -1331,8 +1241,6 @@ export const PRODUCT_INFOSHEETS: Record<string, string> = {
   'Bare Metal Server': 'https://flipbooks.officeinfra.com/books/itcd/',
   'Performance Cloud Servers': 'https://flipbooks.officeinfra.com/books/hspj/',
   'Performance Cloud': 'https://flipbooks.officeinfra.com/books/hspj/',
-  'GPU Cloud Server': 'https://flipbooks.officeinfra.com/books/edib/',
-  'GPU Cloud': 'https://flipbooks.officeinfra.com/books/edib/',
   'Dedicated Private Cloud': 'https://flipbooks.officeinfra.com/books/pdda/',
   'Managed Colocation Services': 'https://flipbooks.officeinfra.com/books/trkq/',
   'Co-Location': 'https://flipbooks.officeinfra.com/books/trkq/',

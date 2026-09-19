@@ -14,7 +14,6 @@ import { CatalogService, slugify } from '../core/catalog.service';
 import { OverlayService } from '../core/overlay.service';
 import { MEGA_MENU } from '../data/nav.data';
 import { MenuFeatureCard } from '../data/models';
-import { CallbackTopicService } from '../overlays/callback-topic.service';
 
 /** Pills the original rendered in the blue variant (`class="pill b"`). */
 const BLUE_PILLS = new Set([
@@ -491,7 +490,6 @@ export class HeaderComponent {
   private readonly destroyRef = inject(DestroyRef);
   readonly overlay = inject(OverlayService);
   readonly cart = inject(CartService);
-  private readonly topics = inject(CallbackTopicService);
   /** The whole menu, pre-resolved once: no per-render slug lookups. */
   readonly tops: NavTopVm[] = MEGA_MENU.map((top) => ({
     label: top.label,
@@ -670,22 +668,15 @@ export class HeaderComponent {
     this.loginMenuOpen.update((open) => !open);
   }
 
-  requestPortalAccess(event: Event, topic: string): void {
-    event.preventDefault();
+  openLogin(): void {
     this.loginMenuOpen.set(false);
-    this.topics.ask(topic);
-    this.overlay.open('callback');
+    this.overlay.open('signin');
   }
 
-  openCustomerLogin(): void {
+  openSignup(event: Event): void {
+    event.preventDefault();
     this.loginMenuOpen.set(false);
     this.overlay.open('auth');
-  }
-
-  openLayer(event: Event, id: 'trial'): void {
-    event.preventDefault();
-    this.loginMenuOpen.set(false);
-    this.overlay.open(id);
   }
 
   /**

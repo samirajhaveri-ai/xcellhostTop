@@ -259,12 +259,6 @@ export const DIRECTORY: DirectoryEntry[] = [
     "group": "Cloud Infra"
   },
   {
-    "name": "GPU Cloud",
-    "desc": "High-performance GPUs for ML and scientific computing — from ₹14,999/mo",
-    "cat": "Cloud",
-    "group": "Cloud Infra"
-  },
-  {
     "name": "Dedicated Private Cloud",
     "desc": "Flexible, rapid provisioning in a private computing environment",
     "cat": "Cloud",

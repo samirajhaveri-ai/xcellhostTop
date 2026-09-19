@@ -1,0 +1,18 @@
+.signin-modal { height: min(690px, calc(100vh - 40px)); }
+.signin-form-panel { display: flex; flex-direction: column; justify-content: center; }
+.signin-socials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.signin-socials button { display: flex; align-items: center; justify-content: center; gap: 6px; min-width: 0; padding: 9px 5px; border: 1.5px solid #dfe6ed; border-radius: 8px; background: #fff; color: #1e293b; font: 600 12px/1.2 var(--body, Arial, sans-serif); cursor: pointer; }
+.signin-socials button:hover { border-color: #0066ff; background: #fafcff; }
+.signin-socials b { display: grid; width: 17px; height: 17px; place-items: center; font: 800 14px/1 Arial, sans-serif; }
+.google-mark { color: #4285f4; }.github-mark { color: #24292f; }.facebook-mark { border-radius: 50%; background: #1877f2; color: #fff; }
+.signin-divider { display: flex; align-items: center; gap: 12px; margin: 16px 0; color: #94a3b8; font-size: 11px; }
+.signin-divider::before, .signin-divider::after { content: ''; height: 1px; flex: 1; background: #dfe6ed; }
+.signin-options { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 1px 0 3px; color: #64748b; font-size: 12px; }
+.signin-options label { display: flex; align-items: center; gap: 7px; cursor: pointer; }
+.signin-options input { width: 15px; height: 15px; accent-color: #0066ff; }
+.signin-options a, .signin-create a, .signin-footer a { color: #0066ff; font-weight: 700; text-decoration: none; }
+.signin-create { margin: 15px 0 0; color: #94a3b8; font-size: 13px; text-align: center; }
+.signin-footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 5px 8px; margin-top: auto; padding-top: 18px; color: #94a3b8; font-size: 10px; }
+.signin-footer a { color: #64748b; font-weight: 600; }.signin-footer small { width: 100%; text-align: center; }
+.customer-auth-submit:disabled { opacity: .65; cursor: wait; }
+@media (max-width: 640px) { .signin-modal { height: auto; } .signin-socials { grid-template-columns: 1fr; } .signin-footer { margin-top: 10px; } }
