@@ -825,6 +825,8 @@
     <section class="company-body" [id]="slug() === 'partner-overview' ? 'partner-overview-content' : null">
       @if (slug() === 'partner-overview') {
         <xh-reseller-program-content />
+      } @else if (slug() === 'apply-for-job') {
+        <xh-zoho-job-listing />
       } @else {
       <div class="wrap company-wrap">
         @if (slug() !== 'vendor-partners' && slug() !== 'certifications-awards' && slug() !== 'careers-overview') {

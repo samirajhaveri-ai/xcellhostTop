@@ -1,4 +1,5 @@
 import { EmailArchivingContentComponent } from '../sections/email-archiving-content.component';
+import { CloudDevopsContentComponent } from '../sections/cloud-devops-content.component';
 import { EMAIL_ARCHIVING_SAMPLE_FAQS, EMAIL_ARCHIVING_SAMPLE_WHY } from '../data/email-archiving-sample.data';
 import { WaapContentComponent } from '../sections/waap-content.component';
 import { IotInfrastructureContentComponent } from '../sections/iot-infrastructure-content.component';
@@ -53,6 +54,7 @@ import { ManagedAwsContentComponent } from '../sections/managed-aws-content.comp
 
 import { ManagedMicrosoft365ContentComponent } from '../sections/managed-microsoft-365-content.component';
 import { MicrosoftCopilotContentComponent } from '../sections/microsoft-copilot-content.component';
+import { CopilotStudioContentComponent } from '../sections/copilot-studio-content.component';
 import { CloudObjectStorageContentComponent } from '../sections/cloud-object-storage-content.component';
 import { ZohoWorkspaceContentComponent } from '../sections/zoho-workspace-content.component';
 import { EntraIdContentComponent } from '../sections/entra-id-content.component';
@@ -171,12 +173,14 @@ interface ProductTourSlide {
 
     ManagedMicrosoft365ContentComponent,
     MicrosoftCopilotContentComponent,
+    CopilotStudioContentComponent,
     WaapContentComponent,
     IotInfrastructureContentComponent,
     DomainsContentComponent,
     AgenticAiContentComponent,
     CloudObjectStorageContentComponent,
     EmailArchivingContentComponent,
+    CloudDevopsContentComponent,
     ZohoWorkspaceContentComponent,
     EntraIdContentComponent,
     EntraIdHeroComponent,
@@ -1259,14 +1263,22 @@ export class ProductPage {
 
   /** `null` while the slug matches nothing — the effect below sends those home. */
   readonly view = computed<ProductView | null>(() => {
-    const view = this.resolve(this.slug());
-    if (view && this.slug() === 'acronis-backup-advanced') {
+    const slug = this.slug();
+    const view = this.resolve(slug);
+
+    if (!view) return null;
+    if (slug === 'acronis-backup-advanced') {
       return { ...view, heroImage: '/assets/images/acronis-backup-advanced-hero.svg' };
     }
-    if (view && this.slug() === 'e-mail-archiving') {
-      return { ...view, why: EMAIL_ARCHIVING_SAMPLE_WHY, faqs: EMAIL_ARCHIVING_SAMPLE_FAQS };
+    if (slug === 'email-archiving' || slug === 'e-mail-archiving') {
+      return {
+        ...view,
+        why: EMAIL_ARCHIVING_SAMPLE_WHY,
+        faqs: EMAIL_ARCHIVING_SAMPLE_FAQS,
+        heroPoints: ['Real-time journaling', 'Immutable storage', 'Fast eDiscovery', 'Custom retention policies'],
+      };
     }
-    if (!view || this.slug() !== 'agentic-ai') return view;
+    if (slug !== 'agentic-ai') return view;
     return {
       ...view,
       heroImage: '/assets/images/agentic-ai/hero.svg',
@@ -1377,6 +1389,7 @@ export class ProductPage {
 
   readonly isManagedMicrosoft365 = computed(() => this.view()?.name === 'Managed Microsoft 365');
   readonly isMicrosoftCopilot = computed(() => this.slug() === 'microsoft-copilot');
+  readonly isCopilotStudio = computed(() => this.slug() === 'microsoft-copilot-studio');
   readonly isZohoWorkspace = computed(() => this.slug() === 'zoho-workspace');
 
   readonly zohoWorkspaceFaqs: Faq[] = [

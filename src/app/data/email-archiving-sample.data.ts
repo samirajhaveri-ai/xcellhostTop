@@ -1,6 +1,6 @@
 import { Faq } from './models';
 
-// Sample copy for the E-Mail Archiving page.
+// Sample copy for the Email Archiving page.
 export const EMAIL_ARCHIVING_SAMPLE_WHY = [
   { icon: 'M12 2l8 4v6c0 5-8 10-8 10S4 17 4 12V6z', title: 'Protect your email records', body: 'Plan an archive that preserves business correspondence and helps protect it from accidental changes.' },
   { icon: 'M11 3a8 8 0 100 16 8 8 0 000-16M17 17l5 5', title: 'Find the right conversation', body: 'Make historical messages easier to locate for everyday requests, internal reviews and investigations.' },
@@ -18,5 +18,7 @@ export const EMAIL_ARCHIVING_SAMPLE_FAQS: Faq[] = [
   ['How long are archived emails retained?', 'Retention depends on your configured policies and service plan. Agree on the required periods before enabling the archive.'],
   ['Who can search the archive?', 'Access should be limited to authorised users and administrators. Define roles and search permissions during onboarding.'],
   ['What is a legal hold?', 'A legal hold preserves selected records for an investigation or dispute. Confirm the available controls and scope for your chosen service.'],
+  ['Can archived emails be exported?', 'Export options depend on the selected service and your access permissions. Discuss the formats and audit records you need during the setup review.'],
+  ['What happens when an employee leaves?', 'Archived correspondence can remain available according to your retention policy. Review account closure and archive access as part of your employee offboarding process.'],
   ['How do we get started?', 'Contact XcellHost with your email platform, mailbox count and retention requirements to discuss setup and a demonstration.'],
 ];
