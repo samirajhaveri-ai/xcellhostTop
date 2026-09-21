@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, inject, linkedSignal, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { RouterLink } from '@angular/router';
 
 import { BlogApiService, CmsBlogPost, CmsInsightResource } from '../core/blog-api.service';
 import { SeoService } from '../core/seo.service';
@@ -46,7 +45,7 @@ interface InsightCategoryBranch {
 @Component({
   selector: 'xh-insights-page',
   standalone: true,
-  imports: [RouterLink],
+  imports: [],
   styleUrl: './insights.page.css',
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -77,7 +76,7 @@ interface InsightCategoryBranch {
               </div>
             </div>
             @if (featured(); as lead) {
-              <article class="insights-hero-feature" [routerLink]="['/insights', lead.slug]">
+              <a class="insights-hero-feature" [href]="'/insights/' + encodeURIComponent(lead.slug) + '/'">
                 <span class="insights-feature-label">Featured article</span>
                 <strong>{{ lead.category }}</strong>
                 <h2>{{ lead.title }}</h2>
@@ -87,7 +86,7 @@ interface InsightCategoryBranch {
                   <span>{{ lead.author }}</span>
                   <span>{{ readTime(lead) }}</span>
                 </div>
-              </article>
+              </a>
             }
           </div>
         </div>
@@ -191,9 +190,8 @@ interface InsightCategoryBranch {
                 @if (featuredVisible(); as lead) {
                   <a
                     class="insights-lead"
-                    [routerLink]="lead.kind === 'blog' ? ['/insights', lead.slug] : lead.kind === 'use-case' ? ['/use-cases', lead.slug] : null"
-                    [href]="lead.kind === 'video' ? lead.actionUrl : null"
-                    [target]="lead.kind === 'video' ? '_blank' : undefined"
+                    [href]="insightHref(lead)"
+                    [attr.target]="lead.kind === 'video' ? '_blank' : null"
                     [attr.rel]="lead.kind === 'video' ? 'noopener noreferrer' : null"
                   >
                     <div class="insights-lead-media">
@@ -225,9 +223,8 @@ interface InsightCategoryBranch {
                   @for (post of gridPosts(); track post.documentId) {
                     <a
                       class="bl insights-card"
-                      [routerLink]="post.kind === 'blog' ? ['/insights', post.slug] : post.kind === 'use-case' ? ['/use-cases', post.slug] : null"
-                      [href]="post.kind === 'video' ? post.actionUrl : null"
-                      [target]="post.kind === 'video' ? '_blank' : undefined"
+                      [href]="insightHref(post)"
+                      [attr.target]="post.kind === 'video' ? '_blank' : null"
                       [attr.rel]="post.kind === 'video' ? 'noopener noreferrer' : null"
                     >
                       <div class="insights-card-media">
@@ -311,6 +308,7 @@ export class InsightsPage {
   readonly expandedSub = signal<string | null>(null);
   readonly query = signal('');
   readonly allCategory = ALL;
+  readonly encodeURIComponent = encodeURIComponent;
 
   readonly blogItems = computed<readonly InsightItem[]>(() =>
     this.posts().map((post) => this.toBlogItem(post))
@@ -528,6 +526,13 @@ export class InsightsPage {
   clearSearch(): void {
     this.query.set('');
     this.currentPage.set(1);
+  }
+
+  insightHref(item: InsightItem): string {
+    if (item.kind === 'video') return item.actionUrl ?? '#';
+    return item.kind === 'use-case'
+      ? `/use-cases/${encodeURIComponent(item.slug)}/`
+      : `/insights/${encodeURIComponent(item.slug)}/`;
   }
 
   goToPage(page: number, results: HTMLElement): void {

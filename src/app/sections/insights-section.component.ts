@@ -37,7 +37,7 @@ import { slugify } from '../core/catalog.service';
           <button class="blog-nav blog-nav-prev" type="button" aria-label="Previous insights" (click)="scrollCarousel(-1)">‹</button>
           <div class="blog-grid" #blogGrid>
           @for (post of posts(); track post.documentId; let first = $first) {
-            <article class="bl" [class.feat]="first" [routerLink]="['/insights', post.slug]">
+            <a class="bl" [class.feat]="first" [href]="'/insights/' + encodeURIComponent(post.slug) + '/'">
               @if (post.coverImageUrl) {
                 <img
                   class="blog-cover"
@@ -49,7 +49,7 @@ import { slugify } from '../core/catalog.service';
               <h3>{{ post.title }}</h3>
               <p>{{ post.description }}</p>
               <span class="bl-m">{{ post.author }} · {{ formatDate(post.date) }}</span>
-            </article>
+            </a>
           }
           </div>
           <button class="blog-nav blog-nav-next" type="button" aria-label="Next insights" (click)="scrollCarousel(1)">›</button>
@@ -115,6 +115,7 @@ import { slugify } from '../core/catalog.service';
   `,
   styles: `
     .insights-empty { text-align: center; color: var(--slate); padding: 24px 16px; }
+    .blog-grid .bl { color: inherit; text-decoration: none; }
     .insights-heading { max-width: none; text-align: center; }
     .insights-heading .eyebrow::after { margin-left: auto; margin-right: auto; }
     .insights-heading-row { display: flex; flex-direction: column; align-items: center; gap: 16px; margin-bottom: 12px; }
@@ -146,6 +147,7 @@ export class InsightsSectionComponent {
   readonly pageAliases = input<readonly string[]>([]);
   private readonly allPosts = signal<readonly CmsBlogPost[]>([]);
   readonly loading = signal(true);
+  readonly encodeURIComponent = encodeURIComponent;
   readonly posts = computed(() => {
     const slugs = [this.pageSlug(), ...this.pageAliases()]
       .map(value => value.trim().toLowerCase().replace(/^\/+|\/+$/g, '')).filter(Boolean);

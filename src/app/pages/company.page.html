@@ -700,6 +700,24 @@
         </div>
       </div>
     </section>
+    } @else if (slug() === 'apply-for-job') {
+      <section class="career-hero apply-job-hero" aria-labelledby="apply-job-hero-title">
+        <span class="career-hero-orb" aria-hidden="true"></span>
+        <div class="wrap career-hero-inner">
+          <div class="career-hero-copy">
+            <p class="career-hero-eyebrow">Careers at XcellHost <span aria-hidden="true"></span></p>
+            <h1 id="apply-job-hero-title">Find Your Next<br />Opportunity at <span>XcellHost</span></h1>
+            <p class="career-hero-tagline">Explore open roles in cloud, cybersecurity, technology and customer success—and build work that makes a real impact.</p>
+            <div class="apply-job-hero-actions">
+              <a class="apply-job-primary" href="#xh-jobs-title">View Open Positions <span aria-hidden="true">↓</span></a>
+              <a class="apply-job-secondary" routerLink="/company/careers-overview">Life at XcellHost <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+          <div class="career-hero-visual apply-job-hero-visual">
+            <img class="career-hero-photo" src="/assets/images/apply-for-job-hero.png" alt="XcellHost verified jobs and job alerts" width="2170" height="725" fetchpriority="high" />
+          </div>
+        </div>
+      </section>
     } @else {
     @if (slug() === 'careers-overview') {
       <section class="career-hero" aria-labelledby="career-hero-title">
