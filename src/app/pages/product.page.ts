@@ -53,6 +53,7 @@ import { ManagedAwsContentComponent } from '../sections/managed-aws-content.comp
 
 import { ManagedMicrosoft365ContentComponent } from '../sections/managed-microsoft-365-content.component';
 import { MicrosoftCopilotContentComponent } from '../sections/microsoft-copilot-content.component';
+import { CopilotStudioContentComponent } from '../sections/copilot-studio-content.component';
 import { CloudObjectStorageContentComponent } from '../sections/cloud-object-storage-content.component';
 import { ZohoWorkspaceContentComponent } from '../sections/zoho-workspace-content.component';
 import { EntraIdContentComponent } from '../sections/entra-id-content.component';
@@ -169,6 +170,7 @@ interface ProductTourSlide {
 
     ManagedMicrosoft365ContentComponent,
     MicrosoftCopilotContentComponent,
+    CopilotStudioContentComponent,
     WaapContentComponent,
     IotInfrastructureContentComponent,
     DomainsContentComponent,
@@ -1118,6 +1120,7 @@ export class ProductPage {
 
   readonly isManagedMicrosoft365 = computed(() => this.view()?.name === 'Managed Microsoft 365');
   readonly isMicrosoftCopilot = computed(() => this.slug() === 'microsoft-copilot');
+  readonly isCopilotStudio = computed(() => this.slug() === 'microsoft-copilot-studio');
   readonly isZohoWorkspace = computed(() => this.slug() === 'zoho-workspace');
 
   readonly zohoWorkspaceFaqs: Faq[] = [

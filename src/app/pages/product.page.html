@@ -29,6 +29,9 @@
     } @else if (isWatchtower()) {
       <xh-watchtower-reference />
     } @else {
+      @if (isCopilotStudio()) {
+        <xh-copilot-studio-content mode="hero" />
+      } @else {
       <div
         class="pp-hero"
         [class.sitelock-hero]="v.name === 'Web Security (SiteLock)'"
@@ -942,15 +945,24 @@
           }
         </div>
       </div>
+      }
 
       @if (!isResellerProgram()) {
         <div class="pp-trust">
           <div class="wrap">
-            <span><b>ISO 27001</b> &amp; <b>20000-1</b> certified</span>
-            <span>Microsoft <b>Gold Partner</b></span>
-            <span><b>10,000+</b> customers</span>
-            <span><b>Since 1999</b></span>
-            <span><b>24×7</b> NOC + SOC</span>
+            @if (isCopilotStudio()) {
+              <span><b>Microsoft</b> Partner</span>
+              <span><b>No-code</b> agent builder</span>
+              <span><b>1,000+</b> connectors</span>
+              <span><b>Since 1999</b></span>
+              <span><b>24×7</b> NOC + SOC</span>
+            } @else {
+              <span><b>ISO 27001</b> &amp; <b>20000-1</b> certified</span>
+              <span>Microsoft <b>Gold Partner</b></span>
+              <span><b>10,000+</b> customers</span>
+              <span><b>Since 1999</b></span>
+              <span><b>24×7</b> NOC + SOC</span>
+            }
 
           </div>
         </div>
@@ -1084,6 +1096,9 @@
             @if (isMicrosoftCopilot()) {
               <xh-microsoft-copilot-content />
             }
+            @if (isCopilotStudio()) {
+              <xh-copilot-studio-content />
+            }
             @if (isManagedMicrosoft365()) {
               <xh-managed-microsoft-365-content />
             }
@@ -1133,6 +1148,7 @@
               !isCloudObjectStorage() &&
               slug() !== 'e-mail-archiving' &&
               !isMicrosoftCopilot() &&
+              !isCopilotStudio() &&
               !isZohoWorkspace() &&
               !isMicrosoftEntraId() &&
               !isDigiCert() &&
