@@ -1281,8 +1281,9 @@ export class ProductPage {
 
   /** `null` while the slug matches nothing — the effect below sends those home. */
   readonly view = computed<ProductView | null>(() => {
-
-    const view = this.resolve(this.slug());
+    const slug = this.slug();
+    const view = this.resolve(slug);
+    if (!view) return null;
     if (view && this.slug() === 'acronis-mdr') {
       return { ...view, heroPoints: ['24/7 SOC monitoring', 'Proactive threat hunting', 'Expert incident response', 'Integrated recovery'] };
     }
@@ -1302,12 +1303,6 @@ export class ProductPage {
         faqs: MICROSOFT_TRAINING_SAMPLE_FAQS,
       };
     }
-    if (view && this.slug() === 'email-archiving') {
-
-    const slug = this.slug();
-    const view = this.resolve(slug);
-
-    if (!view) return null;
     if (slug === 'acronis-backup-advanced') {
       return { ...view, heroImage: '/assets/images/acronis-backup-advanced-hero.svg' };
     }
