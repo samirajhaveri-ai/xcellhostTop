@@ -25,6 +25,7 @@ export class AssociationsPage {
     { id: 'it-trade', label: 'IT Trade' },
     { id: 'industry', label: 'Industry Association' },
     { id: 'country', label: 'Country Association' },
+    { id: 'country', label: 'Business Network' },
     
   ];
 

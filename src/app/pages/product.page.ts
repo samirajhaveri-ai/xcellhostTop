@@ -1,4 +1,5 @@
 import { EmailArchivingContentComponent } from '../sections/email-archiving-content.component';
+import { CloudDevopsContentComponent } from '../sections/cloud-devops-content.component';
 import { EMAIL_ARCHIVING_SAMPLE_FAQS, EMAIL_ARCHIVING_SAMPLE_WHY } from '../data/email-archiving-sample.data';
 import { WaapContentComponent } from '../sections/waap-content.component';
 import { IotInfrastructureContentComponent } from '../sections/iot-infrastructure-content.component';
@@ -53,6 +54,7 @@ import { ManagedAwsContentComponent } from '../sections/managed-aws-content.comp
 
 import { ManagedMicrosoft365ContentComponent } from '../sections/managed-microsoft-365-content.component';
 import { MicrosoftCopilotContentComponent } from '../sections/microsoft-copilot-content.component';
+import { CopilotStudioContentComponent } from '../sections/copilot-studio-content.component';
 import { CloudObjectStorageContentComponent } from '../sections/cloud-object-storage-content.component';
 import { ZohoWorkspaceContentComponent } from '../sections/zoho-workspace-content.component';
 import { EntraIdContentComponent } from '../sections/entra-id-content.component';
@@ -68,6 +70,7 @@ import { OurPlatformReferenceComponent } from '../sections/our-platform-referenc
 import { WatchtowerReferenceComponent } from '../sections/watchtower-reference.component';
 import { BareMetalContentComponent } from '../sections/bare-metal-content.component';
 import { GenaiProtectionContentComponent } from '../sections/genai-protection-content.component';
+import { CloudMigrationAdvantageComponent } from '../sections/cloud-migration-advantage.component';
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -169,12 +172,14 @@ interface ProductTourSlide {
 
     ManagedMicrosoft365ContentComponent,
     MicrosoftCopilotContentComponent,
+    CopilotStudioContentComponent,
     WaapContentComponent,
     IotInfrastructureContentComponent,
     DomainsContentComponent,
     AgenticAiContentComponent,
     CloudObjectStorageContentComponent,
     EmailArchivingContentComponent,
+    CloudDevopsContentComponent,
     ZohoWorkspaceContentComponent,
     EntraIdContentComponent,
     EntraIdHeroComponent,
@@ -189,6 +194,7 @@ interface ProductTourSlide {
     WatchtowerReferenceComponent,
     BareMetalContentComponent,
     GenaiProtectionContentComponent,
+    CloudMigrationAdvantageComponent,
 
     EmailSignatureContentComponent,
     EmailSignatureHeroComponent,
@@ -197,6 +203,195 @@ interface ProductTourSlide {
   styles: [`
     #ppage.tally-page .pph-scene.has-illus.standalone-illus { top: 50%; bottom: auto; transform: translateY(-50%); }
     @media(max-width:900px) { #ppage.tally-page .pph-scene.has-illus.standalone-illus { top: auto; bottom: auto; transform: none; margin: 24px auto; } }
+    #ppage.cloud-migration-page .pph-scene.has-illus.standalone-illus { right: 1%; width: 49%; top: 2%; bottom: 2%; mask-image: none; }
+    #ppage.cloud-migration-page .pph-scene.has-illus.standalone-illus .pph-illus-img { width: 96%; max-width: 600px; max-height: 440px; filter: none; }
+    @media(max-width:900px) {
+      #ppage.cloud-migration-page .pph-scene.has-illus.standalone-illus { position: relative; right: auto; width: min(100%, 600px); top: auto; bottom: auto; margin: 18px auto 0; opacity: 1; }
+      #ppage.cloud-migration-page .pph-scene.has-illus.standalone-illus .pph-illus-img { width: 100%; max-width: 560px; max-height: none; }
+    }
+    #ppage .migration-capabilities { padding: 52px 0 58px; }
+    #ppage .migration-capabilities-heading { max-width: 780px; margin: 0 auto 50px; text-align: center; }
+    #ppage .migration-capabilities-heading > span { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 13px; color: var(--blue); font: 700 12px/1.4 var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+    #ppage .migration-capabilities-heading > span::before { content: ''; width: 22px; height: 2px; background: var(--orange); }
+    #ppage .migration-capabilities-heading h2 { margin: 0 0 12px; color: var(--navy); font: 800 clamp(30px, 3.5vw, 44px)/1.12 var(--disp); letter-spacing: -.035em; }
+    #ppage .migration-capabilities-heading p { margin: 0; color: var(--slate); font-size: 17px; line-height: 1.6; }
+    #ppage .migration-capabilities-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+    #ppage .migration-capability-card { position: relative; min-width: 0; min-height: 234px; overflow: hidden; padding: 28px; border: 1px solid var(--line); border-radius: 16px; background: #fff; box-shadow: 0 10px 30px rgba(4,30,66,.08); transition: transform .35s, box-shadow .35s, border-color .35s; }
+    #ppage .migration-capability-card::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 3px; background: linear-gradient(90deg, var(--blue), var(--orange)); transition: width .5s; }
+    #ppage .migration-capability-card:hover { transform: translateY(-6px); border-color: #bfd3f5; box-shadow: 0 22px 60px rgba(4,30,66,.16); }
+    #ppage .migration-capability-card:hover::before { width: 100%; }
+    #ppage .migration-capability-icon { display: grid; place-items: center; width: 52px; height: 52px; margin-bottom: 17px; border: 1px solid #d5e3f8; border-radius: 14px; color: var(--blue); background: linear-gradient(135deg, var(--blue-soft), #fff); transition: transform .35s, color .35s, background .35s, border-color .35s; }
+    #ppage .migration-capability-icon svg { width: 24px; height: 24px; }
+    #ppage .migration-capability-card:hover .migration-capability-icon { transform: rotate(-6deg) scale(1.05); border-color: transparent; color: #fff; background: linear-gradient(135deg, var(--blue), #0b3e9c); }
+    #ppage .migration-capability-card h3 { margin: 0 0 9px; color: var(--navy); font: 750 19px/1.3 var(--disp); }
+    #ppage .migration-capability-card p { margin: 0; color: var(--slate); font-size: 15px; line-height: 1.55; }
+    #ppage .migration-capability-tags { display: block; margin-top: 10px; color: var(--blue); font: 600 11px/1.45 var(--mono); }
+    @media(max-width:900px) {
+      #ppage .migration-capabilities { padding: 38px 0 44px; }
+      #ppage .migration-capabilities-heading { margin-bottom: 32px; }
+      #ppage .migration-capabilities-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media(max-width:600px) {
+      #ppage .migration-capabilities-grid { grid-template-columns: 1fr; }
+      #ppage .migration-capability-card { min-height: 0; padding: 24px; }
+    }
+    #ppage .migration-process { padding: 58px 0 72px; }
+    #ppage .migration-process-heading { max-width: 780px; margin: 0 auto 52px; text-align: center; }
+    #ppage .migration-process-heading > span { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 13px; color: var(--blue); font: 700 12px/1.4 var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+    #ppage .migration-process-heading > span::before { content: ''; width: 22px; height: 2px; background: var(--orange); }
+    #ppage .migration-process-heading h2 { margin: 0 0 12px; color: var(--navy); font: 800 clamp(30px, 3.5vw, 44px)/1.12 var(--disp); letter-spacing: -.035em; }
+    #ppage .migration-process-heading p { margin: 0; color: var(--slate); font-size: 17px; line-height: 1.6; }
+    #ppage .migration-process-phases { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+    #ppage .migration-process-phase { display: flex; flex-direction: column; min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 16px; background: #fff; box-shadow: 0 6px 18px rgba(4,30,66,.06); }
+    #ppage .migration-phase-heading { display: flex; align-items: center; gap: 10px; padding: 16px 16px 6px; }
+    #ppage .migration-phase-heading b { color: var(--navy); font: 800 15px/1 var(--disp); letter-spacing: .04em; }
+    #ppage .migration-phase-badge { display: grid; place-items: center; width: 30px; height: 30px; flex: 0 0 30px; border-radius: 50%; color: #fff; font: 800 11px/1 var(--mono); }
+    #ppage .migration-phase-badge.plan { background: #1565d8; }
+    #ppage .migration-phase-badge.build { background: #ff8c1a; }
+    #ppage .migration-phase-badge.move { background: #16a34a; }
+    #ppage .migration-phase-badge.operate { background: #6d5bff; }
+    #ppage .migration-phase-intro { min-height: 61px; margin: 0; padding: 0 16px 14px; border-bottom: 1px solid var(--line); color: var(--ink); font-size: 12.5px; line-height: 1.5; }
+    #ppage .migration-phase-steps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); flex: 1; }
+    #ppage .migration-process-step { min-width: 0; padding: 16px 12px; border-right: 1px solid var(--line); }
+    #ppage .migration-process-step:last-child { border-right: 0; }
+    #ppage .migration-process-step > strong { display: block; margin-bottom: 10px; color: var(--blue); font: 800 15px/1 var(--disp); }
+    #ppage .migration-process-icon { display: grid; place-items: center; width: 42px; height: 42px; margin-bottom: 10px; border-radius: 50%; color: var(--blue); background: var(--blue-soft); }
+    #ppage .migration-process-icon svg { width: 22px; height: 22px; }
+    #ppage .migration-process-step h3 { margin: 0 0 4px; color: var(--navy); font: 800 14px/1.2 var(--disp); }
+    #ppage .migration-process-step p { margin: 0 0 8px; color: var(--ink); font-size: 11.5px; line-height: 1.4; }
+    #ppage .migration-process-step ul { margin: 0; padding: 0; list-style: none; }
+    #ppage .migration-process-step li { position: relative; padding-left: 12px; color: var(--ink); font-size: 11.5px; font-weight: 500; line-height: 1.7; }
+    #ppage .migration-process-step li::before { content: ''; position: absolute; top: 8px; left: 0; width: 4px; height: 4px; border-radius: 50%; background: var(--blue); }
+    @media(max-width:1080px) {
+      #ppage .migration-process-phases { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media(max-width:600px) {
+      #ppage .migration-process { padding: 44px 0 54px; }
+      #ppage .migration-process-heading { margin-bottom: 32px; }
+      #ppage .migration-process-phases { grid-template-columns: 1fr; }
+      #ppage .migration-phase-intro { min-height: 0; }
+    }
+    #ppage .migration-advantage { padding: 34px 0 72px; background: var(--ice); box-shadow: 0 0 0 100vmax var(--ice); clip-path: inset(0 -100vmax); }
+    #ppage .migration-principles-section { padding: 34px 0 0; background: var(--ice); box-shadow: 0 0 0 100vmax var(--ice); clip-path: inset(0 -100vmax); }
+    #ppage .migration-principles-section .migration-principles { margin-bottom: 0; }
+    #ppage xh-cloud-migration-advantage { display: block; background: var(--ice); box-shadow: 0 0 0 100vmax var(--ice); clip-path: inset(0 -100vmax); }
+    #ppage .migration-principles { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; margin-bottom: 72px; }
+    #ppage .migration-principles article { display: flex; gap: 12px; min-width: 0; padding: 17px; border: 1px solid var(--line); border-radius: 14px; background: #fff; box-shadow: 0 6px 18px rgba(4,30,66,.06); }
+    #ppage .migration-principles article > span { display: grid; place-items: center; width: 40px; height: 40px; flex: 0 0 40px; border-radius: 11px; color: var(--blue); background: var(--blue-soft); }
+    #ppage .migration-principles svg { width: 20px; height: 20px; }
+    #ppage .migration-principles b { display: block; margin-bottom: 4px; color: var(--navy); font: 800 13px/1.2 var(--disp); }
+    #ppage .migration-principles small { display: block; color: var(--slate); font-size: 11px; line-height: 1.45; }
+    #ppage .migration-advantage-heading { max-width: 790px; margin: 0 auto 50px; text-align: center; }
+    #ppage .migration-advantage-heading > span { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 13px; color: var(--blue); font: 700 12px/1.4 var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+    #ppage .migration-advantage-heading > span::before { content: ''; width: 22px; height: 2px; background: var(--orange); }
+    #ppage .migration-advantage-heading h2 { margin: 0 0 12px; color: var(--navy); font: 800 clamp(28px, 3.2vw, 42px)/1.12 var(--disp); letter-spacing: -.035em; }
+    #ppage .migration-advantage-heading p { margin: 0; color: var(--slate); font-size: 16px; }
+    #ppage .migration-architecture { display: grid; grid-template-columns: minmax(0, 1fr) minmax(190px, .72fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+    #ppage .migration-architecture-column { display: flex; flex-direction: column; gap: 10px; min-width: 0; padding: 16px; border: 1px solid var(--line); border-radius: 18px; background: #fff; box-shadow: 0 6px 18px rgba(4,30,66,.06); }
+    #ppage .migration-architecture-column > h3, #ppage .migration-journey-column > h3 { align-self: flex-start; margin: 0; padding: 9px 16px; border-radius: 999px; color: #fff; background: var(--navy); font: 800 12px/1 var(--disp); letter-spacing: .03em; }
+    #ppage .migration-architecture-column.after > h3 { background: var(--blue); }
+    #ppage .migration-architecture-subtitle { margin: -2px 0 4px; color: var(--slate); font-size: 12px; font-weight: 600; line-height: 1.3; }
+    #ppage .migration-architecture-group, #ppage .migration-challenges { padding: 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--ice); }
+    #ppage .migration-architecture-group.accent { border-color: #8ab4ff; background: linear-gradient(160deg, #eaf1fe, #f2f6fc); }
+    #ppage .migration-architecture-group h4, #ppage .migration-challenges h4 { margin: 0 0 9px; color: var(--slate); font: 700 9.5px/1.2 var(--mono); letter-spacing: .05em; text-transform: uppercase; }
+    #ppage .migration-architecture-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+    #ppage .migration-architecture-tiles.five { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    #ppage .migration-architecture-tiles.six { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    #ppage .migration-architecture-tile { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 0; padding: 9px 4px; border: 1px solid var(--line); border-radius: 9px; background: #fff; text-align: center; }
+    #ppage .migration-architecture-tile > span { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 7px; color: var(--blue); background: var(--blue-soft); }
+    #ppage .migration-architecture-tile svg { width: 15px; height: 15px; }
+    #ppage .migration-architecture-tile b { color: var(--navy); font: 700 9px/1.18 var(--disp); overflow-wrap: anywhere; }
+    #ppage .migration-down-arrow { align-self: center; color: var(--blue); font-size: 17px; line-height: 1; }
+    #ppage .migration-challenges > div { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; }
+    #ppage .migration-challenges span { display: flex; align-items: flex-start; gap: 5px; color: var(--slate); font-size: 9px; font-weight: 500; line-height: 1.25; }
+    #ppage .migration-challenges i { display: grid; place-items: center; width: 12px; height: 12px; flex: 0 0 12px; border: 1px solid #e0524a; border-radius: 50%; color: #e0524a; font: 800 8px/1 var(--mono); }
+    #ppage .migration-journey-column { display: flex; flex-direction: column; gap: 12px; min-width: 0; padding-top: 34px; }
+    #ppage .migration-journey-column > h3 { color: var(--blue); background: var(--blue-soft); }
+    #ppage .migration-journey-list { display: flex; flex-direction: column; gap: 12px; }
+    #ppage .migration-journey-list article { display: flex; align-items: flex-start; gap: 10px; }
+    #ppage .migration-journey-list article > span { display: grid; place-items: center; width: 38px; height: 38px; flex: 0 0 38px; border: 1px solid var(--line); border-radius: 50%; color: var(--blue); background: #fff; box-shadow: 0 6px 18px rgba(4,30,66,.06); font: 800 11px/1 var(--mono); }
+    #ppage .migration-journey-list b { display: block; color: var(--navy); font: 800 13px/1.2 var(--disp); }
+    #ppage .migration-journey-list small { display: block; color: var(--slate); font-size: 11px; line-height: 1.4; }
+    #ppage .migration-bridge { padding: 16px; border-radius: 14px; color: #fff; background: linear-gradient(160deg, #062a5c, #041e42); }
+    #ppage .migration-bridge > b { display: block; margin-bottom: 12px; text-align: center; font: 800 12px/1 var(--disp); letter-spacing: .04em; }
+    #ppage .migration-bridge > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    #ppage .migration-bridge span { padding: 7px 3px; border-radius: 6px; color: #c9d8f5; background: rgba(255,255,255,.07); text-align: center; font-size: 9px; font-weight: 600; }
+    @media(max-width:1080px) {
+      #ppage .migration-principles { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-bottom: 54px; }
+      #ppage .migration-principles article:last-child { grid-column: 1 / -1; }
+      #ppage .migration-architecture { grid-template-columns: 1fr; }
+      #ppage .migration-journey-column { padding: 10px 16px; }
+    }
+    @media(max-width:600px) {
+      #ppage .migration-advantage { padding: 28px 0 52px; }
+      #ppage .migration-principles { grid-template-columns: 1fr; margin-bottom: 44px; }
+      #ppage .migration-principles article:last-child { grid-column: auto; }
+      #ppage .migration-advantage-heading { margin-bottom: 32px; }
+      #ppage .migration-architecture-column { padding: 12px; }
+      #ppage .migration-architecture-tiles, #ppage .migration-architecture-tiles.five, #ppage .migration-architecture-tiles.six { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      #ppage .migration-challenges > div { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    #ppage .migration-proof { padding: 66px 0 72px; }
+    #ppage .migration-value-strip { display: grid; grid-template-columns: .85fr repeat(6, minmax(0, 1fr)); overflow: hidden; margin-bottom: 92px; border: 1px solid var(--line); border-radius: 18px; background: #fff; box-shadow: 0 6px 18px rgba(4,30,66,.06); }
+    #ppage .migration-value-strip > strong { display: grid; place-items: center; padding: 22px 14px; color: #fff; background: var(--navy); text-align: center; font: 800 14px/1.3 var(--disp); }
+    #ppage .migration-value-strip article { min-width: 0; padding: 20px 15px; border-right: 1px solid var(--line); }
+    #ppage .migration-value-strip article:last-child { border-right: 0; }
+    #ppage .migration-value-strip article > span { display: grid; place-items: center; width: 36px; height: 36px; margin-bottom: 8px; border-radius: 10px; color: var(--blue); background: var(--blue-soft); font: 800 11px/1 var(--mono); }
+    #ppage .migration-value-strip article > span svg { width: 18px; height: 18px; }
+    #ppage .migration-value-strip b { display: block; margin-bottom: 7px; color: var(--navy); font: 800 13px/1.2 var(--disp); }
+    #ppage .migration-value-strip p { margin: 0; color: var(--slate); font-size: 11px; line-height: 1.45; }
+    #ppage .migration-scenarios-heading { max-width: 780px; margin: 0 auto 50px; text-align: center; }
+    #ppage .migration-scenarios-heading > span, #ppage .migration-assessment-copy > span { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 13px; color: var(--blue); font: 700 12px/1.4 var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+    #ppage .migration-scenarios-heading > span::before, #ppage .migration-assessment-copy > span::before { content: ''; width: 22px; height: 2px; background: var(--orange); }
+    #ppage .migration-scenarios-heading h2 { margin: 0 0 12px; color: var(--navy); font: 800 clamp(30px, 3.5vw, 44px)/1.12 var(--disp); letter-spacing: -.035em; }
+    #ppage .migration-scenarios-heading p { margin: 0; color: var(--slate); font-size: 16px; line-height: 1.6; }
+    #ppage .migration-scenarios-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+    #ppage .migration-scenario-card { display: flex; flex-direction: column; gap: 11px; min-width: 0; padding: 22px; border: 1px solid var(--line); border-radius: 18px; background: #fff; box-shadow: 0 6px 18px rgba(4,30,66,.06); transition: transform .25s, box-shadow .25s, border-color .25s; }
+    #ppage .migration-scenario-card:hover { transform: translateY(-4px); border-color: #8ab4ff; box-shadow: 0 18px 42px rgba(4,30,66,.13); }
+    #ppage .migration-scenario-title { display: flex; align-items: center; gap: 11px; }
+    #ppage .migration-scenario-title > span { display: grid; place-items: center; width: 42px; height: 42px; flex: 0 0 42px; border-radius: 11px; color: var(--blue); background: var(--blue-soft); }
+    #ppage .migration-scenario-title svg { width: 22px; height: 22px; }
+    #ppage .migration-scenario-title h3 { margin: 0; color: var(--navy); font: 800 17px/1.2 var(--disp); }
+    #ppage .migration-scenario-card > p { margin: 0; color: var(--slate); font-size: 13px; line-height: 1.55; }
+    #ppage .migration-scenario-card > small { color: var(--slate); font: 700 9.5px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+    #ppage .migration-scenario-destination { color: var(--blue); font-size: 12px; font-weight: 600; line-height: 1.4; }
+    #ppage .migration-scenario-sample { display: flex; align-items: center; gap: 12px; margin-top: auto; padding: 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--ice); }
+    #ppage .migration-scenario-sample > div { min-width: 0; flex: 1; }
+    #ppage .migration-scenario-sample div small { color: var(--slate); font: 700 8.5px/1.2 var(--mono); letter-spacing: .04em; text-transform: uppercase; }
+    #ppage .migration-scenario-sample div b { display: block; margin: 3px 0; color: var(--navy); font: 800 13px/1.25 var(--disp); }
+    #ppage .migration-scenario-sample em { display: block; color: var(--slate); font-size: 11px; font-style: normal; line-height: 1.35; }
+    #ppage .migration-scenario-sample > strong { flex: 0 0 auto; color: #16a34a; text-align: center; font: 800 23px/1 var(--disp); }
+    #ppage .migration-scenario-sample > strong small { display: block; max-width: 76px; margin-top: 4px; color: var(--slate); font: 600 9px/1.1 var(--mono); }
+    #ppage .migration-scenario-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    #ppage .migration-scenario-tags span { padding: 6px 9px; border: 1px solid var(--line); border-radius: 999px; color: var(--navy); background: var(--ice); font: 600 9px/1 var(--mono); }
+    #ppage .migration-assessment { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; align-items: center; margin-top: 76px; padding: 40px; border-radius: 24px; background: linear-gradient(155deg, #062a5c, #041e42); }
+    #ppage .migration-assessment-copy > span { color: #8ab4ff; }
+    #ppage .migration-assessment-copy h2 { margin: 7px 0 12px; color: #fff; font: 800 clamp(25px, 2.8vw, 36px)/1.15 var(--disp); }
+    #ppage .migration-assessment-copy p { margin: 0 0 22px; color: #c9d8f5; font-size: 15px; line-height: 1.6; }
+    #ppage .migration-assessment-copy > div { display: flex; flex-wrap: wrap; gap: 12px; }
+    #ppage .migration-assessment-secondary { border: 1.5px solid rgba(255,255,255,.4); color: #fff; background: transparent; }
+    #ppage .migration-assessment-points { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    #ppage .migration-assessment-points article { display: flex; align-items: flex-start; gap: 12px; }
+    #ppage .migration-assessment-points article > span { display: grid; place-items: center; width: 40px; height: 40px; flex: 0 0 40px; border-radius: 11px; color: #8ab4ff; background: rgba(138,180,255,.14); font: 800 11px/1 var(--mono); }
+    #ppage .migration-assessment-points b { display: block; color: #fff; font: 700 14px/1.25 var(--disp); }
+    #ppage .migration-assessment-points small { display: block; color: #9fb6de; font-size: 12px; line-height: 1.4; }
+    @media(max-width:1080px) {
+      #ppage .migration-value-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      #ppage .migration-value-strip > strong { grid-column: 1 / -1; }
+      #ppage .migration-scenarios-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media(max-width:760px) {
+      #ppage .migration-proof { padding: 48px 0 54px; }
+      #ppage .migration-value-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-bottom: 58px; }
+      #ppage .migration-scenarios-grid { grid-template-columns: 1fr; }
+      #ppage .migration-assessment { grid-template-columns: 1fr; margin-top: 54px; padding: 28px; }
+    }
+    @media(max-width:520px) {
+      #ppage .migration-value-strip { grid-template-columns: 1fr; }
+      #ppage .migration-value-strip article { border-right: 0; border-bottom: 1px solid var(--line); }
+      #ppage .migration-assessment-points { grid-template-columns: 1fr; }
+      #ppage .migration-assessment-copy .btn { width: 100%; white-space: normal; }
+    }
     #ppage.disaster-recovery-page .pp-tagline-support,
     #ppage.disaster-recovery-page .pp-typewriter { width: 55% !important; max-width: 700px !important; white-space: normal; overflow-wrap: break-word; line-height: 1.45; }
     @media(max-width:900px) { #ppage.disaster-recovery-page .pp-tagline-support, #ppage.disaster-recovery-page .pp-typewriter { width: 100% !important; max-width: 100% !important; } }
@@ -361,6 +556,63 @@ export class ProductPage {
 
   /** five star slots, so the template does not rebuild an array on every check */
   readonly starSlots = [0, 1, 2, 3, 4];
+  readonly migrationPrinciples = [
+    { title: 'Risk aware', body: 'We identify risks early and plan for every scenario.', icon: 'M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L14.4 3.9a2 2 0 0 0-3.4 0zM12 9v4M12 17h.01' },
+    { title: 'Business focused', body: 'Migration windows and cutover plans aligned to your business.', icon: 'M12 6v6l4 2M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0z' },
+    { title: 'Secure by design', body: 'Security and compliance built in at every step.', icon: 'M3 11h18v11H3zM7 11V7a5 5 0 0 1 10 0v4' },
+    { title: 'Complete visibility', body: 'Real-time tracking and reporting throughout the journey.', icon: 'M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z' },
+    { title: 'Expert support', body: 'Experienced cloud engineers with you from start to end.', icon: 'M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.8 2z' },
+  ];
+  readonly migrationBeforeGroups = [
+    { title: 'Users & Locations', items: ['Head Office', 'Branch Offices', 'Remote Users', 'Third Parties'] },
+    { title: 'Application Layer', items: ['Legacy Apps', 'ERP / CRM', 'Web Apps', 'Custom Apps'] },
+    { title: 'Infrastructure', items: ['On-prem DC', 'Private Cloud', 'VMware', 'Public Cloud'] },
+    { title: 'Data & Infrastructure', items: ['Servers', 'Storage', 'Databases', 'Backups'] },
+  ];
+  readonly migrationChallenges = [
+    'High & unpredictable costs', 'Limited visibility', 'Slow provisioning',
+    'Siloed management', 'Inconsistent security', 'Backup gaps',
+    'Complex integrations', 'Manual operations', 'Compliance burdens',
+  ];
+  readonly migrationJourney = [
+    { title: 'Discover', body: 'Assess workloads, dependencies & risks' },
+    { title: 'Design', body: 'Build target architecture & migration plan' },
+    { title: 'Migrate', body: 'Move workloads in controlled waves' },
+    { title: 'Validate', body: 'Test, validate & optimise before cutover' },
+    { title: 'Cutover', body: 'Seamless transition with minimal downtime' },
+  ];
+  readonly migrationAfterGroups = [
+    { title: 'Users & Experience', items: ['Employees', 'Partners', 'Customers', 'Applications'] },
+    { title: 'Application Experience', items: ['Modern Apps', 'Legacy Apps', 'VDI / Workspace', 'APIs & Integration'] },
+    { title: 'XcellHost Cloud', items: ['Core Cloud', 'Prime Cloud', 'GPU Cloud', 'Kubernetes & PaaS'], accent: true },
+    { title: 'Data & Services', items: ['Databases', 'Storage', 'Backup & DR', 'CDN & LB', 'Virtual Networks'] },
+    { title: 'Security & Management', items: ['Security', 'IAM & Access', 'Observability', 'Compliance', 'Monitoring', 'Automation'] },
+    { title: 'Managed Operations', items: ['24×7 Monitoring', 'SLA Support', 'Cost Optimisation', 'Capacity Planning'] },
+  ];
+  readonly migrationValueAdds = [
+    { title: 'Predictable Costs', body: 'Flat, transparent pricing with no surprises.', icon: ['M6 3h12M6 8h12M14 3c0 5-4 6-8 6l7 9'] },
+    { title: 'Simplified Operations', body: 'Unified management from a single console.', icon: ['M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z', 'M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82A1.65 1.65 0 0 0 3.17 14H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09A1.65 1.65 0 0 0 19.4 15z'] },
+    { title: 'Stronger Security', body: 'Built-in security, compliance & data sovereignty.', icon: ['M12 2l8 3v6c0 5.5-3.5 9.7-8 11-4.5-1.3-8-5.5-8-11V5l8-3z', 'M9 12l2 2 4-4'] },
+    { title: 'High Performance', body: 'Optimised infrastructure for modern workloads.', icon: ['M13 2L3 14h7l-1 8 10-12h-7l1-8z'] },
+    { title: 'Built-in Resilience', body: 'Backup, DR & HA designed into the platform.', icon: ['M23 4v6h-6M1 20v-6h6', 'M3.5 9a9 9 0 0 1 15-3.4L23 10M1 14l4.5 4.4A9 9 0 0 0 20.5 15'] },
+    { title: 'Business Agility', body: 'Provision faster. Scale easier. Innovate sooner.', icon: ['M3 3v18h18', 'M7 15l4-4 3 3 5-6'] },
+  ];
+  readonly migrationScenarios = [
+    { title: 'VMware exit / optimisation', body: 'Reassess VMware and move workloads across without unnecessary redesign.', destination: 'XcellHost Cloud · Prime Cloud · Private Cloud', sector: 'Manufacturing', project: 'VMware to XcellHost migration', outcome: '250+ VMs migrated · Zero downtime', metric: '40%', metricLabel: 'Cost optimisation', tags: ['Cost Optimisation', 'Performance', 'Operational Efficiency'] },
+    { title: 'Public-cloud repatriation', body: 'Cut cost and regain control of predictable workloads running on public cloud.', destination: 'Prime Cloud · Regional Cloud · Private Cloud', sector: 'Public Sector', project: 'Public cloud to XcellHost repatriation', outcome: 'Multi-tier · Compliance-ready', metric: '50%', metricLabel: 'Cost savings', tags: ['Cost Savings', 'Sovereignty & Control', 'Compliance'] },
+    { title: 'Legacy application modernisation', body: 'Move legacy applications to modern infrastructure and deliver secure access to users.', destination: 'Core / Prime Cloud + app delivery', sector: 'Retail', project: 'Legacy POS to modern platform', outcome: '120+ VMs migrated · Seamless cutover', metric: '99.9%', metricLabel: 'Availability', tags: ['High Availability', 'User Experience', 'Modernisation'] },
+    { title: 'Database migration', body: 'Move databases with controlled downtime and post-migration validation.', destination: 'PostgreSQL · MySQL · MSSQL · Oracle · HANA', sector: 'Healthcare', project: 'Oracle to PostgreSQL migration', outcome: '2 TB+ data migrated · Improved performance', metric: '40%', metricLabel: 'Faster reporting', tags: ['Performance', 'Reliability', 'Cost Optimisation'] },
+    { title: 'Data-centre exit', body: 'Consolidate or exit data centres in a structured, low-risk manner.', destination: 'XcellHost Cloud · Private Cloud · Archive', sector: 'Logistics', project: 'Dual data centre consolidation', outcome: '180+ VMs moved in structured waves', metric: '45%', metricLabel: 'Footprint reduction', tags: ['Cost Optimisation', 'Operational Simplicity', 'Scalability'] },
+    { title: 'Business-continuity transformation', body: 'Migrate and improve resilience with backup and disaster recovery built in.', destination: 'XcellHost Cloud · Backup · Disaster Recovery', sector: 'Insurance', project: 'DR platform modernisation', outcome: 'Backup & DR built in from day one', metric: '15 min', metricLabel: 'RPO achieved', tags: ['Resilience', 'Risk Reduction', 'Business Continuity'] },
+  ];
+  readonly migrationAssessmentPoints = [
+    { title: 'What should move', body: 'Workload classification' },
+    { title: 'Where it should move', body: 'Target architecture' },
+    { title: 'How it should move', body: 'Migration method' },
+    { title: 'When it should move', body: 'Migration waves' },
+    { title: 'What it should cost', body: 'Target infrastructure & commercial model' },
+    { title: 'What could go wrong', body: 'Dependencies & migration risks' },
+  ];
 
   readonly edrPlanCoverage = ['15 months coverage', '30 months coverage', '48 months coverage'];
   readonly edrPlanFeatures = [
@@ -1004,8 +1256,13 @@ export class ProductPage {
   /** `null` while the slug matches nothing — the effect below sends those home. */
   readonly view = computed<ProductView | null>(() => {
     const view = this.resolve(this.slug());
-    if (view && this.slug() === 'e-mail-archiving') {
-      return { ...view, why: EMAIL_ARCHIVING_SAMPLE_WHY, faqs: EMAIL_ARCHIVING_SAMPLE_FAQS };
+    if (view && this.slug() === 'email-archiving') {
+      return {
+        ...view,
+        why: EMAIL_ARCHIVING_SAMPLE_WHY,
+        faqs: EMAIL_ARCHIVING_SAMPLE_FAQS,
+        heroPoints: ['Real-time journaling', 'Immutable storage', 'Fast eDiscovery', 'Custom retention policies'],
+      };
     }
     if (!view || this.slug() !== 'agentic-ai') return view;
     return {
@@ -1118,6 +1375,7 @@ export class ProductPage {
 
   readonly isManagedMicrosoft365 = computed(() => this.view()?.name === 'Managed Microsoft 365');
   readonly isMicrosoftCopilot = computed(() => this.slug() === 'microsoft-copilot');
+  readonly isCopilotStudio = computed(() => this.slug() === 'microsoft-copilot-studio');
   readonly isZohoWorkspace = computed(() => this.slug() === 'zoho-workspace');
 
   readonly zohoWorkspaceFaqs: Faq[] = [

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
 
 @Component({
   selector: 'xh-copilot-studio-content',
@@ -8,5 +8,10 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CopilotStudioContentComponent {
+  readonly mode = input<'hero' | 'content'>('content');
   readonly activeFeature = signal(0);
+
+  selectFeature(index: number): void {
+    this.activeFeature.set(index);
+  }
 }

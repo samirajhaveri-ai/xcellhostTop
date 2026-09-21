@@ -703,7 +703,6 @@
     } @else {
     @if (slug() === 'careers-overview') {
       <section class="career-hero" aria-labelledby="career-hero-title">
-        <img class="career-hero-photo" src="/assets/images/career-hero-team.png" alt="Three colleagues sharing ideas around a laptop in a modern office" width="2172" height="724" fetchpriority="high" />
         <span class="career-hero-orb" aria-hidden="true"></span>
         <div class="wrap career-hero-inner">
           <div class="career-hero-copy">
@@ -717,8 +716,10 @@
               <li><span class="material-symbols-outlined" aria-hidden="true">star</span><span>A Brighter<br />Tomorrow</span></li>
             </ul>
           </div>
+          <div class="career-hero-visual">
+            <img class="career-hero-photo" src="/assets/images/career-hero-team.png" alt="Three colleagues sharing ideas around a laptop in a modern office" width="2172" height="724" fetchpriority="high" />
+          </div>
         </div>
-        <p class="career-hero-note">Grow<br />Belong<br /><span>Make an Impact</span></p>
       </section>
       <section class="career-impact-strip" aria-label="XcellHost business impact">
         <div class="career-impact-inner">
@@ -824,6 +825,8 @@
     <section class="company-body" [id]="slug() === 'partner-overview' ? 'partner-overview-content' : null">
       @if (slug() === 'partner-overview') {
         <xh-reseller-program-content />
+      } @else if (slug() === 'apply-for-job') {
+        <xh-zoho-job-listing />
       } @else {
       <div class="wrap company-wrap">
         @if (slug() !== 'vendor-partners' && slug() !== 'certifications-awards' && slug() !== 'careers-overview') {

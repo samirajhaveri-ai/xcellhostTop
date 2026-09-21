@@ -267,6 +267,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "C Watch",
+                "pill": null,
+                "desc": null
+              },
               
             ]
           }
@@ -399,6 +404,21 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Window 11 VPS",
                 "pill": "1-Click",
                 "desc": "Secure, automated backups to safeguard your website 🔒"
+              },
+              {
+                "title": "Odoo Hosting",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "ERP Next Hosting",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Sage Hosting",
+                "pill": null,
+                "desc": null
               }, 
             ]
           }
@@ -764,29 +784,14 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "8",
-        "label": "Cloud ERP",
+        "label": "SAP Cloud",
         "on": false,
         "groups": [
           {
-            "heading": "Cloud ERP",
+            "heading": "SAP Cloud",
             "items": [
               {
                 "title": "SAP Hosting",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Odoo Hosting",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "ERP Next Hosting",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Sage Hosting",
                 "pill": null,
                 "desc": null
               },
@@ -800,6 +805,8 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              
+              
               {
                 "title": "SAP On AWS ",
                 "pill": null,
@@ -1093,6 +1100,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
+                "title": "Windows 365",
+                "pill": null,
+                "desc": null
+              },
+              {
                 "title": "Cloud Desktop Enterprise (VDI)",
                 "pill": null,
                 "desc": null
@@ -1102,13 +1114,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "Windows 365",
-                "pill": null,
-                "desc": null
-              },
-              
-              
             ]
           }
         ]
@@ -1295,11 +1300,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": "Best seller",
                 "desc": null
               },
-              {
-                "title": "E-Mail Archiving",
-                "pill": null,
-                "desc": null
-              },
+              
             ]
           }
         ]
@@ -1376,7 +1377,7 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Veeam Platform",
             "items": [
                {
-                "title": "No Data",
+                "title": "Veeam Overview",
                 "pill": "Best seller",
                 "desc": null
               },
@@ -1394,7 +1395,7 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "CommVault Data Platform",
             "items": [
                {
-                "title": "No Data",
+                "title": "CommVault Overview",
                 "pill": "Best seller",
                 "desc": null
               },
@@ -2671,6 +2672,23 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
+        "g": "5",
+        "label": "Qulys Marketplace",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Qulys Marketplace",
+            "items": [
+              {
+                "title": "No",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      {
         "g": "6",
         "label": "Data as a Services",
         "on": false,
@@ -2750,7 +2768,7 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Explore Marketplace",
             "items": [
               {
-                "title": "",
+                "title": "Marketplace",
                 "pill": null,
                 "desc": null
               },
@@ -3221,6 +3239,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "We'd love to hear from you"
               },
               {
+                "title": "Infrastructure",
+                "pill": null,
+                "desc": "We'd love to hear from you"
+              },
+              {
                 "title": "Certifications",
                 "pill": null,
                 "desc": "Credentials that reflect trusted delivery"
@@ -3235,11 +3258,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Recognition for our cloud and security expertise"
               },
-              {
-                "title": "Infrastructure",
-                "pill": null,
-                "desc": "We'd love to hear from you"
-              },
+              
               {
                 "title": "Corporate Social Responsibility",
                 "pill": null,
@@ -3249,13 +3268,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Services Index",
                 "pill": null,
                 "desc": "We'd love to hear from you"
-              },
-              
-              {
-                "title": "Platform Status",
-                "pill": null,
-                "desc": "Service availability, incidents and maintenance",
-                "href": "/company/platform-status"
               },
               {
                 "title": "Whats New",
@@ -3310,12 +3322,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Partnership Models",
                 "pill": null,
                 "desc": "Choose a model that fits your business"
-              },
-              
-              {
-                "title": "Partner Guide",
-                "pill": null,
-                "desc": "A practical guide to working with us"
               },
               {
                 "title": "Affiliate Program",

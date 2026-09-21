@@ -8,6 +8,7 @@
     [class.scrutiny-edr-page]="isScrutinyEdr()"
     [class.rmm-page]="isRmm()"
     [class.tally-page]="isTally()"
+    [class.cloud-migration-page]="slug() === 'cloud-migration'"
     [class.whatsapp-smb-page]="isWhatsAppSmb()"
     [class.atm-solution-page]="isAutonomousThreatSolution()"
     [class.scrutiny-page]="
@@ -29,6 +30,9 @@
     } @else if (isWatchtower()) {
       <xh-watchtower-reference />
     } @else {
+      @if (isCopilotStudio()) {
+        <xh-copilot-studio-content mode="hero" />
+      } @else {
       <div
         class="pp-hero"
         [class.sitelock-hero]="v.name === 'Web Security (SiteLock)'"
@@ -41,11 +45,16 @@
         <span class="pph-aur pph-a3" aria-hidden="true"></span>
         <span class="pph-scan" aria-hidden="true"></span>
 
-        @if (slug() === 'e-mail-archiving') {
-          <div class="pph-scene has-illus standalone-illus" aria-hidden="true">
+        @if (slug() === 'managed-devops') {
+          <div class="pph-scene has-illus standalone-illus devops-hero-art" aria-hidden="true">
+            <div class="pph-illus">
+              <img class="pph-illus-img" src="/assets/images/cloud-devops-hero.svg" alt="" />
+            </div>
+          </div>
+        } @else if (slug() === 'email-archiving') {
+          <div class="pph-scene has-illus standalone-illus archive-hero-art" aria-hidden="true">
             <div class="pph-illus">
               <img class="pph-illus-img" src="/assets/images/email-archiving-hero.svg" alt="" />
-              <img src="/assets/images/email-archiving-xcellhost-logo.png" alt="XcellHost" style="width:150px;height:auto;margin:0 auto" />
             </div>
           </div>
         } @else if (slug() === 'enterprise-dmarc') {
@@ -564,7 +573,7 @@
                 [alt]="v.name"
               />
               }
-              @if (!isManagedMicrosoft365() && !isTally() && v.name !== 'Cloud Drive') {
+              @if (!isManagedMicrosoft365() && !isTally() && v.name !== 'Cloud Drive' && slug() !== 'cloud-migration') {
                 <div
                   class="pph-powered-mark pph-powered-image"
                   [class.pph-geotrust-powered]="v.name === 'GeoTrust'"
@@ -942,15 +951,24 @@
           }
         </div>
       </div>
+      }
 
       @if (!isResellerProgram()) {
         <div class="pp-trust">
           <div class="wrap">
-            <span><b>ISO 27001</b> &amp; <b>20000-1</b> certified</span>
-            <span>Microsoft <b>Gold Partner</b></span>
-            <span><b>10,000+</b> customers</span>
-            <span><b>Since 1999</b></span>
-            <span><b>24×7</b> NOC + SOC</span>
+            @if (isCopilotStudio()) {
+              <span><b>Microsoft</b> Partner</span>
+              <span><b>No-code</b> agent builder</span>
+              <span><b>1,000+</b> connectors</span>
+              <span><b>Since 1999</b></span>
+              <span><b>24×7</b> NOC + SOC</span>
+            } @else {
+              <span><b>ISO 27001</b> &amp; <b>20000-1</b> certified</span>
+              <span>Microsoft <b>Gold Partner</b></span>
+              <span><b>10,000+</b> customers</span>
+              <span><b>Since 1999</b></span>
+              <span><b>24×7</b> NOC + SOC</span>
+            }
 
           </div>
         </div>
@@ -999,8 +1017,12 @@
       <xh-reseller-program-content />
     }
 
-    @if (slug() === 'e-mail-archiving') {
+    @if (slug() === 'email-archiving') {
       <xh-email-archiving-content />
+    }
+
+    @if (slug() === 'managed-devops') {
+      <xh-cloud-devops-content (quoteRequested)="openCallback($event, 'Cloud DevOps quote')" />
     }
 
     @if (isCloudObjectStorage()) {
@@ -1063,7 +1085,7 @@
         [class.cloud-drive-body]="slug() === 'cloud-drive'"
         [class.smb-cyber-body]="slug() === 'smb-cyber-security-appliance'"
         [class.genai-body]="slug() === 'acronis-genai-protection'"
-        [class.email-archiving-body]="slug() === 'e-mail-archiving'"
+        [class.email-archiving-body]="slug() === 'email-archiving'"
       >
         <div class="wrap">
           @if (slug() === 'waap-as-a-service') {
@@ -1083,6 +1105,9 @@
           } @else {
             @if (isMicrosoftCopilot()) {
               <xh-microsoft-copilot-content />
+            }
+            @if (isCopilotStudio()) {
+              <xh-copilot-studio-content />
             }
             @if (isManagedMicrosoft365()) {
               <xh-managed-microsoft-365-content />
@@ -1131,8 +1156,10 @@
               !isResellerProgram() &&
               !isScrutinyEdr() &&
               !isCloudObjectStorage() &&
-              slug() !== 'e-mail-archiving' &&
+              slug() !== 'email-archiving' &&
+              slug() !== 'managed-devops' &&
               !isMicrosoftCopilot() &&
+              !isCopilotStudio() &&
               !isZohoWorkspace() &&
               !isMicrosoftEntraId() &&
               !isDigiCert() &&
@@ -1155,9 +1182,111 @@
                     <xh-vortex-seg-content />
                   } @else if (slug() === 'vortex-soc') {
                     <xh-vortex-soc-content />
+                  } @else if (slug() === 'cloud-migration') {
+                    <section
+                      class="migration-capabilities"
+                      id="capabilities"
+                      aria-labelledby="migrationCapabilitiesTitle"
+                    >
+                      <header class="migration-capabilities-heading">
+                        <span>Our capabilities</span>
+                        <h2 id="migrationCapabilitiesTitle">Whatever you run, we can move it</h2>
+                        <p>
+                          From single workloads to complex, multi-tier estates &mdash; planned,
+                          migrated and validated as one.
+                        </p>
+                      </header>
+
+                      <div class="migration-capabilities-grid">
+                        <article class="migration-capability-card">
+                          <span class="migration-capability-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <rect x="2" y="2" width="20" height="8" rx="2" />
+                              <rect x="2" y="14" width="20" height="8" rx="2" />
+                              <path d="M6 6h.01M6 18h.01" />
+                            </svg>
+                          </span>
+                          <h3>Virtual Machines</h3>
+                          <p>Windows and Linux workloads from your existing virtualised estate.</p>
+                          <span class="migration-capability-tags">VMware &middot; Hyper-V &middot; Private Cloud</span>
+                        </article>
+
+                        <article class="migration-capability-card">
+                          <span class="migration-capability-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <rect x="3" y="3" width="18" height="18" rx="2" />
+                              <path d="M3 9h18M9 21V9" />
+                            </svg>
+                          </span>
+                          <h3>Enterprise Applications</h3>
+                          <p>ERP, CRM, finance, HR and other business-critical applications.</p>
+                          <span class="migration-capability-tags">Rehost &middot; Replatform &middot; Modernise</span>
+                        </article>
+
+                        <article class="migration-capability-card">
+                          <span class="migration-capability-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <ellipse cx="12" cy="5" rx="9" ry="3" />
+                              <path d="M21 12c0 1.7-4 3-9 3s-9-1.3-9-3M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5" />
+                            </svg>
+                          </span>
+                          <h3>Databases</h3>
+                          <p>Database workloads moved with controlled migration and full validation.</p>
+                          <span class="migration-capability-tags">PostgreSQL &middot; MySQL &middot; MSSQL &middot; Oracle &middot; HANA</span>
+                        </article>
+
+                        <article class="migration-capability-card">
+                          <span class="migration-capability-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M17.5 19a4.5 4.5 0 000-9 6 6 0 00-11.6 1.5A3.8 3.8 0 006.5 19h11z" />
+                            </svg>
+                          </span>
+                          <h3>Cloud Workloads</h3>
+                          <p>Workloads from public, regional or hosted cloud environments.</p>
+                          <span class="migration-capability-tags">Cloud-to-Cloud &middot; Repatriation &middot; Consolidation</span>
+                        </article>
+
+                        <article class="migration-capability-card">
+                          <span class="migration-capability-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M12 2l10 5-10 5L2 7l10-5z" />
+                              <path d="M2 12l10 5 10-5M2 17l10 5 10-5" />
+                            </svg>
+                          </span>
+                          <h3>Data &amp; Storage</h3>
+                          <p>Production, application and archive datasets moved safely.</p>
+                          <span class="migration-capability-tags">Block &middot; Object &middot; Archive &middot; Backup data</span>
+                        </article>
+
+                        <article class="migration-capability-card">
+                          <span class="migration-capability-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <circle cx="12" cy="12" r="10" />
+                              <path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20" />
+                            </svg>
+                          </span>
+                          <h3>Complete Environments</h3>
+                          <p>Multi-tier environments migrated together &mdash; not VM by VM.</p>
+                          <span class="migration-capability-tags">App &middot; DB &middot; Network &middot; Security &middot; Storage</span>
+                        </article>
+                      </div>
+                    </section>
                   } @else if (!isManagedMicrosoft365() && !isEntraIdBackup()) {
-                    <div class="pp-sec">Overview</div>
-                    <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
+                    @if (isCloudBackup() || isAdvancedEdr()) {
+                      <div class="backup-overview-columns">
+                        <div>
+                          <div class="pp-sec">Overview</div>
+                          <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
+                        </div>
+                        <section class="backup-protection" aria-labelledby="backupProtectionTitle">
+                        <h2 id="backupProtectionTitle">Protect your business with Acronis today!</h2>
+                        <img class="backup-protection-badges" src="/assets/images/acronis-certification-badges.jpg" alt="Acronis CyberFit Cloud Tech badges: Foundation, Associate Disaster Recovery, Associate Protect and Associate Backup" loading="lazy" />
+                        </section>
+                      </div>
+                    } @else {
+                      <div class="pp-sec">Overview</div>
+                      <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
+                    }
                   }
 
                   @if (isAcronisTrueImage()) {
@@ -1863,6 +1992,7 @@
                   !isSiteLock() &&
                   !isManagedMicrosoft365() &&
                   !isEntraIdBackup() &&
+                  slug() !== 'cloud-migration' &&
                   slug() !== 'scrutiny-dlp' &&
                   slug() !== 'vortex-seg' &&
                   slug() !== 'vortex-soc'
@@ -1916,6 +2046,128 @@
                           </div>
                         </article>
                       }
+                    </div>
+                  </section>
+                } @else if (slug() === 'cloud-migration') {
+                  <section
+                    class="migration-process"
+                    id="process"
+                    aria-labelledby="migrationProcessTitle"
+                  >
+                    <header class="migration-process-heading">
+                      <span>The process</span>
+                      <h2 id="migrationProcessTitle">The migration process</h2>
+                      <p>A proven, end-to-end approach to move your workloads with confidence.</p>
+                    </header>
+
+                    <div class="migration-process-phases">
+                      <article class="migration-process-phase">
+                        <div class="migration-phase-heading">
+                          <span class="migration-phase-badge plan">01</span><b>PLAN</b>
+                        </div>
+                        <p class="migration-phase-intro">Understand your environment and create the right plan.</p>
+                        <div class="migration-phase-steps">
+                          <div class="migration-process-step">
+                            <strong>01</strong>
+                            <span class="migration-process-icon" aria-hidden="true">
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><path d="M6 6h.01M6 18h.01"/></svg>
+                            </span>
+                            <h3>Discover</h3>
+                            <p>Understand what you have.</p>
+                            <ul><li>Workload inventory</li><li>Utilisation</li><li>Dependencies</li><li>Architecture</li></ul>
+                          </div>
+                          <div class="migration-process-step">
+                            <strong>02</strong>
+                            <span class="migration-process-icon" aria-hidden="true">
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg>
+                            </span>
+                            <h3>Assess</h3>
+                            <p>Decide what should move.</p>
+                            <ul><li>Readiness</li><li>Classification</li><li>Risk assessment</li><li>Strategy</li></ul>
+                          </div>
+                        </div>
+                      </article>
+
+                      <article class="migration-process-phase">
+                        <div class="migration-phase-heading">
+                          <span class="migration-phase-badge build">02</span><b>BUILD</b>
+                        </div>
+                        <p class="migration-phase-intro">Design the destination and prepare with precision.</p>
+                        <div class="migration-phase-steps">
+                          <div class="migration-process-step">
+                            <strong>03</strong>
+                            <span class="migration-process-icon" aria-hidden="true">
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M12 11l-6 6M12 11l6 6"/></svg>
+                            </span>
+                            <h3>Design</h3>
+                            <p>Build the destination architecture.</p>
+                            <ul><li>Architecture</li><li>Sizing</li><li>Connectivity</li><li>Recovery design</li></ul>
+                          </div>
+                          <div class="migration-process-step">
+                            <strong>04</strong>
+                            <span class="migration-process-icon" aria-hidden="true">
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+                            </span>
+                            <h3>Prepare</h3>
+                            <p>Make both environments migration-ready.</p>
+                            <ul><li>Landing environment</li><li>Connectivity</li><li>Runbook</li><li>Cutover plan</li></ul>
+                          </div>
+                        </div>
+                      </article>
+
+                      <article class="migration-process-phase">
+                        <div class="migration-phase-heading">
+                          <span class="migration-phase-badge move">03</span><b>MOVE</b>
+                        </div>
+                        <p class="migration-phase-intro">Move workloads safely using a controlled approach.</p>
+                        <div class="migration-phase-steps">
+                          <div class="migration-process-step">
+                            <strong>05</strong>
+                            <span class="migration-process-icon" aria-hidden="true">
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 000-9 6 6 0 00-11.6 1.5A3.8 3.8 0 006.5 19h5"/><path d="M12 21v-8M9 16l3-3 3 3"/></svg>
+                            </span>
+                            <h3>Migrate</h3>
+                            <p>Move workloads in controlled waves.</p>
+                            <ul><li>Workload migration</li><li>Data transfer</li><li>Migration tracking</li></ul>
+                          </div>
+                          <div class="migration-process-step">
+                            <strong>06</strong>
+                            <span class="migration-process-icon" aria-hidden="true">
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5.5-3.5 9.7-8 11-4.5-1.3-8-5.5-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+                            </span>
+                            <h3>Validate</h3>
+                            <p>Prove that it works as expected.</p>
+                            <ul><li>Technical validation</li><li>Application validation</li><li>Performance checks</li></ul>
+                          </div>
+                        </div>
+                      </article>
+
+                      <article class="migration-process-phase">
+                        <div class="migration-phase-heading">
+                          <span class="migration-phase-badge operate">04</span><b>OPERATE</b>
+                        </div>
+                        <p class="migration-phase-intro">Go live with confidence and optimise for the future.</p>
+                        <div class="migration-phase-steps">
+                          <div class="migration-process-step">
+                            <strong>07</strong>
+                            <span class="migration-process-icon" aria-hidden="true">
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.5 9a9 9 0 0115-3.4L23 10M1 14l4.5 4.4A9 9 0 0020.5 15"/></svg>
+                            </span>
+                            <h3>Cutover</h3>
+                            <p>Move production when ready.</p>
+                            <ul><li>Synchronise</li><li>Switch</li><li>Verify</li></ul>
+                          </div>
+                          <div class="migration-process-step">
+                            <strong>08</strong>
+                            <span class="migration-process-icon" aria-hidden="true">
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>
+                            </span>
+                            <h3>Optimise</h3>
+                            <p>Optimise and establish operations.</p>
+                            <ul><li>Right-size</li><li>Monitoring</li><li>Operations handover</li></ul>
+                          </div>
+                        </div>
+                      </article>
                     </div>
                   </section>
                 } @else if (
@@ -2527,7 +2779,21 @@
                   </section>
                 }
 
-                @if (
+                @if (slug() === 'cloud-migration') {
+                  <section class="migration-principles-section" aria-label="XcellHost migration principles">
+                    <div class="migration-principles">
+                      @for (principle of migrationPrinciples; track principle.title) {
+                        <article>
+                          <span aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path [attr.d]="principle.icon" /></svg>
+                          </span>
+                          <div><b>{{ principle.title }}</b><small>{{ principle.body }}</small></div>
+                        </article>
+                      }
+                    </div>
+                  </section>
+                  <xh-cloud-migration-advantage />
+                } @else if (
                   !isSmbCyber() &&
                   !isRmm() &&
                   !isAcronisTrueImage() &&
@@ -3030,7 +3296,77 @@
                   </section>
                 }
 
-                @if (
+                @if (slug() === 'cloud-migration') {
+                  <section class="migration-proof" aria-labelledby="migrationScenariosTitle">
+                    <div class="migration-value-strip" aria-label="The XcellHost value add">
+                      <strong>The XcellHost<br />value add</strong>
+                      @for (value of migrationValueAdds; track value.title) {
+                        <article>
+                          <span aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              @for (path of value.icon; track path) { <path [attr.d]="path" /> }
+                            </svg>
+                          </span>
+                          <b>{{ value.title }}</b>
+                          <p>{{ value.body }}</p>
+                        </article>
+                      }
+                    </div>
+
+                    <header class="migration-scenarios-heading">
+                      <span>Use cases &amp; sample projects</span>
+                      <h2 id="migrationScenariosTitle">Common scenarios, proven in production</h2>
+                      <p>Each scenario mapped to its destination platforms &mdash; with a representative project. *Illustrative outcomes.</p>
+                    </header>
+
+                    <div class="migration-scenarios-grid">
+                      @for (scenario of migrationScenarios; track scenario.title) {
+                        <article class="migration-scenario-card">
+                          <div class="migration-scenario-title">
+                            <span aria-hidden="true">
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 0 0 0-9 6 6 0 0 0-11.6 1.5A3.8 3.8 0 0 0 6.5 19h11z"/></svg>
+                            </span>
+                            <h3>{{ scenario.title }}</h3>
+                          </div>
+                          <p>{{ scenario.body }}</p>
+                          <small>Destination</small>
+                          <div class="migration-scenario-destination">{{ scenario.destination }}</div>
+                          <div class="migration-scenario-sample">
+                            <div>
+                              <small>Sample project &middot; {{ scenario.sector }}</small>
+                              <b>{{ scenario.project }}</b>
+                              <em>{{ scenario.outcome }}</em>
+                            </div>
+                            <strong>{{ scenario.metric }}<small>{{ scenario.metricLabel }}</small></strong>
+                          </div>
+                          <div class="migration-scenario-tags">
+                            @for (tag of scenario.tags; track tag) { <span>{{ tag }}</span> }
+                          </div>
+                        </article>
+                      }
+                    </div>
+
+                    <section class="migration-assessment" aria-labelledby="migrationAssessmentTitle">
+                      <div class="migration-assessment-copy">
+                        <span>Migration assessment</span>
+                        <h2 id="migrationAssessmentTitle">Know what moving will take, before you start moving.</h2>
+                        <p>Get a clear view of your workloads, dependencies, target architecture, migration complexity and expected cloud economics.</p>
+                        <div>
+                          <a class="btn btn-primary" href="#" (click)="openCallback($event)">Start your migration assessment &rarr;</a>
+                          <a class="btn migration-assessment-secondary" href="#" (click)="openCallback($event)">Talk to a migration architect</a>
+                        </div>
+                      </div>
+                      <div class="migration-assessment-points">
+                        @for (point of migrationAssessmentPoints; track point.title; let i = $index) {
+                          <article>
+                            <span aria-hidden="true">{{ i + 1 }}</span>
+                            <div><b>{{ point.title }}</b><small>{{ point.body }}</small></div>
+                          </article>
+                        }
+                      </div>
+                    </section>
+                  </section>
+                } @else if (
                   v.name !== 'Tally on Cloud' &&
                   !isSmbCyber() &&
                   !isAcronisTrueImage() &&
@@ -3236,8 +3572,8 @@
           }
 
           @if (v.name !== 'Tally on Cloud') {
-            @if (!isSmbCyber() && !isRmm() && slug() !== 'scrutiny-dlp') {
-              <div class="pp-sec" id="ppSecHead">{{ v.security.head }}</div>
+            @if (!isSmbCyber() && !isRmm() && slug() !== 'scrutiny-dlp' && slug() !== 'cloud-migration') {
+              <div class="pp-sec" id="ppSecHead" [style.margin-bottom.px]="slug() === 'managed-devops' ? 32 : null">{{ v.security.head }}</div>
               <div id="ppSecWrap">
                 <p class="pp-ov">{{ v.security.intro }}</p>
                 <div class="pp-secrows">
@@ -3261,11 +3597,12 @@
             !isSmbCyber() &&
             !isRmm() &&
             !isZohoWorkspace() &&
+            slug() !== 'cloud-migration' &&
             slug() !== 'scrutiny-dlp' &&
             slug() !== 'vortex-seg' &&
             slug() !== 'vortex-soc'
           ) {
-            <div class="pp-sec" id="ppWhyHead">Why XcellHost for {{ v.name }}</div>
+            <div class="pp-sec" id="ppWhyHead" [style.margin-top.px]="slug() === 'managed-devops' ? 56 : null">Why XcellHost for {{ v.name }}</div>
             <div class="pp-why" id="ppWhy">
               @for (w of v.why; track w.title) {
                 <div class="pw">
@@ -3426,7 +3763,7 @@
             !isTsplusRemoteAccess()
           ) {
             <section class="tally-videos" aria-labelledby="showcaseVideosTitle">
-              <div class="pp-sec" id="showcaseVideosTitle">Watch it in action</div>
+              <div class="pp-sec" id="showcaseVideosTitle" [style.margin-top.px]="slug() === 'managed-devops' ? 56 : null">Watch it in action</div>
               <div class="tally-video-grid" [class.single-video]="showcaseVideos().length === 1">
                 @for (video of showcaseVideos(); track video.label) {
                   <article class="tally-video-card">
@@ -3725,7 +4062,7 @@
           }
 
           <div class="pp-sec">What customers say</div>
-          @if (isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'e-mail-archiving') {
+          @if (isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving') {
             <div class="pp-tcards" id="ppRevs">
               @for (r of v.reviews; track r.name) {
                 <div class="tcard">
@@ -3772,7 +4109,7 @@
             </div>
           }
 
-          <div class="pp-sec pp-faq-heading">Frequently asked questions</div>
+          <div class="pp-sec pp-faq-heading" [style.margin-top.px]="slug() === 'managed-devops' ? 56 : null">Frequently asked questions</div>
         <div class="pp-faq" id="ppFaq">
 
           <xh-product-faq
@@ -3781,7 +4118,7 @@
 
         </div>
 
-        <div id="ppBlog" [class.scrutiny-dlp-insights]="slug() === 'scrutiny-dlp'" [class.vortex-seg-insights]="slug() === 'vortex-seg'"><xh-insights-section [pageSlug]="slug()" /></div>
+        <div id="ppBlog" [style.margin-top.px]="slug() === 'managed-devops' ? 56 : null" [class.scrutiny-dlp-insights]="slug() === 'scrutiny-dlp'" [class.vortex-seg-insights]="slug() === 'vortex-seg'"><xh-insights-section [pageSlug]="slug()" /></div>
 
         <div class="pp-cta">
             <div>

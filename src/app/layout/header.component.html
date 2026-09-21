@@ -35,20 +35,22 @@
 
           <div class="xh-mega" [id]="top.megaId">
             <nav class="xh-tabs" [attr.aria-label]="top.label + ' categories'">
-              @for (tab of top.tabs; track tab.g) {
-                <button
-                  class="xh-tab"
-                  type="button"
-                  [class.active]="isOn(top.label, tab.g)"
-                  [attr.aria-selected]="isOn(top.label, tab.g)"
-                  (mouseover)="setTab(top.label, tab.g)"
-                  (click)="onTabClick($event, top.label, tab.g)"
-                >{{ tab.label }}</button>
+              @for (tab of top.tabs; track $index) {
+                @if (tab.label.trim()) {
+                  <button
+                    class="xh-tab"
+                    type="button"
+                    [class.active]="isOn(top.label, tab.g)"
+                    [attr.aria-selected]="isOn(top.label, tab.g)"
+                    (mouseover)="setTab(top.label, tab.g)"
+                    (click)="onTabClick($event, top.label, tab.g)"
+                  >{{ tab.label }}</button>
+                }
               }
             </nav>
 
             <div class="xh-panels">
-              @for (tab of top.tabs; track tab.g) {
+              @for (tab of top.tabs; track $index) {
                 <section
                   class="xh-panel"
                   [class.active]="isOn(top.label, tab.g)"
