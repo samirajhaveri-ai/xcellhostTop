@@ -72,6 +72,7 @@ import { BareMetalContentComponent } from '../sections/bare-metal-content.compon
 import { GenaiProtectionContentComponent } from '../sections/genai-protection-content.component';
 import { CloudMigrationAdvantageComponent } from '../sections/cloud-migration-advantage.component';
 import { AcronisBackupAdvancedContentComponent } from '../sections/acronis-backup-advanced-content.component';
+import { AcronisOtContentComponent } from '../sections/acronis-ot-content.component';
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -197,6 +198,7 @@ interface ProductTourSlide {
     GenaiProtectionContentComponent,
     CloudMigrationAdvantageComponent,
     AcronisBackupAdvancedContentComponent,
+    AcronisOtContentComponent,
 
     EmailSignatureContentComponent,
     EmailSignatureHeroComponent,
@@ -210,12 +212,18 @@ interface ProductTourSlide {
     #ppage.acronis-backup-advanced-page .pph-scene.has-illus.standalone-illus { right: 2%; width: 43%; top: 0; bottom: 0; mask-image: none; opacity: 1; }
     #ppage.acronis-backup-advanced-page .pph-scene.has-illus.standalone-illus .pph-illus { width: 100%; height: 100%; }
     #ppage.acronis-backup-advanced-page .pph-scene.has-illus.standalone-illus .pph-illus-img { width: 100%; max-width: 600px; max-height: 430px; filter: none; }
+    #ppage.acronis-ot-page .pph-scene.has-illus.standalone-illus { right: 2%; width: 43%; top: 0; bottom: 0; mask-image: none; opacity: 1; }
+    #ppage.acronis-ot-page .pph-scene.has-illus.standalone-illus .pph-illus { width: 100%; height: 100%; }
+    #ppage.acronis-ot-page .pph-scene.has-illus.standalone-illus .pph-illus-img { width: 100%; max-width: 560px; max-height: 430px; filter: none; }
     @media(max-width:900px) {
       #ppage.cloud-migration-page .pph-scene.has-illus.standalone-illus { position: relative; right: auto; width: min(100%, 600px); top: auto; bottom: auto; margin: 18px auto 0; opacity: 1; }
       #ppage.cloud-migration-page .pph-scene.has-illus.standalone-illus .pph-illus-img { width: 100%; max-width: 560px; max-height: none; }
       #ppage.acronis-backup-advanced-page .pph-scene.has-illus.standalone-illus { position: relative; right: auto; width: min(100%, 600px); top: auto; bottom: auto; margin: 18px auto 0; opacity: 1; }
       #ppage.acronis-backup-advanced-page .pph-scene.has-illus.standalone-illus .pph-illus { height: auto; }
       #ppage.acronis-backup-advanced-page .pph-scene.has-illus.standalone-illus .pph-illus-img { width: 100%; max-width: 560px; max-height: none; }
+      #ppage.acronis-ot-page .pph-scene.has-illus.standalone-illus { position: relative; right: auto; width: min(100%, 600px); top: auto; bottom: auto; margin: 18px auto 0; opacity: 1; }
+      #ppage.acronis-ot-page .pph-scene.has-illus.standalone-illus .pph-illus { height: auto; }
+      #ppage.acronis-ot-page .pph-scene.has-illus.standalone-illus .pph-illus-img { width: 100%; max-width: 560px; max-height: none; }
     }
     #ppage .migration-capabilities { padding: 52px 0 58px; }
     #ppage .migration-capabilities-heading { max-width: 780px; margin: 0 auto 50px; text-align: center; }
@@ -1269,6 +1277,9 @@ export class ProductPage {
     if (!view) return null;
     if (slug === 'acronis-backup-advanced') {
       return { ...view, heroImage: '/assets/images/acronis-backup-advanced-hero.svg' };
+    }
+    if (slug === 'acronis-ot') {
+      return { ...view, heroImage: '/assets/images/acronis-cyber-protect-ot-hero.svg' };
     }
     if (slug === 'email-archiving' || slug === 'e-mail-archiving') {
       return {
