@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, HostListener, signal } from '@angular/core';
 
 interface ArchitectureTab {
-  key: 'security' | 'cloud' | 'data-center' | 'managed-security' | 'support-escalation' | 'observability';
+  key: 'security' | 'cloud' | 'data-center' | 'managed-security' | 'support-escalation' | 'observability' | 'backup';
   label: string;
   title: string;
   description: string;
@@ -36,6 +36,7 @@ interface ArchitectureTab {
 
         @let active = selectedTab();
         <article class="infra-architecture-panel" [id]="'infra-panel-' + active.key" role="tabpanel">
+          @if (active.key !== 'backup') {
           <div class="infra-architecture-copy">
             <span class="infra-architecture-kicker">{{ active.label }}</span>
             <h3>{{ active.title }}</h3>
@@ -53,6 +54,7 @@ interface ArchitectureTab {
             </button>
             <figcaption>{{ active.title }} — XcellHost infrastructure reference architecture.</figcaption>
           </figure>
+          }
         </article>
       </div>
     </section>
@@ -93,8 +95,8 @@ export class InfrastructureContentComponent {
     },
     {
       key: 'data-center',
-      label: 'Data Center',
-      title: 'Data Center',
+      label: 'Data Center Architecture',
+      title: 'Data Center Architecture',
       description: 'Explore the resilient power, cooling, connectivity, physical security and operations behind XcellHost infrastructure at Equinix Mumbai data centers.',
       image: '/assets/images/infrastructure-data-center.jpeg',
       alt: 'Equinix Mumbai data center infrastructure overview',
@@ -116,9 +118,17 @@ export class InfrastructureContentComponent {
       alt: 'XcellHost cloud architecture diagram',
     },
     {
+      key: 'backup',
+      label: 'Backup Architecture',
+      title: 'Backup Architecture',
+      description: '',
+      image: '',
+      alt: '',
+    },
+    {
       key: 'observability',
-      label: 'Monitoring',
-      title: 'Unified visibility. Faster incident resolution.',
+      label: 'Monitoring Architecture',
+      title: 'Monitoring Architecture',
       description: 'Explore how Zabbix, Wazuh, Acronis and cloud-native monitoring feed the XcellHost AIOps integration hub. Event correlation and noise suppression help prioritise incidents, while Zoho Desk ticketing, Zoho Cliq alerts and automated remediation connect monitoring with action across your infrastructure.',
       image: '/assets/images/infrastructure-monitoring-observability.jpg',
       alt: 'Monitoring and observability architecture linking infrastructure data sources to the XcellHost AIOps hub, Zoho Desk incident management, Zoho Cliq alerts and observability dashboards',

@@ -1,5 +1,11 @@
+import { AcronisMdrContentComponent } from '../sections/acronis-mdr-content.component';
+import { AcronisMdrHeroComponent } from '../sections/acronis-mdr-hero.component';
 import { EmailArchivingContentComponent } from '../sections/email-archiving-content.component';
 import { CloudDevopsContentComponent } from '../sections/cloud-devops-content.component';
+import { MicrosoftTrainingContentComponent } from '../sections/microsoft-training-content.component';
+import { CopilotTrainingContentComponent } from '../sections/copilot-training-content.component';
+import { COPILOT_TRAINING_SAMPLE_FAQS, COPILOT_TRAINING_SAMPLE_WHY } from '../data/copilot-training-sample.data';
+import { MICROSOFT_TRAINING_SAMPLE_FAQS, MICROSOFT_TRAINING_SAMPLE_WHY } from '../data/microsoft-training-sample.data';
 import { EMAIL_ARCHIVING_SAMPLE_FAQS, EMAIL_ARCHIVING_SAMPLE_WHY } from '../data/email-archiving-sample.data';
 import { WaapContentComponent } from '../sections/waap-content.component';
 import { IotInfrastructureContentComponent } from '../sections/iot-infrastructure-content.component';
@@ -180,6 +186,10 @@ interface ProductTourSlide {
     CloudObjectStorageContentComponent,
     EmailArchivingContentComponent,
     CloudDevopsContentComponent,
+    MicrosoftTrainingContentComponent,
+    CopilotTrainingContentComponent,
+    AcronisMdrContentComponent,
+    AcronisMdrHeroComponent,
     ZohoWorkspaceContentComponent,
     EntraIdContentComponent,
     EntraIdHeroComponent,
@@ -1256,6 +1266,25 @@ export class ProductPage {
   /** `null` while the slug matches nothing — the effect below sends those home. */
   readonly view = computed<ProductView | null>(() => {
     const view = this.resolve(this.slug());
+    if (view && this.slug() === 'acronis-mdr') {
+      return { ...view, heroPoints: ['24/7 SOC monitoring', 'Proactive threat hunting', 'Expert incident response', 'Integrated recovery'] };
+    }
+    if (view && this.slug() === 'microsoft-copilot-training') {
+      return {
+        ...view,
+        why: COPILOT_TRAINING_SAMPLE_WHY,
+        faqs: COPILOT_TRAINING_SAMPLE_FAQS,
+        heroPoints: ['Hands-on Copilot training', 'Effective prompting', 'Everyday Microsoft 365 workflows', 'Responsible AI practices'],
+      };
+    }
+    if (view && this.slug() === 'microsoft-365-training') {
+      return {
+        ...view,
+        heroPoints: ['Role-based training', 'Hands-on learning', 'Certification preparation', 'Microsoft 365 Copilot'],
+        why: MICROSOFT_TRAINING_SAMPLE_WHY,
+        faqs: MICROSOFT_TRAINING_SAMPLE_FAQS,
+      };
+    }
     if (view && this.slug() === 'email-archiving') {
       return {
         ...view,
