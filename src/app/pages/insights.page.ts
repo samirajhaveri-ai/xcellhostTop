@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, inject, linkedSignal, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { RouterLink } from '@angular/router';
 
 import { BlogApiService, CmsBlogPost, CmsInsightResource } from '../core/blog-api.service';
 import { SeoService } from '../core/seo.service';
@@ -46,7 +45,7 @@ interface InsightCategoryBranch {
 @Component({
   selector: 'xh-insights-page',
   standalone: true,
-  imports: [RouterLink],
+  imports: [],
   styleUrl: './insights.page.css',
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -76,8 +75,9 @@ interface InsightCategoryBranch {
                 </article>
               </div>
             </div>
+
             @if (featured(); as lead) {
-              <article class="insights-hero-feature" [routerLink]="['/insights', lead.slug]">
+              <a class="insights-hero-feature" [href]="'/insights/' + encodeURIComponent(lead.slug) + '/'">
                 <span class="insights-feature-label">Featured article</span>
                 <strong>{{ lead.category }}</strong>
                 <h2>{{ lead.title }}</h2>
@@ -87,8 +87,56 @@ interface InsightCategoryBranch {
                   <span>{{ lead.author }}</span>
                   <span>{{ readTime(lead) }}</span>
                 </div>
-              </article>
+              </a>
             }
+
+            <div class="insights-hub-visual" role="img" aria-label="Animated XcellHost insights resource hub">
+              <div class="insights-hub-stage" aria-hidden="true">
+                <span class="hub-pulse hub-pulse-one"></span>
+                <span class="hub-pulse hub-pulse-two"></span>
+                <span class="hub-pulse hub-pulse-three"></span>
+                <span class="hub-orbit hub-orbit-one"><i></i><i></i></span>
+                <span class="hub-orbit hub-orbit-two"><i></i><i></i></span>
+
+                <div class="hub-rotor">
+                  <svg class="hub-lines" viewBox="0 0 760 760">
+                    <defs>
+                      <filter id="insights-hub-glow"><feGaussianBlur stdDeviation="2" result="glow"/><feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                      <path id="hub-spoke-0" d="M380 292 L380 175"/><path id="hub-spoke-1" d="M442 318 L525 235"/>
+                      <path id="hub-spoke-2" d="M468 380 L585 380"/><path id="hub-spoke-3" d="M442 442 L525 525"/>
+                      <path id="hub-spoke-4" d="M380 468 L380 585"/><path id="hub-spoke-5" d="M318 442 L235 525"/>
+                      <path id="hub-spoke-6" d="M292 380 L175 380"/><path id="hub-spoke-7" d="M318 318 L235 235"/>
+                    </defs>
+                    @for (spoke of hubSpokes; track spoke) {
+                      <use [attr.href]="'#hub-spoke-' + spoke" class="hub-connector"/>
+                      <use [attr.href]="'#hub-spoke-' + spoke" class="hub-connector hub-connector-flow"/>
+                      <circle r="3.5" class="hub-particle"><animateMotion [attr.dur]="(2.6 + (spoke % 4) * .35) + 's'" repeatCount="indefinite"><mpath [attr.href]="'#hub-spoke-' + spoke"/></animateMotion></circle>
+                    }
+                  </svg>
+
+                  @for (card of hubCards; track card.label; let index = $index) {
+                    <div class="hub-item" [style.--hub-angle]="(-90 + index * 45) + 'deg'">
+                      <div class="hub-counter-spin">
+                        <article class="hub-card" [class]="'hub-card hub-card-' + card.tone">
+                          <div class="hub-card-top"><span class="hub-card-icon">{{ card.icon }}</span><b>{{ card.label }}</b></div>
+                          <strong>{{ card.title }}</strong>
+                          <p>{{ card.description }}</p>
+                          <div class="hub-card-meta"><span>{{ card.meta }}</span><i>&rarr;</i></div>
+                        </article>
+                      </div>
+                    </div>
+                  }
+                </div>
+
+                <div class="hub-center">
+                  <div class="hub-center-ring">
+                    <img src="/assets/images/xcellhost-login-logo.png" alt="" />
+                    <span>INSIGHTS HUB</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -191,9 +239,8 @@ interface InsightCategoryBranch {
                 @if (featuredVisible(); as lead) {
                   <a
                     class="insights-lead"
-                    [routerLink]="lead.kind === 'blog' ? ['/insights', lead.slug] : lead.kind === 'use-case' ? ['/use-cases', lead.slug] : null"
-                    [href]="lead.kind === 'video' ? lead.actionUrl : null"
-                    [target]="lead.kind === 'video' ? '_blank' : undefined"
+                    [href]="insightHref(lead)"
+                    [attr.target]="lead.kind === 'video' ? '_blank' : null"
                     [attr.rel]="lead.kind === 'video' ? 'noopener noreferrer' : null"
                   >
                     <div class="insights-lead-media">
@@ -225,9 +272,8 @@ interface InsightCategoryBranch {
                   @for (post of gridPosts(); track post.documentId) {
                     <a
                       class="bl insights-card"
-                      [routerLink]="post.kind === 'blog' ? ['/insights', post.slug] : post.kind === 'use-case' ? ['/use-cases', post.slug] : null"
-                      [href]="post.kind === 'video' ? post.actionUrl : null"
-                      [target]="post.kind === 'video' ? '_blank' : undefined"
+                      [href]="insightHref(post)"
+                      [attr.target]="post.kind === 'video' ? '_blank' : null"
                       [attr.rel]="post.kind === 'video' ? 'noopener noreferrer' : null"
                     >
                       <div class="insights-card-media">
@@ -311,6 +357,21 @@ export class InsightsPage {
   readonly expandedSub = signal<string | null>(null);
   readonly query = signal('');
   readonly allCategory = ALL;
+
+  readonly encodeURIComponent = encodeURIComponent;
+
+  readonly hubSpokes = [0, 1, 2, 3, 4, 5, 6, 7] as const;
+  readonly hubCards = [
+    { icon: '📄', label: 'WHITE PAPER', title: 'Cloud Security Playbook for Indian SMBs', description: 'Zero-trust cloud security posture with ISO 27001 compliance.', meta: '12 pages · PDF', tone: 'blue' },
+    { icon: '✍️', label: 'BLOG', title: 'Why DPDPA Changes Everything', description: 'How the Digital Personal Data Protection Act reshapes cloud data.', meta: '5 min read · New', tone: 'green' },
+    { icon: '📊', label: 'CASE STUDY', title: '500-User Enterprise Cuts Cloud Costs 40%', description: 'Legacy-to-managed-cloud migration with zero downtime.', meta: 'Manufacturing', tone: 'orange' },
+    { icon: '🎥', label: 'WEBINAR', title: 'Acronis Cyber Protect: Backup Beyond', description: 'Live demo of unified backup, anti-ransomware and DR.', meta: '45 min · Recorded', tone: 'cyan' },
+    { icon: '🎨', label: 'INFOGRAPHIC', title: 'The Anatomy of a Ransomware Attack', description: 'Attack vectors, defence layers and SOC response timeline.', meta: 'Visual guide', tone: 'purple' },
+    { icon: '📈', label: 'INDUSTRY REPORT', title: 'State of Cloud Security in India 2026', description: 'Annual analysis of threats, compliance and cloud adoption.', meta: '28 pages · Annual', tone: 'red' },
+    { icon: '📧', label: 'NEWSLETTER', title: 'XcellHost Security Digest', description: 'Monthly threat intel, patch alerts and compliance updates.', meta: 'Monthly · Subscribe', tone: 'green' },
+    { icon: '📚', label: 'GUIDE', title: 'Microsoft 365 Migration Checklist', description: 'Step-by-step enterprise migration for Exchange and Teams.', meta: 'Checklist · Free', tone: 'blue' },
+  ] as const;
+
 
   readonly blogItems = computed<readonly InsightItem[]>(() =>
     this.posts().map((post) => this.toBlogItem(post))
@@ -528,6 +589,13 @@ export class InsightsPage {
   clearSearch(): void {
     this.query.set('');
     this.currentPage.set(1);
+  }
+
+  insightHref(item: InsightItem): string {
+    if (item.kind === 'video') return item.actionUrl ?? '#';
+    return item.kind === 'use-case'
+      ? `/use-cases/${encodeURIComponent(item.slug)}/`
+      : `/insights/${encodeURIComponent(item.slug)}/`;
   }
 
   goToPage(page: number, results: HTMLElement): void {

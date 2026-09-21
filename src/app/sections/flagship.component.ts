@@ -69,7 +69,7 @@ const FLAGSHIP_CARD_GROUPS: Readonly<Record<string, readonly FlagshipGroup[]>> =
   'WhatsApp SMB': ['business'],
   'Performance Cloud': ['infrastructure'],
   'Bare Metal Server': ['infrastructure'],
-  'Global Cloud': ['infrastructure'],
+  'Global Server': ['infrastructure'],
   'Cloud Object Storage': ['protection'],
   'Cloud Disaster Recovery': ['protection'],
   'Microsoft 365 Backup': ['protection', 'workplace'],
@@ -100,7 +100,7 @@ const SMB_CLOUD_ORDER = [
 const CLOUD_INFRA_ORDER = [
   'Bare Metal Server',
   'Performance Cloud',
-  'Global Cloud',
+  'Global Server',
 ] as const;
 
 const CLOUD_DATA_PROTECT_ORDER = [
@@ -202,7 +202,7 @@ const FLAGSHIP_CARDS: readonly FlagshipCard[] = [
     service: 'Bare Metal Server',
   },
   {
-    icon: 'globe', badge: 'Multi-region', title: 'Global Cloud',
+    icon: 'globe', badge: 'Multi-region', title: 'Global Server', service: 'Global Cloud',
     blurb: 'Deploy and manage workloads across multiple global cloud regions.',
     lead: '', amount: 'Regional', tail: ' pricing', cta: 'Explore →', category: 'Cloud',
   },

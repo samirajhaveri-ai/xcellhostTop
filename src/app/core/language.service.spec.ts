@@ -19,6 +19,7 @@ describe('LanguageService custom picker integration', () => {
     expect(service.status()).toBe('ready');
     expect(service.options().map(item => item.code)).toEqual(['en', 'hi', 'fr']);
     expect(service.options()[1].nativeName).toBe('हिन्दी');
+    expect(service.options().every(item => Boolean(item.flag))).toBeTrue();
   });
 
   it('dispatches a provider change for a supported choice and rejects unknown codes', () => {

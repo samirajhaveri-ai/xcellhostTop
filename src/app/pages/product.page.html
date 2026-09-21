@@ -9,6 +9,8 @@
     [class.rmm-page]="isRmm()"
     [class.tally-page]="isTally()"
     [class.cloud-migration-page]="slug() === 'cloud-migration'"
+    [class.acronis-backup-advanced-page]="slug() === 'acronis-backup-advanced'"
+    [class.acronis-ot-page]="slug() === 'acronis-ot'"
     [class.whatsapp-smb-page]="isWhatsAppSmb()"
     [class.atm-solution-page]="isAutonomousThreatSolution()"
     [class.scrutiny-page]="
@@ -30,6 +32,9 @@
     } @else if (isWatchtower()) {
       <xh-watchtower-reference />
     } @else {
+      @if (isCopilotStudio()) {
+        <xh-copilot-studio-content mode="hero" />
+      } @else {
       <div
         class="pp-hero"
         [class.sitelock-hero]="v.name === 'Web Security (SiteLock)'"
@@ -42,11 +47,32 @@
         <span class="pph-aur pph-a3" aria-hidden="true"></span>
         <span class="pph-scan" aria-hidden="true"></span>
 
-        @if (slug() === 'e-mail-archiving') {
-          <div class="pph-scene has-illus standalone-illus" aria-hidden="true">
+        @if (slug() === 'acronis-mdr') {
+          <div class="pph-scene has-illus standalone-illus mdr-hero-art" aria-hidden="true">
+            <div class="pph-illus"><xh-acronis-mdr-hero /></div>
+          </div>
+        } @else if (slug() === 'microsoft-copilot-training') {
+          <div class="pph-scene has-illus standalone-illus training-hero-art" aria-hidden="true">
+            <div class="pph-illus">
+              <img class="pph-illus-img" src="/assets/images/copilot-training-hero.svg" alt="" />
+            </div>
+          </div>
+        } @else if (slug() === 'microsoft-365-training') {
+          <div class="pph-scene has-illus standalone-illus training-hero-art" aria-hidden="true">
+            <div class="pph-illus">
+              <img class="pph-illus-img" src="/assets/images/microsoft-training-hero.svg" alt="" />
+            </div>
+          </div>
+        } @else if (slug() === 'managed-devops') {
+          <div class="pph-scene has-illus standalone-illus devops-hero-art" aria-hidden="true">
+            <div class="pph-illus">
+              <img class="pph-illus-img" src="/assets/images/cloud-devops-hero.svg" alt="" />
+            </div>
+          </div>
+        } @else if (slug() === 'email-archiving') {
+          <div class="pph-scene has-illus standalone-illus archive-hero-art" aria-hidden="true">
             <div class="pph-illus">
               <img class="pph-illus-img" src="/assets/images/email-archiving-hero.svg" alt="" />
-              <img src="/assets/images/email-archiving-xcellhost-logo.png" alt="XcellHost" style="width:150px;height:auto;margin:0 auto" />
             </div>
           </div>
         } @else if (slug() === 'enterprise-dmarc') {
@@ -565,7 +591,7 @@
                 [alt]="v.name"
               />
               }
-              @if (!isManagedMicrosoft365() && !isTally() && v.name !== 'Cloud Drive' && slug() !== 'cloud-migration') {
+              @if (!isManagedMicrosoft365() && !isTally() && v.name !== 'Cloud Drive' && slug() !== 'cloud-migration' && slug() !== 'acronis-backup-advanced' && slug() !== 'acronis-ot') {
                 <div
                   class="pph-powered-mark pph-powered-image"
                   [class.pph-geotrust-powered]="v.name === 'GeoTrust'"
@@ -943,15 +969,24 @@
           }
         </div>
       </div>
+      }
 
       @if (!isResellerProgram()) {
         <div class="pp-trust">
           <div class="wrap">
-            <span><b>ISO 27001</b> &amp; <b>20000-1</b> certified</span>
-            <span>Microsoft <b>Gold Partner</b></span>
-            <span><b>10,000+</b> customers</span>
-            <span><b>Since 1999</b></span>
-            <span><b>24×7</b> NOC + SOC</span>
+            @if (isCopilotStudio()) {
+              <span><b>Microsoft</b> Partner</span>
+              <span><b>No-code</b> agent builder</span>
+              <span><b>1,000+</b> connectors</span>
+              <span><b>Since 1999</b></span>
+              <span><b>24×7</b> NOC + SOC</span>
+            } @else {
+              <span><b>ISO 27001</b> &amp; <b>20000-1</b> certified</span>
+              <span>Microsoft <b>Gold Partner</b></span>
+              <span><b>10,000+</b> customers</span>
+              <span><b>Since 1999</b></span>
+              <span><b>24×7</b> NOC + SOC</span>
+            }
 
           </div>
         </div>
@@ -1000,8 +1035,24 @@
       <xh-reseller-program-content />
     }
 
-    @if (slug() === 'e-mail-archiving') {
+    @if (slug() === 'email-archiving') {
       <xh-email-archiving-content />
+    }
+
+    @if (slug() === 'managed-devops') {
+      <xh-cloud-devops-content (quoteRequested)="openCallback($event, 'Cloud DevOps quote')" />
+    }
+
+    @if (slug() === 'acronis-mdr') {
+      <xh-acronis-mdr-content (quoteRequested)="openCallback($event, 'Acronis MDR service tiers')" />
+    }
+
+    @if (slug() === 'microsoft-365-training') {
+      <xh-microsoft-training-content (trainingRequested)="openCallback($event, 'Microsoft 365 training plan')" />
+    }
+
+    @if (slug() === 'microsoft-copilot-training') {
+      <xh-copilot-training-content (trainingRequested)="openCallback($event, 'Microsoft Copilot training session')" />
     }
 
     @if (isCloudObjectStorage()) {
@@ -1064,7 +1115,7 @@
         [class.cloud-drive-body]="slug() === 'cloud-drive'"
         [class.smb-cyber-body]="slug() === 'smb-cyber-security-appliance'"
         [class.genai-body]="slug() === 'acronis-genai-protection'"
-        [class.email-archiving-body]="slug() === 'e-mail-archiving'"
+        [class.email-archiving-body]="slug() === 'email-archiving'"
       >
         <div class="wrap">
           @if (slug() === 'waap-as-a-service') {
@@ -1084,6 +1135,9 @@
           } @else {
             @if (isMicrosoftCopilot()) {
               <xh-microsoft-copilot-content />
+            }
+            @if (isCopilotStudio()) {
+              <xh-copilot-studio-content />
             }
             @if (isManagedMicrosoft365()) {
               <xh-managed-microsoft-365-content />
@@ -1132,8 +1186,13 @@
               !isResellerProgram() &&
               !isScrutinyEdr() &&
               !isCloudObjectStorage() &&
-              slug() !== 'e-mail-archiving' &&
+              slug() !== 'email-archiving' &&
+              slug() !== 'managed-devops' &&
+              slug() !== 'microsoft-365-training' &&
+              slug() !== 'microsoft-copilot-training' &&
+              slug() !== 'acronis-mdr' &&
               !isMicrosoftCopilot() &&
+              !isCopilotStudio() &&
               !isZohoWorkspace() &&
               !isMicrosoftEntraId() &&
               !isDigiCert() &&
@@ -1245,9 +1304,26 @@
                         </article>
                       </div>
                     </section>
+                  } @else if (slug() === 'acronis-backup-advanced') {
+                    <xh-acronis-backup-advanced-content />
+                  } @else if (slug() === 'acronis-ot') {
+                    <xh-acronis-ot-content />
                   } @else if (!isManagedMicrosoft365() && !isEntraIdBackup()) {
-                    <div class="pp-sec">Overview</div>
-                    <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
+                    @if (isCloudBackup() || isAdvancedEdr()) {
+                      <div class="backup-overview-columns">
+                        <div>
+                          <div class="pp-sec">Overview</div>
+                          <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
+                        </div>
+                        <section class="backup-protection" aria-labelledby="backupProtectionTitle">
+                        <h2 id="backupProtectionTitle">Protect your business with Acronis today!</h2>
+                        <img class="backup-protection-badges" src="/assets/images/acronis-certification-badges.jpg" alt="Acronis CyberFit Cloud Tech badges: Foundation, Associate Disaster Recovery, Associate Protect and Associate Backup" loading="lazy" />
+                        </section>
+                      </div>
+                    } @else {
+                      <div class="pp-sec">Overview</div>
+                      <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
+                    }
                   }
 
                   @if (isAcronisTrueImage()) {
@@ -1953,6 +2029,8 @@
                   !isSiteLock() &&
                   !isManagedMicrosoft365() &&
                   !isEntraIdBackup() &&
+                  slug() !== 'acronis-backup-advanced' &&
+                  slug() !== 'acronis-ot' &&
                   slug() !== 'cloud-migration' &&
                   slug() !== 'scrutiny-dlp' &&
                   slug() !== 'vortex-seg' &&
@@ -2137,6 +2215,8 @@
                   !isSiteLock() &&
                   !isManagedMicrosoft365() &&
                   !isEntraIdBackup() &&
+                  slug() !== 'acronis-backup-advanced' &&
+                  slug() !== 'acronis-ot' &&
                   slug() !== 'scrutiny-dlp' &&
                   slug() !== 'vortex-seg' &&
                   slug() !== 'vortex-soc'
@@ -2761,6 +2841,8 @@
                   !isSiteLock() &&
                   !isManagedMicrosoft365() &&
                   !isEntraIdBackup() &&
+                  slug() !== 'acronis-backup-advanced' &&
+                  slug() !== 'acronis-ot' &&
                   slug() !== 'scrutiny-dlp' &&
                   slug() !== 'vortex-seg' &&
                   slug() !== 'vortex-soc'
@@ -3333,6 +3415,8 @@
                   !isAcronisTrueImage() &&
                   !isSiteLock() &&
                   !isManagedMicrosoft365() &&
+                  slug() !== 'acronis-backup-advanced' &&
+                  slug() !== 'acronis-ot' &&
                   slug() !== 'scrutiny-dlp' &&
                   slug() !== 'vortex-seg' &&
                   slug() !== 'vortex-soc'
@@ -3533,8 +3617,8 @@
           }
 
           @if (v.name !== 'Tally on Cloud') {
-            @if (!isSmbCyber() && !isRmm() && slug() !== 'scrutiny-dlp' && slug() !== 'cloud-migration') {
-              <div class="pp-sec" id="ppSecHead">{{ v.security.head }}</div>
+            @if (!isSmbCyber() && !isRmm() && slug() !== 'acronis-backup-advanced' && slug() !== 'acronis-ot' && slug() !== 'scrutiny-dlp' && slug() !== 'cloud-migration') {
+              <div class="pp-sec" id="ppSecHead" [style.margin-bottom.px]="slug() === 'managed-devops' ? 32 : null">{{ v.security.head }}</div>
               <div id="ppSecWrap">
                 <p class="pp-ov">{{ v.security.intro }}</p>
                 <div class="pp-secrows">
@@ -3558,12 +3642,14 @@
             !isSmbCyber() &&
             !isRmm() &&
             !isZohoWorkspace() &&
+            slug() !== 'acronis-backup-advanced' &&
+            slug() !== 'acronis-ot' &&
             slug() !== 'cloud-migration' &&
             slug() !== 'scrutiny-dlp' &&
             slug() !== 'vortex-seg' &&
             slug() !== 'vortex-soc'
           ) {
-            <div class="pp-sec" id="ppWhyHead">Why XcellHost for {{ v.name }}</div>
+            <div class="pp-sec" id="ppWhyHead" [style.margin-top.px]="slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Why XcellHost for {{ v.name }}</div>
             <div class="pp-why" id="ppWhy">
               @for (w of v.why; track w.title) {
                 <div class="pw">
@@ -3724,7 +3810,7 @@
             !isTsplusRemoteAccess()
           ) {
             <section class="tally-videos" aria-labelledby="showcaseVideosTitle">
-              <div class="pp-sec" id="showcaseVideosTitle">Watch it in action</div>
+              <div class="pp-sec" id="showcaseVideosTitle" [style.margin-top.px]="slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' ? 56 : null">Watch it in action</div>
               <div class="tally-video-grid" [class.single-video]="showcaseVideos().length === 1">
                 @for (video of showcaseVideos(); track video.label) {
                   <article class="tally-video-card">
@@ -4022,8 +4108,8 @@
             </section>
           }
 
-          <div class="pp-sec">What customers say</div>
-          @if (isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'e-mail-archiving') {
+          <div class="pp-sec" [style.margin-top.px]="slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">What customers say</div>
+          @if (isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training') {
             <div class="pp-tcards" id="ppRevs">
               @for (r of v.reviews; track r.name) {
                 <div class="tcard">
@@ -4070,7 +4156,7 @@
             </div>
           }
 
-          <div class="pp-sec pp-faq-heading">Frequently asked questions</div>
+          <div class="pp-sec pp-faq-heading" [style.margin-top.px]="slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Frequently asked questions</div>
         <div class="pp-faq" id="ppFaq">
 
           <xh-product-faq
@@ -4079,7 +4165,7 @@
 
         </div>
 
-        <div id="ppBlog" [class.scrutiny-dlp-insights]="slug() === 'scrutiny-dlp'" [class.vortex-seg-insights]="slug() === 'vortex-seg'"><xh-insights-section [pageSlug]="slug()" /></div>
+        <div id="ppBlog" [style.margin-top.px]="slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null" [class.scrutiny-dlp-insights]="slug() === 'scrutiny-dlp'" [class.vortex-seg-insights]="slug() === 'vortex-seg'"><xh-insights-section [pageSlug]="slug()" /></div>
 
         <div class="pp-cta">
             <div>

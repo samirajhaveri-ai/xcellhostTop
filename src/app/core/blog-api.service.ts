@@ -127,7 +127,14 @@ export class BlogApiService {
           ? this.listPage(pagination.page + 1)
           : EMPTY;
       }),
-      reduce((posts, response) => posts.concat(response.data.map((post) => this.normalise(post))), [] as CmsBlogPost[])
+      reduce(
+        (posts, response) => posts.concat(
+          response.data
+            .filter((post) => this.isAvailableArticle(post))
+            .map((post) => this.normalise(post))
+        ),
+        [] as CmsBlogPost[]
+      )
     );
   }
 
@@ -200,6 +207,10 @@ export class BlogApiService {
           : `${this.baseUrl}${url}`
         : this.fallbackCover(post.category),
     };
+  }
+
+  private isAvailableArticle(post: CmsBlogPost): boolean {
+    return Boolean(post.slug?.trim() && post.title?.trim() && post.content?.trim());
   }
 
   private normaliseResource(item: RawCmsInsightResource, kind: CmsResourceKind): CmsInsightResource {

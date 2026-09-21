@@ -1,8 +1,8 @@
 import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
-import { takeUntilDestroyed, toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { map, Observable, switchMap } from 'rxjs';
+import { distinctUntilChanged, map, Observable, switchMap, tap } from 'rxjs';
 
 import { BlogApiService, CmsArticle } from '../core/blog-api.service';
 import { DocRequestService } from '../core/doc-request.service';
@@ -31,11 +31,22 @@ interface ArticleNeighbors {
   readonly next: CmsArticle | null;
 }
 
+type ShareNetwork = 'linkedin' | 'facebook' | 'x' | 'whatsapp' | 'email';
+
+const DEFAULT_AUTHOR_PHOTO = '/assets/images/xcellhost-logo.png';
+const AUTHOR_PHOTOS: Readonly<Record<string, string>> = {
+  'samir jhaveri': '/assets/images/website-photo-frame-samir-jhaveri-1.png',
+  'dr samir jhaveri': '/assets/images/website-photo-frame-samir-jhaveri-1.png',
+  'purva angre': '/assets/images/team-purva-angre.png',
+  'ravi sharma': '/assets/images/team-ravi-sharma.png',
+};
+
 @Component({
   selector: 'xh-blog-page',
   standalone: true,
   imports: [RouterLink],
   templateUrl: './blog.page.html',
+  styleUrl: './blog.page.css',
   host: { style: 'display:contents', '(window:scroll)': 'onScroll()' },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -54,14 +65,14 @@ export class BlogPage {
   readonly detailBase = this.isUseCase ? '/use-cases' : '/insights';
   readonly contentLabel = this.isUseCase ? 'Use Case' : 'Insights';
   readonly contentPlural = this.isUseCase ? 'use cases' : 'blogs';
-  readonly slug = toSignal(this.route.paramMap.pipe(map((params) => params.get('slug') ?? '')), {
-    initialValue: '',
-  });
+  readonly slug = signal(this.route.snapshot.paramMap.get('slug') ?? '');
   readonly post = signal<CmsArticle | null>(null);
   readonly allPosts = signal<readonly CmsArticle[]>([]);
   readonly loading = signal(true);
   readonly error = signal(false);
   readonly progress = signal(0);
+  readonly copiedLink = signal(false);
+  readonly shareNetworks: readonly ShareNetwork[] = ['linkedin', 'facebook', 'x', 'whatsapp', 'email'];
 
   readonly blocks = computed(() => this.parseContent(this.post()?.content ?? ''));
   readonly headings = computed<readonly HeadingEntry[]>(() =>
@@ -119,21 +130,35 @@ export class BlogPage {
     const articles$: Observable<readonly CmsArticle[]> = this.isUseCase
       ? this.blogApi.useCases$
       : this.blogApi.posts$;
-    articles$.pipe(takeUntilDestroyed()).subscribe({
-      next: (posts) => this.allPosts.set(posts),
-    });
-
-    toObservable(this.slug)
+    this.route.paramMap
       .pipe(
-        switchMap((slug) => this.watchArticle(slug)),
+        map((params) => params.get('slug') ?? ''),
+        distinctUntilChanged(),
+        tap((slug) => {
+          this.slug.set(slug);
+          this.loading.set(true);
+          this.error.set(false);
+          this.post.set(null);
+          this.progress.set(0);
+          this.doc.defaultView?.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+        }),
+        switchMap((slug) => articles$.pipe(
+          map((posts) => ({
+            posts,
+            post: posts.find((candidate) =>
+              this.normaliseRouteSlug(candidate.slug) === this.normaliseRouteSlug(slug)
+            ) ?? null,
+          }))
+        )),
         takeUntilDestroyed()
       )
       .subscribe({
-        next: (post) => {
+        next: ({ posts, post }) => {
+          this.allPosts.set(posts);
           this.loading.set(false);
           this.error.set(false);
           this.post.set(post);
-          if (!post) void this.router.navigate(['/insights']);
+          if (!post) void this.router.navigate(['/insights'], { replaceUrl: true });
         },
         error: () => {
           this.loading.set(false);
@@ -218,6 +243,70 @@ export class BlogPage {
     return heading?.id ?? `section-${index}`;
   }
 
+  authorPhoto(author: string): string {
+    return AUTHOR_PHOTOS[this.normaliseAuthorName(author)] ?? DEFAULT_AUTHOR_PHOTO;
+  }
+
+  hasAuthorPortrait(author: string): boolean {
+    return this.normaliseAuthorName(author) in AUTHOR_PHOTOS;
+  }
+
+  useAuthorPhotoFallback(event: Event): void {
+    const image = event.target as HTMLImageElement;
+    if (image.src.endsWith(DEFAULT_AUTHOR_PHOTO)) return;
+    image.src = DEFAULT_AUTHOR_PHOTO;
+    image.classList.add('is-brand-avatar');
+  }
+
+  socialShareUrl(network: ShareNetwork, post: CmsArticle): string {
+    const articleUrl = encodeURIComponent(this.articleUrl(post));
+    const title = encodeURIComponent(post.title);
+    switch (network) {
+      case 'linkedin': return `https://www.linkedin.com/sharing/share-offsite/?url=${articleUrl}`;
+      case 'facebook': return `https://www.facebook.com/sharer/sharer.php?u=${articleUrl}`;
+      case 'x': return `https://twitter.com/intent/tweet?url=${articleUrl}&text=${title}`;
+      case 'whatsapp': return `https://wa.me/?text=${title}%20${articleUrl}`;
+      case 'email': return `mailto:?subject=${title}&body=${encodeURIComponent(`Read this article: ${post.title}\n\n${this.articleUrl(post)}`)}`;
+    }
+  }
+
+  shareNetworkLabel(network: ShareNetwork): string {
+    const labels: Record<ShareNetwork, string> = {
+      linkedin: 'LinkedIn',
+      facebook: 'Facebook',
+      x: 'X',
+      whatsapp: 'WhatsApp',
+      email: 'email',
+    };
+    return labels[network];
+  }
+
+  async sharePost(post: CmsArticle): Promise<void> {
+    const url = this.articleUrl(post);
+    if (globalThis.navigator?.share) {
+      try {
+        await globalThis.navigator.share({ title: post.title, text: post.description, url });
+        return;
+      } catch (error) {
+        if (error instanceof DOMException && error.name === 'AbortError') return;
+      }
+    }
+
+    const clipboard = globalThis.navigator?.clipboard;
+    if (!clipboard) {
+      globalThis.open(this.socialShareUrl('email', post), '_blank', 'noopener,noreferrer');
+      return;
+    }
+
+    try {
+      await clipboard.writeText(url);
+      this.copiedLink.set(true);
+      globalThis.setTimeout(() => this.copiedLink.set(false), 2000);
+    } catch {
+      globalThis.open(this.socialShareUrl('email', post), '_blank', 'noopener,noreferrer');
+    }
+  }
+
   /** Renders a small, escaped subset of inline Markdown used by Strapi. */
   inlineMarkdown(value: string): string {
     const escaped = value
@@ -293,6 +382,19 @@ export class BlogPage {
     return base ? `${base}-${index}` : `section-${index}`;
   }
 
+  private articleUrl(post: CmsArticle): string {
+    const siteUrl = SITE.siteUrl.replace(/\/$/, '');
+    return `${siteUrl}${this.detailBase}/${encodeURIComponent(post.slug)}`;
+  }
+
+  private normaliseAuthorName(author: string): string {
+    return author.trim().toLowerCase().replace(/\./g, '').replace(/\s+/g, ' ');
+  }
+
+  private normaliseRouteSlug(slug: string): string {
+    return decodeURIComponent(slug).trim().toLowerCase().replace(/^\/+|\/+$/g, '');
+  }
+
   private relatedScore(current: CmsArticle, candidate: CmsArticle): number {
     let score = 0;
     const currentPages = this.relatedPageKeys(current);
@@ -314,9 +416,4 @@ export class BlogPage {
     );
   }
 
-  private watchArticle(slug: string): Observable<CmsArticle | null> {
-    return this.isUseCase
-      ? this.blogApi.watchUseCaseBySlug(slug)
-      : this.blogApi.watchBySlug(slug);
-  }
 }
