@@ -1,7 +1,37 @@
 import type { LanguageOption } from '../layout/language-picker.component';
 
+const LANGUAGE_REGION_OVERRIDES: Readonly<Record<string, string>> = {
+  en: 'UN',
+  ar: 'AE',
+  eo: 'EU',
+  ber: 'MA',
+  tzm: 'MA',
+  jw: 'ID',
+  iw: 'IL',
+  zh: 'CN',
+  'zh-CN': 'CN',
+  'zh-TW': 'TW',
+};
+
+/** Returns the flag of the country most commonly associated with a language. */
+export function flagForLanguage(code: string): string {
+  const normalizedCode = code.replace('_', '-');
+  let region: string | undefined = LANGUAGE_REGION_OVERRIDES[normalizedCode];
+
+  if (!region) {
+    try {
+      region = new Intl.Locale(normalizedCode).maximize().region;
+    } catch {
+      return '🇺🇳';
+    }
+  }
+
+  if (!region || !/^[A-Z]{2}$/.test(region)) return '🇺🇳';
+  return String.fromCodePoint(...[...region].map(letter => 0x1f1e6 + letter.charCodeAt(0) - 65));
+}
+
 export const LANGUAGE_DETAILS: Record<string, Omit<LanguageOption, 'code' | 'name'>> = {
-  en: { nativeName: 'English', region: 'International', flag: '🌐' },
+  en: { nativeName: 'English', region: 'International', flag: '🇺🇳' },
   hi: { nativeName: 'हिन्दी', region: 'India', flag: '🇮🇳' },
   mr: { nativeName: 'मराठी', region: 'India', flag: '🇮🇳' },
   ta: { nativeName: 'தமிழ்', region: 'India', flag: '🇮🇳' },
@@ -17,7 +47,7 @@ export const LANGUAGE_DETAILS: Record<string, Omit<LanguageOption, 'code' | 'nam
   pt: { nativeName: 'Português', region: 'Portugal / Brazil', flag: '🇵🇹' },
   it: { nativeName: 'Italiano', region: 'Italy', flag: '🇮🇹' },
   nl: { nativeName: 'Nederlands', region: 'Netherlands', flag: '🇳🇱' },
-  ar: { nativeName: 'العربية', region: 'Middle East', flag: '🌐' },
+  ar: { nativeName: 'العربية', region: 'Middle East', flag: '🇦🇪' },
   ur: { nativeName: 'اردو', region: 'Pakistan', flag: '🇵🇰' },
   ru: { nativeName: 'Русский', region: 'Russia', flag: '🇷🇺' },
   ja: { nativeName: '日本語', region: 'Japan', flag: '🇯🇵' },

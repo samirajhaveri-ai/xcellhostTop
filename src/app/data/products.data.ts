@@ -1080,6 +1080,12 @@ export const DEEP_CONTENT: Record<string, DeepContent> = {
  * unrelated category-level video.
  */
 export const PRODUCT_VIDEOS: Record<string, string[]> = {
+  // Placeholder clips for the Copilot training page's standard video section.
+  "Microsoft Copilot Training": ["ScMzIvxBSi4", "ScMzIvxBSi4"],
+  // Placeholder clips for the training page's standard video section.
+  "Microsoft 365 Training": ["ScMzIvxBSi4", "ScMzIvxBSi4"],
+  // Placeholder clips, matching the demo used on other product pages.
+  "Managed DevOps": ["ScMzIvxBSi4", "ScMzIvxBSi4"],
   "Tally On Cloud": ["eb8jyqFV6fM", "WRvy9w6V8TI"],
   "Cloud Backup": ["rya4Q4IZniA", "nIMbqdbGxao"],
   "Cloud Drive": ["a-Jy7VV13Do", "E6xAHz6_TXw"],
@@ -1184,6 +1190,8 @@ export const PRODUCT_VIDEOS: Record<string, string[]> = {
   "Microsoft 365 Backup": ["", "d8Gcpno-yXg"],
   "Entra ID Backup": ["E__PpPf59nQ", ""],
   "E-Mail Backup / Archiving": ["Tfy4oyLe1UI", ""],
+  // Reuse the introduction as a placeholder until a dedicated use-cases video is supplied.
+  "Email Archiving": ["Tfy4oyLe1UI", "Tfy4oyLe1UI"],
   // Reuse the intro as a placeholder until the Business E-Mail use-cases video is ready.
   "Business E-Mail": ["sgZQYm-MR8g", "sgZQYm-MR8g"],
   "Microsoft 365": ["sQpgrUYpZvQ", ""],

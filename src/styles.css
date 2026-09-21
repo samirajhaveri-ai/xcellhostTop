@@ -359,10 +359,14 @@
   .pp-body.cloud-drive-body #ppSecWrap .pp-ov{max-width:100%}
   .pp-body.smb-cyber-body{padding-top:28px}
   .pp-body.email-archiving-body > .wrap > .pp-sec{margin-top:40px}
-  .pp-body.email-archiving-body #ppBlog{margin-top:40px}
+  .pp-body.email-archiving-body > .wrap > .pp-sec:not(#ppSecHead){margin-top:56px}
+  .pp-body.email-archiving-body .tally-videos > .pp-sec{margin-top:56px}
+  .pp-body.email-archiving-body #ppBlog{margin-top:56px}
   @media(max-width:768px){
     .pp-body.email-archiving-body > .wrap > .pp-sec{margin-top:28px}
-    .pp-body.email-archiving-body #ppBlog{margin-top:28px}
+    .pp-body.email-archiving-body > .wrap > .pp-sec:not(#ppSecHead){margin-top:36px}
+    .pp-body.email-archiving-body .tally-videos > .pp-sec{margin-top:36px}
+    .pp-body.email-archiving-body #ppBlog{margin-top:36px}
   }
   .pp-body.genai-body{padding-top:28px}
   .pp-body.genai-body #ppSecWrap .pp-ov{max-width:100%}
@@ -5112,13 +5116,13 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 .infra-architecture-heading .pp-sec{margin-bottom:12px}
 .infra-architecture-heading h2{margin:0;color:var(--navy);font:700 clamp(36px,3vw,18px)/1.15 var(--disp);max-width:760px;}
 .infra-architecture-heading p{margin:14px auto 0;color:var(--slate);font-size:16px;line-height:1.65}
-.infra-architecture-layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:34px;align-items:stretch;max-width:1120px;margin:0 auto}
+.infra-architecture-layout{display:grid;grid-template-columns:280px minmax(0,1fr);gap:34px;align-items:stretch;max-width:1120px;margin:0 auto}
 .infra-architecture-tabs{display:flex;flex-direction:column;gap:4px;border-right:1px solid #d6deeb;padding:8px 18px 8px 0}
 .infra-architecture-tabs button{position:relative;padding:18px 20px;border:0;border-radius:8px;background:transparent;color:#a1a7b0;cursor:pointer;text-align:left;font:600 16px/1.2 var(--body);transition:color .2s ease,background .2s ease}
 .infra-architecture-tabs button:hover{color:var(--blue);background:#f7faff}
 .infra-architecture-tabs button.is-active{color:var(--navy);background:#f7faff}
 .infra-architecture-tabs button.is-active::after{position:absolute;top:8px;right:-19px;bottom:8px;width:3px;border-radius:2px;background:var(--blue);content:''}
-.infra-architecture-panel{display:block;max-width:1120px;margin:0 auto;padding:34px;border:1px solid #d6e1f1;border-radius:22px;background:#fff;box-shadow:0 16px 40px rgba(4,30,66,.08)}
+.infra-architecture-panel{display:block;width:100%;min-width:0;box-sizing:border-box;max-width:1120px;margin:0 auto;padding:34px;border:1px solid #d6e1f1;border-radius:22px;background:#fff;box-shadow:0 16px 40px rgba(4,30,66,.08)}
 .infra-architecture-copy{max-width:780px;padding:0 10px 26px 14px}
 .infra-architecture-kicker{display:inline-block;margin-bottom:12px;color:var(--blue);font:700 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase}
 .infra-architecture-copy h3{margin:0;color:var(--navy);font:700 clamp(24px,2.5vw,34px)/1.2 var(--disp)}
@@ -5248,3 +5252,35 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 .pp-ai-powered-row{margin:20px 0 14px}
 .pp-ai-powered{display:inline-flex;align-items:center;gap:6px;padding:5px 13px;border-radius:999px;background:linear-gradient(100deg,#3545ed 0%,#7840f5 55%,#e51cde 100%);color:#fff;font:800 11px/1.2 var(--body);letter-spacing:.06em;box-shadow:0 4px 14px #583bee25}
 .pp-ai-powered svg{display:block;width:18px;height:18px;flex-shrink:0}
+
+/* Keep the Managed DevOps illustration centered within the hero. */
+#ppage .pph-scene.has-illus.devops-hero-art{top:0;bottom:0;display:flex;align-items:center;justify-content:center;padding:24px 0;mask-image:none}
+#ppage .devops-hero-art .pph-illus{padding:0;gap:0}
+#ppage .pph-scene.has-illus.standalone-illus.devops-hero-art .pph-illus-img{width:96%;max-width:640px;max-height:420px;object-fit:contain}
+@media(max-width:900px){#ppage .pph-scene.has-illus.standalone-illus.devops-hero-art .pph-illus-img{width:80%;max-width:420px;max-height:340px}}
+
+/* Center and enlarge the Email Archiving animation. */
+#ppage .pph-scene.has-illus.archive-hero-art{top:0;bottom:0;display:flex;align-items:center;justify-content:center;padding:24px 0;mask-image:none}
+#ppage .archive-hero-art .pph-illus{padding:0;gap:0}
+#ppage .pph-scene.has-illus.standalone-illus.archive-hero-art .pph-illus-img{width:96%;max-width:640px;max-height:420px;object-fit:contain}
+@media(max-width:900px){#ppage .pph-scene.has-illus.standalone-illus.archive-hero-art .pph-illus-img{width:80%;max-width:420px;max-height:340px}}
+
+/* Cloud Backup overview: supplied Acronis badge row. */
+/* Center the Microsoft 365 Training animation in its hero column. */
+#ppage .pph-scene.has-illus.training-hero-art{top:0;bottom:0;display:flex;align-items:center;justify-content:center;padding:24px 0;mask-image:none}
+#ppage .training-hero-art .pph-illus{padding:0;gap:0}
+
+.backup-overview-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:center;gap:40px;margin:13px 0 40px}
+.backup-overview-columns .pp-sec{margin-top:0}
+.backup-overview-columns .pp-ov{margin-bottom:0;text-align:justify}
+.backup-protection{margin:0;min-width:0}
+.backup-protection h2{margin:0 0 20px;font:500 clamp(20px,2vw,24px)/1.35 var(--body);color:var(--navy)}
+.backup-protection-badges{display:block;width:100%;max-width:540px;height:auto}
+@media(max-width:760px){.backup-overview-columns{grid-template-columns:1fr;gap:28px}}
+
+.infra-architecture-tabs button{white-space:nowrap}
+
+/* Keep the MDR illustration and partner logo inside the hero. */
+#ppage .pph-scene.has-illus.mdr-hero-art{top:0;bottom:0;display:flex;align-items:center;justify-content:center;padding:24px 0;mask-image:none}
+#ppage .mdr-hero-art .pph-illus{padding:0;gap:0}
+@media(max-width:900px){#ppage .pph-scene.has-illus.mdr-hero-art{position:relative;width:100%;padding:20px 0}#ppage .mdr-hero-art xh-acronis-mdr-hero{max-width:360px}}

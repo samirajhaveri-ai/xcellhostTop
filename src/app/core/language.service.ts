@@ -2,7 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { DestroyRef, Injectable, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router } from '@angular/router';
-import { LANGUAGE_DETAILS } from './languages.data';
+import { flagForLanguage, LANGUAGE_DETAILS } from './languages.data';
 import type { LanguageOption } from '../layout/language-picker.component';
 
 type TranslateWindow = Window & {
@@ -90,6 +90,7 @@ export class LanguageService {
           name: option.text,
           ...LANGUAGE_DETAILS[option.value],
           nativeName: LANGUAGE_DETAILS[option.value]?.nativeName ?? option.text,
+          flag: LANGUAGE_DETAILS[option.value]?.flag ?? flagForLanguage(option.value),
         })),
       ]);
       if (!this.connected.has(select)) {
