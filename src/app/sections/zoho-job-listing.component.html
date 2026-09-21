@@ -1,0 +1,72 @@
+<section class="xh-jobs" aria-labelledby="xh-jobs-title">
+  <div class="xh-jobs-intro">
+    <div>
+      <span class="xh-jobs-eyebrow">Current opportunities</span>
+      <h2 id="xh-jobs-title">Find the role where you can make an impact.</h2>
+      <p>Explore open positions across cloud, cybersecurity, technology and customer success. Select a role below to view the details and apply securely through Zoho Recruit.</p>
+    </div>
+    <div class="xh-jobs-trust" aria-label="Application highlights">
+      <span><i aria-hidden="true">01</i> Browse open roles</span>
+      <span><i aria-hidden="true">02</i> Review the details</span>
+      <span><i aria-hidden="true">03</i> Apply securely</span>
+    </div>
+  </div>
+
+  <div class="xh-jobs-layout">
+    <div class="xh-jobs-board">
+      <header class="xh-jobs-board-head">
+        <div>
+          <span>XCELLHOST CAREERS</span>
+          <h3>Open positions</h3>
+        </div>
+        <b><i aria-hidden="true"></i> Live vacancies</b>
+      </header>
+
+      <div class="xh-zoho-widget" [attr.aria-busy]="status() === 'loading'">
+        @if (status() === 'loading') {
+          <div class="xh-jobs-loading" role="status">
+            <span class="xh-jobs-spinner" aria-hidden="true"></span>
+            <strong>Loading current opportunities…</strong>
+            <small>Connecting securely to XcellHost careers</small>
+          </div>
+        }
+
+        @if (status() === 'error') {
+          <div class="xh-jobs-error" role="alert">
+            <span aria-hidden="true">↗</span>
+            <h3>Open the careers portal</h3>
+            <p>The job list could not load here. You can still browse every current opening directly on our secure recruitment portal.</p>
+            <a href="https://xcellhost.zohorecruit.in/jobs/Careers" target="_blank" rel="noopener noreferrer">View open roles <b aria-hidden="true">→</b></a>
+          </div>
+        }
+
+        <div class="embed_jobs_head embed_jobs_with_style_3">
+          <div class="embed_jobs_head2">
+            <div class="embed_jobs_head3">
+              <div id="rec_job_listing_div"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="xh-jobs-aside" aria-label="Information for applicants">
+      <div class="xh-jobs-note">
+        <span class="material-symbols-outlined" aria-hidden="true">verified_user</span>
+        <div><strong>Secure application</strong><p>Your application is submitted through XcellHost&rsquo;s Zoho Recruit careers portal.</p></div>
+      </div>
+      <div class="xh-jobs-note">
+        <span class="material-symbols-outlined" aria-hidden="true">description</span>
+        <div><strong>Prepare your profile</strong><p>Keep your latest résumé, contact details and relevant project or certification information ready.</p></div>
+      </div>
+      <div class="xh-jobs-note">
+        <span class="material-symbols-outlined" aria-hidden="true">shield_lock</span>
+        <div><strong>Recruitment safety</strong><p>XcellHost will never ask you to pay a fee or share passwords, PINs or one-time codes during recruitment.</p></div>
+      </div>
+      <a class="xh-jobs-help" routerLink="/contact">
+        <span>Need help with an application?</span>
+        <strong>Contact the careers team <b aria-hidden="true">→</b></strong>
+      </a>
+    </aside>
+  </div>
+</section>

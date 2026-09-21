@@ -1,3 +1,50 @@
+@if (mode() === 'hero') {
+<section class="studio-hero">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="aurora a1" aria-hidden="true"></div>
+  <div class="aurora a2" aria-hidden="true"></div>
+  <div class="wrap">
+    <nav class="studio-crumb" aria-label="Breadcrumb"><a href="/">HOME</a> &rsaquo; <span>SOLUTIONS</span> &rsaquo; <span>AI</span> &rsaquo; <strong>COPILOT STUDIO</strong></nav>
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <span class="studio-eyebrow"><span class="dot"></span>AI · Build your own agents, no code</span>
+        <h1><span class="xr">Xcell</span><span>Work</span> | Copilot Studio</h1>
+        <p class="hero-lead">Build your own AI agents — no code, no data science.</p>
+        <p class="hero-lead2">Microsoft Copilot Studio lets you design custom AI agents and chatbots, ground them in your own data, give them actions and automation, and publish them to Teams, your website and more. XcellHost designs, builds and manages them for you.</p>
+        <div class="hero-tech">No-Code Builder · Your Data · Actions · Any Channel</div>
+        <div class="hero-checks">
+          <span>✓ No-Code Agent Builder</span><span>✓ Grounded in Your Data</span>
+          <span>✓ 1,000+ Connectors</span><span>✓ Actions &amp; Automation</span>
+          <span>✓ Deploy to Teams &amp; Web</span><span>✓ Governed &amp; Secure</span>
+        </div>
+        <div class="hero-actions">
+          <a class="hero-btn blue" href="https://www.xcellhost.cloud/service-index/" target="_blank" rel="noopener noreferrer">⬇ Infosheet</a>
+          <a class="hero-btn ghost" href="#">📖 Presentation</a>
+          <a class="hero-btn ghost" href="#tour">Screenshot Tour</a>
+          <a class="hero-btn ghost" href="https://wa.me/918657032540">7 Day's Free Trial</a>
+          <a class="hero-btn orange" href="https://wa.me/918657032540">Let's Talk</a>
+        </div>
+      </div>
+      <div class="studio-art" aria-label="Copilot Studio agent builder preview">
+        <span class="orbit" aria-hidden="true"></span>
+        <div class="studio-window">
+          <div class="window-bar"><span class="dots"><i></i><i></i><i></i></span><b><i>✦</i> Copilot Studio</b></div>
+          <div class="window-body">
+            <article class="agent-row featured"><span class="agent-icon rainbow">✦</span><div><b>Describe your agent</b><small>“A support agent that answers from our help docs and logs tickets”</small></div></article>
+            <article class="agent-row"><span class="agent-icon amber">☰</span><div><b>Topics &amp; knowledge</b><small>Help docs · FAQ · website added ✓</small></div></article>
+            <article class="agent-row"><span class="agent-icon green">↻</span><div><b>Action: create ticket</b><small>Connected to your helpdesk ✓</small></div></article>
+            <article class="agent-row"><span class="agent-icon teams">♙</span><div><b>Publish to Teams &amp; website</b><small>Live in minutes</small></div></article>
+          </div>
+        </div>
+        <div class="float-card describe"><i>✦</i><span><b>Describe it</b><small>in plain English</small></span></div>
+        <div class="float-card channel"><i>▣</i><span><b>Any channel</b><small>Teams · web · apps</small></span></div>
+        <div class="float-card governed"><i>✓</i><span><b>Governed</b><small>&amp; secure</small></span></div>
+        <div class="powered"><small>Powered By</small><b><span class="ms-grid"><i></i><i></i><i></i><i></i></span>Microsoft</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+} @else {
 <div class="copilot-content">
   <div class="wrap">
     <section>
@@ -177,26 +224,29 @@
     <section>
       <div class="pp-sec">Everything you can do in Copilot Studio</div>
       <div class="copilot-feature-tabs">
-        <span class="active">Agent Builder</span><span>Your Knowledge</span><span>Actions</span
-        ><span>Channels</span><span>Analytics</span>
+        @for (tab of ['Agent Builder', 'Your Knowledge', 'Actions', 'Channels', 'Analytics']; track tab; let i = $index) {
+          <button type="button" [class.active]="activeFeature() === i" (click)="selectFeature(i)">{{ tab }}</button>
+        }
       </div>
       <div class="copilot-feature-panel">
         <div>
-          <h3>No-code agent builder</h3>
-          <p>
-            Design your agent in a visual studio, describe what it should do in plain language,
-            shape conversations with topics and preview it live as you build.
-          </p>
-          <ul>
-            <li>Describe your agent in plain English</li>
-            <li>Visual topic and conversation design</li>
-            <li>Generative answers out of the box</li>
-            <li>Live preview as you build</li>
-          </ul>
+          @switch (activeFeature()) {
+            @case (1) { <h3>Grounded in your knowledge</h3><p>Connect websites, documents, SharePoint and databases so your agent gives accurate answers from your approved business content.</p><ul><li>Websites and internal pages</li><li>Documents and SharePoint</li><li>Databases and data sources</li><li>Cited, grounded answers</li></ul> }
+            @case (2) { <h3>Actions &amp; automation</h3><p>Give your agent the power to look up orders, create tickets, update records and trigger workflows through ready-made connectors or your APIs.</p><ul><li>1,000+ ready-made connectors</li><li>Call your own APIs</li><li>Trigger Power Automate flows</li><li>Autonomous, multi-step tasks</li></ul> }
+            @case (3) { <h3>Publish to any channel</h3><p>Ship the same agent everywhere your users are — Microsoft Teams, your website, apps, SMS, social channels and Microsoft 365 Copilot.</p><ul><li>Microsoft Teams</li><li>Your website</li><li>Apps, SMS and social</li><li>Microsoft 365 Copilot</li></ul> }
+            @case (4) { <h3>Analytics &amp; governance</h3><p>See questions, resolution rates, escalations and satisfaction while managed environments, roles and DLP policies keep everything governed.</p><ul><li>Usage and resolution analytics</li><li>Spot gaps and improve topics</li><li>Managed environments and roles</li><li>Data-loss prevention</li></ul> }
+            @default { <h3>No-code agent builder</h3><p>Design your agent in a visual studio, describe what it should do in plain language, shape conversations with topics and preview it live as you build.</p><ul><li>Describe your agent in plain English</li><li>Visual topic and conversation design</li><li>Generative answers out of the box</li><li>Live preview as you build</li></ul> }
+          }
         </div>
         <div class="copilot-window">
-          <b>Copilot Studio · Builder</b><span>✦ Build an HR leave-request agent</span
-          ><span>✓ Topic: Apply for leave</span><span>✓ Preview — Live chat ready</span>
+          <b>Copilot Studio · {{ ['Builder', 'Knowledge', 'Actions', 'Channels', 'Analytics'][activeFeature()] }}</b>
+          @switch (activeFeature()) {
+            @case (1) { <span>✓ Website: Help centre</span><span>✓ Files: Policies.pdf</span><span>✓ SharePoint: HR site</span> }
+            @case (2) { <span>✦ Look up order status</span><span>✓ Create support ticket</span><span>✓ Trigger approval flow</span> }
+            @case (3) { <span>✓ Microsoft Teams — Published</span><span>✓ Website — Embedded</span><span>✓ WhatsApp / SMS — Connected</span> }
+            @case (4) { <span>Sessions this week — 1,284</span><span>Resolved by agent — 82%</span><span>Escalated to human — 18%</span> }
+            @default { <span>✦ Build an HR leave-request agent</span><span>✓ Topic: Apply for leave</span><span>✓ Preview — Live chat ready</span> }
+          }
         </div>
       </div>
     </section>
@@ -221,7 +271,7 @@
         </article>
       </div>
     </section>
-    <!-- <section>
+    <section>
       <div class="pp-sec">Agents that know your business — and stay in bounds</div>
       <div class="copilot-governance">
         <div>
@@ -264,7 +314,7 @@
           <strong>Team freed up for real work</strong>
         </article>
       </div>
-    </section> -->
+    </section>
     <section>
       <div class="pp-sec">What can you build with Copilot Studio?</div>
       <div class="pp-uses">
@@ -281,7 +331,13 @@
           <span>▣</span><b>Sales &amp; lead-gen agent</b><small>Qualify &amp; route leads</small>
         </article>
         <article class="pu">
+          <span>🛒</span><b>Booking &amp; orders agent</b><small>Check status &amp; take actions</small>
+        </article>
+        <article class="pu">
           <span>▤</span><b>Knowledge assistant</b><small>Search internal docs</small>
+        </article>
+        <article class="pu">
+          <span>🏫</span><b>Student &amp; staff agent</b><small>Admissions &amp; admin queries</small>
         </article>
         <article class="pu">
           <span>⌂</span><b>Website chatbot</b><small>Engage &amp; convert visitors</small>
@@ -321,75 +377,6 @@
         </article>
       </div>
     </section>
-    <section>
-      <div class="pp-sec">Why buy your Copilot Studio from XcellHost?</div>
-      <p class="pp-ov">
-        Anyone can start an agent; building one that is accurate, useful and safe is the hard part. XcellHost scopes the use case, builds and grounds the agent, wires up actions and governs it
-        end to end.
-      </p>
-      <div class="pp-why">
-        <article class="pw">
-          <span class="pw-ic">01</span><b>Microsoft partner</b>
-          <p>Genuine Copilot Studio and Microsoft 365 licensing with local billing.</p>
-        </article>
-        <article class="pw">
-          <span class="pw-ic">02</span><b>Built by experts</b>
-          <p>We design topics, ground answers in your data and connect your systems.</p>
-        </article>
-        <article class="pw">
-          <span class="pw-ic">03</span><b>Governed &amp; safe</b>
-          <p>Managed environments, role-based access and DLP keep agents in bounds.</p>
-        </article>
-        <article class="pw">
-          <span class="pw-ic">04</span><b>24×7 support</b>
-          <p>Round-the-clock help from our Mumbai NOC and SOC.</p>
-        </article>
-        <article class="pw">
-          <span class="pw-ic">05</span><b>GST invoice</b>
-          <p>Compliant GST invoice on every order.</p>
-        </article>
-        <article class="pw">
-          <span class="pw-ic">06</span><b>Measured &amp; improved</b>
-          <p>Analytics reviews and ongoing tuning help agents get better.</p>
-        </article>
-      </div>
-    </section>
-    
-    <section>
-      <div class="pp-sec">What customers say</div>
-      <div class="pp-tcards">
-        <article class="tcard">
-          <div class="quote-badge">”</div>
-          <div class="tav">MK</div>
-          <div class="tname">Marketing Lead</div>
-          <div class="trole">Manufacturer · Copilot Studio</div>
-          <div class="tstars">★★★★★</div>
-          <p>
-            XcellHost built a support agent that answers order questions and creates tickets without
-            adding work to our team.
-          </p>
-        </article>
-        <article class="tcard">
-          <div class="quote-badge">”</div>
-          <div class="tav">IT</div>
-          <div class="tname">IT Security</div>
-          <div class="trole">E-commerce · Copilot Studio</div>
-          <div class="tstars">★★★★★</div>
-          <p>
-            Our HR agent answers policy questions instantly and stays grounded in approved
-            documents.
-          </p>
-        </article>
-        <article class="tcard">
-          <div class="quote-badge">”</div>
-          <div class="tav">AG</div>
-          <div class="tname">Agency Owner</div>
-          <div class="trole">Services firm · Copilot Studio</div>
-          <div class="tstars">★★★★★</div>
-          <p>We went from idea to a live website chatbot quickly with one accountable partner.</p>
-        </article>
-      </div>
-    </section>
-  
   </div>
 </div>
+}
