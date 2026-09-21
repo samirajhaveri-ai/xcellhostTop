@@ -156,16 +156,24 @@ export class CompanyPage {
   readonly salesTeam = [
     { initials: 'AP', name: 'Abhishek Pandey', role: 'Cloud Sales Manager', image: '/assets/images/team-abhishek-pandey.png' },
     { initials: 'AG', name: 'Ajay Gupta', role: '', image: '' },
+    { initials: 'AG', name: 'AI SDR Agent', role: '', image: '/assets/images/Robot.webp' },
+    { initials: 'AG', name: 'Lead Qualification Agent', role: '', image: '/assets/images/Robot.webp' },
   ] as const;
   
   readonly marketing = [
     { initials: 'AN', name: 'Aryan Nair', role: '', image: '/assets/images/team-aryan-nair.png' },
     { initials: 'RS', name: 'Ravi Sharma', role: '', image: '/assets/images/team-ravi-sharma.png' },
+    { initials: 'RS', name: 'SEO/AEO/GEO Agent', role: '', image: '/assets/images/Robot.webp' },
+    { initials: 'RS', name: 'Social Media Agent', role: '', image: '/assets/images/Robot.webp' },
+    { initials: 'RS', name: 'Campaign Automation Agent', role: '', image: '/assets/images/Robot.webp' },
   ] as const;
 
   readonly AITeams = [
     { initials: 'AT', name: 'Advet Thambe', role: '', image: '/assets/images/team-advet-thambe.jpeg' },
     { initials: 'VC', name: 'Vishal Chaubey', role: '', image: '/assets/images/team-vishal-chaubey.png' },
+    { initials: 'VC', name: 'RFP/RFQ Response Agent', role: '', image: '/assets/images/Robot.webp' },
+    { initials: 'VC', name: 'proposal Generator Agent', role: '', image: '/assets/images/Robot.webp' },
+    { initials: 'VC', name: 'Competitor Intelligence Agent', role: '', image: '/assets/images/Robot.webp' },
   ] as const;
 
   readonly developers: readonly { initials: string; name: string; role: string; image: string }[] = [
@@ -178,17 +186,22 @@ export class CompanyPage {
   readonly accountantTeam = [
     { initials: 'SJ', name: 'Sanjay Jade', role: '', image: '/assets/images/team-sanjay-jade.png' },
     { initials: 'RB', name: 'Rutuja Bhoga', role: '', image: '/assets/images/team-rutuja-bhoga.jpeg' },
+    { initials: 'RB', name: 'Cashflow Forecast Agent', role: '', image: '/assets/images/Robot.webp' },
+    { initials: 'RB', name: 'Expense Verification Agent', role: '', image: '/assets/images/Robot.webp' },
   ] as const;
 
   readonly graphicDesignerTeam = [
     { initials: 'SP', name: 'Shantaram Palkar', role: '', image: '/assets/images/team-shantaram-palkar.png' },
     { initials: 'SV', name: 'Shakshita Vangade', role: '', image: '/assets/images/team-shakshita-vangade.jpeg' },
     { initials: 'NS', name: 'Nishant Shinde', role: '', image: '/assets/images/team-nishant-shinde.png' },
+     { initials: 'NS', name: 'AI Generative Agent ', role: '', image: '/assets/images/Robot.webp' },
   ] as const;
 
   readonly adminTeam = [
     { initials: 'MS', name: 'Mayuri Shinde', role: '', image: '/assets/images/team-mayuri-shinde.png' },
     { initials: 'T', name: 'Tejas', role: '', image: '' },
+    { initials: 'T', name: 'Management Intelligence Agent', role: '', image: '/assets/images/Robot.webp' },
+    { initials: 'T', name: 'AI Command Center Orchestrator', role: '', image: '/assets/images/Robot.webp' },
   ] as const;
 
   readonly technicalSupportTeam = [

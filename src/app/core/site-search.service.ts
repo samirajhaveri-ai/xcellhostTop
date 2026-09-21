@@ -81,7 +81,7 @@ export class SiteSearchService {
     for (const slug of this.catalog.slugs) {
       // The plural menu entry points to the same product as the canonical
       // singular directory entry, so do not show it as a second search result.
-      if (slug === 'bare-metal-servers') continue;
+      if (slug === 'bare-metal-servers' || slug === 'acronis-genai') continue;
       const entry = this.catalog.entryBySlug(slug);
       if (!entry) continue;
       add({

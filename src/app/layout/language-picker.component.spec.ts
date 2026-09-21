@@ -21,6 +21,20 @@ describe('LanguagePickerComponent', () => {
     expect(fixture.componentInstance.filtered().map(item => item.code)).toEqual(['fr']);
   });
 
+  it('renders country flags as images instead of regional letter symbols', () => {
+    const fixture = setup();
+    fixture.componentRef.setInput('options', [
+      { code: 'en', name: 'English', nativeName: 'English', region: 'International', flag: '🇺🇳' },
+      { code: 'hi', name: 'Hindi', nativeName: 'हिन्दी', region: 'India', flag: '🇮🇳' },
+    ]);
+    fixture.detectChanges();
+
+    const flags = fixture.nativeElement.querySelectorAll('.language-flag img') as NodeListOf<HTMLImageElement>;
+    expect(flags.length).toBe(2);
+    expect(flags[0].src).toContain('flagcdn.com/w40/un.png');
+    expect(flags[1].src).toContain('flagcdn.com/w40/in.png');
+  });
+
   it('opens a modal and emits the selected language once before closing', () => {
     const fixture = setup();
     const selected = jasmine.createSpy('selected');
