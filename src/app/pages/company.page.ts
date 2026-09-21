@@ -144,7 +144,6 @@ export class CompanyPage {
 
   readonly managementTeam = [
     { initials: 'YJ', name: 'Yogendra Jagger', role: 'Regional Director - Middle East & Africa', image: '/assets/images/team-yogendra-jagger.png' },
-    { initials: 'JP', name: 'Jaynam Pandya', role: 'Chief Marketing Officer', image: '/assets/images/team-jaynam-pandya.png' },
     { initials: 'AN', name: 'Abhishek Nimbalkar', role: 'Chief AI Officer', image: '/assets/images/team-abhishek-nimbalkar.jpg' },
     { initials: 'PN', name: 'Prashant N.V', role: 'Service Delivery Director', image: '/assets/images/team-prashant-nv.png' },
   ] as const;
@@ -170,7 +169,7 @@ export class CompanyPage {
   ] as const;
 
   readonly AITeams = [
-    { initials: 'AT', name: 'Advet Thambe', role: '', image: '/assets/images/team-advet-thambe.jpeg' },
+    { initials: 'AT', name: 'Advet Tambe', role: '', image: '/assets/images/team-advet-thambe.jpeg' },
     { initials: 'VC', name: 'Vishal Chaubey', role: '', image: '/assets/images/team-vishal-chaubey.png' },
     { initials: 'VC', name: 'RFP/RFQ Response Agent', role: '', image: '/assets/images/Robot.webp' },
     { initials: 'VC', name: 'proposal Generator Agent', role: '', image: '/assets/images/Robot.webp' },
@@ -182,6 +181,7 @@ export class CompanyPage {
     { initials: 'VG', name: 'Vaishnavi Ghaghare', role: '', image: '/assets/images/team-vaishnavi-ghaghare.png' },
     { initials: 'DV', name: 'Divya Varma', role: '', image: '/assets/images/team-divya-varma.jpeg' },
     { initials: 'VT', name: 'Vibha Tiwari', role: '', image: '/assets/images/team-vibha-tiwari.png' },
+    { initials: 'AS', name: 'Adarsh Singh', role: '', image: '/assets/images/Adarsh Singh.jpeg' },
   ];
 
   readonly accountantTeam = [
