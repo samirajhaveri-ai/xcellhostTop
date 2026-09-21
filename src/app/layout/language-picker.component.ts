@@ -32,6 +32,16 @@ export class LanguagePickerComponent {
     return this.options().filter(item => `${item.name} ${item.nativeName} ${item.region ?? ''}`.toLocaleLowerCase().includes(query));
   });
 
+  flagImageUrl(flag?: string): string {
+    const indicators = [...(flag ?? '')].map(character => character.codePointAt(0) ?? 0);
+    const isCountryFlag = indicators.length === 2 &&
+      indicators.every(codePoint => codePoint >= 0x1f1e6 && codePoint <= 0x1f1ff);
+    const countryCode = isCountryFlag
+      ? indicators.map(codePoint => String.fromCharCode(codePoint - 0x1f1e6 + 97)).join('')
+      : 'un';
+    return `https://flagcdn.com/w40/${countryCode}.png`;
+  }
+
   open(): void {
     this.query.set('');
     this.dialog().nativeElement.showModal();

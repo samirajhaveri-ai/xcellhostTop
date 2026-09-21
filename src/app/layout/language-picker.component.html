@@ -11,7 +11,7 @@
     <div class="language-grid" aria-label="Available languages">
       @for (item of filtered(); track item.code) {
         <button class="language-option" type="button" [class.selected]="selected() === item.code" [attr.aria-pressed]="selected() === item.code" [disabled]="status() !== 'ready' && item.code !== 'en'" (click)="choose(item.code)">
-          <span class="language-flag" aria-hidden="true">{{ item.flag || '◎' }}</span><span class="language-copy"><b>{{ item.region || item.name }}</b><span [lang]="item.code">{{ item.nativeName }}</span></span><span class="language-check" aria-hidden="true">{{ selected() === item.code ? '✓' : '' }}</span>
+          <span class="language-flag" aria-hidden="true"><img [src]="flagImageUrl(item.flag)" alt="" width="30" height="20" loading="lazy" /></span><span class="language-copy"><b>{{ item.region || item.name }}</b><span [lang]="item.code">{{ item.nativeName }}</span></span><span class="language-check" aria-hidden="true">{{ selected() === item.code ? '✓' : '' }}</span>
         </button>
       } @empty { @if (status() === 'ready') { <p class="language-status">No languages match your search.</p> } }
     </div>
