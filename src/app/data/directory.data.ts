@@ -50,6 +50,7 @@ export const DIRECTORY: DirectoryEntry[] = [
     desc: 'Plan, migrate and validate your cloud workloads',
     cat: 'Cloud',
     group: 'Managed Migration',
+    heroImage: '/assets/images/cloud-migration-hero.svg',
   },
   {
     "name": "Register a Domain Name",
