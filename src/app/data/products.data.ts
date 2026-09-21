@@ -1080,6 +1080,10 @@ export const DEEP_CONTENT: Record<string, DeepContent> = {
  * unrelated category-level video.
  */
 export const PRODUCT_VIDEOS: Record<string, string[]> = {
+  // Placeholder clips for the Copilot training page's standard video section.
+  "Microsoft Copilot Training": ["ScMzIvxBSi4", "ScMzIvxBSi4"],
+  // Placeholder clips for the training page's standard video section.
+  "Microsoft 365 Training": ["ScMzIvxBSi4", "ScMzIvxBSi4"],
   // Placeholder clips, matching the demo used on other product pages.
   "Managed DevOps": ["ScMzIvxBSi4", "ScMzIvxBSi4"],
   "Tally On Cloud": ["eb8jyqFV6fM", "WRvy9w6V8TI"],

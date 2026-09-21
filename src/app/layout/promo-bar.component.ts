@@ -55,7 +55,7 @@ const PRODUCT_ACRONYMS: Readonly<Record<string, string>> = {
       <b>{{ productName() }} — free consultation + tailored solution review</b>
       <span class="code">FREE CONSULT</span>
       <span aria-hidden="true">·</span>
-      <a routerLink="/promotion-and-offers">Claim offer →</a>
+      <a routerLink="/promotion-and-offers" [queryParams]="{ product: productSlug() }" fragment="promo-catalogue">Claim offer →</a>
     </div>
   `,
   styles: [`
@@ -101,6 +101,8 @@ export class PromoBarComponent {
     ),
     { initialValue: this.router.url },
   );
+
+  readonly productSlug = computed(() => this.currentUrl().split(/[?#]/, 1)[0].replace(/^\/+|\/+$/g, ''));
 
   readonly productName = computed(() => {
     const route = this.currentUrl().split(/[?#]/, 1)[0].replace(/^\/+|\/+$/g, '');
