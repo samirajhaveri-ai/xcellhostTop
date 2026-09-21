@@ -9,6 +9,7 @@
     [class.rmm-page]="isRmm()"
     [class.tally-page]="isTally()"
     [class.cloud-migration-page]="slug() === 'cloud-migration'"
+    [class.acronis-backup-advanced-page]="slug() === 'acronis-backup-advanced'"
     [class.whatsapp-smb-page]="isWhatsAppSmb()"
     [class.atm-solution-page]="isAutonomousThreatSolution()"
     [class.scrutiny-page]="
@@ -565,7 +566,7 @@
                 [alt]="v.name"
               />
               }
-              @if (!isManagedMicrosoft365() && !isTally() && v.name !== 'Cloud Drive' && slug() !== 'cloud-migration') {
+              @if (!isManagedMicrosoft365() && !isTally() && v.name !== 'Cloud Drive' && slug() !== 'cloud-migration' && slug() !== 'acronis-backup-advanced') {
                 <div
                   class="pph-powered-mark pph-powered-image"
                   [class.pph-geotrust-powered]="v.name === 'GeoTrust'"
@@ -1245,6 +1246,8 @@
                         </article>
                       </div>
                     </section>
+                  } @else if (slug() === 'acronis-backup-advanced') {
+                    <xh-acronis-backup-advanced-content />
                   } @else if (!isManagedMicrosoft365() && !isEntraIdBackup()) {
                     <div class="pp-sec">Overview</div>
                     <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
@@ -1953,6 +1956,7 @@
                   !isSiteLock() &&
                   !isManagedMicrosoft365() &&
                   !isEntraIdBackup() &&
+                  slug() !== 'acronis-backup-advanced' &&
                   slug() !== 'cloud-migration' &&
                   slug() !== 'scrutiny-dlp' &&
                   slug() !== 'vortex-seg' &&
@@ -2137,6 +2141,7 @@
                   !isSiteLock() &&
                   !isManagedMicrosoft365() &&
                   !isEntraIdBackup() &&
+                  slug() !== 'acronis-backup-advanced' &&
                   slug() !== 'scrutiny-dlp' &&
                   slug() !== 'vortex-seg' &&
                   slug() !== 'vortex-soc'
@@ -2761,6 +2766,7 @@
                   !isSiteLock() &&
                   !isManagedMicrosoft365() &&
                   !isEntraIdBackup() &&
+                  slug() !== 'acronis-backup-advanced' &&
                   slug() !== 'scrutiny-dlp' &&
                   slug() !== 'vortex-seg' &&
                   slug() !== 'vortex-soc'
@@ -3333,6 +3339,7 @@
                   !isAcronisTrueImage() &&
                   !isSiteLock() &&
                   !isManagedMicrosoft365() &&
+                  slug() !== 'acronis-backup-advanced' &&
                   slug() !== 'scrutiny-dlp' &&
                   slug() !== 'vortex-seg' &&
                   slug() !== 'vortex-soc'
@@ -3533,7 +3540,7 @@
           }
 
           @if (v.name !== 'Tally on Cloud') {
-            @if (!isSmbCyber() && !isRmm() && slug() !== 'scrutiny-dlp' && slug() !== 'cloud-migration') {
+            @if (!isSmbCyber() && !isRmm() && slug() !== 'acronis-backup-advanced' && slug() !== 'scrutiny-dlp' && slug() !== 'cloud-migration') {
               <div class="pp-sec" id="ppSecHead">{{ v.security.head }}</div>
               <div id="ppSecWrap">
                 <p class="pp-ov">{{ v.security.intro }}</p>
@@ -3558,6 +3565,7 @@
             !isSmbCyber() &&
             !isRmm() &&
             !isZohoWorkspace() &&
+            slug() !== 'acronis-backup-advanced' &&
             slug() !== 'cloud-migration' &&
             slug() !== 'scrutiny-dlp' &&
             slug() !== 'vortex-seg' &&
