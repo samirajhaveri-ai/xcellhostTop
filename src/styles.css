@@ -359,10 +359,14 @@
   .pp-body.cloud-drive-body #ppSecWrap .pp-ov{max-width:100%}
   .pp-body.smb-cyber-body{padding-top:28px}
   .pp-body.email-archiving-body > .wrap > .pp-sec{margin-top:40px}
-  .pp-body.email-archiving-body #ppBlog{margin-top:40px}
+  .pp-body.email-archiving-body > .wrap > .pp-sec:not(#ppSecHead){margin-top:56px}
+  .pp-body.email-archiving-body .tally-videos > .pp-sec{margin-top:56px}
+  .pp-body.email-archiving-body #ppBlog{margin-top:56px}
   @media(max-width:768px){
     .pp-body.email-archiving-body > .wrap > .pp-sec{margin-top:28px}
-    .pp-body.email-archiving-body #ppBlog{margin-top:28px}
+    .pp-body.email-archiving-body > .wrap > .pp-sec:not(#ppSecHead){margin-top:36px}
+    .pp-body.email-archiving-body .tally-videos > .pp-sec{margin-top:36px}
+    .pp-body.email-archiving-body #ppBlog{margin-top:36px}
   }
   .pp-body.genai-body{padding-top:28px}
   .pp-body.genai-body #ppSecWrap .pp-ov{max-width:100%}
@@ -5248,3 +5252,24 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 .pp-ai-powered-row{margin:20px 0 14px}
 .pp-ai-powered{display:inline-flex;align-items:center;gap:6px;padding:5px 13px;border-radius:999px;background:linear-gradient(100deg,#3545ed 0%,#7840f5 55%,#e51cde 100%);color:#fff;font:800 11px/1.2 var(--body);letter-spacing:.06em;box-shadow:0 4px 14px #583bee25}
 .pp-ai-powered svg{display:block;width:18px;height:18px;flex-shrink:0}
+
+/* Keep the Managed DevOps illustration centered within the hero. */
+#ppage .pph-scene.has-illus.devops-hero-art{top:0;bottom:0;display:flex;align-items:center;justify-content:center;padding:24px 0;mask-image:none}
+#ppage .devops-hero-art .pph-illus{padding:0;gap:0}
+#ppage .pph-scene.has-illus.standalone-illus.devops-hero-art .pph-illus-img{width:96%;max-width:640px;max-height:420px;object-fit:contain}
+@media(max-width:900px){#ppage .pph-scene.has-illus.standalone-illus.devops-hero-art .pph-illus-img{width:80%;max-width:420px;max-height:340px}}
+
+/* Center and enlarge the Email Archiving animation. */
+#ppage .pph-scene.has-illus.archive-hero-art{top:0;bottom:0;display:flex;align-items:center;justify-content:center;padding:24px 0;mask-image:none}
+#ppage .archive-hero-art .pph-illus{padding:0;gap:0}
+#ppage .pph-scene.has-illus.standalone-illus.archive-hero-art .pph-illus-img{width:96%;max-width:640px;max-height:420px;object-fit:contain}
+@media(max-width:900px){#ppage .pph-scene.has-illus.standalone-illus.archive-hero-art .pph-illus-img{width:80%;max-width:420px;max-height:340px}}
+
+/* Cloud Backup overview: supplied Acronis badge row. */
+.backup-overview-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:center;gap:40px;margin:13px 0 40px}
+.backup-overview-columns .pp-sec{margin-top:0}
+.backup-overview-columns .pp-ov{margin-bottom:0;text-align:justify}
+.backup-protection{margin:0;min-width:0}
+.backup-protection h2{margin:0 0 20px;font:500 clamp(20px,2vw,24px)/1.35 var(--body);color:var(--navy)}
+.backup-protection-badges{display:block;width:100%;max-width:540px;height:auto}
+@media(max-width:760px){.backup-overview-columns{grid-template-columns:1fr;gap:28px}}

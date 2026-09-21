@@ -1,4 +1,5 @@
 import { EmailArchivingContentComponent } from '../sections/email-archiving-content.component';
+import { CloudDevopsContentComponent } from '../sections/cloud-devops-content.component';
 import { EMAIL_ARCHIVING_SAMPLE_FAQS, EMAIL_ARCHIVING_SAMPLE_WHY } from '../data/email-archiving-sample.data';
 import { WaapContentComponent } from '../sections/waap-content.component';
 import { IotInfrastructureContentComponent } from '../sections/iot-infrastructure-content.component';
@@ -175,6 +176,7 @@ interface ProductTourSlide {
     AgenticAiContentComponent,
     CloudObjectStorageContentComponent,
     EmailArchivingContentComponent,
+    CloudDevopsContentComponent,
     ZohoWorkspaceContentComponent,
     EntraIdContentComponent,
     EntraIdHeroComponent,
@@ -1004,8 +1006,13 @@ export class ProductPage {
   /** `null` while the slug matches nothing — the effect below sends those home. */
   readonly view = computed<ProductView | null>(() => {
     const view = this.resolve(this.slug());
-    if (view && this.slug() === 'e-mail-archiving') {
-      return { ...view, why: EMAIL_ARCHIVING_SAMPLE_WHY, faqs: EMAIL_ARCHIVING_SAMPLE_FAQS };
+    if (view && this.slug() === 'email-archiving') {
+      return {
+        ...view,
+        why: EMAIL_ARCHIVING_SAMPLE_WHY,
+        faqs: EMAIL_ARCHIVING_SAMPLE_FAQS,
+        heroPoints: ['Real-time journaling', 'Immutable storage', 'Fast eDiscovery', 'Custom retention policies'],
+      };
     }
     if (!view || this.slug() !== 'agentic-ai') return view;
     return {
