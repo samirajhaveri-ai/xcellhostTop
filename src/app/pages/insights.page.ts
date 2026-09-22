@@ -77,6 +77,7 @@ interface InsightCategoryBranch {
               </div>
             </div>
 
+
             @if (featured(); as lead) {
               <a class="insights-hero-feature" [routerLink]="['/insights', lead.slug]">
                 <span class="insights-feature-label">Featured article</span>
@@ -90,6 +91,8 @@ interface InsightCategoryBranch {
                 </div>
               </a>
             }
+
+
 
             <div class="insights-hub-visual" role="img" aria-label="Animated XcellHost insights resource hub">
               <div class="insights-hub-stage" aria-hidden="true">
