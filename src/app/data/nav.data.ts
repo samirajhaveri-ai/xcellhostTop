@@ -3350,7 +3350,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Company Profile",
                 "pill": null,
                 "desc": null,
-                "href": ""
+                "href": "https://flipbooks.officeinfra.com/books/Company-Profile/#p=1"
               },
             ]
           }

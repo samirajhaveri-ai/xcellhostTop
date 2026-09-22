@@ -5969,7 +5969,7 @@ export const SERVICES_RICH: Record<string, ServiceRich> = {
       ["Partner support", "Onboarding and 24×7 assistance"]
     ],
     "q": [
-      ["Is the XcellHost Reseller Program free to join?", "Yes. There is no application or setup fee."],
+      ["Is the XcellHost Cloud Channel Partner Program free to join?", "Yes. There is no application or setup fee."],
       ["Can I sell under my own brand?", "Yes. White-label options put your logo and name on the partner experience."],
       ["What can I resell?", "More than 100 cloud, cybersecurity, Microsoft 365, WhatsApp, email, domain and web services."]
     ]

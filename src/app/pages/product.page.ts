@@ -48,6 +48,7 @@ import { TsplusAdvancedSecurityHeroComponent } from '../sections/tsplus-advanced
 import { TsplusRemoteAccessContentComponent } from '../sections/tsplus-remote-access-content.component';
 import { TsplusRemoteAccessHeroComponent } from '../sections/tsplus-remote-access-hero.component';
 import { ResellerProgramContentComponent } from '../sections/reseller-program-content.component';
+import { SovereignPerformanceComponent } from '../sections/sovereign-performance.component';
 import { ScrutinyEdrContentComponent } from '../sections/scrutiny-edr-content.component';
 import { ScrutinyDlpContentComponent } from './scrutiny-dlp-content.component';
 import { VortexSocContentComponent } from './vortex-soc-content.component';
@@ -168,6 +169,7 @@ interface ProductTourSlide {
     TsplusRemoteAccessContentComponent,
     TsplusRemoteAccessHeroComponent,
     ResellerProgramContentComponent,
+    SovereignPerformanceComponent,
     ScrutinyEdrContentComponent,
     ScrutinyDlpContentComponent,
     VortexSocContentComponent,
