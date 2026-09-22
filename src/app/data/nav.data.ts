@@ -538,11 +538,11 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "50",
-        "label": "GPU Servers",
+        "label": "",
         "on": false,
         "groups": [
           {
-            "heading": "GPU Servers",
+            "heading": "GPU Servers Cost-effective",
             "items": [
               {
                 "title": "L40S",
@@ -564,8 +564,36 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              
               {
-                "title": "NVIDIA H200 New",
+                "title": "AI Inference Cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "AI Developer Cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "AI Model library",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "50",
+        "label": "",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Datacenter GPUs",
+            "items": [
+              {
+                "title": "NVIDIA H200",
                 "pill": null,
                 "desc": null
               },
@@ -574,6 +602,23 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "NVIDIA A100",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "50",
+        "label": "",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Pro Series GPUs",
+            "items": [
               {
                 "title": "RTX Pro 6000",
                 "pill": null,
@@ -591,21 +636,6 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "RTX 8000",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "AI Inference Cloud",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "AI Developer Cloud",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "AI Model library",
                 "pill": null,
                 "desc": null
               },
