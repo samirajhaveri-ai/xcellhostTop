@@ -7,7 +7,7 @@ interface Association {
   image: string;
 }
 
-type AssociationTab = 'it-trade' | 'country' | 'industry';
+type AssociationTab = 'it-trade' | 'country' | 'industry' | 'business-network';
 
 @Component({
   selector: 'xh-associations-page',
@@ -22,10 +22,10 @@ export class AssociationsPage {
 
   readonly activeTab = signal<AssociationTab>('it-trade');
   readonly tabs: readonly { id: AssociationTab; label: string }[] = [
-    { id: 'it-trade', label: 'IT Trade' },
+    { id: 'it-trade', label: 'IT Trade Association' },
     { id: 'industry', label: 'Industry Association' },
     { id: 'country', label: 'Country Association' },
-    { id: 'country', label: 'Business Network' },
+    { id: 'business-network', label: 'Business Network' },
     
   ];
 
@@ -44,11 +44,33 @@ export class AssociationsPage {
     { name: 'GESIA', image: '/assets/images/associations/trade/gesia.png' },
     { name: 'COMPASS', image: '/assets/images/associations/trade/compass.jpg' },
   ];
-
   readonly industryAssociations: readonly Association[] = [
     {
       name: 'Institute of Cost Accountants of India',
       image: '/assets/images/company-recognition/institute-cost-accountants-india.png',
+    },
+    {
+      name: 'CMDA',
+      image: '/assets/images/associations/industry-cmda.png',
+    },
+    {
+      name: 'Mahratta Chamber of Commerce, Industries and Agriculture (MCCIA)',
+      image: '/assets/images/associations/industry-mccia.png',
+    },
+    {
+      name: 'SME Chamber of India',
+      image: '/assets/images/associations/industry-sme-chamber-india.png',
+    },
+  ];
+
+  readonly businessNetworkAssociations: readonly Association[] = [
+    {
+      name: 'TiE Mumbai',
+      image: '/assets/images/associations/business-tie-mumbai.jpg',
+    },
+    {
+      name: 'India Business Group',
+      image: '/assets/images/associations/business-india-business-group.jpg',
     },
   ];
 

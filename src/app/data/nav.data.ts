@@ -132,7 +132,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Compare prices across TLDs 🔄"
               },
               {
-                "title": "Backorder Domain",
+                "title": "Backorder Domains",
                 "pill": null,
                 "desc": "Reserve a domain name for future availability 🕰️"
               },
@@ -268,7 +268,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "C Watch",
+                "title": "Web Security (cWatch)",
                 "pill": null,
                 "desc": null
               },
@@ -512,6 +512,57 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Managed device connectivity, edge processing and IoT platforms"
               },
               
+            ]
+          }
+        ]
+      },
+      {
+        "g": "49",
+        "label": "Performance Cloud",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Performance Cloud",
+            "items": [
+              {
+                "title": "Performance Cloud",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "51",
+        "label": "Bare Metal Servers",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Bare Metal Servers",
+            "items": [
+              {
+                "title": "Bare Metal Servers",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "50",
+        "label": "GPU Servers",
+        "on": false,
+        "groups": [
+          {
+            "heading": "GPU Servers",
+            "items": [
+              {
+                "title": "GPU Servers",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
@@ -773,7 +824,22 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Managed Database",
             "items": [
               {
-                "title": "No data",
+                "title": "PostgreSQL",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Managed MySQL",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Managed MariaDB",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Managed Redis",
                 "pill": null,
                 "desc": null
               },
@@ -3291,6 +3357,49 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
+        "g": "3",
+        "label": "Support Center",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Support",
+            "items": [
+              {
+                "title": "Support Overview",
+                "pill": "24×7",
+                "desc": "Find the right route to technical help"
+              },
+              {
+                "title": "Customer Support",
+                "pill": "24×7",
+                "desc": "Find the right route to technical help"
+              },
+              {
+                "title": "Submit a Ticket",
+                "pill": null,
+                "desc": "Create a trackable service request"
+              },
+              {
+                "title": "Knowledgebase",
+                "pill": null,
+                "desc": "Guidance for common service tasks"
+              },
+              {
+                "title": "Remote Assist",
+                "pill": null,
+                "desc": "Secure attended troubleshooting"
+              },
+              {
+                "title": "Escalation Matrix",
+                "pill": null,
+                "desc": "Support contacts and escalation levels"
+              },
+              
+            ]
+          }
+        ]
+      },
+      {
         "g": "1",
         "label": "Partner Center",
         "on": false,
@@ -3359,49 +3468,7 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      {
-        "g": "3",
-        "label": "Support Center",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Support",
-            "items": [
-              {
-                "title": "Support Overview",
-                "pill": "24×7",
-                "desc": "Find the right route to technical help"
-              },
-              {
-                "title": "Customer Support",
-                "pill": "24×7",
-                "desc": "Find the right route to technical help"
-              },
-              {
-                "title": "Submit a Ticket",
-                "pill": null,
-                "desc": "Create a trackable service request"
-              },
-              {
-                "title": "Knowledgebase",
-                "pill": null,
-                "desc": "Guidance for common service tasks"
-              },
-              {
-                "title": "Remote Assist",
-                "pill": null,
-                "desc": "Secure attended troubleshooting"
-              },
-              {
-                "title": "Escalation Matrix",
-                "pill": null,
-                "desc": "Support contacts and escalation levels"
-              },
-              
-            ]
-          }
-        ]
-      },
+      
       {
         "g": "10",
         "label": "Trust Center",
@@ -3685,7 +3752,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Product Tour",
+                "title": "Product Tours",
                 "pill": null,
                 "desc": null
               }

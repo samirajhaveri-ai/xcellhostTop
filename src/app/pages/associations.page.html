@@ -46,7 +46,7 @@
           >
             <div class="associations-panel-heading">
               <span>Technology network</span>
-              <h3>IT Trade</h3>
+              <h3>IT Trade Association</h3>
               <p>IT trade communities supporting collaboration across the technology industry.</p>
             </div>
             <div class="associations-grid">
@@ -79,7 +79,7 @@
               }
             </div>
           </div>
-        } @else {
+        } @else if (activeTab() === 'industry') {
           <div
             class="associations-panel"
             id="association-panel-industry"
@@ -93,6 +93,27 @@
             </div>
             <div class="associations-grid associations-grid-industry">
               @for (association of industryAssociations; track association.name) {
+                <article class="association-card">
+                  <img [src]="association.image" [alt]="association.name + ' logo'" loading="lazy" />
+                  <h4>{{ association.name }}</h4>
+                </article>
+              }
+            </div>
+          </div>
+        } @else {
+          <div
+            class="associations-panel"
+            id="association-panel-business-network"
+            role="tabpanel"
+            aria-labelledby="association-tab-business-network"
+          >
+            <div class="associations-panel-heading">
+              <span>Business community</span>
+              <h3>Business Network</h3>
+              <p>Business networks supporting entrepreneurship, leadership and meaningful commercial connections.</p>
+            </div>
+            <div class="associations-grid associations-grid-industry">
+              @for (association of businessNetworkAssociations; track association.name) {
                 <article class="association-card">
                   <img [src]="association.image" [alt]="association.name + ' logo'" loading="lazy" />
                   <h4>{{ association.name }}</h4>
