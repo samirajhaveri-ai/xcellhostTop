@@ -25,6 +25,11 @@
       <div class="price-meta"><div><span>Works in</span><b>All Office apps</b></div><div><span>Billed</span><b>per user / mo</b></div></div>
       <ul><li>Draft &amp; rewrite in Word</li><li>Analyse data &amp; build charts in Excel</li><li>Create decks in PowerPoint</li><li>Summarise &amp; draft in Outlook</li><li>Recap meetings in Teams</li><li>Secure Copilot Chat for work</li></ul>
       <div class="price"><span>From</span><b>₹2,610</b><small>/user/mo</small></div>
+      <div class="copilot-quantity" role="group" aria-label="Copilot licence quantity">
+        <button type="button" aria-label="Decrease Copilot licences" [disabled]="quantity() === 1" (click)="changeQuantity(-1)">&minus;</button>
+        <output aria-live="polite">{{ quantity() }}</output>
+        <button type="button" aria-label="Increase Copilot licences" [disabled]="quantity() === 9999" (click)="changeQuantity(1)">+</button>
+      </div>
       <button type="button" (click)="addCopilot()">Configure &amp; Buy <span>→</span></button>
     </article>
   </div>

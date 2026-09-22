@@ -37,8 +37,6 @@ export class CompareProvidersPage {
     { name: 'Vultr', slug: 'cloudbaba-vs-vultr', category: 'Developer cloud', description: 'Compare global reach and developer-friendly compute with CloudBaba\'s guided, India-first cloud experience.', stat: '32', statLabel: 'Global locations', accent: '#007bfc', initials: 'V' },
     { name: 'OVHcloud', slug: 'cloudbaba-vs-ovhcloud', category: 'Global cloud', description: 'See how OVHcloud\'s broad infrastructure portfolio compares with CloudBaba pricing, support and migration.', stat: '30+', statLabel: 'Data centres', accent: '#123f6d', initials: 'OVH' },
     { name: 'DigitalOcean', slug: 'cloudbaba-vs-digitalocean', category: 'Developer cloud', description: 'Compare simple cloud compute with a locally supported platform built for Indian production workloads.', stat: '15', statLabel: 'Data centres', accent: '#0080ff', initials: 'DO' },
-    
-    
   ];
   readonly comparison = [
     { feature: 'Cost Vs Hyperscalers', cells: [cell('~60% lower'), cell('Baseline', 'warning'), cell('Baseline', 'warning'), cell('Baseline', 'warning'), cell('~30–75% lower'), cell('~50% lower'), cell('~30% lower')] },

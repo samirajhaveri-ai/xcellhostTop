@@ -20,6 +20,7 @@ interface CopilotApp {
 export class MicrosoftCopilotContentComponent {
   private readonly cart = inject(CartService);
   readonly activeApp = signal(0);
+  readonly quantity = signal(1);
 
   readonly apps: readonly CopilotApp[] = [
     {
@@ -63,8 +64,15 @@ export class MicrosoftCopilotContentComponent {
     this.activeApp.set(index);
   }
 
+  changeQuantity(change: number): void {
+    this.quantity.update(value => Math.max(1, Math.min(9999, value + change)));
+  }
+
   addCopilot(): void {
-    this.cart.add('Copilot for Microsoft 365', '₹2,610/user/mo');
+    const name = 'Copilot for Microsoft 365';
+    const previousQuantity = this.cart.lines().find(line => line.name === name)?.qty ?? 0;
+    this.cart.add(name, '₹2,610/user/mo');
+    this.cart.setQty(name, previousQuantity + this.quantity());
     this.cart.open();
   }
 }

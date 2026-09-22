@@ -326,7 +326,11 @@
     <button type="button" [class.selected]="annual()" [attr.aria-pressed]="annual()" (click)="annual.set(true)">Annual <b>{{ inr(plan().annualMonthly) }}/month</b><small>Billed {{ inr(plan().annualMonthly * 12) }} per year</small></button>
   </div>
   <label for="dmarcQuantity">Subscriptions</label>
-  <input id="dmarcQuantity" type="number" min="1" max="99" step="1" [value]="quantity()" (change)="setQuantity($any($event.target).value)" />
+  <div class="dmarc-quantity" role="group" aria-label="Subscription quantity">
+    <button type="button" aria-label="Decrease subscriptions" [disabled]="quantity() === 1" (click)="changeQuantity(-1)">&minus;</button>
+    <input id="dmarcQuantity" type="number" min="1" max="99" step="1" [value]="quantity()" (change)="setQuantity($any($event.target).value)" />
+    <button type="button" aria-label="Increase subscriptions" [disabled]="quantity() === 99" (click)="changeQuantity(1)">+</button>
+  </div>
   <p class="dmarc-total">{{ inr(total()) }} <small>+ GST / {{ annual() ? 'year' : 'month' }}</small></p>
   <button type="button" class="btn btn-orange" (click)="addToCart()">Add to cart</button>
 </dialog>

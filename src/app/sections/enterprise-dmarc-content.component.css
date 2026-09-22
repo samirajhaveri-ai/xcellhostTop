@@ -309,7 +309,10 @@ nav a:hover{color:var(--blue)}nav a:hover:after{width:100%}@keyframes bump{40%{t
 .dmarc-billing button{padding:14px;border:1px solid var(--line);border-radius:10px;background:white;color:var(--navy);cursor:pointer;text-align:left}
 .dmarc-billing button.selected{border-color:var(--blue);background:var(--blue-soft)}
 .dmarc-billing b,.dmarc-billing small{display:block;margin-top:8px}
-.dmarc-config input{display:block;width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;margin:8px 0 20px}
+.dmarc-quantity{display:grid;grid-template-columns:42px minmax(0,1fr) 42px;gap:8px;margin:8px 0 20px}
+.dmarc-config .dmarc-quantity input{display:block;width:100%;margin:0;padding:10px;border:1px solid var(--line);border-radius:8px;text-align:center}
+.dmarc-quantity button{display:grid;place-items:center;border:1px solid var(--line);border-radius:8px;background:var(--blue-soft);color:var(--blue);font-size:20px;font-weight:700;cursor:pointer}
+.dmarc-quantity button:disabled{opacity:.45;cursor:not-allowed}
 .dmarc-total{font-size:24px;font-weight:700;margin-bottom:18px}.dmarc-total small{font-size:13px;font-weight:400}
 button:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
 @media(max-width:600px){.dmarc-billing{grid-template-columns:1fr}.eu-flow{flex-wrap:wrap}.pp-auto{overflow:hidden}.ft-panel.active{grid-template-columns:1fr}.ft-tabs{overflow-x:auto}.ft-tab{flex-shrink:0}}

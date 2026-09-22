@@ -36,6 +36,10 @@ export class EnterpriseDmarcContentComponent {
     this.quantity.set(Math.max(1, Math.min(99, Math.trunc(Number(value)) || 1)));
   }
 
+  changeQuantity(change: number): void {
+    this.quantity.update(value => Math.max(1, Math.min(99, value + change)));
+  }
+
   inr(value: number): string {
     return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(value);
   }

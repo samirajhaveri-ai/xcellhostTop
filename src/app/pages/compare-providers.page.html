@@ -29,7 +29,9 @@
       @for (provider of providerCards; track provider.slug) {
         <article class="provider-card" [style.--provider-accent]="provider.accent" [id]="provider.slug">
           <div class="provider-card-top">
-            <img class="provider-savings-badge" src="/assets/images/cloud-savings-50.svg" width="72" height="72" alt="Save up to 50% on cloud costs">
+            @if ($index < 3) {
+              <img class="provider-savings-badge" src="/assets/images/cloud-savings-50.svg" width="72" height="72" alt="Save up to 50% on cloud costs">
+            }
             <span class="provider-category">{{ provider.category }}</span>
           </div>
           <p class="provider-versus">CloudBaba <span>vs</span></p>

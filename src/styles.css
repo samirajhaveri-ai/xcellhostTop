@@ -910,6 +910,7 @@
   .ppl .amt b{font-size:24px}
   .ppl .amt span{font-size:11.5px;color:var(--slate)}
   .ppl .save{font:600 11px var(--mono);color:#128A42;background:rgba(29,168,85,.1);border-radius:99px;padding:3px 10px;display:inline-block;margin-bottom:14px;min-height:14px}
+  .plan-quantity{display:grid;grid-template-columns:38px minmax(0,1fr) 38px;gap:7px;margin:0 0 12px}.plan-quantity button,.plan-quantity output{display:grid;place-items:center;min-height:38px;border:1px solid var(--line);border-radius:8px}.plan-quantity button{background:var(--blue-soft);color:var(--blue);font-size:18px;font-weight:700;cursor:pointer}.plan-quantity button:disabled{opacity:.45;cursor:not-allowed}.plan-quantity output{background:#fff;color:var(--navy);font-weight:800}
   .ppl .btns{display:flex;flex-direction:column;gap:8px}
   .ppl .btn{padding:10px 14px;font-size:13px}
 
@@ -4221,6 +4222,7 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
 .cloud-backup-term-tabs button.is-active::after{background:var(--blue)}
 .cloud-backup-term-tabs button:focus-visible{outline:3px solid rgba(0,91,187,.24);outline-offset:2px}
 .cloud-backup-plan-grid{display:grid;grid-template-columns:1fr;gap:18px;width:70%;max-width:1020px;margin:0 auto}
+.cloud-backup-quantity{display:grid;grid-template-columns:auto 42px 64px 42px;align-items:center;justify-content:center;gap:8px;margin:0 auto 20px}.cloud-backup-quantity>span{margin-right:4px;color:var(--slate);font-size:13px;font-weight:700}.cloud-backup-quantity button,.cloud-backup-quantity output{display:grid;place-items:center;min-height:40px;border:1px solid var(--line);border-radius:8px}.cloud-backup-quantity button{background:var(--blue-soft);color:var(--blue);font-size:19px;font-weight:700;cursor:pointer}.cloud-backup-quantity button:disabled{opacity:.45;cursor:not-allowed}.cloud-backup-quantity output{background:#fff;color:var(--navy);font-weight:800}
 .cloud-backup-plan-card{display:grid;grid-template-columns:minmax(0,320px) 220px;grid-template-rows:auto;width:min(540px,100%);min-width:0;margin-inline:auto;overflow:hidden;border:1px solid #d3dce8;border-radius:14px;background:#fff;text-align:center;box-shadow:0 8px 24px rgba(16,43,79,.06);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
 .cloud-backup-plan-card:hover{border-color:#9fc3ef;box-shadow:0 14px 32px rgba(16,78,155,.12);transform:translateY(-2px)}
 .cloud-backup-plan-card{grid-template-columns:minmax(0,7fr) minmax(0,3fr);width:100%}

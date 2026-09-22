@@ -1360,7 +1360,7 @@
                     <div class="edr-card-heading">
                       <h3>
                         {{
-                          isRmm() ? 'Choose your Acronis RMM term' : 'Choose your protection term'
+                          isRmm() ? 'Choose your Acronis RMM term' : 'Choose Your Endpoint Protection Term'
                         }}
                       </h3>
                       <p>
@@ -1963,6 +1963,13 @@
                       }
                     </div>
 
+                    <div class="cloud-backup-quantity" role="group" aria-label="Cloud Backup subscription quantity">
+                      <span>Subscriptions</span>
+                      <button type="button" aria-label="Decrease Cloud Backup subscriptions" [disabled]="cloudBackupQuantity() === 1" (click)="changeCloudBackupQuantity(-1)">&minus;</button>
+                      <output aria-live="polite">{{ cloudBackupQuantity() }}</output>
+                      <button type="button" aria-label="Increase Cloud Backup subscriptions" [disabled]="cloudBackupQuantity() === 99" (click)="changeCloudBackupQuantity(1)">+</button>
+                    </div>
+
                     <div class="cloud-backup-plan-grid">
                       @for (plan of cloudBackupPlans; track plan.storage) {
                         <article class="cloud-backup-plan-card">
@@ -2049,6 +2056,13 @@
                           ><span>{{ p.unit }}</span>
                         </div>
                         <div class="save">{{ p.tag || (p.quoteOnly ? p.badge : '') }}</div>
+                        @if (!p.quoteOnly) {
+                          <div class="plan-quantity" role="group" [attr.aria-label]="p.term + ' plan quantity'">
+                            <button type="button" [attr.aria-label]="'Decrease ' + p.term + ' plan quantity'" [disabled]="planQuantity(p) === 1" (click)="changePlanQuantity(p, -1)">&minus;</button>
+                            <output aria-live="polite">{{ planQuantity(p) }}</output>
+                            <button type="button" [attr.aria-label]="'Increase ' + p.term + ' plan quantity'" [disabled]="planQuantity(p) === 99" (click)="changePlanQuantity(p, 1)">+</button>
+                          </div>
+                        }
                         <div class="btns">
                           <a class="btn btn-primary pl-buy" href="#" (click)="buyPlan(p, $event)">{{
                             p.quoteOnly ? 'Get Quote' : '⚡ Buy Now'

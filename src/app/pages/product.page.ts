@@ -1710,9 +1710,28 @@ export class ProductPage {
   /* ------------------------------------------------------------ cart / CTA */
 
   /** `.pl-add` — drop the plan in the quote cart and stay put. */
+  readonly planQuantities = signal<Record<string, number>>({});
+
+  planQuantity(plan: PricingPlan): number {
+    return this.planQuantities()[plan.cartName] ?? 1;
+  }
+
+  changePlanQuantity(plan: PricingPlan, change: number): void {
+    this.planQuantities.update(quantities => ({
+      ...quantities,
+      [plan.cartName]: Math.max(1, Math.min(99, (quantities[plan.cartName] ?? 1) + change)),
+    }));
+  }
+
+  private addPlanQuantity(plan: PricingPlan): void {
+    const previousQuantity = this.cart.lines().find(line => line.name === plan.cartName)?.qty ?? 0;
+    this.cart.add(plan.cartName, plan.cartPrice);
+    this.cart.setQty(plan.cartName, previousQuantity + this.planQuantity(plan));
+  }
+
   addPlan(plan: PricingPlan, ev: Event): void {
     ev.preventDefault();
-    this.cart.add(plan.cartName, plan.cartPrice);
+    this.addPlanQuantity(plan);
   }
 
   /** RMM "View Plan" keeps the visitor on-page and opens the selected plan in the cart. */
@@ -1729,7 +1748,7 @@ export class ProductPage {
   /** `.pl-buy` and the hero Buy Now — add, open the drawer, go straight to checkout. */
   buyPlan(plan: PricingPlan, ev: Event): void {
     ev.preventDefault();
-    this.cart.add(plan.cartName, plan.cartPrice);
+    this.addPlanQuantity(plan);
     this.cart.open();
     this.cart.toCheckout();
   }
@@ -1845,6 +1864,7 @@ export class ProductPage {
   ];
 
   readonly selectedCloudBackupTerm = signal<CloudBackupTerm>('yearly');
+  readonly cloudBackupQuantity = signal(1);
   readonly cloudBackupCountries = [
     { key: 'IN', label: 'India', flag: 'in', currency: 'INR', locale: 'en-IN' },
     { key: 'UK', label: 'UK', flag: 'gb', currency: 'GBP', locale: 'en-GB' },
@@ -1899,12 +1919,19 @@ export class ProductPage {
     this.selectedCloudBackupTerm.set(term);
   }
 
+  changeCloudBackupQuantity(change: number): void {
+    this.cloudBackupQuantity.update(value => Math.max(1, Math.min(99, value + change)));
+  }
+
   selectCloudBackupPlan(plan: CloudBackupPlan, ev: Event): void {
     ev.preventDefault();
     if (this.cloudBackupRegionalPrice(plan) === undefined) return;
     const term = this.activeCloudBackupTerm().label;
     const price = `${this.formatCloudBackupPrice(plan)}/${term.toLowerCase()}`;
-    this.cart.add(`Cloud Backup - ${plan.storage} - ${term} - ${this.activeCloudBackupCountry().label}`, price);
+    const name = `Cloud Backup - ${plan.storage} - ${term} - ${this.activeCloudBackupCountry().label}`;
+    const previousQuantity = this.cart.lines().find(line => line.name === name)?.qty ?? 0;
+    this.cart.add(name, price);
+    this.cart.setQty(name, previousQuantity + this.cloudBackupQuantity());
     this.cart.open();
   }
 
