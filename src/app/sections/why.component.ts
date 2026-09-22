@@ -7,6 +7,7 @@ import {
   signal,
   viewChildren,
 } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { CountUpFigure, parseCount, runCountUp } from '../shared/count-up';
 import { RevealDirective } from '../shared/reveal.directive';
@@ -57,7 +58,7 @@ const COUNTER_THRESHOLD = 0.5;
 @Component({
   selector: 'xh-why',
   standalone: true,
-  imports: [RevealDirective],
+  imports: [RevealDirective, RouterLink],
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -78,6 +79,9 @@ const COUNTER_THRESHOLD = 0.5;
               }
             </div>
             <small>Trusted by businesses, schools and organizations across India.</small>
+            <div class="why-cta">
+              <a class="btn btn-ghost" routerLink="/company/why-xcellhost">Learn More <span aria-hidden="true">&rarr;</span></a>
+            </div>
           </div>
         </div>
       </div>
@@ -88,6 +92,8 @@ const COUNTER_THRESHOLD = 0.5;
     .why .why-intro { max-width: none; margin: 0 auto; text-align: center; }
     .why .why-intro h2 { max-width: none; margin: 17px auto 12px; font-size: clamp(26px, 3.1vw, 43px); }
     .why .why-intro > p { max-width: none; }
+    .why .why-cta { margin-top: 24px; }
+    .why .why-cta .btn { display: inline-flex; align-items: center; gap: 8px; }
     .why .why-benefits { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 26px; margin: 40px 0 32px; }
     .why .why-benefit { min-width: 0; text-align: center; }
     .why .why-benefit-icon { display: grid; place-items: center; width: 58px; height: 58px; margin: 0 auto 18px; border-radius: 50%; background: #eaf2ff; color: #1565d8; font-size: 30px; }

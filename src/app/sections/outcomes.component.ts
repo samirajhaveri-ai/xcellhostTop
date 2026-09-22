@@ -99,6 +99,7 @@ const PLATFORM_CAPABILITIES: readonly PlatformCapability[] = [
                 </div>
               }
             </div>
+            <p class="platform-agents-note">Over 200 AI Agents at Work 24/7</p>
           </article>
 
           <div class="outcome-connector" aria-hidden="true">arrow_forward</div>
@@ -116,6 +117,9 @@ const PLATFORM_CAPABILITIES: readonly PlatformCapability[] = [
         </div>
       </div>
     </section>
+  `,
+  styles: `
+    .platform-agents-note { margin: 24px 0 0; color: var(--blue); text-align: center; font-size: 14px; font-weight: 700; line-height: 1.5; }
   `,
 })
 export class OutcomesComponent {
