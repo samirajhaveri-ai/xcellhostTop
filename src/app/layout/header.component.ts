@@ -315,7 +315,7 @@ const MENU_DESCRIPTIONS: Record<string, string> = {
   'Higher Education · University Program': 'Technology and support designed for higher education 🎓',
   'Pharmaceutical': 'Technology solutions tailored to pharmaceutical operations 💊',
   'Construction': 'Cloud and digital solutions for construction businesses 🏗️',
-  'Food & Beverage': 'Technology designed for food and beverage operations 💻',
+  'Hospitality Cloud': 'Cloud solutions for hotels, restaurants and hospitality operations 💻',
   'Logistics': 'Reliable digital solutions for modern logistics operations 🚚',
   'OT Security': 'Protect operational technology systems from cyber threats 💻',
   'Blogs': 'Technology trends, practical guidance and expert perspectives 📝',
