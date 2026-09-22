@@ -15,7 +15,7 @@ import { RichProduct, DeepContent } from './models';
  * Only the first part is used in the hero brand heading.
  */
 export const PRODUCT_BRAND_LINES: Record<string, string> = {
-  "Reseller Program": "XcellPartner | Reseller Program",
+  "Reseller Program": "XcellPartner | Cloud Channel Partner Program",
   "Tally on Cloud": "XcellTally | Tally On Cloud",
   "Cloud Backup (Acronis)": "XcellBackup | Backup Cloud",
   "Cloud Drive": "XcellDrive | Cloud Drive",
@@ -34,7 +34,7 @@ export const PRODUCT_BRAND_LINES: Record<string, string> = {
 
 export const RICH_PRODUCTS: Record<string, RichProduct> = {
   "Reseller Program": {
-    brandLine: "XcellPartner | Reseller Program",
+    brandLine: "XcellPartner | Cloud Channel Partner Program",
     eyebrow: "PARTNERS · RESELLER & WHITE-LABEL PROGRAM",
     tagline: "Sell cloud, security and AI — under your own brand.",
     highlight: "Wholesale Pricing · White-Label · Recurring Commissions",
@@ -54,7 +54,7 @@ export const RICH_PRODUCTS: Record<string, RichProduct> = {
       ["RP", "Rohan Patel", "Managed Service Provider", "5", "The catalogue and pre-sales support helped us add cloud and security services quickly, without building a new operations team."]
     ],
     faqs: [
-      ["What is the XcellHost Reseller Program?", "It lets you resell 100+ cloud, security and AI services from one partner portal at wholesale prices, with optional white-label branding and recurring commissions."],
+      ["What is the XcellHost Cloud Channel Partner Program?", "It lets you resell 100+ cloud, security and AI services from one partner portal at wholesale prices, with optional white-label branding and recurring commissions."],
       ["Is there a fee to join?", "No. It is free to apply, with no setup fee or minimum commitment to get started."],
       ["Can I sell under my own brand?", "Yes. White-label options can place your logo and name on the portal and invoices."],
       ["How do partner levels work?", "Everyone starts as a Registered Partner. Higher sales volumes unlock Silver and Gold benefits, including better margins and additional support."],

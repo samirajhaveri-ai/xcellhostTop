@@ -200,6 +200,11 @@ export class CompanyPage {
   ] as const;
 
   readonly adminTeam = [
+    { initials: 'MS', name: 'Mayuri Shinde', role: '', image: '/assets/images/team-mayuri-shinde.png' },
+    { initials: 'T', name: 'Tejas Nashiba', role: '', image: '' },
+    { initials: 'T', name: 'Management Intelligence Agent', role: '', image: '/assets/images/Robot.webp' },
+    { initials: 'T', name: 'AI Command Center Orchestrator', role: '', image: '/assets/images/Robot.webp' },
+
     { initials: 'MS', name: 'Mayuri Shinde', role: 'Admin Manager', image: '/assets/images/team-mayuri-shinde.png' },
     { initials: 'T', name: 'Tejas Nashiba', role: 'Admin ', image: 'assets/images/Tejas photo.jpg' },
     { initials: 'T', name: 'AI Management Intelligence Agent', role: '', image: '/assets/images/Robot.avif ' },
@@ -215,7 +220,11 @@ export class CompanyPage {
     { initials: 'TM', name: 'AI Customer Support-Service', role: '', image: '/assets/images/Robot.avif ' },
     
 
+
     { initials: 'SB', name: 'Santosh Behra', role: 'Technical Support Executive - L2', image: '/assets/images/Santosh Behra.png' },
+
+    { initials: 'SB', name: 'Santosh Kumar Behera', role: 'Technical Support Executive - L2', image: '' },
+
   ] as const;
 
   readonly teamTabs = [

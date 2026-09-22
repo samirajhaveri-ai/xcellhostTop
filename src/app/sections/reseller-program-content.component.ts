@@ -25,7 +25,7 @@ export class ResellerProgramContentComponent implements OnDestroy {
   private additionalContentObserver?: ResizeObserver;
 
   apply(): void {
-    this.topics.ask('XcellHost Reseller Program application');
+    this.topics.ask('XcellHost Cloud Channel Partner Program application');
     this.overlay.open('callback');
   }
 

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject, linkedSignal, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { RouterLink } from '@angular/router';
 
 import { BlogApiService, CmsBlogPost, CmsInsightResource } from '../core/blog-api.service';
 import { SeoService } from '../core/seo.service';
@@ -45,7 +46,7 @@ interface InsightCategoryBranch {
 @Component({
   selector: 'xh-insights-page',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   styleUrl: './insights.page.css',
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -75,6 +76,23 @@ interface InsightCategoryBranch {
                 </article>
               </div>
             </div>
+
+
+            @if (featured(); as lead) {
+              <a class="insights-hero-feature" [routerLink]="['/insights', lead.slug]">
+                <span class="insights-feature-label">Featured article</span>
+                <strong>{{ lead.category }}</strong>
+                <h2>{{ lead.title }}</h2>
+                <p>{{ lead.description }}</p>
+                <div class="insights-feature-meta">
+                  <span>{{ formatDate(lead.date) }}</span>
+                  <span>{{ lead.author }}</span>
+                  <span>{{ readTime(lead) }}</span>
+                </div>
+              </a>
+            }
+
+
 
             <div class="insights-hub-visual" role="img" aria-label="Animated XcellHost insights resource hub">
               <div class="insights-hub-stage" aria-hidden="true">
@@ -225,7 +243,8 @@ interface InsightCategoryBranch {
                 @if (featuredVisible(); as lead) {
                   <a
                     class="insights-lead"
-                    [href]="insightHref(lead)"
+                    [routerLink]="lead.kind === 'video' ? null : [lead.kind === 'use-case' ? '/use-cases' : '/insights', lead.slug]"
+                    [attr.href]="lead.kind === 'video' ? insightHref(lead) : null"
                     [attr.target]="lead.kind === 'video' ? '_blank' : null"
                     [attr.rel]="lead.kind === 'video' ? 'noopener noreferrer' : null"
                   >
@@ -258,7 +277,8 @@ interface InsightCategoryBranch {
                   @for (post of gridPosts(); track post.documentId) {
                     <a
                       class="bl insights-card"
-                      [href]="insightHref(post)"
+                      [routerLink]="post.kind === 'video' ? null : [post.kind === 'use-case' ? '/use-cases' : '/insights', post.slug]"
+                      [attr.href]="post.kind === 'video' ? insightHref(post) : null"
                       [attr.target]="post.kind === 'video' ? '_blank' : null"
                       [attr.rel]="post.kind === 'video' ? 'noopener noreferrer' : null"
                     >

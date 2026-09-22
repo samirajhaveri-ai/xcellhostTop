@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { RevealDirective } from '../shared/reveal.directive';
 
 const REVIEWS = [
@@ -10,7 +11,7 @@ const REVIEWS = [
 @Component({
   selector: 'xh-testimonials',
   standalone: true,
-  imports: [RevealDirective],
+  imports: [RevealDirective, RouterLink],
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -32,8 +33,15 @@ const REVIEWS = [
             </article>
           }
         </div>
+        <div class="testimonial-cta">
+          <a class="btn btn-ghost" routerLink="/customer-stories">View More <span aria-hidden="true">&rarr;</span></a>
+        </div>
       </div>
     </section>
+  `,
+  styles: `
+    .testimonial-cta { margin-top: 28px; text-align: center; }
+    .testimonial-cta .btn { display: inline-flex; align-items: center; gap: 8px; }
   `,
 })
 export class TestimonialsComponent {

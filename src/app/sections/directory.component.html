@@ -3,10 +3,10 @@
     <div class="sec-head" xhReveal>
       <div class="eyebrow">Complete portfolio</div>
       <h2>One command center. 200+ services.</h2>
-      <p class="directory-summary">The full XcellHost catalog — 200+ services across six practices, each with what it does, all on one page.</p>
+      <p class="directory-summary">The full XcellHost catalog — 200+ services across {{ cats().length }} practices, each with what it does, all on one page.</p>
     </div>
     @for (c of cats(); track c.cat) {
-      <div class="dir-cat" xhReveal>
+      <div class="dir-cat" [attr.data-category]="c.cat" xhReveal>
         <h3>{{ c.cat }} <span class="cnt">{{ c.count }}</span></h3>
         <div class="sub">{{ c.sub }}</div>
         <div class="dir-grid">

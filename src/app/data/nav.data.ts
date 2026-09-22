@@ -456,21 +456,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": "High demand",
                 "desc": null
               },
-              {
-                "title": "AI Inference Cloud",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "AI Developer Cloud",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "AI Model library",
-                "pill": null,
-                "desc": null
-              },
+             
               {
                 "title": "Private Cloud",
                 "pill": null,
@@ -552,17 +538,140 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "50",
-        "label": "GPU Servers",
+        "label": "",
         "on": false,
         "groups": [
           {
-            "heading": "GPU Servers",
+            "heading": "GPU Servers Cost-effective",
             "items": [
               {
-                "title": "GPU Servers",
+                "title": "L40S",
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "L4",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "A30",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "A2",
+                "pill": null,
+                "desc": null
+              },
+              
+              {
+                "title": "AI Inference Cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "AI Developer Cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "AI Model library",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "50",
+        "label": "",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Datacenter GPUs",
+            "items": [
+              {
+                "title": "NVIDIA H200",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "NVIDIA H100",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "NVIDIA A100",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "50",
+        "label": "",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Pro Series GPUs",
+            "items": [
+              {
+                "title": "RTX Pro 6000",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "NVIDIA RTX 6000 Ada",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "RTX A6000",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "RTX 8000",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "11",
+        "label": "Managed Database",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Managed Database",
+            "items": [
+              {
+                "title": "Managed PostgreSQL",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Managed MySQL",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Managed MariaDB",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Managed Redis",
+                "pill": null,
+                "desc": null
+              },
+
             ]
           }
         ]
@@ -815,39 +924,7 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      {
-        "g": "11",
-        "label": "Managed Database",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Managed Database",
-            "items": [
-              {
-                "title": "PostgreSQL",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Managed MySQL",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Managed MariaDB",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Managed Redis",
-                "pill": null,
-                "desc": null
-              },
-
-            ]
-          }
-        ]
-      },
+      
       {
         "g": "8",
         "label": "SAP Cloud",
@@ -2739,11 +2816,11 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "5",
-        "label": "Qulys Marketplace",
+        "label": "Qualys Security",
         "on": false,
         "groups": [
           {
-            "heading": "Qulys Marketplace",
+            "heading": "Qualys Security",
             "items": [
               {
                 "title": "No",
@@ -3350,7 +3427,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Company Profile",
                 "pill": null,
                 "desc": null,
-                "href": ""
+                "href": "https://flipbooks.officeinfra.com/books/Company-Profile/#p=1"
               },
             ]
           }

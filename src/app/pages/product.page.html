@@ -690,7 +690,9 @@
               <span class="pp-title-divider" aria-hidden="true">|</span>
               <span class="pp-title-name"
                 >{{
-                  isWhatsAppSmb()
+                  isResellerProgram()
+                    ? 'Cloud Channel Partner Program'
+                    : isWhatsAppSmb()
                     ? 'WhatsApp For Business'
                     : isAdvancedEdr()
                       ? 'Acronis Endpoint Security (EDR)'
@@ -791,7 +793,7 @@
                 <section class="pp-ask-ai" aria-labelledby="ppAskAiTitle">
                   <div class="pp-ask-ai-copy">
                     <span class="pp-ask-ai-kicker" id="ppAskAiTitle"
-                      >Ask AI About {{ isSmbCyber() ? 'Cybird SMB Cyber Security Appliance' : isCloudBackup() ? 'Acronis Cloud Backup' : isAdvancedEdr() ? 'Acronis Advanced Endpoint Security (EDR)' : v.name }} from
+                      >Ask AI About {{ isResellerProgram() ? 'Cloud Channel Partner Program' : isSmbCyber() ? 'Cybird SMB Cyber Security Appliance' : isCloudBackup() ? 'Acronis Cloud Backup' : isAdvancedEdr() ? 'Acronis Advanced Endpoint Security (EDR)' : v.name }} from
                       XcellHost</span
                     >
                   </div>
@@ -2081,6 +2083,10 @@
                     for a combined quote. Multi-year discounts are indicative and confirmed on the
                     quote.
                   </p>
+                }
+
+                @if (slug() === 'performance-cloud') {
+                  <xh-sovereign-performance />
                 }
 
                 @if (isRmm()) {

@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { distinctUntilChanged, map, Observable, switchMap, tap } from 'rxjs';
 
 import { BlogApiService, CmsArticle } from '../core/blog-api.service';
@@ -53,7 +53,6 @@ const AUTHOR_PHOTOS: Readonly<Record<string, string>> = {
 export class BlogPage {
   private readonly topics = inject(CallbackTopicService);
   private readonly route = inject(ActivatedRoute);
-  private readonly router = inject(Router);
   private readonly overlay = inject(OverlayService);
   private readonly docs = inject(DocRequestService);
   private readonly leads = inject(LeadService);
@@ -158,7 +157,6 @@ export class BlogPage {
           this.loading.set(false);
           this.error.set(false);
           this.post.set(post);
-          if (!post) void this.router.navigate(['/insights'], { replaceUrl: true });
         },
         error: () => {
           this.loading.set(false);

@@ -46,7 +46,7 @@ export const PARTNER_TEAMS: readonly PartnerTeam[] = [
     icon: 'support_agent',
     description: 'Technical assistance and issue coordination for active partner services.',
     contacts: [
-      { name: 'Mr. Santosh Behra', designation: 'Technical Support Executive - L2', email: 'santoshb@xcellhost.cloud', officePhone: '', city: 'Mumbai', mobile: '+919556539937', purpose: 'Support issues' },
+      { name: 'Mr. Santosh Kumar Behera', designation: 'Technical Support Executive - L2', email: 'santoshb@xcellhost.cloud', officePhone: '', city: 'Mumbai', mobile: '+919556539937', purpose: 'Support issues' },
     ],
   },
   {
