@@ -61,6 +61,14 @@ export class AssociationsPage {
       name: 'SME Chamber of India',
       image: '/assets/images/associations/industry-sme-chamber-india.png',
     },
+    {
+      name: 'Industry Association',
+      image: '/assets/images/associations/industry-association-member.avif',
+    },
+    {
+      name: 'Asian-African Chamber of Commerce & Industry',
+      image: '/assets/images/associations/industry-asian-african-chamber.png',
+    },
   ];
 
   readonly businessNetworkAssociations: readonly Association[] = [
@@ -71,6 +79,14 @@ export class AssociationsPage {
     {
       name: 'India Business Group',
       image: '/assets/images/associations/business-india-business-group.jpg',
+    },
+    {
+      name: 'Tajurba',
+      image: '/assets/images/associations/business-tajurba.jpg',
+    },
+    {
+      name: 'Business Leadership League (BLL)',
+      image: '/assets/images/associations/business-leadership-league.jpg',
     },
   ];
 

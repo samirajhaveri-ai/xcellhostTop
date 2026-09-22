@@ -29,7 +29,7 @@ const INDUSTRY_CARDS: readonly IndustryCard[] = [
   { icon: 'education', label: 'Higher Education Cloud', blurb: 'Explore Higher Education Cloud services, features and solutions.', service: 'Higher Education Cloud' },
   { icon: 'business', label: 'Pharmaceutical Cloud', blurb: 'Explore Pharmaceutical Cloud services, features and solutions.', service: 'Pharmaceutical Cloud' },
   { icon: 'business', label: 'Construction Cloud', blurb: 'Explore Construction Cloud services, features and solutions.', service: 'Construction Cloud' },
-  { icon: 'business', label: 'Food & Beverage', blurb: 'Technology designed for food and beverage operations', service: 'Food & Beverage' },
+  { icon: 'business', label: ' Hospitality Cloud', blurb: 'Technology designed for food and beverage operations', service: 'Food & Beverage' },
   { icon: 'logistics', label: 'Logistics Cloud', blurb: 'Explore Logistics Cloud services, features and solutions.', service: 'Logistics Cloud' },
   { icon: 'healthcare', label: 'HealthCare Cloud', blurb: 'Explore HealthCare Cloud services, features and solutions.', service: 'HealthCare Cloud' },
   { icon: 'retail', label: 'Retail Cloud', blurb: 'Explore Retail Cloud services, features and solutions.', service: 'Retail Cloud' },

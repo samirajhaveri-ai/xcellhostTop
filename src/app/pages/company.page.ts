@@ -200,7 +200,7 @@ export class CompanyPage {
 
   readonly adminTeam = [
     { initials: 'MS', name: 'Mayuri Shinde', role: '', image: '/assets/images/team-mayuri-shinde.png' },
-    { initials: 'T', name: 'Tejas', role: '', image: '' },
+    { initials: 'T', name: 'Tejas Nashiba', role: '', image: '' },
     { initials: 'T', name: 'Management Intelligence Agent', role: '', image: '/assets/images/Robot.webp' },
     { initials: 'T', name: 'AI Command Center Orchestrator', role: '', image: '/assets/images/Robot.webp' },
   ] as const;
@@ -212,7 +212,7 @@ export class CompanyPage {
     { initials: 'TM', name: 'Talha Mohammad', role: '', image: '' },
     { initials: 'AY', name: 'Amit Yadav', role: '', image: '' },
 
-    { initials: 'SB', name: 'Santosh Behra', role: 'Technical Support Executive - L2', image: '' },
+    { initials: 'SB', name: 'Santosh Kumar Behera', role: 'Technical Support Executive - L2', image: '' },
   ] as const;
 
   readonly teamTabs = [
