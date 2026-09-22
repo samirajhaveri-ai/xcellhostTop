@@ -538,7 +538,7 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "50",
-        "label": "",
+        "label": "GPU Servers",
         "on": false,
         "groups": [
           {
