@@ -7,6 +7,7 @@ import { map } from 'rxjs';
 import { SeoService } from '../core/seo.service';
 import { COMPANY_PAGES } from '../data/company.data';
 import { WORLD_MAP_HTML } from '../data/site.data';
+import { TEAM_STRUCTURE } from '../data/team-structure.data';
 import { HeroNetDirective } from '../sections/product';
 import { ResellerProgramContentComponent } from '../sections/reseller-program-content.component';
 import { TeamStructureComponent } from '../sections/team-structure.component';
@@ -156,24 +157,24 @@ export class CompanyPage {
   readonly salesTeam = [
     { initials: 'AP', name: 'Abhishek Pandey', role: 'Cloud Sales Manager', image: '/assets/images/team-abhishek-pandey.png' },
     { initials: 'AG', name: 'Ajay Gupta', role: '', image: '' },
-    { initials: 'AG', name: 'AI SDR Agent', role: '', image: '/assets/images/Robot.webp' },
-    { initials: 'AG', name: 'Lead Qualification Agent', role: '', image: '/assets/images/Robot.webp' },
+    { initials: 'AG', name: 'AI SDR Agent', role: '', image: '/assets/images/ai-sdr-agent.png' },
+    { initials: 'AG', name: 'AI Lead Qualification Agent', role: '', image: '/assets/images/ai-lead-qualification-agent.png' },
   ] as const;
   
   readonly marketing = [
     { initials: 'AN', name: 'Aryan Nair', role: '', image: '/assets/images/team-aryan-nair.png' },
     { initials: 'RS', name: 'Ravi Sharma', role: '', image: '/assets/images/team-ravi-sharma.png' },
-    { initials: 'RS', name: 'SEO/AEO/GEO Agent', role: '', image: '/assets/images/Robot.webp' },
-    { initials: 'RS', name: 'Social Media Agent', role: '', image: '/assets/images/Robot.webp' },
-    { initials: 'RS', name: 'Campaign Automation Agent', role: '', image: '/assets/images/Robot.webp' },
+    { initials: 'RS', name: 'AI SEO/AEO/GEO Agent', role: '', image: '/assets/images/Robot.avif ' },
+    { initials: 'RS', name: 'AI Social Media Agent', role: '', image: '/assets/images/Robot.avif ' },
+    { initials: 'RS', name: 'AI Conversation Agent', role: '', image: '/assets/images/Robot.avif ' },
   ] as const;
 
   readonly AITeams = [
     { initials: 'AT', name: 'Advet Tambe', role: '', image: '/assets/images/team-advet-thambe.jpeg' },
     { initials: 'VC', name: 'Vishal Chaubey', role: '', image: '/assets/images/team-vishal-chaubey.png' },
-    { initials: 'VC', name: 'RFP/RFQ Response Agent', role: '', image: '/assets/images/Robot.webp' },
-    { initials: 'VC', name: 'proposal Generator Agent', role: '', image: '/assets/images/Robot.webp' },
-    { initials: 'VC', name: 'Competitor Intelligence Agent', role: '', image: '/assets/images/Robot.webp' },
+    { initials: 'VC', name: 'AI RFP/RFQ Response Agent', role: '', image: '/assets/images/Robot.avif ' },
+    { initials: 'VC', name: 'AI Proposal Generator Agent', role: '', image: '/assets/images/Robot.avif ' },
+    { initials: 'VC', name: 'AI Competitor Intelligence Agent', role: '', image: '/assets/images/Robot.avif ' },
   ] as const;
 
   readonly developers: readonly { initials: string; name: string; role: string; image: string }[] = [
@@ -185,17 +186,17 @@ export class CompanyPage {
   ];
 
   readonly accountantTeam = [
-    { initials: 'SJ', name: 'Sanjay Jade', role: '', image: '/assets/images/team-sanjay-jade.png' },
-    { initials: 'RB', name: 'Rutuja Bhoga', role: '', image: '/assets/images/team-rutuja-bhoga.jpeg' },
-    { initials: 'RB', name: 'Cashflow Forecast Agent', role: '', image: '/assets/images/Robot.webp' },
-    { initials: 'RB', name: 'Expense Verification Agent', role: '', image: '/assets/images/Robot.webp' },
+    { initials: 'SJ', name: 'Sanjay Jade', role: 'Account Manager', image: '/assets/images/team-sanjay-jade.png' },
+    { initials: 'RB', name: 'Rutuja Bhoga', role: 'Account Assistance', image: '/assets/images/team-rutuja-bhoga.jpeg' },
+    { initials: 'RB', name: 'AI Cashflow Forecast Agent', role: '', image: '/assets/images/Robot.avif ' },
+    { initials: 'RB', name: 'AI Payment Followup Agent', role: '', image: '/assets/images/Robot.avif ' },
   ] as const;
 
   readonly graphicDesignerTeam = [
-    { initials: 'SP', name: 'Shantaram Palkar', role: '', image: '/assets/images/team-shantaram-palkar.png' },
+    { initials: 'SP', name: 'Shantaram Palkar', role: 'Manager', image: '/assets/images/team-shantaram-palkar.png' },
     { initials: 'SV', name: 'Shakshita Vangade', role: '', image: '/assets/images/team-shakshita-vangade.jpeg' },
     { initials: 'NS', name: 'Nishant Shinde', role: '', image: '/assets/images/team-nishant-shinde.png' },
-     { initials: 'NS', name: 'AI Generative Agent ', role: '', image: '/assets/images/Robot.webp' },
+     { initials: 'NS', name: 'AI Generative Agent', role: '', image: '/assets/images/Robot.avif ' },
   ] as const;
 
   readonly adminTeam = [
@@ -203,14 +204,21 @@ export class CompanyPage {
     { initials: 'T', name: 'Tejas Nashiba', role: '', image: '' },
     { initials: 'T', name: 'Management Intelligence Agent', role: '', image: '/assets/images/Robot.webp' },
     { initials: 'T', name: 'AI Command Center Orchestrator', role: '', image: '/assets/images/Robot.webp' },
+
+    { initials: 'MS', name: 'Mayuri Shinde', role: 'Admin Manager', image: '/assets/images/team-mayuri-shinde.png' },
+    { initials: 'T', name: 'Tejas', role: '', image: '' },
+    { initials: 'T', name: 'AI Management Intelligence Agent', role: '', image: '/assets/images/Robot.avif ' },
+    { initials: 'T', name: 'AI Command Center Orchestrator', role: '', image: '/assets/images/Robot.avif ' },
   ] as const;
 
   readonly technicalSupportTeam = [
-    { initials: 'RS', name: 'Rizwan Shaikh', role: '', image: '/assets/images/team-rizwan-shaikh.png' },
-    { initials: 'PA', name: 'Purva Angre', role: '', image: '/assets/images/team-purva-angre.png' },
+    { initials: 'RS', name: 'Rizwan Shaikh', role: 'Technical Manager', image: '/assets/images/team-rizwan-shaikh.png' },
+    { initials: 'AY', name: 'Amit Yadav', role: 'Technical L3', image: '' },
+    { initials: 'PA', name: 'Purva Angre', role: 'Technical L1', image: '/assets/images/team-purva-angre.png' },
     { initials: 'SY', name: 'Saurav Yadav', role: '', image: '' },
-    { initials: 'TM', name: 'Talha Mohammad', role: '', image: '' },
-    { initials: 'AY', name: 'Amit Yadav', role: '', image: '' },
+    { initials: 'TM', name: 'Talha Mohammad', role: 'Technical L2', image: '' },
+    { initials: 'TM', name: 'AI Customer Support-Service', role: '', image: '/assets/images/Robot.avif ' },
+    
 
     { initials: 'SB', name: 'Santosh Kumar Behera', role: 'Technical Support Executive - L2', image: '' },
   ] as const;
@@ -219,6 +227,7 @@ export class CompanyPage {
     { id: 'all', label: 'All Team' },
     { id: 'management', label: 'Management' },
     { id: 'technical-support', label: 'Technical Support' },
+    { id: 'security', label: 'Security' },
     { id: 'advisory', label: 'Advisory' },
     { id: 'sales', label: 'Sales' },
     { id: 'marketing', label: 'Marketing' },
@@ -229,6 +238,7 @@ export class CompanyPage {
     { id: 'admin', label: 'Admin' },
   ] as const;
   readonly activeTeamTab = signal<string>('all');
+  readonly securityDepartments = TEAM_STRUCTURE.find(division => division.id === 'technology')?.departments ?? [];
   teamDepartmentLabel(department: string): string {
     return this.teamTabs.find(tab => tab.id === department)?.label ?? department;
   }
@@ -237,7 +247,7 @@ export class CompanyPage {
       all: 'groups', management: 'business_center', advisory: 'forum',
       sales: 'trending_up', marketing: 'campaign', AITeams: 'psychology', developers: 'code',
       accountant: 'calculate', 'graphic-designer': 'palette', admin: 'admin_panel_settings',
-      'technical-support': 'support_agent',
+      'technical-support': 'support_agent', security: 'shield',
     };
     return icons[department] ?? 'groups';
   }

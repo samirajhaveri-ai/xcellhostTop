@@ -10,8 +10,8 @@ import { RouterLink } from '@angular/router';
     <section class="experience-hub" aria-labelledby="experience-hub-title">
       <div class="wrap">
         <div class="hub-heading">
-          <div><span class="hub-kicker">XCELLHOST MARKETPLACE</span>
-            <h2 id="experience-hub-title">Xcellhost Marketplace</h2>
+          <div>
+            <h2 id="experience-hub-title">XcellHost Cloud Marketplace</h2>
             <p>Build. Buy. Deploy. Explore cloud experiences, services and software with XcellHost.</p>
           </div>
         </div>

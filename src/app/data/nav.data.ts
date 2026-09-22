@@ -2950,7 +2950,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Food & Beverage",
+                "title": "Hospitality Cloud",
                 "pill": null,
                 "desc": null
               },

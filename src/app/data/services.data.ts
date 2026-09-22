@@ -6431,7 +6431,11 @@ export const SERVICES_RICH: Record<string, ServiceRich> = {
     "alias": [
       "pharmaceutical",
       "construction",
+
       "food & beverage hospitality cloud",
+
+      "food & beverage",
+      "hospitality cloud",
       "logistics"
     ],
     "price": "Sector programmes",

@@ -59,7 +59,7 @@ import { slugify } from '../core/catalog.service';
         }
         <div class="blog-cta">
           <button class="btn btn-ghost" id="allBlogs" routerLink="/insights">
-            Browse Insights
+            Browse Insights <span aria-hidden="true">&rarr;</span>
           </button>
         </div>
         } @else if (activeView() === 'cases') {
