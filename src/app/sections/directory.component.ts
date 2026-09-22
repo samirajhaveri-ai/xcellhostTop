@@ -10,6 +10,7 @@ import { RouterLink } from '@angular/router';
 
 import { CatalogService, slugify } from '../core/catalog.service';
 import { RevealDirective } from '../shared/reveal.directive';
+import { MEGA_MENU } from '../data/nav.data';
 
 /** One catalogue entry as the template needs it. */
 interface DirLink {
@@ -50,6 +51,13 @@ interface Ripple {
 
 const NO_RIPPLE: readonly Ripple[] = [];
 
+const ADDITIONAL_PRACTICES: Readonly<Record<string, string>> = {
+  Productivity: 'Email, collaboration, business applications and managed productivity',
+  'Data Protection': 'Backup, disaster recovery and cyber resilience',
+  AI: 'AI platforms, development, consulting, security and governance',
+  Marketplace: 'Software, remote access tools and cloud security solutions',
+};
+
 /** `@keyframes dgshock` runs .6s; the original removed the node after 650 ms. */
 const RIPPLE_MS = 650;
 
@@ -82,7 +90,7 @@ export class DirectoryComponent {
   private readonly catalog = inject(CatalogService);
 
   readonly cats = computed<DirCat[]>(() =>
-    this.catalog.grouped().map((c) => ({
+    this.catalog.grouped().map<DirCat>((c) => ({
       cat: c.cat,
       count: c.count,
       sub: c.sub,
@@ -95,6 +103,20 @@ export class DirectoryComponent {
           core: this.catalog.isCore(e.name),
         })),
       })),
+    })).concat(MEGA_MENU.filter(menu => menu.label in ADDITIONAL_PRACTICES).map(menu => {
+      const groups = menu.tabs.map(tab => ({
+        name: tab.label,
+        items: Array.from(new Map(tab.groups.flatMap(group => group.items)
+          .filter(item => item.title !== 'No Data')
+          .map(item => [item.title, item] as const)).values()).map(item => ({
+          name: item.title,
+          desc: item.desc || this.catalog.findInDirectory(item.title)?.desc || `Explore ${item.title} services and solutions.`,
+          link: item.href || '/' + slugify(item.title),
+          core: this.catalog.isCore(item.title),
+        })),
+      })).filter(group => group.items.length > 0);
+      const count = new Set(groups.flatMap(group => group.items.map(item => item.link))).size;
+      return { cat: menu.label, count: `${count} services`, sub: ADDITIONAL_PRACTICES[menu.label], groups };
     }))
   );
 

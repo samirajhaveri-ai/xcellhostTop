@@ -147,7 +147,7 @@ export const routes: Routes = [
     path: 'company-profile',
     data: { title: 'Company Profile' },
     loadComponent: () =>
-      import('./pages/under-construction.page').then((m) => m.UnderConstructionPage),
+      import('./pages/company-profile.page').then((m) => m.CompanyProfilePage),
   },
   {
     path: 'career-handbook',
@@ -233,6 +233,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/platform-status.page').then((m) => m.PlatformStatusPage),
   },
   { path: 'company/:slug', loadComponent: () => import('./pages/company.page').then((m) => m.CompanyPage) },
+  { path: 'customer-stories', redirectTo: 'company/customer-stories', pathMatch: 'full' },
   { path: 'category/:name', loadComponent: () => import('./pages/category.page').then((m) => m.CategoryPage) },
   {
     path: 'vendor-partners/:slug',

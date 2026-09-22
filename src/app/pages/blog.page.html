@@ -6,6 +6,12 @@
     <p role="alert">The content service could not be reached. Please try again shortly.</p>
     <a class="btn primary" routerLink="/insights">Back to insights</a>
   </div></div></div>
+} @else if (!post()) {
+  <div class="ppage as-page"><div class="pp-body"><div class="wrap">
+    <h1>{{ isUseCase ? 'Use case' : 'Article' }} not found</h1>
+    <p>This article may have moved or is no longer published.</p>
+    <a class="btn primary" routerLink="/insights">Browse insights</a>
+  </div></div></div>
 } @else if (post(); as p) {
   <div class="bpage as-page xh-blog-article" id="bpage">
     <div class="bp-bar">
@@ -229,12 +235,18 @@
               <a class="article-sibling article-previous" [routerLink]="[detailBase, previous.slug]">
                 <span><i aria-hidden="true">&#8592;</i> Previous</span>
                 <strong>{{ previous.title }}</strong>
+                @if (previous.description) {
+                  <p class="article-sibling-description">{{ previous.description }}</p>
+                }
               </a>
             }
             @if (neighbors().next; as next) {
               <a class="article-sibling article-next" [routerLink]="[detailBase, next.slug]">
                 <span>Next <i aria-hidden="true">&#8594;</i></span>
                 <strong>{{ next.title }}</strong>
+                @if (next.description) {
+                  <p class="article-sibling-description">{{ next.description }}</p>
+                }
               </a>
             }
           </nav>
@@ -251,6 +263,9 @@
                 <a class="article-related-card" [routerLink]="[detailBase, item.slug]">
                   <span>{{ titleCase(item.category) }}</span>
                   <h3>{{ titleCase(item.title) }}</h3>
+                  @if (item.description) {
+                    <p class="article-related-description">{{ item.description }}</p>
+                  }
                   <small>{{ readTime(item) }}</small>
                 </a>
               }
