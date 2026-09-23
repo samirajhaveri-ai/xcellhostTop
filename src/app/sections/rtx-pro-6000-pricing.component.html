@@ -1,0 +1,92 @@
+<section class="pro-answer" aria-labelledby="proAnswerTitle">
+  <div>
+    <span class="pro-answer-kicker">Quick answer · Updated September 2026</span>
+    <h2 id="proAnswerTitle">What is the RTX PRO 6000 Blackwell cloud GPU?</h2>
+    <p>The NVIDIA RTX PRO 6000 Blackwell is a 96 GB GDDR7 professional GPU that handles both AI and graphics. On XcellHost it is rented by the hour or month from Indian data centres, starting at ₹1,15,000 a month (excl. GST), for LLM fine-tuning and inference, generative video, digital twins and heavy 3D rendering.</p>
+  </div>
+  <div>
+    <span class="pro-answer-kicker">Key takeaways</span>
+    <ul>
+      <li>Twice the memory of any 48 GB card — fits 70B-class models quantised on one GPU</li>
+      <li>FP4 Tensor Cores cut the cost per token for inference</li>
+      <li>Split into up to four MIG slices for teams and notebooks</li>
+      <li>Hosted in India with INR billing and GST invoice</li>
+    </ul>
+    <div class="pro-bestfor"><span>Best for:</span><b>LLM inference</b><b>Fine-tuning</b><b>Generative video</b><b>Digital twins</b></div>
+  </div>
+</section>
+
+<section class="rtx-pricing" id="pricing" aria-labelledby="proPricingTitle">
+  <header class="rtx-pricing-heading">
+    <span>Flexible plans for every workload</span>
+    <h2 id="proPricingTitle">RTX PRO 6000 Cloud GPU Plans</h2>
+    <p>Select your billing period and choose the GPU configuration that fits your team. Prices start at ₹1,15,000/month.</p>
+  </header>
+
+  <div class="rtx-billing-tabs" role="group" aria-label="Billing period">
+    @for (term of terms; track term.label) {
+      <button type="button" [class.active]="selectedTerm() === term" [attr.aria-pressed]="selectedTerm() === term" (click)="selectedTerm.set(term)">
+        <span class="rtx-billing-badge">{{ term.badge }}</span>
+        <span>{{ term.label }}</span>
+      </button>
+    }
+  </div>
+
+  <div class="rtx-plan-list">
+    @for (plan of plans; track plan.code) {
+      <article class="rtx-plan" [attr.data-tone]="plan.tone">
+        <div class="rtx-plan-identity">
+          <span class="rtx-plan-audience">{{ plan.audience }}</span>
+          <div class="rtx-plan-name"><span class="rtx-gpu-count">{{ plan.gpus }}×</span><div><strong>RTX PRO 6000</strong><small>{{ plan.name }}</small></div></div>
+        </div>
+        <dl class="rtx-plan-specs">
+          <div><dt>Server Type</dt><dd>Dedicated GPU VM</dd></div>
+          <div><dt>GPU</dt><dd>{{ plan.gpus }} × 96 GB</dd></div>
+          <div><dt>Virtual CPU</dt><dd>{{ plan.vcpu }} vCPU</dd></div>
+          <div><dt>Memory</dt><dd>{{ plan.memory }} GB</dd></div>
+          <div><dt>NVMe Storage</dt><dd>{{ plan.storage }} GB</dd></div>
+          <div><dt>Network Port</dt><dd>1 Gbps</dd></div>
+          <div><dt>Dedicated IP</dt><dd>1</dd></div>
+          <div><dt>Operating System</dt><dd>Ubuntu 22.04 / Win Server 2025</dd></div>
+          <div><dt>Drivers</dt><dd>CUDA pre-installed</dd></div>
+          <div><dt>Protection</dt><dd>Virtual Firewall + Anti-DDoS</dd></div>
+          <div><dt>Endpoint Security</dt><dd>Acronis Cyber Protect Cloud</dd></div>
+          <div><dt>Support</dt><dd>24×7</dd></div>
+        </dl>
+        <div class="rtx-plan-action">
+          @if (selectedTerm().discount > 0) { <del>{{ inr(plan.monthly) }}</del> }
+          <strong>{{ inr(discountedMonthly(plan)) }}</strong>
+          <button type="button" (click)="requestPlan(plan)">Buy Now <span aria-hidden="true">→</span></button>
+          <small>+GST · {{ billingLabel() }}</small>
+          <span class="rtx-hourly">≈ {{ inr(plan.hourly) }}/hr on demand</span>
+        </div>
+      </article>
+    }
+  </div>
+
+  <p class="rtx-pricing-note">Indicative pricing in INR, exclusive of 18% GST. Plan codes: XG.PRO6K.1-16, XG.PRO6K.1-24, XG.PRO6K.1-32, XG.PRO6K.2-48, XG.PRO6K.2-64, XG.PRO6K.4-96, XG.PRO6K.4-128.</p>
+
+  <div class="rtx-estimator">
+    <div class="rtx-estimator-inputs">
+      <h3>Hourly or monthly? Work it out.</h3>
+      <p>Tell us how much you'll actually use the GPU and we'll show the cheaper way to pay.</p>
+      <label for="proEstimatePlan">Configuration</label>
+      <select id="proEstimatePlan" [value]="selectedPlanIndex()" (change)="selectPlan($event)">
+        @for (plan of plans; track plan.code; let index = $index) {
+          <option [value]="index">{{ plan.name }} — {{ plan.gpus }}× GPU, {{ plan.vcpu }} vCPU, {{ plan.memory }} GB</option>
+        }
+      </select>
+      <label for="proEstimateHours">Hours per day <output>{{ hoursPerDay() }}</output></label>
+      <input id="proEstimateHours" type="range" min="1" max="24" [value]="hoursPerDay()" (input)="changeHours($event)" />
+      <label for="proEstimateDays">Days per month <output>{{ daysPerMonth() }}</output></label>
+      <input id="proEstimateDays" type="range" min="1" max="31" [value]="daysPerMonth()" (input)="changeDays($event)" />
+    </div>
+    <div class="rtx-estimator-results" aria-live="polite">
+      <div><span>Pay-as-you-go</span><strong>{{ inr(payAsYouGo()) }}</strong></div>
+      <div><span>Monthly plan</span><strong>{{ inr(monthlyPlan()) }}</strong></div>
+      <div><span>1-year plan (per month)</span><strong>{{ inr(yearlyPlan()) }}</strong></div>
+      <p>{{ recommendation() }}</p>
+      <small>Indicative, excl. GST.</small>
+    </div>
+  </div>
+</section>

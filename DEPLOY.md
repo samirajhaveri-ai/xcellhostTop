@@ -1,5 +1,23 @@
 # Deploying to Plesk — step by step
 
+## YouTube uploads on Insights
+
+The build includes `feeds/youtube.php` and `feeds/youtube-snapshot.json`.
+Enable PHP 8+ with the cURL extension for the domain in Plesk. The endpoint
+reads the public XcellHost channel Videos tab and caches its latest 30 uploads
+for 15 minutes. It needs outbound HTTPS access to www.youtube.com and a writable
+PHP temporary directory. No YouTube API key is required.
+
+Verify `/feeds/youtube.php` returns JSON with `status: "ok"` and nonempty `items`.
+If PHP or YouTube is unavailable, the browser uses the bundled saved list and
+labels it as saved uploads; that list does not update until live access recovers.
+YouTube can change its public page structure, so the parser may need maintenance.
+
+For local development, restart `npm start` after this update. The Angular proxy
+runs the same PHP endpoint using `php` on PATH (or `PHP_BINARY`). If PHP is
+unavailable locally, it serves the saved list. Direct `ng serve` also uses this
+proxy. Existing blog API proxy routes remain in place.
+
 Everything you need is in `release/xcellhost-site.zip`. If that file is missing,
 run `npm run package` to create it.
 

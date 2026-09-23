@@ -22,10 +22,16 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "SMB Cloud",
             "items": [
               {
+                "title": "SMB Cloud Explore",
+                "pill": "Top seller",
+                "desc": null
+              },
+              {
                 "title": "Tally on Cloud",
                 "pill": "Top seller",
                 "desc": null
               },
+
               {
                 "title": "Cloud Backup",
                 "pill": "Popular",
@@ -258,6 +264,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Digital safety with our comprehensive web solutions 🌐"
               },
               {
+                "title": "Web Security (cWatch)",
+                "pill": null,
+                "desc": null
+              },
+              {
                 "title": "Thawte  SSL Certificates",
                 "pill": null,
                 "desc": null
@@ -268,11 +279,20 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Web Security (cWatch)",
+                "title": "CodeGuard Backup",
                 "pill": null,
                 "desc": null
               },
-              
+              {
+                "title": "HackerGuardian PCI Compliance Scanning",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "TrustedSite Certifications",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
@@ -542,41 +562,25 @@ export const MEGA_MENU: MenuTop[] = [
         "on": false,
         "groups": [
           {
-            "heading": "GPU Servers Cost-effective",
+            "heading": "Entry Level GPU",
             "items": [
               {
-                "title": "L40S",
+                "title": "NVIDIA L40S",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "L4",
+                "title": "NVIDIA L4",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "A30",
+                "title": "NVIDIA A30",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "A2",
-                "pill": null,
-                "desc": null
-              },
-              
-              {
-                "title": "AI Inference Cloud",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "AI Developer Cloud",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "AI Model library",
+                "title": "NVIDIA A2",
                 "pill": null,
                 "desc": null
               },
@@ -604,6 +608,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "NVIDIA A100",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "NVIDIA B300 Nodes",
                 "pill": null,
                 "desc": null
               },
@@ -644,12 +653,65 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "11",
-        "label": "Managed Database",
+        "g": "58",
+        "label": "Inference Cloud",
         "on": false,
         "groups": [
           {
-            "heading": "Managed Database",
+            "heading": "Inference Cloud",
+            "items": [
+              {
+                "title": "AI Inference Cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "AI Developer Cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "AI Model library",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Serverless Inference",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Dedicated Inferencing",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Model Playground",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Model Catalog",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Model Directory",
+                "pill": null,
+                "desc": null
+              },
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "11",
+        "label": "Managed Databases",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Managed Databases",
             "items": [
               {
                 "title": "Managed PostgreSQL",
@@ -668,6 +730,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Managed Redis",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Managed MongoDB",
                 "pill": null,
                 "desc": null
               },
@@ -725,33 +792,7 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      {
-        "g": "4",
-        "label": "On Premises Cloud",
-        "on": false,
-        "groups": [
-          {
-            "heading": "On Premises Cloud",
-            "items": [
-              {
-                "title": "Data Center Build Services",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Acronis Cyber Frame (HCI)",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Vmware Migration",
-                "pill": null,
-                "desc": null
-              },
-            ]
-          }
-        ]
-      },
+      
       {
         "g": "5",
         "label": "Managed DevOps",
@@ -776,7 +817,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Managed DevOps",
+                "title": "Container Registry",
                 "pill": null,
                 "desc": null
               },
@@ -887,6 +928,33 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               
+            ]
+          }
+        ]
+      },
+      {
+        "g": "4",
+        "label": "On Premises Cloud",
+        "on": false,
+        "groups": [
+          {
+            "heading": "On Premises Cloud",
+            "items": [
+              {
+                "title": "Data Center Build Services",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Acronis Cyber Frame (HCI)",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Vmware Migration",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]

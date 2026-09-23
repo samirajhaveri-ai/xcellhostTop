@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject, linkedSignal, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { BlogApiService, CmsBlogPost, CmsInsightResource } from '../core/blog-api.service';
 import { SeoService } from '../core/seo.service';
@@ -46,7 +46,7 @@ interface InsightCategoryBranch {
 @Component({
   selector: 'xh-insights-page',
   standalone: true,
-  imports: [RouterLink],
+  imports: [],
   styleUrl: './insights.page.css',
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -129,11 +129,11 @@ interface InsightCategoryBranch {
       </div>
       <div class="pp-body">
         <div class="wrap">
-          @if (loading()) {
+          @if (loading() && activeTab() === 'Blogs') {
             <p role="status">Loading insights...</p>
-          } @else if (error()) {
+          } @else if (error() && activeTab() === 'Blogs') {
             <p role="alert">Blog content is temporarily unavailable. Please try again shortly.</p>
-          } @else {
+          }
             <section class="insights-discovery" aria-label="Insight content filters">
               <div class="insights-tabs" role="tablist" aria-label="Insight content type">
                 @for (tab of tabs; track tab) {
@@ -221,13 +221,19 @@ interface InsightCategoryBranch {
                     <span class="insights-toolbar-label">Showing</span>
                     <h2>{{ resultHeading() }}</h2>
                   </div>
-                  <p role="status">{{ rangeStart() }}–{{ rangeEnd() }} of {{ visible().length }} article{{ visible().length === 1 ? '' : 's' }}</p>
+                  <p role="status">{{ rangeStart() }}–{{ rangeEnd() }} of {{ visible().length }} {{ activeTab() === 'Videos' ? 'video' : 'article' }}{{ visible().length === 1 ? '' : 's' }}</p>
                 </div>
+                @if (activeTab() === 'Videos') {
+                  <div class="insights-channel" role="status">
+                    <p>{{ videoStatus() === 'cached' ? 'Showing saved channel uploads. Live updates are temporarily unavailable.' : 'Latest uploads from XcellHost Cloud Services' }}</p>
+                    <a href="https://www.youtube.com/@XcellHostCloudServices/videos" target="_blank" rel="noopener noreferrer">View YouTube channel &rarr;</a>
+                  </div>
+                }
                 @if (featuredVisible(); as lead) {
                   <a
                     class="insights-lead"
-                    [routerLink]="lead.kind === 'video' ? null : [lead.kind === 'use-case' ? '/use-cases' : '/insights', lead.slug]"
-                    [attr.href]="lead.kind === 'video' ? insightHref(lead) : null"
+                    (click)="openInsight($event, lead)"
+                    [attr.href]="insightHref(lead)"
                     [attr.target]="lead.kind === 'video' ? '_blank' : null"
                     [attr.rel]="lead.kind === 'video' ? 'noopener noreferrer' : null"
                   >
@@ -251,7 +257,7 @@ interface InsightCategoryBranch {
                       <div class="insights-feature-meta">
                         <span>{{ formatDate(lead.date) }}</span>
                         <span>{{ lead.author }}</span>
-                        <span>{{ formatTime(lead.time) }}</span>
+                        <span>{{ lead.kind === 'video' ? 'Watch on YouTube' : formatTime(lead.time) }}</span>
                       </div>
                     </div>
                   </a>
@@ -260,8 +266,8 @@ interface InsightCategoryBranch {
                   @for (post of gridPosts(); track post.documentId) {
                     <a
                       class="bl insights-card"
-                      [routerLink]="post.kind === 'video' ? null : [post.kind === 'use-case' ? '/use-cases' : '/insights', post.slug]"
-                      [attr.href]="post.kind === 'video' ? insightHref(post) : null"
+                      (click)="openInsight($event, post)"
+                      [attr.href]="insightHref(post)"
                       [attr.target]="post.kind === 'video' ? '_blank' : null"
                       [attr.rel]="post.kind === 'video' ? 'noopener noreferrer' : null"
                     >
@@ -283,7 +289,7 @@ interface InsightCategoryBranch {
                       </div>
                       <h3>{{ post.title }}</h3>
                       <p>{{ post.description }}</p>
-                      <span class="bl-m">{{ post.author }} · {{ readTime(post) }} read</span>
+                      <span class="bl-m">{{ post.author }} · {{ post.kind === 'video' ? 'Watch on YouTube' : readTime(post) + ' read' }}</span>
                     </a>
                   } @empty {
                     @if (!visible().length) {
@@ -292,14 +298,14 @@ interface InsightCategoryBranch {
                           <circle cx="21" cy="21" r="12"></circle>
                           <path d="m30 30 9 9M8 8l32 32"></path>
                         </svg>
-                        <h3>No matching {{ activeTab().toLowerCase() }}</h3>
+                        <h3>{{ activeTab() === 'Videos' && videoStatus() === 'loading' ? 'Loading channel videos...' : activeTab() === 'Videos' && videoStatus() === 'error' ? 'Videos temporarily unavailable' : 'No matching ' + activeTab().toLowerCase() }}</h3>
                         <p>{{ emptyHelp() }}</p>
                       </div>
                     }
                   }
                 </div>
                 @if (visible().length) {
-                  <nav class="insights-pagination" aria-label="Blog pagination">
+                  <nav class="insights-pagination" aria-label="Insights pagination">
                     <button type="button" [disabled]="currentPage() === 1"
                       (click)="goToPage(currentPage() - 1, results)">Previous</button>
                     <div class="insights-page-numbers">
@@ -320,16 +326,17 @@ interface InsightCategoryBranch {
                 }
               </div>
             </section>
-          }
         </div>
       </div>
     </div>
   `,
 })
 export class InsightsPage {
+  private readonly router = inject(Router);
   private readonly seo = inject(SeoService);
   private readonly blogApi = inject(BlogApiService);
 
+  readonly videoStatus = this.blogApi.videoStatus;
   readonly page = SIMPLE_PAGES['blog'];
   readonly tabs: readonly InsightTab[] = ['Blogs', 'Videos', 'Use Cases'];
   readonly posts = signal<readonly CmsBlogPost[]>([]);
@@ -579,6 +586,12 @@ export class InsightsPage {
     this.currentPage.set(1);
   }
 
+  openInsight(event: MouseEvent, item: InsightItem): void {
+    if (item.kind === 'video' || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    void this.router.navigateByUrl(this.insightHref(item));
+  }
+
   insightHref(item: InsightItem): string {
     if (item.kind === 'video') return item.actionUrl ?? '#';
     return item.kind === 'use-case'
@@ -594,12 +607,14 @@ export class InsightsPage {
   }
 
   formatDate(value: string): string {
+    if (!value) return "";
     return new Intl.DateTimeFormat('en-IN', { dateStyle: 'medium' }).format(
       new Date(`${value}T00:00:00`)
     );
   }
 
   formatTime(value: string): string {
+    if (!value) return "";
     const [hours, minutes] = value.split(':').map(Number);
     return new Intl.DateTimeFormat('en-IN', { hour: 'numeric', minute: '2-digit' }).format(
       new Date(2000, 0, 1, hours, minutes)
@@ -632,6 +647,8 @@ export class InsightsPage {
   }
 
   emptyHelp(): string {
+    if (this.activeTab() === 'Videos' && this.videoStatus() === 'loading') return 'Fetching uploads from XcellHost Cloud Services.';
+    if (this.activeTab() === 'Videos' && this.videoStatus() === 'error') return 'Please visit our YouTube channel or try again shortly.';
     return this.activeTab() === 'Videos'
       ? 'Try another topic or search term. New YouTube uploads will appear here automatically.'
       : 'Try another topic or search term. New Strapi content will appear here automatically.';
