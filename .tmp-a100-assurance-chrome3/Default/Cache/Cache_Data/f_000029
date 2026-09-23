@@ -1,0 +1,179 @@
+import { injectQuery as __vite__injectQuery } from "/@vite/client";import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/chunk-EZ3WXSNP.js");// src/app/sections/product/product-video.component.ts
+import { ChangeDetectionStrategy, Component, computed, effect, inject, input, signal } from "/@fs/C:/Users/shalu/Documents/GitHub/xcellhostTop/.angular/cache/20.3.32/xcellhost/vite/deps/@angular_core.js?v=379306da";
+import { DomSanitizer } from "/@fs/C:/Users/shalu/Documents/GitHub/xcellhostTop/.angular/cache/20.3.32/xcellhost/vite/deps/@angular_platform-browser.js?v=379306da";
+import * as i0 from "/@fs/C:/Users/shalu/Documents/GitHub/xcellhostTop/.angular/cache/20.3.32/xcellhost/vite/deps/@angular_core.js?v=379306da";
+function ProductVideoComponent_For_2_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r1 = i0.\u0275\u0275getCurrentView();
+    i0.\u0275\u0275domElementStart(0, "button", 6);
+    i0.\u0275\u0275domListener("click", function ProductVideoComponent_For_2_Template_button_click_0_listener() {
+      const $index_r2 = i0.\u0275\u0275restoreView(_r1).$index;
+      const ctx_r2 = i0.\u0275\u0275nextContext();
+      return i0.\u0275\u0275resetView(ctx_r2.index.set($index_r2));
+    });
+    i0.\u0275\u0275text(1);
+    i0.\u0275\u0275domElementEnd();
+  }
+  if (rf & 2) {
+    const l_r4 = ctx.$implicit;
+    const $index_r2 = ctx.$index;
+    const ctx_r2 = i0.\u0275\u0275nextContext();
+    i0.\u0275\u0275classProp("active", ctx_r2.index() === $index_r2);
+    i0.\u0275\u0275attribute("data-v", $index_r2)("aria-pressed", ctx_r2.index() === $index_r2);
+    i0.\u0275\u0275advance();
+    i0.\u0275\u0275textInterpolate1(" \u25B6 ", l_r4, " ");
+  }
+}
+function ProductVideoComponent_Conditional_4_Template(rf, ctx) {
+  if (rf & 1) {
+    i0.\u0275\u0275domElement(0, "iframe", 3);
+  }
+  if (rf & 2) {
+    const ctx_r2 = i0.\u0275\u0275nextContext();
+    i0.\u0275\u0275domProperty("src", ctx, i0.\u0275\u0275sanitizeResourceUrl)("title", ctx_r2.name() + " \u2014 " + ctx_r2.label());
+  }
+}
+function ProductVideoComponent_Conditional_5_Template(rf, ctx) {
+  if (rf & 1) {
+    i0.\u0275\u0275domElement(0, "video", 4);
+  }
+  if (rf & 2) {
+    const ctx_r2 = i0.\u0275\u0275nextContext();
+    i0.\u0275\u0275domProperty("src", ctx_r2.source(), i0.\u0275\u0275sanitizeUrl);
+  }
+}
+function ProductVideoComponent_Conditional_6_Template(rf, ctx) {
+  if (rf & 1) {
+    i0.\u0275\u0275domElementStart(0, "div", 5)(1, "span", 7);
+    i0.\u0275\u0275text(2, "\u25B6");
+    i0.\u0275\u0275domElementEnd();
+    i0.\u0275\u0275domElementStart(3, "b");
+    i0.\u0275\u0275text(4);
+    i0.\u0275\u0275domElementEnd();
+    i0.\u0275\u0275domElementStart(5, "span");
+    i0.\u0275\u0275text(6, "Video slot ready \u2014 embed URL will play here");
+    i0.\u0275\u0275domElementEnd()();
+  }
+  if (rf & 2) {
+    const ctx_r2 = i0.\u0275\u0275nextContext();
+    i0.\u0275\u0275advance(4);
+    i0.\u0275\u0275textInterpolate2("", ctx_r2.name(), " \u2014 ", ctx_r2.label(), " video");
+  }
+}
+function youtubeId(url) {
+  if (!url)
+    return "";
+  if (/^[\w-]{11}$/.test(url))
+    return url;
+  const m = /(?:youtu\.be\/|v=|embed\/)([\w-]{11})/.exec(url);
+  return m ? m[1] : "";
+}
+var ProductVideoComponent = class _ProductVideoComponent {
+  sanitizer = inject(DomSanitizer);
+  /** video sources, in tab order */
+  videos = input.required(...ngDevMode ? [{ debugName: "videos" }] : []);
+  /** tab captions, e.g. `['Product Intro', 'Use Cases']` */
+  labels = input.required(...ngDevMode ? [{ debugName: "labels" }] : []);
+  /** product name, used in the iframe title and the placeholder */
+  name = input.required(...ngDevMode ? [{ debugName: "name" }] : []);
+  /** which tab is showing */
+  index = signal(0, ...ngDevMode ? [{ debugName: "index" }] : []);
+  source = computed(() => this.videos()[this.index()] ?? "", ...ngDevMode ? [{ debugName: "source" }] : []);
+  label = computed(() => this.labels()[this.index()] ?? (this.index() === 0 ? "Intro" : "Use Case"), ...ngDevMode ? [{ debugName: "label" }] : []);
+  embedUrl = computed(() => {
+    const id = youtubeId(this.source());
+    return id ? this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube-nocookie.com/embed/${id}?rel=0&playsinline=1`) : null;
+  }, ...ngDevMode ? [{ debugName: "embedUrl" }] : []);
+  constructor() {
+    effect(() => {
+      this.videos();
+      this.index.set(0);
+    });
+  }
+  static \u0275fac = function ProductVideoComponent_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _ProductVideoComponent)();
+  };
+  static \u0275cmp = /* @__PURE__ */ i0.\u0275\u0275defineComponent({ type: _ProductVideoComponent, selectors: [["xh-product-video"]], hostAttrs: [2, "display", "contents"], inputs: { videos: [1, "videos"], labels: [1, "labels"], name: [1, "name"] }, decls: 7, vars: 1, consts: [[1, "pv-tabs"], ["type", "button", 1, "pv-tab", 3, "active"], ["id", "ppVid", 1, "pv-frame"], ["width", "100%", "height", "100%", "frameborder", "0", "allow", "accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share", "referrerpolicy", "strict-origin-when-cross-origin", "allowfullscreen", "", 3, "src", "title"], ["controls", "", "preload", "metadata", "playsinline", "", 3, "src"], [1, "pv-ph"], ["type", "button", 1, "pv-tab", 3, "click"], [1, "pv-play"]], template: function ProductVideoComponent_Template(rf, ctx) {
+    if (rf & 1) {
+      i0.\u0275\u0275domElementStart(0, "div", 0);
+      i0.\u0275\u0275repeaterCreate(1, ProductVideoComponent_For_2_Template, 2, 5, "button", 1, i0.\u0275\u0275repeaterTrackByIndex);
+      i0.\u0275\u0275domElementEnd();
+      i0.\u0275\u0275domElementStart(3, "div", 2);
+      i0.\u0275\u0275conditionalCreate(4, ProductVideoComponent_Conditional_4_Template, 1, 2, "iframe", 3)(5, ProductVideoComponent_Conditional_5_Template, 1, 1, "video", 4)(6, ProductVideoComponent_Conditional_6_Template, 7, 2, "div", 5);
+      i0.\u0275\u0275domElementEnd();
+    }
+    if (rf & 2) {
+      let tmp_1_0;
+      i0.\u0275\u0275advance();
+      i0.\u0275\u0275repeater(ctx.labels());
+      i0.\u0275\u0275advance(3);
+      i0.\u0275\u0275conditional((tmp_1_0 = ctx.embedUrl()) ? 4 : ctx.source() ? 5 : 6, tmp_1_0);
+    }
+  }, encapsulation: 2, changeDetection: 0 });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && i0.\u0275setClassMetadata(ProductVideoComponent, [{
+    type: Component,
+    args: [{
+      selector: "xh-product-video",
+      standalone: true,
+      host: { style: "display:contents" },
+      changeDetection: ChangeDetectionStrategy.OnPush,
+      template: `
+    <div class="pv-tabs">
+      @for (l of labels(); track $index) {
+        <button
+          type="button"
+          class="pv-tab"
+          [class.active]="index() === $index"
+          [attr.data-v]="$index"
+          [attr.aria-pressed]="index() === $index"
+          (click)="index.set($index)"
+        >
+          \u25B6 {{ l }}
+        </button>
+      }
+    </div>
+    <div class="pv-frame" id="ppVid">
+      @if (embedUrl(); as url) {
+        <iframe
+          width="100%"
+          height="100%"
+          [src]="url"
+          [title]="name() + ' \u2014 ' + label()"
+          frameborder="0"
+          allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      } @else if (source()) {
+        <video [src]="source()" controls preload="metadata" playsinline></video>
+      } @else {
+        <div class="pv-ph">
+          <span class="pv-play">\u25B6</span>
+          <b>{{ name() }} \u2014 {{ label() }} video</b>
+          <span>Video slot ready \u2014 embed URL will play here</span>
+        </div>
+      }
+    </div>
+  `
+    }]
+  }], () => [], { videos: [{ type: i0.Input, args: [{ isSignal: true, alias: "videos", required: true }] }], labels: [{ type: i0.Input, args: [{ isSignal: true, alias: "labels", required: true }] }], name: [{ type: i0.Input, args: [{ isSignal: true, alias: "name", required: true }] }] });
+})();
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && i0.\u0275setClassDebugInfo(ProductVideoComponent, { className: "ProductVideoComponent", filePath: "src/app/sections/product/product-video.component.ts", lineNumber: 61 });
+})();
+(() => {
+  const id = "src%2Fapp%2Fsections%2Fproduct%2Fproduct-video.component.ts%40ProductVideoComponent";
+  function ProductVideoComponent_HmrLoad(t) {
+    import(
+      /* @vite-ignore */
+      __vite__injectQuery(i0.\u0275\u0275getReplaceMetadataURL(id, t, import.meta.url), 'import')
+    ).then((m) => m.default && i0.\u0275\u0275replaceMetadata(ProductVideoComponent, m.default, [i0], [Component, ChangeDetectionStrategy], import.meta, id));
+  }
+  (typeof ngDevMode === "undefined" || ngDevMode) && ProductVideoComponent_HmrLoad(Date.now());
+  (typeof ngDevMode === "undefined" || ngDevMode) && (import.meta.hot && import.meta.hot.on("angular:component-update", (d) => d.id === id && ProductVideoComponent_HmrLoad(d.timestamp)));
+})();
+
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2VjdGlvbnMvcHJvZHVjdC9wcm9kdWN0LXZpZGVvLmNvbXBvbmVudC50cyJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBDaGFuZ2VEZXRlY3Rpb25TdHJhdGVneSwgQ29tcG9uZW50LCBjb21wdXRlZCwgZWZmZWN0LCBpbmplY3QsIGlucHV0LCBzaWduYWwgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcclxuaW1wb3J0IHsgRG9tU2FuaXRpemVyLCBTYWZlUmVzb3VyY2VVcmwgfSBmcm9tICdAYW5ndWxhci9wbGF0Zm9ybS1icm93c2VyJztcclxuXHJcbi8qKiBgc2NyaXB0XzA5YCdzIGB5dElkKClgIOKAlCBhIGJhcmUgMTEtY2hhciBpZCwgb3Igb25lIGVtYmVkZGVkIGluIGEgWW91VHViZSBVUkwuICovXHJcbmZ1bmN0aW9uIHlvdXR1YmVJZCh1cmw6IHN0cmluZyk6IHN0cmluZyB7XHJcbiAgaWYgKCF1cmwpIHJldHVybiAnJztcclxuICBpZiAoL15bXFx3LV17MTF9JC8udGVzdCh1cmwpKSByZXR1cm4gdXJsO1xyXG4gIGNvbnN0IG0gPSAvKD86eW91dHVcXC5iZVxcL3x2PXxlbWJlZFxcLykoW1xcdy1dezExfSkvLmV4ZWModXJsKTtcclxuICByZXR1cm4gbSA/IG1bMV0gOiAnJztcclxufVxyXG5cclxuLyoqXHJcbiAqIFRoZSBcIldhdGNoIGl0IGluIGFjdGlvblwiIHBsYXllcjogdHdvIHRhYnMgYW5kIG9uZSBmcmFtZSB0aGF0IHJlbmRlcnMgYVxyXG4gKiB5b3V0dWJlLW5vY29va2llIGlmcmFtZSwgYSBwbGFpbiBgPHZpZGVvPmAsIG9yIHRoZSBlbXB0eS1zbG90IHBsYWNlaG9sZGVyIOKAlFxyXG4gKiB0aGUgc2FtZSB0aHJlZS13YXkgZGVjaXNpb24gYHNjcmlwdF8wOWAgbWFkZS5cclxuICovXHJcbkBDb21wb25lbnQoe1xyXG4gIHNlbGVjdG9yOiAneGgtcHJvZHVjdC12aWRlbycsXHJcbiAgc3RhbmRhbG9uZTogdHJ1ZSxcclxuICBob3N0OiB7IHN0eWxlOiAnZGlzcGxheTpjb250ZW50cycgfSxcclxuICBjaGFuZ2VEZXRlY3Rpb246IENoYW5nZURldGVjdGlvblN0cmF0ZWd5Lk9uUHVzaCxcclxuICB0ZW1wbGF0ZTogYFxyXG4gICAgPGRpdiBjbGFzcz1cInB2LXRhYnNcIj5cclxuICAgICAgQGZvciAobCBvZiBsYWJlbHMoKTsgdHJhY2sgJGluZGV4KSB7XHJcbiAgICAgICAgPGJ1dHRvblxyXG4gICAgICAgICAgdHlwZT1cImJ1dHRvblwiXHJcbiAgICAgICAgICBjbGFzcz1cInB2LXRhYlwiXHJcbiAgICAgICAgICBbY2xhc3MuYWN0aXZlXT1cImluZGV4KCkgPT09ICRpbmRleFwiXHJcbiAgICAgICAgICBbYXR0ci5kYXRhLXZdPVwiJGluZGV4XCJcclxuICAgICAgICAgIFthdHRyLmFyaWEtcHJlc3NlZF09XCJpbmRleCgpID09PSAkaW5kZXhcIlxyXG4gICAgICAgICAgKGNsaWNrKT1cImluZGV4LnNldCgkaW5kZXgpXCJcclxuICAgICAgICA+XHJcbiAgICAgICAgICDilrYge3sgbCB9fVxyXG4gICAgICAgIDwvYnV0dG9uPlxyXG4gICAgICB9XHJcbiAgICA8L2Rpdj5cclxuICAgIDxkaXYgY2xhc3M9XCJwdi1mcmFtZVwiIGlkPVwicHBWaWRcIj5cclxuICAgICAgQGlmIChlbWJlZFVybCgpOyBhcyB1cmwpIHtcclxuICAgICAgICA8aWZyYW1lXHJcbiAgICAgICAgICB3aWR0aD1cIjEwMCVcIlxyXG4gICAgICAgICAgaGVpZ2h0PVwiMTAwJVwiXHJcbiAgICAgICAgICBbc3JjXT1cInVybFwiXHJcbiAgICAgICAgICBbdGl0bGVdPVwibmFtZSgpICsgJyDigJQgJyArIGxhYmVsKClcIlxyXG4gICAgICAgICAgZnJhbWVib3JkZXI9XCIwXCJcclxuICAgICAgICAgIGFsbG93PVwiYWNjZWxlcm9tZXRlcjthdXRvcGxheTtjbGlwYm9hcmQtd3JpdGU7ZW5jcnlwdGVkLW1lZGlhO2d5cm9zY29wZTtwaWN0dXJlLWluLXBpY3R1cmU7d2ViLXNoYXJlXCJcclxuICAgICAgICAgIHJlZmVycmVycG9saWN5PVwic3RyaWN0LW9yaWdpbi13aGVuLWNyb3NzLW9yaWdpblwiXHJcbiAgICAgICAgICBhbGxvd2Z1bGxzY3JlZW5cclxuICAgICAgICA+PC9pZnJhbWU+XHJcbiAgICAgIH0gQGVsc2UgaWYgKHNvdXJjZSgpKSB7XHJcbiAgICAgICAgPHZpZGVvIFtzcmNdPVwic291cmNlKClcIiBjb250cm9scyBwcmVsb2FkPVwibWV0YWRhdGFcIiBwbGF5c2lubGluZT48L3ZpZGVvPlxyXG4gICAgICB9IEBlbHNlIHtcclxuICAgICAgICA8ZGl2IGNsYXNzPVwicHYtcGhcIj5cclxuICAgICAgICAgIDxzcGFuIGNsYXNzPVwicHYtcGxheVwiPuKWtjwvc3Bhbj5cclxuICAgICAgICAgIDxiPnt7IG5hbWUoKSB9fSDigJQge3sgbGFiZWwoKSB9fSB2aWRlbzwvYj5cclxuICAgICAgICAgIDxzcGFuPlZpZGVvIHNsb3QgcmVhZHkg4oCUIGVtYmVkIFVSTCB3aWxsIHBsYXkgaGVyZTwvc3Bhbj5cclxuICAgICAgICA8L2Rpdj5cclxuICAgICAgfVxyXG4gICAgPC9kaXY+XHJcbiAgYCxcclxufSlcclxuZXhwb3J0IGNsYXNzIFByb2R1Y3RWaWRlb0NvbXBvbmVudCB7XHJcbiAgcHJpdmF0ZSByZWFkb25seSBzYW5pdGl6ZXIgPSBpbmplY3QoRG9tU2FuaXRpemVyKTtcclxuXHJcbiAgLyoqIHZpZGVvIHNvdXJjZXMsIGluIHRhYiBvcmRlciAqL1xyXG4gIHJlYWRvbmx5IHZpZGVvcyA9IGlucHV0LnJlcXVpcmVkPHN0cmluZ1tdPigpO1xyXG4gIC8qKiB0YWIgY2FwdGlvbnMsIGUuZy4gYFsnUHJvZHVjdCBJbnRybycsICdVc2UgQ2FzZXMnXWAgKi9cclxuICByZWFkb25seSBsYWJlbHMgPSBpbnB1dC5yZXF1aXJlZDxzdHJpbmdbXT4oKTtcclxuICAvKiogcHJvZHVjdCBuYW1lLCB1c2VkIGluIHRoZSBpZnJhbWUgdGl0bGUgYW5kIHRoZSBwbGFjZWhvbGRlciAqL1xyXG4gIHJlYWRvbmx5IG5hbWUgPSBpbnB1dC5yZXF1aXJlZDxzdHJpbmc+KCk7XHJcblxyXG4gIC8qKiB3aGljaCB0YWIgaXMgc2hvd2luZyAqL1xyXG4gIHJlYWRvbmx5IGluZGV4ID0gc2lnbmFsKDApO1xyXG5cclxuICByZWFkb25seSBzb3VyY2UgPSBjb21wdXRlZCgoKSA9PiB0aGlzLnZpZGVvcygpW3RoaXMuaW5kZXgoKV0gPz8gJycpO1xyXG4gIHJlYWRvbmx5IGxhYmVsID0gY29tcHV0ZWQoKCkgPT4gdGhpcy5sYWJlbHMoKVt0aGlzLmluZGV4KCldID8/ICh0aGlzLmluZGV4KCkgPT09IDAgPyAnSW50cm8nIDogJ1VzZSBDYXNlJykpO1xyXG5cclxuICByZWFkb25seSBlbWJlZFVybCA9IGNvbXB1dGVkPFNhZmVSZXNvdXJjZVVybCB8IG51bGw+KCgpID0+IHtcclxuICAgIGNvbnN0IGlkID0geW91dHViZUlkKHRoaXMuc291cmNlKCkpO1xyXG4gICAgcmV0dXJuIGlkXHJcbiAgICAgID8gdGhpcy5zYW5pdGl6ZXIuYnlwYXNzU2VjdXJpdHlUcnVzdFJlc291cmNlVXJsKFxyXG4gICAgICAgICAgYGh0dHBzOi8vd3d3LnlvdXR1YmUtbm9jb29raWUuY29tL2VtYmVkLyR7aWR9P3JlbD0wJnBsYXlzaW5saW5lPTFgXHJcbiAgICAgICAgKVxyXG4gICAgICA6IG51bGw7XHJcbiAgfSk7XHJcblxyXG4gIGNvbnN0cnVjdG9yKCkge1xyXG4gICAgLy8gYSBuZXcgcHJvZHVjdCBtZWFucyBiYWNrIHRvIHRoZSBmaXJzdCB0YWIsIGV4YWN0bHkgYXMgX19wcFNldFZpZGVvcyBkaWRcclxuICAgIGVmZmVjdCgoKSA9PiB7XHJcbiAgICAgIHRoaXMudmlkZW9zKCk7XHJcbiAgICAgIHRoaXMuaW5kZXguc2V0KDApO1xyXG4gICAgfSk7XHJcbiAgfVxyXG59XHJcbiJdLCJtYXBwaW5ncyI6IjtBQUFBLFNBQVMseUJBQXlCLFdBQVcsVUFBVSxRQUFR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

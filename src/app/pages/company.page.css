@@ -551,7 +551,7 @@
 }
 .partner-overview-hero:has(.partner-model-hero-grid) { min-height: 570px; }
 .partner-model-hero-grid { grid-template-columns:minmax(0,1.1fr) minmax(380px,.9fr);padding-block:48px 52px; }
-.partner-model-hero-grid .partner-hero-copy h1 { font-family:var(--disp);font-size:clamp(40px,4.2vw,58px);font-weight:800;line-height:1.05; }
+.partner-model-hero-grid .partner-hero-copy h1 { font-family:var(--disp);font-size:clamp(28px,3.2vw,46px);font-weight:800;line-height:1.05;white-space:nowrap; }
 .partner-hero-badge { display:inline-flex;margin-bottom:16px;padding:7px 12px;border:1px solid rgba(147,197,253,.5);border-radius:999px;background:rgba(255,255,255,.04);color:#7fc1ff;font:800 11px var(--mono);letter-spacing:.1em;text-transform:uppercase; }
 .partner-model-hero-grid .partner-hero-visual img { max-height:390px; }
 
@@ -850,6 +850,7 @@
   .partner-hero-live { margin-inline: auto; }
   .partner-hero-visual img { width: min(100%, 600px); max-height: 360px; }
   .partner-model-hero-grid { grid-template-columns:1fr; }
+  .partner-model-hero-grid .partner-hero-copy h1 { font-size:clamp(24px,5vw,42px); }
   .partner-model-hero-grid .partner-hero-visual img { max-height:280px; }
   .company-founder-section { padding: 24px 0 8px; }
   .company-founder-grid { grid-template-columns: 1fr; gap: 24px; }
@@ -876,6 +877,7 @@
 @media (max-width: 560px) {
   .partner-hero-grid { padding-block: 34px 22px; }
   .partner-hero-copy h1 { font-size: 39px; }
+  .partner-model-hero-grid .partner-hero-copy h1 { width:100%;max-width:100%;font-size:clamp(18px,4.4vw,22px);letter-spacing:-.04em; }
   .partner-hero-copy > p { font-size: 15px; }
   .partner-hero-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); text-align: left; }
   .partner-hero-stats span { white-space: normal; }

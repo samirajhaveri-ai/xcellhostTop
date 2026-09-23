@@ -43,7 +43,14 @@
                 <div class="price"><b>{{ formatInr(certificate.price) }}</b><span>per year &middot; 3-year term</span></div>
                 <em>Save {{ formatInr(certificate.save) }}</em>
                 <dl><div><dt>Warranty</dt><dd>{{ certificate.warranty }}</dd></div><div><dt>Validation</dt><dd>{{ certificate.validation }}</dd></div><div><dt>SANs</dt><dd>{{ certificate.sans ? 'Supported' : 'Not applicable' }}</dd></div></dl>
-                <div class="actions"><a class="btn btn-primary" href="#ppCtaT">Add to Cart</a><a class="btn btn-ghost" href="#ppCtaT">Full details</a></div>
+                <div class="actions">
+                  <div class="dc-quantity" role="group" [attr.aria-label]="certificate.name + ' quantity'">
+                    <button type="button" [attr.aria-label]="'Decrease ' + certificate.name + ' quantity'" [disabled]="quantity(certificate) === 1" (click)="changeQuantity(certificate, -1)">&minus;</button>
+                    <output aria-live="polite">{{ quantity(certificate) }}</output>
+                    <button type="button" [attr.aria-label]="'Increase ' + certificate.name + ' quantity'" [disabled]="quantity(certificate) === 99" (click)="changeQuantity(certificate, 1)">+</button>
+                  </div>
+                  <button type="button" class="btn btn-primary" (click)="addToCart(certificate)">Add to Cart</button><a class="btn btn-ghost" href="#ppCtaT">Full details</a>
+                </div>
               </article>
             }
           </div>

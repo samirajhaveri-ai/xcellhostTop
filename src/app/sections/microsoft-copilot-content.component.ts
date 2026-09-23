@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { CartService } from '../core/cart.service';
 
 interface CopilotApp {
@@ -21,6 +21,12 @@ export class MicrosoftCopilotContentComponent {
   private readonly cart = inject(CartService);
   readonly activeApp = signal(0);
   readonly quantity = signal(1);
+  readonly unitPrice = 2610;
+  readonly totalPrice = computed(() => this.unitPrice * this.quantity());
+
+  formatPrice(amount: number): string {
+    return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(amount);
+  }
 
   readonly apps: readonly CopilotApp[] = [
     {
@@ -70,9 +76,9 @@ export class MicrosoftCopilotContentComponent {
 
   addCopilot(): void {
     const name = 'Copilot for Microsoft 365';
-    const previousQuantity = this.cart.lines().find(line => line.name === name)?.qty ?? 0;
-    this.cart.add(name, '₹2,610/user/mo');
-    this.cart.setQty(name, previousQuantity + this.quantity());
+    this.cart.add(name, '₹2,610/user/mo', this.quantity(), {
+      unitAmount: this.unitPrice, currency: 'INR', locale: 'en-IN', suffix: '/month',
+    });
     this.cart.open();
   }
 }

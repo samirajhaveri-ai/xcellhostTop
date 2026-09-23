@@ -4,6 +4,14 @@ export interface CartLine {
   name: string;
   price: string;
   qty: number;
+  pricing?: CartPricing;
+}
+
+export interface CartPricing {
+  unitAmount: number;
+  currency: string;
+  locale: string;
+  suffix: string;
 }
 
 const STORAGE_KEY = 'xh_cart_v1';
@@ -24,11 +32,12 @@ export class CartService {
   readonly count = computed(() => this._lines().reduce((a, l) => a + l.qty, 0));
   readonly isEmpty = computed(() => this._lines().length === 0);
 
-  add(name: string, price: string): void {
+  add(name: string, price: string, quantity = 1, pricing?: CartPricing): void {
+    const amount = Math.max(1, Math.trunc(quantity) || 1);
     this._lines.update((ls) => {
       const hit = ls.find((l) => l.name === name);
-      if (hit) return ls.map((l) => (l === hit ? { ...l, qty: l.qty + 1 } : l));
-      return [...ls, { name, price, qty: 1 }];
+      if (hit) return ls.map((l) => (l === hit ? { ...l, price, pricing: pricing ?? l.pricing, qty: l.qty + amount } : l));
+      return [...ls, { name, price, qty: amount, pricing }];
     });
     this.persist();
   }
@@ -56,9 +65,19 @@ export class CartService {
   toCheckout(): void { this._checkout.set(true); }
   backToCart(): void { this._checkout.set(false); }
 
+  displayPrice(line: CartLine): string {
+    const pricing = line.pricing;
+    if (!pricing || !Number.isFinite(pricing.unitAmount)) return line.price || 'Quote on request';
+    const total = pricing.unitAmount * line.qty;
+    return `${new Intl.NumberFormat(pricing.locale, {
+      style: 'currency', currency: pricing.currency, maximumFractionDigits: 2,
+      minimumFractionDigits: 0,
+    }).format(total)}${pricing.suffix}`;
+  }
+
   /** Plain-text summary used by the WhatsApp and email handoffs. */
   summary(): string {
-    return this._lines().map((l) => `• ${l.name} × ${l.qty} (${l.price})`).join('\n');
+    return this._lines().map((l) => `• ${l.name} × ${l.qty} (${this.displayPrice(l)})`).join('\n');
   }
 
   private persist(): void {

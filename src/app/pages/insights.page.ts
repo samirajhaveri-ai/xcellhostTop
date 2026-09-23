@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, linkedSignal, sig
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 
-import { BlogApiService, CmsBlogPost, CmsInsightResource } from '../core/blog-api.service';
+import { BlogApiService, CmsBlogPost, CmsInsightResource, CmsResourceKind, INSIGHT_DOCUMENT_TYPES } from '../core/blog-api.service';
 import { SeoService } from '../core/seo.service';
 import {
   INSIGHTS_MENU_TAXONOMY,
@@ -11,12 +11,12 @@ import {
 import { SIMPLE_PAGES } from '../data/site.data';
 
 const ALL = 'All';
-type InsightTab = 'Blogs' | 'Videos' | 'Use Cases';
+type InsightTab = 'Blogs' | 'Videos' | 'Use Cases' | typeof INSIGHT_DOCUMENT_TYPES[number]['label'];
 
 interface InsightItem {
   readonly id: number;
   readonly documentId: string;
-  readonly kind: 'blog' | 'video' | 'use-case';
+  readonly kind: 'blog' | CmsResourceKind;
   readonly title: string;
   readonly slug: string;
   readonly description: string;
@@ -221,7 +221,7 @@ interface InsightCategoryBranch {
                     <span class="insights-toolbar-label">Showing</span>
                     <h2>{{ resultHeading() }}</h2>
                   </div>
-                  <p role="status">{{ rangeStart() }}–{{ rangeEnd() }} of {{ visible().length }} {{ activeTab() === 'Videos' ? 'video' : 'article' }}{{ visible().length === 1 ? '' : 's' }}</p>
+                  <p role="status">{{ rangeStart() }}–{{ rangeEnd() }} of {{ visible().length }} {{ resultNoun() }}{{ visible().length === 1 ? '' : 's' }}</p>
                 </div>
                 @if (activeTab() === 'Videos') {
                   <div class="insights-channel" role="status">
@@ -234,8 +234,8 @@ interface InsightCategoryBranch {
                     class="insights-lead"
                     (click)="openInsight($event, lead)"
                     [attr.href]="insightHref(lead)"
-                    [attr.target]="lead.kind === 'video' ? '_blank' : null"
-                    [attr.rel]="lead.kind === 'video' ? 'noopener noreferrer' : null"
+                    [attr.target]="isExternal(lead) ? '_blank' : null"
+                    [attr.rel]="isExternal(lead) ? 'noopener noreferrer' : null"
                   >
                     <div class="insights-lead-media">
                       @if (lead.coverImageUrl) {
@@ -257,7 +257,7 @@ interface InsightCategoryBranch {
                       <div class="insights-feature-meta">
                         <span>{{ formatDate(lead.date) }}</span>
                         <span>{{ lead.author }}</span>
-                        <span>{{ lead.kind === 'video' ? 'Watch on YouTube' : formatTime(lead.time) }}</span>
+                        <span>{{ isExternal(lead) ? resourceAction(lead) : formatTime(lead.time) }}</span>
                       </div>
                     </div>
                   </a>
@@ -268,8 +268,8 @@ interface InsightCategoryBranch {
                       class="bl insights-card"
                       (click)="openInsight($event, post)"
                       [attr.href]="insightHref(post)"
-                      [attr.target]="post.kind === 'video' ? '_blank' : null"
-                      [attr.rel]="post.kind === 'video' ? 'noopener noreferrer' : null"
+                      [attr.target]="isExternal(post) ? '_blank' : null"
+                      [attr.rel]="isExternal(post) ? 'noopener noreferrer' : null"
                     >
                       <div class="insights-card-media">
                       @if (post.coverImageUrl) {
@@ -289,7 +289,7 @@ interface InsightCategoryBranch {
                       </div>
                       <h3>{{ post.title }}</h3>
                       <p>{{ post.description }}</p>
-                      <span class="bl-m">{{ post.author }} · {{ post.kind === 'video' ? 'Watch on YouTube' : readTime(post) + ' read' }}</span>
+                      <span class="bl-m">{{ post.author }} · {{ isExternal(post) ? resourceAction(post) : readTime(post) + ' read' }}</span>
                     </a>
                   } @empty {
                     @if (!visible().length) {
@@ -338,9 +338,10 @@ export class InsightsPage {
 
   readonly videoStatus = this.blogApi.videoStatus;
   readonly page = SIMPLE_PAGES['blog'];
-  readonly tabs: readonly InsightTab[] = ['Blogs', 'Videos', 'Use Cases'];
+  readonly tabs: readonly InsightTab[] = ['Blogs', 'Videos', 'Use Cases', ...INSIGHT_DOCUMENT_TYPES.map(type => type.label)];
   readonly posts = signal<readonly CmsBlogPost[]>([]);
   readonly videos = signal<readonly CmsInsightResource[]>([]);
+  readonly documents = signal<readonly CmsInsightResource[]>([]);
   readonly useCases = signal<readonly CmsInsightResource[]>([]);
   readonly loading = signal(true);
   readonly error = signal(false);
@@ -382,7 +383,8 @@ export class InsightsPage {
     switch (this.activeTab()) {
       case 'Videos': return this.videoItems();
       case 'Use Cases': return this.useCaseItems();
-      default: return this.blogItems();
+      case 'Blogs': return this.blogItems();
+      default: return this.documents().filter(item => item.kind === this.documentType()?.kind).map(item => this.toResourceItem(item));
     }
   });
   readonly categories = computed<readonly string[]>(() => [
@@ -492,6 +494,7 @@ export class InsightsPage {
     });
 
     this.blogApi.videos$.pipe(takeUntilDestroyed()).subscribe((items) => this.videos.set(items));
+    this.blogApi.documents$.pipe(takeUntilDestroyed()).subscribe(items => this.documents.set(items));
     this.blogApi.useCases$.pipe(takeUntilDestroyed()).subscribe((items) => this.useCases.set(items));
   }
 
@@ -587,16 +590,16 @@ export class InsightsPage {
   }
 
   openInsight(event: MouseEvent, item: InsightItem): void {
-    if (item.kind === 'video' || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    if (this.isExternal(item) || event.button > 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
     void this.router.navigateByUrl(this.insightHref(item));
   }
 
   insightHref(item: InsightItem): string {
-    if (item.kind === 'video') return item.actionUrl ?? '#';
+    if (this.isExternal(item)) return item.actionUrl ?? '#';
     return item.kind === 'use-case'
-      ? `/use-cases/${encodeURIComponent(item.slug)}/`
-      : `/insights/${encodeURIComponent(item.slug)}/`;
+      ? `/use-cases/${encodeURIComponent(item.slug)}`
+      : `/insights/${encodeURIComponent(item.slug)}`;
   }
 
   goToPage(page: number, results: HTMLElement): void {
@@ -633,7 +636,24 @@ export class InsightsPage {
   tabCount(tab: InsightTab): number {
     if (tab === 'Videos') return this.videos().length;
     if (tab === 'Use Cases') return this.useCases().length;
-    return this.posts().length;
+    if (tab === 'Blogs') return this.posts().length;
+    return this.documents().filter(item => item.kind === INSIGHT_DOCUMENT_TYPES.find(type => type.label === tab)?.kind).length;
+  }
+
+  documentType() {
+    return INSIGHT_DOCUMENT_TYPES.find(type => type.label === this.activeTab());
+  }
+
+  resultNoun(): string {
+    return this.documentType()?.singular ?? (this.activeTab() === 'Videos' ? 'video' : this.activeTab() === 'Use Cases' ? 'use case' : 'article');
+  }
+
+  isExternal(item: InsightItem): boolean {
+    return item.kind !== 'blog' && item.kind !== 'use-case';
+  }
+
+  resourceAction(item: InsightItem): string {
+    return item.kind === 'video' ? 'Watch on YouTube' : 'View ' + (INSIGHT_DOCUMENT_TYPES.find(type => type.kind === item.kind)?.singular ?? 'resource');
   }
 
   resultHeading(): string {
@@ -643,10 +663,11 @@ export class InsightsPage {
   leadLabel(): string {
     if (this.activeTab() === 'Videos') return 'Featured video';
     if (this.activeTab() === 'Use Cases') return 'Featured use case';
-    return 'Top story';
+    return this.documentType() ? 'Featured ' + this.documentType()!.singular : 'Top story';
   }
 
   emptyHelp(): string {
+    if (this.documentType() && !this.sourceItems().length) return 'Published ' + this.activeTab().toLowerCase() + ' will appear here. Browse another resource type in the meantime.';
     if (this.activeTab() === 'Videos' && this.videoStatus() === 'loading') return 'Fetching uploads from XcellHost Cloud Services.';
     if (this.activeTab() === 'Videos' && this.videoStatus() === 'error') return 'Please visit our YouTube channel or try again shortly.';
     return this.activeTab() === 'Videos'
@@ -675,7 +696,7 @@ export class InsightsPage {
     return {
       ...item,
       ...placement,
-      actionUrl: item.kind === 'video' ? item.videoUrl : null,
+      actionUrl: item.kind === 'video' ? item.videoUrl : item.downloadUrl ?? null,
     };
   }
 }

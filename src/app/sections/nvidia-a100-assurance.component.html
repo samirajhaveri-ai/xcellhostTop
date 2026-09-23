@@ -1,0 +1,68 @@
+<div class="a100-edr-sections">
+  <section aria-labelledby="a100-security-title">
+    <div class="pp-sec" id="a100-security-title">Security &amp; compliance — NVIDIA A100</div>
+    <div class="a100-security">
+      <p class="pp-ov">Your GPU may run training data, model weights and live inference traffic, so the environment around it needs clear boundaries. XcellHost hosts A100 workloads in Indian data centres and offers virtual firewall, anti-DDoS, snapshot and backup options. MIG can isolate compatible jobs on a shared A100, while 24×7 operations monitoring supports the underlying service. The exact controls and data residency requirements for your deployment are confirmed during solution design.</p>
+      <div class="pp-secrows">
+        @for (item of controls; track item.name) {
+          <div class="psrow"><span class="psk">{{ item.name }}</span><span class="psv">{{ item.value }}</span></div>
+        }
+      </div>
+      <p class="pp-secfoot">XcellHost is ISO 27001 and ISO 20000-1 certified · Indian Tier-4 datacenters · 24×7 NOC and SOC.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="a100-why-title">
+    <div class="pp-sec" id="a100-why-title">Why XcellHost for NVIDIA A100</div>
+    <div class="pp-why">
+      @for (item of reasons; track item.title; let i = $index) {
+        <div class="pw"><span class="pw-ic" aria-hidden="true">{{ i + 1 }}</span><b>{{ item.title }}</b><span>{{ item.body }}</span></div>
+      }
+    </div>
+  </section>
+
+  <section class="tally-videos" aria-labelledby="a100-action-title">
+    <div class="pp-sec" id="a100-action-title">Watch it in action</div>
+    <div class="tally-video-grid">
+      <article class="tally-video-card">
+        <h3><span>Product Intro</span></h3>
+        <button type="button" class="tally-video-frame a100-video-preview" [attr.aria-pressed]="activePreview() === 'intro'" (click)="activePreview.set('intro')">
+          <span class="a100-chip" aria-hidden="true">A100<small>80 GB</small></span>
+          <span class="a100-frame-caption">NVIDIA A100 from XcellHost</span>
+        </button>
+      </article>
+      <article class="tally-video-card">
+        <h3><span>Use Cases</span></h3>
+        <button type="button" class="tally-video-frame a100-video-preview" [attr.aria-pressed]="activePreview() === 'use-cases'" (click)="activePreview.set('use-cases')">
+          <span class="a100-use-list" aria-hidden="true"><span>TRAIN</span><span>INFER</span><span>SHARE</span></span>
+          <span class="a100-frame-caption">Three ways to put A100 to work</span>
+        </button>
+      </article>
+    </div>
+    <div class="a100-preview-detail" aria-live="polite">
+      @if (activePreview() === 'intro') {
+        <b>NVIDIA A100 from XcellHost</b><p>Choose A100 80GB GPU capacity in an Indian data centre, with CUDA-ready setup, INR billing and access to 24×7 GPU support.</p>
+      } @else {
+        <b>Built for more than one workload</b><p>Train larger models, serve inference, or use MIG to assign isolated GPU instances to compatible jobs and teams.</p>
+      }
+    </div>
+    <p class="a100-preview-note">Illustrated product preview; recorded A100 footage is not available on this page.</p>
+  </section>
+
+  <section aria-labelledby="a100-customers-title">
+    <div class="pp-sec" id="a100-customers-title">What customers say</div>
+    <p class="a100-reference-intro">We can arrange a relevant customer conversation when a reference has agreed to speak. Choose the workload closest to yours:</p>
+    <div class="pp-tcards">
+      @for (item of referenceTypes; track item.title) {
+        <div class="tcard a100-reference-card">
+          <div class="quote-badge" aria-hidden="true">↗</div>
+          <div class="tav">{{ item.initials }}</div>
+          <div class="tname">{{ item.title }}</div>
+          <div class="trole">Reference on request</div>
+          <p>{{ item.body }}</p>
+        </div>
+      }
+    </div>
+    <a class="a100-reference-link" routerLink="/contact">Request a customer reference →</a>
+  </section>
+</div>

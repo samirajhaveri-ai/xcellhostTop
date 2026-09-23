@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { signal } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { BlogApiService, CmsBlogPost, CmsInsightResource } from '../core/blog-api.service';
+import { BlogApiService, CmsBlogPost, CmsInsightResource, INSIGHT_DOCUMENT_TYPES } from '../core/blog-api.service';
 import { SeoService } from '../core/seo.service';
 import { InsightsPage } from './insights.page';
 
@@ -10,6 +10,7 @@ describe('Insights pagination', () => {
   let posts: BehaviorSubject<readonly CmsBlogPost[]>;
   let videos: BehaviorSubject<readonly CmsInsightResource[]>;
   let useCases: BehaviorSubject<readonly CmsInsightResource[]>;
+  let documents: BehaviorSubject<readonly CmsInsightResource[]>;
   let page: InsightsPage;
   const makePosts = (count: number) => Array.from({ length: count }, (_, index) => ({
     documentId: String(index), category: index < 21 ? 'Cloud' : 'Security',
@@ -19,12 +20,40 @@ describe('Insights pagination', () => {
     posts = new BehaviorSubject<readonly CmsBlogPost[]>(makePosts(41));
     videos = new BehaviorSubject<readonly CmsInsightResource[]>([]);
     useCases = new BehaviorSubject<readonly CmsInsightResource[]>([]);
+    documents = new BehaviorSubject<readonly CmsInsightResource[]>([]);
     TestBed.configureTestingModule({ providers: [
       provideRouter([]),
-      { provide: BlogApiService, useValue: { posts$: posts, videos$: videos, useCases$: useCases, videoStatus: signal('ready') } },
+      { provide: BlogApiService, useValue: { posts$: posts, videos$: videos, useCases$: useCases, documents$: documents, videoStatus: signal('ready') } },
       { provide: SeoService, useValue: { set: () => {} } },
     ] });
     page = TestBed.runInInjectionContext(() => new InsightsPage());
+  });
+
+  it('shows all five document tabs with shared categories, search and downloadable cards', () => {
+    documents.next(INSIGHT_DOCUMENT_TYPES.map(type => ({
+      documentId: type.kind, kind: type.kind, title: 'Tally ' + type.label,
+      description: 'Cloud accounting resource', content: '', category: 'Accounting',
+      relatedPages: 'tally-on-cloud', date: '2026-09-23', time: '09:00',
+      downloadUrl: 'https://example.com/' + type.kind + '.pdf',
+    } as CmsInsightResource)));
+    const fixture = TestBed.createComponent(InsightsPage);
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelectorAll('.insights-tabs button').length).toBe(8);
+    for (const type of INSIGHT_DOCUMENT_TYPES) {
+      const component = fixture.componentInstance;
+      component.selectTab(type.label);
+      expect(component.tabCount(type.label)).toBe(1);
+      expect(component.resultHeading()).toBe('All ' + type.label);
+      component.selectProduct('Web Presence', 'SMB Cloud', 'Tally on Cloud');
+      expect(component.visible().length).toBe(1);
+      fixture.detectChanges();
+      const link = fixture.nativeElement.querySelector('.insights-lead') as HTMLAnchorElement;
+      expect(link.href).toBe('https://example.com/' + type.kind + '.pdf');
+      expect(link.target).toBe('_blank');
+      component.search({ target: { value: 'missing' } } as unknown as Event);
+      expect(component.visible().length).toBe(0);
+      component.clearSearch();
+    }
   });
 
   it('renders clickable video cards and filters even when blogs fail', () => {

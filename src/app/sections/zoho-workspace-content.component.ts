@@ -22,11 +22,25 @@ export class ZohoWorkspaceContentComponent {
     this.quantities.update(values => ({ ...values, [key]: Math.max(1, Math.min(9999, values[key] + change)) }));
   }
 
+  monthlyTotal(key: keyof typeof this.plans): string {
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency', currency: 'INR', maximumFractionDigits: 0,
+    }).format(this.plans[key].monthlyPrice * this.quantities()[key]);
+  }
+
+  monthlyLabel(key: keyof typeof this.plans): string {
+    const count = this.quantities()[key];
+    return count === 1 ? 'per user / month · annual + GST' : `per month for ${count} users · annual + GST`;
+  }
+
   addToCart(key: keyof typeof this.plans): void {
     const plan = this.plans[key];
     const users = this.quantities()[key];
-    const annualTotal = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(plan.monthlyPrice * 12 * users);
-    this.cart.add(`Zoho ${plan.name} - ${users} user(s) - Annual`, `${annualTotal} + GST / year`);
+    const annualPrice = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(plan.monthlyPrice * 12);
+    this.cart.add(`Zoho ${plan.name} - Annual`, `${annualPrice} + GST / user / year`, users, {
+      unitAmount: plan.monthlyPrice, currency: 'INR', locale: 'en-IN',
+      suffix: '/month · annual billing + GST',
+    });
     this.cart.open();
   }
 }
