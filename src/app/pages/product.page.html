@@ -29,13 +29,20 @@
     [class.tsplus-advanced-security-page]="isTsplusAdvancedSecurity()"
     [class.tsplus-remote-access-page]="isTsplusRemoteAccess()"
     [class.microsoft-copilot-page]="isMicrosoftCopilot()"
+    [class.microsoft-365-enterprise-page]="slug() === 'microsoft-365-enterprise'"
+    [class.nvidia-a100-page]="slug() === 'nvidia-a100'"
   >
+    @if (slug() === 'nvidia-a100') {
+      <xh-nvidia-a100-source view="hero" />
+    }
     @if (isOurPlatform()) {
       <xh-our-platform-reference />
     } @else if (isWatchtower()) {
       <xh-watchtower-reference />
     } @else {
-      @if (isCopilotStudio()) {
+      @if (slug() === 'microsoft-365-enterprise') {
+        <xh-microsoft-365-enterprise-reference />
+      } @else if (isCopilotStudio()) {
         <xh-copilot-studio-content mode="hero" />
       } @else {
       <div
@@ -619,6 +626,11 @@
                   sandbox="allow-scripts"
                   tabindex="-1"
                 ></iframe>
+                <img
+                  class="tally-prime-hero-logo"
+                  src="/assets/images/tally-prime-7-logo.png"
+                  alt="Tally Prime 7.0"
+                />
               } @else if (v.name === 'Cloud Drive') {
                 <iframe
                   class="cloud-drive-hero-animation"
@@ -1025,7 +1037,7 @@
       </div>
       }
 
-      @if (!isResellerProgram()) {
+      @if (!isResellerProgram() && slug() !== 'microsoft-365-enterprise') {
         <div class="pp-trust">
           <div class="wrap">
             @if (isCopilotStudio()) {
@@ -1150,6 +1162,7 @@
       }
     }
 
+    @if (slug() !== 'microsoft-365-enterprise') {
     @if (isManagedAws() || isManagedAzure()) {
       <xh-managed-aws-content [provider]="isManagedAzure() ? 'Azure' : 'AWS'" />
     } @else {
@@ -1172,6 +1185,7 @@
         [class.email-archiving-body]="slug() === 'email-archiving'"
       >
         <div class="wrap">
+          @if (slug() !== 'nvidia-a100') {
           @if (slug() === 'waap-as-a-service') {
             <xh-waap-content />
           } @else {
@@ -2069,7 +2083,7 @@
                               [class.cloud-backup-price-pending]="
                                 cloudBackupRegionalPrice(plan) === undefined
                               "
-                              >{{ formatCloudBackupPrice(plan) }}</strong
+                              >{{ formatCloudBackupPrice(plan, cloudBackupQuantity()) }}</strong
                             >
                             @if (cloudBackupRegionalPrice(plan) !== undefined) {
                               <span
@@ -2091,7 +2105,7 @@
                               ></span>
                               <small
                                 >{{ selectedCloudBackupCountry() === 'IN' ? '+GST · ' : ''
-                                }}{{ activeCloudBackupTerm().label }} Billing</small
+                                }}{{ activeCloudBackupTerm().label }} Billing{{ cloudBackupQuantity() > 1 ? ' · ' + cloudBackupQuantity() + ' subscriptions' : '' }}</small
                               >
                             } @else {
                               <small
@@ -3758,7 +3772,7 @@
                 <p class="pp-secfoot">XcellHost is ISO 27001 and ISO 20000-1 certified · Indian Tier-4 datacenters · DPDPA and RBI aligned · 24×7 NOC and SOC.</p>
               </section>
             } @else if (!isSmbCyber() && !isRmm() && slug() !== 'acronis-backup-advanced' && slug() !== 'acronis-ot' && slug() !== 'scrutiny-dlp' && slug() !== 'cloud-migration') {
-              <div class="pp-sec" id="ppSecHead" [style.margin-bottom.px]="slug() === 'managed-devops' ? 32 : null">{{ v.security.head }}</div>
+              <div class="pp-sec" id="ppSecHead" [style.margin-bottom.px]="slug() === 'managed-devops' ? 32 : null">{{ slug() === 'microsoft-365-enterprise' ? 'Security & compliance — Microsoft 365 Enterprise' : v.security.head }}</div>
               <div id="ppSecWrap">
                 <p class="pp-ov">{{ v.security.intro }}</p>
                 <div class="pp-secrows">
@@ -4311,14 +4325,35 @@
             </div>
           }
 
+          }
+
+          @if (slug() === 'nvidia-a100') {
+            <xh-nvidia-a100-source view="details" />
+            <xh-nvidia-a100-assurance />
+          }
+
           <div class="pp-sec pp-faq-heading" [style.margin-top.px]="slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Frequently asked questions</div>
         <div class="pp-faq" id="ppFaq">
 
           <xh-product-faq
-            [faqs]="isWatchtower() ? watchtowerFaqs : isOurPlatform() ? ourPlatformFaqs : isZohoWorkspace() ? zohoWorkspaceFaqs : v.faqs"
+            [faqs]="slug() === 'nvidia-a100' ? nvidiaA100Faqs : isWatchtower() ? watchtowerFaqs : isOurPlatform() ? ourPlatformFaqs : isZohoWorkspace() ? zohoWorkspaceFaqs : v.faqs"
           />
 
         </div>
+
+        @if (slug() === 'nvidia-a100') {
+          <nav class="a100-related" aria-label="Related products and information">
+            <span>Related:</span>
+            <a href="/nvidia-h200">H200 cloud GPU</a>
+            <a href="/nvidia-h100">H100 cloud GPU</a>
+            <a href="/rtx-pro-6000">RTX PRO 6000 cloud GPU</a>
+            <a href="/nvidia-rtx-6000-ada">RTX 6000 Ada cloud GPU</a>
+            <a href="/rtx-a6000">RTX A6000 cloud GPU</a>
+            <a href="/rtx-8000">RTX 8000 cloud GPU</a>
+            <a href="/tally-on-cloud">Tally on Cloud</a>
+            <span class="a100-related-pill">AI Use Policy</span>
+          </nav>
+        }
 
         <div id="ppBlog" [style.margin-top.px]="slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null" [class.scrutiny-dlp-insights]="slug() === 'scrutiny-dlp'" [class.vortex-seg-insights]="slug() === 'vortex-seg'"><xh-insights-section [pageSlug]="slug()" /></div>
 
@@ -4331,6 +4366,13 @@
               <a class="btn btn-primary" href="#" id="ppCtaCall" (click)="openCallback($event)"
                 >Request a callback</a
               >
+              @if (v.plans[0]; as firstPlan) {
+                <div class="module-quantity" role="group" [attr.aria-label]="firstPlan.cartName + ' quantity'">
+                  <button type="button" [attr.aria-label]="'Decrease ' + firstPlan.cartName + ' quantity'" [disabled]="planQuantity(firstPlan) === 1" (click)="changePlanQuantity(firstPlan, -1)">&minus;</button>
+                  <output aria-live="polite">{{ planQuantity(firstPlan) }}</output>
+                  <button type="button" [attr.aria-label]="'Increase ' + firstPlan.cartName + ' quantity'" [disabled]="planQuantity(firstPlan) === 99" (click)="changePlanQuantity(firstPlan, 1)">+</button>
+                </div>
+              }
               <a
                 class="btn btn-ghost"
                 style="border-color: rgba(255, 255, 255, 0.4); color: #fff"
@@ -4391,6 +4433,7 @@
           </div>
         </div>
       </div>
+    }
     }
   </div>
 

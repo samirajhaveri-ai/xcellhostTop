@@ -47,12 +47,12 @@
           <li>
             <div class="ci-info">
               <div class="ci-name">{{ line.name }}</div>
-              <div class="ci-price">{{ line.price || 'Quote on request' }}</div>
+              <div class="ci-price">{{ cart.displayPrice(line) }}</div>
             </div>
-            <div class="ci-qty">
-              <button [attr.aria-label]="'Fewer ' + line.name" (click)="dec(line)">−</button>
-              <b>{{ line.qty }}</b>
-              <button [attr.aria-label]="'More ' + line.name" (click)="inc(line)">+</button>
+            <div class="ci-qty" role="group" [attr.aria-label]="line.name + ' quantity'">
+              <button type="button" [attr.aria-label]="'Decrease ' + line.name + ' quantity'" [disabled]="line.qty === 1" (click)="dec(line)">&minus;</button>
+              <output aria-live="polite">{{ line.qty }}</output>
+              <button type="button" [attr.aria-label]="'Increase ' + line.name + ' quantity'" (click)="inc(line)">+</button>
             </div>
             <button class="ci-rm" aria-label="Remove" (click)="remove(line)">🗑</button>
           </li>

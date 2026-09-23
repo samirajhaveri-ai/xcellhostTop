@@ -1,5 +1,23 @@
 # Deploying to Plesk — step by step
 
+## Insights document tabs
+
+The Insights page includes Data Sheets, Cheat Sheets, Whitepapers, Guides and
+Ebooks. They use the same menu categories, subcategories and products as blogs.
+To publish content, create the following optional Strapi collection API IDs:
+`data-sheets`, `cheat-sheets`, `whitepapers`, `guides`, `ebooks`.
+
+Use the blog field names: `title`, `slug`, `description`, `content`, `author`,
+`date`, `time`, `category`, `mainCategory`, `subCategory`, `product`, `relatedPages`
+and a single-image media field `coverImage`. Add a text field `downloadUrl` with
+the public PDF/document URL (absolute HTTPS URL or `/uploads/...`). Publish the
+entries and enable public `find` access for those collections. Entries without
+a usable HTTP(S) document URL are excluded to avoid broken cards.
+
+The website refreshes these collections every 30 seconds. Until collections and
+documents are published, their tabs display zero and an empty-state message;
+no sample documents are shown as real content.
+
 ## YouTube uploads on Insights
 
 The build includes `feeds/youtube.php` and `feeds/youtube-snapshot.json`.

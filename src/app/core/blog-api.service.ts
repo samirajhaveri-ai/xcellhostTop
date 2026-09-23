@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
-import { catchError, EMPTY, expand, map, Observable, of, reduce, shareReplay, switchMap, timer, timeout, tap } from 'rxjs';
+import { catchError, combineLatest, EMPTY, expand, map, Observable, of, reduce, shareReplay, switchMap, timer, timeout, tap } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 
@@ -38,12 +38,21 @@ export interface CmsImage {
   readonly height: number;
 }
 
-export type CmsResourceKind = 'video' | 'use-case';
+export const INSIGHT_DOCUMENT_TYPES = [
+  { label: 'Data Sheets', singular: 'data sheet', kind: 'data-sheet', endpoint: 'data-sheets' },
+  { label: 'Cheat Sheets', singular: 'cheat sheet', kind: 'cheat-sheet', endpoint: 'cheat-sheets' },
+  { label: 'Whitepapers', singular: 'whitepaper', kind: 'whitepaper', endpoint: 'whitepapers' },
+  { label: 'Guides', singular: 'guide', kind: 'guide', endpoint: 'guides' },
+  { label: 'Ebooks', singular: 'ebook', kind: 'ebook', endpoint: 'ebooks' },
+] as const;
+
+export type CmsResourceKind = 'video' | 'use-case' | typeof INSIGHT_DOCUMENT_TYPES[number]['kind'];
 
 /** Shared Strapi shape for the optional Videos and Use Cases collections. */
 export interface CmsInsightResource extends CmsArticle {
   readonly kind: CmsResourceKind;
   readonly videoUrl: string | null;
+  readonly downloadUrl?: string | null;
   /** Legacy external service link retained for older Video/Use Case entries. */
   readonly relatedPage: string | null;
 }
@@ -115,6 +124,14 @@ export class BlogApiService {
 
   /** Strapi Use Case collection, presented alongside blogs in the Insights hub. */
   readonly useCases$ = this.resourceStream('use-cases', 'use-case');
+
+  /** Each document collection uses the same category fields as blogs. */
+  readonly documents$ = combineLatest(INSIGHT_DOCUMENT_TYPES.map(type =>
+    this.resourceStream(type.endpoint, type.kind)
+  )).pipe(
+    map(collections => collections.flat().filter(item => Boolean(item.downloadUrl))),
+    shareReplay({ bufferSize: 1, refCount: true })
+  );
 
   watchBySlug(slug: string): Observable<CmsBlogPost | null> {
     // The hosting WAF rejects Strapi filter parameters containing `$eq` with a
@@ -229,7 +246,7 @@ export class BlogApiService {
 
   private normaliseResource(item: RawCmsInsightResource, kind: CmsResourceKind): CmsInsightResource {
     const imageUrl = item.coverImage?.url;
-    const category = item.category ?? (kind === 'video' ? 'Videos' : 'Use Cases');
+    const category = item.category ?? (kind === 'video' ? 'Videos' : kind === 'use-case' ? 'Use Cases' : 'General');
     return {
       id: item.id ?? 0,
       documentId: item.documentId ?? `${kind}-${item.slug ?? item.title ?? 'item'}`,
@@ -246,6 +263,7 @@ export class BlogApiService {
       subCategory: item.subCategory?.trim() || category,
       product: item.product?.trim() || null,
       videoUrl: item.videoUrl ?? item.youtubeUrl ?? (kind === 'video' ? item.link ?? null : null),
+      downloadUrl: this.documentUrl(item.downloadUrl ?? item.link),
       relatedPage: item.relatedPage ?? (kind === 'use-case' ? item.link ?? null : null),
       relatedPages: item.relatedPages ?? item.relatedPage ?? (kind === 'use-case' ? item.link ?? null : null),
       publishedAt: item.publishedAt ?? '',
@@ -257,6 +275,16 @@ export class BlogApiService {
           : `${this.baseUrl}${imageUrl}`
         : this.fallbackCover(item.category ?? kind),
     };
+  }
+
+  private documentUrl(value: string | null | undefined): string | null {
+    if (!value?.trim()) return null;
+    try {
+      const url = new URL(value.trim(), this.baseUrl || window.location.origin);
+      return url.protocol === 'https:' || url.protocol === 'http:' ? url.href : null;
+    } catch {
+      return null;
+    }
   }
 
   private normaliseYouTubeVideo(item: YouTubeFeedItem): CmsInsightResource {

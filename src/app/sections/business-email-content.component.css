@@ -265,6 +265,10 @@
 :host .bizmail-close{position:absolute;right:12px;top:8px;border:0;background:transparent;font-size:28px;cursor:pointer;color:var(--navy)}
 :host .bizmail-config label{display:block;margin-top:20px;font-weight:600}
 :host .bizmail-config input{width:100%;padding:12px;border:1px solid var(--line);border-radius:8px;margin:8px 0 20px;font:inherit}
+:host .bizmail-config-quantity{display:flex;align-items:center;gap:8px;margin:8px 0 20px}
+:host .bizmail-config-quantity input{flex:1;min-width:0;width:auto;margin:0;text-align:center}
+:host .bizmail-config-quantity button{flex:none;width:40px;height:40px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--navy);font-weight:700;cursor:pointer}
+:host .bizmail-config-quantity button:disabled{opacity:.45;cursor:not-allowed}
 :host .bizmail-total{font-size:28px;font-weight:700}:host .bizmail-total small{font-size:13px;font-weight:400}
 :host button:focus-visible,:host a:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
 @media(max-width:1024px){:host .bizmail-pp-vgrid,:host .bizmail-pgrid,:host .bizmail-pp-feats{grid-template-columns:repeat(2,minmax(0,1fr))}:host .bizmail-pp-addons,:host .bizmail-pp-bens,:host .bizmail-pp-uses{grid-template-columns:repeat(2,minmax(0,1fr))}:host .bizmail-pp-auto{grid-template-columns:1fr}:host .bizmail-pp-auto ul{grid-template-columns:1fr 1fr}}

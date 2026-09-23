@@ -187,22 +187,22 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3v9M6.3 5.7a8 8 0 1 0 11.4 0" /></svg>
         </button>
         <span class="xh-login-tooltip" aria-hidden="true">Login</span>
-        <div id="xh-customer-login-menu" class="xh-login-dropdown" role="menu" aria-label="Customer login">
-          <button class="selected" type="button" role="menuitem" (click)="openLogin()">
-            <span>Customer Login</span><b class="xh-login-check" aria-hidden="true">✓</b>
-          </button>
-          <button type="button" role="menuitem" (click)="openLogin()">
-            <span>Partner Login</span>
-          </button>
-          <button type="button" role="menuitem" (click)="openLogin()">
-            <span>Vendor Login</span>
-          </button>
-          <button type="button" role="menuitem" (click)="openLogin()">
-            <span>Employee Login</span>
-          </button>
+        <div id="xh-customer-login-menu" class="xh-login-dropdown" role="menu" aria-label="Login portals">
+          <a routerLink="/customer-login" routerLinkActive="selected" #customerLoginLink="routerLinkActive" role="menuitem" (click)="onNavigate()">
+            <span>Customer Login</span>@if (customerLoginLink.isActive) {<b class="xh-login-check" aria-hidden="true">✓</b>}
+          </a>
+          <a routerLink="/partner-login" routerLinkActive="selected" #partnerLoginLink="routerLinkActive" role="menuitem" (click)="onNavigate()">
+            <span>Partner Login</span>@if (partnerLoginLink.isActive) {<b class="xh-login-check" aria-hidden="true">✓</b>}
+          </a>
+          <a routerLink="/vendor-login" routerLinkActive="selected" #vendorLoginLink="routerLinkActive" role="menuitem" (click)="onNavigate()">
+            <span>Vendor Login</span>@if (vendorLoginLink.isActive) {<b class="xh-login-check" aria-hidden="true">✓</b>}
+          </a>
+          <a routerLink="/employee-login" routerLinkActive="selected" #employeeLoginLink="routerLinkActive" role="menuitem" (click)="onNavigate()">
+            <span>Employee Login</span>@if (employeeLoginLink.isActive) {<b class="xh-login-check" aria-hidden="true">✓</b>}
+          </a>
         </div>
       </div>
-      <a class="xh-trial" href="#" (click)="openSignup($event)">Sign Up</a>
+      <a class="xh-trial" routerLink="/signup" (click)="onNavigate()">Sign Up</a>
     </div>
   </div>
 </header>

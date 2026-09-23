@@ -22,11 +22,6 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "SMB Cloud",
             "items": [
               {
-                "title": "SMB Cloud Explore",
-                "pill": "Top seller",
-                "desc": null
-              },
-              {
                 "title": "Tally on Cloud",
                 "pill": "Top seller",
                 "desc": null
@@ -524,14 +519,24 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "49",
-        "label": "Performance Cloud",
+        "label": "Cloud Servers",
         "on": false,
         "groups": [
           {
-            "heading": "Performance Cloud",
+            "heading": "Cloud Servers",
             "items": [
               {
-                "title": "Performance Cloud",
+                "title": "General Compute",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "CPU Optimized",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Memory Optimized",
                 "pill": null,
                 "desc": null
               },
@@ -648,6 +653,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "GPU Clusters",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
@@ -660,21 +670,6 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "Inference Cloud",
             "items": [
-              {
-                "title": "AI Inference Cloud",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "AI Developer Cloud",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "AI Model library",
-                "pill": null,
-                "desc": null
-              },
               {
                 "title": "Serverless Inference",
                 "pill": null,
@@ -1154,7 +1149,7 @@ export const MEGA_MENU: MenuTop[] = [
             "title": "Microsoft 365 Enterprise",
             "body": "Explore Microsoft 365 Enterprise services, features and solutions.",
             "image": "/assets/images/orb-microsoft-365.png",
-            "link": "/microsoft-365"
+            "link": "/microsoft-365-enterprise"
           }
         ],
         "groups": [

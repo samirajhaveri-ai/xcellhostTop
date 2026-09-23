@@ -79,6 +79,7 @@ import { WhatsAppSmbContentComponent } from '../sections/whatsapp-smb-content.co
 import { ManagedAwsContentComponent } from '../sections/managed-aws-content.component';
 
 import { ManagedMicrosoft365ContentComponent } from '../sections/managed-microsoft-365-content.component';
+import { Microsoft365EnterpriseReferenceComponent } from '../sections/microsoft-365-enterprise-reference.component';
 import { MicrosoftCopilotContentComponent } from '../sections/microsoft-copilot-content.component';
 import { CopilotStudioContentComponent } from '../sections/copilot-studio-content.component';
 import { CloudObjectStorageContentComponent } from '../sections/cloud-object-storage-content.component';
@@ -99,6 +100,8 @@ import { GenaiProtectionContentComponent } from '../sections/genai-protection-co
 import { CloudMigrationAdvantageComponent } from '../sections/cloud-migration-advantage.component';
 import { AcronisBackupAdvancedContentComponent } from '../sections/acronis-backup-advanced-content.component';
 import { AcronisOtContentComponent } from '../sections/acronis-ot-content.component';
+import { NvidiaA100SourceComponent } from '../sections/nvidia-a100-source.component';
+import { NvidiaA100AssuranceComponent } from '../sections/nvidia-a100-assurance.component';
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -200,6 +203,7 @@ interface ProductTourSlide {
     ManagedAwsContentComponent,
 
     ManagedMicrosoft365ContentComponent,
+    Microsoft365EnterpriseReferenceComponent,
     MicrosoftCopilotContentComponent,
     CopilotStudioContentComponent,
     WaapContentComponent,
@@ -249,14 +253,45 @@ interface ProductTourSlide {
     CloudMigrationAdvantageComponent,
     AcronisBackupAdvancedContentComponent,
     AcronisOtContentComponent,
+    NvidiaA100SourceComponent,
+    NvidiaA100AssuranceComponent,
 
     EmailSignatureContentComponent,
     EmailSignatureHeroComponent,
   ],
   templateUrl: './product.page.html',
   styles: [`
-    #ppage.tally-page .pph-scene.has-illus.standalone-illus { top: 50%; bottom: auto; transform: translateY(-50%); }
-    @media(max-width:900px) { #ppage.tally-page .pph-scene.has-illus.standalone-illus { top: auto; bottom: auto; transform: none; margin: 24px auto; } }
+    #ppage.nvidia-a100-page .pp-hero { display: none; }
+    #ppage.nvidia-a100-page #ppOv { width: 100%; max-width: none; }
+    #ppage.nvidia-a100-page .a100-related { display: flex; flex-wrap: nowrap; gap: 6px; align-items: center; margin-top: 24px; overflow-x: auto; white-space: nowrap; color: #486078; font-size: 12px; }
+    #ppage.nvidia-a100-page .a100-related > * { flex: none; }
+    #ppage.nvidia-a100-page .a100-related a, #ppage.nvidia-a100-page .a100-related-pill { padding: 6px 10px; border: 1px solid #d7e3f5; border-radius: 999px; color: #1767d6; text-decoration: none; }
+    #ppage.tally-page .pph-scene.has-illus.standalone-illus { top: 50%; bottom: auto; transform: translateY(-50%); overflow: visible; mask-image: none; }
+    #ppage.tally-page .pph-illus { position: relative; }
+    #ppage.tally-page .tally-prime-hero-logo {
+      position: absolute;
+      z-index: 3;
+      top: auto;
+      right: 10%;
+      bottom: 12px;
+      display: block;
+      width: 205px;
+      height: 76px;
+      object-fit: contain;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      filter: none;
+    }
+    @media(max-width:1100px) {
+      #ppage.tally-page .tally-prime-hero-logo { right: 5%; bottom: 10px; width: 180px; height: 67px; }
+    }
+    @media(max-width:900px) {
+      #ppage.tally-page .pph-scene.has-illus.standalone-illus { top: auto; bottom: auto; transform: none; margin: 24px auto; }
+      #ppage.tally-page .tally-prime-hero-logo { top: auto; right: 7%; bottom: 0; width: 160px; height: 60px; }
+    }
     #ppage.cloud-migration-page .pph-scene.has-illus.standalone-illus { right: 1%; width: 49%; top: 2%; bottom: 2%; mask-image: none; }
     #ppage.cloud-migration-page .pph-scene.has-illus.standalone-illus .pph-illus-img { width: 96%; max-width: 600px; max-height: 440px; filter: none; }
     #ppage.acronis-backup-advanced-page .pph-scene.has-illus.standalone-illus { right: 2%; width: 43%; top: 0; bottom: 0; mask-image: none; opacity: 1; }
@@ -604,6 +639,118 @@ interface ProductTourSlide {
       #ppage .copilot-hero-points { grid-template-columns: 1fr; }
       #ppage .copilot-hero-copy { padding-bottom: 390px; }
       #ppage .copilot-hero-art { right: 4%; width: 92%; }
+    }
+
+    /* RTX 8000 desktop hero geometry shared by every product page. */
+    @media (min-width: 901px) {
+      #ppage .pp-hero {
+        box-sizing: border-box;
+        min-height: 510px;
+        padding: 50px 0 54px;
+      }
+      #ppage .pp-hero > .wrap {
+        width: 100%;
+        max-width: 1240px;
+        margin-inline: auto;
+        padding-inline: 24px;
+      }
+      #ppage .pp-hero > .wrap > .pp-crumb,
+      #ppage .pp-hero > .wrap > h1,
+      #ppage .pp-hero > .wrap > .pp-tagline,
+      #ppage .pp-hero > .wrap > .pp-tagline-support,
+      #ppage .pp-hero > .wrap > .pp-chips,
+      #ppage .pp-hero > .wrap > .pp-hero-grid {
+        max-width: 58%;
+      }
+      #ppage .pp-hero > .wrap > h1,
+      #ppage .pp-hero #ppTitle {
+        max-width: 100%;
+        margin-bottom: 14px;
+        font-size: clamp(27px, 3vw, 40px);
+        line-height: 1.12;
+        white-space: normal;
+      }
+      #ppage .pp-title-name { white-space: normal; }
+      #ppage .pp-hero > .wrap > .pp-tagline {
+        max-width: 680px;
+        margin-bottom: 4px;
+        font-weight: 650;
+        line-height: 1.4;
+      }
+      #ppage .pp-hero > .wrap > .pp-tagline-support {
+        max-width: 680px;
+        margin-bottom: 14px;
+        color: #fff;
+        font: 500 16px/1.5 var(--body);
+      }
+      #ppage .pp-hpoints {
+        grid-template-columns: repeat(2, max-content);
+        gap: 11px 27px;
+        margin: 9px 0 23px;
+      }
+      #ppage .pp-hpoint { font-size: 14px; }
+      #ppage .product-hero-ctas { gap: 12px; }
+      #ppage .product-hero-ctas .btn { min-height: 46px; }
+      #ppage .pp-ask-ai {
+        margin-top: 24px;
+        padding: 20px 0 0;
+        border: 0;
+        border-top: 1px solid rgba(144, 180, 233, .25);
+        border-radius: 0;
+        background: none;
+      }
+      #ppage .pp-ask-ai-kicker {
+        padding: 7px 11px;
+        border: 1px solid rgba(75, 165, 255, .32);
+        border-radius: 999px;
+        background: rgba(8, 31, 68, .46);
+      }
+      #ppage .pp-ask-ai-chip {
+        border: 1px solid rgba(161, 184, 219, .28);
+        border-radius: 12px;
+        background: rgba(11, 24, 53, .58);
+      }
+      #ppage .pph-scene { max-height: 510px; }
+      #ppage .pph-scene.has-illus {
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        align-items: center;
+      }
+      #ppage.tally-page .pph-scene.has-illus.standalone-illus {
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        transform: none;
+        overflow: hidden;
+      }
+    }
+
+    @media (min-width: 901px) and (max-width: 1180px) {
+      #ppage .pp-hero > .wrap { padding-inline: 28px; }
+      #ppage .pp-hero > .wrap > .pp-crumb,
+      #ppage .pp-hero > .wrap > h1,
+      #ppage .pp-hero > .wrap > .pp-tagline,
+      #ppage .pp-hero > .wrap > .pp-tagline-support,
+      #ppage .pp-hero > .wrap > .pp-chips,
+      #ppage .pp-hero > .wrap > .pp-hero-grid { max-width: 56%; }
+      #ppage .pp-hero > .wrap > h1,
+      #ppage .pp-hero #ppTitle { font-size: clamp(27px, 3.2vw, 35px); }
+      #ppage .pph-scene { width: 44%; }
+      #ppage .product-hero-ctas { gap: 8px; }
+      #ppage .product-hero-ctas .btn { padding-inline: 13px; font-size: 12px; }
+      #ppage .pp-hpoints { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 16px; }
+    }
+
+    @media (min-width: 901px) and (max-width: 1050px) {
+      #ppage .product-hero-ctas {
+        width: 100%;
+        max-width: 100%;
+        flex-wrap: wrap;
+      }
+      #ppage .product-hero-ctas .btn { min-height: 42px; padding-inline: 11px; }
+      #ppage .pp-ask-ai { margin-top: 18px; }
+      #ppage .pph-scene { right: -2%; width: 43%; }
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -1058,8 +1205,9 @@ export class ProductPage {
     ev.preventDefault();
     const quantity = this.cdrQuantity();
     this.cart.add(
-      `Cloud Disaster Recovery SMB × ${quantity} ${quantity === 1 ? 'server' : 'servers'}`,
-      `${this.cdrPlanTotal()}/month`,
+      'Cloud Disaster Recovery SMB',
+      '₹9,999/server/month',
+      quantity,
     );
     this.cart.open();
   }
@@ -1535,6 +1683,15 @@ export class ProductPage {
     ['How can we see a Trust Watch demonstration?', 'Use the callback or Let’s Talk option and the team will arrange a guided demonstration using representative workflows.'],
   ];
 
+  readonly nvidiaA100Faqs: Faq[] = [
+    ['What workloads is NVIDIA A100 80GB suited to?', 'A100 80GB is suited to large-model training, fine-tuning, GPU inference and other CUDA-based compute jobs. Share your model and dataset requirements so the GPU and memory can be sized correctly.'],
+    ['Do we need a GPU specialist to get started?', 'XcellHost can help select the configuration and prepare a CUDA-ready environment. Your team remains responsible for its application code and model workflow unless you arrange additional managed help.'],
+    ['Can more than one workload use the same A100?', 'Yes. Multi-Instance GPU (MIG) can partition a compatible A100 into isolated instances. The number and size of instances depend on the chosen configuration and each workload’s requirements.'],
+    ['Where will our A100 workload run?', 'The A100 service is offered from Indian data centres. Confirm the selected location, network controls and any data residency needs with the team before deployment.'],
+    ['Can we test a workload before committing?', 'Ask the GPU team about a scoped proof of concept or trial. Availability, duration and configuration are confirmed when the request is reviewed.'],
+    ['How is NVIDIA A100 priced?', 'Available configurations can be billed hourly or monthly in INR. The final quote depends on GPU count, storage, networking, support and the selected term.'],
+  ];
+
   readonly isSmbCyber = computed(
     () => this.view()?.name === 'SMB Cyber Security Appliance'
   );
@@ -1867,9 +2024,7 @@ export class ProductPage {
   }
 
   private addPlanQuantity(plan: PricingPlan): void {
-    const previousQuantity = this.cart.lines().find(line => line.name === plan.cartName)?.qty ?? 0;
-    this.cart.add(plan.cartName, plan.cartPrice);
-    this.cart.setQty(plan.cartName, previousQuantity + this.planQuantity(plan));
+    this.cart.add(plan.cartName, plan.cartPrice, this.planQuantity(plan));
   }
 
   addPlan(plan: PricingPlan, ev: Event): void {
@@ -1881,10 +2036,7 @@ export class ProductPage {
   viewRmmPlan(plan: PricingPlan, ev: Event): void {
     ev.preventDefault();
     const quantity = this.edrQuantity();
-    const total = this.edrPlanTotalValue(plan);
-    const price = total ? `â‚¹${total.toLocaleString('en-IN')} total` : plan.cartPrice;
-
-    this.cart.add(`${plan.cartName} Ã— ${quantity} users`, price);
+    this.cart.add(plan.cartName, plan.cartPrice, quantity);
     this.cart.open();
   }
 
@@ -1899,10 +2051,7 @@ export class ProductPage {
   buyEdrPlan(plan: PricingPlan, ev: Event): void {
     ev.preventDefault();
     const quantity = this.edrQuantity();
-    const total = this.edrPlanTotalValue(plan);
-    const price = total ? `₹${total.toLocaleString('en-IN')} total` : plan.cartPrice;
-
-    this.cart.add(`${plan.cartName} × ${quantity} users`, price);
+    this.cart.add(plan.cartName, plan.cartPrice, quantity);
     this.cart.open();
     this.cart.toCheckout();
   }
@@ -2057,14 +2206,14 @@ export class ProductPage {
       : Math.round(basePrice * 1.2 * this.cloudBackupExchangeRates[country] * 100) / 100;
   }
 
-  formatCloudBackupPrice(plan: CloudBackupPlan): string {
+  formatCloudBackupPrice(plan: CloudBackupPlan, quantity = 1): string {
     const amount = this.cloudBackupRegionalPrice(plan);
     if (amount === undefined) return 'Coming soon';
     const country = this.activeCloudBackupCountry();
     return new Intl.NumberFormat(country.locale, {
       style: 'currency', currency: country.currency, maximumFractionDigits: 2,
       minimumFractionDigits: 0,
-    }).format(amount);
+    }).format(amount * quantity);
   }
 
   readonly activeCloudBackupTerm = computed(
@@ -2092,9 +2241,13 @@ export class ProductPage {
     const term = this.activeCloudBackupTerm().label;
     const price = `${this.formatCloudBackupPrice(plan)}/${term.toLowerCase()}`;
     const name = `Cloud Backup - ${plan.storage} - ${term} - ${this.activeCloudBackupCountry().label}`;
-    const previousQuantity = this.cart.lines().find(line => line.name === name)?.qty ?? 0;
-    this.cart.add(name, price);
-    this.cart.setQty(name, previousQuantity + this.cloudBackupQuantity());
+    const country = this.activeCloudBackupCountry();
+    this.cart.add(name, price, this.cloudBackupQuantity(), {
+      unitAmount: this.cloudBackupRegionalPrice(plan),
+      currency: country.currency,
+      locale: country.locale,
+      suffix: `/${term.toLowerCase()}${country.key === 'IN' ? ' + GST' : ''}`,
+    });
     this.cart.open();
   }
 
