@@ -45,7 +45,8 @@ export class EnterpriseDmarcContentComponent {
   }
 
   addToCart(): void {
-    this.cart.add(`Enterprise DMARC - ${this.plan().name} - ${this.annual() ? 'Annual' : 'Monthly'} - ${this.quantity()} subscription(s)`, `${this.inr(this.total())} + GST / ${this.annual() ? 'year' : 'month'}`);
+    const unitPrice = this.annual() ? this.plan().annualMonthly * 12 : this.plan().monthly;
+    this.cart.add(`Enterprise DMARC - ${this.plan().name} - ${this.annual() ? 'Annual' : 'Monthly'}`, `${this.inr(unitPrice)} + GST / ${this.annual() ? 'year' : 'month'}`, this.quantity());
     this.configuration?.nativeElement.close();
     this.cart.open();
   }

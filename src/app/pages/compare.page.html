@@ -105,6 +105,18 @@
                 }
               </tr>
               <tr>
+                <th scope="row">Quantity</th>
+                @for (c of columns(); track c.slug) {
+                  <td>
+                    <div class="cmp-quantity" role="group" [attr.aria-label]="c.name + ' quantity'">
+                      <button type="button" [attr.aria-label]="'Decrease ' + c.name + ' quantity'" [disabled]="quantity(c.name) === 1" (click)="changeQuantity(c.name, -1)">&minus;</button>
+                      <output aria-live="polite">{{ quantity(c.name) }}</output>
+                      <button type="button" [attr.aria-label]="'Increase ' + c.name + ' quantity'" [disabled]="quantity(c.name) === 99" (click)="changeQuantity(c.name, 1)">+</button>
+                    </div>
+                  </td>
+                }
+              </tr>
+              <tr>
                 <th scope="row">Key features</th>
                 @for (c of columns(); track c.slug) {
                   <td>

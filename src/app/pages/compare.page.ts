@@ -86,6 +86,18 @@ export class ComparePage {
   /* ------------------------------------------------------------- picker */
 
   readonly pickQuery = signal('');
+  readonly quantities = signal<Record<string, number>>({});
+
+  quantity(name: string): number {
+    return this.quantities()[name] ?? 1;
+  }
+
+  changeQuantity(name: string, change: number): void {
+    this.quantities.update(values => ({
+      ...values,
+      [name]: Math.max(1, Math.min(99, (values[name] ?? 1) + change)),
+    }));
+  }
 
   private readonly featured: DirectoryEntry[] = this.catalog.entries
     .filter((e) => FEATURED.test(e.name))
@@ -164,7 +176,9 @@ export class ComparePage {
   addAll(): void {
     const cols = this.columns();
     if (!cols.length) return;
-    for (const c of cols) this.cart.add(c.name, c.price);
+    for (const c of cols) {
+      this.cart.add(c.name, c.price, this.quantity(c.name));
+    }
     this.cart.open();
   }
 

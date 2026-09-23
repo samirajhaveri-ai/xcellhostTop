@@ -80,6 +80,8 @@ import { GenaiProtectionContentComponent } from '../sections/genai-protection-co
 import { CloudMigrationAdvantageComponent } from '../sections/cloud-migration-advantage.component';
 import { AcronisBackupAdvancedContentComponent } from '../sections/acronis-backup-advanced-content.component';
 import { AcronisOtContentComponent } from '../sections/acronis-ot-content.component';
+import { NvidiaA100SourceComponent } from '../sections/nvidia-a100-source.component';
+import { NvidiaA100AssuranceComponent } from '../sections/nvidia-a100-assurance.component';
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -211,12 +213,19 @@ interface ProductTourSlide {
     CloudMigrationAdvantageComponent,
     AcronisBackupAdvancedContentComponent,
     AcronisOtContentComponent,
+    NvidiaA100SourceComponent,
+    NvidiaA100AssuranceComponent,
 
     EmailSignatureContentComponent,
     EmailSignatureHeroComponent,
   ],
   templateUrl: './product.page.html',
   styles: [`
+    #ppage.nvidia-a100-page .pp-hero { display: none; }
+    #ppage.nvidia-a100-page #ppOv { width: 100%; max-width: none; }
+    #ppage.nvidia-a100-page .a100-related { display: flex; flex-wrap: nowrap; gap: 6px; align-items: center; margin-top: 24px; overflow-x: auto; white-space: nowrap; color: #486078; font-size: 12px; }
+    #ppage.nvidia-a100-page .a100-related > * { flex: none; }
+    #ppage.nvidia-a100-page .a100-related a, #ppage.nvidia-a100-page .a100-related-pill { padding: 6px 10px; border: 1px solid #d7e3f5; border-radius: 999px; color: #1767d6; text-decoration: none; }
     #ppage.tally-page .pph-scene.has-illus.standalone-illus { top: 50%; bottom: auto; transform: translateY(-50%); }
     @media(max-width:900px) { #ppage.tally-page .pph-scene.has-illus.standalone-illus { top: auto; bottom: auto; transform: none; margin: 24px auto; } }
     #ppage.cloud-migration-page .pph-scene.has-illus.standalone-illus { right: 1%; width: 49%; top: 2%; bottom: 2%; mask-image: none; }
@@ -1019,8 +1028,9 @@ export class ProductPage {
     ev.preventDefault();
     const quantity = this.cdrQuantity();
     this.cart.add(
-      `Cloud Disaster Recovery SMB × ${quantity} ${quantity === 1 ? 'server' : 'servers'}`,
-      `${this.cdrPlanTotal()}/month`,
+      'Cloud Disaster Recovery SMB',
+      '₹9,999/server/month',
+      quantity,
     );
     this.cart.open();
   }
@@ -1405,6 +1415,15 @@ export class ProductPage {
     ['How can we see a Trust Watch demonstration?', 'Use the callback or Let’s Talk option and the team will arrange a guided demonstration using representative workflows.'],
   ];
 
+  readonly nvidiaA100Faqs: Faq[] = [
+    ['What workloads is NVIDIA A100 80GB suited to?', 'A100 80GB is suited to large-model training, fine-tuning, GPU inference and other CUDA-based compute jobs. Share your model and dataset requirements so the GPU and memory can be sized correctly.'],
+    ['Do we need a GPU specialist to get started?', 'XcellHost can help select the configuration and prepare a CUDA-ready environment. Your team remains responsible for its application code and model workflow unless you arrange additional managed help.'],
+    ['Can more than one workload use the same A100?', 'Yes. Multi-Instance GPU (MIG) can partition a compatible A100 into isolated instances. The number and size of instances depend on the chosen configuration and each workload’s requirements.'],
+    ['Where will our A100 workload run?', 'The A100 service is offered from Indian data centres. Confirm the selected location, network controls and any data residency needs with the team before deployment.'],
+    ['Can we test a workload before committing?', 'Ask the GPU team about a scoped proof of concept or trial. Availability, duration and configuration are confirmed when the request is reviewed.'],
+    ['How is NVIDIA A100 priced?', 'Available configurations can be billed hourly or monthly in INR. The final quote depends on GPU count, storage, networking, support and the selected term.'],
+  ];
+
   readonly isSmbCyber = computed(
     () => this.view()?.name === 'SMB Cyber Security Appliance'
   );
@@ -1726,9 +1745,7 @@ export class ProductPage {
   }
 
   private addPlanQuantity(plan: PricingPlan): void {
-    const previousQuantity = this.cart.lines().find(line => line.name === plan.cartName)?.qty ?? 0;
-    this.cart.add(plan.cartName, plan.cartPrice);
-    this.cart.setQty(plan.cartName, previousQuantity + this.planQuantity(plan));
+    this.cart.add(plan.cartName, plan.cartPrice, this.planQuantity(plan));
   }
 
   addPlan(plan: PricingPlan, ev: Event): void {
@@ -1740,10 +1757,7 @@ export class ProductPage {
   viewRmmPlan(plan: PricingPlan, ev: Event): void {
     ev.preventDefault();
     const quantity = this.edrQuantity();
-    const total = this.edrPlanTotalValue(plan);
-    const price = total ? `â‚¹${total.toLocaleString('en-IN')} total` : plan.cartPrice;
-
-    this.cart.add(`${plan.cartName} Ã— ${quantity} users`, price);
+    this.cart.add(plan.cartName, plan.cartPrice, quantity);
     this.cart.open();
   }
 
@@ -1758,10 +1772,7 @@ export class ProductPage {
   buyEdrPlan(plan: PricingPlan, ev: Event): void {
     ev.preventDefault();
     const quantity = this.edrQuantity();
-    const total = this.edrPlanTotalValue(plan);
-    const price = total ? `₹${total.toLocaleString('en-IN')} total` : plan.cartPrice;
-
-    this.cart.add(`${plan.cartName} × ${quantity} users`, price);
+    this.cart.add(plan.cartName, plan.cartPrice, quantity);
     this.cart.open();
     this.cart.toCheckout();
   }
@@ -1896,14 +1907,14 @@ export class ProductPage {
       : Math.round(basePrice * 1.2 * this.cloudBackupExchangeRates[country] * 100) / 100;
   }
 
-  formatCloudBackupPrice(plan: CloudBackupPlan): string {
+  formatCloudBackupPrice(plan: CloudBackupPlan, quantity = 1): string {
     const amount = this.cloudBackupRegionalPrice(plan);
     if (amount === undefined) return 'Coming soon';
     const country = this.activeCloudBackupCountry();
     return new Intl.NumberFormat(country.locale, {
       style: 'currency', currency: country.currency, maximumFractionDigits: 2,
       minimumFractionDigits: 0,
-    }).format(amount);
+    }).format(amount * quantity);
   }
 
   readonly activeCloudBackupTerm = computed(
@@ -1931,9 +1942,13 @@ export class ProductPage {
     const term = this.activeCloudBackupTerm().label;
     const price = `${this.formatCloudBackupPrice(plan)}/${term.toLowerCase()}`;
     const name = `Cloud Backup - ${plan.storage} - ${term} - ${this.activeCloudBackupCountry().label}`;
-    const previousQuantity = this.cart.lines().find(line => line.name === name)?.qty ?? 0;
-    this.cart.add(name, price);
-    this.cart.setQty(name, previousQuantity + this.cloudBackupQuantity());
+    const country = this.activeCloudBackupCountry();
+    this.cart.add(name, price, this.cloudBackupQuantity(), {
+      unitAmount: this.cloudBackupRegionalPrice(plan),
+      currency: country.currency,
+      locale: country.locale,
+      suffix: `/${term.toLowerCase()}${country.key === 'IN' ? ' + GST' : ''}`,
+    });
     this.cart.open();
   }
 

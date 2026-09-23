@@ -277,7 +277,11 @@
     <h2 id="bizmailConfigTitle">XcellBizMail {{ plan().name }} Mailbox</h2>
     <p>{{ plan().storage }} GB per mailbox &middot; Annual billing</p>
     <label for="bizmailUsers">Number of users</label>
-    <input id="bizmailUsers" type="number" min="1" max="9999" step="1" [value]="users()" (input)="setUsers($any($event.target).value)" />
+    <div class="bizmail-config-quantity" role="group" aria-label="Mailbox user quantity">
+      <button type="button" aria-label="Decrease mailbox users" [disabled]="users() === 1" (click)="changeUsers(-1)">&minus;</button>
+      <input id="bizmailUsers" type="number" min="1" max="9999" step="1" [value]="users()" (input)="setUsers($any($event.target).value)" />
+      <button type="button" aria-label="Increase mailbox users" [disabled]="users() === 9999" (click)="changeUsers(1)">+</button>
+    </div>
     <div class="bizmail-total">{{ inr(total()) }} <small>/ year + GST</small></div>
     <p>{{ inr(plan().price) }} per user / year, excluding GST.</p>
     <button class="bizmail-btn bizmail-btn-green" type="button" (click)="addToCart()">Add to Cart</button>

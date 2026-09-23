@@ -46,14 +46,19 @@ export class BusinessEmailContentComponent {
     this.users.set(Math.max(1, Math.min(9999, Math.trunc(Number(value)) || 1)));
   }
 
+  changeUsers(change: number): void {
+    this.users.update(value => Math.max(1, Math.min(9999, value + change)));
+  }
+
   inr(value: number): string {
     return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(value);
   }
 
   addToCart(): void {
     this.cart.add(
-      `XcellBizMail ${this.plan().name} Mailbox - ${this.users()} user(s) - Annual`,
-      `${this.inr(this.total())} + GST / year`,
+      `XcellBizMail ${this.plan().name} Mailbox - Annual`,
+      `${this.inr(this.plan().price)} + GST / user / year`,
+      this.users(),
     );
     this.configuration?.nativeElement.close();
     this.cart.open();

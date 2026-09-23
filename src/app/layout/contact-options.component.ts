@@ -19,7 +19,7 @@ import { LeadService } from '../core/lead.service';
               <path d="M4 3h14v16a2 2 0 0 0 4 0V7h-4M4 3v16a2 2 0 0 0 2 2h14" />
               <path d="M8 7h6M8 11h6M8 15h2M13 15h1" />
             </svg>
-            Xcellhost Newsletter
+            XcellHost Newsletter
           </p>
           <h2 id="newsletter-title">
             Get the latest updates on Blog Posts, Industry News, Products, and Guidance on Cloud,
