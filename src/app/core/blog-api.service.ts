@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { catchError, EMPTY, expand, map, Observable, of, reduce, shareReplay, switchMap, timer } from 'rxjs';
+import { inject, Injectable, signal } from '@angular/core';
+import { catchError, EMPTY, expand, map, Observable, of, reduce, shareReplay, switchMap, timer, timeout, tap } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 
@@ -65,6 +65,7 @@ interface StrapiResourceListResponse {
 
 interface YouTubeFeedResponse {
   readonly status: 'ok' | 'error';
+  readonly stale?: boolean;
   readonly items?: readonly YouTubeFeedItem[];
 }
 
@@ -85,6 +86,8 @@ export class BlogApiService {
   private readonly http = inject(HttpClient);
   private readonly baseUrl = environment.strapiUrl.replace(/\/$/, '');
   private readonly endpoint = `${this.baseUrl}/api/blogs`;
+  readonly videoStatus = signal<'loading' | 'ready' | 'cached' | 'error'>('loading');
+  private lastVideos: readonly CmsInsightResource[] = [];
 
   /** Refreshes in the background so CMS edits appear without rebuilding the UI. */
   readonly posts$: Observable<readonly CmsBlogPost[]> = timer(0, 30_000).pipe(
@@ -92,11 +95,19 @@ export class BlogApiService {
     shareReplay({ bufferSize: 1, refCount: true })
   );
 
-  /** Latest channel uploads, with the optional Strapi collection as a fallback. */
+  /** Latest channel uploads, with a saved channel snapshot during outages. */
   readonly videos$ = timer(0, 15 * 60_000).pipe(
     switchMap(() =>
       this.listYouTubeVideos().pipe(
-        catchError(() => this.listResources('videos', 'video').pipe(catchError(() => of([]))))
+        catchError(() => this.http.get<YouTubeFeedResponse>('/feeds/youtube-snapshot.json').pipe(
+          timeout(10_000),
+          map(response => this.readYouTubeFeed({ ...response, stale: true })),
+          catchError(() => {
+            this.videoStatus.set(this.lastVideos.length ? 'cached' : 'error');
+            return of(this.lastVideos);
+          })
+        )),
+        tap(items => { this.lastVideos = items; })
       )
     ),
     shareReplay({ bufferSize: 1, refCount: true })
@@ -185,14 +196,17 @@ export class BlogApiService {
   }
 
   private listYouTubeVideos(): Observable<readonly CmsInsightResource[]> {
-    const feedUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${environment.youtubeChannelId}`;
-    const params = new HttpParams().set('rss_url', feedUrl);
-    return this.http.get<YouTubeFeedResponse>(environment.youtubeFeedApi, { params }).pipe(
-      map((response) => {
-        if (response.status !== 'ok') throw new Error('YouTube feed unavailable');
-        return (response.items ?? []).map((item) => this.normaliseYouTubeVideo(item));
-      })
+    return this.http.get<YouTubeFeedResponse>(environment.youtubeFeedApi).pipe(
+      timeout(20_000),
+      map(response => this.readYouTubeFeed(response))
     );
+  }
+
+  private readYouTubeFeed(response: YouTubeFeedResponse): readonly CmsInsightResource[] {
+    if (response.status !== 'ok' || !response.items?.length) throw new Error('YouTube feed unavailable');
+    const items = response.items.map(item => this.normaliseYouTubeVideo(item));
+    this.videoStatus.set(response.stale ? 'cached' : 'ready');
+    return items;
   }
 
   private normalise(post: CmsBlogPost): CmsBlogPost {
@@ -247,10 +261,11 @@ export class BlogApiService {
 
   private normaliseYouTubeVideo(item: YouTubeFeedItem): CmsInsightResource {
     const videoId = item.guid.replace(/^yt:video:/, '') || this.youtubeVideoId(item.link);
-    const published = new Date(item.pubDate.replace(' ', 'T') + 'Z');
+    const published = new Date(item.pubDate ? (/Z$|[+-]\d{2}:\d{2}$/.test(item.pubDate)
+      ? item.pubDate : item.pubDate.replace(' ', 'T') + 'Z') : NaN);
     const title = this.decodeEntities(item.title);
     const description = this.decodeEntities(item.description || item.content).replace(/<[^>]+>/g, '').trim();
-    const category = this.youtubeCategory(`${title} ${description}`);
+    const category = this.youtubeCategory(title);
     return {
       id: 0,
       documentId: `youtube-${videoId}`,
@@ -260,8 +275,8 @@ export class BlogApiService {
       description: description || `Watch ${title} from XcellHost Cloud Services.`,
       content: description,
       author: item.author || 'XcellHost Cloud Services',
-      date: Number.isNaN(published.valueOf()) ? new Date().toISOString().slice(0, 10) : published.toISOString().slice(0, 10),
-      time: Number.isNaN(published.valueOf()) ? '09:00' : published.toISOString().slice(11, 16),
+      date: Number.isNaN(published.valueOf()) ? '' : published.toISOString().slice(0, 10),
+      time: Number.isNaN(published.valueOf()) ? '' : published.toISOString().slice(11, 16),
       category,
       mainCategory: this.parentCategory(category),
       subCategory: category,
@@ -298,9 +313,10 @@ export class BlogApiService {
     if (/dmarc|domain|email|ssl|certificate|digital trust/.test(value)) return 'Digital Trust';
     if (/cyber|security|soc|siem|edr|malware|firewall/.test(value)) return 'Security';
     if (/microsoft 365|m365|tally|productivity|workspace/.test(value)) return 'Productivity';
-    if (/backup|recovery|cloud|server|hosting|storage|desktop/.test(value)) return 'Cloud';
+    if (/backup|recovery/.test(value)) return 'Data Protection';
+    if (/cloud|server|hosting|storage|desktop/.test(value)) return 'Cloud';
     if (/partner|reseller/.test(value)) return 'Partner Program';
-    if (/\bai\b|artificial intelligence|automation/.test(value)) return 'AI & Automation';
+    if (/\bai\b|artificial intelligence|automation/.test(value)) return 'AI';
     return 'Technology';
   }
 
