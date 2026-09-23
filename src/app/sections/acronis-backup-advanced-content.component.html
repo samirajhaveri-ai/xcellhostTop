@@ -19,35 +19,63 @@
   <div class="aba-inner">
     <header class="aba-heading aba-pricing-heading">
       <span>Plans &amp; pricing</span>
-      <h2 id="abaPricingTitle">Licence by workload — managed by<br />XcellHost</h2>
+      <h2 id="abaPricingTitle">Licence by workload — managed by XcellHost</h2>
       <p>Indicative INR pricing, excl. 18% GST. Add XcellHost managed backup (monitoring, restore testing,<br />24×7 support) to any plan.</p>
     </header>
 
     <div class="aba-price-grid">
       <article class="aba-price-card">
         <h3>Workstation</h3><small>Windows &amp; Mac PCs</small>
-        <div class="aba-price"><b>₹1,999</b><span>/device/yr</span></div>
+        <div class="aba-price"><b>₹{{ total('workstation') }}</b><span>/yr for {{ quantity('workstation') }} {{ quantity('workstation') === 1 ? 'device' : 'devices' }}</span></div>
         <ul><li>Image-based backup</li><li>File &amp; folder recovery</li><li>AES-256 encryption</li><li>Central console</li></ul>
-        <a href="#contact">Get quote <span>→</span></a>
+        <div class="aba-card-actions">
+          <button class="aba-quote" type="button" (click)="getQuote('workstation')">Get quote <span aria-hidden="true">→</span></button>
+          <div class="aba-quantity" role="group" aria-label="Workstation quantity">
+            <button type="button" aria-label="Decrease workstations" [disabled]="quantity('workstation') === 1" (click)="changeQuantity('workstation', -1)">−</button>
+            <output aria-live="polite">{{ quantity('workstation') }}</output>
+            <button type="button" aria-label="Increase workstations" [disabled]="quantity('workstation') === 99" (click)="changeQuantity('workstation', 1)">+</button>
+          </div>
+        </div>
       </article>
       <article class="aba-price-card">
         <h3>Server</h3><small>Physical Windows / Linux</small>
-        <div class="aba-price"><b>₹12,999</b><span>/server/yr</span></div>
+        <div class="aba-price"><b>₹{{ total('server') }}</b><span>/yr for {{ quantity('server') }} {{ quantity('server') === 1 ? 'server' : 'servers' }}</span></div>
         <ul><li>Everything in Workstation</li><li>Bare-metal &amp; Universal Restore</li><li>Dedup &amp; compression</li><li>Replication to India cloud</li></ul>
-        <a href="#contact">Get quote <span>→</span></a>
+        <div class="aba-card-actions">
+          <button class="aba-quote" type="button" (click)="getQuote('server')">Get quote <span aria-hidden="true">→</span></button>
+          <div class="aba-quantity" role="group" aria-label="Server quantity">
+            <button type="button" aria-label="Decrease servers" [disabled]="quantity('server') === 1" (click)="changeQuantity('server', -1)">−</button>
+            <output aria-live="polite">{{ quantity('server') }}</output>
+            <button type="button" aria-label="Increase servers" [disabled]="quantity('server') === 99" (click)="changeQuantity('server', 1)">+</button>
+          </div>
+        </div>
       </article>
       <article class="aba-price-card aba-price-featured">
         <em>Most popular</em>
         <h3>Virtual host</h3><small>Unlimited VMs per host</small>
-        <div class="aba-price"><b>₹24,999</b><span>/host/yr</span></div>
+        <div class="aba-price"><b>₹{{ total('virtualHost') }}</b><span>/yr for {{ quantity('virtualHost') }} {{ quantity('virtualHost') === 1 ? 'host' : 'hosts' }}</span></div>
         <ul><li>VMware · Hyper-V · Citrix · RHEV · Oracle VM</li><li>Agentless backup</li><li>Instant VM restore</li><li>Any-to-any migration</li></ul>
-        <a href="#contact">Get quote <span>→</span></a>
+        <div class="aba-card-actions">
+          <button class="aba-quote" type="button" (click)="getQuote('virtualHost')">Get quote <span aria-hidden="true">→</span></button>
+          <div class="aba-quantity" role="group" aria-label="Virtual host quantity">
+            <button type="button" aria-label="Decrease virtual hosts" [disabled]="quantity('virtualHost') === 1" (click)="changeQuantity('virtualHost', -1)">−</button>
+            <output aria-live="polite">{{ quantity('virtualHost') }}</output>
+            <button type="button" aria-label="Increase virtual hosts" [disabled]="quantity('virtualHost') === 99" (click)="changeQuantity('virtualHost', 1)">+</button>
+          </div>
+        </div>
       </article>
       <article class="aba-price-card">
         <h3>Application server</h3><small>Exchange · SQL · SharePoint · AD · Oracle</small>
-        <div class="aba-price"><b>₹18,999</b><span>/server/yr</span></div>
+        <div class="aba-price"><b>₹{{ total('applicationServer') }}</b><span>/yr for {{ quantity('applicationServer') }} {{ quantity('applicationServer') === 1 ? 'server' : 'servers' }}</span></div>
         <ul><li>App-aware backup</li><li>Granular item recovery</li><li>Clustered Exchange support</li><li>Universal Restore</li></ul>
-        <a href="#contact">Get quote <span>→</span></a>
+        <div class="aba-card-actions">
+          <button class="aba-quote" type="button" (click)="getQuote('applicationServer')">Get quote <span aria-hidden="true">→</span></button>
+          <div class="aba-quantity" role="group" aria-label="Application server quantity">
+            <button type="button" aria-label="Decrease application servers" [disabled]="quantity('applicationServer') === 1" (click)="changeQuantity('applicationServer', -1)">−</button>
+            <output aria-live="polite">{{ quantity('applicationServer') }}</output>
+            <button type="button" aria-label="Increase application servers" [disabled]="quantity('applicationServer') === 99" (click)="changeQuantity('applicationServer', 1)">+</button>
+          </div>
+        </div>
       </article>
     </div>
 
@@ -59,7 +87,7 @@
   <div class="aba-inner">
     <header class="aba-heading aba-why-heading">
       <span>Why XcellHost</span>
-      <h2 id="abaWhyTitle">Acronis technology, XcellHost<br />service</h2>
+      <h2 id="abaWhyTitle">Acronis technology, XcellHost service</h2>
       <p>Enterprise backup with a local, accountable team.</p>
     </header>
 
@@ -75,7 +103,7 @@
 <section class="aba-features" aria-labelledby="abaFeaturesTitle">
   <header class="aba-heading aba-feature-heading">
     <span>Key features</span>
-    <h2 id="abaFeaturesTitle">Everything the AnyData Engine gives<br />you</h2>
+    <h2 id="abaFeaturesTitle">Everything the AnyData Engine gives you</h2>
   </header>
 
   <div class="aba-feature-grid">
@@ -149,7 +177,7 @@
   <div class="aba-inner">
     <header class="aba-heading">
       <span>What it protects</span>
-      <h2 id="abaProtectTitle">One solution for your entire<br />environment</h2>
+      <h2 id="abaProtectTitle">One solution for your entire environment</h2>
       <p>Physical, virtual, application and cloud — unified backup and recovery from a single console.</p>
     </header>
 
