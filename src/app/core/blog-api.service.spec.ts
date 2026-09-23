@@ -1,9 +1,36 @@
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { BlogApiService, CmsBlogPost, CmsInsightResource } from './blog-api.service';
+import { BlogApiService, CmsBlogPost, CmsInsightResource, INSIGHT_DOCUMENT_TYPES } from './blog-api.service';
 
 describe('Blog API pagination', () => {
+  it('loads document collections independently and excludes unusable download links', fakeAsync(() => {
+    TestBed.configureTestingModule({ providers: [provideHttpClient(), provideHttpClientTesting()] });
+    const http = TestBed.inject(HttpTestingController);
+    const service = TestBed.inject(BlogApiService);
+    let received: readonly CmsInsightResource[] = [];
+    const subscription = service.documents$.subscribe(items => received = items);
+    tick(0);
+    for (const type of INSIGHT_DOCUMENT_TYPES) {
+      const request = http.expectOne(req => req.url.endsWith('/api/' + type.endpoint));
+      if (type.kind === 'ebook') {
+        request.flush('Not configured', { status: 404, statusText: 'Not Found' });
+      } else {
+        request.flush({ data: [
+          { title: type.label, downloadUrl: '/uploads/resource.pdf', category: 'Cloud', relatedPages: 'tally-on-cloud' },
+          { title: 'Unsafe', downloadUrl: 'javascript:alert(1)' },
+          { title: 'Missing file' },
+        ] });
+      }
+    }
+    expect(received.length).toBe(4);
+    expect(received.map(item => item.kind)).toEqual(['data-sheet', 'cheat-sheet', 'whitepaper', 'guide']);
+    expect(received[0].downloadUrl).toContain('/uploads/resource.pdf');
+    expect(received[0].relatedPages).toBe('tally-on-cloud');
+    subscription.unsubscribe();
+    http.verify();
+  }));
+
   it('uses saved uploads on failure and recovers on the next refresh', fakeAsync(() => {
     TestBed.configureTestingModule({ providers: [provideHttpClient(), provideHttpClientTesting()] });
     const http = TestBed.inject(HttpTestingController);

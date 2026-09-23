@@ -17,7 +17,7 @@ describe('Insights card navigation', () => {
       imports: [InsightsPage],
       providers: [
         provideRouter([{ path: 'insights/:slug', component: ArticleStub }]),
-        { provide: BlogApiService, useValue: { posts$: of([post]), videos$: of([]), useCases$: of([]) } },
+        { provide: BlogApiService, useValue: { posts$: of([post]), videos$: of([]), useCases$: of([]), documents$: of([]) } },
         { provide: SeoService, useValue: { set: () => {} } },
       ],
     }).compileComponents();
