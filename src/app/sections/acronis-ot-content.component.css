@@ -73,8 +73,9 @@
 .ot-heading h2 {
   margin: 0 0 14px;
   color: #031b3e;
-  font: 800 clamp(32px, 3.5vw, 45px)/1.08 var(--disp);
+  font: 800 clamp(10px, 3vw, 44px)/1.08 var(--disp);
   letter-spacing: -.04em;
+  white-space: nowrap;
 }
 
 .ot-heading p {
@@ -140,6 +141,10 @@
 .ot-step-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .ot-coverage-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; }
 .ot-coverage-grid article { padding: 19px 21px; }
+.ot-coverage-title { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+.ot-coverage-grid .ot-coverage-title h3 { margin: 0; }
+.ot-coverage-icon { display: grid; flex: 0 0 32px; place-items: center; width: 32px; height: 32px; border-radius: 9px; color: #1265df; background: #edf4ff; }
+.ot-coverage-icon svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 
 .ot-grid {
   display: grid;
@@ -248,7 +253,7 @@
   .ot-proof { padding: 58px 18px 52px; }
   .ot-how, .ot-coverage { padding: 62px 0 48px; }
   .ot-heading { margin-bottom: 34px; }
-  .ot-heading h2 br, .ot-heading p br { display: none; }
+  .ot-heading p br { display: none; }
   .ot-grid-four, .ot-grid-three { grid-template-columns: 1fr; }
   .ot-purdue-grid { grid-template-columns: 1fr; }
   .ot-proof-grid, .ot-step-grid, .ot-coverage-grid { grid-template-columns: 1fr; }
