@@ -1127,7 +1127,7 @@ export const MEGA_MENU: MenuTop[] = [
             "title": "Microsoft 365 Enterprise",
             "body": "Explore Microsoft 365 Enterprise services, features and solutions.",
             "image": "/assets/images/orb-microsoft-365.png",
-            "link": "/microsoft-365"
+            "link": "/microsoft-365-enterprise"
           }
         ],
         "groups": [

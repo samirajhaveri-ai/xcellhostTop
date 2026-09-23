@@ -1,0 +1,23 @@
+:host{position:absolute;z-index:2;top:22px;right:max(24px,calc((100vw - 1240px)/2 + 24px));display:block;width:min(40vw,480px);height:490px;pointer-events:none}
+.a6000-stage{position:relative;width:100%;height:100%;isolation:isolate;overflow:hidden}
+.a6000-render-grid{position:absolute;inset:4% 1% 12%;opacity:.55;background:repeating-linear-gradient(0deg,transparent 0 44px,rgba(125,175,255,.18) 45px 46px),repeating-linear-gradient(90deg,transparent 0 44px,rgba(125,175,255,.12) 45px 46px)}
+.a6000-render-grid::before,.a6000-render-grid::after{position:absolute;top:5%;color:#c8d9f8;font:700 10px var(--mono,monospace);content:'RENDER · BUCKET 66/100'}
+.a6000-render-grid::before{left:3%}
+.a6000-render-grid::after{right:3%;content:'OPTIX · RT CORES'}
+.a6000-render-orb{position:absolute;right:29%;bottom:10%;width:33%;aspect-ratio:1;border:5px solid rgba(255,178,117,.25);border-radius:50%;background:radial-gradient(circle at 36% 30%,#74b9ff 0,#2c83d9 35%,#0a316f 76%,#071d42 100%);box-shadow:0 0 36px rgba(46,124,232,.6),inset -14px -18px 26px rgba(2,12,46,.55);filter:blur(.5px);animation:a6000-orb 5s ease-in-out infinite}
+.a6000-card{position:absolute;z-index:2;top:13%;left:3%;width:94%;transform-origin:50% 60%;animation:a6000-float 6s ease-in-out infinite}
+.a6000-card .gc{display:block;width:100%;height:auto;overflow:visible;filter:drop-shadow(0 18px 14px rgba(0,0,0,.28))}
+.a6000-card .gc-fan{transform-box:fill-box;transform-origin:center;animation:a6000-fan 1.2s linear infinite}
+.a6000-card .gc-sheen{animation:a6000-sheen 4.5s ease-in-out infinite}
+.a6000-card .gc-led,.a6000-card .gc-nvl rect{animation:a6000-led 2.5s ease-in-out infinite}
+.a6000-stage-badges{position:absolute;right:1%;bottom:3%;left:1%;display:flex;align-items:center;justify-content:space-between;gap:8px;color:#fff;font:700 10px/1.2 var(--mono,monospace)}
+.a6000-stage-badges span{padding:6px 11px;border:1px solid rgba(127,178,255,.32);border-radius:99px;background:rgba(8,31,68,.68);white-space:nowrap}
+.a6000-stage-badges i{display:inline-block;width:7px;height:7px;margin-right:5px;border-radius:50%;background:#28d27d}
+@keyframes a6000-float{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-10px) rotate(-1deg)}}
+@keyframes a6000-orb{50%{transform:translateY(-7px);box-shadow:0 0 45px rgba(46,124,232,.8),inset -14px -18px 26px rgba(2,12,46,.55)}}
+@keyframes a6000-fan{to{transform:rotate(360deg)}}
+@keyframes a6000-sheen{0%{transform:skewX(-18deg) translateX(0)}60%,100%{transform:skewX(-18deg) translateX(1100px)}}
+@keyframes a6000-led{50%{opacity:.45}}
+@media(max-width:900px){:host{position:relative;order:2;top:auto;right:auto;flex:none;width:min(480px,calc(100vw - 48px));height:min(490px,calc(100vw - 48px));margin:14px auto 0}}
+@media(max-width:480px){.a6000-stage-badges{font-size:7px}.a6000-stage-badges span{padding:5px 7px}}
+@media(prefers-reduced-motion:reduce){.a6000-card,.a6000-render-orb,.a6000-card .gc-fan,.a6000-card .gc-sheen,.a6000-card .gc-led,.a6000-card .gc-nvl rect{animation:none}}

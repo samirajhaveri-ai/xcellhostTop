@@ -1,0 +1,19 @@
+:host{position:absolute;z-index:2;top:22px;right:max(24px,calc((100vw - 1240px)/2 + 24px));display:block;width:min(40vw,480px);height:490px;pointer-events:none}
+.ada-stage{position:relative;width:100%;height:100%;isolation:isolate}
+.ada-stage canvas{position:absolute;inset:0;display:block;width:100%;height:100%}
+.ada-card{position:absolute;z-index:2;top:13%;left:3%;width:94%;transform-origin:50% 60%;animation:ada-float 6s ease-in-out infinite}
+.ada-card .gc{display:block;width:100%;height:auto;overflow:visible;filter:drop-shadow(0 18px 14px rgba(0,0,0,.28))}
+.ada-card .gc-fan{transform-box:fill-box;transform-origin:center;animation:ada-fan 1.2s linear infinite}
+.ada-card .gc-sheen{animation:ada-sheen 4.5s ease-in-out infinite}
+.ada-card .gc-led{animation:ada-led 2.5s ease-in-out infinite}
+.ada-stage-badges{position:absolute;right:1%;bottom:3%;left:1%;display:flex;align-items:center;justify-content:space-between;gap:8px;color:#fff;font:700 10px/1.2 var(--mono,monospace)}
+.ada-stage-badges span{padding:6px 11px;border:1px solid rgba(127,178,255,.32);border-radius:99px;background:rgba(8,31,68,.68);white-space:nowrap}
+.ada-stage-badges i{display:inline-block;width:7px;height:7px;margin-right:5px;border-radius:50%;background:#28d27d;animation:ada-live 1.4s ease-in-out infinite}
+@keyframes ada-float{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-10px) rotate(-1deg)}}
+@keyframes ada-fan{to{transform:rotate(360deg)}}
+@keyframes ada-sheen{0%{transform:skewX(-18deg) translateX(0)}60%,100%{transform:skewX(-18deg) translateX(1100px)}}
+@keyframes ada-led{50%{opacity:.45}}
+@keyframes ada-live{50%{opacity:.3}}
+@media(max-width:900px){:host{position:relative;order:2;top:auto;right:auto;flex:none;width:min(480px,calc(100vw - 48px));height:min(490px,calc(100vw - 48px));margin:14px auto 0}}
+@media(max-width:480px){.ada-stage-badges{font-size:7px}.ada-stage-badges span{padding:5px 7px}}
+@media(prefers-reduced-motion:reduce){.ada-card,.ada-card .gc-fan,.ada-card .gc-sheen,.ada-card .gc-led,.ada-stage-badges i{animation:none}}

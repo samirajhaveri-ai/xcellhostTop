@@ -13,6 +13,7 @@
     [class.acronis-ot-page]="slug() === 'acronis-ot'"
     [class.rtx-8000-page]="slug() === 'rtx-8000'"
     [class.rtx-pro-6000-page]="slug() === 'rtx-pro-6000'"
+    [class.rtx-6000-ada-page]="slug() === 'nvidia-rtx-6000-ada'"
     [class.whatsapp-smb-page]="isWhatsAppSmb()"
     [class.atm-solution-page]="isAutonomousThreatSolution()"
     [class.scrutiny-page]="
@@ -28,6 +29,7 @@
     [class.tsplus-advanced-security-page]="isTsplusAdvancedSecurity()"
     [class.tsplus-remote-access-page]="isTsplusRemoteAccess()"
     [class.microsoft-copilot-page]="isMicrosoftCopilot()"
+    [class.microsoft-365-enterprise-page]="slug() === 'microsoft-365-enterprise'"
     [class.nvidia-a100-page]="slug() === 'nvidia-a100'"
   >
     @if (slug() === 'nvidia-a100') {
@@ -38,7 +40,9 @@
     } @else if (isWatchtower()) {
       <xh-watchtower-reference />
     } @else {
-      @if (isCopilotStudio()) {
+      @if (slug() === 'microsoft-365-enterprise') {
+        <xh-microsoft-365-enterprise-reference />
+      } @else if (isCopilotStudio()) {
         <xh-copilot-studio-content mode="hero" />
       } @else {
       <div
@@ -572,6 +576,10 @@
           </div>
         } @else if (slug() === 'rtx-pro-6000') {
           <xh-rtx-pro-6000-hero aria-hidden="true" />
+        } @else if (slug() === 'nvidia-rtx-6000-ada') {
+          <xh-rtx-6000-ada-hero aria-hidden="true" />
+        } @else if (slug() === 'rtx-a6000') {
+          <xh-rtx-a6000-hero aria-hidden="true" />
         } @else if (slug() === 'rtx-8000') {
           <div class="rtx-stage" aria-hidden="true">
             <svg class="rtx-rays" viewBox="0 0 640 490" preserveAspectRatio="xMidYMid meet">
@@ -748,6 +756,10 @@
                         ? 'DigiCert SSL Certificates'
                         : slug() === 'rtx-pro-6000'
                           ? 'RTX PRO 6000 Cloud GPU'
+                          : slug() === 'nvidia-rtx-6000-ada'
+                            ? 'RTX 6000 Ada Cloud GPU'
+                          : slug() === 'rtx-a6000'
+                            ? 'RTX A6000 Cloud GPU'
                           : slug() === 'rtx-8000'
                             ? 'RTX 8000 Cloud GPU'
                             : v.name
@@ -845,7 +857,7 @@
                 <section class="pp-ask-ai" aria-labelledby="ppAskAiTitle">
                   <div class="pp-ask-ai-copy">
                     <span class="pp-ask-ai-kicker" id="ppAskAiTitle"
-                      >Ask AI About {{ isResellerProgram() ? 'Cloud Channel Partner Program' : isSmbCyber() ? 'Cybird SMB Cyber Security Appliance' : isCloudBackup() ? 'Acronis Cloud Backup' : isAdvancedEdr() ? 'Acronis Advanced Endpoint Security (EDR)' : slug() === 'rtx-8000' ? 'RTX 8000 Cloud GPU' : slug() === 'rtx-pro-6000' ? 'RTX PRO 6000 Cloud GPU' : v.name }} from
+                      >Ask AI About {{ isResellerProgram() ? 'Cloud Channel Partner Program' : isSmbCyber() ? 'Cybird SMB Cyber Security Appliance' : isCloudBackup() ? 'Acronis Cloud Backup' : isAdvancedEdr() ? 'Acronis Advanced Endpoint Security (EDR)' : slug() === 'rtx-8000' ? 'RTX 8000 Cloud GPU' : slug() === 'rtx-pro-6000' ? 'RTX PRO 6000 Cloud GPU' : slug() === 'nvidia-rtx-6000-ada' ? 'RTX 6000 Ada Cloud GPU' : v.name }} from
                       XcellHost</span
                     >
                   </div>
@@ -1025,7 +1037,7 @@
       </div>
       }
 
-      @if (!isResellerProgram()) {
+      @if (!isResellerProgram() && slug() !== 'microsoft-365-enterprise') {
         <div class="pp-trust">
           <div class="wrap">
             @if (isCopilotStudio()) {
@@ -1150,6 +1162,7 @@
       }
     }
 
+    @if (slug() !== 'microsoft-365-enterprise') {
     @if (isManagedAws() || isManagedAzure()) {
       <xh-managed-aws-content [provider]="isManagedAzure() ? 'Azure' : 'AWS'" />
     } @else {
@@ -2109,6 +2122,10 @@
                   <xh-rtx-8000-pricing (quoteRequested)="requestRtxPlan($event)" />
                 } @else if (slug() === 'rtx-pro-6000') {
                   <xh-rtx-pro-6000-pricing (quoteRequested)="requestRtxProPlan($event)" />
+                } @else if (slug() === 'nvidia-rtx-6000-ada') {
+                  <xh-rtx-6000-ada-pricing (quoteRequested)="requestRtx6000AdaPlan($event)" />
+                } @else if (slug() === 'rtx-a6000') {
+                  <xh-rtx-a6000-pricing (quoteRequested)="requestRtxA6000Plan($event)" />
                 } @else if (
                   !isAdvancedEdr() &&
                   !isSmbCyber() &&
@@ -2312,6 +2329,10 @@
                   <xh-rtx-8000-details />
                 } @else if (slug() === 'rtx-pro-6000') {
                   <xh-rtx-pro-6000-details />
+                } @else if (slug() === 'nvidia-rtx-6000-ada') {
+                  <xh-rtx-6000-ada-details />
+                } @else if (slug() === 'rtx-a6000') {
+                  <xh-rtx-a6000-details />
                 } @else if (
                   !isSmbCyber() &&
                   !isAcronisTrueImage() &&
@@ -2941,6 +2962,10 @@
                   <xh-rtx-8000-specifications />
                 } @else if (slug() === 'rtx-pro-6000') {
                   <xh-rtx-pro-6000-specifications />
+                } @else if (slug() === 'nvidia-rtx-6000-ada') {
+                  <xh-rtx-6000-ada-specifications />
+                } @else if (slug() === 'rtx-a6000') {
+                  <xh-rtx-a6000-performance />
                 } @else if (
                   !isSmbCyber() &&
                   !isRmm() &&
@@ -3520,8 +3545,11 @@
                   <xh-rtx-8000-use-cases />
                 } @else if (slug() === 'rtx-pro-6000') {
                   <xh-rtx-pro-6000-showcase />
+                } @else if (slug() === 'nvidia-rtx-6000-ada') {
+                  <xh-rtx-6000-ada-showcase />
                 } @else if (
                   v.name !== 'Tally on Cloud' &&
+                  slug() !== 'rtx-a6000' &&
                   !isSmbCyber() &&
                   !isAcronisTrueImage() &&
                   !isSiteLock() &&
@@ -3744,7 +3772,7 @@
                 <p class="pp-secfoot">XcellHost is ISO 27001 and ISO 20000-1 certified · Indian Tier-4 datacenters · DPDPA and RBI aligned · 24×7 NOC and SOC.</p>
               </section>
             } @else if (!isSmbCyber() && !isRmm() && slug() !== 'acronis-backup-advanced' && slug() !== 'acronis-ot' && slug() !== 'scrutiny-dlp' && slug() !== 'cloud-migration') {
-              <div class="pp-sec" id="ppSecHead" [style.margin-bottom.px]="slug() === 'managed-devops' ? 32 : null">{{ v.security.head }}</div>
+              <div class="pp-sec" id="ppSecHead" [style.margin-bottom.px]="slug() === 'managed-devops' ? 32 : null">{{ slug() === 'microsoft-365-enterprise' ? 'Security & compliance — Microsoft 365 Enterprise' : v.security.head }}</div>
               <div id="ppSecWrap">
                 <p class="pp-ov">{{ v.security.intro }}</p>
                 <div class="pp-secrows">
@@ -4405,6 +4433,7 @@
           </div>
         </div>
       </div>
+    }
     }
   </div>
 
