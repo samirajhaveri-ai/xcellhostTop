@@ -22,10 +22,16 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "SMB Cloud",
             "items": [
               {
+                "title": "SMB Cloud Explore",
+                "pill": "Top seller",
+                "desc": null
+              },
+              {
                 "title": "Tally on Cloud",
                 "pill": "Top seller",
                 "desc": null
               },
+
               {
                 "title": "Cloud Backup",
                 "pill": "Popular",
@@ -287,8 +293,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              
-              
             ]
           }
         ]
@@ -607,6 +611,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "NVIDIA B300 Nodes",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
@@ -645,11 +654,11 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "58",
-        "label": "inference Cloud",
+        "label": "Inference Cloud",
         "on": false,
         "groups": [
           {
-            "heading": "inference Cloud",
+            "heading": "Inference Cloud",
             "items": [
               {
                 "title": "AI Inference Cloud",
@@ -663,6 +672,31 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "AI Model library",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Serverless Inference",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Dedicated Inferencing",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Model Playground",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Model Catalog",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Model Directory",
                 "pill": null,
                 "desc": null
               },
@@ -696,6 +730,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Managed Redis",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Managed MongoDB",
                 "pill": null,
                 "desc": null
               },
@@ -778,7 +817,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Managed DevOps",
+                "title": "Container Registry",
                 "pill": null,
                 "desc": null
               },
