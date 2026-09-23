@@ -733,6 +733,16 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "Managed Oracle",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Managed SQL",
+                "pill": null,
+                "desc": null
+              },
 
             ]
           }
@@ -740,11 +750,11 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "20",
-        "label": "Managed Cloud",
+        "label": "Managed Public Cloud",
         "on": false,
         "groups": [
           {
-            "heading": "Managed Cloud",
+            "heading": "Managed Public Cloud",
             "items": [
               
               {
@@ -787,7 +797,6 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      
       {
         "g": "5",
         "label": "Managed DevOps",
@@ -854,107 +863,6 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "6",
-        "label": "Managed Migration",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Managed Migration",
-            "items": [
-              {
-                "title": "Cloud Migration",
-                "pill": null,
-                "desc": "Plan, migrate and validate your cloud workloads",
-                "href": "/cloud-migration"
-              },
-              {
-                "title": "AWS Migration",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Azure Migration ",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "GCP Migration",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Database Migration",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Active Directory Migration ",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "MailBox Migration",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "File Migration",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Site Migration",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Archive Migration",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Teams Migration",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Slack Migration",
-                "pill": null,
-                "desc": null
-              },
-              
-            ]
-          }
-        ]
-      },
-      {
-        "g": "4",
-        "label": "On Premises Cloud",
-        "on": false,
-        "groups": [
-          {
-            "heading": "On Premises Cloud",
-            "items": [
-              {
-                "title": "Data Center Build Services",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Acronis Cyber Frame (HCI)",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Vmware Migration",
-                "pill": null,
-                "desc": null
-              },
-            ]
-          }
-        ]
-      },
-      {
         "g": "7",
         "label": "Managed Monitoring",
         "on": false,
@@ -982,52 +890,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              
-            ]
-          }
-        ]
-      },
-      
-      {
-        "g": "8",
-        "label": "SAP Cloud",
-        "on": false,
-        "groups": [
-          {
-            "heading": "SAP Cloud",
-            "items": [
               {
-                "title": "SAP Hosting",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "SAP B1 Cloud",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "SAP S4 HANA Private Cloud ",
+                "title": "Digital Experience Monitoring",
                 "pill": null,
                 "desc": null
               },
               
-              
-              {
-                "title": "SAP On AWS ",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "SAP On GCP ",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "SAP On Azure ",
-                "pill": null,
-                "desc": null
-              },
             ]
           }
         ]
@@ -1080,6 +948,116 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "8",
+        "label": "SAP Cloud",
+        "on": false,
+        "groups": [
+          {
+            "heading": "SAP Cloud",
+            "items": [
+              {
+                "title": "SAP Hosting",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "SAP B1 Cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "SAP S4 HANA Private Cloud ",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "SAP On AWS ",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "SAP On GCP ",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "SAP On Azure ",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "8",
+        "label": "Network Security",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Network Security",
+            "items": [
+              {
+                "title": "Virtual Networks",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "DNS",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Load Balancer",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Bandwidth",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Public IP",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "CloudConnect",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "DirectConnect",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "SSL",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "WAF",
+                "pill": null,
+                "desc": null
+              },
+                      {
+                "title": "Firewalls",
+                "pill": null,
+                "desc": null
+              },
+                      {
+                "title": "Endpoint Security",
+                "pill": null,
+                "desc": null
+              },
+
             ]
           }
         ]
@@ -1866,6 +1844,25 @@ export const MEGA_MENU: MenuTop[] = [
             "items": [
               {
                 "title": "Document Security",
+                "pill": null,
+                "desc": null
+              },
+              
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "AI Agent Trust",
+        "label": "AI Agent",
+        "on": false,
+        "groups": [
+          {
+            "heading": "AI Agent",
+            "items": [
+              {
+                "title": "No Data",
                 "pill": null,
                 "desc": null
               },
@@ -2982,6 +2979,108 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
+      {
+        "g": "4",
+        "label": "On Premises Cloud",
+        "on": false,
+        "groups": [
+          {
+            "heading": "On Premises Cloud",
+            "items": [
+              {
+                "title": "Data Center Build Services",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Acronis Cyber Frame (HCI)",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Vmware Migration",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      
+      {
+        "g": "6",
+        "label": "Managed Migration",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Managed Migration",
+            "items": [
+              {
+                "title": "Cloud Migration",
+                "pill": null,
+                "desc": "Plan, migrate and validate your cloud workloads",
+                "href": "/cloud-migration"
+              },
+              {
+                "title": "AWS Migration",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Azure Migration ",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "GCP Migration",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Database Migration",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Active Directory Migration ",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "MailBox Migration",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "File Migration",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Site Migration",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Archive Migration",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Teams Migration",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Slack Migration",
+                "pill": null,
+                "desc": null
+              },
+              
+            ]
+          }
+        ]
+      },
     ]
   },
   {
@@ -3172,18 +3271,17 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/vendor-partners/microsoft-365"
               },
               {
+                "title": "TSplus",
+                "pill": null,
+                "desc": "Secure remote access and application delivery",
+                "href": "/vendor-partners/tsplus"
+              },
+              {
                 "title": "Microsoft Azure",
                 "pill": null,
                 "desc": "Cloud infrastructure, applications and identity services",
                 "href": "/vendor-partners/microsoft-azure"
               },
-              {
-                "title": "DPO Genie365",
-                "pill": null,
-                "desc": "Privacy operations and data-protection compliance",
-                "href": "/vendor-partners/dpo-genie"
-              },
-              
               {
                 "title": "Amazon Web Services",
                 "pill": null,
@@ -3238,12 +3336,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "SSL, certificate lifecycle and digital identity",
                 "href": "/vendor-partners/sectigo"
               },
-              {
-                "title": "TSplus",
-                "pill": null,
-                "desc": "Secure remote access and application delivery",
-                "href": "/vendor-partners/tsplus"
-              },
+              
               {
                 "title": "Kaspersky",
                 "pill": null,
@@ -3273,6 +3366,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Cybersecurity solutions, protection services and digital resilience",
                 "href": "/vendor-partners/cybird"
+              },
+              {
+                "title": "DPO Genie365",
+                "pill": null,
+                "desc": "Privacy operations and data-protection compliance",
+                "href": "/vendor-partners/dpo-genie"
               },
               
             ]
@@ -3460,11 +3559,10 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Recognition for our cloud and security expertise"
               },
               {
-                "title": "Associations ",
+                "title": "Associations",
                 "pill": null,
                 "desc": "Recognition for our cloud and security expertise"
               },
-              
               {
                 "title": "Corporate Social Responsibility",
                 "pill": null,
