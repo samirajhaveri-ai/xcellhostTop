@@ -1,5 +1,30 @@
 <div class="object-content"><div class="wrap">
-  <section><div class="pp-sec">Overview — What is Object Storage?</div><div class="object-cols"><p><b>XcellHost Object Storage</b> is cloud storage built for unstructured data — files, images, video, backups, logs and archives. Store data as <b>objects</b> in <b>buckets</b> that scale without limits, and reach them over a standard <b>S3-compatible</b> API.</p><p>Every object is replicated for high durability, encrypted at rest and in transit, and available around the clock. Pay only for the storage and transfer you use, with Indian data-centre options, built-in CDN delivery, GST billing and 24×7 support.</p></div><div class="object-providers"><span>Use it for</span><b>Backups &amp; Snapshots</b><b>Media &amp; Streaming</b><b>App &amp; User Data</b><b>Archives &amp; Cold Data</b><b>Static Websites</b><b>Big Data &amp; Analytics</b></div></section>
+  <section class="object-overview"><div class="pp-sec">Overview — What is Object Storage?</div><div class="object-cols"><p><b>XcellHost Object Storage</b> is cloud storage built for unstructured data — files, images, video, backups, logs and archives. Store data as <b>objects</b> in <b>buckets</b> that scale without limits, and reach them over a standard <b>S3-compatible</b> API.</p><p>Every object is replicated for high durability, encrypted at rest and in transit, and available around the clock. Pay only for the storage and transfer you use, with Indian data-centre options, built-in CDN delivery, GST billing and 24×7 support.</p></div><div class="object-providers"><span>Use it for</span><b>Backups &amp; Snapshots</b><b>Media &amp; Streaming</b><b>App &amp; User Data</b><b>Archives &amp; Cold Data</b><b>Static Websites</b><b>Big Data &amp; Analytics</b></div></section>
+  <section class="storage-reference-sections" aria-label="Object storage use cases and capabilities">
+    <div class="storage-reference-block use-cases-block">
+      <div class="pp-sec">Use Cases</div>
+      <div class="use-case-grid">
+        @for (item of storageUseCases; track item.title) {
+          <article class="storage-icon-item">
+            <svg aria-hidden="true"><use [attr.href]="'/assets/images/object-storage-feature-icons.svg#' + item.icon"></use></svg>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.description }}</p>
+          </article>
+        }
+      </div>
+    </div>
+    <div class="storage-reference-block nextgen-block">
+      <div class="pp-sec">Next Gen Scalable Enterprise Cloud Storage</div>
+      <div class="nextgen-grid">
+        @for (item of nextGenStorageFeatures; track item.title) {
+          <article class="storage-icon-item">
+            <svg aria-hidden="true"><use [attr.href]="'/assets/images/object-storage-feature-icons.svg#' + item.icon"></use></svg>
+            <h3>{{ item.title }}</h3>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
   <section><div class="pp-sec">Create · Connect · Scale — how object storage works</div><div class="object-grid three"><article><strong>Create</strong><h3>Spin up a bucket</h3><p>Create a bucket in your chosen region in seconds, set it public or private, and store data without capacity planning.</p><ul><li>Buckets in seconds</li><li>Pick your region</li><li>Public or private access</li></ul></article><article><strong>Connect</strong><h3>Use the S3 API</h3><p>Point your apps, backup tools or scripts at the S3-compatible endpoint using access keys and familiar SDKs.</p><ul><li>S3-compatible endpoint</li><li>Access keys &amp; policies</li><li>Works with existing tools</li></ul></article><article><strong>Scale</strong><h3>Grow without limits</h3><p>Store from a few gigabytes to petabytes — capacity expands automatically and you pay only for what you use.</p><ul><li>Elastic, unlimited capacity</li><li>Pay only for what you use</li><li>Built-in CDN delivery</li></ul></article></div></section>
   <section class="storage-tiers" aria-labelledby="storage-tiers-title">
     <div class="pp-sec" id="storage-tiers-title">Storage built for every workload</div>
@@ -71,6 +96,28 @@
   </section>
   <section><div class="pp-sec">Add-ons &amp; managed services</div><div class="object-grid four"><article><b>Free data migration</b><p>Move data from AWS S3, Google Cloud, on-premises or other providers safely.</p></article><article><b>Built-in CDN</b><p>Serve images, video and downloads fast worldwide with integrated delivery.</p></article><article><b>Managed backups</b><p>Automated, versioned backups and lifecycle rules keep data protected.</p></article><article><b>Data residency</b><p>Keep data in Indian data centres with encryption and access controls.</p></article></div></section>
   <section><div class="pp-sec">What XcellHost Object Storage gives you</div><div class="object-grid six"><article><b>S3-compatible API</b><p>Existing apps, backup tools and SDKs connect with little or no change.</p></article><article><b>Unlimited, elastic scale</b><p>Grow from gigabytes to petabytes without capacity planning.</p></article><article><b>High durability</b><p>Objects are replicated across storage nodes for resilient protection.</p></article><article><b>Encryption &amp; access control</b><p>Encryption at rest and in transit with fine-grained permissions.</p></article><article><b>Pay-as-you-go</b><p>Only pay for the storage and transfer you use.</p></article><article><b>Versioning &amp; lifecycle</b><p>Keep versions and automate expiration or tier movement.</p></article></div></section>
+  <section class="storage-compatibility" aria-labelledby="storage-compatibility-title">
+    <div class="pp-sec" id="storage-compatibility-title">Compatible with your storage ecosystem</div>
+    <p class="compatibility-intro">Connect the backup platforms, NAS appliances and surveillance systems your teams already use.</p>
+    <div class="compatibility-rows">
+      @for (row of compatibilityRows; track row.title) {
+        <div class="compatibility-row" [style.--row-tone]="row.tone">
+          <h3>{{ row.title }}</h3>
+          <div class="compatibility-viewport">
+            <div class="compatibility-track">
+              @for (pass of marqueePasses; track pass) {
+                <div class="compatibility-pass" [attr.aria-hidden]="pass === 1 ? 'true' : null">
+                  @for (brand of row.brands; track brand.name) {
+                    <span class="compatibility-logo"><img [src]="brand.src" [alt]="brand.name + ' logo'" loading="lazy"></span>
+                  }
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
   <section class="object-console"><div class="console-head"><div class="pp-sec">Inside the storage console</div><p>Everything you need to manage your data in one place</p></div><div class="console-tabs" role="tablist">@for (tab of tabs; track tab.title; let index = $index) { <button type="button" role="tab" [class.active]="activeTab() === index" [attr.aria-selected]="activeTab() === index" (click)="selectTab(index)">{{ tab.title }}</button> }</div>@if (tabs[activeTab()]; as tab) {<article class="console-panel"><div><h3>{{ tab.heading }}</h3><p>{{ tab.body }}</p><ul>@for (item of tab.items; track item) { <li>{{ item }}</li> }</ul></div><div class="console-mock"><b>XSTORE · {{ tab.title }}</b>@for (value of tab.values; track value) { <span>{{ value }}</span> }</div></article>}</section>
   <section class="s3-simple" aria-labelledby="s3-simple-title">
     <div class="pp-sec" id="s3-simple-title">Standard S3 &mdash; without the surprise bills</div>

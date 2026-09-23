@@ -217,8 +217,32 @@ interface ProductTourSlide {
   ],
   templateUrl: './product.page.html',
   styles: [`
-    #ppage.tally-page .pph-scene.has-illus.standalone-illus { top: 50%; bottom: auto; transform: translateY(-50%); }
-    @media(max-width:900px) { #ppage.tally-page .pph-scene.has-illus.standalone-illus { top: auto; bottom: auto; transform: none; margin: 24px auto; } }
+    #ppage.tally-page .pph-scene.has-illus.standalone-illus { top: 50%; bottom: auto; transform: translateY(-50%); overflow: visible; mask-image: none; }
+    #ppage.tally-page .pph-illus { position: relative; }
+    #ppage.tally-page .tally-prime-hero-logo {
+      position: absolute;
+      z-index: 3;
+      top: auto;
+      right: 10%;
+      bottom: 12px;
+      display: block;
+      width: 205px;
+      height: 76px;
+      object-fit: contain;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      filter: none;
+    }
+    @media(max-width:1100px) {
+      #ppage.tally-page .tally-prime-hero-logo { right: 5%; bottom: 10px; width: 180px; height: 67px; }
+    }
+    @media(max-width:900px) {
+      #ppage.tally-page .pph-scene.has-illus.standalone-illus { top: auto; bottom: auto; transform: none; margin: 24px auto; }
+      #ppage.tally-page .tally-prime-hero-logo { top: auto; right: 7%; bottom: 0; width: 160px; height: 60px; }
+    }
     #ppage.cloud-migration-page .pph-scene.has-illus.standalone-illus { right: 1%; width: 49%; top: 2%; bottom: 2%; mask-image: none; }
     #ppage.cloud-migration-page .pph-scene.has-illus.standalone-illus .pph-illus-img { width: 96%; max-width: 600px; max-height: 440px; filter: none; }
     #ppage.acronis-backup-advanced-page .pph-scene.has-illus.standalone-illus { right: 2%; width: 43%; top: 0; bottom: 0; mask-image: none; opacity: 1; }

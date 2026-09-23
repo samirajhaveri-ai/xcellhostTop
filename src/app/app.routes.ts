@@ -66,6 +66,27 @@ export const routes: Routes = [
   { path: 'partner-matrix', loadComponent: () => import('./pages/partner-matrix.page').then((m) => m.PartnerMatrixPage) },
   { path: 'under-construction/cloud-login', redirectTo: 'cloud-login', pathMatch: 'full' },
   { path: 'cloud-login', loadComponent: () => import('./pages/cloud-login.page').then((m) => m.CloudLoginPage) },
+  { path: 'signup', loadComponent: () => import('./pages/signup.page').then((m) => m.SignupPage) },
+  {
+    path: 'customer-login',
+    data: { type: 'customer', heading: 'Customer Login', portal: 'Customer portal', description: 'Sign in to access your cloud dashboard and account services.' },
+    loadComponent: () => import('./pages/portal-login.page').then((m) => m.PortalLoginPage),
+  },
+  {
+    path: 'partner-login',
+    data: { type: 'partner', heading: 'Partner Login', portal: 'Partner portal', description: 'Sign in to manage your customers, services and partner resources.' },
+    loadComponent: () => import('./pages/portal-login.page').then((m) => m.PortalLoginPage),
+  },
+  {
+    path: 'vendor-login',
+    data: { type: 'vendor', heading: 'Vendor Login', portal: 'Vendor portal', description: 'Sign in to access vendor resources, requests and account tools.' },
+    loadComponent: () => import('./pages/portal-login.page').then((m) => m.PortalLoginPage),
+  },
+  {
+    path: 'employee-login',
+    data: { type: 'employee', heading: 'Employee Login', portal: 'Employee portal', description: 'Sign in securely to access employee tools and internal resources.' },
+    loadComponent: () => import('./pages/portal-login.page').then((m) => m.PortalLoginPage),
+  },
   {
     path: 'under-construction/data-processing-agreement',
     loadComponent: () =>
