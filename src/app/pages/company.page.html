@@ -497,48 +497,32 @@
             <span class="team-group-label"><span class="material-symbols-outlined team-label-icon" aria-hidden="true">{{ teamDepartmentIcon(activeTeamTab()) }}</span>{{ teamDepartmentLabel(activeTeamTab()) }}</span>
             <span class="team-group-rule" aria-hidden="true"></span>
             <span class="team-group-count">
-              @if (activeTeamTab() === 'security') { {{ securityDepartments.length }} sections }
+              @if (activeTeamTab() === 'security') { {{ securityTeam.length }} roles }
               @else { {{ visibleTeamMembers().length }} members }
             </span>
           </div>
-          @if (activeTeamTab() === 'security') {
-            <div class="security-department-grid">
-              @for (department of securityDepartments; track department.name) {
-                <details class="security-department-card">
-                  <summary>
-                    <h3>{{ department.name }}</h3>
-                    <span aria-hidden="true">+</span>
-                  </summary>
-                  <ul>
-                    @for (role of department.roles; track role) { <li>{{ role }}</li> }
-                  </ul>
-                </details>
-              }
-            </div>
-          } @else {
-            <div class="team-portrait-grid">
-              @for (member of visibleTeamMembers(); track member.department + member.name) {
-                <article class="team-portrait-card">
-                  <div class="team-portrait-image">
-                    @if (member.image) {
-                      <img [src]="member.image" [alt]="member.name" width="320" height="320" loading="lazy" decoding="async" />
-                    } @else {
-                      <div class="team-portrait-placeholder" aria-hidden="true">
-                        <svg viewBox="0 0 160 160" fill="currentColor"><circle cx="80" cy="55" r="29" /><path d="M24 150v-18a56 56 0 0 1 112 0v18Z" /></svg>
-                      </div>
-                    }
-                  </div>
-                  <div class="team-portrait-caption">
-                    <span class="team-role-badge">{{ teamDepartmentLabel(member.department) }}</span>
-                    <h3>{{ member.name }}</h3>
-                    @if (member.role) { <p>{{ member.role }}</p> }
-                  </div>
-                </article>
-              } @empty {
-                <p>Team member details will be added soon.</p>
-              }
-            </div>
-          }
+          <div class="team-portrait-grid" [class.team-portrait-grid-security]="activeTeamTab() === 'security'">
+            @for (member of visibleTeamMembers(); track member.department + member.name) {
+              <article class="team-portrait-card">
+                <div class="team-portrait-image">
+                  @if (member.image) {
+                    <img [src]="member.image" [alt]="member.name" width="320" height="320" loading="lazy" decoding="async" />
+                  } @else {
+                    <div class="team-portrait-placeholder" aria-hidden="true">
+                      <svg viewBox="0 0 160 160" fill="currentColor"><circle cx="80" cy="55" r="29" /><path d="M24 150v-18a56 56 0 0 1 112 0v18Z" /></svg>
+                    </div>
+                  }
+                </div>
+                <div class="team-portrait-caption">
+                  <span class="team-role-badge">{{ teamDepartmentLabel(member.department) }}</span>
+                  <h3>{{ member.name }}</h3>
+                  @if (member.role) { <p>{{ member.role }}</p> }
+                </div>
+              </article>
+            } @empty {
+              <p>Team member details will be added soon.</p>
+            }
+          </div>
         </div>
       </div>
     </section>

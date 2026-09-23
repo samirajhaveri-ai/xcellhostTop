@@ -7,7 +7,6 @@ import { map } from 'rxjs';
 import { SeoService } from '../core/seo.service';
 import { COMPANY_PAGES } from '../data/company.data';
 import { WORLD_MAP_HTML } from '../data/site.data';
-import { TEAM_STRUCTURE } from '../data/team-structure.data';
 import { HeroNetDirective } from '../sections/product';
 import { ResellerProgramContentComponent } from '../sections/reseller-program-content.component';
 import { TeamStructureComponent } from '../sections/team-structure.component';
@@ -157,8 +156,8 @@ export class CompanyPage {
   readonly salesTeam = [
     { initials: 'AP', name: 'Abhishek Pandey', role: 'Cloud Sales Manager', image: '/assets/images/team-abhishek-pandey.png' },
     { initials: 'AG', name: 'Ajay Gupta', role: 'Cloud Advisor - PreSales', image: '/assets/images/Ajay Gupta.png' },
-    { initials: 'AG', name: 'AI SDR Agent', role: '', image: '/assets/images/ai-sdr-agent.png' },
-    { initials: 'AG', name: 'AI Lead Qualification Agent', role: '', image: '/assets/images/ai-lead-qualification-agent.png' },
+    { initials: 'AG', name: 'AI SDR Agent', role: '', image: 'assets/images/Robot.avif' },
+    { initials: 'AG', name: 'AI Lead Qualification Agent', role: '', image: 'assets/images/Robot.avif' },
   ] as const;
   
   readonly marketing = [
@@ -178,7 +177,7 @@ export class CompanyPage {
   ] as const;
 
   readonly developers: readonly { initials: string; name: string; role: string; image: string }[] = [
-    { initials: 'SV', name: 'Sujeet Vishwakarma', role: '', image: '/assets/images/team-sujeet-vishwakarma.jpeg' },
+    { initials: 'SV', name: 'Sujeet Vishwakarma', role: 'Developer', image: '/assets/images/team-sujeet-vishwakarma.jpeg' },
     { initials: 'VG', name: 'Vaishnavi Ghaghare', role: 'Web Developer', image: '/assets/images/team-vaishnavi-ghaghare.png' },
     { initials: 'DV', name: 'Divya Varma', role: 'Web Developer', image: '/assets/images/team-divya-varma.jpeg' },
     { initials: 'VT', name: 'Vibha Tiwari', role: 'Web Developer', image: '/assets/images/team-vibha-tiwari.png' },
@@ -200,32 +199,37 @@ export class CompanyPage {
   ] as const;
 
   readonly adminTeam = [
-    { initials: 'MS', name: 'Mayuri Shinde', role: '', image: '/assets/images/team-mayuri-shinde.png' },
-    { initials: 'T', name: 'Tejas Nashiba', role: '', image: '' },
-    { initials: 'T', name: 'Management Intelligence Agent', role: '', image: '/assets/images/Robot.webp' },
-    { initials: 'T', name: 'AI Command Center Orchestrator', role: '', image: '/assets/images/Robot.webp' },
-
     { initials: 'MS', name: 'Mayuri Shinde', role: 'Admin Manager', image: '/assets/images/team-mayuri-shinde.png' },
-    { initials: 'T', name: 'Tejas Nashiba', role: 'Admin ', image: 'assets/images/Tejas photo.jpg' },
+      { initials: 'T', name: 'Tejas Nashiba', role: 'Admin ', image: 'assets/images/Tejas photo.jpg' },
+    { initials: 'T', name: 'AI Command Center Orchestrator', role: '', image: '/assets/images/Robot.avif' },
     { initials: 'T', name: 'AI Management Intelligence Agent', role: '', image: '/assets/images/Robot.avif ' },
-    { initials: 'T', name: 'AI Command Center Orchestrator', role: '', image: '/assets/images/Robot.avif ' },
   ] as const;
 
   readonly technicalSupportTeam = [
     { initials: 'RS', name: 'Rizwan Shaikh', role: 'Technical Manager', image: '/assets/images/team-rizwan-shaikh.png' },
-    { initials: 'AY', name: 'Amit Yadav', role: 'Technical L3', image: '' },
+    { initials: 'AY', name: 'Amit Yadav', role: 'Technical L3', image: '/assets/images/Amit Yadav.png' },
     { initials: 'PA', name: 'Purva Angre', role: 'Technical L1', image: '/assets/images/team-purva-angre.png' },
     { initials: 'SY', name: 'Saurav Yadav', role:  'Cloud Executive', image: '/assets/images/Saurav Yadav.png' },
     { initials: 'TM', name: 'Talha Mohammad', role: 'Technical L2', image: '/assets/images/Talha.png' },
+     { initials: 'TM', name: 'Manisha Gupta', role: 'Technical L2', image: '/assets/images/Manisha.png' },
     { initials: 'TM', name: 'AI Customer Support-Service', role: '', image: '/assets/images/Robot.avif ' },
-    
-
-
     { initials: 'SB', name: 'Santosh Behra', role: 'Technical Support Executive - L2', image: '/assets/images/Santosh Behra.png' },
 
-    { initials: 'SB', name: 'Santosh Kumar Behera', role: 'Technical Support Executive - L2', image: '' },
-
   ] as const;
+
+  readonly securityTeam = [
+    'CISO / Head of Cybersecurity',
+    'SOC Manager',
+    'SOC Analyst (L1/L2/L3)',
+    'SIEM Engineer',
+    'XDR / EDR Engineer',
+    'Security Engineer',
+    'Vulnerability Assessment Engineer',
+    'Penetration Tester',
+    'Incident Response Analyst',
+    'Threat Intelligence Analyst',
+    'GRC / Compliance Specialist',
+  ].map(name => ({ name, role: '', image: '/assets/images/Robot.avif' }));
 
   readonly teamTabs = [
     { id: 'all', label: 'All Team' },
@@ -242,7 +246,6 @@ export class CompanyPage {
     { id: 'admin', label: 'Admin' },
   ] as const;
   readonly activeTeamTab = signal<string>('all');
-  readonly securityDepartments = TEAM_STRUCTURE.find(division => division.id === 'technology')?.departments ?? [];
   teamDepartmentLabel(department: string): string {
     return this.teamTabs.find(tab => tab.id === department)?.label ?? department;
   }
@@ -258,6 +261,7 @@ export class CompanyPage {
   readonly teamMembers = [
     ...this.managementTeam.map(member => ({ ...member, department: 'management' })),
     ...this.technicalSupportTeam.map(member => ({ ...member, department: 'technical-support' })),
+    ...this.securityTeam.map(member => ({ ...member, department: 'security' })),
     ...this.advisoryTeam.map(member => ({ ...member, department: 'advisory' })),
     ...this.salesTeam.map(member => ({ ...member, department: 'sales' })),
     ...this.marketing.map(member => ({ ...member, department: 'marketing' })),

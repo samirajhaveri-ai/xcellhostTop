@@ -77,23 +77,6 @@ interface InsightCategoryBranch {
               </div>
             </div>
 
-
-            @if (featured(); as lead) {
-              <a class="insights-hero-feature" [routerLink]="['/insights', lead.slug]">
-                <span class="insights-feature-label">Featured article</span>
-                <strong>{{ lead.category }}</strong>
-                <h2>{{ lead.title }}</h2>
-                <p>{{ lead.description }}</p>
-                <div class="insights-feature-meta">
-                  <span>{{ formatDate(lead.date) }}</span>
-                  <span>{{ lead.author }}</span>
-                  <span>{{ readTime(lead) }}</span>
-                </div>
-              </a>
-            }
-
-
-
             <div class="insights-hub-visual" role="img" aria-label="Animated XcellHost insights resource hub">
               <div class="insights-hub-stage" aria-hidden="true">
                 <span class="hub-pulse hub-pulse-one"></span>
@@ -447,7 +430,6 @@ export class InsightsPage {
     }
     return branches;
   });
-  readonly featured = computed(() => this.posts()[0] ?? null);
   readonly visible = computed(() => {
     const query = this.query().trim().toLocaleLowerCase();
     return this.sourceItems().filter((item) => {
