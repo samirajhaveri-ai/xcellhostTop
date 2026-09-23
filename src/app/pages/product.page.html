@@ -13,6 +13,7 @@
     [class.acronis-ot-page]="slug() === 'acronis-ot'"
     [class.rtx-8000-page]="slug() === 'rtx-8000'"
     [class.rtx-pro-6000-page]="slug() === 'rtx-pro-6000'"
+    [class.rtx-6000-ada-page]="slug() === 'nvidia-rtx-6000-ada'"
     [class.whatsapp-smb-page]="isWhatsAppSmb()"
     [class.atm-solution-page]="isAutonomousThreatSolution()"
     [class.scrutiny-page]="
@@ -568,6 +569,10 @@
           </div>
         } @else if (slug() === 'rtx-pro-6000') {
           <xh-rtx-pro-6000-hero aria-hidden="true" />
+        } @else if (slug() === 'nvidia-rtx-6000-ada') {
+          <xh-rtx-6000-ada-hero aria-hidden="true" />
+        } @else if (slug() === 'rtx-a6000') {
+          <xh-rtx-a6000-hero aria-hidden="true" />
         } @else if (slug() === 'rtx-8000') {
           <div class="rtx-stage" aria-hidden="true">
             <svg class="rtx-rays" viewBox="0 0 640 490" preserveAspectRatio="xMidYMid meet">
@@ -739,6 +744,10 @@
                         ? 'DigiCert SSL Certificates'
                         : slug() === 'rtx-pro-6000'
                           ? 'RTX PRO 6000 Cloud GPU'
+                          : slug() === 'nvidia-rtx-6000-ada'
+                            ? 'RTX 6000 Ada Cloud GPU'
+                          : slug() === 'rtx-a6000'
+                            ? 'RTX A6000 Cloud GPU'
                           : slug() === 'rtx-8000'
                             ? 'RTX 8000 Cloud GPU'
                             : v.name
@@ -836,7 +845,7 @@
                 <section class="pp-ask-ai" aria-labelledby="ppAskAiTitle">
                   <div class="pp-ask-ai-copy">
                     <span class="pp-ask-ai-kicker" id="ppAskAiTitle"
-                      >Ask AI About {{ isResellerProgram() ? 'Cloud Channel Partner Program' : isSmbCyber() ? 'Cybird SMB Cyber Security Appliance' : isCloudBackup() ? 'Acronis Cloud Backup' : isAdvancedEdr() ? 'Acronis Advanced Endpoint Security (EDR)' : slug() === 'rtx-8000' ? 'RTX 8000 Cloud GPU' : slug() === 'rtx-pro-6000' ? 'RTX PRO 6000 Cloud GPU' : v.name }} from
+                      >Ask AI About {{ isResellerProgram() ? 'Cloud Channel Partner Program' : isSmbCyber() ? 'Cybird SMB Cyber Security Appliance' : isCloudBackup() ? 'Acronis Cloud Backup' : isAdvancedEdr() ? 'Acronis Advanced Endpoint Security (EDR)' : slug() === 'rtx-8000' ? 'RTX 8000 Cloud GPU' : slug() === 'rtx-pro-6000' ? 'RTX PRO 6000 Cloud GPU' : slug() === 'nvidia-rtx-6000-ada' ? 'RTX 6000 Ada Cloud GPU' : v.name }} from
                       XcellHost</span
                     >
                   </div>
@@ -2099,6 +2108,10 @@
                   <xh-rtx-8000-pricing (quoteRequested)="requestRtxPlan($event)" />
                 } @else if (slug() === 'rtx-pro-6000') {
                   <xh-rtx-pro-6000-pricing (quoteRequested)="requestRtxProPlan($event)" />
+                } @else if (slug() === 'nvidia-rtx-6000-ada') {
+                  <xh-rtx-6000-ada-pricing (quoteRequested)="requestRtx6000AdaPlan($event)" />
+                } @else if (slug() === 'rtx-a6000') {
+                  <xh-rtx-a6000-pricing (quoteRequested)="requestRtxA6000Plan($event)" />
                 } @else if (
                   !isAdvancedEdr() &&
                   !isSmbCyber() &&
@@ -2302,6 +2315,10 @@
                   <xh-rtx-8000-details />
                 } @else if (slug() === 'rtx-pro-6000') {
                   <xh-rtx-pro-6000-details />
+                } @else if (slug() === 'nvidia-rtx-6000-ada') {
+                  <xh-rtx-6000-ada-details />
+                } @else if (slug() === 'rtx-a6000') {
+                  <xh-rtx-a6000-details />
                 } @else if (
                   !isSmbCyber() &&
                   !isAcronisTrueImage() &&
@@ -2931,6 +2948,10 @@
                   <xh-rtx-8000-specifications />
                 } @else if (slug() === 'rtx-pro-6000') {
                   <xh-rtx-pro-6000-specifications />
+                } @else if (slug() === 'nvidia-rtx-6000-ada') {
+                  <xh-rtx-6000-ada-specifications />
+                } @else if (slug() === 'rtx-a6000') {
+                  <xh-rtx-a6000-performance />
                 } @else if (
                   !isSmbCyber() &&
                   !isRmm() &&
@@ -3510,8 +3531,11 @@
                   <xh-rtx-8000-use-cases />
                 } @else if (slug() === 'rtx-pro-6000') {
                   <xh-rtx-pro-6000-showcase />
+                } @else if (slug() === 'nvidia-rtx-6000-ada') {
+                  <xh-rtx-6000-ada-showcase />
                 } @else if (
                   v.name !== 'Tally on Cloud' &&
+                  slug() !== 'rtx-a6000' &&
                   !isSmbCyber() &&
                   !isAcronisTrueImage() &&
                   !isSiteLock() &&

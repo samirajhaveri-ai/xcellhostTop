@@ -5367,3 +5367,25 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 .rtx-bestfor b{padding:4px 10px;border-radius:99px;background:var(--blue-soft);color:var(--blue);font-weight:700}
 @media(max-width:640px){.rtx-answer{grid-template-columns:1fr;padding:22px 20px;gap:24px}.rtx-overview .pp-ov{font-size:15px}}
 @media(prefers-reduced-motion:reduce){.rtx-rays path,.rtx-ray-source,.rtx-ray-orbit,.rtx-card-float,.rtx-card-shadow,.rtx-memory-slots i,.rtx-link b,.rtx-stage-badges i{animation:none}.rtx-rays path{stroke-dasharray:none;stroke-dashoffset:0;opacity:1}.rtx-link b:nth-child(1){left:20%}.rtx-link b:nth-child(2){left:50%}.rtx-link b:nth-child(3){left:80%}}
+
+/* RTX 6000 Ada hero */
+#ppage.rtx-6000-ada-page .pph-map,#ppage.rtx-6000-ada-page .pph-net{display:none}
+#ppage.rtx-6000-ada-page .pp-hero{min-height:550px;padding:50px 0 54px;background:radial-gradient(650px 380px at 74% 22%,#193a72 0%,#10294f 55%,#0a2344 100%)}
+#ppage.rtx-6000-ada-page .pp-hero #ppTitle{display:block;max-width:700px;margin-bottom:14px;font-size:clamp(27px,3vw,40px);line-height:1.12;white-space:normal}
+#ppage.rtx-6000-ada-page .pp-hero>.wrap>.pp-tagline{max-width:680px;margin-bottom:5px;font-weight:650;line-height:1.4}
+#ppage.rtx-6000-ada-page .pp-hero>.wrap>.pp-tagline-support{max-width:680px;margin-bottom:14px;color:#fff;font:500 16px/1.5 var(--body)}
+#ppage.rtx-6000-ada-page .pp-typewriter{margin-bottom:8px}
+#ppage.rtx-6000-ada-page .pp-hpoints{grid-template-columns:repeat(2,max-content);gap:11px 27px;margin:9px 0 23px}
+#ppage.rtx-6000-ada-page .pp-hpoint{font-size:14px}
+#ppage.rtx-6000-ada-page .pp-ask-ai{margin-top:24px;padding:20px 0 0;border:0;border-top:1px solid rgba(144,180,233,.25);border-radius:0;background:none}
+#ppage.rtx-6000-ada-page .pp-ask-ai-kicker{padding:7px 11px;border:1px solid rgba(75,165,255,.32);border-radius:999px;background:rgba(8,31,68,.46)}
+#ppage.rtx-6000-ada-page .pp-ask-ai-chip{border:1px solid rgba(161,184,219,.28);border-radius:12px;background:rgba(11,24,53,.58)}
+#ppage.rtx-6000-ada-page #ppOv{max-inline-size:800px;margin:0;font-size:16px;line-height:1.72}
+@media(max-width:900px){
+  #ppage.rtx-6000-ada-page .pp-hero{display:flex;flex-direction:column;padding:35px 0 40px}
+  #ppage.rtx-6000-ada-page .pp-hero>.wrap{order:1}
+  #ppage.rtx-6000-ada-page .pp-hero #ppTitle{max-width:100%;font-size:clamp(27px,5vw,36px)}
+  #ppage.rtx-6000-ada-page .pp-hpoints{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 16px}
+}
+@media(max-width:560px){#ppage.rtx-6000-ada-page .pp-hpoints{grid-template-columns:1fr}}
+

@@ -1,0 +1,92 @@
+<section class="pro-answer" aria-labelledby="a6000AnswerTitle">
+  <div>
+    <span class="pro-answer-kicker">Quick answer · Updated September 2026</span>
+    <h2 id="a6000AnswerTitle">What is the RTX A6000 cloud GPU and who should use it?</h2>
+    <p>The NVIDIA RTX A6000 is a 48 GB Ampere professional GPU for 3D rendering, CAD, simulation and mid-size AI. It supports NVLink, so two cards share 96 GB. XcellHost rents it from Indian data centres from ₹48,900 a month (excl. GST) — a balanced choice between the budget RTX 8000 and the faster RTX 6000 Ada.</p>
+  </div>
+  <div>
+    <span class="pro-answer-kicker">Key takeaways</span>
+    <ul>
+      <li>48 GB ECC memory, 96 GB with NVLink</li>
+      <li>2.4× the FP32 throughput of Quadro RTX 6000</li>
+      <li>Supports BF16/TF32 for modern deep-learning frameworks</li>
+      <li>Mature driver support for CAD and DCC software</li>
+    </ul>
+    <div class="pro-bestfor"><span>Best for:</span><b>Rendering</b><b>Deep learning</b><b>Simulation</b><b>Virtual workstations</b></div>
+  </div>
+</section>
+
+<section class="rtx-pricing" id="pricing" aria-labelledby="a6000PricingTitle">
+  <header class="rtx-pricing-heading">
+    <span>Flexible plans for every workload</span>
+    <h2 id="a6000PricingTitle">RTX A6000 Cloud GPU Plans</h2>
+    <p>Select your billing period and choose the GPU configuration that fits your team. Prices start at ₹48,900/month.</p>
+  </header>
+
+  <div class="rtx-billing-tabs" role="group" aria-label="Billing period">
+    @for (term of terms; track term.label) {
+      <button type="button" [class.active]="selectedTerm() === term" [attr.aria-pressed]="selectedTerm() === term" (click)="selectedTerm.set(term)">
+        <span class="rtx-billing-badge">{{ term.badge }}</span>
+        <span>{{ term.label }}</span>
+      </button>
+    }
+  </div>
+
+  <div class="rtx-plan-list">
+    @for (plan of plans; track plan.code) {
+      <article class="rtx-plan" [attr.data-tone]="plan.tone">
+        <div class="rtx-plan-identity">
+          <span class="rtx-plan-audience">{{ plan.audience }}</span>
+          <div class="rtx-plan-name"><span class="rtx-gpu-count">{{ plan.gpus }}×</span><div><strong>RTX A6000</strong><small>{{ plan.name }}</small></div></div>
+        </div>
+        <dl class="rtx-plan-specs">
+          <div><dt>Server Type</dt><dd>Dedicated GPU VM</dd></div>
+          <div><dt>GPU</dt><dd>{{ plan.gpus }} × 48 GB</dd></div>
+          <div><dt>Virtual CPU</dt><dd>{{ plan.vcpu }} vCPU</dd></div>
+          <div><dt>Memory</dt><dd>{{ plan.memory }} GB</dd></div>
+          <div><dt>NVMe Storage</dt><dd>{{ plan.storage }} GB</dd></div>
+          <div><dt>Network Port</dt><dd>1 Gbps</dd></div>
+          <div><dt>Dedicated IP</dt><dd>1</dd></div>
+          <div><dt>Operating System</dt><dd>Ubuntu 22.04 / Win Server 2025</dd></div>
+          <div><dt>Drivers</dt><dd>CUDA pre-installed</dd></div>
+          <div><dt>Protection</dt><dd>Virtual Firewall + Anti-DDoS</dd></div>
+          <div><dt>Endpoint Security</dt><dd>Acronis Cyber Protect Cloud</dd></div>
+          <div><dt>Support</dt><dd>24×7</dd></div>
+        </dl>
+        <div class="rtx-plan-action">
+          @if (selectedTerm().discount > 0) { <del>{{ inr(plan.monthly) }}</del> }
+          <strong>{{ inr(discountedMonthly(plan)) }}</strong>
+          <button type="button" (click)="requestPlan(plan)">Buy Now <span aria-hidden="true">→</span></button>
+          <small>+GST · {{ billingLabel() }}</small>
+          <span class="rtx-hourly">≈ {{ inr(plan.hourly) }}/hr on demand</span>
+        </div>
+      </article>
+    }
+  </div>
+
+  <p class="rtx-pricing-note">Indicative pricing in INR, exclusive of 18% GST. Plan codes: XG.A6K.1-16, XG.A6K.1-24, XG.A6K.2-32-NVL, XG.A6K.4-64-NVL.</p>
+
+  <div class="rtx-estimator">
+    <div class="rtx-estimator-inputs">
+      <h3>Hourly or monthly? Work it out.</h3>
+      <p>Tell us how much you'll actually use the GPU and we'll show the cheaper way to pay.</p>
+      <label for="a6000EstimatePlan">Configuration</label>
+      <select id="a6000EstimatePlan" [value]="selectedPlanIndex()" (change)="selectPlan($event)">
+        @for (plan of plans; track plan.code; let index = $index) {
+          <option [value]="index">{{ plan.name }} — {{ plan.gpus }}× GPU, {{ plan.vcpu }} vCPU, {{ plan.memory }} GB</option>
+        }
+      </select>
+      <label for="a6000EstimateHours">Hours per day <output>{{ hoursPerDay() }}</output></label>
+      <input id="a6000EstimateHours" type="range" min="1" max="24" [value]="hoursPerDay()" (input)="changeHours($event)" />
+      <label for="a6000EstimateDays">Days per month <output>{{ daysPerMonth() }}</output></label>
+      <input id="a6000EstimateDays" type="range" min="1" max="31" [value]="daysPerMonth()" (input)="changeDays($event)" />
+    </div>
+    <div class="rtx-estimator-results" aria-live="polite">
+      <div><span>Pay-as-you-go</span><strong>{{ inr(payAsYouGo()) }}</strong></div>
+      <div><span>Monthly plan</span><strong>{{ inr(monthlyPlan()) }}</strong></div>
+      <div><span>1-year plan (per month)</span><strong>{{ inr(yearlyPlan()) }}</strong></div>
+      <p>{{ recommendation() }}</p>
+      <small>Indicative, excl. GST.</small>
+    </div>
+  </div>
+</section>

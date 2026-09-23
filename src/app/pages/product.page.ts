@@ -2,14 +2,23 @@ import { AcronisMdrContentComponent } from '../sections/acronis-mdr-content.comp
 import { AcronisMdrHeroComponent } from '../sections/acronis-mdr-hero.component';
 import { Rtx8000PricingComponent } from '../sections/rtx-8000-pricing.component';
 import { RtxPro6000PricingComponent } from '../sections/rtx-pro-6000-pricing.component';
+import { Rtx6000AdaPricingComponent } from '../sections/rtx-6000-ada-pricing.component';
+import { RtxA6000PricingComponent } from '../sections/rtx-a6000-pricing.component';
 import { RtxPro6000DetailsComponent } from '../sections/rtx-pro-6000-details.component';
+import { Rtx6000AdaDetailsComponent } from '../sections/rtx-6000-ada-details.component';
+import { RtxA6000DetailsComponent } from '../sections/rtx-a6000-details.component';
 import { Rtx8000DetailsComponent } from '../sections/rtx-8000-details.component';
 import { Rtx8000SpecificationsComponent } from '../sections/rtx-8000-specifications.component';
 import { RtxPro6000SpecificationsComponent } from '../sections/rtx-pro-6000-specifications.component';
+import { Rtx6000AdaSpecificationsComponent } from '../sections/rtx-6000-ada-specifications.component';
+import { RtxA6000PerformanceComponent } from '../sections/rtx-a6000-performance.component';
 import { Rtx8000UseCasesComponent } from '../sections/rtx-8000-use-cases.component';
 import { RtxPro6000ShowcaseComponent } from '../sections/rtx-pro-6000-showcase.component';
+import { Rtx6000AdaShowcaseComponent } from '../sections/rtx-6000-ada-showcase.component';
 import { Rtx8000StoriesComponent } from '../sections/rtx-8000-stories.component';
 import { RtxPro6000HeroComponent } from '../sections/rtx-pro-6000-hero.component';
+import { Rtx6000AdaHeroComponent } from '../sections/rtx-6000-ada-hero.component';
+import { RtxA6000HeroComponent } from '../sections/rtx-a6000-hero.component';
 import { EmailArchivingContentComponent } from '../sections/email-archiving-content.component';
 import { CloudDevopsContentComponent } from '../sections/cloud-devops-content.component';
 import { MicrosoftTrainingContentComponent } from '../sections/microsoft-training-content.component';
@@ -206,14 +215,23 @@ interface ProductTourSlide {
     AcronisMdrHeroComponent,
     Rtx8000PricingComponent,
     RtxPro6000PricingComponent,
+    Rtx6000AdaPricingComponent,
+    RtxA6000PricingComponent,
     RtxPro6000DetailsComponent,
+    Rtx6000AdaDetailsComponent,
+    RtxA6000DetailsComponent,
     Rtx8000DetailsComponent,
     Rtx8000SpecificationsComponent,
     RtxPro6000SpecificationsComponent,
+    Rtx6000AdaSpecificationsComponent,
+    RtxA6000PerformanceComponent,
     Rtx8000UseCasesComponent,
     RtxPro6000ShowcaseComponent,
+    Rtx6000AdaShowcaseComponent,
     Rtx8000StoriesComponent,
     RtxPro6000HeroComponent,
+    Rtx6000AdaHeroComponent,
+    RtxA6000HeroComponent,
     ZohoWorkspaceContentComponent,
     EntraIdContentComponent,
     EntraIdHeroComponent,
@@ -1355,6 +1373,52 @@ export class ProductPage {
         overview: 'One card that trains, serves and renders. 96 GB of GDDR7 memory and fifth-generation Tensor Cores let you run mid-size LLMs, generative video and heavy 3D scenes on the same instance — billed in rupees, invoiced with GST. Free setup and migration make the move simple, and hourly billing lets you prove a workload before you commit to a term.',
       };
     }
+    if (slug === 'nvidia-rtx-6000-ada') {
+      return {
+        ...view,
+        brandSuffix: 'GPU',
+        crumb: 'Home › Cloud › GPU Cloud',
+        tagline: 'RTX 6000 Ada cloud workstations for 3D, CAD and AI',
+        heroHighlight: 'Your designers need power, not another workstation purchase.',
+        heroMessages: [
+          'Cloud workstations for CAD and BIM',
+          'Real-time ray tracing from any laptop',
+          'Hosted in India · billed in INR',
+        ],
+        heroPoints: [
+          '48 GB GDDR6 ECC',
+          'Real-time ray tracing',
+          'Virtual workstation ready',
+          'Launch in minutes',
+          'INR billing + GST invoice',
+          '24×7 GPU specialists',
+        ],
+        overview: 'Give every designer and engineer a 48 GB professional GPU without buying a single workstation. Open large assemblies, preview ray-traced scenes in real time and run GenAI models from any laptop — hosted in India, billed monthly in rupees. Keep project files in the data centre, give every designer the same golden image, and onboard a new hire in minutes instead of weeks.',
+      };
+    }
+    if (slug === 'rtx-a6000') {
+      return {
+        ...view,
+        brandSuffix: 'GPU',
+        crumb: 'Home › Cloud › GPU Cloud',
+        tagline: "RTX A6000 cloud GPUs for 3D and AI that won't fit on a laptop",
+        heroHighlight: 'Proven Ampere power for rendering, simulation and AI.',
+        heroMessages: [
+          '48 GB ECC, 96 GB with NVLink',
+          'Render, simulate and train on one GPU',
+          'Hosted in India · billed in INR',
+        ],
+        heroPoints: [
+          '48 GB GDDR6 ECC',
+          'NVLink — 96 GB pooled',
+          'BF16 & TF32 for AI',
+          'Virtual workstation ready',
+          'INR billing + GST invoice',
+          '24×7 GPU specialists',
+        ],
+        overview: 'The dependable 48 GB Ampere workhorse. Render complex scenes, run simulations and train mid-size deep-learning models — and bridge two cards over NVLink when a job needs 96 GB. Hosted in India, billed monthly in rupees. Pick one card for workstations, or NVLink pairs when a scene or dataset needs 96 GB — all with free setup and 24×7 support.',
+      };
+    }
     if (slug === 'rtx-8000') {
       return {
         ...view,
@@ -1543,7 +1607,11 @@ export class ProductPage {
     const view = this.view();
     if (!view) return [];
 
-    const useBackupVideos = this.slug() === 'rtx-pro-6000' || this.slug() === 'rtx-8000';
+    const useBackupVideos =
+      this.slug() === 'rtx-pro-6000' ||
+      this.slug() === 'rtx-8000' ||
+      this.slug() === 'nvidia-rtx-6000-ada' ||
+      this.slug() === 'rtx-a6000';
     const videos = useBackupVideos
       ? PRODUCT_VIDEOS['Cloud Backup (Acronis)']
       : view.videos;
@@ -1876,6 +1944,16 @@ export class ProductPage {
 
   requestRtxProPlan(request: string): void {
     this.topics.ask(`RTX PRO 6000 - ${request}`);
+    this.overlay.open('callback');
+  }
+
+  requestRtx6000AdaPlan(request: string): void {
+    this.topics.ask(`RTX 6000 Ada - ${request}`);
+    this.overlay.open('callback');
+  }
+
+  requestRtxA6000Plan(request: string): void {
+    this.topics.ask(`RTX A6000 - ${request}`);
     this.overlay.open('callback');
   }
 
