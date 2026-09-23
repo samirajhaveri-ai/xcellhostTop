@@ -1,5 +1,15 @@
 import { AcronisMdrContentComponent } from '../sections/acronis-mdr-content.component';
 import { AcronisMdrHeroComponent } from '../sections/acronis-mdr-hero.component';
+import { Rtx8000PricingComponent } from '../sections/rtx-8000-pricing.component';
+import { RtxPro6000PricingComponent } from '../sections/rtx-pro-6000-pricing.component';
+import { RtxPro6000DetailsComponent } from '../sections/rtx-pro-6000-details.component';
+import { Rtx8000DetailsComponent } from '../sections/rtx-8000-details.component';
+import { Rtx8000SpecificationsComponent } from '../sections/rtx-8000-specifications.component';
+import { RtxPro6000SpecificationsComponent } from '../sections/rtx-pro-6000-specifications.component';
+import { Rtx8000UseCasesComponent } from '../sections/rtx-8000-use-cases.component';
+import { RtxPro6000ShowcaseComponent } from '../sections/rtx-pro-6000-showcase.component';
+import { Rtx8000StoriesComponent } from '../sections/rtx-8000-stories.component';
+import { RtxPro6000HeroComponent } from '../sections/rtx-pro-6000-hero.component';
 import { EmailArchivingContentComponent } from '../sections/email-archiving-content.component';
 import { CloudDevopsContentComponent } from '../sections/cloud-devops-content.component';
 import { MicrosoftTrainingContentComponent } from '../sections/microsoft-training-content.component';
@@ -30,7 +40,7 @@ import { LeadService } from '../core/lead.service';
 import { OverlayService } from '../core/overlay.service';
 import { PricingPlan, ProductPageService, ProductView } from '../core/product-page.service';
 import { SeoService } from '../core/seo.service';
-import { DEEP_CONTENT, PLATFORM_ICONS, RICH_PRODUCTS } from '../data/products.data';
+import { DEEP_CONTENT, PLATFORM_ICONS, PRODUCT_VIDEOS, RICH_PRODUCTS } from '../data/products.data';
 import { Faq } from '../data/models';
 import { SITE, WORLD_MAP_HTML } from '../data/site.data';
 import { HeroNetDirective, ProductFaqComponent } from '../sections/product';
@@ -194,6 +204,16 @@ interface ProductTourSlide {
     CopilotTrainingContentComponent,
     AcronisMdrContentComponent,
     AcronisMdrHeroComponent,
+    Rtx8000PricingComponent,
+    RtxPro6000PricingComponent,
+    RtxPro6000DetailsComponent,
+    Rtx8000DetailsComponent,
+    Rtx8000SpecificationsComponent,
+    RtxPro6000SpecificationsComponent,
+    Rtx8000UseCasesComponent,
+    RtxPro6000ShowcaseComponent,
+    Rtx8000StoriesComponent,
+    RtxPro6000HeroComponent,
     ZohoWorkspaceContentComponent,
     EntraIdContentComponent,
     EntraIdHeroComponent,
@@ -227,6 +247,7 @@ interface ProductTourSlide {
     #ppage.acronis-ot-page .pph-scene.has-illus.standalone-illus { right: 2%; width: 43%; top: 0; bottom: 0; mask-image: none; opacity: 1; }
     #ppage.acronis-ot-page .pph-scene.has-illus.standalone-illus .pph-illus { width: 100%; height: 100%; }
     #ppage.acronis-ot-page .pph-scene.has-illus.standalone-illus .pph-illus-img { width: 100%; max-width: 560px; max-height: 430px; filter: none; }
+    #ppage.rtx-8000-page .pph-map, #ppage.rtx-8000-page .pph-net { display: none; }
     @media(max-width:900px) {
       #ppage.cloud-migration-page .pph-scene.has-illus.standalone-illus { position: relative; right: auto; width: min(100%, 600px); top: auto; bottom: auto; margin: 18px auto 0; opacity: 1; }
       #ppage.cloud-migration-page .pph-scene.has-illus.standalone-illus .pph-illus-img { width: 100%; max-width: 560px; max-height: none; }
@@ -1311,6 +1332,51 @@ export class ProductPage {
     if (slug === 'acronis-ot') {
       return { ...view, heroImage: '/assets/images/acronis-cyber-protect-ot-hero.svg' };
     }
+    if (slug === 'rtx-pro-6000') {
+      return {
+        ...view,
+        brandSuffix: 'GPU',
+        crumb: 'Home › Cloud › GPU Cloud',
+        tagline: 'RTX PRO 6000 Blackwell, on demand from Indian data centres',
+        heroHighlight: 'Your models and scenes grew — make your GPU grow with them.',
+        heroMessages: [
+          '96 GB GDDR7 for LLMs and 3D',
+          'FP4 inference at lower cost per token',
+          'Hosted in India · billed in INR',
+        ],
+        heroPoints: [
+          '96 GB GDDR7 ECC',
+          'FP4 Tensor Cores',
+          'MIG partitioning',
+          'Confidential computing',
+          'INR billing + GST invoice',
+          '24×7 GPU specialists',
+        ],
+        overview: 'One card that trains, serves and renders. 96 GB of GDDR7 memory and fifth-generation Tensor Cores let you run mid-size LLMs, generative video and heavy 3D scenes on the same instance — billed in rupees, invoiced with GST. Free setup and migration make the move simple, and hourly billing lets you prove a workload before you commit to a term.',
+      };
+    }
+    if (slug === 'rtx-8000') {
+      return {
+        ...view,
+        brandSuffix: 'GPU',
+        crumb: 'Home › Cloud › GPU Cloud',
+        tagline: 'RTX 8000 cloud GPUs for bigger renders on a smaller budget',
+        heroHighlight: 'Big scenes, small budget — rendering without the render farm.',
+        heroMessages: [
+          '48 GB rendering at the lowest price',
+          'NVLink pools 96 GB for huge scenes',
+          'RTX 8000 cloud GPUs live in India',
+        ],
+        heroPoints: [
+          '48 GB GDDR6 ECC',
+          'NVLink — 96 GB pooled',
+          'Real-time ray tracing',
+          'Lowest entry price',
+          'INR billing + GST invoice',
+          '24×7 GPU specialists',
+        ],
+      };
+    }
     if (slug === 'email-archiving' || slug === 'e-mail-archiving') {
 
       return {
@@ -1477,10 +1543,17 @@ export class ProductPage {
     const view = this.view();
     if (!view) return [];
 
-    return view.videos.slice(0, 2).flatMap((video, index) => {
+    const useBackupVideos = this.slug() === 'rtx-pro-6000' || this.slug() === 'rtx-8000';
+    const videos = useBackupVideos
+      ? PRODUCT_VIDEOS['Cloud Backup (Acronis)']
+      : view.videos;
+
+    return videos.slice(0, 2).flatMap((video, index) => {
       if (!video) return [];
       return [{
-        label: view.videoLabels[index] ?? (index === 0 ? 'Product Intro' : 'Use Cases'),
+        label: useBackupVideos
+          ? (index === 0 ? 'Product Intro' : 'Use Cases')
+          : (view.videoLabels[index] ?? (index === 0 ? 'Product Intro' : 'Use Cases')),
         url: this.sanitizer.bypassSecurityTrustResourceUrl(
           `https://www.youtube-nocookie.com/embed/${video}?rel=0&playsinline=1`,
         ),
@@ -1793,6 +1866,16 @@ export class ProductPage {
     ev.preventDefault();
     const name = this.view()?.name ?? "";
     this.topics.ask(request ? `${name} - ${request}` : name);
+    this.overlay.open('callback');
+  }
+
+  requestRtxPlan(request: string): void {
+    this.topics.ask(`RTX 8000 - ${request}`);
+    this.overlay.open('callback');
+  }
+
+  requestRtxProPlan(request: string): void {
+    this.topics.ask(`RTX PRO 6000 - ${request}`);
     this.overlay.open('callback');
   }
 
