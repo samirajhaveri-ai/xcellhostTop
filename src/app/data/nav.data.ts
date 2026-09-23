@@ -553,7 +553,22 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Bare Metal Servers",
             "items": [
               {
-                "title": "Bare Metal Servers",
+                "title": "RPC Nodes",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Storage Servers",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Linux Servers",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Windows Servers",
                 "pill": null,
                 "desc": null
               },
@@ -954,11 +969,11 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "8",
-        "label": "SAP Cloud",
+        "label": "SAP On Cloud",
         "on": false,
         "groups": [
           {
-            "heading": "SAP Cloud",
+            "heading": "SAP On Cloud",
             "items": [
               {
                 "title": "SAP Hosting",
@@ -1029,6 +1044,74 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "CloudConnect",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "DirectConnect",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "SSL",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "WAF",
+                "pill": null,
+                "desc": null
+              },
+                      {
+                "title": "Firewalls",
+                "pill": null,
+                "desc": null
+              },
+                      {
+                "title": "Endpoint Security",
+                "pill": null,
+                "desc": null
+              },
+
+            ]
+          }
+        ]
+      },
+      {
+        "g": "8",
+        "label": "Managed Service",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Managed Service",
+            "items": [
+              {
+                "title": "Resilience Operations",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Cloud Operations",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Database Operations",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Network Operations",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Security Operations",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Workspace Operations",
                 "pill": null,
                 "desc": null
               },
@@ -1855,11 +1938,11 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "AI Agent Trust",
-        "label": "AI Agent",
+        "label": "AI Agent Trust",
         "on": false,
         "groups": [
           {
-            "heading": "AI Agent",
+            "heading": "AI Agent Trust",
             "items": [
               {
                 "title": "No Data",
