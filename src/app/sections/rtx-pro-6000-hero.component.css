@@ -1,0 +1,19 @@
+:host{position:absolute;z-index:2;top:26px;right:max(24px,calc((100vw - 1240px)/2 + 24px));display:block;width:min(40vw,480px);height:470px;pointer-events:none}
+.pro-stage{position:relative;width:100%;height:100%;isolation:isolate}
+.pro-stage canvas{position:absolute;inset:0;width:100%;height:100%}
+.pro-card-float{position:absolute;z-index:2;top:9%;left:4%;width:92%;transform-origin:50% 60%;animation:pro-card-float 6s ease-in-out infinite}
+.pro-card-float .gc{display:block;width:100%;height:auto;overflow:visible;filter:drop-shadow(0 18px 14px rgba(0,0,0,.25))}
+.pro-card-floor{position:absolute;z-index:1;top:51%;left:24%;width:52%;height:15px;border-radius:50%;background:rgba(21,101,216,.36);filter:blur(14px);animation:pro-floor 6s ease-in-out infinite}
+.pro-card-float .gc-sheen{animation:pro-sheen 4.5s ease-in-out infinite}
+.pro-card-float .gc-led{animation:pro-led 2.4s ease-in-out infinite}
+.pro-stage-badges{position:absolute;right:1%;bottom:3%;left:1%;display:flex;align-items:center;justify-content:space-between;gap:8px;color:#fff;font:700 10px/1.2 var(--mono,monospace)}
+.pro-stage-badges span{padding:6px 11px;border:1px solid rgba(127,178,255,.32);border-radius:99px;background:rgba(8,31,68,.68);white-space:nowrap}
+.pro-stage-badges i{display:inline-block;width:7px;height:7px;margin-right:5px;border-radius:50%;background:#28d27d;animation:pro-live 1.4s ease-in-out infinite}
+@keyframes pro-card-float{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-11px) rotate(0deg)}}
+@keyframes pro-floor{50%{opacity:.55;transform:scaleX(.85)}}
+@keyframes pro-sheen{0%{transform:skewX(-18deg) translateX(0)}60%,100%{transform:skewX(-18deg) translateX(1100px)}}
+@keyframes pro-led{50%{opacity:.45}}
+@keyframes pro-live{50%{opacity:.3}}
+@media(max-width:900px){:host{position:relative;order:2;top:auto;right:auto;flex:none;width:min(480px,calc(100vw - 48px));height:min(470px,calc(100vw - 48px));margin:14px auto 0}}
+@media(max-width:480px){.pro-stage-badges{font-size:7px}.pro-stage-badges span{padding:5px 7px}}
+@media(prefers-reduced-motion:reduce){.pro-card-float,.pro-card-floor,.pro-card-float .gc-sheen,.pro-card-float .gc-led,.pro-stage-badges i{animation:none}}

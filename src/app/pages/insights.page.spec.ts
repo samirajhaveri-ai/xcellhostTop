@@ -1,4 +1,6 @@
 import { TestBed } from '@angular/core/testing';
+import { signal } from '@angular/core';
+import { provideRouter } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { BlogApiService, CmsBlogPost, CmsInsightResource } from '../core/blog-api.service';
 import { SeoService } from '../core/seo.service';
@@ -18,10 +20,34 @@ describe('Insights pagination', () => {
     videos = new BehaviorSubject<readonly CmsInsightResource[]>([]);
     useCases = new BehaviorSubject<readonly CmsInsightResource[]>([]);
     TestBed.configureTestingModule({ providers: [
-      { provide: BlogApiService, useValue: { posts$: posts, videos$: videos, useCases$: useCases } },
+      provideRouter([]),
+      { provide: BlogApiService, useValue: { posts$: posts, videos$: videos, useCases$: useCases, videoStatus: signal('ready') } },
       { provide: SeoService, useValue: { set: () => {} } },
     ] });
     page = TestBed.runInInjectionContext(() => new InsightsPage());
+  });
+
+  it('renders clickable video cards and filters even when blogs fail', () => {
+    const fixture = TestBed.createComponent(InsightsPage);
+    videos.next([{
+      documentId: 'youtube-phzscka8jMM', kind: 'video', title: 'Cloud server demo',
+      description: 'A cloud demo', content: '', category: 'Cloud', mainCategory: 'Cloud',
+      subCategory: 'General', date: '', time: '', author: 'XcellHost',
+      videoUrl: 'https://www.youtube.com/watch?v=phzscka8jMM',
+      coverImageUrl: 'https://i.ytimg.com/vi/phzscka8jMM/hqdefault.jpg',
+    } as CmsInsightResource]);
+    posts.error(new Error('CMS unavailable'));
+    fixture.detectChanges();
+    const tabs = fixture.nativeElement.querySelectorAll('.insights-tabs button');
+    tabs[1].click();
+    fixture.detectChanges();
+    const lead = fixture.nativeElement.querySelector('.insights-lead') as HTMLAnchorElement;
+    expect(lead.href).toBe('https://www.youtube.com/watch?v=phzscka8jMM');
+    expect(lead.textContent).toContain('Watch on YouTube');
+    expect(fixture.componentInstance.categoryCount('Cloud')).toBe(1);
+    fixture.componentInstance.query.set('unmatched query');
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('.insights-empty').textContent).toContain('No matching videos');
   });
 
   it('shows 20 distinct articles per full page, including the top story', () => {
