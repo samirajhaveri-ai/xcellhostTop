@@ -28,13 +28,16 @@
     [class.tsplus-advanced-security-page]="isTsplusAdvancedSecurity()"
     [class.tsplus-remote-access-page]="isTsplusRemoteAccess()"
     [class.microsoft-copilot-page]="isMicrosoftCopilot()"
+    [class.microsoft-365-enterprise-page]="slug() === 'microsoft-365-enterprise'"
   >
     @if (isOurPlatform()) {
       <xh-our-platform-reference />
     } @else if (isWatchtower()) {
       <xh-watchtower-reference />
     } @else {
-      @if (isCopilotStudio()) {
+      @if (slug() === 'microsoft-365-enterprise') {
+        <xh-microsoft-365-enterprise-reference />
+      } @else if (isCopilotStudio()) {
         <xh-copilot-studio-content mode="hero" />
       } @else {
       <div
@@ -1021,7 +1024,7 @@
       </div>
       }
 
-      @if (!isResellerProgram()) {
+      @if (!isResellerProgram() && slug() !== 'microsoft-365-enterprise') {
         <div class="pp-trust">
           <div class="wrap">
             @if (isCopilotStudio()) {
@@ -1146,6 +1149,7 @@
       }
     }
 
+    @if (slug() !== 'microsoft-365-enterprise') {
     @if (isManagedAws() || isManagedAzure()) {
       <xh-managed-aws-content [provider]="isManagedAzure() ? 'Azure' : 'AWS'" />
     } @else {
@@ -1168,6 +1172,7 @@
         [class.email-archiving-body]="slug() === 'email-archiving'"
       >
         <div class="wrap">
+          @if (slug() !== 'microsoft-365-enterprise') {
           @if (slug() === 'waap-as-a-service') {
             <xh-waap-content />
           } @else {
@@ -3722,6 +3727,8 @@
 
           }
 
+          }
+
           @if (v.name !== 'Tally on Cloud') {
             @if (slug() === 'rtx-8000') {
               <xh-rtx-8000-stories />
@@ -3739,7 +3746,7 @@
                 <p class="pp-secfoot">XcellHost is ISO 27001 and ISO 20000-1 certified · Indian Tier-4 datacenters · DPDPA and RBI aligned · 24×7 NOC and SOC.</p>
               </section>
             } @else if (!isSmbCyber() && !isRmm() && slug() !== 'acronis-backup-advanced' && slug() !== 'acronis-ot' && slug() !== 'scrutiny-dlp' && slug() !== 'cloud-migration') {
-              <div class="pp-sec" id="ppSecHead" [style.margin-bottom.px]="slug() === 'managed-devops' ? 32 : null">{{ v.security.head }}</div>
+              <div class="pp-sec" id="ppSecHead" [style.margin-bottom.px]="slug() === 'managed-devops' ? 32 : null">{{ slug() === 'microsoft-365-enterprise' ? 'Security & compliance — Microsoft 365 Enterprise' : v.security.head }}</div>
               <div id="ppSecWrap">
                 <p class="pp-ov">{{ v.security.intro }}</p>
                 <div class="pp-secrows">
@@ -4372,6 +4379,7 @@
           </div>
         </div>
       </div>
+    }
     }
   </div>
 

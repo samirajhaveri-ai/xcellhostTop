@@ -70,6 +70,7 @@ import { WhatsAppSmbContentComponent } from '../sections/whatsapp-smb-content.co
 import { ManagedAwsContentComponent } from '../sections/managed-aws-content.component';
 
 import { ManagedMicrosoft365ContentComponent } from '../sections/managed-microsoft-365-content.component';
+import { Microsoft365EnterpriseReferenceComponent } from '../sections/microsoft-365-enterprise-reference.component';
 import { MicrosoftCopilotContentComponent } from '../sections/microsoft-copilot-content.component';
 import { CopilotStudioContentComponent } from '../sections/copilot-studio-content.component';
 import { CloudObjectStorageContentComponent } from '../sections/cloud-object-storage-content.component';
@@ -191,6 +192,7 @@ interface ProductTourSlide {
     ManagedAwsContentComponent,
 
     ManagedMicrosoft365ContentComponent,
+    Microsoft365EnterpriseReferenceComponent,
     MicrosoftCopilotContentComponent,
     CopilotStudioContentComponent,
     WaapContentComponent,
@@ -610,6 +612,118 @@ interface ProductTourSlide {
       #ppage .copilot-hero-points { grid-template-columns: 1fr; }
       #ppage .copilot-hero-copy { padding-bottom: 390px; }
       #ppage .copilot-hero-art { right: 4%; width: 92%; }
+    }
+
+    /* RTX 8000 desktop hero geometry shared by every product page. */
+    @media (min-width: 901px) {
+      #ppage .pp-hero {
+        box-sizing: border-box;
+        min-height: 510px;
+        padding: 50px 0 54px;
+      }
+      #ppage .pp-hero > .wrap {
+        width: 100%;
+        max-width: 1240px;
+        margin-inline: auto;
+        padding-inline: 24px;
+      }
+      #ppage .pp-hero > .wrap > .pp-crumb,
+      #ppage .pp-hero > .wrap > h1,
+      #ppage .pp-hero > .wrap > .pp-tagline,
+      #ppage .pp-hero > .wrap > .pp-tagline-support,
+      #ppage .pp-hero > .wrap > .pp-chips,
+      #ppage .pp-hero > .wrap > .pp-hero-grid {
+        max-width: 58%;
+      }
+      #ppage .pp-hero > .wrap > h1,
+      #ppage .pp-hero #ppTitle {
+        max-width: 100%;
+        margin-bottom: 14px;
+        font-size: clamp(27px, 3vw, 40px);
+        line-height: 1.12;
+        white-space: normal;
+      }
+      #ppage .pp-title-name { white-space: normal; }
+      #ppage .pp-hero > .wrap > .pp-tagline {
+        max-width: 680px;
+        margin-bottom: 4px;
+        font-weight: 650;
+        line-height: 1.4;
+      }
+      #ppage .pp-hero > .wrap > .pp-tagline-support {
+        max-width: 680px;
+        margin-bottom: 14px;
+        color: #fff;
+        font: 500 16px/1.5 var(--body);
+      }
+      #ppage .pp-hpoints {
+        grid-template-columns: repeat(2, max-content);
+        gap: 11px 27px;
+        margin: 9px 0 23px;
+      }
+      #ppage .pp-hpoint { font-size: 14px; }
+      #ppage .product-hero-ctas { gap: 12px; }
+      #ppage .product-hero-ctas .btn { min-height: 46px; }
+      #ppage .pp-ask-ai {
+        margin-top: 24px;
+        padding: 20px 0 0;
+        border: 0;
+        border-top: 1px solid rgba(144, 180, 233, .25);
+        border-radius: 0;
+        background: none;
+      }
+      #ppage .pp-ask-ai-kicker {
+        padding: 7px 11px;
+        border: 1px solid rgba(75, 165, 255, .32);
+        border-radius: 999px;
+        background: rgba(8, 31, 68, .46);
+      }
+      #ppage .pp-ask-ai-chip {
+        border: 1px solid rgba(161, 184, 219, .28);
+        border-radius: 12px;
+        background: rgba(11, 24, 53, .58);
+      }
+      #ppage .pph-scene { max-height: 510px; }
+      #ppage .pph-scene.has-illus {
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        align-items: center;
+      }
+      #ppage.tally-page .pph-scene.has-illus.standalone-illus {
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        transform: none;
+        overflow: hidden;
+      }
+    }
+
+    @media (min-width: 901px) and (max-width: 1180px) {
+      #ppage .pp-hero > .wrap { padding-inline: 28px; }
+      #ppage .pp-hero > .wrap > .pp-crumb,
+      #ppage .pp-hero > .wrap > h1,
+      #ppage .pp-hero > .wrap > .pp-tagline,
+      #ppage .pp-hero > .wrap > .pp-tagline-support,
+      #ppage .pp-hero > .wrap > .pp-chips,
+      #ppage .pp-hero > .wrap > .pp-hero-grid { max-width: 56%; }
+      #ppage .pp-hero > .wrap > h1,
+      #ppage .pp-hero #ppTitle { font-size: clamp(27px, 3.2vw, 35px); }
+      #ppage .pph-scene { width: 44%; }
+      #ppage .product-hero-ctas { gap: 8px; }
+      #ppage .product-hero-ctas .btn { padding-inline: 13px; font-size: 12px; }
+      #ppage .pp-hpoints { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 16px; }
+    }
+
+    @media (min-width: 901px) and (max-width: 1050px) {
+      #ppage .product-hero-ctas {
+        width: 100%;
+        max-width: 100%;
+        flex-wrap: wrap;
+      }
+      #ppage .product-hero-ctas .btn { min-height: 42px; padding-inline: 11px; }
+      #ppage .pp-ask-ai { margin-top: 18px; }
+      #ppage .pph-scene { right: -2%; width: 43%; }
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
