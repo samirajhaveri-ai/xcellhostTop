@@ -10,5 +10,5 @@ export const environment = {
   faqApi: '',
   strapiUrl: 'https://admin.xcellhost.top',
   youtubeChannelId: 'UCChA2em9-NJFlof3MuOe8Qg',
-  youtubeFeedApi: 'https://api.rss2json.com/v1/api.json',
+  youtubeFeedApi: '/feeds/youtube.php',
 };

@@ -32,5 +32,5 @@ export const environment = {
 
   /** Public XcellHost YouTube feed; no API key is exposed in the browser. */
   youtubeChannelId: 'UCChA2em9-NJFlof3MuOe8Qg',
-  youtubeFeedApi: 'https://api.rss2json.com/v1/api.json',
+  youtubeFeedApi: '/feeds/youtube.php',
 };
