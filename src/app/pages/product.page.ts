@@ -1,5 +1,15 @@
 import { AcronisMdrContentComponent } from '../sections/acronis-mdr-content.component';
 import { AcronisMdrHeroComponent } from '../sections/acronis-mdr-hero.component';
+import { Rtx8000PricingComponent } from '../sections/rtx-8000-pricing.component';
+import { RtxPro6000PricingComponent } from '../sections/rtx-pro-6000-pricing.component';
+import { RtxPro6000DetailsComponent } from '../sections/rtx-pro-6000-details.component';
+import { Rtx8000DetailsComponent } from '../sections/rtx-8000-details.component';
+import { Rtx8000SpecificationsComponent } from '../sections/rtx-8000-specifications.component';
+import { RtxPro6000SpecificationsComponent } from '../sections/rtx-pro-6000-specifications.component';
+import { Rtx8000UseCasesComponent } from '../sections/rtx-8000-use-cases.component';
+import { RtxPro6000ShowcaseComponent } from '../sections/rtx-pro-6000-showcase.component';
+import { Rtx8000StoriesComponent } from '../sections/rtx-8000-stories.component';
+import { RtxPro6000HeroComponent } from '../sections/rtx-pro-6000-hero.component';
 import { EmailArchivingContentComponent } from '../sections/email-archiving-content.component';
 import { CloudDevopsContentComponent } from '../sections/cloud-devops-content.component';
 import { MicrosoftTrainingContentComponent } from '../sections/microsoft-training-content.component';
@@ -30,7 +40,7 @@ import { LeadService } from '../core/lead.service';
 import { OverlayService } from '../core/overlay.service';
 import { PricingPlan, ProductPageService, ProductView } from '../core/product-page.service';
 import { SeoService } from '../core/seo.service';
-import { DEEP_CONTENT, PLATFORM_ICONS, RICH_PRODUCTS } from '../data/products.data';
+import { DEEP_CONTENT, PLATFORM_ICONS, PRODUCT_VIDEOS, RICH_PRODUCTS } from '../data/products.data';
 import { Faq } from '../data/models';
 import { SITE, WORLD_MAP_HTML } from '../data/site.data';
 import { HeroNetDirective, ProductFaqComponent } from '../sections/product';
@@ -80,6 +90,8 @@ import { GenaiProtectionContentComponent } from '../sections/genai-protection-co
 import { CloudMigrationAdvantageComponent } from '../sections/cloud-migration-advantage.component';
 import { AcronisBackupAdvancedContentComponent } from '../sections/acronis-backup-advanced-content.component';
 import { AcronisOtContentComponent } from '../sections/acronis-ot-content.component';
+import { NvidiaA100SourceComponent } from '../sections/nvidia-a100-source.component';
+import { NvidiaA100AssuranceComponent } from '../sections/nvidia-a100-assurance.component';
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -194,6 +206,16 @@ interface ProductTourSlide {
     CopilotTrainingContentComponent,
     AcronisMdrContentComponent,
     AcronisMdrHeroComponent,
+    Rtx8000PricingComponent,
+    RtxPro6000PricingComponent,
+    RtxPro6000DetailsComponent,
+    Rtx8000DetailsComponent,
+    Rtx8000SpecificationsComponent,
+    RtxPro6000SpecificationsComponent,
+    Rtx8000UseCasesComponent,
+    RtxPro6000ShowcaseComponent,
+    Rtx8000StoriesComponent,
+    RtxPro6000HeroComponent,
     ZohoWorkspaceContentComponent,
     EntraIdContentComponent,
     EntraIdHeroComponent,
@@ -211,14 +233,45 @@ interface ProductTourSlide {
     CloudMigrationAdvantageComponent,
     AcronisBackupAdvancedContentComponent,
     AcronisOtContentComponent,
+    NvidiaA100SourceComponent,
+    NvidiaA100AssuranceComponent,
 
     EmailSignatureContentComponent,
     EmailSignatureHeroComponent,
   ],
   templateUrl: './product.page.html',
   styles: [`
-    #ppage.tally-page .pph-scene.has-illus.standalone-illus { top: 50%; bottom: auto; transform: translateY(-50%); }
-    @media(max-width:900px) { #ppage.tally-page .pph-scene.has-illus.standalone-illus { top: auto; bottom: auto; transform: none; margin: 24px auto; } }
+    #ppage.nvidia-a100-page .pp-hero { display: none; }
+    #ppage.nvidia-a100-page #ppOv { width: 100%; max-width: none; }
+    #ppage.nvidia-a100-page .a100-related { display: flex; flex-wrap: nowrap; gap: 6px; align-items: center; margin-top: 24px; overflow-x: auto; white-space: nowrap; color: #486078; font-size: 12px; }
+    #ppage.nvidia-a100-page .a100-related > * { flex: none; }
+    #ppage.nvidia-a100-page .a100-related a, #ppage.nvidia-a100-page .a100-related-pill { padding: 6px 10px; border: 1px solid #d7e3f5; border-radius: 999px; color: #1767d6; text-decoration: none; }
+    #ppage.tally-page .pph-scene.has-illus.standalone-illus { top: 50%; bottom: auto; transform: translateY(-50%); overflow: visible; mask-image: none; }
+    #ppage.tally-page .pph-illus { position: relative; }
+    #ppage.tally-page .tally-prime-hero-logo {
+      position: absolute;
+      z-index: 3;
+      top: auto;
+      right: 10%;
+      bottom: 12px;
+      display: block;
+      width: 205px;
+      height: 76px;
+      object-fit: contain;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      filter: none;
+    }
+    @media(max-width:1100px) {
+      #ppage.tally-page .tally-prime-hero-logo { right: 5%; bottom: 10px; width: 180px; height: 67px; }
+    }
+    @media(max-width:900px) {
+      #ppage.tally-page .pph-scene.has-illus.standalone-illus { top: auto; bottom: auto; transform: none; margin: 24px auto; }
+      #ppage.tally-page .tally-prime-hero-logo { top: auto; right: 7%; bottom: 0; width: 160px; height: 60px; }
+    }
     #ppage.cloud-migration-page .pph-scene.has-illus.standalone-illus { right: 1%; width: 49%; top: 2%; bottom: 2%; mask-image: none; }
     #ppage.cloud-migration-page .pph-scene.has-illus.standalone-illus .pph-illus-img { width: 96%; max-width: 600px; max-height: 440px; filter: none; }
     #ppage.acronis-backup-advanced-page .pph-scene.has-illus.standalone-illus { right: 2%; width: 43%; top: 0; bottom: 0; mask-image: none; opacity: 1; }
@@ -227,6 +280,7 @@ interface ProductTourSlide {
     #ppage.acronis-ot-page .pph-scene.has-illus.standalone-illus { right: 2%; width: 43%; top: 0; bottom: 0; mask-image: none; opacity: 1; }
     #ppage.acronis-ot-page .pph-scene.has-illus.standalone-illus .pph-illus { width: 100%; height: 100%; }
     #ppage.acronis-ot-page .pph-scene.has-illus.standalone-illus .pph-illus-img { width: 100%; max-width: 560px; max-height: 430px; filter: none; }
+    #ppage.rtx-8000-page .pph-map, #ppage.rtx-8000-page .pph-net { display: none; }
     @media(max-width:900px) {
       #ppage.cloud-migration-page .pph-scene.has-illus.standalone-illus { position: relative; right: auto; width: min(100%, 600px); top: auto; bottom: auto; margin: 18px auto 0; opacity: 1; }
       #ppage.cloud-migration-page .pph-scene.has-illus.standalone-illus .pph-illus-img { width: 100%; max-width: 560px; max-height: none; }
@@ -1019,8 +1073,9 @@ export class ProductPage {
     ev.preventDefault();
     const quantity = this.cdrQuantity();
     this.cart.add(
-      `Cloud Disaster Recovery SMB × ${quantity} ${quantity === 1 ? 'server' : 'servers'}`,
-      `${this.cdrPlanTotal()}/month`,
+      'Cloud Disaster Recovery SMB',
+      '₹9,999/server/month',
+      quantity,
     );
     this.cart.open();
   }
@@ -1311,6 +1366,51 @@ export class ProductPage {
     if (slug === 'acronis-ot') {
       return { ...view, heroImage: '/assets/images/acronis-cyber-protect-ot-hero.svg' };
     }
+    if (slug === 'rtx-pro-6000') {
+      return {
+        ...view,
+        brandSuffix: 'GPU',
+        crumb: 'Home › Cloud › GPU Cloud',
+        tagline: 'RTX PRO 6000 Blackwell, on demand from Indian data centres',
+        heroHighlight: 'Your models and scenes grew — make your GPU grow with them.',
+        heroMessages: [
+          '96 GB GDDR7 for LLMs and 3D',
+          'FP4 inference at lower cost per token',
+          'Hosted in India · billed in INR',
+        ],
+        heroPoints: [
+          '96 GB GDDR7 ECC',
+          'FP4 Tensor Cores',
+          'MIG partitioning',
+          'Confidential computing',
+          'INR billing + GST invoice',
+          '24×7 GPU specialists',
+        ],
+        overview: 'One card that trains, serves and renders. 96 GB of GDDR7 memory and fifth-generation Tensor Cores let you run mid-size LLMs, generative video and heavy 3D scenes on the same instance — billed in rupees, invoiced with GST. Free setup and migration make the move simple, and hourly billing lets you prove a workload before you commit to a term.',
+      };
+    }
+    if (slug === 'rtx-8000') {
+      return {
+        ...view,
+        brandSuffix: 'GPU',
+        crumb: 'Home › Cloud › GPU Cloud',
+        tagline: 'RTX 8000 cloud GPUs for bigger renders on a smaller budget',
+        heroHighlight: 'Big scenes, small budget — rendering without the render farm.',
+        heroMessages: [
+          '48 GB rendering at the lowest price',
+          'NVLink pools 96 GB for huge scenes',
+          'RTX 8000 cloud GPUs live in India',
+        ],
+        heroPoints: [
+          '48 GB GDDR6 ECC',
+          'NVLink — 96 GB pooled',
+          'Real-time ray tracing',
+          'Lowest entry price',
+          'INR billing + GST invoice',
+          '24×7 GPU specialists',
+        ],
+      };
+    }
     if (slug === 'email-archiving' || slug === 'e-mail-archiving') {
 
       return {
@@ -1405,6 +1505,15 @@ export class ProductPage {
     ['How can we see a Trust Watch demonstration?', 'Use the callback or Let’s Talk option and the team will arrange a guided demonstration using representative workflows.'],
   ];
 
+  readonly nvidiaA100Faqs: Faq[] = [
+    ['What workloads is NVIDIA A100 80GB suited to?', 'A100 80GB is suited to large-model training, fine-tuning, GPU inference and other CUDA-based compute jobs. Share your model and dataset requirements so the GPU and memory can be sized correctly.'],
+    ['Do we need a GPU specialist to get started?', 'XcellHost can help select the configuration and prepare a CUDA-ready environment. Your team remains responsible for its application code and model workflow unless you arrange additional managed help.'],
+    ['Can more than one workload use the same A100?', 'Yes. Multi-Instance GPU (MIG) can partition a compatible A100 into isolated instances. The number and size of instances depend on the chosen configuration and each workload’s requirements.'],
+    ['Where will our A100 workload run?', 'The A100 service is offered from Indian data centres. Confirm the selected location, network controls and any data residency needs with the team before deployment.'],
+    ['Can we test a workload before committing?', 'Ask the GPU team about a scoped proof of concept or trial. Availability, duration and configuration are confirmed when the request is reviewed.'],
+    ['How is NVIDIA A100 priced?', 'Available configurations can be billed hourly or monthly in INR. The final quote depends on GPU count, storage, networking, support and the selected term.'],
+  ];
+
   readonly isSmbCyber = computed(
     () => this.view()?.name === 'SMB Cyber Security Appliance'
   );
@@ -1477,10 +1586,17 @@ export class ProductPage {
     const view = this.view();
     if (!view) return [];
 
-    return view.videos.slice(0, 2).flatMap((video, index) => {
+    const useBackupVideos = this.slug() === 'rtx-pro-6000' || this.slug() === 'rtx-8000';
+    const videos = useBackupVideos
+      ? PRODUCT_VIDEOS['Cloud Backup (Acronis)']
+      : view.videos;
+
+    return videos.slice(0, 2).flatMap((video, index) => {
       if (!video) return [];
       return [{
-        label: view.videoLabels[index] ?? (index === 0 ? 'Product Intro' : 'Use Cases'),
+        label: useBackupVideos
+          ? (index === 0 ? 'Product Intro' : 'Use Cases')
+          : (view.videoLabels[index] ?? (index === 0 ? 'Product Intro' : 'Use Cases')),
         url: this.sanitizer.bypassSecurityTrustResourceUrl(
           `https://www.youtube-nocookie.com/embed/${video}?rel=0&playsinline=1`,
         ),
@@ -1726,9 +1842,7 @@ export class ProductPage {
   }
 
   private addPlanQuantity(plan: PricingPlan): void {
-    const previousQuantity = this.cart.lines().find(line => line.name === plan.cartName)?.qty ?? 0;
-    this.cart.add(plan.cartName, plan.cartPrice);
-    this.cart.setQty(plan.cartName, previousQuantity + this.planQuantity(plan));
+    this.cart.add(plan.cartName, plan.cartPrice, this.planQuantity(plan));
   }
 
   addPlan(plan: PricingPlan, ev: Event): void {
@@ -1740,10 +1854,7 @@ export class ProductPage {
   viewRmmPlan(plan: PricingPlan, ev: Event): void {
     ev.preventDefault();
     const quantity = this.edrQuantity();
-    const total = this.edrPlanTotalValue(plan);
-    const price = total ? `â‚¹${total.toLocaleString('en-IN')} total` : plan.cartPrice;
-
-    this.cart.add(`${plan.cartName} Ã— ${quantity} users`, price);
+    this.cart.add(plan.cartName, plan.cartPrice, quantity);
     this.cart.open();
   }
 
@@ -1758,10 +1869,7 @@ export class ProductPage {
   buyEdrPlan(plan: PricingPlan, ev: Event): void {
     ev.preventDefault();
     const quantity = this.edrQuantity();
-    const total = this.edrPlanTotalValue(plan);
-    const price = total ? `₹${total.toLocaleString('en-IN')} total` : plan.cartPrice;
-
-    this.cart.add(`${plan.cartName} × ${quantity} users`, price);
+    this.cart.add(plan.cartName, plan.cartPrice, quantity);
     this.cart.open();
     this.cart.toCheckout();
   }
@@ -1793,6 +1901,16 @@ export class ProductPage {
     ev.preventDefault();
     const name = this.view()?.name ?? "";
     this.topics.ask(request ? `${name} - ${request}` : name);
+    this.overlay.open('callback');
+  }
+
+  requestRtxPlan(request: string): void {
+    this.topics.ask(`RTX 8000 - ${request}`);
+    this.overlay.open('callback');
+  }
+
+  requestRtxProPlan(request: string): void {
+    this.topics.ask(`RTX PRO 6000 - ${request}`);
     this.overlay.open('callback');
   }
 
@@ -1896,14 +2014,14 @@ export class ProductPage {
       : Math.round(basePrice * 1.2 * this.cloudBackupExchangeRates[country] * 100) / 100;
   }
 
-  formatCloudBackupPrice(plan: CloudBackupPlan): string {
+  formatCloudBackupPrice(plan: CloudBackupPlan, quantity = 1): string {
     const amount = this.cloudBackupRegionalPrice(plan);
     if (amount === undefined) return 'Coming soon';
     const country = this.activeCloudBackupCountry();
     return new Intl.NumberFormat(country.locale, {
       style: 'currency', currency: country.currency, maximumFractionDigits: 2,
       minimumFractionDigits: 0,
-    }).format(amount);
+    }).format(amount * quantity);
   }
 
   readonly activeCloudBackupTerm = computed(
@@ -1931,9 +2049,13 @@ export class ProductPage {
     const term = this.activeCloudBackupTerm().label;
     const price = `${this.formatCloudBackupPrice(plan)}/${term.toLowerCase()}`;
     const name = `Cloud Backup - ${plan.storage} - ${term} - ${this.activeCloudBackupCountry().label}`;
-    const previousQuantity = this.cart.lines().find(line => line.name === name)?.qty ?? 0;
-    this.cart.add(name, price);
-    this.cart.setQty(name, previousQuantity + this.cloudBackupQuantity());
+    const country = this.activeCloudBackupCountry();
+    this.cart.add(name, price, this.cloudBackupQuantity(), {
+      unitAmount: this.cloudBackupRegionalPrice(plan),
+      currency: country.currency,
+      locale: country.locale,
+      suffix: `/${term.toLowerCase()}${country.key === 'IN' ? ' + GST' : ''}`,
+    });
     this.cart.open();
   }
 

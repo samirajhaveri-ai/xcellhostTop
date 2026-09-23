@@ -8,7 +8,7 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CartService } from '../core/cart.service';
 import { CatalogService, slugify } from '../core/catalog.service';
 import { OverlayService } from '../core/overlay.service';
@@ -480,7 +480,7 @@ function smbSlaRank(title: string): number {
   selector: 'xh-header',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { style: 'display: contents' },
-  imports: [RouterLink],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
@@ -666,17 +666,6 @@ export class HeaderComponent {
     event.preventDefault();
     this.openTop.set(null);
     this.loginMenuOpen.update((open) => !open);
-  }
-
-  openLogin(): void {
-    this.loginMenuOpen.set(false);
-    this.overlay.open('signin');
-  }
-
-  openSignup(event: Event): void {
-    event.preventDefault();
-    this.loginMenuOpen.set(false);
-    this.overlay.open('auth');
   }
 
   /**

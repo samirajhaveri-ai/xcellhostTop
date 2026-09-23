@@ -702,6 +702,48 @@ body>.cta-wrap {
   display: none !important;
 }
 
+/* Keep the requested section titles on one line when the page has room. */
+#models .sec-h,
+#why .sec-h,
+#calculator .sec-h,
+#rules .sec-h,
+#regions .sec-h {
+  max-width: none;
+}
+
+#models .sec-h h2,
+#why .sec-h h2,
+#calculator .sec-h h2,
+#rules .sec-h h2,
+#regions .sec-h h2 {
+  font-size: clamp(22px, 2.7vw, 36px);
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  #models .sec-h h2,
+  #why .sec-h h2,
+  #calculator .sec-h h2,
+  #rules .sec-h h2,
+  #regions .sec-h h2 {
+    white-space: normal;
+  }
+}
+
+/* A selected tier must remain a table cell so its values stay centered. */
+.tiers th.th-tier.hl,
+.tiers td.tc.hl {
+  display: table-cell;
+}
+
+.tiers td.tc.hl {
+  background: #fff;
+}
+
+.tiers tbody tr:hover td.tc.hl {
+  background: var(--ice);
+}
+ 
 html,
 body {
   min-height: 0;

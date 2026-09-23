@@ -1,14 +1,17 @@
-<div class="site-progress" [style.width.%]="scrollProgress()" aria-hidden="true"></div>
-
-<xh-intro-splash />
-<xh-utility-bar />
-<xh-promo-bar />
-<xh-header />
+@if (!isPortalLogin()) {
+  <div class="site-progress" [style.width.%]="scrollProgress()" aria-hidden="true"></div>
+  <xh-intro-splash />
+  <xh-utility-bar />
+  <xh-promo-bar />
+  <xh-header />
+}
 
 <router-outlet />
 
-<xh-contact-options />
-<xh-footer />
+@if (!isPortalLogin()) {
+  <xh-contact-options />
+  <xh-footer />
+}
 
 <!-- =====================================================================
      GLOBAL OVERLAY HOSTS
@@ -22,9 +25,9 @@
 <xh-search-dialog />
 <xh-callback-modal />
 <xh-trial-modal />
-<xh-auth-modal />
-<xh-signin-modal />
 <xh-partner-modal />
 <xh-doc-modal />
-<xh-whatsapp-fab />
-<xh-back-to-top />
+@if (!isPortalLogin()) {
+  <xh-whatsapp-fab />
+  <xh-back-to-top />
+}

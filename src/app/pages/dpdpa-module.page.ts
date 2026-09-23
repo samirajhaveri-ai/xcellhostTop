@@ -80,6 +80,11 @@ export class DpdpaModulePage {
 
   /** `#mAtc` flips to a confirmation for a moment after a click, as it always did. */
   readonly atcLabel = signal(ADD_LABEL);
+  readonly quantity = signal(1);
+
+  changeQuantity(change: number): void {
+    this.quantity.update(value => Math.max(1, Math.min(99, value + change)));
+  }
 
   /** resets the "added" label; cleared on destroy so it cannot fire after navigation */
   private atcTimer?: ReturnType<typeof setTimeout>;
@@ -96,6 +101,7 @@ export class DpdpaModulePage {
         return;
       }
       this.atcLabel.set(ADD_LABEL);
+      this.quantity.set(1);
       this.seo.set(
         `${this.name()} — SecureSetu DPDPA | XcellHost`,
         plain(m.tag),
@@ -108,7 +114,8 @@ export class DpdpaModulePage {
     ev.preventDefault();
     const m = this.module();
     if (!m) return;
-    this.cart.add(`SecureSetu — ${this.name()}`, m.tier);
+    const name = `SecureSetu — ${this.name()}`;
+    this.cart.add(name, m.tier, this.quantity());
     this.atcLabel.set(ADDED_LABEL);
     if (this.atcTimer) clearTimeout(this.atcTimer);
     this.atcTimer = setTimeout(() => this.atcLabel.set(ADD_LABEL), 1400);

@@ -11,6 +11,8 @@
     [class.cloud-migration-page]="slug() === 'cloud-migration'"
     [class.acronis-backup-advanced-page]="slug() === 'acronis-backup-advanced'"
     [class.acronis-ot-page]="slug() === 'acronis-ot'"
+    [class.rtx-8000-page]="slug() === 'rtx-8000'"
+    [class.rtx-pro-6000-page]="slug() === 'rtx-pro-6000'"
     [class.whatsapp-smb-page]="isWhatsAppSmb()"
     [class.atm-solution-page]="isAutonomousThreatSolution()"
     [class.scrutiny-page]="
@@ -26,7 +28,11 @@
     [class.tsplus-advanced-security-page]="isTsplusAdvancedSecurity()"
     [class.tsplus-remote-access-page]="isTsplusRemoteAccess()"
     [class.microsoft-copilot-page]="isMicrosoftCopilot()"
+    [class.nvidia-a100-page]="slug() === 'nvidia-a100'"
   >
+    @if (slug() === 'nvidia-a100') {
+      <xh-nvidia-a100-source view="hero" />
+    }
     @if (isOurPlatform()) {
       <xh-our-platform-reference />
     } @else if (isWatchtower()) {
@@ -564,6 +570,43 @@
               title="Cloud Desktop virtual workspace animation"
               sandbox="allow-scripts" tabindex="-1"></iframe>
           </div>
+        } @else if (slug() === 'rtx-pro-6000') {
+          <xh-rtx-pro-6000-hero aria-hidden="true" />
+        } @else if (slug() === 'rtx-8000') {
+          <div class="rtx-stage" aria-hidden="true">
+            <svg class="rtx-rays" viewBox="0 0 640 490" preserveAspectRatio="xMidYMid meet">
+              <g class="rtx-rays-blue">
+                <path d="M42 110 140 75 240 188 370 28 440 196 575 72" />
+                <path d="M42 295 205 216 290 320 380 104 515 286 610 210" />
+                <path d="M160 30 275 140 210 290 450 315 580 155" />
+                <path d="M72 38 205 310 338 42 470 318 590 34" />
+                <path d="M96 330 242 36 355 310 540 42" />
+                <path d="M182 38 318 320 466 36 570 312" />
+                <path d="M48 210 213 300 362 174 558 308" />
+              </g>
+              <g class="rtx-rays-orange">
+                <path d="M260 36 365 160 235 306 475 196 580 270" />
+                <path d="M410 30 365 218 280 304 545 125" />
+                <path d="M610 160 410 220 265 310" />
+                <path d="M290 30 400 316 500 32" />
+                <path d="M340 36 275 310 560 160" />
+                <path d="M215 288 405 70 555 310" />
+              </g>
+              <circle class="rtx-ray-source" cx="140" cy="75" r="6" />
+              <circle class="rtx-ray-orbit" cx="365" cy="218" r="68" />
+            </svg>
+            <div class="rtx-card-float">
+              <img src="/assets/images/rtx-8000-card.svg" alt="" />
+            </div>
+            <div class="rtx-card-shadow"></div>
+            <div class="rtx-link-diagram">
+              <div class="rtx-memory"><span>RTX 8000 · 48 GB</span><div class="rtx-memory-slots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+              <div class="rtx-link"><b></b><b></b><b></b></div>
+              <div class="rtx-memory"><span>RTX 8000 · 48 GB</span><div class="rtx-memory-slots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+              <strong>NVLINK 100 GB/s · 96 GB POOLED</strong>
+            </div>
+            <div class="rtx-stage-badges"><span>NVIDIA QUADRO RTX 8000</span><span><i></i> Live in India</span></div>
+          </div>
         } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
           <div class="pph-scene has-illus standalone-illus" id="pphScene" aria-hidden="true">
             <div class="pph-illus">
@@ -575,6 +618,11 @@
                   sandbox="allow-scripts"
                   tabindex="-1"
                 ></iframe>
+                <img
+                  class="tally-prime-hero-logo"
+                  src="/assets/images/tally-prime-7-logo.png"
+                  alt="Tally Prime 7.0"
+                />
               } @else if (v.name === 'Cloud Drive') {
                 <iframe
                   class="cloud-drive-hero-animation"
@@ -591,7 +639,7 @@
                 [alt]="v.name"
               />
               }
-              @if (!isManagedMicrosoft365() && !isTally() && v.name !== 'Cloud Drive' && slug() !== 'cloud-migration' && slug() !== 'acronis-backup-advanced' && slug() !== 'acronis-ot') {
+              @if (!isManagedMicrosoft365() && !isTally() && v.name !== 'Cloud Drive' && slug() !== 'cloud-migration' && slug() !== 'acronis-backup-advanced' && slug() !== 'acronis-ot' && slug() !== 'rtx-8000') {
                 <div
                   class="pph-powered-mark pph-powered-image"
                   [class.pph-geotrust-powered]="v.name === 'GeoTrust'"
@@ -698,7 +746,11 @@
                       ? 'Acronis Endpoint Security (EDR)'
                       : isDigiCert()
                         ? 'DigiCert SSL Certificates'
-                        : v.name
+                        : slug() === 'rtx-pro-6000'
+                          ? 'RTX PRO 6000 Cloud GPU'
+                          : slug() === 'rtx-8000'
+                            ? 'RTX 8000 Cloud GPU'
+                            : v.name
                 }}
                 @if (slug() === 'geotrust') {
                   SSL Certificate
@@ -793,7 +845,7 @@
                 <section class="pp-ask-ai" aria-labelledby="ppAskAiTitle">
                   <div class="pp-ask-ai-copy">
                     <span class="pp-ask-ai-kicker" id="ppAskAiTitle"
-                      >Ask AI About {{ isResellerProgram() ? 'Cloud Channel Partner Program' : isSmbCyber() ? 'Cybird SMB Cyber Security Appliance' : isCloudBackup() ? 'Acronis Cloud Backup' : isAdvancedEdr() ? 'Acronis Advanced Endpoint Security (EDR)' : v.name }} from
+                      >Ask AI About {{ isResellerProgram() ? 'Cloud Channel Partner Program' : isSmbCyber() ? 'Cybird SMB Cyber Security Appliance' : isCloudBackup() ? 'Acronis Cloud Backup' : isAdvancedEdr() ? 'Acronis Advanced Endpoint Security (EDR)' : slug() === 'rtx-8000' ? 'RTX 8000 Cloud GPU' : slug() === 'rtx-pro-6000' ? 'RTX PRO 6000 Cloud GPU' : v.name }} from
                       XcellHost</span
                     >
                   </div>
@@ -1120,6 +1172,7 @@
         [class.email-archiving-body]="slug() === 'email-archiving'"
       >
         <div class="wrap">
+          @if (slug() !== 'nvidia-a100') {
           @if (slug() === 'waap-as-a-service') {
             <xh-waap-content />
           } @else {
@@ -1311,7 +1364,29 @@
                   } @else if (slug() === 'acronis-ot') {
                     <xh-acronis-ot-content />
                   } @else if (!isManagedMicrosoft365() && !isEntraIdBackup()) {
-                    @if (isCloudBackup() || isAdvancedEdr()) {
+                    @if (slug() === 'rtx-8000') {
+                      <section class="rtx-overview" aria-labelledby="rtxOverviewTitle">
+                        <h2 class="pp-sec" id="rtxOverviewTitle">Overview</h2>
+                        <p class="pp-ov">A proven 48 GB professional card at the lowest entry price in our range. Pair two over NVLink to pool 96 GB for scenes that won't fit anywhere else — ideal for studios, architects and colleges moving render work off ageing workstations. Run overnight render queues, give students pro GPUs, or open huge BIM models — and stop paying when the project ends.</p>
+                        <div class="rtx-answer" id="rtxAnswer">
+                          <div>
+                            <span class="rtx-answer-kicker">Quick answer · Updated September 2026</span>
+                            <h3>Is the Quadro RTX 8000 still good for rendering in 2026?</h3>
+                            <p>Yes, for budget rendering. The NVIDIA Quadro RTX 8000 has 48 GB of GDDR6 memory and RT cores, and two cards joined by NVLink share 96 GB. XcellHost rents it from ₹34,900 a month (excl. GST) — the lowest-cost 48 GB GPU in our range for V-Ray, Corona, Redshift, CAD and teaching labs.</p>
+                          </div>
+                          <div>
+                            <span class="rtx-answer-kicker">Key takeaways</span>
+                            <ul>
+                              <li>Lowest entry price for a 48 GB professional GPU</li>
+                              <li>NVLink pools 96 GB across two cards</li>
+                              <li>Great for OptiX renderers and CAD/BIM</li>
+                              <li>Not suited to modern LLM training (no FP8/BF16)</li>
+                            </ul>
+                            <div class="rtx-bestfor"><span>Best for:</span><b>Arch-viz rendering</b><b>CAD &amp; BIM</b><b>Education labs</b><b>Render queues</b></div>
+                          </div>
+                        </div>
+                      </section>
+                    } @else if (isCloudBackup() || isAdvancedEdr()) {
                       <div class="backup-overview-columns">
                         <div>
                           <div class="pp-sec">Overview</div>
@@ -1995,7 +2070,7 @@
                               [class.cloud-backup-price-pending]="
                                 cloudBackupRegionalPrice(plan) === undefined
                               "
-                              >{{ formatCloudBackupPrice(plan) }}</strong
+                              >{{ formatCloudBackupPrice(plan, cloudBackupQuantity()) }}</strong
                             >
                             @if (cloudBackupRegionalPrice(plan) !== undefined) {
                               <span
@@ -2017,7 +2092,7 @@
                               ></span>
                               <small
                                 >{{ selectedCloudBackupCountry() === 'IN' ? '+GST · ' : ''
-                                }}{{ activeCloudBackupTerm().label }} Billing</small
+                                }}{{ activeCloudBackupTerm().label }} Billing{{ cloudBackupQuantity() > 1 ? ' · ' + cloudBackupQuantity() + ' subscriptions' : '' }}</small
                               >
                             } @else {
                               <small
@@ -2030,6 +2105,10 @@
                       }
                     </div>
                   </section>
+                } @else if (slug() === 'rtx-8000') {
+                  <xh-rtx-8000-pricing (quoteRequested)="requestRtxPlan($event)" />
+                } @else if (slug() === 'rtx-pro-6000') {
+                  <xh-rtx-pro-6000-pricing (quoteRequested)="requestRtxProPlan($event)" />
                 } @else if (
                   !isAdvancedEdr() &&
                   !isSmbCyber() &&
@@ -2229,6 +2308,10 @@
                       </article>
                     </div>
                   </section>
+                } @else if (slug() === 'rtx-8000') {
+                  <xh-rtx-8000-details />
+                } @else if (slug() === 'rtx-pro-6000') {
+                  <xh-rtx-pro-6000-details />
                 } @else if (
                   !isSmbCyber() &&
                   !isAcronisTrueImage() &&
@@ -2854,6 +2937,10 @@
                     </div>
                   </section>
                   <xh-cloud-migration-advantage />
+                } @else if (slug() === 'rtx-8000') {
+                  <xh-rtx-8000-specifications />
+                } @else if (slug() === 'rtx-pro-6000') {
+                  <xh-rtx-pro-6000-specifications />
                 } @else if (
                   !isSmbCyber() &&
                   !isRmm() &&
@@ -3429,6 +3516,10 @@
                       </div>
                     </section>
                   </section>
+                } @else if (slug() === 'rtx-8000') {
+                  <xh-rtx-8000-use-cases />
+                } @else if (slug() === 'rtx-pro-6000') {
+                  <xh-rtx-pro-6000-showcase />
                 } @else if (
                   v.name !== 'Tally on Cloud' &&
                   !isSmbCyber() &&
@@ -3637,7 +3728,22 @@
           }
 
           @if (v.name !== 'Tally on Cloud') {
-            @if (!isSmbCyber() && !isRmm() && slug() !== 'acronis-backup-advanced' && slug() !== 'acronis-ot' && slug() !== 'scrutiny-dlp' && slug() !== 'cloud-migration') {
+            @if (slug() === 'rtx-8000') {
+              <xh-rtx-8000-stories />
+              <section aria-labelledby="rtxBackupSecurityTitle">
+                <h2 class="pp-sec" id="rtxBackupSecurityTitle">Security &amp; compliance — Cloud Backup</h2>
+                <p class="pp-ov">Security for Cloud Backup is built into how the service is delivered, not bolted on afterwards. Workloads run in Indian Tier-4 datacenters with N+1 power and cooling, so the failure of any single component does not reach your session.</p>
+                <div class="pp-secrows">
+                  <div class="psrow"><span class="psk">Hypervisor isolation</span><span class="psv">Per-tenant, no shared OS</span></div>
+                  <div class="psrow"><span class="psk">Snapshot cadence</span><span class="psv">Every 3 hours, 30-day retention</span></div>
+                  <div class="psrow"><span class="psk">Network</span><span class="psv">Private VLAN per customer</span></div>
+                  <div class="psrow"><span class="psk">Failover</span><span class="psv">Automatic within the availability zone</span></div>
+                  <div class="psrow"><span class="psk">Vulnerability management</span><span class="psv">Monthly scan + patch window</span></div>
+                  <div class="psrow"><span class="psk">Incident response</span><span class="psv">Named engineer, 15-min ack</span></div>
+                </div>
+                <p class="pp-secfoot">XcellHost is ISO 27001 and ISO 20000-1 certified · Indian Tier-4 datacenters · DPDPA and RBI aligned · 24×7 NOC and SOC.</p>
+              </section>
+            } @else if (!isSmbCyber() && !isRmm() && slug() !== 'acronis-backup-advanced' && slug() !== 'acronis-ot' && slug() !== 'scrutiny-dlp' && slug() !== 'cloud-migration') {
               <div class="pp-sec" id="ppSecHead" [style.margin-bottom.px]="slug() === 'managed-devops' ? 32 : null">{{ v.security.head }}</div>
               <div id="ppSecWrap">
                 <p class="pp-ov">{{ v.security.intro }}</p>
@@ -3657,6 +3763,20 @@
             }
           }
 
+          @if (slug() === 'rtx-8000') {
+            <section aria-labelledby="rtxBackupWhyTitle">
+              <h2 class="pp-sec" id="rtxBackupWhyTitle">Why XcellHost for Cloud Backup</h2>
+              <div class="pp-why" id="ppWhy">
+                <div class="pw"><span class="pw-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="m8 12-1 9 5-3 5 3-1-9"/></svg></span><b>Reliable Data Protection</b><span>Protect servers, endpoints, applications, and critical workloads from data loss.</span></div>
+                <div class="pw"><span class="pw-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5z"/><path d="M9 9h6M9 12h6M9 15h4"/></svg></span><b>Automated Backups</b><span>Schedule regular backups automatically and reduce manual backup efforts.</span></div>
+                <div class="pw"><span class="pw-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h13M14 4l3 3-3 3M20 17H7M10 14l-3 3 3 3"/></svg></span><b>Ransomware Protection</b><span>Safeguard critical data from ransomware, accidental deletion, and hardware failure.</span></div>
+                <div class="pw"><span class="pw-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M6 14h3l2-5 3 8 2-3h2"/></svg></span><b>Flexible Retention</b><span>Maintain recoverable backup copies with configurable retention policies.</span></div>
+                <div class="pw"><span class="pw-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/></svg></span><b>Fast Data Recovery</b><span>Restore critical data and workloads quickly to minimize downtime.</span></div>
+                <div class="pw"><span class="pw-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg></span><b>Secure &amp; Scalable Backup</b><span>Protect growing data volumes with secure and scalable cloud backup.</span></div>
+              </div>
+            </section>
+          }
+
           @if (
             v.name !== 'Tally on Cloud' &&
             !isSmbCyber() &&
@@ -3665,6 +3785,7 @@
             slug() !== 'acronis-backup-advanced' &&
             slug() !== 'acronis-ot' &&
             slug() !== 'cloud-migration' &&
+            slug() !== 'rtx-8000' &&
             slug() !== 'scrutiny-dlp' &&
             slug() !== 'vortex-seg' &&
             slug() !== 'vortex-soc'
@@ -3711,7 +3832,7 @@
                 </div>
               }
             }
-            @if (platforms().length) {
+            @if (platforms().length && slug() !== 'rtx-8000') {
               <div class="pp-sec">Platforms &amp; workloads covered</div>
               <div class="pp-plat">
                 @for (p of platforms(); track p.name) {
@@ -4176,14 +4297,35 @@
             </div>
           }
 
+          }
+
+          @if (slug() === 'nvidia-a100') {
+            <xh-nvidia-a100-source view="details" />
+            <xh-nvidia-a100-assurance />
+          }
+
           <div class="pp-sec pp-faq-heading" [style.margin-top.px]="slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Frequently asked questions</div>
         <div class="pp-faq" id="ppFaq">
 
           <xh-product-faq
-            [faqs]="isWatchtower() ? watchtowerFaqs : isOurPlatform() ? ourPlatformFaqs : isZohoWorkspace() ? zohoWorkspaceFaqs : v.faqs"
+            [faqs]="slug() === 'nvidia-a100' ? nvidiaA100Faqs : isWatchtower() ? watchtowerFaqs : isOurPlatform() ? ourPlatformFaqs : isZohoWorkspace() ? zohoWorkspaceFaqs : v.faqs"
           />
 
         </div>
+
+        @if (slug() === 'nvidia-a100') {
+          <nav class="a100-related" aria-label="Related products and information">
+            <span>Related:</span>
+            <a href="/nvidia-h200">H200 cloud GPU</a>
+            <a href="/nvidia-h100">H100 cloud GPU</a>
+            <a href="/rtx-pro-6000">RTX PRO 6000 cloud GPU</a>
+            <a href="/nvidia-rtx-6000-ada">RTX 6000 Ada cloud GPU</a>
+            <a href="/rtx-a6000">RTX A6000 cloud GPU</a>
+            <a href="/rtx-8000">RTX 8000 cloud GPU</a>
+            <a href="/tally-on-cloud">Tally on Cloud</a>
+            <span class="a100-related-pill">AI Use Policy</span>
+          </nav>
+        }
 
         <div id="ppBlog" [style.margin-top.px]="slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null" [class.scrutiny-dlp-insights]="slug() === 'scrutiny-dlp'" [class.vortex-seg-insights]="slug() === 'vortex-seg'"><xh-insights-section [pageSlug]="slug()" /></div>
 
@@ -4196,6 +4338,13 @@
               <a class="btn btn-primary" href="#" id="ppCtaCall" (click)="openCallback($event)"
                 >Request a callback</a
               >
+              @if (v.plans[0]; as firstPlan) {
+                <div class="module-quantity" role="group" [attr.aria-label]="firstPlan.cartName + ' quantity'">
+                  <button type="button" [attr.aria-label]="'Decrease ' + firstPlan.cartName + ' quantity'" [disabled]="planQuantity(firstPlan) === 1" (click)="changePlanQuantity(firstPlan, -1)">&minus;</button>
+                  <output aria-live="polite">{{ planQuantity(firstPlan) }}</output>
+                  <button type="button" [attr.aria-label]="'Increase ' + firstPlan.cartName + ' quantity'" [disabled]="planQuantity(firstPlan) === 99" (click)="changePlanQuantity(firstPlan, 1)">+</button>
+                </div>
+              }
               <a
                 class="btn btn-ghost"
                 style="border-color: rgba(255, 255, 255, 0.4); color: #fff"

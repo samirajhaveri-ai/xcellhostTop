@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { CartService } from '../core/cart.service';
 
 type CertificateGroupId = 'pro' | 'biz' | 'basic' | 'other';
 
@@ -26,8 +27,27 @@ interface Certificate {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DigicertContentComponent {
+  private readonly cart = inject(CartService);
   private readonly usdToInrRate = 95.65;
   readonly activeGroup = signal<'all' | CertificateGroupId>('all');
+  readonly quantities = signal<Record<string, number>>({});
+
+  quantity(certificate: Certificate): number {
+    return this.quantities()[certificate.name] ?? 1;
+  }
+
+  changeQuantity(certificate: Certificate, change: number): void {
+    this.quantities.update(quantities => ({
+      ...quantities,
+      [certificate.name]: Math.max(1, Math.min(99, this.quantity(certificate) + change)),
+    }));
+  }
+
+  addToCart(certificate: Certificate): void {
+    const name = certificate.name;
+    this.cart.add(name, `${this.formatInr(certificate.price)} / year · 3-year term`, this.quantity(certificate));
+    this.cart.open();
+  }
 
   readonly groups: readonly CertificateGroup[] = [
     { id: 'pro', label: 'Professional SSL/TLS', blurb: 'All-in-one comprehensive security beyond encryption.' },

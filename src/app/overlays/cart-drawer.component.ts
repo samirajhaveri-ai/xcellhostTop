@@ -123,7 +123,7 @@ export class CartDrawerComponent {
   }
 
   dec(line: CartLine): void {
-    this.cart.setQty(line.name, line.qty - 1);
+    if (line.qty > 1) this.cart.setQty(line.name, line.qty - 1);
   }
 
   inc(line: CartLine): void {
@@ -164,7 +164,7 @@ export class CartDrawerComponent {
       },
       items: this.cart
         .lines()
-        .map((l) => ({ name: l.name, qty: l.qty, price_note: l.price || 'quote' })),
+        .map((l) => ({ name: l.name, qty: l.qty, price_note: this.cart.displayPrice(l) })),
       zoho: { org_id: ZOHO_ORG_ID, action: 'create_estimate_and_send_payment_link' },
       delivery: ['email', 'whatsapp'],
     });

@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { filter, map, startWith } from 'rxjs';
 
 import { OverlayService } from './core/overlay.service';
 import { CallbackTopicService } from './overlays/callback-topic.service';
 import {
-  AuthModalComponent,
   BackToTopComponent,
   CallbackModalComponent,
   CartDrawerComponent,
@@ -12,7 +13,6 @@ import {
   DocModalComponent,
   PartnerModalComponent,
   SearchDialogComponent,
-  SigninModalComponent,
   TrialModalComponent,
   WhatsappFabComponent,
 } from './overlays';
@@ -49,8 +49,6 @@ import {
     SearchDialogComponent,
     CallbackModalComponent,
     TrialModalComponent,
-    AuthModalComponent,
-    SigninModalComponent,
     PartnerModalComponent,
     DocModalComponent,
     WhatsappFabComponent,
@@ -70,6 +68,15 @@ export class App {
   readonly scrollProgress = signal(0);
   private readonly overlay = inject(OverlayService);
   private readonly topics = inject(CallbackTopicService);
+  private readonly router = inject(Router);
+  readonly isPortalLogin = toSignal(
+    this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      startWith(null),
+      map(() => /^\/(?:signup|(?:customer|partner|vendor|employee)-login)(?:[/?#]|$)/.test(this.router.url)),
+    ),
+    { initialValue: false },
+  );
 
   updateScrollProgress(): void {
     const documentHeight = document.documentElement.scrollHeight - window.innerHeight;

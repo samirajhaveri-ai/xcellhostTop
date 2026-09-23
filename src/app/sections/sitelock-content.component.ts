@@ -210,14 +210,13 @@ export class SiteLockContentComponent {
 
     const yearsLabel = `${term.years} Year${term.years > 1 ? 's' : ''}`;
     const lineName = `SiteLock ${plan.name} — ${yearsLabel}`;
-    const previousQuantity = this.cart.lines().find((line) => line.name === lineName)?.qty ?? 0;
     const termTotal = term.pricePerYear * term.years;
 
     this.cart.add(
       lineName,
       `₹${this.formatInr(termTotal)} / website for ${yearsLabel.toLowerCase()} + GST`,
+      this.websiteCount(),
     );
-    this.cart.setQty(lineName, previousQuantity + this.websiteCount());
     this.closeConfigurator();
     this.cart.open();
   }

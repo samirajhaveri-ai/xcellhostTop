@@ -1,0 +1,55 @@
+:host{display:block;margin:58px 0 12px}
+.rtx-pricing{color:#08234a}
+.rtx-pricing-heading{text-align:center;margin-bottom:22px}
+.rtx-pricing-heading>span{display:block;color:#1458ba;font:800 11px/1.3 var(--mono);letter-spacing:.13em;text-transform:uppercase}
+.rtx-pricing-heading h2{margin:8px 0 7px;color:#071d3d;font:800 clamp(27px,3vw,39px)/1.1 var(--disp);letter-spacing:-.03em}
+.rtx-pricing-heading p{margin:0;color:#52627a;font-size:14px;line-height:1.5}
+.rtx-billing-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1px solid #cddbf0;margin-bottom:24px}
+.rtx-billing-tabs button{position:relative;display:grid;place-items:center;gap:6px;min-height:66px;padding:8px;border:0;background:none;color:#344b6a;font:600 14px/1.2 var(--body);cursor:pointer}
+.rtx-billing-tabs button.active{color:#125fc9}
+.rtx-billing-tabs button.active::after{content:'';position:absolute;left:0;right:0;bottom:-2px;height:3px;background:#1765d1}
+.rtx-billing-badge{padding:3px 8px;border-radius:5px;background:#e61b31;color:#fff;font:800 10px/1 var(--body);white-space:nowrap}
+.rtx-billing-tabs button:first-child .rtx-billing-badge{background:#d52b39}
+.rtx-plan-list{display:grid;gap:16px}
+.rtx-plan{display:grid;grid-template-columns:185px minmax(0,1fr) 175px;min-width:0;overflow:hidden;border:1px solid #bcd3f6;border-radius:14px;background:#fff;box-shadow:0 7px 20px rgba(11,48,105,.06);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.rtx-plan:hover{transform:translateY(-2px);border-color:#73a5f1;box-shadow:0 12px 26px rgba(11,48,105,.12)}
+.rtx-plan-identity{display:flex;flex-direction:column;border-right:1px solid #e3eaf5}
+.rtx-plan-audience{display:grid;place-items:center;flex:1;min-height:57px;padding:9px 12px;background:#eef6ff;color:#145dc0;font:800 11px/1.3 var(--body);letter-spacing:.025em;text-align:center;text-transform:uppercase}
+.rtx-plan-name{display:flex;align-items:center;gap:10px;min-height:76px;padding:11px 14px}
+.rtx-gpu-count{display:grid;place-items:center;flex:none;width:34px;height:34px;border-radius:8px;background:#1765d1;color:#fff;font:800 13px/1 var(--body)}
+.rtx-plan-name strong,.rtx-plan-name small{display:block}
+.rtx-plan-name strong{font:800 16px/1.2 var(--disp)}
+.rtx-plan-name small{margin-top:2px;color:#1765d1;font:700 11px/1.25 var(--body)}
+.rtx-plan[data-tone='purple'] .rtx-plan-audience{background:#f4efff;color:#6740bc}.rtx-plan[data-tone='purple'] .rtx-gpu-count{background:#6740bc}
+.rtx-plan[data-tone='green'] .rtx-plan-audience{background:#eafaf2;color:#13854c}.rtx-plan[data-tone='green'] .rtx-gpu-count{background:#51b826}
+.rtx-plan[data-tone='orange'] .rtx-plan-audience{background:#fff2e7;color:#cb620d}.rtx-plan[data-tone='orange'] .rtx-gpu-count{background:#fa861c}
+.rtx-plan-specs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:0}
+.rtx-plan-specs>div{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0;min-height:44px;padding:5px 6px;text-align:center;background:#f5f7fa}
+.rtx-plan-specs>div:nth-child(8n+2),.rtx-plan-specs>div:nth-child(8n+4),.rtx-plan-specs>div:nth-child(8n+5),.rtx-plan-specs>div:nth-child(8n+7){background:#fff}
+.rtx-plan-specs dt{color:#62718a;font:600 10px/1.2 var(--body)}
+.rtx-plan-specs dd{margin:2px 0 0;color:#0d2444;font:800 10px/1.2 var(--body)}
+.rtx-plan-action{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:12px;border-left:1px solid #e3eaf5;text-align:center}
+.rtx-plan-action del{color:#8b9bb3;font-size:11px;line-height:1}
+.rtx-plan-action>strong{color:#061d40;font:800 24px/1.1 var(--disp)}
+.rtx-plan-action button{width:100%;min-height:37px;border:0;border-radius:5px;background:#1767db;box-shadow:0 5px 10px rgba(23,103,219,.18);color:#fff;font:800 12px/1 var(--body);text-transform:uppercase;cursor:pointer;transition:background .18s ease,transform .18s ease}
+.rtx-plan-action button:hover{background:#0b53bb;transform:translateY(-1px)}
+.rtx-plan-action small{color:#71809a;font-size:10px}
+.rtx-hourly{color:#1765d1;font:700 11px/1.2 var(--body)}
+.rtx-pricing-note{margin:13px 0 0;color:#64748c;font-size:12px;line-height:1.5}
+.rtx-estimator{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:26px;margin-top:25px;padding:25px;border:1px solid #cbdcf4;border-radius:13px;background:#fff}
+.rtx-estimator h3{margin:0 0 5px;color:#0b2245;font:800 21px/1.2 var(--disp)}
+.rtx-estimator-inputs>p{margin:0 0 16px;color:#697991;font-size:13px;line-height:1.5}
+.rtx-estimator label{display:flex;justify-content:space-between;gap:12px;margin:13px 0 6px;color:#11284b;font:700 12px/1.3 var(--body)}
+.rtx-estimator output{color:#1765d1;font-family:var(--mono)}
+.rtx-estimator select{display:block;width:100%;min-height:39px;padding:7px 10px;border:1px solid #c7d8f0;border-radius:6px;background:#fff;color:#153151;font:500 13px var(--body)}
+.rtx-estimator input[type='range']{display:block;width:100%;accent-color:#1765d1}
+.rtx-estimator-results{display:flex;flex-direction:column;justify-content:center;gap:11px;min-width:0;padding:22px;border-radius:10px;background:#0d274d;color:#fff}
+.rtx-estimator-results>div{display:flex;justify-content:space-between;gap:12px;font-size:13px}
+.rtx-estimator-results>div span{color:#d3e2f8}
+.rtx-estimator-results strong{font:800 15px var(--mono);white-space:nowrap}
+.rtx-estimator-results p{margin:2px 0 0;padding:11px 12px;border-radius:7px;background:#ff8c1a;color:#fff;font:700 12px/1.4 var(--body)}
+.rtx-estimator-results small{color:#9eb0cc;font-size:11px}
+@media(max-width:1050px){.rtx-plan{grid-template-columns:150px minmax(0,1fr) 150px}.rtx-plan-specs dt,.rtx-plan-specs dd{font-size:9px}.rtx-plan-name{padding:10px}}
+@media(max-width:760px){.rtx-plan{grid-template-columns:1fr}.rtx-plan-identity{border-right:0}.rtx-plan-audience{min-height:37px}.rtx-plan-name{min-height:62px}.rtx-plan-action{border-left:0;border-top:1px solid #e3eaf5}.rtx-plan-action button{max-width:240px}.rtx-estimator{grid-template-columns:1fr}}
+@media(max-width:440px){.rtx-billing-tabs button{font-size:11px}.rtx-billing-badge{font-size:8px;padding:3px 5px}.rtx-plan-specs{grid-template-columns:repeat(2,minmax(0,1fr))}.rtx-plan-specs dt,.rtx-plan-specs dd{font-size:10px}.rtx-pricing-heading h2{font-size:27px}}
+@media(prefers-reduced-motion:reduce){.rtx-plan,.rtx-plan-action button{transition:none}}
