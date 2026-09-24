@@ -106,6 +106,68 @@
     </div>
   </section>
 
+  <section class="ticket-section" aria-labelledby="ticket-section-title">
+    <div class="support-wrap">
+      <header class="support-section-heading">
+        <span>Your support requests</span>
+        <h2 id="ticket-section-title">Submit or track a ticket</h2>
+        <p>Tell us what you need help with, or follow up on an existing request.</p>
+      </header>
+      <div class="ticket-layout">
+        <article class="ticket-panel" id="submit-ticket">
+          <header class="ticket-panel-heading">
+            <span class="ticket-symbol ticket-symbol-orange material-symbols-outlined" aria-hidden="true">chat_bubble_outline</span>
+            <div><h3>Submit a Ticket</h3><p>Share the details so our team can help.</p></div>
+          </header>
+          <form (submit)="prepareTicket($event)">
+            <div class="ticket-fields">
+              <label for="ticket-name">Your Name *<input id="ticket-name" name="name" autocomplete="name" placeholder="Your full name" required maxlength="120" /></label>
+              <label for="ticket-email">Email Address *<input id="ticket-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required /></label>
+              <label for="ticket-department">Department *<select id="ticket-department" name="department" required><option value="">Select department</option><option>Technical Support</option><option>Billing</option><option>Sales</option><option>Account Support</option></select></label>
+              <label for="ticket-priority">Priority<select id="ticket-priority" name="priority"><option>Low - General question</option><option selected>Medium - Non-critical issue</option><option>High - Service degraded</option><option>Critical - Service unavailable</option></select></label>
+              <label class="ticket-wide" for="ticket-type">Issue Type<select id="ticket-type" name="issueType"><option value="">Select issue type</option><option>Cloud &amp; Hosting</option><option>Email &amp; Collaboration</option><option>Backup &amp; Recovery</option><option>Security</option><option>Billing &amp; Payments</option><option>Other</option></select></label>
+              <label class="ticket-wide" for="ticket-subject">Subject *<input id="ticket-subject" name="subject" placeholder="Brief description of your issue" required maxlength="200" /></label>
+              <label class="ticket-wide" for="ticket-message">Message *<textarea id="ticket-message" name="message" rows="6" placeholder="Describe the issue, affected service, error messages and when it started." required maxlength="10000"></textarea></label>
+              <div class="ticket-wide ticket-attachment-note"><span class="material-symbols-outlined" aria-hidden="true">attach_file</span> Add screenshots or files when completing your request in the support portal.</div>
+            </div>
+            <button class="ticket-submit" type="submit"><span class="material-symbols-outlined" aria-hidden="true">send</span> Prepare Ticket</button>
+            <p class="ticket-help">Prepare your details here, then submit them through our secure support portal.</p>
+            @if (ticketPrepared()) {
+              <div class="ticket-feedback" role="status">
+                <strong>Your request is ready to copy. It has not been submitted yet.</strong>
+                <label for="ticket-summary">Request details<textarea id="ticket-summary" readonly rows="8" [value]="ticketPrepared()"></textarea></label>
+                <a href="https://supportdesk.xcellhost.cloud/portal/en/signin" target="_blank" rel="noopener noreferrer">Open support portal to submit <span aria-hidden="true">→</span></a>
+              </div>
+            }
+          </form>
+        </article>
+        <article class="ticket-panel ticket-track" id="track-ticket">
+          <span class="ticket-symbol material-symbols-outlined" aria-hidden="true">confirmation_number</span>
+          <h3>Track Your Ticket</h3>
+          <p>Find your ticket number in your confirmation email, then sign in to the support portal to view its status and replies.</p>
+          <form (submit)="prepareTracking($event, ticketNumber.value)">
+            <label for="track-ticket-number">Ticket number<input #ticketNumber id="track-ticket-number" name="ticketNumber" placeholder="e.g. 1604" required maxlength="80" pattern=".*\S.*" aria-describedby="ticket-number-help" /></label>
+            <p id="ticket-number-help" class="ticket-help">Use the reference in your confirmation email, such as [Ticket #1604].</p>
+            <button class="ticket-continue" type="submit"><span class="material-symbols-outlined" aria-hidden="true">search</span> Continue</button>
+          </form>
+          @if (trackingNumber()) {
+            <div class="ticket-feedback" role="status">Sign in with the email used to create ticket <strong>{{ trackingNumber() }}</strong>, then find it in your requests.<a href="https://supportdesk.xcellhost.cloud/portal/en/signin" target="_blank" rel="noopener noreferrer">View tickets in support portal <span aria-hidden="true">→</span></a></div>
+          }
+          <div class="ticket-create-link">Don't have a ticket yet? <a href="#submit-ticket">Create one</a></div>
+        </article>
+      </div>
+      <div class="ticket-next">
+        <h3>What Happens Next?</h3>
+        <p>After you submit your request through the support portal:</p>
+        <div class="ticket-next-grid">
+          <div><span class="ticket-symbol ticket-symbol-green material-symbols-outlined" aria-hidden="true">task_alt</span><h4>Ticket Created</h4><p>Keep your ticket reference for updates and follow-ups.</p></div>
+          <div><span class="ticket-symbol material-symbols-outlined" aria-hidden="true">support_agent</span><h4>Expert Assigned</h4><p>Our support team reviews your request and its business impact.</p></div>
+          <div><span class="ticket-symbol ticket-symbol-orange material-symbols-outlined" aria-hidden="true">schedule</span><h4>Issue Resolved</h4><p>Follow the conversation and resolution in your support portal.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="support-metrics" aria-label="XcellHost support highlights">
     <div class="support-wrap support-metrics-grid">
       @for (metric of metrics; track metric.label) {

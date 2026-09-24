@@ -45,10 +45,10 @@ export class ExperienceHubComponent {
   readonly cards = [
     { title: 'AI Marketplace', label: 'INTELLIGENCE FOR YOUR BUSINESS', description: 'Explore AI solutions for smarter everyday work.', icon: 'auto_awesome', art: 'neurology', theme: 'hub-ai', category: 'ai' },
     { title: 'Managed Services', label: 'EXPERTS BY YOUR SIDE', description: 'Keep your cloud running with expert support.', icon: 'support_agent', art: 'headset_mic', theme: 'hub-managed', category: 'managed' },
-    { title: 'Software License', label: 'EQUIP YOUR TEAM', description: 'Find the software your business needs.', icon: 'apps', art: 'verified_user', theme: 'hub-licenses', category: 'licenses' },
+    { title: 'Software Licenses', label: 'EQUIP YOUR TEAM', description: 'Find the software your business needs.', icon: 'apps', art: 'verified_user', theme: 'hub-licenses', category: 'licenses' },
     { title: 'Professional Services', label: 'PLAN. IMPLEMENT. GROW.', description: 'Get expert guidance for your next project.', icon: 'person', art: 'extension', theme: 'hub-professional', category: 'professional' },
     { title: 'Accelerators', label: 'MOVE YOUR IDEAS FORWARD', description: 'Find a faster path from planning to delivery.', icon: 'rocket_launch', art: 'rocket_launch', theme: 'hub-accelerators', category: 'accelerators' },
     { title: 'Explore Marketplace', label: 'DISCOVER YOUR NEXT SOLUTION', description: 'Browse our curated products and offers.', icon: 'shopping_bag', art: 'shopping_bag', theme: 'hub-souq', category: 'all' },
-    { title: 'Alliances', label: 'STRONGER TOGETHER', description: 'Connect with our partner ecosystem.', icon: 'groups', art: 'handshake', theme: 'hub-alliances', category: 'alliances' },
+    { title: 'Vendor Alliances', label: 'STRONGER TOGETHER', description: 'Connect with our partner ecosystem.', icon: 'groups', art: 'handshake', theme: 'hub-alliances', category: 'alliances' },
   ];
 }
