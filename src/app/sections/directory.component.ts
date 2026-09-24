@@ -50,6 +50,7 @@ interface Ripple {
 }
 
 const NO_RIPPLE: readonly Ripple[] = [];
+const MENU_ORDER = new Map(MEGA_MENU.map((menu, index) => [menu.label, index]));
 
 const ADDITIONAL_PRACTICES: Readonly<Record<string, string>> = {
   Productivity: 'Email, collaboration, business applications and managed productivity',
@@ -117,7 +118,10 @@ export class DirectoryComponent {
       })).filter(group => group.items.length > 0);
       const count = new Set(groups.flatMap(group => group.items.map(item => item.link))).size;
       return { cat: menu.label, count: `${count} services`, sub: ADDITIONAL_PRACTICES[menu.label], groups };
-    }))
+    })).sort((a, b) =>
+      (MENU_ORDER.get(a.cat) ?? MEGA_MENU.length) -
+      (MENU_ORDER.get(b.cat) ?? MEGA_MENU.length)
+    )
   );
 
   /** category name → the one group open inside it */

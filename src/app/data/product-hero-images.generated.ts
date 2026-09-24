@@ -15,7 +15,7 @@ export const PRODUCT_HERO_IMAGES: Readonly<Record<string, string>> = {
   "GPU Cloud": "/assets/images/product-intros/reference-a4c8c8b2fe5d.png",
   "Dedicated Private Cloud": "/assets/images/product-intros/reference-f67aef2a7943.png",
   "Global Cloud": "/assets/images/product-intros/reference-83e4164421fb.png",
-  "Co-Location": "/assets/images/product-intros/reference-9996f6a4d3f7.png",
+  "Co-Location Services": "/assets/images/product-intros/reference-9996f6a4d3f7.png",
   "Hybrid Cloud": "/assets/images/product-intros/reference-8dce69ace7fa.png",
   "Data as a Service": "/assets/images/product-intros/reference-b657997eaab0.jpg",
   "Cloud Object Storage": "/assets/images/product-intros/reference-9537a2e9b0a9.png",

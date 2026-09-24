@@ -27,7 +27,7 @@ describe('CaseStudiesApiService', () => {
       challenge: 'Slow triage.', solution: 'Managed SOC.', impact: ['Clear ownership'],
       services: ['Managed SOC'],
     }] });
-    expect(count).toBe(1);
+    expect(count).toBe(CASE_STUDIES.length + 1);
     expect(category).toBe('Cybersecurity');
     subscription.unsubscribe();
     http.verify();

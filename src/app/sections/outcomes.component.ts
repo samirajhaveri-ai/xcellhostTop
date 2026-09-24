@@ -115,10 +115,15 @@ const PLATFORM_CAPABILITIES: readonly PlatformCapability[] = [
             }
           </div>
         </div>
+        <div class="outcomes-action">
+          <a class="btn btn-ghost" href="/company/our-platform">Learn More <span aria-hidden="true">→</span></a>
+        </div>
       </div>
     </section>
   `,
   styles: `
+    .outcomes-action { margin-top: 24px; text-align: center; }
+    .outcomes-action .btn { display: inline-flex; align-items: center; gap: 10px; background: #fff; }
     .platform-agents-note { margin: 24px 0 0; color: var(--blue); text-align: center; font-size: 14px; font-weight: 700; line-height: 1.5; }
   `,
 })
