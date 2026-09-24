@@ -5405,6 +5405,31 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 @media(max-width:560px){#ppage.rtx-6000-ada-page .pp-hpoints{grid-template-columns:1fr}}
 
 
+/* Microsoft 365 Enterprise: standard sections after the supplied page layout. */
+#ppage.microsoft-365-enterprise-page .microsoft-365-enterprise-extras{padding:48px 0 72px}
+#ppage.microsoft-365-enterprise-page .microsoft-365-enterprise-extras .wrap>section+section{margin-top:56px}
+#ppage.microsoft-365-enterprise-page .microsoft-365-enterprise-extras .pp-sec{margin:0 0 24px}
+#ppage.microsoft-365-enterprise-page .m365-enterprise-insights{margin-top:56px}
+#ppage.microsoft-365-enterprise-page .m365-enterprise-cta-actions{display:flex;flex-wrap:wrap;gap:12px}
+#ppage.microsoft-365-enterprise-page .m365-enterprise-cta-actions .btn-ghost{border-color:rgba(255,255,255,.45);color:#fff}
+@media(max-width:700px){#ppage.microsoft-365-enterprise-page .microsoft-365-enterprise-extras{padding:36px 0 52px}#ppage.microsoft-365-enterprise-page .microsoft-365-enterprise-extras .wrap>section+section{margin-top:40px}#ppage.microsoft-365-enterprise-page .m365-enterprise-insights{margin-top:40px}}
+
+/* Standard sections following the supplied DevOps and Server Management layouts. */
+#ppage .supplied-service-extras{padding:48px 0 72px}
+#ppage .supplied-service-extras .wrap>section+section{margin-top:56px}
+#ppage .supplied-service-extras .pp-sec{margin:0 0 24px}
+#ppage .supplied-service-insights{margin-top:56px}
+#ppage .supplied-service-preview{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:24px;background:radial-gradient(circle at 50% 35%,#18477f,#0a2140 70%);color:#fff;text-align:center}
+#ppage .supplied-service-preview svg{width:54px;height:54px;color:#a9ccff}
+#ppage .supplied-service-preview strong{font:700 clamp(18px,2vw,24px)/1.25 var(--disp)}
+#ppage .supplied-service-preview p{margin:0;color:#d2e2fa;font-size:14px}
+#ppage .supplied-service-preview .btn{margin-top:4px}
+#ppage .supplied-service-cta-actions{display:flex;flex-wrap:wrap;gap:12px}
+#ppage .supplied-service-cta-actions .btn-ghost{border-color:rgba(255,255,255,.45);color:#fff}
+@media(max-width:700px){#ppage .supplied-service-extras{padding:36px 0 52px}#ppage .supplied-service-extras .wrap>section+section{margin-top:40px}#ppage .supplied-service-insights{margin-top:40px}#ppage .supplied-service-preview{gap:6px;padding:10px}#ppage .supplied-service-preview svg{width:32px;height:32px}#ppage .supplied-service-preview p{display:none}#ppage .supplied-service-preview .btn{padding:10px 16px}}
+
+
+
 /* Shared hero AI group: one outline around the label and all platform links. */
 :is(#ppage .pp-ask-ai, .glossary-page .pp-ask-ai, .hero-ai, .cert-ask-ai, .awards-ask-ai, .media-ask-ai){width:fit-content;max-width:100%;box-sizing:border-box;padding:2px 6px!important;border:1px solid rgba(75,165,255,.4)!important;border-radius:16px!important;background:rgba(8,31,68,.46)!important;gap:4px;flex-wrap:wrap}
 :is(#ppage .pp-ask-ai-kicker, .glossary-page .pp-ask-ai-kicker, .hero-ai>span, .cert-ai-label, .awards-ask-ai>span, .media-ask-label){border:0!important;background:transparent!important;border-radius:0!important;padding:4px 2px!important;white-space:normal}
@@ -5507,3 +5532,28 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 #ppage .tally-offer-copy h2{font-size:clamp(16px,1.35vw,20px);line-height:1.35}
 
 #ppage .tally-offer-price strong{font-size:24px}
+
+#ppage .tally-offer-price small{white-space:nowrap;max-width:none}
+#ppage .tally-offer-price>span{white-space:nowrap}
+
+/* Three equal-width offer badges in a single row. */
+#ppage .tally-offer-benefits{display:contents}
+#ppage .tally-offer-benefits>span,#ppage .tally-offer-copy>.tally-offer-price{flex:0 0 calc((100% - 16px)/3);min-width:0;width:calc((100% - 16px)/3);height:56px;margin:0;box-sizing:border-box}
+#ppage .tally-offer-copy>.tally-offer-price{display:grid;grid-template-columns:minmax(0,1fr) auto}
+#ppage .tally-offer-price>div{min-width:0;padding:4px}
+#ppage .tally-offer-price small{white-space:normal;font-size:9px;line-height:1.2}
+#ppage .tally-offer-price strong{font-size:22px}
+#ppage .tally-offer-price>span{padding:4px 6px;font-size:9px;white-space:nowrap}
+@media(max-width:480px){#ppage .tally-offer-copy>.tally-offer-price{margin-top:0;grid-template-columns:1fr;height:auto;min-height:56px}#ppage .tally-offer-price>span{padding:3px;font-size:9px}#ppage .tally-offer-benefits>span{font-size:10px;padding:4px}}
+
+#ppage .tally-offer-copy>.tally-offer-price{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:stretch;background:linear-gradient(110deg,#e65b28,#ef813b)}
+#ppage .tally-offer-price>div{display:contents}
+#ppage .tally-offer-price small{white-space:nowrap;max-width:none;text-align:center;font-size:9px;padding:0 3px;line-height:1.4}
+#ppage .tally-offer-price strong{text-align:left;padding-left:12px;font-size:22px;line-height:1.2}
+#ppage .tally-offer-price>span{position:absolute;right:0;bottom:0;height:28px;display:flex;justify-content:center;align-items:center;padding:0 7px;border-radius:12px 0 14px 0;font-size:9px;white-space:nowrap}
+
+#ppage .tally-mobile-insights-note{display:block;margin-top:6px}
+
+#ppage .pph-scene.marketplace-reference-art{display:flex;flex-direction:column;justify-content:center;align-items:center;mask-image:none;opacity:1}
+#ppage .marketplace-reference-art>img:first-child{width:100%;max-width:620px;max-height:430px;object-fit:contain}
+#ppage .marketplace-reference-art .marketplace-reference-logo{width:130px;height:auto;border-radius:6px;background:white;padding:4px}
