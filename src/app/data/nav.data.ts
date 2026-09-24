@@ -759,6 +759,74 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
+        "g": "8",
+        "label": "Managed Service",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Managed Service",
+            "items": [
+              {
+                "title": "Resilience Operations",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Cloud Operations",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Database Operations",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Network Operations",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Security Operations",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Workspace Operations",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "DirectConnect",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "SSL",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "WAF",
+                "pill": null,
+                "desc": null
+              },
+                      {
+                "title": "Firewalls",
+                "pill": null,
+                "desc": null
+              },
+                      {
+                "title": "Endpoint Security",
+                "pill": null,
+                "desc": null
+              },
+
+            ]
+          }
+        ]
+      },
+      {
         "g": "20",
         "label": "Managed Public Cloud",
         "on": false,
@@ -1072,74 +1140,7 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      {
-        "g": "8",
-        "label": "Managed Service",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Managed Service",
-            "items": [
-              {
-                "title": "Resilience Operations",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Cloud Operations",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Database Operations",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Network Operations",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Security Operations",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Workspace Operations",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "DirectConnect",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "SSL",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "WAF",
-                "pill": null,
-                "desc": null
-              },
-                      {
-                "title": "Firewalls",
-                "pill": null,
-                "desc": null
-              },
-                      {
-                "title": "Endpoint Security",
-                "pill": null,
-                "desc": null
-              },
-
-            ]
-          }
-        ]
-      },
+      
       
     ]
   },
@@ -2117,7 +2118,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Unified SaSe",
+                "title": "Unified SASE",
                 "pill": "Free trial",
                 "desc": null
               },

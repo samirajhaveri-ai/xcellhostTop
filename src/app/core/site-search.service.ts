@@ -68,6 +68,18 @@ export class SiteSearchService {
       .map((candidate) => candidate.item);
   }
 
+  /** Resolve an indexed path only when it belongs to a page in this Angular site. */
+  resultForUrl(url: string): SiteSearchResult | undefined {
+    const path = this.normalisePath(url);
+    return [...this.staticItems, ...this.blogItems()].find(
+      (item) => this.normalisePath(item.url) === path
+    );
+  }
+
+  private normalisePath(url: string): string {
+    return url.split(/[?#]/, 1)[0].replace(/\/+$/, '') || '/';
+  }
+
   private buildStaticItems(): SiteSearchResult[] {
     const items: SiteSearchResult[] = [];
     const urls = new Set<string>();

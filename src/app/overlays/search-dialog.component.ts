@@ -15,6 +15,7 @@ import {
 import { Router, RouterLink } from '@angular/router';
 
 import { slugify } from '../core/catalog.service';
+import { AlgoliaSearchService } from '../core/algolia-search.service';
 import { OverlayService } from '../core/overlay.service';
 import { SiteSearchResult, SiteSearchService } from '../core/site-search.service';
 
@@ -42,6 +43,7 @@ const MAX_COMPARE = 4;
 })
 export class SearchDialogComponent {
   private readonly search = inject(SiteSearchService);
+  private readonly algolia = inject(AlgoliaSearchService);
   private readonly router = inject(Router);
   private readonly injector = inject(Injector);
   readonly overlay = inject(OverlayService);
@@ -56,6 +58,10 @@ export class SearchDialogComponent {
   readonly cur = signal(0);
   /** Service names ticked for comparison, capped at four. */
   readonly picked = signal<string[]>([]);
+  readonly loading = signal(false);
+  readonly remoteFailed = signal(false);
+  private readonly remoteResults = signal<SiteSearchResult[] | null>(null);
+  private requestId = 0;
 
   private timer: ReturnType<typeof setTimeout> | null = null;
 
@@ -63,7 +69,19 @@ export class SearchDialogComponent {
 
   readonly results = computed<SiteSearchResult[]>(() => {
     const s = this.query().trim();
-    return s ? this.search.search(s) : this.featured;
+    if (!s) return this.featured;
+    const local = this.search.search(s);
+    const remote = this.remoteResults() ?? [];
+    const seen = new Set(remote.map((hit) => hit.url));
+    return [...remote, ...local.filter((hit) => !seen.has(hit.url))].slice(0, 16);
+  });
+
+  readonly resultStatus = computed(() => {
+    if (!this.query().trim()) return 'Popular searches';
+    if (this.loading()) return 'Searching…';
+    if (this.remoteFailed()) return 'Live search unavailable · showing site results';
+    if (this.algolia.configured && this.remoteResults()?.length) return `${this.results().length} site results`;
+    return `${this.results().length} site results`;
   });
 
   readonly countLabel = computed(() => {
@@ -83,6 +101,10 @@ export class SearchDialogComponent {
         this.q.set('');
         this.query.set('');
         this.cur.set(0);
+        this.remoteResults.set(null);
+        this.remoteFailed.set(false);
+        this.loading.set(false);
+        this.requestId++;
       });
       /* `.srch` transitions `visibility`, so the field is still hidden — and
          therefore unfocusable — in the same task the class is applied. Defer
@@ -101,11 +123,31 @@ export class SearchDialogComponent {
   onInput(ev: Event): void {
     const v = (ev.target as HTMLInputElement).value;
     this.q.set(v);
+    this.requestId++;
+    this.remoteResults.set(null);
+    this.remoteFailed.set(false);
+    this.loading.set(false);
     if (this.timer) clearTimeout(this.timer);
     this.timer = setTimeout(() => {
       this.query.set(v);
       this.cur.set(0);
+      if (v.trim() && this.algolia.configured) void this.searchAlgolia(v.trim(), this.requestId);
     }, DEBOUNCE_MS);
+  }
+
+  private async searchAlgolia(query: string, requestId: number): Promise<void> {
+    this.loading.set(true);
+    try {
+      const hits = await this.algolia.search(query);
+      if (requestId !== this.requestId || !this.overlay.isOpen('search')) return;
+      this.remoteResults.set(hits);
+      this.cur.set(0);
+    } catch {
+      if (requestId !== this.requestId || !this.overlay.isOpen('search')) return;
+      this.remoteFailed.set(true);
+    } finally {
+      if (requestId === this.requestId) this.loading.set(false);
+    }
   }
 
   /**
@@ -148,6 +190,8 @@ export class SearchDialogComponent {
   }
 
   close(): void {
+    this.requestId++;
+    if (this.timer) clearTimeout(this.timer);
     this.overlay.close('search');
   }
 

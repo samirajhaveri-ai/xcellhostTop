@@ -190,6 +190,10 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.associations-grid-affiliate {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .association-card {
   display: grid;
   min-width: 0;
@@ -234,8 +238,8 @@
 
 @media (max-width: 900px) {
   .associations-layout { grid-template-columns: 1fr; gap: 20px; }
-  .associations-tabs { flex-direction: row; border-right: 0; border-bottom: 1px solid #d6deeb; padding: 0 0 8px; }
-  .associations-tabs button { flex: 1 1 0; text-align: center; }
+  .associations-tabs { flex-direction: row; overflow-x: auto; border-right: 0; border-bottom: 1px solid #d6deeb; padding: 0 0 8px; }
+  .associations-tabs button { flex: 0 0 auto; min-width: 150px; text-align: center; }
   .associations-tabs button.is-active::after { top: auto; right: 8px; bottom: -9px; left: 8px; width: auto; height: 3px; }
 }
 
@@ -248,6 +252,7 @@
   .associations-grid,
   .associations-grid-country,
   .associations-grid-industry { grid-template-columns: 1fr; }
+  .associations-grid-affiliate { grid-template-columns: 1fr; }
   .association-card { min-height: 176px; grid-template-rows: 116px auto; }
   .association-card img { height: 92px; }
 }

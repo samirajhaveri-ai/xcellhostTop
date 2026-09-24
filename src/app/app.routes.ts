@@ -102,6 +102,7 @@ export const routes: Routes = [
   { path: 'under-construction/ai-glossary', redirectTo: 'ai-glossary', pathMatch: 'full' },
   { path: 'ai-glossary', loadComponent: () => import('./pages/ai-glossary.page').then((m) => m.AiGlossaryPage) },
   { path: 'under-construction/associations', redirectTo: 'associations', pathMatch: 'full' },
+  { path: 'associat', redirectTo: 'associations', pathMatch: 'full' },
   {
     path: 'associations',
     loadComponent: () => import('./pages/associations.page').then((m) => m.AssociationsPage),

@@ -7,7 +7,7 @@ interface Association {
   image: string;
 }
 
-type AssociationTab = 'it-trade' | 'country' | 'industry' | 'business-network';
+type AssociationTab = 'it-trade' | 'country' | 'industry' | 'business-network' | 'affiliate';
 
 @Component({
   selector: 'xh-associations-page',
@@ -26,7 +26,7 @@ export class AssociationsPage {
     { id: 'industry', label: 'Industry Association' },
     { id: 'country', label: 'Country Association' },
     { id: 'business-network', label: 'Business Network' },
-    
+    { id: 'affiliate', label: 'Affiliate Network' },
   ];
 
   readonly countryAssociations: readonly Association[] = [
@@ -46,10 +46,6 @@ export class AssociationsPage {
   ];
   readonly industryAssociations: readonly Association[] = [
     {
-      name: 'Institute of Cost Accountants of India',
-      image: '/assets/images/company-recognition/institute-cost-accountants-india.png',
-    },
-    {
       name: 'CMDA',
       image: '/assets/images/associations/industry-cmda.png',
     },
@@ -61,10 +57,7 @@ export class AssociationsPage {
       name: 'SME Chamber of India',
       image: '/assets/images/associations/industry-sme-chamber-india.png',
     },
-    {
-      name: 'Industry Association',
-      image: '/assets/images/associations/industry-association-member.avif',
-    },
+    
     {
       name: 'Asian-African Chamber of Commerce & Industry',
       image: '/assets/images/associations/industry-asian-african-chamber.png',
@@ -90,10 +83,21 @@ export class AssociationsPage {
     },
   ];
 
+  readonly affiliateAssociations: readonly Association[] = [
+    {
+      name: 'Industry Association Member',
+      image: '/assets/images/associations/industry-association-member.avif',
+    },
+    {
+      name: 'The Institute of Company Secretaries of India (ICSI)',
+      image: '/assets/images/associations/affiliate-icsi.png',
+    },
+  ];
+
   constructor() {
     this.seo.set(
       'Associations | XcellHost',
-      'Explore the IT trade, country and industry associations connected with XcellHost.',
+      'Explore the IT trade, country, industry and affiliate associations connected with XcellHost.',
       '/associations/',
     );
   }

@@ -35,7 +35,8 @@
       <button class="srch-x" id="srchX" type="button" aria-label="Close search" (click)="close()">esc</button>
     </div>
 
-    <div class="srch-res" id="srchR" role="listbox" aria-label="Search results">
+    <div class="srch-status" role="status" aria-live="polite">{{ resultStatus() }}</div>
+    <div class="srch-res" id="srchR" role="listbox" aria-label="Search results" [attr.aria-busy]="loading()">
       @for (r of results(); track r.url; let i = $index) {
         <a
           class="sr"

@@ -30,6 +30,11 @@ export const environment = {
   /** Local development uses Angular's proxy.conf.json to avoid browser CORS blocking. */
   strapiUrl: '',
 
+  /** Public Algolia search configuration. Use a read-only Search API key, never an Admin key. */
+  algoliaAppId: 'GH7MDMKNPP',
+  algoliaIndexName: 'wp_searchable_posts',
+  algoliaSearchApiKey: 'c5ceee3640b2b59da15b86069c653367',
+
   /** Public XcellHost YouTube feed; no API key is exposed in the browser. */
   youtubeChannelId: 'UCChA2em9-NJFlof3MuOe8Qg',
   youtubeFeedApi: '/feeds/youtube.php',
