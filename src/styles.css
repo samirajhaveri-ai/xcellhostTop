@@ -804,10 +804,6 @@
   .ci-qty button:disabled{opacity:.45;cursor:not-allowed}
   .ci-qty button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
   .ci-qty output{font:600 13px var(--mono);min-width:18px;text-align:center}
-  .module-quantity{display:inline-flex;align-items:center;gap:9px;min-height:42px;padding:5px 8px;border:1px solid rgba(255,255,255,.35);border-radius:9px;color:#fff}
-  .module-quantity button{width:30px;height:30px;border:1px solid rgba(255,255,255,.4);border-radius:7px;background:rgba(255,255,255,.12);color:#fff;font-weight:700;cursor:pointer}
-  .module-quantity button:disabled{opacity:.45;cursor:not-allowed}
-  .module-quantity output{min-width:2ch;text-align:center;font-weight:700}
   .ci-qty b{font:600 13px var(--mono);min-width:18px;text-align:center}
   .ci-rm{border:none;background:none;color:#C4CFDF;cursor:pointer;font-size:15px;transition:.15s;padding:4px}
   .ci-rm:hover{color:#E11D48}
@@ -4240,7 +4236,6 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
 .cloud-backup-term-tabs button.is-active::after{background:var(--blue)}
 .cloud-backup-term-tabs button:focus-visible{outline:3px solid rgba(0,91,187,.24);outline-offset:2px}
 .cloud-backup-plan-grid{display:grid;grid-template-columns:1fr;gap:18px;width:70%;max-width:1020px;margin:0 auto}
-.cloud-backup-quantity{display:grid;grid-template-columns:auto 42px 64px 42px;align-items:center;justify-content:center;gap:8px;margin:0 auto 20px}.cloud-backup-quantity>span{margin-right:4px;color:var(--slate);font-size:13px;font-weight:700}.cloud-backup-quantity button,.cloud-backup-quantity output{display:grid;place-items:center;min-height:40px;border:1px solid var(--line);border-radius:8px}.cloud-backup-quantity button{background:var(--blue-soft);color:var(--blue);font-size:19px;font-weight:700;cursor:pointer}.cloud-backup-quantity button:disabled{opacity:.45;cursor:not-allowed}.cloud-backup-quantity output{background:#fff;color:var(--navy);font-weight:800}
 .cloud-backup-plan-card{display:grid;grid-template-columns:minmax(0,320px) 220px;grid-template-rows:auto;width:min(540px,100%);min-width:0;margin-inline:auto;overflow:hidden;border:1px solid #d3dce8;border-radius:14px;background:#fff;text-align:center;box-shadow:0 8px 24px rgba(16,43,79,.06);transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
 .cloud-backup-plan-card:hover{border-color:#9fc3ef;box-shadow:0 14px 32px rgba(16,78,155,.12);transform:translateY(-2px)}
 .cloud-backup-plan-card{grid-template-columns:minmax(0,7fr) minmax(0,3fr);width:100%}
@@ -5292,6 +5287,7 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 .backup-protection{margin:0;min-width:0}
 .backup-protection h2{margin:0 0 20px;font:500 clamp(20px,2vw,24px)/1.35 var(--body);color:var(--navy)}
 .backup-protection-badges{display:block;width:100%;max-width:540px;height:auto}
+.backup-protection-badges-compact{max-width:340px;border-radius:14px;object-fit:contain}
 @media(max-width:760px){.backup-overview-columns{grid-template-columns:1fr;gap:28px}}
 
 .infra-architecture-tabs button{white-space:nowrap}
