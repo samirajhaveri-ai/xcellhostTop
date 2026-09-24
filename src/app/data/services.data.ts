@@ -4021,7 +4021,7 @@ export const SERVICES_RICH: Record<string, ServiceRich> = {
       ]
     ]
   },
-  "co-location": {
+  "co-location-services": {
     "price": "Per-rack/U",
     "ov": "Your servers, our Tier-4 datacenter — redundant power, precision cooling, physical security and carrier-neutral connectivity, without building any of it yourself. Full control of your hardware in an environment built for uptime.",
     "f": [

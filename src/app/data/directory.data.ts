@@ -272,7 +272,7 @@ export const DIRECTORY: DirectoryEntry[] = [
     "group": "Cloud Infra"
   },
   {
-    "name": "Co-Location",
+    "name": "Co-Location Services",
     "desc": "Control your environment in our Tier-4 datacenters",
     "cat": "Cloud",
     "group": "Cloud Infra"

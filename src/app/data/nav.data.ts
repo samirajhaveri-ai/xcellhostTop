@@ -483,17 +483,13 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Co-Location",
+                "title": "Co-Location Services",
                 "pill": null,
-                "desc": null
+                "desc": null,
+                "href": "/co-location-services"
               },
               {
                 "title": "Hybrid Cloud",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Multi Cloud Manager",
                 "pill": null,
                 "desc": null
               },
@@ -1255,6 +1251,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Google Security Assessment",
                 "pill": null,
                 "desc": null
+              },
+              {
+                "title": "Microsoft SPM",
+                "pill": null,
+                "desc": null
               },   
             ]
           }
@@ -1366,11 +1367,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "Windows 365",
-                "pill": null,
-                "desc": null
-              },
+              
               {
                 "title": "Cloud Desktop Enterprise (VDI)",
                 "pill": null,
@@ -1378,6 +1375,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Accops Digital Workspace",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Windows 365",
                 "pill": null,
                 "desc": null
               },
@@ -3046,7 +3048,7 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "8",
-        "label": "View Marketplace",
+        "label": "View Marketplace -->",
         "on": false,
         "groups": [
           {

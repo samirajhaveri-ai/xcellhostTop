@@ -39,7 +39,10 @@ export class CaseStudiesApiService {
 
   readonly studies$: Observable<readonly CaseStudy[]> = timer(0, 30_000).pipe(
     switchMap(() => this.list().pipe(catchError(() => of(CASE_STUDIES)))),
-    map((studies) => studies.length ? studies : CASE_STUDIES),
+    map((studies) => {
+      const remoteIds = new Set(studies.map((study) => study.id));
+      return [...studies, ...CASE_STUDIES.filter((study) => !remoteIds.has(study.id))];
+    }),
     shareReplay({ bufferSize: 1, refCount: true }),
   );
 
