@@ -1444,27 +1444,6 @@
                         }
                         </section>
                       </div>
-                    } @else if (slug() === 'nvidia-h100') {
-                      <section class="h100-overview" aria-labelledby="h100OverviewTitle">
-                        <h2 class="pp-sec" id="h100OverviewTitle">Overview</h2>
-                        <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
-                        <div class="h100-answer">
-                          <div>
-                            <span class="h100-answer-label">Quick answer</span>
-                            <h3>What is the NVIDIA H100 cloud GPU used for?</h3>
-                            <p>The H100 is a Hopper GPU with 80 GB of HBM3 and an FP8 Transformer Engine, used for training and serving large language models, recommenders and HPC workloads.</p>
-                          </div>
-                          <div>
-                            <span class="h100-answer-label">Key takeaways</span>
-                            <ul>
-                              <li>NVLink and NVSwitch connect up to 8 GPUs in an HGX node.</li>
-                              <li>MIG supports isolated GPU instances for shared workloads.</li>
-                              <li>Hosted in India with INR billing and GST invoices.</li>
-                            </ul>
-                          </div>
-                        </div>
-                      </section>
-                    } @else {
                     } @else if (!isTally()) {
                       <div class="pp-sec">Overview</div>
                       <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
