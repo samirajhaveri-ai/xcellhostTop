@@ -215,7 +215,7 @@ export class CompanyPage {
   readonly technicalSupportTeam = [
     { initials: 'RS', name: 'Rizwan Shaikh', role: 'Technical Manager', image: '/assets/images/team-rizwan-shaikh.png' },
     { initials: 'AY', name: 'Amit Yadav', role: 'Technical L3', image: '/assets/images/Amit Yadav.png' },
-    { initials: 'SB', name: 'Santosh Behra', role: 'Technical Support Executive - L2', image: '/assets/images/Santosh Behra.png' },
+    { initials: 'SB', name: 'Santosh kumar Behera', role: 'Technical Support Executive - L2', image: '/assets/images/Santosh Behra.png' },
      { initials: 'TM', name: 'Talha Mohammad', role: 'Technical L2', image: '/assets/images/Talha.png' },
      { initials: 'TM', name: 'Manisha Gupta', role: 'Technical L2', image: '/assets/images/Manisha.png' },
     { initials: 'PA', name: 'Purva Angre', role: 'Technical L1', image: '/assets/images/team-purva-angre.png' },
