@@ -176,7 +176,21 @@
         <a class="xh-support-icon" routerLink="/support-overview" aria-label="Support">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="3" y="12" width="4" height="7" rx="2"/><rect x="17" y="12" width="4" height="7" rx="2"/><path d="M19 19a3 3 0 0 1-3 3h-3"/></svg>
         </a>
-        <span class="xh-support-tooltip" aria-hidden="true">Support</span>
+        <div class="xh-contact-dropdown" aria-label="Contact XcellHost">
+          <div class="xh-contact-row">
+            <span class="material-symbols-outlined xh-contact-phone" aria-hidden="true">call</span>
+            <div><strong>Call Us <small>24×7</small></strong><a href="tel:+912267111555">+91-22-6711 1555</a></div>
+          </div>
+          <div class="xh-contact-row">
+            <span class="material-symbols-outlined xh-contact-whatsapp" aria-hidden="true">chat</span>
+            <div><strong>WhatsApp</strong><a href="https://wa.me/918657032540" target="_blank" rel="noopener noreferrer">+91 86570 32540</a></div>
+          </div>
+          <div class="xh-contact-row">
+            <span class="material-symbols-outlined xh-contact-email" aria-hidden="true">mail</span>
+            <div><strong>Email <small>Reply in one business day</small></strong><a href="mailto:sales@xcellhost.cloud">sales@xcellhost.cloud</a></div>
+          </div>
+          <a class="xh-contact-support-link" routerLink="/support-overview" (click)="onNavigate()">Visit Support Overview <span aria-hidden="true">→</span></a>
+        </div>
       </div>
       <div class="xh-login-menu" [class.open]="loginMenuOpen()">
         <button
@@ -206,7 +220,9 @@
           </a>
         </div>
       </div>
-      <a class="xh-trial" routerLink="/signup" (click)="onNavigate()">Sign Up</a>
+      <a class="xh-signup-icon" routerLink="/signup" (click)="onNavigate()" aria-label="Sign Up" title="Sign Up">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 21v-2a6 6 0 0 1 12 0v2M19 8v6M16 11h6"/></svg>
+      </a>
     </div>
   </div>
 </header>
