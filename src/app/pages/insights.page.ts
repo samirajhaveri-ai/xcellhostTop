@@ -1,11 +1,14 @@
 import { ChangeDetectionStrategy, Component, computed, inject, linkedSignal, signal } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 
 import { BlogApiService, CmsBlogPost, CmsInsightResource, CmsResourceKind, INSIGHT_DOCUMENT_TYPES } from '../core/blog-api.service';
+import { CaseStudiesApiService } from '../core/case-studies-api.service';
 import { SeoService } from '../core/seo.service';
+import { CASE_STUDIES, CaseStudy } from '../data/case-studies.data';
 import {
   INSIGHTS_MENU_TAXONOMY,
+  InsightPlacement,
   resolveInsightPlacement,
 } from '../data/insights-taxonomy.data';
 import { SIMPLE_PAGES } from '../data/site.data';
@@ -16,7 +19,7 @@ type InsightTab = 'Blogs' | 'Videos' | 'Use Cases' | typeof INSIGHT_DOCUMENT_TYP
 interface InsightItem {
   readonly id: number;
   readonly documentId: string;
-  readonly kind: 'blog' | CmsResourceKind;
+  readonly kind: 'blog' | 'case-study' | CmsResourceKind;
   readonly title: string;
   readonly slug: string;
   readonly description: string;
@@ -31,6 +34,10 @@ interface InsightItem {
   readonly coverImage: CmsBlogPost['coverImage'];
   readonly coverImageUrl: string | null;
   readonly actionUrl: string | null;
+  readonly metric?: string;
+  readonly profile?: string;
+  readonly services?: readonly string[];
+  readonly placements?: readonly InsightPlacement[];
 }
 
 interface InsightCategoryBranch {
@@ -75,6 +82,21 @@ interface InsightCategoryBranch {
                   <span>{{ active() === allCategory ? 'CMS synced' : 'Posts in topic' }}</span>
                 </article>
               </div>
+              <nav class="insights-hero-resources" aria-label="Explore Insights resources">
+                <span>Explore by format</span>
+                <div>
+                  @for (tab of tabs; track tab) {
+                    <a
+                      href="#insights-library"
+                      [class.active]="activeTab() === tab"
+                      [attr.aria-current]="activeTab() === tab ? 'page' : null"
+                      (click)="selectTab(tab)"
+                    >
+                      <span>{{ tab }}</span><b>{{ tabCount(tab) }}</b>
+                    </a>
+                  }
+                </div>
+              </nav>
             </div>
 
             <div class="insights-hub-visual" role="img" aria-label="Animated XcellHost insights resource hub">
@@ -134,7 +156,7 @@ interface InsightCategoryBranch {
           } @else if (error() && activeTab() === 'Blogs') {
             <p role="alert">Blog content is temporarily unavailable. Please try again shortly.</p>
           }
-            <section class="insights-discovery" aria-label="Insight content filters">
+            <section class="insights-discovery" id="insights-library" aria-label="Insight content filters">
               <div class="insights-tabs" role="tablist" aria-label="Insight content type">
                 @for (tab of tabs; track tab) {
                   <button
@@ -255,9 +277,15 @@ interface InsightCategoryBranch {
                       <h3>{{ lead.title }}</h3>
                       <p>{{ lead.description }}</p>
                       <div class="insights-feature-meta">
-                        <span>{{ formatDate(lead.date) }}</span>
-                        <span>{{ lead.author }}</span>
-                        <span>{{ isExternal(lead) ? resourceAction(lead) : formatTime(lead.time) }}</span>
+                        @if (lead.kind === 'case-study') {
+                          <span>{{ lead.metric }}</span>
+                          <span>{{ lead.profile }}</span>
+                          <span>Read customer story</span>
+                        } @else {
+                          <span>{{ formatDate(lead.date) }}</span>
+                          <span>{{ lead.author }}</span>
+                          <span>{{ isExternal(lead) ? resourceAction(lead) : formatTime(lead.time) }}</span>
+                        }
                       </div>
                     </div>
                   </a>
@@ -285,11 +313,17 @@ interface InsightCategoryBranch {
                       </div>
                       <div class="insights-card-meta">
                         <span class="bl-k">{{ post.category }}</span>
-                        <span class="insights-card-date">{{ formatDate(post.date) }}</span>
+                        <span class="insights-card-date">{{ post.kind === 'case-study' ? post.metric : formatDate(post.date) }}</span>
                       </div>
                       <h3>{{ post.title }}</h3>
                       <p>{{ post.description }}</p>
-                      <span class="bl-m">{{ post.author }} · {{ isExternal(post) ? resourceAction(post) : readTime(post) + ' read' }}</span>
+                      <span class="bl-m">
+                        @if (post.kind === 'case-study') {
+                          {{ post.services?.join(' · ') || post.profile }} · Read case study
+                        } @else {
+                          {{ post.author }} · {{ isExternal(post) ? resourceAction(post) : readTime(post) + ' read' }}
+                        }
+                      </span>
                     </a>
                   } @empty {
                     @if (!visible().length) {
@@ -335,6 +369,7 @@ export class InsightsPage {
   private readonly router = inject(Router);
   private readonly seo = inject(SeoService);
   private readonly blogApi = inject(BlogApiService);
+  private readonly caseStudiesApi = inject(CaseStudiesApiService);
 
   readonly videoStatus = this.blogApi.videoStatus;
   readonly page = SIMPLE_PAGES['blog'];
@@ -343,6 +378,7 @@ export class InsightsPage {
   readonly videos = signal<readonly CmsInsightResource[]>([]);
   readonly documents = signal<readonly CmsInsightResource[]>([]);
   readonly useCases = signal<readonly CmsInsightResource[]>([]);
+  readonly caseStudies = toSignal(this.caseStudiesApi.studies$, { initialValue: CASE_STUDIES });
   readonly loading = signal(true);
   readonly error = signal(false);
   readonly activeTab = signal<InsightTab>('Blogs');
@@ -377,7 +413,12 @@ export class InsightsPage {
     this.videos().map((item) => this.toResourceItem(item))
   );
   readonly useCaseItems = computed<readonly InsightItem[]>(() =>
-    this.useCases().map((item) => this.toResourceItem(item))
+    [
+      ...this.caseStudies().map((study) => this.toCaseStudyItem(study)),
+      ...this.useCases()
+        .filter((item) => !this.caseStudies().some((study) => study.id === item.slug))
+        .map((item) => this.toResourceItem(item)),
+    ]
   );
   readonly sourceItems = computed<readonly InsightItem[]>(() => {
     switch (this.activeTab()) {
@@ -395,46 +436,45 @@ export class InsightsPage {
     const items = this.sourceItems();
     const branches = INSIGHTS_MENU_TAXONOMY.map((menu) => ({
       name: menu.name,
-      count: items.filter((item) => item.mainCategory === menu.name).length,
+      count: items.filter((item) => this.matchesPlacement(item, menu.name)).length,
       children: menu.submenus.map((submenu) => ({
         name: submenu.name,
-        count: items.filter((item) =>
-          item.mainCategory === menu.name && item.subCategory === submenu.name
-        ).length,
+        count: items.filter((item) => this.matchesPlacement(item, menu.name, submenu.name)).length,
         products: submenu.products.map((product) => ({
           name: product.name,
-          count: items.filter((item) =>
-            item.mainCategory === menu.name && item.subCategory === submenu.name && item.product === product.name
-          ).length,
+          count: items.filter((item) => this.matchesPlacement(item, menu.name, submenu.name, product.name)).length,
         })),
       })),
     }));
 
     // Keep editorial content visible even when it has not yet been assigned to a menu product.
     for (const item of items) {
-      let branch = branches.find((candidate) => candidate.name === item.mainCategory);
-      if (!branch) {
-        const related = items.filter((candidate) => candidate.mainCategory === item.mainCategory);
-        branch = { name: item.mainCategory, count: related.length, children: [] };
-        branches.push(branch);
-      }
-      let submenu = branch.children.find((candidate) => candidate.name === item.subCategory);
-      if (!submenu) {
-        const related = items.filter((candidate) =>
-          candidate.mainCategory === item.mainCategory && candidate.subCategory === item.subCategory
-        );
-        submenu = { name: item.subCategory, count: related.length, products: [] };
-        branch.children.push(submenu);
-      }
-      if (!submenu.products.some((candidate) => candidate.name === item.product)) {
-        submenu.products.push({
-          name: item.product,
-          count: items.filter((candidate) =>
-            candidate.mainCategory === item.mainCategory &&
-            candidate.subCategory === item.subCategory &&
-            candidate.product === item.product
-          ).length,
-        });
+      for (const placement of this.itemPlacements(item)) {
+        let branch = branches.find((candidate) => candidate.name === placement.mainCategory);
+        if (!branch) {
+          const count = items.filter((candidate) => this.matchesPlacement(candidate, placement.mainCategory)).length;
+          branch = { name: placement.mainCategory, count, children: [] };
+          branches.push(branch);
+        }
+        let submenu = branch.children.find((candidate) => candidate.name === placement.subCategory);
+        if (!submenu) {
+          const count = items.filter((candidate) =>
+            this.matchesPlacement(candidate, placement.mainCategory, placement.subCategory)
+          ).length;
+          submenu = { name: placement.subCategory, count, products: [] };
+          branch.children.push(submenu);
+        }
+        if (!submenu.products.some((candidate) => candidate.name === placement.product)) {
+          submenu.products.push({
+            name: placement.product,
+            count: items.filter((candidate) => this.matchesPlacement(
+              candidate,
+              placement.mainCategory,
+              placement.subCategory,
+              placement.product,
+            )).length,
+          });
+        }
       }
     }
     return branches;
@@ -442,12 +482,16 @@ export class InsightsPage {
   readonly visible = computed(() => {
     const query = this.query().trim().toLocaleLowerCase();
     return this.sourceItems().filter((item) => {
-      const matchesCategory = !this.activeMain() || (
-        item.mainCategory === this.activeMain() &&
-        (!this.activeSub() || item.subCategory === this.activeSub()) &&
-        (!this.activeProduct() || item.product === this.activeProduct())
+      const matchesCategory = !this.activeMain() || this.matchesPlacement(
+        item,
+        this.activeMain(),
+        this.activeSub(),
+        this.activeProduct(),
       );
-      const haystack = `${item.title} ${item.description} ${item.mainCategory} ${item.subCategory} ${item.product} ${item.author}`.toLocaleLowerCase();
+      const placementText = this.itemPlacements(item)
+        .map((placement) => `${placement.mainCategory} ${placement.subCategory} ${placement.product}`)
+        .join(' ');
+      const haystack = `${item.title} ${item.description} ${placementText} ${item.author}`.toLocaleLowerCase();
       return matchesCategory && (!query || haystack.includes(query));
     });
   });
@@ -599,7 +643,9 @@ export class InsightsPage {
     if (this.isExternal(item)) return item.actionUrl ?? '#';
     return item.kind === 'use-case'
       ? `/use-cases/${encodeURIComponent(item.slug)}`
-      : `/insights/${encodeURIComponent(item.slug)}`;
+      : item.kind === 'case-study'
+        ? `/case-studies/${encodeURIComponent(item.slug)}`
+        : `/insights/${encodeURIComponent(item.slug)}`;
   }
 
   goToPage(page: number, results: HTMLElement): void {
@@ -628,14 +674,15 @@ export class InsightsPage {
     return category === ALL
       ? this.sourceItems().length
       : this.sourceItems().filter((item) =>
-        item.category === category || item.mainCategory === category || item.subCategory === category
-        || item.product === category
+        item.category === category || this.itemPlacements(item).some((placement) =>
+          placement.mainCategory === category || placement.subCategory === category || placement.product === category
+        )
       ).length;
   }
 
   tabCount(tab: InsightTab): number {
     if (tab === 'Videos') return this.videos().length;
-    if (tab === 'Use Cases') return this.useCases().length;
+    if (tab === 'Use Cases') return this.useCaseItems().length;
     if (tab === 'Blogs') return this.posts().length;
     return this.documents().filter(item => item.kind === INSIGHT_DOCUMENT_TYPES.find(type => type.label === tab)?.kind).length;
   }
@@ -649,7 +696,7 @@ export class InsightsPage {
   }
 
   isExternal(item: InsightItem): boolean {
-    return item.kind !== 'blog' && item.kind !== 'use-case';
+    return item.kind !== 'blog' && item.kind !== 'use-case' && item.kind !== 'case-study';
   }
 
   resourceAction(item: InsightItem): string {
@@ -698,5 +745,97 @@ export class InsightsPage {
       ...placement,
       actionUrl: item.kind === 'video' ? item.videoUrl : item.downloadUrl ?? null,
     };
+  }
+
+  private toCaseStudyItem(study: CaseStudy): InsightItem {
+    const placements = this.caseStudyPlacements(study);
+    const placement = placements[0] ?? resolveInsightPlacement({
+      category: study.industry,
+      mainCategory: study.mainCategory,
+      subCategory: study.subCategory,
+    });
+    return {
+      id: 0,
+      documentId: study.documentId ?? `case-study-${study.id}`,
+      kind: 'case-study',
+      title: study.headline || study.metricLabel,
+      slug: study.id,
+      description: study.summary,
+      content: `${study.challenge} ${study.solution} ${study.impact.join(' ')}`,
+      author: study.customer || 'XcellHost Customer Story',
+      date: '',
+      time: '',
+      category: study.industry,
+      mainCategory: placement.mainCategory,
+      subCategory: placement.subCategory,
+      product: placement.product,
+      coverImage: null,
+      coverImageUrl: this.caseStudyCover(study.id),
+      actionUrl: null,
+      metric: study.metric,
+      profile: study.profile,
+      services: study.services,
+      placements,
+    };
+  }
+
+  private caseStudyCover(id: string): string {
+    if (id === 'tally-cloud') return '/assets/images/hero-tally-on-cloud.png';
+    if (id === 'ca-continuity') return '/assets/images/orb-smb-cloud-desktop.png';
+    if (id === 'cloud-drive-collaboration') return '/assets/images/orb-smb-cloud-desktop.png';
+    if (id === 'endpoint-security-response') return '/assets/images/hero-advanced-endpoint-security-edr.svg';
+    if (id === 'rmm-device-operations') return '/assets/images/hero-rmm.png';
+    if (id === 'smb-security-appliance') return '/assets/images/hero-smb-cyber-security-appliance.png';
+    if (id === 'microsoft-365-smb-collaboration') return '/assets/images/orb-microsoft-365.png';
+    if (id === 'acronis-genai-governance') return '/assets/images/acronis-genai-protection.png';
+    if (id === 'cloud-disaster-recovery-smb') return '/assets/images/acronis-disaster-recovery.png';
+    if (id === 'dpdpa-for-smb-readiness') return '/assets/images/security-glossary-hero.svg';
+    if (id === 'workforce-analytics-visibility') return '/assets/images/menu-data-analytics.svg';
+    if (id === 'domain-portfolio-control' || id === 'domain-extension-launch' || id === 'ai-domain-shortlist') {
+      return '/assets/images/domains/hero.svg';
+    }
+    if (id === 'managed-web-hosting' || id === 'ai-website-launch') return '/assets/images/domains/hero.svg';
+    if (id === 'website-migration-backup') return '/assets/images/cloud-migration-hero.svg';
+    if (id === 'hosting-control-panel-operations' || id === 'cloudlinux-account-isolation') {
+      return '/assets/images/cloud-migration-hero.svg';
+    }
+    if (id === 'website-security-trust') return '/assets/images/hero-web-security-sitelock-wide.png';
+    if (id === 'web-design-business-portfolios') return '/assets/images/website-photo-frame-samir-jhaveri-1.png';
+    if (id === 'web-marketing-customer-journey') return '/assets/images/contact-whatsapp.webp';
+    if (id === 'vps-workload-platform') return '/assets/images/orb-smb-cloud-desktop.png';
+    return '/assets/images/hero-cloud-backup-acronis.png';
+  }
+
+  private caseStudyPlacements(study: CaseStudy): readonly InsightPlacement[] {
+    const productAliases: Readonly<Record<string, string>> = {
+      'Cloud Desktop': 'smb-cloud-desktop',
+      'Acronis Backup': 'acronis-backup-advanced',
+      SecureSetu: 'dpdpa-consulting',
+      vDPO: 'vdpo-as-a-service',
+    };
+    const placements = study.services.map((service) => resolveInsightPlacement({
+      category: study.industry,
+      mainCategory: study.mainCategory,
+      subCategory: study.subCategory,
+      product: service,
+      relatedPages: productAliases[service] ?? service,
+    }));
+    return placements.filter((placement, index) => placements.findIndex((candidate) =>
+      candidate.mainCategory === placement.mainCategory &&
+      candidate.subCategory === placement.subCategory &&
+      candidate.product === placement.product
+    ) === index);
+  }
+
+  private itemPlacements(item: InsightItem): readonly InsightPlacement[] {
+    return item.placements?.length ? item.placements : [item];
+  }
+
+  private matchesPlacement(item: InsightItem, main: string, sub = '', product = ''): boolean {
+    return this.itemPlacements(item).some((placement) =>
+      placement.mainCategory === main &&
+      (!sub || placement.subCategory === sub) &&
+      (!product || placement.product === product)
+    );
   }
 }

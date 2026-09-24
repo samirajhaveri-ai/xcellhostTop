@@ -3,7 +3,9 @@ import { signal } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { BlogApiService, CmsBlogPost, CmsInsightResource, INSIGHT_DOCUMENT_TYPES } from '../core/blog-api.service';
+import { CaseStudiesApiService } from '../core/case-studies-api.service';
 import { SeoService } from '../core/seo.service';
+import { CASE_STUDIES } from '../data/case-studies.data';
 import { InsightsPage } from './insights.page';
 
 describe('Insights pagination', () => {
@@ -24,6 +26,7 @@ describe('Insights pagination', () => {
     TestBed.configureTestingModule({ providers: [
       provideRouter([]),
       { provide: BlogApiService, useValue: { posts$: posts, videos$: videos, useCases$: useCases, documents$: documents, videoStatus: signal('ready') } },
+      { provide: CaseStudiesApiService, useValue: { studies$: new BehaviorSubject(CASE_STUDIES) } },
       { provide: SeoService, useValue: { set: () => {} } },
     ] });
     page = TestBed.runInInjectionContext(() => new InsightsPage());
@@ -39,6 +42,7 @@ describe('Insights pagination', () => {
     const fixture = TestBed.createComponent(InsightsPage);
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelectorAll('.insights-tabs button').length).toBe(8);
+    expect(fixture.nativeElement.querySelectorAll('.insights-hero-resources a').length).toBe(8);
     for (const type of INSIGHT_DOCUMENT_TYPES) {
       const component = fixture.componentInstance;
       component.selectTab(type.label);
@@ -77,6 +81,84 @@ describe('Insights pagination', () => {
     fixture.componentInstance.query.set('unmatched query');
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('.insights-empty').textContent).toContain('No matching videos');
+  });
+
+  it('shows customer case studies in All Use Cases and maps them into the sidebar taxonomy', () => {
+    page.selectTab('Use Cases');
+    expect(page.tabCount('Use Cases')).toBe(CASE_STUDIES.length);
+    expect(page.visible().length).toBe(CASE_STUDIES.length);
+    expect(page.categoryCount('Web Presence')).toBe(23);
+    const smbCloud = page.categoryTree().find(branch => branch.name === 'Web Presence')?.children
+      .find(child => child.name === 'SMB Cloud');
+    expect(smbCloud?.count).toBe(11);
+    expect(smbCloud?.products.find(product => product.name === 'Tally on Cloud')?.count).toBe(1);
+    expect(smbCloud?.products.find(product => product.name === 'Cloud Backup')?.count).toBe(1);
+    expect(smbCloud?.products.find(product => product.name === 'Cloud Drive')?.count).toBe(1);
+    expect(smbCloud?.products.find(product => product.name === 'Advanced Endpoint Security (EDR)')?.count).toBe(1);
+    expect(smbCloud?.products.find(product => product.name === 'Remote Monitoring & Mgmt (RMM)')?.count).toBe(1);
+    expect(smbCloud?.products.find(product => product.name === 'SMB Cyber Security Appliance')?.count).toBe(1);
+    expect(smbCloud?.products.find(product => product.name === 'Microsoft 365 SMB')?.count).toBe(1);
+    expect(smbCloud?.products.find(product => product.name === 'Acronis GenAI Protection')?.count).toBe(1);
+    expect(smbCloud?.products.find(product => product.name === 'Cloud Disaster Recovery SMB')?.count).toBe(1);
+    expect(smbCloud?.products.find(product => product.name === 'DPDPA For SMB')?.count).toBe(1);
+    expect(smbCloud?.products.find(product => product.name === 'Workforce Analytics')?.count).toBe(1);
+    const domains = page.categoryTree().find(branch => branch.name === 'Web Presence')?.children
+      .find(child => child.name === 'Domains');
+    expect(domains?.count).toBe(3);
+    for (const product of [
+      'Register a Domain Name', 'Transfer Your Domain', 'Latest Domain Extensions', 'Premium Domains',
+      'Domain Protect+', 'Domain Whois Lookup', 'Domain Name Prices', 'Backorder Domains',
+      'TLD Directory', 'AI Domain Generator', 'Ai Domain Advisor', 'Bharat Domains',
+    ]) {
+      expect(domains?.products.find(item => item.name === product)?.count).withContext(product).toBe(1);
+    }
+    const webHosting = page.categoryTree().find(branch => branch.name === 'Web Presence')?.children
+      .find(child => child.name === 'Web Hosting');
+    expect(webHosting?.count).toBe(3);
+    for (const product of [
+      'Windows Hosting', 'Linux Hosting', 'WordPress Hosting', 'Free Domain',
+      'AI Website Builder', 'Migrate to XcellHost', 'Website Backup',
+    ]) {
+      expect(webHosting?.products.find(item => item.name === product)?.count).withContext(product).toBe(1);
+    }
+    const webTools = page.categoryTree().find(branch => branch.name === 'Web Presence')?.children
+      .find(child => child.name === 'Web Tools');
+    expect(webTools?.count).toBe(2);
+    for (const product of [
+      'cPanel Control Panel', 'Plesk Control Panel', 'Webuzo Control Panel', 'CloudLinux',
+    ]) {
+      expect(webTools?.products.find(item => item.name === product)?.count).withContext(product).toBe(1);
+    }
+    const requestedGroups: readonly [string, readonly string[]][] = [
+      ['Web Security', [
+        'Web Security (SiteLock)', 'Web Security (cWatch)', 'Thawte  SSL Certificates',
+        'RapidSSL  SSL Certificates', 'CodeGuard Backup', 'HackerGuardian PCI Compliance Scanning',
+        'TrustedSite Certifications',
+      ]],
+      ['Web Design', [
+        'Web Design for CA, CS & Lawyers', 'Web Design for SMB', 'Web Design for Enterprise',
+        'AI Website Builder',
+      ]],
+      ['Web Marketing', [
+        'WhatsApp For Business', 'WhatsApp Broadcasting', 'Google My Business', 'E-mail Marketing',
+        'SMS Marketing', 'Website SEO', 'Transactional Emails',
+      ]],
+      ['VPS Servers', [
+        'Windows VPS', 'Linux VPS', 'n8n VPS', 'OpenClaw VPS', 'Trading VPS', 'Claude VPS',
+        'Window 11 VPS', 'Odoo Hosting', 'ERP Next Hosting', 'Sage Hosting',
+      ]],
+    ];
+    for (const [groupName, products] of requestedGroups) {
+      const group = page.categoryTree().find(branch => branch.name === 'Web Presence')?.children
+        .find(child => child.name === groupName);
+      expect(group?.count).withContext(groupName).toBe(1);
+      for (const product of products) {
+        expect(group?.products.find(item => item.name === product)?.count).withContext(product).toBe(1);
+      }
+    }
+    page.selectProduct('Web Presence', 'SMB Cloud', 'Cloud Backup');
+    expect(page.visible().map(item => item.slug)).toEqual(['tally-cloud']);
+    expect(page.insightHref(page.visible()[0])).toContain('/case-studies/');
   });
 
   it('shows 20 distinct articles per full page, including the top story', () => {

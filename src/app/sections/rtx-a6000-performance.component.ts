@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { CREATIVE_GPU_WORKLOAD_LOOP } from './gpu-workload-icons';
 
 type Metric = 'FP32 (TFLOPS)' | 'Memory (GB)' | 'Bandwidth (GB/s)';
 
@@ -20,6 +21,7 @@ interface ComparisonRow {
 })
 export class RtxA6000PerformanceComponent {
   readonly selectedMetric = signal<Metric>('FP32 (TFLOPS)');
+  readonly workloadLoop = CREATIVE_GPU_WORKLOAD_LOOP;
 
   private readonly comparisons: Record<Metric, ComparisonRow[]> = {
     'FP32 (TFLOPS)': [

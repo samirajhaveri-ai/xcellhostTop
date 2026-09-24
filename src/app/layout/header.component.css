@@ -568,3 +568,20 @@
   .xh-brand img { width: 90px; }
   .xh-actions { gap: 4px; }
 }
+
+.xh-actions .xh-signup-icon{display:grid;place-items:center;flex-shrink:0;width:38px;height:38px;padding:0;border:1px solid #cfd8e8;border-radius:50%;background:#fff;color:#062640;text-decoration:none}.xh-actions .xh-signup-icon:hover{color:var(--xh-blue);border-color:var(--xh-blue)}.xh-signup-icon:focus-visible{outline:2px solid var(--xh-blue);outline-offset:3px}
+
+.xh-contact-dropdown{position:absolute;top:calc(100% + 22px);right:-48px;width:400px;max-width:calc(100vw - 32px);padding:10px 18px;background:#fff;border:0;border-radius:0;box-shadow:0 18px 32px rgba(6,26,57,.16);opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .15s ease,transform .15s ease,visibility .15s;z-index:30}
+.xh-contact-dropdown::before{content:'';position:absolute;left:0;right:0;top:-24px;height:24px}
+.xh-support-action:hover .xh-contact-dropdown,.xh-support-action:focus-within .xh-contact-dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+.xh-contact-row{display:flex;align-items:center;gap:14px;padding:7px 0;min-height:54px}
+.xh-contact-row>.material-symbols-outlined{font-size:34px;color:#0066ff;width:34px;text-align:center;flex-shrink:0;font-variation-settings:'FILL' 0,'wght' 300}
+.xh-contact-row>.xh-contact-whatsapp,.xh-contact-row>.xh-contact-email{color:#0066ff}
+.xh-contact-row strong{display:block;color:#071c43;font-size:14px;font-weight:700;margin-bottom:6px}
+.xh-contact-row small{font-size:10px;font-weight:500;color:#5075a5;margin-left:8px;padding-left:8px;border-left:1px solid #c9d9ee}
+.xh-actions .xh-contact-row a{display:inline-block;padding:0;border-radius:0;color:#123e70;font-size:14px;font-weight:500;white-space:normal}
+.xh-actions .xh-contact-row a:hover{color:#0066ff;text-decoration:underline}
+.xh-actions .xh-contact-support-link{display:flex;align-items:center;justify-content:flex-start;gap:8px;margin-top:8px;padding:10px 0 0;border-top:1px solid #e3eaf3;border-radius:0;color:#0066ff;font-size:13px}
+.xh-contact-dropdown a:focus-visible{outline:2px solid #0066ff;outline-offset:4px}
+@media(max-width:600px){.xh-contact-dropdown{right:-86px;width:310px;padding:10px 16px}.xh-contact-row small{display:block;margin:3px 0 0}}
+@media(prefers-reduced-motion:reduce){.xh-contact-dropdown{transition:none}}

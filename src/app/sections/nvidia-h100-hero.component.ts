@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, ViewChild, inject, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, ViewChild, output } from '@angular/core';
+
+export type H100HeroAction = 'infosheet' | 'presentation' | 'tour' | 'trial' | 'lead';
 
 @Component({
   selector: 'xh-nvidia-h100-hero',
@@ -12,7 +14,7 @@ import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, ViewChild, i
 })
 export class NvidiaH100HeroComponent implements OnDestroy {
   @ViewChild('frame') private frame?: ElementRef<HTMLIFrameElement>;
-  readonly consultationRequested = output<Event>();
+  readonly actionRequested = output<H100HeroAction>();
   private observer?: ResizeObserver;
 
   onLoad(): void {
@@ -37,8 +39,9 @@ export class NvidiaH100HeroComponent implements OnDestroy {
       if (!link) return;
       event.preventDefault();
       const target = link.getAttribute('href');
-      if (target === '#lead') {
-        this.consultationRequested.emit(event);
+      const action = target?.slice(1) as H100HeroAction;
+      if (['infosheet', 'presentation', 'tour', 'trial', 'lead'].includes(action)) {
+        this.actionRequested.emit(action);
         return;
       }
       const destination = target === '#pricing' ? 'ppPlans' : target === '#specs' || target === '#perf' ? 'ppFeats' : '';

@@ -483,9 +483,10 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Co-Location",
+                "title": "Co-Location Services",
                 "pill": null,
-                "desc": null
+                "desc": null,
+                "href": "/co-location-services"
               },
               {
                 "title": "Hybrid Cloud",
@@ -866,6 +867,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
+                "title": "Server Management",
+                "pill": null,
+                "desc": null
+              },
+              {
                 "title": "Managed DNS",
                 "pill": "Top seller",
                 "desc": null
@@ -883,6 +889,11 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "Managed DevOps",
             "items": [
+              {
+                "title": "Cloud DevOps Services",
+                "pill": null,
+                "desc": null
+              },
               {
                 "title": "AWS DevOps",
                 "pill": null,
@@ -1367,7 +1378,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              
+
               {
                 "title": "Cloud Desktop Enterprise (VDI)",
                 "pill": null,

@@ -4,16 +4,29 @@ import { AfterViewInit, Component, ElementRef, OnDestroy, ViewEncapsulation, inj
   selector: 'xh-microsoft-365-enterprise-reference',
   standalone: true,
   templateUrl: './microsoft-365-enterprise-reference.component.html',
-  styleUrl: './microsoft-365-enterprise-reference.component.css',
-  encapsulation: ViewEncapsulation.Emulated,
+  encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class Microsoft365EnterpriseReferenceComponent implements AfterViewInit, OnDestroy {
   private readonly host: ElementRef<HTMLElement> = inject(ElementRef);
   private readonly cleanups: Array<() => void> = [];
 
   ngAfterViewInit(): void {
-    const root: HTMLElement = this.host.nativeElement;
+    const root = this.host.nativeElement.shadowRoot;
+    if (!root) return;
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const toTop = root.querySelector<HTMLButtonElement>('#toTop');
+    if (toTop) {
+      const scrollToTop = () => window.scrollTo({ top: 0, behavior: reducedMotion ? 'instant' : 'smooth' });
+      const toggleToTop = () => toTop.classList.toggle('show', window.scrollY > 500);
+      toTop.addEventListener('click', scrollToTop);
+      window.addEventListener('scroll', toggleToTop, { passive: true });
+      toggleToTop();
+      this.cleanups.push(() => {
+        toTop.removeEventListener('click', scrollToTop);
+        window.removeEventListener('scroll', toggleToTop);
+      });
+    }
 
     const revealItems = Array.from(root.querySelectorAll<HTMLElement>('.rv'));
     if (reducedMotion || !('IntersectionObserver' in window)) {
@@ -122,7 +135,7 @@ export class Microsoft365EnterpriseReferenceComponent implements AfterViewInit, 
     this.cleanups.splice(0).forEach((cleanup) => cleanup());
   }
 
-  private animateCounters(root: HTMLElement, reducedMotion: boolean): void {
+  private animateCounters(root: ShadowRoot, reducedMotion: boolean): void {
     const counters = Array.from(root.querySelectorAll<HTMLElement>('[data-count]'));
     const renderFinal = (element: HTMLElement) => {
       const raw = element.dataset['count'] ?? '0';
@@ -162,7 +175,7 @@ export class Microsoft365EnterpriseReferenceComponent implements AfterViewInit, 
     this.cleanups.push(() => observer.disconnect());
   }
 
-  private startHeroNetwork(root: HTMLElement, reducedMotion: boolean): void {
+  private startHeroNetwork(root: ShadowRoot, reducedMotion: boolean): void {
     const canvas = root.querySelector<HTMLCanvasElement>('#pcv');
     if (!canvas || reducedMotion) return;
     const context = canvas.getContext('2d');

@@ -74,12 +74,15 @@ import { VortexSocContentComponent } from './vortex-soc-content.component';
 import { VortexSegContentComponent } from './vortex-seg-content.component';
 import { InfrastructureContentComponent } from '../sections/infrastructure-content.component';
 import { ColocationContentComponent } from '../sections/colocation-content.component';
+import { MarketplaceContentComponent } from '../sections/marketplace-content.component';
 import { WhatsAppSmbContentComponent } from '../sections/whatsapp-smb-content.component';
 
 import { ManagedAwsContentComponent } from '../sections/managed-aws-content.component';
 
 import { ManagedMicrosoft365ContentComponent } from '../sections/managed-microsoft-365-content.component';
 import { Microsoft365EnterpriseReferenceComponent } from '../sections/microsoft-365-enterprise-reference.component';
+import { SuppliedServiceReferenceComponent } from '../sections/supplied-service-reference.component';
+import { SUPPLIED_SERVICE_EXTRAS } from '../data/supplied-service-extras.data';
 import { MicrosoftCopilotContentComponent } from '../sections/microsoft-copilot-content.component';
 import { CopilotStudioContentComponent } from '../sections/copilot-studio-content.component';
 import { CloudObjectStorageContentComponent } from '../sections/cloud-object-storage-content.component';
@@ -102,7 +105,8 @@ import { AcronisBackupAdvancedContentComponent } from '../sections/acronis-backu
 import { AcronisOtContentComponent } from '../sections/acronis-ot-content.component';
 import { NvidiaA100SourceComponent } from '../sections/nvidia-a100-source.component';
 import { NvidiaA100AssuranceComponent } from '../sections/nvidia-a100-assurance.component';
-import { NvidiaH100HeroComponent } from '../sections/nvidia-h100-hero.component';
+import { H100HeroAction, NvidiaH100HeroComponent } from '../sections/nvidia-h100-hero.component';
+import { H100PlanSelection, NvidiaH100ContentComponent } from '../sections/nvidia-h100-content.component';
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -199,12 +203,14 @@ interface ProductTourSlide {
     VortexSegContentComponent,
     InfrastructureContentComponent,
     ColocationContentComponent,
+    MarketplaceContentComponent,
     WhatsAppSmbContentComponent,
 
     ManagedAwsContentComponent,
 
     ManagedMicrosoft365ContentComponent,
     Microsoft365EnterpriseReferenceComponent,
+    SuppliedServiceReferenceComponent,
     MicrosoftCopilotContentComponent,
     CopilotStudioContentComponent,
     WaapContentComponent,
@@ -257,6 +263,7 @@ interface ProductTourSlide {
     NvidiaA100SourceComponent,
     NvidiaA100AssuranceComponent,
     NvidiaH100HeroComponent,
+    NvidiaH100ContentComponent,
 
     EmailSignatureContentComponent,
     EmailSignatureHeroComponent,
@@ -265,8 +272,6 @@ interface ProductTourSlide {
   styles: [`
     #ppage.nvidia-a100-page .pp-hero { display: none; }
     #ppage.nvidia-a100-page #ppOv { width: 100%; max-width: none; }
-    #ppage.nvidia-h100-page .pp-hero { display: none; }
-    #ppage.nvidia-h100-page #ppOv { width: 100%; max-width: none; }
     #ppage.nvidia-a100-page .a100-related { display: flex; flex-wrap: nowrap; gap: 6px; align-items: center; margin-top: 24px; overflow-x: auto; white-space: nowrap; color: #486078; font-size: 12px; }
     #ppage.nvidia-a100-page .a100-related > * { flex: none; }
     #ppage.nvidia-a100-page .a100-related a, #ppage.nvidia-a100-page .a100-related-pill { padding: 6px 10px; border: 1px solid #d7e3f5; border-radius: 999px; color: #1767d6; text-decoration: none; }
@@ -774,6 +779,39 @@ export class ProductPage {
 
   /** five star slots, so the template does not rebuild an array on every check */
   readonly starSlots = [0, 1, 2, 3, 4];
+  readonly suppliedServiceExtras = computed(() =>
+    this.slug() === 'server-management'
+      ? SUPPLIED_SERVICE_EXTRAS['server-management']
+      : SUPPLIED_SERVICE_EXTRAS['cloud-devops-services'],
+  );
+  readonly suppliedServiceName = computed(() =>
+    this.slug() === 'server-management' ? 'Server Management' : 'Cloud DevOps Services',
+  );
+  readonly microsoftEnterpriseSecurity = {
+    intro: 'Set a consistent security baseline across identities, devices, email and data. XcellHost helps configure the Microsoft 365 controls included in your chosen licences and align them with your policies.',
+    rows: [
+      ['Identity', 'Microsoft Entra ID, multifactor authentication and Conditional Access'],
+      ['Devices', 'Microsoft Intune enrolment, configuration and compliance policies'],
+      ['Threat protection', 'Microsoft Defender policies for email, endpoints and identities where licensed'],
+      ['Information protection', 'Microsoft Purview sensitivity labels, retention and data loss prevention where licensed'],
+      ['Operations', 'Monitoring, policy reviews and managed support from XcellHost'],
+    ],
+  };
+  readonly microsoftEnterpriseWhy = [
+    { title: 'Right-sized licensing', body: 'Choose a mix of E3, E5 and Frontline licences for the roles in your organisation.', icon: 'M4 6h16M4 12h16M4 18h16M8 3v18' },
+    { title: 'Migration support', body: 'Plan and deliver mailbox and collaboration migration in controlled waves.', icon: 'M4 7h13M14 4l3 3-3 3M20 17H7m3-3-3 3 3 3' },
+    { title: 'Security rollout', body: 'Configure Entra ID, Intune, Defender and Purview controls for your licence mix.', icon: 'M12 2l8 3v6c0 5-3 9-8 11-5-2-8-6-8-11V5l8-3zM9 12l2 2 4-4' },
+    { title: 'Teams adoption', body: 'Support collaboration, calling and user onboarding across locations.', icon: 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M17 8h5M19.5 5.5v5' },
+    { title: 'Local billing', body: 'Work with an India-based partner for INR quotes and GST invoicing.', icon: 'M4 3h16v18H4zM8 8h8M8 12h8M8 16h5' },
+    { title: 'Ongoing support', body: 'Get help with administration, changes and service issues after deployment.', icon: 'M4 14v-2a8 8 0 0 1 16 0v2M4 14h3v6H5a2 2 0 0 1-2-2v-2a2 2 0 0 1 1-2zM20 14h-3v6h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-1-2z' },
+  ];
+  readonly microsoftEnterpriseFaqs: Faq[] = [
+    ['How do we choose between E3, E5 and Frontline?', 'The right mix depends on each user group and its productivity, security and compliance needs. XcellHost can review your roles and propose a licence mix before deployment.'],
+    ['Can we use different Microsoft 365 plans in one organisation?', 'Yes. Eligible E-series and Frontline licences can be assigned to different users in the same tenant, subject to Microsoft licensing terms.'],
+    ['Can XcellHost migrate us from another email platform?', 'XcellHost can assess your current email and collaboration environment, plan a staged migration and validate the cutover with your team.'],
+    ['Which security features are included?', 'Capabilities vary by plan. Entra ID, Intune, Defender and Purview features should be checked against the licences selected for each user.'],
+    ['What happens after deployment?', 'XcellHost can provide administration, monitoring, user support and ongoing changes through a managed service arrangement.'],
+  ];
   readonly migrationPrinciples = [
     { title: 'Risk aware', body: 'We identify risks early and plan for every scenario.', icon: 'M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L14.4 3.9a2 2 0 0 0-3.4 0zM12 9v4M12 17h.01' },
     { title: 'Business focused', body: 'Migration windows and cutover plans aligned to your business.', icon: 'M12 6v6l4 2M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0z' },
@@ -862,19 +900,9 @@ export class ProductPage {
   readonly activeCdrTourSlide = signal(0);
   readonly cdrTourSlides = [
     {
-      title: 'Build your recovery plan',
-      description: 'See protected workloads, recovery points and readiness status in one place.',
-      image: '/assets/images/cdr-tour-recovery-plan.png',
-    },
-    {
-      title: 'Orchestrate failover',
-      description: 'Follow a guided runbook to bring critical workloads online in the recovery cloud.',
-      image: '/assets/images/cdr-tour-failover.png',
-    },
-    {
-      title: 'Test recovery readiness',
-      description: 'Validate RPO and RTO targets with non-disruptive recovery testing and reporting.',
-      image: '/assets/images/cdr-tour-testing.png',
+      title: 'Recovery cloud infrastructure',
+      description: 'Track reserved compute, memory, storage, virtual-machine status and capacity across the recovery environment.',
+      image: '/assets/images/cdr-smb-infrastructure.webp',
     },
   ] as const;
   readonly isCdrTourOpen = computed(() => this.overlay.isOpen('screenshotTour'));
@@ -902,34 +930,27 @@ export class ProductPage {
   readonly isRmmTourOpen = computed(() => this.overlay.isOpen('rmmScreenshotTour'));
   readonly activeEdrTourSlide = signal(0);
   readonly edrTourSlides: readonly ProductTourSlide[] = [
-    'What is EDR?',
-    'The need for EDR',
-    'How EDR protects against more threats',
-    'Launching an EDR service',
-    'Advanced Security + EDR',
-    'Cross-NIST cybersecurity and data protection',
-    'Multi-layered endpoint detection engines',
-    'Copilot for Acronis EDR',
-    'Analyze attacks in minutes',
-    'EDR remediation and business continuity',
-    'Automated response playbooks',
-    'Cyber insurance and compliance',
-    'Acronis service provider partnership',
-    'Award-winning endpoint protection',
-    'Top four EDR use cases',
-    'Cyber Protect Cloud use cases',
-    'Extended XDR visibility',
-    'Managed EDR service',
-    'Acronis and Novacoast partnership',
-    '24/7 outsourced SOC',
-    'Acronis Cyber Protect Cloud platform',
-    'EDR licensing and pricing',
-    'MDR licensing and pricing',
-  ].map((title, index) => ({
-    title,
-    description: 'Explore Advanced Security + EDR capabilities, operations and service options.',
-    image: `/assets/images/advanced-security-edr-tour-${index + 1}.jpg`,
-  }));
+    {
+      title: 'Live incident investigation',
+      description: 'Trace the complete cyber kill chain, inspect affected workloads and review malicious processes from one incident view.',
+      image: '/assets/images/advanced-security-edr-live-incident.webp',
+    },
+    {
+      title: 'Guided incident remediation',
+      description: 'Stop and quarantine threats, roll back malicious changes, recover workloads and add detections to the blocklist.',
+      image: '/assets/images/advanced-security-edr-remediation.webp',
+    },
+    {
+      title: 'Generative AI usage overview',
+      description: 'Monitor generative AI visits, applications and device activity through a central security dashboard.',
+      image: '/assets/images/advanced-security-edr-genai-overview.webp',
+    },
+    {
+      title: 'Attack-stage analysis',
+      description: 'Review execution, persistence and defence-evasion activity as a clear timeline linked to the process tree.',
+      image: '/assets/images/advanced-security-edr-attack-stages.webp',
+    },
+  ];
   readonly isEdrTourOpen = computed(() => this.overlay.isOpen('edrScreenshotTour'));
   readonly activeProductTourSlide = signal(0);
   readonly isProductTourOpen = computed(() => this.overlay.isOpen('productScreenshotTour'));
@@ -1164,6 +1185,12 @@ export class ProductPage {
     if (view.name === 'Scrutiny DLP') return this.scrutinyDlpTourSlides;
 
     const candidates: ProductTourSlide[] = [];
+    if (this.isTally()) {
+      candidates.push(
+        { title: 'Tally cloud remote desktop', description: 'Access TallyPrime Edit Log, Tally.ERP 9 and your files from the TSplus Remote App launcher.', image: '/assets/images/tally-cloud-tour-1.png' },
+        { title: 'Tally remote application workspace', description: 'View the remote workspace with shortcuts for your desktop folder, accounting applications and exported files.', image: '/assets/images/tally-cloud-tour-2.png' },
+      );
+    }
     const add = (title: string, description: string, image: string | null | undefined): void => {
       if (!image || candidates.some((slide) => slide.image === image)) return;
       candidates.push({ title, description, image });
@@ -1773,16 +1800,20 @@ export class ProductPage {
       this.slug() === 'rtx-8000' ||
       this.slug() === 'nvidia-rtx-6000-ada' ||
       this.slug() === 'rtx-a6000';
-    const videos = useBackupVideos
-      ? PRODUCT_VIDEOS['Cloud Backup (Acronis)']
-      : view.videos;
+    const videos = this.slug() === 'microsoft-365-enterprise'
+      ? PRODUCT_VIDEOS['Microsoft 365']
+      : useBackupVideos
+        ? PRODUCT_VIDEOS['Cloud Backup (Acronis)']
+        : view.videos;
 
     return videos.slice(0, 2).flatMap((video, index) => {
       if (!video) return [];
       return [{
-        label: useBackupVideos
-          ? (index === 0 ? 'Product Intro' : 'Use Cases')
-          : (view.videoLabels[index] ?? (index === 0 ? 'Product Intro' : 'Use Cases')),
+        label: this.slug() === 'microsoft-365-enterprise'
+          ? 'Microsoft 365 overview'
+          : useBackupVideos
+            ? (index === 0 ? 'Product Intro' : 'Use Cases')
+            : (view.videoLabels[index] ?? (index === 0 ? 'Product Intro' : 'Use Cases')),
         url: this.sanitizer.bypassSecurityTrustResourceUrl(
           `https://www.youtube-nocookie.com/embed/${video}?rel=0&playsinline=1`,
         ),
@@ -1920,6 +1951,27 @@ export class ProductPage {
    */
   private resolve(slug: string): ProductView | null {
     if (!slug) return null;
+    if (slug === 'microsoft-365-enterprise') {
+      return this.products.build({
+        name: 'Microsoft 365 Enterprise',
+        cat: 'Cloud',
+        crumb: 'Cloud › Microsoft 365',
+      });
+    }
+    if (slug === 'server-management') {
+      return this.products.build({
+        name: 'Server Management',
+        cat: 'Cloud',
+        crumb: 'Cloud › Managed Services',
+      });
+    }
+    if (slug === 'cloud-devops-services') {
+      return this.products.build({
+        name: 'Cloud DevOps Services',
+        cat: 'Cloud',
+        crumb: 'Cloud › Managed DevOps',
+      });
+    }
     if (slug === 'register-a-domain-name') {
       const view = this.products.build({
         name: 'Register a Domain Name',
@@ -2088,6 +2140,30 @@ export class ProductPage {
     const name = this.view()?.name ?? "";
     this.topics.ask(request ? `${name} - ${request}` : name);
     this.overlay.open('callback');
+  }
+
+  onH100HeroAction(action: H100HeroAction): void {
+    const event = new Event('click');
+    switch (action) {
+      case 'infosheet':
+      case 'presentation':
+        this.requestDoc(action, event);
+        break;
+      case 'tour':
+        this.openProductScreenshotTour();
+        break;
+      case 'trial':
+        this.openTrial(event);
+        break;
+      case 'lead':
+        this.openCallback(event, 'H100 consultation');
+        break;
+    }
+  }
+
+  selectH100Plan(selection: H100PlanSelection): void {
+    this.cart.add(`NVIDIA H100 ${selection.code} — ${selection.term}`, `${selection.price}/mo + GST`, 1);
+    this.cart.open();
   }
 
   requestRtxPlan(request: string): void {

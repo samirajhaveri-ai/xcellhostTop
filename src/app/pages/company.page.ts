@@ -144,7 +144,7 @@ export class CompanyPage {
 
   readonly managementTeam = [
     { initials: 'YJ', name: 'Yogendra Jagger', role: 'Regional Director - EMEA Middle East & Africa', image: '/assets/images/team-yogendra-jagger.png' },
-    { initials: 'AN', name: 'Abhishek Nimbalkar', role: 'Chief AI Officer', image: '/assets/images/team-abhishek-nimbalkar.jpg' },
+    { initials: 'AN', name: 'Abhishek Nimbalkar', role: 'Chief AI Officer', image: '/assets/images/Abhishek_Nimbalkar.png' },
     { initials: 'PN', name: 'Prashant N.V', role: 'Service Delivery Director', image: '/assets/images/team-prashant-nv.png' },
     { initials: 'T', name: 'AI Management Intelligence Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
   ] as const;

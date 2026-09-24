@@ -272,7 +272,7 @@ export const DIRECTORY: DirectoryEntry[] = [
     "group": "Cloud Infra"
   },
   {
-    "name": "Co-Location",
+    "name": "Co-Location Services",
     "desc": "Control your environment in our Tier-4 datacenters",
     "cat": "Cloud",
     "group": "Cloud Infra"
@@ -563,6 +563,18 @@ export const DIRECTORY: DirectoryEntry[] = [
   {
     "name": "Managed DevOps",
     "desc": "Optimized DevOps practices, expertly managed",
+    "cat": "Cloud",
+    "group": "Managed Cloud & Migration"
+  },
+  {
+    "name": "Cloud DevOps Services",
+    "desc": "CI/CD, Kubernetes and cloud automation services",
+    "cat": "Cloud",
+    "group": "Managed Cloud & Migration"
+  },
+  {
+    "name": "Server Management",
+    "desc": "Monitoring, maintenance and security for business servers",
     "cat": "Cloud",
     "group": "Managed Cloud & Migration"
   },
