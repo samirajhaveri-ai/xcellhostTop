@@ -53,6 +53,157 @@
     } @else {
       @if (slug() === 'microsoft-365-enterprise') {
         <xh-microsoft-365-enterprise-reference />
+        <div class="pp-body microsoft-365-enterprise-extras">
+          <div class="wrap">
+            <section aria-labelledby="m365EnterpriseSecurityTitle">
+              <h2 class="pp-sec" id="m365EnterpriseSecurityTitle">Security &amp; compliance</h2>
+              <p class="pp-ov">{{ microsoftEnterpriseSecurity.intro }}</p>
+              <div class="pp-secrows">
+                @for (row of microsoftEnterpriseSecurity.rows; track row[0]) {
+                  <div class="psrow"><span class="psk">{{ row[0] }}</span><span class="psv">{{ row[1] }}</span></div>
+                }
+              </div>
+            </section>
+
+            <section aria-labelledby="m365EnterpriseWhyTitle">
+              <h2 class="pp-sec" id="m365EnterpriseWhyTitle">Why XcellHost for {{ v.name }}</h2>
+              <div class="pp-why">
+                @for (reason of microsoftEnterpriseWhy; track reason.title) {
+                  <div class="pw">
+                    <span class="pw-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path [attr.d]="reason.icon" /></svg></span>
+                    <b>{{ reason.title }}</b>
+                    <span>{{ reason.body }}</span>
+                  </div>
+                }
+              </div>
+            </section>
+
+            <section class="tally-videos" aria-labelledby="m365EnterpriseActionTitle">
+              <h2 class="pp-sec" id="m365EnterpriseActionTitle">Watch it in action</h2>
+              <div class="tally-video-grid single-video">
+                @for (video of showcaseVideos(); track video.label) {
+                  <article class="tally-video-card">
+                    <h3><span>{{ video.label }}</span></h3>
+                    <div class="tally-video-frame">
+                      <iframe [src]="video.url" [title]="video.label" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                  </article>
+                }
+              </div>
+            </section>
+
+            <section aria-labelledby="m365EnterpriseReviewsTitle">
+              <h2 class="pp-sec" id="m365EnterpriseReviewsTitle">What customers say</h2>
+              <div class="pp-revs">
+                @for (review of v.reviews; track review.name) {
+                  <div class="prv">
+                    <div class="stars" [attr.aria-label]="review.stars + ' out of 5 stars'">
+                      @for (slot of starSlots; track slot) {
+                        <span [class.off]="slot >= review.stars">★</span>
+                      }
+                    </div>
+                    <p>“{{ review.quote }}”</p>
+                    <cite><span class="rav">{{ review.initials }}</span><span><b>{{ review.name }}</b>{{ review.role }}</span></cite>
+                  </div>
+                }
+              </div>
+            </section>
+
+            <section aria-labelledby="m365EnterpriseFaqTitle">
+              <h2 class="pp-sec pp-faq-heading" id="m365EnterpriseFaqTitle">Frequently asked questions</h2>
+              <div class="pp-faq"><xh-product-faq [faqs]="microsoftEnterpriseFaqs" /></div>
+            </section>
+
+            <div class="m365-enterprise-insights"><xh-insights-section [pageSlug]="slug()" /></div>
+
+            <section class="pp-cta" aria-labelledby="m365EnterpriseCtaTitle">
+              <div>
+                <h3 id="m365EnterpriseCtaTitle">Ready to start with {{ v.name }}?</h3>
+                <p>Talk to our team about your licensing mix, migration and managed services.</p>
+              </div>
+              <div class="m365-enterprise-cta-actions">
+                <button class="btn btn-primary" type="button" (click)="openCallback($event)">Request a callback</button>
+                <a class="btn btn-ghost" [href]="waHref()" target="_blank" rel="noopener">Talk on WhatsApp</a>
+                <a class="btn btn-ghost" [href]="mailHref()">Email Us</a>
+              </div>
+            </section>
+          </div>
+        </div>
+      } @else if (slug() === 'cloud-devops-services' || slug() === 'server-management') {
+        <xh-supplied-service-reference [page]="slug() === 'server-management' ? 'server' : 'devops'" />
+        <div class="pp-body supplied-service-extras">
+          <div class="wrap">
+            <section aria-labelledby="suppliedServiceSecurityTitle">
+              <h2 class="pp-sec" id="suppliedServiceSecurityTitle">Security &amp; compliance</h2>
+              <p class="pp-ov">{{ suppliedServiceExtras().security.intro }}</p>
+              <div class="pp-secrows">
+                @for (row of suppliedServiceExtras().security.rows; track row[0]) {
+                  <div class="psrow"><span class="psk">{{ row[0] }}</span><span class="psv">{{ row[1] }}</span></div>
+                }
+              </div>
+            </section>
+
+            <section aria-labelledby="suppliedServiceWhyTitle">
+              <h2 class="pp-sec" id="suppliedServiceWhyTitle">Why XcellHost for {{ suppliedServiceName() }}</h2>
+              <div class="pp-why">
+                @for (reason of suppliedServiceExtras().why; track reason.title) {
+                  <div class="pw">
+                    <span class="pw-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path [attr.d]="reason.icon" /></svg></span>
+                    <b>{{ reason.title }}</b><span>{{ reason.body }}</span>
+                  </div>
+                }
+              </div>
+            </section>
+
+            <section class="tally-videos" aria-labelledby="suppliedServiceVideoTitle">
+              <h2 class="pp-sec" id="suppliedServiceVideoTitle">Watch it in action</h2>
+              <div class="tally-video-grid single-video">
+                <article class="tally-video-card">
+                  <h3><span>{{ suppliedServiceName() }} overview</span></h3>
+                  <div class="tally-video-frame">
+                    <div class="supplied-service-preview">
+                      <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="32" cy="32" r="29" stroke="currentColor" stroke-width="2" /><path d="M26 20L45 32 26 44V20Z" fill="currentColor" /></svg>
+                      <strong>See {{ suppliedServiceName() }} in action</strong>
+                      <p>Request a guided demonstration for your environment.</p>
+                      <button class="btn btn-primary" type="button" (click)="openCallback($event)">Request a demo</button>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <section aria-labelledby="suppliedServiceReviewsTitle">
+              <h2 class="pp-sec" id="suppliedServiceReviewsTitle">What customers say</h2>
+              <div class="pp-revs">
+                @for (review of v.reviews; track review.name) {
+                  <div class="prv">
+                    <div class="stars" [attr.aria-label]="review.stars + ' out of 5 stars'">
+                      @for (slot of starSlots; track slot) { <span [class.off]="slot >= review.stars">★</span> }
+                    </div>
+                    <p>“{{ review.quote }}”</p>
+                    <cite><span class="rav">{{ review.initials }}</span><span><b>{{ review.name }}</b>{{ review.role }}</span></cite>
+                  </div>
+                }
+              </div>
+            </section>
+
+            <section aria-labelledby="suppliedServiceFaqTitle">
+              <h2 class="pp-sec pp-faq-heading" id="suppliedServiceFaqTitle">Frequently asked questions</h2>
+              <div class="pp-faq"><xh-product-faq [faqs]="suppliedServiceExtras().faqs" /></div>
+            </section>
+
+            <div class="supplied-service-insights"><xh-insights-section [pageSlug]="slug()" /></div>
+
+            <section class="pp-cta" aria-labelledby="suppliedServiceCtaTitle">
+              <div><h3 id="suppliedServiceCtaTitle">Ready to start with {{ suppliedServiceName() }}?</h3><p>Tell us about your environment and get a service plan tailored to your needs.</p></div>
+              <div class="supplied-service-cta-actions">
+                <button class="btn btn-primary" type="button" (click)="openCallback($event)">Request a callback</button>
+                <a class="btn btn-ghost" [href]="waHref()" target="_blank" rel="noopener">Talk on WhatsApp</a>
+                <a class="btn btn-ghost" [href]="mailHref()">Email Us</a>
+              </div>
+            </section>
+          </div>
+        </div>
       } @else if (isCopilotStudio()) {
         <xh-copilot-studio-content mode="hero" />
       } @else if (slug() === 'nvidia-h100') {
@@ -1064,7 +1215,7 @@
       </div>
       }
 
-      @if (!isResellerProgram() && slug() !== 'microsoft-365-enterprise') {
+      @if (!isResellerProgram() && slug() !== 'microsoft-365-enterprise' && slug() !== 'cloud-devops-services' && slug() !== 'server-management') {
         <div class="pp-trust">
           <div class="wrap">
             @if (isCopilotStudio()) {
@@ -1189,7 +1340,7 @@
       }
     }
 
-    @if (slug() !== 'microsoft-365-enterprise') {
+    @if (slug() !== 'microsoft-365-enterprise' && slug() !== 'cloud-devops-services' && slug() !== 'server-management') {
     @if (isManagedAws() || isManagedAzure()) {
       <xh-managed-aws-content [provider]="isManagedAzure() ? 'Azure' : 'AWS'" />
     } @else {

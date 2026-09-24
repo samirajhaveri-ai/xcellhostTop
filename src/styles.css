@@ -5405,6 +5405,31 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 @media(max-width:560px){#ppage.rtx-6000-ada-page .pp-hpoints{grid-template-columns:1fr}}
 
 
+/* Microsoft 365 Enterprise: standard sections after the supplied page layout. */
+#ppage.microsoft-365-enterprise-page .microsoft-365-enterprise-extras{padding:48px 0 72px}
+#ppage.microsoft-365-enterprise-page .microsoft-365-enterprise-extras .wrap>section+section{margin-top:56px}
+#ppage.microsoft-365-enterprise-page .microsoft-365-enterprise-extras .pp-sec{margin:0 0 24px}
+#ppage.microsoft-365-enterprise-page .m365-enterprise-insights{margin-top:56px}
+#ppage.microsoft-365-enterprise-page .m365-enterprise-cta-actions{display:flex;flex-wrap:wrap;gap:12px}
+#ppage.microsoft-365-enterprise-page .m365-enterprise-cta-actions .btn-ghost{border-color:rgba(255,255,255,.45);color:#fff}
+@media(max-width:700px){#ppage.microsoft-365-enterprise-page .microsoft-365-enterprise-extras{padding:36px 0 52px}#ppage.microsoft-365-enterprise-page .microsoft-365-enterprise-extras .wrap>section+section{margin-top:40px}#ppage.microsoft-365-enterprise-page .m365-enterprise-insights{margin-top:40px}}
+
+/* Standard sections following the supplied DevOps and Server Management layouts. */
+#ppage .supplied-service-extras{padding:48px 0 72px}
+#ppage .supplied-service-extras .wrap>section+section{margin-top:56px}
+#ppage .supplied-service-extras .pp-sec{margin:0 0 24px}
+#ppage .supplied-service-insights{margin-top:56px}
+#ppage .supplied-service-preview{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:24px;background:radial-gradient(circle at 50% 35%,#18477f,#0a2140 70%);color:#fff;text-align:center}
+#ppage .supplied-service-preview svg{width:54px;height:54px;color:#a9ccff}
+#ppage .supplied-service-preview strong{font:700 clamp(18px,2vw,24px)/1.25 var(--disp)}
+#ppage .supplied-service-preview p{margin:0;color:#d2e2fa;font-size:14px}
+#ppage .supplied-service-preview .btn{margin-top:4px}
+#ppage .supplied-service-cta-actions{display:flex;flex-wrap:wrap;gap:12px}
+#ppage .supplied-service-cta-actions .btn-ghost{border-color:rgba(255,255,255,.45);color:#fff}
+@media(max-width:700px){#ppage .supplied-service-extras{padding:36px 0 52px}#ppage .supplied-service-extras .wrap>section+section{margin-top:40px}#ppage .supplied-service-insights{margin-top:40px}#ppage .supplied-service-preview{gap:6px;padding:10px}#ppage .supplied-service-preview svg{width:32px;height:32px}#ppage .supplied-service-preview p{display:none}#ppage .supplied-service-preview .btn{padding:10px 16px}}
+
+
+
 /* Shared hero AI group: one outline around the label and all platform links. */
 :is(#ppage .pp-ask-ai, .glossary-page .pp-ask-ai, .hero-ai, .cert-ask-ai, .awards-ask-ai, .media-ask-ai){width:fit-content;max-width:100%;box-sizing:border-box;padding:2px 6px!important;border:1px solid rgba(75,165,255,.4)!important;border-radius:16px!important;background:rgba(8,31,68,.46)!important;gap:4px;flex-wrap:wrap}
 :is(#ppage .pp-ask-ai-kicker, .glossary-page .pp-ask-ai-kicker, .hero-ai>span, .cert-ai-label, .awards-ask-ai>span, .media-ask-label){border:0!important;background:transparent!important;border-radius:0!important;padding:4px 2px!important;white-space:normal}

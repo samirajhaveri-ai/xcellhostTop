@@ -16,6 +16,11 @@ npm install        # once, after downloading
 npm start          # opens http://localhost:4200 with live reload
 ```
 
+In PowerShell, if `npm` reports that `npm.ps1` cannot be loaded because scripts
+are disabled, use `npm.cmd` instead (for example, `npm.cmd start` or
+`npm.cmd run build`). This uses the same npm installation without changing your
+PowerShell execution policy.
+
 Edit any file and the browser refreshes by itself.
 
 To produce the files you upload to your server:
