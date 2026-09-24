@@ -31,7 +31,11 @@
     [class.microsoft-copilot-page]="isMicrosoftCopilot()"
     [class.microsoft-365-enterprise-page]="slug() === 'microsoft-365-enterprise'"
     [class.nvidia-a100-page]="slug() === 'nvidia-a100'"
+    [class.nvidia-h100-page]="slug() === 'nvidia-h100'"
   >
+    @if (slug() === 'nvidia-h100') {
+      <xh-nvidia-h100-hero (consultationRequested)="openCallback($event, 'H100 consultation')" />
+    }
     @if (slug() === 'nvidia-a100') {
       <xh-nvidia-a100-source view="hero" />
     }
@@ -44,6 +48,8 @@
         <xh-microsoft-365-enterprise-reference />
       } @else if (isCopilotStudio()) {
         <xh-copilot-studio-content mode="hero" />
+      } @else if (slug() === 'nvidia-h100') {
+        <!-- The supplied H100 hero is rendered above the shared product sections. -->
       } @else {
       <div
         class="pp-hero"
@@ -2492,7 +2498,7 @@
                     >
                       <div class="tally-price-heading">
                         <span>Hardware + Security Bundle</span>
-                        <h2 id="smb-pricing-title">Cybird Security Appliance</h2>
+                        <h2 id="smb-pricing-title">SMB Cybird Security Appliance</h2>
                         <p>
                           Choose a billing period, then select the security bundle that fits your
                           team.

@@ -102,6 +102,7 @@ import { AcronisBackupAdvancedContentComponent } from '../sections/acronis-backu
 import { AcronisOtContentComponent } from '../sections/acronis-ot-content.component';
 import { NvidiaA100SourceComponent } from '../sections/nvidia-a100-source.component';
 import { NvidiaA100AssuranceComponent } from '../sections/nvidia-a100-assurance.component';
+import { NvidiaH100HeroComponent } from '../sections/nvidia-h100-hero.component';
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -255,6 +256,7 @@ interface ProductTourSlide {
     AcronisOtContentComponent,
     NvidiaA100SourceComponent,
     NvidiaA100AssuranceComponent,
+    NvidiaH100HeroComponent,
 
     EmailSignatureContentComponent,
     EmailSignatureHeroComponent,
@@ -263,6 +265,8 @@ interface ProductTourSlide {
   styles: [`
     #ppage.nvidia-a100-page .pp-hero { display: none; }
     #ppage.nvidia-a100-page #ppOv { width: 100%; max-width: none; }
+    #ppage.nvidia-h100-page .pp-hero { display: none; }
+    #ppage.nvidia-h100-page #ppOv { width: 100%; max-width: none; }
     #ppage.nvidia-a100-page .a100-related { display: flex; flex-wrap: nowrap; gap: 6px; align-items: center; margin-top: 24px; overflow-x: auto; white-space: nowrap; color: #486078; font-size: 12px; }
     #ppage.nvidia-a100-page .a100-related > * { flex: none; }
     #ppage.nvidia-a100-page .a100-related a, #ppage.nvidia-a100-page .a100-related-pill { padding: 6px 10px; border: 1px solid #d7e3f5; border-radius: 999px; color: #1767d6; text-decoration: none; }

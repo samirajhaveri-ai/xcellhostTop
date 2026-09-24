@@ -1216,13 +1216,13 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Email Security SMB",
                 "pill": null,
                 "desc": "Advanced email security, DLP and archival",
-                "href": "/vortex-seg"
+                "href": "/email-security-smb"
               },
               {
                 "title": "Email Security Enterprise",
                 "pill": null,
                 "desc": "Advanced email security, DLP and archival",
-                "href": "/vortex-seg"
+                "href": "/email-security-enterprise"
               },
               {
                 "title": "Advanced Email Security",

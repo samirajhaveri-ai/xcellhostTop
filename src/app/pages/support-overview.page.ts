@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { SeoService } from '../core/seo.service';
@@ -25,6 +25,30 @@ interface SupportChannel {
 })
 export class SupportOverviewPage {
   private readonly seo = inject(SeoService);
+  readonly ticketPrepared = signal('');
+  readonly trackingNumber = signal('');
+
+  prepareTicket(event: Event): void {
+    event.preventDefault();
+    const form = event.target as HTMLFormElement;
+    if (!form.reportValidity()) return;
+    const data = new FormData(form);
+    this.ticketPrepared.set([
+      `Name: ${data.get('name')}`,
+      `Email: ${data.get('email')}`,
+      `Department: ${data.get('department')}`,
+      `Priority: ${data.get('priority')}`,
+      `Issue type: ${data.get('issueType') || 'Not specified'}`,
+      `Subject: ${data.get('subject')}`,
+      '',
+      String(data.get('message') || ''),
+    ].join('\n'));
+  }
+
+  prepareTracking(event: Event, number: string): void {
+    event.preventDefault();
+    this.trackingNumber.set(number.trim());
+  }
 
   readonly channels: readonly SupportChannel[] = [
     {
@@ -49,9 +73,9 @@ export class SupportOverviewPage {
       title: 'Submit a Ticket',
       description: 'Create a tracked request for technical issues, service changes or questions that need investigation.',
       action: 'Create a new ticket',
-      href: 'https://supportdesk.xcellhost.cloud/portal/en/signin',
+      href: '#submit-ticket',
       icon: 'ticket',
-      external: true,
+      external: false,
       accent: 'purple',
     },
     {
