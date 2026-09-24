@@ -448,7 +448,7 @@ export const MEGA_MENU: MenuTop[] = [
     "tabs": [
       
       {
-        "g": "1",
+        "g": "0",
         "label": "Cloud Infra",
         "on": false,
         "groups": [
@@ -514,7 +514,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "49",
+        "g": "1",
         "label": "Cloud Servers",
         "on": false,
         "groups": [
@@ -541,7 +541,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "51",
+        "g": "2",
         "label": "Bare Metal Servers",
         "on": false,
         "groups": [
@@ -573,7 +573,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "50",
+        "g": "3",
         "label": "GPU Servers",
         "on": false,
         "groups": [
@@ -605,7 +605,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "50",
+        "g": "3",
         "label": "",
         "on": false,
         "groups": [
@@ -637,7 +637,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "50",
+        "g": "3",
         "label": "",
         "on": false,
         "groups": [
@@ -674,7 +674,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "58",
+        "g": "6",
         "label": "Inference Cloud",
         "on": false,
         "groups": [
@@ -712,7 +712,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "11",
+        "g": "7",
         "label": "Managed Databases",
         "on": false,
         "groups": [
@@ -828,7 +828,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "20",
+        "g": "9",
         "label": "Managed Public Cloud",
         "on": false,
         "groups": [
@@ -882,7 +882,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "5",
+        "g": "10",
         "label": "Managed DevOps",
         "on": false,
         "groups": [
@@ -919,7 +919,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "5",
+        "g": "11",
         "label": "",
         "on": false,
         "groups": [
@@ -952,7 +952,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "7",
+        "g": "12",
         "label": "Managed Monitoring",
         "on": false,
         "groups": [
@@ -990,7 +990,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "10",
+        "g": "13",
         "label": "Cloud Connectivity",
         "on": false,
         "groups": [
@@ -1042,7 +1042,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "8",
+        "g": "14",
         "label": "SAP On Cloud",
         "on": false,
         "groups": [
@@ -1084,7 +1084,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "8",
+        "g": "15",
         "label": "Network Security",
         "on": false,
         "groups": [
@@ -1150,9 +1150,7 @@ export const MEGA_MENU: MenuTop[] = [
             ]
           }
         ]
-      },
-      
-      
+      }, 
     ]
   },
   {
@@ -2971,7 +2969,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "5",
+        "g": "6",
         "label": "Qualys Security",
         "on": false,
         "groups": [
@@ -2988,7 +2986,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "6",
+        "g": "7",
         "label": "Data as a Services",
         "on": false,
         "groups": [
@@ -3076,7 +3074,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "4",
+        "g": "9",
         "label": "On Premises Cloud",
         "on": false,
         "groups": [
@@ -3102,9 +3100,8 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      
       {
-        "g": "6",
+        "g": "10",
         "label": "Managed Migration",
         "on": false,
         "groups": [
