@@ -12,11 +12,6 @@
           <a class="dp-shield" href="https://dpdpashield.in/" target="_blank" rel="noopener" style="margin-top:12px">🛡️ See this module live on <b>DPDPAShield.in</b> ↗</a>
           <div class="hero-ctas">
             <a class="btn btn-primary dp-cta" href="#" (click)="openCallback($event)">⚡ Free Assessment</a>
-            <div class="module-quantity" role="group" aria-label="Module quantity">
-              <button type="button" aria-label="Decrease module quantity" [disabled]="quantity() === 1" (click)="changeQuantity(-1)">&minus;</button>
-              <output aria-live="polite">{{ quantity() }}</output>
-              <button type="button" aria-label="Increase module quantity" [disabled]="quantity() === 99" (click)="changeQuantity(1)">+</button>
-            </div>
             <a class="btn atc" href="#" id="mAtc" (click)="addToCart($event)">{{ atcLabel() }}</a>
             <a class="btn btn-ghost" style="border-color:rgba(255,255,255,.35);color:#fff" href="#" id="mDemo" (click)="openCallback($event)">📞 Book a Demo</a>
           </div>

@@ -102,7 +102,8 @@ import { AcronisBackupAdvancedContentComponent } from '../sections/acronis-backu
 import { AcronisOtContentComponent } from '../sections/acronis-ot-content.component';
 import { NvidiaA100SourceComponent } from '../sections/nvidia-a100-source.component';
 import { NvidiaA100AssuranceComponent } from '../sections/nvidia-a100-assurance.component';
-import { NvidiaH100HeroComponent } from '../sections/nvidia-h100-hero.component';
+import { H100HeroAction, NvidiaH100HeroComponent } from '../sections/nvidia-h100-hero.component';
+import { H100PlanSelection, NvidiaH100ContentComponent } from '../sections/nvidia-h100-content.component';
 
 /** One row of the EDR comparison table, split into its header cell and body cells. */
 interface CompareRow {
@@ -257,6 +258,7 @@ interface ProductTourSlide {
     NvidiaA100SourceComponent,
     NvidiaA100AssuranceComponent,
     NvidiaH100HeroComponent,
+    NvidiaH100ContentComponent,
 
     EmailSignatureContentComponent,
     EmailSignatureHeroComponent,
@@ -265,8 +267,20 @@ interface ProductTourSlide {
   styles: [`
     #ppage.nvidia-a100-page .pp-hero { display: none; }
     #ppage.nvidia-a100-page #ppOv { width: 100%; max-width: none; }
-    #ppage.nvidia-h100-page .pp-hero { display: none; }
-    #ppage.nvidia-h100-page #ppOv { width: 100%; max-width: none; }
+    #ppage.nvidia-h100-page .h100-overview {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      padding: 34px max(24px, calc((100vw - 1240px) / 2 + 24px));
+      background: #f2f6fc;
+    }
+    #ppage.nvidia-h100-page .h100-overview .pp-sec { margin-top: 0; }
+    #ppage.nvidia-h100-page .h100-overview .pp-ov { width: 100%; max-width: none; margin-bottom: 0; }
+    #ppage.nvidia-h100-page .h100-answer { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; margin-top: 26px; padding: 24px; border: 1px solid #dce5f2; border-radius: 16px; background: #fff; }
+    #ppage.nvidia-h100-page .h100-answer-label { display: block; color: #1565d8; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    #ppage.nvidia-h100-page .h100-answer h3 { margin: 8px 0; color: #041e42; }
+    #ppage.nvidia-h100-page .h100-answer p, #ppage.nvidia-h100-page .h100-answer li { color: #51607a; line-height: 1.65; }
+    #ppage.nvidia-h100-page .h100-answer ul { margin: 8px 0 0; padding-left: 20px; }
+    @media (max-width: 700px) { #ppage.nvidia-h100-page .h100-answer { grid-template-columns: 1fr; } }
     #ppage.nvidia-a100-page .a100-related { display: flex; flex-wrap: nowrap; gap: 6px; align-items: center; margin-top: 24px; overflow-x: auto; white-space: nowrap; color: #486078; font-size: 12px; }
     #ppage.nvidia-a100-page .a100-related > * { flex: none; }
     #ppage.nvidia-a100-page .a100-related a, #ppage.nvidia-a100-page .a100-related-pill { padding: 6px 10px; border: 1px solid #d7e3f5; border-radius: 999px; color: #1767d6; text-decoration: none; }
@@ -2094,6 +2108,30 @@ export class ProductPage {
     const name = this.view()?.name ?? "";
     this.topics.ask(request ? `${name} - ${request}` : name);
     this.overlay.open('callback');
+  }
+
+  onH100HeroAction(action: H100HeroAction): void {
+    const event = new Event('click');
+    switch (action) {
+      case 'infosheet':
+      case 'presentation':
+        this.requestDoc(action, event);
+        break;
+      case 'tour':
+        this.openProductScreenshotTour();
+        break;
+      case 'trial':
+        this.openTrial(event);
+        break;
+      case 'lead':
+        this.openCallback(event, 'H100 consultation');
+        break;
+    }
+  }
+
+  selectH100Plan(selection: H100PlanSelection): void {
+    this.cart.add(`NVIDIA H100 ${selection.code} — ${selection.term}`, `${selection.price}/mo + GST`, 1);
+    this.cart.open();
   }
 
   requestRtxPlan(request: string): void {

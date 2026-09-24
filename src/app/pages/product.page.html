@@ -41,7 +41,7 @@
     [class.nvidia-h100-page]="slug() === 'nvidia-h100'"
   >
     @if (slug() === 'nvidia-h100') {
-      <xh-nvidia-h100-hero (consultationRequested)="openCallback($event, 'H100 consultation')" />
+      <xh-nvidia-h100-hero (actionRequested)="onH100HeroAction($event)" />
     }
     @if (slug() === 'nvidia-a100') {
       <xh-nvidia-a100-source view="hero" />
@@ -1208,6 +1208,9 @@
         [class.email-archiving-body]="slug() === 'email-archiving'"
       >
         <div class="wrap">
+          @if (slug() === 'nvidia-h100') {
+            <xh-nvidia-h100-content (planSelected)="selectH100Plan($event)" />
+          } @else {
           @if (slug() !== 'nvidia-a100') {
           @if (slug() === 'waap-as-a-service') {
             <xh-waap-content />
@@ -1422,7 +1425,7 @@
                           </div>
                         </div>
                       </section>
-                    } @else if (isCloudBackup() || isAdvancedEdr()) {
+                    } @else if (isCloudBackup() || isAdvancedEdr() || isRmm() || slug() === 'cloud-disaster-recovery') {
                       <div class="backup-overview-columns">
                         <div>
                           <div class="pp-sec">Overview</div>
@@ -1430,9 +1433,38 @@
                         </div>
                         <section class="backup-protection" aria-labelledby="backupProtectionTitle">
                         <h2 id="backupProtectionTitle">Protect your business with Acronis today!</h2>
-                        <img class="backup-protection-badges" src="/assets/images/acronis-certification-badges.jpg" alt="Acronis CyberFit Cloud Tech badges: Foundation, Associate Disaster Recovery, Associate Protect and Associate Backup" loading="lazy" />
+                        @if (isCloudBackup()) {
+                          <img class="backup-protection-badges backup-protection-badges-compact" src="/assets/images/acronis-backup-green-badges.png" alt="Acronis Certified Backup Professional and Advanced Backup Professional badges" loading="lazy" />
+                        } @else if (isAdvancedEdr()) {
+                          <img class="backup-protection-badges backup-protection-badges-compact" src="/assets/images/acronis-endpoint-security-badges.png" alt="Acronis Certified Endpoint Security Professional and Advanced Security Specialist badges" loading="lazy" />
+                        } @else if (isRmm()) {
+                          <img class="backup-protection-badges backup-protection-badges-compact" src="/assets/images/acronis-rmm-management-badges.png" alt="Acronis Certified RMM Professional and Advanced Management Specialist badges" loading="lazy" />
+                        } @else {
+                          <img class="backup-protection-badges backup-protection-badges-compact" src="/assets/images/acronis-disaster-recovery-badges.png" alt="Acronis Certified Disaster Recovery Professional and DR to Azure Specialist badges" loading="lazy" />
+                        }
                         </section>
                       </div>
+                    } @else if (slug() === 'nvidia-h100') {
+                      <section class="h100-overview" aria-labelledby="h100OverviewTitle">
+                        <h2 class="pp-sec" id="h100OverviewTitle">Overview</h2>
+                        <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
+                        <div class="h100-answer">
+                          <div>
+                            <span class="h100-answer-label">Quick answer</span>
+                            <h3>What is the NVIDIA H100 cloud GPU used for?</h3>
+                            <p>The H100 is a Hopper GPU with 80 GB of HBM3 and an FP8 Transformer Engine, used for training and serving large language models, recommenders and HPC workloads.</p>
+                          </div>
+                          <div>
+                            <span class="h100-answer-label">Key takeaways</span>
+                            <ul>
+                              <li>NVLink and NVSwitch connect up to 8 GPUs in an HGX node.</li>
+                              <li>MIG supports isolated GPU instances for shared workloads.</li>
+                              <li>Hosted in India with INR billing and GST invoices.</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </section>
+                    } @else {
                     } @else if (!isTally()) {
                       <div class="pp-sec">Overview</div>
                       <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
@@ -2089,13 +2121,6 @@
                           <span>{{ term.label }}</span>
                         </button>
                       }
-                    </div>
-
-                    <div class="cloud-backup-quantity" role="group" aria-label="Cloud Backup subscription quantity">
-                      <span>Subscriptions</span>
-                      <button type="button" aria-label="Decrease Cloud Backup subscriptions" [disabled]="cloudBackupQuantity() === 1" (click)="changeCloudBackupQuantity(-1)">&minus;</button>
-                      <output aria-live="polite">{{ cloudBackupQuantity() }}</output>
-                      <button type="button" aria-label="Increase Cloud Backup subscriptions" [disabled]="cloudBackupQuantity() === 99" (click)="changeCloudBackupQuantity(1)">+</button>
                     </div>
 
                     <div class="cloud-backup-plan-grid">
@@ -4369,6 +4394,7 @@
             <xh-nvidia-a100-source view="details" />
             <xh-nvidia-a100-assurance />
           }
+          }
 
           <div class="pp-sec pp-faq-heading" [style.margin-top.px]="slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Frequently asked questions</div>
         <div class="pp-faq" id="ppFaq">
@@ -4404,13 +4430,6 @@
               <a class="btn btn-primary" href="#" id="ppCtaCall" (click)="openCallback($event)"
                 >Request a callback</a
               >
-              @if (v.plans[0]; as firstPlan) {
-                <div class="module-quantity" role="group" [attr.aria-label]="firstPlan.cartName + ' quantity'">
-                  <button type="button" [attr.aria-label]="'Decrease ' + firstPlan.cartName + ' quantity'" [disabled]="planQuantity(firstPlan) === 1" (click)="changePlanQuantity(firstPlan, -1)">&minus;</button>
-                  <output aria-live="polite">{{ planQuantity(firstPlan) }}</output>
-                  <button type="button" [attr.aria-label]="'Increase ' + firstPlan.cartName + ' quantity'" [disabled]="planQuantity(firstPlan) === 99" (click)="changePlanQuantity(firstPlan, 1)">+</button>
-                </div>
-              }
               <a
                 class="btn btn-ghost"
                 style="border-color: rgba(255, 255, 255, 0.4); color: #fff"
