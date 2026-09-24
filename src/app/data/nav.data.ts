@@ -803,6 +803,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
+                "title": "Server Management",
+                "pill": null,
+                "desc": null
+              },
+              {
                 "title": "Managed DNS",
                 "pill": "Top seller",
                 "desc": null
@@ -820,6 +825,11 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "Managed DevOps",
             "items": [
+              {
+                "title": "Cloud DevOps Services",
+                "pill": null,
+                "desc": null
+              },
               {
                 "title": "AWS DevOps",
                 "pill": null,

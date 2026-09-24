@@ -1,12 +1,13 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, ViewEncapsulation, inject } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, ViewEncapsulation, inject, input } from '@angular/core';
 
 @Component({
-  selector: 'xh-microsoft-365-enterprise-reference',
+  selector: 'xh-supplied-service-reference',
   standalone: true,
-  templateUrl: './microsoft-365-enterprise-reference.component.html',
+  templateUrl: './supplied-service-reference.component.html',
   encapsulation: ViewEncapsulation.ShadowDom,
 })
-export class Microsoft365EnterpriseReferenceComponent implements AfterViewInit, OnDestroy {
+export class SuppliedServiceReferenceComponent implements AfterViewInit, OnDestroy {
+  readonly page = input<'devops' | 'server'>('devops');
   private readonly host: ElementRef<HTMLElement> = inject(ElementRef);
   private readonly cleanups: Array<() => void> = [];
 

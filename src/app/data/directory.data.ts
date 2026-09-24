@@ -567,6 +567,18 @@ export const DIRECTORY: DirectoryEntry[] = [
     "group": "Managed Cloud & Migration"
   },
   {
+    "name": "Cloud DevOps Services",
+    "desc": "CI/CD, Kubernetes and cloud automation services",
+    "cat": "Cloud",
+    "group": "Managed Cloud & Migration"
+  },
+  {
+    "name": "Server Management",
+    "desc": "Monitoring, maintenance and security for business servers",
+    "cat": "Cloud",
+    "group": "Managed Cloud & Migration"
+  },
+  {
     "name": "Managed Kubernetes",
     "desc": "Simplified management of Kubernetes clusters",
     "cat": "Cloud",
