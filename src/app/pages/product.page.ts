@@ -862,19 +862,9 @@ export class ProductPage {
   readonly activeCdrTourSlide = signal(0);
   readonly cdrTourSlides = [
     {
-      title: 'Build your recovery plan',
-      description: 'See protected workloads, recovery points and readiness status in one place.',
-      image: '/assets/images/cdr-tour-recovery-plan.png',
-    },
-    {
-      title: 'Orchestrate failover',
-      description: 'Follow a guided runbook to bring critical workloads online in the recovery cloud.',
-      image: '/assets/images/cdr-tour-failover.png',
-    },
-    {
-      title: 'Test recovery readiness',
-      description: 'Validate RPO and RTO targets with non-disruptive recovery testing and reporting.',
-      image: '/assets/images/cdr-tour-testing.png',
+      title: 'Recovery cloud infrastructure',
+      description: 'Track reserved compute, memory, storage, virtual-machine status and capacity across the recovery environment.',
+      image: '/assets/images/cdr-smb-infrastructure.webp',
     },
   ] as const;
   readonly isCdrTourOpen = computed(() => this.overlay.isOpen('screenshotTour'));
@@ -902,34 +892,27 @@ export class ProductPage {
   readonly isRmmTourOpen = computed(() => this.overlay.isOpen('rmmScreenshotTour'));
   readonly activeEdrTourSlide = signal(0);
   readonly edrTourSlides: readonly ProductTourSlide[] = [
-    'What is EDR?',
-    'The need for EDR',
-    'How EDR protects against more threats',
-    'Launching an EDR service',
-    'Advanced Security + EDR',
-    'Cross-NIST cybersecurity and data protection',
-    'Multi-layered endpoint detection engines',
-    'Copilot for Acronis EDR',
-    'Analyze attacks in minutes',
-    'EDR remediation and business continuity',
-    'Automated response playbooks',
-    'Cyber insurance and compliance',
-    'Acronis service provider partnership',
-    'Award-winning endpoint protection',
-    'Top four EDR use cases',
-    'Cyber Protect Cloud use cases',
-    'Extended XDR visibility',
-    'Managed EDR service',
-    'Acronis and Novacoast partnership',
-    '24/7 outsourced SOC',
-    'Acronis Cyber Protect Cloud platform',
-    'EDR licensing and pricing',
-    'MDR licensing and pricing',
-  ].map((title, index) => ({
-    title,
-    description: 'Explore Advanced Security + EDR capabilities, operations and service options.',
-    image: `/assets/images/advanced-security-edr-tour-${index + 1}.jpg`,
-  }));
+    {
+      title: 'Live incident investigation',
+      description: 'Trace the complete cyber kill chain, inspect affected workloads and review malicious processes from one incident view.',
+      image: '/assets/images/advanced-security-edr-live-incident.webp',
+    },
+    {
+      title: 'Guided incident remediation',
+      description: 'Stop and quarantine threats, roll back malicious changes, recover workloads and add detections to the blocklist.',
+      image: '/assets/images/advanced-security-edr-remediation.webp',
+    },
+    {
+      title: 'Generative AI usage overview',
+      description: 'Monitor generative AI visits, applications and device activity through a central security dashboard.',
+      image: '/assets/images/advanced-security-edr-genai-overview.webp',
+    },
+    {
+      title: 'Attack-stage analysis',
+      description: 'Review execution, persistence and defence-evasion activity as a clear timeline linked to the process tree.',
+      image: '/assets/images/advanced-security-edr-attack-stages.webp',
+    },
+  ];
   readonly isEdrTourOpen = computed(() => this.overlay.isOpen('edrScreenshotTour'));
   readonly activeProductTourSlide = signal(0);
   readonly isProductTourOpen = computed(() => this.overlay.isOpen('productScreenshotTour'));
