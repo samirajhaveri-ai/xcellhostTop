@@ -5511,3 +5511,22 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 #ppage .tally-offer-copy h2{font-size:clamp(16px,1.35vw,20px);line-height:1.35}
 
 #ppage .tally-offer-price strong{font-size:24px}
+
+#ppage .tally-offer-price small{white-space:nowrap;max-width:none}
+#ppage .tally-offer-price>span{white-space:nowrap}
+
+/* Three equal-width offer badges in a single row. */
+#ppage .tally-offer-benefits{display:contents}
+#ppage .tally-offer-benefits>span,#ppage .tally-offer-copy>.tally-offer-price{flex:0 0 calc((100% - 16px)/3);min-width:0;width:calc((100% - 16px)/3);height:56px;margin:0;box-sizing:border-box}
+#ppage .tally-offer-copy>.tally-offer-price{display:grid;grid-template-columns:minmax(0,1fr) auto}
+#ppage .tally-offer-price>div{min-width:0;padding:4px}
+#ppage .tally-offer-price small{white-space:normal;font-size:9px;line-height:1.2}
+#ppage .tally-offer-price strong{font-size:22px}
+#ppage .tally-offer-price>span{padding:4px 6px;font-size:9px;white-space:nowrap}
+@media(max-width:480px){#ppage .tally-offer-copy>.tally-offer-price{margin-top:0;grid-template-columns:1fr;height:auto;min-height:56px}#ppage .tally-offer-price>span{padding:3px;font-size:9px}#ppage .tally-offer-benefits>span{font-size:10px;padding:4px}}
+
+#ppage .tally-offer-copy>.tally-offer-price{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:stretch;background:linear-gradient(110deg,#e65b28,#ef813b)}
+#ppage .tally-offer-price>div{display:contents}
+#ppage .tally-offer-price small{white-space:nowrap;max-width:none;text-align:center;font-size:9px;padding:0 3px;line-height:1.4}
+#ppage .tally-offer-price strong{text-align:left;padding-left:12px;font-size:22px;line-height:1.2}
+#ppage .tally-offer-price>span{position:absolute;right:0;bottom:0;height:28px;display:flex;justify-content:center;align-items:center;padding:0 7px;border-radius:12px 0 14px 0;font-size:9px;white-space:nowrap}

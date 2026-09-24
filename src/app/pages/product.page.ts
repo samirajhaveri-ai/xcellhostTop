@@ -1164,6 +1164,12 @@ export class ProductPage {
     if (view.name === 'Scrutiny DLP') return this.scrutinyDlpTourSlides;
 
     const candidates: ProductTourSlide[] = [];
+    if (this.isTally()) {
+      candidates.push(
+        { title: 'Tally cloud remote desktop', description: 'Access TallyPrime Edit Log, Tally.ERP 9 and your files from the TSplus Remote App launcher.', image: '/assets/images/tally-cloud-tour-1.png' },
+        { title: 'Tally remote application workspace', description: 'View the remote workspace with shortcuts for your desktop folder, accounting applications and exported files.', image: '/assets/images/tally-cloud-tour-2.png' },
+      );
+    }
     const add = (title: string, description: string, image: string | null | undefined): void => {
       if (!image || candidates.some((slide) => slide.image === image)) return;
       candidates.push({ title, description, image });
