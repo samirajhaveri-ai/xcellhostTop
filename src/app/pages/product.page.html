@@ -99,7 +99,7 @@
           <div class="pph-scene bizmail-hero-art" aria-hidden="true">
             <xh-business-email-content [heroOnly]="true" />
           </div>
-        } @else if (slug() === 'co-location') {
+        } @else if (slug() === 'co-location-services') {
           <div class="pph-scene has-illus standalone-illus" aria-hidden="true">
             <div class="pph-illus">
               <img class="pph-illus-img" src="/assets/images/colocation-hero.svg" alt="Managed colocation server racks with redundant power and networking" />
@@ -632,11 +632,6 @@
                   sandbox="allow-scripts"
                   tabindex="-1"
                 ></iframe>
-                <img
-                  class="tally-prime-hero-logo"
-                  src="/assets/images/tally-prime-7-logo.png"
-                  alt="Tally Prime 7.0"
-                />
               } @else if (v.name === 'Cloud Drive') {
                 <iframe
                   class="cloud-drive-hero-animation"
@@ -1219,7 +1214,7 @@
             @if (isInfrastructure()) {
               <xh-infrastructure-content />
             }
-            @if (slug() === 'co-location') {
+            @if (slug() === 'co-location-services') {
               <xh-colocation-content />
             }
             @if (isZohoWorkspace()) {
@@ -1250,7 +1245,7 @@
               !isInfrastructure() &&
               slug() !== 'bare-metal-servers' &&
               slug() !== 'acronis-genai-protection' &&
-              slug() !== 'co-location' &&
+              slug() !== 'co-location-services' &&
               !isVmc() &&
               !isCmc() &&
               !isTsplusServerMonitoring() &&
@@ -1416,9 +1411,24 @@
                         <img class="backup-protection-badges" src="/assets/images/acronis-certification-badges.jpg" alt="Acronis CyberFit Cloud Tech badges: Foundation, Associate Disaster Recovery, Associate Protect and Associate Backup" loading="lazy" />
                         </section>
                       </div>
-                    } @else {
+                    } @else if (!isTally()) {
                       <div class="pp-sec">Overview</div>
                       <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
+                    }
+                    @if (isTally()) {
+                      <section class="tally-overview-offer" aria-labelledby="tally-offer-heading">
+                        <div class="tally-offer-overview">
+                          <div class="pp-sec">Overview</div>
+                          <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
+                        </div>
+                        <div class="tally-offer-copy">
+                          <div class="tally-offer-version">Now supported <span class="tally-offer-logo"><img src="/assets/images/tally-prime-7-logo.png" alt="Tally Prime" width="1748" height="879" /></span><b>7.0</b></div>
+                          <h2 id="tally-offer-heading">Securely Work Remotely With Tally On Cloud For Accounting With Any Tally Version</h2>
+                          <p class="tally-offer-anywhere">Anytime, Anywhere, Any Device</p>
+                          <div class="tally-offer-benefits"><span>Hosted In Tier IV DC</span><span>99.99% Uptime SLA</span></div>
+                          <div class="tally-offer-price"><div><small>Including TS Plus + Windows License</small><strong>₹499</strong></div><span>per user<br />/ month</span></div>
+                        </div>
+                      </section>
                     }
                   }
 

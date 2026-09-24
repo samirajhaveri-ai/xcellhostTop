@@ -483,9 +483,10 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Co-Location",
+                "title": "Co-Location Services",
                 "pill": null,
-                "desc": null
+                "desc": null,
+                "href": "/co-location-services"
               },
               {
                 "title": "Hybrid Cloud",
