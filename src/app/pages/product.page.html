@@ -14,6 +14,13 @@
     [class.rtx-8000-page]="slug() === 'rtx-8000'"
     [class.rtx-pro-6000-page]="slug() === 'rtx-pro-6000'"
     [class.rtx-6000-ada-page]="slug() === 'nvidia-rtx-6000-ada'"
+    [class.rtx-a6000-page]="slug() === 'rtx-a6000'"
+    [class.gpu-nvidia-page]="
+      slug() === 'rtx-pro-6000' ||
+      slug() === 'nvidia-rtx-6000-ada' ||
+      slug() === 'rtx-a6000' ||
+      slug() === 'rtx-8000'
+    "
     [class.whatsapp-smb-page]="isWhatsAppSmb()"
     [class.atm-solution-page]="isAutonomousThreatSolution()"
     [class.scrutiny-page]="
@@ -853,6 +860,21 @@
                   <a class="btn btn-primary" href="#" id="ppEnquiry" (click)="openCallback($event)"
                     >Let's Talk</a
                   >
+                  @if (
+                    slug() === 'rtx-pro-6000' ||
+                    slug() === 'nvidia-rtx-6000-ada' ||
+                    slug() === 'rtx-a6000' ||
+                    slug() === 'rtx-8000'
+                  ) {
+                    <span class="rtx-nvidia-badge">
+                      <img
+                        src="/assets/images/nvidia-partner-badge.png"
+                        alt="NVIDIA"
+                        width="180"
+                        height="48"
+                      />
+                    </span>
+                  }
                 </div>
 
                 <section class="pp-ask-ai" aria-labelledby="ppAskAiTitle">
