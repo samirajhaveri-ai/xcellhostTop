@@ -74,6 +74,7 @@ import { VortexSocContentComponent } from './vortex-soc-content.component';
 import { VortexSegContentComponent } from './vortex-seg-content.component';
 import { InfrastructureContentComponent } from '../sections/infrastructure-content.component';
 import { ColocationContentComponent } from '../sections/colocation-content.component';
+import { MarketplaceContentComponent } from '../sections/marketplace-content.component';
 import { WhatsAppSmbContentComponent } from '../sections/whatsapp-smb-content.component';
 
 import { ManagedAwsContentComponent } from '../sections/managed-aws-content.component';
@@ -200,6 +201,7 @@ interface ProductTourSlide {
     VortexSegContentComponent,
     InfrastructureContentComponent,
     ColocationContentComponent,
+    MarketplaceContentComponent,
     WhatsAppSmbContentComponent,
 
     ManagedAwsContentComponent,

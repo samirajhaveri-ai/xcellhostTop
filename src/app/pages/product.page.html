@@ -628,6 +628,10 @@
             </div>
             <div class="rtx-stage-badges"><span>NVIDIA QUADRO RTX 8000</span><span><i></i> Live in India</span></div>
           </div>
+        } @else if (slug() === 'marketplace') {
+          <div class="pph-scene has-illus standalone-illus marketplace-reference-art" aria-hidden="true">
+            <img src="/assets/images/marketplace-reference-hero.svg" alt="" />
+          </div>
         } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
           <div class="pph-scene has-illus standalone-illus" id="pphScene" aria-hidden="true">
             <div class="pph-illus">
@@ -1208,6 +1212,9 @@
         [class.email-archiving-body]="slug() === 'email-archiving'"
       >
         <div class="wrap">
+          @if (slug() === 'marketplace') {
+            <xh-marketplace-content />
+          } @else {
           @if (slug() === 'nvidia-h100') {
             <xh-nvidia-h100-content (planSelected)="selectH100Plan($event)" />
           } @else {
@@ -1464,7 +1471,6 @@
                           </div>
                         </div>
                       </section>
-                    } @else {
                     } @else if (!isTally()) {
                       <div class="pp-sec">Overview</div>
                       <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
@@ -3818,6 +3824,7 @@
 
           }
 
+          }
           @if (v.name !== 'Tally on Cloud') {
             @if (slug() === 'rtx-8000') {
               <xh-rtx-8000-stories />
@@ -4396,6 +4403,7 @@
           }
           }
 
+        @if (slug() !== 'marketplace') {
           <div class="pp-sec pp-faq-heading" [style.margin-top.px]="slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Frequently asked questions</div>
         <div class="pp-faq" id="ppFaq">
 
@@ -4404,6 +4412,8 @@
           />
 
         </div>
+
+        }
 
         @if (slug() === 'nvidia-a100') {
           <nav class="a100-related" aria-label="Related products and information">
