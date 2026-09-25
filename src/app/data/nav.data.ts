@@ -288,6 +288,13 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "Imunify360",
+                "pill": null,
+                "desc": null
+              },
+
+              
             ]
           }
         ]
@@ -317,6 +324,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "AI Website Builder",
+                "pill": null,
+                "desc": "Reliable AI Website Builder hosting 🐧"
+              },
+              {
+                "title": "AI Logo Maker",
                 "pill": null,
                 "desc": "Reliable AI Website Builder hosting 🐧"
               },
@@ -579,6 +591,21 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "Virtualization Servers",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Cloud Repatriation",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Gaming Servers",
+                "pill": null,
+                "desc": null
+              },
               
             ]
           }
@@ -743,6 +770,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Container Registry",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Function as a Service",
                 "pill": null,
                 "desc": null
               },
@@ -1184,7 +1216,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Microsoft SPM",
+                "title": "Microsoft Security Posture Management",
                 "pill": null,
                 "desc": null
               },   
@@ -3626,6 +3658,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Contact Us",
                 "pill": null,
                 "desc": "We'd love to hear from you"
+              },
+              {
+                "title": "Customer Stories",
+                "pill": null,
+                "desc": "Secure, scalable cloud expertise since 1999"
               },
               {
                 "title": "Why XcellHost",
