@@ -522,6 +522,11 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Cloud Servers",
             "items": [
               {
+                "title": "Explore Cloud Servers",
+                "pill": null,
+                "desc": null
+              },
+              {
                 "title": "General Compute",
                 "pill": null,
                 "desc": null
@@ -549,6 +554,22 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Bare Metal Servers",
             "items": [
               {
+                "title": "Explore Bare Metal Servers",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Windows Servers",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Linux Servers",
+                "pill": null,
+                "desc": null
+              },
+              
+              {
                 "title": "RPC Nodes",
                 "pill": null,
                 "desc": null
@@ -558,16 +579,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "Linux Servers",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Windows Servers",
-                "pill": null,
-                "desc": null
-              },
+              
             ]
           }
         ]
@@ -687,7 +699,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Dedicated Inferencing",
+                "title": "Dedicated Inference",
                 "pill": null,
                 "desc": null
               },
@@ -707,6 +719,35 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               
+            ]
+          }
+        ]
+      },
+      {
+        "g": "20",
+        "label": "Container & Images",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Images Container",
+            "items": [
+              {
+                "title": "Kubernetes As Services",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Doker As Services",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Container Registry",
+                "pill": null,
+                "desc": null
+              },
+
+               
             ]
           }
         ]
@@ -761,11 +802,11 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "8",
-        "label": "Managed Service",
+        "label": "Managed Services",
         "on": false,
         "groups": [
           {
-            "heading": "Managed Service",
+            "heading": "Managed Services",
             "items": [
               {
                 "title": "Resilience Operations",
@@ -798,31 +839,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "DirectConnect",
+                "title": "Server Management",
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "SSL",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "WAF",
-                "pill": null,
-                "desc": null
-              },
-                      {
-                "title": "Firewalls",
-                "pill": null,
-                "desc": null
-              },
-                      {
-                "title": "Endpoint Security",
-                "pill": null,
-                "desc": null
-              },
-
+              
             ]
           }
         ]
@@ -866,16 +887,8 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "Server Management",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Managed DNS",
-                "pill": "Top seller",
-                "desc": null
-              },
+              
+              
               
             ]
           }
@@ -989,100 +1002,7 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      {
-        "g": "13",
-        "label": "Cloud Connectivity",
-        "on": false,
-        "groups": [
-          {
-            "heading": "Cloud Connectivity",
-            "items": [
-              {
-                "title": "Cloud Connectivity",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Cloud Router",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Private Connect",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "IP Transit",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Virtual Edge",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Managed Wi-Fi",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Managed SD WAN",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "Edge Network",
-                "pill": null,
-                "desc": null
-              },
-            ]
-          }
-        ]
-      },
-      {
-        "g": "14",
-        "label": "SAP On Cloud",
-        "on": false,
-        "groups": [
-          {
-            "heading": "SAP On Cloud",
-            "items": [
-              {
-                "title": "SAP Hosting",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "SAP B1 Cloud",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "SAP S4 HANA Private Cloud ",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "SAP On AWS ",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "SAP On GCP ",
-                "pill": null,
-                "desc": null
-              },
-              {
-                "title": "SAP On Azure ",
-                "pill": null,
-                "desc": null
-              },
-            ]
-          }
-        ]
-      },
+      
       {
         "g": "15",
         "label": "Network Security",
@@ -1093,6 +1013,11 @@ export const MEGA_MENU: MenuTop[] = [
             "items": [
               {
                 "title": "Virtual Networks",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Virtual Firewalls",
                 "pill": null,
                 "desc": null
               },
@@ -1136,16 +1061,13 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-                      {
-                "title": "Firewalls",
-                "pill": null,
-                "desc": null
-              },
-                      {
+              
+              {
                 "title": "Endpoint Security",
                 "pill": null,
                 "desc": null
               },
+              
 
             ]
           }
@@ -3170,6 +3092,100 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               
+            ]
+          }
+        ]
+      },
+      {
+        "g": "13",
+        "label": "Cloud Connectivity",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Cloud Connectivity",
+            "items": [
+              {
+                "title": "Cloud Connectivity",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Cloud Router",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Private Connect",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "IP Transit",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Virtual Edge",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Managed Wi-Fi",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Managed SD WAN",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Edge Network",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "14",
+        "label": "SAP On Cloud",
+        "on": false,
+        "groups": [
+          {
+            "heading": "SAP On Cloud",
+            "items": [
+              {
+                "title": "SAP Hosting",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "SAP B1 Cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "SAP S4 HANA Private Cloud ",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "SAP On AWS ",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "SAP On GCP ",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "SAP On Azure ",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
