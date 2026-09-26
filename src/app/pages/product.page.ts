@@ -81,6 +81,12 @@ import { ManagedAwsContentComponent } from '../sections/managed-aws-content.comp
 
 import { ManagedMicrosoft365ContentComponent } from '../sections/managed-microsoft-365-content.component';
 import { Microsoft365EnterpriseReferenceComponent } from '../sections/microsoft-365-enterprise-reference.component';
+import {
+  Microsoft365EnterpriseAdditionalComponent,
+  Microsoft365EnterpriseFrontlineComponent,
+  Microsoft365EnterpriseNonprofitComponent,
+  Microsoft365EnterpriseOffice365Component,
+} from '../sections/microsoft-365-enterprise-variants.component';
 import { SuppliedServiceReferenceComponent } from '../sections/supplied-service-reference.component';
 import { SUPPLIED_SERVICE_EXTRAS } from '../data/supplied-service-extras.data';
 import { MicrosoftCopilotContentComponent } from '../sections/microsoft-copilot-content.component';
@@ -210,6 +216,10 @@ interface ProductTourSlide {
 
     ManagedMicrosoft365ContentComponent,
     Microsoft365EnterpriseReferenceComponent,
+    Microsoft365EnterpriseAdditionalComponent,
+    Microsoft365EnterpriseFrontlineComponent,
+    Microsoft365EnterpriseNonprofitComponent,
+    Microsoft365EnterpriseOffice365Component,
     SuppliedServiceReferenceComponent,
     MicrosoftCopilotContentComponent,
     CopilotStudioContentComponent,
@@ -1499,6 +1509,14 @@ export class ProductPage {
     initialValue: '',
   });
 
+  readonly isMicrosoftEnterprisePage = computed(() =>
+    this.slug() === 'microsoft-365-enterprise' ||
+    this.slug() === 'microsoft-365-enterprise-office365' ||
+    this.slug() === 'microsoft-365-enterprise-frontline' ||
+    this.slug() === 'microsoft-365-enterprise-nonprofit' ||
+    this.slug() === 'microsoft-365-enterprise-additional',
+  );
+
   /** `null` while the slug matches nothing — the effect below sends those home. */
   readonly view = computed<ProductView | null>(() => {
     const slug = this.slug();
@@ -1800,7 +1818,7 @@ export class ProductPage {
       this.slug() === 'rtx-8000' ||
       this.slug() === 'nvidia-rtx-6000-ada' ||
       this.slug() === 'rtx-a6000';
-    const videos = this.slug() === 'microsoft-365-enterprise'
+    const videos = this.isMicrosoftEnterprisePage()
       ? PRODUCT_VIDEOS['Microsoft 365']
       : useBackupVideos
         ? PRODUCT_VIDEOS['Cloud Backup (Acronis)']
@@ -1809,7 +1827,7 @@ export class ProductPage {
     return videos.slice(0, 2).flatMap((video, index) => {
       if (!video) return [];
       return [{
-        label: this.slug() === 'microsoft-365-enterprise'
+        label: this.isMicrosoftEnterprisePage()
           ? 'Microsoft 365 overview'
           : useBackupVideos
             ? (index === 0 ? 'Product Intro' : 'Use Cases')
@@ -1951,6 +1969,19 @@ export class ProductPage {
    */
   private resolve(slug: string): ProductView | null {
     if (!slug) return null;
+    const enterpriseVariants: Record<string, string> = {
+      'microsoft-365-enterprise-office365': 'Office 365 Enterprise',
+      'microsoft-365-enterprise-frontline': 'Microsoft 365 Frontline',
+      'microsoft-365-enterprise-nonprofit': 'Microsoft 365 Enterprise Nonprofit',
+      'microsoft-365-enterprise-additional': 'Microsoft 365 Enterprise Additional Services',
+    };
+    if (enterpriseVariants[slug]) {
+      return this.products.build({
+        name: enterpriseVariants[slug],
+        cat: 'Cloud',
+        crumb: 'Cloud › Microsoft 365',
+      });
+    }
     if (slug === 'microsoft-365-enterprise') {
       return this.products.build({
         name: 'Microsoft 365 Enterprise',
