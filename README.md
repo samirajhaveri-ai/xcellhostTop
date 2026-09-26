@@ -22,6 +22,8 @@ are disabled, use `npm.cmd` instead (for example, `npm.cmd start` or
 PowerShell execution policy.
 
 Edit any file and the browser refreshes by itself.
+If you add a new image or other asset while `npm start` is running, the local
+server restarts automatically so the new file is available.
 
 To produce the files you upload to your server:
 

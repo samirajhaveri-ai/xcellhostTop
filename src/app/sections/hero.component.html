@@ -9,7 +9,7 @@
   <span class="cube-wrap c2" [style.translate]="cube2Shift()" aria-hidden="true"><span class="cube"><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
   <div class="wrap home-hero-carousel">
     @for (slide of carouselSlides; track slide.primaryHref; let i = $index) {
-      <article class="home-hero-slide" [class.is-active]="i === activeVisualSlide()" [attr.aria-hidden]="i !== activeVisualSlide()">
+      <article class="home-hero-slide" [class.is-active]="i === activeVisualSlide()" [class.is-cybird]="slide.primaryHref === '/smb-cyber-security-appliance'" [attr.aria-hidden]="i !== activeVisualSlide()">
         <div class="home-hero-copy">
           <div class="eyebrow">{{ slide.eyebrow }}</div>
           <h1>{{ slide.title }} <em class="shine">{{ slide.accent }}</em> {{ slide.titleEnd }}</h1>
@@ -18,10 +18,13 @@
           <div class="hero-ctas">
             <a class="btn btn-primary" [href]="slide.primaryHref">{{ slide.primaryCta }}</a>
             <a class="btn btn-ghost" href="#" (click)="openTrial($event)">Start free trial</a>
-            <span class="hero-nvidia-badge">
-              <img src="/assets/images/nvidia-logo-white.png" alt="NVIDIA" width="1254" height="1254" />
-            </span>
           </div>
+          @if (slide.primaryHref === '/smb-cyber-security-appliance') {
+            <div class="cybird-hero-art">
+              <img class="cybird-made-in-india" src="/assets/images/hero-make-in-india.png" alt="Make in India" width="600" height="274" />
+              <img class="cybird-appliance" src="/assets/images/hero-cybird-appliance.png" alt="Cybird security appliance" width="681" height="367" />
+            </div>
+          }
           <div class="stat-line">
             @for (s of stats; track s.label; let statIndex = $index) {
               <div class="sl"><b>{{ counters()[statIndex] }}</b><span>{{ s.label }}</span></div>
