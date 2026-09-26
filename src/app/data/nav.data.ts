@@ -446,6 +446,31 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Sage Hosting",
                 "pill": null,
                 "desc": null
+              },
+              {
+                "title": "Paperclip AI Hosting",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Dokploy Hosting",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Hermes AI Hosting",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Coolify",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "DeepSeek Hosting",
+                "pill": null,
+                "desc": null
               }, 
             ]
           }
@@ -775,6 +800,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Function as a Service",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "OpenShift Nodes",
                 "pill": null,
                 "desc": null
               },

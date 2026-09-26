@@ -143,24 +143,24 @@ export class CompanyPage {
   } as const;
 
   readonly managementTeam = [
-    { initials: 'YJ', name: 'Yogendra Jagger', role: 'Regional Director - EMEA Middle East & Africa', image: '/assets/images/team-yogendra-jagger.png' },
-    { initials: 'AN', name: 'Abhishek Nimbalkar', role: 'Chief AI Officer', image: '/assets/images/Abhishek_Nimbalkar.png' },
-    { initials: 'PN', name: 'Prashant N.V', role: 'Service Delivery Director', image: '/assets/images/team-prashant-nv.png' },
+    { initials: 'YJ', name: 'Yogendra Jagger', role: 'Regional Director - EMEA Middle East & Africa', image: '/assets/images/TEAMS PHOTO/Yogendra.png' },
+    { initials: 'AN', name: 'Abhishek Nimbalkar', role: 'Chief AI Officer', image: '/assets/images/TEAMS PHOTO/Abhishek.png' },
+    { initials: 'PN', name: 'Prashant N.V', role: 'Service Delivery Director', image: '/assets/images/TEAMS PHOTO/Prashant.png' },
     { initials: 'T', name: 'AI Management Intelligence Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
   ] as const;
 
   readonly advisoryTeam = [
-    { initials: 'SJ', name: 'CA Suraj Jain', role: 'Financial Advisor', image: '/assets/images/team-suraj-jain.png' },
-    { initials: 'SM', name: 'CA Surendra Mehra', role: 'Chartered Accountant', image: '/assets/images/Mehra.png' },
-     { initials: 'UJ', name: 'CA Upendra Joshi ', role: 'Chartered Accountant', image: '/assets/images/Upendra.jpg' },
+    { initials: 'SJ', name: 'CA Suraj Jain', role: 'Financial Advisor', image: '/assets/images/TEAMS PHOTO/Suraj JAin.png' },
+    { initials: 'SM', name: 'CA Surendra Mehra', role: 'Chartered Accountant', image: '/assets/images/TEAMS PHOTO/Mehara.png' },
+     { initials: 'UJ', name: 'CA Upendra Joshi ', role: 'Chartered Accountant', image: '/assets/images/TEAMS PHOTO/Upendra.png' },
   ] as const;
 
   readonly salesTeam = [
-    { initials: 'AP', name: 'Abhishek Pandey', role: 'Cloud Sales Manager', image: '/assets/images/team-abhishek-pandey.png' },
-    { initials: 'SK', name: 'Sushil Kumar', role: 'Cloud-PreSales Manager', image: 'assets/images/Sushil Kumar.jpeg' },
-    { initials: 'RS', name: 'Rashed Syed', role: 'Cloud Advisor - PreSales', image: '/assets/images/Rashed Sayed.png' },
-    { initials: 'MG', name: 'Mihir Ambokar ', role: 'Cloud Advisor - PreSales', image: '/assets/images/Mihir Ambokar.png' },
-    { initials: 'AG', name: 'Ajay Gupta', role: 'Cloud Advisor - PreSales', image: '/assets/images/Ajay Gupta.png' },
+    { initials: 'AP', name: 'Abhishek Pandey', role: 'Cloud Sales Manager', image: '/assets/images/TEAMS PHOTO/Abhishek Pandey.png' },
+    { initials: 'SK', name: 'Sushil Kumar', role: 'Cloud-PreSales Manager', image: 'assets/images/TEAMS PHOTO/Sudhil.png' },
+    { initials: 'RS', name: 'Rashed Syed', role: 'Cloud Advisor - PreSales', image: '/assets/images/TEAMS PHOTO/Rashed.png' },
+    { initials: 'MG', name: 'Mihir Ambokar ', role: 'Cloud Advisor - PreSales', image: '/assets/images/TEAMS PHOTO/Mihir.png' },
+    { initials: 'AG', name: 'Ajay Gupta', role: 'Cloud Advisor - PreSales', image: '/assets/images/TEAMS PHOTO/Ajay Gupta.png' },
     { initials: 'AG', name: 'AI SDR Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
     { initials: 'AG', name: 'AI Lead Qualification Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
     { initials: 'VC', name: 'AI RFP/RFQ Response Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
@@ -169,57 +169,57 @@ export class CompanyPage {
   ] as const;
   
   readonly marketing = [
-    { initials: 'AN', name: 'Aryan Nair', role: 'Social Media Manager', image: '/assets/images/team-aryan-nair.png' },
-    { initials: 'RS', name: 'Ravi Sharma', role: 'SEO+GTM Engineer', image: '/assets/images/team-ravi-sharma.png' },
+    { initials: 'AN', name: 'Aryan Nair', role: 'Social Media Manager', image: '/assets/images/TEAMS PHOTO/Aryan.png' },
+    { initials: 'RS', name: 'Ravi Sharma', role: 'SEO+GTM Engineer', image: '/assets/images/TEAMS PHOTO/Ravi.png' },
     { initials: 'RS', name: 'AI SEO/AEO/GEO Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
     { initials: 'RS', name: 'AI Social Media Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
     { initials: 'RS', name: 'AI Conversation Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
   ] as const;
 
   readonly AITeams = [
-    { initials: 'AT', name: 'Advet Tambe', role: 'AI Engineer', image: '/assets/images/team-advet-thambe.jpeg' },
-    { initials: 'VC', name: 'Vishal Chaubey', role: 'Automation Engineer', image: '/assets/images/team-vishal-chaubey.png' },
+    { initials: 'AT', name: 'Advet Tambe', role: 'AI Engineer', image: '/assets/images/TEAMS PHOTO/Advet.png' },
+    { initials: 'VC', name: 'Vishal Chaubey', role: 'Automation Engineer', image: '/assets/images/TEAMS PHOTO/vishal.png' },
     { initials: 'VC', name: 'AI Market Research Specialist', role: '', image: '/assets/images/Robot-enhanced.png' },
     { initials: 'VC', name: 'AI Content Strategy& Copilot Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
     { initials: 'VC', name: 'AI Paid Media& Ad Performance Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
   ] as const;
 
   readonly developers: readonly { initials: string; name: string; role: string; image: string }[] = [
-    { initials: 'SV', name: 'Sujeet Vishwakarma', role: 'Developer', image: '/assets/images/team-sujeet-vishwakarma.jpeg' },
-    { initials: 'VG', name: 'Vaishnavi Ghaghare', role: 'Web Developer', image: '/assets/images/team-vaishnavi-ghaghare.png' },
-    { initials: 'DV', name: 'Divya Varma', role: 'Web Developer', image: '/assets/images/team-divya-varma.jpeg' },
-    { initials: 'VT', name: 'Vibha Tiwari', role: 'Web Developer', image: '/assets/images/team-vibha-tiwari.png' },
-    { initials: 'AS', name: 'Adarsh Singh', role: 'Web Developer', image: '/assets/images/Adarsh Singh.jpeg' },
+    { initials: 'SV', name: 'Sujeet Vishwakarma', role: 'Developer', image: '/assets/images/TEAMS PHOTO/Sujeet Vishwakarma.png' },
+    { initials: 'VG', name: 'Vaishnavi Ghaghare', role: 'Web Developer', image: '/assets/images/TEAMS PHOTO/Vaishnavi Ghaghare.png' },
+    { initials: 'DV', name: 'Divya Varma', role: 'Web Developer', image: '/assets/images/TEAMS PHOTO/Divya Varma.png' },
+    { initials: 'VT', name: 'Vibha Tiwari', role: 'Web Developer', image: '/assets/images/TEAMS PHOTO/Vibha Tiwari.png' },
+    { initials: 'AS', name: 'Adarsh Singh', role: 'Web Developer', image: '/assets/images/TEAMS PHOTO/Adarsh Singh.png' },
   ];
 
   readonly accountantTeam = [
-    { initials: 'SJ', name: 'Sanjay Jade', role: 'Account Manager', image: '/assets/images/team-sanjay-jade.png' },
-    { initials: 'RB', name: 'Rutuja Bhoga', role: 'Account Assistance', image: '/assets/images/team-rutuja-bhoga.jpeg' },
+    { initials: 'SJ', name: 'Sanjay Jade', role: 'Account Manager', image: '/assets/images/TEAMS PHOTO/Sanjay Jade.png' },
+    { initials: 'RB', name: 'Rutuja Bhoga', role: 'Account Assistance', image: '/assets/images/TEAMS PHOTO/Rutuja Bhoga.png' },
     { initials: 'RB', name: 'AI Cashflow Forecast Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
     { initials: 'RB', name: 'AI Payment Followup Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
   ] as const;
 
   readonly graphicDesignerTeam = [
-    { initials: 'SP', name: 'Shantaram Palkar', role:'Graphic Manager', image: '/assets/images/team-shantaram-palkar.png' },
-    { initials: 'SV', name: 'Shakshita Vangade', role: 'Graphic Designer L1', image: '/assets/images/team-shakshita-vangade.jpeg' },
-    { initials: 'NS', name: 'Nishant Shinde', role: 'Graphic Designer L2', image: '/assets/images/team-nishant-shinde.png' },
+    { initials: 'SP', name: 'Shantaram Palkar', role:'Graphic Manager', image: '/assets/images/TEAMS PHOTO/Shantaram Palkar.png' },
+    { initials: 'SV', name: 'Shakshita Vangade', role: 'Graphic Designer L1', image: '/assets/images/TEAMS PHOTO/Shakshita Vangade.png' },
+    { initials: 'NS', name: 'Nishant Shinde', role: 'Graphic Designer L2', image: '/assets/images/TEAMS PHOTO/Nishant Shinde.png' },
      { initials: 'NS', name: 'AI Generative Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
   ] as const;
 
   readonly adminTeam = [
-    { initials: 'MS', name: 'Mayuri Shinde', role: 'Admin Manager', image: '/assets/images/team-mayuri-shinde.png' },
-      { initials: 'T', name: 'Tejas Nashiba', role: 'Admin ', image: 'assets/images/Tejas photo.jpg' },
+    { initials: 'MS', name: 'Mayuri Shinde', role: 'Admin Manager', image: '/assets/images/TEAMS PHOTO/Mayuri Shinde.png' },
+      { initials: 'T', name: 'Tejas Nashiba', role: 'Admin ', image: 'assets/images/TEAMS PHOTO/Tejas Nashiba.png' },
     { initials: 'T', name: 'AI Command Center Orchestrator', role: '', image: '/assets/images/Robot-enhanced.png' },
   ] as const;
 
   readonly technicalSupportTeam = [
-    { initials: 'RS', name: 'Rizwan Shaikh', role: 'Technical Manager', image: '/assets/images/team-rizwan-shaikh.png' },
-    { initials: 'AY', name: 'Amit Yadav', role: 'Technical L3', image: '/assets/images/Amit Yadav.png' },
-    { initials: 'SB', name: 'Santosh kumar Behera', role: 'Technical Support Executive - L2', image: '/assets/images/Santosh Behra.png' },
-     { initials: 'TM', name: 'Talha Mohammad', role: 'Technical L2', image: '/assets/images/Talha.png' },
-     { initials: 'TM', name: 'Manisha Gupta', role: 'Technical L2', image: '/assets/images/Manisha.png' },
-    { initials: 'PA', name: 'Purva Angre', role: 'Technical L1', image: '/assets/images/team-purva-angre.png' },
-    { initials: 'SY', name: 'Saurav Yadav', role:  'Cloud Executive', image: '/assets/images/Saurav Yadav.png' },
+    { initials: 'RS', name: 'Rizwan Shaikh', role: 'Technical Manager', image: '/assets/images/TEAMS PHOTO/Rizwan.png' },
+    { initials: 'AY', name: 'Amit Yadav', role: 'Technical L3', image: '/assets/images/TEAMS PHOTO/Amit Yadav.png' },
+    { initials: 'SB', name: 'Santosh kumar Behera', role: 'Technical Support Executive - L2', image: '/assets/images/TEAMS PHOTO/Santosh.png' },
+     { initials: 'TM', name: 'Talha Mohammad', role: 'Technical L2', image: '/assets/images/TEAMS PHOTO/Talha.png' },
+     { initials: 'TM', name: 'Manisha Gupta', role: 'Technical L2', image: '/assets/images/TEAMS PHOTO/Manisha Gupta.png' },
+    { initials: 'PA', name: 'Purva Angre', role: 'Technical L1', image: '/assets/images/TEAMS PHOTO/Purva.png' },
+    { initials: 'SY', name: 'Saurav Yadav', role:  'Cloud Executive', image: '/assets/images/TEAMS PHOTO/Saurav.png' },
     { initials: 'TM', name: 'AI Customer Support-Service', role: '', image: '/assets/images/Robot-enhanced.png' }
   ] as const;
 
