@@ -11,6 +11,26 @@ import { Routes } from '@angular/router';
  *   /compare/
  */
 export const routes: Routes = [
+  {
+    path: 'microsoft-365-enterprise-office365',
+    data: { productSlug: 'microsoft-365-enterprise-office365' },
+    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+  },
+  {
+    path: 'microsoft-365-enterprise-frontline',
+    data: { productSlug: 'microsoft-365-enterprise-frontline' },
+    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+  },
+  {
+    path: 'microsoft-365-enterprise-nonprofit',
+    data: { productSlug: 'microsoft-365-enterprise-nonprofit' },
+    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+  },
+  {
+    path: 'microsoft-365-enterprise-additional',
+    data: { productSlug: 'microsoft-365-enterprise-additional' },
+    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+  },
   { path: 'explore-marketplace', loadComponent: () => import('./pages/explore-marketplace.page').then((m) => m.ExploreMarketplacePage) },
   { path: 'under-construction/careers-overview', redirectTo: 'company/careers-overview', pathMatch: 'full' },
   { path: 'promo-offers', redirectTo: 'promotion-and-offers', pathMatch: 'full' },
