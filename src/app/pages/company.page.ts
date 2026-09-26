@@ -10,13 +10,13 @@ import { WORLD_MAP_HTML } from '../data/site.data';
 import { HeroNetDirective } from '../sections/product';
 import { ResellerProgramContentComponent } from '../sections/reseller-program-content.component';
 import { TeamStructureComponent } from '../sections/team-structure.component';
-import { WhyXcellhostContentComponent } from '../sections/why-xcellhost-content.component';
+import { WhyXcellhostReasonsComponent } from '../sections/why-xcellhost-reasons.component';
 import { ZohoJobListingComponent } from '../sections/zoho-job-listing.component';
 
 @Component({
   selector: 'xh-company-page',
   standalone: true,
-  imports: [RouterLink, HeroNetDirective, ResellerProgramContentComponent, TeamStructureComponent, WhyXcellhostContentComponent, ZohoJobListingComponent],
+  imports: [RouterLink, HeroNetDirective, ResellerProgramContentComponent, TeamStructureComponent, WhyXcellhostReasonsComponent, ZohoJobListingComponent],
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './company.page.html',
@@ -489,7 +489,9 @@ export class CompanyPage {
       }
       const path = this.slug() === 'partner-overview'
         ? '/under-construction/partner-overview/'
-        : `/company/${this.slug()}/`;
+        : this.slug() === 'our-team-our-story'
+          ? '/about-us/'
+          : `/company/${this.slug()}/`;
       this.seo.set(`${page.title} â€” XcellHost`, page.tagline, path);
     });
   }

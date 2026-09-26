@@ -1,17 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+export const WHY_XCELLHOST_CHAPTER_HEADINGS = ['Experience you can count on', 'Keep your business running smoothly', 'Infrastructure for your next big idea', 'Grow with confidence', 'One partner for the long run'] as const;
 
-@Component({
-  selector: 'xh-why-xcellhost-content',
-  standalone: true,
-  imports: [RouterLink],
-  templateUrl: './why-xcellhost-content.component.html',
-  styleUrl: './why-xcellhost-content.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-export class WhyXcellhostContentComponent {
-  readonly chapterHeadings = ['Experience you can count on', 'Keep your business running smoothly', 'Infrastructure for your next big idea', 'Grow with confidence', 'One partner for the long run'];
-  readonly groups = [
+export const WHY_XCELLHOST_REASON_GROUPS = [
   {
     "title": "Built on trust",
     "subtitle": "Experience, infrastructure and people you can count on.",
@@ -186,5 +175,4 @@ export class WhyXcellhostContentComponent {
       }
     ]
   }
-];
-}
+ ] as const;

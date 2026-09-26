@@ -1,7 +1,5 @@
 ﻿@if (page(); as page) {
-  @if (slug() === 'why-xcellhost') {
-    <xh-why-xcellhost-content />
-  } @else if (slug() === 'privacy-policy') {
+  @if (slug() === 'privacy-policy') {
     <main class="privacy-policy-page">
       <div class="privacy-policy-wrap">
         <div class="privacy-policy-title">Privacy &amp; Cookie Policy</div>
@@ -526,6 +524,8 @@
         </div>
       </div>
     </section>
+
+    <xh-why-xcellhost-reasons />
 
     <xh-team-structure />
 

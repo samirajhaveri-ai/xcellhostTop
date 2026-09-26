@@ -21,12 +21,6 @@ export interface CompanyPageContent {
   ctaLabel: string;
 }
 
-const aboutCards: CompanyCard[] = [
-  { icon: '27+', title: 'Years of experience', body: 'Managed hosting and cloud expertise since 1999.' },
-  { icon: '24×7', title: 'NOC + SOC', body: 'Engineers monitoring infrastructure and security around the clock.' },
-  { icon: '100+', title: 'Cloud services', body: 'Infrastructure, productivity, backup, security and digital trust.' },
-];
-
 const partnerCards: CompanyCard[] = [
   { icon: '↗', title: 'Recurring growth', body: 'Build predictable revenue with services customers renew.' },
   { icon: '◎', title: 'Specialist support', body: 'Use XcellHost presales, migration and technical expertise.' },
@@ -58,22 +52,9 @@ const trustCards: CompanyCard[] = [
 ];
 
 export const COMPANY_PAGES: Record<string, CompanyPageContent> = {
-  'why-xcellhost': {
-    eyebrow: 'About',
-    title: 'Why XcellHost',
-    tagline: 'Secure, scalable cloud services backed by experienced people and responsive support.',
-    intro: 'Since 1999, XcellHost has helped organisations run critical workloads across public and private clouds. The difference is a practical combination of infrastructure, cybersecurity, managed operations and people who remain accountable after deployment.',
-    cards: aboutCards,
-    sections: [
-      { title: 'The XcellHost advantage', body: 'Solutions are tailored to company size, workload and budget instead of forcing every customer into the same package.', points: ['Cloud and hosting expertise across multiple platforms', 'ISO-aligned security and service-management processes', 'Global delivery with continuity of contact', 'Provisioning, migration, monitoring and support from one team'] },
-      { title: 'Support is part of the service', body: 'Technology matters most when something changes or fails. Our managed approach keeps engineers close to your environment and gives you a clear route to help.' },
-    ],
-    cta: 'Tell us what you need to run, protect or improve and our team will help shape the right approach.',
-    ctaLabel: 'Talk to our team',
-  },
   'our-team-our-story': {
     eyebrow: 'About',
-    title: 'Our Team · Our Story',
+    title: 'About Us',
     tagline: 'A cloud and security company shaped by long-term relationships, practical expertise and steady service.',
     intro: 'XcellHost started in 1999 as a hosting company and evolved with customer needs into managed cloud, cybersecurity, backup, productivity and digital trust. The page below introduces the people and principles behind that journey.',
     cards: [

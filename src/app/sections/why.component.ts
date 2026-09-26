@@ -80,7 +80,7 @@ const COUNTER_THRESHOLD = 0.5;
             </div>
             <small>Trusted by businesses, schools and organizations across India.</small>
             <div class="why-cta">
-              <a class="btn btn-ghost" routerLink="/company/why-xcellhost">Learn More <span aria-hidden="true">&rarr;</span></a>
+              <a class="btn btn-ghost" routerLink="/about-us" fragment="why-reasons">Learn More <span aria-hidden="true">&rarr;</span></a>
             </div>
           </div>
         </div>

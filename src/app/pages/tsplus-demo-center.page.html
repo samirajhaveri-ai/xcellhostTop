@@ -1,0 +1,35 @@
+<main class="tsplus-demo-page">
+  <div class="tsplus-demo-wrap">
+    <nav class="tsplus-demo-breadcrumb" aria-label="Breadcrumb">
+      <a routerLink="/">Home</a><span aria-hidden="true">›</span><span>Experience Center</span><span aria-hidden="true">›</span><span>TSplus Demo Center</span>
+    </nav>
+
+    <header class="tsplus-demo-header">
+      <span class="tsplus-demo-eyebrow">Experience Center</span>
+      <h1>TSplus Demo Center</h1>
+      <p>See the ways your team can connect to desktops and applications with TSplus Remote Access.</p>
+      <a routerLink="/tsplus-remote-access">Explore TSplus Remote Access <span aria-hidden="true">→</span></a>
+    </header>
+
+    <section class="tsplus-connection-experiences" aria-labelledby="tsplus-demo-connection-title">
+      <h2 class="pp-sec" id="tsplus-demo-connection-title">Connection experiences</h2>
+      <p class="tsplus-connection-kicker">Enable ideal user experiences</p>
+      <div class="tsplus-connection-grid">
+        @for (experience of experiences; track experience.video) {
+          <article class="tsplus-connection-card">
+            <div class="tsplus-connection-video">
+              <video controls muted playsinline preload="metadata" [attr.aria-label]="experience.title">
+                <source [src]="experience.video" type="video/mp4" />
+                Your browser does not support this video.
+              </video>
+            </div>
+            <div class="tsplus-connection-copy">
+              <h3>{{ experience.title }}</h3>
+              <p>{{ experience.description }}</p>
+            </div>
+          </article>
+        }
+      </div>
+    </section>
+  </div>
+</main>
