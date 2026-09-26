@@ -764,7 +764,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Doker As Services",
+                "title": "Docker As Services",
                 "pill": null,
                 "desc": null
               },
@@ -823,7 +823,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Managed SQL",
+                "title": "Microsoft Managed SQL",
                 "pill": null,
                 "desc": null
               },
@@ -3010,24 +3010,6 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "8",
-        "label": "View Marketplace -->",
-        "on": false,
-        "groups": [
-          {
-        
-            "heading": "Explore Marketplace",
-            "items": [
-              {
-                "title": "Marketplace",
-                "pill": null,
-                "desc": null
-              },
-            ]
-          }
-        ]
-      },
-      {
         "g": "9",
         "label": "On Premises Cloud",
         "on": false,
@@ -3215,6 +3197,24 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "SAP On Azure ",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "8",
+        "label": "View Marketplace -->",
+        "on": false,
+        "groups": [
+          {
+        
+            "heading": "Explore Marketplace",
+            "items": [
+              {
+                "title": "Marketplace",
                 "pill": null,
                 "desc": null
               },
@@ -3660,7 +3660,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "We'd love to hear from you"
               },
               {
-                "title": "Customer Stories",
+                "title": "Customer Testimonials",
                 "pill": null,
                 "desc": "Secure, scalable cloud expertise since 1999"
               },
