@@ -3915,6 +3915,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "How customer personal data is processed and protected"
               },
+              {
+                "title": "AI Use Policy",
+                "pill": null,
+                "desc": "How XcellHost uses AI with human oversight and client data protections"
+              },
 
             ]
           }

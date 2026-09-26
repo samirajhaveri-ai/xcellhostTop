@@ -1,0 +1,766 @@
+<!doctype html><html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI Use Policy — Responsible AI at XcellHost</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet"><style>
+/* ===== XcellHost product-page system (matches xcellhost.top /tally-on-cloud) ===== */
+:root{--navy:#041E42;--blue:#1565D8;--blue-2:#0C3E8F;--blue-soft:#E8F0FD;--ice:#F2F6FC;--line:#DCE5F2;--ink:#1C2A3A;--slate:#51607A;--orange:#FF8C1A;--red:#E60012;--ok:#2ECC71;--h2:#080D2C;--foot:#3B63E8;
+--disp:"Sora",sans-serif;--body:"IBM Plex Sans",sans-serif;--mono:"IBM Plex Mono",monospace;--pop:"Poppins",sans-serif;--bg:#fff;--card:#fff}
+[data-theme="dark"]{--ice:#0d1a33;--line:#1f3358;--ink:#dfe7f5;--slate:#9fb0cc;--h2:#f1f5ff;--bg:#06142c;--card:#0b1d3d;--blue-soft:#12305e}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+html,body{overflow-x:clip}
+body{font-family:var(--body);color:var(--ink);background:var(--bg);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+.xg-ico{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.mono{font-family:var(--mono)}
+
+/* utility + promo */
+.utility{background:var(--navy);color:#B9C9E2;font-size:12.5px}
+.ub2{display:flex;align-items:center;gap:18px;overflow-x:auto;scrollbar-width:none;padding-top:9px;padding-bottom:9px;white-space:nowrap}
+.ub2::-webkit-scrollbar{display:none}
+.ub2>a{flex:0 0 auto}.ub2>a:hover{color:#fff}
+.ub2-push{flex:1 1 auto;min-width:12px}
+.ub2-tools{display:inline-flex;align-items:center;gap:7px;flex:0 0 auto}
+.ub2-tool{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:30px;padding:5px 11px;border:1px solid rgba(255,255,255,.16);border-radius:999px;background:rgba(255,255,255,.08);color:#fff;font:700 11px/1 var(--mono);cursor:pointer}
+.ub2-tool:hover{background:rgba(255,255,255,.14)}
+.ub2-status{position:relative;width:30px;height:30px;border:1px solid rgba(255,255,255,.2);border-radius:50%;display:inline-grid;place-items:center;background:rgba(0,0,0,.2)}
+.ub2-status i{position:absolute;top:1px;right:1px;width:8px;height:8px;border-radius:50%;background:var(--ok);border:1.5px solid var(--navy)}
+.ub2 .phone{color:#fff;font-weight:600}
+.promo{background:linear-gradient(90deg,var(--blue),#0E4CAB);color:#fff;text-align:center;font-size:13.5px;padding:8px 16px;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
+.promo b{color:#FFD9AC}
+.promo-check{display:inline-grid;place-items:center;width:17px;height:17px;border-radius:4px;background:#22C55E;color:#fff;font-size:11px;font-weight:700}
+.promo .code{font-family:var(--mono);background:rgba(255,255,255,.15);padding:1px 8px;border-radius:4px;font-size:12px;letter-spacing:.06em}
+.promo a{text-decoration:underline;font-weight:600}
+
+/* header */
+.nav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;box-shadow:0 2px 12px rgba(4,30,66,.04)}
+[data-theme="dark"] .nav{background:#06142c}
+.nav .wrap{display:flex;align-items:center;gap:16px;height:78px}
+.logo img{height:58px;width:auto;display:block}
+.logo-txt{white-space:nowrap;display:inline-flex;flex-direction:column;font:800 italic 30px/1 var(--disp);color:#0B3C8C;letter-spacing:-.02em}.logo-txt b{color:#1D8FE0}.logo-txt small{font:600 10px var(--body);color:var(--red);letter-spacing:.04em;font-style:normal;margin-top:3px}
+.menu{display:flex;gap:0;flex:1;min-width:0;justify-content:center;font-size:13.5px;font-weight:500;color:var(--navy);white-space:nowrap}
+[data-theme="dark"] .menu{color:#dfe7f5}
+.menu a{padding:8px 7px;border-radius:8px;display:inline-flex;align-items:center;gap:3px}
+.menu a:after{content:"⌄";font-size:12px;opacity:.6;transform:translateY(-2px)}
+.menu a:hover,.menu a.is-on{color:var(--blue);background:var(--blue-soft)}
+.nav-ic{display:flex;gap:8px}
+.nav-ic a{width:40px;height:40px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--navy)}
+[data-theme="dark"] .nav-ic a{color:#fff}
+.nav-ic a:hover{border-color:var(--blue);color:var(--blue)}
+.nav-burger{display:none!important;border-radius:10px!important}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:7px;font:600 14px var(--body);padding:10px 20px;border-radius:8px;border:1.5px solid transparent;cursor:pointer;transition:.15s;white-space:nowrap}
+.btn-primary{background:var(--orange);color:#fff;animation:glow 2.8s ease-in-out infinite}
+.btn-primary:hover{background:#E97A08}
+.btn-ghost{border-color:var(--line);color:var(--navy);background:transparent}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
+.pp-hero .btn-ghost,.cta-band .btn-ghost{border-color:rgba(255,255,255,.35);color:#fff;background:rgba(255,255,255,.06)}
+.pp-hero .btn-ghost:hover,.cta-band .btn-ghost:hover{border-color:#fff}
+.ppd-info{background:linear-gradient(135deg,rgba(21,101,216,.9),rgba(12,62,143,.9));color:#fff;border-color:rgba(255,255,255,.4)}
+.ppd-pres{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.4);backdrop-filter:blur(6px)}
+.btn-blue{background:linear-gradient(135deg,#1670E8,#0B55C7);color:#fff;box-shadow:0 7px 16px rgba(21,101,216,.24)}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(255,140,26,.5)}50%{box-shadow:0 0 0 13px rgba(255,140,26,0)}}
+
+/* hero */
+.pp-hero{position:relative;overflow:hidden;color:#fff;padding:52px 0 40px;background:radial-gradient(900px 420px at 80% -20%,#0E3A78 0%,var(--navy) 60%)}
+.pph-grid{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.4;background-image:linear-gradient(rgba(127,178,255,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(127,178,255,.1) 1px,transparent 1px);background-size:44px 44px;-webkit-mask-image:radial-gradient(circle at 30% 40%,#000,transparent 75%);mask-image:radial-gradient(circle at 30% 40%,#000,transparent 75%);animation:pphgrid 20s linear infinite}
+@keyframes pphgrid{to{background-position:44px 44px}}
+.pph-aur{position:absolute;border-radius:50%;filter:blur(80px);opacity:.55;z-index:1;pointer-events:none;mix-blend-mode:screen}
+.pph-a1{width:520px;height:520px;left:-8%;top:-30%;background:radial-gradient(circle,#1565D8,transparent 65%);animation:aflow1 17s ease-in-out infinite alternate}
+.pph-a2{width:480px;height:480px;right:-6%;top:-10%;background:radial-gradient(circle,#0C4EA8,transparent 65%);opacity:.4;animation:aflow2 21s ease-in-out infinite alternate}
+.pph-a3{width:420px;height:420px;left:40%;bottom:-40%;background:radial-gradient(circle,#7C3AED,transparent 62%);opacity:.28;animation:aflow3 19s ease-in-out infinite alternate}
+@keyframes aflow1{to{transform:translate(90px,50px) scale(1.18)}}@keyframes aflow2{to{transform:translate(-80px,60px) scale(.95)}}@keyframes aflow3{to{transform:translate(60px,-45px) scale(1.22)}}
+.pph-scan{position:absolute;left:0;right:0;top:0;height:34%;z-index:1;pointer-events:none;background:linear-gradient(rgba(127,178,255,.14),transparent);animation:pphscan 7s ease-in-out infinite}
+@keyframes pphscan{0%,100%{transform:translateY(-10%);opacity:.5}50%{transform:translateY(230%);opacity:1}}
+.pp-hero>.wrap{position:relative;z-index:3}
+.pp-hero-cols{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:30px;align-items:center}
+.pp-crumb{font:600 11px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:#7FB2FF;margin-bottom:14px}
+.pp-crumb a:hover{color:#fff}
+.pp-hero h1{font:800 clamp(26px,3vw,38px)/1.12 var(--disp);letter-spacing:-.01em;margin-bottom:14px}
+.pp-brand-xcell{color:var(--red)}.pp-title-divider{margin:0 .18em;opacity:.9}
+.pp-tagline{font:500 17px/1.5 var(--body);color:#C7D5EC;margin-bottom:6px}
+.pp-tagline-support{color:#fff;font-size:16.5px;margin-bottom:12px}
+.pp-typewriter{display:flex;align-items:center;min-height:32px;margin-bottom:6px;color:#69B6FF;font:600 clamp(17px,1.4vw,21px)/1.35 var(--body)}
+.pp-typewriter i{display:inline-block;width:2px;height:1.15em;margin-left:4px;background:currentColor;animation:ppcursor .75s steps(1) infinite}
+@keyframes ppcursor{50%{opacity:0}}
+.pp-hpoints{display:grid;grid-template-columns:repeat(2,max-content);gap:10px 32px;margin:12px 0 22px}
+.pp-hpoint{display:flex;align-items:center;gap:9px;font-size:14px;color:#CFE0F7}
+.pp-hpoint .tick{width:20px;height:20px;border-radius:50%;background:var(--blue);display:grid;place-items:center;flex:none;animation:tickpop .5s cubic-bezier(.34,1.56,.64,1) both}
+.pp-hpoint .tick .xg-ico{width:12px;height:12px;stroke-width:3}
+@keyframes tickpop{from{transform:scale(0) rotate(-40deg)}}
+.hero-ctas{display:flex;gap:10px;flex-wrap:wrap}
+.pp-ask-ai{display:flex;align-items:center;gap:10px;margin-top:24px;padding:20px 0 4px;border-top:1px solid rgba(144,180,233,.2);flex-wrap:wrap}
+.pp-ask-ai-kicker{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border:1px solid rgba(75,165,255,.26);border-radius:999px;background:rgba(8,31,68,.46);font:700 11px/1 var(--mono);letter-spacing:.04em}
+.pp-ask-ai-kicker:before{content:"✦"}
+.pp-ask-ai-chip{display:inline-grid;place-items:center;width:40px;height:40px;border:1px solid rgba(161,184,219,.28);border-radius:14px;background:rgba(11,24,53,.58);transition:.18s}
+.pp-ask-ai-chip img{width:19px;height:19px;border-radius:4px;background:#fff}
+.pp-ask-ai-chip:hover{transform:translateY(-2px);border-color:rgba(113,192,255,.65)}
+.pp-stage{position:relative;aspect-ratio:1/1;max-height:470px}
+.pp-stage canvas{position:absolute;inset:0;width:100%;height:100%}
+.pp-stage__tag{position:absolute;left:8px;right:8px;bottom:6px;display:flex;justify-content:space-between;gap:8px;font:600 11px var(--mono);letter-spacing:.06em}
+.pp-stage__tag span{background:rgba(8,31,68,.6);border:1px solid rgba(127,178,255,.25);border-radius:99px;padding:5px 11px}
+.live:before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--ok);margin-right:6px;animation:blink 1.4s infinite}
+@keyframes blink{50%{opacity:.3}}
+.pp-trust{background:var(--ice);border-bottom:1px solid var(--line)}
+.pp-trust .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;padding-top:16px;padding-bottom:16px;font-size:12.5px;color:var(--slate);font-weight:500}
+.pp-trust b{color:var(--navy);font-family:var(--mono)}
+[data-theme="dark"] .pp-trust b{color:#fff}
+
+/* GPU card render + motion */
+.gc-stage{position:absolute;left:4%;right:4%;top:8%;height:56%;perspective:1100px;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2}
+.gc-tilt{width:100%;transition:transform .35s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
+.gc-float{animation:gc-float 6s ease-in-out infinite;transform-style:preserve-3d}
+@keyframes gc-float{0%,100%{transform:translateY(0) rotateX(8deg) rotateY(-14deg) rotateZ(-2deg)}50%{transform:translateY(-14px) rotateX(4deg) rotateY(-6deg) rotateZ(-1deg)}}
+.gc-floor{width:70%;height:18px;margin-top:10px;border-radius:50%;background:rgba(21,101,216,.45);filter:blur(14px);animation:gc-floor 6s ease-in-out infinite}
+@keyframes gc-floor{50%{transform:scaleX(.85);opacity:.6}}
+.gc,.gc-img{width:100%;height:auto;display:block;overflow:visible}
+.gc-fan{transform-box:fill-box;transform-origin:center;animation:gc-spin 1.1s linear infinite}
+@keyframes gc-spin{to{transform:rotate(360deg)}}
+.gc-sheen{animation:gc-sheen 4.5s ease-in-out infinite}
+@keyframes gc-sheen{0%{transform:skewX(-18deg) translateX(0)}60%,100%{transform:skewX(-18deg) translateX(1100px)}}
+.gc-led{animation:gc-led 2.4s ease-in-out infinite}
+@keyframes gc-led{50%{opacity:.35}}
+.gc-nvl rect[fill="#d8b24a"]{animation:gc-led 1.2s ease-in-out infinite}
+.gc-hs{cursor:pointer;outline:none}
+.gc-hs__ring{fill:rgba(255,140,26,.18);stroke:var(--orange);stroke-width:2;transform-box:fill-box;transform-origin:center;animation:gc-ping 2s ease-out infinite}
+.gc-hs__dot{fill:var(--orange)}
+.gc-hs text{font:700 10px var(--body);fill:#fff;pointer-events:none}
+.gc-hs.is-on .gc-hs__dot{fill:var(--blue)}.gc-hs.is-on .gc-hs__ring{stroke:#7FB2FF;fill:rgba(21,101,216,.3)}
+@keyframes gc-ping{0%{transform:scale(.8);opacity:1}100%{transform:scale(1.6);opacity:0}}
+
+/* body */
+.pp-body{padding:18px 0 35px}
+.pp-sec{font:700 15px/1.35 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:44px 0 16px}
+.pp-ov{font-size:16.5px;line-height:1.75;max-width:80ch;color:var(--ink)}
+.pp-ov b{color:var(--navy)}
+[data-theme="dark"] .pp-ov b{color:#fff}
+.center-head{text-align:center;margin:56px auto 30px;max-width:820px}
+.center-head>span{display:inline-block;margin-bottom:10px;color:var(--blue);font:700 12px/1.2 var(--pop);letter-spacing:.1em;text-transform:uppercase}
+.center-head h2{color:var(--h2);font:600 clamp(28px,3.2vw,44px)/1.15 var(--pop);letter-spacing:-.03em}
+.center-head h2 em{font-style:normal;color:var(--blue)}
+.center-head p{margin:12px auto 0;color:var(--slate);font:400 15px/1.6 var(--pop)}
+.h2s{color:var(--h2);font:600 clamp(22px,2.2vw,28px)/1.25 var(--pop);text-align:center;margin:56px 0 24px}
+.h2s em{font-style:normal;color:var(--blue)}
+
+/* quick answer */
+.pp-answer{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:14px;padding:26px 28px;background:var(--card);box-shadow:0 8px 24px rgba(16,43,79,.06);margin-top:26px}
+.pp-answer h2{font:600 22px/1.3 var(--pop);color:var(--h2);margin:6px 0 10px}
+.pp-answer p{color:var(--slate);font-size:15.5px;line-height:1.7}
+.pp-answer .kick{font:700 11px var(--mono);letter-spacing:.12em;color:var(--blue)}
+.pp-answer ul{list-style:none;display:grid;gap:9px;margin:8px 0 14px}
+.pp-answer li{display:flex;gap:9px;font-size:14.5px}
+.pp-answer li .xg-ico{color:#16A34A;margin-top:2px}
+.bestfor{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12.5px}
+.bestfor span{color:var(--slate);font-weight:600}
+.bestfor b{background:var(--blue-soft);color:var(--blue);border-radius:99px;padding:3px 10px;font-weight:600}
+
+/* outcomes */
+.outs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.out{border:1px solid var(--line);border-radius:12px;padding:20px;background:linear-gradient(180deg,var(--card),var(--ice));transition:.15s}
+.out:hover{border-color:var(--blue);box-shadow:0 8px 22px rgba(21,101,216,.1)}
+.out b{display:block;font:800 34px/1 var(--disp);color:var(--blue);margin-bottom:10px}
+.out h3{font:600 15px var(--pop);color:var(--h2);margin-bottom:4px}
+.out p{font-size:13.5px;color:var(--slate)}
+.note{font-size:12.5px;color:var(--slate);margin-top:12px}
+
+/* pricing (tally plan cards) */
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line);margin:0 0 30px}
+.tabs button{position:relative;border:0;background:none;padding:30px 8px 14px;font:500 16px var(--pop);color:var(--slate);cursor:pointer}
+.tabs button .sv{position:absolute;top:0;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font:700 9.5px var(--pop);padding:3px 8px;border-radius:5px;white-space:nowrap}
+.tabs button.is-on{color:var(--blue);font-weight:600}
+.tabs button.is-on:after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:3px;background:var(--blue)}
+.plan-grid{display:grid;gap:18px}
+.plan{display:grid;grid-template-columns:220px minmax(0,1fr) 180px;border:1px solid #D3DCE8;border-radius:14px;background:var(--card);overflow:hidden;box-shadow:0 8px 24px rgba(16,43,79,.06);transition:.22s}
+.plan:hover{border-color:#9FC3EF;box-shadow:0 14px 32px rgba(16,78,155,.12);transform:translateY(-2px)}
+.plan-l{display:flex;flex-direction:column;border-right:1px solid #E0E6EE}
+.plan-band{padding:14px 10px;flex:1;background:linear-gradient(135deg,#EDF6FF,#E5F0FF);color:var(--blue);font:650 12px/1.2 var(--pop);letter-spacing:.035em;text-transform:uppercase;text-align:center}
+.plan-name{display:flex;align-items:center;gap:10px;padding:16px 18px}
+.plan-name>span{display:grid;place-items:center;width:42px;height:42px;border-radius:9px;background:var(--blue);color:#fff;font:700 15px var(--pop);flex:none}
+.plan-name b{display:block;color:var(--h2);font:600 17px/1.2 var(--pop)}
+.plan-name small{display:block;color:var(--blue);font:550 12.5px var(--pop)}
+.plan:nth-child(4n+2) .plan-band{background:linear-gradient(135deg,#F4F0FF,#EEE8FF);color:#7040C4}.plan:nth-child(4n+2) .plan-name>span{background:#7040C4}
+.plan:nth-child(4n+3) .plan-band{background:linear-gradient(135deg,#EBFAF1,#E2F6EA);color:#168F46}.plan:nth-child(4n+3) .plan-name>span{background:#70B927}
+.plan:nth-child(4n+4) .plan-band{background:linear-gradient(135deg,#FFF3E8,#FFEBD8);color:#E66B00}.plan:nth-child(4n+4) .plan-name>span{background:#FF870E}
+.plan-specs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.plan-specs>div{display:grid;gap:2px;align-content:center;justify-items:center;text-align:center;min-height:52px;padding:6px 8px;background:#F5F6F8}
+.plan-specs>div:nth-child(8n+2),.plan-specs>div:nth-child(8n+4),.plan-specs>div:nth-child(8n+5),.plan-specs>div:nth-child(8n+7){background:var(--card)}
+[data-theme="dark"] .plan-specs>div{background:#0f2447}
+.plan-specs dt{font:500 11px/1.3 var(--pop);color:var(--slate)}
+.plan-specs dd{font:650 11.5px/1.3 var(--pop);color:var(--h2)}
+.plan-act{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:14px;border-left:1px solid #E0E6EE}
+.plan-act strong{font:650 25px/1.05 var(--pop);color:var(--h2);letter-spacing:-.02em}
+.plan-act .was{font-size:11px;color:var(--slate);text-decoration:line-through;min-height:14px}
+.plan-act .btn{width:142px;justify-content:center;text-transform:uppercase;font:650 13px var(--pop)}
+.plan-act small{font-size:10px;color:#6B7280;text-align:center}
+.plan-act .hr{font:600 11px var(--mono);color:var(--blue)}
+
+/* estimator */
+.est{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;border:1px solid var(--line);border-radius:14px;padding:26px;background:var(--card);margin-top:24px}
+.est h3{font:600 20px var(--pop);color:var(--h2);margin-bottom:4px}
+.est>div>p{font-size:14px;color:var(--slate);margin-bottom:16px}
+.fld{margin-bottom:16px}
+.fld label{display:flex;justify-content:space-between;font-size:13.5px;font-weight:600;margin-bottom:6px}
+.fld output{font-family:var(--mono);color:var(--blue)}
+.fld select,.form input,.form select,.form textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:9px;background:var(--card);color:var(--ink);font:14.5px var(--body)}
+.fld input[type=range]{width:100%;accent-color:var(--blue)}
+.est-out{background:var(--navy);color:#fff;border-radius:12px;padding:22px;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.est-out div{display:flex;justify-content:space-between;font-size:14px;color:#B9C9E2}
+.est-out b{color:#fff;font:700 18px var(--mono)}
+.est-rec{background:var(--orange);color:#fff;border-radius:9px;padding:11px 13px;font-size:13.5px;font-weight:600}
+
+/* feature cards (pp-feat) */
+.pp-feats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.pp-feat{border:1px solid var(--line);border-radius:12px;padding:18px 20px;display:flex;gap:14px;align-items:flex-start;background:var(--card);transition:.15s}
+.pp-feat:hover{border-color:var(--blue);box-shadow:0 8px 22px rgba(21,101,216,.1)}
+.pp-feat .ic{flex:none;width:36px;height:36px;border-radius:9px;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center}
+.pp-feat p{font-size:14px;color:var(--slate);line-height:1.55}
+.pp-feat p b{display:block;color:var(--navy);font-size:14.5px;margin-bottom:3px}
+[data-theme="dark"] .pp-feat p b{color:#fff}
+
+/* benefits (why choose) */
+.pp-bens{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.pp-ben{border:1px solid var(--line);border-radius:14px;padding:22px;background:linear-gradient(160deg,var(--card) 40%,#EEF4FE);transition:.2s}
+[data-theme="dark"] .pp-ben{background:var(--card)}
+.pp-ben:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(21,101,216,.1)}
+.pp-ben .ic{width:44px;height:44px;border-radius:12px;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;margin-bottom:14px;border:1px solid #D4E3FA}
+.pp-ben h3{font:600 16px var(--pop);color:var(--h2);margin-bottom:5px}
+.pp-ben p{font-size:13.5px;color:var(--slate)}
+
+/* hotspot explorer */
+.explore{display:grid;grid-template-columns:1.25fr .75fr;gap:28px;align-items:center;background:radial-gradient(700px 300px at 20% 0%,#0E3A78,var(--navy) 70%);border-radius:16px;padding:32px}
+.explore__card{perspective:1000px}
+.explore__card .gc{transform:rotateX(6deg) rotateY(-8deg);transition:transform .4s}
+.explore__card:hover .gc{transform:none}
+.explore ol{list-style:none;display:grid;gap:8px}
+.explore li{display:flex;gap:12px;padding:11px 13px;border-radius:12px;border:1px solid rgba(255,255,255,.1);cursor:pointer;color:#C7D5EC;transition:.2s}
+.explore li b{flex:none;width:26px;height:26px;border-radius:50%;background:var(--orange);color:#fff;display:grid;place-items:center;font-size:12px}
+.explore li h3{font:600 14px var(--pop);color:#fff}
+.explore li p{font-size:13px;display:none;margin-top:2px}
+.explore li.is-on{background:rgba(21,101,216,.22);border-color:#7FB2FF}
+.explore li.is-on b{background:var(--blue)}.explore li.is-on p{display:block}
+.specs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:18px}
+.specs>div{padding:14px 16px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--card)}
+.specs>div:nth-child(8n+1),.specs>div:nth-child(8n+3),.specs>div:nth-child(8n+6),.specs>div:nth-child(8n+8){background:#F5F6F8}
+[data-theme="dark"] .specs>div{background:var(--card)!important}
+.specs dt{font:500 11px var(--pop);color:var(--slate);text-transform:uppercase;letter-spacing:.06em}
+.specs dd{font:650 14.5px var(--pop);color:var(--h2);margin-top:2px}
+
+/* compare bars */
+.ctabs{display:inline-flex;gap:4px;border:1px solid var(--line);border-radius:10px;padding:4px;margin-bottom:22px;flex-wrap:wrap;background:var(--card)}
+.ctabs button{border:0;background:none;padding:8px 14px;border-radius:7px;font:600 13.5px var(--pop);color:var(--slate);cursor:pointer}
+.ctabs button.is-on{background:var(--blue);color:#fff}
+.bars{display:grid;gap:14px;max-width:900px}
+.bar{display:grid;grid-template-columns:170px 1fr 100px;align-items:center;gap:14px;font-size:14px}
+.bar__t{height:14px;background:var(--ice);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.bar__f{height:100%;width:0;background:#9DB4D8;border-radius:8px;transition:width .9s cubic-bezier(.2,.8,.2,1)}
+.bar.me{font-weight:700}.bar.me .bar__f{background:linear-gradient(90deg,var(--blue),#4C8DF0)}
+.bar__v{text-align:right;font-family:var(--mono);font-size:13px}
+.bar__v i{font-style:normal;color:var(--orange);margin-left:5px;font-weight:700}
+
+/* VS */
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:12px 20px}
+.vs-i{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-left:4px solid #E5484D;border-radius:10px;padding:13px 16px;font:600 13.5px var(--pop);color:var(--h2);background:var(--card);box-shadow:0 3px 10px rgba(16,43,79,.04)}
+.vs-i.ok{border-left-color:#16A34A;background:linear-gradient(90deg,#F2FBF5,var(--card))}
+[data-theme="dark"] .vs-i.ok{background:var(--card)}
+.vs-i i{flex:none;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;background:#E5484D;color:#fff}
+.vs-i.ok i{background:#16A34A}
+.vs-i i .xg-ico{width:11px;height:11px;stroke-width:3.2}
+.vs-hd{font:600 14px var(--pop);text-align:center;color:var(--slate);padding-bottom:4px}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;list-style:none}
+.steps li{position:relative;border:1px solid var(--line);border-radius:14px;padding:26px 18px 20px;text-align:center;background:var(--card);box-shadow:0 6px 18px rgba(16,43,79,.05);transition:.2s}
+.steps li:hover{transform:translateY(-3px);border-color:#9FC3EF}
+.steps .n{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font:700 11.5px var(--mono)}
+.steps .ic{width:52px;height:52px;margin:0 auto 12px;border-radius:14px;display:grid;place-items:center;background:var(--blue-soft);color:var(--blue)}
+.steps .ic .xg-ico{width:26px;height:26px}
+.steps h3{font:600 14.5px var(--pop);color:var(--h2);margin-bottom:5px}
+.steps p{font-size:13px;color:var(--slate)}
+
+/* logo marquee (software) */
+.marq{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marq-t{display:flex;gap:14px;width:max-content;animation:scrollx 34s linear infinite}
+.marq:hover .marq-t{animation-play-state:paused}
+@keyframes scrollx{to{transform:translateX(-50%)}}
+.marq-t span{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:12px;padding:14px 20px;background:var(--card);font:650 15px var(--pop);color:var(--h2);white-space:nowrap}
+.marq-t span i{width:10px;height:10px;border-radius:3px;background:var(--blue)}
+
+/* included icons */
+.incl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px 18px;text-align:center}
+.incl div{display:flex;flex-direction:column;align-items:center;gap:10px;font:600 13px var(--pop);color:var(--h2)}
+.incl .xg-ico{width:46px;height:46px;stroke-width:1.2;color:#1D5FB8}
+.incl div:hover .xg-ico{color:var(--orange);transform:translateY(-3px);transition:.2s}
+
+/* platform tiles */
+.tiles{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.tiles div{border:1px solid var(--line);border-radius:12px;padding:16px 8px;text-align:center;background:var(--card);font:600 12.5px var(--pop);color:var(--h2);transition:.15s}
+.tiles div:hover{border-color:var(--blue);transform:translateY(-2px)}
+.tiles .xg-ico{width:26px;height:26px;margin:0 auto 8px;color:var(--blue);display:block}
+
+/* case studies (testimonial-card style) */
+.cases{display:grid;gap:16px}
+.case{position:relative;border:1px solid var(--line);border-radius:14px;background:var(--card);padding:26px 28px;box-shadow:0 6px 18px rgba(16,43,79,.05)}
+.case:after{content:"\201D";position:absolute;top:0;right:0;width:48px;height:44px;background:var(--blue);color:#fff;border-radius:0 14px 0 14px;display:grid;place-items:center;font:700 26px/1 Georgia,serif}
+.case-hd{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.case-av{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--blue),#4C8DF0);color:#fff;display:grid;place-items:center;font:700 16px var(--pop);flex:none}
+.case-hd h3{font:600 17px/1.3 var(--pop);color:var(--h2)}
+.case-hd small{display:block;color:var(--slate);font-size:12.5px}
+.case-tag{display:inline-block;font:600 10px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--slate);border:1px dashed var(--line);border-radius:6px;padding:2px 7px;margin-left:6px}
+.case-body{display:grid;grid-template-columns:1fr 1fr 250px;gap:22px}
+.case-body h4{font:700 11.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+.case-body p{font-size:14px;color:var(--slate);line-height:1.6}
+.case-plan{margin-top:10px;font-size:12.5px;color:var(--slate)}.case-plan b{color:var(--h2)}
+.case-res{background:var(--ice);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:10px}
+.case-res div b{display:block;font:800 24px/1 var(--disp);color:var(--blue)}
+.case-res div span{font-size:12.5px;color:var(--slate)}
+.stars{color:var(--orange);letter-spacing:2px;font-size:13px}
+
+/* compare gpus */
+.gsw{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.gcard{position:relative;border:1.5px solid var(--line);border-radius:14px;padding:16px;background:var(--card);transition:.2s;display:block}
+.gcard:hover{border-color:var(--blue);transform:translateY(-3px);box-shadow:0 12px 26px rgba(21,101,216,.1)}
+.gcard.cur{border-color:var(--orange)}
+.gcard .badge{position:absolute;top:-10px;left:14px;background:var(--orange);color:#fff;font:700 10px var(--mono);padding:3px 8px;border-radius:5px;letter-spacing:.06em;z-index:2}
+.gcard .img{background:radial-gradient(circle at 50% 30%,#0E3A78,var(--navy));border-radius:10px;padding:14px 10px 8px;margin-bottom:12px}
+.gcard .img .gc{transition:transform .4s}.gcard:hover .gc{transform:translateY(-4px) rotate(-2deg)}
+.gcard .fam{font:600 10.5px var(--mono);letter-spacing:.1em;color:var(--orange)}
+.gcard h3{font:700 18px var(--disp);color:var(--h2);margin:2px 0}
+.gcard p{font-size:13px;color:var(--slate);margin-bottom:10px}
+.gcard dl{display:flex;justify-content:space-between;font-size:12px;color:var(--slate)}
+.gcard dd{font:700 14px var(--pop);color:var(--h2)}
+.gcard .go{display:block;margin-top:10px;color:var(--blue);font-weight:600;font-size:13.5px}
+
+/* faq grid */
+.faqs{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+.faqs details{border:1px solid var(--line);border-radius:12px;background:var(--card);transition:.15s}
+.faqs details[open]{border-color:var(--blue);box-shadow:0 6px 18px rgba(21,101,216,.08)}
+.faqs summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 18px;font:600 14.5px var(--pop);color:var(--h2)}
+.faqs summary::-webkit-details-marker{display:none}
+.faqs summary:after{content:"+";flex:none;width:22px;height:22px;border-radius:50%;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;font-size:15px;transition:.2s}
+.faqs details[open] summary:after{content:"×";background:var(--blue);color:#fff}
+.faqs .ans{padding:0 18px 16px;font-size:14px;color:var(--slate);line-height:1.65}
+.rel{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:22px;font-size:13px}
+.rel span{font-weight:600;color:var(--slate)}
+.rel a{border:1px solid var(--line);border-radius:99px;padding:5px 12px;color:var(--blue);background:var(--card)}
+.rel a:hover{border-color:var(--blue)}
+
+/* CTA band + lead form */
+.cta-band{margin-top:50px;background:linear-gradient(105deg,var(--blue),var(--blue-2));color:#fff;border-radius:18px;padding:40px 44px;display:grid;grid-template-columns:1fr 1fr;gap:34px;position:relative;overflow:hidden}
+.cta-band:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:36px 36px;-webkit-mask-image:radial-gradient(circle at 100% 0,#000,transparent 70%);mask-image:radial-gradient(circle at 100% 0,#000,transparent 70%)}
+.cta-band>*{position:relative}
+.cta-band h2{font:700 26px/1.25 var(--disp);margin-bottom:6px}
+.cta-band p{color:#CFE0FA;font-size:14.5px}
+.cta-band .hero-ctas{margin-top:20px}
+.cta-band ul{list-style:none;display:grid;gap:8px;margin-top:18px;font-size:14px;color:#E3EDFD}
+.cta-band li{display:flex;gap:8px}.cta-band li .xg-ico{color:#FFD9AC}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:18px}
+.form .full{grid-column:1/-1}
+.form input,.form select,.form textarea{background:#fff;color:var(--navy);border-color:#fff}
+.form small{color:#CFE0FA;font-size:11.5px}
+.ok-msg{display:none;grid-column:1/-1;background:#16A34A;border-radius:9px;padding:12px;font-weight:600;font-size:14px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px}
+.pills span{border:1px solid var(--line);border-radius:99px;padding:6px 13px;font-size:12px;font-weight:600;color:var(--navy);background:var(--card)}
+[data-theme="dark"] .pills span{color:#fff}
+
+/* footer */
+.foot{background:var(--foot);color:#fff;margin-top:56px;padding:40px 0 24px;font-size:13.5px}
+.foot-banner{display:flex;align-items:center;gap:22px;background:#fff;border-radius:10px;padding:14px 22px;color:var(--navy)}
+.foot-banner img{height:54px}
+.foot-banner .t{border-left:2px solid var(--line);padding-left:18px;font:500 17px var(--body)}
+.foot-banner .t b{display:block;font:700 18px var(--body);background:linear-gradient(90deg,var(--red),var(--blue),#16A34A);-webkit-background-clip:text;background-clip:text;color:transparent}
+.foot-about{margin:18px 0;line-height:1.7;color:#E6EDFF}
+.soc{display:flex;gap:10px;margin-bottom:26px}
+.soc a{width:34px;height:34px;border-radius:50%;background:#fff;color:var(--blue);display:grid;place-items:center;font:700 12px var(--disp)}
+.foot-cols{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:22px;padding:24px 0;border-top:1px solid rgba(255,255,255,.2)}
+.foot-cols h4{font:700 14px var(--disp);margin-bottom:10px}
+.foot-cols ul{list-style:none;display:grid;gap:7px;color:#E6EDFF}
+.foot-cols a:hover{text-decoration:underline}
+.hire{background:var(--red);border-radius:4px;padding:0 6px;font-size:11px;margin-left:4px}
+.foot-row{display:grid;grid-template-columns:170px 1fr;gap:18px;align-items:center;padding:16px 0;border-top:1px solid rgba(255,255,255,.2)}
+.foot-row h5{font:700 14px var(--disp)}
+.certs{display:flex;flex-wrap:wrap;gap:8px}
+.certs span{min-width:62px;border:1px solid rgba(255,255,255,.3);background:rgba(4,30,66,.25);border-radius:8px;padding:6px 10px;text-align:center;font:700 13px var(--disp);line-height:1.1}
+.certs span small{display:block;font:600 7.5px var(--mono);letter-spacing:.08em;opacity:.75;margin-top:2px}
+.pays{display:flex;flex-wrap:wrap;gap:8px}
+.pays span{background:#fff;color:var(--navy);border-radius:6px;padding:6px 12px;font:700 12px var(--body)}
+.revs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.revs div{background:rgba(4,30,66,.25);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:10px 14px;font-size:12.5px}
+.revs b{display:block;font-size:13px}.revs i{font-style:normal;color:#FFC24B;letter-spacing:1px}
+.partner{display:flex;justify-content:space-between;align-items:center;gap:18px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:18px 22px;margin:20px 0}
+.partner h4{font:700 18px var(--disp)}.partner p{color:#E6EDFF;font-size:13px}
+.copy{font-size:12px;color:#DCE6FF;display:grid;gap:4px}
+.copy .mono{font-size:11px;opacity:.85}
+
+/* floating */
+.fl-l{position:fixed;left:18px;bottom:18px;display:grid;gap:12px;z-index:60}
+.fl-l a{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;color:#fff;box-shadow:0 8px 20px rgba(0,0,0,.2)}
+.fl-l a .xg-ico{width:24px;height:24px}
+.fl-r{position:fixed;right:18px;bottom:18px;display:grid;gap:12px;z-index:60}
+.fl-r a{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;color:#fff;box-shadow:0 8px 20px rgba(0,0,0,.25)}
+.cb-tab{position:fixed;right:0;top:44%;writing-mode:vertical-rl;transform:rotate(180deg);background:var(--orange);color:#fff;font:600 13px var(--body);padding:14px 9px;border-radius:0 10px 10px 0;z-index:60}
+
+.rv{opacity:0;transform:translateY(16px);transition:opacity .6s,transform .6s}
+.rv.is-in{opacity:1;transform:none}
+
+@media (max-width:1280px){.menu{display:none}.nav .wrap{justify-content:space-between}.nav-burger{display:grid!important}}
+@media (max-width:1000px){.pp-hero-cols{grid-template-columns:minmax(0,1fr)}.pp-stage{max-height:380px;max-width:480px;margin:0 auto;width:100%}.outs,.steps,.gsw{grid-template-columns:repeat(2,minmax(0,1fr))}.tiles{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .plan{grid-template-columns:1fr}.plan-l{border-right:0;border-bottom:1px solid #E0E6EE;flex-direction:row;align-items:stretch}.plan-band{flex:0 0 40%;display:grid;place-items:center}.plan-act{border-left:0;border-top:1px solid #E0E6EE;flex-direction:row;flex-wrap:wrap}
+ .case-body{grid-template-columns:1fr}.foot-cols{grid-template-columns:repeat(2,minmax(0,1fr))}.explore,.pp-answer,.est,.cta-band{grid-template-columns:1fr}}
+@media (max-width:700px){.wrap{padding:0 16px}.pp-hero h1{font-size:25px}.promo{font-size:12px}.logo-txt{font-size:24px}.pp-hero{padding:36px 0 30px}.pp-hpoints{grid-template-columns:1fr}.hero-ctas{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px}
+ .pp-feats,.pp-bens,.outs,.steps,.gsw,.faqs,.vs,.incl,.revs{grid-template-columns:1fr}.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.plan-specs,.specs{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .tabs button{font-size:13px;padding-top:28px}.bar{grid-template-columns:100px 1fr 76px;font-size:12.5px}.foot-row{grid-template-columns:1fr}.foot-banner{flex-direction:column;align-items:flex-start}.foot-banner .t{border:0;padding:0}
+ .cta-band{padding:26px 18px}.form{grid-template-columns:1fr}.partner{flex-direction:column;align-items:flex-start}.cb-tab{display:none}.pp-trust .wrap{justify-content:flex-start}.logo img{height:46px}.nav .wrap{height:66px}.foot-cols{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+/* policy page */
+.xp-progress{position:fixed;left:0;top:0;height:3px;background:var(--orange);width:0;z-index:70}
+.xp-layout{display:grid;grid-template-columns:260px 1fr;gap:48px;align-items:start}
+.xp-toc{position:sticky;top:96px;border:1px solid var(--line);border-radius:14px;padding:18px;background:var(--card)}
+.xp-toc h2{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin-bottom:10px}
+.xp-toc ol{list-style:none;display:grid;gap:2px;counter-reset:t}
+.xp-toc a{display:block;font-size:13.5px;padding:6px 10px;border-radius:8px;color:var(--slate);border-left:2px solid transparent}
+.xp-toc a.is-on{color:var(--blue);background:var(--blue-soft);border-left-color:var(--blue);font-weight:600}
+.xp-toc__act{display:flex;gap:8px;margin-top:14px}
+.xp-toc__act button{flex:1;font:600 12.5px var(--body);padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.xp-sec{padding:0 0 44px;margin-bottom:44px;border-bottom:1px solid var(--line);scroll-margin-top:96px}
+.xp-sec:last-child{border-bottom:0}
+.xp-sec h2{font-family:var(--disp);font-size:clamp(24px,2.6vw,30px);margin-bottom:12px;display:flex;gap:12px;align-items:baseline}
+.xp-sec h2 small{font-family:var(--mono);font-size:13px;color:var(--orange)}
+.xp-sec p,.xp-sec li{color:var(--slate);font-size:15.5px}
+.xp-sec p+p{margin-top:10px}
+.xp-tldr{display:flex;gap:10px;background:var(--blue-soft);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:0 0 16px;font-size:14.5px}
+.xp-tldr b{color:var(--blue);flex:none}
+body.xp-short .xp-full{display:none}
+.xp-list{list-style:none;display:grid;gap:10px;margin-top:12px}
+.xp-list li{display:flex;gap:10px}
+.xp-list li .xg-ico{color:var(--blue);margin-top:3px}
+.xp-list--no li .xg-ico{color:var(--red)}
+.xp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:16px}
+.xp-grid .xg-card{padding:20px}
+.xp-grid .xg-card h3{font-size:15.5px}
+.xp-scn{background:var(--navy);color:#fff;border-radius:18px;padding:28px;margin-top:10px}
+.xp-scn h3{font-family:var(--disp);font-size:22px;margin-bottom:6px}
+.xp-scn>p{color:#C9D3EA!important;margin-bottom:16px}
+.xp-scn__opts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.xp-scn__opts button{font:600 13.5px var(--body);padding:9px 14px;border-radius:30px;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;cursor:pointer}
+.xp-scn__opts button.is-on{background:var(--blue);border-color:var(--blue)}
+.xp-scn__out{border-radius:12px;background:rgba(255,255,255,.06);padding:18px;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
+.xp-verdict{font:700 12px var(--mono);padding:5px 10px;border-radius:6px;white-space:nowrap}
+.xp-verdict.y{background:#19A463}.xp-verdict.c{background:var(--orange)}.xp-verdict.n{background:var(--red)}
+.xp-scn__out p{color:#DCE4F5!important;font-size:15px}
+.xp-meta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px}
+.xp-meta span{font-size:13px;border:1px solid var(--line);border-radius:8px;padding:5px 10px;color:var(--slate)}
+.xp-meta b{color:var(--ink)}
+
+
+.xp-sec h2{color:var(--h2)}
+.tbl{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:14px;background:var(--card)}
+.tbl th{background:var(--navy);color:#fff;text-align:left;font:600 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:12px 14px}
+.tbl td{padding:13px 14px;border-top:1px solid var(--line);vertical-align:top;color:var(--slate)}
+.tbl td b{color:var(--h2)}
+.tbl .chip{display:inline-block;background:var(--blue-soft);color:var(--blue);border-radius:99px;padding:3px 10px;font-weight:600;font-size:12px;white-space:nowrap}
+.tblwrap{overflow-x:auto;margin-top:14px}
+.xp-layout>*{min-width:0}
+@media (max-width:1000px){.xp-layout{grid-template-columns:1fr}.xp-toc{position:static}}
+@media (max-width:700px){.xp-grid{grid-template-columns:1fr}.xp-scn__out{grid-template-columns:1fr}}
+.xp-default-cta{position:relative;display:flex;flex-direction:column;justify-content:center;gap:20px;min-height:194px;margin-top:42px;padding:32px 150px 32px 36px;border-radius:16px;background:linear-gradient(105deg,var(--blue),var(--blue-2));color:#fff}
+.xp-default-cta h2{margin:0;color:#fff;font:700 22px/1.25 var(--disp)}
+.xp-default-cta p{margin-top:7px;color:#cfe0fa;font-size:14.5px}
+.xp-default-cta-actions{display:flex;flex-wrap:wrap;gap:12px}
+.xp-default-cta-actions .btn{min-height:44px;justify-content:center;padding:10px 18px;font-size:13px}
+.xp-default-cta-actions .btn-ghost{border-color:rgba(255,255,255,.4);color:#fff;background:transparent}
+.xp-default-cta-actions .btn-ghost:hover{border-color:#fff;color:#fff;background:rgba(255,255,255,.12)}
+.xp-cta-support{position:absolute;top:50%;right:26px;width:104px;height:104px;transform:translateY(-50%);border-radius:50%}
+.xp-cta-support img{display:block;width:100%;height:100%;object-fit:contain}
+.xp-cta-support:focus-visible,.xp-default-cta-actions .btn:focus-visible{outline:3px solid #fff;outline-offset:4px}
+.xp-policy-form{max-width:760px;margin:20px auto 0;padding:18px;border-radius:16px;background:var(--blue-2);color:#fff}
+.xp-policy-form[hidden]{display:none}
+.xp-policy-form>p{margin-bottom:16px;color:#cfe0fa;font-size:14px}
+@media(max-width:700px){.xp-default-cta{padding:28px 22px}.xp-default-cta-actions .btn{flex:1 1 145px}.xp-cta-support{position:static;width:72px;height:72px;transform:none;align-self:flex-end}}
+@media print{.utility,.promo,.nav,.foot,.fl-l,.fl-r,.cb-tab,.xp-toc,.pp-stage,.xp-scn,.xp-default-cta,.xp-policy-form{display:none!important}.xp-layout{display:block}body.xp-short .xp-full{display:block}}
+</style></head><body><main>
+
+<div class="xp-progress" id="xpProg"></div>
+<section class="pp-hero">
+ <span class="pph-grid" aria-hidden="true"></span><span class="pph-aur pph-a1" aria-hidden="true"></span><span class="pph-aur pph-a2" aria-hidden="true"></span><span class="pph-aur pph-a3" aria-hidden="true"></span><span class="pph-scan" aria-hidden="true"></span>
+ <div class="wrap pp-hero-cols">
+  <div>
+   <nav class="pp-crumb" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="#">Legal</a> › AI Use Policy</nav>
+   <h1><span class="pp-brand-xcell">Xcell</span>Trust<span class="pp-title-divider">|</span>AI Use Policy</h1>
+   <h2 class="pp-tagline">AI That Works For You — Under Human Control</h2>
+   <p class="pp-tagline-support">How XcellHost uses AI across cloud, security and support, what we do with your data, and the rights you keep.</p>
+   <div class="pp-typewriter" id="ppType" data-words='["Your data never trains public AI models","A human approves every consequential action","Aligned with the DPDP Act, 2023"]' aria-live="polite"><span>Your data never trains public AI models</span><i aria-hidden="true"></i></div>
+   <div class="pp-hpoints"><div class="pp-hpoint"><span class="tick" style="animation-delay:0.0s"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span>Your data never trains public models</div><div class="pp-hpoint"><span class="tick" style="animation-delay:0.1s"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span>A human approves every consequential action</div><div class="pp-hpoint"><span class="tick" style="animation-delay:0.2s"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span>Only vetted, contracted AI tools</div><div class="pp-hpoint"><span class="tick" style="animation-delay:0.3s"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span>Ask us how AI touches your account — any time</div><div class="pp-hpoint"><span class="tick"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span>Quarterly policy review</div><div class="pp-hpoint"><span class="tick"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span>24×7 SOC oversight</div></div>
+   <div class="hero-ctas"><a class="btn ppd-info" href="#overview"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h14v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/></svg> Read The Policy</a><button class="btn ppd-pres" type="button" onclick="window.print()"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg> Print / PDF</button><a class="btn btn-ghost" href="#scenarios">Can XcellHost Use AI To…?</a><a class="btn btn-primary" href="#xpPolicyForm" data-open-policy-form>Ask A Question</a></div>
+   <div class="pp-ask-ai"><span class="pp-ask-ai-kicker">Ask AI About XcellHost's AI Use Policy</span><a class="pp-ask-ai-chip" href="https://chatgpt.com/?q=Summarise%20XcellHost%27s%20AI%20Use%20Policy%3A%20XcellHost%20uses%20AI%20to%20detect%20threats%20faster%2C%20triage%20support%20tickets%2C%20automate%20routine%20operations%20and%20draft%20documents.%20Your%20data%20is%20never%20used%20to%20train%20public%20AI%20models%2C%20is%20processed%20only%20on%20vetted%20enterprise%20AI%20platforms%2C%20stays%20logically%20isolated%20per%20client%2C%20and%20every%20AI-assisted%20security%20action%2C%20infrastructure%20change%20or%20client%20deliverable%20is%20reviewed%20by%20a%20qualified%20XcellHost%20engineer%20before%20it%20takes%20effect.%20What%20rights%20do%20clients%20have%20and%20how%20is%20data%20protected%3F" target="_blank" rel="noopener" aria-label="Ask ChatGPT"><img src="https://www.google.com/s2/favicons?domain=chatgpt.com&amp;sz=64" alt="" width="19" height="19"></a><a class="pp-ask-ai-chip" href="https://www.perplexity.ai/search/new?q=Summarise%20XcellHost%27s%20AI%20Use%20Policy%3A%20XcellHost%20uses%20AI%20to%20detect%20threats%20faster%2C%20triage%20support%20tickets%2C%20automate%20routine%20operations%20and%20draft%20documents.%20Your%20data%20is%20never%20used%20to%20train%20public%20AI%20models%2C%20is%20processed%20only%20on%20vetted%20enterprise%20AI%20platforms%2C%20stays%20logically%20isolated%20per%20client%2C%20and%20every%20AI-assisted%20security%20action%2C%20infrastructure%20change%20or%20client%20deliverable%20is%20reviewed%20by%20a%20qualified%20XcellHost%20engineer%20before%20it%20takes%20effect.%20What%20rights%20do%20clients%20have%20and%20how%20is%20data%20protected%3F" target="_blank" rel="noopener" aria-label="Ask Perplexity"><img src="https://www.google.com/s2/favicons?domain=perplexity.ai&amp;sz=64" alt="" width="19" height="19"></a><a class="pp-ask-ai-chip" href="https://claude.ai/new?q=Summarise%20XcellHost%27s%20AI%20Use%20Policy%3A%20XcellHost%20uses%20AI%20to%20detect%20threats%20faster%2C%20triage%20support%20tickets%2C%20automate%20routine%20operations%20and%20draft%20documents.%20Your%20data%20is%20never%20used%20to%20train%20public%20AI%20models%2C%20is%20processed%20only%20on%20vetted%20enterprise%20AI%20platforms%2C%20stays%20logically%20isolated%20per%20client%2C%20and%20every%20AI-assisted%20security%20action%2C%20infrastructure%20change%20or%20client%20deliverable%20is%20reviewed%20by%20a%20qualified%20XcellHost%20engineer%20before%20it%20takes%20effect.%20What%20rights%20do%20clients%20have%20and%20how%20is%20data%20protected%3F" target="_blank" rel="noopener" aria-label="Ask Claude"><img src="https://www.google.com/s2/favicons?domain=claude.ai&amp;sz=64" alt="" width="19" height="19"></a><a class="pp-ask-ai-chip" href="https://www.google.com/search?udm=50&amp;q=Summarise%20XcellHost%27s%20AI%20Use%20Policy%3A%20XcellHost%20uses%20AI%20to%20detect%20threats%20faster%2C%20triage%20support%20tickets%2C%20automate%20routine%20operations%20and%20draft%20documents.%20Your%20data%20is%20never%20used%20to%20train%20public%20AI%20models%2C%20is%20processed%20only%20on%20vetted%20enterprise%20AI%20platforms%2C%20stays%20logically%20isolated%20per%20client%2C%20and%20every%20AI-assisted%20security%20action%2C%20infrastructure%20change%20or%20client%20deliverable%20is%20reviewed%20by%20a%20qualified%20XcellHost%20engineer%20before%20it%20takes%20effect.%20What%20rights%20do%20clients%20have%20and%20how%20is%20data%20protected%3F" target="_blank" rel="noopener" aria-label="Ask Google AI"><img src="https://www.google.com/s2/favicons?domain=gemini.google.com&amp;sz=64" alt="" width="19" height="19"></a><a class="pp-ask-ai-chip" href="https://grok.com/?q=Summarise%20XcellHost%27s%20AI%20Use%20Policy%3A%20XcellHost%20uses%20AI%20to%20detect%20threats%20faster%2C%20triage%20support%20tickets%2C%20automate%20routine%20operations%20and%20draft%20documents.%20Your%20data%20is%20never%20used%20to%20train%20public%20AI%20models%2C%20is%20processed%20only%20on%20vetted%20enterprise%20AI%20platforms%2C%20stays%20logically%20isolated%20per%20client%2C%20and%20every%20AI-assisted%20security%20action%2C%20infrastructure%20change%20or%20client%20deliverable%20is%20reviewed%20by%20a%20qualified%20XcellHost%20engineer%20before%20it%20takes%20effect.%20What%20rights%20do%20clients%20have%20and%20how%20is%20data%20protected%3F" target="_blank" rel="noopener" aria-label="Ask Grok"><img src="https://www.google.com/s2/favicons?domain=grok.com&amp;sz=64" alt="" width="19" height="19"></a></div>
+  </div>
+  <div class="pp-stage"><canvas id="xgHero" aria-hidden="true"></canvas><div class="pp-stage__tag"><span>AI GOVERNANCE · LIVE FLOW</span><span class="live">Human in the loop</span></div></div>
+ </div>
+</section>
+<div class="pp-trust"><div class="wrap"><span><b>ISO 27001</b> &amp; <b>20000-1</b> certified</span><span><b>DPDP Act</b> aligned</span><span><b>CERT-In</b> reporting</span><span><b>Since 1999</b></span><span><b>24×7</b> NOC + SOC</span></div></div>
+<div class="pp-body"><div class="wrap">
+ <div class="pp-answer rv">
+  <div><span class="kick">QUICK ANSWER · EFFECTIVE 22 SEPTEMBER 2026</span><h2>How Does XcellHost Use AI, And Is My Data Safe?</h2><p data-speakable>XcellHost uses AI to detect threats faster, triage support tickets, automate routine operations and draft documents. Your data is never used to train public AI models, is processed only on vetted enterprise AI platforms, stays logically isolated per client, and every AI-assisted security action, infrastructure change or client deliverable is reviewed by a qualified XcellHost engineer before it takes effect.</p></div>
+  <div><span class="kick">WHAT THIS MEANS FOR YOU</span><ul><li><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span><b>Faster threat detection.</b> AI correlates alerts across your estate in seconds, so our SOC analysts act on real incidents sooner.</span></li><li><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span><b>Quicker ticket resolution.</b> AI triage routes and pre-diagnoses tickets, so engineers start with context, not a blank screen.</span></li><li><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span><b>No loss of control.</b> Automation proposes; our engineers decide. Nothing changes in your environment without human approval.</span></li><li><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span><b>Audit-ready evidence.</b> AI use in your services is logged and explainable for your DPDP, ISO and RBI/SEBI audits.</span></li></ul></div>
+ </div>
+</div></div>
+<section style="padding:44px 0 0"><div class="wrap xp-layout">
+ <aside class="xp-toc" aria-label="Contents"><h2>On This Page</h2>
+  <ol id="xpToc"><li><a href="#overview">1. Purpose And Scope</a></li><li><a href="#principles">2. Our AI Principles</a></li><li><a href="#use">3. How We Use AI</a></li><li><a href="#data">4. How We Protect Your Data</a></li><li><a href="#oversight">5. Human Oversight</a></li><li><a href="#tools">6. Approved Tools And Governance</a></li><li><a href="#prohibited">7. What We Will Never Do</a></li><li><a href="#rights">8. Your Rights As A Client</a></li><li><a href="#incidents">9. AI Incidents And Errors</a></li><li><a href="#compliance">10. Standards And Regulations</a></li><li><a href="#training">11. Training And Accountability</a></li><li><a href="#review">12. Review And Changes</a></li><li><a href="#contact">13. Contact Us</a></li><li><a href="#scenarios">Scenario Checker</a></li><li><a href="#faq">FAQ</a></li></ol>
+  <div class="xp-toc__act"><button type="button" id="xpShort">Summary view</button><button type="button" onclick="window.print()">Print / PDF</button></div>
+ </aside>
+ <article>
+  <div class="xp-meta"><span>Version <b>1.0</b></span><span>Effective <b>22 September 2026</b></span><span>Review cycle <b>Quarterly</b></span><span>Owner <b>XcellHost leadership</b></span></div>
+  
+  <section class="xp-sec" id="overview">
+   <h2><small>01</small>Purpose And Scope</h2>
+   <div class="xp-tldr"><b>In short:</b><span>This policy explains how XcellHost uses AI, the limits we set, and the rights you have as a client.</span></div>
+   <div class="xp-full">
+   <p>XcellHost Cloud Services Pvt. Ltd. (&#34;XcellHost&#34;, &#34;we&#34;) has delivered managed cloud, cybersecurity and digital-trust services to Indian businesses since 1999. Artificial intelligence now helps us protect client environments, run operations and serve customers faster.</p><p>This policy applies to every XcellHost employee, contractor and partner, and to every system that processes client data or delivers a client-facing service — including our cloud, security, backup, Microsoft 365, GPU and support services.</p>
+   
+   
+   
+   </div>
+  </section>
+  
+  <section class="xp-sec" id="principles">
+   <h2><small>02</small>Our AI Principles</h2>
+   <div class="xp-tldr"><b>In short:</b><span>Seven principles guide every AI decision we make.</span></div>
+   <div class="xp-full">
+   
+   <div class="xp-grid"><div class="pp-feat"><span class="ic"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2 20c0-4 3-6 7-6s7 2 7 6"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14c2.5.6 4 2.6 4 6"/></svg></span><p><b>Human Accountability</b>A named XcellHost professional is accountable for every AI-assisted outcome.</p></div><div class="pp-feat"><span class="ic"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><p><b>Privacy By Design</b>We use the minimum data needed and never share one client&#39;s data with another.</p></div><div class="pp-feat"><span class="ic"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span><p><b>Security First</b>AI tools go through the same security review as any production system.</p></div><div class="pp-feat"><span class="ic"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span><p><b>Transparency</b>We tell you where AI is used in your services when you ask.</p></div><div class="pp-feat"><span class="ic"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M5 21h14M4 7h16M7 7l-3 7a3 3 0 0 0 6 0zM17 7l-3 7a3 3 0 0 0 6 0z"/></svg></span><p><b>Fairness</b>We do not use AI to make discriminatory or consequential decisions about people.</p></div><div class="pp-feat"><span class="ic"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span><p><b>Accuracy</b>AI outputs are verified by qualified staff before they reach you.</p></div><div class="pp-feat"><span class="ic"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h8M9 17h6"/></svg></span><p><b>Compliance</b>We align AI use with Indian law and recognised standards.</p></div></div>
+   
+   
+   </div>
+  </section>
+  
+  <section class="xp-sec" id="use">
+   <h2><small>03</small>How We Use AI</h2>
+   <div class="xp-tldr"><b>In short:</b><span>AI helps in four areas: security, operations, automation and internal productivity.</span></div>
+   <div class="xp-full">
+   
+   <div class="xp-grid"><div class="pp-feat"><span class="ic"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span><p><b>Cybersecurity And Threat Detection</b>Real-time log analysis, anomaly detection, threat-intelligence correlation, phishing and DMARC analysis, and faster incident investigation in our 24×7 SOC.</p></div><div class="pp-feat"><span class="ic"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="1.5"/><rect x="9.5" y="9.5" width="5" height="5"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg></span><p><b>IT Operations And NOC</b>Ticket triage and categorisation, root-cause suggestions, capacity forecasting, and proactive alerts from monitoring data.</p></div><div class="pp-feat"><span class="ic"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span><p><b>Automation</b>Scripted remediation playbooks, configuration checks, backup verification, patch scheduling and report generation.</p></div><div class="pp-feat"><span class="ic"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h8M9 17h6"/></svg></span><p><b>Communication And Documentation</b>Drafting and summarising reports, knowledge articles and proposals — always reviewed by a person before they reach a client.</p></div></div>
+   
+   
+   </div>
+  </section>
+  
+  <section class="xp-sec" id="data">
+   <h2><small>04</small>How We Protect Your Data</h2>
+   <div class="xp-tldr"><b>In short:</b><span>Client data never goes into public AI tools, never trains third-party models, and never mixes with another client&#39;s data.</span></div>
+   <div class="xp-full">
+   
+   
+   <ul class="xp-list"><li><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>No client personal data, confidential data or credentials are entered into public or consumer AI tools.</span></li><li><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>We use only enterprise AI platforms that encrypt data in transit and at rest and contractually prohibit using customer data to train their models.</span></li><li><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Data minimisation: an AI system receives only the data it needs for its specific task.</span></li><li><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Client isolation: each client&#39;s data is logically segregated; AI outputs for one client are never built from another client&#39;s data.</span></li><li><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Where a service is hosted in India, AI processing of that service&#39;s data stays in India unless you agree otherwise in writing.</span></li><li><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Personal data is processed in line with the Digital Personal Data Protection Act, 2023, and the DPDP Rules, 2025.</span></li></ul>
+   
+   </div>
+  </section>
+  
+  <section class="xp-sec" id="oversight">
+   <h2><small>05</small>Human Oversight</h2>
+   <div class="xp-tldr"><b>In short:</b><span>AI recommends; qualified people decide. The table shows who decides what.</span></div>
+   <div class="xp-full">
+   
+   
+   
+   <div class="tblwrap"><table class="tbl"><thead><tr><th>Activity</th><th>What AI Does</th><th>Who Decides</th><th>Human Approval</th></tr></thead><tbody><tr><td><b>Security incidents</b></td><td>Detects, correlates and prioritises alerts</td><td>SOC analyst decides containment, remediation and client notification</td><td><span class="chip">Always</span></td></tr><tr><td><b>Infrastructure changes</b></td><td>Suggests fixes and configuration changes</td><td>Engineer reviews and executes through change management</td><td><span class="chip">Always</span></td></tr><tr><td><b>Support tickets</b></td><td>Classifies, routes and suggests answers</td><td>Engineer confirms the diagnosis and replies</td><td><span class="chip">Before client response</span></td></tr><tr><td><b>Client reports and documents</b></td><td>Drafts and summarises</td><td>Account owner reviews for accuracy</td><td><span class="chip">Before delivery</span></td></tr><tr><td><b>Automated playbooks</b></td><td>Runs pre-approved low-risk actions (e.g. restart a failed service)</td><td>Engineer approves the playbook in advance and reviews its logs</td><td><span class="chip">At playbook design</span></td></tr></tbody></table></div>
+   </div>
+  </section>
+  
+  <section class="xp-sec" id="tools">
+   <h2><small>06</small>Approved Tools And Governance</h2>
+   <div class="xp-tldr"><b>In short:</b><span>Only reviewed AI tools are allowed near client data, accessed through company accounts.</span></div>
+   <div class="xp-full">
+   
+   
+   <ul class="xp-list"><li><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Every AI tool is assessed for security, privacy, data residency, certifications and contract terms before approval.</span></li><li><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Access is through single sign-on with role-based permissions; personal AI accounts are not permitted for client work.</span></li><li><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>We keep an internal register of approved AI tools and the services they support.</span></li><li><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Tools are re-assessed whenever a vendor changes its data-handling, training or security practices, and at least once a year.</span></li></ul>
+   
+   </div>
+  </section>
+  
+  <section class="xp-sec" id="prohibited">
+   <h2><small>07</small>What We Will Never Do</h2>
+   <div class="xp-tldr"><b>In short:</b><span>Some uses of AI are off-limits, whatever the business case.</span></div>
+   <div class="xp-full">
+   
+   
+   <ul class="xp-list xp-list--no"><li><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Use your data to train public or third-party AI models.</span></li><li><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Let AI make final decisions on security containment, production changes or client communications without a human.</span></li><li><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Use AI for discriminatory decisions in hiring, credit, insurance or similar matters.</span></li><li><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Generate deceptive content aimed at clients, regulators, partners or the public, including deepfakes.</span></li><li><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Use AI to monitor individuals beyond what your contract and the law allow.</span></li><li><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Enter credentials, keys or secrets into any AI tool.</span></li></ul>
+   
+   </div>
+  </section>
+  
+  <section class="xp-sec" id="rights">
+   <h2><small>08</small>Your Rights As A Client</h2>
+   <div class="xp-tldr"><b>In short:</b><span>You can ask, opt out and challenge — and we will respond.</span></div>
+   <div class="xp-full">
+   
+   <div class="xp-grid"><div class="pp-feat"><span class="ic"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span><p><b>Right To Ask</b>Ask your account manager which AI tools support your services and what data they see.</p></div><div class="pp-feat"><span class="ic"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></span><p><b>Right To Opt Out</b>Request a manual alternative where technically feasible. We will tell you any effect on timelines or pricing first.</p></div><div class="pp-feat"><span class="ic"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17.5v.5"/></svg></span><p><b>Right To Challenge</b>Question any AI-assisted output; a senior engineer will review it and respond.</p></div><div class="pp-feat"><span class="ic"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><p><b>Right To Deletion</b>On contract exit, we delete your data from AI-assisted systems along with our other systems, as per your agreement.</p></div></div>
+   
+   
+   </div>
+  </section>
+  
+  <section class="xp-sec" id="incidents">
+   <h2><small>09</small>AI Incidents And Errors</h2>
+   <div class="xp-tldr"><b>In short:</b><span>If AI gets something wrong, we fix it, tell you, and learn from it.</span></div>
+   <div class="xp-full">
+   <p>An AI incident is any case where an AI system produces a harmful, inaccurate or unauthorised result, or processes data it should not. Staff report these through our ISO 27001 incident process.</p><p>Where an AI incident is also a cybersecurity incident, we follow CERT-In&#39;s reporting directions, including the six-hour reporting window. Where personal data is affected, we notify you promptly so you can meet your obligations under the DPDP Act.</p>
+   
+   
+   
+   </div>
+  </section>
+  
+  <section class="xp-sec" id="compliance">
+   <h2><small>10</small>Standards And Regulations</h2>
+   <div class="xp-tldr"><b>In short:</b><span>We align AI use with Indian law and international standards.</span></div>
+   <div class="xp-full">
+   
+   
+   <ul class="xp-list"><li><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Digital Personal Data Protection Act, 2023 and DPDP Rules, 2025</span></li><li><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Information Technology Act, 2000 and CERT-In Directions, 2022</span></li><li><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>India AI Governance Guidelines issued by MeitY</span></li><li><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>ISO/IEC 27001 (our certified information-security management system) and ISO/IEC 20000-1</span></li><li><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>ISO/IEC 42001 for AI management systems (used as our reference framework)</span></li><li><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span>Sector rules our clients follow, such as RBI, SEBI and IRDAI guidance, where they apply to a service</span></li></ul>
+   
+   </div>
+  </section>
+  
+  <section class="xp-sec" id="training">
+   <h2><small>11</small>Training And Accountability</h2>
+   <div class="xp-tldr"><b>In short:</b><span>Everyone who uses AI at XcellHost is trained and accountable.</span></div>
+   <div class="xp-full">
+   <p>All staff complete responsible-AI and data-protection training when they join and every year after. Engineers who use AI in client environments receive additional training on verification and escalation.</p><p>Breaches of this policy are handled under our disciplinary process. Our leadership team owns this policy and reviews AI risk as part of our information-security management reviews.</p>
+   
+   
+   
+   </div>
+  </section>
+  
+  <section class="xp-sec" id="review">
+   <h2><small>12</small>Review And Changes</h2>
+   <div class="xp-tldr"><b>In short:</b><span>We review this policy every quarter and tell clients about material changes.</span></div>
+   <div class="xp-full">
+   <p>We review this policy quarterly, and sooner if the law, our services or AI technology change significantly. Material changes are announced to active clients by email and on this page, with a new effective date.</p>
+   
+   
+   
+   </div>
+  </section>
+  
+  <section class="xp-sec" id="contact">
+   <h2><small>13</small>Contact Us</h2>
+   <div class="xp-tldr"><b>In short:</b><span>Questions about AI and your data? Talk to us.</span></div>
+   <div class="xp-full">
+   <p>Email support@xcellhost.cloud or call +91 22 6711 1555 (24×7). For contract-specific questions, contact your XcellHost account manager.</p><p>XcellHost Cloud Services Pvt. Ltd., Mumbai, Maharashtra, India.</p>
+   
+   
+   
+   </div>
+  </section>
+  
+  <section class="xp-sec" id="scenarios">
+   <div class="xp-scn">
+    <h3>Can XcellHost Use AI To…?</h3>
+    <p>Pick a situation to see how this policy applies.</p>
+    <div class="xp-scn__opts" id="xpOpts"><button type="button" data-i="0" class="is-on">Summarise my firewall logs with AI</button><button type="button" data-i="1">Paste my customer list into ChatGPT</button><button type="button" data-i="2">Auto-block an IP that&#39;s attacking my server</button><button type="button" data-i="3">Use my data to improve an AI model</button><button type="button" data-i="4">Draft my monthly service report with AI</button><button type="button" data-i="5">Turn off AI for my account</button></div>
+    <div class="xp-scn__out" id="xpOut"><span class="xp-verdict y">ALLOWED</span><p>Yes. Logs are analysed on vetted enterprise AI platforms inside our security stack. Output goes to a SOC analyst, who validates it before anything is reported to you.</p></div>
+   </div>
+  </section>
+  <section class="xp-sec" id="faq">
+   <h2><small>FAQ</small>AI Use Policy — Frequently Asked Questions</h2>
+   <div class="faqs" style="grid-template-columns:1fr"><details open><summary>Does XcellHost use my data to train AI models?</summary><div class="ans">No. Client data is never used to train public or third-party AI models, and our AI vendors are contractually barred from doing so.</div></details><details><summary>Will AI make changes to my servers automatically?</summary><div class="ans">Not without human control. AI can suggest changes, and only pre-approved low-risk playbooks run automatically. All other changes are reviewed and executed by an XcellHost engineer.</div></details><details><summary>Is my data processed outside India?</summary><div class="ans">For services hosted in India, AI processing of that data stays in India unless you agree otherwise in writing.</div></details><details><summary>Can I opt out of AI in my services?</summary><div class="ans">Yes, where technically feasible. Ask your account manager and we will offer a manual alternative, noting any impact on timelines or pricing.</div></details><details><summary>Which laws does this policy follow?</summary><div class="ans">The Digital Personal Data Protection Act 2023 and DPDP Rules 2025, the IT Act 2000, CERT-In Directions 2022 and MeitY&#39;s India AI Governance Guidelines, with ISO/IEC 27001 and ISO/IEC 42001 as reference standards.</div></details><details><summary>How do I ask which AI tools are used for my account?</summary><div class="ans">Email support@xcellhost.cloud or contact your account manager. We will tell you which AI tools support your services and what data they access.</div></details></div>
+   <div class="rel"><span>Related:</span><a href="/rtx-pro-6000">RTX PRO 6000 cloud GPU</a><a href="/nvidia-rtx-6000-ada">RTX 6000 Ada cloud GPU</a><a href="/rtx-a6000">RTX A6000 cloud GPU</a><a href="/rtx-8000">RTX 8000 cloud GPU</a></div>
+  </section>
+ </article>
+</div></section>
+
+<div class="wrap"><section class="xp-default-cta" id="lead" aria-labelledby="xpCtaTitle">
+  <div><h2 id="xpCtaTitle">Ask How AI Touches Your Account</h2><p>Policy Questions · Human Review · 24×7 Support In English &amp; Hindi</p></div>
+  <div class="xp-default-cta-actions">
+   <a class="btn btn-primary" href="tel:+912267111555">Request A Callback</a>
+   <a class="btn btn-ghost" href="#xpPolicyForm" data-open-policy-form>Ask A Question</a>
+   <a class="btn btn-ghost" href="#overview">Read The Policy</a>
+   <button class="btn btn-ghost" type="button" onclick="window.print()">Print / PDF</button>
+   <a class="btn btn-ghost" href="https://wa.me/918657032540" target="_blank" rel="noopener">Talk On WhatsApp</a>
+   <a class="btn btn-ghost" href="mailto:support@xcellhost.cloud?subject=AI%20Use%20Policy%20question">Email Us</a>
+  </div>
+  <a class="xp-cta-support" href="/company/support-overview" aria-label="Visit XcellHost customer support"><img src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost support"></a>
+ </section>
+ <div class="xp-policy-form" id="xpPolicyForm" hidden>
+  <p>Tell us which services you use and we will explain the AI tools involved, the data they see, and the controls in place.</p>
+  <form class="form" id="xgForm" novalidate>
+   <input name="name" placeholder="Full name *" required aria-label="Full name"><input name="company" placeholder="Company" aria-label="Company">
+   <input name="email" type="email" placeholder="Work email *" required aria-label="Work email"><input name="phone" type="tel" placeholder="Mobile *" required aria-label="Mobile">
+   <select name="request" class="full" aria-label="Request type"><option>Which AI tools support my services?</option><option>Request a manual (non-AI) alternative</option><option>Challenge an AI-assisted output</option><option>Data deletion request</option><option>Other question</option></select>
+   <textarea class="full" name="msg" rows="3" placeholder="Your question" aria-label="Question"></textarea>
+   <input type="hidden" name="product" value="AI Use Policy enquiry">
+   <button class="btn btn-primary full" type="submit" style="justify-content:center">Send my question →</button>
+   <div class="ok-msg" id="xgOk">Thanks — our team will respond within two business days.</div>
+  </form>
+ </div>
+ <div class="pills"><span>🏅 ISO 27001</span><span>🏅 ISO 20000-1</span><span>🛡 DPDP Act aligned</span><span>▲ Since 1999</span></div></div>
+
+</main><script>
+(function(){
+var tb=document.getElementById("xgTheme"),root=document.documentElement;
+try{var st=localStorage.getItem("xhTheme");if(st)root.setAttribute("data-theme",st)}catch(e){}
+if(tb)tb.onclick=function(){var t=root.getAttribute("data-theme")==="dark"?"light":"dark";root.setAttribute("data-theme",t);try{localStorage.setItem("xhTheme",t)}catch(e){}};
+// reveal
+var io="IntersectionObserver" in window?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("is-in");io.unobserve(e.target)}})},{threshold:.1}):null;
+document.querySelectorAll(".rv").forEach(function(el){io?io.observe(el):el.classList.add("is-in")});
+// counters
+document.querySelectorAll("[data-count]").forEach(function(el){var done=false,go=function(){if(done)return;done=true;var to=parseFloat(el.dataset.count),dec=(el.dataset.count.split(".")[1]||"").length,t0=performance.now();
+ (function f(t){var k=Math.min(1,(t-t0)/1200),v=to*(1-Math.pow(1-k,3));el.textContent=(el.dataset.pre||"")+v.toLocaleString("en-IN",{minimumFractionDigits:dec,maximumFractionDigits:dec})+(el.dataset.suf||"");if(k<1)requestAnimationFrame(f)})(t0)};
+ if("IntersectionObserver" in window){var o=new IntersectionObserver(function(e){if(e[0].isIntersecting){go();o.disconnect()}});o.observe(el)}else go()});
+// typewriter
+var tw=document.getElementById("ppType");if(tw){var TW=JSON.parse(tw.dataset.words),wi=0,ci=0,del=false,sp=tw.querySelector("span");
+ (function t(){var w=TW[wi];sp.textContent=w.slice(0,ci);if(!del&&ci<w.length){ci++;setTimeout(t,55)}else if(!del){del=true;setTimeout(t,1800)}else if(ci>0){ci--;setTimeout(t,25)}else{del=false;wi=(wi+1)%TW.length;setTimeout(t,300)}})()}
+document.querySelectorAll("[data-open-policy-form]").forEach(function(link){link.addEventListener("click",function(){document.getElementById("xpPolicyForm").hidden=false})});
+// lead form — set FORM_ENDPOINT to your backend / Zoho webhook to capture leads
+var FORM_ENDPOINT="",form=document.getElementById("xgForm");
+if(form)form.addEventListener("submit",function(ev){ev.preventDefault();var f=ev.target,ok=true;
+ f.querySelectorAll("[required]").forEach(function(i){var bad=!i.value.trim()||(i.type==="email"&&!/^\S+@\S+\.\S+$/.test(i.value));i.style.borderColor=bad?"#E60012":"";if(bad)ok=false});
+ if(!ok)return;var data={};new FormData(f).forEach(function(v,k){data[k]=v});data.source="/under-construction/ai-use-policy";
+ function done(){document.getElementById("xgOk").style.display="block";f.querySelector("button[type=submit]").disabled=true}
+ if(FORM_ENDPOINT){fetch(FORM_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)}).then(done,done)}
+ else{document.getElementById("xgOk").textContent="An email draft has opened. Send it to complete your request.";document.getElementById("xgOk").style.display="block";location.href="mailto:support@xcellhost.cloud?subject="+encodeURIComponent("Enquiry: "+(data.product||document.title))+"&body="+encodeURIComponent(Object.keys(data).map(function(k){return k+": "+data[k]}).join("\n"))}});
+// hero canvas engine
+var cv=document.getElementById("xgHero");if(!cv)return;
+var cx=cv.getContext("2d"),W2,H2,DPR=Math.min(window.devicePixelRatio||1,2),RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
+var BLUE="#1565D8",OR="#FF8C1A",WH="#FFFFFF",W,H;
+function size(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=W*DPR;cv.height=H*DPR;cx.setTransform(DPR,0,0,DPR,0,0);if(window.xgInit)xgInit()}
+
+var P=[],last=0,G;window.xgInit=function(){P=[];G=[{x:W*.3,l:"DATA MINIMISED"},{x:W*.55,l:"AI ASSIST"},{x:W*.78,l:"HUMAN REVIEW"}]};
+function lane(i){return H*(.22+i*.12)}
+function xgDraw(t){cx.clearRect(0,0,W,H);
+ if(t-last>.35){last=t;var r=Math.random();P.push({x:-10,l:Math.floor(Math.random()*5),s:40+Math.random()*30,k:r<.18?"bad":r<.3?"hold":"ok",st:0,a:1})}
+ cx.lineWidth=1;for(var i=0;i<5;i++){cx.strokeStyle="rgba(140,175,255,.14)";cx.setLineDash([3,6]);cx.beginPath();cx.moveTo(0,lane(i));cx.lineTo(W,lane(i));cx.stroke()}cx.setLineDash([]);
+ G.forEach(function(g,gi){cx.fillStyle="rgba(255,255,255,.05)";cx.fillRect(g.x-16,lane(0)-24,32,lane(4)-lane(0)+48);cx.strokeStyle=gi===1?BLUE:gi===2?OR:"rgba(140,175,255,.6)";cx.lineWidth=2;cx.strokeRect(g.x-16,lane(0)-24,32,lane(4)-lane(0)+48);
+  cx.fillStyle="rgba(255,255,255,.8)";cx.font="600 10px JetBrains Mono, monospace";cx.textAlign="center";cx.fillText(g.l,g.x,lane(4)+44);
+  if(gi===1){cx.fillStyle=BLUE;cx.beginPath();cx.arc(g.x,lane(2),20+2*Math.sin(t*3),0,7);cx.fill();cx.fillStyle=WH;cx.font="700 12px Inter, sans-serif";cx.fillText("AI",g.x,lane(2)+4)}
+  if(gi===2){cx.strokeStyle=WH;cx.lineWidth=1.8;cx.beginPath();cx.arc(g.x,lane(2)-6,6,0,7);cx.stroke();cx.beginPath();cx.arc(g.x,lane(2)+12,11,Math.PI,0);cx.stroke()}
+ });cx.textAlign="left";
+ var ex=W*.93;cx.strokeStyle="#19C37D";cx.lineWidth=2;cx.strokeRect(ex-14,lane(1),28,lane(3)-lane(1));cx.fillStyle="rgba(255,255,255,.8)";cx.font="600 10px JetBrains Mono, monospace";cx.textAlign="center";cx.fillText("CLIENT",ex,lane(3)+18);cx.textAlign="left";
+ P=P.filter(function(p){var dt=1/60;
+  if(p.k==="bad"&&p.x>G[0].x-22&&!p.st){p.st=1}
+  if(p.k==="hold"&&p.x>G[2].x-22&&!p.st){p.st=2;p.w=0}
+  if(p.st===1){p.a-=.03;p.x-=1}else if(p.st===2){p.w+=dt;if(p.w>1.2){p.st=3}}else p.x+=p.s*dt*2;
+  var c=p.st===1?"#c0392b":p.x>G[2].x+16?"#19C37D":p.x>G[1].x?OR:"rgba(170,200,255,.9)";if(p.st===2)c=Math.sin(t*12)>0?OR:WH;
+  var y=lane(p.l);if(p.x>G[2].x+16){y+=(lane(2)-y)*Math.min(1,(p.x-G[2].x-16)/(ex-G[2].x-30))}
+  cx.globalAlpha=Math.max(0,p.a);cx.fillStyle=c;cx.fillRect(p.x-5,y-5,10,10);cx.globalAlpha=1;
+  if(p.st===1&&p.a>.6){cx.fillStyle="#c0392b";cx.font="700 9px JetBrains Mono, monospace";cx.fillText("PII BLOCKED",p.x-20,y-10)}
+  return p.a>0&&p.x<ex-14});
+ cx.fillStyle="rgba(255,255,255,.75)";cx.font="600 11px JetBrains Mono, monospace";cx.fillText("REQUEST FLOW · DPDP-ALIGNED",14,22)}
+
+size();addEventListener("resize",size);
+var vis=true;if("IntersectionObserver" in window)new IntersectionObserver(function(e){vis=e[0].isIntersecting}).observe(cv);
+function loop(t){if(vis)xgDraw(t/1000);if(!RM)requestAnimationFrame(loop)}requestAnimationFrame(loop);
+})();
+</script><script>
+(function(){
+var SC=[["Summarise my firewall logs with AI", "y", "Yes. Logs are analysed on vetted enterprise AI platforms inside our security stack. Output goes to a SOC analyst, who validates it before anything is reported to you."], ["Paste my customer list into ChatGPT", "n", "No. Client personal data is never entered into public or consumer AI tools. XcellHost staff are not permitted to do this under this policy."], ["Auto-block an IP that's attacking my server", "c", "Only through a pre-approved playbook. Low-risk blocks you have agreed to in advance can run automatically; everything else waits for an analyst's decision."], ["Use my data to improve an AI model", "n", "Not without your explicit written consent, and never for public or third-party models. Our AI vendors are contractually barred from training on your data."], ["Draft my monthly service report with AI", "y", "Yes. AI drafts the narrative from your monitoring data; your account owner checks every figure before the report is sent."], ["Turn off AI for my account", "c", "Yes, where technically feasible. We'll switch the affected services to manual processes and confirm any change to timelines or pricing first."]],V={y:["y","ALLOWED"],n:["n","NOT ALLOWED"],c:["c","WITH CONDITIONS"]};
+document.querySelectorAll("#xpOpts button").forEach(function(b){b.onclick=function(){document.querySelectorAll("#xpOpts button").forEach(function(x){x.classList.toggle("is-on",x===b)});var s=SC[+b.dataset.i],v=V[s[1]];
+ document.getElementById("xpOut").innerHTML='<span class="xp-verdict '+v[0]+'">'+v[1]+'</span><p>'+s[2]+'</p>'}});
+var sb=document.getElementById("xpShort");sb.onclick=function(){var on=document.body.classList.toggle("xp-short");sb.textContent=on?"Full policy":"Summary view"};
+var links=[].slice.call(document.querySelectorAll("#xpToc a")),secs=links.map(function(a){return document.querySelector(a.getAttribute("href"))}),pr=document.getElementById("xpProg");
+function spy(){var frame=window.frameElement,y=frame?Math.max(0,-frame.getBoundingClientRect().top)+140:window.scrollY+140,cur=0;secs.forEach(function(s,i){if(s&&s.offsetTop<=y)cur=i});links.forEach(function(a,i){a.classList.toggle("is-on",i===cur)});
+ var h=document.documentElement.scrollHeight-(frame?parent.innerHeight:innerHeight);pr.style.width=(h>0?Math.min(100,Math.max(0,y/h*100)):0)+"%"}
+addEventListener("scroll",spy,{passive:true});if(window.frameElement)parent.addEventListener("scroll",spy,{passive:true});spy();
+})();
+</script></body></html>

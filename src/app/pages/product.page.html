@@ -1368,6 +1368,7 @@
           } @else {
           @if (slug() === 'nvidia-h100') {
             <xh-nvidia-h100-content (planSelected)="selectH100Plan($event)" />
+            <xh-nvidia-h100-assurance />
           } @else {
           @if (slug() !== 'nvidia-a100') {
           @if (slug() === 'waap-as-a-service') {

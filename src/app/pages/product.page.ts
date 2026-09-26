@@ -105,6 +105,7 @@ import { AcronisBackupAdvancedContentComponent } from '../sections/acronis-backu
 import { AcronisOtContentComponent } from '../sections/acronis-ot-content.component';
 import { NvidiaA100SourceComponent } from '../sections/nvidia-a100-source.component';
 import { NvidiaA100AssuranceComponent } from '../sections/nvidia-a100-assurance.component';
+import { NvidiaH100AssuranceComponent } from '../sections/nvidia-h100-assurance.component';
 import { H100HeroAction, NvidiaH100HeroComponent } from '../sections/nvidia-h100-hero.component';
 import { H100PlanSelection, NvidiaH100ContentComponent } from '../sections/nvidia-h100-content.component';
 
@@ -262,6 +263,7 @@ interface ProductTourSlide {
     AcronisOtContentComponent,
     NvidiaA100SourceComponent,
     NvidiaA100AssuranceComponent,
+    NvidiaH100AssuranceComponent,
     NvidiaH100HeroComponent,
     NvidiaH100ContentComponent,
 

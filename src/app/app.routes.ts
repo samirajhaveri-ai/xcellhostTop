@@ -114,6 +114,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/support-overview.page').then((m) => m.SupportOverviewPage),
   },
 
+  { path: 'under-construction/ai-use-policy', loadComponent: () => import('./pages/ai-use-policy.page').then((m) => m.AiUsePolicyPage) },
   { path: 'under-construction/:slug', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
   { path: 'under-construction', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
   {
@@ -336,6 +337,7 @@ export const routes: Routes = [
       ),
   },
   { path: 'bare-metal-server', redirectTo: 'bare-metal-servers', pathMatch: 'full' },
+  { path: 'nvidia-h200', loadComponent: () => import('./pages/nvidia-h200.page').then((m) => m.NvidiaH200Page) },
   {
     path: 'cloud-devops-services',
     data: { productSlug: 'cloud-devops-services' },
