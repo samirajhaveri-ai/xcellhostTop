@@ -66,8 +66,6 @@
   .hero p.lead{font-size:17px;color:#C7D5EC;max-width:52ch;margin-bottom:28px}
   .hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
   .hero .btn-ghost{border-color:rgba(255,255,255,.35);color:#fff}
-  .hero-nvidia-badge{display:inline-flex;align-items:center;justify-content:center;align-self:center;width:174px;height:46px;border:1px solid rgba(255,255,255,.35);border-radius:8px;background:#fff;overflow:hidden;flex-shrink:0}
-  .hero-nvidia-badge img{display:block;width:212px;height:212px;max-width:none;flex-shrink:0;object-fit:contain;object-position:center}
   /* Homepage hero: four complete slides, each with its own copy and visual. */
   .home-hero-carousel{position:relative!important;display:block!important}
   .home-hero-slide{display:none;grid-template-columns:minmax(0,1fr);justify-items:center;align-items:center;text-align:center}
@@ -83,6 +81,14 @@
   .home-hero-slide .stat-line .sl{align-items:center}
   .hero .home-hero-slide .eyebrow::after{margin-inline:auto}
   .home-hero-dots{display:flex;align-items:center;gap:10px;margin-top:78px;margin-bottom: -50px;}
+  .cybird-hero-art{display:flex;align-items:center;justify-content:center;gap:clamp(20px,4vw,58px);max-width:800px;margin:14px auto 0;background:radial-gradient(ellipse at 72% 65%,rgba(89,156,255,.2),transparent 55%)}
+  .cybird-hero-art img{display:block;height:auto;object-fit:contain}
+  .cybird-hero-art .cybird-made-in-india{width:clamp(150px,17vw,220px);padding:8px 10px;border:1px solid rgba(255,255,255,.18);border-radius:12px;background:rgba(143,164,192,.45)}
+  .cybird-hero-art .cybird-appliance{width:clamp(260px,34vw,400px);filter:drop-shadow(0 16px 18px rgba(0,0,0,.45))}
+  .home-hero-slide.is-cybird .stat-line{margin-top:8px}
+  .home-hero-slide.is-cybird .hero-live{margin-top:18px}
+  .home-hero-slide.is-cybird .home-hero-dots{margin-top:24px}
+  @media(max-width:600px){.cybird-hero-art{flex-direction:column-reverse;gap:6px}.cybird-hero-art .cybird-appliance{width:min(80vw,300px)}.cybird-hero-art .cybird-made-in-india{width:140px}}
   .home-hero-dots button{width:20px;height:7px;padding:0;border:0;border-radius:999px;background:rgba(151,172,206,.4);cursor:pointer;transition:width .24s ease,background .24s ease,box-shadow .24s ease}.home-hero-dots button:hover{background:rgba(203,222,248,.85)}.home-hero-dots button.is-active{width:46px;background:#1565D8;box-shadow:0 0 12px rgba(23, 87, 224, 0.8)}.home-hero-dots button:focus-visible{outline:2px solid #fff;outline-offset:px}
   @media(max-width:1024px){.home-hero-copy{padding-top:0}}
   @media(max-width:700px){.home-hero-slide .stat-line{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.home-hero-slide .hero-live{font-size:10px;white-space:normal}.home-hero-dots{margin-top:14px}}

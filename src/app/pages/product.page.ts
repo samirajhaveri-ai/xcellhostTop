@@ -1166,10 +1166,24 @@ export class ProductPage {
     { title: 'Internet activity and top applications', description: 'Compare activity across profiles and identify the applications driving network traffic.', image: '/assets/images/smb-cyber-tour-activity.png' },
   ];
 
+  readonly cloudBackupTourSlides: readonly ProductTourSlide[] = [
+    { title: 'Backup and recovery dashboard', description: 'View protected files, cloud storage and the latest backup status.', image: '/assets/images/cloud-backup-tour-backups.png' },
+    { title: 'Active protection settings', description: 'Review protection plans and choose how to respond when suspicious activity is detected.', image: '/assets/images/cloud-backup-tour-protection.png' },
+  ];
+
+  readonly cloudDriveTourSlides: readonly ProductTourSlide[] = [
+    { title: 'Share files with a link', description: 'Set access permissions, download options and expiry for a shared file.', image: '/assets/images/cloud-drive-tour-sharing.png' },
+    { title: 'Cloud Drive dashboard', description: 'Review users, storage usage, files and activity from the administration dashboard.', image: '/assets/images/cloud-drive-tour-dashboard.jpg' },
+    { title: 'Compliance dashboard', description: 'View compliance configurations and recent policy events.', image: '/assets/images/cloud-drive-tour-compliance.jpg' },
+    { title: 'Secure document viewer', description: 'Open protected documents in the secure viewer.', image: '/assets/images/cloud-drive-tour-secure-viewer.png' },
+  ];
+
   /** Product-owned artwork used when a page does not have a dedicated UI screenshot set. */
   readonly productTourSlides = computed<readonly ProductTourSlide[]>(() => {
     const view = this.view();
     if (!view) return [];
+    if (this.isCloudBackup()) return this.cloudBackupTourSlides;
+    if (this.isCloudDrive()) return this.cloudDriveTourSlides;
     if (this.slug() === 'smb-cyber-security-appliance') return this.smbCyberTourSlides;
     if (this.isWhatsAppSmb()) return this.whatsAppSmbTourSlides;
     if (view.name === 'Acronis True Image') return this.acronisTrueImageTourSlides;
