@@ -789,6 +789,33 @@
           <div class="pph-scene has-illus standalone-illus marketplace-reference-art" aria-hidden="true">
             <img src="/assets/images/marketplace-reference-hero.svg" alt="" />
           </div>
+        } @else if (slug() === 'identity-resilience') {
+          <div class="pph-scene identity-hero-art" aria-hidden="true">
+            <iframe
+              src="/assets/animations/identity-resilience-animation.html"
+              title="Identity resilience protection and recovery animation"
+              sandbox="allow-scripts"
+              tabindex="-1"
+            ></iframe>
+          </div>
+        } @else if (slug() === 'ediscovery-and-compliance') {
+          <div class="pph-scene ediscovery-hero-art" aria-hidden="true">
+            <iframe
+              src="/assets/animations/ediscovery-compliance-animation.html"
+              title="eDiscovery search and legal hold animation"
+              sandbox="allow-scripts"
+              tabindex="-1"
+            ></iframe>
+          </div>
+        } @else if (slug() === 'performance-cloud') {
+          <div class="pph-scene performance-cloud-hero-art" aria-hidden="true">
+            <iframe
+              src="/assets/animations/performance-cloud-hero.html"
+              title="Performance Cloud server console animation"
+              sandbox="allow-scripts"
+              tabindex="-1"
+            ></iframe>
+          </div>
         } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
           <div class="pph-scene has-illus standalone-illus" id="pphScene" aria-hidden="true">
             <div class="pph-illus">
@@ -1369,6 +1396,14 @@
         [class.email-archiving-body]="slug() === 'email-archiving'"
       >
         <div class="wrap">
+          @if (slug() === 'identity-resilience') {
+            <xh-identity-resilience-content />
+          } @else if (slug() === 'ediscovery-and-compliance') {
+            <xh-ediscovery-compliance-content />
+          } @else if (slug() === 'performance-cloud') {
+            <xh-performance-cloud-content (planRequest)="requestPerformanceCloudPlan($event)" />
+          }
+          @if (slug() !== 'identity-resilience' && slug() !== 'ediscovery-and-compliance' && slug() !== 'performance-cloud') {
           @if (slug() === 'marketplace') {
             <xh-marketplace-content />
           } @else {
@@ -3984,6 +4019,7 @@
           }
 
           }
+          }
           @if (v.name !== 'Tally on Cloud') {
             @if (slug() === 'rtx-8000') {
               <xh-rtx-8000-stories />
@@ -4188,6 +4224,44 @@
                       "
                       referrerpolicy="strict-origin-when-cross-origin"
                       allowfullscreen
+                    ></iframe>
+                  </div>
+                </article>
+              </div>
+            </section>
+          }
+
+          @if (slug() === 'ediscovery-and-compliance') {
+            <section class="tally-videos" aria-labelledby="ediscoveryActionTitle">
+              <div class="pp-sec" id="ediscoveryActionTitle">Watch it in action</div>
+              <div class="tally-video-grid single-video">
+                <article class="tally-video-card">
+                  <h3><span>Federated search and legal hold</span></h3>
+                  <div class="tally-video-frame">
+                    <iframe
+                      src="/assets/animations/ediscovery-compliance-animation.html"
+                      title="eDiscovery federated search and legal hold animation"
+                      sandbox="allow-scripts"
+                      loading="lazy"
+                    ></iframe>
+                  </div>
+                </article>
+              </div>
+            </section>
+          }
+
+          @if (slug() === 'performance-cloud') {
+            <section class="tally-videos" aria-labelledby="performanceCloudActionTitle">
+              <div class="pp-sec" id="performanceCloudActionTitle">Watch it in action</div>
+              <div class="tally-video-grid single-video">
+                <article class="tally-video-card">
+                  <h3><span>Live server performance and provisioning</span></h3>
+                  <div class="tally-video-frame">
+                    <iframe
+                      src="/assets/animations/performance-cloud-hero.html"
+                      title="Performance Cloud server monitoring animation"
+                      sandbox="allow-scripts"
+                      loading="lazy"
                     ></iframe>
                   </div>
                 </article>

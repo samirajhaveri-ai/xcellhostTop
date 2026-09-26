@@ -81,14 +81,14 @@
   .home-hero-slide .stat-line .sl{align-items:center}
   .hero .home-hero-slide .eyebrow::after{margin-inline:auto}
   .home-hero-dots{display:flex;align-items:center;gap:10px;margin-top:78px;margin-bottom: -50px;}
-  .cybird-hero-art{display:flex;align-items:center;justify-content:center;gap:clamp(20px,4vw,58px);max-width:800px;margin:14px auto 0;background:radial-gradient(ellipse at 72% 65%,rgba(89,156,255,.2),transparent 55%)}
-  .cybird-hero-art img{display:block;height:auto;object-fit:contain}
-  .cybird-hero-art .cybird-made-in-india{width:clamp(150px,17vw,220px);padding:8px 10px;border:1px solid rgba(255,255,255,.18);border-radius:12px;background:rgba(143,164,192,.45)}
-  .cybird-hero-art .cybird-appliance{width:clamp(260px,34vw,400px);filter:drop-shadow(0 16px 18px rgba(0,0,0,.45))}
+  .home-hero-slide.is-cybird .hero-ctas{align-items:center}
+  .home-hero-slide.is-cybird .cybird-made-in-india{display:block;width:110px;height:auto;object-fit:contain;flex-shrink:0}
+  .home-hero-slide.is-cybird .cybird-appliance{display:block;width:110px;height:auto;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 8px 10px rgba(0,0,0,.4))}
   .home-hero-slide.is-cybird .stat-line{margin-top:8px}
   .home-hero-slide.is-cybird .hero-live{margin-top:18px}
   .home-hero-slide.is-cybird .home-hero-dots{margin-top:24px}
-  @media(max-width:600px){.cybird-hero-art{flex-direction:column-reverse;gap:6px}.cybird-hero-art .cybird-appliance{width:min(80vw,300px)}.cybird-hero-art .cybird-made-in-india{width:140px}}
+  @media(max-width:900px){.home-hero-slide.is-cybird .hero-ctas{display:grid;grid-template-columns:minmax(120px,160px) minmax(0,1fr)}.home-hero-slide.is-cybird .hero-ctas .btn-primary{width:auto;white-space:normal}.home-hero-slide.is-cybird .hero-ctas .btn-ghost{width:100%}.home-hero-slide.is-cybird .cybird-appliance{width:min(100%,110px)}}
+  @media(max-width:600px){.home-hero-slide.is-cybird .hero-ctas{grid-template-columns:repeat(2,minmax(0,1fr))}.home-hero-slide.is-cybird .cybird-made-in-india{width:90px}.home-hero-slide.is-cybird .hero-ctas .btn-primary{font-size:12px}.home-hero-slide.is-cybird .cybird-appliance{width:min(100%,90px)}}
   .home-hero-dots button{width:20px;height:7px;padding:0;border:0;border-radius:999px;background:rgba(151,172,206,.4);cursor:pointer;transition:width .24s ease,background .24s ease,box-shadow .24s ease}.home-hero-dots button:hover{background:rgba(203,222,248,.85)}.home-hero-dots button.is-active{width:46px;background:#1565D8;box-shadow:0 0 12px rgba(23, 87, 224, 0.8)}.home-hero-dots button:focus-visible{outline:2px solid #fff;outline-offset:px}
   @media(max-width:1024px){.home-hero-copy{padding-top:0}}
   @media(max-width:700px){.home-hero-slide .stat-line{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.home-hero-slide .hero-live{font-size:10px;white-space:normal}.home-hero-dots{margin-top:14px}}
@@ -2220,6 +2220,15 @@
   .pph-scene{position:absolute;right:0;top:0;bottom:0;width:52%;z-index:2;pointer-events:none;
     display:flex;align-items:center;justify-content:center;opacity:.9;
     mask-image:linear-gradient(90deg,transparent,#000 22%,#000);}
+  #ppage .pph-scene.identity-hero-art{right:3%;top:8%;bottom:8%;width:40%;opacity:1;mask-image:none}
+  #ppage .identity-hero-art iframe{display:block;width:100%;height:100%;border:0;background:transparent}
+  @media(max-width:900px){#ppage .pph-scene.identity-hero-art{right:2%;top:14%;bottom:14%;width:43%;opacity:.68}}
+  #ppage .pph-scene.ediscovery-hero-art{right:3%;top:8%;bottom:8%;width:40%;opacity:1;mask-image:none}
+  #ppage .ediscovery-hero-art iframe{display:block;width:100%;height:100%;border:0;background:transparent}
+  @media(max-width:900px){#ppage .pph-scene.ediscovery-hero-art{right:2%;top:14%;bottom:14%;width:43%;opacity:.68}}
+  #ppage .pph-scene.performance-cloud-hero-art{right:3%;top:8%;bottom:8%;width:40%;opacity:1;mask-image:none}
+  #ppage .performance-cloud-hero-art iframe{display:block;width:100%;height:100%;border:0;background:transparent}
+  @media(max-width:900px){#ppage .pph-scene.performance-cloud-hero-art{right:2%;top:14%;bottom:14%;width:43%;opacity:.68}}
   .pph-scene svg{width:100%;height:100%;max-height:340px}
   .pph-scene.dmarc-hero-art{width:38%;right:2%;mask-image:none;opacity:1}
   .dmarc-hero-art xh-enterprise-dmarc-content{width:100%}

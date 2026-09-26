@@ -34,6 +34,10 @@ import { AGENTIC_AI_SAMPLE_FAQS, AGENTIC_AI_SAMPLE_WHY } from '../data/agentic-a
 import { EnterpriseDmarcContentComponent } from '../sections/enterprise-dmarc-content.component';
 import { BusinessEmailContentComponent } from '../sections/business-email-content.component';
 import { InsightsSectionComponent } from '../sections/insights-section.component';
+import { IdentityResilienceContentComponent } from '../sections/identity-resilience-content.component';
+import { EdiscoveryComplianceContentComponent } from '../sections/ediscovery-compliance-content.component';
+import { PerformanceCloudContentComponent } from '../sections/performance-cloud-content.component';
+import { PERFORMANCE_CLOUD_FAQS } from '../data/performance-cloud-faqs.data';
 import { EmailSignatureContentComponent } from '../sections/email-signature-content.component';
 import { EmailSignatureHeroComponent } from '../sections/email-signature-hero.component';
 import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
@@ -76,6 +80,76 @@ import { InfrastructureContentComponent } from '../sections/infrastructure-conte
 import { ColocationContentComponent } from '../sections/colocation-content.component';
 import { MarketplaceContentComponent } from '../sections/marketplace-content.component';
 import { WhatsAppSmbContentComponent } from '../sections/whatsapp-smb-content.component';
+
+const IDENTITY_RESILIENCE_FAQS: Faq[] = [
+  [
+    "What is identity resilience, and why isn't native IdP backup enough?",
+    "Identity resilience protects, investigates and recovers identity providers such as Entra ID, Active Directory and Okta during an incident. Native tools retain limited history and offer coarse restores. XcellHost delivers Druva's immutable identity backups and granular recovery, managed 24×7 from India.",
+  ],
+  [
+    'What is identity resilience?',
+    'The ability to protect, detect and recover identity systems so users, applications and services keep operating during an incident, using immutable backup, cyber recovery and monitoring.',
+  ],
+  [
+    'How is this different from the Entra ID recycle bin?',
+    "The recycle bin holds some deleted objects briefly and does not restore configuration, policies or relationships. Independent backup keeps the history you choose, immutably, with object-level restore.",
+  ],
+  [
+    'Which identity providers are covered?',
+    'Microsoft Entra ID, on-premises Active Directory and Okta, under one policy and one console.',
+  ],
+  [
+    "Can you recover without reintroducing the attacker's changes?",
+    'Identity-aware recovery lets you choose a clean restore point, roll back only compromised objects and retain legitimate changes made since.',
+  ],
+  [
+    'Do you support full forest recovery?',
+    'Yes. XcellHost rehearses automated, orchestrated Active Directory forest recovery with you before an incident.',
+  ],
+  [
+    'Who runs it day to day?',
+    'XcellHost configures policies, monitors alerts, tests restores on a schedule and joins your incident bridge 24×7.',
+  ],
+  [
+    'How is it priced?',
+    'Per identity or per tenant, plus the XcellHost managed service, on one rupee invoice with GST. Send us your account counts for a quote.',
+  ],
+];
+
+const EDISCOVERY_COMPLIANCE_FAQS: Faq[] = [
+  [
+    'How does eDiscovery from backup data work?',
+    "Instead of collecting from live laptops and mailboxes, you search the backups you already keep. XcellHost delivers Druva's eDiscovery: federated search across Microsoft 365, Google Workspace and endpoints, one-click legal hold that preserves data in place, forensically sound export, and sensitive-data governance reporting for DPDP and audit.",
+  ],
+  [
+    'How does eDiscovery from backups stay defensible?',
+    'Collection runs against immutable backup copies with chain of custody preserved, so evidence is forensically sound and custodian devices are never altered.',
+  ],
+  [
+    'What does a legal hold actually do?',
+    "It preserves a custodian's data for a matter regardless of retention policy or user deletion, and releases cleanly when the matter closes.",
+  ],
+  [
+    'Which sources can we search?',
+    'Microsoft 365 mailboxes, OneDrive, SharePoint and Teams, Google Workspace, and Windows, macOS and Linux endpoint backups.',
+  ],
+  [
+    'What is sensitive data governance?',
+    'Continuous discovery of personal and regulated data across your estate, with risk views and policy-driven remediation of over-shared or stale data.',
+  ],
+  [
+    'Does this help with the DPDP Act?',
+    'It gives you the practical evidence the Act expects: where personal data sits, how long it is kept, who accessed it, and proof of deletion.',
+  ],
+  [
+    'Can it work with our legal review tools?',
+    'Yes. Exports are produced in standard formats, and Druva integrates with review platforms such as Exterro and OpenText.',
+  ],
+  [
+    'How is it priced?',
+    'Per user for discovery and governance modules, plus the XcellHost managed service, billed in INR with GST. Share your user counts for a quote.',
+  ],
+];
 
 import { ManagedAwsContentComponent } from '../sections/managed-aws-content.component';
 
@@ -187,6 +261,9 @@ interface ProductTourSlide {
     EnterpriseDmarcContentComponent,
     BusinessEmailContentComponent,
     InsightsSectionComponent,
+    IdentityResilienceContentComponent,
+    EdiscoveryComplianceContentComponent,
+    PerformanceCloudContentComponent,
     RouterLink,
     HeroNetDirective,
     ProductFaqComponent,
@@ -1538,6 +1615,33 @@ export class ProductPage {
     const slug = this.slug();
     const view = this.resolve(slug);
     if (!view) return null;
+    if (slug === 'identity-resilience') {
+      return {
+        ...view,
+        faqs: IDENTITY_RESILIENCE_FAQS,
+        heroPoints: [
+          'Entra ID, AD and Okta in one policy',
+          'Granular, point-in-time restores',
+          'Blast-radius and change insight',
+          'Immutable, air-gapped copies',
+        ],
+      };
+    }
+    if (slug === 'ediscovery-and-compliance') {
+      return {
+        ...view,
+        faqs: EDISCOVERY_COMPLIANCE_FAQS,
+        heroPoints: [
+          'Federated search',
+          'One-click legal hold',
+          'Forensically sound collection',
+          'Sensitive data discovery',
+        ],
+      };
+    }
+    if (slug === 'performance-cloud') {
+      return { ...view, faqs: PERFORMANCE_CLOUD_FAQS };
+    }
     if (view && this.slug() === 'acronis-mdr') {
       return { ...view, heroPoints: ['24/7 SOC monitoring', 'Proactive threat hunting', 'Expert incident response', 'Integrated recovery'] };
     }
@@ -2263,7 +2367,16 @@ export class ProductPage {
 
   selectTallyPlan(plan: TallyPlan, ev: Event): void {
     ev.preventDefault();
+    if (plan.edition === 'Cloud Lite' && this.selectedTallyTerm() === 'monthly') {
+      window.location.assign('/assets/xcellhost-checkout.html?product=tally-private-cloud-lite&billing=monthly');
+      return;
+    }
     this.topics.ask(`${plan.name} (${plan.edition}) - ${plan.users} users - ${this.activeTallyTerm().label}`);
+    this.overlay.open('callback');
+  }
+
+  requestPerformanceCloudPlan(plan: string): void {
+    this.topics.ask(`Performance Cloud - ${plan}`);
     this.overlay.open('callback');
   }
 

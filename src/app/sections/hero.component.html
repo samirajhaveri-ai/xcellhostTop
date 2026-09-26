@@ -16,15 +16,15 @@
           <p class="lead">{{ slide.description }}</p>
           <div class="rot-line">Right now on XcellHost&nbsp;→&nbsp;<span class="rot home-hero-spotlight">{{ slide.spotlight }}</span></div>
           <div class="hero-ctas">
+            @if (slide.primaryHref === '/smb-cyber-security-appliance') {
+              <img class="cybird-made-in-india" src="/assets/images/hero-make-in-india.png" alt="Make in India" width="600" height="274" />
+            }
             <a class="btn btn-primary" [href]="slide.primaryHref">{{ slide.primaryCta }}</a>
             <a class="btn btn-ghost" href="#" (click)="openTrial($event)">Start free trial</a>
-          </div>
-          @if (slide.primaryHref === '/smb-cyber-security-appliance') {
-            <div class="cybird-hero-art">
-              <img class="cybird-made-in-india" src="/assets/images/hero-make-in-india.png" alt="Make in India" width="600" height="274" />
+            @if (slide.primaryHref === '/smb-cyber-security-appliance') {
               <img class="cybird-appliance" src="/assets/images/hero-cybird-appliance.png" alt="Cybird security appliance" width="681" height="367" />
-            </div>
-          }
+            }
+          </div>
           <div class="stat-line">
             @for (s of stats; track s.label; let statIndex = $index) {
               <div class="sl"><b>{{ counters()[statIndex] }}</b><span>{{ s.label }}</span></div>
