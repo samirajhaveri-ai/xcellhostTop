@@ -88,7 +88,8 @@ img{max-width:100%}
 .pp-hpoint .tick{width:20px;height:20px;border-radius:50%;background:var(--blue);display:grid;place-items:center;flex:none;animation:tickpop .5s cubic-bezier(.34,1.56,.64,1) both}
 .pp-hpoint .tick .xg-ico{width:12px;height:12px;stroke-width:3}
 @keyframes tickpop{from{transform:scale(0) rotate(-40deg)}}
-.hero-ctas{display:flex;gap:10px;flex-wrap:wrap}
+.hero-ctas{display:flex;gap:8px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin}
+.hero-ctas .btn{flex:none;padding-inline:12px}
 .pp-ask-ai{display:flex;align-items:center;gap:10px;margin-top:24px;padding:20px 0 4px;border-top:1px solid rgba(144,180,233,.2);flex-wrap:wrap}
 .pp-ask-ai-kicker{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border:1px solid rgba(75,165,255,.26);border-radius:999px;background:rgba(8,31,68,.46);font:700 11px/1 var(--mono);letter-spacing:.04em}
 .pp-ask-ai-kicker:before{content:"✦"}

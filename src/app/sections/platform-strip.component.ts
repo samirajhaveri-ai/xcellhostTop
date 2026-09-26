@@ -7,7 +7,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   template: `
     <section class="platform-strip" aria-labelledby="platform-strip-title">
       <div class="platform-strip-inner">
-        <h2 id="platform-strip-title"><span>We are Cloud</span>Platform agnostic</h2>
+        <h2 id="platform-strip-title"><span>We are <strong>Cloud</strong></span>Platform agnostic</h2>
         <div class="platform-groups">
           @for (group of groups; track group.label) {
             <ul class="platform-group" [attr.aria-label]="group.label">

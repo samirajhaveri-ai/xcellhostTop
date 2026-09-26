@@ -81,6 +81,12 @@ import { ManagedAwsContentComponent } from '../sections/managed-aws-content.comp
 
 import { ManagedMicrosoft365ContentComponent } from '../sections/managed-microsoft-365-content.component';
 import { Microsoft365EnterpriseReferenceComponent } from '../sections/microsoft-365-enterprise-reference.component';
+import {
+  Microsoft365EnterpriseAdditionalComponent,
+  Microsoft365EnterpriseFrontlineComponent,
+  Microsoft365EnterpriseNonprofitComponent,
+  Microsoft365EnterpriseOffice365Component,
+} from '../sections/microsoft-365-enterprise-variants.component';
 import { SuppliedServiceReferenceComponent } from '../sections/supplied-service-reference.component';
 import { SUPPLIED_SERVICE_EXTRAS } from '../data/supplied-service-extras.data';
 import { MicrosoftCopilotContentComponent } from '../sections/microsoft-copilot-content.component';
@@ -105,6 +111,7 @@ import { AcronisBackupAdvancedContentComponent } from '../sections/acronis-backu
 import { AcronisOtContentComponent } from '../sections/acronis-ot-content.component';
 import { NvidiaA100SourceComponent } from '../sections/nvidia-a100-source.component';
 import { NvidiaA100AssuranceComponent } from '../sections/nvidia-a100-assurance.component';
+import { NvidiaH100AssuranceComponent } from '../sections/nvidia-h100-assurance.component';
 import { H100HeroAction, NvidiaH100HeroComponent } from '../sections/nvidia-h100-hero.component';
 import { H100PlanSelection, NvidiaH100ContentComponent } from '../sections/nvidia-h100-content.component';
 
@@ -210,6 +217,10 @@ interface ProductTourSlide {
 
     ManagedMicrosoft365ContentComponent,
     Microsoft365EnterpriseReferenceComponent,
+    Microsoft365EnterpriseAdditionalComponent,
+    Microsoft365EnterpriseFrontlineComponent,
+    Microsoft365EnterpriseNonprofitComponent,
+    Microsoft365EnterpriseOffice365Component,
     SuppliedServiceReferenceComponent,
     MicrosoftCopilotContentComponent,
     CopilotStudioContentComponent,
@@ -262,6 +273,7 @@ interface ProductTourSlide {
     AcronisOtContentComponent,
     NvidiaA100SourceComponent,
     NvidiaA100AssuranceComponent,
+    NvidiaH100AssuranceComponent,
     NvidiaH100HeroComponent,
     NvidiaH100ContentComponent,
 
@@ -1166,10 +1178,24 @@ export class ProductPage {
     { title: 'Internet activity and top applications', description: 'Compare activity across profiles and identify the applications driving network traffic.', image: '/assets/images/smb-cyber-tour-activity.png' },
   ];
 
+  readonly cloudBackupTourSlides: readonly ProductTourSlide[] = [
+    { title: 'Backup and recovery dashboard', description: 'View protected files, cloud storage and the latest backup status.', image: '/assets/images/cloud-backup-tour-backups.png' },
+    { title: 'Active protection settings', description: 'Review protection plans and choose how to respond when suspicious activity is detected.', image: '/assets/images/cloud-backup-tour-protection.png' },
+  ];
+
+  readonly cloudDriveTourSlides: readonly ProductTourSlide[] = [
+    { title: 'Share files with a link', description: 'Set access permissions, download options and expiry for a shared file.', image: '/assets/images/cloud-drive-tour-sharing.png' },
+    { title: 'Cloud Drive dashboard', description: 'Review users, storage usage, files and activity from the administration dashboard.', image: '/assets/images/cloud-drive-tour-dashboard.jpg' },
+    { title: 'Compliance dashboard', description: 'View compliance configurations and recent policy events.', image: '/assets/images/cloud-drive-tour-compliance.jpg' },
+    { title: 'Secure document viewer', description: 'Open protected documents in the secure viewer.', image: '/assets/images/cloud-drive-tour-secure-viewer.png' },
+  ];
+
   /** Product-owned artwork used when a page does not have a dedicated UI screenshot set. */
   readonly productTourSlides = computed<readonly ProductTourSlide[]>(() => {
     const view = this.view();
     if (!view) return [];
+    if (this.isCloudBackup()) return this.cloudBackupTourSlides;
+    if (this.isCloudDrive()) return this.cloudDriveTourSlides;
     if (this.slug() === 'smb-cyber-security-appliance') return this.smbCyberTourSlides;
     if (this.isWhatsAppSmb()) return this.whatsAppSmbTourSlides;
     if (view.name === 'Acronis True Image') return this.acronisTrueImageTourSlides;
@@ -1499,6 +1525,14 @@ export class ProductPage {
     initialValue: '',
   });
 
+  readonly isMicrosoftEnterprisePage = computed(() =>
+    this.slug() === 'microsoft-365-enterprise' ||
+    this.slug() === 'microsoft-365-enterprise-office365' ||
+    this.slug() === 'microsoft-365-enterprise-frontline' ||
+    this.slug() === 'microsoft-365-enterprise-nonprofit' ||
+    this.slug() === 'microsoft-365-enterprise-additional',
+  );
+
   /** `null` while the slug matches nothing — the effect below sends those home. */
   readonly view = computed<ProductView | null>(() => {
     const slug = this.slug();
@@ -1800,7 +1834,7 @@ export class ProductPage {
       this.slug() === 'rtx-8000' ||
       this.slug() === 'nvidia-rtx-6000-ada' ||
       this.slug() === 'rtx-a6000';
-    const videos = this.slug() === 'microsoft-365-enterprise'
+    const videos = this.isMicrosoftEnterprisePage()
       ? PRODUCT_VIDEOS['Microsoft 365']
       : useBackupVideos
         ? PRODUCT_VIDEOS['Cloud Backup (Acronis)']
@@ -1809,7 +1843,7 @@ export class ProductPage {
     return videos.slice(0, 2).flatMap((video, index) => {
       if (!video) return [];
       return [{
-        label: this.slug() === 'microsoft-365-enterprise'
+        label: this.isMicrosoftEnterprisePage()
           ? 'Microsoft 365 overview'
           : useBackupVideos
             ? (index === 0 ? 'Product Intro' : 'Use Cases')
@@ -1951,6 +1985,19 @@ export class ProductPage {
    */
   private resolve(slug: string): ProductView | null {
     if (!slug) return null;
+    const enterpriseVariants: Record<string, string> = {
+      'microsoft-365-enterprise-office365': 'Office 365 Enterprise',
+      'microsoft-365-enterprise-frontline': 'Microsoft 365 Frontline',
+      'microsoft-365-enterprise-nonprofit': 'Microsoft 365 Enterprise Nonprofit',
+      'microsoft-365-enterprise-additional': 'Microsoft 365 Enterprise Additional Services',
+    };
+    if (enterpriseVariants[slug]) {
+      return this.products.build({
+        name: enterpriseVariants[slug],
+        cat: 'Cloud',
+        crumb: 'Cloud › Microsoft 365',
+      });
+    }
     if (slug === 'microsoft-365-enterprise') {
       return this.products.build({
         name: 'Microsoft 365 Enterprise',

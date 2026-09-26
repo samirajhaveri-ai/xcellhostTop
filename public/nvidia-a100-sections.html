@@ -303,7 +303,8 @@ img{max-width:100%}
 .marq:hover .marq-t{animation-play-state:paused}
 @keyframes scrollx{to{transform:translateX(-50%)}}
 .marq-t span{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:12px;padding:14px 20px;background:var(--card);font:650 15px var(--pop);color:var(--h2);white-space:nowrap}
-.marq-t span i{width:10px;height:10px;border-radius:3px;background:var(--blue)}
+.marq-t span img{width:24px;height:24px;object-fit:contain;flex:none}
+.marq-t span img[src$="/jax.svg"]{width:32px}
 
 /* included icons */
 .incl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px 18px;text-align:center}
@@ -624,7 +625,36 @@ html[data-a100-view="details"] .pp-hero,html[data-a100-view="details"] .pp-trust
  <ol class="steps"><li class="rv"><span class="n">01</span><span class="ic"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.2A8 8 0 1 1 20 12z"/></svg></span><h3>Share your workload</h3><p>Tell us the model, scene or software you&#39;ll run and your hours of use. We reply with a sizing note and a GST-ready quote.</p></li><li class="rv"><span class="n">02</span><span class="ic"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 7V6a2 2 0 0 1 2-2h11v3"/><circle cx="16.5" cy="13.5" r="1.2"/></svg></span><h3>Pick a plan and term</h3><p>Choose hourly for a proof of concept, or a monthly to 1-year A100 80GB plan. KYC and a PO are all we need.</p></li><li class="rv"><span class="n">03</span><span class="ic"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01M11 7.5h6M11 16.5h6"/></svg></span><h3>We deliver your GPU server</h3><p>We provision the A100 80GB with your OS, drivers, CUDA and frameworks, then share SSH or remote-desktop access.</p></li><li class="rv"><span class="n">04</span><span class="ic"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18a9 9 0 1 1 16 0"/><path d="m12 13 4-5"/></svg></span><h3>Run, monitor and scale</h3><p>Track GPU use from the portal, call 24×7 support any time, and add GPUs as projects grow.</p></li></ol>
 
  <h2 class="h2s">What You Can Run On <em>A100 80GB</em></h2>
- <div class="marq"><div class="marq-t"><span><i></i>PyTorch</span><span><i></i>TensorFlow</span><span><i></i>JAX</span><span><i></i>vLLM</span><span><i></i>TensorRT-LLM</span><span><i></i>NVIDIA Triton</span><span><i></i>Hugging Face</span><span><i></i>Ollama</span><span><i></i>ComfyUI</span><span><i></i>RAPIDS</span><span><i></i>Omniverse</span><span><i></i>Blender</span><span><i></i>Unreal Engine</span><span><i></i>DaVinci Resolve</span><span><i></i>PyTorch</span><span><i></i>TensorFlow</span><span><i></i>JAX</span><span><i></i>vLLM</span><span><i></i>TensorRT-LLM</span><span><i></i>NVIDIA Triton</span><span><i></i>Hugging Face</span><span><i></i>Ollama</span><span><i></i>ComfyUI</span><span><i></i>RAPIDS</span><span><i></i>Omniverse</span><span><i></i>Blender</span><span><i></i>Unreal Engine</span><span><i></i>DaVinci Resolve</span></div></div>
+ <div class="marq"><div class="marq-t">
+  <span><img src="/assets/images/a100-logos/pytorch.svg" alt="">PyTorch</span>
+  <span><img src="/assets/images/a100-logos/tensorflow.svg" alt="">TensorFlow</span>
+  <span><img src="/assets/images/a100-logos/jax.svg" alt="">JAX</span>
+  <span><img src="/assets/images/a100-logos/vllm.svg" alt="">vLLM</span>
+  <span><img src="/assets/images/a100-logos/nvidia.svg" alt="">TensorRT-LLM</span>
+  <span><img src="/assets/images/a100-logos/triton.png" alt="">NVIDIA Triton</span>
+  <span><img src="/assets/images/a100-logos/huggingface.svg" alt="">Hugging Face</span>
+  <span><img src="/assets/images/a100-logos/ollama.svg" alt="">Ollama</span>
+  <span><img src="/assets/images/a100-logos/comfyui.png" alt="">ComfyUI</span>
+  <span><img src="/assets/images/a100-logos/rapids.png" alt="">RAPIDS</span>
+  <span><img src="/assets/images/a100-logos/omniverse.png" alt="">Omniverse</span>
+  <span><img src="/assets/images/a100-logos/blender.svg" alt="">Blender</span>
+  <span><img src="/assets/images/a100-logos/unrealengine.svg" alt="">Unreal Engine</span>
+  <span><img src="/assets/images/a100-logos/davinciresolve.svg" alt="">DaVinci Resolve</span>
+  <span><img src="/assets/images/a100-logos/pytorch.svg" alt="">PyTorch</span>
+  <span><img src="/assets/images/a100-logos/tensorflow.svg" alt="">TensorFlow</span>
+  <span><img src="/assets/images/a100-logos/jax.svg" alt="">JAX</span>
+  <span><img src="/assets/images/a100-logos/vllm.svg" alt="">vLLM</span>
+  <span><img src="/assets/images/a100-logos/nvidia.svg" alt="">TensorRT-LLM</span>
+  <span><img src="/assets/images/a100-logos/triton.png" alt="">NVIDIA Triton</span>
+  <span><img src="/assets/images/a100-logos/huggingface.svg" alt="">Hugging Face</span>
+  <span><img src="/assets/images/a100-logos/ollama.svg" alt="">Ollama</span>
+  <span><img src="/assets/images/a100-logos/comfyui.png" alt="">ComfyUI</span>
+  <span><img src="/assets/images/a100-logos/rapids.png" alt="">RAPIDS</span>
+  <span><img src="/assets/images/a100-logos/omniverse.png" alt="">Omniverse</span>
+  <span><img src="/assets/images/a100-logos/blender.svg" alt="">Blender</span>
+  <span><img src="/assets/images/a100-logos/unrealengine.svg" alt="">Unreal Engine</span>
+  <span><img src="/assets/images/a100-logos/davinciresolve.svg" alt="">DaVinci Resolve</span>
+ </div></div>
 
  <h2 class="pp-sec">Included with XcellHost GPU Cloud</h2>
  <div class="incl"><div class="rv"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01M11 7.5h6M11 16.5h6"/></svg>Multi-tier security infrastructure</div><div class="rv"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a5 5 0 1 1 1-9.9A6 6 0 0 1 19.5 10 4 4 0 0 1 18 18z"/></svg>Tier-4 certified data centres</div><div class="rv"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 14h18M9 4v5M15 9v5M9 14v6"/></svg>Next-gen firewall &amp; anti-DDoS</div><div class="rv"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 8-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"/></svg>CUDA &amp; drivers pre-installed</div><div class="rv"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18a9 9 0 1 1 16 0"/><path d="m12 13 4-5"/></svg>99.95% uptime guarantee</div><div class="rv"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 15c-1.5 1.5-2 5-2 5s3.5-.5 5-2M9 11a13 13 0 0 1 11-8 13 13 0 0 1-8 11l-3-3z"/><circle cx="15" cy="9" r="1.5"/></svg>Free migration from on-premise</div></div>
