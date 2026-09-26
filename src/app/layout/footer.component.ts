@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CatalogService, slugify } from '../core/catalog.service';
 import { OverlayService } from '../core/overlay.service';
@@ -39,6 +39,7 @@ export class FooterComponent {
 
   readonly site = SITE;
   readonly year = new Date().getFullYear();
+  readonly videoStarted = signal(false);
 
   /** Resolved once so the slugs match the directory the service pages use. */
   readonly catalogLinks = CATALOG_LINKS;

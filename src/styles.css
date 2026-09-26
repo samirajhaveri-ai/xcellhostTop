@@ -2153,6 +2153,7 @@
 
   /* --- FAQ 2-column dynamic grid (not table) --- */
   .pp-faq{display:grid !important;grid-template-columns:1fr 1fr;gap:14px}
+  #ppage.nvidia-a100-page .a100-faq-column{display:flex;flex-direction:column;gap:14px;min-width:0}
   .faq2{border:1.5px solid var(--line);border-radius:14px;background:#fff;overflow:hidden;transition:border-color .25s,box-shadow .25s;align-self:start}
   .faq2.open{border-color:var(--blue);box-shadow:0 12px 30px rgba(21,101,216,.1)}
   .faq2-q{width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:18px 20px;
@@ -2165,6 +2166,7 @@
   .faq2-a p{padding:0 20px 18px;font-size:13.5px;color:var(--slate);line-height:1.65}
   .faq2-a.loading p::after{content:" \2026";color:var(--blue)}
   @media(max-width:760px){.pp-faq{grid-template-columns:1fr}}
+  @media(max-width:760px){#ppage.nvidia-a100-page .pp-faq.a100-faq{display:flex !important;flex-direction:column}#ppage.nvidia-a100-page .a100-faq-column{display:contents}}
 
   /* --- humanised blog cards --- */
   .pbl{cursor:pointer;display:flex;flex-direction:column;text-align:left}
@@ -3087,6 +3089,12 @@
   .nf-video-frame{position:relative;overflow:hidden;border-radius:22px;background:linear-gradient(160deg,rgba(17,34,94,.55),rgba(10,22,69,.82));border:1px solid rgba(255,255,255,.18);box-shadow:0 18px 42px rgba(7,18,53,.25)}
   .nf-video-frame::before{content:"";display:block;padding-top:56.25%}
   .nf-video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .nf-video-poster{position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;background:linear-gradient(160deg,#1b3e87,#0a1645);color:#fff;cursor:pointer;overflow:hidden}
+  .nf-video-poster img{display:block;width:100%;height:100%;object-fit:cover}
+  .nf-video-poster::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(3,15,46,.78),transparent 58%);pointer-events:none}
+  .nf-video-play{position:absolute;top:50%;left:50%;z-index:1;display:grid;place-items:center;width:68px;height:68px;border-radius:50%;background:#e60012;color:#fff;font-size:27px;transform:translate(-50%,-50%);box-shadow:0 8px 24px rgba(0,0,0,.35)}
+  .nf-video-caption{position:absolute;right:16px;bottom:16px;left:16px;z-index:1;font-size:14px;font-weight:700;text-align:center}
+  .nf-video-poster:focus-visible{outline:3px solid #fff;outline-offset:-6px}
   .nf-video-link{justify-self:start;color:#fff;text-decoration:none;font-size:13px;font-weight:700;padding:9px 14px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);transition:background .2s,transform .2s}
   .nf-video-link:hover{background:rgba(255,255,255,.2);transform:translateY(-1px)}
   .nfs{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:15px;text-decoration:none;transition:transform .2s}

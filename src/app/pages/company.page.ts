@@ -152,7 +152,7 @@ export class CompanyPage {
   readonly advisoryTeam = [
     { initials: 'SJ', name: 'CA Suraj Jain', role: 'Financial Advisor', image: '/assets/images/team-suraj-jain.png' },
     { initials: 'SM', name: 'CA Surendra Mehra', role: 'Chartered Accountant', image: '/assets/images/Mehra.png' },
-     { initials: 'UJ', name: 'CA Upendra Joshi ', role: 'Chartered Accountant', image: '/assets/images/Upendra.jpg' },
+     { initials: 'UJ', name: 'Upendra Joshi ', role: 'Consultant', image: '/assets/images/Upendra.jpg' },
   ] as const;
 
   readonly salesTeam = [

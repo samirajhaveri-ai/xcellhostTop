@@ -110,6 +110,9 @@ import { CloudMigrationAdvantageComponent } from '../sections/cloud-migration-ad
 import { AcronisBackupAdvancedContentComponent } from '../sections/acronis-backup-advanced-content.component';
 import { AcronisOtContentComponent } from '../sections/acronis-ot-content.component';
 import { NvidiaA100SourceComponent } from '../sections/nvidia-a100-source.component';
+import { AiResilienceSourceComponent } from '../sections/ai-resilience-source.component';
+import { CyberResilienceSourceComponent } from '../sections/cyber-resilience-source.component';
+import { DataResilienceSourceComponent } from '../sections/data-resilience-source.component';
 import { NvidiaA100AssuranceComponent } from '../sections/nvidia-a100-assurance.component';
 import { NvidiaH100AssuranceComponent } from '../sections/nvidia-h100-assurance.component';
 import { H100HeroAction, NvidiaH100HeroComponent } from '../sections/nvidia-h100-hero.component';
@@ -272,6 +275,9 @@ interface ProductTourSlide {
     AcronisBackupAdvancedContentComponent,
     AcronisOtContentComponent,
     NvidiaA100SourceComponent,
+    AiResilienceSourceComponent,
+    CyberResilienceSourceComponent,
+    DataResilienceSourceComponent,
     NvidiaA100AssuranceComponent,
     NvidiaH100AssuranceComponent,
     NvidiaH100HeroComponent,
@@ -283,6 +289,12 @@ interface ProductTourSlide {
   templateUrl: './product.page.html',
   styles: [`
     #ppage.nvidia-a100-page .pp-hero { display: none; }
+    #ppage.ai-resilience-page .pp-hero { display: none; }
+    #ppage.ai-resilience-page xh-ai-resilience-source[view="details"] { display: block; width: calc(100% + 48px); margin-inline: -24px; }
+    #ppage.cyber-resilience-page .pp-hero { display: none; }
+    #ppage.cyber-resilience-page xh-cyber-resilience-source[view="details"] { display: block; width: calc(100% + 48px); margin-inline: -24px; }
+    #ppage.data-resilience-page .pp-hero { display: none; }
+    #ppage.data-resilience-page xh-data-resilience-source[view="details"] { display: block; width: calc(100% + 48px); margin-inline: -24px; }
     #ppage.nvidia-a100-page #ppOv { width: 100%; max-width: none; }
     #ppage.nvidia-a100-page .a100-related { display: flex; flex-wrap: nowrap; gap: 6px; align-items: center; margin-top: 24px; overflow-x: auto; white-space: nowrap; color: #486078; font-size: 12px; }
     #ppage.nvidia-a100-page .a100-related > * { flex: none; }
@@ -1756,6 +1768,8 @@ export class ProductPage {
     ['Can we test a workload before committing?', 'Ask the GPU team about a scoped proof of concept or trial. Availability, duration and configuration are confirmed when the request is reviewed.'],
     ['How is NVIDIA A100 priced?', 'Available configurations can be billed hourly or monthly in INR. The final quote depends on GPU count, storage, networking, support and the selected term.'],
   ];
+  readonly nvidiaA100FaqLeft = this.nvidiaA100Faqs.filter((_, index) => index % 2 === 0);
+  readonly nvidiaA100FaqRight = this.nvidiaA100Faqs.filter((_, index) => index % 2 === 1);
 
   readonly isSmbCyber = computed(
     () => this.view()?.name === 'SMB Cyber Security Appliance'
