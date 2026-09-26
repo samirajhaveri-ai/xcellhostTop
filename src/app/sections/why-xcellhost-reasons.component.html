@@ -1,0 +1,18 @@
+<div class="why-page why-reasons-page">
+  <section class="why-reasons why-wrap" id="why-reasons" aria-labelledby="reasons-title">
+    <header class="why-intro">
+      <div class="why-intro-text"><h2 id="reasons-title">Built on Experience. <em>Driven by What&rsquo;s Next.</em></h2></div>
+    </header>
+    <div class="why-editorial">
+      <aside class="why-index"><span class="why-eyebrow">EXPLORE THE CHAPTERS</span><nav aria-label="Reasons by theme">@for (group of groups; track group.title; let index = $index) {<a [routerLink]="[]" [fragment]="'reason-group-' + index"><span>0{{ index + 1 }}</span>{{ group.title }}</a>}</nav><a class="why-index-contact" routerLink="/contact">Find your cloud solution</a></aside>
+      <div class="why-chapters">
+        @for (group of groups; track group.title; let index = $index) {
+          <section class="why-group" [id]="'reason-group-' + index" [attr.aria-labelledby]="'reason-title-' + index">
+            <header class="why-group-heading"><span class="why-chapter-number">0{{ index + 1 }}</span><div><span class="why-eyebrow">{{ group.title }}</span><h3 [id]="'reason-title-' + index">{{ chapterHeadings[index] }}</h3></div></header>
+            <div class="why-reason-list">@for (reason of group.reasons; track reason.number) {<article class="why-reason"><span class="why-reason-icon material-symbols-outlined" aria-hidden="true">{{ reason.icon }}</span><h4>{{ reason.title }}</h4><p>{{ reason.body }}</p></article>}</div>
+          </section>
+        }
+      </div>
+    </div>
+  </section>
+</div>

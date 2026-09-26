@@ -3665,12 +3665,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Secure, scalable cloud expertise since 1999"
               },
               {
-                "title": "Why XcellHost",
-                "pill": null,
-                "desc": "Secure, scalable cloud expertise since 1999"
-              },
-              {
-                "title": "Our Team · Our Story",
+                "title": "About Us",
                 "pill": null,
                 "desc": "Meet the people and story behind XcellHost"
               },
@@ -4138,7 +4133,8 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "TSPlus Demo Center",
                 "pill": null,
-                "desc": null
+                "desc": "Watch TSplus Remote Access connection demos",
+                "href": "/tsplus-demo-center"
               },
               {
                 "title": "Product Tours",

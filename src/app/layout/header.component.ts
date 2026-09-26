@@ -263,10 +263,10 @@ const MENU_FEATURE_CARDS: Readonly<Record<string, readonly NavFeatureCardVm[]>> 
       link: '/contact', fresh: true,
     },
     {
-      label: 'Meet XcellHost', title: 'Our Team · Our Story',
+      label: 'Meet XcellHost', title: 'About Us',
       body: 'Discover the people and journey behind XcellHost since 1999.',
       image: '/assets/images/menu-our-team.svg',
-      link: '/company/our-team-our-story',
+      link: '/about-us',
     },
   ],
 };
@@ -363,9 +363,7 @@ const CONTENT_LINKS: Record<string, string> = {
   'Case Studies': '/case-studies',
   'Customer Stories': '/case-studies',
   'About XcellHost': '/about',
-  'About Us': '/about',
-  'Why XcellHost': '/company/why-xcellhost',
-  'Our Team · Our Story': '/company/our-team-our-story',
+  'About Us': '/about-us',
   'Our Platform': '/company/our-platform',
   'Watch Tower': '/company/trust-watch',
   'Trust Watch': '/company/trust-watch',

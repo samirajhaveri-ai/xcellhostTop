@@ -354,13 +354,10 @@ $("#recGo").onclick=function(){famOn(this.dataset.f);document.getElementById("pr
 /* OS / apps */
 $$("#osTabs button").forEach(function(b){b.onclick=function(){$$("#osTabs button").forEach(function(x){x.classList.toggle("is-on",x===b)});$$(".os-set").forEach(function(s){s.classList.toggle("is-on",s.dataset.k===b.dataset.k)})}});
 document.addEventListener("click",function(ev){var a=ev.target.closest('a[href="#lead"]');if(!a)return;ev.preventDefault();parent.postMessage({type:"performance-cloud-plan",plan:a.dataset.plan||document.getElementById("cfgGo").dataset.cfg||"Performance Cloud"},"*")});
-+var hl=$$("#xgHsList li"),hs=$$("#xgHs .gc-hs");
+var hl=$$("#xgHsList li"),hs=$$("#xgHs .gc-hs");
 function hsOn(i){hl.forEach(function(l){l.classList.toggle("is-on",l.dataset.i==i)});hs.forEach(function(h){h.classList.toggle("is-on",h.dataset.i==i)})}
 hs.forEach(function(h){h.addEventListener("click",function(){hsOn(h.dataset.i)});h.addEventListener("mouseenter",function(){hsOn(h.dataset.i)})});
 hl.forEach(function(l){l.addEventListener("mouseenter",function(){hsOn(l.dataset.i)});l.addEventListener("click",function(){hsOn(l.dataset.i)})});
 var hsi=0,hsT=setInterval(function(){hsi=(hsi+1)%hl.length;hsOn(hsi)},3500);$("#xgHs").addEventListener("pointerenter",function(){clearInterval(hsT)});
-function reportHeight(){parent.postMessage({type:"performance-cloud-height",height:document.documentElement.scrollHeight},"*")}
-if(window.ResizeObserver)new ResizeObserver(reportHeight).observe(document.body);
-addEventListener("load",reportHeight);setTimeout(reportHeight,200);
 })();
 </script></body></html>

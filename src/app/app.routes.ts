@@ -38,7 +38,10 @@ export const routes: Routes = [
   { path: 'under-construction/trust-watch', redirectTo: 'company/trust-watch', pathMatch: 'full' },
   { path: 'domains', redirectTo: 'register-a-domain-name', pathMatch: 'full' },
   { path: 'iot-infrastructure', redirectTo: 'iot-cloud', pathMatch: 'full' },
-  { path: 'why-xcellhost', redirectTo: 'company/why-xcellhost', pathMatch: 'full' },
+  { path: 'why-xcellhost', redirectTo: 'about-us', pathMatch: 'full' },
+  { path: 'company/why-xcellhost', redirectTo: 'about-us', pathMatch: 'full' },
+  { path: 'company/our-team-our-story', redirectTo: 'about-us', pathMatch: 'full' },
+  { path: 'about-us', data: { pageSlug: 'our-team-our-story' }, loadComponent: () => import('./pages/company.page').then((m) => m.CompanyPage) },
   { path: '', pathMatch: 'full', loadComponent: () => import('./pages/home.page').then((m) => m.HomePage) },
   { path: 'compare', loadComponent: () => import('./pages/compare.page').then((m) => m.ComparePage) },
   { path: 'compare-providers', loadComponent: () => import('./pages/compare-providers.page').then((m) => m.CompareProvidersPage) },
@@ -135,6 +138,8 @@ export const routes: Routes = [
   },
 
   { path: 'under-construction/ai-use-policy', loadComponent: () => import('./pages/ai-use-policy.page').then((m) => m.AiUsePolicyPage) },
+  { path: 'under-construction/tsplus-demo-center', redirectTo: 'tsplus-demo-center', pathMatch: 'full' },
+  { path: 'tsplus-demo-center', loadComponent: () => import('./pages/tsplus-demo-center.page').then((m) => m.TsplusDemoCenterPage) },
   { path: 'under-construction/:slug', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
   { path: 'under-construction', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
   {
@@ -183,7 +188,7 @@ export const routes: Routes = [
   },
   {
     path: 'our-team',
-    redirectTo: 'company/our-team-our-story',
+    redirectTo: 'about-us',
     pathMatch: 'full',
   },
   {
