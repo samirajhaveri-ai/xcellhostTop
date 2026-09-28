@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, computed, effect, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { distinctUntilChanged, map, Observable, switchMap, tap } from 'rxjs';
@@ -50,7 +50,7 @@ const AUTHOR_PHOTOS: Readonly<Record<string, string>> = {
   host: { style: 'display:contents', '(window:scroll)': 'onScroll()' },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BlogPage {
+export class BlogPage implements OnDestroy {
   private readonly topics = inject(CallbackTopicService);
   private readonly route = inject(ActivatedRoute);
   private readonly overlay = inject(OverlayService);
@@ -71,6 +71,11 @@ export class BlogPage {
   readonly error = signal(false);
   readonly progress = signal(0);
   readonly copiedLink = signal(false);
+  readonly speechState = signal<'idle' | 'playing' | 'paused'>('idle');
+  readonly speechSupported = !!this.doc.defaultView?.speechSynthesis;
+  private speechChunks: string[] = [];
+  private speechIndex = 0;
+  private speechRun = 0;
   readonly shareNetworks: readonly ShareNetwork[] = ['linkedin', 'facebook', 'x', 'whatsapp', 'email'];
 
   readonly blocks = computed(() => this.parseContent(this.post()?.content ?? ''));
@@ -134,6 +139,7 @@ export class BlogPage {
         map((params) => params.get('slug') ?? ''),
         distinctUntilChanged(),
         tap((slug) => {
+          this.stopListening();
           this.slug.set(slug);
           this.loading.set(true);
           this.error.set(false);
@@ -183,6 +189,63 @@ export class BlogPage {
         publisher: { '@type': 'Organization', name: SITE.company, url: SITE.siteUrl },
       });
     });
+  }
+
+  ngOnDestroy(): void {
+    this.stopListening();
+  }
+
+  toggleListening(): void {
+    const synth = this.doc.defaultView?.speechSynthesis;
+    const post = this.post();
+    if (!synth || !post || this.isUseCase) return;
+
+    if (this.speechState() === 'playing') {
+      synth.pause();
+      this.speechState.set('paused');
+      return;
+    }
+    if (this.speechState() === 'paused') {
+      synth.resume();
+      this.speechState.set('playing');
+      return;
+    }
+
+    const text = [post.title, post.description,
+      ...this.blocks().flatMap(block => block.kind === 'ul' ? block.items : block.kind === 'img' ? [] : [block.text])]
+      .map(value => value.replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(/[*_`#]/g, '').trim())
+      .filter(Boolean);
+    this.speechChunks = text.flatMap(value => value.match(/.{1,180}(?:\s|$)|\S+/g)?.map(part => part.trim()) ?? []);
+    if (!this.speechChunks.length) return;
+    this.speechIndex = 0;
+    this.speechRun++;
+    synth.cancel();
+    this.speechState.set('playing');
+    this.speakNextChunk(this.speechRun);
+  }
+
+  stopListening(): void {
+    this.speechRun++;
+    this.doc.defaultView?.speechSynthesis?.cancel();
+    this.speechChunks = [];
+    this.speechIndex = 0;
+    this.speechState.set('idle');
+  }
+
+  private speakNextChunk(run: number): void {
+    if (run !== this.speechRun) return;
+    const chunk = this.speechChunks[this.speechIndex++];
+    if (!chunk) {
+      this.speechState.set('idle');
+      return;
+    }
+    const view = this.doc.defaultView;
+    if (!view) return;
+    const utterance = new SpeechSynthesisUtterance(chunk);
+    utterance.lang = 'en-IN';
+    utterance.onend = () => this.speakNextChunk(run);
+    utterance.onerror = () => { if (run === this.speechRun) this.stopListening(); };
+    view.speechSynthesis.speak(utterance);
   }
 
   onScroll(): void {

@@ -150,10 +150,6 @@ export class CompanyPage {
   ] as const;
 
   readonly advisoryTeam = [
-    { initials: 'SJ', name: 'CA Suraj Jain', role: 'Financial Advisor', image: '/assets/images/team-suraj-jain.png' },
-    { initials: 'SM', name: 'CA Surendra Mehra', role: 'Chartered Accountant', image: '/assets/images/Mehra.png' },
-     { initials: 'UJ', name: 'Upendra Joshi ', role: 'Consultant', image: '/assets/images/Upendra.jpg' },
-
     { initials: 'SJ', name: 'CA Suraj Jain', role: 'Financial Advisor', image: '/assets/images/TEAMS PHOTO/Suraj JAin.png' },
     { initials: 'SM', name: 'CA Surendra Mehra', role: 'Chartered Accountant', image: '/assets/images/TEAMS PHOTO/Mehara.png' },
      { initials: 'UJ', name: 'CA Upendra Joshi ', role: 'Chartered Accountant', image: '/assets/images/TEAMS PHOTO/Upendra.png' },
@@ -189,7 +185,7 @@ export class CompanyPage {
   ] as const;
 
   readonly developers: readonly { initials: string; name: string; role: string; image: string }[] = [
-    { initials: 'SV', name: 'Sujeet Vishwakarma', role: 'Developer', image: '/assets/images/TEAMS PHOTO/Sujeet Vishwakarma.png' },
+    { initials: 'SV', name: 'Sujeet Vishwakarma', role: 'Senior Developer', image: '/assets/images/TEAMS PHOTO/Sujeet Vishwakarma.png' },
     { initials: 'VG', name: 'Vaishnavi Ghaghare', role: 'Web Developer', image: '/assets/images/TEAMS PHOTO/Vaishnavi Ghaghare.png' },
     { initials: 'DV', name: 'Divya Varma', role: 'Web Developer', image: '/assets/images/TEAMS PHOTO/Divya Varma.png' },
     { initials: 'VT', name: 'Vibha Tiwari', role: 'Web Developer', image: '/assets/images/TEAMS PHOTO/Vibha Tiwari.png' },
@@ -204,26 +200,25 @@ export class CompanyPage {
   ] as const;
 
   readonly graphicDesignerTeam = [
-    { initials: 'SP', name: 'Shantaram Palkar', role:'Graphic Manager', image: '/assets/images/TEAMS PHOTO/Shantaram Palkar.png' },
-    { initials: 'SV', name: 'Shakshita Vangade', role: 'Graphic Designer L1', image: '/assets/images/TEAMS PHOTO/Shakshita Vangade.png' },
+    { initials: 'SP', name: 'Shantaram Palkar', role:'Graphic Designer Manager', image: '/assets/images/TEAMS PHOTO/Shantaram Palkar.png' },
     { initials: 'NS', name: 'Nishant Shinde', role: 'Graphic Designer L2', image: '/assets/images/TEAMS PHOTO/Nishant Shinde.png' },
+   { initials: 'SV', name: 'Shakshita Vangade', role: 'Graphic Designer L1', image: '/assets/images/TEAMS PHOTO/Shakshita Vangade.png' },
      { initials: 'NS', name: 'AI Generative Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
   ] as const;
 
   readonly adminTeam = [
     { initials: 'MS', name: 'Mayuri Shinde', role: 'Admin Manager', image: '/assets/images/TEAMS PHOTO/Mayuri Shinde.png' },
-      { initials: 'T', name: 'Tejas Nashiba', role: 'Admin ', image: 'assets/images/TEAMS PHOTO/Tejas Nashiba.png' },
+      { initials: 'T', name: 'Tejas Nashiba', role: 'Admin Exceutive ', image: 'assets/images/TEAMS PHOTO/Tejas Nashiba.png' },
     { initials: 'T', name: 'AI Command Center Orchestrator', role: '', image: '/assets/images/Robot-enhanced.png' },
   ] as const;
 
   readonly technicalSupportTeam = [
     { initials: 'RS', name: 'Rizwan Shaikh', role: 'Technical Manager', image: '/assets/images/TEAMS PHOTO/Rizwan.png' },
-    { initials: 'AY', name: 'Amit Yadav', role: 'Technical L3', image: '/assets/images/TEAMS PHOTO/Amit Yadav.png' },
+    { initials: 'AY', name: 'Amit Yadav', role: 'Technical Support Executive- L3', image: '/assets/images/TEAMS PHOTO/Amit Yadav.png' },
     { initials: 'SB', name: 'Santosh kumar Behera', role: 'Technical Support Executive - L2', image: '/assets/images/TEAMS PHOTO/Santosh.png' },
-     { initials: 'TM', name: 'Talha Mohammad', role: 'Technical L2', image: '/assets/images/TEAMS PHOTO/Talha.png' },
-     { initials: 'TM', name: 'Manisha Gupta', role: 'Technical L2', image: '/assets/images/TEAMS PHOTO/Manisha Gupta.png' },
-    { initials: 'PA', name: 'Purva Angre', role: 'Technical L1', image: '/assets/images/TEAMS PHOTO/Purva.png' },
-    { initials: 'SY', name: 'Saurav Yadav', role:  'Cloud Executive', image: '/assets/images/TEAMS PHOTO/Saurav.png' },
+     { initials: 'TM', name: 'Talha Mohammad', role: 'Technical Support Executive-L2', image: '/assets/images/TEAMS PHOTO/Talha.png' },
+     { initials: 'TM', name: 'Manisha Gupta', role: 'Technical Support Executive-L2', image: '/assets/images/TEAMS PHOTO/Manisha Gupta.png' },
+    { initials: 'PA', name: 'Purva Angre', role: 'Technical Support Executive-L1', image: '/assets/images/TEAMS PHOTO/Purva.png' },
     { initials: 'TM', name: 'AI Customer Support-Service', role: '', image: '/assets/images/Robot-enhanced.png' }
   ] as const;
 
@@ -244,9 +239,9 @@ export class CompanyPage {
   readonly teamTabs = [
     { id: 'all', label: 'All Team' },
     { id: 'management', label: 'Management' },
+     { id: 'advisory', label: 'Advisory' },
     { id: 'technical-support', label: 'Technical Support' },
     { id: 'security', label: 'Security' },
-    { id: 'advisory', label: 'Advisory' },
     { id: 'sales', label: 'Sales' },
     { id: 'marketing', label: 'Marketing' },
     { id: 'AITeams', label: 'AI' },

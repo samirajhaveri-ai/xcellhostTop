@@ -736,6 +736,18 @@ interface ProductTourSlide {
     #ppage.atm-solution-page .pp-hero > .wrap > h1 { max-width: 58%; white-space: normal; }
     #ppage.atm-solution-page .pp-tagline { color: #67b7ff; }
     #ppage.atm-solution-page .pp-tagline-support { color: #fff; }
+    @media(min-width:901px){
+      #ppage.acronis-mdr-page .pp-hero > .wrap > .pp-tagline-support {
+        width: 52%; max-width: 680px !important; margin-bottom: 12px;
+        font-size: 15px; line-height: 1.55; overflow-wrap: break-word;
+      }
+      #ppage.acronis-mdr-page .pph-scene.has-illus.mdr-hero-art {
+        right: 2%; top: 0; bottom: 0; width: 38%; padding: 20px 0;
+        align-items: center; justify-content: center; overflow: visible; mask-image: none;
+      }
+      #ppage.acronis-mdr-page .mdr-hero-art .pph-illus { padding: 0; }
+      #ppage.acronis-mdr-page .mdr-hero-art xh-acronis-mdr-hero { max-width: 440px; }
+    }
     #ppage .atm-demo-preview { max-width: 760px; margin-inline: auto; }
     #ppage .atm-demo-preview .tally-video-frame { min-height: 360px; background: #041e42; }
     #ppage .atm-demo-preview > .btn { align-self: center; margin: 18px auto 4px; }
@@ -1030,6 +1042,11 @@ export class ProductPage {
   readonly cloudDriveQuantity = signal(1);
   readonly activeCdrTourSlide = signal(0);
   readonly cdrTourSlides = [
+    {
+      title: 'Disaster recovery dashboard',
+      description: 'Review protected devices, recovery servers, health checks, automated test failovers and cloud-server alerts in one dashboard.',
+      image: '/assets/images/cdr-smb-dashboard.webp',
+    },
     {
       title: 'Recovery cloud infrastructure',
       description: 'Track reserved compute, memory, storage, virtual-machine status and capacity across the recovery environment.',
@@ -1639,7 +1656,25 @@ export class ProductPage {
       return { ...view, faqs: PERFORMANCE_CLOUD_FAQS };
     }
     if (view && this.slug() === 'acronis-mdr') {
-      return { ...view, heroPoints: ['24/7 SOC monitoring', 'Proactive threat hunting', 'Expert incident response', 'Integrated recovery'] };
+      return {
+        ...view,
+        tagline: '24×7 managed detection and response — with recovery built in',
+        heroHighlight: 'A security operations centre that never sleeps — without hiring one. XcellHost analysts watch your endpoints, email and Microsoft 365 around the clock, investigate what matters, contain threats and restore what was hit from backup, on the Acronis platform.',
+        heroMessages: [
+          '24×7×365 analyst-led monitoring',
+          'Containment in minutes, not days',
+          'Rollback and recovery from backup',
+          'Standard or Advanced — your choice',
+        ],
+        heroPoints: [
+          '24×7×365 monitoring',
+          'Analyst-led investigation',
+          'Automated & manual response',
+          'Backup-based recovery',
+          'Monthly reporting',
+          'SOC in Mumbai',
+        ],
+      };
     }
     if (view && this.slug() === 'microsoft-copilot-training') {
       return {
@@ -1760,7 +1795,17 @@ export class ProductPage {
         ...view,
         why: EMAIL_ARCHIVING_SAMPLE_WHY,
         faqs: EMAIL_ARCHIVING_SAMPLE_FAQS,
-        heroPoints: ['Real-time journaling', 'Immutable storage', 'Fast eDiscovery', 'Custom retention policies'],
+        tagline: 'Every email, kept exactly as it was sent — searchable in seconds, provable for years',
+        heroHighlight: "Immutable email archiving for Microsoft 365 and Google Workspace. Every message is journaled the moment it's sent or received, locked against change, retained to your policy and ready for audits, legal requests and investigations.",
+        heroMessages: ['Tamper-proof, encrypted, retained for years'],
+        heroPoints: [
+          'Real-time journaling',
+          'Immutable WORM storage',
+          'Instant eDiscovery',
+          'Legal hold',
+          'Retention by user, team or domain',
+          'Managed 24×7 by XcellHost',
+        ],
       };
     }
     if (slug !== 'agentic-ai') return view;

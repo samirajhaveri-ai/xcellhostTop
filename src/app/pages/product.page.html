@@ -11,6 +11,7 @@
     [class.cloud-migration-page]="slug() === 'cloud-migration'"
     [class.acronis-backup-advanced-page]="slug() === 'acronis-backup-advanced'"
     [class.acronis-ot-page]="slug() === 'acronis-ot'"
+    [class.email-archiving-page]="slug() === 'email-archiving'"
     [class.rtx-8000-page]="slug() === 'rtx-8000'"
     [class.rtx-pro-6000-page]="slug() === 'rtx-pro-6000'"
     [class.rtx-6000-ada-page]="slug() === 'nvidia-rtx-6000-ada'"
@@ -302,10 +303,28 @@
             </div>
           </div>
         } @else if (slug() === 'email-archiving') {
-          <div class="pph-scene has-illus standalone-illus archive-hero-art" aria-hidden="true">
-            <div class="pph-illus">
-              <img class="pph-illus-img" src="/assets/images/email-archiving-hero.svg" alt="" />
+          <div class="pph-scene archive-dashboard-art" aria-hidden="true">
+            <div class="archive-console">
+              <div class="archive-console-head">
+                <span class="archive-window-dots"><i></i><i></i><i></i></span>
+                <strong>Journal &nbsp;·&nbsp; yourcompany.in</strong>
+                <span class="archive-live"><i></i> Live</span>
+              </div>
+              <div class="archive-metrics">
+                <span>Archived <b>24,19,559</b></span>
+                <span>On hold <b class="hold">3 matters</b></span>
+                <span>Altered <b class="safe">0</b></span>
+              </div>
+              <div class="archive-mail-list">
+                <div><b>IN</b><span>GSTR-3B reconciliation · gst&#64;yourcompany.in</span><i>808c6f</i></div>
+                <div><b class="out">OUT</b><span>Notice – Acme dispute · legal&#64;yourcompany.in</span><i>1a3f22</i></div>
+                <div><b>IN</b><span>FY25 ledger confirmations · auditor&#64;kpca.in</span><i>45ffe2</i></div>
+                <div><b class="internal">INT</b><span>Leave policy update · hr&#64;yourcompany.in</span><i>f9d5e2</i></div>
+                <div><b class="out">OUT</b><span>Revised quotation v3 · sales&#64;yourcompany.in</span><i>79d311</i></div>
+              </div>
+              <div class="archive-console-foot"><i></i> WORM storage &nbsp;·&nbsp; AES-256 &nbsp;·&nbsp; every message hashed</div>
             </div>
+            <div class="archive-stage-tags"><span>EMAIL ARCHIVE</span><span><i></i> Managed from India</span></div>
           </div>
         } @else if (slug() === 'enterprise-dmarc') {
           <div class="pph-scene dmarc-hero-art" aria-hidden="true">
@@ -345,6 +364,13 @@
                 sandbox="allow-scripts"
                 tabindex="-1"
               ></iframe>
+              <img
+                class="edr-hero-logo"
+                src="/assets/images/acronis-edr-logo.png"
+                alt=""
+                width="1117"
+                height="479"
+              />
             </div>
           </div>
         } @else if (isRmm()) {
@@ -357,6 +383,13 @@
                 sandbox="allow-scripts"
                 tabindex="-1"
               ></iframe>
+              <img
+                class="rmm-hero-logo"
+                src="/assets/images/acronis-rmm-logo.png"
+                alt=""
+                width="1117"
+                height="479"
+              />
             </div>
           </div>
         } @else if (isSmbCyber()) {
@@ -1120,7 +1153,7 @@
                 <section class="pp-ask-ai" aria-labelledby="ppAskAiTitle">
                   <div class="pp-ask-ai-copy">
                     <span class="pp-ask-ai-kicker" id="ppAskAiTitle"
-                      >Ask AI About {{ isResellerProgram() ? 'Cloud Channel Partner Program' : isSmbCyber() ? 'Cybird SMB Cyber Security Appliance' : isCloudBackup() ? 'Acronis Cloud Backup' : isAdvancedEdr() ? 'Acronis Advanced Endpoint Security (EDR)' : slug() === 'rtx-8000' ? 'RTX 8000 Cloud GPU' : slug() === 'rtx-pro-6000' ? 'RTX PRO 6000 Cloud GPU' : slug() === 'nvidia-rtx-6000-ada' ? 'RTX 6000 Ada Cloud GPU' : v.name }} from
+                      >Ask AI About {{ isResellerProgram() ? 'Cloud Channel Partner Program' : isSmbCyber() ? 'Cybird SMB Cyber Security Appliance' : isCloudBackup() ? 'Acronis Cloud Backup' : isAdvancedEdr() ? 'Acronis Advanced Endpoint Security (EDR)' : slug() === 'acronis-mdr' ? 'MDR' : slug() === 'rtx-8000' ? 'RTX 8000 Cloud GPU' : slug() === 'rtx-pro-6000' ? 'RTX PRO 6000 Cloud GPU' : slug() === 'nvidia-rtx-6000-ada' ? 'RTX 6000 Ada Cloud GPU' : v.name }} from
                       XcellHost</span
                     >
                   </div>
