@@ -25,7 +25,7 @@ import { slugify } from '../core/catalog.service';
             <div class="insights-actions" role="group" aria-label="Insight resources">
               <button type="button" class="btn btn-ghost" [class.active]="activeView() === 'blogs'" [attr.aria-pressed]="activeView() === 'blogs'" aria-controls="insights-content" (click)="activeView.set('blogs')">Blogs</button>
               <button type="button" class="btn btn-ghost" [class.active]="activeView() === 'videos'" [attr.aria-pressed]="activeView() === 'videos'" aria-controls="insights-content" (click)="activeView.set('videos')">Videos</button>
-              @if (pageSlug() !== 'nvidia-h100') {
+              @if (pageSlug() !== 'nvidia-h100' && pageSlug() !== 'acronis-xdr') {
                 <button type="button" class="btn btn-ghost" [class.active]="activeView() === 'cases'" [attr.aria-pressed]="activeView() === 'cases'" aria-controls="insights-content" (click)="activeView.set('cases')">Case Studies</button>
               }
               <button type="button" class="btn btn-ghost" [class.active]="activeView() === 'datasheets'" [attr.aria-pressed]="activeView() === 'datasheets'" aria-controls="insights-content" (click)="activeView.set('datasheets')">Datasheet</button>

@@ -23,8 +23,8 @@ describe('Blog API pagination', () => {
         ] });
       }
     }
-    expect(received.length).toBe(4);
-    expect(received.map(item => item.kind)).toEqual(['data-sheet', 'cheat-sheet', 'whitepaper', 'guide']);
+    expect(received.length).toBe(5);
+    expect(received.map(item => item.kind)).toEqual(['data-sheet', 'cheat-sheet', 'whitepaper', 'guide', 'checklist']);
     expect(received[0].downloadUrl).toContain('/uploads/resource.pdf');
     expect(received[0].relatedPages).toBe('tally-on-cloud');
     subscription.unsubscribe();

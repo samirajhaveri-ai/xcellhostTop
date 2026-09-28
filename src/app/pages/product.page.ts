@@ -155,6 +155,7 @@ const EDISCOVERY_COMPLIANCE_FAQS: Faq[] = [
 import { ManagedAwsContentComponent } from '../sections/managed-aws-content.component';
 
 import { ManagedMicrosoft365ContentComponent } from '../sections/managed-microsoft-365-content.component';
+import { Microsoft365BackupContentComponent } from '../sections/microsoft-365-backup-content.component';
 import { Microsoft365EnterpriseReferenceComponent } from '../sections/microsoft-365-enterprise-reference.component';
 import {
   Microsoft365EnterpriseAdditionalComponent,
@@ -186,6 +187,7 @@ import { AcronisBackupAdvancedContentComponent } from '../sections/acronis-backu
 import { AcronisOtContentComponent } from '../sections/acronis-ot-content.component';
 import { NvidiaA100SourceComponent } from '../sections/nvidia-a100-source.component';
 import { AiResilienceSourceComponent } from '../sections/ai-resilience-source.component';
+import { AcronisXdrSourceComponent } from '../sections/acronis-xdr-source.component';
 import { CyberResilienceSourceComponent } from '../sections/cyber-resilience-source.component';
 import { DataResilienceSourceComponent } from '../sections/data-resilience-source.component';
 import { NvidiaA100AssuranceComponent } from '../sections/nvidia-a100-assurance.component';
@@ -297,6 +299,7 @@ interface ProductTourSlide {
     ManagedAwsContentComponent,
 
     ManagedMicrosoft365ContentComponent,
+    Microsoft365BackupContentComponent,
     Microsoft365EnterpriseReferenceComponent,
     Microsoft365EnterpriseAdditionalComponent,
     Microsoft365EnterpriseFrontlineComponent,
@@ -354,6 +357,7 @@ interface ProductTourSlide {
     AcronisOtContentComponent,
     NvidiaA100SourceComponent,
     AiResilienceSourceComponent,
+    AcronisXdrSourceComponent,
     CyberResilienceSourceComponent,
     DataResilienceSourceComponent,
     NvidiaA100AssuranceComponent,
@@ -366,6 +370,7 @@ interface ProductTourSlide {
   ],
   templateUrl: './product.page.html',
   styles: [`
+    #ppage.acronis-xdr-page .pp-cta .btn-ghost { border-color: rgba(255,255,255,.4); color: #fff; }
     #ppage.nvidia-a100-page .pp-hero { display: none; }
     #ppage.ai-resilience-page .pp-hero { display: none; }
     #ppage.ai-resilience-page xh-ai-resilience-source[view="details"] { display: block; width: calc(100% + 48px); margin-inline: -24px; }
