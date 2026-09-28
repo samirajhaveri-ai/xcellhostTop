@@ -186,6 +186,10 @@ import { CloudMigrationAdvantageComponent } from '../sections/cloud-migration-ad
 import { AcronisBackupAdvancedContentComponent } from '../sections/acronis-backup-advanced-content.component';
 import { AcronisOtContentComponent } from '../sections/acronis-ot-content.component';
 import { NvidiaA100SourceComponent } from '../sections/nvidia-a100-source.component';
+import { NvidiaL40sSourceComponent } from '../sections/nvidia-l40s-source.component';
+import { NvidiaL4SourceComponent } from '../sections/nvidia-l4-source.component';
+import { NvidiaA30SourceComponent } from '../sections/nvidia-a30-source.component';
+import { NvidiaA2SourceComponent } from '../sections/nvidia-a2-source.component';
 import { AiResilienceSourceComponent } from '../sections/ai-resilience-source.component';
 import { AcronisXdrSourceComponent } from '../sections/acronis-xdr-source.component';
 import { CyberResilienceSourceComponent } from '../sections/cyber-resilience-source.component';
@@ -356,6 +360,10 @@ interface ProductTourSlide {
     AcronisBackupAdvancedContentComponent,
     AcronisOtContentComponent,
     NvidiaA100SourceComponent,
+    NvidiaL40sSourceComponent,
+    NvidiaL4SourceComponent,
+    NvidiaA30SourceComponent,
+    NvidiaA2SourceComponent,
     AiResilienceSourceComponent,
     AcronisXdrSourceComponent,
     CyberResilienceSourceComponent,
@@ -372,6 +380,22 @@ interface ProductTourSlide {
   styles: [`
     #ppage.acronis-xdr-page .pp-cta .btn-ghost { border-color: rgba(255,255,255,.4); color: #fff; }
     #ppage.nvidia-a100-page .pp-hero { display: none; }
+    #ppage.nvidia-l40s-page .pp-hero,
+    #ppage.nvidia-l40s-page .pp-trust,
+    #ppage.nvidia-l40s-page .pp-body > .wrap > :has(~ #ppSecHead) { display: none; }
+    #ppage.nvidia-l4-page .pp-hero,
+    #ppage.nvidia-l4-page .pp-trust,
+    #ppage.nvidia-l4-page .pp-body > .wrap > :has(~ #ppSecHead) { display: none; }
+    #ppage.nvidia-a30-page .pp-hero,
+    #ppage.nvidia-a30-page .pp-trust,
+    #ppage.nvidia-a30-page .pp-body > .wrap > :has(~ #ppSecHead) { display: none; }
+    #ppage.nvidia-a2-page .pp-hero,
+    #ppage.nvidia-a2-page .pp-trust,
+    #ppage.nvidia-a2-page .pp-body > .wrap > :has(~ #ppSecHead) { display: none; }
+    #ppage.nvidia-l4-page .pp-body .pp-sec,
+    #ppage.nvidia-l4-page .pp-body h2,
+    #ppage.nvidia-l4-page .pp-body h3,
+    #ppage.nvidia-l4-page .pp-body h4,
     #ppage.ai-resilience-page .pp-hero { display: none; }
     #ppage.ai-resilience-page xh-ai-resilience-source[view="details"] { display: block; width: calc(100% + 48px); margin-inline: -24px; }
     #ppage.cyber-resilience-page .pp-hero { display: none; }

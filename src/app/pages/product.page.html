@@ -38,6 +38,10 @@
     [class.microsoft-copilot-page]="isMicrosoftCopilot()"
     [class.microsoft-365-enterprise-page]="isMicrosoftEnterprisePage()"
     [class.nvidia-a100-page]="slug() === 'nvidia-a100'"
+    [class.nvidia-l40s-page]="slug() === 'nvidia-l40s'"
+    [class.nvidia-l4-page]="slug() === 'nvidia-l4'"
+    [class.nvidia-a30-page]="slug() === 'nvidia-a30'"
+    [class.nvidia-a2-page]="slug() === 'nvidia-a2'"
     [class.ai-resilience-page]="slug() === 'ai-resilience'"
     [class.acronis-xdr-page]="slug() === 'acronis-xdr'"
     [class.cyber-resilience-page]="slug() === 'cyber-resilience'"
@@ -49,6 +53,18 @@
     }
     @if (slug() === 'nvidia-a100') {
       <xh-nvidia-a100-source view="hero" />
+    }
+    @if (slug() === 'nvidia-l40s') {
+      <xh-nvidia-l40s-source />
+    }
+    @if (slug() === 'nvidia-l4') {
+      <xh-nvidia-l4-source />
+    }
+    @if (slug() === 'nvidia-a30') {
+      <xh-nvidia-a30-source />
+    }
+    @if (slug() === 'nvidia-a2') {
+      <xh-nvidia-a2-source />
     }
     @if (slug() === 'ai-resilience') {
       <xh-ai-resilience-source view="hero" />
