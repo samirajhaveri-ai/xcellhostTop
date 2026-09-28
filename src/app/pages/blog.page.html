@@ -102,6 +102,23 @@
         </aside>
 
         <div class="article-content">
+          @if (!isUseCase && speechSupported) {
+            <div class="article-listen" aria-label="Listen to this article">
+              <div class="article-listen-copy">
+                <span class="article-listen-icon" aria-hidden="true">&#9835;</span>
+                <div><strong>Listen to this blog</strong><span>{{ speechState() === 'idle' ? 'Audio reading' : speechState() === 'paused' ? 'Paused' : 'Playing' }}</span></div>
+              </div>
+              <div class="article-listen-actions">
+                <button type="button" (click)="toggleListening()"
+                  [attr.aria-label]="speechState() === 'playing' ? 'Pause article audio' : speechState() === 'paused' ? 'Resume article audio' : 'Play article audio'">
+                  {{ speechState() === 'playing' ? 'Pause' : speechState() === 'paused' ? 'Resume' : 'Listen' }}
+                </button>
+                @if (speechState() !== 'idle') {
+                  <button type="button" class="article-listen-stop" (click)="stopListening()" aria-label="Stop article audio">Stop</button>
+                }
+              </div>
+            </div>
+          }
           <article class="bp-body article-body">
             @for (block of blocks(); track $index) {
               @switch (block.kind) {
