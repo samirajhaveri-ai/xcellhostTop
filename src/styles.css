@@ -82,13 +82,13 @@
   .hero .home-hero-slide .eyebrow::after{margin-inline:auto}
   .home-hero-dots{display:flex;align-items:center;gap:10px;margin-top:78px;margin-bottom: -50px;}
   .home-hero-slide.is-cybird .hero-ctas{align-items:center}
-  .home-hero-slide.is-cybird .cybird-made-in-india{display:block;width:110px;height:auto;object-fit:contain;flex-shrink:0}
+  .home-hero-slide.is-cybird .cybird-made-in-india{display:block;width:250px;height:auto;object-fit:contain;flex-shrink:0}
   .home-hero-slide.is-cybird .cybird-appliance{display:block;width:110px;height:auto;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 8px 10px rgba(0,0,0,.4))}
   .home-hero-slide.is-cybird .stat-line{margin-top:8px}
   .home-hero-slide.is-cybird .hero-live{margin-top:18px}
   .home-hero-slide.is-cybird .home-hero-dots{margin-top:24px}
-  @media(max-width:900px){.home-hero-slide.is-cybird .hero-ctas{display:grid;grid-template-columns:minmax(120px,160px) minmax(0,1fr)}.home-hero-slide.is-cybird .hero-ctas .btn-primary{width:auto;white-space:normal}.home-hero-slide.is-cybird .hero-ctas .btn-ghost{width:100%}.home-hero-slide.is-cybird .cybird-appliance{width:min(100%,110px)}}
-  @media(max-width:600px){.home-hero-slide.is-cybird .hero-ctas{grid-template-columns:repeat(2,minmax(0,1fr))}.home-hero-slide.is-cybird .cybird-made-in-india{width:90px}.home-hero-slide.is-cybird .hero-ctas .btn-primary{font-size:12px}.home-hero-slide.is-cybird .cybird-appliance{width:min(100%,90px)}}
+  @media(max-width:900px){.home-hero-slide.is-cybird .hero-ctas{display:grid;grid-template-columns:minmax(120px,160px) minmax(0,1fr)}.home-hero-slide.is-cybird .cybird-made-in-india{grid-column:1/-1;width:min(100%,280px);justify-self:center}.home-hero-slide.is-cybird .hero-ctas .btn-primary{width:auto;white-space:normal}.home-hero-slide.is-cybird .hero-ctas .btn-ghost{width:100%}.home-hero-slide.is-cybird .cybird-appliance{width:min(100%,110px)}}
+  @media(max-width:600px){.home-hero-slide.is-cybird .hero-ctas{grid-template-columns:repeat(2,minmax(0,1fr))}.home-hero-slide.is-cybird .cybird-made-in-india{width:min(100%,260px)}.home-hero-slide.is-cybird .hero-ctas .btn-primary{font-size:12px}.home-hero-slide.is-cybird .cybird-appliance{width:min(100%,90px)}}
   .home-hero-dots button{width:20px;height:7px;padding:0;border:0;border-radius:999px;background:rgba(151,172,206,.4);cursor:pointer;transition:width .24s ease,background .24s ease,box-shadow .24s ease}.home-hero-dots button:hover{background:rgba(203,222,248,.85)}.home-hero-dots button.is-active{width:46px;background:#1565D8;box-shadow:0 0 12px rgba(23, 87, 224, 0.8)}.home-hero-dots button:focus-visible{outline:2px solid #fff;outline-offset:px}
   @media(max-width:1024px){.home-hero-copy{padding-top:0}}
   @media(max-width:700px){.home-hero-slide .stat-line{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.home-hero-slide .hero-live{font-size:10px;white-space:normal}.home-hero-dots{margin-top:14px}}
@@ -2513,11 +2513,13 @@
   #ppage .pph-illus:has(.cloud-drive-hero-animation){padding:0;gap:0}
   #ppage .cloud-drive-hero-animation{display:block;width:82%;max-width:600px;aspect-ratio:5/3;border:0;background:transparent;pointer-events:none}
   #ppage .pph-scene.has-illus:has(.edr-hero-animation){top:0;bottom:0;align-items:center;padding:0;mask-image:none}
-  #ppage .pph-illus:has(.edr-hero-animation){padding:0;gap:0}
+  #ppage .pph-illus:has(.edr-hero-animation){padding:0;gap:8px}
   #ppage .edr-hero-animation{display:block;width:82%;max-width:600px;aspect-ratio:5/3;border:0;background:transparent;pointer-events:none}
+  #ppage .edr-hero-logo{display:block;width:42%;max-width:250px;height:auto;border-radius:6px;background:#fff;object-fit:contain;transform:translateY(32px)}
   #ppage .pph-scene.has-illus:has(.rmm-hero-animation){top:0;bottom:0;align-items:center;padding:0;mask-image:none}
-  #ppage .pph-illus:has(.rmm-hero-animation){padding:0;gap:0}
+  #ppage .pph-illus:has(.rmm-hero-animation){padding:0;gap:8px}
   #ppage .rmm-hero-animation{display:block;width:82%;max-width:600px;aspect-ratio:5/3;border:0;background:transparent;pointer-events:none}
+  #ppage .rmm-hero-logo{display:block;width:42%;max-width:250px;height:auto;border-radius:6px;background:#fff;object-fit:contain}
   #ppage .pph-scene.has-illus:has(.cybird-hero-animation){top:0;bottom:0;align-items:center;padding:0;mask-image:none}
   #ppage .pph-illus:has(.cybird-hero-animation){padding:0;gap:0}
   #ppage .cybird-hero-animation{display:block;width:82%;max-width:600px;aspect-ratio:5/3;border:0;background:transparent;pointer-events:none}

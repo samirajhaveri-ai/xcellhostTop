@@ -32,7 +32,7 @@ describe('Insights pagination', () => {
     page = TestBed.runInInjectionContext(() => new InsightsPage());
   });
 
-  it('shows all five document tabs with shared categories, search and downloadable cards', () => {
+  it('shows all document tabs with shared categories, search and downloadable cards', () => {
     documents.next(INSIGHT_DOCUMENT_TYPES.map(type => ({
       documentId: type.kind, kind: type.kind, title: 'Tally ' + type.label,
       description: 'Cloud accounting resource', content: '', category: 'Accounting',
@@ -41,8 +41,8 @@ describe('Insights pagination', () => {
     } as CmsInsightResource)));
     const fixture = TestBed.createComponent(InsightsPage);
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelectorAll('.insights-tabs button').length).toBe(8);
-    expect(fixture.nativeElement.querySelectorAll('.insights-hero-resources a').length).toBe(8);
+    expect(fixture.nativeElement.querySelectorAll('.insights-tabs button').length).toBe(10);
+    expect(fixture.nativeElement.querySelectorAll('.insights-hero-resources a').length).toBe(10);
     for (const type of INSIGHT_DOCUMENT_TYPES) {
       const component = fixture.componentInstance;
       component.selectTab(type.label);
@@ -81,6 +81,15 @@ describe('Insights pagination', () => {
     fixture.componentInstance.query.set('unmatched query');
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('.insights-empty').textContent).toContain('No matching videos');
+  });
+
+  it('shows case studies in their own tab with case study links', () => {
+    page.selectTab('Case Studies');
+    expect(page.tabCount('Case Studies')).toBe(CASE_STUDIES.length);
+    expect(page.sourceItems().every(item => item.kind === 'case-study')).toBeTrue();
+    expect(page.resultHeading()).toBe('All Case Studies');
+    expect(page.resultNoun(2)).toBe('case studies');
+    expect(page.insightHref(page.sourceItems()[0])).toContain('/case-studies/');
   });
 
   it('shows customer case studies in All Use Cases and maps them into the sidebar taxonomy', () => {
