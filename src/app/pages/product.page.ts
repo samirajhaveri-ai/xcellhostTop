@@ -1002,6 +1002,11 @@ export class ProductPage {
   readonly activeCdrTourSlide = signal(0);
   readonly cdrTourSlides = [
     {
+      title: 'Disaster recovery dashboard',
+      description: 'Review protected devices, recovery servers, health checks, automated test failovers and cloud-server alerts in one dashboard.',
+      image: '/assets/images/cdr-smb-dashboard.webp',
+    },
+    {
       title: 'Recovery cloud infrastructure',
       description: 'Track reserved compute, memory, storage, virtual-machine status and capacity across the recovery environment.',
       image: '/assets/images/cdr-smb-infrastructure.webp',
@@ -1731,7 +1736,17 @@ export class ProductPage {
         ...view,
         why: EMAIL_ARCHIVING_SAMPLE_WHY,
         faqs: EMAIL_ARCHIVING_SAMPLE_FAQS,
-        heroPoints: ['Real-time journaling', 'Immutable storage', 'Fast eDiscovery', 'Custom retention policies'],
+        tagline: 'Every email, kept exactly as it was sent — searchable in seconds, provable for years',
+        heroHighlight: "Immutable email archiving for Microsoft 365 and Google Workspace. Every message is journaled the moment it's sent or received, locked against change, retained to your policy and ready for audits, legal requests and investigations.",
+        heroMessages: ['Tamper-proof, encrypted, retained for years'],
+        heroPoints: [
+          'Real-time journaling',
+          'Immutable WORM storage',
+          'Instant eDiscovery',
+          'Legal hold',
+          'Retention by user, team or domain',
+          'Managed 24×7 by XcellHost',
+        ],
       };
     }
     if (slug !== 'agentic-ai') return view;
