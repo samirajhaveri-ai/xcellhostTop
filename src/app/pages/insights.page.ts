@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, linkedSignal, signal } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnDestroy, ViewChild, computed, inject, linkedSignal, signal } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 
@@ -14,7 +14,7 @@ import {
 import { SIMPLE_PAGES } from '../data/site.data';
 
 const ALL = 'All';
-type InsightTab = 'Blogs' | 'Videos' | 'Use Cases' | typeof INSIGHT_DOCUMENT_TYPES[number]['label'];
+type InsightTab = 'Blogs' | 'Videos' | 'Use Cases' | 'Case Studies' | typeof INSIGHT_DOCUMENT_TYPES[number]['label'];
 
 interface InsightItem {
   readonly id: number;
@@ -157,18 +157,30 @@ interface InsightCategoryBranch {
             <p role="alert">Blog content is temporarily unavailable. Please try again shortly.</p>
           }
             <section class="insights-discovery" id="insights-library" aria-label="Insight content filters">
-              <div class="insights-tabs" role="tablist" aria-label="Insight content type">
-                @for (tab of tabs; track tab) {
-                  <button
-                    type="button"
-                    role="tab"
-                    [class.active]="tab === activeTab()"
-                    [attr.aria-selected]="tab === activeTab()"
-                    (click)="selectTab(tab)"
-                  >
-                    {{ tab }} <span>{{ tabCount(tab) }}</span>
-                  </button>
-                }
+              <div class="insights-tabs-carousel">
+                <button type="button" class="insights-tab-arrow" aria-label="Scroll resource tabs left"
+                  [disabled]="!canScrollTabsLeft()" (click)="scrollTabs(-1)">
+                  <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+                </button>
+                <div class="insights-tabs-viewport" #tabScroller (scroll)="updateTabScroll()">
+                  <div class="insights-tabs" role="tablist" aria-label="Insight content type">
+                    @for (tab of tabs; track tab) {
+                      <button
+                        type="button"
+                        role="tab"
+                        [class.active]="tab === activeTab()"
+                        [attr.aria-selected]="tab === activeTab()"
+                        (click)="selectTab(tab)"
+                      >
+                        {{ tab }} <span>{{ tabCount(tab) }}</span>
+                      </button>
+                    }
+                  </div>
+                </div>
+                <button type="button" class="insights-tab-arrow" aria-label="Scroll resource tabs right"
+                  [disabled]="!canScrollTabsRight()" (click)="scrollTabs(1)">
+                  <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+                </button>
               </div>
               <label class="insights-search">
                 <svg aria-hidden="true" viewBox="0 0 24 24">
@@ -243,7 +255,7 @@ interface InsightCategoryBranch {
                     <span class="insights-toolbar-label">Showing</span>
                     <h2>{{ resultHeading() }}</h2>
                   </div>
-                  <p role="status">{{ rangeStart() }}–{{ rangeEnd() }} of {{ visible().length }} {{ resultNoun() }}{{ visible().length === 1 ? '' : 's' }}</p>
+                  <p role="status">{{ rangeStart() }}–{{ rangeEnd() }} of {{ visible().length }} {{ resultNoun(visible().length) }}</p>
                 </div>
                 @if (activeTab() === 'Videos') {
                   <div class="insights-channel" role="status">
@@ -365,7 +377,9 @@ interface InsightCategoryBranch {
     </div>
   `,
 })
-export class InsightsPage {
+export class InsightsPage implements AfterViewInit, OnDestroy {
+  @ViewChild('tabScroller') private tabScroller?: ElementRef<HTMLElement>;
+  private tabResizeObserver?: ResizeObserver;
   private readonly router = inject(Router);
   private readonly seo = inject(SeoService);
   private readonly blogApi = inject(BlogApiService);
@@ -373,7 +387,7 @@ export class InsightsPage {
 
   readonly videoStatus = this.blogApi.videoStatus;
   readonly page = SIMPLE_PAGES['blog'];
-  readonly tabs: readonly InsightTab[] = ['Blogs', 'Videos', 'Use Cases', ...INSIGHT_DOCUMENT_TYPES.map(type => type.label)];
+  readonly tabs: readonly InsightTab[] = ['Blogs', 'Videos', 'Use Cases', 'Case Studies', ...INSIGHT_DOCUMENT_TYPES.map(type => type.label)];
   readonly posts = signal<readonly CmsBlogPost[]>([]);
   readonly videos = signal<readonly CmsInsightResource[]>([]);
   readonly documents = signal<readonly CmsInsightResource[]>([]);
@@ -382,6 +396,8 @@ export class InsightsPage {
   readonly loading = signal(true);
   readonly error = signal(false);
   readonly activeTab = signal<InsightTab>('Blogs');
+  readonly canScrollTabsLeft = signal(false);
+  readonly canScrollTabsRight = signal(false);
   readonly active = signal(ALL);
   readonly activeMain = signal('');
   readonly activeSub = signal('');
@@ -420,10 +436,14 @@ export class InsightsPage {
         .map((item) => this.toResourceItem(item)),
     ]
   );
+  readonly caseStudyItems = computed<readonly InsightItem[]>(() =>
+    this.caseStudies().map((study) => this.toCaseStudyItem(study))
+  );
   readonly sourceItems = computed<readonly InsightItem[]>(() => {
     switch (this.activeTab()) {
       case 'Videos': return this.videoItems();
       case 'Use Cases': return this.useCaseItems();
+      case 'Case Studies': return this.caseStudyItems();
       case 'Blogs': return this.blogItems();
       default: return this.documents().filter(item => item.kind === this.documentType()?.kind).map(item => this.toResourceItem(item));
     }
@@ -540,6 +560,32 @@ export class InsightsPage {
     this.blogApi.videos$.pipe(takeUntilDestroyed()).subscribe((items) => this.videos.set(items));
     this.blogApi.documents$.pipe(takeUntilDestroyed()).subscribe(items => this.documents.set(items));
     this.blogApi.useCases$.pipe(takeUntilDestroyed()).subscribe((items) => this.useCases.set(items));
+  }
+
+  ngAfterViewInit(): void {
+    if (typeof ResizeObserver === 'undefined') return;
+    const scroller = this.tabScroller?.nativeElement;
+    if (!scroller) return;
+    this.tabResizeObserver = new ResizeObserver(() => this.updateTabScroll());
+    this.tabResizeObserver.observe(scroller);
+    if (scroller.firstElementChild) this.tabResizeObserver.observe(scroller.firstElementChild);
+  }
+
+  ngOnDestroy(): void {
+    this.tabResizeObserver?.disconnect();
+  }
+
+  scrollTabs(direction: -1 | 1): void {
+    const scroller = this.tabScroller?.nativeElement;
+    if (!scroller) return;
+    scroller.scrollBy({ left: direction * scroller.clientWidth * 0.75, behavior: 'smooth' });
+  }
+
+  updateTabScroll(): void {
+    const scroller = this.tabScroller?.nativeElement;
+    if (!scroller) return;
+    this.canScrollTabsLeft.set(scroller.scrollLeft > 1);
+    this.canScrollTabsRight.set(scroller.scrollLeft + scroller.clientWidth < scroller.scrollWidth - 1);
   }
 
   selectTab(tab: InsightTab): void {
@@ -683,6 +729,7 @@ export class InsightsPage {
   tabCount(tab: InsightTab): number {
     if (tab === 'Videos') return this.videos().length;
     if (tab === 'Use Cases') return this.useCaseItems().length;
+    if (tab === 'Case Studies') return this.caseStudyItems().length;
     if (tab === 'Blogs') return this.posts().length;
     return this.documents().filter(item => item.kind === INSIGHT_DOCUMENT_TYPES.find(type => type.label === tab)?.kind).length;
   }
@@ -691,8 +738,9 @@ export class InsightsPage {
     return INSIGHT_DOCUMENT_TYPES.find(type => type.label === this.activeTab());
   }
 
-  resultNoun(): string {
-    return this.documentType()?.singular ?? (this.activeTab() === 'Videos' ? 'video' : this.activeTab() === 'Use Cases' ? 'use case' : 'article');
+  resultNoun(count = 1): string {
+    const singular = this.documentType()?.singular ?? (this.activeTab() === 'Videos' ? 'video' : this.activeTab() === 'Use Cases' ? 'use case' : this.activeTab() === 'Case Studies' ? 'case study' : 'article');
+    return count === 1 ? singular : singular === 'case study' ? 'case studies' : `${singular}s`;
   }
 
   isExternal(item: InsightItem): boolean {
@@ -710,6 +758,7 @@ export class InsightsPage {
   leadLabel(): string {
     if (this.activeTab() === 'Videos') return 'Featured video';
     if (this.activeTab() === 'Use Cases') return 'Featured use case';
+    if (this.activeTab() === 'Case Studies') return 'Featured case study';
     return this.documentType() ? 'Featured ' + this.documentType()!.singular : 'Top story';
   }
 

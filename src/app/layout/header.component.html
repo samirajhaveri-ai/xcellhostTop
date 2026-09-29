@@ -178,16 +178,16 @@
         </a>
         <div class="xh-contact-dropdown" aria-label="Contact XcellHost">
           <div class="xh-contact-row">
-            <span class="material-symbols-outlined xh-contact-phone" aria-hidden="true">call</span>
-            <div><strong>Call Us <small>24×7</small></strong><a href="tel:+912267111555">+91-22-6711 1555</a></div>
+            <span class="material-symbols-outlined xh-contact-sales" aria-hidden="true">monitoring</span>
+            <div><strong>Sales</strong><div class="xh-contact-details"><a href="tel:+912267111555">+91 22 6711 1555</a><a href="mailto:sales@xcellhost.cloud">sales@xcellhost.cloud</a></div></div>
           </div>
           <div class="xh-contact-row">
-            <span class="material-symbols-outlined xh-contact-whatsapp" aria-hidden="true">chat</span>
-            <div><strong>WhatsApp</strong><a href="https://wa.me/918657032540" target="_blank" rel="noopener noreferrer">+91 86570 32540</a></div>
+            <span class="material-symbols-outlined xh-contact-support" aria-hidden="true">support_agent</span>
+            <div><strong>Support</strong><div class="xh-contact-details"><a href="tel:+912267111555">+91 22 6711 1555</a><a href="mailto:support@xcellhost.cloud">support@xcellhost.cloud</a></div></div>
           </div>
           <div class="xh-contact-row">
-            <span class="material-symbols-outlined xh-contact-email" aria-hidden="true">mail</span>
-            <div><strong>Email <small>Reply in one business day</small></strong><a href="mailto:sales@xcellhost.cloud">sales@xcellhost.cloud</a></div>
+            <span class="material-symbols-outlined xh-contact-billing" aria-hidden="true">receipt_long</span>
+            <div><strong>Billing</strong><div class="xh-contact-details"><a href="tel:+912267111555">+91 22 6711 1555</a><a href="mailto:billing@xcellhost.cloud">billing@xcellhost.cloud</a></div></div>
           </div>
           <a class="xh-contact-support-link" routerLink="/support-overview" (click)="onNavigate()">Visit Support Overview <span aria-hidden="true">→</span></a>
         </div>
@@ -207,16 +207,16 @@
         <span class="xh-login-tooltip" aria-hidden="true">Login</span>
         <div id="xh-customer-login-menu" class="xh-login-dropdown" role="menu" aria-label="Login portals">
           <a routerLink="/customer-login" routerLinkActive="selected" #customerLoginLink="routerLinkActive" role="menuitem" (click)="onNavigate()">
-            <span>Customer Login</span>@if (customerLoginLink.isActive) {<b class="xh-login-check" aria-hidden="true">✓</b>}
+            <span class="xh-login-option"><span class="material-symbols-outlined" aria-hidden="true">person</span><span>Customer Login</span></span>@if (customerLoginLink.isActive) {<b class="xh-login-check" aria-hidden="true">✓</b>}
           </a>
           <a routerLink="/partner-login" routerLinkActive="selected" #partnerLoginLink="routerLinkActive" role="menuitem" (click)="onNavigate()">
-            <span>Partner Login</span>@if (partnerLoginLink.isActive) {<b class="xh-login-check" aria-hidden="true">✓</b>}
+            <span class="xh-login-option"><span class="material-symbols-outlined" aria-hidden="true">handshake</span><span>Partner Login</span></span>@if (partnerLoginLink.isActive) {<b class="xh-login-check" aria-hidden="true">✓</b>}
           </a>
           <a routerLink="/vendor-login" routerLinkActive="selected" #vendorLoginLink="routerLinkActive" role="menuitem" (click)="onNavigate()">
-            <span>Vendor Login</span>@if (vendorLoginLink.isActive) {<b class="xh-login-check" aria-hidden="true">✓</b>}
+            <span class="xh-login-option"><span class="material-symbols-outlined" aria-hidden="true">storefront</span><span>Vendor Login</span></span>@if (vendorLoginLink.isActive) {<b class="xh-login-check" aria-hidden="true">✓</b>}
           </a>
           <a routerLink="/employee-login" routerLinkActive="selected" #employeeLoginLink="routerLinkActive" role="menuitem" (click)="onNavigate()">
-            <span>Employee Login</span>@if (employeeLoginLink.isActive) {<b class="xh-login-check" aria-hidden="true">✓</b>}
+            <span class="xh-login-option"><span class="material-symbols-outlined" aria-hidden="true">badge</span><span>Employee Login</span></span>@if (employeeLoginLink.isActive) {<b class="xh-login-check" aria-hidden="true">✓</b>}
           </a>
         </div>
       </div>

@@ -66,6 +66,7 @@ export const INSIGHT_DOCUMENT_TYPES = [
   { label: 'Whitepapers', singular: 'whitepaper', kind: 'whitepaper', endpoint: 'whitepapers' },
   { label: 'Guides', singular: 'guide', kind: 'guide', endpoint: 'guides' },
   { label: 'Ebooks', singular: 'ebook', kind: 'ebook', endpoint: 'ebooks' },
+  { label: 'Checklists', singular: 'checklist', kind: 'checklist', endpoint: 'checklists' },
 ] as const;
 
 export type CmsResourceKind = 'video' | 'use-case' | typeof INSIGHT_DOCUMENT_TYPES[number]['kind'];

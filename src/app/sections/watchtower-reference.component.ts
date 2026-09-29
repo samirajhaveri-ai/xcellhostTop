@@ -26,6 +26,7 @@ export class WatchtowerReferenceComponent {
 
   private bluePalette(value: string): string {
     const replacements: readonly [RegExp, string][] = [
+      [/#0a1f14/gi, '#08234A'],
       [/#16a34a/gi, '#1565D8'], [/#15803d/gi, '#0C3E8F'],
       [/#22c55e/gi, '#3B82F6'], [/#4ade80/gi, '#8AB4FF'],
       [/#2ecc71/gi, '#3B82F6'], [/#19b65c/gi, '#1565D8'],
@@ -43,6 +44,7 @@ export class WatchtowerReferenceComponent {
   readonly content: SafeHtml = this.sanitizer.bypassSecurityTrustHtml(`
     <style>
       ${this.bluePalette(WATCHTOWER_REFERENCE_STYLES)}
+      .wt-hero { background: radial-gradient(900px 420px at 80% -20%, #0E3A78 0%, #041E42 60%) !important; }
       .rv { opacity: 1 !important; transform: none !important; }
       @media (prefers-reduced-motion: reduce) {
         *, *::before, *::after {

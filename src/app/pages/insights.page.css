@@ -18,7 +18,7 @@
 
 .insights-hero-resources > div {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 7px;
 }
 
@@ -184,26 +184,78 @@
   scroll-margin-top: 90px;
 }
 
-.insights-tabs {
-  display: inline-flex;
-  flex-wrap: wrap;
+.insights-tabs-carousel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   width: 100%;
-  gap: 8px;
-  padding: 6px;
-  border: 1px solid #d5e2f3;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 12px 32px rgba(4, 30, 66, 0.07);
+  min-width: 0;
+}
+
+.insights-tabs-viewport {
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: none;
+}
+
+.insights-tabs-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.insights-tabs {
+  display: flex;
+  width: max-content;
+  min-width: 100%;
+  gap: 12px;
+  padding: 2px;
+}
+
+.insights-tab-arrow {
+  display: grid;
+  flex: 0 0 40px;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid #b9d4fb;
+  border-radius: 50%;
+  background: #fff;
+  color: #1565d8;
+  box-shadow: 0 6px 14px rgba(21, 101, 216, 0.13);
+  cursor: pointer;
+}
+
+.insights-tab-arrow svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.insights-tab-arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+  box-shadow: none;
+}
+
+.insights-tab-arrow:focus-visible {
+  outline: 3px solid rgba(21, 101, 216, 0.28);
+  outline-offset: 3px;
 }
 
 .insights-tabs button {
-  flex: 1 0 auto;
+  flex: 0 0 auto;
   white-space: nowrap;
-  min-height: 44px;
-  padding: 10px 16px;
-  border: 0;
-  border-radius: 11px;
-  background: transparent;
+  min-height: 46px;
+  padding: 10px 20px;
+  border: 1px solid #dfe4eb;
+  border-radius: 999px;
+  background: #fff;
   color: #253852;
   font: 700 13px/1 var(--body);
   cursor: pointer;
@@ -599,18 +651,18 @@
     padding-top: 22px;
   }
 
-  .insights-tabs {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    width: 100%;
+  .insights-tabs-carousel {
+    gap: 8px;
+  }
+
+  .insights-tab-arrow {
+    flex-basis: 36px;
+    width: 36px;
+    height: 36px;
   }
 
   .insights-tabs button {
-    padding-inline: 8px;
-  }
-
-  .insights-tabs button span {
-    display: inline-grid;
+    padding-inline: 14px;
   }
 
   .insights-page-numbers {
