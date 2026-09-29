@@ -120,6 +120,36 @@
             </div>
           }
           <article class="bp-body article-body">
+            @if (!isUseCase) {
+              <section class="article-summary" aria-labelledby="article-summary-label">
+                  <div class="article-tools" role="group" aria-label="Article actions">
+                    <button type="button" (click)="printArticle()" title="Print this article">
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8V3h10v5M7 17H4V8h16v9h-3M7 14h10v7H7zM16 11h1" /></svg>
+                      Print
+                    </button>
+                  </div>
+                <p id="article-summary-label" class="article-summary-label">Summarize this article with:</p>
+                <div class="article-summary-actions">
+                  @for (provider of summaryLinks(); track provider.id) {
+                    <a class="article-summary-button" [href]="provider.url"
+                      target="_blank" rel="noopener noreferrer"
+                      [attr.aria-label]="'Summarize with ' + provider.name + ' (opens in a new tab)'"
+                      [attr.title]="provider.id === 'gemini' ? 'Copy prompt and open Gemini — paste it into the chat' : 'Open ' + provider.name + ' with the summary prompt'"
+                      (click)="onSummaryClick(provider.id)">
+                      <span [class]="'article-summary-icon summary-' + provider.id" aria-hidden="true">{{ provider.icon }}</span>
+                      {{ provider.name }}
+                    </a>
+                  }
+                </div>
+                <span class="article-summary-status" role="status">{{ summaryCopyStatus() }}</span>
+                @if (summaryCopyFailed()) {
+                  <div class="article-summary-prompt">
+                    <label for="article-summary-text">Summary prompt for Gemini</label>
+                    <textarea id="article-summary-text" readonly rows="5" [value]="summaryPrompt()" (focus)="$any($event.target).select()"></textarea>
+                  </div>
+                }
+              </section>
+            }
             @for (block of blocks(); track $index) {
               @switch (block.kind) {
                 @case ('p') { <p [innerHTML]="inlineMarkdown(block.text)"></p> }
@@ -278,6 +308,17 @@
             <div class="article-related-grid">
               @for (item of relatedBlogs(); track item.documentId) {
                 <a class="article-related-card" [routerLink]="[detailBase, item.slug]">
+                  <img
+                    class="article-related-cover"
+                    [class.is-fallback]="!item.coverImageUrl"
+                    [src]="item.coverImageUrl || '/assets/images/xcellhost-logo.png'"
+                    [alt]="item.coverImage?.alternativeText || item.title"
+                    loading="lazy"
+                    decoding="async"
+                    width="640"
+                    height="360"
+                    (error)="useRelatedCoverFallback($event)"
+                  />
                   <span>{{ titleCase(item.category) }}</span>
                   <h3>{{ titleCase(item.title) }}</h3>
                   @if (item.description) {
