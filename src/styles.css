@@ -5630,3 +5630,33 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 #ppage .pph-scene.marketplace-reference-art{display:flex;flex-direction:column;justify-content:center;align-items:center;mask-image:none;opacity:1}
 #ppage .marketplace-reference-art>img:first-child{width:100%;max-width:620px;max-height:430px;object-fit:contain}
 #ppage .marketplace-reference-art .marketplace-reference-logo{width:130px;height:auto;border-radius:6px;background:white;padding:4px}
+
+@media print {
+  body:has(xh-blog-page) { background: #fff !important; }
+  body:has(xh-blog-page) app-root > :not(xh-blog-page) { display: none !important; }
+  xh-blog-page .article-summary,
+  xh-blog-page .article-sidebar,
+  xh-blog-page .article-listen,
+  xh-blog-page .bp-bar,
+  xh-blog-page .article-more,
+  xh-blog-page .article-product-cta { display: none !important; }
+  xh-blog-page .xh-blog-article,
+  xh-blog-page .article-main,
+  xh-blog-page .article-hero,
+  xh-blog-page .article-body {
+    background: #fff !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  xh-blog-page .article-hero * { color: #000 !important; }
+  xh-blog-page .wrap { width: 100% !important; max-width: none !important; padding: 0 !important; }
+  xh-blog-page .article-grid,
+  xh-blog-page .article-hero .wrap { display: block !important; }
+  xh-blog-page .article-hero h1 { max-width: none !important; }
+  xh-blog-page .article-hero-media { display: none !important; }
+  xh-blog-page .article-body h2 { break-after: avoid; }
+  xh-blog-page figure { break-inside: avoid; }
+}
