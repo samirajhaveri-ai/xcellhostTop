@@ -738,15 +738,16 @@ interface ProductTourSlide {
     #ppage.atm-solution-page .pp-tagline-support { color: #fff; }
     @media(min-width:901px){
       #ppage.acronis-mdr-page .pp-hero > .wrap > .pp-tagline-support {
-        width: 52%; max-width: 680px !important; margin-bottom: 12px;
-        font-size: 15px; line-height: 1.55; overflow-wrap: break-word;
+        width: min(100%, 660px); max-width: 54% !important; margin-bottom: 16px;
+        font-size: 15px; line-height: 1.6; overflow-wrap: normal;
       }
       #ppage.acronis-mdr-page .pph-scene.has-illus.mdr-hero-art {
-        right: 2%; top: 0; bottom: 0; width: 38%; padding: 20px 0;
+        right: max(24px, calc((100vw - 1240px)/2 + 24px)); top: 0; bottom: 0;
+        width: min(36vw, 400px); padding: 20px 0;
         align-items: center; justify-content: center; overflow: visible; mask-image: none;
       }
-      #ppage.acronis-mdr-page .mdr-hero-art .pph-illus { padding: 0; }
-      #ppage.acronis-mdr-page .mdr-hero-art xh-acronis-mdr-hero { max-width: 440px; }
+      #ppage.acronis-mdr-page .mdr-hero-art .pph-illus { width: 100%; padding: 0; }
+      #ppage.acronis-mdr-page .mdr-hero-art xh-acronis-mdr-hero { max-width: 400px; }
     }
     #ppage .atm-demo-preview { max-width: 760px; margin-inline: auto; }
     #ppage .atm-demo-preview .tally-video-frame { min-height: 360px; background: #041e42; }
