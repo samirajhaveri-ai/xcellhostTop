@@ -1,7 +1,27 @@
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { BlogApiService, CmsBlogPost, CmsInsightResource, INSIGHT_DOCUMENT_TYPES } from './blog-api.service';
+import { BlogApiService, CmsBlogPost, CmsInsightResource, INSIGHT_DOCUMENT_TYPES, findBlogBySlug } from './blog-api.service';
+
+describe('Blog slug resolution', () => {
+  const posts = [
+    { slug: 'nvidia-rtx-pro-6000-blackwell-gpu-cloud', relatedPages: 'rtx-pro-6000' },
+    { slug: 'cloud-drive-for-business', relatedPages: 'cloud-drive, file-sharing' },
+    { slug: 'microsoft-365-for-smb', relatedPages: 'microsoft-365-smb' },
+    { slug: 'microsoft-365-enterprise-secure-productivity', relatedPages: 'microsoft-365-smb' },
+  ] as CmsBlogPost[];
+
+  it('opens published articles from their short product aliases', () => {
+    expect(findBlogBySlug(posts, 'rtx-pro-6000')?.slug).toBe(posts[0].slug);
+    expect(findBlogBySlug(posts, 'file-sharing')?.slug).toBe(posts[1].slug);
+    expect(findBlogBySlug(posts, 'microsoft-365-smb')?.slug).toBe(posts[2].slug);
+  });
+
+  it('prefers an exact article slug and leaves unknown URLs unresolved', () => {
+    expect(findBlogBySlug(posts, posts[0].slug)).toBe(posts[0]);
+    expect(findBlogBySlug(posts, 'missing-article')).toBeNull();
+  });
+});
 
 describe('Blog API pagination', () => {
   it('loads document collections independently and excludes unusable download links', fakeAsync(() => {
