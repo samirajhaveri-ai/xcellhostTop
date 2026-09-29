@@ -1716,7 +1716,10 @@
                           </div>
                         </div>
                       </section>
-                    } @else if (isCloudBackup() || isAdvancedEdr() || isRmm() || slug() === 'cloud-disaster-recovery') {
+                    } @else if (isCloudBackup()) {
+                      <div class="pp-sec">Overview</div>
+                      <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
+                    } @else if (isAdvancedEdr() || isRmm() || slug() === 'cloud-disaster-recovery') {
                       <div class="backup-overview-columns">
                         <div>
                           <div class="pp-sec">Overview</div>
@@ -1724,9 +1727,7 @@
                         </div>
                         <section class="backup-protection" aria-labelledby="backupProtectionTitle">
                         <h2 id="backupProtectionTitle">Protect your business with Acronis today!</h2>
-                        @if (isCloudBackup()) {
-                          <img class="backup-protection-badges backup-protection-badges-compact" src="/assets/images/acronis-backup-green-badges.png" alt="Acronis Certified Backup Professional and Advanced Backup Professional badges" loading="lazy" />
-                        } @else if (isAdvancedEdr()) {
+                        @if (isAdvancedEdr()) {
                           <img class="backup-protection-badges backup-protection-badges-compact" src="/assets/images/acronis-endpoint-security-badges.png" alt="Acronis Certified Endpoint Security Professional and Advanced Security Specialist badges" loading="lazy" />
                         } @else if (isRmm()) {
                           <img class="backup-protection-badges backup-protection-badges-compact" src="/assets/images/acronis-rmm-management-badges.png" alt="Acronis Certified RMM Professional and Advanced Management Specialist badges" loading="lazy" />
@@ -3567,6 +3568,34 @@
                         <span>Microsoft Azure</span>
                       </li>
                     </ul>
+                  </section>
+
+                  <section
+                    class="backup-protection cloud-backup-protection"
+                    aria-labelledby="cloud-backup-protection-title"
+                  >
+                    <div class="cloud-backup-protection-copy">
+                      <h2 id="cloud-backup-protection-title">Protect your business with Acronis today!</h2>
+                      <p>
+                        Keep business-critical data protected across endpoints, servers,
+                        virtual machines and cloud applications with backup managed by
+                        Acronis-certified professionals. Get centrally managed protection,
+                        automated backup schedules, ransomware defence and fast recovery
+                        from a single platform. Our specialists help configure the right
+                        retention and storage plan for your business.
+                      </p>
+                      <div class="cloud-backup-protection-actions">
+                        <a class="btn btn-primary" href="#ppPlans">View pricing</a>
+                        <a class="btn cloud-backup-talk-btn" href="#" (click)="openCallback($event)">Let's Talk</a>
+                      </div>
+                    </div>
+                    <img
+                      class="backup-protection-badges backup-protection-badges-compact"
+                      src="/assets/images/acronis-backup-badges-no-green-bg.png"
+                      alt="Acronis Certified Backup Professional and Advanced Backup Professional badges"
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </section>
                 }
 

@@ -5360,6 +5360,17 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 .backup-protection-badges-compact{max-width:340px;border-radius:14px;object-fit:contain}
 @media(max-width:760px){.backup-overview-columns{grid-template-columns:1fr;gap:28px}}
 
+.cloud-backup-protection{display:grid;width:100vw;box-sizing:border-box;grid-template-columns:minmax(0,1fr) minmax(300px,.82fr);align-items:center;gap:clamp(36px,7vw,100px);margin:38px calc(50% - 50vw) 54px;padding-inline:max(24px,calc((100vw - 1192px)/2));border-radius:0;background:#f0f3fb}
+.cloud-backup-protection-copy{min-width:0}
+.cloud-backup-protection h2{margin-bottom:14px;color:var(--navy);font:700 clamp(24px,2.5vw,28px)/1.2 var(--disp)}
+.cloud-backup-protection p{max-width:650px;margin:0;color:var(--slate);font-size:15px;line-height:1.75}
+.cloud-backup-protection-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.cloud-backup-protection-actions .btn{min-width:132px;justify-content:center}
+.cloud-backup-talk-btn{border:1px solid #b8c9e2;background:#fff;color:var(--navy)}
+.cloud-backup-talk-btn:hover{border-color:var(--blue);color:var(--blue)}
+.cloud-backup-protection .backup-protection-badges{justify-self:end;max-width:480px;border-radius:0;background:transparent;mix-blend-mode:multiply}
+@media(max-width:760px){.cloud-backup-protection{grid-template-columns:1fr;gap:28px;padding:32px 24px}.cloud-backup-protection .backup-protection-badges{justify-self:center;max-width:420px}}
+
 .infra-architecture-tabs button{white-space:nowrap}
 
 /* Keep the MDR illustration and partner logo inside the hero. */
