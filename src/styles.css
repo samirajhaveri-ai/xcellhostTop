@@ -65,6 +65,7 @@
   h1 em{font-style:normal;color:#7FB2FF}
   .hero p.lead{font-size:17px;color:#C7D5EC;max-width:52ch;margin-bottom:28px}
   .hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+  #ppage.domain-whois-page :is(h1,h2,h3,h4,h5,h6,.pp-sec,.pp-uses b,.pp-why b){text-transform:capitalize}
   .hero .btn-ghost{border-color:rgba(255,255,255,.35);color:#fff}
   /* Homepage hero: four complete slides, each with its own copy and visual. */
   .home-hero-carousel{position:relative!important;display:block!important}
@@ -79,6 +80,8 @@
   .home-hero-slide h1,.home-hero-slide p.lead{margin-inline:auto}
   .home-hero-slide .hero-ctas,.home-hero-slide .stat-line,.home-hero-slide .hero-live,.home-hero-slide .home-hero-dots,.home-hero-slide .rot-line{justify-content:center}
   .home-hero-slide .stat-line .sl{align-items:center}
+  .home-hero-slide .home-hero-nvidia{display:flex;align-items:center;align-self:center;justify-content:center;flex:0 0 auto;max-width:100%;padding:6px 12px;background:#fff;border-radius:6px}
+  .home-hero-slide .home-hero-nvidia img{display:block;width:179px;max-width:100%;height:auto;object-fit:contain}
   .hero .home-hero-slide .eyebrow::after{margin-inline:auto}
   .home-hero-dots{display:flex;align-items:center;gap:10px;margin-top:78px;margin-bottom: -50px;}
   .home-hero-slide.is-cybird .hero-ctas{align-items:center}
@@ -5360,6 +5363,17 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 .backup-protection-badges-compact{max-width:340px;border-radius:14px;object-fit:contain}
 @media(max-width:760px){.backup-overview-columns{grid-template-columns:1fr;gap:28px}}
 
+.cloud-backup-protection{display:grid;width:100vw;box-sizing:border-box;grid-template-columns:minmax(0,1fr) minmax(300px,.82fr);align-items:center;gap:clamp(36px,7vw,100px);margin:38px calc(50% - 50vw) 54px;padding-inline:max(24px,calc((100vw - 1192px)/2));border-radius:0;background:#f0f3fb}
+.cloud-backup-protection-copy{min-width:0}
+.cloud-backup-protection h2{margin-bottom:14px;color:var(--navy);font:700 clamp(24px,2.5vw,28px)/1.2 var(--disp)}
+.cloud-backup-protection p{max-width:650px;margin:0;color:var(--slate);font-size:15px;line-height:1.75}
+.cloud-backup-protection-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.cloud-backup-protection-actions .btn{min-width:132px;justify-content:center}
+.cloud-backup-talk-btn{border:1px solid #b8c9e2;background:#fff;color:var(--navy)}
+.cloud-backup-talk-btn:hover{border-color:var(--blue);color:var(--blue)}
+.cloud-backup-protection .backup-protection-badges{justify-self:end;max-width:480px;border-radius:0;background:transparent;mix-blend-mode:multiply}
+@media(max-width:760px){.cloud-backup-protection{grid-template-columns:1fr;gap:28px;padding:32px 24px}.cloud-backup-protection .backup-protection-badges{justify-self:center;max-width:420px}}
+
 .infra-architecture-tabs button{white-space:nowrap}
 
 /* Keep the MDR illustration and partner logo inside the hero. */
@@ -5630,3 +5644,33 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 #ppage .pph-scene.marketplace-reference-art{display:flex;flex-direction:column;justify-content:center;align-items:center;mask-image:none;opacity:1}
 #ppage .marketplace-reference-art>img:first-child{width:100%;max-width:620px;max-height:430px;object-fit:contain}
 #ppage .marketplace-reference-art .marketplace-reference-logo{width:130px;height:auto;border-radius:6px;background:white;padding:4px}
+
+@media print {
+  body:has(xh-blog-page) { background: #fff !important; }
+  body:has(xh-blog-page) app-root > :not(xh-blog-page) { display: none !important; }
+  xh-blog-page .article-summary,
+  xh-blog-page .article-sidebar,
+  xh-blog-page .article-listen,
+  xh-blog-page .bp-bar,
+  xh-blog-page .article-more,
+  xh-blog-page .article-product-cta { display: none !important; }
+  xh-blog-page .xh-blog-article,
+  xh-blog-page .article-main,
+  xh-blog-page .article-hero,
+  xh-blog-page .article-body {
+    background: #fff !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  xh-blog-page .article-hero * { color: #000 !important; }
+  xh-blog-page .wrap { width: 100% !important; max-width: none !important; padding: 0 !important; }
+  xh-blog-page .article-grid,
+  xh-blog-page .article-hero .wrap { display: block !important; }
+  xh-blog-page .article-hero h1 { max-width: none !important; }
+  xh-blog-page .article-hero-media { display: none !important; }
+  xh-blog-page .article-body h2 { break-after: avoid; }
+  xh-blog-page figure { break-inside: avoid; }
+}

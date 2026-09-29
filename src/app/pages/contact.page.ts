@@ -58,7 +58,7 @@ export class ContactPage implements AfterViewInit, OnDestroy {
       city: 'Dubai',
       country: 'UAE',
       label: 'Middle East office',
-      company: 'Virtue Cloud & IT Solutions LLC',
+      company: 'Xcellhost Cloud Services LLC',
       address: '102-16, 1st Floor, CBD Bank Building, Al Mankhool, Dubai, United Arab Emirates',
       phoneDisplay: '+971 4 341 3811 · +971 58 594 1802',
       phoneHref: '+97143413811',

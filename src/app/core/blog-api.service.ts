@@ -29,6 +29,28 @@ export interface CmsArticle {
 
 export interface CmsBlogPost extends CmsArticle {}
 
+/** Resolve older, short article URLs that used a related product page slug. */
+export function findBlogBySlug(posts: readonly CmsBlogPost[], slug: string): CmsBlogPost | null {
+  const key = slug.trim().toLowerCase().replace(/^\/+|\/+$/g, '');
+  const exact = posts.find(post => post.slug.trim().toLowerCase() === key);
+  if (exact) return exact;
+
+  const aliases = posts.filter(post => (post.relatedPages ?? '')
+    .split(',')
+    .some(page => page.trim().toLowerCase().replace(/^\/+|\/+$/g, '') === key));
+  if (aliases.length === 1) return aliases[0];
+  if (!aliases.length) return null;
+
+  // A product may have several articles. Prefer the article whose slug most
+  // closely matches the old URL, but do not guess if the match is ambiguous.
+  const words = key.split('-').filter(Boolean);
+  const ranked = aliases.map(post => ({
+    post,
+    score: words.filter(word => post.slug.toLowerCase().split('-').includes(word)).length,
+  })).sort((a, b) => b.score - a.score);
+  return ranked[0].score > ranked[1].score ? ranked[0].post : null;
+}
+
 export interface CmsImage {
   readonly id: number;
   readonly documentId: string;
@@ -138,7 +160,7 @@ export class BlogApiService {
     // The hosting WAF rejects Strapi filter parameters containing `$eq` with a
     // 403 response. Reuse the published list and resolve the slug client-side.
     return this.posts$.pipe(
-      map((posts) => posts.find((post) => post.slug === slug) ?? null)
+      map((posts) => findBlogBySlug(posts, slug))
     );
   }
 

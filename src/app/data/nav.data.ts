@@ -382,6 +382,56 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": "New",
                 "desc": "Maximise online visibility and reach your target audience 🎯"
               },
+              {
+                "title": "Bio Link + Digital Visiting Card",
+                "pill": "New",
+                "desc": "Maximise online visibility and reach your target audience 🎯"
+              },
+              {
+                "title": "Smart QR & NFC Automation",
+                "pill": "New",
+                "desc": "Maximise online visibility and reach your target audience 🎯"
+              },
+              {
+                "title": "AI Review MagicQR",
+                "pill": "New",
+                "desc": "Maximise online visibility and reach your target audience 🎯"
+              },
+              {
+                "title": "Digital Menu & Catalog Management",
+                "pill": "New",
+                "desc": "Maximise online visibility and reach your target audience 🎯"
+              },
+              {
+                "title": "Lead Generation & Pipeline CRM",
+                "pill": "New",
+                "desc": "Maximise online visibility and reach your target audience 🎯"
+              },
+              {
+                "title": "Billing Software",
+                "pill": "New",
+                "desc": "Maximise online visibility and reach your target audience 🎯"
+              },
+                    {
+                "title": "HRM + Attendance",
+                "pill": "New",
+                "desc": "Maximise online visibility and reach your target audience 🎯"
+              },
+                    {
+                "title": "Instant Website",
+                "pill": "New",
+                "desc": "Maximise online visibility and reach your target audience 🎯"
+              },
+                    {
+                "title": "WordPress Automation",
+                "pill": "New",
+                "desc": "Maximise online visibility and reach your target audience 🎯"
+              },
+              {
+                "title": "AEO + GEO Automation4",
+                "pill": "New",
+                "desc": "Maximise online visibility and reach your target audience 🎯"
+              },
               
               
             ]
@@ -781,20 +831,20 @@ export const MEGA_MENU: MenuTop[] = [
         "on": false,
         "groups": [
           {
-            "heading": "Images Container",
+            "heading": "Images & Container",
             "items": [
               {
-                "title": "Kubernetes As Services",
+                "title": "Kubernetes as a Services",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Docker As Services",
+                "title": "Docker as a Services",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Container Registry",
+                "title": "Container as a Registry",
                 "pill": null,
                 "desc": null
               },
@@ -804,7 +854,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "OpenShift Nodes",
+                "title": "OpenShift as a Nodes",
                 "pill": null,
                 "desc": null
               },
@@ -1067,11 +1117,11 @@ export const MEGA_MENU: MenuTop[] = [
       
       {
         "g": "15",
-        "label": "Network Security",
+        "label": "Network & Security",
         "on": false,
         "groups": [
           {
-            "heading": "Network Security",
+            "heading": "Network & Security",
             "items": [
               {
                 "title": "Virtual Networks",
@@ -3483,12 +3533,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Enterprise open-source and hybrid-cloud platforms",
                 "href": "/vendor-partners/red-hat"
               },
-              {
-                "title": "SentinelOne",
-                "pill": null,
-                "desc": "AI-powered endpoint security and response",
-                "href": "/vendor-partners/sentinelone"
-              },
+              
               {
                 "title": "DigiCert",
                 "pill": null,
@@ -3543,6 +3588,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Privacy operations and data-protection compliance",
                 "href": "/vendor-partners/dpo-genie"
+              },
+              {
+                "title": "SentinelOne",
+                "pill": null,
+                "desc": "AI-powered endpoint security and response",
+                "href": "/vendor-partners/sentinelone"
               },
               
             ]
