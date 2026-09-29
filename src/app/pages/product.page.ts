@@ -1628,6 +1628,10 @@ export class ProductPage {
     const slug = this.slug();
     const view = this.resolve(slug);
     if (!view) return null;
+    if (slug === 'vortex-seg' && this.route.snapshot.data['productDisplayName']) {
+      const name = this.route.snapshot.data['productDisplayName'] as string;
+      return { ...view, name, overview: view.overview.replaceAll('Vortex SEG', name) };
+    }
     if (slug === 'identity-resilience') {
       return {
         ...view,
