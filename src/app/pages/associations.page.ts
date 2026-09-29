@@ -7,6 +7,10 @@ interface Association {
   image: string;
 }
 
+interface LinkedAssociation extends Association {
+  website: string;
+}
+
 type AssociationTab = 'it-trade' | 'country' | 'industry' | 'business-network' | 'affiliate';
 
 @Component({
@@ -22,9 +26,9 @@ export class AssociationsPage {
 
   readonly activeTab = signal<AssociationTab>('it-trade');
   readonly tabs: readonly { id: AssociationTab; label: string }[] = [
-    { id: 'it-trade', label: 'IT Trade Association' },
-    { id: 'industry', label: 'Industry Association' },
-    { id: 'country', label: 'Country Association' },
+    { id: 'it-trade', label: 'IT Trade Associations' },
+    { id: 'industry', label: 'Industry Associations' },
+    { id: 'country', label: 'Country Associations' },
     { id: 'business-network', label: 'Business Network' },
     { id: 'affiliate', label: 'Affiliate Network' },
   ];
@@ -34,21 +38,19 @@ export class AssociationsPage {
     { name: 'Indo-French Chamber of Commerce', image: '/assets/images/associations/country/indo-french-chamber.jpg' },
     { name: 'Indo-American Chamber of Commerce', image: '/assets/images/associations/country/indo-american-chamber.png' },
     { name: 'Indo-African Chamber of Commerce & Industry', image: '/assets/images/associations/country/indo-african-chamber.jpg' },
+    { name: 'Asian-African Chamber of Commerce & Industry', image: '/assets/images/associations/industry-asian-african-chamber.png' },
   ];
 
-  readonly itTradeAssociations: readonly Association[] = [
-    { name: 'ASIRT', image: '/assets/images/associations/trade/asirt.jpg' },
-    { name: 'TAIT', image: '/assets/images/associations/trade/tait.png' },
-    { name: 'ISODA', image: '/assets/images/associations/trade/isoda.png' },
-    { name: 'PCAIT', image: '/assets/images/associations/trade/pcait.png' },
-    { name: 'GESIA', image: '/assets/images/associations/trade/gesia.png' },
-    { name: 'COMPASS', image: '/assets/images/associations/trade/compass.jpg' },
+  readonly itTradeAssociations: readonly LinkedAssociation[] = [
+    { name: 'ASIRT', image: '/assets/images/associations/trade/asirt.jpg', website: 'https://asirt.in/' },
+    { name: 'TAIT', image: '/assets/images/associations/trade/tait.png', website: 'https://tait.in/' },
+    { name: 'ISODA', image: '/assets/images/associations/trade/isoda.png', website: 'https://isoda.in/' },
+    { name: 'PCAIT', image: '/assets/images/associations/trade/pcait.png', website: 'https://www.pcait.in/' },
+    { name: 'GESIA', image: '/assets/images/associations/trade/gesia.png', website: 'https://gesia.org/' },
+    { name: 'COMPASS', image: '/assets/images/associations/trade/compass.jpg', website: 'https://www.compassindia.com/' },
+    { name: 'CMDA', image: '/assets/images/associations/industry-cmda.png', website: 'https://cmdapune.org/' },
   ];
   readonly industryAssociations: readonly Association[] = [
-    {
-      name: 'CMDA',
-      image: '/assets/images/associations/industry-cmda.png',
-    },
     {
       name: 'Mahratta Chamber of Commerce, Industries and Agriculture (MCCIA)',
       image: '/assets/images/associations/industry-mccia.png',
@@ -58,10 +60,6 @@ export class AssociationsPage {
       image: '/assets/images/associations/industry-sme-chamber-india.png',
     },
     
-    {
-      name: 'Asian-African Chamber of Commerce & Industry',
-      image: '/assets/images/associations/industry-asian-african-chamber.png',
-    },
   ];
 
   readonly businessNetworkAssociations: readonly Association[] = [
