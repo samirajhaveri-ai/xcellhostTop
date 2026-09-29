@@ -12,6 +12,7 @@
     [class.cloud-migration-page]="slug() === 'cloud-migration'"
     [class.acronis-backup-advanced-page]="slug() === 'acronis-backup-advanced'"
     [class.acronis-ot-page]="slug() === 'acronis-ot'"
+    [class.acronis-mdr-page]="slug() === 'acronis-mdr'"
     [class.email-archiving-page]="slug() === 'email-archiving'"
     [class.rtx-8000-page]="slug() === 'rtx-8000'"
     [class.rtx-pro-6000-page]="slug() === 'rtx-pro-6000'"
@@ -1601,7 +1602,7 @@
                   @if (slug() === 'scrutiny-dlp') {
                     <xh-scrutiny-dlp-content />
                   } @else if (slug() === 'vortex-seg') {
-                    <xh-vortex-seg-content />
+                    <xh-vortex-seg-content [productName]="v.name" />
                   } @else if (slug() === 'vortex-soc') {
                     <xh-vortex-soc-content />
                   } @else if (slug() === 'cloud-migration') {
@@ -1816,7 +1817,7 @@
                     <div class="edr-card-heading">
                       <h3>
                         {{
-                          isRmm() ? 'Choose your Acronis RMM term' : 'Choose Your Endpoint Protection Term'
+                          isRmm() ? 'Choose your Acronis RMM term' : 'Choose Your Acronis Endpoint Protection Term'
                         }}
                       </h3>
                       <p>
@@ -4400,11 +4401,11 @@
               <div class="pp-sec" id="vortexSegActionTitle">Watch it in action</div>
               <div class="tally-video-grid single-video">
                 <article class="tally-video-card">
-                  <h3><span>Elevate your email security with Vortex SEG</span></h3>
+                  <h3><span>Elevate your email security with {{ v.name }}</span></h3>
                   <div class="tally-video-frame">
                     <iframe
                       src="https://www.youtube-nocookie.com/embed/OQAmgvXsfyI?rel=0&amp;playsinline=1"
-                      title="Elevate your email security with Vortex SEG"
+                      [title]="'Elevate your email security with ' + v.name"
                       allow="
                         accelerometer;
                         autoplay;

@@ -4,7 +4,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { distinctUntilChanged, map, Observable, switchMap, tap } from 'rxjs';
 
-import { BlogApiService, CmsArticle } from '../core/blog-api.service';
+import { BlogApiService, CmsArticle, findBlogBySlug } from '../core/blog-api.service';
 import { DocRequestService } from '../core/doc-request.service';
 import { LeadService } from '../core/lead.service';
 import { OverlayService } from '../core/overlay.service';
@@ -109,7 +109,7 @@ export class BlogPage implements OnDestroy {
   );
   readonly neighbors = computed<ArticleNeighbors>(() => {
     const posts = this.allPosts();
-    const currentIndex = posts.findIndex((candidate) => candidate.slug === this.slug());
+    const currentIndex = posts.findIndex((candidate) => candidate.slug === this.post()?.slug);
     if (currentIndex < 0) return { previous: null, next: null };
     return {
       // The API is newest-first: the preceding article is older and the next is newer.
@@ -171,9 +171,11 @@ export class BlogPage implements OnDestroy {
         switchMap((slug) => articles$.pipe(
           map((posts) => ({
             posts,
-            post: posts.find((candidate) =>
-              this.normaliseRouteSlug(candidate.slug) === this.normaliseRouteSlug(slug)
-            ) ?? null,
+            post: this.isUseCase
+              ? posts.find((candidate) =>
+                  this.normaliseRouteSlug(candidate.slug) === this.normaliseRouteSlug(slug)
+                ) ?? null
+              : findBlogBySlug(posts, this.normaliseRouteSlug(slug)),
           }))
         )),
         takeUntilDestroyed()
