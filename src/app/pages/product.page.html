@@ -1491,6 +1491,26 @@
       <div class="pp-body microsoft-defender-body"><div class="wrap">
         <xh-microsoft-defender-content (quoteRequested)="requestMicrosoftDefenderQuote($event)" />
         <xh-microsoft-defender-followup (quoteRequested)="requestMicrosoftDefenderQuote($event)" />
+        <xh-microsoft-defender-tail />
+      </div></div>
+      <xh-insights-section [pageSlug]="slug()" />
+      <div class="pp-body microsoft-defender-body"><div class="wrap">
+        <div class="pp-cta defender-cta">
+          <div>
+            <h3>Ready to protect your team with Microsoft Defender?</h3>
+            <p>Free consultation · tailored deployment · 24×7 support in English and Hindi</p>
+            <div class="defender-cta-actions">
+              <a class="btn btn-primary" href="#" (click)="openCallback($event, 'Defender consultation')">Request a callback</a>
+              <a class="btn btn-ghost" href="#" (click)="openCallback($event, 'Defender licence quote')">Get a quote</a>
+              <a class="btn btn-ghost" [href]="v.infosheetUrl" target="_blank" rel="noopener noreferrer">Infosheet</a>
+              <a class="btn btn-ghost" href="#" (click)="requestDoc('presentation', $event)">Presentation</a>
+              <a class="btn btn-ghost" [href]="waHref()" target="_blank" rel="noopener">Talk on WhatsApp</a>
+              <a class="btn btn-ghost" [href]="mailHref()">Email Us</a>
+            </div>
+          </div>
+          <a class="pp-cta-buddha-link" routerLink="/company/support-overview" aria-label="Visit XcellHost customer support"><img class="pp-cta-buddha" src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost customer support" /></a>
+        </div>
+        <div class="pp-proof"><span>ISO 27001</span><span>ISO 20000-1</span><span>Microsoft partner</span><span>Since 1999</span><span>24×7 support</span></div>
       </div></div>
     } @else if (isManagedAws() || isManagedAzure()) {
       <xh-managed-aws-content [provider]="isManagedAzure() ? 'Azure' : 'AWS'" />

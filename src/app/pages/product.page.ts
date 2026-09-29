@@ -3,6 +3,7 @@ import { AcronisMdrHeroComponent } from '../sections/acronis-mdr-hero.component'
 import { MicrosoftDefenderHeroComponent } from '../sections/microsoft-defender-hero.component';
 import { MicrosoftDefenderContentComponent } from '../sections/microsoft-defender-content.component';
 import { MicrosoftDefenderFollowupComponent } from '../sections/microsoft-defender-followup.component';
+import { MicrosoftDefenderTailComponent } from '../sections/microsoft-defender-tail.component';
 import { N8nVpsHeroComponent } from '../sections/n8n-vps-hero.component';
 import { N8nPlanSelection, N8nVpsContentComponent } from '../sections/n8n-vps-content.component';
 import { Rtx8000PricingComponent } from '../sections/rtx-8000-pricing.component';
@@ -335,6 +336,7 @@ interface ProductTourSlide {
     MicrosoftDefenderHeroComponent,
     MicrosoftDefenderContentComponent,
     MicrosoftDefenderFollowupComponent,
+    MicrosoftDefenderTailComponent,
     N8nVpsHeroComponent,
     N8nVpsContentComponent,
     Rtx8000PricingComponent,
@@ -748,6 +750,9 @@ interface ProductTourSlide {
       min-width: 0; opacity: 1; mask-image: none; overflow: visible;
     }
     #ppage.microsoft-defender-page .defender-hero-art xh-microsoft-defender-hero { width: 100%; }
+    #ppage.microsoft-defender-page .defender-cta { margin: 22px 0 38px; }
+    #ppage.microsoft-defender-page .defender-cta-actions { display: flex; flex-wrap: wrap; gap: 9px; }
+    #ppage.microsoft-defender-page .defender-cta .btn-ghost { color: #fff; border-color: rgba(255,255,255,.44); }
     @media(max-width:900px) {
       #ppage.microsoft-defender-page .pp-hero { display: flex; flex-direction: column; }
       #ppage.microsoft-defender-page .pph-scene.defender-hero-art {
