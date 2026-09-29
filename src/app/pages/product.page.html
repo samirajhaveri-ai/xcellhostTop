@@ -13,6 +13,7 @@
     [class.acronis-backup-advanced-page]="slug() === 'acronis-backup-advanced'"
     [class.acronis-ot-page]="slug() === 'acronis-ot'"
     [class.acronis-mdr-page]="slug() === 'acronis-mdr'"
+    [class.microsoft-defender-page]="slug() === 'microsoft-defender'"
     [class.email-archiving-page]="slug() === 'email-archiving'"
     [class.rtx-8000-page]="slug() === 'rtx-8000'"
     [class.rtx-pro-6000-page]="slug() === 'rtx-pro-6000'"
@@ -271,6 +272,13 @@
         <xh-domain-whois-content />
       } @else if (slug() === 'nvidia-h100') {
         <!-- The supplied H100 hero is rendered above the shared product sections. -->
+      } @else if (slug() === 'n8n-vps') {
+        <xh-n8n-vps-hero
+          [infosheetUrl]="v.infosheetUrl"
+          (presentationRequested)="requestDoc('presentation', $event)"
+          (tourRequested)="openProductScreenshotTour()"
+          (talkRequested)="openCallback($event)"
+        />
       } @else {
       <div
         class="pp-hero"
@@ -287,6 +295,10 @@
         @if (slug() === 'acronis-mdr') {
           <div class="pph-scene has-illus standalone-illus mdr-hero-art" aria-hidden="true">
             <div class="pph-illus"><xh-acronis-mdr-hero /></div>
+          </div>
+        } @else if (slug() === 'microsoft-defender') {
+          <div class="pph-scene defender-hero-art">
+            <xh-microsoft-defender-hero />
           </div>
         } @else if (slug() === 'microsoft-copilot-training') {
           <div class="pph-scene has-illus standalone-illus training-hero-art" aria-hidden="true">
@@ -1346,6 +1358,12 @@
               <span><b>1,000+</b> connectors</span>
               <span><b>Since 1999</b></span>
               <span><b>24×7</b> NOC + SOC</span>
+            } @else if (slug() === 'n8n-vps') {
+              <span><b>ISO 27001</b> &amp; <b>20000-1</b> certified</span>
+              <span><b>n8n</b> pre-installed</span>
+              <span><b>100% NVMe</b> storage</span>
+              <span><b>Since 1999</b></span>
+              <span><b>24×7</b> NOC + SOC</span>
             } @else if (slug() === 'ai-resilience' || slug() === 'cyber-resilience' || slug() === 'data-resilience') {
               <span><b>ISO 27001</b> &amp; <b>20000-1</b> certified</span>
               <span><b>Druva</b> partner</span>
@@ -1469,7 +1487,12 @@
     }
 
     @if (!isMicrosoftEnterprisePage() && slug() !== 'cloud-devops-services' && slug() !== 'server-management' && slug() !== 'microsoft-365-backup') {
-    @if (isManagedAws() || isManagedAzure()) {
+    @if (slug() === 'microsoft-defender') {
+      <div class="pp-body microsoft-defender-body"><div class="wrap">
+        <xh-microsoft-defender-content (quoteRequested)="requestMicrosoftDefenderQuote($event)" />
+        <xh-microsoft-defender-followup (quoteRequested)="requestMicrosoftDefenderQuote($event)" />
+      </div></div>
+    } @else if (isManagedAws() || isManagedAzure()) {
       <xh-managed-aws-content [provider]="isManagedAzure() ? 'Azure' : 'AWS'" />
     } @else {
       <div
@@ -1698,6 +1721,8 @@
                     <xh-acronis-backup-advanced-content />
                   } @else if (slug() === 'acronis-ot') {
                     <xh-acronis-ot-content />
+                  } @else if (slug() === 'n8n-vps') {
+                    <xh-n8n-vps-content (planSelected)="selectN8nPlan($event)" (consultationRequested)="requestN8nConsultation()" />
                   } @else if (!isManagedMicrosoft365() && !isEntraIdBackup()) {
                     @if (slug() === 'rtx-8000') {
                       <section class="rtx-overview" aria-labelledby="rtxOverviewTitle">
@@ -2486,6 +2511,8 @@
                   <xh-rtx-6000-ada-pricing (quoteRequested)="requestRtx6000AdaPlan($event)" />
                 } @else if (slug() === 'rtx-a6000') {
                   <xh-rtx-a6000-pricing (quoteRequested)="requestRtxA6000Plan($event)" />
+                } @else if (slug() === 'n8n-vps') {
+                  <!-- Pricing and included features render with the n8n overview above. -->
                 } @else if (
                   !isAdvancedEdr() &&
                   !isSmbCyber() &&
@@ -2699,6 +2726,7 @@
                   !isSiteLock() &&
                   !isManagedMicrosoft365() &&
                   !isEntraIdBackup() &&
+                  slug() !== 'n8n-vps' &&
                   slug() !== 'acronis-backup-advanced' &&
                   slug() !== 'acronis-ot' &&
                   slug() !== 'scrutiny-dlp' &&
@@ -3333,6 +3361,7 @@
                   !isSiteLock() &&
                   !isManagedMicrosoft365() &&
                   !isEntraIdBackup() &&
+                  slug() !== 'n8n-vps' &&
                   slug() !== 'acronis-backup-advanced' &&
                   slug() !== 'acronis-ot' &&
                   slug() !== 'scrutiny-dlp' &&
@@ -3939,6 +3968,7 @@
                 } @else if (
                   v.name !== 'Tally on Cloud' &&
                   slug() !== 'rtx-a6000' &&
+                  slug() !== 'n8n-vps' &&
                   !isSmbCyber() &&
                   !isAcronisTrueImage() &&
                   !isSiteLock() &&

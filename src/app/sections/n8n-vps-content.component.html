@@ -1,0 +1,254 @@
+<section class="n8n-content" aria-label="n8n hosting overview and plans">
+  <h2 class="section-label">Overview</h2>
+  <p class="overview">n8n is an open, visual workflow-automation platform: drag nodes onto a canvas to connect apps, APIs, databases and AI models, and let it run the repetitive work for you. Self-hosting it means no per-execution pricing and full control over where your data lives. XcellHost n8n Hosting gives you a ready-to-use n8n server — installed, secured with SSL, firewalled and backed up — on the same NVMe Performance Cloud that runs our customers' ERP and SaaS. Start on a shared plan, move to queue mode when volume grows, or let us manage the whole thing for you.</p>
+
+  <aside class="answer" aria-labelledby="n8nAnswerTitle">
+    <div>
+      <span class="eyebrow">Quick answer · Updated September 2026</span>
+      <h2 id="n8nAnswerTitle">What is n8n hosting?</h2>
+      <p>n8n hosting is running the open n8n workflow-automation platform on your own server instead of the vendor's cloud. You get the same visual workflow editor, 400+ integrations, code nodes and AI agent nodes, but with unlimited workflows and executions limited only by the server's resources, and full control over data, credentials and network access. XcellHost provides n8n pre-installed on NVMe cloud servers in India, with SSL, firewalling, backups, optional queue mode and 24×7 support, billed monthly in INR.</p>
+    </div>
+    <div>
+      <span class="eyebrow">Key takeaways</span>
+      <ul class="takeaways">
+        <li>Self-hosting removes per-execution pricing — the server is the limit</li>
+        <li>Your credentials and workflow data stay on a server you control</li>
+        <li>Queue mode splits work across workers for high volume</li>
+        <li>Right-size CPU and RAM to your workflows, and resize later</li>
+        <li>Managed option: we patch, upgrade and monitor n8n for you</li>
+      </ul>
+      <div class="best-for"><span>Best for:</span><b>Developers</b><b>SMBs</b><b>Agencies &amp; marketers</b><b>IT &amp; ops teams</b></div>
+    </div>
+  </aside>
+
+  <section class="pricing" id="ppPlans" aria-labelledby="n8nPlansTitle">
+    <header class="pricing-head">
+      <span class="eyebrow">Enterprise-grade · self-hosted</span>
+      <h2 id="n8nPlansTitle">n8n Hosting <em>Plans</em></h2>
+      <p>n8n pre-installed on NVMe cloud servers in India. Choose Linux or Windows, self-managed or fully managed, and a billing term. From ₹1,299/month.</p>
+    </header>
+
+    <div class="options">
+      <div class="segmented" role="group" aria-label="Operating system">
+        <button type="button" [class.selected]="os() === 'Linux'" [attr.aria-pressed]="os() === 'Linux'" (click)="os.set('Linux')">Linux</button>
+        <button type="button" [class.selected]="os() === 'Windows'" [attr.aria-pressed]="os() === 'Windows'" (click)="os.set('Windows')">Windows</button>
+      </div>
+      <div class="segmented" role="group" aria-label="Management">
+        <button type="button" [class.selected]="management() === 'Self-managed'" [attr.aria-pressed]="management() === 'Self-managed'" (click)="management.set('Self-managed')">Self-managed</button>
+        <button type="button" [class.selected]="management() === 'Managed n8n'" [attr.aria-pressed]="management() === 'Managed n8n'" (click)="management.set('Managed n8n')">Managed n8n</button>
+      </div>
+    </div>
+
+    <div class="terms" role="group" aria-label="Billing term">
+      @for (option of terms; track option.label; let i = $index) {
+        <button type="button" [class.selected]="term() === i" [attr.aria-pressed]="term() === i" (click)="term.set(i)">
+          <span class="saving">{{ option.saving }}</span>{{ option.label }}
+        </button>
+      }
+    </div>
+
+    <div class="plan-list">
+      @for (plan of plans; track plan.code) {
+        <article class="plan" [class]="plan.tone">
+          <div class="plan-identity">
+            <span class="plan-band">{{ plan.name }}</span>
+            <div class="plan-name"><b>{{ plan.vcpu }}</b><span><strong>{{ plan.vcpu }} vCPU · {{ plan.ram }} GB</strong><small>{{ plan.code }} · {{ plan.cpu }}</small>@if (plan.tone === 'queue' || plan.tone === 'scale') { <em>Queue mode</em> }</span></div>
+          </div>
+          <dl class="specs">
+            <div><dt>vCPU</dt><dd>{{ plan.vcpu }} {{ plan.cpu }}</dd></div>
+            <div><dt>Memory</dt><dd>{{ plan.ram }} GB</dd></div>
+            <div><dt>NVMe Storage</dt><dd>{{ plan.storage }} GB</dd></div>
+            <div><dt>Bandwidth</dt><dd>{{ plan.bandwidth }}</dd></div>
+            <div><dt>Workflows</dt><dd>Unlimited</dd></div>
+            <div><dt>Executions</dt><dd>Unlimited</dd></div>
+            <div><dt>Setup</dt><dd>{{ plan.setup }}</dd></div>
+            <div><dt>Good for</dt><dd>{{ plan.goodFor }}</dd></div>
+          </dl>
+          <div class="plan-action">
+            <span class="was">{{ term() ? inr(fullPrice(plan)) : '' }}</span>
+            <strong>{{ inr(price(plan)) }}</strong>
+            <button type="button" (click)="selectPlan(plan)">Deploy Now →</button>
+            <small>+GST · {{ term() ? terms[term()].label + ' term, billed monthly' : 'Monthly billing' }}</small>
+            <span class="plan-variant">{{ os() }} · {{ management().toLowerCase() }}</span>
+          </div>
+        </article>
+      }
+    </div>
+
+    <div class="plan-perks"><span>1 Gbps network port</span><span>Enterprise NVMe</span><span>Dedicated IPv4</span><span>Firewall + anti-DDoS</span><span>Renew at the same price</span><span>24×7 human support</span></div>
+    <p class="pricing-note">Indicative pricing in INR, exclusive of 18% GST. Windows adds Windows Server licensing (₹800 per 2 vCPU/month). Managed n8n adds ₹1,499/month for patching, upgrades, monitoring and restore tests.</p>
+  </section>
+
+  <section class="included" aria-labelledby="n8nIncludedTitle">
+    <h2 id="n8nIncludedTitle">Included in <em>every n8n plan</em></h2>
+    <div class="included-grid">
+      <article><span class="feature-icon">⌁</span><div><h3>Unlimited workflows</h3><p>Build as many workflows as you need — no caps on active workflows.</p></div></article>
+      <article><span class="feature-icon">↯</span><div><h3>Unlimited executions</h3><p>Run as many tasks as the server can handle, with no per-run billing.</p></div></article>
+      <article><span class="feature-icon">◈</span><div><h3>Community nodes</h3><p>Install community-built nodes for tools beyond n8n's built-in integrations.</p></div></article>
+      <article><span class="feature-icon">▦</span><div><h3>Queue mode support</h3><p>Main instance, workers, Redis and PostgreSQL — ready on Queue and Scale plans.</p></div></article>
+      <article><span class="feature-icon">▤</span><div><h3>Ready-made templates</h3><p>Start from proven workflow templates instead of a blank canvas.</p></div></article>
+      <article><span class="feature-icon">↗</span><div><h3>Instant setup</h3><p>n8n installed, reachable on your domain with SSL, when the server is handed over.</p></div></article>
+      <article><span class="feature-icon">♢</span><div><h3>Security built in</h3><p>KVM isolation, firewall, anti-DDoS, SSL and automated backups.</p></div></article>
+      <article><span class="feature-icon">⛓</span><div><h3>Easy integration</h3><p>HTTP, webhook and database nodes connect to practically any tool or API.</p></div></article>
+      <article><span class="feature-icon">▣</span><div><h3>Scalable architecture</h3><p>Resize CPU, RAM and disk as automations grow — no rebuild needed.</p></div></article>
+    </div>
+  </section>
+
+  <section class="workflow-showcase" aria-labelledby="n8nWorkflowTitle">
+    <h2 id="n8nWorkflowTitle">All about n8n — <em>watch a workflow run</em></h2>
+    <p class="section-intro">n8n links apps and services so repeated tasks run on their own. Each step is a node on a visual canvas — triggers, apps, logic, code, HTTP calls and AI agents. Pick a template to see how it flows.</p>
+    <div class="workflow-gallery">
+      <div class="workflow-picker" role="group" aria-label="Workflow templates">
+        @for (workflow of workflows; track workflow.title; let i = $index) {
+          <button type="button" [class.selected]="workflowIndex() === i" [attr.aria-pressed]="workflowIndex() === i" (click)="selectWorkflow(i)"><span>{{ i + 1 }}</span>{{ workflow.title }}</button>
+        }
+        <button class="expert-button" type="button" (click)="consultationRequested.emit()">Talk to an expert →</button>
+      </div>
+      <div class="workflow-canvas">
+        <div class="canvas-heading"><b>{{ workflows[workflowIndex()].title }}</b><span>Canvas · live execution</span></div>
+        <div class="workflow-nodes" aria-label="Workflow steps">
+          @for (node of workflows[workflowIndex()].nodes; track node.label; let i = $index) {
+            <div class="workflow-node" [class.active]="workflowStep() === i" [class.complete]="workflowStep() > i">
+              <span class="node-icon material-symbols-outlined" aria-hidden="true">{{ node.icon }}</span>
+              <small>{{ node.label }}</small>
+            </div>
+            @if (i < workflows[workflowIndex()].nodes.length - 1) { <span class="flow-connector" [class.lit]="workflowStep() > i" aria-hidden="true"></span> }
+          }
+        </div>
+        <div class="workflow-status" aria-live="polite">{{ workflowMessage() }}</div>
+        <button class="execute-button" type="button" [disabled]="workflowBusy()" (click)="runWorkflow()">▶ Execute workflow</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="teams-section" aria-labelledby="n8nTeamsTitle">
+    <h2 id="n8nTeamsTitle">Here's how <em>different teams</em> use n8n</h2>
+    <div class="team-tabs" role="group" aria-label="Teams using n8n">
+      @for (team of teams; track team.name; let i = $index) {
+        <button type="button" [class.selected]="teamIndex() === i" [attr.aria-pressed]="teamIndex() === i" (click)="teamIndex.set(i)">{{ team.name }}</button>
+      }
+    </div>
+    <div class="team-list">
+      @for (team of teams; track team.name; let i = $index) {
+        <article class="team-card" [class.highlighted]="teamIndex() === i">
+          <img [src]="team.image" [alt]="team.name + ' working with n8n automation'" loading="lazy" />
+          <div class="team-copy">
+            <h3>{{ team.name }}</h3>
+            <p>{{ team.headline }}</p>
+            <ul>@for (point of team.points; track point) { <li>{{ point }}</li> }</ul>
+            <div class="team-example"><b>Example:</b>@for (step of team.steps; track step; let last = $last) { <span>{{ step }}</span>@if (!last) { <i aria-hidden="true">→</i> } }</div>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="key-benefits" aria-labelledby="n8nBenefitsTitle">
+    <h2 id="n8nBenefitsTitle">Key <em>benefits</em></h2>
+    <div class="benefit-grid">
+      <article><span class="benefit-icon material-symbols-outlined" aria-hidden="true">category</span><h3>Community-built nodes</h3><p>A growing library of community nodes extends n8n to tools and services beyond the built-in set.</p></article>
+      <article><span class="benefit-icon material-symbols-outlined" aria-hidden="true">bolt</span><h3>Unlimited automation</h3><p>No workflow or execution caps — keep adding automations as the business grows.</p></article>
+      <article><span class="benefit-icon material-symbols-outlined" aria-hidden="true">currency_rupee</span><h3>More value, lower cost</h3><p>A flat monthly server price instead of paying per execution as volume climbs.</p></article>
+      <article><span class="benefit-icon material-symbols-outlined" aria-hidden="true">rocket_launch</span><h3>Easy to install &amp; manage</h3><p>Choose standard n8n, n8n with queue mode, or n8n with ready-made templates — we set it up.</p></article>
+    </div>
+  </section>
+
+  <section class="sizing-section" aria-labelledby="n8nSizingTitle">
+    <h2 id="n8nSizingTitle">Which plan do you need? <em>Size it in 20 seconds</em></h2>
+    <div class="sizing-panel">
+      <div class="sizing-controls">
+        <label for="n8nActiveWorkflows">Active workflows <output>{{ activeWorkflows() }}</output></label>
+        <input id="n8nActiveWorkflows" type="range" min="1" max="300" [value]="activeWorkflows()" (input)="activeWorkflows.set($any($event.target).valueAsNumber)" />
+        <label for="n8nExecutions">Executions per day <output>{{ dailyExecutions().toLocaleString('en-IN') }}</output></label>
+        <input id="n8nExecutions" type="range" min="0" max="100" [value]="executionSlider()" (input)="executionSlider.set($any($event.target).valueAsNumber)" />
+        <button class="sizing-toggle" type="button" [attr.aria-pressed]="usesAi()" (click)="usesAi.set(!usesAi())"><span [class.on]="usesAi()"></span>Workflows use AI agents, large files or long code nodes</button>
+        <button class="sizing-toggle" type="button" [attr.aria-pressed]="parallelRuns()" (click)="parallelRuns.set(!parallelRuns())"><span [class.on]="parallelRuns()"></span>Many workflows must run at the same time (webhook bursts)</button>
+        <p>Rule of thumb from typical n8n deployments; heavy AI, large files and long-running code nodes need more headroom.</p>
+      </div>
+      <div class="sizing-result" aria-live="polite">
+        <span>Recommended · {{ recommendedPlan().code }}</span>
+        <h3>{{ recommendedPlan().name }} plan</h3>
+        <p>{{ recommendedPlan().vcpu }} {{ recommendedPlan().cpu.toLowerCase() }} vCPU · {{ recommendedPlan().ram }} GB RAM · {{ recommendedPlan().storage }} GB NVMe</p>
+        <strong>{{ inr(price(recommendedPlan())) }} <small>/month + GST</small></strong>
+        <ul>@for (reason of recommendationReasons(); track reason) { <li>{{ reason }}</li> }</ul>
+        <button type="button" (click)="selectPlan(recommendedPlan())">Deploy this plan →</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="cloud-comparison" id="ppUses" aria-labelledby="n8nComparisonTitle">
+    <h2 id="n8nComparisonTitle">n8n Cloud <em>vs</em> self-hosted n8n on XcellHost</h2>
+    <div class="comparison-scroll">
+      <table>
+        <thead><tr><th scope="col"></th><th scope="col">n8n Cloud (vendor-hosted)</th><th scope="col">XcellHost n8n Hosting</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Pricing model</th><td>Tiered by monthly executions</td><td>Flat monthly server price</td></tr>
+          <tr><th scope="row">Executions</th><td>Capped per plan</td><td>Unlimited — limited only by server resources</td></tr>
+          <tr><th scope="row">Where data is stored</th><td>Vendor-chosen region</td><td>Your server, in Indian data centres</td></tr>
+          <tr><th scope="row">Community nodes</th><td>Restricted</td><td>Install any community node</td></tr>
+          <tr><th scope="row">Access to internal databases / VPN</th><td>Must be exposed to the internet</td><td>Private network and VPN to your systems</td></tr>
+          <tr><th scope="row">Billing</th><td>Card billing in foreign currency</td><td>INR invoice with GST input credit</td></tr>
+          <tr><th scope="row">Server access</th><td>None</td><td>Full root access (or fully managed)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="comparison-note">n8n Cloud summarised in general terms; plans, limits and regions change — check n8n's current pricing page.</p>
+  </section>
+
+  <section class="setup-section" aria-labelledby="n8nSetupTitle">
+    <h2 id="n8nSetupTitle">Start automating <em>straight away</em></h2>
+    <p class="section-intro">Skip the Docker, reverse-proxy and SSL setup. We hand over a server with n8n already running.</p>
+    <ol class="setup-grid">
+      <li><span class="step-number">01</span><span class="setup-icon material-symbols-outlined" aria-hidden="true">description</span><h3>Choose your plan</h3><p>Pick the resources your workflows need — or use the sizing tool and we'll suggest one.</p></li>
+      <li><span class="step-number">02</span><span class="setup-icon material-symbols-outlined" aria-hidden="true">rocket_launch</span><h3>We set it up</h3><p>n8n installed with SSL on your domain, firewall configured, backups on. Queue mode wired up on Queue and Scale plans.</p></li>
+      <li><span class="step-number">03</span><span class="setup-icon material-symbols-outlined" aria-hidden="true">bolt</span><h3>Start automating</h3><p>Log in, connect your first nodes and go. Moving from n8n Cloud or another server? We'll migrate your workflows.</p></li>
+    </ol>
+  </section>
+
+  <section class="striking-features" aria-labelledby="n8nStrikingTitle">
+    <h2 id="n8nStrikingTitle">n8n hosting: <em>striking features</em></h2>
+    <div class="striking-grid">
+      <article><span class="feature-number">01</span><span class="feature-mark material-symbols-outlined" aria-hidden="true">bolt</span><h3>Smart workflow automation</h3><p>Chain steps across apps so manual tasks run on their own — saving hours every week.</p></article>
+      <article><span class="feature-number">02</span><span class="feature-mark material-symbols-outlined" aria-hidden="true">dashboard</span><h3>No-code, when you want it</h3><p>A visual builder for beginners, with code nodes when professionals need them.</p></article>
+      <article><span class="feature-number">03</span><span class="feature-mark material-symbols-outlined" aria-hidden="true">monitor_heart</span><h3>Monitoring &amp; execution logs</h3><p>Every execution is logged with its data, so failures are easy to find, fix and retry.</p></article>
+      <article><span class="feature-number">04</span><span class="feature-mark material-symbols-outlined" aria-hidden="true">speed</span><h3>Real-time data processing</h3><p>Webhooks and triggers react in real time, keeping workflows fast and responsive.</p></article>
+      <article><span class="feature-number">05</span><span class="feature-mark material-symbols-outlined" aria-hidden="true">account_tree</span><h3>Flexible architecture</h3><p>Branches, loops, sub-workflows and error workflows shape n8n to your process.</p></article>
+      <article><span class="feature-number">06</span><span class="feature-mark material-symbols-outlined" aria-hidden="true">link</span><h3>API &amp; webhook triggers</h3><p>Start workflows instantly from external systems via webhooks or direct API calls.</p></article>
+    </div>
+  </section>
+
+  <section class="security-panel" aria-labelledby="n8nSecurityTitle">
+    <h2 id="n8nSecurityTitle">Data security for your workflows<br />and credentials</h2>
+    <p>Your automations hold API keys, customer data and business logic. Self-hosting on XcellHost keeps all of it on an isolated server in India, with privacy controls you decide.</p>
+    <div class="security-grid">
+      <article><span class="material-symbols-outlined" aria-hidden="true">shield</span><h3>KVM isolation</h3><p>Your n8n runs in its own virtual machine — no shared containers with other customers.</p></article>
+      <article><span class="material-symbols-outlined" aria-hidden="true">security</span><h3>Firewall &amp; anti-DDoS</h3><p>Only the ports you need are open; volumetric attacks are filtered upstream.</p></article>
+      <article><span class="material-symbols-outlined" aria-hidden="true">lock</span><h3>SSL &amp; encrypted credentials</h3><p>HTTPS on your domain, with n8n's credential store encrypted at rest.</p></article>
+      <article><span class="material-symbols-outlined" aria-hidden="true">dns</span><h3>Backups &amp; India data centres</h3><p>Automated snapshots, and data that stays in India for DPDP Act comfort.</p></article>
+    </div>
+  </section>
+
+  <section class="n8n-case-study" aria-labelledby="n8nCaseTitle">
+    <span class="section-label">Case study</span>
+    <article class="case-card">
+      <header><span class="case-avatar">RE</span><div><h2 id="n8nCaseTitle">200 manual lead entries a day replaced by one n8n workflow</h2><p>Real estate developer · Real estate · Pune <small>Illustrative case study</small></p></div></header>
+      <div class="case-columns">
+        <div><h3>Challenge</h3><p>Leads from property portals, Meta ads, the website and WhatsApp were copied into the CRM by hand. Entries were missed, duplicated or assigned hours late, and the team was paying per task for a SaaS automation tool that throttled at month-end.</p></div>
+        <div><h3>What we did</h3><p>XcellHost set up n8n on a Pro plan in Mumbai. One workflow now receives every lead by webhook, de-duplicates it, scores it with an AI node, creates it in Zoho CRM, assigns the right sales executive and sends a WhatsApp welcome — within seconds.</p></div>
+        <div class="case-results"><p><b>200+</b><span>leads a day handled automatically</span></p><p><b>5 s</b><span>from enquiry to assigned</span></p><p><b>₹0</b><span>per-task automation fees</span></p></div>
+      </div>
+    </article>
+  </section>
+
+  <section class="related-solutions" aria-labelledby="n8nSolutionsTitle">
+    <h2 id="n8nSolutionsTitle">Our <em>enterprise-grade</em> solutions</h2>
+    <div class="solutions-grid">
+      <a href="/performance-cloud"><span class="material-symbols-outlined" aria-hidden="true">cloud</span><div><h3>Performance Cloud</h3><p>NVMe cloud servers in five instance families, from ₹399/month.</p></div></a>
+      <a href="/nvidia-h100"><span class="material-symbols-outlined" aria-hidden="true">memory</span><div><h3>GPU Cloud — NVIDIA H100</h3><p>Run your own LLMs for n8n AI agents, with data kept in India.</p></div></a>
+      <a href="/nvidia-rtx-6000-ada"><span class="material-symbols-outlined" aria-hidden="true">deployed_code</span><div><h3>GPU Cloud — RTX 6000 Ada</h3><p>Cost-effective GPU inference for embeddings, OCR and vision nodes.</p></div></a>
+      <a href="/ai-resilience"><span class="material-symbols-outlined" aria-hidden="true">psychology</span><div><h3>AI Resilience</h3><p>Protect the models, vector stores and pipelines your automations depend on.</p></div></a>
+      <a href="/data-resilience"><span class="material-symbols-outlined" aria-hidden="true">database</span><div><h3>Data Resilience</h3><p>Backup and recovery for servers, databases and cloud workloads.</p></div></a>
+      <a href="/microsoft-365-backup"><span class="material-symbols-outlined" aria-hidden="true">groups</span><div><h3>Microsoft 365 Backup</h3><p>Back up the mailboxes and files your workflows read and write.</p></div></a>
+    </div>
+  </section>
+</section>

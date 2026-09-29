@@ -1,5 +1,10 @@
 import { AcronisMdrContentComponent } from '../sections/acronis-mdr-content.component';
 import { AcronisMdrHeroComponent } from '../sections/acronis-mdr-hero.component';
+import { MicrosoftDefenderHeroComponent } from '../sections/microsoft-defender-hero.component';
+import { MicrosoftDefenderContentComponent } from '../sections/microsoft-defender-content.component';
+import { MicrosoftDefenderFollowupComponent } from '../sections/microsoft-defender-followup.component';
+import { N8nVpsHeroComponent } from '../sections/n8n-vps-hero.component';
+import { N8nPlanSelection, N8nVpsContentComponent } from '../sections/n8n-vps-content.component';
 import { Rtx8000PricingComponent } from '../sections/rtx-8000-pricing.component';
 import { RtxPro6000PricingComponent } from '../sections/rtx-pro-6000-pricing.component';
 import { Rtx6000AdaPricingComponent } from '../sections/rtx-6000-ada-pricing.component';
@@ -327,6 +332,11 @@ interface ProductTourSlide {
     CopilotTrainingContentComponent,
     AcronisMdrContentComponent,
     AcronisMdrHeroComponent,
+    MicrosoftDefenderHeroComponent,
+    MicrosoftDefenderContentComponent,
+    MicrosoftDefenderFollowupComponent,
+    N8nVpsHeroComponent,
+    N8nVpsContentComponent,
     Rtx8000PricingComponent,
     RtxPro6000PricingComponent,
     Rtx6000AdaPricingComponent,
@@ -731,6 +741,22 @@ interface ProductTourSlide {
     }
     #ppage .pph-scene.genai-protection-hero-art xh-genai-protection-content {
       position: absolute; inset: 0; display: block;
+    }
+    #ppage.microsoft-defender-page .pph-scene.defender-hero-art {
+      right: max(22px, calc((100vw - 1240px)/2 + 20px));
+      top: 0; bottom: 0; width: min(40vw, 460px);
+      min-width: 0; opacity: 1; mask-image: none; overflow: visible;
+    }
+    #ppage.microsoft-defender-page .defender-hero-art xh-microsoft-defender-hero { width: 100%; }
+    @media(max-width:900px) {
+      #ppage.microsoft-defender-page .pp-hero { display: flex; flex-direction: column; }
+      #ppage.microsoft-defender-page .pph-scene.defender-hero-art {
+        position: relative; right: auto; top: auto; bottom: auto;
+        order: 2; width: min(calc(100% - 36px), 460px);
+        max-width: calc(100% - 36px); box-sizing: border-box;
+        margin: 10px auto 32px; opacity: 1; mask-image: none;
+      }
+      #ppage.microsoft-defender-page .pp-hero > .wrap { order: 1; width: 100%; }
     }
     #ppage .genai-hero-summary {
       width: 48%; max-width: 540px !important; text-wrap: pretty;
@@ -1664,6 +1690,12 @@ export class ProductPage {
     if (slug === 'performance-cloud') {
       return { ...view, faqs: PERFORMANCE_CLOUD_FAQS };
     }
+    if (slug === 'n8n-vps') {
+      return {
+        ...view,
+        overview: "n8n is an open, visual workflow-automation platform: drag nodes onto a canvas to connect apps, APIs, databases and AI models, and let it run the repetitive work for you. Self-hosting it means no per-execution pricing and full control over where your data lives. XcellHost n8n Hosting gives you a ready-to-use n8n server — installed, secured with SSL, firewalled and backed up — on the same NVMe Performance Cloud that runs our customers' ERP and SaaS. Start on a shared plan, move to queue mode when volume grows, or let us manage the whole thing for you.",
+      };
+    }
     if (view && this.slug() === 'acronis-mdr') {
       return {
         ...view,
@@ -2307,6 +2339,18 @@ export class ProductPage {
     this.cart.toCheckout();
   }
 
+  selectN8nPlan(selection: N8nPlanSelection): void {
+    const name = `n8n Hosting ${selection.name} · ${selection.os} · ${selection.management} · ${selection.term}`;
+    const price = `₹${selection.price.toLocaleString('en-IN')}/month + GST`;
+    this.cart.add(name, price, 1, { unitAmount: selection.price, currency: 'INR', locale: 'en-IN', suffix: '/month + GST' });
+    this.cart.open();
+  }
+
+  requestN8nConsultation(): void {
+    this.topics.ask('n8n workflow consultation');
+    this.overlay.open('callback');
+  }
+
   buyEdrPlan(plan: PricingPlan, ev: Event): void {
     ev.preventDefault();
     const quantity = this.edrQuantity();
@@ -2342,6 +2386,11 @@ export class ProductPage {
     ev.preventDefault();
     const name = this.view()?.name ?? "";
     this.topics.ask(request ? `${name} - ${request}` : name);
+    this.overlay.open('callback');
+  }
+
+  requestMicrosoftDefenderQuote(request: string): void {
+    this.topics.ask(`Microsoft Defender for Business - ${request}`);
     this.overlay.open('callback');
   }
 

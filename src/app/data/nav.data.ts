@@ -382,57 +382,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": "New",
                 "desc": "Maximise online visibility and reach your target audience 🎯"
               },
-              {
-                "title": "Bio Link + Digital Visiting Card",
-                "pill": "New",
-                "desc": "Maximise online visibility and reach your target audience 🎯"
-              },
-              {
-                "title": "Smart QR & NFC Automation",
-                "pill": "New",
-                "desc": "Maximise online visibility and reach your target audience 🎯"
-              },
-              {
-                "title": "AI Review MagicQR",
-                "pill": "New",
-                "desc": "Maximise online visibility and reach your target audience 🎯"
-              },
-              {
-                "title": "Digital Menu & Catalog Management",
-                "pill": "New",
-                "desc": "Maximise online visibility and reach your target audience 🎯"
-              },
-              {
-                "title": "Lead Generation & Pipeline CRM",
-                "pill": "New",
-                "desc": "Maximise online visibility and reach your target audience 🎯"
-              },
-              {
-                "title": "Billing Software",
-                "pill": "New",
-                "desc": "Maximise online visibility and reach your target audience 🎯"
-              },
-                    {
-                "title": "HRM + Attendance",
-                "pill": "New",
-                "desc": "Maximise online visibility and reach your target audience 🎯"
-              },
-                    {
-                "title": "Instant Website",
-                "pill": "New",
-                "desc": "Maximise online visibility and reach your target audience 🎯"
-              },
-                    {
-                "title": "WordPress Automation",
-                "pill": "New",
-                "desc": "Maximise online visibility and reach your target audience 🎯"
-              },
-              {
-                "title": "AEO + GEO Automation4",
-                "pill": "New",
-                "desc": "Maximise online visibility and reach your target audience 🎯"
-              },
-              
               
             ]
           }
@@ -522,6 +471,69 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               }, 
+            ]
+          }
+        ]
+      },
+      {
+        "g": "8",
+        "label": "SMB Tools",
+        "on": false,
+        "groups": [
+          {
+            "heading": "SMB Tools",
+            "items": [
+              {
+                "title": "Bio Link + Digital Visiting Card",
+                "pill": "New",
+                "desc": "Maximise online visibility and reach your target audience 🎯"
+              },
+              {
+                "title": "Smart QR & NFC Automation",
+                "pill": "New",
+                "desc": "Maximise online visibility and reach your target audience 🎯"
+              },
+              {
+                "title": "AI Review MagicQR",
+                "pill": "New",
+                "desc": "Maximise online visibility and reach your target audience 🎯"
+              },
+              {
+                "title": "Digital Menu & Catalog Management",
+                "pill": "New",
+                "desc": "Maximise online visibility and reach your target audience 🎯"
+              },
+              {
+                "title": "Lead Generation & Pipeline CRM",
+                "pill": "New",
+                "desc": "Maximise online visibility and reach your target audience 🎯"
+              },
+              {
+                "title": "Billing Software",
+                "pill": "New",
+                "desc": "Maximise online visibility and reach your target audience 🎯"
+              },
+              {
+                "title": "HRM + Attendance",
+                "pill": "New",
+                "desc": "Maximise online visibility and reach your target audience 🎯"
+              },
+              {
+                "title": "Instant Website",
+                "pill": "New",
+                "desc": "Maximise online visibility and reach your target audience 🎯"
+              },
+              {
+                "title": "WordPress Automation",
+                "pill": "New",
+                "desc": "Maximise online visibility and reach your target audience 🎯"
+              },
+              {
+                "title": "AEO + GEO Automation4",
+                "pill": "New",
+                "desc": "Maximise online visibility and reach your target audience 🎯"
+              },
+
             ]
           }
         ]
@@ -854,7 +866,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "OpenShift as a Nodes",
+                "title": "OpenShift as a Service",
                 "pill": null,
                 "desc": null
               },
@@ -4221,7 +4233,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Product Tours",
                 "pill": null,
                 "desc": null
-              }
+              },
+              {
+                "title": "Acronis Demo Center",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
