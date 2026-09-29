@@ -1,4 +1,4 @@
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, ViewportScroller } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnDestroy, computed, effect, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -60,6 +60,7 @@ export class BlogPage implements OnDestroy {
   private readonly seo = inject(SeoService);
   private readonly blogApi = inject(BlogApiService);
   private readonly doc = inject(DOCUMENT);
+  private readonly viewportScroller = inject(ViewportScroller);
 
   readonly isUseCase = this.route.snapshot.data['contentType'] === 'use-case';
   readonly detailBase = this.isUseCase ? '/use-cases' : '/insights';
@@ -150,6 +151,10 @@ export class BlogPage implements OnDestroy {
   );
 
   constructor() {
+    // Router anchor scrolling uses coordinates, so CSS scroll-margin is not applied.
+    this.viewportScroller.setOffset(() => [
+      0, (this.doc.querySelector('header.nav')?.getBoundingClientRect().height ?? 94) + 16,
+    ]);
     const articles$: Observable<readonly CmsArticle[]> = this.isUseCase
       ? this.blogApi.useCases$
       : this.blogApi.posts$;
@@ -216,6 +221,7 @@ export class BlogPage implements OnDestroy {
 
   ngOnDestroy(): void {
     this.stopListening();
+    this.viewportScroller.setOffset([0, 0]);
   }
 
   toggleListening(): void {
@@ -316,10 +322,6 @@ export class BlogPage implements OnDestroy {
       .replace(/(^|[\s(/&-])([a-z])/g, (_, separator: string, letter: string) =>
         `${separator}${letter.toUpperCase()}`
       );
-  }
-
-  headingAnchor(index: number): string {
-    return `#${this.headingBlockId(index)}`;
   }
 
   headingBlockId(index: number): string {
