@@ -37,6 +37,8 @@ import { InsightsSectionComponent } from '../sections/insights-section.component
 import { IdentityResilienceContentComponent } from '../sections/identity-resilience-content.component';
 import { EdiscoveryComplianceContentComponent } from '../sections/ediscovery-compliance-content.component';
 import { PerformanceCloudContentComponent } from '../sections/performance-cloud-content.component';
+import { DomainWhoisContentComponent } from '../sections/domain-whois-content.component';
+import { DomainWhoisFaqComponent } from '../sections/domain-whois-faq.component';
 import { PERFORMANCE_CLOUD_FAQS } from '../data/performance-cloud-faqs.data';
 import { TSPLUS_REMOTE_ACCESS_EXPERIENCES } from '../data/tsplus-demo.data';
 import { EmailSignatureContentComponent } from '../sections/email-signature-content.component';
@@ -274,6 +276,8 @@ interface ProductTourSlide {
     IdentityResilienceContentComponent,
     EdiscoveryComplianceContentComponent,
     PerformanceCloudContentComponent,
+    DomainWhoisContentComponent,
+    DomainWhoisFaqComponent,
     RouterLink,
     HeroNetDirective,
     ProductFaqComponent,

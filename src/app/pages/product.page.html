@@ -2,6 +2,7 @@
   <div
     class="ppage as-page"
     id="ppage"
+    [class.domain-whois-page]="slug() === 'domain-whois-lookup'"
     [class.infrastructure-page]="isInfrastructure()"
     [class.disaster-recovery-page]="isCloudDisasterRecoverySmb()"
     [class.edr-page]="isAdvancedEdr()"
@@ -265,6 +266,8 @@
         <xh-copilot-studio-content mode="hero" />
       } @else if (slug() === 'microsoft-365-backup') {
         <xh-microsoft-365-backup-content />
+      } @else if (slug() === 'domain-whois-lookup') {
+        <xh-domain-whois-content />
       } @else if (slug() === 'nvidia-h100') {
         <!-- The supplied H100 hero is rendered above the shared product sections. -->
       } @else {
@@ -1333,7 +1336,7 @@
       </div>
       }
 
-      @if (!isResellerProgram() && !isMicrosoftEnterprisePage() && slug() !== 'cloud-devops-services' && slug() !== 'server-management' && slug() !== 'microsoft-365-backup') {
+      @if (!isResellerProgram() && !isMicrosoftEnterprisePage() && slug() !== 'cloud-devops-services' && slug() !== 'server-management' && slug() !== 'microsoft-365-backup' && slug() !== 'domain-whois-lookup') {
         <div class="pp-trust">
           <div class="wrap">
             @if (isCopilotStudio()) {
@@ -1593,6 +1596,7 @@
                 @if (slug() === 'video-surveillance-as-a-service') {
                   <xh-cloud-cctv-content />
                 }
+                @if (slug() !== 'domain-whois-lookup') {
                 @if (!isSiteLock()) {
                   @if (slug() === 'scrutiny-dlp') {
                     <xh-scrutiny-dlp-content />
@@ -3825,6 +3829,7 @@
                   </section>
                 }
 
+                }
                 @if (slug() === 'cloud-migration') {
                   <section class="migration-proof" aria-labelledby="migrationScenariosTitle">
                     <div class="migration-value-strip" aria-label="The XcellHost value add">
@@ -4744,7 +4749,9 @@
 
         @if (slug() !== 'marketplace' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience') {
           <div class="pp-sec pp-faq-heading" [style.margin-top.px]="slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Frequently asked questions</div>
-          @if (slug() === 'nvidia-a100') {
+          @if (slug() === 'domain-whois-lookup') {
+            <xh-domain-whois-faq />
+          } @else if (slug() === 'nvidia-a100') {
             <div class="pp-faq a100-faq" id="ppFaq">
               <div class="a100-faq-column">
                 <xh-product-faq [faqs]="nvidiaA100FaqLeft" idPrefix="ppA100Left" [orderOffset]="1" />
