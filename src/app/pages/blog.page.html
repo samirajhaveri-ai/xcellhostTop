@@ -84,7 +84,7 @@
               <h3>Table of contents</h3>
               <nav class="article-toc" aria-label="Table of contents">
                 @for (heading of headings(); track heading.id) {
-                  <a [href]="headingAnchor(heading.index)">{{ heading.text }}</a>
+                  <a [routerLink]="[]" [fragment]="heading.id" queryParamsHandling="preserve">{{ heading.text }}</a>
                 }
               </nav>
             </div>

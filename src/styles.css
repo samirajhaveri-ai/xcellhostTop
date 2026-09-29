@@ -84,14 +84,18 @@
   .home-hero-slide .home-hero-nvidia img{display:block;width:179px;max-width:100%;height:auto;object-fit:contain}
   .hero .home-hero-slide .eyebrow::after{margin-inline:auto}
   .home-hero-dots{display:flex;align-items:center;gap:10px;margin-top:78px;margin-bottom: -50px;}
+  .home-hero-slide .bare-metal-ctas{align-items:center}
+  .home-hero-slide .bare-metal-logo{display:block;box-sizing:border-box;width:100px;height:56px;padding:6px 10px;object-fit:contain;background:#fff;border-radius:8px;flex-shrink:0}
+  @media(max-width:700px){.home-hero-slide .bare-metal-ctas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:440px;margin-left:auto;margin-right:auto}.home-hero-slide .bare-metal-logo{width:100px;height:56px;justify-self:center;grid-row:1}.home-hero-slide .bare-metal-ryzen{grid-column:1}.home-hero-slide .bare-metal-intel{grid-column:2}.home-hero-slide .bare-metal-ctas .btn{width:100%;min-width:0;white-space:normal;box-sizing:border-box}}
   .home-hero-slide.is-cybird .hero-ctas{align-items:center}
-  .home-hero-slide.is-cybird .cybird-made-in-india{display:block;width:250px;height:auto;object-fit:contain;flex-shrink:0}
-  .home-hero-slide.is-cybird .cybird-appliance{display:block;width:110px;height:auto;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 8px 10px rgba(0,0,0,.4))}
+  .home-hero-slide.is-cybird .cybird-made-in-india,
+  .home-hero-slide.is-cybird .cybird-appliance{display:block;box-sizing:border-box;width:100px;height:56px;object-fit:contain;flex-shrink:0}
+  .home-hero-slide.is-cybird .cybird-made-in-india{width:140px}
+  .home-hero-slide.is-cybird .cybird-appliance{filter:drop-shadow(0 8px 10px rgba(0,0,0,.4))}
   .home-hero-slide.is-cybird .stat-line{margin-top:8px}
   .home-hero-slide.is-cybird .hero-live{margin-top:18px}
   .home-hero-slide.is-cybird .home-hero-dots{margin-top:24px}
-  @media(max-width:900px){.home-hero-slide.is-cybird .hero-ctas{display:grid;grid-template-columns:minmax(120px,160px) minmax(0,1fr)}.home-hero-slide.is-cybird .cybird-made-in-india{grid-column:1/-1;width:min(100%,280px);justify-self:center}.home-hero-slide.is-cybird .hero-ctas .btn-primary{width:auto;white-space:normal}.home-hero-slide.is-cybird .hero-ctas .btn-ghost{width:100%}.home-hero-slide.is-cybird .cybird-appliance{width:min(100%,110px)}}
-  @media(max-width:600px){.home-hero-slide.is-cybird .hero-ctas{grid-template-columns:repeat(2,minmax(0,1fr))}.home-hero-slide.is-cybird .cybird-made-in-india{width:min(100%,260px)}.home-hero-slide.is-cybird .hero-ctas .btn-primary{font-size:12px}.home-hero-slide.is-cybird .cybird-appliance{width:min(100%,90px)}}
+  @media(max-width:700px){.home-hero-slide.is-cybird .hero-ctas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:440px;margin-left:auto;margin-right:auto}.home-hero-slide.is-cybird .cybird-made-in-india{grid-column:1;grid-row:1;justify-self:center}.home-hero-slide.is-cybird .cybird-appliance{grid-column:2;grid-row:1;justify-self:center}.home-hero-slide.is-cybird .hero-ctas .btn{width:100%;min-width:0;white-space:normal;box-sizing:border-box}.home-hero-slide.is-cybird .hero-ctas .btn-primary{font-size:12px}}
   .home-hero-dots button{width:20px;height:7px;padding:0;border:0;border-radius:999px;background:rgba(151,172,206,.4);cursor:pointer;transition:width .24s ease,background .24s ease,box-shadow .24s ease}.home-hero-dots button:hover{background:rgba(203,222,248,.85)}.home-hero-dots button.is-active{width:46px;background:#1565D8;box-shadow:0 0 12px rgba(23, 87, 224, 0.8)}.home-hero-dots button:focus-visible{outline:2px solid #fff;outline-offset:px}
   @media(max-width:1024px){.home-hero-copy{padding-top:0}}
   @media(max-width:700px){.home-hero-slide .stat-line{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.home-hero-slide .hero-live{font-size:10px;white-space:normal}.home-hero-dots{margin-top:14px}}
@@ -5372,6 +5376,7 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 .cloud-backup-talk-btn{border:1px solid #b8c9e2;background:#fff;color:var(--navy)}
 .cloud-backup-talk-btn:hover{border-color:var(--blue);color:var(--blue)}
 .cloud-backup-protection .backup-protection-badges{justify-self:end;max-width:480px;border-radius:0;background:transparent;mix-blend-mode:multiply}
+.disaster-recovery-protection .backup-protection-badges,.endpoint-security-protection .backup-protection-badges,.microsoft-365-protection .backup-protection-badges,.rmm-protection .backup-protection-badges,.genai-protection .backup-protection-badges{mix-blend-mode:normal}
 @media(max-width:760px){.cloud-backup-protection{grid-template-columns:1fr;gap:28px;padding:32px 24px}.cloud-backup-protection .backup-protection-badges{justify-self:center;max-width:420px}}
 
 .infra-architecture-tabs button{white-space:nowrap}

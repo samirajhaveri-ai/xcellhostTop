@@ -1625,7 +1625,7 @@
                   @if (slug() === 'scrutiny-dlp') {
                     <xh-scrutiny-dlp-content />
                   } @else if (slug() === 'vortex-seg') {
-                    <xh-vortex-seg-content />
+                    <xh-vortex-seg-content [productName]="v.name" />
                   } @else if (slug() === 'vortex-soc') {
                     <xh-vortex-soc-content />
                   } @else if (slug() === 'cloud-migration') {
@@ -1749,7 +1749,13 @@
                     } @else if (isCloudBackup()) {
                       <div class="pp-sec">Overview</div>
                       <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
-                    } @else if (isAdvancedEdr() || isRmm() || slug() === 'cloud-disaster-recovery') {
+                    } @else if (isAdvancedEdr()) {
+                      <div class="pp-sec">Overview</div>
+                      <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
+                    } @else if (isRmm()) {
+                      <div class="pp-sec">Overview</div>
+                      <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
+                    } @else if (slug() === 'cloud-disaster-recovery') {
                       <div class="backup-overview-columns">
                         <div>
                           <div class="pp-sec">Overview</div>
@@ -1757,13 +1763,7 @@
                         </div>
                         <section class="backup-protection" aria-labelledby="backupProtectionTitle">
                         <h2 id="backupProtectionTitle">Protect your business with Acronis today!</h2>
-                        @if (isAdvancedEdr()) {
-                          <img class="backup-protection-badges backup-protection-badges-compact" src="/assets/images/acronis-endpoint-security-badges.png" alt="Acronis Certified Endpoint Security Professional and Advanced Security Specialist badges" loading="lazy" />
-                        } @else if (isRmm()) {
-                          <img class="backup-protection-badges backup-protection-badges-compact" src="/assets/images/acronis-rmm-management-badges.png" alt="Acronis Certified RMM Professional and Advanced Management Specialist badges" loading="lazy" />
-                        } @else {
-                          <img class="backup-protection-badges backup-protection-badges-compact" src="/assets/images/acronis-disaster-recovery-badges.png" alt="Acronis Certified Disaster Recovery Professional and DR to Azure Specialist badges" loading="lazy" />
-                        }
+                        <img class="backup-protection-badges backup-protection-badges-compact" src="/assets/images/acronis-disaster-recovery-badges.png" alt="Acronis Certified Disaster Recovery Professional and DR to Azure Specialist badges" loading="lazy" />
                         </section>
                       </div>
 
@@ -1842,7 +1842,7 @@
                     <div class="edr-card-heading">
                       <h3>
                         {{
-                          isRmm() ? 'Choose your Acronis RMM term' : 'Choose Your Endpoint Protection Term'
+                          isRmm() ? 'Choose your Acronis RMM term' : 'Choose Your Acronis Endpoint Protection Term'
                         }}
                       </h3>
                       <p>
@@ -3609,7 +3609,7 @@
                     aria-labelledby="cloud-backup-protection-title"
                   >
                     <div class="cloud-backup-protection-copy">
-                      <h2 id="cloud-backup-protection-title">Protect your business with Acronis today!</h2>
+                      <h2 id="cloud-backup-protection-title">Protect your business with Xcellhost Acronis today!</h2>
                       <p>
                         Keep business-critical data protected across endpoints, servers,
                         virtual machines and cloud applications with backup managed by
@@ -4000,6 +4000,37 @@
                     }
                   </div>
 
+                  @if (isRmm()) {
+                    <section
+                      class="backup-protection cloud-backup-protection rmm-protection"
+                      aria-labelledby="rmm-protection-title"
+                    >
+                      <div class="cloud-backup-protection-copy">
+                        <h2 id="rmm-protection-title">
+                          Protect your business with Acronis RMM today!
+                        </h2>
+                        <p>
+                          Monitor endpoint health, automate routine IT work and resolve issues before
+                          they interrupt your business. Acronis Advanced RMM brings real-time alerts,
+                          secure remote access, patch management, scripting and reporting into one
+                          centrally managed platform. Our certified specialists help configure policies,
+                          maintain devices and improve service delivery across your entire environment.
+                        </p>
+                        <div class="cloud-backup-protection-actions">
+                          <a class="btn btn-primary" href="#ppPlans">View pricing</a>
+                          <a class="btn cloud-backup-talk-btn" href="#" (click)="openCallback($event)">Let's Talk</a>
+                        </div>
+                      </div>
+                      <img
+                        class="backup-protection-badges backup-protection-badges-compact"
+                        src="/assets/images/acronis-rmm-management-badges-transparent-heading.png"
+                        alt="Acronis Certified RMM Professional and Advanced Management Specialist badges"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </section>
+                  }
+
                   @if (isCloudDisasterRecoverySmb()) {
                     <section class="cdr-global-cloud" aria-labelledby="cdrGlobalCloudTitle">
                       <div class="pp-sec" id="cdrGlobalCloudTitle">
@@ -4077,6 +4108,35 @@
                         </div>
                       </div>
                     </section>
+
+                    <section
+                      class="backup-protection cloud-backup-protection disaster-recovery-protection"
+                      aria-labelledby="disaster-recovery-protection-title"
+                    >
+                      <div class="cloud-backup-protection-copy">
+                        <h2 id="disaster-recovery-protection-title">
+                          Protect your business with Xcellhost Acronis Disaster Recovery today!
+                        </h2>
+                        <p>
+                          Keep critical workloads available when infrastructure fails, ransomware
+                          strikes or an unexpected outage interrupts operations. Acronis Disaster
+                          Recovery securely replicates your systems to the cloud, enabling rapid
+                          failover, recovery testing and dependable failback. Our certified specialists
+                          help design and manage the right continuity plan for your business.
+                        </p>
+                        <div class="cloud-backup-protection-actions">
+                          <a class="btn btn-primary" href="#ppPlans">View pricing</a>
+                          <a class="btn cloud-backup-talk-btn" href="#" (click)="openCallback($event)">Let's Talk</a>
+                        </div>
+                      </div>
+                      <img
+                        class="backup-protection-badges backup-protection-badges-compact"
+                        src="/assets/images/acronis-disaster-recovery-badges-transparent-heading.png"
+                        alt="Acronis Certified Disaster Recovery Professional and DR to Azure Specialist badges"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </section>
                   }
 
                   @if (v.honest; as honest) {
@@ -4133,6 +4193,37 @@
                       </table>
                     </div>
                   </div>
+
+                  @if (isAdvancedEdr()) {
+                    <section
+                      class="backup-protection cloud-backup-protection endpoint-security-protection"
+                      aria-labelledby="endpoint-security-protection-title"
+                    >
+                      <div class="cloud-backup-protection-copy">
+                        <h2 id="endpoint-security-protection-title">
+                          Protect your business with Acronis Endpoint Security today!
+                        </h2>
+                        <p>
+                          Stop ransomware, malware and advanced endpoint threats before they disrupt
+                          your business. Acronis Endpoint Security combines prevention, behavioural
+                          detection and rapid response in one centrally managed platform. Our certified
+                          specialists help configure protection policies, monitor endpoint health and
+                          strengthen security across every device in your organisation.
+                        </p>
+                        <div class="cloud-backup-protection-actions">
+                          <a class="btn btn-primary" href="#ppPlans">View pricing</a>
+                          <a class="btn cloud-backup-talk-btn" href="#" (click)="openCallback($event)">Let's Talk</a>
+                        </div>
+                      </div>
+                      <img
+                        class="backup-protection-badges backup-protection-badges-compact"
+                        src="/assets/images/acronis-endpoint-security-badges-transparent-heading.png"
+                        alt="Acronis Certified Endpoint Security Professional and Advanced Security Specialist badges"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </section>
+                  }
                 }
               }
             }
@@ -4340,11 +4431,11 @@
               <div class="pp-sec" id="vortexSegActionTitle">Watch it in action</div>
               <div class="tally-video-grid single-video">
                 <article class="tally-video-card">
-                  <h3><span>Elevate your email security with Vortex SEG</span></h3>
+                  <h3><span>Elevate your email security with {{ v.name }}</span></h3>
                   <div class="tally-video-frame">
                     <iframe
                       src="https://www.youtube-nocookie.com/embed/OQAmgvXsfyI?rel=0&amp;playsinline=1"
-                      title="Elevate your email security with Vortex SEG"
+                      [title]="'Elevate your email security with ' + v.name"
                       allow="
                         accelerometer;
                         autoplay;

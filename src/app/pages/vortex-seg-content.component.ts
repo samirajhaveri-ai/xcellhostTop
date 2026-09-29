@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 @Component({
   selector: 'xh-vortex-seg-content',
   standalone: true,
@@ -36,6 +36,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VortexSegContentComponent {
+  readonly productName = input('Vortex SEG');
   readonly comparison = [
     ['Platform overview', 'Unified gateway with native data control, DLP and compliance', 'Mature email security platforms often require multiple modules for gateway, DLP, archival and advanced controls'],
     ['Local LLM support', 'Supports local or private LLM paths for content analysis', 'Most secure email gateways focus on cloud-based analysis and provider-managed intelligence'],
