@@ -1,11 +1,13 @@
 import { ChangeDetectionStrategy, Component, computed, ElementRef, inject, input, signal, ViewChild } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 
 import { BlogApiService, CmsBlogPost } from '../core/blog-api.service';
 import { RevealDirective } from '../shared/reveal.directive';
 import { CASE_STUDIES } from '../data/case-studies.data';
-import { slugify } from '../core/catalog.service';
+import { CatalogService, slugify } from '../core/catalog.service';
+import { CaseStudiesApiService } from '../core/case-studies-api.service';
+import { caseStudiesForPage } from '../core/case-study-matching';
 
 /** Shared Insights carousel; service pages show only their assigned CMS posts. */
 @Component({
@@ -66,8 +68,8 @@ import { slugify } from '../core/catalog.service';
         </div>
         } @else if (activeView() === 'cases') {
           <div class="case-grid">
-            @for (study of studies; track study.id) {
-              <a class="cs" routerLink="/case-studies" [fragment]="study.id" [attr.aria-label]="'Read case study: ' + study.metricLabel">
+            @for (study of studies(); track study.id) {
+              <a class="cs" [routerLink]="['/case-studies', study.id]" [attr.aria-label]="'Read case study: ' + study.metricLabel">
                 <div class="cs-tag">{{ study.industry }} · {{ study.profile }}</div>
                 <div class="cs-num">{{ study.metric.replace(' to ', ' → ') }}</div>
                 <b>{{ study.metricLabel }}</b>
@@ -80,6 +82,9 @@ import { slugify } from '../core/catalog.service';
               </a>
             }
           </div>
+          @if (!studies().length) {
+            <p class="insights-empty" role="status">No case studies are available for this page yet. Browse all case studies for more customer stories.</p>
+          }
           <div class="cases-cta"><a class="btn btn-ghost" routerLink="/case-studies">View all Case Studies →</a></div>
         } @else {
           @if (activeView() === 'datasheets') {
@@ -145,8 +150,12 @@ import { slugify } from '../core/catalog.service';
 })
 export class InsightsSectionComponent {
   private readonly blogApi = inject(BlogApiService);
+  private readonly catalog = inject(CatalogService);
+  private readonly caseStudiesApi = inject(CaseStudiesApiService);
+  private readonly allStudies = toSignal(this.caseStudiesApi.studies$, { initialValue: CASE_STUDIES });
   readonly pageSlug = input('');
   readonly pageAliases = input<readonly string[]>([]);
+  readonly caseStudyLimit = input<number | null>(null);
   private readonly allPosts = signal<readonly CmsBlogPost[]>([]);
   readonly loading = signal(true);
   readonly encodeURIComponent = encodeURIComponent;
@@ -180,7 +189,17 @@ export class InsightsSectionComponent {
       description: 'Discover how businesses use XcellHost to protect their data, reduce downtime and make everyday operations simpler.',
     },
   } as const;
-  readonly studies = CASE_STUDIES;
+  readonly studies = computed(() => {
+    const pages = [this.pageSlug(), ...this.pageAliases()].filter(value => value.trim());
+    const identities = pages.flatMap(page => {
+      const pageKey = slugify(page.trim().replace(/^\/+|\/+$/g, ''));
+      const title = this.catalog.entryBySlug(pageKey)?.name ?? page;
+      return [page, title, ...(this.catalog.rich(title)?.alias ?? [])];
+    });
+    const matchingStudies = caseStudiesForPage(this.allStudies(), identities);
+    const limit = this.caseStudyLimit();
+    return limit === null ? matchingStudies : matchingStudies.slice(0, Math.max(0, limit));
+  });
   @ViewChild('blogGrid') private blogGrid?: ElementRef<HTMLElement>;
 
   constructor() {

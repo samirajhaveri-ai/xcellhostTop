@@ -25,6 +25,7 @@ interface RawCaseStudy {
   readonly solution?: string;
   readonly impact?: unknown;
   readonly services?: unknown;
+  readonly relatedPages?: unknown;
 }
 
 interface StrapiCaseStudyResponse {
@@ -90,6 +91,7 @@ export class CaseStudiesApiService {
       solution: study.solution?.trim() || '',
       impact: this.stringList(study.impact),
       services: this.stringList(study.services),
+      relatedPages: this.stringList(study.relatedPages),
     };
   }
 
