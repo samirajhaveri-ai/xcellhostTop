@@ -1,4 +1,4 @@
-:host {
+﻿:host {
   --xh-blue: #1769ff;
   --xh-dark: #0b1736;
   --xh-muted: #667085;
@@ -285,7 +285,7 @@
   white-space: nowrap;
   box-shadow: 0 3px 8px rgba(194, 118, 0, .2);
 }
-.xh-link-grid em::before { content: '★'; font-size: 8px; }
+.xh-link-grid em::before { content: 'â˜…'; font-size: 8px; }
 .xh-link-grid em.is-blue {
   color: #075dcc;
   background: #dbeafe;
@@ -591,3 +591,64 @@
 .xh-contact-dropdown a:focus-visible{outline:2px solid #0066ff;outline-offset:4px}
 @media(max-width:600px){.xh-contact-dropdown{right:-86px;width:310px;padding:10px 16px}.xh-contact-details{flex-wrap:wrap;gap:2px 10px;white-space:normal}.xh-contact-details a+a{border:0;padding-left:0!important}}
 @media(prefers-reduced-motion:reduce){.xh-contact-dropdown{transition:none}}
+
+@media (max-width: 1024px) {
+  .xh-main-nav { max-height: calc(100dvh - 90px); overscroll-behavior: contain; }
+  .xh-tabs { flex-wrap: wrap; overflow-x: visible; gap: 6px; }
+  .xh-tab { white-space: normal; text-align: left; min-height: 44px; }
+  .xh-link-grid, .xh-link-grid.xh-link-grid-two { grid-template-columns: minmax(0,1fr); }
+  .xh-item-copy, .xh-panels, .xh-link-group { min-width: 0; }
+  .xh-item-heading { flex-wrap: wrap; }
+  .xh-item-copy strong, .xh-item-copy small { white-space: normal; overflow-wrap: anywhere; }
+  .xh-contact-dropdown { right: -88px; max-width: calc(100vw - 24px); }
+}
+@media (max-width: 600px) {
+  .xh-nav-wrap { padding-inline: 12px; gap: 6px; }
+  .xh-brand { flex: 1 1 100px; min-width: 90px; }
+  .xh-brand img { width: 105px; max-width: 100%; }
+  .xh-mobile-toggle { flex: 0 0 44px; width: 44px; height: 44px; margin-left: 0; }
+  .xh-actions { gap: 4px; }
+  .xh-main-nav { flex-basis: calc(100% + 24px); margin-inline: -12px; }
+  .xh-contact-details { white-space: normal; flex-wrap: wrap; }
+}
+@media (max-width: 350px) {
+  .xh-actions { flex: 0 0 100%; justify-content: flex-end; padding-bottom: 8px; }
+  .xh-actions .xh-search, .xh-actions .xh-support-icon, .xh-actions .xh-login, .xh-actions .xh-signup-icon { width: 44px; height: 44px; }
+  .xh-brand { padding-block: 8px; }
+  .xh-main-nav { max-height: calc(100dvh - 140px); }
+}
+
+
+/* Mobile accordion panels must grow downward inside the scrolling menu. */
+@media (max-width: 1024px) {
+  .xh-main-nav { justify-content: flex-start; overflow-anchor: none; }
+  .xh-main-nav .xh-menu-item { flex: 0 0 auto; min-width: 0; }
+  .xh-main-nav .xh-menu-item > .xh-mega { display: none; }
+  .xh-main-nav .xh-menu-item.open > .xh-mega { display: block; width: 100%; }
+  .xh-main-nav .xh-feature-stack { display: none; }
+  .xh-main-nav .xh-tabs { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .xh-main-nav .xh-tab { min-width: 0; width: 100%; }
+  .xh-main-nav .xh-panels { overflow: visible; padding: 16px; }
+  .xh-main-nav .xh-menu-link span { transform: none; }
+  .xh-main-nav .xh-menu-item.open > .xh-menu-link span { transform: rotate(180deg); }
+}
+
+.xh-mobile-categories { display: none; }
+@media (max-width: 1024px) {
+  .xh-main-nav .xh-tabs, .xh-main-nav .xh-panels { display: none; }
+  .xh-mobile-categories { display: block; padding: 8px 12px; }
+  .xh-mobile-category { border-bottom: 1px solid #e7ebf3; }
+  .xh-mobile-category-toggle {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    width: 100%; min-height: 48px; padding: 14px 12px; border: 0; border-radius: 8px;
+    background: transparent; color: #263552; font: 600 14px/1.4 var(--body); text-align: left; cursor: pointer;
+  }
+  .xh-mobile-category-toggle[aria-expanded="true"] { color: var(--xh-blue); background: #eaf2ff; }
+  .xh-mobile-category-toggle > span { flex: none; font-size: 20px; }
+  .xh-mobile-category-toggle:focus-visible { outline: 2px solid var(--xh-blue); outline-offset: -2px; }
+  .xh-mobile-category-panel { padding: 12px 4px 18px; min-width: 0; animation: mobile-category-in .18s ease-out; }
+  .xh-mobile-category-panel h3 { margin: 8px 8px 12px; font-size: 15px; color: #263552; }
+  .xh-mobile-category-panel .xh-link-grid { grid-template-columns: minmax(0,1fr); }
+  @keyframes mobile-category-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+}
+@media (prefers-reduced-motion: reduce) { .xh-mobile-category-panel { animation: none; } }

@@ -34,27 +34,7 @@
           >{{ top.label }} <span aria-hidden="true">⌄</span></button>
 
           <div class="xh-mega" [id]="top.megaId">
-            <nav class="xh-tabs" [attr.aria-label]="top.label + ' categories'">
-              @for (tab of top.tabs; track $index) {
-                @if (tab.label.trim()) {
-                  <button
-                    class="xh-tab"
-                    type="button"
-                    [class.active]="isOn(top.label, tab.g)"
-                    [attr.aria-selected]="isOn(top.label, tab.g)"
-                    (mouseover)="setTab(top.label, tab.g)"
-                    (click)="onTabClick($event, top.label, tab.g)"
-                  >{{ tab.label }}</button>
-                }
-              }
-            </nav>
-
-            <div class="xh-panels">
-              @for (tab of top.tabs; track $index) {
-                <section
-                  class="xh-panel"
-                  [class.active]="isOn(top.label, tab.g)"
-                >
+            <ng-template #categoryLinks let-tab>
                   @for (group of tab.groups; track $index) {
                     <div class="xh-link-group">
                     @if (group.heading) { <h3>{{ group.heading }}</h3> }
@@ -84,6 +64,51 @@
                     </ul>
                     </div>
                   }
+            </ng-template>
+            <div class="xh-mobile-categories">
+              @for (tab of top.tabs; track tab.g) {
+                <div class="xh-mobile-category">
+                  @if (tab.label.trim()) {
+                    <button class="xh-mobile-category-toggle" type="button"
+                      [id]="top.megaId + '-mobile-tab-' + tab.g"
+                      [attr.aria-expanded]="isMobileCategoryOpen(top.label, tab.g)"
+                      [attr.aria-controls]="top.megaId + '-mobile-panel-' + tab.g"
+                      (click)="toggleMobileCategory(top.label, tab.g)">
+                      {{ tab.label }} <span aria-hidden="true">{{ isMobileCategoryOpen(top.label, tab.g) ? '−' : '+' }}</span>
+                    </button>
+                  }
+                  @if (!tab.label.trim() || isMobileCategoryOpen(top.label, tab.g)) {
+                    <section class="xh-mobile-category-panel"
+                      [id]="top.megaId + '-mobile-panel-' + tab.g"
+                      [attr.aria-labelledby]="tab.label.trim() ? top.megaId + '-mobile-tab-' + tab.g : null">
+                      <ng-container [ngTemplateOutlet]="categoryLinks" [ngTemplateOutletContext]="{ $implicit: tab }" />
+                    </section>
+                  }
+                </div>
+              }
+            </div>
+            <nav class="xh-tabs" [attr.aria-label]="top.label + ' categories'">
+              @for (tab of top.tabs; track $index) {
+                @if (tab.label.trim()) {
+                  <button
+                    class="xh-tab"
+                    type="button"
+                    [class.active]="isOn(top.label, tab.g)"
+                    [attr.aria-selected]="isOn(top.label, tab.g)"
+                    (mouseover)="setTab(top.label, tab.g)"
+                    (click)="onTabClick($event, top.label, tab.g)"
+                  >{{ tab.label }}</button>
+                }
+              }
+            </nav>
+
+            <div class="xh-panels">
+              @for (tab of top.tabs; track $index) {
+                <section
+                  class="xh-panel"
+                  [class.active]="isOn(top.label, tab.g)"
+                >
+                  <ng-container [ngTemplateOutlet]="categoryLinks" [ngTemplateOutletContext]="{ $implicit: tab }" />
                 </section>
               }
             </div>

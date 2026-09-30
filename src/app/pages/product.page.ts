@@ -1,6 +1,11 @@
+import { AiLabContentComponent } from '../sections/ai-lab-content.component';
+import { AI_LAB_FAQS } from '../data/ai-lab-faqs.data';
 import { AcronisMdrContentComponent } from '../sections/acronis-mdr-content.component';
 import { AcronisMdrHeroComponent } from '../sections/acronis-mdr-hero.component';
 import { MicrosoftDefenderHeroComponent } from '../sections/microsoft-defender-hero.component';
+import { Imunify360HeroComponent } from '../sections/imunify360-hero.component';
+import { Imunify360ContentComponent } from '../sections/imunify360-content.component';
+import { Imunify360FollowupComponent } from '../sections/imunify360-followup.component';
 import { MicrosoftDefenderContentComponent } from '../sections/microsoft-defender-content.component';
 import { MicrosoftDefenderFollowupComponent } from '../sections/microsoft-defender-followup.component';
 import { MicrosoftDefenderTailComponent } from '../sections/microsoft-defender-tail.component';
@@ -45,6 +50,10 @@ import { EdiscoveryComplianceContentComponent } from '../sections/ediscovery-com
 import { PerformanceCloudContentComponent } from '../sections/performance-cloud-content.component';
 import { DomainWhoisContentComponent } from '../sections/domain-whois-content.component';
 import { DomainWhoisFaqComponent } from '../sections/domain-whois-faq.component';
+import { ManagedOracleContentComponent } from '../sections/managed-oracle-content.component';
+import { ManagedOracleFaqComponent } from '../sections/managed-oracle-faq.component';
+import { AiVoicebotContentComponent } from '../sections/ai-voicebot-content.component';
+import { AiVoicebotFaqComponent } from '../sections/ai-voicebot-faq.component';
 import { PERFORMANCE_CLOUD_FAQS } from '../data/performance-cloud-faqs.data';
 import { TSPLUS_REMOTE_ACCESS_EXPERIENCES } from '../data/tsplus-demo.data';
 import { EmailSignatureContentComponent } from '../sections/email-signature-content.component';
@@ -172,6 +181,8 @@ import {
   Microsoft365EnterpriseOffice365Component,
 } from '../sections/microsoft-365-enterprise-variants.component';
 import { SuppliedServiceReferenceComponent } from '../sections/supplied-service-reference.component';
+import { GpuClustersContentComponent } from '../sections/gpu-clusters-content.component';
+import { AiChatbotContentComponent } from '../sections/ai-chatbot-content.component';
 import { SUPPLIED_SERVICE_EXTRAS } from '../data/supplied-service-extras.data';
 import { MicrosoftCopilotContentComponent } from '../sections/microsoft-copilot-content.component';
 import { CopilotStudioContentComponent } from '../sections/copilot-studio-content.component';
@@ -203,6 +214,7 @@ import { AcronisXdrSourceComponent } from '../sections/acronis-xdr-source.compon
 import { CyberResilienceSourceComponent } from '../sections/cyber-resilience-source.component';
 import { DataResilienceSourceComponent } from '../sections/data-resilience-source.component';
 import { CloudSecurityPostureSourceComponent } from '../sections/cloud-security-posture-source.component';
+import { CloudRepatriationSourceComponent } from '../sections/cloud-repatriation-source.component';
 import { NvidiaA100AssuranceComponent } from '../sections/nvidia-a100-assurance.component';
 import { NvidiaH100AssuranceComponent } from '../sections/nvidia-h100-assurance.component';
 import { H100HeroAction, NvidiaH100HeroComponent } from '../sections/nvidia-h100-hero.component';
@@ -285,6 +297,11 @@ interface ProductTourSlide {
     PerformanceCloudContentComponent,
     DomainWhoisContentComponent,
     DomainWhoisFaqComponent,
+    ManagedOracleContentComponent,
+    ManagedOracleFaqComponent,
+    AiLabContentComponent,
+    AiVoicebotContentComponent,
+    AiVoicebotFaqComponent,
     RouterLink,
     HeroNetDirective,
     ProductFaqComponent,
@@ -321,6 +338,8 @@ interface ProductTourSlide {
     Microsoft365EnterpriseNonprofitComponent,
     Microsoft365EnterpriseOffice365Component,
     SuppliedServiceReferenceComponent,
+    GpuClustersContentComponent,
+    AiChatbotContentComponent,
     MicrosoftCopilotContentComponent,
     CopilotStudioContentComponent,
     WaapContentComponent,
@@ -335,6 +354,9 @@ interface ProductTourSlide {
     AcronisMdrContentComponent,
     AcronisMdrHeroComponent,
     MicrosoftDefenderHeroComponent,
+    Imunify360HeroComponent,
+    Imunify360ContentComponent,
+    Imunify360FollowupComponent,
     MicrosoftDefenderContentComponent,
     MicrosoftDefenderFollowupComponent,
     MicrosoftDefenderTailComponent,
@@ -386,6 +408,7 @@ interface ProductTourSlide {
     CyberResilienceSourceComponent,
     DataResilienceSourceComponent,
     CloudSecurityPostureSourceComponent,
+    CloudRepatriationSourceComponent,
     NvidiaA100AssuranceComponent,
     NvidiaH100AssuranceComponent,
     NvidiaH100HeroComponent,
@@ -396,6 +419,49 @@ interface ProductTourSlide {
   ],
   templateUrl: './product.page.html',
   styles: [`
+    #ppage.managed-oracle-page .pp-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 480px);
+      align-items: center;
+      gap: 36px;
+      padding-inline: max(24px, calc((100% - 1192px) / 2));
+    }
+    #ppage.managed-oracle-page .pp-hero > .wrap {
+      grid-column: 1; grid-row: 1; min-width: 0; width: 100%; padding: 0;
+    }
+    #ppage.managed-oracle-page .pp-hero > .oracle-hero-visual {
+      position: relative; grid-column: 2; grid-row: 1;
+      inset: auto; transform: none; width: 100%; max-width: 480px; margin: 0;
+    }
+    #ppage.managed-oracle-page .pp-hero > .wrap > :is(h1, .pp-crumb, .pp-tagline, .pp-typewriter, .pp-hero-grid) {
+      width: 100%; max-width: 100%; min-width: 0; white-space: normal;
+    }
+    #ppage.managed-oracle-page .pp-hero > .wrap > h1 {
+      display: flex; flex-wrap: wrap; align-items: baseline;
+      white-space: normal; overflow-wrap: normal; gap: 4px 0;
+    }
+    #ppage.managed-oracle-page #ppTitle .pp-title-brand {
+      flex: 0 0 auto; white-space: nowrap;
+    }
+    #ppage.managed-oracle-page #ppTitle .pp-brand-xcell {
+      width: auto; white-space: nowrap;
+    }
+    #ppage.managed-oracle-page #ppTitle .pp-title-name {
+      flex-basis: 100%; margin-left: 0; white-space: normal; text-wrap: balance;
+    }
+    #ppage.managed-oracle-page .pp-hero > .wrap > .oracle-hero-summary {
+      display: block; white-space: normal; overflow-wrap: break-word;
+      font-size: 17px; font-weight: 400; line-height: 1.6; margin-bottom: 20px;
+    }
+    #ppage.managed-oracle-page .product-hero-ctas {
+      width: 100%; max-width: 100%; flex-wrap: wrap;
+    }
+    @media(max-width:1100px) {
+      #ppage.managed-oracle-page .pp-hero { grid-template-columns: minmax(0, 1fr); }
+      #ppage.managed-oracle-page .pp-hero > .oracle-hero-visual {
+        grid-column: 1; grid-row: 2; justify-self: center;
+      }
+    }
     #ppage.acronis-xdr-page .pp-cta .btn-ghost { border-color: rgba(255,255,255,.4); color: #fff; }
     #ppage.nvidia-a100-page .pp-hero { display: none; }
     #ppage.nvidia-l40s-page .pp-hero,
@@ -420,6 +486,8 @@ interface ProductTourSlide {
     #ppage.cyber-resilience-page xh-cyber-resilience-source[view="details"] { display: block; width: calc(100% + 48px); margin-inline: -24px; }
     #ppage.data-resilience-page .pp-hero { display: none; }
     #ppage.data-resilience-page xh-data-resilience-source[view="details"] { display: block; width: calc(100% + 48px); margin-inline: -24px; }
+    #ppage.cloud-repatriation-page .pp-hero { display: none; }
+    #ppage.cloud-repatriation-page xh-cloud-repatriation-source[view="details"] { display: block; width: calc(100% + 48px); margin-inline: -24px; }
     #ppage.nvidia-a100-page #ppOv { width: 100%; max-width: none; }
     #ppage.nvidia-a100-page .a100-related { display: flex; flex-wrap: nowrap; gap: 6px; align-items: center; margin-top: 24px; overflow-x: auto; white-space: nowrap; color: #486078; font-size: 12px; }
     #ppage.nvidia-a100-page .a100-related > * { flex: none; }
@@ -749,9 +817,56 @@ interface ProductTourSlide {
     #ppage.microsoft-defender-page .pph-scene.defender-hero-art {
       right: max(22px, calc((100vw - 1240px)/2 + 20px));
       top: 0; bottom: 0; width: min(40vw, 460px);
+      display: flex; align-items: center; justify-content: center;
+      height: auto; max-height: none; padding: 32px 0; box-sizing: border-box;
       min-width: 0; opacity: 1; mask-image: none; overflow: visible;
     }
     #ppage.microsoft-defender-page .defender-hero-art xh-microsoft-defender-hero { width: 100%; }
+    #ppage.imunify360-page .pph-scene.imunify360-hero-art {
+      right: max(24px, calc((100vw - 1240px)/2 + 24px));
+      top: 0; bottom: 0; width: min(40vw, 510px); height: auto; max-height: none;
+      display: flex; align-items: center; justify-content: center;
+      padding: 28px 0; box-sizing: border-box; opacity: 1; mask-image: none; overflow: visible;
+    }
+    #ppage.imunify360-page .pp-hero > .wrap > .pp-tagline {
+      width: 100%; white-space: normal; text-wrap: pretty;
+      font: 500 17px/1.65 var(--body); margin: 12px 0 18px;
+    }
+    #ppage.imunify360-page .pp-hero-grid { grid-template-columns: minmax(0, 1fr); }
+    #ppage.imunify360-page .pp-hero-l { min-width: 0; }
+    #ppage.imunify360-page .product-hero-ctas {
+      width: 100%; max-width: 100%; flex-wrap: wrap; overflow: visible; gap: 12px;
+    }
+    @media(min-width:901px) {
+      #ppage.imunify360-page .pp-hero > .wrap > h1,
+      #ppage.imunify360-page .pp-hero > .wrap > .pp-tagline,
+      #ppage.imunify360-page .pp-hero > .wrap > .pp-typewriter,
+      #ppage.imunify360-page .pp-hero > .wrap > .pp-hero-grid { width: 54%; max-width: 54%; }
+    }
+    @media(max-width:900px) {
+      #ppage.imunify360-page .pp-hero { display: flex; flex-direction: column; }
+      #ppage.imunify360-page .pp-hero > .wrap { order: 1; width: 100%; }
+      #ppage.imunify360-page .pph-scene.imunify360-hero-art {
+        position: relative; order: 2; inset: auto; width: min(calc(100% - 36px), 550px);
+        margin: 24px auto 32px; padding: 0;
+      }
+    }
+    #ppage.microsoft-defender-page .pp-hero > .wrap > .pp-tagline,
+    #ppage.microsoft-defender-page .pp-hero > .wrap > .pp-tagline-support {
+      white-space: normal; text-wrap: pretty; overflow-wrap: break-word;
+    }
+    #ppage.microsoft-defender-page .pp-hero > .wrap > .pp-tagline-support {
+      color: #fff; font: 500 16px/1.6 var(--body); margin: 8px 0 18px;
+    }
+    @media(min-width:901px) {
+      #ppage.microsoft-defender-page .pp-hero > .wrap > h1,
+      #ppage.microsoft-defender-page .pp-hero > .wrap > .pp-tagline,
+      #ppage.microsoft-defender-page .pp-hero > .wrap > .pp-tagline-support,
+      #ppage.microsoft-defender-page .pp-hero > .wrap > .pp-typewriter,
+      #ppage.microsoft-defender-page .pp-hero > .wrap > .pp-hero-grid {
+        width: 56%; max-width: 56%; box-sizing: border-box;
+      }
+    }
     #ppage.microsoft-defender-page .defender-cta { margin: 22px 0 38px; }
     #ppage.microsoft-defender-page .defender-cta-actions { display: flex; flex-wrap: wrap; gap: 9px; }
     #ppage.microsoft-defender-page .defender-cta .btn-ghost { color: #fff; border-color: rgba(255,255,255,.44); }
@@ -761,9 +876,14 @@ interface ProductTourSlide {
         position: relative; right: auto; top: auto; bottom: auto;
         order: 2; width: min(calc(100% - 36px), 460px);
         max-width: calc(100% - 36px); box-sizing: border-box;
+        padding: 0;
         margin: 10px auto 32px; opacity: 1; mask-image: none;
       }
       #ppage.microsoft-defender-page .pp-hero > .wrap { order: 1; width: 100%; }
+      #ppage.microsoft-defender-page .pp-hero > .wrap > .pp-tagline,
+      #ppage.microsoft-defender-page .pp-hero > .wrap > .pp-tagline-support {
+        width: 100%; max-width: 100%;
+      }
     }
     #ppage .genai-hero-summary {
       width: 48%; max-width: 540px !important; text-wrap: pretty;
@@ -960,6 +1080,66 @@ export class ProductPage {
 
   /** five star slots, so the template does not rebuild an array on every check */
   readonly starSlots = [0, 1, 2, 3, 4];
+  // GPU Clusters benefits from the supplied page.
+  // FAQ copy from the supplied ai-chatbot.html.
+  readonly aiChatbotFaqs: [string, string][] = [
+    [
+      "What is the XcellHost AI chatbot?",
+      "An AI chatbot that automates customer conversations using natural language processing and machine learning, delivering personalised, real-time replies on your website, mobile apps, WhatsApp and social channels."
+    ],
+    [
+      "How does the AI chatbot improve customer engagement?",
+      "It answers 24×7 with contextual understanding, cutting response times, improving satisfaction and guiding visitors towards a purchase or enquiry."
+    ],
+    [
+      "Can the chatbot be added to my website?",
+      "Yes — paste one line of code or use our WordPress plugin. The widget can be styled to match your brand."
+    ],
+    [
+      "Is there a free AI chatbot plan?",
+      "Yes. The Launch plan is free for one chatbot with 1,000 sessions, so you can test it before upgrading."
+    ],
+    [
+      "What makes it AI-powered?",
+      "It uses NLP, large language models, sentiment analysis and machine learning to understand and respond dynamically, learning from interactions."
+    ],
+    [
+      "Is the chatbot multilingual?",
+      "Yes — it supports English, Hindi and many other languages so you can serve customers in their language."
+    ],
+    [
+      "How does it handle complex queries?",
+      "Intent recognition and context management handle multi-step questions; when needed it escalates to a human agent with the full conversation."
+    ],
+    [
+      "Can it reduce operational costs?",
+      "Yes. Automating repetitive questions and offering 24×7 self-service reduces support workload so agents focus on higher-value work."
+    ],
+    [
+      "Does it work on WhatsApp and other messaging apps?",
+      "Yes — web chat, WhatsApp, Facebook Messenger, Instagram and more, managed from one inbox."
+    ],
+    [
+      "How secure is the chatbot?",
+      "Data is encrypted, access is role-based, and conversations are hosted in XcellHost's Indian data centres."
+    ]
+  ];
+  readonly aiChatbotWhy = [
+    { title: 'Advanced NLP', body: 'Understands intent accurately, even with complex or ambiguous questions.', icon: 'M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5 3 3 0 0 0 3 3 3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zM15 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-3 3 3 3 0 0 1-3-3' },
+    { title: 'Conversational AI', body: 'Human-like conversations that improve over time.', icon: 'M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.2A8 8 0 1 1 20 12z' },
+    { title: 'Multi-channel', body: 'Website, apps, WhatsApp and social from one place.', icon: 'M21 12a9 9 0 1 0-18 0 9 9 0 0 0 18 0M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18' },
+    { title: '24×7 availability', body: 'Answers instantly, freeing your team for complex work.', icon: 'M21 12a9 9 0 1 0-18 0 9 9 0 0 0 18 0M12 7v5l3 2' },
+    { title: 'Personalised', body: 'Replies tailored to user history and preferences.', icon: 'M12.5 8a3.5 3.5 0 1 0-7 0 3.5 3.5 0 0 0 7 0M2 20c0-4 3-6 7-6s7 2 7 6M16 4.5a3.5 3.5 0 0 1 0 7M18 14c2.5.6 4 2.6 4 6' },
+    { title: 'Online access', body: 'No infrastructure to set up — hosted by XcellHost in India.', icon: 'M7 18a5 5 0 1 1 1-9.9A6 6 0 0 1 19.5 10 4 4 0 0 1 18 18z' },
+  ];
+  readonly gpuClustersWhy = [
+    { title: 'Fast provisioning', body: 'Self-serve clusters in hours; reserved 128+ GPU clusters in 24–72 hours from signing — not the 6–12 weeks of hyperscaler procurement.', icon: 'M5 15c-1.5 1.5-2 5-2 5s3.5-.5 5-2M9 11a13 13 0 0 1 11-8 13 13 0 0 1-8 11l-3-3zM16.5 9a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0' },
+    { title: 'Proper networking', body: 'NDR InfiniBand, rail-optimised topology and SHARP in-network reductions.', icon: 'M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1' },
+    { title: 'Transparent INR pricing', body: "No platform fees, no egress charges, no 'cluster mode' premium — per-GPU rate × GPUs.", icon: 'M6 4h12M6 9h12M9 4c6 0 6 10 0 10H6l9 7' },
+    { title: 'Single-tenant option', body: 'ISO 27001-certified provider, Indian data residency for DPDP Act, BYOK and customer-managed VPN.', icon: 'M6 11h12a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2zM8 11V7a4 4 0 0 1 8 0v4' },
+    { title: 'Bring your own scheduler', body: 'Slurm, Ray, SkyPilot and managed Kubernetes pre-wired.', icon: 'M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14' },
+    { title: 'Dedicated support', body: 'Enterprise plans get a shared channel with our infrastructure engineers.', icon: 'M4 14v-2a8 8 0 0 1 16 0v2M4 14h3v6H4zM17 14h3v6h-3z' },
+  ];
   readonly suppliedServiceExtras = computed(() =>
     this.slug() === 'server-management'
       ? SUPPLIED_SERVICE_EXTRAS['server-management']
@@ -1666,6 +1846,41 @@ export class ProductPage {
     const slug = this.slug();
     const view = this.resolve(slug);
     if (!view) return null;
+    if (slug === 'ai-lab-as-service') return {
+      ...view,
+      faqs: AI_LAB_FAQS,
+      tagline: 'Fully managed AI labs in the cloud for universities, researchers, startups and enterprises. Latest NVIDIA GPUs, ready-made environments and team workspaces — with no hardware to buy and nothing to maintain. From XcellHost, hosted in India.',
+      heroHighlight: null,
+      heroMessages: [],
+      why: [
+        { icon: 'M5 5h14v14H5zM9 9h6v6H9zM9 2v3M15 2v3M9 19v3M15 19v3', title: 'NVIDIA GPU Access', body: 'Run training, fine-tuning and research on on-demand NVIDIA GPUs, without buying or maintaining lab hardware.' },
+        { icon: 'M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14', title: 'Ready-To-Use AI Environments', body: 'Start building with pre-configured JupyterLab, PyTorch, TensorFlow and Hugging Face tools.' },
+        { icon: 'M12 2l8 4v6c0 5-8 10-8 10S4 17 4 12V6z', title: 'Hosted In India', body: 'Keep lab workloads in Indian data centres with private networking, encryption and controlled access.' },
+        { icon: 'M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6M2 21v-3a6 6 0 0 1 12 0v3M16 4a3 3 0 0 1 0 6M17 14a5 5 0 0 1 5 5v2', title: 'Built For Collaboration', body: 'Give students, researchers and teams shared workspaces, datasets and model registries with role-based access.' },
+        { icon: 'M6 4h12M6 9h12M9 4c6 0 6 10 0 10H6l9 7', title: 'Flexible Lab Plans', body: 'Choose pay-as-you-go, semester or annual plans, with scheduling and usage quotas to help manage compute costs.' },
+        { icon: 'M4 14v-2a8 8 0 0 1 16 0v2M3 14h4v7H3zM17 14h4v7h-4z', title: 'Managed Support', body: 'Get 24×7 support, usage reports and centrally managed infrastructure so your team can focus on learning and research.' },
+      ],
+    };
+    if (slug === 'imunify360') {
+      return {
+        ...view,
+        tagline: 'Protect your Linux web servers from every direction with security that never sleeps — firewall, WAF, Proactive Defence, malware cleanup and CloudLinux isolation, installed and managed by XcellHost.',
+      };
+    }
+    if (slug === 'microsoft-defender') {
+      return {
+        ...view,
+        tagline: 'Advanced protection with Microsoft Defender for Business — deployed in 48 hours',
+        heroHighlight: 'AI-powered endpoint security, EDR and ransomware protection for Indian SMBs and growing enterprises — deployed, tuned and watched 24×7 by XcellHost, a Microsoft partner since 1999. ₹250 per user per month, INR billing with GST invoice, DPDP-ready documentation.',
+        heroPoints: [
+          'EDR · next-gen AV',
+          'Up to 300 users',
+          'Auto remediation',
+          'Win · Mac · iOS · Android',
+          '₹250/user · INR + GST',
+        ],
+      };
+    }
     if (slug === 'vortex-seg' && this.route.snapshot.data['productDisplayName']) {
       const name = this.route.snapshot.data['productDisplayName'] as string;
       return { ...view, name, overview: view.overview.replaceAll('Vortex SEG', name) };
@@ -2389,6 +2604,16 @@ export class ProductPage {
     this.overlay.open('trial');
   }
 
+  requestGpuCluster(configuration: string): void {
+    this.topics.ask(`GPU Clusters - ${configuration}`);
+    this.overlay.open('callback');
+  }
+
+  requestAiChatbot(request: string): void {
+    this.topics.ask(`AI Chat Bot - ${request}`);
+    this.overlay.open('callback');
+  }
+
   openCallback(ev: Event, request?: string): void {
     ev.preventDefault();
     const name = this.view()?.name ?? "";
@@ -2398,6 +2623,11 @@ export class ProductPage {
 
   requestMicrosoftDefenderQuote(request: string): void {
     this.topics.ask(`Microsoft Defender for Business - ${request}`);
+    this.overlay.open('callback');
+  }
+
+  requestImunify360Plan(plan: string): void {
+    this.topics.ask(`Imunify360 - ${plan}`);
     this.overlay.open('callback');
   }
 

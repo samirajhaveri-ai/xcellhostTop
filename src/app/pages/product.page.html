@@ -3,6 +3,9 @@
     class="ppage as-page"
     id="ppage"
     [class.domain-whois-page]="slug() === 'domain-whois-lookup'"
+    [class.managed-oracle-page]="slug() === 'managed-oracle-cloud'"
+    [class.ai-lab-page]="slug() === 'ai-lab-as-service'"
+    [class.ai-voicebot-page]="slug() === 'ai-voice-bot'"
     [class.infrastructure-page]="isInfrastructure()"
     [class.disaster-recovery-page]="isCloudDisasterRecoverySmb()"
     [class.edr-page]="isAdvancedEdr()"
@@ -14,6 +17,7 @@
     [class.acronis-ot-page]="slug() === 'acronis-ot'"
     [class.acronis-mdr-page]="slug() === 'acronis-mdr'"
     [class.microsoft-defender-page]="slug() === 'microsoft-defender'"
+    [class.imunify360-page]="slug() === 'imunify360'"
     [class.email-archiving-page]="slug() === 'email-archiving'"
     [class.rtx-8000-page]="slug() === 'rtx-8000'"
     [class.rtx-pro-6000-page]="slug() === 'rtx-pro-6000'"
@@ -50,6 +54,7 @@
     [class.acronis-xdr-page]="slug() === 'acronis-xdr'"
     [class.cyber-resilience-page]="slug() === 'cyber-resilience'"
     [class.data-resilience-page]="slug() === 'data-resilience'"
+    [class.cloud-repatriation-page]="slug() === 'cloud-repatriation'"
     [class.nvidia-h100-page]="slug() === 'nvidia-h100'"
   >
     @if (slug() === 'nvidia-h100') {
@@ -78,6 +83,9 @@
     }
     @if (slug() === 'data-resilience') {
       <xh-data-resilience-source view="hero" />
+    }
+    @if (slug() === 'cloud-repatriation') {
+      <xh-cloud-repatriation-source view="hero" />
     }
     @if (slug() === 'cloud-security-posture-mgmt') {
       <xh-cloud-security-posture-source />
@@ -294,9 +302,21 @@
         <span class="pph-aur pph-a3" aria-hidden="true"></span>
         <span class="pph-scan" aria-hidden="true"></span>
 
-        @if (slug() === 'acronis-mdr') {
+        @if (slug() === 'ai-chat-bot') {
+          <div class="pph-scene ai-chatbot-hero-art">
+            <xh-ai-chatbot-content [hero]="true" (enquiry)="requestAiChatbot($event)" />
+          </div>
+        } @else if (slug() === 'gpu-clusters') {
+          <div class="pph-scene gpu-clusters-hero-art">
+            <xh-gpu-clusters-content [hero]="true" />
+          </div>
+        } @else if (slug() === 'acronis-mdr') {
           <div class="pph-scene has-illus standalone-illus mdr-hero-art" aria-hidden="true">
             <div class="pph-illus"><xh-acronis-mdr-hero /></div>
+          </div>
+        } @else if (slug() === 'imunify360') {
+          <div class="pph-scene imunify360-hero-art">
+            <xh-imunify360-hero />
           </div>
         } @else if (slug() === 'microsoft-defender') {
           <div class="pph-scene defender-hero-art">
@@ -829,6 +849,14 @@
           <div class="pph-scene genai-protection-hero-art" aria-hidden="true">
             <xh-genai-protection-content [heroOnly]="true" />
           </div>
+        } @else if (slug() === 'ai-voice-bot') {
+          <div class="pph-scene voicebot-hero-visual">
+            <iframe src="/ai-voicebot-visual.html" title="AI Voice Agent call illustration" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'managed-oracle-cloud') {
+          <div class="pph-scene oracle-hero-visual">
+            <iframe src="/managed-oracle-visual.html" title="Oracle Data Guard architecture illustration" scrolling="no"></iframe>
+          </div>
         } @else if (slug() === 'workforce-analytics') {
           <div class="pph-scene workforce-hero-animation">
             <iframe src="/assets/animations/workforce-analytics-animation.html"
@@ -918,6 +946,10 @@
               sandbox="allow-scripts"
               tabindex="-1"
             ></iframe>
+          </div>
+        } @else if (slug() === 'ai-lab-as-service') {
+          <div class="pph-scene ai-lab-dashboard">
+            <iframe src="/ai-lab-hero.html" title="Illustrative AI Lab dashboard showing students, GPU workloads and model training" scrolling="no"></iframe>
           </div>
         } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
           <div class="pph-scene has-illus standalone-illus" id="pphScene" aria-hidden="true">
@@ -1068,7 +1100,21 @@
                 }
               </span>
             </h1>
-            @if (slug() === 'acronis-genai-protection') {
+            @if (slug() === 'ai-lab-as-service') {
+              <p class="pp-tagline ai-lab-summary" id="ppTag">{{ v.tagline }}</p>
+            } @else if (slug() === 'ai-voice-bot') {
+              <p class="pp-tagline voicebot-hero-summary" id="ppTag">
+                Your 24&times;7 AI workforce for smarter phone conversations &mdash; answering,
+                qualifying, reminding and resolving in Hindi, English and 40+ languages. Built
+                and hosted by <span style="color:#e60012">Xcell</span>Host in India.
+              </p>
+            } @else if (slug() === 'managed-oracle-cloud') {
+              <p class="pp-tagline oracle-hero-summary" id="ppTag">
+                Oracle Database with Data Guard, RMAN and licence-aware architecture &mdash;
+                enterprise database discipline without enterprise database drama. Run by
+                DBAs in Mumbai, in Indian data centres.
+              </p>
+            } @else if (slug() === 'acronis-genai-protection') {
               <p class="pp-tagline genai-hero-summary" id="ppTag">
                 Generative AI is spreading fast — often through unsanctioned, consumer-grade tools
                 that open new attack surfaces, compliance exposure and data-leak risk.
@@ -1094,8 +1140,9 @@
                 {{ v.tagline }}
               </h2>
             }
-            @if (v.heroHighlight) {
-              <p class="pp-tagline-support">{{ v.heroHighlight }}</p>
+
+            @if (v.heroHighlight && slug() !== 'ai-voice-bot' && slug() !== 'managed-oracle-cloud') {
+              <p class="pp-tagline-support" [class.defender-hero-description]="slug() === 'microsoft-defender'">{{ v.heroHighlight }}</p>
             }
             @if (v.heroMessages.length) {
               <div class="pp-typewriter" aria-live="polite">
@@ -1351,7 +1398,7 @@
       </div>
       }
 
-      @if (!isResellerProgram() && !isMicrosoftEnterprisePage() && slug() !== 'cloud-devops-services' && slug() !== 'server-management' && slug() !== 'microsoft-365-backup' && slug() !== 'domain-whois-lookup') {
+      @if (!isResellerProgram() && !isMicrosoftEnterprisePage() && slug() !== 'cloud-devops-services' && slug() !== 'server-management' && slug() !== 'microsoft-365-backup' && slug() !== 'domain-whois-lookup' && slug() !== 'managed-oracle-cloud' && slug() !== 'ai-voice-bot') {
         <div class="pp-trust">
           <div class="wrap">
             @if (isCopilotStudio()) {
@@ -1360,6 +1407,12 @@
               <span><b>1,000+</b> connectors</span>
               <span><b>Since 1999</b></span>
               <span><b>24×7</b> NOC + SOC</span>
+            } @else if (slug() === 'cloud-repatriation') {
+              <span><b>ISO 27001</b> &amp; <b>20000-1</b> certified</span>
+              <span><b>Indian</b> data centres</span>
+              <span><b>Cloud</b> migration support</span>
+              <span><b>Since 1999</b></span>
+              <span><b>24&times;7</b> NOC + SOC</span>
             } @else if (slug() === 'n8n-vps') {
               <span><b>ISO 27001</b> &amp; <b>20000-1</b> certified</span>
               <span><b>n8n</b> pre-installed</span>
@@ -1542,6 +1595,12 @@
         [class.email-archiving-body]="slug() === 'email-archiving'"
       >
         <div class="wrap">
+          @if (slug() === 'ai-chat-bot') {
+            <xh-ai-chatbot-content (enquiry)="requestAiChatbot($event)" />
+          }
+          @if (slug() === 'gpu-clusters') {
+            <xh-gpu-clusters-content (enquiry)="requestGpuCluster($event)" />
+          }
           @if (slug() === 'identity-resilience') {
             <xh-identity-resilience-content />
           } @else if (slug() === 'ediscovery-and-compliance') {
@@ -1549,7 +1608,16 @@
           } @else if (slug() === 'performance-cloud') {
             <xh-performance-cloud-content (planRequest)="requestPerformanceCloudPlan($event)" />
           }
-          @if (slug() !== 'identity-resilience' && slug() !== 'ediscovery-and-compliance' && slug() !== 'performance-cloud') {
+          @if (slug() === 'ai-lab-as-service') {
+            <xh-ai-lab-content />
+          }
+          @if (slug() === 'ai-voice-bot') {
+            <xh-ai-voicebot-content />
+          }
+          @if (slug() === 'managed-oracle-cloud') {
+            <xh-managed-oracle-content />
+          }
+          @if (slug() !== 'identity-resilience' && slug() !== 'ediscovery-and-compliance' && slug() !== 'performance-cloud' && slug() !== 'gpu-clusters' && slug() !== 'ai-chat-bot') {
           @if (slug() === 'marketplace') {
             <xh-marketplace-content />
           } @else {
@@ -1557,7 +1625,7 @@
             <xh-nvidia-h100-content (planSelected)="selectH100Plan($event)" />
             <xh-nvidia-h100-assurance />
           } @else {
-          @if (slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience') {
+          @if (slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
           @if (slug() === 'waap-as-a-service') {
             <xh-waap-content />
           } @else {
@@ -1613,6 +1681,7 @@
               <xh-genai-protection-content />
             }
             @if (
+              slug() !== 'ai-lab-as-service' &&
               !isInfrastructure() &&
               slug() !== 'bare-metal-servers' &&
               slug() !== 'acronis-genai-protection' &&
@@ -1648,7 +1717,7 @@
                 @if (slug() === 'video-surveillance-as-a-service') {
                   <xh-cloud-cctv-content />
                 }
-                @if (slug() !== 'domain-whois-lookup') {
+                @if (slug() !== 'domain-whois-lookup' && slug() !== 'managed-oracle-cloud' && slug() !== 'ai-voice-bot') {
                 @if (!isSiteLock()) {
                   @if (slug() === 'scrutiny-dlp') {
                     <xh-scrutiny-dlp-content />
@@ -1815,6 +1884,8 @@
                           </div>
                         </div>
                       </section>
+                   } @else if (slug() === 'imunify360') {
+                      <xh-imunify360-content (planRequested)="requestImunify360Plan($event)" />
                    } @else if (!isTally()) {
                       <div class="pp-sec">Overview</div>
                       <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
@@ -2541,6 +2612,8 @@
                   <xh-rtx-a6000-pricing (quoteRequested)="requestRtxA6000Plan($event)" />
                 } @else if (slug() === 'n8n-vps') {
                   <!-- Pricing and included features render with the n8n overview above. -->
+                } @else if (slug() === 'imunify360') {
+                  <xh-imunify360-followup (consultationRequested)="requestImunify360Plan($event)" />
                 } @else if (
                   !isAdvancedEdr() &&
                   !isSmbCyber() &&
@@ -2749,6 +2822,7 @@
                 } @else if (slug() === 'rtx-a6000') {
                   <xh-rtx-a6000-details />
                 } @else if (
+                  slug() !== 'imunify360' &&
                   !isSmbCyber() &&
                   !isAcronisTrueImage() &&
                   !isSiteLock() &&
@@ -3383,6 +3457,7 @@
                 } @else if (slug() === 'rtx-a6000') {
                   <xh-rtx-a6000-performance />
                 } @else if (
+                  slug() !== 'imunify360' &&
                   !isSmbCyber() &&
                   !isRmm() &&
                   !isAcronisTrueImage() &&
@@ -3994,6 +4069,7 @@
                 } @else if (slug() === 'nvidia-rtx-6000-ada') {
                   <xh-rtx-6000-ada-showcase />
                 } @else if (
+                  slug() !== 'imunify360' &&
                   v.name !== 'Tally on Cloud' &&
                   slug() !== 'rtx-a6000' &&
                   slug() !== 'n8n-vps' &&
@@ -4007,6 +4083,7 @@
                   slug() !== 'vortex-seg' &&
                   slug() !== 'vortex-soc'
                 ) {
+                  @if (slug() !== 'managed-oracle-cloud' && slug() !== 'ai-voice-bot') {
                   <div class="pp-sec">Use cases</div>
                   <div
                     class="pp-uses"
@@ -4027,7 +4104,6 @@
                       </div>
                     }
                   </div>
-
                   @if (isRmm()) {
                     <section
                       class="backup-protection cloud-backup-protection rmm-protection"
@@ -4058,7 +4134,6 @@
                       />
                     </section>
                   }
-
                   @if (isCloudDisasterRecoverySmb()) {
                     <section class="cdr-global-cloud" aria-labelledby="cdrGlobalCloudTitle">
                       <div class="pp-sec" id="cdrGlobalCloudTitle">
@@ -4295,6 +4370,7 @@
 
           }
           }
+          }
           @if (v.name !== 'Tally on Cloud') {
             @if (slug() === 'rtx-8000') {
               <xh-rtx-8000-stories />
@@ -4311,7 +4387,7 @@
                 </div>
                 <p class="pp-secfoot">XcellHost is ISO 27001 and ISO 20000-1 certified · Indian Tier-4 datacenters · DPDPA and RBI aligned · 24×7 NOC and SOC.</p>
               </section>
-            } @else if (slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && !isSmbCyber() && !isRmm() && slug() !== 'acronis-backup-advanced' && slug() !== 'acronis-ot' && slug() !== 'scrutiny-dlp' && slug() !== 'cloud-migration') {
+            } @else if (slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation' && !isSmbCyber() && !isRmm() && slug() !== 'acronis-backup-advanced' && slug() !== 'acronis-ot' && slug() !== 'scrutiny-dlp' && slug() !== 'cloud-migration') {
               <div class="pp-sec" id="ppSecHead" [style.margin-bottom.px]="slug() === 'managed-devops' ? 32 : null">{{ slug() === 'microsoft-365-enterprise' ? 'Security & compliance — Microsoft 365 Enterprise' : v.security.head }}</div>
               <div id="ppSecWrap">
                 <p class="pp-ov">{{ v.security.intro }}</p>
@@ -4351,6 +4427,7 @@
             slug() !== 'ai-resilience' &&
             slug() !== 'cyber-resilience' &&
             slug() !== 'data-resilience' &&
+            slug() !== 'cloud-repatriation' &&
             !isSmbCyber() &&
             !isRmm() &&
             !isZohoWorkspace() &&
@@ -4362,9 +4439,9 @@
             slug() !== 'vortex-seg' &&
             slug() !== 'vortex-soc'
           ) {
-            <div class="pp-sec" id="ppWhyHead" [style.margin-top.px]="slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Why XcellHost for {{ v.name }}</div>
+<div class="pp-sec" id="ppWhyHead" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Why XcellHost for {{ v.name }}</div>
             <div class="pp-why" id="ppWhy">
-              @for (w of v.why; track w.title) {
+              @for (w of (slug() === 'ai-chat-bot' ? aiChatbotWhy : slug() === 'gpu-clusters' ? gpuClustersWhy : v.why); track w.title) {
                 <div class="pw">
                   <span class="pw-ic" aria-hidden="true"
                     ><svg viewBox="0 0 24 24"><path [attr.d]="w.icon" /></svg
@@ -4858,10 +4935,9 @@
               </div>
             </section>
           }
-
-          @if (slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience') {
-          <div class="pp-sec" [style.margin-top.px]="slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">What customers say</div>
-          @if (isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training') {
+          @if (slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
+          <div class="pp-sec" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">What customers say</div>
+          @if (isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training' || slug() === 'ai-chat-bot') {
             <div class="pp-tcards" id="ppRevs">
               @for (r of v.reviews; track r.name) {
                 <div class="tcard">
@@ -4924,12 +5000,19 @@
           @if (slug() === 'data-resilience') {
             <xh-data-resilience-source view="details" />
           }
+          @if (slug() === 'cloud-repatriation') {
+            <xh-cloud-repatriation-source view="details" />
+          }
           }
 
-        @if (slug() !== 'marketplace' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience') {
-          <div class="pp-sec pp-faq-heading" [style.margin-top.px]="slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Frequently asked questions</div>
+        @if (slug() !== 'marketplace' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
+          <div class="pp-sec pp-faq-heading" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Frequently asked questions</div>
           @if (slug() === 'domain-whois-lookup') {
             <xh-domain-whois-faq />
+          } @else if (slug() === 'managed-oracle-cloud') {
+            <xh-managed-oracle-faq />
+          } @else if (slug() === 'ai-voice-bot') {
+            <xh-ai-voicebot-faq />
           } @else if (slug() === 'nvidia-a100') {
             <div class="pp-faq a100-faq" id="ppFaq">
               <div class="a100-faq-column">
@@ -4941,7 +5024,7 @@
             </div>
           } @else {
             <div class="pp-faq" id="ppFaq">
-              <xh-product-faq [faqs]="isWatchtower() ? watchtowerFaqs : isOurPlatform() ? ourPlatformFaqs : isZohoWorkspace() ? zohoWorkspaceFaqs : v.faqs" />
+              <xh-product-faq [faqs]="slug() === 'ai-chat-bot' ? aiChatbotFaqs : isWatchtower() ? watchtowerFaqs : isOurPlatform() ? ourPlatformFaqs : isZohoWorkspace() ? zohoWorkspaceFaqs : v.faqs" />
             </div>
           }
 
@@ -4961,7 +5044,7 @@
           </nav>
         }
 
-        <div id="ppBlog" [style.margin-top.px]="slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null" [class.scrutiny-dlp-insights]="slug() === 'scrutiny-dlp'" [class.vortex-seg-insights]="slug() === 'vortex-seg'"><xh-insights-section [pageSlug]="slug()" /></div>
+        <div id="ppBlog" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null" [class.scrutiny-dlp-insights]="slug() === 'scrutiny-dlp'" [class.vortex-seg-insights]="slug() === 'vortex-seg'"><xh-insights-section [pageSlug]="slug()" /></div>
 
         <div class="pp-cta">
             <div>

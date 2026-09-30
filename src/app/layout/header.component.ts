@@ -1,4 +1,4 @@
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -478,7 +478,7 @@ function smbSlaRank(title: string): number {
   selector: 'xh-header',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { style: 'display: contents' },
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, NgTemplateOutlet],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
@@ -554,11 +554,24 @@ export class HeaderComponent {
   );
 
   readonly mobileOpen = computed(() => this.overlay.isOpen('mobileNav'));
+  private readonly mobileCategories = signal<Record<string, string | null>>({});
+
+  isMobileCategoryOpen(label: string, category: string): boolean {
+    return this.mobileCategories()[label] === category;
+  }
+
+  toggleMobileCategory(label: string, category: string): void {
+    this.mobileCategories.update(current => ({
+      ...current,
+      [label]: current[label] === category ? null : category,
+    }));
+  }
 
   constructor() {
     const win = this.doc.defaultView;
     if (win) {
       const onScroll = () => {
+        if (this.mobileOpen()) return;
         if (this.openTop() !== null) this.openTop.set(null);
         if (this.loginMenuOpen()) this.loginMenuOpen.set(false);
       };
@@ -572,10 +585,15 @@ export class HeaderComponent {
         if (e.key === 'Escape') this.loginMenuOpen.set(false);
       };
       win.addEventListener('scroll', onScroll, { passive: true });
+      const onResize = () => {
+        if (win.innerWidth > 1024 && this.mobileOpen()) this.overlay.close('mobileNav');
+      };
+      win.addEventListener('resize', onResize, { passive: true });
       this.doc.addEventListener('click', onDocClick);
       this.doc.addEventListener('keydown', onKeydown);
       this.destroyRef.onDestroy(() => {
         win.removeEventListener('scroll', onScroll);
+        win.removeEventListener('resize', onResize);
         this.doc.removeEventListener('click', onDocClick);
         this.doc.removeEventListener('keydown', onKeydown);
       });
@@ -612,10 +630,22 @@ export class HeaderComponent {
     this.loginMenuOpen.set(false);
     this.menuSuppressed.set(false);
     this.openTop.update((cur) => (cur === label ? null : label));
+    const win = this.doc.defaultView;
+    if (win && this.mobileOpen() && this.openTop() === label) {
+      win.requestAnimationFrame(() => {
+        if (!this.mobileOpen() || this.openTop() !== label) return;
+        const nav = this.doc.querySelector<HTMLElement>('#xh-main-nav');
+        const item = nav?.querySelector<HTMLElement>('.xh-menu-item.open');
+        if (nav && item) {
+          nav.scrollTo({ top: nav.scrollTop + item.getBoundingClientRect().top - nav.getBoundingClientRect().top, behavior: 'instant' });
+        }
+      });
+    }
   }
 
   /** Hovering one menu closes any other that was clicked open. */
   onTopEnter(label: string, event: MouseEvent): void {
+    if (this.doc.defaultView?.matchMedia('(max-width: 1024px), (hover: none)').matches) return;
     const hoveredMenu = event.currentTarget;
     const focused = this.doc.activeElement;
 
