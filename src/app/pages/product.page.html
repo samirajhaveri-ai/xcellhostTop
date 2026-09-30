@@ -3,6 +3,9 @@
     class="ppage as-page"
     id="ppage"
     [class.domain-whois-page]="slug() === 'domain-whois-lookup'"
+    [class.managed-oracle-page]="slug() === 'managed-oracle-cloud'"
+    [class.ai-lab-page]="slug() === 'ai-lab-as-service'"
+    [class.ai-voicebot-page]="slug() === 'ai-voice-bot'"
     [class.infrastructure-page]="isInfrastructure()"
     [class.disaster-recovery-page]="isCloudDisasterRecoverySmb()"
     [class.edr-page]="isAdvancedEdr()"
@@ -48,6 +51,7 @@
     [class.acronis-xdr-page]="slug() === 'acronis-xdr'"
     [class.cyber-resilience-page]="slug() === 'cyber-resilience'"
     [class.data-resilience-page]="slug() === 'data-resilience'"
+    [class.cloud-repatriation-page]="slug() === 'cloud-repatriation'"
     [class.nvidia-h100-page]="slug() === 'nvidia-h100'"
   >
     @if (slug() === 'nvidia-h100') {
@@ -76,6 +80,9 @@
     }
     @if (slug() === 'data-resilience') {
       <xh-data-resilience-source view="hero" />
+    }
+    @if (slug() === 'cloud-repatriation') {
+      <xh-cloud-repatriation-source view="hero" />
     }
     @if (slug() === 'acronis-xdr') {
       <xh-acronis-xdr-source />
@@ -814,6 +821,14 @@
           <div class="pph-scene genai-protection-hero-art" aria-hidden="true">
             <xh-genai-protection-content [heroOnly]="true" />
           </div>
+        } @else if (slug() === 'ai-voice-bot') {
+          <div class="pph-scene voicebot-hero-visual">
+            <iframe src="/ai-voicebot-visual.html" title="AI Voice Agent call illustration" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'managed-oracle-cloud') {
+          <div class="pph-scene oracle-hero-visual">
+            <iframe src="/managed-oracle-visual.html" title="Oracle Data Guard architecture illustration" scrolling="no"></iframe>
+          </div>
         } @else if (slug() === 'workforce-analytics') {
           <div class="pph-scene workforce-hero-animation">
             <iframe src="/assets/animations/workforce-analytics-animation.html"
@@ -903,6 +918,10 @@
               sandbox="allow-scripts"
               tabindex="-1"
             ></iframe>
+          </div>
+        } @else if (slug() === 'ai-lab-as-service') {
+          <div class="pph-scene ai-lab-dashboard">
+            <iframe src="/ai-lab-hero.html" title="Illustrative AI Lab dashboard showing students, GPU workloads and model training" scrolling="no"></iframe>
           </div>
         } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
           <div class="pph-scene has-illus standalone-illus" id="pphScene" aria-hidden="true">
@@ -1053,7 +1072,21 @@
                 }
               </span>
             </h1>
-            @if (slug() === 'acronis-genai-protection') {
+            @if (slug() === 'ai-lab-as-service') {
+              <p class="pp-tagline ai-lab-summary" id="ppTag">{{ v.tagline }}</p>
+            } @else if (slug() === 'ai-voice-bot') {
+              <p class="pp-tagline voicebot-hero-summary" id="ppTag">
+                Your 24&times;7 AI workforce for smarter phone conversations &mdash; answering,
+                qualifying, reminding and resolving in Hindi, English and 40+ languages. Built
+                and hosted by <span style="color:#e60012">Xcell</span>Host in India.
+              </p>
+            } @else if (slug() === 'managed-oracle-cloud') {
+              <p class="pp-tagline oracle-hero-summary" id="ppTag">
+                Oracle Database with Data Guard, RMAN and licence-aware architecture &mdash;
+                enterprise database discipline without enterprise database drama. Run by
+                DBAs in Mumbai, in Indian data centres.
+              </p>
+            } @else if (slug() === 'acronis-genai-protection') {
               <p class="pp-tagline genai-hero-summary" id="ppTag">
                 Generative AI is spreading fast — often through unsanctioned, consumer-grade tools
                 that open new attack surfaces, compliance exposure and data-leak risk.
@@ -1079,7 +1112,7 @@
                 {{ v.tagline }}
               </h2>
             }
-            @if (v.heroHighlight) {
+            @if (v.heroHighlight && slug() !== 'ai-voice-bot' && slug() !== 'managed-oracle-cloud') {
               <p class="pp-tagline-support">{{ v.heroHighlight }}</p>
             }
             @if (v.heroMessages.length) {
@@ -1336,7 +1369,7 @@
       </div>
       }
 
-      @if (!isResellerProgram() && !isMicrosoftEnterprisePage() && slug() !== 'cloud-devops-services' && slug() !== 'server-management' && slug() !== 'microsoft-365-backup' && slug() !== 'domain-whois-lookup') {
+      @if (!isResellerProgram() && !isMicrosoftEnterprisePage() && slug() !== 'cloud-devops-services' && slug() !== 'server-management' && slug() !== 'microsoft-365-backup' && slug() !== 'domain-whois-lookup' && slug() !== 'managed-oracle-cloud' && slug() !== 'ai-voice-bot') {
         <div class="pp-trust">
           <div class="wrap">
             @if (isCopilotStudio()) {
@@ -1345,6 +1378,12 @@
               <span><b>1,000+</b> connectors</span>
               <span><b>Since 1999</b></span>
               <span><b>24×7</b> NOC + SOC</span>
+            } @else if (slug() === 'cloud-repatriation') {
+              <span><b>ISO 27001</b> &amp; <b>20000-1</b> certified</span>
+              <span><b>Indian</b> data centres</span>
+              <span><b>Cloud</b> migration support</span>
+              <span><b>Since 1999</b></span>
+              <span><b>24&times;7</b> NOC + SOC</span>
             } @else if (slug() === 'ai-resilience' || slug() === 'cyber-resilience' || slug() === 'data-resilience') {
               <span><b>ISO 27001</b> &amp; <b>20000-1</b> certified</span>
               <span><b>Druva</b> partner</span>
@@ -1497,6 +1536,15 @@
           } @else if (slug() === 'performance-cloud') {
             <xh-performance-cloud-content (planRequest)="requestPerformanceCloudPlan($event)" />
           }
+          @if (slug() === 'ai-lab-as-service') {
+            <xh-ai-lab-content />
+          }
+          @if (slug() === 'ai-voice-bot') {
+            <xh-ai-voicebot-content />
+          }
+          @if (slug() === 'managed-oracle-cloud') {
+            <xh-managed-oracle-content />
+          }
           @if (slug() !== 'identity-resilience' && slug() !== 'ediscovery-and-compliance' && slug() !== 'performance-cloud') {
           @if (slug() === 'marketplace') {
             <xh-marketplace-content />
@@ -1505,7 +1553,7 @@
             <xh-nvidia-h100-content (planSelected)="selectH100Plan($event)" />
             <xh-nvidia-h100-assurance />
           } @else {
-          @if (slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience') {
+          @if (slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
           @if (slug() === 'waap-as-a-service') {
             <xh-waap-content />
           } @else {
@@ -1561,6 +1609,7 @@
               <xh-genai-protection-content />
             }
             @if (
+              slug() !== 'ai-lab-as-service' &&
               !isInfrastructure() &&
               slug() !== 'bare-metal-servers' &&
               slug() !== 'acronis-genai-protection' &&
@@ -1596,7 +1645,7 @@
                 @if (slug() === 'video-surveillance-as-a-service') {
                   <xh-cloud-cctv-content />
                 }
-                @if (slug() !== 'domain-whois-lookup') {
+                @if (slug() !== 'domain-whois-lookup' && slug() !== 'managed-oracle-cloud' && slug() !== 'ai-voice-bot') {
                 @if (!isSiteLock()) {
                   @if (slug() === 'scrutiny-dlp') {
                     <xh-scrutiny-dlp-content />
@@ -3919,6 +3968,7 @@
                   slug() !== 'vortex-seg' &&
                   slug() !== 'vortex-soc'
                 ) {
+                  @if (slug() !== 'managed-oracle-cloud' && slug() !== 'ai-voice-bot') {
                   <div class="pp-sec">Use cases</div>
                   <div
                     class="pp-uses"
@@ -3940,6 +3990,7 @@
                     }
                   </div>
 
+                  }
                   @if (isCloudDisasterRecoverySmb()) {
                     <section class="cdr-global-cloud" aria-labelledby="cdrGlobalCloudTitle">
                       <div class="pp-sec" id="cdrGlobalCloudTitle">
@@ -4132,7 +4183,7 @@
                 </div>
                 <p class="pp-secfoot">XcellHost is ISO 27001 and ISO 20000-1 certified · Indian Tier-4 datacenters · DPDPA and RBI aligned · 24×7 NOC and SOC.</p>
               </section>
-            } @else if (slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && !isSmbCyber() && !isRmm() && slug() !== 'acronis-backup-advanced' && slug() !== 'acronis-ot' && slug() !== 'scrutiny-dlp' && slug() !== 'cloud-migration') {
+            } @else if (slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation' && !isSmbCyber() && !isRmm() && slug() !== 'acronis-backup-advanced' && slug() !== 'acronis-ot' && slug() !== 'scrutiny-dlp' && slug() !== 'cloud-migration') {
               <div class="pp-sec" id="ppSecHead" [style.margin-bottom.px]="slug() === 'managed-devops' ? 32 : null">{{ slug() === 'microsoft-365-enterprise' ? 'Security & compliance — Microsoft 365 Enterprise' : v.security.head }}</div>
               <div id="ppSecWrap">
                 <p class="pp-ov">{{ v.security.intro }}</p>
@@ -4172,6 +4223,7 @@
             slug() !== 'ai-resilience' &&
             slug() !== 'cyber-resilience' &&
             slug() !== 'data-resilience' &&
+            slug() !== 'cloud-repatriation' &&
             !isSmbCyber() &&
             !isRmm() &&
             !isZohoWorkspace() &&
@@ -4680,7 +4732,7 @@
             </section>
           }
 
-          @if (slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience') {
+          @if (slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
           <div class="pp-sec" [style.margin-top.px]="slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">What customers say</div>
           @if (isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training') {
             <div class="pp-tcards" id="ppRevs">
@@ -4745,12 +4797,19 @@
           @if (slug() === 'data-resilience') {
             <xh-data-resilience-source view="details" />
           }
+          @if (slug() === 'cloud-repatriation') {
+            <xh-cloud-repatriation-source view="details" />
+          }
           }
 
-        @if (slug() !== 'marketplace' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience') {
+        @if (slug() !== 'marketplace' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
           <div class="pp-sec pp-faq-heading" [style.margin-top.px]="slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Frequently asked questions</div>
           @if (slug() === 'domain-whois-lookup') {
             <xh-domain-whois-faq />
+          } @else if (slug() === 'managed-oracle-cloud') {
+            <xh-managed-oracle-faq />
+          } @else if (slug() === 'ai-voice-bot') {
+            <xh-ai-voicebot-faq />
           } @else if (slug() === 'nvidia-a100') {
             <div class="pp-faq a100-faq" id="ppFaq">
               <div class="a100-faq-column">

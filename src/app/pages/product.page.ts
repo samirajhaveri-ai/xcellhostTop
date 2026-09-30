@@ -1,3 +1,5 @@
+import { AiLabContentComponent } from '../sections/ai-lab-content.component';
+import { AI_LAB_FAQS } from '../data/ai-lab-faqs.data';
 import { AcronisMdrContentComponent } from '../sections/acronis-mdr-content.component';
 import { AcronisMdrHeroComponent } from '../sections/acronis-mdr-hero.component';
 import { Rtx8000PricingComponent } from '../sections/rtx-8000-pricing.component';
@@ -39,6 +41,10 @@ import { EdiscoveryComplianceContentComponent } from '../sections/ediscovery-com
 import { PerformanceCloudContentComponent } from '../sections/performance-cloud-content.component';
 import { DomainWhoisContentComponent } from '../sections/domain-whois-content.component';
 import { DomainWhoisFaqComponent } from '../sections/domain-whois-faq.component';
+import { ManagedOracleContentComponent } from '../sections/managed-oracle-content.component';
+import { ManagedOracleFaqComponent } from '../sections/managed-oracle-faq.component';
+import { AiVoicebotContentComponent } from '../sections/ai-voicebot-content.component';
+import { AiVoicebotFaqComponent } from '../sections/ai-voicebot-faq.component';
 import { PERFORMANCE_CLOUD_FAQS } from '../data/performance-cloud-faqs.data';
 import { TSPLUS_REMOTE_ACCESS_EXPERIENCES } from '../data/tsplus-demo.data';
 import { EmailSignatureContentComponent } from '../sections/email-signature-content.component';
@@ -196,6 +202,7 @@ import { AiResilienceSourceComponent } from '../sections/ai-resilience-source.co
 import { AcronisXdrSourceComponent } from '../sections/acronis-xdr-source.component';
 import { CyberResilienceSourceComponent } from '../sections/cyber-resilience-source.component';
 import { DataResilienceSourceComponent } from '../sections/data-resilience-source.component';
+import { CloudRepatriationSourceComponent } from '../sections/cloud-repatriation-source.component';
 import { NvidiaA100AssuranceComponent } from '../sections/nvidia-a100-assurance.component';
 import { NvidiaH100AssuranceComponent } from '../sections/nvidia-h100-assurance.component';
 import { H100HeroAction, NvidiaH100HeroComponent } from '../sections/nvidia-h100-hero.component';
@@ -278,6 +285,11 @@ interface ProductTourSlide {
     PerformanceCloudContentComponent,
     DomainWhoisContentComponent,
     DomainWhoisFaqComponent,
+    ManagedOracleContentComponent,
+    ManagedOracleFaqComponent,
+    AiLabContentComponent,
+    AiVoicebotContentComponent,
+    AiVoicebotFaqComponent,
     RouterLink,
     HeroNetDirective,
     ProductFaqComponent,
@@ -372,6 +384,7 @@ interface ProductTourSlide {
     AcronisXdrSourceComponent,
     CyberResilienceSourceComponent,
     DataResilienceSourceComponent,
+    CloudRepatriationSourceComponent,
     NvidiaA100AssuranceComponent,
     NvidiaH100AssuranceComponent,
     NvidiaH100HeroComponent,
@@ -382,6 +395,49 @@ interface ProductTourSlide {
   ],
   templateUrl: './product.page.html',
   styles: [`
+    #ppage.managed-oracle-page .pp-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 480px);
+      align-items: center;
+      gap: 36px;
+      padding-inline: max(24px, calc((100% - 1192px) / 2));
+    }
+    #ppage.managed-oracle-page .pp-hero > .wrap {
+      grid-column: 1; grid-row: 1; min-width: 0; width: 100%; padding: 0;
+    }
+    #ppage.managed-oracle-page .pp-hero > .oracle-hero-visual {
+      position: relative; grid-column: 2; grid-row: 1;
+      inset: auto; transform: none; width: 100%; max-width: 480px; margin: 0;
+    }
+    #ppage.managed-oracle-page .pp-hero > .wrap > :is(h1, .pp-crumb, .pp-tagline, .pp-typewriter, .pp-hero-grid) {
+      width: 100%; max-width: 100%; min-width: 0; white-space: normal;
+    }
+    #ppage.managed-oracle-page .pp-hero > .wrap > h1 {
+      display: flex; flex-wrap: wrap; align-items: baseline;
+      white-space: normal; overflow-wrap: normal; gap: 4px 0;
+    }
+    #ppage.managed-oracle-page #ppTitle .pp-title-brand {
+      flex: 0 0 auto; white-space: nowrap;
+    }
+    #ppage.managed-oracle-page #ppTitle .pp-brand-xcell {
+      width: auto; white-space: nowrap;
+    }
+    #ppage.managed-oracle-page #ppTitle .pp-title-name {
+      flex-basis: 100%; margin-left: 0; white-space: normal; text-wrap: balance;
+    }
+    #ppage.managed-oracle-page .pp-hero > .wrap > .oracle-hero-summary {
+      display: block; white-space: normal; overflow-wrap: break-word;
+      font-size: 17px; font-weight: 400; line-height: 1.6; margin-bottom: 20px;
+    }
+    #ppage.managed-oracle-page .product-hero-ctas {
+      width: 100%; max-width: 100%; flex-wrap: wrap;
+    }
+    @media(max-width:1100px) {
+      #ppage.managed-oracle-page .pp-hero { grid-template-columns: minmax(0, 1fr); }
+      #ppage.managed-oracle-page .pp-hero > .oracle-hero-visual {
+        grid-column: 1; grid-row: 2; justify-self: center;
+      }
+    }
     #ppage.acronis-xdr-page .pp-cta .btn-ghost { border-color: rgba(255,255,255,.4); color: #fff; }
     #ppage.nvidia-a100-page .pp-hero { display: none; }
     #ppage.nvidia-l40s-page .pp-hero,
@@ -406,6 +462,8 @@ interface ProductTourSlide {
     #ppage.cyber-resilience-page xh-cyber-resilience-source[view="details"] { display: block; width: calc(100% + 48px); margin-inline: -24px; }
     #ppage.data-resilience-page .pp-hero { display: none; }
     #ppage.data-resilience-page xh-data-resilience-source[view="details"] { display: block; width: calc(100% + 48px); margin-inline: -24px; }
+    #ppage.cloud-repatriation-page .pp-hero { display: none; }
+    #ppage.cloud-repatriation-page xh-cloud-repatriation-source[view="details"] { display: block; width: calc(100% + 48px); margin-inline: -24px; }
     #ppage.nvidia-a100-page #ppOv { width: 100%; max-width: none; }
     #ppage.nvidia-a100-page .a100-related { display: flex; flex-wrap: nowrap; gap: 6px; align-items: center; margin-top: 24px; overflow-x: auto; white-space: nowrap; color: #486078; font-size: 12px; }
     #ppage.nvidia-a100-page .a100-related > * { flex: none; }
@@ -1632,6 +1690,21 @@ export class ProductPage {
     const slug = this.slug();
     const view = this.resolve(slug);
     if (!view) return null;
+    if (slug === 'ai-lab-as-service') return {
+      ...view,
+      faqs: AI_LAB_FAQS,
+      tagline: 'Fully managed AI labs in the cloud for universities, researchers, startups and enterprises. Latest NVIDIA GPUs, ready-made environments and team workspaces — with no hardware to buy and nothing to maintain. From XcellHost, hosted in India.',
+      heroHighlight: null,
+      heroMessages: [],
+      why: [
+        { icon: 'M5 5h14v14H5zM9 9h6v6H9zM9 2v3M15 2v3M9 19v3M15 19v3', title: 'NVIDIA GPU Access', body: 'Run training, fine-tuning and research on on-demand NVIDIA GPUs, without buying or maintaining lab hardware.' },
+        { icon: 'M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14', title: 'Ready-To-Use AI Environments', body: 'Start building with pre-configured JupyterLab, PyTorch, TensorFlow and Hugging Face tools.' },
+        { icon: 'M12 2l8 4v6c0 5-8 10-8 10S4 17 4 12V6z', title: 'Hosted In India', body: 'Keep lab workloads in Indian data centres with private networking, encryption and controlled access.' },
+        { icon: 'M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6M2 21v-3a6 6 0 0 1 12 0v3M16 4a3 3 0 0 1 0 6M17 14a5 5 0 0 1 5 5v2', title: 'Built For Collaboration', body: 'Give students, researchers and teams shared workspaces, datasets and model registries with role-based access.' },
+        { icon: 'M6 4h12M6 9h12M9 4c6 0 6 10 0 10H6l9 7', title: 'Flexible Lab Plans', body: 'Choose pay-as-you-go, semester or annual plans, with scheduling and usage quotas to help manage compute costs.' },
+        { icon: 'M4 14v-2a8 8 0 0 1 16 0v2M3 14h4v7H3zM17 14h4v7h-4z', title: 'Managed Support', body: 'Get 24×7 support, usage reports and centrally managed infrastructure so your team can focus on learning and research.' },
+      ],
+    };
     if (slug === 'identity-resilience') {
       return {
         ...view,

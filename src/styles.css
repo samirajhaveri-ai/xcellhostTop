@@ -5663,3 +5663,29 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
   xh-blog-page .article-body h2 { break-after: avoid; }
   xh-blog-page figure { break-inside: avoid; }
 }
+#ppage.managed-oracle-page .pp-body :is(h1,h2,h3,h4,h5,h6,.pp-sec,.pp-uses b,.pp-why b){text-transform:uppercase}
+#ppage.managed-oracle-page .oracle-hero-visual{position:absolute;left:auto;right:max(24px,calc((100% - 1240px)/2));top:50%;bottom:auto;transform:translateY(-50%);width:38%;max-width:480px;height:420px;opacity:1;z-index:4;mask-image:none;-webkit-mask-image:none;isolation:isolate;pointer-events:none}
+#ppage.managed-oracle-page .oracle-hero-visual iframe{display:block;width:100%;height:100%;border:0;background:transparent}
+#ppage.managed-oracle-page .pp-hero>.wrap>.oracle-hero-summary{width:58%;max-width:600px;margin:0 0 20px;color:#b9c9e2;font-size:17px;font-weight:400;line-height:1.6;letter-spacing:0;white-space:normal;overflow-wrap:break-word;text-wrap:pretty}
+@media(max-width:1000px){#ppage.managed-oracle-page .pp-hero>.wrap>.oracle-hero-summary{width:100%;max-width:100%;font-size:16px}}
+@media(max-width:1000px){#ppage.managed-oracle-page .oracle-hero-visual{position:relative;right:auto;top:auto;transform:none;width:calc(100% - 48px);max-width:480px;margin:0 auto 24px}}
+#ppage.ai-voicebot-page .pp-body :is(h1,h2,h3,h4,h5,h6,.pp-sec,.pp-uses b,.pp-why b){text-transform:uppercase}
+#ppage.ai-voicebot-page .voicebot-hero-visual{position:absolute;left:auto;right:max(24px,calc((100% - 1240px)/2));top:50%;bottom:auto;transform:translateY(-50%);width:34%;max-width:440px;height:430px;opacity:1;z-index:3;pointer-events:none}
+#ppage.ai-voicebot-page .voicebot-hero-visual{mask-image:none;-webkit-mask-image:none;isolation:isolate;z-index:4}
+#ppage.ai-voicebot-page .voicebot-hero-visual iframe{display:block;width:100%;height:100%;border:0;background:transparent}
+@media(max-width:1000px){#ppage.ai-voicebot-page .voicebot-hero-visual{position:relative;right:auto;top:auto;transform:none;width:calc(100% - 48px);max-width:440px;margin:0 auto 24px}}
+
+/* AI Lab: retain the shared banner with the supplied dashboard on its right. */
+#ppage.ai-lab-page :is(h1,h2,h3,h4,h5,h6,.pp-sec,.faq2-q,.pu b){text-transform:capitalize}
+#ppage.ai-lab-page .ai-lab-dashboard{display:flex;align-items:center;justify-content:center;width:36%;right:3%;opacity:1;mask-image:none}
+#ppage.ai-lab-page .ai-lab-dashboard iframe{display:block;width:100%;max-width:476px;height:390px;border:0;background:transparent}
+@media(max-width:900px){#ppage.ai-lab-page .ai-lab-dashboard{position:relative;inset:auto;width:calc(100% - 32px);height:auto;margin:24px auto 0}#ppage.ai-lab-page .pp-hero{display:flex;flex-direction:column}#ppage.ai-lab-page .pp-hero>.wrap{order:-1}}
+
+/* Sections following the supplied AI Lab content use uppercase headings. */
+#ppage.ai-lab-page .pp-body :is(h1,h2,h3,h4,h5,h6,.pp-sec,.faq2-q,.pp-why b){text-transform:uppercase}
+
+/* Wrap AI Lab banner copy and actions beside the brand mark. */
+#ppage.ai-lab-page .pp-hero>.wrap>.ai-lab-summary{width:58%!important;max-width:680px!important;font-size:17px;font-weight:400!important;line-height:1.75!important;white-space:normal;overflow-wrap:break-word;text-wrap:pretty;text-transform:none;margin:18px 0 24px!important}
+#ppage.ai-lab-page .product-hero-ctas{display:flex;flex-wrap:wrap;overflow:visible;gap:12px}
+#ppage.ai-lab-page .product-hero-ctas .btn{flex:0 1 auto;white-space:normal}
+@media(max-width:900px){#ppage.ai-lab-page .pp-hero>.wrap>.ai-lab-summary{width:100%!important;max-width:none!important;font-size:16px}#ppage.ai-lab-page .pp-hero>.wrap>.pp-hero-grid{width:100%;max-width:none}}

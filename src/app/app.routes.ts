@@ -140,6 +140,7 @@ export const routes: Routes = [
   { path: 'under-construction/ai-use-policy', loadComponent: () => import('./pages/ai-use-policy.page').then((m) => m.AiUsePolicyPage) },
   { path: 'under-construction/tsplus-demo-center', redirectTo: 'tsplus-demo-center', pathMatch: 'full' },
   { path: 'tsplus-demo-center', loadComponent: () => import('./pages/tsplus-demo-center.page').then((m) => m.TsplusDemoCenterPage) },
+  { path: 'under-construction/events-catalog', loadComponent: () => import('./pages/events-catalog.page').then((m) => m.EventsCatalogPage) },
   { path: 'under-construction/:slug', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
   { path: 'under-construction', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
   {
