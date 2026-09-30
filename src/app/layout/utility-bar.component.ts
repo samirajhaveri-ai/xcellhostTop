@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { LanguageService } from '../core/language.service';
 import { ThemeService } from '../core/theme.service';
 import { SITE } from '../data/site.data';
@@ -17,6 +17,7 @@ import { RouterLink } from '@angular/router';
   imports: [LanguagePickerComponent, RouterLink],
 })
 export class UtilityBarComponent implements AfterViewInit {
+  readonly linksExpanded = signal(false);
   readonly site = SITE;
   readonly theme = inject(ThemeService);
   readonly language = inject(LanguageService);

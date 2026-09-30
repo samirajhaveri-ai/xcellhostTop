@@ -1,6 +1,9 @@
 import { AcronisMdrContentComponent } from '../sections/acronis-mdr-content.component';
 import { AcronisMdrHeroComponent } from '../sections/acronis-mdr-hero.component';
 import { MicrosoftDefenderHeroComponent } from '../sections/microsoft-defender-hero.component';
+import { Imunify360HeroComponent } from '../sections/imunify360-hero.component';
+import { Imunify360ContentComponent } from '../sections/imunify360-content.component';
+import { Imunify360FollowupComponent } from '../sections/imunify360-followup.component';
 import { MicrosoftDefenderContentComponent } from '../sections/microsoft-defender-content.component';
 import { MicrosoftDefenderFollowupComponent } from '../sections/microsoft-defender-followup.component';
 import { MicrosoftDefenderTailComponent } from '../sections/microsoft-defender-tail.component';
@@ -334,6 +337,9 @@ interface ProductTourSlide {
     AcronisMdrContentComponent,
     AcronisMdrHeroComponent,
     MicrosoftDefenderHeroComponent,
+    Imunify360HeroComponent,
+    Imunify360ContentComponent,
+    Imunify360FollowupComponent,
     MicrosoftDefenderContentComponent,
     MicrosoftDefenderFollowupComponent,
     MicrosoftDefenderTailComponent,
@@ -747,9 +753,56 @@ interface ProductTourSlide {
     #ppage.microsoft-defender-page .pph-scene.defender-hero-art {
       right: max(22px, calc((100vw - 1240px)/2 + 20px));
       top: 0; bottom: 0; width: min(40vw, 460px);
+      display: flex; align-items: center; justify-content: center;
+      height: auto; max-height: none; padding: 32px 0; box-sizing: border-box;
       min-width: 0; opacity: 1; mask-image: none; overflow: visible;
     }
     #ppage.microsoft-defender-page .defender-hero-art xh-microsoft-defender-hero { width: 100%; }
+    #ppage.imunify360-page .pph-scene.imunify360-hero-art {
+      right: max(24px, calc((100vw - 1240px)/2 + 24px));
+      top: 0; bottom: 0; width: min(40vw, 510px); height: auto; max-height: none;
+      display: flex; align-items: center; justify-content: center;
+      padding: 28px 0; box-sizing: border-box; opacity: 1; mask-image: none; overflow: visible;
+    }
+    #ppage.imunify360-page .pp-hero > .wrap > .pp-tagline {
+      width: 100%; white-space: normal; text-wrap: pretty;
+      font: 500 17px/1.65 var(--body); margin: 12px 0 18px;
+    }
+    #ppage.imunify360-page .pp-hero-grid { grid-template-columns: minmax(0, 1fr); }
+    #ppage.imunify360-page .pp-hero-l { min-width: 0; }
+    #ppage.imunify360-page .product-hero-ctas {
+      width: 100%; max-width: 100%; flex-wrap: wrap; overflow: visible; gap: 12px;
+    }
+    @media(min-width:901px) {
+      #ppage.imunify360-page .pp-hero > .wrap > h1,
+      #ppage.imunify360-page .pp-hero > .wrap > .pp-tagline,
+      #ppage.imunify360-page .pp-hero > .wrap > .pp-typewriter,
+      #ppage.imunify360-page .pp-hero > .wrap > .pp-hero-grid { width: 54%; max-width: 54%; }
+    }
+    @media(max-width:900px) {
+      #ppage.imunify360-page .pp-hero { display: flex; flex-direction: column; }
+      #ppage.imunify360-page .pp-hero > .wrap { order: 1; width: 100%; }
+      #ppage.imunify360-page .pph-scene.imunify360-hero-art {
+        position: relative; order: 2; inset: auto; width: min(calc(100% - 36px), 550px);
+        margin: 24px auto 32px; padding: 0;
+      }
+    }
+    #ppage.microsoft-defender-page .pp-hero > .wrap > .pp-tagline,
+    #ppage.microsoft-defender-page .pp-hero > .wrap > .pp-tagline-support {
+      white-space: normal; text-wrap: pretty; overflow-wrap: break-word;
+    }
+    #ppage.microsoft-defender-page .pp-hero > .wrap > .pp-tagline-support {
+      color: #fff; font: 500 16px/1.6 var(--body); margin: 8px 0 18px;
+    }
+    @media(min-width:901px) {
+      #ppage.microsoft-defender-page .pp-hero > .wrap > h1,
+      #ppage.microsoft-defender-page .pp-hero > .wrap > .pp-tagline,
+      #ppage.microsoft-defender-page .pp-hero > .wrap > .pp-tagline-support,
+      #ppage.microsoft-defender-page .pp-hero > .wrap > .pp-typewriter,
+      #ppage.microsoft-defender-page .pp-hero > .wrap > .pp-hero-grid {
+        width: 56%; max-width: 56%; box-sizing: border-box;
+      }
+    }
     #ppage.microsoft-defender-page .defender-cta { margin: 22px 0 38px; }
     #ppage.microsoft-defender-page .defender-cta-actions { display: flex; flex-wrap: wrap; gap: 9px; }
     #ppage.microsoft-defender-page .defender-cta .btn-ghost { color: #fff; border-color: rgba(255,255,255,.44); }
@@ -759,9 +812,14 @@ interface ProductTourSlide {
         position: relative; right: auto; top: auto; bottom: auto;
         order: 2; width: min(calc(100% - 36px), 460px);
         max-width: calc(100% - 36px); box-sizing: border-box;
+        padding: 0;
         margin: 10px auto 32px; opacity: 1; mask-image: none;
       }
       #ppage.microsoft-defender-page .pp-hero > .wrap { order: 1; width: 100%; }
+      #ppage.microsoft-defender-page .pp-hero > .wrap > .pp-tagline,
+      #ppage.microsoft-defender-page .pp-hero > .wrap > .pp-tagline-support {
+        width: 100%; max-width: 100%;
+      }
     }
     #ppage .genai-hero-summary {
       width: 48%; max-width: 540px !important; text-wrap: pretty;
@@ -1664,6 +1722,26 @@ export class ProductPage {
     const slug = this.slug();
     const view = this.resolve(slug);
     if (!view) return null;
+    if (slug === 'imunify360') {
+      return {
+        ...view,
+        tagline: 'Protect your Linux web servers from every direction with security that never sleeps — firewall, WAF, Proactive Defence, malware cleanup and CloudLinux isolation, installed and managed by XcellHost.',
+      };
+    }
+    if (slug === 'microsoft-defender') {
+      return {
+        ...view,
+        tagline: 'Advanced protection with Microsoft Defender for Business — deployed in 48 hours',
+        heroHighlight: 'AI-powered endpoint security, EDR and ransomware protection for Indian SMBs and growing enterprises — deployed, tuned and watched 24×7 by XcellHost, a Microsoft partner since 1999. ₹250 per user per month, INR billing with GST invoice, DPDP-ready documentation.',
+        heroPoints: [
+          'EDR · next-gen AV',
+          'Up to 300 users',
+          'Auto remediation',
+          'Win · Mac · iOS · Android',
+          '₹250/user · INR + GST',
+        ],
+      };
+    }
     if (slug === 'vortex-seg' && this.route.snapshot.data['productDisplayName']) {
       const name = this.route.snapshot.data['productDisplayName'] as string;
       return { ...view, name, overview: view.overview.replaceAll('Vortex SEG', name) };
@@ -2396,6 +2474,11 @@ export class ProductPage {
 
   requestMicrosoftDefenderQuote(request: string): void {
     this.topics.ask(`Microsoft Defender for Business - ${request}`);
+    this.overlay.open('callback');
+  }
+
+  requestImunify360Plan(plan: string): void {
+    this.topics.ask(`Imunify360 - ${plan}`);
     this.overlay.open('callback');
   }
 

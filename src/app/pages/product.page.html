@@ -14,6 +14,7 @@
     [class.acronis-ot-page]="slug() === 'acronis-ot'"
     [class.acronis-mdr-page]="slug() === 'acronis-mdr'"
     [class.microsoft-defender-page]="slug() === 'microsoft-defender'"
+    [class.imunify360-page]="slug() === 'imunify360'"
     [class.email-archiving-page]="slug() === 'email-archiving'"
     [class.rtx-8000-page]="slug() === 'rtx-8000'"
     [class.rtx-pro-6000-page]="slug() === 'rtx-pro-6000'"
@@ -295,6 +296,10 @@
         @if (slug() === 'acronis-mdr') {
           <div class="pph-scene has-illus standalone-illus mdr-hero-art" aria-hidden="true">
             <div class="pph-illus"><xh-acronis-mdr-hero /></div>
+          </div>
+        } @else if (slug() === 'imunify360') {
+          <div class="pph-scene imunify360-hero-art">
+            <xh-imunify360-hero />
           </div>
         } @else if (slug() === 'microsoft-defender') {
           <div class="pph-scene defender-hero-art">
@@ -1093,7 +1098,7 @@
               </h2>
             }
             @if (v.heroHighlight) {
-              <p class="pp-tagline-support">{{ v.heroHighlight }}</p>
+              <p class="pp-tagline-support" [class.defender-hero-description]="slug() === 'microsoft-defender'">{{ v.heroHighlight }}</p>
             }
             @if (v.heroMessages.length) {
               <div class="pp-typewriter" aria-live="polite">
@@ -1807,6 +1812,8 @@
                           </div>
                         </div>
                       </section>
+                   } @else if (slug() === 'imunify360') {
+                      <xh-imunify360-content (planRequested)="requestImunify360Plan($event)" />
                    } @else if (!isTally()) {
                       <div class="pp-sec">Overview</div>
                       <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
@@ -2533,6 +2540,8 @@
                   <xh-rtx-a6000-pricing (quoteRequested)="requestRtxA6000Plan($event)" />
                 } @else if (slug() === 'n8n-vps') {
                   <!-- Pricing and included features render with the n8n overview above. -->
+                } @else if (slug() === 'imunify360') {
+                  <xh-imunify360-followup (consultationRequested)="requestImunify360Plan($event)" />
                 } @else if (
                   !isAdvancedEdr() &&
                   !isSmbCyber() &&
@@ -2741,6 +2750,7 @@
                 } @else if (slug() === 'rtx-a6000') {
                   <xh-rtx-a6000-details />
                 } @else if (
+                  slug() !== 'imunify360' &&
                   !isSmbCyber() &&
                   !isAcronisTrueImage() &&
                   !isSiteLock() &&
@@ -3375,6 +3385,7 @@
                 } @else if (slug() === 'rtx-a6000') {
                   <xh-rtx-a6000-performance />
                 } @else if (
+                  slug() !== 'imunify360' &&
                   !isSmbCyber() &&
                   !isRmm() &&
                   !isAcronisTrueImage() &&
@@ -3986,6 +3997,7 @@
                 } @else if (slug() === 'nvidia-rtx-6000-ada') {
                   <xh-rtx-6000-ada-showcase />
                 } @else if (
+                  slug() !== 'imunify360' &&
                   v.name !== 'Tally on Cloud' &&
                   slug() !== 'rtx-a6000' &&
                   slug() !== 'n8n-vps' &&
