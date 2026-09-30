@@ -1140,9 +1140,6 @@
             }
 
             @if (v.heroHighlight && slug() !== 'ai-voice-bot' && slug() !== 'managed-oracle-cloud') {
-              <p class="pp-tagline-support">{{ v.heroHighlight }}</p>
-
-            @if (v.heroHighlight) {
               <p class="pp-tagline-support" [class.defender-hero-description]="slug() === 'microsoft-defender'">{{ v.heroHighlight }}</p>
             }
             @if (v.heroMessages.length) {
@@ -4932,9 +4929,6 @@
             </section>
           }
           @if (slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
-          <div class="pp-sec" [style.margin-top.px]="slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">What customers say</div>
-          @if (isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training') {
-          @if (slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience') {
           <div class="pp-sec" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">What customers say</div>
           @if (isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training' || slug() === 'ai-chat-bot') {
             <div class="pp-tcards" id="ppRevs">
@@ -5003,10 +4997,9 @@
             <xh-cloud-repatriation-source view="details" />
           }
           }
+          }
 
         @if (slug() !== 'marketplace' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
-          <div class="pp-sec pp-faq-heading" [style.margin-top.px]="slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Frequently asked questions</div>
-        @if (slug() !== 'marketplace' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience') {
           <div class="pp-sec pp-faq-heading" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Frequently asked questions</div>
           @if (slug() === 'domain-whois-lookup') {
             <xh-domain-whois-faq />
