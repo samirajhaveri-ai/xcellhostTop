@@ -50,6 +50,27 @@ import { LeadService } from '../core/lead.service';
         >
           {{ message() }}
         </p>
+        <nav class="newsletter-socials" aria-label="Follow XcellHost updates">
+          <a class="newsletter-social newsletter-whatsapp"
+            href="https://www.whatsapp.com/channel/0029Vais2U4ICVffW7i82V1z"
+            target="_blank" rel="noopener noreferrer"
+            aria-label="Join WhatsApp Channel (opens in a new tab)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M20.5 11.7a8.5 8.5 0 0 1-12.6 7.5L3 20.5l1.3-4.7a8.5 8.5 0 1 1 16.2-4.1Z" />
+              <path d="m8.5 7.5 1.4 2.7-1 1c.8 1.7 2.1 3 3.9 3.8l1-1 2.7 1.4c-.3 1.5-1.3 2-2.6 1.6-3.5-1-6.2-3.7-7.2-7.2-.4-1.3.2-2.1 1.8-2.3Z" />
+            </svg>
+            Join WhatsApp Channel
+          </a>
+          <a class="newsletter-social newsletter-linkedin"
+            href="https://www.linkedin.com/in/samirjhaveri-xcellhost/"
+            target="_blank" rel="noopener noreferrer"
+            aria-label="Follow Samir Jhaveri on LinkedIn (opens in a new tab)">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+              <path d="M20.45 2H3.55C2.69 2 2 2.68 2 3.52v16.96C2 21.32 2.69 22 3.55 22h16.9c.86 0 1.55-.68 1.55-1.52V3.52C22 2.68 21.31 2 20.45 2ZM7.93 18.75H4.98V9.2h2.95v9.55ZM6.45 7.9a1.71 1.71 0 1 1 0-3.42 1.71 1.71 0 0 1 0 3.42Zm12.3 10.85H15.8V14.1c0-1.11-.02-2.54-1.55-2.54-1.55 0-1.79 1.21-1.79 2.46v4.73H9.51V9.2h2.83v1.3h.04c.39-.74 1.36-1.52 2.8-1.52 2.99 0 3.57 1.97 3.57 4.53v5.24Z" />
+            </svg>
+            Follow on LinkedIn
+          </a>
+        </nav>
       </div>
     </section>
   `,
@@ -176,9 +197,6 @@ import { LeadService } from '../core/lead.service';
     }
 
     .form-message {
-      position: absolute;
-      right: 24px;
-      bottom: 10px;
       margin: 0;
       color: #b91c1c;
       font-size: 13px;
@@ -191,6 +209,34 @@ import { LeadService } from '../core/lead.service';
     .form-message.success {
       color: #166534;
     }
+
+    .newsletter-socials {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .newsletter-social {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+      font: 700 14px / 1.4 var(--body);
+      transition: background-color 0.2s ease;
+    }
+
+    .newsletter-social svg { width: 22px; height: 22px; flex-shrink: 0; }
+    .newsletter-whatsapp { background: #128c4a; }
+    .newsletter-whatsapp:hover { background: #0d703b; }
+    .newsletter-linkedin { background: #0a66c2; }
+    .newsletter-linkedin:hover { background: #084f96; }
+    .newsletter-social:focus-visible { outline: 3px solid var(--navy); outline-offset: 3px; }
 
     .sr-only {
       position: absolute;
@@ -214,11 +260,6 @@ import { LeadService } from '../core/lead.service';
         width: 100%;
       }
 
-      .form-message {
-        right: auto;
-        bottom: 10px;
-        left: 24px;
-      }
     }
 
     @media (max-width: 600px) {
@@ -227,7 +268,7 @@ import { LeadService } from '../core/lead.service';
       }
 
       .newsletter-inner {
-        padding: 24px 18px 42px;
+        padding: 24px 18px;
       }
 
       .newsletter-label {
@@ -246,12 +287,11 @@ import { LeadService } from '../core/lead.service';
         width: 100%;
       }
 
-      .form-message {
-        bottom: 14px;
-      }
+      .newsletter-socials { grid-template-columns: 1fr; }
     }
     @media (prefers-reduced-motion: reduce) {
-      .newsletter-form button {
+      .newsletter-form button,
+      .newsletter-social {
         transition: none;
       }
     }

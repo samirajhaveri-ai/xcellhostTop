@@ -3607,6 +3607,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "AI-powered endpoint security and response",
                 "href": "/vendor-partners/sentinelone"
               },
+              {
+                "title": "OpenText",
+                "pill": null,
+                "desc": "AI-powered endpoint security and response",
+                "href": "/vendor-partners/sentinelone"
+              },
               
             ]
           }
