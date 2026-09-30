@@ -70,7 +70,7 @@ const DESCRIPTION =
     <xh-directory />
     <xh-trusted-by />
     <xh-industries />
-    <xh-insights-section />
+    <xh-insights-section [caseStudyLimit]="3" />
     <xh-testimonials />
     <xh-global-locations-map />
     <xh-satisfaction-guarantee />

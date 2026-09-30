@@ -1,6 +1,7 @@
 export interface CaseStudy {
   readonly id: string;
   readonly documentId?: string;
+  readonly relatedPages?: readonly string[];
   readonly mainCategory: string;
   readonly subCategory: string;
   readonly customer?: string;
