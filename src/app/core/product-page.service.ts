@@ -800,7 +800,9 @@ export class ProductPageService {
       PRODUCT_BRAND_LINES[name] ?? product?.brandLine
     );
 
-    const whySource = name === 'Business E-Mail'
+    const whySource = name === 'AI Voice Bot'
+      ? CATEGORY_WHY.Cloud
+      : name === 'Business E-Mail'
       ? BUSINESS_EMAIL_WHY
       : name === 'Enterprise DMARC'
       ? ENTERPRISE_DMARC_WHY
