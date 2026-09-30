@@ -1,0 +1,27 @@
+:host{display:block;--card:#fff;--ice:#F2F6FC;--line:#DCE5F2;--ink:#1C2A3A;--slate:#51607A;--h2:#080D2C;--blue:#1565D8;--blue-soft:#E8F0FD;--navy:#041E42;--pop:var(--body);color:var(--ink);font-family:var(--body);line-height:1.55;padding-bottom:32px}*,*::before,*::after{box-sizing:border-box}h2,h3,p{margin:0}a{text-decoration:none;color:inherit}.xg-ico{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.btn{display:inline-flex;justify-content:center;align-items:center;padding:10px 20px;border:1px solid transparent;border-radius:8px;font-weight:600;text-decoration:none}.btn-primary{background:#ff8c1a;color:#fff}.btn-ghost{background:rgba(255,255,255,.06);color:#fff}.hero-ctas{display:flex;flex-wrap:wrap;gap:12px}a:focus-visible{outline:3px solid #1565d8;outline-offset:4px}
+.h2s{color:var(--h2);font:600 clamp(22px,2.2vw,28px)/1.25 var(--pop);text-align:center;margin:56px 0 24px}
+.h2s em{font-style:normal;color:var(--blue)}
+
+.gband{position:relative;border-radius:18px;overflow:hidden;background-size:cover;background-position:center;padding:44px 40px;color:#fff;margin-top:56px}
+.gband:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,30,66,.95),rgba(4,30,66,.7) 60%,rgba(4,30,66,.35))}
+.gband>*{position:relative;z-index:2}
+.gband h2{font:700 clamp(24px,2.6vw,34px)/1.2 var(--disp);max-width:640px}
+.gband p{color:#C7D5EC;max-width:640px;margin:10px 0 20px}
+.gstats{display:flex;gap:26px;flex-wrap:wrap}
+.gstats div b{display:block;font:800 30px var(--disp);color:#FFB45C}.gstats div span{font-size:12.5px;color:#C7D5EC}
+
+.t6{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.t6 div{border-radius:16px;padding:22px;background:var(--navy);color:#DCE7F8;position:relative;overflow:hidden}
+.t6 div:after{content:"";position:absolute;right:-30px;top:-30px;width:110px;height:110px;border-radius:50%;background:rgba(74,222,128,.12)}
+.t6 .ic{width:42px;height:42px;border-radius:11px;background:rgba(255,255,255,.1);color:#4ADE80;display:grid;place-items:center;margin-bottom:12px}
+.t6 h3{font:600 16px var(--pop);color:#fff;margin-bottom:6px}.t6 p{font-size:13.5px;color:#C7D5EC}
+.fs{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.fs span{display:flex;gap:8px;align-items:center;font:600 14px var(--pop);padding:10px 16px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--h2);animation:pop .5s ease both}
+.fs span svg{width:16px;height:16px;color:#16A34A}
+@keyframes pop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+.rel4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.rel4 a{border:1px solid var(--line);border-radius:16px;padding:20px;background:var(--card);transition:.2s}.rel4 a:hover{border-color:var(--blue);transform:translateY(-3px)}
+.rel4 .ic{width:40px;height:40px;border-radius:11px;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;margin-bottom:10px}
+.rel4 b{display:block;font:600 15.5px var(--pop);color:var(--h2)}.rel4 span{font-size:13.5px;color:var(--slate)}.rel4 em{display:block;margin-top:10px;font:700 13px var(--pop);font-style:normal;color:var(--blue)}
+
+.t6>div,.rel4>a{min-width:0}.t6>div{animation:imunify-reveal .5s ease both}.t6>div:nth-child(2){animation-delay:.08s}.t6>div:nth-child(3){animation-delay:.16s}.t6>div:nth-child(4){animation-delay:.24s}.t6>div:nth-child(5){animation-delay:.32s}.t6>div:nth-child(6){animation-delay:.4s}.rel4>a>span:not(.ic){display:block}.gband{background-color:var(--navy)}@keyframes imunify-reveal{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}@media(max-width:1000px){.t6,.rel4{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.t6,.rel4{grid-template-columns:1fr}.gband{padding:28px 22px}.gstats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.gstats div b{font-size:25px}.fs span{font-size:12px;padding:9px 12px}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
