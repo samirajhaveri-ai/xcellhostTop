@@ -15,6 +15,9 @@
     [class.cloud-migration-page]="slug() === 'cloud-migration'"
     [class.acronis-backup-advanced-page]="slug() === 'acronis-backup-advanced'"
     [class.acronis-ot-page]="slug() === 'acronis-ot'"
+    [class.acronis-mdr-page]="slug() === 'acronis-mdr'"
+    [class.microsoft-defender-page]="slug() === 'microsoft-defender'"
+    [class.imunify360-page]="slug() === 'imunify360'"
     [class.email-archiving-page]="slug() === 'email-archiving'"
     [class.rtx-8000-page]="slug() === 'rtx-8000'"
     [class.rtx-pro-6000-page]="slug() === 'rtx-pro-6000'"
@@ -277,6 +280,13 @@
         <xh-domain-whois-content />
       } @else if (slug() === 'nvidia-h100') {
         <!-- The supplied H100 hero is rendered above the shared product sections. -->
+      } @else if (slug() === 'n8n-vps') {
+        <xh-n8n-vps-hero
+          [infosheetUrl]="v.infosheetUrl"
+          (presentationRequested)="requestDoc('presentation', $event)"
+          (tourRequested)="openProductScreenshotTour()"
+          (talkRequested)="openCallback($event)"
+        />
       } @else {
       <div
         class="pp-hero"
@@ -290,9 +300,25 @@
         <span class="pph-aur pph-a3" aria-hidden="true"></span>
         <span class="pph-scan" aria-hidden="true"></span>
 
-        @if (slug() === 'acronis-mdr') {
+        @if (slug() === 'ai-chat-bot') {
+          <div class="pph-scene ai-chatbot-hero-art">
+            <xh-ai-chatbot-content [hero]="true" (enquiry)="requestAiChatbot($event)" />
+          </div>
+        } @else if (slug() === 'gpu-clusters') {
+          <div class="pph-scene gpu-clusters-hero-art">
+            <xh-gpu-clusters-content [hero]="true" />
+          </div>
+        } @else if (slug() === 'acronis-mdr') {
           <div class="pph-scene has-illus standalone-illus mdr-hero-art" aria-hidden="true">
             <div class="pph-illus"><xh-acronis-mdr-hero /></div>
+          </div>
+        } @else if (slug() === 'imunify360') {
+          <div class="pph-scene imunify360-hero-art">
+            <xh-imunify360-hero />
+          </div>
+        } @else if (slug() === 'microsoft-defender') {
+          <div class="pph-scene defender-hero-art">
+            <xh-microsoft-defender-hero />
           </div>
         } @else if (slug() === 'microsoft-copilot-training') {
           <div class="pph-scene has-illus standalone-illus training-hero-art" aria-hidden="true">
@@ -1112,8 +1138,12 @@
                 {{ v.tagline }}
               </h2>
             }
+
             @if (v.heroHighlight && slug() !== 'ai-voice-bot' && slug() !== 'managed-oracle-cloud') {
               <p class="pp-tagline-support">{{ v.heroHighlight }}</p>
+
+            @if (v.heroHighlight) {
+              <p class="pp-tagline-support" [class.defender-hero-description]="slug() === 'microsoft-defender'">{{ v.heroHighlight }}</p>
             }
             @if (v.heroMessages.length) {
               <div class="pp-typewriter" aria-live="polite">
@@ -1384,6 +1414,12 @@
               <span><b>Cloud</b> migration support</span>
               <span><b>Since 1999</b></span>
               <span><b>24&times;7</b> NOC + SOC</span>
+            } @else if (slug() === 'n8n-vps') {
+              <span><b>ISO 27001</b> &amp; <b>20000-1</b> certified</span>
+              <span><b>n8n</b> pre-installed</span>
+              <span><b>100% NVMe</b> storage</span>
+              <span><b>Since 1999</b></span>
+              <span><b>24×7</b> NOC + SOC</span>
             } @else if (slug() === 'ai-resilience' || slug() === 'cyber-resilience' || slug() === 'data-resilience') {
               <span><b>ISO 27001</b> &amp; <b>20000-1</b> certified</span>
               <span><b>Druva</b> partner</span>
@@ -1507,7 +1543,32 @@
     }
 
     @if (!isMicrosoftEnterprisePage() && slug() !== 'cloud-devops-services' && slug() !== 'server-management' && slug() !== 'microsoft-365-backup') {
-    @if (isManagedAws() || isManagedAzure()) {
+    @if (slug() === 'microsoft-defender') {
+      <div class="pp-body microsoft-defender-body"><div class="wrap">
+        <xh-microsoft-defender-content (quoteRequested)="requestMicrosoftDefenderQuote($event)" />
+        <xh-microsoft-defender-followup (quoteRequested)="requestMicrosoftDefenderQuote($event)" />
+        <xh-microsoft-defender-tail />
+      </div></div>
+      <xh-insights-section [pageSlug]="slug()" />
+      <div class="pp-body microsoft-defender-body"><div class="wrap">
+        <div class="pp-cta defender-cta">
+          <div>
+            <h3>Ready to protect your team with Microsoft Defender?</h3>
+            <p>Free consultation · tailored deployment · 24×7 support in English and Hindi</p>
+            <div class="defender-cta-actions">
+              <a class="btn btn-primary" href="#" (click)="openCallback($event, 'Defender consultation')">Request a callback</a>
+              <a class="btn btn-ghost" href="#" (click)="openCallback($event, 'Defender licence quote')">Get a quote</a>
+              <a class="btn btn-ghost" [href]="v.infosheetUrl" target="_blank" rel="noopener noreferrer">Infosheet</a>
+              <a class="btn btn-ghost" href="#" (click)="requestDoc('presentation', $event)">Presentation</a>
+              <a class="btn btn-ghost" [href]="waHref()" target="_blank" rel="noopener">Talk on WhatsApp</a>
+              <a class="btn btn-ghost" [href]="mailHref()">Email Us</a>
+            </div>
+          </div>
+          <a class="pp-cta-buddha-link" routerLink="/company/support-overview" aria-label="Visit XcellHost customer support"><img class="pp-cta-buddha" src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost customer support" /></a>
+        </div>
+        <div class="pp-proof"><span>ISO 27001</span><span>ISO 20000-1</span><span>Microsoft partner</span><span>Since 1999</span><span>24×7 support</span></div>
+      </div></div>
+    } @else if (isManagedAws() || isManagedAzure()) {
       <xh-managed-aws-content [provider]="isManagedAzure() ? 'Azure' : 'AWS'" />
     } @else {
       <div
@@ -1529,6 +1590,12 @@
         [class.email-archiving-body]="slug() === 'email-archiving'"
       >
         <div class="wrap">
+          @if (slug() === 'ai-chat-bot') {
+            <xh-ai-chatbot-content (enquiry)="requestAiChatbot($event)" />
+          }
+          @if (slug() === 'gpu-clusters') {
+            <xh-gpu-clusters-content (enquiry)="requestGpuCluster($event)" />
+          }
           @if (slug() === 'identity-resilience') {
             <xh-identity-resilience-content />
           } @else if (slug() === 'ediscovery-and-compliance') {
@@ -1549,6 +1616,7 @@
           @if (slug() === 'marketplace') {
             <xh-marketplace-content />
           } @else {
+          @if (slug() !== 'gpu-clusters' && slug() !== 'ai-chat-bot') {
           @if (slug() === 'nvidia-h100') {
             <xh-nvidia-h100-content (planSelected)="selectH100Plan($event)" />
             <xh-nvidia-h100-assurance />
@@ -1650,7 +1718,7 @@
                   @if (slug() === 'scrutiny-dlp') {
                     <xh-scrutiny-dlp-content />
                   } @else if (slug() === 'vortex-seg') {
-                    <xh-vortex-seg-content />
+                    <xh-vortex-seg-content [productName]="v.name" />
                   } @else if (slug() === 'vortex-soc') {
                     <xh-vortex-soc-content />
                   } @else if (slug() === 'cloud-migration') {
@@ -1746,6 +1814,8 @@
                     <xh-acronis-backup-advanced-content />
                   } @else if (slug() === 'acronis-ot') {
                     <xh-acronis-ot-content />
+                  } @else if (slug() === 'n8n-vps') {
+                    <xh-n8n-vps-content (planSelected)="selectN8nPlan($event)" (consultationRequested)="requestN8nConsultation()" />
                   } @else if (!isManagedMicrosoft365() && !isEntraIdBackup()) {
                     @if (slug() === 'rtx-8000') {
                       <section class="rtx-overview" aria-labelledby="rtxOverviewTitle">
@@ -1769,7 +1839,16 @@
                           </div>
                         </div>
                       </section>
-                    } @else if (isCloudBackup() || isAdvancedEdr() || isRmm() || slug() === 'cloud-disaster-recovery') {
+                    } @else if (isCloudBackup()) {
+                      <div class="pp-sec">Overview</div>
+                      <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
+                    } @else if (isAdvancedEdr()) {
+                      <div class="pp-sec">Overview</div>
+                      <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
+                    } @else if (isRmm()) {
+                      <div class="pp-sec">Overview</div>
+                      <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
+                    } @else if (slug() === 'cloud-disaster-recovery') {
                       <div class="backup-overview-columns">
                         <div>
                           <div class="pp-sec">Overview</div>
@@ -1777,15 +1856,7 @@
                         </div>
                         <section class="backup-protection" aria-labelledby="backupProtectionTitle">
                         <h2 id="backupProtectionTitle">Protect your business with Acronis today!</h2>
-                        @if (isCloudBackup()) {
-                          <img class="backup-protection-badges backup-protection-badges-compact" src="/assets/images/acronis-backup-green-badges.png" alt="Acronis Certified Backup Professional and Advanced Backup Professional badges" loading="lazy" />
-                        } @else if (isAdvancedEdr()) {
-                          <img class="backup-protection-badges backup-protection-badges-compact" src="/assets/images/acronis-endpoint-security-badges.png" alt="Acronis Certified Endpoint Security Professional and Advanced Security Specialist badges" loading="lazy" />
-                        } @else if (isRmm()) {
-                          <img class="backup-protection-badges backup-protection-badges-compact" src="/assets/images/acronis-rmm-management-badges.png" alt="Acronis Certified RMM Professional and Advanced Management Specialist badges" loading="lazy" />
-                        } @else {
-                          <img class="backup-protection-badges backup-protection-badges-compact" src="/assets/images/acronis-disaster-recovery-badges.png" alt="Acronis Certified Disaster Recovery Professional and DR to Azure Specialist badges" loading="lazy" />
-                        }
+                        <img class="backup-protection-badges backup-protection-badges-compact" src="/assets/images/acronis-disaster-recovery-badges.png" alt="Acronis Certified Disaster Recovery Professional and DR to Azure Specialist badges" loading="lazy" />
                         </section>
                       </div>
 
@@ -1809,6 +1880,8 @@
                           </div>
                         </div>
                       </section>
+                   } @else if (slug() === 'imunify360') {
+                      <xh-imunify360-content (planRequested)="requestImunify360Plan($event)" />
                    } @else if (!isTally()) {
                       <div class="pp-sec">Overview</div>
                       <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
@@ -1864,7 +1937,7 @@
                     <div class="edr-card-heading">
                       <h3>
                         {{
-                          isRmm() ? 'Choose your Acronis RMM term' : 'Choose Your Endpoint Protection Term'
+                          isRmm() ? 'Choose your Acronis RMM term' : 'Choose Your Acronis Endpoint Protection Term'
                         }}
                       </h3>
                       <p>
@@ -2533,6 +2606,10 @@
                   <xh-rtx-6000-ada-pricing (quoteRequested)="requestRtx6000AdaPlan($event)" />
                 } @else if (slug() === 'rtx-a6000') {
                   <xh-rtx-a6000-pricing (quoteRequested)="requestRtxA6000Plan($event)" />
+                } @else if (slug() === 'n8n-vps') {
+                  <!-- Pricing and included features render with the n8n overview above. -->
+                } @else if (slug() === 'imunify360') {
+                  <xh-imunify360-followup (consultationRequested)="requestImunify360Plan($event)" />
                 } @else if (
                   !isAdvancedEdr() &&
                   !isSmbCyber() &&
@@ -2741,11 +2818,13 @@
                 } @else if (slug() === 'rtx-a6000') {
                   <xh-rtx-a6000-details />
                 } @else if (
+                  slug() !== 'imunify360' &&
                   !isSmbCyber() &&
                   !isAcronisTrueImage() &&
                   !isSiteLock() &&
                   !isManagedMicrosoft365() &&
                   !isEntraIdBackup() &&
+                  slug() !== 'n8n-vps' &&
                   slug() !== 'acronis-backup-advanced' &&
                   slug() !== 'acronis-ot' &&
                   slug() !== 'scrutiny-dlp' &&
@@ -3374,12 +3453,14 @@
                 } @else if (slug() === 'rtx-a6000') {
                   <xh-rtx-a6000-performance />
                 } @else if (
+                  slug() !== 'imunify360' &&
                   !isSmbCyber() &&
                   !isRmm() &&
                   !isAcronisTrueImage() &&
                   !isSiteLock() &&
                   !isManagedMicrosoft365() &&
                   !isEntraIdBackup() &&
+                  slug() !== 'n8n-vps' &&
                   slug() !== 'acronis-backup-advanced' &&
                   slug() !== 'acronis-ot' &&
                   slug() !== 'scrutiny-dlp' &&
@@ -3620,6 +3701,34 @@
                         <span>Microsoft Azure</span>
                       </li>
                     </ul>
+                  </section>
+
+                  <section
+                    class="backup-protection cloud-backup-protection"
+                    aria-labelledby="cloud-backup-protection-title"
+                  >
+                    <div class="cloud-backup-protection-copy">
+                      <h2 id="cloud-backup-protection-title">Protect your business with Xcellhost Acronis today!</h2>
+                      <p>
+                        Keep business-critical data protected across endpoints, servers,
+                        virtual machines and cloud applications with backup managed by
+                        Acronis-certified professionals. Get centrally managed protection,
+                        automated backup schedules, ransomware defence and fast recovery
+                        from a single platform. Our specialists help configure the right
+                        retention and storage plan for your business.
+                      </p>
+                      <div class="cloud-backup-protection-actions">
+                        <a class="btn btn-primary" href="#ppPlans">View pricing</a>
+                        <a class="btn cloud-backup-talk-btn" href="#" (click)="openCallback($event)">Let's Talk</a>
+                      </div>
+                    </div>
+                    <img
+                      class="backup-protection-badges backup-protection-badges-compact"
+                      src="/assets/images/acronis-backup-badges-no-green-bg.png"
+                      alt="Acronis Certified Backup Professional and Advanced Backup Professional badges"
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </section>
                 }
 
@@ -3956,8 +4065,10 @@
                 } @else if (slug() === 'nvidia-rtx-6000-ada') {
                   <xh-rtx-6000-ada-showcase />
                 } @else if (
+                  slug() !== 'imunify360' &&
                   v.name !== 'Tally on Cloud' &&
                   slug() !== 'rtx-a6000' &&
+                  slug() !== 'n8n-vps' &&
                   !isSmbCyber() &&
                   !isAcronisTrueImage() &&
                   !isSiteLock() &&
@@ -3989,7 +4100,35 @@
                       </div>
                     }
                   </div>
-
+                  @if (isRmm()) {
+                    <section
+                      class="backup-protection cloud-backup-protection rmm-protection"
+                      aria-labelledby="rmm-protection-title"
+                    >
+                      <div class="cloud-backup-protection-copy">
+                        <h2 id="rmm-protection-title">
+                          Protect your business with Acronis RMM today!
+                        </h2>
+                        <p>
+                          Monitor endpoint health, automate routine IT work and resolve issues before
+                          they interrupt your business. Acronis Advanced RMM brings real-time alerts,
+                          secure remote access, patch management, scripting and reporting into one
+                          centrally managed platform. Our certified specialists help configure policies,
+                          maintain devices and improve service delivery across your entire environment.
+                        </p>
+                        <div class="cloud-backup-protection-actions">
+                          <a class="btn btn-primary" href="#ppPlans">View pricing</a>
+                          <a class="btn cloud-backup-talk-btn" href="#" (click)="openCallback($event)">Let's Talk</a>
+                        </div>
+                      </div>
+                      <img
+                        class="backup-protection-badges backup-protection-badges-compact"
+                        src="/assets/images/acronis-rmm-management-badges-transparent-heading.png"
+                        alt="Acronis Certified RMM Professional and Advanced Management Specialist badges"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </section>
                   }
                   @if (isCloudDisasterRecoverySmb()) {
                     <section class="cdr-global-cloud" aria-labelledby="cdrGlobalCloudTitle">
@@ -4068,6 +4207,35 @@
                         </div>
                       </div>
                     </section>
+
+                    <section
+                      class="backup-protection cloud-backup-protection disaster-recovery-protection"
+                      aria-labelledby="disaster-recovery-protection-title"
+                    >
+                      <div class="cloud-backup-protection-copy">
+                        <h2 id="disaster-recovery-protection-title">
+                          Protect your business with Xcellhost Acronis Disaster Recovery today!
+                        </h2>
+                        <p>
+                          Keep critical workloads available when infrastructure fails, ransomware
+                          strikes or an unexpected outage interrupts operations. Acronis Disaster
+                          Recovery securely replicates your systems to the cloud, enabling rapid
+                          failover, recovery testing and dependable failback. Our certified specialists
+                          help design and manage the right continuity plan for your business.
+                        </p>
+                        <div class="cloud-backup-protection-actions">
+                          <a class="btn btn-primary" href="#ppPlans">View pricing</a>
+                          <a class="btn cloud-backup-talk-btn" href="#" (click)="openCallback($event)">Let's Talk</a>
+                        </div>
+                      </div>
+                      <img
+                        class="backup-protection-badges backup-protection-badges-compact"
+                        src="/assets/images/acronis-disaster-recovery-badges-transparent-heading.png"
+                        alt="Acronis Certified Disaster Recovery Professional and DR to Azure Specialist badges"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </section>
                   }
 
                   @if (v.honest; as honest) {
@@ -4124,6 +4292,37 @@
                       </table>
                     </div>
                   </div>
+
+                  @if (isAdvancedEdr()) {
+                    <section
+                      class="backup-protection cloud-backup-protection endpoint-security-protection"
+                      aria-labelledby="endpoint-security-protection-title"
+                    >
+                      <div class="cloud-backup-protection-copy">
+                        <h2 id="endpoint-security-protection-title">
+                          Protect your business with Acronis Endpoint Security today!
+                        </h2>
+                        <p>
+                          Stop ransomware, malware and advanced endpoint threats before they disrupt
+                          your business. Acronis Endpoint Security combines prevention, behavioural
+                          detection and rapid response in one centrally managed platform. Our certified
+                          specialists help configure protection policies, monitor endpoint health and
+                          strengthen security across every device in your organisation.
+                        </p>
+                        <div class="cloud-backup-protection-actions">
+                          <a class="btn btn-primary" href="#ppPlans">View pricing</a>
+                          <a class="btn cloud-backup-talk-btn" href="#" (click)="openCallback($event)">Let's Talk</a>
+                        </div>
+                      </div>
+                      <img
+                        class="backup-protection-badges backup-protection-badges-compact"
+                        src="/assets/images/acronis-endpoint-security-badges-transparent-heading.png"
+                        alt="Acronis Certified Endpoint Security Professional and Advanced Security Specialist badges"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </section>
+                  }
                 }
               }
             }
@@ -4165,6 +4364,7 @@
 
           }
 
+          }
           }
           }
           @if (v.name !== 'Tally on Cloud') {
@@ -4235,9 +4435,9 @@
             slug() !== 'vortex-seg' &&
             slug() !== 'vortex-soc'
           ) {
-            <div class="pp-sec" id="ppWhyHead" [style.margin-top.px]="slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Why XcellHost for {{ v.name }}</div>
+<div class="pp-sec" id="ppWhyHead" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Why XcellHost for {{ v.name }}</div>
             <div class="pp-why" id="ppWhy">
-              @for (w of v.why; track w.title) {
+              @for (w of (slug() === 'ai-chat-bot' ? aiChatbotWhy : slug() === 'gpu-clusters' ? gpuClustersWhy : v.why); track w.title) {
                 <div class="pw">
                   <span class="pw-ic" aria-hidden="true"
                     ><svg viewBox="0 0 24 24"><path [attr.d]="w.icon" /></svg
@@ -4332,11 +4532,11 @@
               <div class="pp-sec" id="vortexSegActionTitle">Watch it in action</div>
               <div class="tally-video-grid single-video">
                 <article class="tally-video-card">
-                  <h3><span>Elevate your email security with Vortex SEG</span></h3>
+                  <h3><span>Elevate your email security with {{ v.name }}</span></h3>
                   <div class="tally-video-frame">
                     <iframe
                       src="https://www.youtube-nocookie.com/embed/OQAmgvXsfyI?rel=0&amp;playsinline=1"
-                      title="Elevate your email security with Vortex SEG"
+                      [title]="'Elevate your email security with ' + v.name"
                       allow="
                         accelerometer;
                         autoplay;
@@ -4731,10 +4931,12 @@
               </div>
             </section>
           }
-
           @if (slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
           <div class="pp-sec" [style.margin-top.px]="slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">What customers say</div>
           @if (isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training') {
+          @if (slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience') {
+          <div class="pp-sec" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">What customers say</div>
+          @if (isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training' || slug() === 'ai-chat-bot') {
             <div class="pp-tcards" id="ppRevs">
               @for (r of v.reviews; track r.name) {
                 <div class="tcard">
@@ -4804,6 +5006,8 @@
 
         @if (slug() !== 'marketplace' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
           <div class="pp-sec pp-faq-heading" [style.margin-top.px]="slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Frequently asked questions</div>
+        @if (slug() !== 'marketplace' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience') {
+          <div class="pp-sec pp-faq-heading" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Frequently asked questions</div>
           @if (slug() === 'domain-whois-lookup') {
             <xh-domain-whois-faq />
           } @else if (slug() === 'managed-oracle-cloud') {
@@ -4821,7 +5025,7 @@
             </div>
           } @else {
             <div class="pp-faq" id="ppFaq">
-              <xh-product-faq [faqs]="isWatchtower() ? watchtowerFaqs : isOurPlatform() ? ourPlatformFaqs : isZohoWorkspace() ? zohoWorkspaceFaqs : v.faqs" />
+              <xh-product-faq [faqs]="slug() === 'ai-chat-bot' ? aiChatbotFaqs : isWatchtower() ? watchtowerFaqs : isOurPlatform() ? ourPlatformFaqs : isZohoWorkspace() ? zohoWorkspaceFaqs : v.faqs" />
             </div>
           }
 
@@ -4841,7 +5045,7 @@
           </nav>
         }
 
-        <div id="ppBlog" [style.margin-top.px]="slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null" [class.scrutiny-dlp-insights]="slug() === 'scrutiny-dlp'" [class.vortex-seg-insights]="slug() === 'vortex-seg'"><xh-insights-section [pageSlug]="slug()" /></div>
+        <div id="ppBlog" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null" [class.scrutiny-dlp-insights]="slug() === 'scrutiny-dlp'" [class.vortex-seg-insights]="slug() === 'vortex-seg'"><xh-insights-section [pageSlug]="slug()" /></div>
 
         <div class="pp-cta">
             <div>

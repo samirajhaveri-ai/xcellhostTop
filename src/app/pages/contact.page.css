@@ -147,3 +147,13 @@ a.contact-channel:hover{border-color:#9fc4f5;transform:translateY(-3px);box-shad
 
 @media(max-width:900px){.office-tabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.office-locator-body{grid-template-columns:1fr}.office-contact-panel{border-right:0;border-bottom:1px solid #dbe7f5}.office-map-panel,.office-map-panel iframe{min-height:410px}}
 @media(max-width:560px){.contact-offices{padding-inline:0}.office-locator{border-radius:16px}.office-tabs{padding:6px}.office-tabs button{justify-content:flex-start;min-height:60px;padding:9px}.office-tabs .material-symbols-outlined{width:31px;height:31px;font-size:18px}.office-tabs b{font-size:12px}.office-contact-panel{padding:27px 20px}.office-contact-heading h3{font-size:21px}.office-map-panel,.office-map-panel iframe{min-height:340px}}
+@media(max-width:700px){
+  .contact-form-section { grid-template-columns:minmax(0,1fr); min-width:0; width:100%; }
+  .contact-form-copy, .contact-form-card, .contact-form-methods { min-width:0; max-width:100%; }
+  .contact-form-methods > a, .contact-form-methods > div { min-width:0; gap:10px; }
+  .contact-form-methods > a > span, .contact-form-methods > div > span { min-width:0; }
+  .contact-form-methods strong, .contact-form-methods small { white-space:normal; overflow-wrap:anywhere; }
+  .contact-form-copy h2 { font-size:clamp(25px,6vw,34px); overflow-wrap:anywhere; }
+  .xch-field-grid { grid-template-columns:minmax(0,1fr); }
+  .xch-phone-grid { grid-template-columns:100px minmax(0,1fr); }
+}

@@ -23,7 +23,7 @@ export class NvidiaH100HeroComponent implements OnDestroy {
     if (!frame || !document) return;
 
     const resize = (): void => {
-      frame.style.height = `${Math.max(document.documentElement.scrollHeight, document.body.scrollHeight)}px`;
+      frame.style.height = `${Math.ceil(document.body.getBoundingClientRect().height)}px`;
     };
     resize();
     this.observer?.disconnect();

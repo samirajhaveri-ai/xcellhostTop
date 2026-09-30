@@ -1,0 +1,56 @@
+<section class="n8n-hero" aria-labelledby="n8nHeroTitle">
+  <span class="hero-grid" aria-hidden="true"></span>
+  <span class="hero-glow" aria-hidden="true"></span>
+  <div class="hero-wrap">
+    <div class="hero-copy">
+      <nav class="crumb" aria-label="Breadcrumb">
+        <a href="/">Home</a><span>›</span><span>Web Presence</span><span>›</span><span>VPS Servers</span>
+      </nav>
+      <h1 id="n8nHeroTitle"><span class="brand-xcell">Xcell</span>Secure <span class="divider">|</span> n8n VPS</h1>
+      <h2>Automate everything with your own n8n — on servers you control, in India</h2>
+      <p class="summary">n8n comes pre-installed on NVMe cloud servers in Indian data centres. Build unlimited workflows, run unlimited executions, connect AI agents and your own databases — with your data staying on your server, and XcellHost engineers on call 24×7.</p>
+      <p class="typewriter">Unlimited workflows, unlimited executions<span class="cursor" aria-hidden="true"></span></p>
+      <div class="hero-points">
+        <span><i>✓</i>n8n pre-installed</span>
+        <span><i>✓</i>Unlimited workflows &amp; executions</span>
+        <span><i>✓</i>Queue mode ready</span>
+        <span><i>✓</i>SSL, firewall &amp; backups</span>
+        <span><i>✓</i>Indian data centres</span>
+        <span><i>✓</i>24×7 engineer support</span>
+      </div>
+      <div class="hero-actions">
+        <a class="action action-blue" [href]="infosheetUrl()" target="_blank" rel="noopener noreferrer">⬇ &nbsp;Infosheet</a>
+        <a class="action action-outline" href="#" (click)="requestPresentation($event)">▣ &nbsp;Presentation</a>
+        <button class="action action-outline" type="button" (click)="requestTour()">Screenshot Tour</button>
+        <button class="action action-outline" type="button">7 Day's Free Trial</button>
+        <a class="action action-orange" href="#" (click)="requestTalk($event)">Let's Talk</a>
+      </div>
+      <div class="ask-ai">
+        <span class="ask-label">✦ &nbsp;Ask AI About n8n Hosting from XcellHost</span>
+        <a href="https://chatgpt.com/?q=Explain%20self-hosted%20n8n%20hosting%20at%20XcellHost" target="_blank" rel="noopener noreferrer" aria-label="Ask ChatGPT"><img src="https://www.google.com/s2/favicons?domain=chatgpt.com&amp;sz=64" alt="" /></a>
+        <a href="https://www.perplexity.ai/search/new?q=Explain%20self-hosted%20n8n%20hosting%20at%20XcellHost" target="_blank" rel="noopener noreferrer" aria-label="Ask Perplexity"><img src="https://www.google.com/s2/favicons?domain=perplexity.ai&amp;sz=64" alt="" /></a>
+        <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer" aria-label="Ask Claude"><img src="https://www.google.com/s2/favicons?domain=claude.ai&amp;sz=64" alt="" /></a>
+        <a href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer" aria-label="Ask Gemini"><img src="https://www.google.com/s2/favicons?domain=gemini.google.com&amp;sz=64" alt="" /></a>
+        <a href="https://grok.com/" target="_blank" rel="noopener noreferrer" aria-label="Ask Grok"><img src="https://www.google.com/s2/favicons?domain=grok.com&amp;sz=64" alt="" /></a>
+      </div>
+    </div>
+
+    <div class="stage" id="n8nDemo" aria-label="Animated n8n workflow console preview">
+      <div class="stage-dots" aria-hidden="true"></div>
+      <div class="console">
+        <div class="console-head"><span class="window-dots"><i></i><i></i><i></i></span><strong>n8n · automate.yourcompany.in</strong><span class="status">● Active</span></div>
+        <div class="metrics"><span>Workflows <b>38</b></span><span>Today <b class="success">13,169</b></span><span>Failed <b class="success">0</b></span></div>
+        <div class="flow" aria-hidden="true">
+          <div class="node webhook"><span class="node-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></span><small>Webhook</small></div><span class="connector"></span>
+          <div class="node ai"><span class="node-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9 17h6"/></svg></span><small>AI: score<br />lead</small></div><span class="connector"></span>
+          <div class="node condition"><span class="node-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M5 21h14M4 7h16M7 7l-3 7a3 3 0 0 0 6 0zM17 7l-3 7a3 3 0 0 0 6 0z"/></svg></span><small>IF score &gt;<br />70</small></div><span class="connector"></span>
+          <div class="node crm"><span class="node-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2 20c0-4 3-6 7-6s7 2 7 6"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14c2.5.6 4 2.6 4 6"/></svg></span><small>Zoho CRM</small></div><span class="connector"></span>
+          <div class="node chat"><span class="node-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.2A8 8 0 1 1 20 12z"/></svg></span><small>WhatsApp</small></div>
+        </div>
+        <div class="flow-out">Executing... <span>38 workflows · queue mode</span></div>
+        <div class="console-foot">● Mumbai · NVMe · queue mode · 3 workers</div>
+      </div>
+      <div class="stage-tags"><span>SELF-HOSTED N8N</span><span><i></i>Hosted in India</span></div>
+    </div>
+  </div>
+</section>

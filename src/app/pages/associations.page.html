@@ -1,12 +1,15 @@
 <main class="associations-page">
   <section class="associations-hero" aria-labelledby="associations-title">
     <div class="associations-wrap associations-hero-inner">
+      <div class="associations-hero-copy">
       <span class="associations-eyebrow">XcellHost network</span>
       <h1 id="associations-title">Associations that connect us <em>across markets.</em></h1>
       <p>
         Our chamber and trade-association relationships help us stay connected to business
         communities, technology leaders and emerging opportunities.
       </p>
+      </div>
+      <img class="associations-hero-image" src="/assets/images/associations.png" alt="Business professionals connecting through a global association network" width="1672" height="941" />
     </div>
   </section>
 
@@ -14,7 +17,7 @@
     <div class="associations-wrap">
       <header class="associations-heading">
         <span>Our associations</span>
-        <h2 id="association-groups-title">Explore our association network</h2>
+        <h2 id="association-groups-title">Explore our associations network</h2>
         <p>Select a group to view the organisations associated with XcellHost.</p>
       </header>
 
@@ -46,15 +49,16 @@
           >
             <div class="associations-panel-heading">
               <span>Technology network</span>
-              <h3>IT Trade Association</h3>
+              <h3>IT Trade Associations</h3>
               <p>IT trade communities supporting collaboration across the technology industry.</p>
             </div>
             <div class="associations-grid">
               @for (association of itTradeAssociations; track association.name) {
-                <article class="association-card">
+                <a class="association-card" [href]="association.website" target="_blank" rel="noopener noreferrer"
+                  [attr.aria-label]="'Visit ' + association.name + ' website (opens in a new tab)'">
                   <img [src]="association.image" [alt]="association.name + ' logo'" loading="lazy" />
                   <h4>{{ association.name }}</h4>
-                </article>
+                </a>
               }
             </div>
           </div>
@@ -67,7 +71,7 @@
           >
             <div class="associations-panel-heading">
               <span>International chambers</span>
-              <h3>Country Association</h3>
+              <h3>Country Associations</h3>
               <p>Chambers strengthening international business relationships and collaboration.</p>
             </div>
             <div class="associations-grid associations-grid-country">
@@ -88,7 +92,7 @@
           >
             <div class="associations-panel-heading">
               <span>Professional network</span>
-              <h3>Industry Association</h3>
+              <h3>Industry Associations</h3>
               <p>Professional bodies connecting XcellHost with wider business and industry communities.</p>
             </div>
             <div class="associations-grid associations-grid-industry">

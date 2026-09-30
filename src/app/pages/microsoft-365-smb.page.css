@@ -280,6 +280,16 @@ h2{font-family:var(--disp);font-weight:700;font-size:clamp(25px,3vw,34px);color:
 .pp-suitecard b{display:block;font:800 21px var(--disp);color:#fff;line-height:1.25;letter-spacing:-.02em}
 .pp-suitecard span{display:block;margin-top:10px;font:600 12px var(--mono);letter-spacing:.06em;color:#9FBEEC;line-height:1.9}
 
+/* Match the EDR protection band while keeping this standalone page's wrap intact. */
+.microsoft-365-protection{
+  width:100%;
+  margin:38px 0 54px;
+  padding-inline:0;
+  background:#f0f3fb;
+  box-shadow:0 0 0 100vmax #f0f3fb;
+  clip-path:inset(0 -100vmax);
+}
+
 /* use cases */
 .pp-uses{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:1fr;gap:12px;align-items:stretch}
 .pu{border:1.5px solid var(--line);border-radius:12px;padding:16px 18px;background:var(--ice);font-size:13.5px;color:var(--ink);min-width:0;height:100%}

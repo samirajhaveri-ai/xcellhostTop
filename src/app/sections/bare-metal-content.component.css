@@ -81,3 +81,9 @@
   .bm-phone{width:118px;flex-basis:118px}
   .bm-eng-arrows span{font-size:17px}
 }
+
+.bm-hardware-section h2{margin:0 0 24px;color:var(--navy);font:750 clamp(22px,2.5vw,30px)/1.3 var(--disp);text-align:center}
+.bm-hardware-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.bm-hardware-gallery figure{display:flex;align-items:center;min-width:0;min-height:140px;margin:0;padding:18px 0;border:1px solid #dce6f2;border-radius:14px;background:#fff;overflow:hidden}
+.bm-hardware-gallery img{display:block;width:100%;height:auto;object-fit:contain;transform:scale(1.35)}
+@media(max-width:700px){.bm-hardware-gallery{grid-template-columns:1fr}.bm-hardware-gallery figure{min-height:110px}}

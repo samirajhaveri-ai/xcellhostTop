@@ -1,10 +1,10 @@
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, ViewportScroller } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnDestroy, computed, effect, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { distinctUntilChanged, map, Observable, switchMap, tap } from 'rxjs';
 
-import { BlogApiService, CmsArticle } from '../core/blog-api.service';
+import { BlogApiService, CmsArticle, findBlogBySlug } from '../core/blog-api.service';
 import { DocRequestService } from '../core/doc-request.service';
 import { LeadService } from '../core/lead.service';
 import { OverlayService } from '../core/overlay.service';
@@ -60,6 +60,7 @@ export class BlogPage implements OnDestroy {
   private readonly seo = inject(SeoService);
   private readonly blogApi = inject(BlogApiService);
   private readonly doc = inject(DOCUMENT);
+  private readonly viewportScroller = inject(ViewportScroller);
 
   readonly isUseCase = this.route.snapshot.data['contentType'] === 'use-case';
   readonly detailBase = this.isUseCase ? '/use-cases' : '/insights';
@@ -109,7 +110,7 @@ export class BlogPage implements OnDestroy {
   );
   readonly neighbors = computed<ArticleNeighbors>(() => {
     const posts = this.allPosts();
-    const currentIndex = posts.findIndex((candidate) => candidate.slug === this.slug());
+    const currentIndex = posts.findIndex((candidate) => candidate.slug === this.post()?.slug);
     if (currentIndex < 0) return { previous: null, next: null };
     return {
       // The API is newest-first: the preceding article is older and the next is newer.
@@ -150,6 +151,10 @@ export class BlogPage implements OnDestroy {
   );
 
   constructor() {
+    // Router anchor scrolling uses coordinates, so CSS scroll-margin is not applied.
+    this.viewportScroller.setOffset(() => [
+      0, (this.doc.querySelector('header.nav')?.getBoundingClientRect().height ?? 94) + 16,
+    ]);
     const articles$: Observable<readonly CmsArticle[]> = this.isUseCase
       ? this.blogApi.useCases$
       : this.blogApi.posts$;
@@ -171,9 +176,11 @@ export class BlogPage implements OnDestroy {
         switchMap((slug) => articles$.pipe(
           map((posts) => ({
             posts,
-            post: posts.find((candidate) =>
-              this.normaliseRouteSlug(candidate.slug) === this.normaliseRouteSlug(slug)
-            ) ?? null,
+            post: this.isUseCase
+              ? posts.find((candidate) =>
+                  this.normaliseRouteSlug(candidate.slug) === this.normaliseRouteSlug(slug)
+                ) ?? null
+              : findBlogBySlug(posts, this.normaliseRouteSlug(slug)),
           }))
         )),
         takeUntilDestroyed()
@@ -214,6 +221,7 @@ export class BlogPage implements OnDestroy {
 
   ngOnDestroy(): void {
     this.stopListening();
+    this.viewportScroller.setOffset([0, 0]);
   }
 
   toggleListening(): void {
@@ -314,10 +322,6 @@ export class BlogPage implements OnDestroy {
       .replace(/(^|[\s(/&-])([a-z])/g, (_, separator: string, letter: string) =>
         `${separator}${letter.toUpperCase()}`
       );
-  }
-
-  headingAnchor(index: number): string {
-    return `#${this.headingBlockId(index)}`;
   }
 
   headingBlockId(index: number): string {

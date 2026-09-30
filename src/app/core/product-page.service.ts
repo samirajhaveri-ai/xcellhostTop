@@ -521,7 +521,11 @@ export class ProductPageService {
     const seed = hash(name);
     const heroTagline =
       atmDetail?.tagline ||
-      (name === 'Scrutiny EDR'
+      (name === 'AI Chat Bot'
+        ? 'Engage every visitor instantly with human-like conversations and 24×7 support — live chat plus a no-code AI bot trained on your content. On your website, WhatsApp and apps, hosted by XcellHost in India.'
+        : name === 'GPU Clusters'
+        ? 'Run distributed LLM training, RLHF and HPC on multi-node clusters of NVIDIA H100, H200, A100, L40S and more — InfiniBand fabric, Slurm, Ray or Kubernetes, and single-tenant bare metal. From XcellHost, with data kept in India.'
+        : name === 'Scrutiny EDR'
         ? 'Detect. Investigate. Respond. Recover.'
         : name === 'Scrutiny DLP'
           ? 'Stop sensitive data leaking across endpoints, email, cloud and removable media.'
@@ -534,7 +538,9 @@ export class ProductPageService {
             : product?.tagline || tag || `${name} from XcellHost`);
     const heroHighlight =
       atmDetail?.summary ||
-      (name === 'Scrutiny EDR'
+      (name === 'AI Chat Bot'
+        ? null
+        : name === 'Scrutiny EDR'
         ? 'Behavioural endpoint detection with rapid remote response across Windows, macOS and Linux'
         : name === 'Scrutiny DLP'
           ? 'Endpoint · Email · Cloud · Removable media · GenAI'
@@ -597,7 +603,7 @@ export class ProductPageService {
         : name === 'SMB Cyber Security Appliance'
         ? 'The XcellSecure SMB Cyber Security Appliance is an affordable, cloud-managed security gateway designed for businesses with up to 50 users. It combines secure business Wi-Fi, advanced firewall protection, and web & DNS security in one platform. Application controls and bandwidth management help businesses maintain secure and efficient network usage. Get real-time visibility into network activity with centralized cloud management. Automatic security updates help keep your environment protected against evolving threats. Enjoy enterprise-grade security without the cost and complexity of a traditional security stack.'
         : name === 'Advanced Endpoint Security (EDR)'
-        ? 'XcellHost Advanced Endpoint Security (EDR) helps organizations identify, protect, detect, respond to, and recover from endpoint threats. It provides continuous security monitoring to detect suspicious activity and potential threats. Endpoints are protected with advanced security capabilities designed to reduce cyber risks. Delivered from secure Indian Tier-4 datacenters, the solution provides reliable and centralized protection. Your environment is monitored 24×7 by experienced security professionals. Get direct assistance from real engineers whenever you need support.'
+        ? 'Acronis Advanced Endpoint Security (EDR) helps organizations identify, protect, detect, respond to, and recover from endpoint threats. It provides continuous security monitoring to detect suspicious activity and potential threats. Endpoints are protected with advanced security capabilities designed to reduce cyber risks. Delivered from secure Indian Tier-4 datacenters, the solution provides reliable and centralized protection. Your environment is monitored 24×7 by experienced security professionals. Get direct assistance from real engineers whenever you need support.'
         : name === 'Remote Monitoring & Mgmt (RMM)'
         ? 'Acronis RMM software helps customers deliver better IT management with powerful tools for monitoring, managing, and supporting devices remotely. It enables IT teams to monitor device performance, identify issues, and provide efficient remote support. Deploy high-performance remote desktop capabilities for fast and reliable remote access. Provide secure remote assistance at no additional cost, helping teams resolve IT issues quickly and efficiently. With centralized management and proactive monitoring, businesses can improve productivity, minimize downtime, and maintain a more reliable IT environment.'
         : name === 'Scrutiny DLP'

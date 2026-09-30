@@ -1,0 +1,64 @@
+@let database = profile();
+<div class="pp-body managed-database-defaults">
+  <div class="wrap">
+    <div class="pp-sec" id="ppWhyHead">Why XcellHost for {{ database.name }}</div>
+    <div class="pp-why" id="ppWhy">
+      @for (item of database.why; track item.title) {
+        <div class="pw">
+          <span class="pw-ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path [attr.d]="item.icon" /></svg>
+          </span>
+          <b>{{ item.title }}</b>
+          <span>{{ item.body }}</span>
+        </div>
+      }
+    </div>
+
+    <div class="pp-sec">What customers say</div>
+    <div class="pp-revs" id="ppRevs">
+      @for (review of database.reviews; track review.name) {
+        <div class="prv">
+          <div class="stars" aria-label="5 out of 5 stars">
+            @for (star of stars; track star) { <span>★</span> }
+          </div>
+          <p>“{{ review.quote }}”</p>
+          <cite>
+            <span class="rav">{{ review.initials }}</span>
+            <span><b>{{ review.name }}</b>{{ review.role }}</span>
+          </cite>
+        </div>
+      }
+    </div>
+
+    <div class="pp-sec pp-faq-heading">Frequently asked questions</div>
+    <div class="pp-faq" id="ppFaq">
+      <xh-product-faq [faqs]="database.faqs" />
+    </div>
+  </div>
+</div>
+
+<div class="managed-database-insights">
+  <xh-insights-section [pageSlug]="slug()" [pageAliases]="[database.shortName]" />
+</div>
+
+<div class="pp-body managed-database-cta-wrap">
+  <div class="wrap">
+    <div class="pp-cta">
+      <div>
+        <h3>Ready to start with {{ database.name }}?</h3>
+        <p>FREE Consultation · FREE Demo · FREE Trial · 24×7 support in English &amp; Hindi</p>
+      </div>
+      <div class="managed-database-cta-actions">
+        <a class="btn btn-primary" routerLink="/contact" [queryParams]="{ service: slug(), request: 'callback' }">Request a callback</a>
+        <a class="btn btn-ghost" routerLink="/contact" [queryParams]="{ service: slug(), request: 'quote' }">⚡ Buy Now</a>
+        <a class="btn btn-ghost" routerLink="/contact" [queryParams]="{ service: slug(), resource: 'infosheet' }">⬇ Infosheet</a>
+        <a class="btn btn-ghost" routerLink="/contact" [queryParams]="{ service: slug(), resource: 'presentation' }">▣ Presentation</a>
+        <a class="btn btn-ghost" href="https://wa.me/918657032540" target="_blank" rel="noopener">Talk on WhatsApp</a>
+        <a class="btn btn-ghost" href="mailto:sales@xcellhost.cloud">Email Us</a>
+      </div>
+    </div>
+    <div class="pp-proof">
+      <span>🏅 ISO 27001</span><span>🏅 ISO 20000-1</span><span>🤝 Microsoft Gold Partner</span><span>🕰 Since 1999</span><span>🔒 Secure Payments — UPI · Cards · NetBanking</span>
+    </div>
+  </div>
+</div>

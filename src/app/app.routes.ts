@@ -12,6 +12,26 @@ import { Routes } from '@angular/router';
  */
 export const routes: Routes = [
   {
+    path: 'managed-mysql',
+    data: { databaseSlug: 'managed-mysql', title: 'Managed MySQL' },
+    loadComponent: () => import('./pages/managed-database.page').then((m) => m.ManagedDatabasePage),
+  },
+  {
+    path: 'managed-mariadb',
+    data: { databaseSlug: 'managed-mariadb', title: 'Managed MariaDB' },
+    loadComponent: () => import('./pages/managed-database.page').then((m) => m.ManagedDatabasePage),
+  },
+  {
+    path: 'managed-postgresql',
+    data: { databaseSlug: 'managed-postgresql', title: 'Managed PostgreSQL' },
+    loadComponent: () => import('./pages/managed-database.page').then((m) => m.ManagedDatabasePage),
+  },
+  {
+    path: 'managed-oracle',
+    data: { databaseSlug: 'managed-oracle', title: 'Managed Oracle' },
+    loadComponent: () => import('./pages/managed-database.page').then((m) => m.ManagedDatabasePage),
+  },
+  {
     path: 'microsoft-365-enterprise-office365',
     data: { productSlug: 'microsoft-365-enterprise-office365' },
     loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
@@ -31,7 +51,7 @@ export const routes: Routes = [
     data: { productSlug: 'microsoft-365-enterprise-additional' },
     loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
   },
-  { path: 'explore-marketplace', loadComponent: () => import('./pages/explore-marketplace.page').then((m) => m.ExploreMarketplacePage) },
+  { path: 'explore-marketplace', redirectTo: 'marketplace', pathMatch: 'full' },
   { path: 'under-construction/careers-overview', redirectTo: 'company/careers-overview', pathMatch: 'full' },
   { path: 'promo-offers', redirectTo: 'promotion-and-offers', pathMatch: 'full' },
   { path: 'under-construction/promotion-and-offers', redirectTo: 'promotion-and-offers', pathMatch: 'full' },
@@ -373,12 +393,12 @@ export const routes: Routes = [
   { path: 'acronis-edr', redirectTo: '', pathMatch: 'full' },
   {
     path: 'email-security-smb',
-    data: { productSlug: 'vortex-seg' },
+    data: { productSlug: 'vortex-seg', productDisplayName: 'Email Security SMB' },
     loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
   },
   {
     path: 'email-security-enterprise',
-    data: { productSlug: 'vortex-seg' },
+    data: { productSlug: 'vortex-seg', productDisplayName: 'Email Security Enterprise' },
     loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
   },
   // service pages sit at the root, so this must stay last

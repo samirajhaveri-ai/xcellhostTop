@@ -1,0 +1,27 @@
+/* Mobile layout shared by the standalone pages embedded in Angular. */
+@media (max-width: 900px) {
+  .wrap { width: 100%; max-width: 100%; min-width: 0; padding-inline: 20px; box-sizing: border-box; }
+  .pp-hero { padding-block: 32px; height: auto; min-height: 0; }
+  .pp-hero-cols { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .pp-hero-cols > * { min-width: 0; max-width: 100%; }
+  .pp-hero h1 { font-size: clamp(25px, 5.5vw, 36px); line-height: 1.25; white-space: normal; overflow-wrap: break-word; }
+  .pp-tagline, .pp-tagline-support { max-width: 100%; white-space: normal; font-size: 16px; line-height: 1.6; }
+  .pp-typewriter { height: auto; min-height: 2.8em; max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
+  .pp-hpoints { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .pp-hpoint { min-width: 0; align-items: flex-start; }
+  .hero-ctas { display: flex; width: 100%; max-width: 100%; flex-wrap: wrap; overflow: visible; gap: 10px; padding-bottom: 0; }
+  .hero-ctas .btn { flex: 1 1 145px; min-width: 0; min-height: 44px; padding: 12px; justify-content: center; white-space: normal; text-align: center; }
+  .pp-ask-ai { width: 100%; min-width: 0; flex-wrap: wrap; gap: 10px; }
+  .pp-ask-ai-kicker { width: 100%; max-width: 100%; white-space: normal; line-height: 1.5; overflow-wrap: anywhere; }
+  .pp-ask-ai-chip { width: 44px; height: 44px; flex: none; }
+  .pp-stage { width: 100%; max-width: 480px; margin-inline: auto; }
+  .pp-answer, .est, .cta-band { grid-template-columns: minmax(0, 1fr); }
+  .pp-answer > *, .est > *, .cta-band > * { min-width: 0; }
+}
+@media (max-width: 600px) {
+  .pp-hpoints, .pp-feats, .pp-bens, .outs, .steps, .gsw, .faqs, .vs, .incl, .revs, .form { grid-template-columns: minmax(0, 1fr); }
+  .plan-specs, .specs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cta-band { padding: 24px 18px; }
+  .tabs { max-width: 100%; flex-wrap: wrap; }
+  .tabs button { min-width: 0; white-space: normal; }
+}
