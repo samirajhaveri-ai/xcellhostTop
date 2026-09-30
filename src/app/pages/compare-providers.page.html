@@ -70,7 +70,7 @@
           @for (row of comparison; track row.feature) {
             <tr>
               <th scope="row">{{ row.feature }}</th>
-              @for (value of row.cells; track $index; let first = $first) {
+              @for (value of row.cells; track $index; let first = $first) { 
                 <td [class.providers-featured]="first"><span class="providers-value"><span class="providers-status" [class]="'providers-status providers-status-' + value.status" aria-hidden="true"></span><span>{{ value.text }}</span></span></td>
               }
             </tr>
