@@ -521,7 +521,11 @@ export class ProductPageService {
     const seed = hash(name);
     const heroTagline =
       atmDetail?.tagline ||
-      (name === 'Scrutiny EDR'
+      (name === 'AI Chat Bot'
+        ? 'Engage every visitor instantly with human-like conversations and 24×7 support — live chat plus a no-code AI bot trained on your content. On your website, WhatsApp and apps, hosted by XcellHost in India.'
+        : name === 'GPU Clusters'
+        ? 'Run distributed LLM training, RLHF and HPC on multi-node clusters of NVIDIA H100, H200, A100, L40S and more — InfiniBand fabric, Slurm, Ray or Kubernetes, and single-tenant bare metal. From XcellHost, with data kept in India.'
+        : name === 'Scrutiny EDR'
         ? 'Detect. Investigate. Respond. Recover.'
         : name === 'Scrutiny DLP'
           ? 'Stop sensitive data leaking across endpoints, email, cloud and removable media.'
@@ -534,7 +538,9 @@ export class ProductPageService {
             : product?.tagline || tag || `${name} from XcellHost`);
     const heroHighlight =
       atmDetail?.summary ||
-      (name === 'Scrutiny EDR'
+      (name === 'AI Chat Bot'
+        ? null
+        : name === 'Scrutiny EDR'
         ? 'Behavioural endpoint detection with rapid remote response across Windows, macOS and Linux'
         : name === 'Scrutiny DLP'
           ? 'Endpoint · Email · Cloud · Removable media · GenAI'

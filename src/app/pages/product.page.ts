@@ -172,6 +172,8 @@ import {
   Microsoft365EnterpriseOffice365Component,
 } from '../sections/microsoft-365-enterprise-variants.component';
 import { SuppliedServiceReferenceComponent } from '../sections/supplied-service-reference.component';
+import { GpuClustersContentComponent } from '../sections/gpu-clusters-content.component';
+import { AiChatbotContentComponent } from '../sections/ai-chatbot-content.component';
 import { SUPPLIED_SERVICE_EXTRAS } from '../data/supplied-service-extras.data';
 import { MicrosoftCopilotContentComponent } from '../sections/microsoft-copilot-content.component';
 import { CopilotStudioContentComponent } from '../sections/copilot-studio-content.component';
@@ -320,6 +322,8 @@ interface ProductTourSlide {
     Microsoft365EnterpriseNonprofitComponent,
     Microsoft365EnterpriseOffice365Component,
     SuppliedServiceReferenceComponent,
+    GpuClustersContentComponent,
+    AiChatbotContentComponent,
     MicrosoftCopilotContentComponent,
     CopilotStudioContentComponent,
     WaapContentComponent,
@@ -958,6 +962,66 @@ export class ProductPage {
 
   /** five star slots, so the template does not rebuild an array on every check */
   readonly starSlots = [0, 1, 2, 3, 4];
+  // GPU Clusters benefits from the supplied page.
+  // FAQ copy from the supplied ai-chatbot.html.
+  readonly aiChatbotFaqs: [string, string][] = [
+    [
+      "What is the XcellHost AI chatbot?",
+      "An AI chatbot that automates customer conversations using natural language processing and machine learning, delivering personalised, real-time replies on your website, mobile apps, WhatsApp and social channels."
+    ],
+    [
+      "How does the AI chatbot improve customer engagement?",
+      "It answers 24×7 with contextual understanding, cutting response times, improving satisfaction and guiding visitors towards a purchase or enquiry."
+    ],
+    [
+      "Can the chatbot be added to my website?",
+      "Yes — paste one line of code or use our WordPress plugin. The widget can be styled to match your brand."
+    ],
+    [
+      "Is there a free AI chatbot plan?",
+      "Yes. The Launch plan is free for one chatbot with 1,000 sessions, so you can test it before upgrading."
+    ],
+    [
+      "What makes it AI-powered?",
+      "It uses NLP, large language models, sentiment analysis and machine learning to understand and respond dynamically, learning from interactions."
+    ],
+    [
+      "Is the chatbot multilingual?",
+      "Yes — it supports English, Hindi and many other languages so you can serve customers in their language."
+    ],
+    [
+      "How does it handle complex queries?",
+      "Intent recognition and context management handle multi-step questions; when needed it escalates to a human agent with the full conversation."
+    ],
+    [
+      "Can it reduce operational costs?",
+      "Yes. Automating repetitive questions and offering 24×7 self-service reduces support workload so agents focus on higher-value work."
+    ],
+    [
+      "Does it work on WhatsApp and other messaging apps?",
+      "Yes — web chat, WhatsApp, Facebook Messenger, Instagram and more, managed from one inbox."
+    ],
+    [
+      "How secure is the chatbot?",
+      "Data is encrypted, access is role-based, and conversations are hosted in XcellHost's Indian data centres."
+    ]
+  ];
+  readonly aiChatbotWhy = [
+    { title: 'Advanced NLP', body: 'Understands intent accurately, even with complex or ambiguous questions.', icon: 'M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5 3 3 0 0 0 3 3 3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zM15 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-3 3 3 3 0 0 1-3-3' },
+    { title: 'Conversational AI', body: 'Human-like conversations that improve over time.', icon: 'M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.2A8 8 0 1 1 20 12z' },
+    { title: 'Multi-channel', body: 'Website, apps, WhatsApp and social from one place.', icon: 'M21 12a9 9 0 1 0-18 0 9 9 0 0 0 18 0M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18' },
+    { title: '24×7 availability', body: 'Answers instantly, freeing your team for complex work.', icon: 'M21 12a9 9 0 1 0-18 0 9 9 0 0 0 18 0M12 7v5l3 2' },
+    { title: 'Personalised', body: 'Replies tailored to user history and preferences.', icon: 'M12.5 8a3.5 3.5 0 1 0-7 0 3.5 3.5 0 0 0 7 0M2 20c0-4 3-6 7-6s7 2 7 6M16 4.5a3.5 3.5 0 0 1 0 7M18 14c2.5.6 4 2.6 4 6' },
+    { title: 'Online access', body: 'No infrastructure to set up — hosted by XcellHost in India.', icon: 'M7 18a5 5 0 1 1 1-9.9A6 6 0 0 1 19.5 10 4 4 0 0 1 18 18z' },
+  ];
+  readonly gpuClustersWhy = [
+    { title: 'Fast provisioning', body: 'Self-serve clusters in hours; reserved 128+ GPU clusters in 24–72 hours from signing — not the 6–12 weeks of hyperscaler procurement.', icon: 'M5 15c-1.5 1.5-2 5-2 5s3.5-.5 5-2M9 11a13 13 0 0 1 11-8 13 13 0 0 1-8 11l-3-3zM16.5 9a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0' },
+    { title: 'Proper networking', body: 'NDR InfiniBand, rail-optimised topology and SHARP in-network reductions.', icon: 'M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1' },
+    { title: 'Transparent INR pricing', body: "No platform fees, no egress charges, no 'cluster mode' premium — per-GPU rate × GPUs.", icon: 'M6 4h12M6 9h12M9 4c6 0 6 10 0 10H6l9 7' },
+    { title: 'Single-tenant option', body: 'ISO 27001-certified provider, Indian data residency for DPDP Act, BYOK and customer-managed VPN.', icon: 'M6 11h12a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2zM8 11V7a4 4 0 0 1 8 0v4' },
+    { title: 'Bring your own scheduler', body: 'Slurm, Ray, SkyPilot and managed Kubernetes pre-wired.', icon: 'M8 8l-5 4 5 4M16 8l5 4-5 4M14 5l-4 14' },
+    { title: 'Dedicated support', body: 'Enterprise plans get a shared channel with our infrastructure engineers.', icon: 'M4 14v-2a8 8 0 0 1 16 0v2M4 14h3v6H4zM17 14h3v6h-3z' },
+  ];
   readonly suppliedServiceExtras = computed(() =>
     this.slug() === 'server-management'
       ? SUPPLIED_SERVICE_EXTRAS['server-management']
@@ -2385,6 +2449,16 @@ export class ProductPage {
   openTrial(ev: Event): void {
     ev.preventDefault();
     this.overlay.open('trial');
+  }
+
+  requestGpuCluster(configuration: string): void {
+    this.topics.ask(`GPU Clusters - ${configuration}`);
+    this.overlay.open('callback');
+  }
+
+  requestAiChatbot(request: string): void {
+    this.topics.ask(`AI Chat Bot - ${request}`);
+    this.overlay.open('callback');
   }
 
   openCallback(ev: Event, request?: string): void {

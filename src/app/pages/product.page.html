@@ -292,7 +292,15 @@
         <span class="pph-aur pph-a3" aria-hidden="true"></span>
         <span class="pph-scan" aria-hidden="true"></span>
 
-        @if (slug() === 'acronis-mdr') {
+        @if (slug() === 'ai-chat-bot') {
+          <div class="pph-scene ai-chatbot-hero-art">
+            <xh-ai-chatbot-content [hero]="true" (enquiry)="requestAiChatbot($event)" />
+          </div>
+        } @else if (slug() === 'gpu-clusters') {
+          <div class="pph-scene gpu-clusters-hero-art">
+            <xh-gpu-clusters-content [hero]="true" />
+          </div>
+        } @else if (slug() === 'acronis-mdr') {
           <div class="pph-scene has-illus standalone-illus mdr-hero-art" aria-hidden="true">
             <div class="pph-illus"><xh-acronis-mdr-hero /></div>
           </div>
@@ -1534,6 +1542,12 @@
         [class.email-archiving-body]="slug() === 'email-archiving'"
       >
         <div class="wrap">
+          @if (slug() === 'ai-chat-bot') {
+            <xh-ai-chatbot-content (enquiry)="requestAiChatbot($event)" />
+          }
+          @if (slug() === 'gpu-clusters') {
+            <xh-gpu-clusters-content (enquiry)="requestGpuCluster($event)" />
+          }
           @if (slug() === 'identity-resilience') {
             <xh-identity-resilience-content />
           } @else if (slug() === 'ediscovery-and-compliance') {
@@ -1545,6 +1559,7 @@
           @if (slug() === 'marketplace') {
             <xh-marketplace-content />
           } @else {
+          @if (slug() !== 'gpu-clusters' && slug() !== 'ai-chat-bot') {
           @if (slug() === 'nvidia-h100') {
             <xh-nvidia-h100-content (planSelected)="selectH100Plan($event)" />
             <xh-nvidia-h100-assurance />
@@ -4287,6 +4302,7 @@
 
           }
           }
+          }
           @if (v.name !== 'Tally on Cloud') {
             @if (slug() === 'rtx-8000') {
               <xh-rtx-8000-stories />
@@ -4354,9 +4370,9 @@
             slug() !== 'vortex-seg' &&
             slug() !== 'vortex-soc'
           ) {
-            <div class="pp-sec" id="ppWhyHead" [style.margin-top.px]="slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Why XcellHost for {{ v.name }}</div>
+<div class="pp-sec" id="ppWhyHead" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Why XcellHost for {{ v.name }}</div>
             <div class="pp-why" id="ppWhy">
-              @for (w of v.why; track w.title) {
+              @for (w of (slug() === 'ai-chat-bot' ? aiChatbotWhy : slug() === 'gpu-clusters' ? gpuClustersWhy : v.why); track w.title) {
                 <div class="pw">
                   <span class="pw-ic" aria-hidden="true"
                     ><svg viewBox="0 0 24 24"><path [attr.d]="w.icon" /></svg
@@ -4852,8 +4868,8 @@
           }
 
           @if (slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience') {
-          <div class="pp-sec" [style.margin-top.px]="slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">What customers say</div>
-          @if (isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training') {
+          <div class="pp-sec" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">What customers say</div>
+          @if (isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training' || slug() === 'ai-chat-bot') {
             <div class="pp-tcards" id="ppRevs">
               @for (r of v.reviews; track r.name) {
                 <div class="tcard">
@@ -4919,7 +4935,7 @@
           }
 
         @if (slug() !== 'marketplace' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience') {
-          <div class="pp-sec pp-faq-heading" [style.margin-top.px]="slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Frequently asked questions</div>
+          <div class="pp-sec pp-faq-heading" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Frequently asked questions</div>
           @if (slug() === 'domain-whois-lookup') {
             <xh-domain-whois-faq />
           } @else if (slug() === 'nvidia-a100') {
@@ -4933,7 +4949,7 @@
             </div>
           } @else {
             <div class="pp-faq" id="ppFaq">
-              <xh-product-faq [faqs]="isWatchtower() ? watchtowerFaqs : isOurPlatform() ? ourPlatformFaqs : isZohoWorkspace() ? zohoWorkspaceFaqs : v.faqs" />
+              <xh-product-faq [faqs]="slug() === 'ai-chat-bot' ? aiChatbotFaqs : isWatchtower() ? watchtowerFaqs : isOurPlatform() ? ourPlatformFaqs : isZohoWorkspace() ? zohoWorkspaceFaqs : v.faqs" />
             </div>
           }
 
@@ -4953,7 +4969,7 @@
           </nav>
         }
 
-        <div id="ppBlog" [style.margin-top.px]="slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null" [class.scrutiny-dlp-insights]="slug() === 'scrutiny-dlp'" [class.vortex-seg-insights]="slug() === 'vortex-seg'"><xh-insights-section [pageSlug]="slug()" /></div>
+        <div id="ppBlog" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null" [class.scrutiny-dlp-insights]="slug() === 'scrutiny-dlp'" [class.vortex-seg-insights]="slug() === 'vortex-seg'"><xh-insights-section [pageSlug]="slug()" /></div>
 
         <div class="pp-cta">
             <div>
