@@ -202,6 +202,7 @@ import { AiResilienceSourceComponent } from '../sections/ai-resilience-source.co
 import { AcronisXdrSourceComponent } from '../sections/acronis-xdr-source.component';
 import { CyberResilienceSourceComponent } from '../sections/cyber-resilience-source.component';
 import { DataResilienceSourceComponent } from '../sections/data-resilience-source.component';
+import { CloudSecurityPostureSourceComponent } from '../sections/cloud-security-posture-source.component';
 import { NvidiaA100AssuranceComponent } from '../sections/nvidia-a100-assurance.component';
 import { NvidiaH100AssuranceComponent } from '../sections/nvidia-h100-assurance.component';
 import { H100HeroAction, NvidiaH100HeroComponent } from '../sections/nvidia-h100-hero.component';
@@ -384,6 +385,7 @@ interface ProductTourSlide {
     AcronisXdrSourceComponent,
     CyberResilienceSourceComponent,
     DataResilienceSourceComponent,
+    CloudSecurityPostureSourceComponent,
     NvidiaA100AssuranceComponent,
     NvidiaH100AssuranceComponent,
     NvidiaH100HeroComponent,

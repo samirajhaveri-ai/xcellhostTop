@@ -79,7 +79,9 @@
     @if (slug() === 'data-resilience') {
       <xh-data-resilience-source view="hero" />
     }
-    @if (slug() === 'acronis-xdr') {
+    @if (slug() === 'cloud-security-posture-mgmt') {
+      <xh-cloud-security-posture-source />
+    } @else if (slug() === 'acronis-xdr') {
       <xh-acronis-xdr-source />
       <xh-insights-section [pageSlug]="slug()" />
       <div class="pp-body"><div class="wrap">
@@ -1486,7 +1488,13 @@
       }
     }
 
-    @if (!isMicrosoftEnterprisePage() && slug() !== 'cloud-devops-services' && slug() !== 'server-management' && slug() !== 'microsoft-365-backup') {
+    @if (
+      !isMicrosoftEnterprisePage() &&
+      slug() !== 'cloud-devops-services' &&
+      slug() !== 'server-management' &&
+      slug() !== 'microsoft-365-backup' &&
+      slug() !== 'cloud-security-posture-mgmt'
+    ) {
     @if (slug() === 'microsoft-defender') {
       <div class="pp-body microsoft-defender-body"><div class="wrap">
         <xh-microsoft-defender-content (quoteRequested)="requestMicrosoftDefenderQuote($event)" />
