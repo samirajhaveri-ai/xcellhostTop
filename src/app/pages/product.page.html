@@ -9,6 +9,7 @@
     [class.infrastructure-page]="isInfrastructure()"
     [class.disaster-recovery-page]="isCloudDisasterRecoverySmb()"
     [class.enterprise-dr-page]="slug() === 'cloud-disaster-recovery-for-enterprise'"
+    [class.magicqr-page]="slug() === 'ai-review-magicqr'"
     [class.edr-page]="isAdvancedEdr()"
     [class.scrutiny-edr-page]="isScrutinyEdr()"
     [class.rmm-page]="isRmm()"
@@ -298,7 +299,7 @@
         [class.sitelock-hero]="v.name === 'Web Security (SiteLock)'"
         [class.tally-product-hero]="v.name === 'Tally on Cloud'"
       >
-        @if (slug() !== 'cloud-disaster-recovery-for-enterprise') {
+        @if (slug() !== 'cloud-disaster-recovery-for-enterprise' && slug() !== 'ai-review-magicqr') {
           <div class="pph-map" aria-hidden="true" [innerHTML]="worldMap"></div>
         }
         <span class="pph-grid" aria-hidden="true"></span>
@@ -962,6 +963,8 @@
           </div>
         } @else if (slug() === 'cloud-disaster-recovery-for-enterprise') {
           <xh-disaster-recovery-simulator class="enterprise-dr-simulator" />
+        } @else if (slug() === 'ai-review-magicqr') {
+          <xh-ai-review-magicqr-hero class="magicqr-hero-dashboard" />
         } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
           <div class="pph-scene has-illus standalone-illus" id="pphScene" aria-hidden="true">
             <div class="pph-illus">
@@ -1855,6 +1858,8 @@
                           </div>
                         </div>
                       </section>
+                    } @else if (slug() === 'ai-review-magicqr') {
+                      <xh-ai-review-magicqr-overview />
                     } @else if (slug() === 'cloud-disaster-recovery-for-enterprise') {
                       <xh-enterprise-dr-overview />
                     } @else if (isCloudBackup()) {
@@ -2628,6 +2633,8 @@
                   <!-- Pricing and included features render with the n8n overview above. -->
                 } @else if (slug() === 'imunify360') {
                   <xh-imunify360-followup (consultationRequested)="requestImunify360Plan($event)" />
+                } @else if (slug() === 'ai-review-magicqr') {
+                  <xh-ai-review-magicqr-tail (quoteRequested)="openCallback($event.event, $event.plan)" />
                 } @else if (slug() === 'cloud-disaster-recovery-for-enterprise') {
                   <xh-enterprise-dr-details (quoteRequested)="openCallback($event, 'Enterprise disaster recovery quote')" />
                 } @else if (
@@ -2845,6 +2852,7 @@
                   !isManagedMicrosoft365() &&
                   !isEntraIdBackup() &&
                   slug() !== 'n8n-vps' &&
+                  slug() !== 'ai-review-magicqr' &&
                   slug() !== 'cloud-disaster-recovery-for-enterprise' &&
                   slug() !== 'acronis-backup-advanced' &&
                   slug() !== 'acronis-ot' &&
@@ -3482,6 +3490,7 @@
                   !isManagedMicrosoft365() &&
                   !isEntraIdBackup() &&
                   slug() !== 'n8n-vps' &&
+                  slug() !== 'ai-review-magicqr' &&
                   slug() !== 'cloud-disaster-recovery-for-enterprise' &&
                   slug() !== 'acronis-backup-advanced' &&
                   slug() !== 'acronis-ot' &&
@@ -4091,6 +4100,7 @@
                   v.name !== 'Tally on Cloud' &&
                   slug() !== 'rtx-a6000' &&
                   slug() !== 'n8n-vps' &&
+                   slug() !== 'ai-review-magicqr' &&
                   slug() !== 'cloud-disaster-recovery-for-enterprise' &&
                   !isSmbCyber() &&
                   !isAcronisTrueImage() &&

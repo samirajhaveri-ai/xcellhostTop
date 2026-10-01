@@ -1,0 +1,117 @@
+:host {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+
+* { box-sizing: border-box; }
+
+.magicqr-dashboard {
+  position: relative;
+  width: 100%;
+  padding: 19px;
+  border: 1px solid rgba(112, 168, 225, 0.35);
+  border-radius: 20px;
+  background: linear-gradient(155deg, rgba(10, 28, 64, 0.98), rgba(12, 25, 57, 0.97));
+  color: #fff;
+  box-shadow: 0 28px 70px rgba(3, 12, 35, 0.42), 0 0 70px rgba(124, 58, 237, 0.2);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.magicqr-dashboard::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: 260px;
+  height: 260px;
+  right: -100px;
+  top: -150px;
+  border-radius: 50%;
+  background: #7c3aed;
+  filter: blur(70px);
+  opacity: 0.28;
+  animation: glow-drift 7s ease-in-out infinite alternate;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+  color: #a9cfff;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+header b { display: inline-flex; align-items: center; gap: 7px; color: #4ade80; font-size: 10px; }
+header i { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 10px #4ade80; animation: live-pulse 1.35s ease-in-out infinite; }
+
+.metric-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; }
+.metric-grid div { min-width: 0; padding: 13px 12px; border-radius: 12px; background: rgba(255, 255, 255, 0.075); transition: transform 0.22s, background 0.22s; }
+.metric-grid div:hover { transform: translateY(-3px); background: rgba(255, 255, 255, 0.11); }
+.metric-grid b { display: block; color: #fff; font-size: clamp(20px, 2vw, 24px); line-height: 1; letter-spacing: -0.03em; }
+.metric-grid span { display: block; margin-top: 7px; color: #a9bad4; font-size: 10px; }
+
+.dashboard-body { display: grid; grid-template-columns: 166px minmax(0, 1fr); gap: 11px; margin-top: 11px; }
+
+.rating-phone {
+  display: grid;
+  gap: 5px;
+  padding: 11px 8px;
+  border: 3px solid #e1e8f2;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.24);
+}
+
+.rating-phone strong { margin-bottom: 2px; color: #102445; font-size: 11px; text-align: center; }
+.rating-phone button { width: 100%; min-height: 31px; padding: 6px 8px; border: 1px solid #d5dfed; border-radius: 8px; background: #f0f5fc; color: #132848; font: inherit; font-size: 10.5px; text-align: left; cursor: pointer; transition: 0.22s ease; }
+.rating-phone button:hover { border-color: #8b5cf6; transform: translateX(2px); }
+.rating-phone button.active { border-color: #8b3cf0; background: linear-gradient(90deg, #7c3aed, #8b3cf0); color: #fff; box-shadow: 0 7px 16px rgba(124, 58, 237, 0.3); transform: translateX(2px); }
+
+.activity-feed {
+  min-width: 0;
+  min-height: 178px;
+  padding: 11px 13px;
+  border-radius: 13px;
+  background: rgba(2, 16, 39, 0.78);
+  overflow: hidden;
+}
+
+.activity-feed div { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px; padding: 3px 0; color: #dce7f8; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 10.5px; line-height: 1.45; animation: feed-in 0.36s ease both; }
+.activity-feed time { color: #22e69d; font-weight: 800; }
+.activity-feed span { min-width: 0; overflow-wrap: anywhere; }
+
+@keyframes feed-in {
+  from { opacity: 0; transform: translateY(7px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes live-pulse {
+  50% { opacity: 0.35; transform: scale(0.8); }
+}
+
+@keyframes glow-drift {
+  to { transform: translate(-55px, 38px) scale(1.15); }
+}
+
+@media (max-width: 560px) {
+  .magicqr-dashboard { padding: 14px; border-radius: 17px; }
+  .dashboard-body { grid-template-columns: 132px minmax(0, 1fr); }
+  .rating-phone { padding-inline: 6px; }
+  .rating-phone button { font-size: 9px; }
+  .activity-feed { padding-inline: 10px; }
+  .activity-feed div { grid-template-columns: 1fr; gap: 0; font-size: 9px; }
+  .metric-grid div { padding: 11px 8px; }
+  .metric-grid span { font-size: 8.5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .magicqr-dashboard::before, header i, .activity-feed div { animation: none; }
+  .metric-grid div, .rating-phone button { transition: none; }
+}
