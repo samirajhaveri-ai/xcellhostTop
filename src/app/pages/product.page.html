@@ -302,7 +302,11 @@
         <span class="pph-aur pph-a3" aria-hidden="true"></span>
         <span class="pph-scan" aria-hidden="true"></span>
 
-        @if (slug() === 'ai-chat-bot') {
+        @if (slug() === 'linux-servers') {
+          <div class="pph-scene linux-servers-hero-art">
+            <xh-linux-servers-content [heroOnly]="true" />
+          </div>
+        } @else if (slug() === 'ai-chat-bot') {
           <div class="pph-scene ai-chatbot-hero-art">
             <xh-ai-chatbot-content [hero]="true" (enquiry)="requestAiChatbot($event)" />
           </div>
@@ -1620,6 +1624,9 @@
           @if (slug() !== 'identity-resilience' && slug() !== 'ediscovery-and-compliance' && slug() !== 'performance-cloud' && slug() !== 'gpu-clusters' && slug() !== 'ai-chat-bot') {
           @if (slug() === 'marketplace') {
             <xh-marketplace-content />
+          } @else {
+          @if (slug() === 'linux-servers') {
+            <xh-linux-servers-content (quoteRequested)="openCallback($event, 'Linux Servers custom build')" />
           } @else {
           @if (slug() === 'nvidia-h100') {
             <xh-nvidia-h100-content (planSelected)="selectH100Plan($event)" />
@@ -4371,6 +4378,7 @@
           }
           }
           }
+          }
           @if (v.name !== 'Tally on Cloud') {
             @if (slug() === 'rtx-8000') {
               <xh-rtx-8000-stories />
@@ -5044,6 +5052,9 @@
           </nav>
         }
 
+        @if (slug() === 'linux-servers') {
+          <h2 class="pp-sec">From our blog</h2>
+        }
         <div id="ppBlog" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null" [class.scrutiny-dlp-insights]="slug() === 'scrutiny-dlp'" [class.vortex-seg-insights]="slug() === 'vortex-seg'"><xh-insights-section [pageSlug]="slug()" /></div>
 
         <div class="pp-cta">
