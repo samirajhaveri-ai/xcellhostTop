@@ -8,6 +8,7 @@
     [class.ai-voicebot-page]="slug() === 'ai-voice-bot'"
     [class.infrastructure-page]="isInfrastructure()"
     [class.disaster-recovery-page]="isCloudDisasterRecoverySmb()"
+    [class.enterprise-dr-page]="slug() === 'cloud-disaster-recovery-for-enterprise'"
     [class.edr-page]="isAdvancedEdr()"
     [class.scrutiny-edr-page]="isScrutinyEdr()"
     [class.rmm-page]="isRmm()"
@@ -295,7 +296,9 @@
         [class.sitelock-hero]="v.name === 'Web Security (SiteLock)'"
         [class.tally-product-hero]="v.name === 'Tally on Cloud'"
       >
-        <div class="pph-map" aria-hidden="true" [innerHTML]="worldMap"></div>
+        @if (slug() !== 'cloud-disaster-recovery-for-enterprise') {
+          <div class="pph-map" aria-hidden="true" [innerHTML]="worldMap"></div>
+        }
         <span class="pph-grid" aria-hidden="true"></span>
         <span class="pph-aur pph-a1" aria-hidden="true"></span>
         <span class="pph-aur pph-a2" aria-hidden="true"></span>
@@ -951,6 +954,8 @@
           <div class="pph-scene ai-lab-dashboard">
             <iframe src="/ai-lab-hero.html" title="Illustrative AI Lab dashboard showing students, GPU workloads and model training" scrolling="no"></iframe>
           </div>
+        } @else if (slug() === 'cloud-disaster-recovery-for-enterprise') {
+          <xh-disaster-recovery-simulator class="enterprise-dr-simulator" />
         } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
           <div class="pph-scene has-illus standalone-illus" id="pphScene" aria-hidden="true">
             <div class="pph-illus">
@@ -1843,6 +1848,8 @@
                           </div>
                         </div>
                       </section>
+                    } @else if (slug() === 'cloud-disaster-recovery-for-enterprise') {
+                      <xh-enterprise-dr-overview />
                     } @else if (isCloudBackup()) {
                       <div class="pp-sec">Overview</div>
                       <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
@@ -2614,6 +2621,8 @@
                   <!-- Pricing and included features render with the n8n overview above. -->
                 } @else if (slug() === 'imunify360') {
                   <xh-imunify360-followup (consultationRequested)="requestImunify360Plan($event)" />
+                } @else if (slug() === 'cloud-disaster-recovery-for-enterprise') {
+                  <xh-enterprise-dr-details (quoteRequested)="openCallback($event, 'Enterprise disaster recovery quote')" />
                 } @else if (
                   !isAdvancedEdr() &&
                   !isSmbCyber() &&
@@ -2829,6 +2838,7 @@
                   !isManagedMicrosoft365() &&
                   !isEntraIdBackup() &&
                   slug() !== 'n8n-vps' &&
+                  slug() !== 'cloud-disaster-recovery-for-enterprise' &&
                   slug() !== 'acronis-backup-advanced' &&
                   slug() !== 'acronis-ot' &&
                   slug() !== 'scrutiny-dlp' &&
@@ -3465,6 +3475,7 @@
                   !isManagedMicrosoft365() &&
                   !isEntraIdBackup() &&
                   slug() !== 'n8n-vps' &&
+                  slug() !== 'cloud-disaster-recovery-for-enterprise' &&
                   slug() !== 'acronis-backup-advanced' &&
                   slug() !== 'acronis-ot' &&
                   slug() !== 'scrutiny-dlp' &&
@@ -4073,6 +4084,7 @@
                   v.name !== 'Tally on Cloud' &&
                   slug() !== 'rtx-a6000' &&
                   slug() !== 'n8n-vps' &&
+                  slug() !== 'cloud-disaster-recovery-for-enterprise' &&
                   !isSmbCyber() &&
                   !isAcronisTrueImage() &&
                   !isSiteLock() &&

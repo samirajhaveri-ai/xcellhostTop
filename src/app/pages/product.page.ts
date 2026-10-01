@@ -1,3 +1,6 @@
+import { DisasterRecoverySimulatorComponent } from '../sections/disaster-recovery-simulator.component';
+import { EnterpriseDrOverviewComponent } from '../sections/enterprise-dr-overview.component';
+import { EnterpriseDrDetailsComponent } from '../sections/enterprise-dr-details.component';
 import { AiLabContentComponent } from '../sections/ai-lab-content.component';
 import { AI_LAB_FAQS } from '../data/ai-lab-faqs.data';
 import { AcronisMdrContentComponent } from '../sections/acronis-mdr-content.component';
@@ -289,6 +292,9 @@ interface ProductTourSlide {
   selector: 'xh-product-page',
   standalone: true,
   imports: [
+    DisasterRecoverySimulatorComponent,
+    EnterpriseDrOverviewComponent,
+    EnterpriseDrDetailsComponent,
     EnterpriseDmarcContentComponent,
     BusinessEmailContentComponent,
     InsightsSectionComponent,
@@ -419,6 +425,30 @@ interface ProductTourSlide {
   ],
   templateUrl: './product.page.html',
   styles: [`
+    #ppage.enterprise-dr-page > .pp-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 540px);
+      align-items: center;
+      gap: 48px;
+      padding: 64px max(24px, calc((100% - 1192px) / 2));
+      background: radial-gradient(ellipse at 90% 40%, #0c494e 0%, #08244a 45%, #041e42 80%);
+    }
+    #ppage.enterprise-dr-page .pp-hero > .wrap { order: 1; width: 100%; max-width: none; min-width: 0; padding: 0; }
+    #ppage.enterprise-dr-page .enterprise-dr-simulator { position: relative; z-index: 4; order: 2; width: 100%; }
+    #ppage.enterprise-dr-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) { width: 100% !important; max-width: 100% !important; }
+    #ppage.enterprise-dr-page .pp-hero h1 { display: block; text-align: left; white-space: normal; font-size: clamp(28px, 2.6vw, 42px); line-height: 1.2; }
+    #ppage.enterprise-dr-page .pp-hero h1 .pp-title-name { display: inline; margin-left: 0; }
+    #ppage.enterprise-dr-page .pp-typewriter { white-space: normal; min-height: 2.8em; }
+    #ppage.enterprise-dr-page .product-hero-ctas { width: 100%; max-width: 100%; flex-wrap: wrap; }
+    #ppage.enterprise-dr-page .product-hero-ctas .btn { flex: 0 1 auto; }
+    #ppage.enterprise-dr-page .pp-ask-ai { width: 100%; }
+    #ppage.enterprise-dr-page .pp-ask-ai-copy { flex: 1 1 320px; }
+    #ppage.enterprise-dr-page .pp-ask-ai-actions { flex: 0 0 auto; }
+    @media(max-width:1100px) {
+      #ppage.enterprise-dr-page > .pp-hero { grid-template-columns: minmax(0, 1fr); gap: 32px; padding: 40px 24px; }
+      #ppage.enterprise-dr-page .enterprise-dr-simulator { max-width: 540px; justify-self: center; }
+    }
+    @media(max-width:560px) { #ppage.enterprise-dr-page > .pp-hero { padding: 32px 16px; gap: 24px; } }
     #ppage.managed-oracle-page .pp-hero {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(0, 480px);

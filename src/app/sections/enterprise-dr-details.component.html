@@ -1,0 +1,158 @@
+<section class="dr-details" aria-label="Enterprise disaster recovery planning">
+  <h2 class="section-title">What the cost of <em>downtime</em> really is</h2>
+  <div class="calculator" id="drDowntimeCalculator">
+    <div class="calculator-inputs">
+      <div class="range-row">
+        <label for="drRevenue">Revenue at risk per hour <b>{{ formatInr(revenueAtRisk()) }}</b></label>
+        <input id="drRevenue" type="range" min="10000" max="2000000" step="10000" [value]="revenueAtRisk()" (input)="setRange('revenue', $event)" />
+      </div>
+      <div class="range-row">
+        <label for="drStaff">Staff unable to work <b>{{ formatInteger(unavailableStaff()) }}</b></label>
+        <input id="drStaff" type="range" min="5" max="2000" step="5" [value]="unavailableStaff()" (input)="setRange('staff', $event)" />
+      </div>
+      <div class="range-row">
+        <label for="drStaffCost">Loaded cost per staff hour <b>{{ formatInr(staffHourlyCost()) }}</b></label>
+        <input id="drStaffCost" type="range" min="200" max="3000" step="50" [value]="staffHourlyCost()" (input)="setRange('staffCost', $event)" />
+      </div>
+      <div class="range-row">
+        <label for="drIncidents">Serious incidents per year <b>{{ incidentsPerYear() }}</b></label>
+        <input id="drIncidents" type="range" min="1" max="6" step="1" [value]="incidentsPerYear()" (input)="setRange('incidents', $event)" />
+      </div>
+      <div class="range-row">
+        <label for="drHours">Hours down per incident without DR <b>{{ outageHours() }} h</b></label>
+        <input id="drHours" type="range" min="4" max="96" step="1" [value]="outageHours()" (input)="setRange('hours', $event)" />
+      </div>
+      <div class="range-row">
+        <label for="drData">Protected data for replica storage <b>{{ formatData(protectedDataGb()) }}</b></label>
+        <input id="drData" type="range" min="100" max="20000" step="100" [value]="protectedDataGb()" (input)="setRange('data', $event)" />
+      </div>
+    </div>
+
+    <aside class="calculator-result" aria-live="polite">
+      <h3>Your downtime exposure</h3>
+      <div class="result-line"><span>Cost per hour of downtime</span><b>{{ formatInr(costPerHour()) }}</b></div>
+      <div class="result-line"><span>Yearly cost without DR</span><b>{{ formatInr(yearlyCostWithoutDr()) }}</b></div>
+      <div class="result-line"><span>Yearly cost with DR<br /><small>Always-on · OpenText, RTO 5 min</small></span><b>{{ formatInr(yearlyCostWithDr()) }}</b></div>
+      <div class="result-line"><span>Replica storage from</span><b>{{ formatInr(monthlyReplicaStorage()) }}/mo</b></div>
+      <div class="result-total"><span>Downtime cost avoided / year</span><b>{{ formatInr(yearlySavings()) }}</b></div>
+      <p>Estimate only. Replica storage at ₹6.20/GB/month; DR compute is billed only during failover or drills at Performance Cloud rates. Protection licence and managed DR are quoted separately. Excludes GST.</p>
+      <button class="quote-button" type="button" (click)="quoteRequested.emit($event)">Get my DR quote <span aria-hidden="true">→</span></button>
+    </aside>
+  </div>
+
+  <h2 class="section-title">Playbooks for <em>every kind of disaster</em></h2>
+  <div class="playbooks" id="drRecoveryPlaybooks">
+    <div class="playbook-tabs" role="tablist" aria-label="Disaster recovery scenarios">
+      @for (scenario of scenarios; track scenario.name; let i = $index) {
+        <button
+          type="button"
+          role="tab"
+          [attr.aria-selected]="selectedScenarioIndex() === i"
+          [attr.aria-controls]="'drScenarioPanel'"
+          (click)="chooseScenario(i)"
+        >
+          <span class="scenario-icon" [attr.data-icon]="scenario.icon" aria-hidden="true"></span>
+          {{ scenario.name }}
+        </button>
+      }
+    </div>
+    <div class="playbook-panel" id="drScenarioPanel" role="tabpanel">
+      <span class="eyebrow">Recovery playbook</span>
+      <h3>{{ selectedScenario().name }}</h3>
+      <div class="recovery-steps">
+        @for (step of selectedScenario().steps; track step.time + step.action; let i = $index) {
+          <div [class.visible]="i < visibleSteps()">
+            <b>{{ step.time }}</b>
+            <span>{{ step.action }}</span>
+          </div>
+        }
+        <p class="playbook-complete" [class.visible]="visibleSteps() === selectedScenario().steps.length">✓ Recovered — XcellHost DR desk on the line throughout</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Backup and disaster recovery <em>capabilities</em></h2>
+  <div class="card-grid dark-cards">
+    <article><span class="card-icon">↻</span><h3>Continuous replication</h3><p>Block-level replication streams changes to the DR site continuously, so the recovery point stays inside your agreed RPO.</p></article>
+    <article><span class="card-icon">ϟ</span><h3>Instant failover</h3><p>When disaster strikes, bring workloads up at the DR site in minutes — planned or unplanned.</p></article>
+    <article><span class="card-icon">↥</span><h3>One-click recovery</h3><p>Recover single VMs or entire environments with one click from the portal, or automate it via API.</p></article>
+    <article><span class="card-icon">◎</span><h3>Geo-separated DR site</h3><p>Replicas live in a second data centre in a different seismic and power zone from your primary.</p></article>
+    <article><span class="card-icon">▣</span><h3>Immutable, air-gapped copies</h3><p>Ransomware cannot encrypt what it cannot change — immutable snapshots give you a clean point to return to.</p></article>
+    <article><span class="card-icon">✓</span><h3>Audit &amp; compliance reports</h3><p>Recovery logs, drill reports and access trails that stand up to auditors, RBI/SEBI inspections and DPDP reviews.</p></article>
+  </div>
+
+  <section class="data-centre-band">
+    <div class="circuit-lines" aria-hidden="true"></div>
+    <h2>Your second data centre — without building one</h2>
+    <p>Replicas sit in a geo-separated XcellHost facility, ready to run on enterprise NVMe. You pay for storage every month and for compute only when you need it.</p>
+    <div class="data-centre-stats">
+      <div><b>Near-zero</b><span>RPO</span></div>
+      <div><b>Sec–min</b><span>failover</span></div>
+      <div><b>₹6.20</b><span>per GB replica</span></div>
+      <div><b>24×7</b><span>DR desk in India</span></div>
+    </div>
+  </section>
+
+  <h2 class="section-title">Built on the <em>3-2-1-1-0</em> rule</h2>
+  <div class="rule-grid" aria-label="3-2-1-1-0 data protection rule">
+    <div><b>3</b><span>copies of your data</span></div>
+    <div><b>2</b><span>different storage types</span></div>
+    <div><b>1</b><span>copy off-site at the DR site</span></div>
+    <div><b>1</b><span>immutable, air-gapped copy</span></div>
+    <div><b>0</b><span>errors after recovery testing</span></div>
+  </div>
+
+  <h2 class="section-title">Storage that <em>performs on recovery day</em></h2>
+  <div class="card-grid storage-cards">
+    <article><span class="card-icon">◎</span><h3>Access from anywhere</h3><p>Reach your DR environment from any device and location through the portal, VPN or API.</p></article>
+    <article><span class="card-icon">↗</span><h3>Scales with the workload</h3><p>Grow protected capacity without downtime as you add servers and data.</p></article>
+    <article><span class="card-icon">ϟ</span><h3>NVMe performance on failover</h3><p>DR servers run on the same enterprise NVMe as Performance Cloud — no slow “recovery-grade” disks.</p></article>
+    <article><span class="card-icon">◇</span><h3>Fault-tolerant volumes</h3><p>Replicated, highly available block volumes that survive disk and host failures.</p></article>
+    <article><span class="card-icon">⬡</span><h3>S3-compatible object storage</h3><p>Long-term backup copies land in S3-compatible storage that your existing tools can write to.</p></article>
+    <article><span class="card-icon">▥</span><h3>Hot and cold tiers</h3><p>Keep recent recovery points on fast storage and older ones on lower-cost archive tiers.</p></article>
+  </div>
+
+  <h2 class="section-title">Where companies use <em>disaster recovery</em></h2>
+  <div class="use-case-tabs" role="tablist" aria-label="Disaster recovery use cases">
+    @for (useCase of useCases; track useCase.name; let i = $index) {
+      <button
+        type="button"
+        role="tab"
+        [attr.aria-selected]="selectedUseCaseIndex() === i"
+        [attr.aria-controls]="'drUseCasePanel' + i"
+        (click)="selectedUseCaseIndex.set(i)"
+      >
+        <span aria-hidden="true">{{ i === 0 ? '◆' : i === 1 ? '✓' : i === 2 ? '◎' : i === 3 ? '⌂' : i === 4 ? '▣' : '‹›' }}</span>
+        {{ useCase.name }}
+      </button>
+    }
+  </div>
+  @for (useCase of useCases; track useCase.name; let i = $index) {
+    <section
+      class="use-case-panel"
+      [id]="'drUseCasePanel' + i"
+      role="tabpanel"
+      [hidden]="selectedUseCaseIndex() !== i"
+    >
+      <div>
+        <span class="eyebrow">Use case</span>
+        <h3>{{ useCase.name }}</h3>
+        <p>{{ useCase.description }}</p>
+      </div>
+      <ul>
+        @for (benefit of useCase.benefits; track benefit) {
+          <li><span aria-hidden="true">✓</span>{{ benefit }}</li>
+        }
+      </ul>
+    </section>
+  }
+
+  <h2 class="section-title">Security &amp; <em>compliance</em></h2>
+  <div class="compliance-grid">
+    <article><span class="compliance-icon shield" aria-hidden="true">✓</span><b>ISO 27001</b><small>Information security management</small></article>
+    <article><span class="compliance-icon check" aria-hidden="true">✓</span><b>ISO 20000-1</b><small>IT service management</small></article>
+    <article><span class="compliance-icon lock" aria-hidden="true"></span><b>DPDP Act</b><small>Data and replicas stay in India</small></article>
+    <article><span class="compliance-icon document" aria-hidden="true">≡</span><b>BCP evidence</b><small>Drill reports and logs for RBI, SEBI and IRDAI audits</small></article>
+  </div>
+  <p class="compliance-note">Pair DR with <a href="/acronis-cyber-protect">Acronis Cyber Protect</a> for file-level backup, anti-ransomware and endpoint protection.</p>
+</section>
