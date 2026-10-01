@@ -304,6 +304,7 @@ export const routes: Routes = [
   { path: 'company/:slug', loadComponent: () => import('./pages/company.page').then((m) => m.CompanyPage) },
   { path: 'customer-stories', redirectTo: 'company/customer-stories', pathMatch: 'full' },
   { path: 'category/:name', loadComponent: () => import('./pages/category.page').then((m) => m.CategoryPage) },
+  { path: 'vendor-partners/acronis', loadComponent: () => import('./pages/acronis-partner.page').then((m) => m.AcronisPartnerPage) },
   {
     path: 'vendor-partners/:slug',
     loadComponent: () =>
