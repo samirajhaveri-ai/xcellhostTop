@@ -1114,7 +1114,6 @@ interface ProductTourSlide {
       #ppage .pp-hero > .wrap > .pp-hero-grid { max-width: 56%; }
       #ppage .pp-hero > .wrap > h1,
       #ppage .pp-hero #ppTitle { font-size: clamp(27px, 3.2vw, 35px); }
-      #ppage .pph-scene { width: 44%; }
       #ppage .product-hero-ctas { gap: 8px; }
       #ppage .product-hero-ctas .btn { padding-inline: 13px; font-size: 12px; }
       #ppage .pp-hpoints { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 16px; }
@@ -1128,7 +1127,56 @@ interface ProductTourSlide {
       }
       #ppage .product-hero-ctas .btn { min-height: 42px; padding-inline: 11px; }
       #ppage .pp-ask-ai { margin-top: 18px; }
-      #ppage .pph-scene { right: -2%; width: 43%; }
+    }
+
+    /* Keep hero artwork inside the same 1240px container as the sections below. */
+    @media (min-width: 901px) {
+      #ppage.ppage > .pp-hero > .pph-scene:not(.oracle-hero-visual) {
+        right: max(24px, calc((100% - 1240px) / 2 + 24px));
+        width: min(calc((100% - 48px) * .34), 405px);
+        max-width: none;
+        box-sizing: border-box;
+      }
+      #ppage.ppage > .pp-hero > .pph-scene.has-illus {
+        display: flex;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        max-height: none;
+        align-items: center;
+        justify-content: center;
+        padding: 24px 0;
+        mask-image: none;
+      }
+      #ppage.ppage > .pp-hero > .pph-scene.has-illus > .pph-illus {
+        width: 100%;
+        min-width: 0;
+        padding: 0;
+        gap: 14px;
+      }
+      #ppage.ppage > .pp-hero > .pph-scene.has-illus .pph-illus-img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        max-height: 340px;
+        object-fit: contain;
+      }
+      #ppage .pp-hero > .wrap > h1,
+      #ppage .pp-hero > .wrap > .pp-tagline,
+      #ppage .pp-hero > .wrap > .pp-tagline-support {
+        max-width: 58%;
+      }
+    }
+    @media (min-width: 901px) and (max-width: 1180px) {
+      #ppage.ppage > .pp-hero > .pph-scene:not(.oracle-hero-visual) {
+        right: 28px;
+        width: calc((100% - 56px) * .38);
+      }
+      #ppage .pp-hero > .wrap > h1,
+      #ppage .pp-hero > .wrap > .pp-tagline,
+      #ppage .pp-hero > .wrap > .pp-tagline-support {
+        max-width: 56%;
+      }
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
