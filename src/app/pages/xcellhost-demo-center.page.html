@@ -1,0 +1,84 @@
+<main class="acronis-demo-page">
+  <div class="acronis-demo-wrap">
+    <nav class="acronis-demo-breadcrumb" aria-label="Breadcrumb">
+      <a routerLink="/">Home</a><span aria-hidden="true">/</span><span>Experience Center</span
+      ><span aria-hidden="true">/</span><span>XcellHost Demo Center</span>
+    </nav>
+
+    <section class="acronis-catalog" aria-labelledby="xcellhost-results-title">
+      <div class="acronis-catalog-toolbar">
+        <div>
+          <span class="acronis-demo-eyebrow">Videos and product demos</span>
+          <h1 id="xcellhost-results-title">XcellHost Demo Center</h1>
+        </div>
+      </div>
+
+      <div class="acronis-filters">
+        <label class="acronis-search">
+          <span>Search videos</span>
+          <input
+            type="search"
+            placeholder="Search by product, feature or topic"
+            [value]="searchTerm()"
+            (input)="setSearch($any($event.target).value)"
+          />
+        </label>
+
+        <label>
+          <span>Category</span>
+          <select [value]="selectedCategory()" (change)="setCategory($any($event.target).value)">
+            <option value="">All categories</option>
+            @for (category of categories; track category) {
+              <option [value]="category">{{ category }}</option>
+            }
+          </select>
+        </label>
+      </div>
+
+      @if (filtersAreActive()) {
+        <button class="acronis-clear-filters" type="button" (click)="clearFilters()">
+          Clear all filters
+        </button>
+      }
+
+      @if (filteredVideos().length) {
+        <div class="acronis-video-grid">
+          @for (video of filteredVideos(); track video.id) {
+            <article class="acronis-video-card">
+              <div class="acronis-video-media">
+                @if (activeVideoId() === video.videoId) {
+                  <iframe
+                    [src]="video.embedUrl"
+                    [title]="video.title"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen
+                  ></iframe>
+                } @else {
+                  <button
+                    type="button"
+                    (click)="playVideo(video.videoId)"
+                    [attr.aria-label]="'Play ' + video.title"
+                  >
+                    <img [src]="video.thumbnailUrl" [alt]="video.title" loading="lazy" />
+                    <span class="acronis-play" aria-hidden="true"></span>
+                  </button>
+                }
+              </div>
+              <div class="acronis-video-copy">
+                <div class="acronis-video-tags"><span>{{ video.category }}</span></div>
+                <h3>{{ video.title }}</h3>
+              </div>
+            </article>
+          }
+        </div>
+      } @else {
+        <div class="acronis-empty-state">
+          <h3>No videos match these filters</h3>
+          <p>Try a broader search or reset the selected filters.</p>
+          <button type="button" (click)="clearFilters()">Reset filters</button>
+        </div>
+      }
+    </section>
+  </div>
+</main>

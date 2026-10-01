@@ -1,0 +1,147 @@
+<main class="acronis-demo-page">
+  <div class="acronis-demo-wrap">
+    <nav class="acronis-demo-breadcrumb" aria-label="Breadcrumb">
+      <a routerLink="/">Home</a><span aria-hidden="true">/</span><span>Experience Center</span
+      ><span aria-hidden="true">/</span><span>Acronis Demo Center</span>
+    </nav>
+
+    <section class="acronis-catalog" id="acronis-results" aria-labelledby="acronis-results-title">
+      <div class="acronis-catalog-toolbar">
+        <div>
+          <span class="acronis-demo-eyebrow">Videos and product demos</span>
+          <h1 id="acronis-results-title">Acronis Demo Center</h1>
+        </div>
+        <label class="acronis-sort">
+          <span>Sort by</span>
+          <select [value]="sortMode()" (change)="setSort($any($event.target).value)">
+            <option value="recent">Recent</option>
+            <option value="popular">Popular</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="acronis-filters">
+        <label class="acronis-search">
+          <span>Search videos</span>
+          <input
+            type="search"
+            placeholder="Search by product, feature or topic"
+            [value]="searchTerm()"
+            (input)="setSearch($any($event.target).value)"
+          />
+        </label>
+
+        <label>
+          <span>Audience</span>
+          <select [value]="selectedAudience()" (change)="setAudience($any($event.target).value)">
+            <option value="">All audiences</option>
+            @for (audience of audiences; track audience) {
+              <option [value]="audience">{{ audience }}</option>
+            }
+          </select>
+        </label>
+
+        <label>
+          <span>Product</span>
+          <select [value]="selectedProduct()" (change)="setProduct($any($event.target).value)">
+            <option value="">All products</option>
+            @for (product of products; track product) {
+              <option [value]="product">{{ product }}</option>
+            }
+          </select>
+        </label>
+
+        <label>
+          <span>Purpose</span>
+          <select [value]="selectedPurpose()" (change)="setPurpose($any($event.target).value)">
+            <option value="">All purposes</option>
+            @for (purpose of purposes; track purpose) {
+              <option [value]="purpose">{{ purpose }}</option>
+            }
+          </select>
+        </label>
+
+        <label>
+          <span>Capability</span>
+          <select [value]="selectedCapability()" (change)="setCapability($any($event.target).value)">
+            <option value="">All capabilities</option>
+            @for (capability of capabilities; track capability) {
+              <option [value]="capability">{{ capability }}</option>
+            }
+          </select>
+        </label>
+
+        <label>
+          <span>Topic</span>
+          <select [value]="selectedTopic()" (change)="setTopic($any($event.target).value)">
+            <option value="">All topics</option>
+            @for (topic of topics; track topic) {
+              <option [value]="topic">{{ topic }}</option>
+            }
+          </select>
+        </label>
+      </div>
+
+      @if (filtersAreActive()) {
+        <button class="acronis-clear-filters" type="button" (click)="clearFilters()">
+          Clear all filters
+        </button>
+      }
+
+      @if (visibleVideos().length) {
+        <div class="acronis-video-grid">
+          @for (video of visibleVideos(); track video.id) {
+            <article class="acronis-video-card">
+              <div class="acronis-video-media">
+                @if (activeVideoId() === video.videoId) {
+                  <iframe
+                    [src]="video.embedUrl"
+                    [title]="video.title"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen
+                  ></iframe>
+                } @else {
+                  <button type="button" (click)="playVideo(video.videoId)" [attr.aria-label]="'Play ' + video.title">
+                    <img [src]="video.thumbnailUrl" [alt]="video.title" loading="lazy" />
+                    <span class="acronis-play" aria-hidden="true"></span>
+                  </button>
+                }
+              </div>
+              <div class="acronis-video-copy">
+                <div class="acronis-video-tags">
+                  @for (purpose of video.purposes.slice(0, 2); track purpose) {
+                    <span>{{ purpose }}</span>
+                  }
+                  @for (product of video.products.slice(0, 1); track product) {
+                    <span>{{ product }}</span>
+                  }
+                </div>
+                <h3>{{ video.title }}</h3>
+                @if (video.capabilities.length || video.topics.length) {
+                  <p>{{ video.capabilities[0] || video.topics[0] }}</p>
+                }
+              </div>
+            </article>
+          }
+        </div>
+
+        @if (hasMoreVideos()) {
+          <div class="acronis-show-more">
+            <button type="button" (click)="showMore()">
+              Show more videos
+              <span>{{ visibleVideos().length }} of {{ filteredVideos().length }}</span>
+            </button>
+          </div>
+        }
+      } @else {
+        <div class="acronis-empty-state">
+          <h3>No videos match these filters</h3>
+          <p>Try a broader search or reset the selected filters.</p>
+          <button type="button" (click)="clearFilters()">Reset filters</button>
+        </div>
+      }
+    </section>
+
+  </div>
+</main>

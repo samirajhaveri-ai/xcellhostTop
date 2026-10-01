@@ -1,0 +1,29 @@
+<section class="magicqr-dashboard" aria-label="Live AI Review MagicQR activity dashboard">
+  <header>
+    <span>AI Review MagicQR</span>
+    <b><i aria-hidden="true"></i> Live</b>
+  </header>
+
+  <div class="metric-grid" aria-label="Review performance summary">
+    <div><b>+{{ reviewCount() }}</b><span>reviews / month</span></div>
+    <div><b>4.8★</b><span>avg rating</span></div>
+    <div><b>{{ privateNotes() }}</b><span>private notes</span></div>
+  </div>
+
+  <div class="dashboard-body">
+    <div class="rating-phone">
+      <strong>Rate your visit</strong>
+      @for (choice of choices; track choice; let i = $index) {
+        <button type="button" [class.active]="activeChoice() === i" (click)="chooseRating(i)">
+          {{ choice }}
+        </button>
+      }
+    </div>
+
+    <div class="activity-feed" aria-label="Recent MagicQR activity" aria-live="polite">
+      @for (item of feed(); track item.id) {
+        <div><time>{{ item.time }}</time><span>{{ item.message }}</span></div>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,110 @@
+<section class="magicqr-overview" aria-label="AI Review MagicQR overview">
+  <article class="quick-answer reveal" data-reveal>
+    <div>
+      <span class="eyebrow">Quick answer</span>
+      <h2>What is AI Review MagicQR?</h2>
+      <p>AI Review MagicQR is a review-request QR code and link: customers rate their visit, are invited to post a Google review in one tap, and can also send private feedback to the owner. XcellHost sets it up for your business — or white-label for agencies — as part of the XcellHost Growth Suite.</p>
+    </div>
+    <div>
+      <span class="eyebrow">What you get</span>
+      <ul class="check-list">
+        <li>Smart feedback flow</li><li>AI review draft</li><li>Printable QR standees</li>
+        <li>Dynamic QR</li><li>Multi-platform reviews</li><li>Scan analytics</li>
+      </ul>
+      <div class="best-for"><span>Best for:</span><b>Restaurants & cafés</b><b>Salons & spas</b><b>Clinics</b><b>Home services</b></div>
+    </div>
+  </article>
+
+  <div class="value-band reveal" data-reveal>
+    <div><b>10 sec</b><span>to leave a review</span></div>
+    <div><b>AI</b><span>writes a review draft</span></div>
+    <div><b>Dynamic</b><span>QR — never reprint</span></div>
+    <div><b>Multi</b><span>platform reviews</span></div>
+  </div>
+
+  <h2 class="section-title reveal" data-reveal>Problems it <em>solves</em></h2>
+  <div class="problem-list reveal" data-reveal>
+    <article><span class="problem"><i>!</i>Happy customers never leave reviews</span><span class="arrow">→</span><span class="solution"><i>✓</i>A table or counter standee makes it a 10-second job.</span></article>
+    <article><span class="problem"><i>!</i>Complaints only surface in public</span><span class="arrow">→</span><span class="solution"><i>✓</i>A private line to the owner lets you recover service first.</span></article>
+    <article><span class="problem"><i>!</i>Typing a review feels like work</span><span class="arrow">→</span><span class="solution"><i>✓</i>AI suggests a review draft from the customer's rating and keywords — they edit and post.</span></article>
+  </div>
+
+  <h2 class="section-title reveal" id="magicqr-demo" data-reveal>See it <em>in action</em></h2>
+  <p class="section-lead reveal" data-reveal>An interactive demo — click, type and try it. Sample data only.</p>
+  <div class="demo-grid reveal" data-reveal>
+    <article class="demo-card standee-card">
+      <header><b>Your QR standee</b><span>Scan → rate → post</span></header>
+      <div class="standee">
+        <small>Loved your visit?</small>
+        <svg viewBox="0 0 29 29" shape-rendering="crispEdges" role="img" aria-label="Sample QR code">
+          @for (cell of qrCells; track cell.x + '-' + cell.y) { <rect [attr.x]="cell.x" [attr.y]="cell.y" width="1" height="1" /> }
+        </svg>
+        <b>Scan to review us on Google</b><span>Café Mocha · Bandra</span>
+      </div>
+    </article>
+    <article class="demo-card customer-card">
+      <header><b>What the customer sees</b><span>Tap a rating</span></header>
+      <div class="phone">
+        <b>How was your visit?</b>
+        <div class="stars" aria-label="Choose a star rating">
+          @for (star of [1,2,3,4,5]; track star) {
+            <button type="button" [class.active]="star <= rating()" (click)="setRating(star)" [attr.aria-label]="star + ' stars'">★</button>
+          }
+        </div>
+        @if (rating() === 0) {
+          <p class="tap-hint">Tap the stars ↑</p>
+        } @else {
+          <p class="keyword-label">Tap what you liked:</p>
+          <div class="keyword-list">
+            @for (keyword of keywords; track keyword) {
+              <button type="button" [class.active]="selectedKeywords().includes(keyword)" (click)="toggleKeyword(keyword)">{{ keyword }}</button>
+            }
+          </div>
+          <div class="ai-draft"><small>AI draft — edit before posting</small><p>{{ draft() }}</p></div>
+          <button type="button" class="post-button">Post on Google ↗</button>
+          @if (rating() <= 3) { <button type="button" class="private-button">Message the owner privately</button> }
+        }
+      </div>
+    </article>
+  </div>
+
+  <h2 class="section-title reveal" data-reveal>AI Review MagicQR <em>features</em></h2>
+  <div class="feature-grid reveal" data-reveal>
+    @for (feature of features; track feature.title; let i = $index) {
+      <article [style.--delay.ms]="i * 45">
+        <span class="feature-icon" [attr.data-icon]="feature.icon" aria-hidden="true">
+          @switch (feature.icon) {
+            @case ('message') { <svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.2A8 8 0 1 1 20 12z"/></svg> }
+            @case ('spark') { <svg viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><path d="m12 8 1.5 2.5L16 12l-2.5 1.5L12 16l-1.5-2.5L8 12l2.5-1.5z"/></svg> }
+            @case ('print') { <svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h8M9 17h6"/></svg> }
+            @case ('link') { <svg viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3A4 4 0 0 0 13 5.3l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg> }
+            @case ('globe') { <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg> }
+            @case ('pulse') { <svg viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg> }
+            @case ('chart') { <svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg> }
+            @default { <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2 20c0-4 3-6 7-6s7 2 7 6M16 4.5a3.5 3.5 0 0 1 0 7M18 14c2.5.6 4 2.6 4 6"/></svg> }
+          }
+        </span>
+        <h3>{{ feature.title }}</h3><p>{{ feature.body }}</p>
+      </article>
+    }
+  </div>
+
+  <h2 class="section-title reveal" data-reveal>How it <em>works</em></h2>
+  <div class="steps reveal" data-reveal>
+    <article><small>Step 1</small><h3>Create your QR</h3><p>Add your Google profile link and choose a standee design.</p></article>
+    <article><small>Step 2</small><h3>Place it</h3><p>Print standees for counters, tables and bills.</p></article>
+    <article><small>Step 3</small><h3>Customers rate & post</h3><p>Scan → rate → post to Google in one tap; private notes reach you instantly.</p></article>
+    <article><small>Step 4</small><h3>Watch ratings grow</h3><p>Weekly growth and scan analytics.</p></article>
+  </div>
+
+  <h2 class="section-title reveal" data-reveal>Built for <em>your industry</em></h2>
+  <div class="industry-tabs reveal" role="tablist" data-reveal>
+    @for (industry of industries; track industry.name; let i = $index) {
+      <button type="button" role="tab" [attr.aria-selected]="activeIndustry() === i" (click)="activeIndustry.set(i)"><span>{{ industry.icon }}</span>{{ industry.name }}</button>
+    }
+  </div>
+  <article class="industry-panel reveal" data-reveal>
+    <div><span class="eyebrow">Use case</span><h3>{{ industries[activeIndustry()].name }}</h3><p>{{ industries[activeIndustry()].description }}</p></div>
+    <ul>@for (point of industries[activeIndustry()].points; track point) { <li>{{ point }}</li> }</ul>
+  </article>
+</section>
