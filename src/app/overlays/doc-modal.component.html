@@ -1,57 +1,77 @@
 @if (overlay.isOpen('doc')) {
-  <div class="tr-back open" id="docBack" (click)="close()"></div>
-  <div class="trial open" id="docModal" (click)="onBackdrop($event)" role="dialog" aria-modal="true" aria-labelledby="docTitle">
-    <div class="tr-card" [formGroup]="form">
-      <button class="cart-x tr-x" id="docX" aria-label="Close" (click)="close()">✕</button>
-      <div class="ppd-hero" id="docHero">
-        <span class="ppd-hero-ic" id="docHeroIc">{{ meta().emoji }}</span>
+  <div class="xhf-backdrop" (click)="close()" aria-hidden="true"></div>
+  <div
+    class="xhf-layer"
+    (click)="onBackdrop($event)"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="xhf-title"
+  >
+    <section class="xhf-card">
+      <button class="xhf-close" type="button" aria-label="Close form" (click)="close()">&times;</button>
+      <header class="xhf-head">
+        <div class="xhf-sky" aria-hidden="true">
+          <svg class="xhf-cloud c1" viewBox="0 0 100 60"><path d="M25 45C13 45 5 38 5 30C5 22 13 16 22 17C25 8 34 3 43 5C53 7 60 15 58 24C68 24 75 30 75 37C75 42 70 45 63 45Z" /></svg>
+          <svg class="xhf-cloud c2" viewBox="0 0 100 60"><path d="M25 45C13 45 5 38 5 30C5 22 13 16 22 17C25 8 34 3 43 5C53 7 60 15 58 24C68 24 75 30 75 37C75 42 70 45 63 45Z" /></svg>
+          <i class="xhf-particle p1"></i><i class="xhf-particle p2"></i><i class="xhf-particle p3"></i>
+        </div>
+        <span class="xhf-logo-chip"><img src="/assets/images/xcellhost-logo.png" alt="XcellHost" /></span>
+        <span class="xhf-badge">{{ meta().badge }}</span>
+        <h2 class="xhf-title" id="xhf-title">{{ title() }}</h2>
+        <p class="xhf-sub">{{ sub() }}</p>
+      </header>
+
+      <div class="xhf-body">
+        @if (!done()) {
+          <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+            <div class="xhf-row">
+              <label class="xhf-field">
+                <span>First Name <b>*</b></span>
+                <input type="text" formControlName="firstName" placeholder="Rajesh" autocomplete="given-name" [class.err]="fieldError('firstName')" />
+                <small>{{ fieldError('firstName') }}</small>
+              </label>
+              <label class="xhf-field">
+                <span>Last Name <b>*</b></span>
+                <input type="text" formControlName="lastName" placeholder="Kumar" autocomplete="family-name" [class.err]="fieldError('lastName')" />
+                <small>{{ fieldError('lastName') }}</small>
+              </label>
+            </div>
+            <label class="xhf-field">
+              <span>Work Email <b>*</b></span>
+              <input type="email" formControlName="email" placeholder="you@company.com" autocomplete="email" [class.err]="fieldError('email')" />
+              <small>{{ fieldError('email') }}</small>
+            </label>
+            <label class="xhf-field">
+              <span>Mobile / WhatsApp <b>*</b></span>
+              <input type="tel" formControlName="phone" placeholder="+91 98765 43210" autocomplete="tel" [class.err]="fieldError('phone')" />
+              <small>{{ fieldError('phone') }}</small>
+            </label>
+            <label class="xhf-field">
+              <span>Company Name <b>*</b></span>
+              <input type="text" formControlName="company" placeholder="Company Pvt. Ltd." autocomplete="organization" [class.err]="fieldError('company')" />
+              <small>{{ fieldError('company') }}</small>
+            </label>
+            <label class="xhf-consent">
+              <input type="checkbox" formControlName="consent" />
+              <span>I agree to the <a href="https://www.xcellhost.cloud/terms-of-service/" target="_blank" rel="noopener noreferrer">Terms &amp; Conditions</a> and <a href="https://www.xcellhost.cloud/privacy-cookie-policy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.</span>
+            </label>
+            <small class="xhf-consent-error">{{ fieldError('consent') }}</small>
+            @if (error()) { <p class="xhf-form-error" role="alert">{{ error() }}</p> }
+            <button class="xhf-submit" type="submit" [disabled]="busy()" [class.loading]="busy()">
+              <span>{{ submitLabel() }}</span><i aria-hidden="true"></i>
+            </button>
+            <p class="xhf-privacy">Protected by XcellHost. We respect your privacy.</p>
+          </form>
+        } @else {
+          <div class="xhf-success">
+            <div class="xhf-check" aria-hidden="true">&#10003;</div>
+            <h3>You're all set!</h3>
+            <p>{{ sub() }}</p>
+            @if (reference()) { <span>Reference: {{ reference() }}</span> }
+          </div>
+        }
       </div>
-      <div class="tr-badge" id="docBadge">{{ meta().badge }}</div>
-      <h3 class="tr-title" id="docTitle">{{ title() }}</h3>
-      <p class="tr-sub" id="docSub">{{ sub() }}</p>
-
-      @if (!done()) {
-        <label class="ck-l"
-          >Full name *<input
-            class="ck-i"
-            id="docName"
-            formControlName="name"
-            placeholder="Rajesh Patel"
-        /></label>
-        <label class="ck-l"
-          >Work email *<input
-            class="ck-i"
-            id="docEmail"
-            type="email"
-            formControlName="email"
-            placeholder="rajesh@company.com"
-        /></label>
-        <label class="ck-l"
-          >Phone / WhatsApp *<input
-            class="ck-i"
-            id="docPhone"
-            type="tel"
-            formControlName="phone"
-            placeholder="+91 98XXXXXXXX"
-        /></label>
-        <div class="ck-err" id="docErr">{{ error() }}</div>
-        <button
-          class="btn atc"
-          id="docGo"
-          style="width: 100%"
-          [class.ck-busy]="busy()"
-          (click)="submit()"
-        >
-          <span id="docGoLabel">{{ submitLabel() }}</span>
-        </button>
-      } @else {
-        <span class="ck-ref" id="docRef" style="display: inline-block">Ref: {{ reference() }}</span>
-      }
-
-      <p class="cart-draft" id="docNote" style="margin-top: 10px">
-        📄 Draft: the PDF slot is ready — attach the real file at build time, or it will be emailed
-        by your team.
-      </p>
-    </div>
+      <iframe name="xhZohoInfosheetFrame" class="xhf-zoho-frame" title="Infosheet request submission"></iframe>
+    </section>
   </div>
 }

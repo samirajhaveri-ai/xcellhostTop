@@ -164,6 +164,10 @@ export const routes: Routes = [
   { path: 'under-construction/ai-use-policy', loadComponent: () => import('./pages/ai-use-policy.page').then((m) => m.AiUsePolicyPage) },
   { path: 'under-construction/tsplus-demo-center', redirectTo: 'tsplus-demo-center', pathMatch: 'full' },
   { path: 'tsplus-demo-center', loadComponent: () => import('./pages/tsplus-demo-center.page').then((m) => m.TsplusDemoCenterPage) },
+  { path: 'under-construction/acronis-demo-center', redirectTo: 'acronis-demo-center', pathMatch: 'full' },
+  { path: 'acronis-demo-center', loadComponent: () => import('./pages/acronis-demo-center.page').then((m) => m.AcronisDemoCenterPage) },
+  { path: 'under-construction/xcellhost-demo-center', redirectTo: 'xcellhost-demo-center', pathMatch: 'full' },
+  { path: 'xcellhost-demo-center', loadComponent: () => import('./pages/xcellhost-demo-center.page').then((m) => m.XcellhostDemoCenterPage) },
   { path: 'under-construction/events-catalog', loadComponent: () => import('./pages/events-catalog.page').then((m) => m.EventsCatalogPage) },
   { path: 'under-construction/:slug', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
   { path: 'under-construction', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
@@ -308,6 +312,7 @@ export const routes: Routes = [
   { path: 'company/:slug', loadComponent: () => import('./pages/company.page').then((m) => m.CompanyPage) },
   { path: 'customer-stories', redirectTo: 'company/customer-stories', pathMatch: 'full' },
   { path: 'category/:name', loadComponent: () => import('./pages/category.page').then((m) => m.CategoryPage) },
+  { path: 'vendor-partners/acronis', loadComponent: () => import('./pages/acronis-partner.page').then((m) => m.AcronisPartnerPage) },
   {
     path: 'vendor-partners/:slug',
     loadComponent: () =>

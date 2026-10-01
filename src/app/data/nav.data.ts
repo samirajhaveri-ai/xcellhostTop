@@ -4230,6 +4230,18 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Experience Center",
             "items": [
               {
+                "title": "Xcellhost Demo Center",
+                "pill": null,
+                "desc": "Watch XcellHost product videos and demos",
+                "href": "/xcellhost-demo-center"
+              },
+               {
+                "title": "Acronis Demo Center",
+                "pill": null,
+                "desc": "Interactive Acronis product tours and video demos",
+                "href": "/acronis-demo-center"
+              },
+              {
                 "title": "TSPlus Demo Center",
                 "pill": null,
                 "desc": "Watch TSplus Remote Access connection demos",
@@ -4240,8 +4252,14 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+             
               {
-                "title": "Acronis Demo Center",
+                "title": "Plesk Demo Center",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Cpanel Demo Center",
                 "pill": null,
                 "desc": null
               },

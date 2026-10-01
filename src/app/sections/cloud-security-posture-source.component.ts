@@ -5,6 +5,7 @@ import {
   OnDestroy,
   ViewChild,
   inject,
+  output,
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -29,9 +30,12 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class CloudSecurityPostureSourceComponent implements OnDestroy {
   @ViewChild('frame') private frame?: ElementRef<HTMLIFrameElement>;
 
+  readonly tourRequested = output<void>();
+  readonly infosheetRequested = output<Event>();
+
   private readonly sanitizer = inject(DomSanitizer);
   readonly contentUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-    '/m365-security-posture-management.html',
+    '/m365-security-posture-management.html?v=infosheet-form-2',
   );
   private observer?: ResizeObserver;
 
@@ -56,9 +60,24 @@ export class CloudSecurityPostureSourceComponent implements OnDestroy {
     }
     document.fonts?.ready.then(resize);
 
+    document
+      .querySelectorAll<HTMLAnchorElement>('a[data-xh-infosheet]')
+      .forEach((link) => {
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          this.infosheetRequested.emit(event);
+        });
+      });
+
     document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((link) => {
       link.addEventListener('click', (event) => {
         const id = link.getAttribute('href')?.slice(1);
+        if (id === 'tour') {
+          event.preventDefault();
+          this.tourRequested.emit();
+          return;
+        }
         const target = id ? document.getElementById(id) : null;
         if (!target) return;
         event.preventDefault();
