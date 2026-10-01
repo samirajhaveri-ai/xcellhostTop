@@ -227,8 +227,8 @@
         </button>
         <span class="xh-login-tooltip" aria-hidden="true">Login</span>
         <div id="xh-customer-login-menu" class="xh-login-dropdown" role="menu" aria-label="Login portals">
-          <a routerLink="/customer-login" routerLinkActive="selected" #customerLoginLink="routerLinkActive" role="menuitem" (click)="onNavigate()">
-            <span class="xh-login-option"><span class="material-symbols-outlined" aria-hidden="true">person</span><span>Customer Login</span></span>@if (customerLoginLink.isActive) {<b class="xh-login-check" aria-hidden="true">✓</b>}
+          <a href="https://billing.zohosecure.in/portal/xcellhostcloudservicespvtltd/signin" target="_blank" rel="noopener noreferrer" role="menuitem" (click)="onNavigate()">
+            <span class="xh-login-option"><span class="material-symbols-outlined" aria-hidden="true">person</span><span>Customer Login</span></span>
           </a>
           <a routerLink="/partner-login" routerLinkActive="selected" #partnerLoginLink="routerLinkActive" role="menuitem" (click)="onNavigate()">
             <span class="xh-login-option"><span class="material-symbols-outlined" aria-hidden="true">handshake</span><span>Partner Login</span></span>@if (partnerLoginLink.isActive) {<b class="xh-login-check" aria-hidden="true">✓</b>}

@@ -91,6 +91,7 @@
     }
     @if (slug() === 'microsoft-security-posture-management') {
       <xh-cloud-security-posture-source
+        (infosheetRequested)="requestDoc('infosheet', $event)"
         (tourRequested)="openProductScreenshotTour()"
       />
     } @else if (slug() === 'acronis-xdr') {
