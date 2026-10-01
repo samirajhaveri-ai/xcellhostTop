@@ -14,6 +14,8 @@
     [class.tally-page]="isTally()"
     [class.cloud-migration-page]="slug() === 'cloud-migration'"
     [class.acronis-backup-advanced-page]="slug() === 'acronis-backup-advanced'"
+    [class.instagram-automation-page]="slug() === 'instagram-automation'"
+    [class.google-business-page]="slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website'"
     [class.acronis-ot-page]="slug() === 'acronis-ot'"
     [class.acronis-mdr-page]="slug() === 'acronis-mdr'"
     [class.microsoft-defender-page]="slug() === 'microsoft-defender'"
@@ -302,7 +304,71 @@
         <span class="pph-aur pph-a3" aria-hidden="true"></span>
         <span class="pph-scan" aria-hidden="true"></span>
 
-        @if (slug() === 'linux-servers') {
+        @if (slug() === 'instant-website') {
+          <div class="pph-scene google-business-dashboard" aria-label="Illustrative Instant Website And Bio Link dashboard">
+            <div class="gb-dashboard">
+              <div class="gb-dashboard-title"><span>INSTANT WEBSITE + BIO LINK</span><b>● LIVE</b></div>
+              <div class="gb-dashboard-metrics"><div><b>2 min</b><span>to publish</span></div><div><b>3.4k</b><span>link clicks</span></div><div><b>100</b><span>mobile score</span></div></div>
+              <div class="instant-dashboard-body"><div class="instant-dashboard-phone"><b>&#64;chaiwala.bandra</b><span>🌐 Website</span><span>💬 WhatsApp Order</span><span>📋 Menu</span><span>🎁 Today’s Offer</span><span>📸 Instagram</span></div><div class="gb-dashboard-feed">
+                <div><span>17:19</span>Site generated from Google profile</div>
+                <div><span>17:19</span>Hours synced: Sun closed</div>
+                <div><span>17:19</span>New 5★ review shown on site</div>
+                <div><span>17:19</span>Link click → WhatsApp</div>
+                <div><span>17:19</span>Offer banner published</div>
+                <div><span>17:19</span>Bio link updated</div>
+              </div>
+              </div><small class="gb-dashboard-caption">Illustrative Dashboard · Sample Data</small>
+            </div>
+          </div>
+        } @else if (slug() === 'instagram-automation') {
+          <div class="pph-scene google-business-dashboard" aria-label="Illustrative Instagram Automation dashboard">
+            <div class="gb-dashboard">
+              <div class="gb-dashboard-title"><span>INSTAGRAM AUTOMATION</span><b>● LIVE</b></div>
+              <div class="gb-dashboard-metrics"><div><b>8</b><span>Reels queued</span></div><div><b>0</b><span>unread DMs</span></div><div><b>+24%</b><span>engagement</span></div></div>
+              <div class="gb-dashboard-feed">
+                <div><span>17:19</span>Reel scheduled · Sat 7:30 pm</div>
+                <div><span>17:19</span>Story mention by &#64;foodie_mumbai</div>
+                <div><span>17:19</span>DM: price for facial? → lead</div>
+                <div><span>17:19</span>Carousel published</div>
+                <div><span>17:19</span>Weekly insights ready</div>
+                <div><span>17:19</span>Content calendar updated</div>
+              </div>
+              <small class="gb-dashboard-caption">Illustrative Dashboard · Sample Data</small>
+            </div>
+          </div>
+        } @else if (slug() === 'hrm-attendance') {
+          <div class="pph-scene google-business-dashboard" aria-label="Illustrative HRM And Attendance dashboard">
+            <div class="gb-dashboard">
+              <div class="gb-dashboard-title"><span>HRM + ATTENDANCE</span><b>● LIVE</b></div>
+              <div class="gb-dashboard-metrics"><div><b>48</b><span>staff</span></div><div><b>1 click</b><span>payroll</span></div><div><b>0</b><span>devices</span></div></div>
+              <div class="gb-dashboard-feed">
+                <div><span>17:19</span>Anita clocked in · face match</div>
+                <div><span>17:19</span>Late mark: 2 staff</div>
+                <div><span>17:19</span>Payroll run · 48 payslips</div>
+                <div><span>17:19</span>PF &amp; ESIC summary ready</div>
+                <div><span>17:19</span>Leave approved: Rohit</div>
+                <div><span>17:19</span>Attendance report ready</div>
+              </div>
+              <small class="gb-dashboard-caption">Illustrative Dashboard · Sample Data</small>
+            </div>
+          </div>
+        } @else if (slug() === 'google-my-business') {
+          <div class="pph-scene google-business-dashboard" aria-label="Illustrative Google Business Profile Automation dashboard">
+            <div class="gb-dashboard">
+              <div class="gb-dashboard-title"><span>GOOGLE BUSINESS PROFILE AUTOMATION</span><b>● LIVE</b></div>
+              <div class="gb-dashboard-metrics"><div><b>4.7★</b><span>rating</span></div><div><b>100%</b><span>reviews replied</span></div><div><b>#3</b><span>map rank</span></div></div>
+              <div class="gb-dashboard-feed">
+                <div><span>17:19</span>2 new photos published</div>
+                <div><span>17:19</span>New 5★ review → AI reply posted</div>
+                <div><span>17:19</span>Offer post scheduled · Fri 10:00</div>
+                <div><span>17:19</span>Rank #7 → #3 for 'cafe near me'</div>
+                <div><span>17:19</span>Audit score 62 → 91</div>
+                <div><span>17:19</span>2 new photos published</div>
+              </div>
+              <small class="gb-dashboard-caption">Illustrative Dashboard · Sample Data</small>
+            </div>
+          </div>
+        } @else if (slug() === 'linux-servers') {
           <div class="pph-scene linux-servers-hero-art">
             <xh-linux-servers-content [heroOnly]="true" />
           </div>
@@ -1893,7 +1959,7 @@
                       </section>
                    } @else if (slug() === 'imunify360') {
                       <xh-imunify360-content (planRequested)="requestImunify360Plan($event)" />
-                   } @else if (!isTally()) {
+                   } @else if (!isTally() && slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website') {
                       <div class="pp-sec">Overview</div>
                       <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
                     }
@@ -2622,6 +2688,7 @@
                 } @else if (slug() === 'imunify360') {
                   <xh-imunify360-followup (consultationRequested)="requestImunify360Plan($event)" />
                 } @else if (
+                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' &&
                   !isAdvancedEdr() &&
                   !isSmbCyber() &&
                   !isRmm() &&
@@ -2829,6 +2896,7 @@
                 } @else if (slug() === 'rtx-a6000') {
                   <xh-rtx-a6000-details />
                 } @else if (
+                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' &&
                   slug() !== 'imunify360' &&
                   !isSmbCyber() &&
                   !isAcronisTrueImage() &&
@@ -3464,6 +3532,7 @@
                 } @else if (slug() === 'rtx-a6000') {
                   <xh-rtx-a6000-performance />
                 } @else if (
+                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' &&
                   slug() !== 'imunify360' &&
                   !isSmbCyber() &&
                   !isRmm() &&
@@ -4069,6 +4138,14 @@
                       </div>
                     </section>
                   </section>
+                } @else if (slug() === 'instant-website') {
+                  <xh-instant-website-content />
+                } @else if (slug() === 'instagram-automation') {
+                  <xh-instagram-automation-content />
+                } @else if (slug() === 'hrm-attendance') {
+                  <xh-hrm-attendance-content />
+                } @else if (slug() === 'google-my-business') {
+                  <xh-google-business-content />
                 } @else if (slug() === 'rtx-8000') {
                   <xh-rtx-8000-use-cases />
                 } @else if (slug() === 'rtx-pro-6000') {
@@ -4463,7 +4540,7 @@
             </div>
           }
 
-          <div id="ppRich">
+          <div id="ppRich" [hidden]="slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website'">
             @if (v.packages.length) {
               <div class="pp-sec">Included with {{ v.name }}</div>
               <div class="pp-pkg">
@@ -4633,6 +4710,15 @@
             </section>
           }
 
+          @if (slug() === 'instant-website') {
+            <section aria-labelledby="instantWebsiteDemoTitle"><h2 class="pp-sec" id="instantWebsiteDemoTitle">Watch It In Action</h2><xh-instant-website-content [demo]="true" /></section>
+          }
+          @if (slug() === 'instagram-automation') {
+            <section aria-labelledby="instagramDemoTitle"><h2 class="pp-sec" id="instagramDemoTitle">Watch It In Action</h2><xh-instagram-automation-content [demo]="true" /></section>
+          }
+          @if (slug() === 'hrm-attendance') {
+            <section aria-labelledby="hrmDemoTitle"><h2 class="pp-sec" id="hrmDemoTitle">Watch It In Action</h2><xh-hrm-attendance-content [demo]="true" /></section>
+          }
           @if (
             v.name !== 'Enterprise DMARC' &&
             (showcaseVideos().length ||
@@ -4945,7 +5031,7 @@
           }
           @if (slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
           <div class="pp-sec" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">What customers say</div>
-          @if (isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training' || slug() === 'ai-chat-bot') {
+          @if (slug() === 'instant-website' || slug() === 'instagram-automation' || slug() === 'hrm-attendance' || slug() === 'google-my-business' || isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training' || slug() === 'ai-chat-bot') {
             <div class="pp-tcards" id="ppRevs">
               @for (r of v.reviews; track r.name) {
                 <div class="tcard">

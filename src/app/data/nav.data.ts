@@ -32,11 +32,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": "Popular",
                 "desc": null
               },
-              {
-                "title": "Cloud Drive",
-                "pill": null,
-                "desc": null
-              },
+
               {
                 "title": "Advanced Endpoint Security (EDR)",
                 "pill": null,
@@ -80,6 +76,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Workforce Analytics",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Cloud Drive",
                 "pill": null,
                 "desc": null
               },
@@ -530,6 +531,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "AEO + GEO Automation4",
+                "pill": "New",
+                "desc": "Maximise online visibility and reach your target audience 🎯"
+              },
+                  {
+                "title": "Instagram Automation",
                 "pill": "New",
                 "desc": "Maximise online visibility and reach your target audience 🎯"
               },
