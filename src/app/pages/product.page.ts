@@ -1491,6 +1491,15 @@ export class ProductPage {
     { title: 'Active protection settings', description: 'Review protection plans and choose how to respond when suspicious activity is detected.', image: '/assets/images/cloud-backup-tour-protection.png' },
   ];
 
+  readonly microsoftSecurityPostureTourSlides: readonly ProductTourSlide[] = [
+    { title: 'Security posture risk dashboard', description: 'Review tenant and group baseline deviations, category findings and user-account risks.', image: '/assets/images/microsoft-security-posture-tour-1.png' },
+    { title: 'User onboarding', description: 'Create and onboard Microsoft 365 users with their business and contact details.', image: '/assets/images/microsoft-security-posture-tour-2.png' },
+    { title: 'Microsoft 365 connection', description: 'Connect a Microsoft account to activate security posture monitoring and user management.', image: '/assets/images/microsoft-security-posture-tour-3.png' },
+    { title: 'Customer account mapping', description: 'Map Microsoft 365 tenants to the corresponding customer accounts in the management console.', image: '/assets/images/microsoft-security-posture-tour-4.png' },
+    { title: 'Tenant posture overview', description: 'Compare tenant baseline deviations, users and mailboxes across managed customers.', image: '/assets/images/microsoft-security-posture-tour-5.png' },
+    { title: 'Detailed risk findings', description: 'Open a tenant risk dashboard to inspect baseline deviations and affected user accounts.', image: '/assets/images/microsoft-security-posture-tour-6.png' },
+  ];
+
   readonly cloudDriveTourSlides: readonly ProductTourSlide[] = [
     { title: 'Share files with a link', description: 'Set access permissions, download options and expiry for a shared file.', image: '/assets/images/cloud-drive-tour-sharing.png' },
     { title: 'Cloud Drive dashboard', description: 'Review users, storage usage, files and activity from the administration dashboard.', image: '/assets/images/cloud-drive-tour-dashboard.jpg' },
@@ -1502,6 +1511,7 @@ export class ProductPage {
   readonly productTourSlides = computed<readonly ProductTourSlide[]>(() => {
     const view = this.view();
     if (!view) return [];
+    if (this.slug() === 'microsoft-security-posture-management') return this.microsoftSecurityPostureTourSlides;
     if (this.isCloudBackup()) return this.cloudBackupTourSlides;
     if (this.isCloudDrive()) return this.cloudDriveTourSlides;
     if (this.slug() === 'smb-cyber-security-appliance') return this.smbCyberTourSlides;
@@ -2427,6 +2437,14 @@ export class ProductPage {
         name: 'Cloud DevOps Services',
         cat: 'Cloud',
         crumb: 'Cloud › Managed DevOps',
+      });
+    }
+    if (slug === 'microsoft-security-posture-management') {
+      return this.products.build({
+        name: 'Microsoft 365 Security Posture Management',
+        tag: 'Monitor and strengthen Microsoft 365 security configurations.',
+        cat: 'Security',
+        crumb: 'Security › Risk Assessment',
       });
     }
     if (slug === 'register-a-domain-name') {

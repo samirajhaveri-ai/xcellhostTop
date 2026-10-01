@@ -4243,6 +4243,17 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Acronis Demo Center",
                 "pill": null,
+                "desc": "Interactive Acronis product tours and video demos",
+                "href": "/acronis-demo-center"
+              },
+              {
+                "title": "Plesk Demo Center",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Cpanel Demo Center",
+                "pill": null,
                 "desc": null
               },
             ]

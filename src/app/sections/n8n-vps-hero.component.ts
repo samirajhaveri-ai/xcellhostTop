@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, output } from '@angular/core';
 
 @Component({
   selector: 'xh-n8n-vps-hero',
@@ -8,10 +8,15 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class N8nVpsHeroComponent {
-  readonly infosheetUrl = input.required<string>();
+  readonly infosheetRequested = output<Event>();
   readonly presentationRequested = output<Event>();
   readonly tourRequested = output<void>();
   readonly talkRequested = output<Event>();
+
+  requestInfosheet(event: Event): void {
+    event.preventDefault();
+    this.infosheetRequested.emit(event);
+  }
 
   requestPresentation(event: Event): void {
     event.preventDefault();

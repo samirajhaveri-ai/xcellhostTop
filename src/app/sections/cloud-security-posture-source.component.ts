@@ -5,6 +5,7 @@ import {
   OnDestroy,
   ViewChild,
   inject,
+  output,
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -28,6 +29,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class CloudSecurityPostureSourceComponent implements OnDestroy {
   @ViewChild('frame') private frame?: ElementRef<HTMLIFrameElement>;
+
+  readonly tourRequested = output<void>();
 
   private readonly sanitizer = inject(DomSanitizer);
   readonly contentUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
@@ -59,6 +62,11 @@ export class CloudSecurityPostureSourceComponent implements OnDestroy {
     document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((link) => {
       link.addEventListener('click', (event) => {
         const id = link.getAttribute('href')?.slice(1);
+        if (id === 'tour') {
+          event.preventDefault();
+          this.tourRequested.emit();
+          return;
+        }
         const target = id ? document.getElementById(id) : null;
         if (!target) return;
         event.preventDefault();
