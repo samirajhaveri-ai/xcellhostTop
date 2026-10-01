@@ -4191,11 +4191,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Webinars",
-                "pill": null,
-                "desc": null
-              },
-              {
                 "title": "Cloud Glossary",
                 "pill": null,
                 "desc": null

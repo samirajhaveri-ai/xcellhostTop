@@ -79,6 +79,10 @@ export class AssociationsPage {
       name: 'Business Leadership League (BLL)',
       image: '/assets/images/associations/business-leadership-league.jpg',
     },
+    {
+      name: 'CORPORATE CONNECTIONS',
+      image: '/assets/images/corp.jpg',
+    },
   ];
 
   readonly affiliateAssociations: readonly Association[] = [
