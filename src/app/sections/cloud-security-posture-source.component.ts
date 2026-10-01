@@ -31,10 +31,11 @@ export class CloudSecurityPostureSourceComponent implements OnDestroy {
   @ViewChild('frame') private frame?: ElementRef<HTMLIFrameElement>;
 
   readonly tourRequested = output<void>();
+  readonly infosheetRequested = output<Event>();
 
   private readonly sanitizer = inject(DomSanitizer);
   readonly contentUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-    '/m365-security-posture-management.html',
+    '/m365-security-posture-management.html?v=infosheet-form-2',
   );
   private observer?: ResizeObserver;
 
@@ -58,6 +59,16 @@ export class CloudSecurityPostureSourceComponent implements OnDestroy {
       if (document.body) this.observer.observe(document.body);
     }
     document.fonts?.ready.then(resize);
+
+    document
+      .querySelectorAll<HTMLAnchorElement>('a[data-xh-infosheet]')
+      .forEach((link) => {
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          this.infosheetRequested.emit(event);
+        });
+      });
 
     document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((link) => {
       link.addEventListener('click', (event) => {
