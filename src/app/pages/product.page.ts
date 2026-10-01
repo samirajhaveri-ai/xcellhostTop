@@ -1,10 +1,21 @@
 
+
 import { HigherEducationHeroAction, HigherEducationHeroCopyComponent } from '../sections/higher-education-hero-copy.component';
 import { HigherEducationContentComponent } from '../sections/higher-education-content.component';
 import { WINDOWS_SERVERS_FAQS } from '../data/windows-servers-faqs.data';
 import { LINUX_SERVERS_FAQS } from '../data/linux-servers-faqs.data';
 import { LinuxServersContentComponent } from '../sections/linux-servers-content.component';
 import { WindowsServersContentComponent } from '../sections/windows-servers-content.component';
+
+import { InstantWebsiteContentComponent } from '../sections/instant-website-content.component';
+import { INSTANT_WEBSITE_FAQS } from '../data/instant-website-faqs.data';
+import { InstagramAutomationContentComponent } from '../sections/instagram-automation-content.component';
+import { INSTAGRAM_AUTOMATION_FAQS } from '../data/instagram-automation-faqs.data';
+import { HrmAttendanceContentComponent } from '../sections/hrm-attendance-content.component';
+import { HRM_ATTENDANCE_FAQS } from '../data/hrm-attendance-faqs.data';
+import { GoogleBusinessContentComponent } from '../sections/google-business-content.component';
+import { GOOGLE_BUSINESS_FAQS } from '../data/google-business-faqs.data';
+
 
 
 import { DisasterRecoverySimulatorComponent } from '../sections/disaster-recovery-simulator.component';
@@ -13,6 +24,7 @@ import { AiReviewMagicqrOverviewComponent } from '../sections/ai-review-magicqr-
 import { AiReviewMagicqrTailComponent } from '../sections/ai-review-magicqr-tail.component';
 import { EnterpriseDrOverviewComponent } from '../sections/enterprise-dr-overview.component';
 import { EnterpriseDrDetailsComponent } from '../sections/enterprise-dr-details.component';
+
 
 import { LinuxServersContentComponent } from '../sections/linux-servers-content.component';
 
@@ -334,6 +346,10 @@ interface ProductTourSlide {
     ManagedOracleContentComponent,
     ManagedOracleFaqComponent,
     AiLabContentComponent,
+    GoogleBusinessContentComponent,
+    HrmAttendanceContentComponent,
+    InstagramAutomationContentComponent,
+    InstantWebsiteContentComponent,
     AiVoicebotContentComponent,
     AiVoicebotFaqComponent,
     RouterLink,
@@ -2035,6 +2051,7 @@ export class ProductPage {
     const slug = this.slug();
     const view = this.resolve(slug);
     if (!view) return null;
+
     if (slug === 'higher-education-cloud') return {
       ...view,
       heroImage: '/assets/images/higher-education/hero.svg',
@@ -2042,6 +2059,107 @@ export class ProductPage {
     };
     if (slug === 'linux-servers') return { ...view, faqs: LINUX_SERVERS_FAQS };
     if (slug === 'windows-servers') return { ...view, faqs: WINDOWS_SERVERS_FAQS };
+
+    if (slug === 'instant-website') return {
+      ...view,
+      faqs: INSTANT_WEBSITE_FAQS,
+      videos: [],
+      security: {
+        head: 'Security & Compliance — Instant Website',
+        intro: 'Publish your Instant Website on a custom domain with SSL and HTTPS. Team roles and permissions help control who manages content, while synced business hours and reviews keep public information current. Review AI-generated copy and destination links before publishing, and share only information intended for your visitors.',
+        rows: [
+          ['Website Connection', 'Custom Domain With SSL And HTTPS'],
+          ['Team Access', 'Roles And Permissions'],
+          ['Content Review', 'Edit AI-Generated Copy Before Publishing'],
+          ['Business Information', 'Google Reviews And Hours Sync'],
+          ['Contact Destinations', 'Manage WhatsApp, Booking And Social Links'],
+          ['Page Insights', 'Views, Clicks And Conversions Per Link'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Guided Setup', body: 'Profile connection, domain setup and onboarding by XcellHost.' },
+        { ...view.why[2], title: 'One Dashboard', body: 'Manage your website, bio link, themes and contact buttons together.' },
+        { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
+        { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
+        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+      ],
+    };
+    if (slug === 'instagram-automation') return {
+      ...view,
+      faqs: INSTAGRAM_AUTOMATION_FAQS,
+      videos: [],
+      security: {
+        head: 'Security & Compliance — Instagram Automation',
+        intro: 'Connect your Instagram professional account and organise publishing, DMs and lead routing in one workspace. Use team roles and permissions to control who manages accounts and content. Keep customer conversations within authorised workflows, review connected accounts regularly and check captions, media and schedules before publishing.',
+        rows: [
+          ['Account Connection', 'Instagram Business Or Creator Account'],
+          ['Team Access', 'Roles And Permissions'],
+          ['Publishing Controls', 'Calendar Scheduling And Live Preview'],
+          ['Customer Conversations', 'DMs, Tags And Mentions In One Inbox'],
+          ['Lead Handling', 'Route Enquiries Into CRM'],
+          ['Multi-Account Management', 'Accounts Included In Your Plan'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Guided Setup', body: 'Account connection and publishing setup with XcellHost onboarding.' },
+        { ...view.why[2], title: 'One Dashboard', body: 'Manage Reels, posts, DMs and insights together.' },
+        { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
+        { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
+        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+      ],
+    };
+    if (slug === 'hrm-attendance') return {
+      ...view,
+      faqs: HRM_ATTENDANCE_FAQS,
+      videos: [],
+      security: {
+        head: 'Security & Compliance — HRM + Attendance',
+        intro: 'HRM + Attendance uses owner, manager and staff roles to control access to employee information. Face-recognition attendance and location-based punch-in help verify attendance, while managers approve leave, overtime and corrections before payroll. Review staff permissions, attendance records and payroll inputs as part of your internal HR process.',
+        rows: [
+          ['Staff Access', 'Owner, Manager And Staff Roles'],
+          ['Attendance Verification', 'Phone-Based Face Recognition'],
+          ['Location Controls', 'Geo-Fenced Punch-In'],
+          ['Approvals', 'Leave, Overtime And Attendance Corrections'],
+          ['Payroll Records', 'Attendance-Based Payroll And Payslips'],
+          ['Reporting', 'Attendance And Payroll Cost By Branch'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Guided Setup', body: 'Staff, salaries and shifts configured with XcellHost onboarding.' },
+        { ...view.why[2], title: 'One Dashboard', body: 'Manage attendance, leave, shifts and payroll together.' },
+        { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
+        { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
+        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+      ],
+    };
+    if (slug === 'google-my-business') return {
+      ...view,
+      faqs: GOOGLE_BUSINESS_FAQS,
+      security: {
+        head: 'Security & Compliance — Google Business Profile Automation',
+        intro: "Connect your listing through Google's own sign-in without sharing your Google password. You can revoke access at any time. Choose whether AI review replies are published automatically or held for approval, and use roles and permissions to manage access as your team grows. Keep customer information out of public replies and review your account access regularly.",
+        rows: [
+          ['Profile Connection', 'Connect Through Google Sign-In'],
+          ['Password Privacy', 'No Google Password Sharing'],
+          ['Access Control', 'Roles And Permissions For Teams'],
+          ['Review Approval', 'Approve AI Drafts Or Enable Automatic Replies'],
+          ['Account Ownership', 'Revoke Access At Any Time'],
+          ['Multi-Location Management', 'Manage Profiles From One Dashboard'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Guided Setup', body: 'Profile connection, onboarding and setup by XcellHost.' },
+        { ...view.why[2], title: 'One Dashboard', body: 'Manage reviews, posts and multiple locations together.' },
+        { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
+        { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
+        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+      ],
+    };
+
     if (slug === 'ai-lab-as-service') return {
       ...view,
       faqs: AI_LAB_FAQS,
