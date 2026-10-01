@@ -99,7 +99,8 @@
 }
 
 .xh-menu-footer a,
-.xh-menu-footer button {
+.xh-menu-footer button,
+.xh-menu-footer .xh-framework-label {
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -115,6 +116,11 @@
   background: transparent;
   font-family: inherit;
   cursor: pointer;
+}
+
+.xh-menu-footer .xh-framework-label {
+  flex-basis: 100%;
+  grid-column: 1 / -1;
 }
 
 .xh-menu-footer svg {
@@ -133,7 +139,7 @@
 
 @media (max-width: 600px) {
   .xh-menu-footer { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding: 14px 18px; }
-  .xh-menu-footer a, .xh-menu-footer button { font-size: 12px; gap: 7px; }
+  .xh-menu-footer a, .xh-menu-footer button, .xh-menu-footer .xh-framework-label { font-size: 12px; gap: 7px; }
   .xh-menu-footer svg { width: 24px; height: 24px; }
 }
 

@@ -5863,7 +5863,28 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 }
 
 /* Linux Servers: supplied visual inside the existing shared hero. */
-#ppage .pph-scene.linux-servers-hero-art{right:4%;width:32%;max-width:440px;opacity:1;mask-image:none}
+#ppage .linux-hero-copy{display:block;width:56%;max-width:620px}
+#ppage .linux-hero-copy [linuxHeroActions]{margin-bottom:20px}
+#ppage .linux-hero-copy .product-hero-ctas{width:100%;flex-wrap:wrap;gap:9px;overflow:visible}
+#ppage .linux-hero-copy .product-hero-ctas .btn{font-size:11px;padding:10px 12px;min-height:36px;flex:0 1 auto}
+#ppage .linux-hero-copy .pp-ask-ai{margin-top:18px}
+#ppage .linux-hero-copy .pp-ask-ai-kicker{font-size:9px}
+#ppage .pp-hero .linux-copy h1{display:block;white-space:normal;font-size:clamp(32px,3.8vw,48px);margin-bottom:10px}
+@media(max-width:900px){#ppage .linux-hero-copy{width:100%;max-width:620px}}
+#ppage .pph-scene.linux-servers-hero-art{right:6%;width:32%;max-width:440px;opacity:1;mask-image:none}
 .linux-servers-hero-art xh-linux-servers-content{width:100%}
-@media(max-width:1100px){#ppage .pph-scene.linux-servers-hero-art{right:2%;width:31%}}
+@media(max-width:1100px){#ppage .pph-scene.linux-servers-hero-art{right:4%;width:31%}}
 @media(max-width:900px){#ppage .pph-scene.linux-servers-hero-art{position:relative;inset:auto;width:calc(100% - 40px);max-width:440px;margin:24px auto 32px}#ppage .pp-hero:has(.linux-servers-hero-art){display:flex;flex-direction:column}#ppage .pp-hero:has(.linux-servers-hero-art)>.wrap{width:100%;order:-1}}
+
+/* Position the Linux visual beside the existing text width, with a 30px visible gap.
+   The wrap has 24px side padding and the visual has 14px inner padding. */
+@media(min-width:901px){
+  #ppage .pp-hero>.wrap>.pph-scene.linux-servers-hero-art{
+    left:calc(min(620px,calc((100% - 48px)*.56)) + 40px);
+    right:auto;
+    width:32vw;
+  }
+}
+@media(min-width:901px) and (max-width:1100px){
+  #ppage .pp-hero>.wrap>.pph-scene.linux-servers-hero-art{width:31vw}
+}

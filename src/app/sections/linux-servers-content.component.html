@@ -1,13 +1,40 @@
-@if (heroOnly()) {
-<div class="linux-hero-art" style="--hardware:url(/assets/images/linux-servers/edc8550c74f6.jpg)">  <div class="glass" aria-label="Illustrative server status">
+@if (heroCopyOnly()) {
+  <div class="linux-copy">
+    <div class="linux-crumb">Home &rsaquo; Cloud &rsaquo; Bare Metal Servers &rsaquo; Linux Servers</div>
+    <h1>Linux <em>Servers</em></h1>
+    <div class="os-lgs" aria-label="Supported Linux distributions and platforms">
+      <span><img src="/assets/images/linux-servers/c32d79e4664c.svg" alt="">Ubuntu</span>
+      <span><img src="/assets/images/linux-servers/0e4a228c2ddb.svg" alt="">Debian</span>
+      <span><img src="/assets/images/linux-servers/4a3822ccef48.svg" alt="">AlmaLinux</span>
+      <span><img src="/assets/images/linux-servers/62d65534a9e3.svg" alt="">Rocky Linux</span>
+      <span><img src="/assets/images/linux-servers/b720ce1dee7c.svg" alt="">CentOS Stream</span>
+      <span><img src="/assets/images/linux-servers/8fdc4f6c4e5b.svg" alt="">Proxmox VE</span>
+      <span><img src="/assets/images/linux-servers/0189401c942a.svg" alt="">Docker</span>
+    </div>
+    <p class="linux-sub">Launch your infrastructure on Linux dedicated servers &mdash; full root access, the distro of your choice, a customisable stack and scalable resources, all under your control. Delivered from Indian Tier IV data centres.</p>
+    <ng-content select="[linuxHeroActions]" />
+    <div class="os-bd">
+      <span>Delivery in 2&ndash;24 h, custom builds on request</span>
+      <span>Full root access included</span>
+      <span>Choice of Linux distributions</span>
+      <span>99.99% uptime guarantee</span>
+      <span>24&times;7 sales &amp; technical support</span>
+      <span>Dedicated account manager for enterprise</span>
+    </div>
+  </div>
+} @else if (heroOnly()) {
+<div class="linux-hero-art">  <div class="glass" aria-label="Illustrative server status">
    <div class="glass-h"><span>SERVER STATUS · LINUX SERVERS</span><b>● OPERATIONAL</b></div>
    <div class="os-st"><div><small>OS</small><b><img src="/assets/images/linux-servers/c32d79e4664c.svg" alt="">Ubuntu 24.04 LTS</b></div><div><small>UPTIME</small><b>99.99%</b></div><div><small>NETWORK</small><b>1–10 Gbps</b></div><div><small>ACCESS</small><b>SSH + IPMI</b></div><div><small>LOCATIONS</small><b>Mumbai · Pune</b></div><div><small>SUPPORT</small><b>24×7×365</b></div></div>
    <div class="glass-h" style="margin:14px 0 6px"><span>RECENT DEPLOYS</span><b style="color:#9FB8D8">LIVE</b></div>
    <div class="os-dep"><div><span>Ubuntu · Mumbai DC-1</span><em>Online</em></div><div><span>Debian · Pune DC-3</span><em>Online</em></div><div><span>Rocky Linux · Mumbai DC-2</span><em>Online</em></div></div>
   </div>
-<div class="os-pw"><div class="lgb"><img src="/assets/images/linux-servers/e6aa9164b259.svg" alt="Linux logo"></div>
-    <div><small>POWERED BY LINUX</small><b>Ubuntu · Debian · AlmaLinux · Rocky Linux</b><span>Your distro, full root · no OS licence fees</span></div>
-    <div class="mini"><img src="/assets/images/linux-servers/c32d79e4664c.svg" alt="Ubuntu logo" title="Ubuntu"><img src="/assets/images/linux-servers/0e4a228c2ddb.svg" alt="Debian logo" title="Debian"><img src="/assets/images/linux-servers/62d65534a9e3.svg" alt="Rocky Linux logo" title="Rocky Linux"></div></div></div>
+  <div class="os-pw">
+    <div class="lgb"><img src="/assets/images/linux-servers/e6aa9164b259.svg" alt="Linux logo"></div>
+    <div><small>POWERED BY LINUX</small><b>Ubuntu &middot; Debian &middot; AlmaLinux &middot; Rocky Linux</b><span>Your distro, full root &middot; no OS licence fees</span></div>
+    <div class="mini"><img src="/assets/images/linux-servers/c32d79e4664c.svg" alt="Ubuntu logo"><img src="/assets/images/linux-servers/0e4a228c2ddb.svg" alt="Debian logo"><img src="/assets/images/linux-servers/62d65534a9e3.svg" alt="Rocky Linux logo"></div>
+  </div>
+</div>
 } @else {
  <div class="pp-answer" id="answer" style="margin-top:40px">
   <div><span class="kick">QUICK ANSWER</span><h2>What is a Linux dedicated server?</h2><p data-speakable>A Linux dedicated server is a physical, single-tenant machine running a Linux distribution such as Ubuntu, Debian, AlmaLinux or Rocky Linux, with full root access and no resources shared with anyone else. XcellHost Linux Servers run in Tier IV Mumbai and Pune data centres from ₹12,399 a month, with RAID, IPMI and DDoS protection included.</p></div>

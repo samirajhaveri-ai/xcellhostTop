@@ -12,6 +12,10 @@ import { Routes } from '@angular/router';
  */
 export const routes: Routes = [
   {
+    path: 'cybersecurity-frameworks',
+    loadComponent: () => import('./pages/cybersecurity-frameworks.page').then((m) => m.CybersecurityFrameworksPage),
+  },
+  {
     path: 'managed-mysql',
     data: { databaseSlug: 'managed-mysql', title: 'Managed MySQL' },
     loadComponent: () => import('./pages/managed-database.page').then((m) => m.ManagedDatabasePage),

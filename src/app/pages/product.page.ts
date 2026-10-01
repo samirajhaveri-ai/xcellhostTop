@@ -1,4 +1,9 @@
+import { HigherEducationHeroAction, HigherEducationHeroCopyComponent } from '../sections/higher-education-hero-copy.component';
+import { HigherEducationContentComponent } from '../sections/higher-education-content.component';
+import { WINDOWS_SERVERS_FAQS } from '../data/windows-servers-faqs.data';
+import { LINUX_SERVERS_FAQS } from '../data/linux-servers-faqs.data';
 import { LinuxServersContentComponent } from '../sections/linux-servers-content.component';
+import { WindowsServersContentComponent } from '../sections/windows-servers-content.component';
 import { AiLabContentComponent } from '../sections/ai-lab-content.component';
 import { AI_LAB_FAQS } from '../data/ai-lab-faqs.data';
 import { AcronisMdrContentComponent } from '../sections/acronis-mdr-content.component';
@@ -290,6 +295,9 @@ interface ProductTourSlide {
   selector: 'xh-product-page',
   standalone: true,
   imports: [
+    HigherEducationHeroCopyComponent,
+    HigherEducationContentComponent,
+    WindowsServersContentComponent,
     LinuxServersContentComponent,
     EnterpriseDmarcContentComponent,
     BusinessEmailContentComponent,
@@ -421,6 +429,52 @@ interface ProductTourSlide {
   ],
   templateUrl: './product.page.html',
   styles: [`
+    #ppage .pp-hero > .wrap.higher-education-hero-layout {
+      display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+      align-items: center; gap: 30px;
+    }
+    .higher-education-hero-layout xh-higher-education-hero-copy { width: 100%; min-width: 0; }
+    #ppage .higher-education-hero-layout .pph-scene.higher-education-hero-art {
+      position: relative; inset: auto; width: 100%; max-width: none; height: auto;
+      mask-image: none; opacity: 1; overflow: visible;
+    }
+    #ppage .higher-education-hero-art .pph-illus { width: 100%; padding: 0; }
+    #ppage .higher-education-hero-art .pph-illus-img { width: 100%; max-width: none; max-height: none; }
+    @media(max-width:900px) {
+      #ppage .pp-hero > .wrap.higher-education-hero-layout { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+      #ppage .higher-education-hero-layout .pph-scene.higher-education-hero-art { max-width: 560px; margin-inline: auto; }
+    }
+
+    #ppage .windows-hero-copy { display: block; width: 56%; max-width: 620px; }
+    #ppage .windows-hero-copy [windowsHeroActions] { margin-bottom: 20px; }
+    #ppage .windows-hero-copy .product-hero-ctas { width: 100%; flex-wrap: wrap; gap: 9px; overflow: visible; }
+    #ppage .windows-hero-copy .product-hero-ctas .btn { font-size: 11px; padding: 10px 12px; min-height: 36px; flex: 0 1 auto; }
+    #ppage .windows-hero-copy .pp-ask-ai { margin-top: 18px; }
+    #ppage .windows-hero-copy .pp-ask-ai-kicker { font-size: 9px; }
+    #ppage .pp-hero .windows-copy h1 { display: block; white-space: normal; font-size: clamp(32px,3.8vw,48px); margin-bottom: 10px; }
+    #ppage .pph-scene.windows-servers-hero-art {
+      right: 6%; width: 32%; max-width: 440px; top: 50%; bottom: auto;
+      transform: translateY(-50%); opacity: 1; mask-image: none; overflow: visible;
+    }
+    .windows-servers-hero-art xh-windows-servers-content { display: block; width: 100%; }
+    @media(min-width:901px) {
+      #ppage .pp-hero > .wrap > .pph-scene.windows-servers-hero-art {
+        left: calc(min(620px, calc((100% - 48px)*.56)) + 40px);
+        right: auto; width: 32vw;
+      }
+    }
+    @media(min-width:901px) and (max-width:1100px) {
+      #ppage .pp-hero > .wrap > .pph-scene.windows-servers-hero-art { width: 31vw; }
+    }
+    @media(max-width:900px) {
+      #ppage .windows-hero-copy { width: 100%; max-width: 620px; }
+      #ppage .pph-scene.windows-servers-hero-art {
+        position: relative; inset: auto; transform: none; width: calc(100% - 32px);
+        margin: 24px auto; max-height: none;
+      }
+      #ppage.windows-servers-page .pp-hero { display: flex; flex-direction: column; }
+      #ppage.windows-servers-page .pp-hero > .wrap { width: 100%; order: -1; }
+    }
     #ppage.managed-oracle-page .pp-hero {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(0, 480px);
@@ -1848,6 +1902,13 @@ export class ProductPage {
     const slug = this.slug();
     const view = this.resolve(slug);
     if (!view) return null;
+    if (slug === 'higher-education-cloud') return {
+      ...view,
+      heroImage: '/assets/images/higher-education/hero.svg',
+      heroBrand: { ...view.heroBrand, logoImage: '/assets/images/higher-education/logo.png' },
+    };
+    if (slug === 'linux-servers') return { ...view, faqs: LINUX_SERVERS_FAQS };
+    if (slug === 'windows-servers') return { ...view, faqs: WINDOWS_SERVERS_FAQS };
     if (slug === 'ai-lab-as-service') return {
       ...view,
       faqs: AI_LAB_FAQS,
@@ -2614,6 +2675,13 @@ export class ProductPage {
   requestAiChatbot(request: string): void {
     this.topics.ask(`AI Chat Bot - ${request}`);
     this.overlay.open('callback');
+  }
+
+  onHigherEducationHeroAction(action: HigherEducationHeroAction): void {
+    const event = new Event('click');
+    if (action === 'presentation') this.requestDoc('presentation', event);
+    else if (action === 'tour') this.openProductScreenshotTour();
+    else this.openCallback(event, action === 'trial' ? '7 Days Free Trial' : undefined);
   }
 
   openCallback(ev: Event, request?: string): void {

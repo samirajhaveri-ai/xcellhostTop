@@ -3610,8 +3610,8 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "OpenText",
                 "pill": null,
-                "desc": "AI-powered endpoint security and response",
-                "href": "/vendor-partners/sentinelone"
+                "desc": "OpenText vendor partnership",
+                "href": "/vendor-partners/opentext"
               },
               
             ]
