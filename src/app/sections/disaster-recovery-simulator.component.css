@@ -1,0 +1,56 @@
+/* simulator */
+:host{display:block;min-width:0;--mono:"IBM Plex Mono",monospace;--disp:"Sora",sans-serif}
+.glass{box-sizing:border-box;background:rgba(9,24,52,.92);backdrop-filter:blur(10px);border:1px solid rgba(156,200,255,.22);border-radius:20px;padding:18px;box-shadow:0 30px 70px rgba(0,0,0,.25)}
+.glass-h{display:flex;justify-content:space-between;align-items:center;gap:12px;font:700 11.5px/1.5 var(--mono);letter-spacing:.1em;color:#9CC8FF;margin-bottom:12px}
+.glass-h b{color:#4ADE80;white-space:nowrap;font-size:11px}
+.dz-go{display:inline-flex;align-items:center;gap:7px;font:600 14px/1.4 "IBM Plex Sans",sans-serif;padding:10px 20px;border-radius:8px;cursor:pointer;transition:filter .15s}
+.dz-go:hover:not(:disabled){filter:brightness(1.12)}
+.dz-go:focus-visible{outline:3px solid #9CC8FF;outline-offset:4px}
+.dz-go:disabled{cursor:wait;opacity:.7}
+.dz-log em{font-style:normal;min-width:0}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.dz-sim{max-width:540px;margin-left:auto;width:100%}
+.dz-sim svg{width:100%;height:auto;display:block}
+.dz-sim text{font-family:var(--mono);fill:#9CC8FF;font-size:10px;letter-spacing:.06em}
+.dz-sim .ttl{font:700 11px var(--mono);fill:#fff}
+.dz-box{fill:rgba(255,255,255,.04);stroke:rgba(156,200,255,.3);stroke-width:1.2;transition:.4s}
+.dz-rk{fill:#0b1a38;stroke:rgba(156,200,255,.18)}
+.dz-led{fill:#334155;transition:fill .3s}
+.dz-fl{fill:none;stroke-width:2.2;stroke-dasharray:6 8;transition:stroke .4s,opacity .4s}
+@keyframes dzf{to{stroke-dashoffset:-28}}
+.dz-sim .tpp,.dz-sim .rep{stroke:#34D399;animation:dzf .9s linear infinite}
+.dz-sim .tpd{stroke:#34D399;opacity:.12}
+.dz-sim #dzP .dz-led{fill:#34D399;animation:dzb 1.4s infinite}
+.dz-sim #dzD .dz-led{fill:#F59E0B;opacity:.55}
+.dz-sim #dzD .dz-led.on{fill:#34D399;opacity:1;animation:dzb 1.4s infinite}
+@keyframes dzb{50%{opacity:.4}}
+.dz-bolt{opacity:0;transition:opacity .3s}
+.dz-sim .bdg{font:700 9.5px var(--mono)}
+/* states */
+.s-down .tpp,.s-fo .tpp{stroke:#EF4444;animation:none;stroke-dasharray:3 12}
+.s-down .rep,.s-fo .rep,.s-dr .rep{stroke:#475569;animation:none}
+.s-down #dzP .dz-box,.s-fo #dzP .dz-box,.s-dr #dzP .dz-box{stroke:#EF4444;fill:rgba(239,68,68,.12)}
+.s-down #dzP .dz-led,.s-fo #dzP .dz-led,.s-dr #dzP .dz-led{fill:#EF4444;animation:dzb .5s infinite}
+.s-down .dz-bolt,.s-fo .dz-bolt,.s-dr .dz-bolt{opacity:1}
+.s-down #dzP{animation:dzsh .45s 2}
+@keyframes dzsh{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.s-fo #dzD .dz-box{stroke:#F59E0B}
+.s-dr .tpp{opacity:.1}
+.s-dr .tpd{opacity:1;animation:dzf .9s linear infinite}
+.s-dr #dzD .dz-box{stroke:#34D399;fill:rgba(52,211,153,.1)}
+.s-fb .rep{stroke:#60A5FA;animation:dzf .5s linear infinite reverse}
+.s-fb .tpd{opacity:1;stroke:#34D399;animation:dzf .9s linear infinite}
+.s-fb #dzD .dz-led{fill:#34D399;opacity:1}
+.s-fb #dzP .dz-box{stroke:#60A5FA}.s-fb #dzP .dz-led{fill:#60A5FA;animation:dzb .6s infinite}
+.dz-st{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px}
+.dz-st div{background:rgba(255,255,255,.06);border-radius:10px;padding:8px 10px;min-width:0}
+.dz-st small{display:block;font:700 9.5px var(--mono);letter-spacing:.08em;color:#9FB8D8}.dz-st b{font:800 16px var(--disp);color:#fff;white-space:nowrap}
+.dz-log{margin-top:10px;background:#061329;border-radius:12px;padding:10px 12px;font:500 12px/1.7 var(--mono);color:#C7D5EC;min-height:96px}
+.dz-log div{display:flex;gap:10px;animation:fi .3s ease both}.dz-log span{color:#60A5FA;flex:none}.dz-log .ok{color:#34D399}.dz-log .bad{color:#FCA5A5}
+.dz-ctl{display:flex;gap:10px;margin-top:12px;align-items:center}
+.dz-ctl .btn{flex:1;justify-content:center}
+.dz-ctl small{font-size:11.5px;color:#9FB8D8}
+.dz-go{background:linear-gradient(90deg,#EF4444,#F97316);color:#fff;border:0}
+.dz-go.fb{background:linear-gradient(90deg,#1565D8,#10B981)}
+@media(max-width:560px){.glass{padding:14px}.glass-h{font-size:9px;letter-spacing:.04em;flex-wrap:wrap}.glass-h b{font-size:9px}.dz-st small{font-size:8px;letter-spacing:0}.dz-st b{font-size:13px}.dz-st div{padding:8px 6px}.dz-log{font-size:10px;min-height:108px}.dz-log div{gap:7px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}

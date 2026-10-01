@@ -7,6 +7,7 @@ import { SeoService } from '../core/seo.service';
 
 const PARTNERS: Readonly<Record<string, string>> = {
   acronis: 'Acronis',
+  opentext: 'OpenText',
   'microsoft-365': 'Microsoft 365',
   'dpo-genie': 'DPO Genie',
   'microsoft-azure': 'Microsoft Azure',

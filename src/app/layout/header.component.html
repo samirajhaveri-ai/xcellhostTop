@@ -180,6 +180,10 @@
                 <a href="https://x.com/xcellcloud" target="_blank" rel="noopener noreferrer" aria-label="X" title="X" style="background:#000">X</a>
                 <span aria-label="Reddit (link coming soon)" title="Reddit — coming soon" style="background:#FF4500">r</span>
               </div>
+              <a class="xh-framework-label" routerLink="/cybersecurity-frameworks" (click)="onNavigate()">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6Z"/><path d="m8 12 3 3 5-6"/></svg>
+                <span>Cyber Security Framework</span>
+              </a>
             </nav>
           </div>
         </div>
@@ -227,8 +231,8 @@
         </button>
         <span class="xh-login-tooltip" aria-hidden="true">Login</span>
         <div id="xh-customer-login-menu" class="xh-login-dropdown" role="menu" aria-label="Login portals">
-          <a routerLink="/customer-login" routerLinkActive="selected" #customerLoginLink="routerLinkActive" role="menuitem" (click)="onNavigate()">
-            <span class="xh-login-option"><span class="material-symbols-outlined" aria-hidden="true">person</span><span>Customer Login</span></span>@if (customerLoginLink.isActive) {<b class="xh-login-check" aria-hidden="true">✓</b>}
+          <a href="https://billing.zohosecure.in/portal/xcellhostcloudservicespvtltd/signin" target="_blank" rel="noopener noreferrer" role="menuitem" (click)="onNavigate()">
+            <span class="xh-login-option"><span class="material-symbols-outlined" aria-hidden="true">person</span><span>Customer Login</span></span>
           </a>
           <a routerLink="/partner-login" routerLinkActive="selected" #partnerLoginLink="routerLinkActive" role="menuitem" (click)="onNavigate()">
             <span class="xh-login-option"><span class="material-symbols-outlined" aria-hidden="true">handshake</span><span>Partner Login</span></span>@if (partnerLoginLink.isActive) {<b class="xh-login-check" aria-hidden="true">✓</b>}

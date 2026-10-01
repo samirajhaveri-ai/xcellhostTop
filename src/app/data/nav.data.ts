@@ -32,11 +32,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": "Popular",
                 "desc": null
               },
-              {
-                "title": "Cloud Drive",
-                "pill": null,
-                "desc": null
-              },
+
               {
                 "title": "Advanced Endpoint Security (EDR)",
                 "pill": null,
@@ -80,6 +76,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Workforce Analytics",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Cloud Drive",
                 "pill": null,
                 "desc": null
               },
@@ -530,6 +531,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "AEO + GEO Automation4",
+                "pill": "New",
+                "desc": "Maximise online visibility and reach your target audience 🎯"
+              },
+                  {
+                "title": "Instagram Automation",
                 "pill": "New",
                 "desc": "Maximise online visibility and reach your target audience 🎯"
               },
@@ -3610,8 +3616,8 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "OpenText",
                 "pill": null,
-                "desc": "AI-powered endpoint security and response",
-                "href": "/vendor-partners/sentinelone"
+                "desc": "OpenText vendor partnership",
+                "href": "/vendor-partners/opentext"
               },
               
             ]
@@ -4225,6 +4231,18 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Experience Center",
             "items": [
               {
+                "title": "Xcellhost Demo Center",
+                "pill": null,
+                "desc": "Watch XcellHost product videos and demos",
+                "href": "/xcellhost-demo-center"
+              },
+               {
+                "title": "Acronis Demo Center",
+                "pill": null,
+                "desc": "Interactive Acronis product tours and video demos",
+                "href": "/acronis-demo-center"
+              },
+              {
                 "title": "TSPlus Demo Center",
                 "pill": null,
                 "desc": "Watch TSplus Remote Access connection demos",
@@ -4235,8 +4253,14 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+             
               {
-                "title": "Acronis Demo Center",
+                "title": "Plesk Demo Center",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Cpanel Demo Center",
                 "pill": null,
                 "desc": null
               },

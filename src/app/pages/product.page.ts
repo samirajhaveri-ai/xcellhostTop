@@ -1,3 +1,34 @@
+
+
+import { HigherEducationHeroAction, HigherEducationHeroCopyComponent } from '../sections/higher-education-hero-copy.component';
+import { HigherEducationContentComponent } from '../sections/higher-education-content.component';
+import { WINDOWS_SERVERS_FAQS } from '../data/windows-servers-faqs.data';
+import { LINUX_SERVERS_FAQS } from '../data/linux-servers-faqs.data';
+import { LinuxServersContentComponent } from '../sections/linux-servers-content.component';
+import { WindowsServersContentComponent } from '../sections/windows-servers-content.component';
+
+import { InstantWebsiteContentComponent } from '../sections/instant-website-content.component';
+import { INSTANT_WEBSITE_FAQS } from '../data/instant-website-faqs.data';
+import { InstagramAutomationContentComponent } from '../sections/instagram-automation-content.component';
+import { INSTAGRAM_AUTOMATION_FAQS } from '../data/instagram-automation-faqs.data';
+import { HrmAttendanceContentComponent } from '../sections/hrm-attendance-content.component';
+import { HRM_ATTENDANCE_FAQS } from '../data/hrm-attendance-faqs.data';
+import { GoogleBusinessContentComponent } from '../sections/google-business-content.component';
+import { GOOGLE_BUSINESS_FAQS } from '../data/google-business-faqs.data';
+
+
+
+import { DisasterRecoverySimulatorComponent } from '../sections/disaster-recovery-simulator.component';
+import { AiReviewMagicqrHeroComponent } from '../sections/ai-review-magicqr-hero.component';
+import { AiReviewMagicqrOverviewComponent } from '../sections/ai-review-magicqr-overview.component';
+import { AiReviewMagicqrTailComponent } from '../sections/ai-review-magicqr-tail.component';
+import { EnterpriseDrOverviewComponent } from '../sections/enterprise-dr-overview.component';
+import { EnterpriseDrDetailsComponent } from '../sections/enterprise-dr-details.component';
+
+
+import { LinuxServersContentComponent } from '../sections/linux-servers-content.component';
+
+
 import { AiLabContentComponent } from '../sections/ai-lab-content.component';
 import { AI_LAB_FAQS } from '../data/ai-lab-faqs.data';
 import { AcronisMdrContentComponent } from '../sections/acronis-mdr-content.component';
@@ -289,6 +320,21 @@ interface ProductTourSlide {
   selector: 'xh-product-page',
   standalone: true,
   imports: [
+
+    HigherEducationHeroCopyComponent,
+    HigherEducationContentComponent,
+    WindowsServersContentComponent,
+
+
+    DisasterRecoverySimulatorComponent,
+    AiReviewMagicqrHeroComponent,
+    AiReviewMagicqrOverviewComponent,
+    AiReviewMagicqrTailComponent,
+    EnterpriseDrOverviewComponent,
+    EnterpriseDrDetailsComponent,
+
+    LinuxServersContentComponent,
+
     EnterpriseDmarcContentComponent,
     BusinessEmailContentComponent,
     InsightsSectionComponent,
@@ -300,6 +346,10 @@ interface ProductTourSlide {
     ManagedOracleContentComponent,
     ManagedOracleFaqComponent,
     AiLabContentComponent,
+    GoogleBusinessContentComponent,
+    HrmAttendanceContentComponent,
+    InstagramAutomationContentComponent,
+    InstantWebsiteContentComponent,
     AiVoicebotContentComponent,
     AiVoicebotFaqComponent,
     RouterLink,
@@ -419,6 +469,103 @@ interface ProductTourSlide {
   ],
   templateUrl: './product.page.html',
   styles: [`
+
+    #ppage .pp-hero > .wrap.higher-education-hero-layout {
+      display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+      align-items: center; gap: 30px;
+    }
+    .higher-education-hero-layout xh-higher-education-hero-copy { width: 100%; min-width: 0; }
+    #ppage .higher-education-hero-layout .pph-scene.higher-education-hero-art {
+      position: relative; inset: auto; width: 100%; max-width: none; height: auto;
+      mask-image: none; opacity: 1; overflow: visible;
+    }
+    #ppage .higher-education-hero-art .pph-illus { width: 100%; padding: 0; }
+    #ppage .higher-education-hero-art .pph-illus-img { width: 100%; max-width: none; max-height: none; }
+    @media(max-width:900px) {
+      #ppage .pp-hero > .wrap.higher-education-hero-layout { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+      #ppage .higher-education-hero-layout .pph-scene.higher-education-hero-art { max-width: 560px; margin-inline: auto; }
+    }
+
+    #ppage .windows-hero-copy { display: block; width: 56%; max-width: 620px; }
+    #ppage .windows-hero-copy [windowsHeroActions] { margin-bottom: 20px; }
+    #ppage .windows-hero-copy .product-hero-ctas { width: 100%; flex-wrap: wrap; gap: 9px; overflow: visible; }
+    #ppage .windows-hero-copy .product-hero-ctas .btn { font-size: 11px; padding: 10px 12px; min-height: 36px; flex: 0 1 auto; }
+    #ppage .windows-hero-copy .pp-ask-ai { margin-top: 18px; }
+    #ppage .windows-hero-copy .pp-ask-ai-kicker { font-size: 9px; }
+    #ppage .pp-hero .windows-copy h1 { display: block; white-space: normal; font-size: clamp(32px,3.8vw,48px); margin-bottom: 10px; }
+    #ppage .pph-scene.windows-servers-hero-art {
+      right: 6%; width: 32%; max-width: 440px; top: 50%; bottom: auto;
+      transform: translateY(-50%); opacity: 1; mask-image: none; overflow: visible;
+    }
+    .windows-servers-hero-art xh-windows-servers-content { display: block; width: 100%; }
+    @media(min-width:901px) {
+      #ppage .pp-hero > .wrap > .pph-scene.windows-servers-hero-art {
+        left: calc(min(620px, calc((100% - 48px)*.56)) + 40px);
+        right: auto; width: 32vw;
+      }
+    }
+    @media(min-width:901px) and (max-width:1100px) {
+      #ppage .pp-hero > .wrap > .pph-scene.windows-servers-hero-art { width: 31vw; }
+    }
+    @media(max-width:900px) {
+      #ppage .windows-hero-copy { width: 100%; max-width: 620px; }
+      #ppage .pph-scene.windows-servers-hero-art {
+        position: relative; inset: auto; transform: none; width: calc(100% - 32px);
+        margin: 24px auto; max-height: none;
+      }
+      #ppage.windows-servers-page .pp-hero { display: flex; flex-direction: column; }
+      #ppage.windows-servers-page .pp-hero > .wrap { width: 100%; order: -1; }
+    }
+
+    #ppage.enterprise-dr-page > .pp-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 540px);
+      align-items: center;
+      gap: 48px;
+      padding: 64px max(24px, calc((100% - 1192px) / 2));
+      background: radial-gradient(ellipse at 90% 40%, #0c494e 0%, #08244a 45%, #041e42 80%);
+    }
+    #ppage.enterprise-dr-page .pp-hero > .wrap { order: 1; width: 100%; max-width: none; min-width: 0; padding: 0; }
+    #ppage.enterprise-dr-page .enterprise-dr-simulator { position: relative; z-index: 4; order: 2; width: 100%; }
+    #ppage.enterprise-dr-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) { width: 100% !important; max-width: 100% !important; }
+    #ppage.enterprise-dr-page .pp-hero h1 { display: block; text-align: left; white-space: normal; font-size: clamp(28px, 2.6vw, 42px); line-height: 1.2; }
+    #ppage.enterprise-dr-page .pp-hero h1 .pp-title-name { display: inline; margin-left: 0; }
+    #ppage.enterprise-dr-page .pp-typewriter { white-space: normal; min-height: 2.8em; }
+    #ppage.enterprise-dr-page .product-hero-ctas { width: 100%; max-width: 100%; flex-wrap: wrap; }
+    #ppage.enterprise-dr-page .product-hero-ctas .btn { flex: 0 1 auto; }
+    #ppage.enterprise-dr-page .pp-ask-ai { width: 100%; }
+    #ppage.enterprise-dr-page .pp-ask-ai-copy { flex: 1 1 320px; }
+    #ppage.enterprise-dr-page .pp-ask-ai-actions { flex: 0 0 auto; }
+    @media(max-width:1100px) {
+      #ppage.enterprise-dr-page > .pp-hero { grid-template-columns: minmax(0, 1fr); gap: 32px; padding: 40px 24px; }
+      #ppage.enterprise-dr-page .enterprise-dr-simulator { max-width: 540px; justify-self: center; }
+    }
+    @media(max-width:560px) { #ppage.enterprise-dr-page > .pp-hero { padding: 32px 16px; gap: 24px; } }
+    #ppage.magicqr-page > .pp-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 550px);
+      align-items: center;
+      gap: 48px;
+      padding: 58px max(24px, calc((100% - 1192px) / 2));
+      background: radial-gradient(ellipse at 88% 32%, #31226f 0%, #102452 45%, #041e42 82%);
+    }
+    #ppage.magicqr-page .pp-hero > .wrap { order: 1; width: 100%; max-width: none; min-width: 0; padding: 0; }
+    #ppage.magicqr-page .magicqr-hero-dashboard { position: relative; z-index: 4; order: 2; width: 100%; }
+    #ppage.magicqr-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) { width: 100% !important; max-width: 100% !important; }
+    #ppage.magicqr-page .pp-hero h1 { display: block; text-align: left; white-space: normal; font-size: clamp(28px, 2.6vw, 42px); line-height: 1.2; }
+    #ppage.magicqr-page .pp-hero h1 .pp-title-name { display: inline; margin-left: 0; }
+    #ppage.magicqr-page .pp-typewriter { white-space: normal; min-height: 2.8em; }
+    #ppage.magicqr-page .product-hero-ctas { width: 100%; max-width: 100%; flex-wrap: wrap; }
+    #ppage.magicqr-page .product-hero-ctas .btn { flex: 0 1 auto; }
+    #ppage.magicqr-page .pp-ask-ai { width: 100%; }
+    #ppage.magicqr-page .pp-ask-ai-copy { flex: 1 1 310px; }
+    #ppage.magicqr-page .pp-ask-ai-actions { flex: 0 0 auto; }
+    @media(max-width:1100px) {
+      #ppage.magicqr-page > .pp-hero { grid-template-columns: minmax(0, 1fr); gap: 32px; padding: 40px 24px; }
+      #ppage.magicqr-page .magicqr-hero-dashboard { max-width: 550px; justify-self: center; }
+    }
+    @media(max-width:560px) { #ppage.magicqr-page > .pp-hero { padding: 32px 16px; gap: 24px; } }
+
     #ppage.managed-oracle-page .pp-hero {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(0, 480px);
@@ -1046,7 +1193,6 @@ interface ProductTourSlide {
       #ppage .pp-hero > .wrap > .pp-hero-grid { max-width: 56%; }
       #ppage .pp-hero > .wrap > h1,
       #ppage .pp-hero #ppTitle { font-size: clamp(27px, 3.2vw, 35px); }
-      #ppage .pph-scene { width: 44%; }
       #ppage .product-hero-ctas { gap: 8px; }
       #ppage .product-hero-ctas .btn { padding-inline: 13px; font-size: 12px; }
       #ppage .pp-hpoints { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 16px; }
@@ -1060,7 +1206,56 @@ interface ProductTourSlide {
       }
       #ppage .product-hero-ctas .btn { min-height: 42px; padding-inline: 11px; }
       #ppage .pp-ask-ai { margin-top: 18px; }
-      #ppage .pph-scene { right: -2%; width: 43%; }
+    }
+
+    /* Keep hero artwork inside the same 1240px container as the sections below. */
+    @media (min-width: 901px) {
+      #ppage.ppage > .pp-hero > .pph-scene:not(.oracle-hero-visual) {
+        right: max(24px, calc((100% - 1240px) / 2 + 24px));
+        width: min(calc((100% - 48px) * .34), 405px);
+        max-width: none;
+        box-sizing: border-box;
+      }
+      #ppage.ppage > .pp-hero > .pph-scene.has-illus {
+        display: flex;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        max-height: none;
+        align-items: center;
+        justify-content: center;
+        padding: 24px 0;
+        mask-image: none;
+      }
+      #ppage.ppage > .pp-hero > .pph-scene.has-illus > .pph-illus {
+        width: 100%;
+        min-width: 0;
+        padding: 0;
+        gap: 14px;
+      }
+      #ppage.ppage > .pp-hero > .pph-scene.has-illus .pph-illus-img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        max-height: 340px;
+        object-fit: contain;
+      }
+      #ppage .pp-hero > .wrap > h1,
+      #ppage .pp-hero > .wrap > .pp-tagline,
+      #ppage .pp-hero > .wrap > .pp-tagline-support {
+        max-width: 58%;
+      }
+    }
+    @media (min-width: 901px) and (max-width: 1180px) {
+      #ppage.ppage > .pp-hero > .pph-scene:not(.oracle-hero-visual) {
+        right: 28px;
+        width: calc((100% - 56px) * .38);
+      }
+      #ppage .pp-hero > .wrap > h1,
+      #ppage .pp-hero > .wrap > .pp-tagline,
+      #ppage .pp-hero > .wrap > .pp-tagline-support {
+        max-width: 56%;
+      }
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -1491,6 +1686,15 @@ export class ProductPage {
     { title: 'Active protection settings', description: 'Review protection plans and choose how to respond when suspicious activity is detected.', image: '/assets/images/cloud-backup-tour-protection.png' },
   ];
 
+  readonly microsoftSecurityPostureTourSlides: readonly ProductTourSlide[] = [
+    { title: 'Security posture risk dashboard', description: 'Review tenant and group baseline deviations, category findings and user-account risks.', image: '/assets/images/microsoft-security-posture-tour-1.png' },
+    { title: 'User onboarding', description: 'Create and onboard Microsoft 365 users with their business and contact details.', image: '/assets/images/microsoft-security-posture-tour-2.png' },
+    { title: 'Microsoft 365 connection', description: 'Connect a Microsoft account to activate security posture monitoring and user management.', image: '/assets/images/microsoft-security-posture-tour-3.png' },
+    { title: 'Customer account mapping', description: 'Map Microsoft 365 tenants to the corresponding customer accounts in the management console.', image: '/assets/images/microsoft-security-posture-tour-4.png' },
+    { title: 'Tenant posture overview', description: 'Compare tenant baseline deviations, users and mailboxes across managed customers.', image: '/assets/images/microsoft-security-posture-tour-5.png' },
+    { title: 'Detailed risk findings', description: 'Open a tenant risk dashboard to inspect baseline deviations and affected user accounts.', image: '/assets/images/microsoft-security-posture-tour-6.png' },
+  ];
+
   readonly cloudDriveTourSlides: readonly ProductTourSlide[] = [
     { title: 'Share files with a link', description: 'Set access permissions, download options and expiry for a shared file.', image: '/assets/images/cloud-drive-tour-sharing.png' },
     { title: 'Cloud Drive dashboard', description: 'Review users, storage usage, files and activity from the administration dashboard.', image: '/assets/images/cloud-drive-tour-dashboard.jpg' },
@@ -1502,6 +1706,7 @@ export class ProductPage {
   readonly productTourSlides = computed<readonly ProductTourSlide[]>(() => {
     const view = this.view();
     if (!view) return [];
+    if (this.slug() === 'microsoft-security-posture-management') return this.microsoftSecurityPostureTourSlides;
     if (this.isCloudBackup()) return this.cloudBackupTourSlides;
     if (this.isCloudDrive()) return this.cloudDriveTourSlides;
     if (this.slug() === 'smb-cyber-security-appliance') return this.smbCyberTourSlides;
@@ -1846,6 +2051,115 @@ export class ProductPage {
     const slug = this.slug();
     const view = this.resolve(slug);
     if (!view) return null;
+
+    if (slug === 'higher-education-cloud') return {
+      ...view,
+      heroImage: '/assets/images/higher-education/hero.svg',
+      heroBrand: { ...view.heroBrand, logoImage: '/assets/images/higher-education/logo.png' },
+    };
+    if (slug === 'linux-servers') return { ...view, faqs: LINUX_SERVERS_FAQS };
+    if (slug === 'windows-servers') return { ...view, faqs: WINDOWS_SERVERS_FAQS };
+
+    if (slug === 'instant-website') return {
+      ...view,
+      faqs: INSTANT_WEBSITE_FAQS,
+      videos: [],
+      security: {
+        head: 'Security & Compliance — Instant Website',
+        intro: 'Publish your Instant Website on a custom domain with SSL and HTTPS. Team roles and permissions help control who manages content, while synced business hours and reviews keep public information current. Review AI-generated copy and destination links before publishing, and share only information intended for your visitors.',
+        rows: [
+          ['Website Connection', 'Custom Domain With SSL And HTTPS'],
+          ['Team Access', 'Roles And Permissions'],
+          ['Content Review', 'Edit AI-Generated Copy Before Publishing'],
+          ['Business Information', 'Google Reviews And Hours Sync'],
+          ['Contact Destinations', 'Manage WhatsApp, Booking And Social Links'],
+          ['Page Insights', 'Views, Clicks And Conversions Per Link'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Guided Setup', body: 'Profile connection, domain setup and onboarding by XcellHost.' },
+        { ...view.why[2], title: 'One Dashboard', body: 'Manage your website, bio link, themes and contact buttons together.' },
+        { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
+        { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
+        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+      ],
+    };
+    if (slug === 'instagram-automation') return {
+      ...view,
+      faqs: INSTAGRAM_AUTOMATION_FAQS,
+      videos: [],
+      security: {
+        head: 'Security & Compliance — Instagram Automation',
+        intro: 'Connect your Instagram professional account and organise publishing, DMs and lead routing in one workspace. Use team roles and permissions to control who manages accounts and content. Keep customer conversations within authorised workflows, review connected accounts regularly and check captions, media and schedules before publishing.',
+        rows: [
+          ['Account Connection', 'Instagram Business Or Creator Account'],
+          ['Team Access', 'Roles And Permissions'],
+          ['Publishing Controls', 'Calendar Scheduling And Live Preview'],
+          ['Customer Conversations', 'DMs, Tags And Mentions In One Inbox'],
+          ['Lead Handling', 'Route Enquiries Into CRM'],
+          ['Multi-Account Management', 'Accounts Included In Your Plan'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Guided Setup', body: 'Account connection and publishing setup with XcellHost onboarding.' },
+        { ...view.why[2], title: 'One Dashboard', body: 'Manage Reels, posts, DMs and insights together.' },
+        { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
+        { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
+        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+      ],
+    };
+    if (slug === 'hrm-attendance') return {
+      ...view,
+      faqs: HRM_ATTENDANCE_FAQS,
+      videos: [],
+      security: {
+        head: 'Security & Compliance — HRM + Attendance',
+        intro: 'HRM + Attendance uses owner, manager and staff roles to control access to employee information. Face-recognition attendance and location-based punch-in help verify attendance, while managers approve leave, overtime and corrections before payroll. Review staff permissions, attendance records and payroll inputs as part of your internal HR process.',
+        rows: [
+          ['Staff Access', 'Owner, Manager And Staff Roles'],
+          ['Attendance Verification', 'Phone-Based Face Recognition'],
+          ['Location Controls', 'Geo-Fenced Punch-In'],
+          ['Approvals', 'Leave, Overtime And Attendance Corrections'],
+          ['Payroll Records', 'Attendance-Based Payroll And Payslips'],
+          ['Reporting', 'Attendance And Payroll Cost By Branch'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Guided Setup', body: 'Staff, salaries and shifts configured with XcellHost onboarding.' },
+        { ...view.why[2], title: 'One Dashboard', body: 'Manage attendance, leave, shifts and payroll together.' },
+        { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
+        { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
+        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+      ],
+    };
+    if (slug === 'google-my-business') return {
+      ...view,
+      faqs: GOOGLE_BUSINESS_FAQS,
+      security: {
+        head: 'Security & Compliance — Google Business Profile Automation',
+        intro: "Connect your listing through Google's own sign-in without sharing your Google password. You can revoke access at any time. Choose whether AI review replies are published automatically or held for approval, and use roles and permissions to manage access as your team grows. Keep customer information out of public replies and review your account access regularly.",
+        rows: [
+          ['Profile Connection', 'Connect Through Google Sign-In'],
+          ['Password Privacy', 'No Google Password Sharing'],
+          ['Access Control', 'Roles And Permissions For Teams'],
+          ['Review Approval', 'Approve AI Drafts Or Enable Automatic Replies'],
+          ['Account Ownership', 'Revoke Access At Any Time'],
+          ['Multi-Location Management', 'Manage Profiles From One Dashboard'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Guided Setup', body: 'Profile connection, onboarding and setup by XcellHost.' },
+        { ...view.why[2], title: 'One Dashboard', body: 'Manage reviews, posts and multiple locations together.' },
+        { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
+        { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
+        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+      ],
+    };
+
     if (slug === 'ai-lab-as-service') return {
       ...view,
       faqs: AI_LAB_FAQS,
@@ -2429,6 +2743,14 @@ export class ProductPage {
         crumb: 'Cloud › Managed DevOps',
       });
     }
+    if (slug === 'microsoft-security-posture-management') {
+      return this.products.build({
+        name: 'Microsoft 365 Security Posture Management',
+        tag: 'Monitor and strengthen Microsoft 365 security configurations.',
+        cat: 'Security',
+        crumb: 'Security › Risk Assessment',
+      });
+    }
     if (slug === 'register-a-domain-name') {
       const view = this.products.build({
         name: 'Register a Domain Name',
@@ -2612,6 +2934,13 @@ export class ProductPage {
   requestAiChatbot(request: string): void {
     this.topics.ask(`AI Chat Bot - ${request}`);
     this.overlay.open('callback');
+  }
+
+  onHigherEducationHeroAction(action: HigherEducationHeroAction): void {
+    const event = new Event('click');
+    if (action === 'presentation') this.requestDoc('presentation', event);
+    else if (action === 'tour') this.openProductScreenshotTour();
+    else this.openCallback(event, action === 'trial' ? '7 Days Free Trial' : undefined);
   }
 
   openCallback(ev: Event, request?: string): void {

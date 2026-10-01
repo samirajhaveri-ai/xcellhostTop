@@ -12,10 +12,12 @@ interface Brand {
   readonly mark?: string;
   readonly bg?: string;
   readonly fg?: string;
+  readonly textColor?: string;
 }
 
 const BRANDS: readonly Brand[] = [
   { name: 'Acronis', slug: 'acronis', mark: 'A', bg: '#143BEB', fg: '#fff' },
+  { name: 'OpenText', slug: 'opentext', mark: 'OT', bg: '#7E93B4', fg: '#fff', textColor: '#7E93B4' },
   { name: 'Microsoft ', slug: 'microsoft', ms: true },
   { name: 'DPOGenie 365', slug: 'dpo-genie', mark: 'DP', bg: '#7C3AED', fg: '#fff' },
   { name: 'Microsoft Azure', slug: 'microsoft-azure', ms: true },
@@ -60,6 +62,7 @@ const BRANDS: readonly Brand[] = [
             <a
               [routerLink]="['/vendor-partners', b.slug]"
               [class.feat]="b.feat"
+              [style.color]="b.textColor"
               [attr.aria-label]="'Learn more about ' + b.name"
               >@if (b.ms) {<span class="blg"
                 ><svg viewBox="0 0 21 21" width="13" height="13" aria-hidden="true">

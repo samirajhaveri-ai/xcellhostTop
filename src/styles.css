@@ -3193,7 +3193,7 @@
   .nf-acronis-badge img{display:block;width:100%;height:auto;mix-blend-mode:multiply}
   .nf-review-band{display:flex;align-items:center;gap:12px;flex:1;min-width:0}
   .nf-review-kicker{flex:none;text-transform:uppercase;letter-spacing:.14em;font-size:10px;font-weight:800;color:#fff;white-space:nowrap}
-  .nf-review-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;flex:1;min-width:0}
+  .nf-review-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;flex:1;min-width:0}
   .nf-review-card{display:flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid rgba(255,255,255,.22);border-radius:12px;background:rgba(24,72,175,.5);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 6px 14px rgba(14,46,126,.18);color:#f7f8fb;text-decoration:none;min-height:64px;transition:transform .18s,border-color .18s,box-shadow .18s}
   .nf-review-card:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.45);box-shadow:inset 0 1px 0 rgba(255,255,255,.13),0 10px 20px rgba(14,46,126,.25)}
   .nf-review-icon{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;font-size:18px;font-weight:900;line-height:1;flex:none}
@@ -5862,3 +5862,56 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
   .ub2-extra .ub2-tool, .ub2-extra .ub2-status { min-width:44px; min-height:44px; }
   .ub2-extra .ub2-translate { max-width:100%; }
 }
+/* Linux Servers: supplied visual inside the existing shared hero. */
+#ppage .linux-hero-copy{display:block;width:56%;max-width:620px}
+#ppage .linux-hero-copy [linuxHeroActions]{margin-bottom:20px}
+#ppage .linux-hero-copy .product-hero-ctas{width:100%;flex-wrap:wrap;gap:9px;overflow:visible}
+#ppage .linux-hero-copy .product-hero-ctas .btn{font-size:11px;padding:10px 12px;min-height:36px;flex:0 1 auto}
+#ppage .linux-hero-copy .pp-ask-ai{margin-top:18px}
+#ppage .linux-hero-copy .pp-ask-ai-kicker{font-size:9px}
+#ppage .pp-hero .linux-copy h1{display:block;white-space:normal;font-size:clamp(32px,3.8vw,48px);margin-bottom:10px}
+@media(max-width:900px){#ppage .linux-hero-copy{width:100%;max-width:620px}}
+#ppage .pph-scene.linux-servers-hero-art{right:6%;width:32%;max-width:440px;opacity:1;mask-image:none}
+.linux-servers-hero-art xh-linux-servers-content{width:100%}
+@media(max-width:1100px){#ppage .pph-scene.linux-servers-hero-art{right:4%;width:31%}}
+@media(max-width:900px){#ppage .pph-scene.linux-servers-hero-art{position:relative;inset:auto;width:calc(100% - 40px);max-width:440px;margin:24px auto 32px}#ppage .pp-hero:has(.linux-servers-hero-art){display:flex;flex-direction:column}#ppage .pp-hero:has(.linux-servers-hero-art)>.wrap{width:100%;order:-1}}
+
+
+/* Position the Linux visual beside the existing text width, with a 30px visible gap.
+   The wrap has 24px side padding and the visual has 14px inner padding. */
+@media(min-width:901px){
+  #ppage .pp-hero>.wrap>.pph-scene.linux-servers-hero-art{
+    left:calc(min(620px,calc((100% - 48px)*.56)) + 40px);
+    right:auto;
+    width:32vw;
+  }
+}
+@media(min-width:901px) and (max-width:1100px){
+  #ppage .pp-hero>.wrap>.pph-scene.linux-servers-hero-art{width:31vw}
+}
+
+/* Google Business Profile: retain the default banner and title-case page headings. */
+#ppage.google-business-page :is(h1,h2,h3,h4,.pp-sec,.pf-q,.pu>b,.pw>b,.pp-feat b,.pb b){text-transform:capitalize}
+#ppage.google-business-page .pph-scene.has-illus.standalone-illus .pph-illus-img{max-width:300px;max-height:280px;object-fit:contain;filter:none}
+
+/* Google Business Profile dashboard illustration in the existing hero. */
+#ppage.google-business-page .google-business-dashboard{display:flex;align-items:center;justify-content:center;right:4%;width:42%;max-width:550px;opacity:1;pointer-events:auto}
+#ppage.google-business-page .gb-dashboard{width:100%;box-sizing:border-box;padding:18px;border:1px solid #314766;border-radius:20px;background:#101c3a;box-shadow:0 24px 55px #04142c55;color:#c7d5ec}
+.gb-dashboard-title{display:flex;justify-content:space-between;gap:12px;margin-bottom:12px;font:700 11px/1.5 var(--mono);letter-spacing:.06em;color:#9cc8ff}.gb-dashboard-title b{color:#4ade80;white-space:nowrap}.gb-dashboard-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.gb-dashboard-metrics>div{padding:12px;border-radius:12px;background:#ffffff0f}.gb-dashboard-metrics b{display:block;font:800 22px/1.3 var(--disp);color:#fff}.gb-dashboard-metrics span{font-size:11px;color:#9fb8d8}.gb-dashboard-feed{margin-top:10px;border-radius:12px;padding:12px;background:#061329;font:600 11px/1.8 var(--mono)}.gb-dashboard-feed>div{display:flex;gap:8px}.gb-dashboard-feed span{flex:none;color:#4ade80}.gb-dashboard-caption{display:block;margin-top:8px;font-size:10px;color:#9fb8d8}
+@media(min-width:1001px){#ppage.google-business-page .pp-hero>.wrap{max-width:none;width:92%;margin-inline:auto}#ppage.google-business-page .pp-hero>.wrap>:not(.pph-scene){max-width:52%}#ppage.google-business-page .pp-hero h1{font-size:clamp(28px,2.7vw,40px)}}
+@media(max-width:1000px){#ppage.google-business-page .google-business-dashboard{position:relative;inset:auto;width:calc(100% - 40px);max-width:550px;margin:26px auto;transform:none;order:2}#ppage.google-business-page .pp-hero{display:flex;flex-direction:column}#ppage.google-business-page .pp-hero>.wrap{order:1}#ppage.google-business-page .gb-dashboard{padding:14px}.gb-dashboard-title{font-size:9px}.gb-dashboard-feed{font-size:10px}.gb-dashboard-metrics b{font-size:20px}}
+
+#ppage.google-business-page .pph-scene.google-business-dashboard{mask-image:none!important;-webkit-mask-image:none!important;z-index:2;background:none;overflow:visible;transform:none!important}
+@media(min-width:1001px){#ppage.google-business-page .pph-scene.google-business-dashboard{width:39%;right:5%}#ppage.google-business-page .pp-hero>.wrap>:not(.pph-scene){max-width:51%!important}#ppage.google-business-page .pp-hero>.wrap h1{white-space:normal!important;font-size:36px!important}#ppage.google-business-page .product-hero-ctas{display:flex;flex-wrap:wrap!important}}
+@media(max-width:1000px){#ppage.google-business-page .pph-scene.google-business-dashboard{display:flex!important;position:relative!important;top:auto!important;bottom:auto!important;left:auto!important;right:auto!important;height:auto!important;flex:none}}
+
+@media(min-width:1001px){#ppage.google-business-page .pp-hero .hero-ctas.product-hero-ctas{width:100%!important;max-width:600px!important;flex-wrap:wrap!important;white-space:normal!important}#ppage.google-business-page .pp-hero .hero-ctas.product-hero-ctas .btn{flex:0 0 auto!important}}
+
+#ppage.google-business-page .pph-scene.google-business-dashboard{z-index:5}.gb-dashboard-metrics span{display:block;line-height:1.4;margin-top:5px}@media(max-width:1000px){#ppage.google-business-page .pp-hero{padding-bottom:32px!important}.gb-dashboard-metrics>div{padding:10px}}
+
+/* Keep the Instagram product name together on a clean second heading line. */
+#ppage.instagram-automation-page .pp-hero #ppTitle{display:block!important;line-height:1.18!important}
+#ppage.instagram-automation-page .pp-hero #ppTitle .pp-title-name{display:block;margin:4px 0 0!important;white-space:nowrap!important;font-size:clamp(24px,2.5vw,36px);line-height:1.18}
+
+.instant-dashboard-body{display:grid;grid-template-columns:150px minmax(0,1fr);gap:10px;margin-top:10px}.instant-dashboard-body .gb-dashboard-feed{margin-top:0;font-size:10px}.instant-dashboard-phone{padding:10px;border:1px solid #34435c;border-radius:16px;background:#061329;display:grid;gap:6px}.instant-dashboard-phone>b{font-size:10px;color:#fff}.instant-dashboard-phone>span{padding:6px;border-radius:7px;background:#ffffff0d;font-size:10px;color:#dce7f5}@media(max-width:550px){.instant-dashboard-body{grid-template-columns:1fr}.instant-dashboard-phone{grid-template-columns:1fr 1fr}.instant-dashboard-phone>b{grid-column:1/-1}}
+
