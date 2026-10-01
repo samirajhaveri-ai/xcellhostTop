@@ -1,0 +1,48 @@
+<div class="glass dz-sim" id="sim" aria-label="Animated disaster recovery simulation">
+   <div class="glass-h"><span>DR ORCHESTRATOR · LIVE SIMULATION</span><b id="dzState">● PROTECTED</b></div>
+   <svg viewBox="0 0 520 300" id="dzSvg" class="s-ok" role="img" aria-label="Primary site replicating to a disaster recovery site">
+    <g><circle cx="260" cy="28" r="20" fill="rgba(96,165,250,.18)" stroke="#60A5FA"/><path d="M252 34c0-5 4-8 8-8s8 3 8 8M260 24a4 4 0 100-8 4 4 0 000 8" stroke="#fff" fill="none" stroke-width="1.6"/><text x="290" y="24" class="ttl">YOUR USERS</text><text x="290" y="37">branches · customers · apps</text></g>
+    <path class="dz-fl tpp" d="M248 46 C230 80 120 70 110 106"/>
+    <path class="dz-fl tpd" d="M272 46 C290 80 400 70 410 106"/>
+    
+    <g id="dzP">
+     <rect class="dz-box" x="20" y="106" width="180" height="176" rx="14"/>
+     <text x="34" y="126" class="ttl">PRIMARY · MUMBAI DC</text>
+     <text x="34" y="140" class="bdg" id="bdP" fill="#34D399">ACTIVE</text>
+     <rect class="dz-rk" x="34" y="150" width="152" height="24" rx="5"/>
+     <text x="44" y="166">DB-01 · SQL</text>
+     <circle class="dz-led" data-r="0" cx="156" cy="162" r="3"/><circle class="dz-led" data-r="0" cx="166" cy="162" r="3"/><circle class="dz-led" data-r="0" cx="176" cy="162" r="3"/><rect class="dz-rk" x="34" y="181" width="152" height="24" rx="5"/>
+     <text x="44" y="197">APP-01 · ERP</text>
+     <circle class="dz-led" data-r="1" cx="156" cy="193" r="3"/><circle class="dz-led" data-r="1" cx="166" cy="193" r="3"/><circle class="dz-led" data-r="1" cx="176" cy="193" r="3"/><rect class="dz-rk" x="34" y="212" width="152" height="24" rx="5"/>
+     <text x="44" y="228">WEB-01 · IIS</text>
+     <circle class="dz-led" data-r="2" cx="156" cy="224" r="3"/><circle class="dz-led" data-r="2" cx="166" cy="224" r="3"/><circle class="dz-led" data-r="2" cx="176" cy="224" r="3"/><rect class="dz-rk" x="34" y="243" width="152" height="24" rx="5"/>
+     <text x="44" y="259">FS-01 · FILES</text>
+     <circle class="dz-led" data-r="3" cx="156" cy="255" r="3"/><circle class="dz-led" data-r="3" cx="166" cy="255" r="3"/><circle class="dz-led" data-r="3" cx="176" cy="255" r="3"/>
+    </g>
+    <g id="dzD">
+     <rect class="dz-box" x="320" y="106" width="180" height="176" rx="14"/>
+     <text x="334" y="126" class="ttl">DR SITE · SECOND DC</text>
+     <text x="334" y="140" class="bdg" id="bdD" fill="#34D399">STANDBY · REPLICA</text>
+     <rect class="dz-rk" x="334" y="150" width="152" height="24" rx="5"/>
+     <text x="344" y="166">DB-01 · SQL</text>
+     <circle class="dz-led" data-r="0" cx="456" cy="162" r="3"/><circle class="dz-led" data-r="0" cx="466" cy="162" r="3"/><circle class="dz-led" data-r="0" cx="476" cy="162" r="3"/><rect class="dz-rk" x="334" y="181" width="152" height="24" rx="5"/>
+     <text x="344" y="197">APP-01 · ERP</text>
+     <circle class="dz-led" data-r="1" cx="456" cy="193" r="3"/><circle class="dz-led" data-r="1" cx="466" cy="193" r="3"/><circle class="dz-led" data-r="1" cx="476" cy="193" r="3"/><rect class="dz-rk" x="334" y="212" width="152" height="24" rx="5"/>
+     <text x="344" y="228">WEB-01 · IIS</text>
+     <circle class="dz-led" data-r="2" cx="456" cy="224" r="3"/><circle class="dz-led" data-r="2" cx="466" cy="224" r="3"/><circle class="dz-led" data-r="2" cx="476" cy="224" r="3"/><rect class="dz-rk" x="334" y="243" width="152" height="24" rx="5"/>
+     <text x="344" y="259">FS-01 · FILES</text>
+     <circle class="dz-led" data-r="3" cx="456" cy="255" r="3"/><circle class="dz-led" data-r="3" cx="466" cy="255" r="3"/><circle class="dz-led" data-r="3" cx="476" cy="255" r="3"/>
+    </g>
+    <path class="dz-fl rep" d="M200 194 L320 194"/>
+    <text x="214" y="184" id="dzRl">REPLICATING</text>
+    <text x="220" y="212" id="dzLag" fill="#34D399">lag 2s</text>
+    <g class="dz-bolt"><circle cx="110" cy="194" r="34" fill="rgba(239,68,68,.18)"/><path d="M116 170 L98 198 L110 198 L104 220 L124 190 L112 190 Z" fill="#F97316" stroke="#FDE68A" stroke-width="1.2"/></g>
+   </svg>
+   <div class="dz-st"><div><small>RECOVERY POINT</small><b id="dzRpo">Seconds</b></div><div><small>DOWNTIME (SIM)</small><b id="dzRto">00:00</b></div><div><small>SERVING FROM</small><b id="dzFrom">Primary</b></div></div>
+   <div class="dz-log" id="dzLog" aria-live="polite" aria-relevant="additions text">
+    @for (entry of entries(); track entry) {
+      <div><span>{{ entry.time }}</span><em [class]="entry.kind">{{ entry.message }}</em></div>
+    }
+   </div>
+   <div class="dz-ctl"><button class="btn dz-go" id="dzGo" type="button" (click)="activate()">⚡ Simulate a disaster</button></div>
+  </div>
