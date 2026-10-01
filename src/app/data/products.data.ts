@@ -1094,6 +1094,7 @@ export const PRODUCT_VIDEOS: Record<string, string[]> = {
   "Advanced Endpoint Security + EDR": ["iaHAyNSXCPc", "2PZzQIUxpMo"],
   "Endpoint Security + RMM": ["LLxYfEH-Oh0", "v7v4p0Pikhw"],
   "Bare Metal Server": ["3dg2_3NsJ9Y", ""],
+  "Linux Servers": ["3dg2_3NsJ9Y", ""],
   "Performance Cloud Servers": ["eFPWtETDYRQ", "U67bDvoR5ak"],
   "Dedicated Private Cloud": ["N_8tgYyJ_FM", ""],
   "Managed Colocation Services": ["ZynwE-xyY1o", "9ZlACRCpWLM"],

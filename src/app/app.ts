@@ -1,9 +1,11 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter, map, startWith } from 'rxjs';
 
 import { OverlayService } from './core/overlay.service';
+import { DocRequestService } from './core/doc-request.service';
 import { CallbackTopicService } from './overlays/callback-topic.service';
 import {
   BackToTopComponent,
@@ -58,7 +60,6 @@ import {
   host: {
     style: 'display:contents',
     '(document:keydown.escape)': 'onEscape()',
-    '(document:click)': 'onDocumentClick($event)',
     '(window:scroll)': 'updateScrollProgress()',
     '(window:resize)': 'updateScrollProgress()',
   },
@@ -67,8 +68,11 @@ import {
 export class App {
   readonly scrollProgress = signal(0);
   private readonly overlay = inject(OverlayService);
+  private readonly docs = inject(DocRequestService);
   private readonly topics = inject(CallbackTopicService);
   private readonly router = inject(Router);
+  private readonly document = inject(DOCUMENT);
+  private readonly destroyRef = inject(DestroyRef);
   readonly isPortalLogin = toSignal(
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
@@ -77,6 +81,12 @@ export class App {
     ),
     { initialValue: false },
   );
+
+  constructor() {
+    const captureClick = (event: Event): void => this.onDocumentClick(event as MouseEvent);
+    this.document.addEventListener('click', captureClick, true);
+    this.destroyRef.onDestroy(() => this.document.removeEventListener('click', captureClick, true));
+  }
 
   updateScrollProgress(): void {
     const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -98,8 +108,18 @@ export class App {
     if (!cta || cta.hasAttribute('disabled')) return;
 
     const label = (cta.textContent ?? '').replace(/\s+/g, ' ').trim();
+    if (/\binfosheet\b/i.test(label)) {
+      if (this.overlay.isOpen('doc')) return;
+      event.preventDefault();
+      event.stopPropagation();
+      this.docs.ask('infosheet', this.infosheetProductName(cta));
+      this.overlay.open('doc');
+      return;
+    }
+
     if (/^(?:start(?: your)?(?: \d+-day)?|ask for|\d+ day's)?\s*free trial(?:\s*→)?$/i.test(label)) {
       event.preventDefault();
+      event.stopPropagation();
       this.overlay.open('trial');
       return;
     }
@@ -107,7 +127,19 @@ export class App {
     if (!/^(let'?s talk|talk to sales|talk to us)$/i.test(label)) return;
 
     event.preventDefault();
+    event.stopPropagation();
     this.topics.ask(cta.dataset['cbtopic']?.trim() || '');
     this.overlay.open('callback');
+  }
+
+  private infosheetProductName(cta: HTMLElement): string {
+    const explicitName = cta.dataset['product']?.trim();
+    if (explicitName) return explicitName;
+
+    const localHeading = cta.closest('section')?.querySelector('h1');
+    const pageHeading = document.querySelector('main h1, #ppTitle, h1');
+    return (localHeading?.textContent || pageHeading?.textContent || document.title)
+      .replace(/\s+/g, ' ')
+      .trim();
   }
 }

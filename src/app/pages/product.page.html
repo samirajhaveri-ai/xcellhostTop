@@ -88,8 +88,10 @@
     @if (slug() === 'cloud-repatriation') {
       <xh-cloud-repatriation-source view="hero" />
     }
-    @if (slug() === 'cloud-security-posture-mgmt') {
-      <xh-cloud-security-posture-source />
+    @if (slug() === 'microsoft-security-posture-management') {
+      <xh-cloud-security-posture-source
+        (tourRequested)="openProductScreenshotTour()"
+      />
     } @else if (slug() === 'acronis-xdr') {
       <xh-acronis-xdr-source />
       <xh-insights-section [pageSlug]="slug()" />
@@ -102,7 +104,7 @@
           <div style="display:flex;gap:12px;flex-wrap:wrap">
             <a class="btn btn-primary" href="#" (click)="openCallback($event)">Request a callback</a>
             <a class="btn btn-ghost" href="#" (click)="buyNow($event)">⚡ Buy Now</a>
-            <a class="btn btn-ghost" [href]="v.infosheetUrl" target="_blank" rel="noopener noreferrer">⬇ Infosheet</a>
+            <a class="btn btn-ghost" href="#" (click)="requestDoc('infosheet', $event)">⬇ Infosheet</a>
             <a class="btn btn-ghost" href="#" (click)="requestDoc('presentation', $event)">📖 Presentation</a>
             <a class="btn btn-ghost" [href]="waHref()" target="_blank" rel="noopener">Talk on WhatsApp</a>
             <a class="btn btn-ghost" [href]="mailHref()">Email Us</a>
@@ -285,7 +287,7 @@
         <!-- The supplied H100 hero is rendered above the shared product sections. -->
       } @else if (slug() === 'n8n-vps') {
         <xh-n8n-vps-hero
-          [infosheetUrl]="v.infosheetUrl"
+          (infosheetRequested)="requestDoc('infosheet', $event)"
           (presentationRequested)="requestDoc('presentation', $event)"
           (tourRequested)="openProductScreenshotTour()"
           (talkRequested)="openCallback($event)"
@@ -305,7 +307,11 @@
         <span class="pph-aur pph-a3" aria-hidden="true"></span>
         <span class="pph-scan" aria-hidden="true"></span>
 
-        @if (slug() === 'ai-chat-bot') {
+        @if (slug() === 'linux-servers') {
+          <div class="pph-scene linux-servers-hero-art">
+            <xh-linux-servers-content [heroOnly]="true" />
+          </div>
+        } @else if (slug() === 'ai-chat-bot') {
           <div class="pph-scene ai-chatbot-hero-art">
             <xh-ai-chatbot-content [hero]="true" (enquiry)="requestAiChatbot($event)" />
           </div>
@@ -1036,10 +1042,9 @@
               <div class="hero-ctas sitelock-ctas">
                 <a
                   class="btn ppd-info"
-                  [href]="v.infosheetUrl"
+                  href="#"
+                  (click)="requestDoc('infosheet', $event)"
                   id="ppInfo"
-                  target="_blank"
-                  rel="noopener noreferrer"
                   ><span class="ppd-ic">⬇</span> Infosheet</a
                 >
                 <a
@@ -1065,7 +1070,7 @@
               <div class="copilot-tech">Word · Excel · PowerPoint · Outlook · Teams</div>
               <div class="copilot-hero-points"><span>✓ Draft &amp; rewrite in Word</span><span>✓ Analyse data in Excel</span><span>✓ Build decks in PowerPoint</span><span>✓ Clear your Outlook inbox</span><span>✓ Recap Teams meetings</span><span>✓ Enterprise-grade data security</span></div>
               <div class="hero-ctas product-hero-ctas">
-                <a class="btn ppd-info" [href]="v.infosheetUrl" target="_blank" rel="noopener noreferrer"><span class="ppd-ic">⬇</span> Infosheet</a>
+                <a class="btn ppd-info" href="#" (click)="requestDoc('infosheet', $event)"><span class="ppd-ic">⬇</span> Infosheet</a>
                 <a class="btn ppd-pres" href="#" (click)="requestDoc('presentation', $event)"><span class="ppd-ic">📖</span> Presentation</a>
                 <button class="btn btn-ghost cdr-tour-trigger" type="button" (click)="openProductScreenshotTour()">Screenshot Tour</button>
                 <button class="btn btn-ghost cdr-tour-trigger" type="button">7 Day's Free Trial</button>
@@ -1177,10 +1182,9 @@
                 <div class="hero-ctas product-hero-ctas">
                   <a
                     class="btn ppd-info"
-                    [href]="v.infosheetUrl"
+                    href="#"
+                    (click)="requestDoc('infosheet', $event)"
                     id="ppInfo"
-                    target="_blank"
-                    rel="noopener noreferrer"
                     ><span class="ppd-ic">⬇</span> Infosheet</a
                   >
                   <a
@@ -1551,7 +1555,7 @@
       slug() !== 'cloud-devops-services' &&
       slug() !== 'server-management' &&
       slug() !== 'microsoft-365-backup' &&
-      slug() !== 'cloud-security-posture-mgmt'
+      slug() !== 'microsoft-security-posture-management'
     ) {
     @if (slug() === 'microsoft-defender') {
       <div class="pp-body microsoft-defender-body"><div class="wrap">
@@ -1568,7 +1572,7 @@
             <div class="defender-cta-actions">
               <a class="btn btn-primary" href="#" (click)="openCallback($event, 'Defender consultation')">Request a callback</a>
               <a class="btn btn-ghost" href="#" (click)="openCallback($event, 'Defender licence quote')">Get a quote</a>
-              <a class="btn btn-ghost" [href]="v.infosheetUrl" target="_blank" rel="noopener noreferrer">Infosheet</a>
+              <a class="btn btn-ghost" href="#" (click)="requestDoc('infosheet', $event)">Infosheet</a>
               <a class="btn btn-ghost" href="#" (click)="requestDoc('presentation', $event)">Presentation</a>
               <a class="btn btn-ghost" [href]="waHref()" target="_blank" rel="noopener">Talk on WhatsApp</a>
               <a class="btn btn-ghost" [href]="mailHref()">Email Us</a>
@@ -1625,6 +1629,9 @@
           @if (slug() !== 'identity-resilience' && slug() !== 'ediscovery-and-compliance' && slug() !== 'performance-cloud' && slug() !== 'gpu-clusters' && slug() !== 'ai-chat-bot') {
           @if (slug() === 'marketplace') {
             <xh-marketplace-content />
+          } @else {
+          @if (slug() === 'linux-servers') {
+            <xh-linux-servers-content (quoteRequested)="openCallback($event, 'Linux Servers custom build')" />
           } @else {
           @if (slug() === 'nvidia-h100') {
             <xh-nvidia-h100-content (planSelected)="selectH100Plan($event)" />
@@ -4383,6 +4390,7 @@
           }
           }
           }
+          }
           @if (v.name !== 'Tally on Cloud') {
             @if (slug() === 'rtx-8000') {
               <xh-rtx-8000-stories />
@@ -5056,6 +5064,9 @@
           </nav>
         }
 
+        @if (slug() === 'linux-servers') {
+          <h2 class="pp-sec">From our blog</h2>
+        }
         <div id="ppBlog" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null" [class.scrutiny-dlp-insights]="slug() === 'scrutiny-dlp'" [class.vortex-seg-insights]="slug() === 'vortex-seg'"><xh-insights-section [pageSlug]="slug()" /></div>
 
         <div class="pp-cta">
@@ -5077,9 +5088,8 @@
               <a
                 class="btn btn-ghost"
                 style="border-color: rgba(255, 255, 255, 0.4); color: #fff"
-                [href]="v.infosheetUrl"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#"
+                (click)="requestDoc('infosheet', $event)"
                 >⬇ Infosheet</a
               >
               <a
