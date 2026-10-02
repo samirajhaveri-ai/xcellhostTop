@@ -3357,66 +3357,85 @@ export const MEGA_MENU: MenuTop[] = [
             "items": [
               {
                 "title": "CA Cloud",
+                "href": "/ca-cloud",
                 "pill": "Free trial",
                 "desc": null
               },
               {
                 "title": "SMB Cloud",
+                "href": "/smb-cloud",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "BFSI Cloud",
+                "href": "/bfsi-cloud",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "Insurance Cloud",
+                "href": "/insurance-cloud",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "Manufacturing Cloud",
+                "href": "/manufacturing-cloud",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "Government Cloud",
+                "href": "/government-cloud",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "Higher Education Cloud",
+                "href": "/higher-education-cloud",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "Pharmaceutical Cloud",
+                "href": "/pharmaceutical-cloud",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "Construction Cloud",
+                "href": "/construction-cloud",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "Hospitality Cloud",
+                "href": "/hospitality-cloud",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "Logistics Cloud",
+                "href": "/logistics-cloud",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "HealthCare Cloud",
+                "href": "/healthcare-cloud",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "Retail Cloud",
+                "href": "/retail-cloud",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Food and Beverage Cloud",
+                "href": "/food-and-beverage",
                 "pill": null,
                 "desc": null
               },

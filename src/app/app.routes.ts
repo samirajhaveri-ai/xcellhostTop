@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { MENU_SERVICE_PAGES } from './data/menu-service-pages.data';
+import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 /**
  * URLs mirror the original site exactly, so nothing that is already indexed breaks:
@@ -12,7 +13,7 @@ import { MENU_SERVICE_PAGES } from './data/menu-service-pages.data';
  *   /compare/
  */
 export const routes: Routes = [
-  ...MENU_SERVICE_PAGES.map((page) => ({
+  ...[...MENU_SERVICE_PAGES, ...INDUSTRY_CLOUD_PAGES].map((page) => ({
     path: page.slug,
     data: { servicePage: page },
     loadComponent: () => import('./pages/menu-service.page').then((m) => m.MenuServicePage),
@@ -407,7 +408,6 @@ export const routes: Routes = [
     data: { productSlug: 'cloud-devops-services' },
     loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
   },
-  { path: 'food-and-beverage', redirectTo: 'hospitality-cloud', pathMatch: 'full' },
   { path: 'acronis-edr', redirectTo: '', pathMatch: 'full' },
   {
     path: 'email-security-smb',

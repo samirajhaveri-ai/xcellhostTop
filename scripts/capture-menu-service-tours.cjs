@@ -6,6 +6,8 @@ const os = require('node:os');
 const { spawn } = require('node:child_process');
 const root = path.resolve('src/assets/menu-service-pages');
 const destination = path.join(root, 'tours');
+// Optional slugs limit capture to newly imported pages, preserving existing tours.
+const requestedSlugs = new Set(process.argv.slice(2));
 fs.mkdirSync(destination, { recursive: true });
 const server = http.createServer((req, res) => {
   const file = path.join(root, path.basename(req.url));
@@ -56,7 +58,8 @@ const server = http.createServer((req, res) => {
     };
     await send('Page.enable');
     await send('Emulation.setDeviceMetricsOverride', { width: 1366, height: 900, deviceScaleFactor: 1, mobile: false });
-    for (const file of fs.readdirSync(root).filter((file) => file.endsWith('.html'))) {
+    for (const file of fs.readdirSync(root).filter((file) => file.endsWith('.html') &&
+      (!requestedSlugs.size || requestedSlugs.has(file.replace(/\.html$/, ''))))) {
       await send('Page.navigate', { url: `http://127.0.0.1:${server.address().port}/${file}` });
       for (let attempt = 0; attempt < 80; attempt++) {
         await new Promise((resolve) => setTimeout(resolve, 100));

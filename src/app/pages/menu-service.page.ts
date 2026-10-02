@@ -27,7 +27,7 @@ export class MenuServicePage implements OnDestroy {
   private readonly router = inject(Router);
   private readonly sanitizer = inject(DomSanitizer);
   readonly page = inject(ActivatedRoute).snapshot.data['servicePage'] as {
-    slug: string; name: string; title: string; description: string;
+    slug: string; name: string; title: string; description: string; category?: 'Cloud';
   };
   readonly pageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`/assets/menu-service-pages/${this.page.slug}.html`);
   private observer?: ResizeObserver;
@@ -41,7 +41,7 @@ export class MenuServicePage implements OnDestroy {
   readonly emailUrl = `mailto:${SITE.email}?subject=${encodeURIComponent(`Enquiry: ${this.page.name}`)}`;
   readonly view = inject(ProductPageService).build({
     name: this.page.name,
-    cat: /testing|vapt/.test(this.page.slug) ? 'Security' : this.page.slug === 'managed-microsoft-365' ? 'Cloud' : 'Web Presence',
+    cat: this.page.category ?? (/testing|vapt/.test(this.page.slug) ? 'Security' : this.page.slug === 'managed-microsoft-365' ? 'Cloud' : 'Web Presence'),
   });
   private readonly videoId = PRODUCT_VIDEOS[this.page.name]?.[0] || (/testing|vapt/.test(this.page.slug) ? PRODUCT_VIDEOS['VAPT Services']?.[0] : '');
   readonly videoUrl = this.videoId ? this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube-nocookie.com/embed/${this.videoId}?rel=0&playsinline=1`) : null;

@@ -3,7 +3,8 @@ import path from 'node:path';
 
 // Import page content as data; keep the site's shared navigation and footer.
 const sourceDir = process.argv[2];
-if (!sourceDir) throw new Error('Pass the directory containing the ten supplied HTML files.');
+if (!sourceDir) throw new Error('Pass the directory containing the supplied HTML files, optionally followed by --industry.');
+const industry = process.argv.includes('--industry');
 const destination = 'src/assets/menu-service-pages';
 fs.mkdirSync(destination, { recursive: true });
 const pages = [];
@@ -18,6 +19,20 @@ const names = {
   'vapt-services': 'VAPT Services',
   'web-app-penetration-testing': 'Web App Penetration Testing',
   'wordpress-automation': 'WordPress Automation',
+  'bfsi-cloud': 'BFSI Cloud',
+  'ca-cloud': 'CA Cloud',
+  'construction-cloud': 'Construction Cloud',
+  'food-and-beverage': 'Food & Beverage Cloud',
+  'government-cloud': 'Government Cloud',
+  'healthcare-cloud': 'Healthcare Cloud',
+  'higher-education-cloud': 'Higher Education Cloud',
+  'hospitality-cloud': 'Hospitality Cloud',
+  'insurance-cloud': 'Insurance Cloud',
+  'logistics-cloud': 'Logistics Cloud',
+  'manufacturing-cloud': 'Manufacturing Cloud',
+  'pharmaceutical-cloud': 'Pharmaceutical Cloud',
+  'retail-cloud': 'Retail Cloud',
+  'smb-cloud': 'SMB Cloud',
 };
 const heroButtons = `<div class="xh-hero-actions" aria-label="Service actions">
   <button type="button" class="xh-info" data-xh-action="infosheet">⬇ Infosheet</button>
@@ -35,7 +50,12 @@ const decode = (text) => text.replace(/&(#x[0-9a-f]+|#\d+|amp|quot|apos|lt|gt);/
   if (code.startsWith('#')) return String.fromCodePoint(code[1].toLowerCase() === 'x' ? parseInt(code.slice(2), 16) : Number(code.slice(1)));
   return { amp: '&', quot: '"', apos: "'", lt: '<', gt: '>' }[code.toLowerCase()] ?? entity;
 });
-const filenames = [
+const filenames = industry ? [
+  'bfsi-cloud.html', 'ca-cloud.html', 'construction-cloud.html', 'food-and-beverage.html',
+  'government-cloud.html', 'healthcare-cloud.html', 'higher-education-cloud.html',
+  'hospitality-cloud.html', 'insurance-cloud.html', 'logistics-cloud.html',
+  'manufacturing-cloud.html', 'pharmaceutical-cloud.html', 'retail-cloud.html', 'smb-cloud.html',
+] : [
   'aeo-geo-automation.html', 'external-network-penetration-testing.html',
   'iot-penetration-testing.html', 'managed-365 (3).html',
   'mobile-app-penetration-testing.html', 'mobile-application-security-testing.html',
@@ -58,9 +78,10 @@ for (const filename of filenames) {
   if (!content.includes('data-xh-action="tour"')) throw new Error(`Hero actions missing in ${filename}`);
   const document = `<!doctype html>\n<html lang="en-IN">\n<head>${head}\n<style>html,body{height:auto;min-height:0}body{overflow:hidden}${heroStyles}</style></head>\n<body>${content}\n${scripts}\n</body>\n</html>\n`;
   fs.writeFileSync(path.join(destination, `${slug}.html`), document);
-  pages.push({ slug, name: names[slug], title: decode(title), description: decode(description) });
+  pages.push({ slug, name: names[slug], title: decode(title), description: decode(description),
+    ...(industry ? { category: 'Cloud' } : {}) });
 }
-fs.writeFileSync('src/app/data/menu-service-pages.data.ts',
+fs.writeFileSync(`src/app/data/${industry ? 'industry-cloud' : 'menu-service'}-pages.data.ts`,
   '// Metadata from the supplied service HTML files.\n' +
-  'export const MENU_SERVICE_PAGES = ' + JSON.stringify(pages, null, 2) + ' as const;\n');
+  `export const ${industry ? 'INDUSTRY_CLOUD_PAGES' : 'MENU_SERVICE_PAGES'} = ` + JSON.stringify(pages, null, 2) + ' as const;\n');
 console.log(`Imported ${pages.length} service pages.`);
