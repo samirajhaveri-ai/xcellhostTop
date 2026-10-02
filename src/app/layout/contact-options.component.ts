@@ -79,7 +79,7 @@ import { LeadService } from '../core/lead.service';
       position: relative;
       padding: 0 24px;
       overflow: hidden;
-      background: linear-gradient(to bottom, var(--ice) 0 50%, #3b63e8 50% 100%);
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0 50%, #3b63e8 50% 100%);
       color: #fff;
     }
 

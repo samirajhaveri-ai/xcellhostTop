@@ -491,6 +491,7 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Smart QR & NFC Automation",
+                "href": "/smart-qr-and-nfc-automation",
                 "pill": "New",
                 "desc": "Maximise online visibility and reach your target audience 🎯"
               },
@@ -526,11 +527,13 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "WordPress Automation",
+                "href": "/wordpress-automation",
                 "pill": "New",
                 "desc": "Maximise online visibility and reach your target audience 🎯"
               },
               {
-                "title": "AEO + GEO Automation4",
+                "title": "AEO + GEO Automation",
+                "href": "/aeo-geo-automation",
                 "pill": "New",
                 "desc": "Maximise online visibility and reach your target audience 🎯"
               },
@@ -1493,6 +1496,7 @@ export const MEGA_MENU: MenuTop[] = [
               
               {
                 "title": "Managed Microsoft 365",
+                "href": "/managed-microsoft-365",
                 "pill": null,
                 "desc": null
               },
@@ -2327,6 +2331,7 @@ export const MEGA_MENU: MenuTop[] = [
             "items": [
               {
                 "title": "VAPT Services",
+                "href": "/vapt-services",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -2352,12 +2357,26 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
+                "title": "External Network Penetration Testing",
+                "href": "/external-network-penetration-testing",
+                "pill": null,
+                "desc": null
+              },
+              {
                 "title": "Web App Penetration Testing",
+                "href": "/web-app-penetration-testing",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "Mobile App Penetration Testing",
+                "href": "/mobile-app-penetration-testing",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Mobile Application Security Testing",
+                "href": "/mobile-application-security-testing",
                 "pill": null,
                 "desc": null
               },
@@ -2368,6 +2387,7 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "IoT Penetration Testing",
+                "href": "/iot-penetration-testing",
                 "pill": null,
                 "desc": null
               },
@@ -4231,7 +4251,7 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Experience Center",
             "items": [
               {
-                "title": "Xcellhost Demo Center",
+                "title": "DPDPA Demo Center",
                 "pill": null,
                 "desc": "Watch XcellHost product videos and demos",
                 "href": "/xcellhost-demo-center"

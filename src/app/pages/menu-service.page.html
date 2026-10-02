@@ -1,0 +1,85 @@
+<iframe #frame class="service-content" [src]="pageUrl" [title]="page.title" scrolling="no" (load)="onLoad()"></iframe>
+<div id="ppage" class="ppage as-page microsoft-365-enterprise-page">
+  <div class="pp-body microsoft-365-enterprise-extras">
+    <div class="wrap">
+      <section aria-labelledby="serviceSecurityTitle">
+        <h2 class="pp-sec" id="serviceSecurityTitle">Security &amp; compliance</h2>
+        <p class="pp-ov">{{ view.security.intro }}</p>
+        <div class="pp-secrows">
+          @for (row of view.security.rows; track row[0]) {
+            <div class="psrow"><span class="psk">{{ row[0] }}</span><span class="psv">{{ row[1] }}</span></div>
+          }
+        </div>
+      </section>
+      <section aria-labelledby="serviceWhyTitle">
+        <h2 class="pp-sec" id="serviceWhyTitle">Why XcellHost for {{ page.name }}</h2>
+        <div class="pp-why">
+          @for (reason of view.why; track reason.title) {
+            <div class="pw"><span class="pw-ic" aria-hidden="true">@if (reason.icon.startsWith('M')) { <svg viewBox="0 0 24 24"><path [attr.d]="reason.icon" /></svg> } @else { {{ reason.icon }} }</span><b>{{ reason.title }}</b><span>{{ reason.body }}</span></div>
+          }
+        </div>
+      </section>
+      <section class="tally-videos" aria-labelledby="serviceActionTitle">
+        <h2 class="pp-sec" id="serviceActionTitle">Watch it in action</h2>
+        <div class="tally-video-grid single-video">
+          <article class="tally-video-card">
+            <h3><span>{{ page.name }} overview</span></h3>
+            <div class="tally-video-frame">
+              @if (videoUrl) {
+                <iframe [src]="videoUrl" [title]="page.name + ' overview'" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              } @else {
+                <div class="service-demo"><span aria-hidden="true">▶</span><strong>See {{ page.name }} in action</strong><p>Explore the screenshot tour or request a guided demonstration.</p><div><button class="btn btn-ghost" type="button" (click)="openTour()">Screenshot Tour</button><button class="btn btn-primary" type="button" (click)="openCallback()">Request a demo</button></div></div>
+              }
+            </div>
+          </article>
+        </div>
+      </section>
+      <section aria-labelledby="serviceReviewsTitle">
+        <h2 class="pp-sec" id="serviceReviewsTitle">What customers say</h2>
+        <div class="pp-revs">
+          @for (review of view.reviews; track review.name) {
+            <div class="prv"><div class="stars" [attr.aria-label]="review.stars + ' out of 5 stars'">@for (slot of starSlots; track slot) { <span [class.off]="slot >= review.stars">★</span> }</div><p>“{{ review.quote }}”</p><cite><span class="rav">{{ review.initials }}</span><span><b>{{ review.name }}</b>{{ review.role }}</span></cite></div>
+          }
+        </div>
+      </section>
+      <section aria-labelledby="serviceFaqTitle">
+        <h2 class="pp-sec pp-faq-heading" id="serviceFaqTitle">Frequently asked questions</h2>
+        <div class="pp-faq"><xh-product-faq [faqs]="view.faqs" idPrefix="menuServiceFaq" /></div>
+      </section>
+      <div class="m365-enterprise-insights"><xh-insights-section [pageSlug]="page.slug" /></div>
+      <section class="pp-cta service-closing-cta" aria-labelledby="serviceClosingTitle">
+        <div>
+          <h3 id="serviceClosingTitle">Ready to start with {{ page.name }}?</h3>
+          <p>FREE Consultation · FREE Demo · FREE Trial · 24×7 support in English &amp; Hindi</p>
+        </div>
+        <div class="service-closing-actions">
+          <button class="btn btn-primary" type="button" (click)="openCallback()">Request a callback</button>
+          <button class="btn btn-ghost" type="button" (click)="buyNow()">⚡ Buy Now</button>
+          <button class="btn btn-ghost" type="button" (click)="requestDoc('infosheet')">⬇ Infosheet</button>
+          <button class="btn btn-ghost" type="button" (click)="requestDoc('presentation')">▣ Presentation</button>
+          <a class="btn btn-ghost" [href]="whatsappUrl" target="_blank" rel="noopener">Talk on WhatsApp</a>
+          <a class="btn btn-ghost" [href]="emailUrl">Email Us</a>
+        </div>
+        <a class="pp-cta-buddha-link" routerLink="/support-overview" aria-label="Visit XcellHost customer support"><img class="pp-cta-buddha" src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost 24×7 support" /></a>
+      </section>
+      <div class="pp-proof" aria-label="XcellHost credentials and payment options">
+        <span>🏅 ISO 27001</span><span>🏅 ISO 20000-1</span><span>🤝 Microsoft Gold Partner</span><span>🕰 Since 1999</span><span>🔒 Secure Payments — UPI · Cards · NetBanking</span>
+      </div>
+    </div>
+  </div>
+</div>
+@if (overlay.isOpen('productScreenshotTour')) {
+  <div class="cdr-tour-backdrop" (click)="closeTour()">
+    <section #tourDialog class="cdr-tour-dialog" role="dialog" aria-modal="true" aria-labelledby="serviceTourTitle" tabindex="-1" (click)="$event.stopPropagation()">
+      <button class="cdr-tour-close" type="button" aria-label="Close screenshot tour" (click)="closeTour()">×</button>
+      <div class="cdr-tour-heading"><span>{{ page.name }}</span><h2 id="serviceTourTitle">Screenshot Tour</h2><p>Explore the service overview and its capabilities.</p></div>
+      <div class="cdr-tour-stage">
+        @for (slide of tourSlides; track slide.image; let i = $index) {
+          <figure class="cdr-tour-slide" [class.is-active]="i === tourIndex()" [attr.aria-hidden]="i !== tourIndex()"><img [src]="slide.image" [alt]="page.name + ': ' + slide.title" /><figcaption><strong>{{ slide.title }}</strong></figcaption></figure>
+        }
+        <button class="cdr-tour-arrow cdr-tour-prev" type="button" aria-label="Previous screenshot" (click)="tourIndex.update(toggleIndex)">‹</button>
+        <button class="cdr-tour-arrow cdr-tour-next" type="button" aria-label="Next screenshot" (click)="tourIndex.update(toggleIndex)">›</button>
+      </div>
+    </section>
+  </div>
+}

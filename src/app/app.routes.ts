@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { MENU_SERVICE_PAGES } from './data/menu-service-pages.data';
 
 /**
  * URLs mirror the original site exactly, so nothing that is already indexed breaks:
@@ -11,6 +12,14 @@ import { Routes } from '@angular/router';
  *   /compare/
  */
 export const routes: Routes = [
+  ...MENU_SERVICE_PAGES.map((page) => ({
+    path: page.slug,
+    data: { servicePage: page },
+    loadComponent: () => import('./pages/menu-service.page').then((m) => m.MenuServicePage),
+  })),
+  { path: 'mobile-application-penetration-testing', redirectTo: 'mobile-application-security-testing', pathMatch: 'full' },
+  { path: 'aeo-geo-automation4', redirectTo: 'aeo-geo-automation', pathMatch: 'full' },
+  { path: 'managed-365', redirectTo: 'managed-microsoft-365', pathMatch: 'full' },
   {
     path: 'cybersecurity-frameworks',
     loadComponent: () => import('./pages/cybersecurity-frameworks.page').then((m) => m.CybersecurityFrameworksPage),
