@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>XcellTally | Tally on Cloud — Hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Poppins:wght@500;600;700&family=Sora:wght@700;800&display=swap" rel="stylesheet">
+<style>
+/* ===== XcellTally hero — self-contained. Paste the <section> + <style> + <script> into the page. ===== */
+.xt-hero,.xt-hero *{box-sizing:border-box;margin:0;padding:0}
+.xt-hero{--navy:#041E42;--blue:#1565D8;--sky:#69B6FF;--orange:#FF8C1A;--red:#E60012;--ok:#2ECC71;--ink:#DCE7F8;--mut:#9FB8D8;
+ --mono:"IBM Plex Mono",monospace;--body:"IBM Plex Sans",system-ui,sans-serif;--pop:"Poppins",sans-serif;--disp:"Sora",sans-serif;
+ position:relative;overflow:hidden;color:var(--ink);font-family:var(--body);
+ background:radial-gradient(900px 520px at 78% 45%,rgba(21,101,216,.28),transparent 65%),radial-gradient(700px 400px at 10% 0%,rgba(105,182,255,.12),transparent 60%),linear-gradient(160deg,#06204A 0%,#041733 55%,#03112A 100%)}
+.xt-hero a{color:inherit;text-decoration:none}
+.xt-wrap{position:relative;z-index:2;max-width:1320px;margin:0 auto;padding:56px 24px 64px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:40px;align-items:center}
+/* background stars */
+.xt-stars{position:absolute;inset:0;z-index:0;pointer-events:none}
+.xt-stars i{position:absolute;width:3px;height:3px;border-radius:50%;background:#8FB6FF;opacity:.5;animation:xtTw 4s ease-in-out infinite}
+@keyframes xtTw{50%{opacity:.1}}
+/* ---------- left ---------- */
+.xt-crumb{font:700 11.5px var(--mono);letter-spacing:.14em;color:#7FA8E8;text-transform:uppercase;margin-bottom:12px}
+.xt-crumb a:hover{color:#fff}
+.xt-h1{font:800 clamp(30px,4vw,46px)/1.08 var(--disp);color:#fff;letter-spacing:-.02em}
+.xt-h1 .x{color:var(--red)}.xt-h1 .d{opacity:.85;margin:0 .15em;font-weight:700}
+.xt-tag{font:700 clamp(15px,1.5vw,18px) var(--pop);color:#C7D9F5;margin-top:14px}
+.xt-tag2{font:600 15.5px var(--pop);color:#fff;margin-top:6px}
+.xt-type{display:flex;align-items:center;gap:2px;font:700 clamp(16px,1.7vw,19px) var(--pop);color:var(--sky);margin-top:20px;min-height:28px}
+.xt-type i{width:2px;height:22px;background:var(--sky);animation:xtBl 1s steps(1) infinite}
+@keyframes xtBl{50%{opacity:0}}
+.xt-pts{display:grid;grid-template-columns:repeat(2,minmax(0,max-content));gap:12px 34px;margin-top:20px}
+.xt-pts li{list-style:none;display:flex;align-items:center;gap:10px;font:500 14.5px var(--body);color:#DCE7F8;opacity:0;transform:translateY(6px);animation:xtIn .5s ease forwards}
+.xt-pts svg{width:20px;height:20px;flex:none;border-radius:6px;background:var(--blue);padding:3px;color:#fff;box-shadow:0 4px 12px rgba(21,101,216,.45)}
+@keyframes xtIn{to{opacity:1;transform:none}}
+.xt-ctas{display:flex;flex-wrap:nowrap;gap:6px;margin-top:28px;overflow:visible}
+.xt-btn{display:inline-flex;flex:0 0 auto;align-items:center;gap:5px;padding:10px 11px;border-radius:10px;font:700 12px var(--pop);white-space:nowrap;border:1.5px solid rgba(156,200,255,.35);background:rgba(255,255,255,.05);color:#fff;transition:.2s;cursor:pointer}
+.xt-btn:hover{border-color:#9CC8FF;background:rgba(255,255,255,.1);transform:translateY(-2px)}
+.xt-btn svg{width:16px;height:16px}
+.xt-btn.b{background:var(--blue);border-color:var(--blue);box-shadow:0 10px 24px rgba(21,101,216,.35)}
+.xt-btn.o{background:var(--orange);border-color:var(--orange);box-shadow:0 10px 24px rgba(255,140,26,.35)}
+.xt-btn.o:hover{background:#ff9c3a}
+.xt-ai{display:inline-flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:20px;padding:9px 12px 9px 16px;border-radius:14px;border:1px solid rgba(156,200,255,.25);background:rgba(4,30,66,.55)}
+.xt-ai span{font:700 11.5px var(--mono);letter-spacing:.06em;color:#fff}
+.xt-ai a{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;background:rgba(255,255,255,.08);transition:.2s}
+.xt-ai a:hover{background:rgba(255,255,255,.2);transform:translateY(-2px)}.xt-ai img{width:18px;height:18px;border-radius:4px}
+.xt-song{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:18px}
+.xt-song b{font:700 17px var(--pop);color:#fff;display:flex;align-items:center;gap:8px}
+.xt-song b i{display:flex;gap:2px;align-items:flex-end;height:16px}.xt-song b i u{width:3px;background:var(--orange);border-radius:2px;animation:xtEq 1s ease-in-out infinite}
+.xt-song b i u:nth-child(2){animation-delay:-.3s}.xt-song b i u:nth-child(3){animation-delay:-.6s}
+.xt-song.paused b i u{animation-play-state:paused}
+@keyframes xtEq{0%,100%{height:4px}50%{height:16px}}
+.xt-song audio{height:44px;max-width:100%;border-radius:999px}
+/* ---------- right: live visual ---------- */
+.xt-viz{position:relative;height:540px}
+.xt-map{position:absolute;inset:-30px -40px -30px -10px;background-image:radial-gradient(circle,rgba(127,168,232,.55) 1.6px,transparent 1.8px);background-size:18px 18px;
+ -webkit-mask-image:radial-gradient(ellipse 55% 52% at 52% 50%,#000 55%,transparent 72%);mask-image:radial-gradient(ellipse 55% 52% at 52% 50%,#000 55%,transparent 72%);opacity:.55}
+.xt-ring{position:absolute;left:50%;top:50%;border-radius:50%;border:1px dashed rgba(127,168,232,.28);transform:translate(-50%,-50%)}
+.xt-ring.r1{width:420px;height:420px;animation:xtSp 60s linear infinite}.xt-ring.r2{width:290px;height:290px;animation:xtSp 40s linear infinite reverse}
+@keyframes xtSp{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.xt-lines{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.xt-lines path{fill:none;stroke:rgba(105,182,255,.35);stroke-width:1.5;stroke-dasharray:4 6;animation:xtDa 1.2s linear infinite}
+@keyframes xtDa{to{stroke-dashoffset:-20}}
+/* centre server */
+.xt-srv{position:absolute;left:50%;top:41%;transform:translate(-50%,-50%);width:216px;border-radius:18px;padding:16px;
+ background:linear-gradient(170deg,rgba(21,101,216,.35),rgba(4,30,66,.92));border:1px solid rgba(156,200,255,.4);box-shadow:0 0 0 6px rgba(21,101,216,.12),0 24px 60px rgba(0,0,0,.45);backdrop-filter:blur(8px)}
+.xt-srv:before{content:"";position:absolute;inset:-14px;border-radius:24px;border:2px solid rgba(105,182,255,.35);animation:xtPu 2.4s ease-out infinite;pointer-events:none}
+@keyframes xtPu{0%{opacity:.9;transform:scale(.96)}100%{opacity:0;transform:scale(1.12)}}
+.xt-srv h3{display:flex;align-items:center;gap:7px;font:700 13.5px var(--pop);color:#fff;white-space:nowrap}.xt-srv h3 svg{width:22px;height:22px;color:var(--sky)}
+.xt-srv small{display:block;font:600 10.5px var(--mono);color:var(--mut);letter-spacing:.08em;margin-top:2px}
+.xt-live{display:inline-flex;align-items:center;gap:5px;font:700 10px var(--mono);color:var(--ok);margin-left:auto}.xt-live:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok);animation:xtTw 1.4s infinite}
+.xt-hw{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:12px}
+.xt-hw div{border-radius:9px;background:rgba(255,255,255,.07);padding:7px 9px}.xt-hw b{display:block;font:700 12px var(--pop);color:#fff;white-space:nowrap}.xt-hw span{font:600 9.5px var(--mono);color:var(--mut)}
+.xt-bars{display:grid;gap:5px;margin-top:10px;font:600 10px var(--mono);color:var(--mut)}
+.xt-bars div{display:grid;grid-template-columns:42px 1fr 34px;gap:6px;align-items:center}
+.xt-bars u{height:6px;border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden;text-decoration:none}.xt-bars u i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,var(--blue),var(--sky));transition:width .8s}
+.xt-bars em{font-style:normal;color:#fff;text-align:right}
+/* device nodes */
+.xt-dev{position:absolute;display:flex;align-items:center;gap:9px;padding:8px 12px 8px 8px;border-radius:14px;background:rgba(4,30,66,.88);border:1px solid rgba(156,200,255,.3);box-shadow:0 14px 30px rgba(0,0,0,.35);animation:xtFl 5s ease-in-out infinite;z-index:3}
+.xt-dev .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:rgba(105,182,255,.15);color:var(--sky);flex:none}.xt-dev .ic svg{width:19px;height:19px}
+.xt-dev b{display:block;font:700 12.5px var(--pop);color:#fff;white-space:nowrap}.xt-dev small{font:600 10px var(--mono);color:var(--mut);white-space:nowrap}
+.xt-dev .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok);margin-left:4px;flex:none}
+.xt-dev.flash{border-color:var(--ok);box-shadow:0 0 0 3px rgba(46,204,113,.25),0 14px 30px rgba(0,0,0,.35)}
+.xt-dev{width:158px}.xt-dev>div:nth-child(2){min-width:0}.xt-dev b,.xt-dev small{display:block;overflow:hidden;text-overflow:ellipsis}
+.d1{left:0;top:15%}.d2{right:0;top:21%;animation-delay:-1.2s}.d3{left:0;top:49%;animation-delay:-2.4s}.d4{right:0;top:55%;animation-delay:-3.6s}
+@keyframes xtFl{50%{transform:translateY(-8px)}}
+/* ledger feed */
+.xt-feed{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:min(430px,96%);border-radius:14px;background:rgba(3,15,36,.92);border:1px solid rgba(156,200,255,.25);padding:10px 12px;z-index:4;box-shadow:0 18px 40px rgba(0,0,0,.4)}
+.xt-feed h4{display:flex;justify-content:space-between;font:700 10.5px var(--mono);letter-spacing:.1em;color:var(--mut);margin-bottom:6px}.xt-feed h4 b{color:var(--ok)}
+.xt-feed ul{list-style:none;display:grid;gap:4px;min-height:84px}
+.xt-feed li{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;font:500 12px var(--mono);color:#C7D5EC;animation:xtIn .4s ease forwards;opacity:0}
+.xt-feed li em{font-style:normal;padding:2px 6px;border-radius:5px;font-size:10px;font-weight:700;background:rgba(105,182,255,.15);color:var(--sky)}
+.xt-feed li em.g{background:rgba(46,204,113,.15);color:var(--ok)}.xt-feed li em.o{background:rgba(255,140,26,.15);color:var(--orange)}
+.xt-feed li span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.xt-feed li b{color:#fff;font-weight:600}
+/* floating badges */
+.xt-bdg{position:absolute;z-index:4;display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:12px;background:#fff;color:#0B1B33;font:700 12px var(--pop);box-shadow:0 14px 30px rgba(0,0,0,.35);animation:xtFl 6s ease-in-out infinite}
+.xt-bdg svg{width:16px;height:16px;color:var(--blue)}.xt-bdg b{color:#16A34A}
+.xt-bdg.p{left:50%;top:0;transform:translateX(-50%);animation:none;background:linear-gradient(135deg,var(--orange),#FFB45C);color:#fff}
+.xt-bdg.p b{color:#fff;font:800 15px var(--disp)}
+/* ---------- responsive ---------- */
+@media (max-width:1240px){.xt-wrap{grid-template-columns:minmax(0,1fr)}.xt-viz{max-width:620px;width:100%;margin:10px auto 0}}
+@media (max-width:620px){.xt-wrap{padding:36px 16px 44px;gap:26px}.xt-pts{grid-template-columns:minmax(0,1fr)}.xt-ctas{overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}.xt-ctas .xt-btn{flex:0 0 auto;justify-content:center}
+ .xt-ctas .xt-btn.o{flex-basis:auto}.xt-ai span{flex-basis:100%}
+ .xt-viz{height:auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;grid-template-areas:"b b" "d1 d2" "s s" "d3 d4" "f f"}
+ .xt-lines{display:none}.xt-ring.r1{width:320px;height:320px}.xt-ring.r2{width:220px;height:220px}
+ .xt-bdg.p{position:static;transform:none;grid-area:b;justify-self:center}
+ .xt-srv{position:relative;left:auto;top:auto;transform:none;width:auto;grid-area:s;margin:8px 4px}
+ .xt-dev{position:static;animation:none;min-width:0;width:auto}.xt-dev b{font-size:12px;white-space:normal}.xt-dev small{white-space:normal}
+ .d1{grid-area:d1}.d2{grid-area:d2}.d3{grid-area:d3}.d4{grid-area:d4}
+ .xt-feed{position:static;transform:none;width:auto;grid-area:f}}
+@media (prefers-reduced-motion:reduce){.xt-hero *{animation:none!important;transition:none!important}.xt-pts li,.xt-feed li{opacity:1;transform:none}}
+</style>
+</head>
+<body style="margin:0;background:#041733">
+
+<section class="xt-hero" aria-labelledby="xtH1">
+ <div class="xt-stars" id="xtStars" aria-hidden="true"></div>
+ <div class="xt-wrap">
+  <!-- ===== LEFT ===== -->
+  <div>
+   <nav class="xt-crumb" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/cloud">Cloud</a> › <a href="/smb-cloud">SMB Cloud</a></nav>
+   <h1 class="xt-h1" id="xtH1"><span class="x">Xcell</span>Tally<span class="d">|</span>Tally on Cloud</h1>
+   <p class="xt-tag">Run Tally on Cloud 24/7 — Safety &amp; Data Security Guaranteed!</p>
+   <p class="xt-tag2">Your business runs on Tally. Make your Tally run on our cloud.</p>
+   <div class="xt-type" aria-live="polite"><span id="xtType">Ultra-fast Flash NVMe AMD EPYC Server</span><i aria-hidden="true"></i></div>
+   <ul class="xt-pts">
+    <li style="animation-delay:.05s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Secure Infrastructure</li>
+    <li style="animation-delay:.12s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Virtual Firewall</li>
+    <li style="animation-delay:.19s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Encrypted Backup</li>
+    <li style="animation-delay:.26s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Encrypted Tally Data</li>
+    <li style="animation-delay:.33s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Real-Time Database</li>
+    <li style="animation-delay:.40s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Access Ledger from Any Device</li>
+   </ul>
+   <div class="xt-ctas">
+    <a class="xt-btn b" id="xtInfo" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 21h14"/></svg>Infosheet</a>
+    <a class="xt-btn" id="xtPres" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20V3H6.5A2.5 2.5 0 004 5.5v14z"/><path d="M20 17v4H6.5A2.5 2.5 0 014 19.5"/></svg>Presentation</a>
+    <a class="xt-btn" id="xtTour" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Screenshot Tour</a>
+    <a class="xt-btn" id="xtTrial" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>7 Days Free Trial</a>
+    <a class="xt-btn o" id="xtTalk" href="#">Let's Talk →</a>
+   </div>
+   <div class="xt-ai" role="group" aria-label="Ask AI about Tally on Cloud from XcellHost"><span>✦ Ask AI About Tally on Cloud from XcellHost</span><div id="xtAi" style="display:flex;gap:8px"></div></div>
+   <div class="xt-song paused" id="xtSongRow"><b><i aria-hidden="true"><u></u><u></u><u></u></i>Listen to our Tally on Cloud Song</b><audio id="xtSong" controls preload="none"></audio></div>
+  </div>
+
+  <!-- ===== RIGHT: live Tally on Cloud visual (illustrative) ===== -->
+  <div class="xt-viz" aria-label="Illustration: Tally on Cloud accessed securely from multiple devices">
+   <div class="xt-map" aria-hidden="true"></div>
+   <div class="xt-ring r1" aria-hidden="true"></div><div class="xt-ring r2" aria-hidden="true"></div>
+   <svg class="xt-lines" id="xtLines" aria-hidden="true"></svg>
+
+   <div class="xt-bdg p"><span>From</span><b>₹499</b><span>/user/month</span></div>
+
+   <div class="xt-srv" id="xtSrv">
+    <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 10-1.4-8.78A6 6 0 104 15.5"/><path d="M8 19h9.5"/></svg>XcellHost Cloud<span class="xt-live">LIVE</span></h3>
+    <small>TALLY SERVER · MUMBAI DC</small>
+    <div class="xt-hw"><div><b>AMD EPYC</b><span>DEDICATED vCPU</span></div><div><b>Flash NVMe</b><span>ULTRA-FAST I/O</span></div><div><b id="xtUsers">18</b><span>USERS ONLINE</span></div><div><b>24×7</b><span>MONITORED</span></div></div>
+    <div class="xt-bars"><div><span>CPU</span><u><i id="xtCpu" style="width:32%"></i></u><em id="xtCpuV">32%</em></div><div><span>DISK</span><u><i id="xtDsk" style="width:18%"></i></u><em id="xtDskV">18%</em></div></div>
+   </div>
+
+   <div class="xt-dev d1" data-n="0"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></div><div><b>Office PC</b><small>Accounts</small></div><span class="dot"></span></div>
+   <div class="xt-dev d2" data-n="1"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v10H4z"/><path d="M2 20h20"/></svg></div><div><b>Laptop</b><small>Owner</small></div><span class="dot"></span></div>
+   <div class="xt-dev d3" data-n="2"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div><div><b>Mobile</b><small>Sales team</small></div><span class="dot"></span></div>
+   <div class="xt-dev d4" data-n="3"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg></div><div><b>CA's Office</b><small>Audit</small></div><span class="dot"></span></div>
+
+   <div class="xt-feed" aria-live="polite"><h4><span>LIVE LEDGER ACTIVITY</span><b>● ENCRYPTED · IN SYNC</b></h4><ul id="xtFeed"></ul></div>
+  </div>
+ </div>
+
+<script>
+(function(){
+/* ====== EDIT THESE LINKS ====== */
+var CONFIG={
+ infosheet:"#",              /* Infosheet PDF URL */
+ presentation:"#",           /* Presentation / flipbook URL */
+ screenshotTour:"#",         /* Screenshot tour URL */
+ freeTrial:"#",              /* 7-day free trial / sign-up URL */
+ letsTalk:"#",               /* Contact / callback URL */
+ song:""                     /* Tally on Cloud song MP3 URL */
+};
+/* ============================== */
+var $=function(i){return document.getElementById(i)},RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
+[["xtInfo","infosheet"],["xtPres","presentation"],["xtTour","screenshotTour"],["xtTrial","freeTrial"],["xtTalk","letsTalk"]].forEach(function(p){var a=$(p[0]);a.href=CONFIG[p[1]];if(/^https?:/.test(CONFIG[p[1]])&&p[0]!=="xtTalk"){a.target="_blank";a.rel="noopener"}});
+var song=$("xtSong"),row=$("xtSongRow");if(CONFIG.song){song.src=CONFIG.song}
+song.addEventListener("play",function(){row.classList.remove("paused")});song.addEventListener("pause",function(){row.classList.add("paused")});
+
+/* Ask AI */
+var Q="Explain XcellHost Tally on Cloud (XcellTally): running TallyPrime on a secure cloud server in India with AMD EPYC and NVMe, encrypted backups, virtual firewall and access from any device. What does it cost per user, how is it better than running Tally on a local PC, and what should a business ask before moving?";
+var AI=[["ChatGPT","https://chatgpt.com/?q=","chatgpt.com"],["Perplexity","https://www.perplexity.ai/search/new?q=","perplexity.ai"],["Claude","https://claude.ai/new?q=","claude.ai"],["Google AI","https://www.google.com/search?udm=50&q=","gemini.google.com"],["Grok","https://grok.com/?q=","grok.com"]];
+$("xtAi").innerHTML=AI.map(function(a){return '<a href="'+a[1]+encodeURIComponent(Q)+'" target="_blank" rel="noopener" aria-label="Ask '+a[0]+'" title="Ask '+a[0]+'"><img src="https://www.google.com/s2/favicons?domain='+a[2]+'&sz=64" alt="" width="18" height="18"></a>'}).join("");
+
+/* stars */
+var st=$("xtStars"),h="";for(var i=0;i<40;i++){h+='<i style="left:'+(Math.random()*100)+'%;top:'+(Math.random()*100)+'%;animation-delay:-'+(Math.random()*4)+'s"></i>'}st.innerHTML=h;
+
+/* typewriter */
+var W=["Ultra-fast Flash NVMe AMD EPYC Server","Access Tally from office, home or mobile","Daily encrypted backups — never lose a voucher","From ₹499 per user per month"],wi=0,ci=W[0].length,del=true,tp=$("xtType");
+function type(){var w=W[wi];if(del){ci--;if(ci<=0){del=false;wi=(wi+1)%W.length}}else{ci++;if(ci>=W[wi].length){del=true;tp.textContent=W[wi];return setTimeout(type,2200)}}tp.textContent=W[wi].slice(0,ci);setTimeout(type,del?28:55)}
+if(!RM)setTimeout(type,2400);
+
+/* connection lines device -> server */
+var viz=document.querySelector(".xt-viz"),svg=$("xtLines"),srv=$("xtSrv"),devs=[].slice.call(document.querySelectorAll(".xt-dev"));
+function lines(){var r=viz.getBoundingClientRect(),s=srv.getBoundingClientRect(),cx=s.left+s.width/2-r.left,cy=s.top+s.height/2-r.top,out="";
+ svg.setAttribute("viewBox","0 0 "+r.width+" "+r.height);
+ devs.forEach(function(d,k){var b=d.getBoundingClientRect(),x=b.left+b.width/2-r.left,y=b.top+b.height/2-r.top,mx=(x+cx)/2,my=(y+cy)/2-30;
+  out+='<path id="xtP'+k+'" d="M'+x+' '+y+' Q'+mx+' '+my+' '+cx+' '+cy+'"/>'+(RM?'':'<circle r="4" fill="#69B6FF"><animateMotion dur="'+(2.2+k*.35)+'s" repeatCount="indefinite"'+(k%2?' keyPoints="1;0" keyTimes="0;1"':'')+'><mpath href="#xtP'+k+'"/></animateMotion></circle>')});
+ svg.innerHTML=out}
+lines();addEventListener("resize",lines);if(!RM)setInterval(lines,5000);
+
+/* live ledger feed */
+var F=[["Sales","INV-1043 · Sharma Traders","₹24,780","",0],["Receipt","HDFC Bank · Patel & Co","₹1,15,000","g",1],["GST","GSTR-1 data ready · Sept","✓","g",3],["Purchase","PO-778 · Steel Supplies","₹62,350","",0],["Backup","Encrypted snapshot · 02:00","✓","o",-1],["Payment","Salary batch · 24 staff","₹3,48,200","",1],["Sales","INV-1044 · Om Enterprises","₹9,640","",2],["Audit","Ledger review by CA","Viewing","o",3]],fi=0,feed=$("xtFeed");
+function push(){var f=F[fi++%F.length],li=document.createElement("li");li.innerHTML='<em class="'+f[3]+'">'+f[0]+'</em><span>'+f[1]+'</span><b>'+f[2]+'</b>';feed.insertBefore(li,feed.firstChild);while(feed.children.length>4)feed.removeChild(feed.lastChild);
+ if(f[4]>=0){var d=devs[f[4]];d.classList.add("flash");setTimeout(function(){d.classList.remove("flash")},900)}
+ var c=20+Math.round(Math.random()*30),k=12+Math.round(Math.random()*20);$("xtCpu").style.width=c+"%";$("xtCpuV").textContent=c+"%";$("xtDsk").style.width=k+"%";$("xtDskV").textContent=k+"%";
+ $("xtUsers").textContent=14+Math.round(Math.random()*9)}
+for(var j=0;j<4;j++)push();if(!RM)setInterval(push,2200);
+})();
+</script>
+</section>
+
+<script src="/assets/heroes/hero-action-bridge.js"></script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>XcellDPDPA | DPDPA for SMB — Hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Poppins:wght@500;600;700&family=Sora:wght@700;800&display=swap" rel="stylesheet">
+<style>
+/* ===== XcellDPDPA hero — self-contained. Copy the <style>, <section> and its <script> into the page. ===== */
+.xh,.xh *{box-sizing:border-box;margin:0;padding:0}
+.xh{--acc:#059669;--acc2:#34D399;--navy:#041E42;--blue:#1565D8;--orange:#FF8C1A;--red:#E60012;--ok:#2ECC71;--ink:#DCE7F8;--mut:#9FB8D8;
+ --mono:"IBM Plex Mono",monospace;--body:"IBM Plex Sans",system-ui,sans-serif;--pop:"Poppins",sans-serif;--disp:"Sora",sans-serif;
+ position:relative;overflow:hidden;color:var(--ink);font-family:var(--body);
+ background:radial-gradient(900px 520px at 78% 45%,color-mix(in srgb,var(--acc) 30%,transparent),transparent 65%),radial-gradient(700px 400px at 10% 0%,rgba(105,182,255,.12),transparent 60%),linear-gradient(160deg,#06204A 0%,#041733 55%,#03112A 100%)}
+.xh a{color:inherit;text-decoration:none}
+.xh-wrap{position:relative;z-index:2;max-width:1320px;margin:0 auto;padding:56px 24px 64px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:40px;align-items:center}
+.xh-stars{position:absolute;inset:0;z-index:0;pointer-events:none}
+.xh-stars i{position:absolute;width:3px;height:3px;border-radius:50%;background:#8FB6FF;opacity:.5;animation:xhTw 4s ease-in-out infinite}
+@keyframes xhTw{50%{opacity:.1}}
+/* left */
+.xh-crumb{font:700 11.5px var(--mono);letter-spacing:.14em;color:#7FA8E8;text-transform:uppercase;margin-bottom:12px}.xh-crumb a:hover{color:#fff}
+.xh-h1{font:800 clamp(28px,3.8vw,44px)/1.1 var(--disp);color:#fff;letter-spacing:-.02em}
+.xh-h1 .x{color:var(--red)}.xh-h1 .d{opacity:.85;margin:0 .15em;font-weight:700}
+.xh-tag{font:700 clamp(15px,1.5vw,18px) var(--pop);color:#C7D9F5;margin-top:14px}
+.xh-tag2{font:600 15.5px var(--pop);color:#fff;margin-top:6px}
+.xh-type{display:flex;align-items:center;gap:2px;font:700 clamp(16px,1.7vw,19px) var(--pop);color:var(--acc2);margin-top:20px;min-height:28px}
+.xh-type i{width:2px;height:22px;background:var(--acc2);animation:xhBl 1s steps(1) infinite}
+@keyframes xhBl{50%{opacity:0}}
+.xh-pts{display:grid;grid-template-columns:repeat(2,minmax(0,max-content));gap:12px 34px;margin-top:20px}
+.xh-pts li{list-style:none;display:flex;align-items:center;gap:10px;font:500 14.5px var(--body);color:#DCE7F8;opacity:0;transform:translateY(6px);animation:xhIn .5s ease forwards}
+.xh-pts svg{width:20px;height:20px;flex:none;border-radius:6px;background:var(--blue);padding:3px;color:#fff;box-shadow:0 4px 12px rgba(21,101,216,.45)}
+@keyframes xhIn{to{opacity:1;transform:none}}
+.xh-ctas{display:flex;flex-wrap:nowrap;gap:6px;margin-top:28px;overflow:visible}
+.xh-btn{display:inline-flex;flex:0 0 auto;align-items:center;gap:5px;padding:10px 11px;border-radius:10px;font:700 12px var(--pop);white-space:nowrap;border:1.5px solid rgba(156,200,255,.35);background:rgba(255,255,255,.05);color:#fff;transition:.2s;cursor:pointer}
+.xh-btn:hover{border-color:#9CC8FF;background:rgba(255,255,255,.1);transform:translateY(-2px)}
+.xh-btn svg{width:16px;height:16px}
+.xh-btn.b{background:var(--blue);border-color:var(--blue);box-shadow:0 10px 24px rgba(21,101,216,.35)}
+.xh-btn.o{background:var(--orange);border-color:var(--orange);box-shadow:0 10px 24px rgba(255,140,26,.35)}.xh-btn.o:hover{background:#ff9c3a}
+.xh-ai{display:inline-flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:20px;padding:9px 12px 9px 16px;border-radius:14px;border:1px solid rgba(156,200,255,.25);background:rgba(4,30,66,.55)}
+.xh-ai span{font:700 11.5px var(--mono);letter-spacing:.06em;color:#fff}
+.xh-ai a{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;background:rgba(255,255,255,.08);transition:.2s}
+.xh-ai a:hover{background:rgba(255,255,255,.2);transform:translateY(-2px)}.xh-ai img{width:18px;height:18px;border-radius:4px}
+/* right visual */
+.xh-viz{position:relative;height:540px}
+.xh-map{position:absolute;inset:-30px -40px -30px -10px;background-image:radial-gradient(circle,rgba(127,168,232,.55) 1.6px,transparent 1.8px);background-size:18px 18px;
+ -webkit-mask-image:radial-gradient(ellipse 55% 52% at 52% 50%,#000 55%,transparent 72%);mask-image:radial-gradient(ellipse 55% 52% at 52% 50%,#000 55%,transparent 72%);opacity:.55}
+.xh-ring{position:absolute;left:50%;top:50%;border-radius:50%;border:1px dashed rgba(127,168,232,.28);transform:translate(-50%,-50%)}
+.xh-ring.r1{width:420px;height:420px;animation:xhSp 60s linear infinite}.xh-ring.r2{width:290px;height:290px;animation:xhSp 40s linear infinite reverse}
+@keyframes xhSp{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.xh-lines{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.xh-lines path{fill:none;stroke:color-mix(in srgb,var(--acc2) 40%,transparent);stroke-width:1.5;stroke-dasharray:4 6;animation:xhDa 1.2s linear infinite}
+@keyframes xhDa{to{stroke-dashoffset:-20}}
+.xh-core{position:absolute;left:50%;top:41%;transform:translate(-50%,-50%);width:208px;border-radius:18px;padding:16px;
+ background:linear-gradient(170deg,color-mix(in srgb,var(--acc) 38%,transparent),rgba(4,30,66,.93));border:1px solid color-mix(in srgb,var(--acc2) 55%,transparent);box-shadow:0 0 0 6px color-mix(in srgb,var(--acc) 14%,transparent),0 24px 60px rgba(0,0,0,.45);backdrop-filter:blur(8px)}
+.xh-core:before{content:"";position:absolute;inset:-14px;border-radius:24px;border:2px solid color-mix(in srgb,var(--acc2) 40%,transparent);animation:xhPu 2.4s ease-out infinite;pointer-events:none}
+@keyframes xhPu{0%{opacity:.9;transform:scale(.96)}100%{opacity:0;transform:scale(1.12)}}
+.xh-core h3{display:flex;align-items:center;gap:7px;font:700 13.5px var(--pop);color:#fff;white-space:nowrap}.xh-core h3 svg{width:22px;height:22px;color:var(--acc2);flex:none}
+.xh-core small{display:block;font:600 10.5px var(--mono);color:var(--mut);letter-spacing:.08em;margin-top:2px}
+.xh-live{position:absolute;top:-11px;right:14px;display:inline-flex;align-items:center;gap:5px;font:700 10px var(--mono);color:var(--ok);background:#03142F;border:1px solid rgba(46,204,113,.45);padding:3px 9px;border-radius:999px}.xh-live:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok);animation:xhTw 1.4s infinite}
+.xh-tl{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:12px}
+.xh-tl div{border-radius:9px;background:rgba(255,255,255,.07);padding:7px 9px;min-width:0}.xh-tl b{display:block;font:700 12px var(--pop);color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.xh-tl span{font:600 9.5px var(--mono);color:var(--mut)}
+.xh-mt{display:grid;gap:5px;margin-top:10px;font:600 10px var(--mono);color:var(--mut)}
+.xh-mt div{display:grid;grid-template-columns:52px 1fr 34px;gap:6px;align-items:center}
+.xh-mt u{height:6px;border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden;text-decoration:none}.xh-mt u i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,var(--acc),var(--acc2));transition:width .8s}
+.xh-mt em{font-style:normal;color:#fff;text-align:right}
+.xh-sc{display:flex;align-items:center;gap:12px;margin-top:12px}
+.xh-sc svg{width:84px;height:84px;flex:none}.xh-sc circle{fill:none;stroke-width:9}.xh-sc .bg{stroke:rgba(255,255,255,.1)}.xh-sc .fg{stroke:var(--acc2);stroke-linecap:round;transition:stroke-dashoffset 1s ease;transform:rotate(-90deg);transform-origin:50% 50%}
+.xh-sc text{fill:#fff;font:800 22px var(--disp)}.xh-sc p{font:600 11px var(--mono);color:var(--mut);line-height:1.5}.xh-sc p b{color:#fff;font:700 13px var(--pop);display:block}
+.xh-br{display:flex;align-items:flex-end;gap:5px;height:78px;margin-top:12px;padding:0 2px;border-bottom:1px solid rgba(255,255,255,.12)}
+.xh-br i{flex:1;border-radius:4px 4px 0 0;background:linear-gradient(180deg,var(--acc2),var(--acc));transition:height .8s ease;min-height:6px}
+.xh-brl{display:flex;justify-content:space-between;font:600 9px var(--mono);color:var(--mut);margin-top:4px}
+/* nodes */
+.xh-nd{position:absolute;width:172px;display:flex;align-items:center;gap:9px;padding:8px 12px 8px 8px;border-radius:14px;background:rgba(4,30,66,.88);border:1px solid rgba(156,200,255,.3);box-shadow:0 14px 30px rgba(0,0,0,.35);animation:xhFl 5s ease-in-out infinite;z-index:3}
+.xh-nd .ic{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;background:color-mix(in srgb,var(--acc2) 16%,transparent);color:var(--acc2);flex:none}.xh-nd .ic svg{width:19px;height:19px}
+.xh-nd .ic.lg{background:#fff}.xh-nd .ic img{width:20px;height:20px}
+.xh-nd>div:nth-child(2){min-width:0}
+.xh-nd b{display:block;font:700 12px var(--pop);color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.xh-nd small{display:block;font:600 9.5px var(--mono);color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.xh-nd .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok);margin-left:auto;flex:none}
+.xh-nd.flash{border-color:var(--ok);box-shadow:0 0 0 3px rgba(46,204,113,.25),0 14px 30px rgba(0,0,0,.35)}
+.xh-nd.warn{border-color:#F97316;box-shadow:0 0 0 3px rgba(249,115,22,.28),0 14px 30px rgba(0,0,0,.35)}
+.n0{left:0;top:15%}.n1{right:0;top:21%;animation-delay:-1.2s}.n2{left:0;top:49%;animation-delay:-2.4s}.n3{right:0;top:55%;animation-delay:-3.6s}
+@keyframes xhFl{50%{transform:translateY(-8px)}}
+/* feed */
+.xh-fd{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:min(430px,96%);border-radius:14px;background:rgba(3,15,36,.92);border:1px solid rgba(156,200,255,.25);padding:10px 12px;z-index:4;box-shadow:0 18px 40px rgba(0,0,0,.4)}
+.xh-fd h4{display:flex;justify-content:space-between;gap:8px;font:700 10.5px var(--mono);letter-spacing:.1em;color:var(--mut);margin-bottom:6px}.xh-fd h4 b{color:var(--ok);white-space:nowrap}
+.xh-fd ul{list-style:none;display:grid;gap:4px;min-height:84px}
+.xh-fd li{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;font:500 12px var(--mono);color:#C7D5EC;animation:xhIn .4s ease forwards;opacity:0}
+.xh-fd li em{font-style:normal;padding:2px 6px;border-radius:5px;font-size:10px;font-weight:700;background:rgba(105,182,255,.15);color:#69B6FF;white-space:nowrap}
+.xh-fd li em.g{background:rgba(46,204,113,.15);color:var(--ok)}.xh-fd li em.o{background:rgba(255,140,26,.15);color:var(--orange)}.xh-fd li em.r{background:rgba(239,68,68,.16);color:#F87171}
+.xh-fd li span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.xh-fd li b{color:#fff;font-weight:600;white-space:nowrap}
+.xh-bdg{position:absolute;z-index:4;left:50%;top:0;transform:translateX(-50%);display:flex;align-items:center;gap:7px;padding:8px 14px;border-radius:12px;background:linear-gradient(135deg,var(--orange),#FFB45C);color:#fff;font:700 12px var(--pop);box-shadow:0 14px 30px rgba(0,0,0,.35);white-space:nowrap}
+.xh-bdg b{font:800 15px var(--disp)}
+/* responsive */
+@media (max-width:1240px){.xh-wrap{grid-template-columns:minmax(0,1fr)}.xh-viz{max-width:620px;width:100%;margin:10px auto 0}}
+@media (max-width:620px){.xh-wrap{padding:36px 16px 44px;gap:26px}.xh-pts{grid-template-columns:minmax(0,1fr)}.xh-ctas{overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}.xh-ctas .xh-btn{flex:0 0 auto;justify-content:center}
+ .xh-ctas .xh-btn.o{flex-basis:auto}.xh-ai span{flex-basis:100%}
+ .xh-viz{height:auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;grid-template-areas:"b b" "n0 n1" "c c" "n2 n3" "f f"}
+ .xh-lines{display:none}.xh-ring.r1{width:320px;height:320px}.xh-ring.r2{width:220px;height:220px}
+ .xh-bdg{position:static;transform:none;grid-area:b;justify-self:center;white-space:normal;text-align:center}
+ .xh-core{position:relative;left:auto;top:auto;transform:none;width:auto;grid-area:c;margin:8px 4px}
+ .xh-nd{position:static;animation:none;min-width:0;width:auto}.xh-nd b,.xh-nd small{white-space:normal}
+ .n0{grid-area:n0}.n1{grid-area:n1}.n2{grid-area:n2}.n3{grid-area:n3}
+ .xh-fd{position:static;transform:none;width:auto;grid-area:f}}
+@media (prefers-reduced-motion:reduce){.xh *{animation:none!important;transition:none!important}.xh-pts li,.xh-fd li{opacity:1;transform:none}}
+</style>
+</head>
+<body style="margin:0;background:#041733">
+
+<section class="xh" aria-labelledby="xhH1">
+ <div class="xh-stars" id="xhStars" aria-hidden="true"></div>
+ <div class="xh-wrap">
+  <div>
+   <nav class="xh-crumb" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/digital-trust">Digital Trust</a> › <a href="/smb-cloud">SMB Cloud</a></nav>
+   <h1 class="xh-h1" id="xhH1"><span class="x">Xcell</span>DPDPA<span class="d">|</span>DPDPA for SMB</h1>
+   <p class="xh-tag">Practical data-protection readiness for Indian businesses.</p>
+   <p class="xh-tag2">Prepare for the Digital Personal Data Protection Act with discovery, access control, security and breach readiness.</p>
+   <div class="xh-type" aria-live="polite"><span id="xhType">Find where personal data lives</span><i aria-hidden="true"></i></div>
+   <ul class="xh-pts"><li style="animation-delay:0.05s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Personal Data Discovery</li><li style="animation-delay:0.12s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Consent &amp; Rights Requests</li><li style="animation-delay:0.19s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Access Control &amp; MFA</li><li style="animation-delay:0.26s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>EDR, DLP &amp; Backup</li><li style="animation-delay:0.33s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Breach Response Plan</li><li style="animation-delay:0.40s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>24×7 Monitoring</li></ul>
+   <div class="xh-ctas">
+    <a class="xh-btn b" id="xhInfo" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 21h14"/></svg>Infosheet</a>
+    <a class="xh-btn" id="xhPres" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20V3H6.5A2.5 2.5 0 004 5.5v14z"/><path d="M20 17v4H6.5A2.5 2.5 0 014 19.5"/></svg>Presentation</a>
+    <a class="xh-btn" id="xhTour" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>Screenshot Tour</a>
+    <a class="xh-btn" id="xhTrial" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>Free Readiness Check</a>
+    <a class="xh-btn o" id="xhTalk" href="#">Let's Talk →</a>
+   </div>
+   <div class="xh-ai" role="group" aria-label="Ask AI about DPDPA for SMB from XcellHost"><span>✦ Ask AI About DPDPA for SMB from XcellHost</span><div id="xhAi" style="display:flex;gap:8px"></div></div>
+  </div>
+
+  <div class="xh-viz" aria-label="Illustration: DPDPA readiness score improving as controls are applied">
+   <div class="xh-map" aria-hidden="true"></div>
+   <div class="xh-ring r1" aria-hidden="true"></div><div class="xh-ring r2" aria-hidden="true"></div>
+   <svg class="xh-lines" id="xhLines" aria-hidden="true"></svg>
+   <div class="xh-bdg"><span>DPDP Act</span><b>2023</b><span>ready</span></div>
+   <div class="xh-core" id="xhCore">
+    <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>DPDPA Readiness<span class="xh-live">IMPROVING</span></h3>
+    <small>YOUR COMPANY · LIVE</small>
+    
+    <div class="xh-sc"><svg viewBox="0 0 84 84" aria-hidden="true"><circle class="bg" cx="42" cy="42" r="36"/><circle class="fg" id="xhRing" cx="42" cy="42" r="36" stroke-dasharray="226.2" stroke-dashoffset="226.2"/><text x="42" y="50" text-anchor="middle" id="xhRingT">0</text></svg><p><b>Readiness score</b>Updates as controls go live</p></div>
+    
+    <div class="xh-tl"><div><b>1,240</b><span>RECORDS MAPPED</span></div><div><b>6</b><span>RIGHTS REQUESTS</span></div></div>
+    <div class="xh-mt"><div><span>CONSENT</span><u><i id="xhM0" style="width:78%"></i></u><em id="xhMv0">78%</em></div><div><span>CONTROLS</span><u><i id="xhM1" style="width:84%"></i></u><em id="xhMv1">84%</em></div></div>
+   </div>
+   <div class="xh-nd n0"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div><div><b>Customer DB</b><small>Personal data</small></div><span class="dot"></span></div><div class="xh-nd n1"><div class="ic lg"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij48cGF0aCBmaWxsPSIjZjE1MTFiIiBkPSJNMTIxLjY2NiAxMjEuNjY2SDBWMGgxMjEuNjY2eiIvPjxwYXRoIGZpbGw9IiM4MGNjMjgiIGQ9Ik0yNTYgMTIxLjY2NkgxMzQuMzM1VjBIMjU2eiIvPjxwYXRoIGZpbGw9IiMwMGFkZWYiIGQ9Ik0xMjEuNjYzIDI1Ni4wMDJIMFYxMzQuMzM2aDEyMS42NjN6Ii8+PHBhdGggZmlsbD0iI2ZiYmMwOSIgZD0iTTI1NiAyNTYuMDAySDEzNC4zMzVWMTM0LjMzNkgyNTZ6Ii8+PC9zdmc+" alt="Microsoft 365 logo"></div><div><b>Microsoft 365</b><small>Mail &amp; files</small></div><span class="dot"></span></div><div class="xh-nd n2"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0113 0"/><path d="M16 4.5a3.5 3.5 0 010 7M18 20a6 6 0 00-3-5.2"/></svg></div><div><b>HR Records</b><small>Employees</small></div><span class="dot"></span></div><div class="xh-nd n3"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg></div><div><b>Website Forms</b><small>Consent</small></div><span class="dot"></span></div>
+   <div class="xh-fd" aria-live="polite"><h4><span>COMPLIANCE ACTIVITY</span><b>● ON TRACK</b></h4><ul id="xhFeed"></ul></div>
+  </div>
+ </div>
+
+<script>
+(function(){
+/* ====== EDIT THESE LINKS ====== */
+var CONFIG={
+ infosheet:"#",        /* Infosheet PDF URL */
+ presentation:"#",     /* Presentation / flipbook URL */
+ screenshotTour:"#",   /* Screenshot tour URL */
+ freeTrial:"#",        /* Free Readiness Check URL */
+ letsTalk:"#"          /* Contact / callback URL */
+};
+/* ============================== */
+var $=function(i){return document.getElementById(i)},RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
+[["xhInfo","infosheet"],["xhPres","presentation"],["xhTour","screenshotTour"],["xhTrial","freeTrial"],["xhTalk","letsTalk"]].forEach(function(p){var a=$(p[0]);a.href=CONFIG[p[1]];if(/^https?:/.test(CONFIG[p[1]])&&p[0]!=="xhTalk"){a.target="_blank";a.rel="noopener"}});
+var Q="Explain DPDPA readiness for small and mid-sized businesses in India with XcellHost: personal data discovery, consent and data principal rights requests, access control, EDR, DLP, Microsoft 365 security, backup, breach response and monitoring under the Digital Personal Data Protection Act 2023.";
+var AI=[["ChatGPT","https://chatgpt.com/?q=","chatgpt.com"],["Perplexity","https://www.perplexity.ai/search/new?q=","perplexity.ai"],["Claude","https://claude.ai/new?q=","claude.ai"],["Google AI","https://www.google.com/search?udm=50&q=","gemini.google.com"],["Grok","https://grok.com/?q=","grok.com"]];
+$("xhAi").innerHTML=AI.map(function(a){return '<a href="'+a[1]+encodeURIComponent(Q)+'" target="_blank" rel="noopener" aria-label="Ask '+a[0]+'" title="Ask '+a[0]+'"><img src="https://www.google.com/s2/favicons?domain='+a[2]+'&sz=64" alt="" width="18" height="18"></a>'}).join("");
+var st=$("xhStars"),h="";for(var i=0;i<40;i++){h+='<i style="left:'+(Math.random()*100)+'%;top:'+(Math.random()*100)+'%;animation-delay:-'+(Math.random()*4)+'s"></i>'}st.innerHTML=h;
+var W=["Find where personal data lives", "Consent and rights requests, handled", "Breach-ready with 24\u00d77 monitoring", "A readiness score you can show the board"],wi=0,ci=W[0].length,del=true,tp=$("xhType");
+function type(){if(del){ci--;if(ci<=0){del=false;wi=(wi+1)%W.length}}else{ci++;if(ci>=W[wi].length){del=true;tp.textContent=W[wi];return setTimeout(type,2200)}}tp.textContent=W[wi].slice(0,ci);setTimeout(type,del?28:55)}
+if(!RM)setTimeout(type,2400);
+var viz=document.querySelector(".xh-viz"),svg=$("xhLines"),core=$("xhCore"),nodes=[].slice.call(document.querySelectorAll(".xh-nd"));
+function lines(){var r=viz.getBoundingClientRect(),s=core.getBoundingClientRect(),cx=s.left+s.width/2-r.left,cy=s.top+s.height/2-r.top,out="";
+ svg.setAttribute("viewBox","0 0 "+r.width+" "+r.height);
+ nodes.forEach(function(d,k){var b=d.getBoundingClientRect(),x=b.left+b.width/2-r.left,y=b.top+b.height/2-r.top,mx=(x+cx)/2,my=(y+cy)/2-30;
+  out+='<path id="xhP'+k+'" d="M'+x+' '+y+' Q'+mx+' '+my+' '+cx+' '+cy+'"/>'+(RM?'':'<circle r="4" fill="#34D399"><animateMotion dur="'+(2.2+k*.35)+'s" repeatCount="indefinite"'+([3].indexOf(k)>=0?' keyPoints="1;0" keyTimes="0;1"':'')+'><mpath href="#xhP'+k+'"/></animateMotion></circle>')});
+ svg.innerHTML=out}
+lines();addEventListener("resize",lines);if(!RM)setInterval(lines,5000);
+var MR=[["CONSENT", 78, 70, 90], ["CONTROLS", 84, 75, 95]];
+function meters(){MR.forEach(function(m,k){var v=m[2]+Math.round(Math.random()*(m[3]-m[2]));$("xhM"+k).style.width=v+"%";$("xhMv"+k).textContent=v+"%"})}
+var RV=[48, 61, 72, 84, 91],ri=0;function ring(){var v=RV[ri++%RV.length];$("xhRing").style.strokeDashoffset=226.2*(1-v/100);$("xhRingT").textContent=v}ring();if(!RM)setInterval(ring,3000);
+
+
+var F=[["Discovery", "g", "Aadhaar numbers found \u00b7 HR share", "Masked", 2], ["Consent", "", "Website form \u00b7 consent captured", "\u2713", 3], ["Request", "o", "Data erasure request \u00b7 customer", "Due 3 days", 0], ["Control", "g", "MFA enforced \u00b7 admins", "\u2713", 1], ["DLP", "r", "PAN data in email \u00b7 blocked", "Stopped", 1], ["Backup", "g", "Encrypted backup verified", "\u2713", 0], ["Report", "", "Board readiness report", "Ready", -1]],fi=0,feed=$("xhFeed");
+function push(){var f=F[fi++%F.length],li=document.createElement("li");li.innerHTML='<em class="'+f[1]+'">'+f[0]+'</em><span>'+f[2]+'</span><b>'+f[3]+'</b>';feed.insertBefore(li,feed.firstChild);while(feed.children.length>4)feed.removeChild(feed.lastChild);
+ if(f[4]>=0){var d=nodes[f[4]],c=f[1]==="r"||f[1]==="o"?"warn":"flash";d.classList.add(c);setTimeout(function(){d.classList.remove(c)},900)}
+ meters();}
+for(var j=0;j<4;j++)push();if(!RM)setInterval(push,2200);
+})();
+</script>
+</section>
+
+<script src="/assets/heroes/hero-action-bridge.js"></script>
+</body>
+</html>

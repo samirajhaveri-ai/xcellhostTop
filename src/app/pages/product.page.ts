@@ -1,3 +1,11 @@
+import { VeraRubinContentComponent } from '../sections/nvidia-vera-rubin-content.component';
+import { VERA_RUBIN_FAQS } from '../data/nvidia-vera-rubin-faqs.data';
+import { StorageContentComponent } from '../sections/storage-servers-content.component';
+import { STORAGE_FAQS } from '../data/storage-servers-faqs.data';
+import { GamingContentComponent } from '../sections/gaming-servers-content.component';
+import { GAMING_FAQS } from '../data/gaming-servers-faqs.data';
+import { VirtualizationContentComponent } from '../sections/virtualization-servers-content.component';
+import { VIRTUALIZATION_FAQS } from '../data/virtualization-servers-faqs.data';
 import { SmartQrContentComponent } from '../sections/smart-qr-and-nfc-automation-content.component';
 import { PleskServersHeroComponent } from '../sections/plesk-servers-hero.component';
 import { CpanelServersHeroComponent } from '../sections/cpanel-servers-hero.component';
@@ -373,6 +381,10 @@ interface ProductTourSlide {
     InstagramAutomationContentComponent,
     InstantWebsiteContentComponent,
     LeadCrmContentComponent,
+    VeraRubinContentComponent,
+    StorageContentComponent,
+    GamingContentComponent,
+    VirtualizationContentComponent,
     AgentStudioContentComponent,
     SmartQrContentComponent,
     AiopsContentComponent,
@@ -2154,6 +2166,23 @@ export class ProductPage {
     initialValue: '',
   });
 
+  private static readonly SUPPLIED_SMB_HERO_SLUGS = new Set([
+    'advanced-endpoint-security-edr',
+    'cloud-drive',
+    'cloud-disaster-recovery-smb',
+    'cloud-backup',
+    'acronis-genai-protection',
+    'workforce-analytics',
+    'smb-cloud-desktop',
+    'smb-cyber-security-appliance',
+    'remote-monitoring-and-mgmt-rmm',
+    'tally-on-cloud',
+  ]);
+
+  usesSuppliedSmbHero(): boolean {
+    return ProductPage.SUPPLIED_SMB_HERO_SLUGS.has(this.slug());
+  }
+
   readonly isMicrosoftEnterprisePage = computed(() =>
     this.slug() === 'microsoft-365-enterprise' ||
     this.slug() === 'microsoft-365-enterprise-office365' ||
@@ -2220,6 +2249,98 @@ export class ProductPage {
         { ...view.why[3], title: 'Governed AI', body: 'Control agent access, trace activity and keep humans in the loop.' },
         { ...view.why[4], title: '24×7 Enterprise Support', body: 'Technical support and a dedicated customer success manager.' },
         { ...view.why[5], title: 'One Partner', body: 'Agents, models, enterprise integration and support together.' },
+      ],
+    };
+    if (slug === 'virtualization-servers') return {
+      ...view, faqs: VIRTUALIZATION_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — Virtualization Servers',
+        intro: 'Dedicated single-tenant hardware gives you control over hypervisor access, network isolation and workload configuration. Use private VLANs, DDoS protection and secure root and IPMI access, with managed patching and monitoring available. Plan backups and disaster recovery around your workload requirements.',
+        rows: [
+          ['Access Controls', 'Root And IPMI Access'],
+          ['Workload Isolation', 'Dedicated Single-Tenant Hardware'],
+          ['Network Security', 'Private VLANs And DDoS Protection'],
+          ['Managed Support', 'Optional Patching And Monitoring'],
+          ['Data Protection', 'RAID, Backup And Disaster Recovery Options'],
+          ['Locations', 'Indian Tier IV Data Centres'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Dedicated Hardware', body: 'Single-tenant compute with your choice of hypervisor.' },
+        { ...view.why[2], title: 'Guided Implementation', body: 'Host sizing, provisioning and migration assistance.' },
+        { ...view.why[3], title: 'Full Stack Control', body: 'Manage CPU allocation, storage and private networking.' },
+        { ...view.why[4], title: '24×7 NOC', body: 'Engineers support incident investigation and operational response.' },
+        { ...view.why[5], title: 'One Partner', body: 'Hardware, networking, backup and support together.' },
+      ],
+    };
+    if (slug === 'gaming-servers') return {
+      ...view, faqs: GAMING_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — Gaming Servers',
+        intro: 'Dedicated single-tenant hardware gives you control over server access, network isolation and workload configuration. Use private VLANs, DDoS protection and secure root and IPMI access, with managed patching and monitoring available. Plan backups and disaster recovery around your workload requirements.',
+        rows: [
+          ['Access Controls', 'Root And IPMI Access'],
+          ['Workload Isolation', 'Dedicated Single-Tenant Hardware'],
+          ['Network Security', 'Private VLANs And DDoS Protection'],
+          ['Managed Support', 'Optional Patching And Monitoring'],
+          ['Data Protection', 'RAID, Backup And Disaster Recovery Options'],
+          ['Locations', 'Indian Tier IV Data Centres'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Dedicated Hardware', body: 'Single-tenant compute with your choice of operating system and gaming panel.' },
+        { ...view.why[2], title: 'Guided Implementation', body: 'Host sizing, provisioning and migration assistance.' },
+        { ...view.why[3], title: 'Full Stack Control', body: 'Manage CPU allocation, storage and private networking.' },
+        { ...view.why[4], title: '24×7 NOC', body: 'Engineers support incident investigation and operational response.' },
+        { ...view.why[5], title: 'One Partner', body: 'Hardware, networking, backup and support together.' },
+      ],
+    };
+    if (slug === 'storage-servers') return {
+      ...view, faqs: STORAGE_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — Storage Servers',
+        intro: 'Dedicated single-tenant hardware gives you control over server access, network isolation and storage configuration. Use private VLANs, DDoS protection and secure root and IPMI access, with managed patching and monitoring available. Plan backups and disaster recovery around your workload requirements.',
+        rows: [
+          ['Access Controls', 'Root And IPMI Access'],
+          ['Workload Isolation', 'Dedicated Single-Tenant Hardware'],
+          ['Network Security', 'Private VLANs And DDoS Protection'],
+          ['Managed Support', 'Optional Patching And Monitoring'],
+          ['Data Protection', 'RAID, Backup And Disaster Recovery Options'],
+          ['Locations', 'Indian Tier IV Data Centres'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Dedicated Hardware', body: 'Single-tenant compute with your choice of operating system and storage platform.' },
+        { ...view.why[2], title: 'Guided Implementation', body: 'Host sizing, provisioning and migration assistance.' },
+        { ...view.why[3], title: 'Flexible Storage', body: 'Choose drive types, capacity, RAID and private networking.' },
+        { ...view.why[4], title: '24×7 NOC', body: 'Engineers support incident investigation and operational response.' },
+        { ...view.why[5], title: 'One Partner', body: 'Hardware, networking, backup and support together.' },
+      ],
+    };
+    if (slug === 'nvidia-vera-rubin') return {
+      ...view, faqs: VERA_RUBIN_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — NVIDIA Vera Rubin',
+        intro: 'Scope GPU access, cluster networking and data handling around your workloads. XcellHost helps plan the hosting location, software stack and operational support, with capacity and cooling requirements confirmed during deployment scoping. Agree access permissions, data retention and backup policies before moving production workloads.',
+        rows: [
+          ['Access Controls', 'Workload And Cluster Permissions'],
+          ['Deployment Planning', 'Capacity And Facility Validation'],
+          ['Software Stack', 'Validated Before Handover'],
+          ['Operations', '24×7 GPU Engineering Support'],
+          ['Data Handling', 'Agree Retention And Backup Requirements'],
+          ['Hosting', 'Indian Data Centre Deployment Planning'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Workload Sizing', body: 'Plan NVL8 servers, NVL72 racks or multi-rack capacity.' },
+        { ...view.why[2], title: 'Guided Implementation', body: 'Cluster configuration, fabric validation and software provisioning.' },
+        { ...view.why[3], title: 'NVIDIA Software Stack', body: 'Tools for distributed training and inference, validated before handover.' },
+        { ...view.why[4], title: '24×7 GPU Engineers', body: 'GPU and distributed-workload specialists in English and Hindi.' },
+        { ...view.why[5], title: 'One Partner', body: 'Compute, networking, software and support together.' },
       ],
     };
     if (slug === 'lead-generation-and-pipeline-crm') return {

@@ -2903,12 +2903,12 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "AI Managed Services",
             "items": [
               {
-                "title": "Anthropic Managed services",
+                "title": "Anthropic Managed Services",
                 "pill": null,
                 "desc": "Reliable AI Website Builder hosting 🐧"
               },
               {
-                "title": "Open AI Managed services",
+                "title": "Open AI Managed Services",
                 "pill": null,
                 "desc": "Reliable AI App Builder hosting 💻"
               },
