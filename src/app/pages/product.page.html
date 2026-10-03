@@ -2,6 +2,8 @@
   <div
     class="ppage as-page"
     id="ppage"
+    [class.plesk-servers-page]="slug() === 'plesk-servers'"
+    [class.cpanel-servers-page]="slug() === 'cpanel-servers'"
     [class.windows-servers-page]="slug() === 'windows-servers'"
     [class.domain-whois-page]="slug() === 'domain-whois-lookup'"
     [class.managed-oracle-page]="slug() === 'managed-oracle-cloud'"
@@ -340,6 +342,7 @@
           (talkRequested)="openCallback($event)"
         />
       } @else {
+      @if (slug() !== 'performance-cloud' && slug() !== 'gpu-servers') {
       <div
         class="pp-hero"
         [class.sitelock-hero]="v.name === 'Web Security (SiteLock)'"
@@ -358,6 +361,14 @@
         @if (slug() === 'linux-servers' || slug() === 'windows-servers') {
           <!-- Server visuals are positioned beside their copy inside the shared wrap. -->
 
+        } @else if (slug() === 'cpanel-servers') {
+          <div class="pph-scene cpanel-hero-art">
+            <xh-cpanel-servers-hero />
+          </div>
+        } @else if (slug() === 'plesk-servers') {
+          <div class="pph-scene plesk-hero-art">
+            <xh-plesk-servers-hero />
+          </div>
         } @else if (slug() === 'instant-website') {
           <div class="pph-scene google-business-dashboard" aria-label="Illustrative Instant Website And Bio Link dashboard">
             <div class="gb-dashboard">
@@ -1527,7 +1538,9 @@
               <span class="pp-title-divider" aria-hidden="true">|</span>
               <span class="pp-title-name"
                 >{{
-                  isResellerProgram()
+                  slug() === 'agent-studio'
+                    ? 'AI Agent Studio'
+                    : isResellerProgram()
                     ? 'Cloud Channel Partner Program'
                     : isWhatsAppSmb()
                     ? 'WhatsApp For Business'
@@ -1619,7 +1632,7 @@
                   </div>
                 }
 
-                <div class="hero-ctas product-hero-ctas">
+                <div class="hero-ctas product-hero-ctas single-row-hero-ctas">
                   <a
                     class="btn ppd-info"
                     href="#"
@@ -1846,8 +1859,9 @@
         </div>
       </div>
       }
+      }
 
-      @if (!isResellerProgram() && !isMicrosoftEnterprisePage() && slug() !== 'cloud-devops-services' && slug() !== 'server-management' && slug() !== 'microsoft-365-backup' && slug() !== 'domain-whois-lookup' && slug() !== 'managed-oracle-cloud' && slug() !== 'ai-voice-bot') {
+      @if (slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && !isResellerProgram() && !isMicrosoftEnterprisePage() && slug() !== 'cloud-devops-services' && slug() !== 'server-management' && slug() !== 'microsoft-365-backup' && slug() !== 'domain-whois-lookup' && slug() !== 'managed-oracle-cloud' && slug() !== 'ai-voice-bot') {
         <div class="pp-trust">
           <div class="wrap">
             @if (isCopilotStudio()) {
@@ -1884,6 +1898,25 @@
 
           </div>
         </div>
+      }
+
+      @if (isTally()) {
+        <nav class="tally-section-nav" aria-label="Tally on Cloud page sections">
+          <div class="tally-section-nav-track">
+            <a href="/tally-on-cloud#tallyOverview" (click)="scrollToTallySection('tallyOverview', $event)">Overview</a>
+            <a href="/tally-on-cloud#tallyPricing" (click)="scrollToTallySection('tallyPricing', $event)">Pricing</a>
+            <a href="/tally-on-cloud#tallySecurity" (click)="scrollToTallySection('tallySecurity', $event)">Security</a>
+            <a href="/tally-on-cloud#tallyWhyChoose" (click)="scrollToTallySection('tallyWhyChoose', $event)">Why to Choose</a>
+            <a href="/tally-on-cloud#tallySavings" (click)="scrollToTallySection('tallySavings', $event)">Cloud Savings</a>
+            <a href="/tally-on-cloud#tallyEasySteps" (click)="scrollToTallySection('tallyEasySteps', $event)">5 Easy Steps</a>
+            <a href="/tally-on-cloud#tallyFeatures" (click)="scrollToTallySection('tallyFeatures', $event)">Features</a>
+            <a href="/tally-on-cloud#tallyPlatforms" (click)="scrollToTallySection('tallyPlatforms', $event)">Platforms &amp; workloads</a>
+            <a href="/tally-on-cloud#tallyWatch" (click)="scrollToTallySection('tallyWatch', $event)">Watch it in action</a>
+            <a href="/tally-on-cloud#tallyTestimonials" (click)="scrollToTallySection('tallyTestimonials', $event)">Customer Testimonials</a>
+            <a href="/tally-on-cloud#tallyFaq" (click)="scrollToTallySection('tallyFaq', $event)">FAQs</a>
+            <a href="/tally-on-cloud#tallyInsights" (click)="scrollToTallySection('tallyInsights', $event)">Insights</a>
+          </div>
+        </nav>
       }
 
 @if (isAutonomousThreatSolution()) {
@@ -2056,6 +2089,139 @@
             <xh-ediscovery-compliance-content />
           } @else if (slug() === 'performance-cloud') {
             <xh-performance-cloud-content (planRequest)="requestPerformanceCloudPlan($event)" />
+
+            <section aria-labelledby="ppSecHead">
+              <h2 class="pp-sec" id="ppSecHead">{{ v.security.head }}</h2>
+              <div id="ppSecWrap">
+                <p class="pp-ov">{{ v.security.intro }}</p>
+                <div class="pp-secrows">
+                  @for (row of v.security.rows; track row[0]) {
+                    <div class="psrow">
+                      <span class="psk">{{ row[0] }}</span>
+                      <span class="psv">{{ row[1] }}</span>
+                    </div>
+                  }
+                </div>
+                <p class="pp-secfoot">
+                  XcellHost is ISO 27001 and ISO 20000-1 certified &middot; Indian Tier-4
+                  datacenters &middot; DPDPA and RBI aligned &middot; 24&times;7 NOC and SOC.
+                </p>
+              </div>
+            </section>
+
+            <section aria-labelledby="ppWhyHead">
+              <h2 class="pp-sec" id="ppWhyHead">Why XcellHost for {{ v.name }}</h2>
+              <div class="pp-why" id="ppWhy">
+                @for (reason of v.why; track reason.title) {
+                  <div class="pw">
+                    <span class="pw-ic" aria-hidden="true">
+                      <svg viewBox="0 0 24 24"><path [attr.d]="reason.icon" /></svg>
+                    </span>
+                    <b [innerHTML]="reason.title"></b>
+                    @if (reason.body) {
+                      <span [innerHTML]="reason.body"></span>
+                    }
+                  </div>
+                }
+              </div>
+            </section>
+
+            <section class="tally-videos" aria-labelledby="performanceCloudActionTitle">
+              <h2 class="pp-sec" id="performanceCloudActionTitle">Watch it in action</h2>
+              <div class="tally-video-grid single-video">
+                <article class="tally-video-card">
+                  <h3><span>Live server performance and provisioning</span></h3>
+                  <div class="tally-video-frame">
+                    <iframe
+                      src="/assets/animations/performance-cloud-hero.html"
+                      title="Performance Cloud server monitoring animation"
+                      sandbox="allow-scripts"
+                      loading="lazy"
+                    ></iframe>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <section aria-labelledby="performanceCloudReviewsTitle">
+              <h2 class="pp-sec" id="performanceCloudReviewsTitle">What customers say</h2>
+              <div class="pp-revs" id="ppRevs">
+                @for (review of v.reviews; track review.name) {
+                  <div class="prv">
+                    <div class="stars" [attr.aria-label]="review.stars + ' out of 5 stars'">
+                      @for (slot of starSlots; track slot) {
+                        <span [class.off]="slot >= review.stars">&#9733;</span>
+                      }
+                    </div>
+                    <p>&ldquo;{{ review.quote }}&rdquo;</p>
+                    <cite>
+                      <span class="rav">{{ review.initials }}</span>
+                      <span><b>{{ review.name }}</b>{{ review.role }}</span>
+                    </cite>
+                  </div>
+                }
+              </div>
+            </section>
+          } @else if (slug() === 'gpu-servers') {
+            <xh-gpu-servers-content
+              (callbackRequest)="requestGpuServersCallback($event)"
+            />
+
+            <section aria-labelledby="gpuServersSecurityTitle">
+              <h2 class="pp-sec" id="gpuServersSecurityTitle">{{ v.security.head }}</h2>
+              <div id="gpuServersSecurityWrap">
+                <p class="pp-ov">{{ v.security.intro }}</p>
+                <div class="pp-secrows">
+                  @for (row of v.security.rows; track row[0]) {
+                    <div class="psrow">
+                      <span class="psk">{{ row[0] }}</span>
+                      <span class="psv">{{ row[1] }}</span>
+                    </div>
+                  }
+                </div>
+                <p class="pp-secfoot">
+                  XcellHost is ISO 27001 and ISO 20000-1 certified &middot; Indian Tier-4
+                  datacenters &middot; DPDPA and RBI aligned &middot; 24&times;7 NOC and SOC.
+                </p>
+              </div>
+            </section>
+
+            <section aria-labelledby="gpuServersWhyTitle">
+              <h2 class="pp-sec" id="gpuServersWhyTitle">Why XcellHost for {{ v.name }}</h2>
+              <div class="pp-why" id="gpuServersWhy">
+                @for (reason of v.why; track reason.title) {
+                  <div class="pw">
+                    <span class="pw-ic" aria-hidden="true">
+                      <svg viewBox="0 0 24 24"><path [attr.d]="reason.icon" /></svg>
+                    </span>
+                    <b [innerHTML]="reason.title"></b>
+                    @if (reason.body) {
+                      <span [innerHTML]="reason.body"></span>
+                    }
+                  </div>
+                }
+              </div>
+            </section>
+
+            <section aria-labelledby="gpuServersReviewsTitle">
+              <h2 class="pp-sec" id="gpuServersReviewsTitle">What customers say</h2>
+              <div class="pp-revs" id="gpuServersReviews">
+                @for (review of v.reviews; track review.name) {
+                  <div class="prv">
+                    <div class="stars" [attr.aria-label]="review.stars + ' out of 5 stars'">
+                      @for (slot of starSlots; track slot) {
+                        <span [class.off]="slot >= review.stars">&#9733;</span>
+                      }
+                    </div>
+                    <p>&ldquo;{{ review.quote }}&rdquo;</p>
+                    <cite>
+                      <span class="rav">{{ review.initials }}</span>
+                      <span><b>{{ review.name }}</b>{{ review.role }}</span>
+                    </cite>
+                  </div>
+                }
+              </div>
+            </section>
           }
           @if (slug() === 'ai-lab-as-service') {
             <xh-ai-lab-content />
@@ -2066,7 +2232,7 @@
           @if (slug() === 'managed-oracle-cloud') {
             <xh-managed-oracle-content />
           }
-          @if (slug() !== 'identity-resilience' && slug() !== 'ediscovery-and-compliance' && slug() !== 'performance-cloud' && slug() !== 'gpu-clusters' && slug() !== 'ai-chat-bot') {
+          @if (slug() !== 'identity-resilience' && slug() !== 'ediscovery-and-compliance' && slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && slug() !== 'gpu-clusters' && slug() !== 'ai-chat-bot') {
           @if (slug() === 'marketplace') {
             <xh-marketplace-content />
           } @else {
@@ -2349,6 +2515,10 @@
                           </div>
                         </div>
                       </section>
+                   } @else if (slug() === 'plesk-servers') {
+                      <xh-plesk-servers-overview (quoteRequested)="openCallback($event.event, $event.configuration)" />
+                   } @else if (slug() === 'cpanel-servers') {
+                      <xh-cpanel-servers-overview (quoteRequested)="openCallback($event.event, $event.configuration)" />
                    } @else if (slug() === 'imunify360') {
                       <xh-imunify360-content (planRequested)="requestImunify360Plan($event)" />
                    } @else if (!isTally() && slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops') {
@@ -2356,7 +2526,7 @@
                       <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
                     }
                     @if (isTally()) {
-                      <section class="tally-overview-offer" aria-labelledby="tally-offer-heading">
+                      <section class="tally-overview-offer" id="tallyOverview" aria-labelledby="tally-offer-heading">
                         <div class="tally-offer-overview">
                           <div class="pp-sec">Overview</div>
                           <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
@@ -2526,10 +2696,10 @@
                 }
 
                 @if (isTally()) {
-                  <section class="tally-pricing" id="ppPlans" aria-labelledby="tally-pricing-title">
+                  <section class="tally-pricing" id="ppPlans" aria-labelledby="tallyPricing">
                     <div class="tally-price-heading">
                       <span>Flexible plans for every team size</span>
-                      <h2 id="tally-pricing-title">Tally on Cloud Plans</h2>
+                      <h2 id="tallyPricing">Pricing</h2>
                       <p>
                         Select your billing period and choose the cloud configuration that fits your
                         users.
@@ -3077,6 +3247,8 @@
                   <xh-rtx-a6000-pricing (quoteRequested)="requestRtxA6000Plan($event)" />
                 } @else if (slug() === 'n8n-vps') {
                   <!-- Pricing and included features render with the n8n overview above. -->
+                } @else if (slug() === 'plesk-servers' || slug() === 'cpanel-servers') {
+                  <!-- Bundles and the configurator render in the supplied server overview. -->
                 } @else if (slug() === 'imunify360') {
                   <xh-imunify360-followup (consultationRequested)="requestImunify360Plan($event)" />
                 } @else if (slug() === 'billing-software') {
@@ -3298,6 +3470,7 @@
                 } @else if (
                   slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
                   slug() !== 'imunify360' &&
+                  slug() !== 'plesk-servers' && slug() !== 'cpanel-servers' &&
                   !isSmbCyber() &&
                   !isAcronisTrueImage() &&
                   !isSiteLock() &&
@@ -3331,10 +3504,10 @@
                       </div>
                     </section>
                   } @else {
-                    <div class="pp-sec">
+                    <div class="pp-sec" [attr.id]="isTally() ? 'tallySecurity' : null">
                       {{
                         v.name === 'Tally on Cloud'
-                          ? 'Tally On Cloud Security Features'
+                          ? 'Security'
                           : 'Key features'
                       }}
                     </div>
@@ -3940,6 +4113,7 @@
                   slug() !== 'imunify360' &&
                   !isSmbCyber() &&
                   !isRmm() &&
+                  slug() !== 'plesk-servers' && slug() !== 'cpanel-servers' &&
                   !isAcronisTrueImage() &&
                   !isSiteLock() &&
                   !isManagedMicrosoft365() &&
@@ -3955,10 +4129,10 @@
                   slug() !== 'vortex-seg' &&
                   slug() !== 'vortex-soc'
                 ) {
-                  <div class="pp-sec">
+                  <div class="pp-sec" [attr.id]="isTally() ? 'tallyWhyChoose' : null">
                     {{
                       v.name === 'Tally on Cloud'
-                        ? 'Why to Choose XcellHost for your Tally On Cloud'
+                        ? 'Why to Choose'
                         : 'Benefits for your business'
                     }}
                   </div>
@@ -4353,10 +4527,8 @@
                 }
 
                 @if (v.name === 'Tally on Cloud') {
-                  <section class="tally-extra" aria-label="Tally on Cloud migration information">
-                    <h2 class="tally-extra-title">
-                      Tally On-Premises <span>VS</span> Tally On Cloud
-                    </h2>
+                  <section class="tally-extra" id="tallySavings" aria-label="Tally on Cloud migration information">
+                    <h2 class="tally-extra-title">Cloud Savings</h2>
                     <div class="tally-compare">
                       <div class="tally-compare-item on-prem">Needs Manual Updates</div>
                       <div class="tally-compare-item on-cloud">Automatic Updates</div>
@@ -4386,9 +4558,7 @@
                       </div>
                     </div>
 
-                    <h2 class="tally-extra-title">
-                      Migrate Tally To The Cloud <span>5 Easy Steps</span>
-                    </h2>
+                    <h2 class="tally-extra-title" id="tallyEasySteps">5 Easy Steps</h2>
                     <div class="tally-migration-steps">
                       <div class="tally-migration-step">
                         <i>01</i><span>🚀</span><b>Deliver Tally Server</b>
@@ -4407,9 +4577,7 @@
                       </div>
                     </div>
 
-                    <h2 class="tally-extra-title">
-                      What You Can Install On <span>Windows Server</span>
-                    </h2>
+                    <h2 class="tally-extra-title" id="tallyFeatures">Features</h2>
                     <div
                       class="tally-apps"
                       role="region"
@@ -4576,6 +4744,7 @@
                   <xh-rtx-6000-ada-showcase />
                 } @else if (
                   slug() !== 'imunify360' &&
+                  slug() !== 'plesk-servers' && slug() !== 'cpanel-servers' &&
                   v.name !== 'Tally on Cloud' &&
                   slug() !== 'rtx-a6000' &&
                    slug() !== 'n8n-vps' &&
@@ -4934,6 +5103,7 @@
 
           @if (
             v.name !== 'Tally on Cloud' &&
+            slug() !== 'plesk-servers' && slug() !== 'cpanel-servers' &&
             slug() !== 'nvidia-a100' &&
             slug() !== 'ai-resilience' &&
             slug() !== 'cyber-resilience' &&
@@ -4993,7 +5163,7 @@
               }
             }
             @if (platforms().length && slug() !== 'rtx-8000') {
-              <div class="pp-sec">Platforms &amp; workloads covered</div>
+              <div class="pp-sec" [attr.id]="isTally() ? 'tallyPlatforms' : null">{{ isTally() ? 'Platforms & workloads' : 'Platforms & workloads covered' }}</div>
               <div class="pp-plat">
                 @for (p of platforms(); track p.name) {
                   <div class="plat">
@@ -5179,8 +5349,8 @@
             !isTsplusAdvancedSecurity() &&
             !isTsplusRemoteAccess()
           ) {
-            <section class="tally-videos" aria-labelledby="showcaseVideosTitle">
-              <div class="pp-sec" id="showcaseVideosTitle" [style.margin-top.px]="slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' ? 56 : null">Watch it in action</div>
+            <section class="tally-videos" [attr.aria-labelledby]="isTally() ? 'tallyWatch' : 'showcaseVideosTitle'">
+              <div class="pp-sec" [attr.id]="isTally() ? 'tallyWatch' : 'showcaseVideosTitle'" [style.margin-top.px]="slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' ? 56 : null">Watch it in action</div>
               <div class="tally-video-grid" [class.single-video]="showcaseVideos().length === 1">
                 @for (video of showcaseVideos(); track video.label) {
                   <article class="tally-video-card">
@@ -5478,7 +5648,7 @@
             </section>
           }
           @if (slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
-          <div class="pp-sec" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">What customers say</div>
+          <div class="pp-sec" [attr.id]="isTally() ? 'tallyTestimonials' : null" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">{{ isTally() ? 'Customer Testimonials' : 'What customers say' }}</div>
           @if (slug() === 'nvidia-vera-rubin' || slug() === 'storage-servers' || slug() === 'gaming-servers' || slug() === 'virtualization-servers' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'agent-studio' || slug() === 'aiops' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'instant-website' || slug() === 'instagram-automation' || slug() === 'hrm-attendance' || slug() === 'google-my-business' || isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training' || slug() === 'ai-chat-bot') {
             <div class="pp-tcards" id="ppRevs">
               @for (r of v.reviews; track r.name) {
@@ -5548,7 +5718,7 @@
           }
 
         @if (slug() !== 'marketplace' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
-          <div class="pp-sec pp-faq-heading" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Frequently asked questions</div>
+          <div class="pp-sec pp-faq-heading" [attr.id]="isTally() ? 'tallyFaq' : null" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">{{ isTally() ? 'FAQs' : 'Frequently asked questions' }}</div>
           @if (slug() === 'domain-whois-lookup') {
             <xh-domain-whois-faq />
           } @else if (slug() === 'managed-oracle-cloud') {
@@ -5589,11 +5759,14 @@
         @if (slug() === 'higher-education-cloud') {
           <h2 class="pp-sec">From our blog</h2>
         }
+        @if (isTally()) {
+          <div class="pp-sec" id="tallyInsights">Insights</div>
+        }
         <div id="ppBlog" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null" [class.scrutiny-dlp-insights]="slug() === 'scrutiny-dlp'" [class.vortex-seg-insights]="slug() === 'vortex-seg'"><xh-insights-section [pageSlug]="slug()" /></div>
 
-        <div class="pp-cta">
+        <div class="pp-cta" [attr.id]="isTally() ? 'tallySupport' : null">
             <div>
-              <h3 id="ppCtaT">Ready to start with {{ v.name }}?</h3>
+              <h3 id="ppCtaT">{{ isTally() ? 'Support' : 'Ready to start with ' + v.name + '?' }}</h3>
               <p>FREE Consultation &middot; FREE Demo &middot; FREE Trial &middot; 24&times;7 support in English &amp; Hindi</p>
             </div>
             <div style="display: flex; gap: 12px; flex-wrap: wrap">

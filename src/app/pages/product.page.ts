@@ -7,6 +7,10 @@ import { GAMING_FAQS } from '../data/gaming-servers-faqs.data';
 import { VirtualizationContentComponent } from '../sections/virtualization-servers-content.component';
 import { VIRTUALIZATION_FAQS } from '../data/virtualization-servers-faqs.data';
 import { SmartQrContentComponent } from '../sections/smart-qr-and-nfc-automation-content.component';
+import { PleskServersHeroComponent } from '../sections/plesk-servers-hero.component';
+import { CpanelServersHeroComponent } from '../sections/cpanel-servers-hero.component';
+import { CpanelServersOverviewComponent } from '../sections/cpanel-servers-overview.component';
+import { PleskServersOverviewComponent } from '../sections/plesk-servers-overview.component';
 import { SMART_QR_FAQS } from '../data/smart-qr-and-nfc-automation-faqs.data';
 import { AgentStudioContentComponent } from '../sections/agent-studio-content.component';
 import { AGENT_STUDIO_FAQS } from '../data/agent-studio-faqs.data';
@@ -99,6 +103,7 @@ import { InsightsSectionComponent } from '../sections/insights-section.component
 import { IdentityResilienceContentComponent } from '../sections/identity-resilience-content.component';
 import { EdiscoveryComplianceContentComponent } from '../sections/ediscovery-compliance-content.component';
 import { PerformanceCloudContentComponent } from '../sections/performance-cloud-content.component';
+import { GpuServersContentComponent } from '../sections/gpu-servers-content.component';
 import { DomainWhoisContentComponent } from '../sections/domain-whois-content.component';
 import { DomainWhoisFaqComponent } from '../sections/domain-whois-faq.component';
 import { ManagedOracleContentComponent } from '../sections/managed-oracle-content.component';
@@ -367,6 +372,7 @@ interface ProductTourSlide {
     IdentityResilienceContentComponent,
     EdiscoveryComplianceContentComponent,
     PerformanceCloudContentComponent,
+    GpuServersContentComponent,
     DomainWhoisContentComponent,
     DomainWhoisFaqComponent,
     ManagedOracleContentComponent,
@@ -500,9 +506,28 @@ interface ProductTourSlide {
 
     EmailSignatureContentComponent,
     EmailSignatureHeroComponent,
+    PleskServersHeroComponent,
+    CpanelServersHeroComponent,
+    CpanelServersOverviewComponent,
+    PleskServersOverviewComponent,
   ],
   templateUrl: './product.page.html',
   styles: [`
+
+    #ppage .pph-scene.plesk-hero-art {
+      right: max(24px, calc((100% - 1192px) / 2)); width: min(40%, 480px);
+      top: 50%; bottom: auto; transform: translateY(-50%); opacity: 1;
+      mask-image: none; overflow: visible; pointer-events: auto; z-index: 4;
+    }
+    .plesk-hero-art xh-plesk-servers-hero { display: block; width: 100%; }
+    @media(max-width:900px) {
+      #ppage .pph-scene.plesk-hero-art {
+        position: relative; inset: auto; transform: none; width: calc(100% - 32px);
+        max-width: 550px; margin: 24px auto; order: 1;
+      }
+      #ppage.plesk-servers-page .pp-hero { display: flex; flex-direction: column; }
+      #ppage.plesk-servers-page .pp-hero > .wrap { width: 100%; order: 0; }
+    }
 
     #ppage .pp-hero > .wrap.higher-education-hero-layout {
       display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
@@ -665,9 +690,10 @@ interface ProductTourSlide {
     #ppage.managed-oracle-page .pp-hero > .wrap > :is(h1, .pp-crumb, .pp-tagline, .pp-typewriter, .pp-hero-grid) {
       width: 100%; max-width: 100%; min-width: 0; white-space: normal;
     }
-    #ppage.managed-oracle-page .pp-hero > .wrap > h1 {
-      display: flex; flex-wrap: wrap; align-items: baseline;
-      white-space: normal; overflow-wrap: normal; gap: 4px 0;
+    #ppage.managed-oracle-page .pp-hero > .wrap > h1#ppTitle {
+      display: flex !important; flex-wrap: nowrap !important; align-items: baseline;
+      white-space: nowrap !important; overflow-wrap: normal; gap: .12em;
+      font-size: clamp(15px, 1.85vw, 28px) !important;
     }
     #ppage.managed-oracle-page #ppTitle .pp-title-brand {
       flex: 0 0 auto; white-space: nowrap;
@@ -676,14 +702,19 @@ interface ProductTourSlide {
       width: auto; white-space: nowrap;
     }
     #ppage.managed-oracle-page #ppTitle .pp-title-name {
-      flex-basis: 100%; margin-left: 0; white-space: normal; text-wrap: balance;
+      flex: 0 0 auto; margin-left: 0; white-space: nowrap; font-size: inherit;
     }
     #ppage.managed-oracle-page .pp-hero > .wrap > .oracle-hero-summary {
       display: block; white-space: normal; overflow-wrap: break-word;
       font-size: 17px; font-weight: 400; line-height: 1.6; margin-bottom: 20px;
     }
-    #ppage.managed-oracle-page .product-hero-ctas {
-      width: 100%; max-width: 100%; flex-wrap: wrap;
+    #ppage.managed-oracle-page .pp-hero .product-hero-ctas {
+      width: 100%; max-width: 100%; flex-wrap: nowrap !important;
+      gap: 8px; overflow-x: auto !important; padding-bottom: 8px;
+    }
+    #ppage.managed-oracle-page .pp-hero .product-hero-ctas .btn {
+      flex: 0 0 auto !important; white-space: nowrap !important;
+      font-size: 11px; padding: 10px 12px; min-height: 44px;
     }
     @media(max-width:1100px) {
       #ppage.managed-oracle-page .pp-hero { grid-template-columns: minmax(0, 1fr); }
@@ -1339,6 +1370,29 @@ interface ProductTourSlide {
         max-width: 56%;
       }
     }
+
+    #ppage.ppage > .pp-hero > .pph-scene.cpanel-hero-art {
+      right: max(24px, calc((100% - 1240px) / 2 + 24px)); width: min(40%, 550px);
+      top: 50%; bottom: auto; transform: translateY(-50%); opacity: 1;
+      mask-image: none; overflow: visible; pointer-events: auto; z-index: 4;
+    }
+    .cpanel-hero-art xh-cpanel-servers-hero { display: block; width: 100%; }
+    #ppage.cpanel-servers-page .product-hero-ctas { width: 100%; max-width: 100%; flex-wrap: wrap; }
+    @media(min-width:901px) {
+      #ppage.cpanel-servers-page .pp-hero #ppTitle,
+      #ppage.cpanel-servers-page .pp-hero > .wrap > .pp-tagline,
+      #ppage.cpanel-servers-page .pp-hero > .wrap > .pp-tagline-support,
+      #ppage.cpanel-servers-page .pp-hero > .wrap > .pp-hero-grid { max-width: 52%; }
+    }
+    @media(max-width:900px) {
+      #ppage.ppage > .pp-hero > .pph-scene.cpanel-hero-art {
+        position: relative; inset: auto; transform: none; width: calc(100% - 32px);
+        max-width: 550px; max-height: none; margin: 24px auto; order: 1;
+      }
+      #ppage.cpanel-servers-page .pp-hero { display: flex; flex-direction: column; }
+      #ppage.cpanel-servers-page .pp-hero > .wrap { width: 100%; order: 0; }
+    }
+
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -3213,8 +3267,26 @@ export class ProductPage {
     this.overlay.open('trial');
   }
 
+  scrollToTallySection(sectionId: string, ev: Event): void {
+    ev.preventDefault();
+    const section = document.getElementById(sectionId);
+    if (!section) return;
+
+    window.history.replaceState(
+      null,
+      '',
+      `${window.location.pathname}${window.location.search}#${sectionId}`
+    );
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
   requestGpuCluster(configuration: string): void {
     this.topics.ask(`GPU Clusters - ${configuration}`);
+    this.overlay.open('callback');
+  }
+
+  requestGpuServersCallback(request: string): void {
+    this.topics.ask(`GPU Servers - ${request}`);
     this.overlay.open('callback');
   }
 

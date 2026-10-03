@@ -5920,13 +5920,14 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 
 #ppage.google-business-page .pph-scene.google-business-dashboard{z-index:5}.gb-dashboard-metrics span{display:block;line-height:1.4;margin-top:5px}@media(max-width:1000px){#ppage.google-business-page .pp-hero{padding-bottom:32px!important}.gb-dashboard-metrics>div{padding:10px}}
 
+#ppage.google-business-page .pp-hero .hero-ctas.product-hero-ctas.single-row-hero-ctas{flex-wrap:nowrap!important;gap:8px;overflow-x:auto!important;max-width:100%!important;padding-bottom:8px}
+#ppage.google-business-page .pp-hero .hero-ctas.product-hero-ctas.single-row-hero-ctas .btn{flex:0 0 auto!important;white-space:nowrap!important;font-size:11px;padding:10px 12px;min-height:44px}
+
 /* Keep the Instagram product name together on a clean second heading line. */
 #ppage.instagram-automation-page .pp-hero #ppTitle{display:block!important;line-height:1.18!important}
-#ppage.smart-qr-page .pp-hero #ppTitle{display:block!important;line-height:1.18!important}
-#ppage.virtualization-page .pp-hero #ppTitle{display:block!important;line-height:1.18!important}
+#ppage:is(.smart-qr-page,.virtualization-page) .pp-hero #ppTitle{display:flex!important;flex-wrap:nowrap!important;align-items:baseline;gap:.12em;white-space:nowrap!important;font-size:clamp(15px,1.75vw,26px)!important;line-height:1.18!important}
 #ppage.server-tail-uppercase .pp-body :is(.pp-sec,h2,h3){text-transform:uppercase!important}
-#ppage.virtualization-page .pp-hero #ppTitle .pp-title-name{display:block;margin:4px 0 0!important;white-space:nowrap!important;font-size:clamp(23px,2.3vw,34px);line-height:1.18}
-#ppage.smart-qr-page .pp-hero #ppTitle .pp-title-name{display:block;margin:4px 0 0!important;white-space:normal!important;text-wrap:balance;font-size:clamp(24px,2.3vw,34px);line-height:1.18}
+#ppage:is(.smart-qr-page,.virtualization-page) .pp-hero #ppTitle .pp-title-name{display:inline;margin:0!important;white-space:nowrap!important;font-size:inherit;line-height:inherit}
 #ppage.instagram-automation-page .pp-hero #ppTitle .pp-title-name{display:block;margin:4px 0 0!important;white-space:nowrap!important;font-size:clamp(24px,2.5vw,36px);line-height:1.18}
 
 .instant-dashboard-body{display:grid;grid-template-columns:150px minmax(0,1fr);gap:10px;margin-top:10px}.instant-dashboard-body .gb-dashboard-feed{margin-top:0;font-size:10px}.instant-dashboard-phone{padding:10px;border:1px solid #34435c;border-radius:16px;background:#061329;display:grid;gap:6px}.instant-dashboard-phone>b{font-size:10px;color:#fff}.instant-dashboard-phone>span{padding:6px;border-radius:7px;background:#ffffff0d;font-size:10px;color:#dce7f5}@media(max-width:550px){.instant-dashboard-body{grid-template-columns:1fr}.instant-dashboard-phone{grid-template-columns:1fr 1fr}.instant-dashboard-phone>b{grid-column:1/-1}}
@@ -5952,6 +5953,69 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 .supplied-smb-hero-page > .pp-hero,
 .legacy-smb-hero {
   display: none !important;
+}
+
+/* Tally on Cloud section navigation, modelled on the compact cloud-page tab bar. */
+#ppage.tally-page .tally-section-nav {
+  position: sticky;
+  top: 78px;
+  z-index: 40;
+  width: 100%;
+  padding: 10px 20px;
+  border-bottom: 1px solid #e7ebf1;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 5px 18px rgba(4, 30, 66, 0.06);
+  backdrop-filter: blur(12px);
+}
+
+#ppage.tally-page .tally-section-nav-track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  width: max-content;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 4px;
+  overflow-x: auto;
+  border-radius: 999px;
+  background: #f2f3f6;
+  scrollbar-width: none;
+}
+
+#ppage.tally-page .tally-section-nav-track::-webkit-scrollbar { display: none; }
+
+#ppage.tally-page .tally-section-nav a {
+  flex: 0 0 auto;
+  padding: 9px 15px;
+  border-radius: 999px;
+  color: #3d4759;
+  font: 600 13px/1.25 var(--body);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#ppage.tally-page .tally-section-nav a:hover,
+#ppage.tally-page .tally-section-nav a:focus-visible {
+  color: #075fc7;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(4, 30, 66, 0.12);
+}
+
+#ppage.tally-page .tally-section-nav a:focus-visible {
+  outline: 2px solid #1d73df;
+  outline-offset: 1px;
+}
+
+#ppage.tally-page :is(#tallyOverview, #tallyPricing, #tallySecurity, #tallyWhyChoose, #tallySavings, #tallyEasySteps, #tallyFeatures, #tallyPlatforms, #tallyWatch, #tallyTestimonials, #tallyFaq, #tallyInsights) {
+  scroll-margin-top: 148px;
+}
+
+@media (max-width: 900px) {
+  #ppage.tally-page .tally-section-nav { top: 70px; padding-inline: 12px; }
+  #ppage.tally-page .tally-section-nav-track { justify-content: flex-start; }
+  #ppage.tally-page .tally-section-nav a { padding: 9px 13px; font-size: 12px; }
 }
 
 @media (max-width: 1240px) {
