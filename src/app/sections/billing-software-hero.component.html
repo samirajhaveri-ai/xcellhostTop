@@ -1,0 +1,13 @@
+<section class="billing-dashboard" aria-label="Live Billing Software activity dashboard">
+  <header><span>Billing Software</span><b><i aria-hidden="true"></i> Live</b></header>
+  <div class="billing-metrics">
+    <article [class.pulse]="metricPulse() === 1"><strong>{{ billed() }}</strong><span>billed</span></article>
+    <article [class.pulse]="metricPulse() === 2"><strong>{{ paidOnTime() }}</strong><span>paid on time</span></article>
+    <article [class.pulse]="metricPulse() === 3"><strong>{{ recurring() }}</strong><span>recurring</span></article>
+  </div>
+  <div class="billing-feed" aria-live="polite" aria-label="Recent billing activity">
+    @for (item of feed(); track item.time + item.message + $index) {
+      <div><time>{{ item.time }}</time><span>{{ item.message }}</span></div>
+    }
+  </div>
+</section>
