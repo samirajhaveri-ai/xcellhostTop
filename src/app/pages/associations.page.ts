@@ -29,8 +29,8 @@ export class AssociationsPage {
     { id: 'it-trade', label: 'IT Trade Associations' },
     { id: 'industry', label: 'Industry Associations' },
     { id: 'country', label: 'Country Associations' },
-    { id: 'business-network', label: 'Business Network' },
-    { id: 'affiliate', label: 'Affiliate Network' },
+    { id: 'business-network', label: 'Business Networks' },
+    { id: 'affiliate', label: 'Affiliate Networks' },
   ];
 
   readonly countryAssociations: readonly Association[] = [
@@ -39,6 +39,7 @@ export class AssociationsPage {
     { name: 'Indo-American Chamber of Commerce', image: '/assets/images/associations/country/indo-american-chamber.png' },
     { name: 'Indo-African Chamber of Commerce & Industry', image: '/assets/images/associations/country/indo-african-chamber.jpg' },
     { name: 'Asian-African Chamber of Commerce & Industry', image: '/assets/images/associations/industry-asian-african-chamber.png' },
+    { name: 'Asian-African Chamber of Commerce & Industry', image: '/assets/images/images.jpg' },
   ];
 
   readonly itTradeAssociations: readonly LinkedAssociation[] = [
@@ -49,6 +50,9 @@ export class AssociationsPage {
     { name: 'GESIA', image: '/assets/images/associations/trade/gesia.png', website: 'https://gesia.org/' },
     { name: 'COMPASS', image: '/assets/images/associations/trade/compass.jpg', website: 'https://www.compassindia.com/' },
     { name: 'CMDA', image: '/assets/images/associations/industry-cmda.png', website: 'https://cmdapune.org/' },
+    { name: 'MSME', image: '/assets/images/logotm.webp', website: '' },
+    { name: 'CYBER SECURITY', image: '/assets/images/unnamed.png', website: 'https://www.ncsai.in/' },
+    { name: 'ASSCO', image: '/assets/images/images (3).png', website: '' },
   ];
   readonly industryAssociations: readonly Association[] = [
     {
