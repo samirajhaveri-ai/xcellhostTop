@@ -91,6 +91,7 @@ import { InsightsSectionComponent } from '../sections/insights-section.component
 import { IdentityResilienceContentComponent } from '../sections/identity-resilience-content.component';
 import { EdiscoveryComplianceContentComponent } from '../sections/ediscovery-compliance-content.component';
 import { PerformanceCloudContentComponent } from '../sections/performance-cloud-content.component';
+import { GpuServersContentComponent } from '../sections/gpu-servers-content.component';
 import { DomainWhoisContentComponent } from '../sections/domain-whois-content.component';
 import { DomainWhoisFaqComponent } from '../sections/domain-whois-faq.component';
 import { ManagedOracleContentComponent } from '../sections/managed-oracle-content.component';
@@ -359,6 +360,7 @@ interface ProductTourSlide {
     IdentityResilienceContentComponent,
     EdiscoveryComplianceContentComponent,
     PerformanceCloudContentComponent,
+    GpuServersContentComponent,
     DomainWhoisContentComponent,
     DomainWhoisFaqComponent,
     ManagedOracleContentComponent,
@@ -3109,8 +3111,26 @@ export class ProductPage {
     this.overlay.open('trial');
   }
 
+  scrollToTallySection(sectionId: string, ev: Event): void {
+    ev.preventDefault();
+    const section = document.getElementById(sectionId);
+    if (!section) return;
+
+    window.history.replaceState(
+      null,
+      '',
+      `${window.location.pathname}${window.location.search}#${sectionId}`
+    );
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
   requestGpuCluster(configuration: string): void {
     this.topics.ask(`GPU Clusters - ${configuration}`);
+    this.overlay.open('callback');
+  }
+
+  requestGpuServersCallback(request: string): void {
+    this.topics.ask(`GPU Servers - ${request}`);
     this.overlay.open('callback');
   }
 
