@@ -804,6 +804,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "NVIDIA Vera Rubin",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
@@ -894,6 +899,11 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Managed Databases",
             "items": [
               {
+                "title": "Managed Microsoft SQL",
+                "pill": null,
+                "desc": null
+              },
+              {
                 "title": "Managed PostgreSQL",
                 "pill": null,
                 "desc": null
@@ -923,11 +933,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "Microsoft Managed SQL",
-                "pill": null,
-                "desc": null
-              },
+              
 
             ]
           }
@@ -2864,6 +2870,29 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Optimized AI IDE Lab ⚡"
               },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "6",
+        "label": "AI Managed Services",
+        "on": false,
+        "groups": [
+          {
+            "heading": "AI Managed Services",
+            "items": [
+              {
+                "title": "Anthropic Managed services",
+                "pill": null,
+                "desc": "Reliable AI Website Builder hosting 🐧"
+              },
+              {
+                "title": "Open AI Managed services",
+                "pill": null,
+                "desc": "Reliable AI App Builder hosting 💻"
+              },
+              
             ]
           }
         ]
