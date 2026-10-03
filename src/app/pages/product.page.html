@@ -2,6 +2,8 @@
   <div
     class="ppage as-page"
     id="ppage"
+    [class.plesk-servers-page]="slug() === 'plesk-servers'"
+    [class.cpanel-servers-page]="slug() === 'cpanel-servers'"
     [class.windows-servers-page]="slug() === 'windows-servers'"
     [class.domain-whois-page]="slug() === 'domain-whois-lookup'"
     [class.managed-oracle-page]="slug() === 'managed-oracle-cloud'"
@@ -21,7 +23,9 @@
     [class.acronis-backup-advanced-page]="slug() === 'acronis-backup-advanced'"
     [class.instagram-automation-page]="slug() === 'instagram-automation'"
     [class.smart-qr-page]="slug() === 'smart-qr-and-nfc-automation'"
-    [class.google-business-page]="slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation'"
+    [class.virtualization-page]="slug() === 'virtualization-servers'"
+    [class.server-tail-uppercase]="slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin'"
+    [class.google-business-page]="slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin'"
     [class.acronis-ot-page]="slug() === 'acronis-ot'"
     [class.acronis-mdr-page]="slug() === 'acronis-mdr'"
     [class.microsoft-defender-page]="slug() === 'microsoft-defender'"
@@ -357,6 +361,14 @@
         @if (slug() === 'linux-servers' || slug() === 'windows-servers') {
           <!-- Server visuals are positioned beside their copy inside the shared wrap. -->
 
+        } @else if (slug() === 'cpanel-servers') {
+          <div class="pph-scene cpanel-hero-art">
+            <xh-cpanel-servers-hero />
+          </div>
+        } @else if (slug() === 'plesk-servers') {
+          <div class="pph-scene plesk-hero-art">
+            <xh-plesk-servers-hero />
+          </div>
         } @else if (slug() === 'instant-website') {
           <div class="pph-scene google-business-dashboard" aria-label="Illustrative Instant Website And Bio Link dashboard">
             <div class="gb-dashboard">
@@ -377,6 +389,14 @@
           <div class="pph-scene google-business-dashboard"><xh-aiops-content [hero]="true" style="width:100%" /></div>
            } @else if (slug() === 'smart-qr-and-nfc-automation') { <div class="pph-scene google-business-dashboard"><xh-smart-qr-and-nfc-automation-content [hero]="true" style="width:100%" /></div> } @else if (slug() === 'agent-studio') {
           <div class="pph-scene google-business-dashboard"><xh-agent-studio-content [hero]="true" style="width:100%" /></div>
+          } @else if (slug() === 'virtualization-servers') {
+          <div class="pph-scene google-business-dashboard"><xh-virtualization-servers-content [hero]="true" style="width:100%" /></div>
+          } @else if (slug() === 'gaming-servers') {
+          <div class="pph-scene google-business-dashboard"><xh-gaming-servers-content [hero]="true" style="width:100%" /></div>
+          } @else if (slug() === 'storage-servers') {
+          <div class="pph-scene google-business-dashboard"><xh-storage-servers-content [hero]="true" style="width:100%" /></div>
+          } @else if (slug() === 'nvidia-vera-rubin') {
+          <div class="pph-scene google-business-dashboard"><xh-nvidia-vera-rubin-content [hero]="true" style="width:100%" /></div>
           } @else if (slug() === 'lead-generation-and-pipeline-crm') {
           <div class="pph-scene google-business-dashboard" aria-label="Illustrative Lead Generation And Pipeline CRM dashboard">
             <div class="gb-dashboard">
@@ -2493,9 +2513,13 @@
                           </div>
                         </div>
                       </section>
+                   } @else if (slug() === 'plesk-servers') {
+                      <xh-plesk-servers-overview (quoteRequested)="openCallback($event.event, $event.configuration)" />
+                   } @else if (slug() === 'cpanel-servers') {
+                      <xh-cpanel-servers-overview (quoteRequested)="openCallback($event.event, $event.configuration)" />
                    } @else if (slug() === 'imunify360') {
                       <xh-imunify360-content (planRequested)="requestImunify360Plan($event)" />
-                   } @else if (!isTally() && slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops') {
+                   } @else if (!isTally() && slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops') {
                       <div class="pp-sec">Overview</div>
                       <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
                     }
@@ -3221,6 +3245,8 @@
                   <xh-rtx-a6000-pricing (quoteRequested)="requestRtxA6000Plan($event)" />
                 } @else if (slug() === 'n8n-vps') {
                   <!-- Pricing and included features render with the n8n overview above. -->
+                } @else if (slug() === 'plesk-servers' || slug() === 'cpanel-servers') {
+                  <!-- Bundles and the configurator render in the supplied server overview. -->
                 } @else if (slug() === 'imunify360') {
                   <xh-imunify360-followup (consultationRequested)="requestImunify360Plan($event)" />
                 } @else if (slug() === 'billing-software') {
@@ -3232,7 +3258,7 @@
                 } @else if (slug() === 'cloud-disaster-recovery-for-enterprise') {
                   <xh-enterprise-dr-details (quoteRequested)="openCallback($event, 'Enterprise disaster recovery quote')" />
                 } @else if (
-                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
+                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
                   !isAdvancedEdr() &&
                   !isSmbCyber() &&
                   !isRmm() &&
@@ -3440,8 +3466,9 @@
                 } @else if (slug() === 'rtx-a6000') {
                   <xh-rtx-a6000-details />
                 } @else if (
-                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
+                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
                   slug() !== 'imunify360' &&
+                  slug() !== 'plesk-servers' && slug() !== 'cpanel-servers' &&
                   !isSmbCyber() &&
                   !isAcronisTrueImage() &&
                   !isSiteLock() &&
@@ -4080,10 +4107,11 @@
                 } @else if (slug() === 'rtx-a6000') {
                   <xh-rtx-a6000-performance />
                 } @else if (
-                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
+                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
                   slug() !== 'imunify360' &&
                   !isSmbCyber() &&
                   !isRmm() &&
+                  slug() !== 'plesk-servers' && slug() !== 'cpanel-servers' &&
                   !isAcronisTrueImage() &&
                   !isSiteLock() &&
                   !isManagedMicrosoft365() &&
@@ -4688,6 +4716,14 @@
                   <xh-aiops-content />
                 } @else if (slug() === 'smart-qr-and-nfc-automation') { <xh-smart-qr-and-nfc-automation-content /> } @else if (slug() === 'agent-studio') {
                   <xh-agent-studio-content />
+                } @else if (slug() === 'virtualization-servers') {
+                  <xh-virtualization-servers-content (quoteRequested)="openCallback($event, 'Virtualization Servers custom configuration')" />
+                } @else if (slug() === 'gaming-servers') {
+                  <xh-gaming-servers-content (quoteRequested)="openCallback($event, 'Gaming Servers custom configuration')" />
+                } @else if (slug() === 'storage-servers') {
+                  <xh-storage-servers-content (quoteRequested)="openCallback($event, 'Storage Servers custom configuration')" />
+                } @else if (slug() === 'nvidia-vera-rubin') {
+                  <xh-nvidia-vera-rubin-content />
                 } @else if (slug() === 'lead-generation-and-pipeline-crm') {
                   <xh-lead-generation-and-pipeline-crm-content />
                 } @else if (slug() === 'instant-website') {
@@ -4706,6 +4742,7 @@
                   <xh-rtx-6000-ada-showcase />
                 } @else if (
                   slug() !== 'imunify360' &&
+                  slug() !== 'plesk-servers' && slug() !== 'cpanel-servers' &&
                   v.name !== 'Tally on Cloud' &&
                   slug() !== 'rtx-a6000' &&
                    slug() !== 'n8n-vps' &&
@@ -5064,6 +5101,7 @@
 
           @if (
             v.name !== 'Tally on Cloud' &&
+            slug() !== 'plesk-servers' && slug() !== 'cpanel-servers' &&
             slug() !== 'nvidia-a100' &&
             slug() !== 'ai-resilience' &&
             slug() !== 'cyber-resilience' &&
@@ -5096,7 +5134,7 @@
             </div>
           }
 
-          <div id="ppRich" [hidden]="slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation'">
+          <div id="ppRich" [hidden]="slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin'">
             @if (v.packages.length) {
               <div class="pp-sec">Included with {{ v.name }}</div>
               <div class="pp-pkg">
@@ -5272,6 +5310,18 @@
           @if (slug() === 'smart-qr-and-nfc-automation') { <section aria-labelledby="smartQrDemoTitle"><h2 class="pp-sec" id="smartQrDemoTitle">Watch It In Action</h2><xh-smart-qr-and-nfc-automation-content [demo]="true" /></section> }
           @if (slug() === 'agent-studio') {
             <section aria-labelledby="agent-studioDemoTitle"><h2 class="pp-sec" id="agent-studioDemoTitle">Watch It In Action</h2><h3>Product Intro</h3><p>Design and coordinate AI agents with a visual designer, model gateway, enterprise connectors and human approvals.</p><h3>Use Cases</h3><p>Explore coordinated support, finance, research and IT operations agents in the illustrative orchestration panel.</p><xh-agent-studio-content [hero]="true" style="display:block;max-width:600px;margin:24px auto 0;background:#041e42;border-radius:20px" /></section>
+          }
+          @if (slug() === 'virtualization-servers') {
+            <section aria-labelledby="virtualization-serversDemoTitle"><h2 class="pp-sec" id="virtualization-serversDemoTitle">Watch It In Action</h2><h3>Product Intro</h3><p>Run VMware, Proxmox, Hyper-V or KVM directly on dedicated hardware, with root access, IPMI and private networking.</p><h3>Use Cases</h3><p>Build a private cloud, migrate VMware workloads, host virtual desktops or create isolated development and disaster recovery environments.</p><xh-virtualization-servers-content [hero]="true" style="display:block;max-width:600px;margin:24px auto 0;background:#041e42;border-radius:20px" /></section>
+          }
+          @if (slug() === 'gaming-servers') {
+            <section aria-labelledby="gaming-serversDemoTitle"><h2 class="pp-sec" id="gaming-serversDemoTitle">Watch It In Action</h2><h3>Product Intro</h3><p>Run dedicated multiplayer game servers with high-clock CPUs, NVMe storage, root access and DDoS protection.</p><h3>Use Cases</h3><p>Host Minecraft, Counter-Strike 2, FiveM, Rust and custom game builds, with control over mods, plugins and community access.</p><xh-gaming-servers-content [hero]="true" style="display:block;max-width:600px;margin:24px auto 0;background:#041e42;border-radius:20px" /></section>
+          }
+          @if (slug() === 'storage-servers') {
+            <section aria-labelledby="storage-serversDemoTitle"><h2 class="pp-sec" id="storage-serversDemoTitle">Watch It In Action</h2><h3>Product Intro</h3><p>Build dedicated storage with SATA, SAS or NVMe drives, RAID options, root access and private networking.</p><h3>Use Cases</h3><p>Plan capacity for backups, archives, media libraries, database storage and virtual machine images using the interactive storage builder.</p><xh-storage-servers-content [hero]="true" style="display:block;max-width:600px;margin:24px auto 0;background:#041e42;border-radius:20px" /></section>
+          }
+          @if (slug() === 'nvidia-vera-rubin') {
+            <section aria-labelledby="nvidia-vera-rubinDemoTitle"><h2 class="pp-sec" id="nvidia-vera-rubinDemoTitle">Watch It In Action</h2><h3>Product Intro</h3><p>Explore the rack-scale layout of DGX Rubin NVL72 and use the workload chooser above to compare deployment options.</p><h3>Use Cases</h3><p>Plan large-model training, agentic inference, long-context serving and scientific computing workloads.</p><xh-nvidia-vera-rubin-content [hero]="true" style="display:block;max-width:600px;margin:24px auto 0;background:#041e42;border-radius:20px" /></section>
           }
           @if (slug() === 'lead-generation-and-pipeline-crm') {
             <section aria-labelledby="leadCrmDemoTitle"><h2 class="pp-sec" id="leadCrmDemoTitle">Watch It In Action</h2><xh-lead-generation-and-pipeline-crm-content [demo]="true" /></section>
@@ -5597,7 +5647,7 @@
           }
           @if (slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
           <div class="pp-sec" [attr.id]="isTally() ? 'tallyTestimonials' : null" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">{{ isTally() ? 'Customer Testimonials' : 'What customers say' }}</div>
-          @if (slug() === 'smart-qr-and-nfc-automation' || slug() === 'agent-studio' || slug() === 'aiops' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'instant-website' || slug() === 'instagram-automation' || slug() === 'hrm-attendance' || slug() === 'google-my-business' || isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training' || slug() === 'ai-chat-bot') {
+          @if (slug() === 'nvidia-vera-rubin' || slug() === 'storage-servers' || slug() === 'gaming-servers' || slug() === 'virtualization-servers' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'agent-studio' || slug() === 'aiops' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'instant-website' || slug() === 'instagram-automation' || slug() === 'hrm-attendance' || slug() === 'google-my-business' || isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training' || slug() === 'ai-chat-bot') {
             <div class="pp-tcards" id="ppRevs">
               @for (r of v.reviews; track r.name) {
                 <div class="tcard">
