@@ -11,6 +11,7 @@
     [class.disaster-recovery-page]="isCloudDisasterRecoverySmb()"
     [class.enterprise-dr-page]="slug() === 'cloud-disaster-recovery-for-enterprise'"
     [class.magicqr-page]="slug() === 'ai-review-magicqr'"
+    [class.billing-software-page]="slug() === 'billing-software'"
     [class.edr-page]="isAdvancedEdr()"
     [class.scrutiny-edr-page]="isScrutinyEdr()"
     [class.rmm-page]="isRmm()"
@@ -304,7 +305,7 @@
         [class.sitelock-hero]="v.name === 'Web Security (SiteLock)'"
         [class.tally-product-hero]="v.name === 'Tally on Cloud'"
       >
-        @if (slug() !== 'cloud-disaster-recovery-for-enterprise' && slug() !== 'ai-review-magicqr') {
+        @if (slug() !== 'cloud-disaster-recovery-for-enterprise' && slug() !== 'ai-review-magicqr' && slug() !== 'billing-software') {
           <div class="pph-map" aria-hidden="true" [innerHTML]="worldMap"></div>
         }
         <span class="pph-grid" aria-hidden="true"></span>
@@ -1056,8 +1057,8 @@
             <iframe src="/ai-lab-hero.html" title="Illustrative AI Lab dashboard showing students, GPU workloads and model training" scrolling="no"></iframe>
           </div>
 
-        } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)' && slug() !== 'higher-education-cloud') {
-
+        } @else if (slug() === 'billing-software') {
+          <xh-billing-software-hero class="billing-software-dashboard" />
         } @else if (slug() === 'cloud-disaster-recovery-for-enterprise') {
           <xh-disaster-recovery-simulator class="enterprise-dr-simulator" />
         } @else if (slug() === 'ai-review-magicqr') {
@@ -2241,6 +2242,8 @@
                           </div>
                         </div>
                       </section>
+                    } @else if (slug() === 'billing-software') {
+                      <xh-billing-software-overview />
                     } @else if (slug() === 'ai-review-magicqr') {
                       <xh-ai-review-magicqr-overview />
                     } @else if (slug() === 'cloud-disaster-recovery-for-enterprise') {
@@ -3016,6 +3019,8 @@
                   <!-- Pricing and included features render with the n8n overview above. -->
                 } @else if (slug() === 'imunify360') {
                   <xh-imunify360-followup (consultationRequested)="requestImunify360Plan($event)" />
+                } @else if (slug() === 'billing-software') {
+                  <xh-billing-software-tail (quoteRequested)="openCallback($event.event, $event.plan)" />
                 } @else if (slug() === 'ai-review-magicqr') {
                   <xh-ai-review-magicqr-tail (quoteRequested)="openCallback($event.event, $event.plan)" />
                 } @else if (slug() === 'cloud-disaster-recovery-for-enterprise') {
@@ -3237,6 +3242,7 @@
                   !isManagedMicrosoft365() &&
                   !isEntraIdBackup() &&
                   slug() !== 'n8n-vps' &&
+                  slug() !== 'billing-software' &&
                   slug() !== 'ai-review-magicqr' &&
                   slug() !== 'cloud-disaster-recovery-for-enterprise' &&
                   slug() !== 'acronis-backup-advanced' &&
@@ -3876,6 +3882,7 @@
                   !isManagedMicrosoft365() &&
                   !isEntraIdBackup() &&
                   slug() !== 'n8n-vps' &&
+                  slug() !== 'billing-software' &&
                   slug() !== 'ai-review-magicqr' &&
                   slug() !== 'cloud-disaster-recovery-for-enterprise' &&
                   slug() !== 'acronis-backup-advanced' &&
@@ -4499,7 +4506,8 @@
                   slug() !== 'imunify360' &&
                   v.name !== 'Tally on Cloud' &&
                   slug() !== 'rtx-a6000' &&
-                  slug() !== 'n8n-vps' &&
+                   slug() !== 'n8n-vps' &&
+                   slug() !== 'billing-software' &&
                    slug() !== 'ai-review-magicqr' &&
                   slug() !== 'cloud-disaster-recovery-for-enterprise' &&
                   !isSmbCyber() &&

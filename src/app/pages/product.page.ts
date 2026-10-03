@@ -30,6 +30,9 @@ import { DisasterRecoverySimulatorComponent } from '../sections/disaster-recover
 import { AiReviewMagicqrHeroComponent } from '../sections/ai-review-magicqr-hero.component';
 import { AiReviewMagicqrOverviewComponent } from '../sections/ai-review-magicqr-overview.component';
 import { AiReviewMagicqrTailComponent } from '../sections/ai-review-magicqr-tail.component';
+import { BillingSoftwareHeroComponent } from '../sections/billing-software-hero.component';
+import { BillingSoftwareOverviewComponent } from '../sections/billing-software-overview.component';
+import { BillingSoftwareTailComponent } from '../sections/billing-software-tail.component';
 import { EnterpriseDrOverviewComponent } from '../sections/enterprise-dr-overview.component';
 import { EnterpriseDrDetailsComponent } from '../sections/enterprise-dr-details.component';
 
@@ -335,6 +338,9 @@ interface ProductTourSlide {
     AiReviewMagicqrHeroComponent,
     AiReviewMagicqrOverviewComponent,
     AiReviewMagicqrTailComponent,
+    BillingSoftwareHeroComponent,
+    BillingSoftwareOverviewComponent,
+    BillingSoftwareTailComponent,
     EnterpriseDrOverviewComponent,
     EnterpriseDrDetailsComponent,
 
@@ -574,6 +580,31 @@ interface ProductTourSlide {
       #ppage.magicqr-page .magicqr-hero-dashboard { max-width: 550px; justify-self: center; }
     }
     @media(max-width:560px) { #ppage.magicqr-page > .pp-hero { padding: 32px 16px; gap: 24px; } }
+
+    #ppage.billing-software-page > .pp-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 550px);
+      align-items: center;
+      gap: 48px;
+      padding: 58px max(24px, calc((100% - 1192px) / 2));
+      background: radial-gradient(ellipse at 88% 34%, #30216e 0%, #102451 46%, #041e42 82%);
+    }
+    #ppage.billing-software-page .pp-hero > .wrap { order: 1; width: 100%; max-width: none; min-width: 0; padding: 0; }
+    #ppage.billing-software-page .billing-software-dashboard { position: relative; z-index: 4; order: 2; width: 100%; }
+    #ppage.billing-software-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) { width: 100% !important; max-width: 100% !important; }
+    #ppage.billing-software-page .pp-hero h1 { display: block; width: 100%; text-align: left; white-space: normal; font-size: clamp(28px, 2.6vw, 42px); line-height: 1.2; }
+    #ppage.billing-software-page .pp-hero h1 .pp-title-name { display: inline; margin-left: 0; }
+    #ppage.billing-software-page .pp-typewriter { width: 100%; min-height: 2.8em; white-space: normal; }
+    #ppage.billing-software-page .product-hero-ctas { width: 100%; max-width: 100%; flex-wrap: wrap; }
+    #ppage.billing-software-page .product-hero-ctas .btn { flex: 0 1 auto; }
+    #ppage.billing-software-page .pp-ask-ai { width: 100%; }
+    #ppage.billing-software-page .pp-ask-ai-copy { flex: 1 1 310px; }
+    #ppage.billing-software-page .pp-ask-ai-actions { flex: 0 0 auto; }
+    @media(max-width:1100px) {
+      #ppage.billing-software-page > .pp-hero { grid-template-columns: minmax(0, 1fr); gap: 32px; padding: 40px 24px; }
+      #ppage.billing-software-page .billing-software-dashboard { max-width: 550px; justify-self: center; }
+    }
+    @media(max-width:560px) { #ppage.billing-software-page > .pp-hero { padding: 32px 16px; gap: 24px; } }
 
     #ppage.managed-oracle-page .pp-hero {
       display: grid;
