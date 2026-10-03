@@ -241,6 +241,16 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "A powerful web hosting control panel 🎛️"
               },
+              {
+                "title": "Plesk Servers",
+                "pill": null,
+                "desc": "A powerful web hosting control panel 🎛️"
+              },
+              {
+                "title": "cPanel Servers",
+                "pill": null,
+                "desc": "A powerful web hosting control panel 🎛️"
+              },
               
             ]
           }
