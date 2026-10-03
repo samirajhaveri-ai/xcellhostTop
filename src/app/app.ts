@@ -5,6 +5,7 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter, map, startWith } from 'rxjs';
 
 import { OverlayService } from './core/overlay.service';
+import { BannerSongService } from './core/banner-song.service';
 import { DocRequestService } from './core/doc-request.service';
 import { CallbackTopicService } from './overlays/callback-topic.service';
 import {
@@ -67,6 +68,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {
+  private readonly bannerSongs = inject(BannerSongService);
   readonly scrollProgress = signal(0);
   private readonly overlay = inject(OverlayService);
   private readonly docs = inject(DocRequestService);
