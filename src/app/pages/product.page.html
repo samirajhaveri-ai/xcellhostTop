@@ -2,6 +2,8 @@
   <div
     class="ppage as-page"
     id="ppage"
+    [class.plesk-servers-page]="slug() === 'plesk-servers'"
+    [class.cpanel-servers-page]="slug() === 'cpanel-servers'"
     [class.windows-servers-page]="slug() === 'windows-servers'"
     [class.domain-whois-page]="slug() === 'domain-whois-lookup'"
     [class.managed-oracle-page]="slug() === 'managed-oracle-cloud'"
@@ -358,6 +360,14 @@
         @if (slug() === 'linux-servers' || slug() === 'windows-servers') {
           <!-- Server visuals are positioned beside their copy inside the shared wrap. -->
 
+        } @else if (slug() === 'cpanel-servers') {
+          <div class="pph-scene cpanel-hero-art">
+            <xh-cpanel-servers-hero />
+          </div>
+        } @else if (slug() === 'plesk-servers') {
+          <div class="pph-scene plesk-hero-art">
+            <xh-plesk-servers-hero />
+          </div>
         } @else if (slug() === 'instant-website') {
           <div class="pph-scene google-business-dashboard" aria-label="Illustrative Instant Website And Bio Link dashboard">
             <div class="gb-dashboard">
@@ -2351,6 +2361,10 @@
                           </div>
                         </div>
                       </section>
+                   } @else if (slug() === 'plesk-servers') {
+                      <xh-plesk-servers-overview (quoteRequested)="openCallback($event.event, $event.configuration)" />
+                   } @else if (slug() === 'cpanel-servers') {
+                      <xh-cpanel-servers-overview (quoteRequested)="openCallback($event.event, $event.configuration)" />
                    } @else if (slug() === 'imunify360') {
                       <xh-imunify360-content (planRequested)="requestImunify360Plan($event)" />
                    } @else if (!isTally() && slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops') {
@@ -3079,6 +3093,8 @@
                   <xh-rtx-a6000-pricing (quoteRequested)="requestRtxA6000Plan($event)" />
                 } @else if (slug() === 'n8n-vps') {
                   <!-- Pricing and included features render with the n8n overview above. -->
+                } @else if (slug() === 'plesk-servers' || slug() === 'cpanel-servers') {
+                  <!-- Bundles and the configurator render in the supplied server overview. -->
                 } @else if (slug() === 'imunify360') {
                   <xh-imunify360-followup (consultationRequested)="requestImunify360Plan($event)" />
                 } @else if (slug() === 'billing-software') {
@@ -3300,6 +3316,7 @@
                 } @else if (
                   slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
                   slug() !== 'imunify360' &&
+                  slug() !== 'plesk-servers' && slug() !== 'cpanel-servers' &&
                   !isSmbCyber() &&
                   !isAcronisTrueImage() &&
                   !isSiteLock() &&
@@ -3942,6 +3959,7 @@
                   slug() !== 'imunify360' &&
                   !isSmbCyber() &&
                   !isRmm() &&
+                  slug() !== 'plesk-servers' && slug() !== 'cpanel-servers' &&
                   !isAcronisTrueImage() &&
                   !isSiteLock() &&
                   !isManagedMicrosoft365() &&
@@ -4578,6 +4596,7 @@
                   <xh-rtx-6000-ada-showcase />
                 } @else if (
                   slug() !== 'imunify360' &&
+                  slug() !== 'plesk-servers' && slug() !== 'cpanel-servers' &&
                   v.name !== 'Tally on Cloud' &&
                   slug() !== 'rtx-a6000' &&
                    slug() !== 'n8n-vps' &&
@@ -4936,6 +4955,7 @@
 
           @if (
             v.name !== 'Tally on Cloud' &&
+            slug() !== 'plesk-servers' && slug() !== 'cpanel-servers' &&
             slug() !== 'nvidia-a100' &&
             slug() !== 'ai-resilience' &&
             slug() !== 'cyber-resilience' &&

@@ -7,6 +7,10 @@ import { GAMING_FAQS } from '../data/gaming-servers-faqs.data';
 import { VirtualizationContentComponent } from '../sections/virtualization-servers-content.component';
 import { VIRTUALIZATION_FAQS } from '../data/virtualization-servers-faqs.data';
 import { SmartQrContentComponent } from '../sections/smart-qr-and-nfc-automation-content.component';
+import { PleskServersHeroComponent } from '../sections/plesk-servers-hero.component';
+import { CpanelServersHeroComponent } from '../sections/cpanel-servers-hero.component';
+import { CpanelServersOverviewComponent } from '../sections/cpanel-servers-overview.component';
+import { PleskServersOverviewComponent } from '../sections/plesk-servers-overview.component';
 import { SMART_QR_FAQS } from '../data/smart-qr-and-nfc-automation-faqs.data';
 import { AgentStudioContentComponent } from '../sections/agent-studio-content.component';
 import { AGENT_STUDIO_FAQS } from '../data/agent-studio-faqs.data';
@@ -500,9 +504,28 @@ interface ProductTourSlide {
 
     EmailSignatureContentComponent,
     EmailSignatureHeroComponent,
+    PleskServersHeroComponent,
+    CpanelServersHeroComponent,
+    CpanelServersOverviewComponent,
+    PleskServersOverviewComponent,
   ],
   templateUrl: './product.page.html',
   styles: [`
+
+    #ppage .pph-scene.plesk-hero-art {
+      right: max(24px, calc((100% - 1192px) / 2)); width: min(40%, 480px);
+      top: 50%; bottom: auto; transform: translateY(-50%); opacity: 1;
+      mask-image: none; overflow: visible; pointer-events: auto; z-index: 4;
+    }
+    .plesk-hero-art xh-plesk-servers-hero { display: block; width: 100%; }
+    @media(max-width:900px) {
+      #ppage .pph-scene.plesk-hero-art {
+        position: relative; inset: auto; transform: none; width: calc(100% - 32px);
+        max-width: 550px; margin: 24px auto; order: 1;
+      }
+      #ppage.plesk-servers-page .pp-hero { display: flex; flex-direction: column; }
+      #ppage.plesk-servers-page .pp-hero > .wrap { width: 100%; order: 0; }
+    }
 
     #ppage .pp-hero > .wrap.higher-education-hero-layout {
       display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
@@ -1345,6 +1368,29 @@ interface ProductTourSlide {
         max-width: 56%;
       }
     }
+
+    #ppage.ppage > .pp-hero > .pph-scene.cpanel-hero-art {
+      right: max(24px, calc((100% - 1240px) / 2 + 24px)); width: min(40%, 550px);
+      top: 50%; bottom: auto; transform: translateY(-50%); opacity: 1;
+      mask-image: none; overflow: visible; pointer-events: auto; z-index: 4;
+    }
+    .cpanel-hero-art xh-cpanel-servers-hero { display: block; width: 100%; }
+    #ppage.cpanel-servers-page .product-hero-ctas { width: 100%; max-width: 100%; flex-wrap: wrap; }
+    @media(min-width:901px) {
+      #ppage.cpanel-servers-page .pp-hero #ppTitle,
+      #ppage.cpanel-servers-page .pp-hero > .wrap > .pp-tagline,
+      #ppage.cpanel-servers-page .pp-hero > .wrap > .pp-tagline-support,
+      #ppage.cpanel-servers-page .pp-hero > .wrap > .pp-hero-grid { max-width: 52%; }
+    }
+    @media(max-width:900px) {
+      #ppage.ppage > .pp-hero > .pph-scene.cpanel-hero-art {
+        position: relative; inset: auto; transform: none; width: calc(100% - 32px);
+        max-width: 550px; max-height: none; margin: 24px auto; order: 1;
+      }
+      #ppage.cpanel-servers-page .pp-hero { display: flex; flex-direction: column; }
+      #ppage.cpanel-servers-page .pp-hero > .wrap { width: 100%; order: 0; }
+    }
+
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
