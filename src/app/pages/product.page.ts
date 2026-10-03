@@ -1,3 +1,11 @@
+import { SmartQrContentComponent } from '../sections/smart-qr-and-nfc-automation-content.component';
+import { SMART_QR_FAQS } from '../data/smart-qr-and-nfc-automation-faqs.data';
+import { AgentStudioContentComponent } from '../sections/agent-studio-content.component';
+import { AGENT_STUDIO_FAQS } from '../data/agent-studio-faqs.data';
+import { AiopsContentComponent } from '../sections/aiops-content.component';
+import { AIOPS_FAQS } from '../data/aiops-faqs.data';
+import { LeadCrmContentComponent } from '../sections/lead-generation-and-pipeline-crm-content.component';
+import { LEAD_CRM_FAQS } from '../data/lead-generation-and-pipeline-crm-faqs.data';
 
 
 import { HigherEducationHeroAction, HigherEducationHeroCopyComponent } from '../sections/higher-education-hero-copy.component';
@@ -22,6 +30,9 @@ import { DisasterRecoverySimulatorComponent } from '../sections/disaster-recover
 import { AiReviewMagicqrHeroComponent } from '../sections/ai-review-magicqr-hero.component';
 import { AiReviewMagicqrOverviewComponent } from '../sections/ai-review-magicqr-overview.component';
 import { AiReviewMagicqrTailComponent } from '../sections/ai-review-magicqr-tail.component';
+import { BillingSoftwareHeroComponent } from '../sections/billing-software-hero.component';
+import { BillingSoftwareOverviewComponent } from '../sections/billing-software-overview.component';
+import { BillingSoftwareTailComponent } from '../sections/billing-software-tail.component';
 import { EnterpriseDrOverviewComponent } from '../sections/enterprise-dr-overview.component';
 import { EnterpriseDrDetailsComponent } from '../sections/enterprise-dr-details.component';
 
@@ -327,6 +338,9 @@ interface ProductTourSlide {
     AiReviewMagicqrHeroComponent,
     AiReviewMagicqrOverviewComponent,
     AiReviewMagicqrTailComponent,
+    BillingSoftwareHeroComponent,
+    BillingSoftwareOverviewComponent,
+    BillingSoftwareTailComponent,
     EnterpriseDrOverviewComponent,
     EnterpriseDrDetailsComponent,
 
@@ -347,6 +361,10 @@ interface ProductTourSlide {
     HrmAttendanceContentComponent,
     InstagramAutomationContentComponent,
     InstantWebsiteContentComponent,
+    LeadCrmContentComponent,
+    AgentStudioContentComponent,
+    SmartQrContentComponent,
+    AiopsContentComponent,
     AiVoicebotContentComponent,
     AiVoicebotFaqComponent,
     RouterLink,
@@ -523,6 +541,12 @@ interface ProductTourSlide {
       background: radial-gradient(ellipse at 90% 40%, #0c494e 0%, #08244a 45%, #041e42 80%);
     }
     #ppage.enterprise-dr-page .pp-hero > .wrap { order: 1; width: 100%; max-width: none; min-width: 0; padding: 0; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered { display: inline-flex; align-items: center; gap: 10px; padding: 7px 14px; border-radius: 999px; background: rgba(255,255,255,.95); margin-bottom: 14px; text-decoration: none; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered span { font: 700 10px/1.5 'IBM Plex Mono', monospace; letter-spacing: .12em; color: #51607a; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered b { font: 800 17px/1.5 'Sora', sans-serif; color: #0b1d3d; letter-spacing: -.01em; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered sup { font-size: .6em; line-height: 0; vertical-align: super; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered em { font: 600 13px/1.5 'Poppins', sans-serif; font-style: normal; color: #0b1d3d; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered:focus-visible { outline: 3px solid #9cc8ff; outline-offset: 4px; }
     #ppage.enterprise-dr-page .enterprise-dr-simulator { position: relative; z-index: 4; order: 2; width: 100%; }
     #ppage.enterprise-dr-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) { width: 100% !important; max-width: 100% !important; }
     #ppage.enterprise-dr-page .pp-hero h1 { display: block; text-align: left; white-space: normal; font-size: clamp(28px, 2.6vw, 42px); line-height: 1.2; }
@@ -562,6 +586,31 @@ interface ProductTourSlide {
       #ppage.magicqr-page .magicqr-hero-dashboard { max-width: 550px; justify-self: center; }
     }
     @media(max-width:560px) { #ppage.magicqr-page > .pp-hero { padding: 32px 16px; gap: 24px; } }
+
+    #ppage.billing-software-page > .pp-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 550px);
+      align-items: center;
+      gap: 48px;
+      padding: 58px max(24px, calc((100% - 1192px) / 2));
+      background: radial-gradient(ellipse at 88% 34%, #30216e 0%, #102451 46%, #041e42 82%);
+    }
+    #ppage.billing-software-page .pp-hero > .wrap { order: 1; width: 100%; max-width: none; min-width: 0; padding: 0; }
+    #ppage.billing-software-page .billing-software-dashboard { position: relative; z-index: 4; order: 2; width: 100%; }
+    #ppage.billing-software-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) { width: 100% !important; max-width: 100% !important; }
+    #ppage.billing-software-page .pp-hero h1 { display: block; width: 100%; text-align: left; white-space: normal; font-size: clamp(28px, 2.6vw, 42px); line-height: 1.2; }
+    #ppage.billing-software-page .pp-hero h1 .pp-title-name { display: inline; margin-left: 0; }
+    #ppage.billing-software-page .pp-typewriter { width: 100%; min-height: 2.8em; white-space: normal; }
+    #ppage.billing-software-page .product-hero-ctas { width: 100%; max-width: 100%; flex-wrap: wrap; }
+    #ppage.billing-software-page .product-hero-ctas .btn { flex: 0 1 auto; }
+    #ppage.billing-software-page .pp-ask-ai { width: 100%; }
+    #ppage.billing-software-page .pp-ask-ai-copy { flex: 1 1 310px; }
+    #ppage.billing-software-page .pp-ask-ai-actions { flex: 0 0 auto; }
+    @media(max-width:1100px) {
+      #ppage.billing-software-page > .pp-hero { grid-template-columns: minmax(0, 1fr); gap: 32px; padding: 40px 24px; }
+      #ppage.billing-software-page .billing-software-dashboard { max-width: 550px; justify-self: center; }
+    }
+    @media(max-width:560px) { #ppage.billing-software-page > .pp-hero { padding: 32px 16px; gap: 24px; } }
 
     #ppage.managed-oracle-page .pp-hero {
       display: grid;
@@ -2074,6 +2123,102 @@ export class ProductPage {
     if (slug === 'linux-servers') return { ...view, faqs: LINUX_SERVERS_FAQS };
     if (slug === 'windows-servers') return { ...view, faqs: WINDOWS_SERVERS_FAQS };
 
+    if (slug === 'aiops') return {
+      ...view, faqs: AIOPS_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — AIOps Platform',
+        intro: 'Connect monitoring and automation with scoped access to your cloud estate. Use configuration history to investigate changes, review remediation runbooks before enabling automation, and align telemetry access and retention with your organisation’s requirements.',
+        rows: [
+          ['Access Controls', 'Scope Monitoring And Automation Permissions'],
+          ['Configuration Tracking', 'AWS Config Rules And Change History'],
+          ['Infrastructure Changes', 'CloudFormation Stack And Drift Monitoring'],
+          ['Incident Management', 'Correlated Alerts And Investigation Context'],
+          ['Remediation', 'Review And Approve Automated Runbooks'],
+          ['Coverage', 'AWS And Hybrid Cloud Operations'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'AWS And Hybrid Coverage', body: 'Bring cloud and on-premise operations into one monitoring approach.' },
+        { ...view.why[2], title: 'Guided Implementation', body: 'Assessment, AI/ML integration and continuous optimisation.' },
+        { ...view.why[3], title: 'Proactive Operations', body: 'Correlate alerts and identify unusual behaviour earlier.' },
+        { ...view.why[4], title: '24×7 NOC', body: 'Engineers support incident investigation and operational response.' },
+        { ...view.why[5], title: 'One Partner', body: 'Monitoring, automation and operational support together.' },
+      ],
+    };
+    if (slug === 'agent-studio') return {
+      ...view, faqs: AGENT_STUDIO_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — Agent Studio',
+        intro: 'Agent Studio combines zero-trust access with identity controls, encryption and agent-level observability. Apply SSO, MFA and role-based permissions, use PII redaction and prompt-injection defences, and retain human approval for sensitive workflows. Choose cloud, private cloud or on-premise deployment to suit your data requirements.',
+        rows: [
+          ['Access Controls', 'SSO, MFA And Role-Based Permissions'],
+          ['Encryption', 'TLS 1.3 And AES-256'],
+          ['Key Management', 'BYOK And HSM Support'],
+          ['Data Protection', 'PII Redaction And Data Loss Prevention'],
+          ['Agent Governance', 'Tracing, Audit Trails And Human Approval'],
+          ['Deployment', 'Cloud, Private Cloud, On-Premise And Hybrid'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Flexible Deployment', body: 'Deploy on cloud, private infrastructure, on-premise or hybrid environments.' },
+        { ...view.why[2], title: 'Guided Implementation', body: 'Foundation, enterprise integration and production rollout.' },
+        { ...view.why[3], title: 'Governed AI', body: 'Control agent access, trace activity and keep humans in the loop.' },
+        { ...view.why[4], title: '24×7 Enterprise Support', body: 'Technical support and a dedicated customer success manager.' },
+        { ...view.why[5], title: 'One Partner', body: 'Agents, models, enterprise integration and support together.' },
+      ],
+    };
+    if (slug === 'lead-generation-and-pipeline-crm') return {
+      ...view,
+      faqs: LEAD_CRM_FAQS,
+      videos: [],
+      security: {
+        head: 'Security & Compliance — Lead Generation & Pipeline CRM',
+        intro: 'Keep lead management accountable with team roles, permissions and a complete activity trail. Capture only the contact details your team needs, review access when responsibilities change, and use consent-based welcome messages and follow-ups. XcellHost helps configure your lead sources and pipeline for your business.',
+        rows: [
+          ['Team Access', 'Roles And Permissions'],
+          ['Activity History', 'Complete Lead Activity Trail'],
+          ['Lead Sources', 'QR Codes, Forms And Social DMs'],
+          ['Follow-Up Controls', 'Reminders And Automated Welcome Messages'],
+          ['Pipeline Visibility', 'Track Each Lead From New To Won'],
+          ['Data Handling', 'Review Contact Access And Messaging Consent'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Guided Setup', body: 'Lead source connections, pipeline setup and onboarding by XcellHost.' },
+        { ...view.why[2], title: 'One Dashboard', body: 'Manage leads, enquiries, follow-ups and pipeline stages together.' },
+        { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
+        { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
+        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+      ],
+    };
+    if (slug === 'smart-qr-and-nfc-automation') return {
+      ...view,
+      faqs: SMART_QR_FAQS,
+      videos: [],
+      security: {
+        head: 'Security & Compliance — Smart QR & NFC Automation',
+        intro: 'Manage digital cards with team roles and permissions. Keep shared contact details and QR destinations current, publish only information intended for your customers, and review access when team members change. Central management helps maintain consistent card content across your business.',
+        rows: [
+          ['Team Access', 'Roles And Permissions'],
+          ['Card Management', 'Centrally Managed Team Profiles'],
+          ['Dynamic QR', 'Update Details Without Reprinting'],
+          ['Contact Sharing', 'QR Scan, NFC Tap And Shareable Link'],
+          ['Brand Control', 'Themes And Custom Domain'],
+          ['Analytics', 'Views, Saves, Clicks And Scans'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Guided Setup', body: 'Digital card setup, QR configuration and onboarding by XcellHost.' },
+        { ...view.why[2], title: 'One Dashboard', body: 'Manage team cards, contact links, themes and analytics together.' },
+        { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
+        { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
+        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+      ],
+    };
     if (slug === 'instant-website') return {
       ...view,
       faqs: INSTANT_WEBSITE_FAQS,

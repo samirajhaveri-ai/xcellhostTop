@@ -11,6 +11,7 @@
     [class.disaster-recovery-page]="isCloudDisasterRecoverySmb()"
     [class.enterprise-dr-page]="slug() === 'cloud-disaster-recovery-for-enterprise'"
     [class.magicqr-page]="slug() === 'ai-review-magicqr'"
+    [class.billing-software-page]="slug() === 'billing-software'"
     [class.edr-page]="isAdvancedEdr()"
     [class.scrutiny-edr-page]="isScrutinyEdr()"
     [class.rmm-page]="isRmm()"
@@ -18,7 +19,8 @@
     [class.cloud-migration-page]="slug() === 'cloud-migration'"
     [class.acronis-backup-advanced-page]="slug() === 'acronis-backup-advanced'"
     [class.instagram-automation-page]="slug() === 'instagram-automation'"
-    [class.google-business-page]="slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website'"
+    [class.smart-qr-page]="slug() === 'smart-qr-and-nfc-automation'"
+    [class.google-business-page]="slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation'"
     [class.acronis-ot-page]="slug() === 'acronis-ot'"
     [class.acronis-mdr-page]="slug() === 'acronis-mdr'"
     [class.microsoft-defender-page]="slug() === 'microsoft-defender'"
@@ -340,7 +342,7 @@
         [class.sitelock-hero]="v.name === 'Web Security (SiteLock)'"
         [class.tally-product-hero]="v.name === 'Tally on Cloud'"
       >
-        @if (slug() !== 'cloud-disaster-recovery-for-enterprise' && slug() !== 'ai-review-magicqr') {
+        @if (slug() !== 'cloud-disaster-recovery-for-enterprise' && slug() !== 'ai-review-magicqr' && slug() !== 'billing-software') {
           <div class="pph-map" aria-hidden="true" [innerHTML]="worldMap"></div>
         }
         <span class="pph-grid" aria-hidden="true"></span>
@@ -367,6 +369,26 @@
                 <div><span>17:19</span>Bio link updated</div>
               </div>
               </div><small class="gb-dashboard-caption">Illustrative Dashboard · Sample Data</small>
+            </div>
+          </div>
+        } @else if (slug() === 'aiops') {
+          <div class="pph-scene google-business-dashboard"><xh-aiops-content [hero]="true" style="width:100%" /></div>
+           } @else if (slug() === 'smart-qr-and-nfc-automation') { <div class="pph-scene google-business-dashboard"><xh-smart-qr-and-nfc-automation-content [hero]="true" style="width:100%" /></div> } @else if (slug() === 'agent-studio') {
+          <div class="pph-scene google-business-dashboard"><xh-agent-studio-content [hero]="true" style="width:100%" /></div>
+          } @else if (slug() === 'lead-generation-and-pipeline-crm') {
+          <div class="pph-scene google-business-dashboard" aria-label="Illustrative Lead Generation And Pipeline CRM dashboard">
+            <div class="gb-dashboard">
+              <div class="gb-dashboard-title"><span>LEAD GENERATION &amp; PIPELINE CRM</span><b>● LIVE</b></div>
+              <div class="gb-dashboard-metrics"><div><b>214</b><span>new leads</span></div><div><b>38%</b><span>to customer</span></div><div><b>0</b><span>lost leads</span></div></div>
+              <div class="gb-dashboard-feed">
+                <div><span>17:19</span>QR lead: Rahul &middot; 98xxxx</div>
+                <div><span>17:19</span>Tagged Hot Lead ? welcome sent</div>
+                <div><span>17:19</span>Enquiry: membership price?</div>
+                <div><span>17:19</span>Stage: Visited ? Won</div>
+                <div><span>17:19</span>Instagram DM ? lead captured</div>
+                <div><span>17:19</span>Follow-up reminder scheduled</div>
+              </div>
+              <small class="gb-dashboard-caption">Illustrative Dashboard · Sample Data</small>
             </div>
           </div>
         } @else if (slug() === 'instagram-automation') {
@@ -1072,8 +1094,8 @@
             <iframe src="/ai-lab-hero.html" title="Illustrative AI Lab dashboard showing students, GPU workloads and model training" scrolling="no"></iframe>
           </div>
 
-        } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)' && slug() !== 'higher-education-cloud') {
-
+        } @else if (slug() === 'billing-software') {
+          <xh-billing-software-hero class="billing-software-dashboard" />
         } @else if (slug() === 'cloud-disaster-recovery-for-enterprise') {
           <xh-disaster-recovery-simulator class="enterprise-dr-simulator" />
         } @else if (slug() === 'ai-review-magicqr') {
@@ -1477,6 +1499,13 @@
             </div>
           } @else {
             <div class="pp-crumb" id="ppCrumb">{{ v.crumb }}</div>
+            @if (slug() === 'cloud-disaster-recovery-for-enterprise') {
+              <a class="enterprise-dr-powered" href="#opentext" aria-label="Powered by OpenText Availability">
+                <span>POWERED BY</span>
+                <b>OpenText<sup>™</sup></b>
+                <em>Availability</em>
+              </a>
+            }
             <h1 id="ppTitle" [class.pp-title-compact]="compactHeroTitle()">
               <span class="pp-title-brand" [attr.aria-label]="'Xcell' + v.brandSuffix">
                 <span class="pp-brand-xcell">Xcell</span
@@ -2257,6 +2286,8 @@
                           </div>
                         </div>
                       </section>
+                    } @else if (slug() === 'billing-software') {
+                      <xh-billing-software-overview />
                     } @else if (slug() === 'ai-review-magicqr') {
                       <xh-ai-review-magicqr-overview />
                     } @else if (slug() === 'cloud-disaster-recovery-for-enterprise') {
@@ -2304,7 +2335,7 @@
                       </section>
                    } @else if (slug() === 'imunify360') {
                       <xh-imunify360-content (planRequested)="requestImunify360Plan($event)" />
-                   } @else if (!isTally() && slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website') {
+                   } @else if (!isTally() && slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops') {
                       <div class="pp-sec">Overview</div>
                       <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
                     }
@@ -3032,12 +3063,14 @@
                   <!-- Pricing and included features render with the n8n overview above. -->
                 } @else if (slug() === 'imunify360') {
                   <xh-imunify360-followup (consultationRequested)="requestImunify360Plan($event)" />
+                } @else if (slug() === 'billing-software') {
+                  <xh-billing-software-tail (quoteRequested)="openCallback($event.event, $event.plan)" />
                 } @else if (slug() === 'ai-review-magicqr') {
                   <xh-ai-review-magicqr-tail (quoteRequested)="openCallback($event.event, $event.plan)" />
                 } @else if (slug() === 'cloud-disaster-recovery-for-enterprise') {
                   <xh-enterprise-dr-details (quoteRequested)="openCallback($event, 'Enterprise disaster recovery quote')" />
                 } @else if (
-                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' &&
+                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
                   !isAdvancedEdr() &&
                   !isSmbCyber() &&
                   !isRmm() &&
@@ -3245,7 +3278,7 @@
                 } @else if (slug() === 'rtx-a6000') {
                   <xh-rtx-a6000-details />
                 } @else if (
-                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' &&
+                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
                   slug() !== 'imunify360' &&
                   !isSmbCyber() &&
                   !isAcronisTrueImage() &&
@@ -3253,6 +3286,7 @@
                   !isManagedMicrosoft365() &&
                   !isEntraIdBackup() &&
                   slug() !== 'n8n-vps' &&
+                  slug() !== 'billing-software' &&
                   slug() !== 'ai-review-magicqr' &&
                   slug() !== 'cloud-disaster-recovery-for-enterprise' &&
                   slug() !== 'acronis-backup-advanced' &&
@@ -3883,7 +3917,7 @@
                 } @else if (slug() === 'rtx-a6000') {
                   <xh-rtx-a6000-performance />
                 } @else if (
-                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' &&
+                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
                   slug() !== 'imunify360' &&
                   !isSmbCyber() &&
                   !isRmm() &&
@@ -3892,6 +3926,7 @@
                   !isManagedMicrosoft365() &&
                   !isEntraIdBackup() &&
                   slug() !== 'n8n-vps' &&
+                  slug() !== 'billing-software' &&
                   slug() !== 'ai-review-magicqr' &&
                   slug() !== 'cloud-disaster-recovery-for-enterprise' &&
                   slug() !== 'acronis-backup-advanced' &&
@@ -4491,6 +4526,12 @@
                       </div>
                     </section>
                   </section>
+                } @else if (slug() === 'aiops') {
+                  <xh-aiops-content />
+                } @else if (slug() === 'smart-qr-and-nfc-automation') { <xh-smart-qr-and-nfc-automation-content /> } @else if (slug() === 'agent-studio') {
+                  <xh-agent-studio-content />
+                } @else if (slug() === 'lead-generation-and-pipeline-crm') {
+                  <xh-lead-generation-and-pipeline-crm-content />
                 } @else if (slug() === 'instant-website') {
                   <xh-instant-website-content />
                 } @else if (slug() === 'instagram-automation') {
@@ -4509,7 +4550,8 @@
                   slug() !== 'imunify360' &&
                   v.name !== 'Tally on Cloud' &&
                   slug() !== 'rtx-a6000' &&
-                  slug() !== 'n8n-vps' &&
+                   slug() !== 'n8n-vps' &&
+                   slug() !== 'billing-software' &&
                    slug() !== 'ai-review-magicqr' &&
                   slug() !== 'cloud-disaster-recovery-for-enterprise' &&
                   !isSmbCyber() &&
@@ -4895,7 +4937,7 @@
             </div>
           }
 
-          <div id="ppRich" [hidden]="slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website'">
+          <div id="ppRich" [hidden]="slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation'">
             @if (v.packages.length) {
               <div class="pp-sec">Included with {{ v.name }}</div>
               <div class="pp-pkg">
@@ -5065,6 +5107,16 @@
             </section>
           }
 
+          @if (slug() === 'aiops') {
+            <section aria-labelledby="aiopsDemoTitle"><h2 class="pp-sec" id="aiopsDemoTitle">Watch It In Action</h2><h3>Product Intro</h3><p>Correlate metrics, detect anomalies and investigate likely root causes before triggering an approved remediation workflow.</p><h3>Use Cases</h3><p>Monitor application latency, investigate configuration changes and automate runbooks for known incidents across cloud and hybrid environments.</p><xh-aiops-content [hero]="true" style="display:block;max-width:600px;margin:24px auto 0;background:#041e42;border-radius:20px" /></section>
+          }
+          @if (slug() === 'smart-qr-and-nfc-automation') { <section aria-labelledby="smartQrDemoTitle"><h2 class="pp-sec" id="smartQrDemoTitle">Watch It In Action</h2><xh-smart-qr-and-nfc-automation-content [demo]="true" /></section> }
+          @if (slug() === 'agent-studio') {
+            <section aria-labelledby="agent-studioDemoTitle"><h2 class="pp-sec" id="agent-studioDemoTitle">Watch It In Action</h2><h3>Product Intro</h3><p>Design and coordinate AI agents with a visual designer, model gateway, enterprise connectors and human approvals.</p><h3>Use Cases</h3><p>Explore coordinated support, finance, research and IT operations agents in the illustrative orchestration panel.</p><xh-agent-studio-content [hero]="true" style="display:block;max-width:600px;margin:24px auto 0;background:#041e42;border-radius:20px" /></section>
+          }
+          @if (slug() === 'lead-generation-and-pipeline-crm') {
+            <section aria-labelledby="leadCrmDemoTitle"><h2 class="pp-sec" id="leadCrmDemoTitle">Watch It In Action</h2><xh-lead-generation-and-pipeline-crm-content [demo]="true" /></section>
+          }
           @if (slug() === 'instant-website') {
             <section aria-labelledby="instantWebsiteDemoTitle"><h2 class="pp-sec" id="instantWebsiteDemoTitle">Watch It In Action</h2><xh-instant-website-content [demo]="true" /></section>
           }
@@ -5386,7 +5438,7 @@
           }
           @if (slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
           <div class="pp-sec" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">What customers say</div>
-          @if (slug() === 'instant-website' || slug() === 'instagram-automation' || slug() === 'hrm-attendance' || slug() === 'google-my-business' || isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training' || slug() === 'ai-chat-bot') {
+          @if (slug() === 'smart-qr-and-nfc-automation' || slug() === 'agent-studio' || slug() === 'aiops' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'instant-website' || slug() === 'instagram-automation' || slug() === 'hrm-attendance' || slug() === 'google-my-business' || isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training' || slug() === 'ai-chat-bot') {
             <div class="pp-tcards" id="ppRevs">
               @for (r of v.reviews; track r.name) {
                 <div class="tcard">

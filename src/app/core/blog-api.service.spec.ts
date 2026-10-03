@@ -21,6 +21,32 @@ describe('Blog slug resolution', () => {
     expect(findBlogBySlug(posts, posts[0].slug)).toBe(posts[0]);
     expect(findBlogBySlug(posts, 'missing-article')).toBeNull();
   });
+
+  it('resolves the shared Acronis alias to the newest publication regardless of list order', () => {
+    const older = {
+      slug: 'acronis-gen-ai-protection-is-now-live-secure-the-ai-era',
+      relatedPages: 'acronis-genai-protection', publishedAt: '2026-09-22T10:00:00Z',
+    } as CmsBlogPost;
+    const newer = {
+      slug: 'acronis-gen-ai-protection-secure-generative-ai-usage-across-your-business-1',
+      relatedPages: 'acronis-genai-protection', publishedAt: '2026-09-23T10:00:00Z',
+    } as CmsBlogPost;
+    expect(findBlogBySlug([older, newer], '/ACRONIS-GENAI-PROTECTION/')).toBe(newer);
+    expect(findBlogBySlug([newer, older], 'acronis-genai-protection')).toBe(newer);
+    expect(findBlogBySlug([older, newer], older.slug)).toBe(older);
+    expect(findBlogBySlug([older, newer], newer.slug)).toBe(newer);
+    const exact = { ...older, slug: 'acronis-genai-protection' };
+    expect(findBlogBySlug([newer, exact], exact.slug)).toBe(exact);
+  });
+
+  it('keeps a shared alias usable when publication dates are missing', () => {
+    const articles = [
+      { slug: 'first-cloud-guide', relatedPages: 'cloud' },
+      { slug: 'second-cloud-guide', relatedPages: 'cloud', publishedAt: 'invalid' },
+    ] as CmsBlogPost[];
+    expect(findBlogBySlug(articles, 'cloud')).toBe(articles[0]);
+    expect(findBlogBySlug(articles, 'unrelated-product')).toBeNull();
+  });
 });
 
 describe('Blog API pagination', () => {
