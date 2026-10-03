@@ -1000,7 +1000,7 @@
 
             <div class="vendor-category-list">
               @for (category of partnerCategories; track category.title) {
-                <section class="vendor-category" [attr.aria-labelledby]="'vendor-category-' + $index">
+                <section class="vendor-category" [class.vendor-category-badges]="category.badges" [attr.aria-labelledby]="'vendor-category-' + $index">
                   <header>
                     <div>
                       <h3 [id]="'vendor-category-' + $index">{{ category.title }}</h3>

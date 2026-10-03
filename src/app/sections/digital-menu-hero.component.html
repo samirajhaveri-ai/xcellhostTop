@@ -1,0 +1,21 @@
+<div class="glass" aria-label="Illustrative Digital Menu &amp; Catalog Management dashboard">
+  <div class="glass-h"><span>DIGITAL MENU &amp; CATALOG MANAGEMENT</span><b>● LIVE</b></div>
+  <div class="wl-k">
+    <div><b>1,980</b><span>menu views</span></div>
+    <div><b>14</b><span>items updated</span></div>
+    <div><b>+9%</b><span>avg order</span></div>
+  </div>
+  <div class="wl-body ph">
+    <div class="wl-ph">
+      <b>Café Mocha · Menu</b>
+      @for (item of menuItems; track item; let i = $index) {
+        <div [class.on]="activeItem() === i">{{ item }}</div>
+      }
+    </div>
+    <div class="wl-fd" role="log" aria-live="off" aria-label="Example menu updates">
+      @for (entry of feed(); track entry) {
+        <div><span>{{ entry.time }}</span><em>{{ entry.message }}</em></div>
+      }
+    </div>
+  </div>
+</div>

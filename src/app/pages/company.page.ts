@@ -412,7 +412,17 @@ export class CompanyPage {
     this.awards.filter((award) => award.year === this.activeAwardYear()),
   );
 
-  readonly partnerCategories = [
+  readonly partnerCategories: readonly {
+    title: string;
+    description: string;
+    badges?: boolean;
+    partners: readonly (readonly [string, string])[];
+  }[] = [
+    { title: 'Cloud, virtualization & AI partnerships', description: 'Partner credentials across cloud solutions, virtualization and AI services.', badges: true, partners: [
+      ['Microsoft Solutions Partner', 'microsoft-logo-1.gif'],
+      ['Proxmox Authorized Reseller', 'Apps4Rent-proxmox-authorized-reseller.png'],
+      ['Claude Partner Network', 'apps4rent-claude-partner-network.webp'],
+    ] },
     { title: 'Strategic cloud & infrastructure', description: 'Cloud platforms, hyperscalers and datacentre infrastructure.', partners: [
       ['Microsoft Partner', '02-microsoft-partner.png'], ['Azure', '01-azure.png'], ['AWS', '21-aws.png'], ['Google Cloud Platform', '41-google-cloud-platform.png'], ['Oracle Cloud Infrastructure', '61-oracle-cloud-infrastructure.png'], ['Equinix', '42-equinix.png'],
     ] },

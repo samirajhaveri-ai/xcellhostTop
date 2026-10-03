@@ -2728,6 +2728,16 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Secure your Bot until ready for use 🕰️"
               },
+              {
+                "title": "AIops",
+                "pill": null,
+                "desc": "Automate IT operations with AI"
+              },
+              {
+                "title": "Agent Studio",
+                "pill": null,
+                "desc": "Build and manage your AI agents"
+              },
               
               
             ]

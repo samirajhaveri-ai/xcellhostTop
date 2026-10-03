@@ -168,6 +168,91 @@
     </div>
   </section>
 
+  <section class="support-escalation" aria-labelledby="support-escalation-title">
+    <div class="support-wrap">
+      <header class="support-section-heading">
+        <span>Cloud support escalation</span>
+        <h2 id="support-escalation-title">A clear path from ticket to resolution</h2>
+        <p>Every issue moves to the right team at the right time, with clear ownership, customer updates and a documented resolution.</p>
+      </header>
+
+      <div class="escalation-flow" aria-label="Eight-stage cloud support escalation flow">
+        <article class="escalation-step escalation-green">
+          <span class="escalation-number">1</span><span class="material-symbols-outlined" aria-hidden="true">note_add</span>
+          <h3>Ticket created</h3><p>Issue raised through the portal, email, phone or chat.</p>
+        </article>
+        <article class="escalation-step escalation-blue">
+          <span class="escalation-number">2</span><span class="material-symbols-outlined" aria-hidden="true">support_agent</span>
+          <h3>Level 1 support</h3><p>Initial triage, basic troubleshooting and resolution attempt.</p><small>15–30 min response</small>
+        </article>
+        <article class="escalation-step escalation-orange">
+          <span class="escalation-number">3</span><span class="material-symbols-outlined" aria-hidden="true">groups</span>
+          <h3>Level 2 support</h3><p>Advanced troubleshooting by senior engineers.</p><small>1–4 hrs response</small>
+        </article>
+        <article class="escalation-step escalation-purple">
+          <span class="escalation-number">4</span><span class="material-symbols-outlined" aria-hidden="true">manage_accounts</span>
+          <h3>Level 3 specialist</h3><p>Complex issues handled by domain or subject-matter experts.</p><small>4–8 hrs response</small>
+        </article>
+        <article class="escalation-step escalation-red">
+          <span class="escalation-number">5</span><span class="material-symbols-outlined" aria-hidden="true">supervisor_account</span>
+          <h3>Manager escalation</h3><p>Critical issues or delays move to the Support Manager.</p><small>8–12 hrs resolution</small>
+        </article>
+        <article class="escalation-step escalation-teal">
+          <span class="escalation-number">6</span><span class="material-symbols-outlined" aria-hidden="true">handshake</span>
+          <h3>Vendor / partner</h3><p>External product or platform expertise is engaged if required.</p><small>As per vendor SLA</small>
+        </article>
+        <article class="escalation-step escalation-blue">
+          <span class="escalation-number">7</span><span class="material-symbols-outlined" aria-hidden="true">task_alt</span>
+          <h3>Final resolution</h3><p>The fix is tested and confirmed with the customer.</p><small>As per severity</small>
+        </article>
+        <article class="escalation-step escalation-green">
+          <span class="escalation-number">8</span><span class="material-symbols-outlined" aria-hidden="true">assignment_turned_in</span>
+          <h3>Close &amp; review</h3><p>Resolution notes are recorded and the knowledge base is updated.</p>
+        </article>
+      </div>
+
+      <div class="escalation-details">
+        <article class="escalation-panel">
+          <h3><span class="material-symbols-outlined" aria-hidden="true">group</span> Roles &amp; responsibilities</h3>
+          <div class="escalation-role-list">
+            <div><strong>Level 1 Support</strong><p>First contact, categorisation, prioritisation and quick fixes.</p><span>Resolve or escalate quickly</span></div>
+            <div><strong>Level 2 Support</strong><p>In-depth analysis, advanced troubleshooting and workarounds.</p><span>Resolve complex issues</span></div>
+            <div><strong>Level 3 Support</strong><p>Specialist engineering, root-cause analysis and permanent resolution.</p><span>Resolve critical issues</span></div>
+            <div><strong>Support Manager</strong><p>Monitors escalations and SLAs, removes roadblocks and communicates.</p><span>Ensure timely resolution</span></div>
+            <div><strong>Vendor / Partner</strong><p>Tracks external cases and coordinates the vendor resolution.</p><span>Bring external expertise</span></div>
+          </div>
+        </article>
+
+        <article class="escalation-panel escalation-matrix-panel">
+          <h3><span class="material-symbols-outlined" aria-hidden="true">priority_high</span> Severity matrix <small>Example</small></h3>
+          <div class="escalation-table-wrap">
+            <table>
+              <thead><tr><th>Severity</th><th>Description</th><th>Level involved</th><th>Response</th><th>Resolution</th></tr></thead>
+              <tbody>
+                <tr><th><span class="severity s1">S1</span> Critical</th><td>Service down or major outage; no workaround</td><td>L1 → L2 → L3 → Manager → Vendor</td><td>15–30 min</td><td>4–8 hrs</td></tr>
+                <tr><th><span class="severity s2">S2</span> High</th><td>Major impact or partial service disruption</td><td>L1 → L2 → L3 → Manager</td><td>30 min–1 hr</td><td>8–24 hrs</td></tr>
+                <tr><th><span class="severity s3">S3</span> Medium</th><td>Minor impact or feature degradation</td><td>L1 → L2 → L3</td><td>1–4 hrs</td><td>1–3 days</td></tr>
+                <tr><th><span class="severity s4">S4</span> Low</th><td>General enquiry, request or how-to</td><td>L1 → L2</td><td>4–8 hrs</td><td>1–5 days</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="escalation-disclaimer">Targets vary by service plan and the applicable SLA.</p>
+        </article>
+      </div>
+
+      <div class="escalation-footer-grid">
+        <article>
+          <h3>Best practices</h3>
+          <ul><li>Categorise and prioritise correctly</li><li>Follow the defined escalation path</li><li>Communicate proactively</li><li>Document the outcome</li></ul>
+        </article>
+        <article>
+          <h3>Communication channels</h3>
+          <ul><li>Support portal</li><li>Email</li><li>Phone</li><li>Live chat</li><li>Teams / Cliq / Slack</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="support-metrics" aria-label="XcellHost support highlights">
     <div class="support-wrap support-metrics-grid">
       @for (metric of metrics; track metric.label) {

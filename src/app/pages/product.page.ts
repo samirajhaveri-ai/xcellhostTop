@@ -1,3 +1,19 @@
+import { VeraRubinContentComponent } from '../sections/nvidia-vera-rubin-content.component';
+import { VERA_RUBIN_FAQS } from '../data/nvidia-vera-rubin-faqs.data';
+import { StorageContentComponent } from '../sections/storage-servers-content.component';
+import { STORAGE_FAQS } from '../data/storage-servers-faqs.data';
+import { GamingContentComponent } from '../sections/gaming-servers-content.component';
+import { GAMING_FAQS } from '../data/gaming-servers-faqs.data';
+import { VirtualizationContentComponent } from '../sections/virtualization-servers-content.component';
+import { VIRTUALIZATION_FAQS } from '../data/virtualization-servers-faqs.data';
+import { SmartQrContentComponent } from '../sections/smart-qr-and-nfc-automation-content.component';
+import { SMART_QR_FAQS } from '../data/smart-qr-and-nfc-automation-faqs.data';
+import { AgentStudioContentComponent } from '../sections/agent-studio-content.component';
+import { AGENT_STUDIO_FAQS } from '../data/agent-studio-faqs.data';
+import { AiopsContentComponent } from '../sections/aiops-content.component';
+import { AIOPS_FAQS } from '../data/aiops-faqs.data';
+import { LeadCrmContentComponent } from '../sections/lead-generation-and-pipeline-crm-content.component';
+import { LEAD_CRM_FAQS } from '../data/lead-generation-and-pipeline-crm-faqs.data';
 
 
 import { HigherEducationHeroAction, HigherEducationHeroCopyComponent } from '../sections/higher-education-hero-copy.component';
@@ -19,6 +35,10 @@ import { GOOGLE_BUSINESS_FAQS } from '../data/google-business-faqs.data';
 
 
 import { DisasterRecoverySimulatorComponent } from '../sections/disaster-recovery-simulator.component';
+// Digital menu sections adapted from the supplied HTML reference.
+import { DigitalMenuHeroComponent } from '../sections/digital-menu-hero.component';
+import { DigitalMenuOverviewComponent } from '../sections/digital-menu-overview.component';
+import { DigitalMenuTailComponent } from '../sections/digital-menu-tail.component';
 import { AiReviewMagicqrHeroComponent } from '../sections/ai-review-magicqr-hero.component';
 import { AiReviewMagicqrOverviewComponent } from '../sections/ai-review-magicqr-overview.component';
 import { AiReviewMagicqrTailComponent } from '../sections/ai-review-magicqr-tail.component';
@@ -327,6 +347,9 @@ interface ProductTourSlide {
 
 
     DisasterRecoverySimulatorComponent,
+    DigitalMenuHeroComponent,
+    DigitalMenuOverviewComponent,
+    DigitalMenuTailComponent,
     AiReviewMagicqrHeroComponent,
     AiReviewMagicqrOverviewComponent,
     AiReviewMagicqrTailComponent,
@@ -353,6 +376,14 @@ interface ProductTourSlide {
     HrmAttendanceContentComponent,
     InstagramAutomationContentComponent,
     InstantWebsiteContentComponent,
+    LeadCrmContentComponent,
+    VeraRubinContentComponent,
+    StorageContentComponent,
+    GamingContentComponent,
+    VirtualizationContentComponent,
+    AgentStudioContentComponent,
+    SmartQrContentComponent,
+    AiopsContentComponent,
     AiVoicebotContentComponent,
     AiVoicebotFaqComponent,
     RouterLink,
@@ -529,6 +560,12 @@ interface ProductTourSlide {
       background: radial-gradient(ellipse at 90% 40%, #0c494e 0%, #08244a 45%, #041e42 80%);
     }
     #ppage.enterprise-dr-page .pp-hero > .wrap { order: 1; width: 100%; max-width: none; min-width: 0; padding: 0; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered { display: inline-flex; align-items: center; gap: 10px; padding: 7px 14px; border-radius: 999px; background: rgba(255,255,255,.95); margin-bottom: 14px; text-decoration: none; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered span { font: 700 10px/1.5 'IBM Plex Mono', monospace; letter-spacing: .12em; color: #51607a; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered b { font: 800 17px/1.5 'Sora', sans-serif; color: #0b1d3d; letter-spacing: -.01em; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered sup { font-size: .6em; line-height: 0; vertical-align: super; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered em { font: 600 13px/1.5 'Poppins', sans-serif; font-style: normal; color: #0b1d3d; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered:focus-visible { outline: 3px solid #9cc8ff; outline-offset: 4px; }
     #ppage.enterprise-dr-page .enterprise-dr-simulator { position: relative; z-index: 4; order: 2; width: 100%; }
     #ppage.enterprise-dr-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) { width: 100% !important; max-width: 100% !important; }
     #ppage.enterprise-dr-page .pp-hero h1 { display: block; text-align: left; white-space: normal; font-size: clamp(28px, 2.6vw, 42px); line-height: 1.2; }
@@ -544,6 +581,23 @@ interface ProductTourSlide {
       #ppage.enterprise-dr-page .enterprise-dr-simulator { max-width: 540px; justify-self: center; }
     }
     @media(max-width:560px) { #ppage.enterprise-dr-page > .pp-hero { padding: 32px 16px; gap: 24px; } }
+    #ppage.digital-menu-page > .pp-hero { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,550px); align-items: center; gap: 48px; padding: 58px max(24px,calc((100% - 1192px)/2)); }
+    #ppage.digital-menu-page .pp-hero > .wrap { order: 1; width: 100%; max-width: none; min-width: 0; padding: 0; }
+    #ppage.digital-menu-page .digital-menu-dashboard { position: relative; z-index: 4; order: 2; width: 100%; }
+    #ppage.digital-menu-page .pp-hero > .wrap > :is(h1,.pp-tagline,.pp-tagline-support,.pp-typewriter,.pp-hero-grid) { width: 100% !important; max-width: 100% !important; }
+    #ppage.digital-menu-page .pp-hero h1 { display: block; text-align: left; white-space: normal; font-size: clamp(28px,2.6vw,42px); line-height: 1.2; }
+    #ppage.digital-menu-page .pp-hero h1 .pp-title-name { display: inline; margin-left: 0; }
+    #ppage.digital-menu-page .pp-typewriter { white-space: normal; min-height: 2.8em; }
+    #ppage.digital-menu-page .product-hero-ctas { width: 100%; max-width: 100%; flex-wrap: wrap; }
+    #ppage.digital-menu-page .product-hero-ctas .btn { flex: 0 1 auto; }
+    #ppage.digital-menu-page .pp-ask-ai { width: 100%; }
+    #ppage.digital-menu-page .pp-ask-ai-copy { flex: 1 1 320px; }
+    #ppage.digital-menu-page .pp-ask-ai-actions { flex: 0 0 auto; }
+    @media(max-width:1100px) {
+      #ppage.digital-menu-page > .pp-hero { grid-template-columns: minmax(0,1fr); gap: 32px; padding: 40px 24px; }
+      #ppage.digital-menu-page .digital-menu-dashboard { max-width: 550px; justify-self: center; }
+    }
+    @media(max-width:560px) { #ppage.digital-menu-page > .pp-hero { padding: 32px 16px; gap: 24px; } }
     #ppage.magicqr-page > .pp-hero {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(0, 550px);
@@ -2066,6 +2120,23 @@ export class ProductPage {
     initialValue: '',
   });
 
+  private static readonly SUPPLIED_SMB_HERO_SLUGS = new Set([
+    'advanced-endpoint-security-edr',
+    'cloud-drive',
+    'cloud-disaster-recovery-smb',
+    'cloud-backup',
+    'acronis-genai-protection',
+    'workforce-analytics',
+    'smb-cloud-desktop',
+    'smb-cyber-security-appliance',
+    'remote-monitoring-and-mgmt-rmm',
+    'tally-on-cloud',
+  ]);
+
+  usesSuppliedSmbHero(): boolean {
+    return ProductPage.SUPPLIED_SMB_HERO_SLUGS.has(this.slug());
+  }
+
   readonly isMicrosoftEnterprisePage = computed(() =>
     this.slug() === 'microsoft-365-enterprise' ||
     this.slug() === 'microsoft-365-enterprise-office365' ||
@@ -2088,6 +2159,194 @@ export class ProductPage {
     if (slug === 'linux-servers') return { ...view, faqs: LINUX_SERVERS_FAQS };
     if (slug === 'windows-servers') return { ...view, faqs: WINDOWS_SERVERS_FAQS };
 
+    if (slug === 'aiops') return {
+      ...view, faqs: AIOPS_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — AIOps Platform',
+        intro: 'Connect monitoring and automation with scoped access to your cloud estate. Use configuration history to investigate changes, review remediation runbooks before enabling automation, and align telemetry access and retention with your organisation’s requirements.',
+        rows: [
+          ['Access Controls', 'Scope Monitoring And Automation Permissions'],
+          ['Configuration Tracking', 'AWS Config Rules And Change History'],
+          ['Infrastructure Changes', 'CloudFormation Stack And Drift Monitoring'],
+          ['Incident Management', 'Correlated Alerts And Investigation Context'],
+          ['Remediation', 'Review And Approve Automated Runbooks'],
+          ['Coverage', 'AWS And Hybrid Cloud Operations'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'AWS And Hybrid Coverage', body: 'Bring cloud and on-premise operations into one monitoring approach.' },
+        { ...view.why[2], title: 'Guided Implementation', body: 'Assessment, AI/ML integration and continuous optimisation.' },
+        { ...view.why[3], title: 'Proactive Operations', body: 'Correlate alerts and identify unusual behaviour earlier.' },
+        { ...view.why[4], title: '24×7 NOC', body: 'Engineers support incident investigation and operational response.' },
+        { ...view.why[5], title: 'One Partner', body: 'Monitoring, automation and operational support together.' },
+      ],
+    };
+    if (slug === 'agent-studio') return {
+      ...view, faqs: AGENT_STUDIO_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — Agent Studio',
+        intro: 'Agent Studio combines zero-trust access with identity controls, encryption and agent-level observability. Apply SSO, MFA and role-based permissions, use PII redaction and prompt-injection defences, and retain human approval for sensitive workflows. Choose cloud, private cloud or on-premise deployment to suit your data requirements.',
+        rows: [
+          ['Access Controls', 'SSO, MFA And Role-Based Permissions'],
+          ['Encryption', 'TLS 1.3 And AES-256'],
+          ['Key Management', 'BYOK And HSM Support'],
+          ['Data Protection', 'PII Redaction And Data Loss Prevention'],
+          ['Agent Governance', 'Tracing, Audit Trails And Human Approval'],
+          ['Deployment', 'Cloud, Private Cloud, On-Premise And Hybrid'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Flexible Deployment', body: 'Deploy on cloud, private infrastructure, on-premise or hybrid environments.' },
+        { ...view.why[2], title: 'Guided Implementation', body: 'Foundation, enterprise integration and production rollout.' },
+        { ...view.why[3], title: 'Governed AI', body: 'Control agent access, trace activity and keep humans in the loop.' },
+        { ...view.why[4], title: '24×7 Enterprise Support', body: 'Technical support and a dedicated customer success manager.' },
+        { ...view.why[5], title: 'One Partner', body: 'Agents, models, enterprise integration and support together.' },
+      ],
+    };
+    if (slug === 'virtualization-servers') return {
+      ...view, faqs: VIRTUALIZATION_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — Virtualization Servers',
+        intro: 'Dedicated single-tenant hardware gives you control over hypervisor access, network isolation and workload configuration. Use private VLANs, DDoS protection and secure root and IPMI access, with managed patching and monitoring available. Plan backups and disaster recovery around your workload requirements.',
+        rows: [
+          ['Access Controls', 'Root And IPMI Access'],
+          ['Workload Isolation', 'Dedicated Single-Tenant Hardware'],
+          ['Network Security', 'Private VLANs And DDoS Protection'],
+          ['Managed Support', 'Optional Patching And Monitoring'],
+          ['Data Protection', 'RAID, Backup And Disaster Recovery Options'],
+          ['Locations', 'Indian Tier IV Data Centres'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Dedicated Hardware', body: 'Single-tenant compute with your choice of hypervisor.' },
+        { ...view.why[2], title: 'Guided Implementation', body: 'Host sizing, provisioning and migration assistance.' },
+        { ...view.why[3], title: 'Full Stack Control', body: 'Manage CPU allocation, storage and private networking.' },
+        { ...view.why[4], title: '24×7 NOC', body: 'Engineers support incident investigation and operational response.' },
+        { ...view.why[5], title: 'One Partner', body: 'Hardware, networking, backup and support together.' },
+      ],
+    };
+    if (slug === 'gaming-servers') return {
+      ...view, faqs: GAMING_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — Gaming Servers',
+        intro: 'Dedicated single-tenant hardware gives you control over server access, network isolation and workload configuration. Use private VLANs, DDoS protection and secure root and IPMI access, with managed patching and monitoring available. Plan backups and disaster recovery around your workload requirements.',
+        rows: [
+          ['Access Controls', 'Root And IPMI Access'],
+          ['Workload Isolation', 'Dedicated Single-Tenant Hardware'],
+          ['Network Security', 'Private VLANs And DDoS Protection'],
+          ['Managed Support', 'Optional Patching And Monitoring'],
+          ['Data Protection', 'RAID, Backup And Disaster Recovery Options'],
+          ['Locations', 'Indian Tier IV Data Centres'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Dedicated Hardware', body: 'Single-tenant compute with your choice of operating system and gaming panel.' },
+        { ...view.why[2], title: 'Guided Implementation', body: 'Host sizing, provisioning and migration assistance.' },
+        { ...view.why[3], title: 'Full Stack Control', body: 'Manage CPU allocation, storage and private networking.' },
+        { ...view.why[4], title: '24×7 NOC', body: 'Engineers support incident investigation and operational response.' },
+        { ...view.why[5], title: 'One Partner', body: 'Hardware, networking, backup and support together.' },
+      ],
+    };
+    if (slug === 'storage-servers') return {
+      ...view, faqs: STORAGE_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — Storage Servers',
+        intro: 'Dedicated single-tenant hardware gives you control over server access, network isolation and storage configuration. Use private VLANs, DDoS protection and secure root and IPMI access, with managed patching and monitoring available. Plan backups and disaster recovery around your workload requirements.',
+        rows: [
+          ['Access Controls', 'Root And IPMI Access'],
+          ['Workload Isolation', 'Dedicated Single-Tenant Hardware'],
+          ['Network Security', 'Private VLANs And DDoS Protection'],
+          ['Managed Support', 'Optional Patching And Monitoring'],
+          ['Data Protection', 'RAID, Backup And Disaster Recovery Options'],
+          ['Locations', 'Indian Tier IV Data Centres'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Dedicated Hardware', body: 'Single-tenant compute with your choice of operating system and storage platform.' },
+        { ...view.why[2], title: 'Guided Implementation', body: 'Host sizing, provisioning and migration assistance.' },
+        { ...view.why[3], title: 'Flexible Storage', body: 'Choose drive types, capacity, RAID and private networking.' },
+        { ...view.why[4], title: '24×7 NOC', body: 'Engineers support incident investigation and operational response.' },
+        { ...view.why[5], title: 'One Partner', body: 'Hardware, networking, backup and support together.' },
+      ],
+    };
+    if (slug === 'nvidia-vera-rubin') return {
+      ...view, faqs: VERA_RUBIN_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — NVIDIA Vera Rubin',
+        intro: 'Scope GPU access, cluster networking and data handling around your workloads. XcellHost helps plan the hosting location, software stack and operational support, with capacity and cooling requirements confirmed during deployment scoping. Agree access permissions, data retention and backup policies before moving production workloads.',
+        rows: [
+          ['Access Controls', 'Workload And Cluster Permissions'],
+          ['Deployment Planning', 'Capacity And Facility Validation'],
+          ['Software Stack', 'Validated Before Handover'],
+          ['Operations', '24×7 GPU Engineering Support'],
+          ['Data Handling', 'Agree Retention And Backup Requirements'],
+          ['Hosting', 'Indian Data Centre Deployment Planning'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Workload Sizing', body: 'Plan NVL8 servers, NVL72 racks or multi-rack capacity.' },
+        { ...view.why[2], title: 'Guided Implementation', body: 'Cluster configuration, fabric validation and software provisioning.' },
+        { ...view.why[3], title: 'NVIDIA Software Stack', body: 'Tools for distributed training and inference, validated before handover.' },
+        { ...view.why[4], title: '24×7 GPU Engineers', body: 'GPU and distributed-workload specialists in English and Hindi.' },
+        { ...view.why[5], title: 'One Partner', body: 'Compute, networking, software and support together.' },
+      ],
+    };
+    if (slug === 'lead-generation-and-pipeline-crm') return {
+      ...view,
+      faqs: LEAD_CRM_FAQS,
+      videos: [],
+      security: {
+        head: 'Security & Compliance — Lead Generation & Pipeline CRM',
+        intro: 'Keep lead management accountable with team roles, permissions and a complete activity trail. Capture only the contact details your team needs, review access when responsibilities change, and use consent-based welcome messages and follow-ups. XcellHost helps configure your lead sources and pipeline for your business.',
+        rows: [
+          ['Team Access', 'Roles And Permissions'],
+          ['Activity History', 'Complete Lead Activity Trail'],
+          ['Lead Sources', 'QR Codes, Forms And Social DMs'],
+          ['Follow-Up Controls', 'Reminders And Automated Welcome Messages'],
+          ['Pipeline Visibility', 'Track Each Lead From New To Won'],
+          ['Data Handling', 'Review Contact Access And Messaging Consent'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Guided Setup', body: 'Lead source connections, pipeline setup and onboarding by XcellHost.' },
+        { ...view.why[2], title: 'One Dashboard', body: 'Manage leads, enquiries, follow-ups and pipeline stages together.' },
+        { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
+        { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
+        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+      ],
+    };
+    if (slug === 'smart-qr-and-nfc-automation') return {
+      ...view,
+      faqs: SMART_QR_FAQS,
+      videos: [],
+      security: {
+        head: 'Security & Compliance — Smart QR & NFC Automation',
+        intro: 'Manage digital cards with team roles and permissions. Keep shared contact details and QR destinations current, publish only information intended for your customers, and review access when team members change. Central management helps maintain consistent card content across your business.',
+        rows: [
+          ['Team Access', 'Roles And Permissions'],
+          ['Card Management', 'Centrally Managed Team Profiles'],
+          ['Dynamic QR', 'Update Details Without Reprinting'],
+          ['Contact Sharing', 'QR Scan, NFC Tap And Shareable Link'],
+          ['Brand Control', 'Themes And Custom Domain'],
+          ['Analytics', 'Views, Saves, Clicks And Scans'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Guided Setup', body: 'Digital card setup, QR configuration and onboarding by XcellHost.' },
+        { ...view.why[2], title: 'One Dashboard', body: 'Manage team cards, contact links, themes and analytics together.' },
+        { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
+        { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
+        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+      ],
+    };
     if (slug === 'instant-website') return {
       ...view,
       faqs: INSTANT_WEBSITE_FAQS,

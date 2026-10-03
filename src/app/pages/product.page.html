@@ -10,6 +10,7 @@
     [class.infrastructure-page]="isInfrastructure()"
     [class.disaster-recovery-page]="isCloudDisasterRecoverySmb()"
     [class.enterprise-dr-page]="slug() === 'cloud-disaster-recovery-for-enterprise'"
+    [class.digital-menu-page]="slug() === 'digital-menu-and-catalog-management'"
     [class.magicqr-page]="slug() === 'ai-review-magicqr'"
     [class.billing-software-page]="slug() === 'billing-software'"
     [class.edr-page]="isAdvancedEdr()"
@@ -19,7 +20,10 @@
     [class.cloud-migration-page]="slug() === 'cloud-migration'"
     [class.acronis-backup-advanced-page]="slug() === 'acronis-backup-advanced'"
     [class.instagram-automation-page]="slug() === 'instagram-automation'"
-    [class.google-business-page]="slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website'"
+    [class.smart-qr-page]="slug() === 'smart-qr-and-nfc-automation'"
+    [class.virtualization-page]="slug() === 'virtualization-servers'"
+    [class.server-tail-uppercase]="slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin'"
+    [class.google-business-page]="slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin'"
     [class.acronis-ot-page]="slug() === 'acronis-ot'"
     [class.acronis-mdr-page]="slug() === 'acronis-mdr'"
     [class.microsoft-defender-page]="slug() === 'microsoft-defender'"
@@ -62,7 +66,44 @@
     [class.data-resilience-page]="slug() === 'data-resilience'"
     [class.cloud-repatriation-page]="slug() === 'cloud-repatriation'"
     [class.nvidia-h100-page]="slug() === 'nvidia-h100'"
+    [class.supplied-smb-hero-page]="usesSuppliedSmbHero()"
   >
+    @if (usesSuppliedSmbHero()) {
+      <section class="supplied-smb-hero-shell" [attr.aria-label]="v.name + ' hero'">
+        @switch (slug()) {
+          @case ('advanced-endpoint-security-edr') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/advanced-endpoint-security-edr-hero.html" title="Advanced Endpoint Security EDR interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+          @case ('cloud-drive') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/cloud-drive-hero.html" title="Cloud Drive interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+          @case ('cloud-disaster-recovery-smb') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/cloud-disaster-recovery-smb-hero.html" title="Cloud Disaster Recovery for SMB interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+          @case ('cloud-backup') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/cloud-backup-hero.html" title="Cloud Backup interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+          @case ('acronis-genai-protection') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/acronis-genai-protection-hero.html" title="Acronis GenAI Protection interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+          @case ('workforce-analytics') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/workforce-analytics-hero.html" title="Workforce Analytics interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+          @case ('smb-cloud-desktop') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/smb-cloud-desktop-hero.html" title="SMB Cloud Desktop interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+          @case ('smb-cyber-security-appliance') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/smb-cyber-security-appliance-hero.html" title="SMB Cyber Security Appliance interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+          @case ('remote-monitoring-and-mgmt-rmm') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/remote-monitoring-and-mgmt-rmm-hero.html" title="Remote Monitoring and Management interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+          @case ('tally-on-cloud') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/tally-on-cloud-hero.html" title="Tally on Cloud interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+        }
+      </section>
+    }
     @if (slug() === 'nvidia-h100') {
       <xh-nvidia-h100-hero (actionRequested)="onH100HeroAction($event)" />
     }
@@ -331,6 +372,34 @@
                 <div><span>17:19</span>Bio link updated</div>
               </div>
               </div><small class="gb-dashboard-caption">Illustrative Dashboard · Sample Data</small>
+            </div>
+          </div>
+        } @else if (slug() === 'aiops') {
+          <div class="pph-scene google-business-dashboard"><xh-aiops-content [hero]="true" style="width:100%" /></div>
+           } @else if (slug() === 'smart-qr-and-nfc-automation') { <div class="pph-scene google-business-dashboard"><xh-smart-qr-and-nfc-automation-content [hero]="true" style="width:100%" /></div> } @else if (slug() === 'agent-studio') {
+          <div class="pph-scene google-business-dashboard"><xh-agent-studio-content [hero]="true" style="width:100%" /></div>
+          } @else if (slug() === 'virtualization-servers') {
+          <div class="pph-scene google-business-dashboard"><xh-virtualization-servers-content [hero]="true" style="width:100%" /></div>
+          } @else if (slug() === 'gaming-servers') {
+          <div class="pph-scene google-business-dashboard"><xh-gaming-servers-content [hero]="true" style="width:100%" /></div>
+          } @else if (slug() === 'storage-servers') {
+          <div class="pph-scene google-business-dashboard"><xh-storage-servers-content [hero]="true" style="width:100%" /></div>
+          } @else if (slug() === 'nvidia-vera-rubin') {
+          <div class="pph-scene google-business-dashboard"><xh-nvidia-vera-rubin-content [hero]="true" style="width:100%" /></div>
+          } @else if (slug() === 'lead-generation-and-pipeline-crm') {
+          <div class="pph-scene google-business-dashboard" aria-label="Illustrative Lead Generation And Pipeline CRM dashboard">
+            <div class="gb-dashboard">
+              <div class="gb-dashboard-title"><span>LEAD GENERATION &amp; PIPELINE CRM</span><b>● LIVE</b></div>
+              <div class="gb-dashboard-metrics"><div><b>214</b><span>new leads</span></div><div><b>38%</b><span>to customer</span></div><div><b>0</b><span>lost leads</span></div></div>
+              <div class="gb-dashboard-feed">
+                <div><span>17:19</span>QR lead: Rahul &middot; 98xxxx</div>
+                <div><span>17:19</span>Tagged Hot Lead ? welcome sent</div>
+                <div><span>17:19</span>Enquiry: membership price?</div>
+                <div><span>17:19</span>Stage: Visited ? Won</div>
+                <div><span>17:19</span>Instagram DM ? lead captured</div>
+                <div><span>17:19</span>Follow-up reminder scheduled</div>
+              </div>
+              <small class="gb-dashboard-caption">Illustrative Dashboard · Sample Data</small>
             </div>
           </div>
         } @else if (slug() === 'instagram-automation') {
@@ -1042,6 +1111,8 @@
           <xh-disaster-recovery-simulator class="enterprise-dr-simulator" />
         } @else if (slug() === 'ai-review-magicqr') {
           <xh-ai-review-magicqr-hero class="magicqr-hero-dashboard" />
+        } @else if (slug() === 'digital-menu-and-catalog-management') {
+          <xh-digital-menu-hero class="digital-menu-dashboard" />
         } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
 
           <div class="pph-scene has-illus standalone-illus" id="pphScene" aria-hidden="true">
@@ -1441,6 +1512,13 @@
             </div>
           } @else {
             <div class="pp-crumb" id="ppCrumb">{{ v.crumb }}</div>
+            @if (slug() === 'cloud-disaster-recovery-for-enterprise') {
+              <a class="enterprise-dr-powered" href="#opentext" aria-label="Powered by OpenText Availability">
+                <span>POWERED BY</span>
+                <b>OpenText<sup>™</sup></b>
+                <em>Availability</em>
+              </a>
+            }
             <h1 id="ppTitle" [class.pp-title-compact]="compactHeroTitle()">
               <span class="pp-title-brand" [attr.aria-label]="'Xcell' + v.brandSuffix">
                 <span class="pp-brand-xcell">Xcell</span
@@ -2223,6 +2301,9 @@
                       </section>
                     } @else if (slug() === 'billing-software') {
                       <xh-billing-software-overview />
+                    } @else if (slug() === 'digital-menu-and-catalog-management') {
+                      <xh-digital-menu-overview (quoteRequested)="openCallback($event.event, $event.plan)" />
+                      <xh-digital-menu-tail />
                     } @else if (slug() === 'ai-review-magicqr') {
                       <xh-ai-review-magicqr-overview />
                     } @else if (slug() === 'cloud-disaster-recovery-for-enterprise') {
@@ -2270,7 +2351,7 @@
                       </section>
                    } @else if (slug() === 'imunify360') {
                       <xh-imunify360-content (planRequested)="requestImunify360Plan($event)" />
-                   } @else if (!isTally() && slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website') {
+                   } @else if (!isTally() && slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops') {
                       <div class="pp-sec">Overview</div>
                       <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
                     }
@@ -3000,12 +3081,14 @@
                   <xh-imunify360-followup (consultationRequested)="requestImunify360Plan($event)" />
                 } @else if (slug() === 'billing-software') {
                   <xh-billing-software-tail (quoteRequested)="openCallback($event.event, $event.plan)" />
+                } @else if (slug() === 'digital-menu-and-catalog-management') {
+                  <!-- Buying options are included in the supplied digital menu overview above. -->
                 } @else if (slug() === 'ai-review-magicqr') {
                   <xh-ai-review-magicqr-tail (quoteRequested)="openCallback($event.event, $event.plan)" />
                 } @else if (slug() === 'cloud-disaster-recovery-for-enterprise') {
                   <xh-enterprise-dr-details (quoteRequested)="openCallback($event, 'Enterprise disaster recovery quote')" />
                 } @else if (
-                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' &&
+                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
                   !isAdvancedEdr() &&
                   !isSmbCyber() &&
                   !isRmm() &&
@@ -3213,7 +3296,7 @@
                 } @else if (slug() === 'rtx-a6000') {
                   <xh-rtx-a6000-details />
                 } @else if (
-                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' &&
+                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
                   slug() !== 'imunify360' &&
                   !isSmbCyber() &&
                   !isAcronisTrueImage() &&
@@ -3222,6 +3305,7 @@
                   !isEntraIdBackup() &&
                   slug() !== 'n8n-vps' &&
                   slug() !== 'billing-software' &&
+                  slug() !== 'digital-menu-and-catalog-management' &&
                   slug() !== 'ai-review-magicqr' &&
                   slug() !== 'cloud-disaster-recovery-for-enterprise' &&
                   slug() !== 'acronis-backup-advanced' &&
@@ -3852,7 +3936,7 @@
                 } @else if (slug() === 'rtx-a6000') {
                   <xh-rtx-a6000-performance />
                 } @else if (
-                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' &&
+                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
                   slug() !== 'imunify360' &&
                   !isSmbCyber() &&
                   !isRmm() &&
@@ -3862,6 +3946,7 @@
                   !isEntraIdBackup() &&
                   slug() !== 'n8n-vps' &&
                   slug() !== 'billing-software' &&
+                  slug() !== 'digital-menu-and-catalog-management' &&
                   slug() !== 'ai-review-magicqr' &&
                   slug() !== 'cloud-disaster-recovery-for-enterprise' &&
                   slug() !== 'acronis-backup-advanced' &&
@@ -4461,6 +4546,20 @@
                       </div>
                     </section>
                   </section>
+                } @else if (slug() === 'aiops') {
+                  <xh-aiops-content />
+                } @else if (slug() === 'smart-qr-and-nfc-automation') { <xh-smart-qr-and-nfc-automation-content /> } @else if (slug() === 'agent-studio') {
+                  <xh-agent-studio-content />
+                } @else if (slug() === 'virtualization-servers') {
+                  <xh-virtualization-servers-content (quoteRequested)="openCallback($event, 'Virtualization Servers custom configuration')" />
+                } @else if (slug() === 'gaming-servers') {
+                  <xh-gaming-servers-content (quoteRequested)="openCallback($event, 'Gaming Servers custom configuration')" />
+                } @else if (slug() === 'storage-servers') {
+                  <xh-storage-servers-content (quoteRequested)="openCallback($event, 'Storage Servers custom configuration')" />
+                } @else if (slug() === 'nvidia-vera-rubin') {
+                  <xh-nvidia-vera-rubin-content />
+                } @else if (slug() === 'lead-generation-and-pipeline-crm') {
+                  <xh-lead-generation-and-pipeline-crm-content />
                 } @else if (slug() === 'instant-website') {
                   <xh-instant-website-content />
                 } @else if (slug() === 'instagram-automation') {
@@ -4480,8 +4579,9 @@
                   v.name !== 'Tally on Cloud' &&
                   slug() !== 'rtx-a6000' &&
                    slug() !== 'n8n-vps' &&
-                   slug() !== 'billing-software' &&
-                   slug() !== 'ai-review-magicqr' &&
+                  slug() !== 'billing-software' &&
+                  slug() !== 'digital-menu-and-catalog-management' &&
+                  slug() !== 'ai-review-magicqr' &&
                   slug() !== 'cloud-disaster-recovery-for-enterprise' &&
                   !isSmbCyber() &&
                   !isAcronisTrueImage() &&
@@ -4866,7 +4966,7 @@
             </div>
           }
 
-          <div id="ppRich" [hidden]="slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website'">
+          <div id="ppRich" [hidden]="slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin'">
             @if (v.packages.length) {
               <div class="pp-sec">Included with {{ v.name }}</div>
               <div class="pp-pkg">
@@ -5036,6 +5136,28 @@
             </section>
           }
 
+          @if (slug() === 'aiops') {
+            <section aria-labelledby="aiopsDemoTitle"><h2 class="pp-sec" id="aiopsDemoTitle">Watch It In Action</h2><h3>Product Intro</h3><p>Correlate metrics, detect anomalies and investigate likely root causes before triggering an approved remediation workflow.</p><h3>Use Cases</h3><p>Monitor application latency, investigate configuration changes and automate runbooks for known incidents across cloud and hybrid environments.</p><xh-aiops-content [hero]="true" style="display:block;max-width:600px;margin:24px auto 0;background:#041e42;border-radius:20px" /></section>
+          }
+          @if (slug() === 'smart-qr-and-nfc-automation') { <section aria-labelledby="smartQrDemoTitle"><h2 class="pp-sec" id="smartQrDemoTitle">Watch It In Action</h2><xh-smart-qr-and-nfc-automation-content [demo]="true" /></section> }
+          @if (slug() === 'agent-studio') {
+            <section aria-labelledby="agent-studioDemoTitle"><h2 class="pp-sec" id="agent-studioDemoTitle">Watch It In Action</h2><h3>Product Intro</h3><p>Design and coordinate AI agents with a visual designer, model gateway, enterprise connectors and human approvals.</p><h3>Use Cases</h3><p>Explore coordinated support, finance, research and IT operations agents in the illustrative orchestration panel.</p><xh-agent-studio-content [hero]="true" style="display:block;max-width:600px;margin:24px auto 0;background:#041e42;border-radius:20px" /></section>
+          }
+          @if (slug() === 'virtualization-servers') {
+            <section aria-labelledby="virtualization-serversDemoTitle"><h2 class="pp-sec" id="virtualization-serversDemoTitle">Watch It In Action</h2><h3>Product Intro</h3><p>Run VMware, Proxmox, Hyper-V or KVM directly on dedicated hardware, with root access, IPMI and private networking.</p><h3>Use Cases</h3><p>Build a private cloud, migrate VMware workloads, host virtual desktops or create isolated development and disaster recovery environments.</p><xh-virtualization-servers-content [hero]="true" style="display:block;max-width:600px;margin:24px auto 0;background:#041e42;border-radius:20px" /></section>
+          }
+          @if (slug() === 'gaming-servers') {
+            <section aria-labelledby="gaming-serversDemoTitle"><h2 class="pp-sec" id="gaming-serversDemoTitle">Watch It In Action</h2><h3>Product Intro</h3><p>Run dedicated multiplayer game servers with high-clock CPUs, NVMe storage, root access and DDoS protection.</p><h3>Use Cases</h3><p>Host Minecraft, Counter-Strike 2, FiveM, Rust and custom game builds, with control over mods, plugins and community access.</p><xh-gaming-servers-content [hero]="true" style="display:block;max-width:600px;margin:24px auto 0;background:#041e42;border-radius:20px" /></section>
+          }
+          @if (slug() === 'storage-servers') {
+            <section aria-labelledby="storage-serversDemoTitle"><h2 class="pp-sec" id="storage-serversDemoTitle">Watch It In Action</h2><h3>Product Intro</h3><p>Build dedicated storage with SATA, SAS or NVMe drives, RAID options, root access and private networking.</p><h3>Use Cases</h3><p>Plan capacity for backups, archives, media libraries, database storage and virtual machine images using the interactive storage builder.</p><xh-storage-servers-content [hero]="true" style="display:block;max-width:600px;margin:24px auto 0;background:#041e42;border-radius:20px" /></section>
+          }
+          @if (slug() === 'nvidia-vera-rubin') {
+            <section aria-labelledby="nvidia-vera-rubinDemoTitle"><h2 class="pp-sec" id="nvidia-vera-rubinDemoTitle">Watch It In Action</h2><h3>Product Intro</h3><p>Explore the rack-scale layout of DGX Rubin NVL72 and use the workload chooser above to compare deployment options.</p><h3>Use Cases</h3><p>Plan large-model training, agentic inference, long-context serving and scientific computing workloads.</p><xh-nvidia-vera-rubin-content [hero]="true" style="display:block;max-width:600px;margin:24px auto 0;background:#041e42;border-radius:20px" /></section>
+          }
+          @if (slug() === 'lead-generation-and-pipeline-crm') {
+            <section aria-labelledby="leadCrmDemoTitle"><h2 class="pp-sec" id="leadCrmDemoTitle">Watch It In Action</h2><xh-lead-generation-and-pipeline-crm-content [demo]="true" /></section>
+          }
           @if (slug() === 'instant-website') {
             <section aria-labelledby="instantWebsiteDemoTitle"><h2 class="pp-sec" id="instantWebsiteDemoTitle">Watch It In Action</h2><xh-instant-website-content [demo]="true" /></section>
           }
@@ -5357,7 +5479,7 @@
           }
           @if (slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
           <div class="pp-sec" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">What customers say</div>
-          @if (slug() === 'instant-website' || slug() === 'instagram-automation' || slug() === 'hrm-attendance' || slug() === 'google-my-business' || isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training' || slug() === 'ai-chat-bot') {
+          @if (slug() === 'nvidia-vera-rubin' || slug() === 'storage-servers' || slug() === 'gaming-servers' || slug() === 'virtualization-servers' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'agent-studio' || slug() === 'aiops' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'instant-website' || slug() === 'instagram-automation' || slug() === 'hrm-attendance' || slug() === 'google-my-business' || isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training' || slug() === 'ai-chat-bot') {
             <div class="pp-tcards" id="ppRevs">
               @for (r of v.reviews; track r.name) {
                 <div class="tcard">

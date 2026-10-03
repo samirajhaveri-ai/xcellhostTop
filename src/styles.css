@@ -5911,7 +5911,42 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 
 /* Keep the Instagram product name together on a clean second heading line. */
 #ppage.instagram-automation-page .pp-hero #ppTitle{display:block!important;line-height:1.18!important}
+#ppage.smart-qr-page .pp-hero #ppTitle{display:block!important;line-height:1.18!important}
+#ppage.virtualization-page .pp-hero #ppTitle{display:block!important;line-height:1.18!important}
+#ppage.server-tail-uppercase .pp-body :is(.pp-sec,h2,h3){text-transform:uppercase!important}
+#ppage.virtualization-page .pp-hero #ppTitle .pp-title-name{display:block;margin:4px 0 0!important;white-space:nowrap!important;font-size:clamp(23px,2.3vw,34px);line-height:1.18}
+#ppage.smart-qr-page .pp-hero #ppTitle .pp-title-name{display:block;margin:4px 0 0!important;white-space:normal!important;text-wrap:balance;font-size:clamp(24px,2.3vw,34px);line-height:1.18}
 #ppage.instagram-automation-page .pp-hero #ppTitle .pp-title-name{display:block;margin:4px 0 0!important;white-space:nowrap!important;font-size:clamp(24px,2.5vw,36px);line-height:1.18}
 
 .instant-dashboard-body{display:grid;grid-template-columns:150px minmax(0,1fr);gap:10px;margin-top:10px}.instant-dashboard-body .gb-dashboard-feed{margin-top:0;font-size:10px}.instant-dashboard-phone{padding:10px;border:1px solid #34435c;border-radius:16px;background:#061329;display:grid;gap:6px}.instant-dashboard-phone>b{font-size:10px;color:#fff}.instant-dashboard-phone>span{padding:6px;border-radius:7px;background:#ffffff0d;font-size:10px;color:#dce7f5}@media(max-width:550px){.instant-dashboard-body{grid-template-columns:1fr}.instant-dashboard-phone{grid-template-columns:1fr 1fr}.instant-dashboard-phone>b{grid-column:1/-1}}
 
+/* Supplied Web Presence / SMB Cloud hero documents are isolated to prevent
+   their self-contained animation styles from leaking into the Angular pages. */
+.supplied-smb-hero-shell {
+  display: block;
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #041733;
+}
+
+.supplied-smb-hero-frame {
+  display: block;
+  width: 100%;
+  height: 680px;
+  border: 0;
+  background: #041733;
+}
+
+.supplied-smb-hero-page > .pp-hero,
+.legacy-smb-hero {
+  display: none !important;
+}
+
+@media (max-width: 1240px) {
+  .supplied-smb-hero-frame { height: 1180px; }
+}
+
+@media (max-width: 620px) {
+  .supplied-smb-hero-frame { height: 1420px; }
+}
