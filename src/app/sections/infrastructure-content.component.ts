@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, HostListener, signal } from '@angular/core';
 
 interface ArchitectureTab {
-  key: 'security' | 'cloud' | 'data-center' | 'managed-security' | 'support-escalation' | 'observability' | 'backup';
+  key: 'security' | 'cloud' | 'data-center' | 'managed-security' | 'observability' | 'backup';
   label: string;
   title: string;
   description: string;
@@ -85,14 +85,6 @@ export class InfrastructureContentComponent {
   readonly activeTab = signal<ArchitectureTab['key']>('security');
   readonly zoomedTab = signal<ArchitectureTab | null>(null);
   readonly tabs: readonly ArchitectureTab[] = [
-    {
-      key: 'support-escalation',
-      label: 'Cloud Support Escalation',
-      title: 'A clear path from ticket to resolution',
-      description: 'Our cloud support escalation process connects every issue with the right team, from initial triage and advanced troubleshooting to specialist, manager and vendor support. Severity-based prioritisation, proactive communication and documented resolution keep customers informed through closure and review.',
-      image: '/assets/images/infrastructure-support-escalation.jpg',
-      alt: 'Cloud support escalation process showing eight stages from ticket creation to closure, support responsibilities, example severity matrix and communication channels',
-    },
     {
       key: 'data-center',
       label: 'Data Center Architecture',

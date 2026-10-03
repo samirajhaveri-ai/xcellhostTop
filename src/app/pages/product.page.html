@@ -10,6 +10,7 @@
     [class.infrastructure-page]="isInfrastructure()"
     [class.disaster-recovery-page]="isCloudDisasterRecoverySmb()"
     [class.enterprise-dr-page]="slug() === 'cloud-disaster-recovery-for-enterprise'"
+    [class.digital-menu-page]="slug() === 'digital-menu-and-catalog-management'"
     [class.magicqr-page]="slug() === 'ai-review-magicqr'"
     [class.billing-software-page]="slug() === 'billing-software'"
     [class.edr-page]="isAdvancedEdr()"
@@ -65,7 +66,44 @@
     [class.data-resilience-page]="slug() === 'data-resilience'"
     [class.cloud-repatriation-page]="slug() === 'cloud-repatriation'"
     [class.nvidia-h100-page]="slug() === 'nvidia-h100'"
+    [class.supplied-smb-hero-page]="usesSuppliedSmbHero()"
   >
+    @if (usesSuppliedSmbHero()) {
+      <section class="supplied-smb-hero-shell" [attr.aria-label]="v.name + ' hero'">
+        @switch (slug()) {
+          @case ('advanced-endpoint-security-edr') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/advanced-endpoint-security-edr-hero.html" title="Advanced Endpoint Security EDR interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+          @case ('cloud-drive') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/cloud-drive-hero.html" title="Cloud Drive interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+          @case ('cloud-disaster-recovery-smb') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/cloud-disaster-recovery-smb-hero.html" title="Cloud Disaster Recovery for SMB interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+          @case ('cloud-backup') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/cloud-backup-hero.html" title="Cloud Backup interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+          @case ('acronis-genai-protection') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/acronis-genai-protection-hero.html" title="Acronis GenAI Protection interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+          @case ('workforce-analytics') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/workforce-analytics-hero.html" title="Workforce Analytics interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+          @case ('smb-cloud-desktop') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/smb-cloud-desktop-hero.html" title="SMB Cloud Desktop interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+          @case ('smb-cyber-security-appliance') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/smb-cyber-security-appliance-hero.html" title="SMB Cyber Security Appliance interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+          @case ('remote-monitoring-and-mgmt-rmm') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/remote-monitoring-and-mgmt-rmm-hero.html" title="Remote Monitoring and Management interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+          @case ('tally-on-cloud') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/tally-on-cloud-hero.html" title="Tally on Cloud interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+        }
+      </section>
+    }
     @if (slug() === 'nvidia-h100') {
       <xh-nvidia-h100-hero (actionRequested)="onH100HeroAction($event)" />
     }
@@ -1073,6 +1111,8 @@
           <xh-disaster-recovery-simulator class="enterprise-dr-simulator" />
         } @else if (slug() === 'ai-review-magicqr') {
           <xh-ai-review-magicqr-hero class="magicqr-hero-dashboard" />
+        } @else if (slug() === 'digital-menu-and-catalog-management') {
+          <xh-digital-menu-hero class="digital-menu-dashboard" />
         } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
 
           <div class="pph-scene has-illus standalone-illus" id="pphScene" aria-hidden="true">
@@ -1472,6 +1512,13 @@
             </div>
           } @else {
             <div class="pp-crumb" id="ppCrumb">{{ v.crumb }}</div>
+            @if (slug() === 'cloud-disaster-recovery-for-enterprise') {
+              <a class="enterprise-dr-powered" href="#opentext" aria-label="Powered by OpenText Availability">
+                <span>POWERED BY</span>
+                <b>OpenText<sup>™</sup></b>
+                <em>Availability</em>
+              </a>
+            }
             <h1 id="ppTitle" [class.pp-title-compact]="compactHeroTitle()">
               <span class="pp-title-brand" [attr.aria-label]="'Xcell' + v.brandSuffix">
                 <span class="pp-brand-xcell">Xcell</span
@@ -2254,6 +2301,9 @@
                       </section>
                     } @else if (slug() === 'billing-software') {
                       <xh-billing-software-overview />
+                    } @else if (slug() === 'digital-menu-and-catalog-management') {
+                      <xh-digital-menu-overview (quoteRequested)="openCallback($event.event, $event.plan)" />
+                      <xh-digital-menu-tail />
                     } @else if (slug() === 'ai-review-magicqr') {
                       <xh-ai-review-magicqr-overview />
                     } @else if (slug() === 'cloud-disaster-recovery-for-enterprise') {
@@ -3031,6 +3081,8 @@
                   <xh-imunify360-followup (consultationRequested)="requestImunify360Plan($event)" />
                 } @else if (slug() === 'billing-software') {
                   <xh-billing-software-tail (quoteRequested)="openCallback($event.event, $event.plan)" />
+                } @else if (slug() === 'digital-menu-and-catalog-management') {
+                  <!-- Buying options are included in the supplied digital menu overview above. -->
                 } @else if (slug() === 'ai-review-magicqr') {
                   <xh-ai-review-magicqr-tail (quoteRequested)="openCallback($event.event, $event.plan)" />
                 } @else if (slug() === 'cloud-disaster-recovery-for-enterprise') {
@@ -3253,6 +3305,7 @@
                   !isEntraIdBackup() &&
                   slug() !== 'n8n-vps' &&
                   slug() !== 'billing-software' &&
+                  slug() !== 'digital-menu-and-catalog-management' &&
                   slug() !== 'ai-review-magicqr' &&
                   slug() !== 'cloud-disaster-recovery-for-enterprise' &&
                   slug() !== 'acronis-backup-advanced' &&
@@ -3893,6 +3946,7 @@
                   !isEntraIdBackup() &&
                   slug() !== 'n8n-vps' &&
                   slug() !== 'billing-software' &&
+                  slug() !== 'digital-menu-and-catalog-management' &&
                   slug() !== 'ai-review-magicqr' &&
                   slug() !== 'cloud-disaster-recovery-for-enterprise' &&
                   slug() !== 'acronis-backup-advanced' &&
@@ -4525,8 +4579,9 @@
                   v.name !== 'Tally on Cloud' &&
                   slug() !== 'rtx-a6000' &&
                    slug() !== 'n8n-vps' &&
-                   slug() !== 'billing-software' &&
-                   slug() !== 'ai-review-magicqr' &&
+                  slug() !== 'billing-software' &&
+                  slug() !== 'digital-menu-and-catalog-management' &&
+                  slug() !== 'ai-review-magicqr' &&
                   slug() !== 'cloud-disaster-recovery-for-enterprise' &&
                   !isSmbCyber() &&
                   !isAcronisTrueImage() &&

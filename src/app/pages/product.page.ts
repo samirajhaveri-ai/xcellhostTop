@@ -35,6 +35,10 @@ import { GOOGLE_BUSINESS_FAQS } from '../data/google-business-faqs.data';
 
 
 import { DisasterRecoverySimulatorComponent } from '../sections/disaster-recovery-simulator.component';
+// Digital menu sections adapted from the supplied HTML reference.
+import { DigitalMenuHeroComponent } from '../sections/digital-menu-hero.component';
+import { DigitalMenuOverviewComponent } from '../sections/digital-menu-overview.component';
+import { DigitalMenuTailComponent } from '../sections/digital-menu-tail.component';
 import { AiReviewMagicqrHeroComponent } from '../sections/ai-review-magicqr-hero.component';
 import { AiReviewMagicqrOverviewComponent } from '../sections/ai-review-magicqr-overview.component';
 import { AiReviewMagicqrTailComponent } from '../sections/ai-review-magicqr-tail.component';
@@ -343,6 +347,9 @@ interface ProductTourSlide {
 
 
     DisasterRecoverySimulatorComponent,
+    DigitalMenuHeroComponent,
+    DigitalMenuOverviewComponent,
+    DigitalMenuTailComponent,
     AiReviewMagicqrHeroComponent,
     AiReviewMagicqrOverviewComponent,
     AiReviewMagicqrTailComponent,
@@ -553,6 +560,12 @@ interface ProductTourSlide {
       background: radial-gradient(ellipse at 90% 40%, #0c494e 0%, #08244a 45%, #041e42 80%);
     }
     #ppage.enterprise-dr-page .pp-hero > .wrap { order: 1; width: 100%; max-width: none; min-width: 0; padding: 0; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered { display: inline-flex; align-items: center; gap: 10px; padding: 7px 14px; border-radius: 999px; background: rgba(255,255,255,.95); margin-bottom: 14px; text-decoration: none; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered span { font: 700 10px/1.5 'IBM Plex Mono', monospace; letter-spacing: .12em; color: #51607a; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered b { font: 800 17px/1.5 'Sora', sans-serif; color: #0b1d3d; letter-spacing: -.01em; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered sup { font-size: .6em; line-height: 0; vertical-align: super; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered em { font: 600 13px/1.5 'Poppins', sans-serif; font-style: normal; color: #0b1d3d; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered:focus-visible { outline: 3px solid #9cc8ff; outline-offset: 4px; }
     #ppage.enterprise-dr-page .enterprise-dr-simulator { position: relative; z-index: 4; order: 2; width: 100%; }
     #ppage.enterprise-dr-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) { width: 100% !important; max-width: 100% !important; }
     #ppage.enterprise-dr-page .pp-hero h1 { display: block; text-align: left; white-space: normal; font-size: clamp(28px, 2.6vw, 42px); line-height: 1.2; }
@@ -568,6 +581,23 @@ interface ProductTourSlide {
       #ppage.enterprise-dr-page .enterprise-dr-simulator { max-width: 540px; justify-self: center; }
     }
     @media(max-width:560px) { #ppage.enterprise-dr-page > .pp-hero { padding: 32px 16px; gap: 24px; } }
+    #ppage.digital-menu-page > .pp-hero { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,550px); align-items: center; gap: 48px; padding: 58px max(24px,calc((100% - 1192px)/2)); }
+    #ppage.digital-menu-page .pp-hero > .wrap { order: 1; width: 100%; max-width: none; min-width: 0; padding: 0; }
+    #ppage.digital-menu-page .digital-menu-dashboard { position: relative; z-index: 4; order: 2; width: 100%; }
+    #ppage.digital-menu-page .pp-hero > .wrap > :is(h1,.pp-tagline,.pp-tagline-support,.pp-typewriter,.pp-hero-grid) { width: 100% !important; max-width: 100% !important; }
+    #ppage.digital-menu-page .pp-hero h1 { display: block; text-align: left; white-space: normal; font-size: clamp(28px,2.6vw,42px); line-height: 1.2; }
+    #ppage.digital-menu-page .pp-hero h1 .pp-title-name { display: inline; margin-left: 0; }
+    #ppage.digital-menu-page .pp-typewriter { white-space: normal; min-height: 2.8em; }
+    #ppage.digital-menu-page .product-hero-ctas { width: 100%; max-width: 100%; flex-wrap: wrap; }
+    #ppage.digital-menu-page .product-hero-ctas .btn { flex: 0 1 auto; }
+    #ppage.digital-menu-page .pp-ask-ai { width: 100%; }
+    #ppage.digital-menu-page .pp-ask-ai-copy { flex: 1 1 320px; }
+    #ppage.digital-menu-page .pp-ask-ai-actions { flex: 0 0 auto; }
+    @media(max-width:1100px) {
+      #ppage.digital-menu-page > .pp-hero { grid-template-columns: minmax(0,1fr); gap: 32px; padding: 40px 24px; }
+      #ppage.digital-menu-page .digital-menu-dashboard { max-width: 550px; justify-self: center; }
+    }
+    @media(max-width:560px) { #ppage.digital-menu-page > .pp-hero { padding: 32px 16px; gap: 24px; } }
     #ppage.magicqr-page > .pp-hero {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(0, 550px);
@@ -2089,6 +2119,23 @@ export class ProductPage {
   ), {
     initialValue: '',
   });
+
+  private static readonly SUPPLIED_SMB_HERO_SLUGS = new Set([
+    'advanced-endpoint-security-edr',
+    'cloud-drive',
+    'cloud-disaster-recovery-smb',
+    'cloud-backup',
+    'acronis-genai-protection',
+    'workforce-analytics',
+    'smb-cloud-desktop',
+    'smb-cyber-security-appliance',
+    'remote-monitoring-and-mgmt-rmm',
+    'tally-on-cloud',
+  ]);
+
+  usesSuppliedSmbHero(): boolean {
+    return ProductPage.SUPPLIED_SMB_HERO_SLUGS.has(this.slug());
+  }
 
   readonly isMicrosoftEnterprisePage = computed(() =>
     this.slug() === 'microsoft-365-enterprise' ||

@@ -5,6 +5,7 @@
   --xh-line: #e7ebf3;
   position: relative;
   z-index: 100;
+
 }
 
 * { box-sizing: border-box; }
@@ -90,12 +91,14 @@
 .xh-menu-footer {
   grid-column: 1 / -1;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
-  gap: 12px 24px;
-  padding: 14px 26px;
+  gap: 12px;
+  padding: 12px 18px;
+  overflow-x: auto;
   border-top: 1px solid var(--xh-line);
   background: #fff;
+  scrollbar-width: thin;
 }
 
 .xh-menu-footer a,
@@ -103,12 +106,14 @@
 .xh-menu-footer .xh-framework-label {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 7px;
   padding: 6px 0;
   color: var(--navy);
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   text-decoration: none;
+  white-space: nowrap;
+  flex: 0 0 auto;
 }
 
 .xh-menu-footer button {
@@ -119,13 +124,12 @@
 }
 
 .xh-menu-footer .xh-framework-label {
-  flex-basis: 100%;
-  grid-column: 1 / -1;
+  flex-basis: auto;
 }
 
 .xh-menu-footer svg {
-  width: 28px;
-  height: 28px;
+  width: 15px;
+  height: 15px;
   flex-shrink: 0;
   fill: none;
   stroke: var(--blue);
@@ -140,6 +144,7 @@
 @media (max-width: 600px) {
   .xh-menu-footer { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding: 14px 18px; }
   .xh-menu-footer a, .xh-menu-footer button, .xh-menu-footer .xh-framework-label { font-size: 12px; gap: 7px; }
+  .xh-menu-footer .xh-framework-label { grid-column: 1 / -1; }
   .xh-menu-footer svg { width: 24px; height: 24px; }
 }
 
@@ -147,16 +152,17 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  flex-wrap: wrap;
-  gap: 8px;
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
+  gap: 5px;
   margin-left: auto;
 }
 .xh-menu-social a, .xh-menu-social > span {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   padding: 0;
   border-radius: 50%;
   color: #fff;
@@ -164,6 +170,16 @@
 }
 .xh-menu-social a:hover { color: #fff; filter: brightness(.9); }
 .xh-menu-social svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 2; }
+
+@media (min-width: 601px) and (max-width: 1200px) {
+  .xh-menu-footer { gap: 9px; padding-inline: 12px; }
+  .xh-menu-footer a,
+  .xh-menu-footer button,
+  .xh-menu-footer .xh-framework-label { gap: 5px; font-size: 10.5px; }
+  .xh-menu-footer svg { width: 13px; height: 13px; }
+  .xh-menu-social { gap: 4px; }
+  .xh-menu-social a, .xh-menu-social > span { width: 25px; height: 25px; font-size: 12px; }
+}
 @media (max-width: 600px) {
   .xh-menu-social { grid-column: 1 / -1; width: 100%; margin-top: 6px; }
 }
@@ -181,7 +197,7 @@
   border: 0;
   background: transparent;
   text-align: left;
-  padding: 12px 14px;
+  padding: 9px 10px;
   border-radius: 9px;
   color: #42516d;
   font: 600 13px/1.25 var(--body, Arial, sans-serif);
@@ -197,7 +213,7 @@
 .xh-panel h3 {
   margin: 0 0 14px;
   color: var(--xh-dark);
-  font-size: 22px;
+  font-size: 15px;
   font-weight: 800;
   line-height: 1.2;
 }
