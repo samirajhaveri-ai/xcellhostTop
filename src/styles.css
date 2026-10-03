@@ -85,6 +85,17 @@
   .hero .home-hero-slide .eyebrow::after{margin-inline:auto}
   .home-hero-dots{display:flex;align-items:center;gap:10px;margin-top:78px;margin-bottom: -50px;}
   .home-hero-slide .bare-metal-ctas{align-items:center}
+  .home-hero-slide .performance-cloud-ctas{align-items:center}
+  .home-hero-slide .performance-cloud-logos{display:flex;align-items:center;gap:12px;min-width:0}
+  .home-hero-slide .performance-cloud-logo{display:block;width:100px;height:56px;padding:6px 10px;object-fit:contain;background:#fff;border-radius:8px;flex-shrink:0}
+  @media(max-width:900px){
+    .home-hero-slide .performance-cloud-ctas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:440px;margin-inline:auto}
+    .home-hero-slide .performance-cloud-logos{grid-row:1;justify-content:center;gap:8px}
+    .home-hero-slide .performance-cloud-logos-left{grid-column:1}
+    .home-hero-slide .performance-cloud-logos-right{grid-column:2}
+    .home-hero-slide .performance-cloud-logo{width:calc((100% - 8px)/2);max-width:100px;height:50px;padding:6px}
+    .home-hero-slide .performance-cloud-ctas .btn{width:100%;min-width:0;white-space:normal;text-align:center;grid-row:2}
+  }
   .home-hero-slide .bare-metal-logo{display:block;box-sizing:border-box;width:100px;height:56px;padding:6px 10px;object-fit:contain;background:#fff;border-radius:8px;flex-shrink:0}
   @media(max-width:700px){.home-hero-slide .bare-metal-ctas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:440px;margin-left:auto;margin-right:auto}.home-hero-slide .bare-metal-logo{width:100px;height:56px;justify-self:center;grid-row:1}.home-hero-slide .bare-metal-ryzen{grid-column:1}.home-hero-slide .bare-metal-intel{grid-column:2}.home-hero-slide .bare-metal-ctas .btn{width:100%;min-width:0;white-space:normal;box-sizing:border-box}}
   .home-hero-slide .gpu-server-ctas{align-items:center}

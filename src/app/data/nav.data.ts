@@ -22,6 +22,11 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "SMB Cloud",
             "items": [
               {
+                "title": "Cloud Drive",
+                "pill": null,
+                "desc": null
+              },
+              {
                 "title": "Tally on Cloud",
                 "pill": "Top seller",
                 "desc": null
@@ -79,11 +84,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "Cloud Drive",
-                "pill": null,
-                "desc": null
-              },
+              
               
             ]
           }
@@ -4238,6 +4239,48 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Domain Tools",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "7",
+        "label": "Managed Cloud",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Managed Cloud",
+            "items": [
+              {
+                "title": "24/7 Real-Time Monitoring",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Rapid Incident Response",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Hardened Security & Patching",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Performance Tuning",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Intelligent Cost Optimization",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Sovereign & Compliant Ops",
                 "pill": null,
                 "desc": null
               },
