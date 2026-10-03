@@ -10,6 +10,7 @@
     [class.infrastructure-page]="isInfrastructure()"
     [class.disaster-recovery-page]="isCloudDisasterRecoverySmb()"
     [class.enterprise-dr-page]="slug() === 'cloud-disaster-recovery-for-enterprise'"
+    [class.digital-menu-page]="slug() === 'digital-menu-and-catalog-management'"
     [class.magicqr-page]="slug() === 'ai-review-magicqr'"
     [class.billing-software-page]="slug() === 'billing-software'"
     [class.edr-page]="isAdvancedEdr()"
@@ -1100,6 +1101,8 @@
           <xh-disaster-recovery-simulator class="enterprise-dr-simulator" />
         } @else if (slug() === 'ai-review-magicqr') {
           <xh-ai-review-magicqr-hero class="magicqr-hero-dashboard" />
+        } @else if (slug() === 'digital-menu-and-catalog-management') {
+          <xh-digital-menu-hero class="digital-menu-dashboard" />
         } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
 
           <div class="pph-scene has-illus standalone-illus" id="pphScene" aria-hidden="true">
@@ -2288,6 +2291,9 @@
                       </section>
                     } @else if (slug() === 'billing-software') {
                       <xh-billing-software-overview />
+                    } @else if (slug() === 'digital-menu-and-catalog-management') {
+                      <xh-digital-menu-overview (quoteRequested)="openCallback($event.event, $event.plan)" />
+                      <xh-digital-menu-tail />
                     } @else if (slug() === 'ai-review-magicqr') {
                       <xh-ai-review-magicqr-overview />
                     } @else if (slug() === 'cloud-disaster-recovery-for-enterprise') {
@@ -3065,6 +3071,8 @@
                   <xh-imunify360-followup (consultationRequested)="requestImunify360Plan($event)" />
                 } @else if (slug() === 'billing-software') {
                   <xh-billing-software-tail (quoteRequested)="openCallback($event.event, $event.plan)" />
+                } @else if (slug() === 'digital-menu-and-catalog-management') {
+                  <!-- Buying options are included in the supplied digital menu overview above. -->
                 } @else if (slug() === 'ai-review-magicqr') {
                   <xh-ai-review-magicqr-tail (quoteRequested)="openCallback($event.event, $event.plan)" />
                 } @else if (slug() === 'cloud-disaster-recovery-for-enterprise') {
@@ -3287,6 +3295,7 @@
                   !isEntraIdBackup() &&
                   slug() !== 'n8n-vps' &&
                   slug() !== 'billing-software' &&
+                  slug() !== 'digital-menu-and-catalog-management' &&
                   slug() !== 'ai-review-magicqr' &&
                   slug() !== 'cloud-disaster-recovery-for-enterprise' &&
                   slug() !== 'acronis-backup-advanced' &&
@@ -3927,6 +3936,7 @@
                   !isEntraIdBackup() &&
                   slug() !== 'n8n-vps' &&
                   slug() !== 'billing-software' &&
+                  slug() !== 'digital-menu-and-catalog-management' &&
                   slug() !== 'ai-review-magicqr' &&
                   slug() !== 'cloud-disaster-recovery-for-enterprise' &&
                   slug() !== 'acronis-backup-advanced' &&
@@ -4551,8 +4561,9 @@
                   v.name !== 'Tally on Cloud' &&
                   slug() !== 'rtx-a6000' &&
                    slug() !== 'n8n-vps' &&
-                   slug() !== 'billing-software' &&
-                   slug() !== 'ai-review-magicqr' &&
+                  slug() !== 'billing-software' &&
+                  slug() !== 'digital-menu-and-catalog-management' &&
+                  slug() !== 'ai-review-magicqr' &&
                   slug() !== 'cloud-disaster-recovery-for-enterprise' &&
                   !isSmbCyber() &&
                   !isAcronisTrueImage() &&
