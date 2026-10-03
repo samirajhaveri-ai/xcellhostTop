@@ -1538,7 +1538,9 @@
               <span class="pp-title-divider" aria-hidden="true">|</span>
               <span class="pp-title-name"
                 >{{
-                  isResellerProgram()
+                  slug() === 'agent-studio'
+                    ? 'AI Agent Studio'
+                    : isResellerProgram()
                     ? 'Cloud Channel Partner Program'
                     : isWhatsAppSmb()
                     ? 'WhatsApp For Business'
@@ -1630,7 +1632,7 @@
                   </div>
                 }
 
-                <div class="hero-ctas product-hero-ctas">
+                <div class="hero-ctas product-hero-ctas single-row-hero-ctas">
                   <a
                     class="btn ppd-info"
                     href="#"

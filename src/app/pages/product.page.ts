@@ -690,9 +690,10 @@ interface ProductTourSlide {
     #ppage.managed-oracle-page .pp-hero > .wrap > :is(h1, .pp-crumb, .pp-tagline, .pp-typewriter, .pp-hero-grid) {
       width: 100%; max-width: 100%; min-width: 0; white-space: normal;
     }
-    #ppage.managed-oracle-page .pp-hero > .wrap > h1 {
-      display: flex; flex-wrap: wrap; align-items: baseline;
-      white-space: normal; overflow-wrap: normal; gap: 4px 0;
+    #ppage.managed-oracle-page .pp-hero > .wrap > h1#ppTitle {
+      display: flex !important; flex-wrap: nowrap !important; align-items: baseline;
+      white-space: nowrap !important; overflow-wrap: normal; gap: .12em;
+      font-size: clamp(15px, 1.85vw, 28px) !important;
     }
     #ppage.managed-oracle-page #ppTitle .pp-title-brand {
       flex: 0 0 auto; white-space: nowrap;
@@ -701,14 +702,19 @@ interface ProductTourSlide {
       width: auto; white-space: nowrap;
     }
     #ppage.managed-oracle-page #ppTitle .pp-title-name {
-      flex-basis: 100%; margin-left: 0; white-space: normal; text-wrap: balance;
+      flex: 0 0 auto; margin-left: 0; white-space: nowrap; font-size: inherit;
     }
     #ppage.managed-oracle-page .pp-hero > .wrap > .oracle-hero-summary {
       display: block; white-space: normal; overflow-wrap: break-word;
       font-size: 17px; font-weight: 400; line-height: 1.6; margin-bottom: 20px;
     }
-    #ppage.managed-oracle-page .product-hero-ctas {
-      width: 100%; max-width: 100%; flex-wrap: wrap;
+    #ppage.managed-oracle-page .pp-hero .product-hero-ctas {
+      width: 100%; max-width: 100%; flex-wrap: nowrap !important;
+      gap: 8px; overflow-x: auto !important; padding-bottom: 8px;
+    }
+    #ppage.managed-oracle-page .pp-hero .product-hero-ctas .btn {
+      flex: 0 0 auto !important; white-space: nowrap !important;
+      font-size: 11px; padding: 10px 12px; min-height: 44px;
     }
     @media(max-width:1100px) {
       #ppage.managed-oracle-page .pp-hero { grid-template-columns: minmax(0, 1fr); }
