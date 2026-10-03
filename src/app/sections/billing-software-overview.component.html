@@ -1,0 +1,83 @@
+<section class="billing-overview" aria-label="Billing Software overview and interactive invoice demo">
+  <article class="quick-answer reveal" data-reveal>
+    <div><span class="eyebrow">Quick answer</span><h2>What is GST billing software?</h2><p>GST billing software creates GST-compliant invoices with payment links, runs recurring billing, reconciles UPI and card payments automatically and reports sales and inventory. XcellHost sets it up for your business — or white-label for agencies — as part of the XcellHost Growth Suite.</p></div>
+    <div><span class="eyebrow">What you get</span><ul class="check-list"><li>Invoice in seconds</li><li>UPI & card pay links</li><li>Recurring billing</li><li>WhatsApp & email delivery</li><li>Sales & GST reports</li><li>Inventory</li></ul><div class="best-for"><span>Best for:</span><b>Restaurants & cafés</b><b>Home services</b><b>Agencies & consultants</b><b>Retail</b></div></div>
+  </article>
+
+  <div class="value-band reveal" data-reveal><div><b>GST</b><span>compliant invoices</span></div><div><b>UPI</b><span>pay link on every bill</span></div><div><b>Auto</b><span>recurring billing</span></div><div><b>Live</b><span>paid / pending</span></div></div>
+
+  <h2 class="section-title reveal" data-reveal>Problems it <em>solves</em></h2>
+  <div class="problem-list reveal" data-reveal>
+    <article><span class="problem"><i>!</i>Invoices made in Word or Excel</span><span class="arrow">→</span><span class="solution"><i>✓</i>Branded GST invoices in seconds.</span></article>
+    <article><span class="problem"><i>!</i>Chasing payments every month</span><span class="arrow">→</span><span class="solution"><i>✓</i>Pay links and automatic reminders.</span></article>
+    <article><span class="problem"><i>!</i>Retainers billed by hand</span><span class="arrow">→</span><span class="solution"><i>✓</i>Recurring invoices raise themselves.</span></article>
+  </div>
+
+  <h2 class="section-title reveal" id="billing-demo" data-reveal>See it <em>in action</em></h2>
+  <p class="section-lead reveal" data-reveal>An interactive demo — click, type and try it. Sample data only.</p>
+  <div class="invoice-demo reveal" data-reveal>
+    <article class="builder-card">
+      <header><b>Create invoice</b><div class="tax-mode"><button type="button" [attr.aria-pressed]="!interstate()" (click)="interstate.set(false)">Same state</button><button type="button" [attr.aria-pressed]="interstate()" (click)="interstate.set(true)">Other state</button></div></header>
+      <div class="builder-head"><span>Item</span><span>Qty</span><span>Rate ₹</span><span>GST</span></div>
+      <div class="builder-rows">
+        @for (item of items(); track $index; let i = $index) {
+          <div class="builder-row">
+            <input [value]="item.name" (input)="updateItem(i, 'name', $event)" [attr.aria-label]="'Item ' + (i + 1) + ' name'" />
+            <input type="number" min="1" [value]="item.qty" (input)="updateItem(i, 'qty', $event)" [attr.aria-label]="'Item ' + (i + 1) + ' quantity'" />
+            <input type="number" min="0" [value]="item.rate" (input)="updateItem(i, 'rate', $event)" [attr.aria-label]="'Item ' + (i + 1) + ' rate'" />
+            <select [value]="item.gst" (change)="updateItem(i, 'gst', $event)" [attr.aria-label]="'Item ' + (i + 1) + ' GST rate'"><option>0</option><option>5</option><option>12</option><option>18</option><option>28</option></select>
+          </div>
+        }
+      </div>
+      <button class="add-item" type="button" (click)="addItem()">+ Add item</button>
+    </article>
+
+    <article class="invoice-card">
+      <div class="invoice-paper">
+        <header><div><b>Pixel Media Pvt Ltd</b><small>GSTIN 27ABCDE1234F1Z5</small></div><div><b>Tax invoice</b><small>INV-1043 · today</small></div></header>
+        <div class="invoice-head"><span>Item</span><span>Qty</span><span>Amount</span></div>
+        @for (item of items(); track $index) {
+          <div class="invoice-line"><span>{{ item.name }} <small>GST {{ item.gst }}%</small></span><span>{{ item.qty }}</span><span>{{ money(item.qty * item.rate) }}</span></div>
+        }
+        <div class="invoice-totals"><div><span>Taxable value</span><b>{{ money(subtotal()) }}</b></div>
+          @for (tax of taxes(); track tax.rate) {
+            @if (interstate()) { <div><span>IGST &#64;{{ tax.rate }}%</span><b>{{ money(tax.value) }}</b></div> }
+            @else { <div><span>CGST &#64;{{ tax.rate / 2 }}%</span><b>{{ money(tax.value / 2) }}</b></div><div><span>SGST &#64;{{ tax.rate / 2 }}%</span><b>{{ money(tax.value / 2) }}</b></div> }
+          }
+          <div class="grand-total"><span>Total</span><b>{{ money(grandTotal()) }}</b></div>
+        </div>
+        <div class="pay-box"><span>Pay now</span><b>UPI · Card · Net banking</b><i>QR</i></div>
+      </div>
+    </article>
+  </div>
+
+  <h2 class="section-title reveal" data-reveal>Billing Software <em>features</em></h2>
+  <div class="feature-grid reveal" data-reveal>
+    @for (feature of features; track feature.title; let i = $index) {
+      <article [style.--delay.ms]="i * 45"><span class="feature-icon" aria-hidden="true">
+        @switch (feature.icon) {
+          @case ('wallet') { <svg viewBox="0 0 24 24"><path d="M3 7h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM3 7V6a2 2 0 0 1 2-2h11v3"/><circle cx="16.5" cy="13.5" r="1.2"/></svg> }
+          @case ('clock') { <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> }
+          @case ('message') { <svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.2A8 8 0 1 1 20 12z"/></svg> }
+          @case ('chart') { <svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg> }
+          @case ('stock') { <svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5zM3 13l9 5 9-5"/></svg> }
+          @case ('user') { <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2 20c0-4 3-6 7-6s7 2 7 6M16 4.5a3.5 3.5 0 0 1 0 7M18 14c2.5.6 4 2.6 4 6"/></svg> }
+          @default { <svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6zM14 2v6h6M9 13h8M9 17h6"/></svg> }
+        }
+      </span><h3>{{ feature.title }}</h3><p>{{ feature.body }}</p></article>
+    }
+  </div>
+
+  <h2 class="section-title reveal" data-reveal>How it <em>works</em></h2>
+  <div class="steps reveal" data-reveal><article><small>Step 1</small><h3>Add your business</h3><p>GSTIN, logo, bank and UPI details.</p></article><article><small>Step 2</small><h3>Create the invoice</h3><p>Pick customer and items — tax calculates itself.</p></article><article><small>Step 3</small><h3>Send with pay link</h3><p>WhatsApp or email with a UPI/card link.</p></article><article><small>Step 4</small><h3>Get paid & reconcile</h3><p>Payments match invoices automatically.</p></article></div>
+
+  <h2 class="section-title reveal" data-reveal>Built for <em>your industry</em></h2>
+  <div class="industry-tabs reveal" role="tablist" data-reveal>@for (industry of industries; track industry.name; let i = $index) { <button type="button" role="tab" [attr.aria-selected]="activeIndustry() === i" (click)="activeIndustry.set(i)"><span>{{ industry.icon }}</span>{{ industry.name }}</button> }</div>
+  <article class="industry-panel reveal" data-reveal><div><span class="eyebrow">Use case</span><h3>{{ industries[activeIndustry()].name }}</h3><p>{{ industries[activeIndustry()].description }}</p></div><ul>@for (point of industries[activeIndustry()].points; track point) { <li>{{ point }}</li> }</ul></article>
+
+  <h2 class="section-title reveal" data-reveal>Without vs <em>with Billing Software</em></h2>
+  <div class="comparison reveal" data-reveal><table><thead><tr><th></th><th>Without</th><th>With XcellHost Billing Software</th></tr></thead><tbody><tr><th>Invoice creation</th><td><i class="no">×</i> Word/Excel templates</td><td><i class="yes">✓</i> Seconds, GST auto-calculated</td></tr><tr><th>Payment</th><td><i class="no">×</i> Bank details on PDF</td><td><i class="yes">✓</i> UPI/card link</td></tr><tr><th>Follow-up</th><td><i class="no">×</i> Manual calls</td><td><i class="yes">✓</i> Automatic reminders</td></tr><tr><th>Retainers</th><td><i class="no">×</i> Raised by hand</td><td><i class="yes">✓</i> Recurring automation</td></tr><tr><th>GST summary</th><td><i class="no">×</i> Compiled at month-end</td><td><i class="yes">✓</i> Ready any time</td></tr></tbody></table></div>
+
+  <h2 class="section-title reveal" data-reveal>Works with the tools <em>you already use</em></h2>
+  <div class="integrations reveal" data-reveal><span><i class="razorpay">R</i>Razorpay</span><span><i class="gpay">G</i>Google Pay</span><span><i class="phonepe">P</i>PhonePe</span><span><i class="paytm">P</i>Paytm</span><span><i class="bhim">B</i>BHIM</span><span><i class="mastercard">●</i>Mastercard</span><span><i class="whatsapp">◉</i>WhatsApp</span><span><i class="gmail">M</i>Gmail</span><span><i class="zoho">Z</i>Zoho Books</span></div>
+</section>
