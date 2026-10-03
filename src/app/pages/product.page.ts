@@ -1,3 +1,11 @@
+import { SmartQrContentComponent } from '../sections/smart-qr-and-nfc-automation-content.component';
+import { SMART_QR_FAQS } from '../data/smart-qr-and-nfc-automation-faqs.data';
+import { AgentStudioContentComponent } from '../sections/agent-studio-content.component';
+import { AGENT_STUDIO_FAQS } from '../data/agent-studio-faqs.data';
+import { AiopsContentComponent } from '../sections/aiops-content.component';
+import { AIOPS_FAQS } from '../data/aiops-faqs.data';
+import { LeadCrmContentComponent } from '../sections/lead-generation-and-pipeline-crm-content.component';
+import { LEAD_CRM_FAQS } from '../data/lead-generation-and-pipeline-crm-faqs.data';
 
 
 import { HigherEducationHeroAction, HigherEducationHeroCopyComponent } from '../sections/higher-education-hero-copy.component';
@@ -353,6 +361,10 @@ interface ProductTourSlide {
     HrmAttendanceContentComponent,
     InstagramAutomationContentComponent,
     InstantWebsiteContentComponent,
+    LeadCrmContentComponent,
+    AgentStudioContentComponent,
+    SmartQrContentComponent,
+    AiopsContentComponent,
     AiVoicebotContentComponent,
     AiVoicebotFaqComponent,
     RouterLink,
@@ -2094,6 +2106,102 @@ export class ProductPage {
     if (slug === 'linux-servers') return { ...view, faqs: LINUX_SERVERS_FAQS };
     if (slug === 'windows-servers') return { ...view, faqs: WINDOWS_SERVERS_FAQS };
 
+    if (slug === 'aiops') return {
+      ...view, faqs: AIOPS_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — AIOps Platform',
+        intro: 'Connect monitoring and automation with scoped access to your cloud estate. Use configuration history to investigate changes, review remediation runbooks before enabling automation, and align telemetry access and retention with your organisation’s requirements.',
+        rows: [
+          ['Access Controls', 'Scope Monitoring And Automation Permissions'],
+          ['Configuration Tracking', 'AWS Config Rules And Change History'],
+          ['Infrastructure Changes', 'CloudFormation Stack And Drift Monitoring'],
+          ['Incident Management', 'Correlated Alerts And Investigation Context'],
+          ['Remediation', 'Review And Approve Automated Runbooks'],
+          ['Coverage', 'AWS And Hybrid Cloud Operations'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'AWS And Hybrid Coverage', body: 'Bring cloud and on-premise operations into one monitoring approach.' },
+        { ...view.why[2], title: 'Guided Implementation', body: 'Assessment, AI/ML integration and continuous optimisation.' },
+        { ...view.why[3], title: 'Proactive Operations', body: 'Correlate alerts and identify unusual behaviour earlier.' },
+        { ...view.why[4], title: '24×7 NOC', body: 'Engineers support incident investigation and operational response.' },
+        { ...view.why[5], title: 'One Partner', body: 'Monitoring, automation and operational support together.' },
+      ],
+    };
+    if (slug === 'agent-studio') return {
+      ...view, faqs: AGENT_STUDIO_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — Agent Studio',
+        intro: 'Agent Studio combines zero-trust access with identity controls, encryption and agent-level observability. Apply SSO, MFA and role-based permissions, use PII redaction and prompt-injection defences, and retain human approval for sensitive workflows. Choose cloud, private cloud or on-premise deployment to suit your data requirements.',
+        rows: [
+          ['Access Controls', 'SSO, MFA And Role-Based Permissions'],
+          ['Encryption', 'TLS 1.3 And AES-256'],
+          ['Key Management', 'BYOK And HSM Support'],
+          ['Data Protection', 'PII Redaction And Data Loss Prevention'],
+          ['Agent Governance', 'Tracing, Audit Trails And Human Approval'],
+          ['Deployment', 'Cloud, Private Cloud, On-Premise And Hybrid'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Flexible Deployment', body: 'Deploy on cloud, private infrastructure, on-premise or hybrid environments.' },
+        { ...view.why[2], title: 'Guided Implementation', body: 'Foundation, enterprise integration and production rollout.' },
+        { ...view.why[3], title: 'Governed AI', body: 'Control agent access, trace activity and keep humans in the loop.' },
+        { ...view.why[4], title: '24×7 Enterprise Support', body: 'Technical support and a dedicated customer success manager.' },
+        { ...view.why[5], title: 'One Partner', body: 'Agents, models, enterprise integration and support together.' },
+      ],
+    };
+    if (slug === 'lead-generation-and-pipeline-crm') return {
+      ...view,
+      faqs: LEAD_CRM_FAQS,
+      videos: [],
+      security: {
+        head: 'Security & Compliance — Lead Generation & Pipeline CRM',
+        intro: 'Keep lead management accountable with team roles, permissions and a complete activity trail. Capture only the contact details your team needs, review access when responsibilities change, and use consent-based welcome messages and follow-ups. XcellHost helps configure your lead sources and pipeline for your business.',
+        rows: [
+          ['Team Access', 'Roles And Permissions'],
+          ['Activity History', 'Complete Lead Activity Trail'],
+          ['Lead Sources', 'QR Codes, Forms And Social DMs'],
+          ['Follow-Up Controls', 'Reminders And Automated Welcome Messages'],
+          ['Pipeline Visibility', 'Track Each Lead From New To Won'],
+          ['Data Handling', 'Review Contact Access And Messaging Consent'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Guided Setup', body: 'Lead source connections, pipeline setup and onboarding by XcellHost.' },
+        { ...view.why[2], title: 'One Dashboard', body: 'Manage leads, enquiries, follow-ups and pipeline stages together.' },
+        { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
+        { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
+        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+      ],
+    };
+    if (slug === 'smart-qr-and-nfc-automation') return {
+      ...view,
+      faqs: SMART_QR_FAQS,
+      videos: [],
+      security: {
+        head: 'Security & Compliance — Smart QR & NFC Automation',
+        intro: 'Manage digital cards with team roles and permissions. Keep shared contact details and QR destinations current, publish only information intended for your customers, and review access when team members change. Central management helps maintain consistent card content across your business.',
+        rows: [
+          ['Team Access', 'Roles And Permissions'],
+          ['Card Management', 'Centrally Managed Team Profiles'],
+          ['Dynamic QR', 'Update Details Without Reprinting'],
+          ['Contact Sharing', 'QR Scan, NFC Tap And Shareable Link'],
+          ['Brand Control', 'Themes And Custom Domain'],
+          ['Analytics', 'Views, Saves, Clicks And Scans'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Guided Setup', body: 'Digital card setup, QR configuration and onboarding by XcellHost.' },
+        { ...view.why[2], title: 'One Dashboard', body: 'Manage team cards, contact links, themes and analytics together.' },
+        { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
+        { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
+        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+      ],
+    };
     if (slug === 'instant-website') return {
       ...view,
       faqs: INSTANT_WEBSITE_FAQS,

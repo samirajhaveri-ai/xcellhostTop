@@ -41,14 +41,15 @@ export function findBlogBySlug(posts: readonly CmsBlogPost[], slug: string): Cms
   if (aliases.length === 1) return aliases[0];
   if (!aliases.length) return null;
 
-  // A product may have several articles. Prefer the article whose slug most
-  // closely matches the old URL, but do not guess if the match is ambiguous.
+  // A product may have several articles. Prefer the closest slug match, then
+  // the newest publication for a shared alias. Exact article URLs stay unique.
   const words = key.split('-').filter(Boolean);
   const ranked = aliases.map(post => ({
     post,
     score: words.filter(word => post.slug.toLowerCase().split('-').includes(word)).length,
-  })).sort((a, b) => b.score - a.score);
-  return ranked[0].score > ranked[1].score ? ranked[0].post : null;
+    publishedAt: Date.parse(post.publishedAt) || 0,
+  })).sort((a, b) => b.score - a.score || b.publishedAt - a.publishedAt);
+  return ranked[0].post;
 }
 
 export interface CmsImage {
