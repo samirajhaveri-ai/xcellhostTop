@@ -61,7 +61,44 @@
     [class.data-resilience-page]="slug() === 'data-resilience'"
     [class.cloud-repatriation-page]="slug() === 'cloud-repatriation'"
     [class.nvidia-h100-page]="slug() === 'nvidia-h100'"
+    [class.supplied-smb-hero-page]="usesSuppliedSmbHero()"
   >
+    @if (usesSuppliedSmbHero()) {
+      <section class="supplied-smb-hero-shell" [attr.aria-label]="v.name + ' hero'">
+        @switch (slug()) {
+          @case ('advanced-endpoint-security-edr') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/advanced-endpoint-security-edr-hero.html" title="Advanced Endpoint Security EDR interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+          @case ('cloud-drive') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/cloud-drive-hero.html" title="Cloud Drive interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+          @case ('cloud-disaster-recovery-smb') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/cloud-disaster-recovery-smb-hero.html" title="Cloud Disaster Recovery for SMB interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+          @case ('cloud-backup') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/cloud-backup-hero.html" title="Cloud Backup interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+          @case ('acronis-genai-protection') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/acronis-genai-protection-hero.html" title="Acronis GenAI Protection interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+          @case ('workforce-analytics') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/workforce-analytics-hero.html" title="Workforce Analytics interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+          @case ('smb-cloud-desktop') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/smb-cloud-desktop-hero.html" title="SMB Cloud Desktop interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+          @case ('smb-cyber-security-appliance') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/smb-cyber-security-appliance-hero.html" title="SMB Cyber Security Appliance interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+          @case ('remote-monitoring-and-mgmt-rmm') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/remote-monitoring-and-mgmt-rmm-hero.html" title="Remote Monitoring and Management interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+          @case ('tally-on-cloud') {
+            <iframe class="supplied-smb-hero-frame" src="/assets/heroes/tally-on-cloud-hero.html" title="Tally on Cloud interactive overview" loading="eager" scrolling="no"></iframe>
+          }
+        }
+      </section>
+    }
     @if (slug() === 'nvidia-h100') {
       <xh-nvidia-h100-hero (actionRequested)="onH100HeroAction($event)" />
     }

@@ -2035,6 +2035,23 @@ export class ProductPage {
     initialValue: '',
   });
 
+  private static readonly SUPPLIED_SMB_HERO_SLUGS = new Set([
+    'advanced-endpoint-security-edr',
+    'cloud-drive',
+    'cloud-disaster-recovery-smb',
+    'cloud-backup',
+    'acronis-genai-protection',
+    'workforce-analytics',
+    'smb-cloud-desktop',
+    'smb-cyber-security-appliance',
+    'remote-monitoring-and-mgmt-rmm',
+    'tally-on-cloud',
+  ]);
+
+  usesSuppliedSmbHero(): boolean {
+    return ProductPage.SUPPLIED_SMB_HERO_SLUGS.has(this.slug());
+  }
+
   readonly isMicrosoftEnterprisePage = computed(() =>
     this.slug() === 'microsoft-365-enterprise' ||
     this.slug() === 'microsoft-365-enterprise-office365' ||

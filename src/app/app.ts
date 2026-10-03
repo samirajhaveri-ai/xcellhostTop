@@ -62,6 +62,7 @@ import {
     '(document:keydown.escape)': 'onEscape()',
     '(window:scroll)': 'updateScrollProgress()',
     '(window:resize)': 'updateScrollProgress()',
+    '(window:message)': 'onHeroMessage($event)',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -97,6 +98,24 @@ export class App {
 
   onEscape(): void {
     this.overlay.closeTop();
+  }
+
+  /** Same-origin standalone hero documents hand their gated CTAs back to Angular. */
+  onHeroMessage(event: MessageEvent<unknown>): void {
+    const currentWindow = this.document.defaultView;
+    if (!currentWindow || event.origin !== currentWindow.location.origin) return;
+
+    const sourceFrame = Array.from(
+      this.document.querySelectorAll<HTMLIFrameElement>('iframe.supplied-smb-hero-frame'),
+    ).find((frame) => frame.contentWindow === event.source);
+    if (!sourceFrame) return;
+
+    const message = event.data as { type?: unknown; action?: unknown } | null;
+    if (message?.type !== 'xcellhost:hero-action' || message.action !== 'infosheet') return;
+
+    const product = sourceFrame.title.replace(/\s+interactive overview$/i, '').trim();
+    this.docs.ask('infosheet', product || this.document.title);
+    this.overlay.open('doc');
   }
 
   /** Future pages only need a CTA labelled "Let's Talk" or "Talk to Sales". */
