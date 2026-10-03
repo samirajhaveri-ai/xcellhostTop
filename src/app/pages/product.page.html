@@ -1441,6 +1441,13 @@
             </div>
           } @else {
             <div class="pp-crumb" id="ppCrumb">{{ v.crumb }}</div>
+            @if (slug() === 'cloud-disaster-recovery-for-enterprise') {
+              <a class="enterprise-dr-powered" href="#opentext" aria-label="Powered by OpenText Availability">
+                <span>POWERED BY</span>
+                <b>OpenText<sup>™</sup></b>
+                <em>Availability</em>
+              </a>
+            }
             <h1 id="ppTitle" [class.pp-title-compact]="compactHeroTitle()">
               <span class="pp-title-brand" [attr.aria-label]="'Xcell' + v.brandSuffix">
                 <span class="pp-brand-xcell">Xcell</span

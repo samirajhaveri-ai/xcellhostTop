@@ -529,6 +529,12 @@ interface ProductTourSlide {
       background: radial-gradient(ellipse at 90% 40%, #0c494e 0%, #08244a 45%, #041e42 80%);
     }
     #ppage.enterprise-dr-page .pp-hero > .wrap { order: 1; width: 100%; max-width: none; min-width: 0; padding: 0; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered { display: inline-flex; align-items: center; gap: 10px; padding: 7px 14px; border-radius: 999px; background: rgba(255,255,255,.95); margin-bottom: 14px; text-decoration: none; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered span { font: 700 10px/1.5 'IBM Plex Mono', monospace; letter-spacing: .12em; color: #51607a; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered b { font: 800 17px/1.5 'Sora', sans-serif; color: #0b1d3d; letter-spacing: -.01em; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered sup { font-size: .6em; line-height: 0; vertical-align: super; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered em { font: 600 13px/1.5 'Poppins', sans-serif; font-style: normal; color: #0b1d3d; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered:focus-visible { outline: 3px solid #9cc8ff; outline-offset: 4px; }
     #ppage.enterprise-dr-page .enterprise-dr-simulator { position: relative; z-index: 4; order: 2; width: 100%; }
     #ppage.enterprise-dr-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) { width: 100% !important; max-width: 100% !important; }
     #ppage.enterprise-dr-page .pp-hero h1 { display: block; text-align: left; white-space: normal; font-size: clamp(28px, 2.6vw, 42px); line-height: 1.2; }
