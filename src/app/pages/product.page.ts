@@ -1,3 +1,4 @@
+import { ComodoPaContentComponent, ComodoPaHeroComponent, ComodoPaFaqComponent, ComodoPaRelatedComponent } from '../sections/comodo-pa.components';
 import { DigicertSmimeContentComponent } from '../sections/digicert-smime-content.component';
 import { DigicertSmimeFaqComponent } from '../sections/digicert-smime-faq.component';
 import { DigicertSmimeRelatedComponent } from '../sections/digicert-smime-related.component';
@@ -349,6 +350,7 @@ interface ProductTourSlide {
   selector: 'xh-product-page',
   standalone: true,
   imports: [
+    ComodoPaContentComponent, ComodoPaHeroComponent, ComodoPaFaqComponent, ComodoPaRelatedComponent,
     DigicertSmimeContentComponent,
     DigicertSmimeFaqComponent,
     DigicertSmimeRelatedComponent,
@@ -2212,6 +2214,16 @@ export class ProductPage {
     const slug = this.slug();
     const view = this.resolve(slug);
     if (!view) return null;
+
+    if (slug === 'comodo-personal-authentication') return {
+      ...view,
+      heroPoints: [
+        'Email Signing & Encryption',
+        'Document Signing (Pro+)',
+        'Two-Factor Client Auth (Pro+)',
+        'Organisation Validated (Ent.)',
+      ],
+    };
 
     if (slug === 'higher-education-cloud') return {
       ...view,

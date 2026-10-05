@@ -62,6 +62,11 @@ export class CatalogService {
         }
       }
     }
+    const comodo = m['comodo-enterprise-pro-basic-pa'];
+    if (comodo) {
+      m['comodo-personal-authentication'] = comodo;
+      delete m['comodo-enterprise-pro-basic-pa'];
+    }
     return m;
   })();
 

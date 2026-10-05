@@ -288,7 +288,7 @@ const MENU_DESCRIPTIONS: Record<string, string> = {
   'DigiCert EV Code Signing': 'High-assurance signing with verified publisher identity 🌟',
   'DigiCert S/MIME Class 1': 'Validate the certificate holder’s email address 📧',
   'DigiCert S/MIME (OV)': 'Stronger authentication of the certificate holder’s identity 💪',
-  'Comodo Enterprise / Pro / Basic PA': 'Personal authentication certificates for secure identity 👤',
+  'Comodo Personal Authentication': 'Personal authentication certificates for secure identity 👤',
   'Continuous Threat Exposure (CTEM)': 'Find and fix vulnerabilities continuously and in real time 🔍',
   'Managed Detection & Response (MDR)': 'Continuous threat monitoring with rapid expert response 🔍',
   'Third-Party Risk Mgmt (TPRM)': 'Identify and manage risks across third-party relationships 🤝',

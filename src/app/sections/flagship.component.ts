@@ -30,8 +30,8 @@ interface FlagshipCard {
   readonly service?: string;
 }
 
-type FlagshipGroup = 'business' | 'infrastructure' | 'protection' | 'workplace' | 'digital-trust' | 'security' | 'ai';
-type FlagshipTabId = 'web-presence' | 'cloud' | 'productivity' | 'data-protect' | 'digital-trust' | 'security' | 'ai';
+type FlagshipGroup = 'business' | 'infrastructure' | 'protection' | 'workplace' | 'digital-trust' | 'security' | 'ai' | 'marketplace';
+type FlagshipTabId = 'web-presence' | 'cloud' | 'productivity' | 'data-protect' | 'digital-trust' | 'security' | 'ai' | 'marketplace';
 
 interface FlagshipTab {
   readonly id: FlagshipTabId;
@@ -46,6 +46,7 @@ const FLAGSHIP_TABS: readonly FlagshipTab[] = [
   { id: 'digital-trust', label: 'Digital Trust' },
   { id: 'security', label: 'Security' },
   { id: 'ai', label: 'AI' },
+  { id: 'marketplace', label: 'Marketplace' },
 ];
 
 const FLAGSHIP_TAB_SOURCES: Readonly<Record<FlagshipTabId, FlagshipGroup | null>> = {
@@ -56,6 +57,7 @@ const FLAGSHIP_TAB_SOURCES: Readonly<Record<FlagshipTabId, FlagshipGroup | null>
   'digital-trust': 'digital-trust',
   security: 'security',
   ai: 'ai',
+  marketplace: 'marketplace',
 };
 
 const FLAGSHIP_CARD_GROUPS: Readonly<Record<string, readonly FlagshipGroup[]>> = {
@@ -379,6 +381,32 @@ export class FlagshipComponent {
   readonly visibleCards = computed(() => {
     const group = this.activeSourceGroup();
     if (!group) return [];
+    if (group === 'marketplace') {
+      const marketplace = MEGA_MENU.find(item => item.label === 'Marketplace');
+      const seen = new Set<string>();
+      return (marketplace?.tabs ?? []).flatMap(tab =>
+        tab.groups.flatMap(section => section.items.flatMap(item => {
+          if (item.title === 'No Data' || item.href?.startsWith('/under-construction')) return [];
+          const service = this.catalog.findInDirectory(item.title)?.name ?? item.title;
+          const link = item.href ?? '/' + slugify(service);
+          if (seen.has(link)) return [];
+          seen.add(link);
+          const rich = this.catalog.rich(service);
+          const icon = tab.label === 'Remote Access Tools' ? 'desktop' : 'shield';
+          return [{
+            title: item.title,
+            blurb: item.desc?.trim() || rich?.ov || `Deploy ${item.title} with guided setup and expert support from XcellHost.`,
+            badge: item.pill ?? tab.label,
+            hot: item.pill === 'Free trial',
+            icon,
+            iconPath: FLAGSHIP_ICON_PATHS[icon],
+            lead: '', amount: rich?.price || 'Quote on request', tail: '',
+            cta: 'Explore →',
+            link,
+          }];
+        })),
+      ).slice(0, 8);
+    }
     if (group === 'digital-trust' || group === 'security' || group === 'ai') {
       const label = this.tabs.find((tab) => tab.id === this.activeTab())?.label;
       const menu = MEGA_MENU.find((item) => item.label === label);
