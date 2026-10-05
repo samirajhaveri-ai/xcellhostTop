@@ -560,7 +560,7 @@ export const CASE_STUDIES: readonly CaseStudy[] = [
       'Claude VPS',
       'Window 11 VPS',
       'Odoo Hosting',
-      'ERP Next Hosting',
+      'ERPNext Hosting',
       'Sage Hosting',
     ],
   },

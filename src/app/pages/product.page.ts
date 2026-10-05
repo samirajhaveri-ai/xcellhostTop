@@ -2471,7 +2471,7 @@ export class ProductPage {
       ],
     };
     if (slug === 'erp-next-hosting') return {
-      ...view, faqs: ERPNEXT_FAQS, videos: [],
+      ...view, brandSuffix: 'Cloud', faqs: ERPNEXT_FAQS, videos: [],
       security: {
         head: 'Security & Compliance — ERPNext Hosting',
         intro: 'Keep ERPNext access, backups and server maintenance aligned with your business requirements. Use role-based permissions for your team, SSL for each site and separate databases for multi-site deployments. Confirm backup retention, restore procedures and the scope of managed support before deployment.',
@@ -2494,7 +2494,7 @@ export class ProductPage {
       ],
     };
     if (slug === 'odoo-hosting') return {
-      ...view, faqs: ODOO_HOSTING_FAQS, videos: [],
+      ...view, brandSuffix: 'Cloud', faqs: ODOO_HOSTING_FAQS, videos: [],
       security: {
         head: 'Security & Compliance — Odoo Hosting',
         intro: 'Keep Odoo access, backups and server maintenance aligned with your business requirements. Use role-based permissions for your team, SSL for each site and database isolation for separate business deployments. Confirm backup retention, restore procedures and the scope of managed support before deployment.',

@@ -449,7 +449,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "ERP Next Hosting",
+                "title": "ERPNext Hosting",
                 "pill": null,
                 "desc": null
               },
