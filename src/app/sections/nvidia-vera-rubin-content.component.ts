@@ -3,11 +3,12 @@ import { Component, Input, ElementRef, OnDestroy, ViewChild } from '@angular/cor
 @Component({
   selector: 'xh-nvidia-vera-rubin-content',
   standalone: true,
-  template: `@if (hero) { <iframe #frame src="/nvidia-vera-rubin-hero.html" title="Illustrative NVIDIA Vera Rubin Rack" scrolling="no" (load)="onLoad()"></iframe> } @else { <iframe #frame src="/nvidia-vera-rubin-content.html" title="NVIDIA Vera Rubin Features" scrolling="no" (load)="onLoad()"></iframe> }`,
+  template: `@if (hero) { <iframe #frame src="/nvidia-vera-rubin-hero.html" title="Illustrative NVIDIA Vera Rubin Rack" scrolling="no" (load)="onLoad()"></iframe> } @else { <iframe #frame src="/nvidia-vera-rubin-content.html" [title]="view === 'overview' ? 'NVIDIA Vera Rubin overview' : 'NVIDIA Vera Rubin features'" scrolling="no" (load)="onLoad()"></iframe> }`,
   styles: [`:host{display:block}iframe{display:block;width:100%;min-height:0;border:0}`],
 })
 export class VeraRubinContentComponent implements OnDestroy {
   @Input() hero = false;
+  @Input() view: 'overview' | 'details' = 'details';
   @ViewChild('frame') private frame?: ElementRef<HTMLIFrameElement>;
   private observer?: ResizeObserver;
   private document?: Document;
@@ -19,6 +20,18 @@ export class VeraRubinContentComponent implements OnDestroy {
     const doc = frame?.contentDocument;
     const main = doc?.querySelector('main');
     if (!frame || !doc || !main) return;
+
+    if (!this.hero) {
+      const answer = main.querySelector<HTMLElement>('#answer');
+      if (this.view === 'overview') {
+        main.querySelectorAll<HTMLElement>(':scope > *').forEach((element) => {
+          element.style.display = element === answer ? '' : 'none';
+        });
+      } else if (answer) {
+        answer.style.display = 'none';
+      }
+    }
+
     const resize = () => { frame.style.height = `${Math.ceil(main.getBoundingClientRect().height) + 8}px`; };
     this.observer = new ResizeObserver(resize);
     this.observer.observe(main);

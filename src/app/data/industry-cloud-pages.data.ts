@@ -92,6 +92,13 @@ export const INDUSTRY_CLOUD_PAGES = [
     "category": "Cloud"
   },
   {
+    "slug": "gcc-cloud",
+    "name": "GCC Cloud",
+    "title": "GCC Cloud in India | XcellHost",
+    "description": "Explore managed cloud infrastructure, security, backup and support for GCC teams with XcellHost.",
+    "category": "Cloud"
+  },
+  {
     "slug": "smb-cloud",
     "name": "SMB Cloud",
     "title": "SMB Cloud in India — Managed IT, Microsoft 365, Backup & Security Bundle for Small Businesses | XcellHost",

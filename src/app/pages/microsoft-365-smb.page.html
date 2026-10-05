@@ -127,7 +127,7 @@
 
       <!-- PRICING -->
       <div class="pp-sec" id="pricing">Microsoft 365 pricing in India</div>
-      <p class="pp-ov" style="margin-bottom:18px">All plans billed annually per user in INR, excluding GST. GST invoice included on every purchase.</p>
+      <p class="pp-ov" style="margin-bottom:18px">Choose annual upfront, annual monthly billing or a flexible monthly term. Prices are in INR, excluding GST.</p>
       <div class="pp-toggle-wrap">
         <div class="pp-toggle" role="group" aria-label="Choose Microsoft 365 plans with or without Teams">
           <button
@@ -149,51 +149,106 @@
           <span class="tag">Entry</span>
           <h4>Business Basic</h4>
           <div class="sub">Email, {{ includesTeams() ? 'Teams & ' : '' }}cloud apps</div>
-          <div class="amt"><b>&#8377;{{ (includesTeams() ? 1740 : 1260) * quoteQuantities()['basic'] | number:'1.0-0' }}</b><span>{{ quoteQuantities()['basic'] === 1 ? 'per user' : 'for ' + quoteQuantities()['basic'] + ' users' }} / year + GST</span></div>
-          <span class="save">Web &amp; mobile apps</span>
-          <ul>
-            <li>Outlook email on @yourcompany.com</li>
-            <li>1 TB OneDrive storage per user</li>
-            <li>Web &amp; mobile Office apps</li>
-            <li>50 GB Exchange mailbox</li>
-            <li>SharePoint{{ includesTeams() ? ' & Teams included' : ' included; Teams excluded' }}</li>
-          </ul>
-          <div class="btns"><div class="quote-quantity" role="group" aria-label="Business Basic quantity"><button type="button" aria-label="Decrease Business Basic quantity" (click)="adjustQuantity('basic', -1)">−</button><output>{{ quoteQuantities()['basic'] }}</output><button type="button" aria-label="Increase Business Basic quantity" (click)="adjustQuantity('basic', 1)">+</button></div><a class="btn btn-ghost" [href]="includesTeams() ? basicTeamsCheckoutUrl : basicNoTeamsCheckoutUrl" target="_blank" rel="noopener noreferrer">Buy Now</a></div>
+          <div class="billing-choices" role="group" aria-label="Business Basic payment frequency">
+            @for (option of billingOptions; track option.id) {
+              <button type="button" class="billing-choice" [class.chosen]="billingTerms()['basic'] === option.id" [class.upfront]="option.id === 'upfront'" [class.annual-monthly]="option.id === 'annual-monthly'" [attr.aria-pressed]="billingTerms()['basic'] === option.id" (click)="setBillingTerm('basic', option.id)">
+                <span class="billing-choice-heading"><span>{{ option.label }}</span><span class="billing-indicator" aria-hidden="true">@if (billingTerms()['basic'] === option.id) {&#10003;}</span></span>
+                @if (monthlyRate('basic', option.id); as rate) {
+                  <span class="billing-unit-price"><b>&#8377;{{ rate | number:'1.0-0' }}</b> /user/mo</span>
+                  @if (option.id !== 'monthly') {<span class="billing-annual-price">&#8377;{{ annualRate('basic', option.id) | number:'1.0-0' }} /user/year</span>}
+                } @else {<span class="billing-unit-price"><b>Quote on request</b></span>}
+                <span class="billing-note">{{ option.note }}</span>
+                <span class="billing-seat-total" aria-live="polite">
+                  <span>&times; {{ quoteQuantities()['basic'] }} {{ quoteQuantities()['basic'] === 1 ? 'user' : 'users' }}</span>
+                  @if (billingTotal('basic', option.id); as total) {
+                    <span class="billing-seat-amount"><b>&#8377;{{ total | number:'1.0-2' }} /mo</b><b>&#8377;{{ billingTotal('basic', option.id, true) | number:'1.0-0' }} /year{{ option.id === 'monthly' ? ' equivalent' : '' }}</b></span>
+                  } @else {<span class="billing-seat-amount">Quote for {{ quoteQuantities()['basic'] }} users</span>}
+                </span>
+              </button>
+            }
+          </div>
+          <div class="btns">
+            <label class="quantity-label">No. of users / licences</label>
+            <div class="quote-quantity" role="group" aria-label="Business Basic quantity">
+              <button type="button" aria-label="Decrease Business Basic quantity" [disabled]="quoteQuantities()['basic'] <= 1" (click)="adjustQuantity('basic', -1)">&minus;</button>
+              <output aria-live="polite">{{ quoteQuantities()['basic'] }}</output>
+              <button type="button" aria-label="Increase Business Basic quantity" [disabled]="quoteQuantities()['basic'] >= 300" (click)="adjustQuantity('basic', 1)">+</button>
+            </div>
+            <a class="btn btn-primary" [href]="checkoutUrl('basic')" target="_blank" rel="noopener noreferrer">Buy Now &#8599;</a>
+            @if (billingTerms()['basic'] !== 'upfront') {<span class="checkout-term-note">Online checkout uses annual upfront billing.</span>}
+          </div>
         </div>
 
         <div class="ppl hot">
           <span class="tag">Most Popular</span>
           <h4>Business Standard</h4>
           <div class="sub">Full desktop apps{{ includesTeams() ? ' + Teams' : '' }}</div>
-          <div class="amt"><b>&#8377;{{ (includesTeams() ? 9240 : 6840) * quoteQuantities()['standard'] | number:'1.0-0' }}</b><span>{{ quoteQuantities()['standard'] === 1 ? 'per user' : 'for ' + quoteQuantities()['standard'] + ' users' }} / year + GST</span></div>
-          <span class="save">BEST VALUE</span>
-          <ul>
-            <li>Everything in Business Basic</li>
-            <li>Full desktop Word, Excel &amp; PowerPoint</li>
-            <li>Install on 5 PCs/Macs + 5 mobile devices</li>
-            <li>{{ includesTeams() ? 'Teams webinars & meeting recordings' : 'Microsoft Teams not included' }}</li>
-            <li>Bookings &amp; Clipchamp included</li>
-          </ul>
-          <div class="btns"><div class="quote-quantity" role="group" aria-label="Business Standard quantity"><button type="button" aria-label="Decrease Business Standard quantity" (click)="adjustQuantity('standard', -1)">−</button><output>{{ quoteQuantities()['standard'] }}</output><button type="button" aria-label="Increase Business Standard quantity" (click)="adjustQuantity('standard', 1)">+</button></div><a class="btn btn-ghost" [href]="includesTeams() ? standardTeamsCheckoutUrl : standardNoTeamsCheckoutUrl" target="_blank" rel="noopener noreferrer">Buy Now</a></div>
+          <div class="billing-choices" role="group" aria-label="Business Standard payment frequency">
+            @for (option of billingOptions; track option.id) {
+              <button type="button" class="billing-choice" [class.chosen]="billingTerms()['standard'] === option.id" [class.upfront]="option.id === 'upfront'" [class.annual-monthly]="option.id === 'annual-monthly'" [attr.aria-pressed]="billingTerms()['standard'] === option.id" (click)="setBillingTerm('standard', option.id)">
+                <span class="billing-choice-heading"><span>{{ option.label }}</span><span class="billing-indicator" aria-hidden="true">@if (billingTerms()['standard'] === option.id) {&#10003;}</span></span>
+                @if (monthlyRate('standard', option.id); as rate) {
+                  <span class="billing-unit-price"><b>&#8377;{{ rate | number:'1.0-0' }}</b> /user/mo</span>
+                  @if (option.id !== 'monthly') {<span class="billing-annual-price">&#8377;{{ annualRate('standard', option.id) | number:'1.0-0' }} /user/year</span>}
+                } @else {<span class="billing-unit-price"><b>Quote on request</b></span>}
+                <span class="billing-note">{{ option.note }}</span>
+                <span class="billing-seat-total" aria-live="polite">
+                  <span>&times; {{ quoteQuantities()['standard'] }} {{ quoteQuantities()['standard'] === 1 ? 'user' : 'users' }}</span>
+                  @if (billingTotal('standard', option.id); as total) {
+                    <span class="billing-seat-amount"><b>&#8377;{{ total | number:'1.0-2' }} /mo</b><b>&#8377;{{ billingTotal('standard', option.id, true) | number:'1.0-0' }} /year{{ option.id === 'monthly' ? ' equivalent' : '' }}</b></span>
+                  } @else {<span class="billing-seat-amount">Quote for {{ quoteQuantities()['standard'] }} users</span>}
+                </span>
+              </button>
+            }
+          </div>
+          <div class="btns">
+            <label class="quantity-label">No. of users / licences</label>
+            <div class="quote-quantity" role="group" aria-label="Business Standard quantity">
+              <button type="button" aria-label="Decrease Business Standard quantity" [disabled]="quoteQuantities()['standard'] <= 1" (click)="adjustQuantity('standard', -1)">&minus;</button>
+              <output aria-live="polite">{{ quoteQuantities()['standard'] }}</output>
+              <button type="button" aria-label="Increase Business Standard quantity" [disabled]="quoteQuantities()['standard'] >= 300" (click)="adjustQuantity('standard', 1)">+</button>
+            </div>
+            <a class="btn btn-primary" [href]="checkoutUrl('standard')" target="_blank" rel="noopener noreferrer">Buy Now &#8599;</a>
+            @if (billingTerms()['standard'] !== 'upfront') {<span class="checkout-term-note">Online checkout uses annual upfront billing.</span>}
+          </div>
         </div>
 
         <div class="ppl">
           <span class="tag">Security Ready</span>
           <h4>Business Premium</h4>
           <div class="sub">Standard + enterprise security</div>
-          <div class="amt"><b>&#8377;{{ (includesTeams() ? 21960 : 18780) * quoteQuantities()['premium'] | number:'1.0-0' }}</b><span>{{ quoteQuantities()['premium'] === 1 ? 'per user' : 'for ' + quoteQuantities()['premium'] + ' users' }} / year + GST</span></div>
-          <span class="save">Defender + Intune</span>
-          <ul>
-            <li>Everything in Business Standard</li>
-            <li>Microsoft Defender for Business</li>
-            <li>Intune device management (MDM)</li>
-            <li>Entra ID Premium &mdash; MFA &amp; SSO</li>
-            <li>Microsoft Purview &mdash; DLP &amp; compliance</li>
-          </ul>
-          <div class="btns"><div class="quote-quantity" role="group" aria-label="Business Premium quantity"><button type="button" aria-label="Decrease Business Premium quantity" (click)="adjustQuantity('premium', -1)">−</button><output>{{ quoteQuantities()['premium'] }}</output><button type="button" aria-label="Increase Business Premium quantity" (click)="adjustQuantity('premium', 1)">+</button></div><a class="btn btn-ghost" [href]="includesTeams() ? premiumTeamsCheckoutUrl : premiumNoTeamsCheckoutUrl" target="_blank" rel="noopener noreferrer">Buy Now</a></div>
+          <div class="billing-choices" role="group" aria-label="Business Premium payment frequency">
+            @for (option of billingOptions; track option.id) {
+              <button type="button" class="billing-choice" [class.chosen]="billingTerms()['premium'] === option.id" [class.upfront]="option.id === 'upfront'" [class.annual-monthly]="option.id === 'annual-monthly'" [attr.aria-pressed]="billingTerms()['premium'] === option.id" (click)="setBillingTerm('premium', option.id)">
+                <span class="billing-choice-heading"><span>{{ option.label }}</span><span class="billing-indicator" aria-hidden="true">@if (billingTerms()['premium'] === option.id) {&#10003;}</span></span>
+                @if (monthlyRate('premium', option.id); as rate) {
+                  <span class="billing-unit-price"><b>&#8377;{{ rate | number:'1.0-0' }}</b> /user/mo</span>
+                  @if (option.id !== 'monthly') {<span class="billing-annual-price">&#8377;{{ annualRate('premium', option.id) | number:'1.0-0' }} /user/year</span>}
+                } @else {<span class="billing-unit-price"><b>Quote on request</b></span>}
+                <span class="billing-note">{{ option.note }}</span>
+                <span class="billing-seat-total" aria-live="polite">
+                  <span>&times; {{ quoteQuantities()['premium'] }} {{ quoteQuantities()['premium'] === 1 ? 'user' : 'users' }}</span>
+                  @if (billingTotal('premium', option.id); as total) {
+                    <span class="billing-seat-amount"><b>&#8377;{{ total | number:'1.0-2' }} /mo</b><b>&#8377;{{ billingTotal('premium', option.id, true) | number:'1.0-0' }} /year{{ option.id === 'monthly' ? ' equivalent' : '' }}</b></span>
+                  } @else {<span class="billing-seat-amount">Quote for {{ quoteQuantities()['premium'] }} users</span>}
+                </span>
+              </button>
+            }
+          </div>
+          <div class="btns">
+            <label class="quantity-label">No. of users / licences</label>
+            <div class="quote-quantity" role="group" aria-label="Business Premium quantity">
+              <button type="button" aria-label="Decrease Business Premium quantity" [disabled]="quoteQuantities()['premium'] <= 1" (click)="adjustQuantity('premium', -1)">&minus;</button>
+              <output aria-live="polite">{{ quoteQuantities()['premium'] }}</output>
+              <button type="button" aria-label="Increase Business Premium quantity" [disabled]="quoteQuantities()['premium'] >= 300" (click)="adjustQuantity('premium', 1)">+</button>
+            </div>
+            <a class="btn btn-primary" [href]="checkoutUrl('premium')" target="_blank" rel="noopener noreferrer">Buy Now &#8599;</a>
+            @if (billingTerms()['premium'] !== 'upfront') {<span class="checkout-term-note">Online checkout uses annual upfront billing.</span>}
+          </div>
         </div>
       </div>
 
+      <p class="billing-footnote">Buy Now opens the existing annual upfront checkout; select your user quantity again there. For other billing terms, contact our team. Monthly rates shown are indicative; your checkout or quote confirms the final amount.</p>
       <div class="pp-plans2">
         <div class="ppl2">
           <div><b>Apps for Business</b><span>Desktop Office apps + 1 TB OneDrive &mdash; no email or Teams</span></div>
@@ -382,10 +437,6 @@
             specialists help configure protection policies, retention and recovery workflows so
             your collaboration data remains available whenever your business needs it.
           </p>
-          <div class="cloud-backup-protection-actions">
-            <a class="btn btn-primary" href="#pricing">View pricing</a>
-            <a class="btn cloud-backup-talk-btn" href="#contact" (click)="openCallback($event)">Let's Talk</a>
-          </div>
         </div>
         <img
           class="backup-protection-badges backup-protection-badges-compact"

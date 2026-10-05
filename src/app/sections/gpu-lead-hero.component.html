@@ -1,0 +1,61 @@
+<section class="gpu-lead-hero" [attr.aria-labelledby]="'gpuLeadTitle-' + slug()">
+  <div class="gpu-lead-shell">
+    <div class="gpu-lead-copy">
+      <div class="gpu-social-proof" aria-label="Five-star customer rating">
+        <span class="gpu-avatars" aria-hidden="true"><i>RK</i><i>AM</i><i>VS</i><i>NP</i></span>
+        <span><b>★★★★★</b><small>Trusted by 10,000+ businesses</small></span>
+      </div>
+      <h1 [id]="'gpuLeadTitle-' + slug()">{{ copy().headline }}</h1>
+      <p>{{ copy().description }}</p>
+
+      <div class="gpu-lead-features">
+        @for (feature of copy().features; track feature[0] + feature[1]; let index = $index) {
+          <article>
+            <span class="gpu-feature-icon" [attr.data-icon]="index" aria-hidden="true">
+              @switch (index) {
+                @case (0) { <svg viewBox="0 0 24 24"><path d="M5 4h14v16H5zM8 7h8M8 17h8M9 20v2m6-2v2" /></svg> }
+                @case (1) { <svg viewBox="0 0 24 24"><path d="M6 5h12M6 9h12M9 5c6 0 6 8 0 8H6l9 7" /></svg> }
+                @case (2) { <svg viewBox="0 0 24 24"><path d="M6 18a4 4 0 0 1 0-8 6 6 0 0 1 11.5-1.7A4.5 4.5 0 1 1 18 18z" /></svg> }
+                @default { <svg viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-3.2 8.2-8 9-4.8-.8-8-4-8-9V6zM9 12l2 2 4-4" /></svg> }
+              }
+            </span>
+            <span><strong>{{ feature[0] }}</strong><small>{{ feature[1] }}</small></span>
+          </article>
+        }
+      </div>
+    </div>
+
+    <div class="gpu-lead-card">
+      @if (submitted()) {
+        <div class="gpu-lead-success" role="status">
+          <span>✓</span>
+          <h2>Request received</h2>
+          <p>Your GPU specialist will contact you with access and sizing steps.</p>
+        </div>
+      } @else {
+        <span class="gpu-credit-pill">Start with ₹20,000 free credits</span>
+        <h2>Get {{ copy().accessTitle }} access in minutes</h2>
+        <p class="gpu-form-intro">Share your details and we’ll send the access steps by email.</p>
+        <form (ngSubmit)="submit()" #gpuLeadForm="ngForm">
+          <label>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+            <input type="text" name="name" [(ngModel)]="name" autocomplete="name" placeholder="Name*" aria-label="Name" required />
+          </label>
+          <label class="gpu-phone-field">
+            <span aria-hidden="true">🇮🇳</span><b>+91</b>
+            <input type="tel" name="phone" [(ngModel)]="phone" autocomplete="tel" inputmode="tel" placeholder="Phone Number*" aria-label="Phone number" minlength="8" required />
+          </label>
+          <label>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m5 8 7 5 7-5"/></svg>
+            <input type="email" name="email" [(ngModel)]="email" autocomplete="email" placeholder="Work Email*" aria-label="Work email" required email />
+          </label>
+          <button type="submit" [disabled]="gpuLeadForm.invalid || submitting()">
+            {{ submitting() ? 'Submitting…' : 'Claim ₹20,000 free credits' }}
+          </button>
+          @if (error()) { <p class="gpu-form-error" role="alert">{{ error() }}</p> }
+        </form>
+        <p class="gpu-privacy">We value your privacy and never share your information with third parties. See our <a href="/privacy-policy">Privacy Policy</a>.</p>
+      }
+    </div>
+  </div>
+</section>

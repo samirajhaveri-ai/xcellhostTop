@@ -42,6 +42,7 @@ const overrides = {
   'cloud-backup': '/assets/images/hero-cloud-backup-acronis.png',
   'cloud-backup-acronis': '/assets/images/hero-cloud-backup-acronis.png',
   'cloud-drive': '/assets/images/cloud-drive-tour-dashboard.jpg',
+  'performance-cloud': '/assets/images/hero-performance-cloud-v2.png',
   'remote-monitoring-and-mgmt-rmm': '/assets/images/hero-rmm.png',
   'tally-on-cloud': '/assets/images/hero-tally-on-cloud.png',
 };
@@ -55,7 +56,37 @@ const specialCopy = {
     title: 'Advanced Endpoint Security (EDR) — XcellHost',
     description: 'AI-powered endpoint detection, ransomware protection, investigation, containment, and recovery with expert support.',
   },
+  'performance-cloud': {
+    title: 'Performance Cloud Servers in India — XcellHost',
+    description: 'High-performance NVMe cloud servers in India with hourly or monthly INR billing and 24×7 expert support.',
+  },
 };
+
+function imageMetadata(image) {
+  const relativePath = image.replace(/^\/assets\//, '');
+  const candidates = [
+    path.join(root, 'src', 'assets', relativePath),
+    path.join(root, 'public', 'assets', relativePath),
+  ];
+  const filename = candidates.find(fs.existsSync);
+  const extension = path.extname(image).toLowerCase();
+  const type = extension === '.png'
+    ? 'image/png'
+    : extension === '.jpg' || extension === '.jpeg'
+      ? 'image/jpeg'
+      : undefined;
+  if (!filename || !type) return {};
+
+  const buffer = fs.readFileSync(filename);
+  if (extension === '.png' && buffer.length >= 24 && buffer.toString('ascii', 1, 4) === 'PNG') {
+    return {
+      imageWidth: buffer.readUInt32BE(16),
+      imageHeight: buffer.readUInt32BE(20),
+      imageType: type,
+    };
+  }
+  return { imageType: type };
+}
 
 const routes = {};
 for (const entry of DIRECTORY) {
@@ -77,6 +108,7 @@ for (const entry of DIRECTORY) {
       .trim()
       .slice(0, 180),
     image: siteUrl + image,
+    ...(slug === 'performance-cloud' ? imageMetadata(image) : {}),
   };
 }
 
@@ -88,6 +120,7 @@ for (const [slug, image] of Object.entries(overrides)) {
     image: siteUrl + image,
   };
   routes[key].image = siteUrl + image;
+  if (slug === 'performance-cloud') Object.assign(routes[key], imageMetadata(image));
   if (specialCopy[slug]) Object.assign(routes[key], specialCopy[slug]);
 }
 

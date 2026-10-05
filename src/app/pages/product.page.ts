@@ -127,6 +127,7 @@ import { IdentityResilienceContentComponent } from '../sections/identity-resilie
 import { EdiscoveryComplianceContentComponent } from '../sections/ediscovery-compliance-content.component';
 import { PerformanceCloudContentComponent } from '../sections/performance-cloud-content.component';
 import { GpuServersContentComponent } from '../sections/gpu-servers-content.component';
+import { GpuLeadHeroComponent } from '../sections/gpu-lead-hero.component';
 import { DomainWhoisContentComponent } from '../sections/domain-whois-content.component';
 import { DomainWhoisFaqComponent } from '../sections/domain-whois-faq.component';
 import { ManagedOracleContentComponent } from '../sections/managed-oracle-content.component';
@@ -406,6 +407,7 @@ interface ProductTourSlide {
     EdiscoveryComplianceContentComponent,
     PerformanceCloudContentComponent,
     GpuServersContentComponent,
+    GpuLeadHeroComponent,
     DomainWhoisContentComponent,
     DomainWhoisFaqComponent,
     ManagedOracleContentComponent,
@@ -3172,6 +3174,28 @@ export class ProductPage {
 
   readonly isInfrastructure = computed(() => this.view()?.name === 'Infrastructure');
 
+  readonly isGpuServerPage = computed(() => new Set([
+    'nvidia-l40s',
+    'nvidia-l4',
+    'nvidia-a30',
+    'nvidia-a2',
+    'nvidia-h100',
+    'nvidia-a100',
+    'rtx-pro-6000',
+    'nvidia-rtx-6000-ada',
+    'rtx-a6000',
+    'rtx-8000',
+    'gpu-clusters',
+    'nvidia-vera-rubin',
+  ]).has(this.slug()));
+
+  readonly isIframeGpuPage = computed(() => new Set([
+    'nvidia-l40s',
+    'nvidia-l4',
+    'nvidia-a30',
+    'nvidia-a2',
+  ]).has(this.slug()));
+
   readonly isWhatsAppSmb = computed(() => this.view()?.name === 'WhatsApp SMB');
 
   /** Every product's available videos, shown together immediately before reviews. */
@@ -3338,6 +3362,7 @@ export class ProductPage {
       'advanced-endpoint-security-edr': '/assets/images/hero-acronis-edr-v2.png',
       'cloud-backup': '/assets/images/hero-cloud-backup-acronis.png',
       'cloud-drive': '/assets/images/cloud-drive-tour-dashboard.jpg',
+      'performance-cloud': '/assets/images/hero-performance-cloud-v2.png',
       'remote-monitoring-and-mgmt-rmm': '/assets/images/hero-rmm.png',
       'tally-on-cloud': '/assets/images/hero-tally-on-cloud.png',
     };
@@ -3581,14 +3606,14 @@ export class ProductPage {
     this.buyPlan(plan, ev);
   }
 
-  /** Restore the existing dialogs for buttons in the standalone Tally hero. */
+  /** Keep the existing dialogs available from every standalone SMB hero. */
   @HostListener('window:message', ['$event'])
-  onTallyHeroMessage(event: MessageEvent<unknown>): void {
-    if (!this.isTally() || event.origin !== window.location.origin) return;
-    const frame = document.querySelector<HTMLIFrameElement>(
-      'iframe.supplied-smb-hero-frame[src="/assets/heroes/tally-on-cloud-hero.html"]',
-    );
-    if (!frame || event.source !== frame.contentWindow) return;
+  onSuppliedSmbHeroMessage(event: MessageEvent<unknown>): void {
+    if (!this.usesSuppliedSmbHero() || event.origin !== window.location.origin) return;
+    const frame = Array.from(
+      document.querySelectorAll<HTMLIFrameElement>('iframe.supplied-smb-hero-frame'),
+    ).find((candidate) => candidate.contentWindow === event.source);
+    if (!frame) return;
 
     const message = event.data as { type?: unknown; action?: unknown } | null;
     if (message?.type !== 'xcellhost:hero-action') return;
@@ -3634,6 +3659,11 @@ export class ProductPage {
       `${window.location.pathname}${window.location.search}#${sectionId}`
     );
     section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  scrollTallyPageToTop(): void {
+    window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   requestGpuCluster(configuration: string): void {

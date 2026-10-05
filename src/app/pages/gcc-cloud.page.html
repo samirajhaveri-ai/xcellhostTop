@@ -1,0 +1,40 @@
+<main class="gcc-page">
+  <section class="gcc-hero">
+    <div class="wrap gcc-hero-grid">
+      <div>
+        <nav aria-label="Breadcrumb"><a routerLink="/">Home</a><span> / </span>Industries<span> / </span>GCC Cloud</nav>
+        <span class="gcc-eyebrow">CLOUD FOR YOUR TEAMS</span>
+        <h1>GCC Cloud<br /><span>Built for your next move.</span></h1>
+        <p>Bring your applications, people and data together with cloud infrastructure designed around your business.</p>
+        <div class="gcc-hero-points"><span>Flexible infrastructure</span><span>Security &amp; recovery</span><span>Managed support</span></div>
+        <div class="gcc-actions"><button type="button" class="btn btn-primary" (click)="enquire()">Talk to an expert &#8594;</button><a class="btn gcc-outline" href="#gcc-features">Explore features</a></div>
+      </div>
+      <div class="gcc-visual" role="img" aria-label="Cloud infrastructure connecting applications, data, security and teams">
+        <div class="gcc-orbit"></div>
+        <div class="gcc-cloud-core"><span class="material-symbols-outlined" aria-hidden="true">cloud</span><strong>GCC CLOUD</strong><small>Your connected cloud environment</small></div>
+        <div class="gcc-node gcc-node-one"><span class="material-symbols-outlined" aria-hidden="true">dns</span><b>Applications</b></div>
+        <div class="gcc-node gcc-node-two"><span class="material-symbols-outlined" aria-hidden="true">shield</span><b>Security</b></div>
+        <div class="gcc-node gcc-node-three"><span class="material-symbols-outlined" aria-hidden="true">database</span><b>Data</b></div>
+        <div class="gcc-node gcc-node-four"><span class="material-symbols-outlined" aria-hidden="true">groups</span><b>Teams</b></div>
+      </div>
+    </div>
+  </section>
+  <section class="gcc-section wrap">
+    <span class="gcc-eyebrow">OVERVIEW</span><h2>A cloud foundation for connected operations</h2>
+    <p class="gcc-lead">Your GCC needs an environment that brings people, applications and information together. Explore a cloud approach that combines infrastructure, security, backup and managed support, with the flexibility to plan around your team's needs.</p>
+  </section>
+  <section class="gcc-features gcc-section" id="gcc-features">
+    <div class="wrap"><span class="gcc-eyebrow">FEATURES</span><h2>Build the environment your team needs</h2>
+      <div class="gcc-card-grid">@for (feature of features; track feature.title) {<article class="gcc-card"><span class="material-symbols-outlined" aria-hidden="true">{{ feature.icon }}</span><h3>{{ feature.title }}</h3><p>{{ feature.text }}</p></article>}</div>
+    </div>
+  </section>
+  <section class="gcc-section wrap">
+    <span class="gcc-eyebrow">USE CASES</span><h2>One foundation. Many possibilities.</h2>
+    <div class="gcc-card-grid">@for (use of uses; track use.title) {<article class="gcc-card"><span class="material-symbols-outlined" aria-hidden="true">{{ use.icon }}</span><h3>{{ use.title }}</h3><p>{{ use.text }}</p></article>}</div>
+  </section>
+  <section class="gcc-section gcc-faq wrap">
+    <span class="gcc-eyebrow">FAQ</span><h2>Frequently asked questions</h2>
+    @for (faq of faqs; track faq.question) {<details name="gcc-faq"><summary>{{ faq.question }}</summary><p>{{ faq.answer }}</p></details>}
+  </section>
+  <section class="wrap gcc-cta-wrap"><div class="gcc-cta"><div><h2>Plan your GCC cloud environment</h2><p>Tell us what your team needs. Let's build a practical starting point.</p></div><button type="button" class="btn btn-primary" (click)="enquire()">Let's talk &#8594;</button></div></section>
+</main>
