@@ -1,7 +1,19 @@
 <section class="digital-menu-tail" aria-label="Agency branding and Growth Suite">
- <h2 class="h2s">For agencies — fully <em>white-label</em></h2>
- <div class="g3"><div class="cd"><div class="ic"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h3>Your brand, your domain</h3><p>Your logo, colours and login page on your own domain — clients only ever see your brand.</p></div><div class="cd"><div class="ic"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12M6 9h12M9 4c6 0 6 10 0 10H6l9 7"/></svg></div><h3>You set the price</h3><p>Package tools into your own plans and keep what clients pay you.</p></div><div class="cd"><div class="ic"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg></div><h3>One agency dashboard</h3><p>Run every client account from one dashboard instead of juggling separate tools.</p></div></div>
- <div class="wl-br" style="margin-top:18px">
+ <section class="menu-agency" id="digitalMenuAgencies" aria-labelledby="digitalMenuAgencyTitle">
+  <div class="menu-agency__copy">
+   <span class="menu-agency__eyebrow"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5zM3 13l9 5 9-5M3 18l9 5 9-5"/></svg>BUILT FOR AGENCIES</span>
+   <h2 id="digitalMenuAgencyTitle">For Agencies &mdash; Fully <em>White-Label</em></h2>
+   <p class="menu-agency__intro">Bring digital menus and product catalogues into your agency&rsquo;s offering. Help clients showcase their items, update prices and share QR menus under your own brand, with XcellHost behind you.</p>
+   <ul class="menu-agency__benefits">
+    <li><span class="menu-agency__icon"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><div><h3>Your Brand, Your Domain</h3><p>Your logo, colours and login page on your own domain &mdash; clients only ever see your brand.</p></div></li>
+    <li><span class="menu-agency__icon"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12M6 9h12M9 4c6 0 6 10 0 10H6l9 7"/></svg></span><div><h3>You Set The Price</h3><p>Package tools into your own plans and keep what clients pay you.</p></div></li>
+    <li><span class="menu-agency__icon"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5zM3 13l9 5 9-5M3 18l9 5 9-5"/></svg></span><div><h3>One Agency Dashboard</h3><p>Run every client account from one dashboard instead of juggling separate tools.</p></div></li>
+   </ul>
+   <div class="menu-agency__actions"><a class="menu-agency__cta" href="#plans" (click)="scrollToSection($event, 'plans')">Explore agency plans <span aria-hidden="true">&rarr;</span></a><a class="menu-agency__preview" href="#digitalMenuBrandPreview" (click)="scrollToSection($event, 'digitalMenuBrandPreview')">Preview your brand <span aria-hidden="true">&#8599;</span></a></div>
+  </div>
+  <figure class="menu-agency__art"><img src="/assets/images/digital-menu-and-catalog-management/magicbolt.png" width="1254" height="1254" loading="lazy" decoding="async" alt="Digital menu automation illustration with an AI assistant, mobile restaurant menu, QR menu stand and menu management dashboard."><figcaption>Create &middot; Update &middot; Share &middot; Grow</figcaption></figure>
+ </section>
+ <div class="wl-br" id="digitalMenuBrandPreview" style="margin-top:18px">
   <div class="in"><span class="kick" style="color:var(--blue)">TRY IT — YOUR BRAND PREVIEW</span>
    <label>AGENCY NAME<input type="text" [value]="agencyName()" (input)="updateAgencyName($event)" maxlength="28" aria-label="Agency name"></label>
    <div class="colour-control"><span>BRAND COLOUR</span><div class="wl-sw" role="group" aria-label="Brand colour">

@@ -156,6 +156,7 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { CloudCctvContentComponent } from '../sections/cloud-cctv-content.component';
 import { AcronisTrueImageContentComponent } from '../sections/acronis-true-image-content.component';
 import { SiteLockContentComponent } from '../sections/sitelock-content.component';
+import { SiteLockHeroComponent } from '../sections/sitelock-hero.component';
 import { VmcContentComponent } from '../sections/vmc-content.component';
 import { CmcContentComponent } from '../sections/cmc-content.component';
 import { TsplusServerMonitoringContentComponent } from '../sections/tsplus-server-monitoring-content.component';
@@ -434,6 +435,7 @@ interface ProductTourSlide {
     CloudCctvContentComponent,
     AcronisTrueImageContentComponent,
     SiteLockContentComponent,
+    SiteLockHeroComponent,
     VmcContentComponent,
     CmcContentComponent,
     TsplusServerMonitoringContentComponent,
@@ -554,6 +556,39 @@ interface ProductTourSlide {
   ],
   templateUrl: './product.page.html',
   styles: [`
+
+    #ppage .pp-hero.sitelock-hero {
+      width: 100%; margin: 0;
+      padding: 36px 0; border-radius: 0;
+      background: radial-gradient(ellipse at 85% 20%, #103d7b, transparent 65%), #041e42;
+    }
+    #ppage .pp-hero.sitelock-hero::before { display: none; }
+    #ppage .sitelock-hero > .wrap.sitelock-hero-layout {
+      display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: center; gap: 36px; width: min(1200px, calc(100% - 48px)); max-width: none; padding: 0;
+    }
+    #ppage .sitelock-hero .sitelock-copy { width: 100%; min-width: 0; text-align: left; }
+    #ppage .sitelock-hero .sitelock-copy h1 {
+      display: block; white-space: normal; font-size: clamp(28px, 2.7vw, 38px); line-height: 1.2;
+    }
+    #ppage .sitelock-hero .pp-title-brand { display: inline-flex; }
+    #ppage .sitelock-hero .pp-title-divider { display: none; }
+    #ppage .sitelock-hero .pp-title-name { display: block; margin: 8px 0 0; }
+    #ppage .sitelock-hero .sitelock-eyebrow { font-size: 10px; line-height: 1.5; }
+    #ppage .sitelock-hero .sitelock-checks { gap: 10px 12px; }
+    #ppage .sitelock-hero .sitelock-ctas { width: 100%; flex-wrap: wrap; gap: 10px; overflow: visible; }
+    #ppage .sitelock-hero .sitelock-ctas .btn { min-height: 42px; padding: 10px 14px; font-size: 12px; }
+    #ppage .sitelock-live-visual { display: block; width: 100%; min-width: 0; }
+    @media (max-width: 1000px) {
+      #ppage .sitelock-hero > .wrap.sitelock-hero-layout { grid-template-columns: minmax(0, 1fr); gap: 48px; }
+      #ppage .sitelock-live-visual { max-width: 560px; margin: 0 auto; }
+    }
+    @media (max-width: 720px) {
+      #ppage .pp-hero.sitelock-hero { padding: 28px 0; }
+      #ppage .sitelock-hero > .wrap.sitelock-hero-layout { width: calc(100% - 32px); }
+      #ppage .sitelock-hero .sitelock-checks { grid-template-columns: minmax(0, 1fr); }
+      #ppage .sitelock-hero .pp-title-name { margin-left: 0; }
+    }
 
     #ppage .pph-scene.plesk-hero-art {
       right: max(24px, calc((100% - 1192px) / 2)); width: min(40%, 480px);

@@ -48,6 +48,17 @@ export class BillingSoftwareOverviewComponent implements AfterViewInit, OnDestro
   private observer?: IntersectionObserver;
   constructor(private readonly host: ElementRef<HTMLElement>) {}
 
+  scrollToDemo(): void {
+    this.scrollToSection('billing-demo');
+  }
+
+  scrollToSection(id: string): void {
+    this.host.nativeElement.querySelector(`#${id}`)?.scrollIntoView({
+      behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+      block: 'start',
+    });
+  }
+
   ngAfterViewInit(): void {
     const nodes = this.host.nativeElement.querySelectorAll<HTMLElement>('[data-reveal]');
     if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {

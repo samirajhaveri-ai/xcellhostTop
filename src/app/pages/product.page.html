@@ -1107,9 +1107,7 @@
             </div>
           </div>
         } @else if (v.name === 'Web Security (SiteLock)') {
-          <div class="pph-scene pph-brand-only pph-sitelock-brand" aria-hidden="true">
-            <img class="pph-sitelock-logo" src="/assets/images/sitelock-logo.png" alt="SiteLock" />
-          </div>
+          <!-- The live SiteLock visual sits beside its copy inside the shared width. -->
         } @else if (v.name !== 'Web Security (SiteLock)' && slug() !== 'higher-education-cloud') {
           <div class="pph-scene" id="pphScene" aria-hidden="true" [innerHTML]="sceneHtml()"></div>
         }
@@ -1117,12 +1115,12 @@
         <canvas class="pph-net" xhHeroNet aria-hidden="true"></canvas>
         <span class="orb orb-1" aria-hidden="true"></span>
 
-        <div class="wrap" [class.higher-education-hero-layout]="slug() === 'higher-education-cloud'">
+        <div class="wrap" [class.higher-education-hero-layout]="slug() === 'higher-education-cloud'" [class.sitelock-hero-layout]="isSiteLock()">
           @if (v.name === 'Web Security (SiteLock)') {
             <div class="sitelock-copy">
               <div class="pp-crumb" id="ppCrumb">Home › Security › Website Security › SiteLock</div>
               <span class="sitelock-eyebrow"
-                ><span class="dot"></span>Website Security · Find · Fix · Prevent</span
+                ><span class="dot"></span>Security · Find · Fix · Prevent</span
               >
               <h1 id="ppTitle">
                 <span class="pp-title-brand" aria-label="XcellSecure">
@@ -1167,6 +1165,7 @@
                 >
               </div>
             </div>
+            <xh-sitelock-hero class="sitelock-live-visual" />
           } @else if (isMicrosoftCopilot()) {
             <div class="copilot-hero-copy">
               <div class="copilot-source-crumb"><a routerLink="/">HOME</a> › <span>SOLUTIONS</span> › <span>PRODUCTIVITY</span> › <strong>COPILOT FOR MICROSOFT 365</strong></div>
