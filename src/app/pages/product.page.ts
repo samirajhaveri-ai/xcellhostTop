@@ -1,3 +1,11 @@
+import { SectigoSslContentComponent } from '../sections/sectigo-ssl-certificates-content.component';
+import { SECTIGO_FAQS } from '../data/sectigo-ssl-certificates-faqs.data';
+import { EmailBackupContentComponent } from '../sections/email-backup-content.component';
+import { EMAIL_BACKUP_FAQS } from '../data/email-backup-faqs.data';
+import { OdooHostingContentComponent } from '../sections/odoo-hosting-content.component';
+import { ODOO_HOSTING_FAQS } from '../data/odoo-hosting-faqs.data';
+import { ErpNextHostingContentComponent } from '../sections/erp-next-hosting-content.component';
+import { ERPNEXT_FAQS } from '../data/erp-next-hosting-faqs.data';
 import { VeraRubinContentComponent } from '../sections/nvidia-vera-rubin-content.component';
 import { VERA_RUBIN_FAQS } from '../data/nvidia-vera-rubin-faqs.data';
 import { StorageContentComponent } from '../sections/storage-servers-content.component';
@@ -384,6 +392,10 @@ interface ProductTourSlide {
     InstantWebsiteContentComponent,
     LeadCrmContentComponent,
     VeraRubinContentComponent,
+    SectigoSslContentComponent,
+    EmailBackupContentComponent,
+    OdooHostingContentComponent,
+    ErpNextHostingContentComponent,
     StorageContentComponent,
     GamingContentComponent,
     VirtualizationContentComponent,
@@ -2326,6 +2338,98 @@ export class ProductPage {
         { ...view.why[3], title: 'Flexible Storage', body: 'Choose drive types, capacity, RAID and private networking.' },
         { ...view.why[4], title: '24×7 NOC', body: 'Engineers support incident investigation and operational response.' },
         { ...view.why[5], title: 'One Partner', body: 'Hardware, networking, backup and support together.' },
+      ],
+    };
+    if (slug === 'erp-next-hosting') return {
+      ...view, faqs: ERPNEXT_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — ERPNext Hosting',
+        intro: 'Keep ERPNext access, backups and server maintenance aligned with your business requirements. Use role-based permissions for your team, SSL for each site and separate databases for multi-site deployments. Confirm backup retention, restore procedures and the scope of managed support before deployment.',
+        rows: [
+          ['Application Access', 'ERPNext Roles And Permissions'],
+          ['Site Protection', 'SSL For Each ERPNext Site'],
+          ['Data Separation', 'Separate Databases For Multi-Site Hosting'],
+          ['Recovery', 'Automated Backups And Restore Planning'],
+          ['Maintenance', 'Server Management According To Your Plan'],
+          ['Deployment', 'ERPNext On The Frappe Framework'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Dedicated Resources', body: 'Size CPU, RAM and storage for your ERPNext users and workloads.' },
+        { ...view.why[2], title: 'Free Migration', body: 'Deployment and migration support for your ERPNext environment.' },
+        { ...view.why[3], title: 'Flexible Plans', body: 'Choose self-managed or fully managed hosting and scale as you grow.' },
+        { ...view.why[4], title: '24×7 Support', body: 'Hosting support with Indian billing and GST invoices.' },
+        { ...view.why[5], title: 'One Partner', body: 'Cloud hosting, backups and managed operations together.' },
+      ],
+    };
+    if (slug === 'odoo-hosting') return {
+      ...view, faqs: ODOO_HOSTING_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — Odoo Hosting',
+        intro: 'Keep Odoo access, backups and server maintenance aligned with your business requirements. Use role-based permissions for your team, SSL for each site and database isolation for separate business deployments. Confirm backup retention, restore procedures and the scope of managed support before deployment.',
+        rows: [
+          ['Application Access', 'Odoo Roles And Permissions'],
+          ['Site Protection', 'SSL For Each Odoo Site'],
+          ['Data Separation', 'Separate Business Databases'],
+          ['Recovery', 'Automated Backups And Restore Planning'],
+          ['Maintenance', 'Server Management According To Your Plan'],
+          ['Deployment', 'Odoo With PostgreSQL'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Dedicated Resources', body: 'Size CPU, RAM and storage for your Odoo users and workloads.' },
+        { ...view.why[2], title: 'Free Migration', body: 'Deployment and migration support for your Odoo environment.' },
+        { ...view.why[3], title: 'Flexible Plans', body: 'Choose self-managed or fully managed hosting and scale as you grow.' },
+        { ...view.why[4], title: '24×7 Support', body: 'Hosting support with Indian billing and GST invoices.' },
+        { ...view.why[5], title: 'One Partner', body: 'Cloud hosting, backups and managed operations together.' },
+      ],
+    };
+    if (slug === 'email-backup') return {
+      ...view, faqs: EMAIL_BACKUP_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — Email Backup',
+        intro: 'Keep a separate, encrypted copy of mailbox data and control who can search, export and restore it. Authorise supported cloud tenants through secure API access, choose retention policies for your organisation and use legal hold and audit reporting where included in your plan.',
+        rows: [
+          ['Data Protection', 'Separate Encrypted Mailbox Copies'],
+          ['Tenant Connection', 'Secure API Authorisation'],
+          ['Recovery', 'Item-Level And Point-In-Time Restore'],
+          ['Retention', 'Policies Based On Your Selected Plan'],
+          ['Compliance Options', 'Legal Hold And Audit Reporting'],
+          ['Coverage', 'Microsoft 365, Google Workspace, Exchange And IMAP'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Platform Coverage', body: 'Protect mail across Microsoft 365, Google Workspace, Exchange and IMAP.' },
+        { ...view.why[2], title: 'Guided Setup', body: 'Connect your tenant and configure mailbox policies with support.' },
+        { ...view.why[3], title: 'Flexible Retention', body: 'Choose a plan that fits your recovery and compliance needs.' },
+        { ...view.why[4], title: 'Managed Support', body: 'Restore guidance and support according to your selected plan.' },
+        { ...view.why[5], title: 'One Partner', body: 'Mailbox backup, monitoring and recovery support together.' },
+      ],
+    };
+    if (slug === 'sectigo-ssl-certificates') return {
+      ...view, faqs: SECTIGO_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — Sectigo SSL Certificates',
+        intro: 'Choose certificate validation and domain coverage for the services you operate. Complete the required validation, protect private keys and install the full certificate chain. Plan renewals and reissues, using ACME automation where supported by the selected product.',
+        rows: [
+          ['Validation', 'DV, OV And EV Options'],
+          ['Coverage', 'Single-Domain, Wildcard And Multi-Domain'],
+          ['Private Keys', 'Keep Keys Protected On Your Server'],
+          ['Installation', 'CSR And Certificate Chain Assistance'],
+          ['Renewals', 'ACME Automation Where Supported'],
+          ['Operations', 'Certificate Reissue And Renewal Planning'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Certificate Choice', body: 'Compare validation levels and domain coverage for your applications.' },
+        { ...view.why[2], title: 'Installation Help', body: 'CSR generation and certificate installation assistance.' },
+        { ...view.why[3], title: 'Renewal Planning', body: 'Support for reissues and automated renewal options.' },
+        { ...view.why[4], title: 'Local Support', body: 'Indian billing, GST invoices and certificate support.' },
+        { ...view.why[5], title: 'One Partner', body: 'Certificate selection, installation and ongoing support together.' },
       ],
     };
     if (slug === 'nvidia-vera-rubin') return {

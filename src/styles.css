@@ -5927,6 +5927,11 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 #ppage.instagram-automation-page .pp-hero #ppTitle{display:block!important;line-height:1.18!important}
 #ppage:is(.smart-qr-page,.virtualization-page) .pp-hero #ppTitle{display:flex!important;flex-wrap:nowrap!important;align-items:baseline;gap:.12em;white-space:nowrap!important;font-size:clamp(15px,1.75vw,26px)!important;line-height:1.18!important}
 #ppage.server-tail-uppercase .pp-body :is(.pp-sec,h2,h3){text-transform:uppercase!important}
+#ppage.server-tail-uppercase:has(xh-erp-next-hosting-content,xh-odoo-hosting-content,xh-email-backup-content,xh-sectigo-ssl-certificates-content) .pp-body xh-insights-section .insights-heading-row h2{text-transform:capitalize!important}
+.email-backup-protects{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:18px}
+.email-backup-protects small{font:700 10px var(--mono);letter-spacing:.08em;color:#a9bdd8;margin-right:2px}
+.email-backup-protects>span{display:grid;place-items:center;width:32px;height:32px;background:#fff;border-radius:9px}
+.email-backup-protects img{display:block;width:22px;height:22px;object-fit:contain}
 #ppage:is(.smart-qr-page,.virtualization-page) .pp-hero #ppTitle .pp-title-name{display:inline;margin:0!important;white-space:nowrap!important;font-size:inherit;line-height:inherit}
 #ppage.instagram-automation-page .pp-hero #ppTitle .pp-title-name{display:block;margin:4px 0 0!important;white-space:nowrap!important;font-size:clamp(24px,2.5vw,36px);line-height:1.18}
 
@@ -6025,3 +6030,24 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 @media (max-width: 620px) {
   .supplied-smb-hero-frame { height: 1420px; }
 }
+
+
+#ppage:has(.odoo-dashboard-scene) .pp-body :is(h2,h3,.pp-sec){text-transform:capitalize}
+
+
+#ppage:has(.email-backup-dashboard-scene) .pp-body :is(h2,h3,.pp-sec){text-transform:capitalize}
+
+
+.sectigo-ssl-song{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:18px;color:#fff}.sectigo-ssl-song b{font-size:15px;white-space:nowrap}.sectigo-ssl-song b span{color:#ff8c1a;font-size:11px;letter-spacing:-2px;margin-right:5px}.sectigo-ssl-song audio{width:270px;max-width:100%;height:44px;border-radius:999px;}
+
+#ppage:has(.sectigo-dashboard-scene) .pp-hero #ppTitle{display:block!important;white-space:normal!important;line-height:1.18!important}
+#ppage:has(.sectigo-dashboard-scene) .pp-hero #ppTitle .pp-title-name{display:block;margin:4px 0 0!important;white-space:normal!important;font-size:inherit;line-height:inherit;text-wrap:balance}
+@media(min-width:1001px){
+  #ppage.google-business-page:has(.sectigo-dashboard-scene) .pp-hero{display:grid!important;grid-template-columns:minmax(0,620px) minmax(0,580px)!important;justify-content:center;gap:24px;align-items:center;padding:40px 24px!important}
+  #ppage.google-business-page:has(.sectigo-dashboard-scene) .pp-hero>.wrap{grid-column:1;grid-row:1;width:100%;max-width:none;margin:0;padding:0;min-width:0}
+  #ppage.google-business-page:has(.sectigo-dashboard-scene) .pp-hero>.wrap>:not(.pph-scene){width:100%;max-width:100%!important}
+  #ppage.google-business-page .pp-hero>.pph-scene.sectigo-dashboard-scene{position:relative!important;grid-column:2;grid-row:1;inset:auto!important;width:100%!important;max-width:none!important;height:auto!important;max-height:none;padding:0;margin:0;min-width:0;transform:none!important}
+}
+
+#ppage .sectigo-ssl-song audio{outline:none!important;border:0;box-shadow:none!important}
+#ppage .sectigo-ssl-song audio:focus-visible{outline:2px solid #fff!important;outline-offset:3px}
