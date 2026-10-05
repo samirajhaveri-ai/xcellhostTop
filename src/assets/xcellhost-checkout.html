@@ -13,19 +13,6 @@ html{scroll-behavior:smooth}body{font-family:var(--f);background:var(--bg);color
 a{text-decoration:none;color:inherit}
 button{font-family:var(--f)}
 
-/* ═══ HEADER ═══ */
-.top{background:var(--nv);color:#fff;font-size:.7rem}
-.top-in{max-width:1240px;margin:0 auto;padding:6px 24px;display:flex;justify-content:flex-end;gap:18px;align-items:center}
-.top a{color:rgba(255,255,255,.7)}.top a:hover{color:#fff}
-.nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 12px rgba(0,0,0,.03)}
-.nav-in{max-width:1240px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;gap:20px}
-.nav-logo img{height:36px;display:block;margin-right:auto}
-.nav-menu{display:flex;gap:16px;align-items:center}
-.nav-menu a{color:#334155;font-size:.78rem;font-weight:600;transition:color .2s;white-space:nowrap}.nav-menu a:hover{color:var(--bl)}
-.nav-secure{display:flex;align-items:center;gap:6px;font-size:.72rem;font-weight:700;color:var(--gn);background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);padding:6px 12px;border-radius:8px;white-space:nowrap}
-.hamb{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:6px}
-.hamb span{width:22px;height:2px;background:var(--ink);border-radius:2px}
-
 /* ═══ STEPPER ═══ */
 .stepper-wrap{background:#fff;border-bottom:1px solid var(--line)}
 .stepper{max-width:1240px;margin:0 auto;padding:22px 24px;display:flex;align-items:center;justify-content:center;gap:0}
@@ -160,16 +147,6 @@ button{font-family:var(--f)}
 .grev-btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-size:.74rem;font-weight:700;color:var(--bl);border:1px solid var(--line);border-radius:9px;padding:9px 14px;transition:all .2s}
 .grev-btn:hover{border-color:var(--bl);background:rgba(0,102,255,.04)}
 
-/* footer */
-.ft{background:var(--nv);color:rgba(255,255,255,.6);margin-top:20px}
-.ft-grid{max-width:1240px;margin:0 auto;padding:44px 24px 28px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px}
-.ft-logo{height:34px;filter:brightness(0) invert(1);margin-bottom:14px}
-.ft-about{font-size:.76rem;line-height:1.7;color:rgba(255,255,255,.5)}
-.ft-col h4{color:#fff;font-size:.76rem;font-weight:700;margin-bottom:12px;letter-spacing:.04em}
-.ft-col a{display:block;font-size:.76rem;color:rgba(255,255,255,.55);padding:5px 0;transition:color .2s}.ft-col a:hover{color:#fff}
-.ft-bottom{border-top:1px solid rgba(255,255,255,.1);padding:18px 24px;text-align:center;font-size:.66rem;color:rgba(255,255,255,.35)}
-
-
 /* layout-only compaction for the right-column summary (spacing only) */
 .summary .incl{padding-top:14px;padding-bottom:14px}
 .summary .coupon{padding-top:14px;padding-bottom:14px}
@@ -231,24 +208,12 @@ button{font-family:var(--f)}
 .d-clear{width:100%;margin-top:10px;padding:10px;border:1px solid var(--line);background:#fff;color:var(--muted);border-radius:10px;font-size:.76rem;font-weight:700;cursor:pointer;font-family:var(--f);transition:all .2s}.d-clear:hover{border-color:var(--red);color:var(--red)}
 @media(max-width:480px){.drawer{width:100%}}
 
-@media(max-width:980px){.layout{grid-template-columns:1fr}.summary{position:static}.nav-menu{display:none}.hamb{display:flex}.ft-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:980px){.layout{grid-template-columns:1fr}.summary{position:static}}
 @media(max-width:920px){.value-cards{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.frow,.acct-toggle,.spec-grid{grid-template-columns:1fr}.stepper{gap:0;overflow-x:auto}.step-lab{display:none}.step-bar{width:30px;margin:0 6px}.ft-grid{grid-template-columns:1fr}.page-title{font-size:1.35rem}.value-cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.frow,.acct-toggle,.spec-grid{grid-template-columns:1fr}.stepper{gap:0;overflow-x:auto}.step-lab{display:none}.step-bar{width:30px;margin:0 6px}.page-title{font-size:1.35rem}.value-cards{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
-
-<!-- HEADER -->
-<div class="top"><div class="top-in"><a href="mailto:support@xcellhost.cloud">support@xcellhost.cloud</a><a href="tel:+912267111555">+91-22-67111555</a><a href="#">Partner Login</a></div></div>
-<nav class="nav"><div class="nav-in">
-<a href="/tally-on-cloud" class="nav-logo"><img src="/assets/images/xcellhost-logo.png" alt="XcellHost — Cloud | Security | AI"></a>
-<div class="nav-menu">
-<a href="#">Web Presence</a><a href="#">Cloud</a><a href="#">Productivity</a><a href="#">Data Protection</a><a href="#">Digital Trust</a><a href="#">Security</a><a href="#">AI</a><a href="#">Marketplace</a><a href="#">Solutions</a><a href="#">Company</a>
-</div>
-<button type="button" class="nav-secure" id="cartChip" style="cursor:pointer;font-family:var(--f)">&#128722; Cart (<span id="cartCount">0</span>)</button>
-<span class="nav-secure">&#128274; Secure Checkout</span>
-<button class="hamb" aria-label="Menu"><span></span><span></span><span></span></button>
-</div></nav>
 
 <!-- STEPPER -->
 <div class="stepper-wrap"><div class="stepper" id="stepper">
@@ -462,17 +427,6 @@ button{font-family:var(--f)}
   <div class="drawer-foot" id="drawerFoot"><!-- totals + buttons render here --></div>
 </aside>
 
-<!-- FOOTER -->
-<footer class="ft">
-<div class="ft-grid">
-<div><img src="/assets/images/xcellhost-logo.png" class="ft-logo" alt="XcellHost"><p class="ft-about">Managed cloud, cybersecurity and digital trust for 10,000+ businesses across India. ISO 27001 certified since 1999.</p></div>
-<div class="ft-col"><h4>Cloud</h4><a href="#">Tally on Cloud</a><a href="#">Performance Cloud</a><a href="#">Cloud Backup</a><a href="#">Cloud Desktop</a></div>
-<div class="ft-col"><h4>Security &amp; AI</h4><a href="#">Scrutiny EDR</a><a href="#">SecureSetu DPDPA</a><a href="#">GenAI Protection</a><a href="#">Cybird Appliance</a></div>
-<div class="ft-col"><h4>Company &amp; Support</h4><a href="#">About</a><a href="#">Contact</a><a href="#">Privacy Policy</a><a href="#">Terms &amp; Conditions</a></div>
-</div>
-<div class="ft-bottom">&copy; 2026 XcellHost Cloud Services Pvt. Ltd. &middot; Mumbai, India &middot; support@xcellhost.cloud &middot; +91-22-67111555 &middot; ISO 27001 &middot; Microsoft Gold Partner</div>
-</footer>
-
 <script>
 /* ══════════════════════════════════════════════════
    XcellHost Checkout — REUSABLE DYNAMIC prototype
@@ -505,17 +459,17 @@ const PRODUCTS = {
   },
   "acronis-edr": {
     id:"acronis-edr", icon:"\uD83D\uDEE1\uFE0F",
-    productName:"Acronis Advanced EDR", packageName:"Acronis Advanced EDR", users:"10 Users",
+    productName:"Acronis Advanced EDR", packageName:"Advanced Endpoint Security (EDR)", users:null,
     specs:[
       {icon:"\uD83D\uDD0D",k:"Detection",v:"Behavioural EDR"},
       {icon:"\u26A1",k:"Response",v:"Auto-isolate"},
-      {icon:"\uD83D\uDC65",k:"Users",v:"10 Users"},
+      {icon:"\uD83D\uDC65",k:"Licence",v:"Per user / device"},
       {icon:"\uD83D\uDD54",k:"Support",v:"24\u00D77"}
     ],
     included:["Behavioural threat detection","Automated response & isolation","Ransomware protection","Endpoint DLP","Central console","24×7 SOC monitoring"],
-    billingCycles:["annual"],
-    billing:"annual",
-    basePrice:null            // not configured yet
+    billingCycles:["1-year","2-year","3-year"],
+    billing:"1-year",
+    basePrice:999             // per-user annual price; term totals are defined below
   },
   "microsoft-365-smb": {
     id:"microsoft-365-smb", icon:"\uD83D\uDCE7",
@@ -553,7 +507,10 @@ const BILLING_META = {
   "quarterly":   {label:"3 Months", unit:"3 Months",   mult:3,   save:0.05},
   "half-yearly": {label:"6 Months", unit:"6 Months",   mult:6,   save:0.075},
   "yearly":      {label:"1 Year",   unit:"12 Months",  mult:12,  save:0.10},
-  "annual":      {label:"Annual",   unit:"12 Months",  mult:1,   save:0}   // base already annual
+  "annual":      {label:"Annual",   unit:"12 Months",  mult:1,   save:0},  // base already annual
+  "1-year":      {label:"1 Year",   unit:"15 Months",  mult:1,   save:0},
+  "2-year":      {label:"2 Years",  unit:"30 Months",  mult:2,   save:0},
+  "3-year":      {label:"3 Years",  unit:"48 Months",  mult:3,   save:0}
 };
 
 // Checkout discounts require a matching payment-provider discount.
@@ -590,6 +547,11 @@ function calculatePrice(product, billingCycle, quantity, coupon){
 // ── URL PARAM ──
 function getProductId(){
   return new URLSearchParams(window.location.search).get("product");
+}
+
+function getQuantity(){
+  const requested = Number.parseInt(new URLSearchParams(window.location.search).get("quantity") || "1", 10);
+  return Number.isFinite(requested) ? Math.max(1, Math.min(9999, requested)) : 1;
 }
 
 function getBillingCycle(product){
@@ -924,6 +886,30 @@ const PRODUCT_CATALOG = {
         zohoPlanUrl: null   // to be configured
       }
     }
+  },
+  "acronis-edr": {
+    productId: "acronis-edr",
+    productName: "Acronis Advanced Endpoint Security (EDR)",
+    plans: {
+      "1-year": {
+        planId: "acronis-edr-1-year",
+        name: "1 Year + 3 Months Free", billingCycle: "1-year",
+        price: 999,
+        currency: "INR", zohoPlanCode: null, zohoPlanUrl: null
+      },
+      "2-year": {
+        planId: "acronis-edr-2-year",
+        name: "2 Years + 6 Months Free", billingCycle: "2-year",
+        price: 1998,
+        currency: "INR", zohoPlanCode: null, zohoPlanUrl: null
+      },
+      "3-year": {
+        planId: "acronis-edr-3-year",
+        name: "3 Years + 12 Months Free", billingCycle: "3-year",
+        price: 2997,
+        currency: "INR", zohoPlanCode: null, zohoPlanUrl: null
+      }
+    }
   }
 };
 
@@ -1238,31 +1224,30 @@ function renderDrawer(){
 }
 function openDrawer(){ renderDrawer(); document.getElementById("cartOverlay").classList.add("open"); document.getElementById("cartDrawer").classList.add("open"); }
 function closeDrawer(){ document.getElementById("cartOverlay").classList.remove("open"); document.getElementById("cartDrawer").classList.remove("open"); }
-document.getElementById("cartChip").addEventListener("click",openDrawer);
 document.getElementById("drawerClose").addEventListener("click",closeDrawer);
 document.getElementById("cartOverlay").addEventListener("click",closeDrawer);
 document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeDrawer(); });
 
 // ── INIT (URL-driven) ──
 // Entry-point product for this checkout when no ?product= is supplied.
-// BUY NOW on the Tally page opens this checkout with Tally Private Cloud Lite (Monthly) already loaded.
+// Buy Now links open this checkout with the selected product, term and quantity already loaded.
 const DEFAULT_PRODUCT_ID = "tally-private-cloud-lite";
 
 (function init(){
   const id = getProductId() || DEFAULT_PRODUCT_ID;   // default to Tally — no "Browse Products" step
   const p=PRODUCTS[id];
   if(!p){ showNoProduct("That product could not be found."); return; }
-  state.productId=id; state.product=p; state.billing=getBillingCycle(p); state.quantity=1; state.coupon=null;
+  state.productId=id; state.product=p; state.billing=getBillingCycle(p); state.quantity=getQuantity(); state.coupon=null;
   renderProduct();
   renderBilling();
   updateAddToCartLabel();
-  // A direct Buy Now visit starts with the selected Cloud Lite billing period.
-  // Keep an existing quantity only when the saved cart already matches this selection.
+  // A direct Buy Now visit starts with the selected product, term and quantity.
+  // Keep an existing line only when it already matches the complete selection.
   const selected = cart.items.find(item=>item.productId===id && item.billingCycle===state.billing);
-  if(!selected || cart.items.length!==1){
+  if(!selected || cart.items.length!==1 || selected.quantity!==state.quantity){
     cart.items=[];
     saveCart();
-    addToCart(state.productId, state.billing, 1);
+    addToCart(state.productId, state.billing, state.quantity);
   } else {
     updateCartUI();
   }

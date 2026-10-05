@@ -37,7 +37,11 @@ if (fs.existsSync(path.join(DEPLOY, 'nginx.conf'))) {
 /* 2. zip the built site */
 const zip = path.join(RELEASE, 'xcellhost-site.zip');
 if (fs.existsSync(zip)) fs.unlinkSync(zip);
-execSync(`cd "${DIST}" && zip -qr "${zip}" . -x '*.map'`, { stdio: 'inherit' });
+if (process.platform === 'win32') {
+  execSync(`tar.exe -a -c -f "${zip}" --exclude=*.map .`, { cwd: DIST, stdio: 'inherit' });
+} else {
+  execSync(`cd "${DIST}" && zip -qr "${zip}" . -x '*.map'`, { stdio: 'inherit' });
+}
 
 const size = (fs.statSync(zip).size / 1024 / 1024).toFixed(1);
 console.log(`\nPackaged: release/xcellhost-site.zip  (${size} MB)`);

@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#041E42">
+<title>Complete Your Order — Remote Monitoring & Management (RMM) | XcellHost Cloud Services</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<!-- ============================================================================
+     XcellHost — ACRONIS REMOTE MONITORING & MANAGEMENT (RMM) · STANDALONE CHECKOUT
+     Same proven architecture/visual structure as the XcellHost EDR/Tally checkout.
+     A SEPARATE, single-product RMM checkout: no shared/multi-product cart, no Zoho
+     APIs, no credentials, no fake auth, no fake payment confirmation.
+     Flow: Account -> Service -> Profile -> Payment.
+     ============================================================================ -->
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bl:#0066FF;--nv:#041E42;--nv2:#0B132B;--or:#FF8A00;--gn:#22c55e;--red:#ef4444;--ink:#0f172a;--muted:#64748b;--line:#e2e8f0;--bg:#f6f9fc;--f:'DM Sans',system-ui,sans-serif}
+html{scroll-behavior:smooth}body{font-family:var(--f);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;font-size:16px}
+a{text-decoration:none;color:inherit}
+button{font-family:var(--f)}
+
+/* ═══ HEADER ═══ */
+.top{background:var(--nv);color:#fff;font-size:.7rem}
+.top-in{max-width:1240px;margin:0 auto;padding:6px 24px;display:flex;justify-content:flex-end;gap:18px;align-items:center}
+.top a{color:rgba(255,255,255,.7)}.top a:hover{color:#fff}
+.nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 12px rgba(0,0,0,.03)}
+.nav-in{max-width:1240px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;gap:20px}
+.nav-logo img{height:36px;display:block;margin-right:auto}
+.nav-menu{display:flex;gap:16px;align-items:center}
+.nav-menu a{color:#334155;font-size:.78rem;font-weight:600;transition:color .2s;white-space:nowrap}.nav-menu a:hover{color:var(--bl)}
+.nav-secure{display:flex;align-items:center;gap:6px;font-size:.72rem;font-weight:700;color:var(--gn);background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);padding:6px 12px;border-radius:8px;white-space:nowrap}
+.hamb{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:6px}
+.hamb span{width:22px;height:2px;background:var(--ink);border-radius:2px}
+
+/* ═══ STEPPER ═══ */
+.stepper-wrap{background:#fff;border-bottom:1px solid var(--line)}
+.stepper{max-width:1240px;margin:0 auto;padding:22px 24px;display:flex;align-items:center;justify-content:center;gap:0}
+.step{display:flex;align-items:center;gap:10px}
+.step-num{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:800;background:#eef2f7;color:var(--muted);border:2px solid var(--line);transition:all .4s}
+.step-lab{font-size:.8rem;font-weight:700;color:var(--muted);transition:color .4s}
+.step.active .step-num{background:var(--bl);color:#fff;border-color:var(--bl);box-shadow:0 0 0 4px rgba(0,102,255,.15)}
+.step.active .step-lab{color:var(--ink)}
+.step.done .step-num{background:var(--gn);color:#fff;border-color:var(--gn)}
+.step.done .step-lab{color:var(--ink)}
+.step-bar{width:60px;height:2px;background:var(--line);margin:0 14px;position:relative;overflow:hidden}
+.step-bar::after{content:'';position:absolute;inset:0;width:0;background:var(--gn);transition:width .5s}
+.step-bar.filled::after{width:100%}
+
+/* ═══ PAGE ═══ */
+.page{max-width:1240px;margin:0 auto;padding:32px 24px 60px}
+.page-title{font-size:1.7rem;font-weight:800;letter-spacing:-.02em;margin-bottom:4px}
+.page-sub{color:var(--muted);font-size:.92rem;margin-bottom:28px}
+.layout{display:grid;grid-template-columns:65% 35%;gap:28px;align-items:start}
+
+/* cards */
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px;box-shadow:0 4px 20px rgba(15,23,42,.04);margin-bottom:20px;animation:fadeUp .5s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.card-h{font-size:1.1rem;font-weight:800;margin-bottom:3px}
+.card-sub{color:var(--muted);font-size:.82rem;margin-bottom:20px}
+
+/* account type toggle */
+.acct-toggle{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px}
+.acct-opt{border:2px solid var(--line);border-radius:12px;padding:16px;cursor:pointer;transition:all .25s;display:flex;align-items:center;gap:12px;background:#fff}
+.acct-opt:hover{border-color:#bcd4ff}
+.acct-opt.sel{border-color:var(--bl);background:rgba(0,102,255,.04)}
+.acct-radio{width:20px;height:20px;border-radius:50%;border:2px solid var(--line);flex-shrink:0;position:relative;transition:border-color .25s}
+.acct-opt.sel .acct-radio{border-color:var(--bl)}
+.acct-opt.sel .acct-radio::after{content:'';position:absolute;inset:3px;border-radius:50%;background:var(--bl)}
+.acct-opt .t{font-size:.88rem;font-weight:700}.acct-opt .s{font-size:.68rem;color:var(--muted);margin-top:1px}
+
+/* form */
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:.76rem;font-weight:600;color:#475569;margin-bottom:6px}
+.field label .rq{color:var(--red)}
+.field input{width:100%;padding:12px 14px;border:2px solid #d5dde7;border-radius:10px;font-size:.9rem;font-family:var(--f);color:var(--ink);outline:none;transition:border-color .2s,box-shadow .2s}
+.field input::placeholder{color:#aab4c0}
+.field input:focus{border-color:var(--bl);box-shadow:0 0 0 3px rgba(0,102,255,.15)}
+.field input.err{border-color:var(--red)}.field input.ok{border-color:var(--gn)}
+.field select{width:100%;padding:12px 14px;border:2px solid #d5dde7;border-radius:10px;font-size:.9rem;font-family:var(--f);color:var(--ink);outline:none;background:#fff;cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.field select:focus{border-color:var(--bl);box-shadow:0 0 0 3px rgba(0,102,255,.15)}
+.ferr{font-size:.7rem;color:var(--red);margin-top:5px;display:none}.ferr.show{display:block}
+
+/* existing login prototype */
+.login-proto{display:none}.login-proto.show{display:block;animation:fadeUp .4s ease}
+.proto-note{font-size:.7rem;color:var(--or);background:rgba(255,138,0,.08);border:1px solid rgba(255,138,0,.2);border-radius:8px;padding:8px 12px;margin-bottom:16px}
+
+/* service spec grid */
+.spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.spec{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--bg);border:1px solid var(--line);border-radius:10px}
+.spec-ico{width:34px;height:34px;border-radius:9px;background:rgba(0,102,255,.08);border:1px solid rgba(0,102,255,.16);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.spec .k{font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.spec .v{font-size:.82rem;font-weight:700}
+.svc-head{display:flex;align-items:center;gap:14px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.svc-badge{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--bl),#0047b3);display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;color:#fff}
+.svc-name{font-size:1.1rem;font-weight:800}.svc-pkg{font-size:.8rem;color:var(--bl);font-weight:700;margin-top:2px}.svc-users{font-size:.72rem;color:var(--muted);margin-top:2px}
+
+/* ═══ RMM term selector + quantity (Tally-styled) ═══ */
+.terms{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:4px 0 6px}
+.term-opt{position:relative;border:2px solid var(--line);border-radius:12px;padding:18px 12px 14px;cursor:pointer;transition:all .25s;text-align:center;background:#fff}
+.term-opt:hover{border-color:#bcd4ff}
+.term-opt.sel{border-color:var(--bl);background:rgba(0,102,255,.04)}
+.term-opt.sel::after{content:'✓';position:absolute;top:8px;right:10px;width:20px;height:20px;border-radius:50%;background:var(--bl);color:#fff;font-size:.68rem;font-weight:800;display:flex;align-items:center;justify-content:center}
+.term-opt .to-dur{font-size:1.02rem;font-weight:800}
+.term-opt .to-off{display:inline-block;margin-top:8px;font-size:.58rem;font-weight:800;letter-spacing:.02em;color:#fff;background:var(--or);border-radius:20px;padding:3px 9px}
+.term-opt .to-sub{font-size:.64rem;color:var(--muted);margin-top:8px}
+.term-detail{margin-top:16px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.term-detail .td-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px}
+.term-detail .td-name{font-size:.95rem;font-weight:800;color:var(--nv)}
+.term-detail .td-cov{font-size:.74rem;font-weight:700;color:var(--gn);background:rgba(34,197,94,.1);border-radius:20px;padding:3px 10px}
+.term-detail .td-price{margin-left:auto;font-size:1.15rem;font-weight:800;color:var(--bl)}
+.term-detail .td-price .u{font-size:.66rem;font-weight:600;color:var(--muted)}
+.term-detail .td-tbc{margin-left:auto;font-size:.82rem;font-weight:700;color:var(--or)}
+.term-detail .td-note{font-size:.7rem;color:var(--muted);margin-top:10px;line-height:1.5}
+.qty-wrap{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:6px}
+.qty{display:inline-flex;align-items:center;border:2px solid #d5dde7;border-radius:10px;overflow:hidden}
+.qty button{width:44px;height:44px;background:var(--bg);font-size:1.25rem;font-weight:800;color:var(--bl);cursor:pointer;border:none;line-height:1}
+.qty button:hover{background:rgba(0,102,255,.08)}
+.qty input{width:58px;height:44px;border:none;border-left:2px solid #d5dde7;border-right:2px solid #d5dde7;text-align:center;font-weight:800;font-size:1.02rem;font-family:var(--f);outline:none}
+.qty-lab{font-size:.8rem;color:var(--muted);font-weight:600}
+.svc-feats{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:4px}
+.svc-feats li{display:flex;align-items:flex-start;gap:9px;font-size:.82rem;color:#334155;font-weight:600}
+.svc-feats li::before{content:'✓';color:var(--gn);font-weight:800;flex-shrink:0}
+.whyc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:4px}
+.whyc{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px}
+.whyc .wc-ico{width:36px;height:36px;border-radius:9px;background:rgba(0,102,255,.08);border:1px solid rgba(0,102,255,.16);display:flex;align-items:center;justify-content:center;font-size:1.05rem;margin-bottom:10px}
+.whyc h4{font-size:.86rem;font-weight:800}
+.whyc p{font-size:.72rem;color:var(--muted);margin-top:4px;line-height:1.5}
+.trust-pts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+.trust-pt{display:flex;align-items:center;gap:10px;padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:.82rem;font-weight:700}
+.trust-pt .tp-ck{color:var(--gn);font-weight:800;flex-shrink:0}
+@media(max-width:860px){.whyc-grid{grid-template-columns:1fr 1fr}}
+
+/* upcoming steps */
+.upcoming{display:flex;align-items:center;gap:12px;padding:18px;border:1px dashed var(--line);border-radius:12px;color:var(--muted);margin-bottom:12px}
+.upcoming .u-ico{width:38px;height:38px;border-radius:10px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:1.1rem;opacity:.6}
+.upcoming .u-t{font-size:.86rem;font-weight:700;color:#94a3b8}.upcoming .u-s{font-size:.7rem}
+
+/* ═══ ORDER SUMMARY ═══ */
+.summary{position:sticky;top:80px;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(15,23,42,.06)}
+.sum-head{background:var(--nv);color:#fff;padding:20px 24px}
+.sum-head h3{font-size:1rem;font-weight:800}
+.sum-prod{padding:20px 24px;border-bottom:1px solid var(--line)}
+.sum-prod .p{font-size:.95rem;font-weight:800}.sum-prod .pk{font-size:.78rem;color:var(--bl);font-weight:700;margin-top:2px}.sum-prod .u{font-size:.72rem;color:var(--muted);margin-top:2px}
+.sum-prod .pr{font-size:.95rem;font-weight:800;margin-top:8px}
+.sum-prod .pr .tbc{color:var(--or)}
+.incl{padding:18px 24px;border-bottom:1px solid var(--line)}
+.incl-t{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:12px}
+.incl li{list-style:none;font-size:.78rem;color:#475569;padding:4px 0;display:flex;align-items:center;gap:8px}
+.incl li::before{content:'✓';color:var(--gn);font-weight:800;flex-shrink:0}
+.coupon{padding:18px 24px;border-bottom:1px solid var(--line)}
+.coupon-t{font-size:.78rem;font-weight:700;margin-bottom:10px}
+.coupon-row{display:flex;gap:8px}
+.coupon-row input{flex:1;padding:10px 12px;border:2px solid #d5dde7;border-radius:9px;font-size:.82rem;font-family:var(--f);outline:none;text-transform:uppercase}
+.coupon-row input:focus{border-color:var(--bl)}
+.coupon-row button{padding:10px 18px;border:none;border-radius:9px;background:var(--nv);color:#fff;font-weight:700;font-size:.8rem;cursor:pointer;transition:background .2s}
+.coupon-row button:hover{background:#0a2a5c}
+.coupon-msg{font-size:.7rem;margin-top:8px;display:none}.coupon-msg.show{display:block}
+.coupon-msg.ok{color:var(--gn)}.coupon-msg.no{color:var(--red)}
+.coupon-hint{font-size:.62rem;color:#94a3b8;margin-top:6px}
+.pricing{padding:18px 24px}
+.pline{display:flex;justify-content:space-between;font-size:.82rem;color:#475569;padding:6px 0}
+.pline .discount{color:var(--gn)}
+.pline.total{border-top:2px solid var(--line);margin-top:8px;padding-top:14px;font-size:1.15rem;font-weight:800;color:var(--ink)}
+.pline .amt{font-weight:700;transition:color .3s}
+.amt.flash{color:var(--or)}
+.amt.tbc{color:var(--or)}
+
+/* continue button */
+.continue{width:100%;padding:15px;border:none;border-radius:12px;background:var(--bl);color:#fff;font-size:.95rem;font-weight:800;cursor:pointer;position:relative;overflow:hidden;transition:transform .12s,box-shadow .2s;margin-top:6px}
+.continue:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,102,255,.3)}
+.continue:active{transform:translateY(0)}
+.continue::after{content:'';position:absolute;top:0;left:-120%;width:70%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);transform:skewX(-20deg);animation:shine 3.5s ease-in-out infinite}
+@keyframes shine{0%,55%{left:-120%}100%{left:150%}}
+.secure-line{text-align:center;font-size:.66rem;color:var(--muted);margin-top:12px;display:flex;align-items:center;justify-content:center;gap:5px}
+.dev-test{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);display:flex;align-items:center;justify-content:center;gap:8px;opacity:.75}
+.dev-test .dev-tag{font-size:.56rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:2px 7px}
+.dev-test a{font-size:.68rem;font-weight:700;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.dev-test a:hover{color:var(--bl)}
+
+/* right column trust card */
+.why-xcell{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 4px 20px rgba(15,23,42,.04);margin-top:20px}
+.why-xcell .wx-t{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:12px}
+.why-list{list-style:none;padding:0;margin:0;display:grid;gap:9px}
+.why-list li{display:flex;align-items:flex-start;gap:9px;font-size:.8rem;font-weight:600;color:var(--ink)}
+.why-list li .wx-ck{color:var(--gn);font-weight:800;flex-shrink:0}
+.sec-note{margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+.sec-note .sn-h{display:flex;align-items:center;gap:6px;font-size:.78rem;font-weight:800;color:var(--nv);margin-bottom:4px}
+.sec-note .sn-b{font-size:.7rem;line-height:1.5;color:var(--muted)}
+
+/* footer */
+.ft{background:var(--nv);color:rgba(255,255,255,.6);margin-top:20px}
+.ft-grid{max-width:1240px;margin:0 auto;padding:44px 24px 28px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px}
+.ft-logo{height:34px;filter:brightness(0) invert(1);margin-bottom:14px}
+.ft-about{font-size:.76rem;line-height:1.7;color:rgba(255,255,255,.5)}
+.ft-col h4{color:#fff;font-size:.76rem;font-weight:700;margin-bottom:12px;letter-spacing:.04em}
+.ft-col a{display:block;font-size:.76rem;color:rgba(255,255,255,.55);padding:5px 0;transition:color .2s}.ft-col a:hover{color:#fff}
+.ft-bottom{border-top:1px solid rgba(255,255,255,.1);padding:18px 24px;text-align:center;font-size:.66rem;color:rgba(255,255,255,.35)}
+
+/* ═══ RESPONSIVE (matches Tally) ═══ */
+@media(max-width:980px){.layout{grid-template-columns:1fr}.summary{position:static}.nav-menu{display:none}.hamb{display:flex}.ft-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.frow,.acct-toggle,.spec-grid{grid-template-columns:1fr}.terms{grid-template-columns:1fr}.svc-feats{grid-template-columns:1fr}.whyc-grid{grid-template-columns:1fr}.trust-pts{grid-template-columns:1fr}.stepper{gap:0;overflow-x:auto}.step-lab{display:none}.step-bar{width:30px;margin:0 6px}.ft-grid{grid-template-columns:1fr}.page-title{font-size:1.35rem}}
+
+/* toast */
+.toast-wrap{position:fixed;bottom:22px;right:22px;z-index:200;display:flex;flex-direction:column;gap:10px}
+.toast{background:var(--nv);color:#fff;padding:13px 16px;border-radius:12px;box-shadow:0 12px 30px rgba(4,12,28,.3);font-size:.84rem;max-width:340px;animation:fadeUp .3s ease}
+/* Standalone checkout: the website shell is intentionally omitted, matching EDR. */
+.top,.nav,.ft{display:none!important}
+</style>
+</head>
+<body>
+
+<!-- HEADER (matches Tally) -->
+<div class="top"><div class="top-in"><a href="mailto:support@xcellhost.cloud">support@xcellhost.cloud</a><a href="tel:+912267111555">+91-22-67111555</a><a href="#">Partner Login</a></div></div>
+<nav class="nav"><div class="nav-in">
+<a href="https://xcellhost.top" class="nav-logo"><img src="data:image/png;base64,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" alt="XcellHost — Cloud | Security | AI"></a>
+<div class="nav-menu">
+<a href="#">Web Presence</a><a href="#">Cloud</a><a href="#">Productivity</a><a href="#">Data Protection</a><a href="#">Digital Trust</a><a href="#">Security</a><a href="#">AI</a><a href="#">Marketplace</a><a href="#">Solutions</a><a href="#">Company</a>
+</div>
+<span class="nav-secure">&#128274; Secure Checkout</span>
+<button class="hamb" aria-label="Menu"><span></span><span></span><span></span></button>
+</div></nav>
+
+<!-- STEPPER -->
+<div class="stepper-wrap"><div class="stepper" id="stepper">
+<div class="step active" data-step="0"><div class="step-num">1</div><div class="step-lab">Account</div></div>
+<div class="step-bar" data-bar="0"></div>
+<div class="step" data-step="1"><div class="step-num">2</div><div class="step-lab">Service</div></div>
+<div class="step-bar" data-bar="1"></div>
+<div class="step" data-step="2"><div class="step-num">3</div><div class="step-lab">Profile</div></div>
+<div class="step-bar" data-bar="2"></div>
+<div class="step" data-step="3"><div class="step-num">4</div><div class="step-lab">Payment</div></div>
+</div></div>
+
+<!-- PAGE -->
+<div class="page">
+<h1 class="page-title">Complete Your Order</h1>
+<p class="page-sub">Complete your Acronis Remote Monitoring &amp; Management (RMM) order securely. Choose your term, set the number of users, provide your details, and continue to payment.</p>
+
+<div class="layout">
+<!-- LEFT -->
+<div class="col-left">
+
+  <!-- STEP 1: ACCOUNT -->
+  <div class="card" id="cardAccount">
+    <div class="card-h">Your Account</div>
+    <div class="card-sub">Start your Acronis Remote Monitoring &amp; Management (RMM) order. We'll use these details for your order and onboarding.</div>
+    <div class="acct-toggle">
+      <div class="acct-opt sel" id="optNew"><div class="acct-radio"></div><div><div class="t">New Customer</div><div class="s">Create your order</div></div></div>
+      <div class="acct-opt" id="optExisting"><div class="acct-radio"></div><div><div class="t">Existing Customer</div><div class="s">Sign in to continue</div></div></div>
+    </div>
+
+    <form id="formNew" autocomplete="on">
+      <div class="frow">
+        <div class="field"><label>First Name <span class="rq">*</span></label><input id="firstName" type="text"><div class="ferr">Please enter your first name.</div></div>
+        <div class="field"><label>Last Name <span class="rq">*</span></label><input id="lastName" type="text"><div class="ferr">Please enter your last name.</div></div>
+      </div>
+      <div class="frow">
+        <div class="field"><label>Work Email <span class="rq">*</span></label><input id="email" type="email"><div class="ferr">Enter a valid email address.</div></div>
+        <div class="field"><label>Mobile / WhatsApp <span class="rq">*</span></label><input id="mobile" type="tel"><div class="ferr">Enter a valid mobile number.</div></div>
+      </div>
+      <div class="field"><label>Company Name <span class="rq">*</span></label><input id="company" type="text"><div class="ferr">Please enter your company name.</div></div>
+    </form>
+
+    <div class="login-proto" id="formExisting">
+      <div class="proto-note">&#128274; Your sign-in is verified securely by XcellHost. Your password is never stored in this page or sent anywhere from here.</div>
+      <div class="frow">
+        <div class="field"><label>Email <span class="rq">*</span></label><input id="exEmail" type="email"><div class="ferr">Enter a valid email address.</div></div>
+        <div class="field"><label>Password <span class="rq">*</span></label><input id="exPass" type="password" autocomplete="current-password"><div class="ferr">Please enter your password.</div></div>
+      </div>
+    </div>
+
+    <button type="button" class="continue" onclick="continueFromAccount()"><span class="ctxt">Continue to Service</span></button>
+    <div class="secure-line">&#128274; Your information is encrypted and secure</div>
+  </div>
+
+  <!-- STEP 2: SERVICE -->
+  <div class="card" id="cardService" style="display:none">
+    <div class="svc-head">
+      <div class="svc-badge">&#128421;&#65039;</div>
+      <div><div class="svc-name">Acronis Remote Monitoring &amp; Management (RMM)</div><div class="svc-pkg">Acronis RMM</div><div class="svc-users">Monitor, manage and automate your business devices with XcellHost</div></div>
+    </div>
+
+    <div style="margin-top:22px">
+      <div class="card-h" style="font-size:1rem">Choose Your Acronis RMM Term</div>
+      <div class="card-sub">Every plan includes the complete RMM capability set and XcellHost support.</div>
+      <div class="terms" id="terms"><!-- rendered: renderTerms() --></div>
+      <div class="term-detail" id="termDetail"><!-- rendered: renderTermDetail() --></div>
+    </div>
+
+    <div style="margin-top:22px">
+      <div class="card-h" style="font-size:1rem">No. of users / devices</div>
+      <div class="card-sub">Pricing updates instantly as you change the quantity.</div>
+      <div class="qty-wrap">
+        <div class="qty">
+          <button type="button" aria-label="Decrease" onclick="changeQty(-1)">&minus;</button>
+          <input id="qty" type="text" inputmode="numeric" value="1" aria-label="Quantity" onchange="setQty(this.value)">
+          <button type="button" aria-label="Increase" onclick="changeQty(1)">+</button>
+        </div>
+        <span class="qty-lab">users / devices</span>
+      </div>
+    </div>
+
+    <div style="margin-top:22px">
+      <div class="card-h" style="font-size:1rem">What's included</div>
+      <ul class="svc-feats">
+        <li>Device discovery and asset management</li>
+        <li>System and hardware monitoring</li>
+        <li>Vulnerability assessment and patch management</li>
+        <li>AI-assisted scripting and automation</li>
+        <li>Software deployment with DeployPilot</li>
+        <li>Remote desktop and assistance</li>
+        <li>Microsoft 365 security posture management</li>
+        <li>XcellHost engineer support</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:22px">
+      <div class="card-h" style="font-size:1rem">Why Choose XcellHost RMM?</div>
+      <div class="card-sub">Practical remote monitoring, management and automation for your business devices, backed by XcellHost engineers.</div>
+      <div class="whyc-grid">
+        <div class="whyc"><div class="wc-ico">&#128270;</div><h4>Discovery &amp; Assets</h4><p>Automatic device discovery and asset management across your fleet.</p></div>
+        <div class="whyc"><div class="wc-ico">&#128200;</div><h4>Monitoring</h4><p>System and hardware monitoring to catch issues early.</p></div>
+        <div class="whyc"><div class="wc-ico">&#128295;</div><h4>Patch Management</h4><p>Vulnerability assessment and patch management.</p></div>
+        <div class="whyc"><div class="wc-ico">&#129302;</div><h4>Automation</h4><p>AI-assisted scripting and software deployment with DeployPilot.</p></div>
+        <div class="whyc"><div class="wc-ico">&#128421;&#65039;</div><h4>Remote Assistance</h4><p>Remote desktop and assistance for fast support.</p></div>
+        <div class="whyc"><div class="wc-ico">&#128273;</div><h4>Microsoft 365 Posture</h4><p>Microsoft 365 security posture management.</p></div>
+      </div>
+    </div>
+
+    <div style="margin-top:22px">
+      <div class="card-h" style="font-size:1rem">Why Businesses Trust XcellHost</div>
+      <div class="card-sub">Managed cloud and cybersecurity services since 1999.</div>
+      <!-- CONTENT TEAM: Replace with verified Google Business reviews when approved. No reviews/ratings are invented here. -->
+      <div class="trust-pts">
+        <div class="trust-pt"><span class="tp-ck">&#10003;</span> XcellHost engineer support</div>
+        <div class="trust-pt"><span class="tp-ck">&#10003;</span> Vulnerability &amp; patch management</div>
+        <div class="trust-pt"><span class="tp-ck">&#10003;</span> 24&#215;7 support</div>
+        <div class="trust-pt"><span class="tp-ck">&#10003;</span> Managed cloud &amp; cybersecurity expertise</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;margin-top:22px">
+      <button type="button" class="continue" onclick="goStep('account')" style="background:#eef2f7;color:#334155;flex:0 0 auto;max-width:160px"><span class="ctxt">&larr; Back</span></button>
+      <button type="button" class="continue" onclick="continueFromService()" style="flex:1"><span class="ctxt">Continue to Profile</span></button>
+    </div>
+  </div>
+
+  <!-- STEP 3: PROFILE -->
+  <div class="card" id="cardProfile" style="display:none">
+    <div class="card-h">Billing Profile</div>
+    <div class="card-sub">Required for your GST invoice and service agreement.</div>
+
+    <div class="acct-toggle">
+      <div class="acct-opt sel" id="optIndividual"><div class="acct-radio"></div><div><div class="t">Individual</div><div class="s">Personal billing</div></div></div>
+      <div class="acct-opt" id="optBusiness"><div class="acct-radio"></div><div><div class="t">Business</div><div class="s">Company billing</div></div></div>
+    </div>
+
+    <form id="formProfile">
+      <div class="field"><label>Company / Legal Name <span class="rq">*</span></label><input id="legalName" type="text"><div class="ferr">Please enter your company or legal name.</div></div>
+      <div class="field"><label>Billing Street <span class="rq">*</span></label><input id="street" type="text"><div class="ferr">Please enter your billing street.</div></div>
+      <div class="field"><label>Address (line 2)</label><input id="address2" type="text"></div>
+      <div class="frow">
+        <div class="field"><label>City <span class="rq">*</span></label><input id="city" type="text"><div class="ferr">Please enter your city.</div></div>
+        <div class="field"><label>State <span class="rq">*</span></label><input id="state" type="text"><div class="ferr">Please enter your state.</div></div>
+      </div>
+      <div class="frow">
+        <div class="field"><label>PIN Code <span class="rq">*</span></label><input id="pin" type="text" inputmode="numeric"><div class="ferr">Enter a valid 6-digit PIN code.</div></div>
+        <div class="field"><label>Country <span class="rq">*</span></label><input id="country" type="text" value="India"><div class="ferr">Please enter your country.</div></div>
+      </div>
+      <div class="frow">
+        <div class="field"><label>GST Registered <span class="rq">*</span></label>
+          <select id="gstReg" onchange="toggleGstin()"><option value="">Select…</option><option value="yes">Yes</option><option value="no">No</option></select>
+          <div class="ferr">Please select an option.</div></div>
+        <div class="field" id="gstinField" style="display:none"><label>GSTIN <span class="rq">*</span></label><input id="gstin" type="text" style="text-transform:uppercase"><div class="ferr">Enter a valid 15-character GSTIN.</div></div>
+      </div>
+    </form>
+
+    <div style="display:flex;gap:12px;margin-top:6px">
+      <button type="button" class="continue" onclick="goStep('service')" style="background:#eef2f7;color:#334155;flex:0 0 auto;max-width:160px"><span class="ctxt">&larr; Back</span></button>
+      <button type="button" class="continue" onclick="continueFromProfile()" style="flex:1"><span class="ctxt">Continue to Payment</span></button>
+    </div>
+  </div>
+
+  <!-- STEP 4: PAYMENT -->
+  <div class="card" id="cardPayment" style="display:none">
+    <div class="card-h">Secure Payment</div>
+    <div class="card-sub">You'll be redirected to XcellHost's secure Zoho Billing payment page to complete your order.</div>
+    <div class="spec" style="align-items:flex-start;margin-bottom:18px">
+      <div class="spec-ico">&#128274;</div>
+      <div><div class="v" style="margin-bottom:2px">Payments handled securely by Zoho Billing</div><div class="k" style="text-transform:none;letter-spacing:0;color:var(--muted)">Card, UPI and netbanking are processed on Zoho's PCI-DSS compliant hosted page via Razorpay. XcellHost never stores your card details.</div></div>
+    </div>
+
+    <div id="payRecap" style="margin-bottom:16px"><!-- rendered: renderPayRecap() --></div>
+    <div class="coupon-msg" id="payMsg" style="margin-bottom:14px"></div>
+
+    <div style="display:flex;gap:12px">
+      <button type="button" class="continue" onclick="goStep('profile')" style="background:#eef2f7;color:#334155;flex:0 0 auto;max-width:180px"><span class="ctxt">&larr; Back to Profile</span></button>
+      <button type="button" class="continue" id="payBtn" onclick="proceedToPayment()" style="flex:1"><span class="ctxt">Proceed to Secure Payment</span></button>
+    </div>
+    <div class="secure-line">&#128274; Redirects to Zoho Billing &middot; secured by Razorpay</div>
+    <!-- Developer-only: opens the exact selected Zoho Hosted Payment Page URL in a new browser tab
+         (same URL-building logic as the payment button). Not part of the production customer flow. -->
+    <div class="dev-test"><span class="dev-tag">Developer Test</span><a href="#" id="devTestLink" onclick="devTestPayment();return false;">Test Zoho Payment Page &#8599;</a></div>
+  </div>
+
+</div>
+
+<!-- RIGHT: ORDER SUMMARY (Tally-style) -->
+<div class="col-right">
+  <div class="summary">
+    <div class="coupon">
+      <div class="coupon-t">Have a coupon?</div>
+      <div class="coupon-row"><input type="text" id="couponInput" placeholder="Enter coupon"><button type="button" id="couponBtn" onclick="applyCoupon()">Apply</button></div>
+      <div class="coupon-msg" id="couponMsg"></div>
+      <div class="coupon-hint">Demo (frontend-only): try <b>XCELL10</b> or <b>CLOUD500</b></div>
+    </div>
+    <div class="pricing">
+      <div class="pline"><span id="billLabel">Base Price</span><span class="amt" id="basePrice">₹999</span></div>
+      <div class="pline discount" id="discountLine" style="display:none"><span id="discountLabel">Discount</span><span class="amt" id="discountAmt">−₹0</span></div>
+      <div class="pline"><span>Subtotal</span><span class="amt" id="subtotal">₹999</span></div>
+      <div class="pline"><span>GST (18%)</span><span class="amt" id="gst">₹180</span></div>
+      <div class="pline total"><span>Total</span><span class="amt" id="total">₹1,179</span></div>
+    </div>
+    <div class="sum-head"><h3>Order Summary</h3></div>
+    <div class="sum-prod" id="sumProd"><!-- rendered: renderSummary() --></div>
+    <div class="incl">
+      <div class="incl-t">Included</div>
+      <ul>
+        <li>Device discovery &amp; asset management</li>
+        <li>System &amp; hardware monitoring</li>
+        <li>Vulnerability &amp; patch management</li>
+        <li>AI-assisted scripting &amp; automation</li>
+        <li>Remote desktop &amp; assistance</li>
+        <li>XcellHost engineer support</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- TRUST CARD (matches Tally) -->
+  <div class="why-xcell">
+    <div class="wx-t">Why XcellHost?</div>
+    <ul class="why-list">
+      <li><span class="wx-ck">&#10003;</span> XcellHost engineer support</li>
+      <li><span class="wx-ck">&#10003;</span> Free deployment &amp; onboarding</li>
+      <li><span class="wx-ck">&#10003;</span> 24&#215;7 support</li>
+      <li><span class="wx-ck">&#10003;</span> Managed cloud &amp; cybersecurity</li>
+    </ul>
+    <div class="sec-note">
+      <div class="sn-h">&#128274; Secure Checkout</div>
+      <div class="sn-b">Your payment is securely processed through Zoho Billing and the configured payment gateway.</div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+<!-- FOOTER (matches Tally) -->
+<footer class="ft">
+<div class="ft-grid">
+<div><img src="data:image/png;base64,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" class="ft-logo" alt="XcellHost"><p class="ft-about">Managed cloud, cybersecurity and digital trust for 10,000+ businesses across India. ISO 27001 certified since 1999.</p></div>
+<div class="ft-col"><h4>Cloud</h4><a href="#">Tally on Cloud</a><a href="#">Performance Cloud</a><a href="#">Cloud Backup</a><a href="#">Cloud Desktop</a></div>
+<div class="ft-col"><h4>Security &amp; AI</h4><a href="#">Scrutiny EDR</a><a href="#">SecureSetu DPDPA</a><a href="#">GenAI Protection</a><a href="#">Cybird Appliance</a></div>
+<div class="ft-col"><h4>Company &amp; Support</h4><a href="#">About</a><a href="#">Contact</a><a href="#">Privacy Policy</a><a href="#">Terms &amp; Conditions</a></div>
+</div>
+<div class="ft-bottom">&copy; 2026 XcellHost Cloud Services Pvt. Ltd. &middot; Mumbai, India &middot; support@xcellhost.cloud &middot; +91-22-67111555 &middot; ISO 27001 &middot; Microsoft Gold Partner</div>
+</footer>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script>
+/* ============================================================================
+   RMM CHECKOUT — CONFIG & DATA (standalone; not connected to Tally's cart)
+   ============================================================================ */
+const GST_RATE = 0.18;
+
+/* RMM paid subscription prices per user for the whole term (confirmed).
+   Free months are a coverage bonus shown to the customer — they are NOT a
+   discount and are NOT added to the billing frequency. */
+const RMM_PLANS = {
+  "1y": { id:"rmm-1y", name:"1 Year",  duration:"1 Year",  price:1199, paidMonths:12, freeMonths:3,  coverageMonths:15, offerText:"GET 3 MONTHS FREE"  },
+  "2y": { id:"rmm-2y", name:"2 Years", duration:"2 Years", price:2398, paidMonths:24, freeMonths:6,  coverageMonths:30, offerText:"GET 6 MONTHS FREE"  },
+  "3y": { id:"rmm-3y", name:"3 Years", duration:"3 Years", price:3597, paidMonths:36, freeMonths:12, coverageMonths:48, offerText:"GET 12 MONTHS FREE" }
+};
+const OFFER_VALID_TILL = "31 Dec 2026";
+const PRODUCT_NAME = "Remote Monitoring & Management (RMM)";
+
+/* ── Zoho Billing Hosted Payment Page URLs (per term) ──────────────────────
+   All three are the real, confirmed Hosted Payment Pages. The selected term
+   uses its matching Zoho Hosted Payment Page URL. The supported `quantity`
+   parameter plus the customer's prefill details are appended (see
+   buildPaymentUrl / proceedToPayment). No other/unsupported parameters are
+   added, and the base plan URLs are never modified. */
+const RMM_1_YEAR_PAYMENT_URL  = "https://billing.zohosecure.in/subscribe/89f70e41fab94bbe565e5f2b5f19a4987c52d4a2a5c1ddf9ffe96301ec91bd77/XLCS-SMB-RMM-YEA";    // XLCS-SMB-RMM-YEA  · ₹1,199/user/year
+const RMM_2_YEAR_PAYMENT_URL  = "https://billing.zohosecure.in/subscribe/89f70e41fab94bbe565e5f2b5f19a4986d9ad26e66b6be825bfb35e865474dee/XLCS-SMB-RMM-2YEA";  // XLCS-SMB-RMM-2YEA · ₹2,398/user/2 years
+const RMM_3_YEAR_PAYMENT_URL  = "https://billing.zohosecure.in/subscribe/89f70e41fab94bbe565e5f2b5f19a49844c02d70159ed99b866240261bff6799/XLCS-SMB-RMM-3YEA";  // XLCS-SMB-RMM-3YEA · ₹3,597/user/3 years
+const RMM_PAYMENT_URLS = { "1y":RMM_1_YEAR_PAYMENT_URL, "2y":RMM_2_YEAR_PAYMENT_URL, "3y":RMM_3_YEAR_PAYMENT_URL };
+
+/* Demo (frontend-only) coupons — mirror the Tally/EDR checkout. Discount applies
+   to the RMM base price; the RMM unit pricing itself is unchanged. */
+const COUPONS = { "XCELL10":{type:"pct",val:10,label:"10% off"}, "CLOUD500":{type:"flat",val:500,label:"₹500 off"} };
+
+/* ── STATE (standalone RMM cart persisted to localStorage; passwords NEVER persisted) ── */
+const CART_KEY = "xcellhost_rmm_cart";
+let state = { step:"account", custType:"new", entity:"individual", termId:"1y", quantity:1, inCart:false, coupon:null, account:{}, profile:{} };
+
+/* helpers */
+const $ = s => document.querySelector(s);
+const fmt = n => "₹" + Number(n).toLocaleString("en-IN");
+function plan(){ return RMM_PLANS[state.termId]; }
+function unitPrice(){ return plan().price; }
+function priceReady(){ return unitPrice()!=null; }
+function basePrice(){ const u=unitPrice(); return u==null?null:u*state.quantity; }
+function discountAmt(){
+  const b=basePrice(); if(b==null||!state.coupon||!COUPONS[state.coupon]) return 0;
+  const c=COUPONS[state.coupon]; return c.type==="pct" ? Math.round(b*c.val/100) : Math.min(c.val,b);
+}
+function subtotal(){ const b=basePrice(); return b==null?null:b-discountAmt(); }
+function gstAmt(){ const s=subtotal(); return s==null?null:Math.round(s*GST_RATE); }
+function grandTotal(){ const s=subtotal(); return s==null?null:s+gstAmt(); }
+
+/* ── PERSISTENCE (never writes passwords) ── */
+function saveCart(){
+  try{
+    const acc={...state.account}; delete acc.password;
+    localStorage.setItem(CART_KEY, JSON.stringify({ termId:state.termId, quantity:state.quantity, inCart:state.inCart, coupon:state.coupon, custType:state.custType, entity:state.entity, account:acc, profile:state.profile }));
+  }catch(e){}
+}
+function loadCart(){
+  try{
+    const d=JSON.parse(localStorage.getItem(CART_KEY)||"null"); if(!d) return;
+    if(d.termId && RMM_PLANS[d.termId]) state.termId=d.termId;
+    if(d.quantity) state.quantity=Math.max(1, parseInt(d.quantity)||1);
+    state.inCart=!!d.inCart;
+    if(d.coupon && COUPONS[d.coupon]) state.coupon=d.coupon;
+    if(d.custType) state.custType=d.custType;
+    if(d.entity) state.entity=d.entity;
+    if(d.account) state.account=d.account;   // never contains password
+    if(d.profile) state.profile=d.profile;
+  }catch(e){}
+}
+
+/* A Buy Now link from the RMM product page supplies the selected term and
+   quantity in the URL. These values intentionally take precedence over an
+   older cart saved in this browser. */
+function applyUrlSelection(){
+  const params=new URLSearchParams(window.location.search);
+  const requestedTerm=params.get("term");
+  const requestedQuantity=parseInt(params.get("quantity")||"",10);
+  if(requestedTerm && RMM_PLANS[requestedTerm]) state.termId=requestedTerm;
+  if(Number.isFinite(requestedQuantity)) state.quantity=Math.max(1,Math.min(9999,requestedQuantity));
+  if(requestedTerm || Number.isFinite(requestedQuantity)){
+    state.inCart=true;
+    saveCart();
+  }
+}
+
+/* ============================================================================
+   RENDERERS
+   ============================================================================ */
+function renderTerms(){
+  $("#terms").innerHTML = Object.keys(RMM_PLANS).map(k=>{
+    const p=RMM_PLANS[k], sel=k===state.termId?"sel":"";
+    const sub = p.price!=null ? `${fmt(p.price)} / user` : "Price to be configured";
+    return `<div class="term-opt ${sel}" data-term="${k}" onclick="selectTerm('${k}')">
+       <div class="to-dur">${p.duration}</div>
+       <div class="to-off">${p.offerText}</div>
+       <div class="to-sub">${p.coverageMonths} months coverage<br>${sub}</div>
+     </div>`;
+  }).join("");
+}
+function renderTermDetail(){
+  const p=plan();
+  const price = p.price!=null
+    ? `<div class="td-price">${fmt(p.price)}<span class="u"> / user</span></div>`
+    : `<div class="td-tbc">Price to be configured</div>`;
+  $("#termDetail").innerHTML = `
+    <div class="td-top">
+      <div class="td-name">${p.duration} + Get ${p.freeMonths} Months Free</div>
+      <div class="td-cov">${p.coverageMonths} Months Coverage</div>
+      ${price}
+    </div>
+    <div class="td-note">Price is per user/year. Free months are added after the paid term. Taxes are additional.${state.termId==="1y"?` Offer valid till ${OFFER_VALID_TILL}.`:""}</div>`;
+}
+function renderSummary(){
+  const p=plan(), ready=priceReady();
+  const price = ready ? fmt(basePrice()) : `<span class="tbc">To be configured</span>`;
+  $("#sumProd").innerHTML = `
+    <div class="p">${PRODUCT_NAME}</div>
+    <div class="pk">${p.name}</div>
+    <div class="u">Users / Devices × ${state.quantity}</div>
+    <div class="pr">Price: ${price}</div>`;
+}
+function renderPricing(){
+  const ready=priceReady();
+  $("#billLabel").textContent = "Base Price";
+  $("#basePrice").innerHTML = ready?fmt(basePrice()):`<span class="tbc">—</span>`;
+  const d=discountAmt(), dl=$("#discountLine");
+  if(ready && d>0){ dl.style.display="flex"; $("#discountLabel").textContent="Discount ("+COUPONS[state.coupon].label+")"; $("#discountAmt").textContent="−"+fmt(d); }
+  else dl.style.display="none";
+  $("#subtotal").innerHTML = ready?fmt(subtotal()):`<span class="tbc">—</span>`;
+  $("#gst").innerHTML = ready?fmt(gstAmt()):`<span class="tbc">—</span>`;
+  $("#total").innerHTML = ready?fmt(grandTotal()):`<span class="tbc">To be configured</span>`;
+  // brief flash on the total to signal update
+  const t=$("#total").querySelector('*')||$("#total");
+}
+function renderPayRecap(){
+  const p=plan(), ready=priceReady();
+  $("#payRecap").innerHTML = `
+    <div class="spec" style="flex-direction:column;align-items:flex-start;gap:10px">
+      <div style="font-weight:800;font-size:.95rem">${PRODUCT_NAME}</div>
+      <div style="display:flex;justify-content:space-between;width:100%;font-size:.84rem"><span style="color:var(--muted)">Selected term</span><b>${p.name}</b></div>
+      <div style="display:flex;justify-content:space-between;width:100%;font-size:.84rem"><span style="color:var(--muted)">Users / Devices</span><b>${state.quantity}</b></div>
+      <div style="display:flex;justify-content:space-between;width:100%;font-size:.84rem"><span style="color:var(--muted)">Amount</span><b>${ready?fmt(basePrice()):'To be configured'}</b></div>
+      ${discountAmt()>0?`<div style="display:flex;justify-content:space-between;width:100%;font-size:.84rem;color:var(--gn)"><span>Discount</span><b>−${fmt(discountAmt())}</b></div>`:""}
+      <div style="display:flex;justify-content:space-between;width:100%;font-size:.84rem"><span style="color:var(--muted)">GST (18%)</span><b>${ready?fmt(gstAmt()):'—'}</b></div>
+      <div style="display:flex;justify-content:space-between;width:100%;font-size:1.05rem;font-weight:800;border-top:1px solid var(--line);padding-top:10px"><span>Total</span><span style="color:var(--nv)">${ready?fmt(grandTotal()):'To be configured'}</span></div>
+    </div>`;
+}
+function renderAll(){ renderTerms(); renderTermDetail(); renderPricing(); renderSummary(); }
+
+/* ============================================================================
+   SERVICE INTERACTIONS
+   ============================================================================ */
+function selectTerm(k){ if(!RMM_PLANS[k])return; state.termId=k; saveCart(); renderAll(); }
+function setQty(v){ let q=parseInt(v,10); if(isNaN(q)||q<1)q=1; if(q>9999)q=9999; state.quantity=q; $("#qty").value=q; saveCart(); renderAll(); }
+function changeQty(d){ setQty(state.quantity+d); }
+
+function applyCoupon(){
+  const code=$("#couponInput").value.trim().toUpperCase();
+  const msg=$("#couponMsg"); msg.className="coupon-msg show";
+  if(!priceReady()){ state.coupon=null; msg.classList.add("no"); msg.textContent="Select a term with confirmed pricing first."; renderAll(); return; }
+  if(!code){ state.coupon=null; msg.classList.add("no"); msg.textContent="Please enter a coupon code."; renderAll(); return; }
+  if(COUPONS[code]){ state.coupon=code; msg.classList.add("ok"); msg.textContent="✓ Coupon applied: "+COUPONS[code].label; }
+  else { state.coupon=null; msg.classList.add("no"); msg.textContent="Invalid coupon code."; }
+  saveCart(); renderAll();
+}
+
+/* ============================================================================
+   VALIDATION + STEP NAV
+   ============================================================================ */
+function setErr(id,show){ const i=$("#"+id); if(!i)return; i.classList.toggle("err",show); const e=i.parentElement.querySelector(".ferr"); if(e)e.classList.toggle("show",show); }
+const reEmail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/, reMobile=/^[+\d][\d\s-]{7,}$/, rePin=/^\d{6}$/;
+
+function validateAccount(){
+  let ok=true;
+  if(state.custType==="new"){
+    [["firstName",v=>v.trim().length>=1],["lastName",v=>v.trim().length>=1],["email",v=>reEmail.test(v.trim())],["mobile",v=>reMobile.test(v.trim())],["company",v=>v.trim().length>=1]]
+      .forEach(([id,t])=>{ const bad=!t($("#"+id).value); setErr(id,bad); if(bad)ok=false; });
+  }else{
+    const eb=!reEmail.test($("#exEmail").value.trim()); setErr("exEmail",eb); if(eb)ok=false;
+    const pb=$("#exPass").value.length<1; setErr("exPass",pb); if(pb)ok=false;
+  }
+  return ok;
+}
+function captureAccount(){
+  if(state.custType==="new"){
+    state.account={ firstName:$("#firstName").value.trim(), lastName:$("#lastName").value.trim(), email:$("#email").value.trim(), mobile:$("#mobile").value.trim(), company:$("#company").value.trim() };
+    if(!$("#legalName").value) $("#legalName").value=state.account.company||"";
+  }else{ state.account={ email:$("#exEmail").value.trim() }; }  // never stores password
+  saveCart();
+}
+function continueFromAccount(){ if(!validateAccount()){ toast("Please complete the required account fields."); return; } captureAccount(); goStep("service"); }
+
+function continueFromService(){
+  if(!priceReady()){ toast("Please choose a term with confirmed pricing, or contact XcellHost."); return; }
+  if(!state.inCart){ state.inCart=true; saveCart(); renderSummary(); }   // adding happens on continue for this single-product checkout
+  goStep("profile");
+}
+
+function toggleGstin(){ $("#gstinField").style.display = $("#gstReg").value==="yes" ? "" : "none"; }
+function validateProfile(){
+  let ok=true;
+  [["legalName",v=>v.trim().length>=1],["street",v=>v.trim().length>=1],["city",v=>v.trim().length>=1],["state",v=>v.trim().length>=1],["pin",v=>rePin.test(v.trim())],["country",v=>v.trim().length>=1]]
+    .forEach(([id,t])=>{ const bad=!t($("#"+id).value); setErr(id,bad); if(bad)ok=false; });
+  const g=$("#gstReg").value; const gb=!g; setErr("gstReg",gb); if(gb)ok=false;
+  if(g==="yes"){ const bad=$("#gstin").value.trim().length!==15; setErr("gstin",bad); if(bad)ok=false; }
+  return ok;
+}
+function captureProfile(){
+  state.profile={ entity:state.entity, legalName:$("#legalName").value.trim(), street:$("#street").value.trim(), address2:$("#address2").value.trim(), city:$("#city").value.trim(), state:$("#state").value.trim(), pin:$("#pin").value.trim(), country:$("#country").value.trim(), gstRegistered:$("#gstReg").value, gstin:$("#gstReg").value==="yes"?$("#gstin").value.trim().toUpperCase():"" };
+  saveCart();
+}
+function continueFromProfile(){ if(!validateProfile()){ toast("Please complete the required profile fields."); return; } captureProfile(); goStep("payment"); }
+
+const STEP_ORDER=["account","service","profile","payment"];
+const CARD={account:"#cardAccount",service:"#cardService",profile:"#cardProfile",payment:"#cardPayment"};
+function goStep(name){
+  if(name==="service" && !validateAccount()){ goStep("account"); toast("Complete your account first."); return; }
+  if(name==="profile" && !priceReady()){ toast("Please choose a term with confirmed pricing."); return; }
+  if(name==="payment" && !validateProfile()){ goStep("profile"); toast("Complete your billing profile first."); return; }
+  state.step=name;
+  Object.keys(CARD).forEach(k=>{ $(CARD[k]).style.display = k===name?"":"none"; });
+  const idx=STEP_ORDER.indexOf(name);
+  document.querySelectorAll("#stepper .step").forEach(st=>{ const si=+st.dataset.step; st.classList.toggle("active",si===idx); st.classList.toggle("done",si<idx); });
+  document.querySelectorAll("#stepper .step-bar").forEach(b=>{ b.classList.toggle("filled",+b.dataset.bar<idx); });
+  if(name==="payment") renderPayRecap();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* ============================================================================
+   PAYMENT HANDOFF — real per-term Zoho Hosted Payment Page
+   Top-level browser navigation (NOT an iframe). No fake form / no fake success.
+   ============================================================================ */
+function rmmNavigate(url){ window.location.assign(url); }   // top-level, same-tab redirect
+
+/* India state → 2-letter billing_state_code (Zoho). Extend as needed. */
+const IN_STATE_CODES = {
+  "maharashtra":"MH","gujarat":"GJ","delhi":"DL","karnataka":"KA","tamil nadu":"TN",
+  "telangana":"TS","west bengal":"WB","rajasthan":"RJ","uttar pradesh":"UP","madhya pradesh":"MP",
+  "kerala":"KL","punjab":"PB","haryana":"HR","bihar":"BR","andhra pradesh":"AP","odisha":"OD"
+};
+function indiaStateCode(s){
+  if(!s) return "";
+  const k=String(s).trim().toLowerCase();
+  if(IN_STATE_CODES[k]) return IN_STATE_CODES[k];
+  if(/^[A-Za-z]{2}$/.test(String(s).trim())) return String(s).trim().toUpperCase(); // already a 2-letter code
+  return ""; // omit rather than send the full state name
+}
+function countryCode(c){
+  const k=String(c||"").trim().toLowerCase();
+  if(k===""||k==="india"||k==="bharat"||k==="in") return "IN";   // India checkout
+  if(/^[A-Za-z]{2}$/.test(String(c).trim())) return String(c).trim().toUpperCase();
+  return ""; // omit unknown rather than send a full country name
+}
+
+/* Build the final Zoho Hosted Payment Page URL for the selected term and append
+   Zoho's supported PREFILL parameters (customer + billing details already captured
+   in state.account / state.profile) plus `quantity`. Everything is URL-encoded via
+   URL / URLSearchParams — values are never hand-concatenated. The base plan URL is
+   never modified, only unsupported params are excluded, empty values are omitted,
+   and the password is never included. */
+function buildPaymentUrl(termId, qty){
+  const base=(RMM_PAYMENT_URLS[termId]||"").trim();
+  if(base==="") return "";
+  const a=state.account||{}, p=state.profile||{};
+
+  const params={
+    first_name:           a.firstName,
+    last_name:            a.lastName,
+    email:                a.email,
+    company_name:         a.company || p.legalName,
+    mobile:               a.mobile,
+    billing_street:       p.street,
+    billing_street2:      p.address2,
+    billing_city:         p.city,
+    billing_zip:          p.pin,
+    billing_state_code:   indiaStateCode(p.state),
+    billing_country_code: countryCode(p.country)
+  };
+  // GST number only when the customer is GST registered (never an empty tax_reg_no).
+  if(p.gstRegistered==="yes" && p.gstin) params.tax_reg_no = p.gstin;
+  params.quantity = String(qty);
+
+  const add=(usp)=>Object.keys(params).forEach(k=>{
+    const v=params[k];
+    if(v!=null && String(v).trim()!=="") usp.set(k, String(v).trim());  // safe URL-encoding
+  });
+  try{
+    const u=new URL(base); add(u.searchParams); return u.toString();
+  }catch(e){
+    const usp=new URLSearchParams(); add(usp);
+    const sep = base.indexOf("?")===-1 ? "?" : "&";
+    return base + sep + usp.toString();
+  }
+}
+
+function proceedToPayment(){
+  const msg=$("#payMsg"); msg.className="coupon-msg show";
+  if(!priceReady()){ msg.classList.add("no"); msg.textContent="Pricing for this term is not configured yet. Please contact XcellHost support."; return; }
+
+  /* PREFILL → ZOHO: the customer + billing details captured in Account/Profile and
+     the selected quantity are passed to the matching Zoho Hosted Payment Page via
+     Zoho's supported prefill parameters (see buildPaymentUrl). Zoho's page remains
+     the source of truth for the final quantity the customer confirms there. */
+  const url=buildPaymentUrl(state.termId, state.quantity);
+
+  if(url!==""){
+    rmmNavigate(url);   // opens the correct per-term Zoho Hosted Payment Page (top-level)
+  }else{
+    msg.classList.add("no"); msg.textContent="Payment integration is pending. Please contact XcellHost support.";
+  }
+}
+
+/* Developer-only helper: builds the SAME per-term + quantity URL as the payment
+   button and opens it in a NEW browser tab so it can be verified in a real
+   browser (the embedded preview may block external pages). Not the customer path.
+   This is a top-level new tab — the Zoho page is never iframed/embedded/fetched. */
+function devTestPayment(){
+  const msg=$("#payMsg"); msg.className="coupon-msg show";
+  if(!priceReady()){ msg.classList.add("no"); msg.textContent="Select a term with confirmed pricing first."; return; }
+  const url=buildPaymentUrl(state.termId, state.quantity);
+  if(url!==""){ window.open(url, "_blank", "noopener"); }
+  else { msg.classList.add("no"); msg.textContent="Payment integration is pending. Please contact XcellHost support."; }
+}
+
+/* ============================================================================
+   UI plumbing
+   ============================================================================ */
+function toast(m){ const t=document.createElement("div"); t.className="toast"; t.textContent=m; $("#toastWrap").appendChild(t); setTimeout(()=>{ t.style.transition="opacity .3s,transform .3s"; t.style.opacity="0"; t.style.transform="translateY(10px)"; setTimeout(()=>t.remove(),300); },3200); }
+
+function init(){
+  loadCart();
+  applyUrlSelection();
+  $("#qty").value=state.quantity;
+  if(state.coupon) $("#couponInput").value=state.coupon;
+
+  // account type toggle
+  function setCust(ct){ state.custType=ct; $("#optNew").classList.toggle("sel",ct==="new"); $("#optExisting").classList.toggle("sel",ct==="existing"); $("#formNew").style.display=ct==="new"?"":"none"; $("#formExisting").classList.toggle("show",ct==="existing"); saveCart(); }
+  $("#optNew").addEventListener("click",()=>setCust("new"));
+  $("#optExisting").addEventListener("click",()=>setCust("existing"));
+  setCust(state.custType);
+
+  // entity toggle
+  function setEntity(en){ state.entity=en; $("#optIndividual").classList.toggle("sel",en==="individual"); $("#optBusiness").classList.toggle("sel",en==="business"); saveCart(); }
+  $("#optIndividual").addEventListener("click",()=>setEntity("individual"));
+  $("#optBusiness").addEventListener("click",()=>setEntity("business"));
+  setEntity(state.entity);
+
+  // prefill non-sensitive fields
+  const a=state.account||{};
+  if(a.firstName)$("#firstName").value=a.firstName; if(a.lastName)$("#lastName").value=a.lastName;
+  if(a.email){ $("#email").value=a.email; $("#exEmail").value=a.email; } if(a.mobile)$("#mobile").value=a.mobile; if(a.company)$("#company").value=a.company;
+  const pr=state.profile||{};
+  ["legalName","street","city","country","gstin"].forEach(k=>{ if(pr[k]){ const el=$("#"+k); if(el)el.value=pr[k]; } });
+  if(pr.address2)$("#address2").value=pr.address2; if(pr.state)$("#state").value=pr.state; if(pr.pin)$("#pin").value=pr.pin;
+  if(pr.gstRegistered){ $("#gstReg").value=pr.gstRegistered; toggleGstin(); }
+
+  document.querySelectorAll("#stepper .step").forEach(st=>{ st.addEventListener("click",()=>{ const names=["account","service","profile","payment"]; goStep(names[+st.dataset.step]); }); });
+
+  renderAll();
+  goStep("account");
+}
+document.addEventListener("DOMContentLoaded", init);
+</script>
+</body>
+</html>

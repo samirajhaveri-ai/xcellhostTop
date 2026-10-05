@@ -266,6 +266,11 @@ import { EntraIdHeroComponent } from '../sections/entra-id-hero.component';
 import { EntraIdBackupContentComponent } from '../sections/entra-id-backup-content.component';
 import { EntraIdBackupHeroComponent } from '../sections/entra-id-backup-hero.component';
 import { DigicertContentComponent } from '../sections/digicert-content.component';
+import { DigicertHeroComponent } from '../sections/digicert-hero.component';
+import { DigicertSmimeOvHeroComponent } from '../sections/digicert-smime-ov-hero.component';
+import { DigicertSmimeOvContentComponent } from '../sections/digicert-smime-ov-content.component';
+import { ClaudeBackupHeroComponent } from '../sections/claude-backup-hero.component';
+import { ClaudeBackupContentComponent } from '../sections/claude-backup-content.component';
 import { AutonomousThreatManagementContentComponent } from '../sections/autonomous-threat-management-content.component';
 import { AutonomousThreatManagementHeroComponent } from '../sections/autonomous-threat-management-hero.component';
 import { AutonomousThreatSolutionDetailComponent } from '../sections/autonomous-threat-solution-detail.component';
@@ -503,6 +508,11 @@ interface ProductTourSlide {
     EntraIdBackupContentComponent,
     EntraIdBackupHeroComponent,
     DigicertContentComponent,
+    DigicertHeroComponent,
+    DigicertSmimeOvHeroComponent,
+    DigicertSmimeOvContentComponent,
+    ClaudeBackupHeroComponent,
+    ClaudeBackupContentComponent,
 
     AutonomousThreatManagementContentComponent,
     AutonomousThreatManagementHeroComponent,
@@ -1200,10 +1210,86 @@ interface ProductTourSlide {
     #ppage .atm-default-overview .pp-ov {
       width: 100%; max-width: 100%; margin-top: 10px; margin-bottom: 0;
     }
-    #ppage .pph-digicert-brand strong {
-      color: #0f5b9e; font: 700 22px/1 var(--disp); letter-spacing: -.03em;
+    #ppage.claude-backup-page .pp-hero { min-height: 620px; }
+    #ppage.claude-backup-page .pp-hero #ppTitle { display: block; text-align: left; white-space: normal; }
+    #ppage.claude-backup-page .pp-hero #ppTitle .pp-title-divider { margin-right: .18em; }
+    #ppage.claude-backup-page .pp-hero #ppTitle .pp-title-name { display: inline; margin-left: 0; }
+    #ppage.claude-backup-page .product-hero-ctas { width: 100%; max-width: 100%; flex-wrap: wrap; }
+    #ppage.ppage.claude-backup-page > .pp-hero > .pph-scene.pph-claude-backup {
+      top: 0; bottom: 0; right: max(24px, calc((100% - 1240px) / 2 + 24px));
+      width: min(44%, 550px); padding: 32px 0; max-height: none; z-index: 4; pointer-events: auto;
+      opacity: 1; overflow: visible; mask-image: none; -webkit-mask-image: none;
     }
-    #ppage .pph-digicert-brand sup { font-size: 9px; vertical-align: super; }
+    @media (min-width: 1301px) {
+      #ppage.claude-backup-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) { max-width: 51%; }
+      #ppage.claude-backup-page .pp-hero #ppTitle { max-width: 51%; }
+    }
+    @media (max-width: 1300px) {
+      #ppage.claude-backup-page .pp-hero { display: flex; flex-direction: column; padding-bottom: 32px; }
+      #ppage.claude-backup-page .pp-hero > .wrap { order: 1; width: 92%; }
+      #ppage.claude-backup-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) { width: 100%; max-width: 100%; }
+      #ppage.ppage.claude-backup-page > .pp-hero > .pph-scene.pph-claude-backup {
+        position: relative; inset: auto; width: min(550px, 92%); margin: 24px auto 0; padding: 16px 0;
+        order: 2; transform: none;
+      }
+    }
+    #ppage.smime-ov-page .pp-hero { min-height: 640px; }
+    #ppage.smime-ov-page .pp-body { padding-top: 0; }
+    #ppage.smime-ov-page .pp-hero #ppTitle { display: block; text-align: left; white-space: normal; }
+    #ppage.smime-ov-page .pp-hero #ppTitle .pp-title-divider { margin-right: .18em; }
+    #ppage.smime-ov-page .pp-hero #ppTitle .pp-title-name { display: inline; margin-left: 0; }
+    #ppage.smime-ov-page .product-hero-ctas { width: 100%; max-width: 100%; flex-wrap: wrap; }
+    #ppage.ppage.smime-ov-page > .pp-hero > .pph-scene.pph-smime-ov {
+      top: 0; bottom: 0; right: max(24px, calc((100% - 1240px) / 2 + 24px));
+      width: min(44%, 560px); padding: 32px 0; max-height: none;
+      opacity: 1; overflow: visible; mask-image: none; -webkit-mask-image: none;
+    }
+    @media (min-width: 1301px) {
+      #ppage.smime-ov-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) {
+        max-width: 51%;
+      }
+      #ppage.smime-ov-page .pp-hero #ppTitle { max-width: 51%; }
+    }
+    @media (max-width: 1300px) {
+      #ppage.smime-ov-page .pp-hero { display: flex; flex-direction: column; padding-bottom: 32px; }
+      #ppage.smime-ov-page .pp-hero > .wrap { order: 1; width: 92%; }
+      #ppage.smime-ov-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) {
+        width: 100%; max-width: 100%;
+      }
+      #ppage.ppage.smime-ov-page > .pp-hero > .pph-scene.pph-smime-ov {
+        position: relative; inset: auto; width: min(560px, 92%); margin: 24px auto 0; padding: 16px 0;
+        order: 2; transform: none;
+      }
+    }
+    #ppage.digicert-page .pp-hero { min-height: 640px; }
+    #ppage.digicert-page .pp-body { padding-top: 0; }
+    #ppage.digicert-page .pp-hero #ppTitle { display: block; text-align: left; }
+    #ppage.digicert-page .pp-hero #ppTitle .pp-title-divider { margin-right: .18em; }
+    #ppage.digicert-page .pp-hero #ppTitle .pp-title-name { display: inline; margin-left: 0; }
+    #ppage.digicert-page .product-hero-ctas { width: 100%; max-width: 100%; flex-wrap: wrap; }
+    #ppage.ppage.digicert-page > .pp-hero > .pph-scene.pph-digicert {
+      top: 0; bottom: 0; right: max(24px, calc((100% - 1240px) / 2 + 24px));
+      width: min(44%, 560px); padding: 32px 0; max-height: none;
+      opacity: 1; overflow: visible; mask-image: none; -webkit-mask-image: none;
+    }
+    @media (min-width: 1301px) {
+      #ppage.digicert-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) {
+        max-width: 51%;
+      }
+      #ppage.digicert-page .pp-hero #ppTitle { max-width: 51%; white-space: normal; }
+    }
+    @media (max-width: 1300px) {
+      #ppage.digicert-page .pp-hero { display: flex; flex-direction: column; padding-bottom: 32px; }
+      #ppage.digicert-page .pp-hero > .wrap { order: 1; width: 92%; }
+      #ppage.digicert-page .pp-hero #ppTitle { max-width: 100%; }
+      #ppage.digicert-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) {
+        width: 100%; max-width: 100%;
+      }
+      #ppage.ppage.digicert-page > .pp-hero > .pph-scene.pph-digicert {
+        position: relative; inset: auto; width: min(560px, 92%); margin: 24px auto 0; padding: 16px 0;
+        order: 2; transform: none;
+      }
+    }
     @media (max-width: 900px) {
       #ppage .copilot-hero-copy { max-width: none; padding: 68px 0 410px; }
       #ppage .copilot-hero-art { top: auto; right: 8%; bottom: 35px; width: 84%; }
@@ -3175,7 +3261,12 @@ export class ProductPage {
         return;
       }
       const slug = this.slug();
-      this.seo.set(`${v.name} — XcellHost`, v.overview.slice(0, 160), `/${slug}/`);
+      this.seo.set(
+        `${v.name} — XcellHost`,
+        v.overview.slice(0, 160),
+        `/${slug}/`,
+        this.socialPreviewImage(slug, v),
+      );
       this.seo.setJsonLd('product', this.jsonLd(v, slug));
     });
 
@@ -3209,6 +3300,21 @@ export class ProductPage {
       timer = setTimeout(typeNextCharacter, 300);
       onCleanup(() => clearTimeout(timer));
     });
+  }
+
+  private socialPreviewImage(slug: string, view: ProductView): string {
+    const overrides: Record<string, string> = {
+      'acronis-genai-protection': '/assets/images/acronis-genai-protection.png',
+      'advanced-endpoint-security-edr': '/assets/images/hero-acronis-edr-v2.png',
+      'cloud-backup': '/assets/images/hero-cloud-backup-acronis.png',
+      'cloud-drive': '/assets/images/cloud-drive-tour-dashboard.jpg',
+      'remote-monitoring-and-mgmt-rmm': '/assets/images/hero-rmm.png',
+      'tally-on-cloud': '/assets/images/hero-tally-on-cloud.png',
+    };
+    const image = overrides[slug] ?? view.heroImage;
+    return image && !image.toLowerCase().endsWith('.svg')
+      ? image
+      : '/assets/images/xcellhost-logo.png';
   }
 
   /* -------------------------------------------------------------- routing */
@@ -3385,12 +3491,15 @@ export class ProductPage {
     this.addPlanQuantity(plan);
   }
 
-  /** RMM "View Plan" keeps the visitor on-page and opens the selected plan in the cart. */
+  /** Open the standalone RMM checkout with the selected term and device quantity. */
   viewRmmPlan(plan: PricingPlan, ev: Event): void {
     ev.preventDefault();
-    const quantity = this.edrQuantity();
-    this.cart.add(plan.cartName, plan.cartPrice, quantity);
-    this.cart.open();
+    const years = Math.max(1, Number.parseInt(plan.term, 10) || 1);
+    const params = new URLSearchParams({
+      term: `${years}y`,
+      quantity: String(this.edrQuantity()),
+    });
+    window.location.assign(`/assets/xcellhost-rmm-checkout.html?${params.toString()}`);
   }
 
   /** `.pl-buy` and the hero Buy Now — add, open the drawer, go straight to checkout. */
@@ -3415,10 +3524,13 @@ export class ProductPage {
 
   buyEdrPlan(plan: PricingPlan, ev: Event): void {
     ev.preventDefault();
-    const quantity = this.edrQuantity();
-    this.cart.add(plan.cartName, plan.cartPrice, quantity);
-    this.cart.open();
-    this.cart.toCheckout();
+    const years = Math.max(1, Number.parseInt(plan.term, 10) || 1);
+    const params = new URLSearchParams({
+      product: 'acronis-edr',
+      billing: `${years}-year`,
+      quantity: String(this.edrQuantity()),
+    });
+    window.location.assign(`/assets/xcellhost-checkout.html?${params.toString()}`);
   }
 
   /** Hero "Buy Now" buys the entry-level term, which is what the ladder starts at. */
@@ -3426,6 +3538,14 @@ export class ProductPage {
     const plan = this.view()?.plans[0];
     if (!plan) {
       ev.preventDefault();
+      return;
+    }
+    if (this.isAdvancedEdr()) {
+      this.buyEdrPlan(plan, ev);
+      return;
+    }
+    if (this.isRmm()) {
+      this.viewRmmPlan(plan, ev);
       return;
     }
     this.buyPlan(plan, ev);
