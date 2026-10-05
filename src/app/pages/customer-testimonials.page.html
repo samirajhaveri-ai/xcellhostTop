@@ -1,0 +1,105 @@
+<main class="testimonials-page">
+  <section class="testimonials-intro">
+    <div class="wrap testimonials-banner">
+      <div class="testimonials-banner-copy">
+      <nav aria-label="Breadcrumb"><a routerLink="/">Home</a><span aria-hidden="true"> / </span>Customer Testimonials</nav>
+      <span class="eyebrow">CUSTOMER STORIES</span>
+      <h1>Trusted by Businesses.<br />Loved by Customers.</h1>
+      <p>Discover why businesses trust our solutions to simplify their operations, strengthen their technology, and keep their business moving forward.</p>
+      </div>
+      <div class="testimonials-banner-art">
+        <img src="/assets/images/testimonials-banner.png" alt="Customer review cards with five-star ratings" width="1536" height="1024" fetchpriority="high" />
+      </div>
+    </div>
+  </section>
+  <div class="wrap testimonials-layout">
+    <aside class="testimonials-sidebar" aria-label="Browse testimonials by menu and page">
+      <div class="sidebar-heading"><span class="material-symbols-outlined" aria-hidden="true">grid_view</span><div><h2>Explore by service</h2><p>Choose a category to get started</p></div></div>
+      <div class="menu-tabs" role="group" aria-label="Menu categories">
+        @for (menu of menus; track menu.id; let index = $index) {
+          <div class="menu-category">
+            <button class="menu-button" type="button" [class.active]="selectedMenuId() === menu.id"
+              [attr.aria-expanded]="expandedMenuId() === menu.id" [attr.aria-controls]="'pages-' + menu.id"
+              (click)="selectMenu(menu.id)">
+              <span class="menu-label"><span class="menu-number" aria-hidden="true">{{ index + 1 }}</span>{{ menu.label }}</span>
+              <span class="menu-chevron material-symbols-outlined" [class.expanded]="expandedMenuId() === menu.id" aria-hidden="true">chevron_right</span>
+            </button>
+            <div class="accordion-shell" [class.open]="expandedMenuId() === menu.id" [attr.inert]="expandedMenuId() === menu.id ? null : ''" [attr.aria-hidden]="expandedMenuId() !== menu.id">
+              <div class="accordion-inner">
+                <div class="subcategory-list" [id]="'pages-' + menu.id">
+                  @for (tab of menu.tabs; track tab.id) {
+                    <button class="subcategory-button" type="button" [class.active]="selectedMenuId() === menu.id && selectedTabId() === tab.id"
+                      [attr.aria-expanded]="expandedMenuId() === menu.id && expandedTabId() === tab.id" [attr.aria-controls]="'tab-pages-' + menu.id + '-' + tab.id"
+                      (click)="selectTab(tab.id)">{{ tab.label }}<span class="material-symbols-outlined" [class.expanded]="selectedMenuId() === menu.id && expandedTabId() === tab.id" aria-hidden="true">expand_more</span></button>
+                    <div class="accordion-shell" [class.open]="selectedMenuId() === menu.id && expandedTabId() === tab.id" [attr.inert]="selectedMenuId() === menu.id && expandedTabId() === tab.id ? null : ''" [attr.aria-hidden]="selectedMenuId() !== menu.id || expandedTabId() !== tab.id">
+                      <div class="accordion-inner" [id]="'tab-pages-' + menu.id + '-' + tab.id">
+                        @if (selectedMenuId() === menu.id && selectedTabId() === tab.id) {
+                          <div class="page-picker">
+                            <label for="testimonialSearch">Find a page in {{ tab.label }}</label>
+                            <div class="page-search"><span class="material-symbols-outlined" aria-hidden="true">search</span><input id="testimonialSearch" type="search" placeholder="Search pages..." [value]="query()" (input)="query.set($any($event.target).value)" /></div>
+                            <div class="page-list">
+                              @for (group of visibleGroups(); track group.title) {
+                                <h3>{{ group.title }}</h3>
+                                @for (page of group.pages; track page.id) {
+                                  <button type="button" [class.selected]="selectedPageId() === page.id" [attr.aria-pressed]="selectedPageId() === page.id" aria-controls="testimonial-results" (click)="selectPage(page.id)"><span>{{ page.title }}</span>@if (selectedPageId() === page.id) {<span class="material-symbols-outlined" aria-hidden="true">check_circle</span>}</button>
+                                }
+                              } @empty {
+                                <p class="no-pages">No matching pages.</p><button class="clear-search" type="button" (click)="query.set('')">Clear search</button>
+                              }
+                            </div>
+                          </div>
+                        }
+                      </div>
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </aside>
+    <section class="testimonials-results" id="testimonial-results" aria-labelledby="testimonialPageTitle" aria-live="polite">
+      @for (selection of [selectionKey()]; track selection) {
+      <div class="results-content">
+      <div class="results-heading">
+        <div>
+          <span class="eyebrow">{{ activeMenu()?.label }} / {{ activeTab()?.label }}</span>
+          <h2 id="testimonialPageTitle">{{ activePage()?.title || activeMenu()?.label }}</h2>
+          <p>Customer experiences with {{ activePage()?.title || activeMenu()?.label }}.</p>
+        </div>
+        @if (activePage()?.link; as link) {
+          <a class="service-link" [routerLink]="link">Explore this page <span aria-hidden="true">&#8599;</span></a>
+        }
+      </div>
+      <div class="testimonial-cards">
+        @for (review of reviews(); track $index; let index = $index) {
+          <article class="testimonial-card" [style.--card-delay]="index * 45 + 'ms'">
+            <span class="quote-mark" aria-hidden="true">&rdquo;</span>
+            <div class="review-avatar" aria-hidden="true">{{ review.initials }}</div>
+            <h3>{{ review.name }}</h3>
+            <p class="review-role">{{ review.role }}</p>
+            <div class="review-stars" [attr.aria-label]="review.stars + ' out of 5 stars'">
+              @for (star of stars; track star) {<span [class.dim]="star > review.stars" aria-hidden="true">&#9733;</span>}
+            </div>
+            <blockquote>{{ review.quote }}</blockquote>
+            <span class="review-service">{{ activePage()?.title }}</span>
+          </article>
+        } @empty {
+          <div class="testimonials-empty">
+            <span class="material-symbols-outlined" aria-hidden="true">format_quote</span>
+            <h3>No testimonials available for this page yet</h3>
+            <p>Select another service from the menu, or talk to our team about customer references.</p>
+            <a class="btn btn-primary" routerLink="/contact" [queryParams]="{ service: activePage()?.title }">Talk to our team</a>
+          </div>
+        }
+      </div>
+      <div class="testimonials-cta">
+        <div><h3>Find the right solution for your business</h3><p>Get advice from our cloud and security team.</p></div>
+        <a class="btn btn-primary" routerLink="/contact" [queryParams]="{ service: activePage()?.title }">Let’s talk <span aria-hidden="true">&#8594;</span></a>
+      </div>
+      </div>
+      }
+    </section>
+  </div>
+</main>

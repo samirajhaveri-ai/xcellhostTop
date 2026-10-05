@@ -54,11 +54,6 @@
               <img class="cybird-appliance" src="/assets/images/hero-make-in-india-cybird.jpeg" alt="Cybird security appliance" width="681" height="367" />
             }
           </div>
-          <div class="stat-line">
-            @for (s of stats; track s.label; let statIndex = $index) {
-              <div class="sl"><b>{{ counters()[statIndex] }}</b><span>{{ s.label }}</span></div>
-            }
-          </div>
           <div class="hero-live"><i></i> all systems operational · backups every 8 hrs · SOC live · incidents: 0</div>
           <div class="home-hero-dots" role="tablist" aria-label="Homepage hero slides">
             @for (navSlide of carouselSlides; track navSlide.primaryHref; let navIndex = $index) {

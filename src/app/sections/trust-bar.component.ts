@@ -15,7 +15,8 @@ import { RevealDirective } from '../shared/reveal.directive';
         <span class="item" xhReveal><span class="tick">✓</span><b>ISO 27001</b>&nbsp;&amp;&nbsp;<b>ISO 20000-1</b></span>
         <span class="item" xhReveal><span class="tick">✓</span>Microsoft <b>Gold Partner</b></span>
         <span class="item" xhReveal><span class="tick">✓</span><b>10,000+</b> customers</span>
-        <span class="item" xhReveal><span class="tick">✓</span><b>27 years</b> in managed hosting</span>
+        <span class="item" xhReveal><span class="tick">✓</span><b>27 years</b> in Managed Hosting</span>
+        <span class="item" xhReveal><span class="tick">✓</span><b>99.95%</b> uptime SLA</span>
         <span class="item" xhReveal><span class="tick">✓</span><b>24×7</b> NOC + SOC</span>
       </div>
     </div>
