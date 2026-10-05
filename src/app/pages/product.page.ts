@@ -1,3 +1,7 @@
+import { DigicertSmimeContentComponent } from '../sections/digicert-smime-content.component';
+import { DigicertSmimeFaqComponent } from '../sections/digicert-smime-faq.component';
+import { DigicertSmimeRelatedComponent } from '../sections/digicert-smime-related.component';
+import { DigicertSmimeHeroComponent } from '../sections/digicert-smime-hero.component';
 import { VeraRubinContentComponent } from '../sections/nvidia-vera-rubin-content.component';
 import { VERA_RUBIN_FAQS } from '../data/nvidia-vera-rubin-faqs.data';
 import { StorageContentComponent } from '../sections/storage-servers-content.component';
@@ -345,6 +349,10 @@ interface ProductTourSlide {
   selector: 'xh-product-page',
   standalone: true,
   imports: [
+    DigicertSmimeContentComponent,
+    DigicertSmimeFaqComponent,
+    DigicertSmimeRelatedComponent,
+    DigicertSmimeHeroComponent,
 
     HigherEducationHeroCopyComponent,
     HigherEducationContentComponent,

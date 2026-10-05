@@ -1124,6 +1124,8 @@
           <xh-ai-review-magicqr-hero class="magicqr-hero-dashboard" />
         } @else if (slug() === 'digital-menu-and-catalog-management') {
           <xh-digital-menu-hero class="digital-menu-dashboard" />
+        } @else if (slug() === 'digicert-smime-class-1') {
+          <div class="pph-scene smime-reference-hero"><xh-digicert-smime-hero /></div>
         } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
 
           <div class="pph-scene has-illus standalone-illus" id="pphScene" aria-hidden="true">
@@ -2068,6 +2070,9 @@
         [class.email-archiving-body]="slug() === 'email-archiving'"
       >
         <div class="wrap">
+          @if (slug() === 'digicert-smime-class-1') {
+            <xh-digicert-smime-content />
+          } @else {
           @if (slug() === 'ai-chat-bot') {
             <xh-ai-chatbot-content (enquiry)="requestAiChatbot($event)" />
           }
@@ -5042,6 +5047,7 @@
           }
           }
           }
+          }
           @if (v.name !== 'Tally on Cloud') {
             @if (slug() === 'rtx-8000') {
               <xh-rtx-8000-stories />
@@ -5127,7 +5133,7 @@
             </div>
           }
 
-          <div id="ppRich" [hidden]="slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin'">
+          <div id="ppRich" [hidden]="slug() === 'digicert-smime-class-1' || slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin'">
             @if (v.packages.length) {
               <div class="pp-sec">Included with {{ v.name }}</div>
               <div class="pp-pkg">
@@ -5334,7 +5340,8 @@
               isAutonomousThreatSolution() ||
               isOurPlatform() ||
               isWatchtower() ||
-              slug() === 'iot-cloud') &&
+              slug() === 'iot-cloud' ||
+              slug() === 'digicert-smime-class-1') &&
             slug() !== 'scrutiny-dlp' &&
             !isTsplusRemoteSupport() &&
             !isTsplusAdvancedSecurity() &&
@@ -5378,6 +5385,13 @@
                     <button class="btn btn-primary" type="button" (click)="openCallback($event)">
                       Book a live demo
                     </button>
+                  </article>
+                }
+                @if (slug() === 'digicert-smime-class-1' && !showcaseVideos().length) {
+                  <article class="tally-video-card smime-demo-preview">
+                    <h3><span>DigiCert S/MIME Class 1 overview</span></h3>
+                    <div class="smime-demo-visual"><xh-digicert-smime-hero /></div>
+                    <button class="btn btn-primary" type="button" (click)="openCallback($event)">Book a live demo</button>
                   </article>
                 }
                 @if (isOurPlatform()) {
@@ -5638,9 +5652,9 @@
               </div>
             </section>
           }
-          @if (slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
+          @if (slug() !== 'digicert-smime-class-1' && slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
           <div class="pp-sec" [attr.id]="isTally() ? 'tallyTestimonials' : null" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">{{ isTally() ? 'Customer Testimonials' : 'What customers say' }}</div>
-          @if (slug() === 'nvidia-vera-rubin' || slug() === 'storage-servers' || slug() === 'gaming-servers' || slug() === 'virtualization-servers' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'agent-studio' || slug() === 'aiops' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'instant-website' || slug() === 'instagram-automation' || slug() === 'hrm-attendance' || slug() === 'google-my-business' || isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training' || slug() === 'ai-chat-bot') {
+          @if (slug() === 'nvidia-vera-rubin' || slug() === 'storage-servers' || slug() === 'gaming-servers' || slug() === 'virtualization-servers' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'agent-studio' || slug() === 'aiops' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'instant-website' || slug() === 'instagram-automation' || slug() === 'hrm-attendance' || slug() === 'google-my-business' || slug() === 'digicert-smime-class-1' || isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training' || slug() === 'ai-chat-bot') {
             <div class="pp-tcards" id="ppRevs">
               @for (r of v.reviews; track r.name) {
                 <div class="tcard">
@@ -5709,6 +5723,29 @@
           }
 
         @if (slug() !== 'marketplace' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
+          @if (slug() === 'digicert-smime-class-1') {
+            <section class="smime-testimonials" aria-labelledby="smimeTestimonialsTitle">
+              <h2 class="pp-sec" id="smimeTestimonialsTitle">Customer Testimonials</h2>
+              <div class="pp-tcards" id="ppRevs">
+                @for (r of v.reviews; track r.name) {
+                  <article class="tcard">
+                    <div class="quote-badge" aria-hidden="true">&rdquo;</div>
+                    <div class="tav" aria-hidden="true">{{ r.initials }}</div>
+                    <div class="tname">{{ r.name }}</div>
+                    <div class="trole">{{ r.role }}</div>
+                    <div class="tstars" [attr.aria-label]="r.stars + ' out of 5 stars'">
+                      @for (s of starSlots; track s) {
+                        <span [class.off]="s >= r.stars" aria-hidden="true">&#9733;</span>
+                      }
+                    </div>
+                    <p>{{ r.quote }}</p>
+                  </article>
+                }
+              </div>
+            </section>
+            <xh-digicert-smime-faq />
+            <xh-digicert-smime-related />
+          } @else {
           <div class="pp-sec pp-faq-heading" [attr.id]="isTally() ? 'tallyFaq' : null" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">{{ isTally() ? 'FAQs' : 'Frequently asked questions' }}</div>
           @if (slug() === 'domain-whois-lookup') {
             <xh-domain-whois-faq />
@@ -5731,6 +5768,7 @@
             </div>
           }
 
+          }
         }
 
         @if (slug() === 'nvidia-a100') {
