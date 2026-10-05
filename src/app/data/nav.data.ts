@@ -1985,7 +1985,8 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Comodo Enterprise / Pro / Basic PA",
+                "title": "Comodo Personal Authentication",
+                "href": "/comodo-personal-authentication",
                 "pill": null,
                 "desc": null
               }

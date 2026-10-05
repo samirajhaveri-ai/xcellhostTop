@@ -1,0 +1,19 @@
+/* Extend the tinted bands beyond the shared content container. */
+#sizes,
+#how-it-works {
+  box-shadow: 0 0 0 100vmax var(--ice);
+  clip-path: inset(0 -100vmax);
+}
+
+#sizes > .wrap,
+#how-it-works > .wrap,
+#difference > .wrap {
+  width: 100%;
+  max-width: none;
+  padding-inline: 0;
+}
+
+#difference {
+  box-shadow: 0 0 0 100vmax var(--navy);
+  clip-path: inset(0 -100vmax);
+}
