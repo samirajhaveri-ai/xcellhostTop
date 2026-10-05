@@ -249,6 +249,11 @@ import { EntraIdHeroComponent } from '../sections/entra-id-hero.component';
 import { EntraIdBackupContentComponent } from '../sections/entra-id-backup-content.component';
 import { EntraIdBackupHeroComponent } from '../sections/entra-id-backup-hero.component';
 import { DigicertContentComponent } from '../sections/digicert-content.component';
+import { DigicertHeroComponent } from '../sections/digicert-hero.component';
+import { DigicertSmimeOvHeroComponent } from '../sections/digicert-smime-ov-hero.component';
+import { DigicertSmimeOvContentComponent } from '../sections/digicert-smime-ov-content.component';
+import { ClaudeBackupHeroComponent } from '../sections/claude-backup-hero.component';
+import { ClaudeBackupContentComponent } from '../sections/claude-backup-content.component';
 import { AutonomousThreatManagementContentComponent } from '../sections/autonomous-threat-management-content.component';
 import { AutonomousThreatManagementHeroComponent } from '../sections/autonomous-threat-management-hero.component';
 import { AutonomousThreatSolutionDetailComponent } from '../sections/autonomous-threat-solution-detail.component';
@@ -477,6 +482,11 @@ interface ProductTourSlide {
     EntraIdBackupContentComponent,
     EntraIdBackupHeroComponent,
     DigicertContentComponent,
+    DigicertHeroComponent,
+    DigicertSmimeOvHeroComponent,
+    DigicertSmimeOvContentComponent,
+    ClaudeBackupHeroComponent,
+    ClaudeBackupContentComponent,
 
     AutonomousThreatManagementContentComponent,
     AutonomousThreatManagementHeroComponent,
@@ -1174,10 +1184,86 @@ interface ProductTourSlide {
     #ppage .atm-default-overview .pp-ov {
       width: 100%; max-width: 100%; margin-top: 10px; margin-bottom: 0;
     }
-    #ppage .pph-digicert-brand strong {
-      color: #0f5b9e; font: 700 22px/1 var(--disp); letter-spacing: -.03em;
+    #ppage.claude-backup-page .pp-hero { min-height: 620px; }
+    #ppage.claude-backup-page .pp-hero #ppTitle { display: block; text-align: left; white-space: normal; }
+    #ppage.claude-backup-page .pp-hero #ppTitle .pp-title-divider { margin-right: .18em; }
+    #ppage.claude-backup-page .pp-hero #ppTitle .pp-title-name { display: inline; margin-left: 0; }
+    #ppage.claude-backup-page .product-hero-ctas { width: 100%; max-width: 100%; flex-wrap: wrap; }
+    #ppage.ppage.claude-backup-page > .pp-hero > .pph-scene.pph-claude-backup {
+      top: 0; bottom: 0; right: max(24px, calc((100% - 1240px) / 2 + 24px));
+      width: min(44%, 550px); padding: 32px 0; max-height: none; z-index: 4; pointer-events: auto;
+      opacity: 1; overflow: visible; mask-image: none; -webkit-mask-image: none;
     }
-    #ppage .pph-digicert-brand sup { font-size: 9px; vertical-align: super; }
+    @media (min-width: 1301px) {
+      #ppage.claude-backup-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) { max-width: 51%; }
+      #ppage.claude-backup-page .pp-hero #ppTitle { max-width: 51%; }
+    }
+    @media (max-width: 1300px) {
+      #ppage.claude-backup-page .pp-hero { display: flex; flex-direction: column; padding-bottom: 32px; }
+      #ppage.claude-backup-page .pp-hero > .wrap { order: 1; width: 92%; }
+      #ppage.claude-backup-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) { width: 100%; max-width: 100%; }
+      #ppage.ppage.claude-backup-page > .pp-hero > .pph-scene.pph-claude-backup {
+        position: relative; inset: auto; width: min(550px, 92%); margin: 24px auto 0; padding: 16px 0;
+        order: 2; transform: none;
+      }
+    }
+    #ppage.smime-ov-page .pp-hero { min-height: 640px; }
+    #ppage.smime-ov-page .pp-body { padding-top: 0; }
+    #ppage.smime-ov-page .pp-hero #ppTitle { display: block; text-align: left; white-space: normal; }
+    #ppage.smime-ov-page .pp-hero #ppTitle .pp-title-divider { margin-right: .18em; }
+    #ppage.smime-ov-page .pp-hero #ppTitle .pp-title-name { display: inline; margin-left: 0; }
+    #ppage.smime-ov-page .product-hero-ctas { width: 100%; max-width: 100%; flex-wrap: wrap; }
+    #ppage.ppage.smime-ov-page > .pp-hero > .pph-scene.pph-smime-ov {
+      top: 0; bottom: 0; right: max(24px, calc((100% - 1240px) / 2 + 24px));
+      width: min(44%, 560px); padding: 32px 0; max-height: none;
+      opacity: 1; overflow: visible; mask-image: none; -webkit-mask-image: none;
+    }
+    @media (min-width: 1301px) {
+      #ppage.smime-ov-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) {
+        max-width: 51%;
+      }
+      #ppage.smime-ov-page .pp-hero #ppTitle { max-width: 51%; }
+    }
+    @media (max-width: 1300px) {
+      #ppage.smime-ov-page .pp-hero { display: flex; flex-direction: column; padding-bottom: 32px; }
+      #ppage.smime-ov-page .pp-hero > .wrap { order: 1; width: 92%; }
+      #ppage.smime-ov-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) {
+        width: 100%; max-width: 100%;
+      }
+      #ppage.ppage.smime-ov-page > .pp-hero > .pph-scene.pph-smime-ov {
+        position: relative; inset: auto; width: min(560px, 92%); margin: 24px auto 0; padding: 16px 0;
+        order: 2; transform: none;
+      }
+    }
+    #ppage.digicert-page .pp-hero { min-height: 640px; }
+    #ppage.digicert-page .pp-body { padding-top: 0; }
+    #ppage.digicert-page .pp-hero #ppTitle { display: block; text-align: left; }
+    #ppage.digicert-page .pp-hero #ppTitle .pp-title-divider { margin-right: .18em; }
+    #ppage.digicert-page .pp-hero #ppTitle .pp-title-name { display: inline; margin-left: 0; }
+    #ppage.digicert-page .product-hero-ctas { width: 100%; max-width: 100%; flex-wrap: wrap; }
+    #ppage.ppage.digicert-page > .pp-hero > .pph-scene.pph-digicert {
+      top: 0; bottom: 0; right: max(24px, calc((100% - 1240px) / 2 + 24px));
+      width: min(44%, 560px); padding: 32px 0; max-height: none;
+      opacity: 1; overflow: visible; mask-image: none; -webkit-mask-image: none;
+    }
+    @media (min-width: 1301px) {
+      #ppage.digicert-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) {
+        max-width: 51%;
+      }
+      #ppage.digicert-page .pp-hero #ppTitle { max-width: 51%; white-space: normal; }
+    }
+    @media (max-width: 1300px) {
+      #ppage.digicert-page .pp-hero { display: flex; flex-direction: column; padding-bottom: 32px; }
+      #ppage.digicert-page .pp-hero > .wrap { order: 1; width: 92%; }
+      #ppage.digicert-page .pp-hero #ppTitle { max-width: 100%; }
+      #ppage.digicert-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) {
+        width: 100%; max-width: 100%;
+      }
+      #ppage.ppage.digicert-page > .pp-hero > .pph-scene.pph-digicert {
+        position: relative; inset: auto; width: min(560px, 92%); margin: 24px auto 0; padding: 16px 0;
+        order: 2; transform: none;
+      }
+    }
     @media (max-width: 900px) {
       #ppage .copilot-hero-copy { max-width: none; padding: 68px 0 410px; }
       #ppage .copilot-hero-art { top: auto; right: 8%; bottom: 35px; width: 84%; }

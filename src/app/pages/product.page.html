@@ -2,6 +2,9 @@
   <div
     class="ppage as-page"
     id="ppage"
+    [class.digicert-page]="isDigiCert()"
+    [class.smime-ov-page]="slug() === 'digicert-smime-ov'"
+    [class.claude-backup-page]="slug() === 'claude-backup'"
     [class.plesk-servers-page]="slug() === 'plesk-servers'"
     [class.cpanel-servers-page]="slug() === 'cpanel-servers'"
     [class.windows-servers-page]="slug() === 'windows-servers'"
@@ -917,89 +920,16 @@
             <xh-entra-id-backup-hero />
           </div>
         } @else if (isDigiCert()) {
-          <div class="pph-scene has-illus standalone-illus pph-digicert" aria-hidden="true">
-            <div class="pph-illus">
-              <svg class="pph-illus-img" viewBox="0 0 540 330" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <linearGradient id="dcWin" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" stop-color="#fff" />
-                    <stop offset="1" stop-color="#e9f0fb" />
-                  </linearGradient>
-                  <linearGradient id="dcLock" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" stop-color="#0f7b6c" />
-                    <stop offset="1" stop-color="#00a88f" />
-                  </linearGradient>
-                </defs>
-                <rect
-                  x="26"
-                  y="22"
-                  width="488"
-                  height="276"
-                  rx="18"
-                  fill="url(#dcWin)"
-                  stroke="#c7d8f4"
-                  stroke-width="1.5"
-                />
-                <rect x="26" y="22" width="488" height="44" rx="18" fill="#0a2a57" />
-                <rect x="26" y="52" width="488" height="14" fill="#0a2a57" />
-                <circle cx="50" cy="44" r="5" fill="#ff5f57" />
-                <circle cx="68" cy="44" r="5" fill="#ffbd2e" />
-                <circle cx="86" cy="44" r="5" fill="#28c840" />
-                <rect x="112" y="33" width="300" height="22" rx="11" fill="#12386f" />
-                <g transform="translate(126,37)">
-                  <rect y="3" width="9" height="7" rx="1.6" fill="#3ddc84" />
-                  <path
-                    d="M1.6 3V1.8a2.9 2.9 0 015.8 0V3"
-                    stroke="#3ddc84"
-                    stroke-width="1.4"
-                    fill="none"
-                  />
-                </g>
-                <rect x="144" y="41" width="120" height="6" rx="3.5" fill="#4c7bc4" />
-                <g transform="translate(270,180)">
-                  <rect x="-58" y="-30" width="116" height="86" rx="18" fill="url(#dcLock)" />
-                  <path
-                    d="M-30-30v-20a30 30 0 0160 0v20"
-                    stroke="#0b5c50"
-                    stroke-width="13"
-                    fill="none"
-                    stroke-linecap="round"
-                  />
-                  <circle cy="8" r="12" fill="#fff" opacity=".92" />
-                  <rect x="-4" y="14" width="8" height="18" rx="4" fill="#fff" opacity=".92" />
-                </g>
-                <g fill="#fff" stroke="#dce5f2">
-                  <rect x="60" y="96" width="150" height="34" rx="9" />
-                  <rect x="60" y="142" width="150" height="34" rx="9" />
-                  <rect x="60" y="188" width="150" height="34" rx="9" />
-                </g>
-                <g fill="none" stroke="#128a42" stroke-width="2.2" stroke-linecap="round">
-                  <path d="M76 113l3 3 6-6" />
-                  <path d="M76 159l3 3 6-6" />
-                  <path d="M76 205l3 3 6-6" />
-                </g>
-                <g fill="#51607a" opacity=".45">
-                  <rect x="96" y="109" width="96" height="7" rx="3.5" />
-                  <rect x="96" y="155" width="76" height="7" rx="3.5" />
-                  <rect x="96" y="201" width="106" height="7" rx="3.5" />
-                </g>
-                <rect
-                  x="60"
-                  y="240"
-                  width="392"
-                  height="34"
-                  rx="9"
-                  fill="#f2f6fc"
-                  stroke="#dce5f2"
-                />
-                <rect x="76" y="253" width="140" height="8" rx="4" fill="#1c2a3a" opacity=".45" />
-                <rect x="356" y="248" width="80" height="18" rx="9" fill="#1565d8" opacity=".18" />
-              </svg>
-              <div class="pph-powered-mark pph-powered-image pph-digicert-brand">
-                <span class="pw-lbl">Powered by</span><strong>digicert<sup>&reg;</sup></strong
-                ><span class="pw-sub">Authorised Partner &middot; India</span>
-              </div>
-            </div>
+          <div class="pph-scene pph-digicert" aria-hidden="true">
+            <xh-digicert-hero />
+          </div>
+        } @else if (slug() === 'digicert-smime-ov') {
+          <div class="pph-scene pph-smime-ov" aria-hidden="true">
+            <xh-digicert-smime-ov-hero />
+          </div>
+        } @else if (slug() === 'claude-backup') {
+          <div class="pph-scene pph-claude-backup">
+            <xh-claude-backup-hero />
           </div>
         } @else if (slug() === 'email-signature') {
           <div class="pph-scene pph-email-signature" aria-hidden="true">
@@ -1861,7 +1791,7 @@
       }
       }
 
-      @if (slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && !isResellerProgram() && !isMicrosoftEnterprisePage() && slug() !== 'cloud-devops-services' && slug() !== 'server-management' && slug() !== 'microsoft-365-backup' && slug() !== 'domain-whois-lookup' && slug() !== 'managed-oracle-cloud' && slug() !== 'ai-voice-bot') {
+      @if (!isDigiCert() && slug() !== 'digicert-smime-ov' && slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && !isResellerProgram() && !isMicrosoftEnterprisePage() && slug() !== 'cloud-devops-services' && slug() !== 'server-management' && slug() !== 'microsoft-365-backup' && slug() !== 'domain-whois-lookup' && slug() !== 'managed-oracle-cloud' && slug() !== 'ai-voice-bot') {
         <div class="pp-trust">
           <div class="wrap">
             @if (isCopilotStudio()) {
@@ -2076,7 +2006,15 @@
         [class.genai-body]="slug() === 'acronis-genai-protection'"
         [class.email-archiving-body]="slug() === 'email-archiving'"
       >
+        @if (isDigiCert()) {
+          <xh-digicert-content />
+        } @else if (slug() === 'digicert-smime-ov') {
+          <xh-digicert-smime-ov-content />
+        }
         <div class="wrap">
+          @if (slug() === 'claude-backup') {
+            <xh-claude-backup-content (enquiry)="openCallback($event)" />
+          }
           @if (slug() === 'ai-chat-bot') {
             <xh-ai-chatbot-content (enquiry)="requestAiChatbot($event)" />
           }
@@ -2290,9 +2228,6 @@
             @if (isEntraIdBackup()) {
               <xh-entra-id-backup-content />
             }
-            @if (isDigiCert()) {
-              <xh-digicert-content />
-            }
             @if (isAutonomousThreatManagement()) {
               <xh-autonomous-threat-management-content />
             }
@@ -2327,6 +2262,8 @@
               !isZohoWorkspace() &&
               !isMicrosoftEntraId() &&
               !isDigiCert() &&
+              slug() !== 'digicert-smime-ov' &&
+              slug() !== 'claude-backup' &&
               !isAutonomousThreatManagement() &&
               !isAutonomousThreatSolution() &&
               !isOurPlatform() &&
@@ -5067,7 +5004,7 @@
                 </div>
                 <p class="pp-secfoot">XcellHost is ISO 27001 and ISO 20000-1 certified · Indian Tier-4 datacenters · DPDPA and RBI aligned · 24×7 NOC and SOC.</p>
               </section>
-            } @else if (slug() !== 'linux-servers' && slug() !== 'windows-servers' && slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation' && !isSmbCyber() && !isRmm() && slug() !== 'acronis-backup-advanced' && slug() !== 'acronis-ot' && slug() !== 'scrutiny-dlp' && slug() !== 'cloud-migration') {
+            } @else if (slug() !== 'claude-backup' && slug() !== 'linux-servers' && slug() !== 'windows-servers' && slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation' && !isSmbCyber() && !isRmm() && slug() !== 'acronis-backup-advanced' && slug() !== 'acronis-ot' && slug() !== 'scrutiny-dlp' && slug() !== 'cloud-migration') {
               <div class="pp-sec" id="ppSecHead" [style.margin-bottom.px]="slug() === 'managed-devops' ? 32 : null">{{ slug() === 'microsoft-365-enterprise' ? 'Security & compliance — Microsoft 365 Enterprise' : v.security.head }}</div>
               <div id="ppSecWrap">
                 <p class="pp-ov">{{ v.security.intro }}</p>
@@ -5103,6 +5040,7 @@
 
           @if (
             v.name !== 'Tally on Cloud' &&
+            slug() !== 'claude-backup' &&
             slug() !== 'plesk-servers' && slug() !== 'cpanel-servers' &&
             slug() !== 'nvidia-a100' &&
             slug() !== 'ai-resilience' &&
@@ -5162,7 +5100,7 @@
                 </div>
               }
             }
-            @if (platforms().length && slug() !== 'rtx-8000') {
+            @if (platforms().length && slug() !== 'rtx-8000' && slug() !== 'claude-backup') {
               <div class="pp-sec" [attr.id]="isTally() ? 'tallyPlatforms' : null">{{ isTally() ? 'Platforms & workloads' : 'Platforms & workloads covered' }}</div>
               <div class="pp-plat">
                 @for (p of platforms(); track p.name) {

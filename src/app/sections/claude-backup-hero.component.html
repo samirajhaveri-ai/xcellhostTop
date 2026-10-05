@@ -1,0 +1,48 @@
+<div class="glass" role="group" aria-label="Demo: restoring a Claude project after a bad AI change" [class.reduced-motion]="reducedMotion()">
+  <div class="glass-h"><span>AI WORK RECOVERY</span><b>● {{ status() }}</b></div>
+  <div class="kc">
+    <div class="kc-tb" aria-label="Choose workspace">
+      <button type="button" [attr.aria-pressed]="workspace() === 'code'" (click)="selectWorkspace('code')">
+        <img src="/assets/images/claude-backup-code.svg" alt="" width="16" height="16">Claude Code
+      </button>
+      <button type="button" [attr.aria-pressed]="workspace() === 'cw'" (click)="selectWorkspace('cw')">
+        <img src="/assets/images/claude-backup-cowork.svg" alt="" width="16" height="16">Cowork
+      </button>
+      <em [title]="data().path">{{ data().path }}</em>
+    </div>
+    <div class="kc-b">
+      <ul class="kf" aria-label="Workspace files">
+        @for (file of data().files; track file.name; let index = $index) {
+          <li [class.bad]="index < changedFiles()">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg>
+            <span [title]="file.name">{{ file.name }}</span>
+            <em>{{ index < changedFiles() ? file.change : state() === 'recovered' ? '✓ RESTORED' : '✓ SAVED' }}</em>
+          </li>
+        }
+      </ul>
+      <div class="kt">
+        <span>9:00</span>
+        <ol aria-label="Backup snapshots">
+          @for (snapshot of snapshots; track snapshot) {
+            <li>
+              <button type="button" [class.x]="snapshot === 9 && state() !== 'protected' && state() !== 'changing'"
+                [class.sel]="snapshot === 7 && (state() === 'restoring' || state() === 'recovered')"
+                [attr.aria-label]="snapshot === 7 ? 'Restore the 10:42 snapshot' : 'Backup snapshot ' + (snapshot + 1)"
+                [title]="snapshot === 7 ? '10:42 snapshot' : 'Backup snapshot'"
+                [disabled]="snapshot !== 7 || state() !== 'broken'" (click)="restoreSnapshot()"></button>
+            </li>
+          }
+        </ol>
+        <span>NOW</span>
+      </div>
+      <div class="kr">
+        <button type="button" [class.warn]="state() === 'protected' || state() === 'recovered'"
+          [disabled]="state() === 'changing' || state() === 'restoring'" (click)="run()">{{ buttonText() }}</button>
+        <div class="bar" role="progressbar" aria-label="Recovery progress" aria-valuemin="0" aria-valuemax="100" [attr.aria-valuenow]="progress()">
+          <i [style.width.%]="progress()"></i>
+        </div>
+      </div>
+      <div class="ks" [class.r]="state() === 'changing' || state() === 'broken'" aria-live="polite">{{ caption() }}</div>
+    </div>
+  </div>
+</div>
