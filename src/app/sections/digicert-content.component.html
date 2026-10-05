@@ -1,97 +1,401 @@
-<div class="digicert-content">
-  <section aria-labelledby="digicert-overview">
-    <div class="pp-sec" id="digicert-overview">Overview &mdash; Why DigiCert?</div>
-    <p class="pp-ov">DigiCert eliminates the frustration with PKI and simplifies SSL/TLS. It is one of the most trusted, most relied-upon Certificate Authorities in the world &mdash; it has perfected validation, invests millions in its infrastructure yearly, and continues to lead on post-quantum cryptography, IoT and blockchain. With the <b>CertCentral&reg;</b> management platform and a top-of-the-line product suite, there is a reason the Fortune 100 trust DigiCert to secure their identities.</p>
-    <p class="pp-ov">XcellHost supplies the full DigiCert range in India: we generate the CSR, run the validation with you, install the certificate on your server, and track the renewal so an expiry never becomes an outage. Billed in INR with a GST-compliant invoice.</p>
-    <div class="dc-stats">
-      <div><b>500M+</b><span>Seal impressions per day</span></div><div><b>$2M</b><span>Highest warranty available</span></div><div><b>27 mo</b><span>Validation reuse window</span></div><div><b>17%</b><span>Off list price, every term</span></div>
-    </div>
-  </section>
-
-  <section aria-labelledby="digicert-types">
-    <div class="pp-sec" id="digicert-types">Every kind of certificate</div>
-    <div class="dc-apps">
-      <article><i class="teal">&#128274;</i><div><b>SSL/TLS</b><span>DV, OV and EV for single, multi-domain and wildcard</span></div></article>
-      <article><i class="blue">&lt;/&gt;</i><div><b>Code Signing</b><span>Standard and EV, with SmartScreen reputation</span></div></article>
-      <article><i class="amber">&#10003;</i><div><b>Document Signing</b><span>Adobe AATL trusted, tamper-evident signatures</span></div></article>
-      <article><i class="purple">&#9993;</i><div><b>S/MIME</b><span>Signed and encrypted email, business or individual</span></div></article>
-      <article><i class="green">&#9881;</i><div><b>IoT &amp; Device</b><span>Device identity at scale, private and public roots</span></div></article>
-      <article><i class="slate">&#9671;</i><div><b>Private &amp; White-Label CAs</b><span>Dedicated intermediates for internal PKI</span></div></article>
-      <article><i class="red">&#9733;</i><div><b>Verified &amp; Common Marks</b><span>Your logo in the inbox via BIMI</span></div></article>
-      <article><i class="blue">&#9638;</i><div><b>CertCentral&reg;</b><span>Discovery, automation and lifecycle management</span></div></article>
-    </div>
-  </section>
-
-  <section aria-labelledby="catalogue">
-    <div class="pp-sec" id="catalogue">DigiCert certificates &mdash; world's fastest validation &amp; issuance</div>
-    <p class="pp-ov catalogue-intro">Choose a certificate family below, then select a product to request pricing or purchase assistance.</p>
-    <div class="dc-tabs" role="tablist" aria-label="Filter DigiCert certificates">
-      <button type="button" role="tab" [class.active]="activeGroup() === 'all'" [attr.aria-selected]="activeGroup() === 'all'" (click)="selectGroup('all')">All certificates <span>25</span></button>
-      @for (group of groups; track group.id) {
-        <button type="button" role="tab" [class.active]="activeGroup() === group.id" [attr.aria-selected]="activeGroup() === group.id" (click)="selectGroup(group.id)">{{ group.label }} <span>{{ groupCount(group.id) }}</span></button>
-      }
-    </div>
-    @for (group of groups; track group.id) {
-      @if (showGroup(group.id)) {
-        <div class="dc-group">
-          <div class="dc-group-head" [class]="'dc-group-head ' + group.id"><b>{{ group.label }}</b><p>{{ group.blurb }}</p></div>
-          <div class="dc-plans">
-            @for (certificate of certificatesFor(group.id); track certificate.name) {
-              <article class="dc-plan" [class.featured]="certificate.group === 'pro'">
-                @if (certificate.group === 'pro') { <span class="best">Best Seller</span> }
-                <h3>{{ certificate.name }}</h3>
-                <div class="price"><b>{{ formatInr(certificate.price) }}</b><span>per year &middot; 3-year term</span></div>
-                <em>Save {{ formatInr(certificate.save) }}</em>
-                <dl><div><dt>Warranty</dt><dd>{{ certificate.warranty }}</dd></div><div><dt>Validation</dt><dd>{{ certificate.validation }}</dd></div><div><dt>SANs</dt><dd>{{ certificate.sans ? 'Supported' : 'Not applicable' }}</dd></div></dl>
-                <div class="actions">
-                  <div class="dc-quantity" role="group" [attr.aria-label]="certificate.name + ' quantity'">
-                    <button type="button" [attr.aria-label]="'Decrease ' + certificate.name + ' quantity'" [disabled]="quantity(certificate) === 1" (click)="changeQuantity(certificate, -1)">&minus;</button>
-                    <output aria-live="polite">{{ quantity(certificate) }}</output>
-                    <button type="button" [attr.aria-label]="'Increase ' + certificate.name + ' quantity'" [disabled]="quantity(certificate) === 99" (click)="changeQuantity(certificate, 1)">+</button>
-                  </div>
-                  <button type="button" class="btn btn-primary" (click)="addToCart(certificate)">Add to Cart</button><a class="btn btn-ghost" href="#ppCtaT">Full details</a>
-                </div>
-              </article>
-            }
-          </div>
-        </div>
-      }
-    }
-    <p class="dc-note">&#128179; Prices shown in INR per year at the 3-year rate, converted at ₹95.65 per USD and rounded to the nearest rupee. XcellHost provides a GST-compliant invoice.</p>
-    <div class="dc-recommend"><div><b>Not sure which one?</b><span>Tell us what you are securing &mdash; we will size it, price it in INR and install it for you.</span></div><a class="btn btn-primary" href="#ppCtaT">Get a Recommendation</a></div>
-  </section>
-
-  <section aria-labelledby="digicert-comparison">
-    <div class="pp-sec" id="digicert-comparison">Full comparison</div>
-    <div class="dc-table-wrap"><table><thead><tr><th>Products</th><th>Lowest Price</th><th>Save</th><th>Warranty</th><th>Validation</th></tr></thead><tbody>
-      @for (group of groups; track group.id) {
-        <tr class="group-row"><td colspan="5">{{ group.label }}</td></tr>
-        @for (certificate of certificatesFor(group.id); track certificate.name) {
-          <tr><td>{{ certificate.name }}</td><td>{{ formatInr(certificate.price) }}/yr.</td><td>{{ formatInr(certificate.save) }}</td><td>{{ certificate.warranty }}</td><td><a href="#ppCtaT">{{ certificate.validation }} &middot; Buy</a></td></tr>
-        }
-      }
-    </tbody></table></div>
-  </section>
-
-  <section aria-labelledby="digicert-included">
-    <div class="pp-sec" id="digicert-included">What you get with every certificate</div>
-    <div class="dc-features">
-      <article><i class="teal">&#9201;</i><div><h3>Validate once, issue instantly</h3><p>What takes other CAs days takes DigiCert minutes.</p><ul><li>Business validation completed in minutes, not days</li><li>Skip validation on your next order for 27 months</li><li>Subsequent certificates issue instantly</li><li>Critical if you issue at any volume</li></ul></div></article>
-      <article><i class="blue">&#9638;</i><div><h3>CertCentral&reg; management</h3><p>Included with Secure Site and Secure Site Pro.</p><ul><li>Inventory every certificate on your network</li><li>Sub-user access control and delegated permissions</li><li>Request, issue, renew and revoke from one interface</li><li>ACME automation for hands-off renewal</li></ul></div></article>
-      <article><i class="green">&#10003;</i><div><h3>The DigiCert Secured seal</h3><p>Seen over half a billion times per day.</p><ul><li>Leveraged by most Fortune 100 companies</li><li>Synonymous with trust and integrity</li><li>Proven to increase conversions when deployed well</li><li>Smart Seal on Secure Site and above</li></ul></div></article>
-      <article><i class="purple">&#9733;</i><div><h3>Quantum-proof encryption</h3><p>Secure today, still secure tomorrow.</p><ul><li>RSA, ECC and post-quantum cryptography</li><li>Every certificate signed with a PQC algorithm too</li><li>No scramble when quantum computing arrives</li><li>DigiCert is charting the industry's course here</li></ul></div></article>
-      <article><i class="amber">$</i><div><h3>Warranty up to $2 million</h3><p>Relying-party protection from the CA.</p><ul><li>$1M, $1.25M, $1.75M or $2M depending on product</li><li>Covers losses from a mis-issued certificate</li><li>Higher assurance products carry higher cover</li><li>Stated per product on every card</li></ul></div></article>
-      <article><i class="red">&#9742;</i><div><h3>XcellHost does the work</h3><p>Not just a licence key in an email.</p><ul><li>CSR generated for your server type</li><li>Validation run with you, not left to you</li><li>Installed and chain-tested on Apache, NGINX or IIS</li><li>Renewal tracked before it becomes urgent</li></ul></div></article>
-    </div>
-  </section>
-
-  <section aria-labelledby="digicert-benefits"><div class="pp-sec" id="digicert-benefits">Benefits for your business</div><div class="dc-benefits">
-    <article><i>&#128274;</i><p><b>Visitor trust, immediately</b>The padlock and the seal both do work your marketing copy cannot.</p></article><article><i>&#9889;</i><p><b>No wasted project time</b>Minutes to validate instead of days waiting on a CA.</p></article><article><i>&#128200;</i><p><b>Fewer outages</b>Expiry tracked and automated, so a certificate never takes the site down.</p></article><article><i>&#8377;</i><p><b>Predictable cost</b>Multi-year terms lock the rate, billed in INR with GST.</p></article>
-  </div></section>
-
-  <section aria-labelledby="digicert-certcentral"><div class="pp-sec" id="digicert-certcentral">CertCentral&reg; certificate management</div><div class="dc-suite"><div><small>No more outages</small><h3>Say goodbye to the certificate spreadsheet</h3><p>79% of organisations have suffered at least one certificate-related outage in the past year, and 71% do not even know how many certificates they hold. CertCentral&reg; gives you granular control over every digital certificate on your network through its entire lifecycle &mdash; included with Secure Site and Secure Site Pro.</p><div class="suite-grid"><span>Scan &amp; inventory your network</span><span>Delegate control per team</span><span>Alerts &amp; remediation advice</span><span>Prevent shadow certificates</span><span>Automate requests &amp; renewals</span><span>ACME protocol integration</span></div><div class="suite-actions"><a class="btn btn-primary" href="#ppCtaT">Ask About CertCentral</a><a class="btn btn-ghost" href="#catalogue">See which plans include it</a></div></div><aside><b>79%<br>hit an outage</b><span>Certificate expiry<br>is an avoidable incident</span></aside></div></section>
-
-  <section aria-labelledby="digicert-audience"><div class="pp-sec" id="digicert-audience">Who buys which certificate</div><div class="dc-uses">
-    <article><i>&#127974;</i><b>Banking &amp; BFSI</b><span>EV on every customer-facing property</span></article><article><i>&#128722;</i><b>E-commerce</b><span>EV or Secure Site Pro on checkout</span></article><article><i>&#9729;</i><b>SaaS platforms</b><span>Wildcard or FLEX for tenant subdomains</span></article><article><i>&#127970;</i><b>Multi-brand groups</b><span>Multi-domain across every property</span></article><article><i>&#128187;</i><b>Software vendors</b><span>Code signing, EV for driver publishing</span></article><article><i>&#9878;</i><b>Legal &amp; professional</b><span>Document signing and S/MIME</span></article><article><i>&#128231;</i><b>High-volume senders</b><span>Verified Mark Certificate for BIMI</span></article><article><i>&#127981;</i><b>Manufacturing &amp; IoT</b><span>Device identity at scale</span></article>
-  </div></section>
+<section class="dc-trust" aria-label="XcellHost certificate service at a glance">
+<div class="dc-wrap">
+<div>
+<b>10,000+</b><span>businesses served</span>
 </div>
+<div>
+<b>27</b><span>years · since 1999</span>
+</div>
+<div>
+<b>3</b><span>leading CAs</span>
+</div>
+<div>
+<b>256-bit</b><span>encryption</span>
+</div>
+<div>
+<b>24×7</b><span>support, Mumbai</span>
+</div>
+</div>
+</section>
+<section id="why-choose" aria-labelledby="dc-why-choose-title" class="dc-pp-sec">
+<div class="dc-wrap">
+  
+<div class="dc-sec-h">
+<div class="dc-eyebrow">
+Why choose it
+</div>
+<h2 id="dc-why-choose-title">
+Why choose DigiCert SSL
+</h2>
+</div>
+<div class="dc-grid4">
+<div class="dc-card">
+<span class="dc-fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12"/></svg></span>
+<h3>
+High-assurance by default
+</h3>
+<p>
+DigiCert issues only OV and EV certificates in these ranges — every certificate carries a verified organisation.
+</p>
+</div>
+<div class="dc-card">
+<span class="dc-fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
+<h3>
+Fast validation
+</h3>
+<p>
+DigiCert is known for quick OV and EV vetting; once validated, reorders within 27 months can issue instantly.
+</p>
+</div>
+<div class="dc-card">
+<span class="dc-fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span>
+<h3>
+Up to $2M warranty
+</h3>
+<p>
+Secure Site Pro carries a $2 million warranty, Secure Site $1.75 million, Standard SSL $1 million.
+</p>
+</div>
+<div class="dc-card">
+<span class="dc-fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg></span>
+<h3>
+Ready for what’s next
+</h3>
+<p>
+RSA, ECC and post-quantum-ready options, with Certificate Transparency log monitoring on premium ranges.
+</p>
+</div>
+</div>
+
+</div>
+</section>
+<section id="sizes" aria-labelledby="dc-sizes-title" class="dc-pp-sec dc-ice">
+<div class="dc-wrap">
+  
+<div class="dc-sec-h">
+<div class="dc-eyebrow">
+Pricing
+</div>
+<h2 id="dc-sizes-title">
+DigiCert certificates and prices
+</h2>
+<p>
+Three ranges — Basic, Secure Site and Secure Site Pro — each in OV and EV.
+</p>
+</div>
+  
+<div class="dc-cfg2-tablewrap">
+<table class="dc-cmp-table dc-sz-table" aria-labelledby="dc-sizes-title">
+<thead>
+<tr>
+<th scope="col">Certificate</th><th scope="col">Validation</th><th scope="col">Range</th><th scope="col">Covers</th><th scope="col">Warranty</th><th scope="col">Price / year</th><th scope="col" class="dc-th-hl">Order</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="dc-tr-l" data-l="Certificate">Standard SSL</td><td data-l="Validation">OV</td><td data-l="Range">Basic</td><td data-l="Covers">1 domain (+www)</td><td data-l="Warranty">$1M</td><td data-l="Price / year">₹12,999</td><td class="dc-tc-hl" data-l=""><a href="https://wa.me/918657032540?text=Hi%2C%20I%20would%20like%20to%20order%20DigiCert%20SSL%20Certificates%20%E2%80%94%20Standard%20SSL." target="_blank" rel="noopener" style="color:var(--blue);text-decoration:underline">Order now</a></td>
+</tr>
+<tr>
+<td class="dc-tr-l" data-l="Certificate">Extended Validation SSL</td><td data-l="Validation">EV</td><td data-l="Range">Basic</td><td data-l="Covers">1 domain</td><td data-l="Warranty">$1M</td><td data-l="Price / year">₹19,299</td><td class="dc-tc-hl" data-l=""><a href="https://wa.me/918657032540?text=Hi%2C%20I%20would%20like%20to%20order%20DigiCert%20SSL%20Certificates%20%E2%80%94%20Extended%20Validation%20SSL." target="_blank" rel="noopener" style="color:var(--blue);text-decoration:underline">Order now</a></td>
+</tr>
+<tr>
+<td class="dc-tr-l" data-l="Certificate">Multi-Domain SSL</td><td data-l="Validation">OV</td><td data-l="Range">Basic</td><td data-l="Covers">Multiple domains</td><td data-l="Warranty">$1M</td><td data-l="Price / year">₹38,799</td><td class="dc-tc-hl" data-l=""><a href="https://wa.me/918657032540?text=Hi%2C%20I%20would%20like%20to%20order%20DigiCert%20SSL%20Certificates%20%E2%80%94%20Multi-Domain%20SSL." target="_blank" rel="noopener" style="color:var(--blue);text-decoration:underline">Order now</a></td>
+</tr>
+<tr>
+<td class="dc-tr-l" data-l="Certificate">EV Multi-Domain SSL</td><td data-l="Validation">EV</td><td data-l="Range">Basic</td><td data-l="Covers">Multiple domains</td><td data-l="Warranty">$1M</td><td data-l="Price / year">₹35,799</td><td class="dc-tc-hl" data-l=""><a href="https://wa.me/918657032540?text=Hi%2C%20I%20would%20like%20to%20order%20DigiCert%20SSL%20Certificates%20%E2%80%94%20EV%20Multi-Domain%20SSL." target="_blank" rel="noopener" style="color:var(--blue);text-decoration:underline">Order now</a></td>
+</tr>
+<tr>
+<td class="dc-tr-l" data-l="Certificate">Wildcard SSL</td><td data-l="Validation">OV</td><td data-l="Range">Basic</td><td data-l="Covers">Domain + all subdomains</td><td data-l="Warranty">$1M</td><td data-l="Price / year">₹41,099</td><td class="dc-tc-hl" data-l=""><a href="https://wa.me/918657032540?text=Hi%2C%20I%20would%20like%20to%20order%20DigiCert%20SSL%20Certificates%20%E2%80%94%20Wildcard%20SSL." target="_blank" rel="noopener" style="color:var(--blue);text-decoration:underline">Order now</a></td>
+</tr>
+<tr>
+<td class="dc-tr-l" data-l="Certificate">Secure Site SSL</td><td data-l="Validation">OV</td><td data-l="Range">Secure Site</td><td data-l="Covers">1 domain (+www)</td><td data-l="Warranty">$1.75M</td><td data-l="Price / year">₹21,399</td><td class="dc-tc-hl" data-l=""><a href="https://wa.me/918657032540?text=Hi%2C%20I%20would%20like%20to%20order%20DigiCert%20SSL%20Certificates%20%E2%80%94%20Secure%20Site%20SSL." target="_blank" rel="noopener" style="color:var(--blue);text-decoration:underline">Order now</a></td>
+</tr>
+<tr>
+<td class="dc-tr-l" data-l="Certificate">Secure Site EV SSL</td><td data-l="Validation">EV</td><td data-l="Range">Secure Site</td><td data-l="Covers">1 domain</td><td data-l="Warranty">$1.75M</td><td data-l="Price / year">₹49,299</td><td class="dc-tc-hl" data-l=""><a href="https://wa.me/918657032540?text=Hi%2C%20I%20would%20like%20to%20order%20DigiCert%20SSL%20Certificates%20%E2%80%94%20Secure%20Site%20EV%20SSL." target="_blank" rel="noopener" style="color:var(--blue);text-decoration:underline">Order now</a></td>
+</tr>
+<tr>
+<td class="dc-tr-l" data-l="Certificate">Secure Site Multi-Domain</td><td data-l="Validation">OV</td><td data-l="Range">Secure Site</td><td data-l="Covers">Multiple domains</td><td data-l="Warranty">$1.75M</td><td data-l="Price / year">₹69,699</td><td class="dc-tc-hl" data-l=""><a href="https://wa.me/918657032540?text=Hi%2C%20I%20would%20like%20to%20order%20DigiCert%20SSL%20Certificates%20%E2%80%94%20Secure%20Site%20Multi-Domain." target="_blank" rel="noopener" style="color:var(--blue);text-decoration:underline">Order now</a></td>
+</tr>
+<tr>
+<td class="dc-tr-l" data-l="Certificate">Secure Site Wildcard</td><td data-l="Validation">OV</td><td data-l="Range">Secure Site</td><td data-l="Covers">Domain + all subdomains</td><td data-l="Warranty">$1.75M</td><td data-l="Price / year">₹1,01,699</td><td class="dc-tc-hl" data-l=""><a href="https://wa.me/918657032540?text=Hi%2C%20I%20would%20like%20to%20order%20DigiCert%20SSL%20Certificates%20%E2%80%94%20Secure%20Site%20Wildcard." target="_blank" rel="noopener" style="color:var(--blue);text-decoration:underline">Order now</a></td>
+</tr>
+<tr>
+<td class="dc-tr-l" data-l="Certificate">Secure Site Pro SSL</td><td data-l="Validation">OV</td><td data-l="Range">Pro</td><td data-l="Covers">1 domain + scanning</td><td data-l="Warranty">$2M</td><td data-l="Price / year">₹53,199</td><td class="dc-tc-hl" data-l=""><a href="https://wa.me/918657032540?text=Hi%2C%20I%20would%20like%20to%20order%20DigiCert%20SSL%20Certificates%20%E2%80%94%20Secure%20Site%20Pro%20SSL." target="_blank" rel="noopener" style="color:var(--blue);text-decoration:underline">Order now</a></td>
+</tr>
+<tr>
+<td class="dc-tr-l" data-l="Certificate">Secure Site Pro EV SSL</td><td data-l="Validation">EV</td><td data-l="Range">Pro</td><td data-l="Covers">1 domain + scanning</td><td data-l="Warranty">$2M</td><td data-l="Price / year">₹76,099</td><td class="dc-tc-hl" data-l=""><a href="https://wa.me/918657032540?text=Hi%2C%20I%20would%20like%20to%20order%20DigiCert%20SSL%20Certificates%20%E2%80%94%20Secure%20Site%20Pro%20EV%20SSL." target="_blank" rel="noopener" style="color:var(--blue);text-decoration:underline">Order now</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+  
+<div class="dc-intg" style="margin-top:20px">
+<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>1–5 year subscriptions</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>Free reissues during term</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>Free CSR &amp; installation help</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Renewal reminders</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2v20l3-2 3 2 3-2 3 2 3-2 1 1V2l-1 1-3-2-3 2-3-2-3 2-3-2z"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>INR invoice with GST</span>
+</div>
+  
+<p class="dc-pv-note">
+Indicative prices in INR, exclusive of 18% GST, for a 1-year subscription. Multi-year subscriptions cost less per year. Multi-domain prices include the base names stated; extra names are charged per name. Final price is confirmed on your quote.
+</p>
+
+</div>
+</section>
+<section id="features" aria-labelledby="dc-features-title" class="dc-pp-sec">
+<div class="dc-wrap">
+  
+<div class="dc-sec-h">
+<div class="dc-eyebrow">
+Features
+</div>
+<h2 id="dc-features-title">
+What you get
+</h2>
+<p>
+Included with every certificate we supply.
+</p>
+</div>
+<div class="dc-grid3">
+<div class="dc-card">
+<span class="dc-fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12"/></svg></span>
+<h3>
+DigiCert Secured seal
+</h3>
+<p>
+One of the most recognised trust marks on the web, shown on checkout and login pages.
+</p>
+</div>
+<div class="dc-card">
+<span class="dc-fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="6" width="8" height="14" rx="4"/><path d="M19 7l-3 2M5 7l3 2M19 19l-3-2M5 19l3-2M20 13h-4M4 13h4M10 4l1 2M14 4l-1 2"/></svg></span>
+<h3>
+Malware scanning
+</h3>
+<p>
+Secure Site Pro scans your site daily and alerts you to malware and blacklisting.
+</p>
+</div>
+<div class="dc-card">
+<span class="dc-fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></span>
+<h3>
+Vulnerability assessment
+</h3>
+<p>
+Pro includes vulnerability scanning to flag weak server configurations.
+</p>
+</div>
+<div class="dc-card">
+<span class="dc-fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span>
+<h3>
+CT log monitoring
+</h3>
+<p>
+Get alerted if anyone issues a certificate for your domain without permission.
+</p>
+</div>
+<div class="dc-card">
+<span class="dc-fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></span>
+<h3>
+Flexible coverage
+</h3>
+<p>
+Single, multi-domain and wildcard options with free reissues during the term.
+</p>
+</div>
+<div class="dc-card">
+<span class="dc-fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/></svg></span>
+<h3>
+Priority support
+</h3>
+<p>
+Secure Site ranges include priority CA support, plus our 24×7 team in Mumbai.
+</p>
+</div>
+</div>
+
+</div>
+</section>
+<section id="how-it-works" aria-labelledby="dc-how-it-works-title" class="dc-pp-sec dc-ice">
+<div class="dc-wrap">
+  
+<div class="dc-sec-h">
+<div class="dc-eyebrow">
+How it works
+</div>
+<h2 id="dc-how-it-works-title">
+From order to padlock in four steps
+</h2>
+</div>
+<div class="dc-steps">
+<div class="dc-step">
+<span class="dc-n">01</span><span class="dc-sn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg></span>
+<h3>
+Choose the certificate
+</h3>
+<p>
+Tell us the domains and validation level — or let us recommend one.
+</p>
+</div>
+<div class="dc-step">
+<span class="dc-n">02</span><span class="dc-sn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.78 7.78 5.5 5.5 0 017.78-7.78zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></span>
+<h3>
+We generate the CSR
+</h3>
+<p>
+A private key and CSR are created on your server, or by us with your approval.
+</p>
+</div>
+<div class="dc-step">
+<span class="dc-n">03</span><span class="dc-sn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M17 11l2 2 4-4"/></svg></span>
+<h3>
+Validation
+</h3>
+<p>
+DV in minutes by DNS, email or file; OV and EV after business checks we help prepare.
+</p>
+</div>
+<div class="dc-step">
+<span class="dc-n">04</span><span class="dc-sn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span>
+<h3>
+Install &amp; test
+</h3>
+<p>
+We install it, enable HTTPS redirects and check the chain, ciphers and expiry alerts.
+</p>
+</div>
+</div>
+
+</div>
+</section>
+<section id="difference" aria-labelledby="dc-difference-title" class="dc-pp-sec dc-navy">
+<div class="dc-wrap">
+<div class="dc-sec-h">
+<div class="dc-eyebrow">
+The XcellHost difference
+</div>
+<h2 id="dc-difference-title">
+Why buy your certificates from XcellHost
+</h2>
+<p>
+Genuine certificates issued by the CA — with an Indian team that does the setup for you.
+</p>
+</div>
+<div class="dc-diff">
+<div class="dc-diff-i">
+<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i>
+<div>
+<b>Billed in rupees</b><span>one INR invoice with GST input credit — no foreign card charges or dollar swings</span>
+</div>
+</div>
+<div class="dc-diff-i">
+<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i>
+<div>
+<b>CSR to installation, done for you</b><span>we generate the CSR and install the certificate on cPanel, Plesk, IIS, Apache, Nginx, Exchange or a load balancer</span>
+</div>
+</div>
+<div class="dc-diff-i">
+<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i>
+<div>
+<b>Validation hand-holding</b><span>we prepare the documents the CA asks for — GST certificate, Udyam, MCA records, DUNS — and follow up the call-back</span>
+</div>
+</div>
+<div class="dc-diff-i">
+<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i>
+<div>
+<b>Never miss a renewal</b><span>reminders at 30, 15 and 7 days, and auto-renewal on request</span>
+</div>
+</div>
+<div class="dc-diff-i">
+<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i>
+<div>
+<b>Shorter certificate lifetimes handled</b><span>as public SSL lifetimes drop to 200 days and below, we reissue and redeploy within your subscription</span>
+</div>
+</div>
+<div class="dc-diff-i">
+<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i>
+<div>
+<b>24×7 people, not tickets</b><span>our Mumbai NOC + SOC answers by phone, WhatsApp and portal round the clock</span>
+</div>
+</div>
+<div class="dc-diff-i">
+<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i>
+<div>
+<b>One partner for the whole stack</b><span>certificates alongside your hosting, Microsoft 365, email security and VAPT</span>
+</div>
+</div>
+<div class="dc-diff-i">
+<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></i>
+<div>
+<b>Since 1999</b><span>a team that has secured websites and mail for Indian businesses for more than 25 years</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="use-cases" aria-labelledby="dc-use-cases-title" class="dc-pp-sec">
+<div class="dc-wrap">
+  
+<div class="dc-sec-h">
+<div class="dc-eyebrow">
+Use cases
+</div>
+<h2 id="dc-use-cases-title">
+Who it is for
+</h2>
+</div>
+<div class="dc-grid3">
+<div class="dc-card">
+<span class="dc-fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></svg></span>
+<h3>
+Banks &amp; NBFCs
+</h3>
+<p>
+EV certificates for net banking, loan portals and customer apps.
+</p>
+</div>
+<div class="dc-card">
+<span class="dc-fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+<h3>
+Insurance
+</h3>
+<p>
+Secure policy, claims and agent portals with verified identity.
+</p>
+</div>
+<div class="dc-card">
+<span class="dc-fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg></span>
+<h3>
+E-commerce
+</h3>
+<p>
+Checkout and account pages protected with a recognised seal.
+</p>
+</div>
+<div class="dc-card">
+<span class="dc-fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L2 7h20L12 2zM4 10v8M9 10v8M15 10v8M20 10v8M2 21h20"/></svg></span>
+<h3>
+Government &amp; PSU
+</h3>
+<p>
+High-assurance certificates for citizen-facing services.
+</p>
+</div>
+<div class="dc-card">
+<span class="dc-fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3v6a5 5 0 0010 0V3M10 14v2a5 5 0 0010 0v-2"/><circle cx="20" cy="12" r="2"/></svg></span>
+<h3>
+Healthcare
+</h3>
+<p>
+Protect patient portals and lab-report downloads.
+</p>
+</div>
+<div class="dc-card">
+<span class="dc-fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"/></svg></span>
+<h3>
+Enterprises
+</h3>
+<p>
+Standardise on one CA across many domains and subdomains.
+</p>
+</div>
+</div>
+
+</div>
+</section>
