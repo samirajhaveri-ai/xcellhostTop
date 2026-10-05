@@ -21,11 +21,7 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "SMB Cloud",
             "items": [
-              {
-                "title": "Cloud Drive",
-                "pill": null,
-                "desc": null
-              },
+              
               {
                 "title": "Tally on Cloud",
                 "pill": "Top seller",
@@ -35,6 +31,11 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Cloud Backup",
                 "pill": "Popular",
+                "desc": null
+              },
+              {
+                "title": "Cloud Drive",
+                "pill": null,
                 "desc": null
               },
 
