@@ -1177,7 +1177,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Load Balancer",
+                "title": "Virtual Load Balancer",
                 "pill": null,
                 "desc": null
               },
@@ -1634,12 +1634,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Drop Box",
+                "title": "Dropbox Backup",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Backup Box",
+                "title": "Box Backup",
                 "pill": null,
                 "desc": null
               },
@@ -1700,7 +1700,7 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Druva Resilience",
             "items": [
               {
-                "title": "Druva Explorer Platform",
+                "title": "Explore Druva Platform",
                 "pill": null,
                 "desc": null
               },
@@ -2078,7 +2078,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "5",
+        "g": "6",
         "label": "Digital Signature",
         "on": false,
         "groups": [
@@ -3401,6 +3401,30 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "SAP On Azure ",
                 "pill": null,
                 "desc": null
+              },
+            ]
+          }
+        ]
+      },
+       {
+        "g": "15",
+        "label": "Sage On Cloud",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Sage On Cloud",
+            "items": [
+              {
+                "title": "Sage 300 Hosting",
+                "href": "/sage-300-hosting",
+                "pill": null,
+                "desc": "Run Sage 300 on managed cloud hosting with remote access, backups and support."
+              },
+              {
+                "title": "Sage X3 Hosting",
+                "href": "/sage-x3-hosting",
+                "pill": null,
+                "desc": "Host your Sage X3 environment with managed infrastructure, backups and support."
               },
             ]
           }
