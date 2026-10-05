@@ -114,7 +114,7 @@ import { PERFORMANCE_CLOUD_FAQS } from '../data/performance-cloud-faqs.data';
 import { TSPLUS_REMOTE_ACCESS_EXPERIENCES } from '../data/tsplus-demo.data';
 import { EmailSignatureContentComponent } from '../sections/email-signature-content.component';
 import { EmailSignatureHeroComponent } from '../sections/email-signature-hero.component';
-import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, computed, effect, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -3252,6 +3252,35 @@ export class ProductPage {
       return;
     }
     this.buyPlan(plan, ev);
+  }
+
+  /** Restore the existing dialogs for buttons in the standalone Tally hero. */
+  @HostListener('window:message', ['$event'])
+  onTallyHeroMessage(event: MessageEvent<unknown>): void {
+    if (!this.isTally() || event.origin !== window.location.origin) return;
+    const frame = document.querySelector<HTMLIFrameElement>(
+      'iframe.supplied-smb-hero-frame[src="/assets/heroes/tally-on-cloud-hero.html"]',
+    );
+    if (!frame || event.source !== frame.contentWindow) return;
+
+    const message = event.data as { type?: unknown; action?: unknown } | null;
+    if (message?.type !== 'xcellhost:hero-action') return;
+
+    const click = new Event('click');
+    switch (message.action) {
+      case 'presentation':
+        this.requestDoc('presentation', click);
+        break;
+      case 'tour':
+        this.openProductScreenshotTour();
+        break;
+      case 'trial':
+        this.openTrial(click);
+        break;
+      case 'callback':
+        this.openCallback(click);
+        break;
+    }
   }
 
   requestDoc(kind: DocKind, ev: Event): void {
