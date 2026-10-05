@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-
-import { LeadService } from '../core/lead.service';
 
 /** Global newsletter banner displayed immediately above the site footer. */
 @Component({
@@ -27,18 +26,26 @@ import { LeadService } from '../core/lead.service';
           </h2>
         </div>
 
-        <form class="newsletter-form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <form #newsletterForm class="newsletter-form" [formGroup]="form" (ngSubmit)="submit(newsletterForm)"
+          action="https://forms.zohopublic.in/xcellhostcloudservicespvtltd1/form/NewsletterSubscriptionForm/formperma/ZFO74kn3xfRonRDRy3zFBSIcG82fsKdLTBd2toT0wPM/htmlRecords/submit"
+          method="POST" enctype="multipart/form-data" accept-charset="UTF-8" target="_blank" rel="noopener noreferrer" novalidate>
+          <input type="hidden" name="zf_referrer_name" />
+          <input type="hidden" name="zf_redirect_url" value="" />
+          <input type="hidden" name="zc_gad" />
           <label class="sr-only" for="newsletter-email">Email address</label>
           <input
             id="newsletter-email"
             type="email"
+            name="Email"
+            maxlength="255"
+            required
             formControlName="email"
             autocomplete="email"
             placeholder="Enter your email"
             [attr.aria-invalid]="emailInvalid()"
             aria-describedby="newsletter-message"
           />
-          <button type="submit" [disabled]="busy()">{{ buttonLabel() }}</button>
+          <button type="submit">Subscribe </button>
         </form>
 
         <p
@@ -299,23 +306,21 @@ import { LeadService } from '../core/lead.service';
 })
 export class ContactOptionsComponent {
   private readonly fb = inject(FormBuilder);
-  private readonly leads = inject(LeadService);
+  private readonly document = inject(DOCUMENT);
 
   readonly form = this.fb.nonNullable.group({
-    email: ['', [Validators.required, Validators.email]],
+    email: ['', [Validators.required, Validators.email, Validators.maxLength(255)]],
   });
 
-  readonly busy = signal(false);
   readonly done = signal(false);
   readonly message = signal('');
-  readonly buttonLabel = computed(() => (this.busy() ? 'Subscribing…' : 'Subscribe '));
 
   emailInvalid(): boolean {
     return this.form.controls.email.invalid && this.form.controls.email.touched;
   }
 
-  async submit(): Promise<void> {
-    if (this.busy()) return;
+  submit(formElement: HTMLFormElement): void {
+    this.form.controls.email.setValue(this.form.controls.email.value.trim());
     if (this.form.invalid) {
       this.form.controls.email.markAsTouched();
       this.done.set(false);
@@ -323,31 +328,20 @@ export class ContactOptionsComponent {
       return;
     }
 
-    this.busy.set(true);
-    this.message.set('');
-    const email = this.form.controls.email.value.trim();
-    const result = await this.leads.submit('newsletter', { email });
-    this.busy.set(false);
+    const referrer = formElement.elements.namedItem('zf_referrer_name') as HTMLInputElement;
+    const adClick = formElement.elements.namedItem('zc_gad') as HTMLInputElement;
+    referrer.value = this.document.location.href;
+    adClick.value = new URL(this.document.location.href).searchParams.get('gclid') ?? '';
 
-    if (!result.ok && !result.skipped) {
+    // Native POST avoids cross-origin fetch restrictions. Zoho displays the actual
+    // submission result in the new tab; a cross-origin load is not proof of success.
+    try {
+      formElement.submit();
       this.done.set(false);
-      this.message.set('We could not subscribe you right now. Please try again.');
-      return;
+      this.message.set('');
+    } catch {
+      this.done.set(false);
+      this.message.set('We could not open the subscription form. Please try again.');
     }
-
-    if (result.skipped) {
-      window.location.href = this.leads.mailtoLink(
-        'XcellHost newsletter subscription',
-        `Please subscribe ${email} to the XcellHost newsletter.`,
-      );
-    }
-
-    this.form.reset();
-    this.done.set(true);
-    this.message.set(
-      result.skipped
-        ? 'Your email app is ready to complete the subscription.'
-        : 'Thank you — you are subscribed!',
-    );
   }
 }

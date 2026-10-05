@@ -46,6 +46,12 @@ export const DIRECTORY_CATEGORIES: DirectoryCategory[] = [
 
 export const DIRECTORY: DirectoryEntry[] = [
   {
+    name: 'Microsoft 365 To Google Workspace Migration',
+    desc: 'Migrate Microsoft 365 (M365 / Office 365) email, OneDrive, SharePoint and Teams to Google Workspace, Gmail and Google Drive.',
+    cat: 'Cloud',
+    group: 'Managed Migration',
+  },
+  {
     name: 'Cloud Migration',
     desc: 'Plan, migrate and validate your cloud workloads',
     cat: 'Cloud',

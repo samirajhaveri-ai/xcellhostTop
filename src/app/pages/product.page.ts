@@ -1,8 +1,24 @@
+
 import { ComodoPaContentComponent, ComodoPaHeroComponent, ComodoPaFaqComponent, ComodoPaRelatedComponent } from '../sections/comodo-pa.components';
+
+import { WorkspaceMigrationContentComponent } from '../sections/microsoft-365-to-google-workspace-migration-content.component';
+import { WORKSPACE_MIGRATION_FAQS } from '../data/microsoft-365-to-google-workspace-migration-faqs.data';
+
+import { SectigoSslContentComponent } from '../sections/sectigo-ssl-certificates-content.component';
+import { SECTIGO_FAQS } from '../data/sectigo-ssl-certificates-faqs.data';
+import { EmailBackupContentComponent } from '../sections/email-backup-content.component';
+import { EMAIL_BACKUP_FAQS } from '../data/email-backup-faqs.data';
+import { OdooHostingContentComponent } from '../sections/odoo-hosting-content.component';
+import { ODOO_HOSTING_FAQS } from '../data/odoo-hosting-faqs.data';
+import { ErpNextHostingContentComponent } from '../sections/erp-next-hosting-content.component';
+import { ERPNEXT_FAQS } from '../data/erp-next-hosting-faqs.data';
+
+
 import { DigicertSmimeContentComponent } from '../sections/digicert-smime-content.component';
 import { DigicertSmimeFaqComponent } from '../sections/digicert-smime-faq.component';
 import { DigicertSmimeRelatedComponent } from '../sections/digicert-smime-related.component';
 import { DigicertSmimeHeroComponent } from '../sections/digicert-smime-hero.component';
+
 import { VeraRubinContentComponent } from '../sections/nvidia-vera-rubin-content.component';
 import { VERA_RUBIN_FAQS } from '../data/nvidia-vera-rubin-faqs.data';
 import { StorageContentComponent } from '../sections/storage-servers-content.component';
@@ -254,6 +270,11 @@ import { EntraIdHeroComponent } from '../sections/entra-id-hero.component';
 import { EntraIdBackupContentComponent } from '../sections/entra-id-backup-content.component';
 import { EntraIdBackupHeroComponent } from '../sections/entra-id-backup-hero.component';
 import { DigicertContentComponent } from '../sections/digicert-content.component';
+import { DigicertHeroComponent } from '../sections/digicert-hero.component';
+import { DigicertSmimeOvHeroComponent } from '../sections/digicert-smime-ov-hero.component';
+import { DigicertSmimeOvContentComponent } from '../sections/digicert-smime-ov-content.component';
+import { ClaudeBackupHeroComponent } from '../sections/claude-backup-hero.component';
+import { ClaudeBackupContentComponent } from '../sections/claude-backup-content.component';
 import { AutonomousThreatManagementContentComponent } from '../sections/autonomous-threat-management-content.component';
 import { AutonomousThreatManagementHeroComponent } from '../sections/autonomous-threat-management-hero.component';
 import { AutonomousThreatSolutionDetailComponent } from '../sections/autonomous-threat-solution-detail.component';
@@ -394,6 +415,11 @@ interface ProductTourSlide {
     InstantWebsiteContentComponent,
     LeadCrmContentComponent,
     VeraRubinContentComponent,
+    WorkspaceMigrationContentComponent,
+    SectigoSslContentComponent,
+    EmailBackupContentComponent,
+    OdooHostingContentComponent,
+    ErpNextHostingContentComponent,
     StorageContentComponent,
     GamingContentComponent,
     VirtualizationContentComponent,
@@ -487,6 +513,11 @@ interface ProductTourSlide {
     EntraIdBackupContentComponent,
     EntraIdBackupHeroComponent,
     DigicertContentComponent,
+    DigicertHeroComponent,
+    DigicertSmimeOvHeroComponent,
+    DigicertSmimeOvContentComponent,
+    ClaudeBackupHeroComponent,
+    ClaudeBackupContentComponent,
 
     AutonomousThreatManagementContentComponent,
     AutonomousThreatManagementHeroComponent,
@@ -1184,10 +1215,86 @@ interface ProductTourSlide {
     #ppage .atm-default-overview .pp-ov {
       width: 100%; max-width: 100%; margin-top: 10px; margin-bottom: 0;
     }
-    #ppage .pph-digicert-brand strong {
-      color: #0f5b9e; font: 700 22px/1 var(--disp); letter-spacing: -.03em;
+    #ppage.claude-backup-page .pp-hero { min-height: 620px; }
+    #ppage.claude-backup-page .pp-hero #ppTitle { display: block; text-align: left; white-space: normal; }
+    #ppage.claude-backup-page .pp-hero #ppTitle .pp-title-divider { margin-right: .18em; }
+    #ppage.claude-backup-page .pp-hero #ppTitle .pp-title-name { display: inline; margin-left: 0; }
+    #ppage.claude-backup-page .product-hero-ctas { width: 100%; max-width: 100%; flex-wrap: wrap; }
+    #ppage.ppage.claude-backup-page > .pp-hero > .pph-scene.pph-claude-backup {
+      top: 0; bottom: 0; right: max(24px, calc((100% - 1240px) / 2 + 24px));
+      width: min(44%, 550px); padding: 32px 0; max-height: none; z-index: 4; pointer-events: auto;
+      opacity: 1; overflow: visible; mask-image: none; -webkit-mask-image: none;
     }
-    #ppage .pph-digicert-brand sup { font-size: 9px; vertical-align: super; }
+    @media (min-width: 1301px) {
+      #ppage.claude-backup-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) { max-width: 51%; }
+      #ppage.claude-backup-page .pp-hero #ppTitle { max-width: 51%; }
+    }
+    @media (max-width: 1300px) {
+      #ppage.claude-backup-page .pp-hero { display: flex; flex-direction: column; padding-bottom: 32px; }
+      #ppage.claude-backup-page .pp-hero > .wrap { order: 1; width: 92%; }
+      #ppage.claude-backup-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) { width: 100%; max-width: 100%; }
+      #ppage.ppage.claude-backup-page > .pp-hero > .pph-scene.pph-claude-backup {
+        position: relative; inset: auto; width: min(550px, 92%); margin: 24px auto 0; padding: 16px 0;
+        order: 2; transform: none;
+      }
+    }
+    #ppage.smime-ov-page .pp-hero { min-height: 640px; }
+    #ppage.smime-ov-page .pp-body { padding-top: 0; }
+    #ppage.smime-ov-page .pp-hero #ppTitle { display: block; text-align: left; white-space: normal; }
+    #ppage.smime-ov-page .pp-hero #ppTitle .pp-title-divider { margin-right: .18em; }
+    #ppage.smime-ov-page .pp-hero #ppTitle .pp-title-name { display: inline; margin-left: 0; }
+    #ppage.smime-ov-page .product-hero-ctas { width: 100%; max-width: 100%; flex-wrap: wrap; }
+    #ppage.ppage.smime-ov-page > .pp-hero > .pph-scene.pph-smime-ov {
+      top: 0; bottom: 0; right: max(24px, calc((100% - 1240px) / 2 + 24px));
+      width: min(44%, 560px); padding: 32px 0; max-height: none;
+      opacity: 1; overflow: visible; mask-image: none; -webkit-mask-image: none;
+    }
+    @media (min-width: 1301px) {
+      #ppage.smime-ov-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) {
+        max-width: 51%;
+      }
+      #ppage.smime-ov-page .pp-hero #ppTitle { max-width: 51%; }
+    }
+    @media (max-width: 1300px) {
+      #ppage.smime-ov-page .pp-hero { display: flex; flex-direction: column; padding-bottom: 32px; }
+      #ppage.smime-ov-page .pp-hero > .wrap { order: 1; width: 92%; }
+      #ppage.smime-ov-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) {
+        width: 100%; max-width: 100%;
+      }
+      #ppage.ppage.smime-ov-page > .pp-hero > .pph-scene.pph-smime-ov {
+        position: relative; inset: auto; width: min(560px, 92%); margin: 24px auto 0; padding: 16px 0;
+        order: 2; transform: none;
+      }
+    }
+    #ppage.digicert-page .pp-hero { min-height: 640px; }
+    #ppage.digicert-page .pp-body { padding-top: 0; }
+    #ppage.digicert-page .pp-hero #ppTitle { display: block; text-align: left; }
+    #ppage.digicert-page .pp-hero #ppTitle .pp-title-divider { margin-right: .18em; }
+    #ppage.digicert-page .pp-hero #ppTitle .pp-title-name { display: inline; margin-left: 0; }
+    #ppage.digicert-page .product-hero-ctas { width: 100%; max-width: 100%; flex-wrap: wrap; }
+    #ppage.ppage.digicert-page > .pp-hero > .pph-scene.pph-digicert {
+      top: 0; bottom: 0; right: max(24px, calc((100% - 1240px) / 2 + 24px));
+      width: min(44%, 560px); padding: 32px 0; max-height: none;
+      opacity: 1; overflow: visible; mask-image: none; -webkit-mask-image: none;
+    }
+    @media (min-width: 1301px) {
+      #ppage.digicert-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) {
+        max-width: 51%;
+      }
+      #ppage.digicert-page .pp-hero #ppTitle { max-width: 51%; white-space: normal; }
+    }
+    @media (max-width: 1300px) {
+      #ppage.digicert-page .pp-hero { display: flex; flex-direction: column; padding-bottom: 32px; }
+      #ppage.digicert-page .pp-hero > .wrap { order: 1; width: 92%; }
+      #ppage.digicert-page .pp-hero #ppTitle { max-width: 100%; }
+      #ppage.digicert-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) {
+        width: 100%; max-width: 100%;
+      }
+      #ppage.ppage.digicert-page > .pp-hero > .pph-scene.pph-digicert {
+        position: relative; inset: auto; width: min(560px, 92%); margin: 24px auto 0; padding: 16px 0;
+        order: 2; transform: none;
+      }
+    }
     @media (max-width: 900px) {
       #ppage .copilot-hero-copy { max-width: none; padding: 68px 0 410px; }
       #ppage .copilot-hero-art { top: auto; right: 8%; bottom: 35px; width: 84%; }
@@ -2348,6 +2455,149 @@ export class ProductPage {
         { ...view.why[5], title: 'One Partner', body: 'Hardware, networking, backup and support together.' },
       ],
     };
+    if (slug === 'erp-next-hosting') return {
+      ...view, faqs: ERPNEXT_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — ERPNext Hosting',
+        intro: 'Keep ERPNext access, backups and server maintenance aligned with your business requirements. Use role-based permissions for your team, SSL for each site and separate databases for multi-site deployments. Confirm backup retention, restore procedures and the scope of managed support before deployment.',
+        rows: [
+          ['Application Access', 'ERPNext Roles And Permissions'],
+          ['Site Protection', 'SSL For Each ERPNext Site'],
+          ['Data Separation', 'Separate Databases For Multi-Site Hosting'],
+          ['Recovery', 'Automated Backups And Restore Planning'],
+          ['Maintenance', 'Server Management According To Your Plan'],
+          ['Deployment', 'ERPNext On The Frappe Framework'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Dedicated Resources', body: 'Size CPU, RAM and storage for your ERPNext users and workloads.' },
+        { ...view.why[2], title: 'Free Migration', body: 'Deployment and migration support for your ERPNext environment.' },
+        { ...view.why[3], title: 'Flexible Plans', body: 'Choose self-managed or fully managed hosting and scale as you grow.' },
+        { ...view.why[4], title: '24×7 Support', body: 'Hosting support with Indian billing and GST invoices.' },
+        { ...view.why[5], title: 'One Partner', body: 'Cloud hosting, backups and managed operations together.' },
+      ],
+    };
+    if (slug === 'odoo-hosting') return {
+      ...view, faqs: ODOO_HOSTING_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — Odoo Hosting',
+        intro: 'Keep Odoo access, backups and server maintenance aligned with your business requirements. Use role-based permissions for your team, SSL for each site and database isolation for separate business deployments. Confirm backup retention, restore procedures and the scope of managed support before deployment.',
+        rows: [
+          ['Application Access', 'Odoo Roles And Permissions'],
+          ['Site Protection', 'SSL For Each Odoo Site'],
+          ['Data Separation', 'Separate Business Databases'],
+          ['Recovery', 'Automated Backups And Restore Planning'],
+          ['Maintenance', 'Server Management According To Your Plan'],
+          ['Deployment', 'Odoo With PostgreSQL'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Dedicated Resources', body: 'Size CPU, RAM and storage for your Odoo users and workloads.' },
+        { ...view.why[2], title: 'Free Migration', body: 'Deployment and migration support for your Odoo environment.' },
+        { ...view.why[3], title: 'Flexible Plans', body: 'Choose self-managed or fully managed hosting and scale as you grow.' },
+        { ...view.why[4], title: '24×7 Support', body: 'Hosting support with Indian billing and GST invoices.' },
+        { ...view.why[5], title: 'One Partner', body: 'Cloud hosting, backups and managed operations together.' },
+      ],
+    };
+    if (slug === 'email-backup') return {
+      ...view, faqs: EMAIL_BACKUP_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — Email Backup',
+        intro: 'Keep a separate, encrypted copy of mailbox data and control who can search, export and restore it. Authorise supported cloud tenants through secure API access, choose retention policies for your organisation and use legal hold and audit reporting where included in your plan.',
+        rows: [
+          ['Data Protection', 'Separate Encrypted Mailbox Copies'],
+          ['Tenant Connection', 'Secure API Authorisation'],
+          ['Recovery', 'Item-Level And Point-In-Time Restore'],
+          ['Retention', 'Policies Based On Your Selected Plan'],
+          ['Compliance Options', 'Legal Hold And Audit Reporting'],
+          ['Coverage', 'Microsoft 365, Google Workspace, Exchange And IMAP'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Platform Coverage', body: 'Protect mail across Microsoft 365, Google Workspace, Exchange and IMAP.' },
+        { ...view.why[2], title: 'Guided Setup', body: 'Connect your tenant and configure mailbox policies with support.' },
+        { ...view.why[3], title: 'Flexible Retention', body: 'Choose a plan that fits your recovery and compliance needs.' },
+        { ...view.why[4], title: 'Managed Support', body: 'Restore guidance and support according to your selected plan.' },
+        { ...view.why[5], title: 'One Partner', body: 'Mailbox backup, monitoring and recovery support together.' },
+      ],
+    };
+    if (slug === 'sectigo-ssl-certificates') return {
+      ...view, faqs: SECTIGO_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — Sectigo SSL Certificates',
+        intro: 'Choose certificate validation and domain coverage for the services you operate. Complete the required validation, protect private keys and install the full certificate chain. Plan renewals and reissues, using ACME automation where supported by the selected product.',
+        rows: [
+          ['Validation', 'DV, OV And EV Options'],
+          ['Coverage', 'Single-Domain, Wildcard And Multi-Domain'],
+          ['Private Keys', 'Keep Keys Protected On Your Server'],
+          ['Installation', 'CSR And Certificate Chain Assistance'],
+          ['Renewals', 'ACME Automation Where Supported'],
+          ['Operations', 'Certificate Reissue And Renewal Planning'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Certificate Choice', body: 'Compare validation levels and domain coverage for your applications.' },
+        { ...view.why[2], title: 'Installation Help', body: 'CSR generation and certificate installation assistance.' },
+        { ...view.why[3], title: 'Renewal Planning', body: 'Support for reissues and automated renewal options.' },
+        { ...view.why[4], title: 'Local Support', body: 'Indian billing, GST invoices and certificate support.' },
+        { ...view.why[5], title: 'One Partner', body: 'Certificate selection, installation and ongoing support together.' },
+      ],
+    };
+    if (slug === 'microsoft-365-to-google-workspace-migration') return { ...view, ...{
+  "faqs": WORKSPACE_MIGRATION_FAQS,
+  "videos": [],
+  "reviews": [],
+  "tagline": "Move Mail, Files And Collaboration From Microsoft 365 To Google Workspace.",
+  "heroMessages": [
+    "Pre-Stage Data While Your Team Keeps Working",
+    "Plan Delta Sync And A Controlled Cutover"
+  ],
+  "heroPoints": [
+    "Exchange To Gmail",
+    "OneDrive To Google Drive",
+    "SharePoint To Shared Drives",
+    "Phased Migration And Coexistence"
+  ],
+  "chips": [],
+  "platforms": [
+    "Microsoft 365",
+    "Google Workspace"
+  ],
+  "security": {
+    "head": "Security & Compliance — Microsoft 365 To Google Workspace Migration",
+    "intro": "Connect both platforms through approved APIs and OAuth consent without collecting user passwords. Encrypt data in transit, map permissions and retain per-user migration logs. Review exceptions during a pilot and validate results before the final cutover.",
+    "rows": [
+      [
+        "Authorisation",
+        "OAuth 2.0 App Consent"
+      ],
+      [
+        "Data Transfer",
+        "Encrypted Connections Between Platforms"
+      ],
+      [
+        "Permissions",
+        "Sharing Permissions Mapped To Google Drive"
+      ],
+      [
+        "Audit Trail",
+        "Per-User Logs And Migration Reports"
+      ],
+      [
+        "Cutover",
+        "Pre-Staging And Delta Sync"
+      ],
+      [
+        "Validation",
+        "Pilot Testing And Post-Migration Review"
+      ]
+    ]
+  }
+}, why: [["Since 1999","27 years serving Indian businesses."],["Both Platforms","Engineers familiar with Microsoft 365 and Google Workspace."],["Migration Planning","Discovery, mapping and a pilot before production cutover."],["Phased Delivery","Pre-staging and coexistence for department-by-department moves."],["Cutover Support","Support through cutover and post-migration hypercare."],["One Partner","Assessment, migration and validation together."]].map((item,i)=>({...view.why[i],title:item[0],body:item[1]})) };
     if (slug === 'nvidia-vera-rubin') return {
       ...view, faqs: VERA_RUBIN_FAQS, videos: [],
       security: {
@@ -3026,7 +3276,12 @@ export class ProductPage {
         return;
       }
       const slug = this.slug();
-      this.seo.set(`${v.name} — XcellHost`, v.overview.slice(0, 160), `/${slug}/`);
+      this.seo.set(
+        `${v.name} — XcellHost`,
+        v.overview.slice(0, 160),
+        `/${slug}/`,
+        this.socialPreviewImage(slug, v),
+      );
       this.seo.setJsonLd('product', this.jsonLd(v, slug));
     });
 
@@ -3062,14 +3317,37 @@ export class ProductPage {
     });
   }
 
+  private socialPreviewImage(slug: string, view: ProductView): string {
+    const overrides: Record<string, string> = {
+      'acronis-genai-protection': '/assets/images/acronis-genai-protection.png',
+      'advanced-endpoint-security-edr': '/assets/images/hero-acronis-edr-v2.png',
+      'cloud-backup': '/assets/images/hero-cloud-backup-acronis.png',
+      'cloud-drive': '/assets/images/cloud-drive-tour-dashboard.jpg',
+      'remote-monitoring-and-mgmt-rmm': '/assets/images/hero-rmm.png',
+      'tally-on-cloud': '/assets/images/hero-tally-on-cloud.png',
+    };
+    const image = overrides[slug] ?? view.heroImage;
+    return image && !image.toLowerCase().endsWith('.svg')
+      ? image
+      : '/assets/images/xcellhost-logo.png';
+  }
+
   /* -------------------------------------------------------------- routing */
 
   /**
    * 1. the directory, 2. the hand-written product content (so `Acronis EDR`,
    * which never appears in the directory, still resolves), 3. give up.
    */
+  scrollToMigrationEstimate(event: Event): void {
+    event.preventDefault();
+    const frame = document.querySelector<HTMLIFrameElement>('iframe[src="/microsoft-365-to-google-workspace-migration-content.html"]');
+    const target = frame?.contentDocument?.getElementById('estimate');
+    if (frame && target) window.scrollTo({top:window.scrollY+frame.getBoundingClientRect().top+target.getBoundingClientRect().top-24,behavior:'smooth'});
+  }
+
   private resolve(slug: string): ProductView | null {
     if (!slug) return null;
+    if (slug === 'microsoft-365-to-google-workspace-migration') return this.products.build({name: 'Microsoft 365 To Google Workspace Migration',cat: 'Cloud',crumb: 'Productivity › Migrations'});
     const enterpriseVariants: Record<string, string> = {
       'microsoft-365-enterprise-office365': 'Office 365 Enterprise',
       'microsoft-365-enterprise-frontline': 'Microsoft 365 Frontline',
@@ -3228,12 +3506,15 @@ export class ProductPage {
     this.addPlanQuantity(plan);
   }
 
-  /** RMM "View Plan" keeps the visitor on-page and opens the selected plan in the cart. */
+  /** Open the standalone RMM checkout with the selected term and device quantity. */
   viewRmmPlan(plan: PricingPlan, ev: Event): void {
     ev.preventDefault();
-    const quantity = this.edrQuantity();
-    this.cart.add(plan.cartName, plan.cartPrice, quantity);
-    this.cart.open();
+    const years = Math.max(1, Number.parseInt(plan.term, 10) || 1);
+    const params = new URLSearchParams({
+      term: `${years}y`,
+      quantity: String(this.edrQuantity()),
+    });
+    window.location.assign(`/assets/xcellhost-rmm-checkout.html?${params.toString()}`);
   }
 
   /** `.pl-buy` and the hero Buy Now — add, open the drawer, go straight to checkout. */
@@ -3258,10 +3539,13 @@ export class ProductPage {
 
   buyEdrPlan(plan: PricingPlan, ev: Event): void {
     ev.preventDefault();
-    const quantity = this.edrQuantity();
-    this.cart.add(plan.cartName, plan.cartPrice, quantity);
-    this.cart.open();
-    this.cart.toCheckout();
+    const years = Math.max(1, Number.parseInt(plan.term, 10) || 1);
+    const params = new URLSearchParams({
+      product: 'acronis-edr',
+      billing: `${years}-year`,
+      quantity: String(this.edrQuantity()),
+    });
+    window.location.assign(`/assets/xcellhost-checkout.html?${params.toString()}`);
   }
 
   /** Hero "Buy Now" buys the entry-level term, which is what the ladder starts at. */
@@ -3269,6 +3553,14 @@ export class ProductPage {
     const plan = this.view()?.plans[0];
     if (!plan) {
       ev.preventDefault();
+      return;
+    }
+    if (this.isAdvancedEdr()) {
+      this.buyEdrPlan(plan, ev);
+      return;
+    }
+    if (this.isRmm()) {
+      this.viewRmmPlan(plan, ev);
       return;
     }
     this.buyPlan(plan, ev);
