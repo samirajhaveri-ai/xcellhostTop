@@ -154,7 +154,7 @@ describe('Insights pagination', () => {
       ]],
       ['VPS Servers', [
         'Windows VPS', 'Linux VPS', 'n8n VPS', 'OpenClaw VPS', 'Trading VPS', 'Claude VPS',
-        'Window 11 VPS', 'Odoo Hosting', 'ERP Next Hosting', 'Sage Hosting',
+        'Window 11 VPS', 'Odoo Hosting', 'ERPNext Hosting', 'Sage Hosting',
       ]],
     ];
     for (const [groupName, products] of requestedGroups) {

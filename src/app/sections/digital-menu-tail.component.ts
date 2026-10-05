@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 /** Agency and Growth Suite sections adapted from the supplied HTML reference. */
@@ -11,6 +12,7 @@ import { RouterLink } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DigitalMenuTailComponent {
+  private readonly document = inject(DOCUMENT);
   readonly agencyName = signal('Your Agency');
   readonly brandColour = signal('#7C3AED');
   readonly colours = ['#7C3AED', '#1565D8', '#E11D48', '#059669', '#EA580C', '#0F172A'];
@@ -23,5 +25,16 @@ export class DigitalMenuTailComponent {
 
   updateAgencyName(event: Event): void {
     this.agencyName.set((event.target as HTMLInputElement).value);
+  }
+
+  scrollToSection(event: Event, id: string): void {
+    const target = this.document.getElementById(id);
+    const view = this.document.defaultView;
+    if (!target || !view) return;
+    event.preventDefault();
+    view.scrollTo({
+      top: view.scrollY + target.getBoundingClientRect().top - 100,
+      behavior: view.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+    });
   }
 }

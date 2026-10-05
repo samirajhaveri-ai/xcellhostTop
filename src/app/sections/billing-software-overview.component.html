@@ -51,7 +51,7 @@
     </article>
   </div>
 
-  <h2 class="section-title reveal" data-reveal>Billing Software <em>features</em></h2>
+  <h2 class="section-title reveal" id="billing-features" data-reveal>Billing Software <em>features</em></h2>
   <div class="feature-grid reveal" data-reveal>
     @for (feature of features; track feature.title; let i = $index) {
       <article [style.--delay.ms]="i * 45"><span class="feature-icon" aria-hidden="true">
@@ -67,6 +67,34 @@
       </span><h3>{{ feature.title }}</h3><p>{{ feature.body }}</p></article>
     }
   </div>
+
+  <section class="billing-showcase reveal" aria-labelledby="billing-showcase-title" data-reveal>
+    <div class="billing-showcase-copy">
+      <span class="eyebrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-8 12h6l-1 8 9-13h-7z"/></svg>Smart billing with MagicBolt AI</span>
+      <h2 id="billing-showcase-title">Your billing, <em>in one place.</em></h2>
+      <p>Create invoices, manage customers and stock, and track payments from one dashboard.</p>
+      <ul class="billing-showcase-highlights">
+        <li><span class="billing-highlight-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6zM14 3v5h5M9 12h7M9 16h5"/></svg></span><div><b>GST invoices</b><small>Create &amp; share</small></div></li>
+        <li><span class="billing-highlight-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5zM3 8v9l9 5 9-5V8M12 13v9"/></svg></span><div><b>Inventory &amp; reports</b><small>Stock &amp; sales</small></div></li>
+        <li><span class="billing-highlight-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h4"/></svg></span><div><b>UPI &amp; card payments</b><small>Collect &amp; track</small></div></li>
+      </ul>
+      <div class="billing-showcase-actions">
+        <button class="billing-showcase-link" type="button" (click)="scrollToDemo()">Try the invoice demo <span aria-hidden="true">&rarr;</span></button>
+        <button class="billing-showcase-secondary" type="button" (click)="scrollToSection('billing-features')">Explore billing features <span aria-hidden="true">&#8599;</span></button>
+      </div>
+    </div>
+    <figure class="billing-product-visual">
+      <img
+        src="assets/images/billing-automation-magicbolt.png"
+        alt="MagicBolt AI smart billing dashboard with invoice creation, customer management, inventory tracking, sales reports and multiple payment options"
+        width="1254"
+        height="1254"
+        loading="lazy"
+        decoding="async"
+      />
+      <figcaption>Bill &middot; Track &middot; Grow</figcaption>
+    </figure>
+  </section>
 
   <h2 class="section-title reveal" data-reveal>How it <em>works</em></h2>
   <div class="steps reveal" data-reveal><article><small>Step 1</small><h3>Add your business</h3><p>GSTIN, logo, bank and UPI details.</p></article><article><small>Step 2</small><h3>Create the invoice</h3><p>Pick customer and items — tax calculates itself.</p></article><article><small>Step 3</small><h3>Send with pay link</h3><p>WhatsApp or email with a UPI/card link.</p></article><article><small>Step 4</small><h3>Get paid & reconcile</h3><p>Payments match invoices automatically.</p></article></div>

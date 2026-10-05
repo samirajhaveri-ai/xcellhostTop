@@ -7,6 +7,8 @@ import { Category, DirectoryEntry, ServiceRich } from '../data/models';
 
 /** Turns a service name into the URL slug used by the router. */
 export function slugify(name: string): string {
+  // Keep the established URL when displaying the ERPNext brand name.
+  if (name.toLowerCase().trim() === "erpnext hosting") return "erp-next-hosting";
   return name
     .toLowerCase()
     .replace(/&/g, 'and')
