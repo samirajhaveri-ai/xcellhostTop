@@ -1696,6 +1696,7 @@
             @if (slug() === 'sectigo-ssl-certificates') {
               <div class="sectigo-ssl-song"><b><span aria-hidden="true">▂▅▇</span> Listen to our SSL Security Song</b><audio controls preload="none" aria-label="Listen to our SSL Security Song"></audio></div>
             }
+            <xh-domain-hero-media [slug]="slug()" />
             @if (slug() === 'wordpress-hosting') {
               <div class="wordpress-hero-song">
                 <span id="wordpressHostingSongTitle">Listen to our WordPress Hosting Song</span>
@@ -1706,33 +1707,6 @@
               </div>
             }
 
-            @if (slug() === 'latest-domain-extensions') {
-              <div class="domain-hero-song">
-                <span id="domainExtensionsSongTitle">Listen to our Latest Domain Extensions Song</span>
-                <audio controls preload="metadata" aria-labelledby="domainExtensionsSongTitle">
-                  <source src="/assets/audio/latest-domain-extensions-song.mp3" type="audio/mpeg">
-                  <a href="/assets/audio/latest-domain-extensions-song.mp3">Listen to the Latest Domain Extensions Song</a>
-                </audio>
-              </div>
-            }
-            @if (slug() === 'transfer-your-domain') {
-              <div class="domain-hero-song">
-                <span id="domainTransferSongTitle">Listen to our Domain Transfer Song</span>
-                <audio controls preload="metadata" aria-labelledby="domainTransferSongTitle">
-                  <source src="/assets/audio/domain-transfer-song.mp3" type="audio/mpeg">
-                  <a href="/assets/audio/domain-transfer-song.mp3">Listen to the Domain Transfer Song</a>
-                </audio>
-              </div>
-            }
-            @if (slug() === 'register-a-domain-name') {
-              <div class="domain-hero-song">
-                <span id="domainSongTitle">Listen to our Domain Registration Song</span>
-                <audio controls preload="metadata" aria-labelledby="domainSongTitle">
-                  <source src="/assets/audio/domain-registration-song.mp3" type="audio/mpeg">
-                  <a href="/assets/audio/domain-registration-song.mp3">Listen to the Domain Registration Song</a>
-                </audio>
-              </div>
-            }
             @if (slug() === 'acronis-genai-protection') {
               <div class="genai-hero-song">
                 <span id="genaiSongTitle">Listen to our Acronis GenAI Protection Song</span>
@@ -5108,8 +5082,7 @@
 
           <div id="ppRich" [hidden]="slug() === 'digicert-smime-class-1' || slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin' || slug() === 'erp-next-hosting' || slug() === 'odoo-hosting' || slug() === 'email-backup' || slug() === 'sectigo-ssl-certificates' || slug() === 'microsoft-365-to-google-workspace-migration'">
 
-          <div id="ppRich" [hidden]="slug() === 'digicert-smime-class-1' || slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin'">
-
+          
 
           
             @if (v.packages.length) {
