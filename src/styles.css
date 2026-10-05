@@ -6054,9 +6054,21 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 #ppage .sectigo-ssl-song audio{outline:none!important;border:0;box-shadow:none!important}
 #ppage .sectigo-ssl-song audio:focus-visible{outline:2px solid #fff!important;outline-offset:3px}
 /* DigiCert S/MIME Class 1: supplied right-side visual in the shared hero. */
+#ppage .pp-hero h1.comodo-hero-title{display:block;font-size:clamp(28px,3.8vw,42px);line-height:1.08;white-space:normal;text-align:left}#ppage .comodo-hero-title .comodo-title-line{display:block}#ppage .comodo-hero-title .pp-brand-xcell{width:auto}
+#ppage .comodo-hero-points{grid-template-columns:repeat(2,minmax(0,1fr));width:100%;gap:12px 24px}#ppage .comodo-hero-points .pp-hpoint{font-size:13px;font-weight:600}#ppage .comodo-hero-points .tick{border-radius:5px;box-shadow:0 3px 12px rgba(21,101,216,.45)}
+@media(max-width:620px){#ppage .comodo-hero-points{grid-template-columns:1fr}}
 .smime-testimonials{margin:28px 0 0}.smime-testimonials .tcard p{text-align:justify}
 #ppage .pph-scene.smime-reference-hero{right:2%;width:36%;opacity:1;mask-image:none}
 .smime-demo-visual{padding:20px;background:#041e42;border-radius:0 0 16px 16px}.smime-demo-preview{max-width:520px}.smime-demo-preview>.btn{margin:16px}
 @media(max-width:1050px){#ppage .pph-scene.smime-reference-hero{width:34%;right:1%}}
 @media(max-width:900px){#ppage .pph-scene.smime-reference-hero{position:relative;inset:auto;width:calc(100% - 40px);max-width:500px;margin:24px auto}#ppage .pp-hero:has(.smime-reference-hero){display:flex;flex-direction:column}#ppage .pp-hero:has(.smime-reference-hero)>.wrap{width:100%}}
+
+
+/* Microsoft 365 to Google Workspace migration: scoped native banner layout. */
+#ppage:has(.workspace-migration-scene) #ppTitle{display:block!important}#ppage:has(.workspace-migration-scene) .pp-title-name{display:block;line-height:1.15}#ppage:has(.workspace-migration-scene) .migration-demo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}#ppage:has(.workspace-migration-scene) .migration-demo-grid article{padding:20px;border:1px solid #dbe6f5;border-radius:16px}#ppage.server-tail-uppercase:has(.workspace-migration-scene) .pp-body xh-insights-section h2{text-transform:capitalize!important}
+@media(min-width:1001px){#ppage.google-business-page:has(.workspace-migration-scene) .pp-hero{display:grid!important;grid-template-columns:minmax(0,640px) minmax(0,500px)!important;gap:24px;align-items:center;justify-content:center;padding:40px 24px!important}#ppage:has(.workspace-migration-scene) .pp-hero>.wrap{grid-column:1;grid-row:1;width:100%;max-width:none;margin:0;padding:0;min-width:0}#ppage:has(.workspace-migration-scene) .pp-hero>.wrap>:not(.pph-scene){width:100%;max-width:100%!important}#ppage.google-business-page .pp-hero>.pph-scene.workspace-migration-scene{position:relative!important;grid-column:2;grid-row:1;inset:auto!important;width:100%!important;max-width:none!important;height:auto!important;max-height:none;padding:0;margin:0;min-width:0;transform:none!important}}
+@media(max-width:600px){#ppage:has(.workspace-migration-scene) .migration-demo-grid{grid-template-columns:1fr}}
+
+/* Druva attribution beneath Ask AI on native product banners. */
+.druva-powered-by{display:flex;align-items:center;gap:10px;margin-top:16px;color:#c7d5ec;font-size:13px;line-height:1.4}.druva-powered-by img{display:block;width:40px;height:40px;object-fit:contain}.druva-powered-by strong{color:#fff;font-size:20px;font-weight:700}
 

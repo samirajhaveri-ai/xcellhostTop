@@ -1,4 +1,9 @@
 
+import { ComodoPaContentComponent, ComodoPaHeroComponent, ComodoPaFaqComponent, ComodoPaRelatedComponent } from '../sections/comodo-pa.components';
+
+import { WorkspaceMigrationContentComponent } from '../sections/microsoft-365-to-google-workspace-migration-content.component';
+import { WORKSPACE_MIGRATION_FAQS } from '../data/microsoft-365-to-google-workspace-migration-faqs.data';
+
 import { SectigoSslContentComponent } from '../sections/sectigo-ssl-certificates-content.component';
 import { SECTIGO_FAQS } from '../data/sectigo-ssl-certificates-faqs.data';
 import { EmailBackupContentComponent } from '../sections/email-backup-content.component';
@@ -7,6 +12,7 @@ import { OdooHostingContentComponent } from '../sections/odoo-hosting-content.co
 import { ODOO_HOSTING_FAQS } from '../data/odoo-hosting-faqs.data';
 import { ErpNextHostingContentComponent } from '../sections/erp-next-hosting-content.component';
 import { ERPNEXT_FAQS } from '../data/erp-next-hosting-faqs.data';
+
 
 import { DigicertSmimeContentComponent } from '../sections/digicert-smime-content.component';
 import { DigicertSmimeFaqComponent } from '../sections/digicert-smime-faq.component';
@@ -365,6 +371,7 @@ interface ProductTourSlide {
   selector: 'xh-product-page',
   standalone: true,
   imports: [
+    ComodoPaContentComponent, ComodoPaHeroComponent, ComodoPaFaqComponent, ComodoPaRelatedComponent,
     DigicertSmimeContentComponent,
     DigicertSmimeFaqComponent,
     DigicertSmimeRelatedComponent,
@@ -408,6 +415,7 @@ interface ProductTourSlide {
     InstantWebsiteContentComponent,
     LeadCrmContentComponent,
     VeraRubinContentComponent,
+    WorkspaceMigrationContentComponent,
     SectigoSslContentComponent,
     EmailBackupContentComponent,
     OdooHostingContentComponent,
@@ -2326,6 +2334,16 @@ export class ProductPage {
     const view = this.resolve(slug);
     if (!view) return null;
 
+    if (slug === 'comodo-personal-authentication') return {
+      ...view,
+      heroPoints: [
+        'Email Signing & Encryption',
+        'Document Signing (Pro+)',
+        'Two-Factor Client Auth (Pro+)',
+        'Organisation Validated (Ent.)',
+      ],
+    };
+
     if (slug === 'higher-education-cloud') return {
       ...view,
       heroImage: '/assets/images/higher-education/hero.svg',
@@ -2541,6 +2559,57 @@ export class ProductPage {
         { ...view.why[5], title: 'One Partner', body: 'Certificate selection, installation and ongoing support together.' },
       ],
     };
+    if (slug === 'microsoft-365-to-google-workspace-migration') return { ...view, ...{
+  "faqs": WORKSPACE_MIGRATION_FAQS,
+  "videos": [],
+  "reviews": [],
+  "tagline": "Move Mail, Files And Collaboration From Microsoft 365 To Google Workspace.",
+  "heroMessages": [
+    "Pre-Stage Data While Your Team Keeps Working",
+    "Plan Delta Sync And A Controlled Cutover"
+  ],
+  "heroPoints": [
+    "Exchange To Gmail",
+    "OneDrive To Google Drive",
+    "SharePoint To Shared Drives",
+    "Phased Migration And Coexistence"
+  ],
+  "chips": [],
+  "platforms": [
+    "Microsoft 365",
+    "Google Workspace"
+  ],
+  "security": {
+    "head": "Security & Compliance — Microsoft 365 To Google Workspace Migration",
+    "intro": "Connect both platforms through approved APIs and OAuth consent without collecting user passwords. Encrypt data in transit, map permissions and retain per-user migration logs. Review exceptions during a pilot and validate results before the final cutover.",
+    "rows": [
+      [
+        "Authorisation",
+        "OAuth 2.0 App Consent"
+      ],
+      [
+        "Data Transfer",
+        "Encrypted Connections Between Platforms"
+      ],
+      [
+        "Permissions",
+        "Sharing Permissions Mapped To Google Drive"
+      ],
+      [
+        "Audit Trail",
+        "Per-User Logs And Migration Reports"
+      ],
+      [
+        "Cutover",
+        "Pre-Staging And Delta Sync"
+      ],
+      [
+        "Validation",
+        "Pilot Testing And Post-Migration Review"
+      ]
+    ]
+  }
+}, why: [["Since 1999","27 years serving Indian businesses."],["Both Platforms","Engineers familiar with Microsoft 365 and Google Workspace."],["Migration Planning","Discovery, mapping and a pilot before production cutover."],["Phased Delivery","Pre-staging and coexistence for department-by-department moves."],["Cutover Support","Support through cutover and post-migration hypercare."],["One Partner","Assessment, migration and validation together."]].map((item,i)=>({...view.why[i],title:item[0],body:item[1]})) };
     if (slug === 'nvidia-vera-rubin') return {
       ...view, faqs: VERA_RUBIN_FAQS, videos: [],
       security: {
@@ -3281,8 +3350,16 @@ export class ProductPage {
    * 1. the directory, 2. the hand-written product content (so `Acronis EDR`,
    * which never appears in the directory, still resolves), 3. give up.
    */
+  scrollToMigrationEstimate(event: Event): void {
+    event.preventDefault();
+    const frame = document.querySelector<HTMLIFrameElement>('iframe[src="/microsoft-365-to-google-workspace-migration-content.html"]');
+    const target = frame?.contentDocument?.getElementById('estimate');
+    if (frame && target) window.scrollTo({top:window.scrollY+frame.getBoundingClientRect().top+target.getBoundingClientRect().top-24,behavior:'smooth'});
+  }
+
   private resolve(slug: string): ProductView | null {
     if (!slug) return null;
+    if (slug === 'microsoft-365-to-google-workspace-migration') return this.products.build({name: 'Microsoft 365 To Google Workspace Migration',cat: 'Cloud',crumb: 'Productivity › Migrations'});
     const enterpriseVariants: Record<string, string> = {
       'microsoft-365-enterprise-office365': 'Office 365 Enterprise',
       'microsoft-365-enterprise-frontline': 'Microsoft 365 Frontline',

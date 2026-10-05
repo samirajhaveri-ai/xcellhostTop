@@ -420,6 +420,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
   },
   // service pages sit at the root, so this must stay last
+  { path: 'comodo-enterprise-pro-basic-pa', redirectTo: 'comodo-personal-authentication', pathMatch: 'full' },
   { path: 'co-location', redirectTo: 'co-location-services', pathMatch: 'full' },
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
   { path: '**', redirectTo: '' },
