@@ -402,6 +402,7 @@ export const routes: Routes = [
       ),
   },
   { path: 'bare-metal-server', redirectTo: 'bare-metal-servers', pathMatch: 'full' },
+  { path: 'nvidia-b300-nodes', loadComponent: () => import('./pages/nvidia-b300.page').then((m) => m.NvidiaB300Page) },
   { path: 'nvidia-h200', loadComponent: () => import('./pages/nvidia-h200.page').then((m) => m.NvidiaH200Page) },
   {
     path: 'cloud-devops-services',

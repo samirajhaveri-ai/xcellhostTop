@@ -5505,10 +5505,18 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 .rtx-answer ul{display:grid;gap:9px;margin:10px 0 16px;padding:0;list-style:none}
 .rtx-answer li{display:flex;gap:9px;color:var(--ink);font-size:14px;line-height:1.5}
 .rtx-answer li::before{content:'✓';flex:none;color:#16a34a;font-weight:800}
+.h100-overview{margin-bottom:0}
+.h100-answer{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:28px;margin-top:26px;padding:26px 28px;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:14px;background:#fff;box-shadow:0 8px 24px rgba(16,43,79,.06)}
+.h100-answer-label{color:var(--blue);font:700 11px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.h100-answer h3{margin:7px 0 10px;color:var(--navy);font:700 22px/1.3 var(--disp)}
+.h100-answer p{margin:0;color:var(--slate);font-size:15px;line-height:1.7}
+.h100-answer ul{display:grid;gap:9px;margin:10px 0 0;padding:0;list-style:none}
+.h100-answer li{display:flex;gap:9px;color:var(--ink);font-size:14px;line-height:1.5}
+.h100-answer li::before{content:'✓';flex:none;color:#16a34a;font-weight:800}
 .rtx-bestfor{display:flex;align-items:center;flex-wrap:wrap;gap:6px;font-size:12px}
 .rtx-bestfor span{margin-right:2px;color:var(--slate);font-weight:700}
 .rtx-bestfor b{padding:4px 10px;border-radius:99px;background:var(--blue-soft);color:var(--blue);font-weight:700}
-@media(max-width:640px){.rtx-answer{grid-template-columns:1fr;padding:22px 20px;gap:24px}.rtx-overview .pp-ov{font-size:15px}}
+@media(max-width:640px){.rtx-answer,.h100-answer{grid-template-columns:1fr;padding:22px 20px;gap:24px}.rtx-overview .pp-ov{font-size:15px}}
 @media(prefers-reduced-motion:reduce){.rtx-rays path,.rtx-ray-source,.rtx-ray-orbit,.rtx-card-float,.rtx-card-shadow,.rtx-memory-slots i,.rtx-link b,.rtx-stage-badges i{animation:none}.rtx-rays path{stroke-dasharray:none;stroke-dashoffset:0;opacity:1}.rtx-link b:nth-child(1){left:20%}.rtx-link b:nth-child(2){left:50%}.rtx-link b:nth-child(3){left:80%}}
 
 /* RTX 6000 Ada hero */
@@ -5990,6 +5998,44 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 }
 
 #ppage.tally-page .tally-section-nav-track::-webkit-scrollbar { display: none; }
+
+#ppage.tally-page .tally-section-nav-top {
+  display: inline-grid;
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  margin-right: 5px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: #e5e8ed;
+  color: #465264;
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#ppage.tally-page .tally-section-nav-top svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#ppage.tally-page .tally-section-nav-top:hover,
+#ppage.tally-page .tally-section-nav-top:focus-visible {
+  background: #fff;
+  color: #075fc7;
+  box-shadow: 0 2px 8px rgba(4, 30, 66, 0.14);
+}
+
+#ppage.tally-page .tally-section-nav-top:focus-visible {
+  outline: 2px solid #1d73df;
+  outline-offset: 1px;
+}
 
 #ppage.tally-page .tally-section-nav a {
   flex: 0 0 auto;

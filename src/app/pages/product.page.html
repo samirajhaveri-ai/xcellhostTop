@@ -114,18 +114,32 @@
     }
     @if (slug() === 'nvidia-a100') {
       <xh-nvidia-a100-source view="hero" />
+      <xh-nvidia-a100-source view="overview" />
+      <xh-gpu-lead-hero [slug]="slug()" [productName]="v.name" />
     }
     @if (slug() === 'nvidia-l40s') {
-      <xh-nvidia-l40s-source />
+      <xh-nvidia-l40s-source view="hero" />
+      <xh-nvidia-l40s-source view="overview" />
+      <xh-gpu-lead-hero [slug]="slug()" [productName]="v.name" />
+      <xh-nvidia-l40s-source view="details" />
     }
     @if (slug() === 'nvidia-l4') {
-      <xh-nvidia-l4-source />
+      <xh-nvidia-l4-source view="hero" />
+      <xh-nvidia-l4-source view="overview" />
+      <xh-gpu-lead-hero [slug]="slug()" [productName]="v.name" />
+      <xh-nvidia-l4-source view="details" />
     }
     @if (slug() === 'nvidia-a30') {
-      <xh-nvidia-a30-source />
+      <xh-nvidia-a30-source view="hero" />
+      <xh-nvidia-a30-source view="overview" />
+      <xh-gpu-lead-hero [slug]="slug()" [productName]="v.name" />
+      <xh-nvidia-a30-source view="details" />
     }
     @if (slug() === 'nvidia-a2') {
-      <xh-nvidia-a2-source />
+      <xh-nvidia-a2-source view="hero" />
+      <xh-nvidia-a2-source view="overview" />
+      <xh-gpu-lead-hero [slug]="slug()" [productName]="v.name" />
+      <xh-nvidia-a2-source view="details" />
     }
     @if (slug() === 'ai-resilience') {
       <xh-ai-resilience-source view="hero" />
@@ -1841,17 +1855,22 @@
       @if (isTally()) {
         <nav class="tally-section-nav" aria-label="Tally on Cloud page sections">
           <div class="tally-section-nav-track">
-            <a href="/tally-on-cloud#tallyOverview" (click)="scrollToTallySection('tallyOverview', $event)">Overview</a>
+            <button
+              class="tally-section-nav-top"
+              type="button"
+              aria-label="Back to top"
+              title="Back to top"
+              (click)="scrollTallyPageToTop()"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 19V5m-6 6 6-6 6 6" />
+              </svg>
+            </button>
             <a href="/tally-on-cloud#tallyPricing" (click)="scrollToTallySection('tallyPricing', $event)">Pricing</a>
-            <a href="/tally-on-cloud#tallySecurity" (click)="scrollToTallySection('tallySecurity', $event)">Security</a>
-            <a href="/tally-on-cloud#tallyWhyChoose" (click)="scrollToTallySection('tallyWhyChoose', $event)">Why to Choose</a>
-            <a href="/tally-on-cloud#tallySavings" (click)="scrollToTallySection('tallySavings', $event)">Cloud Savings</a>
-            <a href="/tally-on-cloud#tallyEasySteps" (click)="scrollToTallySection('tallyEasySteps', $event)">5 Easy Steps</a>
             <a href="/tally-on-cloud#tallyFeatures" (click)="scrollToTallySection('tallyFeatures', $event)">Features</a>
-            <a href="/tally-on-cloud#tallyPlatforms" (click)="scrollToTallySection('tallyPlatforms', $event)">Platforms &amp; workloads</a>
-            <a href="/tally-on-cloud#tallyWatch" (click)="scrollToTallySection('tallyWatch', $event)">Watch it in action</a>
-            <a href="/tally-on-cloud#tallyTestimonials" (click)="scrollToTallySection('tallyTestimonials', $event)">Customer Testimonials</a>
-            <a href="/tally-on-cloud#tallyFaq" (click)="scrollToTallySection('tallyFaq', $event)">FAQs</a>
+            <a href="/tally-on-cloud#tallyWatch" (click)="scrollToTallySection('tallyWatch', $event)">Watch in Action</a>
+            <a href="/tally-on-cloud#tallyTestimonials" (click)="scrollToTallySection('tallyTestimonials', $event)">Testimonials</a>
+            <a href="/tally-on-cloud#tallyFaq" (click)="scrollToTallySection('tallyFaq', $event)">FAQ</a>
             <a href="/tally-on-cloud#tallyInsights" (click)="scrollToTallySection('tallyInsights', $event)">Insights</a>
           </div>
         </nav>
@@ -2033,7 +2052,9 @@
             <xh-ai-chatbot-content (enquiry)="requestAiChatbot($event)" />
           }
           @if (slug() === 'gpu-clusters') {
-            <xh-gpu-clusters-content (enquiry)="requestGpuCluster($event)" />
+            <xh-gpu-clusters-content (enquiry)="requestGpuCluster($event)">
+              <xh-gpu-lead-hero gpuLeadBanner [slug]="slug()" [productName]="v.name" />
+            </xh-gpu-clusters-content>
           }
           @if (slug() === 'identity-resilience') {
             <xh-identity-resilience-content />
@@ -2196,6 +2217,26 @@
             <xh-windows-servers-content (quoteRequested)="openCallback($event, 'Windows Servers custom build')" />
           } @else {
           @if (slug() === 'nvidia-h100') {
+            <section class="h100-overview" aria-labelledby="h100OverviewTitle">
+              <h2 class="pp-sec" id="h100OverviewTitle">Overview</h2>
+              <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
+              <div class="h100-answer">
+                <div>
+                  <span class="h100-answer-label">Quick answer</span>
+                  <h3>What is the NVIDIA H100 cloud GPU used for?</h3>
+                  <p>The H100 is a Hopper GPU with 80 GB of HBM3 and an FP8 Transformer Engine, used for training and serving large language models, recommenders and HPC workloads.</p>
+                </div>
+                <div>
+                  <span class="h100-answer-label">Key takeaways</span>
+                  <ul>
+                    <li>NVLink and NVSwitch connect up to 8 GPUs in an HGX node.</li>
+                    <li>MIG supports isolated GPU instances for shared workloads.</li>
+                    <li>Hosted in India with INR billing and GST invoices.</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+            <xh-gpu-lead-hero [slug]="slug()" [productName]="v.name" />
             <xh-nvidia-h100-content (planSelected)="selectH100Plan($event)" />
             <xh-nvidia-h100-assurance />
           } @else {
@@ -2446,27 +2487,7 @@
                         </section>
                       </div>
 
-                    } @else if (slug() === 'nvidia-h100') {
-                      <section class="h100-overview" aria-labelledby="h100OverviewTitle">
-                        <h2 class="pp-sec" id="h100OverviewTitle">Overview</h2>
-                        <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
-                        <div class="h100-answer">
-                          <div>
-                            <span class="h100-answer-label">Quick answer</span>
-                            <h3>What is the NVIDIA H100 cloud GPU used for?</h3>
-                            <p>The H100 is a Hopper GPU with 80 GB of HBM3 and an FP8 Transformer Engine, used for training and serving large language models, recommenders and HPC workloads.</p>
-                          </div>
-                          <div>
-                            <span class="h100-answer-label">Key takeaways</span>
-                            <ul>
-                              <li>NVLink and NVSwitch connect up to 8 GPUs in an HGX node.</li>
-                              <li>MIG supports isolated GPU instances for shared workloads.</li>
-                              <li>Hosted in India with INR billing and GST invoices.</li>
-                            </ul>
-                          </div>
-                        </div>
-                      </section>
-                   } @else if (slug() === 'plesk-servers') {
+                    } @else if (slug() === 'plesk-servers') {
                       <xh-plesk-servers-overview (quoteRequested)="openCallback($event.event, $event.configuration)" />
                    } @else if (slug() === 'cpanel-servers') {
                       <xh-cpanel-servers-overview (quoteRequested)="openCallback($event.event, $event.configuration)" />
@@ -2491,6 +2512,21 @@
                         </div>
                       </section>
                     }
+                  }
+
+                  @if (slug() === 'nvidia-vera-rubin') {
+                    <xh-nvidia-vera-rubin-content view="overview" />
+                    <xh-gpu-lead-hero [slug]="slug()" [productName]="v.name" />
+                  } @else if (
+                    isGpuServerPage() &&
+                    !isIframeGpuPage() &&
+                    slug() !== 'nvidia-a100' &&
+                    slug() !== 'rtx-pro-6000' &&
+                    slug() !== 'nvidia-rtx-6000-ada' &&
+                    slug() !== 'rtx-a6000' &&
+                    slug() !== 'gpu-clusters'
+                  ) {
+                    <xh-gpu-lead-hero [slug]="slug()" [productName]="v.name" />
                   }
 
                   @if (isAcronisTrueImage()) {
@@ -3191,11 +3227,17 @@
                 } @else if (slug() === 'rtx-8000') {
                   <xh-rtx-8000-pricing (quoteRequested)="requestRtxPlan($event)" />
                 } @else if (slug() === 'rtx-pro-6000') {
-                  <xh-rtx-pro-6000-pricing (quoteRequested)="requestRtxProPlan($event)" />
+                  <xh-rtx-pro-6000-pricing (quoteRequested)="requestRtxProPlan($event)">
+                    <xh-gpu-lead-hero gpuLeadBanner [slug]="slug()" [productName]="v.name" />
+                  </xh-rtx-pro-6000-pricing>
                 } @else if (slug() === 'nvidia-rtx-6000-ada') {
-                  <xh-rtx-6000-ada-pricing (quoteRequested)="requestRtx6000AdaPlan($event)" />
+                  <xh-rtx-6000-ada-pricing (quoteRequested)="requestRtx6000AdaPlan($event)">
+                    <xh-gpu-lead-hero gpuLeadBanner [slug]="slug()" [productName]="v.name" />
+                  </xh-rtx-6000-ada-pricing>
                 } @else if (slug() === 'rtx-a6000') {
-                  <xh-rtx-a6000-pricing (quoteRequested)="requestRtxA6000Plan($event)" />
+                  <xh-rtx-a6000-pricing (quoteRequested)="requestRtxA6000Plan($event)">
+                    <xh-gpu-lead-hero gpuLeadBanner [slug]="slug()" [productName]="v.name" />
+                  </xh-rtx-a6000-pricing>
                 } @else if (slug() === 'n8n-vps') {
                   <!-- Pricing and included features render with the n8n overview above. -->
                 } @else if (slug() === 'plesk-servers' || slug() === 'cpanel-servers') {
@@ -3458,7 +3500,7 @@
                     <div class="pp-sec" [attr.id]="isTally() ? 'tallySecurity' : null">
                       {{
                         v.name === 'Tally on Cloud'
-                          ? 'Security'
+                          ? 'Tally On Cloud Security Features'
                           : 'Key features'
                       }}
                     </div>
@@ -4083,7 +4125,7 @@
                   <div class="pp-sec" [attr.id]="isTally() ? 'tallyWhyChoose' : null">
                     {{
                       v.name === 'Tally on Cloud'
-                        ? 'Why to Choose'
+                        ? 'Why to Choose XcellHost for your Tally On Cloud'
                         : 'Benefits for your business'
                     }}
                   </div>
@@ -4479,7 +4521,7 @@
 
                 @if (v.name === 'Tally on Cloud') {
                   <section class="tally-extra" id="tallySavings" aria-label="Tally on Cloud migration information">
-                    <h2 class="tally-extra-title">Cloud Savings</h2>
+                    <h2 class="tally-extra-title">Tally On-Premises <span>VS</span> Tally On Cloud</h2>
                     <div class="tally-compare">
                       <div class="tally-compare-item on-prem">Needs Manual Updates</div>
                       <div class="tally-compare-item on-cloud">Automatic Updates</div>
@@ -4509,7 +4551,9 @@
                       </div>
                     </div>
 
-                    <h2 class="tally-extra-title" id="tallyEasySteps">5 Easy Steps</h2>
+                    <h2 class="tally-extra-title" id="tallyEasySteps">
+                      Migrate Tally To The Cloud <span>5 Easy Steps</span>
+                    </h2>
                     <div class="tally-migration-steps">
                       <div class="tally-migration-step">
                         <i>01</i><span>🚀</span><b>Deliver Tally Server</b>
@@ -4528,7 +4572,9 @@
                       </div>
                     </div>
 
-                    <h2 class="tally-extra-title" id="tallyFeatures">Features</h2>
+                    <h2 class="tally-extra-title" id="tallyFeatures">
+                      What You Can Install On <span>Windows Server</span>
+                    </h2>
                     <div
                       class="tally-apps"
                       role="region"
@@ -4684,7 +4730,7 @@
                 } @else if (slug() === 'sectigo-ssl-certificates') {
                   <xh-sectigo-ssl-certificates-content />
                 } @else if (slug() === 'nvidia-vera-rubin') {
-                  <xh-nvidia-vera-rubin-content />
+                  <xh-nvidia-vera-rubin-content view="details" />
                 } @else if (slug() === 'lead-generation-and-pipeline-crm') {
                   <xh-lead-generation-and-pipeline-crm-content />
                 } @else if (slug() === 'instant-website') {
@@ -5125,7 +5171,7 @@
               }
             }
             @if (platforms().length && slug() !== 'rtx-8000' && slug() !== 'claude-backup') {
-              <div class="pp-sec" [attr.id]="isTally() ? 'tallyPlatforms' : null">{{ isTally() ? 'Platforms & workloads' : 'Platforms & workloads covered' }}</div>
+              <div class="pp-sec" [attr.id]="isTally() ? 'tallyPlatforms' : null">Platforms &amp; workloads covered</div>
               <div class="pp-plat">
                 @for (p of platforms(); track p.name) {
                   <div class="plat">
@@ -5630,7 +5676,7 @@
             </section>
           }
           @if (slug() !== 'digicert-smime-class-1' && slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
-          <div class="pp-sec" [attr.id]="isTally() ? 'tallyTestimonials' : null" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">{{ isTally() ? 'Customer Testimonials' : 'What customers say' }}</div>
+          <div class="pp-sec" [attr.id]="isTally() ? 'tallyTestimonials' : null" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">What customers say</div>
 
           @if (slug() === 'erp-next-hosting' || slug() === 'nvidia-vera-rubin' || slug() === 'storage-servers' || slug() === 'gaming-servers' || slug() === 'virtualization-servers' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'agent-studio' || slug() === 'aiops' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'instant-website' || slug() === 'instagram-automation' || slug() === 'hrm-attendance' || slug() === 'google-my-business' || isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training' || slug() === 'ai-chat-bot') {
 
@@ -5726,7 +5772,7 @@
             <xh-digicert-smime-faq />
             <xh-digicert-smime-related />
           } @else {
-          <div class="pp-sec pp-faq-heading" [attr.id]="isTally() ? 'tallyFaq' : null" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">{{ isTally() ? 'FAQs' : 'Frequently asked questions' }}</div>
+          <div class="pp-sec pp-faq-heading" [attr.id]="isTally() ? 'tallyFaq' : null" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Frequently asked questions</div>
           @if (slug() === 'domain-whois-lookup') {
             <xh-domain-whois-faq />
           } @else if (slug() === 'managed-oracle-cloud') {
@@ -5775,7 +5821,7 @@
 
         <div class="pp-cta" [attr.id]="isTally() ? 'tallySupport' : null">
             <div>
-              <h3 id="ppCtaT">{{ isTally() ? 'Support' : 'Ready to start with ' + v.name + '?' }}</h3>
+              <h3 id="ppCtaT">Ready to start with {{ v.name }}?</h3>
               <p>FREE Consultation &middot; FREE Demo &middot; FREE Trial &middot; 24&times;7 support in English &amp; Hindi</p>
             </div>
             <div style="display: flex; gap: 12px; flex-wrap: wrap">

@@ -27,6 +27,8 @@
    <div class="bestfor"><span>For:</span><b>LLM pre-training</b><b>RLHF</b><b>Fine-tuning</b><b>Diffusion</b><b>HPC</b></div></div>
  </div>
 
+ <ng-content select="[gpuLeadBanner]" />
+
  <h2 class="h2s">What's a GPU cluster, and <em>when do you need one?</em></h2>
  <div class="g3"><div class="cd"><span class="ic"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg></span><h3>Many GPUs, one system</h3><p>Servers with 4 or 8 GPUs each, linked by NVLink inside the node and InfiniBand or RoCE between nodes.</p></div><div class="cd"><span class="ic"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5 3 3 0 0 0 3 3 3 3 0 0 0 3-3V7a3 3 0 0 0-3-3z"/><path d="M15 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-3 3 3 3 0 0 1-3-3"/></svg></span><h3>When you need one</h3><p>A single GPU is fine if the model fits one card. Clusters are for 70B-class pre-training, RLHF on 100B-class models and diffusion training on millions of images.</p></div><div class="cd"><span class="ic"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></span><h3>The network decides</h3><p>Gradient sync over the network makes or breaks throughput — not raw FLOPS alone.</p></div></div>
 
