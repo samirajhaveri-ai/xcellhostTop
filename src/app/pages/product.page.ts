@@ -1,3 +1,4 @@
+
 import { SectigoSslContentComponent } from '../sections/sectigo-ssl-certificates-content.component';
 import { SECTIGO_FAQS } from '../data/sectigo-ssl-certificates-faqs.data';
 import { EmailBackupContentComponent } from '../sections/email-backup-content.component';
@@ -6,6 +7,12 @@ import { OdooHostingContentComponent } from '../sections/odoo-hosting-content.co
 import { ODOO_HOSTING_FAQS } from '../data/odoo-hosting-faqs.data';
 import { ErpNextHostingContentComponent } from '../sections/erp-next-hosting-content.component';
 import { ERPNEXT_FAQS } from '../data/erp-next-hosting-faqs.data';
+
+import { DigicertSmimeContentComponent } from '../sections/digicert-smime-content.component';
+import { DigicertSmimeFaqComponent } from '../sections/digicert-smime-faq.component';
+import { DigicertSmimeRelatedComponent } from '../sections/digicert-smime-related.component';
+import { DigicertSmimeHeroComponent } from '../sections/digicert-smime-hero.component';
+
 import { VeraRubinContentComponent } from '../sections/nvidia-vera-rubin-content.component';
 import { VERA_RUBIN_FAQS } from '../data/nvidia-vera-rubin-faqs.data';
 import { StorageContentComponent } from '../sections/storage-servers-content.component';
@@ -353,6 +360,10 @@ interface ProductTourSlide {
   selector: 'xh-product-page',
   standalone: true,
   imports: [
+    DigicertSmimeContentComponent,
+    DigicertSmimeFaqComponent,
+    DigicertSmimeRelatedComponent,
+    DigicertSmimeHeroComponent,
 
     HigherEducationHeroCopyComponent,
     HigherEducationContentComponent,
