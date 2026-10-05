@@ -24,8 +24,8 @@
     [class.instagram-automation-page]="slug() === 'instagram-automation'"
     [class.smart-qr-page]="slug() === 'smart-qr-and-nfc-automation'"
     [class.virtualization-page]="slug() === 'virtualization-servers'"
-    [class.server-tail-uppercase]="slug() === 'sectigo-ssl-certificates' || slug() === 'email-backup' || slug() === 'odoo-hosting' || slug() === 'erp-next-hosting' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin'"
-    [class.google-business-page]="slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin' || slug() === 'erp-next-hosting' || slug() === 'odoo-hosting' || slug() === 'email-backup' || slug() === 'sectigo-ssl-certificates'"
+    [class.server-tail-uppercase]="slug() === 'microsoft-365-to-google-workspace-migration' || slug() === 'sectigo-ssl-certificates' || slug() === 'email-backup' || slug() === 'odoo-hosting' || slug() === 'erp-next-hosting' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin'"
+    [class.google-business-page]="slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin' || slug() === 'erp-next-hosting' || slug() === 'odoo-hosting' || slug() === 'email-backup' || slug() === 'sectigo-ssl-certificates' || slug() === 'microsoft-365-to-google-workspace-migration'"
     [class.acronis-ot-page]="slug() === 'acronis-ot'"
     [class.acronis-mdr-page]="slug() === 'acronis-mdr'"
     [class.microsoft-defender-page]="slug() === 'microsoft-defender'"
@@ -403,6 +403,8 @@
           <div class="pph-scene google-business-dashboard email-backup-dashboard-scene"><xh-email-backup-content [hero]="true" style="width:100%" /></div>
           } @else if (slug() === 'sectigo-ssl-certificates') {
           <div class="pph-scene google-business-dashboard sectigo-dashboard-scene"><xh-sectigo-ssl-certificates-content [hero]="true" style="width:100%" /></div>
+          } @else if (slug() === 'microsoft-365-to-google-workspace-migration') {
+          <div class="pph-scene google-business-dashboard workspace-migration-scene"><xh-microsoft-365-to-google-workspace-migration-content [hero]="true" style="width:100%" /></div>
           } @else if (slug() === 'nvidia-vera-rubin') {
           <div class="pph-scene google-business-dashboard"><xh-nvidia-vera-rubin-content [hero]="true" style="width:100%" /></div>
           } @else if (slug() === 'lead-generation-and-pipeline-crm') {
@@ -1753,6 +1755,10 @@
                   </div>
                 </section>
 
+            @if (slug() === 'identity-resilience' || slug() === 'ediscovery-and-compliance') {
+              <div class="druva-powered-by"><span>Powered by</span><span aria-hidden="true">|</span><img src="/assets/images/ai-resilience/druva.png" alt="Druva" width="40" height="40"><strong>Druva</strong></div>
+            }
+
             @if (slug() === 'email-backup') {
               <div class="email-backup-protects" aria-label="Protected email platforms"><small>PROTECTS</small><span title="Microsoft 365"><img class="lg" src="/assets/logos/email-backup-platform-1.svg" alt="Microsoft 365 logo" width="20" height="20"></span><span title="Outlook"><img class="lg" src="/assets/logos/email-backup-platform-2.svg" alt="Outlook logo" width="20" height="20"></span><span title="Exchange Online"><img class="lg" src="/assets/logos/email-backup-platform-3.svg" alt="Exchange Online logo" width="20" height="20"></span><span title="Google Workspace"><img class="lg" src="/assets/logos/email-backup-platform-4.svg" alt="Google Workspace logo" width="20" height="20"></span><span title="Gmail"><img class="lg" src="/assets/logos/email-backup-platform-5.svg" alt="Gmail logo" width="20" height="20"></span><span title="Google Calendar"><img class="lg" src="/assets/logos/email-backup-platform-6.svg" alt="Google Calendar logo" width="20" height="20"></span><span title="Microsoft Teams"><img class="lg" src="/assets/logos/email-backup-platform-7.svg" alt="Microsoft Teams logo" width="20" height="20"></span></div>
             }
@@ -2532,7 +2538,7 @@
                       <xh-cpanel-servers-overview (quoteRequested)="openCallback($event.event, $event.configuration)" />
                    } @else if (slug() === 'imunify360') {
                       <xh-imunify360-content (planRequested)="requestImunify360Plan($event)" />
-                   } @else if (!isTally() && slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'sectigo-ssl-certificates' && slug() !== 'email-backup' && slug() !== 'odoo-hosting' && slug() !== 'erp-next-hosting' && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops') {
+                   } @else if (!isTally() && slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'microsoft-365-to-google-workspace-migration' && slug() !== 'sectigo-ssl-certificates' && slug() !== 'email-backup' && slug() !== 'odoo-hosting' && slug() !== 'erp-next-hosting' && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops') {
                       <div class="pp-sec">Overview</div>
                       <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
                     }
@@ -3271,7 +3277,7 @@
                 } @else if (slug() === 'cloud-disaster-recovery-for-enterprise') {
                   <xh-enterprise-dr-details (quoteRequested)="openCallback($event, 'Enterprise disaster recovery quote')" />
                 } @else if (
-                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'sectigo-ssl-certificates' && slug() !== 'email-backup' && slug() !== 'odoo-hosting' && slug() !== 'erp-next-hosting' && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
+                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'microsoft-365-to-google-workspace-migration' && slug() !== 'sectigo-ssl-certificates' && slug() !== 'email-backup' && slug() !== 'odoo-hosting' && slug() !== 'erp-next-hosting' && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
                   !isAdvancedEdr() &&
                   !isSmbCyber() &&
                   !isRmm() &&
@@ -3479,7 +3485,7 @@
                 } @else if (slug() === 'rtx-a6000') {
                   <xh-rtx-a6000-details />
                 } @else if (
-                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'sectigo-ssl-certificates' && slug() !== 'email-backup' && slug() !== 'odoo-hosting' && slug() !== 'erp-next-hosting' && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
+                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'microsoft-365-to-google-workspace-migration' && slug() !== 'sectigo-ssl-certificates' && slug() !== 'email-backup' && slug() !== 'odoo-hosting' && slug() !== 'erp-next-hosting' && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
                   slug() !== 'imunify360' &&
                   slug() !== 'plesk-servers' && slug() !== 'cpanel-servers' &&
                   !isSmbCyber() &&
@@ -4120,7 +4126,7 @@
                 } @else if (slug() === 'rtx-a6000') {
                   <xh-rtx-a6000-performance />
                 } @else if (
-                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'sectigo-ssl-certificates' && slug() !== 'email-backup' && slug() !== 'odoo-hosting' && slug() !== 'erp-next-hosting' && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
+                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'microsoft-365-to-google-workspace-migration' && slug() !== 'sectigo-ssl-certificates' && slug() !== 'email-backup' && slug() !== 'odoo-hosting' && slug() !== 'erp-next-hosting' && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
                   slug() !== 'imunify360' &&
                   !isSmbCyber() &&
                   !isRmm() &&
@@ -4743,6 +4749,8 @@
                   <xh-email-backup-content />
                 } @else if (slug() === 'sectigo-ssl-certificates') {
                   <xh-sectigo-ssl-certificates-content />
+                } @else if (slug() === 'microsoft-365-to-google-workspace-migration') {
+                  <xh-microsoft-365-to-google-workspace-migration-content />
                 } @else if (slug() === 'nvidia-vera-rubin') {
                   <xh-nvidia-vera-rubin-content />
                 } @else if (slug() === 'lead-generation-and-pipeline-crm') {
@@ -5156,10 +5164,9 @@
             </div>
           }
 
-          <div id="ppRich" [hidden]="slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin' || slug() === 'erp-next-hosting' || slug() === 'odoo-hosting' || slug() === 'email-backup' || slug() === 'sectigo-ssl-certificates'">
+          <div id="ppRich" [hidden]="slug() === 'digicert-smime-class-1' || slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin' || slug() === 'erp-next-hosting' || slug() === 'odoo-hosting' || slug() === 'email-backup' || slug() === 'sectigo-ssl-certificates' || slug() === 'microsoft-365-to-google-workspace-migration'">
 
-          <div id="ppRich" [hidden]="slug() === 'digicert-smime-class-1' || slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin'">
-
+          
             @if (v.packages.length) {
               <div class="pp-sec">Included with {{ v.name }}</div>
               <div class="pp-pkg">
@@ -5356,6 +5363,9 @@
           }
           @if (slug() === 'sectigo-ssl-certificates') {
             <section aria-labelledby="sectigoDemoTitle"><h2 class="pp-sec" id="sectigoDemoTitle">Watch It In Action</h2><h3>Product Intro</h3><p>Explore the hosting plans and interactive calculator above. Compare user capacity, management options and monthly or annual billing.</p><h3>Use Cases</h3><p>Choose single-domain SSL for a website, wildcard coverage for subdomains, or multi-domain certificates for several services. Consider ACME automation for certificate renewals.</p></section>
+          }
+          @if (slug() === 'microsoft-365-to-google-workspace-migration') {
+            <section aria-labelledby="workspaceMigrationDemoTitle"><h2 class="pp-sec" id="workspaceMigrationDemoTitle">Watch It In Action</h2><div class="migration-demo-grid"><article><h3>Product Intro</h3><p>Explore the interactive workload mapping and migration estimator above. Choose workloads, quantities and coexistence options to see an indicative quote.</p><a class="btn btn-primary" href="#" (click)="scrollToMigrationEstimate($event)">Try The Migration Estimator</a></article><article><h3>Use Cases</h3><p>Consolidate platforms, integrate an acquired business or move departments in phases. Preview source and target tenants using the banner controls.</p></article></div></section>
           }
           @if (slug() === 'nvidia-vera-rubin') {
             <section aria-labelledby="nvidia-vera-rubinDemoTitle"><h2 class="pp-sec" id="nvidia-vera-rubinDemoTitle">Watch It In Action</h2><h3>Product Intro</h3><p>Explore the rack-scale layout of DGX Rubin NVL72 and use the workload chooser above to compare deployment options.</p><h3>Use Cases</h3><p>Plan large-model training, agentic inference, long-context serving and scientific computing workloads.</p><xh-nvidia-vera-rubin-content [hero]="true" style="display:block;max-width:600px;margin:24px auto 0;background:#041e42;border-radius:20px" /></section>
@@ -5692,10 +5702,11 @@
           }
           @if (slug() !== 'digicert-smime-class-1' && slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
           <div class="pp-sec" [attr.id]="isTally() ? 'tallyTestimonials' : null" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">{{ isTally() ? 'Customer Testimonials' : 'What customers say' }}</div>
+          @if (slug() === 'microsoft-365-to-google-workspace-migration') { <p>Contact our team to discuss customer references for Microsoft 365 to Google Workspace migrations.</p> }
 
           @if (slug() === 'erp-next-hosting' || slug() === 'nvidia-vera-rubin' || slug() === 'storage-servers' || slug() === 'gaming-servers' || slug() === 'virtualization-servers' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'agent-studio' || slug() === 'aiops' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'instant-website' || slug() === 'instagram-automation' || slug() === 'hrm-attendance' || slug() === 'google-my-business' || isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training' || slug() === 'ai-chat-bot') {
 
-          @if (slug() === 'nvidia-vera-rubin' || slug() === 'storage-servers' || slug() === 'gaming-servers' || slug() === 'virtualization-servers' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'agent-studio' || slug() === 'aiops' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'instant-website' || slug() === 'instagram-automation' || slug() === 'hrm-attendance' || slug() === 'google-my-business' || slug() === 'digicert-smime-class-1' || isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training' || slug() === 'ai-chat-bot') {
+          @if (slug() === 'microsoft-365-to-google-workspace-migration' || slug() === 'nvidia-vera-rubin' || slug() === 'storage-servers' || slug() === 'gaming-servers' || slug() === 'virtualization-servers' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'agent-studio' || slug() === 'aiops' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'instant-website' || slug() === 'instagram-automation' || slug() === 'hrm-attendance' || slug() === 'google-my-business' || slug() === 'digicert-smime-class-1' || isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training' || slug() === 'ai-chat-bot') {
 
             <div class="pp-tcards" id="ppRevs">
               @for (r of v.reviews; track r.name) {
@@ -5901,6 +5912,7 @@
             ><span>🤝 Microsoft Gold Partner</span><span>🕰 Since 1999</span
             ><span>🔒 Secure Payments — UPI · Cards · NetBanking</span>
           </div>
+        }
         </div>
       </div>
     }
