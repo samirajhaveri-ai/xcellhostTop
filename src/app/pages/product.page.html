@@ -5111,7 +5111,11 @@
             </div>
           }
 
+
           <div id="ppRich" [hidden]="slug() === 'digicert-smime-class-1' || slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin' || slug() === 'erp-next-hosting' || slug() === 'odoo-hosting' || slug() === 'email-backup' || slug() === 'sectigo-ssl-certificates'">
+
+          <div id="ppRich" [hidden]="slug() === 'digicert-smime-class-1' || slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin'">
+
 
             @if (v.packages.length) {
               <div class="pp-sec">Included with {{ v.name }}</div>
@@ -5648,8 +5652,6 @@
 
           @if (slug() === 'erp-next-hosting' || slug() === 'nvidia-vera-rubin' || slug() === 'storage-servers' || slug() === 'gaming-servers' || slug() === 'virtualization-servers' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'agent-studio' || slug() === 'aiops' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'instant-website' || slug() === 'instagram-automation' || slug() === 'hrm-attendance' || slug() === 'google-my-business' || isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training' || slug() === 'ai-chat-bot') {
 
-          @if (slug() === 'nvidia-vera-rubin' || slug() === 'storage-servers' || slug() === 'gaming-servers' || slug() === 'virtualization-servers' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'agent-studio' || slug() === 'aiops' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'instant-website' || slug() === 'instagram-automation' || slug() === 'hrm-attendance' || slug() === 'google-my-business' || slug() === 'digicert-smime-class-1' || isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training' || slug() === 'ai-chat-bot') {
-
             <div class="pp-tcards" id="ppRevs">
               @for (r of v.reviews; track r.name) {
                 <div class="tcard">
@@ -5695,6 +5697,7 @@
               }
             </div>
           }
+
           }
 
           }
