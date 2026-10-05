@@ -81,6 +81,12 @@ This file is what makes deep links work. Without it:
 - `xcellhost.top` loads fine
 - `xcellhost.top/tally-on-cloud/` gives a 404 when opened directly or refreshed
 
+The route fallback now passes through `social-preview.php`. It returns the same
+Angular application while adding the product-specific Open Graph image, title
+and description that WhatsApp, Facebook, LinkedIn and other link-preview bots
+read before JavaScript runs. Keep PHP 8+ enabled for the domain and upload
+`social-preview.php` plus `assets/social-previews.json` with every release.
+
 If your server runs **nginx** rather than Apache, `.htaccess` is ignored. Instead
 go to **Websites & Domains → xcellhost.top → Apache & nginx Settings**, scroll to
 **Additional nginx directives**, and paste in the contents of

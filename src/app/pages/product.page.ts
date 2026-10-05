@@ -3006,7 +3006,12 @@ export class ProductPage {
         return;
       }
       const slug = this.slug();
-      this.seo.set(`${v.name} — XcellHost`, v.overview.slice(0, 160), `/${slug}/`);
+      this.seo.set(
+        `${v.name} — XcellHost`,
+        v.overview.slice(0, 160),
+        `/${slug}/`,
+        this.socialPreviewImage(slug, v),
+      );
       this.seo.setJsonLd('product', this.jsonLd(v, slug));
     });
 
@@ -3040,6 +3045,21 @@ export class ProductPage {
       timer = setTimeout(typeNextCharacter, 300);
       onCleanup(() => clearTimeout(timer));
     });
+  }
+
+  private socialPreviewImage(slug: string, view: ProductView): string {
+    const overrides: Record<string, string> = {
+      'acronis-genai-protection': '/assets/images/acronis-genai-protection.png',
+      'advanced-endpoint-security-edr': '/assets/images/hero-acronis-edr-v2.png',
+      'cloud-backup': '/assets/images/hero-cloud-backup-acronis.png',
+      'cloud-drive': '/assets/images/cloud-drive-tour-dashboard.jpg',
+      'remote-monitoring-and-mgmt-rmm': '/assets/images/hero-rmm.png',
+      'tally-on-cloud': '/assets/images/hero-tally-on-cloud.png',
+    };
+    const image = overrides[slug] ?? view.heroImage;
+    return image && !image.toLowerCase().endsWith('.svg')
+      ? image
+      : '/assets/images/xcellhost-logo.png';
   }
 
   /* -------------------------------------------------------------- routing */
@@ -3208,12 +3228,15 @@ export class ProductPage {
     this.addPlanQuantity(plan);
   }
 
-  /** RMM "View Plan" keeps the visitor on-page and opens the selected plan in the cart. */
+  /** Open the standalone RMM checkout with the selected term and device quantity. */
   viewRmmPlan(plan: PricingPlan, ev: Event): void {
     ev.preventDefault();
-    const quantity = this.edrQuantity();
-    this.cart.add(plan.cartName, plan.cartPrice, quantity);
-    this.cart.open();
+    const years = Math.max(1, Number.parseInt(plan.term, 10) || 1);
+    const params = new URLSearchParams({
+      term: `${years}y`,
+      quantity: String(this.edrQuantity()),
+    });
+    window.location.assign(`/assets/xcellhost-rmm-checkout.html?${params.toString()}`);
   }
 
   /** `.pl-buy` and the hero Buy Now — add, open the drawer, go straight to checkout. */
@@ -3238,10 +3261,13 @@ export class ProductPage {
 
   buyEdrPlan(plan: PricingPlan, ev: Event): void {
     ev.preventDefault();
-    const quantity = this.edrQuantity();
-    this.cart.add(plan.cartName, plan.cartPrice, quantity);
-    this.cart.open();
-    this.cart.toCheckout();
+    const years = Math.max(1, Number.parseInt(plan.term, 10) || 1);
+    const params = new URLSearchParams({
+      product: 'acronis-edr',
+      billing: `${years}-year`,
+      quantity: String(this.edrQuantity()),
+    });
+    window.location.assign(`/assets/xcellhost-checkout.html?${params.toString()}`);
   }
 
   /** Hero "Buy Now" buys the entry-level term, which is what the ladder starts at. */
@@ -3249,6 +3275,14 @@ export class ProductPage {
     const plan = this.view()?.plans[0];
     if (!plan) {
       ev.preventDefault();
+      return;
+    }
+    if (this.isAdvancedEdr()) {
+      this.buyEdrPlan(plan, ev);
+      return;
+    }
+    if (this.isRmm()) {
+      this.viewRmmPlan(plan, ev);
       return;
     }
     this.buyPlan(plan, ev);

@@ -10,13 +10,14 @@ export class SeoService {
   private meta = inject(Meta);
   private doc = inject(DOCUMENT);
 
-  set(pageTitle: string, description?: string, canonicalPath?: string): void {
+  set(pageTitle: string, description?: string, canonicalPath?: string, imagePath?: string): void {
     this.title.setTitle(pageTitle);
     if (description) {
       this.meta.updateTag({ name: 'description', content: description });
       this.meta.updateTag({ property: 'og:description', content: description });
     }
     this.meta.updateTag({ property: 'og:title', content: pageTitle });
+    this.meta.updateTag({ name: 'twitter:title', content: pageTitle });
     if (canonicalPath) {
       const href = SITE.siteUrl.replace(/\/$/, '') + canonicalPath;
       let link = this.doc.querySelector<HTMLLinkElement>('link[rel="canonical"]');
@@ -27,6 +28,15 @@ export class SeoService {
       }
       link.href = href;
       this.meta.updateTag({ property: 'og:url', content: href });
+    }
+    if (imagePath) {
+      const image = /^https?:\/\//i.test(imagePath)
+        ? imagePath
+        : SITE.siteUrl.replace(/\/$/, '') + '/' + imagePath.replace(/^\//, '');
+      this.meta.updateTag({ property: 'og:image', content: image });
+      this.meta.updateTag({ property: 'og:image:alt', content: pageTitle });
+      this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
+      this.meta.updateTag({ name: 'twitter:image', content: image });
     }
   }
 
