@@ -3128,13 +3128,13 @@
   footer{background:#3B63E8;color:#fff;padding:48px 0 28px;margin-top:0}
   .nf-top{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(320px,.95fr);gap:28px;align-items:start;margin-bottom:28px}
   .nf-about{min-width:0}
-  .nf-logo{display:grid;grid-template-columns:120px minmax(0,1fr) 72px;align-items:center;gap:10px;margin-bottom:16px;padding:6px 8px;background:#fff;border-radius:4px}
+  .nf-logo{display:grid;grid-template-columns:120px minmax(0,1fr) 83px;align-items:center;gap:10px;margin-bottom:16px;padding:6px 8px;background:#fff;border-radius:4px}
   .nf-logo .xh-logo{width:120px;height:72px;object-fit:contain;padding-right:10px;border-right:1px solid #777}
   .nf-logo .nf-tag{min-width:0;color:#555;font-family:var(--body);line-height:1.25}
   .nf-tag p{margin:0;font-size:clamp(12px,1.2vw,18px);font-weight:400}
   .nf-values{display:flex;flex-wrap:wrap;gap:0 3px;font-size:clamp(12px,1.2vw,18px);font-weight:700}
   .nf-values span::before{content:"."}.nf-values span:nth-child(1){color:#ee292f}.nf-values span:nth-child(2){color:#ed721e}.nf-values span:nth-child(3){color:#409fd0}.nf-values span:nth-child(4){color:#285478}.nf-values span:nth-child(5){color:#287378}.nf-values span:nth-child(6){color:#79b33b}
-  .nf-logo>a{display:block;line-height:0;justify-self:end}.nf-logo>a:focus-visible{outline:3px solid var(--orange);outline-offset:2px;border-radius:50%}
+  .nf-logo>a{display:block;line-height:0;justify-self:end;padding-left:10px;border-left:1px solid #777}.nf-logo>a:focus-visible{outline:3px solid var(--orange);outline-offset:2px;border-radius:50%}
   .nf-logo .nf-buddha{display:block;width:72px;height:72px;object-fit:contain}
   .nf-desc{font-size:13px;line-height:1.7;color:#fff;margin:0 0 20px;max-width:94ch;text-align:justify;text-align-last:left;text-wrap:pretty}
   .nf-social{display:flex;gap:10px;flex-wrap:wrap}
@@ -3180,7 +3180,7 @@
   .nf-iso b{font-size:9px;letter-spacing:.05em;color:#BBD0FF}.nf-iso{font-family:var(--disp);font-weight:700;font-size:14px}
   .nf-iso em{font-size:7px;font-style:normal;color:#9FBBFF;letter-spacing:.08em;margin-top:1px}
   .nf-pays{display:flex;gap:9px;flex-wrap:wrap;flex:1;align-items:center}
-  @media(max-width:700px){.nf-logo{grid-template-columns:100px minmax(0,1fr) 60px;gap:8px}.nf-logo .xh-logo{width:100px;height:64px;padding-right:8px}.nf-logo .nf-buddha{width:60px;height:60px}}
+  @media(max-width:700px){.nf-logo{grid-template-columns:100px minmax(0,1fr) 69px;gap:8px}.nf-logo>a{padding-left:8px}.nf-logo .xh-logo{width:100px;height:64px;padding-right:8px}.nf-logo .nf-buddha{width:60px;height:60px}}
   @media(max-width:420px){.nf-logo{grid-template-columns:1fr auto;padding:12px}.nf-logo .xh-logo{border-right:0;padding-right:0}.nf-logo .nf-tag{grid-column:1/-1;grid-row:2;text-align:center}.nf-values{justify-content:center}.nf-logo>a{grid-column:2;grid-row:1}}
   .nf-pay{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:40px;padding:7px 11px;border:1px solid rgba(255,255,255,.82);border-radius:8px;background:linear-gradient(180deg,#fff,#f6f8fb);box-shadow:0 4px 12px rgba(6,27,74,.14),inset 0 0 0 1px rgba(12,43,94,.04);color:#1c2a3a;font-size:10px;font-weight:750;white-space:nowrap;transition:transform .18s,box-shadow .18s}
   .nf-pay:hover{transform:translateY(-2px);box-shadow:0 7px 17px rgba(6,27,74,.22),inset 0 0 0 1px rgba(12,43,94,.04)}
@@ -6100,9 +6100,21 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 #ppage .sectigo-ssl-song audio{outline:none!important;border:0;box-shadow:none!important}
 #ppage .sectigo-ssl-song audio:focus-visible{outline:2px solid #fff!important;outline-offset:3px}
 /* DigiCert S/MIME Class 1: supplied right-side visual in the shared hero. */
+#ppage .pp-hero h1.comodo-hero-title{display:block;font-size:clamp(28px,3.8vw,42px);line-height:1.08;white-space:normal;text-align:left}#ppage .comodo-hero-title .comodo-title-line{display:block}#ppage .comodo-hero-title .pp-brand-xcell{width:auto}
+#ppage .comodo-hero-points{grid-template-columns:repeat(2,minmax(0,1fr));width:100%;gap:12px 24px}#ppage .comodo-hero-points .pp-hpoint{font-size:13px;font-weight:600}#ppage .comodo-hero-points .tick{border-radius:5px;box-shadow:0 3px 12px rgba(21,101,216,.45)}
+@media(max-width:620px){#ppage .comodo-hero-points{grid-template-columns:1fr}}
 .smime-testimonials{margin:28px 0 0}.smime-testimonials .tcard p{text-align:justify}
 #ppage .pph-scene.smime-reference-hero{right:2%;width:36%;opacity:1;mask-image:none}
 .smime-demo-visual{padding:20px;background:#041e42;border-radius:0 0 16px 16px}.smime-demo-preview{max-width:520px}.smime-demo-preview>.btn{margin:16px}
 @media(max-width:1050px){#ppage .pph-scene.smime-reference-hero{width:34%;right:1%}}
 @media(max-width:900px){#ppage .pph-scene.smime-reference-hero{position:relative;inset:auto;width:calc(100% - 40px);max-width:500px;margin:24px auto}#ppage .pp-hero:has(.smime-reference-hero){display:flex;flex-direction:column}#ppage .pp-hero:has(.smime-reference-hero)>.wrap{width:100%}}
+
+
+/* Microsoft 365 to Google Workspace migration: scoped native banner layout. */
+#ppage:has(.workspace-migration-scene) #ppTitle{display:block!important}#ppage:has(.workspace-migration-scene) .pp-title-name{display:block;line-height:1.15}#ppage:has(.workspace-migration-scene) .migration-demo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}#ppage:has(.workspace-migration-scene) .migration-demo-grid article{padding:20px;border:1px solid #dbe6f5;border-radius:16px}#ppage.server-tail-uppercase:has(.workspace-migration-scene) .pp-body xh-insights-section h2{text-transform:capitalize!important}
+@media(min-width:1001px){#ppage.google-business-page:has(.workspace-migration-scene) .pp-hero{display:grid!important;grid-template-columns:minmax(0,640px) minmax(0,500px)!important;gap:24px;align-items:center;justify-content:center;padding:40px 24px!important}#ppage:has(.workspace-migration-scene) .pp-hero>.wrap{grid-column:1;grid-row:1;width:100%;max-width:none;margin:0;padding:0;min-width:0}#ppage:has(.workspace-migration-scene) .pp-hero>.wrap>:not(.pph-scene){width:100%;max-width:100%!important}#ppage.google-business-page .pp-hero>.pph-scene.workspace-migration-scene{position:relative!important;grid-column:2;grid-row:1;inset:auto!important;width:100%!important;max-width:none!important;height:auto!important;max-height:none;padding:0;margin:0;min-width:0;transform:none!important}}
+@media(max-width:600px){#ppage:has(.workspace-migration-scene) .migration-demo-grid{grid-template-columns:1fr}}
+
+/* Druva attribution beneath Ask AI on native product banners. */
+.druva-powered-by{display:flex;align-items:center;gap:10px;margin-top:16px;color:#c7d5ec;font-size:13px;line-height:1.4}.druva-powered-by img{display:block;width:40px;height:40px;object-fit:contain}.druva-powered-by strong{color:#fff;font-size:20px;font-weight:700}
 

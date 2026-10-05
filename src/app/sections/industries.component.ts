@@ -37,6 +37,7 @@ const INDUSTRY_CARDS: readonly IndustryCard[] = [
   { icon: 'logistics', label: 'Logistics Cloud', blurb: 'Explore Logistics Cloud services, features and solutions.', service: 'Logistics Cloud' },
   { icon: 'healthcare', label: 'HealthCare Cloud', blurb: 'Explore HealthCare Cloud services, features and solutions.', service: 'HealthCare Cloud' },
   { icon: 'retail', label: 'Retail Cloud', blurb: 'Explore Retail Cloud services, features and solutions.', service: 'Retail Cloud' },
+  { icon: 'business', label: 'GCC Cloud', blurb: 'Managed cloud infrastructure, security and support for GCC teams.', service: 'GCC Cloud' },
 ]; 
 
 const INDUSTRY_ICON_PATHS: Readonly<Record<string, string>> = {

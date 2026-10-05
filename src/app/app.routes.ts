@@ -13,11 +13,15 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
  *   /compare/
  */
 export const routes: Routes = [
-  ...[...MENU_SERVICE_PAGES, ...INDUSTRY_CLOUD_PAGES].filter((page) => page.slug !== 'smart-qr-and-nfc-automation').map((page) => ({
+  ...[...MENU_SERVICE_PAGES, ...INDUSTRY_CLOUD_PAGES].filter((page) => page.slug !== 'smart-qr-and-nfc-automation' && page.slug !== 'gcc-cloud').map((page) => ({
     path: page.slug,
     data: { servicePage: page },
     loadComponent: () => import('./pages/menu-service.page').then((m) => m.MenuServicePage),
   })),
+  {
+    path: 'gcc-cloud',
+    loadComponent: () => import('./pages/gcc-cloud.page').then((m) => m.GccCloudPage),
+  },
   { path: 'mobile-application-penetration-testing', redirectTo: 'mobile-application-security-testing', pathMatch: 'full' },
   { path: 'aeo-geo-automation4', redirectTo: 'aeo-geo-automation', pathMatch: 'full' },
   { path: 'managed-365', redirectTo: 'managed-microsoft-365', pathMatch: 'full' },
@@ -65,7 +69,10 @@ export const routes: Routes = [
     data: { productSlug: 'microsoft-365-enterprise-additional' },
     loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
   },
-  { path: 'explore-marketplace', redirectTo: 'marketplace', pathMatch: 'full' },
+  { path: 'explore-marketplace', loadComponent: () => import('./pages/explore-marketplace.page').then(m => m.ExploreMarketplacePage) },
+  { path: 'customer-testimonials', loadComponent: () => import('./pages/customer-testimonials.page').then(m => m.CustomerTestimonialsPage) },
+  { path: 'under-construction/customer-testimonials', redirectTo: 'customer-testimonials', pathMatch: 'full' },
+  { path: 'company/customer-testimonials', redirectTo: 'customer-testimonials', pathMatch: 'full' },
   { path: 'under-construction/careers-overview', redirectTo: 'company/careers-overview', pathMatch: 'full' },
   { path: 'promo-offers', redirectTo: 'promotion-and-offers', pathMatch: 'full' },
   { path: 'under-construction/promotion-and-offers', redirectTo: 'promotion-and-offers', pathMatch: 'full' },
@@ -421,6 +428,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
   },
   // service pages sit at the root, so this must stay last
+  { path: 'comodo-enterprise-pro-basic-pa', redirectTo: 'comodo-personal-authentication', pathMatch: 'full' },
   { path: 'co-location', redirectTo: 'co-location-services', pathMatch: 'full' },
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
   { path: '**', redirectTo: '' },

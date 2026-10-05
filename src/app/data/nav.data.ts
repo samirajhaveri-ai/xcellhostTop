@@ -811,12 +811,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "GPU Clusters",
+                "title": "NVIDIA Vera Rubin",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "NVIDIA Vera Rubin",
+                "title": "GPU Clusters",
                 "pill": null,
                 "desc": null
               },
@@ -1177,7 +1177,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Load Balancer",
+                "title": "Virtual Load Balancer",
                 "pill": null,
                 "desc": null
               },
@@ -1633,6 +1633,16 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "Dropbox Backup",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Box Backup",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]
@@ -1689,6 +1699,11 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "Druva Resilience",
             "items": [
+              {
+                "title": "Explore Druva Platform",
+                "pill": null,
+                "desc": null
+              },
               {
                 "title": "AI Resilience",
                 "pill": null,
@@ -1970,7 +1985,8 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Comodo Enterprise / Pro / Basic PA",
+                "title": "Comodo Personal Authentication",
+                "href": "/comodo-personal-authentication",
                 "pill": null,
                 "desc": null
               }
@@ -2057,6 +2073,24 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "6",
+        "label": "Digital Signature",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Digital Signature",
+            "items": [
+              {
+                "title": "Docusign",
+                "pill": null,
+                "desc": null
+              },
+              
             ]
           }
         ]
@@ -3372,6 +3406,30 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
+       {
+        "g": "15",
+        "label": "Sage On Cloud",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Sage On Cloud",
+            "items": [
+              {
+                "title": "Sage 300 Hosting",
+                "href": "/sage-300-hosting",
+                "pill": null,
+                "desc": "Run Sage 300 on managed cloud hosting with remote access, backups and support."
+              },
+              {
+                "title": "Sage X3 Hosting",
+                "href": "/sage-x3-hosting",
+                "pill": null,
+                "desc": "Host your Sage X3 environment with managed infrastructure, backups and support."
+              },
+            ]
+          }
+        ]
+      },
       {
         "g": "8",
         "label": "View Marketplace -->",
@@ -3482,6 +3540,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/retail-cloud",
                 "pill": null,
                 "desc": null
+              },
+              {
+                "title": "GCC Cloud",
+                "href": "/gcc-cloud",
+                "pill": null,
+                "desc": "Managed cloud infrastructure, security and support for GCC teams."
               },
               {
                 "title": "Food and Beverage Cloud",
@@ -3855,6 +3919,7 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Customer Testimonials",
+                "href": "/customer-testimonials",
                 "pill": null,
                 "desc": "Secure, scalable cloud expertise since 1999"
               },
@@ -4258,39 +4323,39 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "7",
-        "label": "Managed Cloud",
+        "label": "Developer Tools",
         "on": false,
         "groups": [
           {
-            "heading": "Managed Cloud",
+            "heading": "Developer Tools",
             "items": [
               {
-                "title": "24/7 Real-Time Monitoring",
+                "title": "OpenStack API",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Rapid Incident Response",
+                "title": "Terraform Provider",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Hardened Security & Patching",
+                "title": "S3 Object Storage API",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Performance Tuning",
+                "title": "OpenStack CLI",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Intelligent Cost Optimization",
+                "title": "OpenStack Credentials",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "Sovereign & Compliant Ops",
+                "title": "Kubernetes API",
                 "pill": null,
                 "desc": null
               },
@@ -4361,12 +4426,7 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "Experience Center",
             "items": [
-              {
-                "title": "DPDPA Demo Center",
-                "pill": null,
-                "desc": "Watch XcellHost product videos and demos",
-                "href": "/xcellhost-demo-center"
-              },
+              
                {
                 "title": "Acronis Demo Center",
                 "pill": null,
@@ -4383,6 +4443,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Product Tours",
                 "pill": null,
                 "desc": null
+              },
+              {
+                "title": "DPDPA Demo Center",
+                "pill": null,
+                "desc": "Watch XcellHost product videos and demos",
+                "href": "/xcellhost-demo-center"
               },
              
               {

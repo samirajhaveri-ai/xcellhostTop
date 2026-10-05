@@ -27,8 +27,8 @@
     [class.instagram-automation-page]="slug() === 'instagram-automation'"
     [class.smart-qr-page]="slug() === 'smart-qr-and-nfc-automation'"
     [class.virtualization-page]="slug() === 'virtualization-servers'"
-    [class.server-tail-uppercase]="slug() === 'sectigo-ssl-certificates' || slug() === 'email-backup' || slug() === 'odoo-hosting' || slug() === 'erp-next-hosting' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin'"
-    [class.google-business-page]="slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin' || slug() === 'erp-next-hosting' || slug() === 'odoo-hosting' || slug() === 'email-backup' || slug() === 'sectigo-ssl-certificates'"
+    [class.server-tail-uppercase]="slug() === 'microsoft-365-to-google-workspace-migration' || slug() === 'sectigo-ssl-certificates' || slug() === 'email-backup' || slug() === 'odoo-hosting' || slug() === 'erp-next-hosting' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin'"
+    [class.google-business-page]="slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin' || slug() === 'erp-next-hosting' || slug() === 'odoo-hosting' || slug() === 'email-backup' || slug() === 'sectigo-ssl-certificates' || slug() === 'microsoft-365-to-google-workspace-migration'"
     [class.acronis-ot-page]="slug() === 'acronis-ot'"
     [class.acronis-mdr-page]="slug() === 'acronis-mdr'"
     [class.microsoft-defender-page]="slug() === 'microsoft-defender'"
@@ -420,6 +420,8 @@
           <div class="pph-scene google-business-dashboard email-backup-dashboard-scene"><xh-email-backup-content [hero]="true" style="width:100%" /></div>
           } @else if (slug() === 'sectigo-ssl-certificates') {
           <div class="pph-scene google-business-dashboard sectigo-dashboard-scene"><xh-sectigo-ssl-certificates-content [hero]="true" style="width:100%" /></div>
+          } @else if (slug() === 'microsoft-365-to-google-workspace-migration') {
+          <div class="pph-scene google-business-dashboard workspace-migration-scene"><xh-microsoft-365-to-google-workspace-migration-content [hero]="true" style="width:100%" /></div>
           } @else if (slug() === 'nvidia-vera-rubin') {
           <div class="pph-scene google-business-dashboard"><xh-nvidia-vera-rubin-content [hero]="true" style="width:100%" /></div>
           } @else if (slug() === 'lead-generation-and-pipeline-crm') {
@@ -1078,6 +1080,8 @@
           <xh-digital-menu-hero class="digital-menu-dashboard" />
         } @else if (slug() === 'digicert-smime-class-1') {
           <div class="pph-scene smime-reference-hero"><xh-digicert-smime-hero /></div>
+        } @else if (slug() === 'comodo-personal-authentication') {
+          <div class="pph-scene smime-reference-hero"><xh-comodo-pa-hero /></div>
         } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
 
           <div class="pph-scene has-illus standalone-illus" id="pphScene" aria-hidden="true">
@@ -1484,14 +1488,20 @@
                 <em>Availability</em>
               </a>
             }
+            @if (slug() === 'comodo-personal-authentication') {
+              <h1 id="ppTitle" class="comodo-hero-title">
+                <span class="comodo-title-line"><span class="pp-title-brand" aria-label="XcellID"><span class="pp-brand-xcell">Xcell</span><span class="pp-brand-family">ID</span></span> | Comodo Personal</span>
+                <span class="comodo-title-line">Authentication</span>
+              </h1>
+            } @else {
             <h1 id="ppTitle" [class.pp-title-compact]="compactHeroTitle()">
               <span class="pp-title-brand" [attr.aria-label]="'Xcell' + v.brandSuffix">
                 <span class="pp-brand-xcell">Xcell</span
                 ><span class="pp-brand-family">{{ v.brandSuffix }}</span>
               </span>
               <span class="pp-title-divider" aria-hidden="true">|</span>
-              <span class="pp-title-name"
-                >{{
+              <span class="pp-title-name">
+                {{
                   slug() === 'agent-studio'
                     ? 'AI Agent Studio'
                     : isResellerProgram()
@@ -1517,6 +1527,7 @@
                 }
               </span>
             </h1>
+            }
             @if (slug() === 'ai-lab-as-service') {
               <p class="pp-tagline ai-lab-summary" id="ppTag">{{ v.tagline }}</p>
             } @else if (slug() === 'ai-voice-bot') {
@@ -1571,7 +1582,7 @@
             <div class="pp-hero-grid">
               <div class="pp-hero-l">
                 @if (v.heroPoints.length) {
-                  <div class="pp-hpoints">
+                  <div class="pp-hpoints" [class.comodo-hero-points]="slug() === 'comodo-personal-authentication'">
                     @for (p of v.heroPoints; track p; let i = $index) {
                       <div class="pp-hpoint">
                         <span class="tick" [style.animation-delay]="i * 0.1 + 's'">✓</span>{{ p }}
@@ -1697,6 +1708,10 @@
                   </div>
                 </section>
 
+            @if (slug() === 'identity-resilience' || slug() === 'ediscovery-and-compliance') {
+              <div class="druva-powered-by"><span>Powered by</span><span aria-hidden="true">|</span><img src="/assets/images/ai-resilience/druva.png" alt="Druva" width="40" height="40"><strong>Druva</strong></div>
+            }
+
             @if (slug() === 'email-backup') {
               <div class="email-backup-protects" aria-label="Protected email platforms"><small>PROTECTS</small><span title="Microsoft 365"><img class="lg" src="/assets/logos/email-backup-platform-1.svg" alt="Microsoft 365 logo" width="20" height="20"></span><span title="Outlook"><img class="lg" src="/assets/logos/email-backup-platform-2.svg" alt="Outlook logo" width="20" height="20"></span><span title="Exchange Online"><img class="lg" src="/assets/logos/email-backup-platform-3.svg" alt="Exchange Online logo" width="20" height="20"></span><span title="Google Workspace"><img class="lg" src="/assets/logos/email-backup-platform-4.svg" alt="Google Workspace logo" width="20" height="20"></span><span title="Gmail"><img class="lg" src="/assets/logos/email-backup-platform-5.svg" alt="Gmail logo" width="20" height="20"></span><span title="Google Calendar"><img class="lg" src="/assets/logos/email-backup-platform-6.svg" alt="Google Calendar logo" width="20" height="20"></span><span title="Microsoft Teams"><img class="lg" src="/assets/logos/email-backup-platform-7.svg" alt="Microsoft Teams logo" width="20" height="20"></span></div>
             }
@@ -1704,6 +1719,7 @@
             @if (slug() === 'sectigo-ssl-certificates') {
               <div class="sectigo-ssl-song"><b><span aria-hidden="true">▂▅▇</span> Listen to our SSL Security Song</b><audio controls preload="none" aria-label="Listen to our SSL Security Song"></audio></div>
             }
+            <xh-domain-hero-media [slug]="slug()" />
             @if (slug() === 'wordpress-hosting') {
               <div class="wordpress-hero-song">
                 <span id="wordpressHostingSongTitle">Listen to our WordPress Hosting Song</span>
@@ -1714,33 +1730,6 @@
               </div>
             }
 
-            @if (slug() === 'latest-domain-extensions') {
-              <div class="domain-hero-song">
-                <span id="domainExtensionsSongTitle">Listen to our Latest Domain Extensions Song</span>
-                <audio controls preload="metadata" aria-labelledby="domainExtensionsSongTitle">
-                  <source src="/assets/audio/latest-domain-extensions-song.mp3" type="audio/mpeg">
-                  <a href="/assets/audio/latest-domain-extensions-song.mp3">Listen to the Latest Domain Extensions Song</a>
-                </audio>
-              </div>
-            }
-            @if (slug() === 'transfer-your-domain') {
-              <div class="domain-hero-song">
-                <span id="domainTransferSongTitle">Listen to our Domain Transfer Song</span>
-                <audio controls preload="metadata" aria-labelledby="domainTransferSongTitle">
-                  <source src="/assets/audio/domain-transfer-song.mp3" type="audio/mpeg">
-                  <a href="/assets/audio/domain-transfer-song.mp3">Listen to the Domain Transfer Song</a>
-                </audio>
-              </div>
-            }
-            @if (slug() === 'register-a-domain-name') {
-              <div class="domain-hero-song">
-                <span id="domainSongTitle">Listen to our Domain Registration Song</span>
-                <audio controls preload="metadata" aria-labelledby="domainSongTitle">
-                  <source src="/assets/audio/domain-registration-song.mp3" type="audio/mpeg">
-                  <a href="/assets/audio/domain-registration-song.mp3">Listen to the Domain Registration Song</a>
-                </audio>
-              </div>
-            }
             @if (slug() === 'acronis-genai-protection') {
               <div class="genai-hero-song">
                 <span id="genaiSongTitle">Listen to our Acronis GenAI Protection Song</span>
@@ -1805,6 +1794,20 @@
               </div>
             }
 
+              </div>
+            </div>
+          }
+          @if (slug() === 'claude-backup') {
+            <div class="claude-backup-hero-footer">
+              <div class="xh-banner-song claude-backup-song">
+                <span class="claude-backup-song-label">
+                  <span class="claude-backup-song-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+                  Listen to our Tally on Cloud Song
+                </span>
+                <audio controls preload="none" aria-label="Listen to our Tally on Cloud Song"></audio>
+              </div>
+              <div class="claude-backup-powered" aria-label="Powered by Druva">
+                <span>POWERED BY</span><strong>Druva</strong>
               </div>
             </div>
           }
@@ -2046,6 +2049,8 @@
 
           @if (slug() === 'digicert-smime-class-1') {
             <xh-digicert-smime-content />
+          } @else if (slug() === 'comodo-personal-authentication') {
+            <xh-comodo-pa-content />
           } @else {
 
           @if (slug() === 'ai-chat-bot') {
@@ -2483,6 +2488,7 @@
                         </div>
                         <section class="backup-protection" aria-labelledby="backupProtectionTitle">
                         <h2 id="backupProtectionTitle">Protect your business with Acronis today!</h2>
+                        <p>The Acronis Certified Disaster Recovery Professional and DR to Azure Specialist badges highlight expertise in disaster recovery and Azure recovery environments. This knowledge supports recovery planning, replication configuration, failover testing and failback preparation. XcellHost helps translate that expertise into a recovery approach suited to your workloads and business continuity requirements.</p>
                         <img class="backup-protection-badges backup-protection-badges-compact" src="/assets/images/acronis-disaster-recovery-badges.png" alt="Acronis Certified Disaster Recovery Professional and DR to Azure Specialist badges" loading="lazy" />
                         </section>
                       </div>
@@ -2493,7 +2499,7 @@
                       <xh-cpanel-servers-overview (quoteRequested)="openCallback($event.event, $event.configuration)" />
                    } @else if (slug() === 'imunify360') {
                       <xh-imunify360-content (planRequested)="requestImunify360Plan($event)" />
-                   } @else if (!isTally() && slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'sectigo-ssl-certificates' && slug() !== 'email-backup' && slug() !== 'odoo-hosting' && slug() !== 'erp-next-hosting' && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops') {
+                   } @else if (!isTally() && slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'microsoft-365-to-google-workspace-migration' && slug() !== 'sectigo-ssl-certificates' && slug() !== 'email-backup' && slug() !== 'odoo-hosting' && slug() !== 'erp-next-hosting' && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops') {
                       <div class="pp-sec">Overview</div>
                       <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
                     }
@@ -2797,7 +2803,7 @@
                   >
                     <h2 class="tally-mobile-insights-title">
                       Get Finlytics Tally on Mobile App Free with Every Tally on Cloud Server
-                      <span class="tally-mobile-insights-note">(*On Annual Plan Only For One User)</span>
+                      <span class="tally-mobile-insights-note">(*Worth 499 On Annual Plan Only For One User)</span>
                     </h2>
                     <img
                       src="/assets/images/tally-mobile-insights.png"
@@ -3253,7 +3259,7 @@
                 } @else if (slug() === 'cloud-disaster-recovery-for-enterprise') {
                   <xh-enterprise-dr-details (quoteRequested)="openCallback($event, 'Enterprise disaster recovery quote')" />
                 } @else if (
-                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'sectigo-ssl-certificates' && slug() !== 'email-backup' && slug() !== 'odoo-hosting' && slug() !== 'erp-next-hosting' && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
+                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'microsoft-365-to-google-workspace-migration' && slug() !== 'sectigo-ssl-certificates' && slug() !== 'email-backup' && slug() !== 'odoo-hosting' && slug() !== 'erp-next-hosting' && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
                   !isAdvancedEdr() &&
                   !isSmbCyber() &&
                   !isRmm() &&
@@ -3461,7 +3467,7 @@
                 } @else if (slug() === 'rtx-a6000') {
                   <xh-rtx-a6000-details />
                 } @else if (
-                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'sectigo-ssl-certificates' && slug() !== 'email-backup' && slug() !== 'odoo-hosting' && slug() !== 'erp-next-hosting' && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
+                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'microsoft-365-to-google-workspace-migration' && slug() !== 'sectigo-ssl-certificates' && slug() !== 'email-backup' && slug() !== 'odoo-hosting' && slug() !== 'erp-next-hosting' && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
                   slug() !== 'imunify360' &&
                   slug() !== 'plesk-servers' && slug() !== 'cpanel-servers' &&
                   !isSmbCyber() &&
@@ -4102,7 +4108,7 @@
                 } @else if (slug() === 'rtx-a6000') {
                   <xh-rtx-a6000-performance />
                 } @else if (
-                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'sectigo-ssl-certificates' && slug() !== 'email-backup' && slug() !== 'odoo-hosting' && slug() !== 'erp-next-hosting' && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
+                  slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'microsoft-365-to-google-workspace-migration' && slug() !== 'sectigo-ssl-certificates' && slug() !== 'email-backup' && slug() !== 'odoo-hosting' && slug() !== 'erp-next-hosting' && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
                   slug() !== 'imunify360' &&
                   !isSmbCyber() &&
                   !isRmm() &&
@@ -4363,19 +4369,10 @@
                     aria-labelledby="cloud-backup-protection-title"
                   >
                     <div class="cloud-backup-protection-copy">
-                      <h2 id="cloud-backup-protection-title">Protect your business with Xcellhost Acronis today!</h2>
+                      <h2 id="cloud-backup-protection-title">Protect your business. Secure your data. Stay ready for anything.</h2>
                       <p>
-                        Keep business-critical data protected across endpoints, servers,
-                        virtual machines and cloud applications with backup managed by
-                        Acronis-certified professionals. Get centrally managed protection,
-                        automated backup schedules, ransomware defence and fast recovery
-                        from a single platform. Our specialists help configure the right
-                        retention and storage plan for your business.
-                      </p>
-                      <div class="cloud-backup-protection-actions">
-                        <a class="btn btn-primary" href="#ppPlans">View pricing</a>
-                        <a class="btn cloud-backup-talk-btn" href="#" (click)="openCallback($event)">Let's Talk</a>
-                      </div>
+                          The Acronis Certified Backup Professional and Advanced Backup Professional badges highlight specialist expertise in backup and data recovery. This expertise supports the configuration of backup policies, retention settings and recovery workflows for endpoints, servers and cloud workloads. For your business, it means informed guidance when planning, maintaining and testing your data protection.
+                        </p>
                     </div>
                     <img
                       class="backup-protection-badges backup-protection-badges-compact"
@@ -4729,6 +4726,8 @@
                   <xh-email-backup-content />
                 } @else if (slug() === 'sectigo-ssl-certificates') {
                   <xh-sectigo-ssl-certificates-content />
+                } @else if (slug() === 'microsoft-365-to-google-workspace-migration') {
+                  <xh-microsoft-365-to-google-workspace-migration-content />
                 } @else if (slug() === 'nvidia-vera-rubin') {
                   <xh-nvidia-vera-rubin-content view="details" />
                 } @else if (slug() === 'lead-generation-and-pipeline-crm') {
@@ -4798,16 +4797,8 @@
                           Protect your business with Acronis RMM today!
                         </h2>
                         <p>
-                          Monitor endpoint health, automate routine IT work and resolve issues before
-                          they interrupt your business. Acronis Advanced RMM brings real-time alerts,
-                          secure remote access, patch management, scripting and reporting into one
-                          centrally managed platform. Our certified specialists help configure policies,
-                          maintain devices and improve service delivery across your entire environment.
+                          The Acronis Certified RMM Professional and Advanced Management Specialist badges highlight expertise in remote monitoring and IT management. This knowledge supports device monitoring, patch management, remote support and routine maintenance. XcellHost brings that expertise to the day-to-day management of your IT environment, helping your team configure policies and maintain consistent operations.
                         </p>
-                        <div class="cloud-backup-protection-actions">
-                          <a class="btn btn-primary" href="#ppPlans">View pricing</a>
-                          <a class="btn cloud-backup-talk-btn" href="#" (click)="openCallback($event)">Let's Talk</a>
-                        </div>
                       </div>
                       <img
                         class="backup-protection-badges backup-protection-badges-compact"
@@ -4905,16 +4896,8 @@
                           Protect your business with Xcellhost Acronis Disaster Recovery today!
                         </h2>
                         <p>
-                          Keep critical workloads available when infrastructure fails, ransomware
-                          strikes or an unexpected outage interrupts operations. Acronis Disaster
-                          Recovery securely replicates your systems to the cloud, enabling rapid
-                          failover, recovery testing and dependable failback. Our certified specialists
-                          help design and manage the right continuity plan for your business.
+                          The Acronis Certified Disaster Recovery Professional and DR to Azure Specialist badges highlight expertise in disaster recovery and Azure recovery environments. This knowledge supports recovery planning, replication configuration, failover testing and failback preparation. XcellHost helps translate that expertise into a recovery approach suited to your workloads and business continuity requirements.
                         </p>
-                        <div class="cloud-backup-protection-actions">
-                          <a class="btn btn-primary" href="#ppPlans">View pricing</a>
-                          <a class="btn cloud-backup-talk-btn" href="#" (click)="openCallback($event)">Let's Talk</a>
-                        </div>
                       </div>
                       <img
                         class="backup-protection-badges backup-protection-badges-compact"
@@ -4988,19 +4971,11 @@
                     >
                       <div class="cloud-backup-protection-copy">
                         <h2 id="endpoint-security-protection-title">
-                          Protect your business with Acronis Endpoint Security today!
+                          Acronis-Certified Expertise. Stronger Endpoint Protection.
                         </h2>
                         <p>
-                          Stop ransomware, malware and advanced endpoint threats before they disrupt
-                          your business. Acronis Endpoint Security combines prevention, behavioural
-                          detection and rapid response in one centrally managed platform. Our certified
-                          specialists help configure protection policies, monitor endpoint health and
-                          strengthen security across every device in your organisation.
+                          Over 25+ Acronis Certified Endpoint Security Professional and Advanced Security Specialist Staff  highlight expertise in endpoint protection and security management. This knowledge supports protection policy configuration, endpoint monitoring and threat response workflows. XcellHost applies that expertise when helping your business manage security across devices and review its protection settings.
                         </p>
-                        <div class="cloud-backup-protection-actions">
-                          <a class="btn btn-primary" href="#ppPlans">View pricing</a>
-                          <a class="btn cloud-backup-talk-btn" href="#" (click)="openCallback($event)">Let's Talk</a>
-                        </div>
                       </div>
                       <img
                         class="backup-protection-badges backup-protection-badges-compact"
@@ -5143,7 +5118,13 @@
             </div>
           }
 
-          <div id="ppRich" [hidden]="slug() === 'digicert-smime-class-1' || slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin'">
+
+
+
+          <div id="ppRich" [hidden]="slug() === 'comodo-personal-authentication' || slug() === 'digicert-smime-class-1' || slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin' || slug() === 'erp-next-hosting' || slug() === 'odoo-hosting' || slug() === 'email-backup' || slug() === 'sectigo-ssl-certificates' || slug() === 'microsoft-365-to-google-workspace-migration'">
+
+
+
 
             @if (v.packages.length) {
               <div class="pp-sec">Included with {{ v.name }}</div>
@@ -5342,6 +5323,9 @@
           @if (slug() === 'sectigo-ssl-certificates') {
             <section aria-labelledby="sectigoDemoTitle"><h2 class="pp-sec" id="sectigoDemoTitle">Watch It In Action</h2><h3>Product Intro</h3><p>Explore the hosting plans and interactive calculator above. Compare user capacity, management options and monthly or annual billing.</p><h3>Use Cases</h3><p>Choose single-domain SSL for a website, wildcard coverage for subdomains, or multi-domain certificates for several services. Consider ACME automation for certificate renewals.</p></section>
           }
+          @if (slug() === 'microsoft-365-to-google-workspace-migration') {
+            <section aria-labelledby="workspaceMigrationDemoTitle"><h2 class="pp-sec" id="workspaceMigrationDemoTitle">Watch It In Action</h2><div class="migration-demo-grid"><article><h3>Product Intro</h3><p>Explore the interactive workload mapping and migration estimator above. Choose workloads, quantities and coexistence options to see an indicative quote.</p><a class="btn btn-primary" href="#" (click)="scrollToMigrationEstimate($event)">Try The Migration Estimator</a></article><article><h3>Use Cases</h3><p>Consolidate platforms, integrate an acquired business or move departments in phases. Preview source and target tenants using the banner controls.</p></article></div></section>
+          }
           @if (slug() === 'nvidia-vera-rubin') {
             <section aria-labelledby="nvidia-vera-rubinDemoTitle"><h2 class="pp-sec" id="nvidia-vera-rubinDemoTitle">Watch It In Action</h2><h3>Product Intro</h3><p>Explore the rack-scale layout of DGX Rubin NVL72 and use the workload chooser above to compare deployment options.</p><h3>Use Cases</h3><p>Plan large-model training, agentic inference, long-context serving and scientific computing workloads.</p><xh-nvidia-vera-rubin-content [hero]="true" style="display:block;max-width:600px;margin:24px auto 0;background:#041e42;border-radius:20px" /></section>
           }
@@ -5364,7 +5348,8 @@
               isOurPlatform() ||
               isWatchtower() ||
               slug() === 'iot-cloud' ||
-              slug() === 'digicert-smime-class-1') &&
+              slug() === 'digicert-smime-class-1' ||
+              slug() === 'comodo-personal-authentication') &&
             slug() !== 'scrutiny-dlp' &&
             !isTsplusRemoteSupport() &&
             !isTsplusAdvancedSecurity() &&
@@ -5414,6 +5399,13 @@
                   <article class="tally-video-card smime-demo-preview">
                     <h3><span>DigiCert S/MIME Class 1 overview</span></h3>
                     <div class="smime-demo-visual"><xh-digicert-smime-hero /></div>
+                    <button class="btn btn-primary" type="button" (click)="openCallback($event)">Book a live demo</button>
+                  </article>
+                }
+                @if (slug() === 'comodo-personal-authentication' && !showcaseVideos().length) {
+                  <article class="tally-video-card smime-demo-preview">
+                    <h3><span>Comodo Personal Authentication overview</span></h3>
+                    <div class="smime-demo-visual"><xh-comodo-pa-hero /></div>
                     <button class="btn btn-primary" type="button" (click)="openCallback($event)">Book a live demo</button>
                   </article>
                 }
@@ -5675,10 +5667,16 @@
               </div>
             </section>
           }
-          @if (slug() !== 'digicert-smime-class-1' && slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
+          @if (slug() !== 'comodo-personal-authentication' && slug() !== 'digicert-smime-class-1' && slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
           <div class="pp-sec" [attr.id]="isTally() ? 'tallyTestimonials' : null" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">What customers say</div>
+          @if (slug() === 'microsoft-365-to-google-workspace-migration') { <p>Contact our team to discuss customer references for Microsoft 365 to Google Workspace migrations.</p> }
 
           @if (slug() === 'erp-next-hosting' || slug() === 'nvidia-vera-rubin' || slug() === 'storage-servers' || slug() === 'gaming-servers' || slug() === 'virtualization-servers' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'agent-studio' || slug() === 'aiops' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'instant-website' || slug() === 'instagram-automation' || slug() === 'hrm-attendance' || slug() === 'google-my-business' || isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training' || slug() === 'ai-chat-bot') {
+
+
+          @if (slug() === 'microsoft-365-to-google-workspace-migration' || slug() === 'nvidia-vera-rubin' || slug() === 'storage-servers' || slug() === 'gaming-servers' || slug() === 'virtualization-servers' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'agent-studio' || slug() === 'aiops' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'instant-website' || slug() === 'instagram-automation' || slug() === 'hrm-attendance' || slug() === 'google-my-business' || slug() === 'digicert-smime-class-1' || isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training' || slug() === 'ai-chat-bot') {
+
+
 
             <div class="pp-tcards" id="ppRevs">
               @for (r of v.reviews; track r.name) {
@@ -5748,8 +5746,10 @@
           }
           }
 
+          }
+
         @if (slug() !== 'marketplace' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
-          @if (slug() === 'digicert-smime-class-1') {
+          @if (slug() === 'digicert-smime-class-1' || slug() === 'comodo-personal-authentication') {
             <section class="smime-testimonials" aria-labelledby="smimeTestimonialsTitle">
               <h2 class="pp-sec" id="smimeTestimonialsTitle">Customer Testimonials</h2>
               <div class="pp-tcards" id="ppRevs">
@@ -5769,8 +5769,13 @@
                 }
               </div>
             </section>
-            <xh-digicert-smime-faq />
-            <xh-digicert-smime-related />
+            @if (slug() === 'comodo-personal-authentication') {
+              <xh-comodo-pa-faq />
+              <xh-comodo-pa-related />
+            } @else {
+              <xh-digicert-smime-faq />
+              <xh-digicert-smime-related />
+            }
           } @else {
           <div class="pp-sec pp-faq-heading" [attr.id]="isTally() ? 'tallyFaq' : null" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Frequently asked questions</div>
           @if (slug() === 'domain-whois-lookup') {
