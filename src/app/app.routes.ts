@@ -13,11 +13,15 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
  *   /compare/
  */
 export const routes: Routes = [
-  ...[...MENU_SERVICE_PAGES, ...INDUSTRY_CLOUD_PAGES].filter((page) => page.slug !== 'smart-qr-and-nfc-automation').map((page) => ({
+  ...[...MENU_SERVICE_PAGES, ...INDUSTRY_CLOUD_PAGES].filter((page) => page.slug !== 'smart-qr-and-nfc-automation' && page.slug !== 'gcc-cloud').map((page) => ({
     path: page.slug,
     data: { servicePage: page },
     loadComponent: () => import('./pages/menu-service.page').then((m) => m.MenuServicePage),
   })),
+  {
+    path: 'gcc-cloud',
+    loadComponent: () => import('./pages/gcc-cloud.page').then((m) => m.GccCloudPage),
+  },
   { path: 'mobile-application-penetration-testing', redirectTo: 'mobile-application-security-testing', pathMatch: 'full' },
   { path: 'aeo-geo-automation4', redirectTo: 'aeo-geo-automation', pathMatch: 'full' },
   { path: 'managed-365', redirectTo: 'managed-microsoft-365', pathMatch: 'full' },

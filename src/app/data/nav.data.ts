@@ -3542,6 +3542,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
+                "title": "GCC Cloud",
+                "href": "/gcc-cloud",
+                "pill": null,
+                "desc": "Managed cloud infrastructure, security and support for GCC teams."
+              },
+              {
                 "title": "Food and Beverage Cloud",
                 "href": "/food-and-beverage",
                 "pill": null,
