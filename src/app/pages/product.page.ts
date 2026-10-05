@@ -1,5 +1,9 @@
 
+import { DomainHeroMediaComponent } from '../sections/domain-hero-media.component';
+
+
 import { ComodoPaContentComponent, ComodoPaHeroComponent, ComodoPaFaqComponent, ComodoPaRelatedComponent } from '../sections/comodo-pa.components';
+
 
 import { WorkspaceMigrationContentComponent } from '../sections/microsoft-365-to-google-workspace-migration-content.component';
 import { WORKSPACE_MIGRATION_FAQS } from '../data/microsoft-365-to-google-workspace-migration-faqs.data';
@@ -12,8 +16,6 @@ import { OdooHostingContentComponent } from '../sections/odoo-hosting-content.co
 import { ODOO_HOSTING_FAQS } from '../data/odoo-hosting-faqs.data';
 import { ErpNextHostingContentComponent } from '../sections/erp-next-hosting-content.component';
 import { ERPNEXT_FAQS } from '../data/erp-next-hosting-faqs.data';
-
-
 import { DigicertSmimeContentComponent } from '../sections/digicert-smime-content.component';
 import { DigicertSmimeFaqComponent } from '../sections/digicert-smime-faq.component';
 import { DigicertSmimeRelatedComponent } from '../sections/digicert-smime-related.component';
@@ -125,6 +127,7 @@ import { IdentityResilienceContentComponent } from '../sections/identity-resilie
 import { EdiscoveryComplianceContentComponent } from '../sections/ediscovery-compliance-content.component';
 import { PerformanceCloudContentComponent } from '../sections/performance-cloud-content.component';
 import { GpuServersContentComponent } from '../sections/gpu-servers-content.component';
+import { GpuLeadHeroComponent } from '../sections/gpu-lead-hero.component';
 import { DomainWhoisContentComponent } from '../sections/domain-whois-content.component';
 import { DomainWhoisFaqComponent } from '../sections/domain-whois-faq.component';
 import { ManagedOracleContentComponent } from '../sections/managed-oracle-content.component';
@@ -405,6 +408,7 @@ interface ProductTourSlide {
     EdiscoveryComplianceContentComponent,
     PerformanceCloudContentComponent,
     GpuServersContentComponent,
+    GpuLeadHeroComponent,
     DomainWhoisContentComponent,
     DomainWhoisFaqComponent,
     ManagedOracleContentComponent,
@@ -417,6 +421,7 @@ interface ProductTourSlide {
     LeadCrmContentComponent,
     VeraRubinContentComponent,
     WorkspaceMigrationContentComponent,
+    DomainHeroMediaComponent,
     SectigoSslContentComponent,
     EmailBackupContentComponent,
     OdooHostingContentComponent,
@@ -2503,7 +2508,7 @@ export class ProductPage {
       ],
     };
     if (slug === 'erp-next-hosting') return {
-      ...view, faqs: ERPNEXT_FAQS, videos: [],
+      ...view, brandSuffix: 'Cloud', faqs: ERPNEXT_FAQS, videos: [],
       security: {
         head: 'Security & Compliance — ERPNext Hosting',
         intro: 'Keep ERPNext access, backups and server maintenance aligned with your business requirements. Use role-based permissions for your team, SSL for each site and separate databases for multi-site deployments. Confirm backup retention, restore procedures and the scope of managed support before deployment.',
@@ -2526,7 +2531,7 @@ export class ProductPage {
       ],
     };
     if (slug === 'odoo-hosting') return {
-      ...view, faqs: ODOO_HOSTING_FAQS, videos: [],
+      ...view, brandSuffix: 'Cloud', faqs: ODOO_HOSTING_FAQS, videos: [],
       security: {
         head: 'Security & Compliance — Odoo Hosting',
         intro: 'Keep Odoo access, backups and server maintenance aligned with your business requirements. Use role-based permissions for your team, SSL for each site and database isolation for separate business deployments. Confirm backup retention, restore procedures and the scope of managed support before deployment.',
@@ -3204,6 +3209,28 @@ export class ProductPage {
 
   readonly isInfrastructure = computed(() => this.view()?.name === 'Infrastructure');
 
+  readonly isGpuServerPage = computed(() => new Set([
+    'nvidia-l40s',
+    'nvidia-l4',
+    'nvidia-a30',
+    'nvidia-a2',
+    'nvidia-h100',
+    'nvidia-a100',
+    'rtx-pro-6000',
+    'nvidia-rtx-6000-ada',
+    'rtx-a6000',
+    'rtx-8000',
+    'gpu-clusters',
+    'nvidia-vera-rubin',
+  ]).has(this.slug()));
+
+  readonly isIframeGpuPage = computed(() => new Set([
+    'nvidia-l40s',
+    'nvidia-l4',
+    'nvidia-a30',
+    'nvidia-a2',
+  ]).has(this.slug()));
+
   readonly isWhatsAppSmb = computed(() => this.view()?.name === 'WhatsApp SMB');
 
   /** Every product's available videos, shown together immediately before reviews. */
@@ -3370,6 +3397,7 @@ export class ProductPage {
       'advanced-endpoint-security-edr': '/assets/images/hero-acronis-edr-v2.png',
       'cloud-backup': '/assets/images/hero-cloud-backup-acronis.png',
       'cloud-drive': '/assets/images/cloud-drive-tour-dashboard.jpg',
+      'performance-cloud': '/assets/images/hero-performance-cloud-v2.png',
       'remote-monitoring-and-mgmt-rmm': '/assets/images/hero-rmm.png',
       'tally-on-cloud': '/assets/images/hero-tally-on-cloud.png',
     };
@@ -3613,14 +3641,14 @@ export class ProductPage {
     this.buyPlan(plan, ev);
   }
 
-  /** Restore the existing dialogs for buttons in the standalone Tally hero. */
+  /** Keep the existing dialogs available from every standalone SMB hero. */
   @HostListener('window:message', ['$event'])
-  onTallyHeroMessage(event: MessageEvent<unknown>): void {
-    if (!this.isTally() || event.origin !== window.location.origin) return;
-    const frame = document.querySelector<HTMLIFrameElement>(
-      'iframe.supplied-smb-hero-frame[src="/assets/heroes/tally-on-cloud-hero.html"]',
-    );
-    if (!frame || event.source !== frame.contentWindow) return;
+  onSuppliedSmbHeroMessage(event: MessageEvent<unknown>): void {
+    if (!this.usesSuppliedSmbHero() || event.origin !== window.location.origin) return;
+    const frame = Array.from(
+      document.querySelectorAll<HTMLIFrameElement>('iframe.supplied-smb-hero-frame'),
+    ).find((candidate) => candidate.contentWindow === event.source);
+    if (!frame) return;
 
     const message = event.data as { type?: unknown; action?: unknown } | null;
     if (message?.type !== 'xcellhost:hero-action') return;
@@ -3666,6 +3694,11 @@ export class ProductPage {
       `${window.location.pathname}${window.location.search}#${sectionId}`
     );
     section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  scrollTallyPageToTop(): void {
+    window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   requestGpuCluster(configuration: string): void {

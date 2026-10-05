@@ -28,14 +28,25 @@ $escape = static fn(string $value): string => htmlspecialchars($value, ENT_QUOTE
 $title = $escape((string) $preview['title']);
 $description = $escape((string) $preview['description']);
 $image = $escape((string) $preview['image']);
+$imageType = isset($preview['imageType']) ? $escape((string) $preview['imageType']) : '';
+$imageWidth = isset($preview['imageWidth']) ? (int) $preview['imageWidth'] : 0;
+$imageHeight = isset($preview['imageHeight']) ? (int) $preview['imageHeight'] : 0;
 $canonical = $escape('https://xcellhost.top' . ($routeKey === '/' ? '/' : $routeKey . '/'));
+$imageMeta = '';
+if ($imageType !== '') {
+    $imageMeta .= "\n  <meta property=\"og:image:type\" content=\"{$imageType}\">";
+}
+if ($imageWidth > 0 && $imageHeight > 0) {
+    $imageMeta .= "\n  <meta property=\"og:image:width\" content=\"{$imageWidth}\">";
+    $imageMeta .= "\n  <meta property=\"og:image:height\" content=\"{$imageHeight}\">";
+}
 
 $html = preg_replace('/<title>.*?<\/title>/is', '<title>' . $title . '</title>', $html, 1) ?? $html;
 foreach (['description', 'twitter:card', 'twitter:title', 'twitter:description', 'twitter:image'] as $name) {
     $quoted = preg_quote($name, '/');
     $html = preg_replace('/<meta\b(?=[^>]*\bname=["\']' . $quoted . '["\'])[^>]*>\s*/i', '', $html) ?? $html;
 }
-foreach (['og:type', 'og:site_name', 'og:title', 'og:description', 'og:url', 'og:image', 'og:image:secure_url', 'og:image:width', 'og:image:height', 'og:image:alt'] as $property) {
+foreach (['og:type', 'og:site_name', 'og:title', 'og:description', 'og:url', 'og:image', 'og:image:secure_url', 'og:image:type', 'og:image:width', 'og:image:height', 'og:image:alt'] as $property) {
     $quoted = preg_quote($property, '/');
     $html = preg_replace('/<meta\b(?=[^>]*\bproperty=["\']' . $quoted . '["\'])[^>]*>\s*/i', '', $html) ?? $html;
 }
@@ -52,6 +63,7 @@ $meta = <<<HTML
   <meta property="og:image" content="{$image}">
   <meta property="og:image:secure_url" content="{$image}">
   <meta property="og:image:alt" content="{$title}">
+  {$imageMeta}
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{$title}">
   <meta name="twitter:description" content="{$description}">

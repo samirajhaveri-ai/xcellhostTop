@@ -2,19 +2,19 @@
   document.addEventListener('click', function (event) {
     var target = event.target;
     var control = target && target.closest
-      ? target.closest('a[id$="Info"], #xtPres, #xtTour, #xtTrial, #xtTalk')
+      ? target.closest('a[id$="Info"], a[id$="Pres"], a[id$="Tour"], a[id$="Trial"], a[id$="Talk"]')
       : null;
     if (!control || window.parent === window) return;
 
-    var tallyActions = {
-      xtPres: 'presentation',
-      xtTour: 'tour',
-      xtTrial: 'trial',
-      xtTalk: 'callback'
-    };
+    var action = 'infosheet';
+    if (control.id.endsWith('Pres')) action = 'presentation';
+    else if (control.id.endsWith('Tour')) action = 'tour';
+    else if (control.id.endsWith('Trial')) action = 'trial';
+    else if (control.id.endsWith('Talk')) action = 'callback';
+
     event.preventDefault();
     window.parent.postMessage(
-      { type: 'xcellhost:hero-action', action: tallyActions[control.id] || 'infosheet' },
+      { type: 'xcellhost:hero-action', action: action },
       window.location.origin
     );
   });
