@@ -1794,6 +1794,20 @@
               </div>
             </div>
           }
+          @if (slug() === 'claude-backup') {
+            <div class="claude-backup-hero-footer">
+              <div class="xh-banner-song claude-backup-song">
+                <span class="claude-backup-song-label">
+                  <span class="claude-backup-song-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+                  Listen to our Tally on Cloud Song
+                </span>
+                <audio controls preload="none" aria-label="Listen to our Tally on Cloud Song"></audio>
+              </div>
+              <div class="claude-backup-powered" aria-label="Powered by Druva">
+                <span>POWERED BY</span><strong>Druva</strong>
+              </div>
+            </div>
+          }
         </div>
       </div>
       }
@@ -5097,9 +5111,7 @@
             </div>
           }
 
-          <div id="ppRich" [hidden]="slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin' || slug() === 'erp-next-hosting' || slug() === 'odoo-hosting' || slug() === 'email-backup' || slug() === 'sectigo-ssl-certificates'">
-
-          <div id="ppRich" [hidden]="slug() === 'digicert-smime-class-1' || slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin'">
+          <div id="ppRich" [hidden]="slug() === 'digicert-smime-class-1' || slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin' || slug() === 'erp-next-hosting' || slug() === 'odoo-hosting' || slug() === 'email-backup' || slug() === 'sectigo-ssl-certificates'">
 
             @if (v.packages.length) {
               <div class="pp-sec">Included with {{ v.name }}</div>
@@ -5703,6 +5715,8 @@
           @if (slug() === 'cloud-repatriation') {
             <xh-cloud-repatriation-source view="details" />
           }
+          }
+
           }
 
         @if (slug() !== 'marketplace' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
