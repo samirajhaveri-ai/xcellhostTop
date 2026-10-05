@@ -103,6 +103,8 @@
  .xt-feed{position:static;transform:none;width:auto;grid-area:f}}
 @media (prefers-reduced-motion:reduce){.xt-hero *{animation:none!important;transition:none!important}.xt-pts li,.xt-feed li{opacity:1;transform:none}}
 .xt-hero .tally-powered-by{display:flex;align-items:center;gap:10px;margin-top:16px;color:#c7d5ec;font-size:13px;line-height:1.4}.tally-powered-by img{display:block;width:64px;height:64px;object-fit:contain;border-radius:6px}.tally-powered-by strong{color:#fff;font-size:20px;font-weight:700}
+/* Verified SMB service media. */
+.smb-hero-media{margin-top:18px!important}.smb-hero-song{display:flex;flex-wrap:wrap;align-items:center;gap:12px;color:#fff}.smb-hero-song b{font:700 16px/1.4 var(--body)}.smb-hero-song b span{color:#ff8c1a}.smb-hero-song audio{display:block;width:280px;max-width:100%;height:44px}.smb-hero-brand{display:flex;align-items:center;gap:10px;margin-top:16px!important;color:#c7d5ec;font:400 13px/1.4 var(--body)}.smb-hero-brand strong{color:#fff;font-size:20px;font-weight:700}.smb-hero-logo{position:relative;display:inline-block;flex:none;background:#fff;border-radius:4px;overflow:hidden}.smb-hero-logo img{display:block;width:140px;height:56px;object-fit:contain}.smb-hero-logo.square img{width:40px;height:40px;padding:4px}.smb-hero-logo.drive img{height:70px;padding:4px 6px}.smb-hero-logo.tally::after,.smb-hero-logo.acronis::after,.smb-hero-logo.connect::after,.smb-hero-logo.drive::after,.smb-hero-logo.edr::after{content:"";position:absolute;top:0;left:0;background:#fff;pointer-events:none}.smb-hero-logo.tally::after{width:45px;height:10px}.smb-hero-logo.acronis::after{width:44px;height:9px}.smb-hero-logo.connect::after{top:10px;width:54px;height:10px}.smb-hero-logo.drive::after{top:4px;left:6px;width:56px;height:13px}.smb-hero-logo.edr::after{width:105px;height:14px;background:#f7f7f7}@media(max-width:420px){.smb-hero-brand{gap:8px}.smb-hero-brand strong{font-size:18px}}
 </style>
 </head>
 <body style="margin:0;background:#041733">
@@ -133,7 +135,12 @@
     <a class="xt-btn o" id="xtTalk" href="#">Let's Talk →</a>
    </div>
    <div class="xt-ai" role="group" aria-label="Ask AI about Tally on Cloud from XcellHost"><span>✦ Ask AI About Tally on Cloud from XcellHost</span><div id="xtAi" style="display:flex;gap:8px"></div></div>
-   <div class="tally-powered-by"><span>Powered by</span><span aria-hidden="true">|</span><img src="/assets/images/tally-on-cloud-powered-by.webp" alt="Tally On Cloud logo" width="64" height="64"><strong>Tally On Cloud</strong></div>
+
+   <div class="tally-powered-by"><span>Powered by</span><span aria-hidden="true">|</span><img src="/assets/images/tally power.jpg" alt="Tally On Cloud logo" width="64" height="64"><strong>Tally On Cloud</strong></div>
+
+<div class="smb-hero-media"><div class="smb-hero-song"><b id="smbSongTitle"><span aria-hidden="true">▂▅▇</span> Listen to our Tally On Cloud Song</b><audio controls preload="metadata" aria-labelledby="smbSongTitle" src="/assets/audio/tally-on-cloud-song.mp3"></audio></div><div class="smb-hero-brand"><span>Powered by</span><span aria-hidden="true">|</span><span class="smb-hero-logo tally"><img src="/assets/images/smb-powered-by/tally.png" alt="Tally On Cloud logo" width="140" height="56"></span><span aria-hidden="true">|</span><strong>Tally On Cloud</strong></div></div>
+   
+
   </div>
 
   <!-- ===== RIGHT: live Tally on Cloud visual (illustrative) ===== -->
@@ -208,5 +215,8 @@ for(var j=0;j<4;j++)push();if(!RM)setInterval(push,2200);
 </section>
 
 <script src="/assets/heroes/hero-action-bridge.js"></script>
-</body>
+<script>
+// Size this embedded banner to its contents, including mobile media wrapping.
+(function(){const hero=document.querySelector('section');const frame=window.frameElement;if(!hero||!frame)return;const resize=()=>{frame.style.height=Math.ceil(hero.getBoundingClientRect().height)+'px';};new ResizeObserver(resize).observe(hero);document.fonts.ready.then(resize);addEventListener('load',resize);resize();})();
+</script></body>
 </html>

@@ -1,5 +1,9 @@
 
+import { DomainHeroMediaComponent } from '../sections/domain-hero-media.component';
+
+
 import { ComodoPaContentComponent, ComodoPaHeroComponent, ComodoPaFaqComponent, ComodoPaRelatedComponent } from '../sections/comodo-pa.components';
+
 
 import { WorkspaceMigrationContentComponent } from '../sections/microsoft-365-to-google-workspace-migration-content.component';
 import { WORKSPACE_MIGRATION_FAQS } from '../data/microsoft-365-to-google-workspace-migration-faqs.data';
@@ -414,6 +418,7 @@ interface ProductTourSlide {
     LeadCrmContentComponent,
     VeraRubinContentComponent,
     WorkspaceMigrationContentComponent,
+    DomainHeroMediaComponent,
     SectigoSslContentComponent,
     EmailBackupContentComponent,
     OdooHostingContentComponent,

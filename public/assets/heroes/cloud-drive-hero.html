@@ -103,7 +103,11 @@
  .n0{grid-area:n0}.n1{grid-area:n1}.n2{grid-area:n2}.n3{grid-area:n3}
  .xh-fd{position:static;transform:none;width:auto;grid-area:f}}
 @media (prefers-reduced-motion:reduce){.xh *{animation:none!important;transition:none!important}.xh-pts li,.xh-fd li{opacity:1;transform:none}}
-.cloud-drive-powered-by{display:flex;align-items:center;gap:10px;margin-top:16px;color:#c7d5ec;font-size:13px;line-height:1.4}.cloud-drive-powered-by img{display:block;width:56px;height:56px;object-fit:contain}.cloud-drive-powered-by strong{color:#fff;font-size:20px;font-weight:700}
+.xh .cloud-drive-song{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-top:18px;color:#fff}.cloud-drive-song b{font-size:16px}.cloud-drive-song b span{color:#ff8c1a}.cloud-drive-song audio{display:block;width:280px;max-width:100%;height:44px}.xh .cloud-drive-powered-by{display:flex;align-items:center;gap:10px;margin-top:16px;color:#c7d5ec;font-size:13px;line-height:1.4}.cloud-drive-powered-by img{display:block;width:140px;height:70px;padding:4px 6px;object-fit:contain;background:#fff;border-radius:4px}.cloud-drive-powered-by strong{color:#fff;font-size:20px;font-weight:700}
+/* Conceal the redundant label inside the supplied logo, preserving its cloud and wordmark. */
+.cloud-drive-logo{display:inline-block;position:relative;flex:none}.cloud-drive-logo::after{content:"";position:absolute;left:6px;top:4px;width:56px;height:13px;background:#fff;pointer-events:none}
+/* Verified SMB service media. */
+.smb-hero-media{margin-top:18px!important}.smb-hero-song{display:flex;flex-wrap:wrap;align-items:center;gap:12px;color:#fff}.smb-hero-song b{font:700 16px/1.4 var(--body)}.smb-hero-song b span{color:#ff8c1a}.smb-hero-song audio{display:block;width:280px;max-width:100%;height:44px}.smb-hero-brand{display:flex;align-items:center;gap:10px;margin-top:16px!important;color:#c7d5ec;font:400 13px/1.4 var(--body)}.smb-hero-brand strong{color:#fff;font-size:20px;font-weight:700}.smb-hero-logo{position:relative;display:inline-block;flex:none;background:#fff;border-radius:4px;overflow:hidden}.smb-hero-logo img{display:block;width:140px;height:56px;object-fit:contain}.smb-hero-logo.square img{width:40px;height:40px;padding:4px}.smb-hero-logo.drive img,.smb-hero-logo.nextcloud img{height:70px;padding:4px 6px}.smb-hero-logo.tally::after,.smb-hero-logo.acronis::after,.smb-hero-logo.connect::after,.smb-hero-logo.drive::after,.smb-hero-logo.edr::after{content:"";position:absolute;top:0;left:0;background:#fff;pointer-events:none}.smb-hero-logo.tally::after{width:45px;height:10px}.smb-hero-logo.acronis::after{width:44px;height:9px}.smb-hero-logo.connect::after{top:10px;width:54px;height:10px}.smb-hero-logo.drive::after{top:4px;left:6px;width:56px;height:13px}.smb-hero-logo.edr::after{width:105px;height:14px;background:#f7f7f7}@media(max-width:420px){.smb-hero-brand{gap:8px}.smb-hero-brand strong{font-size:18px}}
 </style>
 </head>
 <body style="margin:0;background:#041733">
@@ -126,7 +130,9 @@
     <a class="xh-btn o" id="xhTalk" href="#">Let's Talk →</a>
    </div>
    <div class="xh-ai" role="group" aria-label="Ask AI about Cloud Drive from XcellHost"><span>✦ Ask AI About Cloud Drive from XcellHost</span><div id="xhAi" style="display:flex;gap:8px"></div></div>
-<div class="cloud-drive-powered-by"><span>Powered by</span><span aria-hidden="true">|</span><img src="/assets/images/cloud-drive-powered-by.png" alt="Cloud Drive" width="56" height="56"><strong>Cloud Drive</strong></div>
+<div class="smb-hero-media"><div class="smb-hero-song"><b id="smbSongTitle"><span aria-hidden="true">▂▅▇</span> Listen to our Cloud Drive Song</b><audio controls preload="metadata" aria-labelledby="smbSongTitle" src="/assets/audio/cloud-drive-song.mp3"></audio></div><div class="smb-hero-brand"><span>Powered by</span><span aria-hidden="true">|</span><span class="smb-hero-logo nextcloud"><img src="/assets/images/smb-powered-by/nextcloud.webp" alt="Nextcloud logo" width="140" height="70"></span></div></div>
+
+
   </div>
 
   <div class="xh-viz" aria-label="Illustration: files syncing between devices and the XcellHost cloud drive">
@@ -188,5 +194,8 @@ for(var j=0;j<4;j++)push();if(!RM)setInterval(push,2200);
 </section>
 
 <script src="/assets/heroes/hero-action-bridge.js"></script>
-</body>
+<script>
+// Size this embedded banner to its contents, including mobile media wrapping.
+(function(){const hero=document.querySelector('section');const frame=window.frameElement;if(!hero||!frame)return;const resize=()=>{frame.style.height=Math.ceil(hero.getBoundingClientRect().height)+'px';};new ResizeObserver(resize).observe(hero);document.fonts.ready.then(resize);addEventListener('load',resize);resize();})();
+</script></body>
 </html>
