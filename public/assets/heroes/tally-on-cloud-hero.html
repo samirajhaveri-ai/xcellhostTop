@@ -44,13 +44,6 @@
 .xt-ai span{font:700 11.5px var(--mono);letter-spacing:.06em;color:#fff}
 .xt-ai a{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;background:rgba(255,255,255,.08);transition:.2s}
 .xt-ai a:hover{background:rgba(255,255,255,.2);transform:translateY(-2px)}.xt-ai img{width:18px;height:18px;border-radius:4px}
-.xt-song{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:18px}
-.xt-song b{font:700 17px var(--pop);color:#fff;display:flex;align-items:center;gap:8px}
-.xt-song b i{display:flex;gap:2px;align-items:flex-end;height:16px}.xt-song b i u{width:3px;background:var(--orange);border-radius:2px;animation:xtEq 1s ease-in-out infinite}
-.xt-song b i u:nth-child(2){animation-delay:-.3s}.xt-song b i u:nth-child(3){animation-delay:-.6s}
-.xt-song.paused b i u{animation-play-state:paused}
-@keyframes xtEq{0%,100%{height:4px}50%{height:16px}}
-.xt-song audio{height:44px;max-width:100%;border-radius:999px}
 /* ---------- right: live visual ---------- */
 .xt-viz{position:relative;height:540px}
 .xt-map{position:absolute;inset:-30px -40px -30px -10px;background-image:radial-gradient(circle,rgba(127,168,232,.55) 1.6px,transparent 1.8px);background-size:18px 18px;
@@ -109,6 +102,7 @@
  .d1{grid-area:d1}.d2{grid-area:d2}.d3{grid-area:d3}.d4{grid-area:d4}
  .xt-feed{position:static;transform:none;width:auto;grid-area:f}}
 @media (prefers-reduced-motion:reduce){.xt-hero *{animation:none!important;transition:none!important}.xt-pts li,.xt-feed li{opacity:1;transform:none}}
+.xt-hero .tally-powered-by{display:flex;align-items:center;gap:10px;margin-top:16px;color:#c7d5ec;font-size:13px;line-height:1.4}.tally-powered-by img{display:block;width:64px;height:64px;object-fit:contain;border-radius:6px}.tally-powered-by strong{color:#fff;font-size:20px;font-weight:700}
 </style>
 </head>
 <body style="margin:0;background:#041733">
@@ -139,7 +133,7 @@
     <a class="xt-btn o" id="xtTalk" href="#">Let's Talk →</a>
    </div>
    <div class="xt-ai" role="group" aria-label="Ask AI about Tally on Cloud from XcellHost"><span>✦ Ask AI About Tally on Cloud from XcellHost</span><div id="xtAi" style="display:flex;gap:8px"></div></div>
-   <div class="xt-song paused" id="xtSongRow"><b><i aria-hidden="true"><u></u><u></u><u></u></i>Listen to our Tally on Cloud Song</b><audio id="xtSong" controls preload="none"></audio></div>
+   <div class="tally-powered-by"><span>Powered by</span><span aria-hidden="true">|</span><img src="/assets/images/tally-on-cloud-powered-by.webp" alt="Tally On Cloud logo" width="64" height="64"><strong>Tally On Cloud</strong></div>
   </div>
 
   <!-- ===== RIGHT: live Tally on Cloud visual (illustrative) ===== -->
@@ -174,14 +168,11 @@ var CONFIG={
  presentation:"#",           /* Presentation / flipbook URL */
  screenshotTour:"#",         /* Screenshot tour URL */
  freeTrial:"#",              /* 7-day free trial / sign-up URL */
- letsTalk:"#",               /* Contact / callback URL */
- song:""                     /* Tally on Cloud song MP3 URL */
+ letsTalk:"#"                /* Contact / callback URL */
 };
 /* ============================== */
 var $=function(i){return document.getElementById(i)},RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
 [["xtInfo","infosheet"],["xtPres","presentation"],["xtTour","screenshotTour"],["xtTrial","freeTrial"],["xtTalk","letsTalk"]].forEach(function(p){var a=$(p[0]);a.href=CONFIG[p[1]];if(/^https?:/.test(CONFIG[p[1]])&&p[0]!=="xtTalk"){a.target="_blank";a.rel="noopener"}});
-var song=$("xtSong"),row=$("xtSongRow");if(CONFIG.song){song.src=CONFIG.song}
-song.addEventListener("play",function(){row.classList.remove("paused")});song.addEventListener("pause",function(){row.classList.add("paused")});
 
 /* Ask AI */
 var Q="Explain XcellHost Tally on Cloud (XcellTally): running TallyPrime on a secure cloud server in India with AMD EPYC and NVMe, encrypted backups, virtual firewall and access from any device. What does it cost per user, how is it better than running Tally on a local PC, and what should a business ask before moving?";

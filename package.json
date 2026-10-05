@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "node scripts/serve-with-asset-reloads.mjs --open",
-    "build": "ng build",
+    "build": "node scripts/generate-social-previews.js && ng build",
     "build:local": "ng build --base-href ./",
     "watch": "ng build --watch --configuration development",
     "package": "npm run build && node scripts/package-for-plesk.js",

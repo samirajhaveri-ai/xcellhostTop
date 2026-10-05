@@ -27,8 +27,10 @@
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # Everything else is an Angular route
-  RewriteRule ^ index.html [L]
+  # Everything else is an Angular route. PHP injects route-specific Open Graph
+  # metadata before returning the same Angular index, so WhatsApp and other
+  # social crawlers receive the correct product image without running JavaScript.
+  RewriteRule ^ social-preview.php [L,QSA]
 </IfModule>
 
 # ------------------------------------------------------------- 2. cache rules

@@ -18,7 +18,7 @@ export const SITE = {
   city: 'Mumbai',
   region: 'Maharashtra',
   country: 'IN',
-  siteUrl: 'https://www.xcellhost.cloud/',
+  siteUrl: 'https://xcellhost.top/',
 } as const;
 
 /** Words cycled in the hero headline. */

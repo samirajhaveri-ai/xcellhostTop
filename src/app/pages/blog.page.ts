@@ -12,6 +12,7 @@ import { SeoService } from '../core/seo.service';
 import { PRODUCT_INFOSHEETS } from '../data/products.data';
 import { SITE } from '../data/site.data';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
+import { selectBlogSpeechVoice } from '../core/blog-speech-voice';
 
 interface BodyBlock {
   readonly kind: 'p' | 'h' | 'ul' | 'img';
@@ -96,6 +97,7 @@ export class BlogPage implements OnDestroy {
   private speechChunks: string[] = [];
   private speechIndex = 0;
   private speechRun = 0;
+  private cancelVoiceWait: (() => void) | null = null;
   readonly shareNetworks: readonly ShareNetwork[] = ['linkedin', 'facebook', 'x', 'whatsapp', 'email'];
 
   readonly blocks = computed(() => this.parseContent(this.post()?.content ?? ''));
@@ -250,15 +252,42 @@ export class BlogPage implements OnDestroy {
     this.speechRun++;
     synth.cancel();
     this.speechState.set('playing');
-    this.speakNextChunk(this.speechRun);
+    this.startListeningWithVoice(this.speechRun);
   }
 
   stopListening(): void {
     this.speechRun++;
+    this.cancelVoiceWait?.();
     this.doc.defaultView?.speechSynthesis?.cancel();
     this.speechChunks = [];
     this.speechIndex = 0;
     this.speechState.set('idle');
+  }
+
+  private startListeningWithVoice(run: number): void {
+    const view = this.doc.defaultView;
+    if (!view) return;
+    const synth = view.speechSynthesis;
+    if (synth.getVoices().length) {
+      this.speakNextChunk(run);
+      return;
+    }
+
+    // Some browsers populate voices asynchronously on the first request.
+    const start = () => {
+      cleanup();
+      if (run === this.speechRun) this.speakNextChunk(run);
+    };
+    const onVoicesChanged = () => { if (synth.getVoices().length) start(); };
+    const timeout = view.setTimeout(start, 1500);
+    const cleanup = () => {
+      view.clearTimeout(timeout);
+      synth.removeEventListener('voiceschanged', onVoicesChanged);
+      this.cancelVoiceWait = null;
+    };
+    this.cancelVoiceWait = cleanup;
+    synth.addEventListener('voiceschanged', onVoicesChanged);
+    onVoicesChanged();
   }
 
   private speakNextChunk(run: number): void {
@@ -271,10 +300,13 @@ export class BlogPage implements OnDestroy {
     const view = this.doc.defaultView;
     if (!view) return;
     const utterance = new SpeechSynthesisUtterance(chunk);
-    utterance.lang = 'en-IN';
+    const voice = selectBlogSpeechVoice(view.speechSynthesis.getVoices());
+    if (voice) utterance.voice = voice;
+    utterance.lang = voice?.lang ?? 'en-IN';
     utterance.onend = () => this.speakNextChunk(run);
     utterance.onerror = () => { if (run === this.speechRun) this.stopListening(); };
     view.speechSynthesis.speak(utterance);
+    if (this.speechState() === 'paused') view.speechSynthesis.pause();
   }
 
   onScroll(): void {
