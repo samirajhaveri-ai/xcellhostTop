@@ -12,8 +12,6 @@ import { OdooHostingContentComponent } from '../sections/odoo-hosting-content.co
 import { ODOO_HOSTING_FAQS } from '../data/odoo-hosting-faqs.data';
 import { ErpNextHostingContentComponent } from '../sections/erp-next-hosting-content.component';
 import { ERPNEXT_FAQS } from '../data/erp-next-hosting-faqs.data';
-
-
 import { DigicertSmimeContentComponent } from '../sections/digicert-smime-content.component';
 import { DigicertSmimeFaqComponent } from '../sections/digicert-smime-faq.component';
 import { DigicertSmimeRelatedComponent } from '../sections/digicert-smime-related.component';

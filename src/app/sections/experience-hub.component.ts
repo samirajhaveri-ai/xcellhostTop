@@ -29,7 +29,7 @@ import { RouterLink } from '@angular/router';
             <div class="hub-feature-copy"><span class="hub-mini">FROM IDEA TO EVERYDAY OPERATIONS</span><h3>Experiences</h3><p>Bring your applications, data and teams together with managed cloud experiences for your business.</p><span class="hub-link">Explore</span></div>
           </a>
           @for (card of cards; track card.title) {
-            <a class="hub-card hub-small" [class]="'hub-card hub-small ' + card.theme" routerLink="/explore-marketplace" [queryParams]="{ category: card.category }">
+            <a class="hub-card hub-small" [class]="'hub-card hub-small ' + card.theme" [routerLink]="card.route" [queryParams]="card.params">
               <div class="hub-card-top"><span class="hub-icon material-symbols-outlined" aria-hidden="true">{{ card.icon }}</span></div>
               <span class="hub-art material-symbols-outlined" aria-hidden="true">{{ card.art }}</span>
               <div class="hub-card-copy"><span class="hub-mini">{{ card.label }}</span><h3>{{ card.title }}</h3><p>{{ card.description }}</p><span class="hub-link">Explore</span></div>
@@ -50,5 +50,15 @@ export class ExperienceHubComponent {
     { title: 'Accelerators', label: 'MOVE YOUR IDEAS FORWARD', description: 'Find a faster path from planning to delivery.', icon: 'rocket_launch', art: 'rocket_launch', theme: 'hub-accelerators', category: 'accelerators' },
     { title: 'Explore Marketplace', label: 'DISCOVER YOUR NEXT SOLUTION', description: 'Browse our curated products and offers.', icon: 'shopping_bag', art: 'shopping_bag', theme: 'hub-souq', category: 'all' },
     { title: 'Vendor Alliances', label: 'STRONGER TOGETHER', description: 'Connect with our partner ecosystem.', icon: 'groups', art: 'handshake', theme: 'hub-alliances', category: 'alliances' },
-  ];
+  ].map(card => ({
+    ...card,
+    route: card.category === 'alliances' ? '/company/vendor-partners'
+      : card.category === 'accelerators' ? '/about-us'
+      : card.category === 'professional' ? '/contact'
+      : card.category === 'all' ? '/marketplace' : '/explore-marketplace',
+    params: card.category === 'professional'
+      ? { service: card.title }
+      : card.category === 'all' || card.category === 'alliances' || card.category === 'accelerators' ? {}
+      : { category: card.category },
+  }));
 }
