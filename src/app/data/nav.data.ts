@@ -3889,6 +3889,7 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Customer Testimonials",
+                "href": "/customer-testimonials",
                 "pill": null,
                 "desc": "Secure, scalable cloud expertise since 1999"
               },
