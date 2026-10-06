@@ -9,7 +9,7 @@ export const routes: Routes = [
   {
     path: 'microsoft-365-tenant-to-tenant-migration',
     loadComponent: () => import('./pages/microsoft-365-tenant-to-tenant-migration.page').then((m) => m.Microsoft365TenantToTenantMigrationPage),
-
+  },
   ...Object.keys(FRAMEWORK_DETAILS).map(slug => ({ path: 'cybersecurity-frameworks/' + slug, data: { productSlug: slug }, loadComponent: () => import('./pages/product.page').then(m => m.ProductPage) })),
   {
     path: 'microsoft-365-business-standard-no-teams',
