@@ -34,9 +34,9 @@
 .xt-pts svg{width:20px;height:20px;flex:none;border-radius:6px;background:var(--blue);padding:3px;color:#fff;box-shadow:0 4px 12px rgba(21,101,216,.45)}
 @keyframes xtIn{to{opacity:1;transform:none}}
 .xt-ctas{display:flex;flex-wrap:nowrap;gap:6px;margin-top:28px;overflow:visible}
-.xt-btn{display:inline-flex;flex:0 0 auto;align-items:center;gap:5px;padding:10px 11px;border-radius:10px;font:700 12px var(--pop);white-space:nowrap;border:1.5px solid rgba(156,200,255,.35);background:rgba(255,255,255,.05);color:#fff;transition:.2s;cursor:pointer}
+.xt-btn{display:inline-flex;flex:0 0 auto;align-items:center;gap:4px;padding:8px 9px;border-radius:8px;font:700 11px var(--pop);white-space:nowrap;border:1.5px solid rgba(156,200,255,.35);background:rgba(255,255,255,.05);color:#fff;transition:.2s;cursor:pointer}
 .xt-btn:hover{border-color:#9CC8FF;background:rgba(255,255,255,.1);transform:translateY(-2px)}
-.xt-btn svg{width:16px;height:16px}
+.xt-btn svg{width:14px;height:14px}
 .xt-btn.b{background:var(--blue);border-color:var(--blue);box-shadow:0 10px 24px rgba(21,101,216,.35)}
 .xt-btn.o{background:var(--orange);border-color:var(--orange);box-shadow:0 10px 24px rgba(255,140,26,.35)}
 .xt-btn.o:hover{background:#ff9c3a}
@@ -102,10 +102,14 @@
  .d1{grid-area:d1}.d2{grid-area:d2}.d3{grid-area:d3}.d4{grid-area:d4}
  .xt-feed{position:static;transform:none;width:auto;grid-area:f}}
 @media (prefers-reduced-motion:reduce){.xt-hero *{animation:none!important;transition:none!important}.xt-pts li,.xt-feed li{opacity:1;transform:none}}
-.xt-hero .tally-powered-by{display:flex;align-items:center;gap:10px;margin-top:16px;color:#c7d5ec;font-size:13px;line-height:1.4}.tally-powered-by img{display:block;width:64px;height:64px;object-fit:contain;border-radius:6px}.tally-powered-by strong{color:#fff;font-size:20px;font-weight:700}
 /* Verified SMB service media. */
 .smb-hero-media{margin-top:18px!important}.smb-hero-song{display:flex;flex-wrap:wrap;align-items:center;gap:12px;color:#fff}.smb-hero-song b{font:700 16px/1.4 var(--body)}.smb-hero-song b span{color:#ff8c1a}.smb-hero-song audio{display:block;width:280px;max-width:100%;height:44px}.smb-hero-brand{display:flex;align-items:center;gap:10px;margin-top:16px!important;color:#c7d5ec;font:400 13px/1.4 var(--body)}.smb-hero-brand strong{color:#fff;font-size:20px;font-weight:700}.smb-hero-logo{position:relative;display:inline-block;flex:none;background:#fff;border-radius:4px;overflow:hidden}.smb-hero-logo img{display:block;width:140px;height:56px;object-fit:contain}.smb-hero-logo.square img{width:40px;height:40px;padding:4px}.smb-hero-logo.drive img{height:70px;padding:4px 6px}.smb-hero-logo.tally::after,.smb-hero-logo.acronis::after,.smb-hero-logo.connect::after,.smb-hero-logo.drive::after,.smb-hero-logo.edr::after{content:"";position:absolute;top:0;left:0;background:#fff;pointer-events:none}.smb-hero-logo.tally::after{width:45px;height:10px}.smb-hero-logo.acronis::after{width:44px;height:9px}.smb-hero-logo.connect::after{top:10px;width:54px;height:10px}.smb-hero-logo.drive::after{top:4px;left:6px;width:56px;height:13px}.smb-hero-logo.edr::after{width:105px;height:14px;background:#f7f7f7}@media(max-width:420px){.smb-hero-brand{gap:8px}.smb-hero-brand strong{font-size:18px}}
+.smb-hero-logo.tally-prime{background:#204353}
+.smb-hero-logo.tally-prime img{width:120px;height:60px;object-fit:contain}
+.smb-hero-song b span{display:inline-block;font-size:12px;line-height:1;vertical-align:middle}
 </style>
+<link rel="stylesheet" href="/assets/heroes/song-equalizer.css">
+<link rel="stylesheet" href="/assets/heroes/smb-banner-media.css">
 </head>
 <body style="margin:0;background:#041733">
 
@@ -128,18 +132,17 @@
     <li style="animation-delay:.40s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Access Ledger from Any Device</li>
    </ul>
    <div class="xt-ctas">
-    
-    
+
+
     <a class="xt-btn" id="xtTour" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Screenshot Tour</a>
     <a class="xt-btn" id="xtTrial" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>7 Days Free Trial</a>
     <a class="xt-btn o" id="xtTalk" href="#">Let's Talk →</a>
    </div>
    <div class="xt-ai" role="group" aria-label="Ask AI about Tally on Cloud from XcellHost"><span>✦ Ask AI About Tally on Cloud from XcellHost</span><div id="xtAi" style="display:flex;gap:8px"></div></div>
 
-   <div class="tally-powered-by"><span>Powered by</span><span aria-hidden="true">|</span><img src="/assets/images/tally power.jpg" alt="Tally On Cloud logo" width="64" height="64"><strong>Tally On Cloud</strong></div>
 
-<div class="smb-hero-media"><div class="smb-hero-song"><b id="smbSongTitle"><span aria-hidden="true">▂▅▇</span> Listen to our Tally On Cloud Song</b><audio controls preload="metadata" aria-labelledby="smbSongTitle" src="/assets/audio/tally-on-cloud-song.mp3"></audio></div><div class="smb-hero-brand"><span>Powered by</span><span aria-hidden="true">|</span><span class="smb-hero-logo tally"><img src="/assets/images/smb-powered-by/tally.png" alt="Tally On Cloud logo" width="140" height="56"></span><span aria-hidden="true">|</span><strong>Tally On Cloud</strong></div></div>
-   
+<div class="smb-hero-media"><div class="smb-hero-song"><b id="smbSongTitle"><span class="song-equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i></span> Listen to our Tally On Cloud Song</b><audio controls preload="metadata" aria-labelledby="smbSongTitle" src="/assets/audio/tally-on-cloud-song.mp3"></audio></div><div class="smb-hero-brand"><span>Powered by</span><span aria-hidden="true">|</span><span class="smb-hero-logo tally-prime"><img src="/assets/images/tally-prime-7-logo.png" alt="Tally Prime 7.0" width="120" height="60"></span><strong>Tally On Cloud</strong></div></div>
+
 
   </div>
 
@@ -170,7 +173,8 @@
 <script>
 (function(){
 /* ====== EDIT THESE LINKS ====== */
-var CONFIG={ screenshotTour:"#",         /* Screenshot tour URL */
+var CONFIG={
+ screenshotTour:"#",         /* Screenshot tour URL */
  freeTrial:"#",              /* 7-day free trial / sign-up URL */
  letsTalk:"#"                /* Contact / callback URL */
 };

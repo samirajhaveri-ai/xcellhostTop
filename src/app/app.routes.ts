@@ -1,3 +1,4 @@
+import { FRAMEWORK_DETAILS } from './data/framework-details.data';
 import { Routes } from '@angular/router';
 import { MENU_SERVICE_PAGES } from './data/menu-service-pages.data';
 import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
@@ -13,6 +14,7 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
  *   /compare/
  */
 export const routes: Routes = [
+  ...Object.keys(FRAMEWORK_DETAILS).map(slug => ({ path: 'cybersecurity-frameworks/' + slug, data: { productSlug: slug }, loadComponent: () => import('./pages/product.page').then(m => m.ProductPage) })),
   {
     path: 'microsoft-365-business-standard-no-teams',
     loadComponent: () => import('./pages/microsoft-365-business-standard-no-teams.page').then((m) => m.Microsoft365BusinessStandardNoTeamsPage),
@@ -449,6 +451,11 @@ export const routes: Routes = [
     path: 'cloud-devops-services',
     data: { productSlug: 'cloud-devops-services' },
     loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+  },
+  {
+    path: 'cloud-drive/checkout',
+    loadComponent: () =>
+      import('./pages/cloud-drive-checkout.page').then((m) => m.CloudDriveCheckoutPage),
   },
   { path: 'acronis-edr', redirectTo: '', pathMatch: 'full' },
   {
