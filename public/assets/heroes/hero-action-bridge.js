@@ -1,4 +1,14 @@
 (function () {
+  document.querySelectorAll('.smb-hero-song').forEach(function (song) {
+    var audio = song.querySelector('audio');
+    var equalizer = song.querySelector('.song-equalizer');
+    if (!audio || !equalizer) return;
+    audio.addEventListener('playing', function () { equalizer.classList.add('is-playing'); });
+    ['pause', 'ended', 'waiting', 'error', 'emptied'].forEach(function (eventName) {
+      audio.addEventListener(eventName, function () { equalizer.classList.remove('is-playing'); });
+    });
+  });
+
   document.addEventListener('click', function (event) {
     var target = event.target;
     var control = target && target.closest

@@ -1,3 +1,4 @@
+import { FRAMEWORK_DETAILS } from './data/framework-details.data';
 import { Routes } from '@angular/router';
 import { MENU_SERVICE_PAGES } from './data/menu-service-pages.data';
 import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
@@ -13,6 +14,17 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
  *   /compare/
  */
 export const routes: Routes = [
+  ...Object.keys(FRAMEWORK_DETAILS).map(slug => ({ path: 'cybersecurity-frameworks/' + slug, data: { productSlug: slug }, loadComponent: () => import('./pages/product.page').then(m => m.ProductPage) })),
+  {
+    path: 'edr-checkout',
+    data: { checkoutProduct: 'edr' },
+    loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
+  },
+  {
+    path: 'rmm-checkout',
+    data: { checkoutProduct: 'rmm' },
+    loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
+  },
   ...[...MENU_SERVICE_PAGES, ...INDUSTRY_CLOUD_PAGES].filter((page) => page.slug !== 'smart-qr-and-nfc-automation' && page.slug !== 'gcc-cloud').map((page) => ({
     path: page.slug,
     data: { servicePage: page },
@@ -416,6 +428,11 @@ export const routes: Routes = [
     data: { productSlug: 'cloud-devops-services' },
     loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
   },
+  {
+    path: 'cloud-drive/checkout',
+    loadComponent: () =>
+      import('./pages/cloud-drive-checkout.page').then((m) => m.CloudDriveCheckoutPage),
+  },
   { path: 'acronis-edr', redirectTo: '', pathMatch: 'full' },
   {
     path: 'email-security-smb',
@@ -430,6 +447,21 @@ export const routes: Routes = [
   // service pages sit at the root, so this must stay last
   { path: 'comodo-enterprise-pro-basic-pa', redirectTo: 'comodo-personal-authentication', pathMatch: 'full' },
   { path: 'co-location', redirectTo: 'co-location-services', pathMatch: 'full' },
+  {
+    path: 'advanced-endpoint-security-edr',
+    data: { productSlug: 'advanced-endpoint-security-edr' },
+    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+  },
+  {
+    path: 'scrutiny-edr',
+    data: { productSlug: 'scrutiny-edr' },
+    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+  },
+  {
+    path: 'cloud-drive',
+    data: { productSlug: 'cloud-drive' },
+    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+  },
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
   { path: '**', redirectTo: '' },
 ];

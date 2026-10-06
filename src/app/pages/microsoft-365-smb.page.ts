@@ -27,11 +27,14 @@ export class Microsoft365SmbPage {
 
   readonly openFaq = signal<number | null>(0);
   readonly sectionNavLinks = [
+    { label: 'Overview', target: 'm365Overview' },
     { label: 'Pricing', target: 'pricing' },
+    { label: 'Security', target: 'm365Security' },
+    { label: 'Why to Choose', target: 'm365WhyChoose' },
     { label: 'Features', target: 'm365Features' },
-    { label: 'Watch in Action', target: 'm365Watch' },
-    { label: 'Testimonials', target: 'm365Testimonials' },
-    { label: 'FAQ', target: 'm365Faq' },
+    { label: 'Watch it in action', target: 'm365Watch' },
+    { label: 'Customer Testimonials', target: 'm365Testimonials' },
+    { label: 'FAQs', target: 'm365Faq' },
     { label: 'Insights', target: 'm365Insights' },
   ] as const;
   readonly includesTeams = signal(true);

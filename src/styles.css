@@ -3829,6 +3829,12 @@ body.xh-locked{overflow:hidden}
 #ppage.edr-page *,#ppage.edr-page button,#ppage.edr-page input,#ppage.edr-page select,#ppage.edr-page textarea{font-family:inherit!important}
 /* Let the EDR security introduction use the full content row; retain its existing typography. */
 #ppage.edr-page #ppSecWrap .pp-ov{max-width:100%}
+#ppage .edr-answer-first{max-width:780px;margin:10px 0 16px;color:#eef5ff;font-size:16px;line-height:1.7}
+#ppage.scrutiny-edr-page .edr-answer-first{max-width:800px}
+#ppage .cloud-drive-source-answer{padding:24px 0;border-bottom:1px solid #dce5f3;background:#f7faff}
+#ppage .cloud-drive-source-answer p{max-width:1040px;margin:0;color:#344965;font-size:16px;line-height:1.72}
+#ppage .cloud-drive-source-answer strong{color:#041e42}
+#ppage .cloud-drive-source-h1{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 /* The quote cart is opened from the header beside Search. */
 .cart-fab{display:flex;left:auto;right:22px;bottom:calc(90px + env(safe-area-inset-bottom))}
@@ -5969,6 +5975,162 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
   display: none !important;
 }
 
+
+/* Keep SMB visibility-banner actions together, including narrow hero columns. */
+#ppage.smb-visibility-page .pp-hero .pp-tagline {
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  white-space: normal;
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
+}
+#ppage.smb-visibility-page .pp-hero .pp-tagline-support {
+  margin-bottom: 18px;
+  color: #fff;
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 1.5;
+  white-space: normal;
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
+}
+#ppage.smb-visibility-page .pp-hero > .wrap #ppTitle {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: baseline;
+  gap: .15em;
+  white-space: nowrap !important;
+  font-size: var(--banner-title-size, 26px) !important;
+  line-height: 1.18 !important;
+  text-align: left;
+}
+#ppage.smb-visibility-page .pp-hero #ppTitle .pp-title-name {
+  display: inline;
+  margin: 0 !important;
+  white-space: nowrap;
+  font-size: inherit;
+}
+#ppage.smb-visibility-page .pp-hero .hero-ctas.product-hero-ctas.single-row-hero-ctas {
+  width: 100%;
+  max-width: 100%;
+  flex-wrap: nowrap !important;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+#ppage.smb-visibility-page .pp-hero .hero-ctas.product-hero-ctas.single-row-hero-ctas .btn {
+  flex: 0 0 auto;
+  width: auto;
+  white-space: nowrap;
+  font-size: 11px;
+  padding: 10px 12px;
+  min-height: 44px;
+}
+
+/* Tally on Cloud section navigation, modelled on the compact cloud-page tab bar. */
+#ppage.tally-page .tally-section-nav {
+  position: sticky;
+  top: 78px;
+  z-index: 40;
+  width: 100%;
+  padding: 10px 20px;
+  border-bottom: 1px solid #e7ebf1;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 5px 18px rgba(4, 30, 66, 0.06);
+  backdrop-filter: blur(12px);
+}
+
+#ppage.tally-page .tally-section-nav-track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  width: max-content;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 4px;
+  overflow-x: auto;
+  border-radius: 999px;
+  background: #f2f3f6;
+  scrollbar-width: none;
+}
+
+#ppage.tally-page .tally-section-nav-track::-webkit-scrollbar { display: none; }
+
+#ppage.tally-page .tally-section-nav-top {
+  display: inline-grid;
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  margin-right: 5px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: #e5e8ed;
+  color: #465264;
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#ppage.tally-page .tally-section-nav-top svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#ppage.tally-page .tally-section-nav-top:hover,
+#ppage.tally-page .tally-section-nav-top:focus-visible {
+  background: #fff;
+  color: #075fc7;
+  box-shadow: 0 2px 8px rgba(4, 30, 66, 0.14);
+}
+
+#ppage.tally-page .tally-section-nav-top:focus-visible {
+  outline: 2px solid #1d73df;
+  outline-offset: 1px;
+}
+
+#ppage.tally-page .tally-section-nav a {
+  flex: 0 0 auto;
+  padding: 9px 15px;
+  border-radius: 999px;
+  color: #3d4759;
+  font: 600 13px/1.25 var(--body);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#ppage.tally-page .tally-section-nav a:hover,
+#ppage.tally-page .tally-section-nav a:focus-visible {
+  color: #075fc7;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(4, 30, 66, 0.12);
+}
+
+#ppage.tally-page .tally-section-nav a:focus-visible {
+  outline: 2px solid #1d73df;
+  outline-offset: 1px;
+}
+
+#ppage.tally-page :is(#tallyOverview, #tallyPricing, #tallySecurity, #tallyWhyChoose, #tallySavings, #tallyEasySteps, #tallyFeatures, #tallyPlatforms, #tallyWatch, #tallyTestimonials, #tallyFaq, #tallyInsights) {
+  scroll-margin-top: 148px;
+}
+
+@media (max-width: 900px) {
+  #ppage.tally-page .tally-section-nav { top: 70px; padding-inline: 12px; }
+  #ppage.tally-page .tally-section-nav-track { justify-content: flex-start; }
+  #ppage.tally-page .tally-section-nav a { padding: 9px 13px; font-size: 12px; }
+}
+
+
 @media (max-width: 1240px) {
   .supplied-smb-hero-frame { height: 1180px; }
 }
@@ -6017,3 +6179,23 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 /* Druva attribution beneath Ask AI on native product banners. */
 .druva-powered-by{display:flex;align-items:center;gap:10px;margin-top:16px;color:#c7d5ec;font-size:13px;line-height:1.4}.druva-powered-by img{display:block;width:40px;height:40px;object-fit:contain}.druva-powered-by strong{color:#fff;font-size:20px;font-weight:700}
 
+
+/* NIST detail page uses the existing product banner and section layout. */
+#ppage.nist-csf-page .pp-sec,#ppage.nist-csf-page h2,#ppage.nist-csf-page h3{text-transform:capitalize}
+
+@media(min-width:1001px){
+#ppage.nist-csf-page .pp-hero{display:grid!important;grid-template-columns:minmax(0,640px) minmax(0,460px);gap:18px;align-items:center;justify-content:center;padding:40px 24px!important}
+#ppage.nist-csf-page .pp-hero>.wrap{grid-column:1;grid-row:1;width:100%;max-width:none;margin:0;padding:0;min-width:0}
+#ppage.nist-csf-page .pp-hero>.wrap>:not(.pph-scene){width:100%;max-width:100%!important}
+#ppage.nist-csf-page .pp-hero>.google-business-dashboard{position:relative!important;grid-column:2;grid-row:1;inset:auto!important;width:100%!important;max-width:none!important;height:auto!important;max-height:none;margin:0;padding:0}
+}
+
+/* Uppercase the native sections following the NIST source content. */
+#ppage.nist-csf-page .pp-body :is(.pp-sec,h2,h3){text-transform:uppercase!important}
+
+/* Match framework banner titles to the compact HRM banner reference. */
+@media(min-width:1001px){
+#ppage.nist-csf-page .pp-hero>.wrap{container-type:inline-size}
+#ppage.nist-csf-page .pp-hero>.wrap #ppTitle{display:flex!important;flex-wrap:nowrap!important;align-items:baseline;gap:.12em;white-space:nowrap!important;font-size:clamp(16px,3.8cqi,26px)!important;line-height:1.18!important}
+#ppage.nist-csf-page #ppTitle .pp-title-brand,#ppage.nist-csf-page #ppTitle .pp-title-name{display:inline!important;white-space:nowrap!important;margin:0!important;font-size:inherit!important;line-height:inherit!important}
+}
