@@ -6,6 +6,7 @@ import { DocRequestService } from '../core/doc-request.service';
 import { OverlayService } from '../core/overlay.service';
 import { SeoService } from '../core/seo.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
+import { SmbSectionNavComponent } from '../sections/smb-section-nav.component';
 
 type BusinessPlan = 'basic' | 'standard' | 'premium';
 type BillingTerm = 'upfront' | 'annual-monthly' | 'monthly';
@@ -13,7 +14,7 @@ type BillingTerm = 'upfront' | 'annual-monthly' | 'monthly';
 @Component({
   selector: 'xh-microsoft-365-smb-page',
   standalone: true,
-  imports: [InsightsSectionComponent, DecimalPipe],
+  imports: [InsightsSectionComponent, DecimalPipe, SmbSectionNavComponent],
   templateUrl: './microsoft-365-smb.page.html',
   styleUrl: './microsoft-365-smb.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -25,6 +26,14 @@ export class Microsoft365SmbPage {
   private readonly topics = inject(CallbackTopicService);
 
   readonly openFaq = signal<number | null>(0);
+  readonly sectionNavLinks = [
+    { label: 'Pricing', target: 'pricing' },
+    { label: 'Features', target: 'm365Features' },
+    { label: 'Watch in Action', target: 'm365Watch' },
+    { label: 'Testimonials', target: 'm365Testimonials' },
+    { label: 'FAQ', target: 'm365Faq' },
+    { label: 'Insights', target: 'm365Insights' },
+  ] as const;
   readonly includesTeams = signal(true);
   readonly billingOptions: { id: BillingTerm; label: string; note: string }[] = [
     { id: 'upfront', label: 'Annual · paid upfront', note: '1-year commitment · one annual payment' },
