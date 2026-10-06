@@ -3599,7 +3599,7 @@ export class ProductPage {
     this.addPlanQuantity(plan);
   }
 
-  /** Open the standalone RMM checkout with the selected term and device quantity. */
+  /** Open the RMM checkout with the selected term and device quantity. */
   viewRmmPlan(plan: PricingPlan, ev: Event): void {
     ev.preventDefault();
     const years = Math.max(1, Number.parseInt(plan.term, 10) || 1);
@@ -3607,7 +3607,7 @@ export class ProductPage {
       term: `${years}y`,
       quantity: String(this.edrQuantity()),
     });
-    window.location.assign(`/assets/xcellhost-rmm-checkout.html?${params.toString()}`);
+    window.location.assign(`/rmm-checkout?${params.toString()}`);
   }
 
   /** `.pl-buy` and the hero Buy Now — add, open the drawer, go straight to checkout. */
@@ -3638,7 +3638,7 @@ export class ProductPage {
       billing: `${years}-year`,
       quantity: String(this.edrQuantity()),
     });
-    window.location.assign(`/assets/xcellhost-checkout.html?${params.toString()}`);
+    window.location.assign(`/edr-checkout?${params.toString()}`);
   }
 
   /** Hero "Buy Now" buys the entry-level term, which is what the ladder starts at. */
