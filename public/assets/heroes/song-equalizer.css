@@ -1,0 +1,28 @@
+.song-equalizer,
+.smb-hero-song b span.song-equalizer {
+  display: inline-flex;
+  width: 26px;
+  height: 19px;
+  align-items: flex-end;
+  gap: 2px;
+  vertical-align: -2px;
+}
+.song-equalizer i {
+  display: block;
+  width: 5px;
+  height: 19px;
+  flex: none;
+  background-image: url('/assets/images/song-equalizer.png');
+  background-repeat: no-repeat;
+  background-size: 77px 38.5px;
+  background-position: -25.5px bottom;
+  transform-origin: center bottom;
+}
+.song-equalizer i:nth-child(2) { background-position-x: -32.5px; --beat-delay: -.3s; --beat-duration: .6s; }
+.song-equalizer i:nth-child(3) { background-position-x: -39.6px; --beat-delay: -.15s; --beat-duration: .9s; }
+.song-equalizer i:nth-child(4) { background-position-x: -46.9px; --beat-delay: -.45s; --beat-duration: .7s; }
+.song-equalizer.is-playing i {
+  animation: song-equalizer-beat var(--beat-duration, .8s) ease-in-out var(--beat-delay, 0s) infinite alternate;
+}
+@keyframes song-equalizer-beat { from { transform: scaleY(.4); } to { transform: scaleY(1); } }
+@media (prefers-reduced-motion: reduce) { .song-equalizer.is-playing i { animation: none; } }

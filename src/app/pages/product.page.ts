@@ -1,5 +1,10 @@
+import { FRAMEWORK_DETAILS } from '../data/framework-details.data';
+import { NistCsfContentComponent } from '../sections/nist-csf-content.component';
 
 import { DomainHeroMediaComponent } from '../sections/domain-hero-media.component';
+import { HOSTING_BANNER_PAGES, HostingHeroMediaComponent } from '../sections/hosting-hero-media.component';
+import { FitBannerTitleDirective } from '../shared/fit-banner-title.directive';
+import { EmptySongBarComponent } from '../shared/empty-song-bar.component';
 
 
 import { ComodoPaContentComponent, ComodoPaHeroComponent, ComodoPaFaqComponent, ComodoPaRelatedComponent } from '../sections/comodo-pa.components';
@@ -376,6 +381,7 @@ interface ProductTourSlide {
   selector: 'xh-product-page',
   standalone: true,
   imports: [
+    FitBannerTitleDirective,
     ComodoPaContentComponent, ComodoPaHeroComponent, ComodoPaFaqComponent, ComodoPaRelatedComponent,
     DigicertSmimeContentComponent,
     DigicertSmimeFaqComponent,
@@ -424,10 +430,13 @@ interface ProductTourSlide {
     VeraRubinContentComponent,
     WorkspaceMigrationContentComponent,
     DomainHeroMediaComponent,
+    HostingHeroMediaComponent,
+    EmptySongBarComponent,
     SectigoSslContentComponent,
     EmailBackupContentComponent,
     OdooHostingContentComponent,
     ErpNextHostingContentComponent,
+    NistCsfContentComponent,
     StorageContentComponent,
     GamingContentComponent,
     VirtualizationContentComponent,
@@ -2346,6 +2355,8 @@ export class ProductPage {
     ...new Set([...Object.keys(DEEP_CONTENT), ...Object.keys(RICH_PRODUCTS)]),
   ];
 
+  readonly frameworkDetail = computed(() => FRAMEWORK_DETAILS[this.slug()] ?? null);
+  readonly isFrameworkDetail = computed(() => !!this.frameworkDetail());
   readonly slug = toSignal(this.route.paramMap.pipe(
     map((p) => p.get('slug') ?? this.route.snapshot.data['productSlug'] ?? ''),
   ), {
@@ -2514,6 +2525,25 @@ export class ProductPage {
         { ...view.why[3], title: 'Flexible Storage', body: 'Choose drive types, capacity, RAID and private networking.' },
         { ...view.why[4], title: '24×7 NOC', body: 'Engineers support incident investigation and operational response.' },
         { ...view.why[5], title: 'One Partner', body: 'Hardware, networking, backup and support together.' },
+      ],
+    };
+    if (FRAMEWORK_DETAILS[slug]) return {
+      ...view, brandSuffix: 'Secure', faqs: FRAMEWORK_DETAILS[slug].faqs, overview: FRAMEWORK_DETAILS[slug].overview, videos: [],
+      reviews: [{"initials":"AM","name":"Aakash Mehta","role":"IT Manager, Manufacturing Company","stars":5,"quote":"We have much better visibility across our employee devices now. Suspicious activity is easier to spot, and our team can respond quickly when something unusual occurs."},{"initials":"SK","name":"Sneha Kulkarni","role":"Head of IT, Logistics Company","stars":5,"quote":"Managing security across multiple endpoints has become much simpler. Centralized monitoring saves our team time, while clear alerts help us focus on important threats."},{"initials":"RA","name":"Rohit Agarwal","role":"Operations Director, Financial Services","stars":5,"quote":"The behavioral approach gives us more confidence than relying on traditional antivirus alone. We can identify unusual activity earlier and take action before it affects our operations."}],
+      tagline: FRAMEWORK_DETAILS[slug].tagline,
+      heroHighlight: FRAMEWORK_DETAILS[slug].highlight,
+      security: {
+        head: 'Security & Compliance — ' + FRAMEWORK_DETAILS[slug].name,
+        intro: FRAMEWORK_DETAILS[slug].overview,
+        rows: FRAMEWORK_DETAILS[slug].rows,
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: 'Experience supporting Indian businesses with cloud and security services.' },
+        { ...view.why[1], title: 'Indian Context', body: 'Consider applicable sector and customer requirements alongside your security programme.' },
+        { ...view.why[2], title: 'Practical Assessments', body: 'Assess your current controls and define the highest-priority gaps.' },
+        { ...view.why[3], title: 'Evidence And Reporting', body: 'Track ownership, controls and progress for management reviews.' },
+        { ...view.why[4], title: '24×7 Security Operations', body: 'Connect assessment findings with monitoring and response services.' },
+        { ...view.why[5], title: 'One Partner', body: 'Cloud, security and support under one roof.' },
       ],
     };
     if (slug === 'erp-next-hosting') return {
@@ -3093,6 +3123,7 @@ export class ProductPage {
 
   /** Every resolved product gets a localized or category-level hero illustration. */
   readonly isFlagship = computed(() => !!this.view()?.heroImage);
+  readonly isWebHostingBanner = computed(() => HOSTING_BANNER_PAGES.has(this.slug()));
 
   readonly showAiPoweredBadge = computed(() => {
     const name = this.view()?.name.trim() ?? '';
@@ -3402,7 +3433,7 @@ export class ProductPage {
       this.seo.set(
         `${v.name} — XcellHost`,
         v.overview.slice(0, 160),
-        `/${slug}/`,
+        FRAMEWORK_DETAILS[slug] ? '/cybersecurity-frameworks/' + slug + '/' : `/${slug}/`,
         this.socialPreviewImage(slug, v),
       );
       this.seo.setJsonLd('product', this.jsonLd(v, slug));
@@ -3591,6 +3622,7 @@ export class ProductPage {
       });
     }
 
+    if (FRAMEWORK_DETAILS[slug]) return this.products.build({ name: FRAMEWORK_DETAILS[slug].name, cat: 'Security', tag: FRAMEWORK_DETAILS[slug].highlight, crumb: 'Security › Cybersecurity Frameworks' });
     const entry = this.catalog.entryBySlug(slug);
     if (entry) {
       return this.products.build({
@@ -3630,7 +3662,7 @@ export class ProductPage {
     this.addPlanQuantity(plan);
   }
 
-  /** Open the standalone RMM checkout with the selected term and device quantity. */
+  /** Open the RMM checkout with the selected term and device quantity. */
   viewRmmPlan(plan: PricingPlan, ev: Event): void {
     ev.preventDefault();
     const years = Math.max(1, Number.parseInt(plan.term, 10) || 1);
@@ -3638,7 +3670,7 @@ export class ProductPage {
       term: `${years}y`,
       quantity: String(this.edrQuantity()),
     });
-    window.location.assign(`/assets/xcellhost-rmm-checkout.html?${params.toString()}`);
+    window.location.assign(`/rmm-checkout?${params.toString()}`);
   }
 
   /** `.pl-buy` and the hero Buy Now — add, open the drawer, go straight to checkout. */
@@ -3669,7 +3701,7 @@ export class ProductPage {
       billing: `${years}-year`,
       quantity: String(this.edrQuantity()),
     });
-    window.location.assign(`/assets/xcellhost-checkout.html?${params.toString()}`);
+    window.location.assign(`/edr-checkout?${params.toString()}`);
   }
 
   /** Hero "Buy Now" buys the entry-level term, which is what the ladder starts at. */
