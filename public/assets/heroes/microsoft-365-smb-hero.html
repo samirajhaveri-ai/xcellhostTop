@@ -32,9 +32,9 @@
 .xh-pts svg{width:20px;height:20px;flex:none;border-radius:6px;background:var(--blue);padding:3px;color:#fff;box-shadow:0 4px 12px rgba(21,101,216,.45)}
 @keyframes xhIn{to{opacity:1;transform:none}}
 .xh-ctas{display:flex;flex-wrap:nowrap;gap:6px;margin-top:28px;overflow:visible}
-.xh-btn{display:inline-flex;flex:0 0 auto;align-items:center;gap:5px;padding:10px 11px;border-radius:10px;font:700 12px var(--pop);white-space:nowrap;border:1.5px solid rgba(156,200,255,.35);background:rgba(255,255,255,.05);color:#fff;transition:.2s;cursor:pointer}
+.xh-btn{display:inline-flex;flex:0 0 auto;align-items:center;gap:4px;padding:8px 9px;border-radius:8px;font:700 11px var(--pop);white-space:nowrap;border:1.5px solid rgba(156,200,255,.35);background:rgba(255,255,255,.05);color:#fff;transition:.2s;cursor:pointer}
 .xh-btn:hover{border-color:#9CC8FF;background:rgba(255,255,255,.1);transform:translateY(-2px)}
-.xh-btn svg{width:16px;height:16px}
+.xh-btn svg{width:14px;height:14px}
 .xh-btn.b{background:var(--blue);border-color:var(--blue);box-shadow:0 10px 24px rgba(21,101,216,.35)}
 .xh-btn.o{background:var(--orange);border-color:var(--orange);box-shadow:0 10px 24px rgba(255,140,26,.35)}.xh-btn.o:hover{background:#ff9c3a}
 .xh-ai{display:inline-flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:20px;padding:9px 12px 9px 16px;border-radius:14px;border:1px solid rgba(156,200,255,.25);background:rgba(4,30,66,.55)}
@@ -104,8 +104,10 @@
  .xh-fd{position:static;transform:none;width:auto;grid-area:f}}
 @media (prefers-reduced-motion:reduce){.xh *{animation:none!important;transition:none!important}.xh-pts li,.xh-fd li{opacity:1;transform:none}}
 /* Verified SMB service media. */
-.smb-hero-media{margin-top:18px!important}.smb-hero-song{display:flex;flex-wrap:wrap;align-items:center;gap:12px;color:#fff}.smb-hero-song b{font:700 16px/1.4 var(--body)}.smb-hero-song b span{color:#ff8c1a}.smb-hero-song audio{display:block;width:280px;max-width:100%;height:44px}.smb-hero-brand{display:flex;align-items:center;gap:10px;margin-top:16px!important;color:#c7d5ec;font:400 13px/1.4 var(--body)}.smb-hero-brand strong{color:#fff;font-size:20px;font-weight:700}.smb-hero-logo{position:relative;display:inline-block;flex:none;background:#fff;border-radius:4px;overflow:hidden}.smb-hero-logo img{display:block;width:140px;height:56px;object-fit:contain}.smb-hero-logo.square img{width:40px;height:40px;padding:4px}.smb-hero-logo.drive img{height:70px;padding:4px 6px}.smb-hero-logo.tally::after,.smb-hero-logo.acronis::after,.smb-hero-logo.connect::after,.smb-hero-logo.drive::after,.smb-hero-logo.edr::after{content:"";position:absolute;top:0;left:0;background:#fff;pointer-events:none}.smb-hero-logo.tally::after{width:45px;height:10px}.smb-hero-logo.acronis::after{width:44px;height:9px}.smb-hero-logo.connect::after{top:10px;width:54px;height:10px}.smb-hero-logo.drive::after{top:4px;left:6px;width:56px;height:13px}.smb-hero-logo.edr::after{width:105px;height:14px;background:#f7f7f7}@media(max-width:420px){.smb-hero-brand{gap:8px}.smb-hero-brand strong{font-size:18px}}
+.smb-hero-media{margin-top:18px!important}.smb-hero-song{display:flex;flex-wrap:wrap;align-items:center;gap:12px;color:#fff}.smb-hero-song b{font:700 16px/1.4 var(--body)}.smb-hero-song b span{color:#ff8c1a;display:inline-block;font-size:12px;line-height:1;vertical-align:middle}.smb-hero-song audio{display:block;width:280px;max-width:100%;height:44px}.smb-hero-brand{display:flex;align-items:center;gap:10px;margin-top:16px!important;color:#c7d5ec;font:400 13px/1.4 var(--body)}.smb-hero-brand strong{color:#fff;font-size:20px;font-weight:700}.smb-hero-logo{position:relative;display:inline-block;flex:none;background:#fff;border-radius:4px;overflow:hidden}.smb-hero-logo img{display:block;width:140px;height:56px;object-fit:contain}.smb-hero-logo.square img{width:40px;height:40px;padding:4px}.smb-hero-logo.drive img{height:70px;padding:4px 6px}.smb-hero-logo.tally::after,.smb-hero-logo.acronis::after,.smb-hero-logo.connect::after,.smb-hero-logo.drive::after,.smb-hero-logo.edr::after{content:"";position:absolute;top:0;left:0;background:#fff;pointer-events:none}.smb-hero-logo.tally::after{width:45px;height:10px}.smb-hero-logo.acronis::after{width:44px;height:9px}.smb-hero-logo.connect::after{top:10px;width:54px;height:10px}.smb-hero-logo.drive::after{top:4px;left:6px;width:56px;height:13px}.smb-hero-logo.edr::after{width:105px;height:14px;background:#f7f7f7}@media(max-width:420px){.smb-hero-brand{gap:8px}.smb-hero-brand strong{font-size:18px}}
 </style>
+<link rel="stylesheet" href="/assets/heroes/song-equalizer.css">
+<link rel="stylesheet" href="/assets/heroes/smb-banner-media.css">
 </head>
 <body style="margin:0;background:#041733">
 
@@ -127,7 +129,7 @@
     <a class="xh-btn o" id="xhTalk" href="#">Let's Talk →</a>
    </div>
    <div class="xh-ai" role="group" aria-label="Ask AI about Microsoft 365 for SMB from XcellHost"><span>✦ Ask AI About Microsoft 365 for SMB from XcellHost</span><div id="xhAi" style="display:flex;gap:8px"></div></div>
-<div class="smb-hero-media"><div class="smb-hero-song"><b id="smbSongTitle"><span aria-hidden="true">▂▅▇</span> Listen to our Microsoft 365 Song</b><audio controls preload="metadata" aria-labelledby="smbSongTitle" src="/assets/audio/microsoft-365-song.mp3"></audio></div><div class="smb-hero-brand"><span>Powered by</span><span aria-hidden="true">|</span><span class="smb-hero-logo"><img src="/assets/images/smb-powered-by/microsoft365-wordmark.webp" alt="Microsoft 365 logo" width="140" height="56"></span></div></div>
+<div class="smb-hero-media"><div class="smb-hero-song"><b id="smbSongTitle"><span class="song-equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i></span> Listen to our Microsoft 365 Song</b><audio controls preload="metadata" aria-labelledby="smbSongTitle" src="/assets/audio/microsoft-365-song.mp3"></audio></div><div class="smb-hero-brand"><span>Powered by</span><span aria-hidden="true">|</span><span class="smb-hero-logo"><img src="/assets/images/smb-powered-by/microsoft365-wordmark.webp" alt="Microsoft 365 logo" width="140" height="56"></span></div></div>
   </div>
 
   <div class="xh-viz" aria-label="Illustration: Microsoft 365 apps connected to your company tenant">

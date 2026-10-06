@@ -505,6 +505,58 @@ const CLOUD_DISASTER_RECOVERY_SMB_BENEFITS: IconItem[] = [
   ['🌐', 'Broad Choice of Recovery Options', ''],
 ];
 
+/** Two distinct lines of banner copy for pages sharing the visibility message. */
+const VISIBILITY_BANNER_COPY: Record<string, readonly [string, string]> = {
+  'Instagram Automation': [
+    'Turn Instagram conversations into customer connections.',
+    'Manage replies and enquiries with less manual work.',
+  ],
+  'Smart QR & NFC Automation': [
+    'Connect customers to your business with a scan or tap.',
+    'Share useful links through QR codes and NFC touchpoints.',
+  ],
+  'AI Review MagicQR': [
+    'Make it easier for customers to share their feedback.',
+    'Collect reviews through QR codes and manage your responses.',
+  ],
+  'Digital Menu & Catalog Management': [
+    'Put your menu and product catalog within easy reach.',
+    'Keep prices and listings updated in one digital space.',
+  ],
+  'Lead Generation & Pipeline CRM': [
+    'Keep every lead and sales opportunity in view.',
+    'Organise enquiries, follow-ups and your sales pipeline.',
+  ],
+  'Billing Software': [
+    'Make everyday invoicing and billing easier to manage.',
+    'Organise customer bills and keep track of payments.',
+  ],
+  'HRM + Attendance': [
+    'Bring employee records and attendance together.',
+    'Simplify daily HR tasks and keep your team organised.',
+  ],
+  'Instant Website': [
+    'Give your business a home online.',
+    'Showcase your services and help visitors get in touch.',
+  ],
+  'Bio Link + Digital Visiting Card': [
+    'Share your business details through one simple link.',
+    'Bring your contacts, social profiles and services together.',
+  ],
+  'WhatsApp Broadcasting': [
+    'Keep your audience informed through WhatsApp.',
+    'Share relevant updates with customers who opt in.',
+  ],
+  'Website SEO': [
+    'Help customers discover your website in search.',
+    'Improve your content and site structure for better visibility.',
+  ],
+  'Transactional Emails': [
+    'Keep customers informed at every important step.',
+    'Send timely confirmations, notifications and account updates.',
+  ],
+};
+
 @Injectable({ providedIn: 'root' })
 export class ProductPageService {
   private catalog = inject(CatalogService);
@@ -819,13 +871,19 @@ export class ProductPageService {
         ? CLOUD_DRIVE_WHY
         : (CATEGORY_WHY[cat] ?? []);
 
+    const isVisibilityHero = /^maximise online visibility/i.test(heroTagline);
+    const visibilityCopy = isVisibilityHero ? VISIBILITY_BANNER_COPY[name] : undefined;
+    const normalizeHeroCopy = (copy: string) => copy.trim().toLowerCase();
+    const repeatsVisibilityTagline = (copy: string) =>
+      isVisibilityHero && normalizeHeroCopy(copy) === normalizeHeroCopy(heroTagline);
+
     return {
       name,
       brandSuffix,
       crumb: 'Home › ' + (req.crumb || (dirEntry ? `${dirEntry.cat} › ${dirEntry.group}` : 'Services')),
       cat,
-      tagline: heroTagline,
-      heroHighlight,
+      tagline: visibilityCopy?.[0] ?? heroTagline,
+      heroHighlight: visibilityCopy?.[1] ?? (heroHighlight && repeatsVisibilityTagline(heroHighlight) ? null : heroHighlight),
       chips,
       overview,
       features,
@@ -858,7 +916,7 @@ export class ProductPageService {
         visibleReferenceHeroImage ??
         CATEGORY_HERO_IMAGES[cat] ??
         null,
-      heroMessages,
+      heroMessages: isVisibilityHero ? [heroTagline] : heroMessages,
       heroPoints:
         name === 'Business E-Mail'
           ? [

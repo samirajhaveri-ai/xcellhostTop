@@ -5969,6 +5969,59 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
   display: none !important;
 }
 
+/* Keep SMB visibility-banner actions together, including narrow hero columns. */
+#ppage.smb-visibility-page .pp-hero .pp-tagline {
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  white-space: normal;
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
+}
+#ppage.smb-visibility-page .pp-hero .pp-tagline-support {
+  margin-bottom: 18px;
+  color: #fff;
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 1.5;
+  white-space: normal;
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
+}
+#ppage.smb-visibility-page .pp-hero > .wrap #ppTitle {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: baseline;
+  gap: .15em;
+  white-space: nowrap !important;
+  font-size: var(--banner-title-size, 26px) !important;
+  line-height: 1.18 !important;
+  text-align: left;
+}
+#ppage.smb-visibility-page .pp-hero #ppTitle .pp-title-name {
+  display: inline;
+  margin: 0 !important;
+  white-space: nowrap;
+  font-size: inherit;
+}
+#ppage.smb-visibility-page .pp-hero .hero-ctas.product-hero-ctas.single-row-hero-ctas {
+  width: 100%;
+  max-width: 100%;
+  flex-wrap: nowrap !important;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+#ppage.smb-visibility-page .pp-hero .hero-ctas.product-hero-ctas.single-row-hero-ctas .btn {
+  flex: 0 0 auto;
+  width: auto;
+  white-space: nowrap;
+  font-size: 11px;
+  padding: 10px 12px;
+  min-height: 44px;
+}
+
 /* Tally on Cloud section navigation, modelled on the compact cloud-page tab bar. */
 #ppage.tally-page .tally-section-nav {
   position: sticky;

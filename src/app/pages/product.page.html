@@ -2,6 +2,8 @@
   <div
     class="ppage as-page"
     id="ppage"
+    [class.smb-visibility-page]="v.heroMessages[0]?.toLowerCase()?.startsWith('maximise online visibility')"
+    [class.lead-crm-page]="slug() === 'lead-generation-and-pipeline-crm'"
     [class.digicert-page]="isDigiCert()"
     [class.smime-ov-page]="slug() === 'digicert-smime-ov'"
     [class.claude-backup-page]="slug() === 'claude-backup'"
@@ -1493,7 +1495,8 @@
                 <span class="comodo-title-line">Authentication</span>
               </h1>
             } @else {
-            <h1 id="ppTitle" [class.pp-title-compact]="compactHeroTitle()">
+            <h1 id="ppTitle" [class.pp-title-compact]="compactHeroTitle()"
+              [xhFitBannerTitle]="!!v.heroMessages[0]?.toLowerCase()?.startsWith('maximise online visibility')">
               <span class="pp-title-brand" [attr.aria-label]="'Xcell' + v.brandSuffix">
                 <span class="pp-brand-xcell">Xcell</span
                 ><span class="pp-brand-family">{{ v.brandSuffix }}</span>
@@ -1558,7 +1561,7 @@
                 DDR4 ECC RAM, blazing NVMe/SSD storage and high bandwidth &mdash; with full root access,
                 free DDoS protection and a 99.99% uptime SLA.
               </p>
-            } @else {
+            } @else if (!v.tagline.toLowerCase().startsWith('maximise online visibility')) {
               <h2
                 class="pp-tagline"
                 [class.pp-tagline-reference]="isAdvancedEdr() || v.name === 'Tally on Cloud'"

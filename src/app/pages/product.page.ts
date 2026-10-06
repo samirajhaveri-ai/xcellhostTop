@@ -1,5 +1,6 @@
 
 import { DomainHeroMediaComponent } from '../sections/domain-hero-media.component';
+import { FitBannerTitleDirective } from '../shared/fit-banner-title.directive';
 
 
 import { ComodoPaContentComponent, ComodoPaHeroComponent, ComodoPaFaqComponent, ComodoPaRelatedComponent } from '../sections/comodo-pa.components';
@@ -375,6 +376,7 @@ interface ProductTourSlide {
   selector: 'xh-product-page',
   standalone: true,
   imports: [
+    FitBannerTitleDirective,
     ComodoPaContentComponent, ComodoPaHeroComponent, ComodoPaFaqComponent, ComodoPaRelatedComponent,
     DigicertSmimeContentComponent,
     DigicertSmimeFaqComponent,
