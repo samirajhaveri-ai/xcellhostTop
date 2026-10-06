@@ -14,6 +14,30 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
  */
 export const routes: Routes = [
   {
+    path: 'microsoft-365-business-standard-no-teams',
+    loadComponent: () => import('./pages/microsoft-365-business-standard-no-teams.page').then((m) => m.Microsoft365BusinessStandardNoTeamsPage),
+  },
+  {
+    path: 'microsoft-365-business-basic-no-teams',
+    loadComponent: () => import('./pages/microsoft-365-business-basic-no-teams.page').then((m) => m.Microsoft365BusinessBasicNoTeamsPage),
+  },
+  {
+    path: 'microsoft-365-business-premium-no-teams',
+    loadComponent: () => import('./pages/microsoft-365-business-premium-no-teams.page').then((m) => m.Microsoft365BusinessPremiumNoTeamsPage),
+  },
+  {
+    path: 'microsoft-365-business-standard',
+    loadComponent: () => import('./pages/microsoft-365-business-standard.page').then((m) => m.Microsoft365BusinessStandardPage),
+  },
+  {
+    path: 'microsoft-365-business-premium',
+    loadComponent: () => import('./pages/microsoft-365-business-premium.page').then((m) => m.Microsoft365BusinessPremiumPage),
+  },
+  {
+    path: 'microsoft-365-business-basic',
+    loadComponent: () => import('./pages/microsoft-365-business-basic.page').then((m) => m.Microsoft365BusinessBasicPage),
+  },
+  {
     path: 'edr-checkout',
     data: { checkoutProduct: 'edr' },
     loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),

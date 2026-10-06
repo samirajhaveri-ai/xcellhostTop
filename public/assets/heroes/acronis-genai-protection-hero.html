@@ -107,6 +107,9 @@
 .smb-hero-media{margin-top:18px!important}.smb-hero-song{display:flex;flex-wrap:wrap;align-items:center;gap:12px;color:#fff}.smb-hero-song b{font:700 16px/1.4 var(--body)}.smb-hero-song b span{color:#ff8c1a}.smb-hero-song audio{display:block;width:280px;max-width:100%;height:44px}.smb-hero-brand{display:flex;align-items:center;gap:10px;margin-top:16px!important;color:#c7d5ec;font:400 13px/1.4 var(--body)}.smb-hero-brand strong{color:#fff;font-size:20px;font-weight:700}.smb-hero-logo{position:relative;display:inline-block;flex:none;background:#fff;border-radius:4px;overflow:hidden}.smb-hero-logo img{display:block;width:140px;height:56px;object-fit:contain}.smb-hero-logo.square img{width:40px;height:40px;padding:4px}.smb-hero-logo.drive img{height:70px;padding:4px 6px}.smb-hero-logo.tally::after,.smb-hero-logo.acronis::after,.smb-hero-logo.connect::after,.smb-hero-logo.drive::after,.smb-hero-logo.edr::after{content:"";position:absolute;top:0;left:0;background:#fff;pointer-events:none}.smb-hero-logo.tally::after{width:45px;height:10px}.smb-hero-logo.acronis::after{width:44px;height:9px}.smb-hero-logo.connect::after{top:10px;width:54px;height:10px}.smb-hero-logo.drive::after{top:4px;left:6px;width:56px;height:13px}.smb-hero-logo.edr::after{width:105px;height:14px;background:#f7f7f7}@media(max-width:420px){.smb-hero-brand{gap:8px}.smb-hero-brand strong{font-size:18px}}
 /* Keep the label and player aligned; let long labels wrap within their column. */
 .smb-hero-song{display:flex;width:100%;flex-wrap:wrap;gap:12px;align-items:center}.smb-hero-song b{min-width:0;overflow-wrap:break-word}.smb-hero-song audio{width:280px;max-width:100%;min-width:0;flex:0 0 auto}.smb-hero-brand{flex-wrap:wrap;row-gap:8px}
+/* Transparent Acronis wordmark on the dark hero banner. */
+.smb-hero-logo.acronis-wordmark{background:transparent;border-radius:0}
+.smb-hero-logo.acronis-wordmark img{width:80px;height:auto;filter:brightness(0) invert(1)}
 </style>
 </head>
 <body style="margin:0;background:#041733">
@@ -122,14 +125,14 @@
    <div class="xh-type" aria-live="polite"><span id="xhType">See every AI app in use across the company</span><i aria-hidden="true"></i></div>
    <ul class="xh-pts"><li style="animation-delay:0.05s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Discover AI App Usage</li><li style="animation-delay:0.12s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Sensitive Data Detection</li><li style="animation-delay:0.19s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Block Risky Prompts</li><li style="animation-delay:0.26s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Policies by Team</li><li style="animation-delay:0.33s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Audit-Ready Reports</li><li style="animation-delay:0.40s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Managed by XcellHost</li></ul>
    <div class="xh-ctas">
-    <a class="xh-btn b" id="xhInfo" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 21h14"/></svg>Infosheet</a>
-    <a class="xh-btn" id="xhPres" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20V3H6.5A2.5 2.5 0 004 5.5v14z"/><path d="M20 17v4H6.5A2.5 2.5 0 014 19.5"/></svg>Presentation</a>
+    
+    
     <a class="xh-btn" id="xhTour" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>Screenshot Tour</a>
     <a class="xh-btn" id="xhTrial" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>Free Assessment</a>
     <a class="xh-btn o" id="xhTalk" href="#">Let's Talk →</a>
    </div>
    <div class="xh-ai" role="group" aria-label="Ask AI about Acronis GenAI Protection from XcellHost"><span>✦ Ask AI About Acronis GenAI Protection from XcellHost</span><div id="xhAi" style="display:flex;gap:8px"></div></div>
-<div class="smb-hero-media"><div class="smb-hero-song"><b id="smbSongTitle"><span aria-hidden="true">▂▅▇</span> Listen to our Cloud Backup Song</b><audio controls preload="metadata" aria-labelledby="smbSongTitle" src="/assets/audio/cloud-backup-song.mp3"></audio></div><div class="smb-hero-brand"><span>Powered by</span><span aria-hidden="true">|</span><span class="smb-hero-logo"><img src="/assets/images/smb-powered-by/acronis-wordmark.webp" alt="Acronis logo" width="140" height="56"></span><span aria-hidden="true">|</span><strong>Gen AI</strong></div></div>
+<div class="smb-hero-media"><div class="smb-hero-song"><b id="smbSongTitle"><span aria-hidden="true">▂▅▇</span> Listen to our Cloud Backup Song</b><audio controls preload="metadata" aria-labelledby="smbSongTitle" src="/assets/audio/cloud-backup-song.mp3"></audio></div><div class="smb-hero-brand"><span>Powered by</span><span aria-hidden="true">|</span><span class="smb-hero-logo acronis-wordmark"><img src="/assets/images/smb-powered-by/acronis-wordmark.webp" alt="Acronis logo" width="140" height="56"></span><span aria-hidden="true">|</span><strong>Gen AI</strong></div></div>
   </div>
 
   <div class="xh-viz" aria-label="Illustration: employee prompts to AI tools scanned for sensitive data">
@@ -152,16 +155,13 @@
 <script>
 (function(){
 /* ====== EDIT THESE LINKS ====== */
-var CONFIG={
- infosheet:"#",        /* Infosheet PDF URL */
- presentation:"#",     /* Presentation / flipbook URL */
- screenshotTour:"#",   /* Screenshot tour URL */
+var CONFIG={ screenshotTour:"#",   /* Screenshot tour URL */
  freeTrial:"#",        /* Free Assessment URL */
  letsTalk:"#"          /* Contact / callback URL */
 };
 /* ============================== */
 var $=function(i){return document.getElementById(i)},RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
-[["xhInfo","infosheet"],["xhPres","presentation"],["xhTour","screenshotTour"],["xhTrial","freeTrial"],["xhTalk","letsTalk"]].forEach(function(p){var a=$(p[0]);a.href=CONFIG[p[1]];if(/^https?:/.test(CONFIG[p[1]])&&p[0]!=="xhTalk"){a.target="_blank";a.rel="noopener"}});
+[["xhTour","screenshotTour"],["xhTrial","freeTrial"],["xhTalk","letsTalk"]].forEach(function(p){var a=$(p[0]);a.href=CONFIG[p[1]];if(/^https?:/.test(CONFIG[p[1]])&&p[0]!=="xhTalk"){a.target="_blank";a.rel="noopener"}});
 var Q="Explain Acronis GenAI protection delivered by XcellHost: discovering which generative AI apps employees use, detecting and blocking sensitive data like customer details or source code in AI prompts, and team-based AI usage policies. How should an Indian business manage generative AI risk under DPDPA?";
 var AI=[["ChatGPT","https://chatgpt.com/?q=","chatgpt.com"],["Perplexity","https://www.perplexity.ai/search/new?q=","perplexity.ai"],["Claude","https://claude.ai/new?q=","claude.ai"],["Google AI","https://www.google.com/search?udm=50&q=","gemini.google.com"],["Grok","https://grok.com/?q=","grok.com"]];
 $("xhAi").innerHTML=AI.map(function(a){return '<a href="'+a[1]+encodeURIComponent(Q)+'" target="_blank" rel="noopener" aria-label="Ask '+a[0]+'" title="Ask '+a[0]+'"><img src="https://www.google.com/s2/favicons?domain='+a[2]+'&sz=64" alt="" width="18" height="18"></a>'}).join("");

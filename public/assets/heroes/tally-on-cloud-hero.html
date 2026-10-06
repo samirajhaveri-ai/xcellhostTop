@@ -128,8 +128,8 @@
     <li style="animation-delay:.40s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Access Ledger from Any Device</li>
    </ul>
    <div class="xt-ctas">
-    <a class="xt-btn b" id="xtInfo" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 21h14"/></svg>Infosheet</a>
-    <a class="xt-btn" id="xtPres" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20V3H6.5A2.5 2.5 0 004 5.5v14z"/><path d="M20 17v4H6.5A2.5 2.5 0 014 19.5"/></svg>Presentation</a>
+    
+    
     <a class="xt-btn" id="xtTour" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Screenshot Tour</a>
     <a class="xt-btn" id="xtTrial" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>7 Days Free Trial</a>
     <a class="xt-btn o" id="xtTalk" href="#">Let's Talk →</a>
@@ -170,16 +170,13 @@
 <script>
 (function(){
 /* ====== EDIT THESE LINKS ====== */
-var CONFIG={
- infosheet:"#",              /* Infosheet PDF URL */
- presentation:"#",           /* Presentation / flipbook URL */
- screenshotTour:"#",         /* Screenshot tour URL */
+var CONFIG={ screenshotTour:"#",         /* Screenshot tour URL */
  freeTrial:"#",              /* 7-day free trial / sign-up URL */
  letsTalk:"#"                /* Contact / callback URL */
 };
 /* ============================== */
 var $=function(i){return document.getElementById(i)},RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
-[["xtInfo","infosheet"],["xtPres","presentation"],["xtTour","screenshotTour"],["xtTrial","freeTrial"],["xtTalk","letsTalk"]].forEach(function(p){var a=$(p[0]);a.href=CONFIG[p[1]];if(/^https?:/.test(CONFIG[p[1]])&&p[0]!=="xtTalk"){a.target="_blank";a.rel="noopener"}});
+[["xtTour","screenshotTour"],["xtTrial","freeTrial"],["xtTalk","letsTalk"]].forEach(function(p){var a=$(p[0]);a.href=CONFIG[p[1]];if(/^https?:/.test(CONFIG[p[1]])&&p[0]!=="xtTalk"){a.target="_blank";a.rel="noopener"}});
 
 /* Ask AI */
 var Q="Explain XcellHost Tally on Cloud (XcellTally): running TallyPrime on a secure cloud server in India with AMD EPYC and NVMe, encrypted backups, virtual firewall and access from any device. What does it cost per user, how is it better than running Tally on a local PC, and what should a business ask before moving?";

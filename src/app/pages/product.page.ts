@@ -2295,39 +2295,39 @@ export class ProductPage {
       unit: 'per customer',
       qty: 1,
       prices: { monthly: 2499, '3m': 7122.15, '6m': 13869.45, '1y': 26989.2 },
-      comments: 'Enterprise File & Sync with 250 GB Storage | Unlimited Users',
+      comments: 'File & Sync with 250 GB Storage',
     },
     {
       storage: '500 GB',
       unit: 'per customer',
       qty: 1,
       prices: { monthly: 4999, '3m': 14247.15, '6m': 27744.45, '1y': 53989.2 },
-      comments: 'Enterprise File & Sync with 500 GB Storage | Unlimited Users',
+      comments: 'File & Sync with 500 GB Storage',
     },
     {
       storage: '1 TB',
       unit: 'per customer',
       qty: 1,
       prices: { monthly: 9999, '3m': 28497.15, '6m': 55494.45, '1y': 107989.2 },
-      comments: 'Enterprise File & Sync with 1 TB Storage | Unlimited Users',
+      comments: 'File & Sync with 1 TB Storage',
     },
     {
       storage: '2 TB',
       unit: 'per customer',
       qty: 1,
       prices: { monthly: 19000, '3m': 54150, '6m': 105450, '1y': 205200 },
-      comments: 'Enterprise File & Sync with 2 TB Storage | Unlimited Users',
+      comments: 'File & Sync with 2 TB Storage',
     },
     {
       storage: '5 TB',
       unit: 'per customer',
       qty: 1,
       prices: { monthly: 35625, '3m': 101531.25, '6m': 197718.75, '1y': 384750 },
-      comments: 'Enterprise File & Sync with 5 TB Storage | Unlimited Users',
+      comments: 'File & Sync with 5 TB Storage',
     },
   ];
 
-  readonly selectedCloudDriveTerm = signal<CloudDriveTerm>('1y');
+  readonly selectedCloudDriveTerm = signal<CloudDriveTerm>('monthly');
 
   readonly activeCloudDriveTerm = computed(
     () => this.cloudDriveTerms.find((term) => term.key === this.selectedCloudDriveTerm()) ?? this.cloudDriveTerms[0]
@@ -3870,7 +3870,7 @@ export class ProductPage {
   }
 
   readonly cloudBackupTerms: readonly { key: CloudBackupTerm; label: string; saving: string }[] = [
-    { key: 'monthly', label: 'Monthly', saving: '' },
+    { key: 'monthly', label: 'Monthly', saving: 'No Saving' },
     { key: 'quarterly', label: 'Quarterly', saving: 'Save 5%' },
     { key: '6m', label: '6 Months', saving: 'Save 7.5%' },
     { key: 'yearly', label: 'Yearly', saving: 'Save 10%' },
