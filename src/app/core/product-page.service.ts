@@ -21,6 +21,7 @@ import {
 import { EDR_COMPARE, EDR_PRODUCTS, EDR_TIMELINE, HERO_SCENES } from '../data/site.data';
 import { BlogCard, Category, Faq, IconItem, Pair, RichProduct } from '../data/models';
 import { buildContextualProductReviews } from '../data/product-reviews.data';
+import { VPS_PRODUCT_COPY } from '../data/vps-product-copy.data';
 import { ATM_SOLUTION_DETAILS } from '../data/atm-solution-detail.data';
 import {
   CATEGORY_HERO_IMAGES,
@@ -518,8 +519,10 @@ export class ProductPageService {
     const tag = req.tag ?? dirEntry?.desc ?? '';
     const deep = DEEP_CONTENT[name];
     const product: RichProduct | undefined = RICH_PRODUCTS[name];
+    const vpsCopy = VPS_PRODUCT_COPY[name];
     const seed = hash(name);
     const heroTagline =
+      vpsCopy?.tagline ||
       atmDetail?.tagline ||
       (name === 'AI Chat Bot'
         ? 'Engage every visitor instantly with human-like conversations and 24×7 support — live chat plus a no-code AI bot trained on your content. On your website, WhatsApp and apps, hosted by XcellHost in India.'
@@ -537,6 +540,7 @@ export class ProductPageService {
             ? 'Allow organizations to manage complex defenses through a unified interface.'
             : product?.tagline || tag || `${name} from XcellHost`);
     const heroHighlight =
+      vpsCopy?.highlight ||
       atmDetail?.summary ||
       (name === 'AI Chat Bot'
         ? null
@@ -554,7 +558,9 @@ export class ProductPageService {
               ? null
               : product?.highlight || rich?.f?.[0]?.[1] || tag || null);
     const heroMessages =
-      name === 'Scrutiny DLP'
+      vpsCopy
+        ? [vpsCopy.heroMessage]
+        : name === 'Scrutiny DLP'
         ? []
         : name === 'Scrutiny EDR'
         ? ['Self-learning behavioural analytics', 'Real-time isolation', 'MITRE ATT&CK mapped investigations', '24×7 managed security']
