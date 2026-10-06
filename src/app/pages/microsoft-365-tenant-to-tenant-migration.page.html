@@ -1,0 +1,70 @@
+<iframe
+  #frame
+  class="migration-content"
+  src="/microsoft-365-tenant-to-tenant-migration-content.html"
+  title="Microsoft 365 tenant-to-tenant migration"
+  scrolling="no"
+  (load)="onLoad()"
+></iframe>
+
+<div id="ppage" class="ppage as-page tenant-migration-page">
+  <div class="pp-body">
+    <div class="wrap">
+      <section class="tally-videos" aria-labelledby="tenantMigrationVideosTitle">
+        <h2 class="pp-sec" id="tenantMigrationVideosTitle">Watch it in action</h2>
+        <div class="tally-video-grid">
+          @for (video of videos; track video.id) {
+            <article class="tally-video-card">
+              <h3><span>{{ video.title }}</span></h3>
+              <div class="tally-video-frame">
+                <iframe [src]="video.url" [title]="video.title" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+            </article>
+          }
+        </div>
+      </section>
+
+      <section aria-labelledby="tenantMigrationReferencesTitle">
+        <h2 class="pp-sec" id="tenantMigrationReferencesTitle">What customers say</h2>
+        <p class="reference-intro">Contact our team to discuss customer references for Microsoft 365 tenant-to-tenant migrations.</p>
+        <div class="migration-reference-grid">
+          @for (scenario of referenceScenarios; track scenario.title) {
+            <article class="migration-reference-card">
+              <span class="reference-label">Customer references</span>
+              <h3>{{ scenario.title }}</h3>
+              <p>{{ scenario.description }}</p>
+              <button class="btn btn-ghost" type="button" (click)="openCallback(name + ': customer references for ' + scenario.title)">Request references &rarr;</button>
+            </article>
+          }
+        </div>
+      </section>
+
+      <section aria-labelledby="tenantMigrationFaqTitle">
+        <h2 class="pp-sec pp-faq-heading" id="tenantMigrationFaqTitle">Frequently asked questions</h2>
+        <div class="pp-faq" id="ppFaq"><xh-product-faq [faqs]="faqs" idPrefix="tenantMigrationFaq" /></div>
+      </section>
+
+      <h2 class="pp-sec">Insights</h2>
+      <xh-insights-section pageSlug="microsoft-365-tenant-to-tenant-migration" />
+
+      <section class="pp-cta migration-closing-cta" aria-labelledby="tenantMigrationCtaTitle">
+        <div>
+          <h3 id="tenantMigrationCtaTitle">Ready to plan your Microsoft 365 tenant migration?</h3>
+          <p>Free assessment · Migration planning · Cutover and post-migration support</p>
+          <div class="migration-closing-actions">
+            <button class="btn btn-primary" type="button" (click)="openCallback()">Request a callback</button>
+            <button class="btn btn-ghost" type="button" (click)="buyNow()">Buy Now</button>
+            <button class="btn btn-ghost" type="button" (click)="requestDoc('infosheet')">Infosheet</button>
+            <button class="btn btn-ghost" type="button" (click)="requestDoc('presentation')">Presentation</button>
+            <a class="btn btn-ghost" [href]="whatsappUrl" target="_blank" rel="noopener">Talk on WhatsApp</a>
+            <a class="btn btn-ghost" [href]="emailUrl">Email Us</a>
+          </div>
+        </div>
+        <a class="pp-cta-buddha-link" routerLink="/support-overview" aria-label="Visit XcellHost customer support"><img class="pp-cta-buddha" src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost customer support" /></a>
+      </section>
+      <div class="pp-proof" aria-label="XcellHost credentials and payment options">
+        <span>ISO 27001</span><span>ISO 20000-1</span><span>Microsoft partner</span><span>Since 1999</span><span>Secure Payments — UPI · Cards · NetBanking</span>
+      </div>
+    </div>
+  </div>
+</div>

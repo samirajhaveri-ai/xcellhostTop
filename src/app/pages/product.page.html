@@ -26,6 +26,8 @@
     [class.acronis-backup-advanced-page]="slug() === 'acronis-backup-advanced'"
     [class.instagram-automation-page]="slug() === 'instagram-automation'"
     [class.smart-qr-page]="slug() === 'smart-qr-and-nfc-automation'"
+    [class.mailbox-migration-page]="slug() === 'mailbox-migration'"
+    [class.anthropic-managed-page]="slug() === 'anthropic-managed-services'"
     [class.virtualization-page]="slug() === 'virtualization-servers'"
     [class.server-tail-uppercase]="slug() === 'microsoft-365-to-google-workspace-migration' || slug() === 'sectigo-ssl-certificates' || slug() === 'email-backup' || slug() === 'odoo-hosting' || slug() === 'erp-next-hosting' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin'"
     [class.google-business-page]="slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin' || slug() === 'erp-next-hosting' || slug() === 'odoo-hosting' || slug() === 'email-backup' || slug() === 'sectigo-ssl-certificates' || slug() === 'microsoft-365-to-google-workspace-migration'"
@@ -378,6 +380,14 @@
         @if (slug() === 'linux-servers' || slug() === 'windows-servers') {
           <!-- Server visuals are positioned beside their copy inside the shared wrap. -->
 
+        } @else if (slug() === 'anthropic-managed-services') {
+          <div class="pph-scene anthropic-managed-hero-art">
+            <xh-anthropic-managed-services-hero />
+          </div>
+        } @else if (slug() === 'mailbox-migration') {
+          <div class="pph-scene mailbox-migration-hero-art">
+            <xh-mailbox-migration-hero />
+          </div>
         } @else if (slug() === 'cpanel-servers') {
           <div class="pph-scene cpanel-hero-art">
             <xh-cpanel-servers-hero />
@@ -2030,7 +2040,15 @@
             <xh-claude-backup-content (enquiry)="openCallback($event)" />
           }
 
-          @if (slug() === 'digicert-smime-class-1') {
+          @if (slug() === 'anthropic-managed-services') {
+            <xh-anthropic-managed-services-content
+              (sessionRequested)="openCallback($event.event, $event.requirement)"
+            />
+          } @else if (slug() === 'mailbox-migration') {
+            <xh-mailbox-migration-content
+              (assessmentRequested)="openCallback($event.event, $event.requirement)"
+            />
+          } @else if (slug() === 'digicert-smime-class-1') {
             <xh-digicert-smime-content />
           } @else if (slug() === 'comodo-personal-authentication') {
             <xh-comodo-pa-content />

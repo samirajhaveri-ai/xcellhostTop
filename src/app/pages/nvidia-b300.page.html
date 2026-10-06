@@ -1,0 +1,73 @@
+<iframe #frame class="b300-content" src="/nvidia-b300-content.html"
+  title="NVIDIA B300 GPU servers, pricing and technical specifications"
+  scrolling="no" (load)="onLoad()"></iframe>
+
+<div id="ppage" class="ppage as-page b300-page">
+  <div class="pp-body"><div class="wrap">
+    <section aria-labelledby="b300-action-title">
+      <h2 class="pp-sec" id="b300-action-title">Watch it in action</h2>
+      <div class="b300-preview-grid">
+        <article class="b300-preview-card">
+          <h3>Product intro</h3>
+          <button class="b300-preview" type="button" [attr.aria-pressed]="activePreview() === 'intro'" aria-controls="b300-preview-detail" (click)="activePreview.set('intro')">
+            <span class="b300-chip" aria-hidden="true">B300<small>288 GB HBM3e</small></span>
+            <span>Explore Blackwell Ultra GPU capacity</span>
+          </button>
+        </article>
+        <article class="b300-preview-card">
+          <h3>Use cases</h3>
+          <button class="b300-preview" type="button" [attr.aria-pressed]="activePreview() === 'use-cases'" aria-controls="b300-preview-detail" (click)="activePreview.set('use-cases')">
+            <span class="b300-workloads" aria-hidden="true"><span>TRAIN</span><span>REASON</span><span>SERVE</span></span>
+            <span>Plan training, reasoning and inference</span>
+          </button>
+        </article>
+      </div>
+      <div class="b300-preview-detail" id="b300-preview-detail" aria-live="polite">
+        @if (activePreview() === 'intro') {
+          <h3>NVIDIA B300 from XcellHost</h3>
+          <p>Start with your model size and GPU count. Plan GPU memory, host RAM, networking and storage, then choose a deployment configuration with an INR quote.</p>
+        } @else {
+          <h3>Match the configuration to your workload</h3>
+          <p>Plan multi-GPU model training, long-context reasoning or high-volume inference. Confirm framework versions, model precision and performance targets during the sizing assessment.</p>
+        }
+        <button class="btn btn-ghost" type="button" (click)="openCallback('NVIDIA B300: request a workload walkthrough')">Request a walkthrough &rarr;</button>
+      </div>
+      <p class="b300-note">Interactive product illustrations.</p>
+    </section>
+
+    <section aria-labelledby="b300-references-title">
+      <h2 class="pp-sec" id="b300-references-title">What customers say</h2>
+      <p class="b300-intro">Ask our team about available customer references for your AI workload.</p>
+      <div class="b300-reference-grid">
+        @for (reference of references; track reference.title) {
+          <article class="b300-reference-card">
+            <span class="b300-avatar" aria-hidden="true">{{ reference.initials }}</span>
+            <h3>{{ reference.title }}</h3>
+            <span class="b300-reference-label">Customer references on request</span>
+            <p>{{ reference.description }}</p>
+            <button class="btn btn-ghost" type="button" (click)="openCallback('NVIDIA B300: customer references for ' + reference.title)">Request references &rarr;</button>
+          </article>
+        }
+      </div>
+    </section>
+
+    <xh-insights-section pageSlug="nvidia-b300-nodes" [pageAliases]="['nvidia-b300']" [showVideos]="false" />
+
+    <section class="pp-cta b300-closing-cta" aria-labelledby="b300-cta-title">
+      <div class="b300-cta-copy">
+        <h3 id="b300-cta-title">Ready to plan your NVIDIA B300 deployment?</h3>
+        <p>GPU sizing &middot; Software setup &middot; Deployment support &middot; INR billing</p>
+        <div class="b300-actions">
+          <button class="btn btn-primary" type="button" (click)="openCallback()">Request a callback</button>
+          <button class="btn btn-ghost" type="button" (click)="buyNow()">Buy Now</button>
+          <button class="btn btn-ghost" type="button" (click)="requestDoc('infosheet')">Infosheet</button>
+          <button class="btn btn-ghost" type="button" (click)="requestDoc('presentation')">Presentation</button>
+          <a class="btn btn-ghost" [href]="whatsappUrl" target="_blank" rel="noopener">Talk on WhatsApp</a>
+          <a class="btn btn-ghost" [href]="emailUrl">Email Us</a>
+        </div>
+      </div>
+      <a class="pp-cta-buddha-link" routerLink="/support-overview" aria-label="Visit XcellHost customer support"><img class="pp-cta-buddha" src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost customer support" /></a>
+    </section>
+    <div class="pp-proof" aria-label="XcellHost credentials and payment options"><span>ISO 27001</span><span>ISO 20000-1</span><span>Hosted in India</span><span>Since 1999</span><span>Secure Payments &mdash; UPI &middot; Cards &middot; NetBanking</span></div>
+  </div></div>
+</div>

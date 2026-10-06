@@ -26,7 +26,9 @@ import { caseStudiesForPage } from '../core/case-study-matching';
             <p>{{ viewCopy[activeView()].description }}</p>
             <div class="insights-actions" role="group" aria-label="Insight resources">
               <button type="button" class="btn btn-ghost" [class.active]="activeView() === 'blogs'" [attr.aria-pressed]="activeView() === 'blogs'" aria-controls="insights-content" (click)="activeView.set('blogs')">Blogs</button>
-              <button type="button" class="btn btn-ghost" [class.active]="activeView() === 'videos'" [attr.aria-pressed]="activeView() === 'videos'" aria-controls="insights-content" (click)="activeView.set('videos')">Videos</button>
+              @if (showVideos()) {
+                <button type="button" class="btn btn-ghost" [class.active]="activeView() === 'videos'" [attr.aria-pressed]="activeView() === 'videos'" aria-controls="insights-content" (click)="activeView.set('videos')">Videos</button>
+              }
               @if (pageSlug() !== 'nvidia-h100' && pageSlug() !== 'acronis-xdr') {
                 <button type="button" class="btn btn-ghost" [class.active]="activeView() === 'cases'" [attr.aria-pressed]="activeView() === 'cases'" aria-controls="insights-content" (click)="activeView.set('cases')">Case Studies</button>
               }
@@ -154,6 +156,7 @@ export class InsightsSectionComponent {
   private readonly caseStudiesApi = inject(CaseStudiesApiService);
   private readonly allStudies = toSignal(this.caseStudiesApi.studies$, { initialValue: CASE_STUDIES });
   readonly pageSlug = input('');
+  readonly showVideos = input(true);
   readonly pageAliases = input<readonly string[]>([]);
   readonly caseStudyLimit = input<number | null>(null);
   private readonly allPosts = signal<readonly CmsBlogPost[]>([]);

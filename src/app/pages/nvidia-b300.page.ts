@@ -1,33 +1,58 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, ViewChild, inject, signal } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 
 import { SeoService } from '../core/seo.service';
-import { GpuLeadHeroComponent } from '../sections/gpu-lead-hero.component';
+import { OverlayService } from '../core/overlay.service';
+import { CallbackTopicService } from '../overlays/callback-topic.service';
+import { DocKind, DocRequestService } from '../core/doc-request.service';
+import { CartService } from '../core/cart.service';
+import { SITE } from '../data/site.data';
+import { InsightsSectionComponent } from '../sections/insights-section.component';
 
 @Component({
   selector: 'xh-nvidia-b300-page',
   standalone: true,
-  imports: [GpuLeadHeroComponent],
-  template: `
-    <main class="b300-page">
-      <section aria-labelledby="b300OverviewTitle">
-        <span class="eyebrow">Overview</span>
-        <h2 id="b300OverviewTitle">Blackwell Ultra infrastructure for frontier AI</h2>
-        <p>NVIDIA B300 nodes are designed for teams planning large-scale reasoning, model training and high-throughput inference. XcellHost helps scope the GPU count, host memory, storage, networking, software stack and deployment model before capacity is reserved.</p>
-      </section>
-      <xh-gpu-lead-hero slug="nvidia-b300-nodes" productName="NVIDIA B300 Nodes" />
-      <div class="b300-grid" aria-label="NVIDIA B300 deployment benefits">
-        <article><strong>01</strong><h3>Workload sizing</h3><p>Match model size, context, concurrency and training goals to the right node design.</p></article>
-        <article><strong>02</strong><h3>Cluster-ready fabric</h3><p>Plan high-speed GPU interconnects, storage and networking for distributed workloads.</p></article>
-        <article><strong>03</strong><h3>Managed deployment</h3><p>Receive a validated software stack, monitoring and 24×7 GPU engineering support.</p></article>
-      </div>
-    </main>
-  `,
-  styles: [`
-    :host{display:block}.b300-page{width:min(1192px,calc(100% - 40px));margin:0 auto;padding:54px 0 76px;color:#1c2a3a}.b300-page section{max-width:900px}.eyebrow{color:#1565d8;font:700 12px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase}.b300-page h2{margin:12px 0 16px;color:#041e42;font:700 clamp(28px,3vw,42px)/1.15 'Sora',sans-serif}.b300-page section p{font-size:17px;line-height:1.75;color:#51607a}.b300-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}.b300-grid article{padding:25px;border:1px solid #dce5f2;border-radius:16px;background:#f7faff}.b300-grid strong{color:#1565d8;font:700 12px 'IBM Plex Mono',monospace}.b300-grid h3{margin:14px 0 8px;color:#041e42}.b300-grid p{margin:0;color:#51607a;line-height:1.6}@media(max-width:760px){.b300-grid{grid-template-columns:1fr}.b300-page{width:min(100% - 32px,1192px);padding-top:40px}}
-  `],
+  imports: [RouterLink, InsightsSectionComponent],
+  templateUrl: './nvidia-b300.page.html',
+  styleUrl: './nvidia-b300.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NvidiaB300Page {
+export class NvidiaB300Page implements OnDestroy {
+  @ViewChild('frame') private frame?: ElementRef<HTMLIFrameElement>;
+  private readonly router = inject(Router);
+  private readonly overlay = inject(OverlayService);
+  private readonly topics = inject(CallbackTopicService);
+  private readonly docs = inject(DocRequestService);
+  private readonly cart = inject(CartService);
+  readonly name = 'NVIDIA B300 Nodes';
+  readonly activePreview = signal<'intro' | 'use-cases'>('intro');
+  readonly references = [
+    { initials: 'AI', title: 'Model training teams', description: 'Discuss references for model training, GPU memory planning and multi-GPU deployment.' },
+    { initials: 'ML', title: 'Inference platform teams', description: 'Ask about references for LLM serving, software setup and inference capacity planning.' },
+    { initials: 'IT', title: 'Enterprise IT teams', description: 'Explore references for GPU hosting in India, deployment support and ongoing operations.' },
+  ];
+  readonly whatsappUrl = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent('Hi, I am interested in NVIDIA B300 GPU capacity.')}`;
+  readonly emailUrl = `mailto:${SITE.email}?subject=${encodeURIComponent('Enquiry: NVIDIA B300 GPU capacity')}`;
+  private observer?: ResizeObserver;
+  private frameDocument?: Document;
+  private clickListener?: (event: MouseEvent) => void;
+
+  openCallback(topic = 'NVIDIA B300: GPU sizing and capacity assessment'): void {
+    this.topics.ask(topic);
+    this.overlay.open('callback');
+  }
+
+  requestDoc(kind: DocKind): void {
+    this.docs.ask(kind, this.name);
+    this.overlay.open('doc');
+  }
+
+  buyNow(): void {
+    this.cart.add(this.name, 'Quote on request');
+    this.cart.open();
+    this.overlay.open('cart');
+  }
+
   constructor() {
     inject(SeoService).set(
       'NVIDIA B300 Nodes in India | XcellHost',
@@ -35,4 +60,55 @@ export class NvidiaB300Page {
       '/nvidia-b300-nodes/',
     );
   }
+
+  onLoad(): void {
+    this.cleanup();
+    const frame = this.frame?.nativeElement;
+    const document = frame?.contentDocument;
+    const main = document?.querySelector('main');
+    if (!frame || !document || !main) return;
+    this.frameDocument = document;
+    const resize = () => {
+      frame.style.height = `${Math.ceil(main.getBoundingClientRect().height)}px`;
+    };
+    this.observer = new ResizeObserver(resize);
+    this.observer.observe(main);
+    void document.fonts.ready.then(resize);
+    resize();
+
+    this.clickListener = (event) => {
+      const anchor = (event.target as Element | null)?.closest<HTMLAnchorElement>('a[href]');
+      if (!anchor || event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey ||
+          event.shiftKey || event.altKey || anchor.target === '_blank') return;
+      const href = anchor.getAttribute('href') ?? '';
+      if (href === '#lead') {
+        event.preventDefault();
+        const request = anchor.id === 'qVq' ? 'cluster quote' : anchor.id === 'qGo' ? 'reserve configuration' : 'sizing call';
+        const configuration = document.getElementById('qN')?.textContent?.trim() ?? '';
+        const rate = document.getElementById('qH')?.textContent?.trim() ?? '';
+        const gst = document.querySelector('#qx .gst button[aria-pressed="true"]')?.textContent?.trim() ?? '';
+        this.topics.ask(`NVIDIA B300: ${request} — ${configuration} — ${rate} — ${gst}`);
+        this.overlay.open('callback');
+      } else if (href.startsWith('#')) {
+        const target = document.getElementById(href.slice(1));
+        if (!target) return;
+        event.preventDefault();
+        const top = window.scrollY + frame.getBoundingClientRect().top + target.getBoundingClientRect().top;
+        window.scrollTo({ top: top - 100, behavior: 'smooth' });
+      } else if (href.startsWith('/')) {
+        event.preventDefault();
+        void this.router.navigateByUrl(href);
+      }
+    };
+    document.addEventListener('click', this.clickListener);
+  }
+
+  private cleanup(): void {
+    this.observer?.disconnect();
+    if (this.frameDocument && this.clickListener) this.frameDocument.removeEventListener('click', this.clickListener);
+    this.frameDocument = undefined;
+    this.clickListener = undefined;
+  }
+
+  ngOnDestroy(): void { this.cleanup(); }
 }

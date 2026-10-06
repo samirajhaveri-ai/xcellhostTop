@@ -13,6 +13,10 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
  *   /compare/
  */
 export const routes: Routes = [
+  {
+    path: 'microsoft-365-tenant-to-tenant-migration',
+    loadComponent: () => import('./pages/microsoft-365-tenant-to-tenant-migration.page').then((m) => m.Microsoft365TenantToTenantMigrationPage),
+  },
   ...[...MENU_SERVICE_PAGES, ...INDUSTRY_CLOUD_PAGES].filter((page) => page.slug !== 'smart-qr-and-nfc-automation' && page.slug !== 'gcc-cloud').map((page) => ({
     path: page.slug,
     data: { servicePage: page },

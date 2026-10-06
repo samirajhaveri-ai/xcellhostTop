@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Anthropic Managed Services Governed Request Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--mono:"IBM Plex Mono",monospace;--pop:"Poppins",sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;background:transparent;overflow-x:hidden}
+main{width:100%;padding:24px;font-family:"IBM Plex Sans",sans-serif;line-height:1.55}
+.glass{background:rgba(9,24,52,.85);backdrop-filter:blur(10px);border:1px solid rgba(156,200,255,.22);border-radius:20px;padding:18px;box-shadow:0 30px 70px rgba(0,0,0,.4)}
+.glass-h{display:flex;justify-content:space-between;font:700 11.5px var(--mono);letter-spacing:.1em;color:#9CC8FF;margin-bottom:12px}.glass-h b{color:#4ADE80}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.ox-feed{margin-top:12px;background:#061329;border-radius:12px;padding:10px 12px;font:500 12px/1.7 var(--mono);color:#C7D5EC;height:118px;overflow:hidden}
+.ox-feed div{display:flex;gap:10px;animation:fi .35s ease both;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ox-feed span{color:#60A5FA;flex:none}.ox-feed .g{color:#4ADE80}.ox-feed .r{color:#FCA5A5}.ox-feed .y{color:#FBBF24}
+.am-stk{position:relative;display:grid;gap:8px}
+.am-stk>div{position:relative;display:flex;align-items:center;gap:12px;border-radius:12px;padding:10px 12px;background:rgba(255,255,255,.05);border:1px solid rgba(156,200,255,.18);transition:.35s}
+.am-stk>div.on{background:rgba(232,116,59,.18);border-color:#F97316;transform:scale(1.02)}
+.am-stk i{font-style:normal;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:rgba(255,255,255,.08);font:800 11px var(--mono);color:#FFB45C;flex:none}
+.am-stk b{display:block;font:700 12.5px var(--pop);color:#fff}.am-stk small{font-size:11.5px;color:#9FB8D8}
+.am-stk em{margin-left:auto;font-style:normal;font:700 10px var(--mono);color:#4ADE80;opacity:0;transition:.3s}.am-stk>div.on em{opacity:1}
+.glass-h{flex-wrap:wrap;gap:4px 10px}
+.am-stk>div>div{min-width:0}
+.am-stk em{flex:none}
+@media(max-width:450px){main{padding:14px 10px}.glass{padding:14px}.am-stk>div{padding:10px;gap:8px}.am-stk em{font-size:8px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+<div class="glass" aria-label="Illustrative governed request path">
+   <div class="glass-h"><span>GOVERNED REQUEST PATH</span><b id="amSt">● POLICY OK</b></div>
+   <div class="am-stk" id="amStk">
+    
+    <div><i>1</i><div><b>Priya · Finance</b><small>asks Claude to summarise a vendor contract</small></div><em>USER ✓</em></div>
+    <div><i>2</i><div><b>SSO via Entra ID</b><small>MFA ✓ · role: finance-analyst</small></div><em>IDP ✓</em></div>
+    <div><i>3</i><div><b>Data-class check</b><small>Confidential · allowed for role</small></div><em>POLICY ✓</em></div>
+    <div><i>4</i><div><b>Claude workspace</b><small>summary returned in 8s</small></div><em>CLAUDE ✓</em></div>
+    <div><i>5</i><div><b>Usage + cost logged</b><small>Finance team · contract review use case</small></div><em>AUDIT ✓</em></div>
+   </div>
+   <div class="ox-feed" id="amFeed" aria-live="polite"></div>
+  </div>
+</main>
+<script>
+(function(){var RM=matchMedia("(prefers-reduced-motion: reduce)").matches,S=[].slice.call(document.querySelectorAll("#amStk>div")),i=0;
+function step(){S.forEach(function(s,k){s.classList.toggle("on",k===i)});i=(i+1)%(S.length+1)}step();if(!RM)setInterval(step,1100);
+var F=document.getElementById("amFeed"),j=0,T=[["L1","Reset MFA for new joiner in Pune branch","g"],["L2","Prompt review: sales proposal template","g"],["L1","Claude Code installed on 12 dev laptops","g"],["L3","Policy exception: customer PII in prompt → denied","r"],["L2","Use case: Cowork for month-end Excel close","y"],["AUDIT","Weekly adoption report sent to CIO","g"]];
+function add(){var t=T[j++%T.length],d=document.createElement("div");d.innerHTML='<span>'+t[0]+'</span><em class="'+t[2]+'" style="font-style:normal">'+t[1]+'</em>';F.appendChild(d);while(F.children.length>5)F.removeChild(F.firstChild)}
+for(var k=0;k<3;k++)add();if(!RM)setInterval(add,2200)})();
+</script>
+</body>
+</html>

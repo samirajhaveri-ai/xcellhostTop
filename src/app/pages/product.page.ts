@@ -30,6 +30,12 @@ import { GAMING_FAQS } from '../data/gaming-servers-faqs.data';
 import { VirtualizationContentComponent } from '../sections/virtualization-servers-content.component';
 import { VIRTUALIZATION_FAQS } from '../data/virtualization-servers-faqs.data';
 import { SmartQrContentComponent } from '../sections/smart-qr-and-nfc-automation-content.component';
+import { MailboxMigrationHeroComponent } from '../sections/mailbox-migration-hero.component';
+import { AnthropicManagedServicesHeroComponent } from '../sections/anthropic-managed-services-hero.component';
+import { AnthropicManagedServicesContentComponent } from '../sections/anthropic-managed-services-content.component';
+import { ANTHROPIC_MANAGED_SERVICES_FAQS } from '../data/anthropic-managed-services-faqs.data';
+import { MailboxMigrationContentComponent } from '../sections/mailbox-migration-content.component';
+import { MAILBOX_MIGRATION_FAQS } from '../data/mailbox-migration-faqs.data';
 import { PleskServersHeroComponent } from '../sections/plesk-servers-hero.component';
 import { CpanelServersHeroComponent } from '../sections/cpanel-servers-hero.component';
 import { CpanelServersOverviewComponent } from '../sections/cpanel-servers-overview.component';
@@ -433,6 +439,10 @@ interface ProductTourSlide {
     VirtualizationContentComponent,
     AgentStudioContentComponent,
     SmartQrContentComponent,
+    MailboxMigrationHeroComponent,
+    AnthropicManagedServicesHeroComponent,
+    AnthropicManagedServicesContentComponent,
+    MailboxMigrationContentComponent,
     AiopsContentComponent,
     AiVoicebotContentComponent,
     AiVoicebotFaqComponent,
@@ -886,6 +896,74 @@ interface ProductTourSlide {
       #ppage.acronis-ot-page .pph-scene.has-illus.standalone-illus { position: relative; right: auto; width: min(100%, 600px); top: auto; bottom: auto; margin: 18px auto 0; opacity: 1; }
       #ppage.acronis-ot-page .pph-scene.has-illus.standalone-illus .pph-illus { height: auto; }
       #ppage.acronis-ot-page .pph-scene.has-illus.standalone-illus .pph-illus-img { width: 100%; max-width: 560px; max-height: none; }
+    }
+    #ppage .pph-scene.anthropic-managed-hero-art {
+      right: 2%; width: 44%; opacity: 1; pointer-events: auto;
+      mask-image: none; -webkit-mask-image: none; z-index: 5;
+    }
+    @media (min-width: 1001px) {
+      #ppage.anthropic-managed-page > .pp-hero {
+        display: grid; grid-template-columns: minmax(0, 640px) minmax(0, 600px);
+        gap: 24px; align-items: center; justify-content: center; padding: 40px 24px;
+      }
+      #ppage.anthropic-managed-page .pp-hero > .wrap {
+        grid-column: 1; grid-row: 1; width: 100%; max-width: none; padding-inline: 0;
+      }
+      #ppage.anthropic-managed-page .pp-hero > .wrap > * { max-width: 100% !important; }
+      #ppage.anthropic-managed-page .pp-hero #ppTitle {
+        flex-wrap: wrap; white-space: normal; font-size: clamp(28px, 2.8vw, 40px);
+      }
+      #ppage.anthropic-managed-page .pp-hero-grid { grid-template-columns: minmax(0, 1fr); }
+      #ppage.anthropic-managed-page .pp-hero-l { min-width: 0; }
+      #ppage.anthropic-managed-page .product-hero-ctas {
+        width: 100%; max-width: 100%; flex-wrap: wrap !important;
+      }
+      #ppage.anthropic-managed-page > .pp-hero > .pph-scene.anthropic-managed-hero-art {
+        position: relative; inset: auto !important; width: 100% !important;
+        max-width: none; max-height: none; grid-column: 2; grid-row: 1;
+      }
+    }
+    @media (max-width: 1000px) {
+      #ppage.anthropic-managed-page .pp-hero { display: flex; flex-direction: column; }
+      #ppage.anthropic-managed-page .pp-hero > .wrap { order: 1; width: 100%; }
+      #ppage .pph-scene.anthropic-managed-hero-art {
+        position: relative; inset: auto !important; width: 100% !important; max-width: 620px !important;
+        margin: 18px auto 0; order: 2; flex: none;
+      }
+    }
+    #ppage .pph-scene.mailbox-migration-hero-art {
+      right: 2%; width: 44%; opacity: 1; pointer-events: auto;
+      mask-image: none; -webkit-mask-image: none; z-index: 5;
+    }
+    @media (min-width: 1001px) {
+      #ppage.mailbox-migration-page > .pp-hero {
+        display: grid; grid-template-columns: minmax(0, 640px) minmax(0, 600px);
+        gap: 24px; align-items: center; justify-content: center; padding: 40px 24px;
+      }
+      #ppage.mailbox-migration-page .pp-hero > .wrap {
+        grid-column: 1; grid-row: 1; width: 100%; max-width: none; padding-inline: 0;
+      }
+      #ppage.mailbox-migration-page .pp-hero > .wrap > * { max-width: 100% !important; }
+      #ppage.mailbox-migration-page .pp-hero #ppTitle {
+        flex-wrap: wrap; white-space: normal; font-size: clamp(28px, 2.8vw, 40px);
+      }
+      #ppage.mailbox-migration-page .pp-hero-grid { grid-template-columns: minmax(0, 1fr); }
+      #ppage.mailbox-migration-page .pp-hero-l { min-width: 0; }
+      #ppage.mailbox-migration-page .product-hero-ctas {
+        width: 100%; max-width: 100%; flex-wrap: wrap !important;
+      }
+      #ppage.mailbox-migration-page > .pp-hero > .pph-scene.mailbox-migration-hero-art {
+        position: relative; inset: auto !important; width: 100% !important;
+        max-width: none; max-height: none; grid-column: 2; grid-row: 1;
+      }
+    }
+    @media (max-width: 1000px) {
+      #ppage.mailbox-migration-page .pp-hero { display: flex; flex-direction: column; }
+      #ppage.mailbox-migration-page .pp-hero > .wrap { order: 1; width: 100%; }
+      #ppage .pph-scene.mailbox-migration-hero-art {
+        position: relative; inset: auto !important; width: 100% !important; max-width: 620px !important;
+        margin: 18px auto 0; order: 2; flex: none;
+      }
     }
     #ppage .migration-capabilities { padding: 52px 0 58px; }
     #ppage .migration-capabilities-heading { max-width: 780px; margin: 0 auto 50px; text-align: center; }
@@ -2397,6 +2475,18 @@ export class ProductPage {
       ...view,
       heroImage: '/assets/images/higher-education/hero.svg',
       heroBrand: { ...view.heroBrand, logoImage: '/assets/images/higher-education/logo.png' },
+    };
+    if (slug === 'anthropic-managed-services') return {
+      ...view,
+      tagline: 'Managed rollout for Claude, Claude Code and Cowork',
+      heroHighlight: 'SSO, data controls and L1–L3 end-user support',
+      heroMessages: ['Use-case engineering on the Claude API'],
+      faqs: ANTHROPIC_MANAGED_SERVICES_FAQS,
+    };
+    if (slug === 'mailbox-migration') return {
+      ...view,
+      tagline: 'Enterprise email migration — mailbox migration made simple',
+      faqs: MAILBOX_MIGRATION_FAQS,
     };
     if (slug === 'linux-servers') return { ...view, faqs: LINUX_SERVERS_FAQS };
     if (slug === 'windows-servers') return { ...view, faqs: WINDOWS_SERVERS_FAQS };
