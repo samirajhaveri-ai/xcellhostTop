@@ -123,6 +123,7 @@ import { AGENTIC_AI_SAMPLE_FAQS, AGENTIC_AI_SAMPLE_WHY } from '../data/agentic-a
 import { EnterpriseDmarcContentComponent } from '../sections/enterprise-dmarc-content.component';
 import { BusinessEmailContentComponent } from '../sections/business-email-content.component';
 import { InsightsSectionComponent } from '../sections/insights-section.component';
+import { SmbSectionNavComponent } from '../sections/smb-section-nav.component';
 import { IdentityResilienceContentComponent } from '../sections/identity-resilience-content.component';
 import { EdiscoveryComplianceContentComponent } from '../sections/ediscovery-compliance-content.component';
 import { PerformanceCloudContentComponent } from '../sections/performance-cloud-content.component';
@@ -404,6 +405,7 @@ interface ProductTourSlide {
     EnterpriseDmarcContentComponent,
     BusinessEmailContentComponent,
     InsightsSectionComponent,
+    SmbSectionNavComponent,
     IdentityResilienceContentComponent,
     EdiscoveryComplianceContentComponent,
     PerformanceCloudContentComponent,
@@ -3180,6 +3182,26 @@ export class ProductPage {
 
   readonly isTally = computed(() => this.view()?.name === 'Tally on Cloud');
 
+  readonly smbSectionNavLinks = computed(() =>
+    this.isTally()
+      ? [
+          { label: 'Pricing', target: 'tallyPricing' },
+          { label: 'Features', target: 'tallyFeatures' },
+          { label: 'Watch in Action', target: 'tallyWatch' },
+          { label: 'Testimonials', target: 'tallyTestimonials' },
+          { label: 'FAQ', target: 'tallyFaq' },
+          { label: 'Insights', target: 'tallyInsights' },
+        ]
+      : [
+          { label: 'Pricing', target: 'ppPlans' },
+          { label: 'Features', target: 'ppFeats' },
+          { label: 'Watch in Action', target: 'showcaseVideosTitle' },
+          { label: 'Testimonials', target: 'ppRevs' },
+          { label: 'FAQ', target: 'ppFaq' },
+          { label: 'Insights', target: 'ppBlog' },
+        ],
+  );
+
   readonly isSmbCloudDesktop = computed(() => this.view()?.name === 'SMB Cloud Desktop');
 
   readonly isAcronisTrueImage = computed(() => this.view()?.name === 'Acronis True Image');
@@ -3699,24 +3721,6 @@ export class ProductPage {
   openTrial(ev: Event): void {
     ev.preventDefault();
     this.overlay.open('trial');
-  }
-
-  scrollToTallySection(sectionId: string, ev: Event): void {
-    ev.preventDefault();
-    const section = document.getElementById(sectionId);
-    if (!section) return;
-
-    window.history.replaceState(
-      null,
-      '',
-      `${window.location.pathname}${window.location.search}#${sectionId}`
-    );
-    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-  scrollTallyPageToTop(): void {
-    window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   requestGpuCluster(configuration: string): void {

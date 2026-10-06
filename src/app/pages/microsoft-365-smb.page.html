@@ -11,6 +11,11 @@
     ></iframe>
   </section>
 
+  <xh-smb-section-nav
+    label="Microsoft 365 SMB page sections"
+    [links]="sectionNavLinks"
+  />
+
   <!-- ---------- HERO ---------- -->
   <section class="pp-hero legacy-smb-hero">
     <div class="pph-map"><div class="wm-ring"></div><div class="wm-ring r2"></div></div>
@@ -308,7 +313,7 @@
       <p class="pv-note">&#128179; All prices per user/month, annual commitment, approximate INR excluding GST. Pay online via UPI &middot; Cards &middot; NetBanking. Contact XcellHost for exact pricing, volume discounts and multi-year deals.</p>
 
       <!-- KEY FEATURES -->
-      <div class="pp-sec">Everything in Microsoft 365</div>
+      <div class="pp-sec" id="m365Features">Everything in Microsoft 365</div>
       <p class="pp-ov" style="margin-bottom:20px">Email, meetings, collaboration, storage, security and AI &mdash; one integrated platform built for modern businesses.</p>
       <div class="pp-feats">
         <div class="pp-feat">
@@ -509,7 +514,7 @@
       </div>
 
       <!-- VIDEO -->
-      <div class="pp-videos m365-video-grid">
+      <div class="pp-videos m365-video-grid" id="m365Watch">
         <div class="pv-item">
           <h4><span>Product Intro</span></h4>
           <div class="pv-frame">
@@ -539,7 +544,7 @@
       </div>
 
       <!-- TESTIMONIALS -->
-      <div class="pp-sec">What customers say</div>
+      <div class="pp-sec" id="m365Testimonials">What customers say</div>
       <div class="pp-tcards">
         <div class="tcard">
           <div class="quote-badge">&rdquo;</div>
@@ -568,7 +573,7 @@
       </div>
 
       <!-- FAQ -->
-      <div class="pp-sec">Frequently asked questions</div>
+      <div class="pp-sec" id="m365Faq">Frequently asked questions</div>
       <div class="pp-faq">
         <div class="faq2" [class.open]="openFaq() === 0">
           <button class="faq2-q" type="button" (click)="toggleFaq(0)">What is Microsoft 365?<span class="faq2-ic">+</span></button>
@@ -604,7 +609,7 @@
         </div>
       </div>
 
-      <xh-insights-section pageSlug="microsoft-365-smb" />
+      <div id="m365Insights"><xh-insights-section pageSlug="microsoft-365-smb" /></div>
 
       <!-- Standard product CTA -->
       <div class="pp-cta" id="contact">
