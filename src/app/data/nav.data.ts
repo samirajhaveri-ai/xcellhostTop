@@ -845,11 +845,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Model Playground",
-                "pill": null,
-                "desc": null
-              },
-              {
                 "title": "Model Catalog",
                 "pill": null,
                 "desc": null
@@ -2051,8 +2046,23 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              
-              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "DNS Trust",
+        "label": "DNS Trust",
+        "on": false,
+        "groups": [
+          {
+            "heading": "DNS Trust",
+            "items": [
+              {
+                "title": "No Data",
+                "pill": null,
+                "desc": null
+              },
             ]
           }
         ]

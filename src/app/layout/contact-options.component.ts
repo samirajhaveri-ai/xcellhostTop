@@ -209,12 +209,13 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
       margin: 0;
       min-height: 20px;
       color: #b91c1c;
-      font-size: 13px;
+      font-size: 18px;
       line-height: 20px;
     }
 
     .form-message.success {
       color: #166534;
+      font-size: 18px;
     }
 
     .newsletter-socials {
