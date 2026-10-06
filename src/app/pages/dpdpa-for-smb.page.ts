@@ -8,11 +8,12 @@ import {
 } from '@angular/core';
 
 import { SeoService } from '../core/seo.service';
+import { SmbSectionNavComponent } from '../sections/smb-section-nav.component';
 
 @Component({
   selector: 'xh-dpdpa-for-smb-page',
   standalone: true,
-  imports: [],
+  imports: [SmbSectionNavComponent],
   templateUrl: './dpdpa-for-smb.page.html',
   styleUrl: './dpdpa-for-smb.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,6 +23,14 @@ export class DpdpaForSmbPage implements AfterViewInit, OnDestroy {
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly cleanups: Array<() => void> = [];
   private revealObserver?: IntersectionObserver;
+  readonly sectionNavLinks = [
+    { label: 'Pricing', target: 'pricing' },
+    { label: 'Features', target: 'modules' },
+    { label: 'Watch in Action', target: 'dpdpaWatch' },
+    { label: 'Testimonials', target: 'dpdpaTestimonials' },
+    { label: 'FAQ', target: 'dpdpaFaq' },
+    { label: 'Contact', target: 'contact' },
+  ] as const;
 
   constructor() {
     this.seo.set(
