@@ -123,6 +123,7 @@ import { AGENTIC_AI_SAMPLE_FAQS, AGENTIC_AI_SAMPLE_WHY } from '../data/agentic-a
 import { EnterpriseDmarcContentComponent } from '../sections/enterprise-dmarc-content.component';
 import { BusinessEmailContentComponent } from '../sections/business-email-content.component';
 import { InsightsSectionComponent } from '../sections/insights-section.component';
+import { SmbSectionNavComponent } from '../sections/smb-section-nav.component';
 import { IdentityResilienceContentComponent } from '../sections/identity-resilience-content.component';
 import { EdiscoveryComplianceContentComponent } from '../sections/ediscovery-compliance-content.component';
 import { PerformanceCloudContentComponent } from '../sections/performance-cloud-content.component';
@@ -404,6 +405,7 @@ interface ProductTourSlide {
     EnterpriseDmarcContentComponent,
     BusinessEmailContentComponent,
     InsightsSectionComponent,
+    SmbSectionNavComponent,
     IdentityResilienceContentComponent,
     EdiscoveryComplianceContentComponent,
     PerformanceCloudContentComponent,
@@ -2702,7 +2704,7 @@ export class ProductPage {
         { ...view.why[2], title: 'One Dashboard', body: 'Manage leads, enquiries, follow-ups and pipeline stages together.' },
         { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
         { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
-        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+        { ...view.why[5], title: 'White-Label For Consumer', body: 'Your brand, colours and domain, with partner pricing.' },
       ],
     };
     if (slug === 'smart-qr-and-nfc-automation') return {
@@ -2727,7 +2729,7 @@ export class ProductPage {
         { ...view.why[2], title: 'One Dashboard', body: 'Manage team cards, contact links, themes and analytics together.' },
         { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
         { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
-        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+        { ...view.why[5], title: 'White-Label For Consumer', body: 'Your brand, colours and domain, with partner pricing.' },
       ],
     };
     if (slug === 'instant-website') return {
@@ -2752,7 +2754,7 @@ export class ProductPage {
         { ...view.why[2], title: 'One Dashboard', body: 'Manage your website, bio link, themes and contact buttons together.' },
         { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
         { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
-        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+        { ...view.why[5], title: 'White-Label For Consumer', body: 'Your brand, colours and domain, with partner pricing.' },
       ],
     };
     if (slug === 'instagram-automation') return {
@@ -2777,7 +2779,7 @@ export class ProductPage {
         { ...view.why[2], title: 'One Dashboard', body: 'Manage Reels, posts, DMs and insights together.' },
         { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
         { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
-        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+        { ...view.why[5], title: 'White-Label For Consumer', body: 'Your brand, colours and domain, with partner pricing.' },
       ],
     };
     if (slug === 'hrm-attendance') return {
@@ -2802,7 +2804,7 @@ export class ProductPage {
         { ...view.why[2], title: 'One Dashboard', body: 'Manage attendance, leave, shifts and payroll together.' },
         { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
         { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
-        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+        { ...view.why[5], title: 'White-Label For Consumer', body: 'Your brand, colours and domain, with partner pricing.' },
       ],
     };
     if (slug === 'google-my-business') return {
@@ -2826,7 +2828,7 @@ export class ProductPage {
         { ...view.why[2], title: 'One Dashboard', body: 'Manage reviews, posts and multiple locations together.' },
         { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
         { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
-        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+        { ...view.why[5], title: 'White-Label For Consumer', body: 'Your brand, colours and domain, with partner pricing.' },
       ],
     };
 
@@ -3179,6 +3181,26 @@ export class ProductPage {
   readonly isAcronisGenAi = computed(() => this.view()?.name === 'Acronis GenAI');
 
   readonly isTally = computed(() => this.view()?.name === 'Tally on Cloud');
+
+  readonly smbSectionNavLinks = computed(() =>
+    this.isTally()
+      ? [
+          { label: 'Pricing', target: 'tallyPricing' },
+          { label: 'Features', target: 'tallyFeatures' },
+          { label: 'Watch in Action', target: 'tallyWatch' },
+          { label: 'Testimonials', target: 'tallyTestimonials' },
+          { label: 'FAQ', target: 'tallyFaq' },
+          { label: 'Insights', target: 'tallyInsights' },
+        ]
+      : [
+          { label: 'Pricing', target: 'ppPlans' },
+          { label: 'Features', target: 'ppFeats' },
+          { label: 'Watch in Action', target: 'showcaseVideosTitle' },
+          { label: 'Testimonials', target: 'ppRevs' },
+          { label: 'FAQ', target: 'ppFaq' },
+          { label: 'Insights', target: 'ppBlog' },
+        ],
+  );
 
   readonly isSmbCloudDesktop = computed(() => this.view()?.name === 'SMB Cloud Desktop');
 
@@ -3699,24 +3721,6 @@ export class ProductPage {
   openTrial(ev: Event): void {
     ev.preventDefault();
     this.overlay.open('trial');
-  }
-
-  scrollToTallySection(sectionId: string, ev: Event): void {
-    ev.preventDefault();
-    const section = document.getElementById(sectionId);
-    if (!section) return;
-
-    window.history.replaceState(
-      null,
-      '',
-      `${window.location.pathname}${window.location.search}#${sectionId}`
-    );
-    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-  scrollTallyPageToTop(): void {
-    window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   requestGpuCluster(configuration: string): void {

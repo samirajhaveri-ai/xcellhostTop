@@ -1,0 +1,92 @@
+:host {
+  position: sticky;
+  top: 78px;
+  z-index: 40;
+  display: block;
+  width: 100%;
+}
+
+.smb-section-nav {
+  width: 100%;
+  padding: 10px 20px;
+  border-bottom: 1px solid #e7ebf1;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 5px 18px rgba(4, 30, 66, 0.06);
+  backdrop-filter: blur(12px);
+}
+
+.smb-section-nav-track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  width: max-content;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 4px;
+  overflow-x: auto;
+  border-radius: 999px;
+  background: #f2f3f6;
+  scrollbar-width: none;
+}
+
+.smb-section-nav-track::-webkit-scrollbar { display: none; }
+
+.smb-section-nav-top {
+  display: inline-grid;
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  margin-right: 5px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: #e5e8ed;
+  color: #465264;
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.smb-section-nav-top svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.smb-section-nav-top:hover,
+.smb-section-nav-top:focus-visible,
+a:hover,
+a:focus-visible {
+  color: #075fc7;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(4, 30, 66, 0.12);
+}
+
+.smb-section-nav-top:focus-visible,
+a:focus-visible {
+  outline: 2px solid #1d73df;
+  outline-offset: 1px;
+}
+
+a {
+  flex: 0 0 auto;
+  padding: 9px 15px;
+  border-radius: 999px;
+  color: #3d4759;
+  font: 600 13px/1.25 var(--body, 'IBM Plex Sans', sans-serif);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+@media (max-width: 900px) {
+  :host { top: 70px; }
+  .smb-section-nav { padding-inline: 12px; }
+  .smb-section-nav-track { justify-content: flex-start; }
+  a { padding: 9px 13px; font-size: 12px; }
+}
