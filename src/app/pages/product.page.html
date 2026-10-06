@@ -112,6 +112,22 @@
         }
       </section>
     }
+    @if (isCloudDrive()) {
+      <section class="cloud-drive-source-answer" aria-labelledby="cloudDriveSourceTitle">
+        <div class="wrap">
+          <h1 id="cloudDriveSourceTitle" class="cloud-drive-source-h1">
+            Business Cloud Drive India &mdash; Secure File Sharing
+          </h1>
+          <p>
+            <strong>What is XcellHost Cloud Drive?</strong> XcellHost Cloud Drive is a secure
+            business file-storage, sync and collaboration service for Indian organisations. It gives
+            teams centrally managed folders, version history, access controls and protected external
+            sharing across devices, with pooled storage hosted in Indian data centres and local
+            migration and support from XcellHost&rsquo;s Mumbai team.
+          </p>
+        </div>
+      </section>
+    }
     @if (slug() === 'nvidia-h100') {
       <xh-nvidia-h100-hero (actionRequested)="onH100HeroAction($event)" />
     }
@@ -1531,6 +1547,15 @@
               </span>
             </h1>
             }
+            @if (isAdvancedEdr() || isScrutinyEdr()) {
+              <p class="edr-answer-first">
+                Endpoint detection and response (EDR) continuously records activity on employee
+                devices and servers, detects suspicious behaviour that signature-only antivirus can
+                miss, and gives responders evidence and controls to contain an attack. XcellHost&rsquo;s
+                managed EDR combines endpoint protection, investigation, response and recovery with
+                24&times;7 monitoring for organisations operating in India.
+              </p>
+            }
             @if (slug() === 'ai-lab-as-service') {
               <p class="pp-tagline ai-lab-summary" id="ppTag">{{ v.tagline }}</p>
             } @else if (slug() === 'ai-voice-bot') {
@@ -1929,6 +1954,7 @@
 
     @if (isScrutinyEdr()) {
       <xh-scrutiny-edr-content />
+      <div class="wrap"><xh-edr-seo-content variant="scrutiny" /></div>
       @if (showcaseVideos().length) {
         <section class="tally-videos scrutiny-watch" aria-labelledby="scrutinyVideosTitle">
           <div class="wrap">
@@ -2459,6 +2485,7 @@
                     } @else if (isAdvancedEdr()) {
                       <div class="pp-sec">Overview</div>
                       <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
+                      <xh-edr-seo-content variant="acronis" />
                     } @else if (isRmm()) {
                       <div class="pp-sec">Overview</div>
                       <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
@@ -2891,6 +2918,7 @@
                     </p>
                   </section>
                 } @else if (isCloudDrive()) {
+                  <xh-cloud-drive-seo-content />
                   <section class="cloud-drive-compare" aria-labelledby="cloudDriveCompareTitle">
                     <div class="cloud-drive-compare-card">
                       <h2 class="cloud-drive-compare-title" id="cloudDriveCompareTitle">
@@ -5292,7 +5320,7 @@
             <section aria-labelledby="storage-serversDemoTitle"><h2 class="pp-sec" id="storage-serversDemoTitle">Watch It In Action</h2><h3>Product Intro</h3><p>Build dedicated storage with SATA, SAS or NVMe drives, RAID options, root access and private networking.</p><h3>Use Cases</h3><p>Plan capacity for backups, archives, media libraries, database storage and virtual machine images using the interactive storage builder.</p><xh-storage-servers-content [hero]="true" style="display:block;max-width:600px;margin:24px auto 0;background:#041e42;border-radius:20px" /></section>
           }
 @if (isFrameworkDetail()) {
-<section aria-labelledby="nistDemoTitle"><h2 class="pp-sec" id="nistDemoTitle">Watch It In Action</h2><h3>Product Intro</h3><p>{{ frameworkDetail()?.intro }}</p><h3>Use Cases</h3><p>{{ frameworkDetail()?.useCases }}</p></section>
+<section aria-labelledby="nistDemoTitle"><h2 class="pp-sec" id="nistDemoTitle">Watch It In Action</h2><h3>Product Intro</h3><p>{{ frameworkDetail().intro }}</p><h3>Use Cases</h3><p>{{ frameworkDetail().useCases }}</p></section>
 }
           @if (slug() === 'erp-next-hosting') {
             <section aria-labelledby="erpNextDemoTitle"><h2 class="pp-sec" id="erpNextDemoTitle">Watch It In Action</h2><h3>Product Intro</h3><p>Explore the interactive backup dashboard, restore scenarios and mailbox pricing calculator above.</p><h3>Use Cases</h3><p>Bring accounting, inventory, manufacturing, CRM and HR together. Host multiple companies or separate ERPNext sites with dedicated resources.</p></section>
@@ -5778,7 +5806,7 @@
             </div>
           } @else {
             <div class="pp-faq" id="ppFaq">
-              <xh-product-faq [faqs]="slug() === 'ai-chat-bot' ? aiChatbotFaqs : isWatchtower() ? watchtowerFaqs : isOurPlatform() ? ourPlatformFaqs : isZohoWorkspace() ? zohoWorkspaceFaqs : v.faqs" />
+              <xh-product-faq [faqs]="isCloudDrive() ? cloudDriveFaqs : isAdvancedEdr() || isScrutinyEdr() ? edrFaqs() : slug() === 'ai-chat-bot' ? aiChatbotFaqs : isWatchtower() ? watchtowerFaqs : isOurPlatform() ? ourPlatformFaqs : isZohoWorkspace() ? zohoWorkspaceFaqs : v.faqs" />
             </div>
           }
 

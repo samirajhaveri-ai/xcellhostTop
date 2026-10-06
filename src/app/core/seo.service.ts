@@ -12,6 +12,9 @@ export class SeoService {
 
   set(pageTitle: string, description?: string, canonicalPath?: string, imagePath?: string): void {
     this.title.setTitle(pageTitle);
+    // Search engines ignore this legacy tag; remove it so routes cannot inherit
+    // stale, unrelated keyword lists from the base document.
+    this.meta.removeTag('name="keywords"');
     if (description) {
       this.meta.updateTag({ name: 'description', content: description });
       this.meta.updateTag({ property: 'og:description', content: description });

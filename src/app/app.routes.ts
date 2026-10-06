@@ -447,6 +447,21 @@ export const routes: Routes = [
   // service pages sit at the root, so this must stay last
   { path: 'comodo-enterprise-pro-basic-pa', redirectTo: 'comodo-personal-authentication', pathMatch: 'full' },
   { path: 'co-location', redirectTo: 'co-location-services', pathMatch: 'full' },
+  {
+    path: 'advanced-endpoint-security-edr',
+    data: { productSlug: 'advanced-endpoint-security-edr' },
+    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+  },
+  {
+    path: 'scrutiny-edr',
+    data: { productSlug: 'scrutiny-edr' },
+    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+  },
+  {
+    path: 'cloud-drive',
+    data: { productSlug: 'cloud-drive' },
+    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+  },
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
   { path: '**', redirectTo: '' },
 ];

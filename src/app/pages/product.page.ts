@@ -141,6 +141,8 @@ import { ManagedOracleFaqComponent } from '../sections/managed-oracle-faq.compon
 import { AiVoicebotContentComponent } from '../sections/ai-voicebot-content.component';
 import { AiVoicebotFaqComponent } from '../sections/ai-voicebot-faq.component';
 import { PERFORMANCE_CLOUD_FAQS } from '../data/performance-cloud-faqs.data';
+import { ACRONIS_EDR_FAQS, SCRUTINY_EDR_FAQS } from '../data/edr-seo.data';
+import { CLOUD_DRIVE_SEO_FAQS } from '../data/cloud-drive-seo.data';
 import { TSPLUS_REMOTE_ACCESS_EXPERIENCES } from '../data/tsplus-demo.data';
 import { EmailSignatureContentComponent } from '../sections/email-signature-content.component';
 import { EmailSignatureHeroComponent } from '../sections/email-signature-hero.component';
@@ -178,6 +180,8 @@ import { TsplusRemoteAccessHeroComponent } from '../sections/tsplus-remote-acces
 import { ResellerProgramContentComponent } from '../sections/reseller-program-content.component';
 import { SovereignPerformanceComponent } from '../sections/sovereign-performance.component';
 import { ScrutinyEdrContentComponent } from '../sections/scrutiny-edr-content.component';
+import { EdrSeoContentComponent } from '../sections/edr-seo-content.component';
+import { CloudDriveSeoContentComponent } from '../sections/cloud-drive-seo-content.component';
 import { ScrutinyDlpContentComponent } from './scrutiny-dlp-content.component';
 import { VortexSocContentComponent } from './vortex-soc-content.component';
 import { VortexSegContentComponent } from './vortex-seg-content.component';
@@ -464,6 +468,8 @@ interface ProductTourSlide {
     ResellerProgramContentComponent,
     SovereignPerformanceComponent,
     ScrutinyEdrContentComponent,
+    EdrSeoContentComponent,
+    CloudDriveSeoContentComponent,
     ScrutinyDlpContentComponent,
     VortexSocContentComponent,
     VortexSegContentComponent,
@@ -3146,6 +3152,12 @@ export class ProductPage {
 
   readonly isScrutinyEdr = computed(() => this.view()?.name === 'Scrutiny EDR');
 
+  readonly edrFaqs = computed(() =>
+    this.isAdvancedEdr() ? ACRONIS_EDR_FAQS : SCRUTINY_EDR_FAQS
+  );
+
+  readonly cloudDriveFaqs = CLOUD_DRIVE_SEO_FAQS;
+
   readonly isCloudObjectStorage = computed(() => this.view()?.name === 'Cloud Object Storage');
 
   readonly isMicrosoftEntraId = computed(() => this.view()?.name === 'Microsoft Entra ID');
@@ -3430,9 +3442,24 @@ export class ProductPage {
         return;
       }
       const slug = this.slug();
+      const isAcronisEdr = slug === 'advanced-endpoint-security-edr';
+      const isScrutinyEdr = slug === 'scrutiny-edr';
+      const isCloudDrive = slug === 'cloud-drive';
       this.seo.set(
-        `${v.name} — XcellHost`,
-        v.overview.slice(0, 160),
+        isCloudDrive
+          ? 'Business Cloud Drive India — Secure File Sharing | XcellHost'
+          : isAcronisEdr
+          ? 'Managed EDR India: Endpoint Detection & Response | XcellHost'
+          : isScrutinyEdr
+            ? 'Scrutiny EDR India: Managed Endpoint Security | XcellHost'
+            : `${v.name} — XcellHost`,
+        isCloudDrive
+          ? 'Secure business Cloud Drive for Indian teams with pooled storage, file sync, controlled sharing and Indian data residency. Compare plans or request migration.'
+          : isAcronisEdr
+          ? 'Managed Acronis EDR in India from ₹999/user/year. Detect, investigate, contain and recover endpoint threats with 24×7 XcellHost support. GST extra.'
+          : isScrutinyEdr
+            ? 'Scrutiny EDR for Windows, macOS and Linux with behavioural detection, investigation, response and optional 24×7 monitoring from XcellHost India.'
+            : v.overview.slice(0, 160),
         FRAMEWORK_DETAILS[slug] ? '/cybersecurity-frameworks/' + slug + '/' : `/${slug}/`,
         this.socialPreviewImage(slug, v),
       );
@@ -4015,6 +4042,160 @@ export class ProductPage {
   /* ----------------------------------------------------------------- seo */
 
   private jsonLd(v: ProductView, slug: string): Record<string, unknown> {
+    if (slug === 'cloud-drive') {
+      const pageUrl = SITE.siteUrl.replace(/\/$/, '') + '/cloud-drive/';
+      const organizationId = SITE.siteUrl.replace(/\/$/, '') + '/#organization';
+      return {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'Organization',
+            '@id': organizationId,
+            name: SITE.company,
+            url: SITE.siteUrl,
+            foundingDate: '1999',
+            telephone: SITE.phone,
+            email: SITE.email,
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: SITE.city,
+              addressRegion: SITE.region,
+              addressCountry: SITE.country,
+            },
+            sameAs: [
+              'https://www.youtube.com/@XcellHostCloudServices',
+              'https://www.instagram.com/xcellhost_cloud/',
+              'https://www.facebook.com/XcellHost.Cloud.Pvt.Ltd',
+              'https://x.com/xcellcloud',
+            ],
+          },
+          {
+            '@type': 'BreadcrumbList',
+            '@id': pageUrl + '#breadcrumb',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.siteUrl },
+              { '@type': 'ListItem', position: 2, name: 'Cloud', item: SITE.siteUrl.replace(/\/$/, '') + '/category/cloud/' },
+              { '@type': 'ListItem', position: 3, name: 'Cloud Drive', item: pageUrl },
+            ],
+          },
+          {
+            '@type': 'Service',
+            '@id': pageUrl + '#service',
+            name: 'XcellHost Business Cloud Drive',
+            description: 'Secure business file storage, synchronization and controlled sharing with pooled storage, unlimited users and Indian data residency.',
+            serviceType: 'Business Cloud File Storage and Sharing',
+            areaServed: { '@type': 'Country', name: 'India' },
+            provider: { '@id': organizationId },
+            offers: {
+              '@type': 'AggregateOffer',
+              url: pageUrl + '#ppPlans',
+              priceCurrency: 'INR',
+              lowPrice: '2499',
+              highPrice: '35625',
+              offerCount: '5',
+              availability: 'https://schema.org/InStock',
+              seller: { '@id': organizationId },
+            },
+            additionalProperty: [
+              { '@type': 'PropertyValue', name: 'Storage', value: '250 GB to 5 TB pooled per customer' },
+              { '@type': 'PropertyValue', name: 'Users', value: 'Unlimited users on published plans' },
+              { '@type': 'PropertyValue', name: 'Encryption at rest', value: 'AES-256' },
+              { '@type': 'PropertyValue', name: 'Encryption in transit', value: 'TLS 1.2/1.3' },
+              { '@type': 'PropertyValue', name: 'Data location', value: 'Indian data centres' },
+              { '@type': 'PropertyValue', name: 'Platform uptime SLA', value: '99.9%' },
+            ],
+          },
+          {
+            '@type': 'FAQPage',
+            '@id': pageUrl + '#faq',
+            mainEntity: CLOUD_DRIVE_SEO_FAQS.map(([question, answer]) => ({
+              '@type': 'Question',
+              name: question,
+              acceptedAnswer: { '@type': 'Answer', text: answer },
+            })),
+          },
+        ],
+      };
+    }
+
+    if (slug === 'advanced-endpoint-security-edr' || slug === 'scrutiny-edr') {
+      const isAcronis = slug === 'advanced-endpoint-security-edr';
+      const pageUrl = SITE.siteUrl.replace(/\/$/, '') + '/' + slug + '/';
+      const faqs = isAcronis ? ACRONIS_EDR_FAQS : SCRUTINY_EDR_FAQS;
+      const organization = {
+        '@type': 'Organization',
+        '@id': SITE.siteUrl.replace(/\/$/, '') + '/#organization',
+        name: SITE.company,
+        url: SITE.siteUrl,
+        telephone: SITE.phone,
+        email: SITE.email,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: SITE.city,
+          addressRegion: SITE.region,
+          addressCountry: SITE.country,
+        },
+      };
+
+      return {
+        '@context': 'https://schema.org',
+        '@graph': [
+          organization,
+          {
+            '@type': 'BreadcrumbList',
+            '@id': pageUrl + '#breadcrumb',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.siteUrl },
+              { '@type': 'ListItem', position: 2, name: 'Cybersecurity', item: SITE.siteUrl.replace(/\/$/, '') + '/cybersecurity/' },
+              { '@type': 'ListItem', position: 3, name: v.name, item: pageUrl },
+            ],
+          },
+          {
+            '@type': 'Service',
+            '@id': pageUrl + '#service',
+            name: isAcronis
+              ? 'Managed Acronis Endpoint Detection and Response (EDR)'
+              : 'Managed Scrutiny Endpoint Detection and Response (EDR)',
+            description: isAcronis
+              ? 'Managed endpoint detection and response in India with Acronis protection, investigation, containment, recovery assistance and XcellHost support.'
+              : 'Managed endpoint detection and response in India with Scrutiny behavioural detection, investigation, containment and optional 24×7 monitoring.',
+            serviceType: 'Managed Endpoint Detection and Response',
+            areaServed: { '@type': 'Country', name: 'India' },
+            provider: { '@id': organization['@id'] },
+            ...(isAcronis
+              ? {
+                  brand: { '@type': 'Brand', name: 'Acronis' },
+                  offers: {
+                    '@type': 'Offer',
+                    url: pageUrl + '#ppPlans',
+                    price: '999',
+                    priceCurrency: 'INR',
+                    availability: 'https://schema.org/InStock',
+                    seller: { '@id': organization['@id'] },
+                    priceSpecification: {
+                      '@type': 'UnitPriceSpecification',
+                      price: '999',
+                      priceCurrency: 'INR',
+                      unitText: 'user per year',
+                      valueAddedTaxIncluded: false,
+                    },
+                  },
+                }
+              : {}),
+          },
+          {
+            '@type': 'FAQPage',
+            '@id': pageUrl + '#faq',
+            mainEntity: faqs.map(([question, answer]) => ({
+              '@type': 'Question',
+              name: question,
+              acceptedAnswer: { '@type': 'Answer', text: answer },
+            })),
+          },
+        ],
+      };
+    }
+
     const price = v.chips.find((c) => c.kind === 'price')?.label ?? '';
     const amount = /₹\s*([\d,]+)/.exec(price)?.[1]?.replace(/,/g, '');
     return {
