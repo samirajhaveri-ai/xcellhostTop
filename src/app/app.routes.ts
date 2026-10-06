@@ -416,6 +416,11 @@ export const routes: Routes = [
     data: { productSlug: 'cloud-devops-services' },
     loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
   },
+  {
+    path: 'cloud-drive/checkout',
+    loadComponent: () =>
+      import('./pages/cloud-drive-checkout.page').then((m) => m.CloudDriveCheckoutPage),
+  },
   { path: 'acronis-edr', redirectTo: '', pathMatch: 'full' },
   {
     path: 'email-security-smb',

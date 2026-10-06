@@ -1,16 +1,5 @@
 <nav class="smb-section-nav" [attr.aria-label]="label()">
   <div class="smb-section-nav-track">
-    <button
-      class="smb-section-nav-top"
-      type="button"
-      aria-label="Back to top"
-      title="Back to top"
-      (click)="scrollToTop()"
-    >
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M12 19V5m-6 6 6-6 6 6" />
-      </svg>
-    </button>
     @for (link of links(); track link.target) {
       <a [attr.href]="'#' + link.target" (click)="scrollToSection(link.target, $event)">{{ link.label }}</a>
     }

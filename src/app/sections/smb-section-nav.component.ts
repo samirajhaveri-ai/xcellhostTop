@@ -30,8 +30,4 @@ export class SmbSectionNavComponent {
     window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
   }
 
-  scrollToTop(): void {
-    window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
 }

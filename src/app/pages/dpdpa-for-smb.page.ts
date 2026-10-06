@@ -24,11 +24,12 @@ export class DpdpaForSmbPage implements AfterViewInit, OnDestroy {
   private readonly cleanups: Array<() => void> = [];
   private revealObserver?: IntersectionObserver;
   readonly sectionNavLinks = [
+    { label: 'Overview', target: 'dpdpaOverview' },
     { label: 'Pricing', target: 'pricing' },
     { label: 'Features', target: 'modules' },
-    { label: 'Watch in Action', target: 'dpdpaWatch' },
-    { label: 'Testimonials', target: 'dpdpaTestimonials' },
-    { label: 'FAQ', target: 'dpdpaFaq' },
+    { label: 'Watch it in action', target: 'dpdpaWatch' },
+    { label: 'Customer Testimonials', target: 'dpdpaTestimonials' },
+    { label: 'FAQs', target: 'dpdpaFaq' },
     { label: 'Contact', target: 'contact' },
   ] as const;
 

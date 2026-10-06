@@ -10,6 +10,13 @@ interface Panel {
   metrics: readonly { label: string; value: string }[];
 }
 
+interface DataCenter {
+  readonly name: string;
+  readonly image: string;
+  readonly alt: string;
+  readonly points: readonly string[];
+}
+
 @Component({
   selector: 'xh-bare-metal-content', standalone: true, imports: [RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -19,6 +26,46 @@ export class BareMetalContentComponent {
   readonly heroOnly = input(false);
   readonly selectedFamily = signal<'ryzen' | 'intel' | 'epyc' | 'legacy'>('ryzen');
   readonly selectedPanel = signal(0);
+  readonly selectedDataCenter = signal(2);
+
+  readonly dataCenters: readonly DataCenter[] = [
+    {
+      name: 'Mumbai DC-1',
+      image: '/assets/images/performance-cloud/data-center-mumbai.webp',
+      alt: 'Mumbai DC-1 data center infrastructure',
+      points: [
+        'Tier IV designed infrastructure',
+        '2N utility power with N+1 generators',
+        'Carrier-neutral network and IX peering',
+        'Six-layer physical security',
+        'ISO certified infrastructure',
+      ],
+    },
+    {
+      name: 'Delhi DC-2',
+      image: '/assets/images/performance-cloud/data-center-delhi.webp',
+      alt: 'Delhi DC-2 data center infrastructure',
+      points: [
+        'Tier IV designed infrastructure',
+        'Redundant power and precision cooling',
+        'Low-latency multi-carrier connectivity',
+        '24×7 NOC, SOC and smart hands',
+        'ISO certified infrastructure',
+      ],
+    },
+    {
+      name: 'Pune DC-3',
+      image: '/assets/images/performance-cloud/data-center-pune.webp',
+      alt: 'Pune DC-3 data center infrastructure',
+      points: [
+        'DC space: 35,000 sq. ft.',
+        'Rack space: 500 racks',
+        'Power capacity: 5 MW',
+        'Security level: 6 layers',
+        'ISO certified infrastructure',
+      ],
+    },
+  ];
 
   readonly plans: Record<string, readonly BareMetalPlan[]> = {
     ryzen: [

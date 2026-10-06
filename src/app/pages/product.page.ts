@@ -3185,19 +3185,28 @@ export class ProductPage {
   readonly smbSectionNavLinks = computed(() =>
     this.isTally()
       ? [
+          { label: 'Overview', target: 'tallyOverview' },
           { label: 'Pricing', target: 'tallyPricing' },
+          { label: 'Security', target: 'tallySecurity' },
+          { label: 'Why to Choose', target: 'tallyWhyChoose' },
+          { label: 'Cloud Savings', target: 'tallySavings' },
+          { label: '5 Easy Steps', target: 'tallyEasySteps' },
           { label: 'Features', target: 'tallyFeatures' },
-          { label: 'Watch in Action', target: 'tallyWatch' },
-          { label: 'Testimonials', target: 'tallyTestimonials' },
-          { label: 'FAQ', target: 'tallyFaq' },
+          { label: 'Platforms & workloads', target: 'tallyPlatforms' },
+          { label: 'Watch it in action', target: 'tallyWatch' },
+          { label: 'Customer Testimonials', target: 'tallyTestimonials' },
+          { label: 'FAQs', target: 'tallyFaq' },
           { label: 'Insights', target: 'tallyInsights' },
         ]
       : [
+          { label: 'Overview', target: 'ppOv' },
           { label: 'Pricing', target: 'ppPlans' },
+          { label: 'Security', target: 'ppSecHead' },
+          { label: 'Why to Choose', target: 'ppWhyHead' },
           { label: 'Features', target: 'ppFeats' },
-          { label: 'Watch in Action', target: 'showcaseVideosTitle' },
-          { label: 'Testimonials', target: 'ppRevs' },
-          { label: 'FAQ', target: 'ppFaq' },
+          { label: 'Watch it in action', target: 'showcaseVideosTitle' },
+          { label: 'Customer Testimonials', target: 'ppRevs' },
+          { label: 'FAQs', target: 'ppFaq' },
           { label: 'Insights', target: 'ppBlog' },
         ],
   );
@@ -3865,8 +3874,19 @@ export class ProductPage {
 
   selectCloudDrivePlan(plan: CloudDrivePlan, ev: Event): void {
     ev.preventDefault();
-    this.topics.ask(`Cloud Drive ${plan.storage} - ${this.activeCloudDriveTerm().label} - ${this.cloudDriveQuantity()} users`);
-    this.overlay.open('callback');
+    const storage = plan.storage.toLowerCase().replace(/\s+/g, '');
+    const term: Record<CloudDriveTerm, string> = {
+      monthly: 'mon',
+      '3m': '3mon',
+      '6m': '6mon',
+      '1y': '1y',
+    };
+    const params = new URLSearchParams({
+      storage,
+      term: term[this.selectedCloudDriveTerm()],
+      quantity: String(this.cloudDriveQuantity()),
+    });
+    window.location.assign(`/cloud-drive/checkout?${params.toString()}`);
   }
 
   readonly cloudBackupTerms: readonly { key: CloudBackupTerm; label: string; saving: string }[] = [

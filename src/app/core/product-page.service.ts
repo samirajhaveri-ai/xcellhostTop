@@ -242,6 +242,15 @@ function hash(s: string): number {
   return Math.abs(h);
 }
 
+/** Compare hero copy without differences in casing, spacing or trailing punctuation. */
+function normalizeHeroCopy(value: string | null | undefined): string {
+  return (value ?? '')
+    .trim()
+    .replace(/\s+/g, ' ')
+    .replace(/[.!?]+$/g, '')
+    .toLocaleLowerCase('en-IN');
+}
+
 /** Seeded Fisher–Yates, matching the original LCG. */
 function pick<T>(pool: T[], seed: number, n: number): T[] {
   const a = pool.slice();
@@ -536,7 +545,7 @@ export class ProductPageService {
           : name === 'SMB Cyber Security Appliance'
             ? 'Allow organizations to manage complex defenses through a unified interface.'
             : product?.tagline || tag || `${name} from XcellHost`);
-    const heroHighlight =
+    const rawHeroHighlight =
       atmDetail?.summary ||
       (name === 'AI Chat Bot'
         ? null
@@ -553,7 +562,11 @@ export class ProductPageService {
             : name === 'Remote Monitoring & Mgmt (RMM)'
               ? null
               : product?.highlight || rich?.f?.[0]?.[1] || tag || null);
-    const heroMessages =
+    const heroHighlight =
+      normalizeHeroCopy(rawHeroHighlight) === normalizeHeroCopy(heroTagline)
+        ? null
+        : rawHeroHighlight;
+    const rawHeroMessages =
       name === 'Scrutiny DLP'
         ? []
         : name === 'Scrutiny EDR'
@@ -581,6 +594,15 @@ export class ProductPageService {
                   : deep?.heroPoints?.length
                     ? deep.heroPoints
                     : [tag || `${name} services from XcellHost`];
+    const usedHeroCopy = new Set(
+      [heroTagline, heroHighlight].map(normalizeHeroCopy).filter(Boolean),
+    );
+    const heroMessages = rawHeroMessages.filter((message) => {
+      const normalized = normalizeHeroCopy(message);
+      if (!normalized || usedHeroCopy.has(normalized)) return false;
+      usedHeroCopy.add(normalized);
+      return true;
+    });
 
     /* -------- chips -------- */
     const chips: ProductView['chips'] = [];
