@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#041E42">
 <title>Complete Your Order — Remote Monitoring & Management (RMM) | XcellHost Cloud Services</title>
+<script>
+// Existing checkout links also open with the shared website header and footer.
+if (window.top === window.self) {
+  window.location.replace('/rmm-checkout' + window.location.search + window.location.hash);
+}
+</script>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
 <!-- ============================================================================
      XcellHost — ACRONIS REMOTE MONITORING & MANAGEMENT (RMM) · STANDALONE CHECKOUT
@@ -205,7 +211,7 @@ button{font-family:var(--f)}
 /* toast */
 .toast-wrap{position:fixed;bottom:22px;right:22px;z-index:200;display:flex;flex-direction:column;gap:10px}
 .toast{background:var(--nv);color:#fff;padding:13px 16px;border-radius:12px;box-shadow:0 12px 30px rgba(4,12,28,.3);font-size:.84rem;max-width:340px;animation:fadeUp .3s ease}
-/* Standalone checkout: the website shell is intentionally omitted, matching EDR. */
+/* The Angular checkout page supplies the shared website header and footer. */
 .top,.nav,.ft{display:none!important}
 </style>
 </head>
@@ -704,7 +710,7 @@ function goStep(name){
    PAYMENT HANDOFF — real per-term Zoho Hosted Payment Page
    Top-level browser navigation (NOT an iframe). No fake form / no fake success.
    ============================================================================ */
-function rmmNavigate(url){ window.location.assign(url); }   // top-level, same-tab redirect
+function rmmNavigate(url){ window.top.location.assign(url); }   // top-level, same-tab redirect
 
 /* India state → 2-letter billing_state_code (Zoho). Extend as needed. */
 const IN_STATE_CODES = {

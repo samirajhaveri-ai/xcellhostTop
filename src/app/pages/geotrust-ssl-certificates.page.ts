@@ -93,12 +93,6 @@ export class GeoTrustSslCertificatesPage {
     this.overlay.open('callback');
   }
 
-  requestCallback(event: Event): void {
-    event.preventDefault();
-    this.topics.ask('GeoTrust SSL certificate');
-    this.overlay.open('callback');
-  }
-
   toggleFaq(event: Event): void {
     const button = event.currentTarget as HTMLElement;
     const item = button.closest<HTMLElement>('.faq2');

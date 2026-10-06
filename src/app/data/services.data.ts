@@ -2527,7 +2527,7 @@ export const SERVICES_RICH: Record<string, ServiceRich> = {
       ],
       [
         "Enterprise-friendly",
-        "Ideal for agencies and groups"
+        "Ideal for consumer and groups"
       ],
       [
         "Single lifecycle",

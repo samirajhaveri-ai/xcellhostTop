@@ -6,6 +6,7 @@
  */
 
 import { MenuTop } from './models';
+import { VPS_PRODUCT_COPY } from './vps-product-copy.data';
 
 export const MEGA_MENU: MenuTop[] = [
   {
@@ -411,78 +412,78 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Windows VPS",
                 "pill": "New",
-                "desc": "Secure, automated backups to safeguard your website 🔒"
+                "desc": VPS_PRODUCT_COPY['Windows VPS'].tagline
               },
               {
                 "title": "Linux VPS",
                 "pill": "New",
-                "desc": "Secure, automated backups to safeguard your website 🔒"
+                "desc": VPS_PRODUCT_COPY['Linux VPS'].tagline
               },
               
               {
                 "title": "n8n VPS",
                 "pill": "1-Click",
-                "desc": "Secure, automated backups to safeguard your website 🔒"
+                "desc": VPS_PRODUCT_COPY['n8n VPS'].tagline
               },
               {
                 "title": "OpenClaw VPS",
                 "pill": "1-Click",
-                "desc": "Secure, automated backups to safeguard your website 🔒"
+                "desc": VPS_PRODUCT_COPY['OpenClaw VPS'].tagline
               },
               {
                 "title": "Trading VPS",
                 "pill": "1-Click",
-                "desc": "Secure, automated backups to safeguard your website 🔒"
+                "desc": VPS_PRODUCT_COPY['Trading VPS'].tagline
               },
               {
                 "title": "Claude VPS",
                 "pill": "1-Click",
-                "desc": "Secure, automated backups to safeguard your website 🔒"
+                "desc": VPS_PRODUCT_COPY['Claude VPS'].tagline
               },
               {
                 "title": "Window 11 VPS",
                 "pill": "1-Click",
-                "desc": "Secure, automated backups to safeguard your website 🔒"
+                "desc": VPS_PRODUCT_COPY['Window 11 VPS'].tagline
               },
               {
                 "title": "Odoo Hosting",
                 "pill": null,
-                "desc": null
+                "desc": VPS_PRODUCT_COPY['Odoo Hosting'].tagline
               },
               {
                 "title": "ERPNext Hosting",
                 "pill": null,
-                "desc": null
+                "desc": VPS_PRODUCT_COPY['ERPNext Hosting'].tagline
               },
               {
                 "title": "Sage Hosting",
                 "pill": null,
-                "desc": null
+                "desc": VPS_PRODUCT_COPY['Sage Hosting'].tagline
               },
               {
                 "title": "Paperclip AI Hosting",
                 "pill": null,
-                "desc": null
+                "desc": VPS_PRODUCT_COPY['Paperclip AI Hosting'].tagline
               },
               {
                 "title": "Dokploy Hosting",
                 "pill": null,
-                "desc": null
+                "desc": VPS_PRODUCT_COPY['Dokploy Hosting'].tagline
               },
               {
                 "title": "Hermes AI Hosting",
                 "pill": null,
-                "desc": null
+                "desc": VPS_PRODUCT_COPY['Hermes AI Hosting'].tagline
               },
               {
                 "title": "Coolify",
                 "pill": null,
-                "desc": null
+                "desc": VPS_PRODUCT_COPY['Coolify'].tagline
               },
               {
                 "title": "DeepSeek Hosting",
                 "pill": null,
-                "desc": null
+                "desc": VPS_PRODUCT_COPY['DeepSeek Hosting'].tagline
               }, 
             ]
           }

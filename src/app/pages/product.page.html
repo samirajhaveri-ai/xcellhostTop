@@ -1852,28 +1852,11 @@
         </div>
       }
 
-      @if (isTally()) {
-        <nav class="tally-section-nav" aria-label="Tally on Cloud page sections">
-          <div class="tally-section-nav-track">
-            <button
-              class="tally-section-nav-top"
-              type="button"
-              aria-label="Back to top"
-              title="Back to top"
-              (click)="scrollTallyPageToTop()"
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 19V5m-6 6 6-6 6 6" />
-              </svg>
-            </button>
-            <a href="/tally-on-cloud#tallyPricing" (click)="scrollToTallySection('tallyPricing', $event)">Pricing</a>
-            <a href="/tally-on-cloud#tallyFeatures" (click)="scrollToTallySection('tallyFeatures', $event)">Features</a>
-            <a href="/tally-on-cloud#tallyWatch" (click)="scrollToTallySection('tallyWatch', $event)">Watch in Action</a>
-            <a href="/tally-on-cloud#tallyTestimonials" (click)="scrollToTallySection('tallyTestimonials', $event)">Testimonials</a>
-            <a href="/tally-on-cloud#tallyFaq" (click)="scrollToTallySection('tallyFaq', $event)">FAQ</a>
-            <a href="/tally-on-cloud#tallyInsights" (click)="scrollToTallySection('tallyInsights', $event)">Insights</a>
-          </div>
-        </nav>
+      @if (usesSuppliedSmbHero()) {
+        <xh-smb-section-nav
+          [label]="v.name + ' page sections'"
+          [links]="smbSectionNavLinks()"
+        />
       }
 
 @if (isAutonomousThreatSolution()) {
@@ -2017,6 +2000,7 @@
     } @else {
       <div
         class="pp-body"
+        [class.colocation-body]="slug() === 'co-location-services'"
         [class.cloud-backup-body]="isCloudBackup()"
         [class.cdr-smb-body]="isCloudDisasterRecoverySmb()"
         [class.domain-registration-body]="slug() === 'register-a-domain-name'"

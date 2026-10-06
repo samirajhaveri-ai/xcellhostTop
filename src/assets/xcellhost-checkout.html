@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#041E42">
 <title>Complete Your Order | XcellHost Cloud Services</title>
+<script>
+// Existing EDR checkout bookmarks also open with the website header and footer.
+if (window.top === window.self && new URLSearchParams(window.location.search).get('product') === 'acronis-edr') {
+  window.location.replace('/edr-checkout' + window.location.search + window.location.hash);
+}
+</script>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -1153,7 +1159,8 @@ document.getElementById('payBtn').addEventListener('click',function(){
 
   const qs = params.toString();
   const finalUrl = qs ? (url + (url.includes('?') ? '&' : '?') + qs) : url;
-  window.location.href = finalUrl;
+  // Payment leaves the embedded checkout and opens in the full browser window.
+  window.top.location.href = finalUrl;
 });
 
 // ── ADD TO CART (uses current product + selected billing cycle) ──
