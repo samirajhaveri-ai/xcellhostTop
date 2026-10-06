@@ -563,6 +563,13 @@ interface ProductTourSlide {
   ],
   templateUrl: './product.page.html',
   styles: [`
+    .colocation-body { container-type: inline-size; }
+    .colocation-body > .wrap > .pp-sec,
+    .colocation-body #ppBlog { margin-top: 48px; }
+    @media (max-width: 600px) {
+      .colocation-body > .wrap > .pp-sec,
+      .colocation-body #ppBlog { margin-top: 32px; }
+    }
 
     #ppage .pp-hero.sitelock-hero {
       width: 100%; margin: 0;
@@ -2697,7 +2704,7 @@ export class ProductPage {
         { ...view.why[2], title: 'One Dashboard', body: 'Manage leads, enquiries, follow-ups and pipeline stages together.' },
         { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
         { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
-        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+        { ...view.why[5], title: 'White-Label For Consumer', body: 'Your brand, colours and domain, with partner pricing.' },
       ],
     };
     if (slug === 'smart-qr-and-nfc-automation') return {
@@ -2722,7 +2729,7 @@ export class ProductPage {
         { ...view.why[2], title: 'One Dashboard', body: 'Manage team cards, contact links, themes and analytics together.' },
         { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
         { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
-        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+        { ...view.why[5], title: 'White-Label For Consumer', body: 'Your brand, colours and domain, with partner pricing.' },
       ],
     };
     if (slug === 'instant-website') return {
@@ -2747,7 +2754,7 @@ export class ProductPage {
         { ...view.why[2], title: 'One Dashboard', body: 'Manage your website, bio link, themes and contact buttons together.' },
         { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
         { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
-        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+        { ...view.why[5], title: 'White-Label For Consumer', body: 'Your brand, colours and domain, with partner pricing.' },
       ],
     };
     if (slug === 'instagram-automation') return {
@@ -2772,7 +2779,7 @@ export class ProductPage {
         { ...view.why[2], title: 'One Dashboard', body: 'Manage Reels, posts, DMs and insights together.' },
         { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
         { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
-        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+        { ...view.why[5], title: 'White-Label For Consumer', body: 'Your brand, colours and domain, with partner pricing.' },
       ],
     };
     if (slug === 'hrm-attendance') return {
@@ -2797,7 +2804,7 @@ export class ProductPage {
         { ...view.why[2], title: 'One Dashboard', body: 'Manage attendance, leave, shifts and payroll together.' },
         { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
         { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
-        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+        { ...view.why[5], title: 'White-Label For Consumer', body: 'Your brand, colours and domain, with partner pricing.' },
       ],
     };
     if (slug === 'google-my-business') return {
@@ -2821,7 +2828,18 @@ export class ProductPage {
         { ...view.why[2], title: 'One Dashboard', body: 'Manage reviews, posts and multiple locations together.' },
         { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
         { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
-        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+        { ...view.why[5], title: 'White-Label For Consumer', body: 'Your brand, colours and domain, with partner pricing.' },
+      ],
+    };
+
+    if (slug === 'co-location-services') return {
+      ...view,
+      tagline: 'Your servers. Our Tier-4 datacenters.',
+      heroHighlight: 'Secure rack space, redundant power and cooling, with carrier-neutral connectivity.',
+      heroMessages: [
+        'Keep full control of your hardware',
+        'Scale from a single server to full racks',
+        'Get on-site support with remote hands',
       ],
     };
 
