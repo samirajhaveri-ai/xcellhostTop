@@ -2019,6 +2019,7 @@
     } @else {
       <div
         class="pp-body"
+        [class.colocation-body]="slug() === 'co-location-services'"
         [class.cloud-backup-body]="isCloudBackup()"
         [class.cdr-smb-body]="isCloudDisasterRecoverySmb()"
         [class.domain-registration-body]="slug() === 'register-a-domain-name'"
