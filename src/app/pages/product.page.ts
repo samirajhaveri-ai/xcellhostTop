@@ -1,6 +1,8 @@
 
 import { DomainHeroMediaComponent } from '../sections/domain-hero-media.component';
+import { HOSTING_BANNER_PAGES, HostingHeroMediaComponent } from '../sections/hosting-hero-media.component';
 import { FitBannerTitleDirective } from '../shared/fit-banner-title.directive';
+import { EmptySongBarComponent } from '../shared/empty-song-bar.component';
 
 
 import { ComodoPaContentComponent, ComodoPaHeroComponent, ComodoPaFaqComponent, ComodoPaRelatedComponent } from '../sections/comodo-pa.components';
@@ -424,6 +426,8 @@ interface ProductTourSlide {
     VeraRubinContentComponent,
     WorkspaceMigrationContentComponent,
     DomainHeroMediaComponent,
+    HostingHeroMediaComponent,
+    EmptySongBarComponent,
     SectigoSslContentComponent,
     EmailBackupContentComponent,
     OdooHostingContentComponent,
@@ -3075,6 +3079,7 @@ export class ProductPage {
 
   /** Every resolved product gets a localized or category-level hero illustration. */
   readonly isFlagship = computed(() => !!this.view()?.heroImage);
+  readonly isWebHostingBanner = computed(() => HOSTING_BANNER_PAGES.has(this.slug()));
 
   readonly showAiPoweredBadge = computed(() => {
     const name = this.view()?.name.trim() ?? '';

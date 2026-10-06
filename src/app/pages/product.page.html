@@ -1112,7 +1112,7 @@
                 [alt]="v.name"
               />
               }
-              @if (!isManagedMicrosoft365() && !isTally() && v.name !== 'Cloud Drive' && slug() !== 'higher-education-cloud' && slug() !== 'cloud-migration' && slug() !== 'acronis-backup-advanced' && slug() !== 'acronis-ot' && slug() !== 'rtx-8000') {
+              @if (!isWebHostingBanner() && !v.crumb.endsWith('Domains') && !isManagedMicrosoft365() && !isTally() && v.name !== 'Cloud Drive' && slug() !== 'higher-education-cloud' && slug() !== 'cloud-migration' && slug() !== 'acronis-backup-advanced' && slug() !== 'acronis-ot' && slug() !== 'rtx-8000') {
                 <div
                   class="pph-powered-mark pph-powered-image"
                   [class.pph-geotrust-powered]="v.name === 'GeoTrust'"
@@ -1721,15 +1721,10 @@
             @if (slug() === 'sectigo-ssl-certificates') {
               <div class="sectigo-ssl-song"><b><span aria-hidden="true">▂▅▇</span> Listen to our SSL Security Song</b><audio controls preload="none" aria-label="Listen to our SSL Security Song"></audio></div>
             }
-            <xh-domain-hero-media [slug]="slug()" />
-            @if (slug() === 'wordpress-hosting') {
-              <div class="wordpress-hero-song">
-                <span id="wordpressHostingSongTitle">Listen to our WordPress Hosting Song</span>
-                <audio controls preload="metadata" aria-labelledby="wordpressHostingSongTitle">
-                  <source src="/assets/audio/wordpress-hosting-song.mp3" type="audio/mpeg">
-                  <a href="/assets/audio/wordpress-hosting-song.mp3">Listen to the WordPress Hosting Song</a>
-                </audio>
-              </div>
+            <xh-domain-hero-media [slug]="slug()" [name]="v.name" [isDomainPage]="v.crumb.endsWith('Domains')" />
+            <xh-hosting-hero-media [slug]="slug()" [name]="v.name" />
+            @if (slug() === 'odoo-hosting' || v.heroMessages[0]?.toLowerCase()?.startsWith('maximise online visibility')) {
+              <xh-empty-song-bar [name]="v.name" />
             }
 
             @if (slug() === 'acronis-genai-protection') {
