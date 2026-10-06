@@ -591,7 +591,7 @@ img{max-width:100%}
 
 /* globe band */
 .gband{position:relative;border-radius:18px;overflow:hidden;background-size:cover;background-position:center;padding:44px 40px;color:#fff;margin-top:56px}
-.gband:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,30,66,.95),rgba(4,30,66,.7) 60%,rgba(4,30,66,.35))}
+.gband:before{content:"";position:absolute;inset:0;}
 .gband>*{position:relative;z-index:2}
 .gband h2{font:700 clamp(24px,2.6vw,34px)/1.2 var(--disp);max-width:640px}
 .gband p{color:#C7D5EC;max-width:640px;margin:10px 0 20px}
@@ -888,6 +888,29 @@ img{max-width:100%}
 .hx-st>div:before{content:"0" counter(s);font:800 34px var(--disp);background:linear-gradient(90deg,#1565D8,#7C3AED);-webkit-background-clip:text;background-clip:text;color:transparent;display:block;margin-bottom:6px}
 .hx-st h3{font:600 15.5px var(--pop);color:var(--h2);margin-bottom:6px}.hx-st p{font-size:13.5px;color:var(--slate)}
 .hx-os{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}.hx-os span{display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:12px;border:1px solid var(--line);background:var(--card);font:600 13.5px var(--pop);color:var(--h2)}.hx-os svg{width:16px;height:16px;color:#1565D8}
+/* Tier 4 data-centre tabs */
+.hx-dc-section{margin-top:72px}
+.hx-dc-title{color:var(--h2);font:600 clamp(26px,3vw,30px)/1.2 var(--pop);text-align:center;margin-bottom:34px}
+.hx-dc-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:min(760px,100%);margin:0 auto 38px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card)}
+.hx-dc-tabs button{display:flex;align-items:center;justify-content:center;gap:12px;min-height:74px;padding:14px 18px;border:0;border-right:1px solid var(--line);background:transparent;color:var(--navy);font:600 17px/1.2 var(--pop);cursor:pointer;transition:background-color .2s,color .2s,box-shadow .2s}
+.hx-dc-tabs button:last-child{border-right:0}
+.hx-dc-tabs button:hover{background:var(--ice)}
+.hx-dc-tabs button[aria-selected=true]{background:var(--blue-soft);color:var(--blue);box-shadow:inset 0 -3px 0 var(--blue)}
+.hx-dc-tabs svg,.hx-dc-heading svg{width:34px;height:34px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.hx-dc-panel{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:70px;align-items:center;animation:fam-in .35s ease-out}
+.hx-dc-panel[hidden]{display:none}
+.hx-dc-details{min-height:390px;padding:44px 54px;border-radius:22px;background:#e1f7ed;color:var(--navy);display:flex;flex-direction:column;justify-content:center}
+.hx-dc-heading{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.hx-dc-heading h3{font:600 26px/1.2 var(--pop)}
+.hx-dc-details ul{display:grid;gap:19px;list-style:none}
+.hx-dc-details li{display:flex;align-items:flex-start;gap:13px;font:500 17px/1.45 var(--pop)}
+.hx-dc-details li svg{width:18px;height:18px;margin-top:3px;color:#16a34a;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.hx-dc-visual{position:relative;min-height:390px;padding:0 30px 30px 0}
+.hx-dc-visual:after{content:"";position:absolute;right:0;bottom:0;width:88%;height:58%;border-radius:20px;background:#e1f7ed;z-index:0}
+.hx-dc-visual img{position:relative;z-index:1;display:block;width:min(100%,520px);height:auto;margin:0 auto;border-radius:18px;object-fit:cover;background:linear-gradient(135deg,#06142c,#0c3e8f)}
+.hx-dc-panel[data-dc-panel="mumbai-1"] .hx-dc-visual img{object-position:center}
+.hx-dc-panel[data-dc-panel="delhi-2"] .hx-dc-visual img{object-position:center}
+.hx-dc-panel[data-dc-panel="pune-3"] .hx-dc-visual img{object-position:center}
 @media (max-width:1180px){.hx-lay{grid-template-columns:1fr}
  .hx-cart{position:fixed;left:0;right:0;bottom:0;top:auto;z-index:80;border-radius:22px 22px 0 0;max-height:82vh;transform:translateY(105%);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
  body{padding-bottom:84px}
@@ -895,13 +918,13 @@ img{max-width:100%}
  .hx-ov{display:block;position:fixed;inset:0;background:rgba(2,6,20,.55);z-index:79;opacity:0;pointer-events:none;transition:.3s}.hx-ov.on{opacity:1;pointer-events:auto}
  .hx-bento{grid-template-columns:repeat(2,minmax(0,1fr))}.hx-uc,.hx-st{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:900px){.hx-cards,.hx-gpu{grid-template-columns:repeat(2,minmax(0,1fr))}.hx-db{grid-template-columns:1fr}.hx-side{display:none}.hx-reco,.hx-k8{grid-template-columns:1fr}.hx-stk{grid-template-columns:1fr 1fr}
- .hx-row{grid-template-columns:minmax(0,1fr) auto;}.hx-row .v{text-align:left}}
+ .hx-row{grid-template-columns:minmax(0,1fr) auto;}.hx-row .v{text-align:left}.hx-dc-panel{grid-template-columns:1fr;gap:24px}.hx-dc-details{min-height:0}.hx-dc-visual{min-height:340px}}
 @media (max-width:640px){.hx-hero{padding-top:54px}.hx-stats{grid-template-columns:1fr 1fr}.hx-k{grid-template-columns:1fr 1fr}.hx-vm div{grid-template-columns:auto 1fr auto}.hx-vm em{display:none}
  .hx-cards,.hx-gpu,.hx-bento,.hx-uc,.hx-st,.hx-stk{grid-template-columns:1fr}.hx-bento>div.w{grid-column:auto}
  .hx-ctl{padding:14px}.hx-ctl .hx-f{width:100%}.hx-seg{width:100%}.hx-seg button{flex:1;justify-content:center;padding:8px 6px}.hx-ctl .hx-sel{width:100%}
  .hx-cat{width:100%;justify-content:flex-start}.hx-cat button{padding:10px 14px}
  .hx-cmp>div{grid-template-columns:1fr 1fr}.hx-cmp span:first-child{grid-column:1/-1;background:var(--ice);padding-bottom:6px}.hx-cmp .hd span:first-child{display:none}
- .hx-row{grid-template-columns:1fr}.hx-row .hx-q{justify-self:start}.hx-row .hx-add{width:100%}.hx-btn{padding:13px 20px}}
+ .hx-row{grid-template-columns:1fr}.hx-row .hx-q{justify-self:start}.hx-row .hx-add{width:100%}.hx-btn{padding:13px 20px}.hx-dc-section{margin-top:54px}.hx-dc-title{margin-bottom:24px}.hx-dc-tabs{margin-bottom:24px}.hx-dc-tabs button{min-height:62px;padding:10px 6px;gap:6px;font-size:12px}.hx-dc-tabs svg{width:24px;height:24px}.hx-dc-details{padding:30px 24px}.hx-dc-details li{font-size:14px}.hx-dc-visual{min-height:250px;padding:0 16px 16px 0}.hx-dc-visual img{height:auto}}
 @media (prefers-reduced-motion:reduce){.hx-orb,.hx-grid,.hx-mq div,.hx-hero h1 em,.hx-btn.p{animation:none}}
 
 </style>
@@ -1052,6 +1075,27 @@ body {
  </section>
  <div class="hx-ov" id="hxOv"></div>
  <button class="hx-fab" id="hxFab" type="button" aria-label="Open cart"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/><path d="M3 4h2l2.4 11h11l2-8H6"/></svg>Cart <i id="hxFc">0</i><b id="hxFt">₹0</b></button>
+
+ <section class="wrap hx-dc-section rv" aria-labelledby="hxDcTitle">
+  <h2 class="hx-dc-title" id="hxDcTitle">Tier 4 Certified Data Center Infrastructure</h2>
+  <div class="hx-dc-tabs" role="tablist" aria-label="Data center locations">
+   <button id="hxDcTabMumbai1" type="button" role="tab" aria-selected="false" aria-controls="hxDcMumbai1" tabindex="-1" data-dc-tab="mumbai-1"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 29h24M6 29V12h20v17M5 12h22l-2-4H7zM10 8V5h12v3M9 16h3M9 20h3M9 24h3M20 16h3M20 20h3M20 24h3M14 29v-6a2 2 0 014 0v6"/></svg> Mumbai DC-1</button>
+   <button id="hxDcTabDelhi2" type="button" role="tab" aria-selected="false" aria-controls="hxDcDelhi2" tabindex="-1" data-dc-tab="delhi-2"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 29h24M6 29V12h20v17M5 12h22l-2-4H7zM10 8V5h12v3M9 16h3M9 20h3M9 24h3M20 16h3M20 20h3M20 24h3M14 29v-6a2 2 0 014 0v6"/></svg> Delhi DC-2</button>
+   <button id="hxDcTabPune3" type="button" role="tab" aria-selected="true" aria-controls="hxDcPune3" data-dc-tab="pune-3"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 29h24M6 29V12h20v17M5 12h22l-2-4H7zM10 8V5h12v3M9 16h3M9 20h3M9 24h3M20 16h3M20 20h3M20 24h3M14 29v-6a2 2 0 014 0v6"/></svg> Pune DC-3</button>
+  </div>
+  <div class="hx-dc-panel" id="hxDcMumbai1" role="tabpanel" aria-labelledby="hxDcTabMumbai1" data-dc-panel="mumbai-1" hidden>
+   <div class="hx-dc-details"><div class="hx-dc-heading"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 29h24M6 29V12h20v17M5 12h22l-2-4H7zM10 8V5h12v3M9 16h3M9 20h3M9 24h3M20 16h3M20 20h3M20 24h3M14 29v-6a2 2 0 014 0v6"/></svg><h3>Mumbai DC-1</h3></div><ul><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg>Tier IV designed infrastructure</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg>2N utility power with N+1 generators</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg>Carrier-neutral network and IX peering</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg>Six-layer physical security</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg>ISO certified infrastructure</li></ul></div>
+   <div class="hx-dc-visual"><img src="/assets/images/performance-cloud/data-center-mumbai.webp" alt="Mumbai DC-1 data center infrastructure" loading="lazy"></div>
+  </div>
+  <div class="hx-dc-panel" id="hxDcDelhi2" role="tabpanel" aria-labelledby="hxDcTabDelhi2" data-dc-panel="delhi-2" hidden>
+   <div class="hx-dc-details"><div class="hx-dc-heading"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 29h24M6 29V12h20v17M5 12h22l-2-4H7zM10 8V5h12v3M9 16h3M9 20h3M9 24h3M20 16h3M20 20h3M20 24h3M14 29v-6a2 2 0 014 0v6"/></svg><h3>Delhi DC-2</h3></div><ul><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg>Tier IV designed infrastructure</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg>Redundant power and precision cooling</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg>Low-latency multi-carrier connectivity</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg>24×7 NOC, SOC and smart hands</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg>ISO certified infrastructure</li></ul></div>
+   <div class="hx-dc-visual"><img src="/assets/images/performance-cloud/data-center-delhi.webp" alt="Delhi DC-2 data center infrastructure" loading="lazy"></div>
+  </div>
+  <div class="hx-dc-panel" id="hxDcPune3" role="tabpanel" aria-labelledby="hxDcTabPune3" data-dc-panel="pune-3">
+   <div class="hx-dc-details"><div class="hx-dc-heading"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 29h24M6 29V12h20v17M5 12h22l-2-4H7zM10 8V5h12v3M9 16h3M9 20h3M9 24h3M20 16h3M20 20h3M20 24h3M14 29v-6a2 2 0 014 0v6"/></svg><h3>Pune DC-3</h3></div><ul><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg>DC space: 35,000 sq. ft.</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg>Rack space: 500 racks</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg>Power capacity: 5 MW</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg>Security level: 6 layers</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg>ISO certified infrastructure</li></ul></div>
+   <div class="hx-dc-visual"><img src="/assets/images/performance-cloud/data-center-pune.webp" alt="Pune DC-3 data center infrastructure" loading="lazy"></div>
+  </div>
+ </section>
 
  <h2 class="h2s">Not sure which size? <em>Tell us the workload</em></h2>
  <div class="hx-reco rv">
@@ -1301,6 +1345,11 @@ function reco(i){var r=D.recommend[i],f=D.families.find(function(x){return x.key
  $("#hxRo").innerHTML='<span class="kick">RECOMMENDED FAMILY</span><h3>'+f.name+'</h3><p>'+r[2]+'</p><div class="pl"><span>'+f.ratio+'</span><span>from ₹'+f0(f.plans[0].monthly)+'/mo</span><span>'+f.plans.length+' sizes</span></div><button class="hx-btn p" type="button" style="animation:none">See '+f.short+' plans →</button>';
  $("#hxRo .hx-btn").onclick=function(){st.fam=f.key;st.all=false;$("#hxFam").value=f.key;TB[0].click();renderCompute();$("#pricing").scrollIntoView({behavior:RM?"auto":"smooth"})}}
 RB.forEach(function(b,i){b.addEventListener("click",function(){reco(i)})});reco(0);
+
+/* ---------- data center tabs ---------- */
+var DCB=$$("[data-dc-tab]"),DCP=$$("[data-dc-panel]");
+function showDc(key){DCB.forEach(function(b){var on=b.dataset.dcTab===key;b.setAttribute("aria-selected",on);b.tabIndex=on?0:-1});DCP.forEach(function(p){p.hidden=p.dataset.dcPanel!==key})}
+DCB.forEach(function(b,i){b.addEventListener("click",function(){showDc(b.dataset.dcTab)});b.addEventListener("keydown",function(e){if(e.key!=="ArrowLeft"&&e.key!=="ArrowRight")return;e.preventDefault();var n=(i+(e.key==="ArrowRight"?1:-1)+DCB.length)%DCB.length;DCB[n].focus();showDc(DCB[n].dataset.dcTab)})});
 
 /* ---------- bento spotlight ---------- */
 $$("#hxBento>div").forEach(function(c){c.addEventListener("pointermove",function(e){var r=c.getBoundingClientRect();c.style.setProperty("--mx",(e.clientX-r.left)+"px");c.style.setProperty("--my",(e.clientY-r.top)+"px")})});

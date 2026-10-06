@@ -22,7 +22,7 @@ import { caseStudiesForPage } from '../core/case-study-matching';
         <div class="sec-head insights-heading" xhReveal>
           <div class="eyebrow">Insights</div>
           <div class="insights-heading-row">
-            <h2>{{ viewCopy[activeView()].heading }}</h2>
+            <h2 [attr.style]="activeView() === 'blogs' ? 'text-transform: none !important' : null">{{ viewCopy[activeView()].heading }}</h2>
             <p>{{ viewCopy[activeView()].description }}</p>
             <div class="insights-actions" role="group" aria-label="Insight resources">
               <button type="button" class="btn btn-ghost" [class.active]="activeView() === 'blogs'" [attr.aria-pressed]="activeView() === 'blogs'" aria-controls="insights-content" (click)="activeView.set('blogs')">Blogs</button>
@@ -180,7 +180,7 @@ export class InsightsSectionComponent {
       description: 'Explore features, specifications and deployment requirements for XcellHost solutions.',
     },
     blogs: {
-      heading: 'Fresh perspectives for smarter IT decisions',
+      heading: 'Fresh Perspectives For Smarter IT Decisions',
       description: 'Explore practical guides and expert insights on cloud, cybersecurity and Indian compliance to help your business move forward.',
     },
     videos: {

@@ -1,6 +1,7 @@
 import { InsightsSectionComponent } from '../sections/insights-section.component';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 import { DocRequestService } from '../core/doc-request.service';
 import { OverlayService } from '../core/overlay.service';
@@ -9,12 +10,12 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { SmbSectionNavComponent } from '../sections/smb-section-nav.component';
 
 type BusinessPlan = 'basic' | 'standard' | 'premium';
-type BillingTerm = 'upfront' | 'annual-monthly' | 'monthly';
+type BillingTerm = 'upfront' | 'monthly';
 
 @Component({
   selector: 'xh-microsoft-365-smb-page',
   standalone: true,
-  imports: [InsightsSectionComponent, DecimalPipe, SmbSectionNavComponent],
+  imports: [InsightsSectionComponent, DecimalPipe, SmbSectionNavComponent, RouterLink],
   templateUrl: './microsoft-365-smb.page.html',
   styleUrl: './microsoft-365-smb.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -27,24 +28,35 @@ export class Microsoft365SmbPage {
 
   readonly openFaq = signal<number | null>(0);
   readonly sectionNavLinks = [
+    { label: 'Overview', target: 'm365Overview' },
     { label: 'Pricing', target: 'pricing' },
+    { label: 'Security', target: 'm365Security' },
+    { label: 'Why to Choose', target: 'm365WhyChoose' },
     { label: 'Features', target: 'm365Features' },
-    { label: 'Watch in Action', target: 'm365Watch' },
-    { label: 'Testimonials', target: 'm365Testimonials' },
-    { label: 'FAQ', target: 'm365Faq' },
+    { label: 'Watch it in action', target: 'm365Watch' },
+    { label: 'Customer Testimonials', target: 'm365Testimonials' },
+    { label: 'FAQs', target: 'm365Faq' },
     { label: 'Insights', target: 'm365Insights' },
   ] as const;
   readonly includesTeams = signal(true);
   readonly billingOptions: { id: BillingTerm; label: string; note: string }[] = [
     { id: 'upfront', label: 'Annual · paid upfront', note: '1-year commitment · one annual payment' },
-    { id: 'annual-monthly', label: 'Annual · billed monthly', note: '1-year commitment · monthly payments' },
     { id: 'monthly', label: 'Monthly · no commitment', note: 'Month-to-month · cancel anytime' },
   ];
   readonly billingTerms = signal<Record<BusinessPlan, BillingTerm>>({ basic: 'upfront', standard: 'upfront', premium: 'upfront' });
-  // Keep the configured annual checkout prices. Monthly figures come from the
-  // supplied reference; unconfigured terms are handled through a quote request.
-  private readonly annualRates = { basic: [1260, 1740], standard: [6840, 9240], premium: [18780, 21960] };
-  private readonly annualMonthlyTotals = { basic: 1795, standard: 9082, premium: 19325 };
+  readonly basicTeamsListMonthly = 170;
+  readonly basicTeamsUpfrontDiscount = 15;
+  readonly standardTeamsListMonthly = 860;
+  readonly standardTeamsUpfrontDiscount = 15;
+  readonly premiumTeamsListMonthly = 1830;
+  readonly premiumTeamsUpfrontDiscount = 15;
+  // Calculate the annual amount before rounding the displayed monthly equivalent.
+  // Business Basic with Teams: 170 × 12 × 85% = 1,734, or 144.50/month.
+  private readonly annualRates = {
+    basic: [1260, Math.round(this.basicTeamsListMonthly * 12 * (1 - this.basicTeamsUpfrontDiscount / 100))],
+    standard: [6840, Math.round(this.standardTeamsListMonthly * 12 * (1 - this.standardTeamsUpfrontDiscount / 100))],
+    premium: [18780, Math.round(this.premiumTeamsListMonthly * 12 * (1 - this.premiumTeamsUpfrontDiscount / 100))],
+  };
   private readonly monthlyRates = { basic: 200, standard: 1011, premium: 2152 };
   readonly quoteQuantities = signal<Record<string, number>>({
     basic: 1,
@@ -94,7 +106,7 @@ export class Microsoft365SmbPage {
   monthlyRate(plan: BusinessPlan, term: BillingTerm): number | null {
     if (term === 'upfront') return this.annualRates[plan][this.includesTeams() ? 1 : 0] / 12;
     if (!this.includesTeams()) return null;
-    return term === 'annual-monthly' ? this.annualMonthlyTotals[plan] / 12 : this.monthlyRates[plan];
+    return this.monthlyRates[plan];
   }
 
   annualRate(plan: BusinessPlan, term: BillingTerm): number | null {
@@ -133,7 +145,8 @@ export class Microsoft365SmbPage {
 
   requestPresentation(event: Event): void {
     event.preventDefault();
-    this.docs.ask('presentation', 'Microsoft 365');
+    this.docs.ask('presentation', 'Microsoft 365 SMB');
+    this.overlay.open('doc');
   }
 
   openCallback(event: Event): void {

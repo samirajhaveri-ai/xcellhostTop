@@ -1,21 +1,50 @@
+import { FRAMEWORK_DETAILS } from './data/framework-details.data';
 import { Routes } from '@angular/router';
 import { MENU_SERVICE_PAGES } from './data/menu-service-pages.data';
 import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
-/**
- * URLs mirror the original site exactly, so nothing that is already indexed breaks:
- *   /                          home
- *   /<service-slug>/           a service page   (e.g. /tally-on-cloud/)
- *   /category/<name>/          a category landing page
- *   /insights/<slug>/          a blog article
- *   /use-cases/<slug>/         a use case
- *   /about|/contact|/pricing|/insights
- *   /compare/
- */
+
 export const routes: Routes = [
+
   {
     path: 'microsoft-365-tenant-to-tenant-migration',
     loadComponent: () => import('./pages/microsoft-365-tenant-to-tenant-migration.page').then((m) => m.Microsoft365TenantToTenantMigrationPage),
+
+  ...Object.keys(FRAMEWORK_DETAILS).map(slug => ({ path: 'cybersecurity-frameworks/' + slug, data: { productSlug: slug }, loadComponent: () => import('./pages/product.page').then(m => m.ProductPage) })),
+  {
+    path: 'microsoft-365-business-standard-no-teams',
+    loadComponent: () => import('./pages/microsoft-365-business-standard-no-teams.page').then((m) => m.Microsoft365BusinessStandardNoTeamsPage),
+  },
+  {
+    path: 'microsoft-365-business-basic-no-teams',
+    loadComponent: () => import('./pages/microsoft-365-business-basic-no-teams.page').then((m) => m.Microsoft365BusinessBasicNoTeamsPage),
+  },
+  {
+    path: 'microsoft-365-business-premium-no-teams',
+    loadComponent: () => import('./pages/microsoft-365-business-premium-no-teams.page').then((m) => m.Microsoft365BusinessPremiumNoTeamsPage),
+  },
+  {
+    path: 'microsoft-365-business-standard',
+    loadComponent: () => import('./pages/microsoft-365-business-standard.page').then((m) => m.Microsoft365BusinessStandardPage),
+  },
+  {
+    path: 'microsoft-365-business-premium',
+    loadComponent: () => import('./pages/microsoft-365-business-premium.page').then((m) => m.Microsoft365BusinessPremiumPage),
+  },
+  {
+    path: 'microsoft-365-business-basic',
+    loadComponent: () => import('./pages/microsoft-365-business-basic.page').then((m) => m.Microsoft365BusinessBasicPage),
+  },
+  {
+    path: 'edr-checkout',
+    data: { checkoutProduct: 'edr' },
+    loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
+  },
+  {
+    path: 'rmm-checkout',
+    data: { checkoutProduct: 'rmm' },
+    loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
+
   },
   ...[...MENU_SERVICE_PAGES, ...INDUSTRY_CLOUD_PAGES].filter((page) => page.slug !== 'smart-qr-and-nfc-automation' && page.slug !== 'gcc-cloud').map((page) => ({
     path: page.slug,
@@ -420,6 +449,11 @@ export const routes: Routes = [
     data: { productSlug: 'cloud-devops-services' },
     loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
   },
+  {
+    path: 'cloud-drive/checkout',
+    loadComponent: () =>
+      import('./pages/cloud-drive-checkout.page').then((m) => m.CloudDriveCheckoutPage),
+  },
   { path: 'acronis-edr', redirectTo: '', pathMatch: 'full' },
   {
     path: 'email-security-smb',
@@ -434,6 +468,21 @@ export const routes: Routes = [
   // service pages sit at the root, so this must stay last
   { path: 'comodo-enterprise-pro-basic-pa', redirectTo: 'comodo-personal-authentication', pathMatch: 'full' },
   { path: 'co-location', redirectTo: 'co-location-services', pathMatch: 'full' },
+  {
+    path: 'advanced-endpoint-security-edr',
+    data: { productSlug: 'advanced-endpoint-security-edr' },
+    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+  },
+  {
+    path: 'scrutiny-edr',
+    data: { productSlug: 'scrutiny-edr' },
+    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+  },
+  {
+    path: 'cloud-drive',
+    data: { productSlug: 'cloud-drive' },
+    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+  },
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
   { path: '**', redirectTo: '' },
 ];

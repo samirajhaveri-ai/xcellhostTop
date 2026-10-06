@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 /** Global newsletter banner displayed immediately above the site footer. */
@@ -28,7 +28,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
         <form #newsletterForm class="newsletter-form" [formGroup]="form" (ngSubmit)="submit(newsletterForm)"
           action="https://forms.zohopublic.in/xcellhostcloudservicespvtltd1/form/NewsletterSubscriptionForm/formperma/ZFO74kn3xfRonRDRy3zFBSIcG82fsKdLTBd2toT0wPM/htmlRecords/submit"
-          method="POST" enctype="multipart/form-data" accept-charset="UTF-8" target="_blank" rel="noopener noreferrer" novalidate>
+          method="POST" enctype="multipart/form-data" accept-charset="UTF-8" target="newsletter-response" [attr.aria-busy]="sending()" novalidate>
           <input type="hidden" name="zf_referrer_name" />
           <input type="hidden" name="zf_redirect_url" value="" />
           <input type="hidden" name="zc_gad" />
@@ -45,7 +45,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
             [attr.aria-invalid]="emailInvalid()"
             aria-describedby="newsletter-message"
           />
-          <button type="submit">Subscribe </button>
+          <button type="submit" [disabled]="sending()">{{ sending() ? 'Sending...' : 'Subscribe' }}</button>
         </form>
 
         <p
@@ -79,6 +79,8 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
           </a>
         </nav>
       </div>
+      <iframe #newsletterResponse name="newsletter-response" title="Newsletter submission response" hidden
+        (load)="checkSubmission(newsletterResponse)"></iframe>
     </section>
   `,
   styles: `
@@ -205,16 +207,15 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
     .form-message {
       margin: 0;
+      min-height: 20px;
       color: #b91c1c;
-      font-size: 13px;
-    }
-
-    .form-message:empty {
-      display: none;
+      font-size: 18px;
+      line-height: 20px;
     }
 
     .form-message.success {
       color: #166534;
+      font-size: 18px;
     }
 
     .newsletter-socials {
@@ -307,6 +308,9 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 export class ContactOptionsComponent {
   private readonly fb = inject(FormBuilder);
   private readonly document = inject(DOCUMENT);
+  private readonly destroyRef = inject(DestroyRef);
+  private confirmationUrl = '';
+  private submissionTimer?: ReturnType<typeof setTimeout>;
 
   readonly form = this.fb.nonNullable.group({
     email: ['', [Validators.required, Validators.email, Validators.maxLength(255)]],
@@ -314,12 +318,19 @@ export class ContactOptionsComponent {
 
   readonly done = signal(false);
   readonly message = signal('');
+  readonly sending = signal(false);
+
+  constructor() {
+    this.destroyRef.onDestroy(() => clearTimeout(this.submissionTimer));
+  }
 
   emailInvalid(): boolean {
     return this.form.controls.email.invalid && this.form.controls.email.touched;
   }
 
   submit(formElement: HTMLFormElement): void {
+    if (this.sending()) return;
+    this.done.set(false);
     this.form.controls.email.setValue(this.form.controls.email.value.trim());
     if (this.form.invalid) {
       this.form.controls.email.markAsTouched();
@@ -330,18 +341,46 @@ export class ContactOptionsComponent {
 
     const referrer = formElement.elements.namedItem('zf_referrer_name') as HTMLInputElement;
     const adClick = formElement.elements.namedItem('zc_gad') as HTMLInputElement;
+    const redirect = formElement.elements.namedItem('zf_redirect_url') as HTMLInputElement;
     referrer.value = this.document.location.href;
     adClick.value = new URL(this.document.location.href).searchParams.get('gclid') ?? '';
+    const callback = new URL('newsletter-subscription-success.html', this.document.baseURI);
+    callback.searchParams.set('submission', `${Date.now()}-${Math.random().toString(36).slice(2)}`);
+    this.confirmationUrl = callback.href;
+    redirect.value = this.confirmationUrl;
 
-    // Native POST avoids cross-origin fetch restrictions. Zoho displays the actual
-    // submission result in the new tab; a cross-origin load is not proof of success.
+    // Zoho redirects only the hidden frame after accepting the submission.
+    // A generic cross-origin frame load must never count as success.
+    this.sending.set(true);
+    this.message.set('Submitting your subscription...');
+    this.submissionTimer = setTimeout(() => {
+      this.sending.set(false);
+      this.confirmationUrl = '';
+      this.message.set('We could not confirm your subscription. Please try again later.');
+    }, 30000);
     try {
       formElement.submit();
-      this.done.set(false);
-      this.message.set('');
     } catch {
-      this.done.set(false);
-      this.message.set('We could not open the subscription form. Please try again.');
+      clearTimeout(this.submissionTimer);
+      this.sending.set(false);
+      this.confirmationUrl = '';
+      this.message.set('We could not send your subscription. Please try again.');
     }
+  }
+
+  checkSubmission(frame: HTMLIFrameElement): void {
+    if (!this.sending() || !this.confirmationUrl) return;
+    try {
+      if (frame.contentWindow?.location.href !== this.confirmationUrl) return;
+    } catch {
+      // Zoho's loading, validation and error pages are on another origin.
+      return;
+    }
+    clearTimeout(this.submissionTimer);
+    this.confirmationUrl = '';
+    this.sending.set(false);
+    this.done.set(true);
+    this.message.set('Thank you for subscribing!');
+    this.form.reset();
   }
 }
