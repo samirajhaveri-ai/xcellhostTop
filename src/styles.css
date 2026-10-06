@@ -6173,3 +6173,23 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 /* Druva attribution beneath Ask AI on native product banners. */
 .druva-powered-by{display:flex;align-items:center;gap:10px;margin-top:16px;color:#c7d5ec;font-size:13px;line-height:1.4}.druva-powered-by img{display:block;width:40px;height:40px;object-fit:contain}.druva-powered-by strong{color:#fff;font-size:20px;font-weight:700}
 
+
+/* NIST detail page uses the existing product banner and section layout. */
+#ppage.nist-csf-page .pp-sec,#ppage.nist-csf-page h2,#ppage.nist-csf-page h3{text-transform:capitalize}
+
+@media(min-width:1001px){
+#ppage.nist-csf-page .pp-hero{display:grid!important;grid-template-columns:minmax(0,640px) minmax(0,460px);gap:18px;align-items:center;justify-content:center;padding:40px 24px!important}
+#ppage.nist-csf-page .pp-hero>.wrap{grid-column:1;grid-row:1;width:100%;max-width:none;margin:0;padding:0;min-width:0}
+#ppage.nist-csf-page .pp-hero>.wrap>:not(.pph-scene){width:100%;max-width:100%!important}
+#ppage.nist-csf-page .pp-hero>.google-business-dashboard{position:relative!important;grid-column:2;grid-row:1;inset:auto!important;width:100%!important;max-width:none!important;height:auto!important;max-height:none;margin:0;padding:0}
+}
+
+/* Uppercase the native sections following the NIST source content. */
+#ppage.nist-csf-page .pp-body :is(.pp-sec,h2,h3){text-transform:uppercase!important}
+
+/* Match framework banner titles to the compact HRM banner reference. */
+@media(min-width:1001px){
+#ppage.nist-csf-page .pp-hero>.wrap{container-type:inline-size}
+#ppage.nist-csf-page .pp-hero>.wrap #ppTitle{display:flex!important;flex-wrap:nowrap!important;align-items:baseline;gap:.12em;white-space:nowrap!important;font-size:clamp(16px,3.8cqi,26px)!important;line-height:1.18!important}
+#ppage.nist-csf-page #ppTitle .pp-title-brand,#ppage.nist-csf-page #ppTitle .pp-title-name{display:inline!important;white-space:nowrap!important;margin:0!important;font-size:inherit!important;line-height:inherit!important}
+}
