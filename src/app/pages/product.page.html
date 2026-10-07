@@ -12,6 +12,7 @@
     [class.windows-servers-page]="slug() === 'windows-servers'"
     [class.domain-whois-page]="slug() === 'domain-whois-lookup'"
     [class.managed-oracle-page]="slug() === 'managed-oracle-cloud'"
+    [class.managed-database-reference-page]="slug() === 'managed-mongodb' || slug() === 'managed-redis'"
     [class.ai-lab-page]="slug() === 'ai-lab-as-service'"
     [class.ai-voicebot-page]="slug() === 'ai-voice-bot'"
     [class.infrastructure-page]="isInfrastructure()"
@@ -1000,6 +1001,14 @@
           <div class="pph-scene voicebot-hero-visual">
             <iframe src="/ai-voicebot-visual.html" title="AI Voice Agent call illustration" scrolling="no"></iframe>
           </div>
+        } @else if (slug() === 'managed-redis') {
+          <div class="pph-scene database-reference-hero-visual">
+            <xh-managed-redis-hero />
+          </div>
+        } @else if (slug() === 'managed-mongodb') {
+          <div class="pph-scene database-reference-hero-visual">
+            <xh-managed-mongodb-hero />
+          </div>
         } @else if (slug() === 'managed-oracle-cloud') {
           <div class="pph-scene oracle-hero-visual">
             <iframe src="/managed-oracle-visual.html" title="Oracle Data Guard architecture illustration" scrolling="no"></iframe>
@@ -1536,6 +1545,10 @@
                 qualifying, reminding and resolving in Hindi, English and 40+ languages. Built
                 and hosted by <span style="color:#e60012">Xcell</span>Host in India.
               </p>
+            } @else if (slug() === 'managed-redis') {
+              <p class="pp-tagline database-reference-hero-summary" id="ppTag">Sub-millisecond caching, sessions, queues and real-time data &mdash; with Sentinel failover, Redis Cluster, automatic backups and monitoring handled by XcellHost engineers. In Indian data centres, billed in INR.</p>
+            } @else if (slug() === 'managed-mongodb') {
+              <p class="pp-tagline database-reference-hero-summary" id="ppTag">Run MongoDB replica sets with automatic failover, scheduled backups, point-in-time recovery and deep monitoring &mdash; while XcellHost engineers handle patching, tuning and on-call. In Indian data centres, billed in INR.</p>
             } @else if (slug() === 'managed-oracle-cloud') {
               <p class="pp-tagline oracle-hero-summary" id="ppTag">
                 Oracle Database with Data Guard, RMAN and licence-aware architecture &mdash;
@@ -1695,6 +1708,13 @@
                     /></a>
                   </div>
                 </section>
+
+                @if (slug() === 'managed-mongodb' || slug() === 'managed-redis') {
+                  <div style="display:flex;align-items:center;gap:10px;margin:16px 0;color:#9fb8d8;font-size:11px;letter-spacing:.1em">
+                    <span>POWERED BY</span>
+                    <span style="display:inline-flex;padding:8px 16px;border-radius:10px;background:#fff"><img [src]="slug() === 'managed-redis' ? '/assets/images/managed-redis/redis-logo.svg' : '/assets/images/managed-mongodb/mongodb-logo.svg'" [alt]="slug() === 'managed-redis' ? 'Redis logo' : 'MongoDB logo'" style="height:22px;width:auto;max-width:130px" /></span>
+                  </div>
+                }
 
             @if (slug() === 'identity-resilience' || slug() === 'ediscovery-and-compliance') {
               <div class="druva-powered-by"><span>Powered by</span><span aria-hidden="true">|</span><img src="/assets/images/ai-resilience/druva.png" alt="Druva" width="40" height="40"><strong>Druva</strong></div>
@@ -2191,6 +2211,11 @@
           @if (slug() === 'managed-oracle-cloud') {
             <xh-managed-oracle-content />
           }
+          @if (slug() === 'managed-mongodb') {
+            <xh-managed-mongodb-content (quoteRequested)="requestManagedDatabaseQuote($event)" />
+          } @else if (slug() === 'managed-redis') {
+            <xh-managed-redis-content (quoteRequested)="requestManagedDatabaseQuote($event)" />
+          } @else {
           @if (slug() !== 'identity-resilience' && slug() !== 'ediscovery-and-compliance' && slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && slug() !== 'gpu-clusters' && slug() !== 'ai-chat-bot') {
           @if (slug() === 'marketplace') {
             <xh-marketplace-content />
@@ -5009,6 +5034,8 @@
           }
           }
           }
+          }
+
           @if (v.name !== 'Tally on Cloud') {
             @if (slug() === 'rtx-8000') {
               <xh-rtx-8000-stories />
@@ -5095,7 +5122,7 @@
             </div>
           }
           
-          <div id="ppRich" [hidden]="isFrameworkDetail() || slug() === 'comodo-personal-authentication' || slug() === 'digicert-smime-class-1' || slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin' || slug() === 'erp-next-hosting' || slug() === 'odoo-hosting' || slug() === 'email-backup' || slug() === 'sectigo-ssl-certificates' || slug() === 'microsoft-365-to-google-workspace-migration'">
+          <div id="ppRich" [hidden]="slug() === 'managed-mongodb' || slug() === 'managed-redis' || isFrameworkDetail() || slug() === 'comodo-personal-authentication' || slug() === 'digicert-smime-class-1' || slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin' || slug() === 'erp-next-hosting' || slug() === 'odoo-hosting' || slug() === 'email-backup' || slug() === 'sectigo-ssl-certificates' || slug() === 'microsoft-365-to-google-workspace-migration'">
 
 
 
@@ -5726,7 +5753,7 @@
 
           }
 
-        @if (slug() !== 'marketplace' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
+        @if (slug() !== 'managed-redis' && slug() !== 'managed-mongodb' && slug() !== 'marketplace' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
           @if (slug() === 'digicert-smime-class-1' || slug() === 'comodo-personal-authentication') {
             <section class="smime-testimonials" aria-labelledby="smimeTestimonialsTitle">
               <h2 class="pp-sec" id="smimeTestimonialsTitle">Customer Testimonials</h2>

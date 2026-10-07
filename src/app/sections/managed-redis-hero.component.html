@@ -1,0 +1,16 @@
+  <div class="clu" aria-label="Illustrative HA cluster">
+   <div class="clu-h"><span>redis-sentinel · MUMBAI</span><b>● HEALTHY</b></div>
+   <svg viewBox="0 0 440 190" role="img" aria-label="Primary replicating to a synchronous standby and two read replicas">
+    <path class="ln" id="l1" d="M150 60 H290"/><path class="ln" id="l2" d="M95 85 V130 H150"/><path class="ln" id="l3" d="M95 85 V130 H150 M200 130 H290"/>
+    <g class="nd pri" transform="translate(40,35)"><rect width="110" height="50" rx="10"/><text x="12" y="22">Primary</text><text class="t2" x="12" y="38">read / write</text></g>
+    <g class="nd" transform="translate(290,35)"><rect width="110" height="50" rx="10"/><text x="12" y="22">Replica</text><text class="t2" x="12" y="38">async · in sync</text></g>
+    <g class="nd" transform="translate(150,110)"><rect width="100" height="44" rx="10"/><text x="12" y="20">Sentinel ×3</text><text class="t2" x="12" y="35">quorum · watch</text></g>
+    <g class="nd" transform="translate(290,110)"><rect width="110" height="44" rx="10"/><text x="12" y="20">App</text><text class="t2" x="12" y="35">client · pool</text></g>
+    <circle class="dot" r="4"><animateMotion dur="1.6s" repeatCount="indefinite"><mpath href="#l1"/></animateMotion></circle>
+    <circle class="dot" r="4"><animateMotion dur="2.2s" repeatCount="indefinite"><mpath href="#l2"/></animateMotion></circle>
+    <circle class="dot" r="4"><animateMotion dur="2.8s" repeatCount="indefinite"><mpath href="#l3"/></animateMotion></circle>
+    <text x="175" y="52" fill="#9FB8D8" font-size="10" font-family="ui-monospace,monospace">replication</text>
+    <text x="40" y="180" fill="#9FB8D8" font-size="10" font-family="ui-monospace,monospace" id="lag">replication lag: 0.4 ms · last backup 12 min ago</text>
+   </svg>
+   <div class="term" aria-hidden="true"><div class="p">127.0.0.1:6379&gt; PING</div><div class="o">PONG</div><div class="p">127.0.0.1:6379&gt; INCR page:views:home</div><div class="o">(integer) 18291</div><div class="p">127.0.0.1:6379&gt; INFO replication</div><div class="o">role:master ? connected_slaves:1</div></div>
+  </div>

@@ -125,7 +125,7 @@
 
       <!-- PRICING -->
       <div class="pp-sec" id="pricing">Microsoft 365 pricing in India</div>
-      <p class="pp-ov" style="margin-bottom:18px">Choose annual upfront or a flexible monthly term. Prices are in INR, excluding GST.</p>
+      <p class="pp-ov" style="margin-bottom:18px">Choose annual upfront or a flexible monthly term. Use each card's toggle to show INR prices with or without 18% GST.</p>
       <div class="pp-toggle-wrap">
         <div class="pp-toggle" role="group" aria-label="Choose Microsoft 365 plans with or without Teams">
           <button
@@ -148,21 +148,29 @@
           <h4>@if (includesTeams()) {<a class="business-basic-detail-link" routerLink="/microsoft-365-business-basic">Business Basic</a>} @else {<a class="business-basic-detail-link" routerLink="/microsoft-365-business-basic-no-teams">Business Basic</a>}</h4>
           <div class="sub">Email, {{ includesTeams() ? 'Teams & ' : '' }}cloud apps</div>
           @if (includesTeams()) {
-            <p class="billing-list-price">MS list <s>&#8377;{{ basicTeamsListMonthly }}</s> /user/mo</p>
+            <p class="billing-list-price">MS list <s>&#8377;{{ displayPrice('basic', basicTeamsListMonthly) | number:'1.0-2' }}</s> /user/mo</p>
           }
+          <div class="billing-gst-row">
+            <span>Show prices</span>
+            <div class="billing-gst-toggle" role="group" aria-label="Business Basic GST display">
+              <button type="button" [class.active]="!includesGst()['basic']" [attr.aria-pressed]="!includesGst()['basic']" (click)="setGstOption('basic', false)">Excl. GST</button>
+              <button type="button" [class.active]="includesGst()['basic']" [attr.aria-pressed]="includesGst()['basic']" (click)="setGstOption('basic', true)">Incl. GST</button>
+            </div>
+          </div>
           <div class="billing-choices" role="group" aria-label="Business Basic payment frequency">
             @for (option of billingOptions; track option.id) {
               <button type="button" class="billing-choice" [class.chosen]="billingTerms()['basic'] === option.id" [class.upfront]="option.id === 'upfront'" [attr.aria-pressed]="billingTerms()['basic'] === option.id" (click)="setBillingTerm('basic', option.id)">
                 <span class="billing-choice-heading"><span>{{ option.label }}</span><span class="billing-choice-status">@if (includesTeams() && option.id === 'upfront') {<span class="billing-discount-badge">Save {{ basicTeamsUpfrontDiscount }}%</span>}<span class="billing-indicator" aria-hidden="true">@if (billingTerms()['basic'] === option.id) {&#10003;}</span></span></span>
-                @if (monthlyRate('basic', option.id); as rate) {
+                @if (displayPrice('basic', monthlyRate('basic', option.id)); as rate) {
                   <span class="billing-unit-price"><b>&#8377;{{ rate | number:'1.0-0' }}</b> /user/mo</span>
-                  @if (option.id !== 'monthly') {<span class="billing-annual-price">&#8377;{{ annualRate('basic', option.id) | number:'1.0-0' }} /user/year</span>}
+                  @if (option.id !== 'monthly') {<span class="billing-annual-price">&#8377;{{ displayPrice('basic', annualRate('basic', option.id)) | number:'1.0-0' }} /user/year</span>}
                 } @else {<span class="billing-unit-price"><b>Quote on request</b></span>}
                 <span class="billing-note">{{ option.note }}</span>
+                <span class="billing-tax-note">{{ includesGst()['basic'] ? 'Includes GST 18%' : 'Excludes GST 18% (added at billing)' }}</span>
                 <span class="billing-seat-total" aria-live="polite">
                   <span>&times; {{ quoteQuantities()['basic'] }} {{ quoteQuantities()['basic'] === 1 ? 'user' : 'users' }}</span>
-                  @if (billingTotal('basic', option.id); as total) {
-                    <span class="billing-seat-amount"><b>&#8377;{{ total | number:'1.0-2' }} /mo</b><b>&#8377;{{ billingTotal('basic', option.id, true) | number:'1.0-0' }} /year{{ option.id === 'monthly' ? ' equivalent' : '' }}</b></span>
+                  @if (displayPrice('basic', billingTotal('basic', option.id)); as total) {
+                    <span class="billing-seat-amount"><b>&#8377;{{ total | number:'1.0-2' }} /mo</b><b>&#8377;{{ displayPrice('basic', billingTotal('basic', option.id, true)) | number:'1.0-0' }} /year{{ option.id === 'monthly' ? ' equivalent' : '' }}</b></span>
                   } @else {<span class="billing-seat-amount">Quote for {{ quoteQuantities()['basic'] }} users</span>}
                 </span>
               </button>
@@ -192,21 +200,29 @@
           <h4>@if (includesTeams()) {<a class="business-basic-detail-link" routerLink="/microsoft-365-business-standard">Business Standard</a>} @else {<a class="business-basic-detail-link" routerLink="/microsoft-365-business-standard-no-teams">Business Standard</a>}</h4>
           <div class="sub">Full desktop apps{{ includesTeams() ? ' + Teams' : '' }}</div>
           @if (includesTeams()) {
-            <p class="billing-list-price">MS list <s>&#8377;{{ standardTeamsListMonthly }}</s> /user/mo</p>
+            <p class="billing-list-price">MS list <s>&#8377;{{ displayPrice('standard', standardTeamsListMonthly) | number:'1.0-2' }}</s> /user/mo</p>
           }
+          <div class="billing-gst-row">
+            <span>Show prices</span>
+            <div class="billing-gst-toggle" role="group" aria-label="Business Standard GST display">
+              <button type="button" [class.active]="!includesGst()['standard']" [attr.aria-pressed]="!includesGst()['standard']" (click)="setGstOption('standard', false)">Excl. GST</button>
+              <button type="button" [class.active]="includesGst()['standard']" [attr.aria-pressed]="includesGst()['standard']" (click)="setGstOption('standard', true)">Incl. GST</button>
+            </div>
+          </div>
           <div class="billing-choices" role="group" aria-label="Business Standard payment frequency">
             @for (option of billingOptions; track option.id) {
               <button type="button" class="billing-choice" [class.chosen]="billingTerms()['standard'] === option.id" [class.upfront]="option.id === 'upfront'" [attr.aria-pressed]="billingTerms()['standard'] === option.id" (click)="setBillingTerm('standard', option.id)">
                 <span class="billing-choice-heading"><span>{{ option.label }}</span><span class="billing-choice-status">@if (includesTeams() && option.id === 'upfront') {<span class="billing-discount-badge">Save {{ standardTeamsUpfrontDiscount }}%</span>}<span class="billing-indicator" aria-hidden="true">@if (billingTerms()['standard'] === option.id) {&#10003;}</span></span></span>
-                @if (monthlyRate('standard', option.id); as rate) {
+                @if (displayPrice('standard', monthlyRate('standard', option.id)); as rate) {
                   <span class="billing-unit-price"><b>&#8377;{{ rate | number:'1.0-0' }}</b> /user/mo</span>
-                  @if (option.id !== 'monthly') {<span class="billing-annual-price">&#8377;{{ annualRate('standard', option.id) | number:'1.0-0' }} /user/year</span>}
+                  @if (option.id !== 'monthly') {<span class="billing-annual-price">&#8377;{{ displayPrice('standard', annualRate('standard', option.id)) | number:'1.0-0' }} /user/year</span>}
                 } @else {<span class="billing-unit-price"><b>Quote on request</b></span>}
                 <span class="billing-note">{{ option.note }}</span>
+                <span class="billing-tax-note">{{ includesGst()['standard'] ? 'Includes GST 18%' : 'Excludes GST 18% (added at billing)' }}</span>
                 <span class="billing-seat-total" aria-live="polite">
                   <span>&times; {{ quoteQuantities()['standard'] }} {{ quoteQuantities()['standard'] === 1 ? 'user' : 'users' }}</span>
-                  @if (billingTotal('standard', option.id); as total) {
-                    <span class="billing-seat-amount"><b>&#8377;{{ total | number:'1.0-2' }} /mo</b><b>&#8377;{{ billingTotal('standard', option.id, true) | number:'1.0-0' }} /year{{ option.id === 'monthly' ? ' equivalent' : '' }}</b></span>
+                  @if (displayPrice('standard', billingTotal('standard', option.id)); as total) {
+                    <span class="billing-seat-amount"><b>&#8377;{{ total | number:'1.0-2' }} /mo</b><b>&#8377;{{ displayPrice('standard', billingTotal('standard', option.id, true)) | number:'1.0-0' }} /year{{ option.id === 'monthly' ? ' equivalent' : '' }}</b></span>
                   } @else {<span class="billing-seat-amount">Quote for {{ quoteQuantities()['standard'] }} users</span>}
                 </span>
               </button>
@@ -236,21 +252,29 @@
           <h4>@if (includesTeams()) {<a class="business-basic-detail-link" routerLink="/microsoft-365-business-premium">Business Premium</a>} @else {<a class="business-basic-detail-link" routerLink="/microsoft-365-business-premium-no-teams">Business Premium</a>}</h4>
           <div class="sub">Standard + enterprise security</div>
           @if (includesTeams()) {
-            <p class="billing-list-price">MS list <s>&#8377;{{ premiumTeamsListMonthly }}</s> /user/mo</p>
+            <p class="billing-list-price">MS list <s>&#8377;{{ displayPrice('premium', premiumTeamsListMonthly) | number:'1.0-2' }}</s> /user/mo</p>
           }
+          <div class="billing-gst-row">
+            <span>Show prices</span>
+            <div class="billing-gst-toggle" role="group" aria-label="Business Premium GST display">
+              <button type="button" [class.active]="!includesGst()['premium']" [attr.aria-pressed]="!includesGst()['premium']" (click)="setGstOption('premium', false)">Excl. GST</button>
+              <button type="button" [class.active]="includesGst()['premium']" [attr.aria-pressed]="includesGst()['premium']" (click)="setGstOption('premium', true)">Incl. GST</button>
+            </div>
+          </div>
           <div class="billing-choices" role="group" aria-label="Business Premium payment frequency">
             @for (option of billingOptions; track option.id) {
               <button type="button" class="billing-choice" [class.chosen]="billingTerms()['premium'] === option.id" [class.upfront]="option.id === 'upfront'" [attr.aria-pressed]="billingTerms()['premium'] === option.id" (click)="setBillingTerm('premium', option.id)">
                 <span class="billing-choice-heading"><span>{{ option.label }}</span><span class="billing-choice-status">@if (includesTeams() && option.id === 'upfront') {<span class="billing-discount-badge">Save {{ premiumTeamsUpfrontDiscount }}%</span>}<span class="billing-indicator" aria-hidden="true">@if (billingTerms()['premium'] === option.id) {&#10003;}</span></span></span>
-                @if (monthlyRate('premium', option.id); as rate) {
+                @if (displayPrice('premium', monthlyRate('premium', option.id)); as rate) {
                   <span class="billing-unit-price"><b>&#8377;{{ rate | number:'1.0-0' }}</b> /user/mo</span>
-                  @if (option.id !== 'monthly') {<span class="billing-annual-price">&#8377;{{ annualRate('premium', option.id) | number:'1.0-0' }} /user/year</span>}
+                  @if (option.id !== 'monthly') {<span class="billing-annual-price">&#8377;{{ displayPrice('premium', annualRate('premium', option.id)) | number:'1.0-0' }} /user/year</span>}
                 } @else {<span class="billing-unit-price"><b>Quote on request</b></span>}
                 <span class="billing-note">{{ option.note }}</span>
+                <span class="billing-tax-note">{{ includesGst()['premium'] ? 'Includes GST 18%' : 'Excludes GST 18% (added at billing)' }}</span>
                 <span class="billing-seat-total" aria-live="polite">
                   <span>&times; {{ quoteQuantities()['premium'] }} {{ quoteQuantities()['premium'] === 1 ? 'user' : 'users' }}</span>
-                  @if (billingTotal('premium', option.id); as total) {
-                    <span class="billing-seat-amount"><b>&#8377;{{ total | number:'1.0-2' }} /mo</b><b>&#8377;{{ billingTotal('premium', option.id, true) | number:'1.0-0' }} /year{{ option.id === 'monthly' ? ' equivalent' : '' }}</b></span>
+                  @if (displayPrice('premium', billingTotal('premium', option.id)); as total) {
+                    <span class="billing-seat-amount"><b>&#8377;{{ total | number:'1.0-2' }} /mo</b><b>&#8377;{{ displayPrice('premium', billingTotal('premium', option.id, true)) | number:'1.0-0' }} /year{{ option.id === 'monthly' ? ' equivalent' : '' }}</b></span>
                   } @else {<span class="billing-seat-amount">Quote for {{ quoteQuantities()['premium'] }} users</span>}
                 </span>
               </button>

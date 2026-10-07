@@ -143,6 +143,10 @@ import { GpuLeadHeroComponent } from '../sections/gpu-lead-hero.component';
 import { DomainWhoisContentComponent } from '../sections/domain-whois-content.component';
 import { DomainWhoisFaqComponent } from '../sections/domain-whois-faq.component';
 import { ManagedOracleContentComponent } from '../sections/managed-oracle-content.component';
+import { ManagedRedisContentComponent } from '../sections/managed-redis-content.component';
+import { ManagedRedisHeroComponent } from '../sections/managed-redis-hero.component';
+import { ManagedMongoDbContentComponent } from '../sections/managed-mongodb-content.component';
+import { ManagedMongodbHeroComponent } from '../sections/managed-mongodb-hero.component';
 import { ManagedOracleFaqComponent } from '../sections/managed-oracle-faq.component';
 import { AiVoicebotContentComponent } from '../sections/ai-voicebot-content.component';
 import { AiVoicebotFaqComponent } from '../sections/ai-voicebot-faq.component';
@@ -430,6 +434,10 @@ interface ProductTourSlide {
     DomainWhoisContentComponent,
     DomainWhoisFaqComponent,
     ManagedOracleContentComponent,
+    ManagedMongoDbContentComponent,
+    ManagedRedisContentComponent,
+    ManagedRedisHeroComponent,
+    ManagedMongodbHeroComponent,
     ManagedOracleFaqComponent,
     AiLabContentComponent,
     GoogleBusinessContentComponent,
@@ -588,6 +596,32 @@ interface ProductTourSlide {
   ],
   templateUrl: './product.page.html',
   styles: [`
+    #ppage .database-reference-hero-visual { right: 2%; width: 38%; padding: 20px; opacity: 1; mask-image: none; }
+    #ppage.managed-database-reference-page .pp-hero #ppTitle,
+    #ppage.managed-database-reference-page .pp-hero .database-reference-hero-summary { width: 100%; max-width: 100%; white-space: normal; text-wrap: wrap; overflow-wrap: normal; text-align: left; }
+    #ppage.managed-database-reference-page .pp-hero > .wrap { container-type: inline-size; }
+    #ppage.managed-database-reference-page .pp-hero #ppTitle { display: flex; flex-wrap: nowrap; white-space: nowrap; font-size: clamp(12px, 5.4cqi, 36px) !important; }
+    #ppage.managed-database-reference-page .pp-hero #ppTitle .pp-brand-xcell { width: auto; }
+    #ppage.managed-database-reference-page .pp-hero #ppTitle .pp-title-name { display: inline; flex-basis: auto; min-width: 0; white-space: nowrap; }
+    #ppage.managed-database-reference-page .pp-hero .pp-typewriter { width: 100%; max-width: 100%; white-space: nowrap; overflow-wrap: normal; }
+    #ppage.managed-database-reference-page .pp-typewriter i { flex-shrink: 0; }
+    @media (max-width: 600px) {
+      #ppage.managed-database-reference-page .pp-hero .pp-typewriter { font-size: clamp(11px, 3.4vw, 18px); }
+    }
+    @media (min-width: 901px) {
+      #ppage.managed-database-reference-page > .pp-hero { display: grid; grid-template-columns: minmax(0, 620px) minmax(0, 450px); justify-content: center; gap: 48px; padding-inline: 24px; }
+      #ppage.managed-database-reference-page > .pp-hero > .wrap { grid-column: 1; grid-row: 1; min-width: 0; width: 100%; max-width: none; margin: 0; padding: 0; }
+      #ppage.managed-database-reference-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-hero-grid) { width: 100%; max-width: 100%; }
+      #ppage.ppage.managed-database-reference-page > .pp-hero > .pph-scene.database-reference-hero-visual { position: relative; grid-column: 2; grid-row: 1; inset: auto; width: 100%; max-width: none; min-width: 0; padding: 0; }
+    }
+    @media (max-width: 900px) {
+      #ppage.managed-database-reference-page .pp-hero #ppTitle,
+      #ppage.managed-database-reference-page .pp-hero .database-reference-hero-summary { width: 100%; max-width: 100%; }
+      #ppage .database-reference-hero-visual { position: relative; inset: auto; width: 100%; max-width: 600px; margin: 24px auto; }
+      #ppage .pp-hero:has(.database-reference-hero-visual) { display: flex; flex-direction: column; }
+      #ppage .pp-hero:has(.database-reference-hero-visual) > .wrap { order: -1; width: 100%; }
+    }
+
     .colocation-body { container-type: inline-size; }
     .colocation-body > .wrap > .pp-sec,
     .colocation-body #ppBlog { margin-top: 48px; }
@@ -1667,7 +1701,7 @@ interface ProductTourSlide {
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductPage {
+class ProductPageComponent {
   private readonly topics = inject(CallbackTopicService);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
@@ -2461,7 +2495,7 @@ export class ProductPage {
   ]);
 
   usesSuppliedSmbHero(): boolean {
-    return ProductPage.SUPPLIED_SMB_HERO_SLUGS.has(this.slug());
+    return ProductPageComponent.SUPPLIED_SMB_HERO_SLUGS.has(this.slug());
   }
 
   readonly isMicrosoftEnterprisePage = computed(() =>
@@ -3750,7 +3784,7 @@ export class ProductPage {
       });
     }
 
-    const name = ProductPage.EXTRA_NAMES.find((k) => slugify(k) === slug);
+    const name = ProductPageComponent.EXTRA_NAMES.find((k) => slugify(k) === slug);
     return name ? this.products.build({ name }) : null;
   }
 
@@ -3912,6 +3946,11 @@ export class ProductPage {
 
   requestMicrosoftDefenderQuote(request: string): void {
     this.topics.ask(`Microsoft Defender for Business - ${request}`);
+    this.overlay.open('callback');
+  }
+
+  requestManagedDatabaseQuote(request: string): void {
+    this.topics.ask(request);
     this.overlay.open('callback');
   }
 
@@ -4317,3 +4356,5 @@ export class ProductPage {
     };
   }
 }
+
+export { ProductPageComponent as ProductPage };

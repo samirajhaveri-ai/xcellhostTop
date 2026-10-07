@@ -39,6 +39,7 @@ export class Microsoft365SmbPage {
     { label: 'Insights', target: 'm365Insights' },
   ] as const;
   readonly includesTeams = signal(true);
+  readonly includesGst = signal<Record<BusinessPlan, boolean>>({ basic: false, standard: false, premium: false });
   readonly billingOptions: { id: BillingTerm; label: string; note: string }[] = [
     { id: 'upfront', label: 'Annual · paid upfront', note: '1-year commitment · one annual payment' },
     { id: 'monthly', label: 'Monthly · no commitment', note: 'Month-to-month · cancel anytime' },
@@ -58,6 +59,7 @@ export class Microsoft365SmbPage {
     premium: [18780, Math.round(this.premiumTeamsListMonthly * 12 * (1 - this.premiumTeamsUpfrontDiscount / 100))],
   };
   private readonly monthlyRates = { basic: 200, standard: 1011, premium: 2152 };
+  private readonly noTeamsMonthlyRates = { basic: 153, standard: 782, premium: 1840 };
   readonly quoteQuantities = signal<Record<string, number>>({
     basic: 1,
     standard: 1,
@@ -103,10 +105,17 @@ export class Microsoft365SmbPage {
     this.billingTerms.update(terms => ({ ...terms, [plan]: term }));
   }
 
+  setGstOption(plan: BusinessPlan, included: boolean): void {
+    this.includesGst.update(options => ({ ...options, [plan]: included }));
+  }
+
+  displayPrice(plan: BusinessPlan, amount: number | null): number | null {
+    return amount === null ? null : amount * (this.includesGst()[plan] ? 1.18 : 1);
+  }
+
   monthlyRate(plan: BusinessPlan, term: BillingTerm): number | null {
     if (term === 'upfront') return this.annualRates[plan][this.includesTeams() ? 1 : 0] / 12;
-    if (!this.includesTeams()) return null;
-    return this.monthlyRates[plan];
+    return this.includesTeams() ? this.monthlyRates[plan] : this.noTeamsMonthlyRates[plan];
   }
 
   annualRate(plan: BusinessPlan, term: BillingTerm): number | null {
