@@ -114,6 +114,28 @@
         }
       </section>
     }
+    @if (isVmc()) {
+      <section class="supplied-smb-hero-shell" aria-label="Verified Mark Certificates interactive hero">
+        <iframe
+          class="supplied-smb-hero-frame"
+          src="/assets/heroes/vmc-hero.html"
+          title="Verified Mark Certificates interactive overview"
+          loading="eager"
+          scrolling="no"
+        ></iframe>
+      </section>
+    }
+    @if (isCmc()) {
+      <section class="supplied-smb-hero-shell" aria-label="DigiCert Common Mark Certificate interactive hero">
+        <iframe
+          class="supplied-smb-hero-frame"
+          src="/assets/heroes/cmc-hero.html"
+          title="DigiCert Common Mark Certificate interactive overview"
+          loading="eager"
+          scrolling="no"
+        ></iframe>
+      </section>
+    }
     @if (isCloudDrive()) {
       <section class="cloud-drive-source-answer" aria-labelledby="cloudDriveSourceTitle">
         <div class="wrap">
@@ -380,7 +402,7 @@
           (talkRequested)="openCallback($event)"
         />
       } @else {
-      @if (slug() !== 'performance-cloud' && slug() !== 'gpu-servers') {
+      @if (!isVmc() && !isCmc() && slug() !== 'performance-cloud' && slug() !== 'gpu-servers') {
       <div
         class="pp-hero"
         [class.sitelock-hero]="v.name === 'Web Security (SiteLock)'"

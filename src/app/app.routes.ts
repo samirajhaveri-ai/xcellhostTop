@@ -47,6 +47,11 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
 
   },
+  {
+    path: 'cybird-checkout',
+    data: { checkoutProduct: 'cybird' },
+    loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
+  },
   ...[...MENU_SERVICE_PAGES, ...INDUSTRY_CLOUD_PAGES].filter((page) => page.slug !== 'smart-qr-and-nfc-automation' && page.slug !== 'gcc-cloud').map((page) => ({
     path: page.slug,
     data: { servicePage: page },
@@ -484,6 +489,8 @@ export const routes: Routes = [
     data: { productSlug: 'cloud-drive' },
     loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
   },
+  { path: 'microsoft-365', redirectTo: 'microsoft-365-smb', pathMatch: 'full' },
+  { path: 'secure-dmarc', redirectTo: 'enterprise-dmarc', pathMatch: 'full' },
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
   { path: '**', redirectTo: '' },
 ];

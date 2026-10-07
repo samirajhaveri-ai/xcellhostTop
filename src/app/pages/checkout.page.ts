@@ -22,17 +22,38 @@ export class CheckoutPage implements OnDestroy {
   private observer?: ResizeObserver;
   private readonly route = inject(ActivatedRoute);
   private readonly sanitizer = inject(DomSanitizer);
-  private readonly isRmm = this.route.snapshot.data['checkoutProduct'] === 'rmm';
-  readonly productLabel = this.isRmm ? 'RMM' : 'EDR';
+  private readonly checkoutProduct = this.route.snapshot.data['checkoutProduct'] as
+    | 'edr'
+    | 'rmm'
+    | 'cybird';
+  readonly productLabel =
+    this.checkoutProduct === 'rmm'
+      ? 'RMM'
+      : this.checkoutProduct === 'cybird'
+        ? 'Cybird SMB Cyber Security Appliance'
+        : 'EDR';
+  private readonly checkoutFile =
+    this.checkoutProduct === 'rmm'
+      ? 'xcellhost-rmm-checkout.html'
+      : this.checkoutProduct === 'cybird'
+        ? 'xcellhost-cybird-checkout.html'
+        : 'xcellhost-checkout.html';
+  private readonly checkoutParams = new URLSearchParams(
+    this.checkoutProduct === 'rmm'
+      ? {
+          term: this.route.snapshot.queryParamMap.get('term') || '1y',
+          quantity: this.route.snapshot.queryParamMap.get('quantity') || '1',
+        }
+      : this.checkoutProduct === 'edr'
+        ? {
+            product: 'acronis-edr',
+            billing: this.route.snapshot.queryParamMap.get('billing') || '1-year',
+            quantity: this.route.snapshot.queryParamMap.get('quantity') || '1',
+          }
+        : {},
+  );
   readonly checkoutUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-    `/assets/${this.isRmm ? 'xcellhost-rmm-checkout.html' : 'xcellhost-checkout.html'}?${new URLSearchParams(this.isRmm ? {
-      term: this.route.snapshot.queryParamMap.get('term') || '1y',
-      quantity: this.route.snapshot.queryParamMap.get('quantity') || '1',
-    } : {
-      product: 'acronis-edr',
-      billing: this.route.snapshot.queryParamMap.get('billing') || '1-year',
-      quantity: this.route.snapshot.queryParamMap.get('quantity') || '1',
-    })}`,
+    `/assets/${this.checkoutFile}${this.checkoutParams.size ? `?${this.checkoutParams}` : ''}`,
   );
 
   constructor() {

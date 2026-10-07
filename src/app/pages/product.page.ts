@@ -2000,6 +2000,23 @@ export class ProductPage {
       image: '/assets/images/vmc-tour-verified-mark.png',
     },
   ];
+  readonly cmcTourSlides: readonly ProductTourSlide[] = [
+    {
+      title: 'Display your brand logo in the inbox',
+      description: 'See how a Common Mark Certificate replaces the generic sender avatar with a recognisable brand logo.',
+      image: '/assets/images/cmc-tour-logo-display.png',
+    },
+    {
+      title: 'Unverified inbox compared with CMC',
+      description: 'Compare an unverified inbox with the branded sender experience enabled by a Common Mark Certificate.',
+      image: '/assets/images/cmc-tour-unverified-vs-cmc.png',
+    },
+    {
+      title: 'Before and after CMC activation',
+      description: 'See the visual difference when authenticated brand logos appear beside messages in supported inboxes.',
+      image: '/assets/images/cmc-tour-before-after.png',
+    },
+  ];
   readonly tsplusServerMonitoringTourSlides: readonly ProductTourSlide[] = [
     {
       title: 'Real-time server dashboard',
@@ -2121,6 +2138,7 @@ export class ProductPage {
     if (view.name === 'Acronis True Image') return this.acronisTrueImageTourSlides;
     if (view.name === 'Microsoft 365 Backup') return this.microsoft365BackupTourSlides;
     if (this.isVmc()) return this.vmcTourSlides;
+    if (this.isCmc()) return this.cmcTourSlides;
     if (this.isTsplusServerMonitoring()) return this.tsplusServerMonitoringTourSlides;
     if (this.isTsplusRemoteSupport()) return this.tsplusRemoteSupportTourSlides;
     if (this.isTsplusAdvancedSecurity()) return this.tsplusAdvancedSecurityTourSlides;
@@ -3839,10 +3857,13 @@ export class ProductPage {
     this.buyPlan(plan, ev);
   }
 
-  /** Keep the existing dialogs available from every standalone SMB hero. */
+  /** Keep the existing dialogs available from every standalone embedded hero. */
   @HostListener('window:message', ['$event'])
   onSuppliedSmbHeroMessage(event: MessageEvent<unknown>): void {
-    if (!this.usesSuppliedSmbHero() || event.origin !== window.location.origin) return;
+    if (
+      (!this.usesSuppliedSmbHero() && !this.isVmc() && !this.isCmc()) ||
+      event.origin !== window.location.origin
+    ) return;
     const frame = Array.from(
       document.querySelectorAll<HTMLIFrameElement>('iframe.supplied-smb-hero-frame'),
     ).find((candidate) => candidate.contentWindow === event.source);
@@ -3984,8 +4005,29 @@ export class ProductPage {
 
   selectCybirdPlan(plan: CybirdPlan, ev: Event): void {
     ev.preventDefault();
-    this.topics.ask(`Cybird ${plan.name} - ${this.activeCybirdTerm().label}`);
-    this.overlay.open('callback');
+    const packageId = plan.name.toLowerCase();
+    const termId = this.selectedCybirdTerm();
+
+    try {
+      const stored = JSON.parse(window.localStorage.getItem('xcellhost_cybird_cart') || '{}');
+      window.localStorage.setItem(
+        'xcellhost_cybird_cart',
+        JSON.stringify({
+          ...stored,
+          packageId,
+          termId,
+          quantity: 1,
+          inCart: false,
+        }),
+      );
+    } catch {
+      window.localStorage.setItem(
+        'xcellhost_cybird_cart',
+        JSON.stringify({ packageId, termId, quantity: 1, inCart: false }),
+      );
+    }
+
+    window.location.assign('/cybird-checkout');
   }
 
   selectTallyTerm(term: TallyTerm): void {
