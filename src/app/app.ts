@@ -124,7 +124,7 @@ export class App {
 
     const target = event.target as Element | null;
     const cta = target?.closest<HTMLElement>('a, button');
-    if (!cta || cta.hasAttribute('disabled')) return;
+    if (!cta || cta.hasAttribute('disabled') || cta.dataset['ctaHandled'] === 'true') return;
 
     const label = (cta.textContent ?? '').replace(/\s+/g, ' ').trim();
     if (/\binfosheet\b/i.test(label)) {

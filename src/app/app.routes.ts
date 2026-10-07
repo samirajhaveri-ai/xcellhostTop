@@ -10,6 +10,7 @@ export const routes: Routes = [
     path: 'microsoft-365-tenant-to-tenant-migration',
     loadComponent: () => import('./pages/microsoft-365-tenant-to-tenant-migration.page').then((m) => m.Microsoft365TenantToTenantMigrationPage),
   },
+
   ...Object.keys(FRAMEWORK_DETAILS).map(slug => ({ path: 'cybersecurity-frameworks/' + slug, data: { productSlug: slug }, loadComponent: () => import('./pages/product.page').then(m => m.ProductPage) })),
   {
     path: 'microsoft-365-business-standard-no-teams',
@@ -45,6 +46,10 @@ export const routes: Routes = [
     data: { checkoutProduct: 'rmm' },
     loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
 
+  },
+  {
+    path: 'managed-redis',
+    loadComponent: () => import('./pages/managed-redis.page').then((m) => m.ManagedRedisPage),
   },
   ...[...MENU_SERVICE_PAGES, ...INDUSTRY_CLOUD_PAGES].filter((page) => page.slug !== 'smart-qr-and-nfc-automation' && page.slug !== 'gcc-cloud').map((page) => ({
     path: page.slug,
