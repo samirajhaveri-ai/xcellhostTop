@@ -1,0 +1,82 @@
+<div class="redis-tail-body">
+  <div class="wrap">
+    <section aria-labelledby="redisSecurityTitle">
+      <h2 class="pp-sec" id="redisSecurityTitle">Security &amp; compliance — Managed Redis</h2>
+      <p class="pp-ov">Keep your cache, sessions and queues protected with encrypted connections, controlled access and private networking. XcellHost manages patching, monitoring and backups; your team controls application access and the data stored in Redis.</p>
+      <div class="pp-secrows">
+        @for (row of securityRows; track row[0]) {
+          <div class="psrow"><span class="psk">{{ row[0] }}</span><span class="psv">{{ row[1] }}</span></div>
+        }
+      </div>
+      <p class="pp-secfoot">Indian data centres · INR billing with GST · 24×7 monitoring &amp; support · Recovery requirements agreed during onboarding.</p>
+    </section>
+
+    <section aria-labelledby="redisWhyTitle">
+      <h2 class="pp-sec" id="redisWhyTitle">Why XcellHost for Managed Redis?</h2>
+      <div class="pp-why" xhReveal>
+        @for (item of why; track item.title) {
+          <article class="pw">
+            <span class="pw-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path [attr.d]="item.icon" /></svg></span>
+            <h3>{{ item.title }}</h3><p>{{ item.body }}</p>
+          </article>
+        }
+      </div>
+    </section>
+
+    <section class="redis-videos" aria-labelledby="redisVideosTitle">
+      <h2 class="pp-sec" id="redisVideosTitle">Watch it in action</h2>
+      <div class="redis-video-grid">
+        @for (video of videos; track video.title) {
+          <article class="redis-video-card" xhReveal>
+            <h3><span>{{ video.label }}</span></h3>
+            <div class="redis-video-frame">
+              <xh-resource-video [src]="video.src" [title]="video.title" [poster]="video.poster || ''" />
+            </div>
+            <a [href]="video.resource" target="_blank" rel="noopener noreferrer">{{ video.title }} <span aria-hidden="true">↗</span></a>
+          </article>
+        }
+      </div>
+    </section>
+
+    <section aria-labelledby="redisReviewsTitle">
+      <h2 class="pp-sec" id="redisReviewsTitle">What customers say</h2>
+      <div class="pp-tcards">
+        @for (review of reviews; track review.name) {
+          <article class="tcard" xhReveal>
+            <div class="quote-badge" aria-hidden="true">”</div>
+            <div class="tav" aria-hidden="true">{{ review.initials }}</div>
+            <h3 class="tname">{{ review.name }}</h3><div class="trole">{{ review.role }}</div>
+            <div class="tstars" [attr.aria-label]="review.stars + ' out of 5 stars'">★★★★★</div>
+            <p>{{ review.quote }}</p>
+          </article>
+        }
+      </div>
+    </section>
+
+    <section aria-labelledby="faq">
+      <h2 class="pp-sec" id="faq">Frequently asked questions</h2>
+      <div class="pp-faq"><xh-product-faq [faqs]="faqs" idPrefix="redisFaqAnswer" /></div>
+    </section>
+  </div>
+</div>
+
+<xh-insights-section pageSlug="managed-redis" [pageAliases]="['redis']" [videos]="videos" [articles]="articles" videoDescription="Explore Redis Insight demos for browsing data, debugging commands and understanding Redis workloads." videoLibraryUrl="https://redis.io/resources/videos/" />
+
+<div class="redis-tail-footer">
+  <div class="wrap">
+    <section class="pp-cta" id="lead" aria-labelledby="redisCtaTitle" xhReveal>
+      <div class="redis-cta-copy"><h2 id="redisCtaTitle">Ready to start with Managed Redis?</h2><p>FREE Consultation · Migration planning · INR billing with GST · 24×7 support</p></div>
+      <div class="redis-cta-actions">
+        <button class="btn btn-primary" type="button" (click)="openCallback()">Request a callback</button>
+        <button class="btn btn-ghost" type="button" (click)="openCallback('deployment quote')">⚡ Buy Now</button>
+        <button class="btn btn-ghost" type="button" (click)="requestDoc('infosheet')">⬇ Infosheet</button>
+        <button class="btn btn-ghost" type="button" (click)="requestDoc('presentation')">▣ Presentation</button>
+        <a class="btn btn-ghost" href="https://wa.me/918657032540?text=I%20would%20like%20to%20discuss%20Managed%20Redis" target="_blank" rel="noopener noreferrer">Talk on WhatsApp</a>
+        <a class="btn btn-ghost" href="mailto:sales&#64;xcellhost.cloud?subject=Managed%20Redis%20enquiry">Email Us</a>
+      </div>
+      <a class="pp-cta-buddha-link" routerLink="/company/support-overview" aria-label="Visit XcellHost customer support"><img class="pp-cta-buddha" src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost customer support" width="104" height="104" loading="lazy" /></a>
+    </section>
+    <div class="pp-proof"><span>Indian data centres</span><span>24×7 Redis support</span><span>TLS + Redis ACLs</span><span>Hourly backups</span><span>INR billing · GST invoices</span></div>
+    <p class="photo-credit">The hero cluster diagram and console output are illustrative. Redis is a trademark of Redis Ltd. XcellHost is not affiliated with Redis Ltd. Videos: Redis. Photography: Unsplash.</p>
+  </div>
+</div>

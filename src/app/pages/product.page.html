@@ -12,6 +12,9 @@
     [class.windows-servers-page]="slug() === 'windows-servers'"
     [class.domain-whois-page]="slug() === 'domain-whois-lookup'"
     [class.managed-oracle-page]="slug() === 'managed-oracle-cloud'"
+    [class.managed-mongodb-page]="slug() === 'managed-mongodb'"
+    [class.ai-receptionist-page]="slug() === 'ai-receptionist'"
+    [class.vsaas-page]="slug() === 'video-surveillance-as-a-service'"
     [class.ai-lab-page]="slug() === 'ai-lab-as-service'"
     [class.ai-voicebot-page]="slug() === 'ai-voice-bot'"
     [class.infrastructure-page]="isInfrastructure()"
@@ -401,6 +404,8 @@
           (tourRequested)="openProductScreenshotTour()"
           (talkRequested)="openCallback($event)"
         />
+      } @else if (isFrameworkDetail()) {
+        <xh-nist-csf-2-0-content [slug]="slug()" [hero]="true" />
       } @else {
       @if (!isVmc() && !isCmc() && slug() !== 'performance-cloud' && slug() !== 'gpu-servers') {
       <div
@@ -1133,6 +1138,18 @@
           <div class="pph-scene smime-reference-hero"><xh-digicert-smime-hero /></div>
         } @else if (slug() === 'comodo-personal-authentication') {
           <div class="pph-scene smime-reference-hero"><xh-comodo-pa-hero /></div>
+        } @else if (slug() === 'managed-mongodb') {
+          <div class="pph-scene mongodb-hero-art">
+            <xh-managed-mongodb-hero />
+          </div>
+        } @else if (slug() === 'ai-receptionist') {
+          <div class="pph-scene ai-receptionist-hero-art">
+            <xh-ai-receptionist-hero />
+          </div>
+        } @else if (slug() === 'video-surveillance-as-a-service') {
+          <div class="pph-scene vsaas-hero-art">
+            <xh-vsaas-hero />
+          </div>
         } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
 
           <div class="pph-scene has-illus standalone-illus" id="pphScene" aria-hidden="true">
@@ -1505,6 +1522,15 @@
                 <span class="comodo-title-line"><span class="pp-title-brand" aria-label="XcellID"><span class="pp-brand-xcell">Xcell</span><span class="pp-brand-family">ID</span></span> | Comodo Personal</span>
                 <span class="comodo-title-line">Authentication</span>
               </h1>
+            } @else if (slug() === 'managed-mongodb') {
+              <h1 id="ppTitle" class="mongodb-hero-title">
+                <span class="mongodb-title-line">
+                  <span class="pp-title-brand" [attr.aria-label]="'Xcell' + v.brandSuffix"><span class="pp-brand-xcell">Xcell</span><span class="pp-brand-family">{{ v.brandSuffix }}</span></span>
+                  <span class="pp-title-divider" aria-hidden="true">|</span>
+                  <span>Managed</span>
+                </span>
+                <span class="mongodb-title-line">MongoDB</span>
+              </h1>
             } @else {
             <h1 id="ppTitle" [class.pp-title-compact]="compactHeroTitle()"
               [xhFitBannerTitle]="!!v.heroMessages[0]?.toLowerCase()?.startsWith('maximise online visibility')">
@@ -1717,6 +1743,20 @@
                     /></a>
                   </div>
                 </section>
+
+                @if (slug() === 'video-surveillance-as-a-service') {
+                  <div class="vsaas-powered" aria-label="Powered by XcellCamCloud">
+                    <small>POWERED BY</small>
+                    <span title="XcellCamCloud"><b>XcellCamCloud</b></span>
+                  </div>
+                }
+
+                @if (slug() === 'managed-mongodb') {
+                  <div class="mongodb-powered">
+                    <small>POWERED BY</small>
+                    <span title="MongoDB"><img src="/assets/images/managed-mongodb/mongodb-logo.svg" alt="MongoDB logo" width="22" height="22" /></span>
+                  </div>
+                }
 
             @if (slug() === 'identity-resilience' || slug() === 'ediscovery-and-compliance') {
               <div class="druva-powered-by"><span>Powered by</span><span aria-hidden="true">|</span><img src="/assets/images/ai-resilience/druva.png" alt="Druva" width="40" height="40"><strong>Druva</strong></div>
@@ -2337,7 +2377,7 @@
                 <xh-whatsapp-smb-content />
               } @else {
                 @if (slug() === 'video-surveillance-as-a-service') {
-                  <xh-cloud-cctv-content />
+                  <xh-cloud-cctv-content (quoteRequested)="openCallback($event.event, $event.configuration)" />
                 }
                 @if (slug() !== 'domain-whois-lookup' && slug() !== 'managed-oracle-cloud' && slug() !== 'ai-voice-bot') {
                 @if (!isSiteLock()) {
@@ -2467,6 +2507,11 @@
                       </section>
                     } @else if (slug() === 'billing-software') {
                       <xh-billing-software-overview />
+                    } @else if (slug() === 'managed-mongodb') {
+                      <xh-managed-mongodb-content (quoteRequested)="openCallback($event.event, $event.configuration)" />
+                    } @else if (slug() === 'ai-receptionist') {
+                      <!-- The supplied AI Receptionist overview includes demo and pricing sections. -->
+                      <xh-ai-receptionist-content (trialRequested)="openCallback($event.event, $event.configuration)" />
                     } @else if (slug() === 'digital-menu-and-catalog-management') {
                       <xh-digital-menu-overview (quoteRequested)="openCallback($event.event, $event.plan)" />
                       <xh-digital-menu-tail />
@@ -3259,6 +3304,10 @@
                   <xh-billing-software-tail (quoteRequested)="openCallback($event.event, $event.plan)" />
                 } @else if (slug() === 'digital-menu-and-catalog-management') {
                   <!-- Buying options are included in the supplied digital menu overview above. -->
+                } @else if (slug() === 'managed-mongodb') {
+                  <!-- MongoDB pricing renders with the supplied database content above. -->
+                } @else if (slug() === 'ai-receptionist') {
+                  <!-- AI Receptionist plans render with the supplied overview above. -->
                 } @else if (slug() === 'ai-review-magicqr') {
                   <xh-ai-review-magicqr-tail (quoteRequested)="openCallback($event.event, $event.plan)" />
                 } @else if (slug() === 'cloud-disaster-recovery-for-enterprise') {
@@ -3471,6 +3520,10 @@
                   <xh-rtx-6000-ada-details />
                 } @else if (slug() === 'rtx-a6000') {
                   <xh-rtx-a6000-details />
+                } @else if (slug() === 'managed-mongodb') {
+                  <xh-managed-mongodb-followup />
+                } @else if (slug() === 'ai-receptionist') {
+                  <!-- Why XcellHost cards are included in the supplied AI Receptionist content. -->
                 } @else if (
                   slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'microsoft-365-to-google-workspace-migration' && slug() !== 'sectigo-ssl-certificates' && slug() !== 'email-backup' && slug() !== 'odoo-hosting' && slug() !== 'erp-next-hosting' && !isFrameworkDetail() && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
                   slug() !== 'imunify360' &&
@@ -4112,6 +4165,10 @@
                   <xh-rtx-6000-ada-specifications />
                 } @else if (slug() === 'rtx-a6000') {
                   <xh-rtx-a6000-performance />
+                } @else if (slug() === 'managed-mongodb') {
+                  <!-- Team benefits are included in the MongoDB follow-up sections above. -->
+                } @else if (slug() === 'ai-receptionist') {
+                  <!-- The supplied Why XcellHost cards replace the generic benefits block. -->
                 } @else if (
                   slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'microsoft-365-to-google-workspace-migration' && slug() !== 'sectigo-ssl-certificates' && slug() !== 'email-backup' && slug() !== 'odoo-hosting' && slug() !== 'erp-next-hosting' && !isFrameworkDetail() && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
                   slug() !== 'imunify360' &&
@@ -4751,6 +4808,10 @@
                   <xh-rtx-pro-6000-showcase />
                 } @else if (slug() === 'nvidia-rtx-6000-ada') {
                   <xh-rtx-6000-ada-showcase />
+                } @else if (slug() === 'managed-mongodb') {
+                  <!-- Database use cases are included in the MongoDB follow-up sections above. -->
+                } @else if (slug() === 'ai-receptionist') {
+                  <!-- The supplied Why XcellHost cards replace the generic use cases block. -->
                 } @else if (
                   slug() !== 'imunify360' &&
                   slug() !== 'plesk-servers' && slug() !== 'cpanel-servers' &&
@@ -5083,6 +5144,7 @@
 
           @if (
             v.name !== 'Tally on Cloud' &&
+            slug() !== 'video-surveillance-as-a-service' &&
             slug() !== 'claude-backup' &&
             slug() !== 'plesk-servers' && slug() !== 'cpanel-servers' &&
             slug() !== 'nvidia-a100' &&

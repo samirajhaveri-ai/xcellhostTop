@@ -52,6 +52,10 @@ export const routes: Routes = [
     data: { checkoutProduct: 'cybird' },
     loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
   },
+  {
+    path: 'managed-redis',
+    loadComponent: () => import('./pages/managed-redis.page').then((m) => m.ManagedRedisPage),
+  },
   ...[...MENU_SERVICE_PAGES, ...INDUSTRY_CLOUD_PAGES].filter((page) => page.slug !== 'smart-qr-and-nfc-automation' && page.slug !== 'gcc-cloud').map((page) => ({
     path: page.slug,
     data: { servicePage: page },

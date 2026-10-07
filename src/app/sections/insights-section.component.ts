@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, ElementRef, inject, input, signal, ViewChild } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
+import { SafeResourceUrl } from '@angular/platform-browser';
+import { ResourceVideoComponent } from '../shared/resource-video.component';
 
 import { BlogApiService, CmsBlogPost } from '../core/blog-api.service';
 import { RevealDirective } from '../shared/reveal.directive';
@@ -9,11 +11,26 @@ import { CatalogService, slugify } from '../core/catalog.service';
 import { CaseStudiesApiService } from '../core/case-studies-api.service';
 import { caseStudiesForPage } from '../core/case-study-matching';
 
+export interface InsightVideo {
+  title: string;
+  src: SafeResourceUrl;
+  poster?: string;
+}
+
+export interface InsightArticle {
+  title: string;
+  description: string;
+  href: string;
+  image: string;
+  category: string;
+  author: string;
+}
+
 /** Shared Insights carousel; service pages show only their assigned CMS posts. */
 @Component({
   selector: 'xh-insights-section',
   standalone: true,
-  imports: [RouterLink, RevealDirective],
+  imports: [RouterLink, RevealDirective, ResourceVideoComponent],
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -23,7 +40,7 @@ import { caseStudiesForPage } from '../core/case-study-matching';
           <div class="eyebrow">Insights</div>
           <div class="insights-heading-row">
             <h2 [attr.style]="activeView() === 'blogs' ? 'text-transform: none !important' : null">{{ viewCopy[activeView()].heading }}</h2>
-            <p>{{ viewCopy[activeView()].description }}</p>
+            <p>{{ activeView() === 'videos' && videoDescription() ? videoDescription() : viewCopy[activeView()].description }}</p>
             <div class="insights-actions" role="group" aria-label="Insight resources">
               <button type="button" class="btn btn-ghost" [class.active]="activeView() === 'blogs'" [attr.aria-pressed]="activeView() === 'blogs'" aria-controls="insights-content" (click)="activeView.set('blogs')">Blogs</button>
               @if (showVideos()) {
@@ -60,6 +77,17 @@ import { caseStudiesForPage } from '../core/case-study-matching';
           </div>
           <button class="blog-nav blog-nav-next" type="button" aria-label="Next insights" (click)="scrollCarousel(1)">›</button>
         </div>
+        } @else if (articles().length) {
+          <div class="resource-articles">
+            @for (article of articles(); track article.href) {
+              <a class="bl" [href]="article.href" target="_blank" rel="noopener noreferrer">
+                <img class="blog-cover" [src]="article.image" alt="" loading="lazy" />
+                <span class="bl-k">{{ article.category }}</span>
+                <h3>{{ article.title }}</h3><p>{{ article.description }}</p>
+                <span class="bl-m">{{ article.author }} · Read guide ↗</span>
+              </a>
+            }
+          </div>
         } @else {
           <p class="insights-empty" role="status">{{ loading() ? 'Loading insights…' : 'New insights are on the way. Explore all insights for more guides and articles.' }}</p>
         }
@@ -96,6 +124,16 @@ import { caseStudiesForPage } from '../core/case-study-matching';
             </div>
           } @else {
           <div class="insights-video-grid">
+            @if (videos(); as resources) {
+              @for (video of resources; track video.title) {
+                <article class="insights-video-card">
+                  <div class="insights-video">
+                    <xh-resource-video [src]="video.src" [title]="video.title" [poster]="video.poster || ''" />
+                  </div>
+                  <h3>{{ video.title }}</h3>
+                </article>
+              }
+            } @else {
             <article class="insights-video-card">
               <div class="insights-video">
                 <iframe src="https://www.youtube-nocookie.com/embed/eb8jyqFV6fM?rel=0&playsinline=1" title="Tally on Cloud video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -114,8 +152,9 @@ import { caseStudiesForPage } from '../core/case-study-matching';
               </div>
               <h3>Cloud Backup</h3>
             </article>
+            }
           </div>
-          <div class="blog-cta"><a class="btn btn-ghost" href="https://www.youtube.com/@XcellHostCloudServices">View all Videos →</a></div>
+          <div class="blog-cta"><a class="btn btn-ghost" [href]="videoLibraryUrl()">View all Videos →</a></div>
         }
           }
         </div>
@@ -123,6 +162,9 @@ import { caseStudiesForPage } from '../core/case-study-matching';
     </section>
   `,
   styles: `
+    .resource-articles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; max-width: 900px; margin: 0 auto; }
+    .resource-articles .bl { min-width: 0; color: inherit; text-decoration: none; }
+    @media (max-width: 640px) { .resource-articles { grid-template-columns: 1fr; } }
     .insights-empty { text-align: center; color: var(--slate); padding: 24px 16px; }
     .blog-grid .bl { color: inherit; text-decoration: none; }
     .insights-heading { max-width: none; text-align: center; }
@@ -157,6 +199,10 @@ export class InsightsSectionComponent {
   private readonly allStudies = toSignal(this.caseStudiesApi.studies$, { initialValue: CASE_STUDIES });
   readonly pageSlug = input('');
   readonly showVideos = input(true);
+  readonly videos = input<readonly InsightVideo[] | null>(null);
+  readonly articles = input<readonly InsightArticle[]>([]);
+  readonly videoDescription = input('');
+  readonly videoLibraryUrl = input('https://www.youtube.com/@XcellHostCloudServices');
   readonly pageAliases = input<readonly string[]>([]);
   readonly caseStudyLimit = input<number | null>(null);
   private readonly allPosts = signal<readonly CmsBlogPost[]>([]);
