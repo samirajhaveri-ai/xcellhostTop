@@ -1,0 +1,19 @@
+<div class="vsaas-wall" [class.paused]="paused()" aria-label="Illustration: AI video wall with live detections">
+   <div class="vsaas-wall-header"><span>XCELLCAMCLOUD · 6 SITES · 48 CAMERAS</span><b>● LIVE</b></div>
+   <div class="vw">
+    <div class="vw-g">
+     <div class="vsaas-camera"><small>WAREHOUSE-02</small><em>REC</em><span class="fl"></span><span class="ob" style="left:12%;bottom:20%;width:26%;height:30%"></span><span class="bx g walk" data-k="0" [class.on]="activeCameras()[0]" style="bottom:22%;width:14%;height:44%"><i>PPE ✓</i></span></div>
+     <div class="vsaas-camera"><small>GATE-01</small><em>REC</em><span class="fl"></span><span class="bx drv" data-k="1" [class.on]="activeCameras()[1]" style="bottom:12%;width:30%;height:28%"><i>MH 01 AB 2345</i></span></div>
+     <div class="vsaas-camera"><small>STORE-ENTRY</small><em>REC</em><span class="fl"></span><span class="bx g" data-k="2" [class.on]="activeCameras()[2]" style="left:30%;bottom:14%;width:16%;height:52%"><i>COUNT 212</i></span><span class="bx g" data-k="2" [class.on]="activeCameras()[2]" style="left:52%;bottom:14%;width:16%;height:52%"></span></div>
+     <div class="vsaas-camera"><small>SERVER-ROOM</small><em>REC</em><span class="fl"></span><span class="ob" style="left:10%;bottom:15%;width:18%;height:62%"></span><span class="ob" style="left:72%;bottom:15%;width:18%;height:62%"></span><span class="bx r" data-k="3" [class.on]="activeCameras()[3]" style="left:40%;bottom:16%;width:16%;height:50%"><i>INTRUDER</i></span></div>
+     <div class="vsaas-camera"><small>LOBBY</small><em>REC</em><span class="fl"></span><span class="bx" data-k="4" [class.on]="activeCameras()[4]" style="left:44%;top:22%;width:14%;height:26%"><i>FACE · STAFF</i></span></div>
+     <div class="vsaas-camera"><small>PLANT-FLOOR</small><em>REC</em><span class="fl"></span><span class="ob" style="left:55%;bottom:20%;width:30%;height:26%"></span><span class="bx r" data-k="5" [class.on]="activeCameras()[5]" style="left:20%;bottom:18%;width:14%;height:46%"><i>NO HARD HAT</i></span></div>
+    </div>
+    <div class="vw-f" aria-label="Illustrative detection events">
+      @for (event of feed(); track event.id) {
+        <div [class]="event.color"><small>{{ event.time }}</small><span [title]="event.description">{{ event.description }}</span><b>{{ event.tag }}</b></div>
+      }
+    </div>
+    <div class="vw-m"><span>Devices online <b >47/48</b></span><span>Storage <b>cloud · H.265</b></span><span>Alerts today <b>{{ alerts() }}</b></span></div>
+   </div>
+  </div>
