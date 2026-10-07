@@ -379,6 +379,8 @@
           (tourRequested)="openProductScreenshotTour()"
           (talkRequested)="openCallback($event)"
         />
+      } @else if (isFrameworkDetail()) {
+        <xh-nist-csf-2-0-content [slug]="slug()" [hero]="true" />
       } @else {
       @if (slug() !== 'performance-cloud' && slug() !== 'gpu-servers') {
       <div
