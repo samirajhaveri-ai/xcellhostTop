@@ -46,10 +46,17 @@ export class NistCsfContentComponent implements OnDestroy, OnChanges {
         window.document.querySelector('#ppage .pp-cta')?.scrollIntoView({behavior: 'smooth', block: 'center'});
         return;
       }
-      const target = href && href.length > 1 ? doc.getElementById(href.slice(1)) : null;
+      let targetFrame = frame;
+      let target = href && href.length > 1 ? doc.getElementById(href.slice(1)) : null;
+      if (!target && this.hero && href && href.length > 1) {
+        const contentFrame = Array.from(window.document.querySelectorAll<HTMLIFrameElement>('xh-nist-csf-2-0-content iframe'))
+          .find(candidate => candidate.getAttribute('src') === '/' + this.slug + '-content.html');
+        target = contentFrame?.contentDocument?.getElementById(href.slice(1)) ?? null;
+        if (contentFrame && target) targetFrame = contentFrame;
+      }
       if (!target) return;
       event.preventDefault();
-      window.scrollTo({ top: window.scrollY + frame.getBoundingClientRect().top + target.getBoundingClientRect().top - 24, behavior: 'smooth' });
+      window.scrollTo({ top: window.scrollY + targetFrame.getBoundingClientRect().top + target.getBoundingClientRect().top - 110, behavior: 'smooth' });
     };
     doc.addEventListener('click', this.clickListener);
   }

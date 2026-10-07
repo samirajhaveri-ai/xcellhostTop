@@ -193,10 +193,10 @@ const MENU_FEATURE_CARDS: Readonly<Record<string, readonly NavFeatureCardVm[]>> 
       link: '/geotrust', fresh: true,
     },
     {
-      label: 'Email trust', title: 'Secure DMARC',
+      label: 'Email trust', title: 'Enterprise DMARC',
       body: 'Stop domain spoofing with managed SPF, DKIM and DMARC.',
       image: '/assets/images/product-intros/reference-5728a592b032.png',
-      link: '/secure-dmarc',
+      link: '/enterprise-dmarc',
     },
   ],
   Security: [

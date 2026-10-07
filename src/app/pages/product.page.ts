@@ -3,6 +3,11 @@ import { NistCsfContentComponent } from '../sections/nist-csf-content.component'
 
 import { DomainHeroMediaComponent } from '../sections/domain-hero-media.component';
 import { HOSTING_BANNER_PAGES, HostingHeroMediaComponent } from '../sections/hosting-hero-media.component';
+import { ManagedMongodbHeroComponent } from '../sections/managed-mongodb-hero.component';
+import { AiReceptionistHeroComponent } from '../sections/ai-receptionist-hero.component';
+import { VsaasHeroComponent } from '../sections/vsaas-hero.component';
+// Source overview, demo and interactive pricing for the AI Receptionist page.
+import { AiReceptionistContentComponent } from '../sections/ai-receptionist-content.component';
 import { FitBannerTitleDirective } from '../shared/fit-banner-title.directive';
 import { EmptySongBarComponent } from '../shared/empty-song-bar.component';
 
@@ -146,7 +151,6 @@ import { ManagedOracleContentComponent } from '../sections/managed-oracle-conten
 import { ManagedRedisContentComponent } from '../sections/managed-redis-content.component';
 import { ManagedRedisHeroComponent } from '../sections/managed-redis-hero.component';
 import { ManagedMongoDbContentComponent } from '../sections/managed-mongodb-content.component';
-import { ManagedMongodbHeroComponent } from '../sections/managed-mongodb-hero.component';
 import { ManagedOracleFaqComponent } from '../sections/managed-oracle-faq.component';
 import { AiVoicebotContentComponent } from '../sections/ai-voicebot-content.component';
 import { AiVoicebotFaqComponent } from '../sections/ai-voicebot-faq.component';
@@ -395,6 +399,10 @@ interface ProductTourSlide {
   selector: 'xh-product-page',
   standalone: true,
   imports: [
+    ManagedMongodbHeroComponent,
+    AiReceptionistHeroComponent,
+    VsaasHeroComponent,
+    AiReceptionistContentComponent,
     FitBannerTitleDirective,
     ComodoPaContentComponent, ComodoPaHeroComponent, ComodoPaFaqComponent, ComodoPaRelatedComponent,
     DigicertSmimeContentComponent,
@@ -437,7 +445,6 @@ interface ProductTourSlide {
     ManagedMongoDbContentComponent,
     ManagedRedisContentComponent,
     ManagedRedisHeroComponent,
-    ManagedMongodbHeroComponent,
     ManagedOracleFaqComponent,
     AiLabContentComponent,
     GoogleBusinessContentComponent,
@@ -1698,6 +1705,90 @@ interface ProductTourSlide {
       #ppage.cpanel-servers-page .pp-hero > .wrap { width: 100%; order: 0; }
     }
 
+    /* Keep the camera dashboard beside the surveillance copy and stack it on phones. */
+    #ppage.vsaas-page > .pp-hero {
+      display: grid; overflow: clip;
+      grid-template-columns: minmax(0, 620px) minmax(0, 550px);
+      justify-content: center; align-items: center; gap: 24px; padding-inline: 24px;
+    }
+    #ppage.vsaas-page > .pp-hero > .wrap {
+      grid-column: 1; grid-row: 1; width: 100%; margin: 0; padding: 0;
+    }
+    #ppage.vsaas-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 100%; }
+    #ppage.vsaas-page .pp-hero #ppTitle { display: block; text-align: left; white-space: normal; }
+    #ppage.vsaas-page #ppTitle .pp-title-name { display: inline; margin-left: 0; }
+    #ppage.vsaas-page .vsaas-powered { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    #ppage.vsaas-page .vsaas-powered small { color: #9fb8d8; font: 700 10.5px/1.5 'IBM Plex Mono', monospace; letter-spacing: .12em; }
+    #ppage.vsaas-page .vsaas-powered > span { display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border-radius: 10px; background: #fff; box-shadow: 0 1px 0 rgba(4,30,66,.08); }
+    #ppage.vsaas-page .vsaas-powered b { color: #0b1b33; font: 800 16px/1.5 'Sora', sans-serif; letter-spacing: -.01em; }
+    #ppage.vsaas-page .pp-ask-ai { margin-top: 12px; }
+    #ppage.ppage.vsaas-page > .pp-hero > .pph-scene.vsaas-hero-art {
+      position: relative; inset: auto; grid-column: 2; grid-row: 1;
+      display: block; width: 100%; max-width: 550px; height: auto; max-height: none;
+      margin: 0; padding: 0; opacity: 1; mask-image: none; transform: none; z-index: 4;
+    }
+    @media (max-width: 1000px) {
+      #ppage.vsaas-page > .pp-hero { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+      #ppage.ppage.vsaas-page > .pp-hero > .pph-scene.vsaas-hero-art {
+        grid-column: 1; grid-row: 2; justify-self: center;
+      }
+    }
+
+    /* Keep the live-call panel beside the AI Receptionist copy, and stack it on phones. */
+    #ppage.ai-receptionist-page > .pp-hero {
+      display: grid; overflow: clip;
+      grid-template-columns: minmax(0, 620px) minmax(0, 550px);
+      justify-content: center; align-items: center; gap: 24px; padding-inline: 24px;
+    }
+    #ppage.ai-receptionist-page > .pp-hero > .wrap {
+      grid-column: 1; grid-row: 1; width: 100%; margin: 0; padding: 0;
+    }
+    #ppage.ai-receptionist-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 100%; }
+    #ppage.ppage.ai-receptionist-page > .pp-hero > .pph-scene.ai-receptionist-hero-art {
+      position: relative; inset: auto; grid-column: 2; grid-row: 1;
+      display: block; width: 100%; max-width: 550px; height: auto; max-height: none;
+      margin: 0; padding: 0; opacity: 1; mask-image: none; transform: none; z-index: 4;
+    }
+    @media (max-width: 1000px) {
+      #ppage.ai-receptionist-page > .pp-hero { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+      #ppage.ppage.ai-receptionist-page > .pp-hero > .pph-scene.ai-receptionist-hero-art {
+        grid-column: 1; grid-row: 2; justify-self: center;
+      }
+    }
+    #ppage.managed-mongodb-page > .pp-hero {
+      display: grid;
+      overflow: clip;
+      grid-template-columns: minmax(0, 620px) minmax(0, 520px);
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      padding-inline: 24px;
+    }
+    #ppage.managed-mongodb-page > .pp-hero > .wrap {
+      grid-column: 1; grid-row: 1;
+      width: 100%; margin: 0; padding: 0;
+    }
+    #ppage.managed-mongodb-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 100%; }
+    #ppage.managed-mongodb-page .pp-hero #ppTitle.mongodb-hero-title { display: block; text-align: left; }
+    #ppage.managed-mongodb-page .mongodb-title-line { display: block; }
+    #ppage.managed-mongodb-page .mongodb-title-line:first-child { display: flex; align-items: baseline; flex-wrap: wrap; gap: .12em; }
+    #ppage.managed-mongodb-page .mongodb-title-line .pp-title-divider { margin: 0; }
+    #ppage.managed-mongodb-page .mongodb-powered { display: flex; align-items: center; gap: 10px; margin-top: 14px; }
+    #ppage.managed-mongodb-page .mongodb-powered small { font: 700 10.5px ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .12em; color: #9fb8d8; }
+    #ppage.managed-mongodb-page .mongodb-powered > span { display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 16px; border-radius: 10px; background: #fff; box-shadow: 0 1px 0 rgba(4, 30, 66, .08); }
+    #ppage.managed-mongodb-page .mongodb-powered img { display: block; width: 22px; height: 22px; }
+    #ppage.ppage.managed-mongodb-page > .pp-hero > .pph-scene.mongodb-hero-art {
+      position: relative; inset: auto; grid-column: 2; grid-row: 1;
+      display: block; width: 100%; max-width: 520px; height: auto; max-height: none;
+      margin: 0; padding: 0; opacity: 1; mask-image: none; transform: none;
+      z-index: 4;
+    }
+    @media (max-width: 1000px) {
+      #ppage.managed-mongodb-page > .pp-hero { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+      #ppage.ppage.managed-mongodb-page > .pp-hero > .pph-scene.mongodb-hero-art {
+        grid-column: 1; grid-row: 2; justify-self: center;
+      }
+    }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -2034,6 +2125,23 @@ class ProductPageComponent {
       image: '/assets/images/vmc-tour-verified-mark.png',
     },
   ];
+  readonly cmcTourSlides: readonly ProductTourSlide[] = [
+    {
+      title: 'Display your brand logo in the inbox',
+      description: 'See how a Common Mark Certificate replaces the generic sender avatar with a recognisable brand logo.',
+      image: '/assets/images/cmc-tour-logo-display.png',
+    },
+    {
+      title: 'Unverified inbox compared with CMC',
+      description: 'Compare an unverified inbox with the branded sender experience enabled by a Common Mark Certificate.',
+      image: '/assets/images/cmc-tour-unverified-vs-cmc.png',
+    },
+    {
+      title: 'Before and after CMC activation',
+      description: 'See the visual difference when authenticated brand logos appear beside messages in supported inboxes.',
+      image: '/assets/images/cmc-tour-before-after.png',
+    },
+  ];
   readonly tsplusServerMonitoringTourSlides: readonly ProductTourSlide[] = [
     {
       title: 'Real-time server dashboard',
@@ -2155,6 +2263,7 @@ class ProductPageComponent {
     if (view.name === 'Acronis True Image') return this.acronisTrueImageTourSlides;
     if (view.name === 'Microsoft 365 Backup') return this.microsoft365BackupTourSlides;
     if (this.isVmc()) return this.vmcTourSlides;
+    if (this.isCmc()) return this.cmcTourSlides;
     if (this.isTsplusServerMonitoring()) return this.tsplusServerMonitoringTourSlides;
     if (this.isTsplusRemoteSupport()) return this.tsplusRemoteSupportTourSlides;
     if (this.isTsplusAdvancedSecurity()) return this.tsplusAdvancedSecurityTourSlides;
@@ -3873,10 +3982,13 @@ class ProductPageComponent {
     this.buyPlan(plan, ev);
   }
 
-  /** Keep the existing dialogs available from every standalone SMB hero. */
+  /** Keep the existing dialogs available from every standalone embedded hero. */
   @HostListener('window:message', ['$event'])
   onSuppliedSmbHeroMessage(event: MessageEvent<unknown>): void {
-    if (!this.usesSuppliedSmbHero() || event.origin !== window.location.origin) return;
+    if (
+      (!this.usesSuppliedSmbHero() && !this.isVmc() && !this.isCmc()) ||
+      event.origin !== window.location.origin
+    ) return;
     const frame = Array.from(
       document.querySelectorAll<HTMLIFrameElement>('iframe.supplied-smb-hero-frame'),
     ).find((candidate) => candidate.contentWindow === event.source);
@@ -4023,8 +4135,29 @@ class ProductPageComponent {
 
   selectCybirdPlan(plan: CybirdPlan, ev: Event): void {
     ev.preventDefault();
-    this.topics.ask(`Cybird ${plan.name} - ${this.activeCybirdTerm().label}`);
-    this.overlay.open('callback');
+    const packageId = plan.name.toLowerCase();
+    const termId = this.selectedCybirdTerm();
+
+    try {
+      const stored = JSON.parse(window.localStorage.getItem('xcellhost_cybird_cart') || '{}');
+      window.localStorage.setItem(
+        'xcellhost_cybird_cart',
+        JSON.stringify({
+          ...stored,
+          packageId,
+          termId,
+          quantity: 1,
+          inCart: false,
+        }),
+      );
+    } catch {
+      window.localStorage.setItem(
+        'xcellhost_cybird_cart',
+        JSON.stringify({ packageId, termId, quantity: 1, inCart: false }),
+      );
+    }
+
+    window.location.assign('/cybird-checkout');
   }
 
   selectTallyTerm(term: TallyTerm): void {

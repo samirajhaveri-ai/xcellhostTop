@@ -3819,7 +3819,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Email & Collaboration",
                 "pill": null,
                 "desc": "Cloud productivity, messaging and teamwork",
-                "href": "/microsoft-365"
+                "href": "/microsoft-365-smb"
               },
               {
                 "title": "Identity & Access",

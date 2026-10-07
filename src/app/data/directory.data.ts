@@ -386,12 +386,6 @@ export const DIRECTORY: DirectoryEntry[] = [
     "group": "Cloud Productivity"
   },
   {
-    "name": "Microsoft 365",
-    "desc": "Cloud-based productivity tools — from ₹135/user/mo",
-    "cat": "Cloud",
-    "group": "Cloud Productivity"
-  },
-  {
     "name": "Google Workspace",
     "desc": "Integrated tools for business collaboration",
     "cat": "Cloud",
@@ -400,12 +394,6 @@ export const DIRECTORY: DirectoryEntry[] = [
   {
     "name": "Advanced Email Security",
     "desc": "Enhanced protection for M365 + Google Workspace",
-    "cat": "Cloud",
-    "group": "Cloud Productivity"
-  },
-  {
-    "name": "Secure DMARC",
-    "desc": "Prevent email spoofing and phishing attacks — best seller",
     "cat": "Cloud",
     "group": "Cloud Productivity"
   },
