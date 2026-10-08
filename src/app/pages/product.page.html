@@ -1766,13 +1766,14 @@
                   </div>
                 </section>
 
-<<<<<<< HEAD
                 @if (slug() === 'cpu-optimized' || slug() === 'memory-optimized') {
                   <div class="cpu-powered-by" role="group" aria-label="Powered by Intel and AMD">
                     <small>POWERED BY</small>
                     <span title="Intel"><img src="/assets/logos/cpu-optimized-intel.svg" alt="Intel" width="22" height="22" /></span>
                     <span title="AMD"><img src="/assets/logos/cpu-optimized-amd.svg" alt="AMD" width="22" height="22" /></span>
-=======
+                  </div>
+                }
+
                 @if (isGpuServerPage()) {
                   <div class="nvidia-powered-by" aria-label="Powered by NVIDIA">
                     <span>Powered by</span><span aria-hidden="true">|</span>
@@ -1780,7 +1781,6 @@
                       <img src="/assets/images/a100-logos/nvidia.svg" alt="" />
                       <strong>NVIDIA</strong>
                     </span>
->>>>>>> 6ee4d4ab89785146fa8eef2b984347819b1506e5
                   </div>
                 }
 
@@ -1945,15 +1945,6 @@
         </div>
       }
 
-<<<<<<< HEAD
-      @if (slug() === 'memory-optimized') {
-        <xh-smb-section-nav
-          label="Memory Optimized page sections"
-          [links]="memorySectionNavLinks"
-          frameSelector="xh-memory-optimized-content iframe"
-        />
-      } @else if (usesSuppliedSmbHero()) {
-=======
       @if (slug() === 'dropbox-backup') {
         <xh-smb-section-nav label="Dropbox page sections" [links]="dropboxSectionNavLinks" frameSelector="xh-dropbox-migration-content iframe[src='/dropbox-migration-content.html']" />
       }
@@ -1970,8 +1961,14 @@
       @if (slug() === 'managed-microsoft-sql') {
         <xh-smb-section-nav label="Managed Microsoft SQL page sections" [links]="sqlSectionNavLinks" frameSelector="xh-managed-microsoft-sql-content iframe[src='/managed-microsoft-sql-content.html']" />
       }
-      @if (usesSuppliedSmbHero()) {
->>>>>>> 6ee4d4ab89785146fa8eef2b984347819b1506e5
+      @if (slug() === 'memory-optimized') {
+        <xh-smb-section-nav
+          label="Memory Optimized page sections"
+          [links]="memorySectionNavLinks"
+          frameSelector="xh-memory-optimized-content iframe"
+        />
+      }
+      @if (slug() !== 'memory-optimized' && usesSuppliedSmbHero()) {
         <xh-smb-section-nav
           [label]="v.name + ' page sections'"
           [links]="smbSectionNavLinks()"
