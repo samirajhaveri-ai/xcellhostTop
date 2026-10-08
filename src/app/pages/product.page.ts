@@ -4354,8 +4354,11 @@ class ProductPageComponent {
 
   selectSmbDesktopPlan(plan: TallyPlan, ev: Event): void {
     ev.preventDefault();
-    this.topics.ask(`${plan.name} (${plan.edition}) - ${plan.users} users - ${this.activeTallyTerm().label}`);
-    this.overlay.open('callback');
+    const planKey = plan.edition.toLowerCase();
+    const termKey = this.selectedTallyTerm();
+    window.location.assign(
+      `/smb-cloud-desktop/checkout?plan=${encodeURIComponent(planKey)}&term=${encodeURIComponent(termKey)}`,
+    );
   }
 
   smbDesktopPrice(plan: TallyPlan): number {

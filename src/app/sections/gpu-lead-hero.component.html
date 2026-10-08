@@ -1,11 +1,11 @@
 <section
   class="gpu-lead-hero"
-  [class.gpu-lead-hero-inline]="slug() === 'nvidia-l40s'"
+  [class.gpu-lead-hero-inline]="usesCompactLayout()"
   [attr.aria-labelledby]="'gpuLeadTitle-' + slug()"
 >
   <div class="gpu-lead-shell">
     <div class="gpu-lead-copy">
-      @if (slug() !== 'nvidia-l40s') {
+      @if (!usesCompactLayout()) {
         <div class="gpu-social-proof" aria-label="Five-star customer rating">
           <span class="gpu-avatars" aria-hidden="true"><i>RK</i><i>AM</i><i>VS</i><i>NP</i></span>
           <span><b>★★★★★</b><small>Trusted by 10,000+ businesses</small></span>
@@ -14,7 +14,7 @@
       <h1 [id]="'gpuLeadTitle-' + slug()">{{ copy().headline }}</h1>
       <p>{{ copy().description }}</p>
 
-      @if (slug() !== 'nvidia-l40s') {
+      @if (!usesCompactLayout()) {
       <div class="gpu-lead-features">
         @for (feature of copy().features; track feature[0] + feature[1]; let index = $index) {
           <article>
