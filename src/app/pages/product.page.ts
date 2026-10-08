@@ -3511,7 +3511,19 @@ class ProductPageComponent {
 
   readonly isTally = computed(() => this.view()?.name === 'Tally on Cloud');
 
-<<<<<<< HEAD
+  readonly cpuSectionNavLinks = [
+    { label: 'Overview', target: 'answer' },
+    { label: 'Pricing', target: 'pricing' },
+    { label: 'Features', target: 'cpuFeatures' },
+    { label: 'Use Cases', target: 'cpuUseCases' },
+    { label: 'Specifications', target: 'cpuSpecifications' },
+    { label: 'Security', target: 'ppSecHead' },
+    { label: 'Why to Choose', target: 'ppWhyHead' },
+    { label: 'Customer Testimonials', target: 'cpuTestimonials' },
+    { label: 'FAQs', target: 'cpuFaq' },
+    { label: 'Insights', target: 'ppBlog' },
+  ] as const;
+
   readonly memorySectionNavLinks = [
     { label: 'Overview', target: 'answer' },
     { label: 'Pricing', target: 'pricing' },
@@ -3524,7 +3536,7 @@ class ProductPageComponent {
     { label: 'FAQs', target: 'memoryFaq' },
     { label: 'Insights', target: 'ppBlog' },
   ] as const;
-=======
+
   readonly frameworkSectionNavLinks = [
     { label: 'Overview', target: 'answer' },
     { label: 'Framework Structure', target: 'structure' },
@@ -3581,7 +3593,6 @@ class ProductPageComponent {
     { label: 'FAQs', target: 'ppFaq' },
     { label: 'Insights', target: 'ppBlog' },
   ];
->>>>>>> 6ee4d4ab89785146fa8eef2b984347819b1506e5
 
   readonly smbSectionNavLinks = computed(() =>
     this.isTally()
