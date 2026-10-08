@@ -25,18 +25,25 @@ export class CheckoutPage implements OnDestroy {
   private readonly checkoutProduct = this.route.snapshot.data['checkoutProduct'] as
     | 'edr'
     | 'rmm'
-    | 'cybird';
+    | 'cybird'
+    | 'smb-desktop';
+  private readonly smbDesktopPlan = this.readSmbDesktopPlan();
+  private readonly smbDesktopTerm = this.readSmbDesktopTerm();
   readonly productLabel =
     this.checkoutProduct === 'rmm'
       ? 'RMM'
       : this.checkoutProduct === 'cybird'
         ? 'Cybird SMB Cyber Security Appliance'
+        : this.checkoutProduct === 'smb-desktop'
+          ? `SMB Cloud Desktop ${this.titleCase(this.smbDesktopPlan)}`
         : 'EDR';
   private readonly checkoutFile =
     this.checkoutProduct === 'rmm'
       ? 'xcellhost-rmm-checkout.html'
       : this.checkoutProduct === 'cybird'
         ? 'xcellhost-cybird-checkout.html'
+        : this.checkoutProduct === 'smb-desktop'
+          ? `smb-cloud-desktop-checkout/xcellhost-smb-cloud-desktop-${this.smbDesktopPlan}-${this.smbDesktopTerm}-checkout.html`
         : 'xcellhost-checkout.html';
   private readonly checkoutParams = new URLSearchParams(
     this.checkoutProduct === 'rmm'
@@ -63,8 +70,17 @@ export class CheckoutPage implements OnDestroy {
   onLoad(): void {
     this.observer?.disconnect();
     const frame = this.checkout?.nativeElement;
-    const body = frame?.contentDocument?.body;
-    if (!frame || !body) return;
+    const checkoutDocument = frame?.contentDocument;
+    const body = checkoutDocument?.body;
+    if (!frame || !checkoutDocument || !body) return;
+
+    if (this.checkoutProduct === 'smb-desktop') {
+      // The website shell already supplies the XcellHost header and footer.
+      // Hide the standalone file chrome while retaining its checkout steps and payment URL.
+      const embeddedStyles = checkoutDocument.createElement('style');
+      embeddedStyles.textContent = '.nav,.foot{display:none!important}';
+      checkoutDocument.head.appendChild(embeddedStyles);
+    }
 
     // Measure natural content height so hidden checkout steps can expand and shrink.
     const resize = () => {
@@ -78,5 +94,23 @@ export class CheckoutPage implements OnDestroy {
 
   ngOnDestroy(): void {
     this.observer?.disconnect();
+  }
+
+  private readSmbDesktopPlan(): 'starter' | 'business' | 'professional' | 'enterprise' {
+    const plan = this.route.snapshot.queryParamMap.get('plan');
+    return plan === 'business' || plan === 'professional' || plan === 'enterprise' ? plan : 'starter';
+  }
+
+  private readSmbDesktopTerm(): 'monthly' | '3-months' | '6-months' | '1-year' {
+    switch (this.route.snapshot.queryParamMap.get('term')) {
+      case '3m': return '3-months';
+      case '6m': return '6-months';
+      case '1y': return '1-year';
+      default: return 'monthly';
+    }
+  }
+
+  private titleCase(value: string): string {
+    return value.charAt(0).toUpperCase() + value.slice(1);
   }
 }

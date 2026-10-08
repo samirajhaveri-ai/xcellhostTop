@@ -53,6 +53,11 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
   },
   {
+    path: 'smb-cloud-desktop/checkout',
+    data: { checkoutProduct: 'smb-desktop' },
+    loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
+  },
+  {
     path: 'managed-redis',
     loadComponent: () => import('./pages/managed-redis.page').then((m) => m.ManagedRedisPage),
   },
