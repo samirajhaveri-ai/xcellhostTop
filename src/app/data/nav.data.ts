@@ -460,11 +460,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": VPS_PRODUCT_COPY['Sage Hosting'].tagline
               },
-              {
-                "title": "Paperclip AI Hosting",
-                "pill": null,
-                "desc": VPS_PRODUCT_COPY['Paperclip AI Hosting'].tagline
-              },
+              
               {
                 "title": "Dokploy Hosting",
                 "pill": null,
@@ -476,7 +472,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": VPS_PRODUCT_COPY['Hermes AI Hosting'].tagline
               },
               {
-                "title": "Coolify",
+                "title": "Coolify Hosting",
                 "pill": null,
                 "desc": VPS_PRODUCT_COPY['Coolify'].tagline
               },
@@ -878,7 +874,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Container as a Registry",
+                "title": "Container Registry",
                 "pill": null,
                 "desc": null
               },
@@ -1069,11 +1065,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "Container Registry",
-                "pill": null,
-                "desc": null
-              },
+              
             ]
           }
         ]
@@ -1476,7 +1468,7 @@ export const MEGA_MENU: MenuTop[] = [
               
               {
                 "title": "Microsoft Copilot ",
-                "pill": "Hot Saler",
+                "pill": "Hot Seller",
                 "desc": null
               },
               {
@@ -1534,13 +1526,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "Email Migration",
-                "pill": null,
-                "desc": null
-              },
-              
-              
             ]
           }
         ]
@@ -3162,6 +3147,11 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Data as a Services",
             "items": [
               {
+                "title": "Databricks Platform",
+                "pill": null,
+                "desc": null
+              },
+              {
                 "title": "Snowflake Platform",
                 "pill": null,
                 "desc": null
@@ -3176,11 +3166,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "Databricks Platform",
-                "pill": null,
-                "desc": null
-              },
+              
               {
                 "title": "Data Analytics",
                 "pill": null,
@@ -3449,10 +3435,44 @@ export const MEGA_MENU: MenuTop[] = [
         "groups": [
           {
         
-            "heading": "Explore Marketplace",
+            "heading": "Software Marketplace",
             "items": [
               {
-                "title": "Marketplace",
+                "title": "No Data",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "8",
+        "label": "",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Security Marketplace",
+            "items": [
+              {
+                "title": "No Data",
+                "pill": null,
+                "desc": null
+              },
+            ]
+          }
+        ]
+      },
+      {
+        "g": "8",
+        "label": "",
+        "on": false,
+        "groups": [
+          {
+            "heading": "AI Apps Marketplace",
+            "items": [
+              {
+                "title": "No Data",
                 "pill": null,
                 "desc": null
               },

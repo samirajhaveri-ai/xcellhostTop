@@ -3511,6 +3511,7 @@ class ProductPageComponent {
 
   readonly isTally = computed(() => this.view()?.name === 'Tally on Cloud');
 
+
   readonly cpuSectionNavLinks = [
     { label: 'Overview', target: 'answer' },
     { label: 'Pricing', target: 'pricing' },
@@ -3523,6 +3524,7 @@ class ProductPageComponent {
     { label: 'FAQs', target: 'cpuFaq' },
     { label: 'Insights', target: 'ppBlog' },
   ] as const;
+
 
   readonly memorySectionNavLinks = [
     { label: 'Overview', target: 'answer' },

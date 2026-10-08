@@ -1945,6 +1945,7 @@
         </div>
       }
 
+
       @if (slug() === 'cpu-optimized') {
         <xh-smb-section-nav
           label="CPU Optimized page sections"
@@ -1958,6 +1959,7 @@
           frameSelector="xh-memory-optimized-content iframe"
         />
       }
+
       @if (slug() === 'dropbox-backup') {
         <xh-smb-section-nav label="Dropbox page sections" [links]="dropboxSectionNavLinks" frameSelector="xh-dropbox-migration-content iframe[src='/dropbox-migration-content.html']" />
       }
@@ -1974,7 +1976,18 @@
       @if (slug() === 'managed-microsoft-sql') {
         <xh-smb-section-nav label="Managed Microsoft SQL page sections" [links]="sqlSectionNavLinks" frameSelector="xh-managed-microsoft-sql-content iframe[src='/managed-microsoft-sql-content.html']" />
       }
+
       @if (usesSuppliedSmbHero()) {
+
+      @if (slug() === 'memory-optimized') {
+        <xh-smb-section-nav
+          label="Memory Optimized page sections"
+          [links]="memorySectionNavLinks"
+          frameSelector="xh-memory-optimized-content iframe"
+        />
+      }
+      @if (slug() !== 'memory-optimized' && usesSuppliedSmbHero()) {
+
         <xh-smb-section-nav
           [label]="v.name + ' page sections'"
           [links]="smbSectionNavLinks()"
