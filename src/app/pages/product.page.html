@@ -11,6 +11,9 @@
     [class.cpanel-servers-page]="slug() === 'cpanel-servers'"
     [class.windows-servers-page]="slug() === 'windows-servers'"
     [class.domain-whois-page]="slug() === 'domain-whois-lookup'"
+    [class.box-migration-page]="slug() === 'box-backup'"
+    [class.dropbox-migration-page]="slug() === 'dropbox-backup'"
+    [class.managed-sql-page]="slug() === 'managed-microsoft-sql'"
     [class.managed-oracle-page]="slug() === 'managed-oracle-cloud'"
     [class.managed-database-reference-page]="slug() === 'managed-mongodb' || slug() === 'managed-redis'"
     [class.ai-receptionist-page]="slug() === 'ai-receptionist'"
@@ -404,6 +407,12 @@
           (tourRequested)="openProductScreenshotTour()"
           (talkRequested)="openCallback($event)"
         />
+      } @else if (slug() === 'managed-microsoft-sql') {
+        <xh-managed-microsoft-sql-content [hero]="true" />
+      } @else if (slug() === 'box-backup') {
+        <xh-box-migration-content [hero]="true" />
+      } @else if (slug() === 'dropbox-backup') {
+        <xh-dropbox-migration-content [hero]="true" />
       } @else if (isFrameworkDetail()) {
         <xh-nist-csf-2-0-content [slug]="slug()" [hero]="true" />
       } @else {
@@ -1914,6 +1923,22 @@
         </div>
       }
 
+      @if (slug() === 'dropbox-backup') {
+        <xh-smb-section-nav label="Dropbox page sections" [links]="dropboxSectionNavLinks" frameSelector="xh-dropbox-migration-content iframe[src='/dropbox-migration-content.html']" />
+      }
+      @if (slug() === 'box-backup') {
+        <xh-smb-section-nav label="Box page sections" [links]="boxSectionNavLinks" frameSelector="xh-box-migration-content iframe[src='/box-migration-content.html']" />
+      }
+      @if (isFrameworkDetail()) {
+        <xh-smb-section-nav
+          [label]="v.name + ' page sections'"
+          [links]="frameworkSectionNavLinks"
+          [frameSelector]="frameworkContentSelector()"
+        />
+      }
+      @if (slug() === 'managed-microsoft-sql') {
+        <xh-smb-section-nav label="Managed Microsoft SQL page sections" [links]="sqlSectionNavLinks" frameSelector="xh-managed-microsoft-sql-content iframe[src='/managed-microsoft-sql-content.html']" />
+      }
       @if (usesSuppliedSmbHero()) {
         <xh-smb-section-nav
           [label]="v.name + ' page sections'"
@@ -2133,7 +2158,91 @@
           @if (slug() === 'managed-oracle-cloud') {
             <xh-managed-oracle-content />
           }
-          @if (slug() === 'managed-mongodb') {
+          @if (slug() === 'box-backup') {
+            <xh-box-migration-content />
+            <section class="box-migration-assurance">
+              <h2 class="pp-sec" id="boxWhy">WHY XCELLHOST FOR BOX MIGRATION</h2>
+              <div class="pp-why">
+                <div class="pw"><b>EXPERIENCED ENGINEERS</b><span>Microsoft 365 And Google Workspace Migration Expertise</span></div>
+                <div class="pw"><b>PLANNED MAPPING</b><span>Files, Team Folders, Users And Destination Permissions</span></div>
+                <div class="pw"><b>PILOT FIRST</b><span>Validate A Pilot Before Moving The Remaining Workloads</span></div>
+                <div class="pw"><b>CONTROLLED CUTOVER</b><span>Pre-Staging And Delta Sync To Reduce Disruption</span></div>
+                <div class="pw"><b>MIGRATION REPORTS</b><span>Per-User Logs, Shared-Link Mapping And Completion Reports</span></div>
+                <div class="pw"><b>ONE PARTNER</b><span>Assessment, Migration Planning And Post-Migration Support</span></div>
+              </div>
+              @if (showcaseVideos().length) {
+                <h2 class="pp-sec">WATCH IT IN ACTION</h2>
+                <div class="tally-video-grid">
+                  @for (video of showcaseVideos(); track video.label) {
+                    <article class="tally-video-card"><h3>{{ video.label }}</h3><div class="tally-video-frame"><iframe [src]="video.url" [title]="'Box - ' + video.label" loading="lazy" allow="fullscreen; picture-in-picture" allowfullscreen></iframe></div></article>
+                  }
+                </div>
+              }
+              <h2 class="pp-sec" id="boxReviews">WHAT CUSTOMERS SAY</h2>
+              <div class="pp-revs">
+                @for (r of v.reviews; track r.name) {
+                  <div class="prv"><div class="stars" [attr.aria-label]="r.stars + ' out of 5 stars'">@for (slot of starSlots; track slot) { <span [class.off]="slot >= r.stars">&#9733;</span> }</div><p>{{ r.quote }}</p><cite><span class="rav">{{ r.initials }}</span><span><b>{{ r.name }}</b>{{ r.role }}</span></cite></div>
+                }
+              </div>
+            </section>
+          } @else if (slug() === 'dropbox-backup') {
+            <xh-dropbox-migration-content />
+            <section class="dropbox-migration-assurance">
+              <h2 class="pp-sec" id="dropboxWhy">WHY XCELLHOST FOR DROPBOX MIGRATION</h2>
+              <div class="pp-why">
+                <div class="pw"><b>EXPERIENCED ENGINEERS</b><span>Microsoft 365 And Google Workspace Migration Expertise</span></div>
+                <div class="pw"><b>PLANNED MAPPING</b><span>Files, Team Folders, Users And Destination Permissions</span></div>
+                <div class="pw"><b>PILOT FIRST</b><span>Validate A Pilot Before Moving The Remaining Workloads</span></div>
+                <div class="pw"><b>CONTROLLED CUTOVER</b><span>Pre-Staging And Delta Sync To Reduce Disruption</span></div>
+                <div class="pw"><b>MIGRATION REPORTS</b><span>Per-User Logs, Shared-Link Mapping And Completion Reports</span></div>
+                <div class="pw"><b>ONE PARTNER</b><span>Assessment, Migration Planning And Post-Migration Support</span></div>
+              </div>
+              @if (showcaseVideos().length) {
+                <h2 class="pp-sec">WATCH IT IN ACTION</h2>
+                <div class="tally-video-grid">
+                  @for (video of showcaseVideos(); track video.label) {
+                    <article class="tally-video-card"><h3>{{ video.label }}</h3><div class="tally-video-frame"><iframe [src]="video.url" [title]="'Dropbox - ' + video.label" loading="lazy" allow="fullscreen; picture-in-picture" allowfullscreen></iframe></div></article>
+                  }
+                </div>
+              }
+              <h2 class="pp-sec" id="dropboxReviews">WHAT CUSTOMERS SAY</h2>
+              <div class="pp-revs">
+                @for (r of v.reviews; track r.name) {
+                  <div class="prv"><div class="stars" [attr.aria-label]="r.stars + ' out of 5 stars'">@for (slot of starSlots; track slot) { <span [class.off]="slot >= r.stars">&#9733;</span> }</div><p>{{ r.quote }}</p><cite><span class="rav">{{ r.initials }}</span><span><b>{{ r.name }}</b>{{ r.role }}</span></cite></div>
+                }
+              </div>
+            </section>
+          } @else if (slug() === 'managed-microsoft-sql') {
+            <xh-managed-microsoft-sql-content />
+            <section class="managed-sql-assurance" id="sqlSecurity">
+              <h2 class="pp-sec">SECURITY &amp; COMPLIANCE &mdash; MANAGED MICROSOFT SQL</h2>
+              <p class="pp-ov">Protect SQL Server workloads with encryption at rest and TLS in transit, role-based access and audit logging. Choose Indian data centres, scheduled full, differential and transaction-log backups, and an Always On design appropriate to your SQL Server edition. Backup retention, access policies and recovery testing are agreed for your deployment.</p>
+              <div class="pp-secrows">
+                <div class="psrow"><span class="psk">Data Protection</span><span class="psv">Encryption At Rest And TLS In Transit</span></div>
+                <div class="psrow"><span class="psk">Access Control</span><span class="psv">Role-Based Permissions And Access Policies</span></div>
+                <div class="psrow"><span class="psk">Audit</span><span class="psv">Database Activity And Access Logging</span></div>
+                <div class="psrow"><span class="psk">Data Residency</span><span class="psv">Indian Data Centres</span></div>
+                <div class="psrow"><span class="psk">Recovery</span><span class="psv">Full, Differential And Transaction-Log Backups</span></div>
+                <div class="psrow"><span class="psk">Availability</span><span class="psv">Edition-Appropriate Always On Availability Groups</span></div>
+              </div>
+              <p class="pp-ov">XcellHost is ISO 27001 and ISO 20000-1 certified &middot; Indian Tier-4 datacenters &middot; 24&times;7 NOC and SOC.</p>
+              <h2 class="pp-sec" id="sqlWhy">WHY XCELLHOST FOR MANAGED MICROSOFT SQL</h2>
+              <div class="pp-why">
+                <div class="pw"><b>SINCE 1999</b><span>Experience Running Production Cloud For Indian Businesses</span></div>
+                <div class="pw"><b>INDIAN DATA CENTRES</b><span>Keep Your SQL Server Workloads In India</span></div>
+                <div class="pw"><b>ASSISTED MIGRATION</b><span>Planned Cutover With A Tested Rollback Path</span></div>
+                <div class="pw"><b>HIGH AVAILABILITY</b><span>Always On Design Matched To Your Edition And Recovery Needs</span></div>
+                <div class="pw"><b>24&times;7 ENGINEERS</b><span>SQL-Aware Monitoring, Patching And Support</span></div>
+                <div class="pw"><b>ONE PARTNER</b><span>Compute, Licensing, Backup And Database Operations</span></div>
+              </div>
+              <h2 class="pp-sec" id="sqlReviews">WHAT CUSTOMERS SAY</h2>
+              <div class="pp-revs">
+                @for (r of v.reviews; track r.name) {
+                  <div class="prv"><div class="stars" [attr.aria-label]="r.stars + ' out of 5 stars'">@for (slot of starSlots; track slot) { <span [class.off]="slot >= r.stars">&#9733;</span> }</div><p>{{ r.quote }}</p><cite><span class="rav">{{ r.initials }}</span><span><b>{{ r.name }}</b>{{ r.role }}</span></cite></div>
+                }
+              </div>
+            </section>
+          } @else if (slug() === 'managed-mongodb') {
             <xh-managed-mongodb-content (quoteRequested)="requestManagedDatabaseQuote($event)" />
           } @else if (slug() === 'managed-redis') {
             <xh-managed-redis-content (quoteRequested)="requestManagedDatabaseQuote($event)" />
