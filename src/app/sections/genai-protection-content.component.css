@@ -13,7 +13,7 @@
 .genai-plan .genai-quantity button{display:grid;place-items:center;width:100%;height:34px;min-height:0;margin:0;padding:0;border:0;border-radius:0;background:#f4f7fc;color:#094ca8;font-size:18px;box-shadow:none;transform:none}
 .genai-plan .genai-quantity button:first-child{border-right:1px solid #c5d5ed}
 .genai-plan .genai-quantity button:last-child{border-left:1px solid #c5d5ed}
-.genai-quantity output{display:grid;place-items:center;min-width:0;text-align:center;color:#092958;font-size:12px;font-weight:700}
+.genai-quantity :is(output,input[xhQuantityInput]){display:grid;place-items:center;min-width:0;text-align:center;color:#092958;font-size:12px;font-weight:700}
 .genai-plan .genai-quantity button:hover:not(:disabled){background:#e8f0fd;box-shadow:none;transform:none}
 .genai-plan .genai-quantity button:disabled{color:#a9bad1;cursor:not-allowed;background:#f4f7fc;box-shadow:none;transform:none}
 .genai-plan .genai-quantity button::after{display:none}

@@ -1,3 +1,4 @@
+import { QuantityInputDirective } from '../core/quantity-input.directive';
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { CartService } from '../core/cart.service';
 
@@ -13,6 +14,7 @@ interface CopilotApp {
 @Component({
   selector: 'xh-microsoft-copilot-content',
   standalone: true,
+  imports: [QuantityInputDirective],
   templateUrl: './microsoft-copilot-content.component.html',
   styleUrl: './microsoft-copilot-content.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

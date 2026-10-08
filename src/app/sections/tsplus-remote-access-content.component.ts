@@ -1,3 +1,4 @@
+import { QuantityInputDirective } from '../core/quantity-input.directive';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
@@ -5,6 +6,7 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 @Component({
   selector: 'xh-tsplus-remote-access-content',
   standalone: true,
+  imports: [QuantityInputDirective],
   templateUrl: './tsplus-remote-access-content.component.html',
   styleUrls: ['./vmc-content.component.css', './tsplus-server-monitoring-content.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,

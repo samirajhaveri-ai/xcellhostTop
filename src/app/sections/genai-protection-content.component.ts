@@ -1,3 +1,4 @@
+import { QuantityInputDirective } from '../core/quantity-input.directive';
 import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angular/core';
 
 import { OverlayService } from '../core/overlay.service';
@@ -22,6 +23,7 @@ interface ConsoleView {
 @Component({
   selector: 'xh-genai-protection-content',
   standalone: true,
+  imports: [QuantityInputDirective],
   templateUrl: './genai-protection-content.component.html',
   styleUrl: './genai-protection-content.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

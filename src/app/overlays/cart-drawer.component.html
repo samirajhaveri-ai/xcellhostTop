@@ -51,7 +51,7 @@
             </div>
             <div class="ci-qty" role="group" [attr.aria-label]="line.name + ' quantity'">
               <button type="button" [attr.aria-label]="'Decrease ' + line.name + ' quantity'" [disabled]="line.qty === 1" (click)="dec(line)">&minus;</button>
-              <output aria-live="polite">{{ line.qty }}</output>
+              <input xhQuantityInput [attr.aria-label]="'Quantity for ' + line.name + ' quantity'" [quantityValue]="line.qty" (quantityChange)="cart.setQty(line.name, $event)" />
               <button type="button" [attr.aria-label]="'Increase ' + line.name + ' quantity'" (click)="inc(line)">+</button>
             </div>
             <button class="ci-rm" aria-label="Remove" (click)="remove(line)">🗑</button>

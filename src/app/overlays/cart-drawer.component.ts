@@ -1,3 +1,4 @@
+import { QuantityInputDirective } from '../core/quantity-input.directive';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -32,7 +33,7 @@ const SUBMIT_LABEL = 'Place Order — Get Zoho Payment Link';
   selector: 'xh-cart-drawer',
   standalone: true,
   host: { style: 'display:contents' },
-  imports: [ReactiveFormsModule],
+  imports: [QuantityInputDirective, ReactiveFormsModule],
   templateUrl: './cart-drawer.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -15,13 +15,12 @@ export interface SmbSectionNavLink {
 export class SmbSectionNavComponent {
   readonly label = input('Page sections');
   readonly links = input.required<readonly SmbSectionNavLink[]>();
-  readonly frameSelector = input('');
+  readonly frameSelector = input<string | null>(null);
 
   scrollToSection(target: string, event: Event): void {
     event.preventDefault();
-    const frame = this.frameSelector()
-      ? document.querySelector<HTMLIFrameElement>(this.frameSelector())
-      : null;
+    const selector = this.frameSelector();
+    const frame = selector ? document.querySelector<HTMLIFrameElement>(selector) : null;
     const section = document.getElementById(target) ?? frame?.contentDocument?.getElementById(target);
     if (!section) return;
 
@@ -30,10 +29,9 @@ export class SmbSectionNavComponent {
       '',
       `${window.location.pathname}${window.location.search}#${target}`,
     );
-    const frameTop = frame && section.ownerDocument === frame.contentDocument
-      ? frame.getBoundingClientRect().top : 0;
+    const frameTop = frame && section.ownerDocument === frame.contentDocument ? frame.getBoundingClientRect().top : 0;
     const top = section.getBoundingClientRect().top + frameTop + window.scrollY - 148;
-    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    window.scrollTo({ top: Math.max(0, top), behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   }
 
 }

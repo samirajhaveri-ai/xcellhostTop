@@ -1,3 +1,4 @@
+import { QuantityInputDirective } from '../core/quantity-input.directive';
 import { DomSanitizer } from '@angular/platform-browser';
 import { InsightsSectionComponent } from '../sections/insights-section.component';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
@@ -16,7 +17,7 @@ type BillingTerm = 'upfront' | 'monthly';
 @Component({
   selector: 'xh-microsoft-365-smb-page',
   standalone: true,
-  imports: [InsightsSectionComponent, DecimalPipe, SmbSectionNavComponent, RouterLink],
+  imports: [QuantityInputDirective, InsightsSectionComponent, DecimalPipe, SmbSectionNavComponent, RouterLink],
   templateUrl: './microsoft-365-smb.page.html',
   styleUrl: './microsoft-365-smb.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

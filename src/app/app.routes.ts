@@ -7,6 +7,12 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 export const routes: Routes = [
 
   {
+    path: 'compare-products',
+    data: { title: 'Compare Products' },
+    loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage),
+  },
+
+  {
     path: 'microsoft-365-tenant-to-tenant-migration',
     loadComponent: () => import('./pages/microsoft-365-tenant-to-tenant-migration.page').then((m) => m.Microsoft365TenantToTenantMigrationPage),
   },

@@ -58,7 +58,7 @@
       <div class="bizmail-pprice"><div><span class="bizmail-from">Total</span><span class="bizmail-amt">{{ inr(plans.essential.price * quantities().essential) }}</span><span class="bizmail-permo">/yr</span></div></div>
       <div class="bizmail-quantity" role="group" aria-label="essential mailbox quantity">
         <button type="button" (click)="adjustQuantity('essential', -1)" [disabled]="quantities().essential === 1" aria-label="Decrease essential mailbox quantity">&minus;</button>
-        <output aria-live="polite">{{ quantities().essential }}</output>
+        <input xhQuantityInput aria-label="Quantity for essential mailbox quantity" [quantityValue]="quantities().essential" [quantityMax]="9999" (quantityChange)="adjustQuantity('essential', $event - (quantities().essential))" />
         <button type="button" (click)="adjustQuantity('essential', 1)" [disabled]="quantities().essential === 9999" aria-label="Increase essential mailbox quantity">+</button>
       </div>
       <button class="bizmail-btn bizmail-btn-orange" type="button" (click)="addPlanToCart('essential')">Add to Cart <span class="bizmail-ar">&rarr;</span></button>
@@ -72,7 +72,7 @@
       <div class="bizmail-pprice"><div><span class="bizmail-from">Total</span><span class="bizmail-amt">{{ inr(plans.standard.price * quantities().standard) }}</span><span class="bizmail-permo">/yr</span></div></div>
       <div class="bizmail-quantity" role="group" aria-label="standard mailbox quantity">
         <button type="button" (click)="adjustQuantity('standard', -1)" [disabled]="quantities().standard === 1" aria-label="Decrease standard mailbox quantity">&minus;</button>
-        <output aria-live="polite">{{ quantities().standard }}</output>
+        <input xhQuantityInput aria-label="Quantity for standard mailbox quantity" [quantityValue]="quantities().standard" [quantityMax]="9999" (quantityChange)="adjustQuantity('standard', $event - (quantities().standard))" />
         <button type="button" (click)="adjustQuantity('standard', 1)" [disabled]="quantities().standard === 9999" aria-label="Increase standard mailbox quantity">+</button>
       </div>
       <button class="bizmail-btn bizmail-btn-orange" type="button" (click)="addPlanToCart('standard')">Add to Cart <span class="bizmail-ar">&rarr;</span></button>
@@ -86,7 +86,7 @@
       <div class="bizmail-pprice"><div><span class="bizmail-from">Total</span><span class="bizmail-amt">{{ inr(plans.stdplus.price * quantities().stdplus) }}</span><span class="bizmail-permo">/yr</span></div></div>
       <div class="bizmail-quantity" role="group" aria-label="stdplus mailbox quantity">
         <button type="button" (click)="adjustQuantity('stdplus', -1)" [disabled]="quantities().stdplus === 1" aria-label="Decrease stdplus mailbox quantity">&minus;</button>
-        <output aria-live="polite">{{ quantities().stdplus }}</output>
+        <input xhQuantityInput aria-label="Quantity for stdplus mailbox quantity" [quantityValue]="quantities().stdplus" [quantityMax]="9999" (quantityChange)="adjustQuantity('stdplus', $event - (quantities().stdplus))" />
         <button type="button" (click)="adjustQuantity('stdplus', 1)" [disabled]="quantities().stdplus === 9999" aria-label="Increase stdplus mailbox quantity">+</button>
       </div>
       <button class="bizmail-btn bizmail-btn-orange" type="button" (click)="addPlanToCart('stdplus')">Add to Cart <span class="bizmail-ar">&rarr;</span></button>
@@ -100,7 +100,7 @@
       <div class="bizmail-pprice"><div><span class="bizmail-from">Total</span><span class="bizmail-amt">{{ inr(plans.pro.price * quantities().pro) }}</span><span class="bizmail-permo">/yr</span></div></div>
       <div class="bizmail-quantity" role="group" aria-label="pro mailbox quantity">
         <button type="button" (click)="adjustQuantity('pro', -1)" [disabled]="quantities().pro === 1" aria-label="Decrease pro mailbox quantity">&minus;</button>
-        <output aria-live="polite">{{ quantities().pro }}</output>
+        <input xhQuantityInput aria-label="Quantity for pro mailbox quantity" [quantityValue]="quantities().pro" [quantityMax]="9999" (quantityChange)="adjustQuantity('pro', $event - (quantities().pro))" />
         <button type="button" (click)="adjustQuantity('pro', 1)" [disabled]="quantities().pro === 9999" aria-label="Increase pro mailbox quantity">+</button>
       </div>
       <button class="bizmail-btn bizmail-btn-orange" type="button" (click)="addPlanToCart('pro')">Add to Cart <span class="bizmail-ar">&rarr;</span></button>
@@ -114,7 +114,7 @@
       <div class="bizmail-pprice"><div><span class="bizmail-from">Total</span><span class="bizmail-amt">{{ inr(plans.enterprise.price * quantities().enterprise) }}</span><span class="bizmail-permo">/yr</span></div></div>
       <div class="bizmail-quantity" role="group" aria-label="enterprise mailbox quantity">
         <button type="button" (click)="adjustQuantity('enterprise', -1)" [disabled]="quantities().enterprise === 1" aria-label="Decrease enterprise mailbox quantity">&minus;</button>
-        <output aria-live="polite">{{ quantities().enterprise }}</output>
+        <input xhQuantityInput aria-label="Quantity for enterprise mailbox quantity" [quantityValue]="quantities().enterprise" [quantityMax]="9999" (quantityChange)="adjustQuantity('enterprise', $event - (quantities().enterprise))" />
         <button type="button" (click)="adjustQuantity('enterprise', 1)" [disabled]="quantities().enterprise === 9999" aria-label="Increase enterprise mailbox quantity">+</button>
       </div>
       <button class="bizmail-btn bizmail-btn-orange" type="button" (click)="addPlanToCart('enterprise')">Add to Cart <span class="bizmail-ar">&rarr;</span></button>

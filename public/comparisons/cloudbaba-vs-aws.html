@@ -545,6 +545,8 @@ body.lock{overflow:hidden}
 #related .rel-card p{font-size:12.5px;line-height:1.5}
 #related .rel-go{font-size:12px}
 @media(max-width:860px){#verdict .vd-wrap{grid-template-columns:minmax(240px,1fr) 44px minmax(240px,1fr)}#related .rel-grid{grid-template-columns:repeat(4,minmax(210px,1fr))}}
+.cq input{width:54px;height:28px;border:1px solid var(--line);border-radius:5px;background:#fff;text-align:center;color:var(--navy);font-size:13px;font-weight:700;appearance:textfield}
+.cq input::-webkit-inner-spin-button,.cq input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
 </style>
 <link rel="stylesheet" href="/mobile-layout.css">
 </head>
@@ -652,9 +654,10 @@ function closeCart(){drawer.classList.remove('show');if(!md||!md.classList.conta
 $('#cartBtn').addEventListener('click',openCart);$('#cartClose').addEventListener('click',closeCart);
 function renderCart(){const n=cart.reduce((a,x)=>a+x.qty,0);$('#cartCount').textContent=n;$('#cartHCount').textContent=n+' item'+(n===1?'':'s');const box=$('#cartItems');
  if(!cart.length){box.innerHTML='<div class="ci-empty">Your cart is empty.<br>Configure a plan and it will appear here.</div>';}
- else box.innerHTML=cart.map((x,i)=>`<div class="ci"><div><b>${x.name}</b><small>${x.detail}</small><div class="cq"><button data-cq="${i}" data-d="-1" aria-label="Decrease">\u2212</button><b>${x.qty}</b><button data-cq="${i}" data-d="1" aria-label="Increase">+</button></div></div><div class="cp">${inr(x.unit*x.qty)}<small>${inr(x.unit)} each</small></div><button class="rm" data-rm="${i}">Remove</button></div>`).join('');
+ else box.innerHTML=cart.map((x,i)=>`<div class="ci"><div><b>${x.name}</b><small>${x.detail}</small><div class="cq"><button data-cq="${i}" data-d="-1" aria-label="Decrease">\u2212</button><input type="number" min="1" step="1" inputmode="numeric" aria-label="Quantity" data-quantity-input="${i}" value="${x.qty}"><button data-cq="${i}" data-d="1" aria-label="Increase">+</button></div></div><div class="cp">${inr(x.unit*x.qty)}<small>${inr(x.unit)} each</small></div><button class="rm" data-rm="${i}">Remove</button></div>`).join('');
  const sub=cart.reduce((a,x)=>a+x.unit*x.qty,0),gst=sub*GST;$('#cartSub').textContent=inr(sub);$('#cartGst').textContent=inr(gst);$('#cartTotal').textContent=inr(sub+gst);
- $$('[data-cq]',box).forEach(b=>b.addEventListener('click',()=>{const it=cart[+b.dataset.cq];it.qty=Math.max(1,it.qty+ +b.dataset.d);renderCart();}));$$('[data-rm]',box).forEach(b=>b.addEventListener('click',()=>{cart.splice(+b.dataset.rm,1);renderCart();}));}
+ $$('[data-quantity-input]', box).forEach(field => field.addEventListener('change', () => { const item = cart[Number(field.dataset.quantityInput)]; const number = field.valueAsNumber; if (!Number.isFinite(number)) { field.value = item.qty; return; } item.qty = Math.max(1, Math.min(Number.MAX_SAFE_INTEGER, Math.trunc(number))); renderCart(); }));
+          $$('[data-cq]', box).forEach(b=>b.addEventListener('click',()=>{const it=cart[+b.dataset.cq];it.qty=Math.max(1,it.qty+ +b.dataset.d);renderCart();}));$$('[data-rm]',box).forEach(b=>b.addEventListener('click',()=>{cart.splice(+b.dataset.rm,1);renderCart();}));}
 renderCart();
 $('#checkout').addEventListener('click',()=>{if(!cart.length){toast('Your cart is empty.');return;}toast('Checkout connects to XcellHost billing (Zoho Books / Razorpay) on the live site.');});
 window.XH={openCfg,openCart,toast,cart:()=>cart};

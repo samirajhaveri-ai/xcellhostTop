@@ -32,7 +32,7 @@
           <button class="aba-quote" type="button" (click)="getQuote('workstation')">Get quote <span aria-hidden="true">→</span></button>
           <div class="aba-quantity" role="group" aria-label="Workstation quantity">
             <button type="button" aria-label="Decrease workstations" [disabled]="quantity('workstation') === 1" (click)="changeQuantity('workstation', -1)">−</button>
-            <output aria-live="polite">{{ quantity('workstation') }}</output>
+            <input xhQuantityInput aria-label="Quantity for workstations" [quantityValue]="quantity('workstation')" [quantityMax]="99" (quantityChange)="changeQuantity('workstation', $event - (quantity('workstation')))" />
             <button type="button" aria-label="Increase workstations" [disabled]="quantity('workstation') === 99" (click)="changeQuantity('workstation', 1)">+</button>
           </div>
         </div>
@@ -45,7 +45,7 @@
           <button class="aba-quote" type="button" (click)="getQuote('server')">Get quote <span aria-hidden="true">→</span></button>
           <div class="aba-quantity" role="group" aria-label="Server quantity">
             <button type="button" aria-label="Decrease servers" [disabled]="quantity('server') === 1" (click)="changeQuantity('server', -1)">−</button>
-            <output aria-live="polite">{{ quantity('server') }}</output>
+            <input xhQuantityInput aria-label="Quantity for servers" [quantityValue]="quantity('server')" [quantityMax]="99" (quantityChange)="changeQuantity('server', $event - (quantity('server')))" />
             <button type="button" aria-label="Increase servers" [disabled]="quantity('server') === 99" (click)="changeQuantity('server', 1)">+</button>
           </div>
         </div>
@@ -59,7 +59,7 @@
           <button class="aba-quote" type="button" (click)="getQuote('virtualHost')">Get quote <span aria-hidden="true">→</span></button>
           <div class="aba-quantity" role="group" aria-label="Virtual host quantity">
             <button type="button" aria-label="Decrease virtual hosts" [disabled]="quantity('virtualHost') === 1" (click)="changeQuantity('virtualHost', -1)">−</button>
-            <output aria-live="polite">{{ quantity('virtualHost') }}</output>
+            <input xhQuantityInput aria-label="Quantity for virtual hosts" [quantityValue]="quantity('virtualHost')" [quantityMax]="99" (quantityChange)="changeQuantity('virtualHost', $event - (quantity('virtualHost')))" />
             <button type="button" aria-label="Increase virtual hosts" [disabled]="quantity('virtualHost') === 99" (click)="changeQuantity('virtualHost', 1)">+</button>
           </div>
         </div>
@@ -72,7 +72,7 @@
           <button class="aba-quote" type="button" (click)="getQuote('applicationServer')">Get quote <span aria-hidden="true">→</span></button>
           <div class="aba-quantity" role="group" aria-label="Application server quantity">
             <button type="button" aria-label="Decrease application servers" [disabled]="quantity('applicationServer') === 1" (click)="changeQuantity('applicationServer', -1)">−</button>
-            <output aria-live="polite">{{ quantity('applicationServer') }}</output>
+            <input xhQuantityInput aria-label="Quantity for application servers" [quantityValue]="quantity('applicationServer')" [quantityMax]="99" (quantityChange)="changeQuantity('applicationServer', $event - (quantity('applicationServer')))" />
             <button type="button" aria-label="Increase application servers" [disabled]="quantity('applicationServer') === 99" (click)="changeQuantity('applicationServer', 1)">+</button>
           </div>
         </div>

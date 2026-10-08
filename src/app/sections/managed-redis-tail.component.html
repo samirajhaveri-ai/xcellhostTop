@@ -23,21 +23,6 @@
       </div>
     </section>
 
-    <section class="redis-videos" aria-labelledby="redisVideosTitle">
-      <h2 class="pp-sec" id="redisVideosTitle">Watch it in action</h2>
-      <div class="redis-video-grid">
-        @for (video of videos; track video.title) {
-          <article class="redis-video-card" xhReveal>
-            <h3><span>{{ video.label }}</span></h3>
-            <div class="redis-video-frame">
-              <xh-resource-video [src]="video.src" [title]="video.title" [poster]="video.poster || ''" />
-            </div>
-            <a [href]="video.resource" target="_blank" rel="noopener noreferrer">{{ video.title }} <span aria-hidden="true">↗</span></a>
-          </article>
-        }
-      </div>
-    </section>
-
     <section aria-labelledby="redisReviewsTitle">
       <h2 class="pp-sec" id="redisReviewsTitle">What customers say</h2>
       <div class="pp-tcards">

@@ -7,6 +7,7 @@ import { filter, map, startWith } from 'rxjs';
 import { OverlayService } from './core/overlay.service';
 import { DocRequestService } from './core/doc-request.service';
 import { CallbackTopicService } from './overlays/callback-topic.service';
+import { SiteCopyService } from './core/site-copy.service';
 import {
   BackToTopComponent,
   CallbackModalComponent,
@@ -84,6 +85,7 @@ export class App {
   );
 
   constructor() {
+    inject(SiteCopyService);
     const captureClick = (event: Event): void => this.onDocumentClick(event as MouseEvent);
     this.document.addEventListener('click', captureClick, true);
     this.destroyRef.onDestroy(() => this.document.removeEventListener('click', captureClick, true));
