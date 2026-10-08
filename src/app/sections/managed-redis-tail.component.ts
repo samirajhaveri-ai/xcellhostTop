@@ -7,14 +7,13 @@ import { Faq } from '../data/models';
 import { buildContextualProductReviews } from '../data/product-reviews.data';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { RevealDirective } from '../shared/reveal.directive';
-import { ResourceVideoComponent } from '../shared/resource-video.component';
 import { InsightArticle, InsightVideo, InsightsSectionComponent } from './insights-section.component';
 import { ProductFaqComponent } from './product/product-faq.component';
 
 @Component({
   selector: 'xh-managed-redis-tail',
   standalone: true,
-  imports: [RouterLink, RevealDirective, ProductFaqComponent, InsightsSectionComponent, ResourceVideoComponent],
+  imports: [RouterLink, RevealDirective, ProductFaqComponent, InsightsSectionComponent],
   templateUrl: './managed-redis-tail.component.html',
   styleUrl: './managed-redis-tail.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -59,17 +58,15 @@ export class ManagedRedisTailComponent {
     ['Is this suitable for startups?', 'Yes. Start with a small standalone deployment for development or a Sentinel HA pair for production, then increase memory, compute and replicas as traffic grows.'],
     ['Do you offer a free consultation?', 'Yes. Discuss your cache size, peak traffic, persistence needs, availability and migration plan with a Redis engineer before selecting a deployment.'],
   ];
-  readonly videos: readonly (InsightVideo & { label: string; resource: string })[] = [
+  readonly videos: readonly InsightVideo[] = [
     {
-      label: 'Product Intro', title: 'Redis Insight: a developer’s guide',
+      title: 'Redis Insight: a developer’s guide',
       src: this.sanitizer.bypassSecurityTrustResourceUrl('https://fast.wistia.net/embed/iframe/iy6qqvu1nn'),
-      resource: 'https://redis.io/resources/videos/redis-insight-a-developers-guide/',
       poster: '/assets/images/managed-redis/video-iy6qqvu1nn.jpg',
     },
     {
-      label: 'Use Cases', title: 'Redis Insight: tech deep dive',
+      title: 'Redis Insight: tech deep dive',
       src: this.sanitizer.bypassSecurityTrustResourceUrl('https://fast.wistia.net/embed/iframe/b34cf67ayc'),
-      resource: 'https://redis.io/resources/videos/redis-insight-tech-deep-dive/',
       poster: '/assets/images/managed-redis/video-b34cf67ayc.jpg',
     },
   ];
