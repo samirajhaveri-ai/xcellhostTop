@@ -11,11 +11,6 @@
     ></iframe>
   </section>
 
-  <xh-smb-section-nav
-    label="Microsoft 365 SMB page sections"
-    [links]="sectionNavLinks"
-  />
-
   <!-- ---------- HERO ---------- -->
   <section class="pp-hero legacy-smb-hero">
     <div class="pph-map"><div class="wm-ring"></div><div class="wm-ring r2"></div></div>
@@ -86,6 +81,11 @@
   </div>
 
   <!-- ---------- BODY ---------- -->
+  <xh-smb-section-nav
+    label="Microsoft 365 SMB page sections"
+    [links]="sectionNavLinks"
+  />
+
   <div class="pp-body">
     <div class="wrap">
 
@@ -187,7 +187,7 @@
             <label class="quantity-label">No. of users / licences</label>
             <div class="quote-quantity" role="group" aria-label="Business Basic quantity">
               <button type="button" aria-label="Decrease Business Basic quantity" [disabled]="quoteQuantities()['basic'] <= 1" (click)="adjustQuantity('basic', -1)">&minus;</button>
-              <output aria-live="polite">{{ quoteQuantities()['basic'] }}</output>
+              <input xhQuantityInput aria-label="Quantity for Business Basic quantity" [quantityValue]="quoteQuantities()['basic']" [quantityMax]="300" (quantityChange)="adjustQuantity('basic', $event - (quoteQuantities()['basic']))" />
               <button type="button" aria-label="Increase Business Basic quantity" [disabled]="quoteQuantities()['basic'] >= 300" (click)="adjustQuantity('basic', 1)">+</button>
             </div>
             <a class="btn btn-primary" [href]="checkoutUrl('basic')" target="_blank" rel="noopener noreferrer">Buy Now &#8599;</a>
@@ -239,7 +239,7 @@
             <label class="quantity-label">No. of users / licences</label>
             <div class="quote-quantity" role="group" aria-label="Business Standard quantity">
               <button type="button" aria-label="Decrease Business Standard quantity" [disabled]="quoteQuantities()['standard'] <= 1" (click)="adjustQuantity('standard', -1)">&minus;</button>
-              <output aria-live="polite">{{ quoteQuantities()['standard'] }}</output>
+              <input xhQuantityInput aria-label="Quantity for Business Standard quantity" [quantityValue]="quoteQuantities()['standard']" [quantityMax]="300" (quantityChange)="adjustQuantity('standard', $event - (quoteQuantities()['standard']))" />
               <button type="button" aria-label="Increase Business Standard quantity" [disabled]="quoteQuantities()['standard'] >= 300" (click)="adjustQuantity('standard', 1)">+</button>
             </div>
             <a class="btn btn-primary" [href]="checkoutUrl('standard')" target="_blank" rel="noopener noreferrer">Buy Now &#8599;</a>
@@ -291,7 +291,7 @@
             <label class="quantity-label">No. of users / licences</label>
             <div class="quote-quantity" role="group" aria-label="Business Premium quantity">
               <button type="button" aria-label="Decrease Business Premium quantity" [disabled]="quoteQuantities()['premium'] <= 1" (click)="adjustQuantity('premium', -1)">&minus;</button>
-              <output aria-live="polite">{{ quoteQuantities()['premium'] }}</output>
+              <input xhQuantityInput aria-label="Quantity for Business Premium quantity" [quantityValue]="quoteQuantities()['premium']" [quantityMax]="300" (quantityChange)="adjustQuantity('premium', $event - (quoteQuantities()['premium']))" />
               <button type="button" aria-label="Increase Business Premium quantity" [disabled]="quoteQuantities()['premium'] >= 300" (click)="adjustQuantity('premium', 1)">+</button>
             </div>
             <a class="btn btn-primary" [href]="checkoutUrl('premium')" target="_blank" rel="noopener noreferrer">Buy Now &#8599;</a>
@@ -471,6 +471,7 @@
             specialists help configure protection policies, retention and recovery workflows so
             your collaboration data remains available whenever your business needs it.
           </p>
+          <img class="acronis-platinum-partner" src="/assets/images/acronis-platinum-service-provider.png" alt="Acronis Platinum Service Provider" width="230" height="47" loading="lazy" decoding="async" />
         </div>
         <img
           class="backup-protection-badges backup-protection-badges-compact"

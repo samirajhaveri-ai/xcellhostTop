@@ -110,7 +110,7 @@
                   <td>
                     <div class="cmp-quantity" role="group" [attr.aria-label]="c.name + ' quantity'">
                       <button type="button" [attr.aria-label]="'Decrease ' + c.name + ' quantity'" [disabled]="quantity(c.name) === 1" (click)="changeQuantity(c.name, -1)">&minus;</button>
-                      <output aria-live="polite">{{ quantity(c.name) }}</output>
+                      <input xhQuantityInput [attr.aria-label]="'Quantity for ' + c.name + ' quantity'" [quantityValue]="quantity(c.name)" [quantityMax]="99" (quantityChange)="changeQuantity(c.name, $event - (quantity(c.name)))" />
                       <button type="button" [attr.aria-label]="'Increase ' + c.name + ' quantity'" [disabled]="quantity(c.name) === 99" (click)="changeQuantity(c.name, 1)">+</button>
                     </div>
                   </td>

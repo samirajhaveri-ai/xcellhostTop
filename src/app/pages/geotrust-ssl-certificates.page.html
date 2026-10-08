@@ -44,7 +44,7 @@
         <div class="pprice"><div><span class="from">From</span><span class="amt">{{ inr(product.prices[2]) }}</span><span class="yr">/year</span></div><span class="save">Save up to 84%</span></div>
         <div class="certificate-quantity" role="group" [attr.aria-label]="product.name + ' quantity'">
           <button type="button" (click)="adjustQuantity(product, -1)" [disabled]="quantity(product) === 1" [attr.aria-label]="'Decrease ' + product.name + ' quantity'">&minus;</button>
-          <output aria-live="polite">{{ quantity(product) }}</output>
+          <input xhQuantityInput [attr.aria-label]="'Quantity for ' + product.name + ' quantity'" [quantityValue]="quantity(product)" [quantityMax]="9999" (quantityChange)="adjustQuantity(product, $event - (quantity(product)))" />
           <button type="button" (click)="adjustQuantity(product, 1)" [disabled]="quantity(product) === 9999" [attr.aria-label]="'Increase ' + product.name + ' quantity'">+</button>
         </div>
         <button class="btn btn-orange" type="button" (click)="configure(product)">Buy Now <span class="ar">→</span></button>

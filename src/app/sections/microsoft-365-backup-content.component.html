@@ -265,7 +265,7 @@
   <form class="form" id="xgForm" novalidate>
    <input name="name" placeholder="Full name *" required aria-label="Full name"><input name="company" placeholder="Company" aria-label="Company">
    <input name="email" type="email" placeholder="Work email *" required aria-label="Work email"><input name="phone" type="tel" placeholder="Mobile *" required aria-label="Mobile">
-   <select name="users" aria-label="Users"><option>1–50 users</option><option>51–250 users</option><option>251–1,000 users</option><option>1,000+ users</option></select>
+   <input name="users" type="hidden" [value]="quantity()" /><xh-quantity-selector label="No. of users" [value]="quantity()" (valueChange)="quantity.set($event)" />
    <select name="want" aria-label="Interest"><option>Free trial</option><option>Demo</option><option>Quote with Entra ID Backup</option></select>
    <textarea class="full" name="msg" rows="3" placeholder="Anything we should know? (e.g. retention required, shared mailboxes, recent ransomware scare)" aria-label="Details"></textarea>
    <input type="hidden" name="product" value="Microsoft 365 Backup">

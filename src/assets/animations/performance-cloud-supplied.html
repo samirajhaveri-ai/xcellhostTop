@@ -1259,13 +1259,14 @@ function renderCart(){var box=$("#hxIt"),sub=0,n=0;
  if(!CART.length)box.innerHTML='<div class="hx-empty">'+IC.cart+'Your cart is empty.<br>Add a server, storage or network item to see a live estimate.</div>';
  else box.innerHTML=CART.map(function(it,i){var eq=moEq(it)*it.qty;sub+=eq;n+=it.qty;
   return '<div class="hx-li"><div class="t"><div><b>'+it.name+'</b><small>'+it.spec+'</small></div><button class="rm" data-rm="'+i+'" aria-label="Remove">✕</button></div>'+
-   '<div class="bt"><div class="hx-q"><button type="button" data-q="'+i+'" data-d="-1">−</button><input value="'+it.qty+'" readonly aria-label="Quantity"><button type="button" data-q="'+i+'" data-d="1">+</button></div>'+
+   '<div class="bt"><div class="hx-q"><button type="button" data-q="'+i+'" data-d="-1">−</button><input type="number" min="1" step="1" inputmode="numeric" data-quantity-input="'+i+'" value="'+it.qty+'" aria-label="Quantity"><button type="button" data-q="'+i+'" data-d="1">+</button></div>'+
    '<div class="pp">'+money(it.unit*it.qty,it.bill)+(it.unit?PER[it.bill]:"")+(it.bill==="y"?'<small>billed annually</small>':(it.bill==="h"?'<small>≈ ₹'+f0(eq)+'/mo</small>':''))+'</div></div></div>'}).join("");
  var g=sub*.18;$("#hxSub").textContent="₹"+f0(sub);$("#hxGst").textContent="₹"+f0(g);$("#hxTot").textContent="₹"+f0(sub+g);
  $("#hxCn").textContent=n+(n===1?" item":" items");$("#hxFc").textContent=n;$("#hxFt").textContent="₹"+f0(sub+g);fab.classList.toggle("on",n>0);save()}
 function add(it){var k=CART.findIndex(function(c){return c.key===it.key});if(k>-1)CART[k].qty+=it.qty||1;else{it.qty=it.qty||1;CART.push(it)}
  renderCart();fab.classList.remove("bump");void fab.offsetWidth;fab.classList.add("bump")}
 function flash(b){var t=b.innerHTML;b.classList.add("ok");b.innerHTML="✓ Added to cart";setTimeout(function(){b.classList.remove("ok");b.innerHTML=t},1300)}
+$("#hxIt").addEventListener("change",function(e){var field=e.target.closest("[data-quantity-input]");if(!field)return;var item=CART[+field.dataset.quantityInput],number=field.valueAsNumber;if(!Number.isFinite(number)){field.value=item.qty;return;}item.qty=Math.max(1,Math.min(Number.MAX_SAFE_INTEGER,Math.trunc(number)));renderCart();});
 $("#hxIt").addEventListener("click",function(e){var r=e.target.closest("[data-rm]"),q=e.target.closest("[data-q]");
  if(r){CART.splice(+r.dataset.rm,1);renderCart()}if(q){var it=CART[+q.dataset.q];it.qty=Math.max(1,it.qty+ +q.dataset.d);renderCart()}});
 function openCart(o){cartEl.classList.toggle("open",o);ov.classList.toggle("on",o)}

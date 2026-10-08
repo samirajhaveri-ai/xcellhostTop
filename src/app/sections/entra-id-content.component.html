@@ -55,11 +55,13 @@
           <div class="ez-sku">{{ plan.sku }}</div>
           <div class="ez-list-row"><span>Microsoft official</span><s>{{ plan.list }}</s></div>
           <div class="ez-gst">+ 18% GST</div>
-          <div class="ez-price-row"><span class="ez-tag monthly">Monthly</span><strong>{{ plan.monthly }}</strong></div>
-          <div class="ez-price-row"><span class="ez-tag yearly">Yearly</span><strong>{{ plan.yearly }}</strong></div>
+          <div class="ez-price-row"><span class="ez-tag monthly">Monthly</span><strong>{{ total(plan.monthly, plan) }}</strong></div>
+          <div class="ez-price-row"><span class="ez-tag yearly">Yearly</span><strong>{{ total(plan.yearly, plan) }}</strong></div>
           <div class="ez-save"><span>You save</span><b>~9% vs Microsoft</b></div>
-          <div class="ez-cta"><a href="tel:+912267111555">☎ Call Now</a><a href="#ppCtaT">Get Quotation →</a></div>
-          <a class="ez-buy" href="#ppCtaT">🛒 Configure &amp; Buy</a>
+          <xh-quantity-selector label="No. of users" [value]="quantity(plan)" (valueChange)="setQuantity(plan, $event)" />
+          @if (quantity(plan) > 1) { <p class="quantity-total">Total for {{ quantity(plan) }} users</p> }
+          <div class="ez-cta"><a href="tel:+912267111555">☎ Call Now</a><a href="#ppCtaT" (click)="requestPlan($event, plan)">Get Quotation →</a></div>
+          <a class="ez-buy" href="#ppCtaT" (click)="requestPlan($event, plan)">🛒 Configure &amp; Buy</a>
         </article>
       }
     </div>

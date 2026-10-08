@@ -1,3 +1,4 @@
+import { QuantityInputDirective } from '../core/quantity-input.directive';
 import { InsightsSectionComponent } from '../sections/insights-section.component';
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { OverlayService } from '../core/overlay.service';
@@ -23,7 +24,7 @@ interface GeoTrustProduct {
 @Component({
   selector: 'xh-geotrust-ssl-certificates-page',
   standalone: true,
-  imports: [InsightsSectionComponent, ProductPage],
+  imports: [QuantityInputDirective, InsightsSectionComponent, ProductPage],
   templateUrl: './geotrust-ssl-certificates.page.html',
   styleUrl: './geotrust-ssl-certificates.page.css',
   host: { class: 'geotrust-page' },

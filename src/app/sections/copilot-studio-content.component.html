@@ -140,10 +140,11 @@
           <li>✓ Analytics and governance</li>
         </ul>
         <div class="pprice">
-          <span class="from">From</span><span class="amt">₹1,660</span
-          ><span class="permo">/user/mo</span>
+          <span class="from">{{ quantity() === 1 ? 'From' : 'Total' }}</span><span class="amt">{{ totalPrice() }}</span
+          ><span class="permo">{{ quantity() === 1 ? '/user/mo' : '/mo for ' + quantity() + ' users' }}</span>
         </div>
-        <button class="btn btn-primary" type="button">Configure &amp; Buy →</button>
+        <xh-quantity-selector label="No. of users" [value]="quantity()" (valueChange)="quantity.set($event)" />
+        <button class="btn btn-primary" type="button" (click)="addPlan()">Configure &amp; Buy →</button>
       </article>
       <p class="pv-note">
         Indicative INR pricing, billed annually and excluding GST. Message-pack capacity is billed

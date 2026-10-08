@@ -213,7 +213,7 @@ h2{font-family:var(--disp);font-weight:700;font-size:clamp(25px,3vw,34px);color:
 .quote-quantity button:last-child{border-left:1px solid #bfd3f3}
 .quote-quantity button:hover{background:#edf4ff;color:var(--blue)}
 .quote-quantity button:focus-visible{outline:2px solid var(--navy);outline-offset:-3px}
-.quote-quantity output{flex:1;min-width:54px;color:#071c39;font:500 16px var(--body);text-align:center}
+.quote-quantity :is(output,input[xhQuantityInput]){flex:1;min-width:54px;color:#071c39;font:500 16px var(--body);text-align:center}
 .billing-choices{display:grid;gap:9px;margin:0 0 16px;text-align:left}
 .billing-gst-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 12px;text-align:left;font:700 10px/1.5 var(--mono);color:var(--slate)}
 .billing-gst-toggle{display:flex;gap:3px;padding:3px;border:1px solid #d3def0;border-radius:8px;background:#f1f5fa}

@@ -980,6 +980,8 @@ html,body{overflow-x:hidden}
 @media (max-width:600px){.gp-dc-section{margin-top:54px}.gp-dc-title{margin-bottom:24px}.gp-dc-tabs{margin-bottom:24px}.gp-dc-tabs button{min-height:62px;padding:10px 6px;gap:6px;font-size:12px}.gp-dc-tabs svg{width:24px;height:24px}.gp-dc-details{padding:30px 24px}.gp-dc-details li{font-size:14px}.gp-dc-visual{min-height:250px;padding:0 16px 16px 0}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.reveal,.stagger>*{opacity:1;transform:none}}
 
+.ci-qty input{width:54px;height:28px;border:1px solid var(--line);border-radius:5px;background:#fff;text-align:center;color:var(--navy);font-size:13px;font-weight:700;appearance:textfield}
+.ci-qty input::-webkit-inner-spin-button,.ci-qty input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
 </style>
 <style>
 /* Embedded page: the Angular shell supplies the global chrome and follow-up sections. */
@@ -1788,7 +1790,7 @@ body {
     $('#cartEmpty').style.display = n ? 'none' : ''; $('#cartFoot').style.display = n ? '' : 'none';
     $('#cartItems').innerHTML = cart.map((c, i) => { const p = byId(c.id); const pr = priceOf(p, c.billing, c.storage, c.os); const v = lineTotal(c);
       return '<li><div class="ci-ic">' + (p.cat === 'ent' ? '🏢' : '🎛️') + '</div><div class="ci-main"><b>' + gpuName(p) + (p.n > 1 ? ' ×' + p.n : '') + '</b><small>' + p.vcpu + ' vCPU · ' + p.ram + ' GB RAM · ' + c.storage + ' GB NVMe · ' + (c.os === 'win' ? 'Windows' : 'Linux') + (p.cat === 'ent' ? ' · reserved SKU' : '') + '</small>' +
-        '<div class="ci-ctrl"><div class="ci-qty"><button data-q="-1" data-i="' + i + '" aria-label="Decrease">−</button><span>' + c.qty + '</span><button data-q="1" data-i="' + i + '" aria-label="Increase">+</button></div>' +
+        '<div class="ci-ctrl"><div class="ci-qty"><button data-q="-1" data-i="' + i + '" aria-label="Decrease">−</button><input type="number" min="1" step="1" inputmode="numeric" data-quantity-input="' + i + '" value="' + c.qty + '" aria-label="Quantity"><button data-q="1" data-i="' + i + '" aria-label="Increase">+</button></div>' +
         (p.cat === 'ent' ? '<span class="ci-cycle" style="color:var(--slate)">Hourly · mo/yr quoted</span>' : '<select class="ci-cycle" data-i="' + i + '" aria-label="Billing cycle"><option value="hr"' + (c.billing === 'hr' ? ' selected' : '') + '>Hourly</option><option value="mo"' + (c.billing === 'mo' ? ' selected' : '') + '>Monthly</option><option value="yr"' + (c.billing === 'yr' ? ' selected' : '') + '>Annual −12%</option></select>') +
         '<button class="ci-rm" data-rm="' + i + '" aria-label="Remove">✕</button></div></div><div class="ci-price">' + money(v, { dec: pr.unit === '/hr' ? 2 : 0 }) + pr.unit + '<small>excl. GST</small></div></li>'; }).join('');
     const mo = cart.filter(c => c.billing !== 'hr').reduce((a, c) => a + lineTotal(c), 0), hr = cart.filter(c => c.billing === 'hr').reduce((a, c) => a + lineTotal(c), 0);
@@ -1797,7 +1799,7 @@ body {
     const msg = 'Hi XcellHost, I would like a quote for GPU Servers:%0A' + cart.map(c => { const p = byId(c.id); return '- ' + c.qty + ' x ' + gpuName(p) + (p.n > 1 ? ' x' + p.n : '') + ' (' + p.vcpu + ' vCPU / ' + p.ram + ' GB / ' + c.storage + ' GB NVMe, ' + (c.os === 'win' ? 'Windows' : 'Linux') + ', ' + (c.billing === 'hr' ? 'hourly' : c.billing === 'yr' ? 'annual' : 'monthly') + (p.cat === 'ent' ? ', reserved' : '') + ')'; }).join('%0A') + '%0AEstimated: ' + encodeURIComponent(totalTxt.replace(/ /g, ' '));
     $('#cartWa').href = 'https://wa.me/918657032540?text=' + msg; $('#cartMail').href = 'mailto:sales@xcellhost.cloud?subject=GPU%20Servers%20quote&body=' + msg; }
   cartEl.addEventListener('click', e => { const q = e.target.closest('[data-q]'); if (q) { const c = cart[+q.dataset.i]; c.qty = Math.max(0, c.qty + +q.dataset.q); if (!c.qty) cart.splice(+q.dataset.i, 1); saveCart(); renderCart(); } const rm = e.target.closest('[data-rm]'); if (rm) { cart.splice(+rm.dataset.rm, 1); saveCart(); renderCart(); } });
-  cartEl.addEventListener('change', e => { const s = e.target.closest('select.ci-cycle'); if (s) { cart[+s.dataset.i].billing = s.value; saveCart(); renderCart(); } });
+  cartEl.addEventListener('change', e => { const field=e.target.closest('[data-quantity-input]');if(field){const item=cart[Number(field.dataset.quantityInput)],number=field.valueAsNumber;if(!Number.isFinite(number)){field.value=item.qty;return;}item.qty=Math.max(1,Math.min(Number.MAX_SAFE_INTEGER,Math.trunc(number)));saveCart();renderCart();return;} const s = e.target.closest('select.ci-cycle'); if (s) { cart[+s.dataset.i].billing = s.value; saveCart(); renderCart(); } });
   $('#cartQuote').addEventListener('click', e => { e.preventDefault(); toast('✅ <b>Quote request sent.</b> A combined GST quote reaches your inbox within 1 business hour.'); });
 
   /* ---------- toast ---------- */

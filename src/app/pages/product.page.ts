@@ -1,3 +1,4 @@
+import { QuantityInputDirective } from '../core/quantity-input.directive';
 import { FRAMEWORK_DETAILS } from '../data/framework-details.data';
 import { NistCsfContentComponent } from '../sections/nist-csf-content.component';
 
@@ -201,6 +202,7 @@ import { VortexSocContentComponent } from './vortex-soc-content.component';
 import { VortexSegContentComponent } from './vortex-seg-content.component';
 import { InfrastructureContentComponent } from '../sections/infrastructure-content.component';
 import { ColocationContentComponent } from '../sections/colocation-content.component';
+import { DataCenterInfrastructureComponent } from '../sections/data-center-infrastructure.component';
 import { MarketplaceContentComponent } from '../sections/marketplace-content.component';
 import { WhatsAppSmbContentComponent } from '../sections/whatsapp-smb-content.component';
 
@@ -398,7 +400,7 @@ interface ProductTourSlide {
 @Component({
   selector: 'xh-product-page',
   standalone: true,
-  imports: [
+  imports: [QuantityInputDirective, DataCenterInfrastructureComponent,
     ManagedMongodbHeroComponent,
     AiReceptionistHeroComponent,
     VsaasHeroComponent,
