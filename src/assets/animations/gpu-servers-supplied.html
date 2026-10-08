@@ -197,6 +197,8 @@ button{font-family:inherit}
 .pp-ask-ai-actions{display:flex;align-items:center;gap:8px}
 .pp-ask-ai-chip{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid rgba(161,184,219,.28);border-radius:14px;background:rgba(11,24,53,.58);color:#fff;transition:transform .18s,border-color .18s,background .18s;font:800 11px var(--disp)}
 .pp-ask-ai-chip:hover{transform:translateY(-2px);border-color:rgba(113,192,255,.65);background:rgba(17,42,84,.78)}
+.nvidia-powered-by{display:flex;align-items:center;gap:10px;margin-top:12px;color:#c7d5ec;font:400 13px/1.4 var(--body)}
+.nvidia-powered-lockup{display:inline-flex;align-items:center;gap:8px;color:#fff}.nvidia-powered-lockup img{display:block;width:34px;height:34px}.nvidia-powered-lockup strong{font:900 24px/1 Arial,sans-serif;letter-spacing:-1.5px}
 .pp-hero-pts{display:flex;align-items:center;flex-wrap:wrap;width:fit-content;max-width:100%;margin-top:22px;padding:10px 0;border-top:1px solid rgba(111,164,232,.18);border-bottom:1px solid rgba(111,164,232,.18);font-size:12.5px;color:#c5d5ec;animation:pprise .6s ease .7s both}
 .pp-hero-pts span{display:inline-flex;align-items:center;white-space:nowrap;padding:0 17px;border-right:1px solid rgba(143,184,255,.2)}
 .pp-hero-pts span:first-child{padding-left:0}.pp-hero-pts span:last-child{padding-right:0;border-right:0}
@@ -1131,6 +1133,7 @@ body {
           <a aria-label="Grok" target="_blank" rel="noopener noreferrer" class="pp-ask-ai-chip" href="https://grok.com/?q=XcellHost%20GPU%20Servers%20overview">GRK</a>
         </div>
       </section>
+      <div class="nvidia-powered-by" aria-label="Powered by NVIDIA"><span>Powered by</span><span aria-hidden="true">|</span><span class="nvidia-powered-lockup"><img src="/assets/images/a100-logos/nvidia.svg" alt=""><strong>NVIDIA</strong></span></div>
     </div></div>
   </div>
 </div>
@@ -1234,7 +1237,7 @@ body {
   <div class="gp-tray" id="gpTray" hidden><div class="gp-tray-in"><span class="gp-tray-lbl">Compare</span><div class="gp-tray-items" id="trayItems"></div><button type="button" class="btn btn-primary" id="trayCompare">Compare <span id="trayN">0</span></button><button type="button" class="gp-tray-x" id="trayClear" aria-label="Clear">✕</button></div></div>
   <div class="gp-modal" id="cmpModal" hidden><div class="gp-modal-back" data-close-cmp></div><div class="gp-modal-card"><div class="gp-modal-head"><h3>Side-by-side comparison</h3><button type="button" class="cart-x" data-close-cmp aria-label="Close">✕</button></div><div class="gp-modal-body" id="cmpBody"></div></div></div>
 
-  <section class="gp-dc-section reveal" aria-labelledby="gpDcTitle">
+  <section class="gp-dc-section reveal" aria-labelledby="gpDcTitle" hidden>
     <h2 class="gp-dc-title" id="gpDcTitle">Tier 4 Certified Data Center Infrastructure</h2>
     <div class="gp-dc-tabs" role="tablist" aria-label="Data center locations">
       <button id="gpDcTabMumbai1" type="button" role="tab" aria-selected="false" aria-controls="gpDcMumbai1" tabindex="-1" data-gpu-dc-tab="mumbai-1"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 29h24M6 29V12h20v17M5 12h22l-2-4H7zM10 8V5h12v3M9 16h3M9 20h3M9 24h3M20 16h3M20 20h3M20 24h3M14 29v-6a2 2 0 014 0v6"/></svg> Mumbai DC-1</button>
