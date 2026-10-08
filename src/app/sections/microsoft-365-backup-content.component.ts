@@ -1,13 +1,16 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, ViewEncapsulation, inject } from '@angular/core';
+import { QuantitySelectorComponent } from '../shared/quantity-selector.component';
+import { AfterViewInit, Component, ElementRef, OnDestroy, ViewEncapsulation, inject, signal } from '@angular/core';
 
 /** Detailed Microsoft 365 Backup content from the supplied reference page. */
 @Component({
   selector: 'xh-microsoft-365-backup-content',
+  imports: [QuantitySelectorComponent],
   templateUrl: './microsoft-365-backup-content.component.html',
   styleUrls: ['./microsoft-365-backup-hero.component.css', './microsoft-365-backup-content.component.css'],
   encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class Microsoft365BackupContentComponent implements AfterViewInit, OnDestroy {
+  readonly quantity = signal(1);
   private readonly host = inject(ElementRef<HTMLElement>);
   private readonly cleanups: Array<() => void> = [];
 

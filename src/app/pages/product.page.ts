@@ -1,9 +1,13 @@
+
+import { QuantityInputDirective } from '../core/quantity-input.directive';
+
 import { BoxMigrationContentComponent } from '../sections/box-migration-content.component';
 import { BOX_MIGRATION_FAQS } from '../data/box-migration-faq.data';
 import { DropboxMigrationContentComponent } from '../sections/dropbox-migration-content.component';
 import { DROPBOX_MIGRATION_FAQS } from '../data/dropbox-migration-faq.data';
 import { ManagedMicrosoftSqlContentComponent } from '../sections/managed-microsoft-sql-content.component';
 import { MANAGED_SQL_FAQS } from '../data/managed-microsoft-sql-faq.data';
+
 import { FRAMEWORK_DETAILS } from '../data/framework-details.data';
 import { NistCsfContentComponent } from '../sections/nist-csf-content.component';
 
@@ -212,6 +216,7 @@ import { VortexSocContentComponent } from './vortex-soc-content.component';
 import { VortexSegContentComponent } from './vortex-seg-content.component';
 import { InfrastructureContentComponent } from '../sections/infrastructure-content.component';
 import { ColocationContentComponent } from '../sections/colocation-content.component';
+import { DataCenterInfrastructureComponent } from '../sections/data-center-infrastructure.component';
 import { MarketplaceContentComponent } from '../sections/marketplace-content.component';
 import { WhatsAppSmbContentComponent } from '../sections/whatsapp-smb-content.component';
 
@@ -409,7 +414,7 @@ interface ProductTourSlide {
 @Component({
   selector: 'xh-product-page',
   standalone: true,
-  imports: [
+  imports: [QuantityInputDirective, DataCenterInfrastructureComponent,
     ManagedMongodbHeroComponent,
     AiReceptionistHeroComponent,
     CpuOptimizedHeroComponent,
@@ -3595,6 +3600,7 @@ class ProductPageComponent {
     { label: 'FAQs', target: 'ppFaq' },
     { label: 'Insights', target: 'ppBlog' },
   ];
+
 
   readonly smbSectionNavLinks = computed(() =>
     this.isTally()

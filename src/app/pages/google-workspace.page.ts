@@ -1,3 +1,5 @@
+import { signal } from '@angular/core';
+import { QuantitySelectorComponent } from '../shared/quantity-selector.component';
 import { InsightsSectionComponent } from '../sections/insights-section.component';
 import {
   AfterViewInit,
@@ -15,7 +17,7 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 @Component({
   selector: 'xh-google-workspace-page',
   standalone: true,
-  imports: [InsightsSectionComponent],
+  imports: [InsightsSectionComponent, QuantitySelectorComponent],
   templateUrl: './google-workspace.page.html',
   styleUrl: './google-workspace.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -76,9 +78,17 @@ export class GoogleWorkspacePage implements AfterViewInit, OnDestroy {
     });
   }
 
-  openCallback(event: Event): void {
+  readonly quantities = signal([1, 1, 1, 1]);
+  monthlyTotal(index: number): string {
+    return new Intl.NumberFormat('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0}).format([99, 270, 864][index] * this.quantities()[index]);
+  }
+  setQuantity(index: number, quantity: number): void {
+    this.quantities.update(values => values.map((value, i) => i === index ? quantity : value));
+  }
+
+  openCallback(event: Event, plan?: string, index?: number): void {
     event.preventDefault();
-    this.topics.ask('Google Workspace');
+    this.topics.ask(plan && index !== undefined ? 'Google Workspace ? ' + plan + ' ? ' + this.quantities()[index] + ' users' : 'Google Workspace');
     this.overlay.open('callback');
   }
 

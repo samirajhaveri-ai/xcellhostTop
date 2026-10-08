@@ -29,8 +29,7 @@ export class SmbSectionNavComponent {
       '',
       `${window.location.pathname}${window.location.search}#${target}`,
     );
-    const frameTop = frame && section.ownerDocument === frame.contentDocument
-      ? frame.getBoundingClientRect().top : 0;
+    const frameTop = frame && section.ownerDocument === frame.contentDocument ? frame.getBoundingClientRect().top : 0;
     const top = section.getBoundingClientRect().top + frameTop + window.scrollY - 148;
     window.scrollTo({ top: Math.max(0, top), behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   }

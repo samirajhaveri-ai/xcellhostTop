@@ -3609,7 +3609,9 @@
         #verdict .vd-wrap { grid-template-columns: minmax(240px, 1fr) 44px minmax(240px, 1fr); }
         #related .rel-grid { grid-template-columns: repeat(4, minmax(210px, 1fr)); }
       }
-    </style>
+    .cq input{width:54px;height:28px;border:1px solid var(--line);border-radius:5px;background:#fff;text-align:center;color:var(--navy);font-size:13px;font-weight:700;appearance:textfield}
+.cq input::-webkit-inner-spin-button,.cq input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+</style>
   <link rel="stylesheet" href="/mobile-layout.css">
 </head>
   <body>
@@ -5517,7 +5519,7 @@
             box.innerHTML = cart
               .map(
                 (x, i) =>
-                  `<div class="ci"><div><b>${x.name}</b><small>${x.detail}</small><div class="cq"><button data-cq="${i}" data-d="-1" aria-label="Decrease">\u2212</button><b>${x.qty}</b><button data-cq="${i}" data-d="1" aria-label="Increase">+</button></div></div><div class="cp">${inr(x.unit * x.qty)}<small>${inr(x.unit)} each</small></div><button class="rm" data-rm="${i}">Remove</button></div>`,
+                  `<div class="ci"><div><b>${x.name}</b><small>${x.detail}</small><div class="cq"><button data-cq="${i}" data-d="-1" aria-label="Decrease">\u2212</button><input type="number" min="1" step="1" inputmode="numeric" aria-label="Quantity" data-quantity-input="${i}" value="${x.qty}"><button data-cq="${i}" data-d="1" aria-label="Increase">+</button></div></div><div class="cp">${inr(x.unit * x.qty)}<small>${inr(x.unit)} each</small></div><button class="rm" data-rm="${i}">Remove</button></div>`,
               )
               .join("");
           const sub = cart.reduce((a, x) => a + x.unit * x.qty, 0),
@@ -5525,7 +5527,8 @@
           $("#cartSub").textContent = inr(sub);
           $("#cartGst").textContent = inr(gst);
           $("#cartTotal").textContent = inr(sub + gst);
-          $$("[data-cq]", box).forEach((b) =>
+          $$('[data-quantity-input]', box).forEach(field => field.addEventListener('change', () => { const item = cart[Number(field.dataset.quantityInput)]; const number = field.valueAsNumber; if (!Number.isFinite(number)) { field.value = item.qty; return; } item.qty = Math.max(1, Math.min(Number.MAX_SAFE_INTEGER, Math.trunc(number))); renderCart(); }));
+          $$('[data-cq]', box).forEach((b) =>
             b.addEventListener("click", () => {
               const it = cart[+b.dataset.cq];
               it.qty = Math.max(1, it.qty + +b.dataset.d);

@@ -386,7 +386,7 @@ export class FlagshipComponent {
       const seen = new Set<string>();
       return (marketplace?.tabs ?? []).flatMap(tab =>
         tab.groups.flatMap(section => section.items.flatMap(item => {
-          if (item.title === 'No Data' || item.href?.startsWith('/under-construction')) return [];
+          if (item.title !== 'TSplus Remote Access') return [];
           const service = this.catalog.findInDirectory(item.title)?.name ?? item.title;
           const link = item.href ?? '/' + slugify(service);
           if (seen.has(link)) return [];

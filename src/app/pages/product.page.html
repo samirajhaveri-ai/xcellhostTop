@@ -1253,9 +1253,11 @@
                 
                 
                 <button class="btn btn-ghost" type="button">7 Day's Free Trial</button>
-                <a class="btn btn-primary" href="#" id="ppEnquiry" (click)="openCallback($event)"
-                  >Let's Talk</a
-                >
+                <a class="btn btn-primary" href="#" id="ppEnquiry" (click)="openCallback($event)">Let's Talk</a>
+                <div class="sitelock-powered-by">
+                  <span>Powered by</span>
+                  <img src="/assets/images/sitelock-logo.png" alt="SiteLock" width="150" height="36" />
+                </div>
               </div>
             </div>
             <xh-sitelock-hero class="sitelock-live-visual" />
@@ -1977,17 +1979,7 @@
         <xh-smb-section-nav label="Managed Microsoft SQL page sections" [links]="sqlSectionNavLinks" frameSelector="xh-managed-microsoft-sql-content iframe[src='/managed-microsoft-sql-content.html']" />
       }
 
-      @if (usesSuppliedSmbHero()) {
-
-      @if (slug() === 'memory-optimized') {
-        <xh-smb-section-nav
-          label="Memory Optimized page sections"
-          [links]="memorySectionNavLinks"
-          frameSelector="xh-memory-optimized-content iframe"
-        />
-      }
-      @if (slug() !== 'memory-optimized' && usesSuppliedSmbHero()) {
-
+      @if (slug() !== 'cpu-optimized' && slug() !== 'memory-optimized' && usesSuppliedSmbHero()) {
         <xh-smb-section-nav
           [label]="v.name + ' page sections'"
           [links]="smbSectionNavLinks()"
@@ -2583,6 +2575,7 @@
                         <section class="backup-protection" aria-labelledby="backupProtectionTitle">
                         <h2 id="backupProtectionTitle">We are Acronis Certified, delivering trusted and certified solutions for reliable data protection and cybersecurity.</h2>
                         <p>Acronis Certified Disaster Recovery Professional and DR to Azure Specialist badges highlight expertise in disaster recovery and Azure recovery environments. This knowledge supports recovery planning, replication configuration, failover testing and failback preparation. XcellHost helps translate that expertise into a recovery approach suited to your workloads and business continuity requirements.</p>
+                        <img class="acronis-platinum-partner" src="/assets/images/acronis-platinum-service-provider.png" alt="Acronis Platinum Service Provider" width="230" height="47" loading="lazy" decoding="async" />
                         <img class="backup-protection-badges backup-protection-badges-compact" src="/assets/images/acronis-disaster-recovery-badges.png" alt="Acronis Certified Disaster Recovery Professional and DR to Azure Specialist badges" loading="lazy" />
                         </section>
                       </div>
@@ -2742,9 +2735,7 @@
                               >
                                 −
                               </button>
-                              <output id="edrQuantity" aria-live="polite">{{
-                                edrQuantity()
-                              }}</output>
+                              <input xhQuantityInput id="edrQuantity" aria-label="Quantity for users" [quantityValue]="edrQuantity()" (quantityChange)="changeEdrQuantity($event - (edrQuantity()))" />
                               <button
                                 type="button"
                                 aria-label="Increase users"
@@ -3139,7 +3130,7 @@
                             >
                               −
                             </button>
-                            <output id="cdrQuantity" aria-live="polite">{{ cdrQuantity() }}</output>
+                            <input xhQuantityInput id="cdrQuantity" aria-label="Quantity for users or devices" [quantityValue]="cdrQuantity()" (quantityChange)="changeCdrQuantity($event - (cdrQuantity()))" />
                             <button
                               type="button"
                               aria-label="Increase users or devices"
@@ -3389,7 +3380,7 @@
                         @if (!p.quoteOnly) {
                           <div class="plan-quantity" role="group" [attr.aria-label]="p.term + ' plan quantity'">
                             <button type="button" [attr.aria-label]="'Decrease ' + p.term + ' plan quantity'" [disabled]="planQuantity(p) === 1" (click)="changePlanQuantity(p, -1)">&minus;</button>
-                            <output aria-live="polite">{{ planQuantity(p) }}</output>
+                            <input xhQuantityInput [attr.aria-label]="'Quantity for ' + p.term + ' plan quantity'" [quantityValue]="planQuantity(p)" [quantityMax]="99" (quantityChange)="changePlanQuantity(p, $event - (planQuantity(p)))" />
                             <button type="button" [attr.aria-label]="'Increase ' + p.term + ' plan quantity'" [disabled]="planQuantity(p) === 99" (click)="changePlanQuantity(p, 1)">+</button>
                           </div>
                         }
@@ -4480,6 +4471,7 @@
                       <p>
                           Acronis Certified Backup Professional and Advanced Backup Professional badges highlight specialist expertise in backup and data recovery. This expertise supports the configuration of backup policies, retention settings and recovery workflows for endpoints, servers and cloud workloads. For your business, it means informed guidance when planning, maintaining and testing your data protection.
                         </p>
+                      <img class="acronis-platinum-partner" src="/assets/images/acronis-platinum-service-provider.png" alt="Acronis Platinum Service Provider" width="230" height="47" loading="lazy" decoding="async" />
                     </div>
                     <img
                       class="backup-protection-badges backup-protection-badges-compact"
@@ -4908,6 +4900,7 @@
                         <p>
                           Acronis Certified RMM Professional and Advanced Management Specialist badges highlight expertise in remote monitoring and IT management. This knowledge supports device monitoring, patch management, remote support and routine maintenance. XcellHost brings that expertise to the day-to-day management of your IT environment, helping your team configure policies and maintain consistent operations.
                         </p>
+                        <img class="acronis-platinum-partner" src="/assets/images/acronis-platinum-service-provider.png" alt="Acronis Platinum Service Provider" width="230" height="47" loading="lazy" decoding="async" />
                       </div>
                       <img
                         class="backup-protection-badges backup-protection-badges-compact"
@@ -5005,6 +4998,7 @@
                         <p>
                           Acronis Certified Disaster Recovery Professional and DR to Azure Specialist badges highlight expertise in disaster recovery and Azure recovery environments. This knowledge supports recovery planning, replication configuration, failover testing and failback preparation. XcellHost helps translate that expertise into a recovery approach suited to your workloads and business continuity requirements.
                         </p>
+                        <img class="acronis-platinum-partner" src="/assets/images/acronis-platinum-service-provider.png" alt="Acronis Platinum Service Provider" width="230" height="47" loading="lazy" decoding="async" />
                       </div>
                       <img
                         class="backup-protection-badges backup-protection-badges-compact"
@@ -5081,6 +5075,7 @@
                         <p>
                           Over 25+ Acronis Certified Endpoint Security Professional and Advanced Security Specialist Staff  highlight expertise in endpoint protection and security management. This knowledge supports protection policy configuration, endpoint monitoring and threat response workflows. XcellHost applies that expertise when helping your business manage security across devices and review its protection settings.
                         </p>
+                        <img class="acronis-platinum-partner" src="/assets/images/acronis-platinum-service-provider.png" alt="Acronis Platinum Service Provider" width="230" height="47" loading="lazy" decoding="async" />
                       </div>
                       <img
                         class="backup-protection-badges backup-protection-badges-compact"
@@ -5163,6 +5158,9 @@
                 <p class="pp-secfoot">XcellHost is ISO 27001 and ISO 20000-1 certified · Indian Tier-4 datacenters · DPDPA and RBI aligned · 24×7 NOC and SOC.</p>
               </section>
             } @else if (slug() !== 'claude-backup' && slug() !== 'linux-servers' && slug() !== 'windows-servers' && slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation' && !isSmbCyber() && !isRmm() && slug() !== 'acronis-backup-advanced' && slug() !== 'acronis-ot' && slug() !== 'scrutiny-dlp' && slug() !== 'cloud-migration') {
+              @if (slug() === 'co-location-services') {
+                <xh-data-center-infrastructure />
+              }
               <div class="pp-sec" id="ppSecHead" [style.margin-bottom.px]="slug() === 'managed-devops' ? 32 : null">{{ slug() === 'microsoft-365-enterprise' ? 'Security & compliance — Microsoft 365 Enterprise' : v.security.head }}</div>
               <div id="ppSecWrap">
                 <p class="pp-ov">{{ v.security.intro }}</p>

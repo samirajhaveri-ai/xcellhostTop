@@ -1,4 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { QuantitySelectorComponent } from '../shared/quantity-selector.component';
+import { CallbackTopicService } from '../overlays/callback-topic.service';
+import { OverlayService } from '../core/overlay.service';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 
 interface EntraPlan {
   name: string;
@@ -11,11 +14,26 @@ interface EntraPlan {
 @Component({
   selector: 'xh-entra-id-content',
   standalone: true,
+  imports: [QuantitySelectorComponent],
   templateUrl: './entra-id-content.component.html',
   styleUrl: './entra-id-content.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EntraIdContentComponent {
+  private readonly topics = inject(CallbackTopicService);
+  private readonly overlay = inject(OverlayService);
+  readonly quantities = signal<Record<string, number>>({});
+  quantity(plan: EntraPlan): number { return this.quantities()[plan.sku] ?? 1; }
+  total(price: string, plan: EntraPlan): string {
+    const unit = Number(price.replace(/[^0-9.]/g, ''));
+    return new Intl.NumberFormat('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0}).format(unit * this.quantity(plan));
+  }
+  setQuantity(plan: EntraPlan, value: number): void { this.quantities.update(values => ({...values, [plan.sku]: value})); }
+  requestPlan(event: Event, plan: EntraPlan): void {
+    event.preventDefault();
+    this.topics.ask(plan.name + ' ? ' + this.quantity(plan) + ' users');
+    this.overlay.open('callback');
+  }
   readonly plans: EntraPlan[] = [
     { name: 'Microsoft Entra Workload ID', sku: 'CFQ7TTC0R9QB:0002', list: '₹250/mo', monthly: '₹228', yearly: '₹2,640' },
     { name: 'Microsoft Entra Internet Access', sku: 'MS-ENTRA-INTERNET', list: '₹415/mo', monthly: '₹378', yearly: '₹4,382' },

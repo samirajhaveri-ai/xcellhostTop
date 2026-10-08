@@ -266,7 +266,7 @@
         <div class="ppl">
           <span class="tag">Micro Business</span>
           <h4>Base</h4>
-          <div class="amt"><b>&#8377;99</b><span>per user / month &middot; annual + GST</span></div>
+          <div class="amt"><b>{{ monthlyTotal(0) }}</b><span>{{ quantities()[0] === 1 ? 'per user / month' : '/month for ' + quantities()[0] + ' users' }} &middot; annual + GST</span></div>
           <span class="save">Max 20 users &middot; 20 GB pooled</span>
           <ul>
             <li>Custom email &mdash; @yourcompany.com</li>
@@ -278,13 +278,14 @@
             <li class="no">Meeting recording</li>
             <li class="no">eSignature</li>
           </ul>
-          <div class="btns"><a class="btn btn-primary" href="#contact" (click)="openCallback($event)">Buy Now</a><a class="btn btn-ghost" href="#contact" (click)="openCallback($event)">Get Quote</a></div>
+          <xh-quantity-selector label="No. of users" [value]="quantities()[0]" [max]="20" (valueChange)="setQuantity(0, $event)" />
+          <div class="btns"><a class="btn btn-primary" href="#contact" (click)="openCallback($event, 'Base', 0)">Buy Now</a></div>
         </div>
 
         <div class="ppl hot">
           <span class="tag">Most Popular</span>
           <h4>Starter</h4>
-          <div class="amt"><b>&#8377;270</b><span>per user / month &middot; annual + GST</span></div>
+          <div class="amt"><b>{{ monthlyTotal(1) }}</b><span>{{ quantities()[1] === 1 ? 'per user / month' : '/month for ' + quantities()[1] + ' users' }} &middot; annual + GST</span></div>
           <span class="save">Up to 300 users &middot; 30 GB pooled</span>
           <ul>
             <li>Everything in Base</li>
@@ -294,13 +295,14 @@
             <li>Workspace Studio automation</li>
             <li>Manage up to 300 users</li>
           </ul>
-          <div class="btns"><a class="btn btn-primary" href="#contact" (click)="openCallback($event)">Buy Now</a><a class="btn btn-ghost" href="#contact" (click)="openCallback($event)">Get Quote</a></div>
+          <xh-quantity-selector label="No. of users" [value]="quantities()[1]" [max]="300" (valueChange)="setQuantity(1, $event)" />
+          <div class="btns"><a class="btn btn-primary" href="#contact" (click)="openCallback($event, 'Starter', 1)">Buy Now</a></div>
         </div>
 
         <div class="ppl">
           <span class="tag">Best Storage</span>
           <h4>Standard</h4>
-          <div class="amt"><b>&#8377;864</b><del>&#8377;1,080</del><span>per user / month &middot; annual + GST</span></div>
+          <div class="amt"><b>{{ monthlyTotal(2) }}</b>@if (quantities()[2] === 1) { <del>&#8377;1,080</del> }<span>{{ quantities()[2] === 1 ? 'per user / month' : '/month for ' + quantities()[2] + ' users' }} &middot; annual + GST</span></div>
           <span class="save">Up to 300 users &middot; 2 TB pooled</span>
           <ul>
             <li>Everything in Starter</li>
@@ -311,7 +313,8 @@
             <li>Workspace Migrate tool</li>
             <li>Mail merge + custom email layouts</li>
           </ul>
-          <div class="btns"><a class="btn btn-primary" href="#contact" (click)="openCallback($event)">Buy Now</a><a class="btn btn-ghost" href="#contact" (click)="openCallback($event)">Get Quote</a></div>
+          <xh-quantity-selector label="No. of users" [value]="quantities()[2]" [max]="300" (valueChange)="setQuantity(2, $event)" />
+          <div class="btns"><a class="btn btn-primary" href="#contact" (click)="openCallback($event, 'Standard', 2)">Buy Now</a></div>
         </div>
 
         <div class="ppl">
@@ -329,7 +332,8 @@
             <li>Context-aware access policies</li>
             <li>Enterprise data regions</li>
           </ul>
-          <div class="btns"><a class="btn btn-primary" href="#contact" (click)="openCallback($event)">Buy Now</a><a class="btn btn-ghost" href="#contact" (click)="openCallback($event)">Get Quote</a></div>
+          <xh-quantity-selector label="No. of users" [value]="quantities()[3]" (valueChange)="setQuantity(3, $event)" />
+          <div class="btns"><a class="btn btn-primary" href="#contact" (click)="openCallback($event, 'Enterprise', 3)">Buy Now</a></div>
         </div>
 
       </div>

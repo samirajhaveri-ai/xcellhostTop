@@ -124,7 +124,7 @@
       <article class="genai-plan featured genai-plan-horizontal">
         <div class="genai-plan-summary"><span class="plan-tier">Protection</span><h3>Enforce</h3><div class="plan-price"><b>₹{{ total('enforce') }}</b><small>/mo for {{ quantity('enforce') }} {{ quantity('enforce') === 1 ? 'user' : 'users' }}</small></div><p>Protect GenAI usage with data-leak prevention, prompt protection and enforced policy.</p><strong>Up to 100 users · 90-day history</strong></div>
         <ul><li>Shadow AI discovery &amp; usage monitoring</li><li>Risk dashboards &amp; policy alerts</li><li>Sensitive-data (PII/PHI) blocking</li><li>Harmful-prompt protection</li><li>Enforced acceptable-use policy</li><li>Priority email &amp; call support</li></ul>
-        <div class="genai-plan-actions"><div class="genai-quantity-label">No. of users / devices</div><div class="genai-quantity" role="group" aria-label="enforce user quantity"><button type="button" aria-label="Decrease enforce users" [disabled]="quantity('enforce') === 1" (click)="changeQuantity('enforce', -1)">&minus;</button><output aria-live="polite">{{ quantity('enforce') }}</output><button type="button" aria-label="Increase enforce users" [disabled]="quantity('enforce') === maxQuantity('enforce')" (click)="changeQuantity('enforce', 1)">+</button></div><button type="button" (click)="configurePlan('enforce')">Buy Now</button></div></article>
+        <div class="genai-plan-actions"><div class="genai-quantity-label">No. of users / devices</div><div class="genai-quantity" role="group" aria-label="enforce user quantity"><button type="button" aria-label="Decrease enforce users" [disabled]="quantity('enforce') === 1" (click)="changeQuantity('enforce', -1)">&minus;</button><input xhQuantityInput aria-label="Quantity for enforce users" [quantityValue]="quantity('enforce')" [quantityMax]="maxQuantity('enforce')" (quantityChange)="changeQuantity('enforce', $event - (quantity('enforce')))" /><button type="button" aria-label="Increase enforce users" [disabled]="quantity('enforce') === maxQuantity('enforce')" (click)="changeQuantity('enforce', 1)">+</button></div><button type="button" (click)="configurePlan('enforce')">Buy Now</button></div></article>
     </div>
     <p class="genai-plan-note">Setup &amp; onboarding included · Pay via UPI, Cards or NetBanking · GST invoice on every order · Contact us for volume / MSP pricing.</p>
   </section>
@@ -138,6 +138,7 @@
       <p>
         Acronis Certified Security Awareness and GenAI Protection Specialist badges highlight expertise in security awareness and the protection of generative AI use. This knowledge supports guidance on responsible AI adoption, sensitive data handling and protection policies. XcellHost helps your business turn that expertise into practical controls and clearer security practices for your teams.
       </p>
+      <img class="acronis-platinum-partner" src="/assets/images/acronis-platinum-service-provider.png" alt="Acronis Platinum Service Provider" width="230" height="47" loading="lazy" decoding="async" />
     </div>
     <img
       class="backup-protection-badges backup-protection-badges-compact"
