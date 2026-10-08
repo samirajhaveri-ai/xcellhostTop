@@ -3469,7 +3469,6 @@ class ProductPageComponent {
           { label: '5 Easy Steps', target: 'tallyEasySteps' },
           { label: 'Features', target: 'tallyFeatures' },
           { label: 'Platforms & workloads', target: 'tallyPlatforms' },
-          { label: 'Watch it in action', target: 'tallyWatch' },
           { label: 'Customer Testimonials', target: 'tallyTestimonials' },
           { label: 'FAQs', target: 'tallyFaq' },
           { label: 'Insights', target: 'tallyInsights' },
@@ -3480,7 +3479,9 @@ class ProductPageComponent {
           { label: 'Security', target: 'ppSecHead' },
           { label: 'Why to Choose', target: 'ppWhyHead' },
           { label: 'Features', target: 'ppFeats' },
-          { label: 'Watch it in action', target: 'showcaseVideosTitle' },
+          ...(!this.videosInInsights()
+            ? [{ label: 'Watch it in action', target: 'showcaseVideosTitle' }]
+            : []),
           { label: 'Customer Testimonials', target: 'ppRevs' },
           { label: 'FAQs', target: 'ppFaq' },
           { label: 'Insights', target: 'ppBlog' },
@@ -3588,6 +3589,24 @@ class ProductPageComponent {
       }];
     });
   });
+
+  readonly videosInInsights = computed(() =>
+    [
+      'tally-on-cloud', 'cloud-backup', 'cloud-drive', 'advanced-endpoint-security-edr',
+      'remote-monitoring-and-mgmt-rmm', 'smb-cyber-security-appliance', 'smb-cloud-desktop',
+      'acronis-genai-protection', 'cloud-disaster-recovery-smb', 'workforce-analytics',
+      'register-a-domain-name', 'transfer-your-domain', 'latest-domain-extensions',
+      'premium-domains', 'domain-protect', 'domain-whois-lookup', 'domain-name-prices',
+      'backorder-domains', 'tld-directory', 'ai-domain-generator', 'ai-domain-advisor',
+      'bharat-domains',
+    ].includes(this.slug()),
+  );
+
+  readonly productInsightVideos = computed(() =>
+    this.showcaseVideos().length
+      ? this.showcaseVideos().map(video => ({ title: video.label, src: video.url }))
+      : null,
+  );
 
   readonly isRmm = computed(
     () => this.view()?.name === 'Remote Monitoring & Mgmt (RMM)'

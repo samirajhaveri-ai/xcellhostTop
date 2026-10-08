@@ -5410,7 +5410,7 @@
             <section aria-labelledby="hrmDemoTitle"><h2 class="pp-sec" id="hrmDemoTitle">Watch It In Action</h2><xh-hrm-attendance-content [demo]="true" /></section>
           }
           @if (
-            v.name !== 'Enterprise DMARC' &&
+            !videosInInsights() && v.name !== 'Enterprise DMARC' &&
             (showcaseVideos().length ||
               isAutonomousThreatSolution() ||
               isOurPlatform() ||
@@ -5890,7 +5890,7 @@
         @if (isTally()) {
           <div class="pp-sec" id="tallyInsights">Insights</div>
         }
-        <div id="ppBlog" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null" [class.scrutiny-dlp-insights]="slug() === 'scrutiny-dlp'" [class.vortex-seg-insights]="slug() === 'vortex-seg'"><xh-insights-section [pageSlug]="slug()" /></div>
+        <div id="ppBlog" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null" [class.scrutiny-dlp-insights]="slug() === 'scrutiny-dlp'" [class.vortex-seg-insights]="slug() === 'vortex-seg'"><xh-insights-section [pageSlug]="slug()" [videos]="videosInInsights() ? productInsightVideos() : null" /></div>
 
         <div class="pp-cta" [attr.id]="isTally() ? 'tallySupport' : null">
             <div>
