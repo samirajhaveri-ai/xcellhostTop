@@ -542,36 +542,6 @@
         </div>
       </div>
 
-      <!-- VIDEO -->
-      <div class="pp-videos m365-video-grid" id="m365Watch">
-        <div class="pv-item">
-          <h4><span>Product Intro</span></h4>
-          <div class="pv-frame">
-            <iframe
-              src="https://www.youtube.com/embed/OMJo7BpTzmM"
-              title="Microsoft 365 product introduction"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen
-            ></iframe>
-          </div>
-        </div>
-        <div class="pv-item">
-          <h4><span>Use Cases</span></h4>
-          <div class="pv-frame">
-            <iframe
-              src="https://www.youtube.com/embed/OMJo7BpTzmM"
-              title="Microsoft 365 use cases"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen
-            ></iframe>
-          </div>
-        </div>
-      </div>
-
       <!-- TESTIMONIALS -->
       <div class="pp-sec" id="m365Testimonials">What customers say</div>
       <div class="pp-tcards">
@@ -638,7 +608,7 @@
         </div>
       </div>
 
-      <div id="m365Insights"><xh-insights-section pageSlug="microsoft-365-smb" /></div>
+      <div id="m365Insights"><xh-insights-section pageSlug="microsoft-365-smb" [videos]="insightVideos" /></div>
 
       <!-- Standard product CTA -->
       <div class="pp-cta" id="contact">
