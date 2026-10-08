@@ -33,7 +33,7 @@ export class DpdpaForSmbPage implements AfterViewInit, OnDestroy {
     { label: 'Overview', target: 'dpdpaOverview' },
     { label: 'Pricing', target: 'pricing' },
     { label: 'Features', target: 'modules' },
-    { label: 'Watch it in action', target: 'dpdpaWatch' },
+    { label: 'How it works', target: 'dpdpaWatch' },
     { label: 'Customer Testimonials', target: 'dpdpaTestimonials' },
     { label: 'FAQs', target: 'dpdpaFaq' },
     { label: 'Contact', target: 'contact' },

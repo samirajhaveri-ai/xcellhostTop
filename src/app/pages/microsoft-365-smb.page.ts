@@ -1,3 +1,4 @@
+import { DomSanitizer } from '@angular/platform-browser';
 import { InsightsSectionComponent } from '../sections/insights-section.component';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
@@ -26,6 +27,12 @@ export class Microsoft365SmbPage {
   private readonly seo = inject(SeoService);
   private readonly topics = inject(CallbackTopicService);
 
+  private readonly sanitizer = inject(DomSanitizer);
+  readonly insightVideos = ['Product Intro', 'Use Cases'].map(title => ({
+    title,
+    src: this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/OMJo7BpTzmM'),
+  }));
+
   readonly openFaq = signal<number | null>(0);
   readonly sectionNavLinks = [
     { label: 'Overview', target: 'm365Overview' },
@@ -33,7 +40,6 @@ export class Microsoft365SmbPage {
     { label: 'Security', target: 'm365Security' },
     { label: 'Why to Choose', target: 'm365WhyChoose' },
     { label: 'Features', target: 'm365Features' },
-    { label: 'Watch it in action', target: 'm365Watch' },
     { label: 'Customer Testimonials', target: 'm365Testimonials' },
     { label: 'FAQs', target: 'm365Faq' },
     { label: 'Insights', target: 'm365Insights' },
