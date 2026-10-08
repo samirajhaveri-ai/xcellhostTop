@@ -6201,3 +6201,29 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 #ppage.nist-csf-page .pp-hero>.wrap #ppTitle{display:flex!important;flex-wrap:nowrap!important;align-items:baseline;gap:.12em;white-space:nowrap!important;font-size:clamp(16px,3.8cqi,26px)!important;line-height:1.18!important}
 #ppage.nist-csf-page #ppTitle .pp-title-brand,#ppage.nist-csf-page #ppTitle .pp-title-name{display:inline!important;white-space:nowrap!important;margin:0!important;font-size:inherit!important;line-height:inherit!important}
 }
+
+/* Managed SQL follow-up sections use the product assurance heading style. */
+.managed-sql-page .managed-sql-assurance :is(h2,h3,b),
+.managed-sql-page .pp-faq-heading,
+.managed-sql-page .pp-cta h3 { text-transform: uppercase; }
+.managed-sql-page .managed-sql-assurance { margin-top: 32px; }
+
+/* Keep the SQL section tabs below the trust strip in normal page flow. */
+.managed-sql-page > xh-smb-section-nav,
+.dropbox-migration-page > xh-smb-section-nav,
+.nist-csf-page > xh-smb-section-nav {
+  position: relative;
+  top: auto;
+  z-index: 1;
+}
+
+.dropbox-migration-page .dropbox-migration-assurance :is(h2,h3,b),
+.dropbox-migration-page .pp-faq-heading,
+.dropbox-migration-page .pp-cta h3 { text-transform: uppercase; }
+.dropbox-migration-assurance { margin-top: 32px; }
+
+.box-migration-page > xh-smb-section-nav { position:relative;top:auto;z-index:1; }
+.box-migration-page .box-migration-assurance :is(h2,h3,b),
+.box-migration-page .pp-faq-heading,
+.box-migration-page .pp-cta h3 { text-transform:uppercase; }
+.box-migration-assurance { margin-top:32px; }

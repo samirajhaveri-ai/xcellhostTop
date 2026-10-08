@@ -1,3 +1,9 @@
+import { BoxMigrationContentComponent } from '../sections/box-migration-content.component';
+import { BOX_MIGRATION_FAQS } from '../data/box-migration-faq.data';
+import { DropboxMigrationContentComponent } from '../sections/dropbox-migration-content.component';
+import { DROPBOX_MIGRATION_FAQS } from '../data/dropbox-migration-faq.data';
+import { ManagedMicrosoftSqlContentComponent } from '../sections/managed-microsoft-sql-content.component';
+import { MANAGED_SQL_FAQS } from '../data/managed-microsoft-sql-faq.data';
 import { FRAMEWORK_DETAILS } from '../data/framework-details.data';
 import { NistCsfContentComponent } from '../sections/nist-csf-content.component';
 
@@ -443,6 +449,9 @@ interface ProductTourSlide {
     DomainWhoisFaqComponent,
     ManagedOracleContentComponent,
     ManagedMongoDbContentComponent,
+    ManagedMicrosoftSqlContentComponent,
+    DropboxMigrationContentComponent,
+    BoxMigrationContentComponent,
     ManagedRedisContentComponent,
     ManagedRedisHeroComponent,
     ManagedOracleFaqComponent,
@@ -2648,6 +2657,9 @@ class ProductPageComponent {
       tagline: 'Enterprise email migration — mailbox migration made simple',
       faqs: MAILBOX_MIGRATION_FAQS,
     };
+    if (slug === 'box-backup') return { ...view, faqs: BOX_MIGRATION_FAQS };
+    if (slug === 'dropbox-backup') return { ...view, faqs: DROPBOX_MIGRATION_FAQS };
+    if (slug === 'managed-microsoft-sql') return { ...view, faqs: MANAGED_SQL_FAQS };
     if (slug === 'linux-servers') return { ...view, faqs: LINUX_SERVERS_FAQS };
     if (slug === 'windows-servers') return { ...view, faqs: WINDOWS_SERVERS_FAQS };
 
@@ -3457,6 +3469,63 @@ class ProductPageComponent {
   readonly isAcronisGenAi = computed(() => this.view()?.name === 'Acronis GenAI');
 
   readonly isTally = computed(() => this.view()?.name === 'Tally on Cloud');
+
+  readonly frameworkSectionNavLinks = [
+    { label: 'Overview', target: 'answer' },
+    { label: 'Framework Structure', target: 'structure' },
+    { label: 'India Context', target: 'india' },
+    { label: 'Services', target: 'services' },
+    { label: 'Security', target: 'ppSecHead' },
+    { label: 'Why to Choose', target: 'ppWhyHead' },
+    { label: 'Use Cases', target: 'nistDemoTitle' },
+    { label: 'Customer Testimonials', target: 'ppRevs' },
+    { label: 'FAQs', target: 'ppFaq' },
+    { label: 'Insights', target: 'ppBlog' },
+  ];
+
+  readonly frameworkContentSelector = computed(() =>
+    `xh-nist-csf-2-0-content iframe[src="/${this.slug()}-content.html"]`,
+  );
+
+  readonly dropboxSectionNavLinks = [
+    { label: 'Overview', target: 'answer' },
+    { label: 'Pricing Estimate', target: 'estimate' },
+    { label: 'Security', target: 'dropboxSecurity' },
+    { label: 'Why to Choose', target: 'dropboxWhy' },
+    { label: 'Migration Process', target: 'dropboxProcess' },
+    { label: 'Workloads', target: 'dropboxWorkloads' },
+    { label: 'Destination Mapping', target: 'dropboxMapping' },
+    { label: 'Customer Testimonials', target: 'dropboxReviews' },
+    { label: 'FAQs', target: 'ppFaq' },
+    { label: 'Insights', target: 'ppBlog' },
+  ];
+
+  readonly boxSectionNavLinks = [
+    { label: 'Overview', target: 'answer' },
+    { label: 'Pricing Estimate', target: 'estimate' },
+    { label: 'Security', target: 'boxSecurity' },
+    { label: 'Why to Choose', target: 'boxWhy' },
+    { label: 'Migration Process', target: 'boxProcess' },
+    { label: 'Workloads', target: 'boxWorkloads' },
+    { label: 'Destination Mapping', target: 'boxMapping' },
+    { label: 'Customer Testimonials', target: 'boxReviews' },
+    { label: 'FAQs', target: 'ppFaq' },
+    { label: 'Insights', target: 'ppBlog' },
+  ];
+
+  readonly sqlSectionNavLinks = [
+    { label: 'Overview', target: 'answer' },
+    { label: 'Pricing', target: 'pricing' },
+    { label: 'Security', target: 'sqlSecurity' },
+    { label: 'Why to Choose', target: 'sqlWhy' },
+    { label: 'Migration Steps', target: 'sqlMigration' },
+    { label: 'Features', target: 'sqlFeatures' },
+    { label: 'Editions', target: 'sqlEditions' },
+    { label: 'Workloads', target: 'sqlWorkloads' },
+    { label: 'Customer Testimonials', target: 'sqlReviews' },
+    { label: 'FAQs', target: 'ppFaq' },
+    { label: 'Insights', target: 'ppBlog' },
+  ];
 
   readonly smbSectionNavLinks = computed(() =>
     this.isTally()
