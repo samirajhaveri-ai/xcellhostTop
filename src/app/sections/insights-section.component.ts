@@ -1,15 +1,17 @@
-import { ChangeDetectionStrategy, Component, computed, ElementRef, inject, input, signal, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, ElementRef, inject, input, signal, ViewChild } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
-import { SafeResourceUrl } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ResourceVideoComponent } from '../shared/resource-video.component';
 
-import { BlogApiService, CmsBlogPost } from '../core/blog-api.service';
+import { BlogApiService, CmsBlogPost, CmsInsightResource } from '../core/blog-api.service';
 import { RevealDirective } from '../shared/reveal.directive';
 import { CASE_STUDIES } from '../data/case-studies.data';
 import { CatalogService, slugify } from '../core/catalog.service';
 import { CaseStudiesApiService } from '../core/case-studies-api.service';
 import { caseStudiesForPage } from '../core/case-study-matching';
+import { productVideosForPage, youtubeVideoId } from '../core/product-video-matching';
+import { PRODUCT_VIDEOS } from '../data/products.data';
 
 export interface InsightVideo {
   title: string;
@@ -39,8 +41,8 @@ export interface InsightArticle {
         <div class="sec-head insights-heading" xhReveal>
           <div class="eyebrow">Insights</div>
           <div class="insights-heading-row">
-            <h2 [attr.style]="activeView() === 'blogs' ? 'text-transform: none !important' : null">{{ viewCopy[activeView()].heading }}</h2>
-            <p>{{ activeView() === 'videos' && videoDescription() ? videoDescription() : viewCopy[activeView()].description }}</p>
+            <h2 [attr.style]="activeView() === 'blogs' ? 'text-transform: none !important' : null">{{ activeView() === 'videos' && videoProduct() ? 'See ' + videoProduct()!.name + ' in action' : viewCopy[activeView()].heading }}</h2>
+            <p>{{ activeView() === 'videos' ? resolvedVideoDescription() : viewCopy[activeView()].description }}</p>
             <div class="insights-actions" role="group" aria-label="Insight resources">
               <button type="button" class="btn btn-ghost" [class.active]="activeView() === 'blogs'" [attr.aria-pressed]="activeView() === 'blogs'" aria-controls="insights-content" (click)="activeView.set('blogs')">Blogs</button>
               @if (showVideos()) {
@@ -124,8 +126,8 @@ export interface InsightArticle {
             </div>
           } @else {
           <div class="insights-video-grid">
-            @if (videos(); as resources) {
-              @for (video of resources; track video.title) {
+            @if (resolvedVideos(); as resources) {
+              @for (video of resources; track video.src) {
                 <article class="insights-video-card">
                   <div class="insights-video">
                     <xh-resource-video [src]="video.src" [title]="video.title" [poster]="video.poster || ''" />
@@ -154,7 +156,16 @@ export interface InsightArticle {
             </article>
             }
           </div>
-          <div class="blog-cta"><a class="btn btn-ghost" [href]="videoLibraryUrl()">View all Videos →</a></div>
+          @if (resolvedVideos()?.length === 0) {
+            <div class="insights-empty" role="status">
+              <p>{{ videosLoading() ? 'Loading related videos…' : 'No videos are available for ' + (videoProduct()?.name || 'this page') + ' yet.' }}</p>
+              @if (!videosLoading()) {
+                <a class="btn btn-ghost" routerLink="/contact" [queryParams]="{ resource: 'demo', service: pageSlug() }">Request a demo</a>
+              }
+            </div>
+          } @else {
+            <div class="blog-cta"><a class="btn btn-ghost" [href]="videoLibraryUrl()">View all Videos →</a></div>
+          }
         }
           }
         </div>
@@ -195,6 +206,7 @@ export interface InsightArticle {
 export class InsightsSectionComponent {
   private readonly blogApi = inject(BlogApiService);
   private readonly catalog = inject(CatalogService);
+  private readonly sanitizer = inject(DomSanitizer);
   private readonly caseStudiesApi = inject(CaseStudiesApiService);
   private readonly allStudies = toSignal(this.caseStudiesApi.studies$, { initialValue: CASE_STUDIES });
   readonly pageSlug = input('');
@@ -205,6 +217,42 @@ export class InsightsSectionComponent {
   readonly videoLibraryUrl = input('https://www.youtube.com/@XcellHostCloudServices');
   readonly pageAliases = input<readonly string[]>([]);
   readonly caseStudyLimit = input<number | null>(null);
+  readonly videoProduct = computed(() => {
+    const entry = this.catalog.entryBySlug(slugify(this.pageSlug()));
+    return entry && ['SMB Tools', 'VPS Servers'].includes(entry.group) ? entry : null;
+  });
+  private readonly channelVideos = signal<readonly CmsInsightResource[]>([]);
+  readonly videosLoading = signal(false);
+  readonly resolvedVideoDescription = computed(() => this.videoDescription() || (this.videoProduct()
+    ? `Watch walkthroughs and explainers for ${this.videoProduct()!.name}.`
+    : this.viewCopy.videos.description));
+  readonly resolvedVideos = computed<readonly InsightVideo[] | null>(() => {
+    const explicit = this.videos();
+    if (explicit !== null) return explicit;
+    const app = this.videoProduct();
+    if (!app) return null;
+    const sources = this.catalog.rich(app.name)?.v ?? PRODUCT_VIDEOS[app.name] ?? [];
+    const candidates = [
+      ...sources.map((source, index) => ({
+        title: `${app.name} — ${index === 0 ? 'Product Intro' : 'Use Cases'}`,
+        source, poster: '',
+      })),
+      ...productVideosForPage(this.channelVideos(), this.pageSlug(), app.name).map(video => ({
+        title: video.title, source: video.videoUrl || '', poster: video.coverImageUrl || '',
+      })),
+    ];
+    const seen = new Set<string>();
+    return candidates.flatMap(video => {
+      const id = youtubeVideoId(video.source);
+      if (!id || seen.has(id)) return [];
+      seen.add(id);
+      return [{
+        title: video.title,
+        src: this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube-nocookie.com/embed/${id}?rel=0&playsinline=1`),
+        poster: video.poster || `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
+      }];
+    });
+  });
   private readonly allPosts = signal<readonly CmsBlogPost[]>([]);
   readonly loading = signal(true);
   readonly encodeURIComponent = encodeURIComponent;
@@ -252,6 +300,16 @@ export class InsightsSectionComponent {
   @ViewChild('blogGrid') private blogGrid?: ElementRef<HTMLElement>;
 
   constructor() {
+    // Fetch channel uploads only when an SMB Tools or VPS product's Videos view is opened.
+    effect(onCleanup => {
+      if (!this.videoProduct() || this.videos() !== null || !this.showVideos() || this.activeView() !== 'videos') return;
+      this.videosLoading.set(true);
+      const subscription = this.blogApi.videos$.subscribe({
+        next: videos => { this.channelVideos.set(videos); this.videosLoading.set(false); },
+        error: () => { this.channelVideos.set([]); this.videosLoading.set(false); },
+      });
+      onCleanup(() => { subscription.unsubscribe(); this.videosLoading.set(false); });
+    });
     this.blogApi.posts$.pipe(takeUntilDestroyed()).subscribe({
       next: (posts) => { this.allPosts.set(posts); this.loading.set(false); },
       error: () => { this.allPosts.set([]); this.loading.set(false); },
