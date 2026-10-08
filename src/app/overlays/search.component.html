@@ -1,89 +1,77 @@
-<div
-  class="srch"
-  id="srch"
-  role="dialog"
-  aria-modal="true"
-  aria-label="Search the website"
-  [class.open]="overlay.isOpen('search')"
-  [attr.aria-hidden]="overlay.isOpen('search') ? null : 'true'"
-  (click)="onBackdrop($event)"
->
+﻿<div class="srch" id="srch" role="dialog" aria-modal="true" aria-label="Search the website"
+  [class.open]="overlay.isOpen('search')" [attr.aria-hidden]="overlay.isOpen('search') ? null : 'true'"
+  [attr.inert]="overlay.isOpen('search') ? null : ''" (click)="onBackdrop($event)">
   <div class="srch-box">
     <div class="srch-in">
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="#51607A"
-        stroke-width="2.2"
-        stroke-linecap="round"
-        aria-hidden="true"
-      >
-        <circle cx="11" cy="11" r="7" />
-        <path d="M20 20l-3.5-3.5" />
-      </svg>
-      <input
-        id="srchI"
-        #srchI
-        placeholder="Search products, pages and blogs…"
-        autocomplete="off"
-        aria-label="Search products, pages and blogs"
-        [value]="q()"
-        (input)="onInput($event)"
-      />
-      <button class="srch-x" id="srchX" type="button" aria-label="Close search" (click)="close()">esc</button>
+      <div class="srch-field">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+        <input id="srchI" #srchI [placeholder]="aiMode() ? 'Ask a question about XcellHost…' : 'Search products, pages and blogs…'"
+          autocomplete="off" aria-label="Search or ask a question" [value]="q()" (input)="onInput($event)" />
+        @if (q()) { <button class="srch-clear" type="button" aria-label="Clear query" (click)="setQuery(''); srchI.focus()">×</button> }
+      </div>
+      <button class="srch-ai-toggle" type="button" [class.active]="aiMode()" [attr.aria-pressed]="aiMode()" (click)="toggleAi()"><span aria-hidden="true">✦</span> AI mode</button>
+      <button class="srch-x" type="button" aria-label="Close search" (click)="close()">esc</button>
     </div>
-
-    <div class="srch-status" role="status" aria-live="polite">{{ resultStatus() }}</div>
-    <div class="srch-res" id="srchR" role="listbox" aria-label="Search results" [attr.aria-busy]="loading()">
-      @for (r of results(); track r.url; let i = $index) {
-        <a
-          class="sr"
-          role="option"
-          [class.on]="i === cur()"
-          [attr.aria-selected]="i === cur()"
-          [routerLink]="r.url"
-          (mouseenter)="cur.set(i)"
-          (click)="close()"
-        >
-          <span class="sr-c" [style.background]="r.color"></span>
-          <span class="sr-t"><b>{{ r.name }}</b><span>{{ r.desc }}</span></span>
-          <span class="sr-cat">{{ r.label }}</span>
-          @if (r.compareName) {
-            <span
-              class="sr-cmp"
-              [class.on]="isPicked(r.compareName)"
-              role="button"
-              tabindex="0"
-              title="Add to compare"
-              [attr.aria-label]="'Add ' + r.name + ' to compare'"
-              [attr.aria-pressed]="isPicked(r.compareName)"
-              (click)="toggle(r.compareName, $event)"
-              (keydown.enter)="toggle(r.compareName, $event)"
-              (keydown.space)="toggle(r.compareName, $event)"
-              >✓</span
-            >
+    <div class="srch-body">
+      <aside class="srch-filters" aria-label="Search filters">
+        <div class="srch-filter-heading"><h2>Filter by source</h2>@if (hasFilters()) { <button type="button" (click)="clearFilters()">Reset</button> }</div>
+        @for (source of sourceOptions(); track source.value) {
+          <label class="srch-filter"><input type="checkbox" [checked]="sources().includes(source.value)" (change)="toggleFilter('source', source.value)"/><span>{{ source.label }}</span><small>{{ source.count }}</small></label>
+        }
+        <h2 class="srch-category-heading">Categories</h2>
+        @for (category of categoryOptions(); track category.value) {
+          <label class="srch-filter"><input type="checkbox" [checked]="categories().includes(category.value)" (change)="toggleFilter('category', category.value)"/><span>{{ category.value }}</span><small>{{ category.count }}</small></label>
+        }
+        <div class="srch-sidebar-note">Find your next<br/><strong>business advantage.</strong><span>Cloud. Security. Peace of mind.</span></div>
+      </aside>
+      <div class="srch-content" [attr.aria-busy]="loading() || answering()">
+        @if (!q().trim()) {
+          <section class="srch-questions" aria-label="Suggested questions">
+            @for (question of questions; track question.text) {
+              <button type="button" (click)="askQuestion(question)"><span class="srch-spark" aria-hidden="true">✦</span><span>{{ question.text }}</span><span class="srch-question-arrow" aria-hidden="true">↗</span></button>
+            }
+          </section>
+          <section class="srch-suggestions" aria-label="Search suggestions"><h2>Suggestions</h2>
+            @for (suggestion of suggestions; track suggestion) {
+              <button type="button" (click)="setQuery(suggestion); srchI.focus()"><span>{{ suggestion }}</span><span aria-hidden="true">↖</span></button>
+            }
+          </section>
+        }
+        @if (aiMode()) {
+          <section class="srch-answer" aria-label="Search assistant">
+            <div class="srch-answer-head"><span class="srch-spark" aria-hidden="true">✦</span><strong>XcellHost Assist</strong><span class="srch-answer-badge">{{ generatedAnswer() ? 'AI answer' : 'Service guide' }}</span></div>
+            @if (answering()) { <p role="status">Finding services for your question…</p> }
+            @else if (answer()) { <p class="srch-answer-text" aria-live="polite">{{ answer() }}</p> }
+            @else { <p>Ask about cloud, cybersecurity, backup or managed IT. Find relevant services and explore your options.</p> }
+            <div class="srch-answer-actions"><button type="button" class="srch-ask" [disabled]="!q().trim() || answering()" (click)="askAi()">Ask a question <span aria-hidden="true">→</span></button><button type="button" (click)="toggleAi()">Back to search</button></div>
+          </section>
+        }
+        <div class="srch-results-heading"><h2>{{ q().trim() ? 'Search results' : 'Products & resources' }}</h2><span class="srch-status" role="status" aria-live="polite">{{ resultStatus() }}</span></div>
+        <div class="srch-res" id="srchR" aria-label="Search results">
+          @for (r of results(); track r.url; let i = $index) {
+            <div class="sr" [class.on]="i === cur()" (mouseenter)="cur.set(i)">
+              <a class="sr-link" [routerLink]="r.url" (click)="close()">
+                <span class="sr-icon" [style.color]="r.color" [attr.aria-label]="r.kind">{{ r.kind === 'Product' ? '◈' : r.kind === 'Blog' ? '▤' : '▧' }}</span>
+                <span class="sr-t"><b>{{ r.name }}</b><span class="sr-breadcrumb">{{ r.kind }} <span aria-hidden="true">›</span> {{ r.label }}</span><span class="sr-description">{{ r.desc }}</span></span>
+              </a>
+              @if (r.compareName) {
+                <button class="sr-cmp" type="button" [class.on]="isPicked(r.compareName)" title="Add to compare" [attr.aria-label]="'Compare ' + r.name" [attr.aria-pressed]="isPicked(r.compareName)" [disabled]="!isPicked(r.compareName) && picked().length >= 4" (click)="toggle(r.compareName, $event)">✓</button>
+              }
+            </div>
+          } @empty {
+            <div class="srch-empty"><strong>No matching results</strong><p>Try another search or clear your filters.</p>@if (hasFilters()) { <button type="button" (click)="clearFilters()">Clear filters</button> }</div>
           }
-        </a>
-      } @empty {
-        <div class="srch-empty">No match. Try “backup”, “SSL”, “pricing” or a blog topic.</div>
-      }
+        </div>
+        @if (filteredResults().length > results().length) {
+          <div class="srch-more"><button type="button" (click)="showMore()">Show more results <span aria-hidden="true">↓</span></button></div>
+        }
+      </div>
     </div>
-
-    <div class="srch-foot">
-      <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
-      <span><kbd>↵</kbd> open</span>
-      <span id="cmpCount">{{ countLabel() }}</span>
-      <button
-        class="btn btn-primary srch-cmp"
-        id="cmpGo"
-        type="button"
-        [disabled]="!canCompare()"
-        (click)="goCompare()"
-      >
-        Compare →
-      </button>
-    </div>
+    @if (picked().length) {
+      <div class="srch-compare-foot">
+        <span id="cmpCount">{{ countLabel() }}</span>
+        <button class="srch-cmp btn btn-primary" id="cmpGo" type="button" [disabled]="!canCompare()" (click)="goCompare()">Compare →</button>
+      </div>
+    }
   </div>
 </div>

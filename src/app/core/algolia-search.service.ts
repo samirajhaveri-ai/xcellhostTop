@@ -18,10 +18,10 @@ export class AlgoliaSearchService {
     ? liteClient(environment.algoliaAppId, environment.algoliaSearchApiKey)
     : null;
 
-  async search(query: string): Promise<SiteSearchResult[]> {
+  async search(query: string, limit = 100): Promise<SiteSearchResult[]> {
     if (!this.client) return [];
     const response = await this.client.search<SearchHit>({
-      requests: [{ indexName: environment.algoliaIndexName, query, hitsPerPage: 16 }],
+      requests: [{ indexName: environment.algoliaIndexName, query, hitsPerPage: limit }],
     });
     const result = response.results[0];
     if (!result || !('hits' in result)) return [];

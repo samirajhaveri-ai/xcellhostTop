@@ -55,6 +55,11 @@ export class SiteSearchService {
     return this.staticItems.filter((item) => item.kind === 'Product' && pattern.test(item.name)).slice(0, limit);
   }
 
+  /** Current site inventory, including blogs as they arrive from the CMS. */
+  browse(): SiteSearchResult[] {
+    return [...this.staticItems, ...this.blogItems()];
+  }
+
   search(query: string, limit = 16): SiteSearchResult[] {
     const normalised = this.normalise(query);
     if (!normalised) return [];

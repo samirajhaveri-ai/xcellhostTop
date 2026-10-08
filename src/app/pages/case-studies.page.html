@@ -126,8 +126,10 @@
           <div class="case-overview-grid">
         @for (study of visibleStudies(); track study.documentId || study.id) {
           <a class="outcome-card" [routerLink]="['/case-studies', study.id]">
-            <div class="outcome-visual" [class]="'outcome-visual visual-' + study.id" aria-hidden="true">
-              @if (study.id === 'tally-cloud') {
+            <div class="outcome-visual" [class]="'outcome-visual visual-' + study.id">
+              @if (study.coverImageUrl) {
+                <img [src]="study.coverImageUrl" [alt]="study.coverImageAlt || study.headline || study.metricLabel" loading="lazy" decoding="async" />
+              } @else if (study.id === 'tally-cloud') {
                 <svg viewBox="0 0 360 190"><path d="M35 151h290M69 151V79h72v72M87 79V55h37v24M165 151V40h128v111M190 68h26m28 0h25m-79 29h26m28 0h25m-79 29h26m28 0h25"/><circle cx="266" cy="29" r="12"/></svg>
               } @else if (study.id === 'ca-continuity') {
                 <svg viewBox="0 0 360 190"><rect x="55" y="38" width="250" height="114" rx="5"/><path d="M150 152v21m60-21v21m-91 0h122M82 65h196v61H82z"/><path class="accent" d="M145 96l23 22 49-51"/></svg>

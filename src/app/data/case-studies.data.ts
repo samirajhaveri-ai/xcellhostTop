@@ -1,6 +1,9 @@
 export interface CaseStudy {
   readonly id: string;
   readonly documentId?: string;
+  readonly publishedAt?: string;
+  readonly coverImageUrl?: string | null;
+  readonly coverImageAlt?: string | null;
   readonly relatedPages?: readonly string[];
   readonly mainCategory: string;
   readonly subCategory: string;
