@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, computed, effect, inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
@@ -21,6 +22,8 @@ interface CaseStudyDetail {
   readonly relationship: string;
   readonly visualTitle: string;
   readonly visualClass: string;
+  readonly coverImageUrl?: string | null;
+  readonly coverImageAlt?: string | null;
   readonly services: readonly string[];
   readonly stats: readonly StudyStat[];
   readonly backgroundTitle: string;
@@ -160,12 +163,13 @@ const CASE_STUDY_DETAILS: readonly CaseStudyDetail[] = [
   standalone: true,
   imports: [RouterLink],
   templateUrl: './case-study-detail.page.html',
-  styleUrls: ['./case-study-detail.page.css'],
-  host: { style: 'display:contents' },
+  styleUrls: ['./blog.page.css', './case-study-detail.page.css'],
+  host: { style: 'display:contents', '(window:scroll)': 'onScroll()' },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CaseStudyDetailPage {
   private readonly route = inject(ActivatedRoute);
+  private readonly doc = inject(DOCUMENT);
   private readonly overlay = inject(OverlayService);
   private readonly seo = inject(SeoService);
   private readonly caseStudiesApi = inject(CaseStudiesApiService);
@@ -173,6 +177,7 @@ export class CaseStudyDetailPage {
     initialValue: this.route.snapshot.paramMap,
   });
   private readonly availableStudies = toSignal(this.caseStudiesApi.studies$, { initialValue: CASE_STUDIES });
+  readonly progress = signal(0);
 
   readonly study = computed(() => {
     const id = this.paramMap().get('id');
@@ -213,6 +218,14 @@ export class CaseStudyDetailPage {
     this.overlay.open('callback');
   }
 
+  onScroll(): void {
+    const element = this.doc.documentElement;
+    const height = element.scrollHeight - element.clientHeight;
+    this.progress.set(
+      height > 0 ? Math.min(100, Math.max(0, (element.scrollTop / height) * 100)) : 0,
+    );
+  }
+
   private toDetail(study: CaseStudy): CaseStudyDetail {
     const customer = study.customer || study.profile || 'XcellHost customer';
     const summary = study.summary || study.metricLabel;
@@ -225,6 +238,8 @@ export class CaseStudyDetailPage {
       relationship: `${customer} and XcellHost`,
       visualTitle: study.metricLabel,
       visualClass: study.mainCategory.includes('Data Protection') ? 'detail-visual-privacy' : 'detail-visual-continuity',
+      coverImageUrl: study.coverImageUrl,
+      coverImageAlt: study.coverImageAlt,
       services: study.services,
       stats: [{ value: study.metric, label: study.metricLabel }],
       backgroundTitle: 'The customer context',

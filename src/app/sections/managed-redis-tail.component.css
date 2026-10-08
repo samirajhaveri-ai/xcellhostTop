@@ -23,13 +23,6 @@ section[id], h2[id] { scroll-margin-top: 120px; }
 .pw-ic svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .pw h3 { margin: 0; color: white; font: 700 14px/1.5 var(--disp); }
 .pw p { margin: 0; color: #c1d3ed; font-size: 12.5px; line-height: 1.65; }
-.redis-video-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
-.redis-video-card { min-width: 0; }
-.redis-video-card h3 { margin: 0 0 15px; text-align: center; }
-.redis-video-card h3 span { display: inline-block; border: 1px solid var(--line); border-radius: 99px; padding: 6px 18px; color: var(--blue); font: 700 11px var(--mono); text-transform: uppercase; letter-spacing: .08em; }
-.redis-video-frame { overflow: hidden; aspect-ratio: 16 / 9; border: 5px solid white; border-radius: 10px; background: #061c3b; box-shadow: 0 8px 22px rgba(4,30,66,.16); }
-.redis-video-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
-.redis-video-card > a { display: flex; justify-content: space-between; gap: 8px; margin: 12px 0 0; color: var(--blue); font-size: 13px; text-decoration: none; }
 .tname { margin: 0 0 4px; }
 .tcard { min-width: 0; }
 .tcard:hover { transform: none; }
@@ -70,7 +63,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid #77b6ff; outline-offs
 @media (max-width: 760px) {
   .wrap { padding: 0 20px; }
   .pp-sec { font-size: 13px; margin-top: 34px; }
-  .pp-secrows, .pp-why, .redis-video-grid { grid-template-columns: 1fr; }
+  .pp-secrows, .pp-why { grid-template-columns: 1fr; }
   .pw:nth-child(odd) { border-right: 0; }
   .pw:not(:last-child) { border-bottom: 1px solid rgba(188,213,249,.15); }
   .psrow { align-items: flex-start; }

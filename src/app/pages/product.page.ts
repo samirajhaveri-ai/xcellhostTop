@@ -1,3 +1,9 @@
+import { BoxMigrationContentComponent } from '../sections/box-migration-content.component';
+import { BOX_MIGRATION_FAQS } from '../data/box-migration-faq.data';
+import { DropboxMigrationContentComponent } from '../sections/dropbox-migration-content.component';
+import { DROPBOX_MIGRATION_FAQS } from '../data/dropbox-migration-faq.data';
+import { ManagedMicrosoftSqlContentComponent } from '../sections/managed-microsoft-sql-content.component';
+import { MANAGED_SQL_FAQS } from '../data/managed-microsoft-sql-faq.data';
 import { FRAMEWORK_DETAILS } from '../data/framework-details.data';
 import { NistCsfContentComponent } from '../sections/nist-csf-content.component';
 
@@ -5,9 +11,14 @@ import { DomainHeroMediaComponent } from '../sections/domain-hero-media.componen
 import { HOSTING_BANNER_PAGES, HostingHeroMediaComponent } from '../sections/hosting-hero-media.component';
 import { ManagedMongodbHeroComponent } from '../sections/managed-mongodb-hero.component';
 import { AiReceptionistHeroComponent } from '../sections/ai-receptionist-hero.component';
+import { CpuOptimizedHeroComponent } from '../sections/cpu-optimized-hero.component';
+import { CpuOptimizedContentComponent } from '../sections/cpu-optimized-content.component';
+import { MemoryOptimizedContentComponent } from '../sections/memory-optimized-content.component';
 import { VsaasHeroComponent } from '../sections/vsaas-hero.component';
 // Source overview, demo and interactive pricing for the AI Receptionist page.
 import { AiReceptionistContentComponent } from '../sections/ai-receptionist-content.component';
+import { RECEPTIONIST_FAQS, RECEPTIONIST_WHY } from '../sections/ai-receptionist-content.data';
+import { buildContextualProductReviews } from '../data/product-reviews.data';
 import { FitBannerTitleDirective } from '../shared/fit-banner-title.directive';
 import { EmptySongBarComponent } from '../shared/empty-song-bar.component';
 
@@ -401,6 +412,9 @@ interface ProductTourSlide {
   imports: [
     ManagedMongodbHeroComponent,
     AiReceptionistHeroComponent,
+    CpuOptimizedHeroComponent,
+    CpuOptimizedContentComponent,
+    MemoryOptimizedContentComponent,
     VsaasHeroComponent,
     AiReceptionistContentComponent,
     FitBannerTitleDirective,
@@ -443,6 +457,9 @@ interface ProductTourSlide {
     DomainWhoisFaqComponent,
     ManagedOracleContentComponent,
     ManagedMongoDbContentComponent,
+    ManagedMicrosoftSqlContentComponent,
+    DropboxMigrationContentComponent,
+    BoxMigrationContentComponent,
     ManagedRedisContentComponent,
     ManagedRedisHeroComponent,
     ManagedOracleFaqComponent,
@@ -1734,6 +1751,30 @@ interface ProductTourSlide {
       }
     }
 
+    /* Keep the supplied compute instance launchers alongside each page's hero copy. */
+    #ppage:is(.cpu-optimized-page, .memory-optimized-page) > .pp-hero {
+      display: grid; overflow: clip;
+      grid-template-columns: minmax(0, 620px) minmax(0, 550px);
+      justify-content: center; align-items: center; gap: 24px; padding-inline: 24px;
+    }
+    #ppage:is(.cpu-optimized-page, .memory-optimized-page) > .pp-hero > .wrap {
+      grid-column: 1; grid-row: 1; width: 100%; margin: 0; padding: 0;
+    }
+    #ppage:is(.cpu-optimized-page, .memory-optimized-page) > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 100%; }
+    #ppage.memory-optimized-page .pp-hero #ppTitle { display: block; text-align: left; white-space: normal; }
+    #ppage.memory-optimized-page .pp-hero #ppTitle .pp-title-name { display: inline; margin-left: 0; white-space: normal; }
+    #ppage.ppage:is(.cpu-optimized-page, .memory-optimized-page) > .pp-hero > .pph-scene:is(.cpu-optimized-hero-art, .memory-optimized-hero-art) {
+      position: relative; inset: auto; grid-column: 2; grid-row: 1;
+      display: block; width: 100%; max-width: 550px; height: auto; max-height: none;
+      margin: 0; padding: 0; opacity: 1; mask-image: none; transform: none; z-index: 4; pointer-events: auto;
+    }
+    @media (max-width: 1000px) {
+      #ppage:is(.cpu-optimized-page, .memory-optimized-page) > .pp-hero { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+      #ppage.ppage:is(.cpu-optimized-page, .memory-optimized-page) > .pp-hero > .pph-scene:is(.cpu-optimized-hero-art, .memory-optimized-hero-art) {
+        grid-column: 1; grid-row: 2; justify-self: center;
+      }
+    }
+
     /* Keep the live-call panel beside the AI Receptionist copy, and stack it on phones. */
     #ppage.ai-receptionist-page > .pp-hero {
       display: grid; overflow: clip;
@@ -2621,6 +2662,15 @@ class ProductPageComponent {
     const view = this.resolve(slug);
     if (!view) return null;
 
+    if (slug === 'ai-receptionist') return {
+      ...view,
+      why: RECEPTIONIST_WHY,
+      faqs: RECEPTIONIST_FAQS,
+      reviews: buildContextualProductReviews('AI Receptionist', 'Cloud', [
+        '24×7 call answering', 'appointment booking and call routing', 'email summaries after every call',
+      ]),
+    };
+
     if (slug === 'comodo-personal-authentication') return {
       ...view,
       heroPoints: [
@@ -2648,6 +2698,9 @@ class ProductPageComponent {
       tagline: 'Enterprise email migration — mailbox migration made simple',
       faqs: MAILBOX_MIGRATION_FAQS,
     };
+    if (slug === 'box-backup') return { ...view, faqs: BOX_MIGRATION_FAQS };
+    if (slug === 'dropbox-backup') return { ...view, faqs: DROPBOX_MIGRATION_FAQS };
+    if (slug === 'managed-microsoft-sql') return { ...view, faqs: MANAGED_SQL_FAQS };
     if (slug === 'linux-servers') return { ...view, faqs: LINUX_SERVERS_FAQS };
     if (slug === 'windows-servers') return { ...view, faqs: WINDOWS_SERVERS_FAQS };
 
@@ -3458,6 +3511,78 @@ class ProductPageComponent {
 
   readonly isTally = computed(() => this.view()?.name === 'Tally on Cloud');
 
+<<<<<<< HEAD
+  readonly memorySectionNavLinks = [
+    { label: 'Overview', target: 'answer' },
+    { label: 'Pricing', target: 'pricing' },
+    { label: 'Features', target: 'memoryFeatures' },
+    { label: 'Use Cases', target: 'memoryUseCases' },
+    { label: 'Specifications', target: 'memorySpecifications' },
+    { label: 'Security', target: 'ppSecHead' },
+    { label: 'Why to Choose', target: 'ppWhyHead' },
+    { label: 'Customer Testimonials', target: 'memoryTestimonials' },
+    { label: 'FAQs', target: 'memoryFaq' },
+    { label: 'Insights', target: 'ppBlog' },
+  ] as const;
+=======
+  readonly frameworkSectionNavLinks = [
+    { label: 'Overview', target: 'answer' },
+    { label: 'Framework Structure', target: 'structure' },
+    { label: 'India Context', target: 'india' },
+    { label: 'Services', target: 'services' },
+    { label: 'Security', target: 'ppSecHead' },
+    { label: 'Why to Choose', target: 'ppWhyHead' },
+    { label: 'Use Cases', target: 'nistDemoTitle' },
+    { label: 'Customer Testimonials', target: 'ppRevs' },
+    { label: 'FAQs', target: 'ppFaq' },
+    { label: 'Insights', target: 'ppBlog' },
+  ];
+
+  readonly frameworkContentSelector = computed(() =>
+    `xh-nist-csf-2-0-content iframe[src="/${this.slug()}-content.html"]`,
+  );
+
+  readonly dropboxSectionNavLinks = [
+    { label: 'Overview', target: 'answer' },
+    { label: 'Pricing Estimate', target: 'estimate' },
+    { label: 'Security', target: 'dropboxSecurity' },
+    { label: 'Why to Choose', target: 'dropboxWhy' },
+    { label: 'Migration Process', target: 'dropboxProcess' },
+    { label: 'Workloads', target: 'dropboxWorkloads' },
+    { label: 'Destination Mapping', target: 'dropboxMapping' },
+    { label: 'Customer Testimonials', target: 'dropboxReviews' },
+    { label: 'FAQs', target: 'ppFaq' },
+    { label: 'Insights', target: 'ppBlog' },
+  ];
+
+  readonly boxSectionNavLinks = [
+    { label: 'Overview', target: 'answer' },
+    { label: 'Pricing Estimate', target: 'estimate' },
+    { label: 'Security', target: 'boxSecurity' },
+    { label: 'Why to Choose', target: 'boxWhy' },
+    { label: 'Migration Process', target: 'boxProcess' },
+    { label: 'Workloads', target: 'boxWorkloads' },
+    { label: 'Destination Mapping', target: 'boxMapping' },
+    { label: 'Customer Testimonials', target: 'boxReviews' },
+    { label: 'FAQs', target: 'ppFaq' },
+    { label: 'Insights', target: 'ppBlog' },
+  ];
+
+  readonly sqlSectionNavLinks = [
+    { label: 'Overview', target: 'answer' },
+    { label: 'Pricing', target: 'pricing' },
+    { label: 'Security', target: 'sqlSecurity' },
+    { label: 'Why to Choose', target: 'sqlWhy' },
+    { label: 'Migration Steps', target: 'sqlMigration' },
+    { label: 'Features', target: 'sqlFeatures' },
+    { label: 'Editions', target: 'sqlEditions' },
+    { label: 'Workloads', target: 'sqlWorkloads' },
+    { label: 'Customer Testimonials', target: 'sqlReviews' },
+    { label: 'FAQs', target: 'ppFaq' },
+    { label: 'Insights', target: 'ppBlog' },
+  ];
+>>>>>>> 6ee4d4ab89785146fa8eef2b984347819b1506e5
+
   readonly smbSectionNavLinks = computed(() =>
     this.isTally()
       ? [
@@ -4195,6 +4320,16 @@ class ProductPageComponent {
 
   requestPerformanceCloudPlan(plan: string): void {
     this.topics.ask(`Performance Cloud - ${plan}`);
+    this.overlay.open('callback');
+  }
+
+  requestCpuOptimizedPlan(plan: string): void {
+    this.topics.ask(`CPU Optimized - ${plan}`);
+    this.overlay.open('callback');
+  }
+
+  requestMemoryOptimizedPlan(plan: string): void {
+    this.topics.ask(`Memory Optimized - ${plan}`);
     this.overlay.open('callback');
   }
 

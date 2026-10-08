@@ -24,6 +24,7 @@ interface DataCenter {
 })
 export class BareMetalContentComponent {
   readonly heroOnly = input(false);
+  readonly dataCenterOnly = input(false);
   readonly selectedFamily = signal<'ryzen' | 'intel' | 'epyc' | 'legacy'>('ryzen');
   readonly selectedPanel = signal(0);
   readonly selectedDataCenter = signal(2);

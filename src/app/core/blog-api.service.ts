@@ -265,7 +265,8 @@ export class BlogApiService {
   }
 
   private isAvailableArticle(post: CmsBlogPost): boolean {
-    return Boolean(post.slug?.trim() && post.title?.trim() && post.content?.trim());
+    const isCaseStudy = /^case\s*stud(?:y|ies)$/i.test(post.category?.trim() ?? '');
+    return !isCaseStudy && Boolean(post.slug?.trim() && post.title?.trim() && post.content?.trim());
   }
 
   private normaliseResource(item: RawCmsInsightResource, kind: CmsResourceKind): CmsInsightResource {
