@@ -819,7 +819,7 @@ export class InsightsPage implements AfterViewInit, OnDestroy {
       subCategory: placement.subCategory,
       product: placement.product,
       coverImage: null,
-      coverImageUrl: this.caseStudyCover(study.id),
+      coverImageUrl: study.coverImageUrl || this.caseStudyCover(study.id),
       actionUrl: null,
       metric: study.metric,
       profile: study.profile,

@@ -1,5 +1,48 @@
 # Deploying to Plesk — step by step
 
+## Case Studies in Strapi
+
+The website reads published customer stories from the Strapi collection endpoint
+`/api/case-studies` and refreshes it every 30 seconds. The public routes remain
+`/case-studies` and `/case-studies/:slug`.
+
+In `https://admin.xcellhost.top/admin`, create a **Collection Type** named
+**Case Study** with API ID `case-study` (plural API ID `case-studies`). Add these
+fields:
+
+| Field | Strapi type | Required |
+| --- | --- | --- |
+| `slug` | UID, attached to `headline` | Yes |
+| `customer` | Short text | Yes |
+| `headline` | Short text | Yes |
+| `mainCategory` | Short text | Yes |
+| `subCategory` | Short text | Yes |
+| `industry` | Short text | Yes |
+| `profile` | Short text | Yes |
+| `metric` | Short text | Yes |
+| `metricLabel` | Short text | Yes |
+| `summary` | Long text | Yes |
+| `challenge` | Long text | Yes |
+| `solution` | Long text | Yes |
+| `impact` | Long text or JSON | Yes |
+| `services` | Long text or JSON | Yes |
+| `quote` | Long text | No |
+| `quoteBy` | Short text | No |
+| `relatedPages` | Long text or JSON | No |
+| `coverImage` | Media, single image | Recommended |
+
+For Long text list fields, enter one item per line (comma-separated values also
+work). JSON fields may be arrays of strings. After saving the content type, open
+**Settings -> Users & Permissions Plugin -> Roles -> Public -> Case-study** and
+enable `find`. Create and publish an entry; drafts are intentionally not shown.
+
+Verify the setup by opening
+`https://admin.xcellhost.top/api/case-studies?populate=coverImage`. A successful
+setup returns JSON with a `data` array instead of HTTP 404. Uploaded cover images
+appear on both the Case Studies listing and detail page. Until this collection is
+created or whenever Strapi is unavailable, the bundled customer stories remain
+visible as a safe fallback.
+
 ## Insights document tabs
 
 The Insights page includes Data Sheets, Cheat Sheets, Whitepapers, Guides and

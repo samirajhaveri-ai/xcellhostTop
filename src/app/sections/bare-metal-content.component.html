@@ -1,4 +1,32 @@
-@if (heroOnly()) {
+@if (dataCenterOnly()) {
+  <section class="bm-section bm-dc-section" aria-labelledby="bmDcTitle">
+    <h2 class="bm-dc-title" id="bmDcTitle">Tier 4 Certified Data Center Infrastructure</h2>
+    <div class="bm-dc-tabs" role="tablist" aria-label="Data center locations">
+      @for (dataCenter of dataCenters; track dataCenter.name; let i = $index) {
+        <button type="button" role="tab" [attr.aria-selected]="selectedDataCenter() === i" [class.active]="selectedDataCenter() === i" (click)="selectedDataCenter.set(i)">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 29h24M6 29V12h20v17M5 12h22l-2-4H7zM10 8V5h12v3M9 16h3M9 20h3M9 24h3M20 16h3M20 20h3M20 24h3M14 29v-6a2 2 0 014 0v6" /></svg>
+          {{ dataCenter.name }}
+        </button>
+      }
+    </div>
+    <div class="bm-dc-panel" role="tabpanel">
+      <div class="bm-dc-details">
+        <div class="bm-dc-heading">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 29h24M6 29V12h20v17M5 12h22l-2-4H7zM10 8V5h12v3M9 16h3M9 20h3M9 24h3M20 16h3M20 20h3M20 24h3M14 29v-6a2 2 0 014 0v6" /></svg>
+          <h3>{{ dataCenters[selectedDataCenter()].name }}</h3>
+        </div>
+        <ul>
+          @for (point of dataCenters[selectedDataCenter()].points; track point) {
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="m8 12 2.5 2.5L16 9" /></svg>{{ point }}</li>
+          }
+        </ul>
+      </div>
+      <div class="bm-dc-visual">
+        <img [src]="dataCenters[selectedDataCenter()].image" [alt]="dataCenters[selectedDataCenter()].alt" loading="lazy" />
+      </div>
+    </div>
+  </section>
+} @else if (heroOnly()) {
   <div class="bm-hero-art">
     <span class="bm-orbit"></span>
     <div class="bm-hero-badge bm-hero-badge-metal">
@@ -84,40 +112,6 @@
           }
         </tbody>
       </table>
-    </div>
-  </section>
-
-  <section class="bm-section bm-dc-section" aria-labelledby="bmDcTitle">
-    <h2 class="bm-dc-title" id="bmDcTitle">Tier 4 Certified Data Center Infrastructure</h2>
-    <div class="bm-dc-tabs" role="tablist" aria-label="Data center locations">
-      @for (dataCenter of dataCenters; track dataCenter.name; let i = $index) {
-        <button
-          type="button"
-          role="tab"
-          [attr.aria-selected]="selectedDataCenter() === i"
-          [class.active]="selectedDataCenter() === i"
-          (click)="selectedDataCenter.set(i)"
-        >
-          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 29h24M6 29V12h20v17M5 12h22l-2-4H7zM10 8V5h12v3M9 16h3M9 20h3M9 24h3M20 16h3M20 20h3M20 24h3M14 29v-6a2 2 0 014 0v6" /></svg>
-          {{ dataCenter.name }}
-        </button>
-      }
-    </div>
-    <div class="bm-dc-panel" role="tabpanel">
-      <div class="bm-dc-details">
-        <div class="bm-dc-heading">
-          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 29h24M6 29V12h20v17M5 12h22l-2-4H7zM10 8V5h12v3M9 16h3M9 20h3M9 24h3M20 16h3M20 20h3M20 24h3M14 29v-6a2 2 0 014 0v6" /></svg>
-          <h3>{{ dataCenters[selectedDataCenter()].name }}</h3>
-        </div>
-        <ul>
-          @for (point of dataCenters[selectedDataCenter()].points; track point) {
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="m8 12 2.5 2.5L16 9" /></svg>{{ point }}</li>
-          }
-        </ul>
-      </div>
-      <div class="bm-dc-visual">
-        <img [src]="dataCenters[selectedDataCenter()].image" [alt]="dataCenters[selectedDataCenter()].alt" loading="lazy" />
-      </div>
     </div>
   </section>
 

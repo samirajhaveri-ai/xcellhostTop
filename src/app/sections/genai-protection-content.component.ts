@@ -3,11 +3,9 @@ import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angu
 import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 
-type GenaiPlan = 'discover' | 'enforce' | 'multiClient';
+type GenaiPlan = 'enforce';
 const GENAI_PLANS: Record<GenaiPlan, { name: string; price: number; max: number }> = {
-  discover: { name: 'Discover', price: 299, max: 25 },
   enforce: { name: 'Enforce', price: 599, max: 100 },
-  multiClient: { name: 'Multi-client', price: 999, max: 9999 },
 };
 
 interface ConsoleView {
@@ -31,7 +29,7 @@ interface ConsoleView {
 export class GenaiProtectionContentComponent {
   private readonly overlay = inject(OverlayService);
   private readonly topics = inject(CallbackTopicService);
-  readonly quantities = signal<Record<GenaiPlan, number>>({ discover: 1, enforce: 1, multiClient: 1 });
+  readonly quantities = signal<Record<GenaiPlan, number>>({ enforce: 1 });
 
   quantity(plan: GenaiPlan): number {
     return this.quantities()[plan];
