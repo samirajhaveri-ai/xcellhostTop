@@ -2978,14 +2978,50 @@
                               <dd>24×7</dd>
                             </div>
                           </dl>
-                          <a
-                            class="tally-plan-action"
-                            href="#"
-                            (click)="selectSmbDesktopPlan(plan, $event)"
-                          >
-                            <strong>&#8377;{{ formatInr(smbDesktopPrice(plan)) }}</strong>
-                            <span>Buy now <span aria-hidden="true">→</span></span>
-                          </a>
+                          <div class="tally-plan-action smb-desktop-plan-action">
+                            <div class="smb-desktop-plan-total">
+                              <strong>&#8377;{{ formatInr(smbDesktopPrice(plan)) }}</strong>
+                              <small
+                                >total for {{ smbDesktopQuantity(plan) }}
+                                {{ smbDesktopQuantity(plan) === 1 ? 'user' : 'users' }}</small
+                              >
+                            </div>
+                            <label [for]="'smbDesktopQuantity' + i">No. of users / devices</label>
+                            <div class="smb-desktop-quantity">
+                              <button
+                                type="button"
+                                aria-label="Decrease users"
+                                [disabled]="smbDesktopQuantity(plan) === smbDesktopBounds(plan).min"
+                                (click)="changeSmbDesktopQuantity(plan, -1)"
+                              >
+                                &minus;
+                              </button>
+                              <input
+                                xhQuantityInput
+                                [id]="'smbDesktopQuantity' + i"
+                                aria-label="Quantity for SMB Cloud Desktop users"
+                                [quantityValue]="smbDesktopQuantity(plan)"
+                                [quantityMin]="smbDesktopBounds(plan).min"
+                                [quantityMax]="smbDesktopBounds(plan).max"
+                                (quantityChange)="changeSmbDesktopQuantity(plan, $event - smbDesktopQuantity(plan))"
+                              />
+                              <button
+                                type="button"
+                                aria-label="Increase users"
+                                [disabled]="smbDesktopQuantity(plan) === smbDesktopBounds(plan).max"
+                                (click)="changeSmbDesktopQuantity(plan, 1)"
+                              >
+                                +
+                              </button>
+                            </div>
+                            <button
+                              class="smb-desktop-buy"
+                              type="button"
+                              (click)="selectSmbDesktopPlan(plan, $event)"
+                            >
+                              Buy now <span aria-hidden="true">→</span>
+                            </button>
+                          </div>
                         </article>
                       }
                     </div>

@@ -1,0 +1,217 @@
+<main class="acme-page">
+  <section class="acme-hero" aria-labelledby="acme-hero-title">
+    <div class="wrap">
+      <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><span>Digital Trust</span><span>/</span><b>ACME Certificates</b></nav>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <h1 id="acme-hero-title">ACME <em>Certificates </em></h1>
+          <p class="hero-tag-secondary">Your infrastructure depends on certificates. Let ACME keep every endpoint protected.</p>
+          <div class="hero-type"><span>Renew certificates automatically, before they expire</span><i aria-hidden="true"></i></div>
+          <ul class="hero-points">
+            <li><span>✓</span>Automated certificate issuance</li>
+            <li><span>✓</span>Zero-downtime renewals</li>
+            <li><span>✓</span>DV and OV certificates</li>
+            <li><span>✓</span>HTTP-01 and DNS-01 validation</li>
+            <li><span>✓</span>Unlimited free reissues</li>
+            <li><span>✓</span>Every server and workload</li>
+          </ul>
+          <div class="hero-actions tally-style-actions">
+            <a class="btn secondary" href="#overview"><span aria-hidden="true">▣</span> Screenshot tour</a>
+            <a class="btn secondary" href="#how"><span aria-hidden="true">▦</span> Free Trial</a>
+            <button class="btn primary" type="button" (click)="requestCallback('ACME certificate consultation')">Let's Talk <span>→</span></button>
+          </div>
+          <div class="hero-ai" role="group" aria-label="Ask AI about ACME certificates from XcellHost">
+            <span>✦ Ask AI About ACME Certificates from XcellHost</span>
+            <div>
+              <a href="https://chatgpt.com/?q=Explain%20XcellHost%20ACME%20Certificates%20and%20automated%20SSL%20renewal" target="_blank" rel="noopener" aria-label="Ask ChatGPT" title="Ask ChatGPT"><b>AI</b></a>
+              <a href="https://www.perplexity.ai/search/new?q=Explain%20XcellHost%20ACME%20Certificates%20and%20automated%20SSL%20renewal" target="_blank" rel="noopener" aria-label="Ask Perplexity" title="Ask Perplexity"><b>P</b></a>
+              <a href="https://claude.ai/new?q=Explain%20XcellHost%20ACME%20Certificates%20and%20automated%20SSL%20renewal" target="_blank" rel="noopener" aria-label="Ask Claude" title="Ask Claude"><b>C</b></a>
+              <a href="https://www.google.com/search?udm=50&amp;q=Explain%20XcellHost%20ACME%20Certificates%20and%20automated%20SSL%20renewal" target="_blank" rel="noopener" aria-label="Ask Google AI" title="Ask Google AI"><b>G</b></a>
+              <a href="https://grok.com/?q=Explain%20XcellHost%20ACME%20Certificates%20and%20automated%20SSL%20renewal" target="_blank" rel="noopener" aria-label="Ask Grok" title="Ask Grok"><b>X</b></a>
+            </div>
+          </div>
+          <div class="hero-media">
+            <strong><span aria-hidden="true">▮▮▮</span> Explore ACME certificate automation</strong>
+            <a class="hero-guide-player" href="#how"><span aria-hidden="true">▶</span><b>See the six-step workflow</b><i aria-hidden="true"></i></a>
+          </div>
+          <div class="powered"><small>Powered by</small><span aria-hidden="true">|</span><b>Sectigo ACME</b></div>
+        </div>
+        <div class="fleet" aria-label="Example automated certificate fleet">
+          <div class="fleet-head"><b><span>↻</span> Certificate fleet</b><small>LIVE</small></div>
+          <div class="fleet-list">
+            @for (certificate of certificates; track certificate.domain) {
+              <article>
+                <div><b>{{ certificate.domain }}</b><small><span>{{ certificate.type }}</span> Sectigo · {{ certificate.challenge }}</small></div>
+                <div class="life"><small>expires in <b>{{ certificate.days }}d</b></small><i><span [style.width.%]="certificate.days"></span></i></div>
+              </article>
+            }
+          </div>
+          <div class="fleet-foot"><span><b>24</b><small>Auto-renewed</small></span><span><b>0</b><small>Expired</small></span><span><b>4d</b><small>Next renewal</small></span></div>
+          <div class="fleet-log"><span></span><code>acme-client</code> watching certificates…</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pp-trust" aria-label="XcellHost credentials">
+    <div class="wrap">
+      <span><b>ISO 27001</b> &amp; <b>20000-1</b> certified</span>
+      <span>Microsoft <b>Gold Partner</b></span>
+      <span><b>10,000+</b> customers</span>
+      <span><b>Since 1999</b></span>
+      <span><b>99.95% uptime SLA</b></span>
+      <span><b>24&times;7</b> NOC + SOC</span>
+    </div>
+  </div>
+
+  <xh-smb-section-nav label="ACME certificate page sections" [links]="sectionNavLinks" />
+
+  <section class="acme-section" id="overview" aria-labelledby="lifetimes-title">
+    <div class="wrap">
+      <h2 class="pp-sec" id="lifetimes-title">Overview</h2>
+      <p class="pp-ov">The CA/Browser Forum is reducing the maximum validity of public TLS certificates in stages. Each reduction means more renewals—which becomes unmanageable by hand once you run more than a few sites.</p>
+      <div class="lifetime-layout">
+        <div class="timeline">
+          <article><span><b>Until Mar 2026</b>Before 15 Mar 2026</span><i><b style="width:100%">398 days</b></i><em>1× <small>per year</small></em></article>
+          <article class="current"><span><b>From Mar 2026</b>15 Mar 2026</span><i><b style="width:50.25%">200 days</b></i><em>2× <small>per year</small></em></article>
+          <article><span><b>From Mar 2027</b>15 Mar 2027</span><i><b style="width:25.1%">100 days</b></i><em>4× <small>per year</small></em></article>
+          <article><span><b>From Mar 2029</b>15 Mar 2029</span><i><b style="width:11.8%">47 days</b></i><em>8× <small>per year</small></em></article>
+        </div>
+        <aside class="renewal-callout"><strong>200</strong><h3>manual renewals a year for 25 sites by 2029</h3><p>With ACME, the client renews well before expiry, on its own, every time.</p><div><span>90-day certificates</span><span>Renews early</span><span>Zero downtime</span></div></aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="acme-section alt" id="how" aria-labelledby="how-title">
+    <div class="wrap">
+      <h2 class="pp-sec" id="how-title">How it works</h2>
+      <p class="pp-ov">Set up once and the ACME client handles every renewal for the life of your subscription. Select any step to see what happens—and the command behind it.</p>
+      <div class="workflow">
+        <div class="step-list" role="tablist" aria-label="ACME setup steps">
+          @for (step of steps; track step.title; let index = $index) {
+            <button type="button" role="tab" [class.active]="selectedStep() === index" [attr.aria-selected]="selectedStep() === index" (click)="selectedStep.set(index)"><span>0{{ index + 1 }}</span><span><b>{{ step.title }}</b><small>{{ step.summary }}</small></span></button>
+          }
+        </div>
+        <article class="step-panel" aria-live="polite">
+          <span>Step {{ selectedStep() + 1 }} of 6</span>
+          <h3>{{ steps[selectedStep()].title }}</h3>
+          <p>{{ steps[selectedStep()].description }}</p>
+          <ul>@for (point of steps[selectedStep()].points; track point) {<li>{{ point }}</li>}</ul>
+          <div class="terminal"><div><i></i><i></i><i></i><span>bash</span></div><code><b>$</b> {{ steps[selectedStep()].command }}</code></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="acme-section" id="pricing" aria-labelledby="plans-title">
+    <div class="wrap">
+      <h2 class="pp-sec" id="plans-title">Plans & Pricing</h2>
+      <p class="pp-ov">Both include unlimited server installs, unlimited free reissues and External Account Binding credentials from your XcellHost dashboard. Prices are per domain, per year.</p>
+      <div class="plan-grid">
+        <article class="plan-card"><div class="plan-top"><span>▣ Sectigo</span><small>Domain Validated</small></div><h3>ACME Certificate — DV</h3><p>Fast, fully automated HTTPS for websites, APIs and apps. Validation proves domain control only—issued in minutes.</p><div class="price"><b>₹1,699</b><span>/ domain / year</span></div><div class="gst-line">Indicative · excl. 18% GST · multi-year discounts available</div><dl><div><dd>US$500,000</dd><dt>Warranty</dt></div><div><dd>1–999</dd><dt>Domains + free www</dt></div><div><dd>SHA-256</dd><dt>Signature</dt></div><div><dd>Up to 256-bit</dd><dt>Encryption</dt></div><div><dd>RSA 2048+ / ECC 256+</dd><dt>Key types</dt></div><div><dd>90 days</dd><dt>Default cert life</dt></div></dl><ul><li><b>Automated renewal</b> via HTTP-01 or DNS-01</li><li><b>Unlimited server licences</b>—one cert, every node</li><li><b>Unlimited reissues</b> at no cost</li><li>Live chat &amp; ticket support, <b>30-day refund</b></li></ul><div class="plan-actions"><a href="#configure" class="plan-button">Configure DV <span>→</span></a><button type="button" (click)="requestCallback('ACME DV certificate')">🛒&nbsp; Add 1 domain · 1 year</button></div></article>
+        <article class="plan-card featured"><span class="flag">FOR BUSINESSES</span><div class="plan-top"><span>▣ Sectigo</span><small>Organization Validated</small></div><h3>ACME Certificate — OV</h3><p>Your verified company name in the certificate—for customer-facing portals, banking, ecommerce and B2B apps.</p><div class="price"><b>₹7,499</b><span>/ domain / year</span></div><div class="gst-line">Indicative · excl. 18% GST · multi-year discounts available</div><dl><div><dd>US$1,000,000</dd><dt>Warranty</dt></div><div><dd>1–999</dd><dt>Domains + free www</dt></div><div><dd>SHA-256</dd><dt>Signature</dt></div><div><dd>Up to 256-bit</dd><dt>Encryption</dt></div><div><dd>RSA 2048+ / ECC 256+</dd><dt>Key types</dt></div><div><dd>90 days</dd><dt>Default cert life</dt></div></dl><ul><li><b>Organisation verified</b> once, then renewals stay automatic</li><li><b>Unlimited server licences</b> and reissues</li><li><b>EAB credentials</b> issued from your dashboard</li><li>Priority support, <b>30-day refund</b></li></ul><div class="plan-actions"><a href="#configure" class="plan-button orange">Configure OV <span>→</span></a><button type="button" (click)="requestCallback('ACME OV certificate')">🛒&nbsp; Add 1 domain · 1 year</button></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="acme-section alt" id="configure" aria-labelledby="configure-title">
+    <div class="wrap">
+      <h2 class="pp-sec" id="configure-title">Configure & buy</h2>
+      <p class="pp-ov">Pick the validation type, how many domains you need to cover and the term. Adding domains later is billed only for the days left in your subscription.</p>
+      <div class="calculator">
+        <div class="calculator-controls">
+          <fieldset><legend>Validation type</legend><div class="segmented"><button type="button" [class.active]="validation() === 'dv'" (click)="selectValidation('dv')">Domain Validated<small>₹1,699 / domain / yr</small></button><button type="button" [class.active]="validation() === 'ov'" (click)="selectValidation('ov')">Organization Validated<small>₹7,499 / domain / yr</small></button></div></fieldset>
+          <label>Domains to secure <output>{{ domains() }} domains</output><input type="range" min="1" max="100" [value]="domains()" [style.background-size.%]="domains()" (input)="updateDomains($event)" /><small>Each domain includes its www/non-www pair. Ask us about subscriptions covering up to 999 domains.</small></label>
+          <fieldset><legend>Term</legend><div class="segmented three"><button type="button" [class.active]="term() === 1" (click)="selectTerm(1)">1 year<small>list price</small></button><button type="button" [class.active]="term() === 2" (click)="selectTerm(2)">2 years<small>save 10%</small></button><button type="button" [class.active]="term() === 3" (click)="selectTerm(3)">3 years<small>save 15%</small></button></div></fieldset>
+          <label>Your ACME client<select><option>Certbot</option><option>cert-manager (Kubernetes)</option><option>acme.sh</option><option>lego</option><option>win-acme (IIS)</option><option>Not sure yet</option></select></label>
+          <label class="setup-note"><input type="checkbox" checked /><span></span><p><b>XcellHost sets it up for me</b><small>We install the client, configure EAB and run the first issuance with you—included free.</small></p></label>
+        </div>
+        <aside class="estimate"><span>Your estimate</span><strong>₹{{ formatInr(subtotal()) }}</strong><small>Total for {{ term() }} {{ term() === 1 ? 'year' : 'years' }}, excluding GST</small><dl><div><dt>{{ domains() }} × {{ validation().toUpperCase() }} × {{ term() }} yr</dt><dd>₹{{ formatInr(listPrice()) }}</dd></div><div class="saving"><dt>Multi-year saving</dt><dd>{{ saving() ? '−₹' + formatInr(saving()) : '—' }}</dd></div><div><dt>Effective per domain/year</dt><dd>₹{{ formatInr(subtotal() / domains() / term()) }}</dd></div><div><dt>GST (18%)</dt><dd>₹{{ formatInr(gst()) }}</dd></div><div class="payable"><dt>Payable incl. GST</dt><dd>₹{{ formatInr(payable()) }}</dd></div></dl><button type="button" (click)="requestCallback('ACME certificate purchase')">🛒&nbsp; Add to cart</button><button class="outline" type="button" (click)="requestCallback('ACME setup and EAB help')">Talk to an SSL expert</button><p class="estimate-fine">Indicative pricing in INR, excl. GST. Final price confirmed on your GST invoice.</p></aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="acme-section" id="comparison" aria-labelledby="comparison-title">
+    <div class="wrap">
+      <h2 class="pp-sec" id="comparison-title">ACME vs traditional SSL</h2>
+      <p class="pp-ov">See how an automated ACME workflow replaces the repetitive steps of traditional SSL certificate management.</p>
+      <div class="table-wrap"><table><thead><tr><th>Task</th><th>Traditional SSL</th><th>ACME with XcellHost</th></tr></thead><tbody><tr><td>Getting a certificate</td><td>Generate a CSR, submit it, wait, download files</td><td>Client requests and receives it automatically</td></tr><tr><td>Domain validation</td><td>Email approvals or manual file uploads</td><td>HTTP-01 or DNS-01 challenge, solved by the client</td></tr><tr><td>Installation</td><td>Copy files to every server, edit configs, restart</td><td>Installed and reloaded on each server automatically</td></tr><tr><td>Renewal</td><td>Calendar reminders—and the occasional expired site</td><td>Renews ~30 days before expiry, with zero downtime</td></tr><tr><td>Scaling to more domains</td><td>Effort grows with every domain</td><td>Add domains to the same setup; billed pro-rata</td></tr><tr><td>Best for</td><td>A handful of static sites</td><td>DevOps teams, hosting providers, SaaS and growing estates</td></tr></tbody></table></div>
+    </div>
+  </section>
+
+  <section class="acme-section alt" id="compatibility" aria-labelledby="compatibility-title">
+    <div class="wrap">
+      <h2 class="pp-sec" id="compatibility-title">Works with the tools you already run</h2>
+      <p class="pp-ov">Sectigo ACME is standards-based ACME v2 (RFC 8555), so any compliant client works. These are the tools and environments our team sets up most often.</p>
+      <div class="compatibility-grid"><article><h3>ACME clients</h3><p>Command-line, Kubernetes-native and Windows clients.</p><div><span>Certbot</span><span>cert-manager</span><span>acme.sh</span><span>lego</span><span>win-acme</span><span>Certify The Web</span><span>Posh-ACME</span><span>dehydrated</span></div></article><article><h3>Server environments</h3><p>Install and auto-reload on the platforms you host on.</p><div><span>Apache</span><span>NGINX</span><span>cPanel</span><span>Plesk</span><span>Docker</span><span>Kubernetes</span><span>Microsoft IIS</span><span>Caddy</span></div></article></div>
+    </div>
+  </section>
+
+  <section class="acme-section" id="use-cases" aria-labelledby="teams-title">
+    <div class="wrap">
+      <h2 class="pp-sec" id="teams-title">Built for teams with more than a few sites</h2>
+      <p class="pp-ov">Automated certificate management fits any environment where certificates must be issued quickly and renewed reliably at scale.</p>
+      <div class="card-grid four use-cases"><article><span class="case-icon">⌘</span><small>DevOps &amp; CI/CD</small><h3>Certificates in the pipeline</h3><p>Every new environment gets a valid certificate as part of the deploy—no tickets, no waiting.</p></article><article><span class="case-icon orange">▤</span><small>Hosting providers</small><h3>Thousands of customer sites</h3><p>Issue and renew for every hosted domain from one automated setup, billed per domain.</p></article><article><span class="case-icon navy">⬡</span><small>SaaS platforms</small><h3>Custom domains for tenants</h3><p>Secure each customer's vanity domain the moment they point it at your platform.</p></article><article><span class="case-icon green">▧</span><small>Internal networks</small><h3>Private endpoints too</h3><p>DNS-01 validation works even when the server isn't reachable from the internet.</p></article></div>
+    </div>
+  </section>
+
+  <section class="acme-section alt" id="why-xcellhost" aria-labelledby="why-xcellhost-title">
+    <div class="wrap">
+      <h2 class="pp-sec" id="why-xcellhost-title">Why buy from XcellHost</h2>
+      <p class="pp-ov">Buy from an authorised Sectigo partner in Mumbai—billed in rupees with a GST invoice and backed by engineers who set up ACME workflows every week.</p>
+      <div class="card-grid benefits"><article><span>⌕</span><h3>Client setup, done with you</h3><p>We install and configure your ACME client, wire DNS-01 where you need wildcards or private hosts, and run the first issuance together.</p></article><article><span>⚿</span><h3>EAB credentials, explained</h3><p>Sectigo ACME uses External Account Binding—a key ID and HMAC token per deployment. We issue them from your dashboard and show you where they go.</p></article><article><span>▦</span><h3>One dashboard</h3><p>Every certificate, domain and renewal in one place, alongside your other XcellHost services.</p></article><article><span>₹</span><h3>INR billing &amp; GST invoice</h3><p>Pay by UPI, card or net banking. Multi-year discounts and no hidden fees.</p></article><article><span>♧</span><h3>24×7 expert support</h3><p>Real engineers on phone, WhatsApp and tickets—round the clock, in your time zone.</p></article><article><span>♢</span><h3>Authorised CA partner</h3><p>Genuine Sectigo certificates trusted by 99% of browsers, operating systems and mobile devices.</p></article></div>
+    </div>
+  </section>
+
+  <section class="acme-section default-tail" id="security-compliance" aria-labelledby="security-compliance-title">
+    <div class="wrap">
+      <h2 class="pp-sec" id="security-compliance-title">Security &amp; compliance</h2>
+      <p class="pp-ov">Sectigo ACME combines trusted public certificates with automated validation, secure account binding and repeatable renewal workflows that reduce certificate risk across your estate.</p>
+      <div class="pp-secrows">
+        <div class="psrow"><span class="psk">Certificate authority</span><span class="psv">Sectigo public trust</span></div>
+        <div class="psrow"><span class="psk">Automation standard</span><span class="psv">ACME v2 · RFC 8555</span></div>
+        <div class="psrow"><span class="psk">Account security</span><span class="psv">External Account Binding</span></div>
+        <div class="psrow"><span class="psk">Domain validation</span><span class="psv">HTTP-01 or DNS-01</span></div>
+        <div class="psrow"><span class="psk">Cryptography</span><span class="psv">SHA-256 · RSA 2048+ · ECC 256+</span></div>
+        <div class="psrow"><span class="psk">Transport encryption</span><span class="psv">Up to 256-bit</span></div>
+        <div class="psrow"><span class="psk">Renewal protection</span><span class="psv">Automated checks and early renewal</span></div>
+        <div class="psrow"><span class="psk">Operational support</span><span class="psv">24×7 XcellHost NOC + SOC</span></div>
+      </div>
+      <p class="pp-secfoot">XcellHost is ISO 27001 and ISO 20000-1 certified · DPDPA-aligned operations · GST-compliant Indian billing.</p>
+    </div>
+  </section>
+
+  <section class="acme-section alt default-tail" id="why-acme" aria-labelledby="why-acme-title">
+    <div class="wrap">
+      <h2 class="pp-sec" id="why-acme-title">Why XcellHost for ACME Certificates</h2>
+      <div class="pp-why">
+        <article class="pw"><span class="pw-ic" aria-hidden="true">↻</span><b>Automation expertise</b><span>We configure clients, EAB credentials, validation and renewals as one reliable workflow.</span></article>
+        <article class="pw"><span class="pw-ic" aria-hidden="true">◇</span><b>Trusted Sectigo certificates</b><span>Deploy genuine DV and OV certificates recognised by major browsers and devices.</span></article>
+        <article class="pw"><span class="pw-ic" aria-hidden="true">DNS</span><b>HTTP-01 and DNS-01 help</b><span>Secure public websites, private endpoints, Kubernetes services and wildcard domains.</span></article>
+        <article class="pw"><span class="pw-ic" aria-hidden="true">₹</span><b>INR billing</b><span>Pay locally with a GST invoice, predictable pricing and multi-year savings.</span></article>
+        <article class="pw"><span class="pw-ic" aria-hidden="true">24</span><b>24×7 expert support</b><span>Get renewal and deployment assistance from engineers in your time zone.</span></article>
+        <article class="pw"><span class="pw-ic" aria-hidden="true">✓</span><b>First issuance included</b><span>We validate the complete process with your team before handing over automation.</span></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="acme-section default-tail" id="testimonials" aria-labelledby="testimonials-title">
+    <div class="wrap">
+      <h2 class="pp-sec" id="testimonials-title">What customers say</h2>
+      <div class="pp-revs">
+        <article class="prv"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><p>“XcellHost moved our certificates to ACME and tested every renewal path. We no longer track expiry dates in spreadsheets.”</p><cite><span class="rav">RK</span><span><b>Rohan Kulkarni</b>Infrastructure Lead · SaaS</span></cite></article>
+        <article class="prv"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><p>“DNS-01 automation now protects both our public sites and internal services. Their team handled the first deployment end to end.”</p><cite><span class="rav">AM</span><span><b>Ananya Mehta</b>DevOps Manager · Fintech</span></cite></article>
+        <article class="prv"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><p>“The Sectigo OV setup, EAB registration and automatic reloads all worked exactly as promised, with clear local support.”</p><cite><span class="rav">VS</span><span><b>Vikram Shah</b>Technology Director · Ecommerce</span></cite></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="acme-section alt default-tail" id="faqs" aria-labelledby="faqs-title">
+    <div class="wrap">
+      <h2 class="pp-sec pp-faq-heading" id="faqs-title">Frequently asked questions</h2>
+      <div class="pp-faq"><xh-product-faq [faqs]="faqs" idPrefix="acmeFaq" /></div>
+    </div>
+  </section>
+
+  <xh-insights-section pageSlug="acme-certificate" [showVideos]="false" />
+</main>

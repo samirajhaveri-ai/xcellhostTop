@@ -4261,6 +4261,21 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
 .smb-desktop-pricing .tally-price-heading>span{display:inline-flex;align-items:center;min-height:26px;padding:0 12px;border-radius:999px;background:#eaf3ff;color:#1565d8;letter-spacing:.08em}
 .smb-desktop-pricing .tally-plan-card.tally-plan-featured{border-color:#70afe9;box-shadow:0 12px 30px rgba(0,91,187,.14)}
 .smb-desktop-plan-note{margin:22px 0 0;color:#647995;text-align:center;font:400 12px/1.5 'Poppins',sans-serif}
+.smb-desktop-pricing .smb-desktop-plan-action{gap:8px;width:142px;cursor:default}
+.smb-desktop-plan-total{display:flex;align-items:baseline;justify-content:center;gap:5px;width:100%;white-space:nowrap}
+.smb-desktop-plan-total strong{font:650 clamp(21px,1.8vw,25px)/1.08 'Poppins',sans-serif;letter-spacing:-.025em}
+.smb-desktop-plan-total small{color:#526a8d;font-size:8px;font-weight:600}
+.smb-desktop-plan-action>label{color:#080d2c;font:650 10px/1.3 'Poppins',sans-serif}
+.smb-desktop-quantity{display:grid;grid-template-columns:38px minmax(0,1fr) 38px;width:142px;overflow:hidden;border:1px solid #c8d8ec;border-radius:7px;background:#fff}
+.smb-desktop-quantity button,.smb-desktop-quantity input{height:38px;border:0;background:#fff;color:#080d2c;text-align:center;font:650 14px/1 'Poppins',sans-serif}
+.smb-desktop-quantity button{background:#f5f8fc;color:#0b55c7;cursor:pointer}
+.smb-desktop-quantity button:first-child{border-right:1px solid #c8d8ec}.smb-desktop-quantity button:last-child{border-left:1px solid #c8d8ec}
+.smb-desktop-quantity button:disabled{color:#9aabc0;cursor:not-allowed}
+.smb-desktop-quantity input{width:100%;min-width:0;appearance:textfield;-moz-appearance:textfield}
+.smb-desktop-quantity input::-webkit-inner-spin-button,.smb-desktop-quantity input::-webkit-outer-spin-button{margin:0;appearance:none}
+.smb-desktop-buy{display:block;width:142px;padding:11px 10px;border:0;border-radius:9px;background:linear-gradient(135deg,#1670e8,#0b55c7);color:#fff;text-align:center;text-transform:uppercase;font:650 13px/1.2 'Poppins',sans-serif;box-shadow:0 7px 16px rgba(21,101,216,.24);cursor:pointer;transition:background .2s ease,box-shadow .2s ease,transform .2s ease}
+.smb-desktop-buy:hover{background:linear-gradient(135deg,#0b55c7,#083d98);box-shadow:0 10px 20px rgba(21,101,216,.3);transform:translateY(-2px)}
+.smb-desktop-buy:focus-visible,.smb-desktop-quantity button:focus-visible,.smb-desktop-quantity input:focus-visible{outline:3px solid rgba(0,91,187,.24);outline-offset:2px}
 
 @media(max-width:1050px){
   .tally-plan-specs{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -4280,6 +4295,8 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
   .tally-plan-main>strong{font-size:27px}
   .tally-plan-specs{display:flex;flex-direction:column}
   .tally-plan-specs>div{min-height:55px}
+  .smb-desktop-pricing .smb-desktop-plan-action{width:100%;padding:22px 20px}
+  .smb-desktop-plan-total,.smb-desktop-quantity,.smb-desktop-buy{width:min(280px,100%)}
 }
 
 /* Cloud Disaster Recovery SMB — RMM-style plan presentation, preserving plan content. */
