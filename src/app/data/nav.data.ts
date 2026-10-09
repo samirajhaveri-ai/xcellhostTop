@@ -772,7 +772,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "NVIDIA B300 Nodes",
+                "title": "NVIDIA B300",
                 "pill": null,
                 "desc": null
               },
@@ -1030,9 +1030,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              
-              
-              
             ]
           }
         ]
