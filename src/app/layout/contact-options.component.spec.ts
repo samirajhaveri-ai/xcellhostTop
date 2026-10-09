@@ -2,6 +2,9 @@ import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { ContactOptionsComponent } from './contact-options.component';
 
 describe('Newsletter Zoho submission', () => {
+  const storageKey = 'xcellhost.newsletter.confirmed-emails.v1';
+  beforeEach(() => localStorage.removeItem(storageKey));
+  afterEach(() => localStorage.removeItem(storageKey));
   function setup() {
     const fixture = TestBed.createComponent(ContactOptionsComponent);
     fixture.detectChanges();
@@ -85,5 +88,81 @@ describe('Newsletter Zoho submission', () => {
     fixture.componentInstance.submit(form);
     expect(fixture.componentInstance.form.controls.email.value).toBe('subscriber@example.com');
     expect(fixture.componentInstance.message()).toContain('Please try again');
+  });
+
+  function confirm(component: ContactOptionsComponent, form: HTMLFormElement) {
+    const href = (form.elements.namedItem('zf_redirect_url') as HTMLInputElement).value;
+    component.checkSubmission({ contentWindow: { location: { href } } } as HTMLIFrameElement);
+  }
+
+  it('blocks the same confirmed email with different casing and spaces after recreation', () => {
+    const first = setup();
+    first.fixture.componentInstance.form.controls.email.setValue('Subscriber@example.com');
+    first.fixture.componentInstance.submit(first.form);
+    confirm(first.fixture.componentInstance, first.form);
+    first.fixture.destroy();
+
+    const second = setup();
+    second.fixture.componentInstance.form.controls.email.setValue('  SUBSCRIBER@example.com  ');
+    second.fixture.componentInstance.submit(second.form);
+    second.fixture.detectChanges();
+    expect(second.submit).not.toHaveBeenCalled();
+    expect(second.fixture.componentInstance.message()).toBe('This email address is already subscribed.');
+    expect(second.fixture.componentInstance.done()).toBeFalse();
+    expect(second.fixture.componentInstance.sending()).toBeFalse();
+    second.fixture.componentInstance.form.controls.email.setValue('other@example.com');
+    second.fixture.componentInstance.submit(second.form);
+    expect(second.submit).toHaveBeenCalledTimes(1);
+    second.fixture.destroy();
+  });
+
+  it('allows retry after an unconfirmed submission times out', fakeAsync(() => {
+    const { fixture, form, submit } = setup();
+    fixture.componentInstance.form.controls.email.setValue('retry@example.com');
+    fixture.componentInstance.submit(form);
+    tick(30000);
+    fixture.componentInstance.submit(form);
+    expect(submit).toHaveBeenCalledTimes(2);
+    fixture.destroy();
+  }));
+
+  it('remembers the submitted email even if the control changes before confirmation', () => {
+    const { fixture, form, submit } = setup();
+    const component = fixture.componentInstance;
+    component.form.controls.email.setValue('sent@example.com');
+    component.submit(form);
+    component.form.controls.email.setValue('changed@example.com');
+    confirm(component, form);
+    component.form.controls.email.setValue('sent@example.com');
+    component.submit(form);
+    expect(submit).toHaveBeenCalledTimes(1);
+    fixture.destroy();
+  });
+
+  it('still confirms and blocks repeats when browser storage is unavailable', () => {
+    spyOn(Storage.prototype, 'getItem').and.throwError('Storage blocked');
+    spyOn(Storage.prototype, 'setItem').and.throwError('Storage blocked');
+    const { fixture, form, submit } = setup();
+    const component = fixture.componentInstance;
+    component.form.controls.email.setValue('subscriber@example.com');
+    component.submit(form);
+    confirm(component, form);
+    expect(component.done()).toBeTrue();
+    component.form.controls.email.setValue('subscriber@example.com');
+    component.submit(form);
+    expect(submit).toHaveBeenCalledTimes(1);
+    fixture.destroy();
+  });
+
+  it('ignores malformed saved data and does not cache failed submissions', () => {
+    localStorage.setItem(storageKey, '{broken');
+    const { fixture, form, submit } = setup();
+    submit.and.throwError('Submission unavailable');
+    fixture.componentInstance.form.controls.email.setValue('subscriber@example.com');
+    fixture.componentInstance.submit(form);
+    submit.and.stub();
+    fixture.componentInstance.submit(form);
+    expect(submit).toHaveBeenCalledTimes(2);
+    fixture.destroy();
   });
 });
