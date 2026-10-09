@@ -5,6 +5,8 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  { path: 'managed-kubernetes', title: 'Managed Kubernetes - XcellHost', loadComponent: () => import('./pages/managed-kubernetes.page').then(m => m.ManagedKubernetesPage) },
+  { path: 'under-construction/podcasts', title: 'The Cloud Podcast - XcellHost', loadComponent: () => import('./pages/podcasts.page').then(m => m.PodcastsPage) },
 
   {
     path: 'compare-products',

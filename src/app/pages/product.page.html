@@ -11,8 +11,9 @@
     [class.cpanel-servers-page]="slug() === 'cpanel-servers'"
     [class.windows-servers-page]="slug() === 'windows-servers'"
     [class.domain-whois-page]="slug() === 'domain-whois-lookup'"
-    [class.box-migration-page]="slug() === 'box-backup'"
-    [class.dropbox-migration-page]="slug() === 'dropbox-backup'"
+    [class.managed-kubernetes-page]="slug() === 'managed-kubernetes'"
+    [class.box-migration-page]="slug() === 'box-migration'"
+    [class.dropbox-migration-page]="slug() === 'dropbox-migration'"
     [class.managed-sql-page]="slug() === 'managed-microsoft-sql'"
     [class.managed-oracle-page]="slug() === 'managed-oracle-cloud'"
     [class.managed-database-reference-page]="slug() === 'managed-mongodb' || slug() === 'managed-redis'"
@@ -411,9 +412,9 @@
         />
       } @else if (slug() === 'managed-microsoft-sql') {
         <xh-managed-microsoft-sql-content [hero]="true" />
-      } @else if (slug() === 'box-backup') {
+      } @else if (slug() === 'box-migration') {
         <xh-box-migration-content [hero]="true" />
-      } @else if (slug() === 'dropbox-backup') {
+      } @else if (slug() === 'dropbox-migration') {
         <xh-dropbox-migration-content [hero]="true" />
       } @else if (isFrameworkDetail()) {
         <xh-nist-csf-2-0-content [slug]="slug()" [hero]="true" />
@@ -1962,10 +1963,10 @@
         />
       }
 
-      @if (slug() === 'dropbox-backup') {
+      @if (slug() === 'dropbox-migration') {
         <xh-smb-section-nav label="Dropbox page sections" [links]="dropboxSectionNavLinks" frameSelector="xh-dropbox-migration-content iframe[src='/dropbox-migration-content.html']" />
       }
-      @if (slug() === 'box-backup') {
+      @if (slug() === 'box-migration') {
         <xh-smb-section-nav label="Box page sections" [links]="boxSectionNavLinks" frameSelector="xh-box-migration-content iframe[src='/box-migration-content.html']" />
       }
       @if (isFrameworkDetail()) {
@@ -2202,7 +2203,7 @@
           @if (slug() === 'managed-oracle-cloud') {
             <xh-managed-oracle-content />
           }
-          @if (slug() === 'box-backup') {
+          @if (slug() === 'box-migration') {
             <xh-box-migration-content />
             <section class="box-migration-assurance">
               <h2 class="pp-sec" id="boxWhy">WHY XCELLHOST FOR BOX MIGRATION</h2>
@@ -2229,7 +2230,7 @@
                 }
               </div>
             </section>
-          } @else if (slug() === 'dropbox-backup') {
+          } @else if (slug() === 'dropbox-migration') {
             <xh-dropbox-migration-content />
             <section class="dropbox-migration-assurance">
               <h2 class="pp-sec" id="dropboxWhy">WHY XCELLHOST FOR DROPBOX MIGRATION</h2>
@@ -4845,6 +4846,8 @@
                   <xh-rtx-pro-6000-showcase />
                 } @else if (slug() === 'nvidia-rtx-6000-ada') {
                   <xh-rtx-6000-ada-showcase />
+                } @else if (slug() === 'managed-kubernetes') {
+                  <xh-imported-interactive-content source="kubernetes" />
                 } @else if (slug() === 'managed-mongodb') {
                   <!-- Database use cases are included in the MongoDB follow-up sections above. -->
                 } @else if (slug() === 'ai-receptionist') {

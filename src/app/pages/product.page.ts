@@ -1,3 +1,5 @@
+import { ImportedInteractiveContentComponent } from '../sections/imported-interactive-content.component';
+import { MANAGED_KUBERNETES_FAQS } from '../data/managed-kubernetes-faq.data';
 
 import { QuantityInputDirective } from '../core/quantity-input.directive';
 
@@ -464,6 +466,7 @@ interface ProductTourSlide {
     ManagedMongoDbContentComponent,
     ManagedMicrosoftSqlContentComponent,
     DropboxMigrationContentComponent,
+    ImportedInteractiveContentComponent,
     BoxMigrationContentComponent,
     ManagedRedisContentComponent,
     ManagedRedisHeroComponent,
@@ -2703,8 +2706,13 @@ class ProductPageComponent {
       tagline: 'Enterprise email migration — mailbox migration made simple',
       faqs: MAILBOX_MIGRATION_FAQS,
     };
-    if (slug === 'box-backup') return { ...view, faqs: BOX_MIGRATION_FAQS };
-    if (slug === 'dropbox-backup') return { ...view, faqs: DROPBOX_MIGRATION_FAQS };
+    if (slug === 'managed-kubernetes') return { ...view, faqs: MANAGED_KUBERNETES_FAQS, security: {
+      head: 'SECURITY & COMPLIANCE - MANAGED KUBERNETES',
+      intro: 'Keep Kubernetes workloads in Indian data centres with encrypted traffic and storage, role-based access, network policies and audit logs. XcellHost manages platform upgrades, patching and monitoring while your team controls application deployments and access policies.',
+      rows: [['Data Residency', 'Indian Data Centres'], ['Encryption', 'In Transit And At Rest'], ['Access Control', 'RBAC And Private API Endpoints'], ['Network Isolation', 'Network Policies And Namespaces'], ['Recovery', 'Backups And Restore Planning'], ['Monitoring', '24x7 NOC And SOC']],
+    }};
+    if (slug === 'box-migration') return { ...view, faqs: BOX_MIGRATION_FAQS };
+    if (slug === 'dropbox-migration') return { ...view, faqs: DROPBOX_MIGRATION_FAQS };
     if (slug === 'managed-microsoft-sql') return { ...view, faqs: MANAGED_SQL_FAQS };
     if (slug === 'linux-servers') return { ...view, faqs: LINUX_SERVERS_FAQS };
     if (slug === 'windows-servers') return { ...view, faqs: WINDOWS_SERVERS_FAQS };
@@ -3743,6 +3751,10 @@ class ProductPageComponent {
       'premium-domains', 'domain-protect', 'domain-whois-lookup', 'domain-name-prices',
       'backorder-domains', 'tld-directory', 'ai-domain-generator', 'ai-domain-advisor',
       'bharat-domains',
+      'web-security-sitelock', 'web-security-cwatch', 'thawte-ssl-certificates',
+      'rapidssl-ssl-certificates', 'codeguard-backup',
+      'hackerguardian-pci-compliance-scanning', 'trustedsite-certifications', 'imunify360',
+      'google-my-business',
     ].includes(this.slug()),
   );
 
