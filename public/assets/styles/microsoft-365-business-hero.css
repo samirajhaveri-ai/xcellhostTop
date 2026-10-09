@@ -1,0 +1,49 @@
+/* Shared banner sizing for the six Microsoft 365 SMB plan pages. */
+.ai-hero {
+  min-height: 420px;
+  padding: 40px 0;
+  display: flex;
+  align-items: center;
+}
+.ai-hero .wrap {
+  width: 100%;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+  gap: 40px;
+}
+.ai-hero h1 { font-size: clamp(28px, 2.7vw, 36px); line-height: 1.12; }
+.ai-hero .crumb { font-size: 10px; line-height: 1.6; margin-bottom: 12px; }
+.ai-hero .sub { font-size: 15px; line-height: 1.6; margin: 14px 0; }
+.ai-hero .sku { font-size: 11px; padding: 5px 10px; margin-top: 10px; }
+.ai-hero .pwd { margin-top: 14px; }
+.ai-hero .pwd span { height: 30px; padding: 0 12px; }
+.ai-hero .pwd img.pwd-lg { height: 20px; }
+.ai-hero .m365-preview { padding: 18px; margin: 0; max-width: none; border-radius: 20px; }
+.ai-hero .m365-orbit { height: 246px; margin: 12px 0; }
+.ai-hero .m365-core { width: 132px; height: 118px; border-radius: 18px; }
+.ai-hero .m365-core b { font-size: 12px; }
+.ai-hero .m365-core small { font-size: 8px; }
+.ai-hero .m365-node { width: 96px; padding: 9px 6px; border-radius: 12px; }
+.ai-hero .m365-node > span { width: 28px; height: 28px; margin-bottom: 5px; }
+.ai-hero .m365-node b { font-size: 11px; }
+.ai-hero .m365-node small { font-size: 8px; }
+.ai-hero .m365-ring { inset: 8px 24px; }
+.ai-hero .m365-ring.inner { inset: 44px 58px; }
+.ai-hero .m365-preview-foot { padding-top: 10px; }
+.m365-included { padding: 20px 0; background: var(--ice); border-bottom: 1px solid var(--line); }
+.m365-included .stk { margin: 0; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.m365-included .stk > div { color: var(--ink); background: var(--card); border-color: var(--line); opacity: 1; transform: none; font-size: 12px; }
+.m365-included .stk > div small { color: #168354; }
+.m365-included .stk > div svg { color: var(--blue); }
+@media (max-width: 900px) {
+  .ai-hero { min-height: 340px; padding: 32px 0; }
+  .ai-hero .wrap { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .ai-hero .m365-preview { max-width: 480px; margin: 0 auto; }
+  .m365-included .stk { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 480px) {
+  .ai-hero h1 { font-size: 26px; }
+  .ai-hero .m365-preview { padding: 14px; }
+  .ai-hero .m365-core { width: 112px; height: 112px; }
+  .ai-hero .m365-node { width: 86px; }
+  .m365-included .stk { grid-template-columns: minmax(0, 1fr); }
+}

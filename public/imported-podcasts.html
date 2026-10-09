@@ -1,0 +1,1671 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600;1,9..144,700&family=Sora:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"><style>
+/* =====================================================================
+   XcellHost v2 core — xcellhost.top design system
+   Brand: #0066FF blue · #0B132B navy · #FF8A00 orange · #c0392b "Host" red
+   Rule: exact brand colours, solid fills, no gradients.
+   ===================================================================== */
+:root{
+  --blue:#0066FF;--navy:#0B132B;--orange:#FF8A00;--red:#c0392b;--white:#fff;
+  --green:#16a34a;--wa:#25D366;
+  --bg:#ffffff;--surface:#ffffff;--surface-2:#F4F7FC;--ink:#0B132B;--text:#2A3550;--muted:#5B6782;
+  --line:#E2E8F2;--line-2:#D3DCEB;--chip:#EEF4FF;
+  --hero:#0B132B;--hero-ink:#ffffff;--hero-muted:#B6C2DA;--hero-line:rgba(255,255,255,.12);
+  --f-serif:"Fraunces",Georgia,serif;--f-disp:"Sora",system-ui,sans-serif;--f-body:"IBM Plex Sans",system-ui,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,monospace;
+  --r-s:10px;--r:14px;--r-l:20px;
+  --sh-s:0 4px 14px rgba(11,19,43,.06);--sh:0 14px 40px rgba(11,19,43,.10);--sh-l:0 30px 70px -24px rgba(11,19,43,.35);
+  --maxw:1200px;--ease:cubic-bezier(.22,.7,.2,1);--ease-o:cubic-bezier(.16,1,.3,1);
+}
+html[data-theme="dark"]{
+  --bg:#070C1C;--surface:#0E1630;--surface-2:#0B132B;--ink:#F2F5FB;--text:#C9D3E6;--muted:#8F9BB6;
+  --line:#1E2A49;--line-2:#27355A;--chip:#14204A;
+  --hero:#050916;--sh-s:0 4px 14px rgba(0,0,0,.3);--sh:0 14px 40px rgba(0,0,0,.4);--sh-l:0 30px 70px -24px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--f-body);color:var(--text);background:var(--bg);line-height:1.6;overflow-x:hidden;overflow-x:clip;-webkit-font-smoothing:antialiased;transition:background .35s,color .35s}
+body.lock{overflow:hidden}
+h1,h2,h3,h4{font-family:var(--f-disp);color:var(--ink);line-height:1.15;letter-spacing:-.02em;font-weight:700}
+a{color:inherit;text-decoration:none}img,svg{display:block}button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.mono{font-family:var(--f-mono)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px}
+#xhProgress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--orange);z-index:300}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:14.5px;line-height:1;padding:13px 22px;border-radius:12px;border:1.5px solid transparent;cursor:pointer;white-space:nowrap;transition:transform .2s var(--ease),background .2s,color .2s,border-color .2s,box-shadow .25s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn svg{width:16px;height:16px}
+.btn .ar{transition:transform .25s var(--ease)}.btn:hover .ar{transform:translateX(3px)}
+.btn-orange{background:var(--orange);color:#fff;box-shadow:0 10px 24px -12px rgba(255,138,0,.9)}
+.btn-orange:hover{box-shadow:0 14px 30px -12px rgba(255,138,0,1)}
+.btn-blue{background:var(--blue);color:#fff;box-shadow:0 10px 24px -12px rgba(0,102,255,.9)}
+.btn-ghost{background:var(--surface);color:var(--ink);border-color:var(--line-2)}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
+.btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
+.btn-line:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+.btn-wa{background:var(--wa);color:#fff}
+.btn-sm{padding:9px 15px;font-size:13px;border-radius:10px}
+.btn-block{width:100%}
+.btn[disabled]{opacity:.5;pointer-events:none}
+
+/* ---------- utility bar ---------- */
+.ubar{background:var(--navy);color:#B6C2DA;font-size:12.5px;position:relative;z-index:60}
+html[data-theme="dark"] .ubar{background:#050916}
+.ubar .wrap{display:flex;align-items:center;gap:16px;min-height:38px;white-space:nowrap;max-width:1360px}
+.ubar .wrap::-webkit-scrollbar{display:none}
+.ubar a:hover{color:#fff}
+.ubar .ul{display:flex;gap:16px;align-items:center;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,#000 92%,transparent);mask-image:linear-gradient(90deg,#000 92%,transparent)}
+.ubar .ul::-webkit-scrollbar{display:none}
+.ubar .ur{display:flex;gap:12px;align-items:center;margin-left:auto;padding-left:14px;border-left:1px solid rgba(255,255,255,.14);flex-shrink:0}
+@media(max-width:760px){.ubar .ur .uwa,.ubar .ur .lang{display:none}}
+.ubar .ph{font-family:var(--f-mono);color:#fff;font-weight:600}
+.ubar .uwa{color:#5FE08D;font-weight:600}
+.ubar .wa-ch{color:#5FE08D}
+.theme-tg{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:99px;padding:3px 9px 3px 4px;cursor:pointer;color:#dfe6f5;font-size:11.5px}
+.theme-tg .k{width:18px;height:18px;border-radius:50%;background:var(--orange);display:grid;place-items:center;transition:transform .35s var(--ease-o)}
+.theme-tg .k svg{width:11px;height:11px;color:#fff}
+html[data-theme="dark"] .theme-tg .k{transform:rotate(-180deg);background:var(--blue)}
+.lang{font-family:var(--f-mono);font-size:11px;border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:2px 6px;color:#dfe6f5}
+
+/* ---------- promo ---------- */
+.promo{background:var(--blue);color:#fff;font-size:13px;line-height:1.5;text-align:center;padding:8px 16px;position:relative;z-index:59}
+.promo b{font-weight:700}
+.promo .tag{display:inline-block;font-family:var(--f-mono);font-size:10.5px;font-weight:600;letter-spacing:.08em;background:#fff;color:var(--blue);border-radius:6px;padding:2px 7px;margin:0 6px}
+.promo a{font-weight:700;text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- header ---------- */
+.hdr{position:sticky;top:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--line);transition:box-shadow .3s,background .35s}
+.hdr.scrolled{box-shadow:0 8px 28px -18px rgba(11,19,43,.35)}
+.hdr .wrap{display:flex;align-items:center;gap:14px;height:70px;max-width:1360px}
+.logo{display:flex;flex-direction:column;flex-shrink:0;line-height:1}
+.logo .lw{font-family:var(--f-disp);font-weight:800;font-size:22px;letter-spacing:-.02em;color:var(--ink);display:flex;align-items:baseline}
+.logo .lw .host{position:relative;color:var(--red);padding:0 2px;margin-left:1px}
+.logo .lw .host{z-index:0}
+.logo .lw .host svg{position:absolute;left:-7px;top:-9px;width:calc(100% + 14px);height:34px;z-index:-1;color:var(--blue);opacity:.13}
+.logo .lw sup{font-size:9px;color:var(--muted);margin-left:1px;align-self:flex-start;margin-top:2px}
+.logo .lt{font-family:var(--f-mono);font-size:9px;letter-spacing:.16em;color:var(--muted);margin-top:4px;text-transform:uppercase;white-space:nowrap}
+.nav{display:flex;align-items:center;gap:0;margin-left:4px}
+.nav>.ni{position:static}
+.nav>.ni>button{background:none;border:0;cursor:pointer;display:flex;align-items:center;gap:3px;font-size:13.5px;font-weight:500;color:var(--text);padding:9px 8px;border-radius:8px;white-space:nowrap;transition:color .2s,background .2s}
+.nav>.ni>button svg{width:10px;height:10px;transition:transform .25s}
+.nav>.ni:hover>button,.nav>.ni.open>button{color:var(--blue);background:var(--chip)}
+.nav>.ni.open>button svg{transform:rotate(180deg)}
+.mega{position:absolute;left:0;right:0;top:100%;background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);box-shadow:var(--sh);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .22s,transform .25s var(--ease-o),visibility 0s .25s}
+.ni.open .mega{opacity:1;visibility:visible;transform:none;transition:opacity .22s,transform .3s var(--ease-o)}
+.mega .wrap{display:grid;grid-template-columns:260px 1fr;gap:28px;height:auto;padding:26px 24px;max-width:var(--maxw)}
+.mega .mintro b{font-family:var(--f-serif);font-size:22px;color:var(--ink);display:block;margin-bottom:6px}
+.mega .mintro p{font-size:13px;color:var(--muted)}
+.mega .mlist{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.mega .mlist a{display:flex;gap:11px;align-items:flex-start;padding:10px 12px;border-radius:10px;transition:background .2s}
+.mega .mlist a:hover{background:var(--chip)}
+.mega .mlist a i{width:30px;height:30px;border-radius:8px;background:var(--chip);color:var(--blue);display:grid;place-items:center;flex-shrink:0}
+.mega .mlist a i svg{width:15px;height:15px}
+.mega .mlist a b{display:block;font-size:13.5px;color:var(--ink);font-weight:600}
+.mega .mlist a span{font-size:11.5px;color:var(--muted)}
+.mega .mlist a.cur{background:var(--chip)}.mega .mlist a.cur b{color:var(--blue)}
+.hdr-r{display:flex;align-items:center;gap:8px;margin-left:auto}
+.ibtn{width:40px;height:40px;border-radius:11px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;cursor:pointer;color:var(--ink);position:relative;transition:border-color .2s,color .2s,transform .2s}
+.ibtn:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-1px)}
+.ibtn svg{width:18px;height:18px}
+.ibtn .cnt{position:absolute;top:-6px;right:-6px;min-width:18px;height:18px;padding:0 5px;border-radius:99px;background:var(--orange);color:#fff;font-family:var(--f-mono);font-size:10.5px;font-weight:600;display:grid;place-items:center;transform:scale(0);transition:transform .3s var(--ease-o)}
+.ibtn .cnt.on{transform:scale(1)}
+.ibtn .cnt.bump{animation:bump .45s var(--ease-o)}
+@keyframes bump{40%{transform:scale(1.4)}}
+.burger{display:none}
+@media(max-width:1780px){.hdr-r .lg{display:none}}
+@media(max-width:1580px){.nav>.ni>button{padding:9px 6px;font-size:13px;gap:2px}.nav>.ni>button svg{width:8px;height:8px}}
+@media(max-width:1460px){.nav>.ni>button svg{display:none}.nav>.ni>button{padding:9px 5px;font-size:12.5px}.logo .lw{font-size:20px}.hdr .wrap{gap:10px}}
+@media(max-width:1320px){.nav,.hdr-r .desk{display:none}.burger{display:grid}}
+/* mobile drawer */
+.mnav{position:fixed;inset:0;z-index:250;pointer-events:none}
+.mnav .sc{position:absolute;inset:0;background:rgba(11,19,43,.5);opacity:0;transition:opacity .3s}
+.mnav .pn{position:absolute;top:0;right:0;bottom:0;width:min(360px,88vw);background:var(--surface);transform:translateX(100%);transition:transform .38s var(--ease-o);overflow-y:auto;padding:18px 18px 40px}
+.mnav.open{pointer-events:auto}.mnav.open .sc{opacity:1}.mnav.open .pn{transform:none}
+.mnav details{border-bottom:1px solid var(--line)}
+.mnav summary{list-style:none;cursor:pointer;padding:14px 4px;font-weight:600;color:var(--ink);display:flex;justify-content:space-between}
+.mnav summary::-webkit-details-marker{display:none}
+.mnav details a{display:block;padding:8px 10px;font-size:14px;color:var(--text);border-radius:8px}
+.mnav details a:hover{background:var(--chip)}
+.mnav .mh{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+
+/* ---------- search overlay ---------- */
+.srch{position:fixed;inset:0;z-index:260;display:none;align-items:flex-start;justify-content:center;padding:90px 16px 20px;background:rgba(11,19,43,.55)}
+.srch.open{display:flex;animation:fadeIn .2s}
+.srch .box{width:min(640px,100%);background:var(--surface);border-radius:var(--r-l);box-shadow:var(--sh-l);overflow:hidden;animation:popIn .3s var(--ease-o)}
+.srch .sin{display:flex;align-items:center;gap:10px;padding:16px 18px;border-bottom:1px solid var(--line)}
+.srch .sin svg{width:18px;height:18px;color:var(--muted)}
+.srch input{flex:1;border:0;outline:0;background:none;font-size:16px;color:var(--ink)}
+.srch kbd{font-family:var(--f-mono);font-size:11px;border:1px solid var(--line-2);border-radius:5px;padding:2px 6px;color:var(--muted)}
+.srch .res{max-height:min(420px,60vh);overflow-y:auto;padding:8px}
+.srch .res a{display:flex;justify-content:space-between;gap:12px;padding:11px 12px;border-radius:10px}
+.srch .res a:hover,.srch .res a.hl{background:var(--chip)}
+.srch .res b{color:var(--ink);font-size:14px;font-weight:600}
+.srch .res span{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.srch .none{padding:26px;text-align:center;color:var(--muted);font-size:14px}
+@keyframes fadeIn{from{opacity:0}}
+@keyframes popIn{from{opacity:0;transform:translateY(-10px) scale(.98)}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;background:var(--hero);color:var(--hero-ink);padding:54px 0 0}
+.hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.hero .wrap{position:relative;z-index:2}
+.crumb{font-family:var(--f-mono);font-size:12px;color:var(--hero-muted);margin-bottom:26px}
+.crumb a:hover{color:#fff}.crumb .c{color:#fff}
+.hero-grid{display:grid;grid-template-columns:1.02fr 1fr;gap:48px;align-items:center;padding-bottom:40px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--f-mono);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--orange)}
+.eyebrow:before{content:"";width:22px;height:2px;background:var(--orange)}
+.hero h1{font-family:var(--f-serif);font-weight:700;color:#fff;font-size:clamp(34px,4.4vw,56px);line-height:1.04;letter-spacing:-.025em;margin:16px 0 18px}
+.hero h1 .acc{color:var(--orange);font-style:italic}
+.hero .lead{font-size:17px;color:var(--hero-muted);max-width:540px;margin-bottom:24px}
+.hero .lead b{color:#fff;font-weight:600}
+.powered{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--navy);border-radius:12px;padding:7px 14px 7px 8px;margin-bottom:26px;box-shadow:0 10px 26px -14px rgba(0,0,0,.6)}
+.powered .pv-l{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;flex-shrink:0}
+.powered .pv-l svg{width:18px;height:18px}
+.powered small{display:block;font-family:var(--f-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#5B6782;line-height:1}
+.powered b{font-family:var(--f-disp);font-size:14.5px;font-weight:700;line-height:1.2;color:var(--navy)}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero-stats{position:relative;z-index:2;display:flex;flex-wrap:nowrap;border-top:1px solid var(--hero-line);overflow-x:auto;scrollbar-width:none}
+.hero-stats::-webkit-scrollbar{display:none}
+.hero-stats .hs{flex:1 0 auto;padding:20px 24px 22px;border-right:1px solid var(--hero-line);white-space:nowrap}
+.hero-stats .hs:first-child{padding-left:0}.hero-stats .hs:last-child{border-right:0}
+.hero-stats b{display:block;font-family:var(--f-disp);font-weight:800;font-size:24px;color:#fff;line-height:1;letter-spacing:-.02em}
+.hero-stats b em{font-style:normal;color:var(--orange)}
+.hero-stats span{display:block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--hero-muted);margin-top:8px}
+.stage{position:relative;min-height:420px;display:grid;place-items:center}
+@media(max-width:980px){.hero-grid{grid-template-columns:1fr;gap:34px}.stage{min-height:0}}
+@media(max-width:560px){.hero{padding-top:36px}.hero-stats .hs{padding:16px 18px}.hero-stats b{font-size:20px}}
+
+/* hero entrance */
+.hero [data-in]{opacity:0;transform:translateY(16px);animation:heroIn .9s var(--ease-o) forwards}
+.hero [data-in="1"]{animation-delay:.05s}.hero [data-in="2"]{animation-delay:.15s}.hero [data-in="3"]{animation-delay:.25s}.hero [data-in="4"]{animation-delay:.35s}.hero [data-in="5"]{animation-delay:.45s}.hero [data-in="6"]{animation-delay:.6s}
+@keyframes heroIn{to{opacity:1;transform:none}}
+
+/* ---------- sections ---------- */
+.sec{padding:84px 0;position:relative}
+.sec.alt{background:var(--surface-2)}
+.sec.tight{padding:56px 0}
+.sh{max-width:760px;margin-bottom:40px}
+.sh.c{text-align:center;margin-left:auto;margin-right:auto}
+.sh .eyebrow{color:var(--orange)}
+.sh h2{font-family:var(--f-serif);font-weight:700;font-size:clamp(28px,3.2vw,40px);letter-spacing:-.02em;margin:12px 0 12px;line-height:1.1}
+.sh h2 .acc{color:var(--blue);font-style:italic}
+.sh p{font-size:16.5px;color:var(--muted)}
+.note-ind{font-family:var(--f-mono);font-size:11.5px;color:var(--muted);margin-top:14px}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease-o),transform .8s var(--ease-o)}
+.rv.in{opacity:1;transform:none}
+.rv[data-d="1"]{transition-delay:.06s}.rv[data-d="2"]{transition-delay:.12s}.rv[data-d="3"]{transition-delay:.18s}.rv[data-d="4"]{transition-delay:.24s}.rv[data-d="5"]{transition-delay:.3s}.rv[data-d="6"]{transition-delay:.36s}
+
+/* ---------- grids & cards ---------- */
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:960px){.g3,.g4{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-l);padding:24px;transition:transform .35s var(--ease-o),box-shadow .35s,border-color .3s}
+.card:hover{transform:translateY(-5px);box-shadow:var(--sh);border-color:var(--line-2)}
+.ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;color:#fff;background:var(--blue);margin-bottom:16px;flex-shrink:0}
+.ico svg{width:22px;height:22px}
+.ico.o{background:var(--orange)}.ico.n{background:var(--navy)}.ico.g{background:var(--green)}.ico.r{background:var(--red)}
+html[data-theme="dark"] .ico.n{background:#1E2A49}
+.ico.soft{background:var(--chip);color:var(--blue)}
+.card h3{font-size:17px;margin-bottom:8px}
+.card p{font-size:14px;color:var(--muted);line-height:1.6}
+.card .more{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-weight:600;font-size:13.5px;color:var(--blue)}
+
+/* chip rows with per-item icons */
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{display:inline-flex;align-items:center;gap:9px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 14px 8px 8px;font-size:13.5px;font-weight:600;color:var(--ink);transition:border-color .2s,transform .2s}
+.chip:hover{border-color:var(--blue);transform:translateY(-2px)}
+.chip i{width:26px;height:26px;border-radius:7px;display:grid;place-items:center;color:#fff;background:var(--blue);flex-shrink:0}
+.chip i svg{width:14px;height:14px}
+
+/* icon list (per-item icons, never generic ticks) */
+.ilist{list-style:none;display:flex;flex-direction:column;gap:11px}
+.ilist li{display:flex;gap:11px;align-items:flex-start;font-size:14px;color:var(--text)}
+.ilist li i{width:24px;height:24px;border-radius:7px;background:var(--chip);color:var(--blue);display:grid;place-items:center;flex-shrink:0;margin-top:-1px}
+.ilist li i svg{width:13px;height:13px}
+.ilist li b{color:var(--ink)}
+
+/* steps */
+.steps{display:grid;gap:14px;counter-reset:st}
+.steps.h{grid-template-columns:repeat(var(--n,4),1fr)}
+@media(max-width:960px){.steps.h{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.steps.h{grid-template-columns:1fr}}
+.step{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px 20px 20px;overflow:hidden}
+.step:before{counter-increment:st;content:counter(st,decimal-leading-zero);font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--orange);display:block;margin-bottom:12px;letter-spacing:.1em}
+.step h4{font-size:15.5px;margin-bottom:6px}
+.step p{font-size:13.5px;color:var(--muted)}
+.step .bar{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--blue);transition:width 1.2s var(--ease-o)}
+.step.in .bar,.rv.in .step .bar{width:100%}
+
+/* table */
+.tbl-w{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+.tbl{width:100%;border-collapse:collapse;min-width:620px}
+.tbl th{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;padding:15px 18px;background:var(--surface-2);border-bottom:1px solid var(--line)}
+.tbl td{padding:14px 18px;border-bottom:1px solid var(--line);font-size:14px;color:var(--text);vertical-align:top}
+.tbl tr:last-child td{border-bottom:0}
+.tbl td:first-child{font-weight:600;color:var(--ink)}
+.tbl .hl{background:var(--chip)}
+.tbl th.hl{color:var(--blue)}
+.yes{color:var(--green);font-weight:700}.no{color:var(--red);font-weight:700}
+
+/* plans */
+.plans{display:grid;grid-template-columns:repeat(var(--n,3),1fr);gap:18px;align-items:stretch}
+@media(max-width:960px){.plans{grid-template-columns:1fr}}
+.plan{position:relative;background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r-l);padding:26px;display:flex;flex-direction:column;transition:transform .35s var(--ease-o),box-shadow .35s,border-color .3s}
+.plan:hover{transform:translateY(-6px);box-shadow:var(--sh)}
+.plan.pop{border-color:var(--orange)}
+.plan .flag{position:absolute;top:-12px;left:24px;background:var(--orange);color:#fff;font-family:var(--f-mono);font-size:10.5px;font-weight:600;letter-spacing:.1em;padding:4px 10px;border-radius:99px}
+.plan .pk{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:600}
+.plan h3{font-size:20px;margin:6px 0 8px}
+.plan .pd{font-size:13.5px;color:var(--muted);margin-bottom:18px;min-height:42px}
+.plan .pr{display:flex;align-items:baseline;gap:6px;margin-bottom:4px}
+.plan .pr b{font-family:var(--f-disp);font-weight:800;font-size:34px;color:var(--ink);letter-spacing:-.03em}
+.plan .pr span{font-size:13px;color:var(--muted)}
+.plan .pr s{font-size:14px;color:var(--muted)}
+.plan .gst{font-family:var(--f-mono);font-size:11px;color:var(--muted);margin-bottom:18px}
+.plan .ilist{margin-bottom:22px}
+.plan .act{margin-top:auto;display:flex;flex-direction:column;gap:8px}
+
+/* calculator */
+.calc{display:grid;grid-template-columns:1.25fr 1fr;border:1px solid var(--line);border-radius:var(--r-l);overflow:hidden;background:var(--surface);box-shadow:var(--sh-s)}
+@media(max-width:900px){.calc{grid-template-columns:1fr}}
+.calc .cin{padding:28px;display:flex;flex-direction:column;gap:22px}
+.calc .cout{background:var(--navy);color:#fff;padding:28px;display:flex;flex-direction:column}
+html[data-theme="dark"] .calc .cout{background:#050916}
+.fld>label,.fld>.lb{display:flex;justify-content:space-between;align-items:baseline;font-weight:600;font-size:14px;color:var(--ink);margin-bottom:10px}
+.fld>label small,.fld>.lb small{font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--blue)}
+.fld .hint{font-size:12px;color:var(--muted);margin-top:7px}
+.seg{display:flex;flex-wrap:wrap;gap:6px;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:4px}
+.seg button{flex:1 1 auto;border:0;background:none;cursor:pointer;padding:10px 12px;border-radius:9px;font-size:13px;font-weight:600;color:var(--muted);transition:background .2s,color .2s,box-shadow .2s;white-space:nowrap}
+.seg button small{display:block;font-family:var(--f-mono);font-size:10px;font-weight:500;margin-top:2px}
+.seg button.on{background:var(--surface);color:var(--blue);box-shadow:var(--sh-s)}
+.seg button:hover:not(.on){color:var(--ink)}
+input[type=range].rng{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:99px;background:var(--line-2);outline:none;cursor:pointer;background-image:linear-gradient(var(--blue),var(--blue));background-size:var(--p,0%) 100%;background-repeat:no-repeat}
+input[type=range].rng::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#fff;border:3px solid var(--blue);box-shadow:0 4px 10px rgba(0,102,255,.35);transition:transform .15s}
+input[type=range].rng::-webkit-slider-thumb:hover{transform:scale(1.12)}
+input[type=range].rng::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid var(--blue)}
+.stp{display:inline-flex;align-items:center;border:1px solid var(--line-2);border-radius:11px;overflow:hidden;background:var(--surface)}
+.stp button{width:40px;height:40px;border:0;background:none;cursor:pointer;font-size:18px;color:var(--ink)}
+.stp button:hover{background:var(--chip);color:var(--blue)}
+.stp input{width:64px;height:40px;border:0;border-left:1px solid var(--line);border-right:1px solid var(--line);text-align:center;font-family:var(--f-mono);font-weight:600;background:none;color:var(--ink)}
+.tgl{display:flex;align-items:center;gap:11px;cursor:pointer;font-size:14px;font-weight:600;color:var(--ink)}
+.tgl input{display:none}
+.tgl .sw{width:42px;height:24px;border-radius:99px;background:var(--line-2);position:relative;transition:background .25s;flex-shrink:0}
+.tgl .sw:after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:transform .3s var(--ease-o);box-shadow:0 2px 5px rgba(0,0,0,.2)}
+.tgl input:checked+.sw{background:var(--blue)}
+.tgl input:checked+.sw:after{transform:translateX(18px)}
+.tgl small{display:block;font-weight:400;font-size:12px;color:var(--muted)}
+.cout .ck{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B6C2DA}
+.cout .ctot{font-family:var(--f-disp);font-weight:800;font-size:42px;letter-spacing:-.03em;line-height:1;margin:10px 0 4px;font-variant-numeric:tabular-nums}
+.cout .csub{font-size:13px;color:#B6C2DA;margin-bottom:20px}
+.cout .crows{display:flex;flex-direction:column;gap:9px;padding:16px 0;border-top:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12);margin-bottom:20px}
+.cout .crow{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;color:#dfe6f5}
+.cout .crow b{font-family:var(--f-mono);font-weight:600;color:#fff;white-space:nowrap}
+.cout .crow.save b{color:#5FE08D}
+.cout .cact{margin-top:auto;display:flex;flex-direction:column;gap:9px}
+.cout .cfine{font-family:var(--f-mono);font-size:10.5px;color:#8F9BB6;margin-top:12px}
+.flash{animation:flash .5s var(--ease-o)}
+@keyframes flash{0%{opacity:.35;transform:translateY(-4px)}}
+
+/* tabs */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:22px}
+.tabs button{border:1px solid var(--line);background:var(--surface);cursor:pointer;padding:10px 16px;border-radius:99px;font-size:13.5px;font-weight:600;color:var(--muted);transition:all .2s}
+.tabs button:hover{color:var(--ink);border-color:var(--line-2)}
+.tabs button.on{background:var(--blue);border-color:var(--blue);color:#fff}
+[data-panel]{display:none}[data-panel].on{display:block;animation:panelIn .45s var(--ease-o)}
+@keyframes panelIn{from{opacity:0;transform:translateY(8px)}}
+
+/* faq */
+.faq{display:flex;flex-direction:column;gap:10px;max-width:880px}
+.fq{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);transition:border-color .2s}
+.fq.open{border-color:var(--line-2)}
+.fq button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;background:none;border:0;cursor:pointer;text-align:left;padding:18px 20px;font-weight:600;font-size:15px;color:var(--ink)}
+.fq button i{width:26px;height:26px;border-radius:50%;background:var(--chip);color:var(--blue);display:grid;place-items:center;flex-shrink:0;transition:transform .35s var(--ease-o),background .2s}
+.fq button i svg{width:12px;height:12px}
+.fq.open button i{transform:rotate(45deg);background:var(--blue);color:#fff}
+.fq .fa{max-height:0;overflow:hidden;transition:max-height .45s var(--ease-o)}
+.fq .fa p{padding:0 20px 20px;font-size:14.5px;color:var(--muted);line-height:1.7}
+
+/* CTA band */
+.cta{background:var(--blue);color:#fff;border-radius:24px;padding:44px;display:grid;grid-template-columns:1.4fr 1fr;gap:30px;align-items:center;position:relative;overflow:hidden}
+.cta h2{font-family:var(--f-serif);color:#fff;font-size:clamp(26px,3vw,36px);margin-bottom:10px}
+.cta p{color:#dbe6ff;font-size:15.5px}
+.cta .ca{display:flex;flex-direction:column;gap:10px;align-items:flex-start;position:relative;z-index:2}
+.cta .ring{position:absolute;right:-80px;top:-80px;width:280px;height:280px;border:2px solid rgba(255,255,255,.15);border-radius:50%;animation:ringP 6s var(--ease) infinite}
+.cta .ring.r2{width:420px;height:420px;right:-150px;top:-150px;animation-delay:1.5s}
+@keyframes ringP{50%{transform:scale(1.06);opacity:.6}}
+@media(max-width:820px){.cta{grid-template-columns:1fr;padding:32px}}
+
+/* ---------- forms + modal ---------- */
+.modal{position:fixed;inset:0;z-index:270;display:none;align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex}
+.modal .sc{position:absolute;inset:0;background:rgba(11,19,43,.6);animation:fadeIn .25s}
+.modal .mb{position:relative;width:min(520px,100%);max-height:calc(100vh - 40px);overflow-y:auto;background:var(--surface);border-radius:var(--r-l);box-shadow:var(--sh-l);animation:popIn .35s var(--ease-o)}
+.modal .mb.wide{width:min(720px,100%)}
+.modal .mh{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;padding:22px 24px 6px}
+.modal .mh h3{font-family:var(--f-serif);font-size:24px}
+.modal .mh p{font-size:13.5px;color:var(--muted);margin-top:4px}
+.modal .x{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--surface);cursor:pointer;display:grid;place-items:center;flex-shrink:0;color:var(--ink)}
+.modal .x svg{width:16px;height:16px}
+.modal .mc{padding:16px 24px 24px}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form .full{grid-column:1/-1}
+@media(max-width:520px){.form{grid-template-columns:1fr}}
+.fi label{display:block;font-size:12.5px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.fi input,.fi select,.fi textarea{width:100%;border:1.5px solid var(--line-2);background:var(--surface);border-radius:11px;padding:11px 13px;font-size:14px;color:var(--ink);outline:0;transition:border-color .2s,box-shadow .2s}
+.fi textarea{min-height:90px;resize:vertical}
+.fi input:focus,.fi select:focus,.fi textarea:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(0,102,255,.12)}
+.fi.err input,.fi.err select,.fi.err textarea{border-color:var(--red)}
+.fi .em{display:none;font-size:11.5px;color:var(--red);margin-top:5px}
+.fi.err .em{display:block}
+.form .fine{font-size:11.5px;color:var(--muted)}
+.done{text-align:center;padding:10px 0 6px}
+.done .dk{width:64px;height:64px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;margin:0 auto 14px;animation:popIn .5s var(--ease-o)}
+.done .dk svg{width:30px;height:30px}
+.done h4{font-family:var(--f-serif);font-size:22px;margin-bottom:6px}
+.done p{font-size:14px;color:var(--muted)}
+
+/* ---------- cart drawer ---------- */
+.cart{position:fixed;inset:0;z-index:265;pointer-events:none}
+.cart .sc{position:absolute;inset:0;background:rgba(11,19,43,.5);opacity:0;transition:opacity .3s}
+.cart .pn{position:absolute;top:0;right:0;bottom:0;width:min(420px,100vw);background:var(--surface);transform:translateX(100%);transition:transform .4s var(--ease-o);display:flex;flex-direction:column}
+.cart.open{pointer-events:auto}.cart.open .sc{opacity:1}.cart.open .pn{transform:none}
+.cart .ch{display:flex;justify-content:space-between;align-items:center;padding:20px 22px;border-bottom:1px solid var(--line)}
+.cart .ch h3{font-size:18px}.cart .ch span{font-family:var(--f-mono);font-size:11.5px;color:var(--muted)}
+.cart .ci{flex:1;overflow-y:auto;padding:16px 22px;display:flex;flex-direction:column;gap:12px}
+.cart .it{border:1px solid var(--line);border-radius:var(--r);padding:14px;animation:panelIn .35s var(--ease-o)}
+.cart .it .t{display:flex;justify-content:space-between;gap:10px}
+.cart .it b{font-size:14px;color:var(--ink)}
+.cart .it small{display:block;font-size:12px;color:var(--muted);margin-top:3px}
+.cart .it .rm{background:none;border:0;cursor:pointer;color:var(--muted);width:28px;height:28px;border-radius:8px;display:grid;place-items:center}
+.cart .it .rm:hover{background:var(--chip);color:var(--red)}
+.cart .it .rm svg{width:15px;height:15px}
+.cart .it .bt{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.cart .it .q{display:inline-flex;border:1px solid var(--line-2);border-radius:9px;overflow:hidden}
+.cart .it .q button{width:30px;height:30px;border:0;background:none;cursor:pointer;color:var(--ink)}
+.cart .it .q span{min-width:32px;display:grid;place-items:center;font-family:var(--f-mono);font-size:13px;border-left:1px solid var(--line);border-right:1px solid var(--line)}
+.cart .it .pz{font-family:var(--f-mono);font-weight:600;color:var(--ink)}
+.cart .empty{text-align:center;color:var(--muted);padding:50px 10px;font-size:14px}
+.cart .empty svg{width:46px;height:46px;margin:0 auto 12px;color:var(--line-2)}
+.cart .cf{padding:18px 22px 22px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.cart .cf .r{display:flex;justify-content:space-between;font-size:14px;color:var(--muted)}
+.cart .cf .r b{font-family:var(--f-mono);color:var(--ink)}
+.cart .cf .tt{font-size:16px;color:var(--ink);font-weight:700;padding-top:8px;border-top:1px dashed var(--line-2)}
+.cart .cf .tt b{font-size:18px}
+.cart .cf .btn{margin-top:6px}
+
+/* ---------- toast ---------- */
+.toast{position:fixed;left:50%;bottom:26px;z-index:400;transform:translate(-50%,30px);opacity:0;pointer-events:none;background:var(--navy);color:#fff;border-radius:12px;padding:12px 18px 12px 12px;display:flex;align-items:center;gap:10px;font-size:14px;box-shadow:var(--sh-l);transition:transform .4s var(--ease-o),opacity .3s}
+html[data-theme="dark"] .toast{background:#1E2A49}
+.toast.on{transform:translate(-50%,0);opacity:1}
+.toast i{width:26px;height:26px;border-radius:50%;background:var(--green);display:grid;place-items:center}
+.toast i svg{width:14px;height:14px}
+
+/* ---------- floating ---------- */
+.fab-wa{position:fixed;right:22px;bottom:22px;z-index:90;width:56px;height:56px;border-radius:50%;background:var(--wa);color:#fff;display:grid;place-items:center;box-shadow:0 14px 30px -10px rgba(37,211,102,.8);transition:transform .25s var(--ease-o)}
+.fab-wa:hover{transform:scale(1.08)}
+.fab-wa svg{width:28px;height:28px}
+.fab-wa:after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--wa);animation:waP 2.4s var(--ease) infinite}
+@keyframes waP{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.6);opacity:0}}
+.side-cb{position:fixed;right:0;top:50%;z-index:90;transform:translateY(-50%);writing-mode:vertical-rl;background:var(--orange);color:#fff;border:0;cursor:pointer;font-weight:700;font-size:13px;letter-spacing:.04em;padding:16px 9px;border-radius:12px 0 0 12px;box-shadow:-6px 10px 24px -12px rgba(255,138,0,.9);transition:padding .25s var(--ease-o)}
+.side-cb:hover{padding-right:13px}
+@media(max-width:620px){.side-cb{display:none}}
+
+/* ---------- footer (royal blue) ---------- */
+.ftr{background:var(--blue);color:#dbe6ff;padding:56px 0 26px;margin-top:0}
+html[data-theme="dark"] .ftr{background:#0047B3}
+.ftr a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.nl{background:#fff;color:var(--navy);border-radius:var(--r-l);padding:26px 28px;display:grid;grid-template-columns:1.2fr 1fr;gap:22px;align-items:center;margin-bottom:40px}
+.nl h3{font-family:var(--f-serif);font-size:23px;color:var(--navy)}
+.nl p{font-size:13.5px;color:#5B6782;margin-top:4px}
+.nl form{display:flex;gap:8px}
+.nl input{flex:1;min-width:0;border:1.5px solid #D3DCEB;border-radius:11px;padding:12px 14px;font-size:14px;outline:0;color:var(--navy);background:#fff}
+.nl input:focus{border-color:var(--blue)}
+@media(max-width:820px){.nl{grid-template-columns:1fr}}
+.ft-top{display:grid;grid-template-columns:330px 1fr;gap:36px;margin-bottom:34px}
+@media(max-width:960px){.ft-top{grid-template-columns:1fr}}
+.ft-brand .lgc{background:#fff;border-radius:var(--r);padding:16px 18px;display:inline-flex;margin-bottom:14px}
+.ft-brand .lgc .lw{color:var(--navy)}
+.ft-brand .tg{font-weight:600;color:#fff;font-size:14px;margin-bottom:4px}
+.ft-brand .tg2{font-family:var(--f-mono);font-size:11px;color:#c7d8ff;margin-bottom:12px}
+.ft-brand .sup24{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:7px 12px;font-size:12.5px;font-weight:600;color:#fff;margin-bottom:14px}
+.ft-brand .sup24 i{width:8px;height:8px;border-radius:50%;background:#5FE08D;animation:waP 2s infinite;position:relative}
+.ft-brand p{font-size:12.5px;line-height:1.7;color:#dbe6ff;margin-bottom:16px}
+.soc{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.soc a{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.14);display:grid;place-items:center;color:#fff;transition:background .2s,transform .2s}
+.soc a:hover{background:#fff;color:var(--blue);transform:translateY(-2px);text-decoration:none}
+.soc svg{width:16px;height:16px}
+.cvid{display:flex;gap:12px;align-items:center;background:rgba(11,19,43,.25);border-radius:12px;padding:10px;cursor:pointer;border:0;color:#fff;text-align:left;width:100%}
+.cvid .th{width:76px;height:46px;border-radius:8px;background:var(--navy);display:grid;place-items:center;flex-shrink:0}
+.cvid .th svg{width:20px;height:20px;color:#FF0000}
+.cvid b{font-size:13px;display:block}.cvid span{font-size:11.5px;color:#c7d8ff}
+.ft-rows{display:flex;flex-direction:column;gap:14px}
+.ft-row{display:grid;grid-template-columns:110px 1fr;gap:14px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.16)}
+.ft-row .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#fff;font-weight:600;padding-top:2px}
+.ft-row .v{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px}
+.ft-row .v a.hire{color:#fff;background:var(--red);padding:1px 8px;border-radius:6px;font-weight:600}
+@media(max-width:560px){.ft-row{grid-template-columns:1fr;gap:6px}}
+.ft-strip{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:center;padding:16px 0;border-top:1px solid rgba(255,255,255,.16)}
+.ft-strip .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#fff;font-weight:600}
+@media(max-width:700px){.ft-strip{grid-template-columns:1fr}}
+.tiles{display:flex;flex-wrap:wrap;gap:8px}
+.tile{background:#fff;color:var(--navy);border-radius:9px;padding:6px 10px;text-align:center;line-height:1.1;min-width:64px}
+.tile small{display:block;font-family:var(--f-mono);font-size:8.5px;letter-spacing:.1em;color:#5B6782}
+.tile b{font-family:var(--f-disp);font-size:13px;font-weight:800;color:var(--navy)}
+.tile.w{display:flex;align-items:center;gap:7px;font-weight:700;font-size:12.5px;padding:8px 12px}
+.tile .st{color:#f5a623;letter-spacing:1px}
+.partner{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;background:var(--navy);border-radius:var(--r-l);padding:24px 28px;margin:24px 0}
+.partner h3{color:#fff;font-family:var(--f-serif);font-size:22px}
+.partner p{font-size:13.5px;color:#B6C2DA;margin-top:3px}
+.ft-bot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:12px;color:#c7d8ff;padding-top:8px}
+.ft-bot .ids{display:flex;flex-wrap:wrap;gap:4px 14px;font-family:var(--f-mono);font-size:11px}
+
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}.hero [data-in]{opacity:1;transform:none}}
+
+@media(max-width:620px){.promo{font-size:12px}.promo .opt{display:none}}
+/* dark mode: keep navy icon tiles visible on dark surfaces */
+html[data-theme="dark"] [style*="background:#0B132B"],html[data-theme="dark"] [style*="background: #0B132B"]{background:#27355A!important}
+html[data-theme="dark"] .ft-brand .lgc .lw{color:#0B132B}
+
+/* ===== page ===== */
+/* ---------- Podcast hero background: audio-spectrum skyline + soft floating dots ---------- */
+.pod-bg{overflow:hidden}
+.pod-bg .sky{position:absolute;left:50%;bottom:0;width:1960px;height:210px;margin-left:-980px;display:flex;align-items:flex-end;gap:6px;transform:scaleY(.6);transform-origin:50% 100%;transition:transform 1.4s var(--ease-o)}
+.pod-bg.live .sky{transform:scaleY(1)}
+.pod-bg .sky span{flex:0 0 3px;height:var(--h);border-radius:3px 3px 0 0;background:#0066FF;opacity:.26;transform-origin:50% 100%;animation:skyB var(--du) ease-in-out var(--de) infinite alternate;will-change:transform}
+.pod-bg .sky span.o{background:#FF8A00;opacity:.4}
+@keyframes skyB{from{transform:scaleY(.28)}to{transform:scaleY(1)}}
+.pod-bg.paused .sky span,.pod-bg.paused .pod-dots i{animation-play-state:paused}
+.pod-dots i{position:absolute;border-radius:50%;background:#0066FF;opacity:.32;animation:podFloat 14s ease-in-out infinite alternate}
+.pod-dots i:nth-child(1){left:6%;top:18%;width:8px;height:8px;animation-duration:16s}
+.pod-dots i:nth-child(2){left:44%;top:9%;width:5px;height:5px;background:#FF8A00;opacity:.55;animation-duration:12s;animation-delay:-4s}
+.pod-dots i:nth-child(3){left:58%;top:32%;width:11px;height:11px;opacity:.16;animation-duration:19s;animation-delay:-7s}
+.pod-dots i:nth-child(4){left:92%;top:14%;width:7px;height:7px;background:#FF8A00;opacity:.4;animation-duration:15s;animation-delay:-2s}
+.pod-dots i:nth-child(5){left:30%;top:58%;width:6px;height:6px;opacity:.22;animation-duration:17s;animation-delay:-9s}
+.pod-dots i:nth-child(6){left:84%;top:62%;width:9px;height:9px;opacity:.18;animation-duration:21s;animation-delay:-5s}
+.pod-dots i:nth-child(7){left:18%;top:40%;width:4px;height:4px;background:#FF8A00;opacity:.5;animation-duration:13s;animation-delay:-11s}
+@keyframes podFloat{0%{transform:translate(0,0)}50%{transform:translate(14px,-22px)}100%{transform:translate(-10px,12px)}}
+
+/* ---------- Now-playing card (hero visual) ---------- */
+.np{position:relative;width:100%;max-width:480px;background:var(--surface);color:var(--ink);border-radius:22px;box-shadow:0 40px 90px -30px rgba(0,0,0,.7);padding:20px 20px 0}
+html[data-theme="dark"] .np{border:1px solid var(--line-2)}
+.np-top{display:grid;grid-template-columns:86px 1fr;gap:16px;align-items:center}
+.np-cover{position:relative;width:86px;height:86px;border-radius:16px;background:#0B132B;color:#fff;overflow:hidden;display:block}
+html[data-theme="dark"] .np-cover{background:#050916;border:1px solid var(--line-2)}
+.np-cover .cv-ep{position:absolute;left:9px;top:8px;font-family:var(--f-mono);font-size:10px;font-weight:600;letter-spacing:.08em;color:#FF8A00}
+.np-cover .cv-mic{position:absolute;right:9px;top:8px;width:22px;height:22px;border-radius:7px;background:#FF8A00;display:grid;place-items:center}
+.np-cover .cv-mic svg{width:13px;height:13px}
+.cv-eq{position:absolute;left:9px;right:9px;bottom:9px;height:30px;display:flex;align-items:flex-end;gap:4px}
+.cv-eq i{flex:1;height:100%;border-radius:2px;background:#0066FF;transform-origin:50% 100%;transform:scaleY(.35)}
+.cv-eq i:nth-child(2){transform:scaleY(.7)}.cv-eq i:nth-child(3){transform:scaleY(.5);background:#FF8A00}.cv-eq i:nth-child(4){transform:scaleY(.85)}.cv-eq i:nth-child(5){transform:scaleY(.45)}
+.np.playing .cv-eq i,.mini.playing .cv-eq i{animation:eqB .9s ease-in-out infinite alternate}
+.cv-eq i:nth-child(2){animation-delay:-.3s!important}.cv-eq i:nth-child(3){animation-delay:-.6s!important;animation-duration:.7s!important}.cv-eq i:nth-child(4){animation-delay:-.15s!important;animation-duration:1.1s!important}.cv-eq i:nth-child(5){animation-delay:-.45s!important}
+@keyframes eqB{from{transform:scaleY(.18)}to{transform:scaleY(1)}}
+.np-k{display:flex;align-items:center;gap:7px;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.np-dot{width:7px;height:7px;border-radius:50%;background:#FF8A00;flex-shrink:0}
+.np.playing .np-dot{background:#16a34a;animation:npLive 1.4s infinite}
+@keyframes npLive{50%{opacity:.25}}
+.np-meta h3{font-family:var(--f-serif);font-size:20px;line-height:1.18;margin:6px 0 4px;letter-spacing:-.01em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.np-meta p{font-size:12.5px;color:var(--muted);line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.np-cap{margin:16px 0 14px;font-size:13.5px;line-height:1.55;color:var(--muted);height:42px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.np-cap .sd{color:var(--ink);transition:color .2s}
+.np-cap q{quotes:none}
+/* waveform scrubber */
+.np-wv{position:relative;height:56px;cursor:pointer;border-radius:8px;outline-offset:4px;touch-action:none}
+.np-wv .wv-b,.np-wv .wv-f{position:absolute;inset:0;display:flex;align-items:center;gap:2px}
+.np-wv span.b{flex:1;min-width:1px;border-radius:2px;height:var(--h);background:var(--line-2);transition:height .5s var(--ease-o)}
+.np-wv .wv-f{clip-path:inset(0 calc(100% - var(--p,0%)) 0 0);pointer-events:none}
+.np-wv .wv-f span.b{background:#0066FF}
+.np-wv .wv-h{position:absolute;top:2px;bottom:2px;width:2px;border-radius:2px;background:#FF8A00;left:var(--hx,0);opacity:0;transition:opacity .15s;pointer-events:none}
+.np-wv .wv-tip{position:absolute;top:-24px;left:var(--hx,0);transform:translateX(-50%);font-family:var(--f-mono);font-size:10.5px;font-weight:600;color:#fff;background:#0B132B;border-radius:6px;padding:2px 6px;opacity:0;transition:opacity .15s;pointer-events:none;white-space:nowrap}
+html[data-theme="dark"] .np-wv .wv-tip{background:#FF8A00}
+.np-wv:hover .wv-h,.np-wv:hover .wv-tip{opacity:1}
+.np-time{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:6px;font-family:var(--f-mono);font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.np-time #npCur{color:var(--ink);font-weight:600}
+.np-mode{font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:var(--chip);color:#0066FF;border-radius:6px;padding:2px 7px;font-weight:600;white-space:nowrap}
+.np-mode.full{background:#0066FF;color:#fff}
+/* controls */
+.np-ctl{display:grid;grid-template-columns:1fr auto auto auto 1fr;align-items:center;gap:14px;margin:14px 0 16px}
+.np-sp{justify-self:start;min-width:52px;height:34px;border-radius:10px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);font-family:var(--f-mono);font-weight:600;font-size:12.5px;cursor:pointer;transition:border-color .2s,color .2s,transform .2s}
+.np-sp:hover{border-color:#0066FF;color:#0066FF}
+.np-sp.bump{animation:npBump .35s var(--ease-o)}
+@keyframes npBump{40%{transform:scale(1.12)}}
+.np-sk,.mi-sk{position:relative;width:40px;height:40px;border-radius:50%;border:0;background:none;color:var(--ink);cursor:pointer;display:grid;place-items:center;transition:background .2s,color .2s,transform .2s}
+.np-sk:hover{background:var(--chip);color:#0066FF}
+.np-sk:active{transform:scale(.92)}
+.np-sk svg,.mi-sk svg{width:30px;height:30px;grid-area:1/1}
+.np-sk span,.mi-sk span{grid-area:1/1;font-family:var(--f-mono);font-size:9px;font-weight:600;margin-top:1px}
+.np-pp{width:62px;height:62px;border-radius:50%;border:0;background:#FF8A00;color:#fff;cursor:pointer;display:grid;place-items:center;box-shadow:0 12px 26px -10px rgba(255,138,0,.9);transition:transform .25s var(--ease-o),box-shadow .25s}
+.np-pp:hover{transform:scale(1.06)}
+.np-pp:active{transform:scale(.95)}
+.np-pp svg{width:26px;height:26px}
+.i-pl,.i-pa{grid-area:1/1;display:grid;place-items:center;transition:opacity .2s,transform .3s var(--ease-o)}
+.i-pl svg{margin-left:3px}
+.i-pa{opacity:0;transform:scale(.6)}
+.playing .i-pl{opacity:0;transform:scale(.6)}
+.playing .i-pa{opacity:1;transform:none}
+.np-pp > span,.mi-pp > span{grid-area:1/1}
+.np-chw{position:relative;justify-self:end}
+.np-ch{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 10px;border-radius:10px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);font-size:12.5px;font-weight:600;cursor:pointer;transition:border-color .2s,color .2s}
+.np-ch:hover,.np-ch[aria-expanded="true"]{border-color:#0066FF;color:#0066FF}
+.np-ch svg{width:14px;height:14px}
+.np-ch svg:last-child{width:11px;height:11px;transition:transform .25s}
+.np-ch[aria-expanded="true"] svg:last-child{transform:rotate(180deg)}
+.np-chm{position:absolute;right:0;bottom:calc(100% + 10px);width:300px;max-width:calc(100vw - 48px);background:var(--surface);border:1px solid var(--line-2);border-radius:14px;box-shadow:var(--sh-l);padding:6px;z-index:5;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .2s,transform .3s var(--ease-o),visibility 0s .3s}
+.np-chm.open{opacity:1;visibility:visible;transform:none;transition:opacity .2s,transform .3s var(--ease-o)}
+.np-chm .chh{font-family:var(--f-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:6px 10px 4px}
+.np-chm button,.en-ch button{display:grid;grid-template-columns:48px 1fr auto;gap:8px;align-items:center;width:100%;text-align:left;border:0;background:none;padding:8px 10px;border-radius:9px;cursor:pointer;font-size:13px;color:var(--ink);transition:background .2s}
+.np-chm button:hover,.en-ch button:hover{background:var(--chip)}
+.np-chm button em,.en-ch button em{font-style:normal;font-family:var(--f-mono);font-size:11.5px;color:#0066FF;font-weight:600}
+.np-chm button i,.en-ch button i{width:22px;height:22px;border-radius:50%;background:var(--chip);color:#0066FF;display:grid;place-items:center;opacity:0;transition:opacity .2s}
+.np-chm button i svg,.en-ch button i svg{width:10px;height:10px;margin-left:1px}
+.np-chm button:hover i,.en-ch button:hover i{opacity:1}
+.np-chm button.cur{background:var(--chip)}.np-chm button.cur i{opacity:1;background:#0066FF;color:#fff}
+.np-note{display:flex;align-items:center;gap:9px;margin:0 -20px;padding:11px 20px;border-top:1px solid var(--line);background:var(--surface-2);border-radius:0 0 22px 22px;font-size:12px;color:var(--muted);min-height:42px}
+.np-note svg{width:15px;height:15px;color:#FF8A00;flex-shrink:0}
+.np.playing .np-note{color:var(--ink)}
+@media(max-width:560px){
+  .np{padding:16px 16px 0;border-radius:18px}
+  .np-top{grid-template-columns:70px 1fr;gap:13px}
+  .np-cover{width:70px;height:70px;border-radius:13px}
+  .cv-eq{height:22px;gap:3px}
+  .np-meta h3{font-size:17px}
+  .np-ctl{gap:6px}
+  .np-pp{width:56px;height:56px}
+  .np-ch span{display:none}
+  .np-note{margin:0 -16px;padding:10px 16px;border-radius:0 0 18px 18px;font-size:11.5px}
+  .np-time .np-mode{display:none}
+}
+
+/* ---------- About ---------- */
+.about{display:grid;grid-template-columns:1fr 1.15fr;gap:22px;align-items:stretch}
+@media(max-width:900px){.about{grid-template-columns:1fr}}
+.fmt{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-l);padding:26px;display:flex;flex-direction:column}
+.fmt-k{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#FF8A00;font-weight:600;margin-bottom:16px;display:block}
+.fmt .ilist{gap:14px}
+.fmt-f{margin-top:auto;padding-top:20px}
+.fmt-f span{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:12px;color:var(--ink);background:var(--chip);border-radius:9px;padding:8px 12px;font-weight:600}
+.fmt-f svg{width:14px;height:14px;color:#0066FF}
+.aud{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:560px){.aud{grid-template-columns:1fr}}
+.aud .card{padding:22px}
+
+/* ---------- Episode library ---------- */
+.lib-bar{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:14px}
+.lib-q{flex:1 1 360px;max-width:560px;display:flex;align-items:center;gap:10px;background:var(--surface);border:1.5px solid var(--line-2);border-radius:13px;padding:0 10px 0 14px;height:48px;transition:border-color .2s,box-shadow .2s;cursor:text}
+.lib-q:focus-within{border-color:#0066FF;box-shadow:0 0 0 4px rgba(0,102,255,.12)}
+.lib-q>svg{width:18px;height:18px;color:var(--muted);flex-shrink:0}
+.lib-q input{flex:1;min-width:0;border:0;outline:0;background:none;font-size:15px;color:var(--ink)}
+.lib-q kbd{font-family:var(--f-mono);font-size:11px;color:var(--muted);border:1px solid var(--line-2);border-radius:6px;padding:2px 7px;white-space:nowrap}
+.lib-sort{display:flex;align-items:center;gap:10px}
+.lib-sort .lb{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.lib-sort .seg{background:var(--surface);flex-wrap:nowrap}
+.lib-sort .seg button{padding:8px 13px}
+.lib-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.fchip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:5px 13px 5px 5px;font-size:13px;font-weight:600;color:var(--text);cursor:pointer;transition:border-color .2s,background .2s,color .2s,transform .2s}
+.fchip:hover{border-color:#0066FF;transform:translateY(-1px)}
+.fchip i{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--chip);color:#0066FF;transition:background .2s,color .2s}
+.fchip i svg{width:13px;height:13px}
+.fchip em{font-style:normal;font-family:var(--f-mono);font-size:11px;color:var(--muted);font-weight:500}
+.fchip.on{background:#0B132B;border-color:#0B132B;color:#fff}
+.fchip.on i{background:#FF8A00;color:#fff}.fchip.on em{color:#B6C2DA}
+html[data-theme="dark"] .fchip.on{background:#0066FF;border-color:#0066FF}
+html[data-theme="dark"] .fchip.on em{color:#fff}
+.lib-count{font-family:var(--f-mono);font-size:11.5px;color:var(--muted);margin-bottom:12px;min-height:18px}
+.lib-count b{color:var(--ink)}
+.eps{display:flex;flex-direction:column;gap:10px}
+.ep{display:grid;grid-template-columns:52px 64px 1fr auto;gap:18px;align-items:center;background:var(--surface);border:1.5px solid var(--line);border-radius:18px;padding:16px 20px 16px 16px;transition:border-color .25s,box-shadow .3s,transform .35s var(--ease-o),opacity .25s;scroll-margin-top:110px}
+.ep:hover{border-color:var(--line-2);box-shadow:var(--sh);transform:translateY(-2px)}
+.ep.cur{border-color:#0066FF}
+.ep.anim{animation:epIn .55s var(--ease-o) both;animation-delay:var(--dl,0s)}
+@keyframes epIn{from{opacity:0;transform:translateY(14px) scale(.985)}}
+.ep.out{opacity:0;transform:scale(.97);pointer-events:none}
+.ep-play{position:relative;width:52px;height:52px;border-radius:50%;border:0;background:var(--chip);color:#0066FF;cursor:pointer;display:grid;place-items:center;transition:background .25s,color .25s,transform .25s var(--ease-o)}
+.ep-play:hover{background:#0066FF;color:#fff;transform:scale(1.06)}
+.ep-play svg{width:20px;height:20px}
+.ep-play .i-pl svg{margin-left:2px}
+.ep-play .eqm{grid-area:1/1;display:none;align-items:flex-end;gap:3px;height:18px}
+.ep-play .eqm i{width:3px;height:100%;border-radius:2px;background:currentColor;transform-origin:50% 100%;animation:eqB .8s ease-in-out infinite alternate}
+.ep-play .eqm i:nth-child(2){animation-delay:-.4s;animation-duration:.6s}.ep-play .eqm i:nth-child(3){animation-delay:-.2s;animation-duration:1s}.ep-play .eqm i:nth-child(4){animation-delay:-.55s}
+.ep.cur .ep-play{background:#FF8A00;color:#fff}
+.ep.cur.playing .ep-play .eqm{display:flex}
+.ep.cur.playing .ep-play .i-pl,.ep.cur.playing .ep-play .i-pa{opacity:0}
+.ep.cur.playing .ep-play:hover .eqm{display:none}
+.ep.cur.playing .ep-play:hover .i-pa{opacity:1;transform:none}
+.ep-num{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.12em;color:var(--muted);text-align:center;line-height:1;border-right:1px solid var(--line);padding-right:16px}
+.ep-num b{display:block;font-family:var(--f-serif);font-size:30px;letter-spacing:-.02em;color:var(--ink);margin-top:5px;font-weight:700}
+.ep-main{min-width:0}
+.ep-tags{display:flex;align-items:center;gap:10px;margin-bottom:5px;flex-wrap:wrap}
+.tp{display:inline-flex;align-items:center;gap:5px;font-family:var(--f-mono);font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border-radius:6px;padding:3px 8px 3px 6px;background:var(--chip);color:#0066FF}
+.tp svg{width:12px;height:12px}
+.tp.security{background:rgba(192,57,43,.1);color:#c0392b}
+.tp.ai{background:rgba(255,138,0,.13);color:#FF8A00}
+.tp.trust{background:rgba(11,19,43,.08);color:#0B132B}
+html[data-theme="dark"] .tp.trust{background:rgba(255,255,255,.08);color:#fff}
+html[data-theme="dark"] .tp.security{background:rgba(192,57,43,.22);color:#fff}
+.ep-date{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.ep h3{font-size:17px;line-height:1.3;margin-bottom:4px}
+.ep h3 mark,.ep-g mark{background:rgba(255,138,0,.25);color:inherit;border-radius:3px;padding:0 1px}
+.ep-g{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text);font-weight:500}
+.ep-g svg{width:13px;height:13px;color:var(--muted);flex-shrink:0}
+.ep-d{font-size:13.5px;color:var(--muted);margin-top:5px;line-height:1.55;max-width:720px}
+.ep-side{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.ep-dur{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:12px;color:var(--ink);font-weight:600;white-space:nowrap}
+.ep-dur svg{width:13px;height:13px;color:var(--muted)}
+.ep-side .btn svg{width:14px;height:14px}
+@media(max-width:760px){
+  .ep{grid-template-columns:48px 1fr;gap:12px 14px;padding:14px}
+  .ep-num{display:none}
+  .ep-play{width:48px;height:48px;align-self:start}
+  .ep-side{grid-column:2;flex-direction:row;align-items:center;justify-content:space-between}
+  .lib-sort{width:100%;justify-content:space-between}
+  .lib-q{flex-basis:100%;max-width:none}
+}
+.lib-empty{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;padding:40px 20px;border:1.5px dashed var(--line-2);border-radius:18px;color:var(--muted);font-size:14px;animation:panelIn .4s var(--ease-o)}
+.lib-empty[hidden]{display:none}
+.lib-empty i{width:44px;height:44px;border-radius:12px;background:var(--chip);color:#0066FF;display:grid;place-items:center;margin-bottom:6px}
+.lib-empty i svg{width:20px;height:20px}
+.lib-empty b{color:var(--ink);font-size:15px}
+.lib-empty button{border:0;background:none;color:#0066FF;font-weight:600;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- Show notes modal ---------- */
+.en-k{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#FF8A00;font-weight:600;margin-bottom:4px}
+#epNotes .mh h3{font-size:25px;line-height:1.15}
+#epNotes .mh p{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:8px}
+#epNotes .mh p span{display:inline-flex;align-items:center;gap:5px}
+#epNotes .mh p svg{width:13px;height:13px;color:var(--muted)}
+.en-act{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.en-act .btn svg{width:15px;height:15px}
+.en-mode{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin-bottom:18px}
+.en-mode svg{width:14px;height:14px;color:#FF8A00;flex-shrink:0}
+.en-g{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+@media(max-width:640px){.en-g{grid-template-columns:1fr}}
+.en-h{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:7px}
+.en-h svg{width:13px;height:13px;color:#0066FF}
+.en-ch{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;padding:4px}
+.en-ch button{grid-template-columns:44px 1fr auto;font-size:13px}
+.en-tk.ilist{gap:12px}
+.en-tk li{font-size:13.5px;line-height:1.5}
+.en-tr{background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:16px 18px;position:relative}
+.en-tr p{font-size:13.5px;line-height:1.65;color:var(--text);margin-bottom:10px}
+.en-tr p:last-child{margin-bottom:0}
+.en-tr p b{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#0066FF;margin-right:6px}
+.en-tr p.g b{color:#FF8A00}
+.en-tr .tr-f{font-family:var(--f-mono);font-size:10.5px;color:var(--muted);margin-top:12px;display:block}
+
+/* ---------- Listen on ---------- */
+.plat{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:22px}
+@media(max-width:1020px){.plat{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:620px){.plat{grid-template-columns:1fr 1fr}}
+.pf{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:3px;text-align:left;background:var(--surface);border:1.5px solid var(--line);border-radius:18px;padding:18px;cursor:pointer;font:inherit;color:inherit;transition:transform .35s var(--ease-o),border-color .25s,box-shadow .3s}
+.pf:hover{transform:translateY(-4px);border-color:#0066FF;box-shadow:var(--sh)}
+.pf-i{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;color:#fff;margin-bottom:12px}
+.pf-i svg{width:22px;height:22px}
+.pf b{font-family:var(--f-disp);font-size:15px;color:var(--ink)}
+.pf>span:not(.pf-i){font-size:12.5px;color:var(--muted)}
+.pf em{position:absolute;right:16px;top:18px;width:28px;height:28px;border-radius:50%;background:var(--chip);color:#0066FF;display:grid;place-items:center;transition:transform .3s var(--ease-o),background .2s,color .2s}
+.pf em svg{width:13px;height:13px}
+.pf:hover em{background:#0066FF;color:#fff;transform:translateX(2px)}
+html[data-theme="dark"] .pf-i[style*="#0B132B"]{border:1px solid var(--line-2)}
+.subs{display:grid;grid-template-columns:1fr 1.1fr;gap:28px;align-items:center;background:#0B132B;color:#fff;border-radius:var(--r-l);padding:30px 32px}
+html[data-theme="dark"] .subs{background:#050916;border:1px solid var(--line)}
+@media(max-width:900px){.subs{grid-template-columns:1fr;padding:26px 22px}}
+.subs-k{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#FF8A00;font-weight:600}
+.subs-k svg{width:14px;height:14px}
+.subs h3{font-family:var(--f-serif);color:#fff;font-size:26px;margin:8px 0 6px}
+.subs p{color:#B6C2DA;font-size:14px}
+.subs-row{display:flex;gap:10px;align-items:flex-start}
+.subs-row .fi{flex:1;min-width:0}
+.subs-row .fi input{height:48px;background:#fff;color:#0B132B;border-color:rgba(255,255,255,.3)}
+.subs-row .btn{height:48px}
+.subs-row .fi .em{color:#FF8A00}
+@media(max-width:480px){.subs-row{flex-direction:column}.subs-row .btn{width:100%}}
+.subs-pref{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.subs-pref label{cursor:pointer}
+.subs-pref input{position:absolute;opacity:0;pointer-events:none}
+.subs-pref span{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:#B6C2DA;border:1px solid rgba(255,255,255,.18);border-radius:99px;padding:6px 12px;transition:background .2s,color .2s,border-color .2s}
+.subs-pref span svg{width:13px;height:13px}
+.subs-pref input:checked+span{background:rgba(0,102,255,.25);border-color:#0066FF;color:#fff}
+.subs-pref input:focus-visible+span{outline:2px solid #0066FF;outline-offset:2px}
+.subs-ok{display:flex;gap:14px;align-items:center;animation:panelIn .45s var(--ease-o)}
+.subs-ok i{width:48px;height:48px;border-radius:50%;background:#16a34a;display:grid;place-items:center;flex-shrink:0}
+.subs-ok i svg{width:22px;height:22px}
+.subs-ok b{display:block;font-family:var(--f-disp);font-size:17px;color:#fff}
+.subs-ok span{font-size:13.5px;color:#B6C2DA}
+
+/* ---------- Hosts ---------- */
+.host .h-av{width:56px;height:56px;border-radius:16px;background:#0066FF;color:#fff;display:grid;place-items:center;margin-bottom:16px;position:relative}
+.host .h-av svg{width:26px;height:26px}
+.host .h-av.o{background:#FF8A00}.host .h-av.n{background:#0B132B}
+html[data-theme="dark"] .host .h-av.n{background:#1E2A49}
+.host .h-av:after{content:"";position:absolute;right:-5px;bottom:-5px;width:20px;height:20px;border-radius:50%;background:var(--surface);border:2px solid var(--surface);box-shadow:inset 0 0 0 20px #FF8A00}
+.host .h-av.o:after{box-shadow:inset 0 0 0 20px #0066FF}
+.host .h-k{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#FF8A00;font-weight:600;display:block;margin-bottom:4px}
+.host h3{font-family:var(--f-serif);font-size:20px}
+.h-t{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.h-t span{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--ink);background:var(--chip);border-radius:8px;padding:5px 9px}
+.h-t svg{width:12px;height:12px;color:#0066FF}
+
+/* ---------- Guest ---------- */
+.guest-cta{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;margin-top:22px;padding:20px 22px;border:1px solid var(--line);border-radius:var(--r-l);background:var(--surface-2)}
+#podGuest .seg{width:100%}
+#podGuest .seg button{padding:9px 8px;font-size:12.5px}
+#podGuest .opt{font-weight:400;color:var(--muted)}
+
+/* ---------- Mini player ---------- */
+.mini{position:fixed;left:50%;bottom:20px;z-index:95;width:min(760px,calc(100% - 220px));transform:translate(-50%,140%);opacity:0;visibility:hidden;display:grid;grid-template-columns:48px 1fr auto;gap:14px;align-items:center;background:#0B132B;color:#fff;border-radius:16px;padding:10px 12px 10px 10px;box-shadow:0 24px 50px -18px rgba(11,19,43,.75);transition:transform .55s var(--ease-o),opacity .3s,visibility 0s .55s}
+html[data-theme="dark"] .mini{background:#0E1630;border:1px solid var(--line-2);box-shadow:0 24px 50px -18px rgba(0,0,0,.9)}
+.mini.on{transform:translate(-50%,0);opacity:1;visibility:visible;transition:transform .55s var(--ease-o),opacity .3s}
+.mi-pg{position:absolute;left:14px;right:14px;top:0;height:10px;transform:translateY(-50%);cursor:pointer;display:flex;align-items:center}
+.mi-pg:before{content:"";position:absolute;left:0;right:0;height:3px;border-radius:3px;background:rgba(255,255,255,.16)}
+.mi-pg i{position:absolute;left:0;height:3px;width:100%;border-radius:3px;background:#FF8A00;transform-origin:0 50%;transform:scaleX(0)}
+.mi-cv{position:relative;width:48px;height:48px;border-radius:11px;background:#0066FF;overflow:hidden;font-family:var(--f-mono);text-align:left;padding:5px 7px;line-height:1}
+.mi-cv small{display:block;font-size:8.5px;letter-spacing:.1em;color:rgba(255,255,255,.75)}
+.mi-cv b{display:block;font-family:var(--f-disp);font-size:15px;margin-top:2px}
+.mi-cv .cv-eq{left:7px;right:7px;bottom:6px;height:12px;gap:2px}
+.mi-cv .cv-eq i{background:#fff;opacity:.85}
+.mi-cv .cv-eq i:nth-child(3){background:#FF8A00;opacity:1}
+.mi-t{min-width:0}
+.mi-t b{display:block;font-family:var(--f-disp);font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mi-t span{display:block;font-family:var(--f-mono);font-size:11px;color:#B6C2DA;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
+.mi-c{display:flex;align-items:center;gap:4px}
+.mi-b{border:0;cursor:pointer;color:#fff;background:none}
+.mi-sk{width:38px;height:38px;color:#fff}
+.mi-sk svg{width:26px;height:26px}
+.mi-sk span{font-size:8px}
+.mi-sk:hover,.mi-x:hover{background:rgba(255,255,255,.1)}
+.mi-pp{width:44px;height:44px;border-radius:50%;background:#FF8A00;display:grid;place-items:center;transition:transform .25s var(--ease-o)}
+.mi-pp:hover{transform:scale(1.07)}
+.mi-pp svg{width:19px;height:19px}
+.mi-x{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:#B6C2DA;margin-left:4px}
+.mi-x svg{width:15px;height:15px}
+body.mini-on .toast{bottom:104px}
+@media(max-width:760px){
+  .mini{width:auto;left:12px;right:12px;bottom:90px;transform:translateY(160%);gap:10px;padding:9px 8px 9px 9px}
+  .mini.on{transform:none}
+  .mi-sk{display:none}
+  .mi-cv{width:42px;height:42px}
+  body.mini-on .toast{bottom:166px}
+}
+body.mini-on .ftr{padding-bottom:100px}
+.ico2{display:grid;place-items:center}
+.ico2 svg{width:16px;height:16px}
+.ico2 .i-pl svg{margin-left:0}
+.hero-grid>div{min-width:0}
+.np-meta{min-width:0}
+@media(max-width:620px){.pod-dots i:nth-child(2),.pod-dots i:nth-child(5),.pod-dots i:nth-child(7){display:none}.pod-bg .sky{height:150px}}
+.en-k svg{width:14px;height:14px}
+.pf-i.sp{background:var(--chip);color:#0B132B}
+html[data-theme="dark"] .pf-i.sp{background:#fff}
+
+</style><style>h1,h2,h3,h4{text-transform:capitalize}.import-assurance h2,.import-assurance h3{text-transform:uppercase}.rv{opacity:1!important;transform:none!important}main{display:flow-root}body{margin:0}</style><style>.import-assurance ~ section :is(h2,h3){text-transform:uppercase}.import-assurance .sh{margin-top:32px}</style><style>.sec{padding:42px 0}.sec.tight{padding:28px 0}.sh{margin-bottom:20px}.import-assurance .sh{margin-top:16px}</style><style>
+
+.smb-section-nav {
+  width: 100%;
+  padding: 10px 20px;
+  border-bottom: 1px solid #e7ebf1;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 5px 18px rgba(4, 30, 66, 0.06);
+  backdrop-filter: blur(12px);
+}
+
+.smb-section-nav-track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  width: max-content;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 4px;
+  overflow-x: auto;
+  border-radius: 999px;
+  background: #f2f3f6;
+  scrollbar-width: none;
+}
+
+.smb-section-nav-track::-webkit-scrollbar { display: none; }
+
+.smb-section-nav a:hover,
+.smb-section-nav a:focus-visible {
+  color: #075fc7;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(4, 30, 66, 0.12);
+}
+
+.smb-section-nav a:focus-visible {
+  outline: 2px solid #1d73df;
+  outline-offset: 1px;
+}
+
+.smb-section-nav a {
+  flex: 0 0 auto;
+  padding: 9px 15px;
+  border-radius: 999px;
+  color: #3d4759;
+  font: 600 13px/1.25 var(--body, 'IBM Plex Sans', sans-serif);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+@media (max-width: 900px) {
+  
+  .smb-section-nav { padding-inline: 12px; }
+  .smb-section-nav-track { justify-content: flex-start; }
+  .smb-section-nav a { padding: 9px 13px; font-size: 12px; }
+}
+.import-trust{background:#f2f6ff;border-bottom:1px solid #d7e1f0}.import-trust .wrap{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;padding:16px 24px;color:#466080;font:13px/1.5 var(--body,sans-serif)}.import-trust b{color:#041e42;font-family:var(--mono,monospace)}.smb-section-nav{position:relative;top:auto;z-index:1}.smb-section-nav-track{font-family:Arial,sans-serif}@media(max-width:600px){.import-trust .wrap{justify-content:center;text-align:center;font-size:11px}}</style></head><body><main id="main">
+<!-- ================= HERO ================= -->
+<section class="hero" id="podHero">
+  <div class="hero-bg pod-bg" id="podBg" aria-hidden="true">
+    <div class="pod-dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="sky" id="podSky"></div>
+  </div>
+  <div class="wrap">
+    <div class="crumb" data-in="1"><a href="https://www.xcellhost.top/">Home</a> / <a href="#">Company</a> / <span class="c">Podcasts</span></div>
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow" data-in="1">The XcellHost Cloud Podcast</span>
+        <h1 data-in="2">Real talk on cloud, security <span class="acc">and what actually works.</span></h1>
+        <p class="lead" data-in="3">Candid conversations on cloud, cybersecurity and AI for Indian businesses — with the people who run it in production. <b>A new 35–45 minute episode every fortnight,</b> with chapters, takeaways and a transcript for each one.</p>
+        <div class="powered" data-in="4"><span class="pv-l" style="background:#FF8A00;color:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v4M8 22h8"/></svg></span><span><small>Produced by</small><b>XcellHost</b></span></div>
+        <div class="hero-cta" data-in="5">
+          <button type="button" class="btn btn-orange" id="heroPlay"><span class="ico2"><span class="i-pl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="i-pa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></span></span><span id="heroPlayL">Play the latest episode</span></button>
+          <a href="#episodes" class="btn btn-line">Browse all episodes <span class="ar">→</span></a>
+        </div>
+      </div>
+      <div class="stage" data-in="4">
+        <div class="np" id="np" aria-label="Now playing">
+          <div class="np-top">
+            <div class="np-cover" aria-hidden="true">
+              <span class="cv-ep" id="npCvEp">EP 24</span>
+              <span class="cv-mic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v4M8 22h8"/></svg></span>
+              <span class="cv-eq"><i></i><i></i><i></i><i></i><i></i></span>
+            </div>
+            <div class="np-meta">
+              <span class="np-k"><span class="np-dot"></span><span id="npK">Latest episode</span></span>
+              <h3 id="npT">—</h3>
+              <p id="npG"></p>
+            </div>
+          </div>
+          <p class="np-cap" id="npCap" aria-live="off"></p>
+          <div class="np-wv" id="npWv" role="slider" tabindex="0" aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="wv-b" id="wvB"></div>
+            <div class="wv-f" id="wvF"></div>
+            <span class="wv-h" id="wvH"></span><span class="wv-tip" id="wvTip">0:00</span>
+          </div>
+          <div class="np-time"><span id="npCur">0:00</span><span class="np-mode" id="npMode">Episode brief</span><span id="npDur">0:45</span></div>
+          <div class="np-ctl">
+            <button type="button" class="np-sp" id="npSpeed" aria-label="Playback speed">1×</button>
+            <button type="button" class="np-sk" id="npBack" aria-label="Back 15 seconds"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3"/><path d="M4.5 3.5v3.7h3.7"/></svg><span>15</span></button>
+            <button type="button" class="np-pp" id="npPlay" aria-label="Play"><span class="i-pl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="i-pa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></span></button>
+            <button type="button" class="np-sk" id="npFwd" aria-label="Forward 30 seconds"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3"/><path d="M19.5 3.5v3.7h-3.7"/></svg><span>30</span></button>
+            <div class="np-chw">
+              <button type="button" class="np-ch" id="npCh" aria-haspopup="true" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg><span>Chapters</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+              <div class="np-chm" id="npChM" role="menu"></div>
+            </div>
+          </div>
+          <div class="np-note" id="npNote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0118 0v6"/><rect x="2" y="15" width="5" height="7" rx="2"/><rect x="17" y="15" width="5" height="7" rx="2"/></svg><span id="npNoteT">Press play for a short episode brief — full audio coming soon</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="hero-stats" data-in="6">
+      <div class="hs"><b>Fortnightly</b><span>New episode</span></div>
+      <div class="hs"><b>~40<em> min</em></b><span>Per episode</span></div>
+      <div class="hs"><b>Transcripts</b><span>For every episode</span></div>
+      <div class="hs"><b>Free</b><span>On every platform</span></div>
+      <div class="hs"><b>Practitioners</b><span>As our guests</span></div>
+    </div>
+  </div>
+</section><div class="import-trust"><div class="wrap"><span><b>ISO 27001</b> &amp; <b>20000-1</b> certified</span><span>Microsoft <b>Gold Partner</b></span><span><b>10,000+</b> customers</span><span><b>Since 1999</b></span><span><b>99.95% uptime SLA</b></span><span><b>24&times;7</b> NOC + SOC</span></div></div><nav class="smb-section-nav" aria-label="Podcasts page sections"><div class="smb-section-nav-track"><a href="#about">Overview</a><a href="#episodes">Episodes</a><a href="#listen">Listen & Subscribe</a><a href="#hosts">Hosts</a><a href="#guest">Be a Guest</a><a href="#podcastSecurity">Security & Privacy</a><a href="#podcastWhy">Why to Choose</a><a href="#podcastFeedback">Listener Feedback</a><a href="#faq">FAQs</a><a href="#insights">Insights</a></div></nav>
+
+<!-- ================= ABOUT ================= -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">About the show</span><h2>No slides, no sales pitch — <span class="acc">just how it's done.</span></h2><p>Each episode takes one problem Indian IT teams face this year and talks it through with someone who has solved it. What worked, what broke, what it cost, and what they'd do differently.</p></div>
+    <div class="about">
+      <div class="fmt rv">
+        <span class="fmt-k">Every episode includes</span>
+        <ul class="ilist">
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></i><span><b>35–45 minutes</b> — one topic, covered properly, the length of a commute</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></i><span><b>Chapters with timestamps</b> so you can jump to the part you need</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></i><span><b>Three key takeaways</b> you can take into Monday's meeting</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg></i><span><b>A full transcript</b> — searchable, quotable, easy to share with your team</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></i><span><b>India context</b> — DPDP Act, CERT-In rules, INR budgets and local data residency</span></li>
+        </ul>
+        <div class="fmt-f"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg> New episode every second Wednesday</span></div>
+      </div>
+      <div class="aud">
+        <div class="card rv" data-d="1"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 7h.01M15 7h.01M9 11h.01M15 11h.01M9 15h.01M15 15h.01M10 21v-3h4v3"/></svg></div><h3>CIOs &amp; IT heads</h3><p>Deciding what to move, what to buy and what to stop paying for.</p></div>
+        <div class="card rv" data-d="2"><div class="ico o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>Security &amp; compliance</h3><p>Turning frameworks and regulations into controls that hold up in an audit.</p></div>
+        <div class="card rv" data-d="3"><div class="ico n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9l3 3-3 3M13 15h4"/></svg></div><h3>DevOps &amp; engineers</h3><p>Kubernetes, pipelines, observability and the incidents nobody writes up.</p></div>
+        <div class="card rv" data-d="4"><div class="ico g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12M6 9h12M15 20L8 13h2a4 4 0 000-8"/></svg></div><h3>Founders &amp; CFOs</h3><p>Plain-English context on cloud spend, risk and where AI genuinely pays off.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EPISODE LIBRARY ================= -->
+<section class="sec alt" id="episodes">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">Episode library</span><h2>Find the episode for <span class="acc">this week's problem.</span></h2><p>Search by topic, guest or keyword. Every episode opens with show notes — chapters, takeaways and a transcript excerpt — and plays right here on the page.</p></div>
+    <div class="lib">
+      <div class="lib-bar rv">
+        <label class="lib-q"><span class="sr">Search episodes</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><input id="libQ" type="search" placeholder="Search episodes, guests, topics…" autocomplete="off"><kbd id="libKbd">10</kbd></label>
+        <div class="lib-sort"><span class="lb">Sort</span><div class="seg" id="libSort"><button data-v="new" class="on">Newest</button><button data-v="old">Oldest</button><button data-v="short">Shortest</button></div></div>
+      </div>
+      <div class="lib-chips rv" data-d="1" id="libChips" role="group" aria-label="Filter by topic"></div>
+      <div class="lib-count" id="libCount" aria-live="polite"></div>
+      <div class="eps" id="eps"></div>
+      <div class="lib-empty" id="libEmpty" hidden><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></i><b>No episodes match that search.</b><span>Try another keyword, or <button type="button" id="libClear">clear all filters</button>.</span></div>
+    </div>
+    <p class="note-ind">Episode guests are described by role only. Listings shown are illustrative while the archive is being published.</p>
+  </div>
+</section>
+
+<!-- ================= LISTEN ON ================= -->
+<section class="sec" id="listen">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">Listen anywhere</span><h2>Free on the app <span class="acc">you already use.</span></h2><p>Follow the show once and new episodes arrive on their own. Prefer email? Get each episode, with its takeaways, in your inbox.</p></div>
+    <div class="plat">
+      <a class="pf rv" href="#" data-d="1"><span class="pf-i sp"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M7 9.8c3.4-1 7.4-.6 10.3 1.2M7.6 13c2.8-.8 6-.4 8.3 1M8.2 16c2.2-.6 4.5-.3 6.3.8" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></span><b>Spotify</b><span>Follow the show</span><em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></em></a>
+      <a class="pf rv" href="#" data-d="2"><span class="pf-i" style="background:#FF8A00"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="10.5" r="2.2"/><path d="M12 13v7.5"/><path d="M8.3 15a6 6 0 1 1 7.4 0"/><path d="M5.6 18a9.5 9.5 0 1 1 12.8 0"/></svg></span><b>Apple Podcasts</b><span>Subscribe free</span><em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></em></a>
+      <a class="pf rv" href="#" data-d="3"><span class="pf-i" style="background:#c0392b"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 8.2a2.6 2.6 0 00-1.8-1.8C18.5 6 12 6 12 6s-6.5 0-8.2.4A2.6 2.6 0 002 8.2 27 27 0 002 12a27 27 0 00.4 3.8 2.6 2.6 0 001.8 1.8C5.5 18 12 18 12 18s6.5 0 8.2-.4a2.6 2.6 0 001.8-1.8A27 27 0 0022 12a27 27 0 00-.4-3.8zM10 15V9l5 3z"/></svg></span><b>YouTube</b><span>Watch the video cut</span><em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></em></a>
+      <a class="pf rv" href="#" data-d="4"><span class="pf-i" style="background:#0066FF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0118 0v6"/><rect x="2" y="15" width="5" height="7" rx="2"/><rect x="17" y="15" width="5" height="7" rx="2"/></svg></span><b>Amazon Music</b><span>Follow the show</span><em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></em></a>
+      <button type="button" class="pf rv" data-d="5" data-copy="https://www.xcellhost.top/podcast/feed.xml"><span class="pf-i" style="background:#0B132B"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="6" cy="18" r="2.2"/><path d="M4 11a9 9 0 019 9h-3a6 6 0 00-6-6zM4 5a15 15 0 0115 15h-3A12 12 0 004 8z"/></svg></span><b>RSS feed</b><span>Copy feed URL</span><em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></em></button>
+    </div>
+    <div class="subs rv">
+      <div class="subs-t">
+        <span class="subs-k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/></svg> Episode by email</span>
+        <h3>New episodes, straight to your inbox.</h3>
+        <p>One short email per episode: the summary, three takeaways and the link. No other marketing, unsubscribe in one click.</p>
+      </div>
+      <form class="subs-f" id="subsF" data-xhform="podcast-subscribe" novalidate>
+        <div class="subs-row">
+          <div class="fi"><label for="subE" class="sr">Work email</label><input id="subE" name="email" type="email" required placeholder="you@company.in" autocomplete="email"><span class="em">Enter a valid email address</span></div>
+          <button type="submit" class="btn btn-orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 16V11a6 6 0 00-12 0v5l-2 2h16zM10 20a2 2 0 004 0"/></svg> Notify me</button>
+        </div>
+        <div class="subs-pref" role="group" aria-label="Topics you care about">
+          <label><input type="checkbox" name="t-sec" checked><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Security</span></label>
+          <label><input type="checkbox" name="t-cloud" checked><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a5 5 0 01-.6-10A6 6 0 0118 9a4.5 4.5 0 01-.5 9z"/></svg> Cloud</span></label>
+          <label><input type="checkbox" name="t-ai" checked><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3a3 3 0 00-3 3 3 3 0 00-2 5 3 3 0 001 5 3 3 0 005 3V3zM15 3a3 3 0 013 3 3 3 0 012 5 3 3 0 01-1 5 3 3 0 01-5 3V3z"/></svg> AI</span></label>
+          <label><input type="checkbox" name="t-trust" checked><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="13" rx="2"/><circle cx="12" cy="17" r="3"/><path d="M10.5 19.5L10 23l2-1 2 1-.5-3.5M7 7h10M7 10h6"/></svg> Digital trust</span></label>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOSTS ================= -->
+<section class="sec alt" id="hosts">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">Your hosts</span><h2>Hosted by the people <span class="acc">on call tonight.</span></h2><p>The show is run by XcellHost's own cloud and security team — engineers from the 24×7 NOC and SOC that have kept Indian businesses online since 1999.</p></div>
+    <div class="g3">
+      <div class="card host rv"><div class="h-av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a5 5 0 01-.6-10A6 6 0 0118 9a4.5 4.5 0 01-.5 9z"/></svg></div><span class="h-k">Lead host</span><h3>Head of Cloud Architecture</h3><p>Designs migrations, Kubernetes platforms and GPU clusters for customers. Asks the questions about cost, scale and what happens at 3 a.m.</p>
+        <div class="h-t"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8.5 5v10L12 22l-8.5-5V7z"/></svg> Kubernetes</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12M6 9h12M15 20L8 13h2a4 4 0 000-8"/></svg> FinOps</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="11" rx="2"/><circle cx="8" cy="12.5" r="2.5"/><circle cx="15.5" cy="12.5" r="2.5"/><path d="M5 18v3M19 18v3"/></svg> GPU cloud</span></div></div>
+      <div class="card host rv" data-d="1"><div class="h-av o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div><span class="h-k">Co-host</span><h3>Security Operations Lead</h3><p>Runs incident response in our SOC. Brings the attacker's view — and the reality of recovery, reporting and insurance.</p>
+        <div class="h-t"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="6" width="8" height="14" rx="4"/><path d="M12 6V4M8 10H4M8 15H4M16 10h4M16 15h4M9 4l1 2M15 4l-1 2"/></svg> Ransomware</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0114 0M16 11l2 2 4-4"/></svg> Zero Trust</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/></svg> DMARC</span></div></div>
+      <div class="card host rv" data-d="2"><div class="h-av n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div><span class="h-k">Producer &amp; NOC voice</span><h3>NOC &amp; Platform Team</h3><p>Researches every episode, checks the facts and adds the field notes from thousands of hours watching production systems.</p>
+        <div class="h-t"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 16V11a6 6 0 00-12 0v5l-2 2h16zM10 20a2 2 0 004 0"/></svg> Monitoring</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg> Automation</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg> Show notes</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BE A GUEST ================= -->
+<section class="sec" id="guest">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">Suggest a topic · be a guest</span><h2>Solved something hard? <span class="acc">Come and tell us how.</span></h2><p>We look for practitioners — people who built, ran or fixed the thing — not product demos. Guest spots are never paid for, and you approve the edit before it goes out.</p></div>
+    <div class="steps h rv" style="--n:4">
+      <div class="step"><h4>Pitch in two minutes</h4><p>Tell us the problem you solved, or the topic you want covered. A few lines is enough.</p><span class="bar"></span></div>
+      <div class="step"><h4>20-minute pre-call</h4><p>We agree the story, the questions and anything that must stay off the record.</p><span class="bar"></span></div>
+      <div class="step"><h4>Record remotely</h4><p>About 45 minutes from your desk. We send a mic guide; any decent headset works.</p><span class="bar"></span></div>
+      <div class="step"><h4>Review, then publish</h4><p>You see the edit and the show notes first. Nothing goes live without your OK.</p><span class="bar"></span></div>
+    </div>
+    <div class="guest-cta rv">
+      <div class="chips">
+        <span class="chip"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v4M8 22h8"/></svg></i>Be a guest</span>
+        <span class="chip"><i style="background:#FF8A00"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 01-11.6 7.1L3 21l1.9-6.4A8 8 0 1121 12z"/></svg></i>Suggest a topic</span>
+        <span class="chip"><i style="background:#0B132B"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2 20a7 7 0 0114 0M17 11a3 3 0 000-6M22 20a6 6 0 00-4-5.6"/></svg></i>Nominate a colleague</span>
+      </div>
+      <button type="button" class="btn btn-blue" data-open="podGuest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v4M8 22h8"/></svg> Pitch a topic or yourself <span class="ar">→</span></button>
+    </div>
+  </div>
+</section>
+
+<section class="sec import-assurance" id="podcastSecurity"><div class="wrap"><div class="sh"><h2>SECURITY &amp; PRIVACY — THE CLOUD PODCAST</h2><p>Episodes share general information. Keep customer data, credentials and confidential incidents out of guest submissions. Guests review their episode before publication; company-specific security or compliance questions can be discussed with our engineers.</p></div><div class="g3"><article class="card"><h3>Guest Review</h3><p>Review Your Recorded Conversation Before Publication.</p></article><article class="card"><h3>Responsible Sharing</h3><p>Use Anonymised Examples And Respect Customer Confidentiality.</p></article><article class="card"><h3>Practical Context</h3><p>Validate Recommendations Against Your Own Environment.</p></article></div><div class="sh"><h2 id="podcastWhy">WHY LISTEN TO XCELLHOST</h2><p>Conversations With Cloud Architecture, Security Operations And Platform Teams Covering Indian Business Workloads.</p></div><div class="g3"><article class="card"><h3>Cloud Architecture</h3><p>Hear How Engineers Design And Operate Cloud Workloads.</p></article><article class="card"><h3>Security Operations</h3><p>Explore Security Controls And Incident Readiness.</p></article><article class="card"><h3>Platform Experience</h3><p>Learn From The Teams Running Production Systems.</p></article><article class="card"><h3>Indian Business Context</h3><p>Discuss Local Infrastructure And Business Requirements.</p></article><article class="card"><h3>Practical Show Notes</h3><p>Review Episode Summaries And Key Takeaways.</p></article><article class="card"><h3>Join The Conversation</h3><p>Suggest Topics Or Apply To Share Your Experience.</p></article></div><div class="sh"><h2>LISTEN IN ACTION</h2><p>Explore The Episode Library, Read Show Notes And Play An Episode Brief Using The Player Above.</p><a class="btn btn-primary" href="#episodes">Explore Episodes</a></div><div class="sh"><h2 id="podcastFeedback">WHAT LISTENERS SAY</h2><p>Have Feedback On An Episode? Suggest A Topic Or Share Your Experience With The Podcast Team.</p><button class="btn btn-primary" data-open="podGuest">Share Feedback</button></div></div></section><!-- ================= FAQ ================= -->
+<section class="sec alt" id="faq">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">FAQ</span><h2>Questions about <span class="acc">the show.</span></h2></div>
+    <div class="faq rv">
+      <div class="fq open"><button aria-expanded="true">Is the podcast free?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>Yes. Every episode, transcript and set of show notes is free — no sign-up needed to listen. The email updates are optional.</p></div></div>
+      <div class="fq"><button aria-expanded="false">How often do new episodes come out?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>Every second Wednesday. Episodes run 35–45 minutes and each one sticks to a single topic.</p></div></div>
+      <div class="fq"><button aria-expanded="false">Why do I hear a short brief instead of the full episode?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>Full episode audio is being published to this page. Until then, the player reads a short, under-a-minute brief of each episode using your browser's built-in voice, so you can preview the topic. Chapters, takeaways and transcript excerpts are in the show notes.</p></div></div>
+      <div class="fq"><button aria-expanded="false">Is there a transcript for every episode?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>Yes. Each episode has a transcript, chapter markers and three key takeaways. Open "Show notes" on any episode to see them, or copy a direct link to share with your team.</p></div></div>
+      <div class="fq"><button aria-expanded="false">Can I come on the show? Do guests pay?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>We welcome practitioners with a real story to tell. Guest spots are never sold, and episodes are not product pitches. Use "Pitch a topic or yourself" above and our producer will reply within a week.</p></div></div>
+      <div class="fq"><button aria-expanded="false">Can I share or quote an episode internally?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>Please do. Link to the episode or quote the transcript with credit to The XcellHost Cloud Podcast. For training material or reposting full episodes, write to us first.</p></div></div>
+      <div class="fq"><button aria-expanded="false">Is what I hear on the show advice for my company?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>Episodes are general information drawn from real experience, not legal or compliance advice. If you want to apply something to your own environment, our engineers can review it with you — just request a callback.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+
+
+<!-- ================= SHOW NOTES MODAL ================= -->
+<div class="modal" id="epNotes" role="dialog" aria-modal="true" aria-labelledby="enT"><div class="sc" data-close></div><div class="mb wide">
+  <div class="mh"><div><span class="en-k" id="enK"></span><h3 id="enT"></h3><p id="enM"></p></div><button class="x" data-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+  <div class="mc" id="enBody"></div>
+</div></div>
+
+<!-- ================= GUEST MODAL ================= -->
+<div class="modal" id="podGuest" role="dialog" aria-modal="true" aria-labelledby="pgT"><div class="sc" data-close></div><div class="mb">
+  <div class="mh"><div><h3 id="pgT">Suggest a topic or be a guest</h3><p>Our producer reads every pitch and replies within a week.</p></div><button class="x" data-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+  <div class="mc"><form class="form" data-xhform="podcast-guest" data-done="Thanks — our producer will read your pitch and reply within a week." novalidate>
+    <div class="fi full"><label>I'd like to</label><div class="seg" id="pgType"><button type="button" data-v="guest" class="on">Be a guest</button><button type="button" data-v="topic">Suggest a topic</button><button type="button" data-v="nominate">Nominate someone</button></div><input type="hidden" name="type" id="pgTypeV" value="guest"></div>
+    <div class="fi"><label>Full name</label><input name="name" required autocomplete="name"><span class="em">Please enter your name</span></div>
+    <div class="fi"><label>Work email</label><input name="email" type="email" required autocomplete="email"><span class="em">Enter a valid email</span></div>
+    <div class="fi full"><label>Your role &amp; organisation <span class="opt">(optional)</span></label><input name="role" placeholder="e.g. Head of IT, logistics company"></div>
+    <div class="fi full"><label>Topic</label><select name="topic"><option>Security</option><option>Cloud &amp; infrastructure</option><option>AI &amp; data</option><option>Digital trust &amp; email</option><option>Something else</option></select></div>
+    <div class="fi full"><label id="pgPitchL">What would you talk about?</label><textarea name="pitch" required placeholder="The problem, what you did, what you learned."></textarea><span class="em">A line or two is enough</span></div>
+    <div class="full"><button class="btn btn-orange btn-block" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v4M8 22h8"/></svg> Send pitch <span class="ar">→</span></button><p class="fine" style="margin-top:8px">We only use your details to reply about the podcast. Guest spots are never paid.</p></div>
+  </form></div>
+</div></div>
+
+<!-- ================= MINI PLAYER ================= -->
+<div class="mini" id="mini" aria-label="Mini player" aria-hidden="true">
+  <div class="mi-pg" id="miPg" role="slider" tabindex="-1" aria-label="Seek"><i id="miBar"></i></div>
+  <div class="mi-cv" aria-hidden="true"><small>EP</small><b id="miN">24</b><span class="cv-eq"><i></i><i></i><i></i><i></i></span></div>
+  <div class="mi-t"><b id="miT"></b><span id="miS"></span></div>
+  <div class="mi-c">
+    <button type="button" class="mi-b mi-sk" id="miBack" aria-label="Back 15 seconds"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3"/><path d="M4.5 3.5v3.7h3.7"/></svg><span>15</span></button>
+    <button type="button" class="mi-b mi-pp" id="miPlay" aria-label="Play"><span class="i-pl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="i-pa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></span></button>
+    <button type="button" class="mi-b mi-sk" id="miFwd" aria-label="Forward 30 seconds"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3"/><path d="M19.5 3.5v3.7h-3.7"/></svg><span>30</span></button>
+    <button type="button" class="mi-b mi-x" id="miX" aria-label="Close player"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  </div>
+</div>
+
+</main><div class="toast" id="xhToast"><span id="xhToastT"></span></div><script>
+/* XcellHost v2 core runtime — exposes window.XH */
+(function(){
+  'use strict';
+  var d=document,root=d.documentElement;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine=window.matchMedia('(pointer:fine)').matches;
+  function $(s,c){return (c||d).querySelector(s);} function $$(s,c){return Array.prototype.slice.call((c||d).querySelectorAll(s));}
+  function store(k,v){try{if(v===undefined){return JSON.parse(localStorage.getItem(k));}localStorage.setItem(k,JSON.stringify(v));}catch(e){return null;}}
+  var XH=window.XH={reduce:reduce,fine:fine,$:$,$$:$$,store:store};
+  XH.inr=function(n,dec){n=+n||0;return '₹'+n.toLocaleString('en-IN',{minimumFractionDigits:dec||0,maximumFractionDigits:dec||0});};
+
+  /* ---------- toast ---------- */
+  var toastEl=$('#xhToast'),toastT,tt;
+  XH.toast=function(m){if(!toastEl)return;$('#xhToastT').textContent=m;toastEl.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){toastEl.classList.remove('on');},2600);};
+
+  /* ---------- theme ---------- */
+  var tbtn=$('#xhTheme');
+  function paintTheme(){var dk=root.getAttribute('data-theme')==='dark';if(tbtn){$('.tl',tbtn).textContent=dk?'Dark':'Light';tbtn.setAttribute('aria-pressed',dk);}}
+  if(tbtn)tbtn.addEventListener('click',function(){var dk=root.getAttribute('data-theme')!=='dark';root.setAttribute('data-theme',dk?'dark':'light');try{localStorage.setItem('xh-theme',dk?'dark':'light');}catch(e){}paintTheme();d.dispatchEvent(new CustomEvent('xh:theme',{detail:{dark:dk}}));});
+  paintTheme();
+  XH.dark=function(){return root.getAttribute('data-theme')==='dark';};
+
+  /* ---------- header, progress ---------- */
+  var hdr=$('#xhHdr'),prog=$('#xhProgress');
+  function onScroll(){var y=window.scrollY,h=d.documentElement.scrollHeight-innerHeight;if(prog)prog.style.width=(h>0?y/h*100:0)+'%';if(hdr)hdr.classList.toggle('scrolled',y>8);}
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  /* ---------- mega menu ---------- */
+  var nis=$$('#xhNav .ni'),hoverT;
+  function closeMega(except){nis.forEach(function(n){if(n!==except){n.classList.remove('open');$('button',n).setAttribute('aria-expanded','false');}});}
+  nis.forEach(function(n){
+    var b=$('button',n);
+    b.addEventListener('click',function(e){e.stopPropagation();var o=!n.classList.contains('open');closeMega(n);n.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});
+    if(fine){n.addEventListener('mouseenter',function(){clearTimeout(hoverT);hoverT=setTimeout(function(){closeMega(n);n.classList.add('open');b.setAttribute('aria-expanded','true');},90);});
+      n.addEventListener('mouseleave',function(){clearTimeout(hoverT);hoverT=setTimeout(function(){n.classList.remove('open');b.setAttribute('aria-expanded','false');},160);});}
+  });
+  d.addEventListener('click',function(e){if(!e.target.closest('#xhNav'))closeMega();});
+
+  /* ---------- mobile nav ---------- */
+  var mnav=$('#xhMnav');
+  function mOpen(o){if(!mnav)return;mnav.classList.toggle('open',o);mnav.setAttribute('aria-hidden',!o);d.body.classList.toggle('lock',o);}
+  var bg=$('#xhBurger');if(bg)bg.addEventListener('click',function(){mOpen(true);});
+  $$('[data-mclose]').forEach(function(x){x.addEventListener('click',function(){mOpen(false);});});
+  if(mnav)mnav.addEventListener('click',function(e){if(e.target.tagName==='A')mOpen(false);});
+
+  /* ---------- modals ---------- */
+  var lastFocus=null;
+  XH.open=function(id,opts){var m=d.getElementById(id);if(!m)return;lastFocus=d.activeElement;m.classList.add('open');d.body.classList.add('lock');
+    if(opts&&opts.topic){var s=$('#xhCbTopic');if(s){ensureTopic(opts.topic);s.value=opts.topic;}}
+    setTimeout(function(){var f=$('input:not([type=hidden]),select,textarea,button.x',m);if(f)f.focus();},60);
+    m.dispatchEvent(new CustomEvent('xh:open',{detail:opts||{}}));};
+  XH.close=function(id){var m=typeof id==='string'?d.getElementById(id):id;if(!m)return;m.classList.remove('open');if(!$('.modal.open')&&!$('.cart.open'))d.body.classList.remove('lock');if(lastFocus&&lastFocus.focus)lastFocus.focus();};
+  d.addEventListener('click',function(e){
+    var o=e.target.closest('[data-open]');if(o){e.preventDefault();var opts={topic:o.getAttribute('data-topic')};XH.open(o.getAttribute('data-open'),opts);return;}
+    var c=e.target.closest('[data-close]');if(c){XH.close(c.closest('.modal'));}
+  });
+  var vb=$('.cvid');if(vb)vb.addEventListener('click',function(){var yt=vb.getAttribute('data-yt');if(yt){var box=$('#xhVideo .mc > div');if(box)box.innerHTML='<iframe src="'+yt+'" style="width:100%;height:100%;border:0;border-radius:14px" allow="autoplay; encrypted-media" allowfullscreen></iframe>';}});
+
+  /* ---------- callback topics ---------- */
+  function ensureTopic(t){var s=$('#xhCbTopic');if(!s||!t)return;if(!$$('option',s).some(function(o){return o.value===t;})){var op=d.createElement('option');op.textContent=t;s.appendChild(op);}}
+  (window.XH_TOPICS||[]).forEach(ensureTopic);
+
+  XH.onForm=function(){};
+  var cartEl=null;function cartOpen(){}
+  document.addEventListener('submit',function(e){var f=e.target.closest('[data-xhform]');if(!f)return;e.preventDefault();if(!f.reportValidity())return;document.dispatchEvent(new CustomEvent('import-callback',{detail:'Podcast enquiry: '+f.getAttribute('data-xhform')}));});
+  /* ---------- search ---------- */
+  var sr=$('#xhSearch'),si=$('#xhSearchIn'),res=$('#xhSearchRes'),hl=0,hits=[];
+  function sOpen(o){if(!sr)return;sr.classList.toggle('open',o);d.body.classList.toggle('lock',o);if(o){si.value='';sRun();setTimeout(function(){si.focus();},30);}}
+  function sRun(){var q=si.value.trim().toLowerCase();var idx=window.XH_INDEX||[];
+    hits=idx.filter(function(x){return !q||(x.n+' '+x.d+' '+x.c).toLowerCase().indexOf(q)>-1;}).slice(0,12);hl=0;
+    res.innerHTML=hits.length?hits.map(function(x,i){return '<a href="'+x.h+'"'+(i===0?' class="hl"':'')+'><b>'+x.n+'</b><span>'+x.c+' · '+x.d+'</span></a>';}).join(''):'<div class="none">No matches for “'+si.value.replace(/</g,'&lt;')+'”. Try “cloud”, “email” or <a href="#" data-open="xhCallback" style="color:var(--blue);font-weight:600">ask an expert</a>.</div>';}
+  if(sr){$('#xhSearchBtn').addEventListener('click',function(){sOpen(true);});si.addEventListener('input',sRun);
+    sr.addEventListener('click',function(e){if(e.target===sr)sOpen(false);if(e.target.closest('a'))sOpen(false);});
+    si.addEventListener('keydown',function(e){var as=$$('a',res);if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();hl=(hl+(e.key==='ArrowDown'?1:-1)+as.length)%Math.max(as.length,1);as.forEach(function(a,i){a.classList.toggle('hl',i===hl);});}else if(e.key==='Enter'&&as[hl]){location.href=as[hl].getAttribute('href');sOpen(false);}});}
+  d.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){if(sr&&sr.classList.contains('open'))sOpen(false);var m=$('.modal.open');if(m)XH.close(m);if(cartEl&&cartEl.classList.contains('open'))cartOpen(false);if(mnav&&mnav.classList.contains('open'))mOpen(false);closeMega();}
+    if((e.key==='k'&&(e.ctrlKey||e.metaKey))||(e.key==='/'&&!/input|textarea|select/i.test(d.activeElement.tagName))){e.preventDefault();sOpen(true);}
+  });
+
+  /* ---------- reveal, counters ---------- */
+  var io='IntersectionObserver' in window?new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');if(x.target.hasAttribute('data-count'))countUp(x.target);io.unobserve(x.target);}});},{threshold:.14,rootMargin:'0px 0px -40px 0px'}):null;
+  XH.observe=function(scope){$$('.rv,[data-count],.step',scope).forEach(function(el){if(io)io.observe(el);else el.classList.add('in');});};
+  function countUp(el){var to=parseFloat(el.getAttribute('data-count')),dec=+(el.getAttribute('data-dec')||0),pre=el.getAttribute('data-pre')||'',suf=el.getAttribute('data-suf')||'';
+    if(reduce){el.textContent=pre+to.toLocaleString('en-IN',{minimumFractionDigits:dec,maximumFractionDigits:dec})+suf;return;}
+    var t0=null,dur=1400;function f(t){t0=t0||t;var p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,4);el.textContent=pre+(to*e).toLocaleString('en-IN',{minimumFractionDigits:dec,maximumFractionDigits:dec})+suf;if(p<1)requestAnimationFrame(f);}requestAnimationFrame(f);}
+  XH.observe();
+
+  /* ---------- FAQ ---------- */
+  d.addEventListener('click',function(e){var b=e.target.closest('.fq > button');if(!b)return;var q=b.parentNode,a=$('.fa',q),o=!q.classList.contains('open');q.classList.toggle('open',o);b.setAttribute('aria-expanded',o);a.style.maxHeight=o?a.scrollHeight+'px':'0px';});
+  $$('.fq.open .fa').forEach(function(a){a.style.maxHeight=a.scrollHeight+'px';});
+
+  /* ---------- tabs: <div data-tabs="g"><button data-tab="k">…  panels: <div data-panel="k" data-group="g"> ---------- */
+  d.addEventListener('click',function(e){var b=e.target.closest('[data-tabs] [data-tab]');if(!b)return;var bar=b.closest('[data-tabs]'),g=bar.getAttribute('data-tabs'),k=b.getAttribute('data-tab');
+    $$('[data-tab]',bar).forEach(function(x){x.classList.toggle('on',x===b);x.setAttribute('aria-selected',x===b);});
+    $$('[data-panel][data-group="'+g+'"]').forEach(function(p){p.classList.toggle('on',p.getAttribute('data-panel')===k);});
+    bar.dispatchEvent(new CustomEvent('xh:tab',{detail:{key:k}}));});
+
+  /* ---------- segmented controls: <div class="seg" data-name="x"><button data-v="..."> ---------- */
+  d.addEventListener('click',function(e){var b=e.target.closest('.seg button');if(!b)return;var s=b.parentNode;$$('button',s).forEach(function(x){x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',x===b);});s.dataset.value=b.getAttribute('data-v');s.dispatchEvent(new CustomEvent('change',{bubbles:true}));});
+  $$('.seg').forEach(function(s){var on=$('button.on',s)||$('button',s);if(on){on.classList.add('on');s.dataset.value=on.getAttribute('data-v');}});
+
+  /* ---------- range fill + steppers ---------- */
+  function fillRange(r){var p=(r.value-r.min)/(r.max-r.min)*100;r.style.setProperty('--p',p+'%');}
+  $$('input[type=range].rng').forEach(function(r){fillRange(r);r.addEventListener('input',function(){fillRange(r);});});
+  XH.fillRange=fillRange;
+  d.addEventListener('click',function(e){var b=e.target.closest('.stp button');if(!b)return;var inp=$('input',b.parentNode),mn=+(inp.min||0),mx=+(inp.max||9999),st=+(inp.step||1);inp.value=Math.max(mn,Math.min(mx,(+inp.value||0)+st*(+b.getAttribute('data-step'))));inp.dispatchEvent(new Event('input',{bubbles:true}));});
+  d.addEventListener('change',function(e){var i=e.target;if(i.closest&&i.closest('.stp')){var mn=+(i.min||0),mx=+(i.max||9999);i.value=Math.max(mn,Math.min(mx,Math.round(+i.value||mn)));i.dispatchEvent(new Event('input',{bubbles:true}));}});
+
+  /* ---------- copy ---------- */
+  d.addEventListener('click',function(e){var b=e.target.closest('[data-copy]');if(!b)return;var t=b.getAttribute('data-copy')||location.href;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){XH.toast('Copied to clipboard');},function(){var ta=d.createElement('textarea');ta.value=t;d.body.appendChild(ta);ta.select();try{d.execCommand('copy');XH.toast('Copied to clipboard');}catch(x){}ta.remove();});});
+
+  /* ---------- flash a value change ---------- */
+  XH.flash=function(el){if(!el||reduce)return;el.classList.remove('flash');void el.offsetWidth;el.classList.add('flash');};
+
+  /* ---------- download helper ---------- */
+  XH.download=function(name,text,type){var b=new Blob([text],{type:type||'text/plain'});var a=d.createElement('a');a.href=URL.createObjectURL(b);a.download=name;d.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},500);};
+
+  /* ---------- visibility helper for animations ---------- */
+  XH.whenVisible=function(el,cb){if(!el)return;if(!('IntersectionObserver' in window)){cb(true);return;}new IntersectionObserver(function(en){en.forEach(function(x){cb(x.isIntersecting);});},{threshold:.05}).observe(el);};
+})();
+
+
+(function(){var open=XH.open;XH.open=function(id,opts){if(id==='xhCallback'){document.dispatchEvent(new CustomEvent('import-callback',{detail:opts&&opts.topic}));return;}open(id,opts);};XH.cart={add:function(item){document.dispatchEvent(new CustomEvent('import-cart',{detail:item}));}};})();</script><script>
+(function(){
+  'use strict';
+  var XH=window.XH,$=XH.$,$$=XH.$$,reduce=XH.reduce;
+
+  /* =====================================================================
+     Episode data (illustrative). Add an `audio` URL to any episode and the
+     player switches from the narrated brief to real audio automatically.
+     ===================================================================== */
+  var TOPICS={
+    security:{l:'Security',i:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>'},
+    cloud:{l:'Cloud',i:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a5 5 0 01-.6-10A6 6 0 0118 9a4.5 4.5 0 01-.5 9z"/></svg>'},
+    ai:{l:'AI',i:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3a3 3 0 00-3 3 3 3 0 00-2 5 3 3 0 001 5 3 3 0 005 3V3zM15 3a3 3 0 013 3 3 3 0 012 5 3 3 0 01-1 5 3 3 0 01-5 3V3z"/></svg>'},
+    trust:{l:'Digital trust',i:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="13" rx="2"/><circle cx="12" cy="17" r="3"/><path d="M10.5 19.5L10 23l2-1 2 1-.5-3.5M7 7h10M7 10h6"/></svg>'}
+  };
+  var EPS=[
+    {n:24,date:'2026-10-01',min:44,topic:'ai',audio:'',
+     t:'GenAI at work: governance before disaster',
+     g:'Data Protection Officer at a Pune-based NBFC',
+     d:'Staff are already pasting customer data into public AI tools. What the DPDP Act expects of you, and the guardrails that stop a leak without banning AI outright.',
+     ch:[['0:00','Why “just ban it” never works'],['6:40','What staff actually paste into chatbots'],['14:15','DPDP Act duties that apply to AI use'],['23:30','Guardrails: allow-lists, DLP and prompt logs'],['33:10','Writing an AI policy people follow'],['40:20','Three things to do this quarter']],
+     tk:[['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>','Find out which AI tools are actually in use before you write a policy — the list is always longer than IT expects.'],['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>','Under the DPDP Act your company stays the data fiduciary, even when an employee pastes personal data into a third-party AI tool.'],['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>','Guardrails beat bans: approve one tool, block uploads of tagged data, and log prompts for review.']],
+     tr:[['Host','Let’s start with the uncomfortable bit. Who in a typical company is using AI tools today?'],['Guest','Everyone — and mostly not the tools IT approved. Sales uses one chatbot to draft proposals, finance uses another to tidy spreadsheets, and HR has tried summarising appraisal notes. None of them think of it as sharing data. They think of it as getting help.'],['Host','So where does the DPDP Act come in?'],['Guest','The moment personal data goes into that prompt, you are processing it, and the company is still the data fiduciary. You can’t tell the regulator an intern did it. So the first job isn’t a policy document. It’s visibility: which tools, what’s being pasted, and then what you allow.']],
+     brief:'In episode twenty-four, we sit down with the data protection officer of a Pune-based lender to talk about generative AI at work. Staff are already using public chatbots, often with customer data in the prompt. Under India’s DPDP Act, the company stays responsible for that data, even when an employee shares it without thinking. Our guest explains why blanket bans fail, how to discover which AI tools are really in use, and the guardrails that work: one approved tool, data loss prevention on uploads, and prompt logging. We close with three steps any mid-sized business can take this quarter.'},
+    {n:23,date:'2026-09-17',min:41,topic:'ai',audio:'',
+     t:'Microsoft 365 Copilot: rollout lessons',
+     g:'IT Director at a Mumbai manufacturing group',
+     d:'What happened when a mid-sized company switched Copilot on. The permissions clean-up nobody planned for, how to run a pilot, and how to judge value per licence.',
+     ch:[['0:00','Why they started with 25 licences'],['7:20','The oversharing problem Copilot exposed'],['15:45','Cleaning up SharePoint permissions'],['24:10','Training that actually changed habits'],['32:30','Measuring value per licence'],['37:50','What they’d do differently']],
+     tk:[['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>','Copilot can surface anything a user can already open — fix SharePoint and Teams permissions before rollout, not after.'],['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2 20a7 7 0 0114 0M17 11a3 3 0 000-6M22 20a6 6 0 00-4-5.6"/></svg>','Pilot with heavy email and document users, not only senior management, so you learn where it saves real time.'],['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>','Track a handful of concrete tasks — meeting recaps, first drafts, inbox triage — to judge value per licence.']],
+     tr:[['Host','You switched Copilot on for a pilot group. What surprised you in the first week?'],['Guest','A finance user asked it to summarise “recent salary discussions” and it found an HR folder that had been shared with the whole company years ago. Copilot didn’t break anything. It just made an old mistake very easy to find.'],['Host','So permissions became the project.'],['Guest','Exactly. We paused for three weeks, ran a sharing report across SharePoint and Teams, and fixed the “everyone” links. Only then did we widen the pilot. My advice is simple: budget as much time for the clean-up as for the licences, because the clean-up is what makes the rollout safe.']],
+     brief:'Episode twenty-three is about Microsoft 365 Copilot, and what really happens when a company switches it on. Our guest, the IT director of a Mumbai manufacturing group, started with a small pilot and quickly found that Copilot surfaces anything a user can already open, including old folders shared far too widely. We talk through the permissions clean-up, choosing the right pilot users, training that changes habits, and a simple way to measure whether each licence is paying for itself. If Copilot is on your roadmap, start here.'},
+    {n:22,date:'2026-09-03',min:39,topic:'ai',audio:'',
+     t:'Running AI inference on GPU cloud in India',
+     g:'ML Platform Lead at a Bengaluru health-tech startup',
+     d:'Training gets the headlines; inference pays the bills. Choosing GPUs, keeping latency and cost per request in check, and keeping patient data in India.',
+     ch:[['0:00','Training vs inference — different problems'],['6:30','Choosing a GPU for your model size'],['13:50','Latency, batching and cost per request'],['22:15','Keeping patient data in India'],['30:40','Autoscaling without idle GPUs'],['35:20','Listener questions']],
+     tk:[['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="11" rx="2"/><circle cx="8" cy="12.5" r="2.5"/><circle cx="15.5" cy="12.5" r="2.5"/><path d="M5 18v3M19 18v3"/></svg>','Size the GPU to the model’s memory needs first — for inference, raw compute is rarely the bottleneck.'],['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14l4-4"/><path d="M3.3 17a9 9 0 1117.4 0"/></svg>','Batching requests and quantising models can cut cost per request without a noticeable drop in quality.'],['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6 7-12a7 7 0 00-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>','Serving from Indian data centres makes data-residency questions from health and finance customers far easier to answer.']],
+     tr:[['Host','Most GPU conversations are about training. Why did inference become your bigger problem?'],['Guest','Because training happens a few times a quarter, and inference happens every time a doctor opens a report. Our model runs thousands of times a day. Once it was in production, the monthly bill was all inference.'],['Host','What changed the numbers?'],['Guest','Two things. We stopped choosing GPUs by benchmark scores and started with memory: does the model fit, with room for a batch? Then we batched requests and quantised the model. Quality stayed within our clinical thresholds and cost per request fell sharply. And because hospitals ask where data lives, we kept everything in Indian regions from day one.']],
+     brief:'In episode twenty-two, we talk about running AI inference on GPU cloud in India with the ML platform lead of a Bengaluru health-tech startup. Training gets the attention, but inference is where the monthly bill comes from. Our guest explains how to choose a GPU by memory rather than benchmark scores, how batching and quantisation lower cost per request, and how to autoscale without paying for idle cards. We also cover why serving from Indian data centres makes data-residency conversations with hospitals and insurers much simpler.'},
+    {n:21,date:'2026-08-20',min:42,topic:'security',audio:'',
+     t:'Container supply-chain security',
+     g:'DevSecOps Manager at a Hyderabad SaaS company',
+     d:'Your containers are only as safe as the images and packages inside them. Base images, scanning, signing, SBOMs and what Kubernetes should refuse to run.',
+     ch:[['0:00','What “supply chain” means for containers'],['5:50','Base images and the CVE flood'],['13:30','Scanning in the pipeline and the registry'],['21:40','Signing images and SBOMs'],['30:15','Admission control in Kubernetes'],['37:30','A 30-day starter plan']],
+     tk:[['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5M3 17.5l9 5 9-5"/></svg>','Use small, maintained base images — fewer packages means fewer vulnerabilities to triage every week.'],['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 012-2h2M17 3h2a2 2 0 012 2v2M21 17v2a2 2 0 01-2 2h-2M7 21H5a2 2 0 01-2-2v-2M3 12h18"/></svg>','Scan at build time and again in the registry; new CVEs are published long after an image ships.'],['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17c3-1 4-8 6-8s0 8 3 8 3-4 5-4 2 3 4 3"/><path d="M3 21h18"/></svg>','Sign images in the pipeline and let the cluster run only signed images from your own registry.']],
+     tr:[['Host','When people hear “software supply chain”, they think of big headline attacks. What does it look like day to day?'],['Guest','Honestly, it looks like a scanner report with four hundred findings that nobody reads. Most of those come from the base image — packages your app never uses but ships anyway.'],['Host','So where do you start?'],['Guest','Shrink the base image first. Moving to a minimal image cut our findings by more than half before we fixed a single line of code. Then scan twice: in the pipeline, and again in the registry every night, because a clean image today can have a critical CVE next month. Signing comes after that, once you trust what you are signing.']],
+     brief:'Episode twenty-one covers container supply-chain security with the DevSecOps manager of a Hyderabad software company. A container is only as safe as the images and packages inside it, and most vulnerability reports come from base images full of software the app never uses. We discuss shrinking base images, scanning both in the pipeline and in the registry, signing images and generating a software bill of materials, and using Kubernetes admission control so the cluster only runs what you trust. The episode ends with a practical thirty-day starter plan.'},
+    {n:20,date:'2026-08-06',min:36,topic:'trust',audio:'',
+     t:'SSL lifetimes are shrinking — why ACME automation matters now',
+     g:'Infrastructure Lead at a Chennai hosting provider',
+     d:'Certificate lifetimes drop to 200 days, then 100, then 47. Why manual renewals stop working, and how ACME takes the job off your calendar.',
+     ch:[['0:00','The new 200, 100 and 47-day limits'],['6:10','Why manual renewals break at scale'],['12:40','How ACME works, in plain English'],['20:30','HTTP-01 vs DNS-01 in the real world'],['28:00','Inventory: finding every certificate'],['32:45','Wrap-up']],
+     tk:[['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>','Public certificate lifetimes fall to 200 days in 2026, 100 in 2027 and 47 in 2029 — renewals multiply each step.'],['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>','ACME clients such as Certbot and cert-manager renew on their own; set them up before the next cut, not after an outage.'],['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>','Start with an inventory — the certificate that expires is usually the one nobody knew existed.']],
+     tr:[['Host','For years SSL renewal was a once-a-year calendar reminder. What changed?'],['Guest','The industry voted to shorten certificate lifetimes in stages. We’re at 200 days now, 100 next year and 47 by 2029. At 47 days, a team with fifty certificates is renewing something almost every week.'],['Host','And by hand that’s…'],['Guest','A guaranteed outage, sooner or later. We had one ourselves — a forgotten certificate on an internal API. That’s what pushed us to ACME. The client proves you own the domain, fetches the certificate, installs it and reloads the server. Nobody touches it. The hard part isn’t ACME; it’s finding every certificate you already have.']],
+     brief:'Episode twenty is about shrinking SSL certificate lifetimes, and why ACME automation matters right now. Our guest runs infrastructure at a Chennai hosting provider. Public certificates are moving to a maximum of two hundred days, then one hundred, and forty-seven by 2029, which means renewals become a weekly job for most teams. We explain how ACME works in plain English, when to use HTTP or DNS validation, and why the first step is an inventory of every certificate you already run. A short, practical episode for anyone who has lived through an expiry outage.'},
+    {n:19,date:'2026-07-23',min:46,topic:'security',audio:'',
+     t:'What a real ransomware recovery looks like',
+     g:'Head of IT at a Gujarat logistics firm',
+     d:'One attack, hour by hour. Containment, finding a clean backup, restoring in the right order, and talking to customers, insurers and CERT-In.',
+     ch:[['0:00','The 2 a.m. phone call'],['7:45','Containment: what to unplug first'],['16:20','Finding a backup you can trust'],['25:30','Restoring in the right order'],['34:10','Customers, insurers and CERT-In'],['41:00','What changed afterwards']],
+     tk:[['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>','Keep at least one immutable or offline backup copy — attackers go after backups before they encrypt anything else.'],['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>','Write the restore order down in advance: identity first, then network, core applications, then everything else.'],['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0zM12 9v4M12 17h.01"/></svg>','CERT-In expects cyber incidents to be reported within six hours — decide now who files that report.']],
+     tr:[['Host','Take us back to the night it happened.'],['Guest','My phone rang just after two. The warehouse team couldn’t print shipping labels, and then they couldn’t log in at all. By the time I reached a laptop, file servers were showing ransom notes.'],['Host','What did you do in the first hour?'],['Guest','Pulled the internet links and isolated the server VLANs. People think containment is clever forensics. In that first hour it’s mostly unplugging things. The bigger shock came later: the attackers had deleted our online backups days earlier. What saved us was an immutable copy we’d added six months before, almost as an afterthought.']],
+     brief:'In episode nineteen, the head of IT at a Gujarat logistics company walks us through a real ransomware attack, hour by hour. We cover the first phone call, what to disconnect first, and the moment the team realised their online backups had already been deleted. An immutable backup copy, added months earlier, made recovery possible. Our guest explains the order they restored systems in, how they handled customers and their insurer, and India’s six-hour CERT-In reporting window. It’s an honest, practical account of what recovery actually involves.'},
+    {n:18,date:'2026-07-09',min:43,topic:'cloud',audio:'',
+     t:'Kubernetes in production — lessons from the NOC',
+     g:'Platform Engineering Lead at a Mumbai e-commerce company',
+     d:'The alerts that matter at 3 a.m., the resource settings that prevent most outages, and how to upgrade clusters without a maintenance window.',
+     ch:[['0:00','The alerts that matter at 3 a.m.'],['6:50','Resource requests and noisy neighbours'],['15:10','Upgrades without downtime'],['24:30','Storage and stateful workloads'],['32:40','Observability on a budget'],['39:30','Checklist recap']],
+     tk:[['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14l4-4"/><path d="M3.3 17a9 9 0 1117.4 0"/></svg>','Set CPU and memory requests on every workload — many “random” outages are really resource starvation.'],['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4M3 11V9a3 3 0 013-3h15M7 22l-4-4 4-4M21 13v2a3 3 0 01-3 3H3"/></svg>','Upgrade one minor version at a time, on a fixed schedule, with a rollback you have actually tested.'],['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>','Alert on what users feel — latency and error rates — not on every pod restart.']],
+     tr:[['Host','From the NOC side, the most common Kubernetes call we get isn’t a crash. It’s “the site is slow”.'],['Guest','Same for us. Nine times out of ten it was a pod without resource requests. The scheduler packs it next to something busy and both suffer. Once we enforced requests and limits through policy, our sale-day incidents dropped noticeably.'],['Host','And upgrades?'],['Guest','We used to dread them, so we skipped them, and that made the next one worse. Now it’s one minor version per quarter, a staging cluster first, and node pools rolled one at a time. It’s boring — and boring is exactly what you want on an e-commerce platform.']],
+     brief:'Episode eighteen brings lessons from the network operations centre on running Kubernetes in production. Our guest leads platform engineering at a Mumbai e-commerce company. We talk about which alerts deserve a 3 a.m. call, why missing resource requests cause so many slowdowns, and how to upgrade clusters one version at a time without downtime. We also cover stateful workloads, observability on a sensible budget, and a short checklist you can run against your own clusters this week.'},
+    {n:17,date:'2026-06-25',min:37,topic:'trust',audio:'',
+     t:'DMARC, BIMI and brand protection',
+     g:'Email Security Manager at a private-sector bank',
+     d:'Why spoofed emails still reach customers, how to move safely from p=none to reject, and what BIMI logos actually do for trust.',
+     ch:[['0:00','Why spoofing still works'],['5:30','SPF, DKIM and DMARC in two minutes'],['11:20','From p=none to p=reject, safely'],['20:15','Reading aggregate reports'],['27:40','BIMI and verified logos'],['33:10','Listener questions']],
+     tk:[['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/></svg>','Publish DMARC at p=none first, read the reports, then tighten to quarantine and reject in planned steps.'],['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>','Aggregate reports reveal every service sending mail as your domain — including the ones everyone forgot.'],['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="12" r="2.5"/><path d="M14 10h5M14 14h4M5 17a3.5 3.5 0 016 0"/></svg>','BIMI shows your logo in supporting inboxes, but only once DMARC is enforced.']],
+     tr:[['Host','Banks are the most impersonated brands in India. Why does spoofing still work?'],['Guest','Because many domains still publish DMARC at “none”, which tells receiving servers to report fake mail but deliver it anyway. Attackers check that. It’s public.'],['Host','So why not jump straight to reject?'],['Guest','Because you will block your own invoices. When we turned on reporting, we found eleven services sending as our domain — a survey tool, an old marketing platform, a vendor’s ticketing system. We fixed SPF and DKIM for each one, moved to quarantine, watched for a month, and only then went to reject. After that, BIMI was the reward: our logo in the inbox.']],
+     brief:'Episode seventeen is about DMARC, BIMI and protecting your brand in the inbox. Our guest manages email security at a private-sector bank, one of the most impersonated kinds of brand in India. We explain SPF, DKIM and DMARC in two minutes, then walk through the safe path from monitoring to full rejection without blocking your own invoices. Our guest shares how aggregate reports uncovered services nobody knew were sending mail, and what BIMI logos really add once enforcement is in place.'},
+    {n:16,date:'2026-06-11',min:40,topic:'cloud',audio:'',
+     t:'Cutting cloud bills without cutting corners',
+     g:'Head of FinOps at a Mumbai media company',
+     d:'Where cloud money really goes, rightsizing without risk, commitments, storage tiers and getting every team to own its spend.',
+     ch:[['0:00','Where cloud money actually goes'],['6:00','Rightsizing without risk'],['13:40','Reserved capacity and commitments'],['21:20','Storage tiers and data you forgot'],['29:30','Showback: making teams own spend'],['35:45','Quick wins list']],
+     tk:[['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>','Rightsize from thirty days of real utilisation data, not from launch-day guesses.'],['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>','Old snapshots and unattached volumes are the easiest savings in almost every cloud account.'],['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2 20a7 7 0 0114 0M17 11a3 3 0 000-6M22 20a6 6 0 00-4-5.6"/></svg>','Show each team its own bill — spending falls quickly once owners can see it.']],
+     tr:[['Host','Most CFOs we meet say the cloud bill “just keeps growing”. Where does the money go?'],['Guest','In our case, three places: servers sized for a launch that happened two years ago, storage nobody had looked at, and environments left running over weekends. None of it was a bad decision at the time.'],['Host','How did you change it without breaking things?'],['Guest','We looked at a month of real utilisation before touching anything, then resized in small steps with a rollback ready. The surprise was storage — thousands of old snapshots. But the lasting change was showback. Once each team saw its own number every month, they started asking us how to cut it.']],
+     brief:'In episode sixteen we talk about cutting cloud bills without cutting corners, with the head of FinOps at a Mumbai media company. Our guest explains where cloud money really goes: servers sized for old launches, forgotten storage, and environments running all weekend. We cover rightsizing from real utilisation data, when reserved capacity makes sense, cleaning up snapshots and storage tiers, and showback reports that make every team own its spend. There is a quick-wins list at the end that most companies can act on within a week.'},
+    {n:15,date:'2026-05-28',min:38,topic:'security',audio:'',
+     t:'Zero Trust without the hype',
+     g:'Head of Security at a Mumbai fintech',
+     d:'Zero Trust is a way of working, not a product. Identity first, device health as a gate, and replacing the flat VPN one application at a time.',
+     ch:[['0:00','What Zero Trust is — and isn’t'],['6:20','Identity first: MFA and conditional access'],['14:00','Device health as a gate'],['21:30','Replacing the flat VPN'],['29:10','Where a small team should start'],['34:30','Wrap-up']],
+     tk:[['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0114 0M16 11l2 2 4-4"/></svg>','Zero Trust starts with identity: strong MFA and conditional access before buying anything new.'],['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>','Check device health before granting access — a valid password on an infected laptop is still a breach.'],['<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v5M5 17v-3h14v3"/></svg>','Replace the flat VPN application by application; there is no need for a big-bang migration.']],
+     tr:[['Host','Every vendor sells Zero Trust now. What does it actually mean to you?'],['Guest','It means we stopped trusting the network. Being on the office Wi-Fi or the VPN no longer gets you anything. Every request is checked: who you are, what device you’re on, and whether that device is healthy.'],['Host','Where did you start?'],['Guest','Identity. Phishing-resistant MFA for everyone, then conditional access rules — no admin access from unmanaged devices, no logins from countries we don’t operate in. That alone closed most of our real risk. The VPN came later, one application at a time. We never bought a product called Zero Trust.']],
+     brief:'Episode fifteen strips the hype out of Zero Trust. Our guest leads security at a Mumbai fintech, and explains that Zero Trust is a way of working, not a product you buy. We start with identity, using strong multi-factor authentication and conditional access, then add device health checks so a stolen password on an infected laptop gets nowhere. Finally, we discuss retiring the flat VPN one application at a time, and where a small security team should begin on Monday morning.'}
+  ];
+  var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function fdate(s){var p=s.split('-');return (+p[2])+' '+MON[+p[1]-1]+' '+p[0];}
+  function tsec(s){var p=s.split(':');return (+p[0])*60+(+p[1]);}
+  function fmt(s){s=Math.max(0,Math.floor(s+.0001));var m=Math.floor(s/60),x=s%60;return m+':'+(x<10?'0':'')+x;}
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  var BY={};EPS.forEach(function(e){BY[e.n]=e;
+    e.sents=[];var re=/[^.!?]+[.!?]+[”’"')]*\s*/g,m;while((m=re.exec(e.brief))){e.sents.push({a:m.index,b:m.index+m[0].length,t:m[0].trim()});}
+    if(!e.sents.length)e.sents=[{a:0,b:e.brief.length,t:e.brief}];
+  });
+  var LATEST=EPS[0];
+
+  /* =====================================================================
+     Player — one global state shared by hero card, episode list, mini
+     player and show notes. Engines: real <audio>, speech brief, timed sim.
+     ===================================================================== */
+  var CPS=14.5;                 // characters per second of narration at 1×
+  var RATES=[1,1.25,1.5,2];
+  var P={ep:null,playing:false,rate:1};
+  var B={pos:0,si:0,tok:0,started:false,lastC:0,lastT:0,paused:false,restart:true,sub:null,waited:false};
+  var synth=null;try{if('speechSynthesis' in window&&window.SpeechSynthesisUtterance)synth=window.speechSynthesis;}catch(e){}
+  var voice=null,voiceCount=0;
+  function loadVoices(){if(!synth)return 0;var v=[];try{v=synth.getVoices()||[];}catch(e){}
+    voiceCount=v.length;
+    voice=v.filter(function(x){return /^en[-_]IN/i.test(x.lang);})[0]||v.filter(function(x){return /^en[-_]GB/i.test(x.lang)&&x.localService;})[0]||v.filter(function(x){return /^en/i.test(x.lang);})[0]||null;
+    return voiceCount;}
+  if(synth){try{synth.cancel();}catch(e){}loadVoices();
+    try{synth.addEventListener('voiceschanged',loadVoices);}catch(e){try{synth.onvoiceschanged=loadVoices;}catch(x){}}}
+  var told={};function tellOnce(k,m){if(told[k])return;told[k]=1;XH.toast(m);}
+
+  var aud=null;
+  function audioEl(){
+    if(aud)return aud;
+    aud=new Audio();aud.preload='metadata';
+    aud.addEventListener('ended',function(){P.playing=false;renderState();renderProgress();});
+    aud.addEventListener('loadedmetadata',renderProgress);
+    aud.addEventListener('error',function(){if(!P.ep||!P.ep.audio)return;P.ep._af=1;var was=P.playing;P.playing=false;
+      tellOnce('aerr','Full audio could not load — playing the episode brief instead');renderLoaded();if(was)P.play();});
+    return aud;
+  }
+  function mode(){return P.ep&&P.ep.audio&&!P.ep._af?'audio':'brief';}
+  function len(){return P.ep.brief.length;}
+
+  /* ---- speech helpers ---- */
+  function sentAt(c){var s=P.ep.sents;for(var i=0;i<s.length;i++){if(c<s[i].b)return i;}return s.length-1;}
+  function nearestSent(c){var s=P.ep.sents,best=0,bd=1e9;for(var i=0;i<s.length;i++){var d=Math.abs(s[i].a-c);if(d<bd){bd=d;best=i;}}return best;}
+  function stopSpeech(){B.tok++;B.started=false;B.paused=false;if(synth){try{synth.cancel();if(synth.paused)synth.resume();}catch(e){}}}
+  function speakFrom(i){
+    var ep=P.ep,s=ep.sents[i];stopSpeech();var tok=B.tok;
+    B.si=i;B.pos=s.a;B.lastC=s.a;B.lastT=performance.now();B.restart=false;B.sub='speech';
+    var u;try{u=new SpeechSynthesisUtterance(s.t);}catch(e){toSim();return;}
+    u.rate=P.rate;u.pitch=1;if(voice){u.voice=voice;u.lang=voice.lang;}else u.lang='en-IN';
+    u.onstart=function(){if(tok!==B.tok)return;B.started=true;B.lastC=s.a;B.lastT=performance.now();};
+    u.onboundary=function(e){if(tok!==B.tok)return;B.started=true;if(typeof e.charIndex==='number'){var c=s.a+e.charIndex;if(c>=B.lastC){B.lastC=c;B.lastT=performance.now();}}};
+    u.onend=function(){if(tok!==B.tok)return;B.pos=s.b;B.lastC=s.b;if(i+1<ep.sents.length&&P.playing)speakFrom(i+1);else if(i+1>=ep.sents.length)briefEnd();else B.restart=true;};
+    u.onerror=function(e){if(tok!==B.tok)return;var er=e&&e.error;if(er==='interrupted'||er==='canceled')return;toSim();};
+    setTimeout(function(){if(tok===B.tok&&!B.started&&P.playing&&B.sub==='speech'&&!(synth&&synth.speaking))toSim();},2600);
+    try{synth.speak(u);}catch(e){toSim();}
+  }
+  function toSim(){
+    if(B.sub==='sim')return;stopSpeech();B.sub='sim';
+    tellOnce('sim','Voice playback isn’t available in this browser — showing a timed preview. Full audio coming soon.');
+    renderNote();if(P.playing)loop();
+  }
+  function briefEnd(){
+    stopSpeech();B.pos=len();B.restart=true;P.playing=false;renderState();renderProgress();
+    tellOnce('end','That was the episode brief — full episode audio is coming soon.');
+  }
+  function briefPlay(){
+    if(B.pos>=len()-2){B.pos=0;B.restart=true;}
+    if(!synth){B.sub='sim';tellOnce('sim','Voice playback isn’t available in this browser — showing a timed preview. Full audio coming soon.');return;}
+    if(B.sub==='sim')return; // already degraded for this page view
+    if(!loadVoices()){
+      if(!B.waited){B.waited=true;setTimeout(function(){if(P.playing&&mode()==='brief'&&B.sub!=='sim'){if(loadVoices())speakFrom(sentAt(B.pos));else toSim();}},450);return;}
+      toSim();return;
+    }
+    if(B.paused&&!B.restart&&B.sub==='speech'){
+      B.paused=false;B.lastT=performance.now();
+      try{synth.resume();}catch(e){}
+      var tok=B.tok;setTimeout(function(){if(tok===B.tok&&P.playing&&synth&&!synth.speaking)speakFrom(B.si);},700);
+      return;
+    }
+    speakFrom(sentAt(B.pos));
+  }
+  function briefPause(){
+    if(B.sub==='speech'&&synth){
+      if(B.started&&synth.speaking){try{synth.pause();}catch(e){}B.paused=true;}
+      else{stopSpeech();B.restart=true;}
+    }
+  }
+  function briefSeek(c){
+    c=Math.max(0,Math.min(len()-1,c));
+    if(B.sub==='sim'||!synth){B.pos=c;B.si=sentAt(c);return;}
+    var i=nearestSent(c);B.si=i;B.pos=P.ep.sents[i].a;B.lastC=B.pos;
+    if(P.playing&&B.sub==='speech'){speakFrom(i);}else{stopSpeech();B.restart=true;}
+  }
+
+  /* ---- public player API ---- */
+  P.load=function(ep){
+    if(P.ep===ep)return;
+    if(aud){try{aud.pause();}catch(e){}}
+    stopSpeech();P.playing=false;
+    P.ep=ep;B.pos=0;B.si=0;B.restart=true;if(B.sub==='speech')B.sub=null;
+    if(mode()==='audio'){var a=audioEl();a.src=ep.audio;a.playbackRate=P.rate;}
+    renderLoaded();renderState();renderProgress();
+  };
+  P.play=function(){
+    if(!P.ep)P.load(LATEST);
+    P.touched=true;P.playing=true;
+    if(mode()==='audio'){var a=audioEl();a.playbackRate=P.rate;var pr=a.play();if(pr&&pr.catch)pr.catch(function(){P.ep._af=1;renderLoaded();P.play();});}
+    else briefPlay();
+    renderState();loop();updMini();
+  };
+  P.pause=function(){
+    if(!P.playing)return;
+    if(mode()==='audio'){if(aud)aud.pause();}else briefPause();
+    P.playing=false;renderState();renderProgress();
+  };
+  P.toggle=function(ep){if(ep&&ep!==P.ep){P.load(ep);P.play();return;}P.playing?P.pause():P.play();};
+  P.time=function(){if(!P.ep)return 0;return mode()==='audio'?((aud&&aud.currentTime)||0):B.pos/CPS;};
+  P.dur=function(){if(!P.ep)return 0;if(mode()==='audio'){var d=aud&&aud.duration;return isFinite(d)&&d>0?d:P.ep.min*60;}return len()/CPS;};
+  P.seek=function(t){
+    if(!P.ep)return;t=Math.max(0,Math.min(P.dur()-.2,t));
+    if(mode()==='audio'){if(aud)aud.currentTime=t;}else briefSeek(t*CPS);
+    renderProgress();
+  };
+  P.skip=function(d){P.seek(P.time()+d);};
+  P.setRate=function(r){
+    P.rate=r;
+    if(mode()==='audio'){if(aud)aud.playbackRate=r;}
+    else if(B.sub==='speech'){if(P.playing)speakFrom(B.si);else{stopSpeech();B.restart=true;}}
+    renderRate();
+  };
+  P.chapter=function(ep,idx){
+    if(ep!==P.ep)P.load(ep);
+    if(mode()==='audio'){P.seek(tsec(ep.ch[idx][0]));if(!P.playing)P.play();}
+    else{P.seek(0);if(!P.playing)P.play();tellOnce('ch','Chapter jumps arrive with the full audio — playing the episode brief.');}
+  };
+
+  /* ---- animation loop ---- */
+  var raf=0,lastNow=0;
+  function loop(){if(raf)return;lastNow=performance.now();raf=requestAnimationFrame(frame);}
+  function frame(now){
+    raf=0;var dt=Math.min(.25,(now-lastNow)/1000);lastNow=now;
+    if(P.playing&&mode()==='brief'){
+      if(B.sub==='sim'||(!synth)){B.pos+=dt*CPS*P.rate;if(B.pos>=len()){B.pos=len();briefEnd();}}
+      else if(B.sub==='speech'&&B.started&&!B.paused){
+        var s=P.ep.sents[B.si],est=B.lastC+(now-B.lastT)/1000*CPS*P.rate;
+        est=Math.min(est,B.lastC+40,s.b-1);B.pos=Math.max(B.pos,Math.max(s.a,est));
+      }
+    }
+    renderProgress();
+    if(P.playing)raf=requestAnimationFrame(frame);
+  }
+
+  /* =====================================================================
+     Rendering
+     ===================================================================== */
+  var np=$('#np'),wv=$('#npWv'),wvB=$('#wvB'),wvF=$('#wvF'),cap=$('#npCap'),mini=$('#mini'),bg=$('#podBg');
+  function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;var t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return ((t^t>>>14)>>>0)/4294967296;};}
+  function waveBars(ep){var r=rng(ep.n*7919),N=72,out=[];for(var i=0;i<N;i++){var x=i/N,env=.45+.55*Math.sin(Math.PI*Math.min(1,x*1.15+.04));var h=env*(.35+.65*Math.abs(Math.sin(i*.42+ep.n)))*(.55+.45*r());out.push(Math.max(12,Math.round(h*100)));}return out;}
+  function renderLoaded(){
+    var ep=P.ep;if(!ep)return;
+    $('#npCvEp').textContent='EP '+ep.n;
+    $('#npK').textContent=(ep===LATEST?'Latest episode · ':'Episode '+ep.n+' · ')+fdate(ep.date);
+    $('#npT').textContent=ep.t;$('#npG').textContent='with the '+ep.g;
+    var bars=waveBars(ep).map(function(h){return '<span class="b" style="--h:'+h+'%"></span>';}).join('');
+    wvB.innerHTML=bars;wvF.innerHTML=bars;
+    $('#npChM').innerHTML='<div class="chh">Chapters · '+ep.min+' min episode</div>'+ep.ch.map(function(c,i){return '<button type="button" role="menuitem" data-ci="'+i+'"><em>'+c[0]+'</em><span>'+esc(c[1])+'</span><i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></i></button>';}).join('');
+    $('#miN').textContent=ep.n;$('#miT').textContent=ep.t;
+    capKey='';renderNote();
+  }
+  function renderNote(){
+    if(!P.ep)return;var m=mode(),t;
+    var md=$('#npMode');md.textContent=m==='audio'?'Full episode':'Episode brief';md.classList.toggle('full',m==='audio');
+    if(m==='audio')t=P.playing?'Playing the full episode':'Full episode · '+P.ep.min+' min';
+    else if(B.sub==='sim')t='Timed preview of the episode brief — full audio coming soon';
+    else if(P.playing)t='Listening to the episode brief — full audio coming soon';else if(B.pos>=len()-1)t='Brief finished — full episode audio coming soon';else if(B.pos>0)t='Paused · episode brief — full audio coming soon';else t='Press play for a '+Math.round(P.dur()/5)*5+'-second episode brief — full audio coming soon';
+    $('#npNoteT').textContent=t;
+  }
+  function renderState(){
+    var on=P.playing,ep=P.ep;
+    np.classList.toggle('playing',on);mini.classList.toggle('playing',on);
+    $('#npPlay').setAttribute('aria-label',on?'Pause':'Play');$('#miPlay').setAttribute('aria-label',on?'Pause':'Play');
+    $('#npPlay').classList.toggle('playing',on);$('#miPlay').classList.toggle('playing',on);
+    if(bg)bg.classList.toggle('live',on&&!reduce);
+    $$('.ep').forEach(function(r){var cur=ep&&+r.getAttribute('data-n')===ep.n;r.classList.toggle('cur',!!cur);r.classList.toggle('playing',!!cur&&on);
+      var b=$('.ep-play',r);b.classList.toggle('playing',!!cur&&on);b.setAttribute('aria-label',(cur&&on?'Pause':'Play')+' episode '+r.getAttribute('data-n')+' brief');});
+    var hp=$('#heroPlay');hp.classList.toggle('playing',on);
+    $('#heroPlayL').textContent=on?'Pause episode '+ep.n:'Play the latest episode';
+    var nb=$('#enPlay');if(nb&&notesEp){var c2=notesEp===ep&&on;nb.classList.toggle('playing',c2);$('span.l',nb).textContent=c2?'Pause':(mode()==='audio'&&notesEp===ep?'Play episode':'Play the episode brief');}
+    renderNote();
+  }
+  function renderRate(){var r=P.rate,lbl=(r===1?'1':String(r))+'×';var b=$('#npSpeed');b.textContent=lbl;b.classList.remove('bump');void b.offsetWidth;b.classList.add('bump');b.setAttribute('aria-label','Playback speed '+lbl);}
+  var capKey='';
+  function renderCaption(){
+    var ep=P.ep;if(!ep)return;
+    if(mode()==='audio'||(!P.playing&&B.pos<=0)){if(capKey!=='d'+ep.n){capKey='d'+ep.n;cap.textContent=ep.d;}return;}
+    if(B.pos>=len()){if(capKey!=='e'+ep.n){capKey='e'+ep.n;cap.innerHTML='<span class="sd">That was the brief.</span> Open the show notes for chapters, takeaways and the transcript.';}return;}
+    var i=sentAt(B.pos),s=ep.sents[i],k=Math.max(0,Math.min(s.t.length,Math.round(B.pos-s.a)));
+    var cut=s.t.lastIndexOf(' ',k);if(k>=s.t.length-1)cut=s.t.length;else if(cut<0)cut=0;
+    var key=ep.n+':'+i+':'+cut;if(key===capKey)return;capKey=key;
+    cap.innerHTML='<span class="sd">'+esc(s.t.slice(0,cut))+'</span>'+esc(s.t.slice(cut));
+  }
+  function renderProgress(){
+    if(!P.ep)return;var t=P.time(),d=P.dur(),f=d?Math.min(1,t/d):0;
+    wv.style.setProperty('--p',(f*100).toFixed(2)+'%');wv.setAttribute('aria-valuenow',Math.round(f*100));wv.setAttribute('aria-valuetext',fmt(t)+' of '+fmt(d));
+    $('#npCur').textContent=fmt(t);$('#npDur').textContent=fmt(d);
+    $('#miBar').style.transform='scaleX('+f.toFixed(4)+')';
+    $('#miS').textContent=fmt(t)+' / '+fmt(d)+(mode()==='audio'?' · full episode':' · episode brief');
+    renderCaption();
+    if(mode()==='audio'){var cs=$$('#npChM button');var ci=-1;P.ep.ch.forEach(function(c,i){if(t>=tsec(c[0]))ci=i;});cs.forEach(function(b,i){b.classList.toggle('cur',i===ci);});}
+  }
+
+  /* ---- hero controls ---- */
+  $('#npPlay').addEventListener('click',function(){P.toggle();});
+  $('#miPlay').addEventListener('click',function(){P.toggle();});
+  $('#heroPlay').addEventListener('click',function(){if(P.ep!==LATEST&&!P.playing)P.load(LATEST);P.toggle();});
+  $('#npBack').addEventListener('click',function(){P.skip(-15);});$('#miBack').addEventListener('click',function(){P.skip(-15);});
+  $('#npFwd').addEventListener('click',function(){P.skip(30);});$('#miFwd').addEventListener('click',function(){P.skip(30);});
+  $('#npSpeed').addEventListener('click',function(){var i=RATES.indexOf(P.rate);P.setRate(RATES[(i+1)%RATES.length]);XH.toast('Playback speed '+(P.rate===1?'1':P.rate)+'×');});
+  function wvFrac(e,el){var r=el.getBoundingClientRect();return Math.max(0,Math.min(1,(e.clientX-r.left)/r.width));}
+  wv.addEventListener('mousemove',function(e){var f=wvFrac(e,wv);wv.style.setProperty('--hx',(f*100)+'%');$('#wvTip').textContent=fmt(f*P.dur());});
+  wv.addEventListener('click',function(e){P.seek(wvFrac(e,wv)*P.dur());});
+  wv.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'){e.preventDefault();P.skip(5);}else if(e.key==='ArrowLeft'){e.preventDefault();P.skip(-5);}
+    else if(e.key===' '||e.key==='Enter'){e.preventDefault();P.toggle();}});
+  $('#miPg').addEventListener('click',function(e){P.seek(wvFrac(e,$('#miPg'))*P.dur());});
+  var chB=$('#npCh'),chM=$('#npChM');
+  function chOpen(o){chM.classList.toggle('open',o);chB.setAttribute('aria-expanded',o);}
+  chB.addEventListener('click',function(e){e.stopPropagation();chOpen(!chM.classList.contains('open'));});
+  chM.addEventListener('click',function(e){var b=e.target.closest('[data-ci]');if(!b)return;P.chapter(P.ep,+b.getAttribute('data-ci'));chOpen(false);});
+  document.addEventListener('click',function(e){if(!e.target.closest('.np-chw'))chOpen(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')chOpen(false);});
+
+  /* ---- mini player visibility ---- */
+  var heroVis=true,miniDismissed=false,everPlayed=false;
+  function updMini(){var on=!heroVis&&!miniDismissed&&everPlayed&&!!P.ep;mini.classList.toggle('on',on);mini.setAttribute('aria-hidden',!on);document.body.classList.toggle('mini-on',on);}
+  XH.whenVisible(np,function(v){heroVis=v;if(P.playing)miniDismissed=false;updMini();});
+  $('#miX').addEventListener('click',function(){P.pause();miniDismissed=true;updMini();});
+  var _play=P.play;P.play=function(){miniDismissed=false;everPlayed=true;_play();updMini();};
+
+  /* =====================================================================
+     Hero background: spectrum skyline
+     ===================================================================== */
+  (function(){
+    var sky=$('#podSky');if(!sky)return;var r=rng(1999),h=[],N=220;
+    for(var i=0;i<N;i++){var x=i/N;
+      var base=.22+.3*Math.abs(Math.sin(x*Math.PI*3.1))+.22*Math.abs(Math.sin(x*Math.PI*9.7+1.3))+.2*r();
+      var px=Math.round(Math.min(1,base)*210);
+      h.push('<span'+(i%11===5?' class="o"':'')+' style="--h:'+px+'px;--du:'+(1.6+r()*2.6).toFixed(2)+'s;--de:-'+(r()*4).toFixed(2)+'s"></span>');}
+    sky.innerHTML=h.join('');
+    XH.whenVisible($('#podHero'),function(v){bg.classList.toggle('paused',!v);});
+  })();
+
+  /* =====================================================================
+     Episode library: search, topic chips, sort, animated filtering
+     ===================================================================== */
+  var eps=$('#eps'),F={q:'',topic:'all',sort:'new'};
+  eps.innerHTML=EPS.map(function(e){var T=TOPICS[e.topic];
+    return '<article class="ep" id="ep-'+e.n+'" data-n="'+e.n+'">'+
+      '<button type="button" class="ep-play" aria-label="Play episode '+e.n+' brief"><span class="i-pl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="i-pa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></span><span class="eqm"><i></i><i></i><i></i><i></i></span></button>'+
+      '<div class="ep-num">EP<b>'+e.n+'</b></div>'+
+      '<div class="ep-main"><div class="ep-tags"><span class="tp '+e.topic+'">'+T.i+T.l+'</span><span class="ep-date">'+fdate(e.date)+'</span></div>'+
+      '<h3 class="ep-t">'+esc(e.t)+'</h3><p class="ep-g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v4M8 22h8"/></svg><span>Guest: '+esc(e.g)+'</span></p><p class="ep-d">'+esc(e.d)+'</p></div>'+
+      '<div class="ep-side"><span class="ep-dur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>'+e.min+' min</span><button type="button" class="btn btn-ghost btn-sm ep-notes" data-notes="'+e.n+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg> Show notes</button></div>'+
+    '</article>';}).join('');
+  var chips=$('#libChips'),counts={all:EPS.length};EPS.forEach(function(e){counts[e.topic]=(counts[e.topic]||0)+1;});
+  chips.innerHTML='<button type="button" class="fchip on" data-topic="all" aria-pressed="true"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></i>All episodes <em>'+counts.all+'</em></button>'+
+    Object.keys(TOPICS).map(function(k){return '<button type="button" class="fchip" data-topic="'+k+'" aria-pressed="false"><i>'+TOPICS[k].i+'</i>'+TOPICS[k].l+' <em>'+(counts[k]||0)+'</em></button>';}).join('');
+  function hl(text,q){var t=esc(text);if(!q)return t;var i=text.toLowerCase().indexOf(q);if(i<0)return t;return esc(text.slice(0,i))+'<mark>'+esc(text.slice(i,i+q.length))+'</mark>'+esc(text.slice(i+q.length));}
+  function hay(e){return [e.t,e.g,e.d,TOPICS[e.topic].l,'ep '+e.n,'episode '+e.n,e.ch.map(function(c){return c[1];}).join(' '),e.tk.map(function(c){return c[1];}).join(' '),e.brief].join(' ').toLowerCase();}
+  EPS.forEach(function(e){e._h=hay(e);});
+  var first=true;
+  function applyLib(){
+    var q=F.q.trim().toLowerCase(),list=EPS.slice();
+    if(F.sort==='old')list.sort(function(a,b){return a.n-b.n;});
+    else if(F.sort==='short')list.sort(function(a,b){return a.min-b.min||b.n-a.n;});
+    else list.sort(function(a,b){return b.n-a.n;});
+    var shown=0,words=q.split(/\s+/).filter(Boolean);
+    list.forEach(function(e){
+      var row=$('#ep-'+e.n),ok=(F.topic==='all'||e.topic===F.topic)&&words.every(function(w){return e._h.indexOf(w)>-1;});
+      eps.appendChild(row);
+      $('.ep-t',row).innerHTML=hl(e.t,q);$('.ep-g span',row).innerHTML='Guest: '+hl(e.g,q);
+      clearTimeout(row._t);
+      if(ok){row.hidden=false;row.classList.remove('out');
+        if(!first&&!reduce){row.classList.remove('anim');void row.offsetWidth;row.style.setProperty('--dl',(shown*0.045)+'s');row.classList.add('anim');}
+        shown++;}
+      else if(!row.hidden){row.classList.add('out');row.classList.remove('anim');row._t=setTimeout(function(){row.hidden=true;},reduce?0:240);}
+    });
+    first=false;
+    $('#libCount').innerHTML='Showing <b>'+shown+'</b> of '+EPS.length+' episodes'+(F.topic!=='all'?' · '+TOPICS[F.topic].l:'')+(q?' · matching “'+esc(F.q.trim())+'”':'')+' · '+(F.sort==='new'?'newest first':F.sort==='old'?'oldest first':'shortest first');
+    $('#libKbd').textContent=shown;
+    $('#libEmpty').hidden=shown>0;
+  }
+  var qT;$('#libQ').addEventListener('input',function(e){F.q=e.target.value;clearTimeout(qT);qT=setTimeout(applyLib,140);});
+  chips.addEventListener('click',function(e){var b=e.target.closest('.fchip');if(!b)return;F.topic=b.getAttribute('data-topic');
+    $$('.fchip',chips).forEach(function(x){x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',x===b);});applyLib();});
+  $('#libSort').addEventListener('change',function(){F.sort=this.dataset.value||'new';applyLib();});
+  $('#libClear').addEventListener('click',function(){F.q='';$('#libQ').value='';F.topic='all';$$('.fchip',chips).forEach(function(x){var on=x.getAttribute('data-topic')==='all';x.classList.toggle('on',on);x.setAttribute('aria-pressed',on);});applyLib();});
+  eps.addEventListener('click',function(e){
+    var pb=e.target.closest('.ep-play');if(pb){P.toggle(BY[+pb.closest('.ep').getAttribute('data-n')]);return;}
+    var nb=e.target.closest('[data-notes]');if(nb){openNotes(+nb.getAttribute('data-notes'));}
+  });
+  applyLib();
+
+  /* =====================================================================
+     Show notes modal + #ep-<n> deep links
+     ===================================================================== */
+  var notesEp=null,modal=$('#epNotes');
+  function epURL(n){return location.href.split('#')[0]+'#ep-'+n;}
+  function openNotes(n){
+    var e=BY[n];if(!e)return;notesEp=e;var T=TOPICS[e.topic];
+    $('#enK').innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v4M8 22h8"/></svg> Episode '+e.n+' · show notes';
+    $('#enT').textContent=e.t;
+    $('#enM').innerHTML='<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>'+fdate(e.date)+'</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>'+e.min+' min</span><span>'+T.i+T.l+'</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></svg>'+esc(e.g)+'</span>';
+    var full=e.audio&&!e._af;
+    $('#enBody').innerHTML=
+      '<div class="en-act"><button type="button" class="btn btn-orange" id="enPlay"><span class="ico2"><span class="i-pl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="i-pa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></span></span><span class="l">Play the episode brief</span></button>'+
+      '<button type="button" class="btn btn-ghost" data-copy="'+esc(epURL(e.n))+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007 0l3-3a5 5 0 00-7-7l-1 1M14 11a5 5 0 00-7 0l-3 3a5 5 0 007 7l1-1"/></svg> Copy link to episode</button></div>'+
+      (full?'':'<div class="en-mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0118 0v6"/><rect x="2" y="15" width="5" height="7" rx="2"/><rect x="17" y="15" width="5" height="7" rx="2"/></svg><span>Full audio coming soon — for now, play a short narrated brief of this episode.</span></div>')+
+      '<p class="ep-d" style="margin:0 0 18px;font-size:14.5px">'+esc(e.d)+'</p>'+
+      '<div class="en-g"><div><div class="en-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg> Chapters</div><div class="en-ch">'+
+        e.ch.map(function(c,i){return '<button type="button" data-eci="'+i+'"><em>'+c[0]+'</em><span>'+esc(c[1])+'</span><i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></i></button>';}).join('')+
+      '</div></div><div><div class="en-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg> Key takeaways</div><ul class="ilist en-tk">'+
+        e.tk.map(function(t){return '<li><i>'+t[0]+'</i><span>'+esc(t[1])+'</span></li>';}).join('')+
+      '</ul></div></div>'+
+      '<div class="en-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg> Transcript excerpt</div><div class="en-tr">'+
+        e.tr.map(function(x){return '<p'+(x[0]==='Guest'?' class="g"':'')+'><b>'+x[0]+'</b>'+esc(x[1])+'</p>';}).join('')+
+      '<span class="tr-f">Excerpt · full transcript published with the episode audio</span></div>';
+    renderState();
+    XH.open('epNotes');
+    try{history.replaceState(null,'','#ep-'+e.n);}catch(x){}
+  }
+  modal.addEventListener('click',function(e){
+    if(e.target.closest('#enPlay')){P.toggle(notesEp);return;}
+    var c=e.target.closest('[data-eci]');if(c){P.chapter(notesEp,+c.getAttribute('data-eci'));renderState();}
+  });
+  new MutationObserver(function(){if(!modal.classList.contains('open')&&/^#ep-\d+$/.test(location.hash)){try{history.replaceState(null,'',location.pathname+location.search);}catch(x){}}}).observe(modal,{attributes:true,attributeFilter:['class']});
+  function fromHash(){var m=location.hash.match(/^#ep-(\d+)$/);if(m&&BY[+m[1]]&&!modal.classList.contains('open'))setTimeout(function(){openNotes(+m[1]);},350);}
+  addEventListener('hashchange',fromHash);fromHash();
+
+  /* =====================================================================
+     Forms: subscribe + guest pitch
+     ===================================================================== */
+  var pgType=$('#pgType');
+  if(pgType)pgType.addEventListener('change',function(){var v=pgType.dataset.value;$('#pgTypeV').value=v;
+    $('#pgPitchL').textContent=v==='topic'?'What topic should we cover, and why?':v==='nominate'?'Who should we invite, and what could they talk about?':'What would you talk about?';});
+
+  /* ---- start: load the latest episode into the player ---- */
+  P.load(LATEST);
+  addEventListener('pagehide',function(){if(synth){try{synth.cancel();}catch(e){}}});
+  document.addEventListener('visibilitychange',function(){if(document.hidden&&P.playing&&mode()==='brief'&&B.sub==='sim')P.pause();});
+})();
+
+</script></body></html>

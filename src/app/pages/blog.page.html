@@ -280,6 +280,17 @@
           <nav class="article-sibling-nav" [attr.aria-label]="'Previous and next ' + contentPlural">
             @if (neighbors().previous; as previous) {
               <a class="article-sibling article-previous" [routerLink]="[detailBase, previous.slug]">
+                <img
+                  class="article-sibling-cover"
+                  [class.is-fallback]="!previous.coverImageUrl"
+                  [src]="previous.coverImageUrl || '/assets/images/xcellhost-logo.png'"
+                  [alt]="previous.coverImage?.alternativeText || previous.title"
+                  loading="lazy"
+                  decoding="async"
+                  width="640"
+                  height="360"
+                  (error)="useRelatedCoverFallback($event)"
+                />
                 <span><i aria-hidden="true">&#8592;</i> Previous</span>
                 <strong>{{ previous.title }}</strong>
                 @if (previous.description) {
@@ -289,6 +300,17 @@
             }
             @if (neighbors().next; as next) {
               <a class="article-sibling article-next" [routerLink]="[detailBase, next.slug]">
+                <img
+                  class="article-sibling-cover"
+                  [class.is-fallback]="!next.coverImageUrl"
+                  [src]="next.coverImageUrl || '/assets/images/xcellhost-logo.png'"
+                  [alt]="next.coverImage?.alternativeText || next.title"
+                  loading="lazy"
+                  decoding="async"
+                  width="640"
+                  height="360"
+                  (error)="useRelatedCoverFallback($event)"
+                />
                 <span>Next <i aria-hidden="true">&#8594;</i></span>
                 <strong>{{ next.title }}</strong>
                 @if (next.description) {

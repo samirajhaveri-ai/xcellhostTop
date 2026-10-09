@@ -6258,3 +6258,46 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 .box-migration-page .pp-faq-heading,
 .box-migration-page .pp-cta h3 { text-transform:uppercase; }
 .box-migration-assurance { margin-top:32px; }
+
+/* Container Registry hero copy and powered-by badge. */
+#ppage .container-registry-hero-art {
+  flex-direction: column !important;
+  gap: 16px !important;
+}
+#ppage:has(.container-registry-hero-art) .pp-hero #ppTitle {
+  display: block !important;
+  text-align: left !important;
+  white-space: normal !important;
+  text-wrap: wrap !important;
+}
+#ppage:has(.container-registry-hero-art) #ppTitle .pp-title-name {
+  display: inline !important;
+  margin-left: 0 !important;
+  white-space: normal !important;
+}
+#ppage .container-registry-powered {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 9px 14px 9px 8px; border-radius: 13px;
+  background: #fff; color: #0B132B;
+  font-family: 'IBM Plex Sans', system-ui, sans-serif; line-height: 1.2;
+}
+#ppage .container-registry-powered-row { margin-top: 16px; text-align: left; }
+#ppage .container-registry-powered-icon {
+  display: grid; place-items: center; flex: none;
+  width: 30px; height: 30px; border-radius: 8px;
+  background: #0B132B; color: #fff;
+}
+#ppage .container-registry-powered-icon svg { width: 20px; height: 20px; }
+#ppage .container-registry-powered small {
+  display: block; margin-bottom: 3px; color: #5B6782;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 8px; letter-spacing: .12em;
+}
+#ppage .container-registry-powered strong { display: block; font-size: 15px; font-weight: 700; }
+#ppage .pp-body:has(> xh-container-registry-content) { padding-top: 0; }
+
+.managed-kubernetes-page :is(h1,h2,h3,h4,.pp-sec){text-transform:capitalize}
+.managed-kubernetes-page :is(#ppSecHead,#ppWhyHead,.pp-rev-title,.pp-faq-heading){text-transform:uppercase}
+.managed-kubernetes-page #ppSecHead ~ .pp-sec,
+.managed-kubernetes-page #showcaseVideosTitle{text-transform:uppercase}
+

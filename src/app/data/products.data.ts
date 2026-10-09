@@ -29,6 +29,7 @@ export const PRODUCT_BRAND_LINES: Record<string, string> = {
   "Reseller Program": "XcellPartner | Cloud Channel Partner Program",
   "Tally on Cloud": "XcellTally | Tally On Cloud",
   "Cloud Backup (Acronis)": "XcellBackup | Backup Cloud",
+  "Entra ID Backup": "XcellBackup | Entra ID Backup",
   "Cloud Disaster Recovery": "XcellDR | Cloud Disaster Recovery",
   "Identity Resilience": "XcellSecure | Identity Resilience",
   "Cloud Drive": "XcellDrive | Cloud Drive",
