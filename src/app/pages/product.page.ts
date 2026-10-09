@@ -3517,6 +3517,20 @@ class ProductPageComponent {
   readonly isTally = computed(() => this.view()?.name === 'Tally on Cloud');
 
 
+  readonly cpuSectionNavLinks = [
+    { label: 'Overview', target: 'answer' },
+    { label: 'Pricing', target: 'pricing' },
+    { label: 'Features', target: 'cpuFeatures' },
+    { label: 'Use Cases', target: 'cpuUseCases' },
+    { label: 'Specifications', target: 'cpuSpecifications' },
+    { label: 'Security', target: 'ppSecHead' },
+    { label: 'Why to Choose', target: 'ppWhyHead' },
+    { label: 'Customer Testimonials', target: 'cpuTestimonials' },
+    { label: 'FAQs', target: 'cpuFaq' },
+    { label: 'Insights', target: 'ppBlog' },
+  ] as const;
+
+
   readonly memorySectionNavLinks = [
     { label: 'Overview', target: 'answer' },
     { label: 'Pricing', target: 'pricing' },
@@ -4340,8 +4354,11 @@ class ProductPageComponent {
 
   selectSmbDesktopPlan(plan: TallyPlan, ev: Event): void {
     ev.preventDefault();
-    this.topics.ask(`${plan.name} (${plan.edition}) - ${plan.users} users - ${this.activeTallyTerm().label}`);
-    this.overlay.open('callback');
+    const planKey = plan.edition.toLowerCase();
+    const termKey = this.selectedTallyTerm();
+    window.location.assign(
+      `/smb-cloud-desktop/checkout?plan=${encodeURIComponent(planKey)}&term=${encodeURIComponent(termKey)}`,
+    );
   }
 
   smbDesktopPrice(plan: TallyPlan): number {

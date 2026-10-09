@@ -1947,6 +1947,21 @@
         </div>
       }
 
+
+      @if (slug() === 'cpu-optimized') {
+        <xh-smb-section-nav
+          label="CPU Optimized page sections"
+          [links]="cpuSectionNavLinks"
+          frameSelector="xh-cpu-optimized-content iframe"
+        />
+      } @else if (slug() === 'memory-optimized') {
+        <xh-smb-section-nav
+          label="Memory Optimized page sections"
+          [links]="memorySectionNavLinks"
+          frameSelector="xh-memory-optimized-content iframe"
+        />
+      }
+
       @if (slug() === 'dropbox-backup') {
         <xh-smb-section-nav label="Dropbox page sections" [links]="dropboxSectionNavLinks" frameSelector="xh-dropbox-migration-content iframe[src='/dropbox-migration-content.html']" />
       }
@@ -1963,13 +1978,8 @@
       @if (slug() === 'managed-microsoft-sql') {
         <xh-smb-section-nav label="Managed Microsoft SQL page sections" [links]="sqlSectionNavLinks" frameSelector="xh-managed-microsoft-sql-content iframe[src='/managed-microsoft-sql-content.html']" />
       }
-      @if (slug() === 'memory-optimized') {
-        <xh-smb-section-nav
-          label="Memory Optimized page sections"
-          [links]="memorySectionNavLinks"
-          frameSelector="xh-memory-optimized-content iframe"
-        />
-      } @else if (usesSuppliedSmbHero()) {
+
+      @if (slug() !== 'cpu-optimized' && slug() !== 'memory-optimized' && usesSuppliedSmbHero()) {
         <xh-smb-section-nav
           [label]="v.name + ' page sections'"
           [links]="smbSectionNavLinks()"
@@ -5772,7 +5782,7 @@
             </section>
           }
           @if (slug() !== 'comodo-personal-authentication' && slug() !== 'digicert-smime-class-1' && slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
-          <div class="pp-sec" [attr.id]="isTally() ? 'tallyTestimonials' : slug() === 'memory-optimized' ? 'memoryTestimonials' : null" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">What customers say</div>
+          <div class="pp-sec" [attr.id]="isTally() ? 'tallyTestimonials' : slug() === 'cpu-optimized' ? 'cpuTestimonials' : slug() === 'memory-optimized' ? 'memoryTestimonials' : null" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">What customers say</div>
           @if (slug() === 'microsoft-365-to-google-workspace-migration') { <p>Contact our team to discuss customer references for Microsoft 365 to Google Workspace migrations.</p> }
 
           @if (slug() === 'ai-receptionist' || isFrameworkDetail() || slug() === 'erp-next-hosting' || slug() === 'nvidia-vera-rubin' || slug() === 'storage-servers' || slug() === 'gaming-servers' || slug() === 'virtualization-servers' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'agent-studio' || slug() === 'aiops' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'instant-website' || slug() === 'instagram-automation' || slug() === 'hrm-attendance' || slug() === 'google-my-business' || isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training' || slug() === 'ai-chat-bot') {
@@ -5881,7 +5891,7 @@
               <xh-digicert-smime-related />
             }
           } @else {
-          <div class="pp-sec pp-faq-heading" [attr.id]="isTally() ? 'tallyFaq' : slug() === 'memory-optimized' ? 'memoryFaq' : null" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Frequently asked questions</div>
+          <div class="pp-sec pp-faq-heading" [attr.id]="isTally() ? 'tallyFaq' : slug() === 'cpu-optimized' ? 'cpuFaq' : slug() === 'memory-optimized' ? 'memoryFaq' : null" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Frequently asked questions</div>
           @if (slug() === 'domain-whois-lookup') {
             <xh-domain-whois-faq />
           } @else if (slug() === 'managed-oracle-cloud') {

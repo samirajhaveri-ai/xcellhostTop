@@ -27,6 +27,20 @@ const GPU_HERO_COPY: Record<string, GpuHeroCopy> = {
   'nvidia-vera-rubin': gpu('Reserve NVIDIA Vera Rubin Capacity', 'Plan next-generation rack-scale AI infrastructure with guided sizing, deployment and operations in India.', 'Next gen', 'AI infrastructure', 'Rack scale', 'Early access'),
 };
 
+const COMPACT_GPU_PAGE_SLUGS = new Set([
+  'nvidia-l40s',
+  'nvidia-l4',
+  'nvidia-a30',
+  'nvidia-a2',
+  'nvidia-h100',
+  'nvidia-a100',
+  'rtx-pro-6000',
+  'nvidia-rtx-6000-ada',
+  'rtx-a6000',
+  'rtx-8000',
+  'nvidia-vera-rubin',
+]);
+
 function gpu(headline: string, description: string, metric: string, metricLabel: string, scale: string, scaleLabel: string): GpuHeroCopy {
   return {
     headline,
@@ -54,6 +68,7 @@ export class GpuLeadHeroComponent {
 
   readonly slug = input.required<string>();
   readonly productName = input.required<string>();
+  readonly usesCompactLayout = computed(() => COMPACT_GPU_PAGE_SLUGS.has(this.slug()));
   readonly copy = computed(() => GPU_HERO_COPY[this.slug()] ?? gpu(
     `Rent ${this.productName()} Cloud GPUs on Demand`,
     'Launch secure GPU capacity in India with guided sizing, INR billing and 24×7 engineering support.',
