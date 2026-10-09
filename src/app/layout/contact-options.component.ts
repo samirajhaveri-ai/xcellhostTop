@@ -40,6 +40,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
             maxlength="255"
             required
             formControlName="email"
+            [readOnly]="sending()"
             autocomplete="email"
             placeholder="Enter your email"
             [attr.aria-invalid]="emailInvalid()"
@@ -310,6 +311,9 @@ export class ContactOptionsComponent {
   private readonly document = inject(DOCUMENT);
   private readonly destroyRef = inject(DestroyRef);
   private confirmationUrl = '';
+  private submittedEmail = '';
+  private readonly subscriptionStorageKey = 'xcellhost.newsletter.confirmed-emails.v1';
+  private readonly confirmedEmails = new Set<string>();
   private submissionTimer?: ReturnType<typeof setTimeout>;
 
   readonly form = this.fb.nonNullable.group({
@@ -338,6 +342,13 @@ export class ContactOptionsComponent {
       this.message.set('Please enter a valid email address.');
       return;
     }
+
+    const email = this.form.controls.email.value.toLowerCase();
+    if (this.hasSubscribed(email)) {
+      this.message.set('This email address is already subscribed.');
+      return;
+    }
+    this.submittedEmail = email;
 
     const referrer = formElement.elements.namedItem('zf_referrer_name') as HTMLInputElement;
     const adClick = formElement.elements.namedItem('zc_gad') as HTMLInputElement;
@@ -379,8 +390,43 @@ export class ContactOptionsComponent {
     clearTimeout(this.submissionTimer);
     this.confirmationUrl = '';
     this.sending.set(false);
+    this.rememberSubscription(this.submittedEmail);
+    this.submittedEmail = '';
     this.done.set(true);
     this.message.set('Thank you for subscribing!');
     this.form.reset();
+  }
+
+  // Only Zoho-confirmed submissions belong in this browser's cache. Zoho's
+  // Email field must also enforce No Duplicates for records across devices.
+  private readConfirmedEmails(): string[] {
+    try {
+      const stored: unknown = JSON.parse(
+        this.document.defaultView?.localStorage.getItem(this.subscriptionStorageKey) ?? '[]',
+      );
+      return Array.isArray(stored)
+        ? stored.filter((email): email is string => typeof email === 'string')
+        : [];
+    } catch {
+      // Storage may be blocked, full or contain invalid data.
+      return [];
+    }
+  }
+
+  private hasSubscribed(email: string): boolean {
+    return this.confirmedEmails.has(email) || this.readConfirmedEmails().includes(email);
+  }
+
+  private rememberSubscription(email: string): void {
+    if (!email) return;
+    this.confirmedEmails.add(email);
+    try {
+      const emails = new Set([...this.readConfirmedEmails(), ...this.confirmedEmails]);
+      this.document.defaultView?.localStorage.setItem(
+        this.subscriptionStorageKey, JSON.stringify([...emails]),
+      );
+    } catch {
+      // The in-memory cache still prevents repeats during this component's lifetime.
+    }
   }
 }

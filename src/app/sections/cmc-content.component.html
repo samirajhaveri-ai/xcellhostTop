@@ -17,25 +17,6 @@
       <span class="prov logo"><span class="pl laposte-logo" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z" fill="#ffd800"/><path d="M7 13.7c3.8-4.5 7.6-5.5 10.4-4.7-2.3.5-4.6 1.8-6.4 3.8 2.2-.8 4.1-.9 6-.5-3.5.5-6.3 1.8-8.7 4L7 13.7Z" fill="#0056a6"/></svg></span>La Poste</span>
     </div>
 
-    <section class="cmc-inbox-gallery" aria-labelledby="cmc-gallery-title">
-      <h2 class="pp-sec" id="cmc-gallery-title">See the CMC difference in the inbox</h2>
-      <p class="pp-ov cmc-gallery-intro">A Common Mark Certificate replaces anonymous sender initials with a recognisable brand logo in supported inboxes.</p>
-      <div class="cmc-gallery-grid">
-        <figure>
-          <div class="cmc-gallery-image"><img src="/assets/images/cmc-tour-logo-display.png" alt="Brand logo displayed beside an authenticated email using a Common Mark Certificate" loading="lazy" /></div>
-          <figcaption><b>Display your brand logo</b><span>Make authenticated messages immediately recognisable.</span></figcaption>
-        </figure>
-        <figure>
-          <div class="cmc-gallery-image"><img src="/assets/images/cmc-tour-unverified-vs-cmc.png" alt="Comparison of an unverified inbox and an inbox using a Common Mark Certificate" loading="lazy" /></div>
-          <figcaption><b>Unverified versus CMC</b><span>Replace generic initials with consistent brand identities.</span></figcaption>
-        </figure>
-        <figure>
-          <div class="cmc-gallery-image"><img src="/assets/images/cmc-tour-before-after.png" alt="Inbox appearance before and after Common Mark Certificate activation" loading="lazy" /></div>
-          <figcaption><b>Before and after activation</b><span>See how CMC makes legitimate messages stand out.</span></figcaption>
-        </figure>
-      </div>
-    </section>
-
     <section aria-labelledby="cmc-how-title">
       <h2 class="pp-sec" id="cmc-how-title">Qualify · Publish · Display — how a CMC works</h2>
       <div class="pp-vgrid">
@@ -54,6 +35,28 @@
         <article class="pcard"><div class="ptop"><span class="tierbadge">CMC</span><span class="tagchip">3 Years</span></div><h3>Common Mark Certificate</h3><p class="pdesc">Longest term, lowest cost per year—set it and forget it for three years.</p><dl class="pmeta"><div><dt>Validity</dt><dd>3 years</dd></div><div><dt>Coverage</dt><dd>1 sending domain</dd></div></dl><ul class="pfeat"><li>Everything in 2-Year</li><li>Lowest price per year</li><li>Price locked for 3 years</li><li>Priority managed setup</li></ul><div class="pprice"><div><span>From</span><b>₹63,999</b><small>/year</small></div><em>Save up to 20%</em></div><button class="buy-btn" type="button" (click)="requestQuote('3 Years')">Configure &amp; Buy <span>→</span></button></article>
       </div>
       <p class="price-note">Approximate INR pricing, per year. No registered trademark needed. GST invoice on every order. Contact XcellHost for exact DigiCert pricing.</p>
+    </section>
+
+    <section class="cmc-workflow-explainer" aria-labelledby="cmc-workflow-title">
+      <div class="cmc-workflow-visual">
+        <img
+          src="/assets/images/how-cmc-works.svg"
+          width="477"
+          height="604"
+          loading="lazy"
+          alt="Flowchart showing the DMARC, BIMI DNS and Common Mark Certificate checks required before a verified logo is displayed"
+        />
+      </div>
+      <div class="cmc-workflow-copy">
+        <h2 id="cmc-workflow-title">How Common Mark Certificates (CMC) Work</h2>
+        <ul>
+          <li><b>Set up DMARC:</b> Before obtaining a CMC, your domain must use an enforced DMARC policy of either <code>p=quarantine</code> or <code>p=reject</code>.</li>
+          <li><b>CMC issuance:</b> A trusted Certificate Authority verifies the domain and a qualifying logo that has been in public use for at least 12 months before issuing the certificate.</li>
+          <li><b>DNS record setup:</b> The domain owner publishes a BIMI DNS record that links the CMC to the domain and tells supporting email services where to find the brand logo.</li>
+          <li><b>Email authentication:</b> The recipient's email service validates the message using DMARC, DKIM and SPF, then verifies the CMC to confirm the sender's legitimacy.</li>
+          <li><b>Brand logo display:</b> When every security check succeeds, the recipient's supported email client displays the authenticated brand logo beside the email.</li>
+        </ul>
+      </div>
     </section>
 
     <section aria-labelledby="cmc-addons-title"><h2 class="pp-sec" id="cmc-addons-title">Add-ons &amp; managed services</h2><div class="pp-addons">

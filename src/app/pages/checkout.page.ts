@@ -25,6 +25,7 @@ export class CheckoutPage implements OnDestroy {
   private readonly checkoutProduct = this.route.snapshot.data['checkoutProduct'] as
     | 'edr'
     | 'rmm'
+    | 'genai'
     | 'cybird'
     | 'smb-desktop';
   private readonly smbDesktopPlan = this.readSmbDesktopPlan();
@@ -32,6 +33,8 @@ export class CheckoutPage implements OnDestroy {
   readonly productLabel =
     this.checkoutProduct === 'rmm'
       ? 'RMM'
+      : this.checkoutProduct === 'genai'
+        ? 'Acronis GenAI Protection Enforce'
       : this.checkoutProduct === 'cybird'
         ? 'Cybird SMB Cyber Security Appliance'
         : this.checkoutProduct === 'smb-desktop'
@@ -40,6 +43,8 @@ export class CheckoutPage implements OnDestroy {
   private readonly checkoutFile =
     this.checkoutProduct === 'rmm'
       ? 'xcellhost-rmm-checkout.html'
+      : this.checkoutProduct === 'genai'
+        ? 'xcellhost-acronis-genai-protection-enforce-checkout.html'
       : this.checkoutProduct === 'cybird'
         ? 'xcellhost-cybird-checkout.html'
         : this.checkoutProduct === 'smb-desktop'
@@ -51,12 +56,16 @@ export class CheckoutPage implements OnDestroy {
           term: this.route.snapshot.queryParamMap.get('term') || '1y',
           quantity: this.route.snapshot.queryParamMap.get('quantity') || '1',
         }
+      : this.checkoutProduct === 'genai'
+        ? { quantity: this.route.snapshot.queryParamMap.get('quantity') || '1' }
       : this.checkoutProduct === 'edr'
         ? {
             product: 'acronis-edr',
             billing: this.route.snapshot.queryParamMap.get('billing') || '1-year',
             quantity: this.route.snapshot.queryParamMap.get('quantity') || '1',
           }
+        : this.checkoutProduct === 'smb-desktop'
+          ? { quantity: this.route.snapshot.queryParamMap.get('quantity') || '1' }
         : {},
   );
   readonly checkoutUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
@@ -74,7 +83,7 @@ export class CheckoutPage implements OnDestroy {
     const body = checkoutDocument?.body;
     if (!frame || !checkoutDocument || !body) return;
 
-    if (this.checkoutProduct === 'smb-desktop') {
+    if (this.checkoutProduct === 'smb-desktop' || this.checkoutProduct === 'genai') {
       // The website shell already supplies the XcellHost header and footer.
       // Hide the standalone file chrome while retaining its checkout steps and payment URL.
       const embeddedStyles = checkoutDocument.createElement('style');

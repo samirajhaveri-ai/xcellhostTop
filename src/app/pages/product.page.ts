@@ -1,4 +1,12 @@
 
+import { ContainerRegistryHeroComponent } from '../sections/container-registry-hero.component';
+import { ContainerServiceHeroComponent } from '../sections/container-service-hero.component';
+import { ContainerRegistryContentComponent } from '../sections/container-registry-content.component';
+
+import { ImportedInteractiveContentComponent } from '../sections/imported-interactive-content.component';
+import { MANAGED_KUBERNETES_FAQS } from '../data/managed-kubernetes-faq.data';
+
+
 import { QuantityInputDirective } from '../core/quantity-input.directive';
 
 import { BoxMigrationContentComponent } from '../sections/box-migration-content.component';
@@ -420,6 +428,9 @@ interface ProductTourSlide {
     ManagedMongodbHeroComponent,
     AiReceptionistHeroComponent,
     CpuOptimizedHeroComponent,
+    ContainerRegistryHeroComponent,
+    ContainerServiceHeroComponent,
+    ContainerRegistryContentComponent,
     CpuOptimizedContentComponent,
     MemoryOptimizedContentComponent,
     VsaasHeroComponent,
@@ -466,6 +477,7 @@ interface ProductTourSlide {
     ManagedMongoDbContentComponent,
     ManagedMicrosoftSqlContentComponent,
     DropboxMigrationContentComponent,
+    ImportedInteractiveContentComponent,
     BoxMigrationContentComponent,
     ManagedRedisContentComponent,
     ManagedRedisHeroComponent,
@@ -629,6 +641,30 @@ interface ProductTourSlide {
   ],
   templateUrl: './product.page.html',
   styles: [`
+    #ppage.ppage > .pp-hero:has(.container-registry-hero-art) {
+      display: grid; grid-template-columns: minmax(0, 620px) minmax(0, 480px);
+      justify-content: center; align-items: center; gap: 40px; padding: 40px 24px;
+      height: auto; min-height: 620px; max-height: none;
+    }
+    #ppage.ppage > .pp-hero:has(.container-registry-hero-art) > .wrap {
+      grid-column: 1; grid-row: 1; width: 100%; margin: 0; padding: 0;
+    }
+    #ppage.ppage > .pp-hero:has(.container-registry-hero-art) > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) {
+      max-width: 100%;
+    }
+    #ppage.ppage > .pp-hero:has(.container-registry-hero-art) > .pph-scene.container-registry-hero-art {
+      position: relative; inset: auto; grid-column: 2; grid-row: 1;
+      width: 100%; max-width: 480px; height: auto; max-height: none;
+      margin: 0; padding: 0; opacity: 1; mask-image: none; transform: none; z-index: 4;
+    }
+    @media(max-width:1000px) {
+      #ppage.ppage > .pp-hero:has(.container-registry-hero-art) {
+        display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; min-height: 0;
+      }
+      #ppage.ppage > .pp-hero:has(.container-registry-hero-art) > .pph-scene.container-registry-hero-art {
+        grid-column: 1; grid-row: 2; justify-self: center;
+      }
+    }
     #ppage .database-reference-hero-visual { right: 2%; width: 38%; padding: 20px; opacity: 1; mask-image: none; }
     #ppage.managed-database-reference-page .pp-hero #ppTitle,
     #ppage.managed-database-reference-page .pp-hero .database-reference-hero-summary { width: 100%; max-width: 100%; white-space: normal; text-wrap: wrap; overflow-wrap: normal; text-align: left; }
@@ -2048,6 +2084,12 @@ class ProductPageComponent {
 
   readonly selectedEdrPlanIndex = signal(0);
   readonly edrQuantity = signal(1);
+  readonly smbDesktopQuantities = signal<Record<string, number>>({
+    Starter: 1,
+    Business: 1,
+    Professional: 1,
+    Enterprise: 1,
+  });
   readonly cdrQuantity = signal(1);
   readonly cloudDriveQuantity = signal(1);
   readonly activeCdrTourSlide = signal(0);
@@ -2374,6 +2416,26 @@ class ProductPageComponent {
     this.edrQuantity.update((quantity) => Math.max(1, quantity + change));
   }
 
+  smbDesktopQuantity(plan: TallyPlan): number {
+    return this.smbDesktopQuantities()[plan.edition] ?? this.smbDesktopBounds(plan).min;
+  }
+
+  smbDesktopBounds(plan: TallyPlan): { min: number; max: number } {
+    const values = plan.users.match(/\d+/g)?.map(Number) ?? [1];
+    return { min: 1, max: values[1] ?? values[0] };
+  }
+
+  changeSmbDesktopQuantity(plan: TallyPlan, change: number): void {
+    const bounds = this.smbDesktopBounds(plan);
+    this.smbDesktopQuantities.update((quantities) => ({
+      ...quantities,
+      [plan.edition]: Math.max(
+        bounds.min,
+        Math.min(bounds.max, this.smbDesktopQuantity(plan) + change),
+      ),
+    }));
+  }
+
   changeCdrQuantity(change: number): void {
     this.cdrQuantity.update((quantity) => Math.max(1, quantity + change));
   }
@@ -2655,6 +2717,10 @@ class ProductPageComponent {
     initialValue: '',
   });
 
+  readonly usesContainerRegistryTemplate = computed(() =>
+    this.slug() === 'container-registry' || this.slug() === 'container-as-a-service',
+  );
+
   private static readonly SUPPLIED_SMB_HERO_SLUGS = new Set([
     'advanced-endpoint-security-edr',
     'cloud-drive',
@@ -2722,8 +2788,13 @@ class ProductPageComponent {
       tagline: 'Enterprise email migration — mailbox migration made simple',
       faqs: MAILBOX_MIGRATION_FAQS,
     };
-    if (slug === 'box-backup') return { ...view, faqs: BOX_MIGRATION_FAQS };
-    if (slug === 'dropbox-backup') return { ...view, faqs: DROPBOX_MIGRATION_FAQS };
+    if (slug === 'managed-kubernetes') return { ...view, faqs: MANAGED_KUBERNETES_FAQS, security: {
+      head: 'SECURITY & COMPLIANCE - MANAGED KUBERNETES',
+      intro: 'Keep Kubernetes workloads in Indian data centres with encrypted traffic and storage, role-based access, network policies and audit logs. XcellHost manages platform upgrades, patching and monitoring while your team controls application deployments and access policies.',
+      rows: [['Data Residency', 'Indian Data Centres'], ['Encryption', 'In Transit And At Rest'], ['Access Control', 'RBAC And Private API Endpoints'], ['Network Isolation', 'Network Policies And Namespaces'], ['Recovery', 'Backups And Restore Planning'], ['Monitoring', '24x7 NOC And SOC']],
+    }};
+    if (slug === 'box-migration') return { ...view, faqs: BOX_MIGRATION_FAQS };
+    if (slug === 'dropbox-migration') return { ...view, faqs: DROPBOX_MIGRATION_FAQS };
     if (slug === 'managed-microsoft-sql') return { ...view, faqs: MANAGED_SQL_FAQS };
     if (slug === 'linux-servers') return { ...view, faqs: LINUX_SERVERS_FAQS };
     if (slug === 'windows-servers') return { ...view, faqs: WINDOWS_SERVERS_FAQS };
@@ -3536,6 +3607,26 @@ class ProductPageComponent {
   readonly isTally = computed(() => this.view()?.name === 'Tally on Cloud');
 
 
+  readonly containerRegistrySectionNavLinks = [
+    { label: 'Overview', target: 'registryOverview' },
+    { label: 'Pricing', target: 'pricing' },
+    { label: 'Features', target: 'features' },
+    { label: 'Use Cases', target: 'uses' },
+    { label: 'Specifications', target: 'commands' },
+    { label: 'Security', target: 'security' },
+    { label: 'Why to Choose', target: 'ppWhyHead' },
+    { label: 'Customer Testimonials', target: 'registryTestimonials' },
+    { label: 'FAQs', target: 'registryFaq' },
+    { label: 'Insights', target: 'ppBlog' },
+  ] as const;
+
+  readonly containerServiceSectionNavLinks = this.containerRegistrySectionNavLinks.map(link =>
+    link.label === 'Specifications' ? { ...link, target: 'caasSpecifications' }
+      : link.label === 'Pricing' ? { ...link, target: 'caas-pricing' }
+      : link.label === 'Use Cases' ? { ...link, target: 'caas-uses' }
+      : link,
+  );
+
   readonly cpuSectionNavLinks = [
     { label: 'Overview', target: 'answer' },
     { label: 'Pricing', target: 'pricing' },
@@ -3762,6 +3853,10 @@ class ProductPageComponent {
       'premium-domains', 'domain-protect', 'domain-whois-lookup', 'domain-name-prices',
       'backorder-domains', 'tld-directory', 'ai-domain-generator', 'ai-domain-advisor',
       'bharat-domains',
+      'web-security-sitelock', 'web-security-cwatch', 'thawte-ssl-certificates',
+      'rapidssl-ssl-certificates', 'codeguard-backup',
+      'hackerguardian-pci-compliance-scanning', 'trustedsite-certifications', 'imunify360',
+      'google-my-business',
     ].includes(this.slug()),
   );
 
@@ -4376,12 +4471,14 @@ class ProductPageComponent {
     const planKey = plan.edition.toLowerCase();
     const termKey = this.selectedTallyTerm();
     window.location.assign(
-      `/smb-cloud-desktop/checkout?plan=${encodeURIComponent(planKey)}&term=${encodeURIComponent(termKey)}`,
+      `/smb-cloud-desktop/checkout?plan=${encodeURIComponent(planKey)}&term=${encodeURIComponent(termKey)}&quantity=${this.smbDesktopQuantity(plan)}`,
     );
   }
 
   smbDesktopPrice(plan: TallyPlan): number {
-    return plan.prices[this.selectedTallyTerm()];
+    const maximumUsers = this.smbDesktopBounds(plan).max;
+    const perUserPrice = plan.prices[this.selectedTallyTerm()] / maximumUsers;
+    return perUserPrice * this.smbDesktopQuantity(plan);
   }
 
   selectCloudDriveTerm(term: CloudDriveTerm): void {

@@ -199,3 +199,24 @@ once (Ctrl+F5) to be sure.
 **Forms do not send anywhere**
 That is the default. Add your endpoint URLs to
 `src/environments/environment.prod.ts` and rebuild — see README.md.
+
+## Newsletter duplicate subscriptions (Zoho Forms)
+
+The footer newsletter remembers emails only after Zoho redirects to the exact
+success callback. Repeat submissions in the same browser show
+"This email address is already subscribed." Email comparisons ignore surrounding
+spaces and letter casing. Failed or unconfirmed attempts remain retryable.
+Browser storage is a convenience check, not a global subscriber database; it does
+not contain subscriptions made before this change or from other browsers.
+
+To enforce one submission per email across devices, open **NewsletterSubscriptionForm**
+in Zoho Forms, select the **Email** field and enable **No Duplicates**. Customize
+its duplicate validation message to "This email address is already subscribed."
+See https://help.zoho.com/portal/en/kb/forms/field-types/form-fields/basic-info/articles/email-field.
+
+The current HTML form posts to Zoho in a hidden frame. Browser same-origin rules
+prevent the website from reading Zoho validation errors. An email not in this
+browser's cache that Zoho rejects will therefore display the existing unconfirmed
+submission message after 30 seconds. A same-origin backend integration that
+returns a structured duplicate status is required to display the site's custom
+message for every existing Zoho subscriber. Do not put Zoho credentials in Angular.
