@@ -19,3 +19,31 @@
 .promo-offer-cta{display:block;margin-top:12px;color:#1261cf;font-size:12px;font-weight:700}
 .promo-product-card.highlighted-offer{border:2px solid #1764d9;background:#f7faff;box-shadow:0 0 0 3px #e7f0ff}
 .promo-tabs button small{color:#3264a3;font-weight:700}
+
+.promo-blast-glow{position:absolute;z-index:1;inset:0;border-radius:50%;background:radial-gradient(ellipse,#ffe5a05c,#ff9e2022 35%,#29baff18 50%,transparent 72%);pointer-events:none;animation:promoBlastGlow 5s ease-out infinite}
+.promo-blast-effect{position:absolute;z-index:3;inset:0;display:block;width:100%;height:100%;overflow:visible;pointer-events:none}
+.promo-blast-wave,.promo-blast-rays,.promo-blast-sparks{transform-origin:280px 205px;opacity:0}
+.promo-blast-wave{animation:promoBlastWave 5s ease-out infinite;filter:drop-shadow(0 0 5px #ffc36588)}.promo-blast-wave-follow{animation-delay:.45s;filter:drop-shadow(0 0 5px #78e4ff88)}.promo-blast-rays{animation:promoBlastRays 5s ease-out infinite;filter:drop-shadow(0 0 4px #ffd48a77)}.promo-blast-sparks{animation:promoBlastSparks 5s ease-out infinite}
+.promo-energy-arcs{opacity:.5;stroke-dasharray:45 200;animation:promoEnergyFlow 12s linear infinite;filter:drop-shadow(0 0 4px #63dfff66)}
+.promo-burst-confetti{transform-origin:280px 205px;opacity:0;animation:promoConfettiScatter 5s ease-out infinite}.promo-burst-stars{animation:promoBurstTwinkle 3s ease-in-out infinite;filter:drop-shadow(0 0 4px #fff0bd66)}
+@keyframes promoBlastGlow{0%,48%,100%{opacity:0;transform:scale(.6)}12%{opacity:.9}35%{opacity:0;transform:scale(1.3)}}
+@keyframes promoBlastWave{0%{opacity:0;transform:scale(.45)}10%{opacity:.85}50%,100%{opacity:0;transform:scale(1.9)}}
+@keyframes promoBlastRays{0%,3%{opacity:0;transform:scale(.7)}13%{opacity:.85}37%,100%{opacity:0;transform:scale(1.12)}}
+@keyframes promoBlastSparks{0%,7%{opacity:0;transform:scale(.72)}19%,32%{opacity:1}66%,100%{opacity:0;transform:scale(1.18) rotate(6deg)}}
+@keyframes promoEnergyFlow{to{stroke-dashoffset:-490}}
+@keyframes promoConfettiScatter{0%,8%{opacity:0;transform:scale(.65) rotate(-8deg)}23%{opacity:1;transform:scale(.95)}65%{opacity:0;transform:translateY(22px) scale(1.15) rotate(14deg)}100%{opacity:0;transform:translateY(22px) scale(1.15) rotate(14deg)}}
+@keyframes promoBurstTwinkle{0%,100%{opacity:.2}50%{opacity:.85}}
+.promo-hero-visual::before{content:'';position:absolute;z-index:0;inset:-5%;border-radius:50%;background:radial-gradient(ellipse at 35% 30%,#16baff23,transparent 55%),radial-gradient(ellipse at 70% 65%,#ffaf291c,transparent 50%);filter:blur(18px);animation:promoAmbientLight 9s ease-in-out infinite;pointer-events:none}
+.promo-light-sweep{animation:promoLightSweep 8s ease-in-out infinite;mix-blend-mode:screen}
+.promo-orbit-particles{transform-origin:280px 205px;animation:promoParticleOrbit 15s linear infinite;filter:drop-shadow(0 0 5px #64dfff)}.promo-orbit-particles-gold{animation-duration:21s;animation-direction:reverse;filter:drop-shadow(0 0 5px #ffbc56)}
+.promo-floating-motes{animation:promoMotesFloat 7s ease-in-out infinite;filter:drop-shadow(0 0 3px #8be5ff)}
+.promo-moving-logo.logo-value{overflow:hidden;animation:promoLogoDrift 3.5s ease-in-out -1.3s infinite,promoValueGlow 5s ease-in-out infinite}
+.promo-moving-logo.logo-value::after{content:'';position:absolute;inset:-60% -45%;background:linear-gradient(110deg,transparent 40%,#fff6 49%,transparent 58%);transform:translateX(-100%);animation:promoBadgeShine 7s ease-in-out infinite;pointer-events:none}
+@keyframes promoAmbientLight{50%{transform:scale(1.08) rotate(10deg);opacity:.65}}
+@keyframes promoLightSweep{0%,15%{transform:translateX(-220px);opacity:0}25%{opacity:1}55%{transform:translateX(330px);opacity:0}100%{transform:translateX(330px);opacity:0}}
+@keyframes promoParticleOrbit{to{transform:rotate(360deg)}}
+@keyframes promoMotesFloat{0%,100%{transform:translateY(4px);opacity:.3}50%{transform:translateY(-10px);opacity:.8}}
+@keyframes promoValueGlow{0%,100%{box-shadow:0 14px 30px #00081e55}35%{box-shadow:0 0 0 5px #ffb74a15,0 0 28px #ff951e66}}
+@keyframes promoBadgeShine{0%,25%{transform:translateX(-100%)}55%,100%{transform:translateX(100%)}}
+@media(prefers-reduced-motion:reduce){.promo-blast-glow,.promo-blast-effect *{animation:none;opacity:0}}
+@media(prefers-reduced-motion:reduce){.promo-hero-visual::before{animation:none}.promo-moving-logo.logo-value{animation:none}.promo-moving-logo.logo-value::after{animation:none;opacity:0}}

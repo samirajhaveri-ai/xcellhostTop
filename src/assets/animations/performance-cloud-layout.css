@@ -1,0 +1,24 @@
+/* Plans use the full content width; the cart sits beside the workload recommendation. */
+.hx-pr .hx-lay { grid-template-columns: minmax(0, 1fr); }
+.hx-reco {
+  grid-template-columns: minmax(0, 1fr) minmax(300px, .65fr);
+  align-items: start;
+  gap: 24px;
+}
+.hx-reco .hx-chips { grid-column: 1 / -1; }
+.hx-reco .hx-rc { min-height: 280px; }
+.hx-reco .hx-cart {
+  position: static;
+  inset: auto;
+  width: 100%;
+  max-height: none;
+  border-radius: 20px;
+  transform: none;
+}
+.hx-reco .hx-it { max-height: 360px; }
+.hx-fab, .hx-ov, .hx-reco .hx-cx { display: none; }
+@media (max-width: 1180px) { body { padding-bottom: 0; } }
+@media (max-width: 760px) {
+  .hx-reco { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .hx-reco .hx-rc { min-height: 0; }
+}

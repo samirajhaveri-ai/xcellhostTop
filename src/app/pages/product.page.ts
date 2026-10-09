@@ -215,6 +215,7 @@ import { ScrutinyDlpContentComponent } from './scrutiny-dlp-content.component';
 import { VortexSocContentComponent } from './vortex-soc-content.component';
 import { VortexSegContentComponent } from './vortex-seg-content.component';
 import { InfrastructureContentComponent } from '../sections/infrastructure-content.component';
+import { InfrastructureHeroComponent } from '../sections/infrastructure-hero.component';
 import { ColocationContentComponent } from '../sections/colocation-content.component';
 import { DataCenterInfrastructureComponent } from '../sections/data-center-infrastructure.component';
 import { MarketplaceContentComponent } from '../sections/marketplace-content.component';
@@ -291,6 +292,7 @@ const EDISCOVERY_COMPLIANCE_FAQS: Faq[] = [
 ];
 
 import { ManagedAwsContentComponent } from '../sections/managed-aws-content.component';
+import { ManagedAwsHeroComponent } from '../sections/managed-aws-hero.component';
 
 import { ManagedMicrosoft365ContentComponent } from '../sections/managed-microsoft-365-content.component';
 import { Microsoft365BackupContentComponent } from '../sections/microsoft-365-backup-content.component';
@@ -521,11 +523,13 @@ interface ProductTourSlide {
     VortexSocContentComponent,
     VortexSegContentComponent,
     InfrastructureContentComponent,
+    InfrastructureHeroComponent,
     ColocationContentComponent,
     MarketplaceContentComponent,
     WhatsAppSmbContentComponent,
 
     ManagedAwsContentComponent,
+    ManagedAwsHeroComponent,
 
     ManagedMicrosoft365ContentComponent,
     Microsoft365BackupContentComponent,
@@ -1300,6 +1304,13 @@ interface ProductTourSlide {
       mask-image: none;
     }
     #ppage .pph-scene.pph-entra-id-backup xh-entra-id-backup-hero { width: 100%; }
+    #ppage .pph-scene.pph-managed-aws {
+      top: 0; right: 3%; bottom: auto; width: 42%; height: 100%; display: flex;
+      align-items: center; justify-content: center; opacity: 1; mask-image: none;
+    }
+    @media (max-width: 900px) {
+      #ppage .pph-scene.pph-managed-aws { position: relative; inset: auto; width: calc(100% - 40px); height: auto; max-width: 560px; margin: 24px auto; }
+    }
     #ppage .entra-backup-hero-summary { max-width: 54ch; }
     #ppage .pph-scene.pph-bare-metal {
       top: 1%; right: 1%; bottom: auto; width: 48%; height: 96%; display: flex;
@@ -1702,6 +1713,14 @@ interface ProductTourSlide {
       #ppage .pp-hero > .wrap > .pp-tagline,
       #ppage .pp-hero > .wrap > .pp-tagline-support {
         max-width: 56%;
+      }
+    }
+
+    @media (min-width: 901px) {
+      #ppage.ppage > .pp-hero > .pph-scene.pph-managed-aws {
+        right: max(24px, calc((100% - 1240px) / 2 + 24px));
+        width: min(calc((100% - 48px) * .46 - 32px), 548px);
+        max-height: none;
       }
     }
 
@@ -3736,7 +3755,7 @@ class ProductPageComponent {
 
   readonly videosInInsights = computed(() =>
     [
-      'tally-on-cloud', 'cloud-backup', 'cloud-drive', 'advanced-endpoint-security-edr',
+      'performance-cloud', 'tally-on-cloud', 'cloud-backup', 'cloud-drive', 'advanced-endpoint-security-edr',
       'remote-monitoring-and-mgmt-rmm', 'smb-cyber-security-appliance', 'smb-cloud-desktop',
       'acronis-genai-protection', 'cloud-disaster-recovery-smb', 'workforce-analytics',
       'register-a-domain-name', 'transfer-your-domain', 'latest-domain-extensions',

@@ -376,7 +376,6 @@
   } @else if (slug() === 'our-team-our-story') {
   <main class="ppage as-page company-page team-page">
     <section class="people-banner" aria-labelledby="people-banner-title">
-      <img class="people-banner-photo" src="/assets/images/career-hero-team.png" alt="Colleagues collaborating around a laptop" fetchpriority="high" />
       <div class="people-banner-shade" aria-hidden="true"></div>
       <div class="wrap people-banner-inner">
         <div class="people-banner-copy">
@@ -393,6 +392,88 @@
             <a class="btn btn-primary" href="#team-directory">Meet Our People <span aria-hidden="true">&rarr;</span></a>
             <a class="people-banner-story" href="#team-story">Discover Our Story</a>
           </div>
+        </div>
+        <div class="people-team-animation" aria-hidden="true">
+          <svg viewBox="0 0 540 380" fill="none">
+            <defs>
+              <linearGradient id="teamShirt" x2=".9" y2="1"><stop stop-color="#65c9ff"/><stop offset=".5" stop-color="#328de1"/><stop offset="1" stop-color="#1653a0"/></linearGradient>
+              <linearGradient id="teamTeal" x2="1" y2="1"><stop stop-color="#48d8d0"/><stop offset="1" stop-color="#146b9f"/></linearGradient>
+              <linearGradient id="teamViolet" x2="1" y2="1"><stop stop-color="#8996ff"/><stop offset="1" stop-color="#414a98"/></linearGradient>
+              <linearGradient id="teamSkin" x2=".8" y2="1"><stop stop-color="#ffe0bf"/><stop offset="1" stop-color="#d79874"/></linearGradient>
+              <linearGradient id="teamGlass" x2="1" y2="1"><stop stop-color="#23578d" stop-opacity=".95"/><stop offset="1" stop-color="#0a2447" stop-opacity=".85"/></linearGradient>
+              <pattern id="teamGrid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" stroke="#70bfff" stroke-opacity=".07"/></pattern>
+              <radialGradient id="teamGlow"><stop stop-color="#188df4" stop-opacity=".35"/><stop offset="1" stop-color="#188df4" stop-opacity="0"/></radialGradient>
+              <linearGradient id="teamScreen" x2="1" y2="1"><stop stop-color="#154e8b"/><stop offset="1" stop-color="#08274f"/></linearGradient>
+              <linearGradient id="teamDesk"><stop stop-color="#439ce9"/><stop offset="1" stop-color="#164775"/></linearGradient>
+            </defs>
+            <ellipse cx="270" cy="195" rx="252" ry="175" fill="url(#teamGlow)"/>
+            <rect x="35" y="14" width="470" height="330" rx="28" fill="url(#teamGrid)"/>
+            <circle cx="270" cy="177" r="137" stroke="#74c4ff" stroke-opacity=".1" stroke-width="22"/>
+            <circle cx="270" cy="177" r="147" stroke="#74c4ff" stroke-opacity=".17"/>
+            <g class="team-particles" fill="#85ddff"><circle cx="65" cy="172" r="3"/><circle cx="451" cy="218" r="3"/><circle cx="185" cy="38" r="2"/><circle cx="363" cy="35" r="2"/><path d="M472 145V157M466 151H478M81 52V62M76 57H86" stroke="#9ddfff" stroke-width="1.5"/></g>
+            <ellipse class="team-network" cx="270" cy="182" rx="213" ry="128" stroke="#3fa9ff" stroke-opacity=".45" stroke-dasharray="4 9"/>
+            <g class="team-connections" stroke="#64c2ff" stroke-opacity=".5" stroke-dasharray="5 7">
+              <path d="M106 101L195 222M442 101L340 222M270 54V160"/>
+            </g>
+            <g class="team-cloud">
+              <path d="M235 82C214 82 212 53 232 49C227 23 271 13 281 41C309 27 330 64 307 80Z" fill="#0d4580" stroke="#5cbeff" stroke-width="2"/>
+              <path d="M249 55L259 65L279 45" stroke="#80e1ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <g class="team-person person-center">
+              <path d="M205 222V158Q205 129 238 124H301Q334 130 334 158V222" fill="url(#teamShirt)" stroke="#7bc6ff"/>
+              <circle cx="270" cy="99" r="27" fill="url(#teamSkin)"/>
+              <path d="M243 98V88Q242 62 270 65Q296 64 297 88V97L287 91L281 79Q269 89 246 89Z" fill="#142942"/>
+              <path d="M255 129L270 147L285 129M270 147V187" stroke="#b6defc" stroke-width="2"/>
+              <path d="M259 99H261M279 99H281" stroke="#302c37" stroke-width="3" stroke-linecap="round"/>
+              <path d="M263 112Q270 118 278 111" stroke="#ab6353" stroke-width="2" stroke-linecap="round"/>
+              <path d="M220 160L225 201M320 160L315 200" stroke="#d4f2ff" stroke-opacity=".3" stroke-width="2"/>
+            </g>
+            <g class="team-person person-left">
+              <path d="M105 273V226Q105 193 143 189H172Q204 196 205 226V273" fill="url(#teamTeal)" stroke="#7ae4e0"/>
+              <path d="M124 171V155Q123 125 154 126Q186 125 186 155V191H124Z" fill="#142b49"/>
+              <ellipse cx="156" cy="159" rx="23" ry="27" fill="url(#teamSkin)"/>
+              <path d="M131 153Q137 125 159 129Q182 134 183 154Q166 152 154 138Q145 151 131 153Z" fill="#142b49"/>
+              <path d="M133 216L157 241L179 215" stroke="#a4d7fb" stroke-width="2"/>
+              <path d="M146 160H148M165 160H167" stroke="#302c37" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M149 173Q156 179 164 172" stroke="#ab6353" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="135" cy="172" r="2" fill="#ffce78"/><circle cx="178" cy="172" r="2" fill="#ffce78"/>
+            </g>
+            <g class="team-person person-right">
+              <path d="M332 273V226Q334 194 368 189H396Q432 195 433 226V273" fill="url(#teamViolet)" stroke="#9ca9ff"/>
+              <circle cx="382" cy="158" r="27" fill="url(#teamSkin)"/>
+              <path d="M355 157V147Q355 122 380 125Q410 121 410 149L404 154L398 140Q382 146 356 141Z" fill="#11283f"/>
+              <path d="M361 156H377V166H361ZM387 156H403V166H387ZM377 160H387" stroke="#15395c" stroke-width="2"/>
+              <path d="M375 176Q382 180 389 175" stroke="#785239" stroke-width="2" stroke-linecap="round"/>
+              <path d="M368 193L382 211L396 193M382 211V248" stroke="#d6d8ff" stroke-opacity=".65" stroke-width="2"/>
+            </g>
+            <ellipse cx="271" cy="339" rx="195" ry="13" fill="#2296ff" opacity=".15"/>
+            <path d="M73 275H468L485 291H57Z" fill="url(#teamDesk)" stroke="#7bc8ff"/>
+            <path d="M86 292V337M451 292V337" stroke="#326899" stroke-width="9" stroke-linecap="round"/>
+            <g class="team-desk-plant">
+              <path d="M98 269Q75 230 93 221Q110 232 106 252Q109 218 126 223Q134 241 111 262" fill="#39bfa6"/>
+              <path d="M105 270V241" stroke="#82e8c8" stroke-width="2"/>
+              <path d="M92 258H119L116 276H96Z" fill="#dae9f5"/>
+            </g>
+            <path d="M403 252H423V274H403ZM423 256H428Q435 263 428 268H423" fill="#c7e6fc" stroke="#72b4e4" stroke-width="1.5"/>
+            <g class="team-laptop">
+              <rect x="189" y="203" width="164" height="91" rx="8" fill="url(#teamScreen)" stroke="#79bffa" stroke-width="2"/>
+              <path d="M172 295H369L355 303H187Z" fill="#76b5e5"/>
+              <text x="271" y="238" class="team-brand" text-anchor="middle">XcellHost</text>
+              <path class="team-code" d="M212 254H237M247 254H309M212 264H268M277 264H324M212 274H244" stroke="#66cbff" stroke-width="3" stroke-linecap="round"/>
+              <circle class="team-live" cx="334" cy="215" r="3" fill="#4ade80"/>
+            </g>
+            <g class="team-badge badge-left">
+              <rect x="24" y="77" width="132" height="51" rx="12" fill="url(#teamGlass)" stroke="#79bded" stroke-opacity=".65"/>
+              <path d="M40 105L47 112L59 95" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round"/>
+              <text x="68" y="100" class="team-label">Expertise</text><text x="68" y="115" class="team-detail">Built together</text>
+            </g>
+            <g class="team-badge badge-right">
+              <rect x="388" y="76" width="128" height="51" rx="12" fill="url(#teamGlass)" stroke="#79bded" stroke-opacity=".65"/>
+              <path d="M411 85L403 99H412L408 115L424 96H415L418 85Z" fill="#ffb347"/>
+              <text x="432" y="100" class="team-label">Innovation</text><text x="432" y="115" class="team-detail">Moving forward</text>
+            </g>
+            <text x="270" y="368" class="team-caption" text-anchor="middle">One team. Connected by purpose.</text>
+          </svg>
         </div>
       </div>
     </section>
@@ -679,15 +760,39 @@
             <a aria-label="Ask Gemini" [href]="companyAskAiHref('google')" target="_blank" rel="noopener noreferrer"><img src="https://www.google.com/s2/favicons?domain=gemini.google.com&amp;sz=64" alt=""/></a>
           </div></div>
         </div>
-        <div class="cert-hero-visual">
-          <span class="cert-float cert-float-one">✓ Controls verified</span><span class="cert-float cert-float-two">24×7 Operations</span>
-          <div class="cert-assurance-card" aria-label="XcellHost assurance and compliance overview">
-            <div class="cert-card-top"><span></span><span></span><span></span><b>Trust &amp; Assurance</b></div>
-            <div class="cert-shield"><span>✓</span></div>
-            <strong>Verified operational standards</strong>
-            <p>Security · Service quality · Technical capability</p>
-            <div class="cert-status-row"><span><i></i> Controls active</span><span><i></i> Audit ready</span></div>
-          </div>
+        <div class="cert-hero-visual cert-new-animation" aria-hidden="true">
+          <svg viewBox="0 0 520 410" fill="none">
+            <defs>
+              <linearGradient id="credentialPaper" x2="1" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#dcecff"/></linearGradient>
+              <linearGradient id="credentialShield" x2=".8" y2="1"><stop stop-color="#5dd9ff"/><stop offset=".5" stop-color="#2485eb"/><stop offset="1" stop-color="#5145d6"/></linearGradient>
+              <linearGradient id="credentialGold" x2="1" y2="1"><stop stop-color="#fff0b3"/><stop offset=".5" stop-color="#ffc665"/><stop offset="1" stop-color="#d58e2b"/></linearGradient>
+              <radialGradient id="credentialGlow"><stop stop-color="#3caaff" stop-opacity=".3"/><stop offset="1" stop-color="#3caaff" stop-opacity="0"/></radialGradient>
+            </defs>
+            <ellipse cx="262" cy="205" rx="238" ry="185" fill="url(#credentialGlow)"/>
+            <circle class="credential-orbit" cx="260" cy="208" r="170" stroke="#64bdff" stroke-opacity=".35" stroke-dasharray="3 10"/>
+            <circle cx="260" cy="208" r="143" stroke="#64bdff" stroke-opacity=".12"/>
+            <g transform="translate(143 57) rotate(7 124 143)"><rect width="248" height="286" rx="18" fill="#3972a4" stroke="#72b3e4" stroke-opacity=".5"/></g>
+            <g class="credential-document">
+              <rect x="127" y="52" width="248" height="286" rx="18" fill="url(#credentialPaper)" stroke="#b6dcff"/>
+              <rect x="141" y="66" width="220" height="258" rx="10" stroke="#a5c9eb"/>
+              <text x="251" y="96" class="credential-document-heading" text-anchor="middle">XCELLHOST</text>
+              <text x="251" y="116" class="credential-document-subtitle" text-anchor="middle">STANDARDS &amp; ASSURANCE</text>
+              <path d="M158 130H344" stroke="#c0d6eb"/>
+              <path class="credential-document-lines" d="M165 236H316M165 249H293M165 262H305" stroke="#a9c4e0" stroke-width="5" stroke-linecap="round"/>
+              <path d="M165 296Q177 274 184 294Q195 273 199 294L219 291" stroke="#5683b1" stroke-width="2" stroke-linecap="round"/>
+              <text x="165" y="312" class="credential-signature-label">COMMITMENT TO QUALITY</text>
+              <g class="credential-seal"><path d="M317 283L310 321L326 313L340 324L333 282" fill="#f5b74f"/><circle cx="325" cy="285" r="23" fill="url(#credentialGold)"/><circle cx="325" cy="285" r="17" stroke="#a87524" stroke-opacity=".6" stroke-dasharray="2 3"/><path d="M317 285L323 291L334 279" stroke="#94651f" stroke-width="2.5" stroke-linecap="round"/></g>
+            </g>
+            <g class="credential-main-shield">
+              <path d="M250 137L293 154L288 194Q281 216 250 232Q219 216 212 194L207 154Z" fill="url(#credentialShield)" stroke="#92d9ff" stroke-width="1.5"/>
+              <circle cx="250" cy="179" r="23" stroke="#e2f8ff" stroke-width="1.5"/>
+              <path class="credential-check" d="M236 178L247 189L266 167" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <g class="credential-badge badge-security"><rect x="16" y="139" width="139" height="59" rx="13" fill="#10355f" stroke="#6fb7e9"/><circle cx="39" cy="161" r="5" fill="#60e3b3"/><text x="52" y="165" class="credential-badge-title">ISO 27001</text><text x="32" y="184" class="credential-badge-caption">Information security</text></g>
+            <g class="credential-badge badge-service"><rect x="348" y="215" width="156" height="59" rx="13" fill="#10355f" stroke="#6fb7e9"/><circle cx="371" cy="237" r="5" fill="#60e3b3"/><text x="384" y="241" class="credential-badge-title">ISO 20000-1</text><text x="364" y="260" class="credential-badge-caption">Service management</text></g>
+            <g class="credential-sparkles" stroke="#89d6ff" stroke-width="2" stroke-linecap="round"><path d="M75 66V78M69 72H81M437 113V127M430 120H444M90 301V311M85 306H95"/><circle cx="415" cy="326" r="3" fill="#ffc869" stroke="none"/><circle cx="374" cy="49" r="3" fill="#89d6ff" stroke="none"/></g>
+            <text x="260" y="391" class="credential-footer-label" text-anchor="middle">Security. Service quality. Technical capability.</text>
+          </svg>
         </div>
       </div>
     </section>
@@ -699,16 +804,51 @@
         <div class="awards-hero-copy">
           <div class="pp-crumb">HOME &nbsp;›&nbsp; COMPANY &nbsp;›&nbsp; AWARDS</div>
           <span class="awards-hero-kicker">XCELLHOST RECOGNITION</span>
-          <h1 id="awardsHeroTitle"><span>XcellHost</span> | Awards</h1>
+          <h1 id="awardsHeroTitle">Recognised for excellence.<br /><em>Driven by trust.</em></h1>
           <p>Awards and recognition from XcellHost</p>
           <strong class="awards-hero-line">Celebrating excellence. Inspiring what’s next.<i aria-hidden="true"></i></strong>
           <div class="awards-hero-actions awards-product-actions"><a class="awards-primary-action" href="#awards-title">↓ Awards</a><a class="awards-secondary-action" routerLink="/company/certifications-awards">▣ Certifications</a><a class="awards-secondary-action" href="#awards-title">Recognition Tour</a><a class="awards-secondary-action" routerLink="/contact">Company Profile</a><a class="awards-talk-action" routerLink="/contact">Let's Talk</a></div>
           <div class="awards-ask-ai"><span>✦ Ask AI About XcellHost Awards</span><div><a [href]="companyAskAiHref('chatgpt')" target="_blank" rel="noopener noreferrer" aria-label="Ask ChatGPT"><img src="https://www.google.com/s2/favicons?domain=chatgpt.com&amp;sz=64" alt=""></a><a href="https://grok.com/?q=XcellHost%20Awards" target="_blank" rel="noopener noreferrer" aria-label="Ask Grok"><img src="https://www.google.com/s2/favicons?domain=grok.com&amp;sz=64" alt=""></a><a [href]="companyAskAiHref('claude')" target="_blank" rel="noopener noreferrer" aria-label="Ask Claude"><img src="https://www.google.com/s2/favicons?domain=claude.ai&amp;sz=64" alt=""></a><a [href]="companyAskAiHref('google')" target="_blank" rel="noopener noreferrer" aria-label="Ask Gemini"><img src="https://www.google.com/s2/favicons?domain=gemini.google.com&amp;sz=64" alt=""></a><a [href]="companyAskAiHref('perplexity')" target="_blank" rel="noopener noreferrer" aria-label="Ask Perplexity"><img src="https://www.google.com/s2/favicons?domain=perplexity.ai&amp;sz=64" alt=""></a></div></div>
         </div>
-        <div class="awards-hero-visual" aria-label="Original cloud excellence trophy illustration">
-          <span class="awards-orbit awards-orbit-one" aria-hidden="true"></span><span class="awards-orbit awards-orbit-two" aria-hidden="true"></span>
-          <img class="awards-trophy" src="/assets/images/awards-hero-original.png" alt="Original cloud excellence trophy illustration" width="430" height="430" loading="eager" />
-          <span class="awards-topic awards-topic-one">EXCELLENCE</span><span class="awards-topic awards-topic-two">INNOVATION</span><span class="awards-topic awards-topic-three">TRUST</span>
+        <div class="awards-hero-visual awards-animation" aria-hidden="true">
+          <svg viewBox="0 0 520 430" fill="none">
+            <defs>
+              <linearGradient id="awardCrystal" x1="202" y1="76" x2="329" y2="265" gradientUnits="userSpaceOnUse"><stop stop-color="#e9fbff"/><stop offset=".35" stop-color="#62b4f4"/><stop offset=".6" stop-color="#e0f5ff"/><stop offset="1" stop-color="#3184c6"/></linearGradient>
+              <linearGradient id="awardGold"><stop stop-color="#bb7b22"/><stop offset=".25" stop-color="#ffeab0"/><stop offset=".55" stop-color="#e5a43d"/><stop offset=".8" stop-color="#ffdf8c"/><stop offset="1" stop-color="#aa701c"/></linearGradient>
+              <linearGradient id="awardBase" x2="1" y2="1"><stop stop-color="#163e70"/><stop offset=".5" stop-color="#3084bc"/><stop offset="1" stop-color="#071c38"/></linearGradient>
+              <radialGradient id="awardGlow"><stop stop-color="#258dfc" stop-opacity=".35"/><stop offset="1" stop-color="#258dfc" stop-opacity="0"/></radialGradient>
+              <clipPath id="awardCrystalClip"><path d="M260 63L325 133L298 257L260 287L222 257L195 133Z"/></clipPath>
+              <path id="awardLeaf" d="M0 0Q-30 -1 -29 -20Q-4 -21 0 0Z" fill="url(#awardGold)"/>
+            </defs>
+            <ellipse cx="260" cy="215" rx="246" ry="197" fill="url(#awardGlow)"/>
+            <circle class="award-new-orbit" cx="260" cy="215" r="175" stroke="#7ecbff" stroke-opacity=".3" stroke-dasharray="3 10"/>
+            <circle cx="260" cy="215" r="139" stroke="#7ecbff" stroke-opacity=".15"/>
+            <ellipse class="award-ground-glow" cx="260" cy="384" rx="143" ry="17" fill="#389efe" opacity=".2"/>
+            <g class="award-animated-trophy">
+              <g class="award-laurel" stroke="#ffdc86" stroke-width="2">
+                <path d="M242 327Q142 291 154 175M278 327Q378 291 366 175"/>
+                <g stroke="none"><use href="#awardLeaf" transform="translate(217 313) rotate(-12)"/><use href="#awardLeaf" transform="translate(193 292) rotate(7)"/><use href="#awardLeaf" transform="translate(172 266) rotate(22)"/><use href="#awardLeaf" transform="translate(160 237) rotate(36)"/><use href="#awardLeaf" transform="translate(154 207) rotate(52)"/>
+                  <g transform="translate(520 0) scale(-1 1)"><use href="#awardLeaf" transform="translate(217 313) rotate(-12)"/><use href="#awardLeaf" transform="translate(193 292) rotate(7)"/><use href="#awardLeaf" transform="translate(172 266) rotate(22)"/><use href="#awardLeaf" transform="translate(160 237) rotate(36)"/><use href="#awardLeaf" transform="translate(154 207) rotate(52)"/></g>
+                </g>
+              </g>
+              <path d="M242 269H278L284 325H236Z" fill="url(#awardGold)" stroke="#fbe3a0"/>
+              <path d="M260 63L325 133L298 257L260 287L222 257L195 133Z" fill="url(#awardCrystal)" stroke="#addefc" stroke-width="1.5"/>
+              <path d="M260 63L239 134L260 287L283 134ZM195 133L239 134L222 257M325 133L283 134L298 257" stroke="#e8faff" stroke-opacity=".7"/>
+              <path d="M260 64L239 134L195 133Z" fill="#fff" opacity=".42"/>
+              <path d="M283 134L325 133L260 63Z" fill="#10356a" opacity=".35"/>
+              <g clip-path="url(#awardCrystalClip)"><path class="award-crystal-shine" d="M145 55L165 55L315 310L295 310Z" fill="white" opacity=".45"/></g>
+              <circle cx="260" cy="176" r="29" fill="#164e8b" fill-opacity=".7" stroke="#e5f6ff"/>
+              <path d="M260 153L266 166L280 168L270 178L273 193L260 186L247 193L250 178L240 168L254 166Z" fill="url(#awardGold)"/>
+              <path d="M220 319H300L314 345H206Z" fill="url(#awardGold)" stroke="#e4c57d"/>
+              <path d="M206 345H314L325 379H195Z" fill="url(#awardBase)" stroke="#6ca9d6"/>
+              <path d="M199 370H321V379H199Z" fill="url(#awardGold)"/>
+              <text x="260" y="363" class="award-trophy-brand" text-anchor="middle">XCELLHOST</text>
+            </g>
+            <g class="award-new-badge award-badge-left"><rect x="20" y="89" width="135" height="43" rx="12" fill="#11365d" stroke="#5696c9"/><text x="87" y="115" class="award-badge-text" text-anchor="middle">EXCELLENCE</text></g>
+            <g class="award-new-badge award-badge-right"><rect x="368" y="120" width="135" height="43" rx="12" fill="#11365d" stroke="#5696c9"/><text x="435" y="146" class="award-badge-text" text-anchor="middle">INNOVATION</text></g>
+            <g class="award-star-sparkles" stroke="#ffdb8a" stroke-width="2" stroke-linecap="round"><path d="M355 58V76M346 67H364M97 244V256M91 250H103M409 281V295M402 288H416"/><circle cx="187" cy="48" r="2" fill="#ffdb8a"/><circle cx="442" cy="213" r="2" fill="#ffdb8a"/></g>
+            <text x="260" y="420" class="award-animation-caption" text-anchor="middle">Celebrating the milestones that move us forward.</text>
+          </svg>
         </div>
       </div>
     </section>
@@ -808,6 +948,31 @@
         </div>
       </section>
     } @else {
+    @if (slug() === 'vendor-partners') {
+      <section class="vendor-hero" aria-labelledby="vendorHeroTitle">
+        <div class="wrap vendor-hero-grid">
+          <div class="vendor-hero-copy">
+            <nav class="vendor-breadcrumb" aria-label="Breadcrumb"><a routerLink="/">Home</a><span>/</span><span>Vendor Partners</span></nav>
+            <span class="vendor-eyebrow">CONNECTED BY EXPERTISE</span>
+            <h1 id="vendorHeroTitle">Leading technology.<br /><em>Stronger together.</em></h1>
+            <p>Global technology leaders. One trusted team. Explore the partners behind our cloud, security, productivity and AI solutions.</p>
+            <a class="btn btn-primary vendor-explore" href="#vendor-directory">Explore our partners <span aria-hidden="true">&rarr;</span></a>
+            <div class="vendor-hero-facts"><div><b>{{ vendorCount }}</b><span>Vendor listings</span></div><div><b>{{ partnerCategories.length }}</b><span>Technology categories</span></div><div><b>Since 1999</b><span>Building connections</span></div></div>
+          </div>
+          <div class="vendor-ecosystem" aria-hidden="true">
+            <svg class="vendor-network-lines" viewBox="0 0 520 380" fill="none"><circle cx="260" cy="190" r="133" stroke="#67baff" stroke-opacity=".25" stroke-dasharray="3 9"/><circle cx="260" cy="190" r="88" stroke="#67baff" stroke-opacity=".12"/><g class="vendor-data-flow" stroke="#56baff" stroke-width="1.5" stroke-dasharray="5 9"><path d="M260 190L112 66M260 190L408 66M260 190L85 190M260 190L435 190M260 190L112 314M260 190L408 314"/></g></svg>
+            <div class="vendor-network-hub"><img src="/assets/images/xcellhost-logo.png" alt=""/><span>YOUR TECHNOLOGY TEAM</span></div>
+            <div class="vendor-orbit-card orbit-microsoft"><img src="/assets/images/vendor-partners/02-microsoft-partner.png" alt=""/><span>Productivity</span></div>
+            <div class="vendor-orbit-card orbit-aws"><img src="/assets/images/vendor-partners/21-aws.png" alt=""/><span>Cloud infrastructure</span></div>
+            <div class="vendor-orbit-card orbit-azure"><img src="/assets/images/vendor-partners/01-azure.png" alt=""/><span>Cloud platforms</span></div>
+            <div class="vendor-orbit-card orbit-google"><img src="/assets/images/vendor-partners/41-google-cloud-platform.png" alt=""/><span>Connected cloud</span></div>
+            <div class="vendor-orbit-card orbit-acronis"><img src="/assets/images/vendor-partners/80-acronis-3.png" alt=""/><span>Data protection</span></div>
+            <div class="vendor-orbit-card orbit-oracle"><img src="/assets/images/vendor-partners/61-oracle-cloud-infrastructure.png" alt=""/><span>Enterprise cloud</span></div>
+            <div class="vendor-network-caption"><i></i> One connected technology ecosystem</div>
+          </div>
+        </div>
+      </section>
+    } @else {
     <section class="pp-hero company-hero">
       <span class="company-orb company-orb-one"></span>
       <span class="company-orb company-orb-two"></span>
@@ -818,6 +983,7 @@
         <p class="pp-tagline">{{ page.tagline }}</p>
       </div>
     </section>
+    }
     }
     }
 
@@ -992,15 +1158,20 @@
         }
 
         @if (slug() === 'vendor-partners') {
-          <section class="vendor-partners" aria-labelledby="vendorPartnersTitle">
+          <section class="vendor-partners" id="vendor-directory" aria-labelledby="vendorPartnersTitle">
             <header class="vendor-partners-heading">
               <span>Technology ecosystem</span>
               <h2 id="vendorPartnersTitle">Our strategic vendor partners</h2>
               <p>{{ page.intro }}</p>
             </header>
 
+            <div class="vendor-directory-toolbar">
+              <div><strong>Find your technology partner</strong><span>Browse by vendor name or technology category</span></div>
+              <label class="vendor-search"><span class="material-symbols-outlined" aria-hidden="true">search</span><input type="search" aria-label="Search vendor partners" placeholder="Search partners or categories…" [value]="vendorQuery()" (input)="vendorQuery.set($any($event.target).value)" /></label>
+            </div>
+
             <div class="vendor-category-list">
-              @for (category of partnerCategories; track category.title) {
+              @for (category of filteredPartnerCategories(); track category.title) {
                 <section class="vendor-category" [class.vendor-category-badges]="category.badges" [attr.aria-labelledby]="'vendor-category-' + $index">
                   <header>
                     <div>
@@ -1023,6 +1194,8 @@
                     }
                   </div>
                 </section>
+              } @empty {
+                <div class="vendor-empty" role="status"><h3>No matching partners</h3><p>Try another vendor name or technology category.</p><button type="button" (click)="vendorQuery.set('')">Clear search</button></div>
               }
             </div>
           </section>
@@ -1120,9 +1293,9 @@
                 <div class="award-grid">
                   @for (award of visibleAwards(); track award.title) {
                     <article class="award-card">
-                      <div class="award-image-wrap">
+                      <a class="award-image-wrap" [href]="award.image" target="_blank" rel="noopener noreferrer" [attr.aria-label]="'View ' + award.title + ' (opens in a new tab)'">
                         <img [src]="award.image" [alt]="award.title + ' recognition'" loading="lazy" />
-                      </div>
+                      </a>
                       <h3>{{ award.title }}</h3>
                     </article>
                   } @empty {

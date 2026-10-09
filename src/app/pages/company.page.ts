@@ -485,6 +485,18 @@ export class CompanyPage {
     ] },
   ] as const;
 
+  readonly vendorQuery = signal('');
+  readonly vendorCount = this.partnerCategories.reduce((total, category) => total + category.partners.length, 0);
+  readonly filteredPartnerCategories = computed(() => {
+    const query = this.vendorQuery().trim().toLowerCase();
+    return this.partnerCategories.map(category => ({
+      ...category,
+      partners: category.title.toLowerCase().includes(query)
+        ? category.partners
+        : category.partners.filter(partner => partner[0].toLowerCase().includes(query)),
+    })).filter(category => category.partners.length);
+  });
+
   constructor() {
     effect(() => {
       const page = this.page();

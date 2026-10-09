@@ -425,8 +425,14 @@ function defaultFeatureCards(
     label: topLabel,
     title: item.title,
     body: item.desc ?? 'Explore this service and its key business use cases.',
-    image: index === 0 ? fallbackImage : fallbackSecondImage,
-    imagePosition: index === 0 ? fallbackPosition : fallbackSecondPosition,
+    image: item.title === 'Cloud Backup'
+      ? '/assets/images/menu-cloud-backup.png'
+      : item.title === 'Register a Domain Name'
+        ? '/assets/images/menu-register-domain.png'
+      : index === 0 ? fallbackImage : fallbackSecondImage,
+    imagePosition: item.title === 'Cloud Backup'
+      ? 'center 35%'
+      : index === 0 ? fallbackPosition : fallbackSecondPosition,
     link: item.link ?? '#',
   }));
 }

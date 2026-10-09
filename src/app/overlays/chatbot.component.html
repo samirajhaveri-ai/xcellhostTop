@@ -2,7 +2,7 @@
   class="bot-fab"
   id="botFab"
   type="button"
-  aria-label="Open Xcell Genie"
+  aria-label="Open XcellGenie"
   aria-controls="bot"
   [attr.aria-expanded]="overlay.isOpen('chat')"
   (click)="toggle()"
@@ -26,13 +26,13 @@
     <path d="M9.5 17.2h5" />
   </svg>
   <span class="bot-ping"></span>
-  <span class="fab-tip">Ask Xcell Genie</span>
+  <span class="fab-tip">Ask XcellGenie</span>
 </button>
 
 <div
   class="bot"
   id="bot"
-  aria-label="Xcell Genie"
+  aria-label="XcellGenie"
   [class.open]="overlay.isOpen('chat')"
   [attr.aria-hidden]="overlay.isOpen('chat') ? null : 'true'"
 >
@@ -40,7 +40,7 @@
     <div class="bh-l">
       <span class="bh-av">AI</span>
       <div>
-        <b>Xcell Genie</b
+        <b>XcellGenie</b
         ><span class="bh-st"><i></i> <span id="botStatus">{{ status() }}</span></span>
       </div>
     </div>
