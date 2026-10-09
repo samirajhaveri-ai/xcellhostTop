@@ -193,6 +193,12 @@ const MENU_FEATURE_CARDS: Readonly<Record<string, readonly NavFeatureCardVm[]>> 
       link: '/geotrust', fresh: true,
     },
     {
+      label: 'Certificate automation', title: 'ACME Certificates',
+      body: 'Issue, install and renew Sectigo DV and OV certificates automatically.',
+      image: '/assets/images/vendor-partners/23-sectigo.png',
+      link: '/acme-certificate', fresh: true,
+    },
+    {
       label: 'Email trust', title: 'Enterprise DMARC',
       body: 'Stop domain spoofing with managed SPF, DKIM and DMARC.',
       image: '/assets/images/product-intros/reference-5728a592b032.png',
@@ -344,6 +350,7 @@ const CONTENT_LINKS: Record<string, string> = {
   'WhatsApp For Business': '/whatsapp-smb',
   'Digicert VMC ': '/digicert-vmc',
   'Digicert CMC': '/digicert-cmc',
+  'ACME Certificates': '/acme-certificate',
   'Acronis Advanced EDR SLA': '/acronis-advanced-edr-sla',
   'Acronis Advanced MDR SLA': '/acronis-advanced-mdr-sla',
   'Acronis Advanced XDR SLA': '/acronis-advanced-xdr-sla',
@@ -425,8 +432,14 @@ function defaultFeatureCards(
     label: topLabel,
     title: item.title,
     body: item.desc ?? 'Explore this service and its key business use cases.',
-    image: index === 0 ? fallbackImage : fallbackSecondImage,
-    imagePosition: index === 0 ? fallbackPosition : fallbackSecondPosition,
+    image: item.title === 'Cloud Backup'
+      ? '/assets/images/menu-cloud-backup.png'
+      : item.title === 'Register a Domain Name'
+        ? '/assets/images/menu-register-domain.png'
+      : index === 0 ? fallbackImage : fallbackSecondImage,
+    imagePosition: item.title === 'Cloud Backup'
+      ? 'center 35%'
+      : index === 0 ? fallbackPosition : fallbackSecondPosition,
     link: item.link ?? '#',
   }));
 }

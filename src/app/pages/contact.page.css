@@ -118,9 +118,24 @@ a.contact-channel:hover{border-color:#9fc4f5;transform:translateY(-3px);box-shad
 @keyframes contact-meridian-turn{from{transform:rotateY(0deg)}to{transform:rotateY(360deg)}}
 @media(prefers-reduced-motion:reduce){.contact-globe>div,.contact-globe i{animation:none}}
 
-.contact-hero-image{overflow:visible;isolation:auto;mix-blend-mode:lighten;pointer-events:none}
-.contact-hero-image img{position:absolute;right:30px;top:-20%;height:140%;width:auto;max-width:none;mask-image:linear-gradient(to right,transparent 30%,#000 52%,#000 92%,transparent),linear-gradient(to bottom,transparent 3%,#000 23%,#000 78%,transparent 98%);mask-composite:intersect;pointer-events:none}
-@media(max-width:800px){.contact-hero-image img{right:0;top:-10%;height:120%}}
+.contact-hero-animation{display:flex;align-items:center;justify-content:center;pointer-events:none}
+.contact-hero-animation svg{display:block;width:100%;height:auto;max-height:390px;overflow:visible}
+.contact-animated-globe{filter:drop-shadow(0 0 16px #128fff66)}
+.contact-floating-channel circle{fill:#0c427a;stroke:#469dec;stroke-width:1.5;filter:drop-shadow(0 0 8px #209fff66)}
+.contact-floating-channel path{stroke:#a4dfff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.connect-heading{fill:#06315d;font:700 24px system-ui,sans-serif;font-style:italic}.connect-blue{fill:#128ee7}
+.connect-subtitle{fill:#416d99;font:9px system-ui,sans-serif}.phone-caption{fill:#154a7d;font:8px system-ui,sans-serif}
+.contact-floating-phone{animation:contact-device-float 6s ease-in-out infinite}
+.contact-floating-channel{animation:contact-channel-float 5s ease-in-out infinite}.channel-mail{animation-delay:-1.5s}.channel-chat{animation-delay:-3s}
+.contact-globe-route,.contact-orbit-path{animation:contact-route-flow 14s linear infinite}
+.contact-beacon{transform-box:fill-box;transform-origin:center;animation:contact-beacon-pulse 3s ease-in-out infinite}.beacon-two{animation-delay:-1.5s}
+.contact-typing circle{animation:contact-dot-pulse 1.5s ease-in-out infinite}.contact-typing circle:nth-child(2){animation-delay:.2s}.contact-typing circle:nth-child(3){animation-delay:.4s}
+@keyframes contact-device-float{50%{transform:translateY(-7px)}}
+@keyframes contact-channel-float{50%{transform:translateY(-10px)}}
+@keyframes contact-route-flow{to{stroke-dashoffset:-180}}
+@keyframes contact-beacon-pulse{50%{opacity:.4;transform:scale(1.5)}}
+@keyframes contact-dot-pulse{50%{opacity:.25}}
+@media(prefers-reduced-motion:reduce){.contact-hero-animation *{animation:none!important}}
 
 /* Unified office tabs, contact details and location map. */
 .office-locator{overflow:hidden;border:1px solid #c9dcf4;border-radius:22px;background:#fff;box-shadow:0 20px 52px rgba(7,31,69,.1)}

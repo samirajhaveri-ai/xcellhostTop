@@ -573,6 +573,54 @@
     height: 38px;
   }
 }
+.article-related-carousel { position: relative; }
+.article-related-head { flex-wrap: wrap; }
+.article-related-head h2 { margin-right: auto; }
+.xh-blog-article .article-related-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding: 5px 0 16px;
+}
+.article-related-grid::-webkit-scrollbar { display: none; }
+.xh-blog-article .article-related-grid > .article-related-card {
+  flex: 0 0 calc((100% - 28px) / 3);
+  scroll-snap-align: start;
+}
+.article-related-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid #bdd4f7;
+  border-radius: 50%;
+  color: #1565d8;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(4, 30, 66, .12);
+  font: 28px/1 sans-serif;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.article-related-arrow.previous { left: -18px; }
+.article-related-arrow.next { right: -18px; }
+.article-related-arrow:hover { background: #1565d8; color: #fff; }
+.article-related-arrow:focus-visible, .article-related-grid:focus-visible { outline: 2px solid #1565d8; outline-offset: 3px; }
+@media (max-width: 900px) {
+  .xh-blog-article .article-related-grid > .article-related-card { flex-basis: calc((100% - 14px) / 2); }
+}
+@media (max-width: 560px) {
+  .xh-blog-article .article-related-grid > .article-related-card { flex-basis: 86%; }
+  .article-related-arrow.previous { left: -10px; }
+  .article-related-arrow.next { right: -10px; }
+}
 .xh-blog-article .article-related-card {
   padding: 0 0 20px;
   overflow: hidden;
@@ -614,4 +662,31 @@
 
 .article-sibling .article-sibling-description {
   margin: 0;
+}
+
+.xh-blog-article .article-sibling {
+  padding: 0 0 20px;
+  overflow: hidden;
+  justify-content: flex-start;
+}
+
+.xh-blog-article .article-sibling > :not(.article-sibling-cover) {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.article-sibling .article-sibling-cover {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  margin: 0 0 8px;
+  background: #f2f7ff;
+}
+
+.article-sibling .article-sibling-cover.is-fallback {
+  padding: 24px;
+  object-fit: contain;
 }

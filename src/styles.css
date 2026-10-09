@@ -4261,6 +4261,21 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
 .smb-desktop-pricing .tally-price-heading>span{display:inline-flex;align-items:center;min-height:26px;padding:0 12px;border-radius:999px;background:#eaf3ff;color:#1565d8;letter-spacing:.08em}
 .smb-desktop-pricing .tally-plan-card.tally-plan-featured{border-color:#70afe9;box-shadow:0 12px 30px rgba(0,91,187,.14)}
 .smb-desktop-plan-note{margin:22px 0 0;color:#647995;text-align:center;font:400 12px/1.5 'Poppins',sans-serif}
+.smb-desktop-pricing .smb-desktop-plan-action{gap:8px;width:142px;cursor:default}
+.smb-desktop-plan-total{display:flex;align-items:baseline;justify-content:center;gap:5px;width:100%;white-space:nowrap}
+.smb-desktop-plan-total strong{font:650 clamp(21px,1.8vw,25px)/1.08 'Poppins',sans-serif;letter-spacing:-.025em}
+.smb-desktop-plan-total small{color:#526a8d;font-size:8px;font-weight:600}
+.smb-desktop-plan-action>label{color:#080d2c;font:650 10px/1.3 'Poppins',sans-serif}
+.smb-desktop-quantity{display:grid;grid-template-columns:38px minmax(0,1fr) 38px;width:142px;overflow:hidden;border:1px solid #c8d8ec;border-radius:7px;background:#fff}
+.smb-desktop-quantity button,.smb-desktop-quantity input{height:38px;border:0;background:#fff;color:#080d2c;text-align:center;font:650 14px/1 'Poppins',sans-serif}
+.smb-desktop-quantity button{background:#f5f8fc;color:#0b55c7;cursor:pointer}
+.smb-desktop-quantity button:first-child{border-right:1px solid #c8d8ec}.smb-desktop-quantity button:last-child{border-left:1px solid #c8d8ec}
+.smb-desktop-quantity button:disabled{color:#9aabc0;cursor:not-allowed}
+.smb-desktop-quantity input{width:100%;min-width:0;appearance:textfield;-moz-appearance:textfield}
+.smb-desktop-quantity input::-webkit-inner-spin-button,.smb-desktop-quantity input::-webkit-outer-spin-button{margin:0;appearance:none}
+.smb-desktop-buy{display:block;width:142px;padding:11px 10px;border:0;border-radius:9px;background:linear-gradient(135deg,#1670e8,#0b55c7);color:#fff;text-align:center;text-transform:uppercase;font:650 13px/1.2 'Poppins',sans-serif;box-shadow:0 7px 16px rgba(21,101,216,.24);cursor:pointer;transition:background .2s ease,box-shadow .2s ease,transform .2s ease}
+.smb-desktop-buy:hover{background:linear-gradient(135deg,#0b55c7,#083d98);box-shadow:0 10px 20px rgba(21,101,216,.3);transform:translateY(-2px)}
+.smb-desktop-buy:focus-visible,.smb-desktop-quantity button:focus-visible,.smb-desktop-quantity input:focus-visible{outline:3px solid rgba(0,91,187,.24);outline-offset:2px}
 
 @media(max-width:1050px){
   .tally-plan-specs{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -4280,6 +4295,8 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
   .tally-plan-main>strong{font-size:27px}
   .tally-plan-specs{display:flex;flex-direction:column}
   .tally-plan-specs>div{min-height:55px}
+  .smb-desktop-pricing .smb-desktop-plan-action{width:100%;padding:22px 20px}
+  .smb-desktop-plan-total,.smb-desktop-quantity,.smb-desktop-buy{width:min(280px,100%)}
 }
 
 /* Cloud Disaster Recovery SMB — RMM-style plan presentation, preserving plan content. */
@@ -4651,7 +4668,10 @@ html.dark-mode ::selection { background: #245fae; color: #fff; }
 .article-related{padding-top:34px}
 .article-related-head{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:17px}
 .article-related-head h2{margin:0;color:#071f46;font:800 20px/1.25 var(--disp);letter-spacing:-.02em}
-.article-related-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.article-related-grid{display:flex;flex-wrap:nowrap;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;min-width:0;width:100%}
+.article-related-grid>.article-related-card{flex:0 0 calc((100% - 28px)/3);scroll-snap-align:start}
+@media(max-width:900px){.article-related-grid>.article-related-card{flex-basis:calc((100% - 14px)/2)}}
+@media(max-width:560px){.article-related-grid>.article-related-card{flex-basis:86%}}
 .article-related-card{display:flex;min-width:0;min-height:132px;padding:20px;flex-direction:column;border:1px solid #d4dfec;border-radius:14px;background:#fff;color:inherit;text-decoration:none;box-shadow:0 8px 24px rgba(4,30,66,.03);transition:border-color .2s,box-shadow .2s,transform .2s}
 .article-related-card:hover{transform:translateY(-3px);border-color:#96bce9;box-shadow:0 13px 30px rgba(4,30,66,.08)}
 .article-related-card>span{margin-bottom:10px;color:#1565d8;font:750 10px/1 var(--mono);letter-spacing:.12em;text-transform:none}
@@ -6241,3 +6261,46 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 .box-migration-page .pp-faq-heading,
 .box-migration-page .pp-cta h3 { text-transform:uppercase; }
 .box-migration-assurance { margin-top:32px; }
+
+/* Container Registry hero copy and powered-by badge. */
+#ppage .container-registry-hero-art {
+  flex-direction: column !important;
+  gap: 16px !important;
+}
+#ppage:has(.container-registry-hero-art) .pp-hero #ppTitle {
+  display: block !important;
+  text-align: left !important;
+  white-space: normal !important;
+  text-wrap: wrap !important;
+}
+#ppage:has(.container-registry-hero-art) #ppTitle .pp-title-name {
+  display: inline !important;
+  margin-left: 0 !important;
+  white-space: normal !important;
+}
+#ppage .container-registry-powered {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 9px 14px 9px 8px; border-radius: 13px;
+  background: #fff; color: #0B132B;
+  font-family: 'IBM Plex Sans', system-ui, sans-serif; line-height: 1.2;
+}
+#ppage .container-registry-powered-row { margin-top: 16px; text-align: left; }
+#ppage .container-registry-powered-icon {
+  display: grid; place-items: center; flex: none;
+  width: 30px; height: 30px; border-radius: 8px;
+  background: #0B132B; color: #fff;
+}
+#ppage .container-registry-powered-icon svg { width: 20px; height: 20px; }
+#ppage .container-registry-powered small {
+  display: block; margin-bottom: 3px; color: #5B6782;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 8px; letter-spacing: .12em;
+}
+#ppage .container-registry-powered strong { display: block; font-size: 15px; font-weight: 700; }
+#ppage .pp-body:has(> xh-container-registry-content) { padding-top: 0; }
+
+.managed-kubernetes-page :is(h1,h2,h3,h4,.pp-sec){text-transform:capitalize}
+.managed-kubernetes-page :is(#ppSecHead,#ppWhyHead,.pp-rev-title,.pp-faq-heading){text-transform:uppercase}
+.managed-kubernetes-page #ppSecHead ~ .pp-sec,
+.managed-kubernetes-page #showcaseVideosTitle{text-transform:uppercase}
+

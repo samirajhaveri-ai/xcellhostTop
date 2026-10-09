@@ -12,8 +12,14 @@ interface ArchitectureTab {
 @Component({
   selector: 'xh-infrastructure-content',
   standalone: true,
+  styleUrl: './infrastructure-content.component.css',
   template: `
-    <section class="infra-architecture" aria-labelledby="infraArchitectureTitle">
+    <div class="infra-foundations">
+      <article><span class="material-symbols-outlined" aria-hidden="true">dns</span><h3>A connected foundation</h3><p>Compute, storage and networking work together to support your cloud workloads.</p></article>
+      <article><span class="material-symbols-outlined" aria-hidden="true">verified_user</span><h3>Protection at every layer</h3><p>Explore the security controls across your network, applications and operations.</p></article>
+      <article><span class="material-symbols-outlined" aria-hidden="true">settings_backup_restore</span><h3>Plan for continuity</h3><p>Bring backup, recovery and observability into your infrastructure architecture.</p></article>
+    </div>
+    <section class="infra-architecture" id="infra-architecture" aria-labelledby="infraArchitectureTitle">
       <div class="infra-architecture-heading">
         <div class="pp-sec">Infrastructure architecture</div>
         <h2 id="infraArchitectureTitle">Built for secure, reliable cloud workloads</h2>

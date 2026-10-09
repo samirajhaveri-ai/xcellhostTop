@@ -1,0 +1,240 @@
+<main id="main">
+<!-- ================= HERO ================= -->
+<section class="hero" id="podHero">
+  <div class="hero-bg pod-bg" id="podBg" aria-hidden="true">
+    <div class="pod-dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="sky" id="podSky"></div>
+  </div>
+  <div class="wrap">
+    <div class="crumb" data-in="1"><a href="https://www.xcellhost.top/">Home</a> / <a href="#">Company</a> / <span class="c">Podcasts</span></div>
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow" data-in="1">The XcellHost Cloud Podcast</span>
+        <h1 data-in="2">Real talk on cloud, security <span class="acc">and what actually works.</span></h1>
+        <p class="lead" data-in="3">Candid conversations on cloud, cybersecurity and AI for Indian businesses — with the people who run it in production. <b>A new 35–45 minute episode every fortnight,</b> with chapters, takeaways and a transcript for each one.</p>
+        <div class="powered" data-in="4"><span class="pv-l" style="background:#FF8A00;color:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v4M8 22h8"/></svg></span><span><small>Produced by</small><b>XcellHost</b></span></div>
+        <div class="hero-cta" data-in="5">
+          <button type="button" class="btn btn-orange" id="heroPlay"><span class="ico2"><span class="i-pl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="i-pa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></span></span><span id="heroPlayL">Play the latest episode</span></button>
+          <a href="#episodes" class="btn btn-line">Browse all episodes <span class="ar">→</span></a>
+        </div>
+      </div>
+      <div class="stage" data-in="4">
+        <div class="np" id="np" aria-label="Now playing">
+          <div class="np-top">
+            <div class="np-cover" aria-hidden="true">
+              <span class="cv-ep" id="npCvEp">EP 24</span>
+              <span class="cv-mic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v4M8 22h8"/></svg></span>
+              <span class="cv-eq"><i></i><i></i><i></i><i></i><i></i></span>
+            </div>
+            <div class="np-meta">
+              <span class="np-k"><span class="np-dot"></span><span id="npK">Latest episode</span></span>
+              <h3 id="npT">—</h3>
+              <p id="npG"></p>
+            </div>
+          </div>
+          <p class="np-cap" id="npCap" aria-live="off"></p>
+          <div class="np-wv" id="npWv" role="slider" tabindex="0" aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="wv-b" id="wvB"></div>
+            <div class="wv-f" id="wvF"></div>
+            <span class="wv-h" id="wvH"></span><span class="wv-tip" id="wvTip">0:00</span>
+          </div>
+          <div class="np-time"><span id="npCur">0:00</span><span class="np-mode" id="npMode">Episode brief</span><span id="npDur">0:45</span></div>
+          <div class="np-ctl">
+            <button type="button" class="np-sp" id="npSpeed" aria-label="Playback speed">1×</button>
+            <button type="button" class="np-sk" id="npBack" aria-label="Back 15 seconds"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3"/><path d="M4.5 3.5v3.7h3.7"/></svg><span>15</span></button>
+            <button type="button" class="np-pp" id="npPlay" aria-label="Play"><span class="i-pl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="i-pa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></span></button>
+            <button type="button" class="np-sk" id="npFwd" aria-label="Forward 30 seconds"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3"/><path d="M19.5 3.5v3.7h-3.7"/></svg><span>30</span></button>
+            <div class="np-chw">
+              <button type="button" class="np-ch" id="npCh" aria-haspopup="true" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg><span>Chapters</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+              <div class="np-chm" id="npChM" role="menu"></div>
+            </div>
+          </div>
+          <div class="np-note" id="npNote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0118 0v6"/><rect x="2" y="15" width="5" height="7" rx="2"/><rect x="17" y="15" width="5" height="7" rx="2"/></svg><span id="npNoteT">Press play for a short episode brief — full audio coming soon</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="hero-stats" data-in="6">
+      <div class="hs"><b>Fortnightly</b><span>New episode</span></div>
+      <div class="hs"><b>~40<em> min</em></b><span>Per episode</span></div>
+      <div class="hs"><b>Transcripts</b><span>For every episode</span></div>
+      <div class="hs"><b>Free</b><span>On every platform</span></div>
+      <div class="hs"><b>Practitioners</b><span>As our guests</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">About the show</span><h2>No slides, no sales pitch — <span class="acc">just how it's done.</span></h2><p>Each episode takes one problem Indian IT teams face this year and talks it through with someone who has solved it. What worked, what broke, what it cost, and what they'd do differently.</p></div>
+    <div class="about">
+      <div class="fmt rv">
+        <span class="fmt-k">Every episode includes</span>
+        <ul class="ilist">
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></i><span><b>35–45 minutes</b> — one topic, covered properly, the length of a commute</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></i><span><b>Chapters with timestamps</b> so you can jump to the part you need</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></i><span><b>Three key takeaways</b> you can take into Monday's meeting</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg></i><span><b>A full transcript</b> — searchable, quotable, easy to share with your team</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></i><span><b>India context</b> — DPDP Act, CERT-In rules, INR budgets and local data residency</span></li>
+        </ul>
+        <div class="fmt-f"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg> New episode every second Wednesday</span></div>
+      </div>
+      <div class="aud">
+        <div class="card rv" data-d="1"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 7h.01M15 7h.01M9 11h.01M15 11h.01M9 15h.01M15 15h.01M10 21v-3h4v3"/></svg></div><h3>CIOs &amp; IT heads</h3><p>Deciding what to move, what to buy and what to stop paying for.</p></div>
+        <div class="card rv" data-d="2"><div class="ico o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>Security &amp; compliance</h3><p>Turning frameworks and regulations into controls that hold up in an audit.</p></div>
+        <div class="card rv" data-d="3"><div class="ico n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9l3 3-3 3M13 15h4"/></svg></div><h3>DevOps &amp; engineers</h3><p>Kubernetes, pipelines, observability and the incidents nobody writes up.</p></div>
+        <div class="card rv" data-d="4"><div class="ico g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12M6 9h12M15 20L8 13h2a4 4 0 000-8"/></svg></div><h3>Founders &amp; CFOs</h3><p>Plain-English context on cloud spend, risk and where AI genuinely pays off.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EPISODE LIBRARY ================= -->
+<section class="sec alt" id="episodes">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">Episode library</span><h2>Find the episode for <span class="acc">this week's problem.</span></h2><p>Search by topic, guest or keyword. Every episode opens with show notes — chapters, takeaways and a transcript excerpt — and plays right here on the page.</p></div>
+    <div class="lib">
+      <div class="lib-bar rv">
+        <label class="lib-q"><span class="sr">Search episodes</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><input id="libQ" type="search" placeholder="Search episodes, guests, topics…" autocomplete="off"><kbd id="libKbd">10</kbd></label>
+        <div class="lib-sort"><span class="lb">Sort</span><div class="seg" id="libSort"><button data-v="new" class="on">Newest</button><button data-v="old">Oldest</button><button data-v="short">Shortest</button></div></div>
+      </div>
+      <div class="lib-chips rv" data-d="1" id="libChips" role="group" aria-label="Filter by topic"></div>
+      <div class="lib-count" id="libCount" aria-live="polite"></div>
+      <div class="eps" id="eps"></div>
+      <div class="lib-empty" id="libEmpty" hidden><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></i><b>No episodes match that search.</b><span>Try another keyword, or <button type="button" id="libClear">clear all filters</button>.</span></div>
+    </div>
+    <p class="note-ind">Episode guests are described by role only. Listings shown are illustrative while the archive is being published.</p>
+  </div>
+</section>
+
+<!-- ================= LISTEN ON ================= -->
+<section class="sec" id="listen">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">Listen anywhere</span><h2>Free on the app <span class="acc">you already use.</span></h2><p>Follow the show once and new episodes arrive on their own. Prefer email? Get each episode, with its takeaways, in your inbox.</p></div>
+    <div class="plat">
+      <a class="pf rv" href="#" data-d="1"><span class="pf-i sp"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M7 9.8c3.4-1 7.4-.6 10.3 1.2M7.6 13c2.8-.8 6-.4 8.3 1M8.2 16c2.2-.6 4.5-.3 6.3.8" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></span><b>Spotify</b><span>Follow the show</span><em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></em></a>
+      <a class="pf rv" href="#" data-d="2"><span class="pf-i" style="background:#FF8A00"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="10.5" r="2.2"/><path d="M12 13v7.5"/><path d="M8.3 15a6 6 0 1 1 7.4 0"/><path d="M5.6 18a9.5 9.5 0 1 1 12.8 0"/></svg></span><b>Apple Podcasts</b><span>Subscribe free</span><em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></em></a>
+      <a class="pf rv" href="#" data-d="3"><span class="pf-i" style="background:#c0392b"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 8.2a2.6 2.6 0 00-1.8-1.8C18.5 6 12 6 12 6s-6.5 0-8.2.4A2.6 2.6 0 002 8.2 27 27 0 002 12a27 27 0 00.4 3.8 2.6 2.6 0 001.8 1.8C5.5 18 12 18 12 18s6.5 0 8.2-.4a2.6 2.6 0 001.8-1.8A27 27 0 0022 12a27 27 0 00-.4-3.8zM10 15V9l5 3z"/></svg></span><b>YouTube</b><span>Watch the video cut</span><em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></em></a>
+      <a class="pf rv" href="#" data-d="4"><span class="pf-i" style="background:#0066FF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0118 0v6"/><rect x="2" y="15" width="5" height="7" rx="2"/><rect x="17" y="15" width="5" height="7" rx="2"/></svg></span><b>Amazon Music</b><span>Follow the show</span><em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></em></a>
+      <button type="button" class="pf rv" data-d="5" data-copy="https://www.xcellhost.top/podcast/feed.xml"><span class="pf-i" style="background:#0B132B"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="6" cy="18" r="2.2"/><path d="M4 11a9 9 0 019 9h-3a6 6 0 00-6-6zM4 5a15 15 0 0115 15h-3A12 12 0 004 8z"/></svg></span><b>RSS feed</b><span>Copy feed URL</span><em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></em></button>
+    </div>
+    <div class="subs rv">
+      <div class="subs-t">
+        <span class="subs-k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/></svg> Episode by email</span>
+        <h3>New episodes, straight to your inbox.</h3>
+        <p>One short email per episode: the summary, three takeaways and the link. No other marketing, unsubscribe in one click.</p>
+      </div>
+      <form class="subs-f" id="subsF" data-xhform="podcast-subscribe" novalidate>
+        <div class="subs-row">
+          <div class="fi"><label for="subE" class="sr">Work email</label><input id="subE" name="email" type="email" required placeholder="you@company.in" autocomplete="email"><span class="em">Enter a valid email address</span></div>
+          <button type="submit" class="btn btn-orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 16V11a6 6 0 00-12 0v5l-2 2h16zM10 20a2 2 0 004 0"/></svg> Notify me</button>
+        </div>
+        <div class="subs-pref" role="group" aria-label="Topics you care about">
+          <label><input type="checkbox" name="t-sec" checked><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Security</span></label>
+          <label><input type="checkbox" name="t-cloud" checked><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a5 5 0 01-.6-10A6 6 0 0118 9a4.5 4.5 0 01-.5 9z"/></svg> Cloud</span></label>
+          <label><input type="checkbox" name="t-ai" checked><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3a3 3 0 00-3 3 3 3 0 00-2 5 3 3 0 001 5 3 3 0 005 3V3zM15 3a3 3 0 013 3 3 3 0 012 5 3 3 0 01-1 5 3 3 0 01-5 3V3z"/></svg> AI</span></label>
+          <label><input type="checkbox" name="t-trust" checked><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="13" rx="2"/><circle cx="12" cy="17" r="3"/><path d="M10.5 19.5L10 23l2-1 2 1-.5-3.5M7 7h10M7 10h6"/></svg> Digital trust</span></label>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOSTS ================= -->
+<section class="sec alt" id="hosts">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">Your hosts</span><h2>Hosted by the people <span class="acc">on call tonight.</span></h2><p>The show is run by XcellHost's own cloud and security team — engineers from the 24×7 NOC and SOC that have kept Indian businesses online since 1999.</p></div>
+    <div class="g3">
+      <div class="card host rv"><div class="h-av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a5 5 0 01-.6-10A6 6 0 0118 9a4.5 4.5 0 01-.5 9z"/></svg></div><span class="h-k">Lead host</span><h3>Head of Cloud Architecture</h3><p>Designs migrations, Kubernetes platforms and GPU clusters for customers. Asks the questions about cost, scale and what happens at 3 a.m.</p>
+        <div class="h-t"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8.5 5v10L12 22l-8.5-5V7z"/></svg> Kubernetes</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12M6 9h12M15 20L8 13h2a4 4 0 000-8"/></svg> FinOps</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="11" rx="2"/><circle cx="8" cy="12.5" r="2.5"/><circle cx="15.5" cy="12.5" r="2.5"/><path d="M5 18v3M19 18v3"/></svg> GPU cloud</span></div></div>
+      <div class="card host rv" data-d="1"><div class="h-av o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div><span class="h-k">Co-host</span><h3>Security Operations Lead</h3><p>Runs incident response in our SOC. Brings the attacker's view — and the reality of recovery, reporting and insurance.</p>
+        <div class="h-t"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="6" width="8" height="14" rx="4"/><path d="M12 6V4M8 10H4M8 15H4M16 10h4M16 15h4M9 4l1 2M15 4l-1 2"/></svg> Ransomware</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0114 0M16 11l2 2 4-4"/></svg> Zero Trust</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/></svg> DMARC</span></div></div>
+      <div class="card host rv" data-d="2"><div class="h-av n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div><span class="h-k">Producer &amp; NOC voice</span><h3>NOC &amp; Platform Team</h3><p>Researches every episode, checks the facts and adds the field notes from thousands of hours watching production systems.</p>
+        <div class="h-t"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 16V11a6 6 0 00-12 0v5l-2 2h16zM10 20a2 2 0 004 0"/></svg> Monitoring</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg> Automation</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg> Show notes</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BE A GUEST ================= -->
+<section class="sec" id="guest">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">Suggest a topic · be a guest</span><h2>Solved something hard? <span class="acc">Come and tell us how.</span></h2><p>We look for practitioners — people who built, ran or fixed the thing — not product demos. Guest spots are never paid for, and you approve the edit before it goes out.</p></div>
+    <div class="steps h rv" style="--n:4">
+      <div class="step"><h4>Pitch in two minutes</h4><p>Tell us the problem you solved, or the topic you want covered. A few lines is enough.</p><span class="bar"></span></div>
+      <div class="step"><h4>20-minute pre-call</h4><p>We agree the story, the questions and anything that must stay off the record.</p><span class="bar"></span></div>
+      <div class="step"><h4>Record remotely</h4><p>About 45 minutes from your desk. We send a mic guide; any decent headset works.</p><span class="bar"></span></div>
+      <div class="step"><h4>Review, then publish</h4><p>You see the edit and the show notes first. Nothing goes live without your OK.</p><span class="bar"></span></div>
+    </div>
+    <div class="guest-cta rv">
+      <div class="chips">
+        <span class="chip"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v4M8 22h8"/></svg></i>Be a guest</span>
+        <span class="chip"><i style="background:#FF8A00"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 01-11.6 7.1L3 21l1.9-6.4A8 8 0 1121 12z"/></svg></i>Suggest a topic</span>
+        <span class="chip"><i style="background:#0B132B"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2 20a7 7 0 0114 0M17 11a3 3 0 000-6M22 20a6 6 0 00-4-5.6"/></svg></i>Nominate a colleague</span>
+      </div>
+      <button type="button" class="btn btn-blue" data-open="podGuest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v4M8 22h8"/></svg> Pitch a topic or yourself <span class="ar">→</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="sec alt">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">FAQ</span><h2>Questions about <span class="acc">the show.</span></h2></div>
+    <div class="faq rv">
+      <div class="fq open"><button aria-expanded="true">Is the podcast free?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>Yes. Every episode, transcript and set of show notes is free — no sign-up needed to listen. The email updates are optional.</p></div></div>
+      <div class="fq"><button aria-expanded="false">How often do new episodes come out?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>Every second Wednesday. Episodes run 35–45 minutes and each one sticks to a single topic.</p></div></div>
+      <div class="fq"><button aria-expanded="false">Why do I hear a short brief instead of the full episode?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>Full episode audio is being published to this page. Until then, the player reads a short, under-a-minute brief of each episode using your browser's built-in voice, so you can preview the topic. Chapters, takeaways and transcript excerpts are in the show notes.</p></div></div>
+      <div class="fq"><button aria-expanded="false">Is there a transcript for every episode?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>Yes. Each episode has a transcript, chapter markers and three key takeaways. Open "Show notes" on any episode to see them, or copy a direct link to share with your team.</p></div></div>
+      <div class="fq"><button aria-expanded="false">Can I come on the show? Do guests pay?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>We welcome practitioners with a real story to tell. Guest spots are never sold, and episodes are not product pitches. Use "Pitch a topic or yourself" above and our producer will reply within a week.</p></div></div>
+      <div class="fq"><button aria-expanded="false">Can I share or quote an episode internally?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>Please do. Link to the episode or quote the transcript with credit to The XcellHost Cloud Podcast. For training material or reposting full episodes, write to us first.</p></div></div>
+      <div class="fq"><button aria-expanded="false">Is what I hear on the show advice for my company?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>Episodes are general information drawn from real experience, not legal or compliance advice. If you want to apply something to your own environment, our engineers can review it with you — just request a callback.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="sec tight" id="contact">
+  <div class="wrap">
+    <div class="cta rv"><span class="ring"></span><span class="ring r2"></span>
+      <div><h2>Heard something you want to try?</h2><p>Talk it through with the engineers behind the show. Tell us what you run today and what you heard — we'll tell you honestly what it takes in your environment.</p></div>
+      <div class="ca"><button class="btn btn-orange" data-open="xhCallback" data-topic="Cloud &amp; security consultation">Request a callback <span class="ar">→</span></button><a class="btn btn-line" href="https://wa.me/918657032540"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.2 1.4 2.5 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg> WhatsApp our team</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SHOW NOTES MODAL ================= -->
+<div class="modal" id="epNotes" role="dialog" aria-modal="true" aria-labelledby="enT"><div class="sc" data-close></div><div class="mb wide">
+  <div class="mh"><div><span class="en-k" id="enK"></span><h3 id="enT"></h3><p id="enM"></p></div><button class="x" data-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+  <div class="mc" id="enBody"></div>
+</div></div>
+
+<!-- ================= GUEST MODAL ================= -->
+<div class="modal" id="podGuest" role="dialog" aria-modal="true" aria-labelledby="pgT"><div class="sc" data-close></div><div class="mb">
+  <div class="mh"><div><h3 id="pgT">Suggest a topic or be a guest</h3><p>Our producer reads every pitch and replies within a week.</p></div><button class="x" data-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+  <div class="mc"><form class="form" data-xhform="podcast-guest" data-done="Thanks — our producer will read your pitch and reply within a week." novalidate>
+    <div class="fi full"><label>I'd like to</label><div class="seg" id="pgType"><button type="button" data-v="guest" class="on">Be a guest</button><button type="button" data-v="topic">Suggest a topic</button><button type="button" data-v="nominate">Nominate someone</button></div><input type="hidden" name="type" id="pgTypeV" value="guest"></div>
+    <div class="fi"><label>Full name</label><input name="name" required autocomplete="name"><span class="em">Please enter your name</span></div>
+    <div class="fi"><label>Work email</label><input name="email" type="email" required autocomplete="email"><span class="em">Enter a valid email</span></div>
+    <div class="fi full"><label>Your role &amp; organisation <span class="opt">(optional)</span></label><input name="role" placeholder="e.g. Head of IT, logistics company"></div>
+    <div class="fi full"><label>Topic</label><select name="topic"><option>Security</option><option>Cloud &amp; infrastructure</option><option>AI &amp; data</option><option>Digital trust &amp; email</option><option>Something else</option></select></div>
+    <div class="fi full"><label id="pgPitchL">What would you talk about?</label><textarea name="pitch" required placeholder="The problem, what you did, what you learned."></textarea><span class="em">A line or two is enough</span></div>
+    <div class="full"><button class="btn btn-orange btn-block" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v4M8 22h8"/></svg> Send pitch <span class="ar">→</span></button><p class="fine" style="margin-top:8px">We only use your details to reply about the podcast. Guest spots are never paid.</p></div>
+  </form></div>
+</div></div>
+
+<!-- ================= MINI PLAYER ================= -->
+<div class="mini" id="mini" aria-label="Mini player" aria-hidden="true">
+  <div class="mi-pg" id="miPg" role="slider" tabindex="-1" aria-label="Seek"><i id="miBar"></i></div>
+  <div class="mi-cv" aria-hidden="true"><small>EP</small><b id="miN">24</b><span class="cv-eq"><i></i><i></i><i></i><i></i></span></div>
+  <div class="mi-t"><b id="miT"></b><span id="miS"></span></div>
+  <div class="mi-c">
+    <button type="button" class="mi-b mi-sk" id="miBack" aria-label="Back 15 seconds"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3"/><path d="M4.5 3.5v3.7h3.7"/></svg><span>15</span></button>
+    <button type="button" class="mi-b mi-pp" id="miPlay" aria-label="Play"><span class="i-pl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="i-pa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></span></button>
+    <button type="button" class="mi-b mi-sk" id="miFwd" aria-label="Forward 30 seconds"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3"/><path d="M19.5 3.5v3.7h-3.7"/></svg><span>30</span></button>
+    <button type="button" class="mi-b mi-x" id="miX" aria-label="Close player"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  </div>
+</div>
+
+</main>

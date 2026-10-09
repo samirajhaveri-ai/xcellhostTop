@@ -2,7 +2,6 @@ import { QuantityInputDirective } from '../core/quantity-input.directive';
 import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angular/core';
 
 import { OverlayService } from '../core/overlay.service';
-import { CallbackTopicService } from '../overlays/callback-topic.service';
 
 type GenaiPlan = 'enforce';
 const GENAI_PLANS: Record<GenaiPlan, { name: string; price: number; max: number }> = {
@@ -30,7 +29,6 @@ interface ConsoleView {
 })
 export class GenaiProtectionContentComponent {
   private readonly overlay = inject(OverlayService);
-  private readonly topics = inject(CallbackTopicService);
   readonly quantities = signal<Record<GenaiPlan, number>>({ enforce: 1 });
 
   quantity(plan: GenaiPlan): number {
@@ -119,7 +117,8 @@ export class GenaiProtectionContentComponent {
   configurePlan(plan?: GenaiPlan): void {
     if (plan) {
       const count = this.quantity(plan);
-      this.topics.ask(`Acronis GenAI Protection — ${GENAI_PLANS[plan].name}, ${count} ${count === 1 ? 'user' : 'users'} (₹${this.total(plan)}/month + GST)`);
+      window.location.assign(`/acronis-genai-checkout?quantity=${count}`);
+      return;
     }
     this.overlay.open('callback');
   }

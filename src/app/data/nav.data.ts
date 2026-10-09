@@ -879,6 +879,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
+                "title": "Container as a Service",
+                "pill": null,
+                "desc": null
+              },
+              {
                 "title": "Function as a Service",
                 "pill": null,
                 "desc": null
@@ -3301,6 +3306,18 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Slack Migration",
                 "pill": null,
                 "desc": null
+              },
+              {
+                "title": "Dropbox Migration",
+                "pill": null,
+                "desc": "Migrate Dropbox files, folders and permissions to Microsoft 365 or Google Workspace",
+                "href": "/dropbox-migration"
+              },
+              {
+                "title": "Box Migration",
+                "pill": null,
+                "desc": "Migrate Box files, folders and permissions to Microsoft 365 or Google Workspace",
+                "href": "/box-migration"
               },
               
             ]

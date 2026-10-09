@@ -280,6 +280,17 @@
           <nav class="article-sibling-nav" [attr.aria-label]="'Previous and next ' + contentPlural">
             @if (neighbors().previous; as previous) {
               <a class="article-sibling article-previous" [routerLink]="[detailBase, previous.slug]">
+                <img
+                  class="article-sibling-cover"
+                  [class.is-fallback]="!previous.coverImageUrl"
+                  [src]="previous.coverImageUrl || '/assets/images/xcellhost-logo.png'"
+                  [alt]="previous.coverImage?.alternativeText || previous.title"
+                  loading="lazy"
+                  decoding="async"
+                  width="640"
+                  height="360"
+                  (error)="useRelatedCoverFallback($event)"
+                />
                 <span><i aria-hidden="true">&#8592;</i> Previous</span>
                 <strong>{{ previous.title }}</strong>
                 @if (previous.description) {
@@ -289,6 +300,17 @@
             }
             @if (neighbors().next; as next) {
               <a class="article-sibling article-next" [routerLink]="[detailBase, next.slug]">
+                <img
+                  class="article-sibling-cover"
+                  [class.is-fallback]="!next.coverImageUrl"
+                  [src]="next.coverImageUrl || '/assets/images/xcellhost-logo.png'"
+                  [alt]="next.coverImage?.alternativeText || next.title"
+                  loading="lazy"
+                  decoding="async"
+                  width="640"
+                  height="360"
+                  (error)="useRelatedCoverFallback($event)"
+                />
                 <span>Next <i aria-hidden="true">&#8594;</i></span>
                 <strong>{{ next.title }}</strong>
                 @if (next.description) {
@@ -305,7 +327,9 @@
               <h2 id="related-content-heading">Related {{ titleCase(contentPlural) }}</h2>
               <a class="bp-bar-link" routerLink="/insights">Explore all insights</a>
             </div>
-            <div class="article-related-grid">
+            <div class="article-related-carousel">
+              <button class="article-related-arrow previous" type="button" aria-label="Previous related articles" aria-controls="related-blog-track" (click)="scrollRelatedBlogs(relatedTrack, -1)"><span aria-hidden="true">&#8249;</span></button>
+            <div class="article-related-grid" #relatedTrack id="related-blog-track" role="region" aria-roledescription="carousel" aria-label="Related articles" tabindex="0" (keydown.arrowleft)="scrollRelatedBlogs(relatedTrack, -1, $event)" (keydown.arrowright)="scrollRelatedBlogs(relatedTrack, 1, $event)">
               @for (item of relatedBlogs(); track item.documentId) {
                 <a class="article-related-card" [routerLink]="[detailBase, item.slug]">
                   <img
@@ -327,6 +351,8 @@
                   <small>{{ readTime(item) }}</small>
                 </a>
               }
+            </div>
+              <button class="article-related-arrow next" type="button" aria-label="Next related articles" aria-controls="related-blog-track" (click)="scrollRelatedBlogs(relatedTrack, 1)"><span aria-hidden="true">&#8250;</span></button>
             </div>
           </section>
         }
