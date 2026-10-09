@@ -1,0 +1,154 @@
+
+(function(){
+  var XH=window.XH,$=XH.$,$$=XH.$$,reduce=XH.reduce;
+
+  /* ================= 1. Hero background: hexagon mesh ================= */
+  (function(){
+    var g=$('#hexDrift');if(!g)return;
+    var W=52,R=W/Math.sqrt(3),DY=R*1.5,out=[],lit=[];
+    function hex(cx,cy){var p=[];for(var k=0;k<6;k++){var a=Math.PI/180*(60*k-30);p.push((cx+R*Math.cos(a)).toFixed(1)+','+(cy+R*Math.sin(a)).toFixed(1));}return p.join(' ');}
+    var LIT={'11,4':'lit a','14,9':'lit o b','9,12':'lit c','17,6':'lit b','12,15':'lit o a','16,13':'lit c'};
+    for(var row=0;row<26;row++){for(var col=0;col<26;col++){
+      var cx=col*W+(row%2?W/2:0),cy=row*DY;
+      out.push('<polygon class="hx" points="'+hex(cx,cy)+'"/>');
+      var k=col+','+row;if(LIT[k])lit.push('<polygon class="'+LIT[k]+'" points="'+hex(cx,cy)+'"/>');
+    }}
+    g.innerHTML=out.join('')+lit.join('');
+    var hero=g.closest('.hero');
+    XH.whenVisible(hero,function(v){g.style.animationPlayState=v?'running':'paused';$$('.lit',g).forEach(function(l){l.style.animationPlayState=v?'running':'paused';});});
+  })();
+
+  /* ================= 2. Hero visual: create-cluster console ================= */
+  var kc=$('#kc');
+  if(kc){
+    var panels=$$('.kp',kc),prog=$$('#kcProg i'),progW=$('#kcProg'),stepEl=$('#kcStep'),logEl=$('#kcLog'),btn=$('#kcBtn');
+    var nodesBox=$('#kcNodes'),load=$('#kcLoad'),loadV=$('#kcLoadV'),status=$('#kcStatus'),cpOk=$('#kcCpOk');
+    var running=true,Q=[],qi=0,timer=null,NAME='prod-mumbai-01';
+
+    function selDirect(id,i){var kids=$(id).children;for(var j=0;j<kids.length;j++)kids[j].classList.toggle('sel',j===i);}
+    function log(t,c){logEl.className='lg'+(c?' '+c:'');logEl.textContent=t;}
+    function press(label,go){btn.classList.add('press');setTimeout(function(){btn.classList.remove('press');},180);if(label!==undefined){btn.innerHTML=label;}btn.classList.toggle('go',!!go);}
+    function show(i){
+      panels.forEach(function(p,j){
+        if(j===i){p.classList.remove('out');p.classList.add('on');}
+        else if(p.classList.contains('on')){p.classList.remove('on');p.classList.add('out');(function(pp){setTimeout(function(){pp.classList.remove('out');},620);})(p);}
+      });
+      prog.forEach(function(b,j){b.classList.toggle('on',j<=Math.min(i,4));});
+      progW.classList.toggle('done',i>=5);
+      stepEl.textContent=i<5?'Step '+(i+1)+' of 5':'Cluster online';
+    }
+    function buildNodes(){
+      var h='';for(var n=0;n<4;n++){h+='<div class="kn" data-n="'+n+'"><div class="nm">node-'+(n+1)+'<i></i></div><div class="pods"><span></span><span></span><span></span><span></span><span></span><span></span></div><span class="tg">'+(n===3?'autoscaled':'')+'</span></div>';}
+      nodesBox.innerHTML=h;
+    }
+    function pods(n){return $$('.kn[data-n="'+n+'"] .pods span',nodesBox);}
+    function setLoad(p){load.style.transform='scaleX('+(p/100)+')';load.classList.toggle('hot',p>=80);
+      var from=parseInt(loadV.textContent)||0,t0=null;
+      if(reduce){loadV.textContent=p+'%';return;}
+      (function f(t){t0=t0||t;var k=Math.min(1,(t-t0)/900),e=1-Math.pow(1-k,3);loadV.textContent=Math.round(from+(p-from)*e)+'%';if(k<1)requestAnimationFrame(f);})(performance.now());}
+    function reset(){
+      $('#kcName').textContent='';
+      ['#kcVer','#kcCni','#kcApi','#kcFl'].forEach(function(id){selDirect(id,-1);});
+      $$('#kcAdd .ka').forEach(function(a){a.classList.remove('on');});
+      $('#kcN').textContent='1';$('#kcV').textContent='20';$('#kcPn').textContent='1 node';$('#kcPt').textContent='₹1,999/mo';
+      $$('.krev div',kc).forEach(function(d){d.classList.remove('in');});
+      buildNodes();cpOk.className='ok';status.className='pill';status.textContent='Provisioning';setLoad(0);
+      btn.innerHTML='Next <span class="ar">→</span>';btn.classList.remove('go','off');
+    }
+    function add(fn,ms){Q.push([fn,ms]);}
+    function count(id,from,to,stepMs,after){for(var v=from+1;v<=to;v++){(function(v){add(function(){$(id).textContent=v;if(after)after(v);},stepMs);})(v);}}
+
+    /* ---- the script ---- */
+    add(function(){reset();show(0);log('Region Mumbai · 3 availability zones');},600);
+    for(var c=1;c<=NAME.length;c++){(function(c){add(function(){$('#kcName').textContent=NAME.slice(0,c);},65);})(c);}
+    add(function(){},350);
+    add(function(){selDirect('#kcVer',0);log('Kubernetes v1.31 · upgrades applied automatically');},1300);
+    add(function(){press();show(1);log('Choose a CNI and API endpoint');},800);
+    add(function(){selDirect('#kcCni',0);log('Calico · network policies enabled');},900);
+    add(function(){selDirect('#kcApi',1);log('Private endpoint · kubectl via VPN / bastion only');},1400);
+    add(function(){press();show(2);log('Optional add-ons, installed and kept updated');},800);
+    $$('#kcAdd .ka').forEach(function(a,i){add(function(){a.classList.add('on');},460);});
+    add(function(){log('4 add-ons enabled');},1000);
+    add(function(){press();show(3);log('Define the first worker node group');},800);
+    add(function(){selDirect('#kcFl',1);log('4 vCPU · 8 GiB · ₹1,999 / node / month');},700);
+    count('#kcN',1,3,300,function(v){$('#kcPn').textContent=v+(v===1?' node':' nodes');$('#kcPt').textContent=XH.inr(1999*v)+'/mo';});
+    add(function(){},200);
+    add(function(){tweenTxt($('#kcV'),20,100,700);},1500);
+    add(function(){press('Create cluster',true);show(4);log('Review your configuration');},300);
+    $$('.krev div',kc).forEach(function(d){add(function(){d.classList.add('in');},110);});
+    add(function(){},1500);
+    add(function(){press();btn.classList.add('off');show(5);log('Provisioning HA control plane…','o');},1300);
+    add(function(){cpOk.className='ok done';log('✓ Control plane ready · 3 replicas across zones','g');},600);
+    [0,1,2].forEach(function(n){add(function(){var e=$('.kn[data-n="'+n+'"]',nodesBox);e.classList.add('in');log('Joining node-'+(n+1)+'…');setTimeout(function(){e.classList.add('rdy');},350);},500);});
+    add(function(){log('Scheduling workloads…');},300);
+    /* schedule 8 pods across 3 nodes */
+    [[0,0],[1,0],[2,0],[0,1],[1,1],[2,1],[0,2],[1,2]].forEach(function(p){add(function(){pods(p[0])[p[1]].classList.add('on');},140);});
+    add(function(){status.className='pill ok';status.textContent='Running';log('✓ 8/8 pods running · 3 nodes','g');setLoad(46);btn.classList.remove('off','go');btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg> kubeconfig';},1800);
+    add(function(){setLoad(88);log('Traffic spike · CPU 88%','o');},1100);
+    add(function(){[2,3].forEach(function(i){pods(2)[i].classList.add('pend');});pods(1)[3].classList.add('pend');log('3 pods pending · autoscaler adding node-4','o');status.className='pill sc';status.textContent='Scaling';},1300);
+    add(function(){var e=$('.kn[data-n="3"]',nodesBox);e.classList.add('in','as');setTimeout(function(){e.classList.add('rdy');},400);},900);
+    add(function(){pods(2)[2].classList.remove('pend');pods(2)[3].classList.remove('pend');pods(1)[3].classList.remove('pend');[0,1,2].forEach(function(i){pods(3)[i].classList.add('on');});},500);
+    add(function(){setLoad(57);status.className='pill ok';status.textContent='Running';log('✓ Scaled 3 → 4 nodes in 48 s · 11/11 pods running','g');},3600);
+    add(function(){},800);
+
+    function tweenTxt(el,a,b,ms){if(reduce){el.textContent=b;return;}var t0=null;(function f(t){t0=t0||t;var k=Math.min(1,(t-t0)/ms),e=1-Math.pow(1-k,3);el.textContent=Math.round(a+(b-a)*e);if(k<1)requestAnimationFrame(f);})(performance.now());}
+
+    function next(){
+      if(!running){timer=setTimeout(next,300);return;}
+      if(qi>=Q.length)qi=0;
+      var a=Q[qi++];a[0]();timer=setTimeout(next,a[1]);
+    }
+    if(reduce){
+      /* final state, no loop */
+      reset();for(var z=0;z<Q.length;z++){try{Q[z][0]();}catch(e){}}
+      show(5);
+    } else {
+      XH.whenVisible(kc,function(v){running=v;});
+      buildNodes();next();
+    }
+  }
+
+  /* ================= 3. Cluster cost calculator ================= */
+  var RATE={s:999,m:1999,l:3799},HYP={s:2599,m:5199,l:10399},NAMES={s:'2 vCPU · 4 GiB',m:'4 vCPU · 8 GiB',l:'8 vCPU · 16 GiB'};
+  var GB_RATE=5,CP_FEE=6499,DISC={1:0,6:.05,12:.10};
+  var fl=$('#cFl'),nIn=$('#cN'),term=$('#cTerm'),gbIn=$('#cGb'),as=$('#cAs'),mx=$('#cMax'),asBox=$('#cAsBox');
+  var std=$('#coStd'),gpu=$('#coGpu');
+  function tw(el,to,suf){suf=suf||'';if(el._v===undefined)el._v=0;var from=el._v;el._v=to;cancelAnimationFrame(el._r);
+    if(reduce||from===to){el.textContent=XH.inr(to)+suf;return;}
+    var t0=null;(function f(t){t0=t0||t;var k=Math.min(1,(t-t0)/500),e=1-Math.pow(1-k,3);el.textContent=XH.inr(Math.round(from+(to-from)*e))+suf;if(k<1)el._r=requestAnimationFrame(f);})(performance.now());}
+  function calc(){
+    var f=fl.dataset.value||'m',n=+nIn.value,y=+(term.dataset.value||1),gb=+gbIn.value,auto=as.checked;
+    $('#cNL').textContent=n+(n===1?' node':' nodes');$('#cGbL').textContent=gb+' GB';
+    mx.min=Math.max(n,1);if(+mx.value<n)mx.value=n;
+    asBox.classList.toggle('off',!auto);
+    var isGpu=f==='gpu';std.hidden=isGpu;gpu.hidden=!isGpu;$('#kCalc').classList.toggle('isgpu',isGpu);
+    if(isGpu)return {gpu:true};
+    var d=DISC[y],nodes=RATE[f]*n,sto=gb*GB_RATE*n,list=nodes+sto,disc=Math.round(list*d),mo=list-disc;
+    var termTot=mo*y,gst=Math.round(termTot*.18);
+    var hyp=HYP[f]*n+sto+CP_FEE,save=hyp-mo,pct=Math.round(save/hyp*100);
+    var M=+mx.value,peak=Math.round((RATE[f]+gb*GB_RATE)*M*(1-d));
+    $('#oNl').textContent=n+' × '+NAMES[f];$('#oSl').textContent='Block storage · '+n+' × '+gb+' GB';
+    tw($('#oNodes'),nodes);tw($('#oSto'),sto);
+    $('#oDisc').textContent=d?'−'+XH.inr(disc)+'/mo · '+Math.round(d*100)+'%':'—';
+    tw($('#oPer'),Math.round(mo/n));
+    $('#oTl').textContent=y===1?'Term total · 1 month':'Term total · '+y+' months';
+    tw($('#oTerm'),termTot);tw($('#oGst'),gst);
+    tw($('#oMo'),mo);tw($('#oSave'),save,' / mo');
+    $('#oSaveP').textContent=pct+'% less than a typical hyperscaler, incl. its control-plane fee';
+    $('#oSub').textContent='per month, excl. GST'+(y>1?' · billed for '+y+' months':'');
+    $('#oPeakR').classList.toggle('off',!auto);$('#oPeakL').textContent='Estimated peak · '+M+' nodes';tw($('#oPeak'),peak,'/mo');
+    return {f:f,n:n,y:y,gb:gb,mo:mo,termTot:termTot,auto:auto,M:M};
+  }
+  [fl,term].forEach(function(s){s.addEventListener('change',calc);});
+  [nIn,gbIn,mx].forEach(function(i){i.addEventListener('input',calc);});
+  as.addEventListener('change',calc);
+  calc();
+  $('#oAdd').addEventListener('click',function(){var c=calc();if(c.gpu)return;
+    XH.cart.add({key:'k8s-'+c.f+'-'+c.n+'-'+c.gb+'-'+c.y,name:'Managed Kubernetes — '+c.n+' × '+NAMES[c.f],
+      sub:(c.y===1?'Monthly':c.y+'-month term')+' · '+c.gb+' GB/node · free HA control plane'+(c.auto?' · autoscale to '+c.M:''),price:c.termTot,qty:1});});
+  $$('[data-sel]').forEach(function(b){b.addEventListener('click',function(){
+    var v=b.getAttribute('data-sel'),sb=$('#cFl button[data-v="'+v+'"]');if(sb)sb.click();
+    document.getElementById('calc').scrollIntoView({behavior:reduce?'auto':'smooth'});
+    setTimeout(function(){XH.flash($('#oMo'));},500);});});
+})();
+

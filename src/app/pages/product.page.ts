@@ -1,6 +1,11 @@
+
 import { ContainerRegistryHeroComponent } from '../sections/container-registry-hero.component';
 import { ContainerServiceHeroComponent } from '../sections/container-service-hero.component';
 import { ContainerRegistryContentComponent } from '../sections/container-registry-content.component';
+
+import { ImportedInteractiveContentComponent } from '../sections/imported-interactive-content.component';
+import { MANAGED_KUBERNETES_FAQS } from '../data/managed-kubernetes-faq.data';
+
 
 import { QuantityInputDirective } from '../core/quantity-input.directive';
 
@@ -470,6 +475,7 @@ interface ProductTourSlide {
     ManagedMongoDbContentComponent,
     ManagedMicrosoftSqlContentComponent,
     DropboxMigrationContentComponent,
+    ImportedInteractiveContentComponent,
     BoxMigrationContentComponent,
     ManagedRedisContentComponent,
     ManagedRedisHeroComponent,
@@ -2059,6 +2065,12 @@ class ProductPageComponent {
 
   readonly selectedEdrPlanIndex = signal(0);
   readonly edrQuantity = signal(1);
+  readonly smbDesktopQuantities = signal<Record<string, number>>({
+    Starter: 1,
+    Business: 1,
+    Professional: 1,
+    Enterprise: 1,
+  });
   readonly cdrQuantity = signal(1);
   readonly cloudDriveQuantity = signal(1);
   readonly activeCdrTourSlide = signal(0);
@@ -2383,6 +2395,26 @@ class ProductPageComponent {
 
   changeEdrQuantity(change: number): void {
     this.edrQuantity.update((quantity) => Math.max(1, quantity + change));
+  }
+
+  smbDesktopQuantity(plan: TallyPlan): number {
+    return this.smbDesktopQuantities()[plan.edition] ?? this.smbDesktopBounds(plan).min;
+  }
+
+  smbDesktopBounds(plan: TallyPlan): { min: number; max: number } {
+    const values = plan.users.match(/\d+/g)?.map(Number) ?? [1];
+    return { min: 1, max: values[1] ?? values[0] };
+  }
+
+  changeSmbDesktopQuantity(plan: TallyPlan, change: number): void {
+    const bounds = this.smbDesktopBounds(plan);
+    this.smbDesktopQuantities.update((quantities) => ({
+      ...quantities,
+      [plan.edition]: Math.max(
+        bounds.min,
+        Math.min(bounds.max, this.smbDesktopQuantity(plan) + change),
+      ),
+    }));
   }
 
   changeCdrQuantity(change: number): void {
@@ -2737,8 +2769,13 @@ class ProductPageComponent {
       tagline: 'Enterprise email migration — mailbox migration made simple',
       faqs: MAILBOX_MIGRATION_FAQS,
     };
-    if (slug === 'box-backup') return { ...view, faqs: BOX_MIGRATION_FAQS };
-    if (slug === 'dropbox-backup') return { ...view, faqs: DROPBOX_MIGRATION_FAQS };
+    if (slug === 'managed-kubernetes') return { ...view, faqs: MANAGED_KUBERNETES_FAQS, security: {
+      head: 'SECURITY & COMPLIANCE - MANAGED KUBERNETES',
+      intro: 'Keep Kubernetes workloads in Indian data centres with encrypted traffic and storage, role-based access, network policies and audit logs. XcellHost manages platform upgrades, patching and monitoring while your team controls application deployments and access policies.',
+      rows: [['Data Residency', 'Indian Data Centres'], ['Encryption', 'In Transit And At Rest'], ['Access Control', 'RBAC And Private API Endpoints'], ['Network Isolation', 'Network Policies And Namespaces'], ['Recovery', 'Backups And Restore Planning'], ['Monitoring', '24x7 NOC And SOC']],
+    }};
+    if (slug === 'box-migration') return { ...view, faqs: BOX_MIGRATION_FAQS };
+    if (slug === 'dropbox-migration') return { ...view, faqs: DROPBOX_MIGRATION_FAQS };
     if (slug === 'managed-microsoft-sql') return { ...view, faqs: MANAGED_SQL_FAQS };
     if (slug === 'linux-servers') return { ...view, faqs: LINUX_SERVERS_FAQS };
     if (slug === 'windows-servers') return { ...view, faqs: WINDOWS_SERVERS_FAQS };
@@ -3797,6 +3834,10 @@ class ProductPageComponent {
       'premium-domains', 'domain-protect', 'domain-whois-lookup', 'domain-name-prices',
       'backorder-domains', 'tld-directory', 'ai-domain-generator', 'ai-domain-advisor',
       'bharat-domains',
+      'web-security-sitelock', 'web-security-cwatch', 'thawte-ssl-certificates',
+      'rapidssl-ssl-certificates', 'codeguard-backup',
+      'hackerguardian-pci-compliance-scanning', 'trustedsite-certifications', 'imunify360',
+      'google-my-business',
     ].includes(this.slug()),
   );
 
@@ -4411,12 +4452,14 @@ class ProductPageComponent {
     const planKey = plan.edition.toLowerCase();
     const termKey = this.selectedTallyTerm();
     window.location.assign(
-      `/smb-cloud-desktop/checkout?plan=${encodeURIComponent(planKey)}&term=${encodeURIComponent(termKey)}`,
+      `/smb-cloud-desktop/checkout?plan=${encodeURIComponent(planKey)}&term=${encodeURIComponent(termKey)}&quantity=${this.smbDesktopQuantity(plan)}`,
     );
   }
 
   smbDesktopPrice(plan: TallyPlan): number {
-    return plan.prices[this.selectedTallyTerm()];
+    const maximumUsers = this.smbDesktopBounds(plan).max;
+    const perUserPrice = plan.prices[this.selectedTallyTerm()] / maximumUsers;
+    return perUserPrice * this.smbDesktopQuantity(plan);
   }
 
   selectCloudDriveTerm(term: CloudDriveTerm): void {

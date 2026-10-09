@@ -5,6 +5,8 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  { path: 'managed-kubernetes', title: 'Managed Kubernetes - XcellHost', loadComponent: () => import('./pages/managed-kubernetes.page').then(m => m.ManagedKubernetesPage) },
+  { path: 'under-construction/podcasts', title: 'The Cloud Podcast - XcellHost', loadComponent: () => import('./pages/podcasts.page').then(m => m.PodcastsPage) },
 
   {
     path: 'compare-products',
@@ -52,6 +54,11 @@ export const routes: Routes = [
     data: { checkoutProduct: 'rmm' },
     loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
 
+  },
+  {
+    path: 'acronis-genai-checkout',
+    data: { checkoutProduct: 'genai' },
+    loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
   },
   {
     path: 'cybird-checkout',
@@ -341,6 +348,20 @@ export const routes: Routes = [
     path: 'digicert-cmc',
     data: { productSlug: 'digicert-cmc' },
     loadComponent: () => import('./pages/digicert-cmc.page').then((m) => m.DigicertCmcPage),
+  },
+  {
+    path: 'acme-certificate',
+    loadComponent: () => import('./pages/acme-certificate.page').then((m) => m.AcmeCertificatePage),
+  },
+  {
+    path: 'acme-certificates',
+    redirectTo: 'acme-certificate',
+    pathMatch: 'full',
+  },
+  {
+    path: 'xcellhost-acme-certificate',
+    redirectTo: 'acme-certificate',
+    pathMatch: 'full',
   },
   {
     path: 'mobile-device-mgmt',

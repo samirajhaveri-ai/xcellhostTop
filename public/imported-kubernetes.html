@@ -1,0 +1,1486 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600;1,9..144,700&family=Sora:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"><style>
+/* =====================================================================
+   XcellHost v2 core — xcellhost.top design system
+   Brand: #0066FF blue · #0B132B navy · #FF8A00 orange · #c0392b "Host" red
+   Rule: exact brand colours, solid fills, no gradients.
+   ===================================================================== */
+:root{
+  --blue:#0066FF;--navy:#0B132B;--orange:#FF8A00;--red:#c0392b;--white:#fff;
+  --green:#16a34a;--wa:#25D366;
+  --bg:#ffffff;--surface:#ffffff;--surface-2:#F4F7FC;--ink:#0B132B;--text:#2A3550;--muted:#5B6782;
+  --line:#E2E8F2;--line-2:#D3DCEB;--chip:#EEF4FF;
+  --hero:#0B132B;--hero-ink:#ffffff;--hero-muted:#B6C2DA;--hero-line:rgba(255,255,255,.12);
+  --f-serif:"Fraunces",Georgia,serif;--f-disp:"Sora",system-ui,sans-serif;--f-body:"IBM Plex Sans",system-ui,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,monospace;
+  --r-s:10px;--r:14px;--r-l:20px;
+  --sh-s:0 4px 14px rgba(11,19,43,.06);--sh:0 14px 40px rgba(11,19,43,.10);--sh-l:0 30px 70px -24px rgba(11,19,43,.35);
+  --maxw:1200px;--ease:cubic-bezier(.22,.7,.2,1);--ease-o:cubic-bezier(.16,1,.3,1);
+}
+html[data-theme="dark"]{
+  --bg:#070C1C;--surface:#0E1630;--surface-2:#0B132B;--ink:#F2F5FB;--text:#C9D3E6;--muted:#8F9BB6;
+  --line:#1E2A49;--line-2:#27355A;--chip:#14204A;
+  --hero:#050916;--sh-s:0 4px 14px rgba(0,0,0,.3);--sh:0 14px 40px rgba(0,0,0,.4);--sh-l:0 30px 70px -24px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--f-body);color:var(--text);background:var(--bg);line-height:1.6;overflow-x:hidden;overflow-x:clip;-webkit-font-smoothing:antialiased;transition:background .35s,color .35s}
+body.lock{overflow:hidden}
+h1,h2,h3,h4{font-family:var(--f-disp);color:var(--ink);line-height:1.15;letter-spacing:-.02em;font-weight:700}
+a{color:inherit;text-decoration:none}img,svg{display:block}button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.mono{font-family:var(--f-mono)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px}
+#xhProgress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--orange);z-index:300}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:14.5px;line-height:1;padding:13px 22px;border-radius:12px;border:1.5px solid transparent;cursor:pointer;white-space:nowrap;transition:transform .2s var(--ease),background .2s,color .2s,border-color .2s,box-shadow .25s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn svg{width:16px;height:16px}
+.btn .ar{transition:transform .25s var(--ease)}.btn:hover .ar{transform:translateX(3px)}
+.btn-orange{background:var(--orange);color:#fff;box-shadow:0 10px 24px -12px rgba(255,138,0,.9)}
+.btn-orange:hover{box-shadow:0 14px 30px -12px rgba(255,138,0,1)}
+.btn-blue{background:var(--blue);color:#fff;box-shadow:0 10px 24px -12px rgba(0,102,255,.9)}
+.btn-ghost{background:var(--surface);color:var(--ink);border-color:var(--line-2)}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
+.btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
+.btn-line:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+.btn-wa{background:var(--wa);color:#fff}
+.btn-sm{padding:9px 15px;font-size:13px;border-radius:10px}
+.btn-block{width:100%}
+.btn[disabled]{opacity:.5;pointer-events:none}
+
+/* ---------- utility bar ---------- */
+.ubar{background:var(--navy);color:#B6C2DA;font-size:12.5px;position:relative;z-index:60}
+html[data-theme="dark"] .ubar{background:#050916}
+.ubar .wrap{display:flex;align-items:center;gap:16px;min-height:38px;white-space:nowrap;max-width:1360px}
+.ubar .wrap::-webkit-scrollbar{display:none}
+.ubar a:hover{color:#fff}
+.ubar .ul{display:flex;gap:16px;align-items:center;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,#000 92%,transparent);mask-image:linear-gradient(90deg,#000 92%,transparent)}
+.ubar .ul::-webkit-scrollbar{display:none}
+.ubar .ur{display:flex;gap:12px;align-items:center;margin-left:auto;padding-left:14px;border-left:1px solid rgba(255,255,255,.14);flex-shrink:0}
+@media(max-width:760px){.ubar .ur .uwa,.ubar .ur .lang{display:none}}
+.ubar .ph{font-family:var(--f-mono);color:#fff;font-weight:600}
+.ubar .uwa{color:#5FE08D;font-weight:600}
+.ubar .wa-ch{color:#5FE08D}
+.theme-tg{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:99px;padding:3px 9px 3px 4px;cursor:pointer;color:#dfe6f5;font-size:11.5px}
+.theme-tg .k{width:18px;height:18px;border-radius:50%;background:var(--orange);display:grid;place-items:center;transition:transform .35s var(--ease-o)}
+.theme-tg .k svg{width:11px;height:11px;color:#fff}
+html[data-theme="dark"] .theme-tg .k{transform:rotate(-180deg);background:var(--blue)}
+.lang{font-family:var(--f-mono);font-size:11px;border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:2px 6px;color:#dfe6f5}
+
+/* ---------- promo ---------- */
+.promo{background:var(--blue);color:#fff;font-size:13px;line-height:1.5;text-align:center;padding:8px 16px;position:relative;z-index:59}
+.promo b{font-weight:700}
+.promo .tag{display:inline-block;font-family:var(--f-mono);font-size:10.5px;font-weight:600;letter-spacing:.08em;background:#fff;color:var(--blue);border-radius:6px;padding:2px 7px;margin:0 6px}
+.promo a{font-weight:700;text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- header ---------- */
+.hdr{position:sticky;top:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--line);transition:box-shadow .3s,background .35s}
+.hdr.scrolled{box-shadow:0 8px 28px -18px rgba(11,19,43,.35)}
+.hdr .wrap{display:flex;align-items:center;gap:14px;height:70px;max-width:1360px}
+.logo{display:flex;flex-direction:column;flex-shrink:0;line-height:1}
+.logo .lw{font-family:var(--f-disp);font-weight:800;font-size:22px;letter-spacing:-.02em;color:var(--ink);display:flex;align-items:baseline}
+.logo .lw .host{position:relative;color:var(--red);padding:0 2px;margin-left:1px}
+.logo .lw .host{z-index:0}
+.logo .lw .host svg{position:absolute;left:-7px;top:-9px;width:calc(100% + 14px);height:34px;z-index:-1;color:var(--blue);opacity:.13}
+.logo .lw sup{font-size:9px;color:var(--muted);margin-left:1px;align-self:flex-start;margin-top:2px}
+.logo .lt{font-family:var(--f-mono);font-size:9px;letter-spacing:.16em;color:var(--muted);margin-top:4px;text-transform:uppercase;white-space:nowrap}
+.nav{display:flex;align-items:center;gap:0;margin-left:4px}
+.nav>.ni{position:static}
+.nav>.ni>button{background:none;border:0;cursor:pointer;display:flex;align-items:center;gap:3px;font-size:13.5px;font-weight:500;color:var(--text);padding:9px 8px;border-radius:8px;white-space:nowrap;transition:color .2s,background .2s}
+.nav>.ni>button svg{width:10px;height:10px;transition:transform .25s}
+.nav>.ni:hover>button,.nav>.ni.open>button{color:var(--blue);background:var(--chip)}
+.nav>.ni.open>button svg{transform:rotate(180deg)}
+.mega{position:absolute;left:0;right:0;top:100%;background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);box-shadow:var(--sh);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .22s,transform .25s var(--ease-o),visibility 0s .25s}
+.ni.open .mega{opacity:1;visibility:visible;transform:none;transition:opacity .22s,transform .3s var(--ease-o)}
+.mega .wrap{display:grid;grid-template-columns:260px 1fr;gap:28px;height:auto;padding:26px 24px;max-width:var(--maxw)}
+.mega .mintro b{font-family:var(--f-serif);font-size:22px;color:var(--ink);display:block;margin-bottom:6px}
+.mega .mintro p{font-size:13px;color:var(--muted)}
+.mega .mlist{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.mega .mlist a{display:flex;gap:11px;align-items:flex-start;padding:10px 12px;border-radius:10px;transition:background .2s}
+.mega .mlist a:hover{background:var(--chip)}
+.mega .mlist a i{width:30px;height:30px;border-radius:8px;background:var(--chip);color:var(--blue);display:grid;place-items:center;flex-shrink:0}
+.mega .mlist a i svg{width:15px;height:15px}
+.mega .mlist a b{display:block;font-size:13.5px;color:var(--ink);font-weight:600}
+.mega .mlist a span{font-size:11.5px;color:var(--muted)}
+.mega .mlist a.cur{background:var(--chip)}.mega .mlist a.cur b{color:var(--blue)}
+.hdr-r{display:flex;align-items:center;gap:8px;margin-left:auto}
+.ibtn{width:40px;height:40px;border-radius:11px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;cursor:pointer;color:var(--ink);position:relative;transition:border-color .2s,color .2s,transform .2s}
+.ibtn:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-1px)}
+.ibtn svg{width:18px;height:18px}
+.ibtn .cnt{position:absolute;top:-6px;right:-6px;min-width:18px;height:18px;padding:0 5px;border-radius:99px;background:var(--orange);color:#fff;font-family:var(--f-mono);font-size:10.5px;font-weight:600;display:grid;place-items:center;transform:scale(0);transition:transform .3s var(--ease-o)}
+.ibtn .cnt.on{transform:scale(1)}
+.ibtn .cnt.bump{animation:bump .45s var(--ease-o)}
+@keyframes bump{40%{transform:scale(1.4)}}
+.burger{display:none}
+@media(max-width:1780px){.hdr-r .lg{display:none}}
+@media(max-width:1580px){.nav>.ni>button{padding:9px 6px;font-size:13px;gap:2px}.nav>.ni>button svg{width:8px;height:8px}}
+@media(max-width:1460px){.nav>.ni>button svg{display:none}.nav>.ni>button{padding:9px 5px;font-size:12.5px}.logo .lw{font-size:20px}.hdr .wrap{gap:10px}}
+@media(max-width:1320px){.nav,.hdr-r .desk{display:none}.burger{display:grid}}
+/* mobile drawer */
+.mnav{position:fixed;inset:0;z-index:250;pointer-events:none}
+.mnav .sc{position:absolute;inset:0;background:rgba(11,19,43,.5);opacity:0;transition:opacity .3s}
+.mnav .pn{position:absolute;top:0;right:0;bottom:0;width:min(360px,88vw);background:var(--surface);transform:translateX(100%);transition:transform .38s var(--ease-o);overflow-y:auto;padding:18px 18px 40px}
+.mnav.open{pointer-events:auto}.mnav.open .sc{opacity:1}.mnav.open .pn{transform:none}
+.mnav details{border-bottom:1px solid var(--line)}
+.mnav summary{list-style:none;cursor:pointer;padding:14px 4px;font-weight:600;color:var(--ink);display:flex;justify-content:space-between}
+.mnav summary::-webkit-details-marker{display:none}
+.mnav details a{display:block;padding:8px 10px;font-size:14px;color:var(--text);border-radius:8px}
+.mnav details a:hover{background:var(--chip)}
+.mnav .mh{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+
+/* ---------- search overlay ---------- */
+.srch{position:fixed;inset:0;z-index:260;display:none;align-items:flex-start;justify-content:center;padding:90px 16px 20px;background:rgba(11,19,43,.55)}
+.srch.open{display:flex;animation:fadeIn .2s}
+.srch .box{width:min(640px,100%);background:var(--surface);border-radius:var(--r-l);box-shadow:var(--sh-l);overflow:hidden;animation:popIn .3s var(--ease-o)}
+.srch .sin{display:flex;align-items:center;gap:10px;padding:16px 18px;border-bottom:1px solid var(--line)}
+.srch .sin svg{width:18px;height:18px;color:var(--muted)}
+.srch input{flex:1;border:0;outline:0;background:none;font-size:16px;color:var(--ink)}
+.srch kbd{font-family:var(--f-mono);font-size:11px;border:1px solid var(--line-2);border-radius:5px;padding:2px 6px;color:var(--muted)}
+.srch .res{max-height:min(420px,60vh);overflow-y:auto;padding:8px}
+.srch .res a{display:flex;justify-content:space-between;gap:12px;padding:11px 12px;border-radius:10px}
+.srch .res a:hover,.srch .res a.hl{background:var(--chip)}
+.srch .res b{color:var(--ink);font-size:14px;font-weight:600}
+.srch .res span{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.srch .none{padding:26px;text-align:center;color:var(--muted);font-size:14px}
+@keyframes fadeIn{from{opacity:0}}
+@keyframes popIn{from{opacity:0;transform:translateY(-10px) scale(.98)}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;background:var(--hero);color:var(--hero-ink);padding:54px 0 0}
+.hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.hero .wrap{position:relative;z-index:2}
+.crumb{font-family:var(--f-mono);font-size:12px;color:var(--hero-muted);margin-bottom:26px}
+.crumb a:hover{color:#fff}.crumb .c{color:#fff}
+.hero-grid{display:grid;grid-template-columns:1.02fr 1fr;gap:48px;align-items:center;padding-bottom:40px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--f-mono);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--orange)}
+.eyebrow:before{content:"";width:22px;height:2px;background:var(--orange)}
+.hero h1{font-family:var(--f-serif);font-weight:700;color:#fff;font-size:clamp(34px,4.4vw,56px);line-height:1.04;letter-spacing:-.025em;margin:16px 0 18px}
+.hero h1 .acc{color:var(--orange);font-style:italic}
+.hero .lead{font-size:17px;color:var(--hero-muted);max-width:540px;margin-bottom:24px}
+.hero .lead b{color:#fff;font-weight:600}
+.powered{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--navy);border-radius:12px;padding:7px 14px 7px 8px;margin-bottom:26px;box-shadow:0 10px 26px -14px rgba(0,0,0,.6)}
+.powered .pv-l{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;flex-shrink:0}
+.powered .pv-l svg{width:18px;height:18px}
+.powered small{display:block;font-family:var(--f-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#5B6782;line-height:1}
+.powered b{font-family:var(--f-disp);font-size:14.5px;font-weight:700;line-height:1.2;color:var(--navy)}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero-stats{position:relative;z-index:2;display:flex;flex-wrap:nowrap;border-top:1px solid var(--hero-line);overflow-x:auto;scrollbar-width:none}
+.hero-stats::-webkit-scrollbar{display:none}
+.hero-stats .hs{flex:1 0 auto;padding:20px 24px 22px;border-right:1px solid var(--hero-line);white-space:nowrap}
+.hero-stats .hs:first-child{padding-left:0}.hero-stats .hs:last-child{border-right:0}
+.hero-stats b{display:block;font-family:var(--f-disp);font-weight:800;font-size:24px;color:#fff;line-height:1;letter-spacing:-.02em}
+.hero-stats b em{font-style:normal;color:var(--orange)}
+.hero-stats span{display:block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--hero-muted);margin-top:8px}
+.stage{position:relative;min-height:420px;display:grid;place-items:center}
+@media(max-width:980px){.hero-grid{grid-template-columns:1fr;gap:34px}.stage{min-height:0}}
+@media(max-width:560px){.hero{padding-top:36px}.hero-stats .hs{padding:16px 18px}.hero-stats b{font-size:20px}}
+
+/* hero entrance */
+.hero [data-in]{opacity:0;transform:translateY(16px);animation:heroIn .9s var(--ease-o) forwards}
+.hero [data-in="1"]{animation-delay:.05s}.hero [data-in="2"]{animation-delay:.15s}.hero [data-in="3"]{animation-delay:.25s}.hero [data-in="4"]{animation-delay:.35s}.hero [data-in="5"]{animation-delay:.45s}.hero [data-in="6"]{animation-delay:.6s}
+@keyframes heroIn{to{opacity:1;transform:none}}
+
+/* ---------- sections ---------- */
+.sec{padding:84px 0;position:relative}
+.sec.alt{background:var(--surface-2)}
+.sec.tight{padding:56px 0}
+.sh{max-width:760px;margin-bottom:40px}
+.sh.c{text-align:center;margin-left:auto;margin-right:auto}
+.sh .eyebrow{color:var(--orange)}
+.sh h2{font-family:var(--f-serif);font-weight:700;font-size:clamp(28px,3.2vw,40px);letter-spacing:-.02em;margin:12px 0 12px;line-height:1.1}
+.sh h2 .acc{color:var(--blue);font-style:italic}
+.sh p{font-size:16.5px;color:var(--muted)}
+.note-ind{font-family:var(--f-mono);font-size:11.5px;color:var(--muted);margin-top:14px}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease-o),transform .8s var(--ease-o)}
+.rv.in{opacity:1;transform:none}
+.rv[data-d="1"]{transition-delay:.06s}.rv[data-d="2"]{transition-delay:.12s}.rv[data-d="3"]{transition-delay:.18s}.rv[data-d="4"]{transition-delay:.24s}.rv[data-d="5"]{transition-delay:.3s}.rv[data-d="6"]{transition-delay:.36s}
+
+/* ---------- grids & cards ---------- */
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:960px){.g3,.g4{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-l);padding:24px;transition:transform .35s var(--ease-o),box-shadow .35s,border-color .3s}
+.card:hover{transform:translateY(-5px);box-shadow:var(--sh);border-color:var(--line-2)}
+.ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;color:#fff;background:var(--blue);margin-bottom:16px;flex-shrink:0}
+.ico svg{width:22px;height:22px}
+.ico.o{background:var(--orange)}.ico.n{background:var(--navy)}.ico.g{background:var(--green)}.ico.r{background:var(--red)}
+html[data-theme="dark"] .ico.n{background:#1E2A49}
+.ico.soft{background:var(--chip);color:var(--blue)}
+.card h3{font-size:17px;margin-bottom:8px}
+.card p{font-size:14px;color:var(--muted);line-height:1.6}
+.card .more{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-weight:600;font-size:13.5px;color:var(--blue)}
+
+/* chip rows with per-item icons */
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{display:inline-flex;align-items:center;gap:9px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 14px 8px 8px;font-size:13.5px;font-weight:600;color:var(--ink);transition:border-color .2s,transform .2s}
+.chip:hover{border-color:var(--blue);transform:translateY(-2px)}
+.chip i{width:26px;height:26px;border-radius:7px;display:grid;place-items:center;color:#fff;background:var(--blue);flex-shrink:0}
+.chip i svg{width:14px;height:14px}
+
+/* icon list (per-item icons, never generic ticks) */
+.ilist{list-style:none;display:flex;flex-direction:column;gap:11px}
+.ilist li{display:flex;gap:11px;align-items:flex-start;font-size:14px;color:var(--text)}
+.ilist li i{width:24px;height:24px;border-radius:7px;background:var(--chip);color:var(--blue);display:grid;place-items:center;flex-shrink:0;margin-top:-1px}
+.ilist li i svg{width:13px;height:13px}
+.ilist li b{color:var(--ink)}
+
+/* steps */
+.steps{display:grid;gap:14px;counter-reset:st}
+.steps.h{grid-template-columns:repeat(var(--n,4),1fr)}
+@media(max-width:960px){.steps.h{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.steps.h{grid-template-columns:1fr}}
+.step{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px 20px 20px;overflow:hidden}
+.step:before{counter-increment:st;content:counter(st,decimal-leading-zero);font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--orange);display:block;margin-bottom:12px;letter-spacing:.1em}
+.step h4{font-size:15.5px;margin-bottom:6px}
+.step p{font-size:13.5px;color:var(--muted)}
+.step .bar{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--blue);transition:width 1.2s var(--ease-o)}
+.step.in .bar,.rv.in .step .bar{width:100%}
+
+/* table */
+.tbl-w{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+.tbl{width:100%;border-collapse:collapse;min-width:620px}
+.tbl th{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;padding:15px 18px;background:var(--surface-2);border-bottom:1px solid var(--line)}
+.tbl td{padding:14px 18px;border-bottom:1px solid var(--line);font-size:14px;color:var(--text);vertical-align:top}
+.tbl tr:last-child td{border-bottom:0}
+.tbl td:first-child{font-weight:600;color:var(--ink)}
+.tbl .hl{background:var(--chip)}
+.tbl th.hl{color:var(--blue)}
+.yes{color:var(--green);font-weight:700}.no{color:var(--red);font-weight:700}
+
+/* plans */
+.plans{display:grid;grid-template-columns:repeat(var(--n,3),1fr);gap:18px;align-items:stretch}
+@media(max-width:960px){.plans{grid-template-columns:1fr}}
+.plan{position:relative;background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r-l);padding:26px;display:flex;flex-direction:column;transition:transform .35s var(--ease-o),box-shadow .35s,border-color .3s}
+.plan:hover{transform:translateY(-6px);box-shadow:var(--sh)}
+.plan.pop{border-color:var(--orange)}
+.plan .flag{position:absolute;top:-12px;left:24px;background:var(--orange);color:#fff;font-family:var(--f-mono);font-size:10.5px;font-weight:600;letter-spacing:.1em;padding:4px 10px;border-radius:99px}
+.plan .pk{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:600}
+.plan h3{font-size:20px;margin:6px 0 8px}
+.plan .pd{font-size:13.5px;color:var(--muted);margin-bottom:18px;min-height:42px}
+.plan .pr{display:flex;align-items:baseline;gap:6px;margin-bottom:4px}
+.plan .pr b{font-family:var(--f-disp);font-weight:800;font-size:34px;color:var(--ink);letter-spacing:-.03em}
+.plan .pr span{font-size:13px;color:var(--muted)}
+.plan .pr s{font-size:14px;color:var(--muted)}
+.plan .gst{font-family:var(--f-mono);font-size:11px;color:var(--muted);margin-bottom:18px}
+.plan .ilist{margin-bottom:22px}
+.plan .act{margin-top:auto;display:flex;flex-direction:column;gap:8px}
+
+/* calculator */
+.calc{display:grid;grid-template-columns:1.25fr 1fr;border:1px solid var(--line);border-radius:var(--r-l);overflow:hidden;background:var(--surface);box-shadow:var(--sh-s)}
+@media(max-width:900px){.calc{grid-template-columns:1fr}}
+.calc .cin{padding:28px;display:flex;flex-direction:column;gap:22px}
+.calc .cout{background:var(--navy);color:#fff;padding:28px;display:flex;flex-direction:column}
+html[data-theme="dark"] .calc .cout{background:#050916}
+.fld>label,.fld>.lb{display:flex;justify-content:space-between;align-items:baseline;font-weight:600;font-size:14px;color:var(--ink);margin-bottom:10px}
+.fld>label small,.fld>.lb small{font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--blue)}
+.fld .hint{font-size:12px;color:var(--muted);margin-top:7px}
+.seg{display:flex;flex-wrap:wrap;gap:6px;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:4px}
+.seg button{flex:1 1 auto;border:0;background:none;cursor:pointer;padding:10px 12px;border-radius:9px;font-size:13px;font-weight:600;color:var(--muted);transition:background .2s,color .2s,box-shadow .2s;white-space:nowrap}
+.seg button small{display:block;font-family:var(--f-mono);font-size:10px;font-weight:500;margin-top:2px}
+.seg button.on{background:var(--surface);color:var(--blue);box-shadow:var(--sh-s)}
+.seg button:hover:not(.on){color:var(--ink)}
+input[type=range].rng{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:99px;background:var(--line-2);outline:none;cursor:pointer;background-image:linear-gradient(var(--blue),var(--blue));background-size:var(--p,0%) 100%;background-repeat:no-repeat}
+input[type=range].rng::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#fff;border:3px solid var(--blue);box-shadow:0 4px 10px rgba(0,102,255,.35);transition:transform .15s}
+input[type=range].rng::-webkit-slider-thumb:hover{transform:scale(1.12)}
+input[type=range].rng::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid var(--blue)}
+.stp{display:inline-flex;align-items:center;border:1px solid var(--line-2);border-radius:11px;overflow:hidden;background:var(--surface)}
+.stp button{width:40px;height:40px;border:0;background:none;cursor:pointer;font-size:18px;color:var(--ink)}
+.stp button:hover{background:var(--chip);color:var(--blue)}
+.stp input{width:64px;height:40px;border:0;border-left:1px solid var(--line);border-right:1px solid var(--line);text-align:center;font-family:var(--f-mono);font-weight:600;background:none;color:var(--ink)}
+.tgl{display:flex;align-items:center;gap:11px;cursor:pointer;font-size:14px;font-weight:600;color:var(--ink)}
+.tgl input{display:none}
+.tgl .sw{width:42px;height:24px;border-radius:99px;background:var(--line-2);position:relative;transition:background .25s;flex-shrink:0}
+.tgl .sw:after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:transform .3s var(--ease-o);box-shadow:0 2px 5px rgba(0,0,0,.2)}
+.tgl input:checked+.sw{background:var(--blue)}
+.tgl input:checked+.sw:after{transform:translateX(18px)}
+.tgl small{display:block;font-weight:400;font-size:12px;color:var(--muted)}
+.cout .ck{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B6C2DA}
+.cout .ctot{font-family:var(--f-disp);font-weight:800;font-size:42px;letter-spacing:-.03em;line-height:1;margin:10px 0 4px;font-variant-numeric:tabular-nums}
+.cout .csub{font-size:13px;color:#B6C2DA;margin-bottom:20px}
+.cout .crows{display:flex;flex-direction:column;gap:9px;padding:16px 0;border-top:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12);margin-bottom:20px}
+.cout .crow{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;color:#dfe6f5}
+.cout .crow b{font-family:var(--f-mono);font-weight:600;color:#fff;white-space:nowrap}
+.cout .crow.save b{color:#5FE08D}
+.cout .cact{margin-top:auto;display:flex;flex-direction:column;gap:9px}
+.cout .cfine{font-family:var(--f-mono);font-size:10.5px;color:#8F9BB6;margin-top:12px}
+.flash{animation:flash .5s var(--ease-o)}
+@keyframes flash{0%{opacity:.35;transform:translateY(-4px)}}
+
+/* tabs */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:22px}
+.tabs button{border:1px solid var(--line);background:var(--surface);cursor:pointer;padding:10px 16px;border-radius:99px;font-size:13.5px;font-weight:600;color:var(--muted);transition:all .2s}
+.tabs button:hover{color:var(--ink);border-color:var(--line-2)}
+.tabs button.on{background:var(--blue);border-color:var(--blue);color:#fff}
+[data-panel]{display:none}[data-panel].on{display:block;animation:panelIn .45s var(--ease-o)}
+@keyframes panelIn{from{opacity:0;transform:translateY(8px)}}
+
+/* faq */
+.faq{display:flex;flex-direction:column;gap:10px;max-width:880px}
+.fq{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);transition:border-color .2s}
+.fq.open{border-color:var(--line-2)}
+.fq button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;background:none;border:0;cursor:pointer;text-align:left;padding:18px 20px;font-weight:600;font-size:15px;color:var(--ink)}
+.fq button i{width:26px;height:26px;border-radius:50%;background:var(--chip);color:var(--blue);display:grid;place-items:center;flex-shrink:0;transition:transform .35s var(--ease-o),background .2s}
+.fq button i svg{width:12px;height:12px}
+.fq.open button i{transform:rotate(45deg);background:var(--blue);color:#fff}
+.fq .fa{max-height:0;overflow:hidden;transition:max-height .45s var(--ease-o)}
+.fq .fa p{padding:0 20px 20px;font-size:14.5px;color:var(--muted);line-height:1.7}
+
+/* CTA band */
+.cta{background:var(--blue);color:#fff;border-radius:24px;padding:44px;display:grid;grid-template-columns:1.4fr 1fr;gap:30px;align-items:center;position:relative;overflow:hidden}
+.cta h2{font-family:var(--f-serif);color:#fff;font-size:clamp(26px,3vw,36px);margin-bottom:10px}
+.cta p{color:#dbe6ff;font-size:15.5px}
+.cta .ca{display:flex;flex-direction:column;gap:10px;align-items:flex-start;position:relative;z-index:2}
+.cta .ring{position:absolute;right:-80px;top:-80px;width:280px;height:280px;border:2px solid rgba(255,255,255,.15);border-radius:50%;animation:ringP 6s var(--ease) infinite}
+.cta .ring.r2{width:420px;height:420px;right:-150px;top:-150px;animation-delay:1.5s}
+@keyframes ringP{50%{transform:scale(1.06);opacity:.6}}
+@media(max-width:820px){.cta{grid-template-columns:1fr;padding:32px}}
+
+/* ---------- forms + modal ---------- */
+.modal{position:fixed;inset:0;z-index:270;display:none;align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex}
+.modal .sc{position:absolute;inset:0;background:rgba(11,19,43,.6);animation:fadeIn .25s}
+.modal .mb{position:relative;width:min(520px,100%);max-height:calc(100vh - 40px);overflow-y:auto;background:var(--surface);border-radius:var(--r-l);box-shadow:var(--sh-l);animation:popIn .35s var(--ease-o)}
+.modal .mb.wide{width:min(720px,100%)}
+.modal .mh{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;padding:22px 24px 6px}
+.modal .mh h3{font-family:var(--f-serif);font-size:24px}
+.modal .mh p{font-size:13.5px;color:var(--muted);margin-top:4px}
+.modal .x{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--surface);cursor:pointer;display:grid;place-items:center;flex-shrink:0;color:var(--ink)}
+.modal .x svg{width:16px;height:16px}
+.modal .mc{padding:16px 24px 24px}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form .full{grid-column:1/-1}
+@media(max-width:520px){.form{grid-template-columns:1fr}}
+.fi label{display:block;font-size:12.5px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.fi input,.fi select,.fi textarea{width:100%;border:1.5px solid var(--line-2);background:var(--surface);border-radius:11px;padding:11px 13px;font-size:14px;color:var(--ink);outline:0;transition:border-color .2s,box-shadow .2s}
+.fi textarea{min-height:90px;resize:vertical}
+.fi input:focus,.fi select:focus,.fi textarea:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(0,102,255,.12)}
+.fi.err input,.fi.err select,.fi.err textarea{border-color:var(--red)}
+.fi .em{display:none;font-size:11.5px;color:var(--red);margin-top:5px}
+.fi.err .em{display:block}
+.form .fine{font-size:11.5px;color:var(--muted)}
+.done{text-align:center;padding:10px 0 6px}
+.done .dk{width:64px;height:64px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;margin:0 auto 14px;animation:popIn .5s var(--ease-o)}
+.done .dk svg{width:30px;height:30px}
+.done h4{font-family:var(--f-serif);font-size:22px;margin-bottom:6px}
+.done p{font-size:14px;color:var(--muted)}
+
+/* ---------- cart drawer ---------- */
+.cart{position:fixed;inset:0;z-index:265;pointer-events:none}
+.cart .sc{position:absolute;inset:0;background:rgba(11,19,43,.5);opacity:0;transition:opacity .3s}
+.cart .pn{position:absolute;top:0;right:0;bottom:0;width:min(420px,100vw);background:var(--surface);transform:translateX(100%);transition:transform .4s var(--ease-o);display:flex;flex-direction:column}
+.cart.open{pointer-events:auto}.cart.open .sc{opacity:1}.cart.open .pn{transform:none}
+.cart .ch{display:flex;justify-content:space-between;align-items:center;padding:20px 22px;border-bottom:1px solid var(--line)}
+.cart .ch h3{font-size:18px}.cart .ch span{font-family:var(--f-mono);font-size:11.5px;color:var(--muted)}
+.cart .ci{flex:1;overflow-y:auto;padding:16px 22px;display:flex;flex-direction:column;gap:12px}
+.cart .it{border:1px solid var(--line);border-radius:var(--r);padding:14px;animation:panelIn .35s var(--ease-o)}
+.cart .it .t{display:flex;justify-content:space-between;gap:10px}
+.cart .it b{font-size:14px;color:var(--ink)}
+.cart .it small{display:block;font-size:12px;color:var(--muted);margin-top:3px}
+.cart .it .rm{background:none;border:0;cursor:pointer;color:var(--muted);width:28px;height:28px;border-radius:8px;display:grid;place-items:center}
+.cart .it .rm:hover{background:var(--chip);color:var(--red)}
+.cart .it .rm svg{width:15px;height:15px}
+.cart .it .bt{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.cart .it .q{display:inline-flex;border:1px solid var(--line-2);border-radius:9px;overflow:hidden}
+.cart .it .q button{width:30px;height:30px;border:0;background:none;cursor:pointer;color:var(--ink)}
+.cart .it .q span{min-width:32px;display:grid;place-items:center;font-family:var(--f-mono);font-size:13px;border-left:1px solid var(--line);border-right:1px solid var(--line)}
+.cart .it .pz{font-family:var(--f-mono);font-weight:600;color:var(--ink)}
+.cart .empty{text-align:center;color:var(--muted);padding:50px 10px;font-size:14px}
+.cart .empty svg{width:46px;height:46px;margin:0 auto 12px;color:var(--line-2)}
+.cart .cf{padding:18px 22px 22px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.cart .cf .r{display:flex;justify-content:space-between;font-size:14px;color:var(--muted)}
+.cart .cf .r b{font-family:var(--f-mono);color:var(--ink)}
+.cart .cf .tt{font-size:16px;color:var(--ink);font-weight:700;padding-top:8px;border-top:1px dashed var(--line-2)}
+.cart .cf .tt b{font-size:18px}
+.cart .cf .btn{margin-top:6px}
+
+/* ---------- toast ---------- */
+.toast{position:fixed;left:50%;bottom:26px;z-index:400;transform:translate(-50%,30px);opacity:0;pointer-events:none;background:var(--navy);color:#fff;border-radius:12px;padding:12px 18px 12px 12px;display:flex;align-items:center;gap:10px;font-size:14px;box-shadow:var(--sh-l);transition:transform .4s var(--ease-o),opacity .3s}
+html[data-theme="dark"] .toast{background:#1E2A49}
+.toast.on{transform:translate(-50%,0);opacity:1}
+.toast i{width:26px;height:26px;border-radius:50%;background:var(--green);display:grid;place-items:center}
+.toast i svg{width:14px;height:14px}
+
+/* ---------- floating ---------- */
+.fab-wa{position:fixed;right:22px;bottom:22px;z-index:90;width:56px;height:56px;border-radius:50%;background:var(--wa);color:#fff;display:grid;place-items:center;box-shadow:0 14px 30px -10px rgba(37,211,102,.8);transition:transform .25s var(--ease-o)}
+.fab-wa:hover{transform:scale(1.08)}
+.fab-wa svg{width:28px;height:28px}
+.fab-wa:after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--wa);animation:waP 2.4s var(--ease) infinite}
+@keyframes waP{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.6);opacity:0}}
+.side-cb{position:fixed;right:0;top:50%;z-index:90;transform:translateY(-50%);writing-mode:vertical-rl;background:var(--orange);color:#fff;border:0;cursor:pointer;font-weight:700;font-size:13px;letter-spacing:.04em;padding:16px 9px;border-radius:12px 0 0 12px;box-shadow:-6px 10px 24px -12px rgba(255,138,0,.9);transition:padding .25s var(--ease-o)}
+.side-cb:hover{padding-right:13px}
+@media(max-width:620px){.side-cb{display:none}}
+
+/* ---------- footer (royal blue) ---------- */
+.ftr{background:var(--blue);color:#dbe6ff;padding:56px 0 26px;margin-top:0}
+html[data-theme="dark"] .ftr{background:#0047B3}
+.ftr a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.nl{background:#fff;color:var(--navy);border-radius:var(--r-l);padding:26px 28px;display:grid;grid-template-columns:1.2fr 1fr;gap:22px;align-items:center;margin-bottom:40px}
+.nl h3{font-family:var(--f-serif);font-size:23px;color:var(--navy)}
+.nl p{font-size:13.5px;color:#5B6782;margin-top:4px}
+.nl form{display:flex;gap:8px}
+.nl input{flex:1;min-width:0;border:1.5px solid #D3DCEB;border-radius:11px;padding:12px 14px;font-size:14px;outline:0;color:var(--navy);background:#fff}
+.nl input:focus{border-color:var(--blue)}
+@media(max-width:820px){.nl{grid-template-columns:1fr}}
+.ft-top{display:grid;grid-template-columns:330px 1fr;gap:36px;margin-bottom:34px}
+@media(max-width:960px){.ft-top{grid-template-columns:1fr}}
+.ft-brand .lgc{background:#fff;border-radius:var(--r);padding:16px 18px;display:inline-flex;margin-bottom:14px}
+.ft-brand .lgc .lw{color:var(--navy)}
+.ft-brand .tg{font-weight:600;color:#fff;font-size:14px;margin-bottom:4px}
+.ft-brand .tg2{font-family:var(--f-mono);font-size:11px;color:#c7d8ff;margin-bottom:12px}
+.ft-brand .sup24{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:7px 12px;font-size:12.5px;font-weight:600;color:#fff;margin-bottom:14px}
+.ft-brand .sup24 i{width:8px;height:8px;border-radius:50%;background:#5FE08D;animation:waP 2s infinite;position:relative}
+.ft-brand p{font-size:12.5px;line-height:1.7;color:#dbe6ff;margin-bottom:16px}
+.soc{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.soc a{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.14);display:grid;place-items:center;color:#fff;transition:background .2s,transform .2s}
+.soc a:hover{background:#fff;color:var(--blue);transform:translateY(-2px);text-decoration:none}
+.soc svg{width:16px;height:16px}
+.cvid{display:flex;gap:12px;align-items:center;background:rgba(11,19,43,.25);border-radius:12px;padding:10px;cursor:pointer;border:0;color:#fff;text-align:left;width:100%}
+.cvid .th{width:76px;height:46px;border-radius:8px;background:var(--navy);display:grid;place-items:center;flex-shrink:0}
+.cvid .th svg{width:20px;height:20px;color:#FF0000}
+.cvid b{font-size:13px;display:block}.cvid span{font-size:11.5px;color:#c7d8ff}
+.ft-rows{display:flex;flex-direction:column;gap:14px}
+.ft-row{display:grid;grid-template-columns:110px 1fr;gap:14px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.16)}
+.ft-row .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#fff;font-weight:600;padding-top:2px}
+.ft-row .v{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px}
+.ft-row .v a.hire{color:#fff;background:var(--red);padding:1px 8px;border-radius:6px;font-weight:600}
+@media(max-width:560px){.ft-row{grid-template-columns:1fr;gap:6px}}
+.ft-strip{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:center;padding:16px 0;border-top:1px solid rgba(255,255,255,.16)}
+.ft-strip .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#fff;font-weight:600}
+@media(max-width:700px){.ft-strip{grid-template-columns:1fr}}
+.tiles{display:flex;flex-wrap:wrap;gap:8px}
+.tile{background:#fff;color:var(--navy);border-radius:9px;padding:6px 10px;text-align:center;line-height:1.1;min-width:64px}
+.tile small{display:block;font-family:var(--f-mono);font-size:8.5px;letter-spacing:.1em;color:#5B6782}
+.tile b{font-family:var(--f-disp);font-size:13px;font-weight:800;color:var(--navy)}
+.tile.w{display:flex;align-items:center;gap:7px;font-weight:700;font-size:12.5px;padding:8px 12px}
+.tile .st{color:#f5a623;letter-spacing:1px}
+.partner{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;background:var(--navy);border-radius:var(--r-l);padding:24px 28px;margin:24px 0}
+.partner h3{color:#fff;font-family:var(--f-serif);font-size:22px}
+.partner p{font-size:13.5px;color:#B6C2DA;margin-top:3px}
+.ft-bot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:12px;color:#c7d8ff;padding-top:8px}
+.ft-bot .ids{display:flex;flex-wrap:wrap;gap:4px 14px;font-family:var(--f-mono);font-size:11px}
+
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}.hero [data-in]{opacity:1;transform:none}}
+
+@media(max-width:620px){.promo{font-size:12px}.promo .opt{display:none}}
+/* dark mode: keep navy icon tiles visible on dark surfaces */
+html[data-theme="dark"] [style*="background:#0B132B"],html[data-theme="dark"] [style*="background: #0B132B"]{background:#27355A!important}
+html[data-theme="dark"] .ft-brand .lgc .lw{color:#0B132B}
+
+/* ===== page ===== */
+/* ---------- hero background: drifting hexagon mesh ---------- */
+.hexmesh svg{position:absolute;right:-6%;top:0;width:78%;height:100%}
+.hexmesh #hexDrift{animation:hexDrift 46s linear infinite;will-change:transform}
+.hexmesh .hx{fill:none;stroke:#0066FF;stroke-opacity:.13;stroke-width:1}
+.hexmesh .lit{fill:#0066FF;fill-opacity:0;stroke:#0066FF;stroke-opacity:0;stroke-width:1.2}
+.hexmesh .lit.o{fill:#FF8A00;stroke:#FF8A00}
+.hexmesh .lit.a{animation:litA 46s linear infinite}.hexmesh .lit.b{animation:litB 46s linear infinite}.hexmesh .lit.c{animation:litC 46s linear infinite}
+@keyframes hexDrift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-104px,-180px,0)}}
+@keyframes litA{0%,6%{fill-opacity:0;stroke-opacity:0}14%,30%{fill-opacity:.1;stroke-opacity:.55}40%,100%{fill-opacity:0;stroke-opacity:0}}
+@keyframes litB{0%,36%{fill-opacity:0;stroke-opacity:0}46%,62%{fill-opacity:.1;stroke-opacity:.55}72%,100%{fill-opacity:0;stroke-opacity:0}}
+@keyframes litC{0%,64%{fill-opacity:0;stroke-opacity:0}74%,88%{fill-opacity:.1;stroke-opacity:.55}96%,100%{fill-opacity:0;stroke-opacity:0}}
+@media(max-width:980px){.hexmesh svg{width:140%;right:-20%;opacity:.7}}
+
+/* ---------- hero visual: create-cluster console ---------- */
+.kc{width:100%;max-width:470px;background:#fff;border-radius:20px;box-shadow:0 40px 90px -30px rgba(0,0,0,.65);overflow:hidden;color:#0B132B;position:relative}
+html[data-theme="dark"] .kc{background:#0E1630;color:#F2F5FB;border:1px solid #1E2A49}
+.kc-h{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.kc-h .dots{display:flex;gap:5px}.kc-h .dots i{width:9px;height:9px;border-radius:50%;background:var(--line-2)}
+.kc-h b{font-family:var(--f-disp);font-size:14.5px;display:flex;align-items:center;gap:9px;color:var(--ink)}
+.kc-h b i{width:28px;height:28px;border-radius:8px;background:#0066FF;color:#fff;display:grid;place-items:center}
+.kc-h b i svg{width:15px;height:15px}
+.kc-st{margin-left:auto;font-family:var(--f-mono);font-size:11px;color:var(--muted);white-space:nowrap}
+.kc-prog{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;padding:12px 18px 0}
+.kc-prog i{height:4px;border-radius:99px;background:var(--line);position:relative;overflow:hidden}
+.kc-prog i:after{content:"";position:absolute;inset:0;background:#0066FF;transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease-o)}
+.kc-prog i.on:after{transform:scaleX(1)}
+.kc-prog.done i:after{background:#16a34a}
+.kc-body{position:relative;height:282px;margin:0 18px}
+.kp{position:absolute;inset:0;padding:16px 0 8px;opacity:0;transform:translateX(26px);transition:opacity .45s var(--ease-o) .18s,transform .6s var(--ease-o) .18s;pointer-events:none}
+.kp.on{opacity:1;transform:none}
+.kp.out{opacity:0;transform:translateX(-26px);transition:opacity .2s linear,transform .3s var(--ease-o)}
+.kt{font-family:var(--f-disp);font-weight:700;font-size:16px;color:var(--ink);margin-bottom:12px}
+.kl{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:12px 0 7px}
+.kt+.kl{margin-top:0}
+.kin{height:42px;border:1.5px solid #0066FF;border-radius:10px;display:flex;align-items:center;padding:0 12px;font-family:var(--f-mono);font-size:14px;font-weight:600;color:var(--ink);box-shadow:0 0 0 4px rgba(0,102,255,.12)}
+.kin .caret{width:2px;height:18px;background:#FF8A00;margin-left:2px;animation:kBlink 1s steps(2) infinite}
+@keyframes kBlink{50%{opacity:0}}
+.kopts{display:flex;gap:7px}
+.kopts>span{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;min-height:40px;border:1.5px solid var(--line);border-radius:10px;font-size:13px;font-weight:600;color:var(--text);transition:border-color .35s,background .35s,color .35s,transform .35s var(--ease-o);background:var(--surface)}
+.kopts>span small{font-family:var(--f-mono);font-size:9.5px;color:var(--muted);font-weight:500}
+.kopts>span i{display:grid;place-items:center}.kopts>span i svg{width:14px;height:14px}
+.kopts.tiles>span{flex-direction:column;gap:2px;min-height:56px;padding:6px 4px;text-align:center}
+.kopts.tiles>span b{font-size:13.5px;color:var(--ink)}
+.kopts>span.sel{border-color:#0066FF;background:var(--chip);color:#0066FF;transform:translateY(-2px)}
+.kopts>span.sel small{color:#0066FF}
+.khint{display:flex;align-items:center;gap:7px;margin-top:16px;font-size:12px;color:var(--muted)}
+.khint .kfree{margin-left:auto;display:inline-flex;align-items:center;gap:5px;font-family:var(--f-mono);font-size:10.5px;font-weight:600;color:#16a34a;background:rgba(22,163,74,.1);padding:4px 8px;border-radius:7px}
+.khint .kfree svg{width:12px;height:12px}
+.khint>i{display:grid;place-items:center;color:#FF8A00}.khint i svg{width:14px;height:14px}
+.kadd{display:flex;flex-direction:column;gap:8px}
+.ka{display:flex;align-items:center;gap:11px;padding:10px 12px;border:1px solid var(--line);border-radius:11px;font-size:13.5px;font-weight:600;color:var(--ink);transition:border-color .35s,background .35s}
+.ka>i{width:28px;height:28px;border-radius:8px;background:var(--chip);color:#0066FF;display:grid;place-items:center;flex-shrink:0;transition:background .35s,color .35s}
+.ka>i svg{width:14px;height:14px}
+.ka em{margin-left:auto;width:36px;height:20px;border-radius:99px;background:var(--line-2);position:relative;transition:background .3s;flex-shrink:0}
+.ka em:after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.2);transition:transform .35s var(--ease-o)}
+.ka.on{border-color:rgba(0,102,255,.4)}
+.ka.on>i{background:#0066FF;color:#fff}
+.ka.on em{background:#0066FF}.ka.on em:after{transform:translateX(16px)}
+.krow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.kval{display:flex;align-items:baseline;gap:8px;height:40px;border:1px solid var(--line);border-radius:10px;padding:0 12px;align-items:center}
+.kval b{font-family:var(--f-disp);font-size:20px;font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums;min-width:26px}
+.kval small{font-size:11.5px;color:var(--muted)}
+.kprice{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding:11px 14px;border-radius:11px;background:var(--surface-2);font-size:13px;color:var(--muted)}
+.kprice em{font-style:normal;font-weight:600;color:var(--ink)}
+.kprice b{font-family:var(--f-mono);font-size:14px;color:#0066FF}
+.krev{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+.krev div{padding:9px 0;border-bottom:1px dashed var(--line);opacity:0;transform:translateY(6px);transition:opacity .4s var(--ease-o),transform .4s var(--ease-o)}
+.krev div.in{opacity:1;transform:none}
+.krev small{display:block;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.krev b{font-size:13.5px;color:var(--ink)}
+.krev b.g{color:#16a34a}
+/* live cluster */
+.kl-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.kl-h b{font-size:14px;color:var(--ink)}
+.pill{font-family:var(--f-mono);font-size:10.5px;font-weight:600;padding:4px 10px;border-radius:99px;background:rgba(255,138,0,.14);color:#FF8A00;display:inline-flex;align-items:center;gap:6px;transition:background .3s,color .3s}
+.pill:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;animation:kBlink 1.2s steps(2) infinite}
+.pill.ok{background:rgba(22,163,74,.14);color:#16a34a}
+.pill.sc{background:rgba(0,102,255,.12);color:#0066FF}
+.kcp{display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:12px;background:#0B132B;color:#fff}
+html[data-theme="dark"] .kcp{background:#050916;border:1px solid #1E2A49}
+.kcp>i{width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,.1);display:grid;place-items:center;flex-shrink:0}
+.kcp>i svg{width:16px;height:16px}
+.kcp b{display:block;font-size:13.5px;color:#fff}
+.kcp small{font-size:11px;color:#B6C2DA}
+.kcp .ok{margin-left:auto;width:24px;height:24px;border-radius:50%;border:2px solid rgba(255,255,255,.25);border-top-color:#FF8A00;animation:kSpin .8s linear infinite;flex-shrink:0}
+.kcp .ok.done{animation:none;border-color:#16a34a;background:#16a34a;display:grid;place-items:center}
+.kcp .ok.done:after{content:"";width:9px;height:5px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:translateY(-1px) rotate(-45deg)}
+@keyframes kSpin{to{transform:rotate(360deg)}}
+.knodes{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:10px}
+.kn{border:1.5px solid var(--line);border-radius:11px;padding:8px 8px 9px;opacity:0;transform:scale(.9);transition:opacity .5s var(--ease-o),transform .5s var(--ease-o),border-color .4s,background .4s}
+.kn.in{opacity:1;transform:none}
+.kn.as{border-color:#FF8A00;background:rgba(255,138,0,.06)}
+.kn .nm{display:flex;align-items:center;justify-content:space-between;font-family:var(--f-mono);font-size:10px;font-weight:600;color:var(--ink);margin-bottom:7px}
+.kn .nm i{width:6px;height:6px;border-radius:50%;background:var(--line-2);transition:background .3s}
+.kn.rdy .nm i{background:#16a34a}
+.kn .pods{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.kn .pods span{height:12px;border-radius:3px;background:var(--surface-2);border:1px dashed var(--line-2);transition:background .35s,border-color .35s,transform .35s var(--ease-o)}
+.kn .pods span.on{background:#0066FF;border:1px solid #0066FF;transform:scale(1)}
+.kn .pods span.pend{background:rgba(255,138,0,.2);border:1px dashed #FF8A00}
+.kn .tg{display:block;font-family:var(--f-mono);font-size:8.5px;color:#FF8A00;margin-top:6px;height:10px;letter-spacing:.04em;text-transform:uppercase}
+.kload{display:flex;align-items:center;gap:10px;margin-top:12px;font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.kload .bar{flex:1;height:6px;border-radius:99px;background:var(--line);overflow:hidden}
+.kload .bar i{display:block;height:100%;width:100%;background:#0066FF;border-radius:99px;transform:scaleX(0);transform-origin:left;transition:transform 1.1s var(--ease-o),background .4s}
+.kload .bar i.hot{background:#FF8A00}
+.kload b{color:var(--ink);min-width:34px;text-align:right;font-variant-numeric:tabular-nums}
+.kc-f{display:flex;align-items:center;gap:12px;padding:11px 18px;border-top:1px solid var(--line);background:var(--surface-2)}
+.kc-f .lg{flex:1;min-width:0;font-family:var(--f-mono);font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:opacity .25s}
+.kc-f .lg.g{color:#16a34a}.kc-f .lg.o{color:#FF8A00}
+.kbtn svg{width:13px;height:13px}
+.kbtn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:9px;background:#0066FF;color:#fff;font-size:12.5px;font-weight:600;white-space:nowrap;transition:transform .2s var(--ease-o),background .3s,opacity .3s}
+.kbtn.press{transform:scale(.92)}
+.kbtn.go{background:#FF8A00}
+.kbtn.off{opacity:.35}
+@media(max-width:560px){.kc-body{height:296px;margin:0 14px}.kc-h,.kc-f{padding-left:14px;padding-right:14px}.kc-prog{padding-left:14px;padding-right:14px}.kopts>span{font-size:12px}.kopts.tiles>span b{font-size:12.5px}.knodes{gap:5px}.kn{padding:7px 6px 8px}.kc-h .dots{display:none}}
+
+/* ---------- shared responsibility split ---------- */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:var(--r-l);overflow:hidden;border:1px solid var(--line);box-shadow:var(--sh-s)}
+@media(max-width:860px){.split{grid-template-columns:1fr}}
+.sp{padding:30px}
+.sp.we{background:#0B132B;color:#fff}
+html[data-theme="dark"] .sp.we{background:#050916}
+.sp.you{background:var(--surface)}
+.sp-h{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.sp-h .ico{margin:0}
+.sp.we .sp-h .ico{background:#FF8A00}
+.sp-h small{display:block;font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#FF8A00;font-weight:600}
+.sp.you .sp-h small{color:#0066FF}
+.sp-h b{font-family:var(--f-disp);font-size:18px;color:var(--ink)}
+.sp.we .sp-h b{color:#fff}
+.sp.we .ilist li{color:#B6C2DA}
+.sp.we .ilist li b{color:#fff}
+.sp.we .ilist li i{background:rgba(255,255,255,.1);color:#fff}
+.sp .ilist{gap:14px}
+
+/* ---------- architecture ---------- */
+.arch-w{display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:start}
+@media(max-width:960px){.arch-w{grid-template-columns:1fr}}
+.arch{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-l);padding:22px}
+.a-in{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.a-pill{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:9px 10px;font-size:12.5px;font-weight:600;color:var(--ink);line-height:1.25}
+.a-pill i{width:26px;height:26px;border-radius:7px;background:#0066FF;color:#fff;display:grid;place-items:center;flex-shrink:0}
+.a-pill i svg{width:14px;height:14px}
+.a-out .a-pill i{background:#0B132B}
+html[data-theme="dark"] .a-out .a-pill i{background:#27355A}
+.a-flow{display:block;width:100%;height:26px}
+.a-flow path{fill:none;stroke:#0066FF;stroke-width:2;stroke-dasharray:4 5;animation:aFlow 1.2s linear infinite;vector-effect:non-scaling-stroke}
+.a-flow+.a-in path,.a-out~* path{animation-direction:normal}
+@keyframes aFlow{to{stroke-dashoffset:-18}}
+.a-cl{border:1.5px dashed rgba(0,102,255,.45);border-radius:16px;padding:14px;background:var(--surface)}
+.a-cap{display:flex;justify-content:space-between;gap:10px;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#0066FF;font-weight:600;margin-bottom:11px}
+.a-cap .mono{color:var(--muted);font-weight:500}
+.a-cp{display:flex;align-items:center;gap:11px;background:#0B132B;color:#fff;border-radius:11px;padding:10px 12px}
+html[data-theme="dark"] .a-cp{background:#050916;border:1px solid var(--line)}
+.a-cp>i{width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,.1);display:grid;place-items:center;flex-shrink:0}
+.a-cp>i svg{width:15px;height:15px}
+.a-cp b{display:block;font-size:13px;color:#fff}.a-cp small{font-size:11px;color:#B6C2DA}
+.a-cp>span{margin-left:auto;font-family:var(--f-mono);font-size:10px;font-weight:600;background:#FF8A00;color:#fff;padding:3px 8px;border-radius:6px}
+.a-ng{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:10px}
+.a-g{border:1px solid var(--line);border-radius:11px;padding:10px;background:var(--surface-2)}
+.a-g b{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink)}
+.a-g b svg{width:13px;height:13px;color:#0066FF}
+.a-g.gpu b svg{color:#16a34a}
+.a-g small{display:block;font-size:11px;color:var(--muted);margin:2px 0 8px}
+.a-n{display:flex;gap:5px}
+.a-n i{width:20px;height:20px;border-radius:5px;background:#0066FF;opacity:.85;animation:aPulse 3.2s var(--ease) infinite}
+.a-n i:nth-child(2){animation-delay:.4s}.a-n i:nth-child(3){animation-delay:.8s}
+.a-g.gpu .a-n i{background:#16a34a}
+@keyframes aPulse{0%,100%{opacity:.85}50%{opacity:.4}}
+.a-lb{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.a-lb span{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:10.5px;color:var(--muted);background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:5px 9px}
+.a-lb span svg{width:12px;height:12px;color:#0066FF}
+@media(max-width:560px){.arch{padding:14px}.a-in,.a-ng{gap:6px}.a-pill{flex-direction:column;align-items:flex-start;font-size:11.5px;padding:8px}.a-cl{padding:10px}.a-cap{flex-direction:column;gap:2px}.a-g{padding:8px}}
+.arch-t .tabs button{display:inline-flex;align-items:center;gap:7px}
+.arch-t .tabs button svg{width:14px;height:14px}
+.at-p{font-size:15px;color:var(--muted);margin-bottom:16px}
+.arch-t .cni{margin-bottom:18px}
+.arch-t .ilist a{color:#0066FF;font-weight:600}
+.arch-t [data-panel]{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-l);padding:24px}
+
+/* ---------- node groups / use cases ---------- */
+.tagline{font-family:var(--f-mono);font-size:11px;color:#FF8A00;letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:6px;display:block}
+.ng{display:flex;flex-direction:column}
+.ng-s{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:16px}
+.ng-s span{font-family:var(--f-mono);font-size:10.5px;background:var(--chip);color:#0066FF;border-radius:6px;padding:4px 8px;font-weight:600}
+
+/* ---------- pricing table ---------- */
+.ptbl td{vertical-align:middle}
+.ptbl .fl{display:flex;align-items:center;gap:12px}
+.ptbl .fl i{width:32px;height:32px;border-radius:9px;background:#0066FF;color:#fff;display:grid;place-items:center;flex-shrink:0}
+.ptbl .fl i svg{width:16px;height:16px}
+.ptbl .fl small{display:block;font-weight:400;font-size:12px;color:var(--muted)}
+.ptbl .pz{font-family:var(--f-disp);font-size:20px;font-weight:800;color:var(--ink);letter-spacing:-.02em}
+.ptbl .pz.q{font-size:16px}
+.ptbl .pz.g{color:#16a34a}
+.ptbl s{font-family:var(--f-mono);color:var(--muted);font-size:14px}
+.ptbl .dl{font-family:var(--f-mono);font-size:12px;font-weight:600;color:#16a34a;background:rgba(22,163,74,.1);padding:4px 9px;border-radius:7px;white-space:nowrap}
+.ptbl .dl.n{color:var(--muted);background:var(--surface-2)}
+.ptbl td:last-child{text-align:right;width:110px}
+.ptbl tr{transition:background .25s}
+.ptbl tbody tr:hover td{background:var(--surface-2)}
+.ptbl tbody tr:hover td.hl{background:var(--chip)}
+
+/* ---------- calculator extras ---------- */
+.as-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:20px}
+.as-row .tgl{flex:1 1 260px}
+.as-max{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:var(--ink);transition:opacity .3s}
+.as-max.off{opacity:.35;pointer-events:none}
+.save-box{display:flex;align-items:center;gap:12px;background:rgba(22,163,74,.14);border:1px solid rgba(22,163,74,.35);border-radius:12px;padding:11px 14px;margin-bottom:6px}
+.save-box i{width:30px;height:30px;border-radius:8px;background:#16a34a;color:#fff;display:grid;place-items:center;flex-shrink:0}
+.save-box i svg{width:15px;height:15px}
+.save-box b{display:block;font-family:var(--f-disp);font-size:18px;color:#fff;font-variant-numeric:tabular-nums}
+.save-box span{font-size:12px;color:#B6C2DA}
+.cout .crows{margin-top:14px}
+.cout .crow.peak{border-top:1px dashed rgba(255,255,255,.18);padding-top:9px;transition:opacity .3s}
+.cout .crow.peak b{color:#FF8A00}
+.cout .crow.peak.off{display:none}
+.co-std,.co-gpu{display:flex;flex-direction:column;flex:1}
+.co-gpu[hidden],.co-std[hidden]{display:none}
+.co-gpu,.co-std{animation:panelIn .45s var(--ease-o)}
+.gq{margin:14px 0 18px}
+.gq>i{width:44px;height:44px;border-radius:12px;background:#16a34a;color:#fff;display:grid;place-items:center;margin-bottom:14px}
+.gq>i svg{width:22px;height:22px}
+.gq h3{color:#fff;font-family:var(--f-serif);font-size:24px;margin-bottom:8px}
+.gq p{color:#B6C2DA;font-size:14px}
+.ilist.inv{margin-bottom:22px}
+.ilist.inv li{color:#dfe6f5}
+.ilist.inv li i{background:rgba(255,255,255,.1);color:#fff}
+#kCalc .seg button{min-width:0}
+@media(max-width:560px){#kCalc .seg button{flex:1 1 40%}.calc .cin,.calc .cout{padding:22px}.cout .ctot{font-size:36px}}
+
+/* ---------- deploy steps ---------- */
+.step .si{width:38px;height:38px;border-radius:10px;background:var(--chip);color:#0066FF;display:grid;place-items:center;margin-bottom:12px;transition:background .3s,color .3s}
+.step .si svg{width:18px;height:18px}
+.step:hover .si{background:#0066FF;color:#fff}
+.steps.h .step{transition:transform .35s var(--ease-o),box-shadow .35s}
+.steps.h .step:hover{transform:translateY(-4px);box-shadow:var(--sh)}
+@media(max-width:1100px) and (min-width:961px){.steps.h[style*="--n:5"]{grid-template-columns:repeat(3,1fr)}}
+
+/* ---------- integrations + related ---------- */
+.int{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:900px){.int{grid-template-columns:1fr}}
+.int-c{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-l);padding:22px}
+.int-c h3{font-size:14px;font-family:var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;font-weight:600}
+.rel{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+@media(max-width:760px){.rel{grid-template-columns:1fr}}
+.rl{display:flex;gap:16px;align-items:flex-start}
+.rl .ico{margin:0}
+
+/* ---------- compliance ---------- */
+.comp{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+@media(max-width:960px){.comp{grid-template-columns:1fr;gap:10px}}
+.comp .sh{margin-bottom:0}
+.comp .certs{margin-top:22px}
+.comp-g{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.comp-g{grid-template-columns:1fr}}
+.cc{padding:20px}
+.cc .ico{width:38px;height:38px;margin-bottom:12px}.cc .ico svg{width:19px;height:19px}
+.cc h3{font-size:15.5px}
+.cc p{font-size:13.5px}
+.incl{margin-top:auto;background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.incl .lb{display:block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:12px}
+.incl-g{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px}
+.incl-g span{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:600;color:var(--ink)}
+.incl-g i{width:24px;height:24px;border-radius:7px;background:rgba(22,163,74,.12);color:#16a34a;display:grid;place-items:center;flex-shrink:0}
+.incl-g i svg{width:13px;height:13px}
+@media(max-width:420px){.incl-g{grid-template-columns:1fr}}
+#kCalc .cin>.fld:not(:first-child),#kCalc .as-row{transition:opacity .3s}
+#kCalc.isgpu .cin>.fld:not(:first-child),#kCalc.isgpu .as-row{opacity:.35;pointer-events:none}
+.tbl.ptbl{min-width:760px}
+.ptbl .fl{white-space:nowrap}
+
+</style><style>h1,h2,h3,h4{text-transform:capitalize}.import-assurance h2,.import-assurance h3{text-transform:uppercase}.rv{opacity:1!important;transform:none!important}main{display:flow-root}body{margin:0}</style><style>.import-assurance h2,.import-assurance h3,#kubernetesSecurity ~ section :is(h2,h3){text-transform:uppercase}.import-video-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}.import-video-card{overflow:hidden;border:1px solid var(--line);border-radius:16px;background:var(--card)}.import-video-card>div{aspect-ratio:16/9}.import-video-card iframe{width:100%;height:100%;border:0;display:block}.import-video-card h3{margin:0;padding:20px;font-size:18px}@media(max-width:640px){.import-video-grid{grid-template-columns:1fr}}</style><style>.sec{padding:42px 0}.sec.tight{padding:28px 0}.sh{margin-bottom:20px}.import-assurance .sh{margin-top:16px}</style><style>
+
+.smb-section-nav {
+  width: 100%;
+  padding: 10px 20px;
+  border-bottom: 1px solid #e7ebf1;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 5px 18px rgba(4, 30, 66, 0.06);
+  backdrop-filter: blur(12px);
+}
+
+.smb-section-nav-track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  width: max-content;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 4px;
+  overflow-x: auto;
+  border-radius: 999px;
+  background: #f2f3f6;
+  scrollbar-width: none;
+}
+
+.smb-section-nav-track::-webkit-scrollbar { display: none; }
+
+.smb-section-nav a:hover,
+.smb-section-nav a:focus-visible {
+  color: #075fc7;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(4, 30, 66, 0.12);
+}
+
+.smb-section-nav a:focus-visible {
+  outline: 2px solid #1d73df;
+  outline-offset: 1px;
+}
+
+.smb-section-nav a {
+  flex: 0 0 auto;
+  padding: 9px 15px;
+  border-radius: 999px;
+  color: #3d4759;
+  font: 600 13px/1.25 var(--body, 'IBM Plex Sans', sans-serif);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+@media (max-width: 900px) {
+  
+  .smb-section-nav { padding-inline: 12px; }
+  .smb-section-nav-track { justify-content: flex-start; }
+  .smb-section-nav a { padding: 9px 13px; font-size: 12px; }
+}
+.import-trust{background:#f2f6ff;border-bottom:1px solid #d7e1f0}.import-trust .wrap{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;padding:16px 24px;color:#466080;font:13px/1.5 var(--body,sans-serif)}.import-trust b{color:#041e42;font-family:var(--mono,monospace)}.smb-section-nav{position:relative;top:auto;z-index:1}.smb-section-nav-track{font-family:Arial,sans-serif}@media(max-width:600px){.import-trust .wrap{justify-content:center;text-align:center;font-size:11px}}</style></head><body><main id="main">
+<!-- ================= HERO ================= -->
+<section class="hero" id="kubernetesHero">
+  <div class="hero-bg hexmesh" aria-hidden="true">
+    <svg id="hexSvg" viewBox="0 0 1000 900" preserveAspectRatio="xMidYMid slice"><g id="hexDrift"></g></svg>
+  </div>
+  <div class="wrap">
+    <div class="crumb" data-in="1"><a href="https://www.xcellhost.top/">Home</a> / <a href="#">Cloud</a> / <span class="c">Managed Kubernetes</span></div>
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow" data-in="1">Managed Kubernetes · India</span>
+        <h1 data-in="2">Kubernetes, managed — <span class="acc">for your apps and AI.</span></h1>
+        <p class="lead" data-in="3">We run the control plane, upgrades, patches and monitoring. You deploy. <b>Free HA control plane, bandwidth included,</b> nodes from ₹999 a month, and GPU node groups when your models need them.</p>
+        <div class="powered" data-in="4"><span class="pv-l" style="background:#0B132B;color:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8.5 5v10L12 22l-8.5-5V7z"/></svg></span><span><small>Powered by</small><b>XcellHost Cloud</b></span></div>
+        <div class="hero-cta" data-in="5">
+          <a href="#calc" class="btn btn-orange">Price your cluster <span class="ar">→</span></a>
+          <a href="#deploy" class="btn btn-line">See the 5-step deploy</a>
+        </div>
+      </div>
+      <div class="stage" data-in="4">
+        <div class="kc" id="kc" aria-label="Demo: creating a Kubernetes cluster in five steps">
+          <div class="kc-h">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <b><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8.5 5v10L12 22l-8.5-5V7z"/></svg></i>Create cluster</b>
+            <span class="kc-st" id="kcStep">Step 1 of 5</span>
+          </div>
+          <div class="kc-prog" id="kcProg"><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="kc-body">
+            <!-- step 1 -->
+            <div class="kp on" data-p="0">
+              <div class="kt">Name &amp; version</div>
+              <div class="kl">Cluster name</div>
+              <div class="kin"><span id="kcName"></span><span class="caret"></span></div>
+              <div class="kl">Kubernetes version</div>
+              <div class="kopts" id="kcVer"><span>v1.31 <small>latest</small></span><span>v1.30</span><span>v1.29</span></div>
+              <div class="khint"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6 7-12a7 7 0 00-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></i>Region · Mumbai, India<span class="kfree"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg> HA control plane · free</span></div>
+            </div>
+            <!-- step 2 -->
+            <div class="kp" data-p="1">
+              <div class="kt">Networking</div>
+              <div class="kl">Network provider (CNI)</div>
+              <div class="kopts tiles" id="kcCni"><span><b>Calico</b><small>network policies</small></span><span><b>Flannel</b><small>simple overlay</small></span><span><b>Canal</b><small>Flannel + policies</small></span></div>
+              <div class="kl">API endpoint</div>
+              <div class="kopts" id="kcApi"><span><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg></i>Public</span><span><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg></i>Private</span></div>
+            </div>
+            <!-- step 3 -->
+            <div class="kp" data-p="2">
+              <div class="kt">Cluster add-ons</div>
+              <div class="kadd" id="kcAdd">
+                <div class="ka"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v5M5 17v-3h14v3"/></svg></i><span>NGINX ingress controller</span><em></em></div>
+                <div class="ka"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 19l9-7-9-7zM2 19l9-7-9-7z"/></svg></i><span>NGINX default backend</span><em></em></div>
+                <div class="ka"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M14 9l2 2"/></svg></i><span>Secrets encryption</span><em></em></div>
+                <div class="ka"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></i><span>etcd snapshot backup</span><em></em></div>
+              </div>
+            </div>
+            <!-- step 4 -->
+            <div class="kp" data-p="3">
+              <div class="kt">Worker node group · <span class="mono">general-pool</span></div>
+              <div class="kl">Flavour</div>
+              <div class="kopts tiles" id="kcFl"><span><b>2 vCPU</b><small>4 GiB</small></span><span><b>4 vCPU</b><small>8 GiB</small></span><span><b>8 vCPU</b><small>16 GiB</small></span></div>
+              <div class="krow">
+                <div><div class="kl">Nodes</div><div class="kval"><b id="kcN">1</b><small>autoscale to 10</small></div></div>
+                <div><div class="kl">Volume / node</div><div class="kval"><b id="kcV">20</b><small>GB block</small></div></div>
+              </div>
+              <div class="kprice"><span>₹1,999 × <em id="kcPn">1 node</em></span><b id="kcPt">₹1,999/mo</b></div>
+            </div>
+            <!-- step 5 -->
+            <div class="kp" data-p="4">
+              <div class="kt">Review &amp; create</div>
+              <div class="krev">
+                <div><small>Cluster</small><b>prod-mumbai-01</b></div>
+                <div><small>Version</small><b>v1.31</b></div>
+                <div><small>CNI</small><b>Calico</b></div>
+                <div><small>API endpoint</small><b>Private</b></div>
+                <div><small>Add-ons</small><b>4 enabled</b></div>
+                <div><small>Nodes</small><b>3 × 4 vCPU · 8 GiB</b></div>
+                <div><small>Control plane</small><b class="g">HA · Free</b></div>
+                <div><small>Bandwidth</small><b class="g">Included</b></div>
+              </div>
+            </div>
+            <!-- live -->
+            <div class="kp live" data-p="5">
+              <div class="kl-h"><b class="mono">prod-mumbai-01</b><span class="pill" id="kcStatus">Provisioning</span></div>
+              <div class="kcp" id="kcCp"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></i><div><b>Control plane</b><small>HA · 3 replicas · run by XcellHost</small></div><span class="ok" id="kcCpOk"></span></div>
+              <div class="knodes" id="kcNodes"></div>
+              <div class="kload"><span>CPU</span><div class="bar"><i id="kcLoad"></i></div><b id="kcLoadV">0%</b></div>
+            </div>
+          </div>
+          <div class="kc-f"><span class="lg" id="kcLog">Region Mumbai · 3 availability zones</span><span class="kbtn" id="kcBtn">Next <span class="ar">→</span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="hero-stats" data-in="6">
+      <div class="hs"><b>99.95<em>%</em></b><span>Uptime SLA</span></div>
+      <div class="hs"><b><em>₹</em>0</b><span>HA control plane</span></div>
+      <div class="hs"><b>1,000</b><span>Nodes, autoscaled</span></div>
+      <div class="hs"><b><em>₹</em>999</b><span>From / node / mo</span></div>
+      <div class="hs"><b>24×7</b><span>Human support</span></div>
+    </div>
+  </div>
+</section><div class="import-trust"><div class="wrap"><span><b>ISO 27001</b> &amp; <b>20000-1</b> certified</span><span>Microsoft <b>Gold Partner</b></span><span><b>10,000+</b> customers</span><span><b>Since 1999</b></span><span><b>99.95% uptime SLA</b></span><span><b>24&times;7</b> NOC + SOC</span></div></div><nav class="smb-section-nav" aria-label="Managed Kubernetes page sections"><div class="smb-section-nav-track"><a href="#overview">Overview</a><a href="#pricing">Pricing</a><a href="#kubernetesSecurity">Security</a><a href="#whyChoose">Why to Choose</a><a href="#calc">Cloud Savings</a><a href="#deploy">5 Easy Steps</a><a href="#management">Features</a><a href="#workloads">Platforms & Workloads</a><a href="#integrations">Integrations</a><a href="#customerFeedback">Customer Feedback</a><a href="#faq">FAQs</a><a href="#insights">Insights</a></div></nav>
+
+<!-- ================= WHAT'S MANAGED ================= -->
+<section class="sec" id="overview">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">What you get</span><h2>Production Kubernetes <span class="acc">without the toil.</span></h2><p>Every cluster ships with the parts teams usually spend months building — high availability, upgrades, monitoring, backups and security — already running.</p></div>
+    <div class="g3">
+      <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>Free HA control plane</h3><p>Redundant API servers and etcd across zones on every cluster, at no charge. No per-cluster management fee.</p></div>
+      <div class="card rv" data-d="1"><div class="ico o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></div><h3>Automatic upgrades</h3><p>Control plane and worker nodes move to new Kubernetes releases and security patches on a schedule you approve.</p></div>
+      <div class="card rv" data-d="2"><div class="ico n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="6" height="8" rx="1"/><rect x="15" y="8" width="6" height="8" rx="1"/><path d="M9 12h6M12 9l3 3-3 3"/></svg></div><h3>Real-time autoscaling</h3><p>Node groups add nodes when pods are waiting for capacity and remove them when demand drops — up to 1,000 nodes.</p></div>
+      <div class="card rv"><div class="ico g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div><h3>Monitoring &amp; alerts</h3><p>Node, pod and resource usage in one view, with custom alerts to email, WhatsApp or your on-call tool.</p></div>
+      <div class="card rv" data-d="1"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 19l-9-7 9-7zM22 19l-9-7 9-7z"/></svg></div><h3>One-click restore</h3><p>Scheduled backups of cluster configuration and workloads. Restore a namespace or the whole cluster in one step.</p></div>
+      <div class="card rv" data-d="2"><div class="ico o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg></div><h3>Security built in</h3><p>RBAC, network policies, encrypted secrets and policy-driven compliance checks, configured from day one.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WE MANAGE / YOU CONTROL ================= -->
+<section class="sec alt" id="management">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">Shared responsibility</span><h2>We run the platform. <span class="acc">You run your apps.</span></h2><p>A clear line between what XcellHost operates and what stays in your hands — so nothing falls between teams.</p></div>
+    <div class="split rv">
+      <div class="sp we">
+        <div class="sp-h"><span class="ico n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15v-3a8 8 0 0116 0v3"/><rect x="2" y="14" width="5" height="7" rx="2"/><rect x="17" y="14" width="5" height="7" rx="2"/></svg></span><div><small>XcellHost manages</small><b>The control plane and the plumbing</b></div></div>
+        <ul class="ilist">
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></i><span><b>Control plane</b> — API server, etcd, scheduler, kept highly available</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></i><span><b>Upgrades &amp; patching</b> of Kubernetes and node operating systems</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></i><span><b>24×7 monitoring</b> by our NOC, with human escalation</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></i><span><b>etcd snapshots &amp; backups</b>, tested restores</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v5M5 17v-3h14v3"/></svg></i><span><b>Networking, load balancers</b> and the CSI storage driver</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 7h.01M15 7h.01M9 11h.01M15 11h.01M9 15h.01M15 15h.01M10 21v-3h4v3"/></svg></i><span><b>Data centre, hardware</b> and bandwidth in India</span></li>
+        </ul>
+      </div>
+      <div class="sp you">
+        <div class="sp-h"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0114 0M16 11l2 2 4-4"/></svg></span><div><small>You control</small><b>Everything your workloads need</b></div></div>
+        <ul class="ilist">
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3l5 3-5 3-5-3 5-3zM17 3l5 3-5 3-5-3 5-3zM12 12l5 3-5 3-5-3 5-3z"/><path d="M2 6v5l5 3M22 6v5l-5 3M7 15v4l5 3 5-3v-4"/></svg></i><span><b>Node pools</b> — flavours, counts and labels per workload</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="6" height="8" rx="1"/><rect x="15" y="8" width="6" height="8" rx="1"/><path d="M9 12h6M12 9l3 3-3 3"/></svg></i><span><b>Autoscaling limits</b> — minimum and maximum nodes per group</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></i><span><b>Namespaces, quotas</b> and resource limits per team</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18l-7 8v6l-4 2v-8z"/></svg></i><span><b>Network policies</b>, ingress rules and endpoint visibility</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2 20a7 7 0 0114 0M17 11a3 3 0 000-6M22 20a6 6 0 00-4-5.6"/></svg></i><span><b>Access</b> — RBAC roles for developers and CI</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg></i><span><b>Your deployments</b> — Docker images, Helm charts, Kustomize, CRDs</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ARCHITECTURE ================= -->
+<section class="sec" id="arch">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">Architecture &amp; networking</span><h2>Production-grade <span class="acc">by design.</span></h2><p>Traffic enters through managed load balancers and ingress, lands on the right node group, and persists to block storage — with the control plane kept out of your way.</p></div>
+    <div class="arch-w">
+      <div class="arch rv" id="arch">
+        <div class="a-in">
+          <span class="a-pill"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2 20a7 7 0 0114 0M17 11a3 3 0 000-6M22 20a6 6 0 00-4-5.6"/></svg></i>Users &amp; APIs</span>
+          <span class="a-pill"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></i>External load balancer</span>
+          <span class="a-pill"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v5M5 17v-3h14v3"/></svg></i>NGINX ingress</span>
+        </div>
+        <svg class="a-flow" viewBox="0 0 400 26" preserveAspectRatio="none" aria-hidden="true"><path d="M70 0 V26 M200 0 V26 M330 0 V26"/></svg>
+        <div class="a-cl">
+          <div class="a-cap"><span>Your cluster · Mumbai DC</span><span class="mono">VPC · private network</span></div>
+          <div class="a-cp"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></i><div><b>Managed control plane</b><small>API server · etcd · scheduler · ×3 HA</small></div><span>XcellHost</span></div>
+          <div class="a-ng">
+            <div class="a-g"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h8l-1 8 10-12h-8z"/></svg> Stateless</b><small>web · APIs</small><div class="a-n"><i></i><i></i><i></i></div></div>
+            <div class="a-g"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg> Stateful</b><small>DBs · queues</small><div class="a-n"><i></i><i></i></div></div>
+            <div class="a-g gpu"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="11" rx="2"/><circle cx="8" cy="12.5" r="2.5"/><circle cx="15.5" cy="12.5" r="2.5"/><path d="M5 18v3M19 18v3"/></svg> GPU</b><small>train · infer</small><div class="a-n"><i></i><i></i></div></div>
+          </div>
+          <div class="a-lb"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4l-4 4 4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></svg> Internal load balancing</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18l-7 8v6l-4 2v-8z"/></svg> Network policies</span></div>
+        </div>
+        <svg class="a-flow" viewBox="0 0 400 26" preserveAspectRatio="none" aria-hidden="true"><path d="M70 0 V26 M200 0 V26 M330 0 V26"/></svg>
+        <div class="a-in a-out">
+          <span class="a-pill"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></i>Block storage (CSI)</span>
+          <span class="a-pill"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5M3 17.5l9 5 9-5"/></svg></i>Container registry</span>
+          <span class="a-pill"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></i>Monitoring</span>
+        </div>
+      </div>
+      <div class="arch-t rv" data-d="2">
+        <div class="tabs" data-tabs="ar" role="tablist">
+          <button data-tab="net" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v5M5 17v-3h14v3"/></svg> Networking</button>
+          <button data-tab="sto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg> Storage</button>
+          <button data-tab="sec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Security</button>
+        </div>
+        <div data-panel="net" data-group="ar" class="on">
+          <p class="at-p">Choose the network provider that fits your policies, and expose services publicly or keep them private.</p>
+          <div class="chips cni">
+            <span class="chip"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></i>Calico</span><span class="chip"><i style="background:#FF8A00"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v5M5 17v-3h14v3"/></svg></i>Flannel</span><span class="chip"><i style="background:#0B132B"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5M3 17.5l9 5 9-5"/></svg></i>Canal</span>
+          </div>
+          <ul class="ilist">
+            <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></i><span><b>External load balancers</b> for public services, internal ones for east-west traffic</span></li>
+            <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v5M5 17v-3h14v3"/></svg></i><span><b>Ingress controllers</b> — NGINX ingress and default backend as one-click add-ons</span></li>
+            <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18l-7 8v6l-4 2v-8z"/></svg></i><span><b>Network policies</b> to isolate namespaces and services</span></li>
+            <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg></i><span><b>Public or private API endpoint</b> — keep kubectl off the internet</span></li>
+          </ul>
+        </div>
+        <div data-panel="sto" data-group="ar">
+          <p class="at-p">A default CSI driver gives every cluster persistent block volumes that follow your pods.</p>
+          <ul class="ilist">
+            <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></i><span><b>Persistent volumes</b> provisioned on demand through StorageClasses</span></li>
+            <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></i><span><b>Stateful workloads</b> — databases, queues and caches on dedicated node groups</span></li>
+            <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 19l-9-7 9-7zM22 19l-9-7 9-7z"/></svg></i><span><b>etcd snapshot backup</b> plus workload backups, restorable in one click</span></li>
+            <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5M3 17.5l9 5 9-5"/></svg></i><span><b>Hosted container registry</b> with vulnerability scanning — <a href="/container-registry" target="_top">see Container Registry</a></span></li>
+          </ul>
+        </div>
+        <div data-panel="sec" data-group="ar">
+          <p class="at-p">Security is configured before your first deployment, not bolted on later.</p>
+          <ul class="ilist">
+            <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2 20a7 7 0 0114 0M17 11a3 3 0 000-6M22 20a6 6 0 00-4-5.6"/></svg></i><span><b>RBAC</b> — least-privilege roles for people and pipelines</span></li>
+            <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M14 9l2 2"/></svg></i><span><b>Secrets encryption</b> at rest in etcd</span></li>
+            <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg></i><span><b>Encryption in transit and at rest</b> across the cluster</span></li>
+            <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></i><span><b>Policy-driven compliance</b> checks on what gets deployed</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NODE GROUPS ================= -->
+<section class="sec alt" id="workloads">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">Node groups</span><h2>The right nodes for <span class="acc">each kind of workload.</span></h2><p>Run separate node groups inside one cluster, each with its own flavour, size and autoscaling limits.</p></div>
+    <div class="g4">
+      <div class="card ng rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h8l-1 8 10-12h-8z"/></svg></div><span class="tagline">Stateless</span><h3>Web front-ends &amp; APIs</h3><p>Scale out fast on load, replace nodes freely. Ideal for horizontal autoscaling.</p><div class="ng-s"><span>2–4 vCPU</span><span>autoscale 2 → 50</span></div></div>
+      <div class="card ng rv" data-d="1"><div class="ico n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div><span class="tagline">Stateful</span><h3>Databases &amp; queues</h3><p>Steady nodes with persistent block volumes through the CSI driver.</p><div class="ng-s"><span>8 vCPU · 16 GiB</span><span>fixed size</span></div></div>
+      <div class="card ng rv" data-d="2"><div class="ico o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3l5 3-5 3-5-3 5-3zM17 3l5 3-5 3-5-3 5-3zM12 12l5 3-5 3-5-3 5-3z"/><path d="M2 6v5l5 3M22 6v5l-5 3M7 15v4l5 3 5-3v-4"/></svg></div><span class="tagline">Microservices</span><h3>Many small services</h3><p>Pack services densely with quotas per namespace and network policies between them.</p><div class="ng-s"><span>4 vCPU · 8 GiB</span><span>autoscale 3 → 30</span></div></div>
+      <div class="card ng rv" data-d="3"><div class="ico g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="11" rx="2"/><circle cx="8" cy="12.5" r="2.5"/><circle cx="15.5" cy="12.5" r="2.5"/><path d="M5 18v3M19 18v3"/></svg></div><span class="tagline">GPU</span><h3>AI, ML &amp; analytics</h3><p>GPU node groups for model training, inference and data processing, next to your app nodes.</p><div class="ng-s"><span>NVIDIA GPUs</span><span>on quote</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRICING ================= -->
+<section class="sec" id="pricing">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">Node pricing</span><h2>Pay for worker nodes. <span class="acc">Nothing else.</span></h2><p>The HA control plane is free and bandwidth isn't metered. Compare that with typical hyperscaler pricing, which bills nodes, the control plane and data transfer separately.</p></div>
+    <div class="tbl-w rv">
+      <table class="tbl ptbl">
+        <thead><tr><th>Worker node</th><th class="hl">XcellHost / month</th><th>Typical hyperscaler*</th><th>You pay less</th><th></th></tr></thead>
+        <tbody>
+          <tr><td><span class="fl"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg></i><span>2 vCPU · 4 GiB<small>Dev, test, small apps</small></span></span></td><td class="hl"><b class="pz">₹999</b></td><td><s>₹2,599</s></td><td><span class="dl">−₹1,600 · 62%</span></td><td><button class="btn btn-ghost btn-sm" data-sel="s">Select</button></td></tr>
+          <tr><td><span class="fl"><i style="background:#FF8A00"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg></i><span>4 vCPU · 8 GiB<small>Most production apps</small></span></span></td><td class="hl"><b class="pz">₹1,999</b></td><td><s>₹5,199</s></td><td><span class="dl">−₹3,200 · 62%</span></td><td><button class="btn btn-blue btn-sm" data-sel="m">Select</button></td></tr>
+          <tr><td><span class="fl"><i style="background:#0B132B"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg></i><span>8 vCPU · 16 GiB<small>Databases, heavy services</small></span></span></td><td class="hl"><b class="pz">₹3,799</b></td><td><s>₹10,399</s></td><td><span class="dl">−₹6,600 · 63%</span></td><td><button class="btn btn-ghost btn-sm" data-sel="l">Select</button></td></tr>
+          <tr><td><span class="fl"><i style="background:#16a34a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="11" rx="2"/><circle cx="8" cy="12.5" r="2.5"/><circle cx="15.5" cy="12.5" r="2.5"/><path d="M5 18v3M19 18v3"/></svg></i><span>GPU node group<small>Training, inference, analytics</small></span></span></td><td class="hl"><b class="pz q">On quote</b></td><td>—</td><td><span class="dl n">Sized to your model</span></td><td><button class="btn btn-ghost btn-sm" data-sel="gpu">Select</button></td></tr>
+          <tr class="free"><td><span class="fl"><i style="background:#16a34a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></i><span>HA control plane<small>Per cluster</small></span></span></td><td class="hl"><b class="pz g">Free</b></td><td><s>~₹6,499</s></td><td><span class="dl">−₹6,499 / cluster</span></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note-ind">Indicative · excl. 18% GST. 6-month terms save 5%, 12-month terms save 10% (indicative). *Typical hyperscaler figures are indicative node-only list prices converted to INR; they exclude bandwidth charges.</p>
+  </div>
+</section>
+
+<!-- ================= CALCULATOR ================= -->
+<section class="sec alt" id="calc">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">Cluster cost calculator</span><h2>Size your cluster, <span class="acc">see the bill.</span></h2><p>Pick a node flavour, how many nodes and the term. Add block storage and an autoscaling ceiling to see your peak cost too.</p></div>
+    <div class="calc rv" id="kCalc">
+      <div class="cin">
+        <div class="fld"><span class="lb">Node flavour</span>
+          <div class="seg" id="cFl"><button data-v="s">2 vCPU · 4 GiB<small>₹999 / node</small></button><button data-v="m" class="on">4 vCPU · 8 GiB<small>₹1,999 / node</small></button><button data-v="l">8 vCPU · 16 GiB<small>₹3,799 / node</small></button><button data-v="gpu">GPU<small>quote</small></button></div></div>
+        <div class="fld"><label for="cN">Worker nodes <small id="cNL">3 nodes</small></label>
+          <input class="rng" type="range" id="cN" min="1" max="100" value="3">
+          <div class="hint">Need more? With autoscaling, node groups can grow to 1,000 nodes.</div></div>
+        <div class="fld"><span class="lb">Term</span>
+          <div class="seg" id="cTerm"><button data-v="1" class="on">Monthly<small>list price</small></button><button data-v="6">6 months<small>save 5%</small></button><button data-v="12">12 months<small>save 10%</small></button></div></div>
+        <div class="fld"><label for="cGb">Block storage per node <small id="cGbL">50 GB</small></label>
+          <input class="rng" type="range" id="cGb" min="20" max="500" step="10" value="50">
+          <div class="hint">Persistent volumes via the CSI driver at an indicative ₹5 per GB-month.</div></div>
+        <div class="as-row">
+          <label class="tgl"><input type="checkbox" id="cAs" checked><span class="sw"></span><span>Autoscaling<small>Add nodes under load, remove them when demand drops.</small></span></label>
+          <div class="as-max" id="cAsBox"><span>Max nodes</span><div class="stp"><button type="button" data-step="-1" aria-label="Fewer">−</button><input type="number" id="cMax" min="3" max="1000" value="6" aria-label="Maximum nodes"><button type="button" data-step="1" aria-label="More">+</button></div></div>
+        </div>
+        <div class="incl"><span class="lb">Included with every cluster</span>
+          <div class="incl-g">
+            <span><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></i>HA control plane</span><span><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg></i>Unmetered bandwidth</span>
+            <span><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></i>Automatic upgrades</span><span><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></i>Monitoring &amp; alerts</span>
+            <span><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 19l-9-7 9-7zM22 19l-9-7 9-7z"/></svg></i>Backup &amp; restore</span><span><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15v-3a8 8 0 0116 0v3"/><rect x="2" y="14" width="5" height="7" rx="2"/><rect x="17" y="14" width="5" height="7" rx="2"/></svg></i>24×7 human support</span>
+          </div></div>
+      </div>
+      <div class="cout" aria-live="polite">
+        <div class="co-std" id="coStd">
+          <span class="ck">Estimated monthly cost</span>
+          <div class="ctot" id="oMo">₹0</div>
+          <div class="csub" id="oSub">per month, excl. GST</div>
+          <div class="save-box"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12M6 9h12M15 20L8 13h2a4 4 0 000-8"/></svg></i><div><b id="oSave">₹0</b><span id="oSaveP">less per month than a typical hyperscaler</span></div></div>
+          <div class="crows">
+            <div class="crow"><span id="oNl">3 × 4 vCPU · 8 GiB</span><b id="oNodes">₹0</b></div>
+            <div class="crow"><span id="oSl">Block storage</span><b id="oSto">₹0</b></div>
+            <div class="crow save"><span>HA control plane · bandwidth</span><b>Free · Included</b></div>
+            <div class="crow save" id="oDiscR"><span>Term discount</span><b id="oDisc">—</b></div>
+            <div class="crow"><span>Per node / month</span><b id="oPer">₹0</b></div>
+            <div class="crow"><span id="oTl">Term total</span><b id="oTerm">₹0</b></div>
+            <div class="crow"><span>GST (18%) on term</span><b id="oGst">₹0</b></div>
+            <div class="crow peak" id="oPeakR"><span id="oPeakL">Estimated peak · 6 nodes</span><b id="oPeak">₹0/mo</b></div>
+          </div>
+          <div class="cact"><button class="btn btn-orange btn-block" id="oAdd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.5"/><circle cx="18" cy="21" r="1.5"/><path d="M2 3h3l2.6 13.4a1.5 1.5 0 001.5 1.1h9.5a1.5 1.5 0 001.5-1.2L22 7H6"/></svg> Add to cart</button><button class="btn btn-line btn-block" data-open="xhCallback" data-topic="Kubernetes sizing &amp; pricing">Talk to a Kubernetes engineer</button></div>
+          <div class="cfine">Indicative · excl. 18% GST. Hyperscaler comparison uses typical node list prices plus a ~₹6,499/mo managed control-plane fee (indicative). Peak assumes max nodes run all month.</div>
+        </div>
+        <div class="co-gpu" id="coGpu" hidden>
+          <span class="ck">GPU node groups</span>
+          <div class="gq"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="11" rx="2"/><circle cx="8" cy="12.5" r="2.5"/><circle cx="15.5" cy="12.5" r="2.5"/><path d="M5 18v3M19 18v3"/></svg></i><h3>Priced to your model, not a list.</h3><p>GPU type, count and hours depend on whether you are training, fine-tuning or serving. Tell us the workload and we'll send a sized quote within one business day.</p></div>
+          <ul class="ilist inv">
+            <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3a3 3 0 00-3 3 3 3 0 00-2 5 3 3 0 001 5 3 3 0 005 3V3zM15 3a3 3 0 013 3 3 3 0 012 5 3 3 0 01-1 5 3 3 0 01-5 3V3z"/></svg></i><span>Training, fine-tuning and inference node groups</span></li>
+            <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8.5 5v10L12 22l-8.5-5V7z"/></svg></i><span>Runs in the same cluster as your app nodes</span></li>
+            <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6 7-12a7 7 0 00-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></i><span>Hosted in Indian data centres</span></li>
+          </ul>
+          <div class="cact"><button class="btn btn-orange btn-block" data-open="xhCallback" data-topic="GPU node groups — quote">Request a GPU quote <span class="ar">→</span></button><a class="btn btn-line btn-block" href="https://wa.me/918657032540"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.2 1.4 2.5 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg> WhatsApp our team</a></div>
+          <div class="cfine">GPU pricing is quoted per configuration · excl. 18% GST.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DEPLOY STEPS ================= -->
+<section class="sec" id="deploy">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">Deploy in 5 steps</span><h2>A running cluster <span class="acc">in minutes.</span></h2><p>The same five steps the console above walks through. No YAML needed to get started — and full kubectl access once you're in.</p></div>
+    <div class="steps h rv" style="--n:5">
+      <div class="step"><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4L13.4 20.6a2 2 0 01-2.8 0L3 13V3h10l7.6 7.6a2 2 0 010 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></div><h4>Name &amp; version</h4><p>Name the cluster and pick a supported Kubernetes version.</p><span class="bar"></span></div>
+      <div class="step"><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v5M5 17v-3h14v3"/></svg></div><h4>Networking</h4><p>Choose Calico, Flannel or Canal, and a public or private API endpoint.</p><span class="bar"></span></div>
+      <div class="step"><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5M3 17.5l9 5 9-5"/></svg></div><h4>Add-ons</h4><p>NGINX ingress, default backend, secrets encryption, etcd snapshot backup.</p><span class="bar"></span></div>
+      <div class="step"><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></div><h4>Node groups</h4><p>Set flavour, node count, volume size and autoscaling limits.</p><span class="bar"></span></div>
+      <div class="step"><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4v16l13-8z"/></svg></div><h4>Review &amp; create</h4><p>Confirm and create. Download kubeconfig when the cluster is ready.</p><span class="bar"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= USE CASES ================= -->
+<section class="sec alt" id="useCases">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">Use cases</span><h2>What teams <span class="acc">run on it.</span></h2></div>
+    <div class="g3">
+      <div class="card uc rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg></div><span class="tagline">Dev &amp; test</span><h3>Environments per team</h3><p>Namespaces with resource limits give every squad its own sandbox on shared nodes — without stepping on each other.</p></div>
+      <div class="card uc rv" data-d="1"><div class="ico o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="8" r="2.5"/><path d="M6 8.5v7M18 10.5c0 4-6 3-10 6"/></svg></div><span class="tagline">App delivery</span><h3>Blue-green &amp; canary releases</h3><p>Ship new versions to a slice of traffic, watch the metrics, then roll forward or back in seconds.</p></div>
+      <div class="card uc rv" data-d="2"><div class="ico n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg></div><span class="tagline">Web hosting</span><h3>Sites that heal themselves</h3><p>Load balancing, self-healing pods and horizontal scaling keep busy sites up through traffic spikes.</p></div>
+      <div class="card uc rv"><div class="ico g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3l5 3-5 3-5-3 5-3zM17 3l5 3-5 3-5-3 5-3zM12 12l5 3-5 3-5-3 5-3z"/><path d="M2 6v5l5 3M22 6v5l-5 3M7 15v4l5 3 5-3v-4"/></svg></div><span class="tagline">Microservices</span><h3>Independent services</h3><p>Deploy, scale and update each service on its own, with policies controlling who talks to whom.</p></div>
+      <div class="card uc rv" data-d="1"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3a3 3 0 00-3 3 3 3 0 00-2 5 3 3 0 001 5 3 3 0 005 3V3zM15 3a3 3 0 013 3 3 3 0 012 5 3 3 0 01-1 5 3 3 0 01-5 3V3z"/></svg></div><span class="tagline">AI &amp; ML</span><h3>Models on GPU nodes</h3><p>Train and serve models on GPU node groups, scaled to the job and kept next to your data in India.</p></div>
+      <div class="card uc rv" data-d="2"><div class="ico o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="14" height="14" rx="2"/><path d="M16 10l6-3v10l-6-3"/></svg></div><span class="tagline">Media</span><h3>Streaming &amp; render farms</h3><p>Burst transcoding and rendering jobs across many nodes, then scale back down when the queue is empty.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INTEGRATIONS ================= -->
+<section class="sec" id="integrations">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">Integrations</span><h2>Bring your tools. <span class="acc">They just work.</span></h2><p>It's upstream Kubernetes, so your existing Docker images, Helm charts, Kustomize overlays and CRDs deploy unchanged.</p></div>
+    <div class="int rv">
+      <div class="int-c"><h3>Observability</h3><div class="chips"><span class="chip"><i style="background:#FF8A00"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></i>Grafana</span><span class="chip"><i style="background:#c0392b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></i>Prometheus</span></div></div>
+      <div class="int-c"><h3>CI/CD &amp; GitOps</h3><div class="chips"><span class="chip"><i style="background:#0B132B"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 015 5L12 19a2.8 2.8 0 01-4-4z"/><path d="M5 3l3 3-2 2-3-3"/></svg></i>Jenkins</span><span class="chip"><i style="background:#FF8A00"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="2.5"/><circle cx="19" cy="12" r="2.5"/><path d="M7.5 12h9"/><path d="M12 6v12"/></svg></i>GitLab CI</span><span class="chip"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="8" r="2.5"/><path d="M6 8.5v7M18 10.5c0 4-6 3-10 6"/></svg></i>Argo CD</span></div></div>
+      <div class="int-c"><h3>Packaging &amp; extensions</h3><div class="chips"><span class="chip"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5"/><path d="M12 4v5.5M12 14.5V20M4 12h5.5M14.5 12H20M6.3 6.3l4 4M13.7 13.7l4 4M17.7 6.3l-4 4M10.3 13.7l-4 4"/></svg></i>Helm</span><span class="chip"><i style="background:#0B132B"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5M3 17.5l9 5 9-5"/></svg></i>Kustomize</span><span class="chip"><i style="background:#16a34a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg></i>CRDs</span></div></div>
+    </div>
+    <div class="rel">
+      <a class="card rl rv" href="/container-registry" target="_top"><div class="ico soft"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5M3 17.5l9 5 9-5"/></svg></div><div><h3>Container Registry</h3><p>Private, hosted image registry with vulnerability scanning — pull straight into your cluster.</p><span class="more">Explore Container Registry <span class="ar">→</span></span></div></a>
+      <a class="card rl rv" data-d="1" href="/container-as-a-service" target="_top"><div class="ico soft"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3l5 3-5 3-5-3 5-3zM17 3l5 3-5 3-5-3 5-3zM12 12l5 3-5 3-5-3 5-3z"/><path d="M2 6v5l5 3M22 6v5l-5 3M7 15v4l5 3 5-3v-4"/></svg></div><div><h3>Container as a Service</h3><p>Just need to run containers without managing a cluster? Start with dedicated container compute.</p><span class="more">Explore CaaS <span class="ar">→</span></span></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COMPLIANCE ================= -->
+<section class="sec alt import-assurance" id="kubernetesSecurity">
+  <div class="wrap">
+    <div class="comp">
+      <div class="sh rv"><span class="eyebrow">Compliance &amp; data residency</span><h2>SECURITY &amp; COMPLIANCE <span class="acc">FOR MANAGED KUBERNETES</span></h2><p>Clusters run in our Indian data centres, including a Tier IV facility, operated by the same certified teams that run XcellHost's managed cloud since 1999. Other regions on request.</p>
+        <div class="chips certs">
+          <span class="chip"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="13" rx="2"/><circle cx="12" cy="17" r="3"/><path d="M10.5 19.5L10 23l2-1 2 1-.5-3.5M7 7h10M7 10h6"/></svg></i>ISO 27001</span><span class="chip"><i style="background:#0B132B"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="13" rx="2"/><circle cx="12" cy="17" r="3"/><path d="M10.5 19.5L10 23l2-1 2 1-.5-3.5M7 7h10M7 10h6"/></svg></i>ISO 27017</span><span class="chip"><i style="background:#0B132B"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="13" rx="2"/><circle cx="12" cy="17" r="3"/><path d="M10.5 19.5L10 23l2-1 2 1-.5-3.5M7 7h10M7 10h6"/></svg></i>ISO 27018</span>
+          <span class="chip"><i style="background:#FF8A00"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="13" rx="2"/><circle cx="12" cy="17" r="3"/><path d="M10.5 19.5L10 23l2-1 2 1-.5-3.5M7 7h10M7 10h6"/></svg></i>ISO 20000-1</span><span class="chip"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="13" rx="2"/><circle cx="12" cy="17" r="3"/><path d="M10.5 19.5L10 23l2-1 2 1-.5-3.5M7 7h10M7 10h6"/></svg></i>ISO 9001</span><span class="chip"><i style="background:#16a34a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></i>SOC 2 Type I &amp; II</span>
+          <span class="chip"><i style="background:#FF8A00"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22V4M4 4h12l-2 4 2 4H4"/></svg></i>MeitY empanelled</span><span class="chip"><i style="background:#0B132B"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 7h.01M15 7h.01M9 11h.01M15 11h.01M9 15h.01M15 15h.01M10 21v-3h4v3"/></svg></i>Tier IV data centre</span>
+        </div>
+      </div>
+      <div class="comp-g">
+        <div class="card cc rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6 7-12a7 7 0 00-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></div><h3>Indian data centres</h3><p>Workloads and backups stay in India — helpful for DPDP Act and sector data-localisation needs.</p></div>
+        <div class="card cc rv" data-d="1"><div class="ico n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg></div><h3>Encrypted end to end</h3><p>Data encrypted in transit and at rest, with secrets encrypted inside etcd.</p></div>
+        <div class="card cc rv" data-d="2"><div class="ico o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></div><h3>24×7 NOC &amp; SOC</h3><p>Our operations and security centres watch the platform round the clock.</p></div>
+        <div class="card cc rv" data-d="3"><div class="ico g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg></div><h3>Audit-ready</h3><p>RBAC, policy checks and access logs make audits straightforward. GST invoice on every order.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec import-assurance" id="whyChoose"><div class="wrap"><div class="sh"><span class="eyebrow">Why XcellHost</span><h2>WHY XCELLHOST FOR MANAGED KUBERNETES</h2></div><div class="g3"><article class="card"><h3>Platform Expertise</h3><p>Engineers Manage Provisioning, Upgrades, Patching And Monitoring.</p></article><article class="card"><h3>Indian Data Centres</h3><p>Run Your Cluster In India, With Other Regions Available On Request.</p></article><article class="card"><h3>Migration Support</h3><p>Plan Containerisation, Workload Migration And CI/CD With Our Team.</p></article><article class="card"><h3>High Availability</h3><p>A Redundant Control Plane And Self-Healing Workloads.</p></article><article class="card"><h3>24x7 Engineers</h3><p>Operations And Security Teams Support Your Platform Around The Clock.</p></article><article class="card"><h3>One Partner</h3><p>Cloud Infrastructure, Kubernetes Operations And Support Together.</p></article></div></div></section><section class="sec import-assurance" id="customerFeedback"><div class="wrap"><div class="sh"><h2>WHAT CUSTOMERS SAY</h2><p>Talk To Our Team About Customer References For Managed Kubernetes And Deployments Similar To Yours.</p><button class="btn btn-blue" data-open="xhCallback" data-topic="Managed Kubernetes customer references">Request Customer References</button></div></div></section><!-- ================= FAQ ================= -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">FAQ</span><h2>Questions, <span class="acc">answered.</span></h2></div>
+    <div class="faq rv">
+      <div class="fq open"><button aria-expanded="true">Do we need Kubernetes experts on our team?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>No. We handle provisioning, upgrades, patching and monitoring of the platform. Your developers deploy apps with the tools they already use, and our engineers are available 24×7 when you need help.</p></div></div>
+      <div class="fq"><button aria-expanded="false">Will our existing Docker images and Helm charts work?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>Yes. It's conformant upstream Kubernetes, so Docker images, Helm charts, Kustomize overlays and custom resource definitions (CRDs) deploy without changes.</p></div></div>
+      <div class="fq"><button aria-expanded="false">What do we control, and what does XcellHost manage?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>We run the control plane — API server, etcd, scheduler — plus upgrades, patching and backups. You control node pools, networking choices, autoscaling limits, quotas, namespaces and RBAC.</p></div></div>
+      <div class="fq"><button aria-expanded="false">How is high availability handled?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>Every cluster gets a redundant control plane at no charge. Persistent volumes, automated failover, self-healing pods and load balancing keep applications running if a node fails. The platform carries a 99.95% uptime SLA.</p></div></div>
+      <div class="fq"><button aria-expanded="false">How does autoscaling work and what does it cost?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>You set minimum and maximum nodes per node group. When pods can't be scheduled for lack of capacity, nodes are added; when demand drops, they're removed — up to 1,000 nodes. You pay the node rate for the extra nodes while they run. Use the calculator's peak estimate to budget.</p></div></div>
+      <div class="fq"><button aria-expanded="false">Are there charges for the control plane or bandwidth?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>No. The HA control plane is free on every cluster and bandwidth is included rather than metered. You pay for worker nodes and the block storage you provision.</p></div></div>
+      <div class="fq"><button aria-expanded="false">Can you help us migrate existing applications?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>Yes. Our team helps containerise legacy applications, move workloads from other clouds or VMs, and set up CI/CD pipelines with tools such as Jenkins, GitLab CI or Argo CD.</p></div></div>
+      <div class="fq"><button aria-expanded="false">Where is our data stored, and is it encrypted?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>Clusters are hosted in Indian data centres; other regions are available on request. Data is encrypted in transit and at rest, and Kubernetes secrets can be encrypted inside etcd.</p></div></div>
+      <div class="fq"><button aria-expanded="false">Can we run GPU workloads?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>Yes. Add GPU node groups to any cluster for training, inference or analytics. GPU capacity is quoted per configuration — request a quote and we'll size it to your model.</p></div></div>
+      <div class="fq"><button aria-expanded="false">How are we billed?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>In rupees, with a GST invoice. Choose monthly billing or a 6- or 12-month term for an indicative 5% or 10% discount. Pay by UPI, card, net banking or bank transfer.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+
+
+</main><div class="toast" id="xhToast"><span id="xhToastT"></span></div><script>
+/* XcellHost v2 core runtime — exposes window.XH */
+(function(){
+  'use strict';
+  var d=document,root=d.documentElement;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine=window.matchMedia('(pointer:fine)').matches;
+  function $(s,c){return (c||d).querySelector(s);} function $$(s,c){return Array.prototype.slice.call((c||d).querySelectorAll(s));}
+  function store(k,v){try{if(v===undefined){return JSON.parse(localStorage.getItem(k));}localStorage.setItem(k,JSON.stringify(v));}catch(e){return null;}}
+  var XH=window.XH={reduce:reduce,fine:fine,$:$,$$:$$,store:store};
+  XH.inr=function(n,dec){n=+n||0;return '₹'+n.toLocaleString('en-IN',{minimumFractionDigits:dec||0,maximumFractionDigits:dec||0});};
+
+  /* ---------- toast ---------- */
+  var toastEl=$('#xhToast'),toastT,tt;
+  XH.toast=function(m){if(!toastEl)return;$('#xhToastT').textContent=m;toastEl.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){toastEl.classList.remove('on');},2600);};
+
+  /* ---------- theme ---------- */
+  var tbtn=$('#xhTheme');
+  function paintTheme(){var dk=root.getAttribute('data-theme')==='dark';if(tbtn){$('.tl',tbtn).textContent=dk?'Dark':'Light';tbtn.setAttribute('aria-pressed',dk);}}
+  if(tbtn)tbtn.addEventListener('click',function(){var dk=root.getAttribute('data-theme')!=='dark';root.setAttribute('data-theme',dk?'dark':'light');try{localStorage.setItem('xh-theme',dk?'dark':'light');}catch(e){}paintTheme();d.dispatchEvent(new CustomEvent('xh:theme',{detail:{dark:dk}}));});
+  paintTheme();
+  XH.dark=function(){return root.getAttribute('data-theme')==='dark';};
+
+  /* ---------- header, progress ---------- */
+  var hdr=$('#xhHdr'),prog=$('#xhProgress');
+  function onScroll(){var y=window.scrollY,h=d.documentElement.scrollHeight-innerHeight;if(prog)prog.style.width=(h>0?y/h*100:0)+'%';if(hdr)hdr.classList.toggle('scrolled',y>8);}
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  /* ---------- mega menu ---------- */
+  var nis=$$('#xhNav .ni'),hoverT;
+  function closeMega(except){nis.forEach(function(n){if(n!==except){n.classList.remove('open');$('button',n).setAttribute('aria-expanded','false');}});}
+  nis.forEach(function(n){
+    var b=$('button',n);
+    b.addEventListener('click',function(e){e.stopPropagation();var o=!n.classList.contains('open');closeMega(n);n.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});
+    if(fine){n.addEventListener('mouseenter',function(){clearTimeout(hoverT);hoverT=setTimeout(function(){closeMega(n);n.classList.add('open');b.setAttribute('aria-expanded','true');},90);});
+      n.addEventListener('mouseleave',function(){clearTimeout(hoverT);hoverT=setTimeout(function(){n.classList.remove('open');b.setAttribute('aria-expanded','false');},160);});}
+  });
+  d.addEventListener('click',function(e){if(!e.target.closest('#xhNav'))closeMega();});
+
+  /* ---------- mobile nav ---------- */
+  var mnav=$('#xhMnav');
+  function mOpen(o){if(!mnav)return;mnav.classList.toggle('open',o);mnav.setAttribute('aria-hidden',!o);d.body.classList.toggle('lock',o);}
+  var bg=$('#xhBurger');if(bg)bg.addEventListener('click',function(){mOpen(true);});
+  $$('[data-mclose]').forEach(function(x){x.addEventListener('click',function(){mOpen(false);});});
+  if(mnav)mnav.addEventListener('click',function(e){if(e.target.tagName==='A')mOpen(false);});
+
+  /* ---------- modals ---------- */
+  var lastFocus=null;
+  XH.open=function(id,opts){var m=d.getElementById(id);if(!m)return;lastFocus=d.activeElement;m.classList.add('open');d.body.classList.add('lock');
+    if(opts&&opts.topic){var s=$('#xhCbTopic');if(s){ensureTopic(opts.topic);s.value=opts.topic;}}
+    setTimeout(function(){var f=$('input:not([type=hidden]),select,textarea,button.x',m);if(f)f.focus();},60);
+    m.dispatchEvent(new CustomEvent('xh:open',{detail:opts||{}}));};
+  XH.close=function(id){var m=typeof id==='string'?d.getElementById(id):id;if(!m)return;m.classList.remove('open');if(!$('.modal.open')&&!$('.cart.open'))d.body.classList.remove('lock');if(lastFocus&&lastFocus.focus)lastFocus.focus();};
+  d.addEventListener('click',function(e){
+    var o=e.target.closest('[data-open]');if(o){e.preventDefault();var opts={topic:o.getAttribute('data-topic')};XH.open(o.getAttribute('data-open'),opts);return;}
+    var c=e.target.closest('[data-close]');if(c){XH.close(c.closest('.modal'));}
+  });
+  var vb=$('.cvid');if(vb)vb.addEventListener('click',function(){var yt=vb.getAttribute('data-yt');if(yt){var box=$('#xhVideo .mc > div');if(box)box.innerHTML='<iframe src="'+yt+'" style="width:100%;height:100%;border:0;border-radius:14px" allow="autoplay; encrypted-media" allowfullscreen></iframe>';}});
+
+  /* ---------- callback topics ---------- */
+  function ensureTopic(t){var s=$('#xhCbTopic');if(!s||!t)return;if(!$$('option',s).some(function(o){return o.value===t;})){var op=d.createElement('option');op.textContent=t;s.appendChild(op);}}
+  (window.XH_TOPICS||[]).forEach(ensureTopic);
+
+  XH.onForm=function(){};
+  var cartEl=null;function cartOpen(){}
+  document.addEventListener('submit',function(e){var f=e.target.closest('[data-xhform]');if(!f)return;e.preventDefault();if(!f.reportValidity())return;document.dispatchEvent(new CustomEvent('import-callback',{detail:'Podcast enquiry: '+f.getAttribute('data-xhform')}));});
+  /* ---------- search ---------- */
+  var sr=$('#xhSearch'),si=$('#xhSearchIn'),res=$('#xhSearchRes'),hl=0,hits=[];
+  function sOpen(o){if(!sr)return;sr.classList.toggle('open',o);d.body.classList.toggle('lock',o);if(o){si.value='';sRun();setTimeout(function(){si.focus();},30);}}
+  function sRun(){var q=si.value.trim().toLowerCase();var idx=window.XH_INDEX||[];
+    hits=idx.filter(function(x){return !q||(x.n+' '+x.d+' '+x.c).toLowerCase().indexOf(q)>-1;}).slice(0,12);hl=0;
+    res.innerHTML=hits.length?hits.map(function(x,i){return '<a href="'+x.h+'"'+(i===0?' class="hl"':'')+'><b>'+x.n+'</b><span>'+x.c+' · '+x.d+'</span></a>';}).join(''):'<div class="none">No matches for “'+si.value.replace(/</g,'&lt;')+'”. Try “cloud”, “email” or <a href="#" data-open="xhCallback" style="color:var(--blue);font-weight:600">ask an expert</a>.</div>';}
+  if(sr){$('#xhSearchBtn').addEventListener('click',function(){sOpen(true);});si.addEventListener('input',sRun);
+    sr.addEventListener('click',function(e){if(e.target===sr)sOpen(false);if(e.target.closest('a'))sOpen(false);});
+    si.addEventListener('keydown',function(e){var as=$$('a',res);if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();hl=(hl+(e.key==='ArrowDown'?1:-1)+as.length)%Math.max(as.length,1);as.forEach(function(a,i){a.classList.toggle('hl',i===hl);});}else if(e.key==='Enter'&&as[hl]){location.href=as[hl].getAttribute('href');sOpen(false);}});}
+  d.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){if(sr&&sr.classList.contains('open'))sOpen(false);var m=$('.modal.open');if(m)XH.close(m);if(cartEl&&cartEl.classList.contains('open'))cartOpen(false);if(mnav&&mnav.classList.contains('open'))mOpen(false);closeMega();}
+    if((e.key==='k'&&(e.ctrlKey||e.metaKey))||(e.key==='/'&&!/input|textarea|select/i.test(d.activeElement.tagName))){e.preventDefault();sOpen(true);}
+  });
+
+  /* ---------- reveal, counters ---------- */
+  var io='IntersectionObserver' in window?new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');if(x.target.hasAttribute('data-count'))countUp(x.target);io.unobserve(x.target);}});},{threshold:.14,rootMargin:'0px 0px -40px 0px'}):null;
+  XH.observe=function(scope){$$('.rv,[data-count],.step',scope).forEach(function(el){if(io)io.observe(el);else el.classList.add('in');});};
+  function countUp(el){var to=parseFloat(el.getAttribute('data-count')),dec=+(el.getAttribute('data-dec')||0),pre=el.getAttribute('data-pre')||'',suf=el.getAttribute('data-suf')||'';
+    if(reduce){el.textContent=pre+to.toLocaleString('en-IN',{minimumFractionDigits:dec,maximumFractionDigits:dec})+suf;return;}
+    var t0=null,dur=1400;function f(t){t0=t0||t;var p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,4);el.textContent=pre+(to*e).toLocaleString('en-IN',{minimumFractionDigits:dec,maximumFractionDigits:dec})+suf;if(p<1)requestAnimationFrame(f);}requestAnimationFrame(f);}
+  XH.observe();
+
+  /* ---------- FAQ ---------- */
+  d.addEventListener('click',function(e){var b=e.target.closest('.fq > button');if(!b)return;var q=b.parentNode,a=$('.fa',q),o=!q.classList.contains('open');q.classList.toggle('open',o);b.setAttribute('aria-expanded',o);a.style.maxHeight=o?a.scrollHeight+'px':'0px';});
+  $$('.fq.open .fa').forEach(function(a){a.style.maxHeight=a.scrollHeight+'px';});
+
+  /* ---------- tabs: <div data-tabs="g"><button data-tab="k">…  panels: <div data-panel="k" data-group="g"> ---------- */
+  d.addEventListener('click',function(e){var b=e.target.closest('[data-tabs] [data-tab]');if(!b)return;var bar=b.closest('[data-tabs]'),g=bar.getAttribute('data-tabs'),k=b.getAttribute('data-tab');
+    $$('[data-tab]',bar).forEach(function(x){x.classList.toggle('on',x===b);x.setAttribute('aria-selected',x===b);});
+    $$('[data-panel][data-group="'+g+'"]').forEach(function(p){p.classList.toggle('on',p.getAttribute('data-panel')===k);});
+    bar.dispatchEvent(new CustomEvent('xh:tab',{detail:{key:k}}));});
+
+  /* ---------- segmented controls: <div class="seg" data-name="x"><button data-v="..."> ---------- */
+  d.addEventListener('click',function(e){var b=e.target.closest('.seg button');if(!b)return;var s=b.parentNode;$$('button',s).forEach(function(x){x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',x===b);});s.dataset.value=b.getAttribute('data-v');s.dispatchEvent(new CustomEvent('change',{bubbles:true}));});
+  $$('.seg').forEach(function(s){var on=$('button.on',s)||$('button',s);if(on){on.classList.add('on');s.dataset.value=on.getAttribute('data-v');}});
+
+  /* ---------- range fill + steppers ---------- */
+  function fillRange(r){var p=(r.value-r.min)/(r.max-r.min)*100;r.style.setProperty('--p',p+'%');}
+  $$('input[type=range].rng').forEach(function(r){fillRange(r);r.addEventListener('input',function(){fillRange(r);});});
+  XH.fillRange=fillRange;
+  d.addEventListener('click',function(e){var b=e.target.closest('.stp button');if(!b)return;var inp=$('input',b.parentNode),mn=+(inp.min||0),mx=+(inp.max||9999),st=+(inp.step||1);inp.value=Math.max(mn,Math.min(mx,(+inp.value||0)+st*(+b.getAttribute('data-step'))));inp.dispatchEvent(new Event('input',{bubbles:true}));});
+  d.addEventListener('change',function(e){var i=e.target;if(i.closest&&i.closest('.stp')){var mn=+(i.min||0),mx=+(i.max||9999);i.value=Math.max(mn,Math.min(mx,Math.round(+i.value||mn)));i.dispatchEvent(new Event('input',{bubbles:true}));}});
+
+  /* ---------- copy ---------- */
+  d.addEventListener('click',function(e){var b=e.target.closest('[data-copy]');if(!b)return;var t=b.getAttribute('data-copy')||location.href;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){XH.toast('Copied to clipboard');},function(){var ta=d.createElement('textarea');ta.value=t;d.body.appendChild(ta);ta.select();try{d.execCommand('copy');XH.toast('Copied to clipboard');}catch(x){}ta.remove();});});
+
+  /* ---------- flash a value change ---------- */
+  XH.flash=function(el){if(!el||reduce)return;el.classList.remove('flash');void el.offsetWidth;el.classList.add('flash');};
+
+  /* ---------- download helper ---------- */
+  XH.download=function(name,text,type){var b=new Blob([text],{type:type||'text/plain'});var a=d.createElement('a');a.href=URL.createObjectURL(b);a.download=name;d.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},500);};
+
+  /* ---------- visibility helper for animations ---------- */
+  XH.whenVisible=function(el,cb){if(!el)return;if(!('IntersectionObserver' in window)){cb(true);return;}new IntersectionObserver(function(en){en.forEach(function(x){cb(x.isIntersecting);});},{threshold:.05}).observe(el);};
+})();
+
+
+(function(){var open=XH.open;XH.open=function(id,opts){if(id==='xhCallback'){document.dispatchEvent(new CustomEvent('import-callback',{detail:opts&&opts.topic}));return;}open(id,opts);};XH.cart={add:function(item){document.dispatchEvent(new CustomEvent('import-cart',{detail:item}));}};})();</script><script>
+(function(){
+  var XH=window.XH,$=XH.$,$$=XH.$$,reduce=XH.reduce;
+
+  /* ================= 1. Hero background: hexagon mesh ================= */
+  (function(){
+    var g=$('#hexDrift');if(!g)return;
+    var W=52,R=W/Math.sqrt(3),DY=R*1.5,out=[],lit=[];
+    function hex(cx,cy){var p=[];for(var k=0;k<6;k++){var a=Math.PI/180*(60*k-30);p.push((cx+R*Math.cos(a)).toFixed(1)+','+(cy+R*Math.sin(a)).toFixed(1));}return p.join(' ');}
+    var LIT={'11,4':'lit a','14,9':'lit o b','9,12':'lit c','17,6':'lit b','12,15':'lit o a','16,13':'lit c'};
+    for(var row=0;row<26;row++){for(var col=0;col<26;col++){
+      var cx=col*W+(row%2?W/2:0),cy=row*DY;
+      out.push('<polygon class="hx" points="'+hex(cx,cy)+'"/>');
+      var k=col+','+row;if(LIT[k])lit.push('<polygon class="'+LIT[k]+'" points="'+hex(cx,cy)+'"/>');
+    }}
+    g.innerHTML=out.join('')+lit.join('');
+    var hero=g.closest('.hero');
+    XH.whenVisible(hero,function(v){g.style.animationPlayState=v?'running':'paused';$$('.lit',g).forEach(function(l){l.style.animationPlayState=v?'running':'paused';});});
+  })();
+
+  /* ================= 2. Hero visual: create-cluster console ================= */
+  var kc=$('#kc');
+  if(kc){
+    var panels=$$('.kp',kc),prog=$$('#kcProg i'),progW=$('#kcProg'),stepEl=$('#kcStep'),logEl=$('#kcLog'),btn=$('#kcBtn');
+    var nodesBox=$('#kcNodes'),load=$('#kcLoad'),loadV=$('#kcLoadV'),status=$('#kcStatus'),cpOk=$('#kcCpOk');
+    var running=true,Q=[],qi=0,timer=null,NAME='prod-mumbai-01';
+
+    function selDirect(id,i){var kids=$(id).children;for(var j=0;j<kids.length;j++)kids[j].classList.toggle('sel',j===i);}
+    function log(t,c){logEl.className='lg'+(c?' '+c:'');logEl.textContent=t;}
+    function press(label,go){btn.classList.add('press');setTimeout(function(){btn.classList.remove('press');},180);if(label!==undefined){btn.innerHTML=label;}btn.classList.toggle('go',!!go);}
+    function show(i){
+      panels.forEach(function(p,j){
+        if(j===i){p.classList.remove('out');p.classList.add('on');}
+        else if(p.classList.contains('on')){p.classList.remove('on');p.classList.add('out');(function(pp){setTimeout(function(){pp.classList.remove('out');},620);})(p);}
+      });
+      prog.forEach(function(b,j){b.classList.toggle('on',j<=Math.min(i,4));});
+      progW.classList.toggle('done',i>=5);
+      stepEl.textContent=i<5?'Step '+(i+1)+' of 5':'Cluster online';
+    }
+    function buildNodes(){
+      var h='';for(var n=0;n<4;n++){h+='<div class="kn" data-n="'+n+'"><div class="nm">node-'+(n+1)+'<i></i></div><div class="pods"><span></span><span></span><span></span><span></span><span></span><span></span></div><span class="tg">'+(n===3?'autoscaled':'')+'</span></div>';}
+      nodesBox.innerHTML=h;
+    }
+    function pods(n){return $$('.kn[data-n="'+n+'"] .pods span',nodesBox);}
+    function setLoad(p){load.style.transform='scaleX('+(p/100)+')';load.classList.toggle('hot',p>=80);
+      var from=parseInt(loadV.textContent)||0,t0=null;
+      if(reduce){loadV.textContent=p+'%';return;}
+      (function f(t){t0=t0||t;var k=Math.min(1,(t-t0)/900),e=1-Math.pow(1-k,3);loadV.textContent=Math.round(from+(p-from)*e)+'%';if(k<1)requestAnimationFrame(f);})(performance.now());}
+    function reset(){
+      $('#kcName').textContent='';
+      ['#kcVer','#kcCni','#kcApi','#kcFl'].forEach(function(id){selDirect(id,-1);});
+      $$('#kcAdd .ka').forEach(function(a){a.classList.remove('on');});
+      $('#kcN').textContent='1';$('#kcV').textContent='20';$('#kcPn').textContent='1 node';$('#kcPt').textContent='₹1,999/mo';
+      $$('.krev div',kc).forEach(function(d){d.classList.remove('in');});
+      buildNodes();cpOk.className='ok';status.className='pill';status.textContent='Provisioning';setLoad(0);
+      btn.innerHTML='Next <span class="ar">→</span>';btn.classList.remove('go','off');
+    }
+    function add(fn,ms){Q.push([fn,ms]);}
+    function count(id,from,to,stepMs,after){for(var v=from+1;v<=to;v++){(function(v){add(function(){$(id).textContent=v;if(after)after(v);},stepMs);})(v);}}
+
+    /* ---- the script ---- */
+    add(function(){reset();show(0);log('Region Mumbai · 3 availability zones');},600);
+    for(var c=1;c<=NAME.length;c++){(function(c){add(function(){$('#kcName').textContent=NAME.slice(0,c);},65);})(c);}
+    add(function(){},350);
+    add(function(){selDirect('#kcVer',0);log('Kubernetes v1.31 · upgrades applied automatically');},1300);
+    add(function(){press();show(1);log('Choose a CNI and API endpoint');},800);
+    add(function(){selDirect('#kcCni',0);log('Calico · network policies enabled');},900);
+    add(function(){selDirect('#kcApi',1);log('Private endpoint · kubectl via VPN / bastion only');},1400);
+    add(function(){press();show(2);log('Optional add-ons, installed and kept updated');},800);
+    $$('#kcAdd .ka').forEach(function(a,i){add(function(){a.classList.add('on');},460);});
+    add(function(){log('4 add-ons enabled');},1000);
+    add(function(){press();show(3);log('Define the first worker node group');},800);
+    add(function(){selDirect('#kcFl',1);log('4 vCPU · 8 GiB · ₹1,999 / node / month');},700);
+    count('#kcN',1,3,300,function(v){$('#kcPn').textContent=v+(v===1?' node':' nodes');$('#kcPt').textContent=XH.inr(1999*v)+'/mo';});
+    add(function(){},200);
+    add(function(){tweenTxt($('#kcV'),20,100,700);},1500);
+    add(function(){press('Create cluster',true);show(4);log('Review your configuration');},300);
+    $$('.krev div',kc).forEach(function(d){add(function(){d.classList.add('in');},110);});
+    add(function(){},1500);
+    add(function(){press();btn.classList.add('off');show(5);log('Provisioning HA control plane…','o');},1300);
+    add(function(){cpOk.className='ok done';log('✓ Control plane ready · 3 replicas across zones','g');},600);
+    [0,1,2].forEach(function(n){add(function(){var e=$('.kn[data-n="'+n+'"]',nodesBox);e.classList.add('in');log('Joining node-'+(n+1)+'…');setTimeout(function(){e.classList.add('rdy');},350);},500);});
+    add(function(){log('Scheduling workloads…');},300);
+    /* schedule 8 pods across 3 nodes */
+    [[0,0],[1,0],[2,0],[0,1],[1,1],[2,1],[0,2],[1,2]].forEach(function(p){add(function(){pods(p[0])[p[1]].classList.add('on');},140);});
+    add(function(){status.className='pill ok';status.textContent='Running';log('✓ 8/8 pods running · 3 nodes','g');setLoad(46);btn.classList.remove('off','go');btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg> kubeconfig';},1800);
+    add(function(){setLoad(88);log('Traffic spike · CPU 88%','o');},1100);
+    add(function(){[2,3].forEach(function(i){pods(2)[i].classList.add('pend');});pods(1)[3].classList.add('pend');log('3 pods pending · autoscaler adding node-4','o');status.className='pill sc';status.textContent='Scaling';},1300);
+    add(function(){var e=$('.kn[data-n="3"]',nodesBox);e.classList.add('in','as');setTimeout(function(){e.classList.add('rdy');},400);},900);
+    add(function(){pods(2)[2].classList.remove('pend');pods(2)[3].classList.remove('pend');pods(1)[3].classList.remove('pend');[0,1,2].forEach(function(i){pods(3)[i].classList.add('on');});},500);
+    add(function(){setLoad(57);status.className='pill ok';status.textContent='Running';log('✓ Scaled 3 → 4 nodes in 48 s · 11/11 pods running','g');},3600);
+    add(function(){},800);
+
+    function tweenTxt(el,a,b,ms){if(reduce){el.textContent=b;return;}var t0=null;(function f(t){t0=t0||t;var k=Math.min(1,(t-t0)/ms),e=1-Math.pow(1-k,3);el.textContent=Math.round(a+(b-a)*e);if(k<1)requestAnimationFrame(f);})(performance.now());}
+
+    function next(){
+      if(!running){timer=setTimeout(next,300);return;}
+      if(qi>=Q.length)qi=0;
+      var a=Q[qi++];a[0]();timer=setTimeout(next,a[1]);
+    }
+    if(reduce){
+      /* final state, no loop */
+      reset();for(var z=0;z<Q.length;z++){try{Q[z][0]();}catch(e){}}
+      show(5);
+    } else {
+      XH.whenVisible(kc,function(v){running=v;});
+      buildNodes();next();
+    }
+  }
+
+  /* ================= 3. Cluster cost calculator ================= */
+  var RATE={s:999,m:1999,l:3799},HYP={s:2599,m:5199,l:10399},NAMES={s:'2 vCPU · 4 GiB',m:'4 vCPU · 8 GiB',l:'8 vCPU · 16 GiB'};
+  var GB_RATE=5,CP_FEE=6499,DISC={1:0,6:.05,12:.10};
+  var fl=$('#cFl'),nIn=$('#cN'),term=$('#cTerm'),gbIn=$('#cGb'),as=$('#cAs'),mx=$('#cMax'),asBox=$('#cAsBox');
+  var std=$('#coStd'),gpu=$('#coGpu');
+  function tw(el,to,suf){suf=suf||'';if(el._v===undefined)el._v=0;var from=el._v;el._v=to;cancelAnimationFrame(el._r);
+    if(reduce||from===to){el.textContent=XH.inr(to)+suf;return;}
+    var t0=null;(function f(t){t0=t0||t;var k=Math.min(1,(t-t0)/500),e=1-Math.pow(1-k,3);el.textContent=XH.inr(Math.round(from+(to-from)*e))+suf;if(k<1)el._r=requestAnimationFrame(f);})(performance.now());}
+  function calc(){
+    var f=fl.dataset.value||'m',n=+nIn.value,y=+(term.dataset.value||1),gb=+gbIn.value,auto=as.checked;
+    $('#cNL').textContent=n+(n===1?' node':' nodes');$('#cGbL').textContent=gb+' GB';
+    mx.min=Math.max(n,1);if(+mx.value<n)mx.value=n;
+    asBox.classList.toggle('off',!auto);
+    var isGpu=f==='gpu';std.hidden=isGpu;gpu.hidden=!isGpu;$('#kCalc').classList.toggle('isgpu',isGpu);
+    if(isGpu)return {gpu:true};
+    var d=DISC[y],nodes=RATE[f]*n,sto=gb*GB_RATE*n,list=nodes+sto,disc=Math.round(list*d),mo=list-disc;
+    var termTot=mo*y,gst=Math.round(termTot*.18);
+    var hyp=HYP[f]*n+sto+CP_FEE,save=hyp-mo,pct=Math.round(save/hyp*100);
+    var M=+mx.value,peak=Math.round((RATE[f]+gb*GB_RATE)*M*(1-d));
+    $('#oNl').textContent=n+' × '+NAMES[f];$('#oSl').textContent='Block storage · '+n+' × '+gb+' GB';
+    tw($('#oNodes'),nodes);tw($('#oSto'),sto);
+    $('#oDisc').textContent=d?'−'+XH.inr(disc)+'/mo · '+Math.round(d*100)+'%':'—';
+    tw($('#oPer'),Math.round(mo/n));
+    $('#oTl').textContent=y===1?'Term total · 1 month':'Term total · '+y+' months';
+    tw($('#oTerm'),termTot);tw($('#oGst'),gst);
+    tw($('#oMo'),mo);tw($('#oSave'),save,' / mo');
+    $('#oSaveP').textContent=pct+'% less than a typical hyperscaler, incl. its control-plane fee';
+    $('#oSub').textContent='per month, excl. GST'+(y>1?' · billed for '+y+' months':'');
+    $('#oPeakR').classList.toggle('off',!auto);$('#oPeakL').textContent='Estimated peak · '+M+' nodes';tw($('#oPeak'),peak,'/mo');
+    return {f:f,n:n,y:y,gb:gb,mo:mo,termTot:termTot,auto:auto,M:M};
+  }
+  [fl,term].forEach(function(s){s.addEventListener('change',calc);});
+  [nIn,gbIn,mx].forEach(function(i){i.addEventListener('input',calc);});
+  as.addEventListener('change',calc);
+  calc();
+  $('#oAdd').addEventListener('click',function(){var c=calc();if(c.gpu)return;
+    XH.cart.add({key:'k8s-'+c.f+'-'+c.n+'-'+c.gb+'-'+c.y,name:'Managed Kubernetes — '+c.n+' × '+NAMES[c.f],
+      sub:(c.y===1?'Monthly':c.y+'-month term')+' · '+c.gb+' GB/node · free HA control plane'+(c.auto?' · autoscale to '+c.M:''),price:c.termTot,qty:1});});
+  $$('[data-sel]').forEach(function(b){b.addEventListener('click',function(){
+    var v=b.getAttribute('data-sel'),sb=$('#cFl button[data-v="'+v+'"]');if(sb)sb.click();
+    /* The parent page handles calculator scrolling. */
+    setTimeout(function(){XH.flash($('#oMo'));},500);});});
+})();
+
+</script></body></html>
