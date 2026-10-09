@@ -1,5 +1,5 @@
 import { DOCUMENT, ViewportScroller } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnDestroy, computed, effect, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, NgZone, OnDestroy, ViewChild, computed, effect, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { distinctUntilChanged, map, Observable, switchMap, tap } from 'rxjs';
@@ -62,6 +62,31 @@ export class BlogPage implements OnDestroy {
   private readonly blogApi = inject(BlogApiService);
   private readonly doc = inject(DOCUMENT);
   private readonly viewportScroller = inject(ViewportScroller);
+  private readonly zone = inject(NgZone);
+  private relatedTimer?: number;
+
+  @ViewChild('relatedTrack')
+  set relatedTrack(element: ElementRef<HTMLElement> | undefined) {
+    this.stopRelatedAutoplay();
+    const window = this.doc.defaultView;
+    if (!element || !window) return;
+    const track = element.nativeElement;
+    this.zone.runOutsideAngular(() => {
+      this.relatedTimer = window.setInterval(() => {
+        const bounds = track.getBoundingClientRect();
+        if (this.doc.hidden ||
+          window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+          bounds.bottom <= 0 || bounds.top >= window.innerHeight ||
+          track.scrollWidth <= track.clientWidth + 2) return;
+        this.scrollRelatedBlogs(track, 1);
+      }, 3000);
+    });
+  }
+
+  private stopRelatedAutoplay(): void {
+    if (this.relatedTimer !== undefined) this.doc.defaultView?.clearInterval(this.relatedTimer);
+    this.relatedTimer = undefined;
+  }
 
   readonly isUseCase = this.route.snapshot.data['contentType'] === 'use-case';
   readonly detailBase = this.isUseCase ? '/use-cases' : '/insights';
@@ -132,7 +157,6 @@ export class BlogPage implements OnDestroy {
       }))
       .filter(({ score }) => score >= 0)
       .sort((left, right) => right.score - left.score || left.index - right.index)
-      .slice(0, 3)
       .map(({ candidate }) => candidate);
   });
   readonly waHref = computed(() =>
@@ -222,6 +246,7 @@ export class BlogPage implements OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.stopRelatedAutoplay();
     this.stopListening();
     this.viewportScroller.setOffset([0, 0]);
   }
@@ -374,6 +399,24 @@ export class BlogPage implements OnDestroy {
     if (image.src.endsWith(DEFAULT_AUTHOR_PHOTO)) return;
     image.src = DEFAULT_AUTHOR_PHOTO;
     image.classList.add('is-brand-avatar');
+  }
+
+  scrollRelatedBlogs(track: HTMLElement, direction: -1 | 1, event?: Event): void {
+    event?.preventDefault();
+    const card = track.querySelector<HTMLElement>('.article-related-card');
+    if (!card) return;
+    const gap = Number.parseFloat(this.doc.defaultView?.getComputedStyle(track).columnGap || '0') || 0;
+    const step = card.getBoundingClientRect().width + gap;
+    const end = track.scrollWidth - track.clientWidth;
+    const position = direction === 1 && track.scrollLeft >= end - 2
+      ? 0
+      : direction === -1 && track.scrollLeft <= 2
+        ? end
+        : Math.max(0, Math.min(end, track.scrollLeft + direction * step));
+    track.scrollTo({
+      left: position,
+      behavior: this.doc.defaultView?.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+    });
   }
 
   useRelatedCoverFallback(event: Event): void {
