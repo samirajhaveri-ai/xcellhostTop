@@ -54,6 +54,11 @@ export const routes: Routes = [
 
   },
   {
+    path: 'acronis-genai-checkout',
+    data: { checkoutProduct: 'genai' },
+    loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
+  },
+  {
     path: 'cybird-checkout',
     data: { checkoutProduct: 'cybird' },
     loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
@@ -341,6 +346,20 @@ export const routes: Routes = [
     path: 'digicert-cmc',
     data: { productSlug: 'digicert-cmc' },
     loadComponent: () => import('./pages/digicert-cmc.page').then((m) => m.DigicertCmcPage),
+  },
+  {
+    path: 'acme-certificate',
+    loadComponent: () => import('./pages/acme-certificate.page').then((m) => m.AcmeCertificatePage),
+  },
+  {
+    path: 'acme-certificates',
+    redirectTo: 'acme-certificate',
+    pathMatch: 'full',
+  },
+  {
+    path: 'xcellhost-acme-certificate',
+    redirectTo: 'acme-certificate',
+    pathMatch: 'full',
   },
   {
     path: 'mobile-device-mgmt',

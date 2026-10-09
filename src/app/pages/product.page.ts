@@ -2029,6 +2029,12 @@ class ProductPageComponent {
 
   readonly selectedEdrPlanIndex = signal(0);
   readonly edrQuantity = signal(1);
+  readonly smbDesktopQuantities = signal<Record<string, number>>({
+    Starter: 1,
+    Business: 1,
+    Professional: 1,
+    Enterprise: 1,
+  });
   readonly cdrQuantity = signal(1);
   readonly cloudDriveQuantity = signal(1);
   readonly activeCdrTourSlide = signal(0);
@@ -2353,6 +2359,26 @@ class ProductPageComponent {
 
   changeEdrQuantity(change: number): void {
     this.edrQuantity.update((quantity) => Math.max(1, quantity + change));
+  }
+
+  smbDesktopQuantity(plan: TallyPlan): number {
+    return this.smbDesktopQuantities()[plan.edition] ?? this.smbDesktopBounds(plan).min;
+  }
+
+  smbDesktopBounds(plan: TallyPlan): { min: number; max: number } {
+    const values = plan.users.match(/\d+/g)?.map(Number) ?? [1];
+    return { min: 1, max: values[1] ?? values[0] };
+  }
+
+  changeSmbDesktopQuantity(plan: TallyPlan, change: number): void {
+    const bounds = this.smbDesktopBounds(plan);
+    this.smbDesktopQuantities.update((quantities) => ({
+      ...quantities,
+      [plan.edition]: Math.max(
+        bounds.min,
+        Math.min(bounds.max, this.smbDesktopQuantity(plan) + change),
+      ),
+    }));
   }
 
   changeCdrQuantity(change: number): void {
@@ -4357,12 +4383,14 @@ class ProductPageComponent {
     const planKey = plan.edition.toLowerCase();
     const termKey = this.selectedTallyTerm();
     window.location.assign(
-      `/smb-cloud-desktop/checkout?plan=${encodeURIComponent(planKey)}&term=${encodeURIComponent(termKey)}`,
+      `/smb-cloud-desktop/checkout?plan=${encodeURIComponent(planKey)}&term=${encodeURIComponent(termKey)}&quantity=${this.smbDesktopQuantity(plan)}`,
     );
   }
 
   smbDesktopPrice(plan: TallyPlan): number {
-    return plan.prices[this.selectedTallyTerm()];
+    const maximumUsers = this.smbDesktopBounds(plan).max;
+    const perUserPrice = plan.prices[this.selectedTallyTerm()] / maximumUsers;
+    return perUserPrice * this.smbDesktopQuantity(plan);
   }
 
   selectCloudDriveTerm(term: CloudDriveTerm): void {
