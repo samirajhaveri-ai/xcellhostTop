@@ -1,3 +1,6 @@
+import { ContainerRegistryHeroComponent } from '../sections/container-registry-hero.component';
+import { ContainerServiceHeroComponent } from '../sections/container-service-hero.component';
+import { ContainerRegistryContentComponent } from '../sections/container-registry-content.component';
 
 import { QuantityInputDirective } from '../core/quantity-input.directive';
 
@@ -418,6 +421,9 @@ interface ProductTourSlide {
     ManagedMongodbHeroComponent,
     AiReceptionistHeroComponent,
     CpuOptimizedHeroComponent,
+    ContainerRegistryHeroComponent,
+    ContainerServiceHeroComponent,
+    ContainerRegistryContentComponent,
     CpuOptimizedContentComponent,
     MemoryOptimizedContentComponent,
     VsaasHeroComponent,
@@ -625,6 +631,30 @@ interface ProductTourSlide {
   ],
   templateUrl: './product.page.html',
   styles: [`
+    #ppage.ppage > .pp-hero:has(.container-registry-hero-art) {
+      display: grid; grid-template-columns: minmax(0, 620px) minmax(0, 480px);
+      justify-content: center; align-items: center; gap: 40px; padding: 40px 24px;
+      height: auto; min-height: 620px; max-height: none;
+    }
+    #ppage.ppage > .pp-hero:has(.container-registry-hero-art) > .wrap {
+      grid-column: 1; grid-row: 1; width: 100%; margin: 0; padding: 0;
+    }
+    #ppage.ppage > .pp-hero:has(.container-registry-hero-art) > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) {
+      max-width: 100%;
+    }
+    #ppage.ppage > .pp-hero:has(.container-registry-hero-art) > .pph-scene.container-registry-hero-art {
+      position: relative; inset: auto; grid-column: 2; grid-row: 1;
+      width: 100%; max-width: 480px; height: auto; max-height: none;
+      margin: 0; padding: 0; opacity: 1; mask-image: none; transform: none; z-index: 4;
+    }
+    @media(max-width:1000px) {
+      #ppage.ppage > .pp-hero:has(.container-registry-hero-art) {
+        display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; min-height: 0;
+      }
+      #ppage.ppage > .pp-hero:has(.container-registry-hero-art) > .pph-scene.container-registry-hero-art {
+        grid-column: 1; grid-row: 2; justify-self: center;
+      }
+    }
     #ppage .database-reference-hero-visual { right: 2%; width: 38%; padding: 20px; opacity: 1; mask-image: none; }
     #ppage.managed-database-reference-page .pp-hero #ppTitle,
     #ppage.managed-database-reference-page .pp-hero .database-reference-hero-summary { width: 100%; max-width: 100%; white-space: normal; text-wrap: wrap; overflow-wrap: normal; text-align: left; }
@@ -2636,6 +2666,10 @@ class ProductPageComponent {
     initialValue: '',
   });
 
+  readonly usesContainerRegistryTemplate = computed(() =>
+    this.slug() === 'container-registry' || this.slug() === 'container-as-a-service',
+  );
+
   private static readonly SUPPLIED_SMB_HERO_SLUGS = new Set([
     'advanced-endpoint-security-edr',
     'cloud-drive',
@@ -3516,6 +3550,26 @@ class ProductPageComponent {
 
   readonly isTally = computed(() => this.view()?.name === 'Tally on Cloud');
 
+
+  readonly containerRegistrySectionNavLinks = [
+    { label: 'Overview', target: 'registryOverview' },
+    { label: 'Pricing', target: 'pricing' },
+    { label: 'Features', target: 'features' },
+    { label: 'Use Cases', target: 'uses' },
+    { label: 'Specifications', target: 'commands' },
+    { label: 'Security', target: 'security' },
+    { label: 'Why to Choose', target: 'ppWhyHead' },
+    { label: 'Customer Testimonials', target: 'registryTestimonials' },
+    { label: 'FAQs', target: 'registryFaq' },
+    { label: 'Insights', target: 'ppBlog' },
+  ] as const;
+
+  readonly containerServiceSectionNavLinks = this.containerRegistrySectionNavLinks.map(link =>
+    link.label === 'Specifications' ? { ...link, target: 'caasSpecifications' }
+      : link.label === 'Pricing' ? { ...link, target: 'caas-pricing' }
+      : link.label === 'Use Cases' ? { ...link, target: 'caas-uses' }
+      : link,
+  );
 
   readonly cpuSectionNavLinks = [
     { label: 'Overview', target: 'answer' },
