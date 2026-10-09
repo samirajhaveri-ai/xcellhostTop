@@ -118,12 +118,18 @@
                 @for (feature of activeFeatureCards(top); track feature.title) {
                   <a class="xh-feature-card" [href]="feature.link" [attr.target]="feature.link.startsWith('http') ? '_blank' : null" [attr.rel]="feature.link.startsWith('http') ? 'noopener noreferrer' : null" (click)="onNavigate()">
                     @if (feature.fresh) { <span class="xh-feature-ribbon">New</span> }
-                    <span class="xh-feature-media">
+                    <span class="xh-feature-media" [class.xh-feature-media-illustration]="feature.image === '/assets/images/menu-cloud-backup.png' || feature.image === '/assets/images/menu-register-domain.png'">
+                      @if (feature.image === '/assets/images/menu-cloud-backup.png' || feature.image === '/assets/images/menu-register-domain.png') {
+                        <svg class="xh-menu-illustration" viewBox="32 26 1310 830" width="1310" height="830" role="img" [attr.aria-label]="feature.title">
+                          <image [attr.href]="feature.image" x="0" y="0" width="1374" height="1145" />
+                        </svg>
+                      } @else {
                       <img
                         [src]="feature.image"
                         [alt]="feature.title"
                         [style.object-position]="feature.imagePosition ?? 'center'"
                       />
+                      }
                     </span>
                     <span class="xh-feature-copy">
                       <small>{{ feature.label }}</small>
@@ -167,6 +173,10 @@
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M8 6H3v12h5M16 6h5v12h-5M5 9l3 3-3 3m14-6-3 3 3 3"/></svg>
                 <span>Compare Providers</span>
               </a>
+              <a routerLink="/compare-products" (click)="onNavigate()">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="7" height="16" rx="2"/><rect x="14" y="4" width="7" height="16" rx="2"/><path d="M5 9h3m-3 4h3m8-4h3m-3 4h3"/></svg>
+                <span>Compare Products</span>
+              </a>
               <a routerLink="/marketplace" (click)="onNavigate()">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l2-6h14l2 6M3 9h18v3a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0V9ZM5 15v6h14v-6M9 21v-5h6v5"/></svg>
                 <span>Marketplace</span>
@@ -174,10 +184,6 @@
               <a class="xh-framework-label" routerLink="/cybersecurity-frameworks" (click)="onNavigate()">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6Z"/><path d="m8 12 3 3 5-6"/></svg>
                 <span>CyberSecurity Frameworks</span>
-              </a>
-              <a routerLink="/compare-products" (click)="onNavigate()">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="7" height="16" rx="2"/><rect x="14" y="4" width="7" height="16" rx="2"/><path d="M5 9h3m-3 4h3m8-4h3m-3 4h3"/></svg>
-                <span>Compare Products</span>
               </a>
               <div class="xh-menu-social" role="group" aria-label="Social media">
                 <a href="https://www.linkedin.com/in/samirjhaveri/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn" style="background:#0A66C2">in</a>

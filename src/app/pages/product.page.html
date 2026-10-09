@@ -418,6 +418,8 @@
         <xh-dropbox-migration-content [hero]="true" />
       } @else if (isFrameworkDetail()) {
         <xh-nist-csf-2-0-content [slug]="slug()" [hero]="true" />
+      } @else if (isInfrastructure()) {
+        <xh-infrastructure-hero (talkRequested)="openCallback($event)" (trialRequested)="openTrial($event)" (tourRequested)="openProductScreenshotTour()" />
       } @else {
       @if (!isVmc() && !isCmc() && slug() !== 'performance-cloud' && slug() !== 'gpu-servers') {
       <div
@@ -813,27 +815,8 @@
             <xh-tsplus-remote-access-hero />
           </div>
         } @else if (isManagedAws()) {
-          <div class="pph-scene managed-aws-hero-art" aria-hidden="true">
-            <div class="managed-aws-console">
-              <div class="managed-aws-console-head">
-                <span></span><span></span><span></span><b>AWS · Managed by XcellHost</b>
-              </div>
-              <div class="managed-aws-console-row">
-                <i>☁</i><span><b>Production workloads</b><small>EC2 · RDS · S3</small></span
-                ><em>Healthy</em>
-              </div>
-              <div class="managed-aws-console-row">
-                <i>₹</i><span><b>Cloud cost</b><small>Optimised this month</small></span
-                ><em>Saving</em>
-              </div>
-              <div class="managed-aws-console-row">
-                <i>✓</i><span><b>Security &amp; patching</b><small>No critical alerts</small></span
-                ><em>Secure</em>
-              </div>
-            </div>
-            <div class="managed-aws-powered">
-              <small>Powered by</small><strong>aws</strong><span>⌣</span>
-            </div>
+          <div class="pph-scene pph-managed-aws" aria-hidden="true">
+            <xh-managed-aws-hero />
           </div>
         } @else if (isManagedAzure()) {
           <div class="pph-scene managed-aws-hero-art" aria-hidden="true">
@@ -3429,7 +3412,6 @@
                   !isAcronisTrueImage() &&
                   !isSiteLock() &&
                   !isManagedMicrosoft365() &&
-                  !isEntraIdBackup() &&
                   slug() !== 'acronis-backup-advanced' &&
                   slug() !== 'acronis-ot' &&
                   slug() !== 'cloud-migration' &&
@@ -5296,7 +5278,7 @@
             slug() !== 'vortex-seg' &&
             slug() !== 'vortex-soc'
           ) {
-<div class="pp-sec" id="ppWhyHead" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Why XcellHost for {{ v.name }}</div>
+<div class="pp-sec" id="ppWhyHead" [style.margin-top.px]="slug() === 'performance-cloud' || slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Why XcellHost for {{ v.name }}</div>
             <div class="pp-why" id="ppWhy">
               @for (w of (slug() === 'ai-chat-bot' ? aiChatbotWhy : slug() === 'gpu-clusters' ? gpuClustersWhy : v.why); track w.title) {
                 <div class="pw">
@@ -5459,25 +5441,6 @@
                     <iframe
                       src="/assets/animations/ediscovery-compliance-animation.html"
                       title="eDiscovery federated search and legal hold animation"
-                      sandbox="allow-scripts"
-                      loading="lazy"
-                    ></iframe>
-                  </div>
-                </article>
-              </div>
-            </section>
-          }
-
-          @if (slug() === 'performance-cloud') {
-            <section class="tally-videos" aria-labelledby="performanceCloudActionTitle">
-              <div class="pp-sec" id="performanceCloudActionTitle">Watch it in action</div>
-              <div class="tally-video-grid single-video">
-                <article class="tally-video-card">
-                  <h3><span>Live server performance and provisioning</span></h3>
-                  <div class="tally-video-frame">
-                    <iframe
-                      src="/assets/animations/performance-cloud-hero.html"
-                      title="Performance Cloud server monitoring animation"
                       sandbox="allow-scripts"
                       loading="lazy"
                     ></iframe>
@@ -5863,7 +5826,7 @@
             </section>
           }
           @if (slug() !== 'comodo-personal-authentication' && slug() !== 'digicert-smime-class-1' && slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
-          <div class="pp-sec" [attr.id]="isTally() ? 'tallyTestimonials' : slug() === 'cpu-optimized' ? 'cpuTestimonials' : slug() === 'memory-optimized' ? 'memoryTestimonials' : usesContainerRegistryTemplate() ? 'registryTestimonials' : null" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">What customers say</div>
+          <div class="pp-sec" [attr.id]="isTally() ? 'tallyTestimonials' : slug() === 'cpu-optimized' ? 'cpuTestimonials' : slug() === 'memory-optimized' ? 'memoryTestimonials' : usesContainerRegistryTemplate() ? 'registryTestimonials' : null" [style.margin-top.px]="slug() === 'performance-cloud' || slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">What customers say</div>
           @if (slug() === 'microsoft-365-to-google-workspace-migration') { <p>Contact our team to discuss customer references for Microsoft 365 to Google Workspace migrations.</p> }
 
           @if (slug() === 'ai-receptionist' || isFrameworkDetail() || slug() === 'erp-next-hosting' || slug() === 'nvidia-vera-rubin' || slug() === 'storage-servers' || slug() === 'gaming-servers' || slug() === 'virtualization-servers' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'agent-studio' || slug() === 'aiops' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'instant-website' || slug() === 'instagram-automation' || slug() === 'hrm-attendance' || slug() === 'google-my-business' || isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training' || slug() === 'ai-chat-bot') {
@@ -5972,7 +5935,7 @@
               <xh-digicert-smime-related />
             }
           } @else {
-          <div class="pp-sec pp-faq-heading" [attr.id]="isTally() ? 'tallyFaq' : slug() === 'cpu-optimized' ? 'cpuFaq' : slug() === 'memory-optimized' ? 'memoryFaq' : usesContainerRegistryTemplate() ? 'registryFaq' : null" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Frequently asked questions</div>
+          <div class="pp-sec pp-faq-heading" [attr.id]="isTally() ? 'tallyFaq' : slug() === 'cpu-optimized' ? 'cpuFaq' : slug() === 'memory-optimized' ? 'memoryFaq' : usesContainerRegistryTemplate() ? 'registryFaq' : null" [style.margin-top.px]="slug() === 'performance-cloud' || slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Frequently asked questions</div>
           @if (slug() === 'domain-whois-lookup') {
             <xh-domain-whois-faq />
           } @else if (slug() === 'managed-oracle-cloud') {
@@ -6017,7 +5980,7 @@
         @if (isTally()) {
           <div class="pp-sec" id="tallyInsights">Insights</div>
         }
-        <div id="ppBlog" [style.margin-top.px]="slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null" [class.scrutiny-dlp-insights]="slug() === 'scrutiny-dlp'" [class.vortex-seg-insights]="slug() === 'vortex-seg'"><xh-insights-section [pageSlug]="slug()" [videos]="videosInInsights() ? productInsightVideos() : null" /></div>
+        <div id="ppBlog" [style.margin-top.px]="slug() === 'performance-cloud' || slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null" [class.scrutiny-dlp-insights]="slug() === 'scrutiny-dlp'" [class.vortex-seg-insights]="slug() === 'vortex-seg'"><xh-insights-section [pageSlug]="slug()" [videos]="videosInInsights() ? productInsightVideos() : null" /></div>
 
         <div class="pp-cta" [attr.id]="isTally() ? 'tallySupport' : null">
             <div>

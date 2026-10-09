@@ -9,6 +9,12 @@ export const routes: Routes = [
   { path: 'under-construction/podcasts', title: 'The Cloud Podcast - XcellHost', loadComponent: () => import('./pages/podcasts.page').then(m => m.PodcastsPage) },
 
   {
+    path: 'explore-cloud-servers',
+    data: { productSlug: 'performance-cloud' },
+    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+  },
+
+  {
     path: 'compare-products',
     data: { title: 'Compare Products' },
     loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage),

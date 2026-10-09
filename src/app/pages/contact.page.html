@@ -11,8 +11,56 @@
           <div><span class="material-symbols-outlined" aria-hidden="true">groups</span><div><b>Real Solutions</b><small>For your business needs</small></div></div>
         </div>
       </div>
-      <div class="contact-hero-art contact-hero-image" aria-hidden="true">
-        <img src="/assets/images/contact-hero.png" alt="" fetchpriority="high" />
+      <div class="contact-hero-art contact-hero-animation" aria-hidden="true">
+        <svg viewBox="0 0 500 370" fill="none">
+          <defs>
+            <radialGradient id="contactGlobeFill" cx=".3" cy=".25"><stop stop-color="#187cc6"/><stop offset="1" stop-color="#03234a"/></radialGradient>
+            <linearGradient id="contactScreenFill" x1="105" y1="170" x2="330" y2="310" gradientUnits="userSpaceOnUse"><stop stop-color="#eef8ff"/><stop offset="1" stop-color="#a3cfff"/></linearGradient>
+            <linearGradient id="contactDeviceFill"><stop stop-color="#3a79ba"/><stop offset="1" stop-color="#0b2a50"/></linearGradient>
+          </defs>
+          <ellipse cx="271" cy="336" rx="177" ry="14" fill="#21aaff" opacity=".12"/>
+          <g class="contact-animated-globe">
+            <circle cx="302" cy="166" r="112" fill="url(#contactGlobeFill)" stroke="#3ebaff" stroke-width="1.5"/>
+            <g stroke="#68caff" stroke-opacity=".35">
+              <ellipse cx="302" cy="166" rx="57" ry="112"/><ellipse cx="302" cy="166" rx="90" ry="112"/>
+              <ellipse cx="302" cy="166" rx="112" ry="42"/><ellipse cx="302" cy="166" rx="105" ry="79"/>
+              <path d="M190 166H414M302 54V278"/>
+            </g>
+            <path class="contact-globe-route" d="M215 122Q320 54 388 145Q395 210 249 243" stroke="#8cddff" stroke-width="2" stroke-dasharray="5 10"/>
+            <circle class="contact-beacon" cx="231" cy="131" r="5" fill="#71e2ff"/><circle class="contact-beacon beacon-two" cx="365" cy="188" r="5" fill="#71e2ff"/>
+          </g>
+          <ellipse class="contact-orbit-path" cx="293" cy="166" rx="174" ry="79" transform="rotate(-24 293 166)" stroke="#49baff" stroke-opacity=".45" stroke-dasharray="3 8"/>
+          <g class="contact-laptop">
+            <path d="M115 173Q117 163 127 163H325Q338 163 335 177L315 306H96Z" fill="url(#contactDeviceFill)" stroke="#70b9ed" stroke-width="2"/>
+            <path d="M127 176H321L302 292H109Z" fill="url(#contactScreenFill)"/>
+            <text x="145" y="209" class="connect-heading">Let's</text><text x="141" y="237" class="connect-heading connect-blue">Connect</text>
+            <text x="138" y="254" class="connect-subtitle">We're here to help.</text>
+            <g class="contact-typing" fill="#178ce3"><circle cx="144" cy="274" r="3"/><circle cx="156" cy="274" r="3"/><circle cx="168" cy="274" r="3"/></g>
+            <path d="M96 306H315L347 324Q351 330 338 332H70Q56 330 66 323Z" fill="url(#contactDeviceFill)" stroke="#68abdf" stroke-width="1.5"/>
+            <path d="M174 308H239L247 316H165Z" fill="#86b9e2" opacity=".5"/>
+          </g>
+          <g class="contact-floating-phone">
+            <rect x="332" y="198" width="75" height="132" rx="14" fill="#09284b" stroke="#77bdf5" stroke-width="2"/>
+            <rect x="338" y="204" width="63" height="120" rx="9" fill="url(#contactScreenFill)"/>
+            <path d="M355 204H385L381 211H359Z" fill="#09284b"/>
+            <circle cx="369" cy="252" r="19" fill="#138ee7"/>
+            <path d="M359 249H379V259H368L362 263V259H359Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
+            <text x="369" y="290" class="phone-caption" text-anchor="middle">Get in touch</text><text x="369" y="303" class="phone-caption" text-anchor="middle">Anytime</text>
+          </g>
+          <g class="contact-floating-channel channel-call">
+            <circle cx="133" cy="104" r="24"/>
+            <path d="M123 94L128 92L132 99L128 103Q132 110 138 111L141 107L147 111L145 117Q132 122 121 101Z"/>
+          </g>
+          <g class="contact-floating-channel channel-mail">
+            <circle cx="260" cy="39" r="24"/>
+            <path d="M248 31H272V47H248ZM248 31L260 41L272 31"/>
+          </g>
+          <g class="contact-floating-channel channel-chat">
+            <circle cx="413" cy="71" r="24"/>
+            <path d="M402 62H424V77H413L405 83V77H402Z"/>
+            <g class="contact-typing" fill="#a4dfff" stroke="none"><circle cx="407" cy="70" r="1.5"/><circle cx="413" cy="70" r="1.5"/><circle cx="419" cy="70" r="1.5"/></g>
+          </g>
+        </svg>
       </div>
     </div>
   </section>

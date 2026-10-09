@@ -615,3 +615,30 @@
 .article-sibling .article-sibling-description {
   margin: 0;
 }
+
+.xh-blog-article .article-sibling {
+  padding: 0 0 20px;
+  overflow: hidden;
+  justify-content: flex-start;
+}
+
+.xh-blog-article .article-sibling > :not(.article-sibling-cover) {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.article-sibling .article-sibling-cover {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  margin: 0 0 8px;
+  background: #f2f7ff;
+}
+
+.article-sibling .article-sibling-cover.is-fallback {
+  padding: 24px;
+  object-fit: contain;
+}

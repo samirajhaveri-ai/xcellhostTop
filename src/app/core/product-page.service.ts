@@ -272,6 +272,16 @@ const PLAN_DISCOUNTS = [
 
 /** Product-specific commercial offers that must not affect the generic pricing ladder. */
 const PRODUCT_PLAN_OVERRIDES: Record<string, PricingPlan[]> = {
+  'Entra ID Backup': [
+    {
+      term: 'Monthly',
+      amount: '₹125',
+      unit: '/user/month',
+      tag: 'Entra ID Backup',
+      cartName: 'Entra ID Backup — Monthly Plan',
+      cartPrice: '₹125/user/month',
+    },
+  ],
   'WhatsApp SMB': [
     {
       term: 'Starter',
