@@ -3964,6 +3964,8 @@ class ProductPageComponent {
   ];
 
 
+  readonly consultingSectionNavLinks = computed(() => this.smbSectionNavLinks().filter(link => link.target !== 'showcaseVideosTitle'));
+
   readonly smbSectionNavLinks = computed(() =>
     this.isTally()
       ? [
