@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XcellHost &mdash; DPDP Compliance for SMB Enterprise Enquiry</title>
+<meta name="description" content="Enterprise DPDP compliance for organisations with 100+ users. Request a custom Enterprise quote from XcellHost.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<style>
+:root{--bl:#0066FF;--bl-d:#0052cc;--nv:#041E42;--nv2:#0B132B;--or:#FF8A00;--gn:#16a34a;
+  --ink:#0f172a;--muted:#64748b;--line:#e6ebf2;--bg:#f4f7fb;--radius:16px;--shadow:0 1px 2px rgba(4,30,66,.04),0 10px 26px rgba(4,30,66,.06);}
+*{box-sizing:border-box}html,body{margin:0}
+body{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+.nav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
+.nav-in{max-width:760px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:800;font-size:1.15rem;letter-spacing:-.02em;color:var(--nv);text-decoration:none}.logo span{color:var(--bl)}
+.nav-secure{font-size:.82rem;font-weight:600;color:var(--muted)}
+.wrap{width:100%;max-width:1680px;margin:0 auto;padding:28px 24px 48px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) 340px;gap:24px;align-items:start}
+.col-info,.col-form,.col-right{min-width:0}
+.hero{background:linear-gradient(135deg,var(--nv),#0a2a5e);color:#fff;border-radius:var(--radius);padding:26px 26px;margin-bottom:18px}
+.hero .brand{font-size:.7rem;font-weight:700;letter-spacing:.12em;color:#9cc2ff;text-transform:uppercase}
+.hero h1{font-size:1.6rem;font-weight:800;letter-spacing:-.02em;margin:6px 0 6px}
+.hero .sub{color:#cfe0ff;font-size:.95rem;margin:0 0 16px}
+.hero .badges{display:flex;gap:8px;flex-wrap:wrap}
+.badge{font-size:.66rem;font-weight:800;letter-spacing:.04em;color:#dbe8ff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:5px 11px;border-radius:999px}
+.badge.alt{color:#fff;background:var(--or);border-color:var(--or)}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin-bottom:18px}
+.card-h{font-size:1.1rem;font-weight:800;color:var(--nv);letter-spacing:-.01em;margin:0 0 10px}
+.desc{font-size:.95rem;color:#334155;line-height:1.6;margin:0 0 18px}
+.caps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px 18px}
+.caps li{position:relative;padding-left:24px;font-size:.9rem;color:#334155}
+.caps li:before{content:"\2713";position:absolute;left:0;color:var(--gn);font-weight:800}
+.advisory{margin-top:18px;background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:16px 18px}
+.advisory .a-amt{font-size:1.05rem;font-weight:800;color:#9a3412}
+.advisory .a-line{font-size:.9rem;color:#9a3412;margin-top:2px}
+.advisory .a-note{font-size:.78rem;color:#b45309;margin-top:8px;line-height:1.5}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{margin-bottom:14px;display:flex;flex-direction:column}.field label{font-size:.82rem;font-weight:700;color:var(--nv);margin-bottom:6px}
+.field .opt{color:var(--muted);font-weight:600}
+.rq{color:#e11d48}
+.field input,.field textarea{padding:11px 12px;border:1px solid #d5deea;border-radius:10px;font:inherit;font-size:.92rem;color:var(--ink);background:#fff;resize:vertical}
+.field textarea{min-height:92px}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--bl);box-shadow:0 0 0 3px rgba(0,102,255,.12)}
+.field input.err,.field textarea.err{border-color:#e11d48}
+.ferr{display:none;color:#e11d48;font-size:.76rem;margin-top:5px}.ferr.show{display:block}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:var(--bl);color:#fff;border:none;cursor:pointer;font:inherit;font-weight:800;font-size:1rem;padding:15px 20px;border-radius:12px;box-shadow:0 7px 16px rgba(0,102,255,.26);transition:background .15s,transform .05s}
+.btn:hover{background:var(--bl-d)}.btn:active{transform:translateY(1px)}
+.msg{display:none;font-size:.84rem;margin-top:12px;text-align:center;color:#e11d48;font-weight:600}.msg.show{display:block}
+.secure-line{font-size:.74rem;color:var(--muted);text-align:center;margin-top:12px}
+.success{text-align:center;padding:10px 4px}
+.success .tick{width:60px;height:60px;border-radius:50%;background:#dcfce7;color:var(--gn);display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:4px auto 14px;border:1px solid #bbf7d0}
+.success h2{font-size:1.25rem;font-weight:800;color:var(--nv);margin:0 0 8px}
+.success p{font-size:.95rem;color:#334155;line-height:1.6;margin:0 auto;max-width:520px}
+.success a{color:var(--bl);text-decoration:none;font-weight:700}
+.summary{position:sticky;top:24px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
+.sum-h{font-size:1rem;font-weight:800;color:var(--nv);margin-bottom:12px}
+.sum-prod{font-size:.95rem;color:var(--nv);font-weight:800;margin-bottom:8px}.sum-prod .term{display:block;color:var(--muted);font-weight:600;font-size:.84rem;margin-top:2px}
+.pline{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:9px 0;font-size:.9rem;color:#334155;border-top:1px solid var(--line)}
+.pline .amt{font-weight:700;color:var(--nv);text-align:right}
+.pline.total{border-top:2px solid var(--line);margin-top:2px;padding-top:12px;font-size:1.05rem;font-weight:800;color:var(--nv)}
+.sum-note{font-size:.76rem;color:var(--muted);margin-top:10px;line-height:1.5}
+.incl-mini{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
+.incl-mini .t{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:6px}
+.incl-mini ul{list-style:none;margin:0;padding:0}.incl-mini li{font-size:.82rem;color:#334155;padding-left:18px;position:relative;margin:5px 0}.incl-mini li:before{content:"\2713";position:absolute;left:0;color:var(--gn);font-weight:800}
+.foot{max-width:760px;margin:0 auto;padding:22px 24px 42px;color:var(--muted);font-size:.82rem;text-align:center}
+.foot .line{border-top:1px solid var(--line);padding-top:18px}.foot a{color:var(--bl);text-decoration:none}.foot a:hover{text-decoration:underline}
+@media(max-width:1180px){.wrap{grid-template-columns:1fr 1fr;max-width:1040px}.col-right{grid-column:1/-1}.summary{position:static}.incl-mini ul{columns:2}}
+@media(max-width:760px){.wrap{grid-template-columns:1fr;max-width:680px}.col-right{grid-column:auto}.incl-mini ul{columns:1}}
+@media(max-width:560px){.wrap{padding:20px 14px 38px}.frow{grid-template-columns:1fr}.caps{grid-template-columns:1fr}.hero h1{font-size:1.35rem}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<div class="col-info">
+
+  <section class="hero">
+    <div class="brand">DPDP Compliance for SMB</div>
+    <h1>DPDP Compliance for SMB &mdash; Enterprise</h1>
+    <p class="sub">Enterprise DPDP compliance for organisations with 100+ users.</p>
+    <div class="badges"><span class="badge alt">CUSTOM PRICING</span><span class="badge">100+ USERS</span><span class="badge">UNLIMITED APPS</span></div>
+  </section>
+
+  <section class="card">
+    <p class="desc">Designed for organisations requiring comprehensive DPDP compliance, advanced data governance, advisory and enterprise-scale implementation.</p>
+    <div class="card-h" style="font-size:1rem">Key capabilities</div>
+    <ul class="caps">
+      <li>All nine platform modules</li>
+      <li>Data Discovery &amp; Mapping</li>
+      <li>Department-wide gap assessment</li>
+      <li>Virtual DPO advisory &amp; board reporting</li>
+      <li>On-premise deployment option</li>
+      <li>Custom integrations &amp; SLA</li>
+    </ul>
+    <div class="advisory">
+      <div class="a-amt">Fixed-fee advisory from &#8377;49,999</div>
+      <div class="a-line">Gap assessment plus remediation roadmap in 2&ndash;4 weeks.</div>
+      <div class="a-note">This is the advisory <b>starting price</b> &mdash; not the Enterprise package price. Your full Enterprise quote is prepared for your organisation's requirements after this enquiry.</div>
+    </div>
+  </section>
+
+</div>
+
+<div class="col-form">
+
+  <section class="card" id="formCard">
+    <div class="card-h">Request your Enterprise quote</div>
+    <form autocomplete="on" onsubmit="return false">
+      <div class="frow">
+        <div class="field"><label for="firstName">First Name <span class="rq">*</span></label><input id="firstName" type="text" autocomplete="given-name"><div class="ferr">Please enter your first name.</div></div>
+        <div class="field"><label for="lastName">Last Name <span class="rq">*</span></label><input id="lastName" type="text" autocomplete="family-name"><div class="ferr">Please enter your last name.</div></div>
+      </div>
+      <div class="frow">
+        <div class="field"><label for="email">Work Email <span class="rq">*</span></label><input id="email" type="email" autocomplete="email"><div class="ferr">Enter a valid email address.</div></div>
+        <div class="field"><label for="mobile">Mobile / WhatsApp <span class="rq">*</span></label><input id="mobile" type="tel" autocomplete="tel"><div class="ferr">Enter a valid mobile number.</div></div>
+      </div>
+      <div class="field"><label for="company">Company Name <span class="rq">*</span></label><input id="company" type="text" autocomplete="organization"><div class="ferr">Please enter your company name.</div></div>
+      <div class="field"><label for="users">Number of Users <span class="opt">(optional)</span></label><input id="users" type="text" inputmode="numeric" placeholder="e.g. 250"></div>
+      <div class="field"><label for="message">Message / Requirements <span class="opt">(optional)</span></label><textarea id="message" placeholder="Tell us about your DPDP compliance goals, applications, timelines or any specific requirements."></textarea></div>
+    </form>
+    <button type="button" class="btn" id="submitBtn" onclick="submitEnquiry()">Request Enterprise Quote &rarr;</button>
+    <div class="msg" id="formMsg" role="alert">Please complete the required fields highlighted above.</div>
+    <div class="secure-line">&#128274; Your details are sent only to the XcellHost sales team at sales@xcellhost.cloud.</div>
+  </section>
+
+  <section class="card" id="successCard" style="display:none">
+    <div class="success">
+      <div class="tick">&#10003;</div>
+      <h2 id="successTitle">Thank you!</h2>
+      <p id="successBody"></p>
+    </div>
+  </section>
+
+</div>
+
+<aside class="col-right" aria-label="Enterprise plan summary">
+  <div class="summary">
+    <div class="sum-h">Enterprise Summary</div>
+    <div class="sum-prod">DPDP Compliance for SMB<span class="term">Enterprise &middot; Custom engagement</span></div>
+    <div class="pline"><span>Organisation size</span><span class="amt">100+ users</span></div>
+    <div class="pline"><span>Applications</span><span class="amt">Unlimited</span></div>
+    <div class="pline"><span>Deployment</span><span class="amt">Cloud or on-premise</span></div>
+    <div class="pline total"><span>Pricing</span><span class="amt">Custom quote</span></div>
+    <div class="sum-note">Fixed-fee advisory starts from &#8377;49,999. Your complete Enterprise quote is prepared after reviewing your organisation's scope, applications and implementation requirements.</div>
+    <div class="incl-mini"><div class="t">Included</div><ul>
+      <li>All nine platform modules</li>
+      <li>Data Discovery &amp; Mapping</li>
+      <li>Virtual DPO advisory</li>
+      <li>Custom integrations &amp; SLA</li>
+      <li>Board-level reporting</li>
+    </ul></div>
+  </div>
+</aside>
+
+</main>
+
+<script>
+/* ============================================================================
+   Enterprise lead submission.
+   By default this form opens the visitor's email app (mailto:) addressed to
+   sales@xcellhost.cloud with the enquiry pre-filled — a real, no-backend method.
+   TO SUBMIT AUTOMATICALLY (no email app step): set LEAD_ENDPOINT below to your
+   XcellHost lead-capture API URL (a POST endpoint that forwards to
+   sales@xcellhost.cloud). When set, the form POSTs JSON to it and, on success,
+   shows the confirmation. If the POST fails, it falls back to the email app.
+   This HTML does NOT invent or fake a working endpoint.
+   ============================================================================ */
+var LEAD_ENDPOINT = "";                 /* <-- set to your lead API URL, or leave blank for email-app submission */
+var SALES_EMAIL   = "sales@xcellhost.cloud";
+
+function qs(id){return document.getElementById(id);}
+function val(id){var e=qs(id);return e?e.value.trim():"";}
+var reEmail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/, reMobile=/^[+\d][\d\s-]{7,}$/;
+function setErr(id,bad){var e=qs(id);if(!e)return;e.classList.toggle('err',bad);var f=e.parentElement.querySelector('.ferr');if(f)f.classList.toggle('show',bad);}
+
+function validate(){
+  var ok=true, first=null;
+  var checks=[['firstName',function(v){return v.length>=1;}],['lastName',function(v){return v.length>=1;}],['email',function(v){return reEmail.test(v);}],['mobile',function(v){return reMobile.test(v);}],['company',function(v){return v.length>=1;}]];
+  checks.forEach(function(c){var bad=!c[1](val(c[0]));setErr(c[0],bad);if(bad){ok=false;if(!first)first=c[0];}});
+  return {ok:ok, first:first};
+}
+function buildSubjectBody(){
+  var company=val('company');
+  var subject='DPDP Enterprise Enquiry - '+company;
+  var body='DPDP Compliance for SMB - Enterprise Enquiry\r\n\r\n'
+    +'Name: '+val('firstName')+' '+val('lastName')+'\r\n'
+    +'Email: '+val('email')+'\r\n'
+    +'Mobile: '+val('mobile')+'\r\n'
+    +'Company: '+company+'\r\n'
+    +'Number of Users: '+(val('users')||'Not specified')+'\r\n'
+    +'Requirements: '+(val('message')||'Not specified')+'\r\n';
+  return {subject:subject, body:body};
+}
+function mailtoUrl(sb){
+  return 'mailto:'+SALES_EMAIL+'?subject='+encodeURIComponent(sb.subject)+'&body='+encodeURIComponent(sb.body);
+}
+function showSuccess(sent, sb){
+  qs('formCard').style.display='none';
+  qs('successCard').style.display='';
+  if(sent){
+    qs('successTitle').textContent='Thank you!';
+    qs('successBody').innerHTML="Your Enterprise enquiry has been submitted successfully.<br><br>Our sales team will contact you shortly.";
+  }else{
+    qs('successTitle').textContent='Almost there — press Send';
+    qs('successBody').innerHTML="We've opened your email app with your enquiry addressed to <b>"+SALES_EMAIL+"</b>. Please press <b>Send</b> to complete your request, and our sales team will contact you shortly.<br><br>Email app didn't open? <a href=\""+mailtoUrl(sb)+"\">Click here to email us</a>, or write to <a href=\"mailto:"+SALES_EMAIL+"\">"+SALES_EMAIL+"</a>.";
+  }
+  try{window.scrollTo({top:0,behavior:'smooth'});}catch(e){}
+}
+function submitEnquiry(){
+  var r=validate();
+  if(!r.ok){
+    qs('formMsg').classList.add('show');
+    if(r.first){var el=qs(r.first); if(el){ el.scrollIntoView({behavior:'smooth',block:'center'}); try{el.focus({preventScroll:true});}catch(e){el.focus();} }}
+    return;
+  }
+  qs('formMsg').classList.remove('show');
+  var sb=buildSubjectBody();
+  if(LEAD_ENDPOINT && /^https?:\/\//.test(LEAD_ENDPOINT)){
+    var payload={first_name:val('firstName'),last_name:val('lastName'),email:val('email'),mobile:val('mobile'),company:val('company'),users:val('users'),message:val('message'),to:SALES_EMAIL,subject:sb.subject,body:sb.body};
+    fetch(LEAD_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+      .then(function(res){ if(res && res.ok){ showSuccess(true, sb); } else { window.location.href=mailtoUrl(sb); showSuccess(false, sb); } })
+      .catch(function(){ window.location.href=mailtoUrl(sb); showSuccess(false, sb); });
+  }else{
+    window.location.href=mailtoUrl(sb);
+    showSuccess(false, sb);
+  }
+}
+</script>
+</body>
+</html>

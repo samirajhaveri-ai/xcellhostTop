@@ -55,6 +55,8 @@ import { DigicertSmimeRelatedComponent } from '../sections/digicert-smime-relate
 import { DigicertSmimeHeroComponent } from '../sections/digicert-smime-hero.component';
 import { ThawteSslHeroComponent } from '../sections/thawte-ssl-hero.component';
 import { ThawteSslContentComponent } from '../sections/thawte-ssl-content.component';
+import { NvidiaB300HeroComponent } from '../sections/nvidia-b300-hero.component';
+import { NvidiaB300OverviewComponent } from '../sections/nvidia-b300-overview.component';
 
 import { VeraRubinContentComponent } from '../sections/nvidia-vera-rubin-content.component';
 import { VERA_RUBIN_FAQS } from '../data/nvidia-vera-rubin-faqs.data';
@@ -459,6 +461,8 @@ interface ProductTourSlide {
     DigicertSmimeHeroComponent,
     ThawteSslHeroComponent,
     ThawteSslContentComponent,
+    NvidiaB300HeroComponent,
+    NvidiaB300OverviewComponent,
 
     HigherEducationHeroCopyComponent,
     HigherEducationContentComponent,
@@ -1921,6 +1925,31 @@ interface ProductTourSlide {
       #ppage.managed-mongodb-page > .pp-hero { grid-template-columns: minmax(0, 1fr); gap: 30px; }
       #ppage.ppage.managed-mongodb-page > .pp-hero > .pph-scene.mongodb-hero-art {
         grid-column: 1; grid-row: 2; justify-self: center;
+      }
+    }
+    #ppage.ppage.b300-hero-page > .pp-hero > .pph-scene.b300-hero-art {
+      right: max(24px, calc((100% - 1240px) / 2 + 24px));
+      width: min(calc((100% - 48px) * .43), 550px);
+      top: 50%; bottom: auto; transform: translateY(-50%);
+      max-height: none; opacity: 1; mask-image: none; overflow: visible;
+      pointer-events: auto; z-index: 4;
+    }
+    #ppage.ppage.b300-hero-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) { max-width: 53% !important; }
+    #ppage.b300-hero-page .pp-hero #ppTitle { display: block; white-space: normal; text-align: left; }
+    #ppage.b300-hero-page .pp-hero #ppTitle .pp-title-name { display: inline; white-space: normal; margin-left: 0; }
+    #ppage.b300-hero-page .pp-hero #ppTag { margin-bottom: 10px; font-weight: 700; }
+    #ppage.b300-hero-page .pp-hero .b300-hero-summary { color: #c7d5ec; font: 400 16px/1.6 var(--body); white-space: normal !important; text-wrap: pretty; }
+    #ppage.b300-hero-page .b300-powered { display: flex; align-items: center; gap: 10px; margin-top: 16px; }
+    #ppage.b300-hero-page .b300-powered small { color: #9fb8d8; font: 700 10.5px var(--mono); letter-spacing: .12em; }
+    #ppage.b300-hero-page .b300-powered > span { display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 16px; border-radius: 10px; background: #fff; }
+    #ppage.b300-hero-page .b300-powered img { display: block; width: 22px; height: 22px; }
+    @media (max-width: 900px) {
+      #ppage.ppage.b300-hero-page > .pp-hero { display: flex; flex-direction: column; }
+      #ppage.ppage.b300-hero-page > .pp-hero > .wrap { order: -1; width: 100%; }
+      #ppage.ppage.b300-hero-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) { max-width: 100% !important; }
+      #ppage.ppage.b300-hero-page > .pp-hero > .pph-scene.b300-hero-art {
+        position: relative; inset: auto; transform: none;
+        width: calc(100% - 40px); max-width: 550px; margin: 24px auto 0;
       }
     }
     #ppage.ppage.thawte-page > .pp-hero { min-height: 620px; }
@@ -3397,6 +3426,13 @@ class ProductPageComponent {
     }
     if (slug === 'performance-cloud') {
       return { ...view, faqs: PERFORMANCE_CLOUD_FAQS };
+    }
+    if (slug === 'nvidia-b300') {
+      return {
+        ...view,
+        tagline: 'NVIDIA B300 GPU servers',
+        heroHighlight: 'Blackwell Ultra for frontier training, long-context reasoning and high-volume inference. 288 GB of HBM3e per GPU, 8 TB/s of bandwidth and 1.5× the FP4 compute of B200 — from a single GPU to a full 8-GPU HGX B300 server, hosted in India.',
+      };
     }
     if (slug === 'n8n-vps') {
       return {

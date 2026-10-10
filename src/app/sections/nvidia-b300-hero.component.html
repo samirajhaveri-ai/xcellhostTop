@@ -1,0 +1,28 @@
+<div class="glass" role="region" aria-label="Illustrative HGX B300 server">
+  <div class="glass-h"><span>HGX B300 · LIVE VIEW</span><b id="hbL">● {{ workload() }}</b></div>
+  <div class="hb">
+    <div class="hb-sel" id="hbS" role="group" aria-label="GPU configuration">
+      @for (configuration of configurations; track configuration.g) {
+        <button type="button" [attr.data-n]="configuration.g" [attr.aria-pressed]="selected() === configuration.g" (click)="select(configuration.g)">{{ configuration.g }}× B300</button>
+      }
+    </div>
+    <div class="hb-g" id="hbG">
+      @for (percentage of percentages(); track $index; let index = $index) {
+        @if (index === 4) {
+          <div class="hb-sw" style="grid-column:1/-1"><b aria-hidden="true"></b>NVLINK SWITCH · 1.8 TB/s PER GPU</div>
+        }
+        <div [attr.data-i]="index" [class.on]="index < selected()" [style.opacity]="index < selected() ? 1 : .45">
+          <small>GPU {{ index }}<b>{{ index < selected() ? percentage + '%' : 'idle' }}</b></small>
+          <i aria-hidden="true"><u [style.width.%]="percentage"></u></i>
+          <em>288 GB HBM3e</em>
+        </div>
+      }
+    </div>
+    <div class="hb-m" aria-live="polite" aria-atomic="true">
+      <div><small>GPU MEMORY</small><b id="hbM">{{ memory() }}</b></div>
+      <div><small>vCPU / RAM</small><b id="hbC">{{ hostCapacity() }}</b></div>
+      <div><small>FROM</small><b id="hbP">{{ price() }}</b></div>
+    </div>
+    <div class="hb-f"><span id="hbN">{{ summary() }}</span><em id="hbT">FP4 · tokens/s ↑</em></div>
+  </div>
+</div>

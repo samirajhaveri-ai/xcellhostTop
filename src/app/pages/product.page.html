@@ -7,6 +7,7 @@
     [class.lead-crm-page]="slug() === 'lead-generation-and-pipeline-crm'"
     [class.digicert-page]="isDigiCert()"
     [class.thawte-page]="slug() === 'thawte-ssl-certificates'"
+    [class.b300-hero-page]="slug() === 'nvidia-b300'"
     [class.smime-ov-page]="slug() === 'digicert-smime-ov'"
     [class.claude-backup-page]="slug() === 'claude-backup'"
     [class.plesk-servers-page]="slug() === 'plesk-servers'"
@@ -445,6 +446,10 @@
         } @else if (slug() === 'thawte-ssl-certificates') {
           <div class="pph-scene thawte-hero-art">
             <xh-thawte-ssl-hero />
+          </div>
+        } @else if (slug() === 'nvidia-b300') {
+          <div class="pph-scene b300-hero-art">
+            <xh-nvidia-b300-hero />
           </div>
         } @else if (slug() === 'anthropic-managed-services') {
           <div class="pph-scene anthropic-managed-hero-art">
@@ -1673,7 +1678,7 @@
             }
 
             @if (v.heroHighlight && slug() !== 'ai-voice-bot' && slug() !== 'managed-oracle-cloud' && slug() !== 'thawte-ssl-certificates') {
-              <p class="pp-tagline-support" [class.defender-hero-description]="slug() === 'microsoft-defender'">{{ v.heroHighlight }}</p>
+              <p class="pp-tagline-support" [class.defender-hero-description]="slug() === 'microsoft-defender'" [class.b300-hero-summary]="slug() === 'nvidia-b300'" [attr.data-preserve-copy]="slug() === 'nvidia-b300' ? '' : null">{{ v.heroHighlight }}</p>
             }
             @if (v.heroMessages.length) {
               <div class="pp-typewriter" aria-live="polite">
@@ -1825,7 +1830,12 @@
                   </div>
                 }
 
-                @if (isGpuServerPage()) {
+                @if (slug() === 'nvidia-b300') {
+                  <div class="b300-powered" aria-label="Powered by NVIDIA">
+                    <small>POWERED BY</small>
+                    <span><img src="/assets/images/a100-logos/nvidia.svg" alt="NVIDIA" width="22" height="22" /></span>
+                  </div>
+                } @else if (isGpuServerPage()) {
                   <div class="nvidia-powered-by" aria-label="Powered by NVIDIA">
                     <span>Powered by</span><span aria-hidden="true">|</span>
                     <span class="nvidia-powered-lockup">
@@ -2678,6 +2688,8 @@
                       <xh-imunify360-content (planRequested)="requestImunify360Plan($event)" />
                    } @else if (slug() === 'thawte-ssl-certificates') {
                       <xh-thawte-ssl-content (quoteRequested)="openCallback($event.event, $event.configuration)" />
+                   } @else if (slug() === 'nvidia-b300') {
+                      <xh-nvidia-b300-overview (quoteRequested)="openCallback($event.event, $event.configuration)" />
                    } @else if (!isTally() && slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'microsoft-365-to-google-workspace-migration' && slug() !== 'sectigo-ssl-certificates' && slug() !== 'email-backup' && slug() !== 'odoo-hosting' && slug() !== 'erp-next-hosting' && !isFrameworkDetail() && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops') {
                       <div class="pp-sec">Overview</div>
                       <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
@@ -3468,6 +3480,8 @@
                   <xh-billing-software-tail (quoteRequested)="openCallback($event.event, $event.plan)" />
                 } @else if (slug() === 'thawte-ssl-certificates') {
                   <!-- The imported certificate catalogue replaces the generic term plans. -->
+                } @else if (slug() === 'nvidia-b300') {
+                  <!-- B300 configuration pricing is included in the imported overview above. -->
                 } @else if (slug() === 'digital-menu-and-catalog-management') {
                   <!-- Buying options are included in the supplied digital menu overview above. -->
                 } @else if (slug() === 'managed-mongodb') {
@@ -3691,6 +3705,8 @@
                   <!-- Team benefits and FAQs render in the MongoDB content above. -->
                 } @else if (slug() === 'ai-receptionist') {
                   <!-- AI Receptionist benefits render in the shared Why XcellHost section below. -->
+                } @else if (slug() === 'nvidia-b300') {
+                  <!-- B300 software, deployment and rental details render in the supplied content above. -->
                 } @else if (usesContainerRegistryTemplate()) {
                   <!-- Registry capabilities render in the supplied content above. -->
                 } @else if (slug() === 'thawte-ssl-certificates') {
@@ -4340,6 +4356,8 @@
                   <!-- Team benefits are included in the MongoDB follow-up sections above. -->
                 } @else if (slug() === 'ai-receptionist') {
                   <!-- The AI Receptionist Why XcellHost section below replaces the generic benefits block. -->
+                } @else if (slug() === 'nvidia-b300') {
+                  <!-- B300 capacity and rental advantages render in the supplied content above. -->
                 } @else if (usesContainerRegistryTemplate()) {
                   <!-- Registry migration, tooling and compliance replace generic benefits. -->
                 } @else if (slug() === 'thawte-ssl-certificates') {
@@ -4990,6 +5008,8 @@
                   <!-- Database use cases are included in the MongoDB follow-up sections above. -->
                 } @else if (slug() === 'ai-receptionist') {
                   <!-- The AI Receptionist Why XcellHost section below replaces the generic use cases block. -->
+                } @else if (slug() === 'nvidia-b300') {
+                  <!-- B300 workloads and deployment options render in the supplied content above. -->
                 } @else if (usesContainerRegistryTemplate()) {
                   <!-- Registry-specific use cases render in the supplied content above. -->
                 } @else if (

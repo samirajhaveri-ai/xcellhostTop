@@ -86,6 +86,21 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
   },
   {
+    path: 'dpdpa-for-smb/launch-checkout',
+    data: { checkoutProduct: 'dpdpa-launch' },
+    loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
+  },
+  {
+    path: 'dpdpa-for-smb/growth-checkout',
+    data: { checkoutProduct: 'dpdpa-growth' },
+    loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
+  },
+  {
+    path: 'dpdpa-for-smb/enterprise-enquiry',
+    data: { checkoutProduct: 'dpdpa-enterprise' },
+    loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
+  },
+  {
     path: 'managed-redis',
     loadComponent: () => import('./pages/managed-redis.page').then((m) => m.ManagedRedisPage),
   },
