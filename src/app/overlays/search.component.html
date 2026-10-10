@@ -1,17 +1,24 @@
-﻿<div class="srch" id="srch" role="dialog" aria-modal="true" aria-label="Search the website"
+﻿<div class="srch" id="srch" role="dialog" aria-modal="true" [attr.aria-label]="aiMode() ? 'Ask XcellHost AI' : 'Search the website'"
   [class.open]="overlay.isOpen('search')" [attr.aria-hidden]="overlay.isOpen('search') ? null : 'true'"
   [attr.inert]="overlay.isOpen('search') ? null : ''" (click)="onBackdrop($event)">
-  <div class="srch-box">
+  <div class="srch-box" #searchBox [class.srch-chat-box]="aiMode()">
     <div class="srch-in">
+      @if (!aiMode()) {
       <div class="srch-field">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
         <input id="srchI" #srchI [placeholder]="aiMode() ? 'Ask a question about XcellHost…' : 'Search products, pages and blogs…'"
           autocomplete="off" aria-label="Search or ask a question" [value]="q()" (input)="onInput($event)" />
-        @if (q()) { <button class="srch-clear" type="button" aria-label="Clear query" (click)="setQuery(''); srchI.focus()">×</button> }
+        @if (q()) { <button class="srch-clear" type="button" aria-label="Clear query" (click)="setQuery(''); focusSearch()">×</button> }
       </div>
-      <button class="srch-ai-toggle" type="button" [class.active]="aiMode()" [attr.aria-pressed]="aiMode()" (click)="toggleAi()"><span aria-hidden="true">✦</span> AI mode</button>
+      } @else {
+        <div class="srch-chat-brand"><span aria-hidden="true">✦</span><strong>XcellHost Assist</strong><small>Ask. Explore. Find your solution.</small></div>
+      }
+      <button class="srch-ai-toggle" type="button" [class.active]="aiMode()" [attr.aria-pressed]="aiMode()" (click)="toggleAi()"><span aria-hidden="true">✦</span> {{ aiMode() ? 'Back to search' : 'AI mode' }}</button>
       <button class="srch-x" type="button" aria-label="Close search" (click)="close()">esc</button>
     </div>
+    @if (aiMode()) {
+      <xh-ai-assistant [initialQuestion]="aiQuestion()" (navigate)="close()" />
+    } @else {
     <div class="srch-body">
       <aside class="srch-filters" aria-label="Search filters">
         <div class="srch-filter-heading"><h2>Filter by source</h2>@if (hasFilters()) { <button type="button" (click)="clearFilters()">Reset</button> }</div>
@@ -24,7 +31,7 @@
         }
         <div class="srch-sidebar-note">Find your next<br/><strong>business advantage.</strong><span>Cloud. Security. Peace of mind.</span></div>
       </aside>
-      <div class="srch-content" [attr.aria-busy]="loading() || answering()">
+      <div class="srch-content" [attr.aria-busy]="loading()">
         @if (!q().trim()) {
           <section class="srch-questions" aria-label="Suggested questions">
             @for (question of questions; track question.text) {
@@ -33,17 +40,8 @@
           </section>
           <section class="srch-suggestions" aria-label="Search suggestions"><h2>Suggestions</h2>
             @for (suggestion of suggestions; track suggestion) {
-              <button type="button" (click)="setQuery(suggestion); srchI.focus()"><span>{{ suggestion }}</span><span aria-hidden="true">↖</span></button>
+              <button type="button" (click)="setQuery(suggestion); focusSearch()"><span>{{ suggestion }}</span><span aria-hidden="true">↖</span></button>
             }
-          </section>
-        }
-        @if (aiMode()) {
-          <section class="srch-answer" aria-label="Search assistant">
-            <div class="srch-answer-head"><span class="srch-spark" aria-hidden="true">✦</span><strong>XcellHost Assist</strong><span class="srch-answer-badge">{{ generatedAnswer() ? 'AI answer' : 'Service guide' }}</span></div>
-            @if (answering()) { <p role="status">Finding services for your question…</p> }
-            @else if (answer()) { <p class="srch-answer-text" aria-live="polite">{{ answer() }}</p> }
-            @else { <p>Ask about cloud, cybersecurity, backup or managed IT. Find relevant services and explore your options.</p> }
-            <div class="srch-answer-actions"><button type="button" class="srch-ask" [disabled]="!q().trim() || answering()" (click)="askAi()">Ask a question <span aria-hidden="true">→</span></button><button type="button" (click)="toggleAi()">Back to search</button></div>
           </section>
         }
         <div class="srch-results-heading"><h2>{{ q().trim() ? 'Search results' : 'Products & resources' }}</h2><span class="srch-status" role="status" aria-live="polite">{{ resultStatus() }}</span></div>
@@ -67,7 +65,8 @@
         }
       </div>
     </div>
-    @if (picked().length) {
+    }
+    @if (!aiMode() && picked().length) {
       <div class="srch-compare-foot">
         <span id="cmpCount">{{ countLabel() }}</span>
         <button class="srch-cmp btn btn-primary" id="cmpGo" type="button" [disabled]="!canCompare()" (click)="goCompare()">Compare →</button>

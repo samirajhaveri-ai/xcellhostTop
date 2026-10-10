@@ -3,6 +3,10 @@ const path = require('node:path');
 const existing = require('./proxy.conf.json');
 
 module.exports = {
+  '/api/ai-assistant': {
+    target: 'http://localhost',
+    bypass: require('./scripts/ai-dev-proxy.cjs'),
+  },
   '/feeds/youtube.php': {
     target: 'http://localhost',
     bypass: async (_req, res) => {

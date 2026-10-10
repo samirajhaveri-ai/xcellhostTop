@@ -18,7 +18,7 @@ import { slugify } from '../core/catalog.service';
 import { AlgoliaSearchService } from '../core/algolia-search.service';
 import { OverlayService } from '../core/overlay.service';
 import { SiteSearchResult, SiteSearchService } from '../core/site-search.service';
-import { environment } from '../../environments/environment';
+import { AiAssistantComponent } from './ai-assistant.component';
 
 const DEBOUNCE_MS = 120;
 const MAX_COMPARE = 4;
@@ -39,7 +39,7 @@ const MAX_COMPARE = 4;
     style: 'display: contents',
     '(document:keydown)': 'onDocumentKey($event)',
   },
-  imports: [RouterLink],
+  imports: [RouterLink, AiAssistantComponent],
   templateUrl: './search.component.html',
   styleUrl: './search.component.css',
 })
@@ -51,6 +51,7 @@ export class SearchDialogComponent {
   readonly overlay = inject(OverlayService);
 
   private readonly inputRef = viewChild<ElementRef<HTMLInputElement>>('srchI');
+  private readonly boxRef = viewChild<ElementRef<HTMLElement>>('searchBox');
 
   /** Raw field value, repainted every keystroke. */
   readonly q = signal('');
@@ -68,11 +69,7 @@ export class SearchDialogComponent {
   readonly sources = signal<string[]>([]);
   readonly categories = signal<string[]>([]);
   readonly visibleLimit = signal(6);
-  readonly answer = signal('');
-  readonly answering = signal(false);
-  readonly generatedAnswer = signal(false);
-  private answerController?: AbortController;
-  private answerId = 0;
+  readonly aiQuestion = signal('');
   private previousFocus: HTMLElement | null = null;
   readonly questions = [
     { text: 'How can I protect my business from cyber threats?', query: 'security' },
@@ -134,6 +131,7 @@ export class SearchDialogComponent {
     effect(() => {
       if (!this.overlay.isOpen('search')) {
         untracked(() => {
+          this.aiMode.set(false);
           this.resetAnswer();
           this.requestId++;
           if (this.timer) clearTimeout(this.timer);
@@ -165,7 +163,6 @@ export class SearchDialogComponent {
     inject(DestroyRef).onDestroy(() => {
       if (this.timer) clearTimeout(this.timer);
       if (this.focusTimer) clearTimeout(this.focusTimer);
-      this.answerController?.abort();
     });
   }
 
@@ -210,84 +207,22 @@ export class SearchDialogComponent {
 
   showMore(): void { this.visibleLimit.update((limit) => limit + 10); }
 
+  focusSearch(): void { this.inputRef()?.nativeElement.focus(); }
+
   toggleAi(): void {
-    this.aiMode.update((mode) => !mode);
-    this.resetAnswer();
-    this.inputRef()?.nativeElement.focus();
+    const mode = !this.aiMode();
+    this.aiQuestion.set(mode ? this.q().trim() : '');
+    this.aiMode.set(mode);
+    if (!mode) this.focusTimer = setTimeout(() => this.inputRef()?.nativeElement.focus());
   }
 
   askQuestion(question: { text: string; query: string }): void {
+    this.aiQuestion.set(question.text);
     this.aiMode.set(true);
-    this.setQuery(question.text);
-    if (this.timer) clearTimeout(this.timer);
-    void this.askAi(question.query);
   }
 
   private resetAnswer(): void {
-    this.answerId++;
-    this.answerController?.abort();
-    this.answer.set('');
-    this.answering.set(false);
-    this.generatedAnswer.set(false);
-  }
-
-  async askAi(retrievalQuery?: string): Promise<void> {
-    const message = this.q().trim();
-    if (!message || this.answering()) return;
-    if (this.timer) clearTimeout(this.timer);
-    this.requestId++;
-    this.loading.set(false);
-    // Strip conversational filler for retrieval; the original question goes to the AI endpoint.
-    const terms = (retrievalQuery ?? message).toLowerCase().replace(/\bcyber\b/g, 'cybersecurity').replace(/[^a-z0-9 ]/g, ' ').split(/\s+/)
-      .filter((term) => term.length > 2 && !/^(how|can|you|help|which|what|the|for|with|from|are|and|does|have|right|business|data|my|our|protect|need|want|best|should|use|would|could)$/.test(term));
-    const retrieval = terms.join(' ') || message;
-    this.query.set(retrieval);
-    this.resetAnswer();
-    const id = this.answerId;
-    this.answering.set(true);
-    const controller = new AbortController();
-    this.answerController = controller;
-    const timeout = setTimeout(() => controller.abort(), 15000);
-    try {
-      // Broader local retrieval supports questions whose wording differs from product titles.
-      const local = terms.flatMap((term) => this.search.search(term, 12));
-      const ranked = new Map<string, { hit: SiteSearchResult; score: number }>();
-      for (const hit of local) {
-        const previous = ranked.get(hit.url);
-        ranked.set(hit.url, { hit, score: (previous?.score ?? 0) + 1 });
-      }
-      let remote: SiteSearchResult[] = [];
-      if (this.algolia.configured) {
-        try { remote = await this.algolia.search(retrieval); } catch { if (id === this.answerId) this.remoteFailed.set(true); }
-      }
-      if (id !== this.answerId) return;
-      const recommendations = [...remote, ...[...ranked.values()].sort((a, b) => b.score - a.score).map((entry) => entry.hit)];
-      this.remoteResults.set([...new Map(recommendations.map((hit) => [hit.url, hit])).values()]);
-      const context = this.filteredResults().slice(0, 5).map((hit) => ({ title: hit.name, description: hit.desc, url: hit.url }));
-      if (environment.chatEndpoint) {
-        try {
-          const response = await fetch(environment.chatEndpoint, {
-            method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: controller.signal,
-            body: JSON.stringify({ message, system: 'Answer questions about XcellHost using only the supplied search context. If context is insufficient, say so. Do not invent prices or capabilities.', context }),
-          });
-          if (!response.ok) throw new Error('AI response unavailable');
-          const body = await response.json();
-          if (id !== this.answerId) return;
-          if (typeof body.answer === 'string' && body.answer.trim()) {
-            this.answer.set(body.answer);
-            this.generatedAnswer.set(true);
-            return;
-          }
-        } catch { /* Keep the retrieved recommendations available. */ }
-      }
-      if (id !== this.answerId) return;
-      this.answer.set(context.length
-        ? 'Explore these services related to your question. Open a result for details, or compare products to find the right fit.'
-        : 'Try a service or topic such as cloud backup, Microsoft 365 or cybersecurity. Our team can also help you choose a solution.');
-    } finally {
-      clearTimeout(timeout);
-      if (id === this.answerId) this.answering.set(false);
-    }
+    this.aiQuestion.set('');
   }
 
   private async searchAlgolia(query: string, requestId: number): Promise<void> {
@@ -323,8 +258,8 @@ export class SearchDialogComponent {
 
     const last = this.results().length - 1;
     if (ev.key === 'Tab') {
-      const box = this.inputRef()?.nativeElement.closest('.srch-box');
-      const focusable = Array.from(box?.querySelectorAll<HTMLElement>('input, button:not(:disabled), a[href]') ?? []);
+      const box = this.boxRef()?.nativeElement;
+      const focusable = Array.from(box?.querySelectorAll<HTMLElement>('input, textarea, button:not(:disabled), a[href]') ?? []);
       const first = focusable[0];
       const final = focusable[focusable.length - 1];
       if (ev.shiftKey && ev.target === first) { ev.preventDefault(); final?.focus(); }
@@ -339,7 +274,6 @@ export class SearchDialogComponent {
       ev.preventDefault();
       this.cur.update((i) => Math.max(i - 1, 0));
     } else if (ev.key === 'Enter') {
-      if (this.aiMode()) { ev.preventDefault(); void this.askAi(); return; }
       const hit = this.results()[this.cur()];
       if (hit) {
         ev.preventDefault();
@@ -365,6 +299,7 @@ export class SearchDialogComponent {
     this.requestId++;
     if (this.timer) clearTimeout(this.timer);
     this.resetAnswer();
+    this.aiMode.set(false);
     this.overlay.close('search');
     this.previousFocus?.focus();
   }

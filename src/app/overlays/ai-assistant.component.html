@@ -1,0 +1,29 @@
+<div class="ai-toolbar"><span><span class="ai-dot" aria-hidden="true"></span> Your XcellHost guide</span><button type="button" (click)="newChat()">↻ New chat</button></div>
+<div class="ai-thread" #thread role="log" aria-label="Conversation with XcellHost Assist" aria-live="polite" [attr.aria-busy]="busy()">
+  <section class="ai-welcome">
+    <div class="ai-avatar" aria-hidden="true">✦</div>
+    <h2>Hi! How can I help you today?</h2>
+    <p>I'm XcellHost Assist. Ask me about our cloud, cybersecurity, backup and managed IT services. Let's find the right solution for your business.</p>
+    @if (!messages().length) {
+      <div class="ai-prompts" aria-label="Suggested questions">@for (prompt of prompts; track prompt) { <button type="button" [disabled]="busy()" (click)="ask(prompt)"><span>{{ prompt }}</span><span aria-hidden="true">↗</span></button> }</div>
+    }
+  </section>
+  @for (message of messages(); track message.id) {
+    <article class="ai-message" [class.ai-user]="message.role === 'user'" [attr.aria-label]="message.role === 'user' ? 'Your question' : 'AI answer'">
+      @if (message.role === 'assistant') { <span class="ai-message-label"><span aria-hidden="true">✦</span> XcellHost Assist</span> }
+      <div class="ai-message-text" [innerHTML]="formatText(message.text)"></div>
+      @if (message.role === 'assistant') {
+        @if (message.sources?.length) { <nav class="ai-sources" aria-label="Related XcellHost pages">@for (source of message.sources; track source.url) { <a [routerLink]="source.url" (click)="navigate.emit()">{{ source.title }} <span aria-hidden="true">↗</span></a> }</nav> }
+        <div class="ai-message-actions"><button type="button" (click)="copy(message)" [attr.aria-label]="copied() === message.id ? 'Answer copied' : 'Copy answer'">{{ copied() === message.id ? '✓ Copied' : '▢ Copy' }}</button><button type="button" [disabled]="busy()" (click)="retry(message.id)" aria-label="Regenerate answer">↻ Retry</button></div>
+      }
+    </article>
+  }
+  @if (busy()) { <div class="ai-thinking" role="status"><span aria-hidden="true">✦</span> Finding an answer<span class="ai-dots" aria-hidden="true">…</span></div> }
+  @if (error()) { <div class="ai-error" role="alert"><p>{{ error() }}</p><button type="button" [disabled]="busy()" (click)="retry()">Try again</button></div> }
+</div>
+<form class="ai-compose" (submit)="$event.preventDefault(); send()">
+  <label class="ai-sr-only" for="ai-question">Ask anything about XcellHost</label>
+  <div class="ai-compose-field"><textarea id="ai-question" #composer rows="1" maxlength="2000" placeholder="Ask anything about XcellHost…" [value]="draft()" (input)="onInput($event)" (keydown)="onKey($event)"></textarea><button type="submit" [disabled]="busy() || !draft().trim()" aria-label="Send question"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button></div>
+  @if (composerNotice()) { <p class="ai-caption" role="status">{{ composerNotice() }}</p> }
+  <p class="ai-caption">Powered by OpenAI <span aria-hidden="true">·</span> Check important details with our team.</p>
+</form>

@@ -7,6 +7,8 @@ export const environment = {
   docWebhook: '',
   partnerWebhook: '',
   chatEndpoint: '',
+  /** Server-side OpenAI endpoint for the search dialog's AI mode. */
+  aiSearchEndpoint: '/api/ask-ai.php',
   faqApi: '',
   strapiUrl: 'https://admin.xcellhost.top',
   /** Public Algolia search configuration. Use a read-only Search API key, never an Admin key. */

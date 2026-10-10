@@ -220,3 +220,59 @@ browser's cache that Zoho rejects will therefore display the existing unconfirme
 submission message after 30 seconds. A same-origin backend integration that
 returns a structured duplicate status is required to display the site's custom
 message for every existing Zoho subscriber. Do not put Zoho credentials in Angular.
+
+## AI mode in website search
+
+The AI mode button opens XcellHost Assist, with follow-up conversation, suggested
+questions, copy/retry controls and related page links. The browser posts to
+`/api/ask-ai.php`; PHP calls OpenAI's Responses API on the server. The existing
+Algolia search and search filters continue to work in search mode.
+
+### Configure the private key
+
+Revoke the key shared in chat and create a replacement project key. Do not put
+it in Angular, public files, Git, or a deployment zip.
+
+1. Enable PHP 8.1+ with cURL and zlib for the site in Plesk. Allow outbound HTTPS
+   to api.openai.com and a writable PHP temporary directory.
+2. Copy `deploy/xcellhost-ai-config.example.php` to the directory **above
+   httpdocs**, named `xcellhost-ai-config.php`. Set `apiKey` to the replacement
+   key. Alternatively, configure `OPENAI_API_KEY` in the PHP process environment.
+3. The default model is `gpt-4.1-mini`. Change `model` in the private file or
+   set `OPENAI_MODEL` to a Responses-compatible model available to your project.
+4. Build and upload the website, including the `api/` directory. Keep the
+   private config outside httpdocs; this example configuration is not packaged.
+5. Open website search, click **AI mode**, and ask a question. A missing key
+   produces an unavailable message, never a simulated AI answer.
+
+For local development, place the private config at the repository root as
+`xcellhost-ai-config.php` (gitignored), or set `OPENAI_API_KEY` before starting
+`npm start`. PHP must be on PATH, or set `PHP_BINARY` to its executable.
+Restart an already running dev server once after this update. The managed
+`npm start` launcher also reloads future proxy configuration changes. Local AI
+requests use `/api/ai-assistant`, a virtual route handled before Strapi. This
+avoids Angular's static assets serving the public PHP file instead of executing
+it. Production requests continue to use `/api/ask-ai.php` on the PHP server.
+Run `php scripts/check-ai-connection.php` to check the configured provider
+connection without printing the API key.
+
+### Knowledge and limits
+
+The supplied 8 October 2026 knowledge snapshot is indexed into 3,132 excerpts
+from 775 distinct source URLs in `public/api/ai-knowledge.php`. The PHP data file
+returns no HTTP body. The endpoint retrieves relevant excerpts for each question;
+this is snapshot knowledge, not live browsing or a complete guarantee of retrieval.
+Related source pages are shown with answers. Refresh the knowledge from a new
+file with `node scripts/generate-ai-knowledge.mjs "path/to/knowledge.txt"`,
+then rebuild and upload. Source text is treated as reference material, never as
+agent instructions.
+
+The server accepts at most 12 conversation messages and bounds request size,
+response length and provider timeouts. It limits usage to 15 questions per client
+IP per hour and 500 site questions per UTC day. It uses the direct server client
+IP; configure your trusted reverse proxy before adapting that logic. Configure
+project spend limits in OpenAI as well. Conversations stay in browser memory,
+are cleared with New chat, and are sent with `store: false`; no conversation
+logging is added by this website.
+
+API documentation: https://developers.openai.com/api/docs/guides/text
