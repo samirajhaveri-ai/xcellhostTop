@@ -2,24 +2,32 @@ import {
   ChangeDetectionStrategy, Component, ElementRef, HostListener, NgZone,
   OnDestroy, ViewChild, inject, output, signal,
 } from '@angular/core';
+import { CartService } from '../core/cart.service';
+import { OverlayService } from '../core/overlay.service';
 
 /** The requested source sections retain their styling and interactive controls. */
 @Component({
   selector: 'xh-vciso-content',
   standalone: true,
   template: `<span id="ppPlans" class="pricing-anchor" [style.top.px]="pricingOffset()"></span>
+    <span id="ppFeats" class="pricing-anchor" [style.top.px]="programmeOffset()"></span>
+    <span id="ppUses" class="pricing-anchor" [style.top.px]="supportOffset()"></span>
     <iframe #contentFrame src="/assets/animations/vciso-as-a-service-content.html"
-      title="vCISO overview, business scenarios, cost comparison, responsibilities, framework readiness and India requirements"
+      title="vCISO scope, frameworks, pricing configurator, 90-day programme and XcellHost support"
       scrolling="no" [style.height.px]="height()" (load)="syncContent()"></iframe>`,
   styles: [':host{display:block;position:relative;width:100%}iframe{display:block;width:100%;border:0;background:transparent}.pricing-anchor{position:absolute;left:0;scroll-margin-top:110px}'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VcisoContentComponent implements OnDestroy {
   readonly quoteRequested = output<{ event: Event; configuration: string }>();
-  readonly height = signal(4200);
+  readonly height = signal(6400);
   readonly pricingOffset = signal(1000);
+  readonly programmeOffset = signal(0);
+  readonly supportOffset = signal(0);
   @ViewChild('contentFrame') private frame?: ElementRef<HTMLIFrameElement>;
   private readonly zone = inject(NgZone);
+  private readonly cart = inject(CartService);
+  private readonly overlay = inject(OverlayService);
   private resizeObserver?: ResizeObserver;
   private themeObserver?: MutationObserver;
   private disposed = false;
@@ -34,7 +42,9 @@ export class VcisoContentComponent implements OnDestroy {
       if (this.disposed) return;
       this.zone.run(() => {
         this.height.set(Math.ceil(main.getBoundingClientRect().height) + 2);
-        this.pricingOffset.set(doc.getElementById('cost')?.offsetTop ?? 0);
+        this.pricingOffset.set(doc.getElementById('pricing')?.offsetTop ?? 0);
+        this.programmeOffset.set(doc.getElementById('plan')?.offsetTop ?? 0);
+        this.supportOffset.set(doc.getElementById('why')?.offsetTop ?? 0);
       });
     };
     this.resizeObserver = new ResizeObserver(resize);
@@ -55,6 +65,15 @@ export class VcisoContentComponent implements OnDestroy {
     const data = event.data;
     if (data?.type === 'vciso-enquiry' && typeof data.configuration === 'string') {
       this.quoteRequested.emit({ event: new Event('click'), configuration: data.configuration });
+    } else if (data?.type === 'vciso-cart') {
+      const item = data.item;
+      if (!item || typeof item.name !== 'string' || typeof item.sub !== 'string' ||
+        typeof item.price !== 'number' || !Number.isFinite(item.price) || item.price < 0 ||
+        !Number.isInteger(item.qty) || item.qty < 1 || item.qty > 100) return;
+      this.cart.add(`${item.name} — ${item.sub}`, `₹${item.price.toLocaleString('en-IN')} · excl. GST`, item.qty,
+        { unitAmount: item.price, currency: 'INR', locale: 'en-IN', suffix: ' · excl. GST' });
+      this.cart.open();
+      this.overlay.open('cart');
     } else if (data?.type === 'vciso-scroll' && typeof data.target === 'string') {
       const target = frame?.contentDocument?.getElementById(data.target);
       if (frame && target) window.scrollTo({
