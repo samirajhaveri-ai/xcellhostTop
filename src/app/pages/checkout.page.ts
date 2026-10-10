@@ -28,7 +28,10 @@ export class CheckoutPage implements OnDestroy {
     | 'genai'
     | 'cybird'
     | 'cdr-smb'
-    | 'smb-desktop';
+    | 'smb-desktop'
+    | 'dpdpa-launch'
+    | 'dpdpa-growth'
+    | 'dpdpa-enterprise';
   private readonly smbDesktopPlan = this.readSmbDesktopPlan();
   private readonly smbDesktopTerm = this.readSmbDesktopTerm();
   readonly productLabel =
@@ -36,6 +39,12 @@ export class CheckoutPage implements OnDestroy {
       ? 'RMM'
       : this.checkoutProduct === 'genai'
         ? 'Acronis GenAI Protection Enforce'
+      : this.checkoutProduct === 'dpdpa-launch'
+        ? 'DPDP Compliance for SMB Launch'
+      : this.checkoutProduct === 'dpdpa-growth'
+        ? 'DPDP Compliance for SMB Growth'
+      : this.checkoutProduct === 'dpdpa-enterprise'
+        ? 'DPDP Compliance for SMB Enterprise Enquiry'
       : this.checkoutProduct === 'cybird'
         ? 'Cybird SMB Cyber Security Appliance'
         : this.checkoutProduct === 'cdr-smb'
@@ -48,6 +57,12 @@ export class CheckoutPage implements OnDestroy {
       ? 'xcellhost-rmm-checkout.html'
       : this.checkoutProduct === 'genai'
         ? 'xcellhost-acronis-genai-protection-enforce-checkout.html'
+      : this.checkoutProduct === 'dpdpa-launch'
+        ? 'dpdpa-smb/xcellhost-dpdp-smb-launch-checkout.html'
+      : this.checkoutProduct === 'dpdpa-growth'
+        ? 'dpdpa-smb/xcellhost-dpdp-smb-growth-checkout.html'
+      : this.checkoutProduct === 'dpdpa-enterprise'
+        ? 'dpdpa-smb/xcellhost-dpdp-smb-enterprise-enquiry.html'
       : this.checkoutProduct === 'cybird'
         ? 'xcellhost-cybird-checkout.html'
         : this.checkoutProduct === 'cdr-smb'
@@ -93,7 +108,8 @@ export class CheckoutPage implements OnDestroy {
     if (
       this.checkoutProduct === 'smb-desktop' ||
       this.checkoutProduct === 'genai' ||
-      this.checkoutProduct === 'cdr-smb'
+      this.checkoutProduct === 'cdr-smb' ||
+      this.checkoutProduct.startsWith('dpdpa-')
     ) {
       // The website shell already supplies the XcellHost header and footer.
       // Hide the standalone file chrome while retaining its checkout steps and payment URL.
@@ -104,6 +120,7 @@ export class CheckoutPage implements OnDestroy {
 
     if (this.checkoutProduct === 'smb-desktop') {
       this.applySmbDesktopPricing(checkoutDocument);
+      this.applySmbDesktopThreeColumnLayout(checkoutDocument);
     }
 
     // Measure natural content height so hidden checkout steps can expand and shrink.
@@ -134,14 +151,14 @@ export class CheckoutPage implements OnDestroy {
     }
   }
 
-  private applySmbDesktopPricing(checkoutDocument: Document): void {
+  private applySmbDesktopPricing(checkoutDocument: Document, selectedQuantity?: number): void {
     const maximumUsers = {
       starter: 5,
       business: 10,
       professional: 20,
       enterprise: 50,
     }[this.smbDesktopPlan];
-    const requestedQuantity = Number(this.route.snapshot.queryParamMap.get('quantity'));
+    const requestedQuantity = selectedQuantity ?? Number(this.route.snapshot.queryParamMap.get('quantity'));
     const quantity = Number.isFinite(requestedQuantity)
       ? Math.min(maximumUsers, Math.max(1, Math.trunc(requestedQuantity)))
       : 1;
@@ -185,6 +202,148 @@ export class CheckoutPage implements OnDestroy {
     if (taxNote) {
       taxNote.textContent = `Taxes shown are an estimate for ${quantity} selected ${quantity === 1 ? 'user' : 'users'} (CGST 9% + SGST 9%). There is no hardware or setup fee. Final billing and payment are completed securely on Zoho Billing.`;
     }
+
+    this.applySmbDesktopQuantityControl(checkoutDocument, quantity, maximumUsers);
+  }
+
+  private applySmbDesktopQuantityControl(
+    checkoutDocument: Document,
+    quantity: number,
+    maximumUsers: number,
+  ): void {
+    const planHeader = checkoutDocument.querySelector<HTMLElement>('#cardReview .ps-top');
+    if (!planHeader) return;
+
+    let control = planHeader.querySelector<HTMLElement>('.qty-control');
+    if (!control) {
+      control = checkoutDocument.createElement('div');
+      control.className = 'qty-control';
+      control.setAttribute('aria-label', 'Select number of users');
+
+      const decrease = checkoutDocument.createElement('button');
+      decrease.type = 'button';
+      decrease.className = 'qty-btn qty-minus';
+      decrease.setAttribute('aria-label', 'Remove one user');
+      decrease.textContent = '−';
+
+      const value = checkoutDocument.createElement('span');
+      value.className = 'qty-value';
+      value.setAttribute('aria-live', 'polite');
+
+      const increase = checkoutDocument.createElement('button');
+      increase.type = 'button';
+      increase.className = 'qty-btn qty-plus';
+      increase.setAttribute('aria-label', 'Add one user');
+      increase.textContent = '+';
+
+      decrease.addEventListener('click', () => {
+        this.applySmbDesktopPricing(checkoutDocument, Number(control?.dataset['quantity']) - 1);
+      });
+      increase.addEventListener('click', () => {
+        this.applySmbDesktopPricing(checkoutDocument, Number(control?.dataset['quantity']) + 1);
+      });
+      control.append(decrease, value, increase);
+      planHeader.appendChild(control);
+    }
+
+    control.dataset['quantity'] = `${quantity}`;
+    const value = control.querySelector<HTMLElement>('.qty-value');
+    if (value) value.textContent = `${quantity}`;
+    const decrease = control.querySelector<HTMLButtonElement>('.qty-minus');
+    const increase = control.querySelector<HTMLButtonElement>('.qty-plus');
+    if (decrease) decrease.disabled = quantity <= 1;
+    if (increase) increase.disabled = quantity >= maximumUsers;
+  }
+
+  private applySmbDesktopThreeColumnLayout(checkoutDocument: Document): void {
+    const layout = checkoutDocument.querySelector<HTMLElement>('.layout');
+    const reviewCard = checkoutDocument.querySelector<HTMLElement>('#cardReview');
+    if (!layout || !reviewCard || layout.querySelector('.col-benefits')) return;
+
+    const sectionForHeading = (label: string): HTMLElement | null => {
+      const heading = Array.from(reviewCard.querySelectorAll<HTMLElement>('.card-h')).find(
+        (item) => item.textContent?.trim() === label,
+      );
+      return heading?.parentElement ?? null;
+    };
+    const whySection = sectionForHeading('Why this plan');
+    const includedSection = sectionForHeading("What's included");
+    if (!whySection || !includedSection) return;
+
+    const benefitsColumn = checkoutDocument.createElement('aside');
+    benefitsColumn.className = 'col-benefits';
+    benefitsColumn.setAttribute('aria-label', 'Plan benefits');
+    const benefitsCard = checkoutDocument.createElement('div');
+    benefitsCard.className = 'card benefits-card';
+    benefitsCard.append(whySection, includedSection);
+    benefitsColumn.appendChild(benefitsCard);
+    layout.appendChild(benefitsColumn);
+
+    const layoutStyles = checkoutDocument.createElement('style');
+    layoutStyles.textContent = `
+      .stepper { max-width: 1680px !important; }
+      .layout {
+        width: 100%;
+        max-width: 1680px !important;
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        align-items: stretch !important;
+      }
+      .col-left, .col-right, .col-benefits { min-width: 0; height: 100%; }
+      .col-left > .card:not([style*="display: none"]):not([style*="display:none"]),
+      .col-right .summary,
+      .col-benefits .benefits-card {
+        position: static;
+        height: 100%;
+        margin-bottom: 0;
+      }
+      .col-benefits .why { margin: 0; }
+      #cardReview .ps-top { position: relative; min-height: 148px; padding-right: 166px; }
+      .qty-control {
+        position: absolute;
+        right: 20px;
+        bottom: 18px;
+        display: inline-grid;
+        grid-template-columns: 34px 44px 34px;
+        align-items: center;
+        border: 1px solid #cbdcf8;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 5px 14px rgba(4, 30, 66, .08);
+      }
+      .qty-btn {
+        width: 34px;
+        height: 34px;
+        border: 0;
+        background: #e8f0ff;
+        color: #0066ff;
+        font: 800 20px/1 'DM Sans', sans-serif;
+        cursor: pointer;
+      }
+      .qty-btn:hover:not(:disabled) { background: #d8e7ff; }
+      .qty-btn:disabled { cursor: not-allowed; color: #9aabc4; background: #f2f5f9; }
+      .qty-value { text-align: center; font-size: .9rem; font-weight: 800; color: #041e42; }
+      @media (max-width: 1280px) {
+        .layout {
+          max-width: 1080px !important;
+          grid-template-columns: minmax(0, 1fr) 340px !important;
+        }
+        .col-benefits { grid-column: 1 / -1; }
+        .col-left, .col-right, .col-benefits,
+        .col-left > .card:not([style*="display: none"]):not([style*="display:none"]),
+        .col-right .summary,
+        .col-benefits .benefits-card { height: auto; }
+      }
+      @media (max-width: 900px) {
+        .layout { max-width: 760px !important; grid-template-columns: 1fr !important; }
+        .col-right, .col-benefits { grid-column: auto; }
+      }
+      @media (max-width: 560px) {
+        #cardReview .ps-top { padding-right: 20px; }
+        .qty-control { position: static; margin-top: 12px; }
+      }
+    `;
+    checkoutDocument.head.appendChild(layoutStyles);
   }
 
   private formatInr(amount: number, showPaise = false): string {
