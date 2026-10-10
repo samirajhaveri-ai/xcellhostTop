@@ -456,12 +456,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": VPS_PRODUCT_COPY['ERPNext Hosting'].tagline
               },
               {
-                "title": "Sage Hosting",
-                "pill": null,
-                "desc": VPS_PRODUCT_COPY['Sage Hosting'].tagline
-              },
-              
-              {
                 "title": "Dokploy Hosting",
                 "pill": null,
                 "desc": VPS_PRODUCT_COPY['Dokploy Hosting'].tagline
@@ -1236,6 +1230,16 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
+                "title": "Sarv Deepcall",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Sarv Workspace",
+                "pill": null,
+                "desc": null
+              },
+              {
                 "title": "Microsoft 365 SMB",
                 "pill": null,
                 "desc": "Cloud productivity tools with migration and 24/7 support"
@@ -1870,7 +1874,13 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Certificate Management",
                 "pill": null,
                 "desc": null
-              }
+              },
+              {
+                "title": "Automatic SSL Certificate",
+                "pill": null,
+                "desc": null
+              },
+              
             ]
           }
         ]
