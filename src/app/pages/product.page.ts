@@ -1,4 +1,3 @@
-import { SARV_DEEPCALL_FAQS } from '../data/sarv-deepcall-faq.data';
 
 import { ContainerRegistryHeroComponent } from '../sections/container-registry-hero.component';
 import { ContainerServiceHeroComponent } from '../sections/container-service-hero.component';
@@ -2783,22 +2782,6 @@ class ProductPageComponent {
       ...view,
       tagline: 'Enterprise email migration — mailbox migration made simple',
       faqs: MAILBOX_MIGRATION_FAQS,
-    };
-    if (slug === 'sarv-deepcall') return {
-      ...view, faqs: SARV_DEEPCALL_FAQS, videos: ['s1Rxs7rWd2I'], videoLabels: ['Cloud Communications Overview'],
-      security: {
-        head: 'SECURITY & COMPLIANCE - SARV DEEPCALL',
-        intro: 'Plan business-number onboarding, customer communications and call-recording policies with your compliance team. The supplied DeepCall workflow covers number KYC, TRAI numbering requirements, DLT registration for SMS and data-protection considerations for recordings.',
-        rows: [['Number Onboarding', 'Business KYC And Documentation'], ['Calling Requirements', 'Applicable TRAI Numbering And Calling Rules'], ['SMS Campaigns', 'DLT Registration And Approved Templates'], ['Call Recordings', 'Define Access, Retention And Consent Policies'], ['Team Access', 'Configure Agent And Supervisor Permissions'], ['Implementation', 'IVR, Routing And Integration Planning']],
-      },
-      why: [
-        {...view.why[0], title:'One Partner', body:'Sarv communications delivered with XcellHost implementation and support.'},
-        {...view.why[1], title:'Guided Setup', body:'Plan business numbers, IVR menus and agent routing.'},
-        {...view.why[2], title:'Integration Support', body:'Connect calling workflows to your CRM and business tools.'},
-        {...view.why[3], title:'Team Onboarding', body:'Prepare agents and supervisors for the new calling workflow.'},
-        {...view.why[4], title:'Local Billing', body:'Agent-based plans billed in rupees.'},
-        {...view.why[5], title:'Operational Support', body:'Get help with configuration and ongoing platform use.'},
-      ],
     };
     if (slug === 'managed-kubernetes') return { ...view, faqs: MANAGED_KUBERNETES_FAQS, security: {
       head: 'SECURITY & COMPLIANCE - MANAGED KUBERNETES',
