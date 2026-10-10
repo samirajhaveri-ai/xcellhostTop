@@ -456,12 +456,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": VPS_PRODUCT_COPY['ERPNext Hosting'].tagline
               },
               {
-                "title": "Sage Hosting",
-                "pill": null,
-                "desc": VPS_PRODUCT_COPY['Sage Hosting'].tagline
-              },
-              
-              {
                 "title": "Dokploy Hosting",
                 "pill": null,
                 "desc": VPS_PRODUCT_COPY['Dokploy Hosting'].tagline
@@ -1232,6 +1226,16 @@ export const MEGA_MENU: MenuTop[] = [
             "items": [
               {
                 "title": "Business E-Mail",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Sarv Deepcall",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Sarv Workspace",
                 "pill": null,
                 "desc": null
               },

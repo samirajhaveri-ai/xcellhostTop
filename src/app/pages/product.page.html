@@ -12,6 +12,7 @@
     [class.cpanel-servers-page]="slug() === 'cpanel-servers'"
     [class.windows-servers-page]="slug() === 'windows-servers'"
     [class.domain-whois-page]="slug() === 'domain-whois-lookup'"
+    [class.sarv-deepcall-page]="slug() === 'sarv-deepcall'"
     [class.managed-kubernetes-page]="slug() === 'managed-kubernetes'"
     [class.box-migration-page]="slug() === 'box-migration'"
     [class.dropbox-migration-page]="slug() === 'dropbox-migration'"
@@ -4927,6 +4928,8 @@
                   <xh-rtx-pro-6000-showcase />
                 } @else if (slug() === 'nvidia-rtx-6000-ada') {
                   <xh-rtx-6000-ada-showcase />
+                } @else if (slug() === 'sarv-deepcall') {
+                  <xh-imported-interactive-content source="deepcall" />
                 } @else if (slug() === 'managed-kubernetes') {
                   <xh-imported-interactive-content source="kubernetes" />
                 } @else if (slug() === 'managed-mongodb') {

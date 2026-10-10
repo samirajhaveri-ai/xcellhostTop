@@ -6,16 +6,19 @@ import { CartService } from '../core/cart.service';
 
 @Component({
   selector: 'xh-imported-interactive-content', standalone: true,
-  template: `<iframe #frame [src]="source === 'podcasts' ? podcastsUrl : kubernetesUrl" [title]="source === 'podcasts' ? 'XcellHost Cloud Podcast' : 'Managed Kubernetes workloads and calculator'" scrolling="no" (load)="onLoad()"></iframe>`,
+  template: `<iframe #frame [src]="source === 'podcasts' ? podcastsUrl : source === 'deepcall' ? deepcallUrl : source === 'workspace' ? workspaceUrl : source === 'rapidssl' ? rapidsslUrl : kubernetesUrl" [title]="source === 'podcasts' ? 'XcellHost Cloud Podcast' : source === 'rapidssl' ? 'RapidSSL certificates, selector and calculator' : source === 'workspace' ? 'Sarv Workspace applications and pricing' : source === 'deepcall' ? 'Sarv DeepCall features, IVR builder and calculator' : 'Managed Kubernetes workloads and calculator'" scrolling="no" (load)="onLoad()"></iframe>`,
   styles: [`:host{display:block}iframe{display:block;width:100%;min-height:600px;border:0}`],
 })
 export class ImportedInteractiveContentComponent implements OnDestroy {
-  @Input() source: 'kubernetes' | 'podcasts' = 'kubernetes';
+  @Input() source: 'kubernetes' | 'podcasts' | 'deepcall' | 'workspace' | 'rapidssl' = 'kubernetes';
   private sanitizer = inject(DomSanitizer);
   private overlay = inject(OverlayService);
   private topics = inject(CallbackTopicService);
   private cart = inject(CartService);
   readonly podcastsUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/imported-podcasts.html');
+  readonly rapidsslUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/imported-rapidssl.html');
+  readonly workspaceUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/imported-sarv-workspace.html');
+  readonly deepcallUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/imported-deepcall.html');
   readonly kubernetesUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/imported-kubernetes.html');
   @ViewChild('frame') frame?: ElementRef<HTMLIFrameElement>;
   private cleanup: (() => void)[] = [];
