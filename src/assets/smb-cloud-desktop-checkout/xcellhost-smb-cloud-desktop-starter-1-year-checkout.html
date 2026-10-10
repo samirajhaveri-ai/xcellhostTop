@@ -18,14 +18,17 @@ body{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Ari
 .logo{font-weight:800;font-size:1.15rem;letter-spacing:-.02em;color:var(--nv);text-decoration:none}.logo span{color:var(--bl)}
 .nav-secure{font-size:.82rem;font-weight:600;color:var(--muted)}
 .stepper-wrap{background:#fff;border-bottom:1px solid var(--line)}
-.stepper{max-width:1080px;margin:0 auto;padding:15px 24px;display:flex;align-items:center}
+.stepper{max-width:1680px;margin:0 auto;padding:15px 24px;display:flex;align-items:center}
 .step{display:flex;align-items:center;gap:10px;cursor:pointer}
 .step-num{width:30px;height:30px;border-radius:50%;background:#eef2f7;color:#64748b;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:.85rem;border:1px solid var(--line)}
 .step.active .step-num{background:var(--bl);color:#fff;border-color:var(--bl)}
 .step.done .step-num{background:var(--gn);color:#fff;border-color:var(--gn)}
 .step-lab{font-size:.85rem;font-weight:700;color:#64748b}.step.active .step-lab{color:var(--nv)}
 .step-bar{flex:1;height:2px;background:var(--line);margin:0 12px;min-width:16px}.step-bar.filled{background:var(--gn)}
-.layout{max-width:1080px;margin:0 auto;padding:28px 24px 48px;display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start}
+.layout{width:100%;max-width:1680px;margin:0 auto;padding:28px 24px 48px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:stretch}
+.col-left,.col-right,.col-benefits{min-width:0;height:100%}
+.col-left>.card:not([style*="display: none"]):not([style*="display:none"]),.col-right .summary,.col-benefits .benefits-card{position:static;height:100%;margin-bottom:0}
+.col-benefits .why{margin:0}
 .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin-bottom:18px}
 .card-h{font-size:1.15rem;font-weight:800;color:var(--nv);letter-spacing:-.01em;margin-bottom:4px}
 .card-sub{color:var(--muted);font-size:.9rem;margin-bottom:16px}
@@ -36,7 +39,7 @@ body{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Ari
 .ps-term{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.ps-termlab{font-weight:800;color:var(--ink)}
 .save{font-size:.68rem;font-weight:800;color:#0f7a3d;background:#dcfce7;border:1px solid #bbf7d0;padding:3px 8px;border-radius:999px}
 .ps-users{display:inline-block;margin-top:10px;font-size:.7rem;font-weight:800;letter-spacing:.05em;color:#0747a6;background:#e8f0ff;border:1px solid #d4e3ff;padding:5px 11px;border-radius:999px}
-.ps-price{text-align:right}.ps-price .amt{font-size:1.8rem;font-weight:800;color:var(--nv);line-height:1}.ps-price .per{font-size:.76rem;color:var(--muted)}
+.ps-price{text-align:right}.ps-price .amt{font-size:1.5rem;font-weight:800;color:var(--nv);line-height:1}.ps-price .per{font-size:.76rem;color:var(--muted)}
 .ps-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 22px;padding:18px 20px}
 .ps-row{display:flex;flex-direction:column;gap:2px}.ps-row .k{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}.ps-row .v{font-size:.92rem;font-weight:700;color:var(--nv)}
 .why{font-size:.92rem;color:#334155;line-height:1.6}
@@ -68,7 +71,8 @@ body{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Ari
 .foot .line{border-top:1px solid var(--line);padding-top:18px}.foot a{color:var(--bl);text-decoration:none}.foot a:hover{text-decoration:underline}
 #toastWrap{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:50;display:flex;flex-direction:column;gap:8px}
 .toast{background:var(--nv);color:#fff;padding:11px 18px;border-radius:10px;font-size:.86rem;box-shadow:0 10px 24px rgba(4,30,66,.28);transition:opacity .3s}
-@media(max-width:900px){.layout{grid-template-columns:1fr}.summary{position:static}.step-lab{display:none}.step-bar{margin:0 8px}}
+@media(max-width:1280px){.layout{max-width:1080px;grid-template-columns:minmax(0,1fr) 340px}.col-benefits{grid-column:1/-1}.col-left,.col-right,.col-benefits,.col-left>.card:not([style*="display: none"]):not([style*="display:none"]),.col-right .summary,.col-benefits .benefits-card{height:auto}}
+@media(max-width:900px){.layout{max-width:760px;grid-template-columns:1fr}.col-right,.col-benefits{grid-column:auto}.summary{position:static}.step-lab{display:none}.step-bar{margin:0 8px}}
 @media(max-width:560px){.frow{grid-template-columns:1fr}.incl-list{grid-template-columns:1fr}.ps-top{flex-direction:column}.ps-price{text-align:left}}
 </style>
 </head>
@@ -116,25 +120,6 @@ body{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Ari
         <div class="ps-row"><span class="k">Windows Desktop</span><span class="v">Included</span></div>
         <div class="ps-row"><span class="k">Support</span><span class="v">24&times;7</span></div>
       </div>
-    </div>
-
-    <div style="margin-bottom:18px">
-      <div class="card-h" style="font-size:1rem">Why this plan</div>
-      <p class="why">Managed Windows Cloud Desktop for teams of 1-5 users on a Shared VM, with 4 vCPU, 8 GB RAM and 100 GB storage. Includes unlimited data transfer, automated backup every 8 hours, full Windows Desktop access and 24&times;7 XcellHost support &mdash; fully managed, secured and backed up by XcellHost. Billed annually. You save 10% versus the monthly plan.</p>
-    </div>
-
-    <div>
-      <div class="card-h" style="font-size:1rem">What's included</div>
-      <ul class="incl-list">
-        <li>Managed Windows Cloud Desktop</li>
-        <li>Shared VM</li>
-        <li>4 vCPU &middot; 8 GB RAM</li>
-        <li>100 GB storage</li>
-        <li>Unlimited data transfer</li>
-        <li>Automated backup every 8 hours</li>
-        <li>Windows Desktop included</li>
-        <li>24&times;7 XcellHost support</li>
-      </ul>
     </div>
 
     <div class="row-btns" style="margin-top:20px">
@@ -234,6 +219,28 @@ body{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Ari
     </div>
   </div>
 </div>
+
+<aside class="col-benefits" aria-label="Plan benefits">
+  <div class="card benefits-card">
+    <div style="margin-bottom:18px">
+      <div class="card-h" style="font-size:1rem">Why this plan</div>
+      <p class="why">Managed Windows Cloud Desktop for teams of 1-5 users on a Shared VM, with 4 vCPU, 8 GB RAM and 100 GB storage. Includes unlimited data transfer, automated backup every 8 hours, full Windows Desktop access and 24&times;7 XcellHost support &mdash; fully managed, secured and backed up by XcellHost. Billed annually. You save 10% versus the monthly plan.</p>
+    </div>
+    <div>
+      <div class="card-h" style="font-size:1rem">What's included</div>
+      <ul class="incl-list">
+        <li>Managed Windows Cloud Desktop</li>
+        <li>Shared VM</li>
+        <li>4 vCPU &middot; 8 GB RAM</li>
+        <li>100 GB storage</li>
+        <li>Unlimited data transfer</li>
+        <li>Automated backup every 8 hours</li>
+        <li>Windows Desktop included</li>
+        <li>24&times;7 XcellHost support</li>
+      </ul>
+    </div>
+  </div>
+</aside>
 </div>
 
 <div id="toastWrap"></div>

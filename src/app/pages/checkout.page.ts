@@ -258,28 +258,33 @@ export class CheckoutPage implements OnDestroy {
   private applySmbDesktopThreeColumnLayout(checkoutDocument: Document): void {
     const layout = checkoutDocument.querySelector<HTMLElement>('.layout');
     const reviewCard = checkoutDocument.querySelector<HTMLElement>('#cardReview');
-    if (!layout || !reviewCard || layout.querySelector('.col-benefits')) return;
+    if (!layout || !reviewCard) return;
 
-    const sectionForHeading = (label: string): HTMLElement | null => {
-      const heading = Array.from(reviewCard.querySelectorAll<HTMLElement>('.card-h')).find(
-        (item) => item.textContent?.trim() === label,
-      );
-      return heading?.parentElement ?? null;
-    };
-    const whySection = sectionForHeading('Why this plan');
-    const includedSection = sectionForHeading("What's included");
-    if (!whySection || !includedSection) return;
+    if (!layout.querySelector('.col-benefits')) {
+      const sectionForHeading = (label: string): HTMLElement | null => {
+        const heading = Array.from(reviewCard.querySelectorAll<HTMLElement>('.card-h')).find(
+          (item) => item.textContent?.trim() === label,
+        );
+        return heading?.parentElement ?? null;
+      };
+      const whySection = sectionForHeading('Why this plan');
+      const includedSection = sectionForHeading("What's included");
+      if (!whySection || !includedSection) return;
 
-    const benefitsColumn = checkoutDocument.createElement('aside');
-    benefitsColumn.className = 'col-benefits';
-    benefitsColumn.setAttribute('aria-label', 'Plan benefits');
-    const benefitsCard = checkoutDocument.createElement('div');
-    benefitsCard.className = 'card benefits-card';
-    benefitsCard.append(whySection, includedSection);
-    benefitsColumn.appendChild(benefitsCard);
-    layout.appendChild(benefitsColumn);
+      const benefitsColumn = checkoutDocument.createElement('aside');
+      benefitsColumn.className = 'col-benefits';
+      benefitsColumn.setAttribute('aria-label', 'Plan benefits');
+      const benefitsCard = checkoutDocument.createElement('div');
+      benefitsCard.className = 'card benefits-card';
+      benefitsCard.append(whySection, includedSection);
+      benefitsColumn.appendChild(benefitsCard);
+      layout.appendChild(benefitsColumn);
+    }
+
+    if (checkoutDocument.head.querySelector('[data-smb-three-column-styles]')) return;
 
     const layoutStyles = checkoutDocument.createElement('style');
+    layoutStyles.setAttribute('data-smb-three-column-styles', '');
     layoutStyles.textContent = `
       .stepper { max-width: 1680px !important; }
       .layout {
