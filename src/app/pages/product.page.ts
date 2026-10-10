@@ -2450,13 +2450,8 @@ class ProductPageComponent {
 
   buyCdrPlan(ev: Event): void {
     ev.preventDefault();
-    const quantity = this.cdrQuantity();
-    this.cart.add(
-      'Cloud Disaster Recovery SMB',
-      '₹9,999/server/month',
-      quantity,
-    );
-    this.cart.open();
+    const params = new URLSearchParams({ qty: String(this.cdrQuantity()) });
+    window.location.assign(`/cloud-disaster-recovery-smb-checkout?${params.toString()}`);
   }
 
   openCdrTour(): void {

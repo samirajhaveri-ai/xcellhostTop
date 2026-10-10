@@ -77,6 +77,11 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
   },
   {
+    path: 'cloud-disaster-recovery-smb-checkout',
+    data: { checkoutProduct: 'cdr-smb' },
+    loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
+  },
+  {
     path: 'managed-redis',
     loadComponent: () => import('./pages/managed-redis.page').then((m) => m.ManagedRedisPage),
   },
