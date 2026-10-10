@@ -2044,6 +2044,10 @@
         <xh-smb-section-nav label="Managed Microsoft SQL page sections" [links]="sqlSectionNavLinks" frameSelector="xh-managed-microsoft-sql-content iframe[src='/managed-microsoft-sql-content.html']" />
       }
 
+      @if (['dpdpa-consulting', 'vdpo-as-a-service', 'vciso-as-a-service'].includes(slug()) && !usesSuppliedSmbHero()) {
+        <xh-smb-section-nav style="position:relative;top:auto;z-index:1" [label]="v.name + ' page sections'" [links]="consultingSectionNavLinks()" />
+      }
+
       @if (slug() !== 'cpu-optimized' && slug() !== 'memory-optimized' && usesSuppliedSmbHero()) {
         <xh-smb-section-nav
           [label]="v.name + ' page sections'"
@@ -5600,7 +5604,7 @@
             <section aria-labelledby="hrmDemoTitle"><h2 class="pp-sec" id="hrmDemoTitle">Watch It In Action</h2><xh-hrm-attendance-content [demo]="true" /></section>
           }
           @if (
-            !videosInInsights() && v.name !== 'Enterprise DMARC' &&
+            !videosInInsights() && !['dpdpa-consulting', 'vdpo-as-a-service', 'vciso-as-a-service'].includes(slug()) && v.name !== 'Enterprise DMARC' &&
             (showcaseVideos().length ||
               isAutonomousThreatSolution() ||
               isOurPlatform() ||

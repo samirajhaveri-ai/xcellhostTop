@@ -5,6 +5,22 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  { path: 'managed-grc', title: 'Managed GRC - XcellHost', data: { consultingSlug: 'managed-grc' }, loadComponent: () => import('./pages/security-consulting.page').then(m => m.SecurityConsultingPage) },
+  { path: 'iso-27001-consulting', title: 'ISO 27001 Consulting - XcellHost', data: { consultingSlug: 'iso-27001-consulting' }, loadComponent: () => import('./pages/security-consulting.page').then(m => m.SecurityConsultingPage) },
+  { path: 'iso-20000-itsm', title: 'ISO 20000 (ITSM) - XcellHost', data: { consultingSlug: 'iso-20000-itsm' }, loadComponent: () => import('./pages/security-consulting.page').then(m => m.SecurityConsultingPage) },
+  { path: 'iso-27017-cloud-infosec', title: 'ISO 27017 Cloud Security - XcellHost', data: { consultingSlug: 'iso-27017-cloud-infosec' }, loadComponent: () => import('./pages/security-consulting.page').then(m => m.SecurityConsultingPage) },
+  { path: 'iso-22301-bmc', title: 'ISO 22301 Business Continuity - XcellHost', data: { consultingSlug: 'iso-22301-bmc' }, loadComponent: () => import('./pages/security-consulting.page').then(m => m.SecurityConsultingPage) },
+  { path: 'iso-27018-pii-public-cloud', title: 'ISO 27018 PII Protection - XcellHost', data: { consultingSlug: 'iso-27018-pii-public-cloud' }, loadComponent: () => import('./pages/security-consulting.page').then(m => m.SecurityConsultingPage) },
+  { path: 'iso-42001ai-risk', title: 'ISO 42001 AI Management - XcellHost', data: { consultingSlug: 'iso-42001ai-risk' }, loadComponent: () => import('./pages/security-consulting.page').then(m => m.SecurityConsultingPage) },
+  { path: 'soc-1-cunsulting', title: 'SOC 1 Consulting - XcellHost', data: { consultingSlug: 'soc-1-cunsulting' }, loadComponent: () => import('./pages/security-consulting.page').then(m => m.SecurityConsultingPage) },
+  { path: 'soc-2-cunsulting', title: 'SOC 2 Consulting - XcellHost', data: { consultingSlug: 'soc-2-cunsulting' }, loadComponent: () => import('./pages/security-consulting.page').then(m => m.SecurityConsultingPage) },
+  { path: 'pci-consulting', title: 'PCI DSS Consulting - XcellHost', data: { consultingSlug: 'pci-consulting' }, loadComponent: () => import('./pages/security-consulting.page').then(m => m.SecurityConsultingPage) },
+  { path: 'email-signing-certificates', title: 'Email Signing Certificates - XcellHost', loadComponent: () => import('./pages/email-signing-certificates.page').then(m => m.EmailSigningCertificatesPage) },
+  { path: 'code-signing-certificates', title: 'Code Signing Certificates - XcellHost', loadComponent: () => import('./pages/code-signing-certificates.page').then(m => m.CodeSigningCertificatesPage) },
+  { path: 'certificate-management', title: 'Certificate Management - XcellHost', loadComponent: () => import('./pages/certificate-management.page').then(m => m.CertificateManagementPage) },
+  { path: 'website-security-solutions', title: 'Website Security Solutions - XcellHost', loadComponent: () => import('./pages/website-security-solutions.page').then(m => m.WebsiteSecuritySolutionsPage) },
+  { path: 'mark-certificates', title: 'Mark Certificates - XcellHost', loadComponent: () => import('./pages/mark-certificates.page').then(m => m.MarkCertificatesPage) },
+  { path: 'sectigo-ev-code-signing', title: 'Sectigo EV Code Signing - XcellHost', loadComponent: () => import('./pages/sectigo-ev-code-signing.page').then(m => m.SectigoEvCodeSigningPage) },
   { path: 'sectigo-code-signing', title: 'Sectigo Code Signing - XcellHost', loadComponent: () => import('./pages/sectigo-code-signing.page').then(m => m.SectigoCodeSigningPage) },
   { path: 'rapidssl-ssl-certificates', title: 'RapidSSL Certificates - XcellHost', loadComponent: () => import('./pages/rapidssl.page').then(m => m.RapidsslPage) },
   { path: 'sarv-workspace', title: 'Sarv Workspace - XcellHost', loadComponent: () => import('./pages/sarv-workspace.page').then(m => m.SarvWorkspacePage) },
