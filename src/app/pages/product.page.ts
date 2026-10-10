@@ -53,6 +53,8 @@ import { DigicertSmimeContentComponent } from '../sections/digicert-smime-conten
 import { DigicertSmimeFaqComponent } from '../sections/digicert-smime-faq.component';
 import { DigicertSmimeRelatedComponent } from '../sections/digicert-smime-related.component';
 import { DigicertSmimeHeroComponent } from '../sections/digicert-smime-hero.component';
+import { ThawteSslHeroComponent } from '../sections/thawte-ssl-hero.component';
+import { ThawteSslContentComponent } from '../sections/thawte-ssl-content.component';
 
 import { VeraRubinContentComponent } from '../sections/nvidia-vera-rubin-content.component';
 import { VERA_RUBIN_FAQS } from '../data/nvidia-vera-rubin-faqs.data';
@@ -320,6 +322,20 @@ import { CopilotStudioContentComponent } from '../sections/copilot-studio-conten
 import { CloudObjectStorageContentComponent } from '../sections/cloud-object-storage-content.component';
 import { ZohoWorkspaceContentComponent } from '../sections/zoho-workspace-content.component';
 import { EntraIdContentComponent } from '../sections/entra-id-content.component';
+import { EntraWorkloadIdComponent } from '../sections/entra-workload-id.component';
+import { WORKLOAD_FAQS } from '../sections/entra-workload-id.data';
+import { EntraInternetAccessComponent } from '../sections/entra-internet-access.component';
+import { INTERNET_FAQS } from '../sections/entra-internet-access.data';
+import { EntraPrivateAccessComponent } from '../sections/entra-private-access.component';
+import { PRIVATE_FAQS } from '../sections/entra-private-access.data';
+import { EntraIdGovernanceComponent } from '../sections/entra-id-governance.component';
+import { GOVERNANCE_FAQS } from '../sections/entra-id-governance.data';
+import { EntraIdP1Component } from '../sections/entra-id-p1.component';
+import { P1_FAQS } from '../sections/entra-id-p1.data';
+import { EntraIdP2Component } from '../sections/entra-id-p2.component';
+import { P2_FAQS } from '../sections/entra-id-p2.data';
+import { EntraSuiteComponent } from '../sections/entra-suite.component';
+import { SUITE_FAQS } from '../sections/entra-suite.data';
 import { EntraIdHeroComponent } from '../sections/entra-id-hero.component';
 import { EntraIdBackupContentComponent } from '../sections/entra-id-backup-content.component';
 import { EntraIdBackupHeroComponent } from '../sections/entra-id-backup-hero.component';
@@ -441,6 +457,8 @@ interface ProductTourSlide {
     DigicertSmimeFaqComponent,
     DigicertSmimeRelatedComponent,
     DigicertSmimeHeroComponent,
+    ThawteSslHeroComponent,
+    ThawteSslContentComponent,
 
     HigherEducationHeroCopyComponent,
     HigherEducationContentComponent,
@@ -596,6 +614,13 @@ interface ProductTourSlide {
     RtxA6000HeroComponent,
     ZohoWorkspaceContentComponent,
     EntraIdContentComponent,
+    EntraWorkloadIdComponent,
+    EntraInternetAccessComponent,
+    EntraPrivateAccessComponent,
+    EntraIdGovernanceComponent,
+    EntraIdP1Component,
+    EntraIdP2Component,
+    EntraSuiteComponent,
     EntraIdHeroComponent,
     EntraIdBackupContentComponent,
     EntraIdBackupHeroComponent,
@@ -1334,6 +1359,14 @@ interface ProductTourSlide {
       align-items: center; justify-content: center; opacity: 1; overflow: visible;
       mask-image: none;
     }
+    #ppage .pph-scene.pph-workload-id { width: 44%; max-width: 540px; right: 2%; opacity: 1; mask-image: none; overflow: visible; }
+    #ppage.entra-detail-page .pp-hero h1 { max-width: 54%; flex-wrap: wrap; white-space: normal; font-size: clamp(28px, 2.5vw, 36px); }
+    #ppage.entra-detail-page .pp-title-name { flex-basis: 100%; margin: 8px 0 0; }
+    #ppage.entra-detail-page .pp-hero > .wrap > .pp-tagline, #ppage.entra-detail-page .pp-hero > .wrap > .pp-tagline-support { max-width: 52%; white-space: normal; }
+    #ppage.entra-detail-page p.pp-tagline-support { width: min(620px, 52vw) !important; max-width: 52% !important; white-space: normal !important; }
+    @media(max-width:900px) { #ppage.entra-detail-page p.pp-tagline-support { width: 100% !important; max-width: 100% !important; } }
+    @media(max-width:900px) { #ppage.entra-detail-page .pp-hero h1, #ppage.entra-detail-page .pp-hero > .wrap > .pp-tagline, #ppage.entra-detail-page .pp-hero > .wrap > .pp-tagline-support { max-width: 100%; } }
+    @media(max-width:900px) { #ppage .pph-scene.pph-workload-id { position: relative; width: 100%; max-width: 540px; right: auto; top: auto; bottom: auto; margin: 12px auto 0; } }
     #ppage .pph-scene.pph-entra-id-backup {
       top: 1%; right: 1%; bottom: auto; width: 48%; height: 96%; display: flex;
       align-items: center; justify-content: center; opacity: 1; overflow: visible;
@@ -1889,6 +1922,50 @@ interface ProductTourSlide {
       #ppage.ppage.managed-mongodb-page > .pp-hero > .pph-scene.mongodb-hero-art {
         grid-column: 1; grid-row: 2; justify-self: center;
       }
+    }
+    #ppage.ppage.thawte-page > .pp-hero { min-height: 620px; }
+    #ppage.thawte-page .pp-hero #ppTitle { display: block; max-width: 53%; white-space: normal; text-align: left; }
+    #ppage.thawte-page .pp-hero #ppTitle .pp-title-name { display: inline; white-space: normal; margin-left: 0; }
+    #ppage.ppage.thawte-page > .pp-hero > .wrap > .thawte-hero-tagline { width: 53% !important; max-width: 53% !important; margin-bottom: 2px; color: #fff; font: 700 16.5px/1.45 var(--disp); text-wrap: wrap; }
+    #ppage.ppage.thawte-page > .pp-hero > .wrap > .thawte-hero-summary { width: 53% !important; max-width: 53% !important; margin-bottom: 16px; color: #dbe7fb; font: 600 15.5px/1.6 var(--disp); text-wrap: wrap; }
+    #ppage.thawte-page .thawte-hero-points { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 20px; width: 53%; max-width: 520px; margin: 0 0 24px; padding: 0; list-style: none; }
+    #ppage.thawte-page .thawte-hero-points li { display: flex; align-items: center; gap: 10px; min-width: 0; font-size: 14px; color: #eaf2ff; }
+    #ppage.thawte-page .thawte-hero-tick { display: grid; place-items: center; flex-shrink: 0; width: 20px; height: 20px; border-radius: 5px; background: #1565d8; box-shadow: 0 0 0 3px rgba(21,101,216,.25); }
+    #ppage.thawte-page .thawte-hero-tick svg { width: 11px; height: 11px; color: #fff; }
+    #ppage.thawte-page .pp-typewriter { max-width: 53%; }
+    #ppage.thawte-page .pp-typewriter span { min-width: 0; }
+    #ppage.thawte-page .pp-typewriter i { flex-shrink: 0; }
+    #ppage.ppage.thawte-page > .pp-hero > .pph-scene.thawte-hero-art {
+      right: max(24px, calc((100% - 1240px) / 2 + 24px));
+      width: min(calc((100% - 48px) * .43), 520px);
+      top: 50%; bottom: auto; transform: translateY(-50%);
+      max-height: none; opacity: 1; mask-image: none; overflow: visible;
+      pointer-events: auto;
+    }
+    #ppage.ppage.thawte-page > .pp-hero > .wrap > h1,
+    #ppage.ppage.thawte-page > .pp-hero > .wrap > .pp-tagline,
+    #ppage.ppage.thawte-page > .pp-hero > .wrap > .pp-tagline-support,
+    #ppage.ppage.thawte-page > .pp-hero > .wrap > .pp-chips,
+    #ppage.ppage.thawte-page > .pp-hero > .wrap > .pp-hero-grid { max-width: 53%; }
+    @media (max-width: 900px) {
+      #ppage.ppage.thawte-page > .pp-hero { display: flex; flex-direction: column; min-height: 0; }
+      #ppage.thawte-page .pp-hero #ppTitle { max-width: 100%; }
+      #ppage.ppage.thawte-page > .pp-hero > .wrap > :is(.thawte-hero-tagline, .thawte-hero-summary) { width: 100% !important; max-width: 100% !important; }
+      #ppage.thawte-page .thawte-hero-points { width: 100%; }
+      #ppage.thawte-page .pp-typewriter { max-width: 100%; }
+      #ppage.ppage.thawte-page > .pp-hero > .wrap { order: -1; width: 100%; }
+      #ppage.ppage.thawte-page > .pp-hero > .wrap > h1,
+      #ppage.ppage.thawte-page > .pp-hero > .wrap > .pp-tagline,
+      #ppage.ppage.thawte-page > .pp-hero > .wrap > .pp-tagline-support,
+      #ppage.ppage.thawte-page > .pp-hero > .wrap > .pp-chips,
+      #ppage.ppage.thawte-page > .pp-hero > .wrap > .pp-hero-grid { max-width: 100%; }
+      #ppage.ppage.thawte-page > .pp-hero > .pph-scene.thawte-hero-art {
+        position: relative; inset: auto; transform: none;
+        width: calc(100% - 32px); max-width: 520px; margin: 24px auto 0;
+      }
+    }
+    @media (max-width: 560px) {
+      #ppage.thawte-page .thawte-hero-points { grid-template-columns: 1fr; }
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -4034,6 +4111,202 @@ class ProductPageComponent {
 
   private resolve(slug: string): ProductView | null {
     if (!slug) return null;
+    if (slug === 'microsoft-entra-suite') {
+      const base = this.products.build({ name: 'Microsoft Entra ID', cat: 'Security', crumb: 'Security › Microsoft Entra' });
+      return {
+        ...base,
+        name: 'Microsoft Entra Suite',
+        tagline: 'One policy. Identity and network access together.',
+        heroHighlight: 'Bring Private Access, Internet Access, ID Governance, ID Protection and Verified ID with Face Check together — with rollout and support from XcellHost. Requires Entra ID P1.',
+        heroMessages: ['Replace the VPN with per-app access', 'Control access to web, SaaS and AI apps', 'Automate employee access through their lifecycle', 'Verify identities remotely with Face Check'],
+        heroPoints: ['Private Access', 'Internet Access', 'ID Governance', 'ID Protection', 'Verified ID with Face Check', 'Requires Entra ID P1'],
+        chips: [{ label: '₹910 / user / month', kind: 'price' }],
+        plans: [
+          { term: 'Monthly', amount: '₹910', unit: '/ user / month', cartName: 'Microsoft Entra Suite — Monthly', cartPrice: '₹910 / user / month excl. GST' },
+          { term: 'Yearly', amount: '₹10,560', unit: '/ user / year', cartName: 'Microsoft Entra Suite — Yearly', cartPrice: '₹10,560 / user / year excl. GST' },
+        ],
+        faqs: SUITE_FAQS,
+        security: {
+          head: 'Security & compliance',
+          intro: 'Bring identity and network access policies together. XcellHost helps plan private app access, internet filtering, lifecycle governance and identity verification, then test them in stages with your existing Entra ID P1 policies.',
+          rows: [['Private apps', 'Per-app access through Private Access'], ['Internet access', 'Identity-aware web and SaaS policies'], ['Access lifecycle', 'ID Governance workflows and reviews'], ['Identity risk', 'ID Protection risk signals and response'], ['Identity verification', 'Verified ID with Face Check'], ['Policy foundation', 'Entra ID P1 as the prerequisite']],
+        },
+        why: [
+          { ...base.why[0], title: 'Genuine Microsoft licences', body: 'Local INR billing and GST invoices, with help checking your P1 prerequisite and Suite licensing needs.' },
+          { ...base.why[1], title: 'Identity and network planning', body: 'Map users, private apps, internet policies and identity controls before rollout.' },
+          { ...base.why[2], title: 'Phased Suite rollout', body: 'Pilot the products your teams need, then expand governance and verification in stages.' },
+          { ...base.why[3], title: 'Local support', body: 'Get 24×7 support from XcellHost engineers in Mumbai.' },
+        ],
+      };
+    }
+    if (slug === 'microsoft-entra-id-p2') {
+      const base = this.products.build({ name: 'Microsoft Entra ID', cat: 'Security', crumb: 'Security › Microsoft Entra' });
+      return {
+        ...base,
+        name: 'Microsoft Entra ID P2',
+        tagline: 'Detect identity risk. Limit privileged access.',
+        heroHighlight: 'Add Identity Protection, risk-based Conditional Access, just-in-time admin roles and access reviews — with setup, local billing and support from XcellHost.',
+        heroMessages: ['Detect risky sign-ins and compromised accounts', 'Respond to risk with MFA and password changes', 'Activate admin roles only when needed', 'Review access and remove permissions no longer needed'],
+        heroPoints: ['Everything in Entra ID P1', 'Identity Protection', 'Risk-based Conditional Access', 'Privileged Identity Management', 'Access reviews and entitlement management', 'INR billing and GST invoices'],
+        chips: [{ label: '₹755 / user / month', kind: 'price' }],
+        plans: [
+          { term: 'Monthly', amount: '₹755', unit: '/ user / month', cartName: 'Microsoft Entra ID P2 — Monthly', cartPrice: '₹755 / user / month excl. GST' },
+          { term: 'Yearly', amount: '₹8,765', unit: '/ user / year', cartName: 'Microsoft Entra ID P2 — Yearly', cartPrice: '₹8,765 / user / year excl. GST' },
+        ],
+        faqs: P2_FAQS,
+        security: {
+          head: 'Security & compliance',
+          intro: 'Detect identity risk and limit standing administrative access. XcellHost helps configure risk policies, eligible roles, approvals and reviews, then test them with a pilot group before rollout.',
+          rows: [['Identity risk', 'Risky sign-ins and users surfaced by Identity Protection'], ['Risk response', 'MFA, secure password change and block policies'], ['Privileged access', 'Eligible roles with time-bound activation through PIM'], ['Approval controls', 'MFA, justification and approval for role activation'], ['Access governance', 'Core access reviews and entitlement management'], ['Audit evidence', 'Risk reports, activation history and review decisions']],
+        },
+        why: [
+          { ...base.why[0], title: 'Genuine Microsoft licences', body: 'Local INR billing and GST invoices, with a check for P2 licences already included in your Microsoft plan.' },
+          { ...base.why[1], title: 'Risk policy setup', body: 'Scope user and sign-in risk policies to licensed groups and test before enforcement.' },
+          { ...base.why[2], title: 'PIM and access reviews', body: 'Configure eligible roles, approval requirements and periodic access reviews.' },
+          { ...base.why[3], title: 'Local support', body: 'Get 24×7 support from XcellHost engineers in Mumbai.' },
+        ],
+      };
+    }
+    if (slug === 'microsoft-entra-id-p1') {
+      const base = this.products.build({ name: 'Microsoft Entra ID', cat: 'Security', crumb: 'Security › Microsoft Entra' });
+      return {
+        ...base,
+        name: 'Microsoft Entra ID P1',
+        tagline: 'Decide who gets in, and under what conditions.',
+        heroHighlight: 'Secure sign-ins with Conditional Access, MFA and self-service password reset — with policy setup, local billing and support from XcellHost.',
+        heroMessages: ['Require MFA when your policies call for it', 'Block legacy authentication', 'Check devices, locations and apps at sign-in', 'Let users reset passwords without a helpdesk ticket'],
+        heroPoints: ['Conditional Access', 'Multifactor authentication', 'Self-service password reset', 'Hybrid identity', 'Group-based access and licensing', 'INR billing and GST invoices'],
+        chips: [{ label: '₹528 / user / month', kind: 'price' }],
+        plans: [
+          { term: 'Monthly', amount: '₹528', unit: '/ user / month', cartName: 'Microsoft Entra ID P1 — Monthly', cartPrice: '₹528 / user / month excl. GST' },
+          { term: 'Yearly', amount: '₹6,125', unit: '/ user / year', cartName: 'Microsoft Entra ID P1 — Yearly', cartPrice: '₹6,125 / user / year excl. GST' },
+        ],
+        faqs: P1_FAQS,
+        security: {
+          head: 'Security & compliance',
+          intro: 'Define sign-in policies for your users and apps, require stronger verification, and review results before enforcing changes. XcellHost helps configure Conditional Access and password-reset policies around your access requirements.',
+          rows: [['Sign-in controls', 'Conditional Access by user, app, device and location'], ['Authentication', 'MFA and authentication-method policies'], ['Legacy access', 'Policies to block legacy authentication clients'], ['Password recovery', 'Self-service password reset and hybrid writeback'], ['Policy rollout', 'Report-only testing and emergency access exclusions'], ['Audit evidence', 'Sign-in logs and policy results']],
+        },
+        why: [
+          { ...base.why[0], title: 'Genuine Microsoft licences', body: 'Local INR billing and GST invoices, with a check for P1 licences already included in your Microsoft plan.' },
+          { ...base.why[1], title: 'Conditional Access setup', body: 'Design policies for users, apps and devices, then test in report-only mode before enforcement.' },
+          { ...base.why[2], title: 'MFA and password-reset rollout', body: 'Help users register authentication methods and configure self-service password reset.' },
+          { ...base.why[3], title: 'Local support', body: 'Get 24×7 support from XcellHost engineers in Mumbai.' },
+        ],
+      };
+    }
+    if (slug === 'microsoft-entra-id-governance') {
+      const base = this.products.build({ name: 'Microsoft Entra ID', cat: 'Security', crumb: 'Security › Microsoft Entra' });
+      return {
+        ...base,
+        name: 'Microsoft Entra ID Governance',
+        tagline: 'The right access, from the first day to the last.',
+        heroHighlight: 'Automate joiners, movers and leavers, simplify access reviews, and connect HR to your apps — with setup and support from XcellHost.',
+        heroMessages: ['Give new hires the access they need on day one', 'Update access when roles and departments change', 'Remove access when employees and contractors leave', 'Help reviewers focus on access exceptions'],
+        heroPoints: ['Lifecycle workflows', 'HR-driven provisioning', 'Access packages', 'ML-assisted access reviews', 'Privileged access management', 'INR billing and GST invoices'],
+        chips: [{ label: '₹528 / user / month', kind: 'price' }],
+        plans: [
+          { term: 'Monthly', amount: '₹528', unit: '/ user / month', cartName: 'Microsoft Entra ID Governance — Monthly', cartPrice: '₹528 / user / month excl. GST' },
+          { term: 'Yearly', amount: '₹6,125', unit: '/ user / year', cartName: 'Microsoft Entra ID Governance — Yearly', cartPrice: '₹6,125 / user / year excl. GST' },
+        ],
+        faqs: GOVERNANCE_FAQS,
+        security: {
+          head: 'Security & compliance',
+          intro: 'Keep access aligned with each person’s role throughout their lifecycle. XcellHost helps configure workflows, reviews and privileged access controls, and collect evidence for your internal access policies and audits.',
+          rows: [['Lifecycle controls', 'Joiner, mover and leaver workflows'], ['Least privilege', 'Role-based access packages and expiry'], ['Access reviews', 'Periodic reviews with recommendations and reviewer decisions'], ['Privileged access', 'Time-bound roles and approval through PIM'], ['Provisioning', 'HR attributes mapped to connected applications'], ['Audit evidence', 'Workflow history, review decisions and access reports']],
+        },
+        why: [
+          { ...base.why[0], title: 'Genuine Microsoft licences', body: 'Local INR billing and GST invoices, with help sizing governed users, reviewers and approvers.' },
+          { ...base.why[1], title: 'HR and app integration', body: 'Map HR records, departments and roles to access packages and connected apps.' },
+          { ...base.why[2], title: 'Workflow and review rollout', body: 'Pilot lifecycle workflows and access reviews before extending governance across the organisation.' },
+          { ...base.why[3], title: 'Local support', body: 'Get 24×7 support from XcellHost engineers in Mumbai.' },
+        ],
+      };
+    }
+    if (slug === 'microsoft-entra-private-access') {
+      const base = this.products.build({ name: 'Microsoft Entra ID', cat: 'Security', crumb: 'Security › Microsoft Entra' });
+      return {
+        ...base,
+        name: 'Microsoft Entra Private Access',
+        tagline: 'Replace your VPN with access to the app, not the network.',
+        heroHighlight: 'Identity-centric access to on-premises and multicloud apps — per-app policies, MFA and outbound-only connectors, with setup and VPN migration from XcellHost.',
+        heroMessages: ['Give users access only to the apps they need', 'Apply MFA and Conditional Access to legacy apps', 'Connect private networks without inbound ports', 'Pilot per-app access before retiring your VPN'],
+        heroPoints: ['Per-app Zero Trust access', 'MFA and Conditional Access', 'Outbound-only connectors', 'On-premises and multicloud apps', 'VPN migration support', 'INR billing and GST invoices'],
+        chips: [{ label: '₹378 / user / month', kind: 'price' }],
+        plans: [
+          { term: 'Monthly', amount: '₹378', unit: '/ user / month', cartName: 'Microsoft Entra Private Access — Monthly', cartPrice: '₹378 / user / month excl. GST' },
+          { term: 'Yearly', amount: '₹4,382', unit: '/ user / year', cartName: 'Microsoft Entra Private Access — Yearly', cartPrice: '₹4,382 / user / year excl. GST' },
+        ],
+        faqs: PRIVATE_FAQS,
+        security: {
+          head: 'Security & compliance',
+          intro: 'Scope private access to the apps each group needs, then check identity, device and policy before granting a session. XcellHost helps plan app segments, connector groups and Conditional Access policies before migrating away from broad VPN access.',
+          rows: [['Access scope', 'Per-app segments and group assignments'], ['Identity controls', 'MFA and Conditional Access for private apps'], ['Network exposure', 'Outbound-only private network connectors'], ['Availability', 'Multiple connectors in each site’s connector group'], ['Administrative access', 'Separate RDP, SSH and database app policies'], ['Review evidence', 'Traffic logs and pilot access checks']],
+        },
+        why: [
+          { ...base.why[0], title: 'Genuine Microsoft licences', body: 'Local INR billing and GST invoices for Private Access licensing.' },
+          { ...base.why[1], title: 'App and connector planning', body: 'Map private apps, groups, sites and connector requirements before rollout.' },
+          { ...base.why[2], title: 'VPN migration', body: 'Pilot per-app access, review traffic and migrate groups before retiring the VPN.' },
+          { ...base.why[3], title: 'Local support', body: 'Get 24×7 support from XcellHost engineers in Mumbai.' },
+        ],
+      };
+    }
+    if (slug === 'microsoft-entra-internet-access') {
+      const base = this.products.build({ name: 'Microsoft Entra ID', cat: 'Security', crumb: 'Security › Microsoft Entra' });
+      return {
+        ...base,
+        name: 'Microsoft Entra Internet Access',
+        tagline: 'A secure web gateway that knows who is browsing.',
+        heroHighlight: 'Web and AI app filtering, TLS inspection and Conditional Access on Microsoft’s global edge — with policy design, rollout and support from XcellHost.',
+        heroMessages: ['Filter web traffic by identity and policy', 'Discover and control unsanctioned AI apps', 'Protect users wherever they work', 'Replace your on-premises web proxy'],
+        heroPoints: ['Identity-centric web filtering', 'AI app controls', 'TLS inspection', 'Threat intelligence', 'Conditional Access', 'INR billing and GST invoices'],
+        chips: [{ label: '₹378 / user / month', kind: 'price' }],
+        plans: [
+          { term: 'Monthly', amount: '₹378', unit: '/ user / month', cartName: 'Microsoft Entra Internet Access — Monthly', cartPrice: '₹378 / user / month excl. GST' },
+          { term: 'Yearly', amount: '₹4,382', unit: '/ user / year', cartName: 'Microsoft Entra Internet Access — Yearly', cartPrice: '₹4,382 / user / year excl. GST' },
+        ],
+        faqs: INTERNET_FAQS,
+        security: {
+          head: 'Security & compliance',
+          intro: 'Apply identity and device controls to internet traffic, filter risky destinations and review web access policies. XcellHost helps plan traffic forwarding, test filtering rules and roll out policies for your users and branches.',
+          rows: [['Identity controls', 'Conditional Access and group-based security profiles'], ['Web filtering', 'Category and FQDN rules with policy priorities'], ['Encrypted traffic', 'TLS inspection with planned exclusions'], ['Threat protection', 'Threat intelligence and malicious-site blocking'], ['AI access', 'Controls for sanctioned and unsanctioned AI apps'], ['Policy evidence', 'Traffic logs and gateway decisions for review']],
+        },
+        why: [
+          { ...base.why[0], title: 'Genuine Microsoft licences', body: 'Local INR billing and GST invoices for your Internet Access licences.' },
+          { ...base.why[1], title: 'Policy design', body: 'Map groups, categories, FQDN rules and inspection exclusions to your business needs.' },
+          { ...base.why[2], title: 'Managed rollout', body: 'Pilot traffic forwarding for devices and branches before expanding coverage.' },
+          { ...base.why[3], title: 'Local support', body: 'Get 24×7 support from XcellHost engineers in Mumbai.' },
+        ],
+      };
+    }
+    if (slug === 'microsoft-entra-workload-id') {
+      const base = this.products.build({ name: 'Microsoft Entra ID', cat: 'Security', crumb: 'Security › Microsoft Entra' });
+      return {
+        ...base,
+        name: 'Microsoft Entra Workload ID',
+        tagline: 'Your apps sign in too. Guard them like people.',
+        heroHighlight: 'Policy, risk detection and access reviews for service principals and pipelines — billed in rupees, set up by our engineers.',
+        heroMessages: ['Block service principals outside your IP ranges', 'Catch client secrets leaked in public code', 'Review every app that holds a privileged role', 'Deploy from GitHub Actions with no stored secret'],
+        heroPoints: ['Conditional Access for apps', 'Leaked-credential detection', 'Continuous access evaluation', 'Reviews of privileged apps', 'App health recommendations', 'Custom security attributes'],
+        chips: [{ label: '₹228 / identity / month', kind: 'price' }],
+        plans: [
+          { term: 'Monthly', amount: '₹228', unit: '/ workload identity / month', cartName: 'Microsoft Entra Workload ID — Monthly', cartPrice: '₹228 / identity / month excl. GST' },
+          { term: 'Yearly', amount: '₹2,640', unit: '/ workload identity / year', cartName: 'Microsoft Entra Workload ID — Yearly', cartPrice: '₹2,640 / identity / year excl. GST' },
+        ],
+        faqs: WORKLOAD_FAQS,
+        security: {
+          head: 'Security & compliance',
+          intro: 'Protect software identities with policies, risk detection and reviews. XcellHost helps inventory your apps, test policies in report-only mode, move pipelines to federation and review privileged service principals.',
+          rows: [['Access policies', 'Named locations and trusted IP ranges'], ['Credential risk', 'Leaked-credential detection and suspicious sign-in alerts'], ['Privileged access', 'Recurring reviews of service principal roles'], ['Secretless sign-in', 'Federation for CI/CD and managed identities for Azure'], ['Audit evidence', 'Workload sign-in logs and risk reports']],
+        },
+        why: [
+          { ...base.why[0], title: 'Genuine Microsoft licences', body: 'Workload identity licensing with local INR billing and GST invoices.' },
+          { ...base.why[1], title: 'Policy rollout', body: 'Inventory your apps and test policies in report-only mode before enforcement.' },
+          { ...base.why[2], title: 'Secretless pipelines', body: 'Get help migrating CI/CD pipelines to workload identity federation.' },
+          { ...base.why[3], title: 'Local support', body: 'Get help from XcellHost engineers in Mumbai, 24×7.' },
+        ],
+      };
+    }
     if (slug === 'microsoft-365-to-google-workspace-migration') return this.products.build({name: 'Microsoft 365 To Google Workspace Migration',cat: 'Cloud',crumb: 'Productivity › Migrations'});
     const enterpriseVariants: Record<string, string> = {
       'microsoft-365-enterprise-office365': 'Office 365 Enterprise',
@@ -4266,7 +4539,14 @@ class ProductPageComponent {
     ).find((candidate) => candidate.contentWindow === event.source);
     if (!frame) return;
 
-    const message = event.data as { type?: unknown; action?: unknown } | null;
+    const message = event.data as { type?: unknown; action?: unknown; height?: unknown } | null;
+    if (this.isCmc() && message?.type === 'xcellhost:hero-size') {
+      const height = message.height;
+      if (typeof height === 'number' && Number.isFinite(height) && height > 0 && height <= 3000) {
+        frame.style.height = `${Math.ceil(height)}px`;
+      }
+      return;
+    }
     if (message?.type !== 'xcellhost:hero-action') return;
 
     const click = new Event('click');

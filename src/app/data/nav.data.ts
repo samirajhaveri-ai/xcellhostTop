@@ -1874,7 +1874,13 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Certificate Management",
                 "pill": null,
                 "desc": null
-              }
+              },
+              {
+                "title": "Automatic SSL Certificate",
+                "pill": null,
+                "desc": null
+              },
+              
             ]
           }
         ]
