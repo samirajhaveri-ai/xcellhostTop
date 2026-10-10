@@ -24,6 +24,8 @@ export const environment = {
 
   /** Chat completion endpoint for the website assistant. Empty = canned replies only. */
   chatEndpoint: '',
+  /** Virtual local route: public PHP assets must not intercept this request. */
+  aiSearchEndpoint: '/api/ai-assistant',
   /** Optional live-answer endpoint for product FAQ blocks. */
   faqApi: '',
 

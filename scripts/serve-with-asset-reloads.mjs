@@ -46,23 +46,37 @@ function startServer(firstStart) {
   });
 }
 
+function restartServer(reason) {
+  if (restarting || stopping) return;
+  restarting = true;
+  console.log('\n' + reason + ' Restarting Angular...');
+  server?.kill();
+}
+
 function checkForNewAssets() {
   const currentFiles = listFiles();
   const added = [...currentFiles].some((path) => !knownFiles.has(path));
   knownFiles = currentFiles;
   if (!added || restarting || stopping) return;
 
-  restarting = true;
-  console.log('\nNew asset detected. Restarting Angular so it can serve the file...');
-  server.kill();
+  restartServer('New asset detected.');
 }
 
-const watchers = assetRoots.map((root) =>
+const assetWatchers = assetRoots.map((root) =>
   watch(root, { recursive: true }, () => {
     clearTimeout(scanTimer);
     scanTimer = setTimeout(checkForNewAssets, 500);
   }),
 );
+
+const proxyFiles = ['proxy.conf.cjs', 'proxy.conf.json', 'scripts/ai-dev-proxy.cjs'];
+const proxyWatchers = proxyFiles.map(file =>
+  watch(join(projectRoot, file), () => {
+    clearTimeout(scanTimer);
+    scanTimer = setTimeout(() => restartServer('Proxy configuration changed.'), 500);
+  }),
+);
+const watchers = [...assetWatchers, ...proxyWatchers];
 
 for (const signal of ['SIGINT', 'SIGTERM']) {
   process.on(signal, () => {

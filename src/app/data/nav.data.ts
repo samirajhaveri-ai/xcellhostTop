@@ -410,6 +410,11 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Virtual Private Servers",
             "items": [
               {
+                "title": "VPS Explore",
+                "pill": "New",
+                "desc": VPS_PRODUCT_COPY['Windows VPS'].tagline
+              },
+              {
                 "title": "Windows VPS",
                 "pill": "New",
                 "desc": VPS_PRODUCT_COPY['Windows VPS'].tagline
