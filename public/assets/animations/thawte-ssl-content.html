@@ -1,0 +1,2002 @@
+<!doctype html>
+<html lang="en-IN" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Thawte SSL overview, certificates and validation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600;1,9..144,700&family=Sora:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* =====================================================================
+   XcellHost v2 core — xcellhost.top design system
+   Brand: #0066FF blue · #0B132B navy · #FF8A00 orange · #c0392b "Host" red
+   Rule: exact brand colours, solid fills, no gradients.
+   ===================================================================== */
+:root{
+  --blue:#0066FF;--navy:#0B132B;--orange:#FF8A00;--red:#c0392b;--white:#fff;
+  --green:#16a34a;--wa:#25D366;
+  --bg:#ffffff;--surface:#ffffff;--surface-2:#F4F7FC;--ink:#0B132B;--text:#2A3550;--muted:#5B6782;
+  --line:#E2E8F2;--line-2:#D3DCEB;--chip:#EEF4FF;
+  --hero:#0B132B;--hero-ink:#ffffff;--hero-muted:#B6C2DA;--hero-line:rgba(255,255,255,.12);
+  --f-serif:"Fraunces",Georgia,serif;--f-disp:"Sora",system-ui,sans-serif;--f-body:"IBM Plex Sans",system-ui,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,monospace;
+  --r-s:10px;--r:14px;--r-l:20px;
+  --sh-s:0 4px 14px rgba(11,19,43,.06);--sh:0 14px 40px rgba(11,19,43,.10);--sh-l:0 30px 70px -24px rgba(11,19,43,.35);
+  --maxw:1200px;--ease:cubic-bezier(.22,.7,.2,1);--ease-o:cubic-bezier(.16,1,.3,1);
+}
+html[data-theme="dark"]{
+  --bg:#070C1C;--surface:#0E1630;--surface-2:#0B132B;--ink:#F2F5FB;--text:#C9D3E6;--muted:#8F9BB6;
+  --line:#1E2A49;--line-2:#27355A;--chip:#14204A;
+  --hero:#050916;--sh-s:0 4px 14px rgba(0,0,0,.3);--sh:0 14px 40px rgba(0,0,0,.4);--sh-l:0 30px 70px -24px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--f-body);color:var(--text);background:var(--bg);line-height:1.6;overflow-x:hidden;overflow-x:clip;-webkit-font-smoothing:antialiased;transition:background .35s,color .35s}
+body.lock{overflow:hidden}
+h1,h2,h3,h4{font-family:var(--f-disp);color:var(--ink);line-height:1.15;letter-spacing:-.02em;font-weight:700}
+a{color:inherit;text-decoration:none}img,svg{display:block}button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.mono{font-family:var(--f-mono)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px}
+#xhProgress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--orange);z-index:300}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:14.5px;line-height:1;padding:13px 22px;border-radius:12px;border:1.5px solid transparent;cursor:pointer;white-space:nowrap;transition:transform .2s var(--ease),background .2s,color .2s,border-color .2s,box-shadow .25s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn svg{width:16px;height:16px}
+.btn .ar{transition:transform .25s var(--ease)}.btn:hover .ar{transform:translateX(3px)}
+.btn-orange{background:var(--orange);color:#fff;box-shadow:0 10px 24px -12px rgba(255,138,0,.9)}
+.btn-orange:hover{box-shadow:0 14px 30px -12px rgba(255,138,0,1)}
+.btn-blue{background:var(--blue);color:#fff;box-shadow:0 10px 24px -12px rgba(0,102,255,.9)}
+.btn-ghost{background:var(--surface);color:var(--ink);border-color:var(--line-2)}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
+.btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
+.btn-line:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+.btn-wa{background:var(--wa);color:#fff}
+.btn-sm{padding:9px 15px;font-size:13px;border-radius:10px}
+.btn-block{width:100%}
+.btn[disabled]{opacity:.5;pointer-events:none}
+
+/* ---------- utility bar ---------- */
+.ubar{background:var(--navy);color:#B6C2DA;font-size:12.5px;position:relative;z-index:60}
+html[data-theme="dark"] .ubar{background:#050916}
+.ubar .wrap{display:flex;align-items:center;gap:16px;min-height:38px;white-space:nowrap;max-width:1360px}
+.ubar .wrap::-webkit-scrollbar{display:none}
+.ubar a:hover{color:#fff}
+.ubar .ul{display:flex;gap:16px;align-items:center;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,#000 92%,transparent);mask-image:linear-gradient(90deg,#000 92%,transparent)}
+.ubar .ul::-webkit-scrollbar{display:none}
+.ubar .ur{display:flex;gap:12px;align-items:center;margin-left:auto;padding-left:14px;border-left:1px solid rgba(255,255,255,.14);flex-shrink:0}
+@media(max-width:760px){.ubar .ur .uwa,.ubar .ur .lang{display:none}}
+.ubar .ph{font-family:var(--f-mono);color:#fff;font-weight:600}
+.ubar .uwa{color:#5FE08D;font-weight:600}
+.ubar .wa-ch{color:#5FE08D}
+.theme-tg{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:99px;padding:3px 9px 3px 4px;cursor:pointer;color:#dfe6f5;font-size:11.5px}
+.theme-tg .k{width:18px;height:18px;border-radius:50%;background:var(--orange);display:grid;place-items:center;transition:transform .35s var(--ease-o)}
+.theme-tg .k svg{width:11px;height:11px;color:#fff}
+html[data-theme="dark"] .theme-tg .k{transform:rotate(-180deg);background:var(--blue)}
+.lang{font-family:var(--f-mono);font-size:11px;border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:2px 6px;color:#dfe6f5}
+
+/* ---------- promo ---------- */
+.promo{background:var(--blue);color:#fff;font-size:13px;line-height:1.5;text-align:center;padding:8px 16px;position:relative;z-index:59}
+.promo b{font-weight:700}
+.promo .tag{display:inline-block;font-family:var(--f-mono);font-size:10.5px;font-weight:600;letter-spacing:.08em;background:#fff;color:var(--blue);border-radius:6px;padding:2px 7px;margin:0 6px}
+.promo a{font-weight:700;text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- header ---------- */
+.hdr{position:sticky;top:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--line);transition:box-shadow .3s,background .35s}
+.hdr.scrolled{box-shadow:0 8px 28px -18px rgba(11,19,43,.35)}
+.hdr .wrap{display:flex;align-items:center;gap:14px;height:70px;max-width:1360px}
+.logo{display:flex;flex-direction:column;flex-shrink:0;line-height:1}
+.logo .lw{font-family:var(--f-disp);font-weight:800;font-size:22px;letter-spacing:-.02em;color:var(--ink);display:flex;align-items:baseline}
+.logo .lw .host{position:relative;color:var(--red);padding:0 2px;margin-left:1px}
+.logo .lw .host{z-index:0}
+.logo .lw .host svg{position:absolute;left:-7px;top:-9px;width:calc(100% + 14px);height:34px;z-index:-1;color:var(--blue);opacity:.13}
+.logo .lw sup{font-size:9px;color:var(--muted);margin-left:1px;align-self:flex-start;margin-top:2px}
+.logo .lt{font-family:var(--f-mono);font-size:9px;letter-spacing:.16em;color:var(--muted);margin-top:4px;text-transform:uppercase;white-space:nowrap}
+.nav{display:flex;align-items:center;gap:0;margin-left:4px}
+.nav>.ni{position:static}
+.nav>.ni>button{background:none;border:0;cursor:pointer;display:flex;align-items:center;gap:3px;font-size:13.5px;font-weight:500;color:var(--text);padding:9px 8px;border-radius:8px;white-space:nowrap;transition:color .2s,background .2s}
+.nav>.ni>button svg{width:10px;height:10px;transition:transform .25s}
+.nav>.ni:hover>button,.nav>.ni.open>button{color:var(--blue);background:var(--chip)}
+.nav>.ni.open>button svg{transform:rotate(180deg)}
+.mega{position:absolute;left:0;right:0;top:100%;background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);box-shadow:var(--sh);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .22s,transform .25s var(--ease-o),visibility 0s .25s}
+.ni.open .mega{opacity:1;visibility:visible;transform:none;transition:opacity .22s,transform .3s var(--ease-o)}
+.mega .wrap{display:grid;grid-template-columns:260px 1fr;gap:28px;height:auto;padding:26px 24px;max-width:var(--maxw)}
+.mega .mintro b{font-family:var(--f-serif);font-size:22px;color:var(--ink);display:block;margin-bottom:6px}
+.mega .mintro p{font-size:13px;color:var(--muted)}
+.mega .mlist{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.mega .mlist a{display:flex;gap:11px;align-items:flex-start;padding:10px 12px;border-radius:10px;transition:background .2s}
+.mega .mlist a:hover{background:var(--chip)}
+.mega .mlist a i{width:30px;height:30px;border-radius:8px;background:var(--chip);color:var(--blue);display:grid;place-items:center;flex-shrink:0}
+.mega .mlist a i svg{width:15px;height:15px}
+.mega .mlist a b{display:block;font-size:13.5px;color:var(--ink);font-weight:600}
+.mega .mlist a span{font-size:11.5px;color:var(--muted)}
+.mega .mlist a.cur{background:var(--chip)}.mega .mlist a.cur b{color:var(--blue)}
+.hdr-r{display:flex;align-items:center;gap:8px;margin-left:auto}
+.ibtn{width:40px;height:40px;border-radius:11px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;cursor:pointer;color:var(--ink);position:relative;transition:border-color .2s,color .2s,transform .2s}
+.ibtn:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-1px)}
+.ibtn svg{width:18px;height:18px}
+.ibtn .cnt{position:absolute;top:-6px;right:-6px;min-width:18px;height:18px;padding:0 5px;border-radius:99px;background:var(--orange);color:#fff;font-family:var(--f-mono);font-size:10.5px;font-weight:600;display:grid;place-items:center;transform:scale(0);transition:transform .3s var(--ease-o)}
+.ibtn .cnt.on{transform:scale(1)}
+.ibtn .cnt.bump{animation:bump .45s var(--ease-o)}
+@keyframes bump{40%{transform:scale(1.4)}}
+.burger{display:none}
+@media(max-width:1780px){.hdr-r .lg{display:none}}
+@media(max-width:1580px){.nav>.ni>button{padding:9px 6px;font-size:13px;gap:2px}.nav>.ni>button svg{width:8px;height:8px}}
+@media(max-width:1460px){.nav>.ni>button svg{display:none}.nav>.ni>button{padding:9px 5px;font-size:12.5px}.logo .lw{font-size:20px}.hdr .wrap{gap:10px}}
+@media(max-width:1320px){.nav,.hdr-r .desk{display:none}.burger{display:grid}}
+/* mobile drawer */
+.mnav{position:fixed;inset:0;z-index:250;pointer-events:none}
+.mnav .sc{position:absolute;inset:0;background:rgba(11,19,43,.5);opacity:0;transition:opacity .3s}
+.mnav .pn{position:absolute;top:0;right:0;bottom:0;width:min(360px,88vw);background:var(--surface);transform:translateX(100%);transition:transform .38s var(--ease-o);overflow-y:auto;padding:18px 18px 40px}
+.mnav.open{pointer-events:auto}.mnav.open .sc{opacity:1}.mnav.open .pn{transform:none}
+.mnav details{border-bottom:1px solid var(--line)}
+.mnav summary{list-style:none;cursor:pointer;padding:14px 4px;font-weight:600;color:var(--ink);display:flex;justify-content:space-between}
+.mnav summary::-webkit-details-marker{display:none}
+.mnav details a{display:block;padding:8px 10px;font-size:14px;color:var(--text);border-radius:8px}
+.mnav details a:hover{background:var(--chip)}
+.mnav .mh{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+
+/* ---------- search overlay ---------- */
+.srch{position:fixed;inset:0;z-index:260;display:none;align-items:flex-start;justify-content:center;padding:90px 16px 20px;background:rgba(11,19,43,.55)}
+.srch.open{display:flex;animation:fadeIn .2s}
+.srch .box{width:min(640px,100%);background:var(--surface);border-radius:var(--r-l);box-shadow:var(--sh-l);overflow:hidden;animation:popIn .3s var(--ease-o)}
+.srch .sin{display:flex;align-items:center;gap:10px;padding:16px 18px;border-bottom:1px solid var(--line)}
+.srch .sin svg{width:18px;height:18px;color:var(--muted)}
+.srch input{flex:1;border:0;outline:0;background:none;font-size:16px;color:var(--ink)}
+.srch kbd{font-family:var(--f-mono);font-size:11px;border:1px solid var(--line-2);border-radius:5px;padding:2px 6px;color:var(--muted)}
+.srch .res{max-height:min(420px,60vh);overflow-y:auto;padding:8px}
+.srch .res a{display:flex;justify-content:space-between;gap:12px;padding:11px 12px;border-radius:10px}
+.srch .res a:hover,.srch .res a.hl{background:var(--chip)}
+.srch .res b{color:var(--ink);font-size:14px;font-weight:600}
+.srch .res span{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.srch .none{padding:26px;text-align:center;color:var(--muted);font-size:14px}
+@keyframes fadeIn{from{opacity:0}}
+@keyframes popIn{from{opacity:0;transform:translateY(-10px) scale(.98)}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;background:var(--hero);color:var(--hero-ink);padding:54px 0 0}
+.hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.hero .wrap{position:relative;z-index:2}
+.crumb{font-family:var(--f-mono);font-size:12px;color:var(--hero-muted);margin-bottom:26px}
+.crumb a:hover{color:#fff}.crumb .c{color:#fff}
+.hero-grid{display:grid;grid-template-columns:1.02fr 1fr;gap:48px;align-items:center;padding-bottom:40px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--f-mono);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--orange)}
+.eyebrow:before{content:"";width:22px;height:2px;background:var(--orange)}
+.hero h1{font-family:var(--f-serif);font-weight:700;color:#fff;font-size:clamp(34px,4.4vw,56px);line-height:1.04;letter-spacing:-.025em;margin:16px 0 18px}
+.hero h1 .acc{color:var(--orange);font-style:italic}
+.hero .lead{font-size:17px;color:var(--hero-muted);max-width:540px;margin-bottom:24px}
+.hero .lead b{color:#fff;font-weight:600}
+.powered{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--navy);border-radius:12px;padding:7px 14px 7px 8px;margin-bottom:26px;box-shadow:0 10px 26px -14px rgba(0,0,0,.6)}
+.powered .pv-l{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;flex-shrink:0}
+.powered .pv-l svg{width:18px;height:18px}
+.powered small{display:block;font-family:var(--f-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#5B6782;line-height:1}
+.powered b{font-family:var(--f-disp);font-size:14.5px;font-weight:700;line-height:1.2;color:var(--navy)}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero-stats{position:relative;z-index:2;display:flex;flex-wrap:nowrap;border-top:1px solid var(--hero-line);overflow-x:auto;scrollbar-width:none}
+.hero-stats::-webkit-scrollbar{display:none}
+.hero-stats .hs{flex:1 0 auto;padding:20px 24px 22px;border-right:1px solid var(--hero-line);white-space:nowrap}
+.hero-stats .hs:first-child{padding-left:0}.hero-stats .hs:last-child{border-right:0}
+.hero-stats b{display:block;font-family:var(--f-disp);font-weight:800;font-size:24px;color:#fff;line-height:1;letter-spacing:-.02em}
+.hero-stats b em{font-style:normal;color:var(--orange)}
+.hero-stats span{display:block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--hero-muted);margin-top:8px}
+.stage{position:relative;min-height:420px;display:grid;place-items:center}
+@media(max-width:980px){.hero-grid{grid-template-columns:1fr;gap:34px}.stage{min-height:0}}
+@media(max-width:560px){.hero{padding-top:36px}.hero-stats .hs{padding:16px 18px}.hero-stats b{font-size:20px}}
+
+/* hero entrance */
+.hero [data-in]{opacity:0;transform:translateY(16px);animation:heroIn .9s var(--ease-o) forwards}
+.hero [data-in="1"]{animation-delay:.05s}.hero [data-in="2"]{animation-delay:.15s}.hero [data-in="3"]{animation-delay:.25s}.hero [data-in="4"]{animation-delay:.35s}.hero [data-in="5"]{animation-delay:.45s}.hero [data-in="6"]{animation-delay:.6s}
+@keyframes heroIn{to{opacity:1;transform:none}}
+
+/* ---------- sections ---------- */
+.sec{padding:84px 0;position:relative}
+.sec.alt{background:var(--surface-2)}
+.sec.tight{padding:56px 0}
+.sh{max-width:760px;margin-bottom:40px}
+.sh.c{text-align:center;margin-left:auto;margin-right:auto}
+.sh .eyebrow{color:var(--orange)}
+.sh h2{font-family:var(--f-serif);font-weight:700;font-size:clamp(28px,3.2vw,40px);letter-spacing:-.02em;margin:12px 0 12px;line-height:1.1}
+.sh h2 .acc{color:var(--blue);font-style:italic}
+.sh p{font-size:16.5px;color:var(--muted)}
+.note-ind{font-family:var(--f-mono);font-size:11.5px;color:var(--muted);margin-top:14px}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease-o),transform .8s var(--ease-o)}
+.rv.in{opacity:1;transform:none}
+.rv[data-d="1"]{transition-delay:.06s}.rv[data-d="2"]{transition-delay:.12s}.rv[data-d="3"]{transition-delay:.18s}.rv[data-d="4"]{transition-delay:.24s}.rv[data-d="5"]{transition-delay:.3s}.rv[data-d="6"]{transition-delay:.36s}
+
+/* ---------- grids & cards ---------- */
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:960px){.g3,.g4{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-l);padding:24px;transition:transform .35s var(--ease-o),box-shadow .35s,border-color .3s}
+.card:hover{transform:translateY(-5px);box-shadow:var(--sh);border-color:var(--line-2)}
+.ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;color:#fff;background:var(--blue);margin-bottom:16px;flex-shrink:0}
+.ico svg{width:22px;height:22px}
+.ico.o{background:var(--orange)}.ico.n{background:var(--navy)}.ico.g{background:var(--green)}.ico.r{background:var(--red)}
+html[data-theme="dark"] .ico.n{background:#1E2A49}
+.ico.soft{background:var(--chip);color:var(--blue)}
+.card h3{font-size:17px;margin-bottom:8px}
+.card p{font-size:14px;color:var(--muted);line-height:1.6}
+.card .more{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-weight:600;font-size:13.5px;color:var(--blue)}
+
+/* chip rows with per-item icons */
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{display:inline-flex;align-items:center;gap:9px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 14px 8px 8px;font-size:13.5px;font-weight:600;color:var(--ink);transition:border-color .2s,transform .2s}
+.chip:hover{border-color:var(--blue);transform:translateY(-2px)}
+.chip i{width:26px;height:26px;border-radius:7px;display:grid;place-items:center;color:#fff;background:var(--blue);flex-shrink:0}
+.chip i svg{width:14px;height:14px}
+
+/* icon list (per-item icons, never generic ticks) */
+.ilist{list-style:none;display:flex;flex-direction:column;gap:11px}
+.ilist li{display:flex;gap:11px;align-items:flex-start;font-size:14px;color:var(--text)}
+.ilist li i{width:24px;height:24px;border-radius:7px;background:var(--chip);color:var(--blue);display:grid;place-items:center;flex-shrink:0;margin-top:-1px}
+.ilist li i svg{width:13px;height:13px}
+.ilist li b{color:var(--ink)}
+
+/* steps */
+.steps{display:grid;gap:14px;counter-reset:st}
+.steps.h{grid-template-columns:repeat(var(--n,4),1fr)}
+@media(max-width:960px){.steps.h{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.steps.h{grid-template-columns:1fr}}
+.step{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px 20px 20px;overflow:hidden}
+.step:before{counter-increment:st;content:counter(st,decimal-leading-zero);font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--orange);display:block;margin-bottom:12px;letter-spacing:.1em}
+.step h4{font-size:15.5px;margin-bottom:6px}
+.step p{font-size:13.5px;color:var(--muted)}
+.step .bar{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--blue);transition:width 1.2s var(--ease-o)}
+.step.in .bar,.rv.in .step .bar{width:100%}
+
+/* table */
+.tbl-w{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+.tbl{width:100%;border-collapse:collapse;min-width:620px}
+.tbl th{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;padding:15px 18px;background:var(--surface-2);border-bottom:1px solid var(--line)}
+.tbl td{padding:14px 18px;border-bottom:1px solid var(--line);font-size:14px;color:var(--text);vertical-align:top}
+.tbl tr:last-child td{border-bottom:0}
+.tbl td:first-child{font-weight:600;color:var(--ink)}
+.tbl .hl{background:var(--chip)}
+.tbl th.hl{color:var(--blue)}
+.yes{color:var(--green);font-weight:700}.no{color:var(--red);font-weight:700}
+
+/* plans */
+.plans{display:grid;grid-template-columns:repeat(var(--n,3),1fr);gap:18px;align-items:stretch}
+@media(max-width:960px){.plans{grid-template-columns:1fr}}
+.plan{position:relative;background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r-l);padding:26px;display:flex;flex-direction:column;transition:transform .35s var(--ease-o),box-shadow .35s,border-color .3s}
+.plan:hover{transform:translateY(-6px);box-shadow:var(--sh)}
+.plan.pop{border-color:var(--orange)}
+.plan .flag{position:absolute;top:-12px;left:24px;background:var(--orange);color:#fff;font-family:var(--f-mono);font-size:10.5px;font-weight:600;letter-spacing:.1em;padding:4px 10px;border-radius:99px}
+.plan .pk{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:600}
+.plan h3{font-size:20px;margin:6px 0 8px}
+.plan .pd{font-size:13.5px;color:var(--muted);margin-bottom:18px;min-height:42px}
+.plan .pr{display:flex;align-items:baseline;gap:6px;margin-bottom:4px}
+.plan .pr b{font-family:var(--f-disp);font-weight:800;font-size:34px;color:var(--ink);letter-spacing:-.03em}
+.plan .pr span{font-size:13px;color:var(--muted)}
+.plan .pr s{font-size:14px;color:var(--muted)}
+.plan .gst{font-family:var(--f-mono);font-size:11px;color:var(--muted);margin-bottom:18px}
+.plan .ilist{margin-bottom:22px}
+.plan .act{margin-top:auto;display:flex;flex-direction:column;gap:8px}
+
+/* calculator */
+.calc{display:grid;grid-template-columns:1.25fr 1fr;border:1px solid var(--line);border-radius:var(--r-l);overflow:hidden;background:var(--surface);box-shadow:var(--sh-s)}
+@media(max-width:900px){.calc{grid-template-columns:1fr}}
+.calc .cin{padding:28px;display:flex;flex-direction:column;gap:22px}
+.calc .cout{background:var(--navy);color:#fff;padding:28px;display:flex;flex-direction:column}
+html[data-theme="dark"] .calc .cout{background:#050916}
+.fld>label,.fld>.lb{display:flex;justify-content:space-between;align-items:baseline;font-weight:600;font-size:14px;color:var(--ink);margin-bottom:10px}
+.fld>label small,.fld>.lb small{font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--blue)}
+.fld .hint{font-size:12px;color:var(--muted);margin-top:7px}
+.seg{display:flex;flex-wrap:wrap;gap:6px;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:4px}
+.seg button{flex:1 1 auto;border:0;background:none;cursor:pointer;padding:10px 12px;border-radius:9px;font-size:13px;font-weight:600;color:var(--muted);transition:background .2s,color .2s,box-shadow .2s;white-space:nowrap}
+.seg button small{display:block;font-family:var(--f-mono);font-size:10px;font-weight:500;margin-top:2px}
+.seg button.on{background:var(--surface);color:var(--blue);box-shadow:var(--sh-s)}
+.seg button:hover:not(.on){color:var(--ink)}
+input[type=range].rng{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:99px;background:var(--line-2);outline:none;cursor:pointer;background-image:linear-gradient(var(--blue),var(--blue));background-size:var(--p,0%) 100%;background-repeat:no-repeat}
+input[type=range].rng::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#fff;border:3px solid var(--blue);box-shadow:0 4px 10px rgba(0,102,255,.35);transition:transform .15s}
+input[type=range].rng::-webkit-slider-thumb:hover{transform:scale(1.12)}
+input[type=range].rng::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid var(--blue)}
+.stp{display:inline-flex;align-items:center;border:1px solid var(--line-2);border-radius:11px;overflow:hidden;background:var(--surface)}
+.stp button{width:40px;height:40px;border:0;background:none;cursor:pointer;font-size:18px;color:var(--ink)}
+.stp button:hover{background:var(--chip);color:var(--blue)}
+.stp input{width:64px;height:40px;border:0;border-left:1px solid var(--line);border-right:1px solid var(--line);text-align:center;font-family:var(--f-mono);font-weight:600;background:none;color:var(--ink)}
+.tgl{display:flex;align-items:center;gap:11px;cursor:pointer;font-size:14px;font-weight:600;color:var(--ink)}
+.tgl input{display:none}
+.tgl .sw{width:42px;height:24px;border-radius:99px;background:var(--line-2);position:relative;transition:background .25s;flex-shrink:0}
+.tgl .sw:after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:transform .3s var(--ease-o);box-shadow:0 2px 5px rgba(0,0,0,.2)}
+.tgl input:checked+.sw{background:var(--blue)}
+.tgl input:checked+.sw:after{transform:translateX(18px)}
+.tgl small{display:block;font-weight:400;font-size:12px;color:var(--muted)}
+.cout .ck{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B6C2DA}
+.cout .ctot{font-family:var(--f-disp);font-weight:800;font-size:42px;letter-spacing:-.03em;line-height:1;margin:10px 0 4px;font-variant-numeric:tabular-nums}
+.cout .csub{font-size:13px;color:#B6C2DA;margin-bottom:20px}
+.cout .crows{display:flex;flex-direction:column;gap:9px;padding:16px 0;border-top:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12);margin-bottom:20px}
+.cout .crow{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;color:#dfe6f5}
+.cout .crow b{font-family:var(--f-mono);font-weight:600;color:#fff;white-space:nowrap}
+.cout .crow.save b{color:#5FE08D}
+.cout .cact{margin-top:auto;display:flex;flex-direction:column;gap:9px}
+.cout .cfine{font-family:var(--f-mono);font-size:10.5px;color:#8F9BB6;margin-top:12px}
+.flash{animation:flash .5s var(--ease-o)}
+@keyframes flash{0%{opacity:.35;transform:translateY(-4px)}}
+
+/* tabs */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:22px}
+.tabs button{border:1px solid var(--line);background:var(--surface);cursor:pointer;padding:10px 16px;border-radius:99px;font-size:13.5px;font-weight:600;color:var(--muted);transition:all .2s}
+.tabs button:hover{color:var(--ink);border-color:var(--line-2)}
+.tabs button.on{background:var(--blue);border-color:var(--blue);color:#fff}
+[data-panel]{display:none}[data-panel].on{display:block;animation:panelIn .45s var(--ease-o)}
+@keyframes panelIn{from{opacity:0;transform:translateY(8px)}}
+
+/* faq */
+.faq{display:flex;flex-direction:column;gap:10px;max-width:880px}
+.fq{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);transition:border-color .2s}
+.fq.open{border-color:var(--line-2)}
+.fq button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;background:none;border:0;cursor:pointer;text-align:left;padding:18px 20px;font-weight:600;font-size:15px;color:var(--ink)}
+.fq button i{width:26px;height:26px;border-radius:50%;background:var(--chip);color:var(--blue);display:grid;place-items:center;flex-shrink:0;transition:transform .35s var(--ease-o),background .2s}
+.fq button i svg{width:12px;height:12px}
+.fq.open button i{transform:rotate(45deg);background:var(--blue);color:#fff}
+.fq .fa{max-height:0;overflow:hidden;transition:max-height .45s var(--ease-o)}
+.fq .fa p{padding:0 20px 20px;font-size:14.5px;color:var(--muted);line-height:1.7}
+
+/* CTA band */
+.cta{background:var(--blue);color:#fff;border-radius:24px;padding:44px;display:grid;grid-template-columns:1.4fr 1fr;gap:30px;align-items:center;position:relative;overflow:hidden}
+.cta h2{font-family:var(--f-serif);color:#fff;font-size:clamp(26px,3vw,36px);margin-bottom:10px}
+.cta p{color:#dbe6ff;font-size:15.5px}
+.cta .ca{display:flex;flex-direction:column;gap:10px;align-items:flex-start;position:relative;z-index:2}
+.cta .ring{position:absolute;right:-80px;top:-80px;width:280px;height:280px;border:2px solid rgba(255,255,255,.15);border-radius:50%;animation:ringP 6s var(--ease) infinite}
+.cta .ring.r2{width:420px;height:420px;right:-150px;top:-150px;animation-delay:1.5s}
+@keyframes ringP{50%{transform:scale(1.06);opacity:.6}}
+@media(max-width:820px){.cta{grid-template-columns:1fr;padding:32px}}
+
+/* ---------- forms + modal ---------- */
+.modal{position:fixed;inset:0;z-index:270;display:none;align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex}
+.modal .sc{position:absolute;inset:0;background:rgba(11,19,43,.6);animation:fadeIn .25s}
+.modal .mb{position:relative;width:min(520px,100%);max-height:calc(100vh - 40px);overflow-y:auto;background:var(--surface);border-radius:var(--r-l);box-shadow:var(--sh-l);animation:popIn .35s var(--ease-o)}
+.modal .mb.wide{width:min(720px,100%)}
+.modal .mh{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;padding:22px 24px 6px}
+.modal .mh h3{font-family:var(--f-serif);font-size:24px}
+.modal .mh p{font-size:13.5px;color:var(--muted);margin-top:4px}
+.modal .x{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--surface);cursor:pointer;display:grid;place-items:center;flex-shrink:0;color:var(--ink)}
+.modal .x svg{width:16px;height:16px}
+.modal .mc{padding:16px 24px 24px}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form .full{grid-column:1/-1}
+@media(max-width:520px){.form{grid-template-columns:1fr}}
+.fi label{display:block;font-size:12.5px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.fi input,.fi select,.fi textarea{width:100%;border:1.5px solid var(--line-2);background:var(--surface);border-radius:11px;padding:11px 13px;font-size:14px;color:var(--ink);outline:0;transition:border-color .2s,box-shadow .2s}
+.fi textarea{min-height:90px;resize:vertical}
+.fi input:focus,.fi select:focus,.fi textarea:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(0,102,255,.12)}
+.fi.err input,.fi.err select,.fi.err textarea{border-color:var(--red)}
+.fi .em{display:none;font-size:11.5px;color:var(--red);margin-top:5px}
+.fi.err .em{display:block}
+.form .fine{font-size:11.5px;color:var(--muted)}
+.done{text-align:center;padding:10px 0 6px}
+.done .dk{width:64px;height:64px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;margin:0 auto 14px;animation:popIn .5s var(--ease-o)}
+.done .dk svg{width:30px;height:30px}
+.done h4{font-family:var(--f-serif);font-size:22px;margin-bottom:6px}
+.done p{font-size:14px;color:var(--muted)}
+
+/* ---------- cart drawer ---------- */
+.cart{position:fixed;inset:0;z-index:265;pointer-events:none}
+.cart .sc{position:absolute;inset:0;background:rgba(11,19,43,.5);opacity:0;transition:opacity .3s}
+.cart .pn{position:absolute;top:0;right:0;bottom:0;width:min(420px,100vw);background:var(--surface);transform:translateX(100%);transition:transform .4s var(--ease-o);display:flex;flex-direction:column}
+.cart.open{pointer-events:auto}.cart.open .sc{opacity:1}.cart.open .pn{transform:none}
+.cart .ch{display:flex;justify-content:space-between;align-items:center;padding:20px 22px;border-bottom:1px solid var(--line)}
+.cart .ch h3{font-size:18px}.cart .ch span{font-family:var(--f-mono);font-size:11.5px;color:var(--muted)}
+.cart .ci{flex:1;overflow-y:auto;padding:16px 22px;display:flex;flex-direction:column;gap:12px}
+.cart .it{border:1px solid var(--line);border-radius:var(--r);padding:14px;animation:panelIn .35s var(--ease-o)}
+.cart .it .t{display:flex;justify-content:space-between;gap:10px}
+.cart .it b{font-size:14px;color:var(--ink)}
+.cart .it small{display:block;font-size:12px;color:var(--muted);margin-top:3px}
+.cart .it .rm{background:none;border:0;cursor:pointer;color:var(--muted);width:28px;height:28px;border-radius:8px;display:grid;place-items:center}
+.cart .it .rm:hover{background:var(--chip);color:var(--red)}
+.cart .it .rm svg{width:15px;height:15px}
+.cart .it .bt{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.cart .it .q{display:inline-flex;border:1px solid var(--line-2);border-radius:9px;overflow:hidden}
+.cart .it .q button{width:30px;height:30px;border:0;background:none;cursor:pointer;color:var(--ink)}
+.cart .it .q span{min-width:32px;display:grid;place-items:center;font-family:var(--f-mono);font-size:13px;border-left:1px solid var(--line);border-right:1px solid var(--line)}
+.cart .it .pz{font-family:var(--f-mono);font-weight:600;color:var(--ink)}
+.cart .empty{text-align:center;color:var(--muted);padding:50px 10px;font-size:14px}
+.cart .empty svg{width:46px;height:46px;margin:0 auto 12px;color:var(--line-2)}
+.cart .cf{padding:18px 22px 22px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.cart .cf .r{display:flex;justify-content:space-between;font-size:14px;color:var(--muted)}
+.cart .cf .r b{font-family:var(--f-mono);color:var(--ink)}
+.cart .cf .tt{font-size:16px;color:var(--ink);font-weight:700;padding-top:8px;border-top:1px dashed var(--line-2)}
+.cart .cf .tt b{font-size:18px}
+.cart .cf .btn{margin-top:6px}
+
+/* ---------- toast ---------- */
+.toast{position:fixed;left:50%;bottom:26px;z-index:400;transform:translate(-50%,30px);opacity:0;pointer-events:none;background:var(--navy);color:#fff;border-radius:12px;padding:12px 18px 12px 12px;display:flex;align-items:center;gap:10px;font-size:14px;box-shadow:var(--sh-l);transition:transform .4s var(--ease-o),opacity .3s}
+html[data-theme="dark"] .toast{background:#1E2A49}
+.toast.on{transform:translate(-50%,0);opacity:1}
+.toast i{width:26px;height:26px;border-radius:50%;background:var(--green);display:grid;place-items:center}
+.toast i svg{width:14px;height:14px}
+
+/* ---------- floating ---------- */
+.fab-wa{position:fixed;right:22px;bottom:22px;z-index:90;width:56px;height:56px;border-radius:50%;background:var(--wa);color:#fff;display:grid;place-items:center;box-shadow:0 14px 30px -10px rgba(37,211,102,.8);transition:transform .25s var(--ease-o)}
+.fab-wa:hover{transform:scale(1.08)}
+.fab-wa svg{width:28px;height:28px}
+.fab-wa:after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--wa);animation:waP 2.4s var(--ease) infinite}
+@keyframes waP{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.6);opacity:0}}
+.side-cb{position:fixed;right:0;top:50%;z-index:90;transform:translateY(-50%);writing-mode:vertical-rl;background:var(--orange);color:#fff;border:0;cursor:pointer;font-weight:700;font-size:13px;letter-spacing:.04em;padding:16px 9px;border-radius:12px 0 0 12px;box-shadow:-6px 10px 24px -12px rgba(255,138,0,.9);transition:padding .25s var(--ease-o)}
+.side-cb:hover{padding-right:13px}
+@media(max-width:620px){.side-cb{display:none}}
+
+/* ---------- footer (royal blue) ---------- */
+.ftr{background:var(--blue);color:#dbe6ff;padding:56px 0 26px;margin-top:0}
+html[data-theme="dark"] .ftr{background:#0047B3}
+.ftr a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.nl{background:#fff;color:var(--navy);border-radius:var(--r-l);padding:26px 28px;display:grid;grid-template-columns:1.2fr 1fr;gap:22px;align-items:center;margin-bottom:40px}
+.nl h3{font-family:var(--f-serif);font-size:23px;color:var(--navy)}
+.nl p{font-size:13.5px;color:#5B6782;margin-top:4px}
+.nl form{display:flex;gap:8px}
+.nl input{flex:1;min-width:0;border:1.5px solid #D3DCEB;border-radius:11px;padding:12px 14px;font-size:14px;outline:0;color:var(--navy);background:#fff}
+.nl input:focus{border-color:var(--blue)}
+@media(max-width:820px){.nl{grid-template-columns:1fr}}
+.ft-top{display:grid;grid-template-columns:330px 1fr;gap:36px;margin-bottom:34px}
+@media(max-width:960px){.ft-top{grid-template-columns:1fr}}
+.ft-brand .lgc{background:#fff;border-radius:var(--r);padding:16px 18px;display:inline-flex;margin-bottom:14px}
+.ft-brand .lgc .lw{color:var(--navy)}
+.ft-brand .tg{font-weight:600;color:#fff;font-size:14px;margin-bottom:4px}
+.ft-brand .tg2{font-family:var(--f-mono);font-size:11px;color:#c7d8ff;margin-bottom:12px}
+.ft-brand .sup24{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:7px 12px;font-size:12.5px;font-weight:600;color:#fff;margin-bottom:14px}
+.ft-brand .sup24 i{width:8px;height:8px;border-radius:50%;background:#5FE08D;animation:waP 2s infinite;position:relative}
+.ft-brand p{font-size:12.5px;line-height:1.7;color:#dbe6ff;margin-bottom:16px}
+.soc{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.soc a{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.14);display:grid;place-items:center;color:#fff;transition:background .2s,transform .2s}
+.soc a:hover{background:#fff;color:var(--blue);transform:translateY(-2px);text-decoration:none}
+.soc svg{width:16px;height:16px}
+.cvid{display:flex;gap:12px;align-items:center;background:rgba(11,19,43,.25);border-radius:12px;padding:10px;cursor:pointer;border:0;color:#fff;text-align:left;width:100%}
+.cvid .th{width:76px;height:46px;border-radius:8px;background:var(--navy);display:grid;place-items:center;flex-shrink:0}
+.cvid .th svg{width:20px;height:20px;color:#FF0000}
+.cvid b{font-size:13px;display:block}.cvid span{font-size:11.5px;color:#c7d8ff}
+.ft-rows{display:flex;flex-direction:column;gap:14px}
+.ft-row{display:grid;grid-template-columns:110px 1fr;gap:14px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.16)}
+.ft-row .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#fff;font-weight:600;padding-top:2px}
+.ft-row .v{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px}
+.ft-row .v a.hire{color:#fff;background:var(--red);padding:1px 8px;border-radius:6px;font-weight:600}
+@media(max-width:560px){.ft-row{grid-template-columns:1fr;gap:6px}}
+.ft-strip{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:center;padding:16px 0;border-top:1px solid rgba(255,255,255,.16)}
+.ft-strip .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#fff;font-weight:600}
+@media(max-width:700px){.ft-strip{grid-template-columns:1fr}}
+.tiles{display:flex;flex-wrap:wrap;gap:8px}
+.tile{background:#fff;color:var(--navy);border-radius:9px;padding:6px 10px;text-align:center;line-height:1.1;min-width:64px}
+.tile small{display:block;font-family:var(--f-mono);font-size:8.5px;letter-spacing:.1em;color:#5B6782}
+.tile b{font-family:var(--f-disp);font-size:13px;font-weight:800;color:var(--navy)}
+.tile.w{display:flex;align-items:center;gap:7px;font-weight:700;font-size:12.5px;padding:8px 12px}
+.tile .st{color:#f5a623;letter-spacing:1px}
+.partner{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;background:var(--navy);border-radius:var(--r-l);padding:24px 28px;margin:24px 0}
+.partner h3{color:#fff;font-family:var(--f-serif);font-size:22px}
+.partner p{font-size:13.5px;color:#B6C2DA;margin-top:3px}
+.ft-bot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:12px;color:#c7d8ff;padding-top:8px}
+.ft-bot .ids{display:flex;flex-wrap:wrap;gap:4px 14px;font-family:var(--f-mono);font-size:11px}
+
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}.hero [data-in]{opacity:1;transform:none}}
+
+@media(max-width:620px){.promo{font-size:12px}.promo .opt{display:none}}
+/* dark mode: keep navy icon tiles visible on dark surfaces */
+html[data-theme="dark"] [style*="background:#0B132B"],html[data-theme="dark"] [style*="background: #0B132B"]{background:#27355A!important}
+html[data-theme="dark"] .ft-brand .lgc .lw{color:#0B132B}
+
+/* =====================================================================
+   LIVE THEME — matches www.xcellhost.top product pages (xh-product-page)
+   Palette/type measured from the live Microsoft Entra ID page.
+   ===================================================================== */
+:root{
+  --blue:#1565D8;--blue-d:#0C3E8F;--navy:#041E42;--navy-2:#0A2A57;--orange:#FF8C1A;--orange-d:#F57C00;--red:#FF3B3B;
+  --green:#16a34a;--ok:#2ECC71;
+  --bg:#ffffff;--surface:#ffffff;--surface-2:#F2F6FC;--ink:#041E42;--text:#1C2A3A;--muted:#51607A;
+  --line:#DCE5F2;--line-2:#C9D8EE;--chip:#E8F0FD;
+  --hero:#041E42;--hero-muted:#c9d8f2;
+  --f-serif:"Sora",system-ui,sans-serif;--f-disp:"Sora",system-ui,sans-serif;--f-body:"IBM Plex Sans",system-ui,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,monospace;
+  --sh-s:0 6px 18px rgba(4,30,66,.06);--sh:0 18px 50px rgba(4,30,66,.10);--sh-l:0 34px 80px -20px rgba(4,30,66,.34);
+  --maxw:1240px;
+}
+html[data-theme="dark"]{--bg:#06122A;--surface:#0B1A38;--surface-2:#081630;--ink:#EAF1FF;--text:#C9D6EE;--muted:#93A4C4;--line:#1B2D52;--line-2:#243A66;--chip:#10244A}
+body{font-size:15px}
+h1,h2,h3,h4{color:var(--ink)}
+#xhProgress{background:linear-gradient(90deg,#1565D8,#FF8C1A);box-shadow:0 0 12px rgba(21,101,216,.6)}
+
+/* ---------- buttons (live: 8px radius) ---------- */
+.btn{border-radius:8px;font-size:14px;padding:11px 20px}
+.btn-sm{border-radius:8px}
+.btn-orange{background:#FF8C1A;box-shadow:0 10px 26px -10px rgba(255,140,26,.7)}
+.btn-orange:hover{background:#e97a08}
+.btn-blue{background:linear-gradient(135deg,#1565D8,#0C3E8F);box-shadow:0 14px 28px -12px rgba(21,101,216,.75)}
+.btn-line{border-color:rgba(255,255,255,.35);background:rgba(255,255,255,.08)}
+.btn-ghost{border-color:var(--line)}
+
+/* ---------- section headings → live mono labels ---------- */
+.sec{padding:30px 0}
+.sec.alt{background:transparent}
+.sec.tight{padding:26px 0}
+main > .sec:first-of-type{padding-top:44px}
+.sh{max-width:none;margin-bottom:18px}
+.sh .eyebrow{display:block;font:700 13px/1.35 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 10px;padding:0;background:none;border:0}
+.sh .eyebrow:before{content:none}
+.sh h2{font-family:var(--f-disp)!important;font-weight:800!important;font-size:clamp(24px,2.4vw,30px)!important;line-height:1.22!important;letter-spacing:-.02em!important;color:var(--ink)!important;margin:0 0 10px!important}
+.sh h2 .acc{color:var(--blue)!important;font-style:normal!important}
+.sh p{font-size:16px;color:var(--text);max-width:none;line-height:1.75}
+.sh.c{text-align:left}
+
+/* ---------- cards & icon tiles (live soft tiles) ---------- */
+.card{border-radius:18px;box-shadow:var(--sh-s)}
+.card:hover{box-shadow:var(--sh);border-color:#c9dcfb}
+.ico{width:40px;height:40px;border-radius:11px;background:var(--chip)!important;color:var(--blue)!important}
+.ico svg{width:20px;height:20px}
+.ico.o{background:#fff3e0!important;color:#F57C00!important}.ico.n{background:#eaeff9!important;color:#0A2A57!important}.ico.g{background:#e4f7ec!important;color:#16a34a!important}.ico.r{background:#fdecec!important;color:#d92d20!important}
+html[data-theme="dark"] .ico.o,html[data-theme="dark"] .ico.n,html[data-theme="dark"] .ico.g,html[data-theme="dark"] .ico.r{background:var(--chip)!important}
+.chip i{background:var(--blue)}
+.plan{border-radius:18px}
+.calc{border-radius:18px}
+.calc .cout{background:linear-gradient(160deg,#061634,#0c2b63 60%,#12408f)}
+.cta{background:linear-gradient(120deg,#041E42,#123776 60%,#1565D8)}
+.tbl th{font-size:11px}
+
+/* =========================== CHROME =========================== */
+/* utility bar */
+.ubar{background:#041E42}
+.ubar .ur .stat{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.08);display:grid;place-items:center;color:#5FE08D}
+.ubar .ur .stat svg{width:14px;height:14px}
+.ubar .lang-sel{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:99px;padding:3px 10px;color:#fff;font-size:12px;cursor:pointer}
+.ubar .lang-sel svg{width:13px;height:13px}
+.ubar .ph b{color:#9fb6de;font-weight:500;margin-right:6px}
+/* promo */
+.promo{background:linear-gradient(90deg,#1565D8,#0E4CAB);font-size:13px}
+.promo .tick{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:4px;background:#2ECC71;color:#fff;margin-right:6px;vertical-align:-3px}
+.promo .tick svg{width:11px;height:11px}
+.promo .tag{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);font-family:var(--f-mono)}
+/* header with image logo */
+.hdr{background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px)}
+html[data-theme="dark"] .hdr{background:rgba(6,18,42,.92)}
+.hdr .wrap{height:80px;max-width:1360px}
+.logo-img{display:block;flex-shrink:0;line-height:0}
+.logo-img img{height:64px;width:auto;display:block}
+.logo-img .alt{display:none;font-family:var(--f-disp);font-weight:800;font-size:22px;color:var(--ink)}
+.logo-img.noimg img{display:none}.logo-img.noimg .alt{display:block}
+html[data-theme="dark"] .logo-img img{background:#fff;border-radius:10px;padding:2px 6px}
+.nav>.ni>button{font-weight:500;color:var(--text)}
+.nav>.ni>button svg{width:9px;height:9px;opacity:.6}
+
+/* left contact stack (live) */
+.lfab{position:fixed;left:22px;bottom:22px;z-index:95;display:flex;flex-direction:column;gap:14px}
+.lfab a,.lfab button{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;color:#fff;border:0;cursor:pointer;box-shadow:0 12px 26px -10px rgba(4,30,66,.55);transition:transform .25s var(--ease-o)}
+.lfab a:hover,.lfab button:hover{transform:scale(1.08)}
+.lfab svg{width:26px;height:26px}
+.lfab .lf-call{background:linear-gradient(135deg,#1565D8,#0C3E8F)}
+.lfab .lf-cal{background:linear-gradient(135deg,#FF8C1A,#F57C00)}
+.lfab .lf-wa{background:#25D366}
+.fab-wa{display:none!important}
+/* right bottom: cart + bot */
+.rfab{position:fixed;right:22px;bottom:22px;z-index:95;display:flex;flex-direction:column;gap:14px;align-items:center}
+.rfab button{position:relative;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;color:#fff;border:0;cursor:pointer;box-shadow:0 12px 26px -10px rgba(4,30,66,.55);transition:transform .25s var(--ease-o)}
+.rfab button:hover{transform:scale(1.08)}
+.rfab svg{width:24px;height:24px}
+.rfab .rf-cart{background:linear-gradient(135deg,#1565D8,#0C3E8F)}
+.rfab .rf-bot{background:#0A2A57}
+.rfab .rf-bot .on{position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:50%;background:#2ECC71;border:2px solid #fff}
+.rfab .cnt{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;padding:0 5px;border-radius:99px;background:#FF8C1A;color:#fff;font:600 11px var(--f-mono);display:grid;place-items:center;transform:scale(0);transition:transform .3s var(--ease-o)}
+.rfab .cnt.on{transform:scale(1)}
+/* callback side tab (live gradient + phone) */
+.side-cb{background:linear-gradient(180deg,#FF8C1A,#F57C00);display:flex;align-items:center;gap:8px;padding:18px 10px}
+.side-cb svg{width:15px;height:15px;transform:rotate(90deg)}
+/* chatbot panel */
+.xbot{position:fixed;right:22px;bottom:150px;z-index:260;width:min(360px,calc(100vw - 32px));background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--sh-l);overflow:hidden;opacity:0;transform:translateY(12px) scale(.98);pointer-events:none;transition:opacity .25s,transform .35s var(--ease-o)}
+.xbot.open{opacity:1;transform:none;pointer-events:auto}
+.xbot .bh{background:linear-gradient(120deg,#041E42,#1565D8);color:#fff;padding:14px 16px;display:flex;align-items:center;gap:10px}
+.xbot .bh b{font-family:var(--f-disp);font-size:14px;display:block}.xbot .bh span{font-size:11.5px;color:#c9d8f2}
+.xbot .bh .x{margin-left:auto;background:rgba(255,255,255,.12);border:0;color:#fff;width:30px;height:30px;border-radius:8px;cursor:pointer}
+.xbot .bm{padding:14px 16px;display:flex;flex-direction:column;gap:10px;max-height:300px;overflow-y:auto}
+.xbot .msg{background:var(--surface-2);border:1px solid var(--line);border-radius:12px 12px 12px 4px;padding:10px 12px;font-size:13.5px;color:var(--text);max-width:88%}
+.xbot .msg.me{align-self:flex-end;background:#1565D8;color:#fff;border-color:#1565D8;border-radius:12px 12px 4px 12px}
+.xbot .qr{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 14px}
+.xbot .qr button,.xbot .qr a{font-size:12.5px;font-weight:600;border:1px solid var(--line-2);background:var(--surface);color:var(--blue);border-radius:99px;padding:7px 12px;cursor:pointer}
+.xbot .qr button:hover,.xbot .qr a:hover{border-color:var(--blue)}
+@media(max-width:620px){.lfab{left:12px;bottom:12px;gap:10px}.lfab a,.lfab button,.rfab button{width:48px;height:48px}.rfab{right:12px;bottom:12px}}
+
+/* =========================== LIVE HERO =========================== */
+.hero.lh{background:radial-gradient(900px 420px at 80% -20%,#0E3A78 0%,#041E42 60%);padding:50px 0 54px;min-height:510px}
+html[data-theme="dark"] .hero.lh{background:radial-gradient(900px 420px at 80% -20%,#0a2a5a 0%,#020b1f 60%)}
+.hero.lh .hero-bg .lh-grid{position:absolute;inset:0;opacity:.5;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:radial-gradient(760px 560px at 75% 30%,#000,transparent 72%);mask-image:radial-gradient(760px 560px at 75% 30%,#000,transparent 72%);animation:lhGrid 32s linear infinite}
+@keyframes lhGrid{to{background-position:48px 48px}}
+.hero.lh .hero-bg .lh-dots{position:absolute;inset:0;opacity:.55;background-image:radial-gradient(rgba(127,176,255,.55) 1.2px,transparent 1.3px);background-size:14px 14px;-webkit-mask-image:radial-gradient(520px 300px at 30% 45%,#000 20%,transparent 75%);mask-image:radial-gradient(520px 300px at 30% 45%,#000 20%,transparent 75%)}
+.hero.lh .hero-bg .lh-aur{position:absolute;border-radius:50%;filter:blur(70px);opacity:.38}
+.hero.lh .hero-bg .lh-aur.a1{width:420px;height:420px;background:radial-gradient(circle,#2f6bff,transparent 65%);top:-110px;right:6%;animation:lhA1 12s ease-in-out infinite}
+.hero.lh .hero-bg .lh-aur.a2{width:340px;height:340px;background:radial-gradient(circle,#ff8c1a,transparent 65%);bottom:-80px;right:28%;animation:lhA2 14s ease-in-out infinite}
+@keyframes lhA1{50%{transform:translate(-30px,24px) scale(1.12)}}
+@keyframes lhA2{50%{transform:translate(26px,-20px) scale(1.15)}}
+.hero.lh .hero-bg .lh-scan{position:absolute;left:0;right:0;height:120px;background:linear-gradient(180deg,transparent,rgba(90,150,255,.10),transparent);animation:lhScan 7s var(--ease) infinite}
+@keyframes lhScan{0%{top:-120px}100%{top:100%}}
+.hero.lh .crumb{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#7fb0ff;margin-bottom:14px}
+.hero.lh .crumb a:hover{color:#fff}.hero.lh .crumb .sep{margin:0 6px;color:#5a7db3}.hero.lh .crumb .c{color:#7fb0ff}
+.hero.lh .hero-grid{grid-template-columns:1.08fr 1fr;gap:40px;padding-bottom:0;align-items:center}
+.lh-title{font-family:var(--f-disp)!important;font-weight:800!important;font-size:clamp(30px,3.4vw,44px)!important;line-height:1.14!important;letter-spacing:-.025em!important;color:#fff!important;margin:0 0 14px!important;display:block}
+.lh-title .x{color:#FF3B3B}
+.lh-title .brd{color:#fff}
+.lh-title .dv{color:#7fb0ff;margin:0 .22em;font-weight:500}
+.lh-title .nm{color:#fff;display:block}
+.lh-tag{font-family:var(--f-disp);font-weight:700;font-size:16.5px;color:#fff;line-height:1.45;margin-bottom:2px}
+.lh-tag2{font-family:var(--f-disp);font-weight:600;font-size:15.5px;color:#dbe7fb;margin-bottom:16px}
+.lh-type{font-family:var(--f-disp);font-weight:700;font-size:16px;color:#9cc3ff;min-height:24px;margin-bottom:18px}
+.lh-type .cur{display:inline-block;width:2px;height:18px;background:#9cc3ff;margin-left:2px;vertical-align:-3px;animation:lhBlink 1s steps(2) infinite}
+@keyframes lhBlink{50%{opacity:0}}
+.lh-points{display:grid;grid-template-columns:1fr 1fr;gap:12px 20px;max-width:520px;margin-bottom:24px}
+.lh-points div{display:flex;align-items:center;gap:10px;font-size:14px;color:#eaf2ff}
+.lh-points .tk{width:20px;height:20px;border-radius:5px;background:#1565D8;display:grid;place-items:center;flex-shrink:0;box-shadow:0 0 0 3px rgba(21,101,216,.25)}
+.lh-points .tk svg{width:11px;height:11px;color:#fff}
+.lh-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.lh-ctas .btn-gl{background:rgba(255,255,255,.08);color:#fff;border:1.5px solid rgba(255,255,255,.35)}
+.lh-ctas .btn-gl:hover{background:rgba(255,255,255,.16);border-color:#fff}
+.lh-ask{display:inline-flex;align-items:center;gap:12px;flex-wrap:wrap;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:8px 10px 8px 14px}
+.lh-ask .k{font-family:var(--f-mono);font-size:11px;font-weight:600;letter-spacing:.06em;color:#fff}
+.lh-ask .k b{color:#FF8C1A;margin-right:4px}
+.lh-ask .chips{display:flex;gap:6px}
+.lh-ask a{width:30px;height:30px;border-radius:8px;background:#fff;display:grid;place-items:center;transition:transform .2s var(--ease-o),box-shadow .2s}
+.lh-ask a:hover{transform:translateY(-2px);box-shadow:0 8px 18px -8px rgba(0,0,0,.6)}
+.lh-ask a svg{width:18px;height:18px}
+.hero.lh .stage{min-height:400px}
+.lh-powered{position:absolute;left:4%;bottom:-8px;z-index:6;background:#0A1A3A;border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:8px 14px 9px;box-shadow:0 14px 30px -12px rgba(0,0,0,.7)}
+.lh-powered small{display:block;font-family:var(--f-mono);font-size:8.5px;letter-spacing:.16em;color:#9fb6de;text-transform:uppercase;margin-bottom:4px}
+.lh-powered>span{display:flex;align-items:center;gap:8px;font-family:var(--f-disp);font-weight:700;font-size:16px;color:#fff}
+.lh-powered .msq{display:grid;grid-template-columns:1fr 1fr;gap:2px;width:18px;height:18px}
+.lh-powered .msq i{display:block}
+@media(max-width:980px){.hero.lh .hero-grid{grid-template-columns:1fr}.hero.lh .stage{min-height:0;margin-top:18px}.lh-powered{position:relative;left:auto;bottom:auto;display:inline-block;margin-top:14px}}
+@media(max-width:560px){.lh-points{grid-template-columns:1fr}.lh-ctas .btn{flex:1 1 auto}.lh-ask{border-radius:12px}}
+
+/* trust strip (live) */
+.lh-trust{background:var(--surface-2);border-bottom:1px solid var(--line)}
+.lh-trust .wrap{display:flex;justify-content:space-between;gap:12px 22px;flex-wrap:wrap;padding:14px 24px;font-size:12.5px;color:var(--muted)}
+.lh-trust b{font-family:var(--f-mono);color:var(--ink);font-weight:600}
+@media(max-width:760px){.lh-trust .wrap{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;white-space:nowrap}}
+
+/* live body primitives */
+.pp-sec{font:700 15px/1.35 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 14px}
+.pp-ov{font-size:16px;color:var(--text);line-height:1.75}
+.pp-ov b{color:var(--ink)}
+.pp-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px 46px}
+@media(max-width:820px){.pp-cols{grid-template-columns:1fr}}
+.prov-strip{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:22px}
+.prov-lbl{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+.prov{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-disp);font-weight:700;font-size:13.5px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:7px 15px 7px 8px;box-shadow:0 4px 12px -8px rgba(4,18,42,.4)}
+.prov .pl{width:24px;height:24px;border-radius:6px;display:grid;place-items:center;color:#fff;flex-shrink:0}
+.prov .pl svg{width:14px;height:14px}
+.prov .pl .msq{display:grid;grid-template-columns:1fr 1fr;gap:1.5px;width:14px;height:14px}.prov .pl .msq i{display:block}
+/* 3-card explainer (live vcard) */
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:900px){.vgrid{grid-template-columns:1fr}}
+.vcard{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:var(--sh-s);transition:transform .35s var(--ease-o),box-shadow .35s,border-color .3s}
+.vcard:hover{transform:translateY(-6px);box-shadow:var(--sh);border-color:#c9dcfb}
+.vcard .vb{display:inline-flex;align-items:center;gap:7px;font-family:var(--f-mono);font-size:12px;font-weight:600;padding:6px 12px;border-radius:99px;margin-bottom:16px;background:var(--chip);color:var(--blue)}
+.vcard .vb svg{width:13px;height:13px}
+.vcard.b2 .vb{background:#eaeff9;color:#2b4a8f}.vcard.b3 .vb{background:#fff3e0;color:#F57C00}
+.vcard h3{font-size:18px;margin-bottom:8px}
+.vcard p{font-size:13.5px;color:var(--muted);margin-bottom:18px;line-height:1.6}
+.vcard ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.vcard li{display:flex;gap:9px;align-items:flex-start;font-size:13px;color:var(--text)}
+.vcard li i{width:18px;height:18px;border-radius:50%;background:#e4f7ec;color:#16a34a;display:grid;place-items:center;flex-shrink:0;margin-top:1px}
+.vcard li i svg{width:10px;height:10px}
+
+/* dark Microsoft plan card (live ez-card) */
+.ez-wrap{display:grid;grid-template-columns:minmax(0,380px) 1fr;gap:26px;align-items:start}
+@media(max-width:900px){.ez-wrap{grid-template-columns:1fr}}
+.ez-card{position:relative;background:#0B1730;border:1px solid #1e2e52;border-radius:16px;padding:22px 20px 20px;color:#fff;box-shadow:0 24px 50px -24px rgba(4,30,66,.8);overflow:hidden}
+.ez-card .ez-off{position:absolute;top:0;right:0;background:#FF8C1A;color:#fff;font:700 10px var(--f-mono);letter-spacing:.08em;padding:5px 12px;border-radius:0 16px 0 10px}
+.ez-card .ez-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.ez-card .ez-ms{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-disp);font-weight:700;font-size:15px}
+.ez-card .ez-ms .msq{display:grid;grid-template-columns:1fr 1fr;gap:2px;width:18px;height:18px}.ez-card .ez-ms .msq i{display:block}
+.ez-card .ez-ext{color:#7fb0ff}.ez-card .ez-ext svg{width:15px;height:15px}
+.ez-card .ez-fam{font:600 10.5px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:#7fb0ff}
+.ez-card h3{color:#fff;font-size:18px;margin:6px 0 4px}
+.ez-card .ez-sku{font:400 10.5px var(--f-mono);color:#7d8fb3;margin-bottom:16px}
+.ez-card .ez-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#b9c9e2;padding:8px 0}
+.ez-card .ez-row s{font-family:var(--f-mono);color:#8ea2c6}
+.ez-card .ez-gst{text-align:right;font:400 10px var(--f-mono);color:#7d8fb3;margin:-6px 0 8px}
+.ez-card .ez-pr{display:flex;justify-content:space-between;align-items:center;padding:7px 0}
+.ez-card .ez-tag{font:700 9.5px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:6px}
+.ez-card .ez-tag.m{background:#1565D8;color:#fff}.ez-card .ez-tag.y{background:#FF8C1A;color:#fff}
+.ez-card .ez-amt{font-family:var(--f-disp);font-weight:800;font-size:24px;color:#fff;letter-spacing:-.02em}
+.ez-card .ez-save{display:flex;justify-content:space-between;align-items:center;background:rgba(46,204,113,.08);border:1px solid rgba(46,204,113,.35);border-radius:10px;padding:10px 12px;margin:14px 0 16px;font-size:12px;color:#b9c9e2}
+.ez-card .ez-save b{color:#5FE08D;font-family:var(--f-mono);font-size:11.5px}
+.ez-card .ez-q{display:flex;align-items:center;background:#fff;border-radius:8px;overflow:hidden;margin-bottom:12px}
+.ez-card .ez-q button{width:44px;height:38px;border:0;background:#1565D8;color:#fff;font-size:18px;cursor:pointer}
+.ez-card .ez-q button:first-child{background:#51607A}
+.ez-card .ez-q input{flex:1;height:38px;border:0;text-align:center;font:600 14px var(--f-mono);color:#041E42;background:#fff;outline:0}
+.ez-card .ez-cta{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;margin-bottom:12px}
+.ez-card .ez-cta a{display:inline-flex;align-items:center;gap:6px;color:#dbe7fb;font-weight:600}
+.ez-card .ez-cta a.q{color:#7fb0ff}
+.ez-card .ez-cta svg{width:13px;height:13px}
+.ez-card .ez-buy{width:100%;border:0;cursor:pointer;background:linear-gradient(135deg,#1565D8,#0C3E8F);color:#fff;font-weight:700;font-size:14px;padding:12px;border-radius:9px;box-shadow:0 12px 24px -12px rgba(21,101,216,.9);transition:transform .2s}
+.ez-card .ez-buy:hover{transform:translateY(-2px)}
+.ez-note{font:400 11.5px var(--f-mono);color:var(--muted);margin-top:14px}
+
+/* dark proof band (live "certified team" band) */
+.dband{background:linear-gradient(120deg,#041E42,#0E2F66 60%,#1350B0);border-radius:20px;padding:30px;display:grid;grid-template-columns:repeat(3,1fr);gap:0;color:#fff;position:relative;overflow:hidden;box-shadow:var(--sh-l)}
+.dband>div{display:flex;gap:14px;align-items:flex-start;padding:16px 20px;border-right:1px solid rgba(255,255,255,.12);position:relative}
+.dband>div:nth-child(3n){border-right:0}
+.dband>div:nth-child(n+4){border-top:1px solid rgba(255,255,255,.12)}
+.dband i{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center;flex-shrink:0;color:#9cc3ff}
+.dband i svg{width:20px;height:20px}
+.dband b{display:block;font-family:var(--f-disp);font-size:15px;color:#fff;margin-bottom:4px}
+.dband p{font-size:12.5px;color:#c9d8f2;line-height:1.55}
+.dband .n{position:absolute;right:14px;top:10px;font-family:var(--f-mono);font-weight:600;font-size:11px;color:rgba(255,255,255,.35)}
+@media(max-width:860px){.dband{grid-template-columns:1fr}.dband>div{border-right:0;border-top:1px solid rgba(255,255,255,.12)}.dband>div:first-child{border-top:0}}
+
+/* video (live "watch it in action") */
+.lvid{max-width:640px;margin:0 auto;text-align:center}
+.lvid .lbl{display:inline-block;font:600 12px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);border-radius:99px;padding:8px 16px;margin-bottom:16px;color:var(--ink);background:var(--surface)}
+.lvid .fr{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#0B1730;box-shadow:var(--sh-l);cursor:pointer;display:grid;place-items:center}
+.lvid .fr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.lvid .fr .pb{position:relative;width:68px;height:48px;border-radius:12px;background:#FF0000;display:grid;place-items:center;transition:transform .2s}
+.lvid .fr:hover .pb{transform:scale(1.08)}
+.lvid .fr .pb svg{width:22px;height:22px;color:#fff}
+.lvid .fr .cap{position:absolute;left:14px;right:14px;top:12px;text-align:left;color:#fff;font-family:var(--f-disp);font-weight:700;font-size:15px;text-shadow:0 2px 8px rgba(0,0,0,.6)}
+.lvid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* live CTA + proof strip */
+.lcta{background:linear-gradient(120deg,#0E3A8F,#1565D8 55%,#2a7bf0);border-radius:20px;padding:30px 34px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;color:#fff;box-shadow:var(--sh-l);position:relative;overflow:hidden}
+.lcta h2{color:#fff!important;font-family:var(--f-disp)!important;font-size:24px!important;margin-bottom:6px!important;text-transform:none!important;letter-spacing:-.01em!important}
+.lcta .sub{font-size:13.5px;color:#dbe7fb;margin-bottom:18px}
+.lcta .row{display:flex;flex-wrap:wrap;gap:10px}
+.lcta .row .btn{padding:10px 16px;font-size:13px}
+.lcta .row .b-w{background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.35);color:#fff}
+.lcta .row .b-w:hover{background:rgba(255,255,255,.22)}
+.lcta .seal{width:120px;height:120px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 0 0 6px rgba(255,255,255,.18);overflow:hidden}
+.lcta .seal img{width:100%;height:100%;object-fit:cover}
+.lcta .seal .sl{font:700 10px var(--f-mono);color:#1565D8;text-align:center;padding:10px;display:none}
+.lcta .seal.noimg img{display:none}.lcta .seal.noimg .sl{display:block}
+@media(max-width:760px){.lcta{grid-template-columns:1fr}.lcta .seal{display:none}}
+.proof{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:18px}
+.proof span{font:600 11.5px var(--f-mono);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:7px 14px}
+
+/* ============================ LIVE FOOTER ============================ */
+.lnl{position:relative;z-index:2;max-width:860px;margin:30px auto -110px;background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--sh-l);padding:24px 26px;text-align:center}
+.lnl h3{display:flex;align-items:center;justify-content:center;gap:10px;font-size:17px;margin-bottom:8px}
+.lnl h3 svg{width:20px;height:20px;color:#F57C00}
+.lnl p{font-size:13px;color:var(--muted);margin-bottom:16px}
+.lnl form{display:flex;gap:10px;margin-bottom:22px}
+.lnl input{flex:1;min-width:0;border:1.5px solid var(--line-2);border-radius:10px;padding:12px 14px;font-size:14px;background:var(--surface);color:var(--ink);outline:0}
+.lnl input:focus{border-color:#1565D8}
+.lnl .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.lnl .two a{display:flex;align-items:center;justify-content:center;gap:8px;color:#fff;font-weight:600;font-size:13.5px;border-radius:10px;padding:12px}
+.lnl .two a svg{width:17px;height:17px}
+.lnl .two .w{background:#25D366}.lnl .two .l{background:#1565D8}
+@media(max-width:620px){.lnl{margin:30px 16px -110px}.lnl form{flex-direction:column}.lnl .two{grid-template-columns:1fr}}
+.lft{background:linear-gradient(160deg,#1350C8 0%,#1565D8 45%,#1d74ee 100%);color:#e6efff;padding:150px 0 30px}
+html[data-theme="dark"] .lft{background:linear-gradient(160deg,#0a2f7a,#0f4bb0)}
+.lft a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.lft .top{display:grid;grid-template-columns:1.35fr 1fr;gap:26px;margin-bottom:26px}
+@media(max-width:900px){.lft .top{grid-template-columns:1fr}}
+.lft .bnr{background:#fff;border-radius:14px;padding:10px 14px;display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.lft .bnr img.lg{height:56px;width:auto}
+.lft .bnr .tx{flex:1;color:#041E42;font-size:12.5px;line-height:1.5}
+.lft .bnr .tx b{display:block;font-size:13px}
+.lft .bnr .tx em{font-style:normal;color:#1565D8;font-weight:700}
+.lft .bnr img.bd{width:58px;height:58px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.lft .co{font-size:12.5px;line-height:1.75;color:#e6efff}
+.lft .co b{color:#fff}
+.lft .soc{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.lft .soc a{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.16);display:grid;place-items:center;color:#fff}
+.lft .soc a:hover{background:#fff;color:#1565D8;text-decoration:none}
+.lft .soc svg{width:16px;height:16px}
+.lft .cv h3{font-family:var(--f-disp);color:#fff;font-size:24px;margin-bottom:12px}
+.lft .cv .fr{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#0B1730;cursor:pointer;display:grid;place-items:center}
+.lft .cv .fr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.lft .cv .fr .pb{position:relative;width:60px;height:42px;border-radius:10px;background:#FF0000;display:grid;place-items:center}
+.lft .cv .fr .pb svg{width:20px;height:20px;color:#fff}
+.lft .cv iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.lft .rows{display:flex;flex-direction:column;gap:10px;margin-bottom:22px}
+.lft .row{display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:baseline}
+.lft .row .k{font-family:var(--f-disp);font-weight:700;color:#fff;font-size:14px}
+.lft .row .v{display:flex;flex-wrap:wrap;gap:4px 18px;font-size:12.5px}
+.lft .row .v a:before{content:"›";margin-right:6px;opacity:.7}
+.lft .row .v a.hire{background:#e5383b;color:#fff;border-radius:6px;padding:2px 10px;font-weight:700}
+.lft .row .v a.hire:before{content:none}
+@media(max-width:620px){.lft .row{grid-template-columns:1fr;gap:4px}}
+.lft .strip{display:grid;grid-template-columns:140px 1fr;gap:14px;align-items:center;padding:12px 0}
+.lft .strip .k{font-family:var(--f-disp);font-weight:700;color:#fff;font-size:14px}
+@media(max-width:700px){.lft .strip{grid-template-columns:1fr}}
+.lft .tiles{display:flex;flex-wrap:wrap;gap:8px}
+.lft .tl{background:#fff;color:#041E42;border-radius:8px;min-width:64px;padding:0 7px;height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;line-height:1.05;box-shadow:0 6px 14px -8px rgba(0,0,0,.35)}
+.lft .tl small{font:600 7.5px var(--f-mono);letter-spacing:.1em;color:#51607A}
+.lft .tl b{font-family:var(--f-disp);font-weight:800;font-size:12px;color:#041E42}
+.lft .tl em{font:600 6.5px var(--f-mono);letter-spacing:.08em;color:#8a98b2;font-style:normal;text-transform:uppercase}
+.lft .pay{background:#fff;border-radius:7px;padding:6px 10px;font:800 11px var(--f-disp);color:#041E42;min-width:64px;text-align:center}
+.lft .prot{background:#fff;border-radius:8px;height:46px;padding:4px 8px;display:flex;align-items:center}
+.lft .prot img{height:36px;width:auto}
+.lft .prot .pt{font:800 11px var(--f-disp);color:#041E42}
+.lft .rev{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:760px){.lft .rev{grid-template-columns:1fr}}
+.lft .rev div{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:10px 14px;display:flex;gap:10px;align-items:center}
+.lft .rev i{width:30px;height:30px;border-radius:7px;display:grid;place-items:center;color:#fff;font-style:normal;font-weight:800;font-size:13px;flex-shrink:0}
+.lft .rev b{display:block;color:#fff;font-size:13px}
+.lft .rev span>span{font:500 10.5px var(--f-mono);color:#ffd27a}
+.lft .grow{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;background:rgba(4,30,66,.35);border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:18px 22px;margin:22px 0}
+.lft .grow b{font-family:var(--f-disp);font-size:18px;color:#fff}
+.lft .grow span{display:block;font-size:12.5px;color:#c9d8f2}
+.lft .bot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12px;color:#c9d8f2;border-top:1px solid rgba(255,255,255,.18);padding-top:16px}
+.lft .bot .ids{font-family:var(--f-mono);font-size:11px}
+.lft img.broken{display:none}
+.lnl-wrap{position:relative;z-index:2;padding:0 16px}
+.lnl .fi input{width:100%}
+.lnl .fi{margin:0}
+.lh-ask .chips{flex-wrap:wrap}
+.lh-ask a{width:auto;height:28px;padding:0 10px;border-radius:7px;font:700 11.5px var(--f-disp);color:#041E42;gap:6px;display:inline-flex;align-items:center}
+.lh-ask a i{width:8px;height:8px;border-radius:50%;display:block}
+.lh-ask a[data-ai=chatgpt] i{background:#10a37f}.lh-ask a[data-ai=claude] i{background:#d97757}.lh-ask a[data-ai=perplexity] i{background:#20808d}.lh-ask a[data-ai=google] i{background:#4285f4}.lh-ask a[data-ai=copilot] i{background:#7b61ff}
+
+/* hyper-motion layer for live hero */
+.hero.lh .hero-bg canvas.lh-net{position:absolute;inset:0;width:100%;height:100%;opacity:.9}
+.hero.lh .stage{position:relative;perspective:1200px}
+.hero.lh .stage>.lh-tilt{transform-style:preserve-3d;transition:transform .5s var(--ease-o);will-change:transform}
+.lh-orbit{position:absolute;left:50%;top:50%;width:560px;height:560px;margin:-280px 0 0 -280px;border-radius:50%;border:1px dashed rgba(127,176,255,.22);pointer-events:none;animation:lhSpin 60s linear infinite}
+.lh-orbit.o2{width:440px;height:440px;margin:-220px 0 0 -220px;border-style:solid;border-color:rgba(255,140,26,.14);animation-duration:38s;animation-direction:reverse}
+.lh-orbit:before,.lh-orbit:after{content:"";position:absolute;width:10px;height:10px;border-radius:50%;background:#7fb0ff;box-shadow:0 0 14px 4px rgba(127,176,255,.6);top:-5px;left:50%}
+.lh-orbit:after{top:auto;bottom:-5px;background:#FF8C1A;box-shadow:0 0 14px 4px rgba(255,140,26,.55)}
+.lh-orbit.o2:before{background:#5FE08D;box-shadow:0 0 12px 3px rgba(95,224,141,.5)}
+@keyframes lhSpin{to{transform:rotate(360deg)}}
+.lh-chip{position:absolute;z-index:5;display:flex;align-items:center;gap:8px;background:rgba(10,26,58,.88);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(8px);color:#fff;border-radius:12px;padding:8px 12px;font:600 12px var(--f-disp);box-shadow:0 16px 30px -14px rgba(0,0,0,.7);animation:lhFloat 6s ease-in-out infinite}
+.lh-chip i{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;background:#1565D8}
+.lh-chip i svg{width:13px;height:13px}
+.lh-chip small{display:block;font:500 10px var(--f-mono);color:#9fb6de}
+.lh-chip.c2{animation-delay:-3s}.lh-chip.c2 i{background:#FF8C1A}
+@keyframes lhFloat{50%{transform:translateY(-10px)}}
+@media(max-width:1100px){.lh-chip{display:none}}
+@media(max-width:980px){.lh-orbit{display:none}}
+.rfab .rf-cart{box-shadow:0 0 0 3px rgba(255,255,255,.85),0 12px 26px -10px rgba(4,30,66,.55)}
+@media(max-width:760px){.ubar .ur .stat,.ubar .lang-sel,.ubar .ph b{display:none}}
+.hero.lh .stage{padding-bottom:62px}@media(max-width:980px){.hero.lh .stage{padding-bottom:0}}
+/* dark-mode fixes for live primitives */
+html[data-theme="dark"] .ico.n{color:#9cc3ff!important}html[data-theme="dark"] .ico.o{color:#FFB15C!important}html[data-theme="dark"] .ico.g{color:#5FE08D!important}html[data-theme="dark"] .ico.r{color:#ff8a80!important}html[data-theme="dark"] .ico{color:#7fb0ff!important}
+html[data-theme="dark"] .vcard .vb{background:#10244A;color:#9cc3ff}html[data-theme="dark"] .vcard.b2 .vb{background:#14264a;color:#b9c9e2}html[data-theme="dark"] .vcard.b3 .vb{background:rgba(255,140,26,.14);color:#FFB15C}
+html[data-theme="dark"] .vcard li i{background:rgba(46,204,113,.14);color:#5FE08D}
+html[data-theme="dark"] .vcard:hover{border-color:#2b4d8a}
+.ez-card .ez-save{gap:10px}.ez-card .ez-save b{white-space:nowrap;flex-shrink:0}.ez-card .ez-save>span{min-width:0}
+
+/* ===== page ===== */
+/* =====================================================================
+   Thawte SSL — page styles (page-scoped / prefixed classes)
+   ===================================================================== */
+#products,#finder,#timeline,#compare,#pricing,#configure,#india{scroll-margin-top:90px}
+
+/* ---------- generic DigiCert initial tile (not the real logo) ---------- */
+.thd{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:6px;background:#1565D8;color:#fff;font:800 12px/1 var(--f-disp);box-shadow:inset 0 0 0 1px rgba(255,255,255,.2);flex-shrink:0}
+.ez-card .ez-ms .thd{width:22px;height:22px;font-size:13px}
+
+/* ---------- validation level pills (shared) ---------- */
+.lvb{display:inline-grid;place-items:center;min-width:34px;height:22px;padding:0 8px;border-radius:7px;font:700 11px/1 var(--f-mono);letter-spacing:.06em;color:#fff;background:#1565D8;transition:background .4s,transform .4s var(--ease-o)}
+.lvb.l1{background:#FF8C1A}.lvb.l2{background:#16a34a}
+
+/* ---------- hero background: scrolling ciphertext ---------- */
+.thx{position:absolute;inset:0 0 0 46%;display:flex;justify-content:flex-end;gap:22px;padding-right:2%;overflow:hidden;-webkit-mask-image:radial-gradient(900px 520px at 72% 55%,#000 10%,transparent 78%);mask-image:radial-gradient(900px 520px at 72% 55%,#000 10%,transparent 78%);opacity:.55}
+.thx .hc{font:500 11px/1.75 var(--f-mono);color:rgba(127,176,255,.32);white-space:pre;animation:thHex var(--d,40s) linear infinite;will-change:transform}
+.thx .hc b{color:rgba(255,140,26,.55);font-weight:500}
+@keyframes thHex{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+.hero.th-paused .thx .hc{animation-play-state:paused}
+@media(max-width:980px){.thx{opacity:.35;left:0}}
+
+/* ---------- hero visual: padlock handshake ---------- */
+#thHero .hero-grid>*{min-width:0}
+#thHero .stage>.lh-tilt{width:100%;max-width:480px;min-width:0}
+.thv{width:100%;max-width:480px;background:#fff;border-radius:20px;box-shadow:0 40px 90px -30px rgba(0,0,0,.65);overflow:hidden;color:#041E42;position:relative}
+html[data-theme="dark"] .thv{background:#0E1630;color:#F2F5FB;box-shadow:0 40px 90px -30px rgba(0,0,0,.9),0 0 0 1px #1E2A49}
+.thv-h{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 16px;border-bottom:1px solid var(--line)}
+.thv-h b{font-family:var(--f-disp);font-size:14.5px;display:flex;align-items:center;gap:9px;color:var(--ink);white-space:nowrap}
+.thv-h b i{width:28px;height:28px;border-radius:8px;background:#041E42;color:#FF8C1A;display:grid;place-items:center}
+html[data-theme="dark"] .thv-h b i{background:#1565D8;color:#fff}
+.thv-h b i svg{width:15px;height:15px}
+.thv-live{font-family:var(--f-mono);font-size:10.5px;color:var(--muted);display:flex;align-items:center;gap:6px;white-space:nowrap}
+.thv-live:before{content:"";width:7px;height:7px;border-radius:50%;background:#16a34a;animation:thBlink 1.6s infinite}
+@keyframes thBlink{50%{opacity:.25}}
+
+/* level stepper */
+.thv-lv{position:relative;display:grid;grid-template-columns:repeat(3,1fr);padding:9px 8px 8px;background:var(--surface-2);border-bottom:1px solid var(--line)}
+.thv-trk{position:absolute;left:16.66%;right:16.66%;top:20px;height:2px;background:var(--line-2)}
+.thv-fl{position:absolute;inset:0;background:#1565D8;transform-origin:left;transform:scaleX(0);transition:transform .8s var(--ease-o),background .4s}
+.lvs{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px}
+.lvs b{display:grid;place-items:center;width:34px;height:22px;border-radius:7px;font:700 10.5px/1 var(--f-mono);letter-spacing:.06em;background:var(--surface);border:1.5px solid var(--line-2);color:var(--muted);transition:background .35s,border-color .35s,color .35s,transform .45s var(--ease-o),box-shadow .35s}
+.lvs small{font:500 9.5px var(--f-mono);color:var(--muted);letter-spacing:.04em;white-space:nowrap;transition:color .3s}
+.lvs.dn b{background:var(--chip);border-color:var(--line-2);color:var(--ink)}
+.lvs.on b{color:#fff;transform:scale(1.12)}
+.lvs.on small{color:var(--ink);font-weight:600}
+.lvs.on[data-l="0"] b{background:#1565D8;border-color:#1565D8;box-shadow:0 0 0 5px rgba(21,101,216,.16)}
+.lvs.on[data-l="1"] b{background:#FF8C1A;border-color:#FF8C1A;box-shadow:0 0 0 5px rgba(255,140,26,.18)}
+.lvs.on[data-l="2"] b{background:#16a34a;border-color:#16a34a;box-shadow:0 0 0 5px rgba(22,163,74,.16)}
+
+/* browser bar */
+.thv-url{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--line)}
+.thv-url .dts{display:flex;gap:5px;flex-shrink:0}
+.thv-url .dts i{width:8px;height:8px;border-radius:50%;background:var(--line-2)}
+.thv-url .dts i:first-child{background:#FF8C1A;opacity:.7}
+.thv-url .bar{flex:1;min-width:0;display:flex;align-items:center;gap:8px;background:var(--surface-2);border:1px solid var(--line);border-radius:99px;padding:5px 6px 5px 11px;transition:border-color .4s,box-shadow .4s}
+.thv-url .pad{width:16px;height:16px;flex-shrink:0;color:#94a3b8;transition:color .4s}
+.thv-url .pad svg,.hv3 .lkk svg{width:100%;height:100%;overflow:visible}
+.thv-url .pad .shk{transform:translateY(-3.5px) rotate(-14deg);transform-origin:16.5px 11px;transition:transform .55s cubic-bezier(.5,1.8,.4,1)}
+.thv-url .u{flex:1;min-width:0;font:500 12.5px var(--f-mono);color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.thv-url .u em{font-style:normal;color:var(--muted);transition:color .4s}
+.thv-url .st{flex-shrink:0;font:600 10px var(--f-mono);padding:4px 9px;border-radius:99px;background:var(--chip);color:var(--muted);white-space:nowrap;transition:background .35s,color .35s}
+.thv-url.lock .bar{border-color:rgba(22,163,74,.45);box-shadow:0 0 0 3px rgba(22,163,74,.1)}
+.thv-url.lock .pad{color:#16a34a}
+.thv-url.lock .pad .shk{transform:none}
+.thv-url.lock .u em{color:#16a34a}
+.thv-url.lock .st{background:rgba(22,163,74,.12);color:#16a34a}
+html[data-theme="dark"] .thv-url.lock .st,html[data-theme="dark"] .thv-url.lock .u em{color:#5FE08D}
+
+/* chain + certificate */
+.thv-bd{display:grid;grid-template-columns:1fr 1.18fr;gap:12px;padding:12px 14px 10px;align-items:stretch}
+.thv-ch{display:flex;flex-direction:column}
+.thv-ch .cn{display:flex;align-items:center;gap:9px;padding:6px 8px;border-radius:10px;border:1px solid var(--line);background:var(--surface);transition:border-color .35s,background .35s,box-shadow .35s,transform .45s var(--ease-o)}
+.thv-ch .cn i{width:26px;height:26px;border-radius:8px;background:var(--chip);color:var(--muted);display:grid;place-items:center;flex-shrink:0;transition:background .35s,color .35s}
+.thv-ch .cn i svg{width:13px;height:13px}
+.thv-ch .cn span{min-width:0}
+.thv-ch .cn small{display:block;font:500 9px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.thv-ch .cn b{display:block;font-size:11.5px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.thv-ch .cn.on{border-color:#1565D8;background:rgba(21,101,216,.06);box-shadow:0 6px 16px -10px rgba(21,101,216,.6)}
+.thv-ch .cn.on i{background:#1565D8;color:#fff}
+.thv-ch .cn.pulse{transform:translateX(3px)}
+.thv-ch .lk{position:relative;height:14px;margin-left:20px;width:2px;background:var(--line-2)}
+.thv-ch .lk i{position:absolute;inset:0;background:#1565D8;transform-origin:top;transform:scaleY(0);transition:transform .45s var(--ease-o)}
+.thv-ch .lk.on i{transform:scaleY(1)}
+.thv-ce{position:relative;border:1px solid var(--line);border-radius:12px;background:var(--surface-2);padding:10px 12px;opacity:0;transform:translateX(-30px) scale(.92) rotate(-3deg);transition:opacity .5s var(--ease-o),transform .7s var(--ease-o),border-color .4s;min-width:0}
+.thv-ce.in{opacity:1;transform:none}
+.thv-ce.out{opacity:0;transform:translateX(30px) scale(.96);transition-duration:.35s}
+.thv-ce .ceh{display:flex;align-items:center;gap:8px;margin-bottom:7px;padding-right:22px}
+.thv-ce .ceh b{font-family:var(--f-disp);font-size:12.5px;color:var(--ink);white-space:nowrap}
+.thv-ce dl{display:flex;flex-direction:column;gap:5px;margin:0}
+.thv-ce dl div{display:flex;justify-content:space-between;gap:8px;align-items:baseline;border-top:1px dashed var(--line-2);padding-top:5px;opacity:0;transform:translateY(5px);transition:opacity .4s,transform .45s var(--ease-o)}
+.thv-ce.in dl div{opacity:1;transform:none}
+.thv-ce.in dl div:nth-child(2){transition-delay:.12s}.thv-ce.in dl div:nth-child(3){transition-delay:.24s}.thv-ce.in dl div:nth-child(4){transition-delay:.36s}
+.thv-ce dt{font:500 9px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.thv-ce dd{margin:0;font-size:11.5px;font-weight:600;color:var(--ink);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;transition:color .3s}
+.thv-ce dd.mut{color:var(--muted);font-weight:500}
+.thv-ce dd.hl{color:#16a34a}
+html[data-theme="dark"] .thv-ce dd.hl{color:#5FE08D}
+.thv-ce .stamp{position:absolute;top:8px;right:9px;width:20px;height:20px;border-radius:50%;background:#16a34a;color:#fff;display:grid;place-items:center;transform:scale(0) rotate(-40deg);transition:transform .5s cubic-bezier(.5,1.8,.4,1)}
+.thv-ce .stamp svg{width:11px;height:11px}
+.thv-ce.ok .stamp{transform:none}
+
+/* org line */
+.thv-org{display:flex;align-items:center;gap:9px;margin:0 14px 12px;padding:8px 10px;border-radius:10px;border:1px dashed var(--line-2);background:var(--surface-2);font-size:12px;color:var(--muted);opacity:.0;transform:translateY(6px);transition:opacity .5s,transform .55s var(--ease-o),background .4s,border-color .4s,color .3s}
+.thv-org.in{opacity:1;transform:none}
+.thv-org i{width:22px;height:22px;border-radius:7px;background:var(--chip);color:var(--muted);display:grid;place-items:center;flex-shrink:0;transition:background .4s,color .4s}
+.thv-org i svg{width:12px;height:12px}
+.thv-org span{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.thv-org b{color:var(--ink)}
+.thv-org em{font-style:normal;display:inline-flex;align-items:center;gap:4px;font:600 10px var(--f-mono);padding:3px 8px;border-radius:99px;background:var(--chip);color:var(--muted);white-space:nowrap}
+.thv-org em svg{width:10px;height:10px}
+.thv-org.vf{border-style:solid;border-color:rgba(22,163,74,.4);background:rgba(22,163,74,.07);color:var(--text)}
+.thv-org.vf i{background:#16a34a;color:#fff}
+.thv-org.vf em{background:#16a34a;color:#fff}
+
+/* stats */
+.thv-ct{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);background:var(--surface-2)}
+.thv-ct div{padding:8px 16px;border-right:1px solid var(--line);min-width:0}
+.thv-ct div:last-child{border-right:0}
+.thv-ct b{display:block;font-family:var(--f-disp);font-size:15.5px;font-weight:800;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+.thv-ct div:nth-child(1) b{color:#1565D8}.thv-ct div:nth-child(2) b{color:#FF8C1A}.thv-ct div:nth-child(3) b{color:#16a34a}
+html[data-theme="dark"] .thv-ct div:nth-child(1) b{color:#7fb0ff}
+.thv-ct span{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.thv-ct b.bump{animation:thBump .5s var(--ease-o)}
+@keyframes thBump{30%{transform:translateY(-3px)}}
+@media(max-width:560px){
+  .thv-h,.thv-url{padding-left:12px;padding-right:12px}
+  .thv-bd{grid-template-columns:1fr;padding:10px 12px}
+  .thv-ch{display:grid;grid-template-columns:1fr 10px 1fr 10px 1fr;align-items:center}
+  .thv-ch .cn{flex-direction:column;align-items:flex-start;gap:4px;padding:6px 7px}
+  .thv-ch .cn i{width:22px;height:22px}
+  .thv-ch .lk{height:2px;width:auto;margin:0}
+  .thv-ch .lk i{transform-origin:left;transform:scaleX(0)}
+  .thv-ch .lk.on i{transform:scaleX(1)}
+  .thv-ch .cn b{font-size:10.5px;max-width:100%}
+  .thv-org{margin:0 12px 10px}
+  .thv-ct div{padding:8px 10px}.thv-ct span{font-size:8.5px}.thv-ct b{font-size:14px}
+  .thv-url .st{display:none}
+}
+
+/* ---------- How it works: mini visuals ---------- */
+.th-how .hv{height:58px;border-radius:12px;background:var(--surface-2);border:1px solid var(--line);margin-bottom:16px;position:relative;overflow:hidden}
+.hv1{display:flex;flex-direction:column;justify-content:center;gap:6px;padding:0 14px}
+.hv1 .kl{font:600 9px var(--f-mono);color:var(--muted);letter-spacing:.02em;white-space:nowrap;overflow:hidden}
+.hv1 .kr{display:flex;gap:5px}
+.hv1 .kr i{height:6px;border-radius:3px;background:#1565D8;opacity:.25;transform-origin:left;animation:hvK 3.6s var(--ease-o) infinite}
+.hv1 .kr i:nth-child(1){width:38%}.hv1 .kr i:nth-child(2){width:22%;animation-delay:.25s}.hv1 .kr i:nth-child(3){width:16%;animation-delay:.5s}.hv1 .kr i:nth-child(4){width:12%;animation-delay:.75s;background:#FF8C1A}
+@keyframes hvK{0%{transform:scaleX(0);opacity:.2}25%,80%{transform:scaleX(1);opacity:.75}100%{transform:scaleX(1);opacity:0}}
+.hv1 .kk{position:absolute;right:14px;top:50%;width:30px;height:30px;margin-top:-15px;border-radius:9px;background:#041E42;color:#FF8C1A;display:grid;place-items:center;animation:hvKey 3.6s var(--ease-o) infinite}
+html[data-theme="dark"] .hv1 .kk{background:#1565D8;color:#fff}
+.hv1 .kk svg{width:15px;height:15px}
+@keyframes hvKey{0%,60%{transform:rotate(0)}70%{transform:rotate(-24deg)}80%,100%{transform:rotate(0)}}
+.hv2{display:flex;align-items:center;justify-content:space-around;padding:0 10px}
+.hv2 .vk{display:inline-flex;align-items:center;gap:6px;font:600 11px var(--f-mono);color:var(--muted);padding:5px 9px 5px 5px;border-radius:99px;border:1.5px solid var(--line-2);background:var(--surface);animation:hvChk 4.2s infinite}
+.hv2 .vk i{width:20px;height:20px;border-radius:50%;background:var(--chip);color:#1565D8;display:grid;place-items:center}
+.hv2 .vk i svg{width:11px;height:11px}
+.hv2 .vk:nth-child(2){animation-delay:.6s}.hv2 .vk:nth-child(3){animation-delay:1.2s}
+@keyframes hvChk{0%,12%{border-color:var(--line-2);color:var(--muted)}22%,78%{border-color:#16a34a;color:#16a34a}100%{border-color:var(--line-2);color:var(--muted)}}
+.hv3{display:flex;align-items:center;gap:14px;padding:0 16px}
+.hv3 .lkk{width:24px;height:24px;color:#16a34a;flex-shrink:0}
+.hv3 .lkk .shk{transform-origin:16.5px 11px;animation:hvLock 4s cubic-bezier(.5,1.8,.4,1) infinite}
+@keyframes hvLock{0%,15%{transform:translateY(-3.5px) rotate(-14deg)}30%,100%{transform:none}}
+.hv3 .rn{flex:1;height:8px;border-radius:99px;background:var(--chip);position:relative;overflow:hidden}
+.hv3 .rn i{position:absolute;inset:0;background:#1565D8;transform-origin:left;animation:hvRn 4s linear infinite}
+@keyframes hvRn{0%{transform:scaleX(0)}85%{transform:scaleX(1);background:#1565D8}86%,100%{transform:scaleX(1);background:#FF8C1A}}
+.hv3 .dy{font:600 11px var(--f-mono);color:var(--ink);white-space:nowrap}
+.sec.th-off .hv *,.sec.th-off .meter i,.th-off .thmq .mqt{animation-play-state:paused!important}
+
+/* ---------- Product ladder ---------- */
+.thl{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}
+@media(max-width:1000px){.thl{grid-template-columns:1fr 1fr}.thc[data-v="ev"]{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:14px}.thc[data-v="ev"] .thch{grid-column:1/-1}}
+@media(max-width:680px){.thl{grid-template-columns:1fr}.thc[data-v="ev"]{display:flex}}
+.thc{display:flex;flex-direction:column;gap:14px}
+.thch{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line)}
+.thch b{display:block;font-family:var(--f-disp);font-size:14.5px;color:var(--ink)}
+.thch small{display:block;font-size:12px;color:var(--muted)}
+.thch>div{flex:1;min-width:0}
+.thch .meter{display:flex;gap:3px;align-items:flex-end;height:20px}
+.thch .meter i{width:6px;border-radius:2px;background:var(--line-2);transform-origin:bottom}
+.thch .meter i:nth-child(1){height:8px}.thch .meter i:nth-child(2){height:14px}.thch .meter i:nth-child(3){height:20px}
+.thc[data-v="dv"] .meter i:nth-child(-n+1){background:#1565D8}
+.thc[data-v="ov"] .meter i:nth-child(-n+2){background:#FF8C1A}
+.thc[data-v="ev"] .meter i{background:#16a34a}
+.thc.rv .meter i{transform:scaleY(0);transition:transform .6s var(--ease-o)}
+.thc.rv.in .meter i{transform:none}
+.thc.rv.in .meter i:nth-child(2){transition-delay:.15s}.thc.rv.in .meter i:nth-child(3){transition-delay:.3s}
+.thp{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px 18px 16px;box-shadow:var(--sh-s);transition:transform .35s var(--ease-o),box-shadow .35s,border-color .3s;overflow:hidden}
+.thp:after{content:"";position:absolute;left:0;top:0;height:3px;width:100%;background:#1565D8;transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease-o)}
+.thc[data-v="ov"] .thp:after{background:#FF8C1A}.thc[data-v="ev"] .thp:after{background:#16a34a}
+.thp:hover{transform:translateY(-6px);box-shadow:var(--sh);border-color:#c9dcfb}
+html[data-theme="dark"] .thp:hover{border-color:#2b4d8a}
+.thp:hover:after{transform:scaleX(1)}
+.thp.pop{border-color:#FF8C1A;box-shadow:0 0 0 3px rgba(255,140,26,.12),var(--sh-s);overflow:visible}
+.thp.pop:after{border-radius:18px 18px 0 0}
+.thp.flash{animation:thGlow 1.2s var(--ease-o)}
+@keyframes thGlow{0%{box-shadow:0 0 0 0 rgba(21,101,216,.5)}100%{box-shadow:0 0 0 14px rgba(21,101,216,0)}}
+.flag2{position:absolute;top:-10px;right:14px;font:700 9.5px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:#fff;background:#FF8C1A;border-radius:99px;padding:4px 9px;z-index:1}
+.tph{display:flex;gap:12px;align-items:center;margin-bottom:10px}
+.tph .ti{width:40px;height:40px;border-radius:11px;background:var(--chip);color:#1565D8;display:grid;place-items:center;flex-shrink:0;transition:transform .45s var(--ease-o)}
+.tph .ti.o{background:#fff3e0;color:#F57C00}.tph .ti.n{background:#041E42;color:#fff}.tph .ti.g{background:#e4f7ec;color:#16a34a}
+html[data-theme="dark"] .tph .ti.o{background:rgba(255,140,26,.14);color:#FFB15C}
+html[data-theme="dark"] .tph .ti.n{background:#1565D8}
+html[data-theme="dark"] .tph .ti.g{background:rgba(46,204,113,.14);color:#5FE08D}
+.tph .ti svg{width:18px;height:18px}
+.thp:hover .tph .ti{transform:rotate(-6deg) scale(1.08)}
+.tph h3{font-size:16px;line-height:1.25;margin:0}
+.tph .tg{display:block;font:500 11px var(--f-mono);color:var(--muted);margin-top:3px}
+.thp>p{font-size:13.5px;color:var(--muted);line-height:1.6;margin-bottom:12px}
+.tsp{list-style:none;display:flex;flex-direction:column;margin:0 0 14px;padding:0}
+.tsp li{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;color:var(--muted);padding:6px 0;border-top:1px dashed var(--line-2)}
+.tsp li b{color:var(--ink);font-weight:600;text-align:right}
+.tsp li b.yes{color:#16a34a}
+html[data-theme="dark"] .tsp li b.yes{color:#5FE08D}
+.tsp li b.no{color:var(--muted);font-weight:500}
+.tpr{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.tpr span{font-size:12.5px;color:var(--muted)}
+.tpr span b{font-family:var(--f-disp);font-weight:800;font-size:22px;color:var(--ink);letter-spacing:-.02em;margin-right:4px}
+.tpr small{font:600 10.5px var(--f-mono);color:#16a34a;background:rgba(22,163,74,.1);border-radius:6px;padding:3px 7px}
+html[data-theme="dark"] .tpr small{color:#5FE08D}
+.tac{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.tac .btn svg{width:14px;height:14px}
+.tcf{border:0;background:none;cursor:pointer;font:600 13px var(--f-body);color:var(--blue);padding:6px 2px}
+html[data-theme="dark"] .tcf{color:#7fb0ff}
+.tcf .ar{display:inline-block;transition:transform .25s var(--ease-o)}
+.tcf:hover .ar{transform:translateX(4px)}
+.thsan{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:16px;border:1.5px dashed var(--line-2);background:var(--surface);transition:border-color .3s,transform .35s var(--ease-o),background .3s}
+.thsan:hover{border-color:#1565D8;transform:translateY(-3px);background:var(--chip)}
+.thsan i{width:34px;height:34px;border-radius:10px;background:#fff3e0;color:#F57C00;display:grid;place-items:center;flex-shrink:0}
+html[data-theme="dark"] .thsan i{background:rgba(255,140,26,.14);color:#FFB15C}
+.thsan i svg{width:16px;height:16px}
+.thsan span{flex:1;font-size:12.5px;color:var(--muted);line-height:1.5}
+.thsan span b{display:block;font-size:14px;color:var(--ink)}
+.thsan em{font-style:normal;font-weight:700;color:var(--ink)}
+.thsan .ar{flex:0;color:var(--blue);font-weight:700;transition:transform .25s var(--ease-o)}
+.thsan:hover .ar{transform:translateX(4px)}
+
+/* includes strip + seal */
+.thinc{display:grid;grid-template-columns:1.75fr 1fr;gap:18px;margin-top:22px}
+@media(max-width:900px){.thinc{grid-template-columns:1fr}}
+.thinc-l{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px 22px;box-shadow:var(--sh-s)}
+.thinc-l h3{font-size:16px;margin-bottom:14px}
+.thig{display:grid;grid-template-columns:repeat(4,1fr);gap:14px 16px}
+@media(max-width:1100px){.thig{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:420px){.thig{grid-template-columns:1fr}}
+.thig div{display:flex;gap:10px;align-items:flex-start}
+.thig i{width:30px;height:30px;border-radius:9px;background:var(--chip);color:#1565D8;display:grid;place-items:center;flex-shrink:0;transition:transform .4s var(--ease-o)}
+html[data-theme="dark"] .thig i{color:#7fb0ff}
+.thig div:hover i{transform:translateY(-3px)}
+.thig i svg{width:15px;height:15px}
+.thig span{font-size:11.5px;color:var(--muted);line-height:1.4}
+.thig b{display:block;font-size:13px;color:var(--ink)}
+.thseal{background:#041E42;color:#fff;border-radius:18px;padding:20px 22px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--sh-l);position:relative;overflow:hidden}
+html[data-theme="dark"] .thseal{background:#050916;border:1px solid var(--line)}
+.thseal:before{content:"";position:absolute;right:-60px;top:-60px;width:180px;height:180px;border-radius:50%;border:1.5px solid rgba(127,176,255,.25);animation:thRing 4s var(--ease-o) infinite}
+@keyframes thRing{0%{transform:scale(.6);opacity:.9}100%{transform:scale(1.2);opacity:0}}
+.ssc{display:inline-flex;align-self:flex-start;align-items:center;gap:10px;background:#fff;border-radius:10px;padding:8px 14px 8px 8px;box-shadow:0 10px 24px -12px rgba(0,0,0,.6);transition:transform .35s var(--ease-o)}
+.thseal:hover .ssc{transform:translateY(-3px) rotate(-1deg)}
+.ssi{width:32px;height:32px;border-radius:8px;background:#16a34a;color:#fff;display:grid;place-items:center}
+.ssi svg{width:17px;height:17px}
+.sst b{display:block;font-family:var(--f-disp);font-size:13px;color:#041E42}
+.sst small{display:block;font:600 9.5px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:#51607A}
+.ssd{display:flex;align-items:center;gap:10px;font:500 11px var(--f-mono);color:#9fb6de}
+.ssd span{display:inline-flex;align-items:center;gap:6px}
+.ssd span:before{content:"";width:7px;height:7px;border-radius:50%;background:#5FE08D;animation:thBlink 1.6s infinite}
+.ssd b{color:#fff;font-weight:600}
+.thseal p{font-size:13px;color:#c9d8f2;line-height:1.6;position:relative}
+
+/* ---------- Finder ---------- */
+.thf{display:grid;grid-template-columns:1.25fr 1fr;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--surface);box-shadow:var(--sh-s)}
+@media(max-width:980px){.thf{grid-template-columns:1fr}}
+.thf-in{padding:24px 26px;display:flex;flex-direction:column;gap:18px;min-width:0}
+.thf-pg{display:flex;align-items:center;gap:12px}
+.thf-pg .pgb{flex:1;height:6px;border-radius:99px;background:var(--chip);overflow:hidden}
+.thf-pg .pgb i{display:block;height:100%;background:#1565D8;border-radius:99px;width:0;transition:width .6s var(--ease-o)}
+.thf-pg em{font:600 11px var(--f-mono);font-style:normal;color:var(--muted);white-space:nowrap}
+.thq{border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:11px}
+.thq .qt{display:flex;align-items:center;gap:9px;font-family:var(--f-disp);font-weight:700;font-size:14.5px;color:var(--ink)}
+.thq .qt em{font-style:normal;width:22px;height:22px;border-radius:7px;background:#FF8C1A;color:#fff;display:grid;place-items:center;font:700 11px var(--f-mono);flex-shrink:0}
+.qo{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.qo.two2{grid-template-columns:1fr 1fr}
+@media(max-width:640px){.qo,.qo.two2{grid-template-columns:1fr}}
+.qo button{display:flex;gap:10px;align-items:flex-start;text-align:left;background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:11px 12px;cursor:pointer;font:inherit;color:inherit;transition:border-color .2s,transform .25s var(--ease-o),box-shadow .25s,background .2s}
+.qo button:hover{border-color:#1565D8;transform:translateY(-2px);box-shadow:var(--sh-s)}
+.qo button.on{border-color:#1565D8;background:var(--chip);box-shadow:0 0 0 3px rgba(21,101,216,.1)}
+.qo i{width:28px;height:28px;border-radius:8px;background:var(--surface-2);border:1px solid var(--line);color:var(--muted);display:grid;place-items:center;flex-shrink:0;transition:background .25s,color .25s,border-color .25s,transform .35s var(--ease-o)}
+.qo button.on i{background:#1565D8;border-color:#1565D8;color:#fff;transform:scale(1.06)}
+.qo i svg{width:14px;height:14px}
+.qo b{display:block;font-size:13px;line-height:1.3;color:var(--ink)}
+.qo small{display:block;font-family:var(--f-mono);font-size:10px;color:var(--muted);margin-top:3px}
+.qn{display:none;align-items:center;justify-content:space-between;gap:12px;padding:9px 10px 9px 14px;border-radius:12px;background:var(--surface-2);border:1px solid var(--line);font-size:13px;font-weight:600;color:var(--ink)}
+.qn.show{display:flex;animation:thPop .4s var(--ease-o)}
+.qn .stp button{width:34px;height:34px;font-size:16px}
+.qn .stp input{width:48px;height:34px}
+.qo button.dis{opacity:.45}
+@keyframes thPop{from{opacity:0;transform:translateY(6px) scale(.97)}}
+.thf-out{background:#041E42;color:#fff;padding:24px 24px 20px;display:flex;flex-direction:column;gap:14px;min-width:0;position:relative;overflow:hidden}
+html[data-theme="dark"] .thf-out{background:#050916;border-left:1px solid var(--line)}
+@media(max-width:980px){html[data-theme="dark"] .thf-out{border-left:0;border-top:1px solid var(--line)}}
+.fo-h{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.ck2{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B6C2DA}
+.fo-path{display:flex;gap:4px;flex-wrap:wrap}
+.fo-path span{font:600 10px var(--f-mono);color:#dfe6f5;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:6px;padding:3px 7px;white-space:nowrap}
+.fo-card{border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:18px;background:rgba(255,255,255,.04);display:flex;flex-direction:column;gap:12px}
+.fo-card.sw{animation:thSwap .55s var(--ease-o)}
+@keyframes thSwap{from{opacity:.2;transform:translateY(10px) scale(.985)}}
+.fo-n{display:flex;align-items:center;gap:10px}
+.fo-n h3{color:#fff;font-size:20px;line-height:1.25;margin:0}
+.fo-why{font-size:13.5px;color:#dfe6f5;line-height:1.6;margin:0}
+.fo-pts{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:7px 12px;margin:0;padding:0}
+@media(max-width:480px){.fo-pts{grid-template-columns:1fr}}
+.fo-pts li{display:flex;gap:7px;align-items:flex-start;font-size:12.5px;color:#c9d8f2;line-height:1.4}
+.fo-pts li i{width:16px;height:16px;border-radius:50%;background:rgba(46,204,113,.16);color:#5FE08D;display:grid;place-items:center;flex-shrink:0;margin-top:1px}
+.fo-pts li i svg{width:9px;height:9px}
+.fo-pr{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;border-top:1px solid rgba(255,255,255,.12);padding-top:12px}
+.fo-pr span{display:block;font:500 10.5px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:#8F9BB6}
+.fo-pr b{display:block;font-family:var(--f-disp);font-weight:800;font-size:30px;letter-spacing:-.02em;color:#fff;line-height:1.15;font-variant-numeric:tabular-nums}
+.fo-pr small{display:block;font:500 10.5px var(--f-mono);color:#9fb6de}
+.fo-mt{text-align:right}
+.fo-mt .mt{display:inline-flex;gap:4px;align-items:flex-end;height:24px;margin-top:6px}
+.fo-mt .mt i{width:9px;border-radius:2px;background:rgba(255,255,255,.14);transition:background .4s,transform .5s var(--ease-o);transform-origin:bottom}
+.fo-mt .mt i:nth-child(1){height:10px}.fo-mt .mt i:nth-child(2){height:17px}.fo-mt .mt i:nth-child(3){height:24px}
+.fo-mt .mt.l0 i:nth-child(-n+1){background:#4D8EF0}
+.fo-mt .mt.l1 i:nth-child(-n+2){background:#FF8C1A}
+.fo-mt .mt.l2 i{background:#5FE08D}
+.fo-alt{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;color:#B6C2DA;line-height:1.5;margin:0}
+.fo-alt svg{width:14px;height:14px;color:#FF8C1A;flex-shrink:0;margin-top:2px}
+.fo-alt:empty{display:none}
+.fo-act{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:auto}
+.fo-act .btn{padding:11px 12px;font-size:13px}
+.fo-act .btn svg{width:15px;height:15px}
+@media(max-width:560px){.fo-act{grid-template-columns:1fr}.thf-in{padding:22px 18px}.thf-out{padding:22px 16px 18px}}
+.fo-f{font-family:var(--f-mono);font-size:10.5px;color:#8F9BB6;margin:0}
+.fo-f a{color:#9cc3ff;text-decoration:underline}
+
+/* ---------- Validation timeline ---------- */
+.tlw{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px 22px 22px;box-shadow:var(--sh-s)}
+.tl-top{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:6px}
+.tl-top .btn svg{width:13px;height:13px}
+.tl-clk{display:flex;align-items:baseline;gap:8px}
+.tl-clk span{font:600 10.5px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.tl-clk b{font-family:var(--f-disp);font-weight:800;font-size:20px;color:var(--ink);min-width:86px;font-variant-numeric:tabular-nums}
+.tl-hint{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font:500 11px var(--f-mono);color:var(--muted)}
+.tl-hint svg{width:13px;height:13px;color:#FF8C1A}
+.tl-lanes{position:relative;display:flex;flex-direction:column;gap:8px}
+.tl-axr,.tl-lanes .ln{display:grid;grid-template-columns:128px 1fr 118px;gap:16px;align-items:center;padding:0 12px}
+.tl-axis{position:relative;height:26px;margin:0 6px}
+.tl-axis span{position:absolute;bottom:4px;transform:translateX(-50%);font:600 10px var(--f-mono);color:var(--muted);white-space:nowrap}
+.tl-axis span:first-child{transform:none}
+.tl-axis span:last-child{transform:translateX(-80%)}
+.tl-axis span:after{content:"";position:absolute;left:50%;bottom:-6px;width:1px;height:5px;background:var(--line-2)}
+.tl-lanes .ln{width:100%;text-align:left;font:inherit;color:inherit;background:var(--surface-2);border:1.5px solid var(--line);border-radius:14px;padding-top:12px;padding-bottom:12px;cursor:pointer;transition:border-color .25s,background .25s,box-shadow .25s}
+.tl-lanes .ln:hover{border-color:var(--line-2)}
+.tl-lanes .ln.on{border-color:#1565D8;background:var(--surface);box-shadow:0 0 0 3px rgba(21,101,216,.1)}
+.lh2{display:flex;align-items:center;gap:9px;min-width:0}
+.lh2 small{font:600 11px var(--f-mono);color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lt{position:relative;height:26px;margin:0 6px}
+.lt .lb2{position:absolute;left:0;right:0;top:50%;height:2px;margin-top:-1px;background:var(--line-2);border-radius:2px}
+.lt .lf{position:absolute;left:0;top:50%;height:4px;margin-top:-2px;width:100%;border-radius:4px;background:#1565D8;transform-origin:left;transform:scaleX(0)}
+.ln[data-k="ov"] .lt .lf{background:#FF8C1A}.ln[data-k="ev"] .lt .lf{background:#16a34a}
+.lt .sd{position:absolute;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--surface);border:2px solid var(--line-2);transition:background .3s,border-color .3s,transform .4s var(--ease-o);z-index:1}
+.lt .sd.dn{transform:scale(1.15)}
+.ln[data-k="dv"] .lt .sd.dn{background:#1565D8;border-color:#1565D8}
+.ln[data-k="ov"] .lt .sd.dn{background:#FF8C1A;border-color:#FF8C1A}
+.ln[data-k="ev"] .lt .sd.dn{background:#16a34a;border-color:#16a34a}
+.lt .iss{position:absolute;top:50%;transform:translate(-50%,-50%) scale(.4);opacity:0;z-index:2;display:inline-flex;align-items:center;gap:4px;font:700 9.5px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:#fff;background:#16a34a;border-radius:99px;padding:4px 8px;white-space:nowrap;transition:transform .5s cubic-bezier(.5,1.8,.4,1),opacity .3s;box-shadow:0 6px 16px -8px rgba(22,163,74,.9)}
+.lt .iss svg{width:10px;height:10px}
+.lt .iss.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.ld b{display:block;font-family:var(--f-disp);font-size:14px;color:var(--ink);white-space:nowrap}
+.ld small{display:block;font:500 10px var(--f-mono);color:var(--muted)}
+.tl-cur{position:absolute;top:26px;bottom:0;left:0;width:2px;background:#FF8C1A;border-radius:2px;pointer-events:none;opacity:0;transition:opacity .3s;z-index:3;box-shadow:0 0 12px rgba(255,140,26,.6)}
+.tl-cur:before{content:"";position:absolute;top:-5px;left:-4px;width:10px;height:10px;border-radius:50%;background:#FF8C1A}
+.tl-cur.on{opacity:1}
+.tl-det{display:grid;grid-template-columns:1.35fr 1fr;gap:18px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+@media(max-width:820px){.tl-det{grid-template-columns:1fr}}
+.tl-det.sw>*{animation:thSwap .5s var(--ease-o) both}
+.tl-det.sw>*:nth-child(2){animation-delay:.08s}
+.tl-det h3{font-size:15px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.tl-det h3>svg{width:16px;height:16px;color:#FF8C1A;flex-shrink:0}
+.tl-st{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;counter-reset:s}
+.tl-st li{display:grid;grid-template-columns:24px 1fr auto;gap:10px;align-items:start;font-size:13px;color:var(--text);line-height:1.5}
+.tl-st li:before{counter-increment:s;content:counter(s);width:22px;height:22px;border-radius:7px;background:var(--chip);color:#1565D8;display:grid;place-items:center;font:700 11px var(--f-mono)}
+html[data-theme="dark"] .tl-st li:before{color:#7fb0ff}
+.tl-st li b{color:var(--ink)}
+.tl-st li em{font-style:normal;font:600 10.5px var(--f-mono);color:var(--muted);white-space:nowrap;padding-top:3px}
+.tl-dc{background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.tl-dc ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
+.tl-dc li{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;color:var(--text);line-height:1.45}
+.tl-dc li i{width:18px;height:18px;border-radius:6px;background:#fff3e0;color:#F57C00;display:grid;place-items:center;flex-shrink:0}
+html[data-theme="dark"] .tl-dc li i{background:rgba(255,140,26,.14);color:#FFB15C}
+.tl-dc li i svg{width:10px;height:10px}
+.tl-dc p{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.5}
+@media(max-width:700px){
+  .tl-axr,.tl-lanes .ln{grid-template-columns:62px 1fr;gap:10px;padding-left:10px;padding-right:10px}
+  .tl-axr>span:last-child,.tl-lanes .ln .ld{display:none}
+  .lh2{flex-direction:column;align-items:flex-start;gap:4px}
+  .lh2 small{font-size:9.5px;max-width:62px}
+  .tl-axis span.m{display:none}
+  .tl-hint{margin-left:0}
+  .tlw{padding:16px 12px 18px}
+}
+
+/* ---------- Compare ---------- */
+.cpw{display:grid;grid-template-columns:340px 1fr;gap:22px;align-items:start}
+@media(max-width:1000px){.cpw{grid-template-columns:1fr}}
+.cpm{background:#041E42;border-radius:18px;padding:18px 18px 14px;color:#fff;box-shadow:var(--sh-l)}
+html[data-theme="dark"] .cpm{background:#050916;border:1px solid var(--line)}
+.cpm-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.cpm-h b{font-family:var(--f-disp);font-size:15px}
+.cpm-h span{font:500 10px var(--f-mono);color:#8F9BB6}
+.cpm-p{position:relative;height:230px;margin:0 0 52px 30px;border-left:1px solid rgba(255,255,255,.18);border-bottom:1px solid rgba(255,255,255,.18)}
+.cpm-p .ya{position:absolute;left:-30px;top:0;bottom:0;width:26px;display:flex;flex-direction:column}
+.cpm-p .ya i{flex:1;display:grid;place-items:center;font:700 10px var(--f-mono);font-style:normal;color:#9fb6de}
+.cpm-p .gl{position:absolute;left:0;right:0;height:1px;background:rgba(255,255,255,.07)}
+.cpm-p .g1{top:33.33%}.cpm-p .g2{top:66.66%}.cpm-p .g3{top:0}
+.cpm-p .br{position:absolute;left:var(--x);width:30px;margin-left:-15px;bottom:calc(var(--lo) * 33.33% + 6px);height:calc((var(--hi) - var(--lo)) * 33.33% - 12px);border-radius:8px;background:rgba(127,176,255,.35);border:1px solid rgba(127,176,255,.55);transform-origin:bottom;transform:scaleY(0);transition:transform .9s var(--ease-o)}
+.cpm.in .br{transform:none}
+.cpm.in .br[data-b="t"]{transition-delay:.15s}.cpm.in .br[data-b="g"]{transition-delay:.3s}.cpm.in .br[data-b="d"]{transition-delay:.45s}
+.cpm-p .br em{position:absolute;top:calc(100% + 13px + var(--lo) * 230px / 3);left:50%;transform:translateX(-50%);font:600 10.5px var(--f-mono);font-style:normal;color:#dfe6f5;white-space:nowrap}
+.cpm-p .br.me{background:#FF8C1A;border-color:#FFB15C;box-shadow:0 0 0 0 rgba(255,140,26,.5);animation:thBeacon 2.4s ease-out infinite}
+.cpm-p .br.me em{color:#FFB15C;font-weight:700}
+@keyframes thBeacon{0%{box-shadow:0 0 0 0 rgba(255,140,26,.55)}80%,100%{box-shadow:0 0 0 12px rgba(255,140,26,0)}}
+.cpm-p .xax{position:absolute;left:0;right:0;top:100%;margin-top:30px;display:flex;justify-content:space-between}
+.cpm-p .xax i{font:600 10px var(--f-mono);font-style:normal;color:#9fb6de}
+.cpm-f{font:400 10.5px var(--f-mono);color:#8F9BB6;margin:0}
+.cmp td svg{width:15px;height:15px;display:inline-block;vertical-align:-3px;margin-right:4px}
+.cmp td.yes svg{color:#16a34a}
+.cmp th a{color:inherit;text-decoration:underline;text-decoration-color:var(--line-2);text-underline-offset:3px}
+.cmp th a:hover{color:var(--blue)}
+.cmp th.hl{background:#1565D8;color:#fff}
+.cmp td.hl{border-left:1px solid rgba(21,101,216,.25);border-right:1px solid rgba(21,101,216,.25)}
+.cmp td.hl b{color:#1565D8}
+html[data-theme="dark"] .cmp td.hl b{color:#7fb0ff}
+.cmp td{font-size:13.5px}
+.cmp td:first-child{min-width:150px}
+.cmp{min-width:680px}
+.cmp tbody tr{transition:background .2s}
+.cmp tbody tr:hover td{background:var(--surface-2)}
+.cmp tbody tr:hover td.hl{background:var(--chip)}
+.swipe{display:none}
+@media(max-width:760px){.swipe{display:flex;align-items:center;gap:7px;font-family:var(--f-mono);font-size:11px;color:var(--muted);margin:0 0 10px}.swipe svg{width:14px;height:14px;color:#1565D8}.cmp td:first-child{min-width:120px}}
+
+/* ---------- Install-platform marquee ---------- */
+.thmq{margin-top:18px;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.mqt{display:flex;gap:10px;width:max-content;animation:thMq 38s linear infinite}
+.thmq:hover .mqt{animation-play-state:paused}
+@keyframes thMq{to{transform:translateX(-50%)}}
+.mqt span{display:inline-flex;align-items:center;gap:8px;font:600 13px var(--f-disp);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:8px 14px 8px 9px;white-space:nowrap;box-shadow:var(--sh-s)}
+.mqt span svg{width:22px;height:22px;padding:4px;border-radius:7px;background:var(--chip);color:#1565D8;box-sizing:border-box}
+html[data-theme="dark"] .mqt span svg{color:#7fb0ff}
+
+/* ---------- Pricing ---------- */
+.pr-top{display:grid;grid-template-columns:390px 1fr;gap:22px;margin-bottom:26px;align-items:stretch}
+@media(max-width:900px){.pr-top{grid-template-columns:1fr}}
+.ez-card .ez-from{font-family:var(--f-mono);font-size:13px;color:#fff;font-weight:600}
+.ez-card .ez-amt{display:inline-block}
+.ez-card .ez-amt.flash,.ez-card h3.flash{animation:flash .5s var(--ease-o)}
+.pr-inc{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:24px 26px;display:flex;flex-direction:column;box-shadow:var(--sh-s)}
+.pr-inc h3{font-size:17px;margin-bottom:14px}
+.tpl{display:flex;flex-direction:column;gap:8px}
+.tpl button{display:grid;grid-template-columns:auto 1fr auto auto;gap:12px;align-items:center;text-align:left;background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:10px 14px;cursor:pointer;font:inherit;color:inherit;transition:border-color .25s,transform .3s var(--ease-o),box-shadow .3s,background .25s}
+.tpl button:hover{transform:translateX(4px);border-color:var(--line-2)}
+.tpl button.on{border-color:#1565D8;background:var(--chip);box-shadow:0 0 0 3px rgba(21,101,216,.1)}
+.tpl .tn b{display:block;font-size:14px;color:var(--ink)}
+.tpl .tn small{display:block;font:500 10.5px var(--f-mono);color:var(--muted)}
+.tpl .tp1{font-family:var(--f-disp);font-weight:800;font-size:16px;color:var(--ink);white-space:nowrap;text-align:right}
+.tpl .tp1 small{display:block;font:500 10px var(--f-mono);color:#16a34a}
+html[data-theme="dark"] .tpl .tp1 small{color:#5FE08D}
+.tpl .rd{width:18px;height:18px;border-radius:50%;border:2px solid var(--line-2);position:relative;transition:border-color .25s}
+.tpl .rd:after{content:"";position:absolute;inset:3px;border-radius:50%;background:#1565D8;transform:scale(0);transition:transform .3s var(--ease-o)}
+.tpl button.on .rd{border-color:#1565D8}
+.tpl button.on .rd:after{transform:none}
+@media(max-width:520px){.tpl button{grid-template-columns:auto 1fr auto;gap:10px;padding:10px 12px}.tpl .rd{display:none}}
+.addons{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+@media(max-width:700px){.addons{grid-template-columns:1fr}}
+.addons div{display:flex;gap:10px;align-items:center;border:1px dashed var(--line-2);border-radius:12px;padding:10px 12px}
+.addons i{width:30px;height:30px;border-radius:9px;background:#fff3e0;color:#F57C00;display:grid;place-items:center;flex-shrink:0}
+html[data-theme="dark"] .addons i{background:rgba(255,140,26,.14);color:#FFB15C}
+.addons i svg{width:15px;height:15px}
+.addons span{font-size:12px;color:var(--muted);line-height:1.35}
+.addons b{display:block;font-family:var(--f-disp);font-size:15px;color:var(--ink)}
+.pnote{display:flex;gap:9px;align-items:flex-start;font-size:12.5px;color:var(--muted);margin-top:auto;padding-top:14px}
+.pnote svg{width:15px;height:15px;color:#FF8C1A;flex-shrink:0;margin-top:2px}
+#configure .seg button{padding:9px 8px}
+.seg.cfg5 button{flex:1 1 0;min-width:96px}
+.seats{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center}
+@media(max-width:480px){.seats{grid-template-columns:1fr}}
+.stp input::-webkit-outer-spin-button,.stp input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.stp input{-moz-appearance:textfield}
+.fld .hint a{color:var(--blue);font-weight:600}
+#sSanF{transition:opacity .3s}
+#sSanF.off{opacity:.45}
+#sSanF.off .stp,#sSanF.off .rng{pointer-events:none}
+.sbt{border:1px solid var(--line);border-radius:14px;background:var(--surface-2);padding:14px 16px}
+.sbt-h{display:flex;justify-content:space-between;gap:10px;font:600 11px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.sbt-h em{font-style:normal;letter-spacing:.02em;text-transform:none;color:#1565D8;white-space:nowrap}
+html[data-theme="dark"] .sbt-h em{color:#7fb0ff}
+.sbt-b{display:flex;gap:6px;align-items:stretch;min-height:58px}
+.sbt-b .yr{flex:1;position:relative;border-radius:10px;padding:8px 10px;background:#1565D8;color:#fff;display:flex;flex-direction:column;justify-content:center;min-width:0;transform-origin:left;animation:thYr .6s var(--ease-o) both}
+.sbt-b .yr:nth-child(3){background:#0C3E8F}.sbt-b .yr:nth-child(5){background:#041E42}
+html[data-theme="dark"] .sbt-b .yr:nth-child(5){background:#2b4d8a}
+.sbt-b .yr b{font:700 12px var(--f-disp);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sbt-b .yr small{font:500 10px var(--f-mono);opacity:.8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sbt-b .rv2{width:26px;flex-shrink:0;display:grid;place-items:center;position:relative;animation:thPop .5s var(--ease-o) both}
+.sbt-b .rv2 i{width:24px;height:24px;border-radius:50%;background:#FF8C1A;color:#fff;display:grid;place-items:center;box-shadow:0 0 0 4px rgba(255,140,26,.2)}
+.sbt-b .rv2 i svg{width:12px;height:12px}
+@keyframes thYr{from{transform:scaleX(.2);opacity:0}}
+.sbt-f{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;color:var(--muted);line-height:1.55;margin:12px 0 0}
+.sbt-f svg{width:14px;height:14px;color:#FF8C1A;flex-shrink:0;margin-top:3px}
+.sbt-f b{color:var(--ink)}
+.cout .ctot.flash{animation:flash .5s var(--ease-o)}
+
+/* ---------- India ---------- */
+.ind{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:800px){.ind{grid-template-columns:1fr}}
+.ind .rg{display:flex;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px 22px;box-shadow:var(--sh-s);transition:transform .35s var(--ease-o),box-shadow .35s,border-color .3s}
+.ind .rg:hover{transform:translateY(-4px);box-shadow:var(--sh);border-color:#c9dcfb}
+html[data-theme="dark"] .ind .rg:hover{border-color:#2b4d8a}
+.ind .rg .ico{margin:0;flex-shrink:0}
+.ind .rg h3{font-size:16px;margin-bottom:5px}
+.ind .rg p{font-size:13.5px;color:var(--muted);line-height:1.6}
+.docs{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:16px;padding:14px 16px;border-radius:14px;border:1px dashed var(--line-2);background:var(--surface-2)}
+.docs .dl{display:inline-flex;align-items:center;gap:7px;font:600 11px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+.docs .dl svg{width:14px;height:14px;color:#FF8C1A}
+.docs span:not(.dl){font-size:12.5px;font-weight:600;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:5px 11px}
+.fine2{font-family:var(--f-mono);font-size:11px;color:var(--muted);margin-top:12px}
+
+/* ---------- Cross-links ---------- */
+.xsibs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+@media(max-width:760px){.xsibs{grid-template-columns:1fr}}
+.xsib{display:flex;align-items:center;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 18px;box-shadow:var(--sh-s);transition:transform .35s var(--ease-o),box-shadow .35s,border-color .3s}
+.xsib:hover{transform:translateY(-4px);box-shadow:var(--sh);border-color:#1565D8}
+.xi1 i{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;color:#fff;background:#1565D8;transition:transform .45s var(--ease-o)}
+.xi1.g i{background:#041E42}
+html[data-theme="dark"] .xi1.g i{background:#2b4d8a}
+.xi1 i svg{width:18px;height:18px}
+.xsib:hover .xi1 i{transform:rotate(-8deg) scale(1.08)}
+.xt{flex:1;min-width:0}
+.xt small{display:block;font:600 10.5px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.xt b{display:block;font-family:var(--f-disp);font-size:14.5px;color:var(--ink);margin-top:2px}
+.xa{font-weight:600;font-size:14px;color:var(--blue);white-space:nowrap}
+.xa .ar{display:inline-block;transition:transform .25s var(--ease-o)}
+.xsib:hover .xa .ar{transform:translateX(4px)}
+
+@media(prefers-reduced-motion:reduce){.thx .hc,.mqt,.hv *,.cpm-p .br.me,.thseal:before{animation:none!important}}
+
+/* ---------- finder: narrowing-down state ---------- */
+.fo-gh ul{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.fo-gh li{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);transition:opacity .45s,transform .45s var(--ease-o),border-color .3s,background .3s}
+.fo-gh li b{font-size:13px;color:#fff;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fo-gh li span:last-child{font:600 11px var(--f-mono);color:#9fb6de;white-space:nowrap}
+.fo-gh li.k{border-color:rgba(127,176,255,.35);background:rgba(21,101,216,.14)}
+.fo-gh li.x{opacity:.32;transform:scale(.98)}
+.fo-gh li.x b{text-decoration:line-through;text-decoration-color:rgba(255,255,255,.4)}
+.fo-act .btn[disabled]{opacity:.45;pointer-events:none}
+
+/* ---------- timeline end states ---------- */
+.lt .sd.fin{width:22px;height:22px;margin:-11px 0 0 -11px;display:grid;place-items:center;color:transparent}
+.lt .sd.fin svg{width:11px;height:11px}
+.ln .lt .sd.fin.dn{background:#16a34a!important;border-color:#16a34a!important;color:#fff;transform:scale(1.15);box-shadow:0 0 0 5px rgba(22,163,74,.18)}
+.ld b{transition:color .3s}
+.ln.ok .ld b{color:#16a34a}
+html[data-theme="dark"] .ln.ok .ld b{color:#5FE08D}
+#sSanH svg{width:13px;height:13px;vertical-align:-2px;color:#FF8C1A}
+.cpw>*,#configure>*{min-width:0}
+@media(max-width:560px){.thv-ch{grid-template-columns:minmax(0,1fr) 8px minmax(0,1fr) 8px minmax(0,1fr)}.thv-ch .cn{min-width:0}.thv-ch .cn span{width:100%}}
+@media(max-width:420px){.thv-live{display:none}}
+.sbt-h{flex-wrap:wrap}
+@media(max-width:560px){.sbt-b{flex-direction:column;gap:4px}.sbt-b .yr{transform-origin:top}.sbt-b .rv2{width:auto;height:22px}.sbt-b .rv2 i{width:20px;height:20px}}
+
+/* hero: placeholders so the card never looks empty mid-cycle */
+.thv-bd{position:relative}
+.thv-bd>.thv-ce,.thv-bd>.ceph{grid-column:2;grid-row:1}
+.ceph{border:1.5px dashed var(--line-2);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;transition:opacity .4s;pointer-events:none}
+.ceph b{font:600 12px var(--f-disp);color:var(--muted)}
+.ceph small{font:500 9.5px var(--f-mono);color:var(--muted);opacity:.8}
+.ceph .spn{width:22px;height:22px;border-radius:50%;border:2.5px solid var(--line-2);border-top-color:#1565D8;animation:thSpin .9s linear infinite;margin-bottom:4px}
+@keyframes thSpin{to{transform:rotate(360deg)}}
+.thv-ce.in+.ceph{opacity:0}
+.thv-org.pend{opacity:.75}
+.thv-org.pend i svg{animation:thSpin 2.4s linear infinite}
+@media(max-width:560px){.thv-bd>.thv-ce,.thv-bd>.ceph{grid-column:1;grid-row:2}}
+@media(prefers-reduced-motion:reduce){.ceph .spn,.thv-org.pend i svg{animation:none}}
+
+
+/* Requested Thawte source sections; anchors and purchase controls connect to the Angular page. */
+main{display:flow-root}.sec:first-child{padding-top:0}.wrap{padding:0}
+@media(max-width:560px){.sec{padding:34px 0}}
+</style>
+</head><body><main><!-- ================= OVERVIEW ================= -->
+<section class="sec" id="overview">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">Overview</span><h2>A trusted name in SSL since 1995, <span class="acc">now on DigiCert's roots.</span></h2></div>
+    <div class="pp-cols rv">
+      <p class="pp-ov"><b>Thawte</b> has issued SSL/TLS certificates since 1995 and is today part of DigiCert, so every Thawte certificate chains to DigiCert's root certificates — recognised by more than 99% of browsers, phones and operating systems. Visitors see the padlock, data in transit is encrypted with up to 256-bit strength, and nobody gets a warning page.</p>
+      <p class="pp-ov">What sets Thawte apart is value at the <b>organisation-validated (OV)</b> and <b>extended-validation (EV)</b> levels: your registered company name goes into the certificate after a real background check, at a price below premium brands. XcellHost sells the full Thawte range in India — we generate the CSR, collect your <b>MCA or GST documents</b>, install the certificate and remind you well before renewal.</p>
+    </div>
+    <div class="prov-strip rv"><span class="prov-lbl">Secures</span>
+      <span class="prov"><span class="pl" style="background:#1565D8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg></span>Websites &amp; shops</span>
+      <span class="prov"><span class="pl" style="background:#FF8C1A"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M5 8l14 8M19 8L5 16"/></svg></span>Every subdomain</span>
+      <span class="prov"><span class="pl" style="background:#041E42"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/></svg></span>Mail &amp; webmail</span>
+      <span class="prov"><span class="pl" style="background:#16a34a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg></span>APIs &amp; apps</span>
+      <span class="prov"><span class="pl" style="background:#0C3E8F"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></span>Load balancers</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section class="sec" id="how">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">How it works</span><h2>Order, prove, install. <span class="acc">We handle all three.</span></h2><p>Getting a certificate is a short chain of steps. The validation step is where most delays happen — so that's where we put the most effort.</p></div>
+    <div class="vgrid th-how">
+      <div class="vcard rv"><span class="vb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M14 9l2 2"/></svg>01 · Request</span><div class="hv hv1" aria-hidden="true"><span class="kl">-----BEGIN CERTIFICATE REQUEST-----</span><span class="kr"><i></i><i></i><i></i><i></i></span><span class="kk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M14 9l2 2"/></svg></span></div><h3>Pick a certificate, generate the CSR</h3><p>We create the private key and certificate signing request on your server, so the key never leaves your hands.</p><ul><li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></i>RSA 2048-bit or ECC keys</li><li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></i>Correct domain and SAN list</li><li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></i>Org details matched to registry</li></ul></div>
+      <div class="vcard b2 rv" data-d="1"><span class="vb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0114 0M16 11l2 2 4-4"/></svg>02 · Validate</span><div class="hv hv2" aria-hidden="true"><span class="vk"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="6" rx="1.5"/><rect x="3" y="15" width="18" height="6" rx="1.5"/><path d="M12 9v6M7 6h.01M7 18h.01"/></svg></i>DNS</span><span class="vk"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 7h.01M15 7h.01M9 11h.01M15 11h.01M9 15h.01M15 15h.01M10 21v-3h4v3"/></svg></i>MCA</span><span class="vk"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg></i>Call</span></div><h3>Thawte checks who you are</h3><p>DV proves you control the domain. OV and EV add checks on your company's registration, address and a verification call.</p><ul><li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></i>Email, DNS or file for DV</li><li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></i>MCA / GST records for OV &amp; EV</li><li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></i>We prepare the paperwork</li></ul></div>
+      <div class="vcard b3 rv" data-d="2"><span class="vb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>03 · Install &amp; renew</span><div class="hv hv3" aria-hidden="true"><span class="lkk"><svg viewBox="0 0 24 24"><path class="shk" d="M7.5 11V8a4.5 4.5 0 0 1 9 0v3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><rect x="5" y="11" width="14" height="10" rx="2.5" fill="currentColor"/></svg></span><span class="rn"><i></i></span><span class="dy">398 days</span></div><h3>Installed, tested, watched</h3><p>We install on your web server or load balancer, test the chain, then track expiry and handle yearly re-validation for multi-year plans.</p><ul><li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></i>cPanel, Plesk, IIS, Nginx, Apache</li><li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></i>Chain &amp; protocol test</li><li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></i>Reminders at 60, 30 and 7 days</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRODUCTS ================= -->
+<section class="sec" id="products">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">The Thawte range</span><h2>Five certificates, <span class="acc">three levels of proof.</span></h2><p>Move right for more identity assurance. All five use the same strong encryption — what changes is how thoroughly Thawte checks who you are, and what that check puts in the certificate.</p></div>
+    <div class="thl">
+      <div class="thc rv" data-v="dv">
+        <div class="thch"><span class="lvb l0">DV</span><div><b>Domain validated</b><small>Proves you control the domain</small></div><span class="meter" aria-hidden="true"><i></i><i></i><i></i></span></div>
+        <div class="thp" data-p="ssl123"><div class="tph"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg></span><div><h3>Thawte SSL123</h3><span class="tg">Single domain · www included</span></div></div>
+          <p>Encryption and the padlock in minutes, with no paperwork. For brochure sites, blogs, landing pages and internal tools.</p>
+          <ul class="tsp"><li><span>Issued in</span><b>Minutes</b></li><li><span>Warranty</span><b>US$500k</b></li><li><span>Company name</span><b class="no">Not shown</b></li></ul>
+          <div class="tpr"><span><b data-pp="ssl123">₹2,999</b>/ year</span><small data-p3="ssl123">₹2,599/yr on 3 years</small></div>
+          <div class="tac"><button type="button" class="btn btn-orange btn-sm" data-add="ssl123"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.5"/><circle cx="18" cy="21" r="1.5"/><path d="M2 3h3l2.6 13.4a1.5 1.5 0 001.5 1.1h9.5a1.5 1.5 0 001.5-1.2L22 7H6"/></svg> Add 1 year</button><button type="button" class="tcf" data-cfg="ssl123">Configure <span class="ar">→</span></button></div></div>
+        <div class="thp" data-p="ssl123w"><div class="tph"><span class="ti o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M5 8l14 8M19 8L5 16"/></svg></span><div><h3>Thawte SSL123 Wildcard</h3><span class="tg">*.yourbusiness.in</span></div></div>
+          <p>One DV certificate for the domain and every first-level subdomain — shop., mail., app., and any you add later.</p>
+          <ul class="tsp"><li><span>Issued in</span><b>Minutes</b></li><li><span>Warranty</span><b>US$500k</b></li><li><span>Subdomains</span><b>Unlimited</b></li></ul>
+          <div class="tpr"><span><b data-pp="ssl123w">₹14,999</b>/ year</span><small data-p3="ssl123w">₹13,199/yr on 3 years</small></div>
+          <div class="tac"><button type="button" class="btn btn-orange btn-sm" data-add="ssl123w"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.5"/><circle cx="18" cy="21" r="1.5"/><path d="M2 3h3l2.6 13.4a1.5 1.5 0 001.5 1.1h9.5a1.5 1.5 0 001.5-1.2L22 7H6"/></svg> Add 1 year</button><button type="button" class="tcf" data-cfg="ssl123w">Configure <span class="ar">→</span></button></div></div>
+      </div>
+      <div class="thc rv" data-v="ov" data-d="1">
+        <div class="thch"><span class="lvb l1">OV</span><div><b>Organisation validated</b><small>Adds your verified company name</small></div><span class="meter" aria-hidden="true"><i></i><i></i><i></i></span></div>
+        <div class="thp pop" data-p="ws"><span class="flag2">Best value</span><div class="tph"><span class="ti n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 7h.01M15 7h.01M9 11h.01M15 11h.01M9 15h.01M15 15h.01M10 21v-3h4v3"/></svg></span><div><h3>Thawte SSL Web Server</h3><span class="tg">Single domain · add SANs</span></div></div>
+          <p>Thawte checks your registered business, then writes the company name into the certificate. Add up to ~250 extra domains as SANs.</p>
+          <ul class="tsp"><li><span>Issued in</span><b>1–3 business days</b></li><li><span>Warranty</span><b>US$1.25M</b></li><li><span>Company name</span><b class="yes">In certificate</b></li></ul>
+          <div class="tpr"><span><b data-pp="ws">₹7,999</b>/ year</span><small data-p3="ws">₹6,999/yr on 3 years</small></div>
+          <div class="tac"><button type="button" class="btn btn-orange btn-sm" data-add="ws"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.5"/><circle cx="18" cy="21" r="1.5"/><path d="M2 3h3l2.6 13.4a1.5 1.5 0 001.5 1.1h9.5a1.5 1.5 0 001.5-1.2L22 7H6"/></svg> Add 1 year</button><button type="button" class="tcf" data-cfg="ws">Configure <span class="ar">→</span></button></div></div>
+        <div class="thp" data-p="wsw"><div class="tph"><span class="ti o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M5 8l14 8M19 8L5 16"/></svg></span><div><h3>Thawte SSL Web Server Wildcard</h3><span class="tg">*.yourbusiness.in · OV</span></div></div>
+          <p>Organisation validation across every first-level subdomain. One vetted identity for your whole web estate.</p>
+          <ul class="tsp"><li><span>Issued in</span><b>1–3 business days</b></li><li><span>Warranty</span><b>US$1.25M</b></li><li><span>Subdomains</span><b>Unlimited</b></li></ul>
+          <div class="tpr"><span><b data-pp="wsw">₹29,999</b>/ year</span><small data-p3="wsw">₹26,399/yr on 3 years</small></div>
+          <div class="tac"><button type="button" class="btn btn-orange btn-sm" data-add="wsw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.5"/><circle cx="18" cy="21" r="1.5"/><path d="M2 3h3l2.6 13.4a1.5 1.5 0 001.5 1.1h9.5a1.5 1.5 0 001.5-1.2L22 7H6"/></svg> Add 1 year</button><button type="button" class="tcf" data-cfg="wsw">Configure <span class="ar">→</span></button></div></div>
+      </div>
+      <div class="thc rv" data-v="ev" data-d="2">
+        <div class="thch"><span class="lvb l2">EV</span><div><b>Extended validation</b><small>The strictest identity checks</small></div><span class="meter" aria-hidden="true"><i></i><i></i><i></i></span></div>
+        <div class="thp" data-p="ev"><div class="tph"><span class="ti g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span><div><h3>Thawte SSL Web Server EV</h3><span class="tg">Single domain · add SANs</span></div></div>
+          <p>Legal, physical and operational checks on your organisation — the level once shown as the green address bar. For banking, payments and high-value logins.</p>
+          <ul class="tsp"><li><span>Issued in</span><b>1–5 business days</b></li><li><span>Warranty</span><b>US$1.5M</b></li><li><span>Company name</span><b class="yes">In certificate</b></li></ul>
+          <div class="tpr"><span><b data-pp="ev">₹14,999</b>/ year</span><small data-p3="ev">₹13,199/yr on 3 years</small></div>
+          <div class="tac"><button type="button" class="btn btn-orange btn-sm" data-add="ev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.5"/><circle cx="18" cy="21" r="1.5"/><path d="M2 3h3l2.6 13.4a1.5 1.5 0 001.5 1.1h9.5a1.5 1.5 0 001.5-1.2L22 7H6"/></svg> Add 1 year</button><button type="button" class="tcf" data-cfg="ev">Configure <span class="ar">→</span></button></div></div>
+        <a class="thsan" href="#configure" data-cfg="ws"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5M3 17.5l9 5 9-5"/></svg></i><span><b>Several domains?</b>Add SANs to Web Server or EV — <em data-san>₹3,999</em> per extra domain / year.</span><span class="ar">→</span></a>
+      </div>
+    </div>
+
+    <div class="thinc rv">
+      <div class="thinc-l">
+        <h3>Every Thawte certificate includes</h3>
+        <div class="thig">
+          <div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M14 9l2 2"/></svg></i><span><b>RSA 2048 or ECC</b>modern key options</span></div>
+          <div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg></i><span><b>SHA-256 · 256-bit</b>encryption strength</span></div>
+          <div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></i><span><b>Free reissues</b>for the whole term</span></div>
+          <div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></i><span><b>Unlimited servers</b>no per-server licence</span></div>
+          <div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg></i><span><b>99%+ trust</b>browsers &amp; devices</span></div>
+          <div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></i><span><b>Trusted Site Seal</b>dynamic, date-stamped</span></div>
+          <div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg></i><span><b>398-day certificates</b>multi-year plans</span></div>
+          <div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12M6 9h12M15 20L8 13h2a4 4 0 000-8"/></svg></i><span><b>30-day refund</b>policy (confirm on quote)</span></div>
+        </div>
+      </div>
+      <div class="thseal" aria-label="Illustration of a dynamic site seal with sample data">
+        <div class="ssc"><span class="ssi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span><span class="sst"><b>Trusted Site</b><small>Secured by Thawte</small></span></div>
+        <div class="ssd"><span>Verified</span><b id="thSealT">—</b></div>
+        <p>The seal on your site is live: visitors click it to see your verified details and today's date, which a copied image can't fake.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINDER ================= -->
+<section class="sec" id="finder">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">Certificate finder · try it</span><h2>Three questions. <span class="acc">One right certificate.</span></h2><p>Answer for the site you want to secure. The recommendation updates as you go, with the reason and an indicative first-year price.</p></div>
+    <div class="thf rv" id="thf">
+      <div class="thf-in">
+        <div class="thf-pg" aria-hidden="true"><span class="pgb"><i id="thfPg"></i></span><em id="thfPgT">0 of 3 answered</em></div>
+        <div class="thq" data-q="what"><span class="qt"><em>1</em>What are you securing?</span>
+          <div class="qo">
+            <button type="button" data-v="one"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg></i><span><b>One website</b><small>domain + www</small></span></button>
+            <button type="button" data-v="sub"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M5 8l14 8M19 8L5 16"/></svg></i><span><b>A site and its subdomains</b><small>*.yourbusiness.in</small></span></button>
+            <button type="button" data-v="multi"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5M3 17.5l9 5 9-5"/></svg></i><span><b>Several different sites</b><small>multi-domain</small></span></button>
+          </div>
+          <div class="qn" id="thfN"><span>How many different domains?</span><div class="stp"><button type="button" data-step="-1" aria-label="Fewer domains">−</button><input type="number" id="thfNi" min="2" max="25" value="3" aria-label="Number of domains"><button type="button" data-step="1" aria-label="More domains">+</button></div></div>
+        </div>
+        <div class="thq" data-q="who"><span class="qt"><em>2</em>Who is buying?</span>
+          <div class="qo two2">
+            <button type="button" data-v="ind"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></svg></i><span><b>An individual or project</b><small>no registered entity</small></span></button>
+            <button type="button" data-v="biz"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 7h.01M15 7h.01M9 11h.01M15 11h.01M9 15h.01M15 15h.01M10 21v-3h4v3"/></svg></i><span><b>A registered business</b><small>Pvt Ltd, LLP, firm, trust, govt</small></span></button>
+          </div>
+        </div>
+        <div class="thq" data-q="id"><span class="qt"><em>3</em>Should visitors be able to see your company name?</span>
+          <div class="qo">
+            <button type="button" data-v="no"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg></i><span><b>No, padlock only</b><small>encryption only</small></span></button>
+            <button type="button" data-v="ov"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="12" r="2.5"/><path d="M14 10h5M14 14h4M5 17a3.5 3.5 0 016 0"/></svg></i><span><b>Yes, show it</b><small>verified name</small></span></button>
+            <button type="button" data-v="ev"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></i><span><b>Yes, strictest</b><small>green-bar level</small></span></button>
+          </div>
+        </div>
+      </div>
+      <div class="thf-out" aria-live="polite">
+        <div class="fo-h"><span class="ck2">Recommended for you</span><span class="fo-path" id="thfPath"></span></div>
+        <div class="fo-card" id="thfCard"></div>
+        <div class="fo-act"><button type="button" class="btn btn-orange btn-block" id="thfAdd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.5"/><circle cx="18" cy="21" r="1.5"/><path d="M2 3h3l2.6 13.4a1.5 1.5 0 001.5 1.1h9.5a1.5 1.5 0 001.5-1.2L22 7H6"/></svg> Add to cart</button><button type="button" class="btn btn-line btn-block" id="thfCfg">Fine-tune in configurator <span class="ar">→</span></button></div>
+        <p class="fo-f">Guidance only. If you're unsure, <a href="#" data-open="xhCallback" data-topic="Which certificate do I need?">ask us</a> — we'll check your domains and documents first.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VALIDATION TIMELINE ================= -->
+<section class="sec" id="timeline">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">Validation timeline</span><h2>Minutes for DV. <span class="acc">Days for OV and EV — here's why.</span></h2><p>Press play to run all three side by side. Click a lane to see what each check involves and which documents an Indian business should keep ready.</p></div>
+    <div class="tlw rv" id="tlw">
+      <div class="tl-top"><button type="button" class="btn btn-orange btn-sm" id="tlPlay"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Play</button><div class="tl-clk"><span>Elapsed</span><b id="tlClk">0 min</b></div><span class="tl-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Timescale compressed · business days</span></div>
+      <div class="tl-lanes" id="tlLanes">
+        <div class="tl-axr" aria-hidden="true"><span></span><div class="tl-axis"><span style="left:0">Order</span><span class="m" style="left:9%">15 min</span><span style="left:30%">Day 1</span><span style="left:52%">Day 2</span><span class="m" style="left:72%">Day 3</span><span style="left:96%">Day 5</span></div><span></span></div>
+        <button type="button" class="ln on" data-k="dv"><span class="lh2"><span class="lvb l0">DV</span><small>SSL123</small></span><span class="lt"><span class="lb2"></span><span class="lf"></span></span><span class="ld"><b>≈ 5–15 min</b><small>typical</small></span></button>
+        <button type="button" class="ln" data-k="ov"><span class="lh2"><span class="lvb l1">OV</span><small>Web Server</small></span><span class="lt"><span class="lb2"></span><span class="lf"></span></span><span class="ld"><b>1–3 days</b><small>business days</small></span></button>
+        <button type="button" class="ln" data-k="ev"><span class="lh2"><span class="lvb l2">EV</span><small>WS EV</small></span><span class="lt"><span class="lb2"></span><span class="lf"></span></span><span class="ld"><b>1–5 days</b><small>business days</small></span></button>
+        <span class="tl-cur" id="tlCur" aria-hidden="true"></span>
+      </div>
+      <div class="tl-det" id="tlDet" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COMPARE BRANDS ================= -->
+<section class="sec" id="compare">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">Thawte vs RapidSSL vs GeoTrust vs DigiCert</span><h2>Four brands, one root. <span class="acc">Different jobs.</span></h2><p>All four are DigiCert brands and chain to the same trusted roots, so browser trust is identical. The differences are validation levels, warranty, extras and price.</p></div>
+    <div class="cpw">
+      <div class="cpm rv" aria-label="Chart: price position against identity assurance for four DigiCert brands">
+        <div class="cpm-h"><b>Where Thawte fits</b><span>bar = validation levels offered</span></div>
+        <div class="cpm-p" id="cpm">
+          <span class="ya" aria-hidden="true"><i>EV</i><i>OV</i><i>DV</i></span>
+          <span class="gl g1"></span><span class="gl g2"></span><span class="gl g3"></span>
+          <span class="br" style="--x:10%;--lo:0;--hi:1" data-b="r"><em>RapidSSL</em></span>
+          <span class="br me" style="--x:34%;--lo:0;--hi:3" data-b="t"><em>Thawte</em></span>
+          <span class="br" style="--x:61%;--lo:0;--hi:3" data-b="g"><em>GeoTrust</em></span>
+          <span class="br" style="--x:88%;--lo:1;--hi:3" data-b="d"><em>DigiCert</em></span>
+          <span class="xax" aria-hidden="true"><i>₹</i><i>Price →</i><i>₹₹₹₹</i></span>
+        </div>
+        <p class="cpm-f">Positioning is indicative, based on typical list pricing in each brand's range.</p>
+      </div>
+      <div class="rv" data-d="1">
+        <p class="swipe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4l-4 4 4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></svg> Swipe the table to compare</p>
+        <div class="tbl-w">
+          <table class="tbl cmp">
+            <thead><tr><th>&nbsp;</th><th><a href="/rapidssl" target="_top">RapidSSL</a></th><th class="hl">Thawte</th><th><a href="/geotrust-ssl-certificates" target="_top">GeoTrust</a></th><th>DigiCert</th></tr></thead>
+            <tbody>
+              <tr><td>Validation levels</td><td>DV only</td><td class="hl"><b>DV · OV · EV</b></td><td>DV · OV · EV</td><td>OV · EV</td></tr>
+              <tr><td>Position</td><td>Lowest-cost padlock</td><td class="hl"><b>Mid-tier OV/EV value</b></td><td>Mid-tier, business ID</td><td>Premium, enterprise</td></tr>
+              <tr><td>Warranty</td><td>US$10k</td><td class="hl">US$500k – 1.5M</td><td>Up to US$1.5M</td><td>Highest in the family</td></tr>
+              <tr><td>Site seal</td><td>Static seal</td><td class="hl">Dynamic Trusted Site Seal</td><td>Dynamic seal</td><td>Smart Seal</td></tr>
+              <tr><td>Wildcard</td><td class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> DV</td><td class="hl yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> DV &amp; OV</td><td class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> DV &amp; OV</td><td class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> OV</td></tr>
+              <tr><td>Roots &amp; browser trust</td><td>DigiCert · 99%+</td><td class="hl">DigiCert · 99%+</td><td>DigiCert · 99%+</td><td>DigiCert · 99%+</td></tr>
+              <tr><td>Price band</td><td>₹</td><td class="hl"><b>₹₹</b></td><td>₹₹</td><td>₹₹₹₹</td></tr>
+              <tr><td>Best for</td><td>Blogs, test and internal sites</td><td class="hl"><b>SMBs that want their name in the certificate without premium pricing</b></td><td>Businesses wanting a recognised business-ID brand</td><td>Banks, large enterprises, premium support</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY XCELLHOST ================= -->
+<section class="sec" id="why">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">What you get with XcellHost</span><h2>Powered by DigiCert. <span class="acc">Installed and looked after by XcellHost.</span></h2><p>A certificate is a file. Keeping a site secure year after year is a process — we run that process for you from Mumbai.</p></div>
+    <div class="dband rv"><div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M14 9l2 2"/></svg></i><span><b>CSR &amp; key generation</b><p>We generate the CSR on your server with the right domains and organisation details, so validation isn't held up by typos.</p></span><span class="n">01</span></div><div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></i><span><b>Installation, any stack</b><p>cPanel, Plesk, IIS, Nginx, Apache, Tomcat and load balancers — installed, chain-tested and checked for old protocols.</p></span><span class="n">02</span></div><div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0114 0M16 11l2 2 4-4"/></svg></i><span><b>Validation hand-holding</b><p>We prepare MCA / GST proof, the authorisation letter and the verification call so OV and EV move in days, not weeks.</p></span><span class="n">03</span></div><div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></i><span><b>Managed lifecycle</b><p>Expiry reminders at 60, 30 and 7 days, plus the yearly re-validation and reissue on multi-year plans.</p></span><span class="n">04</span></div><div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15v-3a8 8 0 0116 0v3"/><rect x="2" y="14" width="5" height="7" rx="2"/><rect x="17" y="14" width="5" height="7" rx="2"/></svg></i><span><b>24×7 support from Mumbai</b><p>Browser warning at midnight? Our NOC answers on phone, WhatsApp and tickets, round the clock.</p></span><span class="n">05</span></div><div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12M6 9h12M15 20L8 13h2a4 4 0 000-8"/></svg></i><span><b>INR billing with GST</b><p>One GST invoice for certificates, hosting and security — pay by UPI, card, net banking or transfer.</p></span><span class="n">06</span></div></div>
+    <div class="thmq rv" aria-label="Platforms we install on">
+      <div class="mqt" id="thMq"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg>cPanel / WHM</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Plesk</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Microsoft IIS</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h8l-1 8 10-12h-8z"/></svg>Nginx</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg>Apache</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg>Tomcat / Java keystores</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v5M5 17v-3h14v3"/></svg>F5 &amp; Citrix ADC</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a5 5 0 01-.6-10A6 6 0 0118 9a4.5 4.5 0 01-.5 9z"/></svg>AWS load balancers</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a5 5 0 01-.6-10A6 6 0 0118 9a4.5 4.5 0 01-.5 9z"/></svg>Azure App Gateway</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/></svg>Exchange &amp; webmail</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRICING ================= -->
+<section class="sec" id="pricing">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">Pricing</span><h2>Per certificate, <span class="acc">cheaper per year the longer you buy.</span></h2><p>Pick a certificate and term, add extra domains where they apply, and see exactly what you pay. All prices are indicative and exclude 18% GST.</p></div>
+    <div class="pr-top">
+      <div class="ez-card rv" id="pcard"><span class="ez-off">INSTALLATION INCLUDED</span>
+        <div class="ez-top"><span class="ez-ms"><span class="thd">D</span>DigiCert</span><a class="ez-ext" href="#compare" aria-label="Compare DigiCert brands"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></a></div>
+        <div class="ez-fam">Thawte SSL</div>
+        <h3 id="pcName">Thawte SSL Web Server</h3>
+        <div class="ez-sku" id="pcSku">OV · per certificate · SANs added separately</div>
+        <div class="ez-row"><span>Validation · issued in</span><b class="ez-from" id="pcIss">OV · 1–3 business days</b></div>
+        <div class="ez-row"><span>Warranty</span><b class="ez-from" id="pcWar">US$1.25M</b></div>
+        <div class="ez-row"><span>Starting from</span><b class="ez-from" id="pcFrom">₹2,599 / year</b></div>
+        <div class="ez-gst">SSL123 DV · 3-year term</div>
+        <div class="ez-pr"><span class="ez-tag m">1 year</span><span><span class="ez-amt" id="pc1">₹7,999</span> <small style="color:#9fb6de">/ year</small></span></div>
+        <div class="ez-pr"><span class="ez-tag y">3 years</span><span><span class="ez-amt" id="pc3">₹6,999</span> <small style="color:#9fb6de">/ year</small></span></div>
+        <div class="ez-save"><span>3 years vs yearly renewals</span><b id="pcPill">Save ₹3,000</b></div>
+        <div class="ez-cta"><a href="tel:+912267111555"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg>Call now</a><a class="q" href="#" data-open="xhCallback" data-topic="Thawte SSL — volume / multi-domain quote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg>Get quotation</a></div>
+        <a href="#configure" class="ez-buy" id="pcGo" style="display:block;text-align:center">Configure &amp; Buy →</a>
+        <div class="ez-gst" style="text-align:center;margin:10px 0 0">Indicative · excl. 18% GST</div>
+      </div>
+      <div class="pr-inc rv" data-d="2">
+        <h3>Choose a certificate</h3>
+        <div class="tpl" id="tpl" role="radiogroup" aria-label="Thawte certificate"></div>
+        <div class="addons">
+          <div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5M3 17.5l9 5 9-5"/></svg></i><span><b data-san>₹3,999</b>Extra domain (SAN) / year</span></div>
+          <div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></i><span><b>Included</b>CSR, install &amp; chain test</span></div>
+          <div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></i><span><b>Included</b>Yearly reissue on multi-year</span></div>
+        </div>
+        <p class="pnote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0zM12 9v4M12 17h.01"/></svg><span>Prices are indicative placeholders until confirmed on your quotation. Multi-year terms are billed upfront; the certificate itself is reissued every year.</span></p>
+      </div>
+    </div>
+
+    <div class="calc rv" id="configure">
+      <div class="cin">
+        <div class="fld"><span class="lb">Certificate</span>
+          <div class="seg cfg5" id="sProd"><button data-v="ssl123">SSL123<small>DV</small></button><button data-v="ssl123w">SSL123 Wildcard<small>DV</small></button><button data-v="ws" class="on">Web Server<small>OV</small></button><button data-v="wsw">WS Wildcard<small>OV</small></button><button data-v="ev">Web Server EV<small>EV</small></button></div></div>
+        <div class="fld"><span class="lb">Term</span>
+          <div class="seg" id="sTerm"><button data-v="1">1 year<small id="sT1">₹7,999 / yr</small></button><button data-v="2">2 years<small id="sT2">₹7,399 / yr</small></button><button data-v="3" class="on">3 years<small id="sT3">₹6,999 / yr</small></button></div></div>
+        <div class="fld" id="sSanF"><label for="sSan">Extra domains (SANs) <small id="sSanL">0 SANs</small></label>
+          <div class="seats"><div class="stp"><button type="button" data-step="-1" aria-label="Fewer SANs">−</button><input type="number" id="sSanN" min="0" max="50" value="0" aria-label="Extra domains"><button type="button" data-step="1" aria-label="More SANs">+</button></div>
+          <input class="rng" type="range" id="sSan" min="0" max="50" value="0" aria-label="Extra domains slider"></div>
+          <div class="hint" id="sSanH">Each SAN is a separate domain on the same certificate. Over 50? <a href="#" data-open="xhCallback" data-topic="Thawte SSL — volume / multi-domain quote">Ask for a quote</a> (up to ~250).</div></div>
+        <div class="sbt" aria-hidden="true">
+          <div class="sbt-h"><span>How a multi-year plan works</span><em id="sbtT">3 years · 3 certificates</em></div>
+          <div class="sbt-b" id="sbtB"></div>
+          <p class="sbt-f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0zM12 9v4M12 17h.01"/></svg><span>Browsers accept certificates valid for at most <b>398 days</b>. On a multi-year plan you pay once at today's rate; each year the domain (and organisation) is re-validated and a fresh certificate is issued — <b>we do the reissue and reinstall for you.</b></span></p>
+        </div>
+      </div>
+      <div class="cout" aria-live="polite">
+        <span class="ck">Your estimate</span>
+        <div class="ctot" id="oTot">₹0</div>
+        <div class="csub" id="oSub">for 3 years, excl. GST</div>
+        <div class="crows">
+          <div class="crow"><span id="oCL">Web Server · 3 yrs × ₹6,999</span><b id="oC">₹0</b></div>
+          <div class="crow"><span id="oSL">Extra domains · none</span><b id="oS">₹0</b></div>
+          <div class="crow save"><span id="oSvL">Saved vs yearly renewals</span><b id="oSv">₹0</b></div>
+          <div class="crow save"><span>CSR, installation &amp; reissues</span><b>Included</b></div>
+          <div class="crow"><span>GST (18%)</span><b id="oGst">₹0</b></div>
+          <div class="crow"><span>Payable incl. GST</span><b id="oPay">₹0</b></div>
+        </div>
+        <div class="cact"><button class="btn btn-orange btn-block" id="oAdd" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.5"/><circle cx="18" cy="21" r="1.5"/><path d="M2 3h3l2.6 13.4a1.5 1.5 0 001.5 1.1h9.5a1.5 1.5 0 001.5-1.2L22 7H6"/></svg> Add to cart</button><button class="btn btn-line btn-block" data-open="xhCallback" data-topic="Thawte SSL — buy a certificate">Get quotation</button></div>
+        <div class="cfine">Indicative · excl. 18% GST. Validation times depend on your documents and the verification call. Refund terms confirmed on your quotation.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INDIA ================= -->
+<section class="sec" id="india">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">TLS in India</span><h2>Regulators assume encryption. <span class="acc">Customers expect a name.</span></h2><p>No Indian rule names a certificate brand, but every major framework expects data in transit to be encrypted — and OV or EV certificates add verified identity on top.</p></div>
+    <div class="ind">
+      <div class="rg rv"><div class="ico n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 7h.01M15 7h.01M9 11h.01M15 11h.01M9 15h.01M15 15h.01M10 21v-3h4v3"/></svg></div><div><h3>RBI-regulated entities</h3><p>Banks, NBFCs and payment players work under RBI's IT and cyber-security directions, which expect strong encryption for customer data in transit. EV or OV certificates on login and payment pages make identity checks visible.</p></div></div>
+      <div class="rg rv" data-d="1"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div><div><h3>SEBI's cyber framework</h3><p>Brokers, depositories and other SEBI-regulated entities must protect data in transit and manage certificates as security assets — expiry tracking is part of that.</p></div></div>
+      <div class="rg rv" data-d="2"><div class="ico o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0zM12 9v4M12 17h.01"/></svg></div><div><h3>CERT-In advisories</h3><p>CERT-In regularly warns about expired certificates and outdated TLS versions. We install with modern protocols and track expiry so you're not on the wrong side of an audit.</p></div></div>
+      <div class="rg rv" data-d="3"><div class="ico g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></div><div><h3>DPDP Act, 2023</h3><p>Businesses handling personal data must take reasonable security safeguards against breaches. Encrypting every form, login and API is a basic one.</p></div></div>
+    </div>
+    <div class="docs rv"><span class="dl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg>Documents that usually clear OV / EV in India</span><span>MCA company master data (CIN)</span><span>GST registration (GSTIN)</span><span>Udyam / Shop &amp; Establishment certificate</span><span>Phone number in a public directory</span><span>Authorisation letter on letterhead</span></div>
+    <p class="fine2">Guidance only — regulations change and apply differently by sector. Your compliance team has the final word.</p>
+  </div>
+</section>
+
+</main>
+<div class="sr" id="contentStatus" role="status" aria-live="polite"></div>
+<script>
+(function(){
+  'use strict';
+  var d=document,reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function $(s,c){return (c||d).querySelector(s);}function $$(s,c){return Array.from((c||d).querySelectorAll(s));}
+  function send(type,detail){parent.postMessage(Object.assign({type:type},detail||{}),location.origin);}
+  var XH={reduce:reduce,$:$,$$:$$,
+    inr:function(n,dec){return '₹'+(+n||0).toLocaleString('en-IN',{minimumFractionDigits:dec||0,maximumFractionDigits:dec||0});},
+    flash:function(el){if(!el||reduce)return;el.classList.remove('flash');void el.offsetWidth;el.classList.add('flash');},
+    fillRange:function(el){el.style.setProperty('--p',((el.value-el.min)/(el.max-el.min)*100)+'%');},
+    toast:function(message){var el=$('#contentStatus');el.textContent=message;clearTimeout(XH.toastTimer);XH.toastTimer=setTimeout(function(){el.textContent='';},2600);},
+    cart:{add:function(item){send('thawte-cart',{item:item});}},
+    whenVisible:function(el,cb){if(!el)return;new IntersectionObserver(function(entries){entries.forEach(function(e){cb(e.isIntersecting);});},{threshold:.05}).observe(el);}
+  };
+  function setT(id,t){var e=d.getElementById(id);if(e)e.textContent=t;}
+  function inr(n){return XH.inr(n);}
+  d.addEventListener('click',function(event){
+    var target=event.target.closest('[data-step]');
+    if(target){var input=$('input',target.parentElement),value=+input.value+(+target.dataset.step);
+      input.value=Math.max(+input.min||0,Math.min(+input.max||Infinity,value));input.dispatchEvent(new Event('input',{bubbles:true}));}
+    var option=event.target.closest('.seg button');
+    if(option){var seg=option.closest('.seg');$$('button',seg).forEach(function(button){button.classList.toggle('on',button===option);button.setAttribute('aria-pressed',String(button===option));});seg.dataset.value=option.dataset.v;seg.dispatchEvent(new Event('change'));}
+    var quote=event.target.closest('[data-open="xhCallback"]');
+    if(quote){event.preventDefault();var topic=quote.dataset.topic||'Thawte SSL enquiry';
+      if(quote.closest('#pricing'))topic+=' — '+$('#pcName').textContent+' · '+($('#sTerm').dataset.value||3)+' years · '+$('#sSanL').textContent;
+      send('thawte-enquiry',{configuration:topic});}
+    var anchor=event.target.closest('a[href^="#"]');
+    if(anchor&&!anchor.hasAttribute('data-cfg')&&!anchor.hasAttribute('data-open')){
+      var id=anchor.getAttribute('href').slice(1);if(id&&d.getElementById(id)){event.preventDefault();send('thawte-scroll',{target:id});}}
+  });
+  $$('.qo button').forEach(function(button){button.setAttribute('aria-pressed','false');});
+  var reveal=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('in');reveal.unobserve(entry.target);}});},{threshold:.08});
+  $$('.rv').forEach(function(el){if(reduce)el.classList.add('in');else reveal.observe(el);});
+    /* ================= 0. Catalogue + pricing (indicative placeholders) ================= */
+  var P={
+    ssl123: {n:'Thawte SSL123',s:'SSL123',lv:0,y:2999,san:false,d:'Single domain · www included',iss:'Minutes',war:'US$500k',
+             pts:['Issued in minutes, no paperwork','www and non-www both covered','US$500k warranty','Free reissues for the term']},
+    ssl123w:{n:'Thawte SSL123 Wildcard',s:'SSL123 Wildcard',lv:0,y:14999,san:false,d:'*.domain · unlimited subdomains',iss:'Minutes',war:'US$500k',
+             pts:['Every first-level subdomain','Issued in minutes','US$500k warranty','Unlimited servers']},
+    ws:     {n:'Thawte SSL Web Server',s:'Web Server',lv:1,y:7999,san:true,d:'OV · company name in certificate',iss:'1–3 business days',war:'US$1.25M',
+             pts:['Verified company name in certificate','US$1.25M warranty','Add up to ~250 SANs','Dynamic Trusted Site Seal']},
+    wsw:    {n:'Thawte SSL Web Server Wildcard',s:'WS Wildcard',lv:1,y:29999,san:false,d:'OV · *.domain',iss:'1–3 business days',war:'US$1.25M',
+             pts:['Company name on every subdomain','Unlimited first-level subdomains','US$1.25M warranty','Unlimited servers']},
+    ev:     {n:'Thawte SSL Web Server EV',s:'Web Server EV',lv:2,y:14999,san:true,d:'EV · strictest vetting',iss:'1–5 business days',war:'US$1.5M',
+             pts:['Legal, physical & operational checks','US$1.5M warranty','Add SANs for key hosts','Best for logins & payments']}
+  };
+  var ORDER=['ssl123','ssl123w','ws','wsw','ev'],LVN=['DV','OV','EV'],SAN=3999,DISC={1:0,2:.08,3:.12};
+  function r99(x){return Math.round((x+1)/100)*100-1;}
+  function py(base,yrs){return yrs===1?base:r99(base*(1-DISC[yrs]));}   // per-year price on a multi-year term
+  function lvb(l){return '<span class="lvb l'+l+'">'+LVN[l]+'</span>';}
+  // fill static price labels from the single source above
+  $$('[data-pp]').forEach(function(e){e.textContent=inr(P[e.getAttribute('data-pp')].y);});
+  $$('[data-p3]').forEach(function(e){e.textContent=inr(py(P[e.getAttribute('data-p3')].y,3))+'/yr on 3 years';});
+  $$('[data-san]').forEach(function(e){e.textContent=inr(SAN);});
+
+
+    /* ================= 3. Pause decorative loops offscreen ================= */
+  ['#how','#products','#why','#compare'].forEach(function(s){var el=$(s);if(el)XH.whenVisible(el,function(v){el.classList.toggle('th-off',!v);});});
+
+  /* ================= 4. Dynamic site seal clock ================= */
+  var sealT=$('#thSealT');
+  if(sealT){
+    function stamp(){try{sealT.textContent=new Date().toLocaleString('en-IN',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Asia/Kolkata'})+' IST';}catch(e){sealT.textContent=new Date().toDateString();}}
+    stamp();var sv=true;XH.whenVisible(sealT,function(v){sv=v;});setInterval(function(){if(sv)stamp();},15000);
+  }
+
+
+    /* Original seamless installation-platform marquee. */
+  var mq=$('#thMq');if(mq)mq.innerHTML+=mq.innerHTML.replace(/<span>/g,'<span aria-hidden="true">');
+
+  /* ================= 6. Configurator + pricing card ================= */
+  var sProd=$('#sProd'),sTerm=$('#sTerm'),sSan=$('#sSan'),sSanN=$('#sSanN'),sanF=$('#sSanF'),tpl=$('#tpl'),shown=0,tw=null,prod='ws';
+  function tween(el,to){if(reduce){el.textContent=inr(to);shown=to;return;}var from=shown,t0=null;cancelAnimationFrame(tw);(function f(t){t0=t0||t;var p=Math.min(1,(t-t0)/450),e=1-Math.pow(1-p,3);el.textContent=inr(Math.round(from+(to-from)*e));if(p<1)tw=requestAnimationFrame(f);else shown=to;})(performance.now());}
+  function segSet(seg,v){var hit=false;$$('button',seg).forEach(function(b){var on=b.getAttribute('data-v')===String(v);if(on)hit=true;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on);});if(hit)seg.dataset.value=String(v);}
+  if(tpl){
+    tpl.innerHTML=ORDER.map(function(k){var p=P[k];return '<button type="button" role="radio" data-k="'+k+'"><span class="rd"></span><span class="tn"><b>'+p.n.replace('Thawte ','')+'</b><small>'+p.d+'</small></span>'+lvb(p.lv)+'<span class="tp1">'+inr(p.y)+'<small>'+inr(py(p.y,3))+'/yr · 3 yrs</small></span></button>';}).join('');
+    tpl.addEventListener('click',function(e){var b=e.target.closest('button[data-k]');if(b)setProd(b.getAttribute('data-k'),true);});
+  }
+  function setProd(k,fl){
+    if(!P[k])return;var ch=k!==prod;prod=k;var p=P[k];
+    segSet(sProd,k);
+    $$('#tpl button').forEach(function(b){var on=b.getAttribute('data-k')===k;b.classList.toggle('on',on);b.setAttribute('aria-checked',on);});
+    setT('pcName',p.n);setT('pcSku',LVN[p.lv]+' · '+p.d.replace(/^(OV|EV) · /,'')+(p.san?' · SANs extra':''));
+    setT('pc1',inr(p.y));setT('pcIss',LVN[p.lv]+' · '+p.iss);setT('pcWar',p.war);setT('pc3',inr(py(p.y,3)));setT('pcPill','Save '+inr((p.y-py(p.y,3))*3)+' over 3 yrs');
+    [1,2,3].forEach(function(y){var v=py(p.y,y);setT('sT'+y,inr(v)+' / yr'+(y>1?' · −'+Math.round((p.y-v)/p.y*100)+'%':''));});
+    sanF.classList.toggle('off',!p.san);
+        $('#sSanH').innerHTML=p.san?'Each SAN is another domain on the same certificate. Over 50? <a href="#" data-open="xhCallback" data-topic="Thawte SSL — volume / multi-domain quote">Ask for a quote</a> (up to ~250).':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0zM12 9v4M12 17h.01"/></svg> '+p.s+' doesn\'t take extra domains. Choose Web Server or Web Server EV to add SANs.';
+    if(ch&&fl){XH.flash($('#pc1'));XH.flash($('#pc3'));XH.flash($('#pcName'));}
+    calc();
+  }
+  function setSan(v){v=Math.max(0,Math.min(50,Math.round(+v||0)));sSan.value=v;sSanN.value=v;XH.fillRange(sSan);calc();}
+  var lastTerm=0;
+  function calc(){
+    var p=P[prod],term=+(sTerm.dataset.value||3),san=p.san?Math.max(0,Math.min(50,Math.round(+sSan.value||0))):0;
+    var per=py(p.y,term),sper=py(SAN,term),cert=per*term,sAmt=sper*term*san,tot=cert+sAmt,save=(p.y-per)*term+(SAN-sper)*term*san,gst=Math.round(tot*.18);
+    setT('sSanL',san+(san===1?' SAN':' SANs'));
+    setT('oCL',p.s+' · '+term+(term>1?' yrs':' yr')+' × '+inr(per));setT('oC',inr(cert));
+    setT('oSL',san?san+' SAN'+(san>1?'s':'')+' × '+inr(sper)+' × '+term+(term>1?' yrs':' yr'):(p.san?'Extra domains · none':'Extra domains · n/a'));setT('oS',inr(sAmt));
+    setT('oSvL',term>1?'Saved vs yearly renewals':'Saving · choose 2–3 years');setT('oSv',inr(save));
+    setT('oGst',inr(gst));setT('oPay',inr(tot+gst));setT('oSub',(term>1?'for '+term+' years':'for 1 year')+', excl. GST');
+    tween($('#oTot'),tot);
+    // subscription timeline
+    setT('sbtT',term+(term>1?' years · ':' year · ')+term+(term>1?' certificates':' certificate'));
+    if(term!==lastTerm){
+      var h='';for(var y=1;y<=term;y++){if(y>1)h+='<span class="rv2" style="animation-delay:'+((y-1)*.18)+'s" title="Re-validate and reissue"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></i></span>';
+        h+='<span class="yr" style="animation-delay:'+((y-1)*.18)+'s"><b>Year '+y+' · certificate '+y+'</b><small>'+(y===1?'issued at purchase':'after re-validation')+'</small></span>';}
+      $('#sbtB').innerHTML=h;lastTerm=term;
+    }
+    return {p:p,term:term,san:san,per:per,sper:sper,tot:tot};
+  }
+  if(sProd){
+    setT('pcFrom',inr(Math.min.apply(null,ORDER.map(function(k){return py(P[k].y,3);})))+' / year');
+    sProd.addEventListener('change',function(){setProd(sProd.dataset.value,true);XH.flash($('#oTot'));});
+    sTerm.addEventListener('change',function(){calc();XH.flash($('#oTot'));});
+    sSan.addEventListener('input',function(){setSan(sSan.value);});
+    sSanN.addEventListener('input',function(){if(sSanN.value!=='')setSan(sSanN.value);});
+    sSanN.addEventListener('blur',function(){setSan(sSanN.value);});
+    setProd('ws');
+    $('#oAdd').addEventListener('click',function(){
+      var c=calc(),k=prod;
+      XH.cart.add({key:'thawte-'+k+'-'+c.term+'y',name:c.p.n+' — '+c.term+'-year plan',sub:c.term>1?c.term+' × '+inr(c.per)+'/yr · reissued yearly':'1-year term',price:c.per*c.term,qty:1});
+      if(c.san)XH.cart.add({key:'thawte-san-'+k+'-'+c.term+'y',name:'Extra domain (SAN) — '+c.term+'-year',sub:'on '+c.p.s+' · '+inr(c.sper)+'/yr',price:c.sper*c.term,qty:c.san});
+    });
+  }
+  function goCfg(k,term,san){
+    if(k)setProd(k,true);if(term){segSet(sTerm,term);}if(san!=null)setSan(san);else calc();
+    parent.postMessage({type:'thawte-scroll',target:'configure'},location.origin);
+    setTimeout(function(){XH.flash($('#oTot'));},500);
+  }
+
+
+    /* ================= 7. Product cards ================= */
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('[data-add]');
+    if(a){var k=a.getAttribute('data-add'),p=P[k];XH.cart.add({key:'thawte-'+k+'-1y',name:p.n+' — 1-year plan',sub:'1-year term · '+LVN[p.lv],price:p.y,qty:1});return;}
+    var c=e.target.closest('[data-cfg]');
+    if(c){e.preventDefault();var k2=c.getAttribute('data-cfg');goCfg(k2,null,null);XH.toast('Configurator set to '+P[k2].s);}
+  });
+
+  /* ================= 8. Certificate finder ================= */
+  var thf=$('#thf');
+  if(thf){
+    var A={what:null,who:null,id:null},nIn=$('#thfNi'),card=$('#thfCard'),lastSig='';
+    var LBL={what:{one:'One site',sub:'Subdomains',multi:'Several sites'},who:{ind:'Individual',biz:'Business'},id:{no:'Padlock only',ov:'Company name',ev:'Strictest'}};
+    function domains(){return Math.max(2,Math.min(25,Math.round(+nIn.value||3)));}
+    function rec(what,who,id,n){
+      var biz=who==='biz',eff=biz?id:'no',r={k:'ssl123',san:0,qty:1,why:'',alt:'',forced:!biz&&id!=='no'};
+      if(eff==='no'){
+        if(what==='one'){r.k='ssl123';r.why='You need encryption and the padlock on one site. SSL123 is issued in minutes after an email, DNS or file check — no company paperwork.';}
+        else if(what==='sub'){r.k='ssl123w';r.why='One wildcard covers the main domain and every first-level subdomain, including ones you add later. It pays for itself once you have about '+Math.ceil(P.ssl123w.y/P.ssl123.y)+' subdomains.';}
+        else{r.k='ssl123';r.qty=n;r.why='SSL123 secures one domain each, so you would use '+n+' of them — each issued in minutes.';
+          if(biz)r.alt='Prefer one certificate? Web Server (OV) with '+(n-1)+' SAN'+(n>2?'s':'')+' costs '+inr(P.ws.y+(n-1)*SAN)+'/yr and adds your verified company name.';}
+        if(r.forced)r.alt='OV and EV need a registered organisation to vet, so we\'ve recommended DV. You can move up once your business is registered.';
+      } else if(eff==='ov'){
+        if(what==='one'){r.k='ws';r.why='Thawte verifies your registered business and writes the company name into the certificate — the best value way to show who runs the site.';}
+        else if(what==='sub'){r.k='wsw';r.why='Organisation validation across every first-level subdomain, so shop., app. and mail. all carry the same verified company name.';
+          r.alt='Only two or three subdomains? Web Server with SANs ('+inr(P.ws.y+2*SAN)+'/yr for three hosts) can be cheaper.';}
+        else{r.k='ws';r.san=n-1;r.why='One OV certificate carries all '+n+' domains as SANs, with one validation and one renewal date to manage.';}
+      } else {
+        if(what==='one'){r.k='ev';r.why='EV adds legal, physical and operational checks on top of OV — worth it where customers log in, pay or share sensitive data.';}
+        else if(what==='sub'){r.k='ev';r.san=2;r.why='EV wildcards aren\'t allowed under industry rules, so list the hosts that matter — such as login. and pay. — as SANs on one EV certificate. We\'ve assumed two; adjust in the configurator.';
+          r.alt='Need every other subdomain covered too? Pair it with an OV wildcard at '+inr(P.wsw.y)+'/yr.';}
+        else{r.k='ev';r.san=n-1;r.why='All '+n+' domains go on one EV certificate as SANs, each covered by the same extended vetting.';}
+      }
+      r.price=(P[r.k].y+r.san*SAN)*r.qty;return r;
+    }
+    function candidates(){
+      var W=A.what?[A.what]:['one','sub','multi'],U=A.who?[A.who]:['ind','biz'],I=A.id?[A.id]:['no','ov','ev'],s={};
+      W.forEach(function(w){U.forEach(function(u){I.forEach(function(i){s[rec(w,u,i,domains()).k]=1;});});});return s;
+    }
+    function render(){
+      var done=(A.what?1:0)+(A.who?1:0)+(A.id?1:0);
+      $('#thfPg').style.width=(done/3*100)+'%';setT('thfPgT',done+' of 3 answered');
+      $('#thfN').classList.toggle('show',A.what==='multi');
+      // individuals can't take OV/EV — show it on the options
+      $$('.thq[data-q="id"] button').forEach(function(b){b.classList.toggle('dis',A.who==='ind'&&b.getAttribute('data-v')!=='no');});
+      $('#thfPath').innerHTML=['what','who','id'].map(function(q){return A[q]?'<span>'+(q==='what'&&A[q]==='multi'?domains()+' sites':LBL[q][A[q]])+'</span>':'';}).join('');
+      var addB=$('#thfAdd'),cfgB=$('#thfCfg'),sig;
+      if(done<3){
+        var c=candidates();sig='p:'+Object.keys(c).sort().join(',');
+        card.innerHTML='<div class="fo-gh"><p class="fo-why">'+(done?'Narrowing it down — '+Object.keys(c).length+' of 5 still fit.':'Answer three quick questions and we\'ll pick one of these.')+'</p><ul>'+
+          ORDER.map(function(k){var p=P[k];return '<li class="'+(c[k]?'k':'x')+'">'+lvb(p.lv)+'<b>'+p.n.replace('Thawte ','')+'</b><span>'+inr(p.y)+'/yr</span></li>';}).join('')+'</ul></div>';
+        addB.disabled=true;cfgB.disabled=true;
+      } else {
+        var r=rec(A.what,A.who,A.id,domains()),p=P[r.k];sig='r:'+r.k+r.san+r.qty;
+        var sub=r.qty>1?r.qty+' certificates × '+inr(p.y):r.san?inr(p.y)+' + '+r.san+' SAN'+(r.san>1?'s':'')+' × '+inr(SAN):'1 certificate, 1-year term';
+        card.innerHTML='<div class="fo-n">'+lvb(p.lv)+'<h3>'+p.n+(r.qty>1?' × '+r.qty:'')+'</h3></div><p class="fo-why">'+r.why+'</p>'+
+          '<ul class="fo-pts">'+p.pts.map(function(t){return '<li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></i>'+t+'</li>';}).join('')+'</ul>'+
+          '<div class="fo-pr"><div><span>First year, indicative</span><b>'+inr(r.price)+'</b><small>'+sub+' · excl. GST</small></div><div class="fo-mt"><span>Identity assurance</span><span class="mt l'+p.lv+'"><i></i><i></i><i></i></span></div></div>'+
+          (r.alt?'<p class="fo-alt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0zM12 9v4M12 17h.01"/></svg><span>'+r.alt+'</span></p>':'');
+        addB.disabled=false;cfgB.disabled=false;thf._r=r;
+      }
+      if(sig!==lastSig&&!reduce){card.classList.remove('sw');void card.offsetWidth;card.classList.add('sw');}
+      lastSig=sig;
+    }
+    thf.addEventListener('click',function(e){
+      var b=e.target.closest('.qo button');if(!b)return;var q=b.closest('.thq').getAttribute('data-q');
+      A[q]=b.getAttribute('data-v');$$('button',b.parentNode).forEach(function(x){x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',x===b);});
+      render();
+    });
+    nIn.addEventListener('input',render);
+    $('#thfAdd').addEventListener('click',function(){
+      var r=thf._r;if(!r)return;var p=P[r.k];
+      XH.cart.add({key:'thawte-'+r.k+'-1y',name:p.n+' — 1-year plan',sub:'1-year term · '+LVN[p.lv],price:p.y,qty:r.qty});
+      if(r.san)XH.cart.add({key:'thawte-san-'+r.k+'-1y',name:'Extra domain (SAN) — 1-year',sub:'on '+p.s+' · '+inr(SAN)+'/yr',price:SAN,qty:r.san});
+    });
+    $('#thfCfg').addEventListener('click',function(){var r=thf._r;if(!r)return;goCfg(r.k,null,r.san);XH.toast('Configurator set to '+P[r.k].s+(r.san?' + '+r.san+' SANs':''));});
+    render();
+  }
+
+  /* ================= 9. Validation timeline (DV vs OV vs EV) ================= */
+  var TL={
+    dv:{end:9,steps:[[0,'Order & CSR'],[4.5,'Domain check'],[9,'Issued']],t:'DV · Thawte SSL123',
+        st:[['Order & CSR','We generate the key and CSR on your server and place the order.','0 min'],
+            ['Domain control check','Approve an email sent to admin@ or webmaster@ your domain, add a DNS record, or place a file under /.well-known/pki-validation/.','~5 min'],
+            ['Issued &amp; installed','Thawte issues the certificate automatically; we install it and test the chain.','≈15 min']],
+        dc:['No company documents','Access to a domain admin mailbox, DNS or the web root'],nt:'Good for sites where encryption is the goal and identity isn\'t on show.'},
+    ov:{end:62,steps:[[0,'Order & CSR'],[4.5,'Domain check'],[30,'Organisation lookup'],[50,'Verification call'],[62,'Issued']],t:'OV · Thawte SSL Web Server',
+        st:[['Order &amp; CSR','Organisation name and address entered exactly as registered.','0 min'],
+            ['Domain control check','Same email, DNS or file check as DV.','~5 min'],
+            ['Organisation lookup','Thawte matches your legal name and address against a government or registry source — for Indian companies usually MCA or GST records.','Day 1'],
+            ['Verification call','A call to a number listed in a public or third-party directory confirms the order is authorised.','Day 1–2'],
+            ['Issued &amp; installed','Your company name now appears in the certificate details.','Day 1–3']],
+        dc:['MCA master data (CIN) or GSTIN','Udyam or Shop &amp; Establishment for firms','Phone number in a public directory','A contact available for the call'],nt:'Most delays come from name or address mismatches — we check them before ordering.'},
+    ev:{end:94,steps:[[0,'Order & CSR'],[4.5,'Domain check'],[26,'Legal existence'],[44,'Physical & operational'],[62,'Signed authorisation'],[80,'Verification call'],[94,'Issued']],t:'EV · Thawte SSL Web Server EV',
+        st:[['Order &amp; CSR','Full legal name, registration number and jurisdiction.','0 min'],
+            ['Domain control check','Same email, DNS or file check as DV.','~5 min'],
+            ['Legal existence','Registration confirmed as active with the official registry.','Day 1'],
+            ['Physical &amp; operational existence','Business address verified, and evidence the organisation is actively operating.','Day 1–2'],
+            ['Signed authorisation','An authorised officer signs the EV request or authorisation letter.','Day 2–3'],
+            ['Verification call','Final call to confirm the request with the signer.','Day 3–4'],
+            ['Issued &amp; installed','Strictest identity checks completed.','Day 1–5']],
+        dc:['Everything needed for OV','Authorisation letter signed by an officer','Proof of operation (e.g. bank confirmation for newer companies)','Officer available for the final call'],nt:'Plan EV a week ahead of a launch; we keep the paperwork moving daily.'}
+  };
+  var tlw=$('#tlw');
+  if(tlw){
+    var lanesEl=$('#tlLanes'),cur=$('#tlCur'),det=$('#tlDet'),play=$('#tlPlay'),clk=$('#tlClk'),lanes=$$('.ln',lanesEl),raf=null,ran=false,P0=0;
+    lanes.forEach(function(ln){
+      var k=ln.getAttribute('data-k'),d=TL[k],lt=$('.lt',ln);
+      d.steps.forEach(function(s,i){var last=i===d.steps.length-1;lt.insertAdjacentHTML('beforeend','<span class="sd'+(last?' fin':'')+'" style="left:'+s[0]+'%" title="'+s[1]+'">'+(last?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>':'')+'</span>');});
+    });
+    function clock(p){
+      if(p<9)return Math.round(p/9*15)+' min';
+      if(p<30)return '≈ '+Math.max(1,Math.round((p-9)/21*8))+' h';
+      var D=p<52?1+(p-30)/22:p<72?2+(p-52)/20:3+(p-72)/24*2;return 'Day '+Math.floor(D);
+    }
+    function paint(p){
+      var r0=$('.lt',lanes[0]).getBoundingClientRect(),c=lanesEl.getBoundingClientRect();
+      cur.style.transform='translateX('+(r0.left-c.left+r0.width*Math.min(p,100)/100-1)+'px)';
+      clk.textContent=p>=100?'Done':clock(p);
+      lanes.forEach(function(ln){var d=TL[ln.getAttribute('data-k')];
+        $('.lf',ln).style.transform='scaleX('+(Math.min(p,d.end)/100)+')';
+        $$('.sd',ln).forEach(function(s,i){s.classList.toggle('dn',p>=d.steps[i][0]);});
+        ln.classList.toggle('ok',p>=d.end);});
+    }
+    function run(){
+      cancelAnimationFrame(raf);cur.classList.add('on');play.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg> Replay';
+      if(reduce){paint(100);return;}
+      var t0=null,D=7200;
+      (function f(t){t0=t0||t;var q=Math.min(1,(t-t0)/D),p=q*102;paint(p);if(q<1)raf=requestAnimationFrame(f);})(performance.now());
+    }
+    function show(k){
+      var d=TL[k];lanes.forEach(function(l){l.classList.toggle('on',l.getAttribute('data-k')===k);l.setAttribute('aria-pressed',l.getAttribute('data-k')===k);});
+      det.innerHTML='<div><h3>'+lvb(['dv','ov','ev'].indexOf(k))+d.t+'</h3><ol class="tl-st">'+d.st.map(function(s){return '<li><span><b>'+s[0]+'</b> — '+s[1]+'</span><em>'+s[2]+'</em></li>';}).join('')+'</ol></div>'+
+        '<div class="tl-dc"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg> Keep ready</h3><ul>'+d.dc.map(function(x){return '<li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></i><span>'+x+'</span></li>';}).join('')+'</ul><p>'+d.nt+'</p></div>';
+      if(!reduce){det.classList.remove('sw');void det.offsetWidth;det.classList.add('sw');}
+    }
+    lanes.forEach(function(l){l.addEventListener('click',function(){show(l.getAttribute('data-k'));});});
+    play.addEventListener('click',run);
+    show('dv');paint(0);
+    addEventListener('resize',function(){paint(cur.classList.contains('on')?102:0);});
+    XH.whenVisible(tlw,function(v){if(v&&!ran){ran=true;setTimeout(run,400);}});
+  }
+})();
+</script></body></html>

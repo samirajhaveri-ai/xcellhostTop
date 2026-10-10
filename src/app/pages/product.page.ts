@@ -53,6 +53,8 @@ import { DigicertSmimeContentComponent } from '../sections/digicert-smime-conten
 import { DigicertSmimeFaqComponent } from '../sections/digicert-smime-faq.component';
 import { DigicertSmimeRelatedComponent } from '../sections/digicert-smime-related.component';
 import { DigicertSmimeHeroComponent } from '../sections/digicert-smime-hero.component';
+import { ThawteSslHeroComponent } from '../sections/thawte-ssl-hero.component';
+import { ThawteSslContentComponent } from '../sections/thawte-ssl-content.component';
 
 import { VeraRubinContentComponent } from '../sections/nvidia-vera-rubin-content.component';
 import { VERA_RUBIN_FAQS } from '../data/nvidia-vera-rubin-faqs.data';
@@ -441,6 +443,8 @@ interface ProductTourSlide {
     DigicertSmimeFaqComponent,
     DigicertSmimeRelatedComponent,
     DigicertSmimeHeroComponent,
+    ThawteSslHeroComponent,
+    ThawteSslContentComponent,
 
     HigherEducationHeroCopyComponent,
     HigherEducationContentComponent,
@@ -1889,6 +1893,50 @@ interface ProductTourSlide {
       #ppage.ppage.managed-mongodb-page > .pp-hero > .pph-scene.mongodb-hero-art {
         grid-column: 1; grid-row: 2; justify-self: center;
       }
+    }
+    #ppage.ppage.thawte-page > .pp-hero { min-height: 620px; }
+    #ppage.thawte-page .pp-hero #ppTitle { display: block; max-width: 53%; white-space: normal; text-align: left; }
+    #ppage.thawte-page .pp-hero #ppTitle .pp-title-name { display: inline; white-space: normal; margin-left: 0; }
+    #ppage.ppage.thawte-page > .pp-hero > .wrap > .thawte-hero-tagline { width: 53% !important; max-width: 53% !important; margin-bottom: 2px; color: #fff; font: 700 16.5px/1.45 var(--disp); text-wrap: wrap; }
+    #ppage.ppage.thawte-page > .pp-hero > .wrap > .thawte-hero-summary { width: 53% !important; max-width: 53% !important; margin-bottom: 16px; color: #dbe7fb; font: 600 15.5px/1.6 var(--disp); text-wrap: wrap; }
+    #ppage.thawte-page .thawte-hero-points { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 20px; width: 53%; max-width: 520px; margin: 0 0 24px; padding: 0; list-style: none; }
+    #ppage.thawte-page .thawte-hero-points li { display: flex; align-items: center; gap: 10px; min-width: 0; font-size: 14px; color: #eaf2ff; }
+    #ppage.thawte-page .thawte-hero-tick { display: grid; place-items: center; flex-shrink: 0; width: 20px; height: 20px; border-radius: 5px; background: #1565d8; box-shadow: 0 0 0 3px rgba(21,101,216,.25); }
+    #ppage.thawte-page .thawte-hero-tick svg { width: 11px; height: 11px; color: #fff; }
+    #ppage.thawte-page .pp-typewriter { max-width: 53%; }
+    #ppage.thawte-page .pp-typewriter span { min-width: 0; }
+    #ppage.thawte-page .pp-typewriter i { flex-shrink: 0; }
+    #ppage.ppage.thawte-page > .pp-hero > .pph-scene.thawte-hero-art {
+      right: max(24px, calc((100% - 1240px) / 2 + 24px));
+      width: min(calc((100% - 48px) * .43), 520px);
+      top: 50%; bottom: auto; transform: translateY(-50%);
+      max-height: none; opacity: 1; mask-image: none; overflow: visible;
+      pointer-events: auto;
+    }
+    #ppage.ppage.thawte-page > .pp-hero > .wrap > h1,
+    #ppage.ppage.thawte-page > .pp-hero > .wrap > .pp-tagline,
+    #ppage.ppage.thawte-page > .pp-hero > .wrap > .pp-tagline-support,
+    #ppage.ppage.thawte-page > .pp-hero > .wrap > .pp-chips,
+    #ppage.ppage.thawte-page > .pp-hero > .wrap > .pp-hero-grid { max-width: 53%; }
+    @media (max-width: 900px) {
+      #ppage.ppage.thawte-page > .pp-hero { display: flex; flex-direction: column; min-height: 0; }
+      #ppage.thawte-page .pp-hero #ppTitle { max-width: 100%; }
+      #ppage.ppage.thawte-page > .pp-hero > .wrap > :is(.thawte-hero-tagline, .thawte-hero-summary) { width: 100% !important; max-width: 100% !important; }
+      #ppage.thawte-page .thawte-hero-points { width: 100%; }
+      #ppage.thawte-page .pp-typewriter { max-width: 100%; }
+      #ppage.ppage.thawte-page > .pp-hero > .wrap { order: -1; width: 100%; }
+      #ppage.ppage.thawte-page > .pp-hero > .wrap > h1,
+      #ppage.ppage.thawte-page > .pp-hero > .wrap > .pp-tagline,
+      #ppage.ppage.thawte-page > .pp-hero > .wrap > .pp-tagline-support,
+      #ppage.ppage.thawte-page > .pp-hero > .wrap > .pp-chips,
+      #ppage.ppage.thawte-page > .pp-hero > .wrap > .pp-hero-grid { max-width: 100%; }
+      #ppage.ppage.thawte-page > .pp-hero > .pph-scene.thawte-hero-art {
+        position: relative; inset: auto; transform: none;
+        width: calc(100% - 32px); max-width: 520px; margin: 24px auto 0;
+      }
+    }
+    @media (max-width: 560px) {
+      #ppage.thawte-page .thawte-hero-points { grid-template-columns: 1fr; }
     }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -5,6 +5,7 @@
     [class.smb-visibility-page]="v.heroMessages[0]?.toLowerCase()?.startsWith('maximise online visibility')"
     [class.lead-crm-page]="slug() === 'lead-generation-and-pipeline-crm'"
     [class.digicert-page]="isDigiCert()"
+    [class.thawte-page]="slug() === 'thawte-ssl-certificates'"
     [class.smime-ov-page]="slug() === 'digicert-smime-ov'"
     [class.claude-backup-page]="slug() === 'claude-backup'"
     [class.plesk-servers-page]="slug() === 'plesk-servers'"
@@ -440,6 +441,10 @@
         @if (slug() === 'linux-servers' || slug() === 'windows-servers') {
           <!-- Server visuals are positioned beside their copy inside the shared wrap. -->
 
+        } @else if (slug() === 'thawte-ssl-certificates') {
+          <div class="pph-scene thawte-hero-art">
+            <xh-thawte-ssl-hero />
+          </div>
         } @else if (slug() === 'anthropic-managed-services') {
           <div class="pph-scene anthropic-managed-hero-art">
             <xh-anthropic-managed-services-hero />
@@ -1586,6 +1591,9 @@
             }
             @if (slug() === 'ai-lab-as-service') {
               <p class="pp-tagline ai-lab-summary" id="ppTag">{{ v.tagline }}</p>
+            } @else if (slug() === 'thawte-ssl-certificates') {
+              <p class="pp-tagline thawte-hero-tagline" id="ppTag">The padlock, plus proof of who is behind it.</p>
+              <p class="pp-tagline-support thawte-hero-summary" data-preserve-copy>Thawte DV, OV and EV certificates on DigiCert's roots &mdash; validated, installed and billed in rupees by XcellHost.</p>
             } @else if (usesContainerRegistryTemplate()) {
               <p class="pp-tagline" id="ppTag">A private registry that only ships trusted images.</p>
             } @else if (slug() === 'ai-voice-bot') {
@@ -1635,7 +1643,7 @@
               </h2>
             }
 
-            @if (v.heroHighlight && slug() !== 'ai-voice-bot' && slug() !== 'managed-oracle-cloud') {
+            @if (v.heroHighlight && slug() !== 'ai-voice-bot' && slug() !== 'managed-oracle-cloud' && slug() !== 'thawte-ssl-certificates') {
               <p class="pp-tagline-support" [class.defender-hero-description]="slug() === 'microsoft-defender'">{{ v.heroHighlight }}</p>
             }
             @if (v.heroMessages.length) {
@@ -1643,6 +1651,13 @@
                 <span>{{ typedHeroText() }}</span
                 ><i aria-hidden="true"></i>
               </div>
+            }
+            @if (slug() === 'thawte-ssl-certificates') {
+              <ul class="thawte-hero-points" aria-label="Thawte SSL certificate highlights">
+                @for (point of ['DV, OV & EV validation', 'Issued from DigiCert roots', 'Wildcard & multi-domain (SAN)', 'Warranty up to US$1.5M', 'Unlimited reissues & servers', 'Dynamic Trusted Site Seal']; track point) {
+                  <li><span class="thawte-hero-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg></span>{{ point }}</li>
+                }
+              </ul>
             }
 
             <div class="pp-hero-grid">
@@ -2604,6 +2619,8 @@
                       <xh-cpanel-servers-overview (quoteRequested)="openCallback($event.event, $event.configuration)" />
                    } @else if (slug() === 'imunify360') {
                       <xh-imunify360-content (planRequested)="requestImunify360Plan($event)" />
+                   } @else if (slug() === 'thawte-ssl-certificates') {
+                      <xh-thawte-ssl-content (quoteRequested)="openCallback($event.event, $event.configuration)" />
                    } @else if (!isTally() && slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'microsoft-365-to-google-workspace-migration' && slug() !== 'sectigo-ssl-certificates' && slug() !== 'email-backup' && slug() !== 'odoo-hosting' && slug() !== 'erp-next-hosting' && !isFrameworkDetail() && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops') {
                       <div class="pp-sec">Overview</div>
                       <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
@@ -3392,6 +3409,8 @@
                   <xh-imunify360-followup (consultationRequested)="requestImunify360Plan($event)" />
                 } @else if (slug() === 'billing-software') {
                   <xh-billing-software-tail (quoteRequested)="openCallback($event.event, $event.plan)" />
+                } @else if (slug() === 'thawte-ssl-certificates') {
+                  <!-- The imported certificate catalogue replaces the generic term plans. -->
                 } @else if (slug() === 'digital-menu-and-catalog-management') {
                   <!-- Buying options are included in the supplied digital menu overview above. -->
                 } @else if (slug() === 'managed-mongodb') {
@@ -3617,6 +3636,8 @@
                   <!-- AI Receptionist benefits render in the shared Why XcellHost section below. -->
                 } @else if (usesContainerRegistryTemplate()) {
                   <!-- Registry capabilities render in the supplied content above. -->
+                } @else if (slug() === 'thawte-ssl-certificates') {
+                  <!-- The supplied comparison and managed services replace the generic features. -->
                 } @else if (
                   slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'microsoft-365-to-google-workspace-migration' && slug() !== 'sectigo-ssl-certificates' && slug() !== 'email-backup' && slug() !== 'odoo-hosting' && slug() !== 'erp-next-hosting' && !isFrameworkDetail() && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
                   slug() !== 'imunify360' &&
@@ -4264,6 +4285,8 @@
                   <!-- The AI Receptionist Why XcellHost section below replaces the generic benefits block. -->
                 } @else if (usesContainerRegistryTemplate()) {
                   <!-- Registry migration, tooling and compliance replace generic benefits. -->
+                } @else if (slug() === 'thawte-ssl-certificates') {
+                  <!-- The supplied pricing and India sections replace the generic benefits. -->
                 } @else if (
                   slug() !== 'google-my-business' && slug() !== 'hrm-attendance' && slug() !== 'instagram-automation' && slug() !== 'instant-website' && slug() !== 'lead-generation-and-pipeline-crm' && slug() !== 'nvidia-vera-rubin' && slug() !== 'microsoft-365-to-google-workspace-migration' && slug() !== 'sectigo-ssl-certificates' && slug() !== 'email-backup' && slug() !== 'odoo-hosting' && slug() !== 'erp-next-hosting' && !isFrameworkDetail() && slug() !== 'storage-servers' && slug() !== 'gaming-servers' && slug() !== 'virtualization-servers' && slug() !== 'agent-studio' && slug() !== 'smart-qr-and-nfc-automation' && slug() !== 'aiops' &&
                   slug() !== 'imunify360' &&
@@ -4932,7 +4955,7 @@
                   slug() !== 'vortex-seg' &&
                   slug() !== 'vortex-soc'
                 ) {
-                  @if (slug() !== 'managed-oracle-cloud' && slug() !== 'ai-voice-bot') {
+                  @if (slug() !== 'managed-oracle-cloud' && slug() !== 'ai-voice-bot' && slug() !== 'thawte-ssl-certificates') {
                   <div class="pp-sec">Use cases</div>
                   <div
                     class="pp-uses"
