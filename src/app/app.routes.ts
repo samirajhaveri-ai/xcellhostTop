@@ -273,6 +273,8 @@ export const routes: Routes = [
   { path: 'tsplus-demo-center', loadComponent: () => import('./pages/tsplus-demo-center.page').then((m) => m.TsplusDemoCenterPage) },
   { path: 'under-construction/acronis-demo-center', redirectTo: 'acronis-demo-center', pathMatch: 'full' },
   { path: 'acronis-demo-center', loadComponent: () => import('./pages/acronis-demo-center.page').then((m) => m.AcronisDemoCenterPage) },
+  { path: 'under-construction/druva-demo-center', redirectTo: 'druva-demo-center', pathMatch: 'full' },
+  { path: 'druva-demo-center', loadComponent: () => import('./pages/druva-demo-center.page').then((m) => m.DruvaDemoCenterPage) },
   { path: 'under-construction/xcellhost-demo-center', redirectTo: 'xcellhost-demo-center', pathMatch: 'full' },
   { path: 'xcellhost-demo-center', loadComponent: () => import('./pages/xcellhost-demo-center.page').then((m) => m.XcellhostDemoCenterPage) },
   { path: 'under-construction/events-catalog', loadComponent: () => import('./pages/events-catalog.page').then((m) => m.EventsCatalogPage) },
