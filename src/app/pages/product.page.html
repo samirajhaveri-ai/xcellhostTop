@@ -10,6 +10,7 @@
     [class.comodo-ev-page]="slug() === 'comodo-ev-code-signing'"
     [class.code-signing-page]="slug() === 'digicert-code-signing'"
     [class.vdpo-page]="slug() === 'vdpo-as-a-service'"
+    [class.vciso-page]="slug() === 'vciso-as-a-service'"
     [class.b300-hero-page]="slug() === 'nvidia-b300'"
     [class.smime-ov-page]="slug() === 'digicert-smime-ov'"
     [class.claude-backup-page]="slug() === 'claude-backup'"
@@ -446,6 +447,10 @@
         @if (slug() === 'linux-servers' || slug() === 'windows-servers') {
           <!-- Server visuals are positioned beside their copy inside the shared wrap. -->
 
+        } @else if (slug() === 'vciso-as-a-service') {
+          <div class="pph-scene vciso-hero-art">
+            <xh-vciso-hero />
+          </div>
         } @else if (slug() === 'vdpo-as-a-service') {
           <div class="pph-scene vdpo-hero-art">
             <xh-vdpo-hero />
@@ -1978,15 +1983,6 @@
       }
       }
 
-      @if (referenceSectionNav(); as sections) {
-        <xh-smb-section-nav
-          [label]="v.name + ' page sections'"
-          [links]="sections.links"
-          [frameSelector]="sections.frameSelector"
-          [highlightSelection]="true"
-        />
-      }
-
       @if (!isDigiCert() && slug() !== 'digicert-smime-ov' && slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && !isResellerProgram() && !isMicrosoftEnterprisePage() && slug() !== 'cloud-devops-services' && slug() !== 'server-management' && slug() !== 'microsoft-365-backup' && slug() !== 'domain-whois-lookup' && slug() !== 'managed-oracle-cloud' && slug() !== 'ai-voice-bot') {
         <div class="pp-trust" [class.reference-trust]="referenceSectionNav() !== null">
           <div class="wrap">
@@ -2032,6 +2028,15 @@
       }
 
 
+      @if (referenceSectionNav(); as sections) {
+        <xh-smb-section-nav
+          [label]="v.name + ' page sections'"
+          [links]="sections.links"
+          [frameSelector]="sections.frameSelector"
+          [highlightSelection]="true"
+        />
+      }
+
       @if (usesContainerRegistryTemplate()) {
         <xh-smb-section-nav
           [label]="v.name + ' page sections'"
@@ -2069,7 +2074,7 @@
         <xh-smb-section-nav label="Managed Microsoft SQL page sections" [links]="sqlSectionNavLinks" frameSelector="xh-managed-microsoft-sql-content iframe[src='/managed-microsoft-sql-content.html']" />
       }
 
-      @if (['dpdpa-consulting', 'vdpo-as-a-service', 'vciso-as-a-service'].includes(slug()) && !usesSuppliedSmbHero()) {
+      @if (['dpdpa-consulting', 'vdpo-as-a-service', 'vciso-as-a-service'].includes(slug()) && !usesSuppliedSmbHero() && !referenceSectionNav()) {
         <xh-smb-section-nav style="position:relative;top:auto;z-index:1" [label]="v.name + ' page sections'" [links]="consultingSectionNavLinks()" />
       }
 
@@ -2249,6 +2254,9 @@
         }
         @if (slug() === 'vdpo-as-a-service') {
           <xh-vdpo-content id="ppOv" (quoteRequested)="openCallback($event.event, $event.configuration)" />
+        }
+        @if (slug() === 'vciso-as-a-service') {
+          <xh-vciso-content id="ppOv" (quoteRequested)="openCallback($event.event, $event.configuration)" />
         }
         @if (isDigiCert()) {
           <xh-digicert-content />
@@ -2727,6 +2735,8 @@
                       <!-- Overview and certificate options render in the supplied sections above. -->
                    } @else if (slug() === 'vdpo-as-a-service') {
                       <!-- The supplied overview and interactive DPO sections render above. -->
+                   } @else if (slug() === 'vciso-as-a-service') {
+                      <!-- The supplied overview, cost calculator and framework sections render above. -->
                    } @else if (slug() === 'comodo-ev-code-signing') {
                       <xh-comodo-ev-code-signing-content (quoteRequested)="openCallback($event.event, $event.configuration)" />
                    } @else if (slug() === 'nvidia-b300') {
@@ -3525,6 +3535,8 @@
                   <!-- The supplied certificate grid replaces the generic quote plans. -->
                 } @else if (slug() === 'vdpo-as-a-service') {
                   <!-- The supplied DPO sections and recommended-plan builder replace the generic quote plans. -->
+                } @else if (slug() === 'vciso-as-a-service') {
+                  <!-- The supplied first-year cost comparison replaces the generic quote plans. -->
                 } @else if (slug() === 'comodo-ev-code-signing') {
                   <!-- The requested source sections replace the generic overview and term plans. -->
                 } @else if (slug() === 'nvidia-b300') {

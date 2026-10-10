@@ -57,6 +57,8 @@ import { ThawteSslHeroComponent } from '../sections/thawte-ssl-hero.component';
 import { ComodoEvCodeSigningHeroComponent } from '../sections/comodo-ev-code-signing-hero.component';
 import { CodeSigningHeroComponent } from '../sections/code-signing-hero.component';
 import { VdpoHeroComponent } from '../sections/vdpo-hero.component';
+import { VcisoHeroComponent } from '../sections/vciso-hero.component';
+import { VcisoContentComponent } from '../sections/vciso-content.component';
 import { VdpoContentComponent } from '../sections/vdpo-content.component';
 import { CodeSigningContentComponent } from '../sections/code-signing-content.component';
 import { ComodoEvCodeSigningContentComponent } from '../sections/comodo-ev-code-signing-content.component';
@@ -469,6 +471,8 @@ interface ProductTourSlide {
     ComodoEvCodeSigningHeroComponent,
     CodeSigningHeroComponent,
     VdpoHeroComponent,
+    VcisoHeroComponent,
+    VcisoContentComponent,
     VdpoContentComponent,
     CodeSigningContentComponent,
     ComodoEvCodeSigningContentComponent,
@@ -1985,6 +1989,28 @@ interface ProductTourSlide {
       #ppage.ppage.vdpo-page > .pp-hero > .wrap { order: -1; width: 100%; }
       #ppage.ppage.vdpo-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 100% !important; }
       #ppage.ppage.vdpo-page > .pp-hero > .pph-scene.vdpo-hero-art {
+        position: relative; inset: auto; transform: none; width: calc(100% - 24px);
+        max-width: 620px; margin: 12px auto 0;
+      }
+    }
+    #ppage.ppage.vciso-page > .pp-hero { min-height: 660px; }
+    #ppage.vciso-page > .pp-body { padding-top: 0; }
+    #ppage.vciso-page .pp-hero #ppTitle { display: block; white-space: normal; text-align: left; }
+    #ppage.vciso-page .pp-hero #ppTitle .pp-title-name { display: inline; white-space: normal; margin-left: 0; }
+    @media (min-width: 1301px) {
+      #ppage.ppage.vciso-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 51% !important; }
+    }
+    #ppage.ppage.vciso-page > .pp-hero > .pph-scene.vciso-hero-art {
+      right: max(16px, calc((100% - 1240px) / 2));
+      width: min(46%, 620px); top: 50%; bottom: auto; transform: translateY(-50%);
+      max-height: none; opacity: 1; mask-image: none; -webkit-mask-image: none;
+      overflow: visible; pointer-events: auto; z-index: 4;
+    }
+    @media (max-width: 1300px) {
+      #ppage.ppage.vciso-page > .pp-hero { display: flex; flex-direction: column; }
+      #ppage.ppage.vciso-page > .pp-hero > .wrap { order: -1; width: 100%; }
+      #ppage.ppage.vciso-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 100% !important; }
+      #ppage.ppage.vciso-page > .pp-hero > .pph-scene.vciso-hero-art {
         position: relative; inset: auto; transform: none; width: calc(100% - 24px);
         max-width: 620px; margin: 12px auto 0;
       }
