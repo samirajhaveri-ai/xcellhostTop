@@ -33,10 +33,17 @@
 .smb-section-nav-track::-webkit-scrollbar { display: none; }
 
 a:hover,
-a:focus-visible {
+a:focus-visible,
+a.active {
   color: #075fc7;
   background: #fff;
   box-shadow: 0 2px 8px rgba(4, 30, 66, 0.12);
+}
+
+:host(.reference-navigation) .smb-section-nav {
+  padding-block: 4px;
+  border-bottom: 0;
+  box-shadow: none;
 }
 
 a:focus-visible {

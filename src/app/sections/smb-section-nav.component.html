@@ -1,7 +1,7 @@
 <nav class="smb-section-nav" [attr.aria-label]="label()">
   <div class="smb-section-nav-track">
     @for (link of links(); track link.target) {
-      <a [attr.href]="'#' + link.target" (click)="scrollToSection(link.target, $event)">{{ link.label }}</a>
+      <a [attr.href]="'#' + link.target" [class.active]="activeTarget() === link.target" [attr.aria-current]="activeTarget() === link.target ? 'location' : null" (click)="scrollToSection(link.target, $event)">{{ link.label }}</a>
     }
   </div>
 </nav>
