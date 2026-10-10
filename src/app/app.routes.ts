@@ -5,6 +5,7 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  { path: 'sectigo-code-signing', title: 'Sectigo Code Signing - XcellHost', loadComponent: () => import('./pages/sectigo-code-signing.page').then(m => m.SectigoCodeSigningPage) },
   { path: 'rapidssl-ssl-certificates', title: 'RapidSSL Certificates - XcellHost', loadComponent: () => import('./pages/rapidssl.page').then(m => m.RapidsslPage) },
   { path: 'sarv-workspace', title: 'Sarv Workspace - XcellHost', loadComponent: () => import('./pages/sarv-workspace.page').then(m => m.SarvWorkspacePage) },
   { path: 'cloud-contact-center', title: 'Cloud Contact Center - XcellHost', loadComponent: () => import('./pages/cloud-contact-center.page').then(m => m.CloudContactCenterPage) },
