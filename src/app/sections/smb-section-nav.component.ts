@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, signal } from '@angular/core';
 
 export interface SmbSectionNavLink {
   readonly label: string;
@@ -10,12 +10,18 @@ export interface SmbSectionNavLink {
   standalone: true,
   templateUrl: './smb-section-nav.component.html',
   styleUrl: './smb-section-nav.component.css',
+  host: { '[class.reference-navigation]': 'highlightSelection()' },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SmbSectionNavComponent {
   readonly label = input('Page sections');
   readonly links = input.required<readonly SmbSectionNavLink[]>();
   readonly frameSelector = input<string | null>(null);
+  readonly highlightSelection = input(false);
+  private readonly selectedTarget = signal<string | null>(null);
+  readonly activeTarget = computed(() => this.highlightSelection()
+    ? this.links().find(link => link.target === this.selectedTarget())?.target ?? this.links()[0]?.target
+    : null);
 
   scrollToSection(target: string, event: Event): void {
     event.preventDefault();
@@ -23,6 +29,8 @@ export class SmbSectionNavComponent {
     const frame = selector ? document.querySelector<HTMLIFrameElement>(selector) : null;
     const section = document.getElementById(target) ?? frame?.contentDocument?.getElementById(target);
     if (!section) return;
+
+    this.selectedTarget.set(target);
 
     window.history.replaceState(
       null,

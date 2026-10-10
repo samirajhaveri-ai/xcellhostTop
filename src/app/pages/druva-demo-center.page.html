@@ -1,0 +1,59 @@
+<main class="druva-demo-page">
+  <div class="druva-demo-wrap">
+    <nav class="druva-demo-breadcrumb" aria-label="Breadcrumb">
+      <a routerLink="/">Home</a><span aria-hidden="true">/</span><span>Experience Center</span><span aria-hidden="true">/</span><span>Druva Demo Center</span>
+    </nav>
+
+    <section class="druva-catalog" aria-labelledby="druva-results-title">
+      <div class="druva-catalog-toolbar">
+        <div>
+          <span class="druva-demo-eyebrow">Cyber resilience videos and product demos</span>
+          <h1 id="druva-results-title">Druva Demo Center</h1>
+          <p>Explore official Druva videos covering cloud backup, cyber recovery, AI, SaaS applications, endpoints and data-center workloads.</p>
+        </div>
+        <label class="druva-sort"><span>Sort by</span><select [value]="sortMode()" (change)="setSort($any($event.target).value)"><option value="featured">Featured</option><option value="title">Title A–Z</option></select></label>
+      </div>
+
+      <div class="druva-filters">
+        <label class="druva-search"><span>Search videos</span><input type="search" placeholder="Search by workload, capability or topic" [value]="searchTerm()" (input)="setSearch($any($event.target).value)" /></label>
+        <label><span>Type</span><select [value]="selectedType()" (change)="setType($any($event.target).value)"><option value="">All types</option>@for (type of types; track type) { <option [value]="type">{{ type }}</option> }</select></label>
+        <label><span>Workload</span><select [value]="selectedWorkload()" (change)="setWorkload($any($event.target).value)"><option value="">All workloads</option>@for (workload of workloads; track workload) { <option [value]="workload">{{ workload }}</option> }</select></label>
+        <label><span>Topic</span><select [value]="selectedTopic()" (change)="setTopic($any($event.target).value)"><option value="">All topics</option>@for (topic of topics; track topic) { <option [value]="topic">{{ topic }}</option> }</select></label>
+      </div>
+
+      @if (filtersAreActive()) { <button class="druva-clear-filters" type="button" (click)="clearFilters()">Clear all filters</button> }
+
+      @if (visibleVideos().length) {
+        <div class="druva-video-grid">
+          @for (video of visibleVideos(); track video.id) {
+            <article class="druva-video-card">
+              <div class="druva-video-media">
+                @if (activeVideoId() === video.id) {
+                  <iframe [src]="video.embedUrl" [title]="video.title" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                } @else {
+                  <button type="button" (click)="playVideo(video.id)" [attr.aria-label]="'Play ' + video.title">
+                    <span class="druva-media-brand">DRUVA</span><span class="druva-media-topic">{{ video.workloads[0] }}</span><span class="druva-play" aria-hidden="true"></span>
+                  </button>
+                }
+              </div>
+              <div class="druva-video-copy">
+                <div class="druva-video-tags"><span>{{ video.type }}</span>@for (workload of video.workloads.slice(0, 1); track workload) { <span>{{ workload }}</span> }</div>
+                <h3>{{ video.title }}</h3>
+                <p>{{ video.description }}</p>
+                <button class="druva-watch" type="button" (click)="playVideo(video.id)">Play video <span aria-hidden="true">&#9654;</span></button>
+              </div>
+            </article>
+          }
+        </div>
+        @if (hasMoreVideos()) { <div class="druva-show-more"><button type="button" (click)="showMore()">Show more videos <span>{{ visibleVideos().length }} of {{ filteredVideos().length }}</span></button></div> }
+      } @else {
+        <div class="druva-empty-state"><h3>No videos match these filters</h3><p>Try a broader search or reset the selected filters.</p><button type="button" (click)="clearFilters()">Reset filters</button></div>
+      }
+
+      <aside class="druva-source-note">
+        <div><span>Official resource library</span><h2>Browse the complete Druva video catalogue</h2><p>Druva currently lists 96 video resources. Visit the source library for the full collection and the newest additions.</p></div>
+        <a href="https://www.druva.com/learning-center/resources/videos" target="_blank" rel="noopener noreferrer">View all Druva videos <span aria-hidden="true">↗</span></a>
+      </aside>
+    </section>
+  </div>
+</main>

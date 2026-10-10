@@ -4511,6 +4511,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Watch XcellHost product videos and demos",
                 "href": "/xcellhost-demo-center"
               },
+              {
+                "title": "Druva Demo Center",
+                "pill": null,
+                "desc": "Explore Druva cyber resilience videos and product demos",
+                "href": "/druva-demo-center"
+              },
              
               {
                 "title": "Plesk Demo Center",

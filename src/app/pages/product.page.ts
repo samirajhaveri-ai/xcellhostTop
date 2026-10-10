@@ -54,6 +54,12 @@ import { DigicertSmimeFaqComponent } from '../sections/digicert-smime-faq.compon
 import { DigicertSmimeRelatedComponent } from '../sections/digicert-smime-related.component';
 import { DigicertSmimeHeroComponent } from '../sections/digicert-smime-hero.component';
 import { ThawteSslHeroComponent } from '../sections/thawte-ssl-hero.component';
+import { ComodoEvCodeSigningHeroComponent } from '../sections/comodo-ev-code-signing-hero.component';
+import { CodeSigningHeroComponent } from '../sections/code-signing-hero.component';
+import { VdpoHeroComponent } from '../sections/vdpo-hero.component';
+import { VdpoContentComponent } from '../sections/vdpo-content.component';
+import { CodeSigningContentComponent } from '../sections/code-signing-content.component';
+import { ComodoEvCodeSigningContentComponent } from '../sections/comodo-ev-code-signing-content.component';
 import { ThawteSslContentComponent } from '../sections/thawte-ssl-content.component';
 import { NvidiaB300HeroComponent } from '../sections/nvidia-b300-hero.component';
 import { NvidiaB300OverviewComponent } from '../sections/nvidia-b300-overview.component';
@@ -460,6 +466,12 @@ interface ProductTourSlide {
     DigicertSmimeRelatedComponent,
     DigicertSmimeHeroComponent,
     ThawteSslHeroComponent,
+    ComodoEvCodeSigningHeroComponent,
+    CodeSigningHeroComponent,
+    VdpoHeroComponent,
+    VdpoContentComponent,
+    CodeSigningContentComponent,
+    ComodoEvCodeSigningContentComponent,
     ThawteSslContentComponent,
     NvidiaB300HeroComponent,
     NvidiaB300OverviewComponent,
@@ -1952,6 +1964,81 @@ interface ProductTourSlide {
         width: calc(100% - 40px); max-width: 550px; margin: 24px auto 0;
       }
     }
+    #ppage > .pp-trust.reference-trust > .wrap { padding-block: 10px; }
+    #ppage.ppage.vdpo-page > .pp-hero { min-height: 720px; }
+    #ppage.vdpo-page > .pp-body { padding-top: 0; }
+    #ppage.vdpo-page .pp-hero #ppTitle { display: block; white-space: normal; text-align: left; }
+    #ppage.vdpo-page .pp-hero #ppTitle .pp-title-name { display: inline; white-space: normal; margin-left: 0; }
+    #ppage.ppage.vdpo-page > .pp-hero > .wrap > .pp-tagline { color: #fff; font: 700 16.5px/1.45 var(--disp); margin-bottom: 4px; white-space: normal; text-wrap: pretty; }
+    #ppage.ppage.vdpo-page > .pp-hero > .wrap > .pp-tagline-support { color: #dbe7fb; font: 600 15.5px/1.55 var(--disp); white-space: normal; text-wrap: pretty; }
+    @media (min-width: 1301px) {
+      #ppage.ppage.vdpo-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 51% !important; }
+    }
+    #ppage.ppage.vdpo-page > .pp-hero > .pph-scene.vdpo-hero-art {
+      right: max(16px, calc((100% - 1240px) / 2));
+      width: min(46%, 620px); top: 50%; bottom: auto; transform: translateY(-50%);
+      max-height: none; opacity: 1; mask-image: none; -webkit-mask-image: none;
+      overflow: visible; pointer-events: auto; z-index: 4;
+    }
+    @media (max-width: 1300px) {
+      #ppage.ppage.vdpo-page > .pp-hero { display: flex; flex-direction: column; }
+      #ppage.ppage.vdpo-page > .pp-hero > .wrap { order: -1; width: 100%; }
+      #ppage.ppage.vdpo-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 100% !important; }
+      #ppage.ppage.vdpo-page > .pp-hero > .pph-scene.vdpo-hero-art {
+        position: relative; inset: auto; transform: none; width: calc(100% - 24px);
+        max-width: 620px; margin: 12px auto 0;
+      }
+    }
+    #ppage.ppage.code-signing-page > .pp-hero { min-height: 660px; }
+    #ppage.code-signing-page > .pp-body { padding-top: 0; }
+    #ppage.code-signing-page .pp-hero #ppTitle { display: block; white-space: normal; text-align: left; }
+    #ppage.code-signing-page .pp-hero #ppTitle .pp-title-name { display: inline; white-space: normal; margin-left: 0; }
+    #ppage.ppage.code-signing-page > .pp-hero > .wrap > .pp-tagline { color: #fff; font: 700 17px/1.55 var(--body); margin-bottom: 4px; white-space: normal; text-wrap: pretty; }
+    #ppage.ppage.code-signing-page > .pp-hero > .wrap > .pp-tagline-support { color: #c7d5ec; font: 700 17px/1.55 var(--body); white-space: normal; text-wrap: pretty; }
+    @media (min-width: 1301px) {
+      #ppage.ppage.code-signing-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 53% !important; }
+    }
+    #ppage.ppage.code-signing-page > .pp-hero > .pph-scene.code-signing-hero-art {
+      right: max(16px, calc((100% - 1240px) / 2));
+      width: min(46%, 620px); top: 50%; bottom: auto; transform: translateY(-50%);
+      max-height: none; opacity: 1; mask-image: none; -webkit-mask-image: none;
+      overflow: visible; pointer-events: auto; z-index: 4;
+    }
+    @media (max-width: 1300px) {
+      #ppage.ppage.code-signing-page > .pp-hero { display: flex; flex-direction: column; }
+      #ppage.ppage.code-signing-page > .pp-hero > .wrap { order: -1; width: 100%; }
+      #ppage.ppage.code-signing-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 100% !important; }
+      #ppage.ppage.code-signing-page > .pp-hero > .pph-scene.code-signing-hero-art {
+        position: relative; inset: auto; transform: none; width: calc(100% - 24px);
+        max-width: 620px; margin: 12px auto 0;
+      }
+    }
+    #ppage.ppage.comodo-ev-page > .pp-hero { min-height: 700px; }
+    #ppage.ppage.comodo-ev-page > .pp-hero > .pph-scene.comodo-ev-hero-art {
+      right: max(24px, calc((100% - 1240px) / 2 + 24px));
+      width: min(calc((100% - 48px) * .43), 550px);
+      top: 50%; bottom: auto; transform: translateY(-50%);
+      max-height: none; opacity: 1; mask-image: none; overflow: visible;
+      pointer-events: auto; z-index: 4;
+    }
+    #ppage.ppage.comodo-ev-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 53% !important; }
+    #ppage.comodo-ev-page .pp-hero #ppTitle { display: block; white-space: normal; text-align: left; }
+    #ppage.comodo-ev-page .pp-hero #ppTitle .pp-title-name { display: inline; white-space: normal; margin-left: 0; }
+    #ppage.comodo-ev-page .pp-hero #ppTag { margin-bottom: 10px; color: #c7d5ec; font: 700 16.5px/1.45 var(--disp); white-space: normal !important; text-wrap: pretty; }
+    #ppage.comodo-ev-page .pp-hero .pp-tagline-support { color: #dbe7fb; font: 500 15.5px/1.6 var(--body); white-space: normal !important; text-wrap: pretty; }
+    #ppage.comodo-ev-page .pp-hero .pp-hpoints { grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; gap: 10px 16px; margin: 8px 0 24px; }
+    #ppage.comodo-ev-page .pp-hero .pp-hpoint { min-width: 0; align-items: flex-start; color: #dbe7fb; font-size: 13px; line-height: 1.45; }
+    #ppage.comodo-ev-page .pp-hero .pp-hpoint .tick { flex: none; border-radius: 5px; box-shadow: 0 0 0 3px rgba(21,101,216,.25); }
+    @media (max-width: 600px) { #ppage.comodo-ev-page .pp-hero .pp-hpoints { grid-template-columns: minmax(0,1fr); } }
+    @media (max-width: 900px) {
+      #ppage.ppage.comodo-ev-page > .pp-hero { display: flex; flex-direction: column; min-height: 0; }
+      #ppage.ppage.comodo-ev-page > .pp-hero > .wrap { order: -1; width: 100%; }
+      #ppage.ppage.comodo-ev-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 100% !important; }
+      #ppage.ppage.comodo-ev-page > .pp-hero > .pph-scene.comodo-ev-hero-art {
+        position: relative; inset: auto; transform: none;
+        width: calc(100% - 32px); max-width: 550px; margin: 12px auto 0;
+      }
+    }
     #ppage.ppage.thawte-page > .pp-hero { min-height: 620px; }
     #ppage.thawte-page .pp-hero #ppTitle { display: block; max-width: 53%; white-space: normal; text-align: left; }
     #ppage.thawte-page .pp-hero #ppTitle .pp-title-name { display: inline; white-space: normal; margin-left: 0; }
@@ -3434,6 +3521,36 @@ class ProductPageComponent {
         heroHighlight: 'Blackwell Ultra for frontier training, long-context reasoning and high-volume inference. 288 GB of HBM3e per GPU, 8 TB/s of bandwidth and 1.5× the FP4 compute of B200 — from a single GPU to a full 8-GPU HGX B300 server, hosted in India.',
       };
     }
+    if (slug === 'digicert-code-signing') {
+      return {
+        ...view,
+        tagline: 'Your name on the installer. Proof nobody touched it since.',
+        heroHighlight: 'Sectigo and Comodo OV & EV code signing — validated with your Indian company documents, shipped on a FIPS token or set up on your HSM, and billed in rupees by XcellHost.',
+        heroMessages: [],
+      };
+    }
+    if (slug === 'vdpo-as-a-service') {
+      return {
+        ...view,
+        tagline: "A Data Protection Officer for India's DPDP Act — without the full-time hire.",
+        heroHighlight: "XcellHost's privacy team maps your personal data, writes your notices, answers data-principal requests, runs impact assessments and leads breach response — for a fixed monthly fee, billed in rupees.",
+      };
+    }
+    if (slug === 'comodo-ev-code-signing') {
+      return {
+        ...view,
+        tagline: 'Your company name on the install prompt — not "Unknown publisher".',
+        heroHighlight: 'Extended Validation code signing from Comodo, now issued by Sectigo — vetted with your MCA records, delivered on a hardware token and supported in India by XcellHost.',
+        heroPoints: [
+          'EV · organisations only',
+          'Key on FIPS 140-2 Level 2 token',
+          '3072-bit RSA · SHA-256',
+          'RFC 3161 timestamping',
+          'Windows, Java, Adobe AIR, Mozilla',
+          'Eligible for kernel-mode drivers',
+        ],
+      };
+    }
     if (slug === 'n8n-vps') {
       return {
         ...view,
@@ -3715,6 +3832,33 @@ class ProductPageComponent {
   readonly isTally = computed(() => this.view()?.name === 'Tally on Cloud');
 
 
+  readonly referenceSectionNav = computed(() => {
+    const pages: Record<string, { frame: string; overview: string; features: string; uses: string; specifications: string }> = {
+      'thawte-ssl-certificates': { frame: 'xh-thawte-ssl-content', overview: 'overview', features: 'how', uses: 'products', specifications: 'compare' },
+      'nvidia-b300': { frame: 'xh-nvidia-b300-overview', overview: 'answer', features: 'b300SoftwareStack', uses: 'b300Deployment', specifications: 'itb' },
+      'comodo-ev-code-signing': { frame: 'xh-comodo-ev-code-signing-content', overview: 'overview', features: 'features', uses: 'sign', specifications: 'compare' },
+      'digicert-code-signing': { frame: 'xh-code-signing-content', overview: 'overview', features: 'how', uses: 'platforms', specifications: 'products' },
+      'vdpo-as-a-service': { frame: 'xh-vdpo-content', overview: 'overview', features: 'what', uses: 'who', specifications: 'compare' },
+    };
+    const page = pages[this.slug()];
+    if (!page) return null;
+    return {
+      frameSelector: `${page.frame} iframe`,
+      links: [
+        { label: 'Overview', target: page.overview },
+        { label: 'Pricing', target: 'pricing' },
+        { label: 'Features', target: page.features },
+        { label: 'Use Cases', target: page.uses },
+        { label: 'Specifications', target: page.specifications },
+        { label: 'Security', target: 'ppSecHead' },
+        { label: 'Why to Choose', target: 'ppWhyHead' },
+        { label: 'Customer Testimonials', target: 'ppRevs' },
+        { label: 'FAQs', target: 'ppFaq' },
+        { label: 'Insights', target: 'ppBlog' },
+      ],
+    };
+  });
+
   readonly containerRegistrySectionNavLinks = [
     { label: 'Overview', target: 'registryOverview' },
     { label: 'Pricing', target: 'pricing' },
@@ -3819,6 +3963,8 @@ class ProductPageComponent {
     { label: 'Insights', target: 'ppBlog' },
   ];
 
+
+  readonly consultingSectionNavLinks = computed(() => this.smbSectionNavLinks().filter(link => link.target !== 'showcaseVideosTitle'));
 
   readonly smbSectionNavLinks = computed(() =>
     this.isTally()
