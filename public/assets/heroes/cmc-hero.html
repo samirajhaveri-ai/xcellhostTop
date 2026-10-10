@@ -21,6 +21,7 @@
 .xh-crumb{font:700 11.5px var(--mono);letter-spacing:.14em;color:#7FA8E8;text-transform:uppercase;margin-bottom:12px}.xh-crumb a:hover{color:#fff}
 .xh-h1{font:800 clamp(28px,3.8vw,44px)/1.1 var(--disp);color:#fff;letter-spacing:-.02em}
 .xh-h1 .x{color:var(--red)}.xh-h1 .d{opacity:.85;margin:0 .15em;font-weight:700}
+@media(min-width:901px){.xh-h1{width:max-content;max-width:100%;white-space:nowrap;font-size:32px}}
 .xh-tag{font:700 clamp(15px,1.5vw,18px) var(--pop);color:#C7D9F5;margin-top:14px}
 .xh-tag2{font:600 15.5px var(--pop);color:#fff;margin-top:6px}
 .xh-type{display:flex;align-items:center;gap:2px;font:700 clamp(16px,1.7vw,19px) var(--pop);color:var(--acc2);margin-top:20px;min-height:28px}
@@ -43,6 +44,9 @@
 .xh-ai #xhAi{flex:0 0 auto}
 .xh-ai a{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;background:rgba(255,255,255,.08);transition:.2s}
 .xh-ai a:hover{background:rgba(255,255,255,.2);transform:translateY(-2px)}.xh-ai img{width:18px;height:18px;border-radius:4px}
+.xh-digicert-powered{display:flex;align-items:center;gap:12px;width:max-content;max-width:100%;margin-top:14px;padding:0 16px;background:#fff;border-radius:10px;color:#041E42}
+.xh-digicert-powered span{font:700 10px var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.xh-digicert-powered img{display:block;width:100px;height:70px;object-fit:contain}
 /* right visual */
 .xh-viz{position:relative;height:560px}
 .xh-map{position:absolute;inset:-30px -40px -30px -10px;background-image:radial-gradient(circle,rgba(127,168,232,.55) 1.6px,transparent 1.8px);background-size:18px 18px;
@@ -132,13 +136,13 @@
     <a class="xh-btn o" id="xhTalk" href="#">Let's Talk →</a>
    </div>
    <div class="xh-ai" role="group" aria-label="Ask AI about DigiCert Common Mark Certificate (CMC) from XcellHost"><span>✦ Ask AI About DigiCert Common Mark Certificate (CMC) from XcellHost</span><div id="xhAi" style="display:flex;gap:8px"></div></div>
+   <div class="xh-digicert-powered" aria-label="Powered by DigiCert"><span>Powered by</span><img src="/assets/images/digicert.png" alt="DigiCert" width="250" height="175"></div>
   </div>
 
   <div class="xh-viz" aria-label="Illustration: SPF, DKIM, DMARC and the CMC pass, then your brand logo appears in the inbox">
    <div class="xh-map" aria-hidden="true"></div>
    <div class="xh-ring r1" aria-hidden="true"></div><div class="xh-ring r2" aria-hidden="true"></div>
    <svg class="xh-lines" id="xhLines" aria-hidden="true"></svg>
-   <div class="xh-bdg"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></i><span>POWERED BY</span><b>DigiCert</b></div>
    <div class="xh-core" id="xhCore">
     <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Brand in the Inbox<span class="xh-live" id="xhLive">CHECKING</span></h3>
     <small>YOURBRAND.COM · INBOX PREVIEW</small>
@@ -203,6 +207,19 @@ var F=[["DMARC", "g", "Policy upgraded to p=reject", "\u2713", 0], ["History", "
 function push(){var f=F[fi++%F.length],li=document.createElement("li");li.innerHTML='<em class="'+f[1]+'">'+f[0]+'</em><span>'+f[2]+'</span><b>'+f[3]+'</b>';feed.insertBefore(li,feed.firstChild);while(feed.children.length>4)feed.removeChild(feed.lastChild);
  if(f[4]>=0){var nd=nodes[f[4]],c=f[1]==="r"||f[1]==="o"?"warn":"flash";nd.classList.add(c);setTimeout(function(){nd.classList.remove(c)},900)}}
 for(var j=0;j<4;j++)push();if(!RM)setInterval(push,2200);
+var hero=document.querySelector('.xh');
+var heading=document.getElementById('xhH1');
+function fitHeading(){
+ if(window.innerWidth<=900){heading.style.fontSize='';return;}
+ heading.style.fontSize='32px';
+ var available=heading.parentElement.clientWidth;
+ if(heading.scrollWidth>available)heading.style.fontSize=(32*available/heading.scrollWidth-.2)+'px';
+}
+new ResizeObserver(fitHeading).observe(heading.parentElement);
+if(document.fonts)document.fonts.ready.then(fitHeading);
+window.addEventListener('resize',fitHeading);fitHeading();
+function reportHeight(){window.parent.postMessage({type:'xcellhost:hero-size',height:hero.offsetHeight},window.location.origin);}
+new ResizeObserver(reportHeight).observe(hero);reportHeight();
 })();
 </script>
 </section>

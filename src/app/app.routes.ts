@@ -7,7 +7,7 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 export const routes: Routes = [
   { path: 'rapidssl-ssl-certificates', title: 'RapidSSL Certificates - XcellHost', loadComponent: () => import('./pages/rapidssl.page').then(m => m.RapidsslPage) },
   { path: 'sarv-workspace', title: 'Sarv Workspace - XcellHost', loadComponent: () => import('./pages/sarv-workspace.page').then(m => m.SarvWorkspacePage) },
-  { path: 'sarv-deepcall', title: 'Sarv DeepCall - XcellHost', loadComponent: () => import('./pages/sarv-deepcall.page').then(m => m.SarvDeepcallPage) },
+  { path: 'cloud-contact-center', title: 'Cloud Contact Center - XcellHost', loadComponent: () => import('./pages/cloud-contact-center.page').then(m => m.CloudContactCenterPage) },
   { path: 'managed-kubernetes', title: 'Managed Kubernetes - XcellHost', loadComponent: () => import('./pages/managed-kubernetes.page').then(m => m.ManagedKubernetesPage) },
   { path: 'under-construction/podcasts', title: 'The Cloud Podcast - XcellHost', loadComponent: () => import('./pages/podcasts.page').then(m => m.PodcastsPage) },
 
@@ -82,6 +82,21 @@ export const routes: Routes = [
   {
     path: 'cloud-disaster-recovery-smb-checkout',
     data: { checkoutProduct: 'cdr-smb' },
+    loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
+  },
+  {
+    path: 'dpdpa-for-smb/launch-checkout',
+    data: { checkoutProduct: 'dpdpa-launch' },
+    loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
+  },
+  {
+    path: 'dpdpa-for-smb/growth-checkout',
+    data: { checkoutProduct: 'dpdpa-growth' },
+    loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
+  },
+  {
+    path: 'dpdpa-for-smb/enterprise-enquiry',
+    data: { checkoutProduct: 'dpdpa-enterprise' },
     loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
   },
   {

@@ -51,7 +51,7 @@
           <div class="ez-off">Up to 12% off</div>
           <div class="ez-top"><span class="ez-msbadge"><i class="microsoft"><b></b><b></b><b></b><b></b></i>Microsoft</span><span class="ez-ext">↗</span></div>
           <div class="ez-fam">Microsoft Entra ID</div>
-          <h3>{{ plan.name }}</h3>
+          <h3>@if (plan.href) { <a class="ez-product-link" [routerLink]="plan.href">{{ plan.name }}</a> } @else { {{ plan.name }} }</h3>
           <div class="ez-sku">{{ plan.sku }}</div>
           <div class="ez-list-row"><span>Microsoft official</span><s>{{ plan.list }}</s></div>
           <div class="ez-gst">+ 18% GST</div>

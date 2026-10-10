@@ -3,9 +3,9 @@ import { ImportedInteractiveContentComponent } from '../sections/imported-intera
 import { InsightsSectionComponent } from '../sections/insights-section.component';
 
 @Component({
-  selector: 'xh-sarv-deepcall-page',
+  selector: 'xh-cloud-contact-center-page',
   standalone: true,
   imports: [ImportedInteractiveContentComponent, InsightsSectionComponent],
   template: `<xh-imported-interactive-content source="deepcall" /><xh-insights-section pageSlug="sarv-deepcall" />`,
 })
-export class SarvDeepcallPage {}
+export class CloudContactCenterPage {}

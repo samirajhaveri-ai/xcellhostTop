@@ -2,6 +2,7 @@
   <div
     class="ppage as-page"
     id="ppage"
+    [class.entra-detail-page]="slug() === 'microsoft-entra-workload-id' || slug() === 'microsoft-entra-internet-access' || slug() === 'microsoft-entra-private-access' || slug() === 'microsoft-entra-id-governance' || slug() === 'microsoft-entra-id-p1' || slug() === 'microsoft-entra-id-p2' || slug() === 'microsoft-entra-suite'"
     [class.smb-visibility-page]="v.heroMessages[0]?.toLowerCase()?.startsWith('maximise online visibility')"
     [class.lead-crm-page]="slug() === 'lead-generation-and-pipeline-crm'"
     [class.digicert-page]="isDigiCert()"
@@ -13,7 +14,6 @@
     [class.cpanel-servers-page]="slug() === 'cpanel-servers'"
     [class.windows-servers-page]="slug() === 'windows-servers'"
     [class.domain-whois-page]="slug() === 'domain-whois-lookup'"
-    [class.sarv-deepcall-page]="slug() === 'sarv-deepcall'"
     [class.managed-kubernetes-page]="slug() === 'managed-kubernetes'"
     [class.box-migration-page]="slug() === 'box-migration'"
     [class.dropbox-migration-page]="slug() === 'dropbox-migration'"
@@ -996,6 +996,34 @@
         } @else if (isAutonomousThreatManagement()) {
           <div class="pph-scene pph-autonomous-threat-management" aria-hidden="true">
             <xh-autonomous-threat-management-hero />
+          </div>
+        } @else if (slug() === 'microsoft-entra-suite') {
+          <div class="pph-scene pph-workload-id" aria-hidden="true">
+            <xh-entra-suite [hero]="true" style="width:100%" />
+          </div>
+        } @else if (slug() === 'microsoft-entra-id-p2') {
+          <div class="pph-scene pph-workload-id" aria-hidden="true">
+            <xh-entra-id-p2 [hero]="true" style="width:100%" />
+          </div>
+        } @else if (slug() === 'microsoft-entra-id-p1') {
+          <div class="pph-scene pph-workload-id" aria-hidden="true">
+            <xh-entra-id-p1 [hero]="true" style="width:100%" />
+          </div>
+        } @else if (slug() === 'microsoft-entra-id-governance') {
+          <div class="pph-scene pph-workload-id" aria-hidden="true">
+            <xh-entra-id-governance [hero]="true" style="width:100%" />
+          </div>
+        } @else if (slug() === 'microsoft-entra-private-access') {
+          <div class="pph-scene pph-workload-id" aria-hidden="true">
+            <xh-entra-private-access [hero]="true" style="width:100%" />
+          </div>
+        } @else if (slug() === 'microsoft-entra-internet-access') {
+          <div class="pph-scene pph-workload-id" aria-hidden="true">
+            <xh-entra-internet-access [hero]="true" style="width:100%" />
+          </div>
+        } @else if (slug() === 'microsoft-entra-workload-id') {
+          <div class="pph-scene pph-workload-id" aria-hidden="true">
+            <xh-entra-workload-id [hero]="true" style="width:100%" />
           </div>
         } @else if (isMicrosoftEntraId()) {
           <div class="pph-scene pph-entra-id" aria-hidden="true">
@@ -2408,6 +2436,27 @@
             @if (isMicrosoftEntraId()) {
               <xh-entra-id-content />
             }
+            @if (slug() === 'microsoft-entra-workload-id') {
+              <xh-entra-workload-id />
+            }
+            @if (slug() === 'microsoft-entra-internet-access') {
+              <xh-entra-internet-access />
+            }
+            @if (slug() === 'microsoft-entra-suite') {
+              <xh-entra-suite />
+            }
+            @if (slug() === 'microsoft-entra-id-p2') {
+              <xh-entra-id-p2 />
+            }
+            @if (slug() === 'microsoft-entra-id-p1') {
+              <xh-entra-id-p1 />
+            }
+            @if (slug() === 'microsoft-entra-id-governance') {
+              <xh-entra-id-governance />
+            }
+            @if (slug() === 'microsoft-entra-private-access') {
+              <xh-entra-private-access />
+            }
             @if (isEntraIdBackup()) {
               <xh-entra-id-backup-content />
             }
@@ -2444,6 +2493,13 @@
               !isCopilotStudio() &&
               !isZohoWorkspace() &&
               !isMicrosoftEntraId() &&
+              slug() !== 'microsoft-entra-workload-id' &&
+              slug() !== 'microsoft-entra-internet-access' &&
+              slug() !== 'microsoft-entra-private-access' &&
+              slug() !== 'microsoft-entra-id-governance' &&
+              slug() !== 'microsoft-entra-id-p1' &&
+              slug() !== 'microsoft-entra-id-p2' &&
+              slug() !== 'microsoft-entra-suite' &&
               !isDigiCert() &&
               slug() !== 'digicert-smime-ov' &&
               slug() !== 'claude-backup' &&
@@ -4946,8 +5002,6 @@
                   <xh-rtx-pro-6000-showcase />
                 } @else if (slug() === 'nvidia-rtx-6000-ada') {
                   <xh-rtx-6000-ada-showcase />
-                } @else if (slug() === 'sarv-deepcall') {
-                  <xh-imported-interactive-content source="deepcall" />
                 } @else if (slug() === 'managed-kubernetes') {
                   <xh-imported-interactive-content source="kubernetes" />
                 } @else if (slug() === 'managed-mongodb') {
@@ -6020,7 +6074,7 @@
           </nav>
         }
 
-        @if (slug() === 'higher-education-cloud') {
+        @if (slug() === 'higher-education-cloud' || slug() === 'microsoft-entra-workload-id' || slug() === 'microsoft-entra-internet-access' || slug() === 'microsoft-entra-private-access' || slug() === 'microsoft-entra-id-governance' || slug() === 'microsoft-entra-id-p1' || slug() === 'microsoft-entra-id-p2' || slug() === 'microsoft-entra-suite') {
           <h2 class="pp-sec">From our blog</h2>
         }
         @if (isTally()) {
