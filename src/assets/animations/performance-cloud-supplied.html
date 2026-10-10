@@ -6487,15 +6487,14 @@
       }
       .hx-bento > div.w {
         grid-column: span 2;
-        background: linear-gradient(135deg, #041e42, #0c3e8f);
-        color: #dce7f8;
-        border-color: transparent;
+        background: #fff;
+        border-color: var(--line);
       }
       .hx-bento > div.w h3 {
-        color: #fff;
+        color: var(--h2);
       }
       .hx-bento > div.w p {
-        color: #c7d5ec;
+        color: var(--slate);
       }
       .hx-bento .ic {
         width: 42px;
@@ -6760,6 +6759,11 @@
         height: 16px;
         color: #1565d8;
       }
+      .hx-os .hx-platform-logo { width: 24px; height: 24px; object-fit: contain; flex: 0 0 auto; }
+      .hx-os .hx-platform-logo[src$="cpanel.svg"],
+      .hx-os .hx-platform-logo[src$="plesk.svg"],
+      .hx-os .hx-platform-logo[src$="platform-mysql.svg"] { width: 40px; }
+      .hx-os .hx-platform-logo[src$="tally-prime-7-logo.png"] { width: 60px; }
       /* Tier 4 data-centre tabs */
       .hx-dc-section {
         margin-top: 72px;
@@ -8521,7 +8525,7 @@
             </div>
           </div>
 
-          <h2 class="h2s">Performance Cloud <em>vs</em> global hyperscalers</h2>
+          <h2 class="h2s">Performance Cloud <em>vs</em> Global Hyperscalers</h2>
           <div
             class="hx-cmp rv"
             role="table"
@@ -8656,158 +8660,8 @@
 
           <h2 class="h2s">Operating systems &amp; <em>one-click apps</em></h2>
           <div class="hx-os rv">
-            <span
-              ><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3" y="4" width="18" height="16" rx="2" />
-                <path d="M3 12h18M12 4v16" /></svg
-              >Windows Server 2025</span
-            ><span
-              ><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3" y="4" width="18" height="16" rx="2" />
-                <path d="M3 12h18M12 4v16" /></svg
-              >Windows Server 2022</span
-            ><span
-              ><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3" y="4" width="18" height="16" rx="2" />
-                <path d="M3 12h18M12 4v16" /></svg
-              >Windows Server 2019</span
-            ><span
-              ><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M12 3c-2.5 0-3.5 2-3.5 5 0 2-2 4-3 7-.5 2 1 4 3 4h7c2 0 3.5-2 3-4-1-3-3-5-3-7 0-3-1-5-3.5-5z"
-                />
-                <path d="M10 8h.01M14 8h.01" /></svg
-              >Ubuntu 24.04 LTS</span
-            ><span
-              ><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M12 3c-2.5 0-3.5 2-3.5 5 0 2-2 4-3 7-.5 2 1 4 3 4h7c2 0 3.5-2 3-4-1-3-3-5-3-7 0-3-1-5-3.5-5z"
-                />
-                <path d="M10 8h.01M14 8h.01" /></svg
-              >Ubuntu 22.04 LTS</span
-            ><span
-              ><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M12 3c-2.5 0-3.5 2-3.5 5 0 2-2 4-3 7-.5 2 1 4 3 4h7c2 0 3.5-2 3-4-1-3-3-5-3-7 0-3-1-5-3.5-5z"
-                />
-                <path d="M10 8h.01M14 8h.01" /></svg
-              >Debian 12</span
-            ><span
-              ><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M12 3c-2.5 0-3.5 2-3.5 5 0 2-2 4-3 7-.5 2 1 4 3 4h7c2 0 3.5-2 3-4-1-3-3-5-3-7 0-3-1-5-3.5-5z"
-                />
-                <path d="M10 8h.01M14 8h.01" /></svg
-              >AlmaLinux 9</span
-            ><span
-              ><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M12 3c-2.5 0-3.5 2-3.5 5 0 2-2 4-3 7-.5 2 1 4 3 4h7c2 0 3.5-2 3-4-1-3-3-5-3-7 0-3-1-5-3.5-5z"
-                />
-                <path d="M10 8h.01M14 8h.01" /></svg
-              >Rocky Linux 9</span
-            ><span
-              ><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M12 3c-2.5 0-3.5 2-3.5 5 0 2-2 4-3 7-.5 2 1 4 3 4h7c2 0 3.5-2 3-4-1-3-3-5-3-7 0-3-1-5-3.5-5z"
-                />
-                <path d="M10 8h.01M14 8h.01" /></svg
-              >CentOS Stream 9</span
-            ><span
-              ><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M12 3c-2.5 0-3.5 2-3.5 5 0 2-2 4-3 7-.5 2 1 4 3 4h7c2 0 3.5-2 3-4-1-3-3-5-3-7 0-3-1-5-3.5-5z"
-                />
-                <path d="M10 8h.01M14 8h.01" /></svg
-              >Red Hat Enterprise Linux (BYOL)</span
-            ><span
-              ><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="m8 8-5 4 5 4M16 8l5 4-5 4M14 5l-4 14" /></svg
-              >Custom ISO upload</span
-            ><span
-              ><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="m12 2 9 5v10l-9 5-9-5V7z" />
-                <path d="m3 7 9 5 9-5M12 12v10" /></svg
-              >FreeBSD</span
-            ><span
-              ><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="m12 2 9 5v10l-9 5-9-5V7z" />
-                <path d="m3 7 9 5 9-5M12 12v10" /></svg
-              >Docker</span
-            ><span
-              ><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="m12 2 9 5v10l-9 5-9-5V7z" />
-                <path d="m3 7 9 5 9-5M12 12v10" /></svg
-              >Kubernetes (K3s)</span
-            ><span
-              ><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3" y="4" width="18" height="16" rx="2" />
-                <path d="M3 12h18M12 4v16" /></svg
-              >WordPress</span
-            ><span
-              ><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="m8 8-5 4 5 4M16 8l5 4-5 4M14 5l-4 14" /></svg
-              >LAMP / LEMP stack</span
-            ><span
-              ><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="m8 8-5 4 5 4M16 8l5 4-5 4M14 5l-4 14" /></svg
-              >Node.js</span
-            ><span
-              ><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="m8 8-5 4 5 4M16 8l5 4-5 4M14 5l-4 14" /></svg
-              >Python / Django</span
-            ><span
-              ><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="2" y="4" width="20" height="13" rx="2" />
-                <path d="M8 21h8M12 17v4" /></svg
-              >cPanel &amp; WHM</span
-            ><span
-              ><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="2" y="4" width="20" height="13" rx="2" />
-                <path d="M8 21h8M12 17v4" /></svg
-              >Plesk</span
-            ><span
-              ><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3" y="7" width="18" height="10" rx="1.5" />
-                <path d="M7 7V4M11 7V4M15 7V4M19 7V4M7 20v-3M11 20v-3M15 20v-3M19 20v-3" /></svg
-              >MySQL / MariaDB</span
-            ><span
-              ><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3" y="7" width="18" height="10" rx="1.5" />
-                <path d="M7 7V4M11 7V4M15 7V4M19 7V4M7 20v-3M11 20v-3M15 20v-3M19 20v-3" /></svg
-              >PostgreSQL</span
-            ><span
-              ><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3" y="7" width="18" height="10" rx="1.5" />
-                <path d="M7 7V4M11 7V4M15 7V4M19 7V4M7 20v-3M11 20v-3M15 20v-3M19 20v-3" /></svg
-              >MongoDB</span
-            ><span
-              ><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3" y="7" width="18" height="10" rx="1.5" />
-                <path d="M7 7V4M11 7V4M15 7V4M19 7V4M7 20v-3M11 20v-3M15 20v-3M19 20v-3" /></svg
-              >Redis</span
-            ><span
-              ><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M6 2h9l5 5v15H6z" />
-                <path d="M14 2v6h6M9 13h8M9 17h6" /></svg
-              >Tally Prime</span
-            ><span
-              ><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M6 2h9l5 5v15H6z" />
-                <path d="M14 2v6h6M9 13h8M9 17h6" /></svg
-              >SAP Business One</span
-            ><span
-              ><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3" y="4" width="18" height="16" rx="2" />
-                <path d="M3 12h18M12 4v16" /></svg
-              >Microsoft SQL Server</span
-            ><span
-              ><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                <circle cx="9" cy="8" r="3.5" />
-                <path d="M2 20c0-4 3-6 7-6s7 2 7 6" />
-                <path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14c2.5.6 4 2.6 4 6" /></svg
-              >Remote Desktop (RDS)</span
-            >
+            <span><img class="hx-platform-logo" src="/assets/images/plesk-servers/platform-windows-server.svg" alt="" width="24" height="24" loading="lazy">Windows Server 2025</span><span><img class="hx-platform-logo" src="/assets/images/plesk-servers/platform-windows-server.svg" alt="" width="24" height="24" loading="lazy">Windows Server 2022</span><span><img class="hx-platform-logo" src="/assets/images/plesk-servers/platform-windows-server.svg" alt="" width="24" height="24" loading="lazy">Windows Server 2019</span><span><img class="hx-platform-logo" src="/assets/images/plesk-servers/platform-ubuntu.svg" alt="" width="24" height="24" loading="lazy">Ubuntu 24.04 LTS</span><span><img class="hx-platform-logo" src="/assets/images/plesk-servers/platform-ubuntu.svg" alt="" width="24" height="24" loading="lazy">Ubuntu 22.04 LTS</span><span><img class="hx-platform-logo" src="/assets/images/performance-cloud-platforms/debian.svg" alt="" width="24" height="24" loading="lazy">Debian 12</span><span><img class="hx-platform-logo" src="/assets/images/plesk-servers/platform-almalinux.svg" alt="" width="24" height="24" loading="lazy">AlmaLinux 9</span><span><img class="hx-platform-logo" src="/assets/images/plesk-servers/platform-rocky-linux.svg" alt="" width="24" height="24" loading="lazy">Rocky Linux 9</span><span><img class="hx-platform-logo" src="/assets/images/performance-cloud-platforms/centos.svg" alt="" width="24" height="24" loading="lazy">CentOS Stream 9</span><span><img class="hx-platform-logo" src="/assets/images/performance-cloud-platforms/redhat.svg" alt="" width="24" height="24" loading="lazy">Red Hat Enterprise Linux (BYOL)</span><span><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m8 8-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"></path></svg>Custom ISO upload</span><span><img class="hx-platform-logo" src="/assets/images/performance-cloud-platforms/freebsd.svg" alt="" width="24" height="24" loading="lazy">FreeBSD</span><span><img class="hx-platform-logo" src="/assets/images/plesk-servers/platform-docker.svg" alt="" width="24" height="24" loading="lazy">Docker</span><span><img class="hx-platform-logo" src="/assets/images/platforms/kubernetes.png" alt="" width="24" height="24" loading="lazy">Kubernetes (K3s)</span><span><img class="hx-platform-logo" src="/assets/images/cpanel-servers/wordpress.svg" alt="" width="24" height="24" loading="lazy">WordPress</span><span><img class="hx-platform-logo" src="/assets/images/plesk-servers/platform-apache.svg" alt="" width="24" height="24" loading="lazy"><img class="hx-platform-logo" src="/assets/images/plesk-servers/platform-nginx.svg" alt="" width="24" height="24" loading="lazy">LAMP / LEMP stack</span><span><img class="hx-platform-logo" src="/assets/images/cpanel-servers/node-js.svg" alt="" width="24" height="24" loading="lazy">Node.js</span><span><img class="hx-platform-logo" src="/assets/images/plesk-servers/platform-python.svg" alt="" width="24" height="24" loading="lazy"><img class="hx-platform-logo" src="/assets/images/performance-cloud-platforms/django.svg" alt="" width="24" height="24" loading="lazy">Python / Django</span><span><img class="hx-platform-logo" src="/assets/images/cpanel-servers/cpanel.svg" alt="" width="24" height="24" loading="lazy">cPanel &amp; WHM</span><span><img class="hx-platform-logo" src="/assets/images/performance-cloud-platforms/plesk.svg" alt="" width="24" height="24" loading="lazy">Plesk</span><span><img class="hx-platform-logo" src="/assets/images/plesk-servers/platform-mysql.svg" alt="" width="24" height="24" loading="lazy"><img class="hx-platform-logo" src="/assets/images/plesk-servers/platform-mariadb.svg" alt="" width="24" height="24" loading="lazy">MySQL / MariaDB</span><span><img class="hx-platform-logo" src="/assets/images/plesk-servers/platform-postgresql.svg" alt="" width="24" height="24" loading="lazy">PostgreSQL</span><span><img class="hx-platform-logo" src="/assets/images/managed-mongodb/mongodb-logo.svg" alt="" width="24" height="24" loading="lazy">MongoDB</span><span><img class="hx-platform-logo" src="/assets/images/managed-redis/redis-logo.svg" alt="" width="24" height="24" loading="lazy">Redis</span><span><img class="hx-platform-logo" src="/assets/images/tally-prime-7-logo.png" alt="" width="24" height="24" loading="lazy">Tally Prime</span><span><img class="hx-platform-logo" src="/assets/images/cloud-backup-platforms/sap.svg" alt="" width="24" height="24" loading="lazy">SAP Business One</span><span><img class="hx-platform-logo" src="/assets/images/plesk-servers/platform-microsoft-sql-server.svg" alt="" width="24" height="24" loading="lazy">Microsoft SQL Server</span><span><img class="hx-platform-logo" src="/assets/images/plesk-servers/platform-windows-server.svg" alt="" width="24" height="24" loading="lazy">Remote Desktop (RDS)</span>
           </div>
 
           <h2 class="pp-sec" id="faq">Performance Cloud FAQs</h2>
