@@ -1,4 +1,5 @@
 import { QuantitySelectorComponent } from '../shared/quantity-selector.component';
+import { RouterLink } from '@angular/router';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { OverlayService } from '../core/overlay.service';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
@@ -9,12 +10,13 @@ interface EntraPlan {
   list: string;
   monthly: string;
   yearly: string;
+  href?: string;
 }
 
 @Component({
   selector: 'xh-entra-id-content',
   standalone: true,
-  imports: [QuantitySelectorComponent],
+  imports: [QuantitySelectorComponent, RouterLink],
   templateUrl: './entra-id-content.component.html',
   styleUrl: './entra-id-content.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -35,13 +37,13 @@ export class EntraIdContentComponent {
     this.overlay.open('callback');
   }
   readonly plans: EntraPlan[] = [
-    { name: 'Microsoft Entra Workload ID', sku: 'CFQ7TTC0R9QB:0002', list: '₹250/mo', monthly: '₹228', yearly: '₹2,640' },
-    { name: 'Microsoft Entra Internet Access', sku: 'MS-ENTRA-INTERNET', list: '₹415/mo', monthly: '₹378', yearly: '₹4,382' },
-    { name: 'Microsoft Entra Private Access', sku: 'CFQ7TTC0PFZR:0003', list: '₹415/mo', monthly: '₹378', yearly: '₹4,382' },
-    { name: 'Microsoft Entra ID Governance', sku: 'CFQ7TTC0MFT1:0001', list: '₹580/mo', monthly: '₹528', yearly: '₹6,125' },
-    { name: 'Microsoft Entra ID P1', sku: 'MS-ENTRA-ID-P1', list: '₹580/mo', monthly: '₹528', yearly: '₹6,125' },
-    { name: 'Microsoft Entra ID P2', sku: 'MS-ENTRA-ID-P2', list: '₹830/mo', monthly: '₹755', yearly: '₹8,765' },
-    { name: 'Microsoft Entra Suite', sku: 'CFQ7TTC0NZT8:0004', list: '₹1,000/mo', monthly: '₹910', yearly: '₹10,560' },
+    { name: 'Microsoft Entra Workload ID', href: '/microsoft-entra-workload-id', sku: 'CFQ7TTC0R9QB:0002', list: '₹250/mo', monthly: '₹228', yearly: '₹2,640' },
+    { name: 'Microsoft Entra Internet Access', href: '/microsoft-entra-internet-access', sku: 'MS-ENTRA-INTERNET', list: '₹415/mo', monthly: '₹378', yearly: '₹4,382' },
+    { name: 'Microsoft Entra Private Access', href: '/microsoft-entra-private-access', sku: 'CFQ7TTC0PFZR:0003', list: '₹415/mo', monthly: '₹378', yearly: '₹4,382' },
+    { name: 'Microsoft Entra ID Governance', href: '/microsoft-entra-id-governance', sku: 'CFQ7TTC0MFT1:0001', list: '₹580/mo', monthly: '₹528', yearly: '₹6,125' },
+    { name: 'Microsoft Entra ID P1', href: '/microsoft-entra-id-p1', sku: 'MS-ENTRA-ID-P1', list: '₹580/mo', monthly: '₹528', yearly: '₹6,125' },
+    { name: 'Microsoft Entra ID P2', href: '/microsoft-entra-id-p2', sku: 'MS-ENTRA-ID-P2', list: '₹830/mo', monthly: '₹755', yearly: '₹8,765' },
+    { name: 'Microsoft Entra Suite', href: '/microsoft-entra-suite', sku: 'CFQ7TTC0NZT8:0004', list: '₹1,000/mo', monthly: '₹910', yearly: '₹10,560' },
   ];
 
   readonly compareRows = [
