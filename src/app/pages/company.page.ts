@@ -161,6 +161,7 @@ export class CompanyPage {
     { initials: 'RS', name: 'Rashed Syed', role: 'Cloud Advisor - PreSales', image: '/assets/images/TEAMS PHOTO/Rashed.png' },
     { initials: 'MG', name: 'Mihir Ambokar ', role: 'Cloud Advisor - PreSales', image: '/assets/images/TEAMS PHOTO/Mihir.png' },
     { initials: 'AG', name: 'Ajay Gupta', role: 'Cloud Advisor - PreSales', image: '/assets/images/TEAMS PHOTO/Ajay Gupta.png' },
+    { initials: 'RS', name: 'Rahul Sanghavi', role: 'Sales Consultant', image: '/assets/images/TEAMS PHOTO/Rahul Sanghavi.png' },
     { initials: 'AG', name: 'AI SDR Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
     { initials: 'AG', name: 'AI Lead Qualification Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
     { initials: 'VC', name: 'AI RFP/RFQ Response Agent', role: '', image: '/assets/images/Robot-enhanced.png' },

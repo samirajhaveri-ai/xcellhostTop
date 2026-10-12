@@ -1,0 +1,102 @@
+<main class="product-comparison-page">
+  <section class="comparison-hero">
+    <div class="comparison-grid" aria-hidden="true"></div>
+    <span class="comparison-orb comparison-orb-one" aria-hidden="true"></span>
+    <span class="comparison-orb comparison-orb-two" aria-hidden="true"></span>
+    <div class="comparison-wrap">
+      <nav class="comparison-breadcrumb" aria-label="Breadcrumb">
+        <a routerLink="/">Home</a><span aria-hidden="true">/</span><span>Product comparisons</span>
+      </nav>
+      <div class="comparison-hero-copy">
+        <span class="comparison-kicker"><i aria-hidden="true"></i>Decision Center</span>
+        <h1>Compare products.<br /><span>Choose with confidence.</span></h1>
+        <p>Explore practical side-by-side comparisons across XcellHost cloud, security, productivity and digital trust solutions.</p>
+        <div class="comparison-hero-actions">
+          <a class="btn btn-primary" href="#comparison-library">Browse comparisons</a>
+          <button class="btn comparison-ghost" type="button" (click)="requestRecommendation()">Get expert recommendation</button>
+        </div>
+      </div>
+      <div class="comparison-metrics" aria-label="Comparison library overview">
+        <div><strong>{{ comparisons.length }}+</strong><span>Product comparisons</span></div>
+        <div><strong>5</strong><span>Solution categories</span></div>
+        <div><strong>6+</strong><span>Decision factors</span></div>
+        <div><strong>{{ catalogueCount }}+</strong><span>Catalogued services</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="comparison-library" id="comparison-library" aria-labelledby="comparison-library-title">
+    <div class="comparison-wrap">
+      <header class="comparison-heading">
+        <span>Side-by-side guidance</span>
+        <h2 id="comparison-library-title">Find the comparison that matches your decision</h2>
+        <p>Start with a curated pair, then open the full comparison to review pricing, features, support and deployment considerations.</p>
+      </header>
+
+      <div class="comparison-filter-shell">
+        <div class="comparison-filters" role="tablist" aria-label="Filter product comparisons">
+          @for (category of categories; track category) {
+            <button
+              type="button"
+              role="tab"
+              [class.active]="activeCategory() === category"
+              [attr.aria-selected]="activeCategory() === category"
+              (click)="selectCategory(category)"
+            >{{ category }}</button>
+          }
+        </div>
+      </div>
+
+      <p class="comparison-result-count" role="status">Showing {{ visibleComparisons().length }} comparisons</p>
+
+      <div class="comparison-cards">
+        @for (comparison of visibleComparisons(); track comparison.left + comparison.right) {
+          <article class="comparison-card">
+            <div class="comparison-card-top">
+              <span>{{ comparison.category }}</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M7 6h10M5 6l-3 6h6L5 6Zm14 0-3 6h6l-3-6ZM2 12c.4 2 1.4 3 3 3s2.6-1 3-3m8 0c.4 2 1.4 3 3 3s2.6-1 3-3M8 21h8" /></svg>
+            </div>
+            <h3>{{ comparison.leftProduct.name }} vs {{ comparison.rightProduct.name }}</h3>
+            <p>{{ comparison.summary }}</p>
+            <div class="comparison-products" aria-label="Products being compared">
+              <div>
+                <strong>{{ comparison.leftProduct.name }}</strong>
+                <small>{{ comparison.leftProduct.group || comparison.eyebrow }}</small>
+              </div>
+              <div>
+                <strong>{{ comparison.rightProduct.name }}</strong>
+                <small>{{ comparison.rightProduct.group || comparison.eyebrow }}</small>
+              </div>
+            </div>
+            <div class="comparison-card-footer">
+              <a [routerLink]="['/compare-products', comparison.detailSlug]">View full comparison <i aria-hidden="true">→</i></a>
+            </div>
+          </article>
+        }
+      </div>
+
+      <section class="comparison-custom" aria-labelledby="custom-comparison-title">
+        <div>
+          <span>Build your own</span>
+          <h2 id="custom-comparison-title">Need a different combination?</h2>
+          <p>Select any two to four services from the XcellHost catalog and compare them in one table.</p>
+        </div>
+        <a class="btn btn-primary" routerLink="/compare">Create custom comparison</a>
+      </section>
+    </div>
+  </section>
+
+  <section class="comparison-help">
+    <div class="comparison-wrap comparison-help-inner">
+      <div>
+        <span>Expert guidance</span>
+        <h2>Still deciding between two solutions?</h2>
+        <p>Our architects can map the options to your users, workloads, security requirements and budget—without pushing the larger plan.</p>
+      </div>
+      <div class="comparison-help-actions">
+        <button class="btn btn-primary" type="button" (click)="requestRecommendation()">Schedule free consultation</button>
+        <a class="btn comparison-ghost" routerLink="/contact">Contact our team</a>
+      </div>
+    </div>
+  </section>
+</main>

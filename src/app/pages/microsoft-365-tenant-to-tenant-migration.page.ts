@@ -34,7 +34,10 @@ export class Microsoft365TenantToTenantMigrationPage implements OnDestroy {
   readonly videos = [
     { title: 'Email migration overview', id: PRODUCT_VIDEOS['Email Migration'][0] },
     { title: 'Microsoft 365 overview', id: PRODUCT_VIDEOS['Microsoft 365'][0] },
-  ].map((video) => ({ ...video, url: this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube-nocookie.com/embed/${video.id}?rel=0&playsinline=1`) }));
+  ].map((video) => {
+    const src = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube-nocookie.com/embed/${video.id}?rel=0&playsinline=1`);
+    return { ...video, src, url: src };
+  });
   readonly referenceScenarios = [
     { title: 'Mergers & acquisitions', description: 'Discuss customer references for combining Microsoft 365 users, mailboxes and collaboration data after a merger or acquisition.' },
     { title: 'Divestitures', description: 'Ask about separating users and workloads into a new tenant with permissions mapping and a planned domain cutover.' },

@@ -219,7 +219,7 @@ export class InsightsSectionComponent {
   readonly caseStudyLimit = input<number | null>(null);
   readonly videoProduct = computed(() => {
     const entry = this.catalog.entryBySlug(slugify(this.pageSlug()));
-    return entry && ['SMB Tools', 'VPS Servers'].includes(entry.group) ? entry : null;
+    return entry ?? null;
   });
   private readonly channelVideos = signal<readonly CmsInsightResource[]>([]);
   readonly videosLoading = signal(false);

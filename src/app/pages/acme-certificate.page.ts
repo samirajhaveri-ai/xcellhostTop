@@ -114,7 +114,7 @@ export class AcmeCertificatePage {
     this.seo.set(
       'ACME SSL Certificates | Automated DV & OV Renewal | XcellHost',
       'Automate Sectigo DV and OV certificate issuance, installation and renewal with ACME, EAB credentials and expert setup from XcellHost.',
-      '/acme-certificate/',
+      '/acme-enabled-ssl-certificates/',
     );
   }
 
