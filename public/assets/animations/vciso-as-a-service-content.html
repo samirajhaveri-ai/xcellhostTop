@@ -256,6 +256,8 @@ html[data-theme="dark"] .ico.n{background:#1E2A49}
 .tbl .hl{background:var(--chip)}
 .tbl th.hl{color:var(--blue)}
 .yes{color:var(--green);font-weight:700}.no{color:var(--red);font-weight:700}
+#compare .tbl td:has(.yes){text-align:center;vertical-align:middle}
+#compare .tbl .yes{display:inline-block;vertical-align:middle}
 
 /* plans */
 .plans{display:grid;grid-template-columns:repeat(var(--n,3),1fr);gap:18px;align-items:stretch}
@@ -1139,7 +1141,7 @@ main{display:flow-root}
 <div class="pr-top">
  <div class="ez-card rv"><span class="ez-off">30 DAYS' NOTICE</span>
   <div class="ez-top"><span class="ez-ms"><span class="kdt" style="background:#FF8A00">X</span>XcellSecure</span><a class="ez-ext" href="#compare" aria-label="Compare options"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-  <div class="ez-fam">XcellSecure · vCISO-as-a-Service</div>
+  <div class="ez-fam">XcellSecure · vCISO-As-A-Service</div>
   <h3 id="pcName">Growth</h3><div class="ez-sku" id="pcSku"></div>
   <div class="ez-row"><span>vCISO time</span><b class="ez-from" id="pcHrs"></b></div>
   <div class="ez-row"><span>Leadership review</span><b class="ez-from" id="pcRev"></b></div>
@@ -1272,7 +1274,7 @@ function calc(){var p=byK(plan),hr=+$('#cHrN').value,pj=$$('[data-pj]').filter(f
  var rows=[['Monthly',p.m],['Annual',p.m*.9]];$('#oEf').innerHTML=rows.map(function(r,i){var on=(i===1)===(term==='y');return '<div class="cef-r'+(on?' on':'')+'" style="margin-top:8px"><span>'+r[0]+'</span><span class="tr"><i style="transform:scaleX('+(r[1]/p.m)+')"></i></span><b>'+inr(r[1])+'</b></div>';}).join('');}
 card();calc();
 $('#oAdd').addEventListener('click',function(){var p=byK(plan);if(!p.m)return;var y=term==='y';
- XH.cart.add({key:'vciso-'+p.k+'-'+term,name:'vCISO-as-a-Service — '+p.n,sub:(y?'12-month commitment · billed annually':'Monthly · first 12 months estimate')+' · '+p.hrs,price:Math.round(y?p.m*.9*12:p.m*12),qty:1});
+ XH.cart.add({key:'vciso-'+p.k+'-'+term,name:'vCISO-As-A-Service — '+p.n,sub:(y?'12-month commitment · billed annually':'Monthly · first 12 months estimate')+' · '+p.hrs,price:Math.round(y?p.m*.9*12:p.m*12),qty:1});
  var hr=+$('#cHrN').value;if(hr)XH.cart.add({key:'vciso-hours',name:'Extra vCISO hours',sub:hr+' h / month × 12',price:4999*12,qty:hr});
  $$('[data-pj]').forEach(function(x){if(x.checked){var o=PJ[+x.dataset.pj];XH.cart.add({key:'vciso-pj-'+x.dataset.pj,name:o[0],sub:'Focused project · XcellSecure',price:o[1],qty:1});}});});
 

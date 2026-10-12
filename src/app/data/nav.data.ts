@@ -2660,7 +2660,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "vCISO-as-a-Service",
+                "title": "vCISO-As-A-Service",
                 "pill": null,
                 "desc": null
               },
@@ -3973,6 +3973,24 @@ export const MEGA_MENU: MenuTop[] = [
         "groups": [
           {
             "heading": "Cyber Insurance",
+            "items": [
+              {
+                "title": "No Data",
+                "pill": "In focus",
+                "desc": null
+              },
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "13",
+        "label": "Acronic AI",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Acronic AI",
             "items": [
               {
                 "title": "No Data",

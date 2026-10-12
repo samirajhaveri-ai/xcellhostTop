@@ -891,7 +891,7 @@ export const DIRECTORY: DirectoryEntry[] = [
     "group": "Consulting & Compliance"
   },
   {
-    "name": "vCISO-as-a-Service",
+    "name": "vCISO-As-A-Service",
     "desc": "Virtual Chief Information Security Officer",
     "cat": "Security",
     "group": "Consulting & Compliance"
