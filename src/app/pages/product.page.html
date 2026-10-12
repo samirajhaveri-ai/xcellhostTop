@@ -1721,7 +1721,14 @@
 
             <div class="pp-hero-grid">
               <div class="pp-hero-l">
-                @if (v.heroPoints.length) {
+                @if (slug() === 'openclaw-vps') {
+                  <div class="openclaw-left-features" aria-label="OpenClaw VPS features">
+                    <div><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9 17h6"/></svg></span>Always-on AI agent host</div>
+                    <div><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 8v4l3 2"/></svg></span>systemd auto-restart</div>
+                    <div><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-2.5 0-3.5 2-3.5 5 0 2-2 4-3 7-.5 2 1 4 3 4h7c2 0 3.5-2 3-4-1-3-3-5-3-7 0-3-1-5-3.5-5z"/><path d="M10 8h.01M14 8h.01"/></svg></span>Ubuntu LTS ready</div>
+                    <div><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>Root SSH · firewall</div>
+                  </div>
+                } @else if (v.heroPoints.length) {
                   <div class="pp-hpoints" [class.comodo-hero-points]="slug() === 'comodo-personal-authentication'" [attr.data-preserve-copy]="slug() === 'comodo-ev-code-signing' ? '' : null">
                     @for (p of v.heroPoints; track p; let i = $index) {
                       <div class="pp-hpoint">
@@ -2666,7 +2673,7 @@
                   } @else if (slug() === 'n8n-vps') {
                     <xh-n8n-vps-content (planSelected)="selectN8nPlan($event)" (consultationRequested)="requestN8nConsultation()" />
                   } @else if (slug() === 'openclaw-vps') {
-                    <xh-imported-interactive-content source="openclaw" />
+                    <xh-imported-interactive-content class="openclaw-page-content" source="openclaw" />
                   } @else if (!isManagedMicrosoft365() && !isEntraIdBackup()) {
                     @if (slug() === 'rtx-8000') {
                       <section class="rtx-overview" aria-labelledby="rtxOverviewTitle">

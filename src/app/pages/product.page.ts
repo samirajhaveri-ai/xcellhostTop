@@ -1757,7 +1757,7 @@ interface ProductTourSlide {
 
     /* Keep hero artwork inside the same 1240px container as the sections below. */
     @media (min-width: 901px) {
-      #ppage.ppage > .pp-hero > .pph-scene:not(.oracle-hero-visual) {
+      #ppage.ppage > .pp-hero > .pph-scene:not(.oracle-hero-visual):not(.openclaw-hero-art) {
         right: max(24px, calc((100% - 1240px) / 2 + 24px));
         width: min(calc((100% - 48px) * .34), 405px);
         max-width: none;
@@ -1794,7 +1794,7 @@ interface ProductTourSlide {
       }
     }
     @media (min-width: 901px) and (max-width: 1180px) {
-      #ppage.ppage > .pp-hero > .pph-scene:not(.oracle-hero-visual) {
+      #ppage.ppage > .pp-hero > .pph-scene:not(.oracle-hero-visual):not(.openclaw-hero-art) {
         right: 28px;
         width: calc((100% - 56px) * .38);
       }
@@ -3991,6 +3991,7 @@ class ProductPageComponent {
 
 
   readonly consultingSectionNavLinks = computed(() => this.smbSectionNavLinks().filter(link => link.target !== 'showcaseVideosTitle'));
+
 
   readonly smbSectionNavLinks = computed(() =>
     this.isTally()
