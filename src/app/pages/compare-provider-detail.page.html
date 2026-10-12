@@ -40,24 +40,6 @@
           }
         </div>
 
-        <section class="tally-videos" aria-labelledby="comparisonVideosTitle">
-          <div class="pp-sec" id="comparisonVideosTitle">Watch it in action</div>
-          <div class="tally-video-grid">
-            <article class="tally-video-card">
-              <h3><span>Product Intro</span></h3>
-              <div class="tally-video-frame">
-                <iframe src="https://www.youtube-nocookie.com/embed/rya4Q4IZniA?rel=0&amp;playsinline=1" title="Cloud Backup product introduction" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-              </div>
-            </article>
-            <article class="tally-video-card">
-              <h3><span>Use Cases</span></h3>
-              <div class="tally-video-frame">
-                <iframe src="https://www.youtube-nocookie.com/embed/nIMbqdbGxao?rel=0&amp;playsinline=1" title="Cloud Backup use cases" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-              </div>
-            </article>
-          </div>
-        </section>
-
         <div class="pp-sec">What customers say about {{ comparisonTitle }}</div>
         <div class="pp-tcards" id="ppRevs">
           @for (review of reviews; track review.name) {
@@ -76,7 +58,7 @@
         <div class="pp-faq" id="ppFaq"><xh-product-faq [faqs]="faqs" /></div>
 
         <div id="ppBlog">
-          <xh-insights-section pageSlug="cloud-backup" [pageAliases]="['cloud-backup-acronis', 'data-protection']" />
+          <xh-insights-section pageSlug="cloud-backup" [pageAliases]="['cloud-backup-acronis', 'data-protection']" [videos]="insightVideos" />
         </div>
 
         <div class="pp-cta">

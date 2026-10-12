@@ -19,6 +19,7 @@
           }
         </div>
       </section>
+      @if (false) {
       <section class="tally-videos" aria-labelledby="serviceActionTitle">
         <h2 class="pp-sec" id="serviceActionTitle">Watch it in action</h2>
         <div class="tally-video-grid single-video">
@@ -34,6 +35,7 @@
           </article>
         </div>
       </section>
+      }
       <section aria-labelledby="serviceReviewsTitle">
         <h2 class="pp-sec" id="serviceReviewsTitle">What customers say</h2>
         <div class="pp-revs">
@@ -46,7 +48,7 @@
         <h2 class="pp-sec pp-faq-heading" id="serviceFaqTitle">Frequently asked questions</h2>
         <div class="pp-faq"><xh-product-faq [faqs]="view.faqs" idPrefix="menuServiceFaq" /></div>
       </section>
-      <div class="m365-enterprise-insights"><xh-insights-section [pageSlug]="page.slug" /></div>
+      <div class="m365-enterprise-insights"><xh-insights-section [pageSlug]="page.slug" [videos]="insightVideos" /></div>
       <section class="pp-cta service-closing-cta" aria-labelledby="serviceClosingTitle">
         <div>
           <h3 id="serviceClosingTitle">Ready to start with {{ page.name }}?</h3>

@@ -276,20 +276,6 @@
               </div>
             </section>
 
-            <section class="tally-videos" aria-labelledby="m365EnterpriseActionTitle">
-              <h2 class="pp-sec" id="m365EnterpriseActionTitle">Watch it in action</h2>
-              <div class="tally-video-grid single-video">
-                @for (video of showcaseVideos(); track video.label) {
-                  <article class="tally-video-card">
-                    <h3><span>{{ video.label }}</span></h3>
-                    <div class="tally-video-frame">
-                      <iframe [src]="video.url" [title]="video.label" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                  </article>
-                }
-              </div>
-            </section>
-
             <section aria-labelledby="m365EnterpriseReviewsTitle">
               <h2 class="pp-sec" id="m365EnterpriseReviewsTitle">What customers say</h2>
               <div class="pp-revs">
@@ -312,7 +298,7 @@
               <div class="pp-faq"><xh-product-faq [faqs]="microsoftEnterpriseFaqs" /></div>
             </section>
 
-            <div class="m365-enterprise-insights"><xh-insights-section pageSlug="microsoft-365-enterprise" /></div>
+            <div class="m365-enterprise-insights"><xh-insights-section pageSlug="microsoft-365-enterprise" [videos]="productInsightVideos()" /></div>
 
             <section class="pp-cta" aria-labelledby="m365EnterpriseCtaTitle">
               <div>
@@ -353,6 +339,7 @@
               </div>
             </section>
 
+            @if (false) {
             <section class="tally-videos" aria-labelledby="suppliedServiceVideoTitle">
               <h2 class="pp-sec" id="suppliedServiceVideoTitle">Watch it in action</h2>
               <div class="tally-video-grid single-video">
@@ -369,6 +356,7 @@
                 </article>
               </div>
             </section>
+            }
 
             <section aria-labelledby="suppliedServiceReviewsTitle">
               <h2 class="pp-sec" id="suppliedServiceReviewsTitle">What customers say</h2>
@@ -1223,6 +1211,10 @@
         } @else if (slug() === 'video-surveillance-as-a-service') {
           <div class="pph-scene vsaas-hero-art">
             <xh-vsaas-hero />
+          </div>
+        } @else if (slug() === 'openclaw-vps') {
+          <div class="pph-scene openclaw-hero-art">
+            <xh-imported-interactive-content source="openclaw-hero" />
           </div>
         } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
 
@@ -2155,7 +2147,7 @@
     @if (isScrutinyEdr()) {
       <xh-scrutiny-edr-content />
       <div class="wrap"><xh-edr-seo-content variant="scrutiny" /></div>
-      @if (showcaseVideos().length) {
+      @if (showcaseVideos().length && !videosInInsights()) {
         <section class="tally-videos scrutiny-watch" aria-labelledby="scrutinyVideosTitle">
           <div class="wrap">
             <div class="pp-sec" id="scrutinyVideosTitle">Watch it in action</div>
@@ -2327,7 +2319,7 @@
                 <div class="pw"><b>MIGRATION REPORTS</b><span>Per-User Logs, Shared-Link Mapping And Completion Reports</span></div>
                 <div class="pw"><b>ONE PARTNER</b><span>Assessment, Migration Planning And Post-Migration Support</span></div>
               </div>
-              @if (showcaseVideos().length) {
+              @if (showcaseVideos().length && !videosInInsights()) {
                 <h2 class="pp-sec">WATCH IT IN ACTION</h2>
                 <div class="tally-video-grid">
                   @for (video of showcaseVideos(); track video.label) {
@@ -2354,7 +2346,7 @@
                 <div class="pw"><b>MIGRATION REPORTS</b><span>Per-User Logs, Shared-Link Mapping And Completion Reports</span></div>
                 <div class="pw"><b>ONE PARTNER</b><span>Assessment, Migration Planning And Post-Migration Support</span></div>
               </div>
-              @if (showcaseVideos().length) {
+              @if (showcaseVideos().length && !videosInInsights()) {
                 <h2 class="pp-sec">WATCH IT IN ACTION</h2>
                 <div class="tally-video-grid">
                   @for (video of showcaseVideos(); track video.label) {
@@ -2661,6 +2653,8 @@
                     <xh-acronis-ot-content />
                   } @else if (slug() === 'n8n-vps') {
                     <xh-n8n-vps-content (planSelected)="selectN8nPlan($event)" (consultationRequested)="requestN8nConsultation()" />
+                  } @else if (slug() === 'openclaw-vps') {
+                    <xh-imported-interactive-content source="openclaw" />
                   } @else if (!isManagedMicrosoft365() && !isEntraIdBackup()) {
                     @if (slug() === 'rtx-8000') {
                       <section class="rtx-overview" aria-labelledby="rtxOverviewTitle">
@@ -3523,6 +3517,8 @@
                   </xh-rtx-a6000-pricing>
                 } @else if (slug() === 'n8n-vps') {
                   <!-- Pricing and included features render with the n8n overview above. -->
+                } @else if (slug() === 'openclaw-vps') {
+                  <!-- Plans and the builder render with the imported overview above. -->
                 } @else if (slug() === 'plesk-servers' || slug() === 'cpanel-servers') {
                   <!-- Bundles and the configurator render in the supplied server overview. -->
                 } @else if (slug() === 'imunify360') {
@@ -3787,7 +3783,7 @@
                   !isSiteLock() &&
                   !isManagedMicrosoft365() &&
                   !isEntraIdBackup() &&
-                  slug() !== 'n8n-vps' &&
+                  slug() !== 'n8n-vps' && slug() !== 'openclaw-vps' &&
                   slug() !== 'billing-software' &&
                   slug() !== 'digital-menu-and-catalog-management' &&
                   slug() !== 'ai-review-magicqr' &&
@@ -4447,7 +4443,7 @@
                   !isSiteLock() &&
                   !isManagedMicrosoft365() &&
                   !isEntraIdBackup() &&
-                  slug() !== 'n8n-vps' &&
+                  slug() !== 'n8n-vps' && slug() !== 'openclaw-vps' &&
                   slug() !== 'billing-software' &&
                   slug() !== 'digital-menu-and-catalog-management' &&
                   slug() !== 'ai-review-magicqr' &&
@@ -5100,7 +5096,7 @@
                   slug() !== 'plesk-servers' && slug() !== 'cpanel-servers' &&
                   v.name !== 'Tally on Cloud' &&
                   slug() !== 'rtx-a6000' &&
-                   slug() !== 'n8n-vps' &&
+                   slug() !== 'n8n-vps' && slug() !== 'openclaw-vps' &&
                   slug() !== 'billing-software' &&
                   slug() !== 'digital-menu-and-catalog-management' &&
                   slug() !== 'ai-review-magicqr' &&
@@ -5339,7 +5335,7 @@
 
           }
 
-          @if (v.name === 'Enterprise DMARC' && showcaseVideos().length) {
+          @if (v.name === 'Enterprise DMARC' && showcaseVideos().length && !videosInInsights()) {
             <section class="tally-videos" aria-labelledby="dmarcVideosTitle">
               <div class="pp-sec" id="dmarcVideosTitle">Watch it in action</div>
               <div class="tally-video-grid" [class.single-video]="showcaseVideos().length === 1">
@@ -5477,7 +5473,7 @@
             </div>
           }
           
-          <div id="ppRich" [hidden]="slug() === 'managed-mongodb' || slug() === 'managed-redis' || isFrameworkDetail() || slug() === 'comodo-personal-authentication' || slug() === 'digicert-smime-class-1' || slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin' || slug() === 'erp-next-hosting' || slug() === 'odoo-hosting' || slug() === 'email-backup' || slug() === 'sectigo-ssl-certificates' || slug() === 'microsoft-365-to-google-workspace-migration'">
+          <div id="ppRich" [hidden]="slug() === 'openclaw-vps' || slug() === 'managed-mongodb' || slug() === 'managed-redis' || isFrameworkDetail() || slug() === 'comodo-personal-authentication' || slug() === 'digicert-smime-class-1' || slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin' || slug() === 'erp-next-hosting' || slug() === 'odoo-hosting' || slug() === 'email-backup' || slug() === 'sectigo-ssl-certificates' || slug() === 'microsoft-365-to-google-workspace-migration'">
 
 
 
@@ -5558,7 +5554,7 @@
             </section>
           }
 
-          @if (slug() === 'vortex-seg' && !showcaseVideos().length) {
+          @if (slug() === 'vortex-seg' && !showcaseVideos().length && !videosInInsights()) {
             <section class="tally-videos vortex-seg-video" aria-labelledby="vortexSegActionTitle">
               <div class="pp-sec" id="vortexSegActionTitle">Watch it in action</div>
               <div class="tally-video-grid single-video">
@@ -5586,7 +5582,7 @@
             </section>
           }
 
-          @if (slug() === 'vortex-soc' && !showcaseVideos().length) {
+          @if (slug() === 'vortex-soc' && !showcaseVideos().length && !videosInInsights()) {
             <section class="tally-videos vortex-soc-video" aria-labelledby="vortexSocActionTitle">
               <div class="pp-sec" id="vortexSocActionTitle">Watch it in action</div>
               <div class="tally-video-grid single-video">
@@ -5614,7 +5610,7 @@
             </section>
           }
 
-          @if (slug() === 'ediscovery-and-compliance') {
+          @if (slug() === 'ediscovery-and-compliance' && !videosInInsights()) {
             <section class="tally-videos" aria-labelledby="ediscoveryActionTitle">
               <div class="pp-sec" id="ediscoveryActionTitle">Watch it in action</div>
               <div class="tally-video-grid single-video">
@@ -5838,7 +5834,7 @@
             </section>
           }
 
-          @if (isTsplusRemoteSupport()) {
+          @if (isTsplusRemoteSupport() && !videosInInsights()) {
             <section class="tally-videos" aria-labelledby="tsplusSupportVideoTitle">
               <div class="pp-sec" id="tsplusSupportVideoTitle">Watch it in action</div>
               <div class="tally-video-grid">
@@ -5886,7 +5882,7 @@
             </section>
           }
 
-          @if (isTsplusAdvancedSecurity()) {
+          @if (isTsplusAdvancedSecurity() && !videosInInsights()) {
             <section class="tally-videos" aria-labelledby="tsplusAdvancedSecurityVideoTitle">
               <div class="pp-sec" id="tsplusAdvancedSecurityVideoTitle">Watch it in action</div>
               <div class="tally-video-grid single-video">
@@ -5912,7 +5908,7 @@
             </section>
           }
 
-          @if (isTsplusRemoteAccess()) {
+          @if (isTsplusRemoteAccess() && !videosInInsights()) {
             <section class="tally-videos" aria-labelledby="tsplusRemoteAccessVideoTitle">
               <div class="pp-sec" id="tsplusRemoteAccessVideoTitle">Watch it in action</div>
               <div class="tally-video-grid">
@@ -5990,7 +5986,7 @@
             </section>
           }
 
-          @if (isTsplusServerMonitoring()) {
+          @if (isTsplusServerMonitoring() && !videosInInsights()) {
             <section class="tally-videos" aria-labelledby="tsplusMonitoringVideoTitle">
               <div class="pp-sec" id="tsplusMonitoringVideoTitle">Watch it in action</div>
               <div class="tally-video-grid single-video">
@@ -6118,7 +6114,7 @@
               <xh-digicert-smime-related />
             }
           } @else {
-          <div class="pp-sec pp-faq-heading" [attr.id]="isTally() ? 'tallyFaq' : slug() === 'cpu-optimized' ? 'cpuFaq' : slug() === 'memory-optimized' ? 'memoryFaq' : usesContainerRegistryTemplate() ? 'registryFaq' : null" [style.margin-top.px]="slug() === 'performance-cloud' || slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Frequently asked questions</div>
+          <div class="pp-sec pp-faq-heading" [attr.id]="slug() === 'openclaw-vps' ? 'openclawFaq' : isTally() ? 'tallyFaq' : slug() === 'cpu-optimized' ? 'cpuFaq' : slug() === 'memory-optimized' ? 'memoryFaq' : usesContainerRegistryTemplate() ? 'registryFaq' : null" [style.margin-top.px]="slug() === 'performance-cloud' || slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Frequently asked questions</div>
           @if (slug() === 'domain-whois-lookup') {
             <xh-domain-whois-faq />
           } @else if (slug() === 'managed-oracle-cloud') {
