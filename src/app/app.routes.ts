@@ -49,6 +49,10 @@ export const routes: Routes = [
     title: 'Product Comparisons | XcellHost',
     loadComponent: () => import('./pages/compare-products.page').then((m) => m.CompareProductsPage),
   },
+  {
+    path: 'compare-products/:comparison',
+    loadComponent: () => import('./pages/product-comparison-detail.page').then((m) => m.ProductComparisonDetailPage),
+  },
 
   {
     path: 'microsoft-365-tenant-to-tenant-migration',

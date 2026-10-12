@@ -69,7 +69,7 @@
               </div>
             </div>
             <div class="comparison-card-footer">
-              <a routerLink="/compare" [queryParams]="{ s: comparison.query }">View full comparison <i aria-hidden="true">→</i></a>
+              <a [routerLink]="['/compare-products', comparison.detailSlug]">View full comparison <i aria-hidden="true">→</i></a>
             </div>
           </article>
         }
