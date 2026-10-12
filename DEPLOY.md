@@ -276,3 +276,13 @@ are cleared with New chat, and are sent with `store: false`; no conversation
 logging is added by this website.
 
 API documentation: https://developers.openai.com/api/docs/guides/text
+
+AI requests retry transient connection and provider failures once, within a bounded
+request timeout. Authentication errors and exhausted billing quota are not retried.
+Local development retains PHP's response status and prints credential-free
+provider diagnostics in the server terminal. Run
+`php scripts/test-ai-backend.php` and `node --test scripts/test-ai-dev-proxy.cjs`
+for regression checks. Start the site using `npm start` from a normal terminal
+with outbound HTTPS access; a development server launched in a restricted sandbox
+cannot reach OpenAI. Troubleshooting reference:
+https://developers.openai.com/api/docs/guides/error-codes

@@ -1,13 +1,16 @@
 <?php
 declare(strict_types=1);
 require_once __DIR__ . '/ai-support.php';
+require_once __DIR__ . '/ai-provider.php';
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
 header('X-Content-Type-Options: nosniff');
 
 function xh_reply(int $status, array $body): never {
     http_response_code($status);
-    echo json_encode($body, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    $output = PHP_SAPI === 'cli' && getenv('XCELLHOST_AI_PROXY') === '1'
+        ? ['status' => $status, 'body' => $body] : $body;
+    echo json_encode($output, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     exit;
 }
 if (($_SERVER['REQUEST_METHOD'] ?? getenv('REQUEST_METHOD')) !== 'POST') {
@@ -44,14 +47,12 @@ try {
     $corpus = require __DIR__ . '/ai-knowledge.php';
     $chunks = xh_retrieve($corpus, $messages);
     $payload = xh_payload($messages, $chunks, $corpus['snapshot'], $model);
-    $curl = curl_init('https://api.openai.com/v1/responses');
-    curl_setopt_array($curl, [CURLOPT_POST => true, CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_HTTPHEADER => ['Content-Type: application/json', 'Authorization: Bearer ' . trim($key)],
-        CURLOPT_POSTFIELDS => json_encode($payload), CURLOPT_CONNECTTIMEOUT => 8, CURLOPT_TIMEOUT => 35,
-        CURLOPT_SSL_VERIFYPEER => true, CURLOPT_SSL_VERIFYHOST => 2]);
-    $raw = curl_exec($curl); $status = curl_getinfo($curl, CURLINFO_HTTP_CODE); curl_close($curl);
-    if (!is_string($raw) || $status < 200 || $status >= 300) xh_reply(502, ['error' => 'The assistant could not connect. Please try again shortly.']);
-    $response = json_decode($raw, true, 64, JSON_THROW_ON_ERROR);
+    $result = xh_call_provider($key, $payload);
+    if (!$result['ok']) {
+        error_log('XcellHost AI: ' . json_encode(['code' => $result['code'], 'httpStatus' => $result['providerStatus'], 'curlErrorNumber' => $result['errno']]));
+        xh_reply($result['status'], ['error' => $result['error'], 'code' => $result['code']]);
+    }
+    $response = $result['response'];
     $answer = xh_answer($response);
     if (!$answer) xh_reply(502, ['error' => 'The assistant could not answer. Please try again.']);
     $sources = [];
