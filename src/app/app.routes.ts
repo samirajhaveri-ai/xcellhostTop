@@ -5,6 +5,44 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  {
+    path: 'geotrust-true-businessid', data: { businessIdVariant: 'single' },
+    loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
+  },
+  {
+    path: 'geotrust-true-businessid-multi-domain', data: { businessIdVariant: 'multi' },
+    loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
+  },
+  {
+    path: 'geotrust-true-businessid-ev-multi-domain', data: { businessIdVariant: 'evMulti' },
+    loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
+  },
+  {
+    path: 'geotrust-true-businessid-wildcard', data: { businessIdVariant: 'wildcard' },
+    loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
+  },
+  {
+    path: 'geotrust-quickssl-premium-san', data: { quickSslVariant: 'san' },
+    loadComponent: () => import('./pages/geotrust-quickssl.page').then(m => m.GeoTrustQuickSslPage),
+  },
+  {
+    path: 'geotrust-quickssl-premium', data: { quickSslVariant: 'single' },
+    loadComponent: () => import('./pages/geotrust-quickssl.page').then(m => m.GeoTrustQuickSslPage),
+  },
+  {
+    path: 'geotrust-quickssl-premium-wildcard', data: { quickSslVariant: 'wildcard' },
+    loadComponent: () => import('./pages/geotrust-quickssl.page').then(m => m.GeoTrustQuickSslPage),
+  },
+  {
+    path: 'geotrust-dv-ssl-flex',
+    title: 'GeoTrust DV SSL (FLEX) | XcellHost',
+    loadComponent: () => import('./pages/geotrust-dv-ssl-flex.page').then(m => m.GeoTrustDvSslFlexPage),
+  },
+  {
+    path: 'geotrust-true-businessid-ev-flex',
+    title: 'GeoTrust TrueBusiness ID EV (FLEX) | XcellHost',
+    loadComponent: () => import('./pages/geotrust-true-businessid-ev-flex.page').then(m => m.GeoTrustTrueBusinessIdEvFlexPage),
+  },
   { path: 'managed-grc', title: 'Managed GRC - XcellHost', data: { consultingSlug: 'managed-grc' }, loadComponent: () => import('./pages/security-consulting.page').then(m => m.SecurityConsultingPage) },
   { path: 'iso-27001-consulting', title: 'ISO 27001 Consulting - XcellHost', data: { consultingSlug: 'iso-27001-consulting' }, loadComponent: () => import('./pages/security-consulting.page').then(m => m.SecurityConsultingPage) },
   { path: 'iso-20000-itsm', title: 'ISO 20000 (ITSM) - XcellHost', data: { consultingSlug: 'iso-20000-itsm' }, loadComponent: () => import('./pages/security-consulting.page').then(m => m.SecurityConsultingPage) },

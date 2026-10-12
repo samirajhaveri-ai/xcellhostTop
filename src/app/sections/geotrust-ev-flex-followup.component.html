@@ -1,0 +1,37 @@
+<div class="followup-wrap">
+  <section [id]="idPrefix() + '-feedback'" [attr.aria-labelledby]="idPrefix() + '-feedback-title'">
+    <h2 class="section-label" [id]="idPrefix() + '-feedback-title'">What customers say</h2>
+    <div class="reviews-grid">
+      @for (review of reviews; track review.initials) {
+        <article class="review-card">
+          <span class="quote-badge" aria-hidden="true">&rdquo;</span>
+          <div class="review-avatar" aria-hidden="true">{{ review.initials }}</div>
+          <h3>{{ review.name }}</h3>
+          <p class="review-product">{{ review.product }}</p>
+          <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>{{ review.quote }}</blockquote>
+        </article>
+      }
+    </div>
+  </section>
+  <section [id]="idPrefix() + '-faq'" [attr.aria-labelledby]="idPrefix() + '-faq-title'">
+    <h2 class="section-label" [id]="idPrefix() + '-faq-title'">Frequently asked questions</h2>
+    <div class="faq-grid">
+      @for (faq of faqs(); track faq.question; let index = $index) {
+        <article class="faq-card" [class.open]="openQuestions().has(index)">
+          <h3>
+            <button type="button" [id]="idPrefix() + '-faq-question-' + index"
+              [attr.aria-expanded]="openQuestions().has(index)"
+              [attr.aria-controls]="idPrefix() + '-faq-answer-' + index" (click)="toggleFaq(index)">
+              {{ faq.question }}<span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+          </h3>
+          <div [id]="idPrefix() + '-faq-answer-' + index" [hidden]="!openQuestions().has(index)"
+            role="region" [attr.aria-labelledby]="idPrefix() + '-faq-question-' + index">
+            <p class="faq-answer">{{ faq.answer }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+</div>

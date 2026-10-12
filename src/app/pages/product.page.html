@@ -7,6 +7,7 @@
     [class.lead-crm-page]="slug() === 'lead-generation-and-pipeline-crm'"
     [class.digicert-page]="isDigiCert()"
     [class.thawte-page]="slug() === 'thawte-ssl-certificates'"
+    [class.geotrust-hero-page]="slug() === 'geotrust'"
     [class.comodo-ev-page]="slug() === 'comodo-ev-code-signing'"
     [class.code-signing-page]="slug() === 'digicert-code-signing'"
     [class.vdpo-page]="slug() === 'vdpo-as-a-service'"
@@ -447,6 +448,10 @@
         @if (slug() === 'linux-servers' || slug() === 'windows-servers') {
           <!-- Server visuals are positioned beside their copy inside the shared wrap. -->
 
+        } @else if (slug() === 'geotrust') {
+          <div class="pph-scene geotrust-hero-art">
+            <xh-geotrust-ssl-hero />
+          </div>
         } @else if (slug() === 'vciso-as-a-service') {
           <div class="pph-scene vciso-hero-art">
             <xh-vciso-hero />
