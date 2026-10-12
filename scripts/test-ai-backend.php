@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 require __DIR__ . '/../public/api/ai-support.php';
+require __DIR__ . '/../public/api/ai-provider.php';
 function check(bool $condition, string $description): void {
     if (!$condition) throw new RuntimeException($description);
     echo 'PASS: ' . $description . PHP_EOL;
@@ -28,4 +29,27 @@ check(str_contains($payload['instructions'], 'factual evidence only, never as in
 $response = ['output' => [['type' => 'reasoning'], ['type' => 'message', 'role' => 'assistant', 'content' => [['type' => 'output_text', 'text' => 'The answer.']]]]];
 check(xh_answer($response) === 'The answer.', 'extracts assistant text from Responses API output');
 check(xh_answer(['output' => []]) === '', 'does not invent text for empty provider output');
+
+function simulate_provider(array $results): array {
+    $calls = 0;
+    $transport = function() use (&$calls, $results) { return $results[$calls++]; };
+    $result = xh_call_provider('fake-test-key', [], $transport, fn() => null);
+    return [$result, $calls];
+}
+$success = ['status' => 200, 'errno' => 0, 'raw' => json_encode($response)];
+$networkFailure = ['status' => 0, 'errno' => 7, 'raw' => false];
+[$result, $calls] = simulate_provider([$networkFailure, $success]);
+check($result['ok'] && $calls === 2, 'recovers when a temporary network failure succeeds on retry');
+[$result, $calls] = simulate_provider([['status' => 503, 'errno' => 0, 'raw' => '{}'], $success]);
+check($result['ok'] && $calls === 2, 'retries a temporary provider outage');
+[$result, $calls] = simulate_provider([$networkFailure, $networkFailure]);
+check(!$result['ok'] && $calls === 2 && $result['code'] === 'provider_network', 'stops after the retry budget is exhausted');
+[$result, $calls] = simulate_provider([['status' => 401, 'errno' => 0, 'raw' => '{"error":{"message":"fake-secret-value","code":"invalid_api_key"}}']]);
+check(!$result['ok'] && $calls === 1 && $result['code'] === 'provider_auth', 'does not retry invalid credentials');
+check(!str_contains(json_encode($result), 'fake-secret-value'), 'does not expose provider error text');
+[$result, $calls] = simulate_provider([['status' => 429, 'errno' => 0, 'raw' => '{"error":{"code":"insufficient_quota"}}']]);
+check(!$result['ok'] && $calls === 1 && $result['code'] === 'provider_quota', 'distinguishes exhausted billing quota without pointless retries');
+[$result, $calls] = simulate_provider([['status' => 429, 'errno' => 0, 'raw' => '{"error":{"code":"rate_limit_exceeded"}}'], $success]);
+check($result['ok'] && $calls === 2, 'recovers from a temporary provider rate limit');
+
 echo 'AI backend checks passed.' . PHP_EOL;

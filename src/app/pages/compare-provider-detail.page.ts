@@ -100,6 +100,15 @@ export class CompareProviderDetailPage implements AfterViewInit, OnDestroy {
   readonly sourceUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
     `/comparisons/${this.comparison.file}`,
   );
+  readonly insightVideos = [
+    { title: 'Product Intro', id: 'rya4Q4IZniA' },
+    { title: 'Use Cases', id: 'nIMbqdbGxao' },
+  ].map(video => ({
+    title: video.title,
+    src: this.sanitizer.bypassSecurityTrustResourceUrl(
+      `https://www.youtube-nocookie.com/embed/${video.id}?rel=0&playsinline=1`,
+    ),
+  }));
 
   constructor() {
     inject(SeoService).set(

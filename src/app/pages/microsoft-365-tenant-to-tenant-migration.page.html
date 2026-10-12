@@ -10,6 +10,7 @@
 <div id="ppage" class="ppage as-page tenant-migration-page">
   <div class="pp-body">
     <div class="wrap">
+      @if (false) {
       <section class="tally-videos" aria-labelledby="tenantMigrationVideosTitle">
         <h2 class="pp-sec" id="tenantMigrationVideosTitle">Watch it in action</h2>
         <div class="tally-video-grid">
@@ -23,6 +24,7 @@
           }
         </div>
       </section>
+      }
 
       <section aria-labelledby="tenantMigrationReferencesTitle">
         <h2 class="pp-sec" id="tenantMigrationReferencesTitle">What customers say</h2>
@@ -45,7 +47,7 @@
       </section>
 
       <h2 class="pp-sec">Insights</h2>
-      <xh-insights-section pageSlug="microsoft-365-tenant-to-tenant-migration" />
+      <xh-insights-section pageSlug="microsoft-365-tenant-to-tenant-migration" [videos]="videos" />
 
       <section class="pp-cta migration-closing-cta" aria-labelledby="tenantMigrationCtaTitle">
         <div>

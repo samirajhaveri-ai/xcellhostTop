@@ -45,6 +45,9 @@ export class MenuServicePage implements OnDestroy {
   });
   private readonly videoId = PRODUCT_VIDEOS[this.page.name]?.[0] || (/testing|vapt/.test(this.page.slug) ? PRODUCT_VIDEOS['VAPT Services']?.[0] : '');
   readonly videoUrl = this.videoId ? this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube-nocookie.com/embed/${this.videoId}?rel=0&playsinline=1`) : null;
+  readonly insightVideos = this.videoUrl
+    ? [{ title: `${this.page.name} overview`, src: this.videoUrl }]
+    : [];
   readonly starSlots = [0, 1, 2, 3, 4];
   readonly tourIndex = signal(0);
   readonly toggleIndex = (index: number) => 1 - index;
