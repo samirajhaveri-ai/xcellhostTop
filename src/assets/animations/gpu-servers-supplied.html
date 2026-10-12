@@ -1260,6 +1260,30 @@ body {
     </div>
   </section>
 
+  <iframe
+    id="gpuGlobalInfrastructureFrame"
+    src="/assets/animations/xcellhost-globe.html"
+    title="XcellHost global infrastructure locations"
+    scrolling="no"
+    loading="lazy"
+    style="display:block;width:100vw;max-width:none;height:760px;margin:72px 0 56px calc(50% - 50vw);border:0;background:#f5f5f5"
+  ></iframe>
+  <script>
+    window.addEventListener("message", function (event) {
+      var frame = document.getElementById("gpuGlobalInfrastructureFrame");
+      if (
+        event.origin === location.origin &&
+        frame &&
+        event.source === frame.contentWindow &&
+        event.data &&
+        event.data.type === "xcellhost-globe-height" &&
+        Number.isFinite(event.data.height)
+      ) {
+        frame.style.height = Math.max(600, Math.ceil(event.data.height)) + "px";
+      }
+    });
+  </script>
+
   <!-- ===== How it works : interactive launch console (E2E dashboard motion) ===== -->
   <div class="pp-sec reveal" id="howItWorks">How it works — launch a GPU in under 60 seconds</div>
   <div class="lc reveal" id="lc">

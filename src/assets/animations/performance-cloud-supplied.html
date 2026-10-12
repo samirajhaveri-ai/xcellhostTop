@@ -8167,6 +8167,30 @@
               </aside>
           </div>
 
+          <iframe
+            id="globalInfrastructureFrame"
+            src="/assets/animations/xcellhost-globe.html"
+            title="XcellHost global infrastructure locations"
+            scrolling="no"
+            loading="lazy"
+            style="display:block;width:100vw;max-width:none;height:650px;margin:72px 0 56px calc(50% - 50vw);border:0;background:#f5f5f5"
+          ></iframe>
+          <script>
+            window.addEventListener("message", function (event) {
+              var frame = document.getElementById("globalInfrastructureFrame");
+              if (
+                event.origin === location.origin &&
+                frame &&
+                event.source === frame.contentWindow &&
+                event.data &&
+                event.data.type === "xcellhost-globe-height" &&
+                Number.isFinite(event.data.height)
+              ) {
+                frame.style.height = Math.max(600, Math.ceil(event.data.height)) + "px";
+              }
+            });
+          </script>
+
           <h2 class="h2s">Everything you need to <em>run fast</em></h2>
           <div class="hx-bento rv" id="hxBento">
             <div class="w">

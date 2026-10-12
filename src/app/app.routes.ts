@@ -402,17 +402,22 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/digicert-cmc.page').then((m) => m.DigicertCmcPage),
   },
   {
-    path: 'acme-certificate',
+    path: 'acme-enabled-ssl-certificates',
     loadComponent: () => import('./pages/acme-certificate.page').then((m) => m.AcmeCertificatePage),
   },
   {
+    path: 'acme-certificate',
+    redirectTo: 'acme-enabled-ssl-certificates',
+    pathMatch: 'full',
+  },
+  {
     path: 'acme-certificates',
-    redirectTo: 'acme-certificate',
+    redirectTo: 'acme-enabled-ssl-certificates',
     pathMatch: 'full',
   },
   {
     path: 'xcellhost-acme-certificate',
-    redirectTo: 'acme-certificate',
+    redirectTo: 'acme-enabled-ssl-certificates',
     pathMatch: 'full',
   },
   {
