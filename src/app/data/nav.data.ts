@@ -410,7 +410,7 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Virtual Private Servers",
             "items": [
               {
-                "title": "VPS Explore",
+                "title": "Explore VPS",
                 "pill": "New",
                 "desc": VPS_PRODUCT_COPY['Windows VPS'].tagline
               },
@@ -1235,11 +1235,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Sarv Deepcall",
-                "pill": null,
-                "desc": null
-              },
-              {
                 "title": "Sarv Workspace",
                 "pill": null,
                 "desc": null
@@ -1886,6 +1881,40 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               
+            ]
+          }
+        ]
+      },
+      {
+        "g": "SSL Automation Tools",
+        "label": "SSL Automation Tools",
+        "on": true,
+        "groups": [
+          {
+            "heading": "SSL Automation Tools",
+            "items": [
+              {
+                "title": "AutoInstall SSL For Linux & Windows",
+                "pill": "Popular",
+                "desc": null
+              },
+              {
+                "title": "AutoInstall SSL For Web Hosts",
+                "pill": "Popular",
+                "desc": null
+              },
+                  {
+                "title": "ACME-Enabled SSL Certificates",
+                "pill": "Popular",
+                "desc": null
+              },
+                  {
+                "title": "Certificate Lifecycle Management Platforms",
+                "pill": "Popular",
+                "desc": null
+              },
+              
+           
             ]
           }
         ]

@@ -4147,27 +4147,36 @@ class ProductPageComponent {
     });
   });
 
-  readonly videosInInsights = computed(() =>
-    [
-      'performance-cloud', 'tally-on-cloud', 'cloud-backup', 'cloud-drive', 'advanced-endpoint-security-edr',
-      'remote-monitoring-and-mgmt-rmm', 'smb-cyber-security-appliance', 'smb-cloud-desktop',
-      'acronis-genai-protection', 'cloud-disaster-recovery-smb', 'workforce-analytics',
-      'register-a-domain-name', 'transfer-your-domain', 'latest-domain-extensions',
-      'premium-domains', 'domain-protect', 'domain-whois-lookup', 'domain-name-prices',
-      'backorder-domains', 'tld-directory', 'ai-domain-generator', 'ai-domain-advisor',
-      'bharat-domains',
-      'web-security-sitelock', 'web-security-cwatch', 'thawte-ssl-certificates',
-      'rapidssl-ssl-certificates', 'codeguard-backup',
-      'hackerguardian-pci-compliance-scanning', 'trustedsite-certifications', 'imunify360',
-      'google-my-business',
-    ].includes(this.slug()),
-  );
+  readonly productInsightVideos = computed(() => {
+    const additional: Record<string, readonly { title: string; source: string }[]> = {
+      'vortex-seg': [{ title: 'Elevate your email security with Vortex SEG', source: 'https://www.youtube-nocookie.com/embed/OQAmgvXsfyI?rel=0&playsinline=1' }],
+      'vortex-soc': [{ title: 'Vortex SOC security operations', source: 'https://www.youtube-nocookie.com/embed/0tdN-nnDMHk?rel=0&playsinline=1' }],
+      'scrutiny-dlp': [{ title: 'Scrutiny DLP - Product Intro', source: 'https://www.youtube-nocookie.com/embed/xpKcsUPT0ZA?rel=0&playsinline=1' }],
+      'ediscovery-and-compliance': [{ title: 'Federated search and legal hold', source: '/assets/animations/ediscovery-compliance-animation.html' }],
+      'tsplus-remote-support': [
+        { title: 'TSplus Remote Support - Introduction', source: 'https://www.youtube-nocookie.com/embed/Wz1Po60yZAE?rel=0&playsinline=1' },
+        { title: 'TSplus Remote Support - Use cases', source: 'https://www.youtube-nocookie.com/embed/IVOcO7vpFvE?rel=0&playsinline=1' },
+      ],
+      'tsplus-advanced-security': [{ title: 'TSplus Advanced Security', source: 'https://assets.tsplus.net/f/1020006/x/0af48cc30d/tsplus-advanced-security-protect-windows-rdp-servers.webm' }],
+      'tsplus-remote-access': [
+        { title: 'TSplus Remote Access - Introduction', source: 'https://www.youtube-nocookie.com/embed/bYb3kxj4wsM?rel=0&playsinline=1' },
+        { title: 'TSplus Remote Access - Use cases', source: 'https://www.youtube-nocookie.com/embed/kcWVIAJK2Qs?rel=0&playsinline=1' },
+      ],
+      'tsplus-server-monitoring': [{ title: 'TSplus Server Monitoring', source: 'https://assets.tsplus.net/f/1020006/x/c952d2bf01/server-monitoring.mp4' }],
+    };
+    const videos = [
+      ...this.showcaseVideos().map(video => ({ title: video.label, src: video.url })),
+      ...(additional[this.slug()] ?? []).map(video => ({
+        title: video.title,
+        src: this.sanitizer.bypassSecurityTrustResourceUrl(video.source),
+      })),
+    ];
+    return videos.length ? videos : null;
+  });
 
-  readonly productInsightVideos = computed(() =>
-    this.showcaseVideos().length
-      ? this.showcaseVideos().map(video => ({ title: video.label, src: video.url }))
-      : null,
-  );
+  /** Product videos live in the shared Insights > Videos tab, not in a
+   * second standalone "Watch it in action" section on the same page. */
+  readonly videosInInsights = computed(() => !!this.productInsightVideos()?.length);
 
   readonly isRmm = computed(
     () => this.view()?.name === 'Remote Monitoring & Mgmt (RMM)'
