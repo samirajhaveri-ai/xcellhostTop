@@ -1,0 +1,69 @@
+<main class="comparison-detail">
+  <header class="detail-bar">
+    <div class="detail-wrap detail-bar-inner">
+      <div>
+        <span>{{ definition.category }}</span>
+        <h1>{{ title }}</h1>
+      </div>
+      <a routerLink="/compare-products" aria-label="Back to all product comparisons">×</a>
+    </div>
+  </header>
+
+  <div class="detail-wrap detail-content">
+    <p class="detail-intro">{{ definition.summary }}</p>
+
+    <section class="product-summary-grid" aria-label="Product summaries">
+      <article class="product-summary product-summary-featured">
+        <header><h2>{{ left.entry.name }}</h2><span>{{ left.entry.group }}</span></header>
+        <div class="product-summary-body">
+          <div class="summary-field"><span>Best for</span><p>{{ left.entry.desc }}</p></div>
+          <div class="summary-field"><span>Pricing</span><strong>{{ left.price }}</strong></div>
+          <div class="summary-list strengths"><h3><i aria-hidden="true">✓</i> Strengths</h3><ul>@for (item of left.strengths; track item) { <li><i aria-hidden="true">✓</i>{{ item }}</li> }</ul></div>
+          <div class="summary-list considerations"><h3>Planning considerations</h3><ul>@for (item of left.considerations; track item) { <li><i aria-hidden="true">!</i>{{ item }}</li> }</ul></div>
+          <a [routerLink]="['/', left.slug]">View {{ left.entry.name }} details →</a>
+        </div>
+      </article>
+
+      <article class="product-summary">
+        <header><h2>{{ right.entry.name }}</h2><span>{{ right.entry.group }}</span></header>
+        <div class="product-summary-body">
+          <div class="summary-field"><span>Best for</span><p>{{ right.entry.desc }}</p></div>
+          <div class="summary-field"><span>Pricing</span><strong>{{ right.price }}</strong></div>
+          <div class="summary-list strengths"><h3><i aria-hidden="true">✓</i> Strengths</h3><ul>@for (item of right.strengths; track item) { <li><i aria-hidden="true">✓</i>{{ item }}</li> }</ul></div>
+          <div class="summary-list considerations"><h3>Planning considerations</h3><ul>@for (item of right.considerations; track item) { <li><i aria-hidden="true">!</i>{{ item }}</li> }</ul></div>
+          <a [routerLink]="['/', right.slug]">View {{ right.entry.name }} details →</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="feature-card" aria-labelledby="feature-comparison-title">
+      <header><h2 id="feature-comparison-title">Feature Comparison</h2></header>
+      <div class="feature-table-scroll" tabindex="0" aria-label="Scrollable product feature comparison">
+        <table>
+          <thead><tr><th scope="col">Feature</th><th scope="col">{{ left.entry.name }}</th><th scope="col">{{ right.entry.name }}</th></tr></thead>
+          <tbody>
+            @for (row of rows; track row.feature) {
+              <tr><th scope="row">{{ row.feature }}</th><td>{{ row.left }}</td><td>{{ row.right }}</td></tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="expert-insight" aria-labelledby="expert-insight-title">
+      <span aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 3v18M7 6h10M5 6l-3 6h6L5 6Zm14 0-3 6h6l-3-6ZM2 12c.4 2 1.4 3 3 3s2.6-1 3-3m8 0c.4 2 1.4 3 3 3s2.6-1 3-3M8 21h8" /></svg>
+      </span>
+      <div>
+        <h2 id="expert-insight-title">XcellHost Expert Insight</h2>
+        <p>{{ definition.summary }} The deciding factors are usually workload fit, migration effort, integrations, support ownership and the total operating cost—not the longest feature list.</p>
+        <button class="btn btn-primary" type="button" (click)="requestConsultation()">Get expert consultation →</button>
+      </div>
+    </section>
+
+    <div class="detail-actions">
+      <a class="btn btn-ghost" routerLink="/compare-products">← Back to all comparisons</a>
+      <a class="btn btn-ghost" routerLink="/compare" [queryParams]="{ s: left.slug + ',' + right.slug }">Open custom comparison table</a>
+    </div>
+  </div>
+</main>
