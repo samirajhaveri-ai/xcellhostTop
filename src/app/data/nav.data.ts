@@ -3984,6 +3984,24 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
+      {
+        "g": "13",
+        "label": "Acronic AI",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Acronic AI",
+            "items": [
+              {
+                "title": "No Data",
+                "pill": "In focus",
+                "desc": null
+              },
+              
+            ]
+          }
+        ]
+      },
       
 
     ]
