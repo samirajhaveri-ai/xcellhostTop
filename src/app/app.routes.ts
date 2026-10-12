@@ -5,6 +5,57 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+
+  {
+    path: 'geotrust-true-businessid', data: { businessIdVariant: 'single' },
+    loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
+  },
+  {
+    path: 'geotrust-true-businessid-multi-domain', data: { businessIdVariant: 'multi' },
+    loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
+  },
+  {
+    path: 'geotrust-true-businessid-ev-multi-domain', data: { businessIdVariant: 'evMulti' },
+    loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
+  },
+  {
+    path: 'geotrust-true-businessid-wildcard', data: { businessIdVariant: 'wildcard' },
+    loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
+  },
+  {
+    path: 'geotrust-quickssl-premium-san', data: { quickSslVariant: 'san' },
+    loadComponent: () => import('./pages/geotrust-quickssl.page').then(m => m.GeoTrustQuickSslPage),
+  },
+  {
+    path: 'geotrust-quickssl-premium', data: { quickSslVariant: 'single' },
+    loadComponent: () => import('./pages/geotrust-quickssl.page').then(m => m.GeoTrustQuickSslPage),
+  },
+  {
+    path: 'geotrust-quickssl-premium-wildcard', data: { quickSslVariant: 'wildcard' },
+    loadComponent: () => import('./pages/geotrust-quickssl.page').then(m => m.GeoTrustQuickSslPage),
+  },
+  {
+    path: 'geotrust-dv-ssl-flex',
+    title: 'GeoTrust DV SSL (FLEX) | XcellHost',
+    loadComponent: () => import('./pages/geotrust-dv-ssl-flex.page').then(m => m.GeoTrustDvSslFlexPage),
+  },
+  {
+    path: 'geotrust-true-businessid-ev-flex',
+    title: 'GeoTrust TrueBusiness ID EV (FLEX) | XcellHost',
+    loadComponent: () => import('./pages/geotrust-true-businessid-ev-flex.page').then(m => m.GeoTrustTrueBusinessIdEvFlexPage),
+  },
+
+  {path:'digicert-ev-multi-domain-ssl',title:'DigiCert EV Multi-Domain SSL - XcellHost',data:{sslSlug:'digicert-ev-multi-domain-ssl'},loadComponent:()=>import('./pages/digicert-ssl-detail.page').then(m=>m.DigicertSslDetailPage)},
+  {path:'digicert-wildcard-ssl',title:'DigiCert Wildcard SSL - XcellHost',data:{sslSlug:'digicert-wildcard-ssl'},loadComponent:()=>import('./pages/digicert-ssl-detail.page').then(m=>m.DigicertSslDetailPage)},
+  {path:'digicert-secure-site-ev-ssl',title:'DigiCert Secure Site EV SSL - XcellHost',data:{sslSlug:'digicert-secure-site-ev-ssl'},loadComponent:()=>import('./pages/digicert-ssl-detail.page').then(m=>m.DigicertSslDetailPage)},
+  {path:'digicert-secure-site-multi-domain-ssl',title:'DigiCert Secure Site Multi-Domain - XcellHost',data:{sslSlug:'digicert-secure-site-multi-domain-ssl'},loadComponent:()=>import('./pages/digicert-ssl-detail.page').then(m=>m.DigicertSslDetailPage)},
+  {path:'digicert-secure-site-wildcard-ssl',title:'DigiCert Secure Site Wildcard - XcellHost',data:{sslSlug:'digicert-secure-site-wildcard-ssl'},loadComponent:()=>import('./pages/digicert-ssl-detail.page').then(m=>m.DigicertSslDetailPage)},
+  {path:'digicert-secure-site-pro-ssl',title:'DigiCert Secure Site Pro SSL - XcellHost',data:{sslSlug:'digicert-secure-site-pro-ssl'},loadComponent:()=>import('./pages/digicert-ssl-detail.page').then(m=>m.DigicertSslDetailPage)},
+  {path:'digicert-secure-site-pro-ev-ssl',title:'DigiCert Secure Site Pro EV SSL - XcellHost',data:{sslSlug:'digicert-secure-site-pro-ev-ssl'},loadComponent:()=>import('./pages/digicert-ssl-detail.page').then(m=>m.DigicertSslDetailPage)},
+  { path: 'digicert-multi-domain-ssl', title: 'DigiCert Multi-Domain SSL - XcellHost', loadComponent: () => import('./pages/digicert-multi-domain-ssl.page').then(m => m.DigicertMultiDomainSslPage) },
+  { path: 'digicert-ev-ssl', title: 'DigiCert EV SSL - XcellHost', loadComponent: () => import('./pages/digicert-ev-ssl.page').then(m => m.DigicertEvSslPage) },
+  { path: 'digicert-standard-ssl', title: 'DigiCert Standard SSL - XcellHost', loadComponent: () => import('./pages/digicert-standard-ssl.page').then(m => m.DigicertStandardSslPage) },
+
   { path: 'managed-grc', title: 'Managed GRC - XcellHost', data: { consultingSlug: 'managed-grc' }, loadComponent: () => import('./pages/security-consulting.page').then(m => m.SecurityConsultingPage) },
   { path: 'iso-27001-consulting', title: 'ISO 27001 Consulting - XcellHost', data: { consultingSlug: 'iso-27001-consulting' }, loadComponent: () => import('./pages/security-consulting.page').then(m => m.SecurityConsultingPage) },
   { path: 'iso-20000-itsm', title: 'ISO 20000 (ITSM) - XcellHost', data: { consultingSlug: 'iso-20000-itsm' }, loadComponent: () => import('./pages/security-consulting.page').then(m => m.SecurityConsultingPage) },
@@ -38,6 +89,10 @@ export const routes: Routes = [
     path: 'compare-products',
     title: 'Product Comparisons | XcellHost',
     loadComponent: () => import('./pages/compare-products.page').then((m) => m.CompareProductsPage),
+  },
+  {
+    path: 'compare-products/:comparison',
+    loadComponent: () => import('./pages/product-comparison-detail.page').then((m) => m.ProductComparisonDetailPage),
   },
 
   {

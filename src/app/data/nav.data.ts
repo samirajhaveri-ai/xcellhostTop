@@ -2660,7 +2660,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "vCISO-as-a-Service",
+                "title": "vCISO-As-A-Service",
                 "pill": null,
                 "desc": null
               },

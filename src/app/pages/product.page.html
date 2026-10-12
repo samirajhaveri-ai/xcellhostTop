@@ -6,7 +6,9 @@
     [class.smb-visibility-page]="v.heroMessages[0]?.toLowerCase()?.startsWith('maximise online visibility')"
     [class.lead-crm-page]="slug() === 'lead-generation-and-pipeline-crm'"
     [class.digicert-page]="isDigiCert()"
+    [class.ssl-single-line-title]="isDigiCert() || slug() === 'sectigo-ssl-certificates'"
     [class.thawte-page]="slug() === 'thawte-ssl-certificates'"
+    [class.geotrust-hero-page]="slug() === 'geotrust'"
     [class.comodo-ev-page]="slug() === 'comodo-ev-code-signing'"
     [class.code-signing-page]="slug() === 'digicert-code-signing'"
     [class.vdpo-page]="slug() === 'vdpo-as-a-service'"
@@ -435,6 +437,10 @@
         @if (slug() === 'linux-servers' || slug() === 'windows-servers') {
           <!-- Server visuals are positioned beside their copy inside the shared wrap. -->
 
+        } @else if (slug() === 'geotrust') {
+          <div class="pph-scene geotrust-hero-art">
+            <xh-geotrust-ssl-hero />
+          </div>
         } @else if (slug() === 'vciso-as-a-service') {
           <div class="pph-scene vciso-hero-art">
             <xh-vciso-hero />
@@ -1586,13 +1592,13 @@
               </a>
             }
             @if (slug() === 'comodo-personal-authentication') {
-              <h1 id="ppTitle" class="comodo-hero-title">
-                <span class="comodo-title-line"><span class="pp-title-brand" aria-label="XcellID"><span class="pp-brand-xcell">Xcell</span><span class="pp-brand-family">ID</span></span> | Comodo Personal</span>
-                <span class="comodo-title-line">Authentication</span>
+              <h1 id="ppTitle" class="comodo-hero-title" [xhFitBannerTitle]="true" [bannerTitleMaxSize]="42">
+                <span class="pp-title-brand" aria-label="XcellID"><span class="pp-brand-xcell">Xcell</span><span class="pp-brand-family">ID</span></span> | Comodo Personal Authentication
               </h1>
             } @else {
             <h1 id="ppTitle" [class.pp-title-compact]="compactHeroTitle()"
-              [xhFitBannerTitle]="!!v.heroMessages[0]?.toLowerCase()?.startsWith('maximise online visibility')">
+              [xhFitBannerTitle]="isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || !!v.heroMessages[0]?.toLowerCase()?.startsWith('maximise online visibility')"
+              [bannerTitleMaxSize]="isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' ? 42 : 26">
               <span class="pp-title-brand" [attr.aria-label]="'Xcell' + v.brandSuffix">
                 <span class="pp-brand-xcell">Xcell</span
                 ><span class="pp-brand-family">{{ v.brandSuffix }}</span>

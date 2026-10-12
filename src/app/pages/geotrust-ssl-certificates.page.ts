@@ -5,6 +5,7 @@ import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { SeoService } from '../core/seo.service';
 import { ProductPage } from './product.page';
+import { RouterLink } from '@angular/router';
 
 type CertificateTier = 'DV' | 'OV' | 'EV';
 type CertificateFilter = 'all' | CertificateTier | 'Wildcard' | 'Multi';
@@ -24,7 +25,7 @@ interface GeoTrustProduct {
 @Component({
   selector: 'xh-geotrust-ssl-certificates-page',
   standalone: true,
-  imports: [QuantityInputDirective, InsightsSectionComponent, ProductPage],
+  imports: [QuantityInputDirective, InsightsSectionComponent, ProductPage, RouterLink],
   templateUrl: './geotrust-ssl-certificates.page.html',
   styleUrl: './geotrust-ssl-certificates.page.css',
   host: { class: 'geotrust-page' },
