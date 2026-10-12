@@ -1,0 +1,14 @@
+/* Shared Tally-style FAQ presentation for imported consulting pages. */
+#faq .wrap{max-width:1232px}
+#faq .sh{margin:0 0 16px;text-align:left}
+#faq .sh h2{margin:0;color:#0664ff;font:700 14px/1.4 var(--f-mono);letter-spacing:.18em;text-transform:uppercase}
+#faq .faq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:none;width:100%;align-items:start}
+#faq .fq{min-width:0;align-self:start;border:1.5px solid #d5e2f7;border-radius:14px;background:#fff;overflow:hidden;transition:border-color .25s,box-shadow .25s}
+#faq .fq.open{border-color:#0664ff;box-shadow:0 12px 30px rgba(21,101,216,.1)}
+#faq .fq>button{width:100%;min-height:62px;padding:18px 20px;gap:12px;font:700 15px/1.5 var(--f-disp);color:#041e42;text-transform:none}
+#faq .fq>button:focus-visible{outline:2px solid #0664ff;outline-offset:-4px;border-radius:12px}
+#faq .fq>button i{width:26px;height:26px;flex:0 0 26px;border-radius:50%;background:#f2f6fc;color:#0664ff;display:flex;align-items:center;justify-content:center;font:600 18px/1 var(--f-disp);font-style:normal;transition:transform .3s,background .25s}
+#faq .fq.open>button i{transform:rotate(135deg);background:#0664ff;color:#fff}
+#faq .fq .fa p{margin:0;padding:0 20px 18px;font-size:13.5px;color:#5c6f8a;line-height:1.65}
+#faq .fq.open .fa{max-height:none!important}
+@media(max-width:760px){#faq .faq{grid-template-columns:minmax(0,1fr)}}

@@ -6304,3 +6304,14 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 .managed-kubernetes-page #ppSecHead ~ .pp-sec,
 .managed-kubernetes-page #showcaseVideosTitle{text-transform:uppercase}
 
+
+/* Keep these code-signing hero titles on one responsive line. */
+#ppage:is(.comodo-ev-page,.code-signing-page) .pp-hero #ppTitle{display:block!important;white-space:nowrap!important;text-wrap:nowrap!important;font-size:var(--banner-title-size,42px)!important}
+#ppage:is(.comodo-ev-page,.code-signing-page) .pp-hero #ppTitle .pp-title-name{display:inline!important;white-space:nowrap!important;font-size:inherit!important}
+
+/* Fit SSL certificate headings without changing the hero layout. */
+#ppage.ssl-single-line-title .pp-hero #ppTitle{display:block!important;white-space:nowrap!important;text-wrap:nowrap!important;font-size:var(--banner-title-size,42px)!important}
+#ppage.ssl-single-line-title .pp-hero #ppTitle .pp-title-name{display:inline!important;white-space:nowrap!important;text-wrap:nowrap!important;font-size:inherit!important;margin-left:.18em!important}
+
+/* Keep the Comodo Personal Authentication title on one line. */
+#ppage .pp-hero #ppTitle.comodo-hero-title{display:block!important;white-space:nowrap!important;text-wrap:nowrap!important;font-size:var(--banner-title-size,42px)!important}

@@ -4,11 +4,13 @@ import { Directive, ElementRef, effect, inject, input } from '@angular/core';
 @Directive({ selector: '[xhFitBannerTitle]', standalone: true })
 export class FitBannerTitleDirective {
   readonly xhFitBannerTitle = input(false);
+  readonly bannerTitleMaxSize = input(26);
   private readonly element = inject(ElementRef<HTMLElement>);
 
   constructor() {
     effect(onCleanup => {
       if (!this.xhFitBannerTitle()) return;
+      const maxSize = this.bannerTitleMaxSize();
       const title = this.element.nativeElement;
       const win = title.ownerDocument.defaultView;
       if (!win) return;
@@ -19,9 +21,9 @@ export class FitBannerTitleDirective {
         frame = 0;
         const width = title.clientWidth;
         if (!width) return;
-        title.style.setProperty('--banner-title-size', '26px');
+        title.style.setProperty('--banner-title-size', `${maxSize}px`);
         if (title.scrollWidth > width) {
-          const size = 26 * (width - 2) / title.scrollWidth;
+          const size = maxSize * (width - 2) / title.scrollWidth;
           title.style.setProperty('--banner-title-size', `${size}px`);
         }
       };
