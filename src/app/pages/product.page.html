@@ -276,20 +276,6 @@
               </div>
             </section>
 
-            <section class="tally-videos" aria-labelledby="m365EnterpriseActionTitle">
-              <h2 class="pp-sec" id="m365EnterpriseActionTitle">Watch it in action</h2>
-              <div class="tally-video-grid single-video">
-                @for (video of showcaseVideos(); track video.label) {
-                  <article class="tally-video-card">
-                    <h3><span>{{ video.label }}</span></h3>
-                    <div class="tally-video-frame">
-                      <iframe [src]="video.url" [title]="video.label" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                  </article>
-                }
-              </div>
-            </section>
-
             <section aria-labelledby="m365EnterpriseReviewsTitle">
               <h2 class="pp-sec" id="m365EnterpriseReviewsTitle">What customers say</h2>
               <div class="pp-revs">
@@ -312,7 +298,7 @@
               <div class="pp-faq"><xh-product-faq [faqs]="microsoftEnterpriseFaqs" /></div>
             </section>
 
-            <div class="m365-enterprise-insights"><xh-insights-section pageSlug="microsoft-365-enterprise" /></div>
+            <div class="m365-enterprise-insights"><xh-insights-section pageSlug="microsoft-365-enterprise" [videos]="productInsightVideos()" /></div>
 
             <section class="pp-cta" aria-labelledby="m365EnterpriseCtaTitle">
               <div>
@@ -353,6 +339,7 @@
               </div>
             </section>
 
+            @if (false) {
             <section class="tally-videos" aria-labelledby="suppliedServiceVideoTitle">
               <h2 class="pp-sec" id="suppliedServiceVideoTitle">Watch it in action</h2>
               <div class="tally-video-grid single-video">
@@ -369,6 +356,7 @@
                 </article>
               </div>
             </section>
+            }
 
             <section aria-labelledby="suppliedServiceReviewsTitle">
               <h2 class="pp-sec" id="suppliedServiceReviewsTitle">What customers say</h2>
@@ -2155,7 +2143,7 @@
     @if (isScrutinyEdr()) {
       <xh-scrutiny-edr-content />
       <div class="wrap"><xh-edr-seo-content variant="scrutiny" /></div>
-      @if (showcaseVideos().length) {
+      @if (showcaseVideos().length && !videosInInsights()) {
         <section class="tally-videos scrutiny-watch" aria-labelledby="scrutinyVideosTitle">
           <div class="wrap">
             <div class="pp-sec" id="scrutinyVideosTitle">Watch it in action</div>
@@ -2327,7 +2315,7 @@
                 <div class="pw"><b>MIGRATION REPORTS</b><span>Per-User Logs, Shared-Link Mapping And Completion Reports</span></div>
                 <div class="pw"><b>ONE PARTNER</b><span>Assessment, Migration Planning And Post-Migration Support</span></div>
               </div>
-              @if (showcaseVideos().length) {
+              @if (showcaseVideos().length && !videosInInsights()) {
                 <h2 class="pp-sec">WATCH IT IN ACTION</h2>
                 <div class="tally-video-grid">
                   @for (video of showcaseVideos(); track video.label) {
@@ -2354,7 +2342,7 @@
                 <div class="pw"><b>MIGRATION REPORTS</b><span>Per-User Logs, Shared-Link Mapping And Completion Reports</span></div>
                 <div class="pw"><b>ONE PARTNER</b><span>Assessment, Migration Planning And Post-Migration Support</span></div>
               </div>
-              @if (showcaseVideos().length) {
+              @if (showcaseVideos().length && !videosInInsights()) {
                 <h2 class="pp-sec">WATCH IT IN ACTION</h2>
                 <div class="tally-video-grid">
                   @for (video of showcaseVideos(); track video.label) {
@@ -5339,7 +5327,7 @@
 
           }
 
-          @if (v.name === 'Enterprise DMARC' && showcaseVideos().length) {
+          @if (v.name === 'Enterprise DMARC' && showcaseVideos().length && !videosInInsights()) {
             <section class="tally-videos" aria-labelledby="dmarcVideosTitle">
               <div class="pp-sec" id="dmarcVideosTitle">Watch it in action</div>
               <div class="tally-video-grid" [class.single-video]="showcaseVideos().length === 1">
@@ -5558,7 +5546,7 @@
             </section>
           }
 
-          @if (slug() === 'vortex-seg' && !showcaseVideos().length) {
+          @if (slug() === 'vortex-seg' && !showcaseVideos().length && !videosInInsights()) {
             <section class="tally-videos vortex-seg-video" aria-labelledby="vortexSegActionTitle">
               <div class="pp-sec" id="vortexSegActionTitle">Watch it in action</div>
               <div class="tally-video-grid single-video">
@@ -5586,7 +5574,7 @@
             </section>
           }
 
-          @if (slug() === 'vortex-soc' && !showcaseVideos().length) {
+          @if (slug() === 'vortex-soc' && !showcaseVideos().length && !videosInInsights()) {
             <section class="tally-videos vortex-soc-video" aria-labelledby="vortexSocActionTitle">
               <div class="pp-sec" id="vortexSocActionTitle">Watch it in action</div>
               <div class="tally-video-grid single-video">
@@ -5614,7 +5602,7 @@
             </section>
           }
 
-          @if (slug() === 'ediscovery-and-compliance') {
+          @if (slug() === 'ediscovery-and-compliance' && !videosInInsights()) {
             <section class="tally-videos" aria-labelledby="ediscoveryActionTitle">
               <div class="pp-sec" id="ediscoveryActionTitle">Watch it in action</div>
               <div class="tally-video-grid single-video">
@@ -5838,7 +5826,7 @@
             </section>
           }
 
-          @if (isTsplusRemoteSupport()) {
+          @if (isTsplusRemoteSupport() && !videosInInsights()) {
             <section class="tally-videos" aria-labelledby="tsplusSupportVideoTitle">
               <div class="pp-sec" id="tsplusSupportVideoTitle">Watch it in action</div>
               <div class="tally-video-grid">
@@ -5886,7 +5874,7 @@
             </section>
           }
 
-          @if (isTsplusAdvancedSecurity()) {
+          @if (isTsplusAdvancedSecurity() && !videosInInsights()) {
             <section class="tally-videos" aria-labelledby="tsplusAdvancedSecurityVideoTitle">
               <div class="pp-sec" id="tsplusAdvancedSecurityVideoTitle">Watch it in action</div>
               <div class="tally-video-grid single-video">
@@ -5912,7 +5900,7 @@
             </section>
           }
 
-          @if (isTsplusRemoteAccess()) {
+          @if (isTsplusRemoteAccess() && !videosInInsights()) {
             <section class="tally-videos" aria-labelledby="tsplusRemoteAccessVideoTitle">
               <div class="pp-sec" id="tsplusRemoteAccessVideoTitle">Watch it in action</div>
               <div class="tally-video-grid">
@@ -5990,7 +5978,7 @@
             </section>
           }
 
-          @if (isTsplusServerMonitoring()) {
+          @if (isTsplusServerMonitoring() && !videosInInsights()) {
             <section class="tally-videos" aria-labelledby="tsplusMonitoringVideoTitle">
               <div class="pp-sec" id="tsplusMonitoringVideoTitle">Watch it in action</div>
               <div class="tally-video-grid single-video">

@@ -36,8 +36,8 @@ export const routes: Routes = [
 
   {
     path: 'compare-products',
-    data: { title: 'Compare Products' },
-    loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage),
+    title: 'Product Comparisons | XcellHost',
+    loadComponent: () => import('./pages/compare-products.page').then((m) => m.CompareProductsPage),
   },
 
   {

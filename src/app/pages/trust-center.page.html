@@ -31,6 +31,7 @@
         }
       </div>
 
+      @if (false) {
       <section class="tally-videos" aria-labelledby="trustVideosTitle">
         <div class="pp-sec" id="trustVideosTitle">Watch it in action</div>
         <div class="tally-video-grid">
@@ -44,6 +45,7 @@
           </article>
         </div>
       </section>
+      }
 
       <div class="pp-sec">What customers say</div>
       <div class="pp-revs" id="ppRevs">
@@ -59,7 +61,7 @@
       <div class="pp-sec pp-faq-heading">Frequently asked questions</div>
       <div class="pp-faq" id="ppFaq"><xh-product-faq [faqs]="faqs" /></div>
 
-      <div id="ppBlog"><xh-insights-section pageSlug="trust-center" [pageAliases]="['security', 'compliance']" /></div>
+      <div id="ppBlog"><xh-insights-section pageSlug="trust-center" [pageAliases]="['security', 'compliance']" [videos]="insightVideos" /></div>
     </div>
   </section>
 </main>
