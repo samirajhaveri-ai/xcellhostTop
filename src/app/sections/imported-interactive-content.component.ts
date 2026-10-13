@@ -1,96 +1,178 @@
-﻿import { Component, ElementRef, Input, OnDestroy, ViewChild, inject } from '@angular/core';
+import { Component, ElementRef, Input, OnDestroy, ViewChild, inject } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { CartService } from '../core/cart.service';
 import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
-import { CartService } from '../core/cart.service';
+
+type InteractiveContentSource =
+  | 'openclaw' | 'openclaw-hero' | 'kubernetes' | 'podcasts' | 'deepcall' | 'workspace'
+  | 'rapidssl' | 'sectigo' | 'sectigo-ev' | 'mark' | 'website-security'
+  | 'certificate-management' | 'code-signing-certificates' | 'email-signing-certificates'
+  | 'consulting' | 'digicert-standard-ssl' | 'digicert-ev-ssl'
+  | 'digicert-multi-domain-ssl' | 'ssl-detail';
 
 @Component({
-  selector: 'xh-imported-interactive-content', standalone: true,
-
+  selector: 'xh-imported-interactive-content',
+  standalone: true,
   host: { '[class.openclaw-page-content]': "source === 'openclaw'" },
-
-
-  template: `<iframe #frame [src]="source === 'ssl-detail' ? sslDetailUrl : source === 'digicert-multi-domain-ssl' ? digicertMultiDomainSslUrl : source === 'digicert-ev-ssl' ? digicertEvSslUrl : source === 'digicert-standard-ssl' ? digicertStandardSslUrl : source === 'consulting' ? consultingUrl : source === 'email-signing-certificates' ? emailSigningCertificatesUrl : source === 'code-signing-certificates' ? codeSigningCertificatesUrl : source === 'podcasts' ? podcastsUrl : source === 'deepcall' ? deepcallUrl : source === 'workspace' ? workspaceUrl : source === 'rapidssl' ? rapidsslUrl : source === 'sectigo' ? sectigoUrl : source === 'sectigo-ev' ? sectigoEvUrl : source === 'mark' ? markUrl : source === 'website-security' ? websiteSecurityUrl : source === 'certificate-management' ? certificateManagementUrl : kubernetesUrl" [title]="source === 'ssl-detail' ? 'DigiCert certificate features and pricing' : source === 'digicert-multi-domain-ssl' ? 'DigiCert Multi-Domain SSL features and pricing' : source === 'digicert-ev-ssl' ? 'DigiCert EV SSL features and pricing' : source === 'digicert-standard-ssl' ? 'DigiCert Standard SSL features and pricing' : source === 'consulting' ? 'Security consulting content and tools' : source === 'email-signing-certificates' ? 'Email Signing Certificates tools and pricing' : source === 'code-signing-certificates' ? 'Code Signing Certificates tools and pricing' : source === 'podcasts' ? 'XcellHost Cloud Podcast' : source === 'certificate-management' ? 'Certificate Management dashboard and calculators' : source === 'website-security' ? 'Website Security Solutions scorecard and pricing' : source === 'mark' ? 'Mark Certificates eligibility, preview and pricing' : source === 'sectigo-ev' ? 'Sectigo EV Code Signing tools and pricing' : source === 'sectigo' ? 'Sectigo Code Signing tools and pricing' : source === 'rapidssl' ? 'RapidSSL certificates, selector and calculator' : source === 'workspace' ? 'Sarv Workspace applications and pricing' : source === 'deepcall' ? 'Sarv DeepCall features, IVR builder and calculator' : 'Managed Kubernetes workloads and calculator'" scrolling="no" (load)="onLoad()"></iframe>`,
+  template: `<iframe #frame [style.min-height.px]="source === 'openclaw-hero' ? 0 : 600"
+    [src]="contentUrl" [title]="contentTitle" scrolling="no" (load)="onLoad()"></iframe>`,
   styles: [`:host{display:block}iframe{display:block;width:100%;min-height:600px;border:0}`],
 })
 export class ImportedInteractiveContentComponent implements OnDestroy {
-  @Input() source: 'kubernetes' | 'podcasts' | 'deepcall' | 'workspace' | 'rapidssl' | 'sectigo' | 'sectigo-ev' | 'mark' | 'website-security' | 'certificate-management' | 'code-signing-certificates' | 'email-signing-certificates' | 'consulting' | 'digicert-standard-ssl' | 'digicert-ev-ssl' | 'digicert-multi-domain-ssl' | 'ssl-detail' = 'kubernetes';
-  @Input() sslSlug = '';
-  private sslSafeUrls = new Map<string, SafeResourceUrl>();
-  get sslDetailUrl() {
-    const slugs = ["digicert-ev-multi-domain-ssl","digicert-wildcard-ssl","digicert-secure-site-ev-ssl","digicert-secure-site-multi-domain-ssl","digicert-secure-site-wildcard-ssl","digicert-secure-site-pro-ssl","digicert-secure-site-pro-ev-ssl"];
-    if (!this.sslSafeUrls.has(this.sslSlug)) this.sslSafeUrls.set(this.sslSlug, this.sanitizer.bypassSecurityTrustResourceUrl(slugs.includes(this.sslSlug) ? '/imported-' + this.sslSlug + '.html' : 'about:blank'));
-    return this.sslSafeUrls.get(this.sslSlug)!;
-  }
-
-
-  template: `<iframe #frame [style.min-height.px]="source === 'openclaw-hero' ? 0 : 600" [src]="source === 'openclaw' ? openclawUrl : source === 'openclaw-hero' ? openclawHeroUrl : source === 'consulting' ? consultingUrl : source === 'email-signing-certificates' ? emailSigningCertificatesUrl : source === 'code-signing-certificates' ? codeSigningCertificatesUrl : source === 'podcasts' ? podcastsUrl : source === 'deepcall' ? deepcallUrl : source === 'workspace' ? workspaceUrl : source === 'rapidssl' ? rapidsslUrl : source === 'sectigo' ? sectigoUrl : source === 'sectigo-ev' ? sectigoEvUrl : source === 'mark' ? markUrl : source === 'website-security' ? websiteSecurityUrl : source === 'certificate-management' ? certificateManagementUrl : kubernetesUrl" [title]="source === 'openclaw' ? 'OpenClaw VPS plans and server builder' : source === 'openclaw-hero' ? 'OpenClaw agent console' : source === 'consulting' ? 'Security consulting content and tools' : source === 'email-signing-certificates' ? 'Email Signing Certificates tools and pricing' : source === 'code-signing-certificates' ? 'Code Signing Certificates tools and pricing' : source === 'podcasts' ? 'XcellHost Cloud Podcast' : source === 'certificate-management' ? 'Certificate Management dashboard and calculators' : source === 'website-security' ? 'Website Security Solutions scorecard and pricing' : source === 'mark' ? 'Mark Certificates eligibility, preview and pricing' : source === 'sectigo-ev' ? 'Sectigo EV Code Signing tools and pricing' : source === 'sectigo' ? 'Sectigo Code Signing tools and pricing' : source === 'rapidssl' ? 'RapidSSL certificates, selector and calculator' : source === 'workspace' ? 'Sarv Workspace applications and pricing' : source === 'deepcall' ? 'Sarv DeepCall features, IVR builder and calculator' : 'Managed Kubernetes workloads and calculator'" scrolling="no" (load)="onLoad()"></iframe>`,
-  styles: [`:host{display:block}iframe{display:block;width:100%;min-height:600px;border:0}`],
-})
-export class ImportedInteractiveContentComponent implements OnDestroy {
-  @Input() source: 'openclaw' | 'openclaw-hero' | 'kubernetes' | 'podcasts' | 'deepcall' | 'workspace' | 'rapidssl' | 'sectigo' | 'sectigo-ev' | 'mark' | 'website-security' | 'certificate-management' | 'code-signing-certificates' | 'email-signing-certificates' | 'consulting' = 'kubernetes';
-
+  @Input() source: InteractiveContentSource = 'kubernetes';
   @Input() consultingSlug = '';
-  private readonly consultingUrls: Record<string, string> = {"managed-grc":"/imported-consulting-managed-grc.html","iso-27001-consulting":"/imported-consulting-iso-27001.html","iso-20000-itsm":"/imported-consulting-iso-20000.html","iso-27017-cloud-infosec":"/imported-consulting-iso-27017.html","iso-22301-bmc":"/imported-consulting-iso-22301.html","iso-27018-pii-public-cloud":"/imported-consulting-iso-27018.html","iso-42001ai-risk":"/imported-consulting-iso-42001.html","soc-1-cunsulting":"/imported-consulting-soc-1.html","soc-2-cunsulting":"/imported-consulting-soc-2.html","pci-consulting":"/imported-consulting-pci-dss.html"};
-  private consultingSafeUrls = new Map<string, SafeResourceUrl>();
-  get consultingUrl() {
-    if (!this.consultingSafeUrls.has(this.consultingSlug)) this.consultingSafeUrls.set(this.consultingSlug, this.sanitizer.bypassSecurityTrustResourceUrl(this.consultingUrls[this.consultingSlug] || 'about:blank'));
-    return this.consultingSafeUrls.get(this.consultingSlug)!;
-  }
-  private sanitizer = inject(DomSanitizer);
-  private overlay = inject(OverlayService);
-  private topics = inject(CallbackTopicService);
-  private cart = inject(CartService);
-  readonly codeSigningCertificatesUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/imported-code-signing-certificates.html');
-  readonly emailSigningCertificatesUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/imported-email-signing-certificates.html');
-  readonly digicertStandardSslUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/imported-digicert-standard-ssl.html');
-  readonly digicertEvSslUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/imported-digicert-ev-ssl.html');
-  readonly digicertMultiDomainSslUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/imported-digicert-multi-domain-ssl.html');
-  readonly podcastsUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/imported-podcasts.html');
-  readonly certificateManagementUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/imported-certificate-management.html');
-  readonly websiteSecurityUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/imported-website-security.html');
-  readonly markUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/imported-mark-certificates.html');
-  readonly sectigoEvUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/imported-sectigo-ev-code-signing.html');
-  readonly sectigoUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/imported-sectigo-code-signing.html');
-  readonly rapidsslUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/imported-rapidssl.html');
-  readonly workspaceUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/imported-sarv-workspace.html');
-  readonly deepcallUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/imported-deepcall.html');
-  readonly openclawUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/imported-openclaw-vps.html');
-  readonly openclawHeroUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/imported-openclaw-vps-hero.html');
-  readonly kubernetesUrl = this.sanitizer.bypassSecurityTrustResourceUrl('/imported-kubernetes.html');
+  @Input() sslSlug = '';
+
+  private readonly sanitizer = inject(DomSanitizer);
+  private readonly overlay = inject(OverlayService);
+  private readonly topics = inject(CallbackTopicService);
+  private readonly cart = inject(CartService);
+  private readonly safeUrls = new Map<string, SafeResourceUrl>();
+  private readonly consultingUrls: Record<string, string> = {
+    'managed-grc': '/imported-consulting-managed-grc.html',
+    'iso-27001-consulting': '/imported-consulting-iso-27001.html',
+    'iso-20000-itsm': '/imported-consulting-iso-20000.html',
+    'iso-27017-cloud-infosec': '/imported-consulting-iso-27017.html',
+    'iso-22301-bmc': '/imported-consulting-iso-22301.html',
+    'iso-27018-pii-public-cloud': '/imported-consulting-iso-27018.html',
+    'iso-42001ai-risk': '/imported-consulting-iso-42001.html',
+    'soc-1-cunsulting': '/imported-consulting-soc-1.html',
+    'soc-2-cunsulting': '/imported-consulting-soc-2.html',
+    'pci-consulting': '/imported-consulting-pci-dss.html',
+  };
+  private readonly sslSlugs = new Set([
+    'digicert-ev-multi-domain-ssl', 'digicert-wildcard-ssl',
+    'digicert-secure-site-ev-ssl', 'digicert-secure-site-multi-domain-ssl',
+    'digicert-secure-site-wildcard-ssl', 'digicert-secure-site-pro-ssl',
+    'digicert-secure-site-pro-ev-ssl',
+  ]);
+  private readonly sourceUrls: Record<Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail'>, string> = {
+    openclaw: '/imported-openclaw-vps.html',
+    'openclaw-hero': '/imported-openclaw-vps-hero.html',
+    kubernetes: '/imported-kubernetes.html',
+    podcasts: '/imported-podcasts.html',
+    deepcall: '/imported-deepcall.html',
+    workspace: '/imported-sarv-workspace.html',
+    rapidssl: '/imported-rapidssl.html',
+    sectigo: '/imported-sectigo-code-signing.html',
+    'sectigo-ev': '/imported-sectigo-ev-code-signing.html',
+    mark: '/imported-mark-certificates.html',
+    'website-security': '/imported-website-security.html',
+    'certificate-management': '/imported-certificate-management.html',
+    'code-signing-certificates': '/imported-code-signing-certificates.html',
+    'email-signing-certificates': '/imported-email-signing-certificates.html',
+    'digicert-standard-ssl': '/imported-digicert-standard-ssl.html',
+    'digicert-ev-ssl': '/imported-digicert-ev-ssl.html',
+    'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
+  };
+  private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+    openclaw: 'OpenClaw VPS plans and server builder',
+    'openclaw-hero': 'OpenClaw agent console',
+    kubernetes: 'Managed Kubernetes workloads and calculator',
+    podcasts: 'XcellHost Cloud Podcast',
+    deepcall: 'Sarv DeepCall features, IVR builder and calculator',
+    workspace: 'Sarv Workspace applications and pricing',
+    rapidssl: 'RapidSSL certificates, selector and calculator',
+    sectigo: 'Sectigo Code Signing tools and pricing',
+    'sectigo-ev': 'Sectigo EV Code Signing tools and pricing',
+    mark: 'Mark Certificates eligibility, preview and pricing',
+    'website-security': 'Website Security Solutions scorecard and pricing',
+    'certificate-management': 'Certificate Management dashboard and calculators',
+    'code-signing-certificates': 'Code Signing Certificates tools and pricing',
+    'email-signing-certificates': 'Email Signing Certificates tools and pricing',
+    consulting: 'Security consulting content and tools',
+    'digicert-standard-ssl': 'DigiCert Standard SSL features and pricing',
+    'digicert-ev-ssl': 'DigiCert EV SSL features and pricing',
+    'digicert-multi-domain-ssl': 'DigiCert Multi-Domain SSL features and pricing',
+    'ssl-detail': 'DigiCert certificate features and pricing',
+  };
+
   @ViewChild('frame') frame?: ElementRef<HTMLIFrameElement>;
   private cleanup: (() => void)[] = [];
+
+  get contentUrl(): SafeResourceUrl {
+    let url: string;
+    if (this.source === 'consulting') {
+      url = this.consultingUrls[this.consultingSlug] ?? 'about:blank';
+    } else if (this.source === 'ssl-detail') {
+      url = this.sslSlugs.has(this.sslSlug) ? `/imported-${this.sslSlug}.html` : 'about:blank';
+    } else {
+      url = this.sourceUrls[this.source];
+    }
+    let safeUrl = this.safeUrls.get(url);
+    if (!safeUrl) {
+      safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+      this.safeUrls.set(url, safeUrl);
+    }
+    return safeUrl;
+  }
+
+  get contentTitle(): string { return this.sourceTitles[this.source]; }
+
   onLoad(): void {
     this.ngOnDestroy();
-    const frame = this.frame?.nativeElement, doc = frame?.contentDocument;
+    const frame = this.frame?.nativeElement;
+    const doc = frame?.contentDocument;
     const main = doc?.querySelector('main');
     if (!frame || !doc || !main) return;
-    const resize = () => frame.style.height = `${Math.ceil(main.getBoundingClientRect().height) + 8}px`;
-    const observer = new ResizeObserver(resize); observer.observe(main);
-    doc.fonts.ready.then(resize); resize();
+    const resize = () => (frame.style.height = `${Math.ceil(main.getBoundingClientRect().height) + 8}px`);
+    const observer = new ResizeObserver(resize);
+    observer.observe(main);
+    doc.fonts.ready.then(resize);
+    resize();
     const position = () => {
       const top = Math.max(0, -frame.getBoundingClientRect().top + 90);
-      doc.querySelectorAll<HTMLElement>('.modal').forEach(m => { m.style.position = 'absolute'; m.style.top = top + 'px'; m.style.bottom = 'auto'; m.style.height = Math.max(300, window.innerHeight - 100) + 'px'; });
+      doc.querySelectorAll<HTMLElement>('.modal').forEach((modal) => {
+        modal.style.position = 'absolute'; modal.style.top = `${top}px`; modal.style.bottom = 'auto';
+        modal.style.height = `${Math.max(300, window.innerHeight - 100)}px`;
+      });
       const mini = doc.getElementById('mini');
-      if (mini) { mini.style.position = 'absolute'; mini.style.top = Math.max(0, -frame.getBoundingClientRect().top + window.innerHeight - 100) + 'px'; mini.style.bottom = 'auto'; }
-    };
-    const mutations = new MutationObserver(position);
-    doc.querySelectorAll('.modal').forEach(m => mutations.observe(m, {attributes:true,attributeFilter:['class']}));
-    window.addEventListener('scroll', position, {passive:true});position();
-    const callback = (e: Event) => {this.topics.ask((e as CustomEvent<string>).detail || 'Podcast enquiry');this.overlay.open('callback');};
-    const add = (e: Event) => {const item=(e as CustomEvent).detail;this.cart.add(item.name + ' - ' + item.sub, 'INR ' + item.price, item.qty, {unitAmount:item.price,currency:'INR',locale:'en-IN',suffix:''});this.cart.open();};
-    const click = (event: Event) => {
-      const a = (event.target as Element).closest<HTMLAnchorElement>('a[href^="#"]');
-      const id = (event.target as Element).closest('[data-sel]') ? 'calc' : a?.getAttribute('href')?.slice(1);
-      const target = id ? doc.getElementById(id) ?? document.getElementById(id) : null;
-      if (target) {
-        event.preventDefault();
-        const frameTop = target.ownerDocument === doc ? frame.getBoundingClientRect().top : 0;
-        window.scrollTo({top:window.scrollY+frameTop+target.getBoundingClientRect().top-148,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+      if (mini) {
+        mini.style.position = 'absolute';
+        mini.style.top = `${Math.max(0, -frame.getBoundingClientRect().top + window.innerHeight - 100)}px`;
+        mini.style.bottom = 'auto';
       }
     };
-    doc.addEventListener('import-callback',callback);doc.addEventListener('import-cart',add);doc.addEventListener('click',click);
-    this.cleanup.push(()=>observer.disconnect(),()=>mutations.disconnect(),()=>window.removeEventListener('scroll',position),()=>doc.removeEventListener('import-callback',callback),()=>doc.removeEventListener('import-cart',add),()=>doc.removeEventListener('click',click));
+    const mutations = new MutationObserver(position);
+    doc.querySelectorAll('.modal').forEach((modal) =>
+      mutations.observe(modal, { attributes: true, attributeFilter: ['class'] }));
+    window.addEventListener('scroll', position, { passive: true });
+    position();
+    const callback = (event: Event) => {
+      this.topics.ask((event as CustomEvent<string>).detail || 'Podcast enquiry');
+      this.overlay.open('callback');
+    };
+    const add = (event: Event) => {
+      const item = (event as CustomEvent).detail;
+      this.cart.add(item.name + ' - ' + item.sub, 'INR ' + item.price, item.qty,
+        { unitAmount: item.price, currency: 'INR', locale: 'en-IN', suffix: '' });
+      this.cart.open();
+    };
+    const click = (event: Event) => {
+      const element = event.target as Element;
+      const anchor = element.closest<HTMLAnchorElement>('a[href^="#"]');
+      const id = element.closest('[data-sel]') ? 'calc' : anchor?.getAttribute('href')?.slice(1);
+      const target = id ? doc.getElementById(id) ?? document.getElementById(id) : null;
+      if (!target) return;
+      event.preventDefault();
+      const frameTop = target.ownerDocument === doc ? frame.getBoundingClientRect().top : 0;
+      window.scrollTo({
+        top: window.scrollY + frameTop + target.getBoundingClientRect().top - 148,
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+      });
+    };
+    doc.addEventListener('import-callback', callback);
+    doc.addEventListener('import-cart', add);
+    doc.addEventListener('click', click);
+    this.cleanup.push(
+      () => observer.disconnect(), () => mutations.disconnect(),
+      () => window.removeEventListener('scroll', position),
+      () => doc.removeEventListener('import-callback', callback),
+      () => doc.removeEventListener('import-cart', add),
+      () => doc.removeEventListener('click', click),
+    );
   }
-  ngOnDestroy(): void {this.cleanup.forEach(fn=>fn());this.cleanup=[];}
+
+  ngOnDestroy(): void { this.cleanup.forEach((fn) => fn()); this.cleanup = []; }
 }
