@@ -363,6 +363,7 @@ import { ATM_SOLUTION_DETAILS } from '../data/atm-solution-detail.data';
 import { OurPlatformReferenceComponent } from '../sections/our-platform-reference.component';
 import { WatchtowerReferenceComponent } from '../sections/watchtower-reference.component';
 import { BareMetalContentComponent } from '../sections/bare-metal-content.component';
+import { GlobalInfrastructureGlobeComponent } from '../sections/global-infrastructure-globe.component';
 import { GenaiProtectionContentComponent } from '../sections/genai-protection-content.component';
 import { CloudMigrationAdvantageComponent } from '../sections/cloud-migration-advantage.component';
 import { AcronisBackupAdvancedContentComponent } from '../sections/acronis-backup-advanced-content.component';
@@ -659,6 +660,7 @@ interface ProductTourSlide {
     OurPlatformReferenceComponent,
     WatchtowerReferenceComponent,
     BareMetalContentComponent,
+    GlobalInfrastructureGlobeComponent,
     GenaiProtectionContentComponent,
     CloudMigrationAdvantageComponent,
     AcronisBackupAdvancedContentComponent,
@@ -2993,6 +2995,7 @@ class ProductPageComponent {
     const view = this.resolve(slug);
     if (!view) return null;
 
+
     if (slug === 'cpanel-vps') return {
       ...view,
       brandSuffix: 'VPS',
@@ -3003,6 +3006,17 @@ class ProductPageComponent {
         ['Can you help migrate my existing websites?', 'Contact the XcellHost team to discuss moving your websites, email and databases and to agree the migration scope.'],
         ['Can I add backups and managed support?', 'Yes. Select daily backups or managed support in the server builder to include them in your estimate and quotation.'],
       ],
+
+    };
+
+    if (slug === 'acronis-ai') return {
+      ...view,
+      tagline: 'AI-native protection, management and automation',
+      heroHighlight: 'One agent, one data model, one console',
+      heroMessages: ['Cyber Console · Cyber Intelligence · Service Desk · Cyber Studio · Cyber Frame'],
+      heroPoints: ['Backup, EDR and RMM on one platform', 'Agentic workflows with human approval', 'GenAI protection and prompt DLP', '24×7 support from XcellHost'],
+      videos: ['s1Rxs7rWd2I', ''],
+
     };
 
     if (slug === 'ai-receptionist') return {
@@ -4193,7 +4207,7 @@ class ProductPageComponent {
 
   /** Product videos live in the shared Insights > Videos tab, not in a
    * second standalone "Watch it in action" section on the same page. */
-  readonly videosInInsights = computed(() => !!this.productInsightVideos()?.length);
+  readonly videosInInsights = computed(() => this.slug() !== 'acronis-ai' && !!this.productInsightVideos()?.length);
 
   readonly isRmm = computed(
     () => this.view()?.name === 'Remote Monitoring & Mgmt (RMM)'
