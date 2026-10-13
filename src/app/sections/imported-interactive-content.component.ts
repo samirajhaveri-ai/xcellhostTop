@@ -5,10 +5,7 @@ import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 
 type InteractiveContentSource =
-  | 'wordpress-vps' | 'wordpress-vps-hero'
-  | 'general-compute' | 'general-compute-hero'
-  | 'bio-link' | 'bio-link-hero'
-  | 'cpanel' | 'cpanel-hero' | 'acronis-ai' | 'acronis-ai-hero' | 'openclaw' | 'openclaw-hero' | 'kubernetes' | 'podcasts' | 'deepcall' | 'workspace'
+  | 'wordpress-vps' | 'wordpress-vps-hero' | 'general-compute' | 'general-compute-hero' | 'bio-link' | 'bio-link-hero' | 'cpanel' | 'cpanel-hero' | 'acronis-ai' | 'acronis-ai-hero' | 'openclaw' | 'openclaw-hero' | 'kubernetes' | 'podcasts' | 'deepcall' | 'workspace' | '47-day-ssl' | '47-day-ssl-hero' | 'direct-backup' | 'direct-backup-hero' | 'druva' | 'druva-hero'
   | 'rapidssl' | 'sectigo' | 'sectigo-ev' | 'mark' | 'website-security'
   | 'certificate-management' | 'code-signing-certificates' | 'email-signing-certificates'
   | 'consulting' | 'digicert-standard-ssl' | 'digicert-ev-ssl'
@@ -18,7 +15,7 @@ type InteractiveContentSource =
   selector: 'xh-imported-interactive-content',
   standalone: true,
   host: { '[class.openclaw-page-content]': "source === 'openclaw' || source === 'cpanel'" },
-  template: `<iframe #frame [style.min-height.px]="source === 'openclaw-hero' || source === 'cpanel-hero' || source === 'acronis-ai-hero' || source === 'bio-link-hero' || source === 'general-compute-hero' || source === 'wordpress-vps-hero' ? 0 : 600"
+  template: `<iframe #frame [style.min-height.px]="source.endsWith('-hero') ? 0 : 600"
     [src]="contentUrl" [title]="contentTitle" scrolling="no" (load)="onLoad()"></iframe>`,
   styles: [`:host{display:block}iframe{display:block;width:100%;min-height:600px;border:0}`],
 })
@@ -57,6 +54,12 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     'general-compute-hero': '/imported-general-compute-hero.html',
     'bio-link': '/imported-bio-link.html',
     'bio-link-hero': '/imported-bio-link-hero.html',
+    '47-day-ssl': '/imported-47-day-ssl.html',
+    '47-day-ssl-hero': '/imported-47-day-ssl-hero.html',
+    'direct-backup': '/imported-acronis-direct-backup.html',
+    'direct-backup-hero': '/imported-acronis-direct-backup-hero.html',
+    druva: '/imported-druva.html',
+    'druva-hero': '/imported-druva-hero.html',
     cpanel: '/imported-cpanel-vps.html',
     'cpanel-hero': '/imported-cpanel-vps-hero.html',
     'acronis-ai': '/imported-acronis-ai.html',
@@ -86,6 +89,12 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     'general-compute-hero': 'General Compute interactive deploy preview',
     'bio-link': 'Bio Link and Digital Visiting Card tools and pricing',
     'bio-link-hero': 'XcellCard animated visiting card preview',
+    '47-day-ssl': '47-Day SSL readiness, automation and pricing tools',
+    '47-day-ssl-hero': '47-Day SSL certificate renewal animation',
+    'direct-backup': 'Acronis Direct Cloud Backup features and interactive tools',
+    'direct-backup-hero': 'Acronis direct cloud backup animation',
+    druva: 'Druva Resilience Cloud features and interactive tools',
+    'druva-hero': 'Druva resilience timeline animation',
     cpanel: 'cPanel VPS plans and server builder',
     'cpanel-hero': 'cPanel hosting console',
     'acronis-ai': 'Acronis AI platform, interactive demos and pricing',

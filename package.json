@@ -3,12 +3,21 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node scripts/serve-with-asset-reloads.mjs --open",
+    "start": "npm run dev -- --open",
     "build": "node scripts/generate-social-previews.js && ng build",
     "build:local": "ng build --base-href ./",
     "watch": "ng build --watch --configuration development",
     "package": "npm run build && node scripts/package-for-plesk.js",
-    "test": "ng test"
+    "test": "ng test",
+    "frontend": "node scripts/serve-with-asset-reloads.mjs",
+    "ai:build": "tsc -p server/tsconfig.json",
+    "ai:start": "node server/dist/index.js",
+    "ai:dev": "npm run ai:build && node --watch server/dist/index.js",
+    "ai:index": "npm run ai:build && node server/dist/rebuild-index.js",
+    "ai:index:check": "npm run ai:build && node server/dist/rebuild-index.js --dry-run",
+    "test:ai": "npm run ai:build && node --test server/tests/*.test.mjs",
+    "dev": "npm run ai:build && node scripts/dev-with-ai.cjs",
+    "typecheck": "tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p server/tsconfig.json"
   },
   "prettier": {
     "printWidth": 100,
@@ -24,15 +33,18 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/common": "^20.3.0",
-    "@angular/compiler": "^20.3.0",
-    "@angular/core": "^20.3.0",
-    "@angular/forms": "^20.3.0",
-    "@angular/platform-browser": "^20.3.0",
-    "@angular/platform-server": "^20.3.27",
-    "@angular/router": "^20.3.0",
-    "@angular/ssr": "^20.3.32",
+    "@angular/common": "^20.3.33",
+    "@angular/compiler": "^20.3.33",
+    "@angular/core": "^20.3.33",
+    "@angular/forms": "^20.3.33",
+    "@angular/platform-browser": "^20.3.33",
+    "@angular/platform-server": "^20.3.33",
+    "@angular/router": "^20.3.33",
+    "@angular/ssr": "^20.3.39",
     "algoliasearch": "5.35.0",
+    "express": "^5.3.0",
+    "express-rate-limit": "^8.7.1",
+    "helmet": "^8.3.0",
     "lottie-web": "^5.13.0",
     "material-symbols": "^0.46.0",
     "rxjs": "~7.8.0",
@@ -40,10 +52,12 @@
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@angular/build": "^20.3.32",
-    "@angular/cli": "^20.3.32",
-    "@angular/compiler-cli": "^20.3.0",
+    "@angular/build": "^20.3.39",
+    "@angular/cli": "^20.3.39",
+    "@angular/compiler-cli": "^20.3.33",
+    "@types/express": "^5.0.6",
     "@types/jasmine": "~5.1.0",
+    "@types/node": "^22.20.5",
     "jasmine-core": "~5.9.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
@@ -52,5 +66,5 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.9.2"
   },
-  "description": "XcellHost Cloud Services — corporate website (Angular 20)"
+  "description": "XcellHost Cloud Services \u2014 corporate website (Angular 20)"
 }

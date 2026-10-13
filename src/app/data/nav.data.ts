@@ -18,6 +18,23 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "0",
         "label": "SMB Cloud",
         "on": true,
+        "featureCards": [
+          {
+            "label": "Endpoint security",
+            "title": "Advanced Endpoint Security (EDR)",
+            "body": "Identify, protect, detect, respond and recover from endpoint threats.",
+            "image": "/assets/images/acronis-partner/security.jpg",
+            "link": "/advanced-endpoint-security-edr"
+          },
+          {
+            "label": "Web Presence",
+            "title": "Cloud Backup",
+            "body": "Safeguard all your files with secure online data protection.",
+            "image": "/assets/images/menu-cloud-backup.png",
+            "imagePosition": "center 35%",
+            "link": "/cloud-backup"
+          }
+        ],
         "groups": [
           {
             "heading": "SMB Cloud",
@@ -1686,6 +1703,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+               {
+                "title": "Acronis Direct Cloud Backup",
+                "pill": null,
+                "desc": null
+              },
               
             ]
           }
@@ -1922,6 +1944,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
                   {
                 "title": "Certificate Lifecycle Management Platforms",
+                "pill": "Popular",
+                "desc": null
+              },
+              {
+                "title": "47-Days-SSL",
                 "pill": "Popular",
                 "desc": null
               },

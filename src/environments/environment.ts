@@ -22,10 +22,10 @@ export const environment = {
   /** POST target for the partner-programme form. */
   partnerWebhook: '',
 
-  /** Chat completion endpoint for the website assistant. Empty = canned replies only. */
-  chatEndpoint: '',
-  /** Virtual local route: public PHP assets must not intercept this request. */
-  aiSearchEndpoint: '/api/ai-assistant',
+  /** Same-origin AI backend. Never put provider credentials in Angular. */
+  chatEndpoint: '/api/ai/chat',
+  /** Search AI uses the same private backend as the floating widget. */
+  aiSearchEndpoint: '/api/ai/chat',
   /** Optional live-answer endpoint for product FAQ blocks. */
   faqApi: '',
 
