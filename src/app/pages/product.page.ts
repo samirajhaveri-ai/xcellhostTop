@@ -2989,6 +2989,15 @@ class ProductPageComponent {
     const view = this.resolve(slug);
     if (!view) return null;
 
+    if (slug === 'acronis-ai') return {
+      ...view,
+      tagline: 'AI-native protection, management and automation',
+      heroHighlight: 'One agent, one data model, one console',
+      heroMessages: ['Cyber Console · Cyber Intelligence · Service Desk · Cyber Studio · Cyber Frame'],
+      heroPoints: ['Backup, EDR and RMM on one platform', 'Agentic workflows with human approval', 'GenAI protection and prompt DLP', '24×7 support from XcellHost'],
+      videos: ['s1Rxs7rWd2I', ''],
+    };
+
     if (slug === 'ai-receptionist') return {
       ...view,
       why: RECEPTIONIST_WHY,
@@ -4177,7 +4186,7 @@ class ProductPageComponent {
 
   /** Product videos live in the shared Insights > Videos tab, not in a
    * second standalone "Watch it in action" section on the same page. */
-  readonly videosInInsights = computed(() => !!this.productInsightVideos()?.length);
+  readonly videosInInsights = computed(() => this.slug() !== 'acronis-ai' && !!this.productInsightVideos()?.length);
 
   readonly isRmm = computed(
     () => this.view()?.name === 'Remote Monitoring & Mgmt (RMM)'

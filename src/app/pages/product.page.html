@@ -54,6 +54,7 @@
     [class.google-business-page]="isFrameworkDetail() || slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin' || slug() === 'erp-next-hosting' || slug() === 'odoo-hosting' || slug() === 'email-backup' || slug() === 'sectigo-ssl-certificates' || slug() === 'microsoft-365-to-google-workspace-migration'"
     [class.acronis-ot-page]="slug() === 'acronis-ot'"
     [class.acronis-mdr-page]="slug() === 'acronis-mdr'"
+    [class.acronis-ai-page]="slug() === 'acronis-ai'"
     [class.microsoft-defender-page]="slug() === 'microsoft-defender'"
     [class.imunify360-page]="slug() === 'imunify360'"
     [class.email-archiving-page]="slug() === 'email-archiving'"
@@ -1218,6 +1219,10 @@
           <div class="pph-scene vsaas-hero-art">
             <xh-vsaas-hero />
           </div>
+        } @else if (slug() === 'acronis-ai') {
+          <div class="pph-scene acronis-ai-hero-art">
+            <xh-imported-interactive-content source="acronis-ai-hero" />
+          </div>
         } @else if (slug() === 'openclaw-vps') {
           <div class="pph-scene openclaw-hero-art">
             <xh-imported-interactive-content source="openclaw-hero" />
@@ -2227,6 +2232,70 @@
         </div>
         <div class="pp-proof"><span>ISO 27001</span><span>ISO 20000-1</span><span>Microsoft partner</span><span>Since 1999</span><span>24×7 support</span></div>
       </div></div>
+    } @else if (slug() === 'acronis-ai') {
+      <xh-imported-interactive-content source="acronis-ai" />
+  <div class="pp-body microsoft-365-enterprise-extras">
+    <div class="wrap">
+      <section aria-labelledby="serviceSecurityTitle">
+        <h2 class="pp-sec" id="serviceSecurityTitle">Security &amp; compliance</h2>
+        <p class="pp-ov">{{ v.security.intro }}</p>
+        <div class="pp-secrows">
+          @for (row of v.security.rows; track row[0]) {
+            <div class="psrow"><span class="psk">{{ row[0] }}</span><span class="psv">{{ row[1] }}</span></div>
+          }
+        </div>
+      </section>
+      <section aria-labelledby="serviceWhyTitle">
+        <h2 class="pp-sec" id="serviceWhyTitle">Why XcellHost for {{ v.name }}</h2>
+        <div class="pp-why">
+          @for (reason of v.why; track reason.title) {
+            <div class="pw"><span class="pw-ic" aria-hidden="true">@if (reason.icon.startsWith('M')) { <svg viewBox="0 0 24 24"><path [attr.d]="reason.icon" /></svg> } @else { {{ reason.icon }} }</span><b>{{ reason.title }}</b><span>{{ reason.body }}</span></div>
+          }
+        </div>
+      </section>
+      <section class="tally-videos" aria-labelledby="serviceActionTitle">
+        <h2 class="pp-sec" id="serviceActionTitle">Watch it in action</h2>
+        <div class="tally-video-grid single-video"><article class="tally-video-card">
+          <h3>Acronis AI overview</h3><div class="tally-video-frame">
+            <iframe src="https://www.youtube-nocookie.com/embed/s1Rxs7rWd2I?rel=0&amp;playsinline=1" title="Acronis AI overview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div></article></div>
+      </section>
+      <section aria-labelledby="serviceReviewsTitle">
+        <h2 class="pp-sec" id="serviceReviewsTitle">What customers say</h2>
+        <div class="pp-revs">
+          @for (review of v.reviews; track review.name) {
+            <div class="prv"><div class="stars" [attr.aria-label]="review.stars + ' out of 5 stars'">@for (slot of starSlots; track slot) { <span [class.off]="slot >= review.stars">★</span> }</div><p>“{{ review.quote }}”</p><cite><span class="rav">{{ review.initials }}</span><span><b>{{ review.name }}</b>{{ review.role }}</span></cite></div>
+          }
+        </div>
+      </section>
+      <section aria-labelledby="serviceFaqTitle">
+        <h2 class="pp-sec pp-faq-heading" id="serviceFaqTitle">Frequently asked questions</h2>
+        <div class="pp-faq"><xh-product-faq [faqs]="v.faqs" idPrefix="menuServiceFaq" /></div>
+      </section>
+      <section id="ppBlog" class="acronis-ai-insights" aria-labelledby="acronisAiBlogTitle">
+        <h2 class="pp-sec" id="acronisAiBlogTitle">From our blog</h2>
+        <xh-insights-section [pageSlug]="slug()" />
+      </section>
+      <section class="pp-cta service-closing-cta" aria-labelledby="serviceClosingTitle">
+        <div>
+          <h3 id="serviceClosingTitle">Ready to start with {{ v.name }}?</h3>
+          <p>FREE Consultation · FREE Demo · FREE Trial · 24×7 support in English &amp; Hindi</p>
+        </div>
+        <div class="service-closing-actions">
+          <button class="btn btn-primary" type="button" (click)="openCallback($event)">Request a callback</button>
+          <button class="btn btn-ghost" type="button" (click)="buyNow($event)">⚡ Buy Now</button>
+          <button class="btn btn-ghost" type="button" (click)="requestDoc('infosheet', $event)">⬇ Infosheet</button>
+          <button class="btn btn-ghost" type="button" (click)="requestDoc('presentation', $event)">▣ Presentation</button>
+          <a class="btn btn-ghost" [href]="waHref()" target="_blank" rel="noopener">Talk on WhatsApp</a>
+          <a class="btn btn-ghost" [href]="mailHref()">Email Us</a>
+        </div>
+        <a class="pp-cta-buddha-link" routerLink="/support-overview" aria-label="Visit XcellHost customer support"><img class="pp-cta-buddha" src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost 24×7 support" /></a>
+      </section>
+      <div class="pp-proof" aria-label="XcellHost credentials and payment options">
+        <span>🏅 ISO 27001</span><span>🏅 ISO 20000-1</span><span>🤝 Microsoft Gold Partner</span><span>🕰 Since 1999</span><span>🔒 Secure Payments — UPI · Cards · NetBanking</span>
+      </div>
+    </div>
+  </div>
     } @else if (isManagedAws() || isManagedAzure()) {
       <xh-managed-aws-content [provider]="isManagedAzure() ? 'Azure' : 'AWS'" />
     } @else {
@@ -5486,7 +5555,7 @@
             </div>
           }
           
-          <div id="ppRich" [hidden]="slug() === 'openclaw-vps' || slug() === 'managed-mongodb' || slug() === 'managed-redis' || isFrameworkDetail() || slug() === 'comodo-personal-authentication' || slug() === 'digicert-smime-class-1' || slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin' || slug() === 'erp-next-hosting' || slug() === 'odoo-hosting' || slug() === 'email-backup' || slug() === 'sectigo-ssl-certificates' || slug() === 'microsoft-365-to-google-workspace-migration'">
+          <div id="ppRich" [hidden]="slug() === 'acronis-ai' || slug() === 'openclaw-vps' || slug() === 'managed-mongodb' || slug() === 'managed-redis' || isFrameworkDetail() || slug() === 'comodo-personal-authentication' || slug() === 'digicert-smime-class-1' || slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin' || slug() === 'erp-next-hosting' || slug() === 'odoo-hosting' || slug() === 'email-backup' || slug() === 'sectigo-ssl-certificates' || slug() === 'microsoft-365-to-google-workspace-migration'">
 
 
 
