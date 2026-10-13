@@ -20,6 +20,11 @@ export const VPS_PRODUCT_COPY: Record<string, { tagline: string; highlight: stri
     tagline: 'Run your OpenClaw AI assistant on a cloud server.',
     highlight: 'Connect your messaging channels and tools to an assistant hosted on your own infrastructure.',
   },
+  'cPanel VPS': {
+    heroMessage: 'Manage your websites, email and databases in one place.',
+    tagline: 'Host and manage your websites with cPanel on your own virtual server.',
+    highlight: 'Bring domains, email, databases and hosting accounts together with cPanel & WHM.',
+  },
   'Trading VPS': {
     heroMessage: 'Secure, automated backups to safeguard your website 🔒',
     tagline: 'Keep trading platforms and automated strategies running online.',

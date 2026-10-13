@@ -2954,6 +2954,10 @@ class ProductPageComponent {
     initialValue: '',
   });
 
+  readonly usesVpsPageTemplate = computed(() =>
+    this.slug() === 'openclaw-vps' || this.slug() === 'cpanel-vps',
+  );
+
   readonly usesContainerRegistryTemplate = computed(() =>
     this.slug() === 'container-registry' || this.slug() === 'container-as-a-service',
   );
@@ -2988,6 +2992,18 @@ class ProductPageComponent {
     const slug = this.slug();
     const view = this.resolve(slug);
     if (!view) return null;
+
+    if (slug === 'cpanel-vps') return {
+      ...view,
+      brandSuffix: 'VPS',
+      faqs: [
+        ['What is cPanel VPS?', 'A virtual private server with cPanel & WHM for managing websites, domains, email, databases and hosting accounts from a control panel.'],
+        ['Is the cPanel licence included in the server price?', 'The VPS and cPanel licence are shown separately in the builder. Select Admin, Pro or Premier to see the combined estimate. Prices are indicative until confirmed in your quotation.'],
+        ['Which operating system can I choose?', 'These plans use AlmaLinux, with CloudLinux available on request. Choose the AlmaLinux configuration in the builder and contact our team for other requirements.'],
+        ['Can you help migrate my existing websites?', 'Contact the XcellHost team to discuss moving your websites, email and databases and to agree the migration scope.'],
+        ['Can I add backups and managed support?', 'Yes. Select daily backups or managed support in the server builder to include them in your estimate and quotation.'],
+      ],
+    };
 
     if (slug === 'ai-receptionist') return {
       ...view,

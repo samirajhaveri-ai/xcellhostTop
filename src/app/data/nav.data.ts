@@ -436,6 +436,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": VPS_PRODUCT_COPY['OpenClaw VPS'].tagline
               },
               {
+                "title": "cPanel VPS",
+                "href": "/cpanel-vps",
+                "pill": "1-Click",
+                "desc": VPS_PRODUCT_COPY['cPanel VPS'].tagline
+              },
+              {
                 "title": "Trading VPS",
                 "pill": "1-Click",
                 "desc": VPS_PRODUCT_COPY['Trading VPS'].tagline

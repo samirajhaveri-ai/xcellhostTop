@@ -25,7 +25,8 @@ import { InsightsSectionComponent, InsightVideo } from '../sections/insights-sec
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GeoTrustBusinessIdPage implements OnDestroy {
-  readonly page = BUSINESSID_PAGES[inject(ActivatedRoute).snapshot.data['businessIdVariant'] as BusinessIdVariant];
+  private readonly route = inject(ActivatedRoute);
+  readonly page = BUSINESSID_PAGES[this.route.snapshot.data['businessIdVariant'] as BusinessIdVariant];
   private readonly sanitizer = inject(DomSanitizer);
   readonly contentUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`/assets/animations/${this.page.slug}-content.html`);
   readonly height = signal(9000);
@@ -55,6 +56,15 @@ export class GeoTrustBusinessIdPage implements OnDestroy {
     const doc = this.frame?.nativeElement.contentDocument;
     const main = doc?.querySelector('main');
     if (!doc || !main) return;
+    if (this.page.variant === 'ev' || this.page.variant === 'ovFlex') {
+      const quantity = Number(this.route.snapshot.queryParamMap.get('quantity'));
+      const isOvFlex = this.page.variant === 'ovFlex';
+      const input = doc.querySelector<HTMLInputElement>(isOvFlex ? '#sQtyN' : '#sQty');
+      if (input && Number.isInteger(quantity) && quantity >= 1 && quantity <= (isOvFlex ? 99 : 9999)) {
+        input.value = String(quantity);
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+    }
     const resize = () => {
       if (!this.disposed) this.zone.run(() => this.height.set(Math.ceil(main.getBoundingClientRect().height) + 2));
     };

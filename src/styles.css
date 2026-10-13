@@ -6329,3 +6329,16 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 #ppage .pph-scene.openclaw-hero-art{right:1%!important;top:8%;bottom:auto;width:620px!important;max-width:48%!important;opacity:1;mask-image:none;pointer-events:auto;z-index:4}
 #ppage .openclaw-hero-art>xh-imported-interactive-content{display:block;flex:1 1 100%;width:100%;min-width:0}
 @media(max-width:900px){#ppage .pph-scene.openclaw-hero-art{position:relative;inset:auto;right:auto!important;width:calc(100% - 40px)!important;max-width:620px!important;margin:20px auto;order:2}#ppage .pp-hero:has(.openclaw-hero-art){display:flex;flex-direction:column}#ppage .pp-hero:has(.openclaw-hero-art)>.wrap{width:100%}}
+
+/* Keep the cPanel VPS console and imported sections inside the page container. */
+#ppage.cpanel-vps-page .openclaw-page-content{width:100%!important;max-width:100%!important;margin-left:0!important}
+#ppage.cpanel-vps-page .openclaw-hero-art{max-height:none;overflow:visible}
+#ppage.cpanel-vps-page .pp-hero #ppTitle{display:block!important;white-space:nowrap!important;text-wrap:nowrap!important;font-size:var(--banner-title-size,42px)!important}
+#ppage.cpanel-vps-page .pp-hero #ppTitle .pp-title-name{display:inline!important;white-space:nowrap!important;font-size:inherit!important}
+@media(min-width:901px){
+  #ppage.cpanel-vps-page .pph-scene.openclaw-hero-art{right:max(24px,calc((100% - 1240px)/2 + 24px))!important;top:50%;bottom:auto;transform:translateY(-50%);width:min(44%,540px)!important;max-width:none!important}
+  #ppage.cpanel-vps-page .pp-hero>.wrap>:is(h1,.pp-tagline,.pp-tagline-support,.pp-typewriter,.pp-hero-grid){max-width:52%}
+}
+@media(max-width:900px){
+  #ppage.cpanel-vps-page .pph-scene.openclaw-hero-art{top:auto;transform:none}
+}
