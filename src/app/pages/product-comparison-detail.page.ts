@@ -12,6 +12,7 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 
 interface DetailProduct {
   entry: DirectoryEntry;
+  displayName: string;
   slug: string;
   price: string;
   features: string[];
@@ -43,9 +44,9 @@ export class ProductComparisonDetailPage {
   readonly definition = PRODUCT_COMPARISONS.find(item =>
     `${slugify(item.left)}-vs-${slugify(item.right)}` === this.comparisonSlug
   ) ?? PRODUCT_COMPARISONS[0];
-  readonly left = this.resolveProduct(this.definition.left);
-  readonly right = this.resolveProduct(this.definition.right);
-  readonly title = `${this.left.entry.name} vs ${this.right.entry.name}`;
+  readonly left = this.resolveProduct(this.definition.left, this.definition.leftLabel);
+  readonly right = this.resolveProduct(this.definition.right, this.definition.rightLabel);
+  readonly title = `${this.left.displayName} vs ${this.right.displayName}`;
   readonly rows: readonly ComparisonRow[] = [
     { feature: 'Primary purpose', left: this.left.entry.desc, right: this.right.entry.desc },
     { feature: 'Service family', left: this.left.entry.group, right: this.right.entry.group },
@@ -72,8 +73,8 @@ export class ProductComparisonDetailPage {
     this.overlay.open('callback');
   }
 
-  private resolveProduct(name: string): DetailProduct {
-    const entry = this.catalog.findInDirectory(name) ?? {
+  private resolveProduct(name: string, displayName?: string): DetailProduct {
+    const entry = this.catalog.findInDirectory(name) ?? this.catalog.entryBySlug(slugify(name)) ?? {
       name,
       desc: 'Solution details are confirmed during consultation.',
       cat: 'Solutions' as const,
@@ -86,6 +87,7 @@ export class ProductComparisonDetailPage {
     const categoryStrengths = CATEGORY_COMPARE_WHY[entry.cat] ?? CATEGORY_COMPARE_WHY['Cloud'];
     return {
       entry,
+      displayName: displayName ?? entry.name,
       slug: slugify(entry.name),
       price: rich?.price || this.priceFrom(entry.desc),
       features,

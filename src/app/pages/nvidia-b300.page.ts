@@ -8,11 +8,12 @@ import { DocKind, DocRequestService } from '../core/doc-request.service';
 import { CartService } from '../core/cart.service';
 import { SITE } from '../data/site.data';
 import { InsightsSectionComponent } from '../sections/insights-section.component';
+import { GpuLeadHeroComponent } from '../sections/gpu-lead-hero.component';
 
 @Component({
   selector: 'xh-nvidia-b300-page',
   standalone: true,
-  imports: [RouterLink, InsightsSectionComponent],
+  imports: [RouterLink, InsightsSectionComponent, GpuLeadHeroComponent],
   templateUrl: './nvidia-b300.page.html',
   styleUrl: './nvidia-b300.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

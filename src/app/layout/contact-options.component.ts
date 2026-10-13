@@ -97,12 +97,11 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
       position: relative;
       display: grid;
       grid-template-columns: 1fr;
-      gap: 14px;
       align-items: stretch;
       width: min(850px, 100%);
       max-width: none;
       margin-inline: auto;
-      padding: 32px;
+      padding: 25px;
       border: 1px solid var(--line);
       border-radius: 12px;
       background: linear-gradient(135deg, var(--blue-soft) 0%, #dcecff 62%, #fff0de 100%);
@@ -138,15 +137,16 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
       margin: 0 auto;
       color: var(--ink);
       text-align: center;
-      font: 600 15px / 1.5 var(--body);
+      font: 600 13px / 1.5 var(--body);
       letter-spacing: 0;
+      padding: 10px;
     }
 
     .newsletter-form {
       position: relative;
       z-index: 1;
       display: grid;
-      min-height: 52px;
+      min-height: 32px;
       grid-template-columns: minmax(0, 1fr) 124px;
       gap: 8px;
       align-items: center;
@@ -154,7 +154,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
     .newsletter-form input {
       min-width: 0;
-      min-height: 52px;
+      min-height: 42px;
       padding: 0 18px;
       border: 1px solid var(--line);
       border-radius: 8px;
@@ -177,8 +177,8 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
     .newsletter-form button {
       min-width: 0;
-      min-height: 50px;
-      padding: 13px 22px;
+      min-height: 30px;
+      padding:  10px;
       border: 0; 
       border-radius: 8px;
       background: var(--blue);

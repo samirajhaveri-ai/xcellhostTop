@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>XcellHost Global Infrastructure</title>
 <base target="_parent">
+<script>if(new URLSearchParams(location.search).get("mode")==="globe")document.documentElement.classList.add("globe-only")</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -39,6 +40,14 @@ body{font-family:"DM Sans",system-ui,sans-serif;background:#F5F5F5;color:var(--i
 .legend{display:none}
 .legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
 @media (max-width:900px){.gx-b{grid-template-columns:minmax(0,1fr);gap:28px}.gx{padding:32px 16px}.gx-panel{min-height:0;padding:18px}.tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}}
+.globe-only body{background:transparent}
+.globe-only .gx{max-width:668px;padding:0 24px}
+.globe-only .gx-h,.globe-only .gx-panel{display:none}
+.globe-only .gx-b{display:block}
+.globe-only .gw{max-width:620px}
+.globe-only .hint{display:block;text-align:center;font:600 11px "IBM Plex Mono",monospace;color:var(--slate);letter-spacing:.08em;margin-top:6px}
+.globe-only .legend{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:10px;font:600 12px "DM Sans";color:var(--slate)}
+@media (max-width:640px){.globe-only .gx{padding:0 8px}.globe-only .legend{gap:10px}}
 </style>
 </head>
 <body>

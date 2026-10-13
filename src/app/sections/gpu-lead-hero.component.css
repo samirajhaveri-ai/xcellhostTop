@@ -10,7 +10,10 @@
   box-sizing: border-box;
   margin: 32px 0 48px;
   padding: 36px 0;
-  background: linear-gradient(112deg, #171b3b 0%, #999 51%, #263552 100%);
+  background:
+    radial-gradient(circle at 78% 16%, rgba(47, 128, 237, 0.34), transparent 34%),
+    radial-gradient(circle at 18% 105%, rgba(255, 140, 26, 0.12), transparent 32%),
+    linear-gradient(112deg, #041e42 0%, #0b376f 52%, #10264a 100%);
   color: #fff;
   font-family: var(--body, 'IBM Plex Sans', sans-serif);
   box-shadow: 0 18px 46px rgba(24, 48, 106, 0.16);
@@ -20,9 +23,9 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 75% 20%, rgba(255, 255, 255, 0.12), transparent 32%),
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    radial-gradient(circle at 75% 20%, rgba(255, 255, 255, 0.1), transparent 32%),
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
   background-size:
     auto,
     46px 46px,
@@ -226,7 +229,7 @@
   margin-top: 5px;
   border: 0;
   border-radius: 999px;
-  background: linear-gradient(90deg, #0e58ad, #243758);
+  background: linear-gradient(90deg, #ff8c1a, #e96f00);
   color: #fff;
   font: 700 15px/1 var(--body);
   cursor: pointer;
@@ -234,7 +237,7 @@
 }
 .gpu-lead-card button:hover:not(:disabled) {
   transform: translateY(-1px);
-  box-shadow: 0 9px 24px rgba(181, 26, 100, 0.25);
+  box-shadow: 0 9px 24px rgba(233, 111, 0, 0.32);
 }
 .gpu-lead-card button:disabled {
   cursor: not-allowed;

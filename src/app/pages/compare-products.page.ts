@@ -11,6 +11,8 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 interface ComparisonCard extends ProductComparisonDefinition {
   leftProduct: DirectoryEntry;
   rightProduct: DirectoryEntry;
+  leftDisplayName: string;
+  rightDisplayName: string;
   query: string;
   detailSlug: string;
 }
@@ -39,15 +41,17 @@ export class CompareProductsPage {
   ];
   readonly activeCategory = signal<ComparisonCategory | typeof this.allCategory>(this.allCategory);
   readonly comparisons = PRODUCT_COMPARISONS.flatMap(definition => {
-    const leftProduct = this.catalog.findInDirectory(definition.left);
-    const rightProduct = this.catalog.findInDirectory(definition.right);
+    const leftProduct = this.catalog.findInDirectory(definition.left) ?? this.catalog.entryBySlug(slugify(definition.left));
+    const rightProduct = this.catalog.findInDirectory(definition.right) ?? this.catalog.entryBySlug(slugify(definition.right));
     if (!leftProduct || !rightProduct) return [];
     return [{
       ...definition,
       leftProduct,
       rightProduct,
+      leftDisplayName: definition.leftLabel ?? leftProduct.name,
+      rightDisplayName: definition.rightLabel ?? rightProduct.name,
       query: `${slugify(leftProduct.name)},${slugify(rightProduct.name)}`,
-      detailSlug: `${slugify(leftProduct.name)}-vs-${slugify(rightProduct.name)}`,
+      detailSlug: `${slugify(definition.left)}-vs-${slugify(definition.right)}`,
     } satisfies ComparisonCard];
   });
   readonly visibleComparisons = computed(() => {
