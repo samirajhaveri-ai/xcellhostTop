@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { GlobalInfrastructureGlobeComponent } from './global-infrastructure-globe.component';
 
 interface BareMetalPlan {
   processor: string; cores: string; memory: string; storage: string; bandwidth: string; oldPrice: string; price: string;
@@ -20,7 +19,7 @@ interface DataCenter {
 }
 
 @Component({
-  selector: 'xh-bare-metal-content', standalone: true, imports: [RouterLink, GlobalInfrastructureGlobeComponent],
+  selector: 'xh-bare-metal-content', standalone: true, imports: [RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './bare-metal-content.component.html', styleUrl: './bare-metal-content.component.css',
 })

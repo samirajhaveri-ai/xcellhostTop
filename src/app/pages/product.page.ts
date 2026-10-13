@@ -363,6 +363,7 @@ import { ATM_SOLUTION_DETAILS } from '../data/atm-solution-detail.data';
 import { OurPlatformReferenceComponent } from '../sections/our-platform-reference.component';
 import { WatchtowerReferenceComponent } from '../sections/watchtower-reference.component';
 import { BareMetalContentComponent } from '../sections/bare-metal-content.component';
+import { GlobalInfrastructureGlobeComponent } from '../sections/global-infrastructure-globe.component';
 import { GenaiProtectionContentComponent } from '../sections/genai-protection-content.component';
 import { CloudMigrationAdvantageComponent } from '../sections/cloud-migration-advantage.component';
 import { AcronisBackupAdvancedContentComponent } from '../sections/acronis-backup-advanced-content.component';
@@ -659,6 +660,7 @@ interface ProductTourSlide {
     OurPlatformReferenceComponent,
     WatchtowerReferenceComponent,
     BareMetalContentComponent,
+    GlobalInfrastructureGlobeComponent,
     GenaiProtectionContentComponent,
     CloudMigrationAdvantageComponent,
     AcronisBackupAdvancedContentComponent,
