@@ -5,11 +5,7 @@ import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 
 type InteractiveContentSource =
-  | 'cpanel' | 'cpanel-hero'
-  | '47-day-ssl' | '47-day-ssl-hero'
-  | 'direct-backup' | 'direct-backup-hero'
-  | 'druva' | 'druva-hero'
-  | 'acronis-ai' | 'acronis-ai-hero' | 'openclaw' | 'openclaw-hero' | 'kubernetes' | 'podcasts' | 'deepcall' | 'workspace'
+  | 'wordpress-vps' | 'wordpress-vps-hero' | 'general-compute' | 'general-compute-hero' | 'bio-link' | 'bio-link-hero' | 'cpanel' | 'cpanel-hero' | 'acronis-ai' | 'acronis-ai-hero' | 'openclaw' | 'openclaw-hero' | 'kubernetes' | 'podcasts' | 'deepcall' | 'workspace' | '47-day-ssl' | '47-day-ssl-hero' | 'direct-backup' | 'direct-backup-hero' | 'druva' | 'druva-hero'
   | 'rapidssl' | 'sectigo' | 'sectigo-ev' | 'mark' | 'website-security'
   | 'certificate-management' | 'code-signing-certificates' | 'email-signing-certificates'
   | 'consulting' | 'digicert-standard-ssl' | 'digicert-ev-ssl'
@@ -52,6 +48,12 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     'digicert-secure-site-pro-ev-ssl',
   ]);
   private readonly sourceUrls: Record<Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail'>, string> = {
+    'wordpress-vps': '/imported-wordpress-vps.html',
+    'wordpress-vps-hero': '/imported-wordpress-vps-hero.html',
+    'general-compute': '/imported-general-compute.html',
+    'general-compute-hero': '/imported-general-compute-hero.html',
+    'bio-link': '/imported-bio-link.html',
+    'bio-link-hero': '/imported-bio-link-hero.html',
     '47-day-ssl': '/imported-47-day-ssl.html',
     '47-day-ssl-hero': '/imported-47-day-ssl-hero.html',
     'direct-backup': '/imported-acronis-direct-backup.html',
@@ -81,6 +83,12 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+    'wordpress-vps': 'WordPress VPS plans, server builder and Why XcellHost',
+    'wordpress-vps-hero': 'WordPress VPS animated hero and speed preview',
+    'general-compute': 'General Compute plans, add-ons and launch steps',
+    'general-compute-hero': 'General Compute interactive deploy preview',
+    'bio-link': 'Bio Link and Digital Visiting Card tools and pricing',
+    'bio-link-hero': 'XcellCard animated visiting card preview',
     '47-day-ssl': '47-Day SSL readiness, automation and pricing tools',
     '47-day-ssl-hero': '47-Day SSL certificate renewal animation',
     'direct-backup': 'Acronis Direct Cloud Backup features and interactive tools',
