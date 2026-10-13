@@ -316,6 +316,15 @@ export const COMPANY_PAGES: Record<string, CompanyPageContent> = {
     ],
     cta: 'If you are uncertain whether an intended use is permitted, contact XcellHost before deploying it.', ctaLabel: 'Ask an acceptable-use question',
   },
+  'abuse-policy': {
+    eyebrow: 'Legal', title: 'Abuse Policy', tagline: 'How XcellHost prevents, investigates and responds to misuse of its services.',
+    intro: 'XcellHost services may be used only for lawful and authorised purposes. This policy explains prohibited activity, customer responsibilities, how to submit an actionable abuse report and the measures XcellHost may take to protect customers, infrastructure and internet users.', cards: legalCards,
+    sections: [
+      { title: 'Responsible service use', body: 'Customers must prevent their accounts, systems, applications and credentials from being used for illegal, deceptive, disruptive or harmful activity.' },
+      { title: 'Reporting suspected abuse', body: 'Send the affected hostname or IP address, timestamps, supporting evidence and your contact details through an official XcellHost support channel.' },
+    ],
+    cta: 'Report suspected abuse promptly so the XcellHost team can preserve evidence, investigate and take proportionate action.', ctaLabel: 'Report abuse',
+  },
   'ekyc-verification': {
     eyebrow: 'Legal', title: 'eKYC Verification', tagline: 'How electronic identity checks support secure account and service activation.',
     intro: 'Some XcellHost services or transactions may require electronic Know Your Customer verification. The requested information depends on the customer type, service, payment method and applicable legal or vendor requirements.', cards: legalCards,
