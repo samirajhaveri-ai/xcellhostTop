@@ -4547,11 +4547,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Watch TSplus Remote Access connection demos",
                 "href": "/tsplus-demo-center"
               },
-              {
-                "title": "Product Tours",
-                "pill": null,
-                "desc": null
-              },
+              
               {
                 "title": "DPDPA Demo Center",
                 "pill": null,
@@ -4572,6 +4568,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Cpanel Demo Center",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Product Tours",
                 "pill": null,
                 "desc": null
               },
