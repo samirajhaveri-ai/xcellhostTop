@@ -25,6 +25,11 @@ export const VPS_PRODUCT_COPY: Record<string, { tagline: string; highlight: stri
     tagline: 'Host and manage your websites with cPanel on your own virtual server.',
     highlight: 'Bring domains, email, databases and hosting accounts together with cPanel & WHM.',
   },
+  'WordPress VPS': {
+    tagline: 'Run WordPress and WooCommerce on a VPS tuned for speed.',
+    highlight: 'LiteSpeed or Nginx, Redis object cache, PHP 8 and free SSL, billed in rupees.',
+    heroMessage: 'WordPress hosting with dedicated resources and 24×7 support.',
+  },
   'Trading VPS': {
     heroMessage: 'Secure, automated backups to safeguard your website 🔒',
     tagline: 'Keep trading platforms and automated strategies running online.',

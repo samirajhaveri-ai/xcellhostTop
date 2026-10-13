@@ -442,6 +442,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": VPS_PRODUCT_COPY['cPanel VPS'].tagline
               },
               {
+                "title": "WordPress VPS",
+                "href": "/wordpress-vps",
+                "pill": "1-Click",
+                "desc": VPS_PRODUCT_COPY['WordPress VPS'].tagline
+              },
+              {
                 "title": "Trading VPS",
                 "pill": "1-Click",
                 "desc": VPS_PRODUCT_COPY['Trading VPS'].tagline

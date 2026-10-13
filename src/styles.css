@@ -6344,6 +6344,33 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
   #ppage.cpanel-vps-page .pph-scene.openclaw-hero-art{top:auto;transform:none}
 }
 
+/* Bio Link artwork shares the hero's content grid and stacks below the copy on phones. */
+#ppage.bio-link-page>.pp-hero{display:grid;grid-template-columns:minmax(0,620px) minmax(0,540px);justify-content:center;align-items:center;gap:32px;padding:48px 24px}
+#ppage.bio-link-page>.pp-hero>.wrap{grid-column:1;grid-row:1;width:100%;max-width:none;padding-inline:0}
+#ppage.bio-link-page .pp-hero>.wrap>:is(h1,.pp-tagline,.pp-tagline-support,.pp-typewriter,.pp-hero-grid){width:100%;max-width:100%!important}
+#ppage.bio-link-page>.pp-hero>.pph-scene.bio-link-hero-art{position:relative;inset:auto!important;grid-column:2;grid-row:1;width:100%!important;max-width:none;max-height:none;opacity:1;mask-image:none;pointer-events:auto;z-index:4}
+#ppage.bio-link-page .bio-link-hero-art>xh-imported-interactive-content{display:block;width:100%;min-width:0}
+#ppage.bio-link-page .bio-link-source-content{display:block;width:100%;min-width:0}
+@media(max-width:900px){#ppage.bio-link-page>.pp-hero{grid-template-columns:minmax(0,1fr);gap:24px;padding-inline:20px}#ppage.bio-link-page>.pp-hero>.pph-scene.bio-link-hero-art{grid-column:1;grid-row:2;max-width:540px;margin-inline:auto}}
+
+/* General Compute artwork shares the hero's content grid and stacks below the copy on phones. */
+#ppage.general-compute-page>.pp-hero{display:grid;grid-template-columns:minmax(0,620px) minmax(0,540px);justify-content:center;align-items:center;gap:32px;padding:48px 24px}
+#ppage.general-compute-page>.pp-hero>.wrap{grid-column:1;grid-row:1;width:100%;max-width:none;padding-inline:0}
+#ppage.general-compute-page .pp-hero>.wrap>:is(h1,.pp-tagline,.pp-tagline-support,.pp-typewriter,.pp-hero-grid){width:100%;max-width:100%!important}
+#ppage.general-compute-page>.pp-hero>.pph-scene.general-compute-hero-art{position:relative;inset:auto!important;grid-column:2;grid-row:1;width:100%!important;max-width:none;max-height:none;opacity:1;mask-image:none;pointer-events:auto;z-index:4}
+#ppage.general-compute-page .general-compute-hero-art>xh-imported-interactive-content{display:block;width:100%;min-width:0}
+#ppage.general-compute-page .general-compute-source-content{display:block;width:100%;min-width:0}
+#ppage.general-compute-page .pp-hero #ppTitle{display:block!important;text-align:left;white-space:normal!important;text-wrap:wrap}
+#ppage.general-compute-page #ppTitle .pp-title-name{display:inline!important;margin-left:0!important;white-space:normal!important;text-wrap:wrap}
+#ppage.general-compute-page .pp-hero #ppTag{color:#fff;margin-bottom:4px;line-height:1.5}
+#ppage.general-compute-page .pp-hero .pp-tagline-support{width:100%!important;max-width:100%!important;white-space:normal!important;color:#cbdcf3!important;font-size:16px;font-weight:600;line-height:1.5;margin-bottom:20px}
+#ppage.general-compute-page .general-compute-hero-points{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px;margin:0 0 22px;color:#d5e3f6;font-size:14px;line-height:1.5}
+#ppage.general-compute-page .general-compute-hero-points>div{display:flex;align-items:center;gap:9px;min-width:0}
+#ppage.general-compute-page .general-compute-hero-points span{display:grid;place-items:center;flex:0 0 24px;width:24px;height:24px;border-radius:7px;background:#1565d8;box-shadow:0 0 0 4px rgba(21,101,216,.16);color:#fff}
+#ppage.general-compute-page .general-compute-hero-points svg{width:15px;height:15px}
+@media(max-width:560px){#ppage.general-compute-page .general-compute-hero-points{grid-template-columns:1fr}}
+@media(max-width:900px){#ppage.general-compute-page>.pp-hero{grid-template-columns:minmax(0,1fr);gap:24px;padding-inline:20px}#ppage.general-compute-page>.pp-hero>.pph-scene.general-compute-hero-art{grid-column:1;grid-row:2;max-width:540px;margin-inline:auto}}
+
 /* Supplied Acronis AI console and wordmark within the default product hero. */
 #ppage .pph-scene.acronis-ai-hero-art{right:1%;top:2%;bottom:auto;width:620px;max-width:48%;opacity:1;mask-image:none;pointer-events:auto;z-index:4}
 #ppage .acronis-ai-hero-art>xh-imported-interactive-content{display:block;width:100%;min-width:0}

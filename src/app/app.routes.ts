@@ -5,6 +5,12 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  {
+    path: 'wordpress-vps',
+    title: 'WordPress VPS | XcellHost',
+    data: { productSlug: 'wordpress-vps' },
+    loadComponent: () => import('./pages/product.page').then(m => m.ProductPage),
+  },
   { path: 'acronis-ai', title: 'Acronis AI Platform | XcellHost', data: { productSlug: 'acronis-ai' }, loadComponent: () => import('./pages/product.page').then(m => m.ProductPage) },
 
   {

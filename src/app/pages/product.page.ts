@@ -4,6 +4,7 @@ import { ContainerServiceHeroComponent } from '../sections/container-service-her
 import { ContainerRegistryContentComponent } from '../sections/container-registry-content.component';
 
 import { ImportedInteractiveContentComponent } from '../sections/imported-interactive-content.component';
+import { WORDPRESS_VPS_FAQS } from '../data/wordpress-vps-faq.data';
 import { MANAGED_KUBERNETES_FAQS } from '../data/managed-kubernetes-faq.data';
 
 
@@ -2994,6 +2995,16 @@ class ProductPageComponent {
     const slug = this.slug();
     const view = this.resolve(slug);
     if (!view) return null;
+
+    if (slug === 'bio-link-digital-visiting-card') return { ...view, brandSuffix: 'Card' };
+    if (slug === 'wordpress-vps') return { ...view, brandSuffix: 'Cloud', faqs: WORDPRESS_VPS_FAQS };
+    if (slug === 'general-compute') return {
+      ...view,
+      brandSuffix: 'Cloud',
+      tagline: 'Balanced cloud VMs, running in about a minute.',
+      heroHighlight: "Simplify deployments with instances that balance vCPU, memory and network at a 1:4 ratio — 1 to 64 vCPU in XcellHost's Mumbai cloud, billed by the hour, the month or a reserved term, in rupees.",
+      heroMessages: [],
+    };
 
 
     if (slug === 'cpanel-vps') return {

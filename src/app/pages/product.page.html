@@ -19,6 +19,8 @@
     [class.plesk-servers-page]="slug() === 'plesk-servers'"
     [class.cpanel-servers-page]="slug() === 'cpanel-servers'"
     [class.cpanel-vps-page]="slug() === 'cpanel-vps'"
+    [class.bio-link-page]="slug() === 'bio-link-digital-visiting-card'"
+    [class.general-compute-page]="slug() === 'general-compute'"
     [class.windows-servers-page]="slug() === 'windows-servers'"
     [class.domain-whois-page]="slug() === 'domain-whois-lookup'"
     [class.managed-kubernetes-page]="slug() === 'managed-kubernetes'"
@@ -409,6 +411,8 @@
           (tourRequested)="openProductScreenshotTour()"
           (talkRequested)="openCallback($event)"
         />
+      } @else if (slug() === 'wordpress-vps') {
+        <xh-imported-interactive-content class="wordpress-vps-hero" source="wordpress-vps-hero" />
       } @else if (slug() === 'managed-microsoft-sql') {
         <xh-managed-microsoft-sql-content [hero]="true" />
       } @else if (slug() === 'box-migration') {
@@ -1220,6 +1224,14 @@
           <div class="pph-scene vsaas-hero-art">
             <xh-vsaas-hero />
           </div>
+        } @else if (slug() === 'general-compute') {
+          <div class="pph-scene general-compute-hero-art">
+            <xh-imported-interactive-content source="general-compute-hero" />
+          </div>
+        } @else if (slug() === 'bio-link-digital-visiting-card') {
+          <div class="pph-scene bio-link-hero-art">
+            <xh-imported-interactive-content source="bio-link-hero" />
+          </div>
         } @else if (slug() === 'acronis-ai') {
           <div class="pph-scene acronis-ai-hero-art">
             <xh-imported-interactive-content source="acronis-ai-hero" />
@@ -1703,7 +1715,7 @@
             }
 
             @if (v.heroHighlight && slug() !== 'ai-voice-bot' && slug() !== 'managed-oracle-cloud' && slug() !== 'thawte-ssl-certificates') {
-              <p class="pp-tagline-support" [class.defender-hero-description]="slug() === 'microsoft-defender'" [class.b300-hero-summary]="slug() === 'nvidia-b300'" [attr.data-preserve-copy]="slug() === 'nvidia-b300' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || slug() === 'vdpo-as-a-service' ? '' : null">{{ v.heroHighlight }}</p>
+              <p class="pp-tagline-support" [class.defender-hero-description]="slug() === 'microsoft-defender'" [class.b300-hero-summary]="slug() === 'nvidia-b300'" [attr.data-preserve-copy]="slug() === 'general-compute' || slug() === 'nvidia-b300' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || slug() === 'vdpo-as-a-service' ? '' : null">{{ v.heroHighlight }}</p>
             }
             @if (v.heroMessages.length) {
               <div class="pp-typewriter" aria-live="polite">
@@ -1721,7 +1733,16 @@
 
             <div class="pp-hero-grid">
               <div class="pp-hero-l">
-                @if (usesVpsPageTemplate()) {
+                @if (slug() === 'general-compute') {
+                  <div class="general-compute-hero-points" aria-label="General Compute features">
+                    <div><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg></span>1:4 vCPU:RAM &middot; 1 to 64 vCPU</div>
+                    <div><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h8l-1 8 10-12h-8z"/></svg></span>Launch in about a minute</div>
+                    <div><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="6" height="8" rx="1"/><rect x="15" y="8" width="6" height="8" rx="1"/><path d="M9 12h6M12 9l3 3-3 3"/></svg></span>Auto-scaling &amp; load balancing</div>
+                    <div><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v5M5 17v-3h14v3"/></svg></span>Private VLANs &amp; floating IPs</div>
+                    <div><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>Firewall &amp; security groups built in</div>
+                    <div><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12M6 9h12M15 20L8 13h2a4 4 0 000-8"/></svg></span>Hourly, monthly or reserved</div>
+                  </div>
+                } @else if (usesVpsPageTemplate()) {
                   <div class="openclaw-left-features" [attr.aria-label]="v.name + ' features'">
                     <div><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9 17h6"/></svg></span>{{ slug() === 'cpanel-vps' ? 'cPanel & WHM hosting' : 'Always-on AI agent host' }}</div>
                     <div><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 8v4l3 2"/></svg></span>{{ slug() === 'cpanel-vps' ? 'Websites, email & databases' : 'systemd auto-restart' }}</div>
@@ -1760,21 +1781,6 @@
                   <a class="btn btn-primary" href="#" id="ppEnquiry" (click)="openCallback($event)"
                     >Let's Talk</a
                   >
-                  @if (
-                    slug() === 'rtx-pro-6000' ||
-                    slug() === 'nvidia-rtx-6000-ada' ||
-                    slug() === 'rtx-a6000' ||
-                    slug() === 'rtx-8000'
-                  ) {
-                    <span class="rtx-nvidia-badge">
-                      <img
-                        src="/assets/images/nvidia-partner-badge.png"
-                        alt="NVIDIA"
-                        width="180"
-                        height="48"
-                      />
-                    </span>
-                  }
                 </div>
 
                 <section class="pp-ask-ai" aria-labelledby="ppAskAiTitle">
@@ -2479,7 +2485,14 @@
           } @else if (slug() === 'managed-redis') {
             <xh-managed-redis-content (quoteRequested)="requestManagedDatabaseQuote($event)" />
           } @else {
-          @if (slug() !== 'identity-resilience' && slug() !== 'ediscovery-and-compliance' && slug() !== 'cpu-optimized' && slug() !== 'memory-optimized' && slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && slug() !== 'gpu-clusters' && slug() !== 'ai-chat-bot') {
+          @if (slug() === 'bio-link-digital-visiting-card') {
+            <xh-imported-interactive-content class="bio-link-source-content" source="bio-link" />
+          } @else if (slug() === 'general-compute') {
+            <xh-imported-interactive-content class="general-compute-source-content" source="general-compute" />
+          } @else if (slug() === 'wordpress-vps') {
+            <xh-imported-interactive-content class="wordpress-vps-source-content" source="wordpress-vps" />
+          }
+          @if (slug() !== 'bio-link-digital-visiting-card' && slug() !== 'general-compute' && slug() !== 'wordpress-vps' && slug() !== 'identity-resilience' && slug() !== 'ediscovery-and-compliance' && slug() !== 'cpu-optimized' && slug() !== 'memory-optimized' && slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && slug() !== 'gpu-clusters' && slug() !== 'ai-chat-bot') {
           @if (slug() === 'marketplace') {
             <xh-marketplace-content />
           } @else {
@@ -5459,7 +5472,7 @@
           }
           }
 
-          @if (v.name !== 'Tally on Cloud') {
+          @if (v.name !== 'Tally on Cloud' && slug() !== 'bio-link-digital-visiting-card' && slug() !== 'general-compute' && slug() !== 'wordpress-vps') {
           @if (
             slug() === 'bare-metal-servers' ||
             slug() === 'performance-cloud' ||
@@ -5522,6 +5535,7 @@
 
           @if (
             v.name !== 'Tally on Cloud' &&
+            slug() !== 'bio-link-digital-visiting-card' && slug() !== 'general-compute' && slug() !== 'wordpress-vps' &&
             slug() !== 'video-surveillance-as-a-service' &&
             slug() !== 'claude-backup' &&
             slug() !== 'plesk-servers' && slug() !== 'cpanel-servers' &&
@@ -5557,7 +5571,7 @@
             </div>
           }
           
-          <div id="ppRich" [hidden]="slug() === 'acronis-ai' || usesVpsPageTemplate() || slug() === 'managed-mongodb' || slug() === 'managed-redis' || isFrameworkDetail() || slug() === 'comodo-personal-authentication' || slug() === 'digicert-smime-class-1' || slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin' || slug() === 'erp-next-hosting' || slug() === 'odoo-hosting' || slug() === 'email-backup' || slug() === 'sectigo-ssl-certificates' || slug() === 'microsoft-365-to-google-workspace-migration'">
+          <div id="ppRich" [hidden]="slug() === 'wordpress-vps' || slug() === 'general-compute' || slug() === 'bio-link-digital-visiting-card' || slug() === 'acronis-ai' || usesVpsPageTemplate() || slug() === 'managed-mongodb' || slug() === 'managed-redis' || isFrameworkDetail() || slug() === 'comodo-personal-authentication' || slug() === 'digicert-smime-class-1' || slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin' || slug() === 'erp-next-hosting' || slug() === 'odoo-hosting' || slug() === 'email-backup' || slug() === 'sectigo-ssl-certificates' || slug() === 'microsoft-365-to-google-workspace-migration'">
 
 
 
