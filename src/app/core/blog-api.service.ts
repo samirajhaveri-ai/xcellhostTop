@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 import { catchError, combineLatest, EMPTY, expand, map, Observable, of, reduce, shareReplay, switchMap, timer, timeout, tap } from 'rxjs';
 
 import { environment } from '../../environments/environment';
@@ -116,6 +117,7 @@ interface YouTubeFeedItem {
 /** The single source of truth for blog content displayed by the Angular app. */
 @Injectable({ providedIn: 'root' })
 export class BlogApiService {
+  private readonly browser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly http = inject(HttpClient);
   private readonly baseUrl = environment.strapiUrl.replace(/\/$/, '');
   private readonly endpoint = `${this.baseUrl}/api/blogs`;
@@ -123,13 +125,13 @@ export class BlogApiService {
   private lastVideos: readonly CmsInsightResource[] = [];
 
   /** Refreshes in the background so CMS edits appear without rebuilding the UI. */
-  readonly posts$: Observable<readonly CmsBlogPost[]> = timer(0, 30_000).pipe(
+  readonly posts$: Observable<readonly CmsBlogPost[]> = this.browser ? timer(0, 30_000).pipe(
     switchMap(() => this.list()),
     shareReplay({ bufferSize: 1, refCount: true })
-  );
+  ) : of([]);
 
   /** Latest channel uploads, with a saved channel snapshot during outages. */
-  readonly videos$ = timer(0, 15 * 60_000).pipe(
+  readonly videos$ = this.browser ? timer(0, 15 * 60_000).pipe(
     switchMap(() =>
       this.listYouTubeVideos().pipe(
         catchError(() => this.http.get<YouTubeFeedResponse>('/feeds/youtube-snapshot.json').pipe(
@@ -144,7 +146,7 @@ export class BlogApiService {
       )
     ),
     shareReplay({ bufferSize: 1, refCount: true })
-  );
+  ) : of([]);
 
   /** Strapi Use Case collection, presented alongside blogs in the Insights hub. */
   readonly useCases$ = this.resourceStream('use-cases', 'use-case');
@@ -202,6 +204,8 @@ export class BlogApiService {
   }
 
   private resourceStream(endpoint: string, kind: CmsResourceKind): Observable<readonly CmsInsightResource[]> {
+    // Static page builds must not wait for live CMS pagination or periodic refreshes.
+    if (!this.browser) return of([]);
     return timer(0, 30_000).pipe(
       // These collections are optional while they are being created in Strapi.
       // Keep the timer alive after a 404 so newly published content appears later.

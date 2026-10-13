@@ -3,6 +3,12 @@ const path = require('node:path');
 const existing = require('./proxy.conf.json');
 
 module.exports = {
+  // Keep this regex first: Angular normalizes glob entries by moving them last.
+  '^/api/ai/': {
+    target: 'http://127.0.0.1:3001',
+    secure: false,
+    changeOrigin: false,
+  },
   '/api/ai-assistant': {
     target: 'http://localhost',
     bypass: require('./scripts/ai-dev-proxy.cjs'),

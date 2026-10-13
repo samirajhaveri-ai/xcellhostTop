@@ -1,195 +1,56 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  DestroyRef,
-  ElementRef,
-  Injector,
-  afterNextRender,
-  computed,
-  effect,
-  inject,
-  signal,
-  untracked,
-  viewChild,
-} from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-
+import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, Injector, afterNextRender, effect, inject, signal, viewChild } from '@angular/core';
 import { ChatService } from '../core/chat.service';
-import { LeadService } from '../core/lead.service';
+import { GENIE_STARTERS, formatAiText } from '../core/chat-api.service';
 import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from './callback-topic.service';
-import { environment } from '../../environments/environment';
-
-/** One rendered transcript bubble. */
-interface Bubble {
-  role: 'user' | 'bot';
-  html: SafeHtml;
-}
-
-/**
- * The floating website assistant: the `.bot-fab` launcher and the `.bot`
- * panel it toggles.
- *
- * Every answer, chip and busy flag comes from `ChatService`; this component
- * only renders them, keeps the transcript scrolled to the newest message and
- * wires the two human hand-offs (WhatsApp, callback modal).
- *
- * Visibility is owned by `OverlayService` under the id `'chat'`, which the
- * service deliberately excludes from body-scroll locking — the page behind the
- * assistant stays scrollable, exactly as it did originally.
- */
 @Component({
-  selector: 'xh-chatbot',
-  standalone: true,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: 'xh-chatbot', standalone: true, changeDetection: ChangeDetectionStrategy.OnPush,
   host: { style: 'display: contents' },
-  templateUrl: './chatbot.component.html',
+  templateUrl: './chatbot.component.html', styleUrl: './chatbot.component.css',
 })
 export class ChatbotComponent {
   readonly chat = inject(ChatService);
   readonly overlay = inject(OverlayService);
   private readonly topics = inject(CallbackTopicService);
-  private readonly leads = inject(LeadService);
-  private readonly sanitizer = inject(DomSanitizer);
   private readonly injector = inject(Injector);
-
-  private readonly bodyRef = viewChild<ElementRef<HTMLElement>>('botBody');
-  private readonly inputRef = viewChild<ElementRef<HTMLInputElement>>('botInput');
-
-  /** What is currently typed in `#botInput`. */
   readonly draft = signal('');
-
-  /** The fixed "Quick questions" row — the keys of `CHAT_QUICK`, title-cased. */
-  readonly quick: { key: string; label: string }[] = this.chat.quickKeys.map((key) => ({
-    key,
-    label: key.charAt(0).toUpperCase() + key.slice(1),
-  }));
-
-  /**
-   * Bot answers are HTML fragments from `chat.data.ts`; user text is escaped by
-   * `ChatService` before it is stored. Both are ours, so trusting them is safe.
-   */
-  readonly bubbles = computed<Bubble[]>(() =>
-    this.chat.messages().map((m) => ({
-      role: m.role,
-      html: this.sanitizer.bypassSecurityTrustHtml(m.html),
-    }))
-  );
-
-  /** The quick-question row is only offered before the first real exchange. */
-  readonly showQuick = computed(() => this.chat.messages().length <= 1);
-
-  /**
-   * Label the assistant honestly, as the original did: "AI" only when a chat
-   * endpoint is actually configured, "guided" when it is answering from the
-   * canned rules.
-   */
-  private readonly idleStatus = environment.chatEndpoint.trim()
-    ? 'AI assistant · answers in seconds'
-    : 'Guided assistant · 150+ services';
-
-  readonly status = computed(() => (this.chat.busy() ? 'Typing…' : this.idleStatus));
-
-  /** `#botEsc` carries the last eight turns across to WhatsApp, as the original did. */
-  readonly escHref = computed(() => {
-    const log = this.chat
-      .messages()
-      .slice(-8)
-      .map((m) => (m.role === 'user' ? 'Customer: ' : 'Bot: ') + this.plain(m.html));
-    return this.leads.whatsappLink(
-      [
-        'Hi XcellHost! I was chatting on your website.',
-        '',
-        ...log,
-        '',
-        'Please connect me with your sales team.',
-      ].join('\n')
-    );
-  });
-
+  readonly starters = GENIE_STARTERS;
+  readonly formatText = formatAiText;
+  private readonly body = viewChild<ElementRef<HTMLElement>>('botBody');
+  private readonly input = viewChild<ElementRef<HTMLTextAreaElement>>('botInput');
+  private readonly launcher = viewChild<ElementRef<HTMLButtonElement>>('launcher');
+  private wasOpen = false;
   private focusTimer?: ReturnType<typeof setTimeout>;
-
   constructor() {
-    /* greet on the first open, and put the caret in the input every time */
     effect(() => {
-      if (!this.overlay.isOpen('chat')) return;
-      untracked(() => this.chat.greet());
-      /* `.bot` transitions `visibility`, so the input is not focusable yet in
-         this task. Defer past the transition, as the original did. */
+      const open = this.overlay.isOpen('chat');
       if (this.focusTimer) clearTimeout(this.focusTimer);
-      this.focusTimer = setTimeout(() => this.inputRef()?.nativeElement.focus(), 300);
+      if (open) this.focusTimer = setTimeout(() => this.input()?.nativeElement.focus(), 330);
+      else if (this.wasOpen) this.launcher()?.nativeElement.focus();
+      this.wasOpen = open;
     });
-
-    inject(DestroyRef).onDestroy(() => {
-      if (this.focusTimer) clearTimeout(this.focusTimer);
-    });
-
-    /* keep the transcript pinned to the newest message */
     effect(() => {
-      this.chat.messages();
-      this.chat.busy();
-      afterNextRender(
-        () => {
-          const el = this.bodyRef()?.nativeElement;
-          if (el) el.scrollTop = el.scrollHeight;
-        },
-        { injector: this.injector }
-      );
+      this.chat.messages(); this.chat.busy(); this.chat.error();
+      afterNextRender(() => {
+        const body = this.body()?.nativeElement;
+        if (body) body.scrollTop = body.scrollHeight;
+      }, { injector: this.injector });
     });
+    inject(DestroyRef).onDestroy(() => { clearTimeout(this.focusTimer); this.chat.reset(); });
   }
-
-  /* ------------------------------------------------------------- panel */
-
-  toggle(): void {
-    if (this.overlay.isOpen('chat')) this.overlay.close('chat');
-    else this.overlay.open('chat');
+  toggle(): void { if (this.overlay.isOpen('chat')) this.close(); else this.overlay.open('chat'); }
+  close(): void { this.overlay.close('chat'); }
+  clear(): void { this.chat.reset(); this.draft.set(''); this.input()?.nativeElement.focus(); }
+  onInput(event: Event): void { this.draft.set((event.target as HTMLTextAreaElement).value); }
+  onKey(event: KeyboardEvent): void {
+    if (event.key === 'Enter' && !event.shiftKey && !event.isComposing) { event.preventDefault(); this.send(); }
   }
-
-  close(): void {
-    this.overlay.close('chat');
-  }
-
-  /* ---------------------------------------------------------- messaging */
-
-  onInput(ev: Event): void {
-    this.draft.set((ev.target as HTMLInputElement).value);
-  }
-
+  onEscape(event: Event): void { event.stopPropagation(); this.close(); }
   send(): void {
-    const text = this.draft().trim();
-    if (!text || this.chat.busy()) return;
-    this.draft.set('');
-    void this.chat.send(text);
+    if (!this.draft().trim() || this.chat.busy()) return;
+    const text = this.draft(); this.draft.set('');
+    void this.chat.send(text).then(() => { if (this.overlay.isOpen('chat')) this.input()?.nativeElement.focus(); });
   }
-
-  /** A chip was tapped — send it as if the visitor had typed it. */
-  sendText(text: string): void {
-    if (this.chat.busy()) return;
-    void this.chat.send(text);
-  }
-
-  askQuick(key: string): void {
-    if (this.chat.busy()) return;
-    this.chat.quick(key);
-  }
-
-  /* -------------------------------------------------------- escalation */
-
-  openCallback(): void {
-    this.topics.ask('Website assistant');
-    this.overlay.open('callback');
-  }
-
-  /** Flatten a stored HTML fragment back to the plain text WhatsApp needs. */
-  private plain(html: string): string {
-    return html
-      .replace(/<br\s*\/?>/gi, ' ')
-      .replace(/<[^>]+>/g, '')
-      .replace(/&amp;/g, '&')
-      .replace(/&lt;/g, '<')
-      .replace(/&gt;/g, '>')
-      .replace(/&quot;/g, '"')
-      .replace(/\s+/g, ' ')
-      .trim();
-  }
+  ask(text: string): void { if (!this.chat.busy()) void this.chat.send(text); }
+  openCallback(): void { this.topics.ask('XcellGenie specialist consultation'); this.overlay.open('callback'); }
 }

@@ -55,6 +55,10 @@
     [class.acronis-ot-page]="slug() === 'acronis-ot'"
     [class.acronis-mdr-page]="slug() === 'acronis-mdr'"
     [class.acronis-ai-page]="slug() === 'acronis-ai'"
+    [class.openclaw-page]="slug() === 'openclaw-vps'"
+    [class.druva-platform-page]="slug() === 'explore-druva-platform'"
+    [class.direct-backup-page]="slug() === 'acronis-direct-cloud-backup'"
+    [class.ssl47-page]="slug() === '47-days-ssl'"
     [class.microsoft-defender-page]="slug() === 'microsoft-defender'"
     [class.imunify360-page]="slug() === 'imunify360'"
     [class.email-archiving-page]="slug() === 'email-archiving'"
@@ -1219,9 +1223,21 @@
           <div class="pph-scene vsaas-hero-art">
             <xh-vsaas-hero />
           </div>
+        } @else if (slug() === '47-days-ssl') {
+          <div class="pph-scene ssl47-hero-art">
+            <xh-imported-interactive-content source="47-day-ssl-hero" />
+          </div>
         } @else if (slug() === 'acronis-ai') {
           <div class="pph-scene acronis-ai-hero-art">
             <xh-imported-interactive-content source="acronis-ai-hero" />
+          </div>
+        } @else if (slug() === 'acronis-direct-cloud-backup') {
+          <div class="pph-scene direct-backup-hero-art">
+            <xh-imported-interactive-content source="direct-backup-hero" />
+          </div>
+        } @else if (slug() === 'explore-druva-platform') {
+          <div class="pph-scene druva-hero-art">
+            <xh-imported-interactive-content source="druva-hero" />
           </div>
         } @else if (slug() === 'openclaw-vps') {
           <div class="pph-scene openclaw-hero-art">
@@ -2232,8 +2248,8 @@
         </div>
         <div class="pp-proof"><span>ISO 27001</span><span>ISO 20000-1</span><span>Microsoft partner</span><span>Since 1999</span><span>24×7 support</span></div>
       </div></div>
-    } @else if (slug() === 'acronis-ai') {
-      <xh-imported-interactive-content source="acronis-ai" />
+    } @else if (slug() === 'acronis-ai' || slug() === 'explore-druva-platform' || slug() === 'acronis-direct-cloud-backup' || slug() === '47-days-ssl') {
+      <xh-imported-interactive-content [source]="slug() === '47-days-ssl' ? '47-day-ssl' : slug() === 'acronis-direct-cloud-backup' ? 'direct-backup' : slug() === 'explore-druva-platform' ? 'druva' : 'acronis-ai'" />
   <div class="pp-body microsoft-365-enterprise-extras">
     <div class="wrap">
       <section aria-labelledby="serviceSecurityTitle">
@@ -2253,28 +2269,50 @@
           }
         </div>
       </section>
+      @if (slug() !== 'explore-druva-platform' && slug() !== 'acronis-direct-cloud-backup' && slug() !== '47-days-ssl') {
       <section class="tally-videos" aria-labelledby="serviceActionTitle">
         <h2 class="pp-sec" id="serviceActionTitle">Watch it in action</h2>
         <div class="tally-video-grid single-video"><article class="tally-video-card">
-          <h3>Acronis AI overview</h3><div class="tally-video-frame">
-            <iframe src="https://www.youtube-nocookie.com/embed/s1Rxs7rWd2I?rel=0&amp;playsinline=1" title="Acronis AI overview" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <h3>{{ v.name }} overview</h3><div class="tally-video-frame">
+            <iframe src="https://www.youtube-nocookie.com/embed/s1Rxs7rWd2I?rel=0&amp;playsinline=1" [title]="v.name + ' overview'" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div></article></div>
       </section>
+      }
       <section aria-labelledby="serviceReviewsTitle">
         <h2 class="pp-sec" id="serviceReviewsTitle">What customers say</h2>
+        <!-- Use the shared testimonial cards for the backup platform pages. -->
+        @if (slug() === 'explore-druva-platform' || slug() === 'acronis-direct-cloud-backup' || slug() === '47-days-ssl') {
+          <div class="pp-tcards" id="ppRevs">
+            @for (review of v.reviews; track review.name) {
+              <article class="tcard">
+                <div class="quote-badge" aria-hidden="true">”</div>
+                <div class="tav" aria-hidden="true">{{ review.initials }}</div>
+                <div class="tname">{{ review.name }}</div>
+                <div class="trole">{{ review.role }}</div>
+                <div class="tstars" [attr.aria-label]="review.stars + ' out of 5 stars'">
+                  @for (slot of starSlots; track slot) { <span [class.off]="slot >= review.stars">★</span> }
+                </div>
+                <p>{{ review.quote }}</p>
+              </article>
+            }
+          </div>
+        } @else {
         <div class="pp-revs">
           @for (review of v.reviews; track review.name) {
             <div class="prv"><div class="stars" [attr.aria-label]="review.stars + ' out of 5 stars'">@for (slot of starSlots; track slot) { <span [class.off]="slot >= review.stars">★</span> }</div><p>“{{ review.quote }}”</p><cite><span class="rav">{{ review.initials }}</span><span><b>{{ review.name }}</b>{{ review.role }}</span></cite></div>
           }
         </div>
+        }
       </section>
       <section aria-labelledby="serviceFaqTitle">
         <h2 class="pp-sec pp-faq-heading" id="serviceFaqTitle">Frequently asked questions</h2>
         <div class="pp-faq"><xh-product-faq [faqs]="v.faqs" idPrefix="menuServiceFaq" /></div>
       </section>
-      <section id="ppBlog" class="acronis-ai-insights" aria-labelledby="acronisAiBlogTitle">
-        <h2 class="pp-sec" id="acronisAiBlogTitle">From our blog</h2>
-        <xh-insights-section [pageSlug]="slug()" />
+      <section id="ppBlog" class="acronis-ai-insights" [attr.aria-labelledby]="slug() === 'acronis-ai' ? 'acronisAiBlogTitle' : null" [attr.aria-label]="slug() === 'acronis-ai' ? null : 'Insights'">
+        @if (slug() === 'acronis-ai') {
+          <h2 class="pp-sec" id="acronisAiBlogTitle">From our blog</h2>
+        }
+        <xh-insights-section [pageSlug]="slug()" [pageAliases]="slug() === 'explore-druva-platform' ? ['druva', 'druva-resilience', 'data-protection', 'cloud-backup'] : []" [videos]="videosInInsights() ? productInsightVideos() : null" />
       </section>
       <section class="pp-cta service-closing-cta" aria-labelledby="serviceClosingTitle">
         <div>
@@ -4023,7 +4061,7 @@
                     >
                       <div class="tally-price-heading">
                         <span>Hardware + Security Bundle</span>
-                        <h2 id="smb-pricing-title">SMB Cybird Security Appliance</h2>
+                        <h2 id="smb-pricing-title">SMB Cyber Security Appliance</h2>
                         <p>
                           Choose a billing period, then select the security bundle that fits your
                           team.
