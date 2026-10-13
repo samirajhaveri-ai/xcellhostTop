@@ -8,11 +8,30 @@ export const routes: Routes = [
   { path: 'acronis-ai', title: 'Acronis AI Platform | XcellHost', data: { productSlug: 'acronis-ai' }, loadComponent: () => import('./pages/product.page').then(m => m.ProductPage) },
 
   {
+    path: 'cpanel-vps',
+    title: 'cPanel VPS - XcellHost',
+    data: { productSlug: 'cpanel-vps' },
+    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+  },
+
+  {
     path: 'geotrust-true-businessid', data: { businessIdVariant: 'single' },
     loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
   },
   {
     path: 'geotrust-true-businessid-multi-domain', data: { businessIdVariant: 'multi' },
+    loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
+  },
+  {
+    path: 'geotrust-true-businessid-ov',
+    title: 'GeoTrust TrueBusiness ID OV (FLEX) | XcellHost',
+    data: { businessIdVariant: 'ovFlex' },
+    loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
+  },
+  {
+    path: 'geotrust-true-businessid-ev',
+    title: 'GeoTrust True BusinessID with EV | XcellHost',
+    data: { businessIdVariant: 'ev' },
     loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
   },
   {

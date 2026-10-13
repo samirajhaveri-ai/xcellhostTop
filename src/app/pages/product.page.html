@@ -18,6 +18,7 @@
     [class.claude-backup-page]="slug() === 'claude-backup'"
     [class.plesk-servers-page]="slug() === 'plesk-servers'"
     [class.cpanel-servers-page]="slug() === 'cpanel-servers'"
+    [class.cpanel-vps-page]="slug() === 'cpanel-vps'"
     [class.windows-servers-page]="slug() === 'windows-servers'"
     [class.domain-whois-page]="slug() === 'domain-whois-lookup'"
     [class.managed-kubernetes-page]="slug() === 'managed-kubernetes'"
@@ -1239,9 +1240,9 @@
           <div class="pph-scene druva-hero-art">
             <xh-imported-interactive-content source="druva-hero" />
           </div>
-        } @else if (slug() === 'openclaw-vps') {
+        } @else if (usesVpsPageTemplate()) {
           <div class="pph-scene openclaw-hero-art">
-            <xh-imported-interactive-content source="openclaw-hero" />
+            <xh-imported-interactive-content [source]="slug() === 'cpanel-vps' ? 'cpanel-hero' : 'openclaw-hero'" />
           </div>
         } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
 
@@ -1618,8 +1619,8 @@
               </h1>
             } @else {
             <h1 id="ppTitle" [class.pp-title-compact]="compactHeroTitle()"
-              [xhFitBannerTitle]="isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || !!v.heroMessages[0]?.toLowerCase()?.startsWith('maximise online visibility')"
-              [bannerTitleMaxSize]="isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' ? 42 : 26">
+              [xhFitBannerTitle]="slug() === 'cpanel-vps' || isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || !!v.heroMessages[0]?.toLowerCase()?.startsWith('maximise online visibility')"
+              [bannerTitleMaxSize]="slug() === 'cpanel-vps' || isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' ? 42 : 26">
               <span class="pp-title-brand" [attr.aria-label]="'Xcell' + v.brandSuffix">
                 <span class="pp-brand-xcell">Xcell</span
                 ><span class="pp-brand-family">{{ v.brandSuffix }}</span>
@@ -1736,11 +1737,11 @@
 
             <div class="pp-hero-grid">
               <div class="pp-hero-l">
-                @if (slug() === 'openclaw-vps') {
-                  <div class="openclaw-left-features" aria-label="OpenClaw VPS features">
-                    <div><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9 17h6"/></svg></span>Always-on AI agent host</div>
-                    <div><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 8v4l3 2"/></svg></span>systemd auto-restart</div>
-                    <div><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-2.5 0-3.5 2-3.5 5 0 2-2 4-3 7-.5 2 1 4 3 4h7c2 0 3.5-2 3-4-1-3-3-5-3-7 0-3-1-5-3.5-5z"/><path d="M10 8h.01M14 8h.01"/></svg></span>Ubuntu LTS ready</div>
+                @if (usesVpsPageTemplate()) {
+                  <div class="openclaw-left-features" [attr.aria-label]="v.name + ' features'">
+                    <div><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9 17h6"/></svg></span>{{ slug() === 'cpanel-vps' ? 'cPanel & WHM hosting' : 'Always-on AI agent host' }}</div>
+                    <div><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 8v4l3 2"/></svg></span>{{ slug() === 'cpanel-vps' ? 'Websites, email & databases' : 'systemd auto-restart' }}</div>
+                    <div><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-2.5 0-3.5 2-3.5 5 0 2-2 4-3 7-.5 2 1 4 3 4h7c2 0 3.5-2 3-4-1-3-3-5-3-7 0-3-1-5-3.5-5z"/><path d="M10 8h.01M14 8h.01"/></svg></span>{{ slug() === 'cpanel-vps' ? 'AlmaLinux 9 ready' : 'Ubuntu LTS ready' }}</div>
                     <div><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>Root SSH · firewall</div>
                   </div>
                 } @else if (v.heroPoints.length) {
@@ -2773,8 +2774,8 @@
                     <xh-acronis-ot-content />
                   } @else if (slug() === 'n8n-vps') {
                     <xh-n8n-vps-content (planSelected)="selectN8nPlan($event)" (consultationRequested)="requestN8nConsultation()" />
-                  } @else if (slug() === 'openclaw-vps') {
-                    <xh-imported-interactive-content class="openclaw-page-content" source="openclaw" />
+                  } @else if (usesVpsPageTemplate()) {
+                    <xh-imported-interactive-content class="openclaw-page-content" [source]="slug() === 'cpanel-vps' ? 'cpanel' : 'openclaw'" />
                   } @else if (!isManagedMicrosoft365() && !isEntraIdBackup()) {
                     @if (slug() === 'rtx-8000') {
                       <section class="rtx-overview" aria-labelledby="rtxOverviewTitle">
@@ -3637,7 +3638,7 @@
                   </xh-rtx-a6000-pricing>
                 } @else if (slug() === 'n8n-vps') {
                   <!-- Pricing and included features render with the n8n overview above. -->
-                } @else if (slug() === 'openclaw-vps') {
+                } @else if (usesVpsPageTemplate()) {
                   <!-- Plans and the builder render with the imported overview above. -->
                 } @else if (slug() === 'plesk-servers' || slug() === 'cpanel-servers') {
                   <!-- Bundles and the configurator render in the supplied server overview. -->
@@ -3903,7 +3904,7 @@
                   !isSiteLock() &&
                   !isManagedMicrosoft365() &&
                   !isEntraIdBackup() &&
-                  slug() !== 'n8n-vps' && slug() !== 'openclaw-vps' &&
+                  slug() !== 'n8n-vps' && !usesVpsPageTemplate() &&
                   slug() !== 'billing-software' &&
                   slug() !== 'digital-menu-and-catalog-management' &&
                   slug() !== 'ai-review-magicqr' &&
@@ -4563,7 +4564,7 @@
                   !isSiteLock() &&
                   !isManagedMicrosoft365() &&
                   !isEntraIdBackup() &&
-                  slug() !== 'n8n-vps' && slug() !== 'openclaw-vps' &&
+                  slug() !== 'n8n-vps' && !usesVpsPageTemplate() &&
                   slug() !== 'billing-software' &&
                   slug() !== 'digital-menu-and-catalog-management' &&
                   slug() !== 'ai-review-magicqr' &&
@@ -5216,7 +5217,7 @@
                   slug() !== 'plesk-servers' && slug() !== 'cpanel-servers' &&
                   v.name !== 'Tally on Cloud' &&
                   slug() !== 'rtx-a6000' &&
-                   slug() !== 'n8n-vps' && slug() !== 'openclaw-vps' &&
+                   slug() !== 'n8n-vps' && !usesVpsPageTemplate() &&
                   slug() !== 'billing-software' &&
                   slug() !== 'digital-menu-and-catalog-management' &&
                   slug() !== 'ai-review-magicqr' &&
@@ -5502,6 +5503,7 @@
             slug() === 'performance-cloud' ||
             slug() === 'gpu-servers'
           ) {
+            <xh-global-infrastructure-globe />
             <xh-bare-metal-content [dataCenterOnly]="true" />
           }
             @if (slug() === 'rtx-8000') {
@@ -5593,7 +5595,7 @@
             </div>
           }
           
-          <div id="ppRich" [hidden]="slug() === 'acronis-ai' || slug() === 'openclaw-vps' || slug() === 'managed-mongodb' || slug() === 'managed-redis' || isFrameworkDetail() || slug() === 'comodo-personal-authentication' || slug() === 'digicert-smime-class-1' || slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin' || slug() === 'erp-next-hosting' || slug() === 'odoo-hosting' || slug() === 'email-backup' || slug() === 'sectigo-ssl-certificates' || slug() === 'microsoft-365-to-google-workspace-migration'">
+          <div id="ppRich" [hidden]="slug() === 'acronis-ai' || usesVpsPageTemplate() || slug() === 'managed-mongodb' || slug() === 'managed-redis' || isFrameworkDetail() || slug() === 'comodo-personal-authentication' || slug() === 'digicert-smime-class-1' || slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin' || slug() === 'erp-next-hosting' || slug() === 'odoo-hosting' || slug() === 'email-backup' || slug() === 'sectigo-ssl-certificates' || slug() === 'microsoft-365-to-google-workspace-migration'">
 
 
 
@@ -6234,7 +6236,7 @@
               <xh-digicert-smime-related />
             }
           } @else {
-          <div class="pp-sec pp-faq-heading" [attr.id]="slug() === 'openclaw-vps' ? 'openclawFaq' : isTally() ? 'tallyFaq' : slug() === 'cpu-optimized' ? 'cpuFaq' : slug() === 'memory-optimized' ? 'memoryFaq' : usesContainerRegistryTemplate() ? 'registryFaq' : null" [style.margin-top.px]="slug() === 'performance-cloud' || slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Frequently asked questions</div>
+          <div class="pp-sec pp-faq-heading" [attr.id]="usesVpsPageTemplate() ? (slug() === 'cpanel-vps' ? 'cpanelFaq' : 'openclawFaq') : isTally() ? 'tallyFaq' : slug() === 'cpu-optimized' ? 'cpuFaq' : slug() === 'memory-optimized' ? 'memoryFaq' : usesContainerRegistryTemplate() ? 'registryFaq' : null" [style.margin-top.px]="slug() === 'performance-cloud' || slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">Frequently asked questions</div>
           @if (slug() === 'domain-whois-lookup') {
             <xh-domain-whois-faq />
           } @else if (slug() === 'managed-oracle-cloud') {

@@ -6330,6 +6330,20 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 #ppage .openclaw-hero-art>xh-imported-interactive-content{display:block;flex:1 1 100%;width:100%;min-width:0}
 @media(max-width:900px){#ppage:has(.openclaw-hero-art) .pph-scene.openclaw-hero-art{grid-column:1;grid-row:2;margin:0 auto}}
 
+
+/* Keep the cPanel VPS console and imported sections inside the page container. */
+#ppage.cpanel-vps-page .openclaw-page-content{width:100%!important;max-width:100%!important;margin-left:0!important}
+#ppage.cpanel-vps-page .openclaw-hero-art{max-height:none;overflow:visible}
+#ppage.cpanel-vps-page .pp-hero #ppTitle{display:block!important;white-space:nowrap!important;text-wrap:nowrap!important;font-size:var(--banner-title-size,42px)!important}
+#ppage.cpanel-vps-page .pp-hero #ppTitle .pp-title-name{display:inline!important;white-space:nowrap!important;font-size:inherit!important}
+@media(min-width:901px){
+  #ppage.cpanel-vps-page .pph-scene.openclaw-hero-art{right:max(24px,calc((100% - 1240px)/2 + 24px))!important;top:50%;bottom:auto;transform:translateY(-50%);width:min(44%,540px)!important;max-width:none!important}
+  #ppage.cpanel-vps-page .pp-hero>.wrap>:is(h1,.pp-tagline,.pp-tagline-support,.pp-typewriter,.pp-hero-grid){max-width:52%}
+}
+@media(max-width:900px){
+  #ppage.cpanel-vps-page .pph-scene.openclaw-hero-art{top:auto;transform:none}
+}
+
 /* Supplied Acronis AI console and wordmark within the default product hero. */
 #ppage:is(.acronis-ai-page,.druva-platform-page,.direct-backup-page,.ssl47-page,:has(.openclaw-hero-art))>.pp-hero{display:grid;grid-template-columns:minmax(0,600px) minmax(0,500px);justify-content:center;align-items:start;gap:40px;padding:40px 24px;height:auto;max-height:none}
 #ppage:has(.openclaw-hero-art)>.pp-hero{grid-template-columns:minmax(0,560px) minmax(0,600px)}

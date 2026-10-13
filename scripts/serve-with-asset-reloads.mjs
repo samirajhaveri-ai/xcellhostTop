@@ -1,5 +1,5 @@
 import { spawn } from 'node:child_process';
-import { watch, readdirSync } from 'node:fs';
+import { watch, readFileSync, readdirSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -25,6 +25,7 @@ function listFiles() {
 let knownFiles = listFiles();
 let server;
 let scanTimer;
+let proxyScanTimer;
 let restarting = false;
 let stopping = false;
 
@@ -70,10 +71,20 @@ const assetWatchers = assetRoots.map((root) =>
 );
 
 const proxyFiles = ['proxy.conf.cjs', 'proxy.conf.json', 'scripts/ai-dev-proxy.cjs'];
+const proxyContents = new Map(proxyFiles.map(file => [file, readFileSync(join(projectRoot, file), 'utf8')]));
 const proxyWatchers = proxyFiles.map(file =>
   watch(join(projectRoot, file), () => {
-    clearTimeout(scanTimer);
-    scanTimer = setTimeout(() => restartServer('Proxy configuration changed.'), 500);
+    clearTimeout(proxyScanTimer);
+    proxyScanTimer = setTimeout(() => {
+      let changed = false;
+      for (const candidate of proxyFiles) {
+        const contents = readFileSync(join(projectRoot, candidate), 'utf8');
+        if (contents === proxyContents.get(candidate)) continue;
+        proxyContents.set(candidate, contents);
+        changed = true;
+      }
+      if (changed) restartServer('Proxy configuration changed.');
+    }, 500);
   }),
 );
 const watchers = [...assetWatchers, ...proxyWatchers];
@@ -82,6 +93,7 @@ for (const signal of ['SIGINT', 'SIGTERM']) {
   process.on(signal, () => {
     stopping = true;
     clearTimeout(scanTimer);
+    clearTimeout(proxyScanTimer);
     for (const watcher of watchers) watcher.close();
     server?.kill(signal);
   });
