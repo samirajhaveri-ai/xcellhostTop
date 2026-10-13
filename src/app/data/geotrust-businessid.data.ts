@@ -159,6 +159,102 @@ export const BUSINESSID_PAGES = {
         "answer": "The DNS or email check is quick once the record is in place. The business check usually takes 1–3 business days on a first order, faster when your company records and directory listing already match. Later reissues come through in minutes."
       }
     ]
+  },
+  "ev": {
+    "variant": "ev",
+    "slug": "geotrust-true-businessid-ev",
+    "name": "GeoTrust True BusinessID with EV",
+    "heroId": "geHero",
+    "faqs": [
+      {
+        "question": "What is GeoTrust True BusinessID with EV?",
+        "answer": "It is GeoTrust's Extended Validation SSL certificate for one website. It encrypts traffic like any SSL certificate, and it also carries your verified legal name, registration number and country, checked under the CA/Browser Forum's EV Guidelines."
+      },
+      {
+        "question": "What does EV vetting check?",
+        "answer": "That your organisation legally exists and is active, operates from a verifiable address, has been trading for a while (or can show a bank or CA letter), that the person ordering is authorised, and finally a call to a number listed in a public directory. Domain control is checked too."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "Anywhere from a few hours to a few days. Most Indian companies with documents ready are issued within 1–5 business days. The biggest delays are mismatched addresses and missed verification calls, which we chase for you."
+      },
+      {
+        "question": "Do browsers still show a green address bar?",
+        "answer": "No. Major browsers retired the green bar in 2019. Your verified organisation details now appear when a visitor opens the padlock or clicks the True Site seal, and anti-phishing tools can still read the EV data."
+      },
+      {
+        "question": "Which documents does an Indian company need?",
+        "answer": "Usually MCA master data (CIN or LLPIN) or another registration, your GSTIN, an EV request signed by a director or officer, a company phone number listed in a public directory and, for organisations under about three years old, a bank confirmation or CA letter. We check that names and addresses match before ordering."
+      },
+      {
+        "question": "Can I add more domains or a wildcard?",
+        "answer": "Not on this certificate. It covers one domain with and without www. EV certificates can never include wildcards or IP addresses. For several domains on one EV certificate choose True BusinessID EV Multi-Domain."
+      },
+      {
+        "question": "How long is the certificate valid?",
+        "answer": "Since 15 March 2026 a single certificate can be valid for at most 200 days, falling to 100 days in 2027 and 47 days in 2029. You can still buy 1, 2 or 3 years: it's a subscription, and each reissue in the term is free. XcellHost handles the reissues and the yearly EV refresh."
+      },
+      {
+        "question": "What is the True Site seal?",
+        "answer": "A dynamic GeoTrust seal for your pages that shows your organisation name with the date and a timestamp. Clicking it opens GeoTrust's verification page, so a copied image doesn't work."
+      }
+    ]
+  },
+  "ovFlex": {
+    "variant": "ovFlex",
+    "slug": "geotrust-true-businessid-ov",
+    "name": "GeoTrust TrueBusiness ID OV (FLEX)",
+    "heroId": "gtoHero",
+    "faqs": [
+      {
+        "question": "What is GeoTrust True BusinessID (FLEX)?",
+        "answer": "It's GeoTrust's organisation-validated SSL certificate with a flexible name list. One certificate can hold 1 to 250 names, and each slot can be a standard domain, a wildcard or a public IP address. You can add names during the term."
+      },
+      {
+        "question": "How is FLEX different from a multi-domain wildcard certificate?",
+        "answer": "A multi-domain wildcard usually starts at three names, makes every name except the main one a wildcard and needs a standard main name. FLEX lets you start with one name, mix standard names and wildcards freely, make the main name a wildcard and add public IPs."
+      },
+      {
+        "question": "Can I put an IP address on the certificate?",
+        "answer": "Yes, public IPv4 addresses you control. Private or reserved addresses (10.x, 172.16–31.x, 192.168.x) can't go on any public certificate. IP entries are priced like standard SANs."
+      },
+      {
+        "question": "How long does OV validation take?",
+        "answer": "Usually 1–3 business days for a new organisation, depending on how quickly your records and phone number are matched. Names added later, or reissues while your OV details are current, usually come through within hours."
+      },
+      {
+        "question": "Which documents will an Indian company need?",
+        "answer": "Usually MCA master data with your CIN, or a GSTIN, Udyam or Shop & Establishment registration for other entity types, plus a phone number listed in a public directory. We check that names and addresses match before ordering."
+      },
+      {
+        "question": "Why is the certificate reissued about twice a year?",
+        "answer": "Since 15 March 2026 browsers accept public certificates valid for at most 200 days. That falls to 100 days in 2027 and 47 days in 2029. A multi-year purchase is a subscription: you pay once and get fresh certificates through the term, free. XcellHost installs each one, or you can automate it with ACME."
+      },
+      {
+        "question": "Can I add names after the certificate is issued?",
+        "answer": "Yes. Add standard names, wildcards or IPs at any time, up to 250 in total. New entries pass a control check, the certificate is reissued with the full list, and you pay only for what you added for the rest of the term."
+      },
+      {
+        "question": "Does a wildcard cover every level of subdomain?",
+        "answer": "No. *.yourbusiness.in covers shop.yourbusiness.in and mail.yourbusiness.in, but not a.b.yourbusiness.in or the bare yourbusiness.in. Add the bare domain or a deeper wildcard as its own entry; the builder above flags what's already covered."
+      },
+      {
+        "question": "Does this include malware scanning or a vulnerability assessment?",
+        "answer": "No. True BusinessID (FLEX) covers encryption, organisation validation and the True Site seal. For scanning and monitoring, add one of XcellHost's website security plans alongside it."
+      },
+      {
+        "question": "How does GeoTrust relate to DigiCert?",
+        "answer": "GeoTrust is a DigiCert brand. Its certificates are validated by DigiCert's teams, chain to DigiCert's public roots and are managed in DigiCert CertCentral, so trust and compatibility match DigiCert's own certificates."
+      },
+      {
+        "question": "Can I install it on several servers?",
+        "answer": "Yes. Server licences are unlimited, so the same certificate can run on every server that answers for a name on the list, whether origin, CDN, load balancer or appliance. Reissues for key changes or server moves are free."
+      },
+      {
+        "question": "Are the prices final, and can I get a refund?",
+        "answer": "Prices are indicative, in rupees, and exclude 18% GST. Final certificate, SAN, wildcard and installation prices are confirmed on your quotation, along with the 30-day refund terms for your order."
+      }
+    ]
   }
 } as const;
 export type BusinessIdVariant = keyof typeof BUSINESSID_PAGES;

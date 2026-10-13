@@ -1,12 +1,11 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, afterNextRender, effect, inject, input, output, signal, untracked, viewChild } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { environment } from '../../environments/environment';
+import { ChatApiService, GENIE_STARTERS, formatAiText } from '../core/chat-api.service';
 
 interface AiSource { title: string; url: string; }
 interface ChatMessage { id: number; role: 'user' | 'assistant'; text: string; sources?: AiSource[]; }
 
 @Component({
-  selector: 'xh-ai-assistant', standalone: true, imports: [RouterLink],
+  selector: 'xh-ai-assistant', standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './ai-assistant.component.html', styleUrl: './ai-assistant.component.css',
 })
@@ -19,7 +18,8 @@ export class AiAssistantComponent {
   readonly error = signal('');
   readonly copied = signal<number | null>(null);
   readonly composerNotice = signal('');
-  readonly prompts = ['Which cloud solution is right for my business?', 'How can I protect my business from cyber threats?', 'How do I back up Microsoft 365 data?', 'Tell me about Tally on Cloud'];
+  readonly prompts = GENIE_STARTERS;
+  private readonly api = inject(ChatApiService);
   private readonly composer = viewChild<ElementRef<HTMLTextAreaElement>>('composer');
   private readonly thread = viewChild<ElementRef<HTMLElement>>('thread');
   private controller?: AbortController;
@@ -77,17 +77,9 @@ export class AiAssistantComponent {
     this.busy.set(true); this.error.set(''); this.scrollToLatest();
     const timeout = setTimeout(() => controller.abort(), 45000);
     try {
-      const response = await fetch(environment.aiSearchEndpoint, {
-        method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: controller.signal,
-        body: JSON.stringify({ messages: this.messages().slice(-12).map(({ role, text }) => ({ role, content: text })) }),
-      });
-      const body = await response.json();
-      if (!response.ok) throw new Error(typeof body.error === 'string' ? body.error : 'The assistant is unavailable. Please try again.');
-      if (typeof body.answer !== 'string' || !body.answer.trim()) throw new Error('The assistant could not answer. Please try again.');
+      const body = await this.api.ask(this.messages().map(({ role, text }) => ({ role, content: text })), controller.signal);
       if (generation !== this.generation) return;
-      const sources: AiSource[] = Array.isArray(body.sources) ? body.sources.filter((source: AiSource) =>
-        typeof source?.title === 'string' && typeof source?.url === 'string' && /^\/(?!\/)[a-zA-Z0-9/_.-]*$/.test(source.url)
-      ).slice(0, 6) : [];
+      const sources: AiSource[] = body.sources;
       this.messages.update(items => [...items, { id: this.nextId++, role: 'assistant', text: body.answer, sources }]);
     } catch (error) {
       if (generation !== this.generation) return;
@@ -117,11 +109,7 @@ export class AiAssistantComponent {
   }
 
   formatText(text: string): string {
-    // Escape all model HTML before adding a small set of presentation tags.
-    return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-      .replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>')
-      .replace(/^#{1,3} (.+)$/gm, '<strong>$1</strong>')
-      .replace(/^[-*] /gm, '• ');
+    return formatAiText(text);
   }
 
   private scrollToLatest(): void {

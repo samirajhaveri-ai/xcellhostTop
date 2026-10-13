@@ -5,7 +5,7 @@ import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { SeoService } from '../core/seo.service';
 import { ProductPage } from './product.page';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 type CertificateTier = 'DV' | 'OV' | 'EV';
 type CertificateFilter = 'all' | CertificateTier | 'Wildcard' | 'Multi';
@@ -35,6 +35,7 @@ export class GeoTrustSslCertificatesPage {
   private readonly seo = inject(SeoService);
   private readonly overlay = inject(OverlayService);
   private readonly topics = inject(CallbackTopicService);
+  private readonly router = inject(Router);
 
   readonly filter = signal<CertificateFilter>('all');
   readonly quantities = signal<Record<string, number>>({});
@@ -43,10 +44,14 @@ export class GeoTrustSslCertificatesPage {
     return this.quantities()[product.id] ?? 1;
   }
 
+  quantityMax(product: GeoTrustProduct): number {
+    return product.id === 'tb-ov-flex' ? 99 : 9999;
+  }
+
   adjustQuantity(product: GeoTrustProduct, change: number): void {
     this.quantities.update(values => ({
       ...values,
-      [product.id]: Math.max(1, Math.min(9999, (values[product.id] ?? 1) + change)),
+      [product.id]: Math.max(1, Math.min(this.quantityMax(product), (values[product.id] ?? 1) + change)),
     }));
   }
   readonly filters: Array<{ value: CertificateFilter; label: string }> = [
@@ -91,6 +96,14 @@ export class GeoTrustSslCertificatesPage {
   }
 
   configure(product: GeoTrustProduct): void {
+    if (product.id === 'tb-ev' || product.id === 'tb-ov-flex') {
+      const quantity = this.quantity(product);
+      const slug = product.id === 'tb-ov-flex' ? 'geotrust-true-businessid-ov' : 'geotrust-true-businessid-ev';
+      void this.router.navigate(['/' + slug], {
+        queryParams: quantity > 1 ? { quantity } : undefined,
+      });
+      return;
+    }
     this.topics.ask(`${product.name} - ${this.quantity(product)} certificate(s)`);
     this.overlay.open('callback');
   }

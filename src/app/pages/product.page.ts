@@ -130,6 +130,11 @@ import { EnterpriseDrDetailsComponent } from '../sections/enterprise-dr-details.
 
 import { AiLabContentComponent } from '../sections/ai-lab-content.component';
 import { AI_LAB_FAQS } from '../data/ai-lab-faqs.data';
+import { ACRONIS_AI_FAQS } from '../data/acronis-ai-faqs.data';
+import { DRUVA_FAQS } from '../data/druva-faqs.data';
+import { DRUVA_WHY } from '../data/druva-why.data';
+import { DIRECT_BACKUP_FAQS } from '../data/acronis-direct-backup-faqs.data';
+import { DIRECT_BACKUP_WHY } from '../data/acronis-direct-backup-why.data';
 import { AcronisMdrContentComponent } from '../sections/acronis-mdr-content.component';
 import { AcronisMdrHeroComponent } from '../sections/acronis-mdr-hero.component';
 import { MicrosoftDefenderHeroComponent } from '../sections/microsoft-defender-hero.component';
@@ -2956,6 +2961,10 @@ class ProductPageComponent {
     initialValue: '',
   });
 
+  readonly usesVpsPageTemplate = computed(() =>
+    this.slug() === 'openclaw-vps' || this.slug() === 'cpanel-vps',
+  );
+
   readonly usesContainerRegistryTemplate = computed(() =>
     this.slug() === 'container-registry' || this.slug() === 'container-as-a-service',
   );
@@ -2991,13 +3000,87 @@ class ProductPageComponent {
     const view = this.resolve(slug);
     if (!view) return null;
 
+    if (slug === '47-days-ssl') return {
+      ...view,
+      tagline: "Certificate lifetimes are shrinking. Spreadsheets and calendar reminders won't keep up.",
+      heroHighlight: 'Public SSL/TLS certificates now last at most 200 days, 100 days from March 2027 and 47 days from March 2029. XcellHost sets up Sectigo Certificate Manager with ACME so every renewal happens on its own — and watches it 24×7 from Mumbai.',
+      heroMessages: [
+        'Renewals eight times a year, zero tickets',
+        'Find every certificate before it expires',
+        'ACME renews, installs and reloads for you',
+        'Ready for 100 days in 2027 and 47 in 2029',
+      ],
+    };
+
+    if (slug === 'acronis-direct-cloud-backup') return {
+      ...view,
+      faqs: DIRECT_BACKUP_FAQS,
+      why: DIRECT_BACKUP_WHY,
+      tagline: 'Back up straight into the cloud storage you choose.',
+      heroHighlight: 'XcellHost sets up and runs Acronis backup that writes directly to your own S3-compatible bucket — AWS Mumbai, Hyderabad or any S3 store — with Object Lock immutability, AES-256 encryption and no gateway in between.',
+      heroMessages: [
+        'Your bucket, your bill, your keys',
+        'Object Lock: ransomware cannot delete it',
+        'AWS Mumbai today, Hyderabad as a second copy',
+        'One console for every server, VM, laptop and mailbox',
+      ],
+      heroPoints: [
+        'Direct to S3 — no gateway box',
+        'Object Lock immutable copies',
+        'AES-256 at rest & in transit',
+        'AWS Mumbai · Hyderabad regions',
+      ],
+    };
+
+    if (slug === 'explore-druva-platform') return {
+      ...view,
+      faqs: DRUVA_FAQS,
+      why: DRUVA_WHY,
+      tagline: 'The Resilience Cloud for the AI enterprise.',
+      heroHighlight: 'Ransomware. Compromised identity. Rogue AI. Resilience as a service that gets you through your worst day — set up, monitored and billed in rupees by XcellHost.',
+      heroMessages: [
+        'Ransomware locks the file server at 2 a.m.',
+        'A phished admin starts deleting mailboxes',
+        'An AI agent rewrites 1,240 shared files',
+        'The only copy leaves on a stolen laptop',
+      ],
+      heroPoints: [
+        'Clean recovery from ransomware',
+        'Entra ID, Active Directory & Okta',
+        'Undo what AI agents change',
+        'M365, laptops, VMs & cloud',
+        '100% SaaS — no hardware',
+        'Immutable, air-gapped copies',
+      ],
+    };
+
+    if (slug === 'cpanel-vps') return {
+      ...view,
+      brandSuffix: 'VPS',
+      faqs: [
+        ['What is cPanel VPS?', 'A virtual private server with cPanel & WHM for managing websites, domains, email, databases and hosting accounts from a control panel.'],
+        ['Is the cPanel licence included in the server price?', 'The VPS and cPanel licence are shown separately in the builder. Select Admin, Pro or Premier to see the combined estimate. Prices are indicative until confirmed in your quotation.'],
+        ['Which operating system can I choose?', 'These plans use AlmaLinux, with CloudLinux available on request. Choose the AlmaLinux configuration in the builder and contact our team for other requirements.'],
+        ['Can you help migrate my existing websites?', 'Contact the XcellHost team to discuss moving your websites, email and databases and to agree the migration scope.'],
+        ['Can I add backups and managed support?', 'Yes. Select daily backups or managed support in the server builder to include them in your estimate and quotation.'],
+      ],
+
+    };
+
     if (slug === 'acronis-ai') return {
       ...view,
-      tagline: 'AI-native protection, management and automation',
-      heroHighlight: 'One agent, one data model, one console',
-      heroMessages: ['Cyber Console · Cyber Intelligence · Service Desk · Cyber Studio · Cyber Frame'],
-      heroPoints: ['Backup, EDR and RMM on one platform', 'Agentic workflows with human approval', 'GenAI protection and prompt DLP', '24×7 support from XcellHost'],
+      faqs: ACRONIS_AI_FAQS,
+      tagline: 'The AI-native platform to protect, manage and automate IT.',
+      heroHighlight: 'A new generation of cyber products for a world where agents do the work — one data model, agentic workflows, and a human approval wherever it matters. Deployed and supported in India by XcellHost.',
+      heroMessages: [
+        'An alert comes in. A ticket, root cause and fix go out.',
+        'Agents patch, back up and remediate — you approve',
+        'Stop PAN and Aadhaar numbers leaking into AI prompts',
+        'One console for your technicians and their AI agents',
+      ],
+      heroPoints: ['AI-native Cyber Console', 'Agentic workflows + approvals', 'Backup, EDR & RMM in one', 'GenAI prompt DLP'],
       videos: ['s1Rxs7rWd2I', ''],
+
     };
 
     if (slug === 'ai-receptionist') return {
@@ -4161,6 +4244,9 @@ class ProductPageComponent {
 
   readonly productInsightVideos = computed(() => {
     const additional: Record<string, readonly { title: string; source: string }[]> = {
+      '47-days-ssl': [{ title: '47-Days-SSL overview', source: 'https://www.youtube-nocookie.com/embed/s1Rxs7rWd2I?rel=0&playsinline=1' }],
+      'acronis-direct-cloud-backup': [{ title: 'Acronis Direct Cloud Backup overview', source: 'https://www.youtube-nocookie.com/embed/s1Rxs7rWd2I?rel=0&playsinline=1' }],
+      'explore-druva-platform': [{ title: 'Explore Druva Platform overview', source: 'https://www.youtube-nocookie.com/embed/s1Rxs7rWd2I?rel=0&playsinline=1' }],
       'vortex-seg': [{ title: 'Elevate your email security with Vortex SEG', source: 'https://www.youtube-nocookie.com/embed/OQAmgvXsfyI?rel=0&playsinline=1' }],
       'vortex-soc': [{ title: 'Vortex SOC security operations', source: 'https://www.youtube-nocookie.com/embed/0tdN-nnDMHk?rel=0&playsinline=1' }],
       'scrutiny-dlp': [{ title: 'Scrutiny DLP - Product Intro', source: 'https://www.youtube-nocookie.com/embed/xpKcsUPT0ZA?rel=0&playsinline=1' }],

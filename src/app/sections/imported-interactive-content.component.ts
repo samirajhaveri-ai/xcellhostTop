@@ -5,6 +5,10 @@ import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 
 type InteractiveContentSource =
+  | 'cpanel' | 'cpanel-hero'
+  | '47-day-ssl' | '47-day-ssl-hero'
+  | 'direct-backup' | 'direct-backup-hero'
+  | 'druva' | 'druva-hero'
   | 'acronis-ai' | 'acronis-ai-hero' | 'openclaw' | 'openclaw-hero' | 'kubernetes' | 'podcasts' | 'deepcall' | 'workspace'
   | 'rapidssl' | 'sectigo' | 'sectigo-ev' | 'mark' | 'website-security'
   | 'certificate-management' | 'code-signing-certificates' | 'email-signing-certificates'
@@ -14,8 +18,8 @@ type InteractiveContentSource =
 @Component({
   selector: 'xh-imported-interactive-content',
   standalone: true,
-  host: { '[class.openclaw-page-content]': "source === 'openclaw'" },
-  template: `<iframe #frame [style.min-height.px]="source === 'openclaw-hero' || source === 'acronis-ai-hero' ? 0 : 600"
+  host: { '[class.openclaw-page-content]': "source === 'openclaw' || source === 'cpanel'" },
+  template: `<iframe #frame [style.min-height.px]="source.endsWith('-hero') ? 0 : 600"
     [src]="contentUrl" [title]="contentTitle" scrolling="no" (load)="onLoad()"></iframe>`,
   styles: [`:host{display:block}iframe{display:block;width:100%;min-height:600px;border:0}`],
 })
@@ -48,6 +52,14 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     'digicert-secure-site-pro-ev-ssl',
   ]);
   private readonly sourceUrls: Record<Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail'>, string> = {
+    '47-day-ssl': '/imported-47-day-ssl.html',
+    '47-day-ssl-hero': '/imported-47-day-ssl-hero.html',
+    'direct-backup': '/imported-acronis-direct-backup.html',
+    'direct-backup-hero': '/imported-acronis-direct-backup-hero.html',
+    druva: '/imported-druva.html',
+    'druva-hero': '/imported-druva-hero.html',
+    cpanel: '/imported-cpanel-vps.html',
+    'cpanel-hero': '/imported-cpanel-vps-hero.html',
     'acronis-ai': '/imported-acronis-ai.html',
     'acronis-ai-hero': '/imported-acronis-ai-hero.html',
     openclaw: '/imported-openclaw-vps.html',
@@ -69,6 +81,14 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+    '47-day-ssl': '47-Day SSL readiness, automation and pricing tools',
+    '47-day-ssl-hero': '47-Day SSL certificate renewal animation',
+    'direct-backup': 'Acronis Direct Cloud Backup features and interactive tools',
+    'direct-backup-hero': 'Acronis direct cloud backup animation',
+    druva: 'Druva Resilience Cloud features and interactive tools',
+    'druva-hero': 'Druva resilience timeline animation',
+    cpanel: 'cPanel VPS plans and server builder',
+    'cpanel-hero': 'cPanel hosting console',
     'acronis-ai': 'Acronis AI platform, interactive demos and pricing',
     'acronis-ai-hero': 'Acronis Cyber Console animated overview',
     openclaw: 'OpenClaw VPS plans and server builder',
@@ -91,6 +111,7 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     'digicert-multi-domain-ssl': 'DigiCert Multi-Domain SSL features and pricing',
     'ssl-detail': 'DigiCert certificate features and pricing',
   };
+
 
   @ViewChild('frame') frame?: ElementRef<HTMLIFrameElement>;
   private cleanup: (() => void)[] = [];
