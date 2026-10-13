@@ -3986,16 +3986,16 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "13",
-        "label": "Acronic AI",
+        "label": "Acronis AI",
         "on": false,
         "groups": [
           {
-            "heading": "Acronic AI",
+            "heading": "Acronis AI",
             "items": [
               {
-                "title": "No Data",
+                "title": "Acronis AI",
                 "pill": "In focus",
-                "desc": null
+                "desc": "AI-native protection, management and automation on one platform"
               },
               
             ]

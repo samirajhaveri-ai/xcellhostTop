@@ -5,6 +5,7 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  { path: 'acronis-ai', title: 'Acronis AI Platform | XcellHost', data: { productSlug: 'acronis-ai' }, loadComponent: () => import('./pages/product.page').then(m => m.ProductPage) },
 
   {
     path: 'geotrust-true-businessid', data: { businessIdVariant: 'single' },

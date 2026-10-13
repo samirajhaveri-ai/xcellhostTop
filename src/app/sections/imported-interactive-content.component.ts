@@ -5,7 +5,7 @@ import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 
 type InteractiveContentSource =
-  | 'openclaw' | 'openclaw-hero' | 'kubernetes' | 'podcasts' | 'deepcall' | 'workspace'
+  | 'acronis-ai' | 'acronis-ai-hero' | 'openclaw' | 'openclaw-hero' | 'kubernetes' | 'podcasts' | 'deepcall' | 'workspace'
   | 'rapidssl' | 'sectigo' | 'sectigo-ev' | 'mark' | 'website-security'
   | 'certificate-management' | 'code-signing-certificates' | 'email-signing-certificates'
   | 'consulting' | 'digicert-standard-ssl' | 'digicert-ev-ssl'
@@ -15,7 +15,7 @@ type InteractiveContentSource =
   selector: 'xh-imported-interactive-content',
   standalone: true,
   host: { '[class.openclaw-page-content]': "source === 'openclaw'" },
-  template: `<iframe #frame [style.min-height.px]="source === 'openclaw-hero' ? 0 : 600"
+  template: `<iframe #frame [style.min-height.px]="source === 'openclaw-hero' || source === 'acronis-ai-hero' ? 0 : 600"
     [src]="contentUrl" [title]="contentTitle" scrolling="no" (load)="onLoad()"></iframe>`,
   styles: [`:host{display:block}iframe{display:block;width:100%;min-height:600px;border:0}`],
 })
@@ -48,6 +48,8 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     'digicert-secure-site-pro-ev-ssl',
   ]);
   private readonly sourceUrls: Record<Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail'>, string> = {
+    'acronis-ai': '/imported-acronis-ai.html',
+    'acronis-ai-hero': '/imported-acronis-ai-hero.html',
     openclaw: '/imported-openclaw-vps.html',
     'openclaw-hero': '/imported-openclaw-vps-hero.html',
     kubernetes: '/imported-kubernetes.html',
@@ -67,6 +69,8 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+    'acronis-ai': 'Acronis AI platform, interactive demos and pricing',
+    'acronis-ai-hero': 'Acronis Cyber Console animated overview',
     openclaw: 'OpenClaw VPS plans and server builder',
     'openclaw-hero': 'OpenClaw agent console',
     kubernetes: 'Managed Kubernetes workloads and calculator',
