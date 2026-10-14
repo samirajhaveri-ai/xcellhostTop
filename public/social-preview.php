@@ -21,7 +21,7 @@ if ($routeKey === '/') {
 $preview = $manifest['routes'][$routeKey] ?? $manifest['default'] ?? [
     'title' => 'XcellHost Cloud Services',
     'description' => 'Managed cloud and cybersecurity services from XcellHost.',
-    'image' => 'https://xcellhost.top/assets/images/xcellhost-logo.png',
+    'image' => 'https://xcellhost.cloud/assets/images/xcellhost-logo.png',
 ];
 
 $escape = static fn(string $value): string => htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
@@ -31,7 +31,7 @@ $image = $escape((string) $preview['image']);
 $imageType = isset($preview['imageType']) ? $escape((string) $preview['imageType']) : '';
 $imageWidth = isset($preview['imageWidth']) ? (int) $preview['imageWidth'] : 0;
 $imageHeight = isset($preview['imageHeight']) ? (int) $preview['imageHeight'] : 0;
-$canonical = $escape('https://xcellhost.top' . ($routeKey === '/' ? '/' : $routeKey . '/'));
+$canonical = $escape('https://xcellhost.cloud' . ($routeKey === '/' ? '/' : $routeKey . '/'));
 $imageMeta = '';
 if ($imageType !== '') {
     $imageMeta .= "\n  <meta property=\"og:image:type\" content=\"{$imageType}\">";

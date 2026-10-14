@@ -144,7 +144,7 @@ export class MenuServicePage implements OnDestroy {
       }
       const url = new URL(anchor.href);
       if (!['http:', 'https:'].includes(url.protocol)) return;
-      if (url.origin !== window.location.origin && !['www.xcellhost.top', 'xcellhost.top'].includes(url.hostname)) return;
+      if (url.origin !== window.location.origin && !['xcellhost.cloud', 'xcellhost.cloud'].includes(url.hostname)) return;
       event.preventDefault();
       const pathname = url.pathname.replace(/^\/assets\/menu-service-pages\//, '/').replace(/\.html$/, '');
       void this.router.navigateByUrl(`${pathname}${url.search}${url.hash}`);

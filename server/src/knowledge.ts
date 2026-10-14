@@ -5,7 +5,7 @@ import { indexPath, knowledgeFiles, knowledgeRoot } from './config.js';
 import { DIMENSIONS, EMBEDDING_MODEL } from './provider.js';
 import { ApiError, type Chunk, type KnowledgeIndex, type VectorChunk } from './types.js';
 
-const safeHosts = new Set(['xcellhost.cloud', 'www.xcellhost.cloud', 'xcellhost.top', 'www.xcellhost.top']);
+const safeHosts = new Set(['xcellhost.cloud', 'www.xcellhost.cloud']);
 export function safeSourceUrl(value: string): boolean {
   try { const url = new URL(value); return url.protocol === 'https:' && !url.username && !url.password && !url.port && safeHosts.has(url.hostname); }
   catch { return false; }

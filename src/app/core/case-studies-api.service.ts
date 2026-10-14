@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { catchError, EMPTY, expand, map, Observable, of, reduce, shareReplay, switchMap, timer } from 'rxjs';
 
 import { environment } from '../../environments/environment';
+import { migrateCmsDomains } from './domain-migration';
 import { CASE_STUDIES, CaseStudy } from '../data/case-studies.data';
 
 interface RawCaseStudy {
@@ -101,7 +102,7 @@ export class CaseStudiesApiService {
       .set('populate', '*')
       .set('pagination[page]', page)
       .set('pagination[pageSize]', '100');
-    return this.http.get<StrapiCaseStudyResponse>(this.endpoint, { params });
+    return this.http.get<StrapiCaseStudyResponse>(this.endpoint, { params }).pipe(map(migrateCmsDomains));
   }
 
   private normalise(study: RawCaseStudy): CaseStudy {
@@ -160,7 +161,7 @@ export class CaseStudiesApiService {
       .set('populate', 'coverImage')
       .set('pagination[page]', page)
       .set('pagination[pageSize]', '100');
-    return this.http.get<StrapiBlogResponse>(`${this.baseUrl}/api/blogs`, { params });
+    return this.http.get<StrapiBlogResponse>(`${this.baseUrl}/api/blogs`, { params }).pipe(map(migrateCmsDomains));
   }
 
   private normaliseBlogCaseStudy(entry: RawBlogCaseStudy): CaseStudy {

@@ -161,7 +161,7 @@ export class SignupPage implements AfterViewInit {
       xnQsjsdp: '6b9425c7b8c91e8768ec8be5a272d5a9f0b5261989d70523d8f2a7e419e5a64d',
       xmIwtLD: 'a98994818746fa2996adef0834f16a1b6c2b71d21c4c2b57ab068f2a00004bda2d13d70ba5e2f21704a6a9dddd3a4c8c',
       actionType: 'TGVhZHM=',
-      returnURL: 'https://xcellhost.top/signup-success',
+      returnURL: 'https://xcellhost.cloud/signup-success',
       aG9uZXlwb3Q: '',
       'First Name': value.firstName.trim(),
       'Last Name': value.lastName.trim(),
