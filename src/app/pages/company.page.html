@@ -1,13 +1,52 @@
 ﻿@if (page(); as page) {
   @if (slug() === 'privacy-policy') {
     <main class="privacy-policy-page">
-      <div class="privacy-policy-wrap">
-        <div class="privacy-policy-title">Privacy &amp; Cookie Policy</div>
+      <section class="privacy-policy-hero" aria-labelledby="privacy-policy-title">
+        <div class="privacy-policy-hero-inner">
+          <div class="privacy-policy-kicker"><i aria-hidden="true"></i>Legal information &amp; compliance</div>
+          <nav class="privacy-policy-breadcrumb" aria-label="Breadcrumb"><a routerLink="/">Home</a><span>/</span><span>Legal</span><span>/</span><span>Privacy Policy</span></nav>
+          <h1 id="privacy-policy-title">Privacy &amp; <em>Cookie Policy</em></h1>
+          <p>How XcellHost collects, uses, stores, shares and protects personal data when you use our website, customer portals and cloud services.</p>
+          <div class="privacy-policy-meta"><span class="material-symbols-outlined" aria-hidden="true">calendar_month</span>Last updated: 26 February 2026</div>
+        </div>
+      </section>
+
+      <div class="privacy-policy-layout">
+        <aside class="privacy-policy-aside" aria-label="Privacy policy contents">
+          <div class="privacy-policy-contents">
+            <h2>Contents</h2>
+            <a href="#privacy-overview"><b>01</b>Overview</a>
+            <a href="#privacy-definitions"><b>02</b>Definitions</a>
+            <a href="#privacy-information"><b>03</b>Information we collect</a>
+            <a href="#privacy-lawful-basis"><b>04</b>Lawful basis</a>
+            <a href="#privacy-use"><b>05</b>How we use information</a>
+            <a href="#privacy-sharing"><b>06</b>Sharing &amp; disclosure</a>
+            <a href="#privacy-cookies"><b>07</b>Cookies &amp; tracking</a>
+            <a href="#privacy-processors"><b>08</b>Third-party services</a>
+            <a href="#privacy-transfers"><b>09</b>Cross-border transfers</a>
+            <a href="#privacy-retention-policy"><b>10</b>Data retention</a>
+            <a href="#privacy-rights"><b>11</b>Your rights</a>
+            <a href="#privacy-children"><b>12</b>Children&rsquo;s data</a>
+            <a href="#privacy-security"><b>13</b>Security measures</a>
+            <a href="#privacy-breach"><b>14</b>Breach notification</a>
+            <a href="#privacy-grievance"><b>15</b>Grievance redressal</a>
+            <a href="#privacy-external-links"><b>16</b>External links</a>
+            <a href="#privacy-changes"><b>17</b>Policy changes</a>
+            <a href="#privacy-contact"><b>18</b>Contact us</a>
+          </div>
+          <div class="privacy-policy-help">
+            <span class="material-symbols-outlined" aria-hidden="true">support_agent</span>
+            <small>Need help?</small>
+            <h2>Questions about this policy?</h2>
+            <p>Our privacy team can help with data requests and policy questions.</p>
+            <a routerLink="/contact">Contact support <span aria-hidden="true">→</span></a>
+          </div>
+        </aside>
 
         <article class="privacy-policy-document">
-          <section>
-            <h1>Privacy Policy</h1>
-            <p><strong>Last Updated:</strong> 26 February 2026</p>
+          <section id="privacy-overview">
+            <span class="privacy-policy-section-label">01 · Overview</span>
+            <h2>Our commitment to your privacy</h2>
             <p>
               This Privacy Policy explains how XcellHost Cloud Services Pvt. Ltd.
               ("XcellHost", "we", "us", or "our"), a company incorporated under the
@@ -33,7 +72,7 @@
             </p>
           </section>
 
-          <section>
+          <section id="privacy-definitions">
             <h2>1. Definitions</h2>
             <p>In this Privacy Policy:</p>
             <ul>
@@ -45,7 +84,7 @@
             </ul>
           </section>
 
-          <section>
+          <section id="privacy-information">
             <h2>2. Information We Collect</h2>
             <p>We collect the following categories of personal data:</p>
             <h3>a) Information You Provide Directly</h3>
@@ -71,7 +110,7 @@
             </ul>
           </section>
 
-          <section>
+          <section id="privacy-lawful-basis">
             <h2>3. Lawful Basis for Processing</h2>
             <p>We process your personal data on the following lawful bases:</p>
             <ul>
@@ -82,7 +121,7 @@
             </ul>
           </section>
 
-          <section>
+          <section id="privacy-use">
             <h2>4. How We Use Your Information</h2>
             <p>We use the personal data we collect for the following purposes:</p>
             <ul>
@@ -96,7 +135,7 @@
             </ul>
           </section>
 
-          <section>
+          <section id="privacy-sharing">
             <h2>5. Data Sharing and Disclosure</h2>
             <p>We do not sell your personal data. We may share your personal data with the following categories of recipients:</p>
             <ul>
@@ -114,7 +153,7 @@
             </p>
           </section>
 
-          <section>
+          <section id="privacy-cookies">
             <h2>6. Cookies and Tracking Technologies</h2>
             <p>
               Our website uses cookies and similar tracking technologies. A cookie is a
@@ -139,7 +178,7 @@
             </p>
           </section>
 
-          <section>
+          <section id="privacy-processors">
             <h2>7. Third-Party Services and Sub-Processors</h2>
             <p>We use the following third-party services that may process your personal data:</p>
             <table>
@@ -195,7 +234,7 @@
             </p>
           </section>
 
-          <section>
+          <section id="privacy-transfers">
             <h2>8. Cross-Border Data Transfers</h2>
             <p>
               XcellHost operates across India and other international regions. Your
@@ -216,7 +255,7 @@
             </p>
           </section>
 
-          <section>
+          <section id="privacy-retention-policy">
             <h2>9. Data Retention</h2>
             <p>
               We retain your personal data only for as long as necessary to fulfil the
@@ -237,7 +276,7 @@
             </p>
           </section>
 
-          <section>
+          <section id="privacy-rights">
             <h2>10. Your Rights as a Data Principal</h2>
             <p>Under the Digital Personal Data Protection Act, 2023, you have the following rights:</p>
             <ul>
@@ -255,7 +294,7 @@
             </p>
           </section>
 
-          <section>
+          <section id="privacy-children">
             <h2>11. Children's Data</h2>
             <p>
               Our Services are not directed at individuals under the age of 18. We do
@@ -267,7 +306,7 @@
             </p>
           </section>
 
-          <section>
+          <section id="privacy-security">
             <h2>12. Security Measures</h2>
             <p>
               We are committed to ensuring that your personal data is secure. We have
@@ -290,7 +329,7 @@
             </p>
           </section>
 
-          <section>
+          <section id="privacy-breach">
             <h2>13. Data Breach Notification</h2>
             <p>
               In the event of a personal data breach that is likely to result in a risk
@@ -303,7 +342,7 @@
             </ul>
           </section>
 
-          <section>
+          <section id="privacy-grievance">
             <h2>14. Grievance Redressal</h2>
             <p>
               In accordance with the DPDPA 2023 and the Information Technology
@@ -327,7 +366,7 @@
             </p>
           </section>
 
-          <section>
+          <section id="privacy-external-links">
             <h2>15. Links to Other Websites</h2>
             <p>
               Our website may contain links to third-party websites, including our
@@ -337,7 +376,7 @@
             </p>
           </section>
 
-          <section>
+          <section id="privacy-changes">
             <h2>16. Changes to This Privacy Policy</h2>
             <p>
               We may update this Privacy Policy from time to time to reflect changes in
@@ -355,7 +394,7 @@
             </p>
           </section>
 
-          <section>
+          <section id="privacy-contact">
             <h2>17. Contact Us</h2>
             <p>
               If you have any questions about this Privacy Policy, your personal data, or
@@ -372,6 +411,334 @@
           </section>
         </article>
       </div>
+      <section class="privacy-policy-cta" aria-labelledby="privacy-policy-help-title">
+        <div><span>Need assistance?</span><h2 id="privacy-policy-help-title">Questions about your privacy or personal data?</h2><p>Contact XcellHost for privacy, compliance, security and data-protection support.</p></div>
+        <a href="mailto:dpo@xcellhost.cloud">Email our privacy team <span aria-hidden="true">→</span></a>
+      </section>
+    </main>
+  } @else if (slug() === 'abuse-policy') {
+    <main class="privacy-policy-page abuse-policy-page">
+      <section class="privacy-policy-hero" aria-labelledby="abuse-policy-title">
+        <div class="privacy-policy-hero-inner">
+          <div class="privacy-policy-kicker"><i aria-hidden="true"></i>Security &amp; compliance policy</div>
+          <nav class="privacy-policy-breadcrumb" aria-label="Breadcrumb"><a routerLink="/">Home</a><span>/</span><span>Legal</span><span>/</span><span>Abuse Policy</span></nav>
+          <h1 id="abuse-policy-title">Abuse <em>Policy</em></h1>
+          <p>XcellHost is committed to maintaining a secure, ethical and lawful cloud environment for customers, partners and internet users.</p>
+          <div class="privacy-policy-meta"><span class="material-symbols-outlined" aria-hidden="true">schedule</span>Last updated: 13 October 2026</div>
+        </div>
+      </section>
+
+      <div class="privacy-policy-layout">
+        <aside class="privacy-policy-aside" aria-label="Abuse policy contents">
+          <div class="privacy-policy-contents">
+            <h2>Contents</h2>
+            <a href="#abuse-overview"><b>01</b>Policy overview</a>
+            <a href="#abuse-permitted"><b>02</b>Permitted use</a>
+            <a href="#abuse-prohibited"><b>03</b>Prohibited activities</a>
+            <a href="#abuse-responsibility"><b>04</b>Customer responsibility</a>
+            <a href="#abuse-report"><b>05</b>Report abuse</a>
+            <a href="#abuse-enforcement"><b>06</b>Review &amp; enforcement</a>
+            <a href="#abuse-contact"><b>07</b>Contact information</a>
+          </div>
+          <div class="privacy-policy-help">
+            <span class="material-symbols-outlined" aria-hidden="true">report</span>
+            <small>Security first</small>
+            <h2>Report suspected abuse</h2>
+            <p>Include the affected service, timestamps and evidence so our team can investigate.</p>
+            <a href="mailto:support@xcellhost.cloud?subject=Abuse%20Report">Email the abuse desk <span aria-hidden="true">→</span></a>
+          </div>
+        </aside>
+
+        <article class="privacy-policy-document">
+          <section id="abuse-overview">
+            <span class="privacy-policy-section-label">01 · Policy overview</span>
+            <h2>Abuse and unethical-use policy</h2>
+            <p>XcellHost Cloud Services Pvt. Ltd. provides cloud infrastructure, virtual servers, hosting, security and related managed services for legitimate business and personal use. Customers and authorised users must use these services lawfully, securely and without harming XcellHost, other customers, third parties or the wider internet.</p>
+            <p>This Abuse Policy supplements the <a routerLink="/company/acceptable-use-policy">Acceptable Use Policy</a> and <a routerLink="/company/terms-of-service">Terms of Service</a>. Where an order or product-specific condition imposes a stricter requirement, that requirement also applies.</p>
+          </section>
+
+          <section id="abuse-permitted">
+            <h2>2. Permitted Use</h2>
+            <p>XcellHost services may be used for legitimate websites, applications, communications, workloads and business operations that comply with applicable laws, contractual obligations and third-party rights.</p>
+            <ul>
+              <li>Maintain accurate account and service-contact information.</li>
+              <li>Keep operating systems, applications and credentials appropriately secured.</li>
+              <li>Use only software, content and data you are authorised to operate or distribute.</li>
+              <li>Respond promptly to security, abuse and remediation notices.</li>
+              <li>Ensure users, contractors and customers with access to your service follow this policy.</li>
+            </ul>
+          </section>
+
+          <section id="abuse-prohibited">
+            <h2>3. Prohibited Activities</h2>
+            <p>The following activities are prohibited when using XcellHost services, whether performed intentionally, negligently or through an inadequately secured system:</p>
+            <h3>Messaging and identity abuse</h3>
+            <ul>
+              <li>Spam, unsolicited bulk messaging, mail bombing or deceptive email campaigns.</li>
+              <li>Phishing, credential harvesting, impersonation, scams or fraudulent activity.</li>
+              <li>Forging message headers, sender identities or routing information to conceal abuse.</li>
+            </ul>
+            <h3>Malware and system attacks</h3>
+            <ul>
+              <li>Distributing or controlling malware, ransomware, spyware, viruses, botnets or malicious code.</li>
+              <li>Launching or facilitating denial-of-service attacks, brute-force activity or unauthorised scanning.</li>
+              <li>Attempting unauthorised access, exploitation, interception or disruption of systems and networks.</li>
+              <li>Operating command-and-control infrastructure or repositories primarily intended to enable attacks.</li>
+            </ul>
+            <h3>Illegal or harmful content</h3>
+            <ul>
+              <li>Hosting or distributing content that violates applicable law or valid court and regulatory orders.</li>
+              <li>Infringing copyright, trademark, privacy or other third-party rights.</li>
+              <li>Distributing pirated content, stolen credentials or unlawfully obtained personal data.</li>
+              <li>Using services to threaten, harass, exploit or cause material harm to another person.</li>
+            </ul>
+            <p>Security research must be authorised in writing and remain within the approved scope. A claimed research purpose does not permit testing systems you do not own or have permission to assess.</p>
+          </section>
+
+          <section id="abuse-responsibility">
+            <h2>4. Customer Responsibility</h2>
+            <p>Account owners are responsible for content, software, configurations and activity performed through their services and credentials. This includes activity performed by authorised users and activity resulting from avoidable compromise.</p>
+            <ul>
+              <li>Use strong authentication and protect passwords, keys, tokens and administrative access.</li>
+              <li>Patch supported software and remediate known vulnerabilities within a reasonable timeframe.</li>
+              <li>Monitor services for unexpected traffic, exposed resources and signs of compromise.</li>
+              <li>Preserve relevant logs and evidence when an incident or complaint occurs.</li>
+              <li>Contain compromised systems and cooperate with reasonable investigation requests.</li>
+            </ul>
+          </section>
+
+          <section id="abuse-report">
+            <h2>5. How to Report Abuse</h2>
+            <p>If you believe a resource hosted or managed by XcellHost is involved in spam, phishing, malware, attacks, rights infringement or another policy violation, email <a href="mailto:support@xcellhost.cloud?subject=Abuse%20Report">support@xcellhost.cloud</a> with the subject <strong>Abuse Report</strong>.</p>
+            <h3>Include enough evidence for us to identify the activity</h3>
+            <ul>
+              <li>The affected domain, full URL, IP address or other service identifier.</li>
+              <li>Date and time of the activity, including the time zone.</li>
+              <li>A clear description of what occurred and why it appears abusive.</li>
+              <li>Relevant email headers, server logs, screenshots or request records.</li>
+              <li>Your name, organisation and a working contact address for follow-up.</li>
+              <li>For rights complaints, evidence of ownership or authority to act for the rights holder.</li>
+            </ul>
+            <p>Please do not send passwords, private keys, payment-card information or unrelated personal data. Knowingly submitting false, misleading or abusive complaints is prohibited.</p>
+          </section>
+
+          <section id="abuse-enforcement">
+            <h2>6. Review, Suspension and Termination</h2>
+            <p>XcellHost assesses credible reports using the information available, the apparent severity, service risk and applicable legal obligations. We may contact the customer, request remediation or additional evidence, preserve relevant records and take proportionate protective action.</p>
+            <ul>
+              <li>Investigate reported or detected activity.</li>
+              <li>Block traffic, isolate resources or restrict affected functionality.</li>
+              <li>Require remediation within a specified period.</li>
+              <li>Suspend or terminate services in serious, repeated or unresolved cases.</li>
+              <li>Remove content where contractually and legally permitted.</li>
+              <li>Cooperate with lawful requests from courts, regulators and law-enforcement authorities.</li>
+            </ul>
+            <p>Urgent action may be taken without advance notice when reasonably necessary to address an active threat, protect infrastructure or comply with law. Where appropriate, notice and an opportunity to remediate may be provided. Refund eligibility is governed by the applicable order terms and <a routerLink="/company/refund-policy">Refund Policy</a>.</p>
+          </section>
+
+          <section id="abuse-contact">
+            <h2>7. Abuse Contact Information</h2>
+            <p>Send suspected abuse and policy violations through the following official channel:</p>
+            <table>
+              <tbody>
+                <tr><th>Department</th><td>XcellHost Support &amp; Security Desk</td></tr>
+                <tr><th>Email</th><td><a href="mailto:support@xcellhost.cloud?subject=Abuse%20Report">support@xcellhost.cloud</a></td></tr>
+                <tr><th>Subject line</th><td>Abuse Report</td></tr>
+                <tr><th>Monitoring</th><td>24×7 for urgent infrastructure and security incidents</td></tr>
+              </tbody>
+            </table>
+            <p>Submitting a report does not guarantee a particular outcome or permit disclosure of confidential customer information. We may acknowledge a report and request clarification, but privacy, security and legal obligations can limit the details we provide about an investigation.</p>
+          </section>
+        </article>
+      </div>
+
+      <section class="privacy-policy-cta" aria-labelledby="abuse-report-title">
+        <div><span>Security first</span><h2 id="abuse-report-title">Report abuse or a policy violation.</h2><p>Send actionable evidence to the XcellHost Support &amp; Security Desk for review.</p></div>
+        <a href="mailto:support@xcellhost.cloud?subject=Abuse%20Report">Report abuse <span aria-hidden="true">→</span></a>
+      </section>
+    </main>
+  } @else if (slug() === 'ekyc-verification') {
+    <main class="ekyc-page">
+      <section class="ekyc-hero" aria-labelledby="ekyc-title">
+        <div class="ekyc-orb ekyc-orb-one" aria-hidden="true"></div>
+        <div class="ekyc-orb ekyc-orb-two" aria-hidden="true"></div>
+        <div class="ekyc-hero-grid">
+          <div class="ekyc-hero-copy">
+            <div class="ekyc-kicker"><i aria-hidden="true"></i>CERT-In compliance</div>
+            <nav class="ekyc-breadcrumb" aria-label="Breadcrumb">
+              <a routerLink="/">Home</a><span aria-hidden="true">/</span><span>Legal</span><span aria-hidden="true">/</span><span>eKYC Verification</span>
+            </nav>
+            <h1 id="ekyc-title">eKYC <em>Verification</em></h1>
+            <p>Secure identity verification for XcellHost cloud, VPS and infrastructure services—designed to protect customers, prevent misuse and meet applicable Indian cyber-security requirements.</p>
+            <div class="ekyc-updated"><span class="material-symbols-outlined" aria-hidden="true">calendar_month</span>Last updated: 13 October 2026</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ekyc-intro-strip" aria-label="eKYC policy highlights">
+        <div><span class="material-symbols-outlined" aria-hidden="true">shield_lock</span><p><b>Secure handling</b><small>Restricted to authorised verification workflows</small></p></div>
+        <div><span class="material-symbols-outlined" aria-hidden="true">fact_check</span><p><b>Regulatory purpose</b><small>Supports CERT-In subscriber validation duties</small></p></div>
+        <div><span class="material-symbols-outlined" aria-hidden="true">support_agent</span><p><b>Human support</b><small>Help is available if a document needs clarification</small></p></div>
+      </section>
+
+      <div class="ekyc-layout">
+        <aside class="ekyc-index" aria-label="On this page">
+          <span>On this page</span>
+          <a href="#about-ekyc"><b>01</b>What is eKYC?</a>
+          <a href="#legal-mandate"><b>02</b>Legal mandate</a>
+          <a href="#who-needs-ekyc"><b>03</b>Who needs eKYC?</a>
+          <a href="#information-collected"><b>04</b>Information we collect</a>
+          <a href="#accepted-documents"><b>05</b>Accepted documents</a>
+          <a href="#verification-process"><b>06</b>Verification process</a>
+          <a href="#privacy-retention"><b>07</b>Privacy &amp; retention</a>
+          <a href="#non-compliance"><b>08</b>Non-compliance</a>
+          <a href="#ekyc-faq"><b>09</b>FAQs</a>
+        </aside>
+
+        <article class="ekyc-content">
+          <section id="about-ekyc" class="ekyc-section">
+            <div class="ekyc-section-number">01</div>
+            <div class="ekyc-section-copy">
+              <span class="ekyc-overline">Identity assurance</span>
+              <h2>What is eKYC verification?</h2>
+              <p>Electronic Know Your Customer (eKYC) is the process XcellHost uses to confirm the identity of the person or organisation requesting certain services. It helps us activate services for genuine customers, maintain accurate subscriber records and reduce fraud or infrastructure abuse.</p>
+              <div class="ekyc-note"><span class="material-symbols-outlined" aria-hidden="true">info</span><p>We request only the information relevant to the customer type, service, payment method and applicable legal or vendor requirements.</p></div>
+            </div>
+          </section>
+
+          <section id="legal-mandate" class="ekyc-section">
+            <div class="ekyc-section-number">02</div>
+            <div class="ekyc-section-copy">
+              <span class="ekyc-overline">CERT-In directions</span>
+              <h2>Why verification is required</h2>
+              <p>CERT-In issued cyber-security directions on 28 April 2022 under section 70B(6) of the Information Technology Act, 2000. These directions require data centres, Virtual Private Server providers, cloud service providers and covered VPN service providers to validate subscribers and maintain specified customer records.</p>
+              <div class="ekyc-law-card">
+                <span class="material-symbols-outlined" aria-hidden="true">gavel</span>
+                <div><b>Official regulatory source</b><p>Read the directions, FAQs and implementation updates directly on the CERT-In website.</p></div>
+                <a href="https://www.cert-in.org.in/Directions70B.jsp" target="_blank" rel="noopener noreferrer">View CERT-In directions <span aria-hidden="true">↗</span></a>
+              </div>
+            </div>
+          </section>
+
+          <section id="who-needs-ekyc" class="ekyc-section">
+            <div class="ekyc-section-number">03</div>
+            <div class="ekyc-section-copy">
+              <span class="ekyc-overline">Service coverage</span>
+              <h2>Who needs to complete eKYC?</h2>
+              <p>Verification may be required from the purchaser, account owner or authorised representative before activation or continued use of covered services.</p>
+              <div class="ekyc-service-grid">
+                <div><span class="material-symbols-outlined" aria-hidden="true">dns</span><b>Cloud &amp; VPS</b><small>Virtual servers and cloud compute</small></div>
+                <div><span class="material-symbols-outlined" aria-hidden="true">storage</span><b>Data centre</b><small>Dedicated and hosted infrastructure</small></div>
+                <div><span class="material-symbols-outlined" aria-hidden="true">business</span><b>Business accounts</b><small>Organisation and authorised-signatory checks</small></div>
+                <div><span class="material-symbols-outlined" aria-hidden="true">manage_search</span><b>Risk review</b><small>Orders or accounts needing additional validation</small></div>
+              </div>
+            </div>
+          </section>
+
+          <section id="information-collected" class="ekyc-section">
+            <div class="ekyc-section-number">04</div>
+            <div class="ekyc-section-copy">
+              <span class="ekyc-overline">Subscriber records</span>
+              <h2>Information we may collect</h2>
+              <p>The precise fields depend on the service and customer. They may include:</p>
+              <ul class="ekyc-check-list">
+                <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span>Validated legal name of the individual or organisation</li>
+                <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span>Address, email address and verified contact number</li>
+                <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span>Service start date, end date and period of hire</li>
+                <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span>IP addresses allotted to or used by the customer</li>
+                <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span>Registration time, date and the IP used to register</li>
+                <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span>Purpose for hiring the service and customer ownership type</li>
+              </ul>
+            </div>
+          </section>
+
+          <section id="accepted-documents" class="ekyc-section">
+            <div class="ekyc-section-number">05</div>
+            <div class="ekyc-section-copy">
+              <span class="ekyc-overline">Document checklist</span>
+              <h2>Documents accepted for verification</h2>
+              <p>Provide only the documents requested in your approved verification flow. Documents must be current, readable and match the account details.</p>
+              <div class="ekyc-document-grid">
+                <div class="ekyc-document-card">
+                  <span class="material-symbols-outlined" aria-hidden="true">person</span>
+                  <h3>Individuals</h3>
+                  <ul><li>PAN card</li><li>Aadhaar through the approved verification method</li><li>Passport, voter ID or driving licence</li><li>Selfie or facial verification, when requested</li></ul>
+                </div>
+                <div class="ekyc-document-card business">
+                  <span class="material-symbols-outlined" aria-hidden="true">domain</span>
+                  <h3>Businesses</h3>
+                  <ul><li>Business PAN and GST details, where applicable</li><li>Certificate of incorporation or registration proof</li><li>Address and ownership information</li><li>Authorised signatory ID and authority proof</li></ul>
+                </div>
+              </div>
+              <div class="ekyc-warning"><span class="material-symbols-outlined" aria-hidden="true">lock</span><p><b>Protect your identity documents.</b> Submit them only through the XcellHost verification channel provided for your account. Do not send documents through unapproved chat accounts or email addresses.</p></div>
+            </div>
+          </section>
+
+          <section id="verification-process" class="ekyc-section">
+            <div class="ekyc-section-number">06</div>
+            <div class="ekyc-section-copy">
+              <span class="ekyc-overline">Four simple steps</span>
+              <h2>How the verification process works</h2>
+              <div class="ekyc-process">
+                <div><i>1</i><span class="material-symbols-outlined" aria-hidden="true">shopping_cart</span><b>Place your order</b><small>Choose a service and enter accurate account details.</small></div>
+                <div><i>2</i><span class="material-symbols-outlined" aria-hidden="true">upload_file</span><b>Submit documents</b><small>Use the secure method shared for your account.</small></div>
+                <div><i>3</i><span class="material-symbols-outlined" aria-hidden="true">manage_accounts</span><b>Verification review</b><small>We check the details and request clarification if needed.</small></div>
+                <div><i>4</i><span class="material-symbols-outlined" aria-hidden="true">rocket_launch</span><b>Service activation</b><small>Eligible services are released after successful checks.</small></div>
+              </div>
+            </div>
+          </section>
+
+          <section id="privacy-retention" class="ekyc-section">
+            <div class="ekyc-section-number">07</div>
+            <div class="ekyc-section-copy">
+              <span class="ekyc-overline">Data protection</span>
+              <h2>Privacy, security and retention</h2>
+              <p>XcellHost uses eKYC data to provide and secure services, administer accounts, prevent fraud and meet legal obligations. We do not sell personal data. Access is limited to authorised personnel and service providers with a valid purpose, and information may be disclosed to government or law-enforcement authorities when required by applicable law or a lawful request.</p>
+              <div class="ekyc-retention-card">
+                <strong>5 years</strong>
+                <p><b>KYC and subscriber record retention</b><small>Maintained for five years after cancellation or withdrawal of service registration, or longer where applicable law requires it.</small></p>
+              </div>
+              <p class="ekyc-policy-links">For full details, read our <a routerLink="/company/privacy-policy">Privacy &amp; Cookie Policy</a> and <a routerLink="/company/terms-of-service">Terms of Service</a>.</p>
+            </div>
+          </section>
+
+          <section id="non-compliance" class="ekyc-section">
+            <div class="ekyc-section-number">08</div>
+            <div class="ekyc-section-copy">
+              <span class="ekyc-overline">Account responsibility</span>
+              <h2>If verification is incomplete</h2>
+              <p>If required details are missing, inconsistent, expired or cannot be validated, XcellHost may ask for clarification and keep activation pending. Where necessary to meet legal, security or abuse-prevention duties, we may restrict, suspend or cancel affected services.</p>
+              <ul class="ekyc-actions-list">
+                <li><b>Pending activation</b><span>Services can remain on hold until checks are completed.</span></li>
+                <li><b>Additional review</b><span>We may request a clearer document or proof of authority.</span></li>
+                <li><b>Service restriction</b><span>False information or prohibited use may lead to suspension or cancellation.</span></li>
+              </ul>
+              <p class="ekyc-policy-links">Refund eligibility remains subject to the order terms and our <a routerLink="/company/refund-policy">Refund Policy</a>. Service use must follow our <a routerLink="/company/acceptable-use-policy">Acceptable Use Policy</a>.</p>
+            </div>
+          </section>
+
+          <section id="ekyc-faq" class="ekyc-section ekyc-faq-section">
+            <div class="ekyc-section-number">09</div>
+            <div class="ekyc-section-copy">
+              <span class="ekyc-overline">Common questions</span>
+              <h2>eKYC verification FAQs</h2>
+              <div class="ekyc-faq-list">
+                <details><summary>Why does XcellHost ask for eKYC?<span class="material-symbols-outlined" aria-hidden="true">add</span></summary><p>eKYC helps validate the customer behind covered services, supports CERT-In compliance and protects XcellHost infrastructure and customers from fraud or abuse.</p></details>
+                <details><summary>Is eKYC required for every XcellHost product?<span class="material-symbols-outlined" aria-hidden="true">add</span></summary><p>Not always. The requirement depends on the service, customer type, payment method, risk review and applicable law or vendor rules. We will tell you when verification is needed.</p></details>
+                <details><summary>Can a company employee complete verification?<span class="material-symbols-outlined" aria-hidden="true">add</span></summary><p>Yes, if the person is authorised to act for the organisation. We may request proof of that authority and identity documents for the authorised signatory.</p></details>
+                <details><summary>What happens if my document is rejected?<span class="material-symbols-outlined" aria-hidden="true">add</span></summary><p>We may ask for a clearer, current or alternative document. Your service can remain pending while the requested clarification is completed.</p></details>
+                <details><summary>How long is KYC information retained?<span class="material-symbols-outlined" aria-hidden="true">add</span></summary><p>KYC and subscriber information is retained for five years after cancellation or withdrawal of the service registration, or longer if applicable law requires it.</p></details>
+                <details><summary>Can I request deletion immediately after verification?<span class="material-symbols-outlined" aria-hidden="true">add</span></summary><p>You may submit a privacy request, but information subject to a mandatory legal retention period cannot be erased until that obligation expires.</p></details>
+              </div>
+            </div>
+          </section>
+        </article>
+      </div>
+
+      <section class="ekyc-cta" aria-labelledby="ekyc-help-title">
+        <div><span>Need assistance?</span><h2 id="ekyc-help-title">Our team can help you complete eKYC.</h2><p>Contact XcellHost through an official channel for document or account-verification guidance.</p></div>
+        <a routerLink="/contact">Contact support <span aria-hidden="true">→</span></a>
+      </section>
     </main>
   } @else if (slug() === 'our-team-our-story') {
   <main class="ppage as-page company-page team-page">

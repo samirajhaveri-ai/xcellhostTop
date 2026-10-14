@@ -18,6 +18,23 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "0",
         "label": "SMB Cloud",
         "on": true,
+        "featureCards": [
+          {
+            "label": "Endpoint security",
+            "title": "Advanced Endpoint Security (EDR)",
+            "body": "Identify, protect, detect, respond and recover from endpoint threats.",
+            "image": "/assets/images/acronis-partner/security.jpg",
+            "link": "/advanced-endpoint-security-edr"
+          },
+          {
+            "label": "Web Presence",
+            "title": "Cloud Backup",
+            "body": "Safeguard all your files with secure online data protection.",
+            "image": "/assets/images/menu-cloud-backup.png",
+            "imagePosition": "center 35%",
+            "link": "/cloud-backup"
+          }
+        ],
         "groups": [
           {
             "heading": "SMB Cloud",
@@ -434,6 +451,18 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "OpenClaw VPS",
                 "pill": "1-Click",
                 "desc": VPS_PRODUCT_COPY['OpenClaw VPS'].tagline
+              },
+              {
+                "title": "cPanel VPS",
+                "href": "/cpanel-vps",
+                "pill": "1-Click",
+                "desc": VPS_PRODUCT_COPY['cPanel VPS'].tagline
+              },
+              {
+                "title": "WordPress VPS",
+                "href": "/wordpress-vps",
+                "pill": "1-Click",
+                "desc": VPS_PRODUCT_COPY['WordPress VPS'].tagline
               },
               {
                 "title": "Trading VPS",
@@ -1674,6 +1703,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+               {
+                "title": "Acronis Direct Cloud Backup",
+                "pill": null,
+                "desc": null
+              },
               
             ]
           }
@@ -1910,6 +1944,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
                   {
                 "title": "Certificate Lifecycle Management Platforms",
+                "pill": "Popular",
+                "desc": null
+              },
+              {
+                "title": "47-Days-SSL",
                 "pill": "Popular",
                 "desc": null
               },
@@ -2660,7 +2699,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "vCISO-as-a-Service",
+                "title": "vCISO-As-A-Service",
                 "pill": null,
                 "desc": null
               },
@@ -3984,6 +4023,24 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
+      {
+        "g": "13",
+        "label": "Acronis AI",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Acronis AI",
+            "items": [
+              {
+                "title": "Acronis AI",
+                "pill": "In focus",
+                "desc": "AI-native protection, management and automation on one platform"
+              },
+              
+            ]
+          }
+        ]
+      },
       
 
     ]
@@ -4529,11 +4586,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Watch TSplus Remote Access connection demos",
                 "href": "/tsplus-demo-center"
               },
-              {
-                "title": "Product Tours",
-                "pill": null,
-                "desc": null
-              },
+              
               {
                 "title": "DPDPA Demo Center",
                 "pill": null,
@@ -4554,6 +4607,11 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Cpanel Demo Center",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "Product Tours",
                 "pill": null,
                 "desc": null
               },

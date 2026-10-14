@@ -14,24 +14,24 @@
 
     <section class="product-summary-grid" aria-label="Product summaries">
       <article class="product-summary product-summary-featured">
-        <header><h2>{{ left.entry.name }}</h2><span>{{ left.entry.group }}</span></header>
+        <header><h2>{{ left.displayName }}</h2><span>{{ left.entry.group }}</span></header>
         <div class="product-summary-body">
           <div class="summary-field"><span>Best for</span><p>{{ left.entry.desc }}</p></div>
           <div class="summary-field"><span>Pricing</span><strong>{{ left.price }}</strong></div>
           <div class="summary-list strengths"><h3><i aria-hidden="true">✓</i> Strengths</h3><ul>@for (item of left.strengths; track item) { <li><i aria-hidden="true">✓</i>{{ item }}</li> }</ul></div>
           <div class="summary-list considerations"><h3>Planning considerations</h3><ul>@for (item of left.considerations; track item) { <li><i aria-hidden="true">!</i>{{ item }}</li> }</ul></div>
-          <a [routerLink]="['/', left.slug]">View {{ left.entry.name }} details →</a>
+          <a [routerLink]="['/', left.slug]">View {{ left.displayName }} details →</a>
         </div>
       </article>
 
       <article class="product-summary">
-        <header><h2>{{ right.entry.name }}</h2><span>{{ right.entry.group }}</span></header>
+        <header><h2>{{ right.displayName }}</h2><span>{{ right.entry.group }}</span></header>
         <div class="product-summary-body">
           <div class="summary-field"><span>Best for</span><p>{{ right.entry.desc }}</p></div>
           <div class="summary-field"><span>Pricing</span><strong>{{ right.price }}</strong></div>
           <div class="summary-list strengths"><h3><i aria-hidden="true">✓</i> Strengths</h3><ul>@for (item of right.strengths; track item) { <li><i aria-hidden="true">✓</i>{{ item }}</li> }</ul></div>
           <div class="summary-list considerations"><h3>Planning considerations</h3><ul>@for (item of right.considerations; track item) { <li><i aria-hidden="true">!</i>{{ item }}</li> }</ul></div>
-          <a [routerLink]="['/', right.slug]">View {{ right.entry.name }} details →</a>
+          <a [routerLink]="['/', right.slug]">View {{ right.displayName }} details →</a>
         </div>
       </article>
     </section>
@@ -40,7 +40,7 @@
       <header><h2 id="feature-comparison-title">Feature Comparison</h2></header>
       <div class="feature-table-scroll" tabindex="0" aria-label="Scrollable product feature comparison">
         <table>
-          <thead><tr><th scope="col">Feature</th><th scope="col">{{ left.entry.name }}</th><th scope="col">{{ right.entry.name }}</th></tr></thead>
+          <thead><tr><th scope="col">Feature</th><th scope="col">{{ left.displayName }}</th><th scope="col">{{ right.displayName }}</th></tr></thead>
           <tbody>
             @for (row of rows; track row.feature) {
               <tr><th scope="row">{{ row.feature }}</th><td>{{ row.left }}</td><td>{{ row.right }}</td></tr>

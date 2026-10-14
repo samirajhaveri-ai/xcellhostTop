@@ -38,14 +38,40 @@
           <span class="tierbadge" [class.dv]="product.tier === 'DV'" [class.ov]="product.tier === 'OV'" [class.ev]="product.tier === 'EV'">{{ product.tier }}</span>
           @for (tag of product.tags; track tag) { <span class="tagchip">{{ tag === 'Multi' ? 'Multi-Domain' : tag }}</span> }
         </div>
-        <h3>{{ product.name }}</h3><p class="pdesc">{{ product.desc }}</p>
+        <h3>
+          @if (product.id === 'tb-ev-flex') {
+            <a class="product-detail-link" routerLink="/geotrust-true-businessid-ev-flex">{{ product.name }}</a>
+          } @else if (product.id === 'tb-ov-flex') {
+            <a class="product-detail-link" routerLink="/geotrust-true-businessid-ov" [queryParams]="quantity(product) > 1 ? { quantity: quantity(product) } : null">{{ product.name }}</a>
+          } @else if (product.id === 'dv-flex') {
+            <a class="product-detail-link" routerLink="/geotrust-dv-ssl-flex">{{ product.name }}</a>
+          } @else if (product.id === 'quick-san') {
+            <a class="product-detail-link" routerLink="/geotrust-quickssl-premium-san">{{ product.name }}</a>
+          } @else if (product.id === 'quick-premium') {
+            <a class="product-detail-link" routerLink="/geotrust-quickssl-premium">{{ product.name }}</a>
+          } @else if (product.id === 'quick-wild') {
+            <a class="product-detail-link" routerLink="/geotrust-quickssl-premium-wildcard">{{ product.name }}</a>
+          } @else if (product.id === 'tb-id') {
+            <a class="product-detail-link" routerLink="/geotrust-true-businessid">{{ product.name }}</a>
+          } @else if (product.id === 'tb-md') {
+            <a class="product-detail-link" routerLink="/geotrust-true-businessid-multi-domain">{{ product.name }}</a>
+          } @else if (product.id === 'tb-ev-md') {
+            <a class="product-detail-link" routerLink="/geotrust-true-businessid-ev-multi-domain">{{ product.name }}</a>
+          } @else if (product.id === 'tb-ev') {
+            <a class="product-detail-link" routerLink="/geotrust-true-businessid-ev" [queryParams]="quantity(product) > 1 ? { quantity: quantity(product) } : null">{{ product.name }}</a>
+          } @else if (product.id === 'tb-wild') {
+            <a class="product-detail-link" routerLink="/geotrust-true-businessid-wildcard">{{ product.name }}</a>
+          } @else {
+            {{ product.name }}
+          }
+        </h3><p class="pdesc">{{ product.desc }}</p>
         <div class="pmeta"><div><span>Warranty</span><b>{{ product.warranty }}</b></div><div><span>Issued</span><b>{{ product.issue }}</b></div></div>
         <ul class="pfeat">@for (feature of product.features; track feature) { <li><span class="ck">✓</span>{{ feature }}</li> }</ul>
         <div class="pprice"><div><span class="from">From</span><span class="amt">{{ inr(product.prices[2]) }}</span><span class="yr">/year</span></div><span class="save">Save up to 84%</span></div>
         <div class="certificate-quantity" role="group" [attr.aria-label]="product.name + ' quantity'">
           <button type="button" (click)="adjustQuantity(product, -1)" [disabled]="quantity(product) === 1" [attr.aria-label]="'Decrease ' + product.name + ' quantity'">&minus;</button>
-          <input xhQuantityInput [attr.aria-label]="'Quantity for ' + product.name + ' quantity'" [quantityValue]="quantity(product)" [quantityMax]="9999" (quantityChange)="adjustQuantity(product, $event - (quantity(product)))" />
-          <button type="button" (click)="adjustQuantity(product, 1)" [disabled]="quantity(product) === 9999" [attr.aria-label]="'Increase ' + product.name + ' quantity'">+</button>
+          <input xhQuantityInput [attr.aria-label]="'Quantity for ' + product.name + ' quantity'" [quantityValue]="quantity(product)" [quantityMax]="quantityMax(product)" (quantityChange)="adjustQuantity(product, $event - (quantity(product)))" />
+          <button type="button" (click)="adjustQuantity(product, 1)" [disabled]="quantity(product) === quantityMax(product)" [attr.aria-label]="'Increase ' + product.name + ' quantity'">+</button>
         </div>
         <button class="btn btn-orange" type="button" (click)="configure(product)">Buy Now <span class="ar">→</span></button>
       </article>

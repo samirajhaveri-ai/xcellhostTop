@@ -9,11 +9,16 @@ export interface ProductComparisonDefinition {
   category: ComparisonCategory;
   left: string;
   right: string;
+  leftLabel?: string;
+  rightLabel?: string;
   summary: string;
   eyebrow: string;
 }
 
 export const PRODUCT_COMPARISONS: readonly ProductComparisonDefinition[] = [
+  { category: 'Cybersecurity', left: 'Advanced Endpoint Security (EDR)', right: 'Microsoft Defender', leftLabel: 'Acronis EDR', rightLabel: 'Microsoft Defender', eyebrow: 'Endpoint security', summary: 'Compare Acronis EDR with Microsoft Defender across endpoint protection, detection and response, recovery, ecosystem fit and managed security operations.' },
+  { category: 'Cybersecurity', left: 'All Fortinet Products', right: 'All PaloAlto Products', leftLabel: 'Fortinet', rightLabel: 'Palo Alto Networks', eyebrow: 'Network security platforms', summary: 'Compare Fortinet and Palo Alto Networks across next-generation firewalls, security architecture, management, threat prevention, ecosystem breadth and operational fit.' },
+  { category: 'Digital Trust', left: 'GeoTrust', right: 'DigiCert', eyebrow: 'SSL certificate brands', summary: 'Compare GeoTrust and DigiCert across certificate options, validation levels, enterprise trust, lifecycle management and the support required for your deployment.' },
   { category: 'Cloud Infrastructure', left: 'Performance Cloud', right: 'Bare Metal Server', eyebrow: 'Flexible compute', summary: 'Compare elastic cloud capacity with dedicated physical hardware for demanding production workloads.' },
   { category: 'Cloud Infrastructure', left: 'Dedicated Private Cloud', right: 'Hybrid Cloud', eyebrow: 'Deployment model', summary: 'Choose between a fully private environment and an architecture that connects private and public resources.' },
   { category: 'Cloud Infrastructure', left: 'Cloud Backup', right: 'Cloud Object Storage', eyebrow: 'Data protection', summary: 'Understand when you need managed recovery workflows versus scalable object-based storage.' },

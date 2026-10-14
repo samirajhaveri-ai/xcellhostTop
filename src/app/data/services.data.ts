@@ -526,7 +526,7 @@ export const SERVICES_RICH: Record<string, ServiceRich> = {
   },
   "smb cyber security appliance": {
     "price": "From ₹24,999/year",
-    "ov": "The XcellSecure SMB Cyber Security Appliance is an affordable, cloud-managed security gateway for businesses with up to 50 users. One right-sized platform combines secure business Wi-Fi, advanced firewall protection, web and DNS security, application controls, bandwidth management, real-time visibility and automatic security updates — without the cost and complexity of an enterprise security stack.",
+    "ov": "XcellSecure SMB Cyber Security Appliance is an affordable, cloud-managed security gateway for businesses with up to 50 users. One right-sized platform combines secure business Wi-Fi, advanced firewall protection, web and DNS security, application controls, bandwidth management, real-time visibility and automatic security updates — without the cost and complexity of an enterprise security stack.",
     "f": [
       [
         "Router-Level Protection",

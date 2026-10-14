@@ -32,12 +32,15 @@ const COMPACT_GPU_PAGE_SLUGS = new Set([
   'nvidia-l4',
   'nvidia-a30',
   'nvidia-a2',
+  'nvidia-h200',
   'nvidia-h100',
   'nvidia-a100',
+  'nvidia-b300-nodes',
   'rtx-pro-6000',
   'nvidia-rtx-6000-ada',
   'rtx-a6000',
   'rtx-8000',
+  'gpu-clusters',
   'nvidia-vera-rubin',
 ]);
 

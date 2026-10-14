@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+
 interface BareMetalPlan {
   processor: string; cores: string; memory: string; storage: string; bandwidth: string; oldPrice: string; price: string;
 }

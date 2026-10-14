@@ -4,6 +4,7 @@ import { ContainerServiceHeroComponent } from '../sections/container-service-her
 import { ContainerRegistryContentComponent } from '../sections/container-registry-content.component';
 
 import { ImportedInteractiveContentComponent } from '../sections/imported-interactive-content.component';
+import { WORDPRESS_VPS_FAQS } from '../data/wordpress-vps-faq.data';
 import { MANAGED_KUBERNETES_FAQS } from '../data/managed-kubernetes-faq.data';
 
 
@@ -58,6 +59,7 @@ import { ComodoEvCodeSigningHeroComponent } from '../sections/comodo-ev-code-sig
 import { CodeSigningHeroComponent } from '../sections/code-signing-hero.component';
 import { VdpoHeroComponent } from '../sections/vdpo-hero.component';
 import { VcisoHeroComponent } from '../sections/vciso-hero.component';
+import { GeotrustSslHeroComponent } from '../sections/geotrust-ssl-hero.component';
 import { VcisoContentComponent } from '../sections/vciso-content.component';
 import { VdpoContentComponent } from '../sections/vdpo-content.component';
 import { CodeSigningContentComponent } from '../sections/code-signing-content.component';
@@ -129,6 +131,11 @@ import { EnterpriseDrDetailsComponent } from '../sections/enterprise-dr-details.
 
 import { AiLabContentComponent } from '../sections/ai-lab-content.component';
 import { AI_LAB_FAQS } from '../data/ai-lab-faqs.data';
+import { ACRONIS_AI_FAQS } from '../data/acronis-ai-faqs.data';
+import { DRUVA_FAQS } from '../data/druva-faqs.data';
+import { DRUVA_WHY } from '../data/druva-why.data';
+import { DIRECT_BACKUP_FAQS } from '../data/acronis-direct-backup-faqs.data';
+import { DIRECT_BACKUP_WHY } from '../data/acronis-direct-backup-why.data';
 import { AcronisMdrContentComponent } from '../sections/acronis-mdr-content.component';
 import { AcronisMdrHeroComponent } from '../sections/acronis-mdr-hero.component';
 import { MicrosoftDefenderHeroComponent } from '../sections/microsoft-defender-hero.component';
@@ -362,6 +369,7 @@ import { ATM_SOLUTION_DETAILS } from '../data/atm-solution-detail.data';
 import { OurPlatformReferenceComponent } from '../sections/our-platform-reference.component';
 import { WatchtowerReferenceComponent } from '../sections/watchtower-reference.component';
 import { BareMetalContentComponent } from '../sections/bare-metal-content.component';
+import { GlobalInfrastructureGlobeComponent } from '../sections/global-infrastructure-globe.component';
 import { GenaiProtectionContentComponent } from '../sections/genai-protection-content.component';
 import { CloudMigrationAdvantageComponent } from '../sections/cloud-migration-advantage.component';
 import { AcronisBackupAdvancedContentComponent } from '../sections/acronis-backup-advanced-content.component';
@@ -472,6 +480,7 @@ interface ProductTourSlide {
     CodeSigningHeroComponent,
     VdpoHeroComponent,
     VcisoHeroComponent,
+    GeotrustSslHeroComponent,
     VcisoContentComponent,
     VdpoContentComponent,
     CodeSigningContentComponent,
@@ -657,6 +666,7 @@ interface ProductTourSlide {
     OurPlatformReferenceComponent,
     WatchtowerReferenceComponent,
     BareMetalContentComponent,
+    GlobalInfrastructureGlobeComponent,
     GenaiProtectionContentComponent,
     CloudMigrationAdvantageComponent,
     AcronisBackupAdvancedContentComponent,
@@ -1757,7 +1767,7 @@ interface ProductTourSlide {
 
     /* Keep hero artwork inside the same 1240px container as the sections below. */
     @media (min-width: 901px) {
-      #ppage.ppage > .pp-hero > .pph-scene:not(.oracle-hero-visual) {
+      #ppage.ppage > .pp-hero > .pph-scene:not(.oracle-hero-visual):not(.openclaw-hero-art) {
         right: max(24px, calc((100% - 1240px) / 2 + 24px));
         width: min(calc((100% - 48px) * .34), 405px);
         max-width: none;
@@ -1794,7 +1804,7 @@ interface ProductTourSlide {
       }
     }
     @media (min-width: 901px) and (max-width: 1180px) {
-      #ppage.ppage > .pp-hero > .pph-scene:not(.oracle-hero-visual) {
+      #ppage.ppage > .pp-hero > .pph-scene:not(.oracle-hero-visual):not(.openclaw-hero-art) {
         right: 28px;
         width: calc((100% - 56px) * .38);
       }
@@ -1989,6 +1999,27 @@ interface ProductTourSlide {
       #ppage.ppage.vdpo-page > .pp-hero > .wrap { order: -1; width: 100%; }
       #ppage.ppage.vdpo-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 100% !important; }
       #ppage.ppage.vdpo-page > .pp-hero > .pph-scene.vdpo-hero-art {
+        position: relative; inset: auto; transform: none; width: calc(100% - 24px);
+        max-width: 620px; margin: 12px auto 0;
+      }
+    }
+    #ppage.ppage.geotrust-hero-page > .pp-hero { min-height: 660px; }
+    #ppage.geotrust-hero-page .pp-hero #ppTitle { display: block; white-space: normal; text-align: left; }
+    #ppage.geotrust-hero-page .pp-hero #ppTitle .pp-title-name { display: inline; white-space: normal; margin-left: 0; }
+    @media (min-width: 1301px) {
+      #ppage.ppage.geotrust-hero-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 49% !important; }
+    }
+    #ppage.ppage.geotrust-hero-page > .pp-hero > .pph-scene.geotrust-hero-art {
+      right: max(16px, calc((100% - 1240px) / 2));
+      width: min(46%, 620px); top: 50%; bottom: auto; transform: translateY(-50%);
+      max-height: none; opacity: 1; mask-image: none; -webkit-mask-image: none;
+      overflow: visible; pointer-events: auto; z-index: 4;
+    }
+    @media (max-width: 1300px) {
+      #ppage.ppage.geotrust-hero-page > .pp-hero { display: flex; flex-direction: column; }
+      #ppage.ppage.geotrust-hero-page > .pp-hero > .wrap { order: -1; width: 100%; }
+      #ppage.ppage.geotrust-hero-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 100% !important; }
+      #ppage.ppage.geotrust-hero-page > .pp-hero > .pph-scene.geotrust-hero-art {
         position: relative; inset: auto; transform: none; width: calc(100% - 24px);
         max-width: 620px; margin: 12px auto 0;
       }
@@ -2931,6 +2962,10 @@ class ProductPageComponent {
     initialValue: '',
   });
 
+  readonly usesVpsPageTemplate = computed(() =>
+    this.slug() === 'openclaw-vps' || this.slug() === 'cpanel-vps',
+  );
+
   readonly usesContainerRegistryTemplate = computed(() =>
     this.slug() === 'container-registry' || this.slug() === 'container-as-a-service',
   );
@@ -2965,6 +3000,100 @@ class ProductPageComponent {
     const slug = this.slug();
     const view = this.resolve(slug);
     if (!view) return null;
+
+    if (slug === 'bio-link-digital-visiting-card') return { ...view, brandSuffix: 'Card' };
+    if (slug === 'wordpress-vps') return { ...view, brandSuffix: 'Cloud', faqs: WORDPRESS_VPS_FAQS };
+    if (slug === 'general-compute') return {
+      ...view,
+      brandSuffix: 'Cloud',
+      tagline: 'Balanced cloud VMs, running in about a minute.',
+      heroHighlight: "Simplify deployments with instances that balance vCPU, memory and network at a 1:4 ratio — 1 to 64 vCPU in XcellHost's Mumbai cloud, billed by the hour, the month or a reserved term, in rupees.",
+      heroMessages: [],
+    };
+
+
+    if (slug === '47-days-ssl') return {
+      ...view,
+      tagline: "Certificate lifetimes are shrinking. Spreadsheets and calendar reminders won't keep up.",
+      heroHighlight: 'Public SSL/TLS certificates now last at most 200 days, 100 days from March 2027 and 47 days from March 2029. XcellHost sets up Sectigo Certificate Manager with ACME so every renewal happens on its own — and watches it 24×7 from Mumbai.',
+      heroMessages: [
+        'Renewals eight times a year, zero tickets',
+        'Find every certificate before it expires',
+        'ACME renews, installs and reloads for you',
+        'Ready for 100 days in 2027 and 47 in 2029',
+      ],
+    };
+
+    if (slug === 'acronis-direct-cloud-backup') return {
+      ...view,
+      faqs: DIRECT_BACKUP_FAQS,
+      why: DIRECT_BACKUP_WHY,
+      tagline: 'Back up straight into the cloud storage you choose.',
+      heroHighlight: 'XcellHost sets up and runs Acronis backup that writes directly to your own S3-compatible bucket — AWS Mumbai, Hyderabad or any S3 store — with Object Lock immutability, AES-256 encryption and no gateway in between.',
+      heroMessages: [
+        'Your bucket, your bill, your keys',
+        'Object Lock: ransomware cannot delete it',
+        'AWS Mumbai today, Hyderabad as a second copy',
+        'One console for every server, VM, laptop and mailbox',
+      ],
+      heroPoints: [
+        'Direct to S3 — no gateway box',
+        'Object Lock immutable copies',
+        'AES-256 at rest & in transit',
+        'AWS Mumbai · Hyderabad regions',
+      ],
+    };
+
+    if (slug === 'explore-druva-platform') return {
+      ...view,
+      faqs: DRUVA_FAQS,
+      why: DRUVA_WHY,
+      tagline: 'The Resilience Cloud for the AI enterprise.',
+      heroHighlight: 'Ransomware. Compromised identity. Rogue AI. Resilience as a service that gets you through your worst day — set up, monitored and billed in rupees by XcellHost.',
+      heroMessages: [
+        'Ransomware locks the file server at 2 a.m.',
+        'A phished admin starts deleting mailboxes',
+        'An AI agent rewrites 1,240 shared files',
+        'The only copy leaves on a stolen laptop',
+      ],
+      heroPoints: [
+        'Clean recovery from ransomware',
+        'Entra ID, Active Directory & Okta',
+        'Undo what AI agents change',
+        'M365, laptops, VMs & cloud',
+        '100% SaaS — no hardware',
+        'Immutable, air-gapped copies',
+      ],
+    };
+
+    if (slug === 'cpanel-vps') return {
+      ...view,
+      brandSuffix: 'VPS',
+      faqs: [
+        ['What is cPanel VPS?', 'A virtual private server with cPanel & WHM for managing websites, domains, email, databases and hosting accounts from a control panel.'],
+        ['Is the cPanel licence included in the server price?', 'The VPS and cPanel licence are shown separately in the builder. Select Admin, Pro or Premier to see the combined estimate. Prices are indicative until confirmed in your quotation.'],
+        ['Which operating system can I choose?', 'These plans use AlmaLinux, with CloudLinux available on request. Choose the AlmaLinux configuration in the builder and contact our team for other requirements.'],
+        ['Can you help migrate my existing websites?', 'Contact the XcellHost team to discuss moving your websites, email and databases and to agree the migration scope.'],
+        ['Can I add backups and managed support?', 'Yes. Select daily backups or managed support in the server builder to include them in your estimate and quotation.'],
+      ],
+
+    };
+
+    if (slug === 'acronis-ai') return {
+      ...view,
+      faqs: ACRONIS_AI_FAQS,
+      tagline: 'The AI-native platform to protect, manage and automate IT.',
+      heroHighlight: 'A new generation of cyber products for a world where agents do the work — one data model, agentic workflows, and a human approval wherever it matters. Deployed and supported in India by XcellHost.',
+      heroMessages: [
+        'An alert comes in. A ticket, root cause and fix go out.',
+        'Agents patch, back up and remediate — you approve',
+        'Stop PAN and Aadhaar numbers leaking into AI prompts',
+        'One console for your technicians and their AI agents',
+      ],
+      heroPoints: ['AI-native Cyber Console', 'Agentic workflows + approvals', 'Backup, EDR & RMM in one', 'GenAI prompt DLP'],
+      videos: ['s1Rxs7rWd2I', ''],
+
+    };
 
     if (slug === 'ai-receptionist') return {
       ...view,
@@ -3992,6 +4121,7 @@ class ProductPageComponent {
 
   readonly consultingSectionNavLinks = computed(() => this.smbSectionNavLinks().filter(link => link.target !== 'showcaseVideosTitle'));
 
+
   readonly smbSectionNavLinks = computed(() =>
     this.isTally()
       ? [
@@ -4126,6 +4256,9 @@ class ProductPageComponent {
 
   readonly productInsightVideos = computed(() => {
     const additional: Record<string, readonly { title: string; source: string }[]> = {
+      '47-days-ssl': [{ title: '47-Days-SSL overview', source: 'https://www.youtube-nocookie.com/embed/s1Rxs7rWd2I?rel=0&playsinline=1' }],
+      'acronis-direct-cloud-backup': [{ title: 'Acronis Direct Cloud Backup overview', source: 'https://www.youtube-nocookie.com/embed/s1Rxs7rWd2I?rel=0&playsinline=1' }],
+      'explore-druva-platform': [{ title: 'Explore Druva Platform overview', source: 'https://www.youtube-nocookie.com/embed/s1Rxs7rWd2I?rel=0&playsinline=1' }],
       'vortex-seg': [{ title: 'Elevate your email security with Vortex SEG', source: 'https://www.youtube-nocookie.com/embed/OQAmgvXsfyI?rel=0&playsinline=1' }],
       'vortex-soc': [{ title: 'Vortex SOC security operations', source: 'https://www.youtube-nocookie.com/embed/0tdN-nnDMHk?rel=0&playsinline=1' }],
       'scrutiny-dlp': [{ title: 'Scrutiny DLP - Product Intro', source: 'https://www.youtube-nocookie.com/embed/xpKcsUPT0ZA?rel=0&playsinline=1' }],
@@ -4153,7 +4286,7 @@ class ProductPageComponent {
 
   /** Product videos live in the shared Insights > Videos tab, not in a
    * second standalone "Watch it in action" section on the same page. */
-  readonly videosInInsights = computed(() => !!this.productInsightVideos()?.length);
+  readonly videosInInsights = computed(() => this.slug() !== 'acronis-ai' && !!this.productInsightVideos()?.length);
 
   readonly isRmm = computed(
     () => this.view()?.name === 'Remote Monitoring & Mgmt (RMM)'

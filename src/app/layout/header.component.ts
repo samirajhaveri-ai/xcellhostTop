@@ -196,7 +196,7 @@ const MENU_FEATURE_CARDS: Readonly<Record<string, readonly NavFeatureCardVm[]>> 
       label: 'Certificate automation', title: 'ACME Certificates',
       body: 'Issue, install and renew Sectigo DV and OV certificates automatically.',
       image: '/assets/images/vendor-partners/23-sectigo.png',
-      link: '/acme-certificate', fresh: true,
+      link: '/acme-enabled-ssl-certificates', fresh: true,
     },
     {
       label: 'Email trust', title: 'Enterprise DMARC',
@@ -350,7 +350,7 @@ const CONTENT_LINKS: Record<string, string> = {
   'WhatsApp For Business': '/whatsapp-smb',
   'Digicert VMC ': '/digicert-vmc',
   'Digicert CMC': '/digicert-cmc',
-  'ACME Certificates': '/acme-certificate',
+  'ACME Certificates': '/acme-enabled-ssl-certificates',
   'Acronis Advanced EDR SLA': '/acronis-advanced-edr-sla',
   'Acronis Advanced MDR SLA': '/acronis-advanced-mdr-sla',
   'Acronis Advanced XDR SLA': '/acronis-advanced-xdr-sla',

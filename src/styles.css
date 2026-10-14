@@ -6318,6 +6318,117 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 #ppage .pp-hero #ppTitle.comodo-hero-title{display:block!important;white-space:nowrap!important;text-wrap:nowrap!important;font-size:var(--banner-title-size,42px)!important}
 
 /* Supplied OpenClaw console inside the existing product hero. */
-#ppage .pph-scene.openclaw-hero-art{right:2%;top:8%;bottom:auto;width:38%;opacity:1;mask-image:none;pointer-events:auto;z-index:4}
-@media(max-width:900px){#ppage .pph-scene.openclaw-hero-art{position:relative;inset:auto;width:calc(100% - 40px);max-width:500px;margin:20px auto;order:2}#ppage .pp-hero:has(.openclaw-hero-art){display:flex;flex-direction:column}#ppage .pp-hero:has(.openclaw-hero-art)>.wrap{width:100%}}
+#ppage .pp-body:has(.openclaw-page-content){padding-top:0}
+#ppage .openclaw-page-content{display:block;flex:none;width:100vw!important;max-width:none!important;margin-left:calc(50% - 50vw)}
+#ppage .openclaw-page-content>iframe{width:100%!important;max-width:none!important}
+.openclaw-left-features{display:grid;grid-template-columns:1fr 1fr;gap:14px 20px;max-width:520px;margin:0 0 22px}
+.openclaw-left-features>div{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;line-height:1.4;color:#eaf2ff}
+.openclaw-left-features .feature-icon{display:grid;place-items:center;flex:0 0 20px;width:20px;height:20px;border-radius:5px;background:#1565d8;box-shadow:0 0 0 3px rgba(21,101,216,.25)}
+.openclaw-left-features svg{width:11px;height:11px;color:#fff}
+@media(max-width:480px){.openclaw-left-features{grid-template-columns:1fr}}
+#ppage:has(.openclaw-hero-art) .pph-scene.openclaw-hero-art{position:relative!important;inset:auto!important;grid-column:2;grid-row:1;width:100%!important;max-width:600px!important;opacity:1;mask-image:none;pointer-events:auto;z-index:4}
+#ppage .openclaw-hero-art>xh-imported-interactive-content{display:block;flex:1 1 100%;width:100%;min-width:0}
+@media(max-width:900px){#ppage:has(.openclaw-hero-art) .pph-scene.openclaw-hero-art{grid-column:1;grid-row:2;margin:0 auto}}
 
+
+/* Keep the cPanel VPS console and imported sections inside the page container. */
+#ppage.cpanel-vps-page .openclaw-page-content{width:100%!important;max-width:100%!important;margin-left:0!important}
+#ppage.cpanel-vps-page .openclaw-hero-art{max-height:none;overflow:visible}
+#ppage.cpanel-vps-page .pp-hero #ppTitle{display:block!important;white-space:nowrap!important;text-wrap:nowrap!important;font-size:var(--banner-title-size,42px)!important}
+#ppage.cpanel-vps-page .pp-hero #ppTitle .pp-title-name{display:inline!important;white-space:nowrap!important;font-size:inherit!important}
+@media(min-width:901px){
+  #ppage.cpanel-vps-page .pph-scene.openclaw-hero-art{right:max(24px,calc((100% - 1240px)/2 + 24px))!important;top:50%;bottom:auto;transform:translateY(-50%);width:min(44%,540px)!important;max-width:none!important}
+  #ppage.cpanel-vps-page .pp-hero>.wrap>:is(h1,.pp-tagline,.pp-tagline-support,.pp-typewriter,.pp-hero-grid){max-width:52%}
+}
+@media(max-width:900px){
+  #ppage.cpanel-vps-page .pph-scene.openclaw-hero-art{top:auto;transform:none}
+}
+
+/* Bio Link artwork shares the hero's content grid and stacks below the copy on phones. */
+#ppage.bio-link-page>.pp-hero{display:grid;grid-template-columns:minmax(0,620px) minmax(0,540px);justify-content:center;align-items:center;gap:32px;padding:48px 24px}
+#ppage.bio-link-page>.pp-hero>.wrap{grid-column:1;grid-row:1;width:100%;max-width:none;padding-inline:0}
+#ppage.bio-link-page .pp-hero>.wrap>:is(h1,.pp-tagline,.pp-tagline-support,.pp-typewriter,.pp-hero-grid){width:100%;max-width:100%!important}
+#ppage.bio-link-page>.pp-hero>.pph-scene.bio-link-hero-art{position:relative;inset:auto!important;grid-column:2;grid-row:1;width:100%!important;max-width:none;max-height:none;opacity:1;mask-image:none;pointer-events:auto;z-index:4}
+#ppage.bio-link-page .bio-link-hero-art>xh-imported-interactive-content{display:block;width:100%;min-width:0}
+#ppage.bio-link-page .bio-link-source-content{display:block;width:100%;min-width:0}
+@media(max-width:900px){#ppage.bio-link-page>.pp-hero{grid-template-columns:minmax(0,1fr);gap:24px;padding-inline:20px}#ppage.bio-link-page>.pp-hero>.pph-scene.bio-link-hero-art{grid-column:1;grid-row:2;max-width:540px;margin-inline:auto}}
+
+/* General Compute artwork shares the hero's content grid and stacks below the copy on phones. */
+#ppage.general-compute-page>.pp-hero{display:grid;grid-template-columns:minmax(0,620px) minmax(0,540px);justify-content:center;align-items:center;gap:32px;padding:48px 24px}
+#ppage.general-compute-page>.pp-hero>.wrap{grid-column:1;grid-row:1;width:100%;max-width:none;padding-inline:0}
+#ppage.general-compute-page .pp-hero>.wrap>:is(h1,.pp-tagline,.pp-tagline-support,.pp-typewriter,.pp-hero-grid){width:100%;max-width:100%!important}
+#ppage.general-compute-page>.pp-hero>.pph-scene.general-compute-hero-art{position:relative;inset:auto!important;grid-column:2;grid-row:1;width:100%!important;max-width:none;max-height:none;opacity:1;mask-image:none;pointer-events:auto;z-index:4}
+#ppage.general-compute-page .general-compute-hero-art>xh-imported-interactive-content{display:block;width:100%;min-width:0}
+#ppage.general-compute-page .general-compute-source-content{display:block;width:100%;min-width:0}
+#ppage.general-compute-page .pp-hero #ppTitle{display:block!important;text-align:left;white-space:normal!important;text-wrap:wrap}
+#ppage.general-compute-page #ppTitle .pp-title-name{display:inline!important;margin-left:0!important;white-space:normal!important;text-wrap:wrap}
+#ppage.general-compute-page .pp-hero #ppTag{color:#fff;margin-bottom:4px;line-height:1.5}
+#ppage.general-compute-page .pp-hero .pp-tagline-support{width:100%!important;max-width:100%!important;white-space:normal!important;color:#cbdcf3!important;font-size:16px;font-weight:600;line-height:1.5;margin-bottom:20px}
+#ppage.general-compute-page .general-compute-hero-points{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px;margin:0 0 22px;color:#d5e3f6;font-size:14px;line-height:1.5}
+#ppage.general-compute-page .general-compute-hero-points>div{display:flex;align-items:center;gap:9px;min-width:0}
+#ppage.general-compute-page .general-compute-hero-points span{display:grid;place-items:center;flex:0 0 24px;width:24px;height:24px;border-radius:7px;background:#1565d8;box-shadow:0 0 0 4px rgba(21,101,216,.16);color:#fff}
+#ppage.general-compute-page .general-compute-hero-points svg{width:15px;height:15px}
+@media(max-width:560px){#ppage.general-compute-page .general-compute-hero-points{grid-template-columns:1fr}}
+@media(max-width:900px){#ppage.general-compute-page>.pp-hero{grid-template-columns:minmax(0,1fr);gap:24px;padding-inline:20px}#ppage.general-compute-page>.pp-hero>.pph-scene.general-compute-hero-art{grid-column:1;grid-row:2;max-width:540px;margin-inline:auto}}
+
+/* Supplied Acronis AI console and wordmark within the default product hero. */
+#ppage:is(.acronis-ai-page,.druva-platform-page,.direct-backup-page,.ssl47-page,:has(.openclaw-hero-art))>.pp-hero{display:grid;grid-template-columns:minmax(0,600px) minmax(0,500px);justify-content:center;align-items:start;gap:40px;padding:40px 24px;height:auto;max-height:none}
+#ppage:has(.openclaw-hero-art)>.pp-hero{grid-template-columns:minmax(0,560px) minmax(0,600px)}
+#ppage:is(.acronis-ai-page,.druva-platform-page,.direct-backup-page,.ssl47-page,:has(.openclaw-hero-art))>.pp-hero>.wrap{grid-column:1;grid-row:1;width:100%;max-width:100%!important;margin:0;padding:0!important;min-width:0}
+#ppage:is(.acronis-ai-page,.druva-platform-page,.direct-backup-page,.ssl47-page,:has(.openclaw-hero-art)) .pp-hero>.wrap>:is(h1,.pp-tagline,.pp-tagline-support,.pp-typewriter,.pp-chips,.pp-hero-grid){width:100%!important;max-width:100%!important;white-space:normal!important;overflow-wrap:break-word}
+#ppage:is(.acronis-ai-page,.druva-platform-page,.direct-backup-page,.ssl47-page,:has(.openclaw-hero-art)) .pp-hero #ppTitle{display:flex!important;flex-wrap:wrap!important;white-space:normal!important;text-wrap:wrap!important;line-height:1.15;gap:0 .15em}
+#ppage:is(.acronis-ai-page,.druva-platform-page,.direct-backup-page,.ssl47-page,:has(.openclaw-hero-art)) #ppTitle .pp-title-brand{flex:none;max-width:none!important;white-space:nowrap}
+#ppage:is(.acronis-ai-page,.druva-platform-page,.direct-backup-page,.ssl47-page,:has(.openclaw-hero-art)) #ppTitle .pp-title-name{display:block!important;flex-basis:100%;width:100%!important;max-width:100%!important;min-width:0;margin:4px 0 0;white-space:normal!important;text-wrap:wrap!important}
+#ppage:is(.acronis-ai-page,.druva-platform-page,.direct-backup-page,.ssl47-page,:has(.openclaw-hero-art)) .pp-typewriter{height:auto;min-height:2.8em;align-items:baseline}
+#ppage:is(.acronis-ai-page,.druva-platform-page,.direct-backup-page,.ssl47-page,:has(.openclaw-hero-art)) .pp-typewriter>span{min-width:0;white-space:normal!important;overflow:visible!important;text-overflow:clip;overflow-wrap:break-word}
+#ppage.acronis-ai-page .pph-scene.acronis-ai-hero-art{position:relative!important;inset:auto!important;grid-column:2;grid-row:1;width:100%!important;max-width:500px!important;opacity:1;mask-image:none;pointer-events:auto;z-index:4}
+#ppage .acronis-ai-hero-art>xh-imported-interactive-content{display:block;width:100%;min-width:0}
+#ppage:is(.acronis-ai-page,.druva-platform-page,.direct-backup-page,.ssl47-page) .pp-body>.wrap>section+section{margin-top:56px}
+#ppage:is(.acronis-ai-page,.druva-platform-page,.direct-backup-page,.ssl47-page) .service-closing-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+#ppage:is(.acronis-ai-page,.druva-platform-page,.direct-backup-page,.ssl47-page) .service-closing-actions .btn-ghost{color:#fff;background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.35)}
+@media(max-width:900px){#ppage:is(.acronis-ai-page,.druva-platform-page,.direct-backup-page,.ssl47-page,:has(.openclaw-hero-art))>.pp-hero{grid-template-columns:minmax(0,1fr);gap:24px;padding:32px 24px}#ppage.acronis-ai-page .pph-scene.acronis-ai-hero-art{grid-column:1;grid-row:2;margin:0 auto}}
+
+/* Supplied Druva resilience timeline within the existing product hero. */
+#ppage.druva-platform-page .pph-scene.druva-hero-art{position:relative!important;inset:auto!important;grid-column:2;grid-row:1;width:100%!important;max-width:500px!important;opacity:1;mask-image:none;pointer-events:auto;z-index:4;max-height:none}
+#ppage .druva-hero-art>xh-imported-interactive-content{display:block;width:100%;min-width:0}
+#ppage.druva-platform-page .pp-hpoints{grid-template-columns:repeat(2,minmax(0,1fr));width:100%;max-width:100%;gap:12px 20px}
+#ppage.druva-platform-page .pp-hpoint{min-width:0;white-space:normal;overflow-wrap:break-word;align-items:flex-start}
+#ppage.druva-platform-page .pp-faq{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(4,auto);grid-auto-flow:column;align-items:start}
+#ppage.druva-platform-page #ppBlog .blogs{content-visibility:visible;contain-intrinsic-size:none;padding:24px 0}
+#ppage.druva-platform-page #ppBlog .blogs>.wrap{width:100%;max-width:100%;padding:0}
+#ppage.druva-platform-page #ppBlog .insights-heading.reveal{opacity:1;transform:none}
+#ppage.druva-platform-page #ppBlog .insights-heading-row{width:100%}
+#ppage.druva-platform-page .pp-body{padding-top:0}
+#ppage.druva-platform-page .pp-body>.wrap>section+section{margin-top:28px}
+#ppage.druva-platform-page .pp-body>.wrap>section>.pp-sec{margin-top:0}
+#ppage.druva-platform-page #ppBlog .blogs{padding:12px 0}
+@media(max-width:760px){#ppage.druva-platform-page .pp-faq{grid-template-columns:minmax(0,1fr);grid-template-rows:none;grid-auto-flow:row}}
+@media(max-width:600px){#ppage.druva-platform-page .pp-hpoints{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:900px){#ppage.druva-platform-page .pph-scene.druva-hero-art{grid-column:1;grid-row:2;margin:0 auto}}
+
+/* Direct Cloud Backup uses the supplied Acronis animation and partner wordmark. */
+#ppage.direct-backup-page .pph-scene.direct-backup-hero-art{position:relative!important;inset:auto!important;grid-column:2;grid-row:1;width:100%!important;max-width:500px!important;opacity:1;mask-image:none;pointer-events:auto;z-index:4;max-height:none}
+#ppage .direct-backup-hero-art>xh-imported-interactive-content{display:block;width:100%;min-width:0}
+#ppage.direct-backup-page #ppBlog .blogs{content-visibility:visible;contain-intrinsic-size:none}
+#ppage.direct-backup-page #ppBlog .insights-heading.reveal{opacity:1;transform:none}
+#ppage.direct-backup-page .pp-body{padding-top:0}
+#ppage.direct-backup-page .pp-body>.wrap>section+section{margin-top:28px}
+#ppage.direct-backup-page .pp-body>.wrap>section>.pp-sec{margin-top:0}
+#ppage.direct-backup-page #ppBlog .blogs{padding:12px 0}
+#ppage.direct-backup-page .pp-hpoints{grid-template-columns:repeat(2,minmax(0,1fr));width:100%;max-width:100%;gap:12px 20px}
+#ppage.direct-backup-page .pp-hpoint{min-width:0;white-space:normal;overflow-wrap:break-word;align-items:flex-start}
+@media(max-width:600px){#ppage.direct-backup-page .pp-hpoints{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:900px){#ppage.direct-backup-page .pph-scene.direct-backup-hero-art{grid-column:1;grid-row:2;margin:0 auto}}
+
+#ppage.ssl47-page .pph-scene.ssl47-hero-art{position:relative!important;inset:auto!important;grid-column:2;grid-row:1;width:100%!important;max-width:500px!important;opacity:1;mask-image:none;pointer-events:auto;z-index:4;max-height:none}
+#ppage.ssl47-page .ssl47-hero-art xh-imported-interactive-content{width:100%}
+#ppage.ssl47-page .pp-body{padding-top:0}
+#ppage.ssl47-page .pp-body>.wrap>section+section{margin-top:28px}
+#ppage.ssl47-page .pp-body>.wrap>section>.pp-sec{margin-top:0}
+#ppage.ssl47-page #ppBlog .blogs{padding:12px 0;content-visibility:visible;contain-intrinsic-size:none}
+#ppage.ssl47-page #ppBlog .insights-heading.reveal{opacity:1;transform:none}
+@media(max-width:900px){#ppage.ssl47-page .pph-scene.ssl47-hero-art{grid-column:1;grid-row:2;margin:0 auto}}
+@media(min-width:901px){
+  #ppage.ssl47-page .pp-hero #ppTitle{flex-wrap:nowrap!important;white-space:nowrap!important;text-wrap:nowrap!important;font-size:clamp(24px,2.7vw,36px)!important}
+  #ppage.ssl47-page #ppTitle .pp-title-name{display:inline!important;flex-basis:auto;width:auto!important;margin:0;white-space:nowrap!important;text-wrap:nowrap!important}
+}
