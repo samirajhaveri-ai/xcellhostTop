@@ -5,6 +5,10 @@ import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 
 type InteractiveContentSource =
+  | 'vps-page'
+  | 'project-server'
+  | 'microsoft-viva'
+  | 'microsoft-visio'
   | 'wordpress-vps' | 'wordpress-vps-hero' | 'general-compute' | 'general-compute-hero' | 'bio-link' | 'bio-link-hero' | 'cpanel' | 'cpanel-hero' | 'acronis-ai' | 'acronis-ai-hero' | 'openclaw' | 'openclaw-hero' | 'kubernetes' | 'podcasts' | 'deepcall' | 'workspace' | '47-day-ssl' | '47-day-ssl-hero' | 'direct-backup' | 'direct-backup-hero' | 'druva' | 'druva-hero'
   | 'rapidssl' | 'sectigo' | 'sectigo-ev' | 'mark' | 'website-security'
   | 'certificate-management' | 'code-signing-certificates' | 'email-signing-certificates'
@@ -23,6 +27,8 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
   @Input() source: InteractiveContentSource = 'kubernetes';
   @Input() consultingSlug = '';
   @Input() sslSlug = '';
+  @Input() vpsSlug = '';
+  private readonly vpsSlugs = new Set(['wordpress-vps', 'windows-vps', 'vps-usa', 'vps-netherlands', 'vps-india', 'vps-hosting', 'openclaw-vps', 'n8n-vps', 'cpanel-vps']);
 
   private readonly sanitizer = inject(DomSanitizer);
   private readonly overlay = inject(OverlayService);
@@ -47,7 +53,10 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     'digicert-secure-site-wildcard-ssl', 'digicert-secure-site-pro-ssl',
     'digicert-secure-site-pro-ev-ssl',
   ]);
-  private readonly sourceUrls: Record<Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail'>, string> = {
+  private readonly sourceUrls: Record<Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page'>, string> = {
+    'project-server': '/imported-project-server.html',
+    'microsoft-viva': '/imported-microsoft-viva.html',
+    'microsoft-visio': '/imported-microsoft-visio.html',
     'wordpress-vps': '/imported-wordpress-vps.html',
     'wordpress-vps-hero': '/imported-wordpress-vps-hero.html',
     'general-compute': '/imported-general-compute.html',
@@ -83,6 +92,10 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+    'vps-page': 'VPS hosting features, plans and server configurator',
+    'project-server': 'Microsoft Project Server features, migration and pricing',
+    'microsoft-viva': 'Microsoft Viva modules, employee experience and pricing',
+    'microsoft-visio': 'Microsoft Visio diagrams, plans and pricing',
     'wordpress-vps': 'WordPress VPS plans, server builder and Why XcellHost',
     'wordpress-vps-hero': 'WordPress VPS animated hero and speed preview',
     'general-compute': 'General Compute plans, add-ons and launch steps',
@@ -126,7 +139,9 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
 
   get contentUrl(): SafeResourceUrl {
     let url: string;
-    if (this.source === 'consulting') {
+    if (this.source === 'vps-page') {
+      url = this.vpsSlugs.has(this.vpsSlug) ? `/imported-vps-page-${this.vpsSlug}.html` : 'about:blank';
+    } else if (this.source === 'consulting') {
       url = this.consultingUrls[this.consultingSlug] ?? 'about:blank';
     } else if (this.source === 'ssl-detail') {
       url = this.sslSlugs.has(this.sslSlug) ? `/imported-${this.sslSlug}.html` : 'about:blank';
