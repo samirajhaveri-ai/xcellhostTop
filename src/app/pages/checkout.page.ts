@@ -23,6 +23,7 @@ export class CheckoutPage implements OnDestroy {
   private readonly route = inject(ActivatedRoute);
   private readonly sanitizer = inject(DomSanitizer);
   private readonly checkoutProduct = this.route.snapshot.data['checkoutProduct'] as
+    | 'tally'
     | 'edr'
     | 'rmm'
     | 'genai'
@@ -35,7 +36,9 @@ export class CheckoutPage implements OnDestroy {
   private readonly smbDesktopPlan = this.readSmbDesktopPlan();
   private readonly smbDesktopTerm = this.readSmbDesktopTerm();
   readonly productLabel =
-    this.checkoutProduct === 'rmm'
+    this.checkoutProduct === 'tally'
+      ? 'Tally on Cloud'
+      : this.checkoutProduct === 'rmm'
       ? 'RMM'
       : this.checkoutProduct === 'genai'
         ? 'Acronis GenAI Protection Enforce'
@@ -71,7 +74,13 @@ export class CheckoutPage implements OnDestroy {
           ? `smb-cloud-desktop-checkout/xcellhost-smb-cloud-desktop-${this.smbDesktopPlan}-${this.smbDesktopTerm}-checkout.html`
         : 'xcellhost-checkout.html';
   private readonly checkoutParams = new URLSearchParams(
-    this.checkoutProduct === 'rmm'
+    this.checkoutProduct === 'tally'
+      ? {
+          product: 'tally-private-cloud-lite',
+          billing: this.route.snapshot.queryParamMap.get('billing') || 'monthly',
+          quantity: this.route.snapshot.queryParamMap.get('quantity') || '1',
+        }
+      : this.checkoutProduct === 'rmm'
       ? {
           term: this.route.snapshot.queryParamMap.get('term') || '1y',
           quantity: this.route.snapshot.queryParamMap.get('quantity') || '1',
@@ -106,6 +115,7 @@ export class CheckoutPage implements OnDestroy {
     if (!frame || !checkoutDocument || !body) return;
 
     if (
+      this.checkoutProduct === 'tally' ||
       this.checkoutProduct === 'smb-desktop' ||
       this.checkoutProduct === 'genai' ||
       this.checkoutProduct === 'cdr-smb' ||

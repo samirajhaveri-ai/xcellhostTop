@@ -5,7 +5,9 @@ import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 
 type InteractiveContentSource =
+  | 'inference-page'
   | 'vps-page'
+  | 'sectigo-detail'
   | 'project-server'
   | 'microsoft-viva'
   | 'microsoft-visio'
@@ -28,6 +30,10 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
   @Input() consultingSlug = '';
   @Input() sslSlug = '';
   @Input() vpsSlug = '';
+  @Input() sectigoSlug = '';
+  @Input() inferenceSlug = '';
+  private readonly inferenceSlugs = new Set(['serverless-inference', 'dedicated-inference', 'model-catalog', 'model-directory']);
+  private readonly sectigoSlugs = new Set(['sectigo-ssl', 'sectigo-ov-ssl-wildcard', 'sectigo-ov-ssl', 'sectigo-acme-certificate-as-a-service', 'sectigo-ssl-wildcard', 'sectigo-ssl-multi-domain-ucc', 'sectigo-ov-ssl-multi-domain-wildcard', 'sectigo-ov-ssl-multi-domain-ucc', 'sectigo-ev-ssl-multi-domain-ucc', 'sectigo-ev-ssl']);
   private readonly vpsSlugs = new Set(['wordpress-vps', 'windows-vps', 'vps-usa', 'vps-netherlands', 'vps-india', 'vps-hosting', 'openclaw-vps', 'n8n-vps', 'cpanel-vps']);
 
   private readonly sanitizer = inject(DomSanitizer);
@@ -53,7 +59,7 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     'digicert-secure-site-wildcard-ssl', 'digicert-secure-site-pro-ssl',
     'digicert-secure-site-pro-ev-ssl',
   ]);
-  private readonly sourceUrls: Record<Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page'>, string> = {
+  private readonly sourceUrls: Record<Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page' | 'sectigo-detail' | 'inference-page'>, string> = {
     'project-server': '/imported-project-server.html',
     'microsoft-viva': '/imported-microsoft-viva.html',
     'microsoft-visio': '/imported-microsoft-visio.html',
@@ -92,6 +98,8 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+    'inference-page': 'Inference Cloud models, features and deployment options',
+    'sectigo-detail': 'Sectigo certificate features, validation and pricing',
     'vps-page': 'VPS hosting features, plans and server configurator',
     'project-server': 'Microsoft Project Server features, migration and pricing',
     'microsoft-viva': 'Microsoft Viva modules, employee experience and pricing',
@@ -139,7 +147,11 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
 
   get contentUrl(): SafeResourceUrl {
     let url: string;
-    if (this.source === 'vps-page') {
+    if (this.source === 'inference-page') {
+      url = this.inferenceSlugs.has(this.inferenceSlug) ? `/imported-inference-${this.inferenceSlug}.html` : 'about:blank';
+    } else if (this.source === 'sectigo-detail') {
+      url = this.sectigoSlugs.has(this.sectigoSlug) ? `/imported-sectigo-detail-${this.sectigoSlug}.html` : 'about:blank';
+    } else if (this.source === 'vps-page') {
       url = this.vpsSlugs.has(this.vpsSlug) ? `/imported-vps-page-${this.vpsSlug}.html` : 'about:blank';
     } else if (this.source === 'consulting') {
       url = this.consultingUrls[this.consultingSlug] ?? 'about:blank';
