@@ -9,7 +9,7 @@ type InteractiveContentSource =
   | 'rapidssl' | 'sectigo' | 'sectigo-ev' | 'mark' | 'website-security'
   | 'certificate-management' | 'code-signing-certificates' | 'email-signing-certificates'
   | 'consulting' | 'digicert-standard-ssl' | 'digicert-ev-ssl'
-  | 'digicert-multi-domain-ssl' | 'ssl-detail';
+  | 'digicert-multi-domain-ssl' | 'ssl-detail' | 'managed-pki' | 'managed-pki-hero' | 'private-ca' | 'private-ca-hero' | 'iot-pki' | 'iot-pki-hero' | 'iot-device-certificates' | 'iot-device-certificates-hero' | 'cloud-code-signing' | 'cloud-code-signing-hero' | 'clm-solutions' | 'clm-solutions-hero' | 'matter-dac' | 'matter-dac-hero' | 'pki-software' | 'pki-software-hero' | 'windows-365' | 'windows-365-hero';
 
 @Component({
   selector: 'xh-imported-interactive-content',
@@ -48,6 +48,24 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     'digicert-secure-site-pro-ev-ssl',
   ]);
   private readonly sourceUrls: Record<Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail'>, string> = {
+    'managed-pki': '/imported-managed-pki.html',
+    'managed-pki-hero': '/imported-managed-pki-hero.html',
+    'private-ca': '/imported-private-ca.html',
+    'private-ca-hero': '/imported-private-ca-hero.html',
+    'iot-pki': '/imported-iot-pki.html',
+    'iot-pki-hero': '/imported-iot-pki-hero.html',
+    'iot-device-certificates': '/imported-iot-device-certificates.html',
+    'iot-device-certificates-hero': '/imported-iot-device-certificates-hero.html',
+    'cloud-code-signing': '/imported-cloud-code-signing.html',
+    'cloud-code-signing-hero': '/imported-cloud-code-signing-hero.html',
+    'clm-solutions': '/imported-clm-solutions.html',
+    'clm-solutions-hero': '/imported-clm-solutions-hero.html',
+    'matter-dac': '/imported-matter-dac.html',
+    'matter-dac-hero': '/imported-matter-dac-hero.html',
+    'pki-software': '/imported-pki-software.html',
+    'pki-software-hero': '/imported-pki-software-hero.html',
+    'windows-365': '/imported-windows-365.html',
+    'windows-365-hero': '/imported-windows-365-hero.html',
     'wordpress-vps': '/imported-wordpress-vps.html',
     'wordpress-vps-hero': '/imported-wordpress-vps-hero.html',
     'general-compute': '/imported-general-compute.html',
@@ -83,6 +101,24 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+    'managed-pki': 'Managed PKI overview, comparisons, use-case builder and pricing',
+    'managed-pki-hero': 'Managed PKI root ceremony, issuance, revocation and renewal animation',
+    'private-ca': 'Private CA overview, certificate designer, comparisons, setup and pricing',
+    'private-ca-hero': 'Private CA root ceremony, certificate issuance and trust animation',
+    'iot-pki': 'IoT PKI provisioning, threat mapper, fleet sizing and pricing',
+    'iot-pki-hero': 'IoT PKI factory provisioning and device identity animation',
+    'iot-device-certificates': 'IoT Device Certificates lifecycle, certificate picker, comparisons and pricing',
+    'iot-device-certificates-hero': 'IoT Device Certificates fleet identity map animation',
+    'cloud-code-signing': 'Cloud Code Signing policies, CI integrations, product comparison and pricing',
+    'cloud-code-signing-hero': 'Cloud Code Signing build pipeline, policy gate and HSM animation',
+    'clm-solutions': 'CLM Solutions platform comparison, workload calculator, chooser and pricing',
+    'clm-solutions-hero': 'Certificate lifecycle discovery, inventory and renewal animation',
+    'matter-dac': 'Matter DAC trust chain, commissioning simulator, manufacturing planner and pricing',
+    'matter-dac-hero': 'Matter device commissioning and attestation animation',
+    'pki-software': 'PKI Software platform comparison, chooser, architecture builder and pricing',
+    'pki-software-hero': 'PKI Software infrastructure deployment and operation animation',
+    'windows-365': 'Windows 365 Cloud PC plans, finder, configurator, apps and cost calculators',
+    'windows-365-hero': 'Windows 365 Cloud PC desktop, Entra ID, Intune and device continuity animation',
     'wordpress-vps': 'WordPress VPS plans, server builder and Why XcellHost',
     'wordpress-vps-hero': 'WordPress VPS animated hero and speed preview',
     'general-compute': 'General Compute plans, add-ons and launch steps',
@@ -104,7 +140,7 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     kubernetes: 'Managed Kubernetes workloads and calculator',
     podcasts: 'XcellHost Cloud Podcast',
     deepcall: 'Sarv DeepCall features, IVR builder and calculator',
-    workspace: 'Sarv Workspace applications and pricing',
+    workspace: 'XcellWorkSpace applications and pricing',
     rapidssl: 'RapidSSL certificates, selector and calculator',
     sectigo: 'Sectigo Code Signing tools and pricing',
     'sectigo-ev': 'Sectigo EV Code Signing tools and pricing',

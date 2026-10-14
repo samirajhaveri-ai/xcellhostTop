@@ -1119,6 +1119,36 @@ export const DIRECTORY: DirectoryEntry[] = [
     "group": "Managed PKI & Cert Mgmt"
   },
   {
+    "name": "IoT PKI",
+    "desc": "Unique device identities, secure provisioning and lifecycle management",
+    "cat": "Digital Trust",
+    "group": "Managed PKI & Cert Mgmt"
+  },
+  {
+    "name": "IoT Device Certificates",
+    "desc": "Unique X.509 identities for devices, automated renewal and revocation",
+    "cat": "Digital Trust",
+    "group": "Managed PKI & Cert Mgmt"
+  },
+  {
+    "name": "Cloud Code Signing",
+    "desc": "Sign builds from CI/CD with HSM-protected keys, policies and approvals",
+    "cat": "Digital Trust",
+    "group": "Managed PKI & Cert Mgmt"
+  },
+  {
+    "name": "Matter DAC",
+    "desc": "Matter Device Attestation Certificates for trusted smart-home devices",
+    "cat": "Digital Trust",
+    "group": "Managed PKI & Cert Mgmt"
+  },
+  {
+    "name": "PKI Software",
+    "desc": "Compare PKI platforms and deploy CA, RA, OCSP and HSM infrastructure",
+    "cat": "Digital Trust",
+    "group": "Managed PKI & Cert Mgmt"
+  },
+  {
     "name": "IoT Certificates",
     "desc": "Secure, scalable X.509 certificates for devices",
     "cat": "Digital Trust",

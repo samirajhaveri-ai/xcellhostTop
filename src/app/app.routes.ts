@@ -100,7 +100,8 @@ export const routes: Routes = [
   { path: 'sectigo-ev-code-signing', title: 'Sectigo EV Code Signing - XcellHost', loadComponent: () => import('./pages/sectigo-ev-code-signing.page').then(m => m.SectigoEvCodeSigningPage) },
   { path: 'sectigo-code-signing', title: 'Sectigo Code Signing - XcellHost', loadComponent: () => import('./pages/sectigo-code-signing.page').then(m => m.SectigoCodeSigningPage) },
   { path: 'rapidssl-ssl-certificates', title: 'RapidSSL Certificates - XcellHost', loadComponent: () => import('./pages/rapidssl.page').then(m => m.RapidsslPage) },
-  { path: 'sarv-workspace', title: 'Sarv Workspace - XcellHost', loadComponent: () => import('./pages/sarv-workspace.page').then(m => m.SarvWorkspacePage) },
+  { path: 'sarv-workspace', redirectTo: 'xcellworkspace', pathMatch: 'full' },
+  { path: 'xcellworkspace', title: 'XcellWorkSpace - XcellHost', loadComponent: () => import('./pages/sarv-workspace.page').then(m => m.SarvWorkspacePage) },
   { path: 'cloud-contact-center', title: 'Cloud Contact Center - XcellHost', loadComponent: () => import('./pages/cloud-contact-center.page').then(m => m.CloudContactCenterPage) },
   { path: 'managed-kubernetes', title: 'Managed Kubernetes - XcellHost', loadComponent: () => import('./pages/managed-kubernetes.page').then(m => m.ManagedKubernetesPage) },
   { path: 'under-construction/podcasts', title: 'The Cloud Podcast - XcellHost', loadComponent: () => import('./pages/podcasts.page').then(m => m.PodcastsPage) },
@@ -661,6 +662,7 @@ export const routes: Routes = [
   },
   { path: 'microsoft-365', redirectTo: 'microsoft-365-smb', pathMatch: 'full' },
   { path: 'secure-dmarc', redirectTo: 'enterprise-dmarc', pathMatch: 'full' },
+  { path: 'clm-solutions', redirectTo: 'certificate-mgmt-solutions', pathMatch: 'full' },
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
   { path: '**', redirectTo: '' },
 ];
