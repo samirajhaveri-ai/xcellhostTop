@@ -22,7 +22,7 @@ function createAiDevProxy(spawnPhp = spawn) {
       if (length > 65536) {
         res.statusCode = 413;
         res.end(JSON.stringify({ error: 'Your conversation is too long. Start a new chat.' }));
-        return '/api/ai-assistant';
+        return req.url.split('?')[0];
       }
       buffers.push(chunk);
     }
@@ -61,7 +61,7 @@ function createAiDevProxy(spawnPhp = spawn) {
     });
     res.statusCode = result.status;
     res.end(JSON.stringify(result.body));
-    return '/api/ai-assistant';
+    return req.url.split('?')[0];
   };
 }
 

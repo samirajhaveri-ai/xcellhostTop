@@ -5,7 +5,7 @@ const ts = require('typescript');
 const root = path.join(__dirname, '..');
 const dataDir = path.join(root, 'src', 'app', 'data');
 const output = path.join(root, 'public', 'assets', 'social-previews.json');
-const siteUrl = 'https://www.xcellhost.cloud';
+const siteUrl = 'https://xcellhost.cloud';
 const defaultImage = '/assets/images/xcellhost-logo.png';
 
 function loadTypeScriptModule(filename) {

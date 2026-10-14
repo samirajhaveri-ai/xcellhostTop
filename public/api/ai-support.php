@@ -3,17 +3,22 @@ declare(strict_types=1);
 
 function xh_validate_messages(array $body): array {
     $messages = $body['messages'] ?? null;
-    if (!is_array($messages) || !array_is_list($messages) || count($messages) < 1 || count($messages) > 12) {
+    if (!is_array($messages) || !array_is_list($messages) || count($messages) < 1 || count($messages) > 11) {
         throw new InvalidArgumentException('Please send a question.');
     }
     $clean = [];
-    foreach ($messages as $message) {
+    $total = 0;
+    foreach ($messages as $index => $message) {
+        $expected = $index % 2 === 0 ? 'user' : 'assistant';
+        if (($message['role'] ?? '') !== $expected) throw new InvalidArgumentException('Invalid conversation.');
         if (!is_array($message) || !in_array($message['role'] ?? '', ['user', 'assistant'], true) || !is_string($message['content'] ?? null)) {
             throw new InvalidArgumentException('Invalid conversation.');
         }
         $content = trim($message['content']);
         $limit = $message['role'] === 'user' ? 8000 : 24000;
         if ($content === '' || strlen($content) > $limit || ($message['role'] === 'user' && preg_match_all('/./us', $content) > 2000)) throw new InvalidArgumentException('Your question is too long. Please shorten it.');
+        $total += strlen($content);
+        if ($total > 32000) throw new InvalidArgumentException('Your conversation is too long. Please clear the chat.');
         $clean[] = ['role' => $message['role'], 'content' => $content];
     }
     if (end($clean)['role'] !== 'user') throw new InvalidArgumentException('Please send a question.');

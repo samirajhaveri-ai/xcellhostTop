@@ -46,6 +46,9 @@ if (fs.existsSync(path.join(DEPLOY, 'nginx.conf'))) {
   fs.copyFileSync(path.join(DEPLOY, 'nginx.conf'), path.join(RELEASE, 'nginx.conf'));
 }
 
+// Private configuration template is shipped beside the website archive.
+fs.copyFileSync(path.join(DEPLOY, 'xcellhost-ai-config.example.php'), path.join(RELEASE, 'xcellhost-ai-config.example.php'));
+
 /* 3. zip the built site */
 const zip = path.join(RELEASE, 'xcellhost-site.zip');
 if (fs.existsSync(zip)) fs.unlinkSync(zip);

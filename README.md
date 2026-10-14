@@ -35,14 +35,14 @@ npm run package    # builds, then writes release/xcellhost-site.zip
 
 ---
 
-## Deploying to Plesk (xcellhost.top)
+## Deploying to Plesk (xcellhost.cloud)
 
 1. Run `npm run package`. You get **`release/xcellhost-site.zip`**.
 2. In Plesk open **Files** → go into **httpdocs**.
 3. Delete what is already there (or move it aside), then **Upload** the zip.
 4. Right-click the zip → **Extract Files**. Delete the zip afterwards.
 5. Open the site. Every page, including deep links like
-   `xcellhost.top/tally-on-cloud/`, should work.
+   `xcellhost.cloud/tally-on-cloud/`, should work.
 
 **The `.htaccess` file matters.** It is inside the zip and must sit next to
 `index.html`. Without it the home page works but refreshing any other page shows
@@ -52,7 +52,7 @@ confirm it is there.
 
 Running on Windows/IIS instead? `web.config` (also in the zip) does the same job.
 Running nginx? Copy the contents of `release/nginx.conf` into
-**Domains → xcellhost.top → Apache & nginx Settings → Additional nginx directives**.
+**Domains → xcellhost.cloud → Apache & nginx Settings → Additional nginx directives**.
 
 ### Serving from a subfolder
 

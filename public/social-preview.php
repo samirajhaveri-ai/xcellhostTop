@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-$siteUrl = 'https://www.xcellhost.cloud';
+$siteUrl = 'https://xcellhost.cloud';
 $indexPath = __DIR__ . '/index.html';
 $manifestPath = __DIR__ . '/assets/social-previews.json';
 
