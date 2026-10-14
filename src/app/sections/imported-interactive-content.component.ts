@@ -59,7 +59,10 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     'digicert-secure-site-wildcard-ssl', 'digicert-secure-site-pro-ssl',
     'digicert-secure-site-pro-ev-ssl',
   ]);
-  private readonly sourceUrls: Record<Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail'>, string> = {
+  private readonly sourceUrls: Record<
+    Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page' | 'sectigo-detail' | 'inference-page'>,
+    string
+  > = {
     'managed-pki': '/imported-managed-pki.html',
     'managed-pki-hero': '/imported-managed-pki-hero.html',
     'private-ca': '/imported-private-ca.html',
@@ -78,10 +81,6 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     'pki-software-hero': '/imported-pki-software-hero.html',
     'windows-365': '/imported-windows-365.html',
     'windows-365-hero': '/imported-windows-365-hero.html',
-
-  private readonly sourceUrls: Record<Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page'>, string> = {
-
-  private readonly sourceUrls: Record<Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page' | 'sectigo-detail' | 'inference-page'>, string> = {
 
     'project-server': '/imported-project-server.html',
     'microsoft-viva': '/imported-microsoft-viva.html',
