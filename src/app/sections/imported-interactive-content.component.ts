@@ -1,11 +1,13 @@
-import { Component, ElementRef, Input, OnDestroy, ViewChild, inject } from '@angular/core';
+﻿import { Component, ElementRef, Input, OnDestroy, ViewChild, inject } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { CartService } from '../core/cart.service';
 import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 
 type InteractiveContentSource =
+  | 'inference-page'
   | 'vps-page'
+  | 'sectigo-detail'
   | 'project-server'
   | 'microsoft-viva'
   | 'microsoft-visio'
@@ -28,6 +30,10 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
   @Input() consultingSlug = '';
   @Input() sslSlug = '';
   @Input() vpsSlug = '';
+  @Input() sectigoSlug = '';
+  @Input() inferenceSlug = '';
+  private readonly inferenceSlugs = new Set(['serverless-inference', 'dedicated-inference', 'model-catalog', 'model-directory']);
+  private readonly sectigoSlugs = new Set(['sectigo-ssl', 'sectigo-ov-ssl-wildcard', 'sectigo-ov-ssl', 'sectigo-acme-certificate-as-a-service', 'sectigo-ssl-wildcard', 'sectigo-ssl-multi-domain-ucc', 'sectigo-ov-ssl-multi-domain-wildcard', 'sectigo-ov-ssl-multi-domain-ucc', 'sectigo-ev-ssl-multi-domain-ucc', 'sectigo-ev-ssl']);
   private readonly vpsSlugs = new Set(['wordpress-vps', 'windows-vps', 'vps-usa', 'vps-netherlands', 'vps-india', 'vps-hosting', 'openclaw-vps', 'n8n-vps', 'cpanel-vps']);
 
   private readonly sanitizer = inject(DomSanitizer);
@@ -53,7 +59,6 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     'digicert-secure-site-wildcard-ssl', 'digicert-secure-site-pro-ssl',
     'digicert-secure-site-pro-ev-ssl',
   ]);
-<<<<<<< HEAD
   private readonly sourceUrls: Record<Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail'>, string> = {
     'managed-pki': '/imported-managed-pki.html',
     'managed-pki-hero': '/imported-managed-pki-hero.html',
@@ -73,12 +78,15 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     'pki-software-hero': '/imported-pki-software-hero.html',
     'windows-365': '/imported-windows-365.html',
     'windows-365-hero': '/imported-windows-365-hero.html',
-=======
+
   private readonly sourceUrls: Record<Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page'>, string> = {
+
+  private readonly sourceUrls: Record<Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page' | 'sectigo-detail' | 'inference-page'>, string> = {
+
     'project-server': '/imported-project-server.html',
     'microsoft-viva': '/imported-microsoft-viva.html',
     'microsoft-visio': '/imported-microsoft-visio.html',
->>>>>>> 257bbcddba872c9d3964a122bbb4da78af9789ac
+
     'wordpress-vps': '/imported-wordpress-vps.html',
     'wordpress-vps-hero': '/imported-wordpress-vps-hero.html',
     'general-compute': '/imported-general-compute.html',
@@ -114,7 +122,7 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
-<<<<<<< HEAD
+
     'managed-pki': 'Managed PKI overview, comparisons, use-case builder and pricing',
     'managed-pki-hero': 'Managed PKI root ceremony, issuance, revocation and renewal animation',
     'private-ca': 'Private CA overview, certificate designer, comparisons, setup and pricing',
@@ -133,12 +141,15 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     'pki-software-hero': 'PKI Software infrastructure deployment and operation animation',
     'windows-365': 'Windows 365 Cloud PC plans, finder, configurator, apps and cost calculators',
     'windows-365-hero': 'Windows 365 Cloud PC desktop, Entra ID, Intune and device continuity animation',
-=======
+
+    'inference-page': 'Inference Cloud models, features and deployment options',
+    'sectigo-detail': 'Sectigo certificate features, validation and pricing',
+
     'vps-page': 'VPS hosting features, plans and server configurator',
     'project-server': 'Microsoft Project Server features, migration and pricing',
     'microsoft-viva': 'Microsoft Viva modules, employee experience and pricing',
     'microsoft-visio': 'Microsoft Visio diagrams, plans and pricing',
->>>>>>> 257bbcddba872c9d3964a122bbb4da78af9789ac
+
     'wordpress-vps': 'WordPress VPS plans, server builder and Why XcellHost',
     'wordpress-vps-hero': 'WordPress VPS animated hero and speed preview',
     'general-compute': 'General Compute plans, add-ons and launch steps',
@@ -182,7 +193,11 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
 
   get contentUrl(): SafeResourceUrl {
     let url: string;
-    if (this.source === 'vps-page') {
+    if (this.source === 'inference-page') {
+      url = this.inferenceSlugs.has(this.inferenceSlug) ? `/imported-inference-${this.inferenceSlug}.html` : 'about:blank';
+    } else if (this.source === 'sectigo-detail') {
+      url = this.sectigoSlugs.has(this.sectigoSlug) ? `/imported-sectigo-detail-${this.sectigoSlug}.html` : 'about:blank';
+    } else if (this.source === 'vps-page') {
       url = this.vpsSlugs.has(this.vpsSlug) ? `/imported-vps-page-${this.vpsSlug}.html` : 'about:blank';
     } else if (this.source === 'consulting') {
       url = this.consultingUrls[this.consultingSlug] ?? 'about:blank';

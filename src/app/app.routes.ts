@@ -5,6 +5,21 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  { path: 'tally-on-cloud/checkout', data: { checkoutProduct: 'tally' }, loadComponent: () => import('./pages/checkout.page').then(m => m.CheckoutPage) },
+  { path: 'serverless-inference', data: { inferenceSlug: 'serverless-inference' }, loadComponent: () => import('./pages/inference-imported.page').then(m => m.InferenceImportedPage) },
+  { path: 'dedicated-inference', data: { inferenceSlug: 'dedicated-inference' }, loadComponent: () => import('./pages/inference-imported.page').then(m => m.InferenceImportedPage) },
+  { path: 'model-catalog', data: { inferenceSlug: 'model-catalog' }, loadComponent: () => import('./pages/inference-imported.page').then(m => m.InferenceImportedPage) },
+  { path: 'model-directory', data: { inferenceSlug: 'model-directory' }, loadComponent: () => import('./pages/inference-imported.page').then(m => m.InferenceImportedPage) },
+  { path: 'sectigo-ssl', data: { sectigoSlug: 'sectigo-ssl' }, loadComponent: () => import('./pages/sectigo-detail.page').then(m => m.SectigoDetailPage) },
+  { path: 'sectigo-ov-ssl-wildcard', data: { sectigoSlug: 'sectigo-ov-ssl-wildcard' }, loadComponent: () => import('./pages/sectigo-detail.page').then(m => m.SectigoDetailPage) },
+  { path: 'sectigo-ov-ssl', data: { sectigoSlug: 'sectigo-ov-ssl' }, loadComponent: () => import('./pages/sectigo-detail.page').then(m => m.SectigoDetailPage) },
+  { path: 'sectigo-acme-certificate-as-a-service', data: { sectigoSlug: 'sectigo-acme-certificate-as-a-service' }, loadComponent: () => import('./pages/sectigo-detail.page').then(m => m.SectigoDetailPage) },
+  { path: 'sectigo-ssl-wildcard', data: { sectigoSlug: 'sectigo-ssl-wildcard' }, loadComponent: () => import('./pages/sectigo-detail.page').then(m => m.SectigoDetailPage) },
+  { path: 'sectigo-ssl-multi-domain-ucc', data: { sectigoSlug: 'sectigo-ssl-multi-domain-ucc' }, loadComponent: () => import('./pages/sectigo-detail.page').then(m => m.SectigoDetailPage) },
+  { path: 'sectigo-ov-ssl-multi-domain-wildcard', data: { sectigoSlug: 'sectigo-ov-ssl-multi-domain-wildcard' }, loadComponent: () => import('./pages/sectigo-detail.page').then(m => m.SectigoDetailPage) },
+  { path: 'sectigo-ov-ssl-multi-domain-ucc', data: { sectigoSlug: 'sectigo-ov-ssl-multi-domain-ucc' }, loadComponent: () => import('./pages/sectigo-detail.page').then(m => m.SectigoDetailPage) },
+  { path: 'sectigo-ev-ssl-multi-domain-ucc', data: { sectigoSlug: 'sectigo-ev-ssl-multi-domain-ucc' }, loadComponent: () => import('./pages/sectigo-detail.page').then(m => m.SectigoDetailPage) },
+  { path: 'sectigo-ev-ssl', data: { sectigoSlug: 'sectigo-ev-ssl' }, loadComponent: () => import('./pages/sectigo-detail.page').then(m => m.SectigoDetailPage) },
   { path: 'explore-vps', redirectTo: 'vps-hosting', pathMatch: 'full' },
   { path: 'wordpress-vps', data: { vpsSlug: 'wordpress-vps' }, loadComponent: () => import('./pages/vps-imported.page').then(m => m.VpsImportedPage) },
   { path: 'windows-vps', data: { vpsSlug: 'windows-vps' }, loadComponent: () => import('./pages/vps-imported.page').then(m => m.VpsImportedPage) },

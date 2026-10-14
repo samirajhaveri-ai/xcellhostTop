@@ -5235,7 +5235,7 @@ class ProductPageComponent {
   selectTallyPlan(plan: TallyPlan, ev: Event): void {
     ev.preventDefault();
     if (plan.edition === 'Cloud Lite' && this.selectedTallyTerm() === 'monthly') {
-      window.location.assign('/assets/xcellhost-checkout.html?product=tally-private-cloud-lite&billing=monthly');
+      window.location.assign('/tally-on-cloud/checkout?product=tally-private-cloud-lite&billing=monthly');
       return;
     }
     this.topics.ask(`${plan.name} (${plan.edition}) - ${plan.users} users - ${this.activeTallyTerm().label}`);
