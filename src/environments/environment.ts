@@ -22,10 +22,10 @@ export const environment = {
   /** POST target for the partner-programme form. */
   partnerWebhook: '',
 
-  /** Same-origin AI backend. Never put provider credentials in Angular. */
-  chatEndpoint: '/api/ai/chat',
+  /** Same-origin PHP AI endpoint. Never put provider credentials in Angular. */
+  chatEndpoint: '/api/ai-assistant',
   /** Search AI uses the same private backend as the floating widget. */
-  aiSearchEndpoint: '/api/ai/chat',
+  aiSearchEndpoint: '/api/ai-assistant',
   /** Optional live-answer endpoint for product FAQ blocks. */
   faqApi: '',
 

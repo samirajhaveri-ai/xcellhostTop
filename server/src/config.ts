@@ -19,6 +19,6 @@ export function readApiKey(): string {
 
 export function allowedOrigins(): string[] {
   return (process.env['AI_ALLOWED_ORIGINS'] ??
-    'https://xcellhost.cloud,https://www.xcellhost.cloud,https://xcellhost.top,https://www.xcellhost.top,http://localhost:4200,http://127.0.0.1:4200')
+    'https://xcellhost.cloud,https://www.xcellhost.cloud,http://localhost:4200,http://127.0.0.1:4200')
     .split(',').map(origin => origin.trim()).filter(Boolean);
 }

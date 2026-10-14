@@ -19,6 +19,15 @@ if (!fs.existsSync(DIST)) {
   process.exit(1);
 }
 
+// Static Angular builds emit index.csr.html for client-rendered root routes.
+// Plesk and social-preview.php require a root index.html entry point.
+const entry = path.join(DIST, 'index.html');
+if (!fs.existsSync(entry)) {
+  const csrEntry = path.join(DIST, 'index.csr.html');
+  if (!fs.existsSync(csrEntry)) throw new Error('Build has no website entry point.');
+  fs.copyFileSync(csrEntry, entry);
+}
+
 /* 1. copy the server config next to index.html */
 for (const f of ['.htaccess', 'web.config']) {
   const src = path.join(DEPLOY, f);
@@ -33,6 +42,9 @@ fs.mkdirSync(RELEASE, { recursive: true });
 if (fs.existsSync(path.join(DEPLOY, 'nginx.conf'))) {
   fs.copyFileSync(path.join(DEPLOY, 'nginx.conf'), path.join(RELEASE, 'nginx.conf'));
 }
+
+// Private configuration template is shipped beside the website archive.
+fs.copyFileSync(path.join(DEPLOY, 'xcellhost-ai-config.example.php'), path.join(RELEASE, 'xcellhost-ai-config.example.php'));
 
 /* 2. zip the built site */
 const zip = path.join(RELEASE, 'xcellhost-site.zip');

@@ -4,6 +4,7 @@ import { inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 import { catchError, combineLatest, EMPTY, expand, map, Observable, of, reduce, shareReplay, switchMap, timer, timeout, tap } from 'rxjs';
 
 import { environment } from '../../environments/environment';
+import { migrateCmsDomains } from './domain-migration';
 
 export interface CmsArticle {
   readonly id: number;
@@ -200,7 +201,7 @@ export class BlogApiService {
       .set('pagination[page]', page)
       .set('pagination[pageSize]', '100');
 
-    return this.http.get<StrapiListResponse>(this.endpoint, { params });
+    return this.http.get<StrapiListResponse>(this.endpoint, { params }).pipe(map(migrateCmsDomains));
   }
 
   private resourceStream(endpoint: string, kind: CmsResourceKind): Observable<readonly CmsInsightResource[]> {
@@ -237,7 +238,7 @@ export class BlogApiService {
       .set('pagination[page]', page)
       .set('pagination[pageSize]', '100');
 
-    return this.http.get<StrapiResourceListResponse>(`${this.baseUrl}/api/${endpoint}`, { params });
+    return this.http.get<StrapiResourceListResponse>(`${this.baseUrl}/api/${endpoint}`, { params }).pipe(map(migrateCmsDomains));
   }
 
   private listYouTubeVideos(): Observable<readonly CmsInsightResource[]> {

@@ -23,7 +23,7 @@ for(const spec of specs){
  const fonts=[...source.matchAll(/<link\b[^>]+>/g)].map(m=>m[0]).filter(s=>/fonts\.(googleapis|gstatic)/.test(s)).join('\n');
  let content=between(source,'<section class="hero lh" id="'+spec.heroId+'"','<section class="sec" id="watch">');
  content=content.replace(/href="(geotrust-[^"#]+\.html)(#[^"]*)?"/g,(_,file,hash)=>'href="'+(routes[file]||'/geotrust-ssl-certificates')+(hash||'')+'" target="_parent"')
-  .replace(/href="https:\/\/www\.xcellhost\.top\/"/g,'href="/" target="_parent"');
+  .replace(/href="https:\/\/xcellhost\.cloud\/"/g,'href="/" target="_parent"');
  const scripts=[...source.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m=>m[1]);
  const core=scripts.find(s=>s.includes('XcellHost v2 core runtime'));
  let product=scripts.find(s=>s.includes('function calc()'));

@@ -74,7 +74,7 @@ const routes = {
 };
 function rewriteLinks(html) {
   for (const [file, route] of Object.entries(routes)) html = html.replaceAll(`href="${file}"`, `href="${route}" target="_top"`);
-  return html.replaceAll('href="https://www.xcellhost.top/"', 'href="/" target="_top"');
+  return html.replaceAll('href="https://xcellhost.cloud/"', 'href="/" target="_top"');
 }
 const shell = (title, content, script, extraCss = '') => `<!doctype html><html lang="en-IN" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title>${fonts}<style>${css}\nmain{display:flow-root}#status{position:fixed;bottom:12px;left:12px;background:#0a2540;color:#fff;border-radius:8px;padding:8px;z-index:200}#status:empty{display:none}${extraCss}</style></head><body><main data-preserve-copy>${rewriteLinks(content)}</main><div id="status" role="status" aria-live="polite"></div><script>${script}</script></body></html>`;
 fs.writeFileSync('public/imported-wordpress-vps.html', shell('WordPress VPS plans, server builder and Why XcellHost', body, bodyScript, 'main{padding-bottom:36px}'));
