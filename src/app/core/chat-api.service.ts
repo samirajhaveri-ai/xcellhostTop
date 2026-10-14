@@ -14,7 +14,7 @@ export function safeAiSourceUrl(value: string): boolean {
   try {
     const url = new URL(value);
     return url.protocol === 'https:' && !url.username && !url.password && !url.port &&
-      ['xcellhost.cloud', 'www.xcellhost.cloud', 'xcellhost.top', 'www.xcellhost.top'].includes(url.hostname);
+      ['xcellhost.cloud', 'www.xcellhost.cloud'].includes(url.hostname);
   } catch { return false; }
 }
 export function boundedHistory(messages: AiMessage[]): AiMessage[] {
@@ -35,7 +35,10 @@ export class ChatApiService {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, signal,
         body: JSON.stringify({ messages: boundedHistory(messages) }),
       });
-      const body = await response.json() as Partial<AiReply> & { error?: string };
+      let body: Partial<AiReply> & { error?: string };
+      try { body = await response.json(); }
+      catch { throw new ChatApiError('XcellGenie is not available on this website yet. Please retry or contact our team.'); }
+      if (!body || typeof body !== 'object') throw new ChatApiError('XcellGenie returned an invalid reply. Please retry.');
       if (!response.ok) throw new ChatApiError(typeof body.error === 'string' ? body.error.slice(0, 300) : 'XcellGenie is unavailable. Please retry or contact our team.');
       if (typeof body.answer !== 'string' || !body.answer.trim()) throw new ChatApiError('XcellGenie could not answer. Please retry.');
       const sources = Array.isArray(body.sources) ? body.sources.filter(source =>

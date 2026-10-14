@@ -12,7 +12,7 @@ for (const section of sections) {
   const sourceUrl = section.match(/^SOURCE URL: (.+)$/m)?.[1]?.trim();
   if (!title || !sourceUrl) continue;
   const url = new URL(sourceUrl);
-  if (!['www.xcellhost.top', 'xcellhost.top'].includes(url.hostname) || url.protocol !== 'https:') continue;
+  if (!['xcellhost.cloud', 'xcellhost.cloud'].includes(url.hostname) || url.protocol !== 'https:') continue;
   const separator = section.match(/\n-{20,}\n/);
   if (!separator || separator.index === undefined) continue;
   const content = section.slice(separator.index + separator[0].length).trim();

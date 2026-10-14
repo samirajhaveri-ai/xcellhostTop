@@ -6,11 +6,11 @@ export const environment = {
   callbackWebhook: '',
   docWebhook: '',
   partnerWebhook: '',
-  chatEndpoint: '/api/ai/chat',
-  /** Server-side OpenAI endpoint for the search dialog's AI mode. */
-  aiSearchEndpoint: '/api/ai/chat',
+  chatEndpoint: '/api/ask-ai.php',
+  /** Server-side PHP endpoint for the search dialog's AI mode. */
+  aiSearchEndpoint: '/api/ask-ai.php',
   faqApi: '',
-  strapiUrl: 'https://admin.xcellhost.top',
+  strapiUrl: 'https://admin.xcellhost.cloud',
   /** Public Algolia search configuration. Use a read-only Search API key, never an Admin key. */
   algoliaAppId: 'GH7MDMKNPP',
   algoliaIndexName: 'wp_searchable_posts',

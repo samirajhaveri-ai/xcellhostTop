@@ -1,10 +1,10 @@
 # XcellGenie API and local knowledge retrieval
 
-The existing site is an Angular 20 static/SSR build with PHP endpoints and an external Strapi API. XcellGenie extends that setup with a private TypeScript/Express service. Both the floating widget and search-dialog AI mode use `POST /api/ai/chat`. The existing PHP `ask-ai.php` is a compatibility bridge to this service; it no longer reads credentials or calls a model directly. Other PHP and Strapi services are unchanged.
+The production website uses **POST /api/ask-ai.php** (localhost uses the virtual PHP proxy **POST /api/ai-assistant**) for both the floating assistant and search-dialog AI mode. The PHP endpoint calls OpenAI directly with the bundled, searchable knowledge snapshot, so uploading the website to PHP-enabled Plesk hosting does not require a Node daemon or vector-index provisioning. See the **AI mode on localhost and Plesk** section in [DEPLOY.md](../DEPLOY.md) for the default setup.
 
-The implementation uses the OpenAI [Responses API](https://developers.openai.com/api/docs/guides/text) with exactly `gpt-5.4-mini` and [embeddings](https://developers.openai.com/api/docs/guides/embeddings) with `text-embedding-3-small`. Response storage is disabled. This does not by itself change OpenAI's account-level data retention policies.
+The TypeScript/Express vector-retrieval backend remains available as an optional advanced deployment through POST /api/ai/chat. The following sections describe that optional service; it is not required by the default website endpoint.
 
-## Local setup
+## Optional Node service: local setup
 
 Use Node.js 22.12+ (or Node.js 24), and run commands from the repository root. In Windows PowerShell use `npm.cmd` if execution policy blocks `npm`.
 
@@ -43,7 +43,7 @@ npm.cmd run ai:dev
 npm.cmd run frontend
 ```
 
-`ai:dev` watches compiled JavaScript. After editing server TypeScript, rerun `npm.cmd run ai:build` (or rebuild/restart `ai:dev`). `npm start` starts both services and opens the browser. Use `npm run frontend` only when the backend is already running separately.
+`ai:dev` watches compiled JavaScript. After editing server TypeScript, rerun `npm.cmd run ai:build` (or rebuild/restart `ai:dev`). `npm run dev:node` starts both services; to use Node retrieval, explicitly change the Angular chat endpoint to `/api/ai/chat`. `npm start` uses the default PHP endpoint and opens Angular. Use `npm run frontend` only when the backend is already running separately.
 
 ## Knowledge updates and behaviour
 
@@ -67,15 +67,15 @@ npm.cmd run build
 
 There is no ESLint configuration in this repository. TypeScript strict checks, Angular template compilation, backend tests and browser checks cover this change. API tests cover validation, CORS, limits, unavailable knowledge, provider failure redaction and source handling. Retrieval tests cover heading boundaries, catalogue isolation, vector similarity, budgets and persistent-index validation.
 
-The production dependency audit is clean after compatible Angular 20 and dependency security patches. The full audit still reports six high-severity advisories in the existing Karma/braces development test dependency tree, with no compatible fix offered; no forced Karma downgrade was applied. The existing Company page CSS size warning remains informational. PHP is not installed in the development environment, so the optional PHP compatibility bridge must also be linted/tested on the PHP deployment host; the directly proxied Node API was exercised locally.
+The production dependency audit is clean after compatible Angular 20 and dependency security patches. The full audit still reports six high-severity advisories in the existing Karma/braces development test dependency tree, with no compatible fix offered; no forced Karma downgrade was applied. The existing Company page CSS size warning remains informational. The default PHP endpoint and provider/retrieval helpers are covered by `php scripts/test-ai-backend.php`, `php scripts/test-ai-handler.php`, and `node --test scripts/test-ai-dev-proxy.cjs`.
 
-## Production deployment
+## Optional Node service: production deployment
 
 1. Build Angular with the existing site deployment process. Separately run `npm.cmd run ai:build`. Upload the backend source/build, root dependency manifests and the two `outputs/` text files to a **private application directory outside `httpdocs`**. Install dependencies there with `npm ci --omit=dev` after compiling, or compile in CI before deployment.
 2. Create private `server/.env` on the host, restrict its filesystem permissions, run `ai:index` during provisioning, and persist `server/data/` across releases. Do not put `.env`, knowledge text or the vector database in Angular assets or public downloads. If using a build-only deployment, run `node server/dist/rebuild-index.js` after installing runtime dependencies.
 3. Run `node server/dist/index.js` under a process supervisor with restart and graceful shutdown. Serve the website over HTTPS and reverse-proxy **only `/api/ai/`** to `http://127.0.0.1:3001` before other API/static rules. The frontend zip alone does not deploy this service.
 4. Set nonsecret process configuration as appropriate: `AI_ALLOWED_ORIGINS` is a comma-separated exact origin list (no wildcard), `AI_PORT` defaults to `3001`. Remove localhost origins in production. If your trusted proxy connects on loopback, set `AI_TRUST_PROXY=loopback`; overwrite `X-Forwarded-For` at the edge, never preserve a client's forged value. Do not expose the Node listener publicly.
-5. For PHP-only routing on Plesk, rewrite `/api/ai/chat` to `/api/ask-ai.php`; the compatibility bridge requires PHP cURL and the private Node service on port 3001. Set `AI_TRUST_PROXY=loopback` so its validated client IP is used by the limiter. Existing `/api/ai-assistant` dev clients can also use this bridge. Prefer direct nginx proxying for production.
+5. For the optional Node backend, use the nginx proxy below. Do not rewrite its requests to `ask-ai.php`: that endpoint is the independent default PHP implementation.
 6. Rate limits default to 20 questions per IP per 10 minutes, eight concurrent upstream requests and 2,000 requests per process per UTC day. These counters are in-memory: deploy one API process or add a shared gateway limiter/WAF before scaling across processes or hosts. Add an edge request/body limit and spending limits in the OpenAI project. CORS is not authentication; public bots also need abuse monitoring. Do not log request bodies, transcripts, authorization headers or upstream error bodies.
 7. `GET /api/ai/health` reports knowledge readiness without revealing credentials. It does not test provider billing, model entitlement or key validity. Monitor HTTP status counts and latency through your gateway, with sensitive fields redacted.
 

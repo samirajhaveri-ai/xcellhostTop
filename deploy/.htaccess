@@ -17,6 +17,11 @@
   # If the site lives in a subfolder, set that here, e.g. RewriteBase /shop/
   RewriteBase /
 
+  # Preserve paths and query strings when migrating the legacy/public www host.
+  RewriteCond %{HTTP_HOST} ^(?:www\.)?xcellhost\.(?:top|cloud)(?::\d+)?$ [NC]
+  RewriteCond %{HTTP_HOST} !^xcellhost\.cloud(?::\d+)?$ [NC]
+  RewriteRule ^ https://xcellhost.cloud%{REQUEST_URI} [R=301,L,NE]
+
   # Force HTTPS. Comment this block out until your SSL certificate is issued.
   RewriteCond %{HTTPS} !=on
   RewriteCond %{HTTP:X-Forwarded-Proto} !https

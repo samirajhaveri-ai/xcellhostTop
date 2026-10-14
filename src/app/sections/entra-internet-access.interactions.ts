@@ -228,7 +228,7 @@ export function initializeInternetAccess(root: ShadowRoot, heroMode: boolean, qu
         threatIntelligence:S.ti?'enabled':'disabled',tlsInspection:S.tls?'enabled':'disabled',
         webContentFiltering:{fqdnRules:S.rules.map(function(r,k){return {order:k+1,action:r.a,destination:r.p};}),blockedCategories:S.cats.map(function(c){return CATNAME[c];})}},
         baselineProfile:{priority:65000,appliesTo:'All internet traffic',blockedCategories:BASELINE.map(function(c){return CATNAME[c];})},
-        note:'Design draft from xcellhost.top — XcellHost engineers validate and build this in your tenant.'};
+        note:'Design draft from xcellhost.cloud — XcellHost engineers validate and build this in your tenant.'};
       XH.download('entra-internet-access-policy.json',JSON.stringify(o,null,2),'application/json');XH.toast('Policy draft downloaded');});
     applyPreset('office');
   }

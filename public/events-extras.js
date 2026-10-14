@@ -209,7 +209,7 @@
   var enc=window.TextEncoder?new TextEncoder():null;
   function fold(line){var out='',n=0;Array.from(line).forEach(function(ch){var b=enc?enc.encode(ch).length:(ch.charCodeAt(0)>127?3:1);if(n+b>75){out+='\r\n ';n=1;}out+=ch;n+=b;});return out;}
   function locStr(e){return e.loc==='Mumbai'?'Mumbai, India — venue to be announced':'Online — joining link emailed to registrants';}
-  function pageUrl(e){return 'https://www.xcellhost.top/xcellhost-events.html#ev-'+e.id;}
+  function pageUrl(e){return 'https://xcellhost.cloud/xcellhost-events.html#ev-'+e.id;}
   function descStr(e){
     return e.s+'\n\nWhat you’ll learn:\n'+e.l.map(function(x){return '• '+x[1];}).join('\n')+
       '\n\nSpeakers: '+e.sp.join('; ')+'\nFormat: '+FMT[e.f].l+' · '+LV[e.lv]+' · '+durStr(e.dur)+

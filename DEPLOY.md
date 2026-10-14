@@ -6,7 +6,7 @@ The website reads published customer stories from the Strapi collection endpoint
 `/api/case-studies` and refreshes it every 30 seconds. The public routes remain
 `/case-studies` and `/case-studies/:slug`.
 
-In `https://admin.xcellhost.top/admin`, create a **Collection Type** named
+In `https://admin.xcellhost.cloud/admin`, create a **Collection Type** named
 **Case Study** with API ID `case-study` (plural API ID `case-studies`). Add these
 fields:
 
@@ -37,7 +37,7 @@ work). JSON fields may be arrays of strings. After saving the content type, open
 enable `find`. Create and publish an entry; drafts are intentionally not shown.
 
 Verify the setup by opening
-`https://admin.xcellhost.top/api/case-studies?populate=coverImage`. A successful
+`https://admin.xcellhost.cloud/api/case-studies?populate=coverImage`. A successful
 setup returns JSON with a `data` array instead of HTTP 404. Uploaded cover images
 appear on both the Case Studies listing and detail page. Until this collection is
 created or whenever Strapi is unavailable, the bundled customer stories remain
@@ -86,12 +86,12 @@ run `npm run package` to create it.
 
 ## 1. Point the domain at Plesk
 
-In Plesk, make sure **xcellhost.top** exists under **Websites & Domains**. Note
+In Plesk, make sure **xcellhost.cloud** exists under **Websites & Domains**. Note
 the document root — it is normally `httpdocs`.
 
 ## 2. Upload
 
-1. **Websites & Domains → xcellhost.top → File Manager**
+1. **Websites & Domains → xcellhost.cloud → File Manager**
 2. Open **httpdocs**
 3. If there is an existing site there, select everything and delete it (or rename
    the folder to `httpdocs-old` and create a fresh `httpdocs` if you would rather
@@ -121,8 +121,8 @@ In File Manager, use the settings menu to **show hidden files**. You should see
 
 This file is what makes deep links work. Without it:
 
-- `xcellhost.top` loads fine
-- `xcellhost.top/tally-on-cloud/` gives a 404 when opened directly or refreshed
+- `xcellhost.cloud` loads fine
+- `xcellhost.cloud/tally-on-cloud/` gives a 404 when opened directly or refreshed
 
 The route fallback now passes through `social-preview.php`. It returns the same
 Angular application while adding the product-specific Open Graph image, title
@@ -131,7 +131,7 @@ read before JavaScript runs. Keep PHP 8+ enabled for the domain and upload
 `social-preview.php` plus `assets/social-previews.json` with every release.
 
 If your server runs **nginx** rather than Apache, `.htaccess` is ignored. Instead
-go to **Websites & Domains → xcellhost.top → Apache & nginx Settings**, scroll to
+go to **Websites & Domains → xcellhost.cloud → Apache & nginx Settings**, scroll to
 **Additional nginx directives**, and paste in the contents of
 `release/nginx.conf`. Click OK, then test a deep link again.
 
@@ -150,11 +150,11 @@ certificate is live, then uncomment it.
 Visit each of these directly (typing the URL, not clicking through) and refresh
 each one:
 
-- `https://xcellhost.top/`
-- `https://xcellhost.top/tally-on-cloud/`
-- `https://xcellhost.top/insights/tally-vs-local/`
-- `https://xcellhost.top/securesetu-dpdpa/`
-- `https://xcellhost.top/category/cloud/`
+- `https://xcellhost.cloud/`
+- `https://xcellhost.cloud/tally-on-cloud/`
+- `https://xcellhost.cloud/insights/tally-vs-local/`
+- `https://xcellhost.cloud/securesetu-dpdpa/`
+- `https://xcellhost.cloud/category/cloud/`
 
 All five should load the right page. If the first works and the others 404, the
 rewrite rule is not being applied — go back to step 3.
@@ -286,3 +286,122 @@ for regression checks. Start the site using `npm start` from a normal terminal
 with outbound HTTPS access; a development server launched in a restricted sandbox
 cannot reach OpenAI. Troubleshooting reference:
 https://developers.openai.com/api/docs/guides/error-codes
+
+## Domain migration to xcellhost.cloud (14 October 2026)
+
+Build the release with `npm run package`. Upload `release/xcellhost-site.zip`
+to the **xcellhost.cloud** document root and extract it. The release includes
+updated CMS endpoints, canonical URLs, JSON-LD, social previews, robots.txt and
+a sitemap generated from the public routes and service catalogue. CMS responses
+also migrate legacy links and uploaded media URLs before rendering them.
+The sitemap includes known public pages; individual live CMS blog/use-case URLs
+are not fetched during builds and must be added through a CMS sitemap integration.
+
+Remove `googlebc09ebd4fa488b94.html` from the live document root after deploying:
+extracting an archive does not delete files left by an earlier release. The old
+Google verification meta tag has also been removed from the source. Use DNS
+verification for the new domain in Search Console, or install its new token.
+
+### Hosting issues confirmed against the public CMS
+
+The admin hostname currently serves a self-signed Plesk certificate whose subject
+is `CN=Plesk`, rather than a trusted certificate for **admin.xcellhost.cloud**.
+In Plesk, open that subdomain's SSL/TLS Certificates settings, issue a trusted
+certificate (for example Let's Encrypt), and assign it to the hostname. Keep
+certificate verification enabled in production. The diagnostic inspection used
+an exception only to identify the public API responses below.
+
+The public blogs endpoint returned 74 published entries, but its response did
+not include `Access-Control-Allow-Origin` for `https://xcellhost.cloud`. In the
+Strapi backend's `config/middlewares.js` or `config/middlewares.ts`, update the
+existing `strapi::cors` entry to allow the new public origins, preserving the
+rest of the middleware list, then restart Strapi:
+
+```js
+{
+  name: 'strapi::cors',
+  config: {
+    origin: ['https://xcellhost.cloud', 'https://www.xcellhost.cloud'],
+  },
+}
+```
+
+`/api/use-cases` and `/api/case-studies` returned HTTP 404. The website already
+falls back to customer stories stored in blogs for case studies. For live use
+cases, create/restore the **Use Case** collection (API ID `use-case`, plural
+`use-cases`), with the article fields listed above for Insights documents and
+`relatedPage`/`relatedPages`. Publish the records and enable Public `find` access.
+Changing the website domain cannot restore missing CMS collections or records.
+
+### Redirects and Google migration
+
+Apply the included redirect rules on both the legacy public domain and its www
+variant. Apache uses `deploy/.htaccess`; nginx uses the included nginx directive;
+IIS uses `deploy/web.config`. They redirect permanently to the new public domain
+while preserving the request path and query string. Keep the legacy domain's
+DNS and trusted HTTPS certificate working so old HTTPS links reach the redirect.
+These are website rules; do not install them on the admin CMS hostname.
+
+In Google Search Console, verify the new domain, submit
+`https://xcellhost.cloud/sitemap.xml`, and use Change of Address on the legacy
+property. Verification-file removal does not remove search results; Google
+updates old URLs as it crawls the redirects. Follow Google's migration guide:
+https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes
+
+After deployment, check HTTPS validity and CORS on the CMS, open a blog and use
+case from Insights, verify an uploaded cover image, refresh those detail URLs,
+and confirm a legacy URL redirects once to the matching new-domain path.
+
+## AI mode on localhost and Plesk
+
+Both AI interfaces use `/api/ask-ai.php` on hosting and `/api/ai-assistant`
+on localhost. The virtual local route avoids Angular serving PHP source as a
+static asset. Both routes run the same PHP endpoint, which searches the bundled
+website knowledge and calls OpenAI using `gpt-5.4-mini`. It does not need a Node
+backend or a separate vector index. PHP 8.1+ with cURL, mbstring and zlib is required,
+plus outbound verified HTTPS access to `https://api.openai.com` and a writable
+PHP temporary directory for request limits.
+
+### Localhost
+
+1. Put a valid, funded OpenAI project key in the ignored `server/.env` file:
+   `OPENAI_API_KEY=your-key`. Never paste it into chat or Angular source.
+2. Ensure PHP is on PATH. This workstation has PHP at `C:\xampp\php\php.exe`.
+   If necessary set `$env:PHP_BINARY = 'C:\xampp\php\php.exe'` in PowerShell.
+3. Run `npm.cmd start` from the project root. Angular proxies the PHP endpoint
+   locally before the general Strapi API proxy. Restart any older `ng serve`
+   session so it loads the updated proxy configuration.
+4. Open `http://localhost:4200/insights`, enter AI mode and send a question.
+   `php scripts/check-ai-connection.php` performs a real, billable model test
+   using the same private configuration without printing the key.
+
+### xcellhost.cloud
+
+1. Upload and extract the new `release/xcellhost-site.zip` into `httpdocs`.
+   The archive includes the PHP AI endpoint, retrieval helpers and knowledge.
+2. Enable PHP 8.1+ and the extensions listed above for this domain in Plesk.
+3. Copy `release/xcellhost-ai-config.example.php` to the directory **above
+   httpdocs**, rename it to `xcellhost-ai-config.php`, and set its `apiKey` value
+   privately. For example the configuration belongs at
+   `/var/www/vhosts/xcellhost.cloud/xcellhost-ai-config.php`, while the website
+   belongs at `/var/www/vhosts/xcellhost.cloud/httpdocs`. Restrict access to the
+   PHP worker/hosting account. Do not put this private file inside httpdocs.
+   Alternatively supply `OPENAI_API_KEY` in the PHP worker environment.
+4. Open `https://xcellhost.cloud/api/ask-ai.php`. A configured PHP runtime returns
+   `{"status":"ready"}`; missing configuration/extensions return HTTP 503 and
+   `{"status":"setup_required"}`. This checks setup, not billing or model access.
+5. Send a question from the website to verify provider billing, model access,
+   HTTPS connectivity and generated answers. No separate Node application is
+   needed for this deployment. The admin CMS's SSL/CORS issues do not affect
+   this same-origin AI endpoint.
+
+The website remains honest about unavailable AI: it returns a clear setup or
+provider error when the key, billing or connection is missing. The application
+cannot generate real OpenAI answers using only static files or an empty API key.
+Private configuration is loaded per request, so PHP picks up key changes without
+rebuilding the website. Source links stay on XcellHost and chat is kept in browser
+memory. Provider storage is disabled in API requests.
+
+The optional Node vector-retrieval service remains documented in `server/README.md`.
+The default website deployment uses PHP so the upload package is self-contained
+apart from the hosting runtime and private key.

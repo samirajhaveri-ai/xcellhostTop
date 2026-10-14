@@ -5,20 +5,22 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
-  {
-    path: 'wordpress-vps',
-    title: 'WordPress VPS | XcellHost',
-    data: { productSlug: 'wordpress-vps' },
-    loadComponent: () => import('./pages/product.page').then(m => m.ProductPage),
-  },
+  { path: 'explore-vps', redirectTo: 'vps-hosting', pathMatch: 'full' },
+  { path: 'wordpress-vps', data: { vpsSlug: 'wordpress-vps' }, loadComponent: () => import('./pages/vps-imported.page').then(m => m.VpsImportedPage) },
+  { path: 'windows-vps', data: { vpsSlug: 'windows-vps' }, loadComponent: () => import('./pages/vps-imported.page').then(m => m.VpsImportedPage) },
+  { path: 'vps-usa', data: { vpsSlug: 'vps-usa' }, loadComponent: () => import('./pages/vps-imported.page').then(m => m.VpsImportedPage) },
+  { path: 'vps-netherlands', data: { vpsSlug: 'vps-netherlands' }, loadComponent: () => import('./pages/vps-imported.page').then(m => m.VpsImportedPage) },
+  { path: 'vps-india', data: { vpsSlug: 'vps-india' }, loadComponent: () => import('./pages/vps-imported.page').then(m => m.VpsImportedPage) },
+  { path: 'vps-hosting', data: { vpsSlug: 'vps-hosting' }, loadComponent: () => import('./pages/vps-imported.page').then(m => m.VpsImportedPage) },
+  { path: 'openclaw-vps', data: { vpsSlug: 'openclaw-vps' }, loadComponent: () => import('./pages/vps-imported.page').then(m => m.VpsImportedPage) },
+  { path: 'n8n-vps', data: { vpsSlug: 'n8n-vps' }, loadComponent: () => import('./pages/vps-imported.page').then(m => m.VpsImportedPage) },
+  { path: 'cpanel-vps', data: { vpsSlug: 'cpanel-vps' }, loadComponent: () => import('./pages/vps-imported.page').then(m => m.VpsImportedPage) },
+  { path: 'microsoft-visio', title: 'Microsoft Visio | XcellHost', loadComponent: () => import('./pages/microsoft-visio.page').then(m => m.MicrosoftVisioPage) },
+  { path: 'microsoft-viva', title: 'Microsoft Viva | XcellHost', loadComponent: () => import('./pages/microsoft-viva.page').then(m => m.MicrosoftVivaPage) },
+  { path: 'mcrosoft-project-server', title: 'Microsoft Project Server | XcellHost', loadComponent: () => import('./pages/project-server.page').then(m => m.ProjectServerPage) },
+  { path: 'microsoft-project-server', redirectTo: 'mcrosoft-project-server', pathMatch: 'full' },
   { path: 'acronis-ai', title: 'Acronis AI Platform | XcellHost', data: { productSlug: 'acronis-ai' }, loadComponent: () => import('./pages/product.page').then(m => m.ProductPage) },
 
-  {
-    path: 'cpanel-vps',
-    title: 'cPanel VPS - XcellHost',
-    data: { productSlug: 'cpanel-vps' },
-    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
-  },
 
   {
     path: 'geotrust-true-businessid', data: { businessIdVariant: 'single' },

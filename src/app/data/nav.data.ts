@@ -428,8 +428,27 @@ export const MEGA_MENU: MenuTop[] = [
             "items": [
               {
                 "title": "Explore VPS",
+                "href": "/vps-hosting",
                 "pill": "New",
-                "desc": VPS_PRODUCT_COPY['Windows VPS'].tagline
+                "desc": "Explore VPS plans, locations and server configurations."
+              },
+              {
+                "title": "VPS India",
+                "href": "/vps-india",
+                "pill": null,
+                "desc": "Explore VPS hosting in Mumbai, India."
+              },
+              {
+                "title": "VPS USA",
+                "href": "/vps-usa",
+                "pill": null,
+                "desc": "Explore VPS hosting in New York, USA."
+              },
+              {
+                "title": "VPS Netherlands",
+                "href": "/vps-netherlands",
+                "pill": null,
+                "desc": "Explore VPS hosting in Amsterdam, Netherlands."
               },
               {
                 "title": "Windows VPS",

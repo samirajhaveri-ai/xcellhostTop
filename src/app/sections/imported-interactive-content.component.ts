@@ -5,6 +5,10 @@ import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 
 type InteractiveContentSource =
+  | 'vps-page'
+  | 'project-server'
+  | 'microsoft-viva'
+  | 'microsoft-visio'
   | 'wordpress-vps' | 'wordpress-vps-hero' | 'general-compute' | 'general-compute-hero' | 'bio-link' | 'bio-link-hero' | 'cpanel' | 'cpanel-hero' | 'acronis-ai' | 'acronis-ai-hero' | 'openclaw' | 'openclaw-hero' | 'kubernetes' | 'podcasts' | 'deepcall' | 'workspace' | '47-day-ssl' | '47-day-ssl-hero' | 'direct-backup' | 'direct-backup-hero' | 'druva' | 'druva-hero'
   | 'rapidssl' | 'sectigo' | 'sectigo-ev' | 'mark' | 'website-security'
   | 'certificate-management' | 'code-signing-certificates' | 'email-signing-certificates'
@@ -23,6 +27,8 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
   @Input() source: InteractiveContentSource = 'kubernetes';
   @Input() consultingSlug = '';
   @Input() sslSlug = '';
+  @Input() vpsSlug = '';
+  private readonly vpsSlugs = new Set(['wordpress-vps', 'windows-vps', 'vps-usa', 'vps-netherlands', 'vps-india', 'vps-hosting', 'openclaw-vps', 'n8n-vps', 'cpanel-vps']);
 
   private readonly sanitizer = inject(DomSanitizer);
   private readonly overlay = inject(OverlayService);
@@ -47,6 +53,7 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     'digicert-secure-site-wildcard-ssl', 'digicert-secure-site-pro-ssl',
     'digicert-secure-site-pro-ev-ssl',
   ]);
+<<<<<<< HEAD
   private readonly sourceUrls: Record<Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail'>, string> = {
     'managed-pki': '/imported-managed-pki.html',
     'managed-pki-hero': '/imported-managed-pki-hero.html',
@@ -66,6 +73,12 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     'pki-software-hero': '/imported-pki-software-hero.html',
     'windows-365': '/imported-windows-365.html',
     'windows-365-hero': '/imported-windows-365-hero.html',
+=======
+  private readonly sourceUrls: Record<Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page'>, string> = {
+    'project-server': '/imported-project-server.html',
+    'microsoft-viva': '/imported-microsoft-viva.html',
+    'microsoft-visio': '/imported-microsoft-visio.html',
+>>>>>>> 257bbcddba872c9d3964a122bbb4da78af9789ac
     'wordpress-vps': '/imported-wordpress-vps.html',
     'wordpress-vps-hero': '/imported-wordpress-vps-hero.html',
     'general-compute': '/imported-general-compute.html',
@@ -101,6 +114,7 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+<<<<<<< HEAD
     'managed-pki': 'Managed PKI overview, comparisons, use-case builder and pricing',
     'managed-pki-hero': 'Managed PKI root ceremony, issuance, revocation and renewal animation',
     'private-ca': 'Private CA overview, certificate designer, comparisons, setup and pricing',
@@ -119,6 +133,12 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     'pki-software-hero': 'PKI Software infrastructure deployment and operation animation',
     'windows-365': 'Windows 365 Cloud PC plans, finder, configurator, apps and cost calculators',
     'windows-365-hero': 'Windows 365 Cloud PC desktop, Entra ID, Intune and device continuity animation',
+=======
+    'vps-page': 'VPS hosting features, plans and server configurator',
+    'project-server': 'Microsoft Project Server features, migration and pricing',
+    'microsoft-viva': 'Microsoft Viva modules, employee experience and pricing',
+    'microsoft-visio': 'Microsoft Visio diagrams, plans and pricing',
+>>>>>>> 257bbcddba872c9d3964a122bbb4da78af9789ac
     'wordpress-vps': 'WordPress VPS plans, server builder and Why XcellHost',
     'wordpress-vps-hero': 'WordPress VPS animated hero and speed preview',
     'general-compute': 'General Compute plans, add-ons and launch steps',
@@ -162,7 +182,9 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
 
   get contentUrl(): SafeResourceUrl {
     let url: string;
-    if (this.source === 'consulting') {
+    if (this.source === 'vps-page') {
+      url = this.vpsSlugs.has(this.vpsSlug) ? `/imported-vps-page-${this.vpsSlug}.html` : 'about:blank';
+    } else if (this.source === 'consulting') {
       url = this.consultingUrls[this.consultingSlug] ?? 'about:blank';
     } else if (this.source === 'ssl-detail') {
       url = this.sslSlugs.has(this.sslSlug) ? `/imported-${this.sslSlug}.html` : 'about:blank';

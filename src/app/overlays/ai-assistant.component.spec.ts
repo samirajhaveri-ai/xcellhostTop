@@ -19,6 +19,7 @@ describe('XcellHost AI conversation', () => {
     const component = fixture.componentInstance;
     component.draft.set('Tell me about cloud backup');
     await component.send();
+    expect(request.calls.mostRecent().args[0]).toBe('/api/ai-assistant');
     expect(component.messages().length).toBe(2);
     expect(component.messages()[1].sources?.length).toBe(1);
     component.draft.set('What about recovery?');
@@ -65,6 +66,16 @@ describe('XcellHost AI conversation', () => {
     expect(html).toContain('&lt;img');
     expect(html).not.toContain('<img');
     expect(html).toContain('<strong>Cloud</strong>');
+    fixture.destroy();
+  });
+
+  it('reports an unavailable hosting endpoint when the server returns HTML', async () => {
+    spyOn(window, 'fetch').and.returnValue(Promise.resolve(new Response('<html>Website</html>', { status: 200 })));
+    const fixture = setup();
+    fixture.componentInstance.draft.set('Hi');
+    await fixture.componentInstance.send();
+    expect(fixture.componentInstance.error()).toContain('not available on this website yet');
+    expect(fixture.componentInstance.messages().length).toBe(1);
     fixture.destroy();
   });
 });

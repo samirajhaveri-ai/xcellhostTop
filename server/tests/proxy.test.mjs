@@ -10,5 +10,6 @@ test('Angular proxy routes chat locally before the existing general API proxy', 
     const key = Object.keys(proxy).find(key => key.startsWith('^') ? new RegExp(key).test(url) : url.startsWith(key));
     assert.equal(proxy[key].target, 'http://127.0.0.1:3001');
   }
-  assert.equal(proxy['/api'].target, 'https://admin.xcellhost.top');
+  assert.equal(typeof proxy['/api/ai-assistant'].bypass, 'function');
+  assert.equal(proxy['/api'].target, 'https://admin.xcellhost.cloud');
 });

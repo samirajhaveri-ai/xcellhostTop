@@ -1,11 +1,10 @@
 <?php
 declare(strict_types=1);
 require __DIR__ . '/../public/api/ai-support.php';
-require __DIR__ . '/../public/api/ai-provider.php';
-$configPath = __DIR__ . '/../xcellhost-ai-config.php';
-$config = is_file($configPath) ? require $configPath : [];
-$key = getenv('OPENAI_API_KEY') ?: ($config['apiKey'] ?? '');
-$model = getenv('OPENAI_MODEL') ?: ($config['model'] ?? 'gpt-4.1-mini');
+require __DIR__ . '/../public/api/ai-handler.php';
+$config = xh_ai_config();
+$key = $config['apiKey'];
+$model = $config['model'];
 if (!$key) { echo json_encode(['configured' => false, 'error' => 'Missing private API key.']); exit(1); }
 $corpus = require __DIR__ . '/../public/api/ai-knowledge.php';
 $messages = [['role' => 'user', 'content' => 'Hi, what can XcellHost help me with?']];
