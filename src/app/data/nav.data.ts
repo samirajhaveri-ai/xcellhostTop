@@ -1210,15 +1210,16 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "DNS",
-                "pill": null,
-                "desc": null
-              },
-              {
                 "title": "Virtual Load Balancer",
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "DNS",
+                "pill": null,
+                "desc": null
+              },
+              
               {
                 "title": "Bandwidth",
                 "pill": null,
@@ -1239,11 +1240,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              {
-                "title": "SSL",
-                "pill": null,
-                "desc": null
-              },
+              
               {
                 "title": "WAF",
                 "pill": null,
@@ -1252,6 +1249,11 @@ export const MEGA_MENU: MenuTop[] = [
               
               {
                 "title": "Endpoint Security",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "SSL",
                 "pill": null,
                 "desc": null
               },
@@ -1723,7 +1725,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
                {
-                "title": "Acronis Direct Cloud Backup",
+                "title": "Direct Backup To Public Cloud Backup",
                 "pill": null,
                 "desc": null
               },
