@@ -6,6 +6,11 @@
 <meta name="theme-color" content="#041E42">
 <title>Complete Your Order | XcellHost Cloud Services</title>
 <script>
+// Keep legacy Tally links inside the website shell; embedded checkouts stay put.
+if (window.top === window.self &&
+    (new URLSearchParams(window.location.search).get('product') || 'tally-private-cloud-lite') === 'tally-private-cloud-lite') {
+  window.location.replace('/tally-on-cloud/checkout' + window.location.search + window.location.hash);
+}
 // Existing EDR checkout bookmarks also open with the website header and footer.
 if (window.top === window.self && new URLSearchParams(window.location.search).get('product') === 'acronis-edr') {
   window.location.replace('/edr-checkout' + window.location.search + window.location.hash);

@@ -58,25 +58,27 @@ export class CompanyPage {
   ] as const;
   readonly activeCareerSlide = signal(0);
   readonly careerStories = [
-    { title: 'Growing through new challenges', text: 'Every new challenge is a chance to learn, take ownership and build confidence with support from the team.', name: 'Employee story', topic: 'Professional growth' },
-    { title: 'Finding strength in teamwork', text: 'Strong teamwork helps us solve difficult problems, share knowledge and keep moving forward together.', name: 'Employee story', topic: 'Teamwork' },
-    { title: 'Turning ideas into impact', text: 'Ideas are welcomed here. We explore improvements, put them into practice and focus on meaningful customer impact.', name: 'Employee story', topic: 'Ideas and innovation' },
-    { title: 'Learning something new', text: 'Learning happens through questions, practice and conversations with others. Use this space for an employee’s personal reflection on a skill they developed, a colleague who helped them and how that experience shaped their work.', name: 'Employee story', topic: 'Continuous learning' },
+    {
+      image: 'assets/images/career-testimonial-aanya.png',
+      name: 'Aanya Mehta',
+      role: 'Cloud Solutions Engineer',
+      text: 'Every project gives me a new technical challenge to solve. I get the freedom to explore ideas, learn from experienced teammates and turn that learning into better outcomes for customers.',
+    },
+    {
+      image: 'assets/images/career-testimonial-rohan.png',
+      name: 'Rohan Kulkarni',
+      role: 'Cybersecurity Analyst',
+      text: 'What stands out is how openly the team shares knowledge. Even on complex security work, there is always someone ready to review an approach, answer a question or help move an idea forward.',
+    },
+    {
+      image: 'assets/images/career-testimonial-nisha.png',
+      name: 'Nisha Verma',
+      role: 'Customer Experience Manager',
+      text: 'The work feels meaningful because we stay close to customer needs. Collaboration across teams helps us turn feedback into practical improvements that customers can genuinely feel.',
+    },
   ] as const;
 
-  readonly careerStoryCards = computed(() => {
-    const employees = [this.developers[0], this.developers[1], this.graphicDesignerTeam[1]];
-    return this.careerStories.slice(0, 3).map((story, index) => ({ story, employee: employees[index] }));
-  });
-
-  readonly activeCareerStory = signal(0);
-  readonly currentCareerStory = computed(() => this.careerStories[this.activeCareerStory()]);
-  readonly currentCareerStoryEmployee = computed(() =>
-    [this.developers[1], this.developers[2], this.graphicDesignerTeam[1], this.technicalSupportTeam[1]][this.activeCareerStory()],
-  );
-  moveCareerStory(direction: number): void {
-    this.activeCareerStory.update(index => (index + direction + this.careerStories.length) % this.careerStories.length);
-  }
+  readonly careerStoryCards = computed(() => this.careerStories);
 
   readonly careerCareTabs = [
     { id: 'learning', label: 'Learning & Development', intro: 'Build your skills, share your knowledge and explore the next step in your career.', cards: [

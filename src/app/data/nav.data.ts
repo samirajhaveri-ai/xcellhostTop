@@ -428,8 +428,27 @@ export const MEGA_MENU: MenuTop[] = [
             "items": [
               {
                 "title": "Explore VPS",
+                "href": "/vps-hosting",
                 "pill": "New",
-                "desc": VPS_PRODUCT_COPY['Windows VPS'].tagline
+                "desc": "Explore VPS plans, locations and server configurations."
+              },
+              {
+                "title": "VPS India",
+                "href": "/vps-india",
+                "pill": null,
+                "desc": "Explore VPS hosting in Mumbai, India."
+              },
+              {
+                "title": "VPS USA",
+                "href": "/vps-usa",
+                "pill": null,
+                "desc": "Explore VPS hosting in New York, USA."
+              },
+              {
+                "title": "VPS Netherlands",
+                "href": "/vps-netherlands",
+                "pill": null,
+                "desc": "Explore VPS hosting in Amsterdam, Netherlands."
               },
               {
                 "title": "Windows VPS",
@@ -1264,7 +1283,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Sarv Workspace",
+                "title": "XcellWorkSpace",
                 "pill": null,
                 "desc": null
               },
@@ -1981,7 +2000,31 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              
+              {
+                "title": "IoT PKI",
+                "pill": null,
+                "desc": "Unique device identities, secure provisioning and lifecycle management"
+              },
+              {
+                "title": "IoT Device Certificates",
+                "pill": null,
+                "desc": "Unique X.509 identities for devices, automated renewal and revocation"
+              },
+              {
+                "title": "Cloud Code Signing",
+                "pill": null,
+                "desc": "Sign builds from CI/CD with HSM-protected keys, policies and approvals"
+              },
+              {
+                "title": "Matter DAC",
+                "pill": null,
+                "desc": "Matter Device Attestation Certificates for trusted smart-home devices"
+              },
+              {
+                "title": "PKI Software",
+                "pill": null,
+                "desc": "Compare PKI platforms and deploy CA, RA, OCSP and HSM infrastructure"
+              },
             ]
           }
         ]

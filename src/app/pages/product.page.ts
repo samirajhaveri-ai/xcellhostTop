@@ -5,6 +5,15 @@ import { ContainerRegistryContentComponent } from '../sections/container-registr
 
 import { ImportedInteractiveContentComponent } from '../sections/imported-interactive-content.component';
 import { WORDPRESS_VPS_FAQS } from '../data/wordpress-vps-faq.data';
+import { MANAGED_PKI_FAQS } from '../data/managed-pki-faq.data';
+import { PRIVATE_CA_FAQS } from '../data/private-ca-faq.data';
+import { IOT_PKI_FAQS } from '../data/iot-pki-faq.data';
+import { IOT_DEVICE_CERTIFICATES_FAQS } from '../data/iot-device-certificates-faq.data';
+import { CLOUD_CODE_SIGNING_FAQS } from '../data/cloud-code-signing-faq.data';
+import { CLM_SOLUTIONS_FAQS } from '../data/clm-solutions-faq.data';
+import { MATTER_DAC_FAQS } from '../data/matter-dac-faq.data';
+import { PKI_SOFTWARE_FAQS } from '../data/pki-software-faq.data';
+import { WINDOWS_365_FAQS } from '../data/windows-365-faq.data';
 import { MANAGED_KUBERNETES_FAQS } from '../data/managed-kubernetes-faq.data';
 
 
@@ -3592,6 +3601,138 @@ class ProductPageComponent {
       ],
     };
 
+    if (slug === 'managed-pki') return {
+      ...view,
+      faqs: MANAGED_PKI_FAQS,
+      brandSuffix: 'Trust',
+      tagline: 'Your own private PKI — without building one.',
+      heroHighlight: 'An offline root, HSM-backed issuing CAs and certificates for every user, device and server — designed, hosted and operated for you by XcellHost on DigiCert or Sectigo, billed yearly in rupees.',
+      heroMessages: ['Wi-Fi, VPN and S/MIME certificates auto-enrolled'],
+      heroPoints: [
+        'Offline root & HSM-protected keys',
+        'Issuing CAs designed for you',
+        'ACME, SCEP & EST automation',
+        'Active Directory & MDM enrolment',
+      ],
+    };
+
+    if (slug === 'windows-365') return {
+      ...view,
+      name: 'Windows 365 Cloud PC',
+      faqs: WINDOWS_365_FAQS,
+      brandSuffix: 'Desktop',
+      tagline: "Your own Windows PC, in Microsoft's cloud, on every device.",
+      heroHighlight: 'Microsoft Windows 365 Cloud PCs, licensed, set up, secured and supported by XcellHost — each user gets a personal Windows Cloud PC with Entra ID sign-in and Intune management, at a fixed per-user price in rupees.',
+      heroMessages: ['Tally and Office on any device, from anywhere', 'A personal Windows Cloud PC for every user', 'Lose the laptop, keep the data', 'Add a Cloud PC for a new joiner the same day'],
+      heroPoints: ['Windows Cloud PC on any device', 'Tally, Office & Teams ready', 'Entra ID sign-in with MFA', 'Intune-managed & patched'],
+      videos: ['s1Rxs7rWd2I', ''],
+      videoLabels: ['Windows 365 Cloud PC'],
+      why: [
+        { icon: 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z', title: 'Cloud PC Licensing', body: 'Choose a Windows 365 plan that fits your team and daily workloads.' },
+        { icon: 'M3 4h18v13H3zM8 21h8M12 17v4', title: 'Guided Setup', body: 'Get help with user accounts, Cloud PC provisioning and initial configuration.' },
+        { icon: 'M2 4h14v10H2zM6 18h6M9 14v4M18 8h4v12h-4z', title: 'Work Across Devices', body: 'Access your personal Windows desktop from a laptop, tablet or supported browser.' },
+        { icon: 'M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5zM8 12l3 3 5-6', title: 'Security Management', body: 'Keep sign-in policies, device management and Windows updates organised.' },
+        { icon: 'M3 3h18v18H3zM3 8h18M8 8v13M12 12h5M12 16h5', title: 'Business Apps Ready', body: 'Set up the applications your team uses, including Office, Teams and Tally.' },
+        { icon: 'M4 14v-2a8 8 0 0116 0v2M3 14h4v6H3zM17 14h4v6h-4zM17 20c0 2-2 2-5 2', title: 'Helpful Support', body: 'Get assistance with onboarding, configuration and everyday Cloud PC questions.' },
+      ],
+    };
+
+    if (slug === 'pki-software') return {
+      ...view,
+      faqs: PKI_SOFTWARE_FAQS,
+      brandSuffix: 'Trust',
+      tagline: 'The right PKI platform — chosen, deployed and run for you.',
+      heroHighlight: 'We weigh DigiCert, Sectigo, Keyfactor, AppViewX, KeyTalk, Venafi and ManageEngine against your stack, then stand up the CA, RA, OCSP, HSM and certificate automation on-prem, in the cloud or hybrid — and operate it 24×7 from Mumbai.',
+      heroMessages: ['Seven PKI platforms, one honest shortlist', 'CA, RA, OCSP and HSM — wired and tested', 'On-prem, cloud or hybrid — your call', 'ACME, SCEP and EST automation from day one'],
+      heroPoints: ['Vendor-neutral shortlist', 'CA · RA · OCSP · HSM deployed', 'On-prem, cloud or hybrid', 'ACME, SCEP & EST automation'],
+      videos: ['s1Rxs7rWd2I', ''],
+      videoLabels: ['PKI Software'],
+    };
+
+    if (slug === 'matter-dac') return {
+      ...view,
+      name: 'Matter Device Attestation Certificates',
+      faqs: MATTER_DAC_FAQS,
+      brandSuffix: 'Trust',
+      tagline: 'Ship Matter devices that every smart home trusts on first scan.',
+      heroHighlight: 'A Matter-compliant certificate for every unit you build — issued under your own Product Attestation Intermediate, injected on your line and checked against the CSA ledger the moment a customer scans the QR code. Powered by DigiCert, delivered by XcellHost from Mumbai.',
+      heroMessages: ['Scan. Prove the device. Join the home.', 'A DAC for every unit you build', 'Your PAI under a Matter-trusted root', 'Counterfeits fail attestation'],
+      heroPoints: ['Matter-compliant DACs', 'Your own PAI, in about a week', 'Factory injection, batch issuance', 'REST · EST · SCEP · CMPv2'],
+      videos: ['s1Rxs7rWd2I', ''],
+      videoLabels: ['Matter Device Attestation Certificates'],
+    };
+
+    if (slug === 'certificate-mgmt-solutions') return {
+      ...view,
+      name: 'Certificate Management Solutions',
+      faqs: CLM_SOLUTIONS_FAQS,
+      brandSuffix: 'Trust',
+      tagline: 'The right CLM platform, chosen on facts, then run for you.',
+      heroHighlight: 'We compare the leading certificate lifecycle management platforms side by side, help you buy the one that fits, and run discovery, renewals and automation from Mumbai, billed in rupees.',
+      heroMessages: ['Compare 7 CLM platforms side by side', 'See every certificate from every CA', 'Renew 47-day certificates on autopilot', 'Public and private PKI in one console'],
+      heroPoints: ['Vendor-neutral comparison', 'Discovery across every CA', 'ACME, agents & integrations', 'Public & private PKI'],
+      videos: ['s1Rxs7rWd2I', ''],
+      videoLabels: ['Certificate Management Solutions'],
+    };
+
+    if (slug === 'cloud-code-signing') return {
+      ...view,
+      faqs: CLOUD_CODE_SIGNING_FAQS,
+      brandSuffix: 'Trust',
+      tagline: 'Sign every build from your pipeline. Keep the key in a cloud HSM.',
+      heroHighlight: 'Code signing as a service on DigiCert or Sectigo: private keys stay in certified hardware, policies and approvals decide who may sign what, and every signature is logged — set up, wired into your CI and supported by XcellHost, billed yearly in rupees.',
+      heroMessages: ['No USB tokens to courier, share or lose', 'GitHub, GitLab, Jenkins and Azure DevOps', 'An MFA approval before every release signature', 'Every signature logged — success or failure'],
+      heroPoints: ['Keys held in a FIPS 140-2 L2+ HSM', 'Signs straight from CI/CD', 'Role-based access + MFA', 'Release windows & approvals'],
+      videos: ['s1Rxs7rWd2I', ''],
+      videoLabels: ['Cloud Code Signing'],
+    };
+
+    if (slug === 'iot-device-certificates') return {
+      ...view,
+      faqs: IOT_DEVICE_CERTIFICATES_FAQS,
+      brandSuffix: 'Trust',
+      tagline: 'A certificate on every device — renewed, revoked and audited for you.',
+      heroHighlight: 'Unique X.509 identities for meters, sensors, gateways and vehicles — used for mutual TLS to your cloud and renewed automatically. Powered by DigiCert and Sectigo, run 24×7 from Mumbai.',
+      heroMessages: ['Birth certificates at the factory, operational in the field', 'Mutual TLS to AWS IoT Core, Azure IoT Hub or MQTT', 'Expiring certificates renew themselves over EST', 'One device compromised? Revoke it. The fleet keeps running.'],
+      heroPoints: ['A unique X.509 identity per device', 'ECC & RSA · SHA-2 / SHA-3', 'EST · SCEP · ACME · CMPv2', 'mTLS to cloud brokers'],
+      videos: PRODUCT_VIDEOS['IoT Certificates'],
+      videoLabels: ['Product Intro', 'Use Cases'],
+    };
+
+    if (slug === 'iot-pki') return {
+      ...view,
+      faqs: IOT_PKI_FAQS,
+      brandSuffix: 'Trust',
+      tagline: 'Every device born with an identity no one can copy.',
+      heroHighlight: 'A unique X.509 certificate for each device — injected on the chip, on your production line or in the field — so only genuine hardware connects to your cloud. Powered by DigiCert and Sectigo, delivered and run by XcellHost from Mumbai.',
+      heroMessages: ['A birth certificate for every device off the line', 'Mutual TLS: only genuine devices connect', 'Renew, revoke and update millions in the field', 'Long-life certificates with a post-quantum path'],
+      heroPoints: ['Unique identity per device', 'Factory & field provisioning', 'EST · SCEP · ACME · CMPv2', 'Mutual-TLS onboarding'],
+      videos: PRODUCT_VIDEOS['IoT Certificates'],
+      videoLabels: ['Product Intro', 'Use Cases'],
+    };
+
+    if (slug === 'private-ca') return {
+      ...view,
+      faqs: PRIVATE_CA_FAQS,
+      brandSuffix: 'Trust',
+      tagline: 'Your own certificate authority — without running one.',
+      heroHighlight: 'A private root and issuing CA on audited DigiCert or Sectigo infrastructure, issuing certificates that only your devices trust. XcellHost designs the hierarchy, runs enrolment and renewals, and bills you in rupees.',
+      heroMessages: [
+        'Certificates for intranet, VPN and Wi-Fi',
+        'Your root key, kept offline in an HSM',
+        'Custom key usages, key types and lifetimes',
+        'No more self-signed warnings on internal apps',
+      ],
+      heroPoints: [
+        'Hosted root + issuing CA',
+        'HSM-protected root key',
+        'Custom certificate profiles',
+        'ACME, SCEP & EST enrolment',
+      ],
+      videos: PRODUCT_VIDEOS['Private CA (Certificate Authority)'],
+      videoLabels: ['Product Intro', 'Use Cases'],
+    };
+
     if (slug === 'co-location-services') return {
       ...view,
       tagline: 'Your servers. Our Tier-4 datacenters.',
@@ -3879,6 +4020,22 @@ class ProductPageComponent {
 
   /** Current portion of an optional rotating product hero message. */
   readonly typedHeroText = signal('');
+  readonly managedPkiFaqs = MANAGED_PKI_FAQS;
+  readonly privateCaFaqs = PRIVATE_CA_FAQS;
+  readonly iotPkiFaqs = IOT_PKI_FAQS;
+  readonly iotDeviceCertificatesFaqs = IOT_DEVICE_CERTIFICATES_FAQS;
+  readonly cloudCodeSigningFaqs = CLOUD_CODE_SIGNING_FAQS;
+  readonly isCloudCodeSigning = computed(() => this.slug() === 'cloud-code-signing');
+  readonly clmSolutionsFaqs = CLM_SOLUTIONS_FAQS;
+  readonly isClmSolutions = computed(() => this.slug() === 'certificate-mgmt-solutions');
+  // The imported CLM content belongs to the existing certificate-management page.
+  readonly matterDacFaqs = MATTER_DAC_FAQS;
+  readonly isMatterDac = computed(() => this.slug() === 'matter-dac');
+  readonly pkiSoftwareFaqs = PKI_SOFTWARE_FAQS;
+  readonly isPkiSoftware = computed(() => this.slug() === 'pki-software');
+  readonly windows365Faqs = WINDOWS_365_FAQS;
+  readonly isWindows365 = computed(() => this.slug() === 'windows-365');
+  readonly isPkiDetailPage = computed(() => ['managed-pki', 'private-ca', 'iot-pki', 'iot-device-certificates', 'cloud-code-signing', 'certificate-mgmt-solutions', 'matter-dac', 'pki-software'].includes(this.slug()));
 
   /** The animated hero SVG, injected verbatim because it is our own data file. */
   /** The dotted world map behind the hero. Static markup from our own data file. */
@@ -3989,6 +4146,15 @@ class ProductPageComponent {
 
   readonly referenceSectionNav = computed(() => {
     const pages: Record<string, { frame: string; overview: string; features: string; uses: string; specifications: string }> = {
+      'managed-pki': { frame: 'xh-imported-interactive-content.managed-pki-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'compare' },
+      'private-ca': { frame: 'xh-imported-interactive-content.private-ca-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'compare' },
+      'iot-pki': { frame: 'xh-imported-interactive-content.iot-pki-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'vendors' },
+      'iot-device-certificates': { frame: 'xh-imported-interactive-content.iot-device-certificates-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'compare' },
+      'cloud-code-signing': { frame: 'xh-imported-interactive-content.cloud-code-signing-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'compare' },
+      'certificate-mgmt-solutions': { frame: 'xh-imported-interactive-content.clm-solutions-source-content', overview: 'overview', features: 'features', uses: 'types', specifications: 'compare' },
+      'matter-dac': { frame: 'xh-imported-interactive-content.matter-dac-source-content', overview: 'overview', features: 'benefits', uses: 'start', specifications: 'compare' },
+      'pki-software': { frame: 'xh-imported-interactive-content.pki-software-source-content', overview: 'overview', features: 'products', uses: 'fit', specifications: 'grid' },
+      'windows-365': { frame: 'xh-imported-interactive-content.windows-365-source-content', overview: 'pricing', features: 'apps', uses: 'uses', specifications: 'configure' },
       'thawte-ssl-certificates': { frame: 'xh-thawte-ssl-content', overview: 'overview', features: 'how', uses: 'products', specifications: 'compare' },
       'nvidia-b300': { frame: 'xh-nvidia-b300-overview', overview: 'answer', features: 'b300SoftwareStack', uses: 'b300Deployment', specifications: 'itb' },
       'comodo-ev-code-signing': { frame: 'xh-comodo-ev-code-signing-content', overview: 'overview', features: 'features', uses: 'sign', specifications: 'compare' },
@@ -5069,7 +5235,7 @@ class ProductPageComponent {
   selectTallyPlan(plan: TallyPlan, ev: Event): void {
     ev.preventDefault();
     if (plan.edition === 'Cloud Lite' && this.selectedTallyTerm() === 'monthly') {
-      window.location.assign('/assets/xcellhost-checkout.html?product=tally-private-cloud-lite&billing=monthly');
+      window.location.assign('/tally-on-cloud/checkout?product=tally-private-cloud-lite&billing=monthly');
       return;
     }
     this.topics.ask(`${plan.name} (${plan.edition}) - ${plan.users} users - ${this.activeTallyTerm().label}`);
