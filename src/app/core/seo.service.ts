@@ -37,9 +37,11 @@ export class SeoService {
         ? imagePath
         : SITE.siteUrl.replace(/\/$/, '') + '/' + imagePath.replace(/^\//, '');
       this.meta.updateTag({ property: 'og:image', content: image });
+      this.meta.updateTag({ property: 'og:image:secure_url', content: image });
       this.meta.updateTag({ property: 'og:image:alt', content: pageTitle });
       this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
       this.meta.updateTag({ name: 'twitter:image', content: image });
+      this.meta.updateTag({ name: 'twitter:image:alt', content: pageTitle });
     }
   }
 

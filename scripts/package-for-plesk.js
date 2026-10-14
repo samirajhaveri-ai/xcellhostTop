@@ -19,7 +19,19 @@ if (!fs.existsSync(DIST)) {
   process.exit(1);
 }
 
-/* 1. copy the server config next to index.html */
+/* 1. publish Angular's CSR shell under the filename expected by Plesk/PHP */
+const csrIndex = path.join(DIST, 'index.csr.html');
+const index = path.join(DIST, 'index.html');
+if (fs.existsSync(csrIndex)) {
+  fs.copyFileSync(csrIndex, index);
+  console.log('  + index.html');
+}
+if (!fs.existsSync(index)) {
+  console.error('No browser index found. Run "npm run build" first.');
+  process.exit(1);
+}
+
+/* 2. copy the server config next to index.html */
 for (const f of ['.htaccess', 'web.config']) {
   const src = path.join(DEPLOY, f);
   if (fs.existsSync(src)) {
@@ -34,7 +46,7 @@ if (fs.existsSync(path.join(DEPLOY, 'nginx.conf'))) {
   fs.copyFileSync(path.join(DEPLOY, 'nginx.conf'), path.join(RELEASE, 'nginx.conf'));
 }
 
-/* 2. zip the built site */
+/* 3. zip the built site */
 const zip = path.join(RELEASE, 'xcellhost-site.zip');
 if (fs.existsSync(zip)) fs.unlinkSync(zip);
 if (process.platform === 'win32') {

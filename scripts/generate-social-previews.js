@@ -5,7 +5,8 @@ const ts = require('typescript');
 const root = path.join(__dirname, '..');
 const dataDir = path.join(root, 'src', 'app', 'data');
 const output = path.join(root, 'public', 'assets', 'social-previews.json');
-const siteUrl = 'https://xcellhost.top';
+const siteUrl = 'https://www.xcellhost.cloud';
+const defaultImage = '/assets/images/xcellhost-logo.png';
 
 function loadTypeScriptModule(filename) {
   const source = fs.readFileSync(path.join(dataDir, filename), 'utf8');
@@ -42,6 +43,17 @@ const overrides = {
   'cloud-backup': '/assets/images/hero-cloud-backup-acronis.png',
   'cloud-backup-acronis': '/assets/images/hero-cloud-backup-acronis.png',
   'cloud-drive': '/assets/images/cloud-drive-tour-dashboard.jpg',
+  'gpu-clusters': '/assets/images/hero-gpu-cloud-v2.png',
+  'gpu-servers': '/assets/images/hero-gpu-cloud-v2.png',
+  'nvidia-a100': '/assets/images/hero-gpu-cloud-v2.png',
+  'nvidia-a30': '/assets/images/hero-gpu-cloud-v2.png',
+  'nvidia-a2': '/assets/images/hero-gpu-cloud-v2.png',
+  'nvidia-b300-nodes': '/assets/images/hero-gpu-cloud-v2.png',
+  'nvidia-h100': '/assets/images/hero-gpu-cloud-v2.png',
+  'nvidia-h200': '/assets/images/hero-gpu-cloud-v2.png',
+  'nvidia-l40s': '/assets/images/hero-gpu-cloud-v2.png',
+  'nvidia-l4': '/assets/images/hero-gpu-cloud-v2.png',
+  'nvidia-vera-rubin': '/assets/images/hero-gpu-cloud-v2.png',
   'performance-cloud': '/assets/images/hero-performance-cloud-v2.png',
   'remote-monitoring-and-mgmt-rmm': '/assets/images/hero-rmm.png',
   'tally-on-cloud': '/assets/images/hero-tally-on-cloud.png',
@@ -59,6 +71,14 @@ const specialCopy = {
   'performance-cloud': {
     title: 'Performance Cloud Servers in India — XcellHost',
     description: 'High-performance NVMe cloud servers in India with hourly or monthly INR billing and 24×7 expert support.',
+  },
+  'gpu-clusters': {
+    title: 'NVIDIA GPU Clusters in India — XcellHost',
+    description: 'Build multi-node NVIDIA GPU clusters for distributed AI training, inference and HPC with expert support in India.',
+  },
+  'gpu-servers': {
+    title: 'NVIDIA GPU Cloud Servers in India — XcellHost',
+    description: 'Rent NVIDIA GPU servers for AI, machine learning, rendering and high-performance computing workloads.',
   },
 };
 
@@ -98,9 +118,9 @@ for (const entry of DIRECTORY) {
     entry.heroImage,
     PRODUCT_HERO_IMAGES[entry.name],
     CATEGORY_HERO_IMAGES[entry.cat],
-    '/assets/images/xcellhost-logo.png',
+    defaultImage,
   ];
-  const image = candidates.find(isSocialImage) || '/assets/images/xcellhost-logo.png';
+  const image = candidates.find(isSocialImage) || defaultImage;
   routes[`/${slug}`] = {
     title: `${entry.name} — XcellHost`,
     description: (entry.desc || rich?.highlight || rich?.tagline || `Explore ${entry.name} from XcellHost.`)
@@ -108,7 +128,7 @@ for (const entry of DIRECTORY) {
       .trim()
       .slice(0, 180),
     image: siteUrl + image,
-    ...(slug === 'performance-cloud' ? imageMetadata(image) : {}),
+    ...imageMetadata(image),
   };
 }
 
@@ -120,7 +140,7 @@ for (const [slug, image] of Object.entries(overrides)) {
     image: siteUrl + image,
   };
   routes[key].image = siteUrl + image;
-  if (slug === 'performance-cloud') Object.assign(routes[key], imageMetadata(image));
+  Object.assign(routes[key], imageMetadata(image));
   if (specialCopy[slug]) Object.assign(routes[key], specialCopy[slug]);
 }
 
@@ -128,7 +148,8 @@ const manifest = {
   default: {
     title: 'Managed Cloud & Cybersecurity Services India | XcellHost',
     description: 'Managed cloud, cybersecurity and digital trust for Indian businesses since 1999.',
-    image: `${siteUrl}/assets/images/xcellhost-logo.png`,
+    image: siteUrl + defaultImage,
+    ...imageMetadata(defaultImage),
   },
   routes,
 };

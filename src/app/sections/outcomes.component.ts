@@ -116,14 +116,17 @@ const PLATFORM_CAPABILITIES: readonly PlatformCapability[] = [
           </div>
         </div>
         <div class="outcomes-action">
+          <a class="btn btn-ghost" href="/company/trust-center">Watch Tower <span aria-hidden="true">→</span></a>
           <a class="btn btn-ghost" href="/company/our-platform">Learn More <span aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost" href="/company/trust-watch">Trust Watch <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
   `,
   styles: `
-    .outcomes-action { margin-top: 24px; text-align: center; }
+    .outcomes-action { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 24px; text-align: center; }
     .outcomes-action .btn { display: inline-flex; align-items: center; gap: 10px; background: #fff; }
+    @media (max-width: 520px) { .outcomes-action .btn { width: 100%; justify-content: center; } }
     .platform-agents-note { margin: 24px 0 0; color: var(--blue); text-align: center; font-size: 14px; font-weight: 700; line-height: 1.5; }
   `,
 })
