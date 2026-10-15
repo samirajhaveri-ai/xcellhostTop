@@ -79,6 +79,19 @@ for section_id in ids:
         raise ValueError('Missing Druva section: '+section_id)
     sections.append(match.group())
 content = '\n'.join(sections)
+# Open resilience cards in the parent page rather than navigating inside the iframe.
+pillar_routes = {
+    '#ai': '/ai-resilience',
+    '#everyone': '/identity-resilience',
+    '#tour': '/cyber-resilience',
+    '#choose': '/data-resilience',
+}
+def link_pillar(match):
+    opening_tag = match.group()
+    for fragment, route in pillar_routes.items():
+        opening_tag = opening_tag.replace('href="'+fragment+'"', 'href="'+route+'" target="_top"')
+    return opening_tag.replace(' data-tabgo="sec"', '')
+content = re.sub(r'<a\b[^>]*class="pil rv"[^>]*>', link_pillar, content)
 # Keep internal references to the default closing sections working across frames.
 content = content.replace('href="#contact"', 'href="#serviceClosingTitle"')
 content = content.replace('href="#watch"', 'href="#ppBlog"')
@@ -118,6 +131,7 @@ Path('src/app/data/druva-why.data.ts').write_text(
 stage_start = source.index('<div class="stage"', source.index('id="drHero"'))
 stage_end = source.index('\n    </div>\n  </div>\n</section>', stage_start)
 hero = '<div class="hero lh" id="drHero">'+source[stage_start:stage_end]+'</div>'
+hero = re.sub(r'<div class="lh-powered">.*?</div>', '', hero, flags=re.S)
 hero_css = '''html,body{background:transparent}.hero.lh{padding:12px 16px;background:transparent;min-height:0;overflow:visible}
 .hero.lh .stage{width:100%;min-height:0;margin:0;padding-bottom:0;grid-template-columns:minmax(0,1fr)}
 .hero.lh .stage>.lh-tilt{width:100%;max-width:none;min-width:0;transform:none!important}
