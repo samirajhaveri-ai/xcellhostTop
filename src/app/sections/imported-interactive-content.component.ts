@@ -11,6 +11,7 @@ type InteractiveContentSource =
   | 'project-server'
   | 'microsoft-viva'
   | 'microsoft-visio'
+  | 'genian-nac'
   | 'wordpress-vps' | 'wordpress-vps-hero' | 'general-compute' | 'general-compute-hero' | 'bio-link' | 'bio-link-hero' | 'cpanel' | 'cpanel-hero' | 'acronis-ai' | 'acronis-ai-hero' | 'openclaw' | 'openclaw-hero' | 'kubernetes' | 'podcasts' | 'deepcall' | 'workspace' | '47-day-ssl' | '47-day-ssl-hero' | 'direct-backup' | 'direct-backup-hero' | 'druva' | 'druva-hero'
   | 'rapidssl' | 'sectigo' | 'sectigo-ev' | 'mark' | 'website-security'
   | 'certificate-management' | 'code-signing-certificates' | 'email-signing-certificates'
@@ -85,6 +86,7 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     'project-server': '/imported-project-server.html',
     'microsoft-viva': '/imported-microsoft-viva.html',
     'microsoft-visio': '/imported-microsoft-visio.html',
+    'genian-nac': '/imported-genian-nac.html',
 
     'wordpress-vps': '/imported-wordpress-vps.html',
     'wordpress-vps-hero': '/imported-wordpress-vps-hero.html',
@@ -148,6 +150,7 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     'project-server': 'Microsoft Project Server features, migration and pricing',
     'microsoft-viva': 'Microsoft Viva modules, employee experience and pricing',
     'microsoft-visio': 'Microsoft Visio diagrams, plans and pricing',
+    'genian-nac': 'Genian NAC network access control, demos and pricing',
 
     'wordpress-vps': 'WordPress VPS plans, server builder and Why XcellHost',
     'wordpress-vps-hero': 'WordPress VPS animated hero and speed preview',
