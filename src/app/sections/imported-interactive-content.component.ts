@@ -205,6 +205,9 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
       url = this.consultingUrls[this.consultingSlug] ?? 'about:blank';
     } else if (this.source === 'ssl-detail') {
       url = this.sslSlugs.has(this.sslSlug) ? `/imported-${this.sslSlug}.html` : 'about:blank';
+      if (this.sslSlug === 'digicert-secure-site-pro-ssl') {
+        url += '?v=powered-by-below-ai-2';
+      }
     } else {
       url = this.sourceUrls[this.source];
     }

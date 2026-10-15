@@ -1925,6 +1925,10 @@
                   </div>
                 </section>
 
+                @if (isDigiCert()) {
+                  <div class="digicert-brand-below-ai"><span class="brand-label">Powered by <span class="brand-divider" aria-hidden="true">|</span></span><img src="/assets/images/digicert.png" alt="DigiCert" width="112" height="32"></div>
+                }
+
                 @if (usesContainerRegistryTemplate()) {
                   <div class="container-registry-powered-row">
                     <div class="container-registry-powered" aria-label="Powered by XcellHost Cloud">
