@@ -42,6 +42,12 @@ const AUTHOR_PHOTOS: Readonly<Record<string, string>> = {
   'purva angre': '/assets/images/team-purva-angre.png',
   'ravi sharma': '/assets/images/team-ravi-sharma.png',
 };
+const AUTHOR_BIOS: Readonly<Record<string, string>> = {
+  'samir jhaveri': 'Dr. Samir Jhaveri is the Managing Director of XcellHost Cloud Services. With more than two decades of experience, he helps businesses simplify cloud infrastructure, cybersecurity, AI and digital transformation.',
+  'dr samir jhaveri': 'Dr. Samir Jhaveri is the Managing Director of XcellHost Cloud Services. With more than two decades of experience, he helps businesses simplify cloud infrastructure, cybersecurity, AI and digital transformation.',
+  'purva angre': 'Purva Angre is a technical support professional at XcellHost Cloud Services. She shares practical guidance shaped by her experience helping customers understand, adopt and get more value from cloud services.',
+  'ravi sharma': 'Ravi Sharma works across SEO, analytics and digital content at XcellHost Cloud Services. He turns technical subjects into clear, useful resources that help businesses make informed technology decisions.',
+};
 
 @Component({
   selector: 'xh-blog-page',
@@ -392,6 +398,15 @@ export class BlogPage implements OnDestroy {
 
   hasAuthorPortrait(author: string): boolean {
     return this.normaliseAuthorName(author) in AUTHOR_PHOTOS;
+  }
+
+  authorBio(author: string): string {
+    const name = this.normaliseAuthorName(author);
+    if (AUTHOR_BIOS[name]) return AUTHOR_BIOS[name];
+    if (!name || name.includes('xcellhost')) {
+      return 'The XcellHost editorial team creates practical resources on cloud, cybersecurity, digital trust and business technology, drawing on the experience of specialists who support customers every day.';
+    }
+    return `${author} contributes practical technology insights for XcellHost, helping readers understand cloud, cybersecurity, digital trust and the choices that support reliable business operations.`;
   }
 
   useAuthorPhotoFallback(event: Event): void {
