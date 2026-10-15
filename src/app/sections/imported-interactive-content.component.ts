@@ -1,10 +1,12 @@
 ﻿import { Component, ElementRef, Input, OnDestroy, ViewChild, inject } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { OnChanges, signal } from '@angular/core';
+import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
 import { CartService } from '../core/cart.service';
 import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 
 type InteractiveContentSource =
+  | 'cybird'
   | 'inference-page'
   | 'vps-page'
   | 'sectigo-detail'
@@ -22,11 +24,16 @@ type InteractiveContentSource =
   selector: 'xh-imported-interactive-content',
   standalone: true,
   host: { '[class.openclaw-page-content]': "source === 'openclaw' || source === 'cpanel'" },
-  template: `<iframe #frame [style.min-height.px]="source.endsWith('-hero') ? 0 : 600"
-    [src]="contentUrl" [title]="contentTitle" scrolling="no" (load)="onLoad()"></iframe>`,
+  template: `@if (source === 'cybird') {
+    <iframe #frame [srcdoc]="cybirdDocument()" [title]="contentTitle"
+      scrolling="no" (load)="onLoad()"></iframe>
+  } @else {
+    <iframe #frame [style.min-height.px]="source.endsWith('-hero') ? 0 : 600"
+      [src]="contentUrl" [title]="contentTitle" scrolling="no" (load)="onLoad()"></iframe>
+  }`,
   styles: [`:host{display:block}iframe{display:block;width:100%;min-height:600px;border:0}`],
 })
-export class ImportedInteractiveContentComponent implements OnDestroy {
+export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy {
   @Input() source: InteractiveContentSource = 'kubernetes';
   @Input() consultingSlug = '';
   @Input() sslSlug = '';
@@ -38,6 +45,7 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
   private readonly vpsSlugs = new Set(['wordpress-vps', 'windows-vps', 'vps-usa', 'vps-netherlands', 'vps-india', 'vps-hosting', 'openclaw-vps', 'n8n-vps', 'cpanel-vps']);
 
   private readonly sanitizer = inject(DomSanitizer);
+  readonly cybirdDocument = signal<SafeHtml | null>(null);
   private readonly overlay = inject(OverlayService);
   private readonly topics = inject(CallbackTopicService);
   private readonly cart = inject(CartService);
@@ -64,6 +72,7 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page' | 'sectigo-detail' | 'inference-page'>,
     string
   > = {
+    cybird: 'about:blank',
     'managed-pki': '/imported-managed-pki.html',
     'managed-pki-hero': '/imported-managed-pki-hero.html',
     'private-ca': '/imported-private-ca.html',
@@ -123,6 +132,7 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+    cybird: 'Cybird X2 security platform, animated network, plans and threat simulator',
 
     'managed-pki': 'Managed PKI overview, comparisons, use-case builder and pricing',
     'managed-pki-hero': 'Managed PKI root ceremony, issuance, revocation and renewal animation',
@@ -193,6 +203,14 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
   @ViewChild('frame') frame?: ElementRef<HTMLIFrameElement>;
   private cleanup: (() => void)[] = [];
 
+  ngOnChanges(): void {
+    if (this.source === 'cybird' && !this.cybirdDocument()) {
+      void import('../data/cybird-document.data').then(({ CYBIRD_DOCUMENT }) => {
+        this.cybirdDocument.set(this.sanitizer.bypassSecurityTrustHtml(CYBIRD_DOCUMENT));
+      });
+    }
+  }
+
   get contentUrl(): SafeResourceUrl {
     let url: string;
     if (this.source === 'inference-page') {
@@ -227,8 +245,17 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     const doc = frame?.contentDocument;
     const main = doc?.querySelector('main');
     if (!frame || !doc || !main) return;
-    const resize = () => (frame.style.height = `${Math.ceil(main.getBoundingClientRect().height) + 8}px`);
-    const observer = new ResizeObserver(resize);
+    const resize = () => {
+      if (this.source === 'cybird') doc.documentElement.style.setProperty('--cybird-vh', `${window.innerHeight / 100}px`);
+      const height = `${Math.ceil(main.getBoundingClientRect().height) + 8}px`;
+      if (frame.style.height !== height) frame.style.height = height;
+    };
+    let resizeFrame = 0;
+    const observer = new ResizeObserver(() => {
+      if (this.source !== 'cybird') { resize(); return; }
+      cancelAnimationFrame(resizeFrame);
+      resizeFrame = requestAnimationFrame(resize);
+    });
     observer.observe(main);
     doc.fonts.ready.then(resize);
     resize();
@@ -277,7 +304,7 @@ export class ImportedInteractiveContentComponent implements OnDestroy {
     doc.addEventListener('import-cart', add);
     doc.addEventListener('click', click);
     this.cleanup.push(
-      () => observer.disconnect(), () => mutations.disconnect(),
+      () => observer.disconnect(), () => cancelAnimationFrame(resizeFrame), () => mutations.disconnect(),
       () => window.removeEventListener('scroll', position),
       () => doc.removeEventListener('import-callback', callback),
       () => doc.removeEventListener('import-cart', add),

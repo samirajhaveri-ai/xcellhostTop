@@ -82,6 +82,7 @@ Path('src/app/data/acronis-ai-faqs.data.ts').write_text(
 stage_start = source.index('<div class="stage"', source.index('id="acHero"'))
 stage_end = source.index('\n    </div>\n  </div>\n</section>', stage_start)
 stage = source[stage_start:stage_end]
+stage = re.sub(r'<div class="lh-powered">.*?</div>', '', stage, flags=re.S)
 hero = '<div class="hero lh" id="acHero">'+stage+'</div>'
 hero_css = '''body{background:transparent} .hero.lh{padding:10px 20px;background:transparent;overflow:visible;min-height:0}
 .hero.lh .stage{width:100%;min-height:0;margin:0}.lh-powered{position:relative;left:auto;bottom:auto;margin:20px auto 0;width:max-content}

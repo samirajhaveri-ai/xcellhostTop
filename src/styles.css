@@ -3847,7 +3847,14 @@ body.xh-locked{overflow:hidden}
 
 /* The quote cart is opened from the header beside Search. */
 .cart-fab{display:flex;left:auto;right:22px;bottom:calc(90px + env(safe-area-inset-bottom))}
-@media(max-width:700px){.cart-fab{left:auto;right:14px;bottom:calc(78px + env(safe-area-inset-bottom))}}
+/* Site-owned launcher opens SalesIQ without depending on its injected styles. */
+body{--contact-fab-size:58px;--contact-fab-right:22px;--contact-fab-bottom:22px}
+.live-chat-launcher{position:fixed;z-index:120;right:var(--contact-fab-right);bottom:calc(var(--contact-fab-bottom) + env(safe-area-inset-bottom));width:var(--contact-fab-size);height:var(--contact-fab-size);padding:0;border:0;border-radius:50%;display:grid;place-items:center;background:#006bd6;color:#fff;box-shadow:0 12px 32px rgba(21,101,216,.4);cursor:pointer;transition:transform .2s}
+.live-chat-launcher[hidden]{display:none}
+.live-chat-launcher:hover{transform:scale(1.08)}
+.live-chat-launcher:focus-visible{outline:3px solid #7fb0ff;outline-offset:4px}
+body.mnav-lock .live-chat-launcher{visibility:hidden}
+@media(max-width:700px){body{--contact-fab-size:54px;--contact-fab-right:14px;--contact-fab-bottom:14px}.cart-fab{left:auto;right:14px;bottom:calc(78px + env(safe-area-inset-bottom))}}
 
 @media(max-width:900px){
   #ppage .edr-plan-grid{grid-template-columns:1fr;max-width:560px;margin:0 auto}
@@ -5839,7 +5846,8 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
   footer { padding-bottom: calc(90px + env(safe-area-inset-bottom)); }
   .contact-actions { flex-direction: row !important; left: 8px !important; bottom: calc(8px + env(safe-area-inset-bottom)) !important; gap: 6px !important; }
   .contact-actions .contact-action, .contact-actions .wa-fab { width: 44px !important; height: 44px !important; }
-  #cartFab { width: 44px; height: 44px; right: 60px; bottom: calc(8px + env(safe-area-inset-bottom)); }
+  body { --contact-fab-size:44px; --contact-fab-right:8px; --contact-fab-bottom:8px; }
+  #cartFab { width:44px; height:44px; right:8px; bottom:calc(62px + env(safe-area-inset-bottom)); }
   .bot-fab { width: 44px !important; height: 44px !important; left: auto !important; right: 8px !important; bottom: calc(8px + env(safe-area-inset-bottom)) !important; }
   .back-to-top { bottom: calc(64px + env(safe-area-inset-bottom)); left: auto; right: 10px; transform: none; }
   .cb-tab { display: none; }
@@ -6215,6 +6223,13 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 .druva-powered-by{display:flex;align-items:center;gap:10px;margin-top:16px;color:#c7d5ec;font-size:13px;line-height:1.4}.druva-powered-by img{display:block;width:40px;height:40px;object-fit:contain}.druva-powered-by strong{color:#fff;font-size:20px;font-weight:700}
 .druva-platform-powered{display:flex;align-items:center;gap:12px;margin-top:16px;color:#c7d5ec;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
 .druva-platform-powered img{display:block;width:108px;height:auto;object-fit:contain;background:#fff;border-radius:8px}
+.acronis-ai-powered{display:flex;align-items:center;gap:12px;margin-top:16px;color:#c7d5ec;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.acronis-ai-powered img{display:block;width:120px;height:auto;padding:8px 12px;box-sizing:content-box;object-fit:contain;background:#fff;border-radius:8px}
+.acronis-ai-powered{flex-wrap:wrap}
+.acronis-ai-powered .acronis-ai-native{display:inline-flex;align-items:center;gap:0;margin-left:8px;white-space:nowrap;color:#fff;font-size:22px;font-weight:600;letter-spacing:0;text-transform:none}
+.acronis-ai-native-accent{background:linear-gradient(90deg,#fff,#f43cdf);background-clip:text;-webkit-background-clip:text;color:transparent}
+.acronis-ai-sparkles{position:relative;margin-right:12px;font-size:26px;line-height:1;color:#fff}
+.acronis-ai-sparkles::after{content:'✦';position:absolute;top:-6px;right:-5px;font-size:15px;color:#f43cdf}
 
 
 /* NIST detail page uses the existing product banner and section layout. */
@@ -6391,7 +6406,7 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 @media(max-width:900px){#ppage:is(.acronis-ai-page,.druva-platform-page,.direct-backup-page,.ssl47-page,:has(.openclaw-hero-art))>.pp-hero{grid-template-columns:minmax(0,1fr);gap:24px;padding:32px 24px}#ppage.acronis-ai-page .pph-scene.acronis-ai-hero-art{grid-column:1;grid-row:2;margin:0 auto}}
 
 /* Supplied Druva resilience timeline within the existing product hero. */
-#ppage.druva-platform-page .pp-hero>.wrap>.pp-typewriter{min-height:1.35em;margin-bottom:4px}
+#ppage:is(.druva-platform-page,.acronis-ai-page) .pp-hero>.wrap>.pp-typewriter{min-height:1.35em;margin-bottom:4px}
 #ppage.druva-platform-page .pph-scene.druva-hero-art{position:relative!important;inset:auto!important;grid-column:2;grid-row:1;width:100%!important;max-width:500px!important;opacity:1;mask-image:none;pointer-events:auto;z-index:4;max-height:none}
 #ppage .druva-hero-art>xh-imported-interactive-content{display:block;width:100%;min-width:0}
 #ppage.druva-platform-page .pp-hpoints{grid-template-columns:repeat(2,minmax(0,1fr));width:100%;max-width:100%;gap:12px 20px}
@@ -6464,3 +6479,58 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 
 /* DigiCert banner vendor branding */
 .digicert-brand-below-ai{display:flex;align-items:center;gap:10px;margin-top:16px;color:#c7d5ec;font-size:13px;line-height:1.4}.digicert-brand-below-ai .brand-label{white-space:nowrap;flex:none}.digicert-brand-below-ai .brand-divider{margin-left:8px}.digicert-brand-below-ai img{display:block;flex:none;width:112px;height:32px;object-fit:cover;border-radius:4px;background:#fff}
+/* Compact spacing for shared product sections, including security, benefits and reviews. */
+#ppage.ppage .pp-body>.wrap>section{padding-block:12px}
+#ppage.ppage .pp-body>.wrap>section+section{margin-top:24px}
+#ppage.ppage .pp-body>.wrap>section>.pp-sec:first-child{margin-top:0}
+
+/* Give Microsoft 365 SMB's security and following sections room to breathe. */
+#ppage.microsoft-365-smb-page #ppSecHead,
+#ppage.microsoft-365-smb-page #ppSecHead~.pp-sec,
+#ppage.microsoft-365-smb-page #ppBlog{margin-top:40px}
+@media(max-width:700px){
+  #ppage.microsoft-365-smb-page #ppSecHead,
+  #ppage.microsoft-365-smb-page #ppSecHead~.pp-sec,
+  #ppage.microsoft-365-smb-page #ppBlog{margin-top:32px}
+}
+
+/* GeoTrust banner branding */
+.geotrust-brand-below-ai{display:flex;align-items:center;gap:12px;margin-top:16px;padding:0;color:#c7d5ec;font-size:13px;line-height:1.4}.geotrust-brand-below-ai>span{white-space:nowrap}.geotrust-brand-below-ai .brand-divider{margin-left:10px}.geotrust-brand-below-ai img{display:block;flex:none;width:112px;height:32px;box-sizing:border-box;padding:6px 7px;object-fit:contain;border-radius:4px;background:#fff}
+
+/* Keep vendor label and logo on one line below Ask AI. */
+#ppage .geotrust-brand-below-ai{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;align-items:center;justify-content:flex-start;gap:12px;width:max-content;max-width:100%;margin-top:16px;padding:0;color:#c7d5ec;font-size:13px;line-height:1.4}
+#ppage .geotrust-brand-below-ai>span{display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}
+#ppage .geotrust-brand-below-ai .brand-divider{margin-left:10px}
+#ppage .geotrust-brand-below-ai img{display:block;flex:0 0 112px;width:112px;height:32px;margin:0;box-sizing:border-box;padding:6px 7px;object-fit:contain;background:#fff;border-radius:4px}
+
+/* Keep DigiCert branding beside its label. */
+#ppage .digicert-brand-below-ai{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;align-items:center;justify-content:flex-start;gap:12px;width:max-content;max-width:100%;margin-top:16px;padding:0;color:#c7d5ec;font-size:13px;line-height:1.4}
+#ppage .digicert-brand-below-ai>.brand-label{display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}
+#ppage .digicert-brand-below-ai .brand-divider{margin-left:10px}
+#ppage .digicert-brand-below-ai img{display:block;flex:0 0 112px;width:112px;height:32px;margin:0;object-fit:cover;border-radius:4px;background:#fff}
+
+/* Sectigo banner branding */
+.sectigo-brand-below-ai{display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;gap:12px;margin-top:16px;color:#c7d5ec;font-size:13px;line-height:1.4}.sectigo-brand-below-ai>span{white-space:nowrap;flex:none}.sectigo-brand-below-ai .brand-divider{margin-left:10px}.sectigo-brand-below-ai img{display:block;flex:0 0 112px;width:112px;height:32px;margin:0;padding:6px 7px;box-sizing:border-box;object-fit:contain;border-radius:4px;background:#fff}
+
+/* Compact Ask AI strip for SSL brand banners. */
+#ppage.ssl-brand-ai-page .pp-ask-ai{display:inline-flex!important;align-items:center;flex-wrap:nowrap!important;gap:10px;width:max-content;max-width:100%;box-sizing:border-box;margin-top:20px;padding:9px 12px!important;border:1px solid rgba(127,176,255,.28)!important;border-radius:15px;background:rgba(4,30,66,.45)!important}
+#ppage.ssl-brand-ai-page .pp-ask-ai-copy{flex:0 1 auto;min-width:0}
+#ppage.ssl-brand-ai-page .pp-ask-ai-kicker{padding:0!important;font:600 11px/1.5 var(--mono);letter-spacing:0;white-space:nowrap}
+#ppage.ssl-brand-ai-page .pp-ask-ai-actions{display:flex;flex:0 0 auto;flex-wrap:nowrap;gap:6px;margin:0}
+#ppage.ssl-brand-ai-page .pp-ask-ai-chip{display:inline-flex;width:34px;height:34px;min-width:34px;padding:0;border:0;border-radius:9px;background:rgba(255,255,255,.07);box-shadow:none}
+#ppage.ssl-brand-ai-page .pp-ask-ai-chip img{width:19px;height:19px;object-fit:contain;border-radius:4px}
+#ppage.ssl-brand-ai-page .pp-ask-ai-chip:hover{background:rgba(75,165,255,.2);transform:translateY(-2px)}
+#ppage.ssl-brand-ai-page .pp-ask-ai-chip:focus-visible{outline:2px solid #7fbaff;outline-offset:2px}
+@media(max-width:620px){#ppage.ssl-brand-ai-page .pp-ask-ai{flex-wrap:wrap!important}#ppage.ssl-brand-ai-page .pp-ask-ai-kicker{white-space:normal}}
+
+/* Product logo beside the Powered by label. */
+#ppage .tsm-powered.tsplus-vendor-brand{display:flex;flex-direction:row;flex-wrap:nowrap;justify-content:center;align-items:center;gap:10px;max-width:100%;box-sizing:border-box;padding:8px 10px}#ppage .tsm-powered.tsplus-vendor-brand small{display:inline;margin:0;flex:none;white-space:nowrap;font:400 12px/1.4 var(--body,sans-serif);letter-spacing:0;text-transform:none}#ppage .tsm-powered.tsplus-vendor-brand img{display:block;flex:0 1 210px;width:210px;min-width:0;height:38px;object-fit:contain;background:#fff;border-radius:4px;padding:5px 7px;box-sizing:border-box}
+
+/* TSplus vendor branding below the Ask AI bar. */
+#ppage .tsplus-ask-brand{display:flex;flex-direction:row;align-items:center;flex-wrap:nowrap;gap:12px;margin-top:16px;color:#c7d5ec;font-size:13px;line-height:1.4;max-width:100%}
+#ppage .tsplus-ask-brand>span{white-space:nowrap;flex:none}
+#ppage .tsplus-ask-brand .brand-divider{margin-left:10px}
+#ppage .tsplus-ask-brand img{display:block;flex:0 1 210px;width:210px;min-width:0;height:38px;padding:5px 7px;box-sizing:border-box;object-fit:contain;border-radius:4px;background:#fff}
+
+/* Email addon banner vendor rows. */
+.email-addon-brand{display:flex;align-items:center;flex-direction:row;flex-wrap:nowrap;gap:12px;margin-top:16px;color:#c7d5ec;font:400 13px/1.4 sans-serif}.email-addon-brand>.brand-label{white-space:nowrap;flex:none}.email-addon-brand .brand-divider{margin-left:10px}.email-addon-brand .brand-mark{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:4px;background:#fff;color:#041e42;font:700 15px/1.4 sans-serif}.email-addon-brand .brand-mark img,.email-addon-brand .brand-mark svg{display:block;width:24px;height:24px;object-fit:contain;flex:none}.email-addon-brand .cw-mark{color:#ff6a00}.email-addon-brand .cw-word span{color:#ff6a00}@media(max-width:420px){.email-addon-brand{gap:8px}.email-addon-brand .brand-mark{font-size:12px;padding:6px}}

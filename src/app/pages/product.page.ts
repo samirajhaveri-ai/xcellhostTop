@@ -3099,6 +3099,7 @@ class ProductPageComponent {
       ],
       heroPoints: ['AI-native Cyber Console', 'Agentic workflows + approvals', 'Backup, EDR & RMM in one', 'GenAI prompt DLP'],
       videos: ['s1Rxs7rWd2I', ''],
+      videoLabels: ['Acronis AI overview'],
 
     };
 
@@ -4450,7 +4451,7 @@ class ProductPageComponent {
 
   /** Product videos live in the shared Insights > Videos tab, not in a
    * second standalone "Watch it in action" section on the same page. */
-  readonly videosInInsights = computed(() => this.slug() !== 'acronis-ai' && !!this.productInsightVideos()?.length);
+  readonly videosInInsights = computed(() => !!this.productInsightVideos()?.length);
 
   readonly isRmm = computed(
     () => this.view()?.name === 'Remote Monitoring & Mgmt (RMM)'
