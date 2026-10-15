@@ -1246,7 +1246,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
-              
               {
                 "title": "Endpoint Security",
                 "pill": null,
