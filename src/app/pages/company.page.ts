@@ -158,7 +158,7 @@ export class CompanyPage {
   ] as const;
 
   readonly salesTeam = [
-    { initials: 'RS', name: 'Rahul Sanghavi', role: 'Sales Head', image: '/assets/images/TEAMS PHOTO/Rahul Sanghavi.png' },
+    { initials: 'RS', name: 'Rahul Sanghavi', role: 'Cloud Sales Head', image: '/assets/images/TEAMS PHOTO/Rahul Sanghavi.png' },
     { initials: 'AP', name: 'Abhishek Pandey', role: 'Cloud Sales Manager', image: '/assets/images/TEAMS PHOTO/Abhishek Pandey.png' },
     { initials: 'SK', name: 'Sushil Kumar', role: 'Cloud-PreSales Manager', image: 'assets/images/TEAMS PHOTO/Sudhil.png' },
     { initials: 'RS', name: 'Rashed Syed', role: 'Cloud Advisor - PreSales', image: '/assets/images/TEAMS PHOTO/Rashed.png' },

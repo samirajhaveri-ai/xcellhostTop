@@ -17,6 +17,7 @@
     [class.matter-dac-page]="isMatterDac()"
     [class.pki-software-page]="isPkiSoftware()"
     [class.windows-365-page]="isWindows365()"
+    [class.microsoft-365-smb-page]="slug() === 'microsoft-365-smb'"
     [attr.data-pki-page]="isPkiDetailPage() ? slug() : null"
     [class.entra-detail-page]="slug() === 'microsoft-entra-workload-id' || slug() === 'microsoft-entra-internet-access' || slug() === 'microsoft-entra-private-access' || slug() === 'microsoft-entra-id-governance' || slug() === 'microsoft-entra-id-p1' || slug() === 'microsoft-entra-id-p2' || slug() === 'microsoft-entra-suite'"
     [class.smb-visibility-page]="v.heroMessages[0]?.toLowerCase()?.startsWith('maximise online visibility')"
@@ -1979,6 +1980,14 @@
                   </div>
                 }
 
+            @if (slug() === 'acronis-ai') {
+              <div class="acronis-ai-powered">
+                <span>Powered by</span>
+                <img src="/assets/images/smb-powered-by/acronis-wordmark.webp" alt="Acronis" width="120" height="45" />
+                <span class="acronis-ai-native"><span class="acronis-ai-sparkles" aria-hidden="true">✦</span> AI-<span class="acronis-ai-native-accent">Native</span></span>
+              </div>
+            }
+
             @if (slug() === 'explore-druva-platform') {
               <div class="druva-platform-powered">
                 <span>Powered by</span>
@@ -2349,19 +2358,10 @@
           }
         </div>
       </section>
-      @if (slug() !== 'explore-druva-platform' && slug() !== 'acronis-direct-cloud-backup' && slug() !== '47-days-ssl') {
-      <section class="tally-videos" aria-labelledby="serviceActionTitle">
-        <h2 class="pp-sec" id="serviceActionTitle">Watch it in action</h2>
-        <div class="tally-video-grid single-video"><article class="tally-video-card">
-          <h3>{{ v.name }} overview</h3><div class="tally-video-frame">
-            <iframe src="https://www.youtube-nocookie.com/embed/s1Rxs7rWd2I?rel=0&amp;playsinline=1" [title]="v.name + ' overview'" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          </div></article></div>
-      </section>
-      }
       <section aria-labelledby="serviceReviewsTitle">
         <h2 class="pp-sec" id="serviceReviewsTitle">What customers say</h2>
         <!-- Use the shared testimonial cards for the backup platform pages. -->
-        @if (slug() === 'explore-druva-platform' || slug() === 'acronis-direct-cloud-backup' || slug() === '47-days-ssl') {
+        @if (slug() === 'acronis-ai' || slug() === 'explore-druva-platform' || slug() === 'acronis-direct-cloud-backup' || slug() === '47-days-ssl') {
           <div class="pp-tcards" id="ppRevs">
             @for (review of v.reviews; track review.name) {
               <article class="tcard">
@@ -2388,10 +2388,7 @@
         <h2 class="pp-sec pp-faq-heading" id="serviceFaqTitle">Frequently asked questions</h2>
         <div class="pp-faq"><xh-product-faq [faqs]="v.faqs" idPrefix="menuServiceFaq" /></div>
       </section>
-      <section id="ppBlog" class="acronis-ai-insights" [attr.aria-labelledby]="slug() === 'acronis-ai' ? 'acronisAiBlogTitle' : null" [attr.aria-label]="slug() === 'acronis-ai' ? null : 'Insights'">
-        @if (slug() === 'acronis-ai') {
-          <h2 class="pp-sec" id="acronisAiBlogTitle">From our blog</h2>
-        }
+      <section id="ppBlog" class="acronis-ai-insights" aria-label="Insights">
         <xh-insights-section [pageSlug]="slug()" [pageAliases]="slug() === 'explore-druva-platform' ? ['druva', 'druva-resilience', 'data-protection', 'cloud-backup'] : []" [videos]="videosInInsights() ? productInsightVideos() : null" />
       </section>
       <section class="pp-cta service-closing-cta" aria-labelledby="serviceClosingTitle">
