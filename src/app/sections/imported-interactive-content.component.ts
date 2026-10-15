@@ -6,6 +6,7 @@ import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 
 type InteractiveContentSource =
+  | 'developer-page'
   | 'cybird'
   | 'veritas'
   | 'inference-page'
@@ -41,6 +42,8 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
   @Input() vpsSlug = '';
   @Input() sectigoSlug = '';
   @Input() inferenceSlug = '';
+  @Input() developerSlug = '';
+  private readonly developerSlugs = new Set(['openstack-api', 'terraform-provider', 's3-object-storage-api', 'openstack-cli', 'openstack-credentials', 'kubernetes-api']);
   private readonly inferenceSlugs = new Set(['serverless-inference', 'dedicated-inference', 'model-catalog', 'model-directory']);
   private readonly sectigoSlugs = new Set(['sectigo-ssl', 'sectigo-ov-ssl-wildcard', 'sectigo-ov-ssl', 'sectigo-acme-certificate-as-a-service', 'sectigo-ssl-wildcard', 'sectigo-ssl-multi-domain-ucc', 'sectigo-ov-ssl-multi-domain-wildcard', 'sectigo-ov-ssl-multi-domain-ucc', 'sectigo-ev-ssl-multi-domain-ucc', 'sectigo-ev-ssl']);
   private readonly vpsSlugs = new Set(['wordpress-vps', 'windows-vps', 'vps-usa', 'vps-netherlands', 'vps-india', 'vps-hosting', 'openclaw-vps', 'n8n-vps', 'cpanel-vps']);
@@ -71,7 +74,7 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'digicert-secure-site-pro-ev-ssl',
   ]);
   private readonly sourceUrls: Record<
-    Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page' | 'sectigo-detail' | 'inference-page'>,
+    Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page' | 'sectigo-detail' | 'inference-page' | 'developer-page'>,
     string
   > = {
     cybird: 'about:blank',
@@ -135,6 +138,7 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+    'developer-page': 'XcellCloud developer tools, API examples and documentation',
     cybird: 'Cybird X2 security platform, animated network, plans and threat simulator',
     veritas: 'Veritas AI visibility and SEO platform, interactive tools and pricing',
 
@@ -227,7 +231,9 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
 
   get contentUrl(): SafeResourceUrl {
     let url: string;
-    if (this.source === 'inference-page') {
+    if (this.source === 'developer-page') {
+      url = this.developerSlugs.has(this.developerSlug) ? `/imported-developer-${this.developerSlug}.html` : 'about:blank';
+    } else if (this.source === 'inference-page') {
       url = this.inferenceSlugs.has(this.inferenceSlug) ? `/imported-inference-${this.inferenceSlug}.html` : 'about:blank';
     } else if (this.source === 'sectigo-detail') {
       url = this.sectigoSlugs.has(this.sectigoSlug) ? `/imported-sectigo-detail-${this.sectigoSlug}.html` : 'about:blank';
