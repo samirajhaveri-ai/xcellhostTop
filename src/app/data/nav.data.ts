@@ -2854,6 +2854,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": "In focus",
                 "desc": null
               },
+              {
+                "title": "Cybird",
+                "pill": "In focus",
+                "desc": null
+              },
               
             ]
           }
