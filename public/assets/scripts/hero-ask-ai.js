@@ -13,7 +13,7 @@
     bar.dataset.iconAskReady = 'true';
     bar.classList.add('xh-icon-ask');
     const hero = bar.closest('.hero');
-    const product = hero.dataset.product || hero.querySelector('h1 .nm')?.textContent.trim() || 'this service';
+    const product = bar.dataset.aiProduct || hero.dataset.product || hero.querySelector('h1 .nm')?.textContent.trim() || 'this service';
     const prompt = bar.dataset.q || 'Explain ' + product + ' from XcellHost, its features, use cases and available plans.';
     const label = bar.querySelector('.k');
     if (label) label.textContent = '\u2726 Ask AI About ' + product + ' from XcellHost';
