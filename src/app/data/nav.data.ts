@@ -2862,6 +2862,7 @@ export const MEGA_MENU: MenuTop[] = [
 =======
 
 
+
                 "title": "Cybird",
                 "pill": "In focus",
                 "desc": null
@@ -4554,31 +4555,37 @@ export const MEGA_MENU: MenuTop[] = [
             "items": [
               {
                 "title": "OpenStack API",
+                "href": "/openstack-api",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "Terraform Provider",
+                "href": "/terraform-provider",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "S3 Object Storage API",
+                "href": "/s3-object-storage-api",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "OpenStack CLI",
+                "href": "/openstack-cli",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "OpenStack Credentials",
+                "href": "/openstack-credentials",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "Kubernetes API",
+                "href": "/kubernetes-api",
                 "pill": null,
                 "desc": null
               },

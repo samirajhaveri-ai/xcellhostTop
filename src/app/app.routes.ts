@@ -5,6 +5,18 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  { path: 'under-construction/openstack-api', redirectTo: '/openstack-api', pathMatch: 'full' },
+  { path: 'openstack-api', title: 'OpenStack API | XcellHost', data: { developerSlug: 'openstack-api' }, loadComponent: () => import('./pages/developer-imported.page').then(m => m.DeveloperImportedPage) },
+  { path: 'under-construction/terraform-provider', redirectTo: '/terraform-provider', pathMatch: 'full' },
+  { path: 'terraform-provider', title: 'Terraform Provider | XcellHost', data: { developerSlug: 'terraform-provider' }, loadComponent: () => import('./pages/developer-imported.page').then(m => m.DeveloperImportedPage) },
+  { path: 'under-construction/s3-object-storage-api', redirectTo: '/s3-object-storage-api', pathMatch: 'full' },
+  { path: 's3-object-storage-api', title: 'S3 Object Storage API | XcellHost', data: { developerSlug: 's3-object-storage-api' }, loadComponent: () => import('./pages/developer-imported.page').then(m => m.DeveloperImportedPage) },
+  { path: 'under-construction/openstack-cli', redirectTo: '/openstack-cli', pathMatch: 'full' },
+  { path: 'openstack-cli', title: 'OpenStack CLI | XcellHost', data: { developerSlug: 'openstack-cli' }, loadComponent: () => import('./pages/developer-imported.page').then(m => m.DeveloperImportedPage) },
+  { path: 'under-construction/openstack-credentials', redirectTo: '/openstack-credentials', pathMatch: 'full' },
+  { path: 'openstack-credentials', title: 'OpenStack Credentials | XcellHost', data: { developerSlug: 'openstack-credentials' }, loadComponent: () => import('./pages/developer-imported.page').then(m => m.DeveloperImportedPage) },
+  { path: 'under-construction/kubernetes-api', redirectTo: '/kubernetes-api', pathMatch: 'full' },
+  { path: 'kubernetes-api', title: 'Kubernetes API | XcellHost', data: { developerSlug: 'kubernetes-api' }, loadComponent: () => import('./pages/developer-imported.page').then(m => m.DeveloperImportedPage) },
 
   { path: 'network-access-control-nac', title: 'Genian NAC | XcellHost', loadComponent: () => import('./pages/genian-nac.page').then(m => m.GenianNacPage) },
 

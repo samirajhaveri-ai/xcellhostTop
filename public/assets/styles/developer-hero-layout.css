@@ -1,0 +1,14 @@
+/* Keep each banner heading inside its text column, including page-specific titles. */
+#main .hero.lh .lh-title {
+  font-size: clamp(24px, 4.7cqi, 40px) !important;
+  white-space: normal;
+  max-width: 100%;
+}
+
+/* Floating animation labels extend outside their column; reserve room for them. */
+@media (min-width: 981px) {
+  #main .hero.lh .hero-grid {
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+    column-gap: 88px;
+  }
+}
