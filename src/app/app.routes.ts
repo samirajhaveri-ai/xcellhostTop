@@ -5,6 +5,7 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  { path: 'network-access-control-nac', title: 'Genian NAC | XcellHost', loadComponent: () => import('./pages/genian-nac.page').then(m => m.GenianNacPage) },
   { path: 'genian-nac', title: 'Genian NAC | XcellHost', loadComponent: () => import('./pages/genian-nac.page').then(m => m.GenianNacPage) },
   { path: 'tally-on-cloud/checkout', data: { checkoutProduct: 'tally' }, loadComponent: () => import('./pages/checkout.page').then(m => m.CheckoutPage) },
   { path: 'serverless-inference', data: { inferenceSlug: 'serverless-inference' }, loadComponent: () => import('./pages/inference-imported.page').then(m => m.InferenceImportedPage) },

@@ -88,7 +88,7 @@ Three ranges — Basic, Secure Site and Secure Site Pro — each in OV and EV.
 <div class="dc-certificate-grid" aria-labelledby="dc-sizes-title">
   @for (certificate of certificates; track certificate.name) {
     <article class="dc-certificate-card">
-      <div class="dc-certificate-badges"><span class="dc-tierbadge" [class.ov]="certificate.validation === 'OV'" [class.ev]="certificate.validation === 'EV'">{{ certificate.validation }}</span><span class="dc-tagchip">{{ certificate.range }}</span></div>
+      <div class="dc-certificate-badges"><span class="dc-tierbadge" [class.ov]="certificate.validation === 'OV'" [class.ev]="certificate.validation === 'EV'">{{ certificate.validation }}</span><span class="dc-tagchip">{{ certificate.range }}</span><img class="dc-certificate-brand" src="/assets/images/digicert.png" alt="DigiCert" width="90" height="26"></div>
       <h3>@if (certificate.href) {<a class="dc-certificate-link" [href]="certificate.href">{{ certificate.name }}</a>} @else {{{ certificate.name }}}</h3>
       <p class="dc-certificate-description">{{ certificate.covers }}</p>
       <div class="dc-certificate-facts"><div><span>Warranty</span><b>{{ certificate.warranty }}</b></div><div><span>Validation</span><b>{{ certificate.validation }}</b></div></div>

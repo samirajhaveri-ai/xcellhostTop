@@ -2351,6 +2351,7 @@ export const MEGA_MENU: MenuTop[] = [
             "items": [
               {
                 "title": "Network Access Control (NAC)",
+                "href": "/network-access-control-nac",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -2858,12 +2859,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Cybird",
                 "pill": "In focus",
                 "desc": null
-
-                "title": "Genian NAC",
-                "href": "/genian-nac",
-                "pill": "New",
-                "desc": "Discover devices, assess posture and control access to your network."
-
               },
               
             ]

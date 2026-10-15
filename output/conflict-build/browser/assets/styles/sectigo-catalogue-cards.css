@@ -1,0 +1,28 @@
+.sc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.sc-card{background:#fff;border:1px solid #d5e2f7;border-radius:18px;padding:22px;box-shadow:0 5px 18px rgba(4,30,66,.06);display:flex;flex-direction:column;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.sc-card:before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#0664ff,#ff8c1a);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.sc-card:hover{transform:translateY(-6px);box-shadow:0 25px 55px rgba(4,30,66,.18);border-color:#c9dcfb}.sc-card:hover:before{transform:scaleX(1)}
+.sc-badges{display:flex;gap:8px;margin-bottom:12px}.sc-tier{font:600 10.5px var(--mono,monospace);padding:4px 10px;border-radius:99px;background:#e7efff;color:#0664ff}.sc-tier.ov{background:#eaeff9;color:#2b4a8f}.sc-tier.ev{background:#fff3e0;color:#f57c00}
+.sc-card h3{font-size:16px;line-height:1.5;margin:0 0 6px;min-height:48px;color:#041e42}.sc-card h3 a{color:inherit;text-decoration:none}.sc-card h3 a:hover,.sc-card h3 a:focus-visible{color:#0664ff;text-decoration:none}
+.sc-desc{font-size:12.5px;color:#576b8c;margin:0 0 12px;min-height:34px}.sc-facts{display:flex;gap:16px;margin:0 0 16px;font-size:13px}.sc-facts span{display:block;font-size:11.5px;color:#576b8c}.sc-facts b{display:block;color:#041e42}
+.sc-benefits{list-style:none;padding:0;margin:0 0 18px;font-size:12.5px}.sc-benefits li{display:flex;gap:9px;align-items:center;margin-bottom:8px}.sc-benefits li:before{content:'\2713';background:#e4f7ec;color:#16a34a;width:17px;height:17px;border-radius:50%;text-align:center;flex-shrink:0}
+.sc-purchase{margin-top:auto}.sc-price{border-top:1px solid #d5e2f7;padding-top:14px;margin-bottom:14px}.sc-price>span{display:block;color:#576b8c;font-size:11px}.sc-price strong{font-size:23px;font-weight:800;color:#041e42}.sc-price small{font-size:11px;color:#576b8c}
+.sc-quantity{display:flex;border:1px solid #d5e2f7;border-radius:9px;overflow:hidden;height:42px;margin-bottom:12px}.sc-quantity button{width:35px;border:0;background:#f6f9ff;color:#0664ff;font-size:19px;cursor:pointer}.sc-quantity button:disabled{opacity:.4;cursor:default}.sc-quantity input{width:0;flex:1;min-width:0;text-align:center;border:0;background:white;color:#041e42;font-weight:700;appearance:textfield}.sc-quantity input::-webkit-inner-spin-button{appearance:none}
+.sc-order{border-radius:12px;background:linear-gradient(135deg,#ff8c1a,#f57c00);box-shadow:0 10px 22px rgba(245,124,0,.25)}
+.sc-order a{display:flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:12px 18px;font-size:14px;font-weight:700;color:#fff!important;text-decoration:none!important}
+.sc-order a:after{content:'\2192';font-size:20px;line-height:1}
+.sc-order:hover{box-shadow:0 12px 26px rgba(245,124,0,.35)}
+.sc-card h3{min-height:42px;line-height:1.15}
+.sc-card h3 a:hover,.sc-card h3 a:focus-visible{color:#0664ff;text-decoration:underline;text-underline-offset:3px}
+.sc-badges{align-items:center;flex-wrap:wrap}
+.sc-tier,.sc-tag{font-family:var(--font-m,monospace)}
+.sc-tag{font-size:10px;color:#576b8c;background:#f2f6fc;border:1px solid #d5e2f7;padding:4px 9px;border-radius:99px}
+.sc-facts{margin-bottom:12px}
+.sc-benefits{display:flex;flex-direction:column;gap:7px;margin-bottom:16px;min-height:72px}
+.sc-benefits li{margin-bottom:0}
+.sc-price strong{font-family:var(--font-h,sans-serif)}
+.sc-price small{font-family:var(--font-m,monospace)}
+.sc-quantity button{width:35px;flex-shrink:0}
+@media(max-width:1024px){.sc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:640px){.sc-grid{grid-template-columns:1fr}}
+
+.sc-card .sc-badges{flex-wrap:wrap}.sc-card .sectigo-card-logo{display:block;width:90px;height:26px;flex:0 0 90px;margin-left:auto;padding:3px;box-sizing:border-box;object-fit:contain;border-radius:4px;background:#fff}

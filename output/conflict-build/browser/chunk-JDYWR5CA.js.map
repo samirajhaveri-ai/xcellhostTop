@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/pages/vps-imported.page.ts"],
+  "sourcesContent": ["import { Component, inject } from '@angular/core';\nimport { ActivatedRoute } from '@angular/router';\nimport { ImportedInteractiveContentComponent } from '../sections/imported-interactive-content.component';\nimport { InsightsSectionComponent } from '../sections/insights-section.component';\n\n@Component({\n  selector: 'xh-vps-imported-page',\n  standalone: true,\n  imports: [ImportedInteractiveContentComponent, InsightsSectionComponent],\n  template: `<xh-imported-interactive-content source=\"vps-page\" [vpsSlug]=\"slug\" /><xh-insights-section [pageSlug]=\"slug\" />`,\n})\nexport class VpsImportedPage {\n  readonly slug = inject(ActivatedRoute).snapshot.data['vpsSlug'] as string;\n}\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAWM,IAAO,kBAAP,MAAO,iBAAe;EACjB,OAAO,OAAO,cAAc,EAAE,SAAS,KAAK,SAAS;;qCADnD,kBAAe;EAAA;yEAAf,kBAAe,WAAA,CAAA,CAAA,sBAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,QAAA,CAAA,CAAA,UAAA,YAAA,GAAA,SAAA,GAAA,CAAA,GAAA,UAAA,CAAA,GAAA,UAAA,SAAA,yBAAA,IAAA,KAAA;AAAA,QAAA,KAAA,GAAA;AAFf,MAAA,oBAAA,GAAA,mCAAA,CAAA,EAAsE,GAAA,uBAAA,CAAA;;;AAAnB,MAAA,qBAAA,WAAA,IAAA,IAAA;AAAwC,MAAA,oBAAA;AAAA,MAAA,qBAAA,YAAA,IAAA,IAAA;;oBAD5F,qCAAqC,wBAAwB,GAAA,eAAA,EAAA,CAAA;;;sEAG5D,iBAAe,CAAA;UAN3B;WAAU;MACT,UAAU;MACV,YAAY;MACZ,SAAS,CAAC,qCAAqC,wBAAwB;MACvE,UAAU;KACX;;;;6EACY,iBAAe,EAAA,WAAA,mBAAA,UAAA,sCAAA,YAAA,GAAA,CAAA;AAAA,GAAA;",
+  "names": []
+}
