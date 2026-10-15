@@ -2915,6 +2915,8 @@
                       <xh-ai-review-magicqr-overview />
                     } @else if (slug() === 'cloud-disaster-recovery-for-enterprise') {
                       <xh-enterprise-dr-overview />
+                    } @else if (isSmbCyber()) {
+                      <xh-cybird-overview id="ppOv" />
                     } @else if (isCloudBackup()) {
                       <div class="pp-sec">Overview</div>
                       <p class="pp-ov" id="ppOv">{{ v.overview }}</p>
@@ -4464,6 +4466,10 @@
                       </div>
                     }
                   </div>
+                }
+
+                @if (isSmbCyber()) {
+                  <xh-imported-interactive-content class="smb-cybird-supplied-sections" source="cybird-sections" />
                 }
 
                 @if (isAdvancedEdr()) {

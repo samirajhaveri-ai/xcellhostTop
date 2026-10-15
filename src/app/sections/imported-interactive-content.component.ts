@@ -7,6 +7,7 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 
 type InteractiveContentSource =
   | 'cybird'
+  | 'cybird-sections'
   | 'inference-page'
   | 'vps-page'
   | 'sectigo-detail'
@@ -73,6 +74,7 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     string
   > = {
     cybird: 'about:blank',
+    'cybird-sections': '/imported-cybird-sections.html',
     'managed-pki': '/imported-managed-pki.html',
     'managed-pki-hero': '/imported-managed-pki-hero.html',
     'private-ca': '/imported-private-ca.html',
@@ -133,6 +135,7 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
     cybird: 'Cybird X2 security platform, animated network, plans and threat simulator',
+    'cybird-sections': 'Cybird features, benefits, operation, hardware, threat simulator, comparisons, use cases, partners and pricing',
 
     'managed-pki': 'Managed PKI overview, comparisons, use-case builder and pricing',
     'managed-pki-hero': 'Managed PKI root ceremony, issuance, revocation and renewal animation',
@@ -243,13 +246,13 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     const main = doc?.querySelector('main');
     if (!frame || !doc || !main) return;
     const resize = () => {
-      if (this.source === 'cybird') doc.documentElement.style.setProperty('--cybird-vh', `${window.innerHeight / 100}px`);
+      if (this.source === 'cybird' || this.source === 'cybird-sections') doc.documentElement.style.setProperty('--cybird-vh', `${window.innerHeight / 100}px`);
       const height = `${Math.ceil(main.getBoundingClientRect().height) + 8}px`;
       if (frame.style.height !== height) frame.style.height = height;
     };
     let resizeFrame = 0;
     const observer = new ResizeObserver(() => {
-      if (this.source !== 'cybird') { resize(); return; }
+      if (this.source !== 'cybird' && this.source !== 'cybird-sections') { resize(); return; }
       cancelAnimationFrame(resizeFrame);
       resizeFrame = requestAnimationFrame(resize);
     });

@@ -7,6 +7,7 @@ import { OverlayService } from '../core/overlay.service';
 import { CaseStudiesApiService } from '../core/case-studies-api.service';
 import { SeoService } from '../core/seo.service';
 import { CASE_STUDIES, CaseStudy } from '../data/case-studies.data';
+import { getCaseStudyImage } from '../core/case-study-images';
 
 interface StudyStat {
   readonly value: string;
@@ -178,6 +179,12 @@ export class CaseStudyDetailPage {
   });
   private readonly availableStudies = toSignal(this.caseStudiesApi.studies$, { initialValue: CASE_STUDIES });
   readonly progress = signal(0);
+  readonly caseStudyImage = getCaseStudyImage;
+
+  readonly heroImage = computed(() => {
+    const study = this.study();
+    return study ? getCaseStudyImage(study) : null;
+  });
 
   readonly study = computed(() => {
     const id = this.paramMap().get('id');

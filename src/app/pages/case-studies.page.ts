@@ -1,3 +1,4 @@
+import { getCaseStudyImage } from '../core/case-study-images';
 import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, afterNextRender, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -25,6 +26,7 @@ interface CaseCategoryBranch {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CaseStudiesPage {
+  readonly caseStudyImage = getCaseStudyImage;
   private readonly overlay = inject(OverlayService);
   private readonly seo = inject(SeoService);
   private readonly route = inject(ActivatedRoute);

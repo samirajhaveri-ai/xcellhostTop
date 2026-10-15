@@ -31,18 +31,8 @@
           </div>
 
           <div class="article-hero-media">
-            @if (study.coverImageUrl) {
-              <img class="bp-cover article-cover" [src]="study.coverImageUrl" [alt]="study.coverImageAlt || study.headline" />
-            } @else {
-              <div [class]="'csd-visual article-cover ' + study.visualClass">
-                <span>{{ study.industry }}</span>
-                <strong>{{ study.customer }}</strong>
-                <p>{{ study.visualTitle }}</p>
-                <svg viewBox="0 0 520 190" aria-hidden="true">
-                  <path d="M34 157h452M78 157V91h86v66m31 0V48h193v109m-166-76h41m35 0h41m-117 35h41m35 0h41" />
-                  <circle cx="408" cy="51" r="20" />
-                </svg>
-              </div>
+            @if (heroImage(); as hero) {
+              <img class="bp-cover article-cover csd-hero-image" [class.csd-hero-image-wide]="hero.wide" [class.csd-hero-image-uploaded]="hero.uploaded" [src]="hero.src" [alt]="hero.alt" width="640" height="400" fetchpriority="high" decoding="async" />
             }
           </div>
         </div>
@@ -65,10 +55,10 @@
               <span class="article-side-kicker">On this page</span>
               <h3>Table of contents</h3>
               <nav class="article-toc" aria-label="Table of contents">
-                <a [routerLink]="[]" fragment="background">The background</a>
-                <a [routerLink]="[]" fragment="challenge">The challenge</a>
-                <a [routerLink]="[]" fragment="solution">The solution</a>
-                <a [routerLink]="[]" fragment="result">The result</a>
+                <a [routerLink]="[]" fragment="background">Background</a>
+                <a [routerLink]="[]" fragment="challenge">The Challenge</a>
+                <a [routerLink]="[]" fragment="solution">Our Solution</a>
+                <a [routerLink]="[]" fragment="result">Results &amp; Impact</a>
               </nav>
             </div>
 
@@ -88,17 +78,13 @@
                 }
               </section>
 
-              <section id="background" class="csd-copy-section">
-                <span class="csd-section-kicker">01 &middot; Context</span>
-                <h2>The background</h2>
-                <h3>{{ study.backgroundTitle }}</h3>
+              <section id="background" class="csd-copy-section" aria-labelledby="background-title">
+                <h2 id="background-title">{{ study.backgroundTitle }}</h2>
                 @for (paragraph of study.background; track paragraph) { <p>{{ paragraph }}</p> }
               </section>
 
-              <section id="challenge" class="csd-copy-section">
-                <span class="csd-section-kicker">02 &middot; Problem</span>
-                <h2>The challenge</h2>
-                <h3>{{ study.challengeTitle }}</h3>
+              <section id="challenge" class="csd-copy-section" aria-labelledby="challenge-title">
+                <h2 id="challenge-title">{{ study.challengeTitle }}</h2>
                 @for (paragraph of study.challenge; track paragraph) { <p>{{ paragraph }}</p> }
               </section>
 
@@ -108,21 +94,18 @@
                 <span>Illustrative quotation</span>
               </blockquote>
 
-              <section id="solution" class="csd-copy-section">
-                <span class="csd-section-kicker">03 &middot; Approach</span>
-                <h2>The solution</h2>
-                <h3>{{ study.solutionTitle }}</h3>
+              <section id="solution" class="csd-copy-section" aria-labelledby="solution-title">
+                <h2 id="solution-title">{{ study.solutionTitle }}</h2>
                 @for (paragraph of study.solution; track paragraph) { <p>{{ paragraph }}</p> }
                 <div class="csd-service-flow" aria-label="Solutions used">
                   @for (service of study.services; track service) { <span>{{ service }}</span> }
                 </div>
               </section>
 
-              <section id="result" class="csd-copy-section">
-                <span class="csd-section-kicker">04 &middot; Outcome</span>
-                <h2>The result</h2>
-                <h3>{{ study.resultTitle }}</h3>
-                <ul>
+              <section id="result" class="csd-copy-section" aria-labelledby="result-title">
+                <h2 id="result-title">Results &amp; Impact</h2>
+                <p>{{ study.resultTitle }}</p>
+                <ul class="csd-results" role="list">
                   @for (result of study.results; track result) { <li>{{ result }}</li> }
                 </ul>
               </section>
@@ -136,6 +119,9 @@
                   <button class="btn btn-primary" type="button" (click)="openCallback()">Request a callback</button>
                   <a class="btn btn-ghost" routerLink="/contact">Contact us</a>
                 </div>
+                <a class="pp-cta-buddha-link" routerLink="/company/support-overview" aria-label="Visit XcellHost customer support">
+                  <img class="pp-cta-buddha" src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost customer support" width="104" height="104" loading="lazy" />
+                </a>
               </div>
             </article>
           </div>
@@ -152,7 +138,7 @@
         <div class="article-related-grid">
           @for (item of relatedStudies(); track item.id) {
             <a class="article-related-card" [routerLink]="['/case-studies', item.id]">
-              <div [class]="'csd-related-cover ' + item.visualClass" aria-hidden="true"><strong>{{ item.customer }}</strong></div>
+              <img class="article-related-cover csd-related-image" [src]="caseStudyImage(item).src" [alt]="caseStudyImage(item).alt" width="480" height="320" loading="lazy" decoding="async" />
               <span>{{ item.industry }}</span>
               <h3>{{ item.headline }}</h3>
               <small>{{ item.profile }} &middot; Read the story &rarr;</small>

@@ -217,7 +217,7 @@ export class CompanyPage {
   ] as const;
 
   readonly technicalSupportTeam = [
-    { initials: 'RS', name: 'Rizwan Shaikh', role: 'Technical Manager', image: '/assets/images/TEAMS PHOTO/Rizwan.png' },
+    { initials: 'RS', name: 'Rizwan Shaikh', role: 'Technical Support Manager', image: '/assets/images/TEAMS PHOTO/Rizwan.png' },
     { initials: 'AY', name: 'Amit Yadav', role: 'Technical Support Executive- L3', image: '/assets/images/TEAMS PHOTO/Amit Yadav.png' },
     { initials: 'SB', name: 'Santosh kumar Behera', role: 'Technical Support Executive - L2', image: '/assets/images/TEAMS PHOTO/Santosh.png' },
      { initials: 'TM', name: 'Talha Mohammad', role: 'Technical Support Executive-L2', image: '/assets/images/TEAMS PHOTO/Talha.png' },
@@ -281,9 +281,24 @@ export class CompanyPage {
     ...this.adminTeam.map(member => ({ ...member, department: 'admin' })),
     
   ];
-  readonly visibleTeamMembers = computed(() => this.teamMembers.filter(member =>
-    this.activeTeamTab() === 'all' || member.department === this.activeTeamTab(),
-  ));
+  readonly visibleTeamMembers = computed(() => {
+    const members = this.teamMembers.filter(member =>
+      this.activeTeamTab() === 'all' || member.department === this.activeTeamTab() ||
+      (this.activeTeamTab() === 'management' && member.name === 'Rahul Sanghavi'),
+    ).map(member => this.activeTeamTab() === 'management' && member.name === 'Rahul Sanghavi'
+      ? { ...member, department: 'management' }
+      : member,
+    );
+    if (this.activeTeamTab() === 'management') {
+      const rahulIndex = members.findIndex(member => member.name === 'Rahul Sanghavi');
+      const prashantIndex = members.findIndex(member => member.name === 'Prashant N.V');
+      if (rahulIndex !== -1 && prashantIndex !== -1) {
+        const [rahul] = members.splice(rahulIndex, 1);
+        members.splice(prashantIndex + 1, 0, rahul);
+      }
+    }
+    return members;
+  });
 
   onTeamTabKeydown(event: KeyboardEvent, index: number): void {
     let next = index;

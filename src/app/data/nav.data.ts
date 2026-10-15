@@ -2854,16 +2854,15 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-
                 "title": "Cybird",
                 "pill": "In focus",
                 "desc": null
-
+              },
+              {
                 "title": "Genian NAC",
                 "href": "/genian-nac",
                 "pill": "New",
                 "desc": "Discover devices, assess posture and control access to your network."
-
               },
               
             ]
