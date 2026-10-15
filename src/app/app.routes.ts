@@ -5,6 +5,8 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  // Veritas renders the supplied page content inside the existing site shell.
+  { path: 'veritas', title: 'Veritas AI Visibility & SEO | XcellHost', loadComponent: () => import('./pages/veritas.page').then(m => m.VeritasPage) },
   { path: 'genian-nac', title: 'Genian NAC | XcellHost', loadComponent: () => import('./pages/genian-nac.page').then(m => m.GenianNacPage) },
   { path: 'tally-on-cloud/checkout', data: { checkoutProduct: 'tally' }, loadComponent: () => import('./pages/checkout.page').then(m => m.CheckoutPage) },
   { path: 'serverless-inference', data: { inferenceSlug: 'serverless-inference' }, loadComponent: () => import('./pages/inference-imported.page').then(m => m.InferenceImportedPage) },
