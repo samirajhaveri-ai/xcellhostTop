@@ -776,6 +776,14 @@ html[data-theme="dark"] #eventExtras .ag li>i{background:#050916}
 #eventExtras .cat-bar .fc{padding-right:13px}
 #eventExtras .tp-security{--tc:#c0392b}#eventExtras .tp-cloud{--tc:#0066FF}#eventExtras .tp-trust{--tc:#FF8A00}#eventExtras .tp-data{--tc:#0066FF}#eventExtras .tp-ai{--tc:#FF8A00}#eventExtras .tp-productivity{--tc:#0066FF}
 #eventExtras .vg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+#eventExtras .featured-replay{margin:0 0 24px;overflow:hidden;border:1px solid var(--line);border-radius:var(--r-l);background:var(--surface);box-shadow:var(--sh-s)}
+#eventExtras .featured-replay-head{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:17px 20px;border-bottom:1px solid var(--line)}
+#eventExtras .featured-replay-kicker{display:block;margin-bottom:4px;color:#F57C00;font:600 10.5px var(--f-mono);letter-spacing:.13em;text-transform:uppercase}
+#eventExtras .featured-replay h3{margin:0;color:var(--ink);font:800 19px/1.25 var(--f-disp)}
+#eventExtras .featured-replay-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:99px;background:var(--chip);color:#1565D8;font:600 10.5px var(--f-mono);white-space:nowrap}
+#eventExtras .featured-replay-badge:before{content:"";width:7px;height:7px;border-radius:50%;background:#FF8A00;box-shadow:0 0 0 4px rgba(255,138,0,.14)}
+#eventExtras .featured-replay video{display:block;width:100%;max-height:680px;aspect-ratio:16/9;background:#041E42;object-fit:contain}
+@media(max-width:620px){#eventExtras .featured-replay-head{padding:14px 15px}#eventExtras .featured-replay h3{font-size:16px}#eventExtras .featured-replay video{aspect-ratio:auto;max-height:72vh}}
 @media(max-width:960px){#eventExtras .vg{grid-template-columns:1fr 1fr}}
 @media(max-width:620px){#eventExtras .vg{grid-template-columns:1fr}}
 #eventExtras .vc{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-l);overflow:hidden;cursor:pointer;display:flex;flex-direction:column;transition:transform .35s var(--ease-o),box-shadow .35s,border-color .3s;animation:events-extra-panelIn .5s var(--ease-o) both;animation-delay:calc(var(--i)*45ms);outline:0}

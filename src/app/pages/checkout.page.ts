@@ -13,8 +13,9 @@ import { DomSanitizer, Title } from '@angular/platform-browser';
     </main>
   `,
   styles: [`
-    :host, main { display: block; }
-    iframe { display: block; width: 100%; height: 1100px; border: 0; }
+    :host { display: block; width: 100%; min-width: 0; }
+    main { display: block; width: 100%; min-width: 0; overflow: hidden; }
+    iframe { display: block; width: 100%; min-width: 0; height: 1100px; border: 0; overflow: hidden; }
   `],
 })
 export class CheckoutPage implements OnDestroy {
@@ -23,6 +24,8 @@ export class CheckoutPage implements OnDestroy {
   private readonly route = inject(ActivatedRoute);
   private readonly sanitizer = inject(DomSanitizer);
   private readonly checkoutProduct = this.route.snapshot.data['checkoutProduct'] as
+    | 'bare-metal'
+    | 'gpu'
     | 'tally'
     | 'edr'
     | 'rmm'
@@ -36,7 +39,11 @@ export class CheckoutPage implements OnDestroy {
   private readonly smbDesktopPlan = this.readSmbDesktopPlan();
   private readonly smbDesktopTerm = this.readSmbDesktopTerm();
   readonly productLabel =
-    this.checkoutProduct === 'tally'
+    this.checkoutProduct === 'bare-metal'
+      ? 'Bare Metal Server'
+      : this.checkoutProduct === 'gpu'
+      ? 'GPU Server'
+      : this.checkoutProduct === 'tally'
       ? 'Tally on Cloud'
       : this.checkoutProduct === 'rmm'
       ? 'RMM'
@@ -56,7 +63,11 @@ export class CheckoutPage implements OnDestroy {
           ? `SMB Cloud Desktop ${this.titleCase(this.smbDesktopPlan)}`
         : 'EDR';
   private readonly checkoutFile =
-    this.checkoutProduct === 'rmm'
+    this.checkoutProduct === 'bare-metal'
+      ? 'animations/bare-metal-ordering-supplied.html'
+      : this.checkoutProduct === 'gpu'
+      ? 'animations/gpu-server-ordering-supplied.html'
+      : this.checkoutProduct === 'rmm'
       ? 'xcellhost-rmm-checkout.html'
       : this.checkoutProduct === 'genai'
         ? 'xcellhost-acronis-genai-protection-enforce-checkout.html'
@@ -74,7 +85,18 @@ export class CheckoutPage implements OnDestroy {
           ? `smb-cloud-desktop-checkout/xcellhost-smb-cloud-desktop-${this.smbDesktopPlan}-${this.smbDesktopTerm}-checkout.html`
         : 'xcellhost-checkout.html';
   private readonly checkoutParams = new URLSearchParams(
-    this.checkoutProduct === 'tally'
+    this.checkoutProduct === 'bare-metal'
+      ? {
+          checkout: '1',
+          plan: this.route.snapshot.queryParamMap.get('plan') || 'BM-RYZ-9700X',
+        }
+      : this.checkoutProduct === 'gpu'
+      ? {
+          checkout: '1',
+          gpu: this.route.snapshot.queryParamMap.get('gpu') || 'l4-16vcpu',
+          nvme: this.route.snapshot.queryParamMap.get('nvme') || '30GB',
+        }
+      : this.checkoutProduct === 'tally'
       ? {
           product: 'tally-private-cloud-lite',
           billing: this.route.snapshot.queryParamMap.get('billing') || 'monthly',
@@ -115,6 +137,8 @@ export class CheckoutPage implements OnDestroy {
     if (!frame || !checkoutDocument || !body) return;
 
     if (
+      this.checkoutProduct === 'bare-metal' ||
+      this.checkoutProduct === 'gpu' ||
       this.checkoutProduct === 'tally' ||
       this.checkoutProduct === 'smb-desktop' ||
       this.checkoutProduct === 'genai' ||

@@ -12,11 +12,12 @@ import { ResellerProgramContentComponent } from '../sections/reseller-program-co
 import { TeamStructureComponent } from '../sections/team-structure.component';
 import { WhyXcellhostReasonsComponent } from '../sections/why-xcellhost-reasons.component';
 import { ZohoJobListingComponent } from '../sections/zoho-job-listing.component';
+import { CareersOverviewSectionsComponent } from '../sections/careers-overview-sections.component';
 
 @Component({
   selector: 'xh-company-page',
   standalone: true,
-  imports: [RouterLink, HeroNetDirective, ResellerProgramContentComponent, TeamStructureComponent, WhyXcellhostReasonsComponent, ZohoJobListingComponent],
+  imports: [RouterLink, HeroNetDirective, ResellerProgramContentComponent, TeamStructureComponent, WhyXcellhostReasonsComponent, ZohoJobListingComponent, CareersOverviewSectionsComponent],
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './company.page.html',

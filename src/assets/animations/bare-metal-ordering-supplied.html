@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XcellHost Bare Metal Servers &mdash; Configure &amp; Buy</title>
+<meta name="description" content="Configure an XcellHost Bare Metal dedicated server (22 AMD Ryzen / Intel Xeon Gold / AMD EPYC / Legacy configurations), add licences and services, and complete the 4-step checkout. Mumbai India DC, monthly billing, secure Zoho payment.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<style>
+:root{--bl:#0066FF;--bl-d:#0052cc;--nv:#041E42;--nv2:#0B132B;--or:#FF8A00;--or-d:#e67e00;--gn:#16a34a;
+  --ink:#0f172a;--muted:#64748b;--line:#e6ebf2;--bg:#f4f7fb;--radius:16px;
+  --shadow:0 1px 2px rgba(4,30,66,.04),0 10px 26px rgba(4,30,66,.06);--shadow-s:0 1px 2px rgba(4,30,66,.05)}
+*{box-sizing:border-box}html,body{margin:0}
+body{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.nav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:40}
+.nav-in{max-width:1180px;margin:0 auto;padding:13px 24px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:800;font-size:1.15rem;letter-spacing:-.02em;color:var(--nv);text-decoration:none}.logo span{color:var(--bl)}
+.nav-secure{font-size:.82rem;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:7px}
+.nav-secure .lk{width:8px;height:8px;border-radius:50%;background:var(--gn);display:inline-block}
+.wrap{max-width:1180px;margin:0 auto;padding:22px 24px 44px}
+.page-eyebrow{font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--bl)}
+.page-title{font-size:1.4rem;font-weight:800;letter-spacing:-.02em;color:var(--nv);margin:5px 0 2px}
+.page-sub{color:var(--muted);font-size:.9rem;margin:0 0 18px}
+/* stepper */
+.stepper{display:flex;align-items:center;gap:0;margin:0 0 20px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 18px;box-shadow:var(--shadow-s)}
+.step{display:flex;align-items:center;gap:9px;flex:0 0 auto}
+.step .num{width:26px;height:26px;border-radius:50%;background:#eef2f8;color:var(--muted);font-size:.82rem;font-weight:800;display:flex;align-items:center;justify-content:center}
+.step .lab{font-size:.82rem;font-weight:800;color:var(--muted);white-space:nowrap}
+.step.active .num{background:var(--bl);color:#fff}.step.active .lab{color:var(--nv)}
+.step.done .num{background:var(--gn);color:#fff}.step.done .lab{color:var(--nv)}
+.step-bar{flex:1 1 auto;height:2px;background:#e6ebf2;margin:0 12px;min-width:16px}
+.step-bar.filled{background:var(--gn)}
+@media(max-width:720px){.step .lab{display:none}.step-bar{margin:0 7px}}
+/* layout */
+.cols{display:grid;grid-template-columns:1fr 372px;gap:22px;align-items:start}
+@media(max-width:940px){.cols{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.sec-h{font-size:.64rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--bl);margin:0 0 3px}
+.sec-t{font-size:1.06rem;font-weight:800;color:var(--nv);letter-spacing:-.01em;margin:0 0 14px}
+.left-pad{padding:20px 20px 22px}
+/* plan family tabs */
+.fam-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.fam-tab{font-weight:800;font-size:.8rem;letter-spacing:.03em;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 16px;cursor:pointer;position:relative;transition:.15s}
+.fam-tab .ct{display:inline-block;margin-left:7px;font-size:.68rem;color:var(--muted);background:#eef2f8;border-radius:999px;padding:1px 7px}
+.fam-tab.active{color:var(--bl);border-color:var(--bl)}
+.fam-tab.active .ct{background:#eaf1ff;color:var(--bl)}
+.fam-tab.active:after{content:"";position:absolute;left:16px;right:16px;bottom:-1px;height:3px;border-radius:3px;background:var(--or)}
+/* plan cards */
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.plans{grid-template-columns:1fr}}
+.plan{border:1.5px solid var(--line);border-radius:13px;padding:14px 15px;cursor:pointer;transition:.14s;position:relative;background:#fff}
+.plan:hover{border-color:#b9c7dc}
+.plan.sel{border-color:var(--bl);box-shadow:0 0 0 3px rgba(0,102,255,.12);background:#fbfdff}
+.plan .pnm{font-size:.97rem;font-weight:800;color:var(--nv);letter-spacing:-.01em;padding-right:26px}
+.plan .pcode{font-size:.64rem;font-weight:700;color:var(--muted);font-family:ui-monospace,Menlo,Consolas,monospace;margin-top:2px}
+.plan .pspec{display:grid;grid-template-columns:1fr 1fr;gap:4px 10px;margin:10px 0 11px}
+.plan .pspec div{font-size:.72rem;color:var(--muted)}
+.plan .pspec b{color:var(--nv);font-weight:700}
+.plan .pfoot{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;border-top:1px solid var(--line);padding-top:10px}
+.plan .plist{font-size:.7rem;color:#9aa7bd;text-decoration:line-through}
+.plan .pprice{font-size:1.06rem;font-weight:800;color:var(--nv);white-space:nowrap}
+.plan .pprice .mo{font-size:.7rem;font-weight:700;color:var(--muted)}
+.plan .ptick{position:absolute;top:13px;right:13px;width:20px;height:20px;border-radius:50%;border:1.5px solid #cfd9e8;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.7rem}
+.plan.sel .ptick{background:var(--bl);border-color:var(--bl)}
+/* ===== STAGE 1: catalogue spec tables ===== */
+.cat-note{font-size:.74rem;color:var(--muted);margin-top:14px;line-height:1.5}
+.spec-wrap{border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-s);background:#fff}
+.spec-table{width:100%;border-collapse:collapse;font-size:.85rem}
+.spec-table thead th{background:linear-gradient(135deg,var(--nv),#0a2a5e);color:#fff;font-weight:700;font-size:.7rem;letter-spacing:.04em;text-transform:uppercase;text-align:left;padding:13px 16px;white-space:nowrap}
+.spec-table thead th.r{text-align:right}
+.spec-table tbody td{padding:14px 16px;border-top:1px solid var(--line);color:var(--ink);vertical-align:middle}
+.spec-table tbody tr:hover{background:#fafcff}
+.spec-table .p-name{font-weight:800;color:var(--nv);white-space:nowrap}
+.spec-table .p-code{font-size:.62rem;color:var(--muted);font-family:ui-monospace,Menlo,Consolas,monospace;margin-top:1px}
+.spec-table td.pr{text-align:right;white-space:nowrap}
+.spec-table .p-strike{color:#9aa7bd;text-decoration:line-through;font-size:.72rem;display:block}
+.spec-table .p-now{font-weight:800;color:var(--nv)}
+.spec-table .p-now .mo{font-size:.66rem;font-weight:700;color:var(--muted)}
+.spec-table td.bt{text-align:right}
+.buy-btn{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--or);color:var(--or-d);background:#fff;border-radius:9px;padding:9px 16px;font:inherit;font-weight:800;font-size:.8rem;cursor:pointer;white-space:nowrap;transition:.15s}
+.buy-btn:hover{background:var(--or);color:#fff;border-color:var(--or)}
+@media(max-width:880px){
+  .spec-table thead{display:none}
+  .spec-table,.spec-table tbody,.spec-table tr,.spec-table td{display:block;width:100%}
+  .spec-table tbody tr{border-top:1px solid var(--line);padding:8px 2px}
+  .spec-table tbody td{border:none;padding:6px 16px;display:flex;justify-content:space-between;gap:14px;text-align:right}
+  .spec-table tbody td:before{content:attr(data-l);font-size:.64rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);text-align:left}
+  .spec-table td.pr,.spec-table td.bt{text-align:right}
+  .buy-btn{width:100%;justify-content:center;margin-top:4px}
+  .spec-table .p-strike{display:inline;margin-right:8px}
+}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:700;color:var(--bl);cursor:pointer;margin-bottom:10px}
+.back-link:hover{text-decoration:underline}
+/* ===== STAGE 2: fixed selected-server card in Service ===== */
+.sel-server{border:1.5px solid var(--bl);border-radius:13px;padding:15px 16px;background:#fbfdff;box-shadow:0 0 0 3px rgba(0,102,255,.08)}
+.sel-server .ss-name{font-size:1.1rem;font-weight:800;color:var(--nv);letter-spacing:-.01em}
+.sel-server .ss-code{font-size:.64rem;font-weight:700;color:var(--muted);font-family:ui-monospace,Menlo,Consolas,monospace;margin-top:2px}
+.sel-server .ss-specs{display:grid;grid-template-columns:1fr 1fr;gap:5px 14px;margin:12px 0}
+.sel-server .ss-specs span{font-size:.78rem;color:var(--muted)}
+.sel-server .ss-specs b{color:var(--nv);font-weight:700}
+.sel-server .ss-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding-top:11px}
+.sel-server .ss-srv{font-size:.8rem;color:var(--muted)}.sel-server .ss-srv b{color:var(--nv)}
+.sel-server .ss-price{font-size:1.1rem;font-weight:800;color:var(--nv)}
+.sel-server .ss-price .mo{font-size:.72rem;font-weight:700;color:var(--muted)}
+/* addon categories */
+.cat-wrap{margin-top:24px}
+.catlist{display:flex;flex-direction:column;gap:9px}
+.cat{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+.cat-head{display:flex;align-items:center;gap:12px;padding:13px 15px;cursor:pointer;user-select:none}
+.cat-head:hover{background:#fafcff}
+.cat-ico{width:34px;height:34px;border-radius:9px;background:#eef4ff;color:var(--bl);display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex:none}
+.cat-meta{flex:1;min-width:0}
+.cat-meta .cl{font-size:.9rem;font-weight:800;color:var(--nv)}
+.cat-meta .cs{font-size:.72rem;color:var(--muted);margin-top:1px}
+.cat-count{font-size:.72rem;font-weight:800;color:var(--muted);background:#eef2f8;border-radius:999px;padding:3px 10px}
+.cat-sel{font-size:.68rem;font-weight:800;color:var(--bl);background:#eaf1ff;border-radius:999px;padding:3px 9px;margin-left:4px;display:none}
+.cat.hassel .cat-sel{display:inline-block}
+.cat-chev{color:var(--muted);font-size:.8rem;transition:transform .15s;margin-left:2px}
+.cat.open .cat-chev{transform:rotate(180deg)}
+.cat-body{display:none;padding:4px 15px 15px;border-top:1px solid var(--line)}
+.cat.open .cat-body{display:block}
+.agrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:11px}
+@media(max-width:560px){.agrid{grid-template-columns:1fr}}
+.acard{border:1.5px solid var(--line);border-radius:11px;padding:11px 12px;transition:.14s;background:#fff}
+.acard.on{border-color:var(--bl);background:#fbfdff;box-shadow:0 0 0 2px rgba(0,102,255,.1)}
+.acard-top{display:flex;gap:9px;align-items:flex-start}
+.acard-top input{width:17px;height:17px;accent-color:var(--bl);cursor:pointer;flex:none;margin-top:2px}
+.acard-main{flex:1;min-width:0}
+.acard-nm{font-size:.82rem;font-weight:800;color:var(--nv);line-height:1.3;cursor:pointer}
+.acard-desc{font-size:.68rem;color:var(--muted);margin-top:2px;line-height:1.4}
+.acard-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:9px}
+.acard-price{font-size:.8rem;font-weight:800;color:var(--nv)}
+.acard-price .u{font-size:.66rem;font-weight:700;color:var(--muted)}
+.qtyc{display:inline-flex;align-items:center;border:1px solid #d5deea;border-radius:8px;overflow:hidden}
+.qtyc button{width:28px;height:30px;border:none;background:#f3f6fb;color:var(--nv);font-size:1rem;font-weight:800;cursor:pointer;line-height:1}
+.qtyc button:hover:not(:disabled){background:#e7eefb}.qtyc button:disabled{opacity:.4;cursor:not-allowed}
+.qtyc input{width:38px;height:30px;border:none;border-left:1px solid #e6ebf2;border-right:1px solid #e6ebf2;text-align:center;font:inherit;font-size:.84rem;font-weight:800;color:var(--nv)}
+.qtyc input:focus{outline:none}
+.qtyc.srv{opacity:.7}
+/* steps: account/profile/payment forms */
+.frm{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.frm{grid-template-columns:1fr}}
+.fld{display:flex;flex-direction:column;gap:5px}
+.fld.full{grid-column:1 / -1}
+.fld label{font-size:.72rem;font-weight:800;color:var(--nv)}
+.fld label .rq{color:#e5484d;margin-left:2px}
+.fld input,.fld select{padding:10px 12px;border:1px solid #d5deea;border-radius:9px;font:inherit;font-size:.88rem;color:var(--ink);background:#fff}
+.fld input:focus,.fld select:focus{outline:none;border-color:var(--bl);box-shadow:0 0 0 3px rgba(0,102,255,.12)}
+.fld input.err,.fld select.err{border-color:#e5484d;box-shadow:0 0 0 3px rgba(229,72,77,.12)}
+.ferr{font-size:.7rem;color:#e5484d;font-weight:700;display:none}.ferr.show{display:block}
+.nav-btns{display:flex;justify-content:space-between;gap:12px;margin-top:20px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:none;cursor:pointer;font:inherit;font-weight:800;font-size:.9rem;padding:12px 20px;border-radius:10px;transition:background .15s,transform .05s}
+.btn:active{transform:translateY(1px)}
+.btn-pri{background:var(--bl);color:#fff;box-shadow:0 6px 15px rgba(0,102,255,.24)}.btn-pri:hover{background:var(--bl-d)}
+.btn-ghost{background:#fff;color:var(--nv);border:1px solid #d5deea}.btn-ghost:hover{border-color:#b9c7dc}
+.btn-pay{background:var(--or);color:#fff;box-shadow:0 6px 15px rgba(255,138,0,.28)}.btn-pay:hover{background:var(--or-d)}
+.btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none}
+.pay-review{display:flex;flex-direction:column;gap:12px}
+.pr-line{display:flex;justify-content:space-between;gap:12px;font-size:.86rem}
+.pr-box{border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.pr-box h4{margin:0 0 9px;font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.notice{margin-top:14px;border-radius:12px;padding:13px 15px;font-size:.84rem;line-height:1.5;display:none}
+.notice.show{display:block}
+.gstin-wrap{display:none}
+/* ===== Order Summary (sticky) ===== */
+.summary{position:sticky;top:84px}
+.sum-pad{padding:18px 18px 20px}
+.sum-t{font-size:1.02rem;font-weight:800;color:var(--nv);margin:0 0 14px}
+.sum-plan{border:1px solid var(--line);border-radius:12px;padding:13px 14px;background:#fbfdff}
+.sum-plan .spnm{font-size:.94rem;font-weight:800;color:var(--nv)}
+.sum-plan .spcode{font-size:.62rem;font-weight:700;color:var(--muted);font-family:ui-monospace,Menlo,Consolas,monospace;margin-top:2px}
+.sum-plan .sprow{display:flex;justify-content:space-between;gap:10px;font-size:.74rem;color:var(--muted);margin-top:7px}
+.sum-plan .sprow b{color:var(--nv);font-weight:700;text-align:right}
+.sum-none{color:var(--muted);font-size:.84rem;padding:6px 2px}
+.sum-sec{font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:16px 0 8px}
+.sum-addon{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px dashed #e6ebf2}
+.sum-addon:first-of-type{border-top:none}
+.sum-addon .an{font-size:.78rem;font-weight:700;color:var(--nv);line-height:1.3}
+.sum-addon .aq{font-size:.68rem;color:var(--muted);margin-top:1px}
+.sum-addon .al{font-size:.8rem;font-weight:800;color:var(--nv);white-space:nowrap}
+.sum-addon .rm{font-size:.64rem;color:#e5484d;cursor:pointer;font-weight:700;margin-left:8px;display:inline-block}
+.sum-addsub{display:flex;justify-content:space-between;gap:10px;font-size:.76rem;font-weight:800;color:var(--nv);border-top:1px solid var(--line);padding-top:9px;margin-top:5px}
+/* promo */
+.promo{margin:16px 0 4px;border:1px dashed #cdd8e8;border-radius:12px;padding:13px 14px;background:#f8fbff}
+.promo-h{font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--bl);margin-bottom:8px}
+.promo-row{display:flex;gap:8px}
+.promo-row input{flex:1;min-width:0;padding:9px 11px;border:1px solid #d5deea;border-radius:9px;font:inherit;font-size:.84rem;font-weight:700;text-transform:uppercase;color:var(--nv);background:#fff}
+.promo-row input::placeholder{text-transform:none;font-weight:600;color:#94a3b8}
+.promo-row input:focus{outline:none;border-color:var(--bl);box-shadow:0 0 0 3px rgba(0,102,255,.12)}
+.promo-apply{flex:0 0 auto;border:none;border-radius:9px;background:var(--nv);color:#fff;font:inherit;font-weight:800;font-size:.82rem;padding:9px 16px;cursor:pointer}
+.promo-apply:hover{background:#0a2a5e}
+.promo-msg{font-size:.74rem;margin-top:8px;line-height:1.45;display:none}
+.promo-msg.show{display:block}
+.promo-msg.ok{color:#0f7a3d}.promo-msg.bad{color:#e5484d}
+.promo-msg .rm{color:#e5484d;cursor:pointer;font-weight:700;text-decoration:underline;margin-left:4px}
+/* totals */
+.tot{margin-top:14px;border-top:1px solid var(--line);padding-top:13px;display:flex;flex-direction:column;gap:8px}
+.tot .tr{display:flex;justify-content:space-between;gap:10px;font-size:.84rem;color:var(--muted)}
+.tot .tr b{color:var(--nv);font-weight:700}
+.tot .tr.disc{color:#0f7a3d}.tot .tr.disc b{color:#0f7a3d}
+.tot .grand{display:flex;justify-content:space-between;gap:10px;align-items:baseline;border-top:1px solid var(--line);padding-top:11px;margin-top:3px}
+.tot .grand .gl{font-size:.82rem;font-weight:800;color:var(--nv)}
+.tot .grand .gv{font-size:1.32rem;font-weight:800;color:var(--nv);letter-spacing:-.01em}
+.tot .grand .gv .mo{font-size:.72rem;font-weight:700;color:var(--muted)}
+.sum-note{font-size:.68rem;color:var(--muted);margin-top:12px;line-height:1.5}
+#toastWrap{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:50;display:flex;flex-direction:column;gap:8px}
+.toast{background:var(--nv);color:#fff;padding:11px 18px;border-radius:10px;font-size:.86rem;box-shadow:0 10px 24px rgba(4,30,66,.28);opacity:1;transition:opacity .3s}
+.foot{max-width:1180px;margin:0 auto;padding:20px 24px 40px;color:var(--muted);font-size:.78rem;text-align:center}
+.foot .line{border-top:1px solid var(--line);padding-top:16px}
+</style>
+<style>
+/* Embedded in the Angular product page: the site shell supplies the header/footer. */
+html,body{background:transparent}
+body{overflow-x:hidden}
+.nav,.foot{display:none!important}
+.wrap{width:100%;max-width:1180px;margin:0 auto;padding:24px 24px 36px}
+@media(max-width:600px){.wrap{padding:18px 16px 28px}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-in">
+  <a class="logo" href="#">Xcell<span>Host</span></a>
+  <div class="nav-secure"><span class="lk"></span> Secure checkout &middot; Mumbai Tier-4 DC</div>
+</div></nav>
+
+<div class="wrap">
+
+  <!-- ============ STAGE 1: BARE METAL CATALOGUE ============ -->
+  <div id="viewCatalogue">
+    <div class="page-eyebrow">Bare Metal Servers</div>
+    <h1 class="page-title">Dedicated server catalogue</h1>
+    <p class="page-sub">Single-tenant dedicated servers hosted in Mumbai &mdash; full root access, free DDoS protection, 99.99% uptime SLA. Choose a processor family, then click <b>Buy Now</b> to configure add-ons and check out.</p>
+    <div class="fam-tabs" id="catTabs"></div>
+    <div id="catTables"></div>
+    <p class="cat-note">&#128179; Monthly INR pricing, excluding GST. Add licences, services, backups and managed support at checkout. Custom builds and annual discounts on request.</p>
+  </div>
+
+  <!-- ============ STAGE 2: CHECKOUT ============ -->
+  <div id="viewCheckout" style="display:none">
+  <a class="back-link" onclick="backToCatalogue()">&larr; Back to server catalogue</a>
+  <div class="page-eyebrow">Checkout</div>
+  <h1 class="page-title">Complete your order</h1>
+  <p class="page-sub">Add the licences and services you need, then complete the 4-step checkout. Monthly billing in INR, secure Zoho payment.</p>
+
+  <div class="stepper" id="stepper">
+    <div class="step active" data-step="0"><div class="num">1</div><div class="lab">Service</div></div>
+    <div class="step-bar" data-bar="0"></div>
+    <div class="step" data-step="1"><div class="num">2</div><div class="lab">Account</div></div>
+    <div class="step-bar" data-bar="1"></div>
+    <div class="step" data-step="2"><div class="num">3</div><div class="lab">Profile</div></div>
+    <div class="step-bar" data-bar="2"></div>
+    <div class="step" data-step="3"><div class="num">4</div><div class="lab">Payment</div></div>
+  </div>
+
+  <div class="cols">
+    <!-- LEFT -->
+    <div>
+      <!-- STEP 1: SERVICE -->
+      <div class="card left-pad" id="cardService">
+        <div class="sec-h">Step 1 &middot; Service</div>
+        <div class="sec-t">Your selected server</div>
+        <div class="sel-server" id="selServer"></div>
+
+        <div class="cat-wrap">
+          <div class="sec-h" style="margin-top:4px">Add-ons</div>
+          <div class="sec-t">Licences &amp; services (optional)</div>
+          <div class="catlist" id="catList"></div>
+        </div>
+
+        <div class="nav-btns">
+          <button class="btn btn-ghost" onclick="backToCatalogue()">&larr; Change server</button>
+          <button class="btn btn-pri" onclick="goStep('account')">Continue to Account &rarr;</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: ACCOUNT -->
+      <div class="card left-pad" id="cardAccount" style="display:none">
+        <div class="sec-h">Step 2</div>
+        <div class="sec-t">Account details</div>
+        <div class="frm">
+          <div class="fld"><label for="firstName">First name <span class="rq">*</span></label><input id="firstName" autocomplete="given-name"><span class="ferr">Required</span></div>
+          <div class="fld"><label for="lastName">Last name <span class="rq">*</span></label><input id="lastName" autocomplete="family-name"><span class="ferr">Required</span></div>
+          <div class="fld"><label for="email">Work email <span class="rq">*</span></label><input id="email" type="email" autocomplete="email"><span class="ferr">Enter a valid email</span></div>
+          <div class="fld"><label for="mobile">Mobile <span class="rq">*</span></label><input id="mobile" autocomplete="tel" placeholder="+91 ..."><span class="ferr">Enter a valid number</span></div>
+          <div class="fld full"><label for="company">Company <span class="rq">*</span></label><input id="company" autocomplete="organization"><span class="ferr">Required</span></div>
+        </div>
+        <div class="nav-btns">
+          <button class="btn btn-ghost" onclick="goStep('service')">&larr; Back</button>
+          <button class="btn btn-pri" onclick="goStep('profile')">Continue to Profile &rarr;</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: PROFILE -->
+      <div class="card left-pad" id="cardProfile" style="display:none">
+        <div class="sec-h">Step 3</div>
+        <div class="sec-t">Billing profile</div>
+        <div class="frm">
+          <div class="fld full"><label for="legalName">Registered legal name <span class="rq">*</span></label><input id="legalName" autocomplete="organization"><span class="ferr">Required</span></div>
+          <div class="fld full"><label for="street">Billing address <span class="rq">*</span></label><input id="street" autocomplete="address-line1"><span class="ferr">Required</span></div>
+          <div class="fld"><label for="address2">Address line 2 <span style="color:var(--muted);font-weight:700">(optional)</span></label><input id="address2" autocomplete="address-line2"></div>
+          <div class="fld"><label for="city">City <span class="rq">*</span></label><input id="city" autocomplete="address-level2"><span class="ferr">Required</span></div>
+          <div class="fld"><label for="state">State <span class="rq">*</span></label><select id="state" autocomplete="address-level1"><option value="">Select state</option><option value="Andhra Pradesh">Andhra Pradesh</option><option value="Arunachal Pradesh">Arunachal Pradesh</option><option value="Assam">Assam</option><option value="Bihar">Bihar</option><option value="Chhattisgarh">Chhattisgarh</option><option value="Goa">Goa</option><option value="Gujarat">Gujarat</option><option value="Haryana">Haryana</option><option value="Himachal Pradesh">Himachal Pradesh</option><option value="Jharkhand">Jharkhand</option><option value="Karnataka">Karnataka</option><option value="Kerala">Kerala</option><option value="Madhya Pradesh">Madhya Pradesh</option><option value="Maharashtra">Maharashtra</option><option value="Manipur">Manipur</option><option value="Meghalaya">Meghalaya</option><option value="Mizoram">Mizoram</option><option value="Nagaland">Nagaland</option><option value="Odisha">Odisha</option><option value="Punjab">Punjab</option><option value="Rajasthan">Rajasthan</option><option value="Sikkim">Sikkim</option><option value="Tamil Nadu">Tamil Nadu</option><option value="Telangana">Telangana</option><option value="Tripura">Tripura</option><option value="Uttar Pradesh">Uttar Pradesh</option><option value="Uttarakhand">Uttarakhand</option><option value="West Bengal">West Bengal</option><option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option><option value="Chandigarh">Chandigarh</option><option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option><option value="Delhi">Delhi</option><option value="Jammu and Kashmir">Jammu and Kashmir</option><option value="Ladakh">Ladakh</option><option value="Lakshadweep">Lakshadweep</option><option value="Puducherry">Puducherry</option></select><span class="ferr">Select your state</span></div>
+          <div class="fld"><label for="pin">PIN code <span class="rq">*</span></label><input id="pin" inputmode="numeric" autocomplete="postal-code"><span class="ferr">6-digit PIN</span></div>
+          <div class="fld"><label for="country">Country <span class="rq">*</span></label><input id="country" value="India" autocomplete="country-name"><span class="ferr">Required</span></div>
+          <div class="fld"><label for="gstReg">GST registered? <span class="rq">*</span></label>
+            <select id="gstReg" onchange="toggleGstin()"><option value="">Select</option><option value="yes">Yes</option><option value="no">No</option></select>
+            <span class="ferr">Select one</span></div>
+          <div class="fld gstin-wrap" id="gstinField"><label for="gstin">GSTIN <span class="rq">*</span></label><input id="gstin" placeholder="15-character GSTIN" maxlength="15" autocapitalize="characters"><span class="ferr">GSTIN must be exactly 15 characters</span></div>
+        </div>
+        <div class="nav-btns">
+          <button class="btn btn-ghost" onclick="goStep('account')">&larr; Back</button>
+          <button class="btn btn-pri" onclick="goStep('payment')">Continue to Payment &rarr;</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: PAYMENT -->
+      <div class="card left-pad" id="cardPayment" style="display:none">
+        <div class="sec-h">Step 4</div>
+        <div class="sec-t">Review &amp; pay</div>
+        <div class="pay-review">
+          <div class="pr-box">
+            <h4>Server</h4>
+            <div class="pr-line"><span id="payPlan" style="font-weight:800;color:var(--nv)"></span><span id="payPrice" style="font-weight:800"></span></div>
+            <div class="pr-line" style="color:var(--muted)"><span id="paySpec"></span><span id="payCode" style="font-family:ui-monospace,monospace;font-size:.74rem"></span></div>
+          </div>
+          <div class="pr-box" id="payAddonBox">
+            <h4>Add-ons</h4>
+            <div id="payAddons"></div>
+          </div>
+          <div class="pr-box">
+            <div class="pr-line"><span>Subtotal (before GST)</span><b id="paySub"></b></div>
+            <div class="pr-line" id="payDiscRow" style="display:none;color:#0f7a3d"><span>Promo <span id="payPromoCode"></span></span><b id="payDisc"></b></div>
+            <div class="pr-line" style="margin-top:6px;font-size:1rem"><span style="font-weight:800;color:var(--nv)">Payable now (excl. GST)</span><b id="payGrand" style="color:var(--nv)"></b></div>
+          </div>
+        </div>
+        <div class="notice" id="payNotice"></div>
+        <div class="nav-btns">
+          <button class="btn btn-ghost" onclick="goStep('profile')">&larr; Back</button>
+          <button class="btn btn-pay" id="payBtn" onclick="proceedToPayment()">Proceed to Secure Payment &rarr;</button>
+        </div>
+        <p class="sum-note">You'll be redirected to XcellHost's secure Zoho payment page for <b id="payZohoPlan"></b>. Your selected add-ons and details are carried across; the amount is set by Zoho from the plan &amp; add-on codes &mdash; never from this page.</p>
+      </div>
+    </div>
+
+    <!-- RIGHT: ORDER SUMMARY -->
+    <div>
+      <div class="card summary"><div class="sum-pad">
+        <h3 class="sum-t">Order Summary</h3>
+        <div id="sumPlan"></div>
+
+        <div id="sumAddonsWrap" style="display:none">
+          <div class="sum-sec">Add-ons</div>
+          <div id="sumAddons"></div>
+          <div class="sum-addsub"><span>Add-on subtotal</span><span id="sumAddSub"></span></div>
+        </div>
+
+        <div class="promo" id="summaryPromo">
+          <div class="promo-h">Promo code</div>
+          <div class="promo-row">
+            <input id="svcCouponInput" type="text" autocomplete="off" spellcheck="false" placeholder="Enter promo code" onkeydown="if(event.key==='Enter'){event.preventDefault();applyCoupon();}">
+            <button type="button" class="promo-apply" onclick="applyCoupon()">Apply</button>
+          </div>
+          <div class="promo-msg" id="svcCouponMsg"></div>
+        </div>
+
+        <div class="tot">
+          <div class="tr"><span>Base total</span><b id="oBase">&mdash;</b></div>
+          <div class="tr"><span>Add-ons</span><b id="oAddons">&#8377;0</b></div>
+          <div class="tr"><span>Subtotal</span><b id="oSubtotalRow">&mdash;</b></div>
+          <div class="tr disc" id="oDiscRow" style="display:none"><span>Promo <span id="oDiscCode"></span></span><b id="oDisc"></b></div>
+          <div class="grand"><span class="gl">Grand Total</span><span class="gv" id="oGrand">&mdash;<span class="mo"> / mo</span></span></div>
+        </div>
+        <p class="sum-note">Prices are monthly, in INR, excluding GST. Add-ons are billed with your server on one Zoho invoice.</p>
+      </div></div>
+    </div>
+  </div>
+  </div><!-- /viewCheckout -->
+</div>
+
+<div class="foot"><div class="line">XcellHost Cloud Services Pvt. Ltd. &middot; support@xcellhost.cloud &middot; +91-22-67111555 &middot; ISO 27001 &middot; ISO 20000-1</div></div>
+<div id="toastWrap"></div>
+
+<script>
+/* ============================ DATA ============================ */
+var BM_CATALOG = [{"code": "BM-RYZ-9700X", "family": "RYZEN", "name": "AMD Ryzen 9700x", "cores": "8 cores / 16 threads", "mem": "64 GB DDR5", "storage": "2 × 960 GB M.2 NVMe SSD", "bw": "10 TB / 1 Gbps", "list": null, "price": 18399, "url": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-RYZ-9700X"}, {"code": "BM-RYZ-9950X", "family": "RYZEN", "name": "AMD Ryzen 9950x", "cores": "16 cores / 32 threads", "mem": "128 GB DDR5", "storage": "2 × 1.92 TB M.2 NVMe SSD", "bw": "10 TB / 1 Gbps", "list": null, "price": 26499, "url": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-RYZ-9950X"}, {"code": "BM-GOLD-6244", "family": "INTEL GOLD", "name": "Intel Gold 6244", "cores": "8 cores / 16 threads", "mem": "64 GB", "storage": "2 × 960 GB NVMe SSD", "bw": "10 TB / 1 Gbps", "list": null, "price": 21899, "url": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-GOLD-6244"}, {"code": "BM-GOLD-2X6244", "family": "INTEL GOLD", "name": "Dual (2x) Intel Gold 6244", "cores": "16 cores / 32 threads", "mem": "128 GB", "storage": "2 × 960 GB NVMe SSD", "bw": "10 TB / 1 Gbps", "list": null, "price": 25299, "url": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-GOLD-2X6244"}, {"code": "BM-GOLD-6254", "family": "INTEL GOLD", "name": "Intel Gold 6254", "cores": "18 cores / 36 threads", "mem": "128 GB", "storage": "2 × 960 GB U.2 NVMe SSD", "bw": "10 TB / 1 Gbps", "list": null, "price": 24499, "url": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-GOLD-6254"}, {"code": "BM-GOLD-2X6254", "family": "INTEL GOLD", "name": "Dual (2x) Intel Gold 6254", "cores": "36 cores / 72 threads", "mem": "256 GB", "storage": "2 × 1.92 TB U.2 NVMe SSD", "bw": "10 TB / 1 Gbps", "list": null, "price": 32699, "url": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-GOLD-2X6254"}, {"code": "BM-EPYC-9124", "family": "AMD EPYC", "name": "Single AMD EPYC 9124", "cores": "16 cores / 32 threads", "mem": "128 GB DDR5", "storage": "2 × 960 GB U.3 NVMe SSD", "bw": "25 TB / 1 Gbps", "list": null, "price": 46199, "url": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-EPYC-9124"}, {"code": "BM-EPYC-2X9124", "family": "AMD EPYC", "name": "Dual (2x) AMD EPYC 9124", "cores": "32 cores / 64 threads", "mem": "256 GB DDR5", "storage": "2 × 1.92 TB U.3 NVMe SSD", "bw": "25 TB / 1 Gbps", "list": null, "price": 68899, "url": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-EPYC-2X9124"}, {"code": "BM-EPYC-9334", "family": "AMD EPYC", "name": "Single AMD EPYC 9334", "cores": "32 cores / 64 threads", "mem": "128 GB DDR5", "storage": "2 × 960 GB U.3 NVMe SSD", "bw": "25 TB / 1 Gbps", "list": null, "price": 51399, "url": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-EPYC-9334"}, {"code": "BM-EPYC-2X9334", "family": "AMD EPYC", "name": "Dual (2x) AMD EPYC 9334", "cores": "64 cores / 128 threads", "mem": "256 GB DDR5", "storage": "2 × 1.92 TB U.3 NVMe SSD", "bw": "25 TB / 1 Gbps", "list": null, "price": 79199, "url": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-EPYC-2X9334"}, {"code": "BM-EPYC-9554", "family": "AMD EPYC", "name": "Single AMD EPYC 9554", "cores": "64 cores / 128 threads", "mem": "128 GB DDR5", "storage": "2 × 1.92 TB U.3 NVMe SSD", "bw": "25 TB / 1 Gbps", "list": null, "price": 56799, "url": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-EPYC-9554"}, {"code": "BM-EPYC-2X9554", "family": "AMD EPYC", "name": "Dual (2x) AMD EPYC 9554", "cores": "128 cores / 256 threads", "mem": "256 GB DDR5", "storage": "2 × 3.84 TB U.3 NVMe SSD", "bw": "25 TB / 1 Gbps", "list": null, "price": 90299, "url": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-EPYC-2X9554"}, {"code": "BM-EPYC-7313", "family": "AMD EPYC", "name": "Single EPYC 7313", "cores": "16 cores / 32 threads", "mem": "64 GB DDR4", "storage": "2 × 960 NVMe", "bw": "15 TB / 1 Gbps", "list": null, "price": 33499, "url": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-EPYC-7313"}, {"code": "BM-EPYC-2X7313", "family": "AMD EPYC", "name": "Dual EPYC 7313", "cores": "32 cores / 64 threads", "mem": "128 GB DDR4", "storage": "2 × 960 NVMe", "bw": "15 TB / 1 Gbps", "list": null, "price": 39299, "url": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-EPYC-2X7313"}, {"code": "BM-EPYC-7543", "family": "AMD EPYC", "name": "Single EPYC 7543", "cores": "32 cores / 64 threads", "mem": "384 GB DDR4", "storage": "2 × 3.84 TB NVMe", "bw": "15 TB / 1 Gbps", "list": null, "price": 63899, "url": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-EPYC-7543"}, {"code": "BM-EPYC-2X7543", "family": "AMD EPYC", "name": "Dual EPYC 7543", "cores": "64 cores / 128 threads", "mem": "256 GB DDR4", "storage": "2 × 1.92 TB NVMe", "bw": "15 TB / 1 Gbps", "list": null, "price": 55899, "url": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-EPYC-2X7543"}, {"code": "BM-EPYC-7763", "family": "AMD EPYC", "name": "EPYC 7763", "cores": "64 cores / 128 threads", "mem": "128 GB DDR4", "storage": "2 × 1.92 TB NVMe", "bw": "15 TB / 1 Gbps", "list": null, "price": 45699, "url": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-EPYC-7763"}, {"code": "BM-EPYC-2X7763", "family": "AMD EPYC", "name": "Dual EPYC 7763", "cores": "128 cores / 256 threads", "mem": "256 GB DDR4", "storage": "2 × 3.84 TB NVMe", "bw": "15 TB / 1 Gbps", "list": null, "price": 67099, "url": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-EPYC-2X7763"}, {"code": "BM-LEG-2667", "family": "LEGACY", "name": "Intel Xeon E5-2667v4", "cores": "8 cores", "mem": "32 GB", "storage": "2 × 480 GB SSD", "bw": "10 TB / 1 Gbps", "list": null, "price": 12399, "url": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-LEG-2667"}, {"code": "BM-LEG-2X2667", "family": "LEGACY", "name": "Dual E5-2667v4", "cores": "16 cores", "mem": "64 GB", "storage": "2 × 480 GB SSD", "bw": "10 TB / 1 Gbps", "list": null, "price": 12999, "url": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-LEG-2X2667"}, {"code": "BM-LEG-2680", "family": "LEGACY", "name": "Intel Xeon E5-2680v4 · 2.4 GHz", "cores": "14 cores", "mem": "128 GB", "storage": "2 × 480 GB SSD", "bw": "10 TB / 1 Gbps", "list": null, "price": 12899, "url": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-LEG-2680"}, {"code": "BM-LEG-2X2680", "family": "LEGACY", "name": "Dual E5-2680v4", "cores": "28 cores", "mem": "256 GB", "storage": "2 × 960 GB SSD", "bw": "10 TB / 1 Gbps", "list": null, "price": 15499, "url": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-LEG-2X2680"}];
+var BM_ADDONS  = [{"cat": "infra", "name": "Add: vBackup - Backup Storage", "code": "BM-ADD-ADD-VBACKUP-BACKUP-STORAGE", "price": 7.6, "unit": "GB", "interval": "month", "qmode": "var", "dq": 100, "min": 1, "desc": "Backup storage pool"}, {"cat": "infra", "name": "Add: Object Storage - S3 Compatible", "code": "BM-ADD-ADD-OBJECT-STORAGE-S3-COMPATIBLE", "price": 1.6, "unit": "GB", "interval": "month", "qmode": "var", "dq": 100, "min": 1, "desc": "S3-compatible object storage"}, {"cat": "os", "name": "TSPlus Enterprise Plus", "code": "BM-ADD-TSPLUS-ENTERPRISE-PLUS", "price": 285, "unit": "user", "interval": "month", "qmode": "var", "dq": 5, "min": 1}, {"cat": "os", "name": "TSPlus Enterprise Plus - Unlimited Users", "code": "BM-ADD-TSPLUS-ENTERPRISE-PLUS-UNLIMITED-USERS", "price": 9500, "unit": "VM", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "os", "name": "CloudLinux OS Admin", "code": "BM-ADD-CLOUDLINUX-OS-ADMIN", "price": 2375, "unit": "VM", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "os", "name": "RedHat Linux Enterprise Server (upto 4 Core)", "code": "BM-ADD-REDHAT-LINUX-ENTERPRISE-SERVER-UPTO-4-CORE", "price": 4750, "unit": "VM", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "os", "name": "RedHat Linux Enterprise Server (above 4 Core)", "code": "BM-ADD-REDHAT-LINUX-ENTERPRISE-SERVER-ABOVE-4-CORE", "price": 9500, "unit": "VM", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "os", "name": "SUSE Linux Enterprise Server (upto 4 core)", "code": "BM-ADD-SUSE-LINUX-ENTERPRISE-SERVER-UPTO-4-CORE", "price": 4750, "unit": "VM", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "os", "name": "SUSE Linux Enterprise Server (above 4 core)", "code": "BM-ADD-SUSE-LINUX-ENTERPRISE-SERVER-ABOVE-4-CORE", "price": 9500, "unit": "VM", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "os", "name": "LiteSpeed SiteOwner Plus", "code": "BM-ADD-LITESPEED-SITEOWNER-PLUS", "price": 2375, "unit": "VM", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "panel", "name": "Plesk Obsidian - Web Admin Edition", "code": "BM-ADD-PLESK-OBSIDIAN-WEB-ADMIN-EDITION", "price": 1206, "unit": "server", "interval": "month", "qmode": "server"}, {"cat": "panel", "name": "Plesk Obsidian - Web Pro Edition", "code": "BM-ADD-PLESK-OBSIDIAN-WEB-PRO-EDITION", "price": 1780, "unit": "server", "interval": "month", "qmode": "server"}, {"cat": "panel", "name": "Plesk Obsidian - Web Host Edition", "code": "BM-ADD-PLESK-OBSIDIAN-WEB-HOST-EDITION", "price": 3857, "unit": "server", "interval": "month", "qmode": "server"}, {"cat": "panel", "name": "cPanel for Linux Solo (1 Accounts)", "code": "BM-ADD-CPANEL-FOR-LINUX-SOLO-1-ACCOUNTS", "price": 1425, "unit": "server", "interval": "month", "qmode": "server"}, {"cat": "panel", "name": "cPanel for Linux with Softaculous", "code": "BM-ADD-CPANEL-FOR-LINUX-WITH-SOFTACULOUS", "price": 2375, "unit": "server", "interval": "month", "qmode": "server"}, {"cat": "panel", "name": "cPanel for Linux (Upto 30 Accounts)", "code": "BM-ADD-CPANEL-FOR-LINUX-UPTO-30-ACCOUNTS", "price": 2161, "unit": "server", "interval": "month", "qmode": "server"}, {"cat": "panel", "name": "cPanel for Linux Upto 50 Accounts", "code": "BM-ADD-CPANEL-FOR-LINUX-UPTO-50-ACCOUNTS", "price": 3064, "unit": "server", "interval": "month", "qmode": "server"}, {"cat": "panel", "name": "cPanel for Linux (Upto 100 Accounts)", "code": "BM-ADD-CPANEL-FOR-LINUX-UPTO-100-ACCOUNTS", "price": 3952, "unit": "server", "interval": "month", "qmode": "server"}, {"cat": "panel", "name": "cPanel for Linux", "code": "BM-ADD-CPANEL-FOR-LINUX", "price": 5225, "unit": "server", "interval": "month", "qmode": "server"}, {"cat": "security", "name": "Endpoint Security Agent (with Advanced Detection & Response)", "code": "BM-ADD-ENDPOINT-SECURITY-AGENT-WITH-ADVANCED-DETECTI", "price": 380, "unit": "server", "interval": "month", "qmode": "server"}, {"cat": "security", "name": "Shared Firewall Services", "code": "BM-ADD-SHARED-FIREWALL-SERVICES", "price": 2375, "unit": "server", "interval": "month", "qmode": "server"}, {"cat": "security", "name": "Managed Firewall Services - Dedicated Virtual Fortinet VM01 Essentials", "code": "BM-ADD-MANAGED-FIREWALL-SERVICES-DEDICATED-VIRTUAL-F", "price": 16625, "unit": "instance", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "security", "name": "Advanced Security Monitoring Services (SIEM)", "code": "BM-ADD-ADVANCED-SECURITY-MONITORING-SERVICES-SIEM", "price": 2375, "unit": "server", "interval": "month", "qmode": "server", "desc": "SIEM | Log Analytics | Network Behaviour | with AI+ML"}, {"cat": "security", "name": "Vulnerability Scanning Tool", "code": "BM-ADD-VULNERABILITY-SCANNING-TOOL", "price": 475, "unit": "IP", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "security", "name": "IPv4 Address", "code": "BM-ADD-IPV4-ADDRESS", "price": 533, "unit": "IP", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "security", "name": "Email Defense Services", "code": "BM-ADD-EMAIL-DEFENSE-SERVICES", "price": 285, "unit": "user", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "security", "name": "SiteLock Enterprise", "code": "BM-ADD-SITELOCK-ENTERPRISE", "price": 1900, "unit": "domain", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "security", "name": "Site-to-Site VPN Tunnel", "code": "BM-ADD-SITE-TO-SITE-VPN-TUNNEL", "price": 1425, "unit": "tunnel", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "security", "name": "Add: SSL VPN Client (Fortinet)", "code": "BM-ADD-ADD-SSL-VPN-CLIENT-FORTINET", "price": 285, "unit": "user", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "security", "name": "Port Termination Charges (Direct Connect)", "code": "BM-ADD-PORT-TERMINATION-CHARGES-DIRECT-CONNECT", "price": 4750, "unit": "port", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "security", "name": "Shared Load Balancing Services", "code": "BM-ADD-SHARED-LOAD-BALANCING-SERVICES", "price": 2375, "unit": "server", "interval": "month", "qmode": "server"}, {"cat": "managed", "name": "Managed Services - Silver Plan", "code": "BM-ADD-MANAGED-SERVICES-SILVER-PLAN", "price": 3325, "unit": "instance", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "managed", "name": "Managed Services - Gold Plan", "code": "BM-ADD-MANAGED-SERVICES-GOLD-PLAN", "price": 5700, "unit": "instance", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "managed", "name": "Managed Services - Platinum Plan", "code": "BM-ADD-MANAGED-SERVICES-PLATINUM-PLAN", "price": 9500, "unit": "instance", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "managed", "name": "Managed Services - Ultimate Plan", "code": "BM-ADD-MANAGED-SERVICES-ULTIMATE-PLAN", "price": 14250, "unit": "instance", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "managed", "name": "Cloud Disaster Recovery - Powered by Acronis Disaster Recovery Cloud", "code": "BM-ADD-CLOUD-DISASTER-RECOVERY-POWERED-BY-ACRONIS-DI", "price": 11875, "unit": "instance", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "managed", "name": "Security Monitoring Advanced Pack (SIEM)", "code": "BM-ADD-SECURITY-MONITORING-ADVANCED-PACK-SIEM", "price": 2375, "unit": "instance", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "db", "name": "Cloud Database SQL Server 2019 - 10 GB", "code": "BM-ADD-CLOUD-DATABASE-SQL-SERVER-2019-10-GB", "price": 2375, "unit": "block", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "db", "name": "Cloud Database SQL Server 2019 - 25 GB", "code": "BM-ADD-CLOUD-DATABASE-SQL-SERVER-2019-25-GB", "price": 3325, "unit": "block", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "db", "name": "Cloud Database SQL Server 2019 - 50 GB", "code": "BM-ADD-CLOUD-DATABASE-SQL-SERVER-2019-50-GB", "price": 4275, "unit": "block", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "db", "name": "Cloud Database SQL Server 2019 - 100 GB", "code": "BM-ADD-CLOUD-DATABASE-SQL-SERVER-2019-100-GB", "price": 5225, "unit": "block", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "db", "name": "Cloud Database SQL Server 2019 - 250 GB", "code": "BM-ADD-CLOUD-DATABASE-SQL-SERVER-2019-250-GB", "price": 6175, "unit": "block", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "db", "name": "Cloud Database SQL Server 2019 - 500 GB", "code": "BM-ADD-CLOUD-DATABASE-SQL-SERVER-2019-500-GB", "price": 7125, "unit": "block", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "db", "name": "Cloud Database SQL Server 2019 - 1 TB", "code": "BM-ADD-CLOUD-DATABASE-SQL-SERVER-2019-1-TB", "price": 14250, "unit": "block", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "db", "name": "Microsoft 365 Business (License Only)", "code": "BM-ADD-MICROSOFT-365-BUSINESS-LICENSE-ONLY", "price": 1805, "unit": "user", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "db", "name": "SQL Server 2016/2019 - Standard SAL", "code": "BM-ADD-SQL-SERVER-2016-2019-STANDARD-SAL", "price": 950, "unit": "user", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "db", "name": "Secure FTP Server Standard Edition", "code": "BM-ADD-SECURE-FTP-SERVER-STANDARD-EDITION", "price": 1900, "unit": "server", "interval": "month", "qmode": "server"}, {"cat": "db", "name": "SQL Server 2019 - Web Edition", "code": "BM-ADD-SQL-SERVER-2019-WEB-EDITION", "price": 7125, "unit": "2 core", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "db", "name": "SQL Server 2016/2019 - Standard Edition", "code": "BM-ADD-SQL-SERVER-2016-2019-STANDARD-EDITION", "price": 14250, "unit": "2 core", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "db", "name": "SQL Server 2016/2019 - Enterprise Edition", "code": "BM-ADD-SQL-SERVER-2016-2019-ENTERPRISE-EDITION", "price": 55385, "unit": "2 core", "interval": "month", "qmode": "var", "dq": 1, "min": 1}, {"cat": "mail", "name": "SmarterMail Server Enterprise - 250 Users License", "code": "BM-ADD-SMARTERMAIL-SERVER-ENTERPRISE-250-USERS-LICEN", "price": 5225, "unit": "server", "interval": "month", "qmode": "server"}, {"cat": "mail", "name": "SmarterMail Server Enterprise - 500 Users License", "code": "BM-ADD-SMARTERMAIL-SERVER-ENTERPRISE-500-USERS-LICEN", "price": 11875, "unit": "server", "interval": "month", "qmode": "server"}, {"cat": "mail", "name": "SmarterMail Server Enterprise - 1000 Users License", "code": "BM-ADD-SMARTERMAIL-SERVER-ENTERPRISE-1000-USERS-LICE", "price": 14250, "unit": "server", "interval": "month", "qmode": "server"}, {"cat": "mail", "name": "SmarterMail Server Enterprise - 2000 Users License", "code": "BM-ADD-SMARTERMAIL-SERVER-ENTERPRISE-2000-USERS-LICE", "price": 9975, "unit": "server", "interval": "month", "qmode": "server"}, {"cat": "mail", "name": "Cloud E-Mail Security (Anti-Spam, Anti-Virus, Anti-Ransomware)", "code": "BM-ADD-CLOUD-E-MAIL-SECURITY-ANTI-SPAM-ANTI-VIRUS-AN", "price": 38, "unit": "user", "interval": "month", "qmode": "var", "dq": 1, "min": 1}];
+var ADDON_CATS = [{"key": "infra", "label": "Additional Cloud Infra", "icon": "🗄", "sub": "Backup Storage, Object Storage"}, {"key": "os", "label": "Software + Operating System Licenses", "icon": "⚙", "sub": "Linux, Windows, TSPlus, LiteSpeed"}, {"key": "panel", "label": "Control Panel Licenses", "icon": "▣", "sub": "cPanel, Plesk, Softaculous"}, {"key": "security", "label": "Security Services", "icon": "🛡", "sub": "Endpoint, Firewall, SIEM, VPN"}, {"key": "managed", "label": "Managed Services", "icon": "👥", "sub": "Silver, Gold, Platinum, Ultimate"}, {"key": "db", "label": "Database & Software Licenses", "icon": "◉", "sub": "SQL Server, Microsoft 365, FTP"}, {"key": "mail", "label": "Mail Server Licenses", "icon": "✉", "sub": "SmarterMail, Email Security"}];
+/* BM_PLAN_MAP: authoritative Plan Code -> exact Zoho Hosted Payment Page URL.
+   Verbatim URLs provided by XcellHost (not derived/constructed). */
+var BM_PLAN_MAP = {"BM-RYZ-9700X": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-RYZ-9700X", "BM-RYZ-9950X": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-RYZ-9950X", "BM-GOLD-6244": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-GOLD-6244", "BM-GOLD-2X6244": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-GOLD-2X6244", "BM-GOLD-6254": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-GOLD-6254", "BM-GOLD-2X6254": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-GOLD-2X6254", "BM-EPYC-9124": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-EPYC-9124", "BM-EPYC-2X9124": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-EPYC-2X9124", "BM-EPYC-9334": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-EPYC-9334", "BM-EPYC-2X9334": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-EPYC-2X9334", "BM-EPYC-9554": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-EPYC-9554", "BM-EPYC-2X9554": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-EPYC-2X9554", "BM-EPYC-7313": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-EPYC-7313", "BM-EPYC-2X7313": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-EPYC-2X7313", "BM-EPYC-7543": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-EPYC-7543", "BM-EPYC-2X7543": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-EPYC-2X7543", "BM-EPYC-7763": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-EPYC-7763", "BM-EPYC-2X7763": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-EPYC-2X7763", "BM-LEG-2667": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-LEG-2667", "BM-LEG-2X2667": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-LEG-2X2667", "BM-LEG-2680": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-LEG-2680", "BM-LEG-2X2680": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/BM-LEG-2X2680"};
+function planUrlFor(code){ return (code && BM_PLAN_MAP[code]) ? BM_PLAN_MAP[code] : null; }
+
+var ZOHO_HPP_BASE='https://billing.zohosecure.in/subscribe/';
+var SALES_EMAIL='sales@xcellhost.cloud';
+var FAMILIES=['RYZEN','INTEL GOLD','AMD EPYC','LEGACY'];
+
+/* unit pluralisation for the summary line */
+var unitPlural={user:'users',VM:'VMs',server:'servers',IP:'IPs',domain:'domains',tunnel:'tunnels',port:'ports',instance:'instances',block:'blocks',GB:'GB','2 core':'× 2-core packs'};
+
+/* ============================ STATE ============================ */
+var cfg = { planCode:null, servers:1, sel:{}, qty:{} };   /* sel: {code:true}, qty:{code:n} for var add-ons */
+var COUPONS = { 'XCLL10':{type:'pct',value:10,label:'10% off (before GST)'} };
+var COUPON = { code:'', type:null, value:0, label:'' };
+var activeFam = 'RYZEN';
+
+/* ============================ HELPERS ============================ */
+function qs(id){return document.getElementById(id);}
+function val(id){var e=qs(id);return e?(e.value||'').trim():'';}
+function enc(v){return encodeURIComponent(v);}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function money(n){
+  n=Number(n)||0;
+  var neg=n<0; n=Math.abs(n);
+  var hasP=Math.round(n*100)%100!==0;
+  var s=n.toFixed(hasP?2:0);
+  var parts=s.split('.'); var i=parts[0];
+  var last3=i.slice(-3), rest=i.slice(0,-3);
+  if(rest) last3=rest.replace(/\B(?=(\d{2})+(?!\d))/g,',')+','+last3;
+  var out='\u20B9'+last3+(parts[1]?('.'+parts[1]):'');
+  return (neg?'-':'')+out;
+}
+function toast(msg){var w=qs('toastWrap');if(!w)return;var t=document.createElement('div');t.className='toast';t.textContent=msg;w.appendChild(t);setTimeout(function(){t.style.opacity='0';setTimeout(function(){t.remove();},320);},2600);}
+function plan(){ return cfg.planCode ? BM_CATALOG.filter(function(c){return c.code===cfg.planCode;})[0] : null; }
+function addonByCode(code){ return BM_ADDONS.filter(function(a){return a.code===code;})[0]; }
+function catOf(key){ return ADDON_CATS.filter(function(c){return c.key===key;})[0]; }
+function addonEffQty(a){ return a.qmode==='server' ? cfg.servers : (cfg.qty[a.code]||a.dq||1); }
+function addonLine(a){ return a.price==null ? 0 : a.price*addonEffQty(a); }
+function selectedAddons(){ return BM_ADDONS.filter(function(a){return cfg.sel[a.code];}); }
+function addonSubtotal(){ var s=0; selectedAddons().forEach(function(a){s+=addonLine(a);}); return Math.round(s*100)/100; }
+function basePrice(){ var p=plan(); return p? p.price*cfg.servers : 0; }
+function orderSubtotal(){ return Math.round((basePrice()+addonSubtotal())*100)/100; }
+function couponDiscount(sub){
+  if(!COUPON.code) return 0;
+  var d=(COUPON.type==='pct')?sub*(Number(COUPON.value)/100):Number(COUPON.value);
+  d=Math.round(d*100)/100; if(d>sub)d=sub; if(d<0)d=0; return d;
+}
+
+/* ============================ STAGE 1: CATALOGUE ============================ */
+function renderCatTabs(){
+  var counts={}; BM_CATALOG.forEach(function(c){counts[c.family]=(counts[c.family]||0)+1;});
+  var h='';
+  FAMILIES.forEach(function(f){
+    h+='<button type="button" class="fam-tab'+(f===activeFam?' active':'')+'" onclick="setCatFam(\''+f.replace(/'/g,"\\'")+'\')">'+esc(f)+'<span class="ct">'+(counts[f]||0)+'</span></button>';
+  });
+  qs('catTabs').innerHTML=h;
+}
+function setCatFam(f){ activeFam=f; renderCatTabs(); renderCatTables(); }
+function renderCatTables(){
+  var list=BM_CATALOG.filter(function(c){return c.family===activeFam;});
+  var rows='';
+  list.forEach(function(c){
+    var strike=(c.list&&c.list>c.price)?('<span class="p-strike">'+money(c.list)+'</span>'):'';
+    rows+='<tr>'
+      +'<td data-l="Processor"><div class="p-name">'+esc(c.name)+'</div><div class="p-code">'+esc(c.code)+'</div></td>'
+      +'<td data-l="Cores / Threads">'+esc(c.cores)+'</td>'
+      +'<td data-l="Memory">'+esc(c.mem)+'</td>'
+      +'<td data-l="Storage">'+esc(c.storage)+'</td>'
+      +'<td data-l="Bandwidth">'+esc(c.bw)+'</td>'
+      +'<td data-l="Monthly INR" class="pr">'+strike+'<span class="p-now">'+money(c.price)+'<span class="mo"> / mo</span></span></td>'
+      +'<td data-l="" class="bt"><button type="button" class="buy-btn" onclick="buyNow(\''+c.code+'\')">Buy Now &rarr;</button></td>'
+    +'</tr>';
+  });
+  qs('catTables').innerHTML='<div class="spec-wrap"><table class="spec-table">'
+    +'<thead><tr><th>Processor</th><th>Cores / Threads</th><th>Memory</th><th>Storage</th><th>Bandwidth</th><th class="r">Monthly INR</th><th></th></tr></thead>'
+    +'<tbody>'+rows+'</tbody></table></div>';
+}
+/* Buy Now: fix the selected plan, open the checkout Service step (no plan selector shown again). */
+function buyNow(code){
+  if(!BM_PLAN_MAP[code]) { toast('This configuration is currently unavailable.'); return; }
+  if(new URLSearchParams(window.location.search).get('checkout')!=='1'){
+    window.top.location.assign('/bare-metal-servers/checkout?plan='+enc(code));
+    return;
+  }
+  cfg.planCode=code;
+  qs('viewCatalogue').style.display='none';
+  qs('viewCheckout').style.display='';
+  renderSelectedServer(); renderCats(); renderSummary(); goStep('service');
+  try{window.scrollTo({top:0,behavior:'smooth'});}catch(e){}
+}
+function backToCatalogue(){
+  if(new URLSearchParams(window.location.search).get('checkout')==='1'){
+    window.top.location.assign('/bare-metal-servers#products');
+    return;
+  }
+  qs('viewCheckout').style.display='none';
+  qs('viewCatalogue').style.display='';
+  try{window.scrollTo({top:0,behavior:'smooth'});}catch(e){}
+}
+function renderSelectedServer(){
+  var p=plan(); var el=qs('selServer'); if(!el) return;
+  if(!p){ el.innerHTML=''; return; }
+  el.innerHTML='<div class="ss-name">'+esc(p.name)+'</div>'
+    +'<div class="ss-code">'+esc(p.code)+'</div>'
+    +'<div class="ss-specs">'
+      +'<span><b>'+esc(p.cores)+'</b></span>'
+      +'<span><b>'+esc(p.mem)+'</b> RAM</span>'
+      +'<span>'+esc(p.storage)+'</span>'
+      +'<span>'+esc(p.bw)+'</span>'
+    +'</div>'
+    +'<div class="ss-foot"><span class="ss-price">'+money(p.price)+'<span class="mo"> / mo</span></span></div>';
+}
+
+/* ============================ ADD-ON CATEGORIES ============================ */
+var openCats={};
+function renderCats(){
+  var h='';
+  ADDON_CATS.forEach(function(cat){
+    var items=BM_ADDONS.filter(function(a){return a.cat===cat.key;});
+    var nsel=items.filter(function(a){return cfg.sel[a.code];}).length;
+    var isOpen=!!openCats[cat.key];
+    h+='<div class="cat'+(isOpen?' open':'')+(nsel?' hassel':'')+'" data-cat="'+cat.key+'">'
+      +'<div class="cat-head" onclick="toggleCat(\''+cat.key+'\')">'
+        +'<div class="cat-ico">'+cat.icon+'</div>'
+        +'<div class="cat-meta"><div class="cl">'+esc(cat.label)+'</div><div class="cs">'+esc(cat.sub)+'</div></div>'
+        +'<span class="cat-count">'+items.length+'</span>'
+        +'<span class="cat-sel">'+nsel+' selected</span>'
+        +'<span class="cat-chev">\u25BC</span>'
+      +'</div>'
+      +'<div class="cat-body">'+(isOpen?catBody(items):'')+'</div>'
+    +'</div>';
+  });
+  qs('catList').innerHTML=h;
+}
+function catBody(items){
+  var h='<div class="agrid">';
+  items.forEach(function(a){
+    var on=!!cfg.sel[a.code];
+    var isVar=a.qmode!=='server';
+    var q=addonEffQty(a);
+    h+='<div class="acard'+(on?' on':'')+'" data-ac="'+a.code+'">'
+      +'<div class="acard-top">'
+        +'<input type="checkbox" '+(on?'checked':'')+' onchange="toggleAddon(\''+a.code+'\')" id="ck-'+a.code+'">'
+        +'<div class="acard-main">'
+          +'<label class="acard-nm" for="ck-'+a.code+'">'+esc(a.name)+'</label>'
+          +(a.desc?('<div class="acard-desc">'+esc(a.desc)+'</div>'):'')
+        +'</div>'
+      +'</div>'
+      +'<div class="acard-foot">'
+        +'<div class="acard-price">'+money(a.price)+' <span class="u">/ '+esc(a.unit)+'/mo</span></div>'
+        +(isVar
+          ? '<div class="qtyc"><button type="button" onclick="bumpAddon(\''+a.code+'\',-1)" '+(on?'':'disabled')+'>&minus;</button>'
+            +'<input type="text" inputmode="numeric" value="'+q+'" id="q-'+a.code+'" onchange="setAddonQty(\''+a.code+'\',this.value)" '+(on?'':'disabled')+'>'
+            +'<button type="button" onclick="bumpAddon(\''+a.code+'\',1)" '+(on?'':'disabled')+'>+</button></div>'
+          : '')
+      +'</div>'
+    +'</div>';
+  });
+  return h+'</div>';
+}
+function toggleCat(key){ openCats[key]=!openCats[key]; renderCats(); }
+function toggleAddon(code){
+  var a=addonByCode(code); if(!a) return;
+  if(cfg.sel[code]){ delete cfg.sel[code]; delete cfg.qty[code]; }
+  else { cfg.sel[code]=true; if(a.qmode!=='server' && !cfg.qty[code]) cfg.qty[code]=a.dq||1; }
+  renderCats(); renderSummary();
+}
+function bumpAddon(code,d){
+  var a=addonByCode(code); if(!a||!cfg.sel[code]) return;
+  var mn=a.min||1; var cur=cfg.qty[code]||a.dq||1;
+  cfg.qty[code]=Math.max(mn,cur+d);
+  renderCats(); renderSummary();
+}
+function setAddonQty(code,v){
+  var a=addonByCode(code); if(!a) return;
+  var mn=a.min||1; var n=parseInt(String(v).replace(/[^0-9]/g,''),10); if(isNaN(n)||n<mn)n=mn;
+  cfg.qty[code]=n; renderCats(); renderSummary();
+}
+
+/* ============================ SUMMARY ============================ */
+function renderSummary(){
+  var p=plan();
+  /* plan block */
+  if(p){
+    qs('sumPlan').innerHTML='<div class="sum-plan">'
+      +'<div class="spnm">'+esc(p.name)+'</div>'
+      +'<div class="spcode">'+esc(p.code)+'</div>'
+      +'<div class="sprow"><span>Configuration</span><b>'+esc(p.cores)+' &middot; '+esc(p.mem)+'</b></div>'
+      +'<div class="sprow"><span>Storage</span><b>'+esc(p.storage)+'</b></div>'
+      +'<div class="sprow"><span>Bandwidth</span><b>'+esc(p.bw)+'</b></div>'
+      +'<div class="sprow"><span>Base price</span><b>'+money(p.price)+' / mo</b></div>'
+    +'</div>';
+  } else {
+    qs('sumPlan').innerHTML='<div class="sum-none">No configuration selected yet &mdash; pick one on the left.</div>';
+  }
+  /* add-ons */
+  var sel=selectedAddons();
+  if(sel.length){
+    qs('sumAddonsWrap').style.display='';
+    var h='';
+    sel.forEach(function(a){
+      var q=addonEffQty(a);
+      var uw=a.qmode==='server' ? (q+' server'+(q>1?'s':'')) : (q+' '+(q>1?(unitPlural[a.unit]||a.unit):a.unit));
+      h+='<div class="sum-addon"><div><div class="an">'+esc(a.name)+'</div><div class="aq">'+uw+' &times; '+money(a.price)+'<span class="rm" onclick="removeAddon(\''+a.code+'\')">Remove</span></div></div><div class="al">'+money(addonLine(a))+'</div></div>';
+    });
+    qs('sumAddons').innerHTML=h;
+    qs('sumAddSub').innerHTML=money(addonSubtotal())+' / mo';
+  } else {
+    qs('sumAddonsWrap').style.display='none';
+  }
+  /* totals */
+  var base=basePrice(), add=addonSubtotal(), sub=orderSubtotal(), disc=couponDiscount(sub);
+  qs('oBase').innerHTML = p? (money(base)+' / mo') : '&mdash;';
+  qs('oAddons').innerHTML = money(add)+' / mo';
+  qs('oSubtotalRow').innerHTML = p? (money(sub)+' / mo') : '&mdash;';
+  if(COUPON.code && disc>0){
+    qs('oDiscRow').style.display='';
+    qs('oDiscCode').textContent='('+COUPON.code+')';
+    qs('oDisc').innerHTML='-'+money(disc)+' / mo';
+  } else { qs('oDiscRow').style.display='none'; }
+  qs('oGrand').innerHTML = p? (money(sub-disc)+'<span class="mo"> / mo</span>') : '&mdash;<span class="mo"> / mo</span>';
+}
+
+/* ============================ PROMO ============================ */
+function couponMsg(html,kind){var m=qs('svcCouponMsg');if(!m)return;m.innerHTML=html;m.className='promo-msg show'+(kind?(' '+kind):'');}
+function applyCoupon(){
+  var inp=qs('svcCouponInput'); if(!inp) return;
+  var raw=inp.value.trim();
+  if(!raw){ COUPON={code:'',type:null,value:0,label:''}; couponMsg('Please enter a promo code.',''); renderSummary(); return; }
+  var key=raw.toUpperCase().replace(/\s+/g,'');
+  var c=COUPONS[key];
+  if(!c){ COUPON={code:'',type:null,value:0,label:''}; couponMsg('Invalid or expired promo code.','bad'); renderSummary(); return; }
+  COUPON={code:key,type:c.type,value:c.value,label:c.label||''};
+  inp.value=key;
+  renderSummary();
+  var disc=couponDiscount(orderSubtotal());
+  couponMsg('\u2713 Promo applied. You save '+money(disc)+(COUPON.label?(' \u00b7 '+COUPON.label):'')+'. <span class="rm" onclick="removeCoupon()">Remove</span>','ok');
+}
+function removeCoupon(){ COUPON={code:'',type:null,value:0,label:''}; var i=qs('svcCouponInput'); if(i)i.value=''; couponMsg('',''); renderSummary(); }
+function removeAddon(code){ delete cfg.sel[code]; delete cfg.qty[code]; renderCats(); renderSummary(); }
+
+/* ============================ STEP NAV ============================ */
+var STEP=['service','account','profile','payment'];
+var CARD={service:'cardService',account:'cardAccount',profile:'cardProfile',payment:'cardPayment'};
+var reEmail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/, reMobile=/^[+\d][\d\s-]{7,}$/, rePin=/^\d{6}$/;
+function setErr(id,bad){var e=qs(id);if(!e)return;e.classList.toggle('err',bad);var f=e.parentElement.querySelector('.ferr');if(f)f.classList.toggle('show',bad);}
+function validService(){ if(!cfg.planCode){ toast('Please choose a Bare Metal configuration first.'); return false; } return true; }
+function validAccount(){var ok=true;[['firstName',function(v){return v.length>=1;}],['lastName',function(v){return v.length>=1;}],['email',function(v){return reEmail.test(v);}],['mobile',function(v){return reMobile.test(v);}],['company',function(v){return v.length>=1;}]].forEach(function(c){var bad=!c[1](val(c[0]));setErr(c[0],bad);if(bad)ok=false;});return ok;}
+function validProfile(){var ok=true;[['legalName',function(v){return v.length>=1;}],['street',function(v){return v.length>=1;}],['city',function(v){return v.length>=1;}],['state',function(v){return v.length>=1;}],['pin',function(v){return rePin.test(v);}],['country',function(v){return v.length>=1;}]].forEach(function(c){var bad=!c[1](val(c[0]));setErr(c[0],bad);if(bad)ok=false;});var g=val('gstReg');var gb=(g==='');setErr('gstReg',gb);if(gb)ok=false;if(g==='yes'){var bad=val('gstin').length!==15;setErr('gstin',bad);if(bad)ok=false;}return ok;}
+/* GSTIN row carries the .gstin-wrap{display:none} base rule, so SHOW must set an explicit
+   'flex' (matching .fld layout) — clearing to '' would fall back to display:none. */
+function toggleGstin(){var f=qs('gstinField');if(f)f.style.display=(val('gstReg')==='yes')?'flex':'none';}
+function goStep(name){
+  if(name!=='service' && !validService()){ name='service'; }
+  if(name==='profile' && !validAccount()){goStep('account');toast('Please complete your account details.');return;}
+  if(name==='payment'){ if(!validAccount()){goStep('account');toast('Please complete your account details.');return;} if(!validProfile()){goStep('profile');toast('Please complete your billing profile.');return;} }
+  for(var k in CARD){var c=qs(CARD[k]);if(c)c.style.display=(k===name)?'':'none';}
+  var sp=qs('summaryPromo'); if(sp) sp.style.display=(name==='service')?'':'none';
+  if(name==='payment') renderPayment();
+  var idx=STEP.indexOf(name);
+  var steps=document.querySelectorAll('#stepper .step');
+  for(var i=0;i<steps.length;i++){var si=+steps[i].getAttribute('data-step');steps[i].classList.toggle('active',si===idx);steps[i].classList.toggle('done',si<idx);}
+  var bars=document.querySelectorAll('#stepper .step-bar');
+  for(var j=0;j<bars.length;j++){bars[j].classList.toggle('filled',(+bars[j].getAttribute('data-bar'))<idx);}
+  try{window.scrollTo({top:0,behavior:'smooth'});}catch(e){}
+}
+
+/* ============================ PAYMENT REVIEW ============================ */
+function renderPayment(){
+  var p=plan(); if(!p) return;
+  qs('payPlan').textContent=p.name;
+  qs('payPrice').textContent=money(p.price)+' / mo';
+  qs('paySpec').textContent=p.cores+' \u00b7 '+p.mem+' \u00b7 '+p.storage;
+  qs('payCode').textContent=p.code;
+  qs('payZohoPlan').textContent=p.name+' ('+p.code+')';
+  var sel=selectedAddons();
+  if(sel.length){
+    qs('payAddonBox').style.display='';
+    var h='';
+    sel.forEach(function(a){
+      var q=addonEffQty(a);
+      var uw=a.qmode==='server'?(q+' server'+(q>1?'s':'')):(q+' '+(q>1?(unitPlural[a.unit]||a.unit):a.unit));
+      h+='<div class="pr-line"><span>'+esc(a.name)+' <span style="color:var(--muted)">('+uw+')</span></span><b>'+money(addonLine(a))+'</b></div>';
+    });
+    qs('payAddons').innerHTML=h;
+  } else { qs('payAddonBox').style.display='none'; }
+  var sub=orderSubtotal(), disc=couponDiscount(sub);
+  qs('paySub').innerHTML=money(sub);
+  if(COUPON.code&&disc>0){ qs('payDiscRow').style.display=''; qs('payPromoCode').textContent='('+COUPON.code+')'; qs('payDisc').innerHTML='-'+money(disc); }
+  else { qs('payDiscRow').style.display='none'; }
+  qs('payGrand').innerHTML=money(sub-disc);
+}
+
+/* ============================ ZOHO PREFILL + ADD-ON PARAMS ============================ */
+/* Indian state/UT -> 2-character Zoho billing_state_code. Map is generated from the same
+   list that builds the State dropdown, so every selectable state resolves to a valid code. */
+var STATE_CODES = {"andhra pradesh": "AP", "arunachal pradesh": "AR", "assam": "AS", "bihar": "BR", "chhattisgarh": "CT", "goa": "GA", "gujarat": "GJ", "haryana": "HR", "himachal pradesh": "HP", "jharkhand": "JH", "karnataka": "KA", "kerala": "KL", "madhya pradesh": "MP", "maharashtra": "MH", "manipur": "MN", "meghalaya": "ML", "mizoram": "MZ", "nagaland": "NL", "odisha": "OR", "punjab": "PB", "rajasthan": "RJ", "sikkim": "SK", "tamil nadu": "TN", "telangana": "TG", "tripura": "TR", "uttar pradesh": "UP", "uttarakhand": "UT", "west bengal": "WB", "andaman and nicobar islands": "AN", "chandigarh": "CH", "dadra and nagar haveli and daman and diu": "DN", "delhi": "DL", "jammu and kashmir": "JK", "ladakh": "LA", "lakshadweep": "LD", "puducherry": "PY"};
+function stateCode(s){ var c=STATE_CODES[String(s||'').trim().toLowerCase()]; return (c && c.length===2)?c:''; }
+function countryCode(c){ var x=String(c||'').trim().toLowerCase(); if(x==='india'||x==='in'||x==='bharat')return 'IN'; return x.length===2?x.toUpperCase():''; }
+function addParam(parts,k,v){ if(v!==undefined&&v!==null&&String(v).length){ parts.push(k+'='+enc(v)); } }
+function buildPrefill(){
+  var p=[];
+  addParam(p,'first_name',val('firstName'));
+  addParam(p,'last_name',val('lastName'));
+  addParam(p,'email',val('email'));
+  addParam(p,'company_name',val('legalName')||val('company'));
+  addParam(p,'mobile',val('mobile'));
+  addParam(p,'billing_street',val('street'));
+  addParam(p,'billing_city',val('city'));
+  addParam(p,'billing_zip',val('pin'));
+  /* billing_state_code MUST be exactly 2 chars (Zoho rejects >=3). Only send it when valid;
+     never put a full state name into billing_state_code. Fall back to billing_state otherwise. */
+  var sc=stateCode(val('state'));
+  if(sc && sc.length===2){ addParam(p,'billing_state_code',sc); }
+  else if(val('state')){ addParam(p,'billing_state',val('state')); }
+  addParam(p,'billing_country_code',countryCode(val('country')));
+  if(val('gstReg')==='yes') addParam(p,'tax_reg_no',val('gstin'));
+  return p.join('&');
+}
+/* Zoho add-on params — addon_code[k]/addon_quantity[k], URL-encoded brackets (the exact Zoho-supported format). */
+function addonParams(){
+  var parts=[], k=0;
+  selectedAddons().forEach(function(a){
+    if(a.price==null||!a.code) return;
+    parts.push('addon_code%5B'+k+'%5D='+enc(a.code));
+    parts.push('addon_quantity%5B'+k+'%5D='+enc(String(addonEffQty(a))));
+    k++;
+  });
+  return parts.join('&');
+}
+function proceedToPayment(){
+  if(!validService()){ goStep('service'); return; }
+  if(!validAccount()){ goStep('account'); toast('Please complete your account details.'); return; }
+  if(!validProfile()){ goStep('profile'); toast('Please complete your billing profile.'); return; }
+  var p=plan();
+  var planUrl=planUrlFor(cfg.planCode);
+  if(!p||!planUrl){ showNotice('<b>This configuration could not be matched to a payment page.</b> Please re-select your server and try again.','err'); return; }
+  var pf=buildPrefill();
+  var ap=addonParams();
+  var cp=COUPON.code ? ('coupon_code='+enc(COUPON.code)) : '';
+  var query=[pf,ap,cp].filter(function(x){return x;}).join('&');
+  var url=planUrl+(query?'?'+query:'');
+  var nAdd=selectedAddons().length;
+  showNotice('Taking you to the secure Zoho payment page for <b>'+esc(p.name)+'</b>'+(nAdd?(' with <b>'+nAdd+' add-on'+(nAdd>1?'s':'')+'</b>'):'')+(COUPON.code?(' \u00b7 promo <b>'+esc(COUPON.code)+'</b>'):'')+'\u2026','info');
+  try{ window.location.href=url; }catch(e){ window.open(url,'_blank'); }
+}
+function showNotice(html,kind){
+  var el=qs('payNotice'); if(!el)return;
+  el.innerHTML=html; el.classList.add('show');
+  var c={err:['#fef2f2','#fecaca','#b91c1c'],info:['#eff6ff','#bfdbfe','#1e40af'],ok:['#f0fdf4','#bbf7d0','#166534']}[kind]||['#eff6ff','#bfdbfe','#1e40af'];
+  el.style.background=c[0]; el.style.border='1px solid '+c[1]; el.style.color=c[2];
+}
+
+/* ============================ BOOT ============================ */
+function renderAll(){ renderSummary(); }
+function init(){
+  renderCatTabs(); renderCatTables(); renderCats(); renderSummary();
+  toggleGstin();
+  var params=new URLSearchParams(window.location.search);
+  if(params.get('checkout')==='1'){
+    var code=params.get('plan')||'BM-RYZ-9700X';
+    if(!BM_PLAN_MAP[code]) code='BM-RYZ-9700X';
+    buyNow(code);
+  }
+}
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
+
+/* Resize the host section as families or checkout steps change. */
+(function(){
+  function reportHeight(){
+    var h=Math.max(document.documentElement.scrollHeight,document.body.scrollHeight);
+    if(window.parent!==window) window.parent.postMessage({type:'xh-bare-metal-height',height:h},window.location.origin);
+  }
+  window.addEventListener('load',reportHeight);
+  window.addEventListener('resize',reportHeight);
+  document.addEventListener('click',function(){setTimeout(reportHeight,40);setTimeout(reportHeight,300);});
+  if(window.ResizeObserver)new ResizeObserver(reportHeight).observe(document.body);
+})();
+</script>
+</body>
+</html>

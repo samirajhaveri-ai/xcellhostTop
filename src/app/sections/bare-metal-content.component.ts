@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { ChangeDetectionStrategy, Component, ElementRef, HostListener, ViewChild, input, signal } from '@angular/core';
 
 
 interface BareMetalPlan {
@@ -19,16 +18,33 @@ interface DataCenter {
 }
 
 @Component({
-  selector: 'xh-bare-metal-content', standalone: true, imports: [RouterLink],
+  selector: 'xh-bare-metal-content', standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './bare-metal-content.component.html', styleUrl: './bare-metal-content.component.css',
 })
 export class BareMetalContentComponent {
+  @ViewChild('bareMetalFrame') private bareMetalFrame?: ElementRef<HTMLIFrameElement>;
   readonly heroOnly = input(false);
   readonly dataCenterOnly = input(false);
+  catalogueFrameHeight = 510;
   readonly selectedFamily = signal<'ryzen' | 'intel' | 'epyc' | 'legacy'>('ryzen');
   readonly selectedPanel = signal(0);
   readonly selectedDataCenter = signal(2);
+
+  @HostListener('window:message', ['$event'])
+  onCatalogueMessage(event: MessageEvent): void {
+    const frame = this.bareMetalFrame?.nativeElement;
+    if (
+      !frame ||
+      event.source !== frame.contentWindow ||
+      event.origin !== window.location.origin ||
+      !event.data ||
+      event.data.type !== 'xh-bare-metal-height'
+    ) return;
+
+    const height = Number(event.data.height);
+    if (Number.isFinite(height)) this.catalogueFrameHeight = Math.max(420, Math.ceil(height));
+  }
 
   readonly dataCenters: readonly DataCenter[] = [
     {

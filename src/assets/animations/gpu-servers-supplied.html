@@ -315,6 +315,10 @@ button{font-family:inherit}
 /* ---------- Pricing / Cart configurator (CloudPe UI × E2E structure) ---------- */
 .gpu-pricing{position:relative;margin:4px 0 8px}
 .gpu-pricing .floating-orb{z-index:0}
+.gp-ordering-frame-wrap{position:relative;margin:0;overflow:visible}
+.gp-ordering-frame{display:block;width:100%;height:540px;border:0;background:transparent;overflow:hidden}
+.gp-legacy-plans{display:none!important}
+@media(max-width:960px){.gp-ordering-frame{height:1040px}}
 .gp-orb1{width:320px;height:320px;background:#1565d8;top:-80px;right:-80px;animation:float-orb-1 16s ease-in-out infinite}
 .gp-orb2{width:260px;height:260px;background:#7C3AED;bottom:40px;left:-100px;animation:float-orb-2 20s ease-in-out infinite;opacity:.22}
 .gp-orb3{width:220px;height:220px;background:#06b6d4;top:40%;left:40%;animation:float-orb-3 18s ease-in-out infinite;opacity:.16}
@@ -1178,7 +1182,11 @@ body {
         <span class="gp-subnav-prog"><i id="gpProg"></i></span><span class="gp-subnav-pct" id="gpPct">0%</span>
       </div></nav>
 
-      <div class="gp-card" id="gpPlans">
+      <div class="gp-ordering-frame-wrap" id="gpPlans">
+        <iframe class="gp-ordering-frame" id="gpOrderingFrame" src="/assets/animations/gpu-server-ordering-supplied.html" title="Configure and order an XcellHost GPU server" loading="lazy"></iframe>
+      </div>
+
+      <div class="gp-card gp-legacy-plans" id="gpPlansLegacy" aria-hidden="true">
         <div class="gp-controls gp-controls-top">
           <div class="wide"><span class="gp-lbl">Catalogue</span><div class="seg cat" role="group" aria-label="Catalogue"><button type="button" data-cat="cloud" aria-pressed="true">☁️ Cloud GPU plans <em>instant</em></button><button type="button" data-cat="ent" aria-pressed="false">🏢 Enterprise NVIDIA SKUs <em>reserved</em></button></div></div>
           <div><span class="gp-lbl">View</span><div class="seg view" role="group" aria-label="View"><button type="button" data-view="table" aria-pressed="true">☰ Table</button><button type="button" data-view="cards" aria-pressed="false">▦ Cards</button></div></div>
@@ -2080,6 +2088,13 @@ body {
     if (!top.contains(document.activeElement)) { e.preventDefault(); first.focus(); } else if (e.shiftKey && document.activeElement === first) { e.preventDefault(); end.focus(); } else if (!e.shiftKey && document.activeElement === end) { e.preventDefault(); first.focus(); } });
   new MutationObserver(() => { if (!layers().length && last && document.body.contains(last) && document.activeElement === document.body) last.focus({ preventScroll: true }); }).observe(document.body, { subtree: true, attributes: true, attributeFilter: ['hidden', 'class'] });
 })();
+</script>
+<script>
+window.addEventListener('message',function(event){
+  if(event.origin!==window.location.origin||!event.data||event.data.type!=='xh-gpu-ordering-height')return;
+  var frame=document.getElementById('gpOrderingFrame');
+  if(frame)frame.style.height=Math.max(420,Math.ceil(Number(event.data.height)||0))+'px';
+});
 </script>
 <script src="/assets/animations/gpu-servers-bridge.js"></script>
 </body>
