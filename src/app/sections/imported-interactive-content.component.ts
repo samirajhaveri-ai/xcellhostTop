@@ -279,8 +279,6 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     const resize = () => {
 
       if (this.source === 'cybird' || this.source === 'cybird-sections') doc.documentElement.style.setProperty('--cybird-vh', `${window.innerHeight / 100}px`);
-
-      if (this.source === 'cybird') doc.documentElement.style.setProperty('--cybird-vh', `${window.innerHeight / 100}px`);
       if (this.source === 'veritas') doc.documentElement.style.setProperty('--veritas-vh', `${window.innerHeight / 100}px`);
 
       const height = `${Math.ceil(main.getBoundingClientRect().height) + 8}px`;
@@ -289,9 +287,7 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     let resizeFrame = 0;
     const observer = new ResizeObserver(() => {
 
-      if (this.source !== 'cybird' && this.source !== 'cybird-sections') { resize(); return; }
-
-      if (this.source !== 'cybird' && this.source !== 'veritas') { resize(); return; }
+      if (this.source !== 'cybird' && this.source !== 'cybird-sections' && this.source !== 'veritas') { resize(); return; }
 
       cancelAnimationFrame(resizeFrame);
       resizeFrame = requestAnimationFrame(resize);

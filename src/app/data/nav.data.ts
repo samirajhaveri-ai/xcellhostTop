@@ -2855,36 +2855,21 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-<<<<<<< HEAD
                 "title": "Cybird",
                 "pill": "In focus",
                 "desc": null
-=======
-
-
-
-                "title": "Cybird",
-                "pill": "In focus",
-                "desc": null
-
->>>>>>> 7726b4be2e9b67a1d10f2cf3807e6d7914462150
               },
               {
                 "title": "Genian NAC",
                 "href": "/genian-nac",
                 "pill": "New",
                 "desc": "Discover devices, assess posture and control access to your network."
-<<<<<<< HEAD
-=======
-
-
               },
               {
                 "title": "Veritas",
                 "href": "/veritas",
                 "pill": "New",
                 "desc": "Site audits, keyword research, local SEO and AI-answer visibility in one workspace."
->>>>>>> 7726b4be2e9b67a1d10f2cf3807e6d7914462150
               },
               
             ]
