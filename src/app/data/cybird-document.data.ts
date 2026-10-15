@@ -1672,6 +1672,13 @@ html,body{min-height:0!important;height:auto!important;overflow:hidden!important
 body{margin:0}
 #main>#why{padding-top:24px}
 #why .mq-w:focus-within .mq-m{animation-play-state:paused}
+.cybird-section-nav{width:100%;padding:10px 20px;border-bottom:1px solid #e7ebf1;background:var(--surface)}
+.cybird-section-nav-track{display:flex;align-items:center;justify-content:center;gap:2px;width:max-content;max-width:100%;margin:0 auto;padding:4px;overflow-x:auto;border-radius:999px;background:#f2f3f6;scrollbar-width:none}
+.cybird-section-nav-track::-webkit-scrollbar{display:none}
+.cybird-section-nav a{flex:0 0 auto;padding:9px 15px;border-radius:999px;color:#3d4759;font:600 13px/1.25 var(--f-body);text-decoration:none;white-space:nowrap;transition:color .2s,background-color .2s,box-shadow .2s}
+.cybird-section-nav a:hover,.cybird-section-nav a:focus-visible,.cybird-section-nav a[aria-current="location"]{color:#075fc7;background:#fff;box-shadow:0 2px 8px rgba(4,30,66,.12)}
+.cybird-section-nav a:focus-visible{outline:2px solid #1d73df;outline-offset:1px}
+@media(max-width:900px){.cybird-section-nav{padding-inline:12px}.cybird-section-nav-track{justify-content:flex-start}.cybird-section-nav a{padding:9px 13px;font-size:12px}}
 .cybird-assurance .assurance-heading{margin:0 0 14px;color:#0066ff;font:700 13px/1.5 var(--f-mono);letter-spacing:.1em;text-transform:uppercase}
 .cybird-assurance .assurance-intro{margin:0 0 18px;font-size:15px;line-height:1.8;color:var(--text)}
 .cybird-security-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 32px;margin:0}
@@ -1778,6 +1785,19 @@ body{margin:0}
 
 
 <div class="lh-trust"><div class="wrap"><span>From <b data-pr="ess1">₹14,999</b> + GST / year</span><span><b>Wi-Fi 6</b> · dual-band</span><span>Firewall up to <b>900 Mbps*</b></span><span><b>Cloud-managed</b> · zero touch</span><span><b>GST</b> invoice in INR</span><span><b>Since 1999</b> · Mumbai</span></div></div>
+<nav class="cybird-section-nav" aria-label="Cybird page sections">
+  <div class="cybird-section-nav-track">
+    <a href="#overview">Overview</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#cybirdSecurityTitle">Security</a>
+    <a href="#why">Why to Choose</a>
+    <a href="#features">Features</a>
+    <a href="#cybirdReviewsTitle">Customer Testimonials</a>
+    <a href="#faq">FAQs</a>
+    <a href="#insights">Insights</a>
+  </div>
+</nav>
+
 
 <!-- ================= OVERVIEW ================= -->
 <section class="sec" id="overview">

@@ -2,6 +2,7 @@
   @if (slug() === 'cybird') {
     <div class="ppage as-page" id="ppage">
       <xh-imported-interactive-content class="cybird-source-content" source="cybird" />
+      <xh-insights-section [pageSlug]="slug()" />
     </div>
   } @else {
   <div

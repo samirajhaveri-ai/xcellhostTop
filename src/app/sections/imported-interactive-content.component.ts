@@ -7,6 +7,7 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 
 type InteractiveContentSource =
   | 'cybird'
+  | 'veritas'
   | 'inference-page'
   | 'vps-page'
   | 'sectigo-detail'
@@ -24,8 +25,8 @@ type InteractiveContentSource =
   selector: 'xh-imported-interactive-content',
   standalone: true,
   host: { '[class.openclaw-page-content]': "source === 'openclaw' || source === 'cpanel'" },
-  template: `@if (source === 'cybird') {
-    <iframe #frame [srcdoc]="cybirdDocument()" [title]="contentTitle"
+  template: `@if (source === 'cybird' || source === 'veritas') {
+    <iframe #frame [srcdoc]="embeddedDocument()" [title]="contentTitle"
       scrolling="no" (load)="onLoad()"></iframe>
   } @else {
     <iframe #frame [style.min-height.px]="source.endsWith('-hero') ? 0 : 600"
@@ -45,7 +46,8 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
   private readonly vpsSlugs = new Set(['wordpress-vps', 'windows-vps', 'vps-usa', 'vps-netherlands', 'vps-india', 'vps-hosting', 'openclaw-vps', 'n8n-vps', 'cpanel-vps']);
 
   private readonly sanitizer = inject(DomSanitizer);
-  readonly cybirdDocument = signal<SafeHtml | null>(null);
+  readonly embeddedDocument = signal<SafeHtml | null>(null);
+  private embeddedSource: 'cybird' | 'veritas' | null = null;
   private readonly overlay = inject(OverlayService);
   private readonly topics = inject(CallbackTopicService);
   private readonly cart = inject(CartService);
@@ -73,6 +75,7 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     string
   > = {
     cybird: 'about:blank',
+    veritas: 'about:blank',
     'managed-pki': '/imported-managed-pki.html',
     'managed-pki-hero': '/imported-managed-pki-hero.html',
     'private-ca': '/imported-private-ca.html',
@@ -133,6 +136,7 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
     cybird: 'Cybird X2 security platform, animated network, plans and threat simulator',
+    veritas: 'Veritas AI visibility and SEO platform, interactive tools and pricing',
 
     'managed-pki': 'Managed PKI overview, comparisons, use-case builder and pricing',
     'managed-pki-hero': 'Managed PKI root ceremony, issuance, revocation and renewal animation',
@@ -204,11 +208,21 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
   private cleanup: (() => void)[] = [];
 
   ngOnChanges(): void {
-    if (this.source === 'cybird' && !this.cybirdDocument()) {
-      void import('../data/cybird-document.data').then(({ CYBIRD_DOCUMENT }) => {
-        this.cybirdDocument.set(this.sanitizer.bypassSecurityTrustHtml(CYBIRD_DOCUMENT));
-      });
+    const source = this.source;
+    if (source !== 'cybird' && source !== 'veritas') {
+      this.embeddedSource = null;
+      this.embeddedDocument.set(null);
+      return;
     }
+    if (this.embeddedSource === source) return;
+    this.embeddedSource = source;
+    this.embeddedDocument.set(null);
+    const document = source === 'cybird'
+      ? import('../data/cybird-document.data').then((module) => module.CYBIRD_DOCUMENT)
+      : import('../data/veritas-document.data').then((module) => module.VERITAS_DOCUMENT);
+    void document.then((html) => {
+      if (this.source === source) this.embeddedDocument.set(this.sanitizer.bypassSecurityTrustHtml(html));
+    });
   }
 
   get contentUrl(): SafeResourceUrl {
@@ -247,12 +261,13 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     if (!frame || !doc || !main) return;
     const resize = () => {
       if (this.source === 'cybird') doc.documentElement.style.setProperty('--cybird-vh', `${window.innerHeight / 100}px`);
+      if (this.source === 'veritas') doc.documentElement.style.setProperty('--veritas-vh', `${window.innerHeight / 100}px`);
       const height = `${Math.ceil(main.getBoundingClientRect().height) + 8}px`;
       if (frame.style.height !== height) frame.style.height = height;
     };
     let resizeFrame = 0;
     const observer = new ResizeObserver(() => {
-      if (this.source !== 'cybird') { resize(); return; }
+      if (this.source !== 'cybird' && this.source !== 'veritas') { resize(); return; }
       cancelAnimationFrame(resizeFrame);
       resizeFrame = requestAnimationFrame(resize);
     });
@@ -294,6 +309,11 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
       const target = id ? doc.getElementById(id) ?? document.getElementById(id) : null;
       if (!target) return;
       event.preventDefault();
+      if (this.source === 'cybird' && anchor?.closest('.cybird-section-nav')) {
+        doc.querySelectorAll('.cybird-section-nav a').forEach((link) => link.removeAttribute('aria-current'));
+        anchor.setAttribute('aria-current', 'location');
+        window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}#${id}`);
+      }
       const frameTop = target.ownerDocument === doc ? frame.getBoundingClientRect().top : 0;
       window.scrollTo({
         top: window.scrollY + frameTop + target.getBoundingClientRect().top - 148,
