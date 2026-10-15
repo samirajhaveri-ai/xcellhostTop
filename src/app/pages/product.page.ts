@@ -5575,3 +5575,4 @@ class ProductPageComponent {
 }
 
 export { ProductPageComponent as ProductPage };
+

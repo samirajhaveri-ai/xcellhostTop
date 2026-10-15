@@ -6477,6 +6477,8 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 @media(max-width:900px){#ppage:is(.managed-pki-page,.private-ca-page,.iot-pki-page,.iot-device-certificates-page,.cloud-code-signing-page,.clm-solutions-page,.matter-dac-page,.pki-software-page,.windows-365-page)>.pp-hero{grid-template-columns:minmax(0,1fr);padding-inline:20px!important}#ppage:is(.managed-pki-page,.private-ca-page,.iot-pki-page,.iot-device-certificates-page,.cloud-code-signing-page,.clm-solutions-page,.matter-dac-page,.pki-software-page,.windows-365-page) .pph-scene:is(.managed-pki-hero-art,.private-ca-hero-art,.iot-pki-hero-art,.iot-device-certificates-hero-art,.cloud-code-signing-hero-art,.clm-solutions-hero-art,.matter-dac-hero-art,.pki-software-hero-art,.windows-365-hero-art){grid-column:1;grid-row:2;margin-inline:auto}}
 @media(max-width:900px){#ppage:is(.iot-pki-page,.iot-device-certificates-page,.cloud-code-signing-page,.clm-solutions-page,.matter-dac-page,.pki-software-page,.windows-365-page)>.pp-hero{grid-template-columns:minmax(0,1fr)}}
 
+/* DigiCert banner vendor branding */
+.digicert-brand-below-ai{display:flex;align-items:center;gap:10px;margin-top:16px;color:#c7d5ec;font-size:13px;line-height:1.4}.digicert-brand-below-ai .brand-label{white-space:nowrap;flex:none}.digicert-brand-below-ai .brand-divider{margin-left:8px}.digicert-brand-below-ai img{display:block;flex:none;width:112px;height:32px;object-fit:cover;border-radius:4px;background:#fff}
 /* Compact spacing for shared product sections, including security, benefits and reviews. */
 #ppage.ppage .pp-body>.wrap>section{padding-block:12px}
 #ppage.ppage .pp-body>.wrap>section+section{margin-top:24px}
@@ -6491,3 +6493,44 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
   #ppage.microsoft-365-smb-page #ppSecHead~.pp-sec,
   #ppage.microsoft-365-smb-page #ppBlog{margin-top:32px}
 }
+
+/* GeoTrust banner branding */
+.geotrust-brand-below-ai{display:flex;align-items:center;gap:12px;margin-top:16px;padding:0;color:#c7d5ec;font-size:13px;line-height:1.4}.geotrust-brand-below-ai>span{white-space:nowrap}.geotrust-brand-below-ai .brand-divider{margin-left:10px}.geotrust-brand-below-ai img{display:block;flex:none;width:112px;height:32px;box-sizing:border-box;padding:6px 7px;object-fit:contain;border-radius:4px;background:#fff}
+
+/* Keep vendor label and logo on one line below Ask AI. */
+#ppage .geotrust-brand-below-ai{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;align-items:center;justify-content:flex-start;gap:12px;width:max-content;max-width:100%;margin-top:16px;padding:0;color:#c7d5ec;font-size:13px;line-height:1.4}
+#ppage .geotrust-brand-below-ai>span{display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}
+#ppage .geotrust-brand-below-ai .brand-divider{margin-left:10px}
+#ppage .geotrust-brand-below-ai img{display:block;flex:0 0 112px;width:112px;height:32px;margin:0;box-sizing:border-box;padding:6px 7px;object-fit:contain;background:#fff;border-radius:4px}
+
+/* Keep DigiCert branding beside its label. */
+#ppage .digicert-brand-below-ai{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;align-items:center;justify-content:flex-start;gap:12px;width:max-content;max-width:100%;margin-top:16px;padding:0;color:#c7d5ec;font-size:13px;line-height:1.4}
+#ppage .digicert-brand-below-ai>.brand-label{display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}
+#ppage .digicert-brand-below-ai .brand-divider{margin-left:10px}
+#ppage .digicert-brand-below-ai img{display:block;flex:0 0 112px;width:112px;height:32px;margin:0;object-fit:cover;border-radius:4px;background:#fff}
+
+/* Sectigo banner branding */
+.sectigo-brand-below-ai{display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;gap:12px;margin-top:16px;color:#c7d5ec;font-size:13px;line-height:1.4}.sectigo-brand-below-ai>span{white-space:nowrap;flex:none}.sectigo-brand-below-ai .brand-divider{margin-left:10px}.sectigo-brand-below-ai img{display:block;flex:0 0 112px;width:112px;height:32px;margin:0;padding:6px 7px;box-sizing:border-box;object-fit:contain;border-radius:4px;background:#fff}
+
+/* Compact Ask AI strip for SSL brand banners. */
+#ppage.ssl-brand-ai-page .pp-ask-ai{display:inline-flex!important;align-items:center;flex-wrap:nowrap!important;gap:10px;width:max-content;max-width:100%;box-sizing:border-box;margin-top:20px;padding:9px 12px!important;border:1px solid rgba(127,176,255,.28)!important;border-radius:15px;background:rgba(4,30,66,.45)!important}
+#ppage.ssl-brand-ai-page .pp-ask-ai-copy{flex:0 1 auto;min-width:0}
+#ppage.ssl-brand-ai-page .pp-ask-ai-kicker{padding:0!important;font:600 11px/1.5 var(--mono);letter-spacing:0;white-space:nowrap}
+#ppage.ssl-brand-ai-page .pp-ask-ai-actions{display:flex;flex:0 0 auto;flex-wrap:nowrap;gap:6px;margin:0}
+#ppage.ssl-brand-ai-page .pp-ask-ai-chip{display:inline-flex;width:34px;height:34px;min-width:34px;padding:0;border:0;border-radius:9px;background:rgba(255,255,255,.07);box-shadow:none}
+#ppage.ssl-brand-ai-page .pp-ask-ai-chip img{width:19px;height:19px;object-fit:contain;border-radius:4px}
+#ppage.ssl-brand-ai-page .pp-ask-ai-chip:hover{background:rgba(75,165,255,.2);transform:translateY(-2px)}
+#ppage.ssl-brand-ai-page .pp-ask-ai-chip:focus-visible{outline:2px solid #7fbaff;outline-offset:2px}
+@media(max-width:620px){#ppage.ssl-brand-ai-page .pp-ask-ai{flex-wrap:wrap!important}#ppage.ssl-brand-ai-page .pp-ask-ai-kicker{white-space:normal}}
+
+/* Product logo beside the Powered by label. */
+#ppage .tsm-powered.tsplus-vendor-brand{display:flex;flex-direction:row;flex-wrap:nowrap;justify-content:center;align-items:center;gap:10px;max-width:100%;box-sizing:border-box;padding:8px 10px}#ppage .tsm-powered.tsplus-vendor-brand small{display:inline;margin:0;flex:none;white-space:nowrap;font:400 12px/1.4 var(--body,sans-serif);letter-spacing:0;text-transform:none}#ppage .tsm-powered.tsplus-vendor-brand img{display:block;flex:0 1 210px;width:210px;min-width:0;height:38px;object-fit:contain;background:#fff;border-radius:4px;padding:5px 7px;box-sizing:border-box}
+
+/* TSplus vendor branding below the Ask AI bar. */
+#ppage .tsplus-ask-brand{display:flex;flex-direction:row;align-items:center;flex-wrap:nowrap;gap:12px;margin-top:16px;color:#c7d5ec;font-size:13px;line-height:1.4;max-width:100%}
+#ppage .tsplus-ask-brand>span{white-space:nowrap;flex:none}
+#ppage .tsplus-ask-brand .brand-divider{margin-left:10px}
+#ppage .tsplus-ask-brand img{display:block;flex:0 1 210px;width:210px;min-width:0;height:38px;padding:5px 7px;box-sizing:border-box;object-fit:contain;border-radius:4px;background:#fff}
+
+/* Email addon banner vendor rows. */
+.email-addon-brand{display:flex;align-items:center;flex-direction:row;flex-wrap:nowrap;gap:12px;margin-top:16px;color:#c7d5ec;font:400 13px/1.4 sans-serif}.email-addon-brand>.brand-label{white-space:nowrap;flex:none}.email-addon-brand .brand-divider{margin-left:10px}.email-addon-brand .brand-mark{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:4px;background:#fff;color:#041e42;font:700 15px/1.4 sans-serif}.email-addon-brand .brand-mark img,.email-addon-brand .brand-mark svg{display:block;width:24px;height:24px;object-fit:contain;flex:none}.email-addon-brand .cw-mark{color:#ff6a00}.email-addon-brand .cw-word span{color:#ff6a00}@media(max-width:420px){.email-addon-brand{gap:8px}.email-addon-brand .brand-mark{font-size:12px;padding:6px}}

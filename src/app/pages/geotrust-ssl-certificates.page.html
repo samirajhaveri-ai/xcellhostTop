@@ -37,6 +37,7 @@
         <div class="ptop">
           <span class="tierbadge" [class.dv]="product.tier === 'DV'" [class.ov]="product.tier === 'OV'" [class.ev]="product.tier === 'EV'">{{ product.tier }}</span>
           @for (tag of product.tags; track tag) { <span class="tagchip">{{ tag === 'Multi' ? 'Multi-Domain' : tag }}</span> }
+          <img class="geotrust-card-logo" src="/assets/images/geotrust.svg" alt="GeoTrust" width="90" height="26">
         </div>
         <h3>
           @if (product.id === 'tb-ev-flex') {
