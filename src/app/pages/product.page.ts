@@ -3070,8 +3070,6 @@ class ProductPageComponent {
         'Entra ID, Active Directory & Okta',
         'Undo what AI agents change',
         'M365, laptops, VMs & cloud',
-        '100% SaaS — no hardware',
-        'Immutable, air-gapped copies',
       ],
     };
 
