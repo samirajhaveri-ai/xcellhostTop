@@ -1,4 +1,9 @@
 @if (view(); as v) {
+  @if (slug() === 'cybird') {
+    <div class="ppage as-page" id="ppage">
+      <xh-imported-interactive-content class="cybird-source-content" source="cybird" />
+    </div>
+  } @else {
   <div
     class="ppage as-page"
     id="ppage"
@@ -5327,7 +5332,7 @@
                   slug() !== 'vortex-seg' &&
                   slug() !== 'vortex-soc'
                 ) {
-                  @if (slug() !== 'managed-oracle-cloud' && slug() !== 'ai-voice-bot' && slug() !== 'thawte-ssl-certificates') {
+                  @if (slug() !== 'cybird' && slug() !== 'managed-oracle-cloud' && slug() !== 'ai-voice-bot' && slug() !== 'thawte-ssl-certificates') {
                   <div class="pp-sec">Use cases</div>
                   <div
                     class="pp-uses"
@@ -6863,5 +6868,6 @@
         }
       </section>
     </div>
+  }
   }
 }
