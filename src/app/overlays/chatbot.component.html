@@ -1,7 +1,3 @@
-<button class="bot-fab" id="botFab" #launcher type="button" aria-label="Ask XcellHost AI — open XcellGenie" aria-controls="bot" [attr.aria-expanded]="overlay.isOpen('chat')" (click)="toggle()">
-  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 8V4M8 14h1M15 14h1M9 17h6"/><circle cx="12" cy="3" r="1"/></svg>
-  <span class="fab-tip">Ask XcellHost AI</span>
-</button>
 <section class="bot xcell-genie" id="bot" role="dialog" aria-modal="false" aria-labelledby="genieTitle" [class.open]="overlay.isOpen('chat')" [attr.inert]="overlay.isOpen('chat') ? null : ''" [attr.aria-hidden]="overlay.isOpen('chat') ? null : 'true'" (keydown.escape)="onEscape($event)">
   <header class="genie-head"><span class="genie-avatar" aria-hidden="true">AI</span><div><h2 id="genieTitle">XcellGenie</h2><p>XcellHost AI assistant</p></div><button type="button" aria-label="Clear chat" (click)="clear()">↻</button><button type="button" aria-label="Close XcellGenie" (click)="close()">×</button></header>
   <div class="genie-thread" #botBody role="log" aria-label="Chat messages" aria-live="polite" aria-relevant="additions" [attr.aria-busy]="chat.busy()">
