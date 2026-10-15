@@ -297,10 +297,16 @@ also migrate legacy links and uploaded media URLs before rendering them.
 The sitemap includes known public pages; individual live CMS blog/use-case URLs
 are not fetched during builds and must be added through a CMS sitemap integration.
 
-Remove `googlebc09ebd4fa488b94.html` from the live document root after deploying:
-extracting an archive does not delete files left by an earlier release. The old
-Google verification meta tag has also been removed from the source. Use DNS
-verification for the new domain in Search Console, or install its new token.
+The Google Search Console HTML verification file is now included at
+`public/googlebc09ebd4fa488b94.html`, using the file supplied on 15 October 2026.
+After deployment, confirm that
+`https://xcellhost.cloud/googlebc09ebd4fa488b94.html` displays exactly
+`google-site-verification: googlebc09ebd4fa488b94.html`, then click Verify in
+Search Console. Keep this file available after verification. For a direct upload,
+place it in the domain's `httpdocs` folder beside `index.html`, with its exact
+filename (without the extra download suffixes). The shared page head also includes the supplied Google verification meta tag
+`G0UWjReHHgKsm4C-R6zQylwP2_XDRvDpgqvz2LK-ijc`. Both the HTML file and
+meta tag are retained in the deployment.
 
 ### Hosting issues confirmed against the public CMS
 
