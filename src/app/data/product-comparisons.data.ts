@@ -1,4 +1,5 @@
 export type ComparisonCategory =
+  | 'TSplus Suite'
   | 'Cloud Infrastructure'
   | 'Productivity & Business Apps'
   | 'Cybersecurity'
@@ -16,6 +17,12 @@ export interface ProductComparisonDefinition {
 }
 
 export const PRODUCT_COMPARISONS: readonly ProductComparisonDefinition[] = [
+  { category: 'TSplus Suite', left: 'TSplus Remote Access', right: 'TSplus Advanced Security', eyebrow: 'Access and protection', summary: 'Compare secure Windows application delivery with server and RDP threat protection to understand how these complementary TSplus products serve different layers of your environment.' },
+  { category: 'TSplus Suite', left: 'TSplus Remote Access', right: 'TSplus Remote Support', eyebrow: 'Remote connectivity', summary: 'Compare application and desktop delivery for end users with attended and unattended remote assistance for support teams.' },
+  { category: 'TSplus Suite', left: 'TSplus Remote Access', right: 'TSplus Server Monitoring', eyebrow: 'Access and visibility', summary: 'Compare publishing Windows desktops and applications with real-time server, website and session monitoring.' },
+  { category: 'TSplus Suite', left: 'TSplus Advanced Security', right: 'TSplus Remote Support', eyebrow: 'Security and assistance', summary: 'Compare proactive protection for Windows and RDP servers with remote-control tooling for resolving user and endpoint issues.' },
+  { category: 'TSplus Suite', left: 'TSplus Advanced Security', right: 'TSplus Server Monitoring', eyebrow: 'Protection and monitoring', summary: 'Compare attack prevention and access controls with infrastructure health, performance and availability monitoring.' },
+  { category: 'TSplus Suite', left: 'TSplus Remote Support', right: 'TSplus Server Monitoring', eyebrow: 'Support operations', summary: 'Compare hands-on remote assistance for users and devices with continuous operational visibility across servers and websites.' },
   { category: 'Cybersecurity', left: 'Advanced Endpoint Security (EDR)', right: 'Microsoft Defender', leftLabel: 'Acronis EDR', rightLabel: 'Microsoft Defender', eyebrow: 'Endpoint security', summary: 'Compare Acronis EDR with Microsoft Defender across endpoint protection, detection and response, recovery, ecosystem fit and managed security operations.' },
   { category: 'Cybersecurity', left: 'All Fortinet Products', right: 'All PaloAlto Products', leftLabel: 'Fortinet', rightLabel: 'Palo Alto Networks', eyebrow: 'Network security platforms', summary: 'Compare Fortinet and Palo Alto Networks across next-generation firewalls, security architecture, management, threat prevention, ecosystem breadth and operational fit.' },
   { category: 'Digital Trust', left: 'GeoTrust', right: 'DigiCert', eyebrow: 'SSL certificate brands', summary: 'Compare GeoTrust and DigiCert across certificate options, validation levels, enterprise trust, lifecycle management and the support required for your deployment.' },

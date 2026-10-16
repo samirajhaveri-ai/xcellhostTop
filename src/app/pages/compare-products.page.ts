@@ -33,6 +33,7 @@ export class CompareProductsPage {
   readonly allCategory = 'All Comparisons';
   readonly categories: readonly (ComparisonCategory | typeof this.allCategory)[] = [
     this.allCategory,
+    'TSplus Suite',
     'Cloud Infrastructure',
     'Productivity & Business Apps',
     'Cybersecurity',
