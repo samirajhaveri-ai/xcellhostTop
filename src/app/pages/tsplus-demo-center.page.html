@@ -11,7 +11,37 @@
     </header>
 
     <section class="tsplus-connection-experiences" aria-label="TSplus videos">
-      <div class="tsplus-connection-grid">
+      <div class="tsplus-video-filters" role="tablist" aria-label="Filter TSplus videos by category">
+        @for (filter of filters; track filter.category) {
+          <button
+            type="button"
+            role="tab"
+            [class.active]="activeCategory() === filter.category"
+            [attr.aria-selected]="activeCategory() === filter.category"
+            [attr.aria-controls]="'tsplus-video-grid'"
+            (click)="selectCategory(filter.category)"
+          >{{ filter.label }}</button>
+        }
+        <button
+          class="tsplus-library-tab"
+          type="button"
+          role="tab"
+          [class.active]="activeLibrary() === 'connection-demos'"
+          [attr.aria-selected]="activeLibrary() === 'connection-demos'"
+          (click)="selectLibrary('connection-demos')"
+        >Connection demos</button>
+        <button
+          class="tsplus-library-tab"
+          type="button"
+          role="tab"
+          [class.active]="activeLibrary() === 'official-catalogue'"
+          [attr.aria-selected]="activeLibrary() === 'official-catalogue'"
+          (click)="selectLibrary('official-catalogue')"
+        >Official TSplus catalogue</button>
+        <button class="tsplus-reset-filters" type="button" (click)="resetFilters()">Reset filters</button>
+      </div>
+
+      <div class="tsplus-connection-grid" id="tsplus-video-grid" role="tabpanel">
         @for (experience of visibleExperiences(); track experience.video) {
           <article class="tsplus-connection-card">
             <div class="tsplus-connection-video">
@@ -28,13 +58,19 @@
               <p>{{ experience.description }}</p>
             </div>
           </article>
+        } @empty {
+          <div class="tsplus-no-results">
+            <h3>No matching videos</h3>
+            <p>Try another search, language or category.</p>
+            <button type="button" (click)="resetFilters()">Reset filters</button>
+          </div>
         }
       </div>
       @if (hasMoreVideos()) {
         <div class="tsplus-show-more">
           <button type="button" (click)="showMore()">
             Show more videos
-            <span>{{ visibleExperiences().length }} of {{ experiences.length }}</span>
+            <span>{{ visibleExperiences().length }} of {{ filteredExperiences().length }}</span>
           </button>
         </div>
       }

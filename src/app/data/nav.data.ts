@@ -758,6 +758,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "Dedicated AI Servers",
+                "href": "/dedicated-ai-servers",
+                "pill": null,
+                "desc": "Dedicated NVIDIA GPU servers in Mumbai for AI training, fine-tuning and inference."
+              },
               
             ]
           }
@@ -1300,6 +1306,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Microsoft 365 Enterprise",
                 "pill": null,
                 "desc": null
+              },
+              {
+                "title": "Microsoft 365 E7",
+                "pill": null,
+                "desc": "Explore the Frontier Suite, Copilot, Agent 365 and Entra Suite.",
+                "href": "/microsoft-365-e7"
               },
               {
                 "title": "Google Workspace",

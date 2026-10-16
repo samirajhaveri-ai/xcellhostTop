@@ -2,7 +2,14 @@ import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@a
 import { RouterLink } from '@angular/router';
 
 import { SeoService } from '../core/seo.service';
-import { TSPLUS_DEMO_VIDEOS } from '../data/tsplus-demo.data';
+import {
+  TSPLUS_DEMO_FILTERS,
+  TSPLUS_OFFICIAL_VIDEOS,
+  TSPLUS_REMOTE_ACCESS_EXPERIENCES,
+  TsplusDemoCategory,
+} from '../data/tsplus-demo.data';
+
+type TsplusVideoLibrary = 'connection-demos' | 'official-catalogue';
 
 @Component({
   selector: 'xh-tsplus-demo-center-page',
@@ -15,10 +22,30 @@ import { TSPLUS_DEMO_VIDEOS } from '../data/tsplus-demo.data';
 export class TsplusDemoCenterPage {
   private static readonly PAGE_SIZE = 9;
 
-  readonly experiences = TSPLUS_DEMO_VIDEOS;
+  readonly connectionDemos = TSPLUS_REMOTE_ACCESS_EXPERIENCES.map(experience => ({
+    ...experience,
+    category: 'Remote Access' as const,
+  }));
+  readonly officialVideos = TSPLUS_OFFICIAL_VIDEOS;
+  readonly filters = TSPLUS_DEMO_FILTERS;
+  readonly activeLibrary = signal<TsplusVideoLibrary>('connection-demos');
+  readonly activeCategory = signal<TsplusDemoCategory | null>(null);
   readonly visibleCount = signal(TsplusDemoCenterPage.PAGE_SIZE);
-  readonly visibleExperiences = computed(() => this.experiences.slice(0, this.visibleCount()));
-  readonly hasMoreVideos = computed(() => this.visibleCount() < this.experiences.length);
+  readonly experiences = computed(() =>
+    this.activeLibrary() === 'connection-demos' ? this.connectionDemos : this.officialVideos,
+  );
+  readonly filteredExperiences = computed(() => {
+    const category = this.activeCategory();
+    return this.experiences().filter(experience =>
+      !category || experience.category === category,
+    );
+  });
+  readonly visibleExperiences = computed(() =>
+    this.filteredExperiences().slice(0, this.visibleCount()),
+  );
+  readonly hasMoreVideos = computed(() =>
+    this.visibleCount() < this.filteredExperiences().length,
+  );
 
   constructor() {
     inject(SeoService).set(
@@ -30,7 +57,22 @@ export class TsplusDemoCenterPage {
 
   showMore(): void {
     this.visibleCount.update((count) =>
-      Math.min(count + TsplusDemoCenterPage.PAGE_SIZE, this.experiences.length),
+      Math.min(count + TsplusDemoCenterPage.PAGE_SIZE, this.filteredExperiences().length),
     );
+  }
+
+  selectLibrary(library: TsplusVideoLibrary): void {
+    this.activeLibrary.set(library);
+    this.resetFilters();
+  }
+
+  selectCategory(category: TsplusDemoCategory): void {
+    this.activeCategory.set(this.activeCategory() === category ? null : category);
+    this.visibleCount.set(TsplusDemoCenterPage.PAGE_SIZE);
+  }
+
+  resetFilters(): void {
+    this.activeCategory.set(null);
+    this.visibleCount.set(TsplusDemoCenterPage.PAGE_SIZE);
   }
 }

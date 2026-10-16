@@ -88,11 +88,13 @@ export class CheckoutPage implements OnDestroy {
     this.checkoutProduct === 'bare-metal'
       ? {
           checkout: '1',
+          cart: '20261016',
           plan: this.route.snapshot.queryParamMap.get('plan') || 'BM-RYZ-9700X',
         }
       : this.checkoutProduct === 'gpu'
       ? {
           checkout: '1',
+          cart: '20261016',
           gpu: this.route.snapshot.queryParamMap.get('gpu') || 'l4-16vcpu',
           nvme: this.route.snapshot.queryParamMap.get('nvme') || '30GB',
         }
