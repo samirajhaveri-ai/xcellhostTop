@@ -1,0 +1,63 @@
+<div class="ai-tail wrap" data-preserve-copy>
+  <section class="tail-section" id="aiSecurity" aria-labelledby="aiSecurityTitle">
+    <h2 class="eyebrow" id="aiSecurityTitle">Security &amp; compliance — Dedicated AI Servers</h2>
+    <p class="section-intro">Keep your training data, model weights and inference workloads on hardware reserved for your team. Your server runs in XcellHost's Mumbai data centre, with network protection and management options agreed for your deployment.</p>
+    <dl class="security-grid">
+      @for (row of security; track row[0]) {
+        <div><dt>{{ row[0] }}</dt><dd>{{ row[1] }}</dd></div>
+      }
+    </dl>
+    <p class="security-note">XcellHost operates under ISO 27001 and ISO 20000-1 certified security and service-management processes. Access, backup and support responsibilities are confirmed in your quotation.</p>
+  </section>
+
+  <section class="tail-section" aria-labelledby="aiSupportTitle">
+    <h2 class="eyebrow" id="aiSupportTitle">Support for your dedicated AI infrastructure</h2>
+    <div class="support-band">
+      @for (item of support; track item.title) {
+        <article><span class="support-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path [attr.d]="item.icon" /></svg></span><div><h3>{{ item.title }}</h3><p>{{ item.text }}</p></div></article>
+      }
+    </div>
+  </section>
+
+  <section class="tail-section" id="aiReferences" aria-labelledby="aiReferencesTitle">
+    <h2 class="eyebrow" id="aiReferencesTitle">What customers say</h2>
+    <div class="reference-card">
+      <span class="reference-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H4l-2 2V11.5a9.5 9.5 0 0 1 19 0Z"/><path d="M7 10h10M7 14h7"/></svg></span>
+      <div><h3>Speak to us about customer references</h3><p>Tell us your workload and deployment scope. Ask our team for a relevant customer reference to help you evaluate XcellHost's GPU infrastructure and support.</p></div>
+      <button class="tail-button primary" type="button" (click)="callback('Dedicated AI Servers — customer references')">Request customer references</button>
+    </div>
+  </section>
+
+  <section class="tail-section" id="faq" aria-labelledby="aiFaqTitle">
+    <h2 class="eyebrow" id="aiFaqTitle">Frequently asked questions</h2>
+    <div class="faq-grid">
+      @for (faq of faqs; track faq[0]; let i = $index) {
+        <article class="faq-item" [class.open]="openFaq() === i">
+          <h3><button type="button" [id]="'aiFaqQuestion' + i" [attr.aria-expanded]="openFaq() === i" [attr.aria-controls]="'aiFaqAnswer' + i" (click)="openFaq.set(openFaq() === i ? null : i)">{{ faq[0] }}<span aria-hidden="true">{{ openFaq() === i ? '−' : '+' }}</span></button></h3>
+          <div class="faq-answer" [id]="'aiFaqAnswer' + i" [attr.aria-labelledby]="'aiFaqQuestion' + i" [hidden]="openFaq() !== i"><p>{{ faq[1] }}</p></div>
+        </article>
+      }
+    </div>
+  </section>
+</div>
+
+<div id="aiInsights"><xh-insights-section pageSlug="dedicated-ai-servers" [pageAliases]="aliases" /></div>
+
+<div class="ai-tail wrap closing-wrap" data-preserve-copy>
+  <section class="closing-banner" id="aiContact" aria-labelledby="aiContactTitle">
+    <div class="closing-content">
+      <h2 id="aiContactTitle">Ready to start with Dedicated AI Servers?</h2>
+      <p>Share your model, data and users. Get sizing help and a written INR quotation with GST from our GPU team in Mumbai.</p>
+      <div class="closing-actions">
+        <button class="tail-button white" type="button" (click)="callback()">Request a callback</button>
+        <button class="tail-button outline" type="button" (click)="configure()">Configure your server</button>
+        <button class="tail-button outline" type="button" (click)="requestDocument('infosheet')">Infosheet</button>
+        <button class="tail-button outline" type="button" (click)="requestDocument('presentation')">Presentation</button>
+        <a class="tail-button outline" href="https://wa.me/918657032540" target="_blank" rel="noopener noreferrer">Talk on WhatsApp</a>
+        <a class="tail-button outline" href="mailto:sales@xcellhost.cloud?subject=Dedicated%20AI%20Servers%20enquiry">Email Us</a>
+      </div>
+    </div>
+    <a class="support-link" routerLink="/company/support-overview" aria-label="Visit XcellHost customer support"><img src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost customer support" width="106" height="106" loading="lazy"></a>
+  </section>
+  <div class="closing-proof" aria-label="XcellHost credentials"><span>ISO 27001</span><span>ISO 20000-1</span><span>Microsoft Gold Partner</span><span>Since 1999</span><span>INR billing · GST invoice</span></div>
+</div>

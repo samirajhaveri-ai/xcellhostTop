@@ -414,7 +414,7 @@ img{max-width:100%}
 /* policy page */
 .xp-progress{position:fixed;left:0;top:0;height:3px;background:var(--orange);width:0;z-index:70}
 .xp-layout{display:grid;grid-template-columns:260px 1fr;gap:48px;align-items:start}
-.xp-toc{position:sticky;top:96px;border:1px solid var(--line);border-radius:14px;padding:18px;background:var(--card)}
+.xp-toc{position:relative;top:auto;border:1px solid var(--line);border-radius:14px;padding:18px;background:var(--card)}
 .xp-toc h2{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin-bottom:10px}
 .xp-toc ol{list-style:none;display:grid;gap:2px;counter-reset:t}
 .xp-toc a{display:block;font-size:13.5px;padding:6px 10px;border-radius:8px;color:var(--slate);border-left:2px solid transparent}
@@ -478,6 +478,7 @@ body.xp-short .xp-full{display:none}
 @media(max-width:700px){.xp-default-cta{padding:28px 22px}.xp-default-cta-actions .btn{flex:1 1 145px}.xp-cta-support{position:static;width:72px;height:72px;transform:none;align-self:flex-end}}
 @media print{.utility,.promo,.nav,.foot,.fl-l,.fl-r,.cb-tab,.xp-toc,.pp-stage,.xp-scn,.xp-default-cta,.xp-policy-form{display:none!important}.xp-layout{display:block}body.xp-short .xp-full{display:block}}
 </style><link rel="stylesheet" href="/mobile-layout.css">
+<link rel="stylesheet" href="/assets/styles/section-navigation-flow.css">
 </head><body><main>
 
 <div class="xp-progress" id="xpProg"></div>

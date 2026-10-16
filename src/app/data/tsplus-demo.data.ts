@@ -50,7 +50,24 @@ export const TSPLUS_REMOTE_ACCESS_EXPERIENCES = [
 type TsplusReferenceVideo = readonly [
   title: string,
   video: string,
-  category: string,
+  category: TsplusDemoCategory,
+];
+
+export type TsplusDemoCategory =
+  | 'Alternative comparison'
+  | 'Cybersecurity'
+  | 'Remote Access'
+  | 'Remote Support'
+  | 'Server Monitoring'
+  | 'Tutorial';
+
+export const TSPLUS_DEMO_FILTERS: readonly { label: string; category: TsplusDemoCategory }[] = [
+  { label: 'Alternative to...', category: 'Alternative comparison' },
+  { label: 'Cybersecurity', category: 'Cybersecurity' },
+  { label: 'Remote Access', category: 'Remote Access' },
+  { label: 'Remote Support', category: 'Remote Support' },
+  { label: 'Server Monitoring', category: 'Server Monitoring' },
+  { label: 'Tutorials', category: 'Tutorial' },
 ];
 
 /**
@@ -160,11 +177,17 @@ const TSPLUS_REFERENCE_VIDEOS: readonly TsplusReferenceVideo[] = [
   ['Server Monitoring', 'https://assets.tsplus.net/f/1020006/x/c952d2bf01/server-monitoring.mp4', 'Server Monitoring'],
 ];
 
-export const TSPLUS_DEMO_VIDEOS = [
-  ...TSPLUS_REMOTE_ACCESS_EXPERIENCES,
-  ...TSPLUS_REFERENCE_VIDEOS.map(([title, video, category]) => ({
+export const TSPLUS_OFFICIAL_VIDEOS = TSPLUS_REFERENCE_VIDEOS.map(([title, video, category]) => ({
     title,
     video,
+    category,
     description: `${category} video from TSplus.`,
+  }));
+
+export const TSPLUS_DEMO_VIDEOS = [
+  ...TSPLUS_REMOTE_ACCESS_EXPERIENCES.map(experience => ({
+    ...experience,
+    category: 'Remote Access' as const,
   })),
+  ...TSPLUS_OFFICIAL_VIDEOS,
 ] as const;

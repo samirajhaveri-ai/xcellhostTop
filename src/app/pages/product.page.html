@@ -532,7 +532,11 @@
           } @else if (slug() === 'virtualization-servers') {
           <div class="pph-scene google-business-dashboard"><xh-virtualization-servers-content [hero]="true" style="width:100%" /></div>
           } @else if (slug() === 'gaming-servers') {
-          <div class="pph-scene google-business-dashboard"><xh-gaming-servers-content [hero]="true" style="width:100%" /></div>
+          <div class="pph-scene gaming-hero-art"><xh-gaming-servers-content [hero]="true" /></div>
+          } @else if (slug() === 'rpc-nodes') {
+          <div class="pph-scene rpc-hero-art"><xh-rpc-nodes-source [hero]="true" /></div>
+          } @else if (slug() === 'docusign') {
+          <div class="pph-scene docusign-hero-art"><xh-docusign-source [hero]="true" /></div>
           } @else if (slug() === 'storage-servers') {
           <div class="pph-scene google-business-dashboard"><xh-storage-servers-content [hero]="true" style="width:100%" /></div>
           } @else if (slug() === 'erp-next-hosting' || isFrameworkDetail()) {
@@ -1273,6 +1277,10 @@
           <div class="pph-scene pki-software-hero-art" aria-label="PKI software infrastructure illustration">
             <xh-imported-interactive-content source="pki-software-hero" />
           </div>
+        } @else if (slug() === 'zoom-conferenceing') {
+          <div class="pph-scene zoom-hero-art">
+            <xh-zoom-conferenceing-source [hero]="true" />
+          </div>
         } @else if (slug() === 'windows-365') {
           <div class="pph-scene windows-365-hero-art" aria-label="Windows 365 Cloud PC illustration">
             <xh-imported-interactive-content source="windows-365-hero" />
@@ -1680,8 +1688,8 @@
               </h1>
             } @else {
             <h1 id="ppTitle" [class.pp-title-compact]="compactHeroTitle()"
-              [xhFitBannerTitle]="slug() === 'cpanel-vps' || isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || !!v.heroMessages[0]?.toLowerCase()?.startsWith('maximise online visibility')"
-              [bannerTitleMaxSize]="slug() === 'cpanel-vps' || isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' ? 42 : 26">
+              [xhFitBannerTitle]="slug() === 'docusign' || slug() === 'rpc-nodes' || slug() === 'zoom-conferenceing' || slug() === 'cpanel-vps' || isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || !!v.heroMessages[0]?.toLowerCase()?.startsWith('maximise online visibility')"
+              [bannerTitleMaxSize]="slug() === 'docusign' || slug() === 'rpc-nodes' || slug() === 'zoom-conferenceing' || slug() === 'cpanel-vps' || isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' ? 42 : 26">
               <span class="pp-title-brand" [attr.aria-label]="'Xcell' + v.brandSuffix">
                 <span class="pp-brand-xcell">Xcell</span
                 ><span class="pp-brand-family">{{ v.brandSuffix }}</span>
@@ -1707,7 +1715,7 @@
                             ? 'RTX A6000 Cloud GPU'
                           : slug() === 'rtx-8000'
                             ? 'RTX 8000 Cloud GPU'
-                            : v.name
+                          : slug() === 'docusign' ? 'Docusign eSignature' : slug() === 'rpc-nodes' ? 'Dedicated RPC Node Servers' : v.name
                 }}
                 @if (slug() === 'geotrust') {
                   SSL Certificate
@@ -1724,7 +1732,19 @@
                 24&times;7 monitoring for organisations operating in India.
               </p>
             }
-            @if (slug() === 'ai-lab-as-service') {
+            @if (slug() === 'zoom-conferenceing') {
+              <h2 class="pp-tagline zoom-hero-tagline" id="ppTag" data-preserve-copy>Meetings, chat, phone and AI on one platform &mdash; for Indian businesses.</h2>
+              <p class="pp-tagline-support zoom-hero-summary" data-preserve-copy>Zoom licences, setup and support from XcellHost, billed in rupees with GST.</p>
+            } @else if (slug() === 'docusign') {
+              <h2 class="pp-tagline docusign-hero-tagline" id="ppTag" data-preserve-copy>Send, sign and manage agreements online &mdash; on any device, from anywhere in India.</h2>
+              <p class="pp-tagline-support docusign-hero-summary" data-preserve-copy>Docusign licences, setup and support from XcellHost, billed in rupees with a GST invoice.</p>
+            } @else if (slug() === 'rpc-nodes') {
+              <h2 class="pp-tagline rpc-hero-tagline" id="ppTag" data-preserve-copy>Your own private RPC endpoint &mdash; on single-tenant bare metal, with no rate limits.</h2>
+              <p class="pp-tagline-support rpc-hero-summary" data-preserve-copy>Unlimited requests at one flat monthly price. No compute units, no metering, no noisy neighbours.</p>
+            } @else if (slug() === 'gaming-servers') {
+              <h2 class="pp-tagline gaming-hero-tagline" id="ppTag" data-preserve-copy>{{ v.tagline }}</h2>
+              <p class="pp-tagline-support gaming-hero-summary" data-preserve-copy>{{ v.heroHighlight }}</p>
+            } @else if (slug() === 'ai-lab-as-service') {
               <p class="pp-tagline ai-lab-summary" id="ppTag">{{ v.tagline }}</p>
             } @else if (slug() === 'thawte-ssl-certificates') {
               <p class="pp-tagline thawte-hero-tagline" id="ppTag">The padlock, plus proof of who is behind it.</p>
@@ -1779,7 +1799,7 @@
               </h2>
             }
 
-            @if (v.heroHighlight && slug() !== 'ai-voice-bot' && slug() !== 'managed-oracle-cloud' && slug() !== 'thawte-ssl-certificates') {
+            @if (slug() !== 'docusign' && v.heroHighlight && slug() !== 'rpc-nodes' && slug() !== 'gaming-servers' && slug() !== 'zoom-conferenceing' && slug() !== 'ai-voice-bot' && slug() !== 'managed-oracle-cloud' && slug() !== 'thawte-ssl-certificates') {
               <p class="pp-tagline-support" [class.defender-hero-description]="slug() === 'microsoft-defender'" [class.b300-hero-summary]="slug() === 'nvidia-b300'" [attr.data-preserve-copy]="slug() === 'managed-pki' || slug() === 'private-ca' || slug() === 'iot-pki' || slug() === 'iot-device-certificates' || slug() === 'cloud-code-signing' || slug() === 'certificate-mgmt-solutions' || slug() === 'matter-dac' || slug() === 'pki-software' || slug() === 'windows-365' || slug() === 'general-compute' || slug() === 'nvidia-b300' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || slug() === 'vdpo-as-a-service' ? '' : null">{{ v.heroHighlight }}</p>
             }
             @if (v.heroMessages.length) {
@@ -1798,7 +1818,31 @@
 
             <div class="pp-hero-grid">
               <div class="pp-hero-l">
-                @if (slug() === 'general-compute') {
+                @if (slug() === 'zoom-conferenceing') {
+                  <div class="zoom-hero-facts" role="group" aria-label="Zoom platform facts, per Zoom" data-preserve-copy>
+                    <div><b>300M+</b><small>daily participants at peak*</small></div>
+                    <div><b>1,000</b><small>max participants per meeting*</small></div>
+                    <div><b>&#8377;0</b><small>for AI Companion on paid plans*</small></div>
+                    <em>* per Zoom</em>
+                  </div>
+                  <ul class="zoom-hero-points" aria-label="Zoom Workplace highlights" data-preserve-copy>
+                    @for (point of ['HD meetings, up to 30 hours', 'AI Companion included', 'Team Chat & Whiteboard', 'Zoom Phone with Indian numbers*', 'Rooms, Webinars & Events', 'INR GST invoice · 24×7 support']; track point) {
+                      <li><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg></span>{{ point }}</li>
+                    }
+                  </ul>
+                } @else if (slug() === 'docusign') {
+                  <ul class="docusign-hero-points" aria-label="Docusign highlights" data-preserve-copy>
+                    @for (point of ['Legally recognised eSignatures under the IT Act, 2000*', 'Sign on any device, anywhere', 'Templates, bulk send & web forms', 'Tamper-evident audit trail & certificate of completion', 'INR billing with GST invoice', 'Setup & support by XcellHost']; track point) {
+                      <li><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg></span>{{ point }}</li>
+                    }
+                  </ul>
+                } @else if (slug() === 'rpc-nodes') {
+                  <ul class="rpc-hero-points" aria-label="Dedicated RPC Node highlights" data-preserve-copy>
+                    @for (point of ['Single-tenant bare metal', 'Unlimited requests · no caps', 'Flat monthly price in INR', 'HTTPS & WSS endpoints', 'IP allow-listing & private network', 'Managed or unmanaged']; track point) {
+                      <li><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg></span>{{ point }}</li>
+                    }
+                  </ul>
+                } @else if (slug() === 'general-compute') {
                   <div class="general-compute-hero-points" aria-label="General Compute features">
                     <div><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg></span>1:4 vCPU:RAM &middot; 1 to 64 vCPU</div>
                     <div><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h8l-1 8 10-12h-8z"/></svg></span>Launch in about a minute</div>
@@ -1928,6 +1972,42 @@
                   </div>
                 </section>
 
+                @if (slug() === 'zoom-conferenceing') {
+                  <div class="zoom-powered-row" data-preserve-copy>
+                    <span class="zoom-powered-label">Powered by</span>
+                    <div class="zoom-powered-badge">
+                      <strong><span class="zoom-powered-mark" aria-hidden="true">Z</span>Powered by Zoom</strong>
+                      <small>Licensed &amp; supported by XcellHost</small>
+                    </div>
+                  </div>
+                }
+                @if (slug() === 'docusign') {
+                  <div class="docusign-powered-row" data-preserve-copy>
+                    <span class="docusign-powered-label">Powered by</span>
+                    <div class="docusign-powered-badge">
+                      <strong><span class="docusign-powered-mark" aria-hidden="true">D</span>Docusign</strong>
+                      <small>Licensed &amp; supported by XcellHost</small>
+                    </div>
+                  </div>
+                }
+                @if (slug() === 'rpc-nodes') {
+                  <div class="rpc-powered-row" data-preserve-copy>
+                    <span class="rpc-powered-label">Powered by</span>
+                    <div class="rpc-powered-badge">
+                      <strong><span class="rpc-powered-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></span>Bare metal by XcellHost</strong>
+                      <small>Mumbai DC &middot; 24&times;7 NOC &amp; SOC</small>
+                    </div>
+                  </div>
+                }
+                @if (slug() === 'gaming-servers') {
+                  <div class="gaming-powered-row" data-preserve-copy>
+                    <span class="gaming-powered-label">Powered by</span>
+                    <div class="gaming-powered-badge">
+                      <strong><span class="gaming-powered-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></span>Bare metal by XcellHost</strong>
+                      <small>Mumbai DC &middot; 24&times;7 NOC</small>
+                    </div>
+                  </div>
+                }
                 @if (slug() === 'email-signature') {
 <div class="email-addon-brand" style="display:flex;flex-direction:row;align-items:center;gap:12px"><span class="brand-label">Powered by <span class="brand-divider" aria-hidden="true">|</span></span><span class="brand-mark"><span class="cw-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 5l14 14M19 5L5 19" stroke-linecap="round"/></svg></span><span class="cw-word">Cross<span>ware</span></span></span></div>
                 }
@@ -2625,6 +2705,14 @@
             <xh-imported-interactive-content id="ppOv" class="matter-dac-source-content" source="matter-dac" />
           } @else if (slug() === 'pki-software') {
             <xh-imported-interactive-content id="ppOv" class="pki-software-source-content" source="pki-software" />
+          } @else if (slug() === 'zoom-conferenceing') {
+            <xh-zoom-conferenceing-source id="ppOv" />
+          } @else if (slug() === 'gaming-servers') {
+            <xh-gaming-servers-content id="ppOv" />
+          } @else if (slug() === 'rpc-nodes') {
+            <xh-rpc-nodes-source id="ppOv" />
+          } @else if (slug() === 'docusign') {
+            <xh-docusign-source id="ppOv" />
           } @else if (slug() === 'windows-365') {
             <xh-imported-interactive-content id="ppOv" class="windows-365-source-content" source="windows-365" />
           } @else if (slug() === 'bio-link-digital-visiting-card') {
@@ -2634,7 +2722,7 @@
           } @else if (slug() === 'wordpress-vps') {
             <xh-imported-interactive-content class="wordpress-vps-source-content" source="wordpress-vps" />
           }
-          @if (slug() !== 'managed-pki' && slug() !== 'private-ca' && slug() !== 'iot-pki' && slug() !== 'iot-device-certificates' && slug() !== 'cloud-code-signing' && slug() !== 'certificate-mgmt-solutions' && slug() !== 'matter-dac' && slug() !== 'pki-software' && slug() !== 'windows-365' && slug() !== 'bio-link-digital-visiting-card' && slug() !== 'general-compute' && slug() !== 'wordpress-vps' && slug() !== 'identity-resilience' && slug() !== 'ediscovery-and-compliance' && slug() !== 'cpu-optimized' && slug() !== 'memory-optimized' && slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && slug() !== 'gpu-clusters' && slug() !== 'ai-chat-bot') {
+          @if (slug() !== 'docusign' && slug() !== 'rpc-nodes' && slug() !== 'gaming-servers' && slug() !== 'zoom-conferenceing' && slug() !== 'managed-pki' && slug() !== 'private-ca' && slug() !== 'iot-pki' && slug() !== 'iot-device-certificates' && slug() !== 'cloud-code-signing' && slug() !== 'certificate-mgmt-solutions' && slug() !== 'matter-dac' && slug() !== 'pki-software' && slug() !== 'windows-365' && slug() !== 'bio-link-digital-visiting-card' && slug() !== 'general-compute' && slug() !== 'wordpress-vps' && slug() !== 'identity-resilience' && slug() !== 'ediscovery-and-compliance' && slug() !== 'cpu-optimized' && slug() !== 'memory-optimized' && slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && slug() !== 'gpu-clusters' && slug() !== 'ai-chat-bot') {
           @if (slug() === 'marketplace') {
             <xh-marketplace-content />
           } @else {
@@ -5683,6 +5771,7 @@
 
           @if (
             v.name !== 'Tally on Cloud' &&
+            slug() !== 'zoom-conferenceing' &&
             slug() !== 'bio-link-digital-visiting-card' && slug() !== 'general-compute' && slug() !== 'wordpress-vps' &&
             slug() !== 'video-surveillance-as-a-service' &&
             slug() !== 'claude-backup' &&
@@ -5886,7 +5975,7 @@
             <section aria-labelledby="virtualization-serversDemoTitle"><h2 class="pp-sec" id="virtualization-serversDemoTitle">Watch It In Action</h2><h3>Product Intro</h3><p>Run VMware, Proxmox, Hyper-V or KVM directly on dedicated hardware, with root access, IPMI and private networking.</p><h3>Use Cases</h3><p>Build a private cloud, migrate VMware workloads, host virtual desktops or create isolated development and disaster recovery environments.</p><xh-virtualization-servers-content [hero]="true" style="display:block;max-width:600px;margin:24px auto 0;background:#041e42;border-radius:20px" /></section>
           }
           @if (slug() === 'gaming-servers') {
-            <section aria-labelledby="gaming-serversDemoTitle"><h2 class="pp-sec" id="gaming-serversDemoTitle">Watch It In Action</h2><h3>Product Intro</h3><p>Run dedicated multiplayer game servers with high-clock CPUs, NVMe storage, root access and DDoS protection.</p><h3>Use Cases</h3><p>Host Minecraft, Counter-Strike 2, FiveM, Rust and custom game builds, with control over mods, plugins and community access.</p><xh-gaming-servers-content [hero]="true" style="display:block;max-width:600px;margin:24px auto 0;background:#041e42;border-radius:20px" /></section>
+            <section aria-labelledby="gaming-serversDemoTitle"><h2 class="pp-sec" id="gaming-serversDemoTitle">Watch It In Action</h2><h3>Product Intro</h3><p>Run dedicated multiplayer game servers with high-clock CPUs, NVMe storage, root access and DDoS protection.</p><h3>Use Cases</h3><p>Host Minecraft, Counter-Strike 2, FiveM, Rust and custom game builds, with control over mods, plugins and community access.</p></section>
           }
           @if (slug() === 'storage-servers') {
             <section aria-labelledby="storage-serversDemoTitle"><h2 class="pp-sec" id="storage-serversDemoTitle">Watch It In Action</h2><h3>Product Intro</h3><p>Build dedicated storage with SATA, SAS or NVMe drives, RAID options, root access and private networking.</p><h3>Use Cases</h3><p>Plan capacity for backups, archives, media libraries, database storage and virtual machine images using the interactive storage builder.</p><xh-storage-servers-content [hero]="true" style="display:block;max-width:600px;margin:24px auto 0;background:#041e42;border-radius:20px" /></section>
@@ -6253,6 +6342,15 @@
           @if (slug() !== 'comodo-personal-authentication' && slug() !== 'digicert-smime-class-1' && slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
           <div class="pp-sec" [attr.id]="isTally() ? 'tallyTestimonials' : slug() === 'cpu-optimized' ? 'cpuTestimonials' : slug() === 'memory-optimized' ? 'memoryTestimonials' : usesContainerRegistryTemplate() ? 'registryTestimonials' : null" [style.margin-top.px]="slug() === 'performance-cloud' || slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">What customers say</div>
           @if (slug() === 'microsoft-365-to-google-workspace-migration') { <p>Contact our team to discuss customer references for Microsoft 365 to Google Workspace migrations.</p> }
+          @if (slug() === 'zoom-conferenceing') {
+            <div class="zoom-customer-reference" id="ppRevs" data-preserve-copy>
+              <div>
+                <h3>Customer references for your Zoom rollout</h3>
+                <p>Planning meetings, phones, rooms or events? Ask our team about customer references relevant to your requirements.</p>
+              </div>
+              <button class="btn btn-primary" type="button" (click)="openCallback($event, 'Zoom Workplace customer references')">Request customer references</button>
+            </div>
+          }
 
           @if (slug() === 'windows-365' || slug() === 'ai-receptionist' || isFrameworkDetail() || slug() === 'erp-next-hosting' || slug() === 'nvidia-vera-rubin' || slug() === 'storage-servers' || slug() === 'gaming-servers' || slug() === 'virtualization-servers' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'agent-studio' || slug() === 'aiops' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'instant-website' || slug() === 'instagram-automation' || slug() === 'hrm-attendance' || slug() === 'google-my-business' || isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training' || slug() === 'ai-chat-bot') {
 

@@ -5,6 +5,19 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+
+  { path: 'dedicated-ai-servers', title: 'Dedicated AI Servers | XcellHost', loadComponent: () => import('./pages/dedicated-ai-servers.page').then(m => m.DedicatedAiServersPage) },
+
+  { path: 'sage-300-hosting', title: 'Sage 300 ERP Hosting | XcellHost', data: { sageSource: 'sage-300-hosting' }, loadComponent: () => import('./pages/sage-imported.page').then(m => m.SageImportedPage) },
+  { path: 'sage-x3-hosting', title: 'Sage X3 Hosting | XcellHost', data: { sageSource: 'sage-x3-hosting' }, loadComponent: () => import('./pages/sage-imported.page').then(m => m.SageImportedPage) },
+  { path: 'virtual-networks', title: 'Virtual Networks | XcellHost', data: { networkSource: 'virtual-networks' }, loadComponent: () => import('./pages/cloud-network-imported.page').then(m => m.CloudNetworkImportedPage) },
+  { path: 'virtual-firewalls', title: 'Virtual Firewalls | XcellHost', data: { networkSource: 'virtual-firewalls' }, loadComponent: () => import('./pages/cloud-network-imported.page').then(m => m.CloudNetworkImportedPage) },
+  { path: 'virtual-load-balancer', title: 'Virtual Load Balancer | XcellHost', data: { networkSource: 'virtual-load-balancer' }, loadComponent: () => import('./pages/cloud-network-imported.page').then(m => m.CloudNetworkImportedPage) },
+  { path: 'scrutiny-dlp', title: 'Scrutiny DLP | XcellHost', data: { scrutinySource: 'scrutiny-dlp' }, loadComponent: () => import('./pages/scrutiny-imported.page').then(m => m.ScrutinyImportedPage) },
+  { path: 'sap-on-aws', title: 'SAP on AWS | XcellHost', loadComponent: () => import('./pages/sap-on-aws.page').then(m => m.SapOnAwsPage) },
+  { path: 'sap-on-gcp', title: 'SAP on Google Cloud | XcellHost', loadComponent: () => import('./pages/sap-on-gcp.page').then(m => m.SapOnGcpPage) },
+  { path: 'sap-on-azure', title: 'SAP on Azure | XcellHost', loadComponent: () => import('./pages/sap-on-azure.page').then(m => m.SapOnAzurePage) },
+
   { path: 'under-construction/openstack-api', redirectTo: '/openstack-api', pathMatch: 'full' },
   { path: 'openstack-api', title: 'OpenStack API | XcellHost', data: { developerSlug: 'openstack-api' }, loadComponent: () => import('./pages/developer-imported.page').then(m => m.DeveloperImportedPage) },
   { path: 'under-construction/terraform-provider', redirectTo: '/terraform-provider', pathMatch: 'full' },
@@ -164,6 +177,11 @@ export const routes: Routes = [
     path: 'microsoft-365-tenant-to-tenant-migration',
     loadComponent: () => import('./pages/microsoft-365-tenant-to-tenant-migration.page').then((m) => m.Microsoft365TenantToTenantMigrationPage),
   },
+  {
+    path: 'microsoft-365-e7',
+    title: 'Microsoft 365 E7 (Frontier Suite) | XcellHost',
+    loadComponent: () => import('./pages/microsoft-365-e7.page').then((m) => m.Microsoft365E7Page),
+  },
 
   ...Object.keys(FRAMEWORK_DETAILS).map(slug => ({ path: 'cybersecurity-frameworks/' + slug, data: { productSlug: slug }, loadComponent: () => import('./pages/product.page').then(m => m.ProductPage) })),
   {
@@ -247,7 +265,9 @@ export const routes: Routes = [
   })),
   {
     path: 'gcc-cloud',
-    loadComponent: () => import('./pages/gcc-cloud.page').then((m) => m.GccCloudPage),
+    title: 'GCC Cloud | XcellHost',
+    data: { networkSource: 'gcc-cloud' },
+    loadComponent: () => import('./pages/cloud-network-imported.page').then((m) => m.CloudNetworkImportedPage),
   },
   { path: 'mobile-application-penetration-testing', redirectTo: 'mobile-application-security-testing', pathMatch: 'full' },
   { path: 'aeo-geo-automation4', redirectTo: 'aeo-geo-automation', pathMatch: 'full' },
@@ -699,8 +719,9 @@ export const routes: Routes = [
   },
   {
     path: 'scrutiny-edr',
-    data: { productSlug: 'scrutiny-edr' },
-    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+    title: 'Scrutiny EDR | XcellHost',
+    data: { scrutinySource: 'scrutiny-edr' },
+    loadComponent: () => import('./pages/scrutiny-imported.page').then((m) => m.ScrutinyImportedPage),
   },
   {
     path: 'cloud-drive',

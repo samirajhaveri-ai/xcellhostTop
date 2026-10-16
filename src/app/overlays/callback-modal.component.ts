@@ -32,6 +32,7 @@ export class CallbackModalComponent {
   readonly captchaMessage = signal('');
   readonly product = signal('Website Enquiry');
   readonly productLabel = computed(() => this.product() || 'Website Enquiry');
+  readonly requestDetails = computed(() => this.topics.prefill()?.details || '');
 
   constructor() {
     effect(() => {
@@ -65,7 +66,7 @@ export class CallbackModalComponent {
   captchaAnswer(): number { return this.firstCaptchaNumber() + this.secondCaptchaNumber(); }
 
   private resetForm(): void {
-    this.form.reset(); this.captchaMessage.set('');
+    this.form.reset(this.topics.prefill() ?? {}); this.captchaMessage.set('');
     this.product.set(this.topics.topic().trim() || this.productFromRoute());
     this.firstCaptchaNumber.set(this.randomCaptchaNumber()); this.secondCaptchaNumber.set(this.randomCaptchaNumber());
   }

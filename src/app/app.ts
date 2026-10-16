@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
+import { afterNextRender, ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter, map, startWith } from 'rxjs';
@@ -8,6 +8,7 @@ import { OverlayService } from './core/overlay.service';
 import { DocRequestService } from './core/doc-request.service';
 import { CallbackTopicService } from './overlays/callback-topic.service';
 import { SiteCopyService } from './core/site-copy.service';
+import { installBookmarkScrolling } from './sections/bookmark-scroll';
 import {
   BackToTopComponent,
   CallbackModalComponent,
@@ -75,7 +76,7 @@ export class App {
   private readonly router = inject(Router);
   private readonly document = inject(DOCUMENT);
   private readonly destroyRef = inject(DestroyRef);
-  readonly isPortalLogin = toSignal(
+  readonly hasStandaloneShell = toSignal(
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
       startWith(null),
@@ -86,6 +87,9 @@ export class App {
 
   constructor() {
     inject(SiteCopyService);
+    afterNextRender(() => {
+      this.destroyRef.onDestroy(installBookmarkScrolling(this.document));
+    });
     const captureClick = (event: Event): void => this.onDocumentClick(event as MouseEvent);
     this.document.addEventListener('click', captureClick, true);
     this.destroyRef.onDestroy(() => this.document.removeEventListener('click', captureClick, true));
