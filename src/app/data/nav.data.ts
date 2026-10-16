@@ -2091,11 +2091,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Verified Mark Certificates (VMC)",
-                "pill": null,
-                "desc": null
-              },
-              {
                 "title": "Comodo Personal Authentication",
                 "href": "/comodo-personal-authentication",
                 "pill": null,
@@ -2190,6 +2185,11 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Mark Certificate",
             "items": [
               {
+                "title": "Verified Mark Certificates (VMC)",
+                "pill": null,
+                "desc": null
+              },
+              {
                 "title": "Digicert VMC ",
                 "pill": null,
                 "desc": null
@@ -2215,6 +2215,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Docusign",
                 "pill": null,
                 "desc": null
+              },
+              {
+                "title": "Zoho Sign",
+                "href": "/zoho-sign",
+                "pill": null,
+                "desc": "Send, sign and manage documents with signing workflows and audit trails."
               },
               
             ]

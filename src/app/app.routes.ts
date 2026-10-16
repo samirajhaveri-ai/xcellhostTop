@@ -705,6 +705,7 @@ export const routes: Routes = [
   { path: 'microsoft-365', redirectTo: 'microsoft-365-smb', pathMatch: 'full' },
   { path: 'secure-dmarc', redirectTo: 'enterprise-dmarc', pathMatch: 'full' },
   { path: 'clm-solutions', redirectTo: 'certificate-mgmt-solutions', pathMatch: 'full' },
+  { path: 'zoho-sign', loadComponent: () => import('./pages/zoho-sign.page').then((m) => m.ZohoSignPage) },
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
   { path: '**', redirectTo: '' },
 ];
