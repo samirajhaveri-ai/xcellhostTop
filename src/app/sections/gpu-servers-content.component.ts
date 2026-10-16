@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, HostListener, inject, NgZone, OnDestroy, Output, ViewChild } from '@angular/core';
+import { useScrollingSectionNavigation } from './section-navigation-flow';
 
 @Component({
   selector: 'xh-gpu-servers-content',
@@ -24,6 +25,7 @@ export class GpuServersContentComponent implements OnDestroy {
     const document = this.frame?.nativeElement.contentDocument;
     const content = document?.querySelector('#ppage');
     if (!document || !content) return;
+    useScrollingSectionNavigation(document);
 
     const update = () => {
       const nextHeight = Math.ceil(content.getBoundingClientRect().bottom) + 4;

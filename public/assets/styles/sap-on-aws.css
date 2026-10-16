@@ -1,0 +1,29 @@
+body { margin: 0; }
+main { display: flow-root; overflow-x: clip; }
+.rv { opacity: 1 !important; transform: none !important; }
+h1, h2, h3, h4, .sa-eb, .sa-ebc, .sa-h2 { text-transform: capitalize; }
+#security h2, #india h3 { text-transform: uppercase; }
+h1 .acc::after, h2 .acc::after, h3 .acc::after { display: none; }
+.hero-grid > * { min-width: 0; }
+.hero-grid > div:first-child { container-type: inline-size; }
+#main #saHero .lh-title { font-size: clamp(24px, 5.5cqi, 38px) !important; white-space: normal; }
+#main #saHero .lh-title .nm { display: inline; }
+.crumb { margin-bottom: 18px; padding-top: 12px; }
+.sap-aws-brand { display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 4px; background: #fff; color: #041e42; font-weight: 700; }
+.sap-aws-brand img { display: block; width: 24px; height: 24px; object-fit: contain; }
+.sa-pwr { flex-wrap: nowrap; margin-top: 16px; }
+.sa-pwr > span { white-space: nowrap; }
+.sap-security-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+#security .sh, #customer-feedback .sh { margin-bottom: 24px; }
+@media (min-width: 981px) { #main #saHero .hero-grid { grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr); column-gap: 88px; } }
+@media (max-width: 760px) { .sap-security-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* Fit full heading text on one line without changing the purchase controls. */
+#main :is(h1, h2, h3, h4, .sa-eb, .sa-ebc, .sa-hb .h2, .sa-h2, .pr-r .pn b) {
+  white-space: nowrap;
+}
+#main .pr-r .pn > span { min-width: 0; flex: 1; }
+#main .pr-r .pn b { text-transform: capitalize; }
+@media (min-width: 901px) {
+  .sa-rows .pr-r { grid-template-columns: clamp(300px, 30vw, 360px) minmax(0, 1fr) 200px; }
+}

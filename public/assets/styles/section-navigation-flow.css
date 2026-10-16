@@ -1,0 +1,157 @@
+/* Shared bookmark appearance and normal page flow, including imported documents. */
+xh-smb-section-nav,
+nav[aria-label$="sections" i],
+nav[aria-label="On this page" i],
+aside[aria-label$="sections" i],
+.product-section-nav,
+.cybird-section-nav,
+.smb-section-nav,
+.tally-section-nav,
+.cpanel-bookmarks,
+.openclaw-bookmarks,
+.media-jump,
+.dpa-toc,
+.sla-nav,
+.privacy-policy-aside,
+.ekyc-index,
+.why-index,
+.xp-toc,
+.md-az {
+  position: relative !important;
+  top: auto !important;
+  bottom: auto !important;
+  translate: none !important;
+  transform: none !important;
+}
+
+/* One rounded, horizontally scrollable row for every product bookmark bar. */
+:is(.cybird-section-nav, .media-jump, .m365-section-nav, .gp-subnav, .consulting-nav, .cpanel-bookmarks, .dx-sub, .oc-sub, .tf-sub, .gc-snav, .product-section-nav, .smb-section-nav, .openclaw-bookmarks, .ps-toc, .sg-sub, .sx-sub, .sa-sub, .sz-sub, .sd-sub, .se-sub, .vf-sub, .vl-snav, .vn-sub, .wsn, .tally-section-nav) {
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 10px 20px !important;
+  border: 0 !important;
+  border-bottom: 1px solid #e7ebf1 !important;
+  border-radius: 0 !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  z-index: auto !important;
+}
+:is(.cybird-section-nav, .media-jump, .m365-section-nav, .gp-subnav, .consulting-nav, .cpanel-bookmarks, .dx-sub, .oc-sub, .tf-sub, .gc-snav, .product-section-nav, .smb-section-nav, .openclaw-bookmarks, .ps-toc, .sg-sub, .sx-sub, .sa-sub, .sz-sub, .sd-sub, .se-sub, .vf-sub, .vl-snav, .vn-sub, .wsn, .tally-section-nav) > .wrap {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+  margin: 0 auto !important;
+}
+:is(.cybird-section-nav, .media-jump, .m365-section-nav, .gp-subnav, .consulting-nav, .cpanel-bookmarks, .dx-sub, .oc-sub, .tf-sub, .gc-snav, .product-section-nav, .smb-section-nav, .openclaw-bookmarks, .ps-toc, .sg-sub, .sx-sub, .sa-sub, .sz-sub, .sd-sub, .se-sub, .vf-sub, .vl-snav, .vn-sub, .wsn, .tally-section-nav) :is(div, ul):has(> a[href^="#"]),
+:is(.cybird-section-nav, .media-jump, .m365-section-nav, .gp-subnav, .consulting-nav, .cpanel-bookmarks, .dx-sub, .oc-sub, .tf-sub, .gc-snav, .product-section-nav, .smb-section-nav, .openclaw-bookmarks, .ps-toc, .sg-sub, .sx-sub, .sa-sub, .sz-sub, .sd-sub, .se-sub, .vf-sub, .vl-snav, .vn-sub, .wsn, .tally-section-nav):has(> a[href^="#"]) {
+  display: flex !important;
+  flex-flow: row nowrap !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  box-sizing: border-box !important;
+  gap: 2px !important;
+  width: max-content !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 auto !important;
+  padding: 4px !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: #f2f3f6 !important;
+  box-shadow: none !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  overscroll-behavior-x: contain;
+  scroll-padding-inline: 4px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+:is(.cybird-section-nav, .media-jump, .m365-section-nav, .gp-subnav, .consulting-nav, .cpanel-bookmarks, .dx-sub, .oc-sub, .tf-sub, .gc-snav, .product-section-nav, .smb-section-nav, .openclaw-bookmarks, .ps-toc, .sg-sub, .sx-sub, .sa-sub, .sz-sub, .sd-sub, .se-sub, .vf-sub, .vl-snav, .vn-sub, .wsn, .tally-section-nav):has(> a[href^="#"]) {
+  max-width: calc(100% - 40px) !important;
+  margin: 10px auto !important;
+}
+:is(.cybird-section-nav, .media-jump, .m365-section-nav, .gp-subnav, .consulting-nav, .cpanel-bookmarks, .dx-sub, .oc-sub, .tf-sub, .gc-snav, .product-section-nav, .smb-section-nav, .openclaw-bookmarks, .ps-toc, .sg-sub, .sx-sub, .sa-sub, .sz-sub, .sd-sub, .se-sub, .vf-sub, .vl-snav, .vn-sub, .wsn, .tally-section-nav) ::-webkit-scrollbar { display: none; }
+:is(.cybird-section-nav, .media-jump, .m365-section-nav, .gp-subnav, .consulting-nav, .cpanel-bookmarks, .dx-sub, .oc-sub, .tf-sub, .gc-snav, .product-section-nav, .smb-section-nav, .openclaw-bookmarks, .ps-toc, .sg-sub, .sx-sub, .sa-sub, .sz-sub, .sd-sub, .se-sub, .vf-sub, .vl-snav, .vn-sub, .wsn, .tally-section-nav) a[href^="#"] {
+  display: inline-flex !important;
+  flex: 0 0 auto !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  min-width: 0 !important;
+  min-height: 34px !important;
+  margin: 0 !important;
+  padding: 9px 15px !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  color: #475569 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font-family: var(--body, 'IBM Plex Sans', sans-serif) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  line-height: 1.25 !important;
+  letter-spacing: normal !important;
+  text-decoration: none !important;
+  text-transform: none !important;
+  white-space: nowrap !important;
+  transform: none !important;
+}
+:is(.cybird-section-nav, .media-jump, .m365-section-nav, .gp-subnav, .consulting-nav, .cpanel-bookmarks, .dx-sub, .oc-sub, .tf-sub, .gc-snav, .product-section-nav, .smb-section-nav, .openclaw-bookmarks, .ps-toc, .sg-sub, .sx-sub, .sa-sub, .sz-sub, .sd-sub, .se-sub, .vf-sub, .vl-snav, .vn-sub, .wsn, .tally-section-nav) a[href^="#"]:hover,
+:is(.cybird-section-nav, .media-jump, .m365-section-nav, .gp-subnav, .consulting-nav, .cpanel-bookmarks, .dx-sub, .oc-sub, .tf-sub, .gc-snav, .product-section-nav, .smb-section-nav, .openclaw-bookmarks, .ps-toc, .sg-sub, .sx-sub, .sa-sub, .sz-sub, .sd-sub, .se-sub, .vf-sub, .vl-snav, .vn-sub, .wsn, .tally-section-nav) a[href^="#"]:focus-visible {
+  color: #075fc7 !important;
+  background: #fff !important;
+}
+:is(.cybird-section-nav, .media-jump, .m365-section-nav, .gp-subnav, .consulting-nav, .cpanel-bookmarks, .dx-sub, .oc-sub, .tf-sub, .gc-snav, .product-section-nav, .smb-section-nav, .openclaw-bookmarks, .ps-toc, .sg-sub, .sx-sub, .sa-sub, .sz-sub, .sd-sub, .se-sub, .vf-sub, .vl-snav, .vn-sub, .wsn, .tally-section-nav) a[href^="#"]:focus-visible {
+  outline: 2px solid #1d73df;
+  outline-offset: -2px;
+}
+@media (max-width: 900px) {
+  :is(.cybird-section-nav, .media-jump, .m365-section-nav, .gp-subnav, .consulting-nav, .cpanel-bookmarks, .dx-sub, .oc-sub, .tf-sub, .gc-snav, .product-section-nav, .smb-section-nav, .openclaw-bookmarks, .ps-toc, .sg-sub, .sx-sub, .sa-sub, .sz-sub, .sd-sub, .se-sub, .vf-sub, .vl-snav, .vn-sub, .wsn, .tally-section-nav) { padding-inline: 12px !important; }
+  :is(.cybird-section-nav, .media-jump, .m365-section-nav, .gp-subnav, .consulting-nav, .cpanel-bookmarks, .dx-sub, .oc-sub, .tf-sub, .gc-snav, .product-section-nav, .smb-section-nav, .openclaw-bookmarks, .ps-toc, .sg-sub, .sx-sub, .sa-sub, .sz-sub, .sd-sub, .se-sub, .vf-sub, .vl-snav, .vn-sub, .wsn, .tally-section-nav):has(> a[href^="#"]) { max-width: calc(100% - 24px) !important; padding: 4px !important; }
+  :is(.cybird-section-nav, .media-jump, .m365-section-nav, .gp-subnav, .consulting-nav, .cpanel-bookmarks, .dx-sub, .oc-sub, .tf-sub, .gc-snav, .product-section-nav, .smb-section-nav, .openclaw-bookmarks, .ps-toc, .sg-sub, .sx-sub, .sa-sub, .sz-sub, .sd-sub, .se-sub, .vf-sub, .vl-snav, .vn-sub, .wsn, .tally-section-nav) a[href^="#"] { padding-inline: 13px !important; font-size: 12px !important; }
+}
+
+/* Visible controls appear only when the bookmark row overflows. */
+.xh-bookmark-scroll {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  width: max-content !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+.xh-bookmark-scroll .xh-bookmark-track {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+.xh-bookmark-scroll .xh-bookmark-arrow {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 32px !important;
+  width: 32px !important;
+  height: 36px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 1px solid #dce3ec !important;
+  border-radius: 999px !important;
+  background: #f2f3f6 !important;
+  color: #34445e !important;
+  font: 600 24px/1 sans-serif !important;
+  cursor: pointer;
+}
+.xh-bookmark-scroll .xh-bookmark-arrow[hidden] { display: none !important; }
+.xh-bookmark-scroll .xh-bookmark-arrow:disabled { opacity: .35; cursor: default; }
+.xh-bookmark-scroll .xh-bookmark-arrow:focus-visible,
+.xh-bookmark-scroll .xh-bookmark-track:focus-visible { outline: 2px solid #1d73df; outline-offset: 2px; }

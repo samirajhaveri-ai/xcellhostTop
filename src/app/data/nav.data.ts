@@ -1201,16 +1201,19 @@ export const MEGA_MENU: MenuTop[] = [
             "items": [
               {
                 "title": "Virtual Networks",
+                "href": "/virtual-networks",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "Virtual Firewalls",
+                "href": "/virtual-firewalls",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "Virtual Load Balancer",
+                "href": "/virtual-load-balancer",
                 "pill": null,
                 "desc": null
               },
@@ -2274,11 +2277,13 @@ export const MEGA_MENU: MenuTop[] = [
             "items": [
               {
                 "title": "Scrutiny DLP",
+                "href": "/scrutiny-dlp",
                 "pill": "Free trial",
                 "desc": null
               },
               {
                 "title": "Scrutiny EDR",
+                "href": "/scrutiny-edr",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -3546,16 +3551,19 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "SAP On AWS ",
+                "href": "/sap-on-aws",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "SAP On GCP ",
+                "href": "/sap-on-gcp",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "SAP On Azure ",
+                "href": "/sap-on-azure",
                 "pill": null,
                 "desc": null
               },
