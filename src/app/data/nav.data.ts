@@ -4671,12 +4671,14 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Plesk Demo Center",
                 "pill": null,
-                "desc": null
+                "desc": "Plesk Obsidian and WordPress management walkthroughs",
+                "href": "/plesk-demo-center"
               },
               {
-                "title": "Cpanel Demo Center",
+                "title": "cPanel Demo Center",
                 "pill": null,
-                "desc": null
+                "desc": "Official cPanel, WHM and WP Toolkit video guides",
+                "href": "/cpanel-demo-center"
               },
               {
                 "title": "Product Tours",

@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { SeoService } from '../core/seo.service';
-import { TSPLUS_REMOTE_ACCESS_EXPERIENCES } from '../data/tsplus-demo.data';
+import { TSPLUS_DEMO_VIDEOS } from '../data/tsplus-demo.data';
 
 @Component({
   selector: 'xh-tsplus-demo-center-page',
@@ -13,13 +13,24 @@ import { TSPLUS_REMOTE_ACCESS_EXPERIENCES } from '../data/tsplus-demo.data';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TsplusDemoCenterPage {
-  readonly experiences = TSPLUS_REMOTE_ACCESS_EXPERIENCES;
+  private static readonly PAGE_SIZE = 9;
+
+  readonly experiences = TSPLUS_DEMO_VIDEOS;
+  readonly visibleCount = signal(TsplusDemoCenterPage.PAGE_SIZE);
+  readonly visibleExperiences = computed(() => this.experiences.slice(0, this.visibleCount()));
+  readonly hasMoreVideos = computed(() => this.visibleCount() < this.experiences.length);
 
   constructor() {
     inject(SeoService).set(
       'TSplus Demo Center | XcellHost',
-      'Watch TSplus Remote Access connection demos, including RDP desktops, RemoteApp and HTML5 access.',
+      'Watch the complete TSplus video library, including Remote Access, Advanced Security, Remote Support, Server Monitoring and tutorials.',
       '/tsplus-demo-center/',
+    );
+  }
+
+  showMore(): void {
+    this.visibleCount.update((count) =>
+      Math.min(count + TsplusDemoCenterPage.PAGE_SIZE, this.experiences.length),
     );
   }
 }

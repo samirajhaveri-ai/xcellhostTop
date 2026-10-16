@@ -7,19 +7,19 @@
     <header class="tsplus-demo-header">
       <span class="tsplus-demo-eyebrow">Experience Center</span>
       <h1>TSplus Demo Center</h1>
-      <p>See the ways your team can connect to desktops and applications with TSplus Remote Access.</p>
-      <a routerLink="/tsplus-remote-access">Explore TSplus Remote Access <span aria-hidden="true">→</span></a>
+      <p>Explore TSplus connection demos, product videos, comparisons and tutorials in one complete library.</p>
     </header>
 
-    <section class="tsplus-connection-experiences" aria-labelledby="tsplus-demo-connection-title">
-      <h2 class="pp-sec" id="tsplus-demo-connection-title">Connection experiences</h2>
-      <p class="tsplus-connection-kicker">Enable ideal user experiences</p>
+    <section class="tsplus-connection-experiences" aria-label="TSplus videos">
       <div class="tsplus-connection-grid">
-        @for (experience of experiences; track experience.video) {
+        @for (experience of visibleExperiences(); track experience.video) {
           <article class="tsplus-connection-card">
             <div class="tsplus-connection-video">
               <video controls muted playsinline preload="metadata" [attr.aria-label]="experience.title">
-                <source [src]="experience.video" type="video/mp4" />
+                <source
+                  [src]="experience.video + '#t=0.001'"
+                  [attr.type]="experience.video.endsWith('.webm') ? 'video/webm' : 'video/mp4'"
+                />
                 Your browser does not support this video.
               </video>
             </div>
@@ -30,6 +30,14 @@
           </article>
         }
       </div>
+      @if (hasMoreVideos()) {
+        <div class="tsplus-show-more">
+          <button type="button" (click)="showMore()">
+            Show more videos
+            <span>{{ visibleExperiences().length }} of {{ experiences.length }}</span>
+          </button>
+        </div>
+      }
     </section>
   </div>
 </main>
