@@ -8,6 +8,46 @@ import { OverlayService } from '../core/overlay.service';
 import { SearchDialogComponent } from './search-dialog.component';
 
 describe('Search dialog live results', () => {
+  for (const dismissal of ['close button', 'Escape handler', 'backdrop'] as const) {
+    it(`hides immediately through the ${dismissal}`, () => {
+      TestBed.configureTestingModule({
+        imports: [SearchDialogComponent],
+        providers: [
+          provideRouter([]),
+          { provide: BlogApiService, useValue: { posts$: of([]), useCases$: of([]), postsStatus: signal('ready') } },
+          { provide: CaseStudiesApiService, useValue: { studies$: of([]) } },
+        ],
+      });
+      const fixture = TestBed.createComponent(SearchDialogComponent);
+      const overlay = TestBed.inject(OverlayService);
+      overlay.open('search');
+      fixture.detectChanges();
+      const panel = fixture.nativeElement.querySelector('.srch') as HTMLElement;
+      const box = fixture.nativeElement.querySelector('.srch-box') as HTMLElement;
+
+      box.click();
+      expect(overlay.isOpen('search')).toBeTrue();
+      if (dismissal === 'close button') {
+        (panel.querySelector('.srch-x') as HTMLButtonElement).click();
+      } else if (dismissal === 'backdrop') {
+        panel.click();
+      } else {
+        // App.onEscape delegates to this shared stack handler.
+        overlay.closeTop();
+      }
+      fixture.detectChanges();
+
+      expect(overlay.isOpen('search')).toBeFalse();
+      expect(getComputedStyle(panel).transitionDuration).toBe('0s');
+      expect(getComputedStyle(panel).opacity).toBe('0');
+      expect(getComputedStyle(panel).visibility).toBe('hidden');
+      expect(getComputedStyle(box).transitionDuration).toBe('0s');
+      expect(panel.hasAttribute('inert')).toBeTrue();
+      expect(document.body.classList.contains('xh-locked')).toBeFalse();
+      fixture.destroy();
+    });
+  }
+
   it('updates an open search and its source counts when content is published, edited, or removed', fakeAsync(() => {
     const posts = new BehaviorSubject<readonly CmsBlogPost[]>([]);
     TestBed.configureTestingModule({

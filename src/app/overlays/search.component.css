@@ -1,8 +1,8 @@
 :host { display: contents; }
 .srch { padding: 64px 20px 24px; background: rgba(4, 15, 44, .64); backdrop-filter: blur(7px); }
 .srch .srch-box { width: min(900px, 100%); max-height: calc(100dvh - 88px); border-radius: 14px; box-shadow: 0 28px 90px #040f2c55; }
-/* Search must be visible and usable on the first rendered frame. */
-.srch.open, .srch.open .srch-box { transition: none; }
+/* Opening and every dismissal path must take effect on the first rendered frame. */
+.srch, .srch .srch-box { transition: none; }
 .srch .srch-in { padding: 20px; gap: 10px; border: 0; }
 .srch-field { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; padding: 10px 13px; border: 1px solid #bbcbec; border-radius: 30px; color: #2563eb; box-shadow: 0 0 0 3px #eef3ff; }
 .srch-field:focus-within { border-color: #739aff; box-shadow: 0 0 0 3px #e7efff; }
