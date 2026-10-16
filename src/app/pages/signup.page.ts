@@ -4,15 +4,15 @@ import {
   Component,
   DestroyRef,
   ElementRef,
+  PLATFORM_ID,
   ViewChild,
   inject,
   signal,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import {
-  AbstractControl,
   FormBuilder,
   ReactiveFormsModule,
-  ValidationErrors,
   ValidatorFn,
   Validators,
 } from '@angular/forms';
@@ -20,15 +20,12 @@ import { RouterLink } from '@angular/router';
 
 import { SeoService } from '../core/seo.service';
 import { EMAIL_VALIDATORS, PHONE_VALIDATORS } from '../overlays/form.util';
+import { SIGNUP_LEAD_TYPES, SIGNUP_ZOHO } from '../data/signup-zoho.data';
 
-const PASSWORD_PATTERN = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
-const ZOHO_ENDPOINT = 'https://crm.zoho.in/crm/WebToLeadForm';
-
-const matchingPasswords: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
-  const password = group.get('password')?.value;
-  const confirmation = group.get('confirmPassword')?.value;
-  return password && confirmation && password !== confirmation ? { passwordMismatch: true } : null;
-};
+const validLeadTypes: ValidatorFn = (control) =>
+  Array.isArray(control.value) && control.value.every((value) =>
+    SIGNUP_LEAD_TYPES.includes(value as typeof SIGNUP_LEAD_TYPES[number]))
+    ? null : { leadType: true };
 
 @Component({
   selector: 'xh-signup-page',
@@ -40,30 +37,30 @@ const matchingPasswords: ValidatorFn = (group: AbstractControl): ValidationError
 })
 export class SignupPage implements AfterViewInit {
   @ViewChild('backgroundCanvas') private canvas?: ElementRef<HTMLCanvasElement>;
+  @ViewChild('signupForm') private signupForm?: ElementRef<HTMLFormElement>;
 
   private readonly fb = inject(FormBuilder);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private animationFrame = 0;
-  private pendingForm?: HTMLFormElement;
+  readonly zoho = SIGNUP_ZOHO;
+  readonly leadTypes = SIGNUP_LEAD_TYPES;
+  readonly smartUrlService = this.isBrowser && new URLSearchParams(window.location.search).get('service') === 'smarturl'
+    ? 'smarturl' : '';
 
   readonly form = this.fb.nonNullable.group(
     {
-      firstName: ['', [Validators.required, Validators.minLength(2)]],
-      lastName: ['', Validators.required],
-      email: ['', EMAIL_VALIDATORS],
-      phone: ['', PHONE_VALIDATORS],
-      company: ['', Validators.required],
-      city: [''],
-      password: ['', [Validators.required, Validators.pattern(PASSWORD_PATTERN)]],
-      confirmPassword: ['', Validators.required],
+      firstName: ['', [Validators.required, Validators.pattern(/\S/), Validators.maxLength(40)]],
+      lastName: ['', [Validators.required, Validators.pattern(/\S/), Validators.maxLength(80)]],
+      email: ['', [...EMAIL_VALIDATORS, Validators.maxLength(100)]],
+      phone: ['', [...PHONE_VALIDATORS, Validators.maxLength(30)]],
+      company: ['', [Validators.required, Validators.pattern(/\S/), Validators.maxLength(200)]],
+      city: ['', Validators.maxLength(100)],
+      leadTypes: [['Customer C'] as string[], [Validators.required, validLeadTypes]],
       terms: [false, Validators.requiredTrue],
     },
-    { validators: matchingPasswords },
   );
 
-  readonly showPassword = signal(false);
-  readonly showConfirmation = signal(false);
-  readonly submitted = signal(false);
   readonly busy = signal(false);
   readonly error = signal('');
   readonly activeService = signal(0);
@@ -85,14 +82,20 @@ export class SignupPage implements AfterViewInit {
   constructor() {
     inject(SeoService).set(
       'Sign Up — XcellHost Cloud Services',
-      'Create your XcellHost account to access managed cloud, cybersecurity and digital trust services.',
+      'Submit your XcellHost signup request for managed cloud, cybersecurity and digital trust services.',
       '/signup/',
     );
+    if (!this.isBrowser) return;
     const carouselTimer = window.setInterval(() => this.nextService(1), 4500);
     this.destroyRef.onDestroy(() => window.clearInterval(carouselTimer));
+    const resetBusy = () => this.busy.set(false);
+    window.addEventListener('pageshow', resetBusy);
+    this.destroyRef.onDestroy(() => window.removeEventListener('pageshow', resetBusy));
   }
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser) return;
+    this.loadZohoAnalytics();
     const canvas = this.canvas?.nativeElement;
     const context = canvas?.getContext('2d');
     if (!canvas || !context) return;
@@ -132,68 +135,57 @@ export class SignupPage implements AfterViewInit {
     });
   }
 
-  togglePassword(): void { this.showPassword.update((show) => !show); }
-  toggleConfirmation(): void { this.showConfirmation.update((show) => !show); }
   nextService(direction: number): void {
     this.activeService.update((current) => (current + direction + this.serviceSlides.length) % this.serviceSlides.length);
   }
   setService(index: number): void { this.activeService.set(index); }
 
+  resetForm(): void {
+    if (this.busy()) return;
+    this.form.reset();
+    this.error.set('');
+  }
+
   submit(): void {
     if (this.busy()) return;
+    const value = this.form.getRawValue();
+    this.form.patchValue({
+      firstName: value.firstName.trim(), lastName: value.lastName.trim(),
+      email: value.email.trim(), phone: value.phone.trim(),
+      company: value.company.trim(), city: value.city.trim(),
+    });
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       this.error.set('Please correct the highlighted fields and accept the terms.');
       return;
     }
-
+    const form = this.signupForm?.nativeElement;
+    if (!form || !this.isBrowser) return;
     this.error.set('');
     this.busy.set(true);
-    const value = this.form.getRawValue();
-    const zohoForm = document.createElement('form');
-    zohoForm.method = 'POST';
-    zohoForm.action = ZOHO_ENDPOINT;
-    zohoForm.target = 'zohoFrame';
-    zohoForm.style.display = 'none';
-    zohoForm.acceptCharset = 'UTF-8';
-
-    const fields: Record<string, string> = {
-      xnQsjsdp: '6b9425c7b8c91e8768ec8be5a272d5a9f0b5261989d70523d8f2a7e419e5a64d',
-      xmIwtLD: 'a98994818746fa2996adef0834f16a1b6c2b71d21c4c2b57ab068f2a00004bda2d13d70ba5e2f21704a6a9dddd3a4c8c',
-      actionType: 'TGVhZHM=',
-      returnURL: 'https://xcellhost.cloud/signup-success',
-      aG9uZXlwb3Q: '',
-      'First Name': value.firstName.trim(),
-      'Last Name': value.lastName.trim(),
-      Email: value.email.trim(),
-      Mobile: value.phone.trim(),
-      Company: value.company.trim(),
-      City: value.city.trim(),
-      LEADCF21: 'Customer C',
-      'Lead Source': 'Website',
-    };
-    for (const [name, fieldValue] of Object.entries(fields)) {
-      const input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = name;
-      input.value = fieldValue;
-      zohoForm.appendChild(input);
+    try {
+      // Submit the supplied Zoho form directly; Zoho displays its own result.
+      HTMLFormElement.prototype.submit.call(form);
+    } catch {
+      this.busy.set(false);
+      this.error.set('Unable to submit your request. Please try again.');
     }
-    document.body.appendChild(zohoForm);
-    this.pendingForm = zohoForm;
-    zohoForm.submit();
-    window.setTimeout(() => this.finishSubmission(), 4000);
   }
 
-  onZohoLoad(): void {
-    if (this.busy()) this.finishSubmission();
-  }
-
-  private finishSubmission(): void {
-    if (!this.busy()) return;
-    this.pendingForm?.remove();
-    this.pendingForm = undefined;
-    this.busy.set(false);
-    this.submitted.set(true);
+  private loadZohoAnalytics(): void {
+    if (document.getElementById('wf_anal')) return;
+    const tracking = window as unknown as {
+      _wFa_ajax_will_be_replaced: boolean;
+      _wfa_fstprtcken?: Record<string, boolean>;
+    };
+    tracking._wFa_ajax_will_be_replaced = false;
+    tracking._wfa_fstprtcken ??= {};
+    tracking._wfa_fstprtcken['667555000019526009'] = true;
+    const script = document.createElement('script');
+    script.id = 'wf_anal';
+    script.src = this.zoho.analyticsUrl;
+    script.async = true;
+    this.signupForm?.nativeElement.appendChild(script);
+    this.destroyRef.onDestroy(() => script.remove());
   }
 }
