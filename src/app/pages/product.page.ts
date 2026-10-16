@@ -5,6 +5,8 @@ import { ContainerServiceHeroComponent } from '../sections/container-service-her
 import { ContainerRegistryContentComponent } from '../sections/container-registry-content.component';
 
 import { ImportedInteractiveContentComponent } from '../sections/imported-interactive-content.component';
+import { ZoomConferenceingSourceComponent } from '../sections/zoom-conferenceing-source.component';
+import { ZOOM_CONFERENCEING_FAQS } from '../data/zoom-conferenceing-faq.data';
 import { WORDPRESS_VPS_FAQS } from '../data/wordpress-vps-faq.data';
 import { MANAGED_PKI_FAQS } from '../data/managed-pki-faq.data';
 import { PRIVATE_CA_FAQS } from '../data/private-ca-faq.data';
@@ -83,6 +85,8 @@ import { VERA_RUBIN_FAQS } from '../data/nvidia-vera-rubin-faqs.data';
 import { StorageContentComponent } from '../sections/storage-servers-content.component';
 import { STORAGE_FAQS } from '../data/storage-servers-faqs.data';
 import { GamingContentComponent } from '../sections/gaming-servers-content.component';
+import { RpcNodesSourceComponent } from '../sections/rpc-nodes-source.component';
+import { DocusignSourceComponent } from '../sections/docusign-source.component';
 import { GAMING_FAQS } from '../data/gaming-servers-faqs.data';
 import { VirtualizationContentComponent } from '../sections/virtualization-servers-content.component';
 import { VIRTUALIZATION_FAQS } from '../data/virtualization-servers-faqs.data';
@@ -469,6 +473,7 @@ interface ProductTourSlide {
   selector: 'xh-product-page',
   standalone: true,
   imports: [QuantityInputDirective, DataCenterInfrastructureComponent,
+    ZoomConferenceingSourceComponent,
     ManagedMongodbHeroComponent,
     AiReceptionistHeroComponent,
     CpuOptimizedHeroComponent,
@@ -558,6 +563,8 @@ interface ProductTourSlide {
     NistCsfContentComponent,
     StorageContentComponent,
     GamingContentComponent,
+    RpcNodesSourceComponent,
+    DocusignSourceComponent,
     VirtualizationContentComponent,
     AgentStudioContentComponent,
     SmartQrContentComponent,
@@ -3012,6 +3019,17 @@ class ProductPageComponent {
     const view = this.resolve(slug);
     if (!view) return null;
 
+    if (slug === 'zoom-conferenceing') return { ...view, faqs: ZOOM_CONFERENCEING_FAQS, reviews: [] };
+    if (slug === 'docusign') return {
+      ...view, brandSuffix: 'Sign',
+      heroMessages: ['From ₹999* a month, billed in INR', 'Templates, bulk send & web forms',
+        'Tamper-evident audit trail on every envelope', 'Agreements managed with Docusign IAM'],
+    };
+    if (slug === 'rpc-nodes') return {
+      ...view, brandSuffix: 'Node',
+      heroMessages: ['Full, archive and validator builds', 'HTTPS + WSS on your own endpoint',
+        'Snapshot-synced — not days of catch-up', 'Mumbai bare metal, run by XcellHost'],
+    };
     if (slug === 'bio-link-digital-visiting-card') return { ...view, brandSuffix: 'Card' };
     if (slug === 'wordpress-vps') return { ...view, brandSuffix: 'Cloud', faqs: WORDPRESS_VPS_FAQS };
     if (slug === 'general-compute') return {
@@ -3223,6 +3241,16 @@ class ProductPageComponent {
     };
     if (slug === 'gaming-servers') return {
       ...view, faqs: GAMING_FAQS, videos: [],
+      tagline: 'No lag. No limits. Bare-metal game servers in Mumbai.',
+      heroHighlight: 'Single-tenant hardware for Minecraft, Rust, ARK, CS2 and game backends — DDoS-protected, watched 24×7.',
+      heroPoints: [
+        'High-clock Ryzen & EPYC CPUs',
+        'Always-on DDoS shield',
+        'Enterprise NVMe storage',
+        'Full root + KVM / IPMI',
+        'Mods, plugins & game panels',
+        'Low ping across India',
+      ],
       security: {
         head: 'Security & Compliance — Gaming Servers',
         intro: 'Dedicated single-tenant hardware gives you control over server access, network isolation and workload configuration. Use private VLANs, DDoS protection and secure root and IPMI access, with managed patching and monitoring available. Plan backups and disaster recovery around your workload requirements.',
@@ -4146,6 +4174,88 @@ class ProductPageComponent {
 
 
   readonly referenceSectionNav = computed(() => {
+    if (this.slug() === 'docusign') {
+      return {
+        frameSelector: 'xh-docusign-source iframe[src="/docusign-content.html"]',
+        links: [
+          { label: 'Overview', target: 'overview' },
+          { label: 'Every Plan Includes', target: 'included' },
+          { label: 'Features', target: 'features' },
+          { label: 'eSignature vs IAM', target: 'iam' },
+          { label: 'Paper vs Docusign', target: 'vs' },
+          { label: 'India & Legal', target: 'india' },
+          { label: 'Security', target: 'security' },
+          { label: 'Pricing', target: 'pricing' },
+          { label: 'Add-ons', target: 'addons' },
+          { label: 'Configurator', target: 'configure' },
+          { label: 'Use Cases', target: 'usecases' },
+          { label: 'How It Works', target: 'how' },
+          { label: 'Integrations', target: 'integrations' },
+          { label: 'Tools', target: 'tools' },
+          { label: 'FAQs', target: 'ppFaq' },
+        ],
+      };
+    }
+    if (this.slug() === 'rpc-nodes') {
+      return {
+        frameSelector: 'xh-rpc-nodes-source iframe[src="/rpc-nodes-content.html"]',
+        links: [
+          { label: 'Overview', target: 'overview' },
+          { label: 'Pricing', target: 'pricing' },
+          { label: 'Configurator', target: 'configure' },
+          { label: 'Node types', target: 'nodes' },
+          { label: 'What you get', target: 'features' },
+          { label: 'Shared vs Dedicated', target: 'vs' },
+          { label: 'How it works', target: 'steps' },
+          { label: 'Node sizing', target: 'sizing' },
+          { label: 'Cost calculator', target: 'cost' },
+          { label: 'Endpoint', target: 'endpoint' },
+          { label: 'Use cases', target: 'usecases' },
+          { label: 'Locations', target: 'locations' },
+          { label: 'Chains', target: 'chains' },
+          { label: 'Why XcellHost', target: 'why' },
+          { label: 'Request a node', target: 'request' },
+          { label: 'FAQs', target: 'ppFaq' },
+        ],
+      };
+    }
+    if (this.slug() === 'gaming-servers') {
+      return {
+        frameSelector: 'xh-gaming-servers-content iframe[src="/gaming-servers-content.html"]',
+        links: [
+          { label: 'Overview', target: 'overview' },
+          { label: 'Servers & Pricing', target: 'servers' },
+          { label: 'Configurator', target: 'configure' },
+          { label: 'Why to Choose', target: 'why' },
+          { label: 'Ping Map', target: 'ping' },
+          { label: 'DDoS Shield', target: 'ddos' },
+          { label: 'Sizing', target: 'sizing' },
+          { label: 'OS & Mods', target: 'stack' },
+          { label: 'Use Cases', target: 'usecases' },
+          { label: 'Comparison', target: 'vs' },
+          { label: '5 Easy Steps', target: 'steps' },
+          { label: 'FAQs', target: 'ppFaq' },
+        ],
+      };
+    }
+    if (this.slug() === 'zoom-conferenceing') {
+      return {
+        frameSelector: 'xh-zoom-conferenceing-source iframe[src="/zoom-conferenceing-content.html"]',
+        links: [
+          { label: 'Overview', target: 'overview' },
+          { label: 'Zoom Workplace', target: 'workplace' },
+          { label: 'Pricing', target: 'pricing' },
+          { label: 'Configurator', target: 'configure' },
+          { label: 'Features', target: 'features' },
+          { label: 'Plan finder', target: 'finder' },
+          { label: 'Zoom Phone', target: 'phone' },
+          { label: 'Webinars & Events', target: 'webinars' },
+          { label: 'Contact Center', target: 'cc' },
+          { label: 'Savings', target: 'consolidate' },
+          { label: 'Use cases', target: 'usecases' },
+        ],
+      };
+    }
     const pages: Record<string, { frame: string; overview: string; features: string; uses: string; specifications: string }> = {
       'managed-pki': { frame: 'xh-imported-interactive-content.managed-pki-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'compare' },
       'private-ca': { frame: 'xh-imported-interactive-content.private-ca-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'compare' },

@@ -1,4 +1,4 @@
-@if (!isPortalLogin()) {
+@if (!hasStandaloneShell()) {
   <div class="site-progress" [style.width.%]="scrollProgress()" aria-hidden="true"></div>
   <xh-intro-splash />
   <xh-utility-bar />
@@ -8,7 +8,7 @@
 
 <router-outlet />
 
-@if (!isPortalLogin()) {
+@if (!hasStandaloneShell()) {
   <xh-contact-options />
   <xh-footer />
 }
@@ -27,7 +27,7 @@
 <xh-trial-modal />
 <xh-partner-modal />
 <xh-doc-modal />
-@if (!isPortalLogin()) {
+@if (!hasStandaloneShell()) {
   <xh-whatsapp-fab />
   <xh-back-to-top />
 }
