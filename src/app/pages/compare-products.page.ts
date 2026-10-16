@@ -33,7 +33,7 @@ export class CompareProductsPage {
   readonly allCategory = 'All Comparisons';
   readonly categories: readonly (ComparisonCategory | typeof this.allCategory)[] = [
     this.allCategory,
-    'TSplus Suite',
+    'TSplus Comparisons',
     'Cloud Infrastructure',
     'Productivity & Business Apps',
     'Cybersecurity',
@@ -41,11 +41,10 @@ export class CompareProductsPage {
     'Managed Cloud Operations',
   ];
   readonly activeCategory = signal<ComparisonCategory | typeof this.allCategory>(this.allCategory);
-  readonly comparisons = PRODUCT_COMPARISONS.flatMap(definition => {
-    const leftProduct = this.catalog.findInDirectory(definition.left) ?? this.catalog.entryBySlug(slugify(definition.left));
-    const rightProduct = this.catalog.findInDirectory(definition.right) ?? this.catalog.entryBySlug(slugify(definition.right));
-    if (!leftProduct || !rightProduct) return [];
-    return [{
+  readonly comparisons = PRODUCT_COMPARISONS.map(definition => {
+    const leftProduct = this.resolveComparisonProduct(definition.left);
+    const rightProduct = this.resolveComparisonProduct(definition.right);
+    return {
       ...definition,
       leftProduct,
       rightProduct,
@@ -53,7 +52,7 @@ export class CompareProductsPage {
       rightDisplayName: definition.rightLabel ?? rightProduct.name,
       query: `${slugify(leftProduct.name)},${slugify(rightProduct.name)}`,
       detailSlug: `${slugify(definition.left)}-vs-${slugify(definition.right)}`,
-    } satisfies ComparisonCard];
+    } satisfies ComparisonCard;
   });
   readonly visibleComparisons = computed(() => {
     const category = this.activeCategory();
@@ -78,6 +77,15 @@ export class CompareProductsPage {
   requestRecommendation(): void {
     this.topics.ask('Product comparison recommendation');
     this.overlay.open('callback');
+  }
+
+  private resolveComparisonProduct(name: string): DirectoryEntry {
+    return this.catalog.findInDirectory(name) ?? this.catalog.entryBySlug(slugify(name)) ?? {
+      name,
+      desc: 'Remote access solution evaluated in this side-by-side comparison.',
+      cat: 'Solutions',
+      group: 'Remote access software',
+    };
   }
 
 }

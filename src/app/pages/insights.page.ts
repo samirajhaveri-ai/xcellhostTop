@@ -352,7 +352,7 @@ interface InsightCategoryBranch {
                           <circle cx="21" cy="21" r="12"></circle>
                           <path d="m30 30 9 9M8 8l32 32"></path>
                         </svg>
-                        <h3>{{ activeTab() === 'Videos' && videoStatus() === 'loading' ? 'Loading channel videos...' : activeTab() === 'Videos' && videoStatus() === 'error' ? 'Videos temporarily unavailable' : 'No matching ' + activeTab().toLowerCase() }}</h3>
+                        <h3>{{ activeTab() === 'Blogs' && loading() ? 'Loading blogs...' : activeTab() === 'Blogs' && error() ? 'Blogs temporarily unavailable' : activeTab() === 'Videos' && videoStatus() === 'loading' ? 'Loading channel videos...' : activeTab() === 'Videos' && videoStatus() === 'error' ? 'Videos temporarily unavailable' : 'No matching ' + activeTab().toLowerCase() }}</h3>
                         <p>{{ emptyHelp() }}</p>
                       </div>
                     }
@@ -556,7 +556,7 @@ export class InsightsPage implements AfterViewInit, OnDestroy {
       next: (posts) => {
         this.posts.set(posts);
         this.loading.set(false);
-        this.error.set(false);
+        this.error.set(this.blogApi.postsStatus() === 'error');
         if (this.active() !== ALL && this.categoryCount(this.active()) === 0) this.selectAllCategories();
       },
       error: () => {
@@ -771,6 +771,8 @@ export class InsightsPage implements AfterViewInit, OnDestroy {
   }
 
   emptyHelp(): string {
+    if (this.activeTab() === 'Blogs' && this.loading()) return 'Fetching the latest published articles.';
+    if (this.activeTab() === 'Blogs' && this.error()) return 'The content service could not be reached. We will retry automatically shortly.';
     if (this.documentType() && !this.sourceItems().length) return 'Published ' + this.activeTab().toLowerCase() + ' will appear here. Browse another resource type in the meantime.';
     if (this.activeTab() === 'Videos' && this.videoStatus() === 'loading') return 'Fetching uploads from XcellHost Cloud Services.';
     if (this.activeTab() === 'Videos' && this.videoStatus() === 'error') return 'Please visit our YouTube channel or try again shortly.';

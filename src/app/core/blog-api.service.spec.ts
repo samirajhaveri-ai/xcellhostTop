@@ -50,6 +50,33 @@ describe('Blog slug resolution', () => {
 });
 
 describe('Blog API pagination', () => {
+  it('recovers after an initial outage and retains loaded blogs during later outages', fakeAsync(() => {
+    TestBed.configureTestingModule({ providers: [provideHttpClient(), provideHttpClientTesting()] });
+    const http = TestBed.inject(HttpTestingController);
+    const service = TestBed.inject(BlogApiService);
+    let received: readonly CmsBlogPost[] = [];
+    const subscription = service.posts$.subscribe(posts => received = posts);
+    tick(0);
+    http.expectOne(req => req.url.endsWith('/api/blogs')).flush({}, { status: 502, statusText: 'Bad Gateway' });
+    expect(service.postsStatus()).toBe('error');
+    tick(30_000);
+    http.expectOne(req => req.url.endsWith('/api/blogs')).flush({ data: [
+      { slug: 'cloud', title: 'Cloud', content: 'Article', category: 'Cloud' },
+    ] });
+    expect(received.length).toBe(1);
+    expect(service.postsStatus()).toBe('ready');
+    tick(30_000);
+    http.expectOne(req => req.url.endsWith('/api/blogs')).flush({}, { status: 503, statusText: 'Unavailable' });
+    expect(received[0].slug).toBe('cloud');
+    expect(service.postsStatus()).toBe('error');
+    tick(30_000);
+    http.expectOne(req => req.url.endsWith('/api/blogs')).flush({ data: [] });
+    expect(received).toEqual([]);
+    expect(service.postsStatus()).toBe('ready');
+    subscription.unsubscribe();
+    http.verify();
+  }));
+
   it('loads document collections independently and excludes unusable download links', fakeAsync(() => {
     TestBed.configureTestingModule({ providers: [provideHttpClient(), provideHttpClientTesting()] });
     const http = TestBed.inject(HttpTestingController);
