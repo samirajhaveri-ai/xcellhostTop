@@ -3096,6 +3096,44 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
+      {
+        "g": "AI Trading",
+        "label": "AI Trading",
+        "on": false,
+        "groups": [
+          {
+            "heading": "AI Trading",
+            "items": [
+              {
+                "title": "Synapsem-AI Integrated Program",
+                "pill": null,
+                "desc": "Reliable AI Website Builder hosting 🐧"
+              },
+              {
+                "title": "Synapsem-AI Live Online",
+                "pill": null,
+                "desc": "Reliable AI App Builder hosting 💻"
+              },
+              {
+                "title": "AI for Medical Doctors",
+                "pill": null,
+                "desc": "Reliable AI App Builder hosting 💻"
+              },
+              {
+                "title": "AI for Educators",
+                "pill": null,
+                "desc": "Reliable AI App Builder hosting 💻"
+              },
+              {
+                "title": "AI for Insurance Professionals",
+                "pill": null,
+                "desc": "Reliable AI App Builder hosting 💻"
+              },
+              
+            ]
+          }
+        ]
+      },
       
     ]
   },

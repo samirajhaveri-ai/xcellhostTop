@@ -417,3 +417,24 @@ memory. Provider storage is disabled in API requests.
 The optional Node vector-retrieval service remains documented in `server/README.md`.
 The default website deployment uses PHP so the upload package is self-contained
 apart from the hosting runtime and private key.
+
+## Automatic website search
+
+The search dialog uses the deployed Angular routes, current catalogue, company
+content and the same menu link resolver as the header. A newly added concrete
+route or menu destination is included when the website is rebuilt and deployed;
+no separate search list or Algolia reindex is required. Set a route `title` or
+`data.searchTitle` and optionally `data.searchDescription` for better result text.
+Use a menu item's explicit `href` when its destination differs from its name.
+Search rereads route/menu inventory each time it opens.
+
+Published Strapi blogs, use cases and case studies refresh every 30 seconds via
+the existing CMS services. Additions, edits and removals update an open search
+without retyping. Blog title, body, slug, category, author and product references
+are searchable. Equally relevant articles sort newest first; the opening search
+suggestions include recent published content. The old WordPress Algolia index
+no longer controls this dialog's results. Products/pages remain searchable when
+the CMS is temporarily unavailable, and loaded blogs survive temporary failures.
+
+Run the search checks with:
+`ng test --watch=false --browsers=ChromeHeadless --include=src/app/core/site-search.service.spec.ts --include=src/app/overlays/search-dialog.component.spec.ts`.
