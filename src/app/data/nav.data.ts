@@ -23,7 +23,7 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Endpoint security",
             "title": "Advanced Endpoint Security (EDR)",
             "body": "Identify, protect, detect, respond and recover from endpoint threats.",
-            "image": "/assets/images/acronis-partner/security.jpg",
+            "image": "/assets/images/menu-edr-labeled.png",
             "link": "/advanced-endpoint-security-edr"
           },
           {
@@ -2094,11 +2094,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Verified Mark Certificates (VMC)",
-                "pill": null,
-                "desc": null
-              },
-              {
                 "title": "Comodo Personal Authentication",
                 "href": "/comodo-personal-authentication",
                 "pill": null,
@@ -2193,6 +2188,11 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Mark Certificate",
             "items": [
               {
+                "title": "Verified Mark Certificates (VMC)",
+                "pill": null,
+                "desc": null
+              },
+              {
                 "title": "Digicert VMC ",
                 "pill": null,
                 "desc": null
@@ -2218,6 +2218,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Docusign",
                 "pill": null,
                 "desc": null
+              },
+              {
+                "title": "Zoho Sign",
+                "href": "/zoho-sign",
+                "pill": null,
+                "desc": "Send, sign and manage documents with signing workflows and audit trails."
               },
               
             ]
@@ -3093,6 +3099,44 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Open AI Managed Services",
+                "pill": null,
+                "desc": "Reliable AI App Builder hosting 💻"
+              },
+              
+            ]
+          }
+        ]
+      },
+      {
+        "g": "AI Trading",
+        "label": "AI Trading",
+        "on": false,
+        "groups": [
+          {
+            "heading": "AI Trading",
+            "items": [
+              {
+                "title": "Synapsem-AI Integrated Program",
+                "pill": null,
+                "desc": "Reliable AI Website Builder hosting 🐧"
+              },
+              {
+                "title": "Synapsem-AI Live Online",
+                "pill": null,
+                "desc": "Reliable AI App Builder hosting 💻"
+              },
+              {
+                "title": "AI for Medical Doctors",
+                "pill": null,
+                "desc": "Reliable AI App Builder hosting 💻"
+              },
+              {
+                "title": "AI for Educators",
+                "pill": null,
+                "desc": "Reliable AI App Builder hosting 💻"
+              },
+              {
+                "title": "AI for Insurance Professionals",
                 "pill": null,
                 "desc": "Reliable AI App Builder hosting 💻"
               },
@@ -4679,12 +4723,14 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Plesk Demo Center",
                 "pill": null,
-                "desc": null
+                "desc": "Plesk Obsidian and WordPress management walkthroughs",
+                "href": "/plesk-demo-center"
               },
               {
-                "title": "Cpanel Demo Center",
+                "title": "cPanel Demo Center",
                 "pill": null,
-                "desc": null
+                "desc": "Official cPanel, WHM and WP Toolkit video guides",
+                "href": "/cpanel-demo-center"
               },
               {
                 "title": "Product Tours",

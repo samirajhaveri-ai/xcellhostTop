@@ -1,0 +1,33 @@
+:host { display: block; color: var(--navy, #08224b); }
+.sign-hero { padding: 76px 0; background: linear-gradient(125deg, #edf5ff, #f7faff 65%, #fff3e8); }
+.hero-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: center; }
+h1 { font-size: clamp(40px, 5vw, 64px); margin: 14px 0; letter-spacing: -2px; }
+h2 { font-size: clamp(26px, 3vw, 36px); line-height: 1.2; margin: 0 0 20px; }
+p { color: #556987; line-height: 1.75; }
+.sign-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+.document { background: white; padding: 30px; border: 1px solid #d5e3fa; border-radius: 20px; box-shadow: 0 24px 65px #163b7020; }
+.document-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 11px; font-weight: 800; color: #1263dd; }
+.status { color: #237454; background: #eaf8f1; padding: 6px 10px; border-radius: 20px; }
+.document h3 { margin-top: 28px; }
+.document-line { height: 7px; background: #e7edf6; border-radius: 8px; margin: 12px 0; }
+.document-line.short { width: 65%; margin-bottom: 26px; }
+.sign-step { display: flex; align-items: center; gap: 16px; padding: 14px 0; border-bottom: 1px solid #edf1f7; }
+.sign-step > span, .feature-check { color: #1263dd; background: #edf5ff; padding: 10px; border-radius: 10px; font-weight: 700; }
+.sign-step p { margin: 3px 0 0; font-size: 12px; }
+.signature { font-family: Georgia, serif; font-style: italic; font-size: 24px; color: #1263dd; margin-top: 26px; }
+.sign-section { padding: 64px 0; scroll-margin-top: 120px; }
+.feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+article { padding: 26px; border: 1px solid #dce6f5; border-radius: 14px; background: white; }
+.feature-check { display: inline-block; }
+article h3 { font-size: 18px; margin: 18px 0 8px; }
+article p { font-size: 14px; margin: 0; }
+.source { margin-top: 24px; font-size: 12px; }
+.source a { color: #1263dd; }
+.use-cases { background: #f5f8fd; }
+.use-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.use-grid h3 { margin-top: 0; }
+.sign-cta { background: #edf5ff; border-radius: 20px; padding: 36px; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+.sign-cta p { max-width: 680px; margin-bottom: 0; }
+.sign-cta .btn { flex-shrink: 0; }
+@media (max-width: 900px) { .hero-layout { grid-template-columns: 1fr; gap: 32px; } .feature-grid { grid-template-columns: repeat(2, 1fr); } .sign-cta { flex-direction: column; align-items: flex-start; } }
+@media (max-width: 600px) { .sign-hero, .sign-section { padding: 40px 0; } .feature-grid, .use-grid { grid-template-columns: 1fr; } .document { padding: 22px; } }

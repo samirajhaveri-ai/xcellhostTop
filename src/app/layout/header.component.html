@@ -33,7 +33,7 @@
             (click)="toggleTop(top.label)"
           >{{ top.label }} <span aria-hidden="true">⌄</span></button>
 
-          <div class="xh-mega" [id]="top.megaId">
+          <div class="xh-mega" [class.xh-mega-whatsapp]="activeFeatureCards(top)[0]?.image === '/assets/images/menu-whatsapp-smb.png'" [id]="top.megaId">
             <ng-template #categoryLinks let-tab>
                   @for (group of tab.groups; track $index) {
                     <div class="xh-link-group">
@@ -118,8 +118,26 @@
                 @for (feature of activeFeatureCards(top); track feature.title) {
                   <a class="xh-feature-card" [href]="feature.link" [attr.target]="feature.link.startsWith('http') ? '_blank' : null" [attr.rel]="feature.link.startsWith('http') ? 'noopener noreferrer' : null" (click)="onNavigate()">
                     @if (feature.fresh) { <span class="xh-feature-ribbon">New</span> }
-                    <span class="xh-feature-media" [class.xh-feature-media-illustration]="feature.image === '/assets/images/menu-cloud-backup.png' || feature.image === '/assets/images/menu-register-domain.png'">
-                      @if (feature.image === '/assets/images/menu-cloud-backup.png' || feature.image === '/assets/images/menu-register-domain.png') {
+                    <span class="xh-feature-media" [class.xh-feature-media-whatsapp]="feature.image === '/assets/images/menu-whatsapp-smb.png' || feature.image === '/assets/images/menu-whatsapp-broadcasting.png'" [class.xh-feature-media-security]="feature.image === '/assets/images/menu-sitelock.png' || feature.image === '/assets/images/menu-cwatch.png'" [class.xh-feature-media-hosting]="feature.image === '/assets/images/menu-windows-hosting.png' || feature.image === '/assets/images/menu-linux-hosting.png'" [class.xh-feature-media-panel]="feature.image === '/assets/images/menu-cpanel.png' || feature.image === '/assets/images/menu-plesk.png'" [class.xh-feature-media-full]="feature.image === '/assets/images/menu-edr-labeled.png'" [class.xh-feature-media-illustration]="feature.image === '/assets/images/menu-cloud-backup.png' || feature.image === '/assets/images/menu-register-domain.png' || feature.image === '/assets/images/menu-transfer-domain.png'">
+                      @if (feature.image === '/assets/images/menu-whatsapp-smb.png' || feature.image === '/assets/images/menu-whatsapp-broadcasting.png') {
+                        <svg class="xh-whatsapp-illustration" [attr.viewBox]="feature.image === '/assets/images/menu-whatsapp-smb.png' ? '36 36 1302 1070' : '0 0 1374 1145'" width="1374" height="1145" preserveAspectRatio="xMidYMid meet" role="img" [attr.aria-label]="feature.title">
+                          <image [attr.href]="feature.image" width="1374" height="1145" />
+                        </svg>
+                      } @else if (feature.image === '/assets/images/menu-web-design-ca.png' || feature.image === '/assets/images/menu-web-design-smb.png') {
+                        <svg class="xh-web-design-illustration" viewBox="40 40 1294 888" width="1294" height="888" preserveAspectRatio="xMidYMid meet" role="img" [attr.aria-label]="feature.title">
+                          <image [attr.href]="feature.image" width="1374" height="1145" />
+                        </svg>
+                      } @else if (feature.image === '/assets/images/menu-sitelock.png') {
+                        <svg viewBox="40 40 1294 870" width="1294" height="870" role="img" [attr.aria-label]="feature.title">
+                          <image [attr.href]="feature.image" width="1374" height="1145" />
+                        </svg>
+                      } @else if (feature.image === '/assets/images/menu-cwatch.png') {
+                        <img [src]="feature.image" [alt]="feature.title" />
+                      } @else if (feature.image === '/assets/images/menu-edr-labeled.png') {
+                        <img [src]="feature.image" [alt]="feature.title" width="1254" height="1254" />
+                      } @else if (feature.image === '/assets/images/menu-windows-hosting.png' || feature.image === '/assets/images/menu-linux-hosting.png' || feature.image === '/assets/images/menu-cpanel.png' || feature.image === '/assets/images/menu-plesk.png') {
+                        <img [src]="feature.image" [alt]="feature.title" width="1374" height="1145" />
+                      } @else if (feature.image === '/assets/images/menu-cloud-backup.png' || feature.image === '/assets/images/menu-register-domain.png' || feature.image === '/assets/images/menu-transfer-domain.png') {
                         <svg class="xh-menu-illustration" viewBox="32 26 1310 830" width="1310" height="830" role="img" [attr.aria-label]="feature.title">
                           <image [attr.href]="feature.image" x="0" y="0" width="1374" height="1145" />
                         </svg>
@@ -177,7 +195,7 @@
                 <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="7" height="16" rx="2"/><rect x="14" y="4" width="7" height="16" rx="2"/><path d="M5 9h3m-3 4h3m8-4h3m-3 4h3"/></svg>
                 <span>Compare Products</span>
               </a>
-              <a routerLink="/marketplace" (click)="onNavigate()">
+              <a routerLink="/explore-marketplace" (click)="onNavigate()">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l2-6h14l2 6M3 9h18v3a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0V9ZM5 15v6h14v-6M9 21v-5h6v5"/></svg>
                 <span>Marketplace</span>
               </a>

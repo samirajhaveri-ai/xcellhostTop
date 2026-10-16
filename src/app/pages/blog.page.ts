@@ -221,7 +221,7 @@ export class BlogPage implements OnDestroy {
         next: ({ posts, post }) => {
           this.allPosts.set(posts);
           this.loading.set(false);
-          this.error.set(false);
+          this.error.set(!this.isUseCase && this.blogApi.postsStatus() === 'error' && !post);
           this.post.set(post);
         },
         error: () => {

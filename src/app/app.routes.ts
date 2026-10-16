@@ -425,6 +425,10 @@ export const routes: Routes = [
   { path: 'druva-demo-center', loadComponent: () => import('./pages/druva-demo-center.page').then((m) => m.DruvaDemoCenterPage) },
   { path: 'under-construction/xcellhost-demo-center', redirectTo: 'xcellhost-demo-center', pathMatch: 'full' },
   { path: 'xcellhost-demo-center', loadComponent: () => import('./pages/xcellhost-demo-center.page').then((m) => m.XcellhostDemoCenterPage) },
+  { path: 'under-construction/plesk-demo-center', redirectTo: 'plesk-demo-center', pathMatch: 'full' },
+  { path: 'plesk-demo-center', data: { controlPanel: 'plesk' }, loadComponent: () => import('./pages/control-panel-demo-center.page').then((m) => m.ControlPanelDemoCenterPage) },
+  { path: 'under-construction/cpanel-demo-center', redirectTo: 'cpanel-demo-center', pathMatch: 'full' },
+  { path: 'cpanel-demo-center', data: { controlPanel: 'cpanel' }, loadComponent: () => import('./pages/control-panel-demo-center.page').then((m) => m.ControlPanelDemoCenterPage) },
   { path: 'under-construction/events-catalog', loadComponent: () => import('./pages/events-catalog.page').then((m) => m.EventsCatalogPage) },
   { path: 'under-construction/:slug', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
   { path: 'under-construction', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
@@ -668,6 +672,11 @@ export const routes: Routes = [
       ),
   },
   { path: 'bare-metal-server', redirectTo: 'bare-metal-servers', pathMatch: 'full' },
+  {
+    path: 'explore-bare-metal-servers',
+    data: { productSlug: 'bare-metal-servers' },
+    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+  },
   { path: 'nvidia-b300-nodes', loadComponent: () => import('./pages/nvidia-b300.page').then((m) => m.NvidiaB300Page) },
   { path: 'nvidia-h200', loadComponent: () => import('./pages/nvidia-h200.page').then((m) => m.NvidiaH200Page) },
   {
@@ -713,6 +722,7 @@ export const routes: Routes = [
   { path: 'microsoft-365', redirectTo: 'microsoft-365-smb', pathMatch: 'full' },
   { path: 'secure-dmarc', redirectTo: 'enterprise-dmarc', pathMatch: 'full' },
   { path: 'clm-solutions', redirectTo: 'certificate-mgmt-solutions', pathMatch: 'full' },
+  { path: 'zoho-sign', loadComponent: () => import('./pages/zoho-sign.page').then((m) => m.ZohoSignPage) },
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
   { path: '**', redirectTo: '' },
 ];

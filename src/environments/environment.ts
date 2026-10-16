@@ -31,6 +31,7 @@ export const environment = {
 
   /** Local development uses Angular's proxy.conf.json to avoid browser CORS blocking. */
   strapiUrl: '',
+  strapiApiUrl: '',
 
   /** Public Algolia search configuration. Use a read-only Search API key, never an Admin key. */
   algoliaAppId: 'GH7MDMKNPP',

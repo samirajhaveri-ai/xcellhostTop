@@ -26,7 +26,7 @@ describe('Insights card navigation', () => {
     await TestBed.configureTestingModule({
       providers: [
         provideRouter([{ path: 'insights/:slug', component: BlogPage }]),
-        { provide: BlogApiService, useValue: { posts$: of([older, newer]) } },
+        { provide: BlogApiService, useValue: { postsStatus: () => 'ready', posts$: of([older, newer]) } },
         { provide: SeoService, useValue: { set: () => {}, setJsonLd: () => {} } },
       ],
     }).compileComponents();
@@ -51,7 +51,7 @@ describe('Insights card navigation', () => {
       imports: [InsightsPage],
       providers: [
         provideRouter([{ path: 'insights/:slug', component: ArticleStub }]),
-        { provide: BlogApiService, useValue: { posts$: of([post]), videos$: of([]), useCases$: of([]), documents$: of([]) } },
+        { provide: BlogApiService, useValue: { postsStatus: () => 'ready', posts$: of([post]), videos$: of([]), useCases$: of([]), documents$: of([]) } },
         { provide: CaseStudiesApiService, useValue: { studies$: of([]) } },
         { provide: SeoService, useValue: { set: () => {} } },
       ],

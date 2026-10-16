@@ -1,0 +1,45 @@
+<main
+  class="panel-demo-page"
+  [class.plesk-demo]="config.key === 'plesk'"
+  [class.cpanel-demo]="config.key === 'cpanel'"
+>
+  <div class="panel-demo-wrap">
+    <nav class="panel-demo-breadcrumb" aria-label="Breadcrumb">
+      <a routerLink="/">Home</a><span aria-hidden="true">/</span><span>Experience Center</span><span aria-hidden="true">/</span><span>{{ config.title }}</span>
+    </nav>
+
+    <header class="panel-demo-header">
+      <span>Videos and product walkthroughs</span>
+      <h1>{{ config.title }}</h1>
+      <p>{{ config.description }}</p>
+    </header>
+
+    <section class="panel-video-grid" [attr.aria-label]="config.name + ' demo videos'">
+      @for (video of videos; track video.id) {
+        <article class="panel-video-card">
+          <div class="panel-video-media">
+            @if (activeVideoId() === video.id) {
+              <iframe
+                [src]="video.embedUrl"
+                [title]="video.title"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+              ></iframe>
+            } @else {
+              <button type="button" (click)="playVideo(video.id)" [attr.aria-label]="'Play ' + video.title">
+                <img [src]="video.thumbnailUrl" [alt]="video.title" loading="lazy" />
+                <span class="panel-video-play" aria-hidden="true"></span>
+              </button>
+            }
+          </div>
+          <div class="panel-video-copy">
+            <span>{{ video.source }}</span>
+            <h2>{{ video.title }}</h2>
+            <p>{{ video.description }}</p>
+          </div>
+        </article>
+      }
+    </section>
+  </div>
+</main>

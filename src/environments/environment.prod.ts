@@ -11,6 +11,7 @@ export const environment = {
   aiSearchEndpoint: '/api/ask-ai.php',
   faqApi: '',
   strapiUrl: 'https://admin.xcellhost.cloud',
+  strapiApiUrl: '/api/cms.php',
   /** Public Algolia search configuration. Use a read-only Search API key, never an Admin key. */
   algoliaAppId: 'GH7MDMKNPP',
   algoliaIndexName: 'wp_searchable_posts',
