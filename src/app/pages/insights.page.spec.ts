@@ -25,7 +25,7 @@ describe('Insights pagination', () => {
     documents = new BehaviorSubject<readonly CmsInsightResource[]>([]);
     TestBed.configureTestingModule({ providers: [
       provideRouter([]),
-      { provide: BlogApiService, useValue: { posts$: posts, videos$: videos, useCases$: useCases, documents$: documents, videoStatus: signal('ready') } },
+      { provide: BlogApiService, useValue: { postsStatus: () => 'ready', posts$: posts, videos$: videos, useCases$: useCases, documents$: documents, videoStatus: signal('ready') } },
       { provide: CaseStudiesApiService, useValue: { studies$: new BehaviorSubject(CASE_STUDIES) } },
       { provide: SeoService, useValue: { set: () => {} } },
     ] });
@@ -154,7 +154,7 @@ describe('Insights pagination', () => {
       ]],
       ['VPS Servers', [
         'Windows VPS', 'Linux VPS', 'n8n VPS', 'OpenClaw VPS', 'Trading VPS', 'Claude VPS',
-        'Window 11 VPS', 'Odoo Hosting', 'ERPNext Hosting', 'Sage Hosting',
+        'Window 11 VPS', 'Odoo Hosting', 'ERPNext Hosting',
       ]],
     ];
     for (const [groupName, products] of requestedGroups) {

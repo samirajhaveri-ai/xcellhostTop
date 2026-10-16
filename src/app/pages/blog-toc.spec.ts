@@ -22,7 +22,7 @@ describe('Article table of contents', () => {
             { path: 'use-cases/:slug', component: BlogPage, data: { contentType: 'use-case' } },
           ], withInMemoryScrolling({ anchorScrolling: 'enabled', scrollPositionRestoration: 'top' }),
           withRouterConfig({ onSameUrlNavigation: 'reload' })),
-          { provide: BlogApiService, useValue: { posts$: of(posts), useCases$: of(posts) } },
+          { provide: BlogApiService, useValue: { postsStatus: () => 'ready', posts$: of(posts), useCases$: of(posts) } },
           { provide: SeoService, useValue: { set: () => {}, setJsonLd: () => {} } },
         ],
       }).compileComponents();
