@@ -661,6 +661,11 @@ export const routes: Routes = [
       ),
   },
   { path: 'bare-metal-server', redirectTo: 'bare-metal-servers', pathMatch: 'full' },
+  {
+    path: 'explore-bare-metal-servers',
+    data: { productSlug: 'bare-metal-servers' },
+    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+  },
   { path: 'nvidia-b300-nodes', loadComponent: () => import('./pages/nvidia-b300.page').then((m) => m.NvidiaB300Page) },
   { path: 'nvidia-h200', loadComponent: () => import('./pages/nvidia-h200.page').then((m) => m.NvidiaH200Page) },
   {
@@ -705,6 +710,7 @@ export const routes: Routes = [
   { path: 'microsoft-365', redirectTo: 'microsoft-365-smb', pathMatch: 'full' },
   { path: 'secure-dmarc', redirectTo: 'enterprise-dmarc', pathMatch: 'full' },
   { path: 'clm-solutions', redirectTo: 'certificate-mgmt-solutions', pathMatch: 'full' },
+  { path: 'zoho-sign', loadComponent: () => import('./pages/zoho-sign.page').then((m) => m.ZohoSignPage) },
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
   { path: '**', redirectTo: '' },
 ];
