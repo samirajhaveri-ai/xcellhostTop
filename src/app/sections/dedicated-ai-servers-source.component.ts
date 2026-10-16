@@ -29,6 +29,13 @@ export class DedicatedAiServersSourceComponent implements OnDestroy {
     const main = doc?.querySelector('main');
     if (!frame || !doc || !view || !main) return;
     const resize = () => {
+      const title = this.hero ? doc.querySelector<HTMLElement>('#daHero .lh-title') : null;
+      if (title?.clientWidth) {
+        title.style.setProperty('--ai-title-size', '39px');
+        if (title.scrollWidth > title.clientWidth) {
+          title.style.setProperty('--ai-title-size', `${39 * (title.clientWidth - 2) / title.scrollWidth}px`);
+        }
+      }
       const height = `${Math.ceil(main.getBoundingClientRect().height)}px`;
       if (frame.style.height !== height) frame.style.height = height;
     };
