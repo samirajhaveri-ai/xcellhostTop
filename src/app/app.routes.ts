@@ -5,6 +5,7 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  { path: 'dedicated-ai-servers', title: 'Dedicated AI Servers | XcellHost', loadComponent: () => import('./pages/dedicated-ai-servers.page').then(m => m.DedicatedAiServersPage) },
   { path: 'under-construction/openstack-api', redirectTo: '/openstack-api', pathMatch: 'full' },
   { path: 'openstack-api', title: 'OpenStack API | XcellHost', data: { developerSlug: 'openstack-api' }, loadComponent: () => import('./pages/developer-imported.page').then(m => m.DeveloperImportedPage) },
   { path: 'under-construction/terraform-provider', redirectTo: '/terraform-provider', pathMatch: 'full' },
@@ -163,6 +164,11 @@ export const routes: Routes = [
   {
     path: 'microsoft-365-tenant-to-tenant-migration',
     loadComponent: () => import('./pages/microsoft-365-tenant-to-tenant-migration.page').then((m) => m.Microsoft365TenantToTenantMigrationPage),
+  },
+  {
+    path: 'microsoft-365-e7',
+    title: 'Microsoft 365 E7 (Frontier Suite) | XcellHost',
+    loadComponent: () => import('./pages/microsoft-365-e7.page').then((m) => m.Microsoft365E7Page),
   },
 
   ...Object.keys(FRAMEWORK_DETAILS).map(slug => ({ path: 'cybersecurity-frameworks/' + slug, data: { productSlug: slug }, loadComponent: () => import('./pages/product.page').then(m => m.ProductPage) })),
