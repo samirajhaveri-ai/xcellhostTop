@@ -1,3 +1,4 @@
+import { menuItemLink } from '../core/menu-link';
 import { DOCUMENT, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -343,6 +344,7 @@ const MENU_DESCRIPTIONS: Record<string, string> = {
  * Destinations for the Insights and Company menus. Add an entry here when the
  * matching page is built; missing destinations use the shared construction page.
  */
+
 const CONTENT_LINKS: Record<string, string> = {
   'Microsoft Copilot ': '/microsoft-copilot',
   'Escalation Matrix': '/escalation-matrix',
@@ -408,6 +410,7 @@ const CONTENT_LINKS: Record<string, string> = {
   'Infrastructure': '/infrastructure',
   'Pricing': '/pricing',
 };
+
 
 interface NavTopVm {
   label: string;
@@ -742,12 +745,7 @@ export class HeaderComponent {
    * rather than routing to a page that would 404.
    */
   private serviceLink(title: string, menu: string, explicitLink?: string): string {
-    if (explicitLink) return explicitLink;
-    if (CONTENT_LINKS[title]) return CONTENT_LINKS[title];
-    if (menu === 'Insights' || menu === 'Company') return `/under-construction/${slugify(title)}`;
-    const entry = this.catalog.findInDirectory(title);
-    const slug = slugify(entry ? entry.name : title);
-    return this.catalog.entryBySlug(slug) ? `/${slug}` : `/under-construction/${slugify(title)}`;
+    return menuItemLink(title, menu, this.catalog, explicitLink);
   }
 
   /** Every visible menu card gets concise supporting copy. */
