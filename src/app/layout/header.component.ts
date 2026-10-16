@@ -462,6 +462,10 @@ function defaultFeatureCards(
         ? '/assets/images/menu-whatsapp-smb.png'
       : item.title === 'WhatsApp Broadcasting'
         ? '/assets/images/menu-whatsapp-broadcasting.png'
+      : item.title === 'Explore VPS'
+        ? '/assets/images/menu-explore-vps.png'
+      : item.title === 'VPS India'
+        ? '/assets/images/menu-vps-india.png'
       : index === 0 ? fallbackImage : fallbackSecondImage,
     imagePosition: item.title === 'Cloud Backup'
       ? 'center 35%'
