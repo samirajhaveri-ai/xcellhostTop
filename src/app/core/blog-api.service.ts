@@ -5,6 +5,7 @@ import { catchError, combineLatest, EMPTY, expand, map, Observable, of, reduce, 
 
 import { environment } from '../../environments/environment';
 import { migrateCmsDomains } from './domain-migration';
+import { cmsRequest } from './cms-request';
 
 export interface CmsArticle {
   readonly id: number;
@@ -121,13 +122,20 @@ export class BlogApiService {
   private readonly browser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly http = inject(HttpClient);
   private readonly baseUrl = environment.strapiUrl.replace(/\/$/, '');
-  private readonly endpoint = `${this.baseUrl}/api/blogs`;
+  readonly postsStatus = signal<'loading' | 'ready' | 'error'>('loading');
+  private lastPosts: readonly CmsBlogPost[] = [];
   readonly videoStatus = signal<'loading' | 'ready' | 'cached' | 'error'>('loading');
   private lastVideos: readonly CmsInsightResource[] = [];
 
   /** Refreshes in the background so CMS edits appear without rebuilding the UI. */
   readonly posts$: Observable<readonly CmsBlogPost[]> = this.browser ? timer(0, 30_000).pipe(
-    switchMap(() => this.list()),
+    switchMap(() => this.list().pipe(
+      tap(posts => { this.lastPosts = posts; this.postsStatus.set('ready'); }),
+      catchError(() => {
+        this.postsStatus.set('error');
+        return of(this.lastPosts);
+      }),
+    )),
     shareReplay({ bufferSize: 1, refCount: true })
   ) : of([]);
 
@@ -201,7 +209,7 @@ export class BlogApiService {
       .set('pagination[page]', page)
       .set('pagination[pageSize]', '100');
 
-    return this.http.get<StrapiListResponse>(this.endpoint, { params }).pipe(map(migrateCmsDomains));
+    return cmsRequest<StrapiListResponse>(this.http, 'blogs', params).pipe(map(migrateCmsDomains));
   }
 
   private resourceStream(endpoint: string, kind: CmsResourceKind): Observable<readonly CmsInsightResource[]> {
@@ -238,7 +246,7 @@ export class BlogApiService {
       .set('pagination[page]', page)
       .set('pagination[pageSize]', '100');
 
-    return this.http.get<StrapiResourceListResponse>(`${this.baseUrl}/api/${endpoint}`, { params }).pipe(map(migrateCmsDomains));
+    return cmsRequest<StrapiResourceListResponse>(this.http, endpoint, params).pipe(map(migrateCmsDomains));
   }
 
   private listYouTubeVideos(): Observable<readonly CmsInsightResource[]> {

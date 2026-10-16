@@ -308,36 +308,42 @@ filename (without the extra download suffixes). The shared page head also includ
 `G0UWjReHHgKsm4C-R6zQylwP2_XDRvDpgqvz2LK-ijc`. Both the HTML file and
 meta tag are retained in the deployment.
 
-### Hosting issues confirmed against the public CMS
+### Blogs and case studies on production (16 October 2026)
 
-The admin hostname currently serves a self-signed Plesk certificate whose subject
-is `CN=Plesk`, rather than a trusted certificate for **admin.xcellhost.cloud**.
-In Plesk, open that subdomain's SSL/TLS Certificates settings, issue a trusted
-certificate (for example Let's Encrypt), and assign it to the hostname. Keep
-certificate verification enabled in production. The diagnostic inspection used
-an exception only to identify the public API responses below.
+The public Strapi API returns 74 published entries, but its responses omit
+`Access-Control-Allow-Origin` for `https://xcellhost.cloud`. Localhost works
+because Angular proxies these requests. The CMS HTTPS certificate passed the
+current connection check; retain certificate verification in production.
 
-The public blogs endpoint returned 74 published entries, but its response did
-not include `Access-Control-Allow-Origin` for `https://xcellhost.cloud`. In the
-Strapi backend's `config/middlewares.js` or `config/middlewares.ts`, update the
-existing `strapi::cors` entry to allow the new public origins, preserving the
-rest of the middleware list, then restart Strapi:
+Production now requests `/api/cms.php?collection=blogs` on the website domain.
+The PHP endpoint fetches only approved public CMS collections from the fixed
+HTTPS admin hostname, without forwarding browser credentials. This removes the
+browser CORS dependency. Relative cover images still use the admin hostname.
+Blog refreshes retry every 30 seconds and preserve the last successful list
+when a request fails. Case studies combine the dedicated collection, Blog
+entries categorized `Case Study` or `Case Studies`, and bundled customer stories,
+with dedicated entries taking precedence for matching slugs.
 
-```js
-{
-  name: 'strapi::cors',
-  config: {
-    origin: ['https://xcellhost.cloud', 'https://www.xcellhost.cloud'],
-  },
-}
-```
+Build with `npm run package` and upload/extract `release/xcellhost-site.zip`
+into the public domain's `httpdocs`, including `api/cms.php` and
+`api/cms-handler.php`. Enable PHP 8.1+ and cURL in Plesk and allow outbound HTTPS
+to `admin.xcellhost.cloud`. No CMS token is needed for published public content.
+Do not disable TLS verification; configure the PHP CA bundle if required.
 
-`/api/use-cases` and `/api/case-studies` returned HTTP 404. The website already
-falls back to customer stories stored in blogs for case studies. For live use
-cases, create/restore the **Use Case** collection (API ID `use-case`, plural
-`use-cases`), with the article fields listed above for Insights documents and
-`relatedPage`/`relatedPages`. Publish the records and enable Public `find` access.
-Changing the website domain cannot restore missing CMS collections or records.
+After upload, open `https://xcellhost.cloud/api/cms.php?collection=blogs` and
+confirm JSON with a non-empty `data` array. HTTP 502 means PHP could not connect
+to the CMS or the CMS returned an invalid response; check PHP cURL, outbound
+HTTPS and CA trust. HTTP 403 requires Public `find` access in Strapi. Check
+Insights, a blog detail URL, Case Studies, a case-study detail URL, cover images,
+and direct refreshes of detail URLs. Run `php scripts/test-cms.php` for backend
+regressions and `php scripts/test-cms.php --live` to check the actual CMS.
+
+The last inspection of `/api/use-cases` and `/api/case-studies` returned 404.
+The site supports customer stories authored in Blogs even if the dedicated
+Case Studies collection is missing or empty. For live use cases, create/restore
+the **Use Case** collection (API ID `use-case`, plural `use-cases`), publish
+records, and enable Public `find` access. Missing CMS collections cannot be
+restored by changing the website domain.
 
 ### Redirects and Google migration
 
@@ -411,3 +417,24 @@ memory. Provider storage is disabled in API requests.
 The optional Node vector-retrieval service remains documented in `server/README.md`.
 The default website deployment uses PHP so the upload package is self-contained
 apart from the hosting runtime and private key.
+
+## Automatic website search
+
+The search dialog uses the deployed Angular routes, current catalogue, company
+content and the same menu link resolver as the header. A newly added concrete
+route or menu destination is included when the website is rebuilt and deployed;
+no separate search list or Algolia reindex is required. Set a route `title` or
+`data.searchTitle` and optionally `data.searchDescription` for better result text.
+Use a menu item's explicit `href` when its destination differs from its name.
+Search rereads route/menu inventory each time it opens.
+
+Published Strapi blogs, use cases and case studies refresh every 30 seconds via
+the existing CMS services. Additions, edits and removals update an open search
+without retyping. Blog title, body, slug, category, author and product references
+are searchable. Equally relevant articles sort newest first; the opening search
+suggestions include recent published content. The old WordPress Algolia index
+no longer controls this dialog's results. Products/pages remain searchable when
+the CMS is temporarily unavailable, and loaded blogs survive temporary failures.
+
+Run the search checks with:
+`ng test --watch=false --browsers=ChromeHeadless --include=src/app/core/site-search.service.spec.ts --include=src/app/overlays/search-dialog.component.spec.ts`.

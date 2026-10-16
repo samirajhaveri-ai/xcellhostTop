@@ -3,8 +3,7 @@ import {
   Component,
   DestroyRef,
   ElementRef,
-  Injector,
-  afterNextRender,
+  afterRenderEffect,
   computed,
   effect,
   inject,
@@ -15,7 +14,6 @@ import {
 import { Router, RouterLink } from '@angular/router';
 
 import { slugify } from '../core/catalog.service';
-import { AlgoliaSearchService } from '../core/algolia-search.service';
 import { OverlayService } from '../core/overlay.service';
 import { SiteSearchResult, SiteSearchService } from '../core/site-search.service';
 import { AiAssistantComponent } from './ai-assistant.component';
@@ -45,9 +43,7 @@ const MAX_COMPARE = 4;
 })
 export class SearchDialogComponent {
   private readonly search = inject(SiteSearchService);
-  private readonly algolia = inject(AlgoliaSearchService);
   private readonly router = inject(Router);
-  private readonly injector = inject(Injector);
   readonly overlay = inject(OverlayService);
 
   private readonly inputRef = viewChild<ElementRef<HTMLInputElement>>('srchI');
@@ -61,10 +57,7 @@ export class SearchDialogComponent {
   readonly cur = signal(0);
   /** Service names ticked for comparison, capped at four. */
   readonly picked = signal<string[]>([]);
-  readonly loading = signal(false);
-  readonly remoteFailed = signal(false);
-  private readonly remoteResults = signal<SiteSearchResult[] | null>(null);
-  private requestId = 0;
+  readonly loading = computed(() => this.search.contentStatus() === 'loading');
   readonly aiMode = signal(false);
   readonly sources = signal<string[]>([]);
   readonly categories = signal<string[]>([]);
@@ -88,10 +81,7 @@ export class SearchDialogComponent {
       const seen = new Set(featured.map((hit) => hit.url));
       return [...featured, ...this.search.browse().filter((hit) => !seen.has(hit.url))];
     }
-    const local = this.search.search(s, this.search.browse().length);
-    const remote = this.remoteResults() ?? [];
-    const seen = new Set(remote.map((hit) => hit.url));
-    return [...remote, ...local.filter((hit) => !seen.has(hit.url))];
+    return this.search.search(s, this.search.browse().length);
   });
 
   readonly sourceOptions = computed(() => ['Product', 'Page', 'Blog'].map((value) => ({
@@ -112,8 +102,8 @@ export class SearchDialogComponent {
 
   readonly resultStatus = computed(() => {
     if (!this.query().trim()) return this.hasFilters() ? `${this.filteredResults().length} results` : 'Explore products & resources';
-    if (this.loading()) return 'Searching…';
-    if (this.remoteFailed()) return 'Live search unavailable · showing site results';
+    if (this.search.contentStatus() === 'loading') return 'Loading published content...';
+    if (this.search.contentStatus() === 'error') return 'Some published content is unavailable; retrying automatically';
     return `${this.filteredResults().length} site results`;
   });
 
@@ -133,7 +123,6 @@ export class SearchDialogComponent {
         untracked(() => {
           this.aiMode.set(false);
           this.resetAnswer();
-          this.requestId++;
           if (this.timer) clearTimeout(this.timer);
           if (this.focusTimer) clearTimeout(this.focusTimer);
           this.previousFocus?.focus();
@@ -149,15 +138,27 @@ export class SearchDialogComponent {
         this.q.set('');
         this.query.set('');
         this.cur.set(0);
-        this.remoteResults.set(null);
-        this.remoteFailed.set(false);
-        this.loading.set(false);
-        this.requestId++;
       });
-      /* `.srch` transitions `visibility`, so the field is still hidden — and
-         therefore unfocusable — in the same task the class is applied. Defer
-         past the transition, exactly as the original did. */
-      this.focusTimer = setTimeout(() => this.inputRef()?.nativeElement.focus(), 140);
+    });
+
+    afterRenderEffect((onCleanup) => {
+      if (!this.overlay.isOpen('search')) return;
+      untracked(() => {
+        const input = this.inputRef()?.nativeElement;
+        input?.focus({ preventScroll: true });
+        const window = input?.ownerDocument.defaultView;
+        if (!window) return;
+
+        // Paint the ready-to-use dialog before rebuilding the current inventory.
+        let refreshTimer: ReturnType<typeof setTimeout> | undefined;
+        const frame = window.requestAnimationFrame(() => {
+          refreshTimer = setTimeout(() => this.search.refreshInventory(), 0);
+        });
+        onCleanup(() => {
+          window.cancelAnimationFrame(frame);
+          if (refreshTimer !== undefined) clearTimeout(refreshTimer);
+        });
+      });
     });
 
     inject(DestroyRef).onDestroy(() => {
@@ -177,15 +178,10 @@ export class SearchDialogComponent {
     this.q.set(v);
     this.resetAnswer();
     this.visibleLimit.set(6);
-    this.requestId++;
-    this.remoteResults.set(null);
-    this.remoteFailed.set(false);
-    this.loading.set(false);
     if (this.timer) clearTimeout(this.timer);
     this.timer = setTimeout(() => {
       this.query.set(v);
       this.cur.set(0);
-      if (v.trim() && this.algolia.configured) void this.searchAlgolia(v.trim(), this.requestId);
     }, DEBOUNCE_MS);
   }
 
@@ -225,20 +221,6 @@ export class SearchDialogComponent {
     this.aiQuestion.set('');
   }
 
-  private async searchAlgolia(query: string, requestId: number): Promise<void> {
-    this.loading.set(true);
-    try {
-      const hits = await this.algolia.search(query);
-      if (requestId !== this.requestId || !this.overlay.isOpen('search')) return;
-      this.remoteResults.set(hits);
-      this.cur.set(0);
-    } catch {
-      if (requestId !== this.requestId || !this.overlay.isOpen('search')) return;
-      this.remoteFailed.set(true);
-    } finally {
-      if (requestId === this.requestId) this.loading.set(false);
-    }
-  }
 
   /**
    * `/` opens the dialog from anywhere; the arrows and Enter drive the result
@@ -296,7 +278,6 @@ export class SearchDialogComponent {
   }
 
   close(): void {
-    this.requestId++;
     if (this.timer) clearTimeout(this.timer);
     this.resetAnswer();
     this.aiMode.set(false);

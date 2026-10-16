@@ -1,4 +1,5 @@
 export type ComparisonCategory =
+  | 'TSplus Comparisons'
   | 'Cloud Infrastructure'
   | 'Productivity & Business Apps'
   | 'Cybersecurity'
@@ -16,6 +17,12 @@ export interface ProductComparisonDefinition {
 }
 
 export const PRODUCT_COMPARISONS: readonly ProductComparisonDefinition[] = [
+  { category: 'TSplus Comparisons', left: 'TSplus Remote Access', right: 'Citrix', leftLabel: 'TSplus', eyebrow: 'Remote access platforms', summary: 'Compare TSplus and Citrix across licensing, Windows application publishing, browser access, deployment complexity, administration and total cost of ownership.' },
+  { category: 'TSplus Comparisons', left: 'TSplus Remote Access', right: 'AnyDesk', leftLabel: 'TSplus', eyebrow: 'Remote access platforms', summary: 'Compare TSplus and AnyDesk across remote access, application delivery, browser connectivity, administration, security and licensing.' },
+  { category: 'TSplus Comparisons', left: 'TSplus Remote Access', right: 'RDS', leftLabel: 'TSplus', eyebrow: 'Windows remote access', summary: 'Compare TSplus and Microsoft Remote Desktop Services across setup, web access, application publishing, licensing and ongoing management.' },
+  { category: 'TSplus Comparisons', left: 'TSplus Remote Access', right: 'TeamViewer', leftLabel: 'TSplus', eyebrow: 'Remote access platforms', summary: 'Compare TSplus and TeamViewer across remote desktop access, application publishing, deployment, security, support and pricing.' },
+  { category: 'TSplus Comparisons', left: 'TSplus Remote Access', right: 'LogMeIn', leftLabel: 'TSplus', eyebrow: 'Remote access platforms', summary: 'Compare TSplus and LogMeIn across remote connectivity, user experience, administration, scalability, security and licensing.' },
+  { category: 'TSplus Comparisons', left: 'TSplus Remote Access', right: 'Zoho Assist', leftLabel: 'TSplus', eyebrow: 'Remote access platforms', summary: 'Compare TSplus and Zoho Assist across attended and unattended access, application delivery, browser support, management and cost.' },
   { category: 'Cybersecurity', left: 'Advanced Endpoint Security (EDR)', right: 'Microsoft Defender', leftLabel: 'Acronis EDR', rightLabel: 'Microsoft Defender', eyebrow: 'Endpoint security', summary: 'Compare Acronis EDR with Microsoft Defender across endpoint protection, detection and response, recovery, ecosystem fit and managed security operations.' },
   { category: 'Cybersecurity', left: 'All Fortinet Products', right: 'All PaloAlto Products', leftLabel: 'Fortinet', rightLabel: 'Palo Alto Networks', eyebrow: 'Network security platforms', summary: 'Compare Fortinet and Palo Alto Networks across next-generation firewalls, security architecture, management, threat prevention, ecosystem breadth and operational fit.' },
   { category: 'Digital Trust', left: 'GeoTrust', right: 'DigiCert', eyebrow: 'SSL certificate brands', summary: 'Compare GeoTrust and DigiCert across certificate options, validation levels, enterprise trust, lifecycle management and the support required for your deployment.' },

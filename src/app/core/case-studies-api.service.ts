@@ -1,9 +1,11 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { catchError, EMPTY, expand, map, Observable, of, reduce, shareReplay, switchMap, timer } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
+import { inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { catchError, combineLatest, EMPTY, expand, map, Observable, of, reduce, shareReplay, switchMap, tap, timer } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 import { migrateCmsDomains } from './domain-migration';
+import { cmsRequest } from './cms-request';
 import { CASE_STUDIES, CaseStudy } from '../data/case-studies.data';
 
 interface RawCaseStudy {
@@ -68,18 +70,31 @@ interface StrapiBlogResponse {
 export class CaseStudiesApiService {
   private readonly http = inject(HttpClient);
   private readonly baseUrl = environment.strapiUrl.replace(/\/$/, '');
-  private readonly endpoint = `${this.baseUrl}/api/case-studies`;
+  private readonly browser = isPlatformBrowser(inject(PLATFORM_ID));
+  private lastStudies: readonly CaseStudy[] = [];
+  private lastBlogStudies: readonly CaseStudy[] = [];
 
-  readonly studies$: Observable<readonly CaseStudy[]> = timer(0, 30_000).pipe(
-    switchMap(() => this.list().pipe(
-      catchError(() => this.listBlogCaseStudies().pipe(catchError(() => of([])))),
-    )),
+  readonly studies$: Observable<readonly CaseStudy[]> = this.browser ? timer(0, 30_000).pipe(
+    switchMap(() => combineLatest([
+      this.list().pipe(
+        tap(studies => { this.lastStudies = studies; }),
+        catchError(() => of(this.lastStudies)),
+      ),
+      this.listBlogCaseStudies().pipe(
+        tap(studies => { this.lastBlogStudies = studies; }),
+        catchError(() => of(this.lastBlogStudies)),
+      ),
+    ])),
+    map(([studies, blogStudies]) => {
+      const ids = new Set(studies.map(study => study.id));
+      return [...studies, ...blogStudies.filter(study => !ids.has(study.id))];
+    }),
     map((studies) => {
       const remoteIds = new Set(studies.map((study) => study.id));
       return [...studies, ...CASE_STUDIES.filter((study) => !remoteIds.has(study.id))];
     }),
     shareReplay({ bufferSize: 1, refCount: true }),
-  );
+  ) : of(CASE_STUDIES);
 
   private list(): Observable<readonly CaseStudy[]> {
     return this.listPage(1).pipe(
@@ -102,7 +117,7 @@ export class CaseStudiesApiService {
       .set('populate', '*')
       .set('pagination[page]', page)
       .set('pagination[pageSize]', '100');
-    return this.http.get<StrapiCaseStudyResponse>(this.endpoint, { params }).pipe(map(migrateCmsDomains));
+    return cmsRequest<StrapiCaseStudyResponse>(this.http, 'case-studies', params).pipe(map(migrateCmsDomains));
   }
 
   private normalise(study: RawCaseStudy): CaseStudy {
@@ -161,7 +176,7 @@ export class CaseStudiesApiService {
       .set('populate', 'coverImage')
       .set('pagination[page]', page)
       .set('pagination[pageSize]', '100');
-    return this.http.get<StrapiBlogResponse>(`${this.baseUrl}/api/blogs`, { params }).pipe(map(migrateCmsDomains));
+    return cmsRequest<StrapiBlogResponse>(this.http, 'blogs', params).pipe(map(migrateCmsDomains));
   }
 
   private normaliseBlogCaseStudy(entry: RawBlogCaseStudy): CaseStudy {

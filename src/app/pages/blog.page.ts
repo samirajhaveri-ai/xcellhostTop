@@ -170,6 +170,14 @@ export class BlogPage implements OnDestroy {
       `Hi XcellHost, I have just read "${this.post()?.title ?? 'your insights'}" and would like to talk.`
     )
   );
+  readonly showTallyBanner = computed(() => {
+    if (this.isUseCase) return false;
+    const post = this.post();
+    if (!post) return false;
+    return [post.slug, post.title, post.product, post.relatedPages]
+      .filter((value): value is string => Boolean(value))
+      .some((value) => /tally(?:-|\s|%20)*on(?:-|\s|%20)*cloud|tally-cloud|tally-vs/i.test(value));
+  });
   readonly tallyInfosheet = PRODUCT_INFOSHEETS['Tally on Cloud'];
   readonly mailHref = computed(() => this.leads.mailtoLink(
     `Enquiry: ${this.post()?.product || this.post()?.title || 'XcellHost services'}`,
@@ -221,7 +229,7 @@ export class BlogPage implements OnDestroy {
         next: ({ posts, post }) => {
           this.allPosts.set(posts);
           this.loading.set(false);
-          this.error.set(false);
+          this.error.set(!this.isUseCase && this.blogApi.postsStatus() === 'error' && !post);
           this.post.set(post);
         },
         error: () => {

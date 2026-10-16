@@ -99,6 +99,22 @@
               <a class="btn btn-ghost" [href]="waHref()" target="_blank" rel="noopener">WhatsApp</a>
             </div>
           </div>
+
+          @if (showTallyBanner()) {
+            <a
+              class="article-tally-banner"
+              routerLink="/tally-on-cloud"
+              aria-label="Start with Tally on Cloud from XcellHost"
+            >
+              <img
+                src="/assets/images/tally-on-cloud-blog-banner.jpg"
+                alt="Tally on Cloud from XcellHost — access your Tally anywhere, from ₹499 per user per month plus GST"
+                width="600"
+                height="500"
+                loading="lazy"
+              />
+            </a>
+          }
         </aside>
 
         <div class="article-content">
