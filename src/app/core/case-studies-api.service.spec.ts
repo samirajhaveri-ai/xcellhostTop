@@ -10,6 +10,28 @@ describe('CaseStudiesApiService', () => {
     providers: [provideHttpClient(), provideHttpClientTesting()],
   }));
 
+  it('includes blog stories when the dedicated collection exists and preserves both during outages', fakeAsync(() => {
+    const service = TestBed.inject(CaseStudiesApiService);
+    const http = TestBed.inject(HttpTestingController);
+    let received: readonly CaseStudy[] = [];
+    const subscription = service.studies$.subscribe(studies => received = studies);
+    tick(0);
+    http.expectOne(req => req.url.endsWith('/api/case-studies')).flush({ data: [{ slug: 'dedicated-story', summary: 'Dedicated story' }] });
+    http.expectOne(req => req.url.endsWith('/api/blogs')).flush({ data: [
+      { slug: 'blog-story', title: 'Blog story', category: 'Case Study', content: 'Customer outcome' },
+      { slug: 'dedicated-story', title: 'Duplicate', category: 'Case Study' },
+    ] });
+    expect(received.filter(study => study.id === 'dedicated-story').length).toBe(1);
+    expect(received.find(study => study.id === 'blog-story')).toBeDefined();
+    tick(30_000);
+    http.expectOne(req => req.url.endsWith('/api/case-studies')).flush({}, { status: 502, statusText: 'Unavailable' });
+    http.expectOne(req => req.url.endsWith('/api/blogs')).flush({}, { status: 502, statusText: 'Unavailable' });
+    expect(received.find(study => study.id === 'blog-story')).toBeDefined();
+    expect(received.find(study => study.id === 'dedicated-story')?.summary).toBe('Dedicated story');
+    subscription.unsubscribe();
+    http.verify();
+  }));
+
   it('normalises hierarchical Strapi case studies', fakeAsync(() => {
     const service = TestBed.inject(CaseStudiesApiService);
     const http = TestBed.inject(HttpTestingController);
@@ -30,6 +52,7 @@ describe('CaseStudiesApiService', () => {
       services: ['Managed SOC'],
       coverImage: { url: '/uploads/secure-retail.jpg', alternativeText: 'Retail security team' },
     }] });
+    http.expectOne((request) => request.url.endsWith('/api/blogs')).flush({ data: [] });
     expect(count).toBe(CASE_STUDIES.length + 1);
     expect(category).toBe('Cybersecurity');
     expect(coverUrl).toContain('/uploads/secure-retail.jpg');
