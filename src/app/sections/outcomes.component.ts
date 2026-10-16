@@ -116,7 +116,7 @@ const PLATFORM_CAPABILITIES: readonly PlatformCapability[] = [
           </div>
         </div>
         <div class="outcomes-action">
-          <a class="btn btn-ghost" href="/company/trust-center">Watch Tower <span aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost" href="/company/trust-center">Trust Center <span aria-hidden="true">→</span></a>
           <a class="btn btn-ghost" href="/company/our-platform">Learn More <span aria-hidden="true">→</span></a>
           <a class="btn btn-ghost" href="/company/trust-watch">Trust Watch <span aria-hidden="true">→</span></a>
         </div>

@@ -2351,6 +2351,7 @@ export const MEGA_MENU: MenuTop[] = [
             "items": [
               {
                 "title": "Network Access Control (NAC)",
+                "href": "/network-access-control-nac",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -2854,8 +2855,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-
-
                 "title": "Cybird",
                 "pill": "In focus",
                 "desc": null
@@ -2865,7 +2864,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/genian-nac",
                 "pill": "New",
                 "desc": "Discover devices, assess posture and control access to your network."
-
               },
               {
                 "title": "Veritas",
@@ -4542,31 +4540,37 @@ export const MEGA_MENU: MenuTop[] = [
             "items": [
               {
                 "title": "OpenStack API",
+                "href": "/openstack-api",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "Terraform Provider",
+                "href": "/terraform-provider",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "S3 Object Storage API",
+                "href": "/s3-object-storage-api",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "OpenStack CLI",
+                "href": "/openstack-cli",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "OpenStack Credentials",
+                "href": "/openstack-credentials",
                 "pill": null,
                 "desc": null
               },
               {
                 "title": "Kubernetes API",
+                "href": "/kubernetes-api",
                 "pill": null,
                 "desc": null
               },

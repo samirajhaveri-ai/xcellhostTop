@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/core/domain-migration.ts"],
+  "sourcesContent": ["/** Migrate URLs still stored in CMS content, including rich text and media. */\r\nexport function migrateCmsDomains<T>(value: T): T {\r\n  if (typeof value === 'string') {\r\n    return value.replace(\r\n      /https?:\\/\\/((?:admin|www)\\.)?xcellhost\\.top(?=[:/?#\\s\"'<>)]|$)/gi,\r\n      (_match, subdomain: string | undefined) =>\r\n        `https://${subdomain?.toLowerCase() === 'admin.' ? 'admin.' : ''}xcellhost.cloud`,\r\n    ) as T;\r\n  }\r\n  if (Array.isArray(value)) return value.map(migrateCmsDomains) as T;\r\n  if (value && typeof value === 'object') {\r\n    return Object.fromEntries(\r\n      Object.entries(value).map(([key, entry]) => [key, migrateCmsDomains(entry)]),\r\n    ) as T;\r\n  }\r\n  return value;\r\n}\r\n"],
+  "mappings": ";AACM,SAAU,kBAAqB,OAAQ;AAC3C,MAAI,OAAO,UAAU,UAAU;AAC7B,WAAO,MAAM,QACX,oEACA,CAAC,QAAQ,cACP,WAAW,WAAW,YAAW,MAAO,WAAW,WAAW,EAAE,iBAAiB;EAEvF;AACA,MAAI,MAAM,QAAQ,KAAK;AAAG,WAAO,MAAM,IAAI,iBAAiB;AAC5D,MAAI,SAAS,OAAO,UAAU,UAAU;AACtC,WAAO,OAAO,YACZ,OAAO,QAAQ,KAAK,EAAE,IAAI,CAAC,CAAC,KAAK,KAAK,MAAM,CAAC,KAAK,kBAAkB,KAAK,CAAC,CAAC,CAAC;EAEhF;AACA,SAAO;AACT;",
+  "names": []
+}

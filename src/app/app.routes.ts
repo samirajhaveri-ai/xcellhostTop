@@ -5,9 +5,27 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  { path: 'under-construction/openstack-api', redirectTo: '/openstack-api', pathMatch: 'full' },
+  { path: 'openstack-api', title: 'OpenStack API | XcellHost', data: { developerSlug: 'openstack-api' }, loadComponent: () => import('./pages/developer-imported.page').then(m => m.DeveloperImportedPage) },
+  { path: 'under-construction/terraform-provider', redirectTo: '/terraform-provider', pathMatch: 'full' },
+  { path: 'terraform-provider', title: 'Terraform Provider | XcellHost', data: { developerSlug: 'terraform-provider' }, loadComponent: () => import('./pages/developer-imported.page').then(m => m.DeveloperImportedPage) },
+  { path: 'under-construction/s3-object-storage-api', redirectTo: '/s3-object-storage-api', pathMatch: 'full' },
+  { path: 's3-object-storage-api', title: 'S3 Object Storage API | XcellHost', data: { developerSlug: 's3-object-storage-api' }, loadComponent: () => import('./pages/developer-imported.page').then(m => m.DeveloperImportedPage) },
+  { path: 'under-construction/openstack-cli', redirectTo: '/openstack-cli', pathMatch: 'full' },
+  { path: 'openstack-cli', title: 'OpenStack CLI | XcellHost', data: { developerSlug: 'openstack-cli' }, loadComponent: () => import('./pages/developer-imported.page').then(m => m.DeveloperImportedPage) },
+  { path: 'under-construction/openstack-credentials', redirectTo: '/openstack-credentials', pathMatch: 'full' },
+  { path: 'openstack-credentials', title: 'OpenStack Credentials | XcellHost', data: { developerSlug: 'openstack-credentials' }, loadComponent: () => import('./pages/developer-imported.page').then(m => m.DeveloperImportedPage) },
+  { path: 'under-construction/kubernetes-api', redirectTo: '/kubernetes-api', pathMatch: 'full' },
+  { path: 'kubernetes-api', title: 'Kubernetes API | XcellHost', data: { developerSlug: 'kubernetes-api' }, loadComponent: () => import('./pages/developer-imported.page').then(m => m.DeveloperImportedPage) },
+
+  { path: 'network-access-control-nac', title: 'Genian NAC | XcellHost', loadComponent: () => import('./pages/genian-nac.page').then(m => m.GenianNacPage) },
+
   // Veritas renders the supplied page content inside the existing site shell.
   { path: 'veritas', title: 'Veritas AI Visibility & SEO | XcellHost', loadComponent: () => import('./pages/veritas.page').then(m => m.VeritasPage) },
+
   { path: 'genian-nac', title: 'Genian NAC | XcellHost', loadComponent: () => import('./pages/genian-nac.page').then(m => m.GenianNacPage) },
+  { path: 'bare-metal-servers/checkout', title: 'Complete Your Bare Metal Server Order | XcellHost', data: { checkoutProduct: 'bare-metal' }, loadComponent: () => import('./pages/checkout.page').then(m => m.CheckoutPage) },
+  { path: 'gpu-servers/checkout', title: 'Complete Your GPU Server Order | XcellHost', data: { checkoutProduct: 'gpu' }, loadComponent: () => import('./pages/checkout.page').then(m => m.CheckoutPage) },
   { path: 'tally-on-cloud/checkout', data: { checkoutProduct: 'tally' }, loadComponent: () => import('./pages/checkout.page').then(m => m.CheckoutPage) },
   { path: 'serverless-inference', data: { inferenceSlug: 'serverless-inference' }, loadComponent: () => import('./pages/inference-imported.page').then(m => m.InferenceImportedPage) },
   { path: 'dedicated-inference', data: { inferenceSlug: 'dedicated-inference' }, loadComponent: () => import('./pages/inference-imported.page').then(m => m.InferenceImportedPage) },

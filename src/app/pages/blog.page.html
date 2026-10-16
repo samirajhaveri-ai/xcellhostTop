@@ -232,6 +232,27 @@
             </div>
             }
           </article>
+
+          @if (!isUseCase) {
+            <section class="article-author-profile" aria-labelledby="article-author-heading">
+              <h2 id="article-author-heading">About the Author</h2>
+              <div class="article-author-profile-body">
+                <img
+                  [class.is-brand-avatar]="!hasAuthorPortrait(p.author)"
+                  [src]="authorPhoto(p.author)"
+                  [alt]="hasAuthorPortrait(p.author) ? p.author + ' portrait' : 'XcellHost editorial team'"
+                  width="120"
+                  height="120"
+                  loading="lazy"
+                  (error)="useAuthorPhotoFallback($event)"
+                />
+                <div class="article-author-profile-copy">
+                  <h3>{{ p.author }}</h3>
+                  <p>{{ authorBio(p.author) }}</p>
+                </div>
+              </div>
+            </section>
+          }
         </div>
       </div>
     </div>

@@ -45,3 +45,17 @@
 @keyframes case-category-open{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
 @media(max-width:980px){.case-library-layout{grid-template-columns:1fr}.case-category-card{position:static;display:grid;grid-template-columns:1fr 1fr;gap:8px}.case-category-label{grid-column:1/-1}.case-category-all{margin:0}.case-category-branch+.case-category-branch{margin-top:0}}
 @media(max-width:680px){.case-filter-row{align-items:stretch;flex-direction:column}.case-search{width:100%}.case-category-card{grid-template-columns:1fr}.case-library-results .case-overview-grid{grid-template-columns:1fr}.case-results-head{align-items:flex-start;flex-direction:column}}
+
+/* Isolate library cards from the homepage's shared outcome-card styles. */
+.case-page .case-overview-grid { align-items:stretch; }
+.case-page .case-overview-grid > .outcome-card { display:flex; flex-direction:column; align-items:stretch; min-width:0; min-height:0; padding:0; overflow:hidden; border:1px solid #d7e4f2; border-radius:16px; background:#fff; text-align:left; }
+.case-page .outcome-card > .outcome-visual { flex:none; width:100%; height:auto; aspect-ratio:3 / 2; margin:0; padding:0; background:#eaf3ff; }
+.case-page .outcome-visual img { width:100%; height:100%; margin:0; padding:0; object-fit:cover; object-position:center; }
+.case-page .outcome-card > .outcome-body { box-sizing:border-box; flex:1; width:100%; min-width:0; min-height:0; margin:0; padding:22px; border:0; background:#fff; text-align:left; }
+.case-page .outcome-services { min-width:0; margin-bottom:14px; }
+.case-page .outcome-services span { max-width:100%; padding:5px 8px; border-radius:5px; background:#edf5ff; overflow-wrap:anywhere; }
+.case-page .outcome-tag { flex-wrap:wrap; min-width:0; line-height:1.5; overflow-wrap:anywhere; }
+.case-page .outcome-card h3 { white-space:normal; overflow-wrap:anywhere; margin:10px 0; font:700 18px/1.4 var(--disp); }
+.case-page .outcome-card p { overflow-wrap:anywhere; margin:0 0 20px; font:400 14px/1.65 var(--body); }
+.case-page .outcome-card .outcome-link { padding-top:8px; }
+@media(max-width:680px) { .case-page .outcome-card > .outcome-body { padding:20px; } }

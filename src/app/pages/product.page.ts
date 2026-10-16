@@ -1,5 +1,6 @@
 
 import { ContainerRegistryHeroComponent } from '../sections/container-registry-hero.component';
+import { CybirdOverviewComponent } from '../sections/cybird-overview.component';
 import { ContainerServiceHeroComponent } from '../sections/container-service-hero.component';
 import { ContainerRegistryContentComponent } from '../sections/container-registry-content.component';
 
@@ -514,6 +515,7 @@ interface ProductTourSlide {
     BillingSoftwareOverviewComponent,
     BillingSoftwareTailComponent,
     EnterpriseDrOverviewComponent,
+    CybirdOverviewComponent,
     EnterpriseDrDetailsComponent,
 
     LinuxServersContentComponent,
@@ -5573,3 +5575,4 @@ class ProductPageComponent {
 }
 
 export { ProductPageComponent as ProductPage };
+

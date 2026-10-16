@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/pages/digicert-ssl-detail.page.ts"],
+  "sourcesContent": ["import { Component, inject } from '@angular/core';\nimport { ActivatedRoute } from '@angular/router';\nimport { ImportedInteractiveContentComponent } from '../sections/imported-interactive-content.component';\nimport { InsightsSectionComponent } from '../sections/insights-section.component';\n@Component({selector:'xh-digicert-ssl-detail-page',standalone:true,imports:[ImportedInteractiveContentComponent,InsightsSectionComponent],template:`<xh-imported-interactive-content source=\"ssl-detail\" [sslSlug]=\"slug\" /><xh-insights-section [pageSlug]=\"slug\" />`})\nexport class DigicertSslDetailPage {readonly slug=inject(ActivatedRoute).snapshot.data['sslSlug'] as string;}\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAKM,IAAO,wBAAP,MAAO,uBAAqB;EAAW,OAAK,OAAO,cAAc,EAAE,SAAS,KAAK,SAAS;;qCAAnF,wBAAqB;EAAA;yEAArB,wBAAqB,WAAA,CAAA,CAAA,6BAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,QAAA,CAAA,CAAA,UAAA,cAAA,GAAA,SAAA,GAAA,CAAA,GAAA,UAAA,CAAA,GAAA,UAAA,SAAA,+BAAA,IAAA,KAAA;AAAA,QAAA,KAAA,GAAA;AADkH,MAAA,oBAAA,GAAA,mCAAA,CAAA,EAAwE,GAAA,uBAAA,CAAA;;;AAAnB,MAAA,qBAAA,WAAA,IAAA,IAAA;AAAwC,MAAA,oBAAA;AAAA,MAAA,qBAAA,YAAA,IAAA,IAAA;;oBAArK,qCAAoC,wBAAwB,GAAA,eAAA,EAAA,CAAA;;;sEAC3H,uBAAqB,CAAA;UADjC;WAAU,EAAC,UAAS,+BAA8B,YAAW,MAAK,SAAQ,CAAC,qCAAoC,wBAAwB,GAAE,UAAS,oHAAmH,CAAC;;;;6EAC1P,uBAAqB,EAAA,WAAA,yBAAA,UAAA,6CAAA,YAAA,EAAA,CAAA;AAAA,GAAA;",
+  "names": []
+}

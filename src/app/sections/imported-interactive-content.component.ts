@@ -6,8 +6,12 @@ import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 
 type InteractiveContentSource =
+  | 'developer-page'
   | 'cybird'
+  | 'cybird-sections'
+
   | 'veritas'
+
   | 'inference-page'
   | 'vps-page'
   | 'sectigo-detail'
@@ -41,6 +45,8 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
   @Input() vpsSlug = '';
   @Input() sectigoSlug = '';
   @Input() inferenceSlug = '';
+  @Input() developerSlug = '';
+  private readonly developerSlugs = new Set(['openstack-api', 'terraform-provider', 's3-object-storage-api', 'openstack-cli', 'openstack-credentials', 'kubernetes-api']);
   private readonly inferenceSlugs = new Set(['serverless-inference', 'dedicated-inference', 'model-catalog', 'model-directory']);
   private readonly sectigoSlugs = new Set(['sectigo-ssl', 'sectigo-ov-ssl-wildcard', 'sectigo-ov-ssl', 'sectigo-acme-certificate-as-a-service', 'sectigo-ssl-wildcard', 'sectigo-ssl-multi-domain-ucc', 'sectigo-ov-ssl-multi-domain-wildcard', 'sectigo-ov-ssl-multi-domain-ucc', 'sectigo-ev-ssl-multi-domain-ucc', 'sectigo-ev-ssl']);
   private readonly vpsSlugs = new Set(['wordpress-vps', 'windows-vps', 'vps-usa', 'vps-netherlands', 'vps-india', 'vps-hosting', 'openclaw-vps', 'n8n-vps', 'cpanel-vps']);
@@ -71,11 +77,15 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'digicert-secure-site-pro-ev-ssl',
   ]);
   private readonly sourceUrls: Record<
-    Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page' | 'sectigo-detail' | 'inference-page'>,
+    Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page' | 'sectigo-detail' | 'inference-page' | 'developer-page'>,
     string
   > = {
     cybird: 'about:blank',
+
+    'cybird-sections': '/imported-cybird-sections.html',
+
     veritas: 'about:blank',
+
     'managed-pki': '/imported-managed-pki.html',
     'managed-pki-hero': '/imported-managed-pki-hero.html',
     'private-ca': '/imported-private-ca.html',
@@ -135,8 +145,13 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+    'developer-page': 'XcellCloud developer tools, API examples and documentation',
     cybird: 'Cybird X2 security platform, animated network, plans and threat simulator',
+
+    'cybird-sections': 'Cybird features, benefits, operation, hardware, threat simulator, comparisons, use cases, partners and pricing',
+
     veritas: 'Veritas AI visibility and SEO platform, interactive tools and pricing',
+
 
     'managed-pki': 'Managed PKI overview, comparisons, use-case builder and pricing',
     'managed-pki-hero': 'Managed PKI root ceremony, issuance, revocation and renewal animation',
@@ -227,7 +242,9 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
 
   get contentUrl(): SafeResourceUrl {
     let url: string;
-    if (this.source === 'inference-page') {
+    if (this.source === 'developer-page') {
+      url = this.developerSlugs.has(this.developerSlug) ? `/imported-developer-${this.developerSlug}.html` : 'about:blank';
+    } else if (this.source === 'inference-page') {
       url = this.inferenceSlugs.has(this.inferenceSlug) ? `/imported-inference-${this.inferenceSlug}.html` : 'about:blank';
     } else if (this.source === 'sectigo-detail') {
       url = this.sectigoSlugs.has(this.sectigoSlug) ? `/imported-sectigo-detail-${this.sectigoSlug}.html` : 'about:blank';
@@ -237,6 +254,9 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
       url = this.consultingUrls[this.consultingSlug] ?? 'about:blank';
     } else if (this.source === 'ssl-detail') {
       url = this.sslSlugs.has(this.sslSlug) ? `/imported-${this.sslSlug}.html` : 'about:blank';
+      if (this.sslSlug === 'digicert-secure-site-pro-ssl') {
+        url += '?v=powered-by-below-ai-2';
+      }
     } else {
       url = this.sourceUrls[this.source];
     }
@@ -257,14 +277,18 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     const main = doc?.querySelector('main');
     if (!frame || !doc || !main) return;
     const resize = () => {
-      if (this.source === 'cybird') doc.documentElement.style.setProperty('--cybird-vh', `${window.innerHeight / 100}px`);
+
+      if (this.source === 'cybird' || this.source === 'cybird-sections') doc.documentElement.style.setProperty('--cybird-vh', `${window.innerHeight / 100}px`);
       if (this.source === 'veritas') doc.documentElement.style.setProperty('--veritas-vh', `${window.innerHeight / 100}px`);
+
       const height = `${Math.ceil(main.getBoundingClientRect().height) + 8}px`;
       if (frame.style.height !== height) frame.style.height = height;
     };
     let resizeFrame = 0;
     const observer = new ResizeObserver(() => {
-      if (this.source !== 'cybird' && this.source !== 'veritas') { resize(); return; }
+
+      if (this.source !== 'cybird' && this.source !== 'cybird-sections' && this.source !== 'veritas') { resize(); return; }
+
       cancelAnimationFrame(resizeFrame);
       resizeFrame = requestAnimationFrame(resize);
     });

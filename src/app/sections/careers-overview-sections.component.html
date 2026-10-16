@@ -1,0 +1,179 @@
+<div class="careers-showcase">
+  <section class="cr-section" id="career-values" aria-labelledby="career-values-title">
+    <div class="cr-wrap">
+      <header class="cr-heading">
+        <span>Why join XcellHost</span>
+        <h2 id="career-values-title">More than a job — <em>work that keeps India's businesses running.</em></h2>
+        <p>Our customers' email, servers, cloud workloads and security alerts land on our desks every day. That is the work — and it is the fastest way to learn.</p>
+      </header>
+      <div class="value-grid">
+        @for (item of values; track item.title; let index = $index) {
+          <article class="value-card">
+            <i class="material-symbols-outlined" aria-hidden="true">{{ item.icon }}</i>
+            <small>{{ (index + 1).toString().padStart(2, '0') }}</small>
+            <h3>{{ item.title }}</h3><p>{{ item.body }}</p><span>{{ item.note }}</span>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <div class="section-wave" aria-hidden="true">
+    <svg viewBox="0 0 1000 40" preserveAspectRatio="none">
+      <path d="M0 20 C160 4 330 36 500 20S840 4 1000 20"/>
+      <circle class="wave-runner" cx="0" cy="0" r="5">
+        <animateMotion dur="5.5s" begin="1s" repeatCount="indefinite" path="M0 20 C160 4 330 36 500 20S840 4 1000 20" />
+      </circle>
+    </svg>
+  </div>
+
+  <section class="cr-section cr-life-source" aria-labelledby="career-moments-title">
+    <div class="cr-wrap">
+      <header class="cr-heading">
+        <span>Life at XcellHost</span>
+        <h2 id="career-moments-title">Work, learn, celebrate, <em>repeat.</em></h2>
+        <p>The moments that make a 24×7 operations company feel like a team. Illustrations, not stock photos — come and see the real thing at interview.</p>
+      </header>
+      <div class="moment-grid">
+        @for (item of moments; track item.title) {
+          <article class="moment-card">
+            <div class="moment-art" [attr.data-art]="item.art" aria-hidden="true">
+              <span class="art-screen"></span><span class="art-line one"></span><span class="art-line two"></span>
+              <span class="art-orbit"></span><span class="art-main material-symbols-outlined">{{ item.icon }}</span>
+              <i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <div class="moment-copy"><i class="material-symbols-outlined" aria-hidden="true">{{ item.icon }}</i><h3>{{ item.title }}</h3><p>{{ item.body }}</p></div>
+          </article>
+        }
+      </div>
+
+      <header class="cr-heading cr-subheading" id="career-teams">
+        <span>Teams you can join</span>
+        <h2>Nine teams, <em>one operation.</em></h2>
+        <p>Hover (or tap) a team to see the work it does and the skills that help. Not sure where you fit? Try the <a href="#career-role-matcher">role matcher</a>.</p>
+      </header>
+      <div class="team-grid">
+        @for (team of teams; track team.key) {
+          <article class="team-card" tabindex="0">
+            <div class="team-front"><i class="material-symbols-outlined" aria-hidden="true">{{ team.icon }}</i><small>{{ team.label }}</small><h3>{{ team.title }}</h3><p>{{ team.body }}</p><span>See the work →</span></div>
+            <div class="team-back"><b>Typical work</b><ul>@for (work of team.work; track work) { <li>{{ work }}</li> }</ul><div>@for (skill of team.skills; track skill) { <span>{{ skill }}</span> }</div></div>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="cr-section cr-day" aria-labelledby="career-day-title">
+    <div class="cr-wrap">
+      <header class="cr-heading">
+        <span>A day at XcellHost</span>
+        <h2 id="career-day-title">One day, six moments — <em>scroll through it.</em></h2>
+        <p>An illustrative day across our teams, from the morning NOC hand-over to the evening wrap. No two days are the same, which is rather the point.</p>
+      </header>
+      <div class="day-layout">
+        <div class="day-copy">
+          <span class="day-number">{{ (activeDay() + 1).toString().padStart(2, '0') }}</span>
+          <div><small>{{ daySteps[activeDay()].label }}</small><h3>{{ daySteps[activeDay()].title }}</h3><p>{{ daySteps[activeDay()].body }}</p><em>↔ {{ daySteps[activeDay()].note }}</em></div>
+        </div>
+        <nav class="day-rail" aria-label="A day at XcellHost moments">
+          <span class="rail-line"><i [style.height.%]="activeDay() * 20"></i></span>
+          @for (step of daySteps; track step.title; let index = $index) {
+            <button type="button" [class.active]="activeDay() === index" [class.complete]="index < activeDay()" (click)="activeDay.set(index)"><i></i>{{ step.rail }}</button>
+          }
+        </nav>
+        <div class="day-visual">
+          <header><span>{{ daySteps[activeDay()].time }}</span><b>{{ daySteps[activeDay()].title }}</b><small>illustrative</small></header>
+          <div class="day-scene" [attr.data-scene]="activeDay()" aria-hidden="true">
+            <section><small>Night shift</small>@for (_ of [1,2,3,4,5,6,7,8,9,10,11,12]; track $index) { <i></i> }</section>
+            <section><small>Day shift</small>@for (_ of [1,2,3,4,5,6,7,8,9,10,11,12]; track $index) { <i></i> }</section>
+          </div>
+          <footer><i class="material-symbols-outlined" aria-hidden="true">sync_alt</i><span><b>{{ daySteps[activeDay()].note }}</b><small>{{ daySteps[activeDay()].body }}</small></span></footer>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cr-section" id="career-role-matcher" aria-labelledby="career-matcher-title">
+    <div class="cr-wrap">
+      <header class="cr-heading">
+        <span>Role matcher</span>
+        <h2 id="career-matcher-title">Tell us what you enjoy — <em>we'll point you to a team.</em></h2>
+        <p>Pick the things you like doing. The matcher ranks our nine teams and suggests a role you can apply for in one click. It is a starting point, not a test.</p>
+      </header>
+      <div class="matcher">
+        <div class="matcher-input">
+          <div class="matcher-label"><b>◎ &nbsp;What do you enjoy?</b><span>{{ selectedInterests().size }} picked</span></div>
+          <div class="interest-list">
+            @for (interest of interests; track interest.key) {
+              <button type="button" [class.active]="selectedInterests().has(interest.key)" [attr.aria-pressed]="selectedInterests().has(interest.key)" (click)="toggleInterest(interest.key)"><i class="material-symbols-outlined" aria-hidden="true">{{ interest.icon }}</i>{{ interest.label }}</button>
+            }
+          </div>
+          <div class="matcher-label"><b>◷ &nbsp;Experience</b></div>
+          <div class="experience-switch" role="group" aria-label="Experience">
+            <button type="button" [class.active]="experience() === 'st'" (click)="experience.set('st')">Student / intern</button>
+            <button type="button" [class.active]="experience() === 'fr'" (click)="experience.set('fr')">Fresher – 2 yrs</button>
+            <button type="button" [class.active]="experience() === 'ex'" (click)="experience.set('ex')">3+ years</button>
+          </div>
+          <button class="matcher-reset" type="button" (click)="resetMatcher()">↻ Reset</button>
+        </div>
+        <div class="matcher-output">
+          <div class="match-top">
+            <div class="match-ring" [style.--score]="bestTeam().score + '%'"> <b>{{ bestTeam().score }}<small>%</small></b><span>match</span></div>
+            <div><small>{{ selectedInterests().size ? 'Best fit · ' + selectedInterests().size + ' interests' : 'Pick a few interests' }}</small><h3>{{ selectedInterests().size ? bestTeam().title : 'Your best-fit team appears here' }}</h3><span>Suggested role&nbsp; · &nbsp;{{ selectedInterests().size ? suggestedRole() : '—' }}</span></div>
+          </div>
+          <ol class="ranking">
+            @for (team of rankedTeams(); track team.key; let index = $index) {
+              <li [class.top]="index === 0 && team.score > 0"><span>{{ index + 1 }}</span><b><i class="material-symbols-outlined">{{ team.icon }}</i>{{ team.title }}</b><em><i [style.width.%]="team.score"></i></em><small>{{ team.score }}%</small></li>
+            }
+          </ol>
+          <div class="matcher-actions"><a routerLink="/company/apply-for-job" class="orange-button">Apply for this role →</a><a href="#career-teams" class="outline-button">▦ &nbsp; See all teams</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cr-section" aria-labelledby="career-opportunities-title">
+    <div class="cr-wrap">
+      <header class="cr-heading">
+        <span>Career opportunities</span>
+        <h2 id="career-opportunities-title">Find your <em>next move.</em></h2>
+        <p>Open roles at XcellHost appear here as soon as they are approved. When nothing is listed, the talent network is the best way in — we look there first.</p>
+      </header>
+      <div class="open-card">
+        <div class="radar" aria-hidden="true"><i></i><i></i><i></i><span></span></div>
+        <div><small>⌕ Open positions</small><h3>No openings listed right now — join our talent network.</h3><p>Send us your profile once and we will consider you for NOC, SOC, cloud, Microsoft 365, digital trust, sales, marketing, support and finance roles as they open.</p><div><a class="orange-button" routerLink="/company/apply-for-job">Join the talent network →</a><a class="outline-button" href="#career-role-matcher">◎ &nbsp; Find my team first</a></div></div>
+      </div>
+      <div class="switch-card">
+        <header><span>Switch your career</span><h3>Coming from support, networking, college or another industry?</h3><p>Plenty of our engineers started somewhere else. If you are curious and willing to learn, here is what you get.</p></header>
+        <div class="switch-grid"><article><i class="material-symbols-outlined">menu_book</i><b>Continuous learning</b><p>A learning plan for your role, time to study, and support for certifications that fit it.</p></article><article><i class="material-symbols-outlined">person_check</i><b>Work with experts</b><p>Shadow senior engineers on live work before you own it yourself.</p></article><article><i class="material-symbols-outlined">dns</i><b>Real projects</b><p>Customer environments from your first months — guided, reviewed and real.</p></article></div>
+        <a class="outline-button" routerLink="/company/apply-for-job">⌕ &nbsp; Explore career opportunities</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cr-section" aria-labelledby="career-process-title">
+    <div class="cr-wrap">
+      <header class="cr-heading"><span>Hiring process</span><h2 id="career-process-title">Simple and transparent — <em>four steps.</em></h2><p>We review every application and reply to every applicant. The steps below are how it typically works; some roles add or skip a step.</p></header>
+      <div class="process"><svg viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true">
+        <path class="process-base" d="M40 60C160 0 240 120 375 60S560 0 625 60S820 120 960 60"/>
+        <path class="process-draw" pathLength="1" d="M40 60C160 0 240 120 375 60S560 0 625 60S820 120 960 60"/>
+        <circle class="process-runner" cx="0" cy="0" r="6">
+          <animateMotion dur="6.4s" begin=".8s" repeatCount="indefinite" path="M40 60C160 0 240 120 375 60S560 0 625 60S820 120 960 60" />
+        </circle>
+      </svg>
+        <ol>@for (step of hiringSteps; track step.title; let index = $index) { <li><i class="material-symbols-outlined">{{ step.icon }}<em>{{ index + 1 }}</em></i><h3>{{ step.title }}</h3><p>{{ step.body }}</p><span>◷ {{ step.note }}</span></li> }</ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="cr-section cr-perks" aria-labelledby="career-perks-title">
+    <div class="cr-wrap">
+      <header class="cr-heading"><span>Perks & benefits</span><h2 id="career-perks-title">We take care of <em>our people.</em></h2><p>Flip a card for the detail. Specifics vary by role and are confirmed in your offer letter.</p></header>
+      <div class="perk-grid">
+        @for (perk of perks; track perk.title; let index = $index) {
+          <button type="button" class="perk" [class.flipped]="flippedPerks().has(index)" [attr.aria-pressed]="flippedPerks().has(index)" (click)="togglePerk(index)"><span class="perk-inner"><span class="perk-front"><i class="material-symbols-outlined">{{ perk.icon }}</i><b>{{ perk.title }}</b><small>Flip ↻</small></span><span class="perk-back"><b>{{ perk.title }}</b><span>{{ perk.body }}</span></span></span></button>
+        }
+      </div>
+    </div>
+  </section>
+</div>
