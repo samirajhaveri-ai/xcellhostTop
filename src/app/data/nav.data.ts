@@ -23,7 +23,7 @@ export const MEGA_MENU: MenuTop[] = [
             "label": "Endpoint security",
             "title": "Advanced Endpoint Security (EDR)",
             "body": "Identify, protect, detect, respond and recover from endpoint threats.",
-            "image": "/assets/images/acronis-partner/security.jpg",
+            "image": "/assets/images/menu-edr-labeled.png",
             "link": "/advanced-endpoint-security-edr"
           },
           {
