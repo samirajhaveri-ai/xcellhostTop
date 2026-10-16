@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, HostListener, signal } from '@angular/core';
 
 interface ArchitectureTab {
-  key: 'security' | 'cloud' | 'data-center' | 'managed-security' | 'observability' | 'backup';
+  key: 'security' | 'cloud' | 'email' | 'data-center' | 'managed-security' | 'observability' | 'backup';
   label: string;
   title: string;
   description: string;
@@ -114,6 +114,14 @@ export class InfrastructureContentComponent {
       description: 'Flexible compute, resilient storage and secure networking work together across our cloud platform so you can launch quickly, scale on demand and keep workloads available.',
       image: '/assets/images/infrastructure-cloud-architecture.jpg',
       alt: 'XcellHost cloud architecture diagram',
+    },
+    {
+      key: 'email',
+      label: 'Email Architecture',
+      title: 'XcellWorkspace Email Architecture',
+      description: 'See how XcellWorkspace combines secure email gateways, multi-zone mail services, replicated storage, disaster recovery and central management to deliver a secure, highly available and scalable email platform.',
+      image: '/assets/images/infrastructure-email-architecture.jpg',
+      alt: 'XcellWorkspace secure and highly available email architecture diagram',
     },
     {
       key: 'backup',

@@ -4,8 +4,20 @@ import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-brows
 import { CartService } from '../core/cart.service';
 import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
+import { useScrollingSectionNavigation } from './section-navigation-flow';
 
 type InteractiveContentSource =
+  | 'sage-300-hosting'
+  | 'sage-x3-hosting'
+  | 'virtual-networks'
+  | 'virtual-firewalls'
+  | 'virtual-load-balancer'
+  | 'gcc-cloud'
+  | 'scrutiny-dlp'
+  | 'scrutiny-edr'
+  | 'sap-on-aws'
+  | 'sap-on-gcp'
+  | 'sap-on-azure'
   | 'developer-page'
   | 'cybird'
   | 'cybird-sections'
@@ -80,6 +92,17 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page' | 'sectigo-detail' | 'inference-page' | 'developer-page'>,
     string
   > = {
+    'sage-300-hosting': '/imported-sage-300-hosting.html',
+    'sage-x3-hosting': '/imported-sage-x3-hosting.html',
+    'virtual-networks': '/imported-virtual-networks.html',
+    'virtual-firewalls': '/imported-virtual-firewalls.html',
+    'virtual-load-balancer': '/imported-virtual-load-balancer.html',
+    'gcc-cloud': '/imported-gcc-cloud.html',
+    'sap-on-azure': '/imported-sap-on-azure.html',
+    'sap-on-gcp': '/imported-sap-on-gcp.html',
+    'sap-on-aws': '/imported-sap-on-aws.html',
+    'scrutiny-dlp': '/imported-scrutiny-dlp.html',
+    'scrutiny-edr': '/imported-scrutiny-edr.html',
     cybird: 'about:blank',
 
     'cybird-sections': '/imported-cybird-sections.html',
@@ -145,7 +168,18 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+    'sage-300-hosting': 'Sage 300 ERP Hosting, plans, add-ons, configurator and FAQs',
+    'sage-x3-hosting': 'Sage X3 Hosting, plans, add-ons, configurator and FAQs',
+    'virtual-networks': 'Virtual Networks, VPC plans, subnet designer and FAQs',
+    'virtual-firewalls': 'Virtual Firewalls, plans, rule tester and FAQs',
+    'virtual-load-balancer': 'Virtual Load Balancer, plans, traffic simulator and FAQs',
+    'gcc-cloud': 'GCC Cloud services, lifecycle, planner and FAQs',
     'developer-page': 'XcellCloud developer tools, API examples and documentation',
+    'sap-on-azure': 'SAP on Azure services, pricing, sizing tools and FAQs',
+    'sap-on-gcp': 'SAP on Google Cloud services, pricing, sizing tools and FAQs',
+    'sap-on-aws': 'SAP on AWS services, pricing, sizing tools and FAQs',
+    'scrutiny-dlp': 'Scrutiny DLP plans, classifier, policy tools and FAQs',
+    'scrutiny-edr': 'Scrutiny EDR plans, threat simulator, trial enquiry and FAQs',
     cybird: 'Cybird X2 security platform, animated network, plans and threat simulator',
 
     'cybird-sections': 'Cybird features, benefits, operation, hardware, threat simulator, comparisons, use cases, partners and pricing',
@@ -275,6 +309,7 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     const frame = this.frame?.nativeElement;
     const doc = frame?.contentDocument;
     const main = doc?.querySelector('main');
+    if (doc) useScrollingSectionNavigation(doc);
     if (!frame || !doc || !main) return;
     const resize = () => {
 
@@ -336,8 +371,9 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
         window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}#${id}`);
       }
       const frameTop = target.ownerDocument === doc ? frame.getBoundingClientRect().top : 0;
+      const anchorOffset = Number.parseFloat(doc.defaultView?.getComputedStyle(doc.documentElement).getPropertyValue('--xh-anchor-offset') || '') || 148;
       window.scrollTo({
-        top: window.scrollY + frameTop + target.getBoundingClientRect().top - 148,
+        top: window.scrollY + frameTop + target.getBoundingClientRect().top - anchorOffset,
         behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
       });
     };
