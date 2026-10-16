@@ -604,7 +604,7 @@ footer{background:#3b63e8;color:#fff;padding:48px 0 28px;font-size:14px}
 .gp-table .gp-add{padding:9px 12px;font-size:12.5px}
 .gp-live b{color:#128a42;display:inline-block;min-width:22px;text-align:center}
 .gp-live b.tick{animation:fade-in-up .4s ease-out}
-.gp-subnav{position:sticky;top:78px;z-index:20;margin:0 0 14px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);transition:box-shadow .25s,border-color .25s}
+.gp-subnav{position:relative;top:auto;z-index:20;margin:0 0 14px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);transition:box-shadow .25s,border-color .25s}
 .gp-subnav.stuck{box-shadow:0 12px 30px rgba(4,30,66,.12);border-color:rgba(21,101,216,.3)}
 .gp-subnav-in{display:flex;align-items:center;gap:6px;padding:8px 12px;overflow-x:auto;scrollbar-width:none}
 .gp-subnav-in::-webkit-scrollbar{display:none}
@@ -1009,6 +1009,7 @@ body {
   overflow-x: hidden;
 }
 </style>
+<link rel="stylesheet" href="/assets/styles/section-navigation-flow.css">
 </head>
 <body>
 <div aria-hidden="true" class="site-progress"></div>

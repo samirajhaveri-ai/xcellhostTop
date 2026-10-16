@@ -6074,8 +6074,8 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 
 /* Tally on Cloud section navigation, modelled on the compact cloud-page tab bar. */
 #ppage.tally-page .tally-section-nav {
-  position: sticky;
-  top: 78px;
+  position: relative;
+  top: auto;
   z-index: 40;
   width: 100%;
   padding: 10px 20px;
@@ -6168,7 +6168,7 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 }
 
 @media (max-width: 900px) {
-  #ppage.tally-page .tally-section-nav { top: 70px; padding-inline: 12px; }
+  #ppage.tally-page .tally-section-nav { top: auto; padding-inline: 12px; }
   #ppage.tally-page .tally-section-nav-track { justify-content: flex-start; }
   #ppage.tally-page .tally-section-nav a { padding: 9px 13px; font-size: 12px; }
 }

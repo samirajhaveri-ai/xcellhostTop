@@ -5796,6 +5796,7 @@
       .hx-f {
         display: grid;
         gap: 6px;
+        min-width: 0;
       }
       .hx-f > span {
         font: 700 10.5px var(--mono);
@@ -5837,6 +5838,45 @@
       .hx-seg button svg {
         width: 15px;
         height: 15px;
+      }
+      #hxOs {
+        background: #fff;
+      }
+      #hxFam {
+        background: #f3f4f6;
+        border: 0;
+        gap: 2px;
+        max-width: 100%;
+        overflow-x: auto;
+      }
+      #hxFam button {
+        flex: 0 0 auto;
+        padding: 9px 11px;
+        font-size: 12.5px;
+        color: #667085;
+      }
+      #hxFam button[aria-pressed='true'] {
+        background: #fff;
+        color: #041e42;
+        box-shadow: 0 1px 4px rgba(4, 30, 66, .08);
+      }
+      #hxOs button {
+        padding: 7px 12px;
+        gap: 8px;
+        background: #fff;
+        color: #041e42;
+        border: 1px solid transparent;
+      }
+      #hxOs button[aria-pressed='true'] {
+        background: #fff;
+        color: #041e42;
+        border-color: #aebed3;
+        box-shadow: 0 1px 4px rgba(4, 30, 66, .12);
+      }
+      #hxOs button .hx-os-logo {
+        width: 30px;
+        height: 30px;
+        flex-shrink: 0;
       }
       .hx-sel {
         appearance: none;
@@ -6011,6 +6051,22 @@
         border-radius: 9px;
         background-position: right 9px center;
       }
+      .hx-storage-picker { position: relative; font: 500 12px var(--pop); }
+      .hx-storage-picker summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-width: 85px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: #041e42; cursor: pointer; list-style: none; }
+      .hx-storage-picker summary::-webkit-details-marker { display: none; }
+      .hx-storage-picker summary:focus-visible, .hx-storage-menu button:focus-visible { outline: 2px solid #1565d8; outline-offset: 2px; }
+      .hx-c.storage-open { z-index: 20; }
+      .hx-sp .hx-storage-menu { display: block; position: absolute; right: 0; bottom: calc(100% + 8px); z-index: 30; box-sizing: border-box; width: 210px; max-width: calc(100vw - 40px); padding: 12px; border: 1px solid #e2e5ed; border-radius: 10px; background: #fff; color: #10152d; box-shadow: 0 10px 30px rgba(20, 30, 55, .16); }
+      .hx-storage-menu h5 { margin: 0 0 8px; font: 600 11px var(--pop); color: #707b91; letter-spacing: .04em; }
+      .hx-sp .hx-storage-options { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; padding-bottom: 10px; margin-bottom: 12px; border-bottom: 1px solid #e2e5ed; }
+      .hx-storage-options button { padding: 8px; border: 0; border-radius: 6px; background: #f6f7f9; color: #10152d; font: 500 12px var(--pop); cursor: pointer; }
+      .hx-storage-options button:hover, .hx-storage-options button[aria-pressed='true'] { background: #e8f1ff; color: #1259b8; }
+      .hx-storage-entry { display: flex; align-items: center; gap: 8px; }
+      .hx-storage-entry input { box-sizing: border-box; min-width: 0; width: 100%; padding: 8px 10px; border: 1px solid #dfe3ed; border-radius: 6px; font: 500 13px var(--pop); background: #fafbfc; color: #10152d; }
+      .hx-storage-entry > span { color: #707b91; font-size: 11px; }
+      .hx-storage-apply { width: 100%; margin-top: 8px; padding: 8px; border: 0; border-radius: 6px; background: #1565d8; color: #fff; font: 600 13px var(--pop); cursor: pointer; }
+      .hx-storage-cost { display: flex; justify-content: space-between; gap: 8px; margin-top: 9px; padding-top: 9px; border-top: 1px solid #e2e5ed; font-size: 10px; color: #707b91; }
+      .hx-storage-cost .hx-storage-extra { font-size: 10px; color: #1565d8; }
       .hx-sp .hx-cg {
         display: none;
         align-items: center;
@@ -7761,27 +7817,27 @@
                       <span>OPERATING SYSTEM</span>
                       <div class="hx-seg" id="hxOs">
                         <button aria-pressed="true" data-v="linux">
-                          <svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                            <path
-                              d="M12 3c-2.5 0-3.5 2-3.5 5 0 2-2 4-3 7-.5 2 1 4 3 4h7c2 0 3.5-2 3-4-1-3-3-5-3-7 0-3-1-5-3.5-5z"
-                            />
-                            <path d="M10 8h.01M14 8h.01" /></svg
-                          >Linux</button
+                          <svg class="hx-os-logo" viewBox="0 0 24 24" aria-hidden="true" style="stroke:none">
+                            <path fill="#20232a" d="M7 8c0-4 2-6 5-6s5 2 5 6c0 3 3 5 3 9 0 3-4 4-8 4s-8-1-8-4c0-4 3-6 3-9Z"/>
+                            <ellipse cx="12" cy="15" rx="5" ry="6" fill="#fff"/>
+                            <ellipse cx="10" cy="7" rx="1.5" ry="2" fill="#fff"/><ellipse cx="14" cy="7" rx="1.5" ry="2" fill="#fff"/>
+                            <circle cx="10.5" cy="7.5" r=".6" fill="#20232a"/><circle cx="13.5" cy="7.5" r=".6" fill="#20232a"/>
+                            <path fill="#ffbf24" d="m9 10 3-2 3 2-3 2Zm-5 8 5 1 1 3H2Zm16 0-5 1-1 3h8Z"/>
+                          </svg>Linux</button
                         ><button aria-pressed="false" data-v="win">
-                          <svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true">
-                            <rect x="3" y="4" width="18" height="16" rx="2" />
-                            <path d="M3 12h18M12 4v16" /></svg
-                          >Windows
+                          <svg class="hx-os-logo" viewBox="0 0 24 24" aria-hidden="true" style="stroke:none">
+                            <path fill="#00a4ef" d="M2 4.5 10.5 3.3v7.9H2Zm10-1.4L22 1.7v9.5H12ZM2 12.7h8.5v7.9L2 19.4Zm10 0h10v9.6l-10-1.4Z"/>
+                          </svg>Windows
                         </button>
                       </div>
                     </div>
                     <div class="hx-f">
-                      <span>INSTANCE TYPE</span
-                      ><select class="hx-sel" id="hxFam" aria-label="Instance type">
-                        <option value="gp">General Purpose (1 vCPU : 4 GB)</option>
-                        <option value="cpu">CPU-Optimised (1 vCPU : 2 GB)</option>
-                        <option value="mem">Memory-Optimised (1 vCPU : 8 GB)</option>
-                      </select>
+                      <span>WORKLOAD</span>
+                      <div class="hx-seg" id="hxFam" role="group" aria-label="Instance type">
+                        <button type="button" data-v="gp" aria-pressed="true">General Purpose</button>
+                        <button type="button" data-v="cpu" aria-pressed="false">CPU Intensive</button>
+                        <button type="button" data-v="mem" aria-pressed="false">Memory Optimized</button>
+                      </div>
                     </div>
                     <div class="hx-f">
                       <span>PRICING INTERVAL</span>
@@ -10124,6 +10180,9 @@
           $('.hx-cg', c).classList.toggle('on', $('.gb', c).value === 'c');
         }
         function renderCompute() {
+          $$('#hxFam button').forEach(function (button) {
+            button.setAttribute('aria-pressed', String(button.dataset.v === st.fam));
+          });
           var f = fam(),
             pl = st.all ? f.plans : f.plans.slice(0, 6);
           $('#hxFh').innerHTML =
@@ -10185,8 +10244,8 @@
           st.bill = v;
           renderCompute();
         });
-        $('#hxFam').addEventListener('change', function () {
-          st.fam = this.value;
+        seg('hxFam', function (value) {
+          st.fam = value;
           st.all = false;
           renderCompute();
         });
@@ -10579,31 +10638,37 @@ var st={os:"linux",fam:D.families[0].key,bill:"m",all:false},NV=D.nvme,SIZES=[30
 function fam(){return D.families.find(function(f){return f.key===st.fam})}
 function base(p){return st.os==="win"?p.win:p.monthly}
 function priceOf(p,gb){var ex=Math.max(0,gb-30)*NV,b=base(p);if(st.bill==="y")return b*.88+ex;if(st.bill==="h")return (b+ex)/730;return b+ex}
+function storagePicker(p){return '<details class="hx-storage-picker"><summary aria-label="Storage size for '+p.code+'"><span class="hx-storage-label">30 GB</span><span aria-hidden="true">⌄</span></summary><div class="hx-storage-menu"><h5>QUICK SELECT</h5><div class="hx-storage-options">'+[30,50,100,250,500,1000].map(function(gb){return '<button type="button" data-storage-gb="'+gb+'" aria-pressed="'+(gb===30)+'">'+(gb===1000?'1 TB':gb+' GB')+'</button>'}).join('')+'</div><h5>CUSTOM STORAGE</h5><div class="hx-storage-entry"><input class="hx-custom-gb" type="number" min="30" max="16000" step="1" placeholder="e.g. 200" aria-label="Custom storage in GB"><span>GB</span></div><button class="hx-storage-apply" type="button">Apply</button><div class="hx-storage-cost"><span>₹'+NV.toFixed(2)+'/GB/mo</span><b class="hx-storage-extra">Included</b></div></div></details><input class="gb" type="hidden" value="30">'}
+function normalizeStorage(value){return Math.max(30,Math.min(16000,Math.round(Number(value)||30)))}
+function previewStorage(c){var input=$('.hx-custom-gb',c),gb=input.value?normalizeStorage(input.value):gbOf(c),extra=Math.max(0,gb-30)*NV;$('.hx-storage-extra',c).textContent=extra?'+₹'+f0(extra)+'/mo':'Included'}
+function applyStorage(c,gb){gb=normalizeStorage(gb);$('.gb',c).value=gb;$('.hx-custom-gb',c).value=gb;$('.hx-storage-label',c).textContent=gb===1000?'1 TB':gb+' GB';$$('[data-storage-gb]',c).forEach(function(b){b.setAttribute('aria-pressed',String(Number(b.dataset.storageGb)===gb))});upd(c);previewStorage(c);$('.hx-storage-picker',c).open=false;$('.hx-storage-picker summary',c).focus()}
 function card(p,i){var hot=i===1;
  return '<div class="hx-c'+(hot?' hot':'')+'" data-i="'+i+'" style="animation-delay:'+(i*40)+'ms">'+(hot?'<span class="rib">POPULAR</span>':'')+
  '<span class="tier">'+p.label.toUpperCase()+'</span><h4>'+p.code+'</h4>'+
  '<div class="pr"><b class="pv"></b><span>'+PER[st.bill]+'</span>'+(st.bill==="y"?'<s class="ps"></s>':'')+'</div><div class="ex"></div>'+
  '<div class="hx-sp"><div><span>'+IC.cpu+'vCPU</span><b>'+p.vcpu+' Dedicated</b></div><div><span>'+IC.memory+'Memory</span><b>'+p.ram+' GB</b></div>'+
- '<div><span>'+IC.layers+'NVMe storage</span><select class="hx-sel gb" aria-label="Storage size for '+p.code+'">'+SIZES.map(function(s){return '<option value="'+s+'">'+(s>=1000?s/1000+" TB":s+" GB")+'</option>'}).join("")+'<option value="c">Custom…</option></select></div>'+
- '<div class="hx-cg"><input type="number" class="cgb" min="30" max="16000" step="10" value="120" aria-label="Custom GB"><span>GB</span></div>'+
+ '<div><span>'+IC.layers+'NVMe storage</span>'+storagePicker(p)+'</div>'+
  '<div><span>'+IC.globe+'Bandwidth</span><b>'+p.bw+'</b></div><div><span>'+IC.monitor+'OS</span><b>'+(st.os==="win"?"Windows Server":"Linux")+'</b></div></div>'+
  '<button class="hx-add" type="button">'+IC.cart+'Add to cart</button></div>'}
-function gbOf(c){var s=$(".gb",c).value;if(s==="c"){var v=Math.round(+$(".cgb",c).value||30);return Math.max(30,Math.min(16000,v))}return +s}
+function gbOf(c){return normalizeStorage($(".gb",c).value)}
 function upd(c){var p=fam().plans[+c.dataset.i],gb=gbOf(c),v=priceOf(p,gb);$(".pv",c).textContent=money(v,st.bill);
  if(st.bill==="y")$(".ps",c).textContent="₹"+f0(base(p)+Math.max(0,gb-30)*NV)+"/mo without annual term";
  var ex=Math.max(0,gb-30)*NV;$(".ex",c).textContent=ex?"+₹"+f2(ex).replace(/\.00$/,"")+"/mo for "+(gb-30)+" GB extra NVMe":"30 GB NVMe boot disk included";
- $(".hx-cg",c).classList.toggle("on",$(".gb",c).value==="c")}
-function renderCompute(){var f=fam(),pl=st.all?f.plans:f.plans.slice(0,6);
+}
+function renderCompute(){ $$('#hxFam button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.v===st.fam))});var f=fam(),pl=st.all?f.plans:f.plans.slice(0,6);
  $("#hxFh").innerHTML='<div><h3>'+f.name+'</h3><p>'+f.blurb+'</p></div><b>'+f.ratio+' · '+f.plans.length+' sizes</b>';
  $("#hxCards").innerHTML=pl.map(card).join("");$$("#hxCards .hx-c").forEach(upd);
  var mb=$("#hxMore");mb.hidden=f.plans.length<=6;mb.textContent=st.all?"Show fewer plans ↑":"Show all "+f.plans.length+" "+f.short+" plans ↓"}
 $("#hxCards").addEventListener("change",function(e){var c=e.target.closest(".hx-c");if(c)upd(c)});
-$("#hxCards").addEventListener("input",function(e){if(e.target.classList.contains("cgb"))upd(e.target.closest(".hx-c"))});
-$("#hxCards").addEventListener("click",function(e){var b=e.target.closest(".hx-add");if(!b)return;var c=b.closest(".hx-c"),p=fam().plans[+c.dataset.i],gb=gbOf(c);
+$("#hxCards").addEventListener("input",function(e){if(e.target.classList.contains("hx-custom-gb"))previewStorage(e.target.closest(".hx-c"))});
+$("#hxCards").addEventListener("toggle",function(e){var picker=e.target;if(!picker.classList.contains('hx-storage-picker'))return;picker.closest('.hx-c').classList.toggle('storage-open',picker.open);if(picker.open){$$('.hx-storage-picker').forEach(function(other){if(other!==picker)other.open=false});previewStorage(picker.closest('.hx-c'))}},true);
+document.addEventListener('click',function(e){if(!e.target.closest('.hx-storage-picker'))$$('.hx-storage-picker[open]').forEach(function(p){p.open=false})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')$$('.hx-storage-picker[open]').forEach(function(p){p.open=false;$('summary',p).focus()});if(e.key==='Enter'&&e.target.classList.contains('hx-custom-gb')){e.preventDefault();if(e.target.reportValidity()&&e.target.value)applyStorage(e.target.closest('.hx-c'),e.target.value)}});
+$("#hxCards").addEventListener("click",function(e){var quick=e.target.closest('[data-storage-gb]'),apply=e.target.closest('.hx-storage-apply');if(quick){applyStorage(quick.closest('.hx-c'),quick.dataset.storageGb);return}if(apply){var c=apply.closest('.hx-c'),input=$('.hx-custom-gb',c);if(!input.value){input.focus();return}if(input.reportValidity())applyStorage(c,input.value);return}var b=e.target.closest(".hx-add");if(!b)return;var c=b.closest(".hx-c"),p=fam().plans[+c.dataset.i],gb=gbOf(c);
  add({key:"c|"+p.code+"|"+st.os+"|"+gb+"|"+st.bill,name:p.code+(st.os==="win"?" · Windows":" · Linux"),spec:p.vcpu+" vCPU · "+p.ram+" GB RAM · "+gb+" GB NVMe"+(st.bill==="y"?" · annual":""),unit:priceOf(p,gb),bill:st.bill});flash(b)});
 $("#hxMore").addEventListener("click",function(){st.all=!st.all;renderCompute()});
 seg("hxOs",function(v){st.os=v;renderCompute()});seg("hxBill",function(v){st.bill=v;renderCompute()});
-$("#hxFam").addEventListener("change",function(){st.fam=this.value;st.all=false;renderCompute()});
+seg("hxFam",function(v){st.fam=v;st.all=false;renderCompute()});
 
 /* ---------- storage ---------- */
 function rate(s){var m=String(s).replace(/,/g,"").match(/[\d.]+/);return m?+m[0]:0}

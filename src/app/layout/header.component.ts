@@ -1,3 +1,4 @@
+import { menuItemLink } from '../core/menu-link';
 import { DOCUMENT, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -343,6 +344,7 @@ const MENU_DESCRIPTIONS: Record<string, string> = {
  * Destinations for the Insights and Company menus. Add an entry here when the
  * matching page is built; missing destinations use the shared construction page.
  */
+
 const CONTENT_LINKS: Record<string, string> = {
   'Microsoft Copilot ': '/microsoft-copilot',
   'Escalation Matrix': '/escalation-matrix',
@@ -398,6 +400,7 @@ const CONTENT_LINKS: Record<string, string> = {
   'Customer Support': '/support-overview',
   'Submit a Ticket': '/company/submit-a-ticket',
   'Knowledge Base': '/company/knowledge-base',
+  'Knowledgebase': 'https://supportdesk.xcellhost.cloud/portal/en/kb',
   'Remote Assist': '/company/remote-assist',
   'Privacy Policy': '/company/privacy-policy',
   'Terms of Services': '/company/terms-of-service',
@@ -407,6 +410,7 @@ const CONTENT_LINKS: Record<string, string> = {
   'Infrastructure': '/infrastructure',
   'Pricing': '/pricing',
 };
+
 
 interface NavTopVm {
   label: string;
@@ -436,6 +440,28 @@ function defaultFeatureCards(
       ? '/assets/images/menu-cloud-backup.png'
       : item.title === 'Register a Domain Name'
         ? '/assets/images/menu-register-domain.png'
+      : item.title === 'Transfer Your Domain'
+        ? '/assets/images/menu-transfer-domain.png'
+      : item.title === 'Windows Hosting'
+        ? '/assets/images/menu-windows-hosting.png'
+      : item.title === 'Linux Hosting'
+        ? '/assets/images/menu-linux-hosting.png'
+      : item.title === 'cPanel Control Panel'
+        ? '/assets/images/menu-cpanel.png'
+      : item.title === 'Plesk Control Panel'
+        ? '/assets/images/menu-plesk.png'
+      : item.title === 'Web Security (SiteLock)'
+        ? '/assets/images/menu-sitelock.png'
+      : item.title === 'Web Security (cWatch)'
+        ? '/assets/images/menu-cwatch.png'
+      : item.title === 'Web Design for CA, CS & Lawyers'
+        ? '/assets/images/menu-web-design-ca.png'
+      : item.title === 'Web Design for SMB'
+        ? '/assets/images/menu-web-design-smb.png'
+      : item.title === 'WhatsApp For Business'
+        ? '/assets/images/menu-whatsapp-smb.png'
+      : item.title === 'WhatsApp Broadcasting'
+        ? '/assets/images/menu-whatsapp-broadcasting.png'
       : index === 0 ? fallbackImage : fallbackSecondImage,
     imagePosition: item.title === 'Cloud Backup'
       ? 'center 35%'
@@ -719,12 +745,7 @@ export class HeaderComponent {
    * rather than routing to a page that would 404.
    */
   private serviceLink(title: string, menu: string, explicitLink?: string): string {
-    if (explicitLink) return explicitLink;
-    if (CONTENT_LINKS[title]) return CONTENT_LINKS[title];
-    if (menu === 'Insights' || menu === 'Company') return `/under-construction/${slugify(title)}`;
-    const entry = this.catalog.findInDirectory(title);
-    const slug = slugify(entry ? entry.name : title);
-    return this.catalog.entryBySlug(slug) ? `/${slug}` : `/under-construction/${slugify(title)}`;
+    return menuItemLink(title, menu, this.catalog, explicitLink);
   }
 
   /** Every visible menu card gets concise supporting copy. */

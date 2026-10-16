@@ -1,0 +1,34 @@
+body { margin: 0; }
+main { display: flow-root; overflow-x: clip; }
+.rv { opacity: 1 !important; transform: none !important; }
+h1, h2, h3, h4, .sd-eb, .sd-ebc, .se-eb, .se-ebc { text-transform: capitalize; }
+#security h2 { text-transform: uppercase; }
+h1 .acc::after, h2 .acc::after, h3 .acc::after { display: none; }
+.hero-grid > * { min-width: 0; }
+.hero-grid > div:first-child { container-type: inline-size; }
+#main .hero.lh .lh-title { font-size: clamp(24px, 5.5cqi, 38px) !important; white-space: nowrap; }
+#main .hero.lh .lh-title .nm { display: inline; }
+.crumb { margin-bottom: 18px; padding-top: 12px; }
+.sd-pwr, .se-pwr { display: flex; align-items: center; flex-wrap: nowrap; gap: 12px; margin-top: 16px; }
+.sd-pwr > span, .se-pwr > span { white-space: nowrap; }
+.scrutiny-security-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+#security .sh, #customer-feedback .sh { margin-bottom: 24px; }
+#main :is(h1, h2, h3, h4, .sd-eb, .sd-ebc, .se-eb, .se-ebc, .pr-r .pn b) { white-space: nowrap; }
+#main .pr-r .pn > span { min-width: 0; flex: 1; }
+#main .pr-r .pn b { text-transform: capitalize; }
+@media (min-width: 981px) { #main .hero.lh .hero-grid { grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr); column-gap: 88px; } }
+@media (min-width: 901px) { .sd-rows .pr-r, .se-rows .pr-r { grid-template-columns: clamp(260px, 27vw, 320px) minmax(0, 1fr) 190px; } }
+@media (max-width: 760px) { .scrutiny-security-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* This page scrolls in the outer site, so pin the illustration to that viewport. */
+#how .pn-v {
+  position: relative;
+  top: auto;
+  transform: translateY(var(--scrutiny-pin-offset, 0px));
+}
+#how .ps { opacity: 1; cursor: pointer; }
+#how .ps:not(.on) { box-shadow: none; }
+#how .ps p { color: var(--muted); }
+@media (max-width: 900px) {
+  #how .pn-v { transform: none; }
+}
