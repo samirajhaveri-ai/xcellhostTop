@@ -3135,7 +3135,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Reliable AI Website Builder hosting 🐧"
               },
               {
-                "title": "Open AI Managed Services",
+                "title": "OpenAI Managed Services",
                 "pill": null,
                 "desc": "Reliable AI App Builder hosting 💻"
               },
@@ -4280,6 +4280,7 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Knowledgebase",
+                "href": "https://supportdesk.xcellhost.cloud/portal/en/kb",
                 "pill": null,
                 "desc": "Guidance for common service tasks"
               },
