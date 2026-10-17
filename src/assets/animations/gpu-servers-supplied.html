@@ -318,6 +318,8 @@ button{font-family:inherit}
 .gp-ordering-frame-wrap{position:relative;margin:0;overflow:visible}
 .gp-ordering-frame{display:block;width:100%;height:540px;border:0;background:transparent;overflow:hidden}
 .gp-legacy-plans{display:none!important}
+/* The supplied inline configurator replaces the previous quote-cart drawer on this page. */
+#cartFab,#cartBack,#cart{display:none!important}
 @media(max-width:960px){.gp-ordering-frame{height:1040px}}
 .gp-orb1{width:320px;height:320px;background:#1565d8;top:-80px;right:-80px;animation:float-orb-1 16s ease-in-out infinite}
 .gp-orb2{width:260px;height:260px;background:#7C3AED;bottom:40px;left:-100px;animation:float-orb-2 20s ease-in-out infinite;opacity:.22}
@@ -1176,15 +1178,8 @@ body {
         <div class="gp-head-r"><span class="gp-avail"><i></i> Available now</span><span class="gp-live" id="gpLive">🟢 <b>27</b> nodes free in Mumbai</span></div>
       </div>
 
-      <!-- On-this-page sub nav (E2E) -->
-      <nav class="gp-subnav" aria-label="Pricing sections"><div class="gp-subnav-in">
-        <span class="gp-subnav-lbl">On this page</span>
-        <a href="#gpPlans" class="on">Plans</a><a href="#gpCalc">Cost calculator</a><a href="#gpPicks">Which GPU?</a><a href="#gpCommit">Commitment pricing</a><a href="#ppFaq">FAQs</a>
-        <span class="gp-subnav-prog"><i id="gpProg"></i></span><span class="gp-subnav-pct" id="gpPct">0%</span>
-      </div></nav>
-
       <div class="gp-ordering-frame-wrap" id="gpPlans">
-        <iframe class="gp-ordering-frame" id="gpOrderingFrame" src="/assets/animations/gpu-server-ordering-supplied.html?cart=20261016" title="Configure and order an XcellHost GPU server" loading="lazy"></iframe>
+        <iframe class="gp-ordering-frame" id="gpOrderingFrame" src="/assets/animations/gpu-server-ordering-supplied.html?cart=20261017" title="Configure and order an XcellHost GPU server" loading="lazy"></iframe>
       </div>
 
       <div class="gp-card gp-legacy-plans" id="gpPlansLegacy" aria-hidden="true">
@@ -1818,11 +1813,6 @@ body {
   const toastEl = $('#toast'); let tt;
   function toast(html, cartLink) { toastEl.innerHTML = html + (cartLink ? ' <a href="#" data-open-cart style="color:#7fb2ff;font-weight:700;margin-left:6px">View cart →</a>' : ''); toastEl.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => toastEl.classList.remove('show'), 3200); }
 
-  /* ---------- on-page sub nav + progress (E2E) ---------- */
-  const sub = $('.gp-subnav'), subLinks = $$('.gp-subnav a'), secEl = $('.gpu-pricing');
-  function subnav() { const r = secEl.getBoundingClientRect(); const total = secEl.offsetHeight - innerHeight * .5; const k = Math.min(1, Math.max(0, (-r.top + 120) / Math.max(1, total))); $('#gpProg').style.width = (k * 100) + '%'; $('#gpPct').textContent = Math.round(k * 100) + '%';
-    let cur = subLinks[0]; subLinks.forEach(a => { const t = $(a.getAttribute('href')); if (t && t.getBoundingClientRect().top - 140 <= 0) cur = a; }); subLinks.forEach(a => a.classList.toggle('on', a === cur)); sub.classList.toggle('stuck', r.top < 60 && r.bottom > 200); }
-  subLinks.forEach(a => a.addEventListener('click', e => { const t = $(a.getAttribute('href')); if (t) { e.preventDefault(); window.scrollTo({ top: t.getBoundingClientRect().top + scrollY - 110, behavior: 'smooth' }); } }));
   // live capacity ticker
   const live = $('#gpLive b'); setInterval(() => { if (document.hidden) return; const v = Math.max(9, Math.min(48, +live.textContent + (Math.random() < .5 ? -1 : 1))); live.textContent = v; live.classList.remove('tick'); void live.offsetWidth; live.classList.add('tick'); }, 4200);
 
@@ -1879,14 +1869,14 @@ body {
 
   /* ---------- chrome: progress, back-to-top, mobile nav, insights tabs, newsletter ---------- */
   const prog = $('.site-progress'), btt = $('.back-to-top');
-  window.addEventListener('scroll', () => { const h = document.documentElement; const k = h.scrollTop / (h.scrollHeight - h.clientHeight); prog.style.width = (k * 100) + '%'; btt.classList.toggle('show', h.scrollTop > 600); $$('.gp-store.open').forEach(x => x.classList.remove('open')); subnav(); }, { passive: true });
+  window.addEventListener('scroll', () => { const h = document.documentElement; const k = h.scrollTop / (h.scrollHeight - h.clientHeight); prog.style.width = (k * 100) + '%'; btt.classList.toggle('show', h.scrollTop > 600); $$('.gp-store.open').forEach(x => x.classList.remove('open')); }, { passive: true });
   btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   $('.xh-mobile-toggle').addEventListener('click', function () { this.classList.toggle('open'); const n = $('.xh-main-nav'); n.style.display = this.classList.contains('open') ? 'flex' : ''; n.style.flexDirection = 'column'; n.style.position = 'absolute'; n.style.top = '100%'; n.style.left = 0; n.style.right = 0; n.style.background = '#fff'; n.style.padding = '10px'; n.style.borderBottom = '1px solid var(--xh-line)'; });
   $$('.insights-actions .btn').forEach(b => b.addEventListener('click', () => { $$('.insights-actions .btn').forEach(x => { x.classList.remove('active'); x.setAttribute('aria-pressed', 'false'); }); b.classList.add('active'); b.setAttribute('aria-pressed', 'true'); }));
   $('.newsletter-form').addEventListener('submit', e => { e.preventDefault(); const i = $('#newsletter-email'); if (!i.validity.valid || !i.value) { i.focus(); return; } $('#newsletter-message').textContent = 'Thanks — you are subscribed. Watch your inbox for the next XcellHost update.'; i.value = ''; });
   $$('.xh-menu-link').forEach(b => b.addEventListener('click', e => e.preventDefault()));
 
-  render(); renderCart(); renderCommit(); subnav();
+  render(); renderCart(); renderCommit();
   function showPlan(id) { const p = byId(id); if (!p) return; state.cat = p.cat; state.sku = p.n; state.fam = ''; state.q = ''; state.view = 'table'; $('#gpSearch').value = '';
     $$('.seg.cat button').forEach(x => x.setAttribute('aria-pressed', String(x.dataset.cat === p.cat))); $$('.seg.sku button').forEach(x => x.setAttribute('aria-pressed', String(+x.dataset.sku === p.n))); $$('.seg.view button').forEach(x => x.setAttribute('aria-pressed', String(x.dataset.view === 'table'))); render(false);
     const row = $('#gpTbody tr[data-id="' + id + '"]') || $('#gpMobile'); if (row) { window.scrollTo({ top: row.getBoundingClientRect().top + scrollY - innerHeight / 2, behavior: 'smooth' }); row.classList.add('hl'); setTimeout(() => row.classList.remove('hl'), 2200); } }

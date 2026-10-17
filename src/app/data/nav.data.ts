@@ -4573,7 +4573,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "7",
+        "g": "Developer Tools",
         "label": "Developer Tools",
         "on": false,
         "groups": [
