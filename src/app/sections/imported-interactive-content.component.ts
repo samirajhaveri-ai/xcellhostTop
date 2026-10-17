@@ -7,6 +7,7 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { useScrollingSectionNavigation } from './section-navigation-flow';
 
 type InteractiveContentSource =
+  | 'managed-microsoft-sentinel'
   | 'sage-300-hosting'
   | 'sage-x3-hosting'
   | 'virtual-networks'
@@ -92,6 +93,7 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page' | 'sectigo-detail' | 'inference-page' | 'developer-page'>,
     string
   > = {
+    'managed-microsoft-sentinel': '/imported-managed-microsoft-sentinel.html',
     'sage-300-hosting': '/imported-sage-300-hosting.html',
     'sage-x3-hosting': '/imported-sage-x3-hosting.html',
     'virtual-networks': '/imported-virtual-networks.html',
@@ -168,6 +170,7 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+    'managed-microsoft-sentinel': 'Managed Microsoft Sentinel SOC, pricing, interactive tools and FAQs',
     'sage-300-hosting': 'Sage 300 ERP Hosting, plans, add-ons, configurator and FAQs',
     'sage-x3-hosting': 'Sage X3 Hosting, plans, add-ons, configurator and FAQs',
     'virtual-networks': 'Virtual Networks, VPC plans, subnet designer and FAQs',

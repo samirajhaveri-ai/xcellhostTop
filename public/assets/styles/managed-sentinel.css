@@ -1,0 +1,30 @@
+/* Site integration; the supplied Sentinel design remains isolated in its document. */
+html,body{max-width:100%;overflow-x:clip}
+main h2,main h3,main h4{text-transform:capitalize}
+main h2 .acc{text-decoration:none}
+#security h2{text-transform:uppercase}
+#snHero{padding-top:64px;padding-bottom:64px}
+#snHero .hero-grid{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:42px}
+#snHero .lh-title{font-size:clamp(22px,2.15vw,30px)!important;white-space:nowrap}
+#snHero .lh-title .nm{display:inline;font-size:1em}
+#snHero .lh-ask .k{white-space:nowrap;font-size:10px}
+#snHero .lh-ask{max-width:100%;overflow-x:auto}
+.sentinel-powered{display:flex;align-items:center;gap:12px;margin-top:18px;color:#bdcee6;font-size:13px}
+.sentinel-vendor{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:4px;color:#505050;padding:7px 10px;font:600 14px/1.3 var(--f-body)}
+.sentinel-vendor .msq{display:grid;grid-template-columns:repeat(2,8px);gap:2px}
+.sentinel-vendor .msq i{width:8px;height:8px;background:#f25022}
+.sentinel-vendor .msq i:nth-child(2){background:#7fba00}
+.sentinel-vendor .msq i:nth-child(3){background:#00a4ef}
+.sentinel-vendor .msq i:nth-child(4){background:#ffb900}
+.product-section-nav{padding:10px 20px;border-bottom:1px solid #e1e8f2;background:#fff}
+.sentinel-bookmarks{display:flex;max-width:1200px;margin:auto;overflow-x:auto;white-space:nowrap}
+.sentinel-security-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.sentinel-security-grid article{padding:24px;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
+.sentinel-security-grid h3{font-size:17px;margin-bottom:10px}
+.sentinel-security-grid p{font-size:14px;color:var(--muted)}
+.sentinel-faq-column{display:flex;flex-direction:column;gap:14px;min-width:0}
+#faq .sh h2{font:700 14px/1.4 var(--f-mono)!important;letter-spacing:.18em!important;color:#0664ff!important;margin:0!important}
+#customer-feedback .btn{background:#1565d8;color:#fff}
+.jr-v,.vt-in .in-d{position:relative;top:auto;translate:0 var(--sentinel-pin-offset,0px)}
+@media(max-width:1100px){#snHero .hero-grid{grid-template-columns:minmax(0,1fr);gap:34px}#snHero .stage{max-width:680px;width:100%;margin:24px auto 0}}
+@media(max-width:760px){#snHero{padding-top:38px;padding-bottom:40px}#snHero .lh-title{font-size:clamp(14px,3.5vw,26px)!important}#snHero .lh-ask .k{white-space:normal}.sentinel-security-grid{grid-template-columns:1fr}.product-section-nav{padding:10px 12px}.sentinel-powered{gap:9px}.sentinel-vendor{font-size:13px}}

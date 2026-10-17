@@ -3019,6 +3019,7 @@ class ProductPageComponent {
     const view = this.resolve(slug);
     if (!view) return null;
 
+    if (slug === 'email-signature') return { ...view, brandSuffix: 'Office' };
     if (slug === 'zoom-conferenceing') return { ...view, brandSuffix: 'Office', faqs: ZOOM_CONFERENCEING_FAQS, reviews: [] };
     if (slug === 'docusign') return {
       ...view, brandSuffix: 'Sign',
@@ -3914,6 +3915,7 @@ class ProductPageComponent {
     if (view && this.slug() === 'microsoft-365-training') {
       return {
         ...view,
+        brandSuffix: 'Office',
         heroPoints: ['Role-based training', 'Hands-on learning', 'Certification preparation', 'Microsoft 365 Copilot'],
         why: MICROSOFT_TRAINING_SAMPLE_WHY,
         faqs: MICROSOFT_TRAINING_SAMPLE_FAQS,

@@ -5,6 +5,8 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  { path: 'managed-microsoft-sentinel', title: 'Managed Microsoft Sentinel | XcellHost', loadComponent: () => import('./pages/managed-microsoft-sentinel.page').then(m => m.ManagedMicrosoftSentinelPage) },
+  { path: 'under-construction/managed-microsoft-sentinel', redirectTo: '/managed-microsoft-sentinel', pathMatch: 'full' },
 
   { path: 'dedicated-ai-servers', title: 'Dedicated AI Servers | XcellHost', loadComponent: () => import('./pages/dedicated-ai-servers.page').then(m => m.DedicatedAiServersPage) },
 
