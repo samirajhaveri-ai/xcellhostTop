@@ -20,7 +20,7 @@
 @keyframes xhTw{50%{opacity:.1}}
 /* left */
 .xh-crumb{font:700 11.5px var(--mono);letter-spacing:.14em;color:#7FA8E8;text-transform:uppercase;margin-bottom:12px}.xh-crumb a:hover{color:#fff}
-.xh-h1{font:800 clamp(28px,3.8vw,44px)/1.1 var(--disp);color:#fff;letter-spacing:-.02em}
+.xh-h1{font:800 var(--dr-title-size,clamp(28px,3.8vw,44px))/1.1 var(--disp);color:#fff;letter-spacing:-.02em;white-space:nowrap}
 .xh-h1 .x{color:var(--red)}.xh-h1 .d{opacity:.85;margin:0 .15em;font-weight:700}
 .xh-tag{font:700 clamp(15px,1.5vw,18px) var(--pop);color:#C7D9F5;margin-top:14px}
 .xh-tag2{font:600 15.5px var(--pop);color:#fff;margin-top:6px}
@@ -191,6 +191,30 @@ for(var j=0;j<4;j++)push();if(!RM)setInterval(push,2200);
 </section>
 
 <script src="/assets/heroes/hero-action-bridge.js"></script>
+<script>
+// Fit this title to its column without wrapping or crossing into the illustration.
+(function(){
+ const title=document.getElementById('xhH1');
+ let pending=0,lastWidth=-1;
+ function fit(){
+  pending=0;
+  const width=title.clientWidth;
+  if(!width)return;
+  const maxSize=Math.min(44,Math.max(28,innerWidth*.038));
+  title.style.setProperty('--dr-title-size',maxSize+'px');
+  const range=document.createRange();range.selectNodeContents(title);
+  const textWidth=range.getBoundingClientRect().width;
+  if(textWidth>width)title.style.setProperty('--dr-title-size',(maxSize*(width-2)/textWidth)+'px');
+ }
+ function schedule(){if(!pending)pending=requestAnimationFrame(fit);}
+ const observer=new ResizeObserver(entries=>{const width=entries[0].contentRect.width;if(width!==lastWidth){lastWidth=width;schedule();}});
+ observer.observe(title);
+ document.fonts.ready.then(schedule);
+ addEventListener('resize',schedule);
+ addEventListener('pagehide',()=>{observer.disconnect();cancelAnimationFrame(pending);removeEventListener('resize',schedule);},{once:true});
+ schedule();
+})();
+</script>
 <script>
 // Size this embedded banner to its contents, including mobile media wrapping.
 (function(){const hero=document.querySelector('section');const frame=window.frameElement;if(!hero||!frame)return;const resize=()=>{frame.style.height=Math.ceil(hero.getBoundingClientRect().height)+'px';};new ResizeObserver(resize).observe(hero);document.fonts.ready.then(resize);addEventListener('load',resize);resize();})();

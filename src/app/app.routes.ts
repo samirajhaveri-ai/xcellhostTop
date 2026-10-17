@@ -5,6 +5,14 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  ...['cpanel-control-panel', 'plesk-control-panel', 'webuzo-control-panel', 'cloudlinux', 'plesk-servers', 'cpanel-servers'].map(path => ({
+    path,
+    title: ({ 'cpanel-control-panel': 'cPanel Control Panel', 'plesk-control-panel': 'Plesk Control Panel', 'webuzo-control-panel': 'Webuzo Control Panel', cloudlinux: 'CloudLinux OS Licence', 'plesk-servers': 'Plesk Servers', 'cpanel-servers': 'cPanel Servers' } as Record<string, string>)[path] + ' | XcellHost',
+    data: { hostingToolSource: path },
+    loadComponent: () => import('./pages/hosting-tools-imported.page').then(m => m.HostingToolsImportedPage),
+  })),
+  { path: 'managed-microsoft-sentinel', title: 'Managed Microsoft Sentinel | XcellHost', loadComponent: () => import('./pages/managed-microsoft-sentinel.page').then(m => m.ManagedMicrosoftSentinelPage) },
+  { path: 'under-construction/managed-microsoft-sentinel', redirectTo: '/managed-microsoft-sentinel', pathMatch: 'full' },
 
   { path: 'dedicated-ai-servers', title: 'Dedicated AI Servers | XcellHost', loadComponent: () => import('./pages/dedicated-ai-servers.page').then(m => m.DedicatedAiServersPage) },
 
