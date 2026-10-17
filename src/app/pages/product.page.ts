@@ -203,7 +203,8 @@ import { GpuServersContentComponent } from '../sections/gpu-servers-content.comp
 import { GpuLeadHeroComponent } from '../sections/gpu-lead-hero.component';
 import { DomainWhoisContentComponent } from '../sections/domain-whois-content.component';
 import { DomainWhoisFaqComponent } from '../sections/domain-whois-faq.component';
-import { ManagedOracleContentComponent } from '../sections/managed-oracle-content.component';
+import { DfirSourceComponent } from '../sections/dfir-source.component';
+import { ManagedOracleSourceComponent } from '../sections/managed-oracle-source.component';
 import { ManagedRedisContentComponent } from '../sections/managed-redis-content.component';
 import { ManagedRedisHeroComponent } from '../sections/managed-redis-hero.component';
 import { ManagedMongoDbContentComponent } from '../sections/managed-mongodb-content.component';
@@ -336,6 +337,7 @@ import { ManagedAwsContentComponent } from '../sections/managed-aws-content.comp
 import { ManagedAwsHeroComponent } from '../sections/managed-aws-hero.component';
 import { ManagedAwsSourceComponent } from '../sections/managed-aws-source.component';
 import { ManagedAzureSourceComponent } from '../sections/managed-azure-source.component';
+import { ManagedGcpSourceComponent } from '../sections/managed-gcp-source.component';
 
 import { ManagedMicrosoft365ContentComponent } from '../sections/managed-microsoft-365-content.component';
 import { Microsoft365BackupContentComponent } from '../sections/microsoft-365-backup-content.component';
@@ -538,7 +540,8 @@ interface ProductTourSlide {
     GpuLeadHeroComponent,
     DomainWhoisContentComponent,
     DomainWhoisFaqComponent,
-    ManagedOracleContentComponent,
+    ManagedOracleSourceComponent,
+    DfirSourceComponent,
     ManagedMongoDbContentComponent,
     ManagedMicrosoftSqlContentComponent,
     DropboxMigrationContentComponent,
@@ -611,6 +614,7 @@ interface ProductTourSlide {
     ManagedAwsHeroComponent,
     ManagedAwsSourceComponent,
     ManagedAzureSourceComponent,
+    ManagedGcpSourceComponent,
 
     ManagedMicrosoft365ContentComponent,
     Microsoft365BackupContentComponent,
