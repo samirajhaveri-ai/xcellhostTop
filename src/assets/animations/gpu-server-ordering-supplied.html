@@ -224,6 +224,14 @@ body{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Ari
 .btn-primary{background:var(--bl);color:#fff;box-shadow:0 7px 16px rgba(0,102,255,.26)}.btn-primary:hover{background:var(--bl-d)}.btn-primary:active{transform:translateY(1px)}
 .btn-ghost{background:#eef2f7;color:#334155}
 .row-btns{display:flex;gap:12px;margin-top:20px}.row-btns .btn-primary{flex:1}
+/* Account mode toggle (New Customer / Already Have an Account) — UI only */
+.acct-toggle{display:inline-flex;gap:4px;background:#eef2f7;border:1px solid var(--line);border-radius:12px;padding:4px;margin:2px 0 18px}
+.acct-tab{border:none;background:transparent;font:inherit;font-weight:700;font-size:.85rem;color:#334155;padding:9px 16px;border-radius:9px;cursor:pointer;transition:background .15s,color .15s}
+.acct-tab:hover{color:var(--nv)}
+.acct-tab.active{background:#fff;color:var(--bl);box-shadow:0 1px 3px rgba(4,30,66,.12)}
+@media(max-width:480px){.acct-toggle{display:flex;width:100%}.acct-tab{flex:1;text-align:center;padding:9px 8px}}
+.login-err{color:#e11d48;font-size:.82rem;font-weight:600;margin-top:12px;min-height:1em;display:none}
+.login-err.show{display:block}
 .secure-line{font-size:.74rem;color:var(--muted);text-align:center;margin-top:12px}
 .pending{display:none;margin-top:16px;background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:14px 16px;font-size:.88rem;color:#9a3412;line-height:1.5}
 .pending.show{display:block}
@@ -288,7 +296,7 @@ body{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Ari
 }
 </style>
 <style>
-/* Embedded catalogue mode: preserve the supplied UI while removing its standalone shell. */
+/* Embedded mode: use the website shell while preserving the supplied cart/checkout UI. */
 html,body{background:transparent}
 body{overflow-x:hidden}
 .nav,.foot,#viewCart>.page-eyebrow,#viewCart>.page-title,#viewCart>.page-sub{display:none!important}
@@ -358,7 +366,7 @@ body{overflow-x:hidden}
     <!-- STEP 1: SERVICE (order configuration — quantity + optional add-ons) -->
     <div class="card" id="cardService">
       <div class="card-h">Your GPU Server</div>
-      <div class="card-sub">Confirm your configuration and choose any optional add-ons.</div>
+      <div class="card-sub">Confirm your configuration, set the number of servers, and choose any optional add-ons.</div>
       <div class="cfg-grid">
         <div class="cfg"><span class="k">GPU</span><span class="v" id="sGpu">NVIDIA L4</span></div>
         <div class="cfg"><span class="k">Location</span><span class="v">India DC</span></div>
@@ -367,6 +375,16 @@ body{overflow-x:hidden}
         <div class="cfg"><span class="k">VRAM</span><span class="v" id="sVram">24 GB</span></div>
         <div class="cfg"><span class="k">GPU Price</span><span class="v" id="sPrice">&#8377;30,080 / server / month</span></div>
         <div class="cfg"><span class="k">Billing</span><span class="v">Monthly &middot; cancel anytime</span></div>
+      </div>
+
+      <!-- quantity (number of servers) -->
+      <div class="svc-qty">
+        <span class="lab">Number of servers</span>
+        <span class="qtyc">
+          <button type="button" id="svcMinus" aria-label="Decrease quantity" onclick="changeSvcQty(-1)">&minus;</button>
+          <input id="svcQty" type="text" inputmode="numeric" value="1" aria-label="Number of servers" onchange="setSvcQty(this.value)">
+          <button type="button" aria-label="Increase quantity" onclick="changeSvcQty(1)">+</button>
+        </span>
       </div>
 
       <!-- OPTIONAL ADD-ONS (ALL add-ons, categorised + collapsible; multi-select) -->
@@ -379,7 +397,7 @@ body{overflow-x:hidden}
 
       <!-- service totals (promo code is entered in the right-hand Order Summary; discount reflected here) -->
       <div class="svc-totals">
-        <div class="trow"><span>Base price</span><b id="svcBase">&#8377;30,080</b></div>
+        <div class="trow"><span>Base (<b id="svcQtyEcho">1</b> &times; <span id="svcBaseEach">&#8377;30,080</span>)</span><b id="svcBase">&#8377;30,080</b></div>
         <div class="trow"><span>Add-ons</span><b id="svcAddonTotal">&#8377;0</b></div>
         <div class="trow subt"><span>Subtotal</span><b id="svcSubtotal">&#8377;30,080</b></div>
         <div class="trow disc" id="svcDiscRow" style="display:none"><span>Discount <small id="svcDiscCode"></small></span><b id="svcDisc">-&#8377;0</b></div>
@@ -397,6 +415,15 @@ body{overflow-x:hidden}
     <div class="card" id="cardAccount" style="display:none">
       <div class="card-h">Account Information</div>
       <div class="card-sub">We'll use these details for your order and onboarding.</div>
+
+      <!-- Account mode toggle: New Customer vs Already Have an Account (UI only) -->
+      <div class="acct-toggle" role="tablist" aria-label="Account type">
+        <button type="button" class="acct-tab active" id="acctTabNew" role="tab" aria-selected="true" onclick="setAcctMode('new')">New Customer</button>
+        <button type="button" class="acct-tab" id="acctTabExisting" role="tab" aria-selected="false" onclick="setAcctMode('existing')">Already Have an Account</button>
+      </div>
+
+      <!-- New Customer form (unchanged) -->
+      <div id="acctNew">
       <form autocomplete="on" onsubmit="return false">
         <div class="frow">
           <div class="field"><label for="firstName">First Name <span class="rq">*</span></label><input id="firstName" type="text" autocomplete="given-name"><div class="ferr">Please enter your first name.</div></div>
@@ -411,6 +438,19 @@ body{overflow-x:hidden}
       <div class="row-btns">
         <button type="button" class="btn btn-ghost" onclick="goStep('service')">&larr; Back to Service</button>
         <button type="button" class="btn btn-primary" onclick="goStep('profile')">Continue to Profile &rarr;</button>
+      </div>
+      </div><!-- /acctNew -->
+
+      <!-- Existing customer sign-in — Email + Password, verified server-side (no credentials in the frontend) -->
+      <div id="acctExisting" style="display:none">
+        <form autocomplete="on" onsubmit="return false">
+          <div class="field"><label for="loginEmail">Email <span class="rq">*</span></label><input id="loginEmail" type="email" autocomplete="username"><div class="ferr">Enter a valid email address.</div></div>
+          <div class="field"><label for="loginPassword">Password <span class="rq">*</span></label><input id="loginPassword" type="password" autocomplete="current-password"><div class="ferr">Please enter your password.</div></div>
+        </form>
+        <div class="login-err" id="loginErr" role="alert" aria-live="polite"></div>
+        <div class="row-btns">
+          <button type="button" class="btn btn-primary" id="signInBtn" onclick="existingSignIn()">Sign In &amp; Continue &rarr;</button>
+        </div>
       </div>
     </div>
 
@@ -500,7 +540,7 @@ body{overflow-x:hidden}
       </div>
       <div class="pline" id="oDiscRow" style="display:none"><span>Discount <small id="oDiscCode" style="color:var(--gn);font-weight:700"></small></span><span class="amt" id="oDisc" style="color:var(--gn)">-&#8377;0 / mo</span></div>
       <div class="pline total"><span>Grand Total</span><span class="amt" id="oSubtotal">&#8377;30,080 / mo</span></div>
-      <div class="tax-note">Choose your NVMe storage above &mdash; the price updates instantly. GST is applied on the final invoice; no payment is taken on this page.</div>
+      <div class="tax-note">Choose your NVMe storage above &mdash; the price updates instantly. Subtotal is (GPU price + add-ons) &times; number of servers. GST is applied on the final invoice; no payment is taken on this page.</div>
       <div class="incl-mini"><div class="t">Included</div><ul>
         <li id="oInclGpu">NVIDIA L4 &middot; 24 GB VRAM</li>
         <li id="oInclCpu">16 vCPU &middot; 64 GB RAM</li>
@@ -986,7 +1026,10 @@ function orderSubtotal(){ var r=resolveRec(); var base=r?r.price:(cfg.price||0);
    real Zoho coupon that is missing here simply gets no on-page preview. Add
    real codes only. type:'pct' = % off the subtotal; type:'flat' = ₹ off. */
 var COUPONS={
-  'XCLL10':{type:'pct',value:10,label:'10% off (before GST)'}
+  /* Real, activated Zoho Billing coupon — "GPU Cart 10 Percent": GPU Servers, 10%,
+     one-time, max 100 redemptions. The on-page figure is a PREVIEW only; the code is
+     sent to Zoho as coupon_code and Zoho is the final authority on validity/application. */
+  'XCELGS10':{type:'pct',value:10,label:'10% off GPU Servers (before GST)'}
 };
 var COUPON={code:'',type:null,value:0,label:''};   /* the currently accepted coupon, or none */
 /* discount for the accepted coupon against a given pre-GST subtotal */
@@ -1027,8 +1070,8 @@ function addToCart(gpuId){
   var key=selected[gpuId];
   if(key==='custom'){ toast('Custom NVMe pricing isn’t configured yet — pick a listed size.'); return; }
   var o=nvmeOpt(g,key); if(!o)return;
-  /* Continue on a real Angular route so the standard site header and footer
-     wrap the checkout instead of swapping views inside the catalogue URL. */
+  /* Keep checkout on its own Angular page so the standard site header and
+     footer wrap the supplied checkout steps. */
   if(new URLSearchParams(window.location.search).get('checkout')!=='1'){
     var checkoutUrl='/gpu-servers/checkout?gpu='+enc(gpuId)+'&nvme='+enc(key);
     window.top.location.assign(checkoutUrl);
@@ -1059,11 +1102,11 @@ function renderService(){
   var base=cfg.price||0, qty=cfg.qty||1, addSub=addonSubtotal(), quote=anyQuoteNeeded();
   qs('sGpu').textContent=cfg.gpu; qs('sVcpu').textContent=cfg.vcpu; qs('sRam').textContent=cfg.ram; qs('sVram').textContent=cfg.vram;
   var sN=qs('sNvme'); if(sN) sN.textContent=cfg.nvme; qs('sPrice').innerHTML=money(base)+' / server / month';
-  var qtyInput=qs('svcQty'); if(qtyInput) qtyInput.value=String(qty);
-  var qtyMinus=qs('svcMinus'); if(qtyMinus) qtyMinus.disabled=(qty<=1);
+  qs('svcQty').value=String(qty);
+  qs('svcMinus').disabled=(qty<=1);
   qs('svcAddonSub').innerHTML=money(addSub);
-  var qtyEcho=qs('svcQtyEcho'); if(qtyEcho) qtyEcho.textContent=String(qty);
-  var baseEach=qs('svcBaseEach'); if(baseEach) baseEach.innerHTML=money(base);
+  qs('svcQtyEcho').textContent=String(qty);
+  qs('svcBaseEach').innerHTML=money(base);
   qs('svcBase').innerHTML=money(base*qty);
   qs('svcAddonTotal').innerHTML=money(addSub);
   var sub=base*qty+addSub;
@@ -1317,12 +1360,84 @@ var CARD={service:'cardService',account:'cardAccount',profile:'cardProfile',paym
 var reEmail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/, reMobile=/^[+\d][\d\s-]{7,}$/, rePin=/^\d{6}$/;
 function setErr(id,bad){var e=qs(id);if(!e)return;e.classList.toggle('err',bad);var f=e.parentElement.querySelector('.ferr');if(f)f.classList.toggle('show',bad);}
 function validAccount(){var ok=true;[['firstName',function(v){return v.length>=1;}],['lastName',function(v){return v.length>=1;}],['email',function(v){return reEmail.test(v);}],['mobile',function(v){return reMobile.test(v);}],['company',function(v){return v.length>=1;}]].forEach(function(c){var bad=!c[1](val(c[0]));setErr(c[0],bad);if(bad)ok=false;});return ok;}
+/* Account mode toggle — UI only. Switches between the New Customer form and the
+   Already-Have-an-Account sign-in panel. Does NOT touch validation or any other step. */
+function setAcctMode(mode){
+  var isNew = (mode!=='existing');
+  var n=qs('acctNew'), e=qs('acctExisting'), tn=qs('acctTabNew'), te=qs('acctTabExisting');
+  if(n) n.style.display = isNew ? '' : 'none';
+  if(e) e.style.display = isNew ? 'none' : '';
+  if(tn){ tn.classList.toggle('active', isNew); tn.setAttribute('aria-selected', isNew?'true':'false'); }
+  if(te){ te.classList.toggle('active', !isNew); te.setAttribute('aria-selected', !isNew?'true':'false'); }
+}
+/* =========================================================================
+   EXISTING-CUSTOMER AUTHENTICATION — Email + Password (verified server-side)
+   The Sign In form posts { email, password } to the backend, which verifies the
+   credentials against the server-side identity store and, on success, sets an
+   httpOnly, Secure, SameSite=Strict session cookie (xh_sid) + a readable xh_csrf
+   cookie. The browser never receives or stores a token; the password is sent
+   once over HTTPS and then discarded. NO credentials are hard-coded or stored in
+   this frontend. This is a same-page fetch (no redirect), so the selected GPU,
+   NVMe, quantity, add-ons and coupon are preserved in memory.
+
+   TEST PHASE: the three cloudnanny.support accounts are seeded in the backend
+   (AUTH_TEST_MODE=on) with their passwords held server-side only.
+
+   AUTH_API_BASE: leave '' when this cart is served from the SAME origin as the
+   backend (recommended). Set it to the API origin only if the cart is hosted on
+   a different domain; the backend must then allow that origin for CORS with
+   credentials. */
+var AUTH_API_BASE = '';
+var _signingIn = false;
+function setLoginErr(msg){ var e=qs('loginErr'); if(!e)return; e.innerHTML=msg||''; e.classList.toggle('show', !!msg); }
+async function existingSignIn(){
+  if(_signingIn) return;
+  var emailEl=qs('loginEmail'), passEl=qs('loginPassword'), btn=qs('signInBtn');
+  var email=((emailEl&&emailEl.value)||'').trim();
+  var password=((passEl&&passEl.value)||'');
+  setLoginErr('');
+  /* presence/format check only — NOT authentication (the backend decides) */
+  if(!reEmail.test(email)){ setLoginErr('Enter a valid email address.'); if(emailEl)emailEl.focus(); return; }
+  if(!password){ setLoginErr('Please enter your password.'); if(passEl)passEl.focus(); return; }
+
+  _signingIn=true;
+  if(btn){ btn.disabled=true; btn.dataset.lbl=btn.innerHTML; btn.textContent='Signing in…'; }
+  var sameOrigin = !AUTH_API_BASE;
+  try{
+    var res=await fetch((AUTH_API_BASE||'')+'/api/auth/login', {
+      method:'POST',
+      credentials: sameOrigin ? 'same-origin' : 'include',
+      headers:{ 'Content-Type':'application/json' },
+      body: JSON.stringify({ email: email, password: password })
+    });
+    /* discard the password immediately — never stored anywhere */
+    password=''; if(passEl) passEl.value='';
+    if(res && res.ok){
+      /* Authenticated. The secure session lives in the httpOnly cookie set by the
+         backend; nothing secret is kept in JS or web storage. Cart is preserved
+         (same-page — no navigation), so we go straight to Payment. */
+      cfg.existingAuthed=true;
+      cfg.customerEmail=email;                 /* non-secret, display only */
+      toast('Signed in. Taking you to payment…');
+      goStep('payment');                       /* skip the New Customer form; authed route */
+    } else {
+      if(res && res.status===429) setLoginErr('Too many attempts. Please wait a few minutes and try again.');
+      else setLoginErr('Invalid email or password.');
+    }
+  }catch(err){
+    setLoginErr('We couldn’t reach the sign-in service. Please try again.');
+  }finally{
+    _signingIn=false;
+    if(btn){ btn.disabled=false; if(btn.dataset.lbl){ btn.innerHTML=btn.dataset.lbl; delete btn.dataset.lbl; } }
+  }
+}
 function validProfile(){var ok=true;[['legalName',function(v){return v.length>=1;}],['street',function(v){return v.length>=1;}],['city',function(v){return v.length>=1;}],['state',function(v){return v.length>=1;}],['pin',function(v){return rePin.test(v);}],['country',function(v){return v.length>=1;}]].forEach(function(c){var bad=!c[1](val(c[0]));setErr(c[0],bad);if(bad)ok=false;});var g=val('gstReg');var gb=(g==='');setErr('gstReg',gb);if(gb)ok=false;if(g==='yes'){var bad=val('gstin').length!==15;setErr('gstin',bad);if(bad)ok=false;}return ok;}
 function toggleGstin(){var f=qs('gstinField');if(f)f.style.display=val('gstReg')==='yes'?'':'none';}
 function goStep(name){
   /* Service (1) and Account (2) are freely navigable; Profile needs Account; Payment needs both. */
   if(name==='profile' && !validAccount()){goStep('account');toast('Please complete your account details.');return;}
-  if(name==='payment'){ if(!validAccount()){goStep('account');toast('Please complete your account details.');return;} if(!validProfile()){goStep('profile');toast('Please complete your billing profile.');return;} }
+  /* Authenticated existing customers skip the New Customer account/profile gate. */
+  if(name==='payment' && !(cfg&&cfg.existingAuthed)){ if(!validAccount()){goStep('account');toast('Please complete your account details.');return;} if(!validProfile()){goStep('profile');toast('Please complete your billing profile.');return;} }
   for(var k in CARD){var c=qs(CARD[k]);if(c)c.style.display=(k===name)?'':'none';}
   /* the promo-code input lives in the Order Summary but is offered only on the Service step */
   var sp=qs('summaryPromo'); if(sp) sp.style.display=(name==='service')?'':'none';
@@ -1406,7 +1521,7 @@ document.addEventListener('DOMContentLoaded',function(){
   document.addEventListener('click',function(e){ if(!e.target.closest || !e.target.closest('.nvme')) closeAllMenus(); });
 });
 
-/* Keep the host page aligned with this supplied section as its view changes. */
+/* Keep each host iframe aligned as the cart and checkout views change height. */
 (function(){
   function reportHeight(){
     var h=Math.max(document.documentElement.scrollHeight,document.body.scrollHeight);
@@ -1420,3 +1535,5 @@ document.addEventListener('DOMContentLoaded',function(){
 </script>
 </body>
 </html>
+
+

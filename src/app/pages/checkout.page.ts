@@ -94,7 +94,7 @@ export class CheckoutPage implements OnDestroy {
       : this.checkoutProduct === 'gpu'
       ? {
           checkout: '1',
-          cart: '20261016',
+          cart: '20261017',
           gpu: this.route.snapshot.queryParamMap.get('gpu') || 'l4-16vcpu',
           nvme: this.route.snapshot.queryParamMap.get('nvme') || '30GB',
         }

@@ -13,6 +13,7 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 })
 export class ManagedAwsContentComponent {
   readonly provider = input<'AWS' | 'Azure'>('AWS');
+  readonly tailOnly = input(false);
   private readonly overlay = inject(OverlayService);
   private readonly topics = inject(CallbackTopicService);
 

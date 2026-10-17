@@ -1793,6 +1793,14 @@ main{display:flow-root}
  .jr-v{position:relative;top:0;will-change:transform}
 }
 .jr-rail,.jr-in{height:min(520px,calc(var(--veritas-vh,8px)*100 - 130px))}
+#vrHero .lh-title{white-space:nowrap;font-size:var(--veritas-title-size,30px)!important}
+#vrHero .lh-title .nm{display:inline;font-size:1em}
+#vrHero .lh-ask{flex-wrap:nowrap;gap:8px;max-width:100%;overflow-x:auto;box-sizing:border-box;scrollbar-width:thin}
+#vrHero .lh-ask .k{flex:0 0 auto;white-space:nowrap;letter-spacing:0;font-size:10px}
+#vrHero .lh-ask .chips{flex:0 0 auto;flex-wrap:nowrap;gap:5px}
+#vrHero .lh-ask a{flex:0 0 auto;white-space:nowrap;font-size:10px;padding:0 6px;gap:4px}
+#vrHero .veritas-brand-below-ai{display:flex;align-items:center;flex-wrap:nowrap;gap:10px;margin-top:16px;color:#c7d5ec;font:400 13px/1.4 var(--f-body)}
+#vrHero .veritas-brand-below-ai img{display:block;flex:0 0 auto;width:144px;height:36px;object-fit:cover;object-position:center;background:#fff;border-radius:4px}
 </style></head>
 <body data-preserve-copy>
 <main id="main">
@@ -1800,9 +1808,9 @@ main{display:flow-root}
 <section class="hero lh" id="vrHero" data-product="Veritas AI Visibility &amp; SEO Platform">
   <div class="hero-bg" aria-hidden="true"><div class="lh-grid"></div><div class="lh-dots"></div><span class="lh-aur a1"></span><span class="lh-aur a2"></span><div class="lh-scan"></div><canvas class="vr-bg" id="vrBg"></canvas><canvas class="lh-net"></canvas></div>
   <div class="wrap">
-    <div class="crumb" data-in="1"><a href="/" target="_top">Home</a><span class="sep">›</span><a href="/explore-marketplace" target="_top">Marketplace</a><span class="sep">›</span><span class="c">Veritas</span></div>
     <div class="hero-grid">
       <div>
+        <div class="crumb" data-in="1"><a href="/" target="_top">Home</a><span class="sep">›</span><a href="/explore-marketplace" target="_top">Marketplace</a><span class="sep">›</span><span class="c">Veritas</span></div>
         <h1 class="lh-title" data-in="1"><span class="x">Xcell</span><span class="brd">Grow</span><span class="dv">|</span><span class="nm">Veritas AI Visibility &amp; SEO</span></h1>
         <p class="lh-tag" data-in="2">Rank on Google. Get named by ChatGPT.</p>
         <p class="lh-tag2" data-in="2">Veritas puts site audits, keyword research, rank tracking, local SEO and AI-answer visibility in one workspace. XcellHost sells it in rupees, switches it on for you and supports your team from Mumbai.</p>
@@ -1815,6 +1823,7 @@ main{display:flow-root}
         </div>
         <div class="vr-anc" data-in="4"><a href="#platform"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Modules</a><a href="#local"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6 7-12a7 7 0 00-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Geogrid</a><a href="#finder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M16 8l-2 6-6 2 2-6z"/></svg>Plan finder</a><a href="https://wa.me/918657032540" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.2 1.4 2.5 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>WhatsApp us</a></div>
         <div class="lh-ask" data-in="5" data-q="Explain Veritas by Optivus Technologies — an AI visibility and SEO platform for Indian businesses that combines site audits for Google and AI crawlers, keyword research, rank tracking, local SEO with Google Business Profile and geogrid rank tracking, prompt tracking across ChatGPT, Perplexity, Gemini and Google AI Overviews, AEO/GEO fixes, an AI SEO writer with sources and LinkedIn publishing — and why to buy it through XcellHost (xcellhost.top) with INR GST billing, onboarding and managed AI-visibility services"><span class="k"><b>✦</b>Ask AI about Veritas</span><span class="chips"><a data-ai="chatgpt" href="#"><i></i>ChatGPT</a><a data-ai="claude" href="#"><i></i>Claude</a><a data-ai="perplexity" href="#"><i></i>Perplexity</a><a data-ai="google" href="#"><i></i>Google AI</a><a data-ai="copilot" href="#"><i></i>Copilot</a></span></div>
+        <div class="veritas-brand-below-ai"><span>Powered by</span><span aria-hidden="true">|</span><img src="/assets/images/veritas-logo.png" alt="Veritas" width="144" height="36"></div>
       </div>
       <div class="stage" data-in="4">
         <span class="lh-orbit"></span><span class="lh-orbit o2"></span>
@@ -1846,7 +1855,6 @@ main{display:flow-root}
           <div class="vrv-en" id="vrvEn"><span data-e="0"><i></i>ChatGPT</span><span data-e="1"><i></i>Perplexity</span><span data-e="2"><i></i>Gemini</span><span data-e="3"><i></i>AI Overviews</span></div>
           <div class="vrv-lg"><span class="pr" id="vrvLgP">›</span><code id="vrvLg">Buyer opens a search</code></div>
         </div></div>
-        <div class="lh-powered vr-pw"><small>Powered by</small><span><span class="vr-v">V</span>Veritas</span><em>by Optivus Technologies · sold &amp; supported by XcellHost</em></div>
       </div>
     </div>
   </div>
@@ -3241,6 +3249,24 @@ main{display:flow-root}
     XH.whenVisible(mq,function(v){mq.classList.toggle('paused',!v);});})();
 })();
 
+</script>
+<script>
+(function(){
+ var title=document.querySelector('#vrHero .lh-title'),pending=0,lastWidth=-1;
+ function fit(){
+  pending=0;var width=title.clientWidth;if(!width)return;
+  var maxSize=Math.min(44,Math.max(30,innerWidth*.034));
+  title.style.setProperty('--veritas-title-size',maxSize+'px');
+  var range=document.createRange();range.selectNodeContents(title);
+  var textWidth=range.getBoundingClientRect().width;
+  if(textWidth>width)title.style.setProperty('--veritas-title-size',(maxSize*(width-2)/textWidth)+'px');
+ }
+ function schedule(){if(!pending)pending=requestAnimationFrame(fit);}
+ var observer=new ResizeObserver(function(entries){var width=entries[0].contentRect.width;if(width!==lastWidth){lastWidth=width;schedule();}});
+ observer.observe(title);document.fonts.ready.then(schedule);addEventListener('resize',schedule);
+ addEventListener('pagehide',function(){observer.disconnect();cancelAnimationFrame(pending);removeEventListener('resize',schedule);},{once:true});
+ schedule();
+})();
 </script>
 </body></html>
 `;

@@ -413,6 +413,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": "New",
                 "desc": "Maximise online visibility and reach your target audience 🎯"
               },
+              {
+                "title": "Veritas",
+                "href": "/veritas",
+                "pill": "New",
+                "desc": "Site audits, keyword research, local SEO and AI-answer visibility in one workspace."
+              },
               
             ]
           }
@@ -2877,23 +2883,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": "In focus",
                 "desc": null
               },
-              {
-                "title": "Cybird",
-                "pill": "In focus",
-                "desc": null
-              },
-              {
-                "title": "Genian NAC",
-                "href": "/genian-nac",
-                "pill": "New",
-                "desc": "Discover devices, assess posture and control access to your network."
-              },
-              {
-                "title": "Veritas",
-                "href": "/veritas",
-                "pill": "New",
-                "desc": "Site audits, keyword research, local SEO and AI-answer visibility in one workspace."
-              },
               
             ]
           }
@@ -3254,6 +3243,7 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Managed Microsoft Sentinel",
+                "href": "/managed-microsoft-sentinel",
                 "pill": null,
                 "desc": null
               },
@@ -4584,7 +4574,7 @@ export const MEGA_MENU: MenuTop[] = [
         ]
       },
       {
-        "g": "7",
+        "g": "Developer Tools",
         "label": "Developer Tools",
         "on": false,
         "groups": [

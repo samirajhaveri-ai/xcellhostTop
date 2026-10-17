@@ -203,7 +203,8 @@ import { GpuServersContentComponent } from '../sections/gpu-servers-content.comp
 import { GpuLeadHeroComponent } from '../sections/gpu-lead-hero.component';
 import { DomainWhoisContentComponent } from '../sections/domain-whois-content.component';
 import { DomainWhoisFaqComponent } from '../sections/domain-whois-faq.component';
-import { ManagedOracleContentComponent } from '../sections/managed-oracle-content.component';
+import { DfirSourceComponent } from '../sections/dfir-source.component';
+import { ManagedOracleSourceComponent } from '../sections/managed-oracle-source.component';
 import { ManagedRedisContentComponent } from '../sections/managed-redis-content.component';
 import { ManagedRedisHeroComponent } from '../sections/managed-redis-hero.component';
 import { ManagedMongoDbContentComponent } from '../sections/managed-mongodb-content.component';
@@ -334,6 +335,9 @@ const EDISCOVERY_COMPLIANCE_FAQS: Faq[] = [
 
 import { ManagedAwsContentComponent } from '../sections/managed-aws-content.component';
 import { ManagedAwsHeroComponent } from '../sections/managed-aws-hero.component';
+import { ManagedAwsSourceComponent } from '../sections/managed-aws-source.component';
+import { ManagedAzureSourceComponent } from '../sections/managed-azure-source.component';
+import { ManagedGcpSourceComponent } from '../sections/managed-gcp-source.component';
 
 import { ManagedMicrosoft365ContentComponent } from '../sections/managed-microsoft-365-content.component';
 import { Microsoft365BackupContentComponent } from '../sections/microsoft-365-backup-content.component';
@@ -536,7 +540,8 @@ interface ProductTourSlide {
     GpuLeadHeroComponent,
     DomainWhoisContentComponent,
     DomainWhoisFaqComponent,
-    ManagedOracleContentComponent,
+    ManagedOracleSourceComponent,
+    DfirSourceComponent,
     ManagedMongoDbContentComponent,
     ManagedMicrosoftSqlContentComponent,
     DropboxMigrationContentComponent,
@@ -607,6 +612,9 @@ interface ProductTourSlide {
 
     ManagedAwsContentComponent,
     ManagedAwsHeroComponent,
+    ManagedAwsSourceComponent,
+    ManagedAzureSourceComponent,
+    ManagedGcpSourceComponent,
 
     ManagedMicrosoft365ContentComponent,
     Microsoft365BackupContentComponent,
@@ -3019,6 +3027,7 @@ class ProductPageComponent {
     const view = this.resolve(slug);
     if (!view) return null;
 
+    if (slug === 'email-signature') return { ...view, brandSuffix: 'Office' };
     if (slug === 'zoom-conferenceing') return { ...view, brandSuffix: 'Office', faqs: ZOOM_CONFERENCEING_FAQS, reviews: [] };
     if (slug === 'docusign') return {
       ...view, brandSuffix: 'Sign',
@@ -3914,6 +3923,7 @@ class ProductPageComponent {
     if (view && this.slug() === 'microsoft-365-training') {
       return {
         ...view,
+        brandSuffix: 'Office',
         heroPoints: ['Role-based training', 'Hands-on learning', 'Certification preparation', 'Microsoft 365 Copilot'],
         why: MICROSOFT_TRAINING_SAMPLE_WHY,
         faqs: MICROSOFT_TRAINING_SAMPLE_FAQS,
