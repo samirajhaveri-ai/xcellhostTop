@@ -622,6 +622,7 @@ export const routes: Routes = [
   { path: 'customer-stories', redirectTo: 'company/customer-stories', pathMatch: 'full' },
   { path: 'category/:name', loadComponent: () => import('./pages/category.page').then((m) => m.CategoryPage) },
   { path: 'vendor-partners/acronis', loadComponent: () => import('./pages/acronis-partner.page').then((m) => m.AcronisPartnerPage) },
+  { path: 'vendor-partners/tsplus', loadComponent: () => import('./pages/tsplus-partner.page').then((m) => m.TsplusPartnerPage) },
   {
     path: 'vendor-partners/:slug',
     loadComponent: () =>
