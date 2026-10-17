@@ -3019,7 +3019,7 @@ class ProductPageComponent {
     const view = this.resolve(slug);
     if (!view) return null;
 
-    if (slug === 'zoom-conferenceing') return { ...view, faqs: ZOOM_CONFERENCEING_FAQS, reviews: [] };
+    if (slug === 'zoom-conferenceing') return { ...view, brandSuffix: 'Office', faqs: ZOOM_CONFERENCEING_FAQS, reviews: [] };
     if (slug === 'docusign') return {
       ...view, brandSuffix: 'Sign',
       heroMessages: ['From ₹999* a month, billed in INR', 'Templates, bulk send & web forms',

@@ -48,14 +48,58 @@
   padding-block: 14px;
 }
 #ppage:has(.rpc-hero-art) > xh-smb-section-nav .smb-section-nav {
-  padding: 8px 20px;
+  max-width: 1240px !important;
+  margin: 0 auto !important;
+  padding: 8px 24px !important;
 }
 #ppage:has(.rpc-hero-art) > xh-smb-section-nav .smb-section-nav-track {
   justify-content: flex-start;
-  width: max-content;
-  max-width: 100%;
+  width: 100% !important;
+  max-width: 100% !important;
   border: 1px solid #d7e3f8;
   background: #f2f6fc;
+}
+#ppage:has(.rpc-hero-art) > xh-smb-section-nav .xh-bookmark-scroll {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 auto !important;
+}
+#ppage:has(.rpc-hero-art) > xh-smb-section-nav .xh-bookmark-scroll > .smb-section-nav-track {
+  flex: 1 1 0 !important;
+  width: 0 !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+#ppage:has(.rpc-hero-art) > xh-smb-section-nav .xh-bookmark-arrow {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 34px !important;
+  width: 34px !important;
+  height: 34px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 1px solid #cdddf7 !important;
+  border-radius: 50% !important;
+  background: #f2f6fc !important;
+  color: #1565d8 !important;
+  font: 600 26px/1 var(--body, sans-serif) !important;
+  cursor: pointer;
+}
+#ppage:has(.rpc-hero-art) > xh-smb-section-nav .xh-bookmark-arrow:disabled {
+  opacity: .35;
+  cursor: default;
+}
+#ppage:has(.rpc-hero-art) > xh-smb-section-nav .xh-bookmark-arrow[hidden] {
+  display: none !important;
+}
+#ppage:has(.rpc-hero-art) > xh-smb-section-nav .xh-bookmark-arrow:focus-visible {
+  outline: 2px solid #1565d8;
+  outline-offset: 2px;
 }
 #ppage:has(.rpc-hero-art) > xh-smb-section-nav a {
   padding: 9px 13px;
@@ -65,6 +109,11 @@
   color: #fff;
   background: #1565d8;
   box-shadow: 0 3px 8px #1565d840;
+}
+@media (max-width: 900px) {
+  #ppage:has(.rpc-hero-art) > xh-smb-section-nav .smb-section-nav {
+    padding-inline: 20px !important;
+  }
 }
 #ppage.ppage > .pp-hero:has(.rpc-hero-art) .rpc-hero-summary {
   margin-bottom: 18px;
