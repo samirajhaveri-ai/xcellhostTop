@@ -4,6 +4,16 @@
       <xh-imported-interactive-content class="cybird-source-content" source="cybird" />
       <xh-insights-section [pageSlug]="slug()" />
     </div>
+  } @else if (slug() === 'managed-aws') {
+    <div class="ppage as-page" id="ppage">
+      <xh-managed-aws-source />
+      <xh-managed-aws-content [tailOnly]="true" />
+    </div>
+  } @else if (slug() === 'managed-azure') {
+    <div class="ppage as-page" id="ppage">
+      <xh-managed-azure-source />
+      <xh-managed-aws-content provider="Azure" [tailOnly]="true" />
+    </div>
   } @else {
   <div
     class="ppage as-page"

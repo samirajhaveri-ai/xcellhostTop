@@ -334,6 +334,8 @@ const EDISCOVERY_COMPLIANCE_FAQS: Faq[] = [
 
 import { ManagedAwsContentComponent } from '../sections/managed-aws-content.component';
 import { ManagedAwsHeroComponent } from '../sections/managed-aws-hero.component';
+import { ManagedAwsSourceComponent } from '../sections/managed-aws-source.component';
+import { ManagedAzureSourceComponent } from '../sections/managed-azure-source.component';
 
 import { ManagedMicrosoft365ContentComponent } from '../sections/managed-microsoft-365-content.component';
 import { Microsoft365BackupContentComponent } from '../sections/microsoft-365-backup-content.component';
@@ -607,6 +609,8 @@ interface ProductTourSlide {
 
     ManagedAwsContentComponent,
     ManagedAwsHeroComponent,
+    ManagedAwsSourceComponent,
+    ManagedAzureSourceComponent,
 
     ManagedMicrosoft365ContentComponent,
     Microsoft365BackupContentComponent,

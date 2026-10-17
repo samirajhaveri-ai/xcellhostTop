@@ -1,5 +1,6 @@
 <main class="aws-body">
   <div class="wrap">
+    @if (!tailOnly()) {
     <section>
       <div class="pp-sec">Overview — What is an {{ provider() }} Managed Service Provider?</div>
       <div class="pp-cols">
@@ -76,9 +77,11 @@
       <div class="aws-grid three why"><article><i>01</i><h3>AWS expertise</h3><p>Certified engineers backed by managed-cloud experience since 1999.</p></article><article><i>02</i><h3>Real cost savings</h3><p>Continuous optimisation keeps your AWS bill lean.</p></article><article><i>03</i><h3>Security first</h3><p>Hardened, monitored and audit-ready environments.</p></article><article><i>04</i><h3>24×7 support</h3><p>Round-the-clock help from our NOC and SOC.</p></article><article><i>05</i><h3>Local billing</h3><p>GST-compliant invoices and familiar payment options.</p></article><article><i>06</i><h3>Clear ownership</h3><p>A named team, transparent SLA and monthly reporting.</p></article></div>
     </section>
 
+    }
+
     <section><div class="pp-sec">What customers say</div><div class="aws-quotes"><blockquote>“XcellHost migrated us to {{ provider() }} and now runs it 24×7. Our uptime improved and our monthly bill dropped by nearly a third.”<cite>Marketing Lead · E-commerce</cite></blockquote><blockquote>“During our biggest sale, XcellHost kept everything scaling smoothly. Not a single outage, and they caught issues before we noticed.”<cite>IT Security · SaaS</cite></blockquote><blockquote>“Security and compliance were non-negotiable for us. XcellHost hardened our {{ provider() }} and got us audit-ready, with a clear GST invoice each month.”<cite>Agency Owner · Fintech</cite></blockquote></div></section>
 
-    <section>
+    <section [attr.id]="tailOnly() ? 'managed-' + provider().toLowerCase() + '-faq' : null">
       <div class="pp-sec">Frequently asked questions</div>
       @if (provider() === 'Azure') {
         <div class="aws-faq-grid">
