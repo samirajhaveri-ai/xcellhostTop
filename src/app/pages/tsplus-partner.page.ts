@@ -5,11 +5,12 @@ import { SeoService } from '../core/seo.service';
 import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { InsightsSectionComponent } from '../sections/insights-section.component';
+import { TsplusPartnerHeroComponent } from '../sections/tsplus-partner-hero.component';
 
 @Component({
   selector: 'xh-tsplus-partner-page',
   standalone: true,
-  imports: [RouterLink, InsightsSectionComponent],
+  imports: [RouterLink, InsightsSectionComponent, TsplusPartnerHeroComponent],
   templateUrl: './tsplus-partner.page.html',
   styleUrl: './tsplus-partner.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
