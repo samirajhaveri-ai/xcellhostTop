@@ -203,6 +203,10 @@ import { GpuServersContentComponent } from '../sections/gpu-servers-content.comp
 import { GpuLeadHeroComponent } from '../sections/gpu-lead-hero.component';
 import { DomainWhoisContentComponent } from '../sections/domain-whois-content.component';
 import { DomainWhoisFaqComponent } from '../sections/domain-whois-faq.component';
+import { OpenAiManagedSourceComponent } from '../sections/openai-managed-source.component';
+import { OPENAI_MANAGED_SERVICES_FAQS } from '../data/openai-managed-services-faq.data';
+import { VortexSocSourceComponent } from '../sections/vortex-soc-source.component';
+import { VortexSegSourceComponent } from '../sections/vortex-seg-source.component';
 import { DfirSourceComponent } from '../sections/dfir-source.component';
 import { ManagedOracleSourceComponent } from '../sections/managed-oracle-source.component';
 import { ManagedRedisContentComponent } from '../sections/managed-redis-content.component';
@@ -542,6 +546,9 @@ interface ProductTourSlide {
     DomainWhoisFaqComponent,
     ManagedOracleSourceComponent,
     DfirSourceComponent,
+    VortexSegSourceComponent,
+    VortexSocSourceComponent,
+    OpenAiManagedSourceComponent,
     ManagedMongoDbContentComponent,
     ManagedMicrosoftSqlContentComponent,
     DropboxMigrationContentComponent,
@@ -2988,6 +2995,10 @@ class ProductPageComponent {
     initialValue: '',
   });
 
+  readonly isVortexSegSource = computed(() =>
+    this.slug() === 'vortex-seg' && this.route.snapshot.paramMap.get('slug') === 'vortex-seg',
+  );
+
   readonly usesVpsPageTemplate = computed(() =>
     this.slug() === 'openclaw-vps' || this.slug() === 'cpanel-vps',
   );
@@ -3026,6 +3037,10 @@ class ProductPageComponent {
     const slug = this.slug();
     const view = this.resolve(slug);
     if (!view) return null;
+
+    if (slug === 'open-ai-managed-services') {
+      return { ...view, faqs: OPENAI_MANAGED_SERVICES_FAQS };
+    }
 
     if (slug === 'email-signature') return { ...view, brandSuffix: 'Office' };
     if (slug === 'zoom-conferenceing') return { ...view, brandSuffix: 'Office', faqs: ZOOM_CONFERENCEING_FAQS, reviews: [] };
