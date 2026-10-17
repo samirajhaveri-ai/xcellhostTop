@@ -1,5 +1,19 @@
 
 @import 'material-symbols/outlined.css';
+@import '@docsearch/css/dist/style.css';
+
+/* DocSearch portals into body, outside Angular's component style scope. */
+.DocSearch {
+  --docsearch-primary-color: #1565d8;
+  --docsearch-text-color: #041e42;
+  --docsearch-modal-width: 900px;
+  --docsearch-container-background: rgba(4, 15, 44, .64);
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+.DocSearch-Container { z-index: 10000; backdrop-filter: blur(7px); }
+.xh-docsearch-website { border:1px solid #dce5f2;border-radius:6px;padding:5px 9px;background:#f2f6fc;color:#1565d8;cursor:pointer;font:inherit; }
+.xh-docsearch-actions { display:flex;gap:8px;flex-wrap:wrap; }
+.xh-docsearch-ai { border:1px solid #1565d8;border-radius:6px;padding:5px 9px;background:#1565d8;color:white;cursor:pointer;font:inherit; }
 
   :root{
     --navy:#041E42; --navy-2:#0A2A57; --blue:#1565D8; --blue-soft:#E8F0FD;

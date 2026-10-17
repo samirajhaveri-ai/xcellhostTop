@@ -1,4 +1,4 @@
-﻿import { signal } from '@angular/core';
+import { signal } from '@angular/core';
 import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { BehaviorSubject, of } from 'rxjs';
@@ -21,6 +21,7 @@ describe('Search dialog live results', () => {
       const fixture = TestBed.createComponent(SearchDialogComponent);
       const overlay = TestBed.inject(OverlayService);
       overlay.open('search');
+      fixture.componentInstance.websiteSearch.set(true);
       fixture.detectChanges();
       const panel = fixture.nativeElement.querySelector('.srch') as HTMLElement;
       const box = fixture.nativeElement.querySelector('.srch-box') as HTMLElement;
@@ -60,6 +61,7 @@ describe('Search dialog live results', () => {
     });
     const fixture = TestBed.createComponent(SearchDialogComponent);
     TestBed.inject(OverlayService).open('search');
+    fixture.componentInstance.websiteSearch.set(true);
     fixture.detectChanges();
     const panel = fixture.nativeElement.querySelector('.srch') as HTMLElement;
     const box = fixture.nativeElement.querySelector('.srch-box') as HTMLElement;
