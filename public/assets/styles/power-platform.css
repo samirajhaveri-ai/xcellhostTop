@@ -1,0 +1,25 @@
+/* Integration overrides for the supplied Power Platform designs. */
+.hero.lh .crumb{margin-bottom:12px}
+.pa-top>*,.pb-top>*,.pg-hg>*{min-width:0}
+.hero.lh .lh-title .nm{display:inline!important}
+.hero .lh-ask.xh-icon-ask.xh-developer-ask{gap:8px;padding:9px 10px;margin-bottom:0}
+.hero .lh-ask.xh-icon-ask.xh-developer-ask .chips{gap:6px!important}
+.hero .lh-ask.xh-icon-ask.xh-developer-ask .chips a{width:28px!important;height:28px!important;min-width:28px}
+.power-powered{display:flex;align-items:center;gap:10px;margin-top:16px;color:#c7d5ec;font:400 13px/1.4 var(--f-body)}
+.power-vendor{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:4px;padding:7px 10px;color:#354660;font-weight:600}
+.power-vendor img{display:block;width:22px;height:22px;object-fit:contain}
+#govern h2{text-transform:uppercase}
+main h2 .acc:after{display:none}
+.product-section-nav{position:relative!important;top:auto!important}
+#pbHero .pb-top{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:32px;align-items:center}
+#pbHero .pb-win{margin-top:0}
+#pbHero .pb-pts{margin-top:18px}
+#pbHero .pb-wb{grid-template-columns:1fr}
+#pbHero .pb-scr{aspect-ratio:auto;height:300px}
+#pbHero .pb-side{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-left:0;border-top:1px solid rgba(255,255,255,.08)}
+#pbHero .pb-side .pb-kp:nth-child(3){grid-column:auto}
+#pbHero .pb-log{grid-column:1/-1}
+#pbHero .pb-wh{flex-wrap:wrap;padding:10px 12px}
+#pbHero .pb-wt{flex-wrap:wrap}
+@media(max-width:1100px){#pbHero .pb-top{grid-template-columns:1fr;gap:32px}#pbHero .pb-win{width:100%;max-width:720px;margin:0 auto}}
+@media(max-width:600px){.power-powered{gap:8px;font-size:12px}.power-vendor{padding:6px 8px}}

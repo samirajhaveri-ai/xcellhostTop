@@ -1,13 +1,14 @@
-const bookmarkSelector = '.cybird-section-nav,.media-jump,.m365-section-nav,.gp-subnav,.consulting-nav,.cpanel-bookmarks,.dx-sub,.oc-sub,.tf-sub,.gc-snav,.product-section-nav,.smb-section-nav,.openclaw-bookmarks,.ps-toc,.sg-sub,.sx-sub,.sa-sub,.sz-sub,.sd-sub,.se-sub,.vf-sub,.vl-snav,.vn-sub,.wsn,.tally-section-nav';
+const bookmarkSelector = '.cybird-section-nav,.media-jump,.m365-section-nav,.gp-subnav,.consulting-nav,.cpanel-bookmarks,.dx-sub,.oc-sub,.tf-sub,.gc-snav,.product-section-nav,.smb-section-nav,.openclaw-bookmarks,.ps-toc,.sg-sub,.sx-sub,.sa-sub,.sz-sub,.sd-sub,.se-sub,.vf-sub,.vl-snav,.vn-sub,.wsn,.tally-section-nav,.df-sub,.ma-sub,.az-sub,.gc-sub,.e7-sub';
 const installations = new WeakMap<Document, () => void>();
 
-/** Give overflowing bookmark rows visible controls and ordinary mouse-wheel support. */
+/** Keep bookmark bars in page flow, including bars inside same-origin page frames. */
 export function installBookmarkScrolling(document: Document): () => void {
   const existing = installations.get(document);
   if (existing) return existing;
   const win = document.defaultView;
   if (!win) return () => {};
   const rows = new Map<HTMLElement, () => void>();
+  const frames = new Map<HTMLIFrameElement, () => void>();
   let pending = 0;
 
   const scan = (): void => {
@@ -15,10 +16,48 @@ export function installBookmarkScrolling(document: Document): () => void {
     rows.forEach((dispose, nav) => {
       if (!nav.isConnected) { dispose(); rows.delete(nav); }
     });
+    frames.forEach((dispose, frame) => {
+      if (!frame.isConnected) { dispose(); frames.delete(frame); }
+    });
+    document.querySelectorAll<HTMLIFrameElement>('iframe').forEach(frame => {
+      if (frames.has(frame)) return;
+      let childDocument: Document | null = null;
+      let cleanup: (() => void) | undefined;
+      const load = (): void => {
+        // External video, payment and map frames do not expose a contentDocument.
+        const next = frame.contentDocument;
+        if (next === childDocument && cleanup) return;
+        cleanup?.();
+        childDocument = next;
+        cleanup = next ? installBookmarkScrolling(next) : undefined;
+      };
+      // Some supplied pages announce readiness before remote assets finish loading.
+      const ready = (event: MessageEvent): void => {
+        if (event.source === frame.contentWindow && event.origin === win.location.origin) load();
+      };
+      frame.addEventListener('load', load);
+      win.addEventListener('message', ready);
+      frames.set(frame, () => {
+        frame.removeEventListener('load', load);
+        win.removeEventListener('message', ready);
+        cleanup?.();
+      });
+      load();
+    });
     document.querySelectorAll<HTMLElement>(bookmarkSelector).forEach(nav => {
       if (rows.has(nav)) return;
       const links = nav.querySelectorAll<HTMLAnchorElement>('a[href^="#"]');
       if (links.length < 2) return;
+      // Imported pages have their own stylesheets; the outer Angular CSS cannot reach them.
+      if (win.parent !== win && !document.querySelector('link[href="/assets/styles/section-navigation-flow.css"]')) {
+        const sheet = document.createElement('link');
+        sheet.rel = 'stylesheet';
+        sheet.href = '/assets/styles/section-navigation-flow.css';
+        document.head.appendChild(sheet);
+      }
+      for (const [property, value] of Object.entries({ position: 'relative', top: 'auto', bottom: 'auto', translate: 'none', transform: 'none' })) {
+        nav.style.setProperty(property, value, 'important');
+      }
       let track = links[0].parentElement!;
       if (track === nav) {
         track = document.createElement('div');
@@ -81,16 +120,19 @@ export function installBookmarkScrolling(document: Document): () => void {
     });
   };
   const observer = new MutationObserver(records => {
-    const changed = records.some(record => [...Array.from(record.addedNodes), ...Array.from(record.removedNodes)]
-      .some(node => node.nodeType === 1 && ((node as Element).matches(bookmarkSelector) || (node as Element).querySelector(bookmarkSelector))));
+    const changed = records.some(record => (record.target as Element).closest?.(bookmarkSelector) ||
+      [...Array.from(record.addedNodes), ...Array.from(record.removedNodes)]
+        .some(node => node.nodeType === 1 && ((node as Element).matches(`${bookmarkSelector},iframe`) || (node as Element).querySelector(`${bookmarkSelector},iframe`))));
     if (changed && !pending) pending = win.requestAnimationFrame(scan);
   });
-  observer.observe(document.body, { childList: true, subtree: true });
+  observer.observe(document, { childList: true, subtree: true });
   const dispose = (): void => {
     observer.disconnect();
     win.cancelAnimationFrame(pending);
     rows.forEach(cleanup => cleanup());
     rows.clear();
+    frames.forEach(cleanup => cleanup());
+    frames.clear();
     installations.delete(document);
   };
   installations.set(document, dispose);

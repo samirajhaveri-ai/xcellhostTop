@@ -4,12 +4,9 @@ import { RouterLink } from '@angular/router';
 import { SeoService } from '../core/seo.service';
 import {
   TSPLUS_DEMO_FILTERS,
-  TSPLUS_OFFICIAL_VIDEOS,
-  TSPLUS_REMOTE_ACCESS_EXPERIENCES,
+  TSPLUS_DEMO_VIDEOS,
   TsplusDemoCategory,
 } from '../data/tsplus-demo.data';
-
-type TsplusVideoLibrary = 'connection-demos' | 'official-catalogue';
 
 @Component({
   selector: 'xh-tsplus-demo-center-page',
@@ -22,21 +19,13 @@ type TsplusVideoLibrary = 'connection-demos' | 'official-catalogue';
 export class TsplusDemoCenterPage {
   private static readonly PAGE_SIZE = 9;
 
-  readonly connectionDemos = TSPLUS_REMOTE_ACCESS_EXPERIENCES.map(experience => ({
-    ...experience,
-    category: 'Remote Access' as const,
-  }));
-  readonly officialVideos = TSPLUS_OFFICIAL_VIDEOS;
+  readonly experiences = TSPLUS_DEMO_VIDEOS;
   readonly filters = TSPLUS_DEMO_FILTERS;
-  readonly activeLibrary = signal<TsplusVideoLibrary>('connection-demos');
   readonly activeCategory = signal<TsplusDemoCategory | null>(null);
   readonly visibleCount = signal(TsplusDemoCenterPage.PAGE_SIZE);
-  readonly experiences = computed(() =>
-    this.activeLibrary() === 'connection-demos' ? this.connectionDemos : this.officialVideos,
-  );
   readonly filteredExperiences = computed(() => {
     const category = this.activeCategory();
-    return this.experiences().filter(experience =>
+    return this.experiences.filter(experience =>
       !category || experience.category === category,
     );
   });
@@ -59,11 +48,6 @@ export class TsplusDemoCenterPage {
     this.visibleCount.update((count) =>
       Math.min(count + TsplusDemoCenterPage.PAGE_SIZE, this.filteredExperiences().length),
     );
-  }
-
-  selectLibrary(library: TsplusVideoLibrary): void {
-    this.activeLibrary.set(library);
-    this.resetFilters();
   }
 
   selectCategory(category: TsplusDemoCategory): void {

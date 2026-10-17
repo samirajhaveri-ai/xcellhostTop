@@ -2975,22 +2975,8 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "AI Training",
             "items": [
+              
               {
-                "title": "AI App Builder",
-                "pill": null,
-                "desc": "Reliable AI App Builder hosting 💻"
-              },
-              {
-                "title": "AI Website Builder",
-                "pill": null,
-                "desc": "Reliable AI Website Builder hosting 🐧"
-              },
-              {
-                "title": "AI IDE Lab",
-                "pill": null,
-                "desc": "Optimized AI IDE Lab ⚡"
-              },
-                  {
                 "title": "Synapsem-AI Integrated Program",
                 "pill": null,
                 "desc": "Reliable AI Website Builder hosting 🐧"
@@ -3124,7 +3110,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Reliable AI Website Builder hosting 🐧"
               },
               {
-                "title": "Open AI Managed Services",
+                "title": "OpenAI Managed Services",
                 "pill": null,
                 "desc": "Reliable AI App Builder hosting 💻"
               },
@@ -4270,6 +4256,7 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Knowledgebase",
+                "href": "https://supportdesk.xcellhost.cloud/portal/en/kb",
                 "pill": null,
                 "desc": "Guidance for common service tasks"
               },
@@ -4280,6 +4267,21 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Escalation Matrix",
+                "pill": null,
+                "desc": "Support contacts and escalation levels"
+              },
+              {
+                "title": "Status",
+                "pill": null,
+                "desc": "Support contacts and escalation levels"
+              },
+              {
+                "title": "Speed Test",
+                "pill": null,
+                "desc": "Support contacts and escalation levels"
+              },
+              {
+                "title": "Looking Glass",
                 "pill": null,
                 "desc": "Support contacts and escalation levels"
               },

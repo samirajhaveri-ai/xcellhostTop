@@ -22,22 +22,6 @@
             (click)="selectCategory(filter.category)"
           >{{ filter.label }}</button>
         }
-        <button
-          class="tsplus-library-tab"
-          type="button"
-          role="tab"
-          [class.active]="activeLibrary() === 'connection-demos'"
-          [attr.aria-selected]="activeLibrary() === 'connection-demos'"
-          (click)="selectLibrary('connection-demos')"
-        >Connection demos</button>
-        <button
-          class="tsplus-library-tab"
-          type="button"
-          role="tab"
-          [class.active]="activeLibrary() === 'official-catalogue'"
-          [attr.aria-selected]="activeLibrary() === 'official-catalogue'"
-          (click)="selectLibrary('official-catalogue')"
-        >Official TSplus catalogue</button>
         <button class="tsplus-reset-filters" type="button" (click)="resetFilters()">Reset filters</button>
       </div>
 
