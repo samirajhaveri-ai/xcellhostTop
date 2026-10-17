@@ -132,6 +132,13 @@
     [class.nvidia-h100-page]="slug() === 'nvidia-h100'"
     [class.supplied-smb-hero-page]="usesSuppliedSmbHero()"
   >
+    @if (slug() === 'managed-google-cloud-gcp') {
+      <xh-managed-gcp-source />
+    } @else if (slug() === 'dfir') {
+      <xh-dfir-source />
+    } @else if (slug() === 'managed-oracle-cloud') {
+      <xh-managed-oracle-source />
+    } @else {
     @if (usesSuppliedSmbHero()) {
       <section class="supplied-smb-hero-shell" [attr.aria-label]="v.name + ' hero'">
         @switch (slug()) {
@@ -2317,6 +2324,7 @@
       }
     }
 
+    }
     @if (isSiteLock()) {
       <xh-sitelock-content />
     }
@@ -2607,9 +2615,6 @@
           @if (slug() === 'ai-voice-bot') {
             <xh-ai-voicebot-content />
           }
-          @if (slug() === 'managed-oracle-cloud') {
-            <xh-managed-oracle-content />
-          }
           @if (slug() === 'box-migration') {
             <xh-box-migration-content />
             <section class="box-migration-assurance">
@@ -2732,7 +2737,7 @@
           } @else if (slug() === 'wordpress-vps') {
             <xh-imported-interactive-content class="wordpress-vps-source-content" source="wordpress-vps" />
           }
-          @if (slug() !== 'docusign' && slug() !== 'rpc-nodes' && slug() !== 'gaming-servers' && slug() !== 'zoom-conferenceing' && slug() !== 'managed-pki' && slug() !== 'private-ca' && slug() !== 'iot-pki' && slug() !== 'iot-device-certificates' && slug() !== 'cloud-code-signing' && slug() !== 'certificate-mgmt-solutions' && slug() !== 'matter-dac' && slug() !== 'pki-software' && slug() !== 'windows-365' && slug() !== 'bio-link-digital-visiting-card' && slug() !== 'general-compute' && slug() !== 'wordpress-vps' && slug() !== 'identity-resilience' && slug() !== 'ediscovery-and-compliance' && slug() !== 'cpu-optimized' && slug() !== 'memory-optimized' && slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && slug() !== 'gpu-clusters' && slug() !== 'ai-chat-bot') {
+          @if (slug() !== 'dfir' && slug() !== 'managed-google-cloud-gcp' && slug() !== 'docusign' && slug() !== 'rpc-nodes' && slug() !== 'gaming-servers' && slug() !== 'zoom-conferenceing' && slug() !== 'managed-pki' && slug() !== 'private-ca' && slug() !== 'iot-pki' && slug() !== 'iot-device-certificates' && slug() !== 'cloud-code-signing' && slug() !== 'certificate-mgmt-solutions' && slug() !== 'matter-dac' && slug() !== 'pki-software' && slug() !== 'windows-365' && slug() !== 'bio-link-digital-visiting-card' && slug() !== 'general-compute' && slug() !== 'wordpress-vps' && slug() !== 'identity-resilience' && slug() !== 'ediscovery-and-compliance' && slug() !== 'cpu-optimized' && slug() !== 'memory-optimized' && slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && slug() !== 'gpu-clusters' && slug() !== 'ai-chat-bot') {
           @if (slug() === 'marketplace') {
             <xh-marketplace-content />
           } @else {
