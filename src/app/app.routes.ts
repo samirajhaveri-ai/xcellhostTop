@@ -5,6 +5,18 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  ...['managed-gws', 'managed-mdm', 'managed-intune-services', 'managed-phishing-simulation'].map(path => ({
+    path,
+    title: ({ 'managed-gws': 'Managed Google Workspace', 'managed-mdm': 'Managed MDM', 'managed-intune-services': 'Managed Intune Services', 'managed-phishing-simulation': 'Managed Phishing Simulation' } as Record<string, string>)[path] + ' | XcellHost',
+    data: { managedProductivitySource: path },
+    loadComponent: () => import('./pages/managed-productivity-imported.page').then(m => m.ManagedProductivityImportedPage),
+  })),
+  ...['power-pages', 'power-apps', 'power-automate', 'power-bi'].map(path => ({
+    path,
+    title: ({ 'power-pages': 'Microsoft Power Pages', 'power-apps': 'Microsoft Power Apps', 'power-automate': 'Microsoft Power Automate', 'power-bi': 'Microsoft Power BI' } as Record<string, string>)[path] + ' | XcellHost',
+    data: { powerPlatformSource: path },
+    loadComponent: () => import('./pages/power-platform-imported.page').then(m => m.PowerPlatformImportedPage),
+  })),
   ...['cpanel-control-panel', 'plesk-control-panel', 'webuzo-control-panel', 'cloudlinux', 'plesk-servers', 'cpanel-servers'].map(path => ({
     path,
     title: ({ 'cpanel-control-panel': 'cPanel Control Panel', 'plesk-control-panel': 'Plesk Control Panel', 'webuzo-control-panel': 'Webuzo Control Panel', cloudlinux: 'CloudLinux OS Licence', 'plesk-servers': 'Plesk Servers', 'cpanel-servers': 'cPanel Servers' } as Record<string, string>)[path] + ' | XcellHost',

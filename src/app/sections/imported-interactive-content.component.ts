@@ -7,6 +7,8 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { useScrollingSectionNavigation } from './section-navigation-flow';
 
 type InteractiveContentSource =
+  | 'managed-gws' | 'managed-mdm' | 'managed-intune-services' | 'managed-phishing-simulation'
+  | 'power-pages' | 'power-apps' | 'power-automate' | 'power-bi'
   | 'cpanel-control-panel' | 'plesk-control-panel' | 'webuzo-control-panel' | 'cloudlinux' | 'plesk-servers' | 'cpanel-servers'
   | 'managed-microsoft-sentinel'
   | 'sage-300-hosting'
@@ -95,6 +97,14 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     string
   > = {
     'cpanel-control-panel': '/imported-cpanel-control-panel.html',
+    'power-pages': '/imported-power-pages.html',
+    'managed-gws': '/imported-managed-gws.html',
+    'managed-mdm': '/imported-managed-mdm.html',
+    'managed-intune-services': '/imported-managed-intune-services.html',
+    'managed-phishing-simulation': '/imported-managed-phishing-simulation.html',
+    'power-apps': '/imported-power-apps.html',
+    'power-automate': '/imported-power-automate.html',
+    'power-bi': '/imported-power-bi.html',
     'plesk-control-panel': '/imported-plesk-control-panel.html',
     'webuzo-control-panel': '/imported-webuzo-control-panel.html',
     'cloudlinux': '/imported-cloudlinux.html',
@@ -178,6 +188,14 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
     'cpanel-control-panel': 'cPanel Control Panel licensing, tools, pricing and FAQs',
+    'power-pages': 'Microsoft Power Pages portals, plans, tools and FAQs',
+    'managed-gws': 'Managed Google Workspace services, tools, pricing and FAQs',
+    'managed-mdm': 'Managed MDM services, tools, pricing and FAQs',
+    'managed-intune-services': 'Managed Intune services, tools, pricing and FAQs',
+    'managed-phishing-simulation': 'Managed phishing simulation services, awareness tools, pricing and FAQs',
+    'power-apps': 'Microsoft Power Apps applications, plans, tools and FAQs',
+    'power-automate': 'Microsoft Power Automate workflows, plans, tools and FAQs',
+    'power-bi': 'Microsoft Power BI dashboards, plans, tools and FAQs',
     'plesk-control-panel': 'Plesk Control Panel licensing, tools, pricing and FAQs',
     'webuzo-control-panel': 'Webuzo Control Panel licensing, tools, pricing and FAQs',
     'cloudlinux': 'CloudLinux OS licensing, resource isolation, pricing and FAQs',
