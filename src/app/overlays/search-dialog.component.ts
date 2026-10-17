@@ -17,6 +17,7 @@ import { slugify } from '../core/catalog.service';
 import { OverlayService } from '../core/overlay.service';
 import { SiteSearchResult, SiteSearchService } from '../core/site-search.service';
 import { AiAssistantComponent } from './ai-assistant.component';
+import { AlgoliaSearchComponent } from './algolia-search.component';
 
 const DEBOUNCE_MS = 120;
 const MAX_COMPARE = 4;
@@ -37,7 +38,7 @@ const MAX_COMPARE = 4;
     style: 'display: contents',
     '(document:keydown)': 'onDocumentKey($event)',
   },
-  imports: [RouterLink, AiAssistantComponent],
+  imports: [RouterLink, AiAssistantComponent, AlgoliaSearchComponent],
   templateUrl: './search.component.html',
   styleUrl: './search.component.css',
 })
@@ -45,6 +46,7 @@ export class SearchDialogComponent {
   private readonly search = inject(SiteSearchService);
   private readonly router = inject(Router);
   readonly overlay = inject(OverlayService);
+  readonly websiteSearch = signal(false);
 
   private readonly inputRef = viewChild<ElementRef<HTMLInputElement>>('srchI');
   private readonly boxRef = viewChild<ElementRef<HTMLElement>>('searchBox');
@@ -121,6 +123,7 @@ export class SearchDialogComponent {
     effect(() => {
       if (!this.overlay.isOpen('search')) {
         untracked(() => {
+          this.websiteSearch.set(false);
           this.aiMode.set(false);
           this.resetAnswer();
           if (this.timer) clearTimeout(this.timer);
@@ -142,7 +145,7 @@ export class SearchDialogComponent {
     });
 
     afterRenderEffect((onCleanup) => {
-      if (!this.overlay.isOpen('search')) return;
+      if (!this.overlay.isOpen('search') || !this.websiteSearch()) return;
       untracked(() => {
         const input = this.inputRef()?.nativeElement;
         input?.focus({ preventScroll: true });
@@ -231,13 +234,14 @@ export class SearchDialogComponent {
 
     if (!open) {
       const tag = (ev.target as HTMLElement | null)?.tagName ?? '';
-      if (ev.key === '/' && !/^(INPUT|TEXTAREA|SELECT)$/.test(tag)) {
+      if ((ev.key === '/' || ((ev.ctrlKey || ev.metaKey) && ev.key.toLowerCase() === 'k')) && !/^(INPUT|TEXTAREA|SELECT)$/.test(tag) && !(ev.target as HTMLElement | null)?.isContentEditable) {
         ev.preventDefault();
         this.overlay.open('search');
       }
       return;
     }
 
+    if (!this.websiteSearch()) return;
     const last = this.results().length - 1;
     if (ev.key === 'Tab') {
       const box = this.boxRef()?.nativeElement;

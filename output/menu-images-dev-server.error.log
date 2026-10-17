@@ -1,0 +1,63 @@
+X [ERROR] Could not resolve "@docsearch/css"
+
+    src/styles.css:3:8:
+      3 │ @import '@docsearch/css';
+        ╵         ~~~~~~~~~~~~~~~~
+
+  The "main" field here was ignored because the list of main fields to use is currently set to ["style", "sass"].
+
+    node_modules/@docsearch/css/package.json:19:2:
+      19 │   "main": "dist/style.css",
+         ╵   ~~~~~~
+
+  You can mark the path "@docsearch/css" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+
+X [ERROR] Could not resolve "@docsearch/css"
+
+    src/styles.css:3:8:
+      3 │ @import '@docsearch/css';
+        ╵         ~~~~~~~~~~~~~~~~
+
+  The "main" field here was ignored because the list of main fields to use is currently set to ["style", "sass"].
+
+    node_modules/@docsearch/css/package.json:19:2:
+      19 │   "main": "dist/style.css",
+         ╵   ~~~~~~
+
+  You can mark the path "@docsearch/css" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+
+X [ERROR] Could not resolve "@docsearch/css"
+
+    src/styles.css:3:8:
+      3 │ @import '@docsearch/css';
+        ╵         ~~~~~~~~~~~~~~~~
+
+  The "main" field here was ignored because the list of main fields to use is currently set to ["style", "sass"].
+
+    node_modules/@docsearch/css/package.json:19:2:
+      19 │   "main": "dist/style.css",
+         ╵   ~~~~~~
+
+  You can mark the path "@docsearch/css" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+
+X [ERROR] TS2352: Conversion of type '{ type: "lvl1"; hierarchy: { lvl0: string; lvl1: string; lvl2: null; lvl3: null; lvl4: null; lvl5: null; lvl6: null; }; _highlightResult: { hierarchy: { lvl0: { value: string; matchLevel: string; matchedWords: never[]; }; ... 5 more ...; lvl6: null; }; content: DocSearchHitAttributeHighlightResult; hierarchy_camel: ...' to type 'DocSearchHit' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  The types of '_highlightResult.hierarchy.lvl1' are incompatible between these types.
+    Type '{}' is missing the following properties from type 'DocSearchHitAttributeHighlightResult': value, matchLevel, matchedWords [plugin angular-compiler]
+
+    src/app/overlays/docsearch-hits.ts:21:11:
+      21 │     return {
+         ╵            ^
+
+
+X [ERROR] TS2352: Conversion of type '{ type: "lvl1"; hierarchy: { lvl0: string; lvl1: string; lvl2: null; lvl3: null; lvl4: null; lvl5: null; lvl6: null; }; _highlightResult: { hierarchy: { lvl0: { value: string; matchLevel: "none"; matchedWords: never[]; }; ... 5 more ...; lvl6: null; }; content: DocSearchHitAttributeHighlightResult; hierarchy_camel: ...' to type 'DocSearchHit' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  The types of '_highlightResult.hierarchy.lvl2' are incompatible between these types.
+    Type 'null' is not comparable to type 'DocSearchHitAttributeHighlightResult'. [plugin angular-compiler]
+
+    src/app/overlays/docsearch-hits.ts:21:11:
+      21 │     return {
+         ╵            ^
+
+
