@@ -55,6 +55,7 @@ const CONTENT_LINKS: Record<string, string> = {
   'Customer Support': '/support-overview',
   'Submit a Ticket': '/company/submit-a-ticket',
   'Knowledge Base': '/company/knowledge-base',
+  'Knowledgebase': 'https://supportdesk.xcellhost.cloud/portal/en/kb',
   'Remote Assist': '/company/remote-assist',
   'Privacy Policy': '/company/privacy-policy',
   'Terms of Services': '/company/terms-of-service',

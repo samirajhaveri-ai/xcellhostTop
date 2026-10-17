@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, ViewChild, inject } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, ViewChild, inject } from '@angular/core';
 import { SeoService } from '../core/seo.service';
 
 @Component({
@@ -16,6 +16,7 @@ import { SeoService } from '../core/seo.service';
 export class Microsoft365E7Page implements OnDestroy {
   @ViewChild('frame') private frame?: ElementRef<HTMLIFrameElement>;
   private cleanup?: () => void;
+  private initializedDocument?: Document;
 
   constructor() {
     inject(SeoService).set(
@@ -25,13 +26,23 @@ export class Microsoft365E7Page implements OnDestroy {
     );
   }
 
+  @HostListener('window:message', ['$event'])
+  onContentReady(event: MessageEvent): void {
+    if (event.source === this.frame?.nativeElement.contentWindow &&
+        event.origin === window.location.origin && event.data?.type === 'xh-e7-ready') {
+      this.onLoad();
+    }
+  }
+
   onLoad(): void {
-    this.cleanup?.();
     const frame = this.frame?.nativeElement;
     const doc = frame?.contentDocument;
     const view = frame?.contentWindow;
     const main = doc?.querySelector('main');
     if (!frame || !doc || !view || !main) return;
+    if (this.initializedDocument === doc) return;
+    this.cleanup?.();
+    this.initializedDocument = doc;
 
     // Keep viewport-based sections tied to the browser as the frame expands.
     const resize = () => {
