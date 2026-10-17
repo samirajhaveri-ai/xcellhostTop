@@ -7,6 +7,7 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { useScrollingSectionNavigation } from './section-navigation-flow';
 
 type InteractiveContentSource =
+  | 'cpanel-control-panel' | 'plesk-control-panel' | 'webuzo-control-panel' | 'cloudlinux' | 'plesk-servers' | 'cpanel-servers'
   | 'managed-microsoft-sentinel'
   | 'sage-300-hosting'
   | 'sage-x3-hosting'
@@ -93,6 +94,12 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page' | 'sectigo-detail' | 'inference-page' | 'developer-page'>,
     string
   > = {
+    'cpanel-control-panel': '/imported-cpanel-control-panel.html',
+    'plesk-control-panel': '/imported-plesk-control-panel.html',
+    'webuzo-control-panel': '/imported-webuzo-control-panel.html',
+    'cloudlinux': '/imported-cloudlinux.html',
+    'plesk-servers': '/imported-plesk-servers.html',
+    'cpanel-servers': '/imported-cpanel-servers.html',
     'managed-microsoft-sentinel': '/imported-managed-microsoft-sentinel.html',
     'sage-300-hosting': '/imported-sage-300-hosting.html',
     'sage-x3-hosting': '/imported-sage-x3-hosting.html',
@@ -170,6 +177,12 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+    'cpanel-control-panel': 'cPanel Control Panel licensing, tools, pricing and FAQs',
+    'plesk-control-panel': 'Plesk Control Panel licensing, tools, pricing and FAQs',
+    'webuzo-control-panel': 'Webuzo Control Panel licensing, tools, pricing and FAQs',
+    'cloudlinux': 'CloudLinux OS licensing, resource isolation, pricing and FAQs',
+    'plesk-servers': 'Managed Plesk Servers, sizing, pricing and FAQs',
+    'cpanel-servers': 'Managed cPanel Servers, sizing, pricing and FAQs',
     'managed-microsoft-sentinel': 'Managed Microsoft Sentinel SOC, pricing, interactive tools and FAQs',
     'sage-300-hosting': 'Sage 300 ERP Hosting, plans, add-ons, configurator and FAQs',
     'sage-x3-hosting': 'Sage X3 Hosting, plans, add-ons, configurator and FAQs',

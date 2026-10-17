@@ -8,6 +8,8 @@ const source = fs.readFileSync(input, 'utf8');
 const reference = fs.readFileSync(path.join(root, 'public/imported-digicert-standard-ssl.html'), 'utf8');
 const core = reference.match(/<script\b[^>]*>[\s\S]*?<\/script>/)[0];
 let main = source.match(/<main\b[^>]*>[\s\S]*?<\/main>/)[0];
+// Keep the breadcrumb beside the heading, independent of the illustration height.
+main = main.replace(/(<div class="crumb"[^>]*>[\s\S]*?<\/div>)\s*(<div class="hero-grid">\s*<div[^>]*>)/, '$2$1');
 for (const id of ['watch', 'contact', 'family']) {
   main = main.replace(new RegExp('<section\\b[^>]*id="' + id + '"[^>]*>[\\s\\S]*?<\\/section>'), '');
 }
