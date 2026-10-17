@@ -5,6 +5,12 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  ...['ai-identity-security', 'ai-security-platform', 'ai-security-audit', 'ai-security-assessment', 'ai-red-teaming-services'].map(path => ({
+    path,
+    title: ({ 'ai-identity-security': 'AI Identity Security', 'ai-security-platform': 'AI Security Platform', 'ai-security-audit': 'AI Security Audit', 'ai-security-assessment': 'AI Security Assessment', 'ai-red-teaming-services': 'AI Red Teaming Services' } as Record<string, string>)[path] + ' | XcellHost',
+    data: { aiSecuritySource: path },
+    loadComponent: () => import('./pages/ai-security-imported.page').then(m => m.AiSecurityImportedPage),
+  })),
   ...['managed-gws', 'managed-mdm', 'managed-intune-services', 'managed-phishing-simulation'].map(path => ({
     path,
     title: ({ 'managed-gws': 'Managed Google Workspace', 'managed-mdm': 'Managed MDM', 'managed-intune-services': 'Managed Intune Services', 'managed-phishing-simulation': 'Managed Phishing Simulation' } as Record<string, string>)[path] + ' | XcellHost',

@@ -2026,22 +2026,22 @@
                   </div>
                 }
                 @if (slug() === 'email-signature') {
-<div class="email-addon-brand" style="display:flex;flex-direction:row;align-items:center;gap:12px"><span class="brand-label">Powered by <span class="brand-divider" aria-hidden="true">|</span></span><span class="brand-mark"><span class="cw-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 5l14 14M19 5L5 19" stroke-linecap="round"/></svg></span><span class="cw-word">Cross<span>ware</span></span></span></div>
+<div class="email-addon-brand" style="display:flex;flex-direction:row;align-items:center;gap:12px"><span class="brand-label">Powered by <span class="brand-divider" aria-hidden="true">|</span></span><span class="brand-mark"><span class="cw-word">Cross<span>ware</span></span></span></div>
                 }
                 @if (slug() === 'microsoft-365-training') {
-<div class="email-addon-brand" style="display:flex;flex-direction:row;align-items:center;gap:12px"><span class="brand-label">Powered by <span class="brand-divider" aria-hidden="true">|</span></span><span class="brand-mark"><img src="/assets/images/code-signing-tools/microsoft.svg" alt="" width="24" height="24"><span>Microsoft</span></span></div>
+<div class="email-addon-brand" style="display:flex;flex-direction:row;align-items:center;gap:12px"><span class="brand-label">Powered by <span class="brand-divider" aria-hidden="true">|</span></span><span class="brand-mark"><span>Microsoft</span></span></div>
                 }
                 @if (isTsplusRemoteAccess() || isTsplusAdvancedSecurity() || isTsplusRemoteSupport() || isTsplusServerMonitoring()) {
                   <div class="tsplus-ask-brand" aria-label="Powered by TSplus" style="display:flex;align-items:center;gap:12px">
                     <span>Powered by <span class="brand-divider" aria-hidden="true">|</span></span>
-                    <img [src]="'/assets/images/' + (isTsplusRemoteAccess() ? 'remote-access' : isTsplusAdvancedSecurity() ? 'advanced-security' : isTsplusRemoteSupport() ? 'remote-support' : 'server-monitoring') + '-logo-with-icon.svg'" [alt]="v.name" width="210" height="38">
+                    <span>{{ v.name }}</span>
                   </div>
                 }
                 @if (slug() === 'geotrust' || slug() === 'geotrust-ssl-certificates' || v.name === 'GeoTrust') {
-                  <div class="geotrust-brand-below-ai" aria-label="Powered by GeoTrust" style="display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;gap:12px"><span>Powered by <span class="brand-divider" aria-hidden="true">|</span></span><img src="/assets/images/geotrust.svg" alt="GeoTrust" width="112" height="32"></div>
+                  <div class="geotrust-brand-below-ai" aria-label="Powered by GeoTrust" style="display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;gap:12px"><span>Powered by <span class="brand-divider" aria-hidden="true">|</span></span><span>GeoTrust</span></div>
                 }
                 @if (isDigiCert()) {
-                  <div class="digicert-brand-below-ai" style="display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;gap:12px"><span class="brand-label">Powered by <span class="brand-divider" aria-hidden="true">|</span></span><img src="/assets/images/digicert.png" alt="DigiCert" width="112" height="32"></div>
+                  <div class="digicert-brand-below-ai" style="display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;gap:12px"><span class="brand-label">Powered by <span class="brand-divider" aria-hidden="true">|</span></span><span>DigiCert</span></div>
                 }
 
                 @if (usesContainerRegistryTemplate()) {
@@ -2117,7 +2117,7 @@
 
             @if (slug() === 'sectigo-ssl-certificates') {
               <div class="sectigo-ssl-song"><b><span aria-hidden="true">▂▅▇</span> Listen to our SSL Security Song</b><audio controls preload="none" aria-label="Listen to our SSL Security Song"></audio></div>
-<div class="sectigo-brand-below-ai" style="display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;gap:12px"><span>Powered by <span class="brand-divider" aria-hidden="true">|</span></span><img src="/assets/images/sectigo.svg" alt="Sectigo" width="112" height="32"></div>
+<div class="sectigo-brand-below-ai" style="display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;gap:12px"><span>Powered by <span class="brand-divider" aria-hidden="true">|</span></span><span>Sectigo</span></div>
             }
             <xh-domain-hero-media [slug]="slug()" [name]="v.name" [isDomainPage]="v.crumb.endsWith('Domains')" />
             <xh-hosting-hero-media [slug]="slug()" [name]="v.name" />

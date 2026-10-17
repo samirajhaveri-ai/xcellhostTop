@@ -7,6 +7,7 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { useScrollingSectionNavigation } from './section-navigation-flow';
 
 type InteractiveContentSource =
+  | 'ai-identity-security' | 'ai-security-platform' | 'ai-security-audit' | 'ai-security-assessment' | 'ai-red-teaming-services'
   | 'managed-gws' | 'managed-mdm' | 'managed-intune-services' | 'managed-phishing-simulation'
   | 'power-pages' | 'power-apps' | 'power-automate' | 'power-bi'
   | 'cpanel-control-panel' | 'plesk-control-panel' | 'webuzo-control-panel' | 'cloudlinux' | 'plesk-servers' | 'cpanel-servers'
@@ -99,6 +100,11 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'cpanel-control-panel': '/imported-cpanel-control-panel.html',
     'power-pages': '/imported-power-pages.html',
     'managed-gws': '/imported-managed-gws.html',
+    'ai-identity-security': '/imported-ai-identity-security.html',
+    'ai-security-platform': '/imported-ai-security-platform.html',
+    'ai-security-audit': '/imported-ai-security-audit.html',
+    'ai-security-assessment': '/imported-ai-security-assessment.html',
+    'ai-red-teaming-services': '/imported-ai-red-teaming-services.html',
     'managed-mdm': '/imported-managed-mdm.html',
     'managed-intune-services': '/imported-managed-intune-services.html',
     'managed-phishing-simulation': '/imported-managed-phishing-simulation.html',
@@ -190,6 +196,11 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'cpanel-control-panel': 'cPanel Control Panel licensing, tools, pricing and FAQs',
     'power-pages': 'Microsoft Power Pages portals, plans, tools and FAQs',
     'managed-gws': 'Managed Google Workspace services, tools, pricing and FAQs',
+    'ai-identity-security': 'AI Identity Security services, tools, pricing and FAQs',
+    'ai-security-platform': 'AI Security Platform capabilities, tools, pricing and FAQs',
+    'ai-security-audit': 'AI Security Audit scope, readiness tools, pricing and FAQs',
+    'ai-security-assessment': 'AI Security Assessment scope, tools, pricing and FAQs',
+    'ai-red-teaming-services': 'AI Red Teaming scope, coverage tools, pricing and FAQs',
     'managed-mdm': 'Managed MDM services, tools, pricing and FAQs',
     'managed-intune-services': 'Managed Intune services, tools, pricing and FAQs',
     'managed-phishing-simulation': 'Managed phishing simulation services, awareness tools, pricing and FAQs',
