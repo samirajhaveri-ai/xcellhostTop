@@ -7,6 +7,11 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { useScrollingSectionNavigation } from './section-navigation-flow';
 
 type InteractiveContentSource =
+  | 'sap-s4-hana-private-cloud'
+  | 'sap-b1-cloud'
+  | 'sap-hosting'
+  | 'cloud-desktop-enterprise-vdi'
+  | 'accops-digital-workspace'
   | 'ai-identity-security' | 'ai-security-platform' | 'ai-security-audit' | 'ai-security-assessment' | 'ai-red-teaming-services'
   | 'managed-gws' | 'managed-mdm' | 'managed-intune-services' | 'managed-phishing-simulation'
   | 'power-pages' | 'power-apps' | 'power-automate' | 'power-bi'
@@ -97,6 +102,11 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page' | 'sectigo-detail' | 'inference-page' | 'developer-page'>,
     string
   > = {
+    'sap-s4-hana-private-cloud': '/imported-sap-s4-hana-private-cloud.html',
+    'sap-b1-cloud': '/imported-sap-b1-cloud.html',
+    'sap-hosting': '/imported-sap-hosting.html',
+    'cloud-desktop-enterprise-vdi': '/imported-cloud-desktop-enterprise-vdi.html',
+    'accops-digital-workspace': '/imported-accops-digital-workspace.html',
     'cpanel-control-panel': '/imported-cpanel-control-panel.html',
     'power-pages': '/imported-power-pages.html',
     'managed-gws': '/imported-managed-gws.html',
@@ -193,6 +203,11 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+    'sap-s4-hana-private-cloud': 'SAP S/4HANA Private Cloud, animated demo, getting started, configurator, HANA sizing and FAQs',
+    'sap-b1-cloud': 'SAP B1 HANA on Cloud, animated demo, getting started, plans, calculators and FAQs',
+    'sap-hosting': 'SAP Hosting, animated demo, hosting process, plans, landscape sizer and FAQs',
+    'cloud-desktop-enterprise-vdi': 'Cloud Desktop Enterprise VDI, animated demo, use cases, rollout timeline, pricing and FAQs',
+    'accops-digital-workspace': 'Accops Digital Workspace, animated demo, use cases, pricing, support and FAQs',
     'cpanel-control-panel': 'cPanel Control Panel licensing, tools, pricing and FAQs',
     'power-pages': 'Microsoft Power Pages portals, plans, tools and FAQs',
     'managed-gws': 'Managed Google Workspace services, tools, pricing and FAQs',

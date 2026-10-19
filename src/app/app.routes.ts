@@ -759,6 +759,26 @@ export const routes: Routes = [
   { path: 'secure-dmarc', redirectTo: 'enterprise-dmarc', pathMatch: 'full' },
   { path: 'clm-solutions', redirectTo: 'certificate-mgmt-solutions', pathMatch: 'full' },
   { path: 'zoho-sign', loadComponent: () => import('./pages/zoho-sign.page').then((m) => m.ZohoSignPage) },
+  {
+    path: 'accops-digital-workspace',
+    loadComponent: () => import('./pages/accops-digital-workspace.page').then((m) => m.AccopsDigitalWorkspacePage),
+  },
+  {
+    path: 'cloud-desktop-enterprise-vdi',
+    loadComponent: () => import('./pages/cloud-desktop-enterprise-vdi.page').then((m) => m.CloudDesktopEnterpriseVdiPage),
+  },
+  {
+    path: 'sap-hosting',
+    loadComponent: () => import('./pages/sap-hosting.page').then((m) => m.SapHostingPage),
+  },
+  {
+    path: 'sap-b1-cloud',
+    loadComponent: () => import('./pages/sap-b1-cloud.page').then((m) => m.SapB1CloudPage),
+  },
+  {
+    path: 'sap-s4-hana-private-cloud',
+    loadComponent: () => import('./pages/sap-s4-hana-private-cloud.page').then((m) => m.SapS4HanaPrivateCloudPage),
+  },
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
   { path: '**', redirectTo: '' },
 ];
