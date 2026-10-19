@@ -23,7 +23,7 @@
 .comparison-metrics div:last-child { border-right: 0; }
 .comparison-metrics strong { display: block; margin-bottom: 5px; color: #fff; font-size: 29px; line-height: 1; }
 .comparison-metrics span { color: #a5bbda; font: 700 10px/1.4 var(--mono, monospace); letter-spacing: .07em; text-transform: uppercase; }
-.comparison-library { padding: 76px 0 84px; scroll-margin-top: 80px; }
+.comparison-library { scroll-margin-top: 80px; background: radial-gradient(circle at 8% 12%, rgba(21,101,216,.08), transparent 25%), radial-gradient(circle at 94% 42%, rgba(255,140,26,.08), transparent 24%), #f5f8fd; }
 .comparison-heading { max-width: 760px; margin: 0 auto 34px; text-align: center; }
 .comparison-heading > span, .comparison-custom > div > span, .comparison-help-inner > div > span { color: #1267d5; font: 800 10px/1.4 var(--mono, monospace); letter-spacing: .13em; text-transform: uppercase; }
 .comparison-heading h2 { margin: 10px 0 12px; color: #071d43; font-size: clamp(30px, 4vw, 30px); line-height: 1.12; letter-spacing: -.035em; }
@@ -34,21 +34,32 @@
 .comparison-filters button:hover { transform: translateY(-1px); border-color: #9ebce6; color: #0d5fc8; }
 .comparison-filters button.active { border-color: #1267d5; background: #1267d5; color: #fff; box-shadow: 0 8px 20px rgba(18,103,213,.2); }
 .comparison-result-count { margin: 13px 0 20px; color: #7b8ba1; font-size: 12px; text-align: right; }
-.comparison-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-.comparison-card { display: flex; min-width: 0; min-height: 292px; flex-direction: column; padding: 24px; overflow: hidden; border: 1px solid #dfe5eb; border-radius: 10px; background: #fff; box-shadow: 0 1px 2px rgba(15,35,55,.04); transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
-.comparison-card:hover { transform: translateY(-2px); border-color: #cad5df; box-shadow: 0 8px 20px rgba(15,35,55,.07); }
+.comparison-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.comparison-card { --card-accent: #1565d8; --card-border: #b9d2f5; --card-wash: #edf5ff; --card-wash-strong: #deecff; position: relative; isolation: isolate; display: flex; min-width: 0; min-height: 292px; flex-direction: column; padding: 24px; overflow: hidden; border: 1px solid var(--card-border); border-top: 4px solid var(--card-accent); border-radius: 16px; background: linear-gradient(150deg, #fff 48%, var(--card-wash) 100%); box-shadow: 0 10px 28px rgba(15,48,91,.08); transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
+.comparison-card::after { position: absolute; z-index: -1; top: -70px; right: -64px; width: 160px; height: 160px; border-radius: 50%; background: var(--card-wash-strong); opacity: .72; content: ''; }
+.comparison-card:nth-child(6n+2) { --card-accent: #f07c18; --card-border: #f7c99f; --card-wash: #fff5eb; --card-wash-strong: #ffe6cc; }
+.comparison-card:nth-child(6n+3) { --card-accent: #078b78; --card-border: #a9ddd4; --card-wash: #ecfaf7; --card-wash-strong: #d4f4ed; }
+.comparison-card:nth-child(6n+4) { --card-accent: #7656d8; --card-border: #cbbef2; --card-wash: #f3efff; --card-wash-strong: #e7dfff; }
+.comparison-card:nth-child(6n+5) { --card-accent: #d84d72; --card-border: #f0b7c7; --card-wash: #fff0f4; --card-wash-strong: #ffdae4; }
+.comparison-card:nth-child(6n) { --card-accent: #087fa8; --card-border: #add9e8; --card-wash: #edfaff; --card-wash-strong: #d7f3fc; }
+.comparison-card:hover { transform: translateY(-5px); box-shadow: 0 18px 38px rgba(15,48,91,.14); }
 .comparison-card-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.comparison-card-top > span { max-width: calc(100% - 32px); padding: 5px 11px; border: 1px solid #ccdae3; border-radius: 999px; color: #183247; font: 700 9px/1.2 var(--disp, sans-serif); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.comparison-card-top svg { width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: #0074e7; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.comparison-card-top > span { max-width: calc(100% - 32px); padding: 6px 11px; border: 1px solid var(--card-border); border-radius: 999px; background: var(--card-wash-strong); color: var(--card-accent); font: 800 9px/1.2 var(--disp, sans-serif); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.comparison-card-top svg { width: 20px; height: 20px; flex: 0 0 20px; fill: none; stroke: var(--card-accent); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.comparison-card-top > .comparison-brand-mark { display: flex; width: auto; max-width: none; height: 42px; flex: 0 0 auto; align-items: center; gap: 4px; padding: 4px; overflow: visible; border: 1px solid var(--card-border); border-radius: 10px; background: #fff; box-shadow: 0 5px 14px rgba(15, 56, 105, .08); }
+.comparison-brand-mark .brand-logo { display: grid; width: 46px; height: 32px; place-items: center; padding: 2px; overflow: hidden; border: 0; border-radius: 7px; background: #f5f8fc; }
+.comparison-brand-mark img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.comparison-brand-mark i { color: #8494aa; font: 800 7px/1 var(--mono, monospace); font-style: normal; text-transform: uppercase; }
 .comparison-card h3 { margin: 17px 0 10px; color: #07172b; font: 700 18px/1.25 var(--disp, sans-serif); letter-spacing: -.025em; }
 .comparison-card > p { min-height: 63px; margin: 0 0 16px; color: #62788b; font-size: 12px; line-height: 1.65; }
 .comparison-products { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: auto; text-align: center; }
-.comparison-products > div { display: flex; min-width: 0; min-height: 68px; align-items: center; justify-content: center; flex-direction: column; gap: 5px; padding: 11px 9px; border-radius: 7px; background: #f5f7f9; }
+.comparison-products > div { display: flex; min-width: 0; min-height: 68px; align-items: center; justify-content: center; flex-direction: column; gap: 5px; padding: 11px 9px; border: 1px solid var(--card-border); border-radius: 10px; background: rgba(255,255,255,.82); }
+.comparison-products > div:first-child { background: var(--card-wash-strong); }
 .comparison-products strong { color: #0e2538; font-size: 11px; line-height: 1.35; overflow-wrap: anywhere; }
 .comparison-products small { color: #718698; font-size: 9px; line-height: 1.3; }
 .comparison-card-footer { margin-top: 14px; }
-.comparison-card-footer a { display: flex; width: 100%; min-height: 38px; align-items: center; justify-content: center; gap: 14px; border-radius: 5px; background: #f0f2f4; color: #142b3d; font-size: 11px; font-weight: 700; text-decoration: none; transition: background .2s, color .2s; }
-.comparison-card-footer a:hover { background: #e7ebee; color: #0a9f4b; }
+.comparison-card-footer a { display: flex; width: 100%; min-height: 40px; align-items: center; justify-content: center; gap: 14px; border-radius: 8px; background: var(--card-accent); color: #fff; font-size: 11px; font-weight: 800; text-decoration: none; box-shadow: 0 8px 18px color-mix(in srgb, var(--card-accent) 24%, transparent); transition: filter .2s, transform .2s; }
+.comparison-card-footer a:hover { color: #fff; filter: brightness(.9); }
 .comparison-card-footer i { display: inline-block; font-style: normal; transition: transform .2s; }
 .comparison-card-footer a:hover i { transform: translateX(3px); }
 .comparison-custom { display: flex; align-items: center; justify-content: space-between; gap: 28px; margin-top: 28px; padding: 30px 34px; border: 1px solid #cddcf0; border-radius: 20px; background: linear-gradient(110deg, #fff, #edf5ff); }
