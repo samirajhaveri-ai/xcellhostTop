@@ -1294,11 +1294,6 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Email Services",
             "items": [
               {
-                "title": "Business E-Mail",
-                "pill": null,
-                "desc": null
-              },
-              {
                 "title": "XcellWorkSpace",
                 "pill": null,
                 "desc": null
