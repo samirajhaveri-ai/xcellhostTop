@@ -2977,17 +2977,17 @@ export const MEGA_MENU: MenuTop[] = [
             "items": [
               
               {
-                "title": "Synapsem-AI Integrated Program",
+                "title": "Synapsem-AI training Integrated Program",
                 "pill": null,
                 "desc": "Reliable AI Website Builder hosting 🐧"
               },
               {
-                "title": "Synapsem-AI Live Online",
+                "title": "Synapsem-AI training Live Online",
                 "pill": null,
                 "desc": "Reliable AI App Builder hosting 💻"
               },
               {
-                "title": "AI for Medical Doctors",
+                "title": "AI training for Medical Doctors",
                 "pill": null,
                 "desc": "Reliable AI App Builder hosting 💻"
               },
@@ -2997,7 +2997,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Reliable AI App Builder hosting 💻"
               },
               {
-                "title": "AI for Insurance Professionals",
+                "title": "AI training for Insurance Professionals",
                 "pill": null,
                 "desc": "Reliable AI App Builder hosting 💻"
               },

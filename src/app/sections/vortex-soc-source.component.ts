@@ -5,12 +5,12 @@ import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { LeadService } from '../core/lead.service';
 
-/** Isolate the supplied Vortex SOC styles and animation runtime to its route. */
+/** Isolate the supplied XcellSOC styles and animation runtime to its route. */
 @Component({
   selector: 'xh-vortex-soc-source',
   standalone: true,
   template: `<iframe #frame src="/vortex-soc-page.html"
-    title="Vortex SOC: animated SOC console, MITRE matrix, sizing estimator and quotation tools"
+    title="XcellSOC: animated SOC console, MITRE matrix, sizing estimator and quotation tools"
     scrolling="no" (load)="onLoad()"></iframe>`,
   styles: [`:host{display:block;width:100%;min-width:0}iframe{display:block;width:100%;height:1100px;min-height:0;border:0}`],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -76,7 +76,7 @@ export class VortexSocSourceComponent implements OnDestroy {
     syncTheme();
 
     const callback = (event: Event) => {
-      this.topics.ask((event as CustomEvent<string>).detail || 'Vortex SOC Services');
+      this.topics.ask((event as CustomEvent<string>).detail || 'XcellSOC Services');
       this.overlay.open('callback');
     };
     const click = (event: MouseEvent) => {
@@ -137,8 +137,8 @@ export class VortexSocSourceComponent implements OnDestroy {
     const scope = String(data.get('scope') || '');
     button.disabled = true;
     const result = await this.leads.submit('callback', {
-      product: 'Vortex SOC',
-      topic: 'Vortex SOC quotation', customer, scope, page: '/vortex-soc',
+      product: 'XcellSOC',
+      topic: 'XcellSOC quotation', customer, scope, page: '/vortex-soc',
     });
     button.disabled = false;
     let status = form.querySelector<HTMLElement>('.vs-quote-status');
@@ -149,11 +149,11 @@ export class VortexSocSourceComponent implements OnDestroy {
       form.append(status);
     }
     if (result.ok && !result.skipped) {
-      status.textContent = `Your Vortex SOC quotation request was received. Reference: ${result.ref}`;
+      status.textContent = `Your XcellSOC quotation request was received. Reference: ${result.ref}`;
     } else {
       status.textContent = 'Send your scope to our team: ';
       const link = form.ownerDocument.createElement('a');
-      link.href = this.leads.mailtoLink('Vortex SOC quotation',
+      link.href = this.leads.mailtoLink('XcellSOC quotation',
         Object.entries(customer).map(([key, value]) => `${key}: ${value}`).join('\n') + `\nScope: ${scope}`);
       link.textContent = 'Email my quote request';
       status.append(link);

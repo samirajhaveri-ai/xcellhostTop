@@ -4562,7 +4562,7 @@ class ProductPageComponent {
       'acronis-direct-cloud-backup': [{ title: 'Acronis Direct Cloud Backup overview', source: 'https://www.youtube-nocookie.com/embed/s1Rxs7rWd2I?rel=0&playsinline=1' }],
       'explore-druva-platform': [{ title: 'Explore Druva Platform overview', source: 'https://www.youtube-nocookie.com/embed/s1Rxs7rWd2I?rel=0&playsinline=1' }],
       'vortex-seg': [{ title: 'Elevate your email security with Vortex SEG', source: 'https://www.youtube-nocookie.com/embed/OQAmgvXsfyI?rel=0&playsinline=1' }],
-      'vortex-soc': [{ title: 'Vortex SOC security operations', source: 'https://www.youtube-nocookie.com/embed/0tdN-nnDMHk?rel=0&playsinline=1' }],
+      'vortex-soc': [{ title: 'XcellSOC security operations', source: 'https://www.youtube-nocookie.com/embed/0tdN-nnDMHk?rel=0&playsinline=1' }],
       'scrutiny-dlp': [{ title: 'Scrutiny DLP - Product Intro', source: 'https://www.youtube-nocookie.com/embed/xpKcsUPT0ZA?rel=0&playsinline=1' }],
       'ediscovery-and-compliance': [{ title: 'Federated search and legal hold', source: '/assets/animations/ediscovery-compliance-animation.html' }],
       'tsplus-remote-support': [

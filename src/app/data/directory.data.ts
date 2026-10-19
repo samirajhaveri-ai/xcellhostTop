@@ -368,7 +368,7 @@ export const DIRECTORY: DirectoryEntry[] = [
     "group": "Cloud Data Protect"
   },
   {
-    "name": "Vortex SOC",
+    "name": "XcellSOC",
     "desc": "Unified SIEM, SOAR, UEBA and security operations suite",
     "cat": "Cloud",
     "group": "Cloud Data Protect"

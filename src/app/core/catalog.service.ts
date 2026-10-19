@@ -9,6 +9,8 @@ import { Category, DirectoryEntry, ServiceRich } from '../data/models';
 export function slugify(name: string): string {
   // Keep the established URL when displaying the ERPNext brand name.
   if (name.toLowerCase().trim() === "erpnext hosting") return "erp-next-hosting";
+  // XcellSOC is the display brand; keep the established product route and inbound links.
+  if (name.toLowerCase().trim() === 'xcellsoc') return 'vortex-soc';
   return name
     .toLowerCase()
     .replace(/&/g, 'and')

@@ -9,7 +9,7 @@
   var XH=window.XH={reduce:reduce,fine:fine,$:$,$$:$$};
   XH.inr=function(n,dec){n=+n||0;return '₹'+n.toLocaleString('en-IN',{minimumFractionDigits:dec||0,maximumFractionDigits:dec||0});};
   XH.dark=function(){return root.getAttribute('data-theme')==='dark';};
-  XH.open=function(id,opts){d.dispatchEvent(new CustomEvent('import-callback',{detail:opts&&opts.topic||'Vortex SOC Services'}));};
+  XH.open=function(id,opts){d.dispatchEvent(new CustomEvent('import-callback',{detail:opts&&opts.topic||'XcellSOC Services'}));};
   XH.cart={add:function(item){d.dispatchEvent(new CustomEvent('import-cart',{detail:item}));}};
   XH.toast=function(message){var toast=$('#vortexSocToast');toast.textContent=message;toast.hidden=false;clearTimeout(XH.toastTimer);XH.toastTimer=setTimeout(function(){toast.hidden=true;},3000);};
   d.addEventListener('click',function(event){var button=event.target.closest('[data-open]');if(button){event.preventDefault();XH.open(button.getAttribute('data-open'),{topic:button.getAttribute('data-topic')});}});
@@ -105,7 +105,7 @@
 
 })();
 
-/* Vortex SOC · mission-control page runtime (one shared rAF loop) */
+/* XcellSOC · mission-control page runtime (one shared rAF loop) */
 (function(){
   'use strict';
   var XH=window.XH,$=XH.$,$$=XH.$$,R=XH.reduce,d=document;
@@ -312,7 +312,7 @@
       /* report doc */
       fade(t,2.2,.7,function(e){var x=660,y=96+(1-e)*50;
         box(x,y,300,400,{fill:'#F4F7FD',r:12});box(x,y,300,52,{fill:'#1B2050',r:12});cx.fillStyle='#1B2050';cx.fillRect(x,y+30,300,22);
-        tx('MONTHLY COMPLIANCE PACK',x+18,y+24,{s:10.5,w:700,c:'#fff'});tx('Vortex SOC · generated · sample',x+18,y+40,{s:9,c:'#a9b3e6'});
+        tx('MONTHLY COMPLIANCE PACK',x+18,y+24,{s:10.5,w:700,c:'#fff'});tx('XcellSOC · generated · sample',x+18,y+40,{s:9,c:'#a9b3e6'});
         var L=[['CERT-In · incident log & timeline','6-hour window'],['CERT-In · 180-day log retention','in India'],['DPDP Act · breach register','up to date'],['RBI / SEBI CSCRF · SOC metrics','attached'],['ATT&CK coverage · gaps & fixes','3 new rules']];
         for(var j=0;j<5;j++){var la=ph(t,2.7+j*.3,.3),yy=y+82+j*54;var g=cx.globalAlpha;cx.globalAlpha=g*eo(la);
           box(x+16,yy,268,42,{fill:'#fff',stroke:'#dde3f1',r:8});tx(L[j][0],x+30,yy+18,{s:10,w:600,c:'#0B1232'});tx(L[j][1],x+30,yy+33,{s:9,c:'#5b6788'});
@@ -458,9 +458,9 @@
       heads.forEach(function(h){var hc=+h.getAttribute('data-c');h.classList.toggle('on',hc===c);h.classList.toggle('x',hc===c);});
       tabs.forEach(function(b){b.classList.toggle('on',+b.getAttribute('data-c')===c);});
       if(pulse){var pc=cells[c*5+r];pc.classList.remove('pulse');void pc.offsetWidth;pc.classList.add('pulse');}
-      mxD.innerHTML='<div class="id"><small>'+q[0]+' · '+t[1]+' ('+t[0]+')</small><h3>'+q[1]+'</h3><p>How Vortex SOC handles this technique — the defensive view.</p><span class="tg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>ATT&amp;CK-mapped rule library</span></div>'+
+      mxD.innerHTML='<div class="id"><small>'+q[0]+' · '+t[1]+' ('+t[0]+')</small><h3>'+q[1]+'</h3><p>How XcellSOC handles this technique — the defensive view.</p><span class="tg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>ATT&amp;CK-mapped rule library</span></div>'+
         '<div class="fl"><div><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5M3 17.5l9 5 9-5"/></svg>Correlate</span><p>'+t[3][0]+'</p></div><div><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>Detect</span><p>'+t[3][1]+'</p></div><div><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>Investigate</span><p>'+t[3][2]+'</p></div><div><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Respond</span><p>'+t[3][3]+'</p></div></div>'+
-        '<p class="sum">Vortex SOC correlates endpoint, identity, cloud, network, application and log telemetry, raises entity risk, opens a case with evidence and triggers response actions for containment and reporting.</p>';}
+        '<p class="sum">XcellSOC correlates endpoint, identity, cloud, network, application and log telemetry, raises entity risk, opens a case with evidence and triggers response actions for containment and reporting.</p>';}
     mxG.addEventListener('click',function(e){var b=e.target.closest('.tc');if(!b)return;mUser=true;mShow(+b.getAttribute('data-c'),+b.getAttribute('data-r'));});
     mxT.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;mUser=true;mShow(+b.getAttribute('data-c'),0);b.scrollIntoView&&mxT.scrollTo({left:b.offsetLeft-20,behavior:'smooth'});});
     mShow(0,0);

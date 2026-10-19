@@ -21,7 +21,7 @@ interface ComparisonCard extends ProductComparisonDefinition {
 
 const XCELLHOST_LOGO = '/assets/images/xcellhost-logo.png';
 const COMPARISON_PRODUCT_LOGOS: Readonly<Record<string, string>> = {
-  'TSplus Remote Access': '/assets/images/remote-access-logo-with-icon.svg',
+  'TSplus Remote Access': '/assets/images/vendor-partners/16-tsplus.png',
   Citrix: '/assets/images/comparison-logos/citrix.png',
   AnyDesk: '/assets/images/vendor-partners/33-anydesk.png',
   RDS: '/assets/images/cloud-backup-platforms/microsoft-windows.svg',

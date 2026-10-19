@@ -1021,9 +1021,9 @@ function resolveHeroBrand(
     };
   }
 
-  if (/^Vortex SOC$/i.test(name)) {
+  if (/^XcellSOC$/i.test(name)) {
     return {
-      name: 'Vortex SOC', subtitle: 'Delivered & managed by XcellHost', kind: 'vendor',
+      name: 'XcellSOC', subtitle: 'Delivered & managed by XcellHost', kind: 'vendor',
       logoImage: '/assets/images/vortex-soc-logo.svg',
     };
   }

@@ -20,7 +20,12 @@ const { routes } = load(path.join(root, 'src/app/app.routes.ts'));
 const { DIRECTORY } = load(path.join(root, 'src/app/data/directory.data.ts'));
 const { MEGA_MENU } = load(path.join(root, 'src/app/data/nav.data.ts'));
 const { SITE } = load(path.join(root, 'src/app/data/site.data.ts'));
-const slugify = name => name.toLowerCase().trim() === 'erpnext hosting' ? 'erp-next-hosting' : name.toLowerCase().replace(/&/g, 'and').replace(/[().,/]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+const slugify = name => {
+  const normalized = name.toLowerCase().trim();
+  if (normalized === 'erpnext hosting') return 'erp-next-hosting';
+  if (normalized === 'xcellsoc') return 'vortex-soc';
+  return normalized.replace(/&/g, 'and').replace(/[().,/]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+};
 const paths = new Set();
 const concreteRoutes = new Map();
 for (const route of routes) {

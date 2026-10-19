@@ -2,7 +2,7 @@
 export const PRODUCT_HERO_IMAGES: Readonly<Record<string, string>> = {
   "Scrutiny DLP": "/assets/images/scrutiny-dlp-hero.svg",
   "Vortex SEG": "/assets/images/vortex-seg-hero.svg",
-  "Vortex SOC": "/assets/images/vortex-soc-hero.svg",
+  "XcellSOC": "/assets/images/vortex-soc-hero.svg",
   "Tally on Cloud": "/assets/images/product-intros/reference-708cd01d9929.png",
   "SMB Cyber Security Appliance": "/assets/images/product-intros/reference-5d5e9a256253.png",
   "Cloud Drive": "/assets/images/product-intros/reference-54ea5391cf7f.png",

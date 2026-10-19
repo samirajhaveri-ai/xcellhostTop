@@ -159,7 +159,7 @@
     {cap:'Sandbox · attachment opened in isolation',mx:'sandbox · isolated detonation',
      A:['Sandbox · detonated in isolation','before delivery'],B:['Verdict · malicious · blocked','message delivered without it'],
      L:['Attachments detonated','Engines flagged','Time to verdict','Unsafe delivered'],
-     log:[['SCAN','Unknown attachment sent to sandbox',2],['SCAN','Static, behaviour and network checks running',2],['BLOCK','Verdict: malicious · attachment removed',0],['DELIV','Message delivered without the attachment',1],['INFO','Verdict shared with Vortex SOC',2]]},
+     log:[['SCAN','Unknown attachment sent to sandbox',2],['SCAN','Static, behaviour and network checks running',2],['BLOCK','Verdict: malicious · attachment removed',0],['DELIV','Message delivered without the attachment',1],['INFO','Verdict shared with XcellSOC',2]]},
     {cap:'Outbound DLP · OCR finds an Aadhaar-like pattern',mx:'outbound · DLP policy',
      A:['DLP · Aadhaar pattern masked','found inside a scanned image'],B:['Secure portal · encrypted','password-controlled link'],
      L:['Outbound inspected','Images OCR’d','Patterns masked','Sent via portal'],
@@ -169,9 +169,9 @@
      L:['SPF','DKIM','DMARC','Spoofs blocked'],
      log:[['REJ','Spoofed display name · DMARC fail · rejected',0],['PASS','SPF pass · DKIM aligned · DMARC pass',1],['INFO','Aggregate DMARC report received',2],['REJ','Unauthorised sender for yourcompany.example',0],['INFO','Policy p=reject applied to 100% of mail',2]]},
     {cap:'Archive · legal hold search · verdicts to SOC',mx:'archive · legal hold',
-     A:['Archive · 7 yrs*','retention per policy'],B:['Verdicts → Vortex SOC','evidence correlated'],
+     A:['Archive · 7 yrs*','retention per policy'],B:['Verdicts → XcellSOC','evidence correlated'],
      L:['Archived','Retention','Legal holds','Verdicts → SOC'],
-     log:[['ARCH','Messages archived this hour · tamper-evident',2],['SRCH','Archive search · 4 results in 0.6 s',2],['HOLD','Legal hold applied · matter L-07',3],['SOC','Verdicts and evidence forwarded to Vortex SOC',1],['HOLD','Retention policy · 7 years*',3]]}
+     log:[['ARCH','Messages archived this hour · tamper-evident',2],['SRCH','Archive search · 4 results in 0.6 s',2],['HOLD','Legal hold applied · matter L-07',3],['SOC','Verdicts and evidence forwarded to XcellSOC',1],['HOLD','Retention policy · 7 years*',3]]}
   ];
   var DUR=5500;
 
@@ -311,7 +311,7 @@
     c.beginPath();for(var k=0;k<6;k++){var an=Math.PI/6+k*Math.PI/3;c[k?'lineTo':'moveTo'](sx+R*Math.cos(an),sy+R*Math.sin(an));}c.closePath();c.fillStyle=dark()?'#0F2246':'#041E42';c.fill();c.strokeStyle=OR;c.lineWidth=2;c.stroke();
     var pul=(Math.sin(t*.005)+1)/2;c.globalAlpha=.25*pul;c.beginPath();c.arc(sx,sy,R+8+pul*6,0,TAU);c.strokeStyle=OR;c.stroke();c.globalAlpha=1;
     txt(c,'SOC',sx,sy+1,'800 '+(fs+1)+'px "IBM Plex Mono"','#fff','center');
-    txt(c,'Vortex SOC',sx,sy+R+14,'600 '+fs+'px "IBM Plex Mono"',T.ink,'center');
+    txt(c,'XcellSOC',sx,sy+R+14,'600 '+fs+'px "IBM Plex Mono"',T.ink,'center');
     dash(c,vx1+6,sy,sx-R-4,sy,T.line,-t*.05);
     txt(c,'verdicts & evidence',(vx1+sx-R)/2,sy-16,'500 '+(fs-1)+'px "IBM Plex Mono"',T.mut,'center');
     var arrived=0;for(var p=0;p<12;p++){var pt=(t-p*480);if(pt<0)continue;if(pt>900){arrived++;continue;}var pu2=pt/900;c.beginPath();c.arc(lerp(vx1+6,sx-R-4,pu2),sy,3.4,0,TAU);c.fillStyle=p%2?OR:BL;c.fill();}
@@ -398,11 +398,11 @@
       {t:'Vortex SEG',p:'The message is authenticated, scored and opened safely: SPF, DKIM and DMARC checks, reputation and impersonation analysis, link rewriting, multi-engine anti-virus, sandboxing, DLP and OCR — then the policy decides: deliver, quarantine, encrypt or reject. Every verdict is logged.',c:['Detect','Enforce','Protect','Log','Archive']},
       {t:'Mail server',p:'Only clean, policy-checked mail is handed to Microsoft 365, Google Workspace, Zoho Mail, Exchange or Zimbra. Nothing about your mailboxes changes.',c:['M365','Google','Zoho','Exchange','Zimbra']},
       {t:'Recipient',p:'Your colleague receives a clean message — with an external-sender banner where helpful, links that are re-checked at the time of click, and unsafe attachments removed.',c:['Clean message','Safe links','Banner warnings']},
-      {t:'Vortex SOC',p:'Verdicts and evidence flow to Vortex SOC, where they are correlated with endpoint, identity and network signals — so a phish that slipped past one user becomes one investigated case.',c:['Verdict feed','Evidence','Correlated case'],l:'vortex-soc.html'}
+      {t:'XcellSOC',p:'Verdicts and evidence flow to XcellSOC, where they are correlated with endpoint, identity and network signals — so a phish that slipped past one user becomes one investigated case.',c:['Verdict feed','Evidence','Correlated case'],l:'vortex-soc.html'}
     ];
     var P=[],cur=0,ph=0,pt=0,hold=0,meas=0,TR=700,DW=2100;
     function measure(){var pr=pipe.getBoundingClientRect();P=btns.map(function(b){var r=$('i',b).getBoundingClientRect();return [r.left-pr.left+r.width/2,r.top-pr.top+r.height/2];});}
-    function detail(k){var s=ST[k];pd.innerHTML='<div class="h bd"><span>0'+(k+1)+'</span><b>'+esc(s.t)+'</b></div><p class="bd">'+esc(s.p)+(s.l?' <a href="'+s.l+'" style="color:var(--sg-b);font-weight:600">Explore Vortex SOC →</a>':'')+'</p><ul>'+s.c.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>';}
+    function detail(k){var s=ST[k];pd.innerHTML='<div class="h bd"><span>0'+(k+1)+'</span><b>'+esc(s.t)+'</b></div><p class="bd">'+esc(s.p)+(s.l?' <a href="'+s.l+'" style="color:var(--sg-b);font-weight:600">Explore XcellSOC →</a>':'')+'</p><ul>'+s.c.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>';}
     function mark(k){btns.forEach(function(b,i){b.classList.toggle('on',i===k);b.classList.toggle('past',i<k);});detail(k);}
     function place(x,y){tok.style.transform='translate3d('+(x-17).toFixed(1)+'px,'+(y-12-44).toFixed(1)+'px,0)';
       if(track&&P.length){var tx0=P[0][0],tx1=P[5][0];trk.style.transform='scaleX('+clamp((x-tx0)/(tx1-tx0),0,1).toFixed(3)+')';}}
