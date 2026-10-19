@@ -1,0 +1,74 @@
+<section class="xts" aria-label="TSplus by XcellHost">
+  <div class="xts-bg" aria-hidden="true"></div>
+  <div class="xts-wrap">
+    <nav class="xts-crumb" aria-label="Breadcrumb">
+      <a routerLink="/">Home</a><span>›</span><span>Vendor Partners</span><span>›</span><span>TSplus</span>
+    </nav>
+
+    <div class="xts-grid">
+      <div class="xts-copy">
+        <h1>
+          <span class="x">Xcell</span><span class="b">Host</span><span class="divider">|</span>
+          <span class="name">TSplus Remote Access &amp; Support</span>
+        </h1>
+        <p class="xts-lead">The affordable Citrix &amp; RDS alternative — publish Windows apps and desktops to any browser, securely.</p>
+        <p class="xts-sub">XcellHost licenses, installs and supports the TSplus suite for Indian businesses — Remote Access, Remote Support, Advanced Security and Server Monitoring — billed in rupees with a GST invoice and backed by our 24×7 Mumbai NOC.</p>
+        <p class="xts-type">Run Tally &amp; ERP from any browser</p>
+        <ul class="xts-list">
+          <li><i>✓</i>Web portal — apps in any browser, no client</li>
+          <li><i>✓</i>Perpetual or subscription licences*</li>
+          <li><i>✓</i>Attended &amp; unattended remote support</li>
+          <li><i>✓</i>Server protection &amp; 2FA</li>
+          <li><i>✓</i>Real-time server monitoring</li>
+          <li><i>✓</i>INR billing, setup &amp; 24×7 support</li>
+        </ul>
+        <div class="xts-cta">
+          <a class="xts-btn" href="#products"><span aria-hidden="true">▣</span>See licences</a>
+          <a class="xts-btn" routerLink="/tsplus-demo-center"><span aria-hidden="true">▷</span>Book a demo</a>
+          <button class="xts-btn orange" type="button" (click)="requestConsultation()">Let's Talk <span aria-hidden="true">→</span></button>
+        </div>
+        <div class="xts-powered">
+          <small>Powered by</small>
+          <b><span>TS</span>TSplus</b>
+          <em>Authorised partner · Licensed &amp; supported by XcellHost</em>
+        </div>
+      </div>
+
+      <div class="xts-stage">
+        <div class="xts-pill"><b>Perpetual or subscription</b><small>INR quote · GST invoice · excl. GST</small></div>
+        <div class="xts-console">
+          <div class="xts-bar"><b>XcellHost · TSplus Console</b><span><i></i>LIVE · SAMPLE</span></div>
+          <div class="xts-label">{{ activeScene().label }}</div>
+          <div class="xts-screen">
+            <div class="scene access" [class.active]="activeIndex() === 0">
+              <div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>https://apps.yourcompany.example</span></div><div class="apps"><div class="selected"><i></i><small>Tally Prime</small></div><div><i></i><small>ERP</small></div><div><i></i><small>Excel · Office</small></div><div><i></i><small>Desktop</small></div><div><i></i><small>CRM app</small></div><div><i></i><small>Payroll</small></div></div></div>
+              <div class="sessions"><b>ACTIVE SESSIONS</b><span><i></i>priya · Pune</span><span><i></i>rahul · Delhi</span><span><i></i>anita · Mumbai</span><span><i></i>vikram · Surat</span><span><i></i>neha · Indore</span><span><i></i>arjun · Nashik</span></div>
+            </div>
+            <div class="scene support" [class.active]="activeIndex() === 1">
+              <div class="support-monitor"><b>TECHNICIAN · MUMBAI NOC</b><span></span></div><div class="support-link">•••••</div><div class="support-monitor"><b>USER · PUNE BRANCH</b><span></span></div><p>Session encrypted · consent given</p>
+            </div>
+            <div class="scene security" [class.active]="activeIndex() === 2"><div class="rays"></div><div class="shield">✓</div><p>Windows server · geo-filter · 2FA</p></div>
+            <div class="scene monitoring" [class.active]="activeIndex() === 3"><b>TS-SRV-01 · MUMBAI · LAST 60 MIN (SAMPLE)</b><svg viewBox="0 0 500 190" aria-label="Server health chart"><polyline points="15,70 65,40 115,64 165,28 215,53 265,20 315,57 365,34 415,48 475,22"/><polyline class="orange-line" points="15,145 65,126 115,138 165,107 215,123 265,92 315,119 365,99 415,112 475,88"/></svg><span>All healthy<small>alerts by email</small></span></div>
+          </div>
+          <div class="xts-tabs" role="tablist" aria-label="TSplus products">
+            @for (scene of scenes; track scene.tab; let i = $index) {
+              <button type="button" role="tab" [class.active]="activeIndex() === i" [attr.aria-selected]="activeIndex() === i" (click)="selectScene(i)"><span><i></i></span>{{ scene.tab }}</button>
+            }
+          </div>
+          <div class="xts-kpis">
+            @for (kpi of activeScene().kpis; track kpi.label) {
+              <div><b>{{ kpi.value }}</b><small>{{ kpi.label }}</small></div>
+            }
+          </div>
+        </div>
+
+        <div class="float-card top"><i>▣</i><div><b>{{ activeScene().floats[0].title }}</b><small>{{ activeScene().floats[0].detail }}</small></div><span></span></div>
+        <div class="float-card side"><i>♢</i><div><b>{{ activeScene().floats[1].title }}</b><small>{{ activeScene().floats[1].detail }}</small></div><span></span></div>
+        <div class="float-card bottom"><i>⌁</i><div><b>{{ activeScene().floats[2].title }}</b><small>{{ activeScene().floats[2].detail }}</small></div><span></span></div>
+        <div class="activity"><h6>LIVE TSPLUS ACTIVITY <span>SAMPLE</span></h6><ul>@for (item of activeScene().logs; track item.action) {<li><b>{{ item.action }}</b>{{ item.detail }}</li>}</ul></div>
+      </div>
+    </div>
+
+    <div class="xts-proof"><span><b>500,000+</b> companies use TSplus*</span><span>Microsoft <b>Gold</b> Partner</span><span>ISO <b>27001</b> &amp; <b>20000-1</b></span><span>Since <b>1999</b> · Mumbai</span><span><b>24×7</b> NOC + SOC</span><span><b>INR</b> GST invoice</span></div>
+  </div>
+</section>
