@@ -203,22 +203,6 @@
         ></iframe>
       </section>
     }
-    @if (isCloudDrive()) {
-      <section class="cloud-drive-source-answer" aria-labelledby="cloudDriveSourceTitle">
-        <div class="wrap">
-          <h1 id="cloudDriveSourceTitle" class="cloud-drive-source-h1">
-            Business Cloud Drive India &mdash; Secure File Sharing
-          </h1>
-          <p>
-            <strong>What is XcellHost Cloud Drive?</strong> XcellHost Cloud Drive is a secure
-            business file-storage, sync and collaboration service for Indian organisations. It gives
-            teams centrally managed folders, version history, access controls and protected external
-            sharing across devices, with pooled storage hosted in Indian data centres and local
-            migration and support from XcellHost&rsquo;s Mumbai team.
-          </p>
-        </div>
-      </section>
-    }
     @if (slug() === 'nvidia-h100') {
       <xh-nvidia-h100-hero (actionRequested)="onH100HeroAction($event)" />
     }
@@ -2048,7 +2032,7 @@
                   <div class="geotrust-brand-below-ai" aria-label="Powered by GeoTrust" style="display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;gap:12px"><span>Powered by <span class="brand-divider" aria-hidden="true">|</span></span><span>GeoTrust</span></div>
                 }
                 @if (isDigiCert()) {
-                  <div class="digicert-brand-below-ai" style="display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;gap:12px"><span class="brand-label">Powered by <span class="brand-divider" aria-hidden="true">|</span></span><span>DigiCert</span></div>
+                  <div class="digicert-brand-below-ai"><strong class="digicert-powered-label">Powered by</strong><img src="/assets/images/geotrust-secured-powered-by-digicert.png" alt="DigiCert Secured" width="112" height="52" /></div>
                 }
 
                 @if (usesContainerRegistryTemplate()) {
@@ -3529,7 +3513,6 @@
                     </p>
                   </section>
                 } @else if (isCloudDrive()) {
-                  <xh-cloud-drive-seo-content />
                   <section class="cloud-drive-compare" aria-labelledby="cloudDriveCompareTitle">
                     <div class="cloud-drive-compare-card">
                       <h2 class="cloud-drive-compare-title" id="cloudDriveCompareTitle">
@@ -5731,6 +5714,9 @@
           }
 
           @if (v.name !== 'Tally on Cloud' && slug() !== 'bio-link-digital-visiting-card' && slug() !== 'general-compute' && slug() !== 'wordpress-vps') {
+          @if (slug() === 'windows-servers' || slug() === 'linux-servers') {
+            <xh-global-infrastructure-globe />
+          }
           @if (
             slug() === 'bare-metal-servers' ||
             slug() === 'performance-cloud' ||

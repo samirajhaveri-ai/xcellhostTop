@@ -800,6 +800,10 @@ export const routes: Routes = [
     path: 'whats-new',
     loadComponent: () => import('./pages/whats-new.page').then((m) => m.WhatsNewPage),
   },
+  {
+    path: 'acronis-ot',
+    loadComponent: () => import('./pages/acronis-ot.page').then((m) => m.AcronisOtPage),
+  },
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
   { path: '**', redirectTo: '' },
 ];

@@ -8,6 +8,7 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { useScrollingSectionNavigation } from './section-navigation-flow';
 
 type InteractiveContentSource =
+  | 'acronis-ot'
   | 'whats-new'
   | 'fortinet-fortigate'
   | 'teamviewer'
@@ -108,6 +109,7 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page' | 'sectigo-detail' | 'inference-page' | 'developer-page'>,
     string
   > = {
+    'acronis-ot': '/imported-acronis-ot.html',
     'whats-new': '/imported-whats-new.html',
     'fortinet-fortigate': '/imported-fortinet-fortigate.html',
     'teamviewer': '/imported-teamviewer.html',
@@ -213,6 +215,7 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+    'acronis-ot': 'Acronis Cyber Protect for OT, animated demo, coverage, plant sizing, recovery calculator and quotation',
     'whats-new': 'What’s New at XcellHost, animated release radar, launch spotlights and filterable release log',
     'fortinet-fortigate': 'Fortinet FortiGate, animated demo, Security Fabric, models, sizing, configuration and FAQs',
     'teamviewer': 'TeamViewer remote access, animated demo, plans, pricing, selection tools and FAQs',
@@ -447,6 +450,22 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
         ),
       });
     };
+    const enquiry = async (event: Event) => {
+      if (this.source !== 'acronis-ot') return;
+      const detail = (event as CustomEvent<{
+        payload: Record<string, unknown>;
+        complete: (result: { ok: boolean; skipped: boolean; ref: string; fallbackUrl: string }) => void;
+      }>).detail;
+      const payload = { ...detail.payload, message: detail.payload['sizing'], topic: 'Acronis OT quotation', page: '/acronis-ot' };
+      const result = await this.leads.submit('callback', payload);
+      detail.complete({
+        ...result,
+        fallbackUrl: this.leads.mailtoLink(
+          'Acronis OT quotation request',
+          ['name', 'company', 'email', 'phone', 'sizing'].map(key => `${key}: ${String(detail.payload[key] ?? '')}`).join('\n'),
+        ),
+      });
+    };
     const click = (event: Event) => {
       const element = event.target as Element;
       const anchor = element.closest<HTMLAnchorElement>('a[href^="#"]');
@@ -469,6 +488,7 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     doc.addEventListener('import-callback', callback);
     doc.addEventListener('import-cart', add);
     doc.addEventListener('import-newsletter', newsletter);
+    doc.addEventListener('import-enquiry', enquiry);
     doc.addEventListener('click', click);
     this.cleanup.push(
       () => observer.disconnect(), () => cancelAnimationFrame(resizeFrame), () => mutations.disconnect(),
@@ -476,6 +496,7 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
       () => doc.removeEventListener('import-callback', callback),
       () => doc.removeEventListener('import-cart', add),
       () => doc.removeEventListener('import-newsletter', newsletter),
+      () => doc.removeEventListener('import-enquiry', enquiry),
       () => doc.removeEventListener('click', click),
     );
   }

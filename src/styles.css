@@ -5765,7 +5765,7 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
   body:has(xh-blog-page) app-root > :not(xh-blog-page) { display: none !important; }
   xh-blog-page .article-summary,
   xh-blog-page .article-sidebar,
-  xh-blog-page .article-listen,
+  xh-blog-page .article-toolbar,
   xh-blog-page .bp-bar,
   xh-blog-page .article-more,
   xh-blog-page .article-product-cta { display: none !important; }
@@ -6492,7 +6492,7 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 @media(max-width:900px){#ppage:is(.iot-pki-page,.iot-device-certificates-page,.cloud-code-signing-page,.clm-solutions-page,.matter-dac-page,.pki-software-page,.windows-365-page)>.pp-hero{grid-template-columns:minmax(0,1fr)}}
 
 /* DigiCert banner vendor branding */
-.digicert-brand-below-ai{display:flex;align-items:center;gap:10px;margin-top:16px;color:#c7d5ec;font-size:13px;line-height:1.4}.digicert-brand-below-ai .brand-label{white-space:nowrap;flex:none}.digicert-brand-below-ai .brand-divider{margin-left:8px}.digicert-brand-below-ai img{display:block;flex:none;width:112px;height:32px;object-fit:cover;border-radius:4px;background:#fff}
+.digicert-brand-below-ai{display:flex;align-items:center;gap:10px;margin-top:16px;color:#c7d5ec;font-size:13px;line-height:1.4}.digicert-brand-below-ai .digicert-powered-label{white-space:nowrap;flex:none}.digicert-brand-below-ai img{display:block;flex:none;width:112px;height:52px;object-fit:contain;background:transparent}
 /* Compact spacing for shared product sections, including security, benefits and reviews. */
 #ppage.ppage .pp-body>.wrap>section{padding-block:12px}
 #ppage.ppage .pp-body>.wrap>section+section{margin-top:24px}
@@ -6519,9 +6519,9 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
 
 /* Keep DigiCert branding beside its label. */
 #ppage .digicert-brand-below-ai{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;align-items:center;justify-content:flex-start;gap:12px;width:max-content;max-width:100%;margin-top:16px;padding:0;color:#c7d5ec;font-size:13px;line-height:1.4}
-#ppage .digicert-brand-below-ai>.brand-label{display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}
-#ppage .digicert-brand-below-ai .brand-divider{margin-left:10px}
-#ppage .digicert-brand-below-ai img{display:block;flex:0 0 112px;width:112px;height:32px;margin:0;object-fit:cover;border-radius:4px;background:#fff}
+#ppage .digicert-brand-below-ai>.digicert-powered-label{display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap;font-size:18px;font-weight:600;color:#fff}
+#ppage .digicert-powered-label{border:0;padding:0}#ppage .digicert-powered-label::before,#ppage .digicert-powered-label::after{content:none;display:none}
+#ppage .digicert-brand-below-ai img{display:block;flex:0 0 112px;width:112px;height:52px;margin:0;object-fit:contain;background:transparent}
 
 /* Sectigo banner branding */
 .sectigo-brand-below-ai{display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;gap:12px;margin-top:16px;color:#c7d5ec;font-size:13px;line-height:1.4}.sectigo-brand-below-ai>span{white-space:nowrap;flex:none}.sectigo-brand-below-ai .brand-divider{margin-left:10px}.sectigo-brand-below-ai img{display:block;flex:0 0 112px;width:112px;height:32px;margin:0;padding:6px 7px;box-sizing:border-box;object-fit:contain;border-radius:4px;background:#fff}
