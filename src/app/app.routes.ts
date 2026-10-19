@@ -779,6 +779,14 @@ export const routes: Routes = [
     path: 'sap-s4-hana-private-cloud',
     loadComponent: () => import('./pages/sap-s4-hana-private-cloud.page').then((m) => m.SapS4HanaPrivateCloudPage),
   },
+  {
+    path: 'anydesk',
+    loadComponent: () => import('./pages/anydesk.page').then((m) => m.AnydeskPage),
+  },
+  {
+    path: 'teamviewer',
+    loadComponent: () => import('./pages/teamviewer.page').then((m) => m.TeamviewerPage),
+  },
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
   { path: '**', redirectTo: '' },
 ];

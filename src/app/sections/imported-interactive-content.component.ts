@@ -7,6 +7,8 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { useScrollingSectionNavigation } from './section-navigation-flow';
 
 type InteractiveContentSource =
+  | 'teamviewer'
+  | 'anydesk'
   | 'sap-s4-hana-private-cloud'
   | 'sap-b1-cloud'
   | 'sap-hosting'
@@ -102,6 +104,8 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page' | 'sectigo-detail' | 'inference-page' | 'developer-page'>,
     string
   > = {
+    'teamviewer': '/imported-teamviewer.html',
+    'anydesk': '/imported-anydesk.html',
     'sap-s4-hana-private-cloud': '/imported-sap-s4-hana-private-cloud.html',
     'sap-b1-cloud': '/imported-sap-b1-cloud.html',
     'sap-hosting': '/imported-sap-hosting.html',
@@ -203,6 +207,8 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+    'teamviewer': 'TeamViewer remote access, animated demo, plans, pricing, selection tools and FAQs',
+    'anydesk': 'AnyDesk remote access, animated demo, editions, pricing, selection tools and FAQs',
     'sap-s4-hana-private-cloud': 'SAP S/4HANA Private Cloud, animated demo, getting started, configurator, HANA sizing and FAQs',
     'sap-b1-cloud': 'SAP B1 HANA on Cloud, animated demo, getting started, plans, calculators and FAQs',
     'sap-hosting': 'SAP Hosting, animated demo, hosting process, plans, landscape sizer and FAQs',

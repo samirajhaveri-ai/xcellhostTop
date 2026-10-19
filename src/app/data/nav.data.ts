@@ -3163,6 +3163,12 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "AnyDesk",
+                "pill": null,
+                "desc": "Secure remote access, unattended connections and support",
+                "href": "/anydesk"
+              },
+              {
+                "title": "Partner Overview",
                 "pill": "Partner",
                 "desc": "Resell cloud, security and AI under your own brand",
                 "href": "/under-construction/partner-overview"
