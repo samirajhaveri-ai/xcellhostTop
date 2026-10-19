@@ -256,7 +256,6 @@ import { ResellerProgramContentComponent } from '../sections/reseller-program-co
 import { SovereignPerformanceComponent } from '../sections/sovereign-performance.component';
 import { ScrutinyEdrContentComponent } from '../sections/scrutiny-edr-content.component';
 import { EdrSeoContentComponent } from '../sections/edr-seo-content.component';
-import { CloudDriveSeoContentComponent } from '../sections/cloud-drive-seo-content.component';
 import { ScrutinyDlpContentComponent } from './scrutiny-dlp-content.component';
 import { VortexSocContentComponent } from './vortex-soc-content.component';
 import { VortexSegContentComponent } from './vortex-seg-content.component';
@@ -607,7 +606,6 @@ interface ProductTourSlide {
     SovereignPerformanceComponent,
     ScrutinyEdrContentComponent,
     EdrSeoContentComponent,
-    CloudDriveSeoContentComponent,
     ScrutinyDlpContentComponent,
     VortexSocContentComponent,
     VortexSegContentComponent,

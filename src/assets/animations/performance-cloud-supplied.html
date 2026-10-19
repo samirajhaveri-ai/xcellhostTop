@@ -5694,8 +5694,6 @@
         border-top: 1px solid rgba(255, 255, 255, 0.08);
         background: #04060c;
         padding: 16px 0;
-        -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
-        mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
       }
       .hx-mq div {
         display: flex;
@@ -5898,6 +5896,18 @@
         line-height: 1.25;
         text-align: center;
       }
+      #hxFam button svg {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+        stroke: currentColor;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      #hxFam button[data-v='gp'] svg { color: #2563eb; fill: #dbeafe; }
+      #hxFam button[data-v='cpu'] svg { color: #ea580c; fill: #ffedd5; }
+      #hxFam button[data-v='mem'] svg { color: #7c3aed; fill: #ede9fe; }
       .hx-sel {
         appearance: none;
         -webkit-appearance: none;
@@ -7431,6 +7441,7 @@
             </div>
           </div>
         </div>
+      </section>
         <div class="hx-mq" aria-label="Operating systems and applications">
           <div>
             <span
@@ -7738,7 +7749,6 @@
             >
           </div>
         </div>
-      </section>
 
       <div class="pp-body">
         <div class="wrap">
@@ -7855,9 +7865,9 @@
                     <div class="hx-f">
                       <span>WORKLOAD</span>
                       <div class="hx-seg" id="hxFam" role="group" aria-label="Instance type">
-                        <button type="button" data-v="gp" aria-pressed="true">General Purpose</button>
-                        <button type="button" data-v="cpu" aria-pressed="false">CPU Intensive</button>
-                        <button type="button" data-v="mem" aria-pressed="false">Memory Optimized</button>
+                        <button type="button" data-v="gp" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="7" rx="2"/><rect x="3" y="14" width="18" height="7" rx="2"/><path d="M7 6.5h.01M7 17.5h.01M12 6.5h5M12 17.5h5"/></svg><span>General Purpose</span></button>
+                        <button type="button" data-v="cpu" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg><span>CPU Intensive</span></button>
+                        <button type="button" data-v="mem" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h3v4H6zM15 10h3v4h-3zM6 18v3M10 18v3M14 18v3M18 18v3M2 12h1M21 12h1"/></svg><span>Memory Optimized</span></button>
                       </div>
                     </div>
                     <div class="hx-f">
@@ -8390,21 +8400,20 @@
             </div>
           </div>
 
-          <section
-            class="gband rv"
-            style="
-              background-image: url('https://t3.ftcdn.net/jpg/02/62/71/08/360_F_262710803_CAKuDCLCdRsNLRhyI6hollZZmQrziJrk.jpg');"
-          >
+          <section class="gband rv">
             <h2>Hyperscaler performance, Indian pricing</h2>
             <p>
               Dedicated vCPU on NVMe, bundled bandwidth and a GST invoice in rupees — with engineers
               in India on the phone 24×7.
             </p>
+            <div class="gband-bottom">
             <div class="gstats">
               <div><b>₹930</b><span>per month from</span></div>
               <div><b>64</b><span>vCPU max</span></div>
               <div><b>512 GB</b><span>RAM max</span></div>
               <div><b>₹6.2</b><span>per GB NVMe</span></div>
+            </div>
+            <a class="gband-compare" href="/compare-providers" target="_top">Compare providers <span aria-hidden="true">&rarr;</span></a>
             </div>
           </section>
 
