@@ -677,7 +677,7 @@ export class HeaderComponent {
       };
       win.addEventListener('scroll', onScroll, { passive: true });
       const onResize = () => {
-        if (win.innerWidth > 1024 && this.mobileOpen()) this.overlay.close('mobileNav');
+        if (win.innerWidth > 1279 && this.mobileOpen()) this.overlay.close('mobileNav');
       };
       win.addEventListener('resize', onResize, { passive: true });
       this.doc.addEventListener('click', onDocClick);
@@ -736,7 +736,7 @@ export class HeaderComponent {
 
   /** Hovering one menu closes any other that was clicked open. */
   onTopEnter(label: string, event: MouseEvent): void {
-    if (this.doc.defaultView?.matchMedia('(max-width: 1024px), (hover: none)').matches) return;
+    if (this.doc.defaultView?.matchMedia('(max-width: 1279px), (hover: none)').matches) return;
     const hoveredMenu = event.currentTarget;
     const focused = this.doc.activeElement;
 

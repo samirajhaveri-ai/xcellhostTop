@@ -630,6 +630,11 @@ export const routes: Routes = [
   { path: 'vendor-partners/acronis', loadComponent: () => import('./pages/acronis-partner.page').then((m) => m.AcronisPartnerPage) },
   { path: 'vendor-partners/tsplus', loadComponent: () => import('./pages/tsplus-partner.page').then((m) => m.TsplusPartnerPage) },
   {
+    path: 'vendor-partners/fortinet',
+    redirectTo: '/fortinet-fortigate',
+    pathMatch: 'full',
+  },
+  {
     path: 'vendor-partners/:slug',
     loadComponent: () =>
       import('./pages/vendor-partner.page').then((m) => m.VendorPartnerPage),
@@ -786,6 +791,14 @@ export const routes: Routes = [
   {
     path: 'teamviewer',
     loadComponent: () => import('./pages/teamviewer.page').then((m) => m.TeamviewerPage),
+  },
+  {
+    path: 'fortinet-fortigate',
+    loadComponent: () => import('./pages/fortinet-fortigate.page').then((m) => m.FortinetFortigatePage),
+  },
+  {
+    path: 'whats-new',
+    loadComponent: () => import('./pages/whats-new.page').then((m) => m.WhatsNewPage),
   },
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
   { path: '**', redirectTo: '' },

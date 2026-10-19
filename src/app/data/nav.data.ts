@@ -4219,7 +4219,8 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Whats New",
                 "pill": null,
-                "desc": "We'd love to hear from you"
+                "desc": "Explore new cloud, security and AI services",
+                "href": "/whats-new"
               },
               
               {
