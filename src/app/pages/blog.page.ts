@@ -13,6 +13,7 @@ import { PRODUCT_INFOSHEETS } from '../data/products.data';
 import { SITE } from '../data/site.data';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { selectBlogSpeechVoice } from '../core/blog-speech-voice';
+import { ContactOptionsComponent } from '../layout/contact-options.component';
 
 interface BodyBlock {
   readonly kind: 'p' | 'h' | 'ul' | 'img';
@@ -52,7 +53,7 @@ const AUTHOR_BIOS: Readonly<Record<string, string>> = {
 @Component({
   selector: 'xh-blog-page',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, ContactOptionsComponent],
   templateUrl: './blog.page.html',
   styleUrl: './blog.page.css',
   host: { style: 'display:contents', '(window:scroll)': 'onScroll()' },

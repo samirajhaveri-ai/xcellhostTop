@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, computed, inject, input, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 /** Global newsletter banner displayed immediately above the site footer. */
@@ -10,7 +10,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <section class="newsletter" aria-labelledby="newsletter-title">
+    <section class="newsletter" [class.newsletter-sidebar]="sidebar()" [attr.aria-labelledby]="idPrefix() + '-title'">
       <div class="wrap newsletter-inner">
         <div class="newsletter-copy">
           <p class="newsletter-label">
@@ -20,7 +20,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
             </svg>
             XcellHost Newsletter
           </p>
-          <h2 id="newsletter-title">
+          <h2 [id]="idPrefix() + '-title'">
             Get the latest updates on Blog Posts, Industry News, Products, and Guidance on Cloud,
             Cyber Security, AI &amp; Digital Transformation.
           </h2>
@@ -28,13 +28,13 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
         <form #newsletterForm class="newsletter-form" [formGroup]="form" (ngSubmit)="submit(newsletterForm)"
           action="https://forms.zohopublic.in/xcellhostcloudservicespvtltd1/form/NewsletterSubscriptionForm/formperma/ZFO74kn3xfRonRDRy3zFBSIcG82fsKdLTBd2toT0wPM/htmlRecords/submit"
-          method="POST" enctype="multipart/form-data" accept-charset="UTF-8" target="newsletter-response" [attr.aria-busy]="sending()" novalidate>
+          method="POST" enctype="multipart/form-data" accept-charset="UTF-8" [target]="idPrefix() + '-response'" [attr.aria-busy]="sending()" novalidate>
           <input type="hidden" name="zf_referrer_name" />
           <input type="hidden" name="zf_redirect_url" value="" />
           <input type="hidden" name="zc_gad" />
-          <label class="sr-only" for="newsletter-email">Email address</label>
+          <label class="sr-only" [for]="idPrefix() + '-email'">Email address</label>
           <input
-            id="newsletter-email"
+            [id]="idPrefix() + '-email'"
             type="email"
             name="Email"
             maxlength="255"
@@ -44,20 +44,22 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
             autocomplete="email"
             placeholder="Enter your email"
             [attr.aria-invalid]="emailInvalid()"
-            aria-describedby="newsletter-message"
+            [attr.aria-describedby]="idPrefix() + '-message'"
           />
           <button type="submit" [disabled]="sending()">{{ sending() ? 'Sending...' : 'Subscribe' }}</button>
         </form>
 
         <p
-          id="newsletter-message"
+          [id]="idPrefix() + '-message'"
           class="form-message"
           [class.success]="done()"
+          [class.error]="message() && !sending() && !done()"
           role="status"
           aria-live="polite"
         >
           {{ message() }}
         </p>
+        @if (!sidebar()) {
         <nav class="newsletter-socials" aria-label="Follow XcellHost updates">
           <a class="newsletter-social newsletter-whatsapp"
             href="https://www.whatsapp.com/channel/0029Vais2U4ICVffW7i82V1z"
@@ -79,9 +81,17 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
             Subscribe to LinkedIn Newsletter
           </a>
         </nav>
+        }
       </div>
-      <iframe #newsletterResponse name="newsletter-response" title="Newsletter submission response" hidden
-        (load)="checkSubmission(newsletterResponse)"></iframe>
+      <!-- A static name registers the browsing context before the form targets it.
+           Binding iframe.name later can leave window.name empty in Chrome. -->
+      @if (sidebar()) {
+        <iframe #newsletterResponse name="sidebar-newsletter-response" title="Newsletter submission response" hidden
+          sandbox="allow-forms allow-scripts allow-same-origin" (load)="checkSubmission(newsletterResponse)"></iframe>
+      } @else {
+        <iframe #newsletterResponse name="newsletter-response" title="Newsletter submission response" hidden
+          sandbox="allow-forms allow-scripts allow-same-origin" (load)="checkSubmission(newsletterResponse)"></iframe>
+      }
     </section>
   `,
   styles: `
@@ -209,14 +219,14 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
     .form-message {
       margin: 0;
       min-height: 20px;
-      color: #b91c1c;
-      font-size: 18px;
-      line-height: 20px;
+      color: var(--slate);
+      font-size: 13px;
+      line-height: 1.5;
     }
 
+    .form-message.error { color: #b91c1c; }
     .form-message.success {
       color: #166534;
-      font-size: 18px;
     }
 
     .newsletter-socials {
@@ -304,9 +314,24 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
         transition: none;
       }
     }
+    .newsletter-sidebar { padding: 0; background: none; color: var(--ink); overflow: visible; }
+    .newsletter-sidebar .newsletter-inner {
+      width: 100%; margin: 0; padding: 18px; gap: 12px; border-radius: 16px;
+      box-shadow: 0 12px 30px rgba(5, 38, 84, .05);
+    }
+    .newsletter-sidebar .newsletter-label { font-size: 16px; text-align: left; justify-content: flex-start; }
+    .newsletter-sidebar .newsletter-icon { width: 22px; height: 22px; }
+    .newsletter-sidebar .newsletter-copy h2 { padding: 0; font-size: 12px; font-weight: 400; line-height: 1.7; text-align: left; }
+    .newsletter-sidebar .newsletter-form { grid-template-columns: minmax(0, 1fr); width: 100%; }
+    .newsletter-sidebar .newsletter-form input { width: 100%; padding: 10px 12px; font-size: 13px; }
+    .newsletter-sidebar .newsletter-form button { width: 100%; min-height: 42px; font-size: 13px; }
+    .newsletter-sidebar .form-message { min-height: 0; font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
+    .newsletter-sidebar .form-message:empty { display: none; }
   `,
 })
 export class ContactOptionsComponent {
+  readonly sidebar = input(false);
+  readonly idPrefix = computed(() => this.sidebar() ? 'sidebar-newsletter' : 'newsletter');
   private readonly fb = inject(FormBuilder);
   private readonly document = inject(DOCUMENT);
   private readonly destroyRef = inject(DestroyRef);

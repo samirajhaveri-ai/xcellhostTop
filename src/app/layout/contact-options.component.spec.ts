@@ -13,6 +13,34 @@ describe('Newsletter Zoho submission', () => {
     return { fixture, form, submit };
   }
 
+  it('keeps the sidebar subscription separate from the footer and omits social buttons', () => {
+    const footer = setup();
+    const sidebar = TestBed.createComponent(ContactOptionsComponent);
+    sidebar.componentRef.setInput('sidebar', true);
+    sidebar.detectChanges();
+    const form = sidebar.nativeElement.querySelector('form') as HTMLFormElement;
+    const frame = sidebar.nativeElement.querySelector('iframe') as HTMLIFrameElement;
+    const input = sidebar.nativeElement.querySelector('input[type=email]') as HTMLInputElement;
+    const submit = spyOn(form, 'submit');
+    expect(sidebar.nativeElement.querySelector('.newsletter-sidebar')).not.toBeNull();
+    expect(sidebar.nativeElement.querySelector('.newsletter-socials')).toBeNull();
+    expect(sidebar.nativeElement.querySelector('a')).toBeNull();
+    expect(input.id).not.toBe((footer.form.querySelector('input[type=email]') as HTMLInputElement).id);
+    expect(form.target).toBe(frame.name);
+    expect(frame.contentWindow?.name).toBe(form.target);
+    expect(form.target).not.toBe(footer.form.target);
+
+    sidebar.componentInstance.form.controls.email.setValue('sidebar@example.com');
+    form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+    expect(submit).toHaveBeenCalledTimes(1);
+    expect(footer.submit).not.toHaveBeenCalled();
+    confirm(sidebar.componentInstance, form);
+    expect(sidebar.componentInstance.done()).toBeTrue();
+    expect(footer.fixture.componentInstance.done()).toBeFalse();
+    sidebar.destroy();
+    footer.fixture.destroy();
+  });
+
   it('blocks invalid email addresses before posting to Zoho', () => {
     const { fixture, form, submit } = setup();
     fixture.componentInstance.form.controls.email.setValue('invalid');
