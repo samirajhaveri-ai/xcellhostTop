@@ -1,3 +1,4 @@
+import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CatalogService, slugify } from '../core/catalog.service';
@@ -36,6 +37,7 @@ const CATALOG_LINKS = [
 export class FooterComponent {
   private readonly catalog = inject(CatalogService);
   private readonly overlay = inject(OverlayService);
+  private readonly document = inject(DOCUMENT);
 
   readonly site = SITE;
   readonly year = new Date().getFullYear();
@@ -43,6 +45,18 @@ export class FooterComponent {
 
   /** Resolved once so the slugs match the directory the service pages use. */
   readonly catalogLinks = CATALOG_LINKS;
+
+  openSiteLock(event: MouseEvent): void {
+    if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    const window = this.document.defaultView;
+    if (!window) return;
+    event.preventDefault();
+    window.open(
+      'https://www.sitelock.com/verify.php?site=www.xcellhost.cloud',
+      'SiteLock',
+      'width=600,height=600,left=160,top=170,noopener,noreferrer',
+    );
+  }
 
   openPartner(): void {
     this.overlay.open('partner');

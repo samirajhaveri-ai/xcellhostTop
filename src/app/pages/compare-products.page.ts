@@ -13,9 +13,52 @@ interface ComparisonCard extends ProductComparisonDefinition {
   rightProduct: DirectoryEntry;
   leftDisplayName: string;
   rightDisplayName: string;
+  leftLogo?: string;
+  rightLogo?: string;
   query: string;
   detailSlug: string;
 }
+
+const XCELLHOST_LOGO = '/assets/images/xcellhost-logo.png';
+const COMPARISON_PRODUCT_LOGOS: Readonly<Record<string, string>> = {
+  'TSplus Remote Access': '/assets/images/remote-access-logo-with-icon.svg',
+  Citrix: '/assets/images/comparison-logos/citrix.png',
+  AnyDesk: '/assets/images/vendor-partners/33-anydesk.png',
+  RDS: '/assets/images/cloud-backup-platforms/microsoft-windows.svg',
+  TeamViewer: '/assets/images/vendor-partners/13-teamviewer.png',
+  LogMeIn: '/assets/images/comparison-logos/logmein.png',
+  'Zoho Assist': '/assets/images/comparison-logos/zoho-assist.png',
+  'Advanced Endpoint Security (EDR)': '/assets/images/acronis-edr-logo.png',
+  'Microsoft Defender': '/assets/images/vendor-partners/45-microsoft-defender-for-endpoint.png',
+  'All Fortinet Products': '/assets/images/vendor-partners/64-fortinet.png',
+  'All PaloAlto Products': '/assets/images/vendor-partners/05-palo-alto-networks-1.png',
+  GeoTrust: '/assets/images/geotrust.svg',
+  DigiCert: '/assets/images/digicert.svg',
+  'Performance Cloud': XCELLHOST_LOGO,
+  'Bare Metal Server': XCELLHOST_LOGO,
+  'Dedicated Private Cloud': XCELLHOST_LOGO,
+  'Hybrid Cloud': XCELLHOST_LOGO,
+  'Cloud Backup': XCELLHOST_LOGO,
+  'Cloud Object Storage': XCELLHOST_LOGO,
+  'Cloud Drive': XCELLHOST_LOGO,
+  'Google Workspace': '/assets/images/cloud-backup-platforms/google-workspace.svg',
+  'Managed Microsoft 365': '/assets/images/vendor-partners/02-microsoft-partner.png',
+  'SMB Cloud Desktop': XCELLHOST_LOGO,
+  'Azure Virtual Desktop': '/assets/images/vendor-partners/02-microsoft-partner.png',
+  'Tally on Cloud': '/assets/images/tally-prime-7-logo.png',
+  'MARG on Cloud': XCELLHOST_LOGO,
+  'Cloud SIEM-as-a-Service': XCELLHOST_LOGO,
+  'Cloud Security Log Monitoring': XCELLHOST_LOGO,
+  'Vortex SEG': '/assets/images/vortex-seg-logo.svg',
+  'Advanced Email Security': XCELLHOST_LOGO,
+  'DPDPA Platform & Consulting': XCELLHOST_LOGO,
+  'Managed GRC': XCELLHOST_LOGO,
+  Sectigo: '/assets/images/sectigo.svg',
+  'Managed AWS': '/assets/images/platforms/aws.svg',
+  'Managed Multi-Cloud': XCELLHOST_LOGO,
+  'Managed DevOps': '/assets/images/cloud-devops-xcellhost-logo.png',
+  'Cloud DevOps Services': '/assets/images/cloud-devops-xcellhost-logo.png',
+};
 
 @Component({
   selector: 'xh-compare-products-page',
@@ -50,6 +93,8 @@ export class CompareProductsPage {
       rightProduct,
       leftDisplayName: definition.leftLabel ?? leftProduct.name,
       rightDisplayName: definition.rightLabel ?? rightProduct.name,
+      leftLogo: COMPARISON_PRODUCT_LOGOS[definition.left],
+      rightLogo: COMPARISON_PRODUCT_LOGOS[definition.right],
       query: `${slugify(leftProduct.name)},${slugify(rightProduct.name)}`,
       detailSlug: `${slugify(definition.left)}-vs-${slugify(definition.right)}`,
     } satisfies ComparisonCard;
