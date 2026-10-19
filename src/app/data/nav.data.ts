@@ -3158,6 +3158,12 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "AnyDesk",
+                "pill": null,
+                "desc": "Secure remote access, unattended connections and support",
+                "href": "/anydesk"
+              },
+              {
+                "title": "Partner Overview",
                 "pill": "Partner",
                 "desc": "Resell cloud, security and AI under your own brand",
                 "href": "/under-construction/partner-overview"
@@ -4208,7 +4214,8 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Whats New",
                 "pill": null,
-                "desc": "We'd love to hear from you"
+                "desc": "Explore new cloud, security and AI services",
+                "href": "/whats-new"
               },
               
               {

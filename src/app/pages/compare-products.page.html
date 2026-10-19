@@ -54,7 +54,21 @@
           <article class="comparison-card">
             <div class="comparison-card-top">
               <span>{{ comparison.category }}</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M7 6h10M5 6l-3 6h6L5 6Zm14 0-3 6h6l-3-6ZM2 12c.4 2 1.4 3 3 3s2.6-1 3-3m8 0c.4 2 1.4 3 3 3s2.6-1 3-3M8 21h8" /></svg>
+              @if (comparison.leftLogo || comparison.rightLogo) {
+                <span class="comparison-brand-mark" aria-hidden="true">
+                  @if (comparison.leftLogo) {
+                    <span class="brand-logo"><img [src]="comparison.leftLogo" alt="" /></span>
+                  }
+                  @if (comparison.leftLogo && comparison.rightLogo) {
+                    <i>vs</i>
+                  }
+                  @if (comparison.rightLogo) {
+                    <span class="brand-logo"><img [src]="comparison.rightLogo" alt="" /></span>
+                  }
+                </span>
+              } @else {
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M7 6h10M5 6l-3 6h6L5 6Zm14 0-3 6h6l-3-6ZM2 12c.4 2 1.4 3 3 3s2.6-1 3-3m8 0c.4 2 1.4 3 3 3s2.6-1 3-3M8 21h8" /></svg>
+              }
             </div>
             <h3>{{ comparison.leftDisplayName }} vs {{ comparison.rightDisplayName }}</h3>
             <p>{{ comparison.summary }}</p>

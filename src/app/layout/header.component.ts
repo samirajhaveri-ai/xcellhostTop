@@ -96,7 +96,7 @@ function menuIconPath(title: string, identity: string): string {
   else if (/monitor|analytics|visualization|insight|report|score|assessment/.test(value)) path = MENU_ICON_PATHS.chart;
   else if (/network|dns|connect|sd-wan|iot|telecom/.test(value)) path = MENU_ICON_PATHS.network;
   else if (/code|api|developer|software|application|app |wordpress/.test(value)) path = MENU_ICON_PATHS.code;
-  else if (/desktop|workspace|device|remote access/.test(value)) path = MENU_ICON_PATHS.monitor;
+  else if (/desktop|workspace|device|remote access|anydesk/.test(value)) path = MENU_ICON_PATHS.monitor;
   else if (/partner|team|customer|identity|employee|career|job/.test(value)) path = MENU_ICON_PATHS.users;
   else if (/blog|case stud|whitepaper|ebook|catalog|document|policy|terms|guide|knowledge|glossary/.test(value)) path = MENU_ICON_PATHS.file;
   else if (/cloud|azure|aws|google|microsoft 365|tally/.test(value)) path = MENU_ICON_PATHS.cloud;
@@ -677,7 +677,7 @@ export class HeaderComponent {
       };
       win.addEventListener('scroll', onScroll, { passive: true });
       const onResize = () => {
-        if (win.innerWidth > 1024 && this.mobileOpen()) this.overlay.close('mobileNav');
+        if (win.innerWidth > 1279 && this.mobileOpen()) this.overlay.close('mobileNav');
       };
       win.addEventListener('resize', onResize, { passive: true });
       this.doc.addEventListener('click', onDocClick);
@@ -736,7 +736,7 @@ export class HeaderComponent {
 
   /** Hovering one menu closes any other that was clicked open. */
   onTopEnter(label: string, event: MouseEvent): void {
-    if (this.doc.defaultView?.matchMedia('(max-width: 1024px), (hover: none)').matches) return;
+    if (this.doc.defaultView?.matchMedia('(max-width: 1279px), (hover: none)').matches) return;
     const hoveredMenu = event.currentTarget;
     const focused = this.doc.activeElement;
 

@@ -20,17 +20,17 @@
 }
 
 .xh-nav-wrap {
-  max-width: 1440px;
+  max-width: 1240px;
   min-height: 78px;
   margin: auto;
   padding: 0 24px;
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 8px;
   position: relative;
 }
 
-.xh-brand { display: flex; align-items: center; flex: 0 0 170px; }
+.xh-brand { display: flex; align-items: center; flex: 0 0 154px; }
 .xh-brand img { display: block; width: 154px; height: auto; }
 
 .xh-main-nav {
@@ -48,8 +48,8 @@
   border: 0;
   background: transparent;
   color: #263552;
-  font: 600 13px/1 var(--body, Arial, sans-serif);
-  padding: 30px 10px;
+  font: 600 12px/1 var(--body, Arial, sans-serif);
+  padding: 30px 6px;
   cursor: pointer;
   white-space: nowrap;
 }
@@ -702,7 +702,7 @@
   .xh-login-menu { display: block; }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1279px) {
   .xh-nav-wrap { min-height: 70px; flex-wrap: wrap; padding: 0 16px; }
   .xh-brand { padding: 14px 0; }
   .xh-mobile-toggle { display: block; }
@@ -784,7 +784,7 @@
 @media(max-width:600px){.xh-contact-dropdown{right:-86px;width:310px;padding:10px 16px}.xh-contact-details{flex-wrap:wrap;gap:2px 10px;white-space:normal}.xh-contact-details a+a{border:0;padding-left:0!important}}
 @media(prefers-reduced-motion:reduce){.xh-contact-dropdown{transition:none}}
 
-@media (max-width: 1024px) {
+@media (max-width: 1279px) {
   .xh-main-nav { max-height: calc(100dvh - 90px); overscroll-behavior: contain; }
   .xh-tabs { flex-wrap: wrap; overflow-x: visible; gap: 6px; }
   .xh-tab { white-space: normal; text-align: left; min-height: 44px; }
@@ -812,7 +812,7 @@
 
 
 /* Mobile accordion panels must grow downward inside the scrolling menu. */
-@media (max-width: 1024px) {
+@media (max-width: 1279px) {
   .xh-main-nav { justify-content: flex-start; overflow-anchor: none; }
   .xh-main-nav .xh-menu-item { flex: 0 0 auto; min-width: 0; }
   .xh-main-nav .xh-menu-item > .xh-mega { display: none; }
@@ -826,7 +826,7 @@
 }
 
 .xh-mobile-categories { display: none; }
-@media (max-width: 1024px) {
+@media (max-width: 1279px) {
   .xh-main-nav .xh-tabs, .xh-main-nav .xh-panels { display: none; }
   .xh-mobile-categories { display: block; padding: 8px 12px; }
   .xh-mobile-category { border-bottom: 1px solid #e7ebf3; }

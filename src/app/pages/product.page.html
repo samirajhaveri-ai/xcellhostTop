@@ -2040,7 +2040,8 @@
                 @if (isTsplusRemoteAccess() || isTsplusAdvancedSecurity() || isTsplusRemoteSupport() || isTsplusServerMonitoring()) {
                   <div class="tsplus-ask-brand" aria-label="Powered by TSplus" style="display:flex;align-items:center;gap:12px">
                     <span>Powered by <span class="brand-divider" aria-hidden="true">|</span></span>
-                    <span>{{ v.name }}</span>
+                    <img src="/assets/images/vendor-partners/16-tsplus.png" alt="TSplus" width="112" height="28" />
+                    <strong>{{ v.name }}</strong>
                   </div>
                 }
                 @if (slug() === 'geotrust' || slug() === 'geotrust-ssl-certificates' || v.name === 'GeoTrust') {
