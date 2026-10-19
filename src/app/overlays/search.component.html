@@ -14,8 +14,10 @@
       } @else {
         <div class="srch-chat-brand"><span aria-hidden="true">✦</span><strong>XcellHost Assist</strong><small>Ask. Explore. Find your solution.</small></div>
       }
-      <button class="srch-ai-toggle" type="button" [class.active]="aiMode()" [attr.aria-pressed]="aiMode()" (click)="toggleAi()"><span aria-hidden="true">✦</span> {{ aiMode() ? 'Back to search' : 'AI mode' }}</button>
-      <button class="srch-ai-toggle" type="button" (click)="websiteSearch.set(false)">Knowledgebase & Ask AI</button>
+      @if (aiMode()) {
+        <button class="srch-ai-toggle" type="button" (click)="toggleAi()">Back to search</button>
+      }
+      <button class="srch-ai-toggle" type="button" (click)="websiteSearch.set(false)">Ask AI</button>
       <button class="srch-x" type="button" aria-label="Close search" (click)="close()">esc</button>
     </div>
     @if (aiMode()) {
