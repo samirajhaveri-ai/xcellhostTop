@@ -1,0 +1,52 @@
+/* Shared FAQ layout for Angular pages and same-origin imported documents. */
+:is(.faq, .faqs, .pp-faq, .faq2, .faqgrid, .faq-grid, .faq-list, .faq-list2,
+    [class$="-faq-list"], [class$="-faq-grid"]):has(
+      > :is(details, .fq, .faq2, .faq-i, .faq-item, .faq-card, article),
+      > xh-product-faq, > .faq-column, > [class$="-faq-column"]
+    ) {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+  align-items: start !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0;
+  column-count: auto !important;
+}
+
+:is(.faq, .faqs, .pp-faq, .faq2, .faqgrid, .faq-grid, .faq-list, .faq-list2,
+    [class$="-faq-list"], [class$="-faq-grid"])
+    > :is(details, .fq, .faq2, .faq-i, .faq-item, .faq-card, article),
+.pp-faq > xh-product-faq > .faq2 {
+  min-width: 0;
+  max-width: none !important;
+  margin: 0 !important;
+  align-self: start !important;
+  grid-column: auto !important;
+}
+
+/* Pages that already group questions into two columns retain those groups. */
+:is(.faq, .faqs, .pp-faq) > :is(.faq-column, [class$="-faq-column"]) {
+  display: flex !important;
+  flex-direction: column;
+  gap: 14px !important;
+  min-width: 0;
+}
+
+/* Longer answers must remain readable after their cards become narrower. */
+:is(.faq, .faqs, .pp-faq, .faqgrid, .faq-grid, .faq-list)
+    :is(.fq.open > .fa, .faq2.open > .faq2-a) {
+  max-height: none !important;
+}
+
+@media (max-width: 760px) {
+  :is(.faq, .faqs, .pp-faq, .faq2, .faqgrid, .faq-grid, .faq-list, .faq-list2,
+      [class$="-faq-list"], [class$="-faq-grid"]):has(
+        > :is(details, .fq, .faq2, .faq-i, .faq-item, .faq-card, article),
+        > xh-product-faq, > .faq-column, > [class$="-faq-column"]
+      ) {
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: none !important;
+    grid-auto-flow: row !important;
+  }
+}

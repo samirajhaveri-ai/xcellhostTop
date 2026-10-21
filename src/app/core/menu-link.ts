@@ -1,6 +1,7 @@
 import { CatalogService, slugify } from './catalog.service';
 
 const CONTENT_LINKS: Record<string, string> = {
+  'SSL Installation Service': '/ssl-installation-service',
   'Microsoft Copilot ': '/microsoft-copilot',
   'Escalation Matrix': '/escalation-matrix',
   'Partner Matrix': '/partner-matrix',
