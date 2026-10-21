@@ -8,6 +8,10 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { useScrollingSectionNavigation } from './section-navigation-flow';
 
 type InteractiveContentSource =
+  | 'hybrid-cloud'
+  | 'edge-cloud'
+  | 'iot-cloud'
+  | 'cdn-cloud'
   | 'email-security-enterprise'
   | 'red-hat'
   | 'sitelock'
@@ -113,6 +117,10 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page' | 'sectigo-detail' | 'inference-page' | 'developer-page'>,
     string
   > = {
+    'hybrid-cloud': '/imported-hybrid-cloud.html',
+    'edge-cloud': '/imported-edge-cloud.html',
+    'iot-cloud': '/imported-iot-cloud.html',
+    'cdn-cloud': '/imported-cdn-cloud.html',
     'email-security-enterprise': '/imported-email-security-enterprise.html',
     'red-hat': '/imported-red-hat.html',
     'sitelock': '/imported-sitelock.html',
@@ -223,6 +231,10 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+    'hybrid-cloud': 'Hybrid Cloud, animated connectivity, cloud bursting, placement, recovery and operations scenes, pricing, placement advisor, link sizer and Why XcellHost',
+    'edge-cloud': 'Edge Cloud, animated fleet, offline operation, edge AI, deployment and security scenes, node pricing, latency map, backhaul savings and onboarding',
+    'iot-cloud': 'IoT Cloud, animated telemetry, device identity, edge buffering, alert and OTA scenes, fleet simulator, device pricing, protocol picker and Why XcellHost',
+    'cdn-cloud': 'CDN Cloud, animated cache hits, origin shield, purge, security and media scenes, plans, cache simulator, traffic estimator and migration',
     'email-security-enterprise': 'Email Security Enterprise, animated mail estate, high availability, DLP, DMARC and archive scenes, estate sizing and change-managed rollout',
     'red-hat': 'Red Hat services, animated RHEL, Ansible, OpenShift, virtualisation and AI scenes, service explorer and Stack Builder',
     'sitelock': 'SiteLock Website Security, animated scan, WAF, CDN, patching and trust seal scenes, plans and Why XcellHost',
