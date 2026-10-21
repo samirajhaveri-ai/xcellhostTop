@@ -96,11 +96,23 @@ export class GeoTrustSslCertificatesPage {
   }
 
   configure(product: GeoTrustProduct): void {
-    if (product.id === 'tb-ev' || product.id === 'tb-ov-flex') {
-      const quantity = this.quantity(product);
-      const slug = product.id === 'tb-ov-flex' ? 'geotrust-true-businessid-ov' : 'geotrust-true-businessid-ev';
-      void this.router.navigate(['/' + slug], {
-        queryParams: quantity > 1 ? { quantity } : undefined,
+    const checkoutPaths: Record<string, string> = {
+      'dv-flex': '/geotrust-dv-ssl-flex/checkout',
+      'quick-san': '/geotrust-quickssl-premium-san/checkout',
+      'quick-premium': '/geotrust-quickssl-premium/checkout',
+      'quick-wild': '/geotrust-quickssl-premium-wildcard/checkout',
+      'tb-ov-flex': '/geotrust-true-businessid-ov/checkout',
+      'tb-id': '/geotrust-true-businessid/checkout',
+      'tb-md': '/geotrust-true-businessid-multi-domain/checkout',
+      'tb-wild': '/geotrust-true-businessid-wildcard/checkout',
+      'tb-ev-flex': '/geotrust-true-businessid-ev-flex/checkout',
+      'tb-ev': '/geotrust-true-businessid-ev/checkout',
+      'tb-ev-md': '/geotrust-true-businessid-ev-multi-domain/checkout',
+    };
+    const checkoutPath = checkoutPaths[product.id];
+    if (checkoutPath) {
+      void this.router.navigate([checkoutPath], {
+        queryParams: { quantity: this.quantity(product) },
       });
       return;
     }

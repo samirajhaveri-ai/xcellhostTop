@@ -535,18 +535,13 @@
   <div class="wrap">
     <div class="head rv testimonials-heading"><span class="kicker">Testimonials</span><h2>What founders and compliance leads say</h2><div class="u"></div></div>
     <div class="tcards">
-      <div class="tcard rv tilt" data-d="1"><div class="qb">&rdquo;</div><div class="tav">IT</div>
-        <p>The AI-powered assessment identified gaps we had not even considered, and the consent module saved us from building it in-house. Weeks, not months.</p>
-        <div class="tname">IT Operations Lead</div><div class="trole">Fintech &middot; Growth plan</div></div>
-      <div class="tcard rv tilt" data-d="2"><div class="qb">&rdquo;</div><div class="tav">HT</div>
-        <p>As a healthtech handling sensitive patient data, DPDP was critical. From PII discovery to policy generation, the process was straightforward.</p>
-        <div class="tname">Founder &amp; CEO</div><div class="trole">Healthtech &middot; Enterprise</div></div>
-      <div class="tcard rv tilt" data-d="3"><div class="qb">&rdquo;</div><div class="tav">SA</div>
-        <p>We needed ISO 27001 readiness for US enterprise clients. The gap assessment gave us a clear roadmap with prioritised remediation steps.</p>
-        <div class="tname">CEO</div><div class="trole">SaaS &middot; Growth plan</div></div>
-      <div class="tcard rv tilt" data-d="4"><div class="qb">&rdquo;</div><div class="tav">ED</div>
-        <p>Managing DPDP, ISO 27001 and SOC 2 at once seemed impossible. The multi-framework dashboard gives us one view of posture across all three.</p>
-        <div class="tname">Head of Compliance</div><div class="trole">Edtech &middot; Enterprise</div></div>
+      @for (review of testimonials; track review.name; let i = $index) {
+        <div class="tcard rv tilt" [attr.data-d]="i + 1"><div class="qb" aria-hidden="true">&rdquo;</div>
+          <div class="tav">{{ review.initials }}</div>
+          <p>{{ review.quote }}</p>
+          <div class="tname">{{ review.name }}</div><div class="trole">{{ review.role }}</div>
+        </div>
+      }
     </div>
   </div>
 </section>

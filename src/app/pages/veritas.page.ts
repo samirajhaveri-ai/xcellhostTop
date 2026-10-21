@@ -11,8 +11,8 @@ import { ImportedInteractiveContentComponent } from '../sections/imported-intera
 export class VeritasPage {
   constructor() {
     inject(SeoService).set(
-      'Veritas AI Visibility & SEO | XcellHost',
-      'Veritas brings site audits, keyword research, rank tracking, local SEO and AI-answer visibility into one workspace, with INR billing and support from XcellHost Mumbai.',
+      'AI Visibility & SEO | XcellHost',
+      'Site audits, keyword research, rank tracking, local SEO and AI-answer visibility in one workspace, with INR billing and support from XcellHost Mumbai.',
       '/veritas',
     );
   }

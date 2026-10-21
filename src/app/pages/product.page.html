@@ -138,6 +138,14 @@
       <xh-openai-managed-source />
     } @else if (slug() === 'vortex-soc') {
       <xh-vortex-soc-source />
+    } @else if (slug() === 'hybrid-cloud') {
+      <xh-imported-interactive-content source="hybrid-cloud-service" />
+    } @else if (slug() === 'edge-cloud') {
+      <xh-imported-interactive-content source="edge-cloud" />
+    } @else if (slug() === 'iot-cloud') {
+      <xh-imported-interactive-content source="iot-cloud" />
+    } @else if (slug() === 'cdn-cloud') {
+      <xh-imported-interactive-content source="cdn-cloud" />
     } @else if (isEmailSecurityEnterprise()) {
       <xh-imported-interactive-content source="email-security-enterprise" />
     } @else if (isVortexSegSource()) {
@@ -282,11 +290,11 @@
     } @else {
       @if (isMicrosoftEnterprisePage()) {
         @switch (slug()) {
-          @case ('microsoft-365-enterprise-office365') { <xh-microsoft-365-enterprise-office365 /> }
-          @case ('microsoft-365-enterprise-frontline') { <xh-microsoft-365-enterprise-frontline /> }
-          @case ('microsoft-365-enterprise-nonprofit') { <xh-microsoft-365-enterprise-nonprofit /> }
-          @case ('microsoft-365-enterprise-additional') { <xh-microsoft-365-enterprise-additional /> }
-          @default { <xh-microsoft-365-enterprise-reference /> }
+          @case ('microsoft-365-enterprise-office365') { <xh-microsoft-365-enterprise-office365 (heroAction)="onMicrosoft365HeroAction($event)" /> }
+          @case ('microsoft-365-enterprise-frontline') { <xh-microsoft-365-enterprise-frontline (heroAction)="onMicrosoft365HeroAction($event)" /> }
+          @case ('microsoft-365-enterprise-nonprofit') { <xh-microsoft-365-enterprise-nonprofit (heroAction)="onMicrosoft365HeroAction($event)" /> }
+          @case ('microsoft-365-enterprise-additional') { <xh-microsoft-365-enterprise-additional (heroAction)="onMicrosoft365HeroAction($event)" /> }
+          @default { <xh-microsoft-365-enterprise-reference (heroAction)="onMicrosoft365HeroAction($event)" /> }
         }
         <div class="pp-body microsoft-365-enterprise-extras">
           <div class="wrap">
@@ -2020,10 +2028,10 @@
                   </div>
                 }
                 @if (slug() === 'email-signature') {
-<div class="email-addon-brand" style="display:flex;flex-direction:row;align-items:center;gap:12px"><span class="brand-label">Powered by <span class="brand-divider" aria-hidden="true">|</span></span><span class="brand-mark"><span class="cw-word">Cross<span>ware</span></span></span></div>
+<div class="email-addon-brand" style="display:flex;flex-direction:row;align-items:center;gap:12px"><span class="brand-label">Powered by <span class="brand-divider" aria-hidden="true">|</span></span><span class="brand-mark"><span class="cw-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 5l14 14M19 5L5 19" stroke-linecap="round"/></svg></span><span class="cw-word">Cross<span>ware</span></span></span></div>
                 }
                 @if (slug() === 'microsoft-365-training') {
-<div class="email-addon-brand" style="display:flex;flex-direction:row;align-items:center;gap:12px"><span class="brand-label">Powered by <span class="brand-divider" aria-hidden="true">|</span></span><span class="brand-mark"><span>Microsoft</span></span></div>
+<div class="email-addon-brand" style="display:flex;flex-direction:row;align-items:center;gap:12px"><span class="brand-label">Powered by <span class="brand-divider" aria-hidden="true">|</span></span><span class="brand-mark"><img src="/assets/images/code-signing-tools/microsoft.svg" alt="" width="24" height="24"><span>Microsoft</span></span></div>
                 }
                 @if (isTsplusRemoteAccess() || isTsplusAdvancedSecurity() || isTsplusRemoteSupport() || isTsplusServerMonitoring()) {
                   <div class="tsplus-ask-brand" aria-label="Powered by TSplus" style="display:flex;align-items:center;gap:12px">
@@ -2033,10 +2041,10 @@
                   </div>
                 }
                 @if (slug() === 'geotrust' || slug() === 'geotrust-ssl-certificates' || v.name === 'GeoTrust') {
-                  <div class="geotrust-brand-below-ai" aria-label="Powered by GeoTrust" style="display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;gap:12px"><span>Powered by <span class="brand-divider" aria-hidden="true">|</span></span><span>GeoTrust</span></div>
+                  <div class="geotrust-brand-below-ai" aria-label="Powered by GeoTrust" style="display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;gap:12px"><span>Powered by <span class="brand-divider" aria-hidden="true">|</span></span><img src="/assets/images/geotrust.svg" alt="GeoTrust" width="112" height="32"></div>
                 }
                 @if (isDigiCert()) {
-                  <div class="digicert-brand-below-ai"><strong class="digicert-powered-label">Powered by</strong><img src="/assets/images/geotrust-secured-powered-by-digicert.png" alt="DigiCert Secured" width="112" height="52" /></div>
+                  <div class="digicert-brand-below-ai"><strong class="digicert-powered-label">Powered by</strong><img src="/assets/images/digicert.svg" alt="DigiCert" width="112" height="32" /></div>
                 }
 
                 @if (usesContainerRegistryTemplate()) {
@@ -2112,7 +2120,7 @@
 
             @if (slug() === 'sectigo-ssl-certificates') {
               <div class="sectigo-ssl-song"><b><span aria-hidden="true">▂▅▇</span> Listen to our SSL Security Song</b><audio controls preload="none" aria-label="Listen to our SSL Security Song"></audio></div>
-<div class="sectigo-brand-below-ai" style="display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;gap:12px"><span>Powered by <span class="brand-divider" aria-hidden="true">|</span></span><span>Sectigo</span></div>
+<div class="sectigo-brand-below-ai" style="display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;gap:12px"><span>Powered by <span class="brand-divider" aria-hidden="true">|</span></span><img src="/assets/images/sectigo.svg" alt="Sectigo" width="112" height="32"></div>
             }
             <xh-domain-hero-media [slug]="slug()" [name]="v.name" [isDomainPage]="v.crumb.endsWith('Domains')" />
             <xh-hosting-hero-media [slug]="slug()" [name]="v.name" />
@@ -2733,7 +2741,7 @@
           } @else if (slug() === 'wordpress-vps') {
             <xh-imported-interactive-content class="wordpress-vps-source-content" source="wordpress-vps" />
           }
-          @if (!isEmailSecurityEnterprise() && slug() !== 'open-ai-managed-services' && slug() !== 'vortex-soc' && !isVortexSegSource() && slug() !== 'dfir' && slug() !== 'managed-google-cloud-gcp' && slug() !== 'docusign' && slug() !== 'rpc-nodes' && slug() !== 'gaming-servers' && slug() !== 'zoom-conferenceing' && slug() !== 'managed-pki' && slug() !== 'private-ca' && slug() !== 'iot-pki' && slug() !== 'iot-device-certificates' && slug() !== 'cloud-code-signing' && slug() !== 'certificate-mgmt-solutions' && slug() !== 'matter-dac' && slug() !== 'pki-software' && slug() !== 'windows-365' && slug() !== 'bio-link-digital-visiting-card' && slug() !== 'general-compute' && slug() !== 'wordpress-vps' && slug() !== 'identity-resilience' && slug() !== 'ediscovery-and-compliance' && slug() !== 'cpu-optimized' && slug() !== 'memory-optimized' && slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && slug() !== 'gpu-clusters' && slug() !== 'ai-chat-bot') {
+          @if (slug() !== 'hybrid-cloud' && slug() !== 'edge-cloud' && slug() !== 'iot-cloud' && slug() !== 'cdn-cloud' && !isEmailSecurityEnterprise() && slug() !== 'open-ai-managed-services' && slug() !== 'vortex-soc' && !isVortexSegSource() && slug() !== 'dfir' && slug() !== 'managed-google-cloud-gcp' && slug() !== 'docusign' && slug() !== 'rpc-nodes' && slug() !== 'gaming-servers' && slug() !== 'zoom-conferenceing' && slug() !== 'managed-pki' && slug() !== 'private-ca' && slug() !== 'iot-pki' && slug() !== 'iot-device-certificates' && slug() !== 'cloud-code-signing' && slug() !== 'certificate-mgmt-solutions' && slug() !== 'matter-dac' && slug() !== 'pki-software' && slug() !== 'windows-365' && slug() !== 'bio-link-digital-visiting-card' && slug() !== 'general-compute' && slug() !== 'wordpress-vps' && slug() !== 'identity-resilience' && slug() !== 'ediscovery-and-compliance' && slug() !== 'cpu-optimized' && slug() !== 'memory-optimized' && slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && slug() !== 'gpu-clusters' && slug() !== 'ai-chat-bot') {
           @if (slug() === 'marketplace') {
             <xh-marketplace-content />
           } @else {
@@ -3360,7 +3368,7 @@
                             (click)="selectTallyPlan(plan, $event)"
                           >
                             <strong>&#8377;{{ formatInr(tallyPrice(plan)) }}</strong>
-                            <span>Buy now <span aria-hidden="true">→</span></span>
+                            <span>Buy Now <span aria-hidden="true">&#8594;</span></span>
                             <small class="tally-billing-note"
                               >+GST · {{ activeTallyTerm().label }} billing</small
                             >
@@ -4822,6 +4830,10 @@
                   </div>
                 }
 
+                @if (isCloudBackup() || isAdvancedEdr()) {
+                  <xh-anti-ransomware-warranty />
+                }
+
                 @if (isCloudBackup()) {
                   <section
                     class="cloud-backup-platforms"
@@ -5787,6 +5799,8 @@
             v.name !== 'Tally on Cloud' &&
             slug() !== 'zoom-conferenceing' &&
             slug() !== 'web-security-sitelock' &&
+            slug() !== 'iot-cloud' &&
+            slug() !== 'hybrid-cloud' &&
             slug() !== 'bio-link-digital-visiting-card' && slug() !== 'general-compute' && slug() !== 'wordpress-vps' &&
             slug() !== 'video-surveillance-as-a-service' &&
             slug() !== 'claude-backup' &&

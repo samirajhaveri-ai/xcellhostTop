@@ -1,4 +1,5 @@
 
+import { AntiRansomwareWarrantyComponent } from '../sections/anti-ransomware-warranty.component';
 import { ContainerRegistryHeroComponent } from '../sections/container-registry-hero.component';
 import { CybirdOverviewComponent } from '../sections/cybird-overview.component';
 import { ContainerServiceHeroComponent } from '../sections/container-service-hero.component';
@@ -724,6 +725,7 @@ interface ProductTourSlide {
     CpanelServersHeroComponent,
     CpanelServersOverviewComponent,
     PleskServersOverviewComponent,
+    AntiRansomwareWarrantyComponent,
   ],
   templateUrl: './product.page.html',
   styles: [`
@@ -5231,6 +5233,12 @@ class ProductPageComponent {
   openTrial(ev: Event): void {
     ev.preventDefault();
     this.overlay.open('trial');
+  }
+
+  onMicrosoft365HeroAction(action: 'tour' | 'trial' | 'callback'): void {
+    if (action === 'tour') this.openProductScreenshotTour();
+    else if (action === 'trial') this.openTrial(new Event('click'));
+    else this.openCallback(new Event('click'));
   }
 
   requestGpuCluster(configuration: string): void {

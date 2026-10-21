@@ -5,6 +5,50 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  { path: 'office-365-e1-nonprofit', title: 'Office 365 E1 Nonprofit | XcellHost', data: { microsoft365PlanSource: 'office-365-e1-nonprofit' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'teams-essentials-frontline', title: 'Teams Essentials for Frontline | XcellHost', data: { microsoft365PlanSource: 'teams-essentials-frontline' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'office-365-e5', title: 'Office 365 E5 | XcellHost', data: { microsoft365PlanSource: 'office-365-e5' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'microsoft-365-f1', title: 'Microsoft 365 F1 | XcellHost', data: { microsoft365PlanSource: 'microsoft-365-f1' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'microsoft-365-e5', title: 'Microsoft 365 E5 | XcellHost', data: { microsoft365PlanSource: 'microsoft-365-e5' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'microsoft-365-e3', title: 'Microsoft 365 E3 | XcellHost', data: { microsoft365PlanSource: 'microsoft-365-e3' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'office-365-e1', title: 'Office 365 E1 | XcellHost', data: { microsoft365PlanSource: 'office-365-e1' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'office-365-e3', title: 'Office 365 E3 | XcellHost', data: { microsoft365PlanSource: 'office-365-e3' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'office-365-f3', title: 'Office 365 F3 | XcellHost', data: { microsoft365PlanSource: 'office-365-f3' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'microsoft-365-f3', title: 'Microsoft 365 F3 | XcellHost', data: { microsoft365PlanSource: 'microsoft-365-f3' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'office-365-e3-nonprofit', title: 'Office 365 E3 Nonprofit | XcellHost', data: { microsoft365PlanSource: 'office-365-e3-nonprofit' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'microsoft-365-business-premium-nonprofit', title: 'Microsoft 365 Business Premium Nonprofit | XcellHost', data: { microsoft365PlanSource: 'microsoft-365-business-premium-nonprofit' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'microsoft-365-e3-nonprofit', title: 'Microsoft 365 E3 Nonprofit | XcellHost', data: { microsoft365PlanSource: 'microsoft-365-e3-nonprofit' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'microsoft-365-f3-nonprofit', title: 'Microsoft 365 F3 Nonprofit | XcellHost', data: { microsoft365PlanSource: 'microsoft-365-f3-nonprofit' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'microsoft-365-e5-nonprofit', title: 'Microsoft 365 E5 Nonprofit | XcellHost', data: { microsoft365PlanSource: 'microsoft-365-e5-nonprofit' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+
+  { path: 'hybrid-cloud', title: 'Private Cloud | XcellHost', data: { cloudSource: 'hybrid-cloud' }, loadComponent: () => import('./pages/cloud-infrastructure.page').then(m => m.CloudInfrastructurePage) },
+  { path: 'global-cloudthe', redirectTo: 'global-cloud', pathMatch: 'full' },
+  { path: 'global-cloud', title: 'Global Cloud | XcellHost', data: { cloudSource: 'global-cloud' }, loadComponent: () => import('./pages/cloud-infrastructure.page').then(m => m.CloudInfrastructurePage) },
+  { path: 'co-location-services', title: 'Co-Location Services | XcellHost', data: { cloudSource: 'co-location-services' }, loadComponent: () => import('./pages/cloud-infrastructure.page').then(m => m.CloudInfrastructurePage) },
+
+  ...[
+    { path: 'microsoft-entra-workload-id', name: 'Microsoft Entra Workload ID', description: 'Secure workload identities, applications and service principals with Microsoft Entra.' },
+    { path: 'microsoft-entra-internet-access', name: 'Microsoft Entra Internet Access', description: 'Protect access to internet applications with identity-aware secure web access.' },
+    { path: 'microsoft-entra-private-access', name: 'Microsoft Entra Private Access', description: 'Connect users securely to private applications with Zero Trust access.' },
+    { path: 'microsoft-entra-id-governance', name: 'Microsoft Entra ID Governance', description: 'Manage identity lifecycles, access reviews and permissions across your organization.' },
+    { path: 'microsoft-entra-id-p1', name: 'Microsoft Entra ID P1', description: 'Enable single sign-on, Conditional Access and self-service password reset.' },
+    { path: 'microsoft-entra-id-p2', name: 'Microsoft Entra ID P2', description: 'Add risk-based Identity Protection and privileged identity management to Entra ID.' },
+    { path: 'microsoft-entra-suite', name: 'Microsoft Entra Suite', description: 'Unify identity protection, governance, internet access and private application access.' },
+  ].map(({ path, name, description }) => ({
+    path,
+    title: `${name} | XcellHost`,
+    data: { productSlug: path, searchTitle: name, searchDescription: description },
+    loadComponent: () => import('./pages/product.page').then(m => m.ProductPage),
+  })),
+
+  { path: 'accops-hyworks', title: 'Accops HyWorks | XcellHost', data: { accopsSource: 'accops-hyworks' }, loadComponent: () => import('./pages/accops-product.page').then(m => m.AccopsProductPage) },
+  { path: 'accops-hysecure', title: 'Accops HySecure | XcellHost', data: { accopsSource: 'accops-hysecure' }, loadComponent: () => import('./pages/accops-product.page').then(m => m.AccopsProductPage) },
+  { path: 'accops-hyid', title: 'Accops HyID | XcellHost', data: { accopsSource: 'accops-hyid' }, loadComponent: () => import('./pages/accops-product.page').then(m => m.AccopsProductPage) },
+  { path: 'accops-hylabs', title: 'Accops HyLabs | XcellHost', data: { accopsSource: 'accops-hylabs' }, loadComponent: () => import('./pages/accops-product.page').then(m => m.AccopsProductPage) },
+  { path: 'accops-hydesk', title: 'Accops HyDesk | XcellHost', data: { accopsSource: 'accops-hydesk' }, loadComponent: () => import('./pages/accops-product.page').then(m => m.AccopsProductPage) },
+  { path: 'more-from-accops', title: 'More From Accops | XcellHost', data: { accopsSource: 'more-from-accops' }, loadComponent: () => import('./pages/accops-product.page').then(m => m.AccopsProductPage) },
+
+
   {
     path: 'vendor-partners/red-hat',
     title: 'Red Hat Partner India | XcellHost',
@@ -17,6 +61,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/ssl-installation-service.page').then(m => m.SslInstallationServicePage),
   },
   { path: 'under-construction/ssl-installation-service', redirectTo: 'ssl-installation-service', pathMatch: 'full' },
+
   ...['ai-identity-security', 'ai-security-platform', 'ai-security-audit', 'ai-security-assessment', 'ai-red-teaming-services'].map(path => ({
     path,
     title: ({ 'ai-identity-security': 'AI Identity Security', 'ai-security-platform': 'AI Security Platform', 'ai-security-audit': 'AI Security Audit', 'ai-security-assessment': 'AI Security Assessment', 'ai-red-teaming-services': 'AI Red Teaming Services' } as Record<string, string>)[path] + ' | XcellHost',
@@ -72,7 +117,7 @@ export const routes: Routes = [
   { path: 'network-access-control-nac', title: 'Genian NAC | XcellHost', loadComponent: () => import('./pages/genian-nac.page').then(m => m.GenianNacPage) },
 
   // Veritas renders the supplied page content inside the existing site shell.
-  { path: 'veritas', title: 'Veritas AI Visibility & SEO | XcellHost', loadComponent: () => import('./pages/veritas.page').then(m => m.VeritasPage) },
+  { path: 'veritas', title: 'AI Visibility & SEO | XcellHost', loadComponent: () => import('./pages/veritas.page').then(m => m.VeritasPage) },
 
   { path: 'genian-nac', title: 'Genian NAC | XcellHost', loadComponent: () => import('./pages/genian-nac.page').then(m => m.GenianNacPage) },
   { path: 'bare-metal-servers/checkout', title: 'Complete Your Bare Metal Server Order | XcellHost', data: { checkoutProduct: 'bare-metal' }, loadComponent: () => import('./pages/checkout.page').then(m => m.CheckoutPage) },
@@ -110,12 +155,27 @@ export const routes: Routes = [
 
 
   {
+    path: 'geotrust-true-businessid/checkout',
+    title: 'GeoTrust True BusinessID Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-truebusiness-id-checkout.page').then(m => m.GeoTrustTrueBusinessIdCheckoutPage),
+  },
+  {
     path: 'geotrust-true-businessid', data: { businessIdVariant: 'single' },
     loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
   },
   {
+    path: 'geotrust-true-businessid-multi-domain/checkout',
+    title: 'GeoTrust True BusinessID Multi-Domain Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-truebusiness-id-multi-domain-checkout.page').then(m => m.GeoTrustTrueBusinessIdMultiDomainCheckoutPage),
+  },
+  {
     path: 'geotrust-true-businessid-multi-domain', data: { businessIdVariant: 'multi' },
     loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
+  },
+  {
+    path: 'geotrust-true-businessid-ov/checkout',
+    title: 'GeoTrust TrueBusiness ID OV (FLEX) Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-truebusiness-id-ov-flex-checkout.page').then(m => m.GeoTrustTrueBusinessIdOvFlexCheckoutPage),
   },
   {
     path: 'geotrust-true-businessid-ov',
@@ -124,30 +184,65 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
   },
   {
+    path: 'geotrust-true-businessid-ev/checkout',
+    title: 'GeoTrust True BusinessID with EV Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-truebusiness-id-with-ev-checkout.page').then(m => m.GeoTrustTrueBusinessIdWithEvCheckoutPage),
+  },
+  {
     path: 'geotrust-true-businessid-ev',
     title: 'GeoTrust True BusinessID with EV | XcellHost',
     data: { businessIdVariant: 'ev' },
     loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
   },
   {
+    path: 'geotrust-true-businessid-ev-multi-domain/checkout',
+    title: 'GeoTrust TrueBusiness ID w/ EV Multi-Domain Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-truebusiness-id-ev-multi-domain-checkout.page').then(m => m.GeoTrustTrueBusinessIdEvMultiDomainCheckoutPage),
+  },
+  {
     path: 'geotrust-true-businessid-ev-multi-domain', data: { businessIdVariant: 'evMulti' },
     loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
+  },
+  {
+    path: 'geotrust-true-businessid-wildcard/checkout',
+    title: 'GeoTrust True BusinessID Wildcard Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-truebusiness-id-wildcard-checkout.page').then(m => m.GeoTrustTrueBusinessIdWildcardCheckoutPage),
   },
   {
     path: 'geotrust-true-businessid-wildcard', data: { businessIdVariant: 'wildcard' },
     loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
   },
   {
+    path: 'geotrust-quickssl-premium-san/checkout',
+    title: 'GeoTrust QuickSSL Premium SAN Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-quickssl-premium-san-checkout.page').then(m => m.GeoTrustQuickSslPremiumSanCheckoutPage),
+  },
+  {
     path: 'geotrust-quickssl-premium-san', data: { quickSslVariant: 'san' },
     loadComponent: () => import('./pages/geotrust-quickssl.page').then(m => m.GeoTrustQuickSslPage),
+  },
+  {
+    path: 'geotrust-quickssl-premium/checkout',
+    title: 'GeoTrust QuickSSL Premium Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-quickssl-premium-checkout.page').then(m => m.GeoTrustQuickSslPremiumCheckoutPage),
   },
   {
     path: 'geotrust-quickssl-premium', data: { quickSslVariant: 'single' },
     loadComponent: () => import('./pages/geotrust-quickssl.page').then(m => m.GeoTrustQuickSslPage),
   },
   {
+    path: 'geotrust-quickssl-premium-wildcard/checkout',
+    title: 'GeoTrust QuickSSL Premium Wildcard Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-quickssl-premium-wildcard-checkout.page').then(m => m.GeoTrustQuickSslPremiumWildcardCheckoutPage),
+  },
+  {
     path: 'geotrust-quickssl-premium-wildcard', data: { quickSslVariant: 'wildcard' },
     loadComponent: () => import('./pages/geotrust-quickssl.page').then(m => m.GeoTrustQuickSslPage),
+  },
+  {
+    path: 'geotrust-dv-ssl-flex/checkout',
+    title: 'GeoTrust DV SSL (FLEX) Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-dv-ssl-flex-checkout.page').then(m => m.GeoTrustDvSslFlexCheckoutPage),
   },
   {
     path: 'geotrust-dv-ssl-flex',
@@ -155,20 +250,80 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/geotrust-dv-ssl-flex.page').then(m => m.GeoTrustDvSslFlexPage),
   },
   {
+    path: 'geotrust-true-businessid-ev-flex/checkout',
+    title: 'GeoTrust TrueBusiness ID EV (FLEX) Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-truebusiness-id-ev-flex-checkout.page').then(m => m.GeoTrustTrueBusinessIdEvFlexCheckoutPage),
+  },
+  {
     path: 'geotrust-true-businessid-ev-flex',
     title: 'GeoTrust TrueBusiness ID EV (FLEX) | XcellHost',
     loadComponent: () => import('./pages/geotrust-true-businessid-ev-flex.page').then(m => m.GeoTrustTrueBusinessIdEvFlexPage),
   },
 
+  {
+    path: 'digicert-ev-multi-domain-ssl/checkout',
+    title: 'DigiCert EV Multi-Domain SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-ev-multi-domain-ssl-checkout.page').then(m => m.DigicertEvMultiDomainSslCheckoutPage),
+  },
   {path:'digicert-ev-multi-domain-ssl',title:'DigiCert EV Multi-Domain SSL - XcellHost',data:{sslSlug:'digicert-ev-multi-domain-ssl'},loadComponent:()=>import('./pages/digicert-ssl-detail.page').then(m=>m.DigicertSslDetailPage)},
+  {
+    path: 'digicert-wildcard-ssl/checkout',
+    title: 'DigiCert Wildcard SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-wildcard-ssl-checkout.page').then(m => m.DigicertWildcardSslCheckoutPage),
+  },
   {path:'digicert-wildcard-ssl',title:'DigiCert Wildcard SSL - XcellHost',data:{sslSlug:'digicert-wildcard-ssl'},loadComponent:()=>import('./pages/digicert-ssl-detail.page').then(m=>m.DigicertSslDetailPage)},
+  {
+    path: 'digicert-secure-site-ssl/checkout',
+    title: 'DigiCert Secure Site SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-secure-site-ssl-checkout.page').then(m => m.DigicertSecureSiteSslCheckoutPage),
+  },
+  {
+    path: 'digicert-secure-site-ev-ssl/checkout',
+    title: 'DigiCert Secure Site EV SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-secure-site-ev-ssl-checkout.page').then(m => m.DigicertSecureSiteEvSslCheckoutPage),
+  },
   {path:'digicert-secure-site-ev-ssl',title:'DigiCert Secure Site EV SSL - XcellHost',data:{sslSlug:'digicert-secure-site-ev-ssl'},loadComponent:()=>import('./pages/digicert-ssl-detail.page').then(m=>m.DigicertSslDetailPage)},
+  {
+    path: 'digicert-secure-site-multi-domain-ssl/checkout',
+    title: 'DigiCert Secure Site Multi-Domain Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-secure-site-multi-domain-checkout.page').then(m => m.DigicertSecureSiteMultiDomainCheckoutPage),
+  },
   {path:'digicert-secure-site-multi-domain-ssl',title:'DigiCert Secure Site Multi-Domain - XcellHost',data:{sslSlug:'digicert-secure-site-multi-domain-ssl'},loadComponent:()=>import('./pages/digicert-ssl-detail.page').then(m=>m.DigicertSslDetailPage)},
+  {
+    path: 'digicert-secure-site-wildcard-ssl/checkout',
+    title: 'DigiCert Secure Site Wildcard Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-secure-site-wildcard-checkout.page').then(m => m.DigicertSecureSiteWildcardCheckoutPage),
+  },
   {path:'digicert-secure-site-wildcard-ssl',title:'DigiCert Secure Site Wildcard - XcellHost',data:{sslSlug:'digicert-secure-site-wildcard-ssl'},loadComponent:()=>import('./pages/digicert-ssl-detail.page').then(m=>m.DigicertSslDetailPage)},
+  {
+    path: 'digicert-secure-site-pro-ssl/checkout',
+    title: 'DigiCert Secure Site Pro SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-secure-site-pro-ssl-checkout.page').then(m => m.DigicertSecureSiteProSslCheckoutPage),
+  },
   {path:'digicert-secure-site-pro-ssl',title:'DigiCert Secure Site Pro SSL - XcellHost',data:{sslSlug:'digicert-secure-site-pro-ssl'},loadComponent:()=>import('./pages/digicert-ssl-detail.page').then(m=>m.DigicertSslDetailPage)},
+  {
+    path: 'digicert-secure-site-pro-ev-ssl/checkout',
+    title: 'DigiCert Secure Site Pro EV SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-secure-site-pro-ev-ssl-checkout.page').then(m => m.DigicertSecureSiteProEvSslCheckoutPage),
+  },
   {path:'digicert-secure-site-pro-ev-ssl',title:'DigiCert Secure Site Pro EV SSL - XcellHost',data:{sslSlug:'digicert-secure-site-pro-ev-ssl'},loadComponent:()=>import('./pages/digicert-ssl-detail.page').then(m=>m.DigicertSslDetailPage)},
+  {
+    path: 'digicert-multi-domain-ssl/checkout',
+    title: 'DigiCert Multi-Domain SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-multi-domain-ssl-checkout.page').then(m => m.DigicertMultiDomainSslCheckoutPage),
+  },
   { path: 'digicert-multi-domain-ssl', title: 'DigiCert Multi-Domain SSL - XcellHost', loadComponent: () => import('./pages/digicert-multi-domain-ssl.page').then(m => m.DigicertMultiDomainSslPage) },
+  {
+    path: 'digicert-ev-ssl/checkout',
+    title: 'DigiCert Extended Validation SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-extended-validation-ssl-checkout.page').then(m => m.DigicertExtendedValidationSslCheckoutPage),
+  },
   { path: 'digicert-ev-ssl', title: 'DigiCert EV SSL - XcellHost', loadComponent: () => import('./pages/digicert-ev-ssl.page').then(m => m.DigicertEvSslPage) },
+  {
+    path: 'digicert-standard-ssl/checkout',
+    title: 'DigiCert Standard SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-standard-ssl-checkout.page').then(m => m.DigicertStandardSslCheckoutPage),
+  },
   { path: 'digicert-standard-ssl', title: 'DigiCert Standard SSL - XcellHost', loadComponent: () => import('./pages/digicert-standard-ssl.page').then(m => m.DigicertStandardSslPage) },
 
   { path: 'managed-grc', title: 'Managed GRC - XcellHost', data: { consultingSlug: 'managed-grc' }, loadComponent: () => import('./pages/security-consulting.page').then(m => m.SecurityConsultingPage) },
@@ -474,6 +629,12 @@ export const routes: Routes = [
   { path: 'xcellhost-demo-center', loadComponent: () => import('./pages/xcellhost-demo-center.page').then((m) => m.XcellhostDemoCenterPage) },
   { path: 'under-construction/plesk-demo-center', redirectTo: 'plesk-demo-center', pathMatch: 'full' },
   { path: 'plesk-demo-center', data: { controlPanel: 'plesk' }, loadComponent: () => import('./pages/control-panel-demo-center.page').then((m) => m.ControlPanelDemoCenterPage) },
+  {
+    path: 'tally-demo-center',
+    title: 'Tally Demo Center | XcellHost',
+    data: { searchDescription: 'Explore Tally on Cloud workspace walkthroughs and request a live demo.' },
+    loadComponent: () => import('./pages/tally-demo-center.page').then(m => m.TallyDemoCenterPage),
+  },
   { path: 'under-construction/cpanel-demo-center', redirectTo: 'cpanel-demo-center', pathMatch: 'full' },
   { path: 'cpanel-demo-center', data: { controlPanel: 'cpanel' }, loadComponent: () => import('./pages/control-panel-demo-center.page').then((m) => m.ControlPanelDemoCenterPage) },
   { path: 'under-construction/events-catalog', loadComponent: () => import('./pages/events-catalog.page').then((m) => m.EventsCatalogPage) },
@@ -815,6 +976,10 @@ export const routes: Routes = [
   {
     path: 'acronis-ot',
     loadComponent: () => import('./pages/acronis-ot.page').then((m) => m.AcronisOtPage),
+  },
+  {
+    path: 'anti-ransomware-warranty',
+    loadComponent: () => import('./pages/anti-ransomware-warranty.page').then((m) => m.AntiRansomwareWarrantyPage),
   },
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
   { path: '**', redirectTo: '' },

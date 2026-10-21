@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, ViewEncapsulation, inject } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, ViewEncapsulation, inject, output } from '@angular/core';
 
 @Component({
   selector: 'xh-microsoft-365-enterprise-reference',
@@ -7,6 +7,7 @@ import { AfterViewInit, Component, ElementRef, OnDestroy, ViewEncapsulation, inj
   encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class Microsoft365EnterpriseReferenceComponent implements AfterViewInit, OnDestroy {
+  readonly heroAction = output<'tour' | 'trial' | 'callback'>();
   private readonly host: ElementRef<HTMLElement> = inject(ElementRef);
   private readonly cleanups: Array<() => void> = [];
 
@@ -36,14 +37,21 @@ export class Microsoft365EnterpriseReferenceComponent implements AfterViewInit, 
         (entries) => {
           entries.forEach((entry) => {
             if (!entry.isIntersecting) return;
+            entry.target.classList.remove('reveal-pending');
             entry.target.classList.add('in');
             observer.unobserve(entry.target);
           });
         },
         { threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
       );
-      revealItems.forEach((item) => observer.observe(item));
-      this.cleanups.push(() => observer.disconnect());
+      revealItems.forEach((item) => {
+        item.classList.add('reveal-pending');
+        observer.observe(item);
+      });
+      this.cleanups.push(() => {
+        observer.disconnect();
+        revealItems.forEach((item) => item.classList.remove('reveal-pending'));
+      });
     }
 
     root.querySelectorAll<HTMLElement>('.tilt').forEach((card) => {

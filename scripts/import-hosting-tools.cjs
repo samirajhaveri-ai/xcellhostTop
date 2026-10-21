@@ -1,4 +1,3 @@
-const { removePoweredByLogos } = require('./powered-by-text.cjs');
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -69,8 +68,7 @@ for (const [slug, title, prefix, logo, vendor] of pages) {
   script = script.replace(/href="(?:https:\/\/www\.xcellhost\.top\/)?([a-z0-9-]+)\.html"/g, 'href="/$1" target="_top"');
   const styles = [...source.matchAll(/<style\b[^>]*>[\s\S]*?<\/style>/g)].map(m => m[0]).join('\n').replace(/(\d*\.?\d+)vh\b/g, (_, n) => 'calc(var(--page-vh,1vh) * ' + n + ')');
   const links = [...source.matchAll(/<link\b[^>]*>/g)].map(m => m[0]).filter(l => !l.includes('canonical')).join('\n');
-  const document = '<!doctype html><html lang="en-IN" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' + title + ' | XcellHost</title>' + links + styles + '<link rel="stylesheet" href="/assets/styles/consulting-faq.css"><link rel="stylesheet" href="/assets/styles/hero-ask-ai.css"><link rel="stylesheet" href="/assets/styles/section-navigation-flow.css"><link rel="stylesheet" href="/assets/styles/hosting-tools.css"></head><body data-hosting-tool="' + slug + '">' + main + '<script src="/assets/scripts/hosting-tools-viewport.js"></script>' + core.replaceAll('Podcast enquiry:', title + ' enquiry:') + script + '<script src="/assets/scripts/hero-ask-ai.js"></script></body></html>';
+  const document = '<!doctype html><html lang="en-IN" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' + title + ' | XcellHost</title>' + links + styles + '<link rel="stylesheet" href="/assets/styles/consulting-faq.css"><link rel="stylesheet" href="/assets/styles/faq-layout.css"><link rel="stylesheet" href="/assets/styles/hero-ask-ai.css"><link rel="stylesheet" href="/assets/styles/section-navigation-flow.css"><link rel="stylesheet" href="/assets/styles/hosting-tools.css"></head><body data-hosting-tool="' + slug + '">' + main + '<script src="/assets/scripts/hosting-tools-viewport.js"></script>' + core.replaceAll('Podcast enquiry:', title + ' enquiry:') + script + '<script src="/assets/scripts/hero-ask-ai.js"></script></body></html>';
   fs.writeFileSync(path.join(root, 'public/imported-' + slug + '.html'), document);
-  fs.writeFileSync(path.join(root, 'public/imported-' + slug + '.html'), removePoweredByLogos(fs.readFileSync(path.join(root, 'public/imported-' + slug + '.html'), 'utf8')));
 console.log(slug + ': preserved source tools, 12 FAQs and product-specific security content');
 }

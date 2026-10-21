@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/assets/styles/microsoft-365-plan-links.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Fraunces:wght@700;800&display=swap" rel="stylesheet" />
@@ -170,19 +171,7 @@
             </li>
           </ul>
           <div class="hctas hero-actions">
-            <a
-              class="btn btn-ghost mag"
-              href="https://wa.me/918657032540?text=Hi%2C%20I%20am%20interested%20in%20the%20Microsoft%20365%20Enterprise%20screenshot%20tour."
-              >Screenshot Tour</a
-            ><a
-              class="btn btn-ghost mag"
-              href="https://wa.me/918657032540?text=Hi%2C%20I%20am%20interested%20in%20the%20Microsoft%20365%20Enterprise%207-day%20free%20trial."
-              >7 Days Free Trial</a
-            ><a
-              class="btn btn-primary mag"
-              href="https://wa.me/918657032540?text=Hi%2C%20I%20am%20interested%20in%20the%20Microsoft%20365%20Enterprise%20consultation."
-              >Let's Talk</a
-            >
+            <button type="button" class="btn btn-ghost mag" (click)="heroAction.emit('tour')">Screenshot Tour</button><button type="button" class="btn btn-ghost mag" (click)="heroAction.emit('trial')">7 Days Free Trial</button><button type="button" class="btn btn-primary mag" (click)="heroAction.emit('callback')">Let's Talk</button>
           </div>
           <div class="badges" style="margin: 26px 0 0">
             <span class="badge or"
@@ -220,12 +209,7 @@
               >Data-in-India · DPDP · GST</span
             >
           </div>
-          <div class="hstats">
-            <div><b>₹3,000</b><span>E3 /user/mo*</span></div>
-            <div><b>₹4,920</b><span>E5 /user/mo*</span></div>
-            <div><b>₹230</b><span>F1 /user/mo*</span></div>
-            <div><b>No cap</b><span>enterprise scale</span></div>
-          </div>
+          <div class="plan-powered"><span>Powered by</span><span aria-hidden="true">|</span><span class="plan-microsoft"><img src="/assets/images/smb-powered-by/microsoft365-wordmark.webp" alt="Microsoft 365 logo" width="100" height="25"></span><strong class="plan-brand-name">Microsoft 365</strong></div>
         </div>
         <div class="hvis">
           <div class="hart">
@@ -1005,7 +989,7 @@
           <div class="pk-grid p4">
             <div class="pk rv">
               <div class="pk-h">
-                <h3>Microsoft 365 E3</h3>
+                <h3><a href="/microsoft-365-e3">Microsoft 365 E3</a></h3>
                 <span>1,000–10,000-user enterprises</span>
               </div>
               <div class="pk-price"><b>₹3,000</b><span>/user/mo*</span></div>
@@ -1072,7 +1056,7 @@
                   >Defender basic + Purview P1
                 </li>
               </ul>
-              <a class="btn btn-line" href="https://wa.me/918657032540"
+              <a class="btn btn-line" href="/microsoft-365-e3"
                 >Buy Now
                 <svg
                   viewBox="0 0 24 24"
@@ -1088,7 +1072,7 @@
             <div class="pk feat rv">
               <span class="pk-badge or">Popular</span>
               <div class="pk-h">
-                <h3>Microsoft 365 E5</h3>
+                <h3><a href="/microsoft-365-e5">Microsoft 365 E5</a></h3>
                 <span>BFSI, healthcare, legal, government</span>
               </div>
               <div class="pk-price"><b>₹4,920</b><span>/user/mo*</span></div>
@@ -1155,7 +1139,7 @@
                   >Power BI Pro + Teams Phone Standard
                 </li>
               </ul>
-              <a class="btn btn-primary" href="https://wa.me/918657032540"
+              <a class="btn btn-primary" href="/microsoft-365-e5"
                 >Buy Now
                 <svg
                   viewBox="0 0 24 24"
@@ -1171,7 +1155,7 @@
             </div>
             <div class="pk rv">
               <div class="pk-h">
-                <h3>Microsoft 365 F1</h3>
+                <h3><a href="/microsoft-365-f1">Microsoft 365 F1</a></h3>
                 <span>Frontline entry · deskless & shift</span>
               </div>
               <div class="pk-price"><b>₹230</b><span>/user/mo*</span></div>
@@ -1238,7 +1222,7 @@
                   >Combine with E-plans in same tenant
                 </li>
               </ul>
-              <a class="btn btn-line" href="https://wa.me/918657032540"
+              <a class="btn btn-line" href="/microsoft-365-f1"
                 >Buy Now
                 <svg
                   viewBox="0 0 24 24"
@@ -1253,7 +1237,7 @@
             </div>
             <div class="pk rv">
               <div class="pk-h">
-                <h3>Microsoft 365 F3</h3>
+                <h3><a href="/microsoft-365-f3">Microsoft 365 F3</a></h3>
                 <span>Frontline full · factory, retail, field</span>
               </div>
               <div class="pk-price"><b>₹630</b><span>/user/mo*</span></div>
