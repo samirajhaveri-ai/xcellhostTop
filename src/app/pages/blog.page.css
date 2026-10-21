@@ -83,8 +83,9 @@
 }
 
 .xh-blog-article .article-hero .wrap {
-  grid-template-columns: minmax(0, 1.12fr) minmax(300px, .88fr);
-  gap: 28px;
+  max-width: 1440px;
+  grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+  gap: clamp(36px, 4vw, 64px);
 }
 
 .xh-blog-article .article-hero h1 {
@@ -96,10 +97,15 @@
 }
 
 .xh-blog-article .article-hero .lede {
-  max-width: 66ch;
+  display: -webkit-box;
+  overflow: hidden;
+  max-width: 100%;
   margin: 0;
   font-size: 15.5px;
   line-height: 1.62;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
 }
 
 .xh-blog-article .bp-kick {
@@ -108,18 +114,19 @@
 }
 
 .xh-blog-article .article-author-row {
-  gap: 10px;
+  gap: 22px;
   margin-top: 17px;
 }
 
 .xh-blog-article .article-author-badge {
   overflow: hidden;
-  width: 40px;
-  height: 40px;
-  flex: 0 0 40px;
-  border: 2px solid rgba(255, 255, 255, .8);
+  width: 120px;
+  height: 120px;
+  flex: 0 0 120px;
+  border: 2px solid rgba(255, 255, 255, .9);
   background: #fff;
-  font-size: 16px;
+  font-size: 20px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .22);
 }
 
 .xh-blog-article .article-author-badge img {
@@ -136,18 +143,21 @@
 }
 
 .xh-blog-article .article-author-row b {
-  font-size: 13px;
+  font-size: 22px;
+  line-height: 1.25;
 }
 
 .xh-blog-article .article-author-row span {
-  font-size: 11.5px;
+  margin-top: 6px;
+  font-size: 15.5px;
+  line-height: 1.45;
 }
 
 .xh-blog-article .article-cover {
   width: 100%;
-  height: 270px;
+  height: clamp(320px, 24vw, 390px);
   min-height: 0;
-  border-radius: 20px;
+  border-radius: 34px;
   object-fit: cover;
   box-shadow: 0 20px 46px rgba(2, 12, 29, .28);
 }
@@ -557,6 +567,14 @@
 
   .xh-blog-article .article-cover {
     height: 250px;
+    border-radius: 24px;
+  }
+
+  .xh-blog-article .article-hero .lede {
+    display: block;
+    overflow: visible;
+    -webkit-line-clamp: initial;
+    line-clamp: initial;
   }
 
   .xh-blog-article .article-sidebar {
@@ -584,6 +602,24 @@
 
   .xh-blog-article .article-hero .lede {
     font-size: 14.5px;
+  }
+
+  .xh-blog-article .article-author-badge {
+    width: 88px;
+    height: 88px;
+    flex-basis: 88px;
+  }
+
+  .xh-blog-article .article-author-row {
+    gap: 16px;
+  }
+
+  .xh-blog-article .article-author-row b {
+    font-size: 18px;
+  }
+
+  .xh-blog-article .article-author-row span {
+    font-size: 13.5px;
   }
 
   .xh-blog-article .article-cover {

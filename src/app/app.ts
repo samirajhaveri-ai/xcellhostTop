@@ -1,13 +1,14 @@
 import { DOCUMENT } from '@angular/common';
 import { afterNextRender, ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { ActivatedRouteSnapshot, NavigationEnd, NavigationStart, Router, RouterOutlet } from '@angular/router';
 import { filter, map, startWith } from 'rxjs';
 
 import { OverlayService } from './core/overlay.service';
 import { DocRequestService } from './core/doc-request.service';
 import { CallbackTopicService } from './overlays/callback-topic.service';
 import { SiteCopyService } from './core/site-copy.service';
+import { SeoService } from './core/seo.service';
 import { installBookmarkScrolling } from './sections/bookmark-scroll';
 import { installFaqLayout } from './sections/faq-layout';
 import {
@@ -77,6 +78,7 @@ export class App {
   private readonly router = inject(Router);
   private readonly document = inject(DOCUMENT);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly seo = inject(SeoService);
   readonly hasStandaloneShell = toSignal(
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
@@ -88,6 +90,7 @@ export class App {
 
   constructor() {
     inject(SiteCopyService);
+    this.installRouteSeoFallback();
     afterNextRender(() => {
       this.destroyRef.onDestroy(installBookmarkScrolling(this.document));
       this.destroyRef.onDestroy(installFaqLayout(this.document));
@@ -95,6 +98,91 @@ export class App {
     const captureClick = (event: Event): void => this.onDocumentClick(event as MouseEvent);
     this.document.addEventListener('click', captureClick, true);
     this.destroyRef.onDestroy(() => this.document.removeEventListener('click', captureClick, true));
+  }
+
+  /**
+   * Many legacy routes predate SeoService. Prevent them from inheriting the
+   * description of the page visited immediately before them. Explicit page SEO
+   * always wins; this runs only when a navigation did not call SeoService.set().
+   */
+  private installRouteSeoFallback(): void {
+    let revisionAtNavigationStart = this.seo.revision;
+    const subscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        revisionAtNavigationStart = this.seo.revision;
+        return;
+      }
+      if (!(event instanceof NavigationEnd)) return;
+
+      const expectedRevision = revisionAtNavigationStart;
+      queueMicrotask(() => {
+        if (this.seo.revision !== expectedRevision) return;
+
+        const leaf = this.leafRoute(this.router.routerState.snapshot.root);
+        const routeDescription = this.routeDescription(leaf);
+        const pageDescription = routeDescription || this.descriptionFromPage();
+        const pageTitle = this.pageTitle(leaf);
+        const canonicalPath = event.urlAfterRedirects.split(/[?#]/, 1)[0] || '/';
+        this.seo.set(pageTitle, pageDescription || this.genericDescription(pageTitle), canonicalPath);
+      });
+    });
+    this.destroyRef.onDestroy(() => subscription.unsubscribe());
+  }
+
+  private leafRoute(route: ActivatedRouteSnapshot): ActivatedRouteSnapshot {
+    let leaf = route;
+    while (leaf.firstChild) leaf = leaf.firstChild;
+    return leaf;
+  }
+
+  private routeDescription(route: ActivatedRouteSnapshot): string {
+    const candidates = [
+      route.data['searchDescription'],
+      route.data['description'],
+      route.data['tagline'],
+      route.data['summary'],
+    ];
+    return candidates.find((value): value is string => typeof value === 'string' && value.trim().length > 24)?.trim() ?? '';
+  }
+
+  private descriptionFromPage(): string {
+    const selectors = [
+      'main h1 + p',
+      'main [class*="hero"] p',
+      'main [class*="intro"] p',
+      'main [class*="overview"] p',
+      'main p',
+    ];
+    for (const selector of selectors) {
+      const text = this.document.querySelector<HTMLElement>(selector)?.textContent
+        ?.replace(/\s+/g, ' ')
+        .trim();
+      if (text && text.length >= 40) return this.trimDescription(text);
+    }
+    return '';
+  }
+
+  private pageTitle(route: ActivatedRouteSnapshot): string {
+    const routeTitle = typeof route.title === 'string' ? route.title.trim() : '';
+    const heading = this.document.querySelector<HTMLElement>('main h1')?.textContent
+      ?.replace(/\s+/g, ' ')
+      .trim();
+    const currentTitle = this.document.title.trim();
+    const title = routeTitle || heading || currentTitle || 'XcellHost Cloud Services';
+    return /xcellhost/i.test(title) ? title : `${title} | XcellHost`;
+  }
+
+  private genericDescription(pageTitle: string): string {
+    const subject = pageTitle.replace(/\s*[|—-]\s*XcellHost.*$/i, '').trim();
+    return this.trimDescription(
+      `Explore ${subject} from XcellHost Cloud Services, with expert guidance, secure implementation and support for businesses in India.`,
+    );
+  }
+
+  private trimDescription(value: string): string {
+    if (value.length <= 160) return value;
+    const shortened = value.slice(0, 157).replace(/\s+\S*$/, '').replace(/[,:;\s]+$/, '');
+    return `${shortened}...`;
   }
 
   updateScrollProgress(): void {

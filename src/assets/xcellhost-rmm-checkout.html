@@ -491,12 +491,12 @@ const PRODUCT_NAME = "Remote Monitoring & Management (RMM)";
    added, and the base plan URLs are never modified. */
 const RMM_1_YEAR_PAYMENT_URL  = "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-SMB-RMM-YEA";    // XLCS-SMB-RMM-YEA  · ₹1,199/user/year
 const RMM_2_YEAR_PAYMENT_URL  = "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-SMB-RMM-2YEA";  // XLCS-SMB-RMM-2YEA · ₹2,398/user/2 years
-const RMM_3_YEAR_PAYMENT_URL  = "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-SMB-RMM-3YEA";  // XLCS-SMB-RMM-3YEA · ₹3,597/user/3 years
+const RMM_3_YEAR_PAYMENT_URL  = "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-SMB-RMM-3YEA  ";  // XLCS-SMB-RMM-3YEA · ₹3,597/user/3 years
 const RMM_PAYMENT_URLS = { "1y":RMM_1_YEAR_PAYMENT_URL, "2y":RMM_2_YEAR_PAYMENT_URL, "3y":RMM_3_YEAR_PAYMENT_URL };
 
 /* RMM coupon: preview the discount here and pass its code to Zoho Billing.
    Zoho validates eligibility and calculates the final checkout amount. */
-const COUPONS = { "XCELLESR10":{type:"pct",val:10,label:"10% off"} };
+const COUPONS = { "XCELLHOSTESR99":{type:"pct",val:99.90,label:"99.90% off"} };
 
 /* ── STATE (standalone RMM cart persisted to localStorage; passwords NEVER persisted) ── */
 const CART_KEY = "xcellhost_rmm_cart";
