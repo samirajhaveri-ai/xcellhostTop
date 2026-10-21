@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 
 import { SeoService } from '../core/seo.service';
+import { DPDPA_SMB_REVIEWS } from '../data/smb-page-testimonials.data';
 import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { DocKind, DocRequestService } from '../core/doc-request.service';
@@ -22,6 +23,7 @@ import { SmbSectionNavComponent } from '../sections/smb-section-nav.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DpdpaForSmbPage implements AfterViewInit, OnDestroy {
+  readonly testimonials = DPDPA_SMB_REVIEWS;
   private readonly seo = inject(SeoService);
   private readonly overlay = inject(OverlayService);
   private readonly topics = inject(CallbackTopicService);
