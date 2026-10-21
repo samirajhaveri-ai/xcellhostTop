@@ -8,6 +8,12 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { useScrollingSectionNavigation } from './section-navigation-flow';
 
 type InteractiveContentSource =
+  | 'office-365-e1-nonprofit'
+  | 'teams-essentials-frontline'
+  | 'office-365-e5'
+  | 'microsoft-365-f1'
+  | 'microsoft-365-e5'
+  | 'microsoft-365-e3'
   | 'office-365-e1' | 'office-365-e3' | 'office-365-f3' | 'microsoft-365-f3' | 'office-365-e3-nonprofit' | 'microsoft-365-business-premium-nonprofit' | 'microsoft-365-e3-nonprofit' | 'microsoft-365-f3-nonprofit' | 'microsoft-365-e5-nonprofit'
   | 'hybrid-cloud' | 'co-location-services' | 'global-cloud'
   | 'hybrid-cloud-service'
@@ -120,6 +126,12 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page' | 'sectigo-detail' | 'inference-page' | 'developer-page'>,
     string
   > = {
+    'office-365-e1-nonprofit': '/imported-office-365-e1-nonprofit.html',
+    'teams-essentials-frontline': '/imported-teams-essentials-frontline.html',
+    'office-365-e5': '/imported-office-365-e5.html',
+    'microsoft-365-f1': '/imported-microsoft-365-f1.html',
+    'microsoft-365-e5': '/imported-microsoft-365-e5.html',
+    'microsoft-365-e3': '/imported-microsoft-365-e3.html',
     'office-365-e1': '/imported-office-365-e1.html',
     'office-365-e3': '/imported-office-365-e3.html',
     'office-365-f3': '/imported-office-365-f3.html',
@@ -252,6 +264,12 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+    'office-365-e1-nonprofit': 'Office 365 E1 Nonprofit, animated verification, web apps, email, Teams and field data scenes, savings calculator, fit checker, pricing, quote form, FAQs and nonprofit plans',
+    'teams-essentials-frontline': 'Teams Essentials for Frontline, animated crew scenes, pricing, plan chooser, crew cost calculator, quote form, FAQs and related plans',
+    'office-365-e5': 'Office 365 E5, animated mail protection, compliance, reporting and voice scenes, pricing, upgrade calculator, plan chooser, quote form, FAQs and related plans',
+    'microsoft-365-f1': 'Microsoft 365 F1, animated Shifts, Walkie Talkie, Tasks, shared device and Office scenes, licence mix planner, plan chooser, pricing, FAQs and related plans',
+    'microsoft-365-e5': 'Microsoft 365 E5, animated phishing protection, identity, ransomware, compliance and reporting scenes, pricing, consolidation, regulator mapper, FAQs and related plans',
+    'microsoft-365-e3': 'Microsoft 365 E3, animated apps, Exchange, Teams, Intune and security scenes, licence mix planner, pricing and FAQs',
     'office-365-e1': 'Office 365 E1',
     'office-365-e3': 'Office 365 E3',
     'office-365-f3': 'Office 365 F3',
@@ -324,7 +342,7 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
 
     'cybird-sections': 'Cybird features, benefits, operation, hardware, threat simulator, comparisons, use cases, partners and pricing',
 
-    veritas: 'Veritas AI visibility and SEO platform, interactive tools and pricing',
+    veritas: 'AI visibility and SEO platform, interactive tools and pricing',
 
 
     'managed-pki': 'Managed PKI overview, comparisons, use-case builder and pricing',
@@ -514,27 +532,31 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
       });
     };
     const enquiry = async (event: Event) => {
-      if (this.source !== 'acronis-ot' && this.source !== 'red-hat' && this.source !== 'email-security-enterprise') return;
+      if (this.source !== 'acronis-ot' && this.source !== 'red-hat' && this.source !== 'email-security-enterprise' && this.source !== 'office-365-e5' && this.source !== 'teams-essentials-frontline' && this.source !== 'office-365-e1-nonprofit') return;
       const detail = (event as CustomEvent<{
         payload: Record<string, unknown>;
         complete: (result: { ok: boolean; skipped: boolean; ref: string; fallbackUrl: string }) => void;
       }>).detail;
       const redHat = this.source === 'red-hat';
       const emailSecurity = this.source === 'email-security-enterprise';
-      const topic = emailSecurity ? 'Email Security Enterprise quotation' : redHat ? 'Red Hat quotation' : 'Acronis OT quotation';
+      const office365E5 = this.source === 'office-365-e5';
+      const teamsFrontline = this.source === 'teams-essentials-frontline';
+      const office365E1Nonprofit = this.source === 'office-365-e1-nonprofit';
+      const hasSummary = emailSecurity || office365E5 || teamsFrontline || office365E1Nonprofit;
+      const topic = office365E1Nonprofit ? 'Office 365 E1 Nonprofit quotation' : teamsFrontline ? 'Teams Essentials for Frontline quotation' : office365E5 ? 'Office 365 E5 quotation' : emailSecurity ? 'Email Security Enterprise quotation' : redHat ? 'Red Hat quotation' : 'Acronis OT quotation';
       const subject = topic + ' request';
       const payload = {
         ...detail.payload,
-        message: emailSecurity ? detail.payload['summary'] : redHat ? detail.payload['services'] : detail.payload['sizing'],
+        message: hasSummary ? detail.payload['summary'] : redHat ? detail.payload['services'] : detail.payload['sizing'],
         topic,
-        page: emailSecurity ? '/email-security-enterprise' : redHat ? '/vendor-partners/red-hat' : '/acronis-ot',
+        page: office365E1Nonprofit ? '/office-365-e1-nonprofit' : teamsFrontline ? '/teams-essentials-frontline' : office365E5 ? '/office-365-e5' : emailSecurity ? '/email-security-enterprise' : redHat ? '/vendor-partners/red-hat' : '/acronis-ot',
       };
       const result = await this.leads.submit('callback', payload);
       detail.complete({
         ...result,
         fallbackUrl: this.leads.mailtoLink(
           subject,
-          (emailSecurity ? ['name', 'company', 'email', 'phone', 'summary'] : redHat ? ['name', 'company', 'email', 'phone', 'services', 'servers'] : ['name', 'company', 'email', 'phone', 'sizing'])
+          (hasSummary ? ['name', 'company', 'email', 'phone', 'summary'] : redHat ? ['name', 'company', 'email', 'phone', 'services', 'servers'] : ['name', 'company', 'email', 'phone', 'sizing'])
             .map(key => `${key}: ${String(detail.payload[key] ?? '')}`).join('\n'),
         ),
       });

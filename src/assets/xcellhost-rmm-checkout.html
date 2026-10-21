@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#041E42">
 <title>Complete Your Order — Remote Monitoring & Management (RMM) | XcellHost Cloud Services</title>
+<script>
+// Direct asset links should use the Angular page with the shared site chrome.
+if (window.top === window.self) {
+  window.location.replace('/rmm-checkout' + window.location.search + window.location.hash);
+}
+</script>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
 <!-- ============================================================================
      XcellHost — ACRONIS REMOTE MONITORING & MANAGEMENT (RMM) · STANDALONE CHECKOUT
@@ -204,6 +210,8 @@ button{font-family:var(--f)}
 /* toast */
 .toast-wrap{position:fixed;bottom:22px;right:22px;z-index:200;display:flex;flex-direction:column;gap:10px}
 .toast{background:var(--nv);color:#fff;padding:13px 16px;border-radius:12px;box-shadow:0 12px 30px rgba(4,12,28,.3);font-size:.84rem;max-width:340px;animation:fadeUp .3s ease}
+/* The Angular checkout page supplies the shared website header and footer. */
+.top,.nav,.ft{display:none!important}
 </style>
 </head>
 <body>
@@ -486,17 +494,21 @@ const PRODUCT_NAME = "Remote Monitoring & Management (RMM)";
 /* ── Zoho Billing Hosted Payment Page URLs (per term) ──────────────────────
    All three are the real, confirmed Hosted Payment Pages. The selected term
    uses its matching Zoho Hosted Payment Page URL. The supported `quantity`
-   parameter, applied `coupon_code`, and the customer's prefill details are appended (see
+   parameter, any applied `coupon_code`, and the customer's prefill details are appended (see
    buildPaymentUrl / proceedToPayment). No other/unsupported parameters are
    added, and the base plan URLs are never modified. */
 const RMM_1_YEAR_PAYMENT_URL  = "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-SMB-RMM-YEA";    // XLCS-SMB-RMM-YEA  · ₹1,199/user/year
 const RMM_2_YEAR_PAYMENT_URL  = "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-SMB-RMM-2YEA";  // XLCS-SMB-RMM-2YEA · ₹2,398/user/2 years
-const RMM_3_YEAR_PAYMENT_URL  = "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-SMB-RMM-3YEA  ";  // XLCS-SMB-RMM-3YEA · ₹3,597/user/3 years
+const RMM_3_YEAR_PAYMENT_URL  = "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-SMB-RMM-3YEA";  // XLCS-SMB-RMM-3YEA · ₹3,597/user/3 years
 const RMM_PAYMENT_URLS = { "1y":RMM_1_YEAR_PAYMENT_URL, "2y":RMM_2_YEAR_PAYMENT_URL, "3y":RMM_3_YEAR_PAYMENT_URL };
 
 /* RMM coupon: preview the discount here and pass its code to Zoho Billing.
    Zoho validates eligibility and calculates the final checkout amount. */
-const COUPONS = { "XCELLHOSTESR99":{type:"pct",val:99.90,label:"99.90% off"} };
+const COUPONS = {
+  "XCELLHOSTESR99": {type:"pct",val:99.90,label:"99.90% off"},
+  "XCELLESR10": {type:"pct",val:10,label:"10% off RMM"}
+};
+function validCoupon(code){ return Object.prototype.hasOwnProperty.call(COUPONS, code); }
 
 /* ── STATE (standalone RMM cart persisted to localStorage; passwords NEVER persisted) ── */
 const CART_KEY = "xcellhost_rmm_cart";
@@ -505,23 +517,24 @@ let state = { step:"account", custType:"new", entity:"individual", termId:"1y", 
 /* helpers */
 const $ = s => document.querySelector(s);
 const fmt = n => "₹" + Number(n).toLocaleString("en-IN", {maximumFractionDigits:2});
+const money = n => Math.round(n*100)/100;
 function plan(){ return RMM_PLANS[state.termId]; }
 function unitPrice(){ return plan().price; }
 function priceReady(){ return unitPrice()!=null; }
 function basePrice(){ const u=unitPrice(); return u==null?null:u*state.quantity; }
 function discountAmt(){
-  const b=basePrice(); if(b==null||!state.coupon||!COUPONS[state.coupon]) return 0;
-  const c=COUPONS[state.coupon]; return c.type==="pct" ? Math.round(b*c.val)/100 : Math.min(c.val,b);
+  const b=basePrice(); if(b==null||!validCoupon(state.coupon)) return 0;
+  const c=COUPONS[state.coupon]; return money(Math.min(c.type==="pct" ? b*c.val/100 : c.val,b));
 }
-function subtotal(){ const b=basePrice(); return b==null?null:b-discountAmt(); }
-function gstAmt(){ const s=subtotal(); return s==null?null:Math.round(s*GST_RATE*100)/100; }
-function grandTotal(){ const s=subtotal(); return s==null?null:Math.round((s+gstAmt())*100)/100; }
+function subtotal(){ const b=basePrice(); return b==null?null:money(b-discountAmt()); }
+function gstAmt(){ const s=subtotal(); return s==null?null:money(s*GST_RATE); }
+function grandTotal(){ const s=subtotal(); return s==null?null:money(s+gstAmt()); }
 
 /* ── PERSISTENCE (never writes passwords) ── */
 function saveCart(){
   try{
     const acc={...state.account}; delete acc.password;
-    localStorage.setItem(CART_KEY, JSON.stringify({ termId:state.termId, quantity:state.quantity, inCart:state.inCart, custType:state.custType, entity:state.entity, account:acc, profile:state.profile }));
+    localStorage.setItem(CART_KEY, JSON.stringify({ termId:state.termId, quantity:state.quantity, inCart:state.inCart, coupon:state.coupon, custType:state.custType, entity:state.entity, account:acc, profile:state.profile }));
   }catch(e){}
 }
 function loadCart(){
@@ -530,11 +543,26 @@ function loadCart(){
     if(d.termId && RMM_PLANS[d.termId]) state.termId=d.termId;
     if(d.quantity) state.quantity=Math.max(1, parseInt(d.quantity)||1);
     state.inCart=!!d.inCart;
+    state.coupon=validCoupon(d.coupon)?d.coupon:null;
     if(d.custType) state.custType=d.custType;
     if(d.entity) state.entity=d.entity;
     if(d.account) state.account=d.account;   // never contains password
     if(d.profile) state.profile=d.profile;
   }catch(e){}
+}
+
+/* A Buy Now link from the RMM product page supplies the selected term and
+   quantity in the URL. These values take precedence over an older saved cart. */
+function applyUrlSelection(){
+  const params=new URLSearchParams(window.location.search);
+  const requestedTerm=params.get("term");
+  const requestedQuantity=parseInt(params.get("quantity")||"",10);
+  if(requestedTerm && RMM_PLANS[requestedTerm]) state.termId=requestedTerm;
+  if(Number.isFinite(requestedQuantity)) state.quantity=Math.max(1,Math.min(9999,requestedQuantity));
+  if(requestedTerm || Number.isFinite(requestedQuantity)){
+    state.inCart=true;
+    saveCart();
+  }
 }
 
 /* ============================================================================
@@ -611,9 +639,9 @@ function changeQty(d){ setQty(state.quantity+d); }
 function applyCoupon(){
   const code=$("#couponInput").value.trim().toUpperCase();
   const msg=$("#couponMsg"); msg.className="coupon-msg show";
-  if(!priceReady()){ state.coupon=null; msg.classList.add("no"); msg.textContent="Select a term with confirmed pricing first."; saveCart(); renderAll(); return; }
-  if(!code){ state.coupon=null; msg.classList.add("no"); msg.textContent="Please enter a coupon code."; saveCart(); renderAll(); return; }
-  if(COUPONS[code]){ state.coupon=code; msg.classList.add("ok"); msg.textContent="✓ Coupon applied: "+COUPONS[code].label; }
+  if(!priceReady()){ state.coupon=null; msg.classList.add("no"); msg.textContent="Select a term with confirmed pricing first."; }
+  else if(!code){ state.coupon=null; msg.classList.add("no"); msg.textContent="Please enter a coupon code."; }
+  else if(validCoupon(code)){ state.coupon=code; msg.classList.add("ok"); msg.textContent="✓ Coupon applied: "+COUPONS[code].label; }
   else { state.coupon=null; msg.classList.add("no"); msg.textContent="Invalid coupon code."; }
   saveCart(); renderAll();
 }
@@ -684,7 +712,7 @@ function goStep(name){
    PAYMENT HANDOFF — real per-term Zoho Hosted Payment Page
    Top-level browser navigation (NOT an iframe). No fake form / no fake success.
    ============================================================================ */
-function rmmNavigate(url){ window.location.assign(url); }   // top-level, same-tab redirect
+function rmmNavigate(url){ window.top.location.assign(url); }   // top-level, same-tab redirect
 
 /* India state → 2-letter billing_state_code (Zoho). Extend as needed. */
 const IN_STATE_CODES = {
@@ -733,7 +761,7 @@ function buildPaymentUrl(termId, qty){
   // GST number only when the customer is GST registered (never an empty tax_reg_no).
   if(p.gstRegistered==="yes" && p.gstin) params.tax_reg_no = p.gstin;
   params.quantity = String(qty);
-  if(state.coupon && COUPONS[state.coupon]) params.coupon_code = state.coupon;
+  if(validCoupon(state.coupon)) params.coupon_code = state.coupon;
 
   const add=(usp)=>Object.keys(params).forEach(k=>{
     const v=params[k];
@@ -784,10 +812,9 @@ function toast(m){ const t=document.createElement("div"); t.className="toast"; t
 
 function init(){
   loadCart();
+  applyUrlSelection();
   $("#qty").value=state.quantity;
-  // Coupons must be entered by the customer on each page load.
-  state.coupon=null;
-  $("#couponInput").value="";
+  if(state.coupon) $("#couponInput").value=state.coupon;
 
   // account type toggle
   function setCust(ct){ state.custType=ct; $("#optNew").classList.toggle("sel",ct==="new"); $("#optExisting").classList.toggle("sel",ct==="existing"); $("#formNew").style.display=ct==="new"?"":"none"; $("#formExisting").classList.toggle("show",ct==="existing"); saveCart(); }

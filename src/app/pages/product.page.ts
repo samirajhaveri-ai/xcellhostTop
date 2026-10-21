@@ -5236,6 +5236,12 @@ class ProductPageComponent {
     this.overlay.open('trial');
   }
 
+  onMicrosoft365HeroAction(action: 'tour' | 'trial' | 'callback'): void {
+    if (action === 'tour') this.openProductScreenshotTour();
+    else if (action === 'trial') this.openTrial(new Event('click'));
+    else this.openCallback(new Event('click'));
+  }
+
   requestGpuCluster(configuration: string): void {
     this.topics.ask(`GPU Clusters - ${configuration}`);
     this.overlay.open('callback');

@@ -546,30 +546,16 @@
       <!-- TESTIMONIALS -->
       <div class="pp-sec" id="m365Testimonials">What customers say</div>
       <div class="pp-tcards">
-        <div class="tcard">
-          <div class="quote-badge">&rdquo;</div>
-          <div class="tav">RM</div>
-          <div class="tname">Rakesh Choudhary</div>
-          <div class="trole">IT Manager, Trading Company</div>
-          <div class="tstars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p>Moving our business email and Office applications to Microsoft 365 made things much easier to manage. Our team can work on documents from different locations, and everything stays connected through one platform.</p>
-        </div>
-        <div class="tcard">
-          <div class="quote-badge">&rdquo;</div>
-          <div class="tav">MJ</div>
-          <div class="tname">Meenal Joshi</div>
-          <div class="trole">HR &amp; Operations Manager, Manufacturing Firm</div>
-          <div class="tstars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p>Teams has made communication between our teams much smoother. We can quickly share files, schedule meetings, and collaborate without switching between different tools throughout the day.</p>
-        </div>
-        <div class="tcard">
-          <div class="quote-badge">&rdquo;</div>
-          <div class="tav">SM</div>
-          <div class="tname">Saurabh Mehta</div>
-          <div class="trole">Managing Director, Consulting Firm</div>
-          <div class="tstars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p>We wanted a reliable setup for email, documents, and collaboration as our team grew. Microsoft 365 gave us the flexibility we needed, while making user and account management much more straightforward.</p>
-        </div>
+        @for (review of testimonials; track review.name) {
+          <div class="tcard">
+            <div class="quote-badge" aria-hidden="true">&rdquo;</div>
+            <div class="tav">{{ review.initials }}</div>
+            <div class="tname">{{ review.name }}</div>
+            <div class="trole">{{ review.role }}</div>
+            <div class="tstars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>{{ review.quote }}</p>
+          </div>
+        }
       </div>
 
       <!-- FAQ -->

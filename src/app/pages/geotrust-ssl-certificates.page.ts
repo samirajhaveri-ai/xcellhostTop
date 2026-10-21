@@ -105,18 +105,14 @@ export class GeoTrustSslCertificatesPage {
       'tb-id': '/geotrust-true-businessid/checkout',
       'tb-md': '/geotrust-true-businessid-multi-domain/checkout',
       'tb-wild': '/geotrust-true-businessid-wildcard/checkout',
+      'tb-ev-flex': '/geotrust-true-businessid-ev-flex/checkout',
+      'tb-ev': '/geotrust-true-businessid-ev/checkout',
+      'tb-ev-md': '/geotrust-true-businessid-ev-multi-domain/checkout',
     };
     const checkoutPath = checkoutPaths[product.id];
     if (checkoutPath) {
       void this.router.navigate([checkoutPath], {
         queryParams: { quantity: this.quantity(product) },
-      });
-      return;
-    }
-    if (product.id === 'tb-ev') {
-      const quantity = this.quantity(product);
-      void this.router.navigate(['/geotrust-true-businessid-ev'], {
-        queryParams: quantity > 1 ? { quantity } : undefined,
       });
       return;
     }

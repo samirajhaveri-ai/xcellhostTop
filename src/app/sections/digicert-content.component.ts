@@ -1,9 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 /** DigiCert certificates with quantity-based annual totals and detail-page links. */
 @Component({
   selector: 'xh-digicert-content',
   standalone: true,
+  imports: [RouterLink],
   templateUrl: './digicert-content.component.html',
   styleUrl: './digicert-content.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

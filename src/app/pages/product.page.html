@@ -290,11 +290,11 @@
     } @else {
       @if (isMicrosoftEnterprisePage()) {
         @switch (slug()) {
-          @case ('microsoft-365-enterprise-office365') { <xh-microsoft-365-enterprise-office365 /> }
-          @case ('microsoft-365-enterprise-frontline') { <xh-microsoft-365-enterprise-frontline /> }
-          @case ('microsoft-365-enterprise-nonprofit') { <xh-microsoft-365-enterprise-nonprofit /> }
-          @case ('microsoft-365-enterprise-additional') { <xh-microsoft-365-enterprise-additional /> }
-          @default { <xh-microsoft-365-enterprise-reference /> }
+          @case ('microsoft-365-enterprise-office365') { <xh-microsoft-365-enterprise-office365 (heroAction)="onMicrosoft365HeroAction($event)" /> }
+          @case ('microsoft-365-enterprise-frontline') { <xh-microsoft-365-enterprise-frontline (heroAction)="onMicrosoft365HeroAction($event)" /> }
+          @case ('microsoft-365-enterprise-nonprofit') { <xh-microsoft-365-enterprise-nonprofit (heroAction)="onMicrosoft365HeroAction($event)" /> }
+          @case ('microsoft-365-enterprise-additional') { <xh-microsoft-365-enterprise-additional (heroAction)="onMicrosoft365HeroAction($event)" /> }
+          @default { <xh-microsoft-365-enterprise-reference (heroAction)="onMicrosoft365HeroAction($event)" /> }
         }
         <div class="pp-body microsoft-365-enterprise-extras">
           <div class="wrap">

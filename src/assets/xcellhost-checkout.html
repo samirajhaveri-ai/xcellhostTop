@@ -287,7 +287,7 @@ button{font-family:var(--f)}
 
     <!-- Existing customer prototype -->
     <div class="login-proto" id="loginForm">
-      <div class="proto-note">&#9888; Prototype login — real authentication is not connected yet.</div>
+      
       <div class="field"><label>Email Address</label><input type="email" placeholder="you@company.com"></div>
       <div class="field"><label>Password</label><input type="password" placeholder="Your password"></div>
     </div>
@@ -380,7 +380,7 @@ button{font-family:var(--f)}
       <div class="coupon-t">Have a coupon?</div>
       <div class="coupon-row"><input type="text" id="couponInput" placeholder="Enter coupon"><button id="couponBtn">Apply</button></div>
       <div class="coupon-msg" id="couponMsg"></div>
-      <div class="coupon-hint">Demo (frontend-only): try <b>XCELL10</b> or <b>CLOUD500</b></div>
+      
     </div>
     <div class="pricing">
       <div class="billing-toggle" id="billingToggle">
@@ -525,7 +525,18 @@ const BILLING_META = {
 };
 
 // Checkout discounts require a matching payment-provider discount.
-const COUPONS = {};
+const COUPONS = {
+  XCELLEDR10: {type:"percent", value:10, label:"10% off EDR", productId:"acronis-edr"}
+};
+
+function calculateCouponDiscount(items, code){
+  if(!Object.prototype.hasOwnProperty.call(COUPONS, code)) return 0;
+  const coupon = COUPONS[code];
+  const eligibleBase = items.filter(item=>!coupon.productId || item.productId===coupon.productId)
+    .reduce((sum,item)=>sum + item.unitPrice * item.quantity, 0);
+  const discount = coupon.type==="percent" ? eligibleBase * coupon.value / 100 : coupon.value;
+  return Math.round(Math.min(discount, eligibleBase) * 100) / 100;
+}
 
 const GST_RATE = 0.18;
 const CURRENCY = "₹";
@@ -544,12 +555,7 @@ function calculatePrice(product, billingCycle, quantity, coupon){
   const meta = BILLING_META[billingCycle] || BILLING_META[product.billing] || {mult:1,save:0};
   let base = product.basePrice * meta.mult * (quantity||1);
   if(meta.save) base = base * (1 - meta.save);        // billing-cycle saving
-  let discount = 0;
-  if(coupon && COUPONS[coupon]){
-    const c = COUPONS[coupon];
-    discount = c.type==="percent" ? base*(c.value/100) : c.value;
-    discount = Math.min(discount, base);
-  }
+  const discount = calculateCouponDiscount([{productId:product.id, unitPrice:base, quantity:1}], coupon);
   const subtotal = base - discount;
   const gst = subtotal * GST_RATE;
   return {configured:true, base, discount, subtotal, gst, total:subtotal+gst};
@@ -655,12 +661,7 @@ function renderPrice(){
     return;
   }
   const base = calculateCartSubtotal();               // sum(unit*qty), pre-discount
-  let discount = 0;
-  if(state.coupon && COUPONS[state.coupon]){
-    const cpn=COUPONS[state.coupon];
-    discount = cpn.type==="percent" ? base*(cpn.value/100) : cpn.value;
-    discount = Math.min(discount, base);
-  }
+  const discount = calculateCouponDiscount(cart.items, state.coupon);
   const subtotal = base - discount;
   const gst = subtotal * GST_RATE;
   const total = subtotal + gst;
@@ -707,11 +708,13 @@ function updateAddToCartLabel(){
 document.getElementById("couponBtn").addEventListener("click",()=>{
   const code=document.getElementById("couponInput").value.trim().toUpperCase();
   const msg=document.getElementById("couponMsg"); msg.className="coupon-msg show";
-  if(!cart.items.length){ msg.classList.add("no"); msg.textContent="Add a product to the cart first."; return; }
-  if(!code){ msg.classList.add("no"); msg.textContent="Please enter a coupon code."; return; }
-  if(COUPONS[code]){ state.coupon=code; msg.classList.add("ok"); msg.textContent="✓ Coupon applied: "+COUPONS[code].label; }
-  else { state.coupon=null; msg.classList.add("no"); msg.textContent="Invalid coupon code."; }
-  renderPrice();
+  state.coupon=null;
+  if(!cart.items.length){ msg.classList.add("no"); msg.textContent="Add a product to the cart first."; }
+  else if(!code){ msg.classList.add("no"); msg.textContent="Please enter a coupon code."; }
+  else if(!Object.prototype.hasOwnProperty.call(COUPONS, code)){ msg.classList.add("no"); msg.textContent="Invalid coupon code."; }
+  else if(calculateCouponDiscount(cart.items, code)<=0){ msg.classList.add("no"); msg.textContent="This coupon applies to EDR plans only."; }
+  else { state.coupon=code; msg.classList.add("ok"); msg.textContent="✓ Coupon applied: "+COUPONS[code].label; }
+  updateCartUI();
 });
 
 // ── ACCOUNT TYPE TOGGLE ──
@@ -1043,11 +1046,11 @@ function calculateCartSubtotal(){
   return cart.items.reduce((sum,it)=> sum + (Number(it.unitPrice)||0) * (Number(it.quantity)||0), 0);
 }
 function calculateCartGST(subtotal){
-  const base = (typeof subtotal === "number") ? subtotal : calculateCartSubtotal();
+  const base = (typeof subtotal === "number") ? subtotal : calculateCartSubtotal() - calculateCouponDiscount(cart.items, state.coupon);
   return base * GST_RATE;
 }
 function calculateCartTotal(){
-  const subtotal = calculateCartSubtotal();
+  const subtotal = calculateCartSubtotal() - calculateCouponDiscount(cart.items, state.coupon);
   return subtotal + calculateCartGST(subtotal);
 }
 function calculateCartCount(){
@@ -1149,6 +1152,7 @@ document.getElementById('payBtn').addEventListener('click',function(){
   const countryCode = COUNTRY_CODES[countryName.toLowerCase()] || '';
 
   const params = new URLSearchParams();
+  if(calculateCouponDiscount(cart.items, state.coupon)>0) params.set('coupon_code', state.coupon);
   if(firstName)     params.set('first_name', firstName);
   if(lastName)      params.set('last_name', lastName);
   if(email)         params.set('email', email);
@@ -1204,8 +1208,7 @@ function renderDrawer(){
   }).join("");
   // totals via existing functions (no second calculation)
   const base=calculateCartSubtotal();
-  let discount=0;
-  if(state.coupon && COUPONS[state.coupon]){ const cpn=COUPONS[state.coupon]; discount=cpn.type==="percent"?base*(cpn.value/100):cpn.value; discount=Math.min(discount,base); }
+  const discount=calculateCouponDiscount(cart.items, state.coupon);
   const subtotal=base-discount;
   const gst=calculateCartGST(subtotal);
   const total=subtotal+gst;
