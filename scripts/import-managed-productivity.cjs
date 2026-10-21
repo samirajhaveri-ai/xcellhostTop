@@ -1,4 +1,3 @@
-const { removePoweredByLogos } = require('./powered-by-text.cjs');
 const fs = require('node:fs');
 const path = require('node:path');
 const directory = process.argv[2];
@@ -92,6 +91,5 @@ for (const [slug, filename, title, prefix, vendor, logo] of pages) {
   const links = [...source.matchAll(/<link\b[^>]*>/g)].map(m => m[0]).filter(l => !l.includes('canonical')).join('\n');
   const css = ['consulting-faq', 'hero-ask-ai', 'section-navigation-flow', 'hosting-tools', 'managed-productivity'].map(name => '<link rel="stylesheet" href="/assets/styles/' + name + '.css">').join('');
   fs.writeFileSync(path.join(root, 'public/imported-' + slug + '.html'), '<!doctype html><html lang="en-IN" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' + title + ' | XcellHost</title>' + links + styles + css + '</head><body data-managed-productivity="' + slug + '">' + main + '<script src="/assets/scripts/hosting-tools-viewport.js"></script>' + core.replaceAll('Podcast enquiry:', title + ' enquiry:') + script + '<script src="/assets/scripts/hero-ask-ai.js"></script></body></html>');
-  fs.writeFileSync(path.join(root, 'public/imported-' + slug + '.html'), removePoweredByLogos(fs.readFileSync(path.join(root, 'public/imported-' + slug + '.html'), 'utf8')));
 console.log(slug + ': preserved source tools and FAQ answers');
 }

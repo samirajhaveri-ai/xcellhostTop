@@ -1,4 +1,3 @@
-const { removePoweredByLogos } = require('./powered-by-text.cjs');
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -52,5 +51,4 @@ script = script.replace('y=scrollY+vh*.5,cs=', 'y=scrollY+vh*.5-(frameElement?fr
 const styles = [...source.matchAll(/<style\b[^>]*>[\s\S]*?<\/style>/g)].map(m => m[0]).join('\n').replace(/(\d*\.?\d+)vh\b/g, (_, n) => 'calc(var(--page-vh,1vh) * ' + n + ')');
 const links = [...source.matchAll(/<link\b[^>]*>/g)].map(m => m[0]).filter(l => !l.includes('canonical')).join('\n');
 fs.writeFileSync(path.join(root, 'public/imported-managed-microsoft-sentinel.html'), '<!doctype html><html lang="en-IN" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Managed Microsoft Sentinel | XcellHost</title>' + links + styles + '<link rel="stylesheet" href="/assets/styles/consulting-faq.css"><link rel="stylesheet" href="/assets/styles/hero-ask-ai.css"><link rel="stylesheet" href="/assets/styles/section-navigation-flow.css"><link rel="stylesheet" href="/assets/styles/managed-sentinel.css"></head><body>' + main + '<script src="/assets/scripts/managed-sentinel-viewport.js"></script>' + core.replaceAll('Podcast enquiry:', 'Managed Microsoft Sentinel enquiry:') + script + '<script src="/assets/scripts/hero-ask-ai.js"></script></body></html>');
-fs.writeFileSync(path.join(root, 'public/imported-managed-microsoft-sentinel.html'), removePoweredByLogos(fs.readFileSync(path.join(root, 'public/imported-managed-microsoft-sentinel.html'), 'utf8')));
 console.log('Imported Managed Microsoft Sentinel with original interactive tools.');

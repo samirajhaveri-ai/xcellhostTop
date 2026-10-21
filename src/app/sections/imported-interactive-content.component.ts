@@ -22,6 +22,7 @@ type InteractiveContentSource =
   | 'sap-hosting'
   | 'cloud-desktop-enterprise-vdi'
   | 'accops-digital-workspace'
+  | 'accops-hyworks' | 'accops-hysecure' | 'accops-hyid' | 'accops-hylabs' | 'accops-hydesk' | 'more-from-accops'
   | 'ai-identity-security' | 'ai-security-platform' | 'ai-security-audit' | 'ai-security-assessment' | 'ai-red-teaming-services'
   | 'managed-gws' | 'managed-mdm' | 'managed-intune-services' | 'managed-phishing-simulation'
   | 'power-pages' | 'power-apps' | 'power-automate' | 'power-bi'
@@ -127,6 +128,12 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'sap-hosting': '/imported-sap-hosting.html',
     'cloud-desktop-enterprise-vdi': '/imported-cloud-desktop-enterprise-vdi.html',
     'accops-digital-workspace': '/imported-accops-digital-workspace.html',
+    'accops-hyworks': '/imported-accops-hyworks.html',
+    'accops-hysecure': '/imported-accops-hysecure.html',
+    'accops-hyid': '/imported-accops-hyid.html',
+    'accops-hylabs': '/imported-accops-hylabs.html',
+    'accops-hydesk': '/imported-accops-hydesk.html',
+    'more-from-accops': '/imported-more-from-accops.html',
     'cpanel-control-panel': '/imported-cpanel-control-panel.html',
     'power-pages': '/imported-power-pages.html',
     'managed-gws': '/imported-managed-gws.html',
@@ -237,6 +244,12 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'sap-hosting': 'SAP Hosting, animated demo, hosting process, plans, landscape sizer and FAQs',
     'cloud-desktop-enterprise-vdi': 'Cloud Desktop Enterprise VDI, animated demo, use cases, rollout timeline, pricing and FAQs',
     'accops-digital-workspace': 'Accops Digital Workspace, animated demo, use cases, pricing, support and FAQs',
+    'accops-hyworks': 'Accops HyWorks, features, tools, pricing and FAQs',
+    'accops-hysecure': 'Accops HySecure, features, tools, pricing and FAQs',
+    'accops-hyid': 'Accops HyID, features, tools, pricing and FAQs',
+    'accops-hylabs': 'Accops HyLabs, features, tools, pricing and FAQs',
+    'accops-hydesk': 'Accops HyDesk, features, tools, pricing and FAQs',
+    'more-from-accops': 'More From Accops, features, tools, pricing and FAQs',
     'cpanel-control-panel': 'cPanel Control Panel licensing, tools, pricing and FAQs',
     'power-pages': 'Microsoft Power Pages portals, plans, tools and FAQs',
     'managed-gws': 'Managed Google Workspace services, tools, pricing and FAQs',
