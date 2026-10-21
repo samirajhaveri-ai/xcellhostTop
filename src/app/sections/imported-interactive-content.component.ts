@@ -8,6 +8,8 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { useScrollingSectionNavigation } from './section-navigation-flow';
 
 type InteractiveContentSource =
+  | 'office-365-e1' | 'office-365-e3' | 'office-365-f3' | 'microsoft-365-f3' | 'office-365-e3-nonprofit' | 'microsoft-365-business-premium-nonprofit' | 'microsoft-365-e3-nonprofit' | 'microsoft-365-f3-nonprofit' | 'microsoft-365-e5-nonprofit'
+  | 'hybrid-cloud' | 'co-location-services' | 'global-cloud'
   | 'email-security-enterprise'
   | 'red-hat'
   | 'sitelock'
@@ -114,6 +116,15 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page' | 'sectigo-detail' | 'inference-page' | 'developer-page'>,
     string
   > = {
+    'office-365-e1': '/imported-office-365-e1.html',
+    'office-365-e3': '/imported-office-365-e3.html',
+    'office-365-f3': '/imported-office-365-f3.html',
+    'microsoft-365-f3': '/imported-microsoft-365-f3.html',
+    'office-365-e3-nonprofit': '/imported-office-365-e3-nonprofit.html',
+    'microsoft-365-business-premium-nonprofit': '/imported-microsoft-365-business-premium-nonprofit.html',
+    'microsoft-365-e3-nonprofit': '/imported-microsoft-365-e3-nonprofit.html',
+    'microsoft-365-f3-nonprofit': '/imported-microsoft-365-f3-nonprofit.html',
+    'microsoft-365-e5-nonprofit': '/imported-microsoft-365-e5-nonprofit.html',
     'email-security-enterprise': '/imported-email-security-enterprise.html',
     'red-hat': '/imported-red-hat.html',
     'sitelock': '/imported-sitelock.html',
@@ -128,6 +139,9 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'sap-hosting': '/imported-sap-hosting.html',
     'cloud-desktop-enterprise-vdi': '/imported-cloud-desktop-enterprise-vdi.html',
     'accops-digital-workspace': '/imported-accops-digital-workspace.html',
+    'co-location-services': '/imported-co-location-services.html',
+    'hybrid-cloud': '/imported-hybrid-cloud.html',
+    'global-cloud': '/imported-global-cloud.html',
     'accops-hyworks': '/imported-accops-hyworks.html',
     'accops-hysecure': '/imported-accops-hysecure.html',
     'accops-hyid': '/imported-accops-hyid.html',
@@ -230,6 +244,15 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+    'office-365-e1': 'Office 365 E1',
+    'office-365-e3': 'Office 365 E3',
+    'office-365-f3': 'Office 365 F3',
+    'microsoft-365-f3': 'Microsoft 365 F3',
+    'office-365-e3-nonprofit': 'Office 365 E3 Nonprofit',
+    'microsoft-365-business-premium-nonprofit': 'Microsoft 365 Business Premium Nonprofit',
+    'microsoft-365-e3-nonprofit': 'Microsoft 365 E3 Nonprofit',
+    'microsoft-365-f3-nonprofit': 'Microsoft 365 F3 Nonprofit',
+    'microsoft-365-e5-nonprofit': 'Microsoft 365 E5 Nonprofit',
     'email-security-enterprise': 'Email Security Enterprise, animated mail estate, high availability, DLP, DMARC and archive scenes, estate sizing and change-managed rollout',
     'red-hat': 'Red Hat services, animated RHEL, Ansible, OpenShift, virtualisation and AI scenes, service explorer and Stack Builder',
     'sitelock': 'SiteLock Website Security, animated scan, WAF, CDN, patching and trust seal scenes, plans and Why XcellHost',
@@ -244,6 +267,9 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'sap-hosting': 'SAP Hosting, animated demo, hosting process, plans, landscape sizer and FAQs',
     'cloud-desktop-enterprise-vdi': 'Cloud Desktop Enterprise VDI, animated demo, use cases, rollout timeline, pricing and FAQs',
     'accops-digital-workspace': 'Accops Digital Workspace, animated demo, use cases, pricing, support and FAQs',
+    'co-location-services': 'Co-Location Services, rack space, pricing, tools and FAQs',
+    'hybrid-cloud': 'Private Cloud, dedicated clusters, pricing, tools and FAQs',
+    'global-cloud': 'Global Cloud, locations, pricing, tools and FAQs',
     'accops-hyworks': 'Accops HyWorks, features, tools, pricing and FAQs',
     'accops-hysecure': 'Accops HySecure, features, tools, pricing and FAQs',
     'accops-hyid': 'Accops HyID, features, tools, pricing and FAQs',

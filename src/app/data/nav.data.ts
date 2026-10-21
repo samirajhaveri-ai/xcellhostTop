@@ -650,7 +650,8 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Global Cloud",
                 "pill": null,
-                "desc": null
+                "desc": null,
+                "href": "/global-cloud"
               },
               {
                 "title": "Co-Location Services",
@@ -661,7 +662,8 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Hybrid Cloud",
                 "pill": null,
-                "desc": null
+                "desc": null,
+                "href": "/hybrid-cloud"
               },
               {
                 "title": "Edge Cloud",

@@ -1801,7 +1801,7 @@ main{display:flow-root}
 #vrHero .lh-ask a{flex:0 0 auto;white-space:nowrap;font-size:10px;padding:0 6px;gap:4px}
 #vrHero .veritas-brand-below-ai{display:flex;align-items:center;flex-wrap:nowrap;gap:10px;margin-top:16px;color:#c7d5ec;font:400 13px/1.4 var(--f-body)}
 #vrHero .veritas-brand-below-ai img{display:block;flex:0 0 auto;width:144px;height:36px;object-fit:cover;object-position:center;background:#fff;border-radius:4px}
-</style><link rel="stylesheet" href="/assets/styles/consulting-faq.css"><link rel="stylesheet" href="/assets/styles/veritas-integrations-faq.css"></head>
+</style><link rel="stylesheet" href="/assets/styles/consulting-faq.css"><link rel="stylesheet" href="/assets/styles/veritas-integrations-faq.css"><link rel="stylesheet" href="/assets/styles/faq-layout.css"></head>
 <body data-preserve-copy>
 <main id="main">
 <!-- ================= HERO ================= -->

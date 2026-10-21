@@ -1710,7 +1710,7 @@ body{margin:0}
   .jr-v{position:relative;top:0;will-change:transform}
 }
 .jr-rail,.jr-in{height:min(520px,calc(var(--cybird-vh,8px)*100 - 130px))}
-</style></head>
+</style><link rel="stylesheet" href="/assets/styles/faq-layout.css"></head>
 <body data-preserve-copy>
 <!-- Cybird page content and animation copied from user-supplied cybird_1.html. Site shell, enquiries and cart integrate with the Angular application. -->
 <main id="main">
