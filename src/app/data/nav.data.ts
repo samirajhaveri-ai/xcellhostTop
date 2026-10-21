@@ -4737,6 +4737,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/plesk-demo-center"
               },
               {
+                "title": "Tally Demo Center",
+                "pill": null,
+                "desc": "Explore Tally on Cloud demos and product walkthroughs",
+                "href": "/tally-demo-center"
+              },
+              {
                 "title": "cPanel Demo Center",
                 "pill": null,
                 "desc": "Official cPanel, WHM and WP Toolkit video guides",
