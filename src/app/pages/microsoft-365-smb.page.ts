@@ -1,4 +1,5 @@
 import { QuantityInputDirective } from '../core/quantity-input.directive';
+import { MICROSOFT_365_SMB_REVIEWS } from '../data/smb-page-testimonials.data';
 import { DomSanitizer } from '@angular/platform-browser';
 import { InsightsSectionComponent } from '../sections/insights-section.component';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
@@ -23,6 +24,7 @@ type BillingTerm = 'upfront' | 'monthly';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Microsoft365SmbPage {
+  readonly testimonials = MICROSOFT_365_SMB_REVIEWS;
   private readonly docs = inject(DocRequestService);
   private readonly overlay = inject(OverlayService);
   private readonly seo = inject(SeoService);
