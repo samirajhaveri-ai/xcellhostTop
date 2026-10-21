@@ -2993,6 +2993,10 @@ class ProductPageComponent {
     initialValue: '',
   });
 
+  readonly isEmailSecurityEnterprise = computed(() =>
+    this.slug() === 'vortex-seg' && this.route.snapshot.data['productDisplayName'] === 'Email Security Enterprise',
+  );
+
   readonly isVortexSegSource = computed(() =>
     this.slug() === 'vortex-seg' && this.route.snapshot.paramMap.get('slug') === 'vortex-seg',
   );
