@@ -10,6 +10,10 @@ import { useScrollingSectionNavigation } from './section-navigation-flow';
 type InteractiveContentSource =
   | 'office-365-e1' | 'office-365-e3' | 'office-365-f3' | 'microsoft-365-f3' | 'office-365-e3-nonprofit' | 'microsoft-365-business-premium-nonprofit' | 'microsoft-365-e3-nonprofit' | 'microsoft-365-f3-nonprofit' | 'microsoft-365-e5-nonprofit'
   | 'hybrid-cloud' | 'co-location-services' | 'global-cloud'
+  | 'hybrid-cloud-service'
+  | 'edge-cloud'
+  | 'iot-cloud'
+  | 'cdn-cloud'
   | 'email-security-enterprise'
   | 'red-hat'
   | 'sitelock'
@@ -125,6 +129,10 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'microsoft-365-e3-nonprofit': '/imported-microsoft-365-e3-nonprofit.html',
     'microsoft-365-f3-nonprofit': '/imported-microsoft-365-f3-nonprofit.html',
     'microsoft-365-e5-nonprofit': '/imported-microsoft-365-e5-nonprofit.html',
+    'hybrid-cloud-service': '/imported-hybrid-cloud-service.html',
+    'edge-cloud': '/imported-edge-cloud.html',
+    'iot-cloud': '/imported-iot-cloud.html',
+    'cdn-cloud': '/imported-cdn-cloud.html',
     'email-security-enterprise': '/imported-email-security-enterprise.html',
     'red-hat': '/imported-red-hat.html',
     'sitelock': '/imported-sitelock.html',
@@ -253,6 +261,10 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'microsoft-365-e3-nonprofit': 'Microsoft 365 E3 Nonprofit',
     'microsoft-365-f3-nonprofit': 'Microsoft 365 F3 Nonprofit',
     'microsoft-365-e5-nonprofit': 'Microsoft 365 E5 Nonprofit',
+    'hybrid-cloud-service': 'Hybrid Cloud, animated connectivity, cloud bursting, placement, recovery and operations scenes, pricing, placement advisor, link sizer and Why XcellHost',
+    'edge-cloud': 'Edge Cloud, animated fleet, offline operation, edge AI, deployment and security scenes, node pricing, latency map, backhaul savings and onboarding',
+    'iot-cloud': 'IoT Cloud, animated telemetry, device identity, edge buffering, alert and OTA scenes, fleet simulator, device pricing, protocol picker and Why XcellHost',
+    'cdn-cloud': 'CDN Cloud, animated cache hits, origin shield, purge, security and media scenes, plans, cache simulator, traffic estimator and migration',
     'email-security-enterprise': 'Email Security Enterprise, animated mail estate, high availability, DLP, DMARC and archive scenes, estate sizing and change-managed rollout',
     'red-hat': 'Red Hat services, animated RHEL, Ansible, OpenShift, virtualisation and AI scenes, service explorer and Stack Builder',
     'sitelock': 'SiteLock Website Security, animated scan, WAF, CDN, patching and trust seal scenes, plans and Why XcellHost',

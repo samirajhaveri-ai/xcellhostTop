@@ -20,6 +20,21 @@ export const routes: Routes = [
   { path: 'global-cloud', title: 'Global Cloud | XcellHost', data: { cloudSource: 'global-cloud' }, loadComponent: () => import('./pages/cloud-infrastructure.page').then(m => m.CloudInfrastructurePage) },
   { path: 'co-location-services', title: 'Co-Location Services | XcellHost', data: { cloudSource: 'co-location-services' }, loadComponent: () => import('./pages/cloud-infrastructure.page').then(m => m.CloudInfrastructurePage) },
 
+  ...[
+    { path: 'microsoft-entra-workload-id', name: 'Microsoft Entra Workload ID', description: 'Secure workload identities, applications and service principals with Microsoft Entra.' },
+    { path: 'microsoft-entra-internet-access', name: 'Microsoft Entra Internet Access', description: 'Protect access to internet applications with identity-aware secure web access.' },
+    { path: 'microsoft-entra-private-access', name: 'Microsoft Entra Private Access', description: 'Connect users securely to private applications with Zero Trust access.' },
+    { path: 'microsoft-entra-id-governance', name: 'Microsoft Entra ID Governance', description: 'Manage identity lifecycles, access reviews and permissions across your organization.' },
+    { path: 'microsoft-entra-id-p1', name: 'Microsoft Entra ID P1', description: 'Enable single sign-on, Conditional Access and self-service password reset.' },
+    { path: 'microsoft-entra-id-p2', name: 'Microsoft Entra ID P2', description: 'Add risk-based Identity Protection and privileged identity management to Entra ID.' },
+    { path: 'microsoft-entra-suite', name: 'Microsoft Entra Suite', description: 'Unify identity protection, governance, internet access and private application access.' },
+  ].map(({ path, name, description }) => ({
+    path,
+    title: `${name} | XcellHost`,
+    data: { productSlug: path, searchTitle: name, searchDescription: description },
+    loadComponent: () => import('./pages/product.page').then(m => m.ProductPage),
+  })),
+
   { path: 'accops-hyworks', title: 'Accops HyWorks | XcellHost', data: { accopsSource: 'accops-hyworks' }, loadComponent: () => import('./pages/accops-product.page').then(m => m.AccopsProductPage) },
   { path: 'accops-hysecure', title: 'Accops HySecure | XcellHost', data: { accopsSource: 'accops-hysecure' }, loadComponent: () => import('./pages/accops-product.page').then(m => m.AccopsProductPage) },
   { path: 'accops-hyid', title: 'Accops HyID | XcellHost', data: { accopsSource: 'accops-hyid' }, loadComponent: () => import('./pages/accops-product.page').then(m => m.AccopsProductPage) },
@@ -134,12 +149,27 @@ export const routes: Routes = [
 
 
   {
+    path: 'geotrust-true-businessid/checkout',
+    title: 'GeoTrust True BusinessID Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-truebusiness-id-checkout.page').then(m => m.GeoTrustTrueBusinessIdCheckoutPage),
+  },
+  {
     path: 'geotrust-true-businessid', data: { businessIdVariant: 'single' },
     loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
   },
   {
+    path: 'geotrust-true-businessid-multi-domain/checkout',
+    title: 'GeoTrust True BusinessID Multi-Domain Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-truebusiness-id-multi-domain-checkout.page').then(m => m.GeoTrustTrueBusinessIdMultiDomainCheckoutPage),
+  },
+  {
     path: 'geotrust-true-businessid-multi-domain', data: { businessIdVariant: 'multi' },
     loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
+  },
+  {
+    path: 'geotrust-true-businessid-ov/checkout',
+    title: 'GeoTrust TrueBusiness ID OV (FLEX) Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-truebusiness-id-ov-flex-checkout.page').then(m => m.GeoTrustTrueBusinessIdOvFlexCheckoutPage),
   },
   {
     path: 'geotrust-true-businessid-ov',
@@ -158,20 +188,45 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
   },
   {
+    path: 'geotrust-true-businessid-wildcard/checkout',
+    title: 'GeoTrust True BusinessID Wildcard Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-truebusiness-id-wildcard-checkout.page').then(m => m.GeoTrustTrueBusinessIdWildcardCheckoutPage),
+  },
+  {
     path: 'geotrust-true-businessid-wildcard', data: { businessIdVariant: 'wildcard' },
     loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
+  },
+  {
+    path: 'geotrust-quickssl-premium-san/checkout',
+    title: 'GeoTrust QuickSSL Premium SAN Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-quickssl-premium-san-checkout.page').then(m => m.GeoTrustQuickSslPremiumSanCheckoutPage),
   },
   {
     path: 'geotrust-quickssl-premium-san', data: { quickSslVariant: 'san' },
     loadComponent: () => import('./pages/geotrust-quickssl.page').then(m => m.GeoTrustQuickSslPage),
   },
   {
+    path: 'geotrust-quickssl-premium/checkout',
+    title: 'GeoTrust QuickSSL Premium Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-quickssl-premium-checkout.page').then(m => m.GeoTrustQuickSslPremiumCheckoutPage),
+  },
+  {
     path: 'geotrust-quickssl-premium', data: { quickSslVariant: 'single' },
     loadComponent: () => import('./pages/geotrust-quickssl.page').then(m => m.GeoTrustQuickSslPage),
   },
   {
+    path: 'geotrust-quickssl-premium-wildcard/checkout',
+    title: 'GeoTrust QuickSSL Premium Wildcard Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-quickssl-premium-wildcard-checkout.page').then(m => m.GeoTrustQuickSslPremiumWildcardCheckoutPage),
+  },
+  {
     path: 'geotrust-quickssl-premium-wildcard', data: { quickSslVariant: 'wildcard' },
     loadComponent: () => import('./pages/geotrust-quickssl.page').then(m => m.GeoTrustQuickSslPage),
+  },
+  {
+    path: 'geotrust-dv-ssl-flex/checkout',
+    title: 'GeoTrust DV SSL (FLEX) Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-dv-ssl-flex-checkout.page').then(m => m.GeoTrustDvSslFlexCheckoutPage),
   },
   {
     path: 'geotrust-dv-ssl-flex',
@@ -498,6 +553,12 @@ export const routes: Routes = [
   { path: 'xcellhost-demo-center', loadComponent: () => import('./pages/xcellhost-demo-center.page').then((m) => m.XcellhostDemoCenterPage) },
   { path: 'under-construction/plesk-demo-center', redirectTo: 'plesk-demo-center', pathMatch: 'full' },
   { path: 'plesk-demo-center', data: { controlPanel: 'plesk' }, loadComponent: () => import('./pages/control-panel-demo-center.page').then((m) => m.ControlPanelDemoCenterPage) },
+  {
+    path: 'tally-demo-center',
+    title: 'Tally Demo Center | XcellHost',
+    data: { searchDescription: 'Explore Tally on Cloud workspace walkthroughs and request a live demo.' },
+    loadComponent: () => import('./pages/tally-demo-center.page').then(m => m.TallyDemoCenterPage),
+  },
   { path: 'under-construction/cpanel-demo-center', redirectTo: 'cpanel-demo-center', pathMatch: 'full' },
   { path: 'cpanel-demo-center', data: { controlPanel: 'cpanel' }, loadComponent: () => import('./pages/control-panel-demo-center.page').then((m) => m.ControlPanelDemoCenterPage) },
   { path: 'under-construction/events-catalog', loadComponent: () => import('./pages/events-catalog.page').then((m) => m.EventsCatalogPage) },
@@ -839,6 +900,10 @@ export const routes: Routes = [
   {
     path: 'acronis-ot',
     loadComponent: () => import('./pages/acronis-ot.page').then((m) => m.AcronisOtPage),
+  },
+  {
+    path: 'anti-ransomware-warranty',
+    loadComponent: () => import('./pages/anti-ransomware-warranty.page').then((m) => m.AntiRansomwareWarrantyPage),
   },
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
   { path: '**', redirectTo: '' },

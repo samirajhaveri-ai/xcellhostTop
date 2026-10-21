@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XcellHost SSL Cart — GeoTrust QuickSSL Premium Wildcard</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bl:#0066FF;--bl-d:#0052cc;--nv:#0B132B;--or:#FF6A00;--or-d:#e85f00;--gn:#16a34a;--line:#e7ecf3;--muted:#6b7a90;--f:'DM Sans',system-ui,sans-serif;--radius:16px;--shadow:0 1px 2px rgba(11,19,43,.04),0 10px 26px rgba(11,19,43,.05)}
+body{font-family:var(--f);background:#f4f7fb;color:#1e293b;-webkit-font-smoothing:antialiased}
+.nav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
+.nav-in{max-width:1080px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:1.25rem;font-weight:800;color:var(--nv);letter-spacing:-.02em;text-decoration:none}.logo span{color:var(--bl)}
+.secure{display:flex;align-items:center;gap:6px;font-size:.82rem;font-weight:700;color:var(--muted)}
+.stepper-wrap{background:#fff;border-bottom:1px solid var(--line)}
+.stepper{max-width:1080px;margin:0 auto;padding:14px 22px;display:flex;align-items:center}
+.step{display:flex;align-items:center;gap:9px;cursor:pointer;flex:0 0 auto}
+.step .n{width:28px;height:28px;border-radius:50%;background:#eef2f7;color:#64748b;font-weight:800;font-size:.84rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--line)}
+.step.active .n{background:var(--bl);color:#fff;border-color:var(--bl)}
+.step.done .n{background:var(--gn);color:#fff;border-color:var(--gn)}
+.step .lab{font-size:.84rem;font-weight:700;color:#94a3b8}.step.active .lab{color:var(--nv)}
+.step.done .lab{color:var(--nv)}
+.hbar{flex:1 1 auto;height:2px;background:var(--line);margin:0 12px;min-width:16px}.hbar.filled{background:var(--gn)}
+.layout{max-width:1080px;margin:0 auto;padding:22px 22px 46px;display:grid;grid-template-columns:1fr 344px;gap:18px;align-items:start}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+/* product card */
+.pcard{padding:20px 22px;margin-bottom:16px}
+.pc-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.pills{display:flex;gap:7px}
+.pill{font-size:.6rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:4px 9px;border-radius:5px}
+.pill.v{background:#eef5ff;color:var(--bl)}.pill.t{background:#f1f5f9;color:#475569}
+.brand{font-weight:800;font-size:1rem;letter-spacing:-.01em;display:flex;align-items:center;gap:5px}
+.brand .mk{width:13px;height:13px;border-radius:50%;display:inline-block}
+.pc-name{font-size:1.5rem;font-weight:800;color:var(--nv);letter-spacing:-.02em}
+.pc-dom{font-size:.86rem;color:var(--muted);margin-top:3px}
+.pc-meta{display:flex;gap:26px;margin:14px 0;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.pc-meta .m .k{font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.pc-meta .m .v{font-size:.92rem;font-weight:800;color:var(--nv);margin-top:2px}
+.feat{list-style:none;display:grid;gap:8px;margin:2px 0 0}
+.feat li{display:flex;align-items:center;gap:9px;font-size:.86rem;color:#334155;font-weight:600}
+.feat .ck{flex:0 0 auto;width:17px;height:17px;border-radius:50%;background:#dcfce7;color:var(--gn);display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:900}
+.cfg{padding:20px 22px;margin-bottom:16px}
+.cfg h3{font-size:.95rem;font-weight:800;color:var(--nv);margin-bottom:3px}
+.cfg .sub{font-size:.78rem;color:var(--muted);margin-bottom:14px}
+.terms{display:grid;gap:10px}
+.term{display:flex;align-items:center;gap:13px;border:1.5px solid var(--line);border-radius:12px;padding:13px 15px;cursor:pointer;transition:border-color .12s,background .12s;position:relative}
+.term:hover{border-color:#c7d6ea}.term.sel{border-color:var(--bl);background:#f5f9ff}
+.term .radio{flex:0 0 auto;width:19px;height:19px;border-radius:50%;border:2px solid #cbd5e1;position:relative}
+.term.sel .radio{border-color:var(--bl)}.term.sel .radio::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--bl)}
+.term .body{flex:1 1 auto;min-width:0}
+.term .line1{font-size:.95rem;font-weight:800;color:var(--nv)}.term .line1 .pm{color:var(--muted);font-weight:600}
+.term .line2{font-size:.78rem;margin-top:3px;color:var(--muted)}
+.term .line2 .lst{text-decoration:line-through;margin-right:7px}.term .line2 .sv{color:var(--gn);font-weight:700}.term .line2 .off{color:var(--or);font-weight:800;margin-left:7px}
+.badge{flex:0 0 auto;background:var(--or);color:#fff;font-size:.56rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;padding:5px 7px;border-radius:5px;line-height:1.15;text-align:center}
+.pend{font-size:.74rem;color:#92600a;background:#fffbeb;border:1px solid #fde68a;border-radius:9px;padding:9px 12px;margin-top:12px;line-height:1.5}
+.sans{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
+.san-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 0}
+.san-row .lbl{font-size:.86rem;font-weight:700;color:#334155}.san-row .lbl small{display:block;color:var(--muted);font-weight:600;font-size:.72rem}
+.stp{display:inline-flex;align-items:center;border:1px solid #d5deea;border-radius:9px;overflow:hidden}
+.stp button{width:30px;height:32px;border:none;background:#f3f6fb;color:var(--nv);font-size:1.05rem;font-weight:800;cursor:pointer}
+.stp button:hover:not(:disabled){background:#e7eefb}.stp button:disabled{opacity:.4;cursor:not-allowed}
+.stp input{width:40px;height:32px;border:none;border-left:1px solid var(--line);border-right:1px solid var(--line);text-align:center;font:inherit;font-weight:800;color:var(--nv)}.stp input:focus{outline:none}
+/* existing-cart forms (Account / Profile / Payment) */
+.card-h{font-size:1.15rem;font-weight:800;color:var(--nv);letter-spacing:-.01em;margin-bottom:4px}
+.card-sub{color:var(--muted);font-size:.9rem;margin-bottom:16px}
+.acc{padding:24px}
+.ctype{display:flex;gap:10px;margin-bottom:18px}
+.ctype .opt{flex:1;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer;text-align:center;font-weight:800;font-size:.9rem;color:#64748b;transition:border-color .12s,background .12s}
+.ctype .opt.sel{border-color:var(--bl);background:#f5f9ff;color:var(--nv)}
+.ctype .opt small{display:block;font-weight:600;font-size:.72rem;color:var(--muted);margin-top:2px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{margin-bottom:14px;display:flex;flex-direction:column}.field label{font-size:.82rem;font-weight:700;color:var(--nv);margin-bottom:6px}
+.rq{color:#e11d48}
+.field input,.field select{padding:11px 12px;border:1px solid #d5deea;border-radius:10px;font:inherit;font-size:.92rem;color:#0f172a;background:#fff}
+.field input:focus,.field select:focus{outline:none;border-color:var(--bl);box-shadow:0 0 0 3px rgba(0,102,255,.12)}
+.field input.err,.field select.err{border-color:#e11d48}
+.ferr{display:none;color:#e11d48;font-size:.76rem;margin-top:5px}.ferr.show{display:block}
+.cbtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;cursor:pointer;font:inherit;font-weight:800;font-size:.95rem;padding:13px 20px;border-radius:12px;text-decoration:none;transition:background .15s,transform .05s}
+.cbtn-primary{background:var(--bl);color:#fff;box-shadow:0 7px 16px rgba(0,102,255,.26)}.cbtn-primary:hover{background:var(--bl-d)}.cbtn-primary:active{transform:translateY(1px)}
+.cbtn-ghost{background:#eef2f7;color:#334155}
+.row-btns{display:flex;gap:12px;margin-top:20px}.row-btns .cbtn-primary{flex:1}
+.pending{display:none;margin-top:16px;background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:14px 16px;font-size:.88rem;color:#9a3412;line-height:1.5}.pending.show{display:block}
+.pay-line{font-size:.92rem;color:#334155;margin-bottom:8px}.pay-line b{color:var(--nv)}
+/* summary (persistent right column) */
+.sum{padding:20px 22px;position:sticky;top:84px}
+.sum h3{font-size:1rem;font-weight:800;color:var(--nv);margin-bottom:2px}
+.sum .sc{font-size:.78rem;color:var(--muted);margin-bottom:12px}
+.srow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid var(--line);font-size:.85rem}
+.srow .k{color:#334155;font-weight:600}.srow .k small{display:block;color:var(--muted);font-weight:500;font-size:.72rem}
+.srow .val{font-weight:800;color:var(--nv);text-align:right}
+.tot{display:flex;align-items:baseline;justify-content:space-between;padding:14px 0 2px;border-top:2px solid var(--nv);margin-top:4px}
+.tot .k{font-size:.9rem;font-weight:800;color:var(--nv)}.tot .v{font-size:1.5rem;font-weight:800;color:var(--nv)}
+.gst{font-size:.72rem;color:var(--muted);text-align:right;margin-top:3px}
+.btn{display:block;width:100%;text-align:center;padding:13px;border:none;border-radius:11px;background:var(--or);color:#fff;font:inherit;font-weight:800;font-size:.95rem;cursor:pointer;margin-top:14px;transition:background .15s,transform .1s}
+.btn:hover{background:var(--or-d);transform:translateY(-1px)}
+.note{font-size:.73rem;color:var(--muted);margin-top:14px;line-height:1.5;background:#fffbeb;border:1px solid #fde68a;border-radius:9px;padding:10px 12px}
+.znote{font-size:.72rem;color:var(--muted);margin-top:10px;line-height:1.5}
+.coupon{margin-top:12px;border-top:1px solid var(--line);padding-top:12px}
+.cp-in{display:flex;gap:8px}
+.cp-in input{flex:1;padding:9px 11px;border:1px solid #d5deea;border-radius:9px;font:inherit;font-size:.86rem;text-transform:uppercase}
+.cp-in input::placeholder{text-transform:none}
+.cp-in input:focus{outline:none;border-color:var(--bl);box-shadow:0 0 0 3px rgba(0,102,255,.12)}
+.cp-in button{padding:9px 15px;border:none;border-radius:9px;background:var(--nv);color:#fff;font:inherit;font-weight:800;font-size:.84rem;cursor:pointer}
+.cp-in button:hover{background:#1e293b}
+.cp-applied{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:9px;padding:9px 12px;font-size:.84rem;color:#166534;font-weight:700}
+.cp-applied button{border:none;background:none;color:#16a34a;font:inherit;font-weight:800;cursor:pointer;text-decoration:underline;font-size:.8rem}
+.cp-msg{font-size:.76rem;margin-top:7px}.cp-msg.err{color:#e11d48}.cp-msg.ok{color:#16a34a}
+#toastWrap{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:50;display:flex;flex-direction:column;gap:8px}
+.toast{background:var(--nv);color:#fff;padding:11px 18px;border-radius:10px;font-size:.86rem;box-shadow:0 10px 24px rgba(11,19,43,.28);transition:opacity .3s}
+.foot{max-width:1080px;margin:0 auto;padding:18px 22px 40px;color:var(--muted);font-size:.8rem;text-align:center}
+.foot a{color:var(--bl);text-decoration:none}
+@media(max-width:860px){.layout{grid-template-columns:1fr}.sum{position:static}.step .lab{display:none}}
+</style></head>
+<body>
+<nav class="nav"><div class="nav-in"><a class="logo" href="/" target="_top">Xcell<span>Host</span></a><span class="secure">&#128274; Secure Checkout</span></div></nav>
+<div class="stepper-wrap"><div class="stepper" id="stepper">
+  <div class="step active" data-step="0"><span class="n">1</span><span class="lab">Service</span></div><div class="hbar" data-bar="0"></div>
+  <div class="step" data-step="1"><span class="n">2</span><span class="lab">Account</span></div><div class="hbar" data-bar="1"></div>
+  <div class="step" data-step="2"><span class="n">3</span><span class="lab">Profile</span></div><div class="hbar" data-bar="2"></div>
+  <div class="step" data-step="3"><span class="n">4</span><span class="lab">Payment</span></div>
+</div></div>
+
+<div class="layout">
+  <div class="col-left">
+    <!-- STEP 1: SERVICE -->
+    <div id="cardService">
+      <div class="card pcard">
+        <div class="pc-top"><div class="pills"><span class="pill v" id="pV"></span><span class="pill t" id="pT"></span></div><div class="brand" id="pBrand"></div></div>
+        <div class="pc-name" id="pName"></div><div class="pc-dom" id="pDom"></div>
+        <div class="pc-meta">
+          <div class="m"><div class="k">Warranty</div><div class="v" id="pWar"></div></div>
+          <div class="m"><div class="k">Validation</div><div class="v" id="pVal"></div></div>
+          <div class="m" id="pIssWrap"><div class="k">Issued In</div><div class="v" id="pIss"></div></div>
+        </div>
+        <ul class="feat" id="pFeat"></ul>
+      </div>
+      <div class="card cfg">
+        <h3>Choose your term</h3><div class="sub">Longer terms lower the per-year price. Prices per certificate, excl. GST.</div>
+        <div class="terms" id="terms"></div>
+        <div class="pend" id="pend" style="display:none"></div>
+        <div class="sans" id="sansWrap" style="display:none">
+          <h3 style="margin-bottom:3px">Additional domains (SANs)</h3><div class="sub">Secure extra domain names on the same certificate.</div>
+          <div id="sans"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2: ACCOUNT -->
+    <div class="card acc" id="cardAccount" style="display:none">
+      <div class="card-h">Account</div>
+      <div class="card-sub">New here, or already have an XcellHost account?</div>
+      <div class="ctype">
+        <div class="opt sel" id="optNew" onclick="setCustomer('new')">New Customer<small>Create your account</small></div>
+        <div class="opt" id="optExisting" onclick="setCustomer('existing')">Existing Customer<small>Continue with your account email</small></div>
+      </div>
+      <div id="accNew">
+        <form autocomplete="on" onsubmit="return false">
+          <div class="frow">
+            <div class="field"><label for="firstName">First Name <span class="rq">*</span></label><input id="firstName" type="text" autocomplete="given-name"><div class="ferr">Please enter your first name.</div></div>
+            <div class="field"><label for="lastName">Last Name <span class="rq">*</span></label><input id="lastName" type="text" autocomplete="family-name"><div class="ferr">Please enter your last name.</div></div>
+          </div>
+          <div class="frow">
+            <div class="field"><label for="email">Work Email <span class="rq">*</span></label><input id="email" type="email" autocomplete="email"><div class="ferr">Enter a valid email address.</div></div>
+            <div class="field"><label for="mobile">Mobile / WhatsApp <span class="rq">*</span></label><input id="mobile" type="tel" autocomplete="tel"><div class="ferr">Enter a valid mobile number.</div></div>
+          </div>
+          <div class="field"><label for="company">Company Name <span class="rq">*</span></label><input id="company" type="text" autocomplete="organization"><div class="ferr">Please enter your company name.</div></div>
+        </form>
+        <div class="row-btns">
+          <button type="button" class="cbtn cbtn-ghost" onclick="goStep('service')">&larr; Back</button>
+          <button type="button" class="cbtn cbtn-primary" onclick="goStep('profile')">Continue to Billing Profile</button>
+        </div>
+      </div>
+      <div id="accExisting" style="display:none">
+        <form autocomplete="on" onsubmit="return false">
+          <div class="field"><label for="siEmail">Email <span class="rq">*</span></label><input id="siEmail" type="email" autocomplete="email"><div class="ferr">Enter a valid email address.</div></div>
+        </form>
+        <div class="row-btns">
+          <button type="button" class="cbtn cbtn-ghost" onclick="goStep('service')">&larr; Back</button>
+          <button type="button" class="cbtn cbtn-primary" onclick="goStep('payment')">Continue to Payment</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3: PROFILE -->
+    <div class="card acc" id="cardProfile" style="display:none">
+      <div class="card-h">Billing Profile</div>
+      <div class="card-sub">Required for your GST invoice and service agreement.</div>
+      <form onsubmit="return false">
+        <div class="field"><label for="legalName">Legal / Company Name <span class="rq">*</span></label><input id="legalName" type="text"><div class="ferr">Please enter your legal company name.</div></div>
+        <div class="field"><label for="street">Billing Address <span class="rq">*</span></label><input id="street" type="text"><div class="ferr">Please enter your billing address.</div></div>
+        <div class="field"><label for="address2">Address Line 2</label><input id="address2" type="text"></div>
+        <div class="frow">
+          <div class="field"><label for="city">City <span class="rq">*</span></label><input id="city" type="text"><div class="ferr">Please enter your city.</div></div>
+          <div class="field"><label for="state">State <span class="rq">*</span></label><input id="state" type="text"><div class="ferr">Please enter your state.</div></div>
+        </div>
+        <div class="frow">
+          <div class="field"><label for="pin">PIN Code <span class="rq">*</span></label><input id="pin" type="text" inputmode="numeric"><div class="ferr">Enter a valid 6-digit PIN code.</div></div>
+          <div class="field"><label for="country">Country <span class="rq">*</span></label><input id="country" type="text" value="India"><div class="ferr">Please enter your country.</div></div>
+        </div>
+        <div class="frow">
+          <div class="field"><label for="gstReg">GST Registered <span class="rq">*</span></label>
+            <select id="gstReg"><option value="">Select&hellip;</option><option value="yes">Yes</option><option value="no">No</option></select>
+            <div class="ferr">Please select an option.</div></div>
+          <div class="field" id="gstinField" style="display:none"><label for="gstin">GSTIN <span class="rq">*</span></label><input id="gstin" type="text" style="text-transform:uppercase"><div class="ferr">Enter a valid 15-character GSTIN.</div></div>
+        </div>
+      </form>
+      <div class="row-btns">
+        <button type="button" class="cbtn cbtn-ghost" onclick="goStep('account')">&larr; Back</button>
+        <button type="button" class="cbtn cbtn-primary" onclick="goStep('payment')">Continue to Payment</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: PAYMENT -->
+    <div class="card acc" id="cardPayment" style="display:none">
+      <div class="card-h">Secure Payment</div>
+      <div class="card-sub">Review your order, then continue to the secure payment page.</div>
+      <div class="pay-line" id="payProd"></div>
+      <div class="pay-line">Term: <b id="payTerm"></b> &middot; Quantity: <b id="payQty">1</b> &middot; Total domains: <b id="payDom">1</b></div>
+      <div class="pay-line" id="payCoupon" style="display:none"></div>
+      <div class="pay-line">Order total (before GST): <b id="payTotal"></b></div>
+      <div id="payTermFlag" style="display:none;margin-top:10px;background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:10px 13px;font-size:.82rem;color:#9a3412;line-height:1.5"></div>
+      <div class="row-btns">
+        <button type="button" class="cbtn cbtn-ghost" onclick="goBackFromPayment()">&larr; Back</button>
+        <button type="button" class="cbtn cbtn-primary" id="payBtn" onclick="proceedToPayment()">Proceed to Secure Payment &rarr;</button>
+      </div>
+      <div class="pending" id="payNotice"></div>
+      <div class="secure-line znote" id="secureLine" style="text-align:center">&#128274; Secure payment via Zoho Billing &middot; XcellHost does not store your card details</div>
+    </div>
+  </div>
+
+  <!-- ORDER SUMMARY (persistent) -->
+  <div class="col-right">
+    <div class="card sum">
+      <h3>Order summary</h3><div class="sc" id="sName"></div>
+      <div class="srow"><span class="k">Term</span><span class="val" id="sTerm"></span></div>
+      <div class="srow"><span class="k">Price<small>per certificate / year</small></span><span class="val" id="sPer"></span></div>
+      <div id="sSanRows"></div>
+      <div class="srow"><span class="k">Quantity<small>number of certificates</small></span>
+        <span class="stp"><button id="qm" type="button">&minus;</button><input id="q" value="1" readonly inputmode="numeric"><button id="qp" type="button">+</button></span>
+      </div>
+      <div class="srow"><span class="k">Total domains secured</span><span class="val" id="sDom"></span></div>
+      <div class="srow" id="subRow" style="display:none"><span class="k">Subtotal</span><span class="val" id="sSub"></span></div>
+      <div class="srow" id="discRow" style="display:none"><span class="k">Discount<small>XCELLGS10 &middot; &minus;10%</small></span><span class="val" id="sDisc" style="color:#16a34a"></span></div>
+      <div class="tot"><span class="k">TOTAL</span><span class="v" id="tot"></span></div>
+      <div class="gst">Excl. 18% GST &middot; GST invoice included on every order</div>
+      <div class="coupon">
+        <div class="cp-in" id="cpInput"><input id="cpCode" type="text" placeholder="Promo code" autocomplete="off"><button type="button" onclick="applyCoupon()">Apply</button></div>
+        <div class="cp-applied" id="cpApplied" style="display:none"><span>Coupon <b>XCELLGS10</b> applied</span><button type="button" onclick="removeCoupon()">Remove</button></div>
+        <div class="cp-msg" id="cpMsg"></div>
+      </div>
+      <button class="btn" type="button" id="toAccount" onclick="goStep('account')">Continue to Account &rarr;</button>
+      <div class="note">To meet current browser security rules, certificates issued for multi-year terms are re-issued (at no cost) each year of the order lifespan.</div>
+      <div class="znote" id="zTag"></div>
+    </div>
+  </div>
+</div>
+<div id="toastWrap"></div>
+<footer class="foot">Questions? <a href="mailto:support@xcellhost.cloud">support@xcellhost.cloud</a> &middot; <a href="tel:+912267111555">+91-22-67111555</a> &middot; XcellHost Cloud Services &mdash; managed cloud &amp; cybersecurity since 1999.</footer>
+
+<script>
+var CFG = {"brand": "geotrust", "brandName": "GeoTrust", "displayName": "GeoTrust QuickSSL Premium Wildcard", "name": "QuickSSL Premium Wildcard", "validation": "DV", "typePill": "Wildcard", "domains": "Unlimited subdomains", "warranty": "$500K", "issuedIn": "Minutes", "features": ["Unlimited subdomains", "One cart, many hosts", "Fast issuance"], "fromINR": 25999, "zohoUrl": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/GEO-GEOTRUSTQUICKSSLPR-3-1Y", "pending": false, "terms": [{"years": 1, "perYear": 27856, "best": false, "listTotal": 61902, "save": 34046, "pct": 55}, {"years": 2, "perYear": 26463, "best": false, "listTotal": 117613, "save": 64687, "pct": 55}, {"years": 3, "perYear": 25999, "best": true, "listTotal": 173327, "save": 95330, "pct": 55}], "sans": []};
+var requestedQuantity=Number(new URLSearchParams(location.search).get('quantity'));
+var q=Number.isInteger(requestedQuantity)&&requestedQuantity>=1&&requestedQuantity<=999?requestedQuantity:1, termIdx=0, customer='new';
+for(var i=0;i<CFG.terms.length;i++){ if(CFG.terms[i].best){ termIdx=i; } }
+CFG.sans=CFG.sans||[]; var sanQty=CFG.sans.map(function(){return 0;});
+function qsId(id){return document.getElementById(id);}
+function val(id){var e=qsId(id);return e?e.value.trim():"";}
+function money(n){return '₹'+Math.round(n).toLocaleString('en-IN');}
+function enc(v){return encodeURIComponent(v);}
+var WM={geotrust:['#d4122a',true],digicert:['#0a3d91',false],sectigo:['#0e7490',false]};
+
+function paintProduct(){
+  qsId('pV').textContent=CFG.validation; qsId('pT').textContent=CFG.typePill;
+  var b=qsId('pBrand'); var w=WM[CFG.brand]||['#0B132B',false]; b.style.color=w[0];
+  b.innerHTML=(w[1]?'<span class="mk" style="background:'+w[0]+'"></span>':'')+CFG.brandName;
+  qsId('pName').textContent=CFG.name; qsId('pDom').textContent=CFG.domains;
+  qsId('pWar').textContent=CFG.warranty; qsId('pVal').textContent=CFG.validation;
+  if(CFG.issuedIn){ qsId('pIss').textContent=CFG.issuedIn; } else { qsId('pIssWrap').style.display='none'; }
+  var ul=qsId('pFeat'); ul.innerHTML=''; CFG.features.forEach(function(f){var li=document.createElement('li');li.innerHTML='<span class="ck">✓</span>'+f;ul.appendChild(li);});
+  qsId('sName').textContent=CFG.displayName;
+  qsId('payProd').innerHTML='Certificate: <b>'+CFG.displayName+'</b>';
+  var zt=qsId('zTag'); var plan=CFG.zohoUrl.split('/').pop(); zt.textContent='Secure payment via Zoho Billing · plan '+plan+'.';
+  if(CFG.pending){ var pe=qsId('pend'); pe.style.display='block'; pe.textContent='Multi-year term discounts for DigiCert activate once pricing is confirmed — shown here at the standard per-year rate × term.'; }
+}
+function paintTerms(){
+  var host=qsId('terms'); host.innerHTML='';
+  CFG.terms.forEach(function(t,idx){
+    var el=document.createElement('div'); el.className='term'+(idx===termIdx?' sel':'');
+    var line2=''; if(t.pct!==undefined){ line2='<span class="line2"><span class="lst">'+money(t.listTotal)+'</span><span class="sv">Save '+money(t.save)+'</span><span class="off">'+t.pct+'% Off</span></span>'; }
+    el.innerHTML='<span class="radio"></span><span class="body"><span class="line1">'+t.years+' Year'+(t.years>1?'s':'')+' <span class="pm">@ '+money(t.perYear)+' / year</span></span>'+line2+'</span>'+(t.best?'<span class="badge">Best<br>Value</span>':'');
+    el.onclick=function(){ termIdx=idx; paintTerms(); recalc(); };
+    host.appendChild(el);
+  });
+}
+function paintSans(){
+  if(!CFG.sans.length){ return; }
+  qsId('sansWrap').style.display='block';
+  var host=qsId('sans'); host.innerHTML='';
+  CFG.sans.forEach(function(s,idx){
+    var row=document.createElement('div'); row.className='san-row';
+    row.innerHTML='<span class="lbl">'+s.label+'<small>'+money(s.rate)+' / domain / year</small></span><span class="stp"><button type="button" data-m="'+idx+'">−</button><input value="'+sanQty[idx]+'" readonly data-i="'+idx+'"><button type="button" data-p="'+idx+'">+</button></span>';
+    host.appendChild(row);
+  });
+  host.querySelectorAll('button[data-p]').forEach(function(b){b.onclick=function(){var i=+b.getAttribute('data-p');sanQty[i]++;refreshSanInputs();recalc();};});
+  host.querySelectorAll('button[data-m]').forEach(function(b){b.onclick=function(){var i=+b.getAttribute('data-m');if(sanQty[i]>0){sanQty[i]--;refreshSanInputs();recalc();}};});
+}
+function refreshSanInputs(){document.querySelectorAll('#sans input[data-i]').forEach(function(inp){inp.value=sanQty[+inp.getAttribute('data-i')];});}
+function recalc(){
+  var t=CFG.terms[termIdx], years=t.years, base=t.perYear*years*q, sanTotal=0, sanCount=0, rows='';
+  CFG.sans.forEach(function(s,idx){var cnt=sanQty[idx];if(cnt>0){var amt=s.rate*years*cnt*q;sanTotal+=amt;sanCount+=cnt;rows+='<div class="srow"><span class="k">'+s.label+'<small>'+cnt+' × '+years+' yr</small></span><span class="val">'+money(amt)+'</span></div>';}});
+  var grand=base+sanTotal;
+  var discount=couponOn?Math.round(grand*0.10):0, finalTot=grand-discount;
+  qsId('q').value=String(q); qsId('qm').disabled=(q<=1);
+  qsId('sTerm').textContent=years+' Year'+(years>1?'s':''); qsId('sPer').textContent=money(t.perYear);
+  qsId('sSanRows').innerHTML=rows; qsId('sDom').textContent=String((1+sanCount)*q);
+  qsId('subRow').style.display=couponOn?'':'none'; qsId('discRow').style.display=couponOn?'':'none';
+  qsId('sSub').textContent=money(grand); qsId('sDisc').textContent='−'+money(discount);
+  qsId('tot').textContent=money(finalTot);
+  qsId('payTerm').textContent=years+' Year'+(years>1?'s':''); qsId('payQty').textContent=String(q);
+  qsId('payDom').textContent=String((1+sanCount)*q); qsId('payTotal').textContent=money(finalTot);
+  var pc=qsId('payCoupon'); if(couponOn){pc.style.display='';pc.innerHTML='Coupon <b>XCELLGS10</b> applied &middot; −10% (−'+money(discount)+')';}else{pc.style.display='none';}
+  var tf=qsId('payTermFlag');
+  if(tf){ if(years>1){ tf.style.display=''; tf.innerHTML='⚠ This secure payment link is a <b>1-year</b> Zoho plan. You selected <b>'+years+' years</b> &mdash; your multi-year term is passed to checkout (<b>term_years='+years+'</b>) and will be confirmed/adjusted by XcellHost before charging.'; } else { tf.style.display='none'; } }
+}
+qsId('qp').onclick=function(){if(q<999){q++;recalc();}};
+qsId('qm').onclick=function(){if(q>1){q--;recalc();}};
+
+/* ---- coupon: XCELLGS10 = 10% off (only valid code) ---- */
+var couponOn=false;
+function applyCoupon(){
+  var code=(val('cpCode')||'').toUpperCase(); var m=qsId('cpMsg');
+  if(code==='XCELLGS10'){ couponOn=true; qsId('cpInput').style.display='none'; qsId('cpApplied').style.display='flex'; m.textContent=''; m.className='cp-msg'; recalc(); }
+  else { couponOn=false; m.textContent='Invalid or expired promo code.'; m.className='cp-msg err'; }
+}
+function removeCoupon(){ couponOn=false; qsId('cpCode').value=''; qsId('cpInput').style.display='flex'; qsId('cpApplied').style.display='none'; var m=qsId('cpMsg'); m.textContent=''; m.className='cp-msg'; recalc(); }
+
+/* ---- customer type ---- */
+function setCustomer(type){
+  customer=type;
+  qsId('optNew').classList.toggle('sel',type==='new');
+  qsId('optExisting').classList.toggle('sel',type==='existing');
+  qsId('accNew').style.display=(type==='new')?'':'none';
+  qsId('accExisting').style.display=(type==='existing')?'':'none';
+}
+/* ---- validation (same fields as existing XcellHost cart) ---- */
+var reEmail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/, reMobile=/^[+\d][\d\s-]{7,}$/, rePin=/^\d{6}$/;
+function setErr(id,bad){var e=qsId(id);if(!e)return;e.classList.toggle('err',bad);var f=e.parentElement.querySelector('.ferr');if(f)f.classList.toggle('show',bad);}
+function validAccount(){var ok=true;[['firstName',function(v){return v.length>=1;}],['lastName',function(v){return v.length>=1;}],['email',function(v){return reEmail.test(v);}],['mobile',function(v){return reMobile.test(v);}],['company',function(v){return v.length>=1;}]].forEach(function(c){var bad=!c[1](val(c[0]));setErr(c[0],bad);if(bad)ok=false;});return ok;}
+function validSignin(){var ok=true;var be=!reEmail.test(val('siEmail'));setErr('siEmail',be);if(be)ok=false;return ok;}
+function validProfile(){var ok=true;[['legalName',function(v){return v.length>=1;}],['street',function(v){return v.length>=1;}],['city',function(v){return v.length>=1;}],['state',function(v){return v.length>=1;}],['pin',function(v){return rePin.test(v);}],['country',function(v){return v.length>=1;}]].forEach(function(c){var bad=!c[1](val(c[0]));setErr(c[0],bad);if(bad)ok=false;});var g=val('gstReg');var gb=(g==='');setErr('gstReg',gb);if(gb)ok=false;if(g==='yes'){var bad=val('gstin').length!==15;setErr('gstin',bad);if(bad)ok=false;}return ok;}
+function toggleGstin(){var f=qsId('gstinField');if(f)f.style.display=val('gstReg')==='yes'?'':'none';}
+
+var STEP=['service','account','profile','payment'];
+var CARD={service:'cardService',account:'cardAccount',profile:'cardProfile',payment:'cardPayment'};
+function goStep(name){
+  if(name==='profile'){ if(customer==='existing'){ name='payment'; } else if(!validAccount()){goStep('account');toast('Please complete your account details.');return;} }
+  if(name==='payment'){
+    if(customer==='existing'){ if(!validSignin()){goStep('account');toast('Please enter your account email to continue.');return;} }
+    else { if(!validAccount()){goStep('account');toast('Please complete your account details.');return;} if(!validProfile()){goStep('profile');toast('Please complete your billing profile.');return;} }
+  }
+  for(var k in CARD){var c=qsId(CARD[k]);if(c)c.style.display=(k===name)?'':'none';}
+  qsId('toAccount').style.display=(name==='service')?'':'none';
+  var idx=STEP.indexOf(name), steps=document.querySelectorAll('#stepper .step');
+  for(var i=0;i<steps.length;i++){var si=+steps[i].getAttribute('data-step');steps[i].classList.toggle('active',si===idx);steps[i].classList.toggle('done',si<idx);}
+  var bars=document.querySelectorAll('#stepper .hbar');
+  for(var j=0;j<bars.length;j++){bars[j].classList.toggle('filled',(+bars[j].getAttribute('data-bar'))<idx);}
+  try{window.scrollTo({top:0,behavior:'smooth'});parent.postMessage({type:'geotrust-quickssl-wildcard-checkout-scroll'},location.origin);}catch(e){}
+}
+function goBackFromPayment(){ goStep(customer==='existing'?'account':'profile'); }
+
+/* ---- Zoho prefill (customer fields; selection carried as info params; no qty into price) ---- */
+var STATE_MAP={'andhra pradesh':'AP','arunachal pradesh':'AR','assam':'AS','bihar':'BR','chhattisgarh':'CG','goa':'GA','gujarat':'GJ','haryana':'HR','himachal pradesh':'HP','jharkhand':'JH','karnataka':'KA','kerala':'KL','madhya pradesh':'MP','maharashtra':'MH','manipur':'MN','meghalaya':'ML','mizoram':'MZ','nagaland':'NL','odisha':'OD','punjab':'PB','rajasthan':'RJ','sikkim':'SK','tamil nadu':'TN','telangana':'TS','tripura':'TR','uttar pradesh':'UP','uttarakhand':'UK','west bengal':'WB','delhi':'DL','new delhi':'DL','jammu and kashmir':'JK','ladakh':'LA','puducherry':'PY','chandigarh':'CH','andaman and nicobar islands':'AN','dadra and nagar haveli and daman and diu':'DN','lakshadweep':'LD'};
+function stateCode(s){var k=String(s||'').trim().toLowerCase();if(STATE_MAP[k])return STATE_MAP[k];if(/^[a-z]{2}$/.test(k))return k.toUpperCase();return '';}
+function countryCode(s){var k=String(s||'').trim().toLowerCase();if(k==='india'||k==='bharat')return 'IN';if(/^[a-z]{2}$/.test(k))return k.toUpperCase();return '';}
+function addParam(parts,k,v){if(v!=null&&String(v).trim()!=='')parts.push(k+'='+enc(String(v).trim()));}
+function buildPrefill(){
+  var parts=[];
+  if(customer==='existing'){ addParam(parts,'email',val('siEmail')); }
+  else {
+    addParam(parts,'first_name',val('firstName')); addParam(parts,'last_name',val('lastName'));
+    addParam(parts,'email',val('email')); addParam(parts,'company_name',val('legalName')||val('company'));
+    addParam(parts,'mobile',val('mobile')); addParam(parts,'billing_street',val('street'));
+    addParam(parts,'billing_street2',val('address2')); addParam(parts,'billing_city',val('city'));
+    addParam(parts,'billing_zip',val('pin')); addParam(parts,'billing_state_code',stateCode(val('state')));
+    addParam(parts,'billing_country_code',countryCode(val('country')));
+    if(val('gstReg')==='yes') addParam(parts,'tax_reg_no',val('gstin'));
+  }
+  /* carry the cart selection into the payment handoff */
+  var t=CFG.terms[termIdx], sc=0; sanQty.forEach(function(n){sc+=n;});
+  addParam(parts,'ssl_product',CFG.displayName);
+  addParam(parts,'term_years',t.years); addParam(parts,'quantity',q); addParam(parts,'san_count',sc);
+  if(couponOn) addParam(parts,'coupon_code','XCELLGS10');
+  return parts.join('&');
+}
+function showNotice(html,kind){var el=qsId('payNotice');if(!el)return;el.innerHTML=html;el.classList.add('show');var c={err:['#fef2f2','#fecaca','#b91c1c'],info:['#eff6ff','#bfdbfe','#1e40af'],sales:['#fff7ed','#fed7aa','#9a3412']}[kind]||['#fff7ed','#fed7aa','#9a3412'];el.style.background=c[0];el.style.borderColor=c[1];el.style.color=c[2];}
+function proceedToPayment(){
+  if(customer==='existing'){ if(!validSignin()){goStep('account');toast('Please enter your account email to continue.');return;} }
+  else { if(!validAccount()){goStep('account');toast('Please complete your account details.');return;} if(!validProfile()){goStep('profile');toast('Please complete your billing profile.');return;} }
+  var pf=buildPrefill();
+  var url=CFG.zohoUrl+(CFG.zohoUrl.indexOf('?')>=0?'&':'?')+pf;
+  try{window.__payURL=url;}catch(e){}
+  showNotice('Taking you to the secure Zoho payment page&hellip;','info');
+  qsId('payBtn').disabled=true; qsId('payBtn').innerHTML='Redirecting&hellip;';
+  window.top.location.assign(url);
+}
+function toast(m){var t=document.createElement('div');t.className='toast';t.textContent=m;var w=qsId('toastWrap');if(!w)return;w.appendChild(t);setTimeout(function(){t.style.opacity='0';setTimeout(function(){t.remove();},300);},3000);}
+document.addEventListener('DOMContentLoaded',function(){
+  var g=qsId('gstReg');if(g)g.addEventListener('change',toggleGstin);
+  var steps=document.querySelectorAll('#stepper .step');
+  for(var i=0;i<steps.length;i++){steps[i].addEventListener('click',function(){goStep(STEP[+this.getAttribute('data-step')]);});}
+  paintProduct(); paintTerms(); paintSans(); recalc(); goStep('service');
+});
+</script>
+</body>
+</html>
