@@ -5,6 +5,12 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  { path: 'office-365-e1-nonprofit', title: 'Office 365 E1 Nonprofit | XcellHost', data: { microsoft365PlanSource: 'office-365-e1-nonprofit' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'teams-essentials-frontline', title: 'Teams Essentials for Frontline | XcellHost', data: { microsoft365PlanSource: 'teams-essentials-frontline' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'office-365-e5', title: 'Office 365 E5 | XcellHost', data: { microsoft365PlanSource: 'office-365-e5' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'microsoft-365-f1', title: 'Microsoft 365 F1 | XcellHost', data: { microsoft365PlanSource: 'microsoft-365-f1' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'microsoft-365-e5', title: 'Microsoft 365 E5 | XcellHost', data: { microsoft365PlanSource: 'microsoft-365-e5' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'microsoft-365-e3', title: 'Microsoft 365 E3 | XcellHost', data: { microsoft365PlanSource: 'microsoft-365-e3' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
   { path: 'office-365-e1', title: 'Office 365 E1 | XcellHost', data: { microsoft365PlanSource: 'office-365-e1' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
   { path: 'office-365-e3', title: 'Office 365 E3 | XcellHost', data: { microsoft365PlanSource: 'office-365-e3' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
   { path: 'office-365-f3', title: 'Office 365 F3 | XcellHost', data: { microsoft365PlanSource: 'office-365-f3' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },

@@ -1329,7 +1329,7 @@ html[data-theme="dark"] .mx-out span.w{color:#FFB15C}
     <div class="of3-cmp rv" id="of3Cmp">
       <div class="cc"><small>Communication only</small><b>Teams Essentials</b><em>₹165</em>
         <dl><dt>Office documents</dt><dd class="n">No Office apps</dd><dt>Mailbox</dt><dd class="n">None</dd><dt>Storage</dt><dd>10 GB per user</dd><dt>Intune + Entra ID P1</dt><dd class="n">No</dd><dt>User limit</dt><dd>Up to 300</dd></dl>
-        <a href="/microsoft-365-enterprise-frontline#plans" target="_top">Teams Essentials page →</a></div>
+        <a href="/teams-essentials-frontline" target="_top">Teams Essentials page →</a></div>
       <div class="cc"><small>Frontline entry</small><b>Microsoft 365 F1</b><em>₹230</em>
         <dl><dt>Office documents</dt><dd class="n">Read-only (web &amp; mobile)</dd><dt>Mailbox</dt><dd class="n">No mailbox rights</dd><dt>Storage</dt><dd>OneDrive 2 GB</dd><dt>Intune + Entra ID P1</dt><dd>Yes</dd><dt>User limit</dt><dd>No cap</dd></dl>
         <a href="/microsoft-365-enterprise-frontline#plans" target="_top">Microsoft 365 F1 page →</a></div>
@@ -1770,7 +1770,7 @@ var ROLE=[
 (function(){
   var bt=$$('#of3Roles button'),box=$('#of3RoleV');if(!box)return;
   function show(i){var r=ROLE[i];bt.forEach(function(b,j){b.classList.toggle('on',j===i);b.setAttribute('aria-selected',j===i);});
-    var href=r[0]==='TE'?'/microsoft-365-enterprise-frontline#plans':r[0]==='E'?'/microsoft-365-enterprise-office365':'#configure';
+    var href=r[0]==='TE'?'/teams-essentials-frontline':r[0]==='E'?'/microsoft-365-enterprise-office365':'#configure';
     box.innerHTML='<span class="vk'+(r[0]==='F3'?'':' o')+'">'+(r[0]==='F3'?ICON.check:ICON.alert)+(r[0]==='F3'?'Good fit for F3':'Better on another plan')+'</span><div class="pr">'+inr(r[2])+'<small>/user/mo*</small></div><h3>'+r[3]+' → '+r[1]+'</h3><p>'+r[4]+'</p><ul>'+r[5].map(function(x,k){return '<li style="animation-delay:'+(80+k*60)+'ms">'+ICON[x[0]]+'<span>'+x[1]+'</span></li>';}).join('')+'</ul>'+(r[0]!=='F3'?'<p style="margin-top:12px"><a href="'+href+'" target="_top" style="color:#0066FF;font-weight:700">See '+r[1]+' →</a></p>':'');}
   bt.forEach(function(b){b.addEventListener('click',function(){show(+b.getAttribute('data-r'));});});show(0);
 })();

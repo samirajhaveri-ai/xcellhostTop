@@ -22,8 +22,6 @@ const aliases = {
   'microsoft-365-e5': 'microsoft-365-enterprise#plans',
   'microsoft-365-f1': 'microsoft-365-enterprise-frontline#plans',
   'office-365-e5': 'microsoft-365-enterprise-office365#plans',
-  'office-365-e1-nonprofit': 'microsoft-365-enterprise-nonprofit#plans',
-  'teams-essentials-frontline': 'microsoft-365-enterprise-frontline#plans',
   'xcellhost-microsoft-visio': 'microsoft-visio',
   'xcellhost-microsoft-viva': 'microsoft-viva',
   'xcellhost-project-server': 'microsoft-project-server',
