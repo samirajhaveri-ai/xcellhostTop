@@ -8,6 +8,13 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { useScrollingSectionNavigation } from './section-navigation-flow';
 
 type InteractiveContentSource =
+  | 'office-365-e1' | 'office-365-e3' | 'office-365-f3' | 'microsoft-365-f3' | 'office-365-e3-nonprofit' | 'microsoft-365-business-premium-nonprofit' | 'microsoft-365-e3-nonprofit' | 'microsoft-365-f3-nonprofit' | 'microsoft-365-e5-nonprofit'
+  | 'hybrid-cloud' | 'co-location-services' | 'global-cloud'
+  | 'hybrid-cloud-service'
+  | 'edge-cloud'
+  | 'iot-cloud'
+  | 'cdn-cloud'
+  | 'email-security-enterprise'
   | 'red-hat'
   | 'sitelock'
   | 'ssl-installation-service'
@@ -21,6 +28,7 @@ type InteractiveContentSource =
   | 'sap-hosting'
   | 'cloud-desktop-enterprise-vdi'
   | 'accops-digital-workspace'
+  | 'accops-hyworks' | 'accops-hysecure' | 'accops-hyid' | 'accops-hylabs' | 'accops-hydesk' | 'more-from-accops'
   | 'ai-identity-security' | 'ai-security-platform' | 'ai-security-audit' | 'ai-security-assessment' | 'ai-red-teaming-services'
   | 'managed-gws' | 'managed-mdm' | 'managed-intune-services' | 'managed-phishing-simulation'
   | 'power-pages' | 'power-apps' | 'power-automate' | 'power-bi'
@@ -112,6 +120,20 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page' | 'sectigo-detail' | 'inference-page' | 'developer-page'>,
     string
   > = {
+    'office-365-e1': '/imported-office-365-e1.html',
+    'office-365-e3': '/imported-office-365-e3.html',
+    'office-365-f3': '/imported-office-365-f3.html',
+    'microsoft-365-f3': '/imported-microsoft-365-f3.html',
+    'office-365-e3-nonprofit': '/imported-office-365-e3-nonprofit.html',
+    'microsoft-365-business-premium-nonprofit': '/imported-microsoft-365-business-premium-nonprofit.html',
+    'microsoft-365-e3-nonprofit': '/imported-microsoft-365-e3-nonprofit.html',
+    'microsoft-365-f3-nonprofit': '/imported-microsoft-365-f3-nonprofit.html',
+    'microsoft-365-e5-nonprofit': '/imported-microsoft-365-e5-nonprofit.html',
+    'hybrid-cloud-service': '/imported-hybrid-cloud-service.html',
+    'edge-cloud': '/imported-edge-cloud.html',
+    'iot-cloud': '/imported-iot-cloud.html',
+    'cdn-cloud': '/imported-cdn-cloud.html',
+    'email-security-enterprise': '/imported-email-security-enterprise.html',
     'red-hat': '/imported-red-hat.html',
     'sitelock': '/imported-sitelock.html',
     'ssl-installation-service': '/imported-ssl-installation-service.html',
@@ -125,6 +147,15 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'sap-hosting': '/imported-sap-hosting.html',
     'cloud-desktop-enterprise-vdi': '/imported-cloud-desktop-enterprise-vdi.html',
     'accops-digital-workspace': '/imported-accops-digital-workspace.html',
+    'co-location-services': '/imported-co-location-services.html',
+    'hybrid-cloud': '/imported-hybrid-cloud.html',
+    'global-cloud': '/imported-global-cloud.html',
+    'accops-hyworks': '/imported-accops-hyworks.html',
+    'accops-hysecure': '/imported-accops-hysecure.html',
+    'accops-hyid': '/imported-accops-hyid.html',
+    'accops-hylabs': '/imported-accops-hylabs.html',
+    'accops-hydesk': '/imported-accops-hydesk.html',
+    'more-from-accops': '/imported-more-from-accops.html',
     'cpanel-control-panel': '/imported-cpanel-control-panel.html',
     'power-pages': '/imported-power-pages.html',
     'managed-gws': '/imported-managed-gws.html',
@@ -221,6 +252,20 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+    'office-365-e1': 'Office 365 E1',
+    'office-365-e3': 'Office 365 E3',
+    'office-365-f3': 'Office 365 F3',
+    'microsoft-365-f3': 'Microsoft 365 F3',
+    'office-365-e3-nonprofit': 'Office 365 E3 Nonprofit',
+    'microsoft-365-business-premium-nonprofit': 'Microsoft 365 Business Premium Nonprofit',
+    'microsoft-365-e3-nonprofit': 'Microsoft 365 E3 Nonprofit',
+    'microsoft-365-f3-nonprofit': 'Microsoft 365 F3 Nonprofit',
+    'microsoft-365-e5-nonprofit': 'Microsoft 365 E5 Nonprofit',
+    'hybrid-cloud-service': 'Hybrid Cloud, animated connectivity, cloud bursting, placement, recovery and operations scenes, pricing, placement advisor, link sizer and Why XcellHost',
+    'edge-cloud': 'Edge Cloud, animated fleet, offline operation, edge AI, deployment and security scenes, node pricing, latency map, backhaul savings and onboarding',
+    'iot-cloud': 'IoT Cloud, animated telemetry, device identity, edge buffering, alert and OTA scenes, fleet simulator, device pricing, protocol picker and Why XcellHost',
+    'cdn-cloud': 'CDN Cloud, animated cache hits, origin shield, purge, security and media scenes, plans, cache simulator, traffic estimator and migration',
+    'email-security-enterprise': 'Email Security Enterprise, animated mail estate, high availability, DLP, DMARC and archive scenes, estate sizing and change-managed rollout',
     'red-hat': 'Red Hat services, animated RHEL, Ansible, OpenShift, virtualisation and AI scenes, service explorer and Stack Builder',
     'sitelock': 'SiteLock Website Security, animated scan, WAF, CDN, patching and trust seal scenes, plans and Why XcellHost',
     'ssl-installation-service': 'SSL Installation Service, animated installation desk, platforms, pricing, installation configurator and related certificates',
@@ -234,6 +279,15 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'sap-hosting': 'SAP Hosting, animated demo, hosting process, plans, landscape sizer and FAQs',
     'cloud-desktop-enterprise-vdi': 'Cloud Desktop Enterprise VDI, animated demo, use cases, rollout timeline, pricing and FAQs',
     'accops-digital-workspace': 'Accops Digital Workspace, animated demo, use cases, pricing, support and FAQs',
+    'co-location-services': 'Co-Location Services, rack space, pricing, tools and FAQs',
+    'hybrid-cloud': 'Private Cloud, dedicated clusters, pricing, tools and FAQs',
+    'global-cloud': 'Global Cloud, locations, pricing, tools and FAQs',
+    'accops-hyworks': 'Accops HyWorks, features, tools, pricing and FAQs',
+    'accops-hysecure': 'Accops HySecure, features, tools, pricing and FAQs',
+    'accops-hyid': 'Accops HyID, features, tools, pricing and FAQs',
+    'accops-hylabs': 'Accops HyLabs, features, tools, pricing and FAQs',
+    'accops-hydesk': 'Accops HyDesk, features, tools, pricing and FAQs',
+    'more-from-accops': 'More From Accops, features, tools, pricing and FAQs',
     'cpanel-control-panel': 'cPanel Control Panel licensing, tools, pricing and FAQs',
     'power-pages': 'Microsoft Power Pages portals, plans, tools and FAQs',
     'managed-gws': 'Managed Google Workspace services, tools, pricing and FAQs',
@@ -460,25 +514,27 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
       });
     };
     const enquiry = async (event: Event) => {
-      if (this.source !== 'acronis-ot' && this.source !== 'red-hat') return;
+      if (this.source !== 'acronis-ot' && this.source !== 'red-hat' && this.source !== 'email-security-enterprise') return;
       const detail = (event as CustomEvent<{
         payload: Record<string, unknown>;
         complete: (result: { ok: boolean; skipped: boolean; ref: string; fallbackUrl: string }) => void;
       }>).detail;
       const redHat = this.source === 'red-hat';
-      const subject = redHat ? 'Red Hat quotation request' : 'Acronis OT quotation request';
+      const emailSecurity = this.source === 'email-security-enterprise';
+      const topic = emailSecurity ? 'Email Security Enterprise quotation' : redHat ? 'Red Hat quotation' : 'Acronis OT quotation';
+      const subject = topic + ' request';
       const payload = {
         ...detail.payload,
-        message: redHat ? detail.payload['services'] : detail.payload['sizing'],
-        topic: redHat ? 'Red Hat quotation' : 'Acronis OT quotation',
-        page: redHat ? '/vendor-partners/red-hat' : '/acronis-ot',
+        message: emailSecurity ? detail.payload['summary'] : redHat ? detail.payload['services'] : detail.payload['sizing'],
+        topic,
+        page: emailSecurity ? '/email-security-enterprise' : redHat ? '/vendor-partners/red-hat' : '/acronis-ot',
       };
       const result = await this.leads.submit('callback', payload);
       detail.complete({
         ...result,
         fallbackUrl: this.leads.mailtoLink(
           subject,
-          (redHat ? ['name', 'company', 'email', 'phone', 'services', 'servers'] : ['name', 'company', 'email', 'phone', 'sizing'])
+          (emailSecurity ? ['name', 'company', 'email', 'phone', 'summary'] : redHat ? ['name', 'company', 'email', 'phone', 'services', 'servers'] : ['name', 'company', 'email', 'phone', 'sizing'])
             .map(key => `${key}: ${String(detail.payload[key] ?? '')}`).join('\n'),
         ),
       });
