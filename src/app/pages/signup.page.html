@@ -91,34 +91,32 @@
             <input id="Email" name="Email" type="email" formControlName="email" autocomplete="email" placeholder="you@company.com" maxlength="100" />
             @if (form.controls.email.touched && form.controls.email.invalid) { <small class="fe sh">Enter a valid work email.</small> }
           </div>
-          <div class="fr">
-            <div class="fg">
-              <label for="Mobile">Mobile / WhatsApp <span class="rq">*</span></label>
-              <div class="phone">
-                <div class="cc" [class.open]="countryMenuOpen()" (click)="$event.stopPropagation()">
-                  <button class="cc-btn" type="button" aria-label="Country code" aria-haspopup="listbox" [attr.aria-expanded]="countryMenuOpen()" (click)="toggleCountryMenu()">
-                    <span class="cc-flag" aria-hidden="true"><img class="cc-img" [src]="countryFlagUrl(selectedCountry().code)" alt="" /></span>
-                    <span>+{{ selectedCountry().dial }}</span><span class="cc-chev">&#9662;</span>
-                  </button>
-                  <div class="cc-menu">
-                    <input class="cc-search" type="text" autocomplete="off" placeholder="Search country or code" [value]="countrySearch()" (input)="updateCountrySearch($event)" (keydown.escape)="closeCountryMenu()" />
-                    <ul class="cc-list" role="listbox" aria-label="Country codes">
-                      @for (country of filteredCountries(); track country.code) {
-                        <li><button type="button" class="cc-item" role="option" [attr.aria-selected]="selectedCountry().code === country.code" (click)="selectCountry(country)"><span class="cc-fl" aria-hidden="true"><img class="cc-img" [src]="countryFlagUrl(country.code)" alt="" loading="lazy" /></span><span class="cc-nm">{{ country.name }}</span><span class="cc-dl">+{{ country.dial }}</span></button></li>
-                      } @empty { <li class="cc-empty">No match</li> }
-                    </ul>
-                  </div>
+          <div class="fg">
+            <label for="Mobile">Mobile / WhatsApp <span class="rq">*</span></label>
+            <div class="phone">
+              <div class="cc" [class.open]="countryMenuOpen()" (click)="$event.stopPropagation()">
+                <button class="cc-btn" type="button" aria-label="Country code" aria-haspopup="listbox" [attr.aria-expanded]="countryMenuOpen()" (click)="toggleCountryMenu()">
+                  <span class="cc-flag" aria-hidden="true"><img class="cc-img" [src]="countryFlagUrl(selectedCountry().code)" alt="" /></span>
+                  <span>+{{ selectedCountry().dial }}</span><span class="cc-chev">&#9662;</span>
+                </button>
+                <div class="cc-menu">
+                  <input class="cc-search" type="text" autocomplete="off" placeholder="Search country or code" [value]="countrySearch()" (input)="updateCountrySearch($event)" (keydown.escape)="closeCountryMenu()" />
+                  <ul class="cc-list" role="listbox" aria-label="Country codes">
+                    @for (country of filteredCountries(); track country.code) {
+                      <li><button type="button" class="cc-item" role="option" [attr.aria-selected]="selectedCountry().code === country.code" (click)="selectCountry(country)"><span class="cc-fl" aria-hidden="true"><img class="cc-img" [src]="countryFlagUrl(country.code)" alt="" loading="lazy" /></span><span class="cc-nm">{{ country.name }}</span><span class="cc-dl">+{{ country.dial }}</span></button></li>
+                    } @empty { <li class="cc-empty">No match</li> }
+                  </ul>
                 </div>
-                <input id="Mobile" type="tel" formControlName="phone" autocomplete="tel-national" placeholder="98765 43210" maxlength="30" />
-                <input type="hidden" name="Mobile" [value]="fullMobile()" />
               </div>
-              @if (form.controls.phone.touched && form.controls.phone.invalid) { <small class="fe sh">Enter a valid mobile number.</small> }
+              <input id="Mobile" type="tel" formControlName="phone" autocomplete="tel-national" placeholder="98765 43210" maxlength="30" />
+              <input type="hidden" name="Mobile" [value]="fullMobile()" />
             </div>
-            <div class="fg">
-              <label for="Company">Company Name <span class="rq">*</span></label>
-              <input id="Company" name="Company" type="text" formControlName="company" autocomplete="organization" placeholder="Company Pvt. Ltd." maxlength="200" />
-              @if (form.controls.company.touched && form.controls.company.invalid) { <small class="fe sh">Enter your company name.</small> }
-            </div>
+            @if (form.controls.phone.touched && form.controls.phone.invalid) { <small class="fe sh">Enter a valid mobile number.</small> }
+          </div>
+          <div class="fg">
+            <label for="Company">Company Name <span class="rq">*</span></label>
+            <input id="Company" name="Company" type="text" formControlName="company" autocomplete="organization" placeholder="Company Pvt. Ltd." maxlength="200" />
+            @if (form.controls.company.touched && form.controls.company.invalid) { <small class="fe sh">Enter your company name.</small> }
           </div>
           <div class="fg">
             <label for="City">City</label>
@@ -153,6 +151,5 @@
     </div>
 
     <iframe class="zoho-frame" name="zohoFrame" title="Signup submission response" (load)="completeSubmission()"></iframe>
-    <footer class="rf"><a routerLink="/company/terms-of-service">Terms &amp; Conditions</a> | <a routerLink="/company/privacy-policy">Privacy Policy</a> | <a href="mailto:support@xcellhost.cloud">Get Support</a><div class="cp">&copy; 2026 XcellHost Cloud Services Pvt. Ltd. All rights reserved.</div></footer>
   </section>
 </main>

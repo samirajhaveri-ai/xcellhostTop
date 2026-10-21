@@ -164,7 +164,7 @@ const CASE_STUDY_DETAILS: readonly CaseStudyDetail[] = [
   standalone: true,
   imports: [RouterLink],
   templateUrl: './case-study-detail.page.html',
-  styleUrls: ['./blog.page.css', './case-study-detail.page.css'],
+  styleUrl: './case-study-detail.page.css',
   host: { style: 'display:contents', '(window:scroll)': 'onScroll()' },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

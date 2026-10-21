@@ -32,21 +32,31 @@ body{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Ari
 .page-eyebrow{font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--bl)}
 .page-title{font-size:1.4rem;font-weight:800;letter-spacing:-.02em;color:var(--nv);margin:5px 0 2px}
 .page-sub{color:var(--muted);font-size:.9rem;margin:0 0 20px}
+.catalog-intro{text-align:center;margin:0 auto 20px}.catalog-intro .page-title{font-size:1.8rem;letter-spacing:-.035em}.catalog-intro .page-title em{color:var(--bl);font-style:normal}.catalog-intro .page-sub{max-width:720px;margin:10px auto 0;font-size:.95rem}
+.gpu-catalog-controls{display:grid;grid-template-columns:minmax(0,2fr) minmax(150px,.7fr) minmax(150px,.7fr);gap:18px;align-items:end;margin-bottom:16px;padding:16px 18px;border:1px solid #d7e0ee;border-radius:16px;background:#fff}
+.gpu-control{display:grid;gap:6px;min-width:0}.gpu-control-label{color:#41516d;font:800 .65rem ui-monospace,Menlo,Consolas,monospace;letter-spacing:.09em;text-align:center;text-transform:uppercase}
+.gpu-family-tabs{display:flex;min-height:48px;gap:3px;padding:4px;border:1px solid var(--line);border-radius:11px;background:#f3f4f6;overflow-x:auto}.gpu-family-tabs button{min-width:max-content;flex:1;border:0;border-radius:8px;padding:8px 10px;background:transparent;color:var(--muted);font-family:inherit;font-size:.78rem;font-weight:800;cursor:pointer}.gpu-family-tabs button.active{background:#fff;color:var(--nv);box-shadow:0 1px 5px rgba(4,30,66,.12)}
+.gpu-static{display:flex;min-height:48px;align-items:center;justify-content:center;gap:8px;padding:10px 14px;border:1px solid var(--line);border-radius:11px;background:#f3f6fb;color:var(--nv);font-size:.84rem;font-weight:800}.gpu-static.active{background:var(--nv);color:#fff}
+.gpu-family-band{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:16px;padding:17px 20px;border-radius:16px;background:linear-gradient(120deg,#041e42,#0c3e8f 60%,#3b2a8a);color:#dce7f8}.gpu-family-band h2{margin:0;color:#fff;font-size:1.18rem}.gpu-family-band p{margin:3px 0 0;color:#c7d5ec;font-size:.8rem}.gpu-family-band b{padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.12);font:700 .68rem ui-monospace,Menlo,Consolas,monospace;white-space:nowrap}
+@media(max-width:800px){.gpu-catalog-controls{grid-template-columns:1fr}.gpu-family-band{align-items:flex-start;flex-direction:column}}
 
 /* overflow:visible so the NVMe dropdown can extend below the row/table without being clipped;
    header top-corners are rounded explicitly to keep the rounded-card look. */
-.gpu-table{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:visible}
+.gpu-table{background:transparent;border:0;border-radius:0;box-shadow:none;overflow:visible}
 .gcols{display:grid;grid-template-columns:minmax(196px,2.1fr) 68px 78px 68px minmax(146px,1.45fr) minmax(168px,1.6fr) minmax(112px,1fr) auto;gap:14px;align-items:center}
-.gpu-head{padding:11px 18px;border-bottom:1px solid var(--line);background:#f8fafd;border-radius:var(--radius) var(--radius) 0 0}
+.gpu-head{display:none}
 .gpu-head .h{font-size:.62rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .gpu-head .h.right{text-align:right}
-.gpu-row{padding:16px 18px}
-.gpu-row + .gpu-row{border-top:1px solid var(--line)}
+#gpuRows{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.gpu-row.gcols{position:relative;display:grid;min-width:0;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:18px;border:1.5px solid var(--line);border-radius:18px;background:#fff;box-shadow:none;transition:transform .25s,box-shadow .25s,border-color .25s}
+.gpu-row.gcols:hover{transform:translateY(-4px);border-color:#1565d8;box-shadow:0 18px 40px rgba(21,101,216,.14)}
+.gpu-row .c-name,.gpu-row .c-nvme,.gpu-row .c-uses,.gpu-row .c-price,.gpu-row .c-add,.gpu-row .nvme-custom{grid-column:1/-1}
 .c-name .nm{font-size:1.02rem;font-weight:800;color:var(--nv);letter-spacing:-.01em}
 .c-name .meta{font-size:.72rem;color:var(--muted);margin-top:3px;line-height:1.4}
 .c-name .avail{display:inline-flex;align-items:center;gap:6px;margin-top:7px;font-size:.7rem;font-weight:800;color:#0f7a3d;background:#dcfce7;border:1px solid #bbf7d0;padding:3px 9px;border-radius:999px}
 .c-name .avail .dot{width:7px;height:7px;border-radius:50%;background:var(--gn)}
-.spec .v{font-size:.95rem;font-weight:800;color:var(--nv)}
+.spec{padding:9px 7px;border-radius:10px;background:#f6f8fc;text-align:center}
+.spec .v{font-size:.9rem;font-weight:800;color:var(--nv)}
 .spec .k{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-top:1px}
 .nvme{position:relative}
 .nvme-btn{display:flex;align-items:center;gap:8px;width:100%;background:#fff;border:1px solid #d5deea;border-radius:9px;padding:9px 11px;font:inherit;font-size:.86rem;font-weight:800;color:var(--nv);cursor:pointer;text-align:left}
@@ -80,12 +90,12 @@ body{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Ari
 .nvme-custom .btn-sales:hover{background:var(--or-d)}
 .c-uses{display:flex;flex-wrap:wrap;gap:5px}
 .tag{font-size:.66rem;font-weight:700;color:#334155;background:#f1f5fb;border:1px solid #e2e8f3;padding:3px 8px;border-radius:999px;white-space:nowrap}
-.c-price{text-align:right}
-.c-price .price{font-size:1.15rem;font-weight:800;color:var(--nv);letter-spacing:-.01em;white-space:nowrap}
+.c-price{display:flex;align-items:baseline;gap:5px;padding-top:12px;border-top:1px dashed var(--line);text-align:left}
+.c-price .price{font-size:1.55rem;font-weight:800;color:var(--nv);letter-spacing:-.02em;white-space:nowrap}
 .c-price .price .mo{font-size:.76rem;font-weight:700;color:var(--muted)}
 .c-price .price.tbc{font-size:.9rem;color:var(--or)}
 .c-price .note{font-size:.66rem;color:var(--muted);margin-top:2px}
-.btn-add{display:inline-flex;align-items:center;justify-content:center;gap:6px;background:var(--or);color:#fff;border:none;cursor:pointer;font:inherit;font-weight:800;font-size:.86rem;padding:11px 15px;border-radius:10px;white-space:nowrap;box-shadow:0 5px 13px rgba(255,138,0,.28);transition:background .15s,transform .05s}
+.btn-add{display:inline-flex;width:100%;align-items:center;justify-content:center;gap:6px;background:var(--or);color:#fff;border:none;cursor:pointer;font:inherit;font-weight:800;font-size:.86rem;padding:11px 15px;border-radius:10px;white-space:nowrap;box-shadow:0 5px 13px rgba(255,138,0,.28);transition:background .15s,transform .05s}
 .btn-add:hover{background:var(--or-d)}.btn-add:active{transform:translateY(1px)}
 .btn-add:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
 .cartbar{margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 18px}
@@ -284,7 +294,9 @@ body{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Ari
   .btn-add{padding:12px 18px}
 }
 @media(max-width:900px){.layout{grid-template-columns:1fr}.summary{position:static}.step-lab{display:none}.step-bar{margin:0 8px}}
+@media(max-width:900px){#gpuRows{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){
+  #gpuRows{grid-template-columns:1fr}
   .cart-foot{flex-direction:column;align-items:stretch;gap:12px}
   .cb-sub{text-align:left}
   .btn-proceed{width:100%}
@@ -299,10 +311,10 @@ body{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Ari
 /* Embedded mode: use the website shell while preserving the supplied cart/checkout UI. */
 html,body{background:transparent}
 body{overflow-x:hidden}
-.nav,.foot,#viewCart>.page-eyebrow,#viewCart>.page-title,#viewCart>.page-sub{display:none!important}
-.wrap{width:100%;max-width:1180px;margin:0 auto;padding:24px 24px 36px}
+.nav,.foot{display:none!important}
+.wrap{width:100%;max-width:1180px;margin:0 auto;padding:24px 24px 0}
 #viewCheckout{padding-top:6px}
-@media(max-width:600px){.wrap{padding:18px 16px 28px}}
+@media(max-width:600px){.wrap{padding:18px 16px 0}}
 </style>
 </head>
 <body class="catalog-embed">
@@ -315,9 +327,17 @@ body{overflow-x:hidden}
      VIEW 1 — GPU CONFIGURATION + CART  (shown first)
      ============================================================ -->
 <main class="wrap" id="viewCart">
-  <div class="page-eyebrow">GPU Servers &middot; India DC</div>
-  <h1 class="page-title">GPU Servers</h1>
-  <p class="page-sub">Click Configure &amp; Buy to set your storage and add-ons, then check out. Billed monthly &middot; cancel anytime.</p>
+  <div class="catalog-intro">
+    <div class="page-eyebrow">GPU Servers &middot; India DC</div>
+    <h1 class="page-title">Build your <em>GPU server</em> &mdash; price it live</h1>
+    <p class="page-sub">Choose a GPU family, configure NVMe storage and add the server to your order. Monthly prices are in INR, excluding GST.</p>
+  </div>
+  <div class="gpu-catalog-controls">
+    <div class="gpu-control"><span class="gpu-control-label">GPU family</span><div class="gpu-family-tabs" id="gpuFamilyTabs"><button type="button" class="active" data-gpu-family="all" onclick="setGpuFamily('all')">All GPUs</button><button type="button" data-gpu-family="l4" onclick="setGpuFamily('l4')">NVIDIA L4</button><button type="button" data-gpu-family="rtx" onclick="setGpuFamily('rtx')">RTX Pro 6000</button><button type="button" data-gpu-family="h200" onclick="setGpuFamily('h200')">NVIDIA H200</button></div></div>
+    <div class="gpu-control"><span class="gpu-control-label">NVMe storage</span><span class="gpu-static">Choose per card</span></div>
+    <div class="gpu-control"><span class="gpu-control-label">Pricing interval</span><span class="gpu-static active">Monthly</span></div>
+  </div>
+  <div class="gpu-family-band"><div><h2 id="gpuFamilyTitle">All GPU configurations</h2><p id="gpuFamilyDescription">Dedicated NVIDIA GPU servers for AI, inference, visualisation and accelerated compute.</p></div><b id="gpuFamilyCount">5 configurations</b></div>
 
   <!-- GPU LISTING TABLE — rows are rendered from the GPU_CATALOG (see script). -->
   <div class="gpu-table">
@@ -846,6 +866,7 @@ var SALES_EMAIL='sales@xcellhost.cloud';
 
 /* ---------------------------------------------------------------------------- */
 var selected = {};   /* selected[gpuId] = nvme key (per-GPU current choice) */
+var activeGpuFamily = 'all';
 /* the active ORDER — saved on "Add to cart", then edited on STEP 1: SERVICE
    (quantity + add-ons) and carried through Account -> Profile -> Payment. */
 var cfg = {gpuId:null,gpu:'NVIDIA L4',vcpu:'16 vCPU',ram:'64 GB',vram:'24 GB',nvme:'30 GB',nvmekey:'30GB',price:null,qty:1,addons:[]};
@@ -892,14 +913,30 @@ function rowHtml(g){
     + '<div class="c-uses">'+badges+'</div>'
     + '<div class="c-price"><div class="price" id="price-'+g.id+'"></div><div class="note" id="priceNote-'+g.id+'">monthly · cancel anytime</div></div>'
     + '<div class="c-add"><button type="button" class="btn-add" id="addBtn-'+g.id+'" onclick="addToCart(\''+g.id+'\')">Configure &amp; Buy</button></div>'
-    +'</div>'
-    +'<div class="nvme-custom" id="nvmeCustom-'+g.id+'" style="display:none"><label for="customGB-'+g.id+'">Custom NVMe size (GB)</label><input id="customGB-'+g.id+'" type="text" inputmode="numeric" placeholder="e.g. 750"><div class="note">Custom NVMe pricing is configured by XcellHost &mdash; the price for a custom size is not set on this page and is never sent to a listed plan. Pick a listed size above, or contact sales and our team will confirm your custom price. <b>(Pricing logic requires configuration.)</b></div><button type="button" class="btn-sales" onclick="contactSalesCustom(\''+g.id+'\')">Custom NVMe pricing &mdash; Contact Sales &rarr;</button></div>';
+    + '<div class="nvme-custom" id="nvmeCustom-'+g.id+'" style="display:none"><label for="customGB-'+g.id+'">Custom NVMe size (GB)</label><input id="customGB-'+g.id+'" type="text" inputmode="numeric" placeholder="e.g. 750"><div class="note">Custom NVMe pricing is configured by XcellHost &mdash; the price for a custom size is not set on this page and is never sent to a listed plan. Pick a listed size above, or contact sales and our team will confirm your custom price. <b>(Pricing logic requires configuration.)</b></div><button type="button" class="btn-sales" onclick="contactSalesCustom(\''+g.id+'\')">Custom NVMe pricing &mdash; Contact Sales &rarr;</button></div>'
+    +'</div>';
 }
 function buildTable(){
+  var familyDescriptions={
+    all:['All GPU configurations','Dedicated NVIDIA GPU servers for AI, inference, visualisation and accelerated compute.'],
+    l4:['NVIDIA L4','Efficient inference, video analytics and virtual workstation configurations.'],
+    rtx:['NVIDIA RTX Pro 6000','High-memory professional graphics, digital twins and AI content creation.'],
+    h200:['NVIDIA H200','HBM3e acceleration for large-model training, fine-tuning and high-throughput inference.']
+  };
+  var visibleIds=ACTIVE_GPUS.filter(function(id){return activeGpuFamily==='all'||id.indexOf(activeGpuFamily)===0;});
   var html='';
-  for(var i=0;i<ACTIVE_GPUS.length;i++){ var g=GPU_CATALOG[ACTIVE_GPUS[i]]; if(g) html+=rowHtml(g); }
+  for(var i=0;i<visibleIds.length;i++){ var g=GPU_CATALOG[visibleIds[i]]; if(g) html+=rowHtml(g); }
   qs('gpuRows').innerHTML=html;
-  for(var j=0;j<ACTIVE_GPUS.length;j++){ var gid=ACTIVE_GPUS[j], gg=GPU_CATALOG[gid]; if(gg) selectNvme(gid, gg.defaultNvme); }
+  for(var j=0;j<visibleIds.length;j++){ var gid=visibleIds[j], gg=GPU_CATALOG[gid]; if(gg) selectNvme(gid, selected[gid]||gg.defaultNvme); }
+  var copy=familyDescriptions[activeGpuFamily]||familyDescriptions.all;
+  qs('gpuFamilyTitle').textContent=copy[0]; qs('gpuFamilyDescription').textContent=copy[1];
+  qs('gpuFamilyCount').textContent=visibleIds.length+' configuration'+(visibleIds.length===1?'':'s');
+}
+function setGpuFamily(family){
+  activeGpuFamily=family;
+  var buttons=document.querySelectorAll('[data-gpu-family]');
+  for(var i=0;i<buttons.length;i++) buttons[i].classList.toggle('active',buttons[i].getAttribute('data-gpu-family')===family);
+  buildTable();
 }
 function toggleMenu(e,gpuId){ if(e){e.stopPropagation();} var el=qs('nvme-'+gpuId); var willOpen=!el.classList.contains('open'); closeAllMenus(); if(willOpen){ el.classList.add('open'); qs('nvmeBtn-'+gpuId).setAttribute('aria-expanded','true'); } }
 function closeAllMenus(){ var ms=document.querySelectorAll('.nvme.open'); for(var i=0;i<ms.length;i++){ ms[i].classList.remove('open'); var btn=ms[i].querySelector('.nvme-btn'); if(btn) btn.setAttribute('aria-expanded','false'); } }
@@ -1524,7 +1561,8 @@ document.addEventListener('DOMContentLoaded',function(){
 /* Keep each host iframe aligned as the cart and checkout views change height. */
 (function(){
   function reportHeight(){
-    var h=Math.max(document.documentElement.scrollHeight,document.body.scrollHeight);
+    var content=qs('viewCheckout').style.display!=='none'?qs('viewCheckout'):qs('viewCart');
+    var h=content?content.getBoundingClientRect().height:document.body.getBoundingClientRect().height;
     if(window.parent!==window) window.parent.postMessage({type:'xh-gpu-ordering-height',height:h},window.location.origin);
   }
   window.addEventListener('load',reportHeight);

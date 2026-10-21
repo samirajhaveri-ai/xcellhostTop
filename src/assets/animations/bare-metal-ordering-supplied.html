@@ -24,6 +24,20 @@ a{color:inherit}
 .page-eyebrow{font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--bl)}
 .page-title{font-size:1.4rem;font-weight:800;letter-spacing:-.02em;color:var(--nv);margin:5px 0 2px}
 .page-sub{color:var(--muted);font-size:.9rem;margin:0 0 18px}
+.catalog-intro{text-align:center;margin:0 auto 20px}
+.catalog-intro .page-title{font-size:1.8rem;letter-spacing:-.035em}.catalog-intro .page-title em{color:var(--bl);font-style:normal}
+.catalog-intro .page-sub{max-width:720px;margin:10px auto 0;font-size:.95rem}
+.catalog-controls{display:grid;grid-template-columns:minmax(150px,.7fr) minmax(0,2fr) minmax(150px,.7fr);gap:18px;align-items:end;margin-bottom:16px;padding:16px 18px;border:1px solid #d7e0ee;border-radius:16px;background:#fff}
+.catalog-control{display:grid;gap:6px;min-width:0}.catalog-label{color:#41516d;font:800 .65rem ui-monospace,Menlo,Consolas,monospace;letter-spacing:.09em;text-align:center;text-transform:uppercase}
+.catalog-static{display:flex;min-height:48px;align-items:center;justify-content:center;gap:8px;padding:10px 14px;border:1px solid var(--line);border-radius:11px;background:#f3f6fb;color:var(--nv);font-size:.84rem;font-weight:800}
+.catalog-static.active{background:var(--nv);color:#fff}
+.catalog-controls .fam-tabs{display:flex;min-height:48px;flex-wrap:nowrap;gap:3px;margin:0;padding:4px;border:1px solid var(--line);border-radius:11px;background:#f3f4f6;overflow-x:auto}
+.catalog-controls .fam-tab{display:flex;min-width:max-content;flex:1;align-items:center;justify-content:center;border:0;padding:8px 10px;background:transparent}
+.catalog-controls .fam-tab.active{background:#fff;border:0;box-shadow:0 1px 5px rgba(4,30,66,.12);color:var(--nv)}
+.catalog-controls .fam-tab.active:after{display:none}.catalog-controls .fam-tab .ct{display:none}
+.catalog-band{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:16px;padding:17px 20px;border-radius:16px;background:linear-gradient(120deg,#041e42,#0c3e8f 60%,#3b2a8a);color:#dce7f8}
+.catalog-band h2{margin:0;color:#fff;font-size:1.18rem}.catalog-band p{margin:3px 0 0;color:#c7d5ec;font-size:.8rem}.catalog-band b{padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.12);font:700 .68rem ui-monospace,Menlo,Consolas,monospace;white-space:nowrap}
+@media(max-width:800px){.catalog-controls{grid-template-columns:1fr}.catalog-band{align-items:flex-start;flex-direction:column}}
 /* stepper */
 .stepper{display:flex;align-items:center;gap:0;margin:0 0 20px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 18px;box-shadow:var(--shadow-s)}
 .step{display:flex;align-items:center;gap:9px;flex:0 0 auto}
@@ -48,23 +62,24 @@ a{color:inherit}
 .fam-tab.active{color:var(--bl);border-color:var(--bl)}
 .fam-tab.active .ct{background:#eaf1ff;color:var(--bl)}
 .fam-tab.active:after{content:"";position:absolute;left:16px;right:16px;bottom:-1px;height:3px;border-radius:3px;background:var(--or)}
-/* plan cards */
-.plans{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:560px){.plans{grid-template-columns:1fr}}
-.plan{border:1.5px solid var(--line);border-radius:13px;padding:14px 15px;cursor:pointer;transition:.14s;position:relative;background:#fff}
-.plan:hover{border-color:#b9c7dc}
-.plan.sel{border-color:var(--bl);box-shadow:0 0 0 3px rgba(0,102,255,.12);background:#fbfdff}
-.plan .pnm{font-size:.97rem;font-weight:800;color:var(--nv);letter-spacing:-.01em;padding-right:26px}
-.plan .pcode{font-size:.64rem;font-weight:700;color:var(--muted);font-family:ui-monospace,Menlo,Consolas,monospace;margin-top:2px}
-.plan .pspec{display:grid;grid-template-columns:1fr 1fr;gap:4px 10px;margin:10px 0 11px}
-.plan .pspec div{font-size:.72rem;color:var(--muted)}
-.plan .pspec b{color:var(--nv);font-weight:700}
-.plan .pfoot{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;border-top:1px solid var(--line);padding-top:10px}
-.plan .plist{font-size:.7rem;color:#9aa7bd;text-decoration:line-through}
-.plan .pprice{font-size:1.06rem;font-weight:800;color:var(--nv);white-space:nowrap}
-.plan .pprice .mo{font-size:.7rem;font-weight:700;color:var(--muted)}
-.plan .ptick{position:absolute;top:13px;right:13px;width:20px;height:20px;border-radius:50%;border:1.5px solid #cfd9e8;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.7rem}
-.plan.sel .ptick{background:var(--bl);border-color:var(--bl)}
+/* Performance Cloud-style pricing cards. */
+.catalog-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.catalog-plan{position:relative;display:flex;min-width:0;flex-direction:column;padding:18px;border:1.5px solid var(--line);border-radius:18px;background:#fff;transition:transform .25s,box-shadow .25s,border-color .25s}
+.catalog-plan:hover{transform:translateY(-4px);border-color:#1565d8;box-shadow:0 18px 40px rgba(21,101,216,.14)}
+.catalog-family{font-size:.65rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#1565d8}
+.catalog-plan .p-name{margin:4px 0 2px;color:var(--nv);font-size:1rem;font-weight:800;letter-spacing:-.01em}
+.catalog-plan .p-code{color:var(--muted);font:700 .62rem ui-monospace,Menlo,Consolas,monospace}
+.catalog-price{display:flex;align-items:baseline;gap:4px;flex-wrap:wrap;margin-top:14px}
+.catalog-price .p-strike{width:100%;color:#9aa7bd;font-size:.72rem;text-decoration:line-through}
+.catalog-price .p-now{color:var(--nv);font-size:1.55rem;font-weight:800;letter-spacing:-.02em}
+.catalog-price .mo{color:var(--muted);font-size:.72rem;font-weight:700}
+.catalog-specs{display:grid;gap:8px;margin:14px 0;padding:12px 0;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line)}
+.catalog-specs div{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;color:var(--muted);font-size:.75rem}
+.catalog-specs span{flex:0 0 auto}
+.catalog-specs b{color:var(--nv);font-size:.78rem;text-align:right}
+.catalog-plan .buy-btn{width:100%;justify-content:center;margin-top:auto}
+@media(max-width:900px){.catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.catalog-grid{grid-template-columns:1fr}}
 /* ===== STAGE 1: catalogue spec tables ===== */
 .cat-note{font-size:.74rem;color:var(--muted);margin-top:14px;line-height:1.5}
 .spec-wrap{border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-s);background:#fff}
@@ -216,8 +231,8 @@ a{color:inherit}
 html,body{background:transparent}
 body{overflow-x:hidden}
 .nav,.foot{display:none!important}
-.wrap{width:100%;max-width:1180px;margin:0 auto;padding:24px 24px 36px}
-@media(max-width:600px){.wrap{padding:18px 16px 28px}}
+.wrap{width:100%;max-width:1180px;margin:0 auto;padding:24px 24px 0}
+@media(max-width:600px){.wrap{padding:18px 16px 0}}
 </style>
 </head>
 <body>
@@ -230,10 +245,17 @@ body{overflow-x:hidden}
 
   <!-- ============ STAGE 1: BARE METAL CATALOGUE ============ -->
   <div id="viewCatalogue">
-    <div class="page-eyebrow">Bare Metal Servers</div>
-    <h1 class="page-title">Dedicated server catalogue</h1>
-    <p class="page-sub">Single-tenant dedicated servers hosted in Mumbai &mdash; full root access, free DDoS protection, 99.99% uptime SLA. Choose a processor family, then click <b>Buy Now</b> to configure add-ons and check out.</p>
-    <div class="fam-tabs" id="catTabs"></div>
+    <div class="catalog-intro">
+      <div class="page-eyebrow">Bare Metal Servers</div>
+      <h1 class="page-title">Build your <em>bare metal server</em> &mdash; price it live</h1>
+      <p class="page-sub">Choose a processor family and dedicated configuration, then add it to your order. Monthly prices are in INR, excluding GST.</p>
+    </div>
+    <div class="catalog-controls">
+      <div class="catalog-control"><span class="catalog-label">Deployment</span><span class="catalog-static">Dedicated server</span></div>
+      <div class="catalog-control"><span class="catalog-label">Processor family</span><div class="fam-tabs" id="catTabs"></div></div>
+      <div class="catalog-control"><span class="catalog-label">Pricing interval</span><span class="catalog-static active">Monthly</span></div>
+    </div>
+    <div class="catalog-band"><div><h2 id="catalogFamilyTitle">RYZEN</h2><p id="catalogFamilyDescription">High-frequency dedicated compute for business applications and demanding workloads.</p></div><b id="catalogFamilyCount">2 configurations</b></div>
     <div id="catTables"></div>
     <p class="cat-note">&#128179; Monthly INR pricing, excluding GST. Add licences, services, backups and managed support at checkout. Custom builds and annual discounts on request.</p>
   </div>
@@ -450,22 +472,33 @@ function renderCatTabs(){
 function setCatFam(f){ activeFam=f; renderCatTabs(); renderCatTables(); }
 function renderCatTables(){
   var list=BM_CATALOG.filter(function(c){return c.family===activeFam;});
-  var rows='';
+  var descriptions={
+    'RYZEN':'High-frequency dedicated compute for business applications and demanding workloads.',
+    'INTEL GOLD':'Enterprise Intel Xeon configurations for reliable, sustained production workloads.',
+    'AMD EPYC':'High core-density servers for virtualisation, databases and large-scale compute.',
+    'LEGACY':'Cost-efficient dedicated hardware for established and compatibility-sensitive workloads.'
+  };
+  var title=qs('catalogFamilyTitle'), description=qs('catalogFamilyDescription'), count=qs('catalogFamilyCount');
+  if(title) title.textContent=activeFam;
+  if(description) description.textContent=descriptions[activeFam]||'Dedicated server configurations.';
+  if(count) count.textContent=list.length+' configuration'+(list.length===1?'':'s');
+  var cards='';
   list.forEach(function(c){
     var strike=(c.list&&c.list>c.price)?('<span class="p-strike">'+money(c.list)+'</span>'):'';
-    rows+='<tr>'
-      +'<td data-l="Processor"><div class="p-name">'+esc(c.name)+'</div><div class="p-code">'+esc(c.code)+'</div></td>'
-      +'<td data-l="Cores / Threads">'+esc(c.cores)+'</td>'
-      +'<td data-l="Memory">'+esc(c.mem)+'</td>'
-      +'<td data-l="Storage">'+esc(c.storage)+'</td>'
-      +'<td data-l="Bandwidth">'+esc(c.bw)+'</td>'
-      +'<td data-l="Monthly INR" class="pr">'+strike+'<span class="p-now">'+money(c.price)+'<span class="mo"> / mo</span></span></td>'
-      +'<td data-l="" class="bt"><button type="button" class="buy-btn" onclick="buyNow(\''+c.code+'\')">Buy Now &rarr;</button></td>'
-    +'</tr>';
+    cards+='<article class="catalog-plan">'
+      +'<div class="catalog-family">'+esc(c.family)+'</div>'
+      +'<div class="p-name">'+esc(c.name)+'</div><div class="p-code">'+esc(c.code)+'</div>'
+      +'<div class="catalog-price">'+strike+'<span class="p-now">'+money(c.price)+'</span><span class="mo">/ month</span></div>'
+      +'<div class="catalog-specs">'
+        +'<div><span>Cores / Threads</span><b>'+esc(c.cores)+'</b></div>'
+        +'<div><span>Memory</span><b>'+esc(c.mem)+'</b></div>'
+        +'<div><span>Storage</span><b>'+esc(c.storage)+'</b></div>'
+        +'<div><span>Bandwidth</span><b>'+esc(c.bw)+'</b></div>'
+      +'</div>'
+      +'<button type="button" class="buy-btn" onclick="buyNow(\''+c.code+'\')">Buy Now &rarr;</button>'
+    +'</article>';
   });
-  qs('catTables').innerHTML='<div class="spec-wrap"><table class="spec-table">'
-    +'<thead><tr><th>Processor</th><th>Cores / Threads</th><th>Memory</th><th>Storage</th><th>Bandwidth</th><th class="r">Monthly INR</th><th></th></tr></thead>'
-    +'<tbody>'+rows+'</tbody></table></div>';
+  qs('catTables').innerHTML='<div class="catalog-grid">'+cards+'</div>';
 }
 /* Buy Now: fix the selected plan, open the checkout Service step (no plan selector shown again). */
 function buyNow(code){
@@ -760,7 +793,8 @@ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded'
 /* Resize the host section as families or checkout steps change. */
 (function(){
   function reportHeight(){
-    var h=Math.max(document.documentElement.scrollHeight,document.body.scrollHeight);
+    var content=document.querySelector('.wrap');
+    var h=content?content.getBoundingClientRect().height:document.body.getBoundingClientRect().height;
     if(window.parent!==window) window.parent.postMessage({type:'xh-bare-metal-height',height:h},window.location.origin);
   }
   window.addEventListener('load',reportHeight);

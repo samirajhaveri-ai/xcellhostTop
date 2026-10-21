@@ -38,6 +38,7 @@ export class CaseStudiesPage {
   readonly selectedSub = signal('');
   readonly expandedMain = signal<string | null>(null);
   readonly searchQuery = signal('');
+  readonly featuredStudy = computed(() => this.studies()[0] ?? null);
 
   readonly categoryTree = computed<readonly CaseCategoryBranch[]>(() => {
     const branches = new Map<string, Map<string, number>>();
@@ -76,6 +77,10 @@ export class CaseStudiesPage {
     });
   });
 
+  readonly activeCategory = computed(() =>
+    this.categoryTree().find((branch) => branch.name === this.selectedMain()) ?? null,
+  );
+
   constructor() {
     this.seo.set(
       'Customer Case Studies - XcellHost',
@@ -104,6 +109,11 @@ export class CaseStudiesPage {
     this.selectedMain.set('');
     this.selectedSub.set('');
     this.expandedMain.set(null);
+  }
+
+  clearFilters(): void {
+    this.selectAllCategories();
+    this.searchQuery.set('');
   }
 
   selectMainCategory(category: string): void {

@@ -5121,11 +5121,12 @@ class ProductPageComponent {
   viewRmmPlan(plan: PricingPlan, ev: Event): void {
     ev.preventDefault();
     const years = Math.max(1, Number.parseInt(plan.term, 10) || 1);
-    const params = new URLSearchParams({
-      term: `${years}y`,
-      quantity: String(this.edrQuantity()),
+    void this.router.navigate(['/rmm-checkout'], {
+      queryParams: {
+        term: `${years}y`,
+        quantity: this.edrQuantity(),
+      },
     });
-    window.location.assign(`/rmm-checkout?${params.toString()}`);
   }
 
   /** `.pl-buy` and the hero Buy Now — add, open the drawer, go straight to checkout. */

@@ -142,6 +142,7 @@ export class CheckoutPage implements OnDestroy {
       this.checkoutProduct === 'bare-metal' ||
       this.checkoutProduct === 'gpu' ||
       this.checkoutProduct === 'tally' ||
+      this.checkoutProduct === 'rmm' ||
       this.checkoutProduct === 'smb-desktop' ||
       this.checkoutProduct === 'genai' ||
       this.checkoutProduct === 'cdr-smb' ||
@@ -150,8 +151,15 @@ export class CheckoutPage implements OnDestroy {
       // The website shell already supplies the XcellHost header and footer.
       // Hide the standalone file chrome while retaining its checkout steps and payment URL.
       const embeddedStyles = checkoutDocument.createElement('style');
-      embeddedStyles.textContent = '.nav,.foot{display:none!important}';
+      embeddedStyles.textContent = '.top,.nav,.ft,.foot{display:none!important}';
       checkoutDocument.head.appendChild(embeddedStyles);
+    }
+
+    if (this.checkoutProduct === 'rmm') {
+      // The supplied RMM document includes its own standalone website chrome.
+      // Remove it inside the iframe because the Angular application already
+      // renders the default XcellHost header and footer around this route.
+      checkoutDocument.querySelectorAll('.top,.nav,.ft').forEach((element) => element.remove());
     }
 
     if (this.checkoutProduct === 'smb-desktop') {
