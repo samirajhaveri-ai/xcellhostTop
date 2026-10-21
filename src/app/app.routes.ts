@@ -5,6 +5,18 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  {
+    path: 'vendor-partners/red-hat',
+    title: 'Red Hat Partner India | XcellHost',
+    loadComponent: () => import('./pages/red-hat.page').then(m => m.RedHatPage),
+  },
+  { path: 'red-hat', redirectTo: 'vendor-partners/red-hat', pathMatch: 'full' },
+  {
+    path: 'ssl-installation-service',
+    title: 'SSL Installation Service | XcellHost',
+    loadComponent: () => import('./pages/ssl-installation-service.page').then(m => m.SslInstallationServicePage),
+  },
+  { path: 'under-construction/ssl-installation-service', redirectTo: 'ssl-installation-service', pathMatch: 'full' },
   ...['ai-identity-security', 'ai-security-platform', 'ai-security-audit', 'ai-security-assessment', 'ai-red-teaming-services'].map(path => ({
     path,
     title: ({ 'ai-identity-security': 'AI Identity Security', 'ai-security-platform': 'AI Security Platform', 'ai-security-audit': 'AI Security Audit', 'ai-security-assessment': 'AI Security Assessment', 'ai-red-teaming-services': 'AI Red Teaming Services' } as Record<string, string>)[path] + ' | XcellHost',
