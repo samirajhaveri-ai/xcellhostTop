@@ -138,6 +138,8 @@
       <xh-openai-managed-source />
     } @else if (slug() === 'vortex-soc') {
       <xh-vortex-soc-source />
+    } @else if (isEmailSecurityEnterprise()) {
+      <xh-imported-interactive-content source="email-security-enterprise" />
     } @else if (isVortexSegSource()) {
       <xh-vortex-seg-source />
     } @else if (slug() === 'dfir') {
@@ -452,6 +454,8 @@
         <xh-nist-csf-2-0-content [slug]="slug()" [hero]="true" />
       } @else if (isInfrastructure()) {
         <xh-infrastructure-hero (talkRequested)="openCallback($event)" (trialRequested)="openTrial($event)" (tourRequested)="openProductScreenshotTour()" />
+      } @else if (slug() === 'web-security-sitelock') {
+        <xh-imported-interactive-content source="sitelock" />
       } @else {
       @if (!isVmc() && !isCmc() && slug() !== 'performance-cloud' && slug() !== 'gpu-servers') {
       <div
@@ -2202,7 +2206,7 @@
       }
       }
 
-      @if (!isDigiCert() && slug() !== 'digicert-smime-ov' && slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && !isResellerProgram() && !isMicrosoftEnterprisePage() && slug() !== 'cloud-devops-services' && slug() !== 'server-management' && slug() !== 'microsoft-365-backup' && slug() !== 'domain-whois-lookup' && slug() !== 'managed-oracle-cloud' && slug() !== 'ai-voice-bot') {
+      @if (slug() !== 'web-security-sitelock' && !isDigiCert() && slug() !== 'digicert-smime-ov' && slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && !isResellerProgram() && !isMicrosoftEnterprisePage() && slug() !== 'cloud-devops-services' && slug() !== 'server-management' && slug() !== 'microsoft-365-backup' && slug() !== 'domain-whois-lookup' && slug() !== 'managed-oracle-cloud' && slug() !== 'ai-voice-bot') {
         <div class="pp-trust" [class.reference-trust]="referenceSectionNav() !== null">
           <div class="wrap">
             @if (isCopilotStudio()) {
@@ -2316,7 +2320,8 @@
     }
 
     }
-    @if (isSiteLock()) {
+
+    @if (isSiteLock() && slug() !== 'web-security-sitelock') {
       <xh-sitelock-content />
     }
 
@@ -2728,7 +2733,7 @@
           } @else if (slug() === 'wordpress-vps') {
             <xh-imported-interactive-content class="wordpress-vps-source-content" source="wordpress-vps" />
           }
-          @if (slug() !== 'open-ai-managed-services' && slug() !== 'vortex-soc' && !isVortexSegSource() && slug() !== 'dfir' && slug() !== 'managed-google-cloud-gcp' && slug() !== 'docusign' && slug() !== 'rpc-nodes' && slug() !== 'gaming-servers' && slug() !== 'zoom-conferenceing' && slug() !== 'managed-pki' && slug() !== 'private-ca' && slug() !== 'iot-pki' && slug() !== 'iot-device-certificates' && slug() !== 'cloud-code-signing' && slug() !== 'certificate-mgmt-solutions' && slug() !== 'matter-dac' && slug() !== 'pki-software' && slug() !== 'windows-365' && slug() !== 'bio-link-digital-visiting-card' && slug() !== 'general-compute' && slug() !== 'wordpress-vps' && slug() !== 'identity-resilience' && slug() !== 'ediscovery-and-compliance' && slug() !== 'cpu-optimized' && slug() !== 'memory-optimized' && slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && slug() !== 'gpu-clusters' && slug() !== 'ai-chat-bot') {
+          @if (!isEmailSecurityEnterprise() && slug() !== 'open-ai-managed-services' && slug() !== 'vortex-soc' && !isVortexSegSource() && slug() !== 'dfir' && slug() !== 'managed-google-cloud-gcp' && slug() !== 'docusign' && slug() !== 'rpc-nodes' && slug() !== 'gaming-servers' && slug() !== 'zoom-conferenceing' && slug() !== 'managed-pki' && slug() !== 'private-ca' && slug() !== 'iot-pki' && slug() !== 'iot-device-certificates' && slug() !== 'cloud-code-signing' && slug() !== 'certificate-mgmt-solutions' && slug() !== 'matter-dac' && slug() !== 'pki-software' && slug() !== 'windows-365' && slug() !== 'bio-link-digital-visiting-card' && slug() !== 'general-compute' && slug() !== 'wordpress-vps' && slug() !== 'identity-resilience' && slug() !== 'ediscovery-and-compliance' && slug() !== 'cpu-optimized' && slug() !== 'memory-optimized' && slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && slug() !== 'gpu-clusters' && slug() !== 'ai-chat-bot') {
           @if (slug() === 'marketplace') {
             <xh-marketplace-content />
           } @else {
@@ -3725,7 +3730,7 @@
                     aria-labelledby="cloudBackupPricingTitle"
                   >
                     <div class="tally-price-heading">
-                      <h2 id="cloudBackupPricingTitle">Acronics Cloud Backup Plans</h2>
+                      <h2 id="cloudBackupPricingTitle">Acronis Cloud Backup Plans</h2>
                       <p>
                         Select your billing period and choose the Acronis Storage Subscription that
                         fits your workloads.
@@ -5781,6 +5786,7 @@
             slug() !== 'open-ai-managed-services' &&
             v.name !== 'Tally on Cloud' &&
             slug() !== 'zoom-conferenceing' &&
+            slug() !== 'web-security-sitelock' &&
             slug() !== 'bio-link-digital-visiting-card' && slug() !== 'general-compute' && slug() !== 'wordpress-vps' &&
             slug() !== 'video-surveillance-as-a-service' &&
             slug() !== 'claude-backup' &&
@@ -5817,7 +5823,7 @@
             </div>
           }
           
-          <div id="ppRich" [hidden]="slug() === 'wordpress-vps' || slug() === 'general-compute' || slug() === 'bio-link-digital-visiting-card' || slug() === 'acronis-ai' || usesVpsPageTemplate() || slug() === 'managed-mongodb' || slug() === 'managed-redis' || isFrameworkDetail() || slug() === 'comodo-personal-authentication' || slug() === 'digicert-smime-class-1' || slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin' || slug() === 'erp-next-hosting' || slug() === 'odoo-hosting' || slug() === 'email-backup' || slug() === 'sectigo-ssl-certificates' || slug() === 'microsoft-365-to-google-workspace-migration'">
+          <div id="ppRich" [hidden]="isEmailSecurityEnterprise() || slug() === 'wordpress-vps' || slug() === 'general-compute' || slug() === 'bio-link-digital-visiting-card' || slug() === 'acronis-ai' || usesVpsPageTemplate() || slug() === 'managed-mongodb' || slug() === 'managed-redis' || isFrameworkDetail() || slug() === 'comodo-personal-authentication' || slug() === 'digicert-smime-class-1' || slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin' || slug() === 'erp-next-hosting' || slug() === 'odoo-hosting' || slug() === 'email-backup' || slug() === 'sectigo-ssl-certificates' || slug() === 'microsoft-365-to-google-workspace-migration'">
 
 
 

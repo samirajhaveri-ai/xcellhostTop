@@ -8,6 +8,10 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { useScrollingSectionNavigation } from './section-navigation-flow';
 
 type InteractiveContentSource =
+  | 'email-security-enterprise'
+  | 'red-hat'
+  | 'sitelock'
+  | 'ssl-installation-service'
   | 'acronis-ot'
   | 'whats-new'
   | 'fortinet-fortigate'
@@ -110,6 +114,10 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page' | 'sectigo-detail' | 'inference-page' | 'developer-page'>,
     string
   > = {
+    'email-security-enterprise': '/imported-email-security-enterprise.html',
+    'red-hat': '/imported-red-hat.html',
+    'sitelock': '/imported-sitelock.html',
+    'ssl-installation-service': '/imported-ssl-installation-service.html',
     'acronis-ot': '/imported-acronis-ot.html',
     'whats-new': '/imported-whats-new.html',
     'fortinet-fortigate': '/imported-fortinet-fortigate.html',
@@ -222,6 +230,10 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+    'email-security-enterprise': 'Email Security Enterprise, animated mail estate, high availability, DLP, DMARC and archive scenes, estate sizing and change-managed rollout',
+    'red-hat': 'Red Hat services, animated RHEL, Ansible, OpenShift, virtualisation and AI scenes, service explorer and Stack Builder',
+    'sitelock': 'SiteLock Website Security, animated scan, WAF, CDN, patching and trust seal scenes, plans and Why XcellHost',
+    'ssl-installation-service': 'SSL Installation Service, animated installation desk, platforms, pricing, installation configurator and related certificates',
     'acronis-ot': 'Acronis Cyber Protect for OT, animated demo, coverage, plant sizing, recovery calculator and quotation',
     'whats-new': 'What’s New at XcellHost, animated release radar, launch spotlights and filterable release log',
     'fortinet-fortigate': 'Fortinet FortiGate, animated demo, Security Fabric, models, sizing, configuration and FAQs',
@@ -464,18 +476,28 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
       });
     };
     const enquiry = async (event: Event) => {
-      if (this.source !== 'acronis-ot') return;
+      if (this.source !== 'acronis-ot' && this.source !== 'red-hat' && this.source !== 'email-security-enterprise') return;
       const detail = (event as CustomEvent<{
         payload: Record<string, unknown>;
         complete: (result: { ok: boolean; skipped: boolean; ref: string; fallbackUrl: string }) => void;
       }>).detail;
-      const payload = { ...detail.payload, message: detail.payload['sizing'], topic: 'Acronis OT quotation', page: '/acronis-ot' };
+      const redHat = this.source === 'red-hat';
+      const emailSecurity = this.source === 'email-security-enterprise';
+      const topic = emailSecurity ? 'Email Security Enterprise quotation' : redHat ? 'Red Hat quotation' : 'Acronis OT quotation';
+      const subject = topic + ' request';
+      const payload = {
+        ...detail.payload,
+        message: emailSecurity ? detail.payload['summary'] : redHat ? detail.payload['services'] : detail.payload['sizing'],
+        topic,
+        page: emailSecurity ? '/email-security-enterprise' : redHat ? '/vendor-partners/red-hat' : '/acronis-ot',
+      };
       const result = await this.leads.submit('callback', payload);
       detail.complete({
         ...result,
         fallbackUrl: this.leads.mailtoLink(
-          'Acronis OT quotation request',
-          ['name', 'company', 'email', 'phone', 'sizing'].map(key => `${key}: ${String(detail.payload[key] ?? '')}`).join('\n'),
+          subject,
+          (emailSecurity ? ['name', 'company', 'email', 'phone', 'summary'] : redHat ? ['name', 'company', 'email', 'phone', 'services', 'servers'] : ['name', 'company', 'email', 'phone', 'sizing'])
+            .map(key => `${key}: ${String(detail.payload[key] ?? '')}`).join('\n'),
         ),
       });
     };

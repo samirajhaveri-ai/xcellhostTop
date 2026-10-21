@@ -9,6 +9,7 @@ import { DocRequestService } from './core/doc-request.service';
 import { CallbackTopicService } from './overlays/callback-topic.service';
 import { SiteCopyService } from './core/site-copy.service';
 import { installBookmarkScrolling } from './sections/bookmark-scroll';
+import { installFaqLayout } from './sections/faq-layout';
 import {
   BackToTopComponent,
   CallbackModalComponent,
@@ -89,6 +90,7 @@ export class App {
     inject(SiteCopyService);
     afterNextRender(() => {
       this.destroyRef.onDestroy(installBookmarkScrolling(this.document));
+      this.destroyRef.onDestroy(installFaqLayout(this.document));
     });
     const captureClick = (event: Event): void => this.onDocumentClick(event as MouseEvent);
     this.document.addEventListener('click', captureClick, true);

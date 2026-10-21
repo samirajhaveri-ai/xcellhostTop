@@ -5,12 +5,27 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+
   { path: 'accops-hyworks', title: 'Accops HyWorks | XcellHost', data: { accopsSource: 'accops-hyworks' }, loadComponent: () => import('./pages/accops-product.page').then(m => m.AccopsProductPage) },
   { path: 'accops-hysecure', title: 'Accops HySecure | XcellHost', data: { accopsSource: 'accops-hysecure' }, loadComponent: () => import('./pages/accops-product.page').then(m => m.AccopsProductPage) },
   { path: 'accops-hyid', title: 'Accops HyID | XcellHost', data: { accopsSource: 'accops-hyid' }, loadComponent: () => import('./pages/accops-product.page').then(m => m.AccopsProductPage) },
   { path: 'accops-hylabs', title: 'Accops HyLabs | XcellHost', data: { accopsSource: 'accops-hylabs' }, loadComponent: () => import('./pages/accops-product.page').then(m => m.AccopsProductPage) },
   { path: 'accops-hydesk', title: 'Accops HyDesk | XcellHost', data: { accopsSource: 'accops-hydesk' }, loadComponent: () => import('./pages/accops-product.page').then(m => m.AccopsProductPage) },
   { path: 'more-from-accops', title: 'More From Accops | XcellHost', data: { accopsSource: 'more-from-accops' }, loadComponent: () => import('./pages/accops-product.page').then(m => m.AccopsProductPage) },
+
+
+  {
+    path: 'vendor-partners/red-hat',
+    title: 'Red Hat Partner India | XcellHost',
+    loadComponent: () => import('./pages/red-hat.page').then(m => m.RedHatPage),
+  },
+  { path: 'red-hat', redirectTo: 'vendor-partners/red-hat', pathMatch: 'full' },
+  {
+    path: 'ssl-installation-service',
+    title: 'SSL Installation Service | XcellHost',
+    loadComponent: () => import('./pages/ssl-installation-service.page').then(m => m.SslInstallationServicePage),
+  },
+  { path: 'under-construction/ssl-installation-service', redirectTo: 'ssl-installation-service', pathMatch: 'full' },
 
   ...['ai-identity-security', 'ai-security-platform', 'ai-security-audit', 'ai-security-assessment', 'ai-red-teaming-services'].map(path => ({
     path,
