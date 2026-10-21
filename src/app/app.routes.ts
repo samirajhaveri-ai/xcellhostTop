@@ -111,7 +111,7 @@ export const routes: Routes = [
   { path: 'network-access-control-nac', title: 'Genian NAC | XcellHost', loadComponent: () => import('./pages/genian-nac.page').then(m => m.GenianNacPage) },
 
   // Veritas renders the supplied page content inside the existing site shell.
-  { path: 'veritas', title: 'Veritas AI Visibility & SEO | XcellHost', loadComponent: () => import('./pages/veritas.page').then(m => m.VeritasPage) },
+  { path: 'veritas', title: 'AI Visibility & SEO | XcellHost', loadComponent: () => import('./pages/veritas.page').then(m => m.VeritasPage) },
 
   { path: 'genian-nac', title: 'Genian NAC | XcellHost', loadComponent: () => import('./pages/genian-nac.page').then(m => m.GenianNacPage) },
   { path: 'bare-metal-servers/checkout', title: 'Complete Your Bare Metal Server Order | XcellHost', data: { checkoutProduct: 'bare-metal' }, loadComponent: () => import('./pages/checkout.page').then(m => m.CheckoutPage) },

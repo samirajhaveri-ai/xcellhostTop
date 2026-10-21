@@ -171,19 +171,7 @@
             </li>
           </ul>
           <div class="hctas hero-actions">
-            <a
-              class="btn btn-ghost mag"
-              href="https://wa.me/918657032540?text=Hi%2C%20I%20am%20interested%20in%20the%20Microsoft%20365%20Enterprise%20screenshot%20tour."
-              >Screenshot Tour</a
-            ><a
-              class="btn btn-ghost mag"
-              href="https://wa.me/918657032540?text=Hi%2C%20I%20am%20interested%20in%20the%20Microsoft%20365%20Enterprise%207-day%20free%20trial."
-              >7 Days Free Trial</a
-            ><a
-              class="btn btn-primary mag"
-              href="https://wa.me/918657032540?text=Hi%2C%20I%20am%20interested%20in%20the%20Microsoft%20365%20Enterprise%20consultation."
-              >Let's Talk</a
-            >
+            <button type="button" class="btn btn-ghost mag" (click)="heroAction.emit('tour')">Screenshot Tour</button><button type="button" class="btn btn-ghost mag" (click)="heroAction.emit('trial')">7 Days Free Trial</button><button type="button" class="btn btn-primary mag" (click)="heroAction.emit('callback')">Let's Talk</button>
           </div>
           <div class="badges" style="margin: 26px 0 0">
             <span class="badge or"
@@ -221,12 +209,7 @@
               >Data-in-India · DPDP · GST</span
             >
           </div>
-          <div class="hstats">
-            <div><b>₹3,000</b><span>E3 /user/mo*</span></div>
-            <div><b>₹4,920</b><span>E5 /user/mo*</span></div>
-            <div><b>₹230</b><span>F1 /user/mo*</span></div>
-            <div><b>No cap</b><span>enterprise scale</span></div>
-          </div>
+          <div class="plan-powered"><span>Powered by</span><span aria-hidden="true">|</span><span class="plan-microsoft"><img src="/assets/images/smb-powered-by/microsoft365-wordmark.webp" alt="Microsoft 365 logo" width="100" height="25"></span><strong class="plan-brand-name">Microsoft 365</strong></div>
         </div>
         <div class="hvis">
           <div class="hart">

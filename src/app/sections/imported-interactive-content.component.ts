@@ -324,7 +324,7 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
 
     'cybird-sections': 'Cybird features, benefits, operation, hardware, threat simulator, comparisons, use cases, partners and pricing',
 
-    veritas: 'Veritas AI visibility and SEO platform, interactive tools and pricing',
+    veritas: 'AI visibility and SEO platform, interactive tools and pricing',
 
 
     'managed-pki': 'Managed PKI overview, comparisons, use-case builder and pricing',
