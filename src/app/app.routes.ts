@@ -5,6 +5,26 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  { path: 'office-365-e1-nonprofit', title: 'Office 365 E1 Nonprofit | XcellHost', data: { microsoft365PlanSource: 'office-365-e1-nonprofit' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'teams-essentials-frontline', title: 'Teams Essentials for Frontline | XcellHost', data: { microsoft365PlanSource: 'teams-essentials-frontline' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'office-365-e5', title: 'Office 365 E5 | XcellHost', data: { microsoft365PlanSource: 'office-365-e5' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'microsoft-365-f1', title: 'Microsoft 365 F1 | XcellHost', data: { microsoft365PlanSource: 'microsoft-365-f1' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'microsoft-365-e5', title: 'Microsoft 365 E5 | XcellHost', data: { microsoft365PlanSource: 'microsoft-365-e5' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'microsoft-365-e3', title: 'Microsoft 365 E3 | XcellHost', data: { microsoft365PlanSource: 'microsoft-365-e3' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'office-365-e1', title: 'Office 365 E1 | XcellHost', data: { microsoft365PlanSource: 'office-365-e1' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'office-365-e3', title: 'Office 365 E3 | XcellHost', data: { microsoft365PlanSource: 'office-365-e3' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'office-365-f3', title: 'Office 365 F3 | XcellHost', data: { microsoft365PlanSource: 'office-365-f3' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'microsoft-365-f3', title: 'Microsoft 365 F3 | XcellHost', data: { microsoft365PlanSource: 'microsoft-365-f3' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'office-365-e3-nonprofit', title: 'Office 365 E3 Nonprofit | XcellHost', data: { microsoft365PlanSource: 'office-365-e3-nonprofit' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'microsoft-365-business-premium-nonprofit', title: 'Microsoft 365 Business Premium Nonprofit | XcellHost', data: { microsoft365PlanSource: 'microsoft-365-business-premium-nonprofit' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'microsoft-365-e3-nonprofit', title: 'Microsoft 365 E3 Nonprofit | XcellHost', data: { microsoft365PlanSource: 'microsoft-365-e3-nonprofit' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'microsoft-365-f3-nonprofit', title: 'Microsoft 365 F3 Nonprofit | XcellHost', data: { microsoft365PlanSource: 'microsoft-365-f3-nonprofit' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'microsoft-365-e5-nonprofit', title: 'Microsoft 365 E5 Nonprofit | XcellHost', data: { microsoft365PlanSource: 'microsoft-365-e5-nonprofit' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+
+  { path: 'hybrid-cloud', title: 'Private Cloud | XcellHost', data: { cloudSource: 'hybrid-cloud' }, loadComponent: () => import('./pages/cloud-infrastructure.page').then(m => m.CloudInfrastructurePage) },
+  { path: 'global-cloudthe', redirectTo: 'global-cloud', pathMatch: 'full' },
+  { path: 'global-cloud', title: 'Global Cloud | XcellHost', data: { cloudSource: 'global-cloud' }, loadComponent: () => import('./pages/cloud-infrastructure.page').then(m => m.CloudInfrastructurePage) },
+  { path: 'co-location-services', title: 'Co-Location Services | XcellHost', data: { cloudSource: 'co-location-services' }, loadComponent: () => import('./pages/cloud-infrastructure.page').then(m => m.CloudInfrastructurePage) },
 
   ...[
     { path: 'microsoft-entra-workload-id', name: 'Microsoft Entra Workload ID', description: 'Secure workload identities, applications and service principals with Microsoft Entra.' },
