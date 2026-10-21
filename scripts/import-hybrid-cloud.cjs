@@ -3,6 +3,8 @@ const path = require('node:path');
 
 if (!process.argv[2]) throw new Error('Pass the supplied hybrid-cloud.html file.');
 const root = path.resolve(__dirname, '..');
+// Keep this Hybrid Cloud document separate from the Private Cloud page mapped to /hybrid-cloud.
+
 const source = fs.readFileSync(process.argv[2], 'utf8');
 const originalMain = source.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1];
 const boundary = originalMain.search(/<section\b[^>]*id="faq"/);
@@ -38,6 +40,6 @@ const runtime = localLinks([...source.matchAll(/<script\b[^>]*>[\s\S]*?<\/script
   .replace(/(['"])(?:xcellhost-)?([a-z0-9-]+)\.html\1/g, (_, quote, slug) => quote + '/' + slug + quote)
   .replace("return '<a href=\"'+x[0]+'\">'", "return '<a target=\"_top\" href=\"'+x[0]+'\">'");
 const html = '<!doctype html><html lang="en-IN" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hybrid Cloud | XcellHost</title>' + fonts + styles + titleStyles + '<link rel="stylesheet" href="/assets/styles/hero-ask-ai.css"><link rel="stylesheet" href="/assets/styles/faq-layout.css"></head><body><main id="main">' + content + '</main><script src="/assets/scripts/hosting-tools-viewport.js"></script>' + core + visuals + runtime + '<script src="/assets/scripts/hero-ask-ai.js"></script></body></html>';
-fs.writeFileSync(path.join(root, 'public/imported-hybrid-cloud.html'), html);
+fs.writeFileSync(path.join(root, 'public/imported-hybrid-cloud-service.html'), html);
 console.log('Imported Hybrid Cloud hero through Why XcellHost, with five animated scenes, hybrid pricing, placement advisor and link sizer.');
 
