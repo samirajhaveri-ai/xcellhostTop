@@ -816,6 +816,10 @@ export const routes: Routes = [
     path: 'acronis-ot',
     loadComponent: () => import('./pages/acronis-ot.page').then((m) => m.AcronisOtPage),
   },
+  {
+    path: 'anti-ransomware-warranty',
+    loadComponent: () => import('./pages/anti-ransomware-warranty.page').then((m) => m.AntiRansomwareWarrantyPage),
+  },
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
   { path: '**', redirectTo: '' },
 ];

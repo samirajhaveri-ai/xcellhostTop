@@ -1,4 +1,5 @@
 
+import { AntiRansomwareWarrantyComponent } from '../sections/anti-ransomware-warranty.component';
 import { ContainerRegistryHeroComponent } from '../sections/container-registry-hero.component';
 import { CybirdOverviewComponent } from '../sections/cybird-overview.component';
 import { ContainerServiceHeroComponent } from '../sections/container-service-hero.component';
@@ -724,6 +725,7 @@ interface ProductTourSlide {
     CpanelServersHeroComponent,
     CpanelServersOverviewComponent,
     PleskServersOverviewComponent,
+    AntiRansomwareWarrantyComponent,
   ],
   templateUrl: './product.page.html',
   styles: [`

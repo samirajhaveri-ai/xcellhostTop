@@ -3360,7 +3360,7 @@
                             (click)="selectTallyPlan(plan, $event)"
                           >
                             <strong>&#8377;{{ formatInr(tallyPrice(plan)) }}</strong>
-                            <span>Buy now <span aria-hidden="true">→</span></span>
+                            <span>Buy Now <span aria-hidden="true">&#8594;</span></span>
                             <small class="tally-billing-note"
                               >+GST · {{ activeTallyTerm().label }} billing</small
                             >
@@ -4820,6 +4820,10 @@
                       </article>
                     }
                   </div>
+                }
+
+                @if (isCloudBackup() || isAdvancedEdr()) {
+                  <xh-anti-ransomware-warranty />
                 }
 
                 @if (isCloudBackup()) {
