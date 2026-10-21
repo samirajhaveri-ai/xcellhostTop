@@ -63,12 +63,9 @@
 .dc-cmp-table td.dc-tr-l{font-weight:700;color:var(--navy);font-family:var(--font-h)}
 .dc-cmp-table td.dc-tc-hl{background:rgba(22,163,74,.06);color:var(--navy);font-weight:700}
 
-.dc-trust{background:#fff;border-bottom:1px solid var(--line)}
-.dc-trust .dc-wrap{display:grid;grid-template-columns:repeat(5,1fr);gap:0;padding:22px 0}
-.dc-trust div{text-align:center;padding:6px 10px;border-right:1px solid var(--line)}
-.dc-trust div:last-child{border:0}
-.dc-trust b{display:block;font:800 28px/1.1 var(--font-h);color:var(--navy);letter-spacing:-.02em}
-.dc-trust span{font:600 11px var(--font-m);color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
+.dc-trust{background:var(--ice);border-bottom:1px solid var(--line)}
+.dc-trust .dc-wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px 14px;padding:10px 24px;font-size:12.5px;color:var(--mute);font-weight:500}
+.dc-trust b{color:var(--navy);font-family:var(--font-m)}
 
 .dc-diff{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 .dc-diff-i{display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:18px 20px;transition:.3s}
@@ -92,21 +89,13 @@
 .dc-sz-table td.dc-tc-hl::before{display:none}
 }
 /* Preserve the supplied full-width bands without affecting other product pages. */
-.dc-trust .dc-wrap>div:last-child{border:0}
 .dc-cmp-table a{white-space:nowrap}
 @media(max-width:1100px){.dc-grid4,.dc-steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:860px){
  .dc-grid3,.dc-grid4,.dc-steps,.dc-diff{grid-template-columns:1fr}
  .dc-pp-sec{padding:40px 0}
- .dc-trust .dc-wrap{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px 0}
- .dc-trust .dc-wrap>div:nth-child(3){border:0}
- .dc-trust b{font-size:24px}
 }
 @media(max-width:480px){
- .dc-trust .dc-wrap{grid-template-columns:repeat(2,minmax(0,1fr))}
- .dc-trust .dc-wrap>div:nth-child(3){border-right:1px solid var(--line)}
- .dc-trust .dc-wrap>div:nth-child(even){border:0}
- .dc-trust .dc-wrap>div:last-child{grid-column:1/-1}
  .dc-intg span{padding:9px 12px;font-size:11px}
 }
 @media(prefers-reduced-motion:reduce){

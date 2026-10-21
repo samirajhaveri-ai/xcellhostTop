@@ -2646,6 +2646,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+                {
+                "title": "Purple Team Assessment",
+                "pill": null,
+                "desc": null
+              },
               {
                 "title": "OT Assessment",
                 "pill": null,
@@ -2978,27 +2983,27 @@ export const MEGA_MENU: MenuTop[] = [
             "items": [
               
               {
-                "title": "Synapsem-AI training Integrated Program",
+                "title": "Synapsem-AI Training Integrated Program",
                 "pill": null,
                 "desc": "Build practical AI skills through a structured training program"
               },
               {
-                "title": "Synapsem-AI training Live Online",
+                "title": "Synapsem-AI Training Live Online",
                 "pill": null,
                 "desc": "Learn AI through live, instructor-led online sessions"
               },
               {
-                "title": "AI training for Medical Doctors",
+                "title": "AI Training for Medical Doctors",
                 "pill": null,
                 "desc": "Explore practical AI tools for clinical workflows"
               },
               {
-                "title": "AI for Educators",
+                "title": "AI Training for Educators",
                 "pill": null,
                 "desc": "Use AI to support lesson planning and classroom learning"
               },
               {
-                "title": "AI training for Insurance Professionals",
+                "title": "AI Training for Insurance Professionals",
                 "pill": null,
                 "desc": "Apply AI to insurance workflows and customer service"
               },

@@ -164,10 +164,20 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
   },
   {
+    path: 'geotrust-true-businessid-ev/checkout',
+    title: 'GeoTrust True BusinessID with EV Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-truebusiness-id-with-ev-checkout.page').then(m => m.GeoTrustTrueBusinessIdWithEvCheckoutPage),
+  },
+  {
     path: 'geotrust-true-businessid-ev',
     title: 'GeoTrust True BusinessID with EV | XcellHost',
     data: { businessIdVariant: 'ev' },
     loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
+  },
+  {
+    path: 'geotrust-true-businessid-ev-multi-domain/checkout',
+    title: 'GeoTrust TrueBusiness ID w/ EV Multi-Domain Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-truebusiness-id-ev-multi-domain-checkout.page').then(m => m.GeoTrustTrueBusinessIdEvMultiDomainCheckoutPage),
   },
   {
     path: 'geotrust-true-businessid-ev-multi-domain', data: { businessIdVariant: 'evMulti' },
@@ -220,20 +230,80 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/geotrust-dv-ssl-flex.page').then(m => m.GeoTrustDvSslFlexPage),
   },
   {
+    path: 'geotrust-true-businessid-ev-flex/checkout',
+    title: 'GeoTrust TrueBusiness ID EV (FLEX) Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-truebusiness-id-ev-flex-checkout.page').then(m => m.GeoTrustTrueBusinessIdEvFlexCheckoutPage),
+  },
+  {
     path: 'geotrust-true-businessid-ev-flex',
     title: 'GeoTrust TrueBusiness ID EV (FLEX) | XcellHost',
     loadComponent: () => import('./pages/geotrust-true-businessid-ev-flex.page').then(m => m.GeoTrustTrueBusinessIdEvFlexPage),
   },
 
+  {
+    path: 'digicert-ev-multi-domain-ssl/checkout',
+    title: 'DigiCert EV Multi-Domain SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-ev-multi-domain-ssl-checkout.page').then(m => m.DigicertEvMultiDomainSslCheckoutPage),
+  },
   {path:'digicert-ev-multi-domain-ssl',title:'DigiCert EV Multi-Domain SSL - XcellHost',data:{sslSlug:'digicert-ev-multi-domain-ssl'},loadComponent:()=>import('./pages/digicert-ssl-detail.page').then(m=>m.DigicertSslDetailPage)},
+  {
+    path: 'digicert-wildcard-ssl/checkout',
+    title: 'DigiCert Wildcard SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-wildcard-ssl-checkout.page').then(m => m.DigicertWildcardSslCheckoutPage),
+  },
   {path:'digicert-wildcard-ssl',title:'DigiCert Wildcard SSL - XcellHost',data:{sslSlug:'digicert-wildcard-ssl'},loadComponent:()=>import('./pages/digicert-ssl-detail.page').then(m=>m.DigicertSslDetailPage)},
+  {
+    path: 'digicert-secure-site-ssl/checkout',
+    title: 'DigiCert Secure Site SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-secure-site-ssl-checkout.page').then(m => m.DigicertSecureSiteSslCheckoutPage),
+  },
+  {
+    path: 'digicert-secure-site-ev-ssl/checkout',
+    title: 'DigiCert Secure Site EV SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-secure-site-ev-ssl-checkout.page').then(m => m.DigicertSecureSiteEvSslCheckoutPage),
+  },
   {path:'digicert-secure-site-ev-ssl',title:'DigiCert Secure Site EV SSL - XcellHost',data:{sslSlug:'digicert-secure-site-ev-ssl'},loadComponent:()=>import('./pages/digicert-ssl-detail.page').then(m=>m.DigicertSslDetailPage)},
+  {
+    path: 'digicert-secure-site-multi-domain-ssl/checkout',
+    title: 'DigiCert Secure Site Multi-Domain Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-secure-site-multi-domain-checkout.page').then(m => m.DigicertSecureSiteMultiDomainCheckoutPage),
+  },
   {path:'digicert-secure-site-multi-domain-ssl',title:'DigiCert Secure Site Multi-Domain - XcellHost',data:{sslSlug:'digicert-secure-site-multi-domain-ssl'},loadComponent:()=>import('./pages/digicert-ssl-detail.page').then(m=>m.DigicertSslDetailPage)},
+  {
+    path: 'digicert-secure-site-wildcard-ssl/checkout',
+    title: 'DigiCert Secure Site Wildcard Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-secure-site-wildcard-checkout.page').then(m => m.DigicertSecureSiteWildcardCheckoutPage),
+  },
   {path:'digicert-secure-site-wildcard-ssl',title:'DigiCert Secure Site Wildcard - XcellHost',data:{sslSlug:'digicert-secure-site-wildcard-ssl'},loadComponent:()=>import('./pages/digicert-ssl-detail.page').then(m=>m.DigicertSslDetailPage)},
+  {
+    path: 'digicert-secure-site-pro-ssl/checkout',
+    title: 'DigiCert Secure Site Pro SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-secure-site-pro-ssl-checkout.page').then(m => m.DigicertSecureSiteProSslCheckoutPage),
+  },
   {path:'digicert-secure-site-pro-ssl',title:'DigiCert Secure Site Pro SSL - XcellHost',data:{sslSlug:'digicert-secure-site-pro-ssl'},loadComponent:()=>import('./pages/digicert-ssl-detail.page').then(m=>m.DigicertSslDetailPage)},
+  {
+    path: 'digicert-secure-site-pro-ev-ssl/checkout',
+    title: 'DigiCert Secure Site Pro EV SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-secure-site-pro-ev-ssl-checkout.page').then(m => m.DigicertSecureSiteProEvSslCheckoutPage),
+  },
   {path:'digicert-secure-site-pro-ev-ssl',title:'DigiCert Secure Site Pro EV SSL - XcellHost',data:{sslSlug:'digicert-secure-site-pro-ev-ssl'},loadComponent:()=>import('./pages/digicert-ssl-detail.page').then(m=>m.DigicertSslDetailPage)},
+  {
+    path: 'digicert-multi-domain-ssl/checkout',
+    title: 'DigiCert Multi-Domain SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-multi-domain-ssl-checkout.page').then(m => m.DigicertMultiDomainSslCheckoutPage),
+  },
   { path: 'digicert-multi-domain-ssl', title: 'DigiCert Multi-Domain SSL - XcellHost', loadComponent: () => import('./pages/digicert-multi-domain-ssl.page').then(m => m.DigicertMultiDomainSslPage) },
+  {
+    path: 'digicert-ev-ssl/checkout',
+    title: 'DigiCert Extended Validation SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-extended-validation-ssl-checkout.page').then(m => m.DigicertExtendedValidationSslCheckoutPage),
+  },
   { path: 'digicert-ev-ssl', title: 'DigiCert EV SSL - XcellHost', loadComponent: () => import('./pages/digicert-ev-ssl.page').then(m => m.DigicertEvSslPage) },
+  {
+    path: 'digicert-standard-ssl/checkout',
+    title: 'DigiCert Standard SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-standard-ssl-checkout.page').then(m => m.DigicertStandardSslCheckoutPage),
+  },
   { path: 'digicert-standard-ssl', title: 'DigiCert Standard SSL - XcellHost', loadComponent: () => import('./pages/digicert-standard-ssl.page').then(m => m.DigicertStandardSslPage) },
 
   { path: 'managed-grc', title: 'Managed GRC - XcellHost', data: { consultingSlug: 'managed-grc' }, loadComponent: () => import('./pages/security-consulting.page').then(m => m.SecurityConsultingPage) },
