@@ -5,6 +5,13 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  { path: 'accops-hyworks', title: 'Accops HyWorks | XcellHost', data: { accopsSource: 'accops-hyworks' }, loadComponent: () => import('./pages/accops-product.page').then(m => m.AccopsProductPage) },
+  { path: 'accops-hysecure', title: 'Accops HySecure | XcellHost', data: { accopsSource: 'accops-hysecure' }, loadComponent: () => import('./pages/accops-product.page').then(m => m.AccopsProductPage) },
+  { path: 'accops-hyid', title: 'Accops HyID | XcellHost', data: { accopsSource: 'accops-hyid' }, loadComponent: () => import('./pages/accops-product.page').then(m => m.AccopsProductPage) },
+  { path: 'accops-hylabs', title: 'Accops HyLabs | XcellHost', data: { accopsSource: 'accops-hylabs' }, loadComponent: () => import('./pages/accops-product.page').then(m => m.AccopsProductPage) },
+  { path: 'accops-hydesk', title: 'Accops HyDesk | XcellHost', data: { accopsSource: 'accops-hydesk' }, loadComponent: () => import('./pages/accops-product.page').then(m => m.AccopsProductPage) },
+  { path: 'more-from-accops', title: 'More From Accops | XcellHost', data: { accopsSource: 'more-from-accops' }, loadComponent: () => import('./pages/accops-product.page').then(m => m.AccopsProductPage) },
+
   ...['ai-identity-security', 'ai-security-platform', 'ai-security-audit', 'ai-security-assessment', 'ai-red-teaming-services'].map(path => ({
     path,
     title: ({ 'ai-identity-security': 'AI Identity Security', 'ai-security-platform': 'AI Security Platform', 'ai-security-audit': 'AI Security Audit', 'ai-security-assessment': 'AI Security Assessment', 'ai-red-teaming-services': 'AI Red Teaming Services' } as Record<string, string>)[path] + ' | XcellHost',
