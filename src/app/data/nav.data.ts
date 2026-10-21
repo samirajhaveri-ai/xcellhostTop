@@ -2908,37 +2908,37 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "AI Chat Bot",
                 "pill": null,
-                "desc": "Get your Bot name now 🚀"
+                "desc": "Answer customer questions with an AI chat assistant"
               },
               {
                 "title": "AI Receptionist",
                 "pill": null,
-                "desc": "Get your Bot name now 🚀"
+                "desc": "Handle incoming calls and appointment bookings with AI"
               },
               {
                 "title": "AI Voice Bot",
                 "pill": "1-yr free ext.",
-                "desc": "Get Voice Free Extension 🆓"
+                "desc": "Automate customer conversations with a voice assistant"
               },
               {
                 "title": "AI Sales Bot",
                 "pill": null,
-                "desc": "Sale and manage multiple easily 🔎"
+                "desc": "Engage prospects and qualify leads with AI"
               },
               {
                 "title": "AI Lab As Service",
                 "pill": null,
-                "desc": "Secure your Bot until ready for use 🕰️"
+                "desc": "Experiment with AI models in a managed lab environment"
               },
               {
                 "title": "AIops",
                 "pill": null,
-                "desc": "Automate IT operations with AI"
+                "desc": "Detect issues and automate routine IT operations with AI"
               },
               {
                 "title": "Agent Studio",
                 "pill": null,
-                "desc": "Build and manage your AI agents"
+                "desc": "Build and manage AI agents for business workflows"
               },
               
               
@@ -2957,12 +2957,12 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "AI App Builder",
                 "pill": null,
-                "desc": "Reliable AI App Builder hosting 💻"
+                "desc": "Create AI-powered applications for your business"
               },
               {
                 "title": "AI IDE Lab",
                 "pill": null,
-                "desc": "Optimized AI IDE Lab ⚡"
+                "desc": "Develop and test AI projects in a dedicated workspace"
               },
             ]
           }
@@ -2980,27 +2980,27 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Synapsem-AI training Integrated Program",
                 "pill": null,
-                "desc": "Reliable AI Website Builder hosting 🐧"
+                "desc": "Build practical AI skills through a structured training program"
               },
               {
                 "title": "Synapsem-AI training Live Online",
                 "pill": null,
-                "desc": "Reliable AI App Builder hosting 💻"
+                "desc": "Learn AI through live, instructor-led online sessions"
               },
               {
                 "title": "AI training for Medical Doctors",
                 "pill": null,
-                "desc": "Reliable AI App Builder hosting 💻"
+                "desc": "Explore practical AI tools for clinical workflows"
               },
               {
                 "title": "AI for Educators",
                 "pill": null,
-                "desc": "Reliable AI App Builder hosting 💻"
+                "desc": "Use AI to support lesson planning and classroom learning"
               },
               {
                 "title": "AI training for Insurance Professionals",
                 "pill": null,
-                "desc": "Reliable AI App Builder hosting 💻"
+                "desc": "Apply AI to insurance workflows and customer service"
               },
             ]
           }
@@ -3017,17 +3017,17 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "AI App Builder",
                 "pill": null,
-                "desc": "Reliable AI App Builder hosting 💻"
+                "desc": "Create AI-powered applications for your business"
               },
               {
                 "title": "AI Website Builder",
                 "pill": null,
-                "desc": "Reliable AI Website Builder hosting 🐧"
+                "desc": "Create business websites with AI-assisted design tools"
               },
               {
                 "title": "AI IDE Lab",
                 "pill": null,
-                "desc": "Optimized AI IDE Lab ⚡"
+                "desc": "Develop and test AI projects in a dedicated workspace"
               },
             ]
           }
@@ -3044,27 +3044,27 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "AI Red Teaming Services",
                 "pill": null,
-                "desc": "Optimized AI IDE Lab ⚡"
+                "desc": "Test AI systems for prompt attacks and unsafe responses"
               },
               {
                 "title": "AI Security Assessment",
                 "pill": null,
-                "desc": "Optimized AI IDE Lab ⚡"
+                "desc": "Identify vulnerabilities and risks in your AI systems"
               },
               {
                 "title": "AI Security Audit",
                 "pill": null,
-                "desc": "Optimized AI IDE Lab ⚡"
+                "desc": "Review AI security controls and data protection practices"
               },
               {
                 "title": "AI Security Platform",
                 "pill": null,
-                "desc": "Optimized AI IDE Lab ⚡"
+                "desc": "Monitor AI activity and manage threats across AI systems"
               },
               {
                 "title": "AI Identity Security",
                 "pill": null,
-                "desc": "Optimized AI IDE Lab ⚡"
+                "desc": "Manage access and permissions for AI agents and services"
               },
             ]
           }
@@ -3081,17 +3081,17 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "AI App Builder",
                 "pill": null,
-                "desc": "Reliable AI App Builder hosting 💻"
+                "desc": "Create AI-powered applications for your business"
               },
               {
                 "title": "AI Website Builder",
                 "pill": null,
-                "desc": "Reliable AI Website Builder hosting 🐧"
+                "desc": "Create business websites with AI-assisted design tools"
               },
               {
                 "title": "AI IDE Lab",
                 "pill": null,
-                "desc": "Optimized AI IDE Lab ⚡"
+                "desc": "Develop and test AI projects in a dedicated workspace"
               },
             ]
           }
@@ -3108,12 +3108,12 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Anthropic Managed Services",
                 "pill": null,
-                "desc": "Reliable AI Website Builder hosting 🐧"
+                "desc": "Get help deploying and managing Anthropic Claude solutions"
               },
               {
                 "title": "OpenAI Managed Services",
                 "pill": null,
-                "desc": "Reliable AI App Builder hosting 💻"
+                "desc": "Get help deploying and managing OpenAI solutions"
               },
               
             ]
@@ -3168,12 +3168,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Secure remote access, unattended connections and support",
                 "href": "/anydesk"
               },
-              {
-                "title": "Partner Overview",
-                "pill": "Partner",
-                "desc": "Resell cloud, security and AI under your own brand",
-                "href": "/under-construction/partner-overview"
-              },
+              
             ]
           }
         ]
@@ -3278,6 +3273,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "All Fortinet Products",
                 "pill": null,
                 "desc": null
+              },
+              {
+                "title": "FortiGate",
+                "pill": null,
+                "desc": "Protect your network with Fortinet next-generation firewalls",
+                "href": "/fortinet-fortigate"
               },
             ]
           }
@@ -4122,19 +4123,28 @@ export const MEGA_MENU: MenuTop[] = [
       },
       {
         "g": "13",
-        "label": "Acronis AI",
+        "label": "Acronis Solutions",
         "on": false,
         "groups": [
           {
-            "heading": "Acronis AI",
+            "heading": "Acronis Solutions",
             "items": [
               {
                 "title": "Acronis AI",
                 "pill": "In focus",
                 "desc": "AI-native protection, management and automation on one platform"
               },
-              
-            ]
+               {
+                "title": "Cyberfit Score Tool",
+                "pill": "In focus",
+                "desc": "AI-native protection, management and automation on one platform"
+              },
+               {
+                "title": "Anti Ransomware Warranty",
+                "pill": "In focus",
+                "desc": "AI-native protection, management and automation on one platform"
+              },
+            ],
           }
         ]
       },
@@ -4725,6 +4735,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Plesk Obsidian and WordPress management walkthroughs",
                 "href": "/plesk-demo-center"
+              },
+              {
+                "title": "Tally Demo Center",
+                "pill": null,
+                "desc": "Explore Tally on Cloud demos and product walkthroughs",
+                "href": "/tally-demo-center"
               },
               {
                 "title": "cPanel Demo Center",
