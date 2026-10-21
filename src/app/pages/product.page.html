@@ -452,6 +452,8 @@
         <xh-nist-csf-2-0-content [slug]="slug()" [hero]="true" />
       } @else if (isInfrastructure()) {
         <xh-infrastructure-hero (talkRequested)="openCallback($event)" (trialRequested)="openTrial($event)" (tourRequested)="openProductScreenshotTour()" />
+      } @else if (slug() === 'web-security-sitelock') {
+        <xh-imported-interactive-content source="sitelock" />
       } @else {
       @if (!isVmc() && !isCmc() && slug() !== 'performance-cloud' && slug() !== 'gpu-servers') {
       <div
@@ -2202,7 +2204,7 @@
       }
       }
 
-      @if (!isDigiCert() && slug() !== 'digicert-smime-ov' && slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && !isResellerProgram() && !isMicrosoftEnterprisePage() && slug() !== 'cloud-devops-services' && slug() !== 'server-management' && slug() !== 'microsoft-365-backup' && slug() !== 'domain-whois-lookup' && slug() !== 'managed-oracle-cloud' && slug() !== 'ai-voice-bot') {
+      @if (slug() !== 'web-security-sitelock' && !isDigiCert() && slug() !== 'digicert-smime-ov' && slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && !isResellerProgram() && !isMicrosoftEnterprisePage() && slug() !== 'cloud-devops-services' && slug() !== 'server-management' && slug() !== 'microsoft-365-backup' && slug() !== 'domain-whois-lookup' && slug() !== 'managed-oracle-cloud' && slug() !== 'ai-voice-bot') {
         <div class="pp-trust" [class.reference-trust]="referenceSectionNav() !== null">
           <div class="wrap">
             @if (isCopilotStudio()) {
@@ -2316,7 +2318,8 @@
     }
 
     }
-    @if (isSiteLock()) {
+
+    @if (isSiteLock() && slug() !== 'web-security-sitelock') {
       <xh-sitelock-content />
     }
 
@@ -5781,6 +5784,7 @@
             slug() !== 'open-ai-managed-services' &&
             v.name !== 'Tally on Cloud' &&
             slug() !== 'zoom-conferenceing' &&
+            slug() !== 'web-security-sitelock' &&
             slug() !== 'bio-link-digital-visiting-card' && slug() !== 'general-compute' && slug() !== 'wordpress-vps' &&
             slug() !== 'video-surveillance-as-a-service' &&
             slug() !== 'claude-backup' &&

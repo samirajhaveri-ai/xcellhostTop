@@ -1988,6 +1988,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": "Popular",
                 "desc": null
               },
+              {
+                "title": "SSL Installation Service",
+                "href": "/ssl-installation-service",
+                "pill": "Popular",
+                "desc": "Expert SSL installation, CSR generation, certificate chain setup and testing."
+              },
               
            
             ]

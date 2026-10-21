@@ -34,7 +34,7 @@
   </section>
   <section class="gcc-section gcc-faq wrap">
     <span class="gcc-eyebrow">FAQ</span><h2>Frequently asked questions</h2>
-    @for (faq of faqs; track faq.question) {<details name="gcc-faq"><summary>{{ faq.question }}</summary><p>{{ faq.answer }}</p></details>}
+    <div class="faqs">@for (faq of faqs; track faq.question) {<details name="gcc-faq"><summary>{{ faq.question }}</summary><p>{{ faq.answer }}</p></details>}</div>
   </section>
   <section class="wrap gcc-cta-wrap"><div class="gcc-cta"><div><h2>Plan your GCC cloud environment</h2><p>Tell us what your team needs. Let's build a practical starting point.</p></div><button type="button" class="btn btn-primary" (click)="enquire()">Let's talk &#8594;</button></div></section>
 </main>
