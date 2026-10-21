@@ -420,7 +420,6 @@ button{font-family:var(--f)}
       <div class="coupon-t">Have a coupon?</div>
       <div class="coupon-row"><input type="text" id="couponInput" placeholder="Enter coupon"><button type="button" id="couponBtn" onclick="applyCoupon()">Apply</button></div>
       <div class="coupon-msg" id="couponMsg"></div>
-      <div class="coupon-hint">Demo (frontend-only): try <b>XCELL10</b> or <b>CLOUD500</b></div>
     </div>
     <div class="pricing">
       <div class="pline"><span id="billLabel">Base Price</span><span class="amt" id="basePrice">₹999</span></div>
@@ -496,7 +495,7 @@ const PRODUCT_NAME = "Remote Monitoring & Management (RMM)";
 /* ── Zoho Billing Hosted Payment Page URLs (per term) ──────────────────────
    All three are the real, confirmed Hosted Payment Pages. The selected term
    uses its matching Zoho Hosted Payment Page URL. The supported `quantity`
-   parameter plus the customer's prefill details are appended (see
+   parameter, the applied coupon_code and the customer's prefill details are appended (see
    buildPaymentUrl / proceedToPayment). No other/unsupported parameters are
    added, and the base plan URLs are never modified. */
 const RMM_1_YEAR_PAYMENT_URL  = "https://billing.zohosecure.in/subscribe/89f70e41fab94bbe565e5f2b5f19a4987c52d4a2a5c1ddf9ffe96301ec91bd77/XLCS-SMB-RMM-YEA";    // XLCS-SMB-RMM-YEA  · ₹1,199/user/year
@@ -504,9 +503,10 @@ const RMM_2_YEAR_PAYMENT_URL  = "https://billing.zohosecure.in/subscribe/89f70e4
 const RMM_3_YEAR_PAYMENT_URL  = "https://billing.zohosecure.in/subscribe/89f70e41fab94bbe565e5f2b5f19a49844c02d70159ed99b866240261bff6799/XLCS-SMB-RMM-3YEA";  // XLCS-SMB-RMM-3YEA · ₹3,597/user/3 years
 const RMM_PAYMENT_URLS = { "1y":RMM_1_YEAR_PAYMENT_URL, "2y":RMM_2_YEAR_PAYMENT_URL, "3y":RMM_3_YEAR_PAYMENT_URL };
 
-/* Demo (frontend-only) coupons — mirror the Tally/EDR checkout. Discount applies
-   to the RMM base price; the RMM unit pricing itself is unchanged. */
-const COUPONS = { "XCELL10":{type:"pct",val:10,label:"10% off"}, "CLOUD500":{type:"flat",val:500,label:"₹500 off"} };
+/* Applies before GST and is forwarded to Zoho Billing as coupon_code.
+   The matching 10% coupon must also be configured in Zoho Billing. */
+const COUPONS = { "XCELLESR10":{type:"pct",val:10,label:"10% off RMM"} };
+function validCoupon(code){ return Object.prototype.hasOwnProperty.call(COUPONS, code); }
 
 /* ── STATE (standalone RMM cart persisted to localStorage; passwords NEVER persisted) ── */
 const CART_KEY = "xcellhost_rmm_cart";
@@ -514,18 +514,19 @@ let state = { step:"account", custType:"new", entity:"individual", termId:"1y", 
 
 /* helpers */
 const $ = s => document.querySelector(s);
-const fmt = n => "₹" + Number(n).toLocaleString("en-IN");
+const fmt = n => "₹" + Number(n).toLocaleString("en-IN", {maximumFractionDigits:2});
+const money = n => Math.round(n*100)/100;
 function plan(){ return RMM_PLANS[state.termId]; }
 function unitPrice(){ return plan().price; }
 function priceReady(){ return unitPrice()!=null; }
 function basePrice(){ const u=unitPrice(); return u==null?null:u*state.quantity; }
 function discountAmt(){
-  const b=basePrice(); if(b==null||!state.coupon||!COUPONS[state.coupon]) return 0;
-  const c=COUPONS[state.coupon]; return c.type==="pct" ? Math.round(b*c.val/100) : Math.min(c.val,b);
+  const b=basePrice(); if(b==null||!validCoupon(state.coupon)) return 0;
+  const c=COUPONS[state.coupon]; return money(Math.min(c.type==="pct" ? b*c.val/100 : c.val,b));
 }
-function subtotal(){ const b=basePrice(); return b==null?null:b-discountAmt(); }
-function gstAmt(){ const s=subtotal(); return s==null?null:Math.round(s*GST_RATE); }
-function grandTotal(){ const s=subtotal(); return s==null?null:s+gstAmt(); }
+function subtotal(){ const b=basePrice(); return b==null?null:money(b-discountAmt()); }
+function gstAmt(){ const s=subtotal(); return s==null?null:money(s*GST_RATE); }
+function grandTotal(){ const s=subtotal(); return s==null?null:money(s+gstAmt()); }
 
 /* ── PERSISTENCE (never writes passwords) ── */
 function saveCart(){
@@ -540,7 +541,7 @@ function loadCart(){
     if(d.termId && RMM_PLANS[d.termId]) state.termId=d.termId;
     if(d.quantity) state.quantity=Math.max(1, parseInt(d.quantity)||1);
     state.inCart=!!d.inCart;
-    if(d.coupon && COUPONS[d.coupon]) state.coupon=d.coupon;
+    state.coupon=validCoupon(d.coupon)?d.coupon:null;
     if(d.custType) state.custType=d.custType;
     if(d.entity) state.entity=d.entity;
     if(d.account) state.account=d.account;   // never contains password
@@ -625,7 +626,7 @@ function renderPayRecap(){
       <div style="display:flex;justify-content:space-between;width:100%;font-size:1.05rem;font-weight:800;border-top:1px solid var(--line);padding-top:10px"><span>Total</span><span style="color:var(--nv)">${ready?fmt(grandTotal()):'To be configured'}</span></div>
     </div>`;
 }
-function renderAll(){ renderTerms(); renderTermDetail(); renderPricing(); renderSummary(); }
+function renderAll(){ renderTerms(); renderTermDetail(); renderPricing(); renderSummary(); if(state.step==="payment") renderPayRecap(); }
 
 /* ============================================================================
    SERVICE INTERACTIONS
@@ -637,9 +638,9 @@ function changeQty(d){ setQty(state.quantity+d); }
 function applyCoupon(){
   const code=$("#couponInput").value.trim().toUpperCase();
   const msg=$("#couponMsg"); msg.className="coupon-msg show";
-  if(!priceReady()){ state.coupon=null; msg.classList.add("no"); msg.textContent="Select a term with confirmed pricing first."; renderAll(); return; }
-  if(!code){ state.coupon=null; msg.classList.add("no"); msg.textContent="Please enter a coupon code."; renderAll(); return; }
-  if(COUPONS[code]){ state.coupon=code; msg.classList.add("ok"); msg.textContent="✓ Coupon applied: "+COUPONS[code].label; }
+  if(!priceReady()){ state.coupon=null; msg.classList.add("no"); msg.textContent="Select a term with confirmed pricing first."; }
+  else if(!code){ state.coupon=null; msg.classList.add("no"); msg.textContent="Please enter a coupon code."; }
+  else if(validCoupon(code)){ state.coupon=code; msg.classList.add("ok"); msg.textContent="✓ Coupon applied: "+COUPONS[code].label; }
   else { state.coupon=null; msg.classList.add("no"); msg.textContent="Invalid coupon code."; }
   saveCart(); renderAll();
 }
@@ -734,7 +735,7 @@ function countryCode(c){
 
 /* Build the final Zoho Hosted Payment Page URL for the selected term and append
    Zoho's supported PREFILL parameters (customer + billing details already captured
-   in state.account / state.profile) plus `quantity`. Everything is URL-encoded via
+   in state.account / state.profile) plus `quantity` and the applied `coupon_code`. Everything is URL-encoded via
    URL / URLSearchParams — values are never hand-concatenated. The base plan URL is
    never modified, only unsupported params are excluded, empty values are omitted,
    and the password is never included. */
@@ -759,6 +760,7 @@ function buildPaymentUrl(termId, qty){
   // GST number only when the customer is GST registered (never an empty tax_reg_no).
   if(p.gstRegistered==="yes" && p.gstin) params.tax_reg_no = p.gstin;
   params.quantity = String(qty);
+  if(validCoupon(state.coupon)) params.coupon_code = state.coupon;
 
   const add=(usp)=>Object.keys(params).forEach(k=>{
     const v=params[k];
