@@ -8,6 +8,24 @@ import { OverlayService } from '../core/overlay.service';
 import { SearchDialogComponent } from './search-dialog.component';
 
 describe('Search dialog live results', () => {
+  it('opens on website search by default', () => {
+    TestBed.configureTestingModule({
+      imports: [SearchDialogComponent],
+      providers: [
+        provideRouter([]),
+        { provide: BlogApiService, useValue: { posts$: of([]), useCases$: of([]), postsStatus: signal('ready') } },
+        { provide: CaseStudiesApiService, useValue: { studies$: of([]) } },
+      ],
+    });
+    const fixture = TestBed.createComponent(SearchDialogComponent);
+    TestBed.inject(OverlayService).open('search');
+    fixture.detectChanges();
+
+    expect(fixture.componentInstance.websiteSearch()).toBeTrue();
+    expect(fixture.nativeElement.querySelector('.srch.open')).not.toBeNull();
+    fixture.destroy();
+  });
+
   for (const dismissal of ['close button', 'Escape handler', 'backdrop'] as const) {
     it(`hides immediately through the ${dismissal}`, () => {
       TestBed.configureTestingModule({
@@ -21,7 +39,6 @@ describe('Search dialog live results', () => {
       const fixture = TestBed.createComponent(SearchDialogComponent);
       const overlay = TestBed.inject(OverlayService);
       overlay.open('search');
-      fixture.componentInstance.websiteSearch.set(true);
       fixture.detectChanges();
       const panel = fixture.nativeElement.querySelector('.srch') as HTMLElement;
       const box = fixture.nativeElement.querySelector('.srch-box') as HTMLElement;
@@ -61,7 +78,6 @@ describe('Search dialog live results', () => {
     });
     const fixture = TestBed.createComponent(SearchDialogComponent);
     TestBed.inject(OverlayService).open('search');
-    fixture.componentInstance.websiteSearch.set(true);
     fixture.detectChanges();
     const panel = fixture.nativeElement.querySelector('.srch') as HTMLElement;
     const box = fixture.nativeElement.querySelector('.srch-box') as HTMLElement;
