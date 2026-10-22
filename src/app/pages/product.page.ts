@@ -3413,6 +3413,9 @@ class ProductPageComponent {
     };
     if (slug === 'sectigo-ssl-certificates') return {
       ...view, faqs: SECTIGO_FAQS, videos: [],
+      tagline: '',
+      heroHighlight: 'Protect your websites and applications with Sectigo SSL. Compare single-domain, wildcard and multi-domain certificates, choose the validation level you need, and get help with validation, installation and renewals.',
+      heroMessages: ['Single-Domain, Wildcard & Multi-Domain Options', 'DV, OV & EV Certificate Choices', 'INR Billing & Certificate Support'],
       security: {
         head: 'Security & Compliance — Sectigo SSL Certificates',
         intro: 'Choose certificate validation and domain coverage for the services you operate. Complete the required validation, protect private keys and install the full certificate chain. Plan renewals and reissues, using ACME automation where supported by the selected product.',
@@ -4707,7 +4710,7 @@ class ProductPageComponent {
     effect((onCleanup) => {
       const messages = this.view()?.heroMessages ?? [];
       this.typedHeroText.set('');
-      if (!messages.length) return;
+      if (!messages.length || this.slug() === 'sectigo-ssl-certificates') return;
 
       let messageIndex = 0;
       let characterIndex = 0;

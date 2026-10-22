@@ -1,0 +1,51 @@
+/* Shared layout for the four supplied DigiCert trust documents only. */
+.hero.lh{padding:56px 0 64px!important}
+.hero.lh>.wrap{width:100%;max-width:1320px;padding:0 24px;box-sizing:border-box}
+.hero.lh .hero-grid{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:36px;align-items:center}
+.hero.lh .hero-grid>div{min-width:0}
+.hero.lh .lh-title,.hero.lh .lh-title .nm{white-space:nowrap!important}
+.hero.lh .lh-title .x,.hero.lh .lh-title .nm{text-decoration:none!important}
+.hero.lh .lh-title .x:after,main h2 .acc:after{display:none!important}
+.hero.lh .dn-copy,.hero.lh .qc-copy,.hero.lh .ct-copy,.hero.lh .atm-copy{padding:0}
+.hero.lh .stage{padding:0!important;margin:0;min-height:0}
+.hero.lh .lh-tag2{max-width:none}
+.hero.lh .lh-points{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 20px;margin:20px 0}
+.hero.lh .lh-ctas{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.hero.lh .lh-ctas .btn{font-size:12px;padding:11px 14px;white-space:nowrap}
+.hero.lh .lh-ask{display:flex;width:max-content;max-width:100%;align-items:center;flex-wrap:nowrap;gap:8px;padding:10px;margin-top:20px;overflow-x:auto;scrollbar-width:none}
+.hero.lh .lh-ask::-webkit-scrollbar{display:none}
+.hero.lh .lh-ask .k{white-space:nowrap;flex-shrink:0;font-size:9px}
+.hero.lh .lh-ask .chips{display:flex;flex-wrap:nowrap;gap:4px;flex-shrink:0}
+.hero.lh .lh-ask .chips a{font-size:10px;padding:7px;white-space:nowrap}
+.trust-powered{display:flex;align-items:center;gap:12px;margin-top:18px;color:#c7d5ec;font-size:13px}
+.trust-powered>span{display:flex;gap:10px;align-items:center}
+.trust-powered img{display:block;width:112px;height:32px;object-fit:contain;background:#fff;border-radius:4px;padding:5px 8px;box-sizing:border-box}
+.trust-highlight{color:#93baff;font-size:18px;font-weight:700;margin:18px 0;line-height:1.5}
+main>.sec>.wrap,#faq>.wrap{width:100%;max-width:1240px;margin:0 auto;padding:0 24px;box-sizing:border-box}
+main>.sec{padding:28px 0}
+main>.sec .sh{max-width:none;text-align:left;margin:0 0 20px}
+main>.sec .sh h2{font-size:28px!important;line-height:1.25!important;margin:0 0 12px}
+main>.sec .sh p{max-width:none;font-size:15px;line-height:1.65;margin:0}
+main h2,main h3,main h4{text-transform:capitalize}
+main h2 .acc{text-decoration:none}
+#security h2{text-transform:uppercase}
+#why .sh>.eyebrow{display:none}
+.trust-tint{background:#f4f7fc}
+#faq .faq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:20px;max-width:none}
+#faq .hosting-faq-column{display:flex;flex-direction:column;gap:14px}
+#faq .fq>button{text-align:left}
+.hosting-reasons article{background:#fff}
+.dn-under{grid-template-columns:1fr}
+@media(max-width:1100px){
+ .hero.lh .hero-grid{grid-template-columns:minmax(0,1fr);gap:36px}
+ .hero.lh .stage{width:100%;max-width:760px;margin:0 auto}
+ .hero.lh .stage .lh-chip{display:none}
+}
+@media(max-width:760px){
+ .hero.lh{padding:36px 0 44px!important}
+ .hero.lh>.wrap,main>.sec>.wrap,#faq>.wrap{padding:0 16px}
+ main>.sec{padding:24px 0}
+ main>.sec .sh h2{font-size:24px!important}
+ #faq .faq{grid-template-columns:minmax(0,1fr)}
+ .hero.lh .lh-points{grid-template-columns:minmax(0,1fr)}
+}
