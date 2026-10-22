@@ -8,6 +8,7 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { useScrollingSectionNavigation } from './section-navigation-flow';
 
 type InteractiveContentSource =
+  | 'waap-as-a-service'
   | 'threat-intelligence'
   | 'cyber-security-audit'
   | 'third-party-risk-management'
@@ -161,6 +162,7 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'blue-team-assessment': '/imported-blue-team-assessment.html',
     'red-team-assessment': '/imported-red-team-assessment.html',
     'cloud-security-assessment': '/imported-cloud-security-assessment.html',
+    'waap-as-a-service': '/imported-waap-as-a-service.html',
     'threat-intelligence': '/imported-threat-intelligence.html',
     'cyber-security-audit': '/imported-cyber-security-audit.html',
     'third-party-risk-management': '/imported-third-party-risk-management.html',
@@ -287,6 +289,7 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+    'waap-as-a-service': 'WAAP as a Service, five animated protection scenes, coverage orbit, engine tabs, managed dashboard, pricing configurator, readiness quiz, traffic sizer, onboarding and Why XcellHost',
     'threat-intelligence': 'Threat Intelligence, five animated intelligence scenes, intelligence levels, methodology, pricing configurator, intel needs quiz, feed sizing and Getting started timeline',
     'cyber-security-audit': 'Cyber Security Audit, animated audit evidence, control mapping, findings and remediation, scope filter, sampling, pricing, quotation form, estimator, readiness checker and seven engagement steps',
     'third-party-risk-management': 'Third Party Risk Management, animated vendor network, tiering, questionnaire, monitoring and scorecard scenes, tier calculator, questionnaire picker, module download, pricing and programme onboarding',
