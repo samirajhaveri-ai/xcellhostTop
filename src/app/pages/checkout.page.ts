@@ -83,6 +83,8 @@ export class CheckoutPage implements OnDestroy {
           ? 'xcellhost-acronis-cloud-disaster-recovery-smb-checkout.html'
         : this.checkoutProduct === 'smb-desktop'
           ? `smb-cloud-desktop-checkout/xcellhost-smb-cloud-desktop-${this.smbDesktopPlan}-${this.smbDesktopTerm}-checkout.html`
+      : this.checkoutProduct === 'tally'
+        ? 'xcellhost-tally-checkout.html'
         : 'xcellhost-checkout.html';
   private readonly checkoutParams = new URLSearchParams(
     this.checkoutProduct === 'bare-metal'
@@ -100,8 +102,8 @@ export class CheckoutPage implements OnDestroy {
         }
       : this.checkoutProduct === 'tally'
       ? {
-          product: 'tally-private-cloud-lite',
-          billing: this.route.snapshot.queryParamMap.get('billing') || 'monthly',
+          package: this.route.snapshot.queryParamMap.get('package') || 'LITE',
+          term: this.route.snapshot.queryParamMap.get('term') || 'MON',
           quantity: this.route.snapshot.queryParamMap.get('quantity') || '1',
         }
       : this.checkoutProduct === 'rmm'
@@ -155,11 +157,11 @@ export class CheckoutPage implements OnDestroy {
       checkoutDocument.head.appendChild(embeddedStyles);
     }
 
-    if (this.checkoutProduct === 'rmm') {
-      // The supplied RMM document includes its own standalone website chrome.
+    if (this.checkoutProduct === 'rmm' || this.checkoutProduct === 'tally') {
+      // These supplied documents include standalone website chrome.
       // Remove it inside the iframe because the Angular application already
       // renders the default XcellHost header and footer around this route.
-      checkoutDocument.querySelectorAll('.top,.nav,.ft').forEach((element) => element.remove());
+      checkoutDocument.querySelectorAll('.top,.nav,.ft,.foot').forEach((element) => element.remove());
     }
 
     if (this.checkoutProduct === 'smb-desktop') {

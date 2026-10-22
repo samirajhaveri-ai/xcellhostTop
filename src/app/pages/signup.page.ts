@@ -245,7 +245,7 @@ export class SignupPage implements AfterViewInit {
     this.submitted.set(true);
   }
 
-  submit(): void {
+  async submit(): Promise<void> {
     if (this.busy()) return;
     const value = this.form.getRawValue();
     this.form.patchValue({
@@ -263,12 +263,34 @@ export class SignupPage implements AfterViewInit {
     this.error.set('');
     this.busy.set(true);
     try {
-      // Submit the supplied Zoho form directly; Zoho displays its own result.
+      const response = await fetch('/api/auth.php?action=signup', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstName: value.firstName,
+          lastName: value.lastName,
+          email: value.email.toLowerCase(),
+          mobile: this.fullMobile(),
+          company: value.company,
+          city: value.city,
+          password: value.password,
+        }),
+      });
+      const contentType = response.headers.get('content-type') || '';
+      if (!contentType.toLowerCase().includes('application/json')) {
+        throw new Error('The account service is not available on this server. Please contact support.');
+      }
+      const result = await response.json().catch(() => ({})) as { message?: string };
+      if (!response.ok) throw new Error(result.message || 'Unable to create your account.');
+
+      // Keep the CRM lead submission after the login account has been created.
+      // Password controls have no `name`, so credentials are never sent to Zoho.
       HTMLFormElement.prototype.submit.call(form);
       this.submissionFallback = window.setTimeout(() => this.completeSubmission(), 4000);
-    } catch {
+    } catch (error) {
       this.busy.set(false);
-      this.error.set('Unable to submit your request. Please try again.');
+      this.error.set(error instanceof Error ? error.message : 'Unable to create your account. Please try again.');
     }
   }
 

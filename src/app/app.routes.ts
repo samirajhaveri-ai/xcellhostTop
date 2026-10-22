@@ -5,6 +5,17 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  { path: 'digicert-content-trust-manager', redirectTo: 'document-security', pathMatch: 'full' },
+  ...[
+    { path: 'document-security', source: 'digicert-content-trust-manager', name: 'DigiCert Content Trust Manager' },
+    { path: 'digicert-ai-trust-manager', source: 'digicert-ai-trust-manager', name: 'DigiCert AI Trust Manager' },
+    { path: 'digicert-dns', source: 'digicert-dns', name: 'DigiCert DNS' },
+    { path: 'digicert-quantum-central', source: 'digicert-quantum-central', name: 'DigiCert Quantum Central' },
+  ].map(({ path, source, name }) => ({
+    path, title: `${name} | XcellHost`,
+    data: { digicertTrustSource: source, searchTitle: name },
+    loadComponent: () => import('./pages/digicert-trust.page').then(m => m.DigicertTrustPage),
+  })),
   { path: 'breach-and-attack-simulation', title: 'Breach & Attack Simulation | XcellHost', loadComponent: () => import('./pages/breach-and-attack-simulation.page').then(m => m.BreachAndAttackSimulationPage) },
   { path: 'purple-team-assessment', title: 'Purple Team Assessment | XcellHost', loadComponent: () => import('./pages/purple-team.page').then(m => m.PurpleTeamPage) },
   { path: 'office-365-e1-nonprofit', title: 'Office 365 E1 Nonprofit | XcellHost', data: { microsoft365PlanSource: 'office-365-e1-nonprofit' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
