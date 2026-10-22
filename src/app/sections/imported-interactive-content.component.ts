@@ -8,6 +8,8 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { useScrollingSectionNavigation } from './section-navigation-flow';
 
 type InteractiveContentSource =
+  | 'purple-team-assessment'
+  | 'breach-and-attack-simulation'
   | 'office-365-e1-nonprofit'
   | 'teams-essentials-frontline'
   | 'office-365-e5'
@@ -141,6 +143,8 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'microsoft-365-e3-nonprofit': '/imported-microsoft-365-e3-nonprofit.html',
     'microsoft-365-f3-nonprofit': '/imported-microsoft-365-f3-nonprofit.html',
     'microsoft-365-e5-nonprofit': '/imported-microsoft-365-e5-nonprofit.html',
+    'purple-team-assessment': '/imported-purple-team.html',
+    'breach-and-attack-simulation': '/imported-breach-and-attack-simulation.html',
     'hybrid-cloud-service': '/imported-hybrid-cloud-service.html',
     'edge-cloud': '/imported-edge-cloud.html',
     'iot-cloud': '/imported-iot-cloud.html',
@@ -279,6 +283,8 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'microsoft-365-e3-nonprofit': 'Microsoft 365 E3 Nonprofit',
     'microsoft-365-f3-nonprofit': 'Microsoft 365 F3 Nonprofit',
     'microsoft-365-e5-nonprofit': 'Microsoft 365 E5 Nonprofit',
+    'purple-team-assessment': 'Purple Team Assessment, collaborative detection exercises, scenarios, readiness quiz, pricing and FAQs',
+    'breach-and-attack-simulation': 'Breach and Attack Simulation, continuous control validation, self-check, programme planner, pricing and FAQs',
     'hybrid-cloud-service': 'Hybrid Cloud, animated connectivity, cloud bursting, placement, recovery and operations scenes, pricing, placement advisor, link sizer and Why XcellHost',
     'edge-cloud': 'Edge Cloud, animated fleet, offline operation, edge AI, deployment and security scenes, node pricing, latency map, backhaul savings and onboarding',
     'iot-cloud': 'IoT Cloud, animated telemetry, device identity, edge buffering, alert and OTA scenes, fleet simulator, device pricing, protocol picker and Why XcellHost',
@@ -507,7 +513,18 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     window.addEventListener('scroll', position, { passive: true });
     position();
     const callback = (event: Event) => {
-      this.topics.ask((event as CustomEvent<string>).detail || 'Podcast enquiry');
+      const topic = (event as CustomEvent<string>).detail || 'Podcast enquiry';
+      const scopeTitle = this.source === 'purple-team-assessment' ? 'Purple Team Assessment'
+        : this.source === 'breach-and-attack-simulation' ? 'Breach & Attack Simulation' : '';
+      const scopePrefix = scopeTitle + ': ';
+      if (scopeTitle && topic.startsWith(scopePrefix)) {
+        this.topics.ask(scopeTitle, {
+          firstName: '', lastName: '', company: '', email: '', help: 'Request a CallBack',
+          details: topic.slice(scopePrefix.length),
+        });
+      } else {
+        this.topics.ask(topic);
+      }
       this.overlay.open('callback');
     };
     const add = (event: Event) => {

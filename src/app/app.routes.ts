@@ -5,6 +5,8 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  { path: 'breach-and-attack-simulation', title: 'Breach & Attack Simulation | XcellHost', loadComponent: () => import('./pages/breach-and-attack-simulation.page').then(m => m.BreachAndAttackSimulationPage) },
+  { path: 'purple-team-assessment', title: 'Purple Team Assessment | XcellHost', loadComponent: () => import('./pages/purple-team.page').then(m => m.PurpleTeamPage) },
   { path: 'office-365-e1-nonprofit', title: 'Office 365 E1 Nonprofit | XcellHost', data: { microsoft365PlanSource: 'office-365-e1-nonprofit' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
   { path: 'teams-essentials-frontline', title: 'Teams Essentials for Frontline | XcellHost', data: { microsoft365PlanSource: 'teams-essentials-frontline' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
   { path: 'office-365-e5', title: 'Office 365 E5 | XcellHost', data: { microsoft365PlanSource: 'office-365-e5' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
