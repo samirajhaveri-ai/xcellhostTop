@@ -1840,10 +1840,14 @@
               <p class="pp-tagline-support" [class.defender-hero-description]="slug() === 'microsoft-defender'" [class.b300-hero-summary]="slug() === 'nvidia-b300'" [attr.data-preserve-copy]="slug() === 'managed-pki' || slug() === 'private-ca' || slug() === 'iot-pki' || slug() === 'iot-device-certificates' || slug() === 'cloud-code-signing' || slug() === 'certificate-mgmt-solutions' || slug() === 'matter-dac' || slug() === 'pki-software' || slug() === 'windows-365' || slug() === 'general-compute' || slug() === 'nvidia-b300' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || slug() === 'vdpo-as-a-service' ? '' : null">{{ v.heroHighlight }}</p>
             }
             @if (v.heroMessages.length) {
+              @if (slug() === 'sectigo-ssl-certificates') {
+                <div class="pp-typewriter"><span>{{ v.heroMessages[0] }}</span></div>
+              } @else {
               <div class="pp-typewriter" aria-live="polite">
                 <span>{{ typedHeroText() }}</span
                 ><i aria-hidden="true"></i>
               </div>
+              }
             }
             @if (slug() === 'thawte-ssl-certificates') {
               <ul class="thawte-hero-points" aria-label="Thawte SSL certificate highlights">

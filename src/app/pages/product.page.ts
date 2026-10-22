@@ -4710,7 +4710,7 @@ class ProductPageComponent {
     effect((onCleanup) => {
       const messages = this.view()?.heroMessages ?? [];
       this.typedHeroText.set('');
-      if (!messages.length) return;
+      if (!messages.length || this.slug() === 'sectigo-ssl-certificates') return;
 
       let messageIndex = 0;
       let characterIndex = 0;
