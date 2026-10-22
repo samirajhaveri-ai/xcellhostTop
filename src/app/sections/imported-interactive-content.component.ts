@@ -8,6 +8,14 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { useScrollingSectionNavigation } from './section-navigation-flow';
 
 type InteractiveContentSource =
+  | 'cyber-security-audit'
+  | 'third-party-risk-management'
+  | 'managed-bug-bounty'
+  | 'ot-assessment'
+  | 'blue-team-assessment'
+  | 'red-team-assessment'
+  | 'cloud-security-assessment'
+  | 'digital-risk-monitoring'
   | 'office-365-e1-nonprofit'
   | 'teams-essentials-frontline'
   | 'office-365-e5'
@@ -143,6 +151,14 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'microsoft-365-e5-nonprofit': '/imported-microsoft-365-e5-nonprofit.html',
     'hybrid-cloud-service': '/imported-hybrid-cloud-service.html',
     'edge-cloud': '/imported-edge-cloud.html',
+    'ot-assessment': '/imported-ot-assessment.html',
+    'blue-team-assessment': '/imported-blue-team-assessment.html',
+    'red-team-assessment': '/imported-red-team-assessment.html',
+    'cloud-security-assessment': '/imported-cloud-security-assessment.html',
+    'cyber-security-audit': '/imported-cyber-security-audit.html',
+    'third-party-risk-management': '/imported-third-party-risk-management.html',
+    'managed-bug-bounty': '/imported-managed-bug-bounty.html',
+    'digital-risk-monitoring': '/imported-digital-risk-monitoring.html',
     'iot-cloud': '/imported-iot-cloud.html',
     'cdn-cloud': '/imported-cdn-cloud.html',
     'email-security-enterprise': '/imported-email-security-enterprise.html',
@@ -264,6 +280,14 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+    'cyber-security-audit': 'Cyber Security Audit, animated audit evidence, control mapping, findings and remediation, scope filter, sampling, pricing, quotation form, estimator, readiness checker and seven engagement steps',
+    'third-party-risk-management': 'Third Party Risk Management, animated vendor network, tiering, questionnaire, monitoring and scorecard scenes, tier calculator, questionnaire picker, module download, pricing and programme onboarding',
+    'managed-bug-bounty': 'Managed Bug Bounty, animated researcher programme, report triage, retest, rewards and programme metrics, programme models, reward planner, downloadable scope builder, pricing and Why XcellHost',
+    'ot-assessment': 'OT Assessment, animated passive discovery, zones and conduits, legacy assets, IT/OT boundary and risk roadmap, Purdue explorer, site scoper, pricing, IEC 62443 zone checklist and engagement steps',
+    'blue-team-assessment': 'Blue Team Assessment, animated SOC maturity, triage, log visibility, playbook and incident timeline scenes, scope explorer, deliverables, industry tabs, pricing, maturity self-assessment, tabletop planner and engagement steps',
+    'red-team-assessment': 'Red Team Assessment, animated objective map, red versus blue timeline, threat-led scenarios, white team control, findings replay, readiness checker, engagement scoper, pricing and engagement steps',
+    'cloud-security-assessment': 'Cloud Security Assessment, animated multi-cloud posture, identity, exposure, remediation and compliance scenes, shared responsibility, scope radar, pricing, estimator and CIS readiness quiz',
+    'digital-risk-monitoring': 'Digital Risk Monitoring, animated lookalike domains, leaked credentials, fake profile takedowns, dark-web mentions and exposure score, scope explorer, quick-check, plan picker and configurator',
     'office-365-e1-nonprofit': 'Office 365 E1 Nonprofit, animated verification, web apps, email, Teams and field data scenes, savings calculator, fit checker, pricing, quote form, FAQs and nonprofit plans',
     'teams-essentials-frontline': 'Teams Essentials for Frontline, animated crew scenes, pricing, plan chooser, crew cost calculator, quote form, FAQs and related plans',
     'office-365-e5': 'Office 365 E5, animated mail protection, compliance, reporting and voice scenes, pricing, upgrade calculator, plan chooser, quote form, FAQs and related plans',
@@ -532,7 +556,7 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
       });
     };
     const enquiry = async (event: Event) => {
-      if (this.source !== 'acronis-ot' && this.source !== 'red-hat' && this.source !== 'email-security-enterprise' && this.source !== 'office-365-e5' && this.source !== 'teams-essentials-frontline' && this.source !== 'office-365-e1-nonprofit') return;
+      if (this.source !== 'acronis-ot' && this.source !== 'red-hat' && this.source !== 'email-security-enterprise' && this.source !== 'office-365-e5' && this.source !== 'teams-essentials-frontline' && this.source !== 'office-365-e1-nonprofit' && this.source !== 'cyber-security-audit') return;
       const detail = (event as CustomEvent<{
         payload: Record<string, unknown>;
         complete: (result: { ok: boolean; skipped: boolean; ref: string; fallbackUrl: string }) => void;
@@ -542,14 +566,15 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
       const office365E5 = this.source === 'office-365-e5';
       const teamsFrontline = this.source === 'teams-essentials-frontline';
       const office365E1Nonprofit = this.source === 'office-365-e1-nonprofit';
-      const hasSummary = emailSecurity || office365E5 || teamsFrontline || office365E1Nonprofit;
-      const topic = office365E1Nonprofit ? 'Office 365 E1 Nonprofit quotation' : teamsFrontline ? 'Teams Essentials for Frontline quotation' : office365E5 ? 'Office 365 E5 quotation' : emailSecurity ? 'Email Security Enterprise quotation' : redHat ? 'Red Hat quotation' : 'Acronis OT quotation';
+      const cyberSecurityAudit = this.source === 'cyber-security-audit';
+      const hasSummary = emailSecurity || office365E5 || teamsFrontline || office365E1Nonprofit || cyberSecurityAudit;
+      const topic = cyberSecurityAudit ? 'Cyber Security Audit quotation' : office365E1Nonprofit ? 'Office 365 E1 Nonprofit quotation' : teamsFrontline ? 'Teams Essentials for Frontline quotation' : office365E5 ? 'Office 365 E5 quotation' : emailSecurity ? 'Email Security Enterprise quotation' : redHat ? 'Red Hat quotation' : 'Acronis OT quotation';
       const subject = topic + ' request';
       const payload = {
         ...detail.payload,
         message: hasSummary ? detail.payload['summary'] : redHat ? detail.payload['services'] : detail.payload['sizing'],
         topic,
-        page: office365E1Nonprofit ? '/office-365-e1-nonprofit' : teamsFrontline ? '/teams-essentials-frontline' : office365E5 ? '/office-365-e5' : emailSecurity ? '/email-security-enterprise' : redHat ? '/vendor-partners/red-hat' : '/acronis-ot',
+        page: cyberSecurityAudit ? '/cyber-security-audit' : office365E1Nonprofit ? '/office-365-e1-nonprofit' : teamsFrontline ? '/teams-essentials-frontline' : office365E5 ? '/office-365-e5' : emailSecurity ? '/email-security-enterprise' : redHat ? '/vendor-partners/red-hat' : '/acronis-ot',
       };
       const result = await this.leads.submit('callback', payload);
       detail.complete({
