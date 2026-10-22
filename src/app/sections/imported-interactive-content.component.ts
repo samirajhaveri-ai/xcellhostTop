@@ -8,7 +8,11 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { useScrollingSectionNavigation } from './section-navigation-flow';
 
 type InteractiveContentSource =
+
   | 'waap-as-a-service'
+
+  | 'digicert-content-trust-manager' | 'digicert-ai-trust-manager' | 'digicert-dns' | 'digicert-quantum-central'
+
   | 'threat-intelligence'
   | 'cyber-security-audit'
   | 'third-party-risk-management'
@@ -156,6 +160,10 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'microsoft-365-e5-nonprofit': '/imported-microsoft-365-e5-nonprofit.html',
     'purple-team-assessment': '/imported-purple-team.html',
     'breach-and-attack-simulation': '/imported-breach-and-attack-simulation.html',
+    'digicert-content-trust-manager': '/imported-digicert-content-trust-manager.html',
+    'digicert-ai-trust-manager': '/imported-digicert-ai-trust-manager.html',
+    'digicert-dns': '/imported-digicert-dns.html',
+    'digicert-quantum-central': '/imported-digicert-quantum-central.html',
     'hybrid-cloud-service': '/imported-hybrid-cloud-service.html',
     'edge-cloud': '/imported-edge-cloud.html',
     'ot-assessment': '/imported-ot-assessment.html',
@@ -289,7 +297,14 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+
     'waap-as-a-service': 'WAAP as a Service, five animated protection scenes, coverage orbit, engine tabs, managed dashboard, pricing configurator, readiness quiz, traffic sizer, onboarding and Why XcellHost',
+
+    'digicert-content-trust-manager': 'DigiCert Content Trust Manager, content provenance, signing, sizing and FAQs',
+    'digicert-ai-trust-manager': 'DigiCert AI Trust Manager, agent identities, integrity, sizing and FAQs',
+    'digicert-dns': 'DigiCert DNS, authoritative DNS, failover, health checks, sizing and FAQs',
+    'digicert-quantum-central': 'DigiCert Quantum Central, cryptographic inventory, migration planning, sizing and FAQs',
+
     'threat-intelligence': 'Threat Intelligence, five animated intelligence scenes, intelligence levels, methodology, pricing configurator, intel needs quiz, feed sizing and Getting started timeline',
     'cyber-security-audit': 'Cyber Security Audit, animated audit evidence, control mapping, findings and remediation, scope filter, sampling, pricing, quotation form, estimator, readiness checker and seven engagement steps',
     'third-party-risk-management': 'Third Party Risk Management, animated vendor network, tiering, questionnaire, monitoring and scorecard scenes, tier calculator, questionnaire picker, module download, pricing and programme onboarding',
@@ -546,7 +561,11 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     const callback = (event: Event) => {
       const topic = (event as CustomEvent<string>).detail || 'Podcast enquiry';
       const scopeTitle = this.source === 'purple-team-assessment' ? 'Purple Team Assessment'
-        : this.source === 'breach-and-attack-simulation' ? 'Breach & Attack Simulation' : '';
+        : this.source === 'breach-and-attack-simulation' ? 'Breach & Attack Simulation'
+        : this.source === 'digicert-content-trust-manager' ? 'DigiCert Content Trust Manager'
+        : this.source === 'digicert-ai-trust-manager' ? 'DigiCert AI Trust Manager'
+        : this.source === 'digicert-dns' ? 'DigiCert DNS'
+        : this.source === 'digicert-quantum-central' ? 'DigiCert Quantum Central' : '';
       const scopePrefix = scopeTitle + ': ';
       if (scopeTitle && topic.startsWith(scopePrefix)) {
         this.topics.ask(scopeTitle, {

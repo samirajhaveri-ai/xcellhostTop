@@ -27,6 +27,10 @@
   RewriteCond %{HTTP:X-Forwarded-Proto} !https
   RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
+  # API requests must never fall through to Angular. If an endpoint was not
+  # uploaded, return a genuine 404 instead of an HTML page with status 200.
+  RewriteRule ^api(?:/|$) - [L,NC]
+
   # Serve real files and folders as-is
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
