@@ -370,6 +370,32 @@
 }
 
 .xh-feature-media img { width: 100%; height: 100%; object-fit: cover; }
+.xh-feature-media:has(> img[src$="menu-virtual-networks-v3.png"]),
+.xh-feature-media:has(> img[src*="/menu-productivity-"]),
+.xh-feature-media:has(> img[src*="/menu-data-protection-"]),
+.xh-feature-media:has(> img[src*="/menu-digital-trust-"]),
+.xh-feature-media:has(> img[src*="/menu-security-"]),
+.xh-feature-media:has(> img[src*="/menu-ai-"]),
+.xh-feature-media:has(> img[src$="menu-virtual-firewalls-v3.png"]) {
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 3 / 2;
+  background: #041a48;
+}
+.xh-feature-media img[src$="menu-virtual-networks-v3.png"],
+.xh-feature-media img[src*="/menu-productivity-"],
+.xh-feature-media img[src*="/menu-data-protection-"],
+.xh-feature-media img[src*="/menu-digital-trust-"],
+.xh-feature-media img[src*="/menu-security-"],
+.xh-feature-media img[src*="/menu-ai-"],
+.xh-feature-media img[src$="menu-virtual-firewalls-v3.png"] {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  image-rendering: auto;
+}
 .xh-feature-media.xh-feature-media-vps {
   height: auto;
   padding: 0;
