@@ -1,0 +1,80 @@
+/* Overrides are scoped to this imported document. */
+.hero.lh{padding:56px 0 64px!important}
+.hero.lh>.wrap{width:100%;max-width:1320px;padding:0 24px;box-sizing:border-box}
+.hero.lh .lh-title,.hero.lh .lh-title .nm{white-space:nowrap!important}
+.hero.lh .lh-title .x,.hero.lh .lh-title .nm{text-decoration:none!important}
+.hero.lh .lh-title .x:after,main h2 .acc:after{display:none!important}
+main h2,main h3,main h4{text-transform:capitalize}
+#security h2{text-transform:uppercase}
+.bs-top{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:40px;align-items:center}
+.bs-top>*{min-width:0}
+.bs-copy{padding:0;max-width:none}
+.bs-copy .crumb{margin-bottom:12px}
+.bs-copy .lh-tag2{max-width:none}
+.bs-copy .lh-points{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px 24px;margin:20px 0 0;max-width:none}
+.bs-copy .lh-points>div{align-items:center;min-width:0}
+.bs-stage{width:100%;max-width:none}
+.bs-ctas{gap:8px;flex-wrap:nowrap;margin-top:28px;margin-bottom:0}
+.bs-ctas .btn{padding:11px 14px;font-size:12px;white-space:nowrap}
+.hero .bs-copy .lh-ask{width:max-content;max-width:100%;margin-top:20px;padding:10px;gap:8px;overflow-x:auto;scrollbar-width:none}
+.hero .bs-copy .lh-ask::-webkit-scrollbar{display:none}
+.bs-copy .lh-ask .k{font-size:9px}
+.hero .bs-copy .lh-ask .chips{gap:4px}
+.bs-copy .lh-ask .chips a{padding:7px;font-size:10px}
+.hero .lh-ask{display:inline-flex;flex-wrap:nowrap;align-items:center;max-width:100%;gap:12px}
+.hero .lh-ask .k,.hero .lh-ask .chips{white-space:nowrap;flex-shrink:0}
+.hero .lh-ask .chips{display:flex;flex-wrap:nowrap;gap:5px}
+.bas-powered{display:flex;align-items:center;gap:10px;margin-top:16px;color:#c7d5ec;font-size:13px;flex-wrap:wrap}
+.bas-powered strong{font-size:20px;color:#fff}
+.bas-integrations{background:#f2f6fc;border-bottom:1px solid #dce5f3}
+.bas-integrations>.wrap,main>.sec>.wrap,#faq>.wrap{width:100%;max-width:1240px;margin:0 auto;padding:0 24px;box-sizing:border-box}
+.bas-integrations .bs-base{display:block;margin:0;padding:16px 0;border:0}
+.bas-integrations .bs-works{justify-content:flex-start;gap:8px 12px}
+.bas-integrations .bs-wl{color:#5b6b85}
+.bas-integrations .bs-w{color:#041e42;background:#fff;border-color:#dce5f3}
+main>.sec{padding:28px 0}
+main>.sec .sh{width:100%;max-width:none;text-align:left;margin:0 0 20px}
+main>.sec .sh .eyebrow{display:block;margin:0 0 12px;font:700 15px/1.35 var(--f-mono);letter-spacing:.14em}
+main>.sec .sh h2{margin:0 0 12px;font-size:28px!important;line-height:1.25!important}
+main>.sec .sh p{max-width:none;margin:0;font-size:15px;line-height:1.65}
+.bs-ov,.bs-in{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;align-items:start}
+.bs-sc,.bs-pk,.hosting-reasons{gap:16px;align-items:stretch}
+#pricing .sh{text-align:center}
+#pricing .sh h2{font-size:clamp(28px,3.4vw,48px)!important;line-height:1.15!important}
+#security .sh h2,#why .sh h2,#customer-feedback .sh h2,#faq .sh h2{font:700 15px/1.35 var(--f-mono)!important;letter-spacing:.14em!important;color:#1565d8!important;margin:0 0 16px!important;text-transform:uppercase}
+#why .sh .eyebrow{display:none}
+.bas-certification{margin-top:24px;color:var(--muted);font-size:14px}
+#customer-feedback .sh{text-align:left}
+#faq .faq{max-width:none;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+#faq .hosting-faq-column{display:flex;flex-direction:column;gap:14px}
+#faq .fq>button{text-align:left}
+@media(max-width:1240px){
+  .bs-top{grid-template-columns:minmax(0,1fr);gap:40px}
+  .bs-copy{padding:0;max-width:760px}
+  .hero .bs-copy .lh-ask{width:max-content;max-width:100%}
+  .bs-stage{max-width:760px;margin:0 auto;padding-top:0}
+  .bs-stage .lh-chip{display:none}
+}
+@media(max-width:980px){
+  .bs-ov,.bs-in{grid-template-columns:minmax(0,1fr);gap:24px}
+}
+@media(max-width:760px){
+  .hero.lh{padding:36px 0 44px!important}
+  .hero.lh>.wrap{padding:0 16px}
+  .bs-top{gap:26px}
+  main>.sec{padding:24px 0}
+  main>.sec .sh h2{font-size:24px!important}
+  .hero .lh-ask{display:flex;gap:8px;padding:10px;overflow-x:auto;scrollbar-width:none}
+  .hero .lh-ask::-webkit-scrollbar{display:none}
+  .hero .lh-ask .k{font-size:9px}
+  .hero .lh-ask .chips a{font-size:10px;padding:6px}
+  #faq .faq{grid-template-columns:minmax(0,1fr)}
+}
+@media(max-width:620px){
+  .bs-copy .lh-points{grid-template-columns:minmax(0,1fr)!important}
+  .bas-powered strong{font-size:18px}
+}
+@media(max-width:480px){
+  .bs-ctas{flex-wrap:wrap}
+  .bs-ctas .btn{flex:1 1 auto}
+}
