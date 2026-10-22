@@ -1,7 +1,9 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { ChangeDetectionStrategy, Component, DestroyRef, computed, inject, input, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
-import { LeadService } from '../core/lead.service';
+import { GpuLeadApplicationsService } from '../core/gpu-lead-applications.service';
+import { internationalPhone } from '../core/international-phone';
+import { PHONE_COUNTRIES } from '../data/phone-countries';
 
 interface GpuHeroCopy {
   headline: string;
@@ -67,7 +69,17 @@ function gpu(headline: string, description: string, metric: string, metricLabel:
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GpuLeadHeroComponent {
-  private readonly leads = inject(LeadService);
+  private readonly document = inject(DOCUMENT);
+  private readonly applications = inject(GpuLeadApplicationsService);
+  private submissionFrame?: HTMLIFrameElement;
+  private submissionForm?: HTMLFormElement;
+  private submissionTimer?: ReturnType<typeof setTimeout>;
+  private confirmationUrl = '';
+  private submittedEmail = '';
+
+  constructor() {
+    inject(DestroyRef).onDestroy(() => this.cleanupSubmission());
+  }
 
   readonly slug = input.required<string>();
   readonly productName = input.required<string>();
@@ -84,34 +96,109 @@ export class GpuLeadHeroComponent {
   name = '';
   phone = '';
   email = '';
+  readonly countries = PHONE_COUNTRIES;
+  readonly countryCode = signal('in');
+  readonly phoneCountry = computed(() => this.countries.find(country => country.iso2 === this.countryCode())
+    ?? this.countries.find(country => country.iso2 === 'in')!);
   readonly submitting = signal(false);
   readonly submitted = signal(false);
   readonly error = signal('');
 
-  async submit(): Promise<void> {
-    if (this.submitting()) return;
-    this.submitting.set(true);
+  submit(): void {
+    if (this.submitting() || this.submitted()) return;
     this.error.set('');
-
-    const product = this.productName();
-    const result = await this.leads.submit('callback', {
-      name: this.name.trim(),
-      phone: this.phone.trim(),
-      email: this.email.trim(),
-      product,
-      request: 'GPU access with ₹20,000 free credits',
-    });
-
-    this.submitting.set(false);
-    if (result.skipped) {
-      const message = `Hi, I want access to ${product} with ₹20,000 free credits.\nName: ${this.name.trim()}\nPhone: ${this.phone.trim()}\nWork email: ${this.email.trim()}`;
-      globalThis.location.assign(this.leads.whatsappLink(message));
+    const name = this.name.trim().replace(/\s+/g, ' ');
+    const email = this.email.trim();
+    const phone = internationalPhone(this.phone, this.phoneCountry());
+    if (!name || name.length > 255 || email.length > 255 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !/^\+[1-9]\d{6,14}$/.test(phone)) {
+      this.error.set('Please enter your name, a valid phone number and work email.');
       return;
     }
-    if (!result.ok) {
+    if (this.applications.has(email)) {
+      this.error.set('You have already applied with this email address.');
+      return;
+    }
+
+    this.cleanupSubmission();
+    this.submittedEmail = email;
+    const token = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    const callback = new URL('gpu-lead-success.html', this.document.baseURI);
+    callback.searchParams.set('submission', token);
+    this.confirmationUrl = callback.href;
+
+    // Set name BEFORE inserting the frame so its browsing context has the same
+    // name as the POST target. A late-bound name can open a separate window.
+    const frame = this.document.createElement('iframe');
+    frame.name = `gpu-lead-response-${token}`;
+    frame.title = 'GPU access request response';
+    frame.hidden = true;
+    frame.setAttribute('sandbox', 'allow-forms allow-scripts allow-same-origin');
+    frame.addEventListener('load', () => this.checkSubmission(frame));
+    this.submissionFrame = frame;
+    this.document.body.appendChild(frame);
+
+    const form = this.document.createElement('form');
+    form.hidden = true;
+    form.action = 'https://forms.zohopublic.in/xcellhostcloudservicespvtltd1/form/GPUServer/formperma/rm-hrBAR3Ey-GbjL9pBjRSRssayZRmJhX7gTcGKsxlI/htmlRecords/submit';
+    form.method = 'POST';
+    form.enctype = 'multipart/form-data';
+    form.acceptCharset = 'UTF-8';
+    form.target = frame.name;
+    const [firstName, ...lastName] = name.split(' ');
+    const fields: Record<string, string> = {
+      Name_First: firstName,
+      Name_Last: lastName.join(' '),
+      PhoneNumber_countrycode: phone,
+      Email: email,
+      zf_referrer_name: this.document.location.href,
+      zf_redirect_url: this.confirmationUrl,
+      zc_gad: new URL(this.document.location.href).searchParams.get('gclid') ?? '',
+    };
+    for (const [name, value] of Object.entries(fields)) {
+      const field = this.document.createElement('input');
+      field.type = 'hidden';
+      field.name = name;
+      field.value = value;
+      form.appendChild(field);
+    }
+    this.submissionForm = form;
+    this.document.body.appendChild(form);
+    this.submitting.set(true);
+    this.submissionTimer = setTimeout(() => {
+      this.cleanupSubmission();
+      this.submitting.set(false);
+      this.error.set('We could not confirm your request. Please try again.');
+    }, 30000);
+    try {
+      form.submit();
+    } catch {
+      this.cleanupSubmission();
+      this.submitting.set(false);
       this.error.set('We could not submit your request. Please try again.');
+    }
+  }
+
+  checkSubmission(frame: HTMLIFrameElement): void {
+    if (!this.submitting() || frame !== this.submissionFrame || !this.confirmationUrl) return;
+    try {
+      if (frame.contentWindow?.location.href !== this.confirmationUrl) return;
+    } catch {
+      // A cross-origin Zoho validation/error page does not confirm acceptance.
       return;
     }
+    this.applications.remember(this.submittedEmail);
+    this.cleanupSubmission();
+    this.submitting.set(false);
     this.submitted.set(true);
+  }
+
+  private cleanupSubmission(): void {
+    clearTimeout(this.submissionTimer);
+    this.confirmationUrl = '';
+    this.submittedEmail = '';
+    this.submissionFrame?.remove();
+    this.submissionForm?.remove();
+    this.submissionFrame = undefined;
+    this.submissionForm = undefined;
   }
 }

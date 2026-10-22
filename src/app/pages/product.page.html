@@ -146,6 +146,8 @@
       <xh-imported-interactive-content source="red-team-assessment" />
     } @else if (slug() === 'cloud-security-assessment') {
       <xh-imported-interactive-content source="cloud-security-assessment" />
+    } @else if (slug() === 'waap-as-a-service') {
+      <xh-imported-interactive-content source="waap-as-a-service" />
     } @else if (slug() === 'threat-intelligence') {
       <xh-imported-interactive-content source="threat-intelligence" />
     } @else if (slug() === 'cyber-security-audit') {
@@ -378,7 +380,7 @@
         </div>
       } @else if (slug() === 'cloud-devops-services' || slug() === 'server-management') {
         <xh-supplied-service-reference [page]="slug() === 'server-management' ? 'server' : 'devops'" />
-        <div class="pp-body supplied-service-extras">
+        <div class="pp-body supplied-service-extras" [class.server-management-extras]="slug() === 'server-management'">
           <div class="wrap">
             <section aria-labelledby="suppliedServiceSecurityTitle">
               <h2 class="pp-sec" id="suppliedServiceSecurityTitle">Security &amp; compliance</h2>
@@ -1840,10 +1842,14 @@
               <p class="pp-tagline-support" [class.defender-hero-description]="slug() === 'microsoft-defender'" [class.b300-hero-summary]="slug() === 'nvidia-b300'" [attr.data-preserve-copy]="slug() === 'managed-pki' || slug() === 'private-ca' || slug() === 'iot-pki' || slug() === 'iot-device-certificates' || slug() === 'cloud-code-signing' || slug() === 'certificate-mgmt-solutions' || slug() === 'matter-dac' || slug() === 'pki-software' || slug() === 'windows-365' || slug() === 'general-compute' || slug() === 'nvidia-b300' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || slug() === 'vdpo-as-a-service' ? '' : null">{{ v.heroHighlight }}</p>
             }
             @if (v.heroMessages.length) {
+              @if (slug() === 'sectigo-ssl-certificates') {
+                <div class="pp-typewriter"><span>{{ v.heroMessages[0] }}</span></div>
+              } @else {
               <div class="pp-typewriter" aria-live="polite">
                 <span>{{ typedHeroText() }}</span
                 ><i aria-hidden="true"></i>
               </div>
+              }
             }
             @if (slug() === 'thawte-ssl-certificates') {
               <ul class="thawte-hero-points" aria-label="Thawte SSL certificate highlights">
@@ -2759,7 +2765,7 @@
           } @else if (slug() === 'wordpress-vps') {
             <xh-imported-interactive-content class="wordpress-vps-source-content" source="wordpress-vps" />
           }
-          @if (slug() !== 'threat-intelligence' && slug() !== 'cyber-security-audit' && slug() !== 'third-party-risk-management' && slug() !== 'managed-bug-bounty' && slug() !== 'ot-assessment' && slug() !== 'blue-team-assessment' && slug() !== 'red-team-assessment' && slug() !== 'cloud-security-assessment' && slug() !== 'digital-risk-monitoring' && slug() !== 'hybrid-cloud' && slug() !== 'edge-cloud' && slug() !== 'iot-cloud' && slug() !== 'cdn-cloud' && !isEmailSecurityEnterprise() && slug() !== 'open-ai-managed-services' && slug() !== 'vortex-soc' && !isVortexSegSource() && slug() !== 'dfir' && slug() !== 'managed-google-cloud-gcp' && slug() !== 'docusign' && slug() !== 'rpc-nodes' && slug() !== 'gaming-servers' && slug() !== 'zoom-conferenceing' && slug() !== 'managed-pki' && slug() !== 'private-ca' && slug() !== 'iot-pki' && slug() !== 'iot-device-certificates' && slug() !== 'cloud-code-signing' && slug() !== 'certificate-mgmt-solutions' && slug() !== 'matter-dac' && slug() !== 'pki-software' && slug() !== 'windows-365' && slug() !== 'bio-link-digital-visiting-card' && slug() !== 'general-compute' && slug() !== 'wordpress-vps' && slug() !== 'identity-resilience' && slug() !== 'ediscovery-and-compliance' && slug() !== 'cpu-optimized' && slug() !== 'memory-optimized' && slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && slug() !== 'gpu-clusters' && slug() !== 'ai-chat-bot') {
+          @if (slug() !== 'waap-as-a-service' && slug() !== 'threat-intelligence' && slug() !== 'cyber-security-audit' && slug() !== 'third-party-risk-management' && slug() !== 'managed-bug-bounty' && slug() !== 'ot-assessment' && slug() !== 'blue-team-assessment' && slug() !== 'red-team-assessment' && slug() !== 'cloud-security-assessment' && slug() !== 'digital-risk-monitoring' && slug() !== 'hybrid-cloud' && slug() !== 'edge-cloud' && slug() !== 'iot-cloud' && slug() !== 'cdn-cloud' && !isEmailSecurityEnterprise() && slug() !== 'open-ai-managed-services' && slug() !== 'vortex-soc' && !isVortexSegSource() && slug() !== 'dfir' && slug() !== 'managed-google-cloud-gcp' && slug() !== 'docusign' && slug() !== 'rpc-nodes' && slug() !== 'gaming-servers' && slug() !== 'zoom-conferenceing' && slug() !== 'managed-pki' && slug() !== 'private-ca' && slug() !== 'iot-pki' && slug() !== 'iot-device-certificates' && slug() !== 'cloud-code-signing' && slug() !== 'certificate-mgmt-solutions' && slug() !== 'matter-dac' && slug() !== 'pki-software' && slug() !== 'windows-365' && slug() !== 'bio-link-digital-visiting-card' && slug() !== 'general-compute' && slug() !== 'wordpress-vps' && slug() !== 'identity-resilience' && slug() !== 'ediscovery-and-compliance' && slug() !== 'cpu-optimized' && slug() !== 'memory-optimized' && slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && slug() !== 'gpu-clusters' && slug() !== 'ai-chat-bot') {
           @if (slug() === 'marketplace') {
             <xh-marketplace-content />
           } @else {
@@ -5818,6 +5824,7 @@
             slug() !== 'open-ai-managed-services' &&
             v.name !== 'Tally on Cloud' &&
             slug() !== 'zoom-conferenceing' &&
+            slug() !== 'waap-as-a-service' &&
             slug() !== 'cloud-security-assessment' &&
             slug() !== 'managed-bug-bounty' &&
             slug() !== 'digital-risk-monitoring' &&
@@ -5860,7 +5867,7 @@
             </div>
           }
           
-          <div id="ppRich" [hidden]="slug() === 'threat-intelligence' || slug() === 'cyber-security-audit' || slug() === 'third-party-risk-management' || slug() === 'managed-bug-bounty' || slug() === 'ot-assessment' || slug() === 'blue-team-assessment' || slug() === 'red-team-assessment' || slug() === 'cloud-security-assessment' || slug() === 'digital-risk-monitoring' || isEmailSecurityEnterprise() || slug() === 'wordpress-vps' || slug() === 'general-compute' || slug() === 'bio-link-digital-visiting-card' || slug() === 'acronis-ai' || usesVpsPageTemplate() || slug() === 'managed-mongodb' || slug() === 'managed-redis' || isFrameworkDetail() || slug() === 'comodo-personal-authentication' || slug() === 'digicert-smime-class-1' || slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin' || slug() === 'erp-next-hosting' || slug() === 'odoo-hosting' || slug() === 'email-backup' || slug() === 'sectigo-ssl-certificates' || slug() === 'microsoft-365-to-google-workspace-migration'">
+          <div id="ppRich" [hidden]="slug() === 'waap-as-a-service' || slug() === 'threat-intelligence' || slug() === 'cyber-security-audit' || slug() === 'third-party-risk-management' || slug() === 'managed-bug-bounty' || slug() === 'ot-assessment' || slug() === 'blue-team-assessment' || slug() === 'red-team-assessment' || slug() === 'cloud-security-assessment' || slug() === 'digital-risk-monitoring' || isEmailSecurityEnterprise() || slug() === 'wordpress-vps' || slug() === 'general-compute' || slug() === 'bio-link-digital-visiting-card' || slug() === 'acronis-ai' || usesVpsPageTemplate() || slug() === 'managed-mongodb' || slug() === 'managed-redis' || isFrameworkDetail() || slug() === 'comodo-personal-authentication' || slug() === 'digicert-smime-class-1' || slug() === 'google-my-business' || slug() === 'hrm-attendance' || slug() === 'instagram-automation' || slug() === 'instant-website' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'aiops' || slug() === 'agent-studio' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'virtualization-servers' || slug() === 'gaming-servers' || slug() === 'storage-servers' || slug() === 'nvidia-vera-rubin' || slug() === 'erp-next-hosting' || slug() === 'odoo-hosting' || slug() === 'email-backup' || slug() === 'sectigo-ssl-certificates' || slug() === 'microsoft-365-to-google-workspace-migration'">
 
 
 

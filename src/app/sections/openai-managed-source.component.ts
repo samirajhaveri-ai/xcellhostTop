@@ -78,12 +78,12 @@ export class OpenAiManagedSourceComponent implements OnDestroy {
     syncTheme();
 
     const callback = (event: Event) => {
-      this.topics.ask((event as CustomEvent<string>).detail || 'OpenAI Managed Services Services');
+      this.topics.ask((event as CustomEvent<string>).detail || 'OpenAI Managed Services');
       this.overlay.open('callback');
     };
     const addToCart = (event: Event) => {
       const item = (event as CustomEvent<{ name: string; sub?: string; price: number; qty?: number }>).detail;
-      this.cart.add(item.name + (item.sub ? ' ? ' + item.sub : ''), 'INR ' + item.price, item.qty ?? 1,
+      this.cart.add(item.name + (item.sub ? ' — ' + item.sub : ''), 'INR ' + item.price, item.qty ?? 1,
         { unitAmount: item.price, currency: 'INR', locale: 'en-IN', suffix: '' });
       this.cart.open();
     };
@@ -149,7 +149,7 @@ export class OpenAiManagedSourceComponent implements OnDestroy {
     button.disabled = true;
     const result = await this.leads.submit('callback', {
       product: 'OpenAI Managed Services',
-      topic: 'OpenAI Managed Services quotation', customer, scope, page: '/open-ai-managed-services',
+      topic: 'OpenAI Managed Services quotation', customer, scope, page: '/openai-managed-services',
     });
     button.disabled = false;
     let status = form.querySelector<HTMLElement>('.oa-quote-status');

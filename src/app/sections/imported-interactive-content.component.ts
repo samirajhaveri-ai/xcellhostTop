@@ -8,6 +8,15 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { useScrollingSectionNavigation } from './section-navigation-flow';
 
 type InteractiveContentSource =
+
+  | 'resilience-operations' | 'cloud-operations' | 'database-operations' | 'network-operations' | 'security-operations' | 'workspace-operations'
+
+
+  | 'waap-as-a-service'
+
+
+  | 'digicert-content-trust-manager' | 'digicert-ai-trust-manager' | 'digicert-dns' | 'digicert-quantum-central'
+
   | 'threat-intelligence'
   | 'cyber-security-audit'
   | 'third-party-risk-management'
@@ -73,6 +82,8 @@ type InteractiveContentSource =
   | 'inference-page'
   | 'vps-page'
   | 'sectigo-detail'
+  | 'sectigo-catalogue'
+  | 'sectigo-supplied'
   | 'project-server'
   | 'microsoft-viva'
   | 'microsoft-visio'
@@ -136,7 +147,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'digicert-secure-site-pro-ev-ssl',
   ]);
   private readonly sourceUrls: Record<
-    Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page' | 'sectigo-detail' | 'inference-page' | 'developer-page'>,
+    Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page' | 'sectigo-detail' | 'sectigo-supplied' | 'inference-page' | 'developer-page'>,
     string
   > = {
     'office-365-e1-nonprofit': '/imported-office-365-e1-nonprofit.html',
@@ -156,12 +167,23 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'microsoft-365-e5-nonprofit': '/imported-microsoft-365-e5-nonprofit.html',
     'purple-team-assessment': '/imported-purple-team.html',
     'breach-and-attack-simulation': '/imported-breach-and-attack-simulation.html',
+    'resilience-operations': '/imported-resilience-operations.html',
+    'cloud-operations': '/imported-cloud-operations.html',
+    'database-operations': '/imported-database-operations.html',
+    'network-operations': '/imported-network-operations.html',
+    'security-operations': '/imported-security-operations.html',
+    'workspace-operations': '/imported-workspace-operations.html',
+    'digicert-content-trust-manager': '/imported-digicert-content-trust-manager.html',
+    'digicert-ai-trust-manager': '/imported-digicert-ai-trust-manager.html',
+    'digicert-dns': '/imported-digicert-dns.html',
+    'digicert-quantum-central': '/imported-digicert-quantum-central.html',
     'hybrid-cloud-service': '/imported-hybrid-cloud-service.html',
     'edge-cloud': '/imported-edge-cloud.html',
     'ot-assessment': '/imported-ot-assessment.html',
     'blue-team-assessment': '/imported-blue-team-assessment.html',
     'red-team-assessment': '/imported-red-team-assessment.html',
     'cloud-security-assessment': '/imported-cloud-security-assessment.html',
+    'waap-as-a-service': '/imported-waap-as-a-service.html',
     'threat-intelligence': '/imported-threat-intelligence.html',
     'cyber-security-audit': '/imported-cyber-security-audit.html',
     'third-party-risk-management': '/imported-third-party-risk-management.html',
@@ -278,6 +300,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     workspace: '/imported-sarv-workspace.html',
     rapidssl: '/imported-rapidssl.html',
     sectigo: '/imported-sectigo-code-signing.html',
+    'sectigo-catalogue': '/imported-sectigo-ssl-certificates.html',
     'sectigo-ev': '/imported-sectigo-ev-code-signing.html',
     mark: '/imported-mark-certificates.html',
     'website-security': '/imported-website-security.html',
@@ -289,6 +312,23 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+
+    'resilience-operations': 'Resilience Operations',
+    'cloud-operations': 'Cloud Operations',
+    'database-operations': 'Database Operations',
+    'network-operations': 'Network Operations',
+    'security-operations': 'Security Operations',
+    'workspace-operations': 'Workspace Operations',
+
+
+    'waap-as-a-service': 'WAAP as a Service, five animated protection scenes, coverage orbit, engine tabs, managed dashboard, pricing configurator, readiness quiz, traffic sizer, onboarding and Why XcellHost',
+
+
+    'digicert-content-trust-manager': 'DigiCert Content Trust Manager, content provenance, signing, sizing and FAQs',
+    'digicert-ai-trust-manager': 'DigiCert AI Trust Manager, agent identities, integrity, sizing and FAQs',
+    'digicert-dns': 'DigiCert DNS, authoritative DNS, failover, health checks, sizing and FAQs',
+    'digicert-quantum-central': 'DigiCert Quantum Central, cryptographic inventory, migration planning, sizing and FAQs',
+
     'threat-intelligence': 'Threat Intelligence, five animated intelligence scenes, intelligence levels, methodology, pricing configurator, intel needs quiz, feed sizing and Getting started timeline',
     'cyber-security-audit': 'Cyber Security Audit, animated audit evidence, control mapping, findings and remediation, scope filter, sampling, pricing, quotation form, estimator, readiness checker and seven engagement steps',
     'third-party-risk-management': 'Third Party Risk Management, animated vendor network, tiering, questionnaire, monitoring and scorecard scenes, tier calculator, questionnaire picker, module download, pricing and programme onboarding',
@@ -403,6 +443,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
 
     'inference-page': 'Inference Cloud models, features and deployment options',
     'sectigo-detail': 'Sectigo certificate features, validation and pricing',
+    'sectigo-catalogue': 'Sectigo SSL Certificates catalogue, validation and pricing',
+    'sectigo-supplied': 'Sectigo product features, pricing and support',
 
     'vps-page': 'VPS hosting features, plans and server configurator',
     'project-server': 'Microsoft Project Server features, migration and pricing',
@@ -475,6 +517,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
       url = this.developerSlugs.has(this.developerSlug) ? `/imported-developer-${this.developerSlug}.html` : 'about:blank';
     } else if (this.source === 'inference-page') {
       url = this.inferenceSlugs.has(this.inferenceSlug) ? `/imported-inference-${this.inferenceSlug}.html` : 'about:blank';
+    } else if (this.source === 'sectigo-supplied') {
+      const slugs = new Set(['codeguard-backup', 'positivessl-acme-caas-dv', 'sectigo-acme-certificate-as-a-service', 'sectigo-ev-code-signing', 'sectigo-ev-ssl-multi-domain-ucc', 'hackerguardian-pci-compliance-scanning', 'sectigo-ov-ssl', 'sectigo-ov-ssl-multi-domain-ucc', 'sectigo-ov-ssl-multi-domain-wildcard', 'sectigo-ov-ssl-wildcard', 'sectigo-ssl', 'ssl-installation-service', 'sectigo-ssl-multi-domain-ucc']);
+      url = slugs.has(this.sectigoSlug) ? `/imported-sectigo-supplied-${this.sectigoSlug}.html` : 'about:blank';
     } else if (this.source === 'sectigo-detail') {
       url = this.sectigoSlugs.has(this.sectigoSlug) ? `/imported-sectigo-detail-${this.sectigoSlug}.html` : 'about:blank';
     } else if (this.source === 'vps-page') {
@@ -551,7 +596,14 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     const callback = (event: Event) => {
       const topic = (event as CustomEvent<string>).detail || 'Podcast enquiry';
       const scopeTitle = this.source === 'purple-team-assessment' ? 'Purple Team Assessment'
-        : this.source === 'breach-and-attack-simulation' ? 'Breach & Attack Simulation' : '';
+        : this.source === 'breach-and-attack-simulation' ? 'Breach & Attack Simulation'
+        : this.source === 'digicert-content-trust-manager' ? 'DigiCert Content Trust Manager'
+        : this.source === 'digicert-ai-trust-manager' ? 'DigiCert AI Trust Manager'
+        : this.source === 'sectigo-supplied' ? doc.querySelector('[data-product]')?.getAttribute('data-product') || ''
+        : this.source === 'sectigo-catalogue' ? 'Sectigo SSL Certificates'
+        : this.source === 'digicert-dns' ? 'DigiCert DNS'
+        : this.source === 'digicert-quantum-central' ? 'DigiCert Quantum Central'
+        : ['resilience-operations', 'cloud-operations', 'database-operations', 'network-operations', 'security-operations', 'workspace-operations'].includes(this.source) ? this.sourceTitles[this.source] : '';
       const scopePrefix = scopeTitle + ': ';
       if (scopeTitle && topic.startsWith(scopePrefix)) {
         this.topics.ask(scopeTitle, {

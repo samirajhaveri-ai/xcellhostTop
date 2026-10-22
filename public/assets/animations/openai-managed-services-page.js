@@ -9,7 +9,7 @@
   var XH=window.XH={reduce:reduce,fine:fine,$:$,$$:$$};
   XH.inr=function(n,dec){n=+n||0;return '₹'+n.toLocaleString('en-IN',{minimumFractionDigits:dec||0,maximumFractionDigits:dec||0});};
   XH.dark=function(){return root.getAttribute('data-theme')==='dark';};
-  XH.open=function(id,opts){d.dispatchEvent(new CustomEvent('import-callback',{detail:opts&&opts.topic||'OpenAI Managed Services Services'}));};
+  XH.open=function(id,opts){d.dispatchEvent(new CustomEvent('import-callback',{detail:opts&&opts.topic||'OpenAI Managed Services'}));};
   XH.cart={add:function(item){d.dispatchEvent(new CustomEvent('import-cart',{detail:item}));}};
   XH.toast=function(message){var toast=$('#openAiToast');toast.textContent=message;toast.hidden=false;clearTimeout(XH.toastTimer);XH.toastTimer=setTimeout(function(){toast.hidden=true;},3000);};
   d.addEventListener('click',function(event){var button=event.target.closest('[data-open]');if(button){event.preventDefault();XH.open(button.getAttribute('data-open'),{topic:button.getAttribute('data-topic')});}});
@@ -104,6 +104,8 @@
     st.addEventListener('pointerleave',function(){t.style.transform='';});});
 
 })();
+
+
 
 (function(){
   'use strict';
@@ -321,7 +323,7 @@
 
   /* ===== sticky sub-nav scroll-spy ===== */
   (function(){var nav=$id('oaSub');if(!nav)return;var links=$$('a',nav),secs=links.map(function(a){return $id(a.getAttribute('href').slice(1));}),cur2=-1,tk=false;
-    function spy(){tk=false;var embedded=window.frameElement,vh=embedded?window.parent.innerHeight:innerHeight,offset=embedded?embedded.getBoundingClientRect().top:0,y=vh*.32-offset,k=-1;secs.forEach(function(s,i){if(s&&s.getBoundingClientRect().top<y)k=i;});if(k!==cur2){cur2=k;links.forEach(function(a,i){a.classList.toggle('on',i===k);});if(k>=0){var a=links[k],sc=a.parentNode;sc.scrollTo({left:a.offsetLeft-sc.clientWidth/2+a.offsetWidth/2,behavior:R?'auto':'smooth'});}}}
+    function spy(){tk=false;var y=window.hostingViewportFocus(),k=-1;secs.forEach(function(s,i){if(s&&s.getBoundingClientRect().top<y)k=i;});if(k!==cur2){cur2=k;links.forEach(function(a,i){a.classList.toggle('on',i===k);});if(k>=0){var a=links[k],sc=a.parentNode;sc.scrollTo({left:a.offsetLeft-sc.clientWidth/2+a.offsetWidth/2,behavior:R?'auto':'smooth'});}}}
     addEventListener('scroll',function(){if(!tk){tk=true;requestAnimationFrame(spy);}},{passive:true});spy();})();
 
   if(FINE&&!R)$$('.oa-mag').forEach(function(b){b.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.18)+'px,'+((e.clientY-r.top-r.height/2)*.25)+'px)';});b.addEventListener('pointerleave',function(){b.style.transform='';});});
@@ -488,9 +490,8 @@
   var PKN={starter:'Starter',growth:'Growth',ent:'Enterprise'},RTN={az:'Azure OpenAI (your tenant, INR via XcellHost CSP)',oa:'OpenAI API (billed by OpenAI)',hy:'Hybrid — OpenAI + open models on XcellHost'};
   function qCalc(){var pk=segV($id('qPk'))||'growth',uc=clamp(parseInt($id('qUc').value,10)||1,1,20),us=+$id('qUs').value,rt=segV($id('qRt'))||'az',sp=segV($id('qSp'))||'247',
       ch=$$('#qCh input').filter(function(x){return x.checked;}).map(function(x){return x.value;}),it=$$('#qInt input').filter(function(x){return x.checked;}).map(function(x){return x.value;});
-    if(pk==='starter'&&uc>1){pk='growth';$$('#qPk button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-v')==='growth');});XH.toast&&XH.toast('More than one use case — moved to Growth');}
-    if(pk==='growth'&&uc>3){pk='ent';$$('#qPk button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-v')==='ent');});XH.toast&&XH.toast('More than three use cases — moved to Enterprise');}
-    $id('qPk').dataset.value=pk;
+    if(pk==='starter'&&uc>1){pk='growth';$id('qPk').dataset.value=pk;$$('#qPk button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-v')==='growth');});XH.toast&&XH.toast('More than one use case — moved to Growth');}
+    if(pk==='growth'&&uc>3){pk='ent';$id('qPk').dataset.value=pk;$$('#qPk button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-v')==='ent');});XH.toast&&XH.toast('More than three use cases — moved to Enterprise');}
     var pts=uc*2+ch.length+it.length*1.5+(us>=2000?2:us>=500?1:0)+(rt==='hy'?2:0)+(sp==='247'?1:0),band=pts<6?'S':pts<11?'M':pts<17?'L':'XL',wk={S:'3–5 wks*',M:'6–8 wks*',L:'8–12 wks*',XL:'12+ wks*'}[band];
     var h=$id('qName'),nm=PKN[pk]+' · '+uc+' use case'+(uc>1?'s':'');if(h.textContent!==nm){setT(h,nm);bump(h);}
     var rows=[['Package',PKN[pk]],['Use cases',String(uc)+(cfgNote?' · incl. '+cfgNote:'')],['Users',$id('qUs').selectedOptions[0].textContent],['Channels',ch.join(', ')||'—'],['Integrations',it.join(', ')||'—'],['Model route',RTN[rt]],['Support',sp==='247'?'24×7 · 15-min critical ack*':'8×5 business hours'],['Model usage','billed separately at actuals']];
@@ -502,20 +503,5 @@
     $$('[data-pk]').forEach(function(b){b.addEventListener('click',function(){var v=b.getAttribute('data-pk');$id('qPk').dataset.value=v;$$('#qPk button').forEach(function(x){x.classList.toggle('on',x.getAttribute('data-v')===v);});var q=$id('qUc');q.value=v==='starter'?1:v==='growth'?Math.min(3,Math.max(2,+q.value)):Math.max(4,+q.value);qCalc();
       var t=$id('configure');window.scrollTo({top:t.getBoundingClientRect().top+scrollY-140,behavior:R?'auto':'smooth'});});});
     qCalc();})();
-
-  /* Pin the summaries to the browser viewport while the embedded page expands. */
-  (function(){
-    var panels=$$('.oa-rdo,.oa-cfo'),queued=false;
-    function update(){queued=false;var frame=window.frameElement;if(!frame)return;
-      var offset=frame.getBoundingClientRect().top;
-      panels.forEach(function(panel){var group=panel.parentElement;
-        var shift=innerWidth>960?clamp(140-offset-group.getBoundingClientRect().top,0,Math.max(0,group.offsetHeight-panel.offsetHeight)):0;
-        panel.style.transform='translate3d(0,'+shift.toFixed(1)+'px,0)';
-      });
-    }
-    function schedule(){if(!queued){queued=true;requestAnimationFrame(update);}}
-    addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule);update();
-  })();
 })();
-
 
