@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component, ElementRef, HostListener, ViewChild, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostListener, ViewChild, inject, input, signal } from '@angular/core';
+import { OverlayService } from '../core/overlay.service';
+import { CallbackTopicService } from '../overlays/callback-topic.service';
 
 
 interface BareMetalPlan {
@@ -23,6 +25,8 @@ interface DataCenter {
   templateUrl: './bare-metal-content.component.html', styleUrl: './bare-metal-content.component.css',
 })
 export class BareMetalContentComponent {
+  private readonly overlay = inject(OverlayService);
+  private readonly topics = inject(CallbackTopicService);
   @ViewChild('bareMetalFrame') private bareMetalFrame?: ElementRef<HTMLIFrameElement>;
   readonly heroOnly = input(false);
   readonly dataCenterOnly = input(false);
@@ -38,10 +42,19 @@ export class BareMetalContentComponent {
       !frame ||
       event.source !== frame.contentWindow ||
       event.origin !== window.location.origin ||
-      !event.data ||
-      event.data.type !== 'xh-bare-metal-height'
+      !event.data
     ) return;
 
+    if (event.data.type === 'xh-bare-metal-quote') {
+      if (![3, 6, 12].includes(event.data.months) || typeof event.data.details !== 'string') return;
+      this.topics.ask(`Bare Metal Server - ${event.data.months} Month Quote`, {
+        firstName: '', lastName: '', company: '', email: '', help: 'Request a CallBack',
+        details: event.data.details,
+      });
+      this.overlay.open('callback');
+      return;
+    }
+    if (event.data.type !== 'xh-bare-metal-height') return;
     const height = Number(event.data.height);
     if (Number.isFinite(height)) this.catalogueFrameHeight = Math.max(420, Math.ceil(height));
   }

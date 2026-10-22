@@ -1209,6 +1209,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "15",
         "label": "Network & Security",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Cloud",
+            "title": "Virtual Networks",
+            "body": "Connect your cloud resources with secure virtual networks.",
+            "image": "/assets/images/menu-virtual-networks-v3.png",
+            "link": "/virtual-networks"
+          },
+          {
+            "label": "Cloud",
+            "title": "Virtual Firewalls",
+            "body": "Protect your cloud network with virtual firewall security.",
+            "image": "/assets/images/menu-virtual-firewalls-v3.png",
+            "link": "/virtual-firewalls"
+          }
+        ],
         "groups": [
           {
             "heading": "Network & Security",
@@ -1291,6 +1307,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "0",
         "label": "Email Services",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Productivity",
+            "title": "XcellWorkSpace",
+            "body": "Bring business email, documents and teamwork into one workspace.",
+            "image": "/assets/images/menu-productivity-xcellworkspace-v1.png",
+            "link": "/xcellworkspace"
+          },
+          {
+            "label": "Productivity",
+            "title": "Microsoft 365 SMB",
+            "body": "Equip your team with cloud productivity and collaboration tools.",
+            "image": "/assets/images/menu-productivity-microsoft-365-smb-v1.png",
+            "link": "/microsoft-365-smb"
+          }
+        ],
         "groups": [
           {
             "heading": "Email Services",
@@ -1338,18 +1370,18 @@ export const MEGA_MENU: MenuTop[] = [
         "on": false,
         "featureCards": [
           {
-            "label": "Cloud",
-            "title": "Business E-Mail",
-            "body": "Professional email services for business communication",
-            "image": "/assets/images/contact-mail.webp",
-            "link": "/business-e-mail"
+            "label": "Productivity",
+            "title": "Email Security SMB",
+            "body": "Protect your business inboxes from spam, phishing and malware.",
+            "image": "/assets/images/menu-productivity-email-security-smb-v1.png",
+            "link": "/email-security-smb"
           },
           {
-            "label": "Cloud",
-            "title": "Microsoft 365 Enterprise",
-            "body": "Explore Microsoft 365 Enterprise services, features and solutions.",
-            "image": "/assets/images/orb-microsoft-365.png",
-            "link": "/microsoft-365-enterprise"
+            "label": "Productivity",
+            "title": "Email Security Enterprise",
+            "body": "Secure enterprise email with advanced threat protection.",
+            "image": "/assets/images/menu-productivity-email-security-enterprise-v1.png",
+            "link": "/email-security-enterprise"
           }
         ],
         "groups": [
@@ -1408,6 +1440,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "2",
         "label": "Email Data Protection",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Productivity",
+            "title": "Email Backup",
+            "body": "Keep business email protected and ready to restore.",
+            "image": "/assets/images/menu-productivity-email-backup-v1.png",
+            "link": "/email-backup"
+          },
+          {
+            "label": "Productivity",
+            "title": "Email Archiving",
+            "body": "Preserve and search business email with secure archiving.",
+            "image": "/assets/images/menu-productivity-email-archiving-v1.png",
+            "link": "/email-archiving"
+          }
+        ],
         "groups": [
           {
             "heading": "Email Data Protection",
@@ -1431,6 +1479,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "3",
         "label": "Email Addons",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Productivity",
+            "title": "Email Signature",
+            "body": "Create consistent, professional email signatures for your team.",
+            "image": "/assets/images/menu-productivity-email-signature-v1.png",
+            "link": "/email-signature"
+          },
+          {
+            "label": "Productivity",
+            "title": "Microsoft 365 Training",
+            "body": "Help your team get more from Microsoft 365.",
+            "image": "/assets/images/menu-productivity-microsoft-365-training-v1.png",
+            "link": "/microsoft-365-training"
+          }
+        ],
         "groups": [
           {
             "heading": "Email Addons",
@@ -1471,6 +1535,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "4",
         "label": "Collaboration Services",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Productivity",
+            "title": "Cloud Conferencing",
+            "body": "Connect your team with cloud meetings and collaboration.",
+            "image": "/assets/images/menu-productivity-cloud-conferencing-v1.png",
+            "link": "/cloud-conferencing"
+          },
+          {
+            "label": "Productivity",
+            "title": "Cloud Contact Center",
+            "body": "Support customers through a connected cloud contact center.",
+            "image": "/assets/images/menu-productivity-cloud-contact-center-v1.png",
+            "link": "/cloud-contact-center"
+          }
+        ],
         "groups": [
           {
             "heading": "Collaboration Services",
@@ -1501,6 +1581,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "5",
         "label": "Cloud Desktop",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Productivity",
+            "title": "SMB Cloud Desktop",
+            "body": "Access your business desktop securely from anywhere.",
+            "image": "/assets/images/menu-productivity-smb-cloud-desktop-v1.png",
+            "link": "/smb-cloud-desktop"
+          },
+          {
+            "label": "Productivity",
+            "title": "Cloud Desktop Enterprise (VDI)",
+            "body": "Deliver secure virtual desktops across your organization.",
+            "image": "/assets/images/menu-productivity-cloud-desktop-enterprise-v1.png",
+            "link": "/cloud-desktop-enterprise-vdi"
+          }
+        ],
         "groups": [
           {
             "heading": "Cloud Desktop",
@@ -1534,6 +1630,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "6",
         "label": "Microsoft Copilot",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Productivity",
+            "title": "Microsoft Copilot",
+            "body": "Work smarter with AI assistance across everyday tasks.",
+            "image": "/assets/images/menu-productivity-microsoft-copilot-v1.png",
+            "link": "/microsoft-copilot"
+          },
+          {
+            "label": "Productivity",
+            "title": "Microsoft Copilot Studio",
+            "body": "Build AI agents and connect your business workflows.",
+            "image": "/assets/images/menu-productivity-copilot-studio-v1.png",
+            "link": "/microsoft-copilot-studio"
+          }
+        ],
         "groups": [
           {
             "heading": "Microsoft Copilot",
@@ -1568,6 +1680,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "7",
         "label": "Managed Productivity",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Productivity",
+            "title": "Managed Microsoft 365",
+            "body": "Keep Microsoft 365 running smoothly with expert management.",
+            "image": "/assets/images/menu-productivity-managed-microsoft-365-v1.png",
+            "link": "/managed-microsoft-365"
+          },
+          {
+            "label": "Productivity",
+            "title": "Managed GWS",
+            "body": "Simplify Google Workspace administration and support.",
+            "image": "/assets/images/menu-productivity-managed-google-workspace-v1.png",
+            "link": "/managed-gws"
+          }
+        ],
         "groups": [
           {
             "heading": "Managed Productivity",
@@ -1607,6 +1735,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "8",
         "label": "Microsoft Power",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Productivity",
+            "title": "Power BI",
+            "body": "Turn business data into clear dashboards and insights.",
+            "image": "/assets/images/menu-productivity-power-bi-v1.png",
+            "link": "/power-bi"
+          },
+          {
+            "label": "Productivity",
+            "title": "Power Automate",
+            "body": "Automate routine tasks and connect your business processes.",
+            "image": "/assets/images/menu-productivity-power-automate-v1.png",
+            "link": "/power-automate"
+          }
+        ],
         "groups": [
           {
             "heading": "Microsoft Power Platform",
@@ -1648,6 +1792,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "1",
         "label": "SaaS Backup",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Data Protection",
+            "title": "Microsoft 365 Backup",
+            "body": "Protect Microsoft 365 email and files with cloud backup.",
+            "image": "/assets/images/menu-data-protection-microsoft-365-backup-v1.png",
+            "link": "/microsoft-365-backup"
+          },
+          {
+            "label": "Data Protection",
+            "title": "Google Workspace Backup",
+            "body": "Back up Google Workspace data and restore it when needed.",
+            "image": "/assets/images/menu-data-protection-google-workspace-backup-v1.png",
+            "link": "/google-workspace-backup"
+          }
+        ],
         "groups": [
           {
             "heading": "Saas Backup",
@@ -1707,6 +1867,15 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "0",
         "label": "Information Archive",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Data Protection",
+            "title": "Cloud Object Storage",
+            "body": "Store and protect your business data in cloud object storage.",
+            "image": "/assets/images/menu-data-protection-cloud-object-storage-v1.png",
+            "link": "/cloud-object-storage"
+          }
+        ],
         "groups": [
           {
             "heading": "Information Archive",
@@ -1726,6 +1895,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "2",
         "label": "Acronis Cyber Protect",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Data Protection",
+            "title": "Acronis Backup Advanced",
+            "body": "Protect business workloads with advanced backup and recovery.",
+            "image": "/assets/images/menu-data-protection-acronis-backup-advanced-v1.png",
+            "link": "/acronis-backup-advanced"
+          },
+          {
+            "label": "Data Protection",
+            "title": "Acronis True Image",
+            "body": "Keep computers and important files backed up and protected.",
+            "image": "/assets/images/menu-data-protection-acronis-true-image-v1.png",
+            "link": "/acronis-true-image"
+          }
+        ],
         "groups": [
           {
             "heading": "Acronis Cyber Protect",
@@ -1755,6 +1940,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "3",
         "label": "Druva Resilience",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Data Protection",
+            "title": "Explore Druva Platform",
+            "body": "Explore cloud data protection and resilience with Druva.",
+            "image": "/assets/images/menu-data-protection-druva-platform-v1.png",
+            "link": "/explore-druva-platform"
+          },
+          {
+            "label": "Data Protection",
+            "title": "AI Resilience",
+            "body": "Explore AI resilience for your business data.",
+            "image": "/assets/images/menu-data-protection-ai-resilience-v1.png",
+            "link": "/ai-resilience"
+          }
+        ],
         "groups": [
           {
             "heading": "Druva Resilience",
@@ -1798,6 +1999,15 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "4",
         "label": "Veeam Platform",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Data Protection",
+            "title": "Veeam Overview",
+            "body": "Explore backup, recovery and data resilience with Veeam.",
+            "image": "/assets/images/menu-data-protection-veeam-platform-v1.png",
+            "link": "/veeam-overview"
+          }
+        ],
         "groups": [
           {
             "heading": "Veeam Platform",
@@ -1816,6 +2026,15 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "5",
         "label": "CommVault Platform",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Data Protection",
+            "title": "CommVault Overview",
+            "body": "Explore enterprise data protection with CommVault.",
+            "image": "/assets/images/menu-data-protection-commvault-platform-v1.png",
+            "link": "/commvault-overview"
+          }
+        ],
         "groups": [
           {
             "heading": "CommVault Data Platform",
@@ -1834,6 +2053,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "6",
         "label": "Cloud DR",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Data Protection",
+            "title": "Cloud Disaster Recovery for SMB",
+            "body": "Keep your business ready with cloud disaster recovery.",
+            "image": "/assets/images/menu-data-protection-cloud-dr-smb-v1.png",
+            "link": "/cloud-disaster-recovery-for-smb"
+          },
+          {
+            "label": "Data Protection",
+            "title": "Cloud Disaster Recovery for Enterprise",
+            "body": "Support business continuity with enterprise disaster recovery.",
+            "image": "/assets/images/menu-data-protection-cloud-dr-enterprise-v1.png",
+            "link": "/cloud-disaster-recovery-for-enterprise"
+          }
+        ],
         "groups": [
           {
             "heading": "Cloud Disaster Recovery",
@@ -1884,6 +2119,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "0",
         "label": "SSL by Brand",
         "on": true,
+        "featureCards": [
+          {
+            "label": "Digital Trust",
+            "title": "GeoTrust SSL Certificates",
+            "body": "Secure websites with GeoTrust SSL certificates.",
+            "image": "/assets/images/menu-digital-trust-geotrust-ssl-v1.png",
+            "link": "/geotrust-ssl-certificates"
+          },
+          {
+            "label": "Digital Trust",
+            "title": "DigiCert SSL Certificates",
+            "body": "Explore DigiCert certificates for website security.",
+            "image": "/assets/images/menu-digital-trust-digicert-ssl-v1.png",
+            "link": "/digicert-ssl-certificates"
+          }
+        ],
         "groups": [
           {
             "heading": "SSL by Brand",
@@ -1913,6 +2164,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "1",
         "label": "SSL by Types",
         "on": true,
+        "featureCards": [
+          {
+            "label": "Digital Trust",
+            "title": "SSL Certificates",
+            "body": "Secure website connections with SSL certificates.",
+            "image": "/assets/images/menu-digital-trust-ssl-certificates-v1.png",
+            "link": "/ssl-certificates"
+          },
+          {
+            "label": "Digital Trust",
+            "title": "Code Signing Certificates",
+            "body": "Verify software authenticity with code signing certificates.",
+            "image": "/assets/images/menu-digital-trust-code-signing-certificates-v1.png",
+            "link": "/code-signing-certificates"
+          }
+        ],
         "groups": [
           {
             "heading": "SSL by Types",
@@ -1961,6 +2228,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "SSL Automation Tools",
         "label": "SSL Automation Tools",
         "on": true,
+        "featureCards": [
+          {
+            "label": "Digital Trust",
+            "title": "AutoInstall SSL For Linux & Windows",
+            "body": "Automate SSL installation for Linux and Windows.",
+            "image": "/assets/images/menu-digital-trust-autoinstall-ssl-v1.png",
+            "link": "/autoinstall-ssl-for-linux-and-windows"
+          },
+          {
+            "label": "Digital Trust",
+            "title": "AutoInstall SSL For Web Hosts",
+            "body": "Simplify SSL installation across web hosting environments.",
+            "image": "/assets/images/menu-digital-trust-web-host-ssl-v1.png",
+            "link": "/autoinstall-ssl-for-web-hosts"
+          }
+        ],
         "groups": [
           {
             "heading": "SSL Automation Tools",
@@ -2006,6 +2289,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "2",
         "label": "Managed PKI",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Digital Trust",
+            "title": "Certificate Mgmt Solutions",
+            "body": "Manage digital certificates and their lifecycle.",
+            "image": "/assets/images/menu-digital-trust-certificate-management-v1.png",
+            "link": "/certificate-mgmt-solutions"
+          },
+          {
+            "label": "Digital Trust",
+            "title": "Managed PKI",
+            "body": "Explore managed public key infrastructure.",
+            "image": "/assets/images/menu-digital-trust-managed-pki-v1.png",
+            "link": "/managed-pki"
+          }
+        ],
         "groups": [
           {
             "heading": "Managed PKI",
@@ -2058,6 +2357,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "3",
         "label": "Software Trust",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Digital Trust",
+            "title": "Comodo Code Signing",
+            "body": "Protect software integrity with trusted digital signatures.",
+            "image": "/assets/images/menu-digital-trust-comodo-code-signing-v1.png",
+            "link": "/comodo-code-signing"
+          },
+          {
+            "label": "Digital Trust",
+            "title": "Comodo EV Code Signing",
+            "body": "Explore code signing with extended publisher validation.",
+            "image": "/assets/images/menu-digital-trust-comodo-ev-code-signing-v1.png",
+            "link": "/comodo-ev-code-signing"
+          }
+        ],
         "groups": [
           {
             "heading": "Code Signing",
@@ -2100,6 +2415,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "4",
         "label": "Messaging Trust",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Digital Trust",
+            "title": "DigiCert S/MIME Class 1",
+            "body": "Sign and protect email with DigiCert S/MIME certificates.",
+            "image": "/assets/images/menu-digital-trust-digicert-smime-class-1-v1.png",
+            "link": "/digicert-smime-class-1"
+          },
+          {
+            "label": "Digital Trust",
+            "title": "DigiCert S/MIME (OV)",
+            "body": "Explore organization-validated email signing certificates.",
+            "image": "/assets/images/menu-digital-trust-digicert-smime-ov-v1.png",
+            "link": "/digicert-smime-ov"
+          }
+        ],
         "groups": [
           {
             "heading": "Email Signing",
@@ -2128,6 +2459,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "Device Trust ",
         "label": "Device Trust",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Digital Trust",
+            "title": "IoT Certificates Management",
+            "body": "Manage certificate identities for connected devices.",
+            "image": "/assets/images/menu-digital-trust-iot-certificates-v1.png",
+            "link": "/iot-certificates-management"
+          },
+          {
+            "label": "Digital Trust",
+            "title": "Device Attestation Certificates",
+            "body": "Verify device identities with attestation certificates.",
+            "image": "/assets/images/menu-digital-trust-device-attestation-v1.png",
+            "link": "/device-attestation-certificates"
+          }
+        ],
         "groups": [
           {
             "heading": "Device Trust",
@@ -2151,6 +2498,15 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "Content Trust",
         "label": "Content Trust",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Digital Trust",
+            "title": "Document Security",
+            "body": "Explore protection for business documents.",
+            "image": "/assets/images/menu-digital-trust-document-security-v1.png",
+            "link": "/document-security"
+          }
+        ],
         "groups": [
           {
             "heading": "Content Trust",
@@ -2170,6 +2526,15 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "AI Agent Trust",
         "label": "AI Agent Trust",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Digital Trust",
+            "title": "AI Agent Trust",
+            "body": "Contact our team to discuss AI agent trust.",
+            "image": "/assets/images/menu-digital-trust-ai-agent-trust-v1.png",
+            "link": "/contact"
+          }
+        ],
         "groups": [
           {
             "heading": "AI Agent Trust",
@@ -2187,6 +2552,15 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "DNS Trust",
         "label": "DNS Trust",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Digital Trust",
+            "title": "DNS Trust",
+            "body": "Contact our team to discuss DNS trust.",
+            "image": "/assets/images/menu-digital-trust-dns-trust-v1.png",
+            "link": "/contact"
+          }
+        ],
         "groups": [
           {
             "heading": "DNS Trust",
@@ -2204,6 +2578,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "5",
         "label": "Mark Certificates",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Digital Trust",
+            "title": "Verified Mark Certificates (VMC)",
+            "body": "Display your verified brand identity in supported email clients.",
+            "image": "/assets/images/menu-digital-trust-verified-mark-certificates-v1.png",
+            "link": "/verified-mark-certificates-vmc"
+          },
+          {
+            "label": "Digital Trust",
+            "title": "Digicert VMC",
+            "body": "Explore DigiCert Verified Mark Certificates.",
+            "image": "/assets/images/menu-digital-trust-digicert-vmc-v1.png",
+            "link": "/digicert-vmc"
+          }
+        ],
         "groups": [
           {
             "heading": "Mark Certificate",
@@ -2231,6 +2621,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "6",
         "label": "Digital Signature",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Digital Trust",
+            "title": "Docusign",
+            "body": "Explore digital signing for business agreements.",
+            "image": "/assets/images/menu-digital-trust-docusign-v1.png",
+            "link": "/docusign"
+          },
+          {
+            "label": "Digital Trust",
+            "title": "Zoho Sign",
+            "body": "Send, sign and manage documents with Zoho Sign.",
+            "image": "/assets/images/menu-digital-trust-zoho-sign-v1.png",
+            "link": "/zoho-sign"
+          }
+        ],
         "groups": [
           {
             "heading": "Digital Signature",
@@ -2255,6 +2661,15 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "Quantum Cryptography",
         "label": "Quantum Cryptography",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Digital Trust",
+            "title": "Quantum Cryptography",
+            "body": "Contact our team to discuss quantum cryptography.",
+            "image": "/assets/images/menu-digital-trust-quantum-cryptography-v1.png",
+            "link": "/contact"
+          }
+        ],
         "groups": [
           {
             "heading": "Quantum Cryptography",
@@ -2285,17 +2700,16 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "label": "Security",
             "title": "MDM",
-            "body": "Explore MDM services, features and solutions.",
-            "image": "/assets/images/product-intros/reference-d3a8bae5f3f4.png",
+            "body": "Manage and protect business devices from one place.",
+            "image": "/assets/images/menu-security-mdm-v1.png",
             "link": "/cloud-mobile-device-mgmt"
           },
           {
             "label": "Security",
             "title": "MDR",
-            "body": "24×7 outsourced monitoring with rapid response",
-            "image": "/assets/images/hero-smb-cyber-security-appliance.png",
-            "link": "/mdr",
-            "imagePosition": "center 28%"
+            "body": "Explore managed threat detection and response.",
+            "image": "/assets/images/menu-security-mdr-v1.png",
+            "link": "/mdr"
           }
         ],
         "groups": [
@@ -2345,6 +2759,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "1",
         "label": "Cloud Security",
         "on": true,
+        "featureCards": [
+          {
+            "label": "Security",
+            "title": "AWS Security",
+            "body": "Explore protection for your AWS cloud environment.",
+            "image": "/assets/images/menu-security-aws-security-v1.png",
+            "link": "/aws-security"
+          },
+          {
+            "label": "Security",
+            "title": "Azure Security",
+            "body": "Explore security for Azure workloads and identities.",
+            "image": "/assets/images/menu-security-azure-security-v1.png",
+            "link": "/azure-security"
+          }
+        ],
         "groups": [
           {
             "heading": "Cloud Security",
@@ -2377,6 +2807,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "2",
         "label": "Network Security",
         "on": true,
+        "featureCards": [
+          {
+            "label": "Security",
+            "title": "Network Access Control (NAC)",
+            "body": "Control which devices can access your business network.",
+            "image": "/assets/images/menu-security-network-access-control-v1.png",
+            "link": "/network-access-control-nac"
+          },
+          {
+            "label": "Security",
+            "title": "Network Detection & Response (NDR)",
+            "body": "Monitor network activity and investigate threats.",
+            "image": "/assets/images/menu-security-network-detection-response-v1.png",
+            "link": "/network-detection-and-response-ndr"
+          }
+        ],
         "groups": [
           {
             "heading": "Network Security",
@@ -2410,6 +2856,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "39",
         "label": "Identity Security",
         "on": true,
+        "featureCards": [
+          {
+            "label": "Security",
+            "title": "Microsoft Entra ID",
+            "body": "Explore identity and access security with Microsoft Entra ID.",
+            "image": "/assets/images/menu-security-microsoft-entra-id-v1.png",
+            "link": "/microsoft-entra-id"
+          },
+          {
+            "label": "Security",
+            "title": "Multi-Factor Authentication",
+            "body": "Add identity verification to protect business access.",
+            "image": "/assets/images/menu-security-multi-factor-authentication-v1.png",
+            "link": "/multi-factor-authentication"
+          }
+        ],
         "groups": [
           {
             "heading": "identity Security",
@@ -2468,6 +2930,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "4",
         "label": "Data Security",
         "on": true,
+        "featureCards": [
+          {
+            "label": "Security",
+            "title": "Data Encryption",
+            "body": "Protect sensitive business information with encryption.",
+            "image": "/assets/images/menu-security-data-encryption-v1.png",
+            "link": "/data-encryption"
+          },
+          {
+            "label": "Security",
+            "title": "Data Security Posture Mgmt",
+            "body": "Understand and manage security risks across business data.",
+            "image": "/assets/images/menu-security-data-security-posture-v1.png",
+            "link": "/data-security-posture-mgmt"
+          }
+        ],
         "groups": [
           {
             "heading": "Data Security",
@@ -2507,6 +2985,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "5",
         "label": "OT+IOT Security",
         "on": true,
+        "featureCards": [
+          {
+            "label": "Security",
+            "title": "Acronis OT",
+            "body": "Explore protection for operational technology environments.",
+            "image": "/assets/images/menu-security-acronis-ot-v1.png",
+            "link": "/acronis-ot"
+          },
+          {
+            "label": "Security",
+            "title": "Kaspersky OT",
+            "body": "Explore industrial cybersecurity for operational technology.",
+            "image": "/assets/images/menu-security-kaspersky-ot-v1.png",
+            "link": "/kaspersky-ot"
+          }
+        ],
         "groups": [
           {
             "heading": "OT+IOT Security",
@@ -2535,6 +3029,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "6",
         "label": "Security Testing",
         "on": true,
+        "featureCards": [
+          {
+            "label": "Security",
+            "title": "VAPT Services",
+            "body": "Identify vulnerabilities with security testing services.",
+            "image": "/assets/images/menu-security-vapt-services-v1.png",
+            "link": "/vapt-services"
+          },
+          {
+            "label": "Security",
+            "title": "Continuous Pen As a Services",
+            "body": "Explore ongoing penetration testing for your systems.",
+            "image": "/assets/images/menu-security-continuous-pen-testing-v1.png",
+            "link": "/continuous-pen-as-a-services"
+          }
+        ],
         "groups": [
           {
             "heading": "Security Testing",
@@ -2619,6 +3129,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "7",
         "label": "Security Assessment",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Security",
+            "title": "Cloud Security Assessment",
+            "body": "Review security controls and risks in your cloud environment.",
+            "image": "/assets/images/menu-security-cloud-security-assessment-v1.png",
+            "link": "/cloud-security-assessment"
+          },
+          {
+            "label": "Security",
+            "title": "Digital Risk Monitoring",
+            "body": "Monitor digital exposure and external business risks.",
+            "image": "/assets/images/menu-security-digital-risk-monitoring-v1.png",
+            "link": "/digital-risk-monitoring"
+          }
+        ],
         "groups": [
           {
             "heading": "Security Assessment",
@@ -2687,6 +3213,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "8",
         "label": "Security Operations",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Security",
+            "title": "Autonomous Threat Management",
+            "body": "Explore AI-driven threat detection and automated response.",
+            "image": "/assets/images/menu-security-autonomous-threat-management-v1.png",
+            "link": "/autonomous-threat-management"
+          },
+          {
+            "label": "Security",
+            "title": "Cloud Security Log Monitoring",
+            "body": "Monitor cloud security logs and investigate suspicious activity.",
+            "image": "/assets/images/menu-security-cloud-security-log-monitoring-v1.png",
+            "link": "/cloud-security-log-monitoring"
+          }
+        ],
         "groups": [
           {
             "heading": "Security Operations",
@@ -2766,6 +3308,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "9",
         "label": "Security Consulting",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Security",
+            "title": "DPDPA Consulting",
+            "body": "Explore consulting for data privacy and protection.",
+            "image": "/assets/images/menu-security-dpdpa-consulting-v1.png",
+            "link": "/dpdpa-consulting"
+          },
+          {
+            "label": "Security",
+            "title": "vDPO-as-a-Service",
+            "body": "Get support for data protection responsibilities.",
+            "image": "/assets/images/menu-security-vdpo-service-v1.png",
+            "link": "/vdpo-as-a-service"
+          }
+        ],
         "groups": [
           {
             "heading": "Security Consulting",
@@ -2845,6 +3403,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "10",
         "label": "Security Training",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Security",
+            "title": "Security Awareness Training",
+            "body": "Build practical cybersecurity awareness across your team.",
+            "image": "/assets/images/menu-security-security-awareness-training-v1.png",
+            "link": "/security-awareness-training"
+          },
+          {
+            "label": "Security",
+            "title": "Incident Response Training",
+            "body": "Help your team prepare for security incidents.",
+            "image": "/assets/images/menu-security-incident-response-training-v1.png",
+            "link": "/incident-response-training"
+          }
+        ],
         "groups": [
           {
             "heading": "Security Training",
@@ -2877,6 +3451,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "11",
         "label": "Security Software",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Security",
+            "title": "Certificate Disk Erasure",
+            "body": "Explore secure disk erasure for business data.",
+            "image": "/assets/images/menu-security-disk-erasure-v1.png",
+            "link": "/certificate-disk-erasure"
+          },
+          {
+            "label": "Security",
+            "title": "Forensic Software",
+            "body": "Explore tools for digital evidence and forensic investigation.",
+            "image": "/assets/images/menu-security-forensic-software-v1.png",
+            "link": "/forensic-software"
+          }
+        ],
         "groups": [
           {
             "heading": "Security Software",
@@ -2908,6 +3498,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "0",
         "label": "AI Tools",
         "on": true,
+        "featureCards": [
+          {
+            "label": "AI",
+            "title": "AI Chat Bot",
+            "body": "Answer customer questions with an AI chat assistant",
+            "image": "/assets/images/menu-ai-ai-chat-bot-v1.png",
+            "link": "/ai-chat-bot"
+          },
+          {
+            "label": "AI",
+            "title": "AI Receptionist",
+            "body": "Handle incoming calls and appointment bookings with AI",
+            "image": "/assets/images/menu-ai-ai-receptionist-v1.png",
+            "link": "/ai-receptionist"
+          }
+        ],
         "groups": [
           {
             "heading": "AI Tools",
@@ -2957,6 +3563,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "1",
         "label": "AI Build",
         "on": false,
+        "featureCards": [
+          {
+            "label": "AI",
+            "title": "AI App Builder",
+            "body": "Create AI-powered applications for your business",
+            "image": "/assets/images/menu-ai-ai-app-builder-v1.png",
+            "link": "/ai-app-builder"
+          },
+          {
+            "label": "AI",
+            "title": "AI IDE Lab",
+            "body": "Develop and test AI projects in a dedicated workspace",
+            "image": "/assets/images/menu-ai-ai-ide-lab-v1.png",
+            "link": "/ai-ide-lab"
+          }
+        ],
         "groups": [
           {
             "heading": "AI Build",
@@ -2979,6 +3601,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "2",
         "label": "AI Training",
         "on": false,
+        "featureCards": [
+          {
+            "label": "AI",
+            "title": "Synapsem-AI Training Integrated Program",
+            "body": "Build practical AI skills through a structured training program",
+            "image": "/assets/images/menu-ai-ai-training-integrated-v1.png",
+            "link": "/synapsem-ai-training-integrated-program"
+          },
+          {
+            "label": "AI",
+            "title": "Synapsem-AI Training Live Online",
+            "body": "Learn AI through live, instructor-led online sessions",
+            "image": "/assets/images/menu-ai-ai-training-online-v1.png",
+            "link": "/synapsem-ai-training-live-online"
+          }
+        ],
         "groups": [
           {
             "heading": "AI Training",
@@ -3017,6 +3655,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "3",
         "label": "AI Consulting",
         "on": false,
+        "featureCards": [
+          {
+            "label": "AI",
+            "title": "AI App Builder",
+            "body": "Create AI-powered applications for your business",
+            "image": "/assets/images/menu-ai-ai-app-builder-v1.png",
+            "link": "/ai-app-builder"
+          },
+          {
+            "label": "AI",
+            "title": "AI Website Builder",
+            "body": "Create business websites with AI-assisted design tools",
+            "image": "/assets/images/menu-ai-ai-website-builder-v1.png",
+            "link": "/ai-website-builder"
+          }
+        ],
         "groups": [
           {
             "heading": "AI Consulting",
@@ -3044,6 +3698,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "4",
         "label": "AI Security",
         "on": false,
+        "featureCards": [
+          {
+            "label": "AI",
+            "title": "AI Red Teaming Services",
+            "body": "Test AI systems for prompt attacks and unsafe responses",
+            "image": "/assets/images/menu-ai-ai-red-teaming-v1.png",
+            "link": "/ai-red-teaming-services"
+          },
+          {
+            "label": "AI",
+            "title": "AI Security Assessment",
+            "body": "Identify vulnerabilities and risks in your AI systems",
+            "image": "/assets/images/menu-ai-ai-security-assessment-v1.png",
+            "link": "/ai-security-assessment"
+          }
+        ],
         "groups": [
           {
             "heading": "AI Security",
@@ -3081,6 +3751,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "5",
         "label": "AI Governance",
         "on": false,
+        "featureCards": [
+          {
+            "label": "AI",
+            "title": "AI App Builder",
+            "body": "Create AI-powered applications for your business",
+            "image": "/assets/images/menu-ai-ai-app-builder-v1.png",
+            "link": "/ai-app-builder"
+          },
+          {
+            "label": "AI",
+            "title": "AI Website Builder",
+            "body": "Create business websites with AI-assisted design tools",
+            "image": "/assets/images/menu-ai-ai-website-builder-v1.png",
+            "link": "/ai-website-builder"
+          }
+        ],
         "groups": [
           {
             "heading": "AI Governance",
@@ -3108,6 +3794,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "6",
         "label": "AI Managed Services",
         "on": false,
+        "featureCards": [
+          {
+            "label": "AI",
+            "title": "Anthropic Managed Services",
+            "body": "Get help deploying and managing Anthropic Claude solutions",
+            "image": "/assets/images/menu-ai-anthropic-managed-v1.png",
+            "link": "/anthropic-managed-services"
+          },
+          {
+            "label": "AI",
+            "title": "OpenAI Managed Services",
+            "body": "Get help deploying and managing OpenAI solutions",
+            "image": "/assets/images/menu-ai-openai-managed-v1.png",
+            "link": "/openai-managed-services"
+          }
+        ],
         "groups": [
           {
             "heading": "AI Managed Services",
