@@ -176,7 +176,8 @@
   display: grid;
   gap: 18px;
 }
-.gpu-lead-card label {
+.gpu-lead-card label,
+.gpu-lead-card .gpu-phone-field {
   display: flex;
   align-items: center;
   gap: 14px;
@@ -187,7 +188,8 @@
   background: #f9f9fc;
   transition: 0.2s;
 }
-.gpu-lead-card label:focus-within {
+.gpu-lead-card label:focus-within,
+.gpu-lead-card .gpu-phone-field:focus-within {
   border-color: #365ac7;
   box-shadow: 0 0 0 3px rgba(54, 90, 199, 0.1);
 }
@@ -215,15 +217,12 @@
 .gpu-phone-field {
   gap: 8px !important;
 }
-.gpu-phone-field > span {
-  font-size: 19px;
-}
-.gpu-phone-field > b {
-  padding-right: 8px;
-  border-right: 1px solid #fefeff;
-  font-size: 14px;
-  font-weight: 500;
-}
+.gpu-country-picker { position: relative; display: inline-flex; align-items: center; gap: 5px; flex: none; padding: 6px 8px 6px 0; border-right: 1px solid #c8cbe3; color: #16182d; }
+.gpu-country-picker img { display: block; width: 22px; height: 16px; object-fit: contain; flex: none; }
+.gpu-dial-code { font: 500 13px/1.2 var(--body, 'IBM Plex Sans', sans-serif); white-space: nowrap; }
+.gpu-country-chevron { font-size: 10px; color: #5f6197; }
+.gpu-country-picker select { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; font-size: 14px; color: #16182d; background: #fff; }
+.gpu-country-picker select:disabled { cursor: wait; }
 .gpu-lead-card button {
   min-height: 49px;
   margin-top: 5px;
@@ -342,7 +341,8 @@
   gap: 12px;
   align-items: start;
 }
-.gpu-lead-hero-inline .gpu-lead-card label {
+.gpu-lead-hero-inline .gpu-lead-card label,
+.gpu-lead-hero-inline .gpu-lead-card .gpu-phone-field {
   height: 44px;
   padding: 0 16px;
   border-color: rgba(255, 255, 255, 0.72);
