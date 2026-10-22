@@ -1,5 +1,5 @@
 ﻿import { Component, ElementRef, Input, OnDestroy, ViewChild, inject } from '@angular/core';
-import { OnChanges, signal } from '@angular/core';
+import { AfterViewInit, OnChanges, signal } from '@angular/core';
 import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
 import { CartService } from '../core/cart.service';
 import { LeadService } from '../core/lead.service';
@@ -39,6 +39,7 @@ type InteractiveContentSource =
   | 'acronis-ot'
   | 'whats-new'
   | 'fortinet-fortigate'
+  | 'sql-server-comparison'
   | 'teamviewer'
   | 'anydesk'
   | 'sap-s4-hana-private-cloud'
@@ -88,14 +89,14 @@ type InteractiveContentSource =
   host: { '[class.openclaw-page-content]': "source === 'openclaw' || source === 'cpanel'" },
   template: `@if (source === 'cybird' || source === 'veritas') {
     <iframe #frame [srcdoc]="embeddedDocument()" [title]="contentTitle"
-      scrolling="no" (load)="onLoad()"></iframe>
+      scrolling="no" (load)="onLoad($event)"></iframe>
   } @else {
     <iframe #frame [style.min-height.px]="source.endsWith('-hero') ? 0 : 600"
-      [src]="contentUrl" [title]="contentTitle" scrolling="no" (load)="onLoad()"></iframe>
+      [src]="contentUrl" [title]="contentTitle" scrolling="no" (load)="onLoad($event)"></iframe>
   }`,
   styles: [`:host{display:block}iframe{display:block;width:100%;min-height:600px;border:0}`],
 })
-export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy {
+export class ImportedInteractiveContentComponent implements AfterViewInit, OnChanges, OnDestroy {
   @Input() source: InteractiveContentSource = 'kubernetes';
   @Input() consultingSlug = '';
   @Input() sslSlug = '';
@@ -175,6 +176,7 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'acronis-ot': '/imported-acronis-ot.html',
     'whats-new': '/imported-whats-new.html',
     'fortinet-fortigate': '/imported-fortinet-fortigate.html',
+    'sql-server-comparison': '/imported-sql-server-editions-comparison.html',
     'teamviewer': '/imported-teamviewer.html',
     'anydesk': '/imported-anydesk.html',
     'sap-s4-hana-private-cloud': '/imported-sap-s4-hana-private-cloud.html',
@@ -324,6 +326,7 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
     'acronis-ot': 'Acronis Cyber Protect for OT, animated demo, coverage, plant sizing, recovery calculator and quotation',
     'whats-new': 'What’s New at XcellHost, animated release radar, launch spotlights and filterable release log',
     'fortinet-fortigate': 'Fortinet FortiGate, animated demo, Security Fabric, models, sizing, configuration and FAQs',
+    'sql-server-comparison': 'Microsoft SQL Server editions comparison, sizing wizard, limit checker, licensing and pricing',
     'teamviewer': 'TeamViewer remote access, animated demo, plans, pricing, selection tools and FAQs',
     'anydesk': 'AnyDesk remote access, animated demo, editions, pricing, selection tools and FAQs',
     'sap-s4-hana-private-cloud': 'SAP S/4HANA Private Cloud, animated demo, getting started, configurator, HANA sizing and FAQs',
@@ -496,12 +499,17 @@ export class ImportedInteractiveContentComponent implements OnChanges, OnDestroy
 
   get contentTitle(): string { return this.sourceTitles[this.source]; }
 
-  onLoad(): void {
-    this.ngOnDestroy();
+  ngAfterViewInit(): void {
     const frame = this.frame?.nativeElement;
+    if (frame?.contentDocument?.readyState === 'complete') queueMicrotask(() => this.onLoad());
+  }
+
+  onLoad(event?: Event): void {
+    this.ngOnDestroy();
+    const frame = (event?.currentTarget as HTMLIFrameElement | null) ?? this.frame?.nativeElement;
     const doc = frame?.contentDocument;
     const main = doc?.querySelector('main');
-    if (doc) useScrollingSectionNavigation(doc);
+    if (doc && this.source !== 'sql-server-comparison') useScrollingSectionNavigation(doc);
     if (!frame || !doc || !main) return;
     const resize = () => {
 

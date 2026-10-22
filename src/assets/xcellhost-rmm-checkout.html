@@ -86,6 +86,7 @@ button{font-family:var(--f)}
 .field input.err{border-color:var(--red)}.field input.ok{border-color:var(--gn)}
 .field select{width:100%;padding:12px 14px;border:2px solid #d5dde7;border-radius:10px;font-size:.9rem;font-family:var(--f);color:var(--ink);outline:none;background:#fff;cursor:pointer;transition:border-color .2s,box-shadow .2s}
 .field select:focus{border-color:var(--bl);box-shadow:0 0 0 3px rgba(0,102,255,.15)}
+.field select.err{border-color:var(--red)}
 .ferr{font-size:.7rem;color:var(--red);margin-top:5px;display:none}.ferr.show{display:block}
 
 /* existing login prototype */
@@ -268,13 +269,13 @@ button{font-family:var(--f)}
       <div class="field"><label>Company Name <span class="rq">*</span></label><input id="company" type="text"><div class="ferr">Please enter your company name.</div></div>
     </form>
 
-    <div class="login-proto" id="formExisting">
+    <form class="login-proto" id="formExisting" autocomplete="on">
       <div class="proto-note">&#128274; Your sign-in is verified securely by XcellHost. Your password is never stored in this page or sent anywhere from here.</div>
       <div class="frow">
         <div class="field"><label>Email <span class="rq">*</span></label><input id="exEmail" type="email"><div class="ferr">Enter a valid email address.</div></div>
         <div class="field"><label>Password <span class="rq">*</span></label><input id="exPass" type="password" autocomplete="current-password"><div class="ferr">Please enter your password.</div></div>
       </div>
-    </div>
+    </form>
 
     <button type="button" class="continue" onclick="continueFromAccount()"><span class="ctxt">Continue to Service</span></button>
     <div class="secure-line">&#128274; Your information is encrypted and secure</div>
@@ -695,7 +696,17 @@ function continueFromProfile(){ if(!validateProfile()){ toast("Please complete t
 
 const STEP_ORDER=["account","service","profile","payment"];
 const CARD={account:"#cardAccount",service:"#cardService",profile:"#cardProfile",payment:"#cardPayment"};
+function navigateFromStepper(name){
+  const currentIndex=STEP_ORDER.indexOf(state.step), targetIndex=STEP_ORDER.indexOf(name);
+  if(targetIndex<0) return;
+  if(targetIndex<=currentIndex){ goStep(name); return; }
+  if(targetIndex!==currentIndex+1){ toast("Complete the current step before continuing."); return; }
+  if(state.step==="account") continueFromAccount();
+  else if(state.step==="service") continueFromService();
+  else if(state.step==="profile") continueFromProfile();
+}
 function goStep(name){
+  if(!CARD[name]) return;
   if(name==="service" && !validateAccount()){ goStep("account"); toast("Complete your account first."); return; }
   if(name==="profile" && !priceReady()){ toast("Please choose a term with confirmed pricing."); return; }
   if(name==="payment" && !validateProfile()){ goStep("profile"); toast("Complete your billing profile first."); return; }
@@ -837,7 +848,11 @@ function init(){
   if(pr.address2)$("#address2").value=pr.address2; if(pr.state)$("#state").value=pr.state; if(pr.pin)$("#pin").value=pr.pin;
   if(pr.gstRegistered){ $("#gstReg").value=pr.gstRegistered; toggleGstin(); }
 
-  document.querySelectorAll("#stepper .step").forEach(st=>{ st.addEventListener("click",()=>{ const names=["account","service","profile","payment"]; goStep(names[+st.dataset.step]); }); });
+  $("#formNew").addEventListener("submit",event=>{ event.preventDefault(); if(state.custType==="new") continueFromAccount(); });
+  $("#formExisting").addEventListener("submit",event=>{ event.preventDefault(); if(state.custType==="existing") continueFromAccount(); });
+  $("#formProfile").addEventListener("submit",event=>{ event.preventDefault(); continueFromProfile(); });
+
+  document.querySelectorAll("#stepper .step").forEach(st=>{ st.addEventListener("click",()=>navigateFromStepper(STEP_ORDER[+st.dataset.step])); });
 
   renderAll();
   goStep("account");

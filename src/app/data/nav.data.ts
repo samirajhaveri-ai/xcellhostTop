@@ -1003,6 +1003,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "SQL-Server Comparision",
+                "pill": null,
+                "desc": null,
+                "href": "/sql-server-comparision"
+              },
               
 
             ]

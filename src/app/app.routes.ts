@@ -1039,6 +1039,16 @@ export const routes: Routes = [
     path: 'anti-ransomware-warranty',
     loadComponent: () => import('./pages/anti-ransomware-warranty.page').then((m) => m.AntiRansomwareWarrantyPage),
   },
+  {
+    path: 'sql-server-comparision',
+    title: 'SQL Server Editions Comparison | XcellHost',
+    loadComponent: () => import('./pages/sql-server-editions-comparison.page').then((m) => m.SqlServerEditionsComparisonPage),
+  },
+  {
+    path: 'sql-server-editions-comparison',
+    redirectTo: 'sql-server-comparision',
+    pathMatch: 'full',
+  },
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
   { path: '**', redirectTo: '' },
 ];
