@@ -1821,7 +1821,7 @@
                 DDR4 ECC RAM, blazing NVMe/SSD storage and high bandwidth &mdash; with full root access,
                 free DDoS protection and a 99.99% uptime SLA.
               </p>
-            } @else if (!v.tagline.toLowerCase().startsWith('maximise online visibility')) {
+            } @else if (slug() !== 'sectigo-ssl-certificates' && !v.tagline.toLowerCase().startsWith('maximise online visibility')) {
               <h2
                 class="pp-tagline"
                 [class.pp-tagline-reference]="isAdvancedEdr() || v.name === 'Tally on Cloud'"
