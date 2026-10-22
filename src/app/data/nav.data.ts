@@ -3825,6 +3825,7 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "OpenAI Managed Services",
+                "href": "/openai-managed-services",
                 "pill": null,
                 "desc": "Get help deploying and managing OpenAI solutions"
               },

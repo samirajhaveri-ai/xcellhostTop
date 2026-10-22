@@ -15,6 +15,22 @@ export class SuppliedServiceReferenceComponent implements AfterViewInit, OnDestr
     const root = this.host.nativeElement.shadowRoot;
     if (!root) return;
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (this.page() === 'server') {
+      const title = root.querySelector<HTMLElement>('.pp-hero h1');
+      const copy = title?.parentElement;
+      if (title && copy) {
+        const fitTitle = () => {
+          title.style.setProperty('--server-title-size', '42px');
+          if (title.scrollWidth > title.clientWidth) {
+            title.style.setProperty('--server-title-size', `${42 * title.clientWidth / title.scrollWidth}px`);
+          }
+        };
+        const observer = new ResizeObserver(fitTitle);
+        observer.observe(copy);
+        void root.ownerDocument.fonts.ready.then(fitTitle);
+        this.cleanups.push(() => observer.disconnect());
+      }
+    }
 
     const toTop = root.querySelector<HTMLButtonElement>('#toTop');
     if (toTop) {

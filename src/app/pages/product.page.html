@@ -378,7 +378,7 @@
         </div>
       } @else if (slug() === 'cloud-devops-services' || slug() === 'server-management') {
         <xh-supplied-service-reference [page]="slug() === 'server-management' ? 'server' : 'devops'" />
-        <div class="pp-body supplied-service-extras">
+        <div class="pp-body supplied-service-extras" [class.server-management-extras]="slug() === 'server-management'">
           <div class="wrap">
             <section aria-labelledby="suppliedServiceSecurityTitle">
               <h2 class="pp-sec" id="suppliedServiceSecurityTitle">Security &amp; compliance</h2>

@@ -5,6 +5,37 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  { path: 'sectigo-ssl-certificates', title: 'Sectigo SSL Certificates | XcellHost', loadComponent: () => import('./pages/sectigo-catalogue.page').then(m => m.SectigoCataloguePage) },
+  ...[
+    ['codeguard-backup', 'CodeGuard Backup'],
+    ['positivessl-acme-caas-dv', 'PositiveSSL ACME Certificate-as-a-Service (DV)'],
+    ['sectigo-acme-certificate-as-a-service', 'Sectigo ACME Certificate-as-a-Service (DV)'],
+    ['sectigo-ev-code-signing', 'Sectigo EV Code Signing Certificates'],
+    ['sectigo-ev-ssl-multi-domain-ucc', 'Sectigo EV Multi-Domain/UCC'],
+    ['hackerguardian-pci-compliance-scanning', 'Sectigo HackerGuardian'],
+    ['sectigo-ov-ssl', 'Sectigo OV SSL'],
+    ['sectigo-ov-ssl-multi-domain-ucc', 'Sectigo OV SSL Multi-Domain/UCC'],
+    ['sectigo-ov-ssl-multi-domain-wildcard', 'Sectigo OV SSL Multi-Domain Wildcard'],
+    ['sectigo-ov-ssl-wildcard', 'Sectigo OV Wildcard SSL'],
+    ['sectigo-ssl', 'Sectigo SSL'],
+    ['ssl-installation-service', 'SSL Installation Service'],
+    ['sectigo-ssl-multi-domain-ucc', 'Sectigo SSL Multi-Domain/UCC'],
+  ].map(([path, name]) => ({path, pathMatch: 'full' as const, title: `${name} | XcellHost`, data: {sectigoSlug: path}, loadComponent: () => import('./pages/sectigo-supplied.page').then(m => m.SectigoSuppliedPage)})),
+  ...[
+    ['sectigo-acme-caas-dv', 'sectigo-acme-certificate-as-a-service'],
+    ['sectigo-ev-code-signing-certificate', 'sectigo-ev-code-signing'],
+    ['sectigo-ev-multi-domain-ucc', 'sectigo-ev-ssl-multi-domain-ucc'],
+    ['sectigo-hackerguardian', 'hackerguardian-pci-compliance-scanning'],
+    ['sectigo-ov-wildcard-ssl', 'sectigo-ov-ssl-wildcard'],
+    ['sectigo-ssl-installation-service', 'ssl-installation-service'],
+  ].map(([path, redirectTo]) => ({path, redirectTo, pathMatch: 'full' as const})),
+  ...['resilience', 'cloud', 'database', 'network', 'security', 'workspace'].map(kind => ({
+    path: `${kind}-operations`, title: `${kind[0].toUpperCase() + kind.slice(1)} Operations | XcellHost`,
+    data: { operationsSource: `${kind}-operations` },
+    loadComponent: () => import('./pages/managed-operations.page').then(m => m.ManagedOperationsPage),
+  })),
+  { path: 'openai-managed-services', title: 'OpenAI Managed Services | XcellHost', loadComponent: () => import('./pages/openai-managed-services.page').then(m => m.OpenAiManagedServicesPage) },
+  { path: 'open-ai-managed-services', redirectTo: 'openai-managed-services', pathMatch: 'full' },
   { path: 'digicert-content-trust-manager', redirectTo: 'document-security', pathMatch: 'full' },
   ...[
     { path: 'document-security', source: 'digicert-content-trust-manager', name: 'DigiCert Content Trust Manager' },
