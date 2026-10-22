@@ -524,6 +524,7 @@ export const routes: Routes = [
   { path: 'company/our-team-our-story', redirectTo: 'about-us', pathMatch: 'full' },
   { path: 'about-us', data: { pageSlug: 'our-team-our-story' }, loadComponent: () => import('./pages/company.page').then((m) => m.CompanyPage) },
   { path: '', pathMatch: 'full', loadComponent: () => import('./pages/home.page').then((m) => m.HomePage) },
+  { path: 'sitemap', title: 'Sitemap | XcellHost', loadComponent: () => import('./pages/sitemap.page').then((m) => m.SitemapPage) },
   { path: 'compare', loadComponent: () => import('./pages/compare.page').then((m) => m.ComparePage) },
   { path: 'compare-providers', loadComponent: () => import('./pages/compare-providers.page').then((m) => m.CompareProvidersPage) },
   {

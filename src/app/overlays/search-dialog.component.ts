@@ -46,7 +46,7 @@ export class SearchDialogComponent {
   private readonly search = inject(SiteSearchService);
   private readonly router = inject(Router);
   readonly overlay = inject(OverlayService);
-  readonly websiteSearch = signal(false);
+  readonly websiteSearch = signal(true);
 
   private readonly inputRef = viewChild<ElementRef<HTMLInputElement>>('srchI');
   private readonly boxRef = viewChild<ElementRef<HTMLElement>>('searchBox');
@@ -123,7 +123,9 @@ export class SearchDialogComponent {
     effect(() => {
       if (!this.overlay.isOpen('search')) {
         untracked(() => {
-          this.websiteSearch.set(false);
+          // The header search icon should always start with the website search.
+          // Visitors can still switch to Ask AI from the open dialog.
+          this.websiteSearch.set(true);
           this.aiMode.set(false);
           this.resetAnswer();
           if (this.timer) clearTimeout(this.timer);
