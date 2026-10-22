@@ -93,7 +93,6 @@ body>.top,body>.nav,body>.ft,body>.foot{display:none!important}
 
 /* existing login prototype */
 .login-proto{display:none}.login-proto.show{display:block;animation:fadeUp .4s ease}
-.proto-note{font-size:.7rem;color:var(--or);background:rgba(255,138,0,.08);border:1px solid rgba(255,138,0,.2);border-radius:8px;padding:8px 12px;margin-bottom:16px}
 
 /* service spec grid */
 .spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
@@ -281,14 +280,13 @@ body>.top,body>.nav,body>.ft,body>.foot{display:none!important}
     </form>
 
     <div class="login-proto" id="formExisting">
-      <div class="proto-note">Test login</div>
       <div class="frow">
         <div class="field"><label>Email <span class="rq">*</span></label><input id="exEmail" type="email"><div class="ferr">Enter a valid email address.</div></div>
-        <div class="field"><label>Password <span class="rq">*</span></label><input id="exPass" type="password" autocomplete="current-password"><div class="ferr">Email or password does not match the test account.</div></div>
+        <div class="field"><label>Password <span class="rq">*</span></label><input id="exPass" type="password" autocomplete="current-password"><div class="ferr">Invalid email or password.</div></div>
       </div>
     </div>
 
-    <button type="button" class="continue" onclick="continueFromAccount()"><span class="ctxt">Continue to Service</span></button>
+    <button id="accountContinue" type="button" class="continue" onclick="continueFromAccount()"><span class="ctxt">Continue to Service</span></button>
     <div class="secure-line">&#128274; Your information is encrypted and secure</div>
   </div>
 
@@ -420,10 +418,8 @@ const PACKAGES={"LITE": {"name": "Cloud Lite", "users": "3–4", "cpu": 4, "ram"
 const TERMS={MON:{name:'Monthly',months:1},QUA:{name:'3 Months',months:3},SEM:{name:'6 Months',months:6},YEA:{name:'1 Year',months:12}};
 const PRODUCT_NAME='Tally Private Cloud';
 const COUPONS={XCELLTALLY10:{type:'pct',val:10,label:'10% off'}};
-// Provided temporary test account. This browser-only demo does not authenticate a Zoho customer.
-const TEST_LOGIN={email:'sales@cloudnanny.support',password:'Cloud@22'};
 const CART_KEY='xcellhost_tally_private_cart_v1';
-let state={step:'account',custType:'new',entity:'individual',packageId:'LITE',termId:'MON',quantity:1,inCart:false,coupon:null,account:{},profile:{}};
+let state={step:'account',custType:'new',entity:'individual',packageId:'LITE',termId:'MON',quantity:1,inCart:false,coupon:null,authenticated:false,account:{},profile:{}};
 const $=s=>document.querySelector(s);
 const fmt=n=>'₹'+Number(n).toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});
 const roundMoney=n=>Math.round((n+Number.EPSILON)*100)/100;
@@ -521,25 +517,53 @@ function applyCoupon(){
 function setErr(id,show){ const i=$("#"+id); if(!i)return; i.classList.toggle("err",show); const e=i.parentElement.querySelector(".ferr"); if(e)e.classList.toggle("show",show); }
 const reEmail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/, reMobile=/^[+\d][\d\s-]{7,}$/, rePin=/^\d{6}$/;
 
-function validateAccount(){
+function validateAccountFields(){
   let ok=true;
   if(state.custType==="new"){
     [["firstName",v=>v.trim().length>=1],["lastName",v=>v.trim().length>=1],["email",v=>reEmail.test(v.trim())],["mobile",v=>reMobile.test(v.trim())],["company",v=>v.trim().length>=1]]
       .forEach(([id,t])=>{ const bad=!t($("#"+id).value); setErr(id,bad); if(bad)ok=false; });
   }else{
     const eb=!reEmail.test($("#exEmail").value.trim()); setErr("exEmail",eb); if(eb)ok=false;
-    const pb=$("#exEmail").value.trim().toLowerCase()!==TEST_LOGIN.email || $("#exPass").value!==TEST_LOGIN.password; setErr("exPass",pb); if(pb)ok=false;
+    const pb=$("#exPass").value.length<1; setErr("exPass",pb); if(pb)ok=false;
   }
   return ok;
 }
+function validateAccount(){ return validateAccountFields() && (state.custType!=="existing" || state.authenticated); }
 function captureAccount(){
   if(state.custType==="new"){
     state.account={ firstName:$("#firstName").value.trim(), lastName:$("#lastName").value.trim(), email:$("#email").value.trim(), mobile:$("#mobile").value.trim(), company:$("#company").value.trim() };
     if(!$("#legalName").value) $("#legalName").value=state.account.company||"";
-  }else{ state.account={ email:$("#exEmail").value.trim() }; }  // never stores password
+  }else{ state.account={...state.account,email:$("#exEmail").value.trim().toLowerCase()}; }  // never stores password
   saveCart();
 }
-function continueFromAccount(){ if(!validateAccount()){ toast("Please complete the required account fields."); return; } captureAccount(); goStep("service"); }
+async function continueFromAccount(){
+  if(!validateAccountFields()){ toast("Please complete the required account fields."); return; }
+  if(state.custType!=="existing"){ captureAccount(); goStep("service"); return; }
+
+  const button=$("#accountContinue");
+  const label=button.querySelector(".ctxt");
+  button.disabled=true; label.textContent="Signing in...";
+  try{
+    const response=await fetch("/api/auth.php?action=signin",{
+      method:"POST",credentials:"same-origin",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({email:$("#exEmail").value.trim().toLowerCase(),password:$("#exPass").value,remember:false,loginType:"customer"})
+    });
+    const result=await response.json().catch(()=>({}));
+    if(!response.ok) throw new Error(result.message||"Invalid email or password.");
+    state.authenticated=true;
+    state.account={...(result.customer||{}),email:$("#exEmail").value.trim().toLowerCase()};
+    $("#exPass").value="";
+    setErr("exPass",false);
+    captureAccount();
+    goStep("service");
+  }catch(error){
+    state.authenticated=false;
+    setErr("exPass",true);
+    toast(error instanceof Error?error.message:"Unable to sign in. Please try again.");
+  }finally{
+    button.disabled=false; label.textContent="Continue to Service";
+  }
+}
 
 function continueFromService(){
   if(!validateAccount()){goStep("account");toast("Complete your account first.");return;}
@@ -716,7 +740,7 @@ function init(){
   $("#couponInput").value="";
 
   // account type toggle
-  function setCust(ct){ state.custType=ct; $("#optNew").classList.toggle("sel",ct==="new"); $("#optExisting").classList.toggle("sel",ct==="existing"); $("#formNew").style.display=ct==="new"?"":"none"; $("#formExisting").classList.toggle("show",ct==="existing"); updateCustomerFlow(); saveCart(); }
+  function setCust(ct){ if(state.custType!==ct) state.authenticated=false; state.custType=ct; $("#optNew").classList.toggle("sel",ct==="new"); $("#optExisting").classList.toggle("sel",ct==="existing"); $("#formNew").style.display=ct==="new"?"":"none"; $("#formExisting").classList.toggle("show",ct==="existing"); updateCustomerFlow(); saveCart(); }
   $("#optNew").addEventListener("click",()=>setCust("new"));
   $("#optExisting").addEventListener("click",()=>setCust("existing"));
   setCust(state.custType);
