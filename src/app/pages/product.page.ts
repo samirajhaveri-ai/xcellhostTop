@@ -5168,6 +5168,11 @@ class ProductPageComponent {
 
   /** Hero "Buy Now" buys the entry-level term, which is what the ladder starts at. */
   buyNow(ev: Event): void {
+    if (this.isTally()) {
+      ev.preventDefault();
+      window.location.assign('/tally-on-cloud/checkout?package=LITE&term=MON&quantity=1');
+      return;
+    }
     const plan = this.view()?.plans[0];
     if (!plan) {
       ev.preventDefault();
@@ -5381,12 +5386,32 @@ class ProductPageComponent {
 
   selectTallyPlan(plan: TallyPlan, ev: Event): void {
     ev.preventDefault();
-    if (plan.edition === 'Cloud Lite' && this.selectedTallyTerm() === 'monthly') {
-      window.location.assign('/tally-on-cloud/checkout?product=tally-private-cloud-lite&billing=monthly');
-      return;
-    }
-    this.topics.ask(`${plan.name} (${plan.edition}) - ${plan.users} users - ${this.activeTallyTerm().label}`);
-    this.overlay.open('callback');
+    const packageId = this.tallyPackageId(plan);
+    const termId: Record<TallyTerm, string> = {
+      monthly: 'MON',
+      '3m': 'QUA',
+      '6m': 'SEM',
+      '1y': 'YEA',
+    };
+    const params = new URLSearchParams({
+      package: packageId,
+      term: termId[this.selectedTallyTerm()],
+      quantity: '1',
+    });
+    window.location.assign(`/tally-on-cloud/checkout?${params.toString()}`);
+  }
+
+  private tallyPackageId(plan: TallyPlan): string {
+    if (plan.users === '51+ to 75') return 'XXXXL';
+    return ({
+      'Cloud Lite': 'LITE',
+      'Cloud X Small': 'XS',
+      'Cloud Small': 'S',
+      'Cloud Medium': 'M',
+      'Cloud X Large': 'XL',
+      'Cloud XX Large': 'XXL',
+      'Cloud XXX Large': 'XXXL',
+    } as Record<string, string>)[plan.edition] || 'LITE';
   }
 
   requestPerformanceCloudPlan(plan: string): void {
