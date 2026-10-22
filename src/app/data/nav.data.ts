@@ -3842,6 +3842,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "0",
         "label": "Remote Access Tools",
         "on": true,
+        "featureCards": [
+          {
+            "label": "Marketplace",
+            "title": "TSplus Remote Access",
+            "body": "Access business desktops and applications remotely.",
+            "image": "/assets/images/menu-marketplace-tsplus-remote-access-v1.png",
+            "link": "/tsplus-remote-access"
+          },
+          {
+            "label": "Marketplace",
+            "title": "TSplus Advanced Security",
+            "body": "Explore protection for remote servers and access.",
+            "image": "/assets/images/menu-marketplace-tsplus-advanced-security-v1.png",
+            "link": "/tsplus-advanced-security"
+          }
+        ],
         "groups": [
           {
             "heading": "Remote Access Tools",
@@ -3886,6 +3902,15 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "1",
         "label": "Microsoft Software",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Marketplace",
+            "title": "Microsoft Software",
+            "body": "Contact our team to explore Microsoft software options.",
+            "image": "/assets/images/menu-marketplace-microsoft-software-v1.png",
+            "link": "/contact"
+          }
+        ],
         "groups": [
           {
             "heading": "Microsoft Software",
@@ -3903,6 +3928,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "2",
         "label": "Microsoft Security",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Marketplace",
+            "title": "Microsoft Identity & Access",
+            "body": "Explore identity and access security for your organization.",
+            "image": "/assets/images/menu-marketplace-microsoft-identity-access-v1.png",
+            "link": "/microsoft-identity-and-access"
+          },
+          {
+            "label": "Marketplace",
+            "title": "Microsoft SIEM & XDR",
+            "body": "Explore coordinated threat monitoring and response.",
+            "image": "/assets/images/menu-marketplace-microsoft-siem-xdr-v1.png",
+            "link": "/microsoft-siem-and-xdr"
+          }
+        ],
         "groups": [
           {
             "heading": "Microsoft Security",
@@ -3957,6 +3998,15 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "3",
         "label": "CloudFlare Security",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Marketplace",
+            "title": "All CloudFlare Products",
+            "body": "Explore Cloudflare products for application and network security.",
+            "image": "/assets/images/menu-marketplace-cloudflare-security-v1.png",
+            "link": "/all-cloudflare-products"
+          }
+        ],
         "groups": [
           {
             "heading": "CloudFlare Security",
@@ -3974,6 +4024,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "4",
         "label": "Fortinet Security",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Marketplace",
+            "title": "All Fortinet Products",
+            "body": "Explore Fortinet security products and solutions.",
+            "image": "/assets/images/menu-marketplace-fortinet-products-v1.png",
+            "link": "/all-fortinet-products"
+          },
+          {
+            "label": "Marketplace",
+            "title": "FortiGate",
+            "body": "Protect your network with Fortinet next-generation firewalls",
+            "image": "/assets/images/menu-marketplace-fortigate-v1.png",
+            "link": "/fortinet-fortigate"
+          }
+        ],
         "groups": [
           {
             "heading": "Fortinet Security",
@@ -3997,6 +4063,15 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "5",
         "label": "PaloAlto Security",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Marketplace",
+            "title": "All PaloAlto Products",
+            "body": "Explore Palo Alto products for enterprise security.",
+            "image": "/assets/images/menu-marketplace-paloalto-security-v1.png",
+            "link": "/all-paloalto-products"
+          }
+        ],
         "groups": [
           {
             "heading": "PaloAlto Security",
@@ -4014,6 +4089,15 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "6",
         "label": "Qualys Security",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Marketplace",
+            "title": "Qualys Security",
+            "body": "Contact our team to explore Qualys security options.",
+            "image": "/assets/images/menu-marketplace-qualys-security-v1.png",
+            "link": "/contact"
+          }
+        ],
         "groups": [
           {
             "heading": "Qualys Security",
@@ -4031,6 +4115,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "7",
         "label": "Data as a Services",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Marketplace",
+            "title": "Databricks Platform",
+            "body": "Explore Databricks for data and analytics workloads.",
+            "image": "/assets/images/menu-marketplace-databricks-platform-v1.png",
+            "link": "/databricks-platform"
+          },
+          {
+            "label": "Marketplace",
+            "title": "Snowflake Platform",
+            "body": "Explore Snowflake for cloud data workloads.",
+            "image": "/assets/images/menu-marketplace-snowflake-platform-v1.png",
+            "link": "/snowflake-platform"
+          }
+        ],
         "groups": [
           {
             "heading": "Data as a Services",
@@ -4102,6 +4202,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "9",
         "label": "On Premises Cloud",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Marketplace",
+            "title": "Data Center Build Services",
+            "body": "Explore infrastructure planning and data center build services.",
+            "image": "/assets/images/menu-marketplace-data-center-build-v1.png",
+            "link": "/data-center-build-services"
+          },
+          {
+            "label": "Marketplace",
+            "title": "Acronis Cyber Frame (HCI)",
+            "body": "Explore Acronis Cyber Frame hyperconverged infrastructure.",
+            "image": "/assets/images/menu-marketplace-acronis-cyber-frame-v1.png",
+            "link": "/acronis-cyber-frame-hci"
+          }
+        ],
         "groups": [
           {
             "heading": "On Premises Cloud",
@@ -4129,6 +4245,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "10",
         "label": "Managed Migration",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Marketplace",
+            "title": "Cloud Migration",
+            "body": "Plan, migrate and validate your cloud workloads",
+            "image": "/assets/images/menu-marketplace-cloud-migration-v1.png",
+            "link": "/cloud-migration"
+          },
+          {
+            "label": "Marketplace",
+            "title": "AWS Migration",
+            "body": "Explore migration services for AWS environments.",
+            "image": "/assets/images/menu-marketplace-aws-migration-v1.png",
+            "link": "/aws-migration"
+          }
+        ],
         "groups": [
           {
             "heading": "Managed Migration",
@@ -4215,6 +4347,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "13",
         "label": "Cloud Connectivity",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Marketplace",
+            "title": "Cloud Connectivity",
+            "body": "Connect business environments through cloud networks.",
+            "image": "/assets/images/menu-marketplace-cloud-connectivity-v1.png",
+            "link": "/cloud-connectivity"
+          },
+          {
+            "label": "Marketplace",
+            "title": "Cloud Router",
+            "body": "Explore routing for connected cloud environments.",
+            "image": "/assets/images/menu-marketplace-cloud-router-v1.png",
+            "link": "/cloud-router"
+          }
+        ],
         "groups": [
           {
             "heading": "Cloud Connectivity",
@@ -4267,6 +4415,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "14",
         "label": "SAP On Cloud",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Marketplace",
+            "title": "SAP Hosting",
+            "body": "Explore managed hosting for SAP workloads.",
+            "image": "/assets/images/menu-marketplace-sap-hosting-v1.png",
+            "link": "/sap-hosting"
+          },
+          {
+            "label": "Marketplace",
+            "title": "SAP B1 Cloud",
+            "body": "Explore cloud hosting for SAP Business One.",
+            "image": "/assets/images/menu-marketplace-sap-b1-cloud-v1.png",
+            "link": "/sap-b1-cloud"
+          }
+        ],
         "groups": [
           {
             "heading": "SAP On Cloud",
@@ -4312,6 +4476,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "15",
         "label": "Sage On Cloud",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Marketplace",
+            "title": "Sage 300 Hosting",
+            "body": "Run Sage 300 on managed cloud hosting with remote access, backups and support.",
+            "image": "/assets/images/menu-marketplace-sage-300-hosting-v1.png",
+            "link": "/sage-300-hosting"
+          },
+          {
+            "label": "Marketplace",
+            "title": "Sage X3 Hosting",
+            "body": "Host your Sage X3 environment with managed infrastructure, backups and support.",
+            "image": "/assets/images/menu-marketplace-sage-x3-hosting-v1.png",
+            "link": "/sage-x3-hosting"
+          }
+        ],
         "groups": [
           {
             "heading": "Sage On Cloud",
@@ -4336,6 +4516,15 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "8",
         "label": "View Marketplace -->",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Marketplace",
+            "title": "Software Marketplace",
+            "body": "Contact our team to explore available software and services.",
+            "image": "/assets/images/menu-marketplace-marketplace-v1.png",
+            "link": "/contact"
+          }
+        ],
         "groups": [
           {
         
@@ -4395,6 +4584,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "0",
         "label": "By Industry",
         "on": true,
+        "featureCards": [
+          {
+            "label": "Solutions",
+            "title": "CA Cloud",
+            "body": "Explore cloud services for accounting and audit teams.",
+            "image": "/assets/images/menu-solutions-ca-cloud-v1.png",
+            "link": "/ca-cloud"
+          },
+          {
+            "label": "Solutions",
+            "title": "SMB Cloud",
+            "body": "Explore cloud solutions for small and medium businesses.",
+            "image": "/assets/images/menu-solutions-smb-cloud-v1.png",
+            "link": "/smb-cloud"
+          }
+        ],
         "groups": [
           {
             "heading": "By Industry",
@@ -4498,6 +4703,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "1",
         "label": "By Use Case",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Solutions",
+            "title": "Compromised Credentials",
+            "body": "Explore protection against compromised business credentials.",
+            "image": "/assets/images/menu-solutions-compromised-credentials-v1.png",
+            "link": "/compromised-credentials"
+          },
+          {
+            "label": "Solutions",
+            "title": "Insider Threat",
+            "body": "Explore detection and response for insider threats.",
+            "image": "/assets/images/menu-solutions-insider-threat-v1.png",
+            "link": "/insider-threat"
+          }
+        ],
         "groups": [
           {
             "heading": "By Use Case",
@@ -4550,6 +4771,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "2",
         "label": "By Capability",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Solutions",
+            "title": "NG-SIEM",
+            "body": "Explore next-generation security event monitoring.",
+            "image": "/assets/images/menu-solutions-ng-siem-v1.png",
+            "link": "/ng-siem"
+          },
+          {
+            "label": "Solutions",
+            "title": "NDR",
+            "body": "Explore network detection and response capabilities.",
+            "image": "/assets/images/menu-solutions-ndr-v1.png",
+            "link": "/ndr"
+          }
+        ],
         "groups": [
           {
             "heading": "By Capability",
@@ -4582,6 +4819,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "3",
         "label": "By Vendors",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Solutions",
+            "title": "Acronis",
+            "body": "Cyber protection, backup and endpoint management",
+            "image": "/assets/images/menu-solutions-acronis-v1.png",
+            "link": "/vendor-partners/acronis"
+          },
+          {
+            "label": "Solutions",
+            "title": "Microsoft",
+            "body": "Productivity, collaboration and business applications",
+            "image": "/assets/images/menu-solutions-microsoft-v1.png",
+            "link": "/vendor-partners/microsoft-365"
+          }
+        ],
         "groups": [
           {
             "heading": "By Vendors",
@@ -4717,6 +4970,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "4",
         "label": "By Technology",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Solutions",
+            "title": "Cloud Infrastructure",
+            "body": "High-performance compute, storage and hosting",
+            "image": "/assets/images/menu-solutions-cloud-infrastructure-v1.png",
+            "link": "/performance-cloud"
+          },
+          {
+            "label": "Solutions",
+            "title": "Backup & Disaster Recovery",
+            "body": "Protected workloads and rapid service recovery",
+            "image": "/assets/images/menu-solutions-backup-disaster-recovery-v1.png",
+            "link": "/cloud-disaster-recovery"
+          }
+        ],
         "groups": [
           {
             "heading": "By Technology",
@@ -4783,6 +5052,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "11",
         "label": "By Role",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Solutions",
+            "title": "CIO",
+            "body": "Explore technology solutions for information leaders.",
+            "image": "/assets/images/menu-solutions-cio-v1.png",
+            "link": "/cio"
+          },
+          {
+            "label": "Solutions",
+            "title": "CTO",
+            "body": "Explore technology solutions for engineering leaders.",
+            "image": "/assets/images/menu-solutions-cto-v1.png",
+            "link": "/cto"
+          }
+        ],
         "groups": [
           {
             "heading": "By Role",
@@ -4816,6 +5101,15 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "12",
         "label": "Cyber Insurance",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Solutions",
+            "title": "Cyber Insurance",
+            "body": "Contact our team to discuss cyber insurance.",
+            "image": "/assets/images/menu-solutions-cyber-insurance-v1.png",
+            "link": "/contact"
+          }
+        ],
         "groups": [
           {
             "heading": "Cyber Insurance",
@@ -4834,6 +5128,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "13",
         "label": "Acronis Solutions",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Solutions",
+            "title": "Acronis AI",
+            "body": "AI-native protection, management and automation on one platform",
+            "image": "/assets/images/menu-solutions-acronis-ai-v1.png",
+            "link": "/acronis-ai"
+          },
+          {
+            "label": "Solutions",
+            "title": "Cyberfit Score Tool",
+            "body": "AI-native protection, management and automation on one platform",
+            "image": "/assets/images/menu-solutions-cyberfit-score-v1.png",
+            "link": "/cyberfit-score-tool"
+          }
+        ],
         "groups": [
           {
             "heading": "Acronis Solutions",
@@ -4871,6 +5181,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "0",
         "label": "About Us",
         "on": true,
+        "featureCards": [
+          {
+            "label": "Company",
+            "title": "Contact Us",
+            "body": "We'd love to hear from you",
+            "image": "/assets/images/menu-company-contact-us-v1.png",
+            "link": "/contact"
+          },
+          {
+            "label": "Company",
+            "title": "Customer Testimonials",
+            "body": "Secure, scalable cloud expertise since 1999",
+            "image": "/assets/images/menu-company-customer-testimonials-v1.png",
+            "link": "/customer-testimonials"
+          }
+        ],
         "groups": [
           {
             "heading": "About Us",
@@ -4962,6 +5288,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "3",
         "label": "Support Center",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Company",
+            "title": "Support Overview",
+            "body": "Find the right route to technical help",
+            "image": "/assets/images/menu-company-support-overview-v1.png",
+            "link": "/support-overview"
+          },
+          {
+            "label": "Company",
+            "title": "Customer Support",
+            "body": "Find the right route to technical help",
+            "image": "/assets/images/menu-company-customer-support-v1.png",
+            "link": "/support-overview"
+          }
+        ],
         "groups": [
           {
             "heading": "Support",
@@ -5021,6 +5363,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "1",
         "label": "Partner Center",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Company",
+            "title": "Partner Overview",
+            "body": "Start your XcellHost partner journey",
+            "image": "/assets/images/menu-company-partner-overview-v1.png",
+            "link": "/under-construction/partner-overview"
+          },
+          {
+            "label": "Company",
+            "title": "Partner Stories",
+            "body": "Start your XcellHost partner journey",
+            "image": "/assets/images/menu-company-partner-stories-v1.png",
+            "link": "/under-construction/partner-stories"
+          }
+        ],
         "groups": [
           {
             "heading": "Partner",
@@ -5063,6 +5421,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "2",
         "label": "Careers Center",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Company",
+            "title": "Careers Overview",
+            "body": "Discover our culture and ways of working",
+            "image": "/assets/images/menu-company-careers-overview-v1.png",
+            "link": "/company/careers-overview"
+          },
+          {
+            "label": "Company",
+            "title": "Career Handbook",
+            "body": "Discover our culture and ways of working",
+            "image": "/assets/images/menu-company-career-handbook-v1.png",
+            "link": "/company/career-handbook"
+          }
+        ],
         "groups": [
           {
             "heading": "Careers",
@@ -5091,6 +5465,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "10",
         "label": "Trust Center",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Company",
+            "title": "Trust Center",
+            "body": "Explore trust and assurance information.",
+            "image": "/assets/images/menu-company-trust-center-v1.png",
+            "link": "/company/trust-center"
+          },
+          {
+            "label": "Company",
+            "title": "Trust Watch",
+            "body": "One intelligence layer",
+            "image": "/assets/images/menu-company-trust-watch-v1.png",
+            "link": "/company/trust-watch"
+          }
+        ],
         "groups": [
           
           {
@@ -5115,6 +5505,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "4",
         "label": "Legal Center",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Company",
+            "title": "Privacy Policy",
+            "body": "How we handle personal information",
+            "image": "/assets/images/menu-company-privacy-policy-v1.png",
+            "link": "/company/privacy-policy"
+          },
+          {
+            "label": "Company",
+            "title": "Terms of Services",
+            "body": "The terms that govern XcellHost services",
+            "image": "/assets/images/menu-company-terms-of-services-v1.png",
+            "link": "/company/terms-of-service"
+          }
+        ],
         "groups": [
           {
             "heading": "Legal Center",
@@ -5244,6 +5650,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "6",
         "label": "Events Center",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Company",
+            "title": "Events Catalog",
+            "body": "Event",
+            "image": "/assets/images/menu-company-events-catalog-v1.png",
+            "link": "/under-construction/events-catalog"
+          },
+          {
+            "label": "Company",
+            "title": "Webinars Catalog",
+            "body": "Webinars",
+            "image": "/assets/images/menu-company-webinars-catalog-v1.png",
+            "link": "/under-construction/webinars-catalog"
+          }
+        ],
         "groups": [
           {
             "heading": "Events Center",
@@ -5273,6 +5695,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "7",
         "label": "Tools Center",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Company",
+            "title": "Network Tools",
+            "body": "Explore tools for network checks and diagnostics.",
+            "image": "/assets/images/menu-company-network-tools-v1.png",
+            "link": "/under-construction/network-tools"
+          },
+          {
+            "label": "Company",
+            "title": "Mail Tools",
+            "body": "Explore tools for email checks and troubleshooting.",
+            "image": "/assets/images/menu-company-mail-tools-v1.png",
+            "link": "/under-construction/mail-tools"
+          }
+        ],
         "groups": [
           {
             "heading": "Tools Center",
@@ -5305,6 +5743,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "Developer Tools",
         "label": "Developer Tools",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Company",
+            "title": "OpenStack API",
+            "body": "Explore OpenStack API resources.",
+            "image": "/assets/images/menu-company-openstack-api-v1.png",
+            "link": "/openstack-api"
+          },
+          {
+            "label": "Company",
+            "title": "Terraform Provider",
+            "body": "Explore infrastructure automation with Terraform.",
+            "image": "/assets/images/menu-company-terraform-provider-v1.png",
+            "link": "/terraform-provider"
+          }
+        ],
         "groups": [
           {
             "heading": "Developer Tools",
@@ -5353,6 +5807,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "8",
         "label": "Learning Center",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Company",
+            "title": "Blogs",
+            "body": "Read articles, ideas and practical guidance.",
+            "image": "/assets/images/menu-company-blogs-v1.png",
+            "link": "/insights"
+          },
+          {
+            "label": "Company",
+            "title": "Customer Stories",
+            "body": "See how customers transform with our services",
+            "image": "/assets/images/menu-company-customer-stories-v1.png",
+            "link": "/case-studies"
+          }
+        ],
         "groups": [
           {
             "heading": "Learning Center",
@@ -5408,6 +5878,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "9",
         "label": "Experience Center",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Company",
+            "title": "Acronis Demo Center",
+            "body": "Interactive Acronis product tours and video demos",
+            "image": "/assets/images/menu-company-acronis-demo-center-v1.png",
+            "link": "/acronis-demo-center"
+          },
+          {
+            "label": "Company",
+            "title": "TSPlus Demo Center",
+            "body": "Watch TSplus Remote Access connection demos",
+            "image": "/assets/images/menu-company-tsplus-demo-center-v1.png",
+            "link": "/tsplus-demo-center"
+          }
+        ],
         "groups": [
           {
             "heading": "Experience Center",
@@ -5471,6 +5957,22 @@ export const MEGA_MENU: MenuTop[] = [
         "g": "11",
         "label": "Media Center",
         "on": false,
+        "featureCards": [
+          {
+            "label": "Company",
+            "title": "Media Kit",
+            "body": "Explore company media resources.",
+            "image": "/assets/images/menu-company-media-kit-v1.png",
+            "link": "/media-kit"
+          },
+          {
+            "label": "Company",
+            "title": "Press Release",
+            "body": "Explore company announcements and press releases.",
+            "image": "/assets/images/menu-company-press-release-v1.png",
+            "link": "/under-construction/press-release"
+          }
+        ],
         "groups": [
           {
             "heading": "Media center",
