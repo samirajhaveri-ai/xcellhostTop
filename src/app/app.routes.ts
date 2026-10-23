@@ -250,7 +250,8 @@ export const routes: Routes = [
   { path: 'microsoft-viva', title: 'Microsoft Viva | XcellHost', loadComponent: () => import('./pages/microsoft-viva.page').then(m => m.MicrosoftVivaPage) },
   { path: 'mcrosoft-project-server', title: 'Microsoft Project Server | XcellHost', loadComponent: () => import('./pages/project-server.page').then(m => m.ProjectServerPage) },
   { path: 'microsoft-project-server', redirectTo: 'mcrosoft-project-server', pathMatch: 'full' },
-  { path: 'acronis-ai', title: 'Acronis AI Platform | XcellHost', data: { productSlug: 'acronis-ai' }, loadComponent: () => import('./pages/product.page').then(m => m.ProductPage) },
+  { path: 'acronis-ai', title: 'Acronis AI Platform | XcellHost', data: { productSlug: 'acronis-ai' }, loadComponent: () => import('./pages/acronis-ai-solution.page').then(m => m.AcronisAiSolutionPage) },
+  { path: 'cyberfit-score-tool', title: 'Acronis CyberFit Score | XcellHost', loadComponent: () => import('./pages/acronis-cyberfit-score.page').then(m => m.AcronisCyberfitScorePage) },
 
 
   {
@@ -906,6 +907,10 @@ export const routes: Routes = [
     path: 'vendor-partners/fortinet',
     redirectTo: '/fortinet-fortigate',
     pathMatch: 'full',
+  },
+  {
+    path: 'vendor-partners/microsoft-azure',
+    loadComponent: () => import('./pages/microsoft-azure-partner.page').then((m) => m.MicrosoftAzurePartnerPage),
   },
   {
     path: 'vendor-partners/:slug',
