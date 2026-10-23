@@ -1,3 +1,4 @@
+const { replaceReferenceSections } = require('./customer-testimonials.cjs');
 const fs = require('node:fs');
 const path = require('node:path');
 const directory = process.argv[2];
@@ -57,7 +58,7 @@ for (const [slug, title] of pages) {
   const links = [...source.matchAll(/<link\b[^>]*>/g)].map(m => m[0]).filter(l => !l.includes('canonical')).join('\n');
   const css = ['consulting-faq', 'faq-layout', 'hero-ask-ai', 'section-navigation-flow', 'hosting-tools', 'accops-products'].map(name => '<link rel="stylesheet" href="/assets/styles/' + name + '.css">').join('');
   const html = '<!doctype html><html lang="en-IN" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' + title + ' | XcellHost</title>' + links + styles + css + '</head><body>' + main + '<script src="/assets/scripts/hosting-tools-viewport.js"></script>' + core.replaceAll('Podcast enquiry:', title + ' enquiry:') + script + '<script src="/assets/scripts/hero-ask-ai.js"></script></body></html>';
-  fs.writeFileSync(path.join(root, 'public/imported-' + slug + '.html'), html);
+  fs.writeFileSync(path.join(root, 'public/imported-' + slug + '.html'), replaceReferenceSections(html, path.join(root, 'public/imported-' + slug + '.html')));
   console.log(slug + ': imported original sections, tools and FAQ answers');
 }
 
@@ -75,4 +76,4 @@ catalogue = catalogue.replace(/^[ \t]*<div class="lh-powered ad-pw">[^\r\n]*<\/d
 const catalogueLogo = '<span class="ad-logo"><img src="/assets/images/vendor-partners/72-accops.png" alt="Accops" width="180" height="62"></span>';
 if (!catalogue.includes('class="ad-powered"')) catalogue = catalogue.replace(/(<div class="lh-ask"[^>]*>[\s\S]*?<\/div>)/, '$1<div class="ad-powered"><span>Powered by</span><span aria-hidden="true">|</span>' + catalogueLogo + '</div>');
 catalogue = catalogue.replace(/<span class="ad-ft">A<\/span>/g, catalogueLogo);
-fs.writeFileSync(cataloguePath, catalogue);
+fs.writeFileSync(cataloguePath, replaceReferenceSections(catalogue, cataloguePath));

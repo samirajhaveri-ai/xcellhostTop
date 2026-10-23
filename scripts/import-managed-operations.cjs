@@ -1,3 +1,4 @@
+const { replaceReferenceSections } = require('./customer-testimonials.cjs');
 const fs = require('node:fs');
 const path = require('node:path');
 const root = path.resolve(__dirname, '..');
@@ -71,6 +72,6 @@ for(const p of products){
   const css=['consulting-faq','faq-layout','hosting-tools','section-navigation-flow','managed-operations'].map(n=>'<link rel="stylesheet" href="/assets/styles/'+n+'.css">').join('');
   const output='<!doctype html><html lang="en-IN" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+p.name+' | XcellHost</title>'+links+styles+css+'</head><body>'+localLinks(main)+'<script src="/assets/scripts/hosting-tools-viewport.js"></script>'+core+bridge+localLinks(script)+'</body></html>';
   for(const [i,s] of [...output.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].entries())new(require('node:vm').Script)(s[1],{filename:p.slug+'-'+i});
-  fs.writeFileSync(path.join(root,'public/imported-'+p.slug+'.html'),output.replace(/[ \t]+$/gm,''));
+  fs.writeFileSync(path.join(root,'public/imported-'+p.slug+'.html'),replaceReferenceSections(output.replace(/[ \t]+$/gm,''), path.join(root,'public/imported-'+p.slug+'.html')));
   console.log('Imported '+p.name+' with original tools and FAQ answers.');
 }

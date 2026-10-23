@@ -121,9 +121,7 @@ export const COMPANY_PAGES: Record<string, CompanyPageContent> = {
       { icon: 'AP', title: 'Asia Pacific', body: 'Regional locations for growing teams and customer bases across Asia.' },
       { icon: 'GL', title: 'Global reach', body: 'Additional international locations for distributed applications and recovery.' },
     ],
-    sections: [
-      { title: 'Choose by workload', body: 'Location selection considers more than geography.', points: ['Data residency and regulatory obligations', 'Latency to users and connected systems', 'Carrier and connectivity requirements', 'High availability and disaster-recovery design'] },
-    ],
+    sections: [],
     cta: 'Tell us where your users and data need to be, and we will help shortlist the right locations.',
     ctaLabel: 'Plan your deployment',
   },

@@ -1,0 +1,52 @@
+
+:host{display:block;--blue:#0066FF}
+.nf{position:relative;overflow:hidden;background:#060b1a;color:#fff;padding:40px 0 72px;min-height:calc(100vh - 150px);display:flex;align-items:center}
+.nf-cv{position:absolute;inset:0;width:100%;height:100%}
+.nf-glow{position:absolute;left:50%;top:44%;width:1100px;height:760px;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(0,102,255,.30),rgba(0,102,255,.10) 55%,transparent 75%);pointer-events:none;animation:nfBreath 7s ease-in-out infinite}
+@keyframes nfBreath{50%{opacity:.7;transform:translate(-50%,-50%) scale(1.06)}}
+.nf-in{position:relative;width:100%;text-align:center;display:flex;flex-direction:column;align-items:center}
+.nf-art{width:min(900px,100%);margin:0 auto -6px}
+.nf-num{width:100%;height:auto;display:block;overflow:visible}
+.nf-txt{font:800 360px/1 Sora,sans-serif;fill:url(#nfFace);stroke:rgba(143,179,255,.22);stroke-width:2;letter-spacing:-.02em}
+.nf-rack>rect:first-child{fill:#0a1226;stroke:rgba(143,179,255,.35);stroke-width:1.2}
+.nf-rack .u{fill:#111c3a;stroke:rgba(143,179,255,.25);stroke-width:1}
+.nf-rack .led{fill:#3ddc97;animation:nfLed 1.6s steps(2) infinite}
+.nf-rack .l2{animation-delay:.4s}.nf-rack .l4{animation-delay:.8s}.nf-rack .l5{animation-delay:1.2s}
+.nf-rack .led.off{fill:#FF8A00;animation:nfWarn .9s ease-in-out infinite}
+@keyframes nfLed{50%{opacity:.35}}@keyframes nfWarn{50%{opacity:.2}}
+.nf-cable{fill:none;stroke:#0066FF;stroke-width:2.2;stroke-linecap:round;filter:drop-shadow(0 0 6px rgba(0,102,255,.9))}
+.nf-cr{stroke:rgba(0,102,255,.55);stroke-dasharray:5 7;animation:nfDash 1.2s linear infinite;filter:none}
+@keyframes nfDash{to{stroke-dashoffset:-24}}
+.nf-pulse{fill:#cfe0ff;filter:drop-shadow(0 0 6px #0066FF)}
+.nf-end{fill:#0066FF;filter:drop-shadow(0 0 8px #0066FF)}
+.nf-plug rect{fill:#0066FF}.nf-plug .pin{fill:#cfe0ff}
+.nf-plug{animation:nfPlug 2.4s ease-in-out infinite}
+@keyframes nfPlug{0%,100%{transform:translate(432px,180px)}50%{transform:translate(438px,180px)}}
+.nf-sock rect{fill:#0a1226;stroke:#0066FF;stroke-width:1.4}
+.nf-spark line{stroke:#FF8A00;stroke-width:2;stroke-linecap:round;opacity:0;animation:nfSpark 2.4s ease-out infinite}
+@keyframes nfSpark{45%{opacity:0}52%{opacity:1}70%{opacity:0}100%{opacity:0}}
+.nf-h{font:800 clamp(30px,4.6vw,54px)/1.1 Sora,sans-serif;letter-spacing:-.02em;margin:0 0 14px;color:#fff}
+.nf .nf-h{color:#fff}
+.nf-lead{color:#9fb0d4;font-size:17px;margin:0 0 30px}
+.nf-cta{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
+.nf-b{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 24px;border-radius:10px;font:600 15px 'IBM Plex Sans',sans-serif;text-decoration:none;cursor:pointer;transition:transform .2s,background .2s,border-color .2s,box-shadow .2s}
+.nf-p{background:#0066FF;color:#fff;border:1px solid #0066FF;box-shadow:0 12px 30px -12px rgba(0,102,255,.8)}
+.nf-p:hover{transform:translateY(-2px);background:#0a5be0}
+.nf-g{background:rgba(255,255,255,.04);color:#c9d6f2;border:1px solid rgba(255,255,255,.16)}
+.nf-g:hover{border-color:rgba(255,255,255,.4);color:#fff}
+.nf-ch{font-size:14px;transition:transform .2s;display:inline-block}
+.nf-dd{position:relative}
+.nf-dd.open .nf-ch{transform:rotate(180deg)}
+.nf-menu{position:absolute;left:50%;top:calc(100% + 8px);transform:translateX(-50%) translateY(-4px);min-width:220px;background:#0d1630;border:1px solid rgba(143,179,255,.2);border-radius:12px;padding:6px;opacity:0;visibility:hidden;transition:.18s;z-index:5;text-align:left;box-shadow:0 20px 40px -20px rgba(0,0,0,.8)}
+.nf-dd.open .nf-menu{opacity:1;visibility:visible;transform:translateX(-50%)}
+.nf-menu a{display:block;padding:10px 12px;border-radius:8px;color:#c9d6f2;text-decoration:none;font-size:14.5px}
+.nf-menu a:hover,.nf-menu a:focus{background:rgba(0,102,255,.18);color:#fff;outline:0}
+.nf-links{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 26px;margin-top:34px}
+.nf-links a{color:#8193b8;text-decoration:none;font-size:14.5px}.nf-links a:hover{color:#fff}
+@media(max-width:600px){.nf{padding:24px 0 56px}.nf-b{height:46px;padding:0 20px}.nf-cta{flex-direction:column;align-items:stretch;width:100%;max-width:320px}.nf-cta .nf-b{justify-content:center;width:100%}.nf-menu{left:0;right:0;transform:none;min-width:0}.nf-dd.open .nf-menu{transform:none}}
+@media(prefers-reduced-motion:reduce){.nf-glow,.nf-rack .led,.nf-cr,.nf-plug,.nf-spark line{animation:none}.nf-pulse{display:none}}
+
+
+.nf-in{max-width:1200px;margin-inline:auto;padding-inline:24px}.nf-b:focus-visible,.nf-links a:focus-visible{outline:2px solid #7fbaff;outline-offset:4px}.nf-menu a:focus-visible{outline:2px solid #7fbaff;outline-offset:-2px}
+/* Open into the artwork so the section edge cannot clip the service links. */
+.nf-menu{top:auto;bottom:calc(100% + 8px)}

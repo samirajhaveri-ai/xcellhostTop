@@ -6473,6 +6473,10 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
   #ppage.ssl47-page #ppTitle .pp-title-name{display:inline!important;flex-basis:auto;width:auto!important;margin:0;white-space:nowrap!important;text-wrap:nowrap!important}
 }
 
+/* Fit the Acronis AI brand and product name on one line at every viewport. */
+#ppage.acronis-ai-page .pp-hero #ppTitle{flex-wrap:nowrap!important;white-space:nowrap!important;text-wrap:nowrap!important;font-size:var(--banner-title-size,36px)!important;overflow-wrap:normal}
+#ppage.acronis-ai-page .pp-hero #ppTitle .pp-title-name{display:inline!important;flex:0 0 auto;width:auto!important;margin:0!important;white-space:nowrap!important;text-wrap:nowrap!important;font-size:inherit!important}
+
 /* Supplied Managed PKI visual; the existing hero copy and actions stay in place. */
 #ppage:is(.managed-pki-page,.private-ca-page,.iot-pki-page,.iot-device-certificates-page,.cloud-code-signing-page,.clm-solutions-page,.matter-dac-page,.pki-software-page,.windows-365-page)>.pp-hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:48px;align-items:center;justify-items:center;padding-inline:max(24px,calc((100% - 1120px)/2))!important}
 #ppage:is(.iot-pki-page,.iot-device-certificates-page,.cloud-code-signing-page,.clm-solutions-page,.matter-dac-page,.pki-software-page,.windows-365-page)>.pp-hero{column-gap:24px;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}

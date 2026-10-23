@@ -8,6 +8,7 @@ import { SeoService } from '../core/seo.service';
 import { COMPANY_PAGES } from '../data/company.data';
 import { WORLD_MAP_HTML } from '../data/site.data';
 import { HeroNetDirective } from '../sections/product';
+import { GlobalInfrastructureComponent } from '../sections/global-infrastructure.component';
 import { ResellerProgramContentComponent } from '../sections/reseller-program-content.component';
 import { TeamStructureComponent } from '../sections/team-structure.component';
 import { WhyXcellhostReasonsComponent } from '../sections/why-xcellhost-reasons.component';
@@ -17,7 +18,7 @@ import { CareersOverviewSectionsComponent } from '../sections/careers-overview-s
 @Component({
   selector: 'xh-company-page',
   standalone: true,
-  imports: [RouterLink, HeroNetDirective, ResellerProgramContentComponent, TeamStructureComponent, WhyXcellhostReasonsComponent, ZohoJobListingComponent, CareersOverviewSectionsComponent],
+  imports: [RouterLink, HeroNetDirective, GlobalInfrastructureComponent, ResellerProgramContentComponent, TeamStructureComponent, WhyXcellhostReasonsComponent, ZohoJobListingComponent, CareersOverviewSectionsComponent],
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './company.page.html',

@@ -1,3 +1,4 @@
+const { replaceReferenceSections } = require('./customer-testimonials.cjs');
 const fs = require('node:fs');
 const path = require('node:path');
 const root = path.resolve(__dirname, '..');
@@ -70,5 +71,5 @@ const fonts = [...source.matchAll(/<link\b[^>]*>/g)].map(m => m[0]).filter(s => 
 const css = ['consulting-faq','faq-layout','hosting-tools','sectigo-catalogue-integration'].map(n => '<link rel="stylesheet" href="/assets/styles/' + n + '.css">').join('');
 const result = '<!doctype html><html lang="en-IN" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sectigo SSL Certificates | XcellHost</title>' + fonts + styles + css + '</head><body>' + localLinks(main) + '<script src="/assets/scripts/hosting-tools-viewport.js"></script>' + core + bridge + '<script>' + localLinks(runtime) + '</script></body></html>';
 for (const [i,s] of [...result.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].entries()) new(require('node:vm').Script)(s[1], {filename:'sectigo-'+i});
-fs.writeFileSync(path.join(root,'public/imported-sectigo-ssl-certificates.html'),result);
+fs.writeFileSync(path.join(root,'public/imported-sectigo-ssl-certificates.html'),replaceReferenceSections(result, path.join(root,'public/imported-sectigo-ssl-certificates.html')));
 console.log('Imported Sectigo catalogue, interactive tools and original FAQ answers.');

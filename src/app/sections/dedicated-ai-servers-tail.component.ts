@@ -1,3 +1,4 @@
+import { CustomerTestimonialsComponent } from './customer-testimonials.component';
 import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { OverlayService } from '../core/overlay.service';
@@ -9,7 +10,7 @@ import { InsightsSectionComponent } from './insights-section.component';
 @Component({
   selector: 'xh-dedicated-ai-servers-tail',
   standalone: true,
-  imports: [RouterLink, InsightsSectionComponent],
+  imports: [CustomerTestimonialsComponent, RouterLink, InsightsSectionComponent],
   templateUrl: './dedicated-ai-servers-tail.component.html',
   styleUrl: './dedicated-ai-servers-tail.component.css',
 })

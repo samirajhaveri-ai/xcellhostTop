@@ -1,3 +1,4 @@
+const { replaceReferenceSections } = require('./customer-testimonials.cjs');
 const fs = require('node:fs');
 const path = require('node:path');
 const input = process.argv[2];
@@ -91,5 +92,5 @@ const styles = [...source.matchAll(/<style\b[^>]*>[\s\S]*?<\/style>/g)].map(m =>
   .replace(/(\d*\.?\d+)vh\b/g, (_, n) => 'calc(var(--page-vh,1vh) * ' + n + ')');
 const links = [...source.matchAll(/<link\b[^>]*>/g)].map(m => m[0]).filter(l => !l.includes('canonical')).join('\n');
 const css = ['consulting-faq', 'faq-layout', 'hosting-tools', 'section-navigation-flow', 'purple-team'].map(n => '<link rel="stylesheet" href="/assets/styles/' + n + '.css">').join('');
-fs.writeFileSync(path.join(root, 'public/imported-purple-team.html'), '<!doctype html><html lang="en-IN" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Purple Team Assessment | XcellHost</title>' + links + styles + css + '</head><body>' + main + '<script src="/assets/scripts/hosting-tools-viewport.js"></script>' + core.replaceAll('Podcast enquiry:', 'Purple Team Assessment enquiry:') + script + '</body></html>');
+fs.writeFileSync(path.join(root, 'public/imported-purple-team.html'), replaceReferenceSections('<!doctype html><html lang="en-IN" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Purple Team Assessment | XcellHost</title>' + links + styles + css + '</head><body>' + main + '<script src="/assets/scripts/hosting-tools-viewport.js"></script>' + core.replaceAll('Podcast enquiry:', 'Purple Team Assessment enquiry:') + script + '</body></html>', path.join(root, 'public/imported-purple-team.html')));
 console.log('Imported Purple Team: source illustrations, quiz, configurator and all 12 FAQ answers preserved.');

@@ -11,6 +11,9 @@ import { SiteCopyService } from './core/site-copy.service';
 import { SeoService } from './core/seo.service';
 import { installBookmarkScrolling } from './sections/bookmark-scroll';
 import { installFaqLayout } from './sections/faq-layout';
+import { installBannerActions } from './sections/banner-actions';
+import { BannerActionsService } from './core/banner-actions.service';
+import { BannerTourComponent } from './overlays/banner-tour.component';
 import {
   BackToTopComponent,
   CallbackModalComponent,
@@ -59,6 +62,7 @@ import {
     DocModalComponent,
     WhatsappFabComponent,
     BackToTopComponent,
+    BannerTourComponent,
   ],
   templateUrl: './app.html',
   host: {
@@ -79,6 +83,7 @@ export class App {
   private readonly document = inject(DOCUMENT);
   private readonly destroyRef = inject(DestroyRef);
   private readonly seo = inject(SeoService);
+  private readonly banners = inject(BannerActionsService);
   readonly hasStandaloneShell = toSignal(
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
@@ -102,6 +107,7 @@ export class App {
     afterNextRender(() => {
       this.destroyRef.onDestroy(installBookmarkScrolling(this.document));
       this.destroyRef.onDestroy(installFaqLayout(this.document));
+      this.destroyRef.onDestroy(installBannerActions(this.document, (...args) => { void this.banners.act(...args); }));
     });
     const captureClick = (event: Event): void => this.onDocumentClick(event as MouseEvent);
     this.document.addEventListener('click', captureClick, true);
@@ -229,6 +235,7 @@ export class App {
     const target = event.target as Element | null;
     const cta = target?.closest<HTMLElement>('a, button');
     if (!cta || cta.hasAttribute('disabled') || cta.dataset['ctaHandled'] === 'true') return;
+    if (cta.hasAttribute('data-banner-action')) return;
 
     const label = (cta.textContent ?? '').replace(/\s+/g, ' ').trim();
     if (/\binfosheet\b/i.test(label)) {

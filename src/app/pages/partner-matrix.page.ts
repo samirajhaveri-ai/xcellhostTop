@@ -19,6 +19,7 @@ export class PartnerMatrixPage {
   readonly selectedId = signal(ALL_TEAMS);
   readonly query = signal('');
   readonly contactCount = this.teams.reduce((total, team) => total + team.contacts.length, 0);
+  readonly locationCount = new Set(this.teams.flatMap(team => team.contacts.map(contact => contact.city))).size;
   readonly visibleTeams = computed(() => {
     const query = this.query().trim().toLocaleLowerCase();
     const teams = this.selectedId() === ALL_TEAMS
