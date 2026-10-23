@@ -2613,7 +2613,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Digicert VMC ",
+                "title": "Dimake icert VMC ",
                 "pill": null,
                 "desc": null
               },
@@ -5230,6 +5230,7 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Global Data Centers",
+                "href": "/company/data-centers-global",
                 "pill": null,
                 "desc": "Global locations for resilient workloads"
               },
@@ -5406,8 +5407,9 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Partner Contact Matrix",
+                "href": "/partner-matrix",
                 "pill": null,
-                "desc": "Introduce customers to XcellHost services"
+                "desc": "Connect with channel sales, pre-sales, support and billing teams"
               },
               {
                 "title": "Partner/Signup ",

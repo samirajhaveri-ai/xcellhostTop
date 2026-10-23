@@ -20,11 +20,27 @@ export class GpuServersContentComponent implements OnDestroy {
   @Output() callbackRequest = new EventEmitter<string>();
   frameHeight = 7600;
   private contentObserver?: ResizeObserver;
+  private removeCallbackListener?: () => void;
 
   syncHeight(): void {
     const document = this.frame?.nativeElement.contentDocument;
+    const frameWindow = document?.defaultView;
     const content = document?.querySelector('#ppage');
-    if (!document || !content) return;
+    if (!document || !frameWindow || !content) return;
+    this.removeCallbackListener?.();
+    // Capture on the frame window before the legacy document handler stops
+    // propagation and opens a modal halfway down this tall embedded document.
+    const onCallbackClick = (event: MouseEvent) => {
+      const target = event.target as Element | null;
+      const callback = target?.closest<HTMLElement>('[data-open-callback]');
+      if (!callback) return;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      const request = callback.textContent?.trim().replace(/\s+/g, ' ') || "Let's Talk";
+      this.zone.run(() => this.callbackRequest.emit(request));
+    };
+    frameWindow.addEventListener('click', onCallbackClick, true);
+    this.removeCallbackListener = () => frameWindow.removeEventListener('click', onCallbackClick, true);
     useScrollingSectionNavigation(document);
 
     const update = () => {
@@ -54,5 +70,6 @@ export class GpuServersContentComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.contentObserver?.disconnect();
+    this.removeCallbackListener?.();
   }
 }

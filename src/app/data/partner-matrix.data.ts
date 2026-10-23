@@ -26,6 +26,7 @@ export const PARTNER_TEAMS: readonly PartnerTeam[] = [
     contacts: [
       { name: 'Mr. Syed Rashed', designation: 'Cloud Sales Advisor - West', email: 'rasheds@xcellhost.cloud', officePhone: '', city: 'Aurangabad', mobile: '+918433989914', purpose: 'End customers' },
       { name: 'Mr. Ajay Gupta', designation: 'Cloud Sales Advisor - West', email: 'ajayg@xcellhost.cloud', officePhone: '', city: 'Mumbai', mobile: '+918591857830', purpose: 'Field sales' },
+      { name: 'Mr. Mihir Ambokar', designation: 'Cloud Sales Advisor - West', email: 'mihira@xcellhost.cloud', officePhone: '', city: 'Mumbai', mobile: '+918976779385', purpose: 'Field sales' },
     ],
   },
   {
@@ -34,9 +35,7 @@ export const PARTNER_TEAMS: readonly PartnerTeam[] = [
     icon: 'lightbulb',
     description: 'Solution guidance for cloud security, productivity, email and partner opportunities.',
     contacts: [
-      { name: 'Mr. Vijay Ram Das', designation: 'Technical Support Executive - L3', email: 'vijayramd@xcellhost.cloud', officePhone: '', city: 'Kolkata', mobile: '+917980760594', purpose: 'Security services pre-sales' },
       { name: 'Mr. Mohammad Talha', designation: 'Cloud Productivity Pre-Sales Advisor', email: 'mohammadt@xcellhost.cloud', officePhone: '', city: 'Aurangabad', mobile: '+917028202721', purpose: 'Email services pre-sales' },
-      { name: 'Mr. Amit Yadav', designation: 'Cloud Security Pre-Sales Advisor', email: 'amity@xcellhost.cloud', officePhone: '', city: 'Mumbai', mobile: '+917084507734', purpose: 'Support issues' },
       { name: 'Mr. Rizwan Shaikh', designation: 'Service Delivery Manager', email: 'rizwans@xcellhost.cloud', officePhone: '+912267111555', city: 'Mumbai', mobile: '+918828127278', purpose: 'Pre-sales' },
     ],
   },
@@ -46,7 +45,8 @@ export const PARTNER_TEAMS: readonly PartnerTeam[] = [
     icon: 'support_agent',
     description: 'Technical assistance and issue coordination for active partner services.',
     contacts: [
-      { name: 'Mr. Santosh Kumar Behera', designation: 'Technical Support Executive - L2', email: 'santoshb@xcellhost.cloud', officePhone: '', city: 'Mumbai', mobile: '+919556539937', purpose: 'Support issues' },
+      { name: 'Mr. Santosh Behra', designation: 'Technical Support Executive - L2', email: 'santoshb@xcellhost.cloud', officePhone: '', city: 'Mumbai', mobile: '+919556539937', purpose: 'Support issues' },
+      { name: 'Mr. Amit Yadav', designation: 'Technical Support Executive - L3', email: 'amity@xcellhost.cloud', officePhone: '', city: 'Mumbai', mobile: '+917084507734', purpose: 'Support issues' },
     ],
   },
   {

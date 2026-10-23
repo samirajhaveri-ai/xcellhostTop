@@ -595,6 +595,10 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     position();
     const callback = (event: Event) => {
       const topic = (event as CustomEvent<string>).detail || 'Podcast enquiry';
+      if (this.source === 'sectigo-catalogue' && topic === 'Sectigo SSL Certificates: 7 Days Free Trial') {
+        this.overlay.open('trial');
+        return;
+      }
       const scopeTitle = this.source === 'purple-team-assessment' ? 'Purple Team Assessment'
         : this.source === 'breach-and-attack-simulation' ? 'Breach & Attack Simulation'
         : this.source === 'digicert-content-trust-manager' ? 'DigiCert Content Trust Manager'

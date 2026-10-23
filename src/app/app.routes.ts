@@ -661,6 +661,8 @@ export const routes: Routes = [
   { path: 'under-construction/infrastructure', redirectTo: 'infrastructure', pathMatch: 'full' },
   { path: 'under-construction/escalation-matrix', redirectTo: 'escalation-matrix', pathMatch: 'full' },
   { path: 'under-construction/partner-matrix', redirectTo: 'partner-matrix', pathMatch: 'full' },
+  { path: 'under-construction/partner-contact-matrix', redirectTo: 'partner-matrix', pathMatch: 'full' },
+  { path: 'partner-contact-matrix', redirectTo: 'partner-matrix', pathMatch: 'full' },
   {
     path: 'under-construction/partner-overview',
     data: { pageSlug: 'partner-overview' },
@@ -738,6 +740,8 @@ export const routes: Routes = [
   { path: 'under-construction/cpanel-demo-center', redirectTo: 'cpanel-demo-center', pathMatch: 'full' },
   { path: 'cpanel-demo-center', data: { controlPanel: 'cpanel' }, loadComponent: () => import('./pages/control-panel-demo-center.page').then((m) => m.ControlPanelDemoCenterPage) },
   { path: 'under-construction/events-catalog', loadComponent: () => import('./pages/events-catalog.page').then((m) => m.EventsCatalogPage) },
+  { path: 'global-data-centers', redirectTo: 'company/data-centers-global', pathMatch: 'full' },
+  { path: 'under-construction/global-data-centers', redirectTo: 'company/data-centers-global', pathMatch: 'full' },
   { path: 'under-construction/:slug', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
   { path: 'under-construction', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
   {
@@ -1091,6 +1095,7 @@ export const routes: Routes = [
     redirectTo: 'sql-server-comparision',
     pathMatch: 'full',
   },
+  { path: '404', title: '404 - Page Not Found | XcellHost', loadComponent: () => import('./pages/not-found.page').then((m) => m.NotFoundPage) },
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
-  { path: '**', redirectTo: '' },
+  { path: '**', title: '404 - Page Not Found | XcellHost', loadComponent: () => import('./pages/not-found.page').then((m) => m.NotFoundPage) },
 ];
