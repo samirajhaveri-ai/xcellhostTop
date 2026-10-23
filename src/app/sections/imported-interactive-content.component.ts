@@ -8,6 +8,9 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { useScrollingSectionNavigation } from './section-navigation-flow';
 
 type InteractiveContentSource =
+  | 'certificate-lifecycle-management-platforms'
+  | 'autoinstall-ssl-for-web-hosts'
+  | 'autoinstall-ssl-for-linux-and-windows'
 
   | 'resilience-operations' | 'cloud-operations' | 'database-operations' | 'network-operations' | 'security-operations' | 'workspace-operations'
 
@@ -183,6 +186,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'blue-team-assessment': '/imported-blue-team-assessment.html',
     'red-team-assessment': '/imported-red-team-assessment.html',
     'cloud-security-assessment': '/imported-cloud-security-assessment.html',
+    'certificate-lifecycle-management-platforms': '/imported-certificate-lifecycle-management-platforms.html',
+    'autoinstall-ssl-for-web-hosts': '/imported-autoinstall-ssl-for-web-hosts.html',
+    'autoinstall-ssl-for-linux-and-windows': '/imported-autoinstall-ssl-for-linux-and-windows.html',
     'waap-as-a-service': '/imported-waap-as-a-service.html',
     'threat-intelligence': '/imported-threat-intelligence.html',
     'cyber-security-audit': '/imported-cyber-security-audit.html',
@@ -321,6 +327,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'workspace-operations': 'Workspace Operations',
 
 
+    'certificate-lifecycle-management-platforms': 'Certificate Lifecycle Management Platforms, five animated CLM scenes, discovery architecture, lifetime bars, integration and use-case tabs, managed pricing configurator, estate sizer, readiness quiz, onboarding and Why XcellHost',
+    'autoinstall-ssl-for-web-hosts': 'AutoInstall SSL for Web Hosts, five animated control-panel scenes, renewal chart, architecture flow, platform tabs, fleet planner, pricing configurator, reseller margin calculator, trial terminal and Why XcellHost',
+    'autoinstall-ssl-for-linux-and-windows': 'AutoInstall SSL for Linux and Windows, five animated server-agent scenes, architecture flow, renewal countdown, per-server pricing configurator, renewal effort calculator, compatibility checker, setup and Why XcellHost',
     'waap-as-a-service': 'WAAP as a Service, five animated protection scenes, coverage orbit, engine tabs, managed dashboard, pricing configurator, readiness quiz, traffic sizer, onboarding and Why XcellHost',
 
 
