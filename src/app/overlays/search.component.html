@@ -1,4 +1,4 @@
-<xh-algolia-search [active]="overlay.isOpen('search') && !websiteSearch()" (closed)="close()" (websiteSearch)="websiteSearch.set(true)" />
+<xh-algolia-search [active]="overlay.isOpen('search') && !websiteSearch()" [mode]="searchLaunch.mode()" (closed)="close()" (websiteSearch)="websiteSearch.set(true)" />
 <div class="srch" id="srch" role="dialog" aria-modal="true" [attr.aria-label]="aiMode() ? 'Ask XcellHost AI' : 'Search the website'"
   [class.open]="overlay.isOpen('search') && websiteSearch()" [attr.aria-hidden]="overlay.isOpen('search') && websiteSearch() ? null : 'true'"
   [attr.inert]="overlay.isOpen('search') && websiteSearch() ? null : ''" (click)="onBackdrop($event)">
@@ -17,7 +17,10 @@
       @if (aiMode()) {
         <button class="srch-ai-toggle" type="button" (click)="toggleAi()">Back to search</button>
       }
-      <button class="srch-ai-toggle" type="button" (click)="websiteSearch.set(false)">Ask AI</button>
+      <button class="srch-ai-toggle" type="button" (click)="openAlgoliaAskAi()">
+        <span class="material-symbols-outlined srch-ai-icon" aria-hidden="true">auto_awesome</span>
+        <span>Ask AI</span>
+      </button>
       <button class="srch-x" type="button" aria-label="Close search" (click)="close()">esc</button>
     </div>
     @if (aiMode()) {

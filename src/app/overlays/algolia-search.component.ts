@@ -3,6 +3,7 @@ import {
   afterRenderEffect, inject, input, output, signal, untracked, viewChild,
 } from '@angular/core';
 import type { DocSearchInstance } from '@docsearch/js';
+import type { SearchLaunchMode } from '../core/search-launch.service';
 import { normalizeKnowledgebaseHits } from './docsearch-hits';
 
 /** Load the browser-only widget on demand, after Angular has rendered. */
@@ -38,6 +39,7 @@ export const DOCSEARCH_LOADER = new InjectionToken('DocSearch loader', {
 })
 export class AlgoliaSearchComponent {
   readonly active = input(false);
+  readonly mode = input<SearchLaunchMode>('search');
   readonly closed = output<void>();
   readonly websiteSearch = output<void>();
   readonly ready = signal(false);
@@ -56,7 +58,7 @@ export class AlgoliaSearchComponent {
       untracked(() => {
         if (active) {
           this.switching = false;
-          if (this.instance?.isReady) this.instance.open();
+          if (this.instance?.isReady) this.openRequestedMode();
           else if (!this.failed()) void this.initialize();
         } else {
           ++this.generation;
@@ -100,7 +102,7 @@ export class AlgoliaSearchComponent {
         onReady: () => {
           if (generation !== this.generation || this.destroyRef.destroyed) return;
           this.ready.set(true);
-          if (this.active() && !this.destroyRef.destroyed) this.instance?.open();
+          if (this.active() && !this.destroyRef.destroyed) this.openRequestedMode();
         },
         onClose: () => {
           if (generation === this.generation && !this.switching && this.active() && !this.instance?.isOpen && !this.destroyRef.destroyed) this.closed.emit();
@@ -118,5 +120,10 @@ export class AlgoliaSearchComponent {
       this.loading = false;
       if (!this.destroyRef.destroyed && this.active() && !this.instance && !this.failed()) void this.initialize();
     }
+  }
+
+  private openRequestedMode(): void {
+    this.instance?.open();
+    if (this.mode() === 'ask-ai') this.instance?.openAskAi();
   }
 }

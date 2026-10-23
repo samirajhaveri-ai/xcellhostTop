@@ -49,6 +49,7 @@ type InteractiveContentSource =
   | 'whats-new'
   | 'fortinet-fortigate'
   | 'sql-server-comparison'
+  | 'windows-server-comparison'
   | 'teamviewer'
   | 'anydesk'
   | 'sap-s4-hana-private-cloud'
@@ -199,6 +200,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'whats-new': '/imported-whats-new.html',
     'fortinet-fortigate': '/imported-fortinet-fortigate.html',
     'sql-server-comparison': '/imported-sql-server-editions-comparison.html',
+    'windows-server-comparison': '/imported-windows-server-2025-editions-comparison.html',
     'teamviewer': '/imported-teamviewer.html',
     'anydesk': '/imported-anydesk.html',
     'sap-s4-hana-private-cloud': '/imported-sap-s4-hana-private-cloud.html',
@@ -367,6 +369,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'whats-new': 'What’s New at XcellHost, animated release radar, launch spotlights and filterable release log',
     'fortinet-fortigate': 'Fortinet FortiGate, animated demo, Security Fabric, models, sizing, configuration and FAQs',
     'sql-server-comparison': 'Microsoft SQL Server editions comparison, sizing wizard, limit checker, licensing and pricing',
+    'windows-server-comparison': 'Microsoft Windows Server 2025 editions comparison, edition wizard, licensing calculator, pricing and migration guidance',
     'teamviewer': 'TeamViewer remote access, animated demo, plans, pricing, selection tools and FAQs',
     'anydesk': 'AnyDesk remote access, animated demo, editions, pricing, selection tools and FAQs',
     'sap-s4-hana-private-cloud': 'SAP S/4HANA Private Cloud, animated demo, getting started, configurator, HANA sizing and FAQs',
@@ -554,7 +557,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     const frame = (event?.currentTarget as HTMLIFrameElement | null) ?? this.frame?.nativeElement;
     const doc = frame?.contentDocument;
     const main = doc?.querySelector('main');
-    if (doc && this.source !== 'sql-server-comparison') useScrollingSectionNavigation(doc);
+    if (doc && this.source !== 'sql-server-comparison' && this.source !== 'windows-server-comparison') useScrollingSectionNavigation(doc);
     if (!frame || !doc || !main) return;
     const resize = () => {
 

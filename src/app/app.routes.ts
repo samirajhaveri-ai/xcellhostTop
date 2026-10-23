@@ -1091,6 +1091,16 @@ export const routes: Routes = [
     redirectTo: 'sql-server-comparision',
     pathMatch: 'full',
   },
+  {
+    path: 'windows-server-comparision',
+    title: 'Windows Server 2025 Editions Comparison | XcellHost',
+    loadComponent: () => import('./pages/windows-server-editions-comparison.page').then((m) => m.WindowsServerEditionsComparisonPage),
+  },
+  {
+    path: 'windows-server-2025-editions-comparison',
+    redirectTo: 'windows-server-comparision',
+    pathMatch: 'full',
+  },
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
   { path: '**', redirectTo: '' },
 ];

@@ -87,6 +87,14 @@ export class App {
     ),
     { initialValue: false },
   );
+  readonly showContactOptions = toSignal(
+    this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      startWith(null),
+      map(() => !/^\/sitemap(?:[/?#]|$)/.test(this.router.url)),
+    ),
+    { initialValue: true },
+  );
 
   constructor() {
     inject(SiteCopyService);
