@@ -1,3 +1,4 @@
+import { CustomerTestimonialsComponent } from '../sections/customer-testimonials.component';
 
 import { AntiRansomwareWarrantyComponent } from '../sections/anti-ransomware-warranty.component';
 import { ContainerRegistryHeroComponent } from '../sections/container-registry-hero.component';
@@ -226,6 +227,7 @@ import { ChangeDetectionStrategy, Component, HostListener, computed, effect, inj
 import { toSignal } from '@angular/core/rxjs-interop';
 import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { NotFoundPage } from './not-found.page';
 import { map } from 'rxjs';
 
 import { CartService } from '../core/cart.service';
@@ -480,7 +482,11 @@ interface ProductTourSlide {
 @Component({
   selector: 'xh-product-page',
   standalone: true,
-  imports: [QuantityInputDirective, DataCenterInfrastructureComponent,
+
+  imports: [NotFoundPage, QuantityInputDirective, DataCenterInfrastructureComponent,
+
+  imports: [CustomerTestimonialsComponent, QuantityInputDirective, DataCenterInfrastructureComponent,
+
     ZoomConferenceingSourceComponent,
     ManagedMongodbHeroComponent,
     AiReceptionistHeroComponent,
@@ -1578,7 +1584,7 @@ interface ProductTourSlide {
     #ppage.claude-backup-page .claude-backup-song audio { display: block; width: 300px; max-width: 100%; height: 44px; flex: 1 1 260px; border-radius: 999px; }
     #ppage.claude-backup-page .claude-backup-powered { display: flex; align-items: center; gap: 10px; margin-top: 16px; }
     #ppage.claude-backup-page .claude-backup-powered span { color: #9fb8d8; font: 700 11.5px/1 'IBM Plex Mono', monospace; letter-spacing: .1em; }
-    #ppage.claude-backup-page .claude-backup-powered strong { display: inline-block; padding: 6px 16px; border-radius: 10px; background: #fff; color: #0b1b33; font: 700 18px/24px 'Poppins', sans-serif; }
+    #ppage.claude-backup-page .claude-backup-druva-logo { display: block; width: 92px; height: auto; padding: 4px 8px; border-radius: 6px; background: #fff; object-fit: contain; }
     #ppage.ppage.claude-backup-page > .pp-hero > .pph-scene.pph-claude-backup {
       top: 0; bottom: 0; right: max(24px, calc((100% - 1240px) / 2 + 24px));
       width: min(44%, 550px); padding: 32px 0; max-height: none; z-index: 4; pointer-events: auto;
@@ -3040,6 +3046,22 @@ class ProductPageComponent {
   readonly view = computed<ProductView | null>(() => {
     const slug = this.slug();
     const view = this.resolve(slug);
+    if (slug === 'microsoft-entra-id' && view) return {
+      ...view,
+      videos: [],
+      security: {
+        head: 'SECURITY & COMPLIANCE',
+        intro: 'Agree identity access policies, administrator roles and recovery procedures before rollout. XcellHost helps scope your Microsoft Entra ID deployment around your users, applications and review requirements. Available capabilities depend on the selected licences.',
+        rows: [
+          ['Access Policies', 'Pilot authentication and Conditional Access policies before enforcement.'],
+          ['Administrator Roles', 'Define least-privilege roles and named owners.'],
+          ['Emergency Access', 'Document emergency account access and monitoring.'],
+          ['Identity Lifecycle', 'Agree provisioning, access changes and removal responsibilities.'],
+          ['Audit Evidence', 'Review sign-in and administrative activity with agreed retention.'],
+          ['Deployment Scope', 'Confirm licensing, integrations and operational responsibilities.'],
+        ],
+      },
+    };
     if (!view) return null;
 
     if (slug === 'open-ai-managed-services') {
@@ -4679,7 +4701,6 @@ class ProductPageComponent {
     effect(() => {
       const v = this.view();
       if (!v) {
-        void this.router.navigate(['/']);
         return;
       }
       const slug = this.slug();
@@ -5256,7 +5277,11 @@ class ProductPageComponent {
   }
 
   requestGpuServersCallback(request: string): void {
-    this.topics.ask(`GPU Servers - ${request}`);
+    this.topics.ask('GPU Servers', {
+      firstName: '', lastName: '', company: '', email: '',
+      help: /trial/i.test(request) ? 'Ask For FREE Trial' : 'Request a CallBack',
+      details: `GPU Servers - ${request}`,
+    });
     this.overlay.open('callback');
   }
 

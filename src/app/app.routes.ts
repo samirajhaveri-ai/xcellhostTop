@@ -5,6 +5,37 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  { path: 'sectigo-ssl-certificates', title: 'Sectigo SSL Certificates | XcellHost', loadComponent: () => import('./pages/sectigo-catalogue.page').then(m => m.SectigoCataloguePage) },
+  ...[
+    ['codeguard-backup', 'CodeGuard Backup'],
+    ['positivessl-acme-caas-dv', 'PositiveSSL ACME Certificate-as-a-Service (DV)'],
+    ['sectigo-acme-certificate-as-a-service', 'Sectigo ACME Certificate-as-a-Service (DV)'],
+    ['sectigo-ev-code-signing', 'Sectigo EV Code Signing Certificates'],
+    ['sectigo-ev-ssl-multi-domain-ucc', 'Sectigo EV Multi-Domain/UCC'],
+    ['hackerguardian-pci-compliance-scanning', 'Sectigo HackerGuardian'],
+    ['sectigo-ov-ssl', 'Sectigo OV SSL'],
+    ['sectigo-ov-ssl-multi-domain-ucc', 'Sectigo OV SSL Multi-Domain/UCC'],
+    ['sectigo-ov-ssl-multi-domain-wildcard', 'Sectigo OV SSL Multi-Domain Wildcard'],
+    ['sectigo-ov-ssl-wildcard', 'Sectigo OV Wildcard SSL'],
+    ['sectigo-ssl', 'Sectigo SSL'],
+    ['ssl-installation-service', 'SSL Installation Service'],
+    ['sectigo-ssl-multi-domain-ucc', 'Sectigo SSL Multi-Domain/UCC'],
+  ].map(([path, name]) => ({path, pathMatch: 'full' as const, title: `${name} | XcellHost`, data: {sectigoSlug: path}, loadComponent: () => import('./pages/sectigo-supplied.page').then(m => m.SectigoSuppliedPage)})),
+  ...[
+    ['sectigo-acme-caas-dv', 'sectigo-acme-certificate-as-a-service'],
+    ['sectigo-ev-code-signing-certificate', 'sectigo-ev-code-signing'],
+    ['sectigo-ev-multi-domain-ucc', 'sectigo-ev-ssl-multi-domain-ucc'],
+    ['sectigo-hackerguardian', 'hackerguardian-pci-compliance-scanning'],
+    ['sectigo-ov-wildcard-ssl', 'sectigo-ov-ssl-wildcard'],
+    ['sectigo-ssl-installation-service', 'ssl-installation-service'],
+  ].map(([path, redirectTo]) => ({path, redirectTo, pathMatch: 'full' as const})),
+  ...['resilience', 'cloud', 'database', 'network', 'security', 'workspace'].map(kind => ({
+    path: `${kind}-operations`, title: `${kind[0].toUpperCase() + kind.slice(1)} Operations | XcellHost`,
+    data: { operationsSource: `${kind}-operations` },
+    loadComponent: () => import('./pages/managed-operations.page').then(m => m.ManagedOperationsPage),
+  })),
+  { path: 'openai-managed-services', title: 'OpenAI Managed Services | XcellHost', loadComponent: () => import('./pages/openai-managed-services.page').then(m => m.OpenAiManagedServicesPage) },
+  { path: 'open-ai-managed-services', redirectTo: 'openai-managed-services', pathMatch: 'full' },
   { path: 'digicert-content-trust-manager', redirectTo: 'document-security', pathMatch: 'full' },
   ...[
     { path: 'document-security', source: 'digicert-content-trust-manager', name: 'DigiCert Content Trust Manager' },
@@ -219,7 +250,8 @@ export const routes: Routes = [
   { path: 'microsoft-viva', title: 'Microsoft Viva | XcellHost', loadComponent: () => import('./pages/microsoft-viva.page').then(m => m.MicrosoftVivaPage) },
   { path: 'mcrosoft-project-server', title: 'Microsoft Project Server | XcellHost', loadComponent: () => import('./pages/project-server.page').then(m => m.ProjectServerPage) },
   { path: 'microsoft-project-server', redirectTo: 'mcrosoft-project-server', pathMatch: 'full' },
-  { path: 'acronis-ai', title: 'Acronis AI Platform | XcellHost', data: { productSlug: 'acronis-ai' }, loadComponent: () => import('./pages/product.page').then(m => m.ProductPage) },
+  { path: 'acronis-ai', title: 'Acronis AI Platform | XcellHost', data: { productSlug: 'acronis-ai' }, loadComponent: () => import('./pages/acronis-ai-solution.page').then(m => m.AcronisAiSolutionPage) },
+  { path: 'cyberfit-score-tool', title: 'Acronis CyberFit Score | XcellHost', loadComponent: () => import('./pages/acronis-cyberfit-score.page').then(m => m.AcronisCyberfitScorePage) },
 
 
   {
@@ -630,6 +662,8 @@ export const routes: Routes = [
   { path: 'under-construction/infrastructure', redirectTo: 'infrastructure', pathMatch: 'full' },
   { path: 'under-construction/escalation-matrix', redirectTo: 'escalation-matrix', pathMatch: 'full' },
   { path: 'under-construction/partner-matrix', redirectTo: 'partner-matrix', pathMatch: 'full' },
+  { path: 'under-construction/partner-contact-matrix', redirectTo: 'partner-matrix', pathMatch: 'full' },
+  { path: 'partner-contact-matrix', redirectTo: 'partner-matrix', pathMatch: 'full' },
   {
     path: 'under-construction/partner-overview',
     data: { pageSlug: 'partner-overview' },
@@ -707,6 +741,8 @@ export const routes: Routes = [
   { path: 'under-construction/cpanel-demo-center', redirectTo: 'cpanel-demo-center', pathMatch: 'full' },
   { path: 'cpanel-demo-center', data: { controlPanel: 'cpanel' }, loadComponent: () => import('./pages/control-panel-demo-center.page').then((m) => m.ControlPanelDemoCenterPage) },
   { path: 'under-construction/events-catalog', loadComponent: () => import('./pages/events-catalog.page').then((m) => m.EventsCatalogPage) },
+  { path: 'global-data-centers', redirectTo: 'company/data-centers-global', pathMatch: 'full' },
+  { path: 'under-construction/global-data-centers', redirectTo: 'company/data-centers-global', pathMatch: 'full' },
   { path: 'under-construction/:slug', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
   { path: 'under-construction', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
   {
@@ -875,6 +911,10 @@ export const routes: Routes = [
     path: 'vendor-partners/fortinet',
     redirectTo: '/fortinet-fortigate',
     pathMatch: 'full',
+  },
+  {
+    path: 'vendor-partners/microsoft-azure',
+    loadComponent: () => import('./pages/microsoft-azure-partner.page').then((m) => m.MicrosoftAzurePartnerPage),
   },
   {
     path: 'vendor-partners/:slug',
@@ -1050,6 +1090,32 @@ export const routes: Routes = [
     path: 'anti-ransomware-warranty',
     loadComponent: () => import('./pages/anti-ransomware-warranty.page').then((m) => m.AntiRansomwareWarrantyPage),
   },
+  ...(['acronis-cyber-intelligence', 'acronis-cyber-frame', 'acronis-workflow-automation'] as const).map(source => ({
+    path: source,
+    data: { source },
+    loadComponent: () => import('./pages/acronis-solutions.page').then(m => m.AcronisSolutionsPage),
+  })),
+  {
+    path: 'sql-server-comparision',
+    title: 'SQL Server Editions Comparison | XcellHost',
+    loadComponent: () => import('./pages/sql-server-editions-comparison.page').then((m) => m.SqlServerEditionsComparisonPage),
+  },
+  {
+    path: 'sql-server-editions-comparison',
+    redirectTo: 'sql-server-comparision',
+    pathMatch: 'full',
+  },
+
+  { path: '404', title: '404 - Page Not Found | XcellHost', loadComponent: () => import('./pages/not-found.page').then((m) => m.NotFoundPage) },
+
+  ...(['multi-factor-authentication', 'identity-and-access-management', 'privileged-access-management', 'privileged-identity-management', 'identity-governance-and-administration', 'iam-assessment', 'active-directory-assessment', 'security-hardware-token'] as const).map(source => ({
+    path: source,
+    data: { source },
+    loadComponent: () => import('./pages/identity-security.page').then(m => m.IdentitySecurityPage),
+  })),
+  { path: 'identity-access-management', redirectTo: 'identity-and-access-management', pathMatch: 'full' },
+  { path: 'identity-governance-administration', redirectTo: 'identity-governance-and-administration', pathMatch: 'full' },
+
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
-  { path: '**', redirectTo: '' },
+  { path: '**', title: '404 - Page Not Found | XcellHost', loadComponent: () => import('./pages/not-found.page').then((m) => m.NotFoundPage) },
 ];

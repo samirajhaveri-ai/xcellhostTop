@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en-IN" data-theme="light">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>OpenAI Managed Services — XcellHost</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600;1,9..144,700&family=Sora:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-
-<style>
-
+<!doctype html><html lang="en-IN" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>OpenAI Managed Services | XcellHost</title><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600;1,9..144,700&family=Sora:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"><style>
 /* =====================================================================
    XcellHost v2 core — xcellhost.top design system
    Brand: #0066FF blue · #0B132B navy · #FF8A00 orange · #c0392b "Host" red
@@ -147,7 +140,7 @@ html[data-theme="dark"] .theme-tg .k{transform:rotate(-180deg);background:var(--
 .srch .sin svg{width:18px;height:18px;color:var(--muted)}
 .srch input{flex:1;border:0;outline:0;background:none;font-size:16px;color:var(--ink)}
 .srch kbd{font-family:var(--f-mono);font-size:11px;border:1px solid var(--line-2);border-radius:5px;padding:2px 6px;color:var(--muted)}
-.srch .res{max-height:min(420px,60vh);overflow-y:auto;padding:8px}
+.srch .res{max-height:min(420px,calc(var(--oa-vh,1vh) * 60));overflow-y:auto;padding:8px}
 .srch .res a{display:flex;justify-content:space-between;gap:12px;padding:11px 12px;border-radius:10px}
 .srch .res a:hover,.srch .res a.hl{background:var(--chip)}
 .srch .res b{color:var(--ink);font-size:14px;font-weight:600}
@@ -354,7 +347,7 @@ input[type=range].rng::-moz-range-thumb{width:18px;height:18px;border-radius:50%
 .modal{position:fixed;inset:0;z-index:270;display:none;align-items:center;justify-content:center;padding:20px}
 .modal.open{display:flex}
 .modal .sc{position:absolute;inset:0;background:rgba(11,19,43,.6);animation:fadeIn .25s}
-.modal .mb{position:relative;width:min(520px,100%);max-height:calc(100vh - 40px);overflow-y:auto;background:var(--surface);border-radius:var(--r-l);box-shadow:var(--sh-l);animation:popIn .35s var(--ease-o)}
+.modal .mb{position:relative;width:min(520px,100%);max-height:calc(calc(var(--oa-vh,1vh) * 100) - 40px);overflow-y:auto;background:var(--surface);border-radius:var(--r-l);box-shadow:var(--sh-l);animation:popIn .35s var(--ease-o)}
 .modal .mb.wide{width:min(720px,100%)}
 .modal .mh{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;padding:22px 24px 6px}
 .modal .mh h3{font-family:var(--f-serif);font-size:24px}
@@ -909,14 +902,8 @@ html[data-theme="dark"] .hero.lh.oa-hero{background:#070D1F}
 .oa-arc:after{content:"";position:absolute;left:44%;top:-5px;width:120px;height:8px;border-radius:4px;background:#FF8A00;opacity:.85;animation:oaArc 9s ease-in-out infinite}
 @keyframes oaArc{0%,100%{transform:translateX(-180px)}50%{transform:translateX(260px)}}
 .oa-hg{grid-template-columns:minmax(0,.92fr) minmax(0,1.18fr);gap:34px;align-items:center}
-.hero.lh.oa-hero .oa-hg{grid-template-columns:minmax(0,.92fr) minmax(0,1.18fr);gap:32px;align-items:start}
-.hero.lh.oa-hero .oa-stage{min-height:0;padding:28px 0 0;margin-top:0;justify-items:stretch}
-.hero.lh.oa-hero .oa-stage>.lh-tilt{width:100%;min-width:0}
-@media(max-width:1180px){.hero.lh.oa-hero .oa-hg{grid-template-columns:minmax(0,1fr);gap:20px}}
-@media(max-width:1100px){.hero.lh.oa-hero .oa-stage{padding-top:0}}
 .oa-copy{position:relative;z-index:3;min-width:0}
-.oa-hero .lh-title{color:#fff;white-space:nowrap;font-size:clamp(14px,3.4vw,44px)!important}
-.oa-hero .lh-title .nm{display:inline}
+.oa-hero .lh-title{color:#fff}
 .oa-stage{position:relative;z-index:3;display:grid;grid-template-columns:minmax(0,1fr) 200px;gap:0 14px;align-items:start;min-height:0;padding:34px 0 26px;min-width:0}
 .oa-stage>.lh-tilt{grid-column:1/-1;grid-row:1}
 .oa-stage .lh-orbit{opacity:.45}
@@ -1358,19 +1345,8 @@ html[data-theme="dark"] .oa-alw h2 .acc{color:#5C9DFF}
 .oa-ov .prov svg{width:16px;height:16px;flex-shrink:0}
 .oa-uco h3{color:#fff}
 
-
-/* The existing Angular shell owns the header, footer and page scroll. */
-html,body{height:auto;min-height:0}
-#oaSub{position:relative;top:auto}
-/* Keep section content readable while its illustrations initialize. */
-.rv{opacity:1;transform:none}
-.oa-rdo,.oa-cfo{position:relative;top:0;will-change:transform}
-.oa-quote-status a{color:var(--blue);font-weight:600}
-#openAiToast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);max-width:calc(100% - 32px);padding:12px 20px;border-radius:12px;background:var(--navy);color:#fff;z-index:1000;box-shadow:var(--sh)}
-</style>
-</head>
-<body>
-<main id="main">
+</style><link rel="stylesheet" href="/assets/styles/consulting-faq.css"><link rel="stylesheet" href="/assets/styles/faq-layout.css"><link rel="stylesheet" href="/assets/styles/hosting-tools.css"><link rel="stylesheet" href="/assets/styles/section-navigation-flow.css"><link rel="stylesheet" href="/assets/styles/openai-managed-services.css"><link rel="stylesheet" href="/assets/styles/customer-testimonials.css"></head><body><main id="main">
+<!-- ================= HERO · token-stream console · 5 rotating live scenes ================= -->
 <section class="hero lh oa-hero" id="oaHero" data-product="OpenAI Managed Services">
   <div class="hero-bg" aria-hidden="true">
     <div class="lh-grid"></div><div class="lh-dots"></div><span class="lh-aur a1"></span><span class="lh-aur a2"></span><div class="lh-scan"></div>
@@ -1379,13 +1355,13 @@ html,body{height:auto;min-height:0}
     <canvas class="lh-net"></canvas>
   </div>
   <div class="wrap">
-    <div class="crumb" data-in="1"><a href="https://www.xcellhost.top/">Home</a><span class="sep">›</span><a href="#">AI</a><span class="sep">›</span><span class="c">OpenAI Managed Services</span></div>
-    <h1 class="lh-title" data-in="1"><span class="x">Xcell</span><span class="brd">AI</span><span class="dv">|</span><span class="nm">OpenAI Managed Services</span></h1>
     <div class="hero-grid oa-hg">
       <div class="oa-copy">
+
+        <h1 class="lh-title" data-in="1"><span class="x">Xcell</span><span class="brd">AI</span><span class="dv">|</span><span class="nm">OpenAI Managed Services</span></h1>
         <p class="lh-tag" data-in="2">GPT-powered apps for your business — designed, built and run by XcellHost.</p>
         <p class="lh-tag2" data-in="2">Knowledge bots, chat and agents on OpenAI models via Azure OpenAI Service or the OpenAI API — with guardrails, cost control and rupee billing.</p>
-        <div class="oa-type lh-type" data-in="3" data-words='["A policy bot that cites the page it read","Customer chat in Hindi and English","Token spend capped before month-end","Agents that update your CRM — with approval"]'><span class="tw"></span><span class="cur"></span></div>
+        <div class="oa-highlight">A Policy Bot That Cites The Page It Read</div>
         <div class="lh-points" data-in="3">
           <div><span class="tk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M16 8l-2 6-6 2 2-6z"/></svg></span>Use-case discovery &amp; ROI</div>
           <div><span class="tk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5A2.5 2.5 0 016.5 2H20v18H6.5A2.5 2.5 0 004 22.5z"/><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/></svg></span>RAG knowledge assistants</div>
@@ -1399,7 +1375,7 @@ html,body{height:auto;min-height:0}
           <a href="#estimator" class="btn btn-gl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12M6 9h12M15 20L8 13h2a4 4 0 000-8"/></svg> Estimate token cost</a>
           <a href="https://wa.me/918657032540" class="btn btn-gl" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.2 1.4 2.5 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg> WhatsApp</a>
         </div>
-        <div class="lh-ask" data-in="5" data-q="Explain XcellHost's OpenAI Managed Services (xcellhost.top/openai-managed-services) for an Indian business: use-case discovery, building RAG knowledge assistants, chatbots and tool-calling agents on OpenAI models via Azure OpenAI Service or the OpenAI API, plus guardrails, PII redaction, token cost monitoring and 24x7 managed operations from Mumbai. How should I choose between Azure OpenAI and the OpenAI API for data residency and DPDP Act compliance, and what does a proof of concept usually involve?"><span class="k"><b>✦</b>Ask AI about OpenAI managed services</span><span class="chips"><a data-ai="chatgpt" href="#"><i></i>ChatGPT</a><a data-ai="claude" href="#"><i></i>Claude</a><a data-ai="perplexity" href="#"><i></i>Perplexity</a><a data-ai="google" href="#"><i></i>Google AI</a><a data-ai="copilot" href="#"><i></i>Copilot</a></span></div>
+        <div class="lh-ask" data-in="5" data-q="Explain XcellHost's OpenAI Managed Services (xcellhost.top/openai-managed-services) for an Indian business: use-case discovery, building RAG knowledge assistants, chatbots and tool-calling agents on OpenAI models via Azure OpenAI Service or the OpenAI API, plus guardrails, PII redaction, token cost monitoring and 24x7 managed operations from Mumbai. How should I choose between Azure OpenAI and the OpenAI API for data residency and DPDP Act compliance, and what does a proof of concept usually involve?"><span class="k"><b>✦</b>Ask AI About OpenAI Services</span><span class="chips"><a data-ai="chatgpt" href="#"><i></i>ChatGPT</a><a data-ai="claude" href="#"><i></i>Claude</a><a data-ai="perplexity" href="#"><i></i>Perplexity</a><a data-ai="google" href="#"><i></i>Google AI</a><a data-ai="copilot" href="#"><i></i>Copilot</a></span></div><div class="oa-brand"><span>Powered by <span aria-hidden="true">|</span></span><span class="oa-brand-logo"><img src="/assets/images/platforms/openai.png" alt="" width="26" height="26"><strong>OpenAI</strong></span><span>Managed by XcellHost</span></div>
       </div>
 
       <div class="stage oa-stage" id="oaStage" data-in="4">
@@ -1439,7 +1415,7 @@ html,body{height:auto;min-height:0}
           </div>
         </div></div>
         <div class="oa-log" aria-live="off"><div class="oa-logh"><span><i></i><b id="oaLogT">TRACE · RAG</b></span><em>sample</em></div><ol id="oaLog"></ol></div>
-        <div class="lh-powered oa-pw"><small>Powered by</small><span><span class="oa-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3a3 3 0 00-3 3 3 3 0 00-2 5 3 3 0 001 5 3 3 0 005 3V3zM15 3a3 3 0 013 3 3 3 0 012 5 3 3 0 01-1 5 3 3 0 01-5 3V3z"/></svg></span>OpenAI models · Azure OpenAI</span><em>Microsoft Gold Partner · Managed by XcellHost</em></div>
+
       </div>
     </div>
   </div>
@@ -1447,7 +1423,7 @@ html,body{height:auto;min-height:0}
 
 <div class="lh-trust oa-proof"><div class="wrap"><span>Workshop from <b>₹49,999</b>*</span><span><b>Azure OpenAI</b> or <b>OpenAI API</b></span><span><b>RAG</b> · assistants · agents</span><span><b>DPDP</b>-aware design</span><span><b>INR</b> GST invoice</span><span><b>Since 1999</b> · 24×7 NOC &amp; SOC</span></div></div>
 
-<nav class="oa-sub" id="oaSub" aria-label="On this page"><div class="wrap"><div class="oa-subt">
+<nav class="oa-sub product-section-nav" id="oaSub" aria-label="On this page"><div class="wrap"><div class="oa-subt">
   <a href="#overview">Overview</a><a href="#services">Services</a><a href="#rag">How RAG works</a><a href="#usecases">Use-case finder</a><a href="#estimator">Token cost</a><a href="#govern">Security &amp; governance</a><a href="#ops">Managed ops</a><a href="#process">Process</a><a href="#readiness">AI readiness</a><a href="#pricing">Packages</a><a href="#configure">Configure</a><a href="#alt">Open models</a><a href="#faq">FAQ</a>
 </div></div></nav>
 
@@ -1465,7 +1441,7 @@ html,body{height:auto;min-height:0}
     <div class="oa-routes">
       <div class="oa-rt rv"><span class="oa-rk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a5 5 0 01-.6-10A6 6 0 0118 9a4.5 4.5 0 01-.5 9z"/></svg></span><b>Azure OpenAI Service</b><p>OpenAI models deployed in your Azure tenant. Per Microsoft, prompts and completions aren't available to OpenAI and aren't used to train models. Private endpoints, Entra ID sign-in and Azure Policy apply.</p><em>Best for regulated data · INR billing via XcellHost CSP</em></div>
       <div class="oa-rt rv" data-d="1"><span class="oa-rk o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg></span><b>OpenAI API</b><p>Newest features first. Per OpenAI, API data isn't used for training by default, and eligible API projects can keep data at rest in India under OpenAI's data-residency programme.</p><em>Best for fast-moving products · usage billed by OpenAI</em></div>
-      <div class="oa-rt rv" data-d="2"><span class="oa-rk n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="11" rx="2"/><circle cx="8" cy="12.5" r="2.5"/><circle cx="15.5" cy="12.5" r="2.5"/><path d="M5 18v3M19 18v3"/></svg></span><b>Open models on XcellHost</b><p>When data must never leave XcellHost's India cloud, the same app pattern runs on open-weight models through <a href="/serverless-inference">serverless</a> or <a href="/dedicated-inference">dedicated inference</a>.</p><em>Best for strict residency · flat GPU pricing</em></div>
+      <div class="oa-rt rv" data-d="2"><span class="oa-rk n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="11" rx="2"/><circle cx="8" cy="12.5" r="2.5"/><circle cx="15.5" cy="12.5" r="2.5"/><path d="M5 18v3M19 18v3"/></svg></span><b>Open models on XcellHost</b><p>When data must never leave XcellHost's India cloud, the same app pattern runs on open-weight models through <a href="/serverless-inference" target="_top">serverless</a> or <a href="/dedicated-inference" target="_top">dedicated inference</a>.</p><em>Best for strict residency · flat GPU pricing</em></div>
     </div>
   </div>
 </section>
@@ -1732,18 +1708,18 @@ html,body{height:auto;min-height:0}
     <div class="oa-alw rv">
       <div><span class="eyebrow">Alternative</span><h2>Need the model inside India, on our cloud? <span class="acc">Use open models on XcellHost.</span></h2><p>Same managed service — RAG, assistants, guardrails, monitoring — on open-weight models running on XcellHost's India GPU cloud. Useful when policy rules out a third-party model API, or when steady high volume makes flat GPU pricing cheaper than per-token billing.</p></div>
       <div class="oa-alc">
-        <a href="/serverless-inference"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h8l-1 8 10-12h-8z"/></svg></i><span><small>Pay per token, India</small><b>Serverless Inference</b></span><em>→</em></a>
-        <a href="/dedicated-inference"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="11" rx="2"/><circle cx="8" cy="12.5" r="2.5"/><circle cx="15.5" cy="12.5" r="2.5"/><path d="M5 18v3M19 18v3"/></svg></i><span><small>Private GPU endpoints</small><b>Dedicated Inference</b></span><em>→</em></a>
-        <a href="/model-catalog"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></i><span><small>Browse open models</small><b>Model Catalog</b></span><em>→</em></a>
+        <a href="/serverless-inference" target="_top"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h8l-1 8 10-12h-8z"/></svg></i><span><small>Pay per token, India</small><b>Serverless Inference</b></span><em>→</em></a>
+        <a href="/dedicated-inference" target="_top"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="11" rx="2"/><circle cx="8" cy="12.5" r="2.5"/><circle cx="15.5" cy="12.5" r="2.5"/><path d="M5 18v3M19 18v3"/></svg></i><span><small>Private GPU endpoints</small><b>Dedicated Inference</b></span><em>→</em></a>
+        <a href="/model-catalog" target="_top"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></i><span><small>Browse open models</small><b>Model Catalog</b></span><em>→</em></a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ================= WHY ================= -->
-<section class="sec alt oa-wy" id="why">
+<section class="sec" id="security"><div class="wrap"><div class="sh"><h2>SECURITY &amp; COMPLIANCE</h2><p>Define the controls around your assistant before it reaches production. XcellHost helps scope identity, data handling, agent permissions, monitoring and operational ownership for your selected OpenAI or Azure OpenAI deployment.</p></div><div class="hosting-reasons"><article><h3>Access & Identity</h3><p>Scope user access, service identities and credentials to each application’s requirements.</p></article><article><h3>Data Handling</h3><p>Agree the data allowed in prompts and retrieved context, with masking and retention controls appropriate to the workflow.</p></article><article><h3>Grounding & Evaluation</h3><p>Test answers against approved content and evaluation cases before rollout and after changes.</p></article><article><h3>Agent Permissions</h3><p>Limit tool access and require human approval for sensitive actions.</p></article><article><h3>Monitoring & Audit</h3><p>Define the application events to record, who can review them and how incidents are escalated.</p></article><article><h3>Deployment Review</h3><p>Confirm model availability, processing location and contractual requirements for the selected deployment route.</p></article></div></div></section><section class="sec alt oa-wy" id="why">
   <div class="wrap">
-    <div class="sh rv"><span class="eyebrow">Why XcellHost</span><h2>Built on OpenAI models. <span class="acc">Run by XcellHost from Mumbai.</span></h2><p>Managed cloud and security for Indian businesses since 1999 — now applied to GenAI.</p></div>
+    <div class="sh rv"><span class="eyebrow">Why XcellHost</span><h2>Why XcellHost For OpenAI Managed Services</h2><p>Managed cloud and security for Indian businesses since 1999 — now applied to GenAI.</p></div>
     <div class="dband rv">
       <div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12M6 9h12M15 20L8 13h2a4 4 0 000-8"/></svg></i><span><b>Rupee billing with GST</b><p>Service fees and Azure OpenAI consumption on one INR invoice via XcellHost's Microsoft CSP.</p></span><span class="n">01</span></div>
       <div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></i><span><b>Security people, not just prompt writers</b><p>Our 24×7 SOC already watches identity, endpoints and cloud — your assistants join that view.</p></span><span class="n">02</span></div>
@@ -1756,9 +1732,26 @@ html,body{height:auto;min-height:0}
 </section>
 
 
-</main>
-<div id="openAiToast" role="status" hidden></div>
-<script src="/assets/animations/openai-managed-services-page.js"></script>
-<script>if(window.frameElement)parent.postMessage({type:'xh-openai-managed-services-ready'},location.origin);</script>
-</body>
-</html>
+
+<!-- ================= FAQ ================= -->
+<section class="xh-customer-testimonials" id="customer-feedback" data-testimonial-page="openai-managed-services" hidden></section><section class="sec oa-fq" id="faq"><div class="wrap"><div class="sh"><h2>Frequently Asked Questions</h2></div><div class="faq"><div class="hosting-faq-column"><div class="fq"><button aria-expanded="false">Is XcellHost an OpenAI partner?<i aria-hidden="true">+</i></button><div class="fa"><p>No — XcellHost is an independent managed-service provider. We build and run solutions on OpenAI models accessed via Microsoft's Azure OpenAI Service or the OpenAI API, under your own Azure subscription or OpenAI organisation. XcellHost is a Microsoft Gold Partner.</p></div></div><div class="fq"><button aria-expanded="false">Azure OpenAI or the OpenAI API — which should we use?<i aria-hidden="true">+</i></button><div class="fa"><p>For regulated or sensitive data we usually recommend Azure OpenAI: it runs in your Azure tenant with private networking, Entra ID and Azure Policy, and can be billed in INR through XcellHost. The OpenAI API often gets new features first and suits fast-moving products. Many clients use both; we decide per use case in the design step.</p></div></div><div class="fq"><button aria-expanded="false">Will our data be used to train OpenAI's models?<i aria-hidden="true">+</i></button><div class="fa"><p>Per Microsoft, prompts and completions in Azure OpenAI are not available to OpenAI and are not used to train foundation models. Per OpenAI, data sent to the API is not used for training by default. We also configure logging, retention and abuse-monitoring options to suit your policy.</p></div></div><div class="fq"><button aria-expanded="false">Can the data stay in India?<i aria-hidden="true">+</i></button><div class="fa"><p>Partly, depending on the route. Azure OpenAI resources can be created in India regions such as South India, but which models and deployment types are offered there varies — and "Global" deployments may process prompts outside India. OpenAI offers data-at-rest residency in India for eligible API projects. If everything must stay on Indian infrastructure we run open models on XcellHost's own GPU cloud.</p></div></div><div class="fq"><button aria-expanded="false">How does this help with the DPDP Act and CERT-In directions?<i aria-hidden="true">+</i></button><div class="fa"><p>We design for purpose limitation and data minimisation, mask personal data before it reaches the model, keep audit logs on Indian infrastructure for at least 180 days, document processors, and support your 6-hour CERT-In incident reporting. These controls help you meet your obligations; responsibility for compliance stays with your organisation.</p></div></div><div class="fq"><button aria-expanded="false">Do you fine-tune models?<i aria-hidden="true">+</i></button><div class="fa"><p>Rarely first. Most business needs are met by good prompts, retrieval (RAG) and evaluation. OpenAI has said it is winding down its self-serve fine-tuning platform, so where tuning is genuinely needed we use Azure's managed fine-tuning in supported regions or tune an open model on XcellHost — after a test shows it beats prompting.</p></div></div></div><div class="hosting-faq-column"><div class="fq"><button aria-expanded="false">What does a proof of concept include?<i aria-hidden="true">+</i></button><div class="fa"><p>One use case built on a sample of your real data, an agreed set of test questions with pass criteria, basic guardrails, a demo app (web or Teams) and a written report on quality, cost per request and what production would need. Indicative ₹1,99,999* excl. GST, up to four weeks.</p></div></div><div class="fq"><button aria-expanded="false">How do you control token costs?<i aria-hidden="true">+</i></button><div class="fa"><p>Budgets and alerts per app, routing simple questions to smaller model tiers, prompt caching, trimming retrieved context, batching where latency allows, and monthly reviews of the most expensive conversations. The estimator above shows how much tier choice matters.</p></div></div><div class="fq"><button aria-expanded="false">Can the assistant work in Hindi and other Indian languages?<i aria-hidden="true">+</i></button><div class="fa"><p>OpenAI's current models handle Hindi and several Indian languages, including mixed Hindi–English. Quality varies by language and topic, so we include those languages in the evaluation set and test them before launch.</p></div></div><div class="fq"><button aria-expanded="false">Can it connect to our CRM, ERP or Tally?<i aria-hidden="true">+</i></button><div class="fa"><p>Yes, through tool-calling (function calling) with scoped service accounts. Read actions run directly; write actions such as updating a record or raising an invoice can require a human approval step. We log every tool call.</p></div></div><div class="fq"><button aria-expanded="false">What happens when a model version is retired?<i aria-hidden="true">+</i></button><div class="fa"><p>OpenAI and Microsoft publish retirement dates for model versions. Under a managed package we test the successor model against your evaluation set, adjust prompts and switch before the deadline, and tell you if cost or quality changes.</p></div></div><div class="fq"><button aria-expanded="false">Who owns the prompts, data and code?<i aria-hidden="true">+</i></button><div class="fa"><p>You do. Resources live in your Azure subscription or OpenAI organisation, and the prompts, evaluation sets, integration code and runbooks are handed over if you move the service in-house or elsewhere.</p></div></div></div></div></div></section>
+
+<!-- ================= CTA ================= -->
+
+
+<!-- ================= RELATED ================= -->
+<section class="sec oa-rl" id="related">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">Related</span><h2>Around your AI apps — <span class="acc">cloud, security and Copilot.</span></h2></div>
+    <div class="oa-xs">
+      <a class="oa-x rv" href="/managed-azure" target="_top"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a5 5 0 01-.6-10A6 6 0 0118 9a4.5 4.5 0 01-.5 9z"/></svg></i><span><small>Landing zone &amp; FinOps</small><b>Managed Azure</b></span><em>→</em></a>
+      <a class="oa-x rv" data-d="1" href="/microsoft-365-e7" target="_top"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2 20a7 7 0 0114 0M17 11a3 3 0 000-6M22 20a6 6 0 00-4-5.6"/></svg></i><span><small>Copilot &amp; agents in M365</small><b>Microsoft 365 E7</b></span><em>→</em></a>
+      <a class="oa-x rv" data-d="2" href="/mxdr-for-microsoft" target="_top"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></i><span><small>Defender XDR + Sentinel</small><b>MXDR for Microsoft</b></span><em>→</em></a>
+      <a class="oa-x rv" data-d="3" href="/microsoft-security-consultancy" target="_top"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M16 8l-2 6-6 2 2-6z"/></svg></i><span><small>Zero Trust &amp; Purview</small><b>Microsoft Security Consultancy</b></span><em>→</em></a>
+      <a class="oa-x rv" data-d="4" href="/managed-microsoft-sentinel" target="_top"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></i><span><small>SIEM / SOAR 24×7</small><b>Managed Sentinel</b></span><em>→</em></a>
+    </div>
+    <p class="oa-tm">OpenAI, GPT and ChatGPT are trademarks of OpenAI. Microsoft, Azure, Azure OpenAI, Teams and SharePoint are trademarks of the Microsoft group of companies. Names identify the products only; XcellHost is not affiliated with or endorsed by OpenAI. * Indicative, typical or placeholder figure — confirmed on your XcellHost quotation. Scene and dashboard figures are sample data.</p>
+  </div>
+</section>
+
+</main><div id="openAiToast" role="status" hidden></div><script src="/assets/scripts/hosting-tools-viewport.js"></script><script src="/assets/animations/openai-managed-services-page.js"></script><script>if(window.frameElement)parent.postMessage({type:"xh-openai-managed-services-ready"},location.origin);</script></body></html>

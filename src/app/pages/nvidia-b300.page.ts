@@ -1,3 +1,4 @@
+import { CustomerTestimonialsComponent } from '../sections/customer-testimonials.component';
 import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, ViewChild, inject, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 
@@ -13,7 +14,7 @@ import { GpuLeadHeroComponent } from '../sections/gpu-lead-hero.component';
 @Component({
   selector: 'xh-nvidia-b300-page',
   standalone: true,
-  imports: [RouterLink, InsightsSectionComponent, GpuLeadHeroComponent],
+  imports: [CustomerTestimonialsComponent, RouterLink, InsightsSectionComponent, GpuLeadHeroComponent],
   templateUrl: './nvidia-b300.page.html',
   styleUrl: './nvidia-b300.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

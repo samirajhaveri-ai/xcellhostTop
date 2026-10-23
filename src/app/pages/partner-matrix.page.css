@@ -1,10 +1,51 @@
 :host{display:block;color:#102b4e;font-family:var(--body,sans-serif)}
+.pm-bottom>.pm-buddha-strip{display:block;position:relative;margin-top:0;min-height:210px;padding:28px 145px 28px 28px}
+.pm-bottom .pm-buddha-strip h2{color:#fff;margin:0 0 8px;font-size:22px;line-height:1.3}
+.pm-bottom>.pm-buddha-strip p{font-size:13px;line-height:1.65;color:#d3e2f6}
+.pm-buddha-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.pm-buddha-actions .btn{font-size:12px;padding:10px 14px}
+.pm-buddha-actions .btn-ghost{border-color:#ffffff66;color:#fff}
+.pm-buddha-strip .pp-cta-buddha-link{display:block}
+@media(max-width:760px){.pm-bottom>.pm-buddha-strip{padding:24px}.pm-buddha-strip .pp-cta-buddha-link{margin-top:20px}}
 *{box-sizing:border-box}
 a{text-decoration:none;color:inherit}
 .material-symbols-outlined{font-size:21px;flex:none}
 .pm-page{padding-bottom:66px;background:linear-gradient(180deg,#f5f9ff 0,#fff 50%)}
 .pm-wrap{width:min(1180px,calc(100% - 48px));margin:0 auto}
-.pm-hero{overflow:hidden;padding:28px 0 0;border-bottom:1px solid #d9e5f4;background:radial-gradient(circle at 82% 12%,rgba(245,142,31,.2),transparent 22%),radial-gradient(circle at 75% 5%,rgba(24,103,221,.18),transparent 45%),linear-gradient(125deg,#f4f8ff,#fff)}
+.pm-hero{position:relative;isolation:isolate;overflow:hidden;padding:40px 0 0;border-bottom:1px solid #24518a;background:radial-gradient(ellipse at 85% 15%,#164d91,transparent 65%),linear-gradient(120deg,#041e42,#0a2a57);color:#fff}
+.pm-hero>.pm-wrap{position:relative;z-index:2}
+.pm-hero-pattern{position:absolute;inset:0;pointer-events:none;opacity:.2;background-image:radial-gradient(#8bbcff66 1px,transparent 1px);background-size:24px 24px;mask-image:linear-gradient(90deg,transparent,#000)}
+.pm-hub-visual{width:100%;max-width:540px;justify-self:center;min-width:0}
+.pm-hub-visual svg{display:block;width:100%;height:auto;overflow:visible}
+.pm-hub-links{animation:pm-link-flow 4s linear infinite}
+.pm-hub-card>rect{fill:url(#pmHubCard);stroke:#579ce280;stroke-width:1}
+.pm-hub-card>circle{fill:#1b64b8;stroke:#70b7ff66}
+.pm-hub-card text{font-family:var(--body,sans-serif);fill:#fff}
+.pm-hub-card .pm-node-initials{font-size:10px;font-weight:700}
+.pm-hub-card .pm-node-title{font-size:12px;font-weight:700}
+.pm-hub-card .pm-node-caption{font-size:10px;fill:#b6c9e5}
+.pm-hub-symbol{font-size:36px;fill:#fff}
+.pm-hub-center-label{font:700 10px var(--mono,monospace);letter-spacing:1px;fill:#fff}
+.pm-hub-pulse{transform-origin:260px 172px;animation:pm-hub-beat 3s ease-out infinite}
+.pm-hub-card{animation:pm-contact-glow 10s ease-in-out infinite}
+.pm-hub-card-two{animation-delay:-2s}.pm-hub-card-three{animation-delay:-4s}.pm-hub-card-four{animation-delay:-6s}.pm-hub-card-five{animation-delay:-8s}
+.pm-hero .pm-breadcrumb{color:#8bbcff}
+.pm-hero .pm-eyebrow{color:#86baff}
+.pm-hero h1{color:#fff}
+.pm-hero h1 span{color:#7fb2ff}
+.pm-hero .pm-intro{color:#c7d5ec}
+.pm-hero .pm-primary{background:#ff8c1a;box-shadow:0 10px 26px #ff8c1a33}
+.pm-hero .pm-primary:hover{background:#ed7b0b}
+.pm-hero .pm-secondary{border-color:#ffffff59;background:#ffffff0d;color:#fff}
+.pm-hero .pm-secondary:hover{background:#ffffff1a}
+.pm-hero .pm-stats{background:#09244dcc;border-color:#7fb2ff40;box-shadow:none}
+.pm-hero .pm-stats div{border-color:#7fb2ff33}
+.pm-hero .pm-stats b{color:#fff}
+.pm-hero .pm-stats span{color:#b6c9e5}
+@keyframes pm-link-flow{to{stroke-dashoffset:-52}}
+@keyframes pm-hub-beat{0%{transform:scale(.9);opacity:.8}100%{transform:scale(1.4);opacity:0}}
+@keyframes pm-contact-glow{0%,20%,100%{filter:drop-shadow(0 0 0 transparent)}8%{filter:drop-shadow(0 0 9px #5ea8ff88)}}
+@media(prefers-reduced-motion:reduce){.pm-hub-visual *{animation:none}.pm-hub-packets{display:none}}
 .pm-breadcrumb{display:flex;gap:11px;margin-bottom:36px;color:#64768e;font-size:12px}.pm-breadcrumb a:hover{text-decoration:underline}
 .pm-hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:58px;align-items:center;padding-bottom:42px}
 .pm-eyebrow{color:#1763df;font-size:10px;font-weight:800;letter-spacing:1.7px;line-height:1.5}

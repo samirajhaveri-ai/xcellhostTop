@@ -1,4 +1,58 @@
 /* Preserve the supplied plan designs while matching the surrounding site. */
+.office-f3-feedback .f3-review-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+.office-f3-feedback .f3-review-card { position:relative; display:flex; flex-direction:column; align-items:center; min-width:0; padding:24px 20px; border:1px solid #dce5f2; border-radius:16px; background:var(--surface); box-shadow:0 10px 24px rgba(4,30,66,.05); overflow:hidden; }
+.office-f3-feedback .f3-review-quote { position:absolute; top:0; right:0; display:grid; place-items:center; width:50px; height:50px; border-radius:0 0 0 16px; background:linear-gradient(135deg,#1565d8,#0a3e90); color:#fff; font:700 26px/1 Georgia,serif; }
+.office-f3-feedback .f3-review-stars { color:#ff8c1a; font-size:13px; letter-spacing:2px; margin:16px 0 14px; }
+.office-f3-feedback blockquote { width:100%; flex:1; margin:0; }
+.office-f3-feedback blockquote p { color:var(--muted); font-size:12px; line-height:1.75; letter-spacing:.1px; text-align:justify; }
+.office-f3-feedback .f3-review-author { display:flex; flex-direction:column; align-items:center; gap:12px; text-align:center; width:100%; }
+.office-f3-feedback .f3-review-avatar { display:grid; place-items:center; flex:0 0 58px; width:58px; height:58px; border-radius:50%; background:linear-gradient(135deg,#1565d8,#7c3aed); color:#fff; font:700 20px 'Sora',sans-serif; }
+.office-f3-feedback .f3-review-author h3 { margin:0 0 4px; color:var(--ink); font-size:15px; line-height:1.4; }
+.office-f3-feedback .f3-review-author p { margin:0; color:var(--muted); font-size:11px; line-height:1.5; }
+@media(min-width:761px) and (max-width:1000px) { .office-f3-feedback .f3-review-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:760px) { .office-f3-feedback .f3-review-grid { grid-template-columns:1fr; } }
+
+/* Office 365 F3 uses the same navy, two-column hero as the product catalogue. */
+#of3Hero { background:radial-gradient(ellipse at 85% 10%,#123e76,transparent 65%),#041e42; color:#fff; padding:56px 0; min-height:560px; border-bottom:0; }
+#of3Hero>.wrap { width:100%; max-width:1240px; padding-inline:24px; }
+#of3Hero .of3-hg { grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)!important; gap:clamp(36px,5vw,72px)!important; align-items:center; }
+#of3Hero .of3-copy { min-width:0; align-self:center; }
+#of3Hero .plan-heading { margin-bottom:22px; }
+#of3Hero .lh-title { display:flex; align-items:baseline; flex-wrap:wrap; font-size:clamp(30px,3.4vw,44px)!important; line-height:1.15; margin:0; }
+#of3Hero .lh-title,#of3Hero .lh-title .brd,#of3Hero .lh-title .nm { color:#fff!important; }
+#of3Hero .lh-title .nm { display:inline; }
+#of3Hero .lh-title .dv { color:#7fb2ff; }
+#of3Hero .crumb,#of3Hero .crumb a,#of3Hero .crumb .c { color:#8bbcff; }
+#of3Hero .lh-tag { color:#fff; font-size:17px; }
+#of3Hero .lh-tag2 { color:#c7d5ec; font-size:16px; line-height:1.65; }
+#of3Hero .lh-type { color:#7fb2ff; }
+#of3Hero .lh-type .cur { background:#7fb2ff; }
+#of3Hero .lh-points div { color:#c7d5ec; }
+#of3Hero .of3-glb { background:rgba(255,255,255,.05); color:#fff; border-color:rgba(255,255,255,.35); }
+#of3Hero .lh-ask { background:rgba(8,31,68,.46); border-color:rgba(75,165,255,.4); box-shadow:none; }
+#of3Hero .lh-ask .k { color:#fff; }
+#of3Hero .lh-ask a { background:rgba(255,255,255,.08); color:#dceaff; }
+#of3Hero .hero-bg .lh-grid { background-image:linear-gradient(#7fb2ff14 1px,transparent 1px),linear-gradient(90deg,#7fb2ff14 1px,transparent 1px); }
+#of3Hero .hero-bg .lh-dots { opacity:.3; background-image:radial-gradient(#8fb8ff 1.2px,transparent 1.3px); }
+#of3Hero .hero-bg canvas.lh-net { opacity:.6; }
+#of3Hero .of3-stage { min-width:0; padding:32px 0 0!important; align-self:center; }
+#of3Hero .of3-stage>.lh-tilt { width:230px; }
+#of3Hero .of3-dev { width:230px; height:460px; }
+#of3Hero .of3-stage .lh-orbit { border-color:rgba(127,178,255,.25); }
+#of3Hero .of3-stage .lh-orbit.o2 { border-color:rgba(255,140,26,.25); }
+#of3Hero .plan-powered { justify-content:flex-start; flex-wrap:wrap; }
+@media(max-width:980px) {
+  #of3Hero { padding:40px 0; }
+  #of3Hero .of3-hg { grid-template-columns:minmax(0,1fr)!important; gap:40px!important; }
+  #of3Hero .of3-copy { width:100%; max-width:680px; margin-inline:auto; }
+  #of3Hero .of3-stage { width:100%; max-width:540px; justify-self:center; }
+}
+@media(max-width:640px) {
+  #of3Hero .of3-stage>.lh-tilt { width:236px; }
+  #of3Hero .of3-dev { width:236px; }
+  #of3Hero .of3-stage { gap:12px; }
+}
+
 .hero .lh-ask.xh-developer-ask {
   display: inline-flex;
   align-items: center;
