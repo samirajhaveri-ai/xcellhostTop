@@ -1,5 +1,10 @@
 @if (view(); as v) {
-  @if (slug() === 'cybird') {
+  @if (slug() === 'microsoft-defender') {
+    <div class="ppage as-page" id="ppage">
+      <xh-imported-interactive-content source="microsoft-defender" />
+      <xh-insights-section [pageSlug]="slug()" />
+    </div>
+  } @else if (slug() === 'cybird') {
     <div class="ppage as-page" id="ppage">
       <xh-imported-interactive-content class="cybird-source-content" source="cybird" />
       <xh-insights-section [pageSlug]="slug()" />
@@ -15,9 +20,11 @@
       <xh-managed-aws-content provider="Azure" [tailOnly]="true" />
     </div>
   } @else {
+  @if (slug() === 'microsoft-entra-id') {<link rel="stylesheet" href="/assets/styles/identity-security-entra.css">}
   <div
     class="ppage as-page"
     id="ppage"
+    [class.entra-identity-page]="slug() === 'microsoft-entra-id'"
     [class.managed-pki-page]="slug() === 'managed-pki'"
     [class.ssl-brand-ai-page]="isDigiCert() || slug() === 'geotrust' || slug() === 'geotrust-ssl-certificates' || slug() === 'sectigo-ssl-certificates'"
     [class.private-ca-page]="slug() === 'private-ca'"
@@ -1727,8 +1734,8 @@
               </h1>
             } @else {
             <h1 id="ppTitle" [class.pp-title-compact]="compactHeroTitle()"
-              [xhFitBannerTitle]="slug() === 'docusign' || slug() === 'rpc-nodes' || slug() === 'zoom-conferenceing' || slug() === 'cpanel-vps' || isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || !!v.heroMessages[0]?.toLowerCase()?.startsWith('maximise online visibility')"
-              [bannerTitleMaxSize]="slug() === 'docusign' || slug() === 'rpc-nodes' || slug() === 'zoom-conferenceing' || slug() === 'cpanel-vps' || isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' ? 42 : 26">
+              [xhFitBannerTitle]="slug() === 'acronis-ai' || slug() === 'docusign' || slug() === 'rpc-nodes' || slug() === 'zoom-conferenceing' || slug() === 'cpanel-vps' || isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || !!v.heroMessages[0]?.toLowerCase()?.startsWith('maximise online visibility')"
+              [bannerTitleMaxSize]="slug() === 'acronis-ai' || slug() === 'docusign' || slug() === 'rpc-nodes' || slug() === 'zoom-conferenceing' || slug() === 'cpanel-vps' || isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' ? 42 : 26">
               <span class="pp-title-brand" [attr.aria-label]="'Xcell' + v.brandSuffix">
                 <span class="pp-brand-xcell">Xcell</span
                 ><span class="pp-brand-family">{{ v.brandSuffix }}</span>
@@ -6399,19 +6406,12 @@
             </section>
           }
           @if (slug() !== 'comodo-personal-authentication' && slug() !== 'digicert-smime-class-1' && slug() !== 'nvidia-a100' && slug() !== 'ai-resilience' && slug() !== 'cyber-resilience' && slug() !== 'data-resilience' && slug() !== 'cloud-repatriation') {
-          <div class="pp-sec" [attr.id]="isTally() ? 'tallyTestimonials' : slug() === 'cpu-optimized' ? 'cpuTestimonials' : slug() === 'memory-optimized' ? 'memoryTestimonials' : usesContainerRegistryTemplate() ? 'registryTestimonials' : null" [style.margin-top.px]="slug() === 'performance-cloud' || slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">What customers say</div>
-          @if (slug() === 'microsoft-365-to-google-workspace-migration') { <p>Contact our team to discuss customer references for Microsoft 365 to Google Workspace migrations.</p> }
-          @if (slug() === 'zoom-conferenceing') {
-            <div class="zoom-customer-reference" id="ppRevs" data-preserve-copy>
-              <div>
-                <h3>Customer references for your Zoom rollout</h3>
-                <p>Planning meetings, phones, rooms or events? Ask our team about customer references relevant to your requirements.</p>
-              </div>
-              <button class="btn btn-primary" type="button" (click)="openCallback($event, 'Zoom Workplace customer references')">Request customer references</button>
-            </div>
-          }
+          @if (!isZohoWorkspace() && slug() !== 'zoom-conferenceing' && slug() !== 'microsoft-365-to-google-workspace-migration') { <div class="pp-sec" [attr.id]="isTally() ? 'tallyTestimonials' : slug() === 'cpu-optimized' ? 'cpuTestimonials' : slug() === 'memory-optimized' ? 'memoryTestimonials' : usesContainerRegistryTemplate() ? 'registryTestimonials' : null" [style.margin-top.px]="slug() === 'performance-cloud' || slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null">What customers say</div> }
+          @if (slug() === 'microsoft-365-to-google-workspace-migration') { <xh-customer-testimonials pageSlug="microsoft-365-to-google-workspace-migration" /> }
+          @if (slug() === 'zoom-conferenceing') { <xh-customer-testimonials pageSlug="zoom-conferenceing" /> }
+          @if (isZohoWorkspace()) { <xh-customer-testimonials pageSlug="zoho-workspace" /> }
 
-          @if (slug() === 'open-ai-managed-services' || slug() === 'windows-365' || slug() === 'ai-receptionist' || isFrameworkDetail() || slug() === 'erp-next-hosting' || slug() === 'nvidia-vera-rubin' || slug() === 'storage-servers' || slug() === 'gaming-servers' || slug() === 'virtualization-servers' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'agent-studio' || slug() === 'aiops' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'instant-website' || slug() === 'instagram-automation' || slug() === 'hrm-attendance' || slug() === 'google-my-business' || isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training' || slug() === 'ai-chat-bot') {
+          @if (!isZohoWorkspace() && (slug() === 'open-ai-managed-services' || slug() === 'windows-365' || slug() === 'ai-receptionist' || isFrameworkDetail() || slug() === 'erp-next-hosting' || slug() === 'nvidia-vera-rubin' || slug() === 'storage-servers' || slug() === 'gaming-servers' || slug() === 'virtualization-servers' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'agent-studio' || slug() === 'aiops' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'instant-website' || slug() === 'instagram-automation' || slug() === 'hrm-attendance' || slug() === 'google-my-business' || isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training' || slug() === 'ai-chat-bot')) {
 
 
           @if (slug() === 'open-ai-managed-services' || slug() === 'ai-receptionist' || slug() === 'microsoft-365-to-google-workspace-migration' || slug() === 'nvidia-vera-rubin' || slug() === 'storage-servers' || slug() === 'gaming-servers' || slug() === 'virtualization-servers' || slug() === 'smart-qr-and-nfc-automation' || slug() === 'agent-studio' || slug() === 'aiops' || slug() === 'lead-generation-and-pipeline-crm' || slug() === 'instant-website' || slug() === 'instagram-automation' || slug() === 'hrm-attendance' || slug() === 'google-my-business' || slug() === 'digicert-smime-class-1' || isFlagship() || v.name === 'Enterprise DMARC' || slug() === 'email-archiving' || slug() === 'microsoft-copilot-training' || slug() === 'ai-chat-bot') {
@@ -6600,6 +6600,7 @@
         }
         <div id="ppBlog" [style.margin-top.px]="slug() === 'performance-cloud' || slug() === 'ai-chat-bot' || slug() === 'gpu-clusters' || slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' || slug() === 'acronis-mdr' ? 56 : null" [class.scrutiny-dlp-insights]="slug() === 'scrutiny-dlp'" [class.vortex-seg-insights]="slug() === 'vortex-seg'"><xh-insights-section [pageSlug]="slug()" [videos]="videosInInsights() ? productInsightVideos() : null" /></div>
 
+        @if (slug() !== 'microsoft-entra-id') {
         <div class="pp-cta" [attr.id]="isTally() ? 'tallySupport' : null">
             <div>
               <h3 id="ppCtaT">Ready to start with {{ v.name }}?</h3>
@@ -6666,6 +6667,7 @@
             ><span>🤝 Microsoft Gold Partner</span><span>🕰 Since 1999</span
             ><span>🔒 Secure Payments — UPI · Cards · NetBanking</span>
           </div>
+        }
         </div>
       </div>
     }

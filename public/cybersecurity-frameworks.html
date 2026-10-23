@@ -2,6 +2,12 @@
 <html lang="en-IN" data-theme="light">
 <head>
 <meta charset="utf-8">
+<script>
+// Use the routed page so shared navigation, banner dialogs and forms are available.
+if (window === window.top && /^\/cybersecurity-frameworks(?:\.html)?$/.test(location.pathname)) {
+  location.replace('/cybersecurity-frameworks/' + location.search + location.hash);
+}
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cybersecurity Frameworks India — NIST CSF 2.0, ISO 27001, CERT-In, RBI, SEBI, DPDP &amp; 95+ More | XcellHost</title>
 <meta name="description" content="The complete cybersecurity framework master list: 113 frameworks across 12 domains — NIST CSF 2.0, ISO 27001, MITRE ATT&amp;CK, CIS, OWASP, CSA, Zero Trust, PCI DSS, SOC 2, RBI, SEBI CSCRF, CERT-In, DPDP Act, IEC 62443 and AI governance — mapped to XcellHost SOC, VAPT and compliance services.">

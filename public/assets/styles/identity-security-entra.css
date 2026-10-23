@@ -1,0 +1,23 @@
+    .entra-identity-page :is(h2,h3,.pp-sec){text-transform:capitalize}
+    .entra-identity-page #ppSecHead{text-transform:uppercase}
+    .entra-identity-page .pp-hero .pp-crumb{display:none}
+    #ppage.ppage.entra-identity-page .pp-hero #ppTitle{display:flex!important;flex-wrap:nowrap!important;align-items:baseline;gap:5px;white-space:nowrap!important;font-size:clamp(18px,3vw,40px)!important}
+    #ppage.ppage.entra-identity-page .pp-hero #ppTitle>span{display:inline!important;flex:none!important;font-size:inherit!important;white-space:nowrap!important}
+    .entra-identity-page .pp-hero h1:after{display:none}
+    .entra-identity-page .identity-related{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:24px 0 40px}
+    .entra-identity-page .identity-related a{border:1px solid #d4e1f7;border-radius:14px;padding:20px;color:#041e42;background:#fff;font-weight:600;text-decoration:none}
+    .entra-identity-page .identity-related a:hover{border-color:#0066ff;color:#0066ff}
+    @media(max-width:760px){
+      .entra-identity-page .identity-related{grid-template-columns:1fr}
+      #ppage.entra-identity-page .pp-hero{display:flex!important;flex-direction:column;max-height:none!important;height:auto!important;padding-top:32px}
+      #ppage.entra-identity-page .pp-hero>.wrap{order:1}
+      #ppage.entra-identity-page .pph-scene{position:relative!important;inset:auto!important;transform:none!important;width:100%!important;height:350px!important;opacity:1!important;order:2;margin-top:24px}
+      #ppage.entra-identity-page .hero-ctas{display:flex!important;flex-wrap:nowrap!important;gap:6px}
+      #ppage.entra-identity-page .hero-ctas>button{flex:1 1 auto!important;width:auto!important;min-width:0;padding:10px 6px!important;font-size:11px!important;white-space:nowrap}
+    }
+
+#ppage.entra-identity-page .pp-ask-ai{display:flex!important;align-items:center;flex-wrap:nowrap!important;gap:10px;max-width:100%;overflow-x:auto;scrollbar-width:none;box-sizing:border-box}
+#ppage.entra-identity-page .pp-ask-ai-copy{flex:0 0 auto!important;width:auto!important;white-space:nowrap!important}
+#ppage.entra-identity-page .pp-ask-ai-kicker{white-space:nowrap!important}
+#ppage.entra-identity-page .pp-ask-ai-actions{display:flex!important;flex:0 0 auto!important;flex-wrap:nowrap!important;width:auto;gap:6px}
+#ppage.entra-identity-page .pp-ask-ai-chip{flex:none;width:28px;min-width:28px;height:28px;min-height:28px;padding:3px}

@@ -1081,6 +1081,11 @@ export const routes: Routes = [
     path: 'anti-ransomware-warranty',
     loadComponent: () => import('./pages/anti-ransomware-warranty.page').then((m) => m.AntiRansomwareWarrantyPage),
   },
+  ...(['acronis-cyber-intelligence', 'acronis-cyber-frame', 'acronis-workflow-automation'] as const).map(source => ({
+    path: source,
+    data: { source },
+    loadComponent: () => import('./pages/acronis-solutions.page').then(m => m.AcronisSolutionsPage),
+  })),
   {
     path: 'sql-server-comparision',
     title: 'SQL Server Editions Comparison | XcellHost',
@@ -1091,6 +1096,13 @@ export const routes: Routes = [
     redirectTo: 'sql-server-comparision',
     pathMatch: 'full',
   },
+  ...(['multi-factor-authentication', 'identity-and-access-management', 'privileged-access-management', 'privileged-identity-management', 'identity-governance-and-administration', 'iam-assessment', 'active-directory-assessment', 'security-hardware-token'] as const).map(source => ({
+    path: source,
+    data: { source },
+    loadComponent: () => import('./pages/identity-security.page').then(m => m.IdentitySecurityPage),
+  })),
+  { path: 'identity-access-management', redirectTo: 'identity-and-access-management', pathMatch: 'full' },
+  { path: 'identity-governance-administration', redirectTo: 'identity-governance-and-administration', pathMatch: 'full' },
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
   { path: '**', redirectTo: '' },
 ];
