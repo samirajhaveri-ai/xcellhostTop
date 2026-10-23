@@ -37,21 +37,7 @@
       <p class="b300-note">Interactive product illustrations.</p>
     </section>
 
-    <section aria-labelledby="b300-references-title">
-      <h2 class="pp-sec" id="b300-references-title">What customers say</h2>
-      <p class="b300-intro">Ask our team about available customer references for your AI workload.</p>
-      <div class="b300-reference-grid">
-        @for (reference of references; track reference.title) {
-          <article class="b300-reference-card">
-            <span class="b300-avatar" aria-hidden="true">{{ reference.initials }}</span>
-            <h3>{{ reference.title }}</h3>
-            <span class="b300-reference-label">Customer references on request</span>
-            <p>{{ reference.description }}</p>
-            <button class="btn btn-ghost" type="button" (click)="openCallback('NVIDIA B300: customer references for ' + reference.title)">Request references &rarr;</button>
-          </article>
-        }
-      </div>
-    </section>
+    <xh-customer-testimonials pageSlug="nvidia-b300-nodes" />
 
     <xh-insights-section pageSlug="nvidia-b300-nodes" [pageAliases]="['nvidia-b300']" [showVideos]="false" />
 

@@ -250,7 +250,8 @@ export const routes: Routes = [
   { path: 'microsoft-viva', title: 'Microsoft Viva | XcellHost', loadComponent: () => import('./pages/microsoft-viva.page').then(m => m.MicrosoftVivaPage) },
   { path: 'mcrosoft-project-server', title: 'Microsoft Project Server | XcellHost', loadComponent: () => import('./pages/project-server.page').then(m => m.ProjectServerPage) },
   { path: 'microsoft-project-server', redirectTo: 'mcrosoft-project-server', pathMatch: 'full' },
-  { path: 'acronis-ai', title: 'Acronis AI Platform | XcellHost', data: { productSlug: 'acronis-ai' }, loadComponent: () => import('./pages/product.page').then(m => m.ProductPage) },
+  { path: 'acronis-ai', title: 'Acronis AI Platform | XcellHost', data: { productSlug: 'acronis-ai' }, loadComponent: () => import('./pages/acronis-ai-solution.page').then(m => m.AcronisAiSolutionPage) },
+  { path: 'cyberfit-score-tool', title: 'Acronis CyberFit Score | XcellHost', loadComponent: () => import('./pages/acronis-cyberfit-score.page').then(m => m.AcronisCyberfitScorePage) },
 
 
   {
@@ -912,6 +913,10 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'vendor-partners/microsoft-azure',
+    loadComponent: () => import('./pages/microsoft-azure-partner.page').then((m) => m.MicrosoftAzurePartnerPage),
+  },
+  {
     path: 'vendor-partners/:slug',
     loadComponent: () =>
       import('./pages/vendor-partner.page').then((m) => m.VendorPartnerPage),
@@ -1085,6 +1090,11 @@ export const routes: Routes = [
     path: 'anti-ransomware-warranty',
     loadComponent: () => import('./pages/anti-ransomware-warranty.page').then((m) => m.AntiRansomwareWarrantyPage),
   },
+  ...(['acronis-cyber-intelligence', 'acronis-cyber-frame', 'acronis-workflow-automation'] as const).map(source => ({
+    path: source,
+    data: { source },
+    loadComponent: () => import('./pages/acronis-solutions.page').then(m => m.AcronisSolutionsPage),
+  })),
   {
     path: 'sql-server-comparision',
     title: 'SQL Server Editions Comparison | XcellHost',
@@ -1095,7 +1105,17 @@ export const routes: Routes = [
     redirectTo: 'sql-server-comparision',
     pathMatch: 'full',
   },
+
   { path: '404', title: '404 - Page Not Found | XcellHost', loadComponent: () => import('./pages/not-found.page').then((m) => m.NotFoundPage) },
+
+  ...(['multi-factor-authentication', 'identity-and-access-management', 'privileged-access-management', 'privileged-identity-management', 'identity-governance-and-administration', 'iam-assessment', 'active-directory-assessment', 'security-hardware-token'] as const).map(source => ({
+    path: source,
+    data: { source },
+    loadComponent: () => import('./pages/identity-security.page').then(m => m.IdentitySecurityPage),
+  })),
+  { path: 'identity-access-management', redirectTo: 'identity-and-access-management', pathMatch: 'full' },
+  { path: 'identity-governance-administration', redirectTo: 'identity-governance-and-administration', pathMatch: 'full' },
+
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
   { path: '**', title: '404 - Page Not Found | XcellHost', loadComponent: () => import('./pages/not-found.page').then((m) => m.NotFoundPage) },
 ];

@@ -2893,41 +2893,49 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Multi-Factor Authentication",
+                "href": "/multi-factor-authentication",
                 "pill": "Free trial",
                 "desc": null
               },
               {
                 "title": "Identity & Access Management",
+                "href": "/identity-and-access-management",
                 "pill": "Free trial",
                 "desc": null
               },
               {
                 "title": "Privileged Access Management",
+                "href": "/privileged-access-management",
                 "pill": "Free trial",
                 "desc": null
               },
               {
                 "title": "Privileged Identity Management",
+                "href": "/privileged-identity-management",
                 "pill": "Free trial",
                 "desc": null
               },
               {
                 "title": "Identity Governance and Administration",
+                "href": "/identity-governance-and-administration",
                 "pill": "Free trial",
                 "desc": null
               },
               {
                 "title": "IAM Assessment",
+                "href": "/iam-assessment",
                 "pill": "Free trial",
                 "desc": null
               },
               {
                 "title": "Active Directory Assessment ",
+                "href": "/active-directory-assessment",
                 "pill": "Free trial",
                 "desc": null
               },
               {
                 "title": "Security Hardware Token",
+                "href": "/security-hardware-token",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -5161,18 +5169,39 @@ export const MEGA_MENU: MenuTop[] = [
             "items": [
               {
                 "title": "Acronis AI",
+                "href": "/acronis-ai",
                 "pill": "In focus",
                 "desc": "AI-native protection, management and automation on one platform"
               },
                {
                 "title": "Cyberfit Score Tool",
+                "href": "/cyberfit-score-tool",
                 "pill": "In focus",
                 "desc": "AI-native protection, management and automation on one platform"
               },
                {
                 "title": "Anti Ransomware Warranty",
+                "href": "/anti-ransomware-warranty",
                 "pill": "In focus",
                 "desc": "AI-native protection, management and automation on one platform"
+              },
+              {
+                "title": "Acronis Cyber Intelligence",
+                "href": "/acronis-cyber-intelligence",
+                "pill": "In focus",
+                "desc": "AI dashboards, analytics and client-ready reports in Acronis Cyber Console"
+              },
+              {
+                "title": "Acronis Cyber Frame",
+                "href": "/acronis-cyber-frame",
+                "pill": "In focus",
+                "desc": "Compute, storage and networking with built-in cyber protection"
+              },
+              {
+                "title": "Acronis Workflow Automation",
+                "href": "/acronis-workflow-automation",
+                "pill": "In focus",
+                "desc": "No-code workflows across backup, IT management and security"
               },
             ],
           }

@@ -1,3 +1,4 @@
+import { CustomerTestimonialsComponent } from '../sections/customer-testimonials.component';
 
 import { AntiRansomwareWarrantyComponent } from '../sections/anti-ransomware-warranty.component';
 import { ContainerRegistryHeroComponent } from '../sections/container-registry-hero.component';
@@ -481,7 +482,11 @@ interface ProductTourSlide {
 @Component({
   selector: 'xh-product-page',
   standalone: true,
+
   imports: [NotFoundPage, QuantityInputDirective, DataCenterInfrastructureComponent,
+
+  imports: [CustomerTestimonialsComponent, QuantityInputDirective, DataCenterInfrastructureComponent,
+
     ZoomConferenceingSourceComponent,
     ManagedMongodbHeroComponent,
     AiReceptionistHeroComponent,
@@ -3041,6 +3046,22 @@ class ProductPageComponent {
   readonly view = computed<ProductView | null>(() => {
     const slug = this.slug();
     const view = this.resolve(slug);
+    if (slug === 'microsoft-entra-id' && view) return {
+      ...view,
+      videos: [],
+      security: {
+        head: 'SECURITY & COMPLIANCE',
+        intro: 'Agree identity access policies, administrator roles and recovery procedures before rollout. XcellHost helps scope your Microsoft Entra ID deployment around your users, applications and review requirements. Available capabilities depend on the selected licences.',
+        rows: [
+          ['Access Policies', 'Pilot authentication and Conditional Access policies before enforcement.'],
+          ['Administrator Roles', 'Define least-privilege roles and named owners.'],
+          ['Emergency Access', 'Document emergency account access and monitoring.'],
+          ['Identity Lifecycle', 'Agree provisioning, access changes and removal responsibilities.'],
+          ['Audit Evidence', 'Review sign-in and administrative activity with agreed retention.'],
+          ['Deployment Scope', 'Confirm licensing, integrations and operational responsibilities.'],
+        ],
+      },
+    };
     if (!view) return null;
 
     if (slug === 'open-ai-managed-services') {
