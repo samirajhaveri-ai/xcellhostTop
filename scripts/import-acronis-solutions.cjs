@@ -1,3 +1,8 @@
+// One directory imports Cyber Intelligence, Cyber Frame and Workflow Automation.
+// Three file arguments import AI Platform, CyberFit Score and Ransomware Warranty.
+if (process.argv.length > 3) {
+  require('./import-acronis-platform.cjs');
+} else {
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
@@ -128,4 +133,6 @@ for (const [slug, config] of Object.entries(pages)) {
   for (const [i,m] of [...output.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].entries()) new vm.Script(m[1],{filename:slug+'-'+i});
   fs.writeFileSync(path.join(root,'public/imported-'+slug+'.html'),output);
   console.log('Imported '+slug);
+}
+
 }

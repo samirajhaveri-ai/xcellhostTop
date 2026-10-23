@@ -5169,16 +5169,19 @@ export const MEGA_MENU: MenuTop[] = [
             "items": [
               {
                 "title": "Acronis AI",
+                "href": "/acronis-ai",
                 "pill": "In focus",
                 "desc": "AI-native protection, management and automation on one platform"
               },
                {
                 "title": "Cyberfit Score Tool",
+                "href": "/cyberfit-score-tool",
                 "pill": "In focus",
                 "desc": "AI-native protection, management and automation on one platform"
               },
                {
                 "title": "Anti Ransomware Warranty",
+                "href": "/anti-ransomware-warranty",
                 "pill": "In focus",
                 "desc": "AI-native protection, management and automation on one platform"
               },

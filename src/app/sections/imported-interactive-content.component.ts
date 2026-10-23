@@ -12,6 +12,11 @@ type InteractiveContentSource =
   | IdentitySecuritySource
   | 'acronis-cyber-intelligence' | 'acronis-cyber-frame' | 'acronis-workflow-automation'
   | 'microsoft-defender'
+  | 'acronis-ai-solution' | 'acronis-cyberfit-score' | 'acronis-ransomware-warranty'
+  | 'azure-services'
+  | 'certificate-lifecycle-management-platforms'
+  | 'autoinstall-ssl-for-web-hosts'
+  | 'autoinstall-ssl-for-linux-and-windows'
 
   | 'resilience-operations' | 'cloud-operations' | 'database-operations' | 'network-operations' | 'security-operations' | 'workspace-operations'
 
@@ -199,6 +204,13 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'blue-team-assessment': '/imported-blue-team-assessment.html',
     'red-team-assessment': '/imported-red-team-assessment.html',
     'cloud-security-assessment': '/imported-cloud-security-assessment.html',
+    'acronis-ai-solution': '/imported-acronis-ai-solution.html',
+    'acronis-cyberfit-score': '/imported-acronis-cyberfit-score.html',
+    'acronis-ransomware-warranty': '/imported-acronis-ransomware-warranty.html',
+    'azure-services': '/imported-azure-services.html',
+    'certificate-lifecycle-management-platforms': '/imported-certificate-lifecycle-management-platforms.html',
+    'autoinstall-ssl-for-web-hosts': '/imported-autoinstall-ssl-for-web-hosts.html',
+    'autoinstall-ssl-for-linux-and-windows': '/imported-autoinstall-ssl-for-linux-and-windows.html',
     'waap-as-a-service': '/imported-waap-as-a-service.html',
     'threat-intelligence': '/imported-threat-intelligence.html',
     'cyber-security-audit': '/imported-cyber-security-audit.html',
@@ -349,6 +361,13 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'workspace-operations': 'Workspace Operations',
 
 
+    'acronis-ai-solution': 'Acronis AI platform, animated agent operations, product orbit, capability demos, agent simulator, MSP calculator, pricing, FAQs and related services',
+    'acronis-cyberfit-score': 'Acronis CyberFit Score, five animated score scenes, scoring estimator, priority planner, pricing, FAQs and related services',
+    'acronis-ransomware-warranty': 'Acronis Anti-Ransomware Warranty, five animated recovery scenes, eligibility checker, downtime calculator, pricing, quotation form, FAQs and related services',
+    'azure-services': 'Microsoft Azure services, five animated scenes, searchable catalogue, category filters, popular services, goal finder, stack builder, quotation form and partner ecosystem',
+    'certificate-lifecycle-management-platforms': 'Certificate Lifecycle Management Platforms, five animated CLM scenes, discovery architecture, lifetime bars, integration and use-case tabs, managed pricing configurator, estate sizer, readiness quiz, onboarding and Why XcellHost',
+    'autoinstall-ssl-for-web-hosts': 'AutoInstall SSL for Web Hosts, five animated control-panel scenes, renewal chart, architecture flow, platform tabs, fleet planner, pricing configurator, reseller margin calculator, trial terminal and Why XcellHost',
+    'autoinstall-ssl-for-linux-and-windows': 'AutoInstall SSL for Linux and Windows, five animated server-agent scenes, architecture flow, renewal countdown, per-server pricing configurator, renewal effort calculator, compatibility checker, setup and Why XcellHost',
     'waap-as-a-service': 'WAAP as a Service, five animated protection scenes, coverage orbit, engine tabs, managed dashboard, pricing configurator, readiness quiz, traffic sizer, onboarding and Why XcellHost',
 
 
@@ -626,6 +645,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
       const scopeTitle = this.source === 'microsoft-defender' ? 'Microsoft Defender'
         : this.source in IDENTITY_SECURITY_PAGES ? this.sourceTitles[this.source]
         : ['acronis-cyber-intelligence', 'acronis-cyber-frame', 'acronis-workflow-automation'].includes(this.source) ? this.sourceTitles[this.source]
+        : this.source === 'acronis-cyberfit-score' ? 'Acronis #CyberFit Score'
         : this.source === 'purple-team-assessment' ? 'Purple Team Assessment'
         : this.source === 'breach-and-attack-simulation' ? 'Breach & Attack Simulation'
         : this.source === 'digicert-content-trust-manager' ? 'DigiCert Content Trust Manager'
@@ -668,7 +688,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
       });
     };
     const enquiry = async (event: Event) => {
-      if (this.source !== 'acronis-workflow-automation' && this.source !== 'acronis-ot' && this.source !== 'red-hat' && this.source !== 'email-security-enterprise' && this.source !== 'office-365-e5' && this.source !== 'teams-essentials-frontline' && this.source !== 'office-365-e1-nonprofit' && this.source !== 'cyber-security-audit') return;
+      if (this.source !== 'acronis-workflow-automation' && this.source !== 'acronis-ot' && this.source !== 'red-hat' && this.source !== 'email-security-enterprise' && this.source !== 'office-365-e5' && this.source !== 'teams-essentials-frontline' && this.source !== 'office-365-e1-nonprofit' && this.source !== 'cyber-security-audit' && this.source !== 'azure-services' && this.source !== 'acronis-ransomware-warranty') return;
       const detail = (event as CustomEvent<{
         payload: Record<string, unknown>;
         complete: (result: { ok: boolean; skipped: boolean; ref: string; fallbackUrl: string }) => void;
@@ -678,16 +698,18 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
       const office365E5 = this.source === 'office-365-e5';
       const teamsFrontline = this.source === 'teams-essentials-frontline';
       const office365E1Nonprofit = this.source === 'office-365-e1-nonprofit';
+      const acronisWarranty = this.source === 'acronis-ransomware-warranty';
+      const azureServices = this.source === 'azure-services';
       const cyberSecurityAudit = this.source === 'cyber-security-audit';
       const workflowAutomation = this.source === 'acronis-workflow-automation';
-      const hasSummary = workflowAutomation || emailSecurity || office365E5 || teamsFrontline || office365E1Nonprofit || cyberSecurityAudit;
-      const topic = workflowAutomation ? 'Acronis Workflow Automation quotation' : cyberSecurityAudit ? 'Cyber Security Audit quotation' : office365E1Nonprofit ? 'Office 365 E1 Nonprofit quotation' : teamsFrontline ? 'Teams Essentials for Frontline quotation' : office365E5 ? 'Office 365 E5 quotation' : emailSecurity ? 'Email Security Enterprise quotation' : redHat ? 'Red Hat quotation' : 'Acronis OT quotation';
+      const hasSummary = workflowAutomation || emailSecurity || office365E5 || teamsFrontline || office365E1Nonprofit || cyberSecurityAudit || azureServices || acronisWarranty;
+      const topic = acronisWarranty ? 'Acronis Anti-Ransomware Warranty quotation' : azureServices ? 'Microsoft Azure services quotation' : workflowAutomation ? 'Acronis Workflow Automation quotation' : cyberSecurityAudit ? 'Cyber Security Audit quotation' : office365E1Nonprofit ? 'Office 365 E1 Nonprofit quotation' : teamsFrontline ? 'Teams Essentials for Frontline quotation' : office365E5 ? 'Office 365 E5 quotation' : emailSecurity ? 'Email Security Enterprise quotation' : redHat ? 'Red Hat quotation' : 'Acronis OT quotation';
       const subject = topic + ' request';
       const payload = {
         ...detail.payload,
         message: hasSummary ? detail.payload['summary'] : redHat ? detail.payload['services'] : detail.payload['sizing'],
         topic,
-        page: workflowAutomation ? '/acronis-workflow-automation' : cyberSecurityAudit ? '/cyber-security-audit' : office365E1Nonprofit ? '/office-365-e1-nonprofit' : teamsFrontline ? '/teams-essentials-frontline' : office365E5 ? '/office-365-e5' : emailSecurity ? '/email-security-enterprise' : redHat ? '/vendor-partners/red-hat' : '/acronis-ot',
+        page: acronisWarranty ? '/anti-ransomware-warranty' : azureServices ? '/vendor-partners/microsoft-azure' : workflowAutomation ? '/acronis-workflow-automation' : cyberSecurityAudit ? '/cyber-security-audit' : office365E1Nonprofit ? '/office-365-e1-nonprofit' : teamsFrontline ? '/teams-essentials-frontline' : office365E5 ? '/office-365-e5' : emailSecurity ? '/email-security-enterprise' : redHat ? '/vendor-partners/red-hat' : '/acronis-ot',
       };
       const result = await this.leads.submit('callback', payload);
       detail.complete({

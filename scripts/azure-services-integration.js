@@ -1,0 +1,80 @@
+(function () {
+  const outer = parent;
+  const main = document.querySelector('main');
+  const bar = document.getElementById('azBar');
+  const rail = document.getElementById('azRail');
+  const catalog = document.getElementById('catalog');
+  const shifts = new Map();
+  let frame = 0;
+  function inset() { return (outer.document.querySelector('.xh-header')?.getBoundingClientRect().height || 80) + 16; }
+  function update() {
+    frame = 0;
+    const top = frameElement.getBoundingClientRect().top;
+    const offset = inset();
+    [[bar, offset, catalog], [rail, offset + bar.clientHeight + 16, rail.parentElement]].forEach(([element, target, container]) => {
+      if (!element || !element.getClientRects().length) return;
+      const natural = element.getBoundingClientRect().top - (shifts.get(element) || 0);
+      const limit = Math.max(0, container.getBoundingClientRect().bottom - natural - element.clientHeight);
+      const shift = Math.min(limit, Math.max(0, target - top - natural));
+      shifts.set(element, shift);
+      element.style.transform = `translateY(${shift}px)`;
+    });
+  }
+  function schedule() { if (!frame) frame = requestAnimationFrame(update); }
+  bar.style.position = 'relative';
+  bar.style.top = '0';
+  rail.style.position = 'relative';
+  rail.style.top = '0';
+  const resize = new ResizeObserver(schedule);
+  resize.observe(main);
+  outer.addEventListener('scroll', schedule, { passive: true });
+  outer.addEventListener('resize', schedule);
+  function linkTargets(root) {
+    if (root.matches?.('a[href^="/"]')) root.target = '_top';
+    root.querySelectorAll('a[href^="/"]').forEach(a => { a.target = '_top'; });
+  }
+  const links = new MutationObserver(records => {
+    records.forEach(record => record.addedNodes.forEach(node => {
+      if (node.nodeType === Node.ELEMENT_NODE) linkTargets(node);
+    }));
+  });
+  links.observe(main, { childList: true, subtree: true });
+  linkTargets(main);
+  function loadService(hash) {
+    if (!hash.startsWith('#svc-')) return;
+    history.replaceState(null, '', hash);
+    window.XH.azDeep?.();
+  }
+  document.addEventListener('click', function (event) {
+    const category = event.target.closest('#azRail a[href^="#cat-"]');
+    if (category) {
+      const section = document.getElementById(category.hash.slice(1));
+      if (!section || section.hidden) return;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      outer.scrollTo({
+        top: outer.scrollY + frameElement.getBoundingClientRect().top + section.getBoundingClientRect().top - inset() - bar.clientHeight - 8,
+        behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+      });
+      return;
+    }
+    const anchor = event.target.closest('a[href^="#svc-"]');
+    if (!anchor) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    outer.history.replaceState(null, '', outer.location.pathname + outer.location.search + anchor.hash);
+    loadService(anchor.hash);
+  }, true);
+  function hashChange() { loadService(outer.location.hash); }
+  outer.addEventListener('hashchange', hashChange);
+  hashChange();
+  schedule();
+  addEventListener('pagehide', function () {
+    outer.removeEventListener('scroll', schedule);
+    outer.removeEventListener('resize', schedule);
+    outer.removeEventListener('hashchange', hashChange);
+    resize.disconnect();
+    links.disconnect();
+    cancelAnimationFrame(frame);
+  }, { once: true });
+})();
