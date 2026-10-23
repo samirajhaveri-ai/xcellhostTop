@@ -3553,7 +3553,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Detect issues and automate routine IT operations with AI"
               },
               {
-                "title": "Agent Studio",
+                "title": "AI Agent Studio",
                 "pill": null,
                 "desc": "Build and manage AI agents for business workflows"
               },
@@ -5344,7 +5344,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Support contacts and escalation levels"
               },
               {
-                "title": "Status",
+                "title": "Services Status",
                 "pill": null,
                 "desc": "Support contacts and escalation levels"
               },
