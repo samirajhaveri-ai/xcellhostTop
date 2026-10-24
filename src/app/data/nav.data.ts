@@ -3796,6 +3796,12 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "AI Governance",
             "items": [
               {
+                "title": "AI Factory",
+                "href": "/ai-factory",
+                "pill": null,
+                "desc": "Sovereign GPU infrastructure, training and inference in India"
+              },
+              {
                 "title": "AI App Builder",
                 "pill": null,
                 "desc": "Create AI-powered applications for your business"

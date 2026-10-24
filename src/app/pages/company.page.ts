@@ -147,7 +147,7 @@ export class CompanyPage {
   } as const;
 
   readonly managementTeam = [
-     { initials: 'YT', name: 'Yogendra Trivedi', role: 'Managaging Director', image: '/assets/images/Yogesh Trivedi.png' },
+    { initials: 'YT', name: 'Yogesh Trivedi', role: 'Africa Director', image: '/assets/images/Yogesh Trivedi.png' },
     { initials: 'YJ', name: 'Yogendra Jagger', role: 'Regional Director - EMEA Middle East & Africa', image: '/assets/images/TEAMS PHOTO/Yogendra.png' },
     { initials: '', name: '', role: '', image: '/assets/images/WhatsApp Image 2026-10-23 at 4.17.01 PM.jpeg' },
     { initials: 'AN', name: 'Abhishek Nimbalkar', role: 'Chief AI Officer', image: '/assets/images/TEAMS PHOTO/Abhishek.png' },

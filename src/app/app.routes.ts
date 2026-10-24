@@ -5,6 +5,7 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  { path: 'ai-factory', title: 'AI Factory India | XcellHost', loadComponent: () => import('./pages/ai-factory.page').then(m => m.AiFactoryPage) },
   { path: 'sectigo-ssl-certificates', title: 'Sectigo SSL Certificates | XcellHost', loadComponent: () => import('./pages/sectigo-catalogue.page').then(m => m.SectigoCataloguePage) },
   ...[
     ['codeguard-backup', 'CodeGuard Backup'],

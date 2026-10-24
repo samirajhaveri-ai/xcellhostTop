@@ -10,9 +10,14 @@ import { installImportedJourneyLayout } from './imported-journey-layout';
 import { IDENTITY_SECURITY_PAGES, IdentitySecuritySource } from '../data/identity-security-pages.data';
 
 type InteractiveContentSource =
+  | 'smb-cloud-desktop'
+
+  | 'ai-factory'
+
   | IdentitySecuritySource
   | 'acronis-cyber-intelligence' | 'acronis-cyber-frame' | 'acronis-workflow-automation'
   | 'microsoft-defender'
+
   | 'acronis-ai-solution' | 'acronis-cyberfit-score' | 'acronis-ransomware-warranty'
   | 'azure-services'
   | 'certificate-lifecycle-management-platforms'
@@ -207,6 +212,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'red-team-assessment': '/imported-red-team-assessment.html',
     'cloud-security-assessment': '/imported-cloud-security-assessment.html',
     'acronis-ai-solution': '/imported-acronis-ai-solution.html',
+    'smb-cloud-desktop': '/imported-smb-cloud-desktop.html',
+    'ai-factory': '/imported-ai-factory.html',
     'acronis-cyberfit-score': '/imported-acronis-cyberfit-score.html',
     'acronis-ransomware-warranty': '/imported-acronis-ransomware-warranty.html',
     'azure-services': '/imported-azure-services.html',
@@ -365,6 +372,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
 
 
     'acronis-ai-solution': 'Acronis AI platform, animated agent operations, product orbit, capability demos, agent simulator, MSP calculator, pricing, FAQs and related services',
+    'smb-cloud-desktop': 'SMB Cloud Desktop, animated desktop scenes, applications, access, security, pricing, cost calculator, plan picker and getting-started steps',
+    'ai-factory': 'AI Factory, animated control room, GPU sizing, inference simulator, configurator, readiness check, FAQs and related services',
     'acronis-cyberfit-score': 'Acronis CyberFit Score, five animated score scenes, scoring estimator, priority planner, pricing, FAQs and related services',
     'acronis-ransomware-warranty': 'Acronis Anti-Ransomware Warranty, five animated recovery scenes, eligibility checker, downtime calculator, pricing, quotation form, FAQs and related services',
     'azure-services': 'Microsoft Azure services, five animated scenes, searchable catalogue, category filters, popular services, goal finder, stack builder, quotation form and partner ecosystem',
@@ -655,9 +664,12 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
         this.overlay.open('trial');
         return;
       }
-      const scopeTitle = this.source === 'microsoft-defender' ? 'Microsoft Defender'
+      const scopeTitle = this.source === 'smb-cloud-desktop' ? 'SMB Cloud Desktop'
+        : this.source === 'ai-factory' ? 'AI Factory'
+        : this.source === 'microsoft-defender' ? 'Microsoft Defender'
         : this.source in IDENTITY_SECURITY_PAGES ? this.sourceTitles[this.source]
         : ['acronis-cyber-intelligence', 'acronis-cyber-frame', 'acronis-workflow-automation'].includes(this.source) ? this.sourceTitles[this.source]
+
         : this.source === 'acronis-cyberfit-score' ? 'Acronis #CyberFit Score'
         : this.source === 'purple-team-assessment' ? 'Purple Team Assessment'
         : this.source === 'breach-and-attack-simulation' ? 'Breach & Attack Simulation'
@@ -701,7 +713,10 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
       });
     };
     const enquiry = async (event: Event) => {
-      if (this.source !== 'acronis-workflow-automation' && this.source !== 'acronis-ot' && this.source !== 'red-hat' && this.source !== 'email-security-enterprise' && this.source !== 'office-365-e5' && this.source !== 'teams-essentials-frontline' && this.source !== 'office-365-e1-nonprofit' && this.source !== 'cyber-security-audit' && this.source !== 'azure-services' && this.source !== 'acronis-ransomware-warranty') return;
+
+
+      if (this.source !== 'ai-factory' && this.source !== 'acronis-workflow-automation' && this.source !== 'acronis-ot' && this.source !== 'red-hat' && this.source !== 'email-security-enterprise' && this.source !== 'office-365-e5' && this.source !== 'teams-essentials-frontline' && this.source !== 'office-365-e1-nonprofit' && this.source !== 'cyber-security-audit' && this.source !== 'azure-services' && this.source !== 'acronis-ransomware-warranty') return;
+
       const detail = (event as CustomEvent<{
         payload: Record<string, unknown>;
         complete: (result: { ok: boolean; skipped: boolean; ref: string; fallbackUrl: string }) => void;
@@ -711,18 +726,25 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
       const office365E5 = this.source === 'office-365-e5';
       const teamsFrontline = this.source === 'teams-essentials-frontline';
       const office365E1Nonprofit = this.source === 'office-365-e1-nonprofit';
+      const aiFactory = this.source === 'ai-factory';
       const acronisWarranty = this.source === 'acronis-ransomware-warranty';
       const azureServices = this.source === 'azure-services';
       const cyberSecurityAudit = this.source === 'cyber-security-audit';
+
+
       const workflowAutomation = this.source === 'acronis-workflow-automation';
-      const hasSummary = workflowAutomation || emailSecurity || office365E5 || teamsFrontline || office365E1Nonprofit || cyberSecurityAudit || azureServices || acronisWarranty;
-      const topic = acronisWarranty ? 'Acronis Anti-Ransomware Warranty quotation' : azureServices ? 'Microsoft Azure services quotation' : workflowAutomation ? 'Acronis Workflow Automation quotation' : cyberSecurityAudit ? 'Cyber Security Audit quotation' : office365E1Nonprofit ? 'Office 365 E1 Nonprofit quotation' : teamsFrontline ? 'Teams Essentials for Frontline quotation' : office365E5 ? 'Office 365 E5 quotation' : emailSecurity ? 'Email Security Enterprise quotation' : redHat ? 'Red Hat quotation' : 'Acronis OT quotation';
+      const hasSummary = aiFactory || workflowAutomation || emailSecurity || office365E5 || teamsFrontline || office365E1Nonprofit || cyberSecurityAudit || azureServices || acronisWarranty;
+      const topic = aiFactory ? 'AI Factory quotation' : acronisWarranty ? 'Acronis Anti-Ransomware Warranty quotation' : azureServices ? 'Microsoft Azure services quotation' : workflowAutomation ? 'Acronis Workflow Automation quotation' : cyberSecurityAudit ? 'Cyber Security Audit quotation' : office365E1Nonprofit ? 'Office 365 E1 Nonprofit quotation' : teamsFrontline ? 'Teams Essentials for Frontline quotation' : office365E5 ? 'Office 365 E5 quotation' : emailSecurity ? 'Email Security Enterprise quotation' : redHat ? 'Red Hat quotation' : 'Acronis OT quotation';
+
       const subject = topic + ' request';
       const payload = {
         ...detail.payload,
         message: hasSummary ? detail.payload['summary'] : redHat ? detail.payload['services'] : detail.payload['sizing'],
         topic,
-        page: acronisWarranty ? '/anti-ransomware-warranty' : azureServices ? '/vendor-partners/microsoft-azure' : workflowAutomation ? '/acronis-workflow-automation' : cyberSecurityAudit ? '/cyber-security-audit' : office365E1Nonprofit ? '/office-365-e1-nonprofit' : teamsFrontline ? '/teams-essentials-frontline' : office365E5 ? '/office-365-e5' : emailSecurity ? '/email-security-enterprise' : redHat ? '/vendor-partners/red-hat' : '/acronis-ot',
+
+
+        page: aiFactory ? '/ai-factory' : acronisWarranty ? '/anti-ransomware-warranty' : azureServices ? '/vendor-partners/microsoft-azure' : workflowAutomation ? '/acronis-workflow-automation' : cyberSecurityAudit ? '/cyber-security-audit' : office365E1Nonprofit ? '/office-365-e1-nonprofit' : teamsFrontline ? '/teams-essentials-frontline' : office365E5 ? '/office-365-e5' : emailSecurity ? '/email-security-enterprise' : redHat ? '/vendor-partners/red-hat' : '/acronis-ot',
+
       };
       const result = await this.leads.submit('callback', payload);
       detail.complete({
