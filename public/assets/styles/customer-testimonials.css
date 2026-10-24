@@ -15,3 +15,15 @@
 .xh-customer-testimonials blockquote { font-size: 13.5px; font-style: normal; color: #536887; line-height: 1.6; text-align: center; margin: 0; padding: 0; border: 0; overflow-wrap: anywhere; }
 @media (max-width: 820px) { .xh-customer-testimonials .xh-testimonial-grid { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { .xh-customer-testimonials .xh-testimonial-card { transition: none; } }
+
+/* Screenshot-style cards for FAQ pages that do not already have testimonials. */
+[data-testimonial-empty-heading][hidden] { display: none !important; }
+.xh-testimonials-simple .xh-testimonial-card { display: flex; flex-direction: column; padding: 26px 24px; border-radius: 16px; box-shadow: none; }
+.xh-testimonials-simple .xh-testimonial-stars { text-align: left; margin-bottom: 20px; }
+.xh-testimonials-simple blockquote { text-align: left; color: #041e42; font-size: 14px; line-height: 1.85; margin-bottom: 28px; }
+.xh-testimonials-simple .xh-testimonial-author { display: flex; gap: 12px; align-items: center; margin-top: auto; }
+.xh-testimonials-simple .xh-testimonial-avatar { flex: 0 0 40px; width: 40px; height: 40px; margin: 0; background: #eaf1ff; color: #0066ff; font-size: 14px; }
+.xh-testimonials-simple .xh-testimonial-name { text-align: left; font-size: 14px; }
+.xh-testimonials-simple .xh-testimonial-role { text-align: left; font-size: 11px; margin: 4px 0 0; }
+.xh-testimonials-simple .xh-testimonial-attribution { margin: -10px 0 24px; font-size: 13px; color: #536887; }
+.xh-testimonials-contained .xh-testimonial-wrap { width: 100%; }

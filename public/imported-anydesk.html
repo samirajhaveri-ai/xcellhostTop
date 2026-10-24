@@ -1246,9 +1246,12 @@ html[data-theme="dark"] .ak-x>i{background:#22345F}
 html,body{min-height:0;height:auto;overflow-x:clip}
 .ak-hg>*{min-width:0}
 .ak-copy{container-type:inline-size}
-.ak-brand-logo{display:flex;align-items:center;gap:10px;width:240px;max-width:100%;margin-top:18px;padding:8px 12px;border-radius:10px;overflow:hidden;background:#fff;border:1px solid rgba(255,255,255,.16)}
-.ak-brand-logo>span{flex-shrink:0;font:600 10px/1.4 var(--f-disp);color:#55617a;white-space:nowrap}
-.ak-brand-logo img{display:block;flex:0 1 140px;min-width:0;width:140px;height:46px;object-fit:cover;object-position:center}
+.ak-brand-logo{display:flex;align-items:center;gap:10px;max-width:100%;margin-top:16px;color:#c7d5ec;font:400 13px/1.4 var(--f-body)}
+.ak-brand-logo>span{flex-shrink:0;white-space:nowrap}
+.ak-brand-logo .ak-brand-mark{display:block;overflow:hidden;background:#fff;border-radius:4px}
+.ak-brand-logo img{display:block;width:112px;height:25px;object-fit:cover;object-position:center}
+.ak-brand-logo strong{color:#fff;font-size:20px;font-weight:700;white-space:nowrap}
+@media(max-width:420px){.ak-brand-logo{gap:8px}.ak-brand-logo strong{font-size:18px}}
 .ak-hero .lh-title{font-size:clamp(16px,7.2cqi,44px)!important;white-space:nowrap}
 .ak-hero .lh-title .nm{display:inline}
 .hero.lh .ak-stage{min-width:0;width:100%}
@@ -1284,7 +1287,7 @@ html,body{min-height:0;height:auto;overflow-x:clip}
           <a href="https://wa.me/918657032540" class="btn btn-gl" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.2 1.4 2.5 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg> WhatsApp</a>
         </div>
         <div class="lh-ask" data-in="5" data-q="Explain AnyDesk remote desktop software as sold, set up and supported in India by XcellHost (xcellhost.top/anydesk): how the Solo, Standard, Advanced and Ultimate editions differ in licensed users, concurrent connections and managed devices for unattended access, what security features it has (TLS 1.3, AES-256, RSA-2048 key exchange, two-factor authentication, access control lists, privacy mode, session recording), how to harden unattended access and avoid remote-access scams, and the benefit of buying with INR billing and a GST invoice."><span class="k"><b>✦</b>Ask AI about AnyDesk</span><span class="chips"><a data-ai="chatgpt" href="#"><i></i>ChatGPT</a><a data-ai="claude" href="#"><i></i>Claude</a><a data-ai="perplexity" href="#"><i></i>Perplexity</a><a data-ai="google" href="#"><i></i>Google AI</a><a data-ai="copilot" href="#"><i></i>Copilot</a></span></div>
-        <div class="ak-brand-logo" data-in="5"><span>Powered By</span><img src="/anydesk-logo.png" alt="AnyDesk" width="678" height="452" decoding="async"></div>
+        <div class="ak-brand-logo" data-in="5"><span>Powered by</span><span aria-hidden="true">|</span><span class="ak-brand-mark"><img src="/anydesk-logo.png" alt="AnyDesk" width="112" height="25" decoding="async"></span><strong>AnyDesk</strong></div>
       </div>
 
       <div class="stage ak-stage" id="akStage" data-in="4">
