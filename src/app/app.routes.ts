@@ -5,6 +5,7 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  { path: 'mobile-app-security', title: 'Mobile App Security | XcellHost', loadComponent: () => import('./pages/mobile-app-security.page').then(m => m.MobileAppSecurityPage) },
   { path: 'ai-factory', title: 'AI Factory India | XcellHost', loadComponent: () => import('./pages/ai-factory.page').then(m => m.AiFactoryPage) },
   { path: 'sectigo-ssl-certificates', title: 'Sectigo SSL Certificates | XcellHost', loadComponent: () => import('./pages/sectigo-catalogue.page').then(m => m.SectigoCataloguePage) },
   ...[
@@ -916,6 +917,10 @@ export const routes: Routes = [
   {
     path: 'vendor-partners/microsoft-azure',
     loadComponent: () => import('./pages/microsoft-azure-partner.page').then((m) => m.MicrosoftAzurePartnerPage),
+  },
+  {
+    path: 'vendor-partners/amazon-web-services',
+    loadComponent: () => import('./pages/amazon-web-services-partner.page').then((m) => m.AmazonWebServicesPartnerPage),
   },
   {
     path: 'vendor-partners/:slug',

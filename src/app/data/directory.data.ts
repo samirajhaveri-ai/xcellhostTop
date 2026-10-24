@@ -46,6 +46,12 @@ export const DIRECTORY_CATEGORIES: DirectoryCategory[] = [
 
 export const DIRECTORY: DirectoryEntry[] = [
   {
+    name: 'Mobile App Security',
+    desc: 'Android and iOS runtime protection, device and SIM binding, mobile API security and SDK integration.',
+    cat: 'Security',
+    group: 'EndPoint Security',
+  },
+  {
     name: 'Microsoft 365 To Google Workspace Migration',
     desc: 'Migrate Microsoft 365 (M365 / Office 365) email, OneDrive, SharePoint and Teams to Google Workspace, Gmail and Google Drive.',
     cat: 'Cloud',

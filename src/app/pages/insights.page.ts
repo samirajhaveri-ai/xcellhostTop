@@ -60,7 +60,7 @@ interface InsightCategoryBranch {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="ppage as-page" id="ipage">
-      <div class="pp-hero insights-hero">
+      <div class="pp-hero insights-hero" data-banner-actions="off">
         <span class="orb orb-1"></span>
         <div class="wrap">
           <div class="pp-crumb">{{ page.c }}</div>
