@@ -11,6 +11,7 @@ import { OverlayService } from '../core/overlay.service';
 import { SeoService } from '../core/seo.service';
 import { PRODUCT_INFOSHEETS } from '../data/products.data';
 import { SITE } from '../data/site.data';
+import { HUMAN_TEAM_MEMBERS } from '../data/company-team.data';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { selectBlogSpeechVoice } from '../core/blog-speech-voice';
 import { ContactOptionsComponent } from '../layout/contact-options.component';
@@ -37,13 +38,21 @@ type ShareNetwork = 'linkedin' | 'facebook' | 'x' | 'whatsapp' | 'email';
 type SummaryProvider = 'chatgpt' | 'gemini' | 'claude' | 'google' | 'grok' | 'perplexity';
 
 const DEFAULT_AUTHOR_PHOTO = '/assets/images/xcellhost-logo.png';
+const normaliseAuthorName = (author: string): string =>
+  author.trim().toLowerCase().replace(/\./g, '').replace(/\s+/g, ' ');
+const TEAM_AUTHOR_PHOTOS = Object.fromEntries(HUMAN_TEAM_MEMBERS.map(member => [
+  normaliseAuthorName(member.name), encodeURI(`/${member.image.replace(/^\/+/, '')}`),
+]));
+const TEAM_AUTHOR_BIOS = Object.fromEntries(HUMAN_TEAM_MEMBERS.map(member => [
+  normaliseAuthorName(member.name), `${member.name.trim()} is ${member.role.trim()} at XcellHost.`,
+]));
 const AUTHOR_PHOTOS: Readonly<Record<string, string>> = {
+  ...TEAM_AUTHOR_PHOTOS,
   'samir jhaveri': '/assets/images/website-photo-frame-samir-jhaveri-1.png',
   'dr samir jhaveri': '/assets/images/website-photo-frame-samir-jhaveri-1.png',
-  'purva angre': '/assets/images/team-purva-angre.png',
-  'ravi sharma': '/assets/images/team-ravi-sharma.png',
 };
 const AUTHOR_BIOS: Readonly<Record<string, string>> = {
+  ...TEAM_AUTHOR_BIOS,
   'samir jhaveri': 'Dr. Samir Jhaveri is the Managing Director of XcellHost Cloud Services. With more than two decades of experience, he helps businesses simplify cloud infrastructure, cybersecurity, AI and digital transformation.',
   'dr samir jhaveri': 'Dr. Samir Jhaveri is the Managing Director of XcellHost Cloud Services. With more than two decades of experience, he helps businesses simplify cloud infrastructure, cybersecurity, AI and digital transformation.',
   'purva angre': 'Purva Angre is a technical support professional at XcellHost Cloud Services. She shares practical guidance shaped by her experience helping customers understand, adopt and get more value from cloud services.',
@@ -621,7 +630,7 @@ export class BlogPage implements OnDestroy {
   }
 
   private normaliseAuthorName(author: string): string {
-    return author.trim().toLowerCase().replace(/\./g, '').replace(/\s+/g, ' ');
+    return normaliseAuthorName(author);
   }
 
   private normaliseRouteSlug(slug: string): string {
