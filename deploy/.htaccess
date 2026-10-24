@@ -64,6 +64,10 @@
   # ------------------------------------------------------- 3. security headers
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-Frame-Options "SAMEORIGIN"
+  # Zoho Billing renders only this checkout route in a portal iframe. CSP's
+  # frame-ancestors directive replaces X-Frame-Options for this response.
+  Header always unset X-Frame-Options "expr=%{THE_REQUEST} =~ m#\s/+tally-on-cloud/checkout/?(?:\?[^\s]*)?\s#"
+  Header always set Content-Security-Policy "frame-ancestors 'self' https://billing.zoho.in https://billing.zohosecure.in;" "expr=%{THE_REQUEST} =~ m#\s/+tally-on-cloud/checkout/?(?:\?[^\s]*)?\s#"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
   # Enable once you are happy the site is HTTPS-only:

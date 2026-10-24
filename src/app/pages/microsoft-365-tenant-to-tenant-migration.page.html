@@ -26,20 +26,7 @@
       </section>
       }
 
-      <section aria-labelledby="tenantMigrationReferencesTitle">
-        <h2 class="pp-sec" id="tenantMigrationReferencesTitle">What customers say</h2>
-        <p class="reference-intro">Contact our team to discuss customer references for Microsoft 365 tenant-to-tenant migrations.</p>
-        <div class="migration-reference-grid">
-          @for (scenario of referenceScenarios; track scenario.title) {
-            <article class="migration-reference-card">
-              <span class="reference-label">Customer references</span>
-              <h3>{{ scenario.title }}</h3>
-              <p>{{ scenario.description }}</p>
-              <button class="btn btn-ghost" type="button" (click)="openCallback(name + ': customer references for ' + scenario.title)">Request references &rarr;</button>
-            </article>
-          }
-        </div>
-      </section>
+      <xh-customer-testimonials pageSlug="microsoft-365-tenant-to-tenant-migration" />
 
       <section aria-labelledby="tenantMigrationFaqTitle">
         <h2 class="pp-sec pp-faq-heading" id="tenantMigrationFaqTitle">Frequently asked questions</h2>

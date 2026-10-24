@@ -9,7 +9,7 @@
   <span class="cube-wrap c2" [style.translate]="cube2Shift()" aria-hidden="true"><span class="cube"><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
   <div class="wrap home-hero-carousel">
     @for (slide of carouselSlides; track slide.primaryHref; let i = $index) {
-      <article class="home-hero-slide" [class.is-active]="i === activeVisualSlide()" [class.is-cybird]="slide.primaryHref === '/smb-cyber-security-appliance'" [attr.aria-hidden]="i !== activeVisualSlide()">
+      <article class="home-hero-slide" [attr.data-product]="i === 0 ? 'Cloud Services' : slide.tab" [class.is-active]="i === activeVisualSlide()" [class.is-cybird]="slide.primaryHref === '/smb-cyber-security-appliance'" [attr.aria-hidden]="i !== activeVisualSlide()">
         <div class="home-hero-copy">
           <div class="eyebrow">{{ slide.eyebrow }}</div>
           <h1>{{ slide.title }} <em class="shine">{{ slide.accent }}</em> {{ slide.titleEnd }}</h1>

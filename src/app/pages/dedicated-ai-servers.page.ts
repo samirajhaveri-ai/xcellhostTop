@@ -1,3 +1,4 @@
+import { CUSTOMER_TESTIMONIALS } from '../data/customer-testimonials.data';
 import { Component, inject } from '@angular/core';
 import { SeoService } from '../core/seo.service';
 import { DedicatedAiServersSourceComponent } from '../sections/dedicated-ai-servers-source.component';
@@ -43,7 +44,7 @@ export class DedicatedAiServersPage {
     { label: 'OS & Stack', target: 'os' },
     { label: 'Why XcellHost', target: 'why' },
     { label: 'Security', target: 'aiSecurity' },
-    { label: 'Customer references', target: 'aiReferences' },
+    ...(CUSTOMER_TESTIMONIALS['dedicated-ai-servers']?.length ? [{ label: 'Customer Testimonials', target: 'aiReferences' }] : []),
     { label: 'FAQs', target: 'faq' },
     { label: 'Insights', target: 'aiInsights' },
     { label: 'Contact', target: 'aiContact' },

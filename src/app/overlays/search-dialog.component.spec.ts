@@ -38,6 +38,8 @@ describe('Search dialog live results', () => {
       });
       const fixture = TestBed.createComponent(SearchDialogComponent);
       const overlay = TestBed.inject(OverlayService);
+      fixture.detectChanges();
+      fixture.componentInstance.websiteSearch.set(true);
       overlay.open('search');
       fixture.detectChanges();
       const panel = fixture.nativeElement.querySelector('.srch') as HTMLElement;
@@ -77,6 +79,8 @@ describe('Search dialog live results', () => {
       ],
     });
     const fixture = TestBed.createComponent(SearchDialogComponent);
+    fixture.detectChanges();
+    fixture.componentInstance.websiteSearch.set(true);
     TestBed.inject(OverlayService).open('search');
     fixture.detectChanges();
     const panel = fixture.nativeElement.querySelector('.srch') as HTMLElement;

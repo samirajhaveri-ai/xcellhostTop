@@ -1,3 +1,4 @@
+import { CustomerTestimonialsComponent } from '../sections/customer-testimonials.component';
 import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, ViewChild, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
@@ -16,7 +17,7 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 @Component({
   selector: 'xh-microsoft-365-tenant-to-tenant-migration-page',
   standalone: true,
-  imports: [RouterLink, ProductFaqComponent, InsightsSectionComponent],
+  imports: [CustomerTestimonialsComponent, RouterLink, ProductFaqComponent, InsightsSectionComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './microsoft-365-tenant-to-tenant-migration.page.html',
   styleUrl: './microsoft-365-tenant-to-tenant-migration.page.css',

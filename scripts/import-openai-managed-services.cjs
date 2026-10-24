@@ -1,3 +1,4 @@
+const { replaceReferenceSections } = require('./customer-testimonials.cjs');
 const fs = require('node:fs');
 const path = require('node:path');
 const root = path.resolve(__dirname, '..');
@@ -48,7 +49,7 @@ main = main.replace(/href="(?:https:\/\/www\.xcellhost\.top\/)?([a-z0-9-]+)\.htm
 const styles = [...source.matchAll(/<style\b[^>]*>[\s\S]*?<\/style>/g)].map(m=>m[0]).join('\n').replace(/(\d*\.?\d+)vh\b/g, (_,n) => 'calc(var(--oa-vh,1vh) * ' + n + ')');
 const links = [...source.matchAll(/<link\b[^>]*>/g)].map(m=>m[0]).filter(l=>!l.includes('canonical')).join('\n');
 const css = ['consulting-faq','faq-layout','hosting-tools','section-navigation-flow','openai-managed-services'].map(n=>'<link rel="stylesheet" href="/assets/styles/' + n + '.css">').join('');
-fs.writeFileSync(path.join(root, 'public/openai-managed-services-page.html'), '<!doctype html><html lang="en-IN" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>OpenAI Managed Services | XcellHost</title>' + links + styles + css + '</head><body>' + main + '<div id="openAiToast" role="status" hidden></div><script src="/assets/scripts/hosting-tools-viewport.js"></script><script src="/assets/animations/openai-managed-services-page.js"></script><script>if(window.frameElement)parent.postMessage({type:"xh-openai-managed-services-ready"},location.origin);</script></body></html>');
+fs.writeFileSync(path.join(root, 'public/openai-managed-services-page.html'), replaceReferenceSections('<!doctype html><html lang="en-IN" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>OpenAI Managed Services | XcellHost</title>' + links + styles + css + '</head><body>' + main + '<div id="openAiToast" role="status" hidden></div><script src="/assets/scripts/hosting-tools-viewport.js"></script><script src="/assets/animations/openai-managed-services-page.js"></script><script>if(window.frameElement)parent.postMessage({type:"xh-openai-managed-services-ready"},location.origin);</script></body></html>', path.join(root, 'public/openai-managed-services-page.html')));
 const runtimePath = path.join(root, 'public/assets/animations/openai-managed-services-page.js');
 const existing = fs.readFileSync(runtimePath, 'utf8');
 const runtimeStart = existing.search(/\(function\(\)\{\r?\n  'use strict';\r?\n  var XH=window.XH,\$=XH\.\$,\$\$=XH\.\$\$,R=XH.reduce,FINE=XH.fine,d=document;/);

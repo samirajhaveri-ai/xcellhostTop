@@ -1,5 +1,6 @@
 <div class="pm-page">
   <section class="pm-hero">
+    <div class="pm-hero-pattern" aria-hidden="true"></div>
     <div class="pm-wrap">
       <nav class="pm-breadcrumb" aria-label="Breadcrumb">
         <a routerLink="/">Home</a><span>/</span><span>Partner Matrix</span>
@@ -18,20 +19,59 @@
             </a>
           </div>
         </div>
-        <aside class="pm-guide" aria-labelledby="partner-guide-title">
-          <span class="pm-eyebrow">FIND THE RIGHT CONTACT</span>
-          <h2 id="partner-guide-title">Move opportunities forward, faster.</h2>
-          <ol>
-            <li><span>01</span><div><strong>Choose a team</strong><p>Filter the directory by the help you need.</p></div></li>
-            <li><span>02</span><div><strong>Find your specialist</strong><p>Review their role, location and contact purpose.</p></div></li>
-            <li><span>03</span><div><strong>Connect directly</strong><p>Email or call from any contact card.</p></div></li>
-          </ol>
-        </aside>
+        <div class="pm-hub-visual" role="img" aria-label="Animated partner contact hub connecting channel sales, pre-sales, support, finance and leadership teams">
+          <svg viewBox="0 0 520 370" fill="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="pmHubCard" x2="1" y2="1"><stop stop-color="#153c6e"/><stop offset="1" stop-color="#09244b"/></linearGradient>
+              <radialGradient id="pmHubGlow"><stop stop-color="#2685ef" stop-opacity=".35"/><stop offset="1" stop-color="#2685ef" stop-opacity="0"/></radialGradient>
+              <path id="pmSalesPath" d="M156 64C210 64 190 165 232 165"/>
+              <path id="pmSupportPath" d="M364 64C310 64 330 165 288 165"/>
+              <path id="pmPresalesPath" d="M156 257C210 257 190 180 232 180"/>
+              <path id="pmFinancePath" d="M364 257C310 257 330 180 288 180"/>
+              <path id="pmLeadershipPath" d="M260 294V214"/>
+            </defs>
+            <circle cx="260" cy="172" r="165" fill="url(#pmHubGlow)"/>
+            <g class="pm-hub-links" stroke="#5ea8ff" stroke-width="2" stroke-dasharray="5 8">
+              <use href="#pmSalesPath"/><use href="#pmSupportPath"/><use href="#pmPresalesPath"/><use href="#pmFinancePath"/><use href="#pmLeadershipPath"/>
+            </g>
+            <g class="pm-hub-packets" fill="#ffae50">
+              <circle r="4"><animateMotion dur="3s" repeatCount="indefinite"><mpath href="#pmSalesPath"/></animateMotion></circle>
+              <circle r="4"><animateMotion dur="3.4s" repeatCount="indefinite"><mpath href="#pmSupportPath"/></animateMotion></circle>
+              <circle r="4"><animateMotion dur="3.8s" repeatCount="indefinite"><mpath href="#pmPresalesPath"/></animateMotion></circle>
+              <circle r="4"><animateMotion dur="3.2s" repeatCount="indefinite"><mpath href="#pmFinancePath"/></animateMotion></circle>
+              <circle r="4"><animateMotion dur="2.8s" repeatCount="indefinite"><mpath href="#pmLeadershipPath"/></animateMotion></circle>
+            </g>
+            <circle class="pm-hub-pulse" cx="260" cy="172" r="58" stroke="#70b7ff" stroke-opacity=".45"/>
+            <rect x="214" y="126" width="92" height="92" rx="24" fill="#1565d8" stroke="#87c1ff"/>
+            <text x="260" y="165" text-anchor="middle" class="material-symbols-outlined pm-hub-symbol">handshake</text>
+            <text x="260" y="191" text-anchor="middle" class="pm-hub-center-label">XCELLHOST</text>
+            <g class="pm-hub-card pm-hub-card-one">
+              <rect x="12" y="28" width="144" height="72" rx="14"/><circle cx="38" cy="55" r="13"/><text x="38" y="60" text-anchor="middle" class="pm-node-initials">CS</text>
+              <text x="60" y="58" class="pm-node-title">Channel Sales</text><text x="28" y="82" class="pm-node-caption">Grow opportunities</text>
+            </g>
+            <g class="pm-hub-card pm-hub-card-two">
+              <rect x="364" y="28" width="144" height="72" rx="14"/><circle cx="390" cy="55" r="13"/><text x="390" y="60" text-anchor="middle" class="pm-node-initials">SP</text>
+              <text x="412" y="58" class="pm-node-title">Support</text><text x="380" y="82" class="pm-node-caption">Resolve together</text>
+            </g>
+            <g class="pm-hub-card pm-hub-card-three">
+              <rect x="12" y="221" width="144" height="72" rx="14"/><circle cx="38" cy="248" r="13"/><text x="38" y="253" text-anchor="middle" class="pm-node-initials">PS</text>
+              <text x="60" y="251" class="pm-node-title">Pre-Sales</text><text x="28" y="275" class="pm-node-caption">Design your solution</text>
+            </g>
+            <g class="pm-hub-card pm-hub-card-four">
+              <rect x="364" y="221" width="144" height="72" rx="14"/><circle cx="390" cy="248" r="13"/><text x="390" y="253" text-anchor="middle" class="pm-node-initials">FA</text>
+              <text x="412" y="251" class="pm-node-title">Finance</text><text x="380" y="275" class="pm-node-caption">Billing &amp; accounts</text>
+            </g>
+            <g class="pm-hub-card pm-hub-card-five">
+              <rect x="188" y="294" width="144" height="62" rx="14"/><circle cx="214" cy="320" r="13"/><text x="214" y="325" text-anchor="middle" class="pm-node-initials">LD</text>
+              <text x="236" y="324" class="pm-node-title">Leadership</text><text x="204" y="343" class="pm-node-caption">Strategic partnerships</text>
+            </g>
+          </svg>
+        </div>
       </div>
       <div class="pm-stats" aria-label="Partner directory overview">
         <div><b>{{ contactCount }}</b><span>Partner contacts</span></div>
         <div><b>{{ teams.length }}</b><span>Specialist teams</span></div>
-        <div><b>3</b><span>Indian locations</span></div>
+        <div><b>{{ locationCount }}</b><span>Indian locations</span></div>
       </div>
     </div>
   </section>
@@ -93,7 +133,21 @@
   </section>
 
   <section class="pm-wrap pm-bottom" aria-label="Partner assistance">
-    <article><span class="material-symbols-outlined" aria-hidden="true">rocket_launch</span><div><span class="pm-eyebrow">START A CONVERSATION</span><h2>Ready to grow with XcellHost?</h2><p>Join our partner ecosystem and build new cloud, security and digital-trust opportunities with specialist support.</p></div><a class="pm-button pm-primary" routerLink="/company/partner-signup">Apply to partner</a></article>
+    <article class="pp-cta pm-buddha-strip" aria-labelledby="partner-buddha-title">
+      <div>
+        <h2 id="partner-buddha-title">Grow your partnership with XcellHost</h2>
+        <p>FREE Consultation &middot; FREE Demo &middot; FREE Trial &middot; 24&times;7 support in English &amp; Hindi</p>
+        <div class="pm-buddha-actions">
+          <button class="btn btn-primary" type="button" data-cbtopic="Channel Partner Contact Matrix">Let's Talk</button>
+          <a class="btn btn-ghost" routerLink="/company/partner-signup">Become a partner</a>
+          <a class="btn btn-ghost" href="https://wa.me/918657032540" target="_blank" rel="noopener noreferrer">Talk on WhatsApp</a>
+          <a class="btn btn-ghost" href="mailto:sales@xcellhost.cloud?subject=Channel%20Partner%20enquiry">Email Us</a>
+        </div>
+      </div>
+      <a class="pp-cta-buddha-link" routerLink="/support-overview" aria-label="Visit XcellHost customer support">
+        <img class="pp-cta-buddha" src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost Laughing Buddha" width="104" height="104" loading="lazy" />
+      </a>
+    </article>
     <aside><span class="pm-eyebrow">GENERAL ENQUIRY</span><h2>Not sure who to contact?</h2><p>Our central team will route your request.</p><a href="mailto:sales@xcellhost.cloud"><span class="material-symbols-outlined" aria-hidden="true">mail</span>sales&#64;xcellhost.cloud</a><a href="tel:+912267111555"><span class="material-symbols-outlined" aria-hidden="true">call</span>+91 22 6711 1555</a></aside>
   </section>
 </div>

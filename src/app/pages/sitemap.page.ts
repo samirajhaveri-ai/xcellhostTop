@@ -11,6 +11,71 @@ interface SitemapEntry {
   title: string;
 }
 
+interface SitemapSection {
+  title: string;
+  tone: string;
+  entries: SitemapEntry[];
+}
+
+interface SitemapSectionDefinition {
+  title: string;
+  tone: string;
+  matches: RegExp;
+}
+
+const SITEMAP_SECTIONS: SitemapSectionDefinition[] = [
+  {
+    title: 'Web Presence',
+    tone: 'green',
+    matches: /domain|hosting|wordpress|website|web-design|webuzo|cpanel|plesk|seo|email-hosting|business-email|professional-email|tally-on-cloud/,
+  },
+  {
+    title: 'Cloud & Infrastructure',
+    tone: 'blue',
+    matches: /cloud|server|vps|virtual|kubernetes|container|database|storage|compute|network|load-balancer|vmware|red-hat|linux|windows|gpu|colocation|bare-metal|infrastructure|devops/,
+  },
+  {
+    title: 'Cyber Security',
+    tone: 'yellow',
+    matches: /security|cyber|firewall|waf|waap|sase|zero-trust|ztna|soc|siem|xdr|edr|mdr|ndr|ransomware|malware|threat|vapt|penetration|vulnerability|identity|access|endpoint|phishing|forensic|risk|compliance|dpdpa|vciso|vdpo/,
+  },
+  {
+    title: 'Backup & Data Protection',
+    tone: 'orange',
+    matches: /backup|recovery|disaster|acronis|veeam|data-protection|data-loss|archive|archiving|replication|business-continuity/,
+  },
+  {
+    title: 'Digital Workplace',
+    tone: 'purple',
+    matches: /microsoft|office-365|m365|workspace|desktop|remote-work|collaboration|productivity|teams|sharepoint|exchange|zoho|google-workspace|zoom|whatsapp|workforce|accops/,
+  },
+  {
+    title: 'AI & Automation',
+    tone: 'green',
+    matches: /(^|\/)ai-|artificial-intelligence|automation|agent|chatbot|chat-bot|copilot|genai|machine-learning|n8n|receptionist|logo-maker/,
+  },
+  {
+    title: 'Digital Trust',
+    tone: 'blue',
+    matches: /ssl|certificate|pki|digital-sign|code-sign|document-sign|e-sign|trust|geotrust|digicert|sectigo|thawte|rapidssl|wildcard|s-mime|vmc/,
+  },
+  {
+    title: 'Company & Partners',
+    tone: 'yellow',
+    matches: /about|company|contact|career|partner|leadership|team|customer|testimonial|review|affiliate|reseller|vendor|investor|press|news|event|award|why-xcellhost/,
+  },
+  {
+    title: 'Resources & Insights',
+    tone: 'orange',
+    matches: /blog|insight|resource|guide|glossary|podcast|webinar|case-stud|knowledge|demo|faq|what-s-new|whats-new|calculator|tool/,
+  },
+  {
+    title: 'Legal & Help Center',
+    tone: 'purple',
+    matches: /privacy|legal|terms|policy|agreement|sla|support|help|refund|acceptable-use|cookie|disclaimer|grievance|copyright|sitemap/,
+  },
+];
+
 @Component({
   selector: 'xh-sitemap-page',
   standalone: true,
@@ -23,17 +88,11 @@ export class SitemapPage {
   private readonly http = inject(HttpClient);
   private readonly destroyRef = inject(DestroyRef);
 
-  readonly query = signal('');
   readonly entries = signal<SitemapEntry[]>([]);
   readonly loading = signal(true);
   readonly loadError = signal(false);
 
-  readonly filteredEntries = computed(() => {
-    const query = this.query().trim().toLowerCase();
-    return query
-      ? this.entries().filter((entry) => `${entry.title} ${entry.path}`.toLowerCase().includes(query))
-      : this.entries();
-  });
+  readonly sections = computed(() => this.groupEntries(this.entries()));
 
   constructor() {
     inject(SeoService).set(
@@ -57,14 +116,6 @@ export class SitemapPage {
           this.loadError.set(true);
         },
       });
-  }
-
-  search(event: Event): void {
-    this.query.set((event.target as HTMLInputElement).value);
-  }
-
-  clearSearch(): void {
-    this.query.set('');
   }
 
   private parseSitemap(xml: string, titles: Record<string, string>): SitemapEntry[] {
@@ -105,6 +156,23 @@ export class SitemapPage {
       .filter(Boolean)
       .map((word) => abbreviations[word] ?? `${word.charAt(0).toUpperCase()}${word.slice(1)}`)
       .join(' ');
+  }
+
+  private groupEntries(entries: SitemapEntry[]): SitemapSection[] {
+    const grouped = new Map<string, SitemapEntry[]>();
+    SITEMAP_SECTIONS.forEach(({ title }) => grouped.set(title, []));
+    grouped.set('More XcellHost Pages', []);
+
+    for (const entry of entries) {
+      const searchable = `${entry.path} ${entry.title}`.toLowerCase();
+      const section = SITEMAP_SECTIONS.find(({ matches }) => matches.test(searchable));
+      grouped.get(section?.title ?? 'More XcellHost Pages')?.push(entry);
+    }
+
+    return [
+      ...SITEMAP_SECTIONS.map(({ title, tone }) => ({ title, tone, entries: grouped.get(title) ?? [] })),
+      { title: 'More XcellHost Pages', tone: 'gray', entries: grouped.get('More XcellHost Pages') ?? [] },
+    ].filter((section) => section.entries.length > 0);
   }
 
   private decodeXml(value: string): string {

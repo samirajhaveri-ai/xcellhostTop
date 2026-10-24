@@ -58,6 +58,17 @@ describe('Algolia search lifecycle', () => {
     fixture.destroy();
   });
 
+  it('opens Ask AI directly when requested by a menu action', async () => {
+    const { fixture, instance } = setup();
+    fixture.componentRef.setInput('mode', 'ask-ai');
+    fixture.componentRef.setInput('active', true);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    expect(instance.open).toHaveBeenCalled();
+    expect(instance.openAskAi).toHaveBeenCalled();
+    fixture.destroy();
+  });
+
   it('does not open a widget that finishes loading after dismissal', async () => {
     const { fixture, instance } = setup();
     fixture.componentRef.setInput('active', true);

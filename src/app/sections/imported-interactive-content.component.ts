@@ -6,9 +6,16 @@ import { LeadService } from '../core/lead.service';
 import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { useScrollingSectionNavigation } from './section-navigation-flow';
+import { IDENTITY_SECURITY_PAGES, IdentitySecuritySource } from '../data/identity-security-pages.data';
 
 type InteractiveContentSource =
+
   | 'ai-factory'
+
+  | IdentitySecuritySource
+  | 'acronis-cyber-intelligence' | 'acronis-cyber-frame' | 'acronis-workflow-automation'
+  | 'microsoft-defender'
+
   | 'acronis-ai-solution' | 'acronis-cyberfit-score' | 'acronis-ransomware-warranty'
   | 'azure-services'
   | 'certificate-lifecycle-management-platforms'
@@ -55,6 +62,7 @@ type InteractiveContentSource =
   | 'whats-new'
   | 'fortinet-fortigate'
   | 'sql-server-comparison'
+  | 'windows-server-comparison'
   | 'teamviewer'
   | 'anydesk'
   | 'sap-s4-hana-private-cloud'
@@ -173,6 +181,18 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'microsoft-365-e5-nonprofit': '/imported-microsoft-365-e5-nonprofit.html',
     'purple-team-assessment': '/imported-purple-team.html',
     'breach-and-attack-simulation': '/imported-breach-and-attack-simulation.html',
+    'microsoft-defender': '/imported-microsoft-defender.html',
+    'multi-factor-authentication': '/imported-multi-factor-authentication.html',
+    'identity-and-access-management': '/imported-identity-and-access-management.html',
+    'privileged-access-management': '/imported-privileged-access-management.html',
+    'privileged-identity-management': '/imported-privileged-identity-management.html',
+    'identity-governance-and-administration': '/imported-identity-governance-and-administration.html',
+    'iam-assessment': '/imported-iam-assessment.html',
+    'active-directory-assessment': '/imported-active-directory-assessment.html',
+    'security-hardware-token': '/imported-security-hardware-token.html',
+    'acronis-cyber-intelligence': '/imported-acronis-cyber-intelligence.html',
+    'acronis-cyber-frame': '/imported-acronis-cyber-frame.html',
+    'acronis-workflow-automation': '/imported-acronis-workflow-automation.html',
     'resilience-operations': '/imported-resilience-operations.html',
     'cloud-operations': '/imported-cloud-operations.html',
     'database-operations': '/imported-database-operations.html',
@@ -213,6 +233,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'whats-new': '/imported-whats-new.html',
     'fortinet-fortigate': '/imported-fortinet-fortigate.html',
     'sql-server-comparison': '/imported-sql-server-editions-comparison.html',
+    'windows-server-comparison': '/imported-windows-server-2025-editions-comparison.html',
     'teamviewer': '/imported-teamviewer.html',
     'anydesk': '/imported-anydesk.html',
     'sap-s4-hana-private-cloud': '/imported-sap-s4-hana-private-cloud.html',
@@ -327,6 +348,18 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
 
+    'microsoft-defender': 'Microsoft Defender: Products, Coverage, Pricing, Security And FAQs',
+    'multi-factor-authentication': 'Multi-Factor Authentication',
+    'identity-and-access-management': 'Identity & Access Management',
+    'privileged-access-management': 'Privileged Access Management',
+    'privileged-identity-management': 'Privileged Identity Management',
+    'identity-governance-and-administration': 'Identity Governance & Administration',
+    'iam-assessment': 'IAM Assessment',
+    'active-directory-assessment': 'Active Directory Assessment',
+    'security-hardware-token': 'Security Hardware Token',
+    'acronis-cyber-intelligence': 'Acronis Cyber Intelligence',
+    'acronis-cyber-frame': 'Acronis Cyber Frame',
+    'acronis-workflow-automation': 'Acronis Workflow Automation',
     'resilience-operations': 'Resilience Operations',
     'cloud-operations': 'Cloud Operations',
     'database-operations': 'Database Operations',
@@ -389,6 +422,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'whats-new': 'What’s New at XcellHost, animated release radar, launch spotlights and filterable release log',
     'fortinet-fortigate': 'Fortinet FortiGate, animated demo, Security Fabric, models, sizing, configuration and FAQs',
     'sql-server-comparison': 'Microsoft SQL Server editions comparison, sizing wizard, limit checker, licensing and pricing',
+    'windows-server-comparison': 'Microsoft Windows Server 2025 editions comparison, edition wizard, licensing calculator, pricing and migration guidance',
     'teamviewer': 'TeamViewer remote access, animated demo, plans, pricing, selection tools and FAQs',
     'anydesk': 'AnyDesk remote access, animated demo, editions, pricing, selection tools and FAQs',
     'sap-s4-hana-private-cloud': 'SAP S/4HANA Private Cloud, animated demo, getting started, configurator, HANA sizing and FAQs',
@@ -576,7 +610,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     const frame = (event?.currentTarget as HTMLIFrameElement | null) ?? this.frame?.nativeElement;
     const doc = frame?.contentDocument;
     const main = doc?.querySelector('main');
-    if (doc && this.source !== 'sql-server-comparison') useScrollingSectionNavigation(doc);
+    if (doc && this.source !== 'sql-server-comparison' && this.source !== 'windows-server-comparison') useScrollingSectionNavigation(doc);
     if (!frame || !doc || !main) return;
     const resize = () => {
 
@@ -617,7 +651,18 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     position();
     const callback = (event: Event) => {
       const topic = (event as CustomEvent<string>).detail || 'Podcast enquiry';
+
       const scopeTitle = this.source === 'ai-factory' ? 'AI Factory'
+
+
+      if (this.source === 'sectigo-catalogue' && topic === 'Sectigo SSL Certificates: 7 Days Free Trial') {
+        this.overlay.open('trial');
+        return;
+      }
+      const scopeTitle = this.source === 'microsoft-defender' ? 'Microsoft Defender'
+        : this.source in IDENTITY_SECURITY_PAGES ? this.sourceTitles[this.source]
+        : ['acronis-cyber-intelligence', 'acronis-cyber-frame', 'acronis-workflow-automation'].includes(this.source) ? this.sourceTitles[this.source]
+
         : this.source === 'acronis-cyberfit-score' ? 'Acronis #CyberFit Score'
         : this.source === 'purple-team-assessment' ? 'Purple Team Assessment'
         : this.source === 'breach-and-attack-simulation' ? 'Breach & Attack Simulation'
@@ -661,7 +706,11 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
       });
     };
     const enquiry = async (event: Event) => {
+
       if (this.source !== 'ai-factory' && this.source !== 'acronis-ot' && this.source !== 'red-hat' && this.source !== 'email-security-enterprise' && this.source !== 'office-365-e5' && this.source !== 'teams-essentials-frontline' && this.source !== 'office-365-e1-nonprofit' && this.source !== 'cyber-security-audit' && this.source !== 'azure-services' && this.source !== 'acronis-ransomware-warranty') return;
+
+      if (this.source !== 'acronis-workflow-automation' && this.source !== 'acronis-ot' && this.source !== 'red-hat' && this.source !== 'email-security-enterprise' && this.source !== 'office-365-e5' && this.source !== 'teams-essentials-frontline' && this.source !== 'office-365-e1-nonprofit' && this.source !== 'cyber-security-audit' && this.source !== 'azure-services' && this.source !== 'acronis-ransomware-warranty') return;
+
       const detail = (event as CustomEvent<{
         payload: Record<string, unknown>;
         complete: (result: { ok: boolean; skipped: boolean; ref: string; fallbackUrl: string }) => void;
@@ -675,14 +724,24 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
       const acronisWarranty = this.source === 'acronis-ransomware-warranty';
       const azureServices = this.source === 'azure-services';
       const cyberSecurityAudit = this.source === 'cyber-security-audit';
+
       const hasSummary = aiFactory || emailSecurity || office365E5 || teamsFrontline || office365E1Nonprofit || cyberSecurityAudit || azureServices || acronisWarranty;
       const topic = aiFactory ? 'AI Factory quotation' : acronisWarranty ? 'Acronis Anti-Ransomware Warranty quotation' : azureServices ? 'Microsoft Azure services quotation' : cyberSecurityAudit ? 'Cyber Security Audit quotation' : office365E1Nonprofit ? 'Office 365 E1 Nonprofit quotation' : teamsFrontline ? 'Teams Essentials for Frontline quotation' : office365E5 ? 'Office 365 E5 quotation' : emailSecurity ? 'Email Security Enterprise quotation' : redHat ? 'Red Hat quotation' : 'Acronis OT quotation';
+
+      const workflowAutomation = this.source === 'acronis-workflow-automation';
+      const hasSummary = workflowAutomation || emailSecurity || office365E5 || teamsFrontline || office365E1Nonprofit || cyberSecurityAudit || azureServices || acronisWarranty;
+      const topic = acronisWarranty ? 'Acronis Anti-Ransomware Warranty quotation' : azureServices ? 'Microsoft Azure services quotation' : workflowAutomation ? 'Acronis Workflow Automation quotation' : cyberSecurityAudit ? 'Cyber Security Audit quotation' : office365E1Nonprofit ? 'Office 365 E1 Nonprofit quotation' : teamsFrontline ? 'Teams Essentials for Frontline quotation' : office365E5 ? 'Office 365 E5 quotation' : emailSecurity ? 'Email Security Enterprise quotation' : redHat ? 'Red Hat quotation' : 'Acronis OT quotation';
+
       const subject = topic + ' request';
       const payload = {
         ...detail.payload,
         message: hasSummary ? detail.payload['summary'] : redHat ? detail.payload['services'] : detail.payload['sizing'],
         topic,
+
         page: aiFactory ? '/ai-factory' : acronisWarranty ? '/anti-ransomware-warranty' : azureServices ? '/vendor-partners/microsoft-azure' : cyberSecurityAudit ? '/cyber-security-audit' : office365E1Nonprofit ? '/office-365-e1-nonprofit' : teamsFrontline ? '/teams-essentials-frontline' : office365E5 ? '/office-365-e5' : emailSecurity ? '/email-security-enterprise' : redHat ? '/vendor-partners/red-hat' : '/acronis-ot',
+
+        page: acronisWarranty ? '/anti-ransomware-warranty' : azureServices ? '/vendor-partners/microsoft-azure' : workflowAutomation ? '/acronis-workflow-automation' : cyberSecurityAudit ? '/cyber-security-audit' : office365E1Nonprofit ? '/office-365-e1-nonprofit' : teamsFrontline ? '/teams-essentials-frontline' : office365E5 ? '/office-365-e5' : emailSecurity ? '/email-security-enterprise' : redHat ? '/vendor-partners/red-hat' : '/acronis-ot',
+
       };
       const result = await this.leads.submit('callback', payload);
       detail.complete({
@@ -713,6 +772,26 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
         behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
       });
     };
+    const trial = () => {
+      if (this.source === 'microsoft-defender') this.overlay.open('trial', 'Microsoft Defender');
+      else if (this.source in IDENTITY_SECURITY_PAGES) this.overlay.open('trial', this.sourceTitles[this.source]);
+      else if (['acronis-cyber-intelligence', 'acronis-cyber-frame', 'acronis-workflow-automation'].includes(this.source)) this.overlay.open('trial', this.sourceTitles[this.source]);
+    };
+    const identityEnquiry = async (event: Event) => {
+      if (!(this.source in IDENTITY_SECURITY_PAGES)) return;
+      const detail = (event as CustomEvent<{
+        payload: Record<string, unknown>;
+        complete: (result: { ok: boolean; skipped: boolean; ref: string; fallbackUrl: string }) => void;
+      }>).detail;
+      const topic = this.sourceTitles[this.source] + ' enquiry';
+      const result = await this.leads.submit('callback', {
+        ...detail.payload, topic, page: '/' + this.source, message: detail.payload['summary'],
+      });
+      detail.complete({ ...result, fallbackUrl: this.leads.mailtoLink(topic,
+        Object.entries(detail.payload).map(([key, value]) => `${key}: ${String(value ?? '')}`).join('\n')) });
+    };
+    doc.addEventListener('import-identity-enquiry', identityEnquiry);
+    doc.addEventListener('import-trial', trial);
     doc.addEventListener('import-callback', callback);
     doc.addEventListener('import-cart', add);
     doc.addEventListener('import-newsletter', newsletter);
@@ -721,6 +800,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     this.cleanup.push(
       () => observer.disconnect(), () => cancelAnimationFrame(resizeFrame), () => mutations.disconnect(),
       () => window.removeEventListener('scroll', position),
+      () => doc.removeEventListener('import-trial', trial),
+      () => doc.removeEventListener('import-identity-enquiry', identityEnquiry),
       () => doc.removeEventListener('import-callback', callback),
       () => doc.removeEventListener('import-cart', add),
       () => doc.removeEventListener('import-newsletter', newsletter),

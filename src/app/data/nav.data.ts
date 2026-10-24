@@ -1004,10 +1004,16 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "SQL-Server Comparision",
+                "title": "Microsoft SQL-Server Comparision",
                 "pill": null,
                 "desc": null,
                 "href": "/sql-server-comparision"
+              },
+              {
+                "title": "Windows-Server Comparision",
+                "pill": null,
+                "desc": null,
+                "href": "/windows-server-comparision"
               },
               
 
@@ -2613,7 +2619,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Digicert VMC ",
+                "title": "Dimake icert VMC ",
                 "pill": null,
                 "desc": null
               },
@@ -2893,41 +2899,49 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Multi-Factor Authentication",
+                "href": "/multi-factor-authentication",
                 "pill": "Free trial",
                 "desc": null
               },
               {
                 "title": "Identity & Access Management",
+                "href": "/identity-and-access-management",
                 "pill": "Free trial",
                 "desc": null
               },
               {
                 "title": "Privileged Access Management",
+                "href": "/privileged-access-management",
                 "pill": "Free trial",
                 "desc": null
               },
               {
                 "title": "Privileged Identity Management",
+                "href": "/privileged-identity-management",
                 "pill": "Free trial",
                 "desc": null
               },
               {
                 "title": "Identity Governance and Administration",
+                "href": "/identity-governance-and-administration",
                 "pill": "Free trial",
                 "desc": null
               },
               {
                 "title": "IAM Assessment",
+                "href": "/iam-assessment",
                 "pill": "Free trial",
                 "desc": null
               },
               {
                 "title": "Active Directory Assessment ",
+                "href": "/active-directory-assessment",
                 "pill": "Free trial",
                 "desc": null
               },
               {
                 "title": "Security Hardware Token",
+                "href": "/security-hardware-token",
                 "pill": "Free trial",
                 "desc": null
               },
@@ -3559,7 +3573,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Detect issues and automate routine IT operations with AI"
               },
               {
-                "title": "Agent Studio",
+                "title": "AI Agent Studio",
                 "pill": null,
                 "desc": "Build and manage AI agents for business workflows"
               },
@@ -5183,6 +5197,24 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": "In focus",
                 "desc": "AI-native protection, management and automation on one platform"
               },
+              {
+                "title": "Acronis Cyber Intelligence",
+                "href": "/acronis-cyber-intelligence",
+                "pill": "In focus",
+                "desc": "AI dashboards, analytics and client-ready reports in Acronis Cyber Console"
+              },
+              {
+                "title": "Acronis Cyber Frame",
+                "href": "/acronis-cyber-frame",
+                "pill": "In focus",
+                "desc": "Compute, storage and networking with built-in cyber protection"
+              },
+              {
+                "title": "Acronis Workflow Automation",
+                "href": "/acronis-workflow-automation",
+                "pill": "In focus",
+                "desc": "No-code workflows across backup, IT management and security"
+              },
             ],
           }
         ]
@@ -5239,6 +5271,7 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Global Data Centers",
+                "href": "/company/data-centers-global",
                 "pill": null,
                 "desc": "Global locations for resilient workloads"
               },
@@ -5360,7 +5393,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Support contacts and escalation levels"
               },
               {
-                "title": "Status",
+                "title": "Services Status",
                 "pill": null,
                 "desc": "Support contacts and escalation levels"
               },
@@ -5415,8 +5448,9 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Partner Contact Matrix",
+                "href": "/partner-matrix",
                 "pill": null,
-                "desc": "Introduce customers to XcellHost services"
+                "desc": "Connect with channel sales, pre-sales, support and billing teams"
               },
               {
                 "title": "Partner/Signup ",

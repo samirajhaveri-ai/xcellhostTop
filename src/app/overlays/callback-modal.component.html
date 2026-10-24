@@ -10,7 +10,7 @@
       <div class="enquiry-head"><span>Free consultation</span><h3 id="cbTitle">Let's talk about {{ productLabel() }}</h3></div>
       <form class="enquiry-form" [formGroup]="form" (submit)="submit($event)" action="https://forms.zohopublic.in/xcellhostcloudservicespvtltd1/form/xcellhostform/formperma/bZ5rEp9aOJGgQGNccOrarg3MksQYykD8HUut8dl-c5w/htmlRecords/submit" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
         <input type="hidden" name="zf_referrer_name" value=""><input type="hidden" name="zf_redirect_url" value=""><input type="hidden" name="zc_gad" value=""><input type="hidden" name="SingleLine1" [value]="productLabel()"><input type="hidden" name="SingleLine2" [value]="requestDetails() || productLabel()"><input type="hidden" name="Number" value="1">
-        @if (requestDetails()) {
+        @if (requestDetails() && productLabel() !== 'GPU Servers') {
           <div class="request-details" data-preserve-copy><strong>Your request</strong><br>{{ requestDetails() }}</div>
         }
         <div class="field-grid">

@@ -157,7 +157,7 @@ button{font-family:inherit}
 .pph-scan{position:absolute;left:0;right:0;top:0;height:34%;z-index:1;pointer-events:none;background:linear-gradient(rgba(127,178,255,.14),transparent);animation:pphscan 7s ease-in-out infinite}
 @keyframes pphscan{0%,100%{transform:translateY(-10%);opacity:.5}50%{transform:translateY(230%);opacity:1}}
 .pph-net{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.7}
-.pph-scene{position:absolute;right:0;top:4%;bottom:auto;width:48%;z-index:2;pointer-events:none;display:flex;align-items:center;justify-content:center;opacity:1;mask-image:linear-gradient(90deg,transparent,#000 22%,#000);-webkit-mask-image:linear-gradient(90deg,transparent,#000 22%,#000)}
+.pph-scene{position:absolute;right:max(0px,calc((100% - 1240px)/2));top:0;bottom:0;width:min(46%,620px);z-index:2;pointer-events:none;display:flex;align-items:center;justify-content:center;opacity:1;mask-image:linear-gradient(90deg,transparent,#000 22%,#000);-webkit-mask-image:linear-gradient(90deg,transparent,#000 22%,#000)}
 .pph-illus{display:flex;flex-direction:column;align-items:center;gap:10px;width:100%;padding:10px 0}
 .pph-illus-img{width:88%;max-width:560px;max-height:315px;height:auto;object-fit:contain;filter:drop-shadow(0 18px 40px rgba(4,30,66,.35));animation:illusfloat 5.5s ease-in-out infinite}
 @keyframes illusfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
@@ -191,11 +191,14 @@ button{font-family:inherit}
 @keyframes ppdbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
 .ppd-info::after,.ppd-pres::after{content:"";position:absolute;top:0;left:-60%;width:45%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.35),transparent);transform:skew(-18deg);transition:left .5s}
 .ppd-info:hover::after,.ppd-pres:hover::after{left:130%}
-.pp-ask-ai{display:flex;align-items:center;gap:10px;margin-top:24px;padding:22px 0 12px;border-top:1px solid rgba(144,180,233,.2);animation:pprise .6s ease .6s both}
-.pp-ask-ai-kicker{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border:1px solid rgba(75,165,255,.26);border-radius:999px;background:rgba(8,31,68,.46);color:#fff;font:700 11px/1 var(--mono);letter-spacing:.04em;white-space:nowrap}
+.pp-ask-ai{display:flex;align-items:center;gap:8px;width:fit-content;max-width:100%;box-sizing:border-box;margin-top:24px;padding:6px 10px;border:1px solid rgba(75,165,255,.32);border-radius:12px;background:rgba(8,31,68,.46);animation:pprise .6s ease .6s both}
+.pp-ask-ai-copy{min-width:0;max-width:100%}
+.pp-ask-ai-kicker{display:inline-flex;align-items:center;gap:8px;padding:4px 0;color:#fff;font:700 11px/1.5 var(--mono);letter-spacing:.04em;white-space:normal}
 .pp-ask-ai-kicker::before{content:"✦";font-size:12px}
-.pp-ask-ai-actions{display:flex;align-items:center;gap:8px}
-.pp-ask-ai-chip{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid rgba(161,184,219,.28);border-radius:14px;background:rgba(11,24,53,.58);color:#fff;transition:transform .18s,border-color .18s,background .18s;font:800 11px var(--disp)}
+.pp-ask-ai-actions{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.pp-ask-ai-chip{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border:0;border-radius:8px;background:rgba(255,255,255,.07);color:#fff;transition:transform .18s,background .18s}
+.pp-ask-ai-chip img{display:block;width:19px;height:19px;border-radius:4px;object-fit:contain}
+.pp-ask-ai-chip:focus-visible{outline:2px solid #7fbaff;outline-offset:2px}
 .pp-ask-ai-chip:hover{transform:translateY(-2px);border-color:rgba(113,192,255,.65);background:rgba(17,42,84,.78)}
 .nvidia-powered-by{display:flex;align-items:center;gap:10px;margin-top:12px;color:#c7d5ec;font:400 13px/1.4 var(--body)}
 .nvidia-powered-lockup{display:inline-flex;align-items:center;gap:8px;color:#fff}.nvidia-powered-lockup img{display:block;width:34px;height:34px}.nvidia-powered-lockup strong{font:900 24px/1 Arial,sans-serif;letter-spacing:-1.5px}
@@ -211,7 +214,7 @@ button{font-family:inherit}
 .pp-trust b{color:var(--navy);font-family:var(--mono)}
 
 /* GPU hero illustration (SVG) */
-.gpu-illus{width:88%;max-width:520px;filter:drop-shadow(0 18px 40px rgba(4,30,66,.45));animation:illusfloat 5.5s ease-in-out infinite}
+.gpu-illus{width:100%;max-width:620px;filter:drop-shadow(0 18px 40px rgba(4,30,66,.45));animation:illusfloat 5.5s ease-in-out infinite}
 .gpu-illus .led{animation:ledblink 1.4s infinite}
 .gpu-illus .led:nth-child(2n){animation-delay:.4s}.gpu-illus .led:nth-child(3n){animation-delay:.9s}
 @keyframes ledblink{0%,100%{opacity:1}50%{opacity:.25}}
@@ -973,13 +976,23 @@ html.dark-mode ::selection{background:#245fae;color:#fff}
 @media (max-width:760px){.cb-card{grid-template-columns:1fr}.cb-side{display:none}.cs-grid{grid-template-columns:1fr}.bot{right:8px;left:8px;width:auto;bottom:84px}}
 
 /* ---------- responsive ---------- */
+/* Keep hero copy and animation in separate columns with a consistent gutter. */
+@media (min-width:901px){
+  .pp-hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);column-gap:clamp(32px,4vw,64px);padding-inline:max(24px,calc((100% - 1192px)/2))}
+  .pp-hero>.wrap{grid-column:1;grid-row:1;min-width:0;padding-inline:0}
+  .pp-hero>.wrap>.pp-crumb,.pp-hero>.wrap>.pp-tagline,.pp-hero>.wrap>.pp-hero-grid,.pp-hero>.wrap>.pp-typewriter{max-width:100%}
+  .pp-hero h1{flex-wrap:wrap;white-space:normal}
+  .pp-hero>.pph-scene{position:relative;inset:auto;grid-column:2;grid-row:1;width:100%;min-width:0;mask-image:none;-webkit-mask-image:none}
+  .pp-hero .pp-ask-ai{flex-wrap:wrap}
+}
+@media (max-width:900px){.pp-hero{gap:32px}}
 html,body{overflow-x:hidden}
 .gpu-pricing{overflow:hidden;padding:4px;margin:0 -4px}
 .gp-store-dd.fixed{position:fixed;top:auto;left:auto}
 @media (max-width:1180px){.product-hero-ctas{flex-wrap:wrap;width:100%}}
 @media (max-width:1100px){.xh-main-nav{display:none}.xh-mobile-toggle{display:block}.xh-actions .xh-login{display:none}}
 @media (max-width:1000px){.stat-row{grid-template-columns:repeat(3,1fr)}.pp-why,.pp-uses,.os-grid,.gp-picks{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:900px){.pph-scene{width:100%;opacity:.9;position:relative;top:0;padding:8px 0 4px;mask-image:none;-webkit-mask-image:none}.pp-hero{flex-direction:column;padding:40px 0}.pp-hero>.wrap>.pp-crumb,.pp-hero>.wrap>.pp-tagline,.pp-hero>.wrap>.pp-hero-grid,.pp-typewriter{max-width:100%}.pp-hero h1{white-space:normal;flex-wrap:wrap}.product-hero-ctas{width:100%;overflow-x:auto;padding-bottom:8px}.pp-ask-ai{flex-wrap:wrap}.gpu-illus{max-width:300px}.gp-controls{flex-direction:column}.gp-controls>div{border-right:0;border-bottom:1px solid var(--line);width:100%}.gp-tablewrap{display:none}.gp-mobile{display:block;padding:14px}}
+@media (max-width:900px){.pph-scene{right:0;bottom:auto;width:100%;opacity:.9;position:relative;top:0;padding:8px 0 4px;mask-image:none;-webkit-mask-image:none}.pp-hero{flex-direction:column;padding:40px 0}.pp-hero>.wrap>.pp-crumb,.pp-hero>.wrap>.pp-tagline,.pp-hero>.wrap>.pp-hero-grid,.pp-typewriter{max-width:100%}.pp-hero h1{white-space:normal;flex-wrap:wrap}.product-hero-ctas{width:100%;overflow-x:auto;padding-bottom:8px}.pp-ask-ai{flex-wrap:wrap}.gpu-illus{max-width:300px}.gp-controls{flex-direction:column}.gp-controls>div{border-right:0;border-bottom:1px solid var(--line);width:100%}.gp-tablewrap{display:none}.gp-mobile{display:block;padding:14px}}
 @media (max-width:820px){.pp-tcards{grid-template-columns:1fr}.nf-top{grid-template-columns:1fr}.nf-review-grid{grid-template-columns:1fr}}
 @media (max-width:760px){.pp-feats,.pp-bens,.pp-why,.pp-uses,.pp-faq,.pp-secrows,.os-grid,.gp-picks{grid-template-columns:1fr}.stat-row{grid-template-columns:repeat(2,1fr)}.pp-cta{min-height:0;padding:28px 22px}.pp-cta-buddha-link{position:static;width:72px;height:72px;transform:none;margin-left:auto}.newsletter-form{grid-template-columns:1fr}.contact-actions{gap:8px}.contact-action{width:48px;height:48px}.cb-tab{display:none}}
 /* ---------- Tier 4 data-center tabs ---------- */
@@ -1091,7 +1104,7 @@ body {
   <span aria-hidden="true" class="pph-scan"></span>
   <div id="pphScene" aria-hidden="true" class="pph-scene has-illus standalone-illus"><div class="pph-illus">
     <!-- GPU server illustration -->
-    <svg class="gpu-illus" viewBox="0 0 520 300" xmlns="http://www.w3.org/2000/svg">
+    <svg class="gpu-illus" viewBox="25 15 480 270" xmlns="http://www.w3.org/2000/svg">
       <defs><linearGradient id="gA" x1="0" x2="1"><stop offset="0" stop-color="#1565D8"/><stop offset="1" stop-color="#7C3AED"/></linearGradient><linearGradient id="gB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#173a6f"/><stop offset="1" stop-color="#0a2247"/></linearGradient><linearGradient id="gC" x1="0" x2="1"><stop offset="0" stop-color="#76b900"/><stop offset="1" stop-color="#2ecc71"/></linearGradient></defs>
       <!-- rack -->
       <rect x="40" y="26" width="300" height="250" rx="14" fill="url(#gB)" stroke="#2c5a9e" stroke-width="1.5"/>
@@ -1135,11 +1148,11 @@ body {
       <section aria-labelledby="ppAskAiTitle" class="pp-ask-ai">
         <div class="pp-ask-ai-copy"><span id="ppAskAiTitle" class="pp-ask-ai-kicker">Ask AI About GPU Servers from XcellHost</span></div>
         <div class="pp-ask-ai-actions">
-          <a aria-label="ChatGPT" target="_blank" rel="noopener noreferrer" class="pp-ask-ai-chip" href="https://chatgpt.com/?q=Give%20me%20a%20quick%20overview%20of%20XcellHost's%20GPU%20Servers%20service%20(NVIDIA%20H200%2C%20RTX%20Pro%206000%2C%20L4%20from%20Indian%20Tier-4%20datacenters).%20Summarize%20ideal%20use%20cases%2C%20benefits%2C%20and%20what%20a%20buyer%20should%20ask.">GPT</a>
-          <a aria-label="Perplexity" target="_blank" rel="noopener noreferrer" class="pp-ask-ai-chip" href="https://www.perplexity.ai/search/new?q=XcellHost%20GPU%20Servers%20overview">PPX</a>
-          <a aria-label="Claude" target="_blank" rel="noopener noreferrer" class="pp-ask-ai-chip" href="https://claude.ai/new?q=Give%20me%20a%20quick%20overview%20of%20XcellHost's%20GPU%20Servers%20service.">CL</a>
-          <a aria-label="Gemini" target="_blank" rel="noopener noreferrer" class="pp-ask-ai-chip" href="https://gemini.google.com/app">GEM</a>
-          <a aria-label="Grok" target="_blank" rel="noopener noreferrer" class="pp-ask-ai-chip" href="https://grok.com/?q=XcellHost%20GPU%20Servers%20overview">GRK</a>
+          <a aria-label="ChatGPT" target="_blank" rel="noopener noreferrer" class="pp-ask-ai-chip" href="https://chatgpt.com/?q=Give%20me%20a%20quick%20overview%20of%20XcellHost's%20GPU%20Servers%20service%20(NVIDIA%20H200%2C%20RTX%20Pro%206000%2C%20L4%20from%20Indian%20Tier-4%20datacenters).%20Summarize%20ideal%20use%20cases%2C%20benefits%2C%20and%20what%20a%20buyer%20should%20ask."><img src="https://www.google.com/s2/favicons?domain=chatgpt.com&amp;sz=64" alt="" aria-hidden="true"></a>
+          <a aria-label="Perplexity" target="_blank" rel="noopener noreferrer" class="pp-ask-ai-chip" href="https://www.perplexity.ai/search/new?q=XcellHost%20GPU%20Servers%20overview"><img src="https://www.google.com/s2/favicons?domain=perplexity.ai&amp;sz=64" alt="" aria-hidden="true"></a>
+          <a aria-label="Claude" target="_blank" rel="noopener noreferrer" class="pp-ask-ai-chip" href="https://claude.ai/new?q=Give%20me%20a%20quick%20overview%20of%20XcellHost's%20GPU%20Servers%20service."><img src="https://www.google.com/s2/favicons?domain=claude.ai&amp;sz=64" alt="" aria-hidden="true"></a>
+          <a aria-label="Gemini" target="_blank" rel="noopener noreferrer" class="pp-ask-ai-chip" href="https://gemini.google.com/app"><img src="https://www.google.com/s2/favicons?domain=gemini.google.com&amp;sz=64" alt="" aria-hidden="true"></a>
+          <a aria-label="Grok" target="_blank" rel="noopener noreferrer" class="pp-ask-ai-chip" href="https://grok.com/?q=XcellHost%20GPU%20Servers%20overview"><img src="https://www.google.com/s2/favicons?domain=grok.com&amp;sz=64" alt="" aria-hidden="true"></a>
         </div>
       </section>
       <div class="nvidia-powered-by" aria-label="Powered by NVIDIA"><span>Powered by</span><span aria-hidden="true">|</span><span class="nvidia-powered-lockup"><img src="/assets/images/a100-logos/nvidia.svg" alt=""><strong>NVIDIA</strong></span></div>

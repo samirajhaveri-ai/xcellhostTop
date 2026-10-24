@@ -8,6 +8,7 @@ import { SeoService } from '../core/seo.service';
 import { COMPANY_PAGES } from '../data/company.data';
 import { WORLD_MAP_HTML } from '../data/site.data';
 import { HeroNetDirective } from '../sections/product';
+import { GlobalInfrastructureComponent } from '../sections/global-infrastructure.component';
 import { ResellerProgramContentComponent } from '../sections/reseller-program-content.component';
 import { TeamStructureComponent } from '../sections/team-structure.component';
 import { WhyXcellhostReasonsComponent } from '../sections/why-xcellhost-reasons.component';
@@ -17,7 +18,7 @@ import { CareersOverviewSectionsComponent } from '../sections/careers-overview-s
 @Component({
   selector: 'xh-company-page',
   standalone: true,
-  imports: [RouterLink, HeroNetDirective, ResellerProgramContentComponent, TeamStructureComponent, WhyXcellhostReasonsComponent, ZohoJobListingComponent, CareersOverviewSectionsComponent],
+  imports: [RouterLink, HeroNetDirective, GlobalInfrastructureComponent, ResellerProgramContentComponent, TeamStructureComponent, WhyXcellhostReasonsComponent, ZohoJobListingComponent, CareersOverviewSectionsComponent],
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './company.page.html',
@@ -146,10 +147,13 @@ export class CompanyPage {
   } as const;
 
   readonly managementTeam = [
+     { initials: 'YT', name: 'Yogendra Trivedi', role: 'Managaging Director', image: '/assets/images/Yogesh Trivedi.png' },
     { initials: 'YJ', name: 'Yogendra Jagger', role: 'Regional Director - EMEA Middle East & Africa', image: '/assets/images/TEAMS PHOTO/Yogendra.png' },
+    { initials: '', name: '', role: '', image: '/assets/images/WhatsApp Image 2026-10-23 at 4.17.01 PM.jpeg' },
     { initials: 'AN', name: 'Abhishek Nimbalkar', role: 'Chief AI Officer', image: '/assets/images/TEAMS PHOTO/Abhishek.png' },
     { initials: 'PN', name: 'Prashant N.V', role: 'Service Delivery Director', image: '/assets/images/TEAMS PHOTO/Prashant.png' },
     { initials: 'T', name: 'AI Management Intelligence Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
+    
   ] as const;
 
   readonly advisoryTeam = [
@@ -177,6 +181,7 @@ export class CompanyPage {
   readonly marketing = [
     { initials: 'AN', name: 'Aryan Nair', role: 'Social Media Manager', image: '/assets/images/TEAMS PHOTO/Aryan.png' },
     { initials: 'RS', name: 'Ravi Sharma', role: 'SEO+GTM Engineer', image: '/assets/images/TEAMS PHOTO/Ravi.png' },
+    { initials: 'OM', name: 'Omkarnath Mishra', role: 'Video Editor', image: '/assets/images/TEAMS PHOTO/Omkarnath Mishra.jpeg' },
     { initials: 'RS', name: 'AI SEO/AEO/GEO Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
     { initials: 'RS', name: 'AI Social Media Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
     { initials: 'RS', name: 'AI Conversation Agent', role: '', image: '/assets/images/Robot-enhanced.png' },

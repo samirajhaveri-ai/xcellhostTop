@@ -13,6 +13,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CartService } from '../core/cart.service';
 import { CatalogService, slugify } from '../core/catalog.service';
 import { OverlayService } from '../core/overlay.service';
+import { SearchLaunchService } from '../core/search-launch.service';
 import { MEGA_MENU } from '../data/nav.data';
 import { MenuFeatureCard } from '../data/models';
 
@@ -349,6 +350,7 @@ const CONTENT_LINKS: Record<string, string> = {
   'Microsoft Copilot ': '/microsoft-copilot',
   'Escalation Matrix': '/escalation-matrix',
   'Partner Matrix': '/partner-matrix',
+  'Partner Contact Matrix': '/partner-matrix',
   'WhatsApp For Business': '/whatsapp-smb',
   'Digicert VMC ': '/digicert-vmc',
   'Digicert CMC': '/digicert-cmc',
@@ -383,6 +385,7 @@ const CONTENT_LINKS: Record<string, string> = {
   'Associations': '/associations',
   'Associations ': '/associations',
   'Data Centers (Global)': '/company/data-centers-global',
+  'Global Data Centers': '/company/data-centers-global',
   'Vendor Partners': '/company/vendor-partners',
   'Contact Us': '/contact',
   'Contact': '/contact',
@@ -577,6 +580,7 @@ export class HeaderComponent {
   private readonly doc = inject(DOCUMENT);
   private readonly catalog = inject(CatalogService);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly searchLaunch = inject(SearchLaunchService);
   readonly overlay = inject(OverlayService);
   readonly cart = inject(CartService);
   /** The whole menu, pre-resolved once: no per-render slug lookups. */
@@ -778,7 +782,12 @@ export class HeaderComponent {
 
   openSearch(): void {
     this.loginMenuOpen.set(false);
-    this.overlay.open('search');
+    this.searchLaunch.open('search');
+  }
+
+  openAskAi(): void {
+    this.loginMenuOpen.set(false);
+    this.searchLaunch.open('ask-ai');
   }
 
   toggleLoginMenu(event: Event): void {

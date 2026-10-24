@@ -9,7 +9,9 @@
 <router-outlet />
 
 @if (!hasStandaloneShell()) {
-  <xh-contact-options />
+  @if (showContactOptions()) {
+    <xh-contact-options />
+  }
   <xh-footer />
 }
 
@@ -25,6 +27,7 @@
 <xh-search-dialog />
 <xh-callback-modal />
 <xh-trial-modal />
+<xh-banner-tour />
 <xh-partner-modal />
 <xh-doc-modal />
 @if (!hasStandaloneShell()) {
