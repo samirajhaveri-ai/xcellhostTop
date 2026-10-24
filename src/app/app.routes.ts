@@ -918,6 +918,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/microsoft-azure-partner.page').then((m) => m.MicrosoftAzurePartnerPage),
   },
   {
+    path: 'vendor-partners/amazon-web-services',
+    loadComponent: () => import('./pages/amazon-web-services-partner.page').then((m) => m.AmazonWebServicesPartnerPage),
+  },
+  {
     path: 'vendor-partners/:slug',
     loadComponent: () =>
       import('./pages/vendor-partner.page').then((m) => m.VendorPartnerPage),

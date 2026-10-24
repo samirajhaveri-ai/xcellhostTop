@@ -75,6 +75,10 @@ export function ensureFaqCustomerTestimonials(root: ContentRoot): void {
   if (!faqHeading) return;
   const pageRoots = rootsForPage(root);
   const generated = pageRoots.flatMap(item => [...item.querySelectorAll('[data-auto-customer-testimonials]')]);
+  if (pageRoots.some(item => item.querySelector('[data-customer-testimonials="off"]'))) {
+    generated.forEach(element => element.remove());
+    return;
+  }
   if (pageRoots.some(existingReviews)) {
     generated.forEach(element => element.remove());
     pageRoots.forEach(item => item.querySelectorAll<HTMLElement>('[data-testimonial-empty-heading]').forEach(heading => {
