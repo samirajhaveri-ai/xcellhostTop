@@ -19,7 +19,10 @@ for (const node of nodes.filter(n => hasClass(n, 'crumb') || (n.tagName === 'sec
 }
 const powered = nodes.find(n => hasClass(n, 'ma-pw'));
 if (!powered) throw new Error('Missing mobile platform branding.');
-main = main.replace(slice(powered), '<div class="mobile-powered" data-in="5"><span>Powered by</span><span aria-hidden="true">|</span><img src="/assets/images/vendor-partners/75-protectt-ai.png" alt="Protectt.ai" width="140" height="40"><strong>Protectt.ai</strong></div>');
+const askAi = nodes.find(n => hasClass(n, 'lh-ask'));
+if (!askAi) throw new Error('Missing mobile AI links.');
+main = main.replace(slice(askAi), '');
+main = main.replace(slice(powered), slice(askAi) + '<div class="mobile-powered" data-in="5"><span>Powered by</span><span aria-hidden="true">|</span><img src="/assets/images/vendor-partners/75-protectt-ai.png" alt="Protectt.ai" width="140" height="40"><strong>Protectt.ai</strong></div>');
 main = main.replace('class="ma-sub"', 'class="ma-sub product-section-nav"');
 
 const controls = [

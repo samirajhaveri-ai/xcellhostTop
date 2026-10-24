@@ -5620,6 +5620,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "How XcellHost uses AI with human oversight and client data protections"
               },
+              {
+                "title": "No TDS on Software Purchases",
+                "href": "/tds-software-declaration",
+                "pill": null,
+                "desc": "Understand your software invoice declaration and request a letter from billing"
+              },
 
             ]
           }

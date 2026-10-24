@@ -1,0 +1,1665 @@
+<!doctype html><html lang="en" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>No TDS on Software Purchases | XcellHost</title><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600;1,9..144,700&family=Sora:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"><style>
+/* =====================================================================
+   XcellHost v2 core — xcellhost.top design system
+   Brand: #0066FF blue · #0B132B navy · #FF8A00 orange · #c0392b "Host" red
+   Rule: exact brand colours, solid fills, no gradients.
+   ===================================================================== */
+:root{
+  --blue:#0066FF;--navy:#0B132B;--orange:#FF8A00;--red:#c0392b;--white:#fff;
+  --green:#16a34a;--wa:#25D366;
+  --bg:#ffffff;--surface:#ffffff;--surface-2:#F4F7FC;--ink:#0B132B;--text:#2A3550;--muted:#5B6782;
+  --line:#E2E8F2;--line-2:#D3DCEB;--chip:#EEF4FF;
+  --hero:#0B132B;--hero-ink:#ffffff;--hero-muted:#B6C2DA;--hero-line:rgba(255,255,255,.12);
+  --f-serif:"Fraunces",Georgia,serif;--f-disp:"Sora",system-ui,sans-serif;--f-body:"IBM Plex Sans",system-ui,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,monospace;
+  --r-s:10px;--r:14px;--r-l:20px;
+  --sh-s:0 4px 14px rgba(11,19,43,.06);--sh:0 14px 40px rgba(11,19,43,.10);--sh-l:0 30px 70px -24px rgba(11,19,43,.35);
+  --maxw:1200px;--ease:cubic-bezier(.22,.7,.2,1);--ease-o:cubic-bezier(.16,1,.3,1);
+}
+html[data-theme="dark"]{
+  --bg:#070C1C;--surface:#0E1630;--surface-2:#0B132B;--ink:#F2F5FB;--text:#C9D3E6;--muted:#8F9BB6;
+  --line:#1E2A49;--line-2:#27355A;--chip:#14204A;
+  --hero:#050916;--sh-s:0 4px 14px rgba(0,0,0,.3);--sh:0 14px 40px rgba(0,0,0,.4);--sh-l:0 30px 70px -24px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--f-body);color:var(--text);background:var(--bg);line-height:1.6;overflow-x:hidden;overflow-x:clip;-webkit-font-smoothing:antialiased;transition:background .35s,color .35s}
+body.lock{overflow:hidden}
+h1,h2,h3,h4{font-family:var(--f-disp);color:var(--ink);line-height:1.15;letter-spacing:-.02em;font-weight:700}
+a{color:inherit;text-decoration:none}img,svg{display:block}button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.mono{font-family:var(--f-mono)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px}
+#xhProgress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--orange);z-index:300}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:14.5px;line-height:1;padding:13px 22px;border-radius:12px;border:1.5px solid transparent;cursor:pointer;white-space:nowrap;transition:transform .2s var(--ease),background .2s,color .2s,border-color .2s,box-shadow .25s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn svg{width:16px;height:16px}
+.btn .ar{transition:transform .25s var(--ease)}.btn:hover .ar{transform:translateX(3px)}
+.btn-orange{background:var(--orange);color:#fff;box-shadow:0 10px 24px -12px rgba(255,138,0,.9)}
+.btn-orange:hover{box-shadow:0 14px 30px -12px rgba(255,138,0,1)}
+.btn-blue{background:var(--blue);color:#fff;box-shadow:0 10px 24px -12px rgba(0,102,255,.9)}
+.btn-ghost{background:var(--surface);color:var(--ink);border-color:var(--line-2)}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
+.btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
+.btn-line:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+.btn-wa{background:var(--wa);color:#fff}
+.btn-sm{padding:9px 15px;font-size:13px;border-radius:10px}
+.btn-block{width:100%}
+.btn[disabled]{opacity:.5;pointer-events:none}
+
+/* ---------- utility bar ---------- */
+.ubar{background:var(--navy);color:#B6C2DA;font-size:12.5px;position:relative;z-index:60}
+html[data-theme="dark"] .ubar{background:#050916}
+.ubar .wrap{display:flex;align-items:center;gap:16px;min-height:38px;white-space:nowrap;max-width:1360px}
+.ubar .wrap::-webkit-scrollbar{display:none}
+.ubar a:hover{color:#fff}
+.ubar .ul{display:flex;gap:16px;align-items:center;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,#000 92%,transparent);mask-image:linear-gradient(90deg,#000 92%,transparent)}
+.ubar .ul::-webkit-scrollbar{display:none}
+.ubar .ur{display:flex;gap:12px;align-items:center;margin-left:auto;padding-left:14px;border-left:1px solid rgba(255,255,255,.14);flex-shrink:0}
+@media(max-width:760px){.ubar .ur .uwa,.ubar .ur .lang{display:none}}
+.ubar .ph{font-family:var(--f-mono);color:#fff;font-weight:600}
+.ubar .uwa{color:#5FE08D;font-weight:600}
+.ubar .wa-ch{color:#5FE08D}
+.theme-tg{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:99px;padding:3px 9px 3px 4px;cursor:pointer;color:#dfe6f5;font-size:11.5px}
+.theme-tg .k{width:18px;height:18px;border-radius:50%;background:var(--orange);display:grid;place-items:center;transition:transform .35s var(--ease-o)}
+.theme-tg .k svg{width:11px;height:11px;color:#fff}
+html[data-theme="dark"] .theme-tg .k{transform:rotate(-180deg);background:var(--blue)}
+.lang{font-family:var(--f-mono);font-size:11px;border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:2px 6px;color:#dfe6f5}
+
+/* ---------- promo ---------- */
+.promo{background:var(--blue);color:#fff;font-size:13px;line-height:1.5;text-align:center;padding:8px 16px;position:relative;z-index:59}
+.promo b{font-weight:700}
+.promo .tag{display:inline-block;font-family:var(--f-mono);font-size:10.5px;font-weight:600;letter-spacing:.08em;background:#fff;color:var(--blue);border-radius:6px;padding:2px 7px;margin:0 6px}
+.promo a{font-weight:700;text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- header ---------- */
+.hdr{position:sticky;top:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--line);transition:box-shadow .3s,background .35s}
+.hdr.scrolled{box-shadow:0 8px 28px -18px rgba(11,19,43,.35)}
+.hdr .wrap{display:flex;align-items:center;gap:14px;height:70px;max-width:1360px}
+.logo{display:flex;flex-direction:column;flex-shrink:0;line-height:1}
+.logo .lw{font-family:var(--f-disp);font-weight:800;font-size:22px;letter-spacing:-.02em;color:var(--ink);display:flex;align-items:baseline}
+.logo .lw .host{position:relative;color:var(--red);padding:0 2px;margin-left:1px}
+.logo .lw .host{z-index:0}
+.logo .lw .host svg{position:absolute;left:-7px;top:-9px;width:calc(100% + 14px);height:34px;z-index:-1;color:var(--blue);opacity:.13}
+.logo .lw sup{font-size:9px;color:var(--muted);margin-left:1px;align-self:flex-start;margin-top:2px}
+.logo .lt{font-family:var(--f-mono);font-size:9px;letter-spacing:.16em;color:var(--muted);margin-top:4px;text-transform:uppercase;white-space:nowrap}
+.nav{display:flex;align-items:center;gap:0;margin-left:4px}
+.nav>.ni{position:static}
+.nav>.ni>button{background:none;border:0;cursor:pointer;display:flex;align-items:center;gap:3px;font-size:13.5px;font-weight:500;color:var(--text);padding:9px 8px;border-radius:8px;white-space:nowrap;transition:color .2s,background .2s}
+.nav>.ni>button svg{width:10px;height:10px;transition:transform .25s}
+.nav>.ni:hover>button,.nav>.ni.open>button{color:var(--blue);background:var(--chip)}
+.nav>.ni.open>button svg{transform:rotate(180deg)}
+.mega{position:absolute;left:0;right:0;top:100%;background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);box-shadow:var(--sh);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .22s,transform .25s var(--ease-o),visibility 0s .25s}
+.ni.open .mega{opacity:1;visibility:visible;transform:none;transition:opacity .22s,transform .3s var(--ease-o)}
+.mega .wrap{display:grid;grid-template-columns:260px 1fr;gap:28px;height:auto;padding:26px 24px;max-width:var(--maxw)}
+.mega .mintro b{font-family:var(--f-serif);font-size:22px;color:var(--ink);display:block;margin-bottom:6px}
+.mega .mintro p{font-size:13px;color:var(--muted)}
+.mega .mlist{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.mega .mlist a{display:flex;gap:11px;align-items:flex-start;padding:10px 12px;border-radius:10px;transition:background .2s}
+.mega .mlist a:hover{background:var(--chip)}
+.mega .mlist a i{width:30px;height:30px;border-radius:8px;background:var(--chip);color:var(--blue);display:grid;place-items:center;flex-shrink:0}
+.mega .mlist a i svg{width:15px;height:15px}
+.mega .mlist a b{display:block;font-size:13.5px;color:var(--ink);font-weight:600}
+.mega .mlist a span{font-size:11.5px;color:var(--muted)}
+.mega .mlist a.cur{background:var(--chip)}.mega .mlist a.cur b{color:var(--blue)}
+.hdr-r{display:flex;align-items:center;gap:8px;margin-left:auto}
+.ibtn{width:40px;height:40px;border-radius:11px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;cursor:pointer;color:var(--ink);position:relative;transition:border-color .2s,color .2s,transform .2s}
+.ibtn:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-1px)}
+.ibtn svg{width:18px;height:18px}
+.ibtn .cnt{position:absolute;top:-6px;right:-6px;min-width:18px;height:18px;padding:0 5px;border-radius:99px;background:var(--orange);color:#fff;font-family:var(--f-mono);font-size:10.5px;font-weight:600;display:grid;place-items:center;transform:scale(0);transition:transform .3s var(--ease-o)}
+.ibtn .cnt.on{transform:scale(1)}
+.ibtn .cnt.bump{animation:bump .45s var(--ease-o)}
+@keyframes bump{40%{transform:scale(1.4)}}
+.burger{display:none}
+@media(max-width:1780px){.hdr-r .lg{display:none}}
+@media(max-width:1580px){.nav>.ni>button{padding:9px 6px;font-size:13px;gap:2px}.nav>.ni>button svg{width:8px;height:8px}}
+@media(max-width:1460px){.nav>.ni>button svg{display:none}.nav>.ni>button{padding:9px 5px;font-size:12.5px}.logo .lw{font-size:20px}.hdr .wrap{gap:10px}}
+@media(max-width:1320px){.nav,.hdr-r .desk{display:none}.burger{display:grid}}
+/* mobile drawer */
+.mnav{position:fixed;inset:0;z-index:250;pointer-events:none}
+.mnav .sc{position:absolute;inset:0;background:rgba(11,19,43,.5);opacity:0;transition:opacity .3s}
+.mnav .pn{position:absolute;top:0;right:0;bottom:0;width:min(360px,88vw);background:var(--surface);transform:translateX(100%);transition:transform .38s var(--ease-o);overflow-y:auto;padding:18px 18px 40px}
+.mnav.open{pointer-events:auto}.mnav.open .sc{opacity:1}.mnav.open .pn{transform:none}
+.mnav details{border-bottom:1px solid var(--line)}
+.mnav summary{list-style:none;cursor:pointer;padding:14px 4px;font-weight:600;color:var(--ink);display:flex;justify-content:space-between}
+.mnav summary::-webkit-details-marker{display:none}
+.mnav details a{display:block;padding:8px 10px;font-size:14px;color:var(--text);border-radius:8px}
+.mnav details a:hover{background:var(--chip)}
+.mnav .mh{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+
+/* ---------- search overlay ---------- */
+.srch{position:fixed;inset:0;z-index:260;display:none;align-items:flex-start;justify-content:center;padding:90px 16px 20px;background:rgba(11,19,43,.55)}
+.srch.open{display:flex;animation:fadeIn .2s}
+.srch .box{width:min(640px,100%);background:var(--surface);border-radius:var(--r-l);box-shadow:var(--sh-l);overflow:hidden;animation:popIn .3s var(--ease-o)}
+.srch .sin{display:flex;align-items:center;gap:10px;padding:16px 18px;border-bottom:1px solid var(--line)}
+.srch .sin svg{width:18px;height:18px;color:var(--muted)}
+.srch input{flex:1;border:0;outline:0;background:none;font-size:16px;color:var(--ink)}
+.srch kbd{font-family:var(--f-mono);font-size:11px;border:1px solid var(--line-2);border-radius:5px;padding:2px 6px;color:var(--muted)}
+.srch .res{max-height:min(420px,60vh);overflow-y:auto;padding:8px}
+.srch .res a{display:flex;justify-content:space-between;gap:12px;padding:11px 12px;border-radius:10px}
+.srch .res a:hover,.srch .res a.hl{background:var(--chip)}
+.srch .res b{color:var(--ink);font-size:14px;font-weight:600}
+.srch .res span{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.srch .none{padding:26px;text-align:center;color:var(--muted);font-size:14px}
+@keyframes fadeIn{from{opacity:0}}
+@keyframes popIn{from{opacity:0;transform:translateY(-10px) scale(.98)}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;background:var(--hero);color:var(--hero-ink);padding:54px 0 0}
+.hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.hero .wrap{position:relative;z-index:2}
+.crumb{font-family:var(--f-mono);font-size:12px;color:var(--hero-muted);margin-bottom:26px}
+.crumb a:hover{color:#fff}.crumb .c{color:#fff}
+.hero-grid{display:grid;grid-template-columns:1.02fr 1fr;gap:48px;align-items:center;padding-bottom:40px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--f-mono);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--orange)}
+.eyebrow:before{content:"";width:22px;height:2px;background:var(--orange)}
+.hero h1{font-family:var(--f-serif);font-weight:700;color:#fff;font-size:clamp(34px,4.4vw,56px);line-height:1.04;letter-spacing:-.025em;margin:16px 0 18px}
+.hero h1 .acc{color:var(--orange);font-style:italic}
+.hero .lead{font-size:17px;color:var(--hero-muted);max-width:540px;margin-bottom:24px}
+.hero .lead b{color:#fff;font-weight:600}
+.powered{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--navy);border-radius:12px;padding:7px 14px 7px 8px;margin-bottom:26px;box-shadow:0 10px 26px -14px rgba(0,0,0,.6)}
+.powered .pv-l{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;flex-shrink:0}
+.powered .pv-l svg{width:18px;height:18px}
+.powered small{display:block;font-family:var(--f-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#5B6782;line-height:1}
+.powered b{font-family:var(--f-disp);font-size:14.5px;font-weight:700;line-height:1.2;color:var(--navy)}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero-stats{position:relative;z-index:2;display:flex;flex-wrap:nowrap;border-top:1px solid var(--hero-line);overflow-x:auto;scrollbar-width:none}
+.hero-stats::-webkit-scrollbar{display:none}
+.hero-stats .hs{flex:1 0 auto;padding:20px 24px 22px;border-right:1px solid var(--hero-line);white-space:nowrap}
+.hero-stats .hs:first-child{padding-left:0}.hero-stats .hs:last-child{border-right:0}
+.hero-stats b{display:block;font-family:var(--f-disp);font-weight:800;font-size:24px;color:#fff;line-height:1;letter-spacing:-.02em}
+.hero-stats b em{font-style:normal;color:var(--orange)}
+.hero-stats span{display:block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--hero-muted);margin-top:8px}
+.stage{position:relative;min-height:420px;display:grid;place-items:center}
+@media(max-width:980px){.hero-grid{grid-template-columns:1fr;gap:34px}.stage{min-height:0}}
+@media(max-width:560px){.hero{padding-top:36px}.hero-stats .hs{padding:16px 18px}.hero-stats b{font-size:20px}}
+
+/* hero entrance */
+.hero [data-in]{opacity:0;transform:translateY(16px);animation:heroIn .9s var(--ease-o) forwards}
+.hero [data-in="1"]{animation-delay:.05s}.hero [data-in="2"]{animation-delay:.15s}.hero [data-in="3"]{animation-delay:.25s}.hero [data-in="4"]{animation-delay:.35s}.hero [data-in="5"]{animation-delay:.45s}.hero [data-in="6"]{animation-delay:.6s}
+@keyframes heroIn{to{opacity:1;transform:none}}
+
+/* ---------- sections ---------- */
+.sec{padding:84px 0;position:relative}
+.sec.alt{background:var(--surface-2)}
+.sec.tight{padding:56px 0}
+.sh{max-width:760px;margin-bottom:40px}
+.sh.c{text-align:center;margin-left:auto;margin-right:auto}
+.sh .eyebrow{color:var(--orange)}
+.sh h2{font-family:var(--f-serif);font-weight:700;font-size:clamp(28px,3.2vw,40px);letter-spacing:-.02em;margin:12px 0 12px;line-height:1.1}
+.sh h2 .acc{color:var(--blue);font-style:italic}
+.sh p{font-size:16.5px;color:var(--muted)}
+.note-ind{font-family:var(--f-mono);font-size:11.5px;color:var(--muted);margin-top:14px}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease-o),transform .8s var(--ease-o)}
+.rv.in{opacity:1;transform:none}
+.rv[data-d="1"]{transition-delay:.06s}.rv[data-d="2"]{transition-delay:.12s}.rv[data-d="3"]{transition-delay:.18s}.rv[data-d="4"]{transition-delay:.24s}.rv[data-d="5"]{transition-delay:.3s}.rv[data-d="6"]{transition-delay:.36s}
+
+/* ---------- grids & cards ---------- */
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:960px){.g3,.g4{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-l);padding:24px;transition:transform .35s var(--ease-o),box-shadow .35s,border-color .3s}
+.card:hover{transform:translateY(-5px);box-shadow:var(--sh);border-color:var(--line-2)}
+.ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;color:#fff;background:var(--blue);margin-bottom:16px;flex-shrink:0}
+.ico svg{width:22px;height:22px}
+.ico.o{background:var(--orange)}.ico.n{background:var(--navy)}.ico.g{background:var(--green)}.ico.r{background:var(--red)}
+html[data-theme="dark"] .ico.n{background:#1E2A49}
+.ico.soft{background:var(--chip);color:var(--blue)}
+.card h3{font-size:17px;margin-bottom:8px}
+.card p{font-size:14px;color:var(--muted);line-height:1.6}
+.card .more{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-weight:600;font-size:13.5px;color:var(--blue)}
+
+/* chip rows with per-item icons */
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{display:inline-flex;align-items:center;gap:9px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 14px 8px 8px;font-size:13.5px;font-weight:600;color:var(--ink);transition:border-color .2s,transform .2s}
+.chip:hover{border-color:var(--blue);transform:translateY(-2px)}
+.chip i{width:26px;height:26px;border-radius:7px;display:grid;place-items:center;color:#fff;background:var(--blue);flex-shrink:0}
+.chip i svg{width:14px;height:14px}
+
+/* icon list (per-item icons, never generic ticks) */
+.ilist{list-style:none;display:flex;flex-direction:column;gap:11px}
+.ilist li{display:flex;gap:11px;align-items:flex-start;font-size:14px;color:var(--text)}
+.ilist li i{width:24px;height:24px;border-radius:7px;background:var(--chip);color:var(--blue);display:grid;place-items:center;flex-shrink:0;margin-top:-1px}
+.ilist li i svg{width:13px;height:13px}
+.ilist li b{color:var(--ink)}
+
+/* steps */
+.steps{display:grid;gap:14px;counter-reset:st}
+.steps.h{grid-template-columns:repeat(var(--n,4),1fr)}
+@media(max-width:960px){.steps.h{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.steps.h{grid-template-columns:1fr}}
+.step{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px 20px 20px;overflow:hidden}
+.step:before{counter-increment:st;content:counter(st,decimal-leading-zero);font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--orange);display:block;margin-bottom:12px;letter-spacing:.1em}
+.step h4{font-size:15.5px;margin-bottom:6px}
+.step p{font-size:13.5px;color:var(--muted)}
+.step .bar{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--blue);transition:width 1.2s var(--ease-o)}
+.step.in .bar,.rv.in .step .bar{width:100%}
+
+/* table */
+.tbl-w{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+.tbl{width:100%;border-collapse:collapse;min-width:620px}
+.tbl th{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;padding:15px 18px;background:var(--surface-2);border-bottom:1px solid var(--line)}
+.tbl td{padding:14px 18px;border-bottom:1px solid var(--line);font-size:14px;color:var(--text);vertical-align:top}
+.tbl tr:last-child td{border-bottom:0}
+.tbl td:first-child{font-weight:600;color:var(--ink)}
+.tbl .hl{background:var(--chip)}
+.tbl th.hl{color:var(--blue)}
+.yes{color:var(--green);font-weight:700}.no{color:var(--red);font-weight:700}
+
+/* plans */
+.plans{display:grid;grid-template-columns:repeat(var(--n,3),1fr);gap:18px;align-items:stretch}
+@media(max-width:960px){.plans{grid-template-columns:1fr}}
+.plan{position:relative;background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r-l);padding:26px;display:flex;flex-direction:column;transition:transform .35s var(--ease-o),box-shadow .35s,border-color .3s}
+.plan:hover{transform:translateY(-6px);box-shadow:var(--sh)}
+.plan.pop{border-color:var(--orange)}
+.plan .flag{position:absolute;top:-12px;left:24px;background:var(--orange);color:#fff;font-family:var(--f-mono);font-size:10.5px;font-weight:600;letter-spacing:.1em;padding:4px 10px;border-radius:99px}
+.plan .pk{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:600}
+.plan h3{font-size:20px;margin:6px 0 8px}
+.plan .pd{font-size:13.5px;color:var(--muted);margin-bottom:18px;min-height:42px}
+.plan .pr{display:flex;align-items:baseline;gap:6px;margin-bottom:4px}
+.plan .pr b{font-family:var(--f-disp);font-weight:800;font-size:34px;color:var(--ink);letter-spacing:-.03em}
+.plan .pr span{font-size:13px;color:var(--muted)}
+.plan .pr s{font-size:14px;color:var(--muted)}
+.plan .gst{font-family:var(--f-mono);font-size:11px;color:var(--muted);margin-bottom:18px}
+.plan .ilist{margin-bottom:22px}
+.plan .act{margin-top:auto;display:flex;flex-direction:column;gap:8px}
+
+/* calculator */
+.calc{display:grid;grid-template-columns:1.25fr 1fr;border:1px solid var(--line);border-radius:var(--r-l);overflow:hidden;background:var(--surface);box-shadow:var(--sh-s)}
+@media(max-width:900px){.calc{grid-template-columns:1fr}}
+.calc .cin{padding:28px;display:flex;flex-direction:column;gap:22px}
+.calc .cout{background:var(--navy);color:#fff;padding:28px;display:flex;flex-direction:column}
+html[data-theme="dark"] .calc .cout{background:#050916}
+.fld>label,.fld>.lb{display:flex;justify-content:space-between;align-items:baseline;font-weight:600;font-size:14px;color:var(--ink);margin-bottom:10px}
+.fld>label small,.fld>.lb small{font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--blue)}
+.fld .hint{font-size:12px;color:var(--muted);margin-top:7px}
+.seg{display:flex;flex-wrap:wrap;gap:6px;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:4px}
+.seg button{flex:1 1 auto;border:0;background:none;cursor:pointer;padding:10px 12px;border-radius:9px;font-size:13px;font-weight:600;color:var(--muted);transition:background .2s,color .2s,box-shadow .2s;white-space:nowrap}
+.seg button small{display:block;font-family:var(--f-mono);font-size:10px;font-weight:500;margin-top:2px}
+.seg button.on{background:var(--surface);color:var(--blue);box-shadow:var(--sh-s)}
+.seg button:hover:not(.on){color:var(--ink)}
+input[type=range].rng{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:99px;background:var(--line-2);outline:none;cursor:pointer;background-image:linear-gradient(var(--blue),var(--blue));background-size:var(--p,0%) 100%;background-repeat:no-repeat}
+input[type=range].rng::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#fff;border:3px solid var(--blue);box-shadow:0 4px 10px rgba(0,102,255,.35);transition:transform .15s}
+input[type=range].rng::-webkit-slider-thumb:hover{transform:scale(1.12)}
+input[type=range].rng::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid var(--blue)}
+.stp{display:inline-flex;align-items:center;border:1px solid var(--line-2);border-radius:11px;overflow:hidden;background:var(--surface)}
+.stp button{width:40px;height:40px;border:0;background:none;cursor:pointer;font-size:18px;color:var(--ink)}
+.stp button:hover{background:var(--chip);color:var(--blue)}
+.stp input{width:64px;height:40px;border:0;border-left:1px solid var(--line);border-right:1px solid var(--line);text-align:center;font-family:var(--f-mono);font-weight:600;background:none;color:var(--ink)}
+.tgl{display:flex;align-items:center;gap:11px;cursor:pointer;font-size:14px;font-weight:600;color:var(--ink)}
+.tgl input{display:none}
+.tgl .sw{width:42px;height:24px;border-radius:99px;background:var(--line-2);position:relative;transition:background .25s;flex-shrink:0}
+.tgl .sw:after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:transform .3s var(--ease-o);box-shadow:0 2px 5px rgba(0,0,0,.2)}
+.tgl input:checked+.sw{background:var(--blue)}
+.tgl input:checked+.sw:after{transform:translateX(18px)}
+.tgl small{display:block;font-weight:400;font-size:12px;color:var(--muted)}
+.cout .ck{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B6C2DA}
+.cout .ctot{font-family:var(--f-disp);font-weight:800;font-size:42px;letter-spacing:-.03em;line-height:1;margin:10px 0 4px;font-variant-numeric:tabular-nums}
+.cout .csub{font-size:13px;color:#B6C2DA;margin-bottom:20px}
+.cout .crows{display:flex;flex-direction:column;gap:9px;padding:16px 0;border-top:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12);margin-bottom:20px}
+.cout .crow{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;color:#dfe6f5}
+.cout .crow b{font-family:var(--f-mono);font-weight:600;color:#fff;white-space:nowrap}
+.cout .crow.save b{color:#5FE08D}
+.cout .cact{margin-top:auto;display:flex;flex-direction:column;gap:9px}
+.cout .cfine{font-family:var(--f-mono);font-size:10.5px;color:#8F9BB6;margin-top:12px}
+.flash{animation:flash .5s var(--ease-o)}
+@keyframes flash{0%{opacity:.35;transform:translateY(-4px)}}
+
+/* tabs */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:22px}
+.tabs button{border:1px solid var(--line);background:var(--surface);cursor:pointer;padding:10px 16px;border-radius:99px;font-size:13.5px;font-weight:600;color:var(--muted);transition:all .2s}
+.tabs button:hover{color:var(--ink);border-color:var(--line-2)}
+.tabs button.on{background:var(--blue);border-color:var(--blue);color:#fff}
+[data-panel]{display:none}[data-panel].on{display:block;animation:panelIn .45s var(--ease-o)}
+@keyframes panelIn{from{opacity:0;transform:translateY(8px)}}
+
+/* faq */
+.faq{display:flex;flex-direction:column;gap:10px;max-width:880px}
+.fq{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);transition:border-color .2s}
+.fq.open{border-color:var(--line-2)}
+.fq button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;background:none;border:0;cursor:pointer;text-align:left;padding:18px 20px;font-weight:600;font-size:15px;color:var(--ink)}
+.fq button i{width:26px;height:26px;border-radius:50%;background:var(--chip);color:var(--blue);display:grid;place-items:center;flex-shrink:0;transition:transform .35s var(--ease-o),background .2s}
+.fq button i svg{width:12px;height:12px}
+.fq.open button i{transform:rotate(45deg);background:var(--blue);color:#fff}
+.fq .fa{max-height:0;overflow:hidden;transition:max-height .45s var(--ease-o)}
+.fq .fa p{padding:0 20px 20px;font-size:14.5px;color:var(--muted);line-height:1.7}
+
+/* CTA band */
+.cta{background:var(--blue);color:#fff;border-radius:24px;padding:44px;display:grid;grid-template-columns:1.4fr 1fr;gap:30px;align-items:center;position:relative;overflow:hidden}
+.cta h2{font-family:var(--f-serif);color:#fff;font-size:clamp(26px,3vw,36px);margin-bottom:10px}
+.cta p{color:#dbe6ff;font-size:15.5px}
+.cta .ca{display:flex;flex-direction:column;gap:10px;align-items:flex-start;position:relative;z-index:2}
+.cta .ring{position:absolute;right:-80px;top:-80px;width:280px;height:280px;border:2px solid rgba(255,255,255,.15);border-radius:50%;animation:ringP 6s var(--ease) infinite}
+.cta .ring.r2{width:420px;height:420px;right:-150px;top:-150px;animation-delay:1.5s}
+@keyframes ringP{50%{transform:scale(1.06);opacity:.6}}
+@media(max-width:820px){.cta{grid-template-columns:1fr;padding:32px}}
+
+/* ---------- forms + modal ---------- */
+.modal{position:fixed;inset:0;z-index:270;display:none;align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex}
+.modal .sc{position:absolute;inset:0;background:rgba(11,19,43,.6);animation:fadeIn .25s}
+.modal .mb{position:relative;width:min(520px,100%);max-height:calc(100vh - 40px);overflow-y:auto;background:var(--surface);border-radius:var(--r-l);box-shadow:var(--sh-l);animation:popIn .35s var(--ease-o)}
+.modal .mb.wide{width:min(720px,100%)}
+.modal .mh{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;padding:22px 24px 6px}
+.modal .mh h3{font-family:var(--f-serif);font-size:24px}
+.modal .mh p{font-size:13.5px;color:var(--muted);margin-top:4px}
+.modal .x{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--surface);cursor:pointer;display:grid;place-items:center;flex-shrink:0;color:var(--ink)}
+.modal .x svg{width:16px;height:16px}
+.modal .mc{padding:16px 24px 24px}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form .full{grid-column:1/-1}
+@media(max-width:520px){.form{grid-template-columns:1fr}}
+.fi label{display:block;font-size:12.5px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.fi input,.fi select,.fi textarea{width:100%;border:1.5px solid var(--line-2);background:var(--surface);border-radius:11px;padding:11px 13px;font-size:14px;color:var(--ink);outline:0;transition:border-color .2s,box-shadow .2s}
+.fi textarea{min-height:90px;resize:vertical}
+.fi input:focus,.fi select:focus,.fi textarea:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(0,102,255,.12)}
+.fi.err input,.fi.err select,.fi.err textarea{border-color:var(--red)}
+.fi .em{display:none;font-size:11.5px;color:var(--red);margin-top:5px}
+.fi.err .em{display:block}
+.form .fine{font-size:11.5px;color:var(--muted)}
+.done{text-align:center;padding:10px 0 6px}
+.done .dk{width:64px;height:64px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;margin:0 auto 14px;animation:popIn .5s var(--ease-o)}
+.done .dk svg{width:30px;height:30px}
+.done h4{font-family:var(--f-serif);font-size:22px;margin-bottom:6px}
+.done p{font-size:14px;color:var(--muted)}
+
+/* ---------- cart drawer ---------- */
+.cart{position:fixed;inset:0;z-index:265;pointer-events:none}
+.cart .sc{position:absolute;inset:0;background:rgba(11,19,43,.5);opacity:0;transition:opacity .3s}
+.cart .pn{position:absolute;top:0;right:0;bottom:0;width:min(420px,100vw);background:var(--surface);transform:translateX(100%);transition:transform .4s var(--ease-o);display:flex;flex-direction:column}
+.cart.open{pointer-events:auto}.cart.open .sc{opacity:1}.cart.open .pn{transform:none}
+.cart .ch{display:flex;justify-content:space-between;align-items:center;padding:20px 22px;border-bottom:1px solid var(--line)}
+.cart .ch h3{font-size:18px}.cart .ch span{font-family:var(--f-mono);font-size:11.5px;color:var(--muted)}
+.cart .ci{flex:1;overflow-y:auto;padding:16px 22px;display:flex;flex-direction:column;gap:12px}
+.cart .it{border:1px solid var(--line);border-radius:var(--r);padding:14px;animation:panelIn .35s var(--ease-o)}
+.cart .it .t{display:flex;justify-content:space-between;gap:10px}
+.cart .it b{font-size:14px;color:var(--ink)}
+.cart .it small{display:block;font-size:12px;color:var(--muted);margin-top:3px}
+.cart .it .rm{background:none;border:0;cursor:pointer;color:var(--muted);width:28px;height:28px;border-radius:8px;display:grid;place-items:center}
+.cart .it .rm:hover{background:var(--chip);color:var(--red)}
+.cart .it .rm svg{width:15px;height:15px}
+.cart .it .bt{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.cart .it .q{display:inline-flex;border:1px solid var(--line-2);border-radius:9px;overflow:hidden}
+.cart .it .q button{width:30px;height:30px;border:0;background:none;cursor:pointer;color:var(--ink)}
+.cart .it .q span{min-width:32px;display:grid;place-items:center;font-family:var(--f-mono);font-size:13px;border-left:1px solid var(--line);border-right:1px solid var(--line)}
+.cart .it .pz{font-family:var(--f-mono);font-weight:600;color:var(--ink)}
+.cart .empty{text-align:center;color:var(--muted);padding:50px 10px;font-size:14px}
+.cart .empty svg{width:46px;height:46px;margin:0 auto 12px;color:var(--line-2)}
+.cart .cf{padding:18px 22px 22px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.cart .cf .r{display:flex;justify-content:space-between;font-size:14px;color:var(--muted)}
+.cart .cf .r b{font-family:var(--f-mono);color:var(--ink)}
+.cart .cf .tt{font-size:16px;color:var(--ink);font-weight:700;padding-top:8px;border-top:1px dashed var(--line-2)}
+.cart .cf .tt b{font-size:18px}
+.cart .cf .btn{margin-top:6px}
+
+/* ---------- toast ---------- */
+.toast{position:fixed;left:50%;bottom:26px;z-index:400;transform:translate(-50%,30px);opacity:0;pointer-events:none;background:var(--navy);color:#fff;border-radius:12px;padding:12px 18px 12px 12px;display:flex;align-items:center;gap:10px;font-size:14px;box-shadow:var(--sh-l);transition:transform .4s var(--ease-o),opacity .3s}
+html[data-theme="dark"] .toast{background:#1E2A49}
+.toast.on{transform:translate(-50%,0);opacity:1}
+.toast i{width:26px;height:26px;border-radius:50%;background:var(--green);display:grid;place-items:center}
+.toast i svg{width:14px;height:14px}
+
+/* ---------- floating ---------- */
+.fab-wa{position:fixed;right:22px;bottom:22px;z-index:90;width:56px;height:56px;border-radius:50%;background:var(--wa);color:#fff;display:grid;place-items:center;box-shadow:0 14px 30px -10px rgba(37,211,102,.8);transition:transform .25s var(--ease-o)}
+.fab-wa:hover{transform:scale(1.08)}
+.fab-wa svg{width:28px;height:28px}
+.fab-wa:after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--wa);animation:waP 2.4s var(--ease) infinite}
+@keyframes waP{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.6);opacity:0}}
+.side-cb{position:fixed;right:0;top:50%;z-index:90;transform:translateY(-50%);writing-mode:vertical-rl;background:var(--orange);color:#fff;border:0;cursor:pointer;font-weight:700;font-size:13px;letter-spacing:.04em;padding:16px 9px;border-radius:12px 0 0 12px;box-shadow:-6px 10px 24px -12px rgba(255,138,0,.9);transition:padding .25s var(--ease-o)}
+.side-cb:hover{padding-right:13px}
+@media(max-width:620px){.side-cb{display:none}}
+
+/* ---------- footer (royal blue) ---------- */
+.ftr{background:var(--blue);color:#dbe6ff;padding:56px 0 26px;margin-top:0}
+html[data-theme="dark"] .ftr{background:#0047B3}
+.ftr a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.nl{background:#fff;color:var(--navy);border-radius:var(--r-l);padding:26px 28px;display:grid;grid-template-columns:1.2fr 1fr;gap:22px;align-items:center;margin-bottom:40px}
+.nl h3{font-family:var(--f-serif);font-size:23px;color:var(--navy)}
+.nl p{font-size:13.5px;color:#5B6782;margin-top:4px}
+.nl form{display:flex;gap:8px}
+.nl input{flex:1;min-width:0;border:1.5px solid #D3DCEB;border-radius:11px;padding:12px 14px;font-size:14px;outline:0;color:var(--navy);background:#fff}
+.nl input:focus{border-color:var(--blue)}
+@media(max-width:820px){.nl{grid-template-columns:1fr}}
+.ft-top{display:grid;grid-template-columns:330px 1fr;gap:36px;margin-bottom:34px}
+@media(max-width:960px){.ft-top{grid-template-columns:1fr}}
+.ft-brand .lgc{background:#fff;border-radius:var(--r);padding:16px 18px;display:inline-flex;margin-bottom:14px}
+.ft-brand .lgc .lw{color:var(--navy)}
+.ft-brand .tg{font-weight:600;color:#fff;font-size:14px;margin-bottom:4px}
+.ft-brand .tg2{font-family:var(--f-mono);font-size:11px;color:#c7d8ff;margin-bottom:12px}
+.ft-brand .sup24{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:7px 12px;font-size:12.5px;font-weight:600;color:#fff;margin-bottom:14px}
+.ft-brand .sup24 i{width:8px;height:8px;border-radius:50%;background:#5FE08D;animation:waP 2s infinite;position:relative}
+.ft-brand p{font-size:12.5px;line-height:1.7;color:#dbe6ff;margin-bottom:16px}
+.soc{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.soc a{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.14);display:grid;place-items:center;color:#fff;transition:background .2s,transform .2s}
+.soc a:hover{background:#fff;color:var(--blue);transform:translateY(-2px);text-decoration:none}
+.soc svg{width:16px;height:16px}
+.cvid{display:flex;gap:12px;align-items:center;background:rgba(11,19,43,.25);border-radius:12px;padding:10px;cursor:pointer;border:0;color:#fff;text-align:left;width:100%}
+.cvid .th{width:76px;height:46px;border-radius:8px;background:var(--navy);display:grid;place-items:center;flex-shrink:0}
+.cvid .th svg{width:20px;height:20px;color:#FF0000}
+.cvid b{font-size:13px;display:block}.cvid span{font-size:11.5px;color:#c7d8ff}
+.ft-rows{display:flex;flex-direction:column;gap:14px}
+.ft-row{display:grid;grid-template-columns:110px 1fr;gap:14px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.16)}
+.ft-row .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#fff;font-weight:600;padding-top:2px}
+.ft-row .v{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px}
+.ft-row .v a.hire{color:#fff;background:var(--red);padding:1px 8px;border-radius:6px;font-weight:600}
+@media(max-width:560px){.ft-row{grid-template-columns:1fr;gap:6px}}
+.ft-strip{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:center;padding:16px 0;border-top:1px solid rgba(255,255,255,.16)}
+.ft-strip .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#fff;font-weight:600}
+@media(max-width:700px){.ft-strip{grid-template-columns:1fr}}
+.tiles{display:flex;flex-wrap:wrap;gap:8px}
+.tile{background:#fff;color:var(--navy);border-radius:9px;padding:6px 10px;text-align:center;line-height:1.1;min-width:64px}
+.tile small{display:block;font-family:var(--f-mono);font-size:8.5px;letter-spacing:.1em;color:#5B6782}
+.tile b{font-family:var(--f-disp);font-size:13px;font-weight:800;color:var(--navy)}
+.tile.w{display:flex;align-items:center;gap:7px;font-weight:700;font-size:12.5px;padding:8px 12px}
+.tile .st{color:#f5a623;letter-spacing:1px}
+.partner{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;background:var(--navy);border-radius:var(--r-l);padding:24px 28px;margin:24px 0}
+.partner h3{color:#fff;font-family:var(--f-serif);font-size:22px}
+.partner p{font-size:13.5px;color:#B6C2DA;margin-top:3px}
+.ft-bot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:12px;color:#c7d8ff;padding-top:8px}
+.ft-bot .ids{display:flex;flex-wrap:wrap;gap:4px 14px;font-family:var(--f-mono);font-size:11px}
+
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}.hero [data-in]{opacity:1;transform:none}}
+
+@media(max-width:620px){.promo{font-size:12px}.promo .opt{display:none}}
+/* dark mode: keep navy icon tiles visible on dark surfaces */
+html[data-theme="dark"] [style*="background:#0B132B"],html[data-theme="dark"] [style*="background: #0B132B"]{background:#27355A!important}
+html[data-theme="dark"] .ft-brand .lgc .lw{color:#0B132B}
+
+/* =====================================================================
+   LIVE THEME — matches www.xcellhost.top product pages (xh-product-page)
+   Palette/type measured from the live Microsoft Entra ID page.
+   ===================================================================== */
+:root{
+  --blue:#1565D8;--blue-d:#0C3E8F;--navy:#041E42;--navy-2:#0A2A57;--orange:#FF8C1A;--orange-d:#F57C00;--red:#FF3B3B;
+  --green:#16a34a;--ok:#2ECC71;
+  --bg:#ffffff;--surface:#ffffff;--surface-2:#F2F6FC;--ink:#041E42;--text:#1C2A3A;--muted:#51607A;
+  --line:#DCE5F2;--line-2:#C9D8EE;--chip:#E8F0FD;
+  --hero:#041E42;--hero-muted:#c9d8f2;
+  --f-serif:"Sora",system-ui,sans-serif;--f-disp:"Sora",system-ui,sans-serif;--f-body:"IBM Plex Sans",system-ui,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,monospace;
+  --sh-s:0 6px 18px rgba(4,30,66,.06);--sh:0 18px 50px rgba(4,30,66,.10);--sh-l:0 34px 80px -20px rgba(4,30,66,.34);
+  --maxw:1240px;
+}
+html[data-theme="dark"]{--bg:#06122A;--surface:#0B1A38;--surface-2:#081630;--ink:#EAF1FF;--text:#C9D6EE;--muted:#93A4C4;--line:#1B2D52;--line-2:#243A66;--chip:#10244A}
+body{font-size:15px}
+h1,h2,h3,h4{color:var(--ink)}
+#xhProgress{background:linear-gradient(90deg,#1565D8,#FF8C1A);box-shadow:0 0 12px rgba(21,101,216,.6)}
+
+/* ---------- buttons (live: 8px radius) ---------- */
+.btn{border-radius:8px;font-size:14px;padding:11px 20px}
+.btn-sm{border-radius:8px}
+.btn-orange{background:#FF8C1A;box-shadow:0 10px 26px -10px rgba(255,140,26,.7)}
+.btn-orange:hover{background:#e97a08}
+.btn-blue{background:linear-gradient(135deg,#1565D8,#0C3E8F);box-shadow:0 14px 28px -12px rgba(21,101,216,.75)}
+.btn-line{border-color:rgba(255,255,255,.35);background:rgba(255,255,255,.08)}
+.btn-ghost{border-color:var(--line)}
+
+/* ---------- section headings → live mono labels ---------- */
+.sec{padding:30px 0}
+.sec.alt{background:transparent}
+.sec.tight{padding:26px 0}
+main > .sec:first-of-type{padding-top:44px}
+.sh{max-width:none;margin-bottom:18px}
+.sh .eyebrow{display:block;font:700 13px/1.35 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 10px;padding:0;background:none;border:0}
+.sh .eyebrow:before{content:none}
+.sh h2{font-family:var(--f-disp)!important;font-weight:800!important;font-size:clamp(24px,2.4vw,30px)!important;line-height:1.22!important;letter-spacing:-.02em!important;color:var(--ink)!important;margin:0 0 10px!important}
+.sh h2 .acc{color:var(--blue)!important;font-style:normal!important}
+.sh p{font-size:16px;color:var(--text);max-width:none;line-height:1.75}
+.sh.c{text-align:left}
+
+/* ---------- cards & icon tiles (live soft tiles) ---------- */
+.card{border-radius:18px;box-shadow:var(--sh-s)}
+.card:hover{box-shadow:var(--sh);border-color:#c9dcfb}
+.ico{width:40px;height:40px;border-radius:11px;background:var(--chip)!important;color:var(--blue)!important}
+.ico svg{width:20px;height:20px}
+.ico.o{background:#fff3e0!important;color:#F57C00!important}.ico.n{background:#eaeff9!important;color:#0A2A57!important}.ico.g{background:#e4f7ec!important;color:#16a34a!important}.ico.r{background:#fdecec!important;color:#d92d20!important}
+html[data-theme="dark"] .ico.o,html[data-theme="dark"] .ico.n,html[data-theme="dark"] .ico.g,html[data-theme="dark"] .ico.r{background:var(--chip)!important}
+.chip i{background:var(--blue)}
+.plan{border-radius:18px}
+.calc{border-radius:18px}
+.calc .cout{background:linear-gradient(160deg,#061634,#0c2b63 60%,#12408f)}
+.cta{background:linear-gradient(120deg,#041E42,#123776 60%,#1565D8)}
+.tbl th{font-size:11px}
+
+/* =========================== CHROME =========================== */
+/* utility bar */
+.ubar{background:#041E42}
+.ubar .ur .stat{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.08);display:grid;place-items:center;color:#5FE08D}
+.ubar .ur .stat svg{width:14px;height:14px}
+.ubar .lang-sel{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:99px;padding:3px 10px;color:#fff;font-size:12px;cursor:pointer}
+.ubar .lang-sel svg{width:13px;height:13px}
+.ubar .ph b{color:#9fb6de;font-weight:500;margin-right:6px}
+/* promo */
+.promo{background:linear-gradient(90deg,#1565D8,#0E4CAB);font-size:13px}
+.promo .tick{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:4px;background:#2ECC71;color:#fff;margin-right:6px;vertical-align:-3px}
+.promo .tick svg{width:11px;height:11px}
+.promo .tag{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);font-family:var(--f-mono)}
+/* header with image logo */
+.hdr{background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px)}
+html[data-theme="dark"] .hdr{background:rgba(6,18,42,.92)}
+.hdr .wrap{height:80px;max-width:1360px}
+.logo-img{display:block;flex-shrink:0;line-height:0}
+.logo-img img{height:64px;width:auto;display:block}
+.logo-img .alt{display:none;font-family:var(--f-disp);font-weight:800;font-size:22px;color:var(--ink)}
+.logo-img.noimg img{display:none}.logo-img.noimg .alt{display:block}
+html[data-theme="dark"] .logo-img img{background:#fff;border-radius:10px;padding:2px 6px}
+.nav>.ni>button{font-weight:500;color:var(--text)}
+.nav>.ni>button svg{width:9px;height:9px;opacity:.6}
+
+/* left contact stack (live) */
+.lfab{position:fixed;left:22px;bottom:22px;z-index:95;display:flex;flex-direction:column;gap:14px}
+.lfab a,.lfab button{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;color:#fff;border:0;cursor:pointer;box-shadow:0 12px 26px -10px rgba(4,30,66,.55);transition:transform .25s var(--ease-o)}
+.lfab a:hover,.lfab button:hover{transform:scale(1.08)}
+.lfab svg{width:26px;height:26px}
+.lfab .lf-call{background:linear-gradient(135deg,#1565D8,#0C3E8F)}
+.lfab .lf-cal{background:linear-gradient(135deg,#FF8C1A,#F57C00)}
+.lfab .lf-wa{background:#25D366}
+.fab-wa{display:none!important}
+/* right bottom: cart + bot */
+.rfab{position:fixed;right:22px;bottom:22px;z-index:95;display:flex;flex-direction:column;gap:14px;align-items:center}
+.rfab button{position:relative;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;color:#fff;border:0;cursor:pointer;box-shadow:0 12px 26px -10px rgba(4,30,66,.55);transition:transform .25s var(--ease-o)}
+.rfab button:hover{transform:scale(1.08)}
+.rfab svg{width:24px;height:24px}
+.rfab .rf-cart{background:linear-gradient(135deg,#1565D8,#0C3E8F)}
+.rfab .rf-bot{background:#0A2A57}
+.rfab .rf-bot .on{position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:50%;background:#2ECC71;border:2px solid #fff}
+.rfab .cnt{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;padding:0 5px;border-radius:99px;background:#FF8C1A;color:#fff;font:600 11px var(--f-mono);display:grid;place-items:center;transform:scale(0);transition:transform .3s var(--ease-o)}
+.rfab .cnt.on{transform:scale(1)}
+/* callback side tab (live gradient + phone) */
+.side-cb{background:linear-gradient(180deg,#FF8C1A,#F57C00);display:flex;align-items:center;gap:8px;padding:18px 10px}
+.side-cb svg{width:15px;height:15px;transform:rotate(90deg)}
+/* chatbot panel */
+.xbot{position:fixed;right:22px;bottom:150px;z-index:260;width:min(360px,calc(100vw - 32px));background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--sh-l);overflow:hidden;opacity:0;transform:translateY(12px) scale(.98);pointer-events:none;transition:opacity .25s,transform .35s var(--ease-o)}
+.xbot.open{opacity:1;transform:none;pointer-events:auto}
+.xbot .bh{background:linear-gradient(120deg,#041E42,#1565D8);color:#fff;padding:14px 16px;display:flex;align-items:center;gap:10px}
+.xbot .bh b{font-family:var(--f-disp);font-size:14px;display:block}.xbot .bh span{font-size:11.5px;color:#c9d8f2}
+.xbot .bh .x{margin-left:auto;background:rgba(255,255,255,.12);border:0;color:#fff;width:30px;height:30px;border-radius:8px;cursor:pointer}
+.xbot .bm{padding:14px 16px;display:flex;flex-direction:column;gap:10px;max-height:300px;overflow-y:auto}
+.xbot .msg{background:var(--surface-2);border:1px solid var(--line);border-radius:12px 12px 12px 4px;padding:10px 12px;font-size:13.5px;color:var(--text);max-width:88%}
+.xbot .msg.me{align-self:flex-end;background:#1565D8;color:#fff;border-color:#1565D8;border-radius:12px 12px 4px 12px}
+.xbot .qr{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 14px}
+.xbot .qr button,.xbot .qr a{font-size:12.5px;font-weight:600;border:1px solid var(--line-2);background:var(--surface);color:var(--blue);border-radius:99px;padding:7px 12px;cursor:pointer}
+.xbot .qr button:hover,.xbot .qr a:hover{border-color:var(--blue)}
+@media(max-width:620px){.lfab{left:12px;bottom:12px;gap:10px}.lfab a,.lfab button,.rfab button{width:48px;height:48px}.rfab{right:12px;bottom:12px}}
+
+/* =========================== LIVE HERO =========================== */
+.hero.lh{background:radial-gradient(900px 420px at 80% -20%,#0E3A78 0%,#041E42 60%);padding:50px 0 54px;min-height:510px}
+html[data-theme="dark"] .hero.lh{background:radial-gradient(900px 420px at 80% -20%,#0a2a5a 0%,#020b1f 60%)}
+.hero.lh .hero-bg .lh-grid{position:absolute;inset:0;opacity:.5;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:radial-gradient(760px 560px at 75% 30%,#000,transparent 72%);mask-image:radial-gradient(760px 560px at 75% 30%,#000,transparent 72%);animation:lhGrid 32s linear infinite}
+@keyframes lhGrid{to{background-position:48px 48px}}
+.hero.lh .hero-bg .lh-dots{position:absolute;inset:0;opacity:.55;background-image:radial-gradient(rgba(127,176,255,.55) 1.2px,transparent 1.3px);background-size:14px 14px;-webkit-mask-image:radial-gradient(520px 300px at 30% 45%,#000 20%,transparent 75%);mask-image:radial-gradient(520px 300px at 30% 45%,#000 20%,transparent 75%)}
+.hero.lh .hero-bg .lh-aur{position:absolute;border-radius:50%;filter:blur(70px);opacity:.38}
+.hero.lh .hero-bg .lh-aur.a1{width:420px;height:420px;background:radial-gradient(circle,#2f6bff,transparent 65%);top:-110px;right:6%;animation:lhA1 12s ease-in-out infinite}
+.hero.lh .hero-bg .lh-aur.a2{width:340px;height:340px;background:radial-gradient(circle,#ff8c1a,transparent 65%);bottom:-80px;right:28%;animation:lhA2 14s ease-in-out infinite}
+@keyframes lhA1{50%{transform:translate(-30px,24px) scale(1.12)}}
+@keyframes lhA2{50%{transform:translate(26px,-20px) scale(1.15)}}
+.hero.lh .hero-bg .lh-scan{position:absolute;left:0;right:0;height:120px;background:linear-gradient(180deg,transparent,rgba(90,150,255,.10),transparent);animation:lhScan 7s var(--ease) infinite}
+@keyframes lhScan{0%{top:-120px}100%{top:100%}}
+.hero.lh .crumb{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#7fb0ff;margin-bottom:14px}
+.hero.lh .crumb a:hover{color:#fff}.hero.lh .crumb .sep{margin:0 6px;color:#5a7db3}.hero.lh .crumb .c{color:#7fb0ff}
+.hero.lh .hero-grid{grid-template-columns:1.08fr 1fr;gap:40px;padding-bottom:0;align-items:center}
+.lh-title{font-family:var(--f-disp)!important;font-weight:800!important;font-size:clamp(30px,3.4vw,44px)!important;line-height:1.14!important;letter-spacing:-.025em!important;color:#fff!important;margin:0 0 14px!important;display:block}
+.lh-title .x{color:#FF3B3B}
+.lh-title .brd{color:#fff}
+.lh-title .dv{color:#7fb0ff;margin:0 .22em;font-weight:500}
+.lh-title .nm{color:#fff;display:block}
+.lh-tag{font-family:var(--f-disp);font-weight:700;font-size:16.5px;color:#fff;line-height:1.45;margin-bottom:2px}
+.lh-tag2{font-family:var(--f-disp);font-weight:600;font-size:15.5px;color:#dbe7fb;margin-bottom:16px}
+.lh-type{font-family:var(--f-disp);font-weight:700;font-size:16px;color:#9cc3ff;min-height:24px;margin-bottom:18px}
+.lh-type .cur{display:inline-block;width:2px;height:18px;background:#9cc3ff;margin-left:2px;vertical-align:-3px;animation:lhBlink 1s steps(2) infinite}
+@keyframes lhBlink{50%{opacity:0}}
+.lh-points{display:grid;grid-template-columns:1fr 1fr;gap:12px 20px;max-width:520px;margin-bottom:24px}
+.lh-points div{display:flex;align-items:center;gap:10px;font-size:14px;color:#eaf2ff}
+.lh-points .tk{width:20px;height:20px;border-radius:5px;background:#1565D8;display:grid;place-items:center;flex-shrink:0;box-shadow:0 0 0 3px rgba(21,101,216,.25)}
+.lh-points .tk svg{width:11px;height:11px;color:#fff}
+.lh-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.lh-ctas .btn-gl{background:rgba(255,255,255,.08);color:#fff;border:1.5px solid rgba(255,255,255,.35)}
+.lh-ctas .btn-gl:hover{background:rgba(255,255,255,.16);border-color:#fff}
+.lh-ask{display:inline-flex;align-items:center;gap:12px;flex-wrap:wrap;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:8px 10px 8px 14px}
+.lh-ask .k{font-family:var(--f-mono);font-size:11px;font-weight:600;letter-spacing:.06em;color:#fff}
+.lh-ask .k b{color:#FF8C1A;margin-right:4px}
+.lh-ask .chips{display:flex;gap:6px}
+.lh-ask a{width:30px;height:30px;border-radius:8px;background:#fff;display:grid;place-items:center;transition:transform .2s var(--ease-o),box-shadow .2s}
+.lh-ask a:hover{transform:translateY(-2px);box-shadow:0 8px 18px -8px rgba(0,0,0,.6)}
+.lh-ask a svg{width:18px;height:18px}
+.hero.lh .stage{min-height:400px}
+.lh-powered{position:absolute;left:4%;bottom:-8px;z-index:6;background:#0A1A3A;border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:8px 14px 9px;box-shadow:0 14px 30px -12px rgba(0,0,0,.7)}
+.lh-powered small{display:block;font-family:var(--f-mono);font-size:8.5px;letter-spacing:.16em;color:#9fb6de;text-transform:uppercase;margin-bottom:4px}
+.lh-powered>span{display:flex;align-items:center;gap:8px;font-family:var(--f-disp);font-weight:700;font-size:16px;color:#fff}
+.lh-powered .msq{display:grid;grid-template-columns:1fr 1fr;gap:2px;width:18px;height:18px}
+.lh-powered .msq i{display:block}
+@media(max-width:980px){.hero.lh .hero-grid{grid-template-columns:1fr}.hero.lh .stage{min-height:0;margin-top:18px}.lh-powered{position:relative;left:auto;bottom:auto;display:inline-block;margin-top:14px}}
+@media(max-width:560px){.lh-points{grid-template-columns:1fr}.lh-ctas .btn{flex:1 1 auto}.lh-ask{border-radius:12px}}
+
+/* trust strip (live) */
+.lh-trust{background:var(--surface-2);border-bottom:1px solid var(--line)}
+.lh-trust .wrap{display:flex;justify-content:space-between;gap:12px 22px;flex-wrap:wrap;padding:14px 24px;font-size:12.5px;color:var(--muted)}
+.lh-trust b{font-family:var(--f-mono);color:var(--ink);font-weight:600}
+@media(max-width:760px){.lh-trust .wrap{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;white-space:nowrap}}
+
+/* live body primitives */
+.pp-sec{font:700 15px/1.35 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 14px}
+.pp-ov{font-size:16px;color:var(--text);line-height:1.75}
+.pp-ov b{color:var(--ink)}
+.pp-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px 46px}
+@media(max-width:820px){.pp-cols{grid-template-columns:1fr}}
+.prov-strip{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:22px}
+.prov-lbl{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+.prov{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-disp);font-weight:700;font-size:13.5px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:7px 15px 7px 8px;box-shadow:0 4px 12px -8px rgba(4,18,42,.4)}
+.prov .pl{width:24px;height:24px;border-radius:6px;display:grid;place-items:center;color:#fff;flex-shrink:0}
+.prov .pl svg{width:14px;height:14px}
+.prov .pl .msq{display:grid;grid-template-columns:1fr 1fr;gap:1.5px;width:14px;height:14px}.prov .pl .msq i{display:block}
+/* 3-card explainer (live vcard) */
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:900px){.vgrid{grid-template-columns:1fr}}
+.vcard{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:var(--sh-s);transition:transform .35s var(--ease-o),box-shadow .35s,border-color .3s}
+.vcard:hover{transform:translateY(-6px);box-shadow:var(--sh);border-color:#c9dcfb}
+.vcard .vb{display:inline-flex;align-items:center;gap:7px;font-family:var(--f-mono);font-size:12px;font-weight:600;padding:6px 12px;border-radius:99px;margin-bottom:16px;background:var(--chip);color:var(--blue)}
+.vcard .vb svg{width:13px;height:13px}
+.vcard.b2 .vb{background:#eaeff9;color:#2b4a8f}.vcard.b3 .vb{background:#fff3e0;color:#F57C00}
+.vcard h3{font-size:18px;margin-bottom:8px}
+.vcard p{font-size:13.5px;color:var(--muted);margin-bottom:18px;line-height:1.6}
+.vcard ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.vcard li{display:flex;gap:9px;align-items:flex-start;font-size:13px;color:var(--text)}
+.vcard li i{width:18px;height:18px;border-radius:50%;background:#e4f7ec;color:#16a34a;display:grid;place-items:center;flex-shrink:0;margin-top:1px}
+.vcard li i svg{width:10px;height:10px}
+
+/* dark Microsoft plan card (live ez-card) */
+.ez-wrap{display:grid;grid-template-columns:minmax(0,380px) 1fr;gap:26px;align-items:start}
+@media(max-width:900px){.ez-wrap{grid-template-columns:1fr}}
+.ez-card{position:relative;background:#0B1730;border:1px solid #1e2e52;border-radius:16px;padding:22px 20px 20px;color:#fff;box-shadow:0 24px 50px -24px rgba(4,30,66,.8);overflow:hidden}
+.ez-card .ez-off{position:absolute;top:0;right:0;background:#FF8C1A;color:#fff;font:700 10px var(--f-mono);letter-spacing:.08em;padding:5px 12px;border-radius:0 16px 0 10px}
+.ez-card .ez-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.ez-card .ez-ms{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-disp);font-weight:700;font-size:15px}
+.ez-card .ez-ms .msq{display:grid;grid-template-columns:1fr 1fr;gap:2px;width:18px;height:18px}.ez-card .ez-ms .msq i{display:block}
+.ez-card .ez-ext{color:#7fb0ff}.ez-card .ez-ext svg{width:15px;height:15px}
+.ez-card .ez-fam{font:600 10.5px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:#7fb0ff}
+.ez-card h3{color:#fff;font-size:18px;margin:6px 0 4px}
+.ez-card .ez-sku{font:400 10.5px var(--f-mono);color:#7d8fb3;margin-bottom:16px}
+.ez-card .ez-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#b9c9e2;padding:8px 0}
+.ez-card .ez-row s{font-family:var(--f-mono);color:#8ea2c6}
+.ez-card .ez-gst{text-align:right;font:400 10px var(--f-mono);color:#7d8fb3;margin:-6px 0 8px}
+.ez-card .ez-pr{display:flex;justify-content:space-between;align-items:center;padding:7px 0}
+.ez-card .ez-tag{font:700 9.5px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:6px}
+.ez-card .ez-tag.m{background:#1565D8;color:#fff}.ez-card .ez-tag.y{background:#FF8C1A;color:#fff}
+.ez-card .ez-amt{font-family:var(--f-disp);font-weight:800;font-size:24px;color:#fff;letter-spacing:-.02em}
+.ez-card .ez-save{display:flex;justify-content:space-between;align-items:center;background:rgba(46,204,113,.08);border:1px solid rgba(46,204,113,.35);border-radius:10px;padding:10px 12px;margin:14px 0 16px;font-size:12px;color:#b9c9e2}
+.ez-card .ez-save b{color:#5FE08D;font-family:var(--f-mono);font-size:11.5px}
+.ez-card .ez-q{display:flex;align-items:center;background:#fff;border-radius:8px;overflow:hidden;margin-bottom:12px}
+.ez-card .ez-q button{width:44px;height:38px;border:0;background:#1565D8;color:#fff;font-size:18px;cursor:pointer}
+.ez-card .ez-q button:first-child{background:#51607A}
+.ez-card .ez-q input{flex:1;height:38px;border:0;text-align:center;font:600 14px var(--f-mono);color:#041E42;background:#fff;outline:0}
+.ez-card .ez-cta{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;margin-bottom:12px}
+.ez-card .ez-cta a{display:inline-flex;align-items:center;gap:6px;color:#dbe7fb;font-weight:600}
+.ez-card .ez-cta a.q{color:#7fb0ff}
+.ez-card .ez-cta svg{width:13px;height:13px}
+.ez-card .ez-buy{width:100%;border:0;cursor:pointer;background:linear-gradient(135deg,#1565D8,#0C3E8F);color:#fff;font-weight:700;font-size:14px;padding:12px;border-radius:9px;box-shadow:0 12px 24px -12px rgba(21,101,216,.9);transition:transform .2s}
+.ez-card .ez-buy:hover{transform:translateY(-2px)}
+.ez-note{font:400 11.5px var(--f-mono);color:var(--muted);margin-top:14px}
+
+/* dark proof band (live "certified team" band) */
+.dband{background:linear-gradient(120deg,#041E42,#0E2F66 60%,#1350B0);border-radius:20px;padding:30px;display:grid;grid-template-columns:repeat(3,1fr);gap:0;color:#fff;position:relative;overflow:hidden;box-shadow:var(--sh-l)}
+.dband>div{display:flex;gap:14px;align-items:flex-start;padding:16px 20px;border-right:1px solid rgba(255,255,255,.12);position:relative}
+.dband>div:nth-child(3n){border-right:0}
+.dband>div:nth-child(n+4){border-top:1px solid rgba(255,255,255,.12)}
+.dband i{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center;flex-shrink:0;color:#9cc3ff}
+.dband i svg{width:20px;height:20px}
+.dband b{display:block;font-family:var(--f-disp);font-size:15px;color:#fff;margin-bottom:4px}
+.dband p{font-size:12.5px;color:#c9d8f2;line-height:1.55}
+.dband .n{position:absolute;right:14px;top:10px;font-family:var(--f-mono);font-weight:600;font-size:11px;color:rgba(255,255,255,.35)}
+@media(max-width:860px){.dband{grid-template-columns:1fr}.dband>div{border-right:0;border-top:1px solid rgba(255,255,255,.12)}.dband>div:first-child{border-top:0}}
+
+/* video (live "watch it in action") */
+.lvid{max-width:640px;margin:0 auto;text-align:center}
+.lvid .lbl{display:inline-block;font:600 12px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);border-radius:99px;padding:8px 16px;margin-bottom:16px;color:var(--ink);background:var(--surface)}
+.lvid .fr{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#0B1730;box-shadow:var(--sh-l);cursor:pointer;display:grid;place-items:center}
+.lvid .fr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.lvid .fr .pb{position:relative;width:68px;height:48px;border-radius:12px;background:#FF0000;display:grid;place-items:center;transition:transform .2s}
+.lvid .fr:hover .pb{transform:scale(1.08)}
+.lvid .fr .pb svg{width:22px;height:22px;color:#fff}
+.lvid .fr .cap{position:absolute;left:14px;right:14px;top:12px;text-align:left;color:#fff;font-family:var(--f-disp);font-weight:700;font-size:15px;text-shadow:0 2px 8px rgba(0,0,0,.6)}
+.lvid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* live CTA + proof strip */
+.lcta{background:linear-gradient(120deg,#0E3A8F,#1565D8 55%,#2a7bf0);border-radius:20px;padding:30px 34px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;color:#fff;box-shadow:var(--sh-l);position:relative;overflow:hidden}
+.lcta h2{color:#fff!important;font-family:var(--f-disp)!important;font-size:24px!important;margin-bottom:6px!important;text-transform:none!important;letter-spacing:-.01em!important}
+.lcta .sub{font-size:13.5px;color:#dbe7fb;margin-bottom:18px}
+.lcta .row{display:flex;flex-wrap:wrap;gap:10px}
+.lcta .row .btn{padding:10px 16px;font-size:13px}
+.lcta .row .b-w{background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.35);color:#fff}
+.lcta .row .b-w:hover{background:rgba(255,255,255,.22)}
+.lcta .seal{width:120px;height:120px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 0 0 6px rgba(255,255,255,.18);overflow:hidden}
+.lcta .seal img{width:100%;height:100%;object-fit:cover}
+.lcta .seal .sl{font:700 10px var(--f-mono);color:#1565D8;text-align:center;padding:10px;display:none}
+.lcta .seal.noimg img{display:none}.lcta .seal.noimg .sl{display:block}
+@media(max-width:760px){.lcta{grid-template-columns:1fr}.lcta .seal{display:none}}
+.proof{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:18px}
+.proof span{font:600 11.5px var(--f-mono);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:7px 14px}
+
+/* ============================ LIVE FOOTER ============================ */
+.lnl{position:relative;z-index:2;max-width:860px;margin:30px auto -110px;background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--sh-l);padding:24px 26px;text-align:center}
+.lnl h3{display:flex;align-items:center;justify-content:center;gap:10px;font-size:17px;margin-bottom:8px}
+.lnl h3 svg{width:20px;height:20px;color:#F57C00}
+.lnl p{font-size:13px;color:var(--muted);margin-bottom:16px}
+.lnl form{display:flex;gap:10px;margin-bottom:22px}
+.lnl input{flex:1;min-width:0;border:1.5px solid var(--line-2);border-radius:10px;padding:12px 14px;font-size:14px;background:var(--surface);color:var(--ink);outline:0}
+.lnl input:focus{border-color:#1565D8}
+.lnl .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.lnl .two a{display:flex;align-items:center;justify-content:center;gap:8px;color:#fff;font-weight:600;font-size:13.5px;border-radius:10px;padding:12px}
+.lnl .two a svg{width:17px;height:17px}
+.lnl .two .w{background:#25D366}.lnl .two .l{background:#1565D8}
+@media(max-width:620px){.lnl{margin:30px 16px -110px}.lnl form{flex-direction:column}.lnl .two{grid-template-columns:1fr}}
+.lft{background:linear-gradient(160deg,#1350C8 0%,#1565D8 45%,#1d74ee 100%);color:#e6efff;padding:150px 0 30px}
+html[data-theme="dark"] .lft{background:linear-gradient(160deg,#0a2f7a,#0f4bb0)}
+.lft a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.lft .top{display:grid;grid-template-columns:1.35fr 1fr;gap:26px;margin-bottom:26px}
+@media(max-width:900px){.lft .top{grid-template-columns:1fr}}
+.lft .bnr{background:#fff;border-radius:14px;padding:10px 14px;display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.lft .bnr img.lg{height:56px;width:auto}
+.lft .bnr .tx{flex:1;color:#041E42;font-size:12.5px;line-height:1.5}
+.lft .bnr .tx b{display:block;font-size:13px}
+.lft .bnr .tx em{font-style:normal;color:#1565D8;font-weight:700}
+.lft .bnr img.bd{width:58px;height:58px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.lft .co{font-size:12.5px;line-height:1.75;color:#e6efff}
+.lft .co b{color:#fff}
+.lft .soc{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.lft .soc a{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.16);display:grid;place-items:center;color:#fff}
+.lft .soc a:hover{background:#fff;color:#1565D8;text-decoration:none}
+.lft .soc svg{width:16px;height:16px}
+.lft .cv h3{font-family:var(--f-disp);color:#fff;font-size:24px;margin-bottom:12px}
+.lft .cv .fr{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#0B1730;cursor:pointer;display:grid;place-items:center}
+.lft .cv .fr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.lft .cv .fr .pb{position:relative;width:60px;height:42px;border-radius:10px;background:#FF0000;display:grid;place-items:center}
+.lft .cv .fr .pb svg{width:20px;height:20px;color:#fff}
+.lft .cv iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.lft .rows{display:flex;flex-direction:column;gap:10px;margin-bottom:22px}
+.lft .row{display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:baseline}
+.lft .row .k{font-family:var(--f-disp);font-weight:700;color:#fff;font-size:14px}
+.lft .row .v{display:flex;flex-wrap:wrap;gap:4px 18px;font-size:12.5px}
+.lft .row .v a:before{content:"›";margin-right:6px;opacity:.7}
+.lft .row .v a.hire{background:#e5383b;color:#fff;border-radius:6px;padding:2px 10px;font-weight:700}
+.lft .row .v a.hire:before{content:none}
+@media(max-width:620px){.lft .row{grid-template-columns:1fr;gap:4px}}
+.lft .strip{display:grid;grid-template-columns:140px 1fr;gap:14px;align-items:center;padding:12px 0}
+.lft .strip .k{font-family:var(--f-disp);font-weight:700;color:#fff;font-size:14px}
+@media(max-width:700px){.lft .strip{grid-template-columns:1fr}}
+.lft .tiles{display:flex;flex-wrap:wrap;gap:8px}
+.lft .tl{background:#fff;color:#041E42;border-radius:8px;min-width:64px;padding:0 7px;height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;line-height:1.05;box-shadow:0 6px 14px -8px rgba(0,0,0,.35)}
+.lft .tl small{font:600 7.5px var(--f-mono);letter-spacing:.1em;color:#51607A}
+.lft .tl b{font-family:var(--f-disp);font-weight:800;font-size:12px;color:#041E42}
+.lft .tl em{font:600 6.5px var(--f-mono);letter-spacing:.08em;color:#8a98b2;font-style:normal;text-transform:uppercase}
+.lft .pay{background:#fff;border-radius:7px;padding:6px 10px;font:800 11px var(--f-disp);color:#041E42;min-width:64px;text-align:center}
+.lft .prot{background:#fff;border-radius:8px;height:46px;padding:4px 8px;display:flex;align-items:center}
+.lft .prot img{height:36px;width:auto}
+.lft .prot .pt{font:800 11px var(--f-disp);color:#041E42}
+.lft .rev{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:760px){.lft .rev{grid-template-columns:1fr}}
+.lft .rev div{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:10px 14px;display:flex;gap:10px;align-items:center}
+.lft .rev i{width:30px;height:30px;border-radius:7px;display:grid;place-items:center;color:#fff;font-style:normal;font-weight:800;font-size:13px;flex-shrink:0}
+.lft .rev b{display:block;color:#fff;font-size:13px}
+.lft .rev span>span{font:500 10.5px var(--f-mono);color:#ffd27a}
+.lft .grow{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;background:rgba(4,30,66,.35);border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:18px 22px;margin:22px 0}
+.lft .grow b{font-family:var(--f-disp);font-size:18px;color:#fff}
+.lft .grow span{display:block;font-size:12.5px;color:#c9d8f2}
+.lft .bot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12px;color:#c9d8f2;border-top:1px solid rgba(255,255,255,.18);padding-top:16px}
+.lft .bot .ids{font-family:var(--f-mono);font-size:11px}
+.lft img.broken{display:none}
+.lnl-wrap{position:relative;z-index:2;padding:0 16px}
+.lnl .fi input{width:100%}
+.lnl .fi{margin:0}
+.lh-ask .chips{flex-wrap:wrap}
+.lh-ask a{width:auto;height:28px;padding:0 10px;border-radius:7px;font:700 11.5px var(--f-disp);color:#041E42;gap:6px;display:inline-flex;align-items:center}
+.lh-ask a i{width:8px;height:8px;border-radius:50%;display:block}
+.lh-ask a[data-ai=chatgpt] i{background:#10a37f}.lh-ask a[data-ai=claude] i{background:#d97757}.lh-ask a[data-ai=perplexity] i{background:#20808d}.lh-ask a[data-ai=google] i{background:#4285f4}.lh-ask a[data-ai=copilot] i{background:#7b61ff}
+
+/* hyper-motion layer for live hero */
+.hero.lh .hero-bg canvas.lh-net{position:absolute;inset:0;width:100%;height:100%;opacity:.9}
+.hero.lh .stage{position:relative;perspective:1200px}
+.hero.lh .stage>.lh-tilt{transform-style:preserve-3d;transition:transform .5s var(--ease-o);will-change:transform}
+.lh-orbit{position:absolute;left:50%;top:50%;width:560px;height:560px;margin:-280px 0 0 -280px;border-radius:50%;border:1px dashed rgba(127,176,255,.22);pointer-events:none;animation:lhSpin 60s linear infinite}
+.lh-orbit.o2{width:440px;height:440px;margin:-220px 0 0 -220px;border-style:solid;border-color:rgba(255,140,26,.14);animation-duration:38s;animation-direction:reverse}
+.lh-orbit:before,.lh-orbit:after{content:"";position:absolute;width:10px;height:10px;border-radius:50%;background:#7fb0ff;box-shadow:0 0 14px 4px rgba(127,176,255,.6);top:-5px;left:50%}
+.lh-orbit:after{top:auto;bottom:-5px;background:#FF8C1A;box-shadow:0 0 14px 4px rgba(255,140,26,.55)}
+.lh-orbit.o2:before{background:#5FE08D;box-shadow:0 0 12px 3px rgba(95,224,141,.5)}
+@keyframes lhSpin{to{transform:rotate(360deg)}}
+.lh-chip{position:absolute;z-index:5;display:flex;align-items:center;gap:8px;background:rgba(10,26,58,.88);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(8px);color:#fff;border-radius:12px;padding:8px 12px;font:600 12px var(--f-disp);box-shadow:0 16px 30px -14px rgba(0,0,0,.7);animation:lhFloat 6s ease-in-out infinite}
+.lh-chip i{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;background:#1565D8}
+.lh-chip i svg{width:13px;height:13px}
+.lh-chip small{display:block;font:500 10px var(--f-mono);color:#9fb6de}
+.lh-chip.c2{animation-delay:-3s}.lh-chip.c2 i{background:#FF8C1A}
+@keyframes lhFloat{50%{transform:translateY(-10px)}}
+@media(max-width:1100px){.lh-chip{display:none}}
+@media(max-width:980px){.lh-orbit{display:none}}
+.rfab .rf-cart{box-shadow:0 0 0 3px rgba(255,255,255,.85),0 12px 26px -10px rgba(4,30,66,.55)}
+@media(max-width:760px){.ubar .ur .stat,.ubar .lang-sel,.ubar .ph b{display:none}}
+.hero.lh .stage{padding-bottom:62px}@media(max-width:980px){.hero.lh .stage{padding-bottom:0}}
+/* dark-mode fixes for live primitives */
+html[data-theme="dark"] .ico.n{color:#9cc3ff!important}html[data-theme="dark"] .ico.o{color:#FFB15C!important}html[data-theme="dark"] .ico.g{color:#5FE08D!important}html[data-theme="dark"] .ico.r{color:#ff8a80!important}html[data-theme="dark"] .ico{color:#7fb0ff!important}
+html[data-theme="dark"] .vcard .vb{background:#10244A;color:#9cc3ff}html[data-theme="dark"] .vcard.b2 .vb{background:#14264a;color:#b9c9e2}html[data-theme="dark"] .vcard.b3 .vb{background:rgba(255,140,26,.14);color:#FFB15C}
+html[data-theme="dark"] .vcard li i{background:rgba(46,204,113,.14);color:#5FE08D}
+html[data-theme="dark"] .vcard:hover{border-color:#2b4d8a}
+.ez-card .ez-save{gap:10px}.ez-card .ez-save b{white-space:nowrap;flex-shrink:0}.ez-card .ez-save>span{min-width:0}
+/* perf: composite hero bg layers instead of repainting every frame */
+.hero.lh .hero-bg .lh-grid{background-image:none!important;animation:none!important;overflow:hidden}
+.hero.lh .hero-bg .lh-grid:before{content:"";position:absolute;inset:-48px 0 0 -48px;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:48px 48px;animation:lhGridT 32s linear infinite;will-change:transform}
+@keyframes lhGridT{to{transform:translate3d(48px,48px,0)}}
+.hero.lh .hero-bg .lh-aur{will-change:transform;transform:translateZ(0)}
+.hero.lh .hero-bg .lh-scan{will-change:transform;top:0!important;animation:lhScanT 7s var(--ease) infinite}
+@keyframes lhScanT{0%{transform:translateY(-120px)}100%{transform:translateY(700px)}}
+@media(prefers-reduced-motion:reduce){.hero.lh .hero-bg .lh-grid:before{animation:none}}
+.hero.lh .hero-bg .lh-aur{filter:none!important;opacity:.3}
+.hero.lh .hero-bg .lh-aur.a1{background:radial-gradient(circle,rgba(47,107,255,.9),rgba(47,107,255,.25) 40%,transparent 70%)!important}
+.hero.lh .hero-bg .lh-aur.a2{background:radial-gradient(circle,rgba(255,140,26,.85),rgba(255,140,26,.2) 40%,transparent 70%)!important}
+
+/* ===== page ===== */
+/* ===== XcellBilling | No TDS on Software Purchases — blue #0066FF · navy #0B132B · orange #FF8A00 ===== */
+#main{--blue:#0066FF;--navy:#0B132B;--orange:#FF8A00;--td-n2:#111A38;--td-ln:rgba(255,255,255,.12);--td-tx:#E9EFFB;--td-mu:rgba(233,239,251,.64);--td-g:#16a34a}
+.td-or{background:#FF8A00;color:#fff;border:0;box-shadow:0 12px 26px -12px rgba(255,138,0,.8)}
+.td-or:hover{background:#FF8A00;color:#fff;filter:brightness(1.06)}
+.td-or .ar{display:inline-block;transition:transform .3s var(--ease-o)}.td-or:hover .ar{transform:translateX(4px)}
+.td-or svg{width:16px;height:16px}
+.td-mag{will-change:transform;transition:transform .35s var(--ease-o),box-shadow .3s,filter .2s}
+.paused,.paused *{animation-play-state:paused!important}
+.lh-chip i{background:#0066FF}.lh-chip.c2 i{background:#FF8A00}
+
+/* ---------------- HERO ---------------- */
+.hero.lh.td-hero{background:#0B132B;padding:24px 0 30px;min-height:0}
+html[data-theme="dark"] .hero.lh.td-hero{background:#070C1D}
+.td-hero .hero-bg .lh-aur.a1{background:radial-gradient(circle,#0066FF,transparent 65%)!important;opacity:.26;left:auto;right:6%}
+.td-hero .hero-bg .lh-aur.a2{background:radial-gradient(circle,#FF8A00,transparent 65%)!important;opacity:.08;right:auto;left:2%}
+.td-hero .hero-bg .lh-dots{opacity:.16}
+.td-hero .hero-bg canvas.lh-net{opacity:.28}
+/* own background layer: faint ledger rules drifting */
+.td-ledger{position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:.5}
+.td-ledger span{position:absolute;left:0;right:0;height:1px;background:rgba(143,184,255,.09)}
+.td-ledger span:nth-child(1){top:12%}.td-ledger span:nth-child(2){top:24%}.td-ledger span:nth-child(3){top:36%}.td-ledger span:nth-child(4){top:48%}.td-ledger span:nth-child(5){top:60%}.td-ledger span:nth-child(6){top:72%}.td-ledger span:nth-child(7){top:84%}.td-ledger span:nth-child(8){top:96%}
+.td-ledger span:after{content:"";position:absolute;top:-1px;left:0;width:90px;height:3px;border-radius:2px;background:rgba(0,102,255,.55);animation:tdRule 14s linear infinite;will-change:transform}
+.td-ledger span:nth-child(2n):after{animation-duration:19s;animation-delay:-6s;background:rgba(255,138,0,.4)}
+.td-ledger span:nth-child(3):after{animation-delay:-3s}.td-ledger span:nth-child(5):after{animation-delay:-9s}.td-ledger span:nth-child(7):after{animation-delay:-11s}
+@keyframes tdRule{from{transform:translateX(-120px)}to{transform:translateX(100vw)}}
+.td-hero .crumb{margin-bottom:12px}.td-hero .crumb .c{color:#fff}
+.td-top{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:26px 40px;align-items:center}
+.td-copy{min-width:0}
+.td-hero .lh-title{font-size:clamp(27px,2.5vw,37px)!important}
+.td-hero .lh-title .dv{color:#FF8A00}
+.td-hero .lh-tag{font-size:17.5px;color:#fff;margin-bottom:8px}
+.td-hero .lh-tag2{font:500 14.5px/1.62 var(--f-body);color:#c4d0ea;max-width:590px}
+.td-hero .lh-type{color:#8fb8ff}.td-hero .lh-type .cur{background:#FF8A00}
+.td-pts{margin:16px 0 18px;max-width:590px}
+.td-pts .tk{background:rgba(0,102,255,.28)!important;color:#8fb8ff!important;box-shadow:none!important}
+.td-pts .tk svg{color:#8fb8ff!important}
+.td-ctas .btn-gl svg{width:15px;height:15px}
+.td-hdis{display:flex;gap:10px;align-items:flex-start;margin:16px 0 0;max-width:590px;padding:10px 14px;border-radius:12px;background:rgba(255,138,0,.1);border:1px solid rgba(255,138,0,.38);font-size:13px;line-height:1.55;color:#f1dcc2}
+.td-hdis svg{width:17px;height:17px;flex-shrink:0;color:#FF8A00;margin-top:1px}.td-hdis b{color:#fff}
+.td-base{margin-top:20px}
+.td-stage{position:relative;min-width:0;padding:44px 0 4px}
+.td-stage .lh-chip{z-index:7}
+.td-ch1{top:0;left:-10px}.td-ch2{top:0;right:18px}
+.td-rig{position:relative;border-radius:16px;background:#0A1230;border:1px solid rgba(143,184,255,.22);box-shadow:0 40px 90px -40px rgba(0,0,0,.95),inset 0 1px 0 rgba(255,255,255,.06);overflow:hidden}
+.td-rig:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:#0066FF;opacity:.85;z-index:2}
+.td-bz{display:flex;align-items:center;gap:12px;padding:9px 16px 9px 18px;background:#0E1838;border-bottom:1px solid var(--td-ln);font:500 11px var(--f-mono);color:var(--td-mu);letter-spacing:.05em}
+.td-bays{display:flex;gap:4px;flex-shrink:0}
+.td-bays i{display:block;width:9px;height:9px;border-radius:50%;background:#18244B;border:1px solid rgba(143,184,255,.25)}
+.td-bays i:nth-child(1){background:#FF8A00}.td-bays i:nth-child(2){background:#0066FF}.td-bays i:nth-child(3){background:#16a34a}
+.td-bid{display:flex;align-items:center;gap:9px;white-space:nowrap;min-width:0;flex:1}.td-bid b{color:#fff;font-weight:600;letter-spacing:.16em}.td-bid em{font-style:normal;color:rgba(233,239,251,.45);overflow:hidden;text-overflow:ellipsis}
+.td-bt{color:#FF8A00;font-weight:600;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.td-scr{position:relative;aspect-ratio:560/340;overflow:hidden;touch-action:pan-y;background:#091029;cursor:grab}
+.td-cv{position:absolute;left:0;top:0;width:560px;height:340px;transform-origin:0 0;transform:scale(var(--k,1))}
+.td-pause{position:absolute;left:12px;bottom:10px;display:inline-flex;align-items:center;gap:6px;font:600 10px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:#fff;background:rgba(11,19,43,.85);border:1px solid var(--td-ln);border-radius:20px;padding:4px 10px;opacity:0;transition:opacity .25s;z-index:5}
+.td-pause svg{width:11px;height:11px}
+.td-rig.hold .td-pause{opacity:1}
+.td-dots{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;padding:10px 12px;background:#0E1838;border-top:1px solid var(--td-ln)}
+.td-dots button{position:relative;display:flex;align-items:center;justify-content:center;gap:6px;min-width:0;padding:8px 6px;border-radius:9px;border:1px solid var(--td-ln);background:transparent;color:var(--td-mu);font:600 11.5px var(--f-ui);cursor:pointer;overflow:hidden;transition:background .25s,color .25s,border-color .25s}
+.td-dots button svg{width:14px;height:14px;flex-shrink:0}
+.td-dots button span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.td-dots button:hover{color:#fff;border-color:rgba(143,184,255,.4)}
+.td-dots button.on{background:#0066FF;border-color:#0066FF;color:#fff}
+.td-dots button s{position:absolute;left:0;bottom:0;height:3px;width:100%;background:#FF8A00;transform:scaleX(0);transform-origin:0 50%;text-decoration:none}
+
+/* scenes (drawn at 560×340, scaled) */
+.td-sc{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .55s var(--ease-o),visibility 0s .55s}
+.td-sc.on{opacity:1;visibility:visible;transition:opacity .55s var(--ease-o),visibility 0s}
+.td-sc *{box-sizing:border-box}
+.td-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px;vertical-align:1px}.td-dot.b{background:#0066FF}.td-dot.o{background:#FF8A00}
+/* s0 invoice */
+.td-inv{position:absolute;left:30px;top:10px;width:500px;height:292px;background:#fff;border-radius:6px;box-shadow:0 22px 50px -20px rgba(0,0,0,.8);color:#0B132B;padding:16px 20px;font-family:var(--f-body);transform:translateY(14px) rotate(-.6deg);transition:transform .9s var(--ease-o)}
+.td-sc.on .td-inv{transform:none}
+.td-ih{display:flex;justify-content:space-between;gap:12px;padding-bottom:10px;border-bottom:2px solid #0B132B}
+.td-ih b{display:block;font:800 15px var(--f-disp);letter-spacing:.06em}.td-ih em{display:block;font-style:normal;font-size:10.5px;color:#51607A;margin-top:2px}
+.td-ino{text-align:right;font:600 11px var(--f-mono);color:#0B132B}.td-ino em{font-family:var(--f-mono);font-size:9.5px}
+.td-it{margin-top:8px}
+.td-ir{display:flex;justify-content:space-between;font-size:12.5px;padding:6px 2px;border-bottom:1px solid #e6eaf2;opacity:0;transform:translateX(-8px);transition:opacity .45s,transform .45s var(--ease-o)}
+.td-ir span:last-child{font-family:var(--f-mono);font-weight:600}
+.td-ir.hd{font:700 9.5px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:#51607A}
+.td-ir.mu{color:#51607A}.td-ir.tt{font-weight:700;border-bottom:0}
+.td-sc.on .td-ir{opacity:1;transform:none}
+.td-sc.on .td-ir:nth-child(2){transition-delay:.15s}.td-sc.on .td-ir:nth-child(3){transition-delay:.3s}.td-sc.on .td-ir:nth-child(4){transition-delay:.45s}.td-sc.on .td-ir:nth-child(5){transition-delay:.6s}
+.td-ift{position:absolute;left:20px;right:20px;bottom:14px;border-top:1px dashed #b9c3d6;padding-top:8px;font-size:10px;line-height:1.5;color:#0B132B}
+.td-hl{position:relative;display:block;padding:4px 6px;border-radius:3px}
+.td-hl:before{content:"";position:absolute;inset:0;background:rgba(255,138,0,.24);border-left:3px solid #FF8A00;border-radius:3px;transform:scaleX(0);transform-origin:0 50%;transition:transform 1.1s var(--ease-o) 1s;z-index:0}
+.td-hl b{font-weight:800}
+.td-hl>*,.td-hl{z-index:1}
+.td-sc.on .td-hl:before{transform:scaleX(1)}
+.td-tag{position:absolute;display:inline-flex;align-items:center;gap:6px;font:700 10.5px var(--f-mono);letter-spacing:.05em;color:#fff;background:#0066FF;border-radius:20px;padding:5px 11px;box-shadow:0 10px 22px -10px rgba(0,102,255,.9);opacity:0;transform:translateY(8px);transition:opacity .4s 1.9s,transform .5s var(--ease-o) 1.9s}
+.td-tag svg{width:12px;height:12px}
+.td-tag.t0{right:40px;bottom:6px}
+.td-sc.on .td-tag{opacity:1;transform:none}
+/* s1 chain */
+.td-chn{position:absolute;left:0;top:0;width:560px;height:340px}
+.td-nd{position:absolute;top:70px;width:104px;height:104px;border-radius:16px;background:#111A38;border:1px solid rgba(143,184,255,.25);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;opacity:0;transform:scale(.85);transition:opacity .45s,transform .6s var(--ease-o)}
+.td-nd i{width:34px;height:34px;border-radius:10px;background:rgba(0,102,255,.25);display:grid;place-items:center;color:#8fb8ff;margin-bottom:4px}
+.td-nd i svg{width:18px;height:18px}
+.td-nd b{font:700 13px var(--f-ui)}.td-nd em{font:500 9.5px var(--f-mono);font-style:normal;color:var(--td-mu);letter-spacing:.04em}
+.td-nd.n0{left:22px}.td-nd.n1{left:160px}.td-nd.n2{left:298px}.td-nd.n3{left:436px}
+.td-nd.n2{border-color:#0066FF;box-shadow:0 0 0 3px rgba(0,102,255,.2)}.td-nd.n2 i{background:#0066FF;color:#fff}
+.td-nd.n3 i{background:rgba(22,163,74,.25);color:#6ee7a0}
+.td-sc.on .td-nd{opacity:1;transform:none}
+.td-sc.on .td-nd.n1{transition-delay:.15s}.td-sc.on .td-nd.n2{transition-delay:.3s}.td-sc.on .td-nd.n3{transition-delay:.45s}
+.td-ln{position:absolute;top:121px;height:2px;width:34px;background:rgba(143,184,255,.6);transform:scaleX(0);transform-origin:0 50%;transition:transform .5s var(--ease-o)}
+.td-ln:after{content:"";position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid rgba(143,184,255,.8);border-right:0}
+.td-ln.l0{left:126px}.td-ln.l1{left:264px}.td-ln.l2{left:402px;background:#16a34a}.td-ln.l2:after{border-left-color:#16a34a}
+.td-sc.on .td-ln{transform:scaleX(1)}
+.td-sc.on .td-ln.l0{transition-delay:.7s}.td-sc.on .td-ln.l1{transition-delay:1.5s}.td-sc.on .td-ln.l2{transition-delay:2.3s}
+.td-lt{position:absolute;top:190px;width:132px;text-align:center;font:600 10.5px/1.4 var(--f-mono);color:#ffc98a;background:rgba(255,138,0,.12);border:1px solid rgba(255,138,0,.4);border-radius:8px;padding:6px 4px;opacity:0;transform:translateY(6px);transition:opacity .4s,transform .45s var(--ease-o)}
+.td-lt.q0{left:77px}.td-lt.q1{left:215px;color:#b9d2ff;background:rgba(0,102,255,.12);border-color:rgba(0,102,255,.45)}.td-lt.q2{left:353px}
+.td-lt.g{color:#7ee2a6;background:rgba(22,163,74,.13);border-color:rgba(22,163,74,.5)}
+.td-sc.on .td-lt.q0{opacity:1;transform:none;transition-delay:.9s}.td-sc.on .td-lt.q1{opacity:1;transform:none;transition-delay:1.7s}.td-sc.on .td-lt.q2{opacity:1;transform:none;transition-delay:2.5s}
+.td-pk{position:absolute;top:40px;left:58px;width:30px;height:30px;border-radius:8px;background:#FF8A00;color:#fff;display:grid;place-items:center;box-shadow:0 8px 18px -8px rgba(255,138,0,.9);opacity:0;transition:opacity .3s}
+.td-pk svg{width:16px;height:16px}
+.td-sc.on .td-pk{opacity:1;animation:tdPk 2.6s var(--ease-o) .5s both}
+@keyframes tdPk{0%{transform:translateX(0)}30%{transform:translateX(138px)}62%{transform:translateX(276px)}100%{transform:translateX(414px)}}
+.td-seal{position:absolute;left:226px;top:236px;width:108px;height:92px;display:flex;align-items:center;gap:8px;color:#FF8A00;opacity:0;transform:scale(1.5) rotate(-14deg);transition:opacity .3s 3s,transform .55s cubic-bezier(.3,1.6,.5,1) 3s}
+.td-seal svg{width:58px;height:58px;flex-shrink:0}
+.td-seal span{font:800 10px/1.25 var(--f-mono);letter-spacing:.1em;color:#FF8A00;white-space:nowrap}
+.td-sc.on .td-seal{opacity:1;transform:rotate(-6deg)}
+.td-seal{left:196px;width:170px}
+/* s2 checklist */
+.td-ck{position:absolute;left:44px;top:22px;width:472px;height:296px;background:#111A38;border:1px solid rgba(143,184,255,.22);border-radius:14px;padding:16px 18px;color:#fff}
+.td-ckh{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:10px;border-bottom:1px solid var(--td-ln);margin-bottom:6px}
+.td-ckh b{font:700 13.5px var(--f-ui)}.td-ckh em{font:500 10px var(--f-mono);font-style:normal;color:var(--td-mu)}
+.td-cr{display:flex;gap:12px;align-items:flex-start;padding:10px 4px;border-bottom:1px solid rgba(255,255,255,.07)}
+.td-cr b{display:block;font:700 13px var(--f-ui);margin-bottom:2px}.td-cr em{display:block;font-style:normal;font-size:11.5px;color:var(--td-mu);line-height:1.4}
+.td-bx{width:24px;height:24px;border-radius:7px;border:2px solid rgba(143,184,255,.45);flex-shrink:0;display:grid;place-items:center;color:#fff;transition:background .3s,border-color .3s}
+.td-bx svg{width:14px;height:14px;opacity:0;transform:scale(.4);transition:opacity .25s,transform .4s cubic-bezier(.3,1.6,.5,1)}
+.td-sc.on .td-bx{background:#16a34a;border-color:#16a34a}
+.td-sc.on .td-bx svg{opacity:1;transform:none}
+.td-sc.on .c0 .td-bx,.td-sc.on .c0 .td-bx svg{transition-delay:.5s}.td-sc.on .c1 .td-bx,.td-sc.on .c1 .td-bx svg{transition-delay:1.3s}.td-sc.on .c2 .td-bx,.td-sc.on .c2 .td-bx svg{transition-delay:2.1s}
+.td-ckr{margin-top:14px;display:flex;align-items:center;gap:8px;font:700 12.5px var(--f-ui);color:#fff;background:#0066FF;border-radius:10px;padding:10px 12px;opacity:0;transform:translateY(8px);transition:opacity .4s 2.8s,transform .5s var(--ease-o) 2.8s}
+.td-ckr svg{width:16px;height:16px}
+.td-sc.on .td-ckr{opacity:1;transform:none}
+/* s3 books */
+.td-bk{position:absolute;left:36px;top:20px;width:488px;height:300px;background:#fff;color:#0B132B;border-radius:8px;padding:14px 18px;box-shadow:0 22px 50px -20px rgba(0,0,0,.8)}
+.td-bkh{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid #0B132B;padding-bottom:8px;margin-bottom:4px}
+.td-bkh b{font:800 14px var(--f-disp)}.td-bkh em{font:500 10px var(--f-mono);font-style:normal;color:#51607A}
+.td-br{display:grid;grid-template-columns:1.3fr .9fr 1.1fr;align-items:center;gap:8px;font-size:12.5px;padding:8px 2px}
+.td-br.hd{font:700 9.5px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:#51607A;padding:6px 2px;border-bottom:1px solid #e6eaf2}
+.td-br span:nth-child(2){font-family:var(--f-mono);font-weight:600}
+.td-br.r0,.td-br.r1{opacity:0;transition:opacity .45s}
+.td-sc.on .td-br.r0{opacity:1;transition-delay:.2s}.td-sc.on .td-br.r1{opacity:1;transition-delay:1s}
+.td-pl{display:inline-block;font:700 10.5px var(--f-mono);border-radius:20px;padding:3px 9px;white-space:nowrap}
+.td-pl.g{background:rgba(22,163,74,.13);color:#0f7a37}.td-pl.o{background:rgba(255,138,0,.16);color:#a35400}.td-pl.n{background:rgba(0,102,255,.1);color:#0047b3}
+.td-bb{height:8px;border-radius:5px;background:#eef1f7;margin:0 2px 8px;overflow:hidden}
+.td-bb s{display:block;height:100%;border-radius:5px;transform:scaleX(0);transform-origin:0 50%;transition:transform 1s var(--ease-o)}
+.td-bb .b0{background:#0066FF;width:100%}.td-bb .b1{background:#FF8A00;width:50%}
+.td-sc.on .td-bb .b0{transform:scaleX(1);transition-delay:.4s}.td-sc.on .td-bb .b1{transform:scaleX(1);transition-delay:1.2s}
+.td-bf{display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding:10px 12px;border-radius:9px;background:#0B132B;color:#fff;font-size:12px;opacity:0;transform:translateY(6px);transition:opacity .4s 2s,transform .5s var(--ease-o) 2s}
+.td-bf b{font:700 14px var(--f-mono);color:#FFB866}
+.td-sc.on .td-bf{opacity:1;transform:none}
+.td-bn{display:block;font:500 9.5px var(--f-mono);font-style:normal;color:#51607A;margin-top:7px}
+/* s4 file */
+.td-fl{position:absolute;left:0;top:0;width:560px;height:340px}
+.td-fd{position:absolute;left:60px;top:58px;width:440px;height:250px;border-radius:6px 14px 14px 14px;background:#111A38;border:1px solid rgba(143,184,255,.25)}
+.td-ftab{position:absolute;left:-1px;top:-26px;font:600 10px var(--f-mono);letter-spacing:.06em;color:#fff;background:#0066FF;padding:6px 12px;border-radius:8px 8px 0 0}
+.td-dc{position:absolute;top:94px;width:98px;height:160px;background:#fff;color:#0B132B;border-radius:8px;padding:14px 10px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;box-shadow:0 16px 30px -14px rgba(0,0,0,.8);opacity:0;transform:translateY(-60px) rotate(-6deg);transition:opacity .35s,transform .7s cubic-bezier(.3,1.35,.5,1)}
+.td-dc i{width:38px;height:38px;border-radius:10px;background:rgba(0,102,255,.12);color:#0066FF;display:grid;place-items:center;margin-bottom:6px}
+.td-dc i svg{width:20px;height:20px}
+.td-dc b{font:700 12px/1.25 var(--f-ui);min-height:30px;display:flex;align-items:center}.td-dc em{font:500 9.5px var(--f-mono);font-style:normal;color:#51607A}
+.td-dc:after{content:"";position:absolute;left:18px;right:18px;bottom:12px;height:2px;background:#e6eaf2;box-shadow:0 -6px 0 #e6eaf2}
+.td-dc.d0{left:80px}.td-dc.d1{left:184px}.td-dc.d2{left:288px}.td-dc.d3{left:392px}
+.td-dc.d1 i,.td-dc.d3 i{background:rgba(255,138,0,.14);color:#c76a00}
+.td-sc.on .td-dc{opacity:1}
+.td-sc.on .td-dc.d0{transform:rotate(-3deg);transition-delay:.2s}.td-sc.on .td-dc.d1{transform:rotate(1.5deg);transition-delay:.6s}.td-sc.on .td-dc.d2{transform:rotate(-1.5deg);transition-delay:1s}.td-sc.on .td-dc.d3{transform:rotate(3deg);transition-delay:1.4s}
+.td-stamp{position:absolute;right:36px;top:24px;font:800 18px var(--f-mono);letter-spacing:.16em;color:#16a34a;border:3px solid #16a34a;border-radius:8px;padding:4px 12px;opacity:0;transform:scale(1.8) rotate(-18deg);transition:opacity .25s 2.2s,transform .5s cubic-bezier(.3,1.6,.5,1) 2.2s;background:rgba(11,19,43,.7)}
+.td-sc.on .td-stamp{opacity:1;transform:rotate(-8deg)}
+/* reduced motion: final state */
+.td-rm .td-sc *,.td-rm .td-sc{transition:none!important;animation:none!important}
+.td-rm .td-sc.on .td-pk{transform:translateX(414px)}
+
+/* sub nav */
+.td-sub{position:sticky;top:80px;z-index:60;box-shadow:0 8px 20px -18px rgba(11,19,43,.5);background:var(--surface);border-bottom:1px solid var(--line)}
+.td-sub .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-top:6px;padding-bottom:6px}
+.td-sub .wrap::-webkit-scrollbar{display:none}
+.td-sub a{flex-shrink:0;font:600 12.5px var(--f-ui);color:var(--muted);padding:8px 12px;border-radius:8px;white-space:nowrap}
+.td-sub a:hover{color:var(--ink);background:var(--surface-2)}
+.td-sub a.on{color:#fff;background:#0066FF}
+
+/* ---------------- DECLARATION ---------------- */
+.td-dx{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:22px;align-items:stretch}
+.td-foot{position:relative;background:#fff;border:1px solid #d9dfeb;border-radius:14px;padding:26px 26px 20px;box-shadow:var(--sh-s);color:#0B132B}
+.td-foot:before{content:"";position:absolute;left:26px;right:26px;top:0;border-top:2px dashed #b9c3d6}
+.td-fk{display:inline-block;font:700 11px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:#51607A;margin-bottom:12px}
+.td-vb{font:600 15px/1.95 var(--f-body);color:#0B132B;margin:0 0 16px}
+.td-ph{display:inline;font:inherit;color:inherit;background:rgba(0,102,255,.08);border:0;border-bottom:2px solid rgba(0,102,255,.45);border-radius:3px;padding:1px 3px;cursor:pointer;text-align:left;transition:background .2s,color .2s,border-color .2s;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.td-ph:hover{background:rgba(0,102,255,.16)}
+.td-ph.on{background:#0066FF;color:#fff;border-bottom-color:#0B132B}
+.td-ph:focus-visible{outline:2px solid #FF8A00;outline-offset:2px}
+.td-pan{display:inline-flex;align-items:center;gap:8px;font:600 12px var(--f-mono);color:#51607A;background:#f4f6fb;border-radius:8px;padding:7px 10px;flex-wrap:wrap}
+.td-pan svg{width:15px;height:15px;color:#0066FF}.td-pan b{color:#0B132B}
+.td-mean{position:relative;background:#0B132B;color:#fff;border-radius:14px;padding:24px 24px 70px;box-shadow:var(--sh-m)}
+.td-mk{font:600 11px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:#FFB866}
+.td-mean h3{font:700 18px/1.35 var(--f-disp);margin:8px 0 10px;color:#fff}
+.td-mean p{font-size:14.5px;line-height:1.7;color:#d7e1f5;margin:0 0 10px}
+.td-mean .td-mn{font-size:13px;color:#aebbd6;border-left:3px solid #FF8A00;padding-left:10px}
+.td-mean .td-mn b{color:#fff}
+.td-mean.sw h3,.td-mean.sw p{animation:tdIn .35s var(--ease-o)}
+@keyframes tdIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.td-mnav{position:absolute;right:20px;bottom:18px;display:flex;gap:8px}
+.td-ib{width:36px;height:36px;border-radius:10px;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;display:grid;place-items:center;cursor:pointer;transition:background .2s}
+.td-ib:hover{background:#0066FF;border-color:#0066FF}.td-ib svg{width:16px;height:16px}
+
+/* ---------------- CONDITIONS ---------------- */
+.td-cg{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.td-cc{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px 22px 20px;box-shadow:var(--sh-s);transition:transform .35s var(--ease-o),box-shadow .35s,border-color .3s}
+.td-cc:hover{transform:translateY(-4px);box-shadow:var(--sh-m);border-color:rgba(0,102,255,.45)}
+.td-cn{position:absolute;right:18px;top:14px;font:800 30px var(--f-disp);color:rgba(0,102,255,.14);font-style:italic}
+.td-ci{width:44px;height:44px;border-radius:12px;background:#0066FF;color:#fff;display:grid;place-items:center;margin-bottom:14px}
+.td-ci.o{background:#FF8A00}.td-ci svg{width:22px;height:22px}
+.td-cc h3{font:700 17px/1.35 var(--f-disp);color:var(--ink);margin:0 0 8px}
+.td-cc p{font-size:14.5px;line-height:1.7;color:var(--text);margin:0 0 14px}
+.td-cl{display:inline-flex;align-items:center;gap:6px;font:600 11px var(--f-mono);color:var(--muted)}.td-cl svg{width:13px;height:13px;color:#0066FF}
+.td-def{display:flex;gap:16px;align-items:flex-start;margin-top:20px;padding:18px 20px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line)}
+.td-def>i{width:40px;height:40px;border-radius:11px;background:#0B132B;color:#fff;display:grid;place-items:center;flex-shrink:0}
+html[data-theme="dark"] .td-def>i{background:#0066FF}
+.td-def>i svg{width:20px;height:20px}
+.td-def p{margin:0;font-size:14.5px;line-height:1.7;color:var(--text)}.td-def b{color:var(--ink)}
+
+/* ---------------- LINES TABLE ---------------- */
+.td-tw{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--sh-s)}
+.td-tb{width:100%;border-collapse:collapse;font-size:14px}
+.td-tb th{text-align:left;font:700 11px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:#fff;background:#0B132B;padding:12px 16px}
+.td-tb td{padding:14px 16px;border-top:1px solid var(--line);vertical-align:top;color:var(--text);line-height:1.55}
+.td-tb td b{color:var(--ink)}
+.td-tb td small{display:block;font-size:12px;color:var(--muted);margin-top:4px}
+.td-tb tbody tr:first-child td{background:rgba(0,102,255,.05)}
+.td-tb tbody tr:hover td{background:var(--surface-2)}
+.td-tb td:nth-child(1){width:30%}.td-tb td:nth-child(4){width:10%}
+html[data-theme="dark"] .td-pl.g{background:rgba(22,163,74,.22);color:#7ee2a6}
+html[data-theme="dark"] .td-pl.o{background:rgba(255,138,0,.2);color:#ffc27a}
+html[data-theme="dark"] .td-pl.n{background:rgba(0,102,255,.25);color:#b9d2ff}
+.td-bk .td-pl.g{background:rgba(22,163,74,.13)!important;color:#0f7a37!important}.td-bk .td-pl.o{background:rgba(255,138,0,.16)!important;color:#a35400!important}
+.td-flag{display:flex;gap:10px;align-items:flex-start;margin:0;padding:14px 16px;border-top:1px solid var(--line);background:var(--surface-2);font-size:13px;line-height:1.6;color:var(--text)}
+.td-flag svg{width:16px;height:16px;color:#FF8A00;flex-shrink:0;margin-top:2px}
+
+/* ---------------- CHECKER ---------------- */
+.td-chk{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:22px;align-items:start}
+.td-qs{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--sh-s);display:flex;flex-direction:column;gap:16px}
+#main .fld .lb{display:block;font:600 13.5px var(--f-ui);color:var(--ink);margin-bottom:8px}
+#main .fld .lb em{font:500 10.5px var(--f-mono);font-style:normal;color:#FF8A00;margin-left:6px;text-transform:uppercase;letter-spacing:.06em}
+#main .td-seg button{white-space:normal;line-height:1.3}
+#main .td-seg button.on{background:#0066FF;color:#fff;box-shadow:0 6px 14px -8px rgba(0,102,255,.9)}
+#main .td-seg button:focus-visible{outline:2px solid #FF8A00;outline-offset:1px}
+.td-res{position:sticky;top:calc(var(--td-top,130px) + 16px);background:#0B132B;color:#fff;border-radius:16px;padding:22px;box-shadow:var(--sh-m);border-top:4px solid #16a34a;transition:border-color .3s}
+.td-res.warn{border-top-color:#FF8A00}
+.td-rk{font:600 10.5px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:#FFB866}
+.td-rv{display:flex;gap:12px;align-items:center;margin:12px 0 14px}
+.td-rv i{width:44px;height:44px;border-radius:12px;background:#16a34a;display:grid;place-items:center;flex-shrink:0;transition:background .3s}
+.td-res.warn .td-rv i{background:#FF8A00}
+.td-rv i svg{width:22px;height:22px;color:#fff}
+.td-rv b{font:700 18px/1.3 var(--f-disp)}
+.td-rv.sw b{animation:tdIn .35s var(--ease-o)}
+.td-rl{list-style:none;margin:0 0 16px;padding:0;display:flex;flex-direction:column;gap:9px}
+.td-rl li{display:flex;gap:9px;align-items:flex-start;font-size:13.5px;line-height:1.55;color:#d7e1f5}
+.td-rl li i{width:20px;height:20px;border-radius:6px;display:grid;place-items:center;flex-shrink:0;margin-top:1px;background:rgba(22,163,74,.25);color:#7ee2a6}
+.td-rl li.x i{background:rgba(255,138,0,.22);color:#ffc27a}
+.td-rl li i svg{width:12px;height:12px}
+
+/* ---------------- CALCULATOR ---------------- */
+.td-cal{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:22px;align-items:start}
+.td-cin{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--sh-s);display:flex;flex-direction:column;gap:18px}
+.td-in{width:100%;border:1.5px solid var(--line-2);background:var(--surface);border-radius:11px;padding:11px 13px;font:600 15px var(--f-mono);color:var(--ink);outline:0;transition:border-color .2s,box-shadow .2s}
+.td-in:focus{border-color:#0066FF;box-shadow:0 0 0 4px rgba(0,102,255,.14)}
+.td-in.sm{width:90px;padding:8px 10px;font-size:14px}
+.td-rrow{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:13px;color:var(--muted)}
+.td-hint{display:block;margin-top:8px;font-size:12.5px;line-height:1.55;color:var(--muted)}
+.td-gst{font:700 16px var(--f-mono);color:var(--ink)}.td-gst small{font:500 12px var(--f-body);color:var(--muted);margin-left:8px}
+.td-cout{background:#0B132B;color:#fff;border-radius:16px;padding:22px;box-shadow:var(--sh-m)}
+.td-ok{font:600 10.5px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:#FFB866;display:block;margin-bottom:10px}
+.td-crow{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.09);font-size:14px;color:#d7e1f5}
+.td-crow b{font:600 14.5px var(--f-mono);color:#fff;white-space:nowrap}
+.td-crow.tt b{color:#fff;font-weight:700}
+.td-crow.ds b{color:#FFB866}
+.td-crow b.fl{animation:tdFl .5s var(--ease-o)}
+@keyframes tdFl{from{opacity:.3;transform:translateY(-3px)}to{opacity:1;transform:none}}
+.td-split{display:flex;height:10px;border-radius:6px;overflow:hidden;margin:16px 0 6px;background:rgba(255,255,255,.08)}
+.td-split s{display:block;height:100%;text-decoration:none;transition:flex-grow .6s var(--ease-o);flex:0 0 0}
+#bSw{background:#0066FF}#bSv{background:#FF8A00}#bG{background:#8fa3c7}
+.td-pay{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px;padding:14px 16px;border-radius:12px;background:#0066FF}
+.td-pay span{font:600 13.5px var(--f-ui)}.td-pay b{font:700 22px var(--f-mono);color:#fff;white-space:nowrap}
+.td-cf{display:block;margin-top:12px;font-size:12px;line-height:1.55;color:#aebbd6}
+
+/* ---------------- ON FILE ---------------- */
+.td-fg{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.td-fc{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 20px;box-shadow:var(--sh-s);transition:transform .35s var(--ease-o),box-shadow .35s}
+.td-fc:hover{transform:translateY(-4px);box-shadow:var(--sh-m)}
+.td-fc>i{width:42px;height:42px;border-radius:12px;background:#0066FF;color:#fff;display:grid;place-items:center;margin-bottom:14px}
+.td-fc>i.o{background:#FF8A00}.td-fc>i svg{width:21px;height:21px}
+.td-fc h3{font:700 16px/1.35 var(--f-disp);color:var(--ink);margin:0 0 8px}
+.td-fc p{font-size:14px;line-height:1.65;color:var(--text);margin:0}.td-fc p b{color:var(--ink);font-weight:600;font-size:13px}
+
+/* ---------------- ACT 2025 ---------------- */
+.td-ac{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:22px;align-items:start}
+.td-al{display:flex;flex-direction:column;gap:12px}
+.td-ai{display:flex;gap:14px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-left:4px solid #16a34a;border-radius:12px;padding:14px 16px}
+.td-ai.u{border-left-color:#FF8A00}
+.td-as{display:inline-flex;align-items:center;gap:6px;flex-shrink:0;width:128px;font:700 11px var(--f-mono);letter-spacing:.04em;text-transform:uppercase;color:#0f7a37;padding-top:2px}
+.td-ai.u .td-as{color:#b35d00}
+html[data-theme="dark"] .td-as{color:#7ee2a6}html[data-theme="dark"] .td-ai.u .td-as{color:#ffc27a}
+.td-as svg{width:14px;height:14px}
+.td-ai p{margin:0;font-size:14.5px;line-height:1.65;color:var(--text)}
+.td-ab{background:#0B132B;color:#fff;border-radius:16px;padding:24px;box-shadow:var(--sh-m)}
+.td-ab>i{width:44px;height:44px;border-radius:12px;background:#FF8A00;display:grid;place-items:center;margin-bottom:12px}.td-ab>i svg{width:22px;height:22px;color:#fff}
+.td-ab h3{font:700 18px var(--f-disp);margin:0 0 10px;color:#fff}
+.td-ab p{font-size:15px;line-height:1.7;color:#d7e1f5;margin:0 0 12px}
+.td-ab small{font:500 11px var(--f-mono);color:#aebbd6}
+
+/* ---------------- REQUEST ---------------- */
+.td-rq{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:30px;box-shadow:var(--sh-m)}
+.td-rqh .eyebrow{display:block;font:700 13px/1.35 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:#0066FF;margin:0 0 10px;padding:0;background:none;border:0}
+.td-rqh .eyebrow:before{content:none}
+.td-rqh h2{font-family:var(--f-disp)!important;font-weight:800!important;font-size:clamp(23px,2.2vw,28px)!important;line-height:1.22!important;color:var(--ink)!important;margin:0 0 10px!important}
+.td-rqh h2 .acc{color:#0066FF!important;font-style:normal!important}
+.td-rqh p{font-size:15px;line-height:1.7;color:var(--text)}
+.td-rqi{list-style:none;padding:0;margin:16px 0 0;display:flex;flex-direction:column;gap:10px}
+.td-rqi li{display:flex;align-items:center;gap:10px;font:600 14px var(--f-mono);color:var(--ink)}
+.td-rqi i{width:32px;height:32px;border-radius:9px;background:var(--chip);color:#0066FF;display:grid;place-items:center}.td-rqi i svg{width:16px;height:16px}
+.td-form .fi label small{font-weight:500;color:var(--muted)}
+.td-fa{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+#request .done{grid-column:1/-1}
+
+/* ---------------- CTA / RELATED ---------------- */
+#main .td-lcta{background:#0066FF}
+#main .td-lcta .seal .sl{color:#0066FF}
+.td-xs{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.td-xs a{display:flex;flex-direction:column;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;color:var(--ink);transition:transform .3s var(--ease-o),border-color .3s,box-shadow .3s;position:relative}
+.td-xs a:hover{transform:translateY(-3px);border-color:#0066FF;box-shadow:var(--sh-m)}
+.td-xs a>i{width:36px;height:36px;border-radius:10px;background:#0066FF;color:#fff;display:grid;place-items:center}.td-xs a>i.o{background:#FF8A00}.td-xs a>i svg{width:18px;height:18px}
+.td-xs small{display:block;font-size:12px;color:var(--muted)}.td-xs b{display:block;font:700 14.5px var(--f-ui);margin-top:2px}
+.td-xs em{position:absolute;right:14px;top:14px;font-style:normal;color:#0066FF}
+.td-src{margin-top:26px;background:var(--surface-2);border:1px solid var(--line);border-radius:16px;padding:22px 24px}
+.td-src h3{display:flex;align-items:center;gap:8px;font:700 16px var(--f-disp);color:var(--ink);margin:0 0 12px}.td-src h3 svg{width:18px;height:18px;color:#0066FF}
+.td-src ol{margin:0 0 16px;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:13.5px;line-height:1.6;color:var(--text)}
+.td-src a{color:#0066FF;text-decoration:underline;text-underline-offset:2px;overflow-wrap:anywhere}
+html[data-theme="dark"] .td-src a{color:#8fb8ff}
+.td-disc{display:flex;gap:10px;align-items:flex-start;margin:0;padding:14px 16px;border-radius:12px;background:rgba(255,138,0,.1);border:1px solid rgba(255,138,0,.4);font-size:13px;line-height:1.6;color:var(--text)}
+.td-disc svg{width:16px;height:16px;color:#FF8A00;flex-shrink:0;margin-top:2px}.td-disc b{color:var(--ink)}
+
+/* dark mode: white "paper" stays paper; frame it */
+html[data-theme="dark"] .td-foot{border-color:#2a3558}
+html[data-theme="dark"] .td-mean,html[data-theme="dark"] .td-res,html[data-theme="dark"] .td-cout,html[data-theme="dark"] .td-ab{background:#0F1A3A;border:1px solid rgba(143,184,255,.2)}
+html[data-theme="dark"] .td-res{border-top:4px solid #16a34a}html[data-theme="dark"] .td-res.warn{border-top-color:#FF8A00}
+html[data-theme="dark"] .td-tb th{background:#0F1A3A}
+html[data-theme="dark"] .td-tb tbody tr:first-child td{background:rgba(0,102,255,.12)}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media(max-width:1100px){.td-xs{grid-template-columns:repeat(3,1fr)}.td-fg{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:980px){
+  .td-top{grid-template-columns:1fr}
+  .td-stage{max-width:640px}
+  .td-dx,.td-chk,.td-cal,.td-ac,.td-rq{grid-template-columns:1fr}
+  .td-res{position:relative;top:auto}
+  .td-cg{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+  .td-tw{border:0;background:transparent;box-shadow:none;overflow:visible}
+  .td-tb thead{display:none}
+  .td-tb,.td-tb tbody,.td-tb tr,.td-tb td{display:block;width:auto!important}
+  .td-tb tr{background:var(--surface);border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden}
+  .td-tb td{border-top:0;padding:8px 14px}
+  .td-tb td:first-child{padding-top:14px}
+  .td-tb td:nth-child(2):before{content:"Typically: ";font-weight:600;color:var(--muted)}
+  .td-tb td:nth-child(4):before{content:"GST: ";font-weight:600;color:var(--muted)}
+  .td-tb td:last-child{padding-bottom:14px}
+  .td-flag{border:1px solid var(--line);border-radius:14px}
+  .td-ai{flex-direction:column;gap:6px}.td-as{width:auto}
+}
+@media(max-width:560px){
+  .td-hero .lh-title{font-size:26px!important}
+  .td-hero .lh-tag{font-size:16px}
+  .td-ch1{left:0}.td-ch2{right:0}
+  .td-stage{padding-top:50px}
+  .td-stage .lh-chip{font-size:11px}
+  .td-bid{display:none}
+  .td-dots{grid-template-columns:repeat(5,1fr);gap:4px;padding:8px}
+  .td-dots button{padding:8px 4px}.td-dots button span{display:none}
+  .td-fg,.td-xs{grid-template-columns:1fr}
+  .td-rq{padding:20px}
+  .td-foot{padding:22px 16px 16px}.td-foot:before{left:16px;right:16px}
+  .td-vb{font-size:14px}
+  .td-pay b{font-size:19px}
+  .form.td-form{grid-template-columns:1fr}
+}
+
+</style><style>html,body{margin:0;padding:0;overflow-x:hidden}main{display:flow-root}.rv{opacity:1!important;transform:none!important}.hero [data-in]{opacity:1;transform:none}.wrap{width:100%;max-width:1280px;box-sizing:border-box}.hero.lh{padding:32px 0!important}.td-copy{container-type:inline-size}#tdHero .lh-title{white-space:nowrap;font-size:clamp(12px,4.1cqw,37px)!important}#tdHero .lh-title .nm{display:inline!important}main h2,main h3{text-transform:capitalize}#security h2{text-transform:uppercase}main .acc{text-decoration:none}main .acc:after{display:none}#tdHero .td-ctas{display:flex;align-items:center;gap:8px;flex-wrap:nowrap!important;overflow-x:auto;scrollbar-width:none}#tdHero .td-ctas>*{flex:none;white-space:nowrap}#tdHero .td-copy .lh-ask{margin-top:18px;max-width:100%;box-sizing:border-box;flex-wrap:nowrap!important;white-space:nowrap!important;overflow-x:auto;scrollbar-width:none}#tdHero .td-copy .lh-ask .k,#tdHero .td-copy .lh-ask .chips{flex:none;white-space:nowrap!important;flex-wrap:nowrap!important}#tdHero .td-copy .lh-ask a{flex:none}#tdHero .td-ctas::-webkit-scrollbar,#tdHero .td-copy .lh-ask::-webkit-scrollbar{display:none;width:0;height:0}.td-sub{position:relative!important;top:auto!important}.td-faq-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.td-faq-grid>div{display:flex;flex-direction:column;gap:12px}.fq .fa{display:none;max-height:none!important}.fq.open .fa{display:block}.fq>button{text-align:left}.td-extra-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.td-extra-grid article{padding:24px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}.td-extra-grid h3{margin-bottom:10px}.td-extra-grid p{color:var(--muted)}@media(max-width:760px){.wrap{padding-left:16px;padding-right:16px}.td-faq-grid,.td-extra-grid{grid-template-columns:1fr}}#tdHero .td-top{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:28px;align-items:start}#tdHero .td-top>*{min-width:0}#tdHero .td-copy .lh-ask{display:flex;width:100%;gap:10px}#tdHero .td-copy .lh-ask a{padding:0 8px}@media(max-width:1200px){#tdHero .td-top{grid-template-columns:minmax(0,1fr)}}@media(max-width:760px){#tdHero .td-copy .lh-ask{flex-wrap:wrap!important;white-space:normal!important;overflow:visible!important;gap:10px}#tdHero .td-copy .lh-ask .k{white-space:normal!important;max-width:100%}#tdHero .td-copy .lh-ask .chips{display:flex;flex-wrap:wrap!important;max-width:100%;min-width:0;gap:8px}#tdHero .td-ctas{flex-wrap:wrap!important;overflow:visible!important;gap:8px}}</style></head><body><main data-banner-actions="off" id="main">
+<!-- ================= HERO · invoice desk (5 rotating drawn scenes) ================= -->
+<section class="hero lh td-hero" id="tdHero" data-product="XcellHost Billing">
+  <div class="hero-bg" aria-hidden="true"><div class="lh-grid"></div><div class="lh-dots"></div><span class="lh-aur a1"></span><span class="lh-aur a2"></span><div class="lh-scan"></div>
+    <div class="td-ledger"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <canvas class="lh-net"></canvas></div>
+  <div class="wrap">
+    
+    <div class="td-top">
+      <div class="td-copy">
+        <h1 class="lh-title" data-in="1"><span class="x">Xcell</span><span class="brd">Billing</span><span class="dv">|</span><span class="nm">No TDS on Software Purchases</span></h1>
+        <p class="lh-tag" data-in="2">Why the software lines on your XcellHost invoice carry a "TDS not applicable" declaration.</p>
+        <p class="lh-tag2" data-in="2">CBDT Notification 21/2012 says no tax is deducted under section 194J when software is passed on unmodified, tax was already deducted earlier in the chain, and you hold the seller's declaration with PAN. This page explains the wording, the three conditions, and what still attracts TDS.</p>
+        <div class="lh-type" data-in="3" data-words='["No TDS u/s 194J on qualifying software lines","GST is still charged on the invoice","Service lines: deduct TDS as usual","Keep the declaration and PAN on file"]'><span class="tw"></span><span class="cur"></span></div>
+        <div class="lh-points td-pts" data-in="4"><div><span class="tk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg></span>Every phrase explained</div><div><span class="tk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></span>The 3 conditions in plain words</div><div><span class="tk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18l-7 8v6l-4 2v-8z"/></svg></span>Line-item eligibility checker</div><div><span class="tk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12M6 9h12M15 20L8 13h2a4 4 0 000-8"/></svg></span>Invoice split calculator</div><div><span class="tk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5A2.5 2.5 0 016.5 2H20v18H6.5A2.5 2.5 0 004 22.5z"/><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/></svg></span>Checked against CBDT sources</div><div><span class="tk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/></svg></span>Declaration letter on request</div></div>
+        <div class="lh-ctas td-ctas" data-in="5">
+          <a href="#request" class="btn td-or td-mag">Request declaration letter <span class="ar">→</span></a>
+          <a href="#contact" class="btn btn-gl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15v-3a8 8 0 0116 0v3"/><rect x="2" y="14" width="5" height="7" rx="2"/><rect x="17" y="14" width="5" height="7" rx="2"/></svg> Talk to billing</a>
+          <a href="https://wa.me/918657032540" target="_blank" rel="noopener" class="btn btn-gl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.2 1.4 2.5 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg> WhatsApp</a>
+        </div><div class="lh-ask" data-in="5" data-q="Explain CBDT Notification No. 21/2012 (S.O. 1323(E), 13 June 2012, section 197A(1F)) on no TDS under section 194J for software acquired in a subsequent transfer without modification, the three conditions, how it applies to a software reseller invoice from XcellHost (xcellhost.top/tds-software-declaration) in India, what still attracts TDS (services, hosting), how GST applies, and its position under the Income-tax Act 2025 from 1 April 2026."><span class="k"><b>✦</b>Ask AI about this declaration</span><span class="chips"><a data-ai="chatgpt" href="#"><i></i>ChatGPT</a><a data-ai="claude" href="#"><i></i>Claude</a><a data-ai="perplexity" href="#"><i></i>Perplexity</a><a data-ai="google" href="#"><i></i>Google AI</a><a data-ai="copilot" href="#"><i></i>Copilot</a></span></div>
+        
+      </div>
+
+      <div class="td-stage" id="tdStage" data-in="3">
+        <div class="lh-chip td-ch1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg></i><span>Notification 21/2012<small>S.O. 1323(E) · 13 June 2012</small></span></div>
+        <div class="lh-chip c2 td-ch2"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></i><span>Sample data<small>not your invoice</small></span></div>
+        <div class="td-rig" id="tdRig">
+          <div class="td-bz">
+            <span class="td-bays" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="td-bid"><b>INVOICE DESK</b><em>illustration · sample figures</em></span>
+            <span class="td-bt" id="tdTitle">01 · The declaration</span>
+          </div>
+          <div class="td-scr" id="tdScr" role="img" aria-label="Five rotating illustrations with sample figures: an invoice with the TDS declaration line highlighted; the supply chain from software publisher to distributor to XcellHost to you, with TDS deducted earlier in the chain and no further TDS on the last step; a three-condition checklist ticking; your purchase ledger showing no TDS on the software line and TDS on the services line; and a file with the invoice, declaration letter, PAN and 26AS reconciliation.">
+            <div class="td-cv" id="tdCv">
+              <!-- scene 0 · invoice -->
+              <div class="td-sc on" data-i="0">
+                <div class="td-inv">
+                  <div class="td-ih"><span><b>TAX INVOICE</b><em>XcellHost Cloud Services Pvt. Ltd. · Mumbai</em></span><span class="td-ino">No. XH/SAMPLE/0001<em>PAN · GSTIN printed here</em></span></div>
+                  <div class="td-it">
+                    <div class="td-ir hd"><span>Description</span><span>Amount</span></div>
+                    <div class="td-ir sw"><span><i class="td-dot b"></i>Software licence (sample)</span><span>₹1,00,000</span></div>
+                    <div class="td-ir"><span><i class="td-dot o"></i>Managed services (sample)</span><span>₹50,000</span></div>
+                    <div class="td-ir mu"><span>GST @ 18%</span><span>₹27,000</span></div>
+                    <div class="td-ir tt"><span>Invoice total</span><span>₹1,77,000</span></div>
+                  </div>
+                  <div class="td-ift"><span class="td-hl"><b>TDS NOT APPLICABLE UNDER N/N 21.2012 S.O. 1323E DT. 13.06.2012 :</b> We declare that we have already deducted TDS against acquisition of software/s herein invoiced to you …</span></div>
+                </div>
+                <span class="td-tag t0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg> Declaration · software lines only</span>
+              </div>
+              <!-- scene 1 · chain -->
+              <div class="td-sc" data-i="1">
+                <div class="td-chn">
+                  <div class="td-nd n0"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg></i><b>Publisher</b><em>OEM</em></div>
+                  <div class="td-nd n1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3l5 3-5 3-5-3 5-3zM17 3l5 3-5 3-5-3 5-3zM12 12l5 3-5 3-5-3 5-3z"/><path d="M2 6v5l5 3M22 6v5l-5 3M7 15v4l5 3 5-3v-4"/></svg></i><b>Distributor</b><em>resident</em></div>
+                  <div class="td-nd n2"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 7h.01M15 7h.01M9 11h.01M15 11h.01M9 15h.01M15 15h.01M10 21v-3h4v3"/></svg></i><b>XcellHost</b><em>reseller</em></div>
+                  <div class="td-nd n3"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></svg></i><b>You</b><em>end customer</em></div>
+                  <span class="td-ln l0"></span><span class="td-ln l1"></span><span class="td-ln l2"></span>
+                  <span class="td-lt q0">TDS deducted<br>u/s 194J / 195</span>
+                  <span class="td-lt q1">same software,<br>passed on as is</span>
+                  <span class="td-lt q2 g">no further TDS<br>u/s 194J</span>
+                  <span class="td-pk"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8M12 13v8"/></svg></i></span>
+                </div>
+                <div class="td-seal"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="60" cy="60" r="44" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 4"/><path d="M42 61l12 12 25-27" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>UNMODIFIED<br>SOFTWARE</span></div>
+              </div>
+              <!-- scene 2 · checklist -->
+              <div class="td-sc" data-i="2">
+                <div class="td-ck">
+                  <div class="td-ckh"><b>Notification 21/2012 · conditions</b><em>all three must be met</em></div>
+                  <div class="td-cr c0"><span class="td-bx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>(i) Subsequent transfer, unmodified</b><em>The seller passes the software on without changing it.</em></span></div>
+                  <div class="td-cr c1"><span class="td-bx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>(ii) Tax deducted on an earlier transfer</b><em>(a) u/s 194J, or (b) u/s 195 on a payment to a non-resident.</em></span></div>
+                  <div class="td-cr c2"><span class="td-bx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>(iii) Declaration with PAN</b><em>You hold the seller's declaration and its PAN.</em></span></div>
+                  <div class="td-ckr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg> All three met → no TDS u/s 194J on that software line</div>
+                </div>
+              </div>
+              <!-- scene 3 · books -->
+              <div class="td-sc" data-i="3">
+                <div class="td-bk">
+                  <div class="td-bkh"><b>Your purchase ledger</b><em>sample · per line item</em></div>
+                  <div class="td-br hd"><span>Line</span><span>Taxable value</span><span>TDS</span></div>
+                  <div class="td-br r0"><span><i class="td-dot b"></i>Software licence</span><span>₹1,00,000</span><span class="td-pl g">Nil · N/N 21/2012</span></div>
+                  <div class="td-bb"><s class="b0"></s></div>
+                  <div class="td-br r1"><span><i class="td-dot o"></i>Managed services</span><span>₹50,000</span><span class="td-pl o">2%* · ₹1,000</span></div>
+                  <div class="td-bb"><s class="b1"></s></div>
+                  <div class="td-bf"><span>Invoice ₹1,77,000 − TDS ₹1,000</span><b>Pay ₹1,76,000</b></div>
+                  <em class="td-bn">* sample rate; section and rate depend on the service</em>
+                </div>
+              </div>
+              <!-- scene 4 · on file -->
+              <div class="td-sc" data-i="4">
+                <div class="td-fl">
+                  <div class="td-fd"><span class="td-ftab">FY 2026-27 · vendor file</span></div>
+                  <div class="td-dc d0"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg></i><b>Invoice</b><em>with declaration</em></div>
+                  <div class="td-dc d1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17c3-1 4-8 6-8s0 8 3 8 3-4 5-4 2 3 4 3"/><path d="M3 21h18"/></svg></i><b>Declaration letter</b><em>signed copy</em></div>
+                  <div class="td-dc d2"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="12" r="2.5"/><path d="M14 10h5M14 14h4M5 17a3.5 3.5 0 016 0"/></svg></i><b>Transferor PAN</b><em>with declaration</em></div>
+                  <div class="td-dc d3"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></i><b>26AS / AIS note</b><em>reconciled</em></div>
+                  <span class="td-stamp">ON FILE</span>
+                </div>
+              </div>
+            </div>
+            <span class="td-pause"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> paused</span>
+          </div>
+          <div class="td-dots" id="tdDots" role="tablist" aria-label="Illustrations">
+            <button type="button" role="tab" class="on" aria-selected="true" data-s="0" aria-label="Scene 1: invoice declaration"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg><span>Invoice</span><s></s></button>
+            <button type="button" role="tab" aria-selected="false" data-s="1" aria-label="Scene 2: supply chain"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007 0l3-3a5 5 0 00-7-7l-1 1M14 11a5 5 0 00-7 0l-3 3a5 5 0 007 7l1-1"/></svg><span>Chain</span><s></s></button>
+            <button type="button" role="tab" aria-selected="false" data-s="2" aria-label="Scene 3: three conditions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg><span>Conditions</span><s></s></button>
+            <button type="button" role="tab" aria-selected="false" data-s="3" aria-label="Scene 4: your books"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5A2.5 2.5 0 016.5 2H20v18H6.5A2.5 2.5 0 004 22.5z"/><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/></svg><span>Your books</span><s></s></button>
+            <button type="button" role="tab" aria-selected="false" data-s="4" aria-label="Scene 5: documents on file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5M3 17.5l9 5 9-5"/></svg><span>On file</span><s></s></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+<div class="lh-trust td-proof"><div class="wrap"><span><b>ISO 27001</b> &amp; <b>20000-1</b></span><span>Microsoft <b>Gold Partner</b></span><span><b>10,000+</b> customers</span><span><b>Since 1999</b> · Mumbai</span><span><b>24×7</b> support</span><span>GST invoices in <b>INR</b></span></div></div>
+
+<nav class="td-sub" id="tdSub" aria-label="On this page"><div class="wrap">
+  <a href="#declaration">The declaration</a><a href="#conditions">Conditions</a><a href="#lines">Software vs services</a><a href="#check">Checker</a><a href="#calc">Calculator</a><a href="#file">On file</a><a href="#act2025">Income-tax Act 2025</a><a href="#faq">FAQ</a><a href="#request">Request letter</a>
+</div></nav>
+
+<!-- ================= DECLARATION EXPLAINED ================= -->
+<section class="sec" id="declaration">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">The declaration, explained</span><h2>What the footer of your invoice says, <span class="acc">one phrase at a time.</span></h2><p>This is the exact wording printed on XcellHost invoices that carry software line items. Point at or tap any highlighted phrase to see what it means.</p></div>
+    <div class="td-dx rv">
+      <div class="td-foot">
+        <span class="td-fk">Invoice footer · verbatim</span>
+        <p class="td-vb" id="tdVb"><span class="td-ph on" role="button" tabindex="0" data-p="0">TDS NOT APPLICABLE</span> UNDER <span class="td-ph" role="button" tabindex="0" data-p="1">N/N 21.2012</span> <span class="td-ph" role="button" tabindex="0" data-p="2">S.O. 1323E DT. 13.06.2012</span> : <span class="td-ph" role="button" tabindex="0" data-p="3">We declare that we have already deducted TDS against acquisition of software/s</span> <span class="td-ph" role="button" tabindex="0" data-p="4">herein invoiced to you</span> in accordance with <span class="td-ph" role="button" tabindex="0" data-p="5">sub-clause (a)/(b) of clause (ii) of Notif. No. 21/2012</span>. <span class="td-ph" role="button" tabindex="0" data-p="6">We further declare that Software transferred to you has been transferred without any modification.</span></p>
+        <span class="td-pan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="12" r="2.5"/><path d="M14 10h5M14 14h4M5 17a3.5 3.5 0 016 0"/></svg> Transferor PAN: <b>[XcellHost PAN — on request / printed on invoice]</b></span>
+      </div>
+      <div class="td-mean" id="tdMean" aria-live="polite">
+        <span class="td-mk" id="tdMk">Phrase 1 of 7</span>
+        <h3 id="tdMh">TDS NOT APPLICABLE</h3>
+        <p id="tdMp">Refers to income-tax TDS under section 194J on the software lines of this invoice. It does not touch GST, and it does not cover service lines on the same invoice.</p>
+        <p class="td-mn" id="tdMn"><b>Not:</b> an exemption from GST or from tax on our income.</p>
+        <div class="td-mnav"><button type="button" class="td-ib" id="tdPrev" aria-label="Previous phrase"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" class="td-ib" id="tdNext" aria-label="Next phrase"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONDITIONS ================= -->
+<section class="sec alt" id="conditions">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">The conditions</span><h2>Three conditions, <span class="acc">all of them required.</span></h2><p>Notification No. 21/2012 [F.No.142/10/2012-SO(TPL)], S.O. 1323(E), dated 13 June 2012, was issued under section 197A(1F) of the Income-tax Act, 1961 and applies from 1 July 2012. It covers a payment for acquiring software from a resident seller (the transferor). No tax is deducted under section 194J on that payment only if every condition below is met.</p></div>
+    <div class="td-cg">
+      <article class="td-cc rv"><span class="td-cn">i</span><i class="td-ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4M3 11V9a3 3 0 013-3h15M7 22l-4-4 4-4M21 13v2a3 3 0 01-3 3H3"/></svg></i><h3>A subsequent transfer, without modification</h3><p>The software reaches you in a later transfer, and the seller has passed it on without any modification. A standard licence resold as is fits. Software built or altered for you does not.</p><span class="td-cl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5A2.5 2.5 0 016.5 2H20v18H6.5A2.5 2.5 0 004 22.5z"/><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/></svg> Notification para 1, condition (i)</span></article>
+      <article class="td-cc rv" data-d="1"><span class="td-cn">ii</span><i class="td-ci o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12M6 9h12M15 20L8 13h2a4 4 0 000-8"/></svg></i><h3>Tax deducted on an earlier transfer</h3><p>Tax was already deducted on a previous transfer of the same software: (a) under section 194J, or (b) under section 195 on a payment to a non-resident, for example when it was imported from the publisher.</p><span class="td-cl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5A2.5 2.5 0 016.5 2H20v18H6.5A2.5 2.5 0 004 22.5z"/><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/></svg> Condition (ii), sub-clauses (a) and (b)</span></article>
+      <article class="td-cc rv" data-d="2"><span class="td-cn">iii</span><i class="td-ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="12" r="2.5"/><path d="M14 10h5M14 14h4M5 17a3.5 3.5 0 016 0"/></svg></i><h3>A declaration with the seller's PAN</h3><p>You, the buyer (transferee), obtain a declaration from the seller that tax was deducted under (a) or (b), together with the seller's Permanent Account Number. The invoice footer and the letter give you this.</p><span class="td-cl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5A2.5 2.5 0 016.5 2H20v18H6.5A2.5 2.5 0 004 22.5z"/><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/></svg> Condition (iii)</span></article>
+    </div>
+    <div class="td-def rv">
+      <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg></i>
+      <p><b>What counts as "software"?</b> The notification itself does not define it. For guidance, practitioners commonly refer to Explanation 3 to section 9(1)(vi) of the 1961 Act, under which "computer software" means a computer programme recorded on a disc, tape, perforated media or other information storage device, including such a programme or customised electronic data. Commentators read the notification as aimed at standard (off-the-shelf) software, not software made to order.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SOFTWARE VS SERVICES ================= -->
+<section class="sec" id="lines">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">Software vs services on one invoice</span><h2>The declaration covers software lines. <span class="acc">Service lines still need TDS.</span></h2><p>One XcellHost invoice can mix licences and services. Treat each line on its own. The examples below are typical only. What decides it is whether the declaration is printed against the line on your invoice, so confirm each invoice.</p></div>
+    <div class="td-tw rv">
+      <table class="td-tb">
+        <thead><tr><th>Line item type</th><th>Typical examples</th><th>Income-tax TDS</th><th>GST</th></tr></thead>
+        <tbody>
+          <tr><td><b>Standard software licence, resold unmodified</b><small>declaration printed on the invoice</small></td><td>Microsoft 365, Windows Server or SQL Server licences, Acronis licences, SSL certificates</td><td><span class="td-pl g">Not required u/s 194J</span><small>if all 3 conditions are met</small></td><td>Charged</td></tr>
+          <tr><td><b>Customised or modified software</b></td><td>Software built or changed for you</td><td><span class="td-pl o">May apply</span><small>outside the notification</small></td><td>Charged</td></tr>
+          <tr><td><b>Managed services, monitoring, support</b></td><td>Managed servers, NOC/SOC monitoring, helpdesk</td><td><span class="td-pl o">Applies</span><small>section and rate depend on the service</small></td><td>Charged</td></tr>
+          <tr><td><b>Hosting and cloud infrastructure</b></td><td>VPS, dedicated servers, storage, co-location</td><td><span class="td-pl o">Applies</span><small>section and rate depend on the contract</small></td><td>Charged</td></tr>
+          <tr><td><b>Implementation, migration, installation, training</b></td><td>Setup, data migration, SSL installation, onboarding</td><td><span class="td-pl o">Applies</span><small>often 194J or 194C</small></td><td>Charged</td></tr>
+          <tr><td><b>SaaS / cloud subscriptions</b><small>where no declaration is printed against the line</small></td><td>Hosted applications used over the internet</td><td><span class="td-pl n">Check with your CA</span><small>often treated as a service</small></td><td>Charged</td></tr>
+        </tbody>
+      </table>
+      <p class="td-flag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22V4M4 4h12l-2 4 2 4H4"/></svg> Confirm per invoice. "Applies" means TDS is generally deductible at the section and rate that fit the service: commonly 2% for fees for technical services or for contracts with companies, and 10% for professional services (1961-Act rates; carried into section 393 of the Income-tax Act 2025). Thresholds apply.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ELIGIBILITY CHECKER ================= -->
+<section class="sec alt" id="check">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">Eligibility checker</span><h2>Check one line item <span class="acc">in four questions.</span></h2><p>Answer for a single line on your XcellHost invoice. This is guidance only, not a ruling. Your chartered accountant makes the final call.</p></div>
+    <div class="td-chk rv">
+      <div class="td-qs">
+        <div class="fld"><span class="lb">1 · What is the line item?</span><div class="seg td-seg" id="qT"><button type="button" data-v="sw" class="on">Software licence</button><button type="button" data-v="svc">A service</button><button type="button" data-v="saas">SaaS / cloud subscription</button><button type="button" data-v="ns">Not sure</button></div></div>
+        <div class="fld"><span class="lb">2 · Is it supplied unmodified?</span><div class="seg td-seg" id="qM"><button type="button" data-v="y" class="on">Yes, standard product</button><button type="button" data-v="n">No, customised for us</button></div></div>
+        <div class="fld"><span class="lb">3 · Is the declaration printed on the invoice (or in a letter with PAN)?</span><div class="seg td-seg" id="qD"><button type="button" data-v="y" class="on">Yes</button><button type="button" data-v="n">No</button></div></div>
+        <div class="fld"><span class="lb">4 · Does the line include a services component?</span><div class="seg td-seg" id="qS"><button type="button" data-v="no" class="on">No</button><button type="button" data-v="sep">Yes, billed as a separate line</button><button type="button" data-v="bun">Yes, bundled in one price</button></div></div>
+      </div>
+      <div class="td-res" id="tdRes" aria-live="polite">
+        <span class="td-rk">Guidance only · not tax advice</span>
+        <div class="td-rv" id="tdRv"><i id="tdRi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></i><b id="tdRt">TDS u/s 194J not required on this line</b></div>
+        <ul class="td-rl" id="tdRl"></ul>
+        <div class="td-ra"><a href="#request" class="btn td-or btn-block" id="tdRq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/></svg> Request declaration letter</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CALCULATOR ================= -->
+<section class="sec" id="calc">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">Invoice split calculator</span><h2>How much to deduct, <span class="acc">and how much to pay.</span></h2><p>Enter the software and services amounts before GST. TDS is worked out on the services amount only, excluding GST where GST is shown separately (CBDT Circular No. 23/2017). The starting figures are sample figures.</p></div>
+    <div class="td-cal rv">
+      <div class="td-cin">
+        <div class="fld"><label class="lb" for="cSw">Software amount (₹, before GST) <em>sample</em></label><input class="td-in" id="cSw" type="number" min="0" step="100" value="100000" inputmode="numeric"></div>
+        <div class="fld"><label class="lb" for="cSv">Services amount (₹, before GST) <em>sample</em></label><input class="td-in" id="cSv" type="number" min="0" step="100" value="50000" inputmode="numeric"></div>
+        <div class="fld"><span class="lb">TDS rate on services</span>
+          <div class="seg td-seg" id="cRs"><button type="button" data-v="1">1%</button><button type="button" data-v="2" class="on">2%</button><button type="button" data-v="10">10%</button></div>
+          <div class="td-rrow"><label for="cR">or type a rate</label><input class="td-in sm" id="cR" type="number" min="0" max="30" step="0.1" value="2"><span>%</span></div>
+          <small class="td-hint">2% is the default: the common rate for fees for technical services and for contracts with companies. Use 10% for professional services and 1% for contracts with individuals or HUFs. Your CA confirms the section.</small></div>
+        <div class="fld"><span class="lb">GST rate</span><div class="td-gst">18% <small>shown on the invoice · not changed by this declaration</small></div></div>
+      </div>
+      <div class="td-cout" aria-live="polite">
+        <span class="td-ok">Your invoice · sample</span>
+        <div class="td-crow"><span>Software (no TDS u/s 194J)</span><b id="oSw">₹1,00,000</b></div>
+        <div class="td-crow"><span>Services</span><b id="oSv">₹50,000</b></div>
+        <div class="td-crow"><span>GST @ 18%</span><b id="oG">₹27,000</b></div>
+        <div class="td-crow tt"><span>Invoice total</span><b id="oT">₹1,77,000</b></div>
+        <div class="td-crow ds"><span>TDS on services @ <span id="oR">2</span>%</span><b id="oD">− ₹1,000</b></div>
+        <div class="td-crow"><span>TDS on software</span><b>₹0</b></div>
+        <div class="td-split" aria-hidden="true"><s id="bSw"></s><s id="bSv"></s><s id="bG"></s></div>
+        <div class="td-pay"><span>Net payable to XcellHost</span><b id="oP">₹1,76,000</b></div>
+        <small class="td-cf">Deposit the TDS with the government and issue the TDS certificate as usual. Thresholds, PAN status and the right section can change the figure. Indicative only.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ON FILE ================= -->
+<section class="sec alt" id="file">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">What to keep on file</span><h2>Four documents <span class="acc">support the decision not to deduct.</span></h2><p>If your TDS return or an assessment asks why no tax was deducted on a software payment, these are what you show.</p></div>
+    <div class="td-fg">
+      <div class="td-fc rv"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg></i><h3>The invoice with the declaration</h3><p>The tax invoice showing the software line items and the printed declaration in the footer.</p></div>
+      <div class="td-fc rv" data-d="1"><i class="o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17c3-1 4-8 6-8s0 8 3 8 3-4 5-4 2 3 4 3"/><path d="M3 21h18"/></svg></i><h3>The declaration letter</h3><p>A signed letter from XcellHost restating the declaration for the invoices or period you name. Use the form below.</p></div>
+      <div class="td-fc rv" data-d="2"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="12" r="2.5"/><path d="M14 10h5M14 14h4M5 17a3.5 3.5 0 016 0"/></svg></i><h3>PAN of the transferor</h3><p>Condition (iii) needs the seller's PAN with the declaration: <b>[XcellHost PAN — on request / printed on invoice]</b>.</p></div>
+      <div class="td-fc rv" data-d="3"><i class="o"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></i><h3>A 26AS / AIS reconciliation note</h3><p>A short note on why the software payment shows no TDS while services payments do, matched to your TDS returns.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INCOME-TAX ACT 2025 ================= -->
+<section class="sec" id="act2025">
+  <div class="wrap">
+    <div class="sh rv"><span class="eyebrow">Income-tax Act 2025 note</span><h2>The 1961 Act was replaced on 1 April 2026. <span class="acc">Here is what we could verify.</span></h2><p>The declaration on our invoices cites a notification issued under the 1961 Act. This is where things stand on the sources we checked.</p></div>
+    <div class="td-ac rv">
+      <div class="td-al">
+        <div class="td-ai v"><span class="td-as"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Verified</span><p>The Income-tax Act, 1961 stands repealed from 1 April 2026. Sums paid or credited from that date fall under the Income-tax Act, 2025, judged by the earlier of credit or payment (CBDT FAQs on the transition, Q1.2 and Q2.4).</p></div>
+        <div class="td-ai v"><span class="td-as"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Verified</span><p>Under the 2025 Act, TDS on fees for professional and technical services and royalty (the old section 194J) is in section 393(1), Table Sl. No. 6(iii).</p></div>
+        <div class="td-ai v"><span class="td-as"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Verified</span><p>The CBDT FAQs say notifications and circulars issued under the 1961 Act remain valid so long as they are not inconsistent with the new Act (section 536(2)(j), FAQ Q1.20).</p></div>
+        <div class="td-ai u"><span class="td-as"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0zM12 9v4M12 17h.01"/></svg> Not confirmed</span><p>We did not find a CBDT document that names Notification 21/2012 specifically, re-issues it under the 2025 Act, or maps section 197A(1F) to a new section.</p></div>
+      </div>
+      <div class="td-ab"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5A2.5 2.5 0 016.5 2H20v18H6.5A2.5 2.5 0 004 22.5z"/><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/></svg></i><h3>Our reading, plainly</h3><p>The declaration references the 1961-Act notification. Check its current applicability under the Income-tax Act 2025 with your tax adviser. We will update this page when CBDT publishes something specific.</p><small>Last checked: 24 October 2026</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="sec" id="security"><div class="wrap"><div class="sh"><h2>SECURITY &amp; COMPLIANCE</h2><p>Keep invoice records, supplier declarations and the payment decision together for your finance team.</p></div><div class="td-extra-grid"><article><h3>Invoice-Specific Review</h3><p>Request the declaration for the software lines on the relevant invoice.</p></article><article><h3>Supporting Records</h3><p>Keep the invoice, declaration, supplier PAN and payment records together.</p></article><article><h3>Separate Software And Services</h3><p>Review each invoice line using the conditions explained above.</p></article><article><h3>Controlled Sharing</h3><p>Send invoice details through the enquiry form or directly to the billing team.</p></article></div></div></section><section class="sec alt" id="why-xcellhost"><div class="wrap"><div class="sh"><h2>Why XcellHost For Software Billing Support</h2></div><div class="td-extra-grid"><article><h3>INR Billing</h3><p>Work from the rupee amounts and GST shown on your invoice.</p></article><article><h3>Invoice Clarification</h3><p>Ask billing which software lines carry the declaration.</p></article><article><h3>Declaration Requests</h3><p>Request a signed declaration for your vendor or audit records.</p></article><article><h3>Software And Services</h3><p>Clarify mixed invoices before deciding how to handle payment.</p></article><article><h3>Finance Team Support</h3><p>Share your invoice number and the purpose of your request.</p></article><article><h3>One Point Of Contact</h3><p>Contact the billing team for invoice copies and declaration enquiries.</p></article></div></div></section><section class="sec alt" id="faq"><div class="wrap"><div class="sh"><span class="eyebrow">FAQ</span><h2>Frequently Asked Questions</h2></div><div class="td-faq-grid"><div><div class="fq"><button aria-expanded="false">Is GST still charged on these invoices?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>Yes. The declaration concerns income-tax TDS only. GST, typically 18% for software licences and IT services, is charged on the invoice as usual. TDS under section 51 of the CGST Act is a separate scheme that applies to government departments, local authorities, government agencies and other notified bodies such as certain public sector undertakings, at 2% on contracts above ₹2.5 lakh.</p></div></div><div class="fq"><button aria-expanded="false">What does "TDS not applicable" cover on my invoice?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>Only the software line items on that invoice, and only income-tax TDS under section 194J. Services on the same invoice, such as managed services, hosting, installation or support, still attract TDS at the section and rate that fit them.</p></div></div><div class="fq"><button aria-expanded="false">What if we already deducted TDS on a software line?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>Tell our billing team so we can match it. TDS you deposit appears against our PAN in Form 26AS / AIS, and we can generally claim credit for it in our return, so the amount is not lost. Whether you should revise your TDS return or adjust a later payment depends on the facts, so ask your CA before changing anything.</p></div></div><div class="fq"><button aria-expanded="false">Does this apply to SaaS or cloud subscriptions?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>Not automatically. The notification covers the acquisition of software in a subsequent transfer. Where you only use a hosted application over the internet, the payment is often treated as a fee for a service rather than a transfer of software, and views differ. The declaration applies only to line items where it is printed on your invoice. For anything else, follow your CA's view.</p></div></div><div class="fq"><button aria-expanded="false">How is this different from a lower deduction certificate?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>A lower or nil deduction certificate is issued by the Assessing Officer on the payee's application, for a named payer, rate and period. Notification 21/2012 is a general rule: no certificate is needed, but all three conditions must be met and you must hold the declaration with PAN. If we hold a certificate for a period, we will send it to you separately.</p></div></div><div class="fq"><button aria-expanded="false">Does section 194Q (purchase of goods) apply instead?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>Section 194Q requires a buyer with turnover above ₹10 crore to deduct 0.1% on purchases of goods from a seller above ₹50 lakh in a year. It does not apply where tax is deductible under another section. Whether a software licence counts as "goods", and how 194Q sits with this notification, is a judgement call on which practitioners differ. Take your CA's view; we do not take a position on it.</p></div></div></div><div><div class="fq"><button aria-expanded="false">What about section 194O?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>Section 194O applies to e-commerce operators that facilitate a seller's sales through their platform. The rate is 0.1% from 1 October 2024 (previously 1%). It is not relevant when you buy directly from XcellHost on our invoice, but it can apply if you buy through a marketplace that collects payment for the seller.</p></div></div><div class="fq"><button aria-expanded="false">What does "without any modification" mean in practice?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>The software reaches you in the same form we received it: a standard product or licence, not altered or built for you. Configuration or installation work is a separate service and is billed as its own line, where TDS applies as usual.</p></div></div><div class="fq"><button aria-expanded="false">Where do I find XcellHost's PAN?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>It is printed on the invoice and repeated in the declaration letter: [XcellHost PAN — on request / printed on invoice]. Condition (iii) needs the PAN together with the declaration, so keep both on file.</p></div></div><div class="fq"><button aria-expanded="false">Does the Income-tax Act 2025 change this?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>The 1961 Act was replaced from 1 April 2026, and TDS on professional and technical fees moved to section 393. The CBDT says old notifications remain valid where they are not inconsistent with the new Act, but we did not find a CBDT document that confirms Notification 21/2012 specifically. Check its current applicability with your tax adviser.</p></div></div><div class="fq"><button aria-expanded="false">Can I get the declaration as a separate letter?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>Yes. Use the request form below with your invoice number and the purpose (audit, TDS return, vendor file). The billing team emails a signed letter. You can also write to support@xcellhost.cloud or call +91-22-67111555.</p></div></div><div class="fq"><button aria-expanded="false">Is this page tax advice?<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></i></button><div class="fa"><p>No. It is general information on how the declaration on our invoices reads, based on the public sources listed at the end of this page. Your facts may differ. Consult your chartered accountant before deciding whether to deduct tax on a payment.</p></div></div></div></div></div></section></main><script>(function(){
+const d=document,$=(s,r=d)=>r.querySelector(s),$$=(s,r=d)=>Array.from(r.querySelectorAll(s));
+window.XH={$, $$,reduce:matchMedia('(prefers-reduced-motion: reduce)').matches,fine:matchMedia('(pointer:fine)').matches,whenVisible(el,fn){const io=new IntersectionObserver(es=>es.forEach(e=>fn(e.isIntersecting)));io.observe(el);}};
+$$('.rv').forEach(el=>el.classList.add('in','is-in'));
+$$('.lh-type[data-words]').forEach(el=>{const t=$('.tw',el);if(t)t.textContent=JSON.parse(el.dataset.words)[0];});
+const ai={chatgpt:'https://chatgpt.com/?q=',claude:'https://claude.ai/new?q=',perplexity:'https://www.perplexity.ai/search/new?q=',google:'https://www.google.com/search?udm=50&q=',copilot:'https://copilot.microsoft.com/?q='};
+$$('.lh-ask').forEach(el=>$$('[data-ai]',el).forEach(a=>{a.href=ai[a.dataset.ai]+encodeURIComponent(el.dataset.q);a.target='_blank';a.rel='noopener noreferrer';}));
+d.addEventListener('click',e=>{const b=e.target.closest('.fq>button');if(b){const item=b.parentElement,on=!item.classList.contains('open');item.classList.toggle('open',on);b.setAttribute('aria-expanded',on);}const action=e.target.closest('[data-open]');if(action){e.preventDefault();parent.postMessage({type:'tds-billing',details:action.dataset.topic||'Talk to billing'},location.origin);}const a=e.target.closest('a[href^="#"]');if(a&&a.hash){e.preventDefault();const type=a.hash==='#request'?'tds-letter-start':a.hash==='#contact'?'tds-billing':'tds-scroll';parent.postMessage({type,target:a.hash.slice(1)},location.origin);}});
+
+})();</script><script>
+/* XcellBilling | No TDS on Software Purchases · page runtime (one shared rAF loop, pauses offscreen) */
+(function(){
+  'use strict';
+  var XH=window.XH,$=XH.$,$$=XH.$$,R=XH.reduce,d=document;
+  function cl(v,a,b){return v<a?a:v>b?b:v;}
+  function id(x){return d.getElementById(x);}
+  function inr(n){n=Math.round(n);return XH.inr?XH.inr(n):'₹'+n.toLocaleString('en-IN');}
+  function setT(el,t){if(el&&el.textContent!==t){el.textContent=t;if(!R){el.classList.remove('fl');void el.offsetWidth;el.classList.add('fl');}}}
+  function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function segV(s){if(!s)return null;if(s.dataset.value!=null)return s.dataset.value;var b=$('button.on',s);return b?b.getAttribute('data-v'):null;}
+  function bindSeg(s,fn){if(!s)return;$$('button',s).forEach(function(b){b.setAttribute('aria-pressed',b.classList.contains('on'));b.addEventListener('click',function(){$$('button',s).forEach(function(x){var on=x===b;x.classList.toggle('on',on);x.setAttribute('aria-pressed',on);});s.dataset.value=b.getAttribute('data-v');fn&&fn();});});}
+
+  /* ---------- one shared rAF loop ---------- */
+  var T=[],raf=0,last=0;
+  function ticker(fn){var o={on:false,fn:fn};T.push(o);return o;}
+  function frame(now){raf=0;var dt=last?Math.min(.1,(now-last)/1000):.016;last=now;var any=false;
+    for(var i=0;i<T.length;i++){if(T[i].on){any=true;T[i].fn(dt,now);}}
+    if(any)raf=requestAnimationFrame(frame);else last=0;}
+  function wake(){if(!raf&&!R)raf=requestAnimationFrame(frame);}
+  function bindVis(o,el){if(!el)return;XH.whenVisible(el,function(v){o.on=v&&!R;if(o.on)wake();});}
+
+  /* CSS-only decorative loops pause offscreen */
+  var lg=$('#tdHero .td-ledger');if(lg){if(R)lg.classList.add('paused');else XH.whenVisible(lg,function(v){lg.classList.toggle('paused',!v);});}
+
+  /* ---------- sticky offsets + sub-nav ---------- */
+  var hdr=$('.hdr'),sub=id('tdSub'),main=id('main');
+  function offs(){var h=hdr?hdr.getBoundingClientRect().height:72;if(sub)sub.style.top=Math.round(h)+'px';var t=h+(sub?sub.getBoundingClientRect().height:0);if(main)main.style.setProperty('--td-top',Math.round(t)+'px');}
+  offs();addEventListener('resize',offs);if(d.fonts&&d.fonts.ready)d.fonts.ready.then(offs);
+  var subA=$$('#tdSub a'),secs=subA.map(function(a){return $(a.getAttribute('href'));});
+  if(subA.length){var onS=function(){var y=scrollY+200,cur=-1;secs.forEach(function(s,i){if(s&&s.getBoundingClientRect().top+scrollY<=y)cur=i;});
+    subA.forEach(function(a,i){var on=i===cur;if(on!==a.classList.contains('on')){a.classList.toggle('on',on);if(on&&a.parentNode.scrollWidth>a.parentNode.clientWidth)a.parentNode.scrollLeft=a.offsetLeft-40;}});};
+    addEventListener('scroll',onS,{passive:true});onS();}
+
+  /* magnetic CTAs */
+  if(XH.fine&&!R)$$('.td-mag').forEach(function(b){b.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();b.style.transform='translate('+((e.clientX-r.left)/r.width-.5)*8+'px,'+((e.clientY-r.top)/r.height-.5)*6+'px)';});b.addEventListener('pointerleave',function(){b.style.transform='';});});
+
+  /* =====================================================================
+     HERO · invoice desk — 5 drawn scenes, cross-fade, ~5.5 s each
+     ===================================================================== */
+  var rig=id('tdRig'),scr=id('tdScr'),cv=id('tdCv');
+  if(rig&&scr&&cv){
+    var SC=$$('.td-sc',cv),dots=$$('#tdDots button'),ttl=id('tdTitle'),DUR=5.5,si=0,st=0,hold=false;
+    var TT=['01 · The declaration','02 · The chain','03 · Three conditions','04 · Your books','05 · On file'];
+    function size(){var w=scr.clientWidth||560;cv.style.setProperty('--k',(w/560).toFixed(4));}
+    size();addEventListener('resize',size);
+    if(R)rig.classList.add('td-rm');
+    function show(i){si=(i+SC.length)%SC.length;st=0;
+      SC.forEach(function(s,k){s.classList.toggle('on',k===si);s.setAttribute('aria-hidden',k!==si);});
+      dots.forEach(function(b,k){var on=k===si;b.classList.toggle('on',on);b.setAttribute('aria-selected',on);var s=$('s',b);if(s)s.style.transform='scaleX(0)';});
+      if(ttl)ttl.textContent=TT[si];}
+    show(0);
+    dots.forEach(function(b){b.addEventListener('click',function(){show(+b.getAttribute('data-s'));});});
+    if(!R){
+      var hero=ticker(function(dt){if(!hold){st+=dt;if(st>=DUR)show(si+1);}
+        var s=$('s',dots[si]);if(s)s.style.transform='scaleX('+cl(st/DUR,0,1).toFixed(3)+')';});
+      bindVis(hero,scr);
+      var stage=id('tdStage');
+      stage.addEventListener('mouseenter',function(){hold=true;rig.classList.add('hold');});
+      stage.addEventListener('mouseleave',function(){hold=false;rig.classList.remove('hold');});
+      var sx0=null,sy0=0;
+      function swipe(dx,dy){if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy))show(si+(dx<0?1:-1));}
+      scr.addEventListener('pointerdown',function(e){if(e.pointerType==='touch')return;sx0=e.clientX;sy0=e.clientY;});
+      scr.addEventListener('pointerup',function(e){if(sx0==null)return;var dx=e.clientX-sx0,dy=e.clientY-sy0;sx0=null;swipe(dx,dy);});
+      scr.addEventListener('touchstart',function(e){var p=e.touches[0];sx0=p.clientX;sy0=p.clientY;},{passive:true});
+      scr.addEventListener('touchend',function(e){if(sx0==null)return;var p=e.changedTouches[0];var dx=p.clientX-sx0,dy=p.clientY-sy0;sx0=null;swipe(dx,dy);},{passive:true});
+    }
+  }
+
+  /* =====================================================================
+     DECLARATION · phrase-by-phrase meaning
+     ===================================================================== */
+  var PH=[
+    {h:'TDS NOT APPLICABLE',p:'Refers to income-tax TDS under section 194J on the software lines of this invoice. It does not touch GST, and it does not cover service lines on the same invoice.',n:'an exemption from GST or from tax on our income.'},
+    {h:'N/N 21.2012',p:'Short for Notification No. 21/2012 [F.No.142/10/2012-SO(TPL)], issued by the Central Board of Direct Taxes under section 197A(1F) of the Income-tax Act, 1961. It applies from 1 July 2012.',n:'a circular or a court ruling. It is a notification with legal force.'},
+    {h:'S.O. 1323E DT. 13.06.2012',p:'The Gazette reference of the notification: S.O. 1323(E), dated 13 June 2012. Quote it in your records when you note why no tax was deducted.',n:'the date of your invoice.'},
+    {h:'We declare that we have already deducted TDS against acquisition of software/s',p:'XcellHost confirms that tax was deducted when this software was acquired earlier in the chain. That is condition (ii) of the notification.',n:'a promise that the whole invoice is free of TDS.'},
+    {h:'herein invoiced to you',p:'Limits the declaration to the software items on this invoice. Hosting, managed services, installation, support and other services on the invoice are outside it.',n:'a blanket statement covering other invoices or other suppliers.'},
+    {h:'sub-clause (a)/(b) of clause (ii) of Notif. No. 21/2012',p:'Points to the two ways the earlier deduction could have happened: (a) under section 194J on a previous transfer of the software, or (b) under section 195 on a previous transfer from a non-resident, such as an overseas publisher.',n:'a reference to TDS that you deducted.'},
+    {h:'transferred without any modification',p:'Condition (i): the software reaches you exactly as received, as a later transfer of a standard product. Software built or altered for you is outside the notification. Condition (iii) also needs our PAN with this declaration.',n:'a statement about installation or configuration services, which are billed and taxed separately.'}
+  ];
+  var phs=$$('#tdVb .td-ph'),mean=id('tdMean'),cur=0;
+  function phShow(i){cur=(i+PH.length)%PH.length;var m=PH[cur];
+    phs.forEach(function(b,k){var on=k===cur;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on);});
+    id('tdMk').textContent='Phrase '+(cur+1)+' of '+PH.length;id('tdMh').textContent=m.h;id('tdMp').textContent=m.p;
+    id('tdMn').innerHTML='<b>Not:</b> '+esc(m.n);
+    if(mean&&!R){mean.classList.remove('sw');void mean.offsetWidth;mean.classList.add('sw');}}
+  phs.forEach(function(b,k){b.setAttribute('aria-pressed',k===0);b.addEventListener('click',function(){phShow(k);});
+    if(XH.fine)b.addEventListener('mouseenter',function(){if(cur!==k)phShow(k);});
+    b.addEventListener('focus',function(){if(cur!==k)phShow(k);});
+    b.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();phShow(k);}});});
+  if(id('tdPrev'))id('tdPrev').addEventListener('click',function(){phShow(cur-1);});
+  if(id('tdNext'))id('tdNext').addEventListener('click',function(){phShow(cur+1);});
+
+  /* =====================================================================
+     ELIGIBILITY CHECKER · guidance only
+     ===================================================================== */
+  var qT=id('qT'),qM=id('qM'),qD=id('qD'),qS=id('qS'),res=id('tdRes');
+  var OK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>',NO='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0zM12 9v4M12 17h.01"/></svg>';
+  function chk(){if(!qT)return null;var t=segV(qT),m=segV(qM),dc=segV(qD),s=segV(qS),L=[],ok=true,title;
+    if(t==='sw')L.push([1,'A software licence: the kind of payment the notification covers.']);
+    else if(t==='svc'){ok=false;L.push([0,'A service is outside the notification. Deduct TDS at the section and rate that fit the service.']);}
+    else if(t==='saas'){ok=false;L.push([0,'SaaS and cloud subscriptions are often treated as services rather than a transfer of software. Views differ, so follow your CA.']);}
+    else {ok=false;L.push([0,'Check the line description, or ask our billing team which lines carry the declaration.']);}
+    if(m==='y')L.push([1,'Supplied unmodified: condition (i).']);else{ok=false;L.push([0,'Customised or modified software does not meet condition (i).']);}
+    if(dc==='y')L.push([1,'Declaration with PAN on file: condition (iii).']);else{ok=false;L.push([0,'Without the declaration and our PAN, condition (iii) is not met. Request the letter below.']);}
+    var split=false;
+    if(s==='sep'){split=true;L.push([0,'The separate services line is outside the declaration. TDS applies to that line as usual.']);}
+    else if(s==='bun'){ok=false;L.push([0,'A bundled price mixes software and services. Ask us to split the lines, and check the treatment with your CA.']);}
+    else L.push([1,'No services component on this line.']);
+    if(ok&&!split)title='TDS u/s 194J not required on this line';
+    else if(ok&&split)title='Not required on the software line. The services line may attract TDS.';
+    else title='TDS may apply. Check with your CA.';
+    return {ok:ok,split:split,title:title,L:L};}
+  function chkRender(){var r=chk();if(!r)return;
+    res.classList.toggle('warn',!r.ok||r.split);
+    id('tdRi').innerHTML=r.ok&&!r.split?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>':(r.ok?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0zM12 9v4M12 17h.01"/></svg>');
+    var tb=id('tdRt');if(tb.textContent!==r.title){tb.textContent=r.title;var rv=id('tdRv');if(!R){rv.classList.remove('sw');void rv.offsetWidth;rv.classList.add('sw');}}
+    id('tdRl').innerHTML=r.L.map(function(x){return '<li class="'+(x[0]?'':'x')+'"><i>'+(x[0]?OK:NO)+'</i><span>'+esc(x[1])+'</span></li>';}).join('');}
+  [qT,qM,qD,qS].forEach(function(s){bindSeg(s,chkRender);});
+  chkRender();
+  window.tdCheck=chk; /* exposed for testing */
+
+  /* =====================================================================
+     INVOICE SPLIT CALCULATOR · TDS on services (excl. GST) only
+     ===================================================================== */
+  var cSw=id('cSw'),cSv=id('cSv'),cR=id('cR'),cRs=id('cRs'),GST=0.18;
+  function nv(el){var v=parseFloat(el&&el.value);return isNaN(v)||v<0?0:v;}
+  function calc(){if(!cSw)return null;var sw=nv(cSw),sv=nv(cSv),r=cl(nv(cR),0,30);
+    var g=Math.round((sw+sv)*GST),tot=sw+sv+g,tds=Math.round(sv*r/100),pay=tot-tds;
+    setT(id('oSw'),inr(sw));setT(id('oSv'),inr(sv));setT(id('oG'),inr(g));setT(id('oT'),inr(tot));
+    id('oR').textContent=String(+r.toFixed(2));setT(id('oD'),'− '+inr(tds));setT(id('oP'),inr(pay));
+    var T0=tot||1;id('bSw').style.flexGrow=(sw/T0).toFixed(4);id('bSv').style.flexGrow=(sv/T0).toFixed(4);id('bG').style.flexGrow=(g/T0).toFixed(4);
+    return {sw:sw,sv:sv,gst:g,total:tot,tds:tds,pay:pay,rate:r};}
+  if(cSw){
+    [cSw,cSv].forEach(function(el){el.addEventListener('input',calc);});
+    cR.addEventListener('input',function(){var v=String(+nv(cR));$$('button',cRs).forEach(function(b){var on=b.getAttribute('data-v')===v;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on);});cRs.dataset.value=v;calc();});
+    bindSeg(cRs,function(){cR.value=segV(cRs);calc();});
+    calc();window.tdCalc=calc;
+  }
+
+  /* =====================================================================
+     REQUEST FORM
+     ===================================================================== */
+  var rG=id('rG');if(rG)rG.addEventListener('input',function(){rG.value=rG.value.toUpperCase();});
+})();
+
+</script></body></html>
