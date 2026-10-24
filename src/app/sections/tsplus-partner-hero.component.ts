@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { FitBannerTitleDirective } from '../shared/fit-banner-title.directive';
 
 import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
@@ -15,7 +16,7 @@ type HeroScene = {
 @Component({
   selector: 'xh-tsplus-partner-hero',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, FitBannerTitleDirective],
   templateUrl: './tsplus-partner-hero.component.html',
   styleUrl: './tsplus-partner-hero.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

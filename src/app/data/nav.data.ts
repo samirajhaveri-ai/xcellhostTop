@@ -2766,6 +2766,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "Mobile App Security",
+                "href": "/mobile-app-security",
+                "pill": null,
+                "desc": "Protect Android and iOS apps with runtime security, device binding and fraud controls."
+              },
               
             ]
           }

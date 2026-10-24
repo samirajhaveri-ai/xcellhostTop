@@ -17,6 +17,7 @@ type InteractiveContentSource =
   | IdentitySecuritySource
   | 'acronis-cyber-intelligence' | 'acronis-cyber-frame' | 'acronis-workflow-automation'
   | 'microsoft-defender'
+  | 'mobile-app-security'
 
   | 'acronis-ai-solution' | 'acronis-cyberfit-score' | 'acronis-ransomware-warranty'
   | 'azure-services'
@@ -184,6 +185,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'purple-team-assessment': '/imported-purple-team.html',
     'breach-and-attack-simulation': '/imported-breach-and-attack-simulation.html',
     'microsoft-defender': '/imported-microsoft-defender.html',
+    'mobile-app-security': '/imported-mobile-app-security.html',
     'multi-factor-authentication': '/imported-multi-factor-authentication.html',
     'identity-and-access-management': '/imported-identity-and-access-management.html',
     'privileged-access-management': '/imported-privileged-access-management.html',
@@ -352,6 +354,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
 
     'microsoft-defender': 'Microsoft Defender: Products, Coverage, Pricing, Security And FAQs',
+    'mobile-app-security': 'Mobile App Security: Runtime Protection, SDK Integration, Risk Assessment And FAQs',
     'multi-factor-authentication': 'Multi-Factor Authentication',
     'identity-and-access-management': 'Identity & Access Management',
     'privileged-access-management': 'Privileged Access Management',
@@ -666,6 +669,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
       }
       const scopeTitle = this.source === 'smb-cloud-desktop' ? 'SMB Cloud Desktop'
         : this.source === 'ai-factory' ? 'AI Factory'
+        : this.source === 'mobile-app-security' ? 'Mobile App Security'
         : this.source === 'microsoft-defender' ? 'Microsoft Defender'
         : this.source in IDENTITY_SECURITY_PAGES ? this.sourceTitles[this.source]
         : ['acronis-cyber-intelligence', 'acronis-cyber-frame', 'acronis-workflow-automation'].includes(this.source) ? this.sourceTitles[this.source]
