@@ -20,6 +20,7 @@ const { routes } = load(path.join(root, 'src/app/app.routes.ts'));
 const { DIRECTORY } = load(path.join(root, 'src/app/data/directory.data.ts'));
 const { MEGA_MENU } = load(path.join(root, 'src/app/data/nav.data.ts'));
 const { SITE } = load(path.join(root, 'src/app/data/site.data.ts'));
+const { CASE_STUDIES } = load(path.join(root, 'src/app/data/case-studies.data.ts'));
 const slugify = name => {
   const normalized = name.toLowerCase().trim();
   if (normalized === 'erpnext hosting') return 'erp-next-hosting';
@@ -29,6 +30,8 @@ const slugify = name => {
 const paths = new Set();
 const concreteRoutes = new Map();
 const titles = new Map();
+const lastModified = new Map();
+const excludedFromSitemap = pathname => /^(?:under-construction(?:\/|$)|no-data(?:\/|$)|404(?:\/|$))/.test(pathname);
 const plainText = value => value
   .replace(/<[^>]*>/g, ' ')
   .replace(/&amp;/gi, '&')
@@ -74,7 +77,7 @@ for (const route of routes) {
   if (!concreteRoutes.has(route.path)) concreteRoutes.set(route.path, route);
 }
 for (const [pathname, route] of concreteRoutes) {
-  if (route.redirectTo === undefined && !/checkout|signup-success|login|signup/.test(pathname)) {
+  if (route.redirectTo === undefined && !excludedFromSitemap(pathname) && !/checkout|signup-success|login|signup/.test(pathname)) {
     paths.add(pathname);
     const routeTitle = route.data?.searchTitle ?? route.data?.title ??
       (typeof route.title === 'string' ? route.title.replace(/\s*\|\s*XcellHost.*$/i, '') : '');
@@ -88,14 +91,35 @@ for (const menu of MEGA_MENU) {
 }
 for (const name of products) {
   const slug = slugify(name);
-  if (slug && !concreteRoutes.has(slug)) {
+  if (slug && !excludedFromSitemap(slug) && !concreteRoutes.has(slug)) {
     paths.add(slug);
     if (!titles.has(slug)) titles.set(slug, name);
   }
 }
+for (const study of CASE_STUDIES) {
+  const pathname = `case-studies/${study.id}`;
+  paths.add(pathname);
+  titles.set(pathname, study.headline || study.summary || `Case Study: ${study.id}`);
+}
+const cmsSnapshotPath = path.join(root, 'public/sitemap-cms-pages.json');
+if (fs.existsSync(cmsSnapshotPath)) {
+  const snapshot = JSON.parse(fs.readFileSync(cmsSnapshotPath, 'utf8'));
+  for (const page of snapshot.pages ?? []) {
+    const pathname = String(page.path ?? '').replace(/^\/+|\/+$/g, '');
+    if (!pathname || excludedFromSitemap(pathname)) continue;
+    paths.add(pathname);
+    titles.set(pathname, page.title || humanize(pathname));
+    if (page.lastModified && /^\d{4}-\d{2}-\d{2}/.test(page.lastModified)) {
+      lastModified.set(pathname, page.lastModified.slice(0, 10));
+    }
+  }
+}
 const escape = value => value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
 const origin = SITE.siteUrl.replace(/\/$/, '');
-const urls = [...paths].sort().map(p => `  <url><loc>${escape(origin + '/' + (p ? p + '/' : ''))}</loc></url>`);
+const urls = [...paths].sort().map(p => {
+  const modified = lastModified.get(p);
+  return `  <url><loc>${escape(origin + '/' + (p ? p + '/' : ''))}</loc>${modified ? `<lastmod>${modified}</lastmod>` : ''}</url>`;
+});
 fs.writeFileSync(path.join(root, 'public/sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls.join('\n') + '\n</urlset>\n');
 const sitemapTitles = Object.fromEntries([...paths].sort().map(pathname => [
   '/' + (pathname ? pathname.replace(/\/$/, '') : ''),
