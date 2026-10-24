@@ -120,7 +120,6 @@
         </aside>
 
         <div class="article-content">
-          @if (!isUseCase) {
             <div class="article-toolbar" role="group" aria-label="Listen and share this blog">
               @if (speechSupported) {
                 <div class="article-listen" aria-label="Listen to this article">
@@ -171,17 +170,15 @@
                   }
                 </div>
                 <span class="article-toolbar-separator" aria-hidden="true">|</span>
-                <button class="article-share-button" type="button" (click)="printArticle()" title="Print this article">
+                <span class="article-tools"><button class="article-share-button" type="button" (click)="printArticle()" title="Print this article">
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8V3h10v5M7 17H4V8h16v9h-3M7 14h10v7H7zM16 11h1" /></svg>
                   Print
-                </button>
+                </button></span>
               </div>
             </div>
-          }
           <article class="bp-body article-body">
-            @if (!isUseCase) {
               <section class="article-summary" aria-labelledby="article-summary-label">
-                <p id="article-summary-label" class="article-summary-label">Summarize this article with:</p>
+                <p id="article-summary-label" class="article-summary-label">Summarize this {{ isUseCase ? 'use case' : 'article' }} with:</p>
                 <div class="article-summary-actions">
                   @for (provider of summaryLinks(); track provider.id) {
                     <a class="article-summary-button" [href]="provider.url"
@@ -202,7 +199,6 @@
                   </div>
                 }
               </section>
-            }
             @for (block of blocks(); track $index) {
               @switch (block.kind) {
                 @case ('p') { <p [innerHTML]="inlineMarkdown(block.text)"></p> }
@@ -286,7 +282,6 @@
             }
           </article>
 
-          @if (!isUseCase) {
             <section class="article-author-profile" aria-labelledby="article-author-heading">
               <h2 id="article-author-heading">About the Author</h2>
               <div class="article-author-profile-body">
@@ -305,7 +300,6 @@
                 </div>
               </div>
             </section>
-          }
         </div>
       </div>
     </div>
