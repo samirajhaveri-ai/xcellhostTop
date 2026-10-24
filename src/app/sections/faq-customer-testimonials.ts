@@ -90,8 +90,9 @@ export function ensureFaqCustomerTestimonials(root: ContentRoot): void {
   try { slug = doc.defaultView?.top?.location.pathname.replace(/^\/+|\/+$/g, '') || ''; } catch { /* No product override. */ }
   const productReviews = CUSTOMER_TESTIMONIALS[slug];
   const reviews = productReviews?.length ? productReviews : ENDPOINT_CUSTOMER_TESTIMONIALS;
+  const tallyLayout = slug === 'company/data-centers-global';
   const section = doc.createElement('section');
-  section.className = 'xh-customer-testimonials xh-testimonials-simple';
+  section.className = 'xh-customer-testimonials ' + (tallyLayout ? 'xh-testimonials-tally' : 'xh-testimonials-simple');
   section.setAttribute('data-auto-customer-testimonials', slug);
   section.setAttribute('aria-label', 'What Customers Say');
   const wrap = doc.createElement('div');
@@ -99,7 +100,7 @@ export function ensureFaqCustomerTestimonials(root: ContentRoot): void {
   const title = doc.createElement('h2');
   title.textContent = 'What Customers Say';
   wrap.append(title);
-  if (!productReviews?.length) {
+  if (!productReviews?.length && !tallyLayout) {
     const attribution = doc.createElement('p');
     attribution.className = 'xh-testimonial-attribution';
     attribution.textContent = 'Feedback from XcellHost endpoint-security customers.';
@@ -136,6 +137,14 @@ export function ensureFaqCustomerTestimonials(root: ContentRoot): void {
     identity.append(name, role);
     author.append(avatar, identity);
     card.append(quote, author);
+    if (tallyLayout) {
+      card.prepend(author);
+      const badge = doc.createElement('span');
+      badge.className = 'xh-quote-badge';
+      badge.setAttribute('aria-hidden', 'true');
+      badge.textContent = '\u201d';
+      card.append(badge);
+    }
     grid.append(card);
   }
   wrap.append(grid);
