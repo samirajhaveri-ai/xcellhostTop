@@ -31,6 +31,9 @@
   # uploaded, return a genuine 404 instead of an HTML page with status 200.
   RewriteRule ^api(?:/|$) - [L,NC]
 
+  # Public RSS subscription URL executes PHP rather than exposing a source file.
+  RewriteRule ^feeds/blog/?$ feeds/blog.php [L]
+
   # Serve real files and folders as-is
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d

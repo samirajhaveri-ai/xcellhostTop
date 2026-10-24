@@ -3,6 +3,12 @@ const path = require('node:path');
 const existing = require('./proxy.conf.json');
 
 module.exports = {
+  // Angular rewrites public PHP assets to /@fs/... before Vite's proxy runs.
+  // Use an extensionless feed URL, and also handle the legacy PHP asset URL.
+  '^/(?:feeds/blog/?|feeds/blog[.]php|@fs/.*[/]public[/]feeds[/]blog[.]php)(?:[?].*)?$': {
+    target: 'http://localhost',
+    bypass: require('./scripts/blog-rss-dev-proxy.cjs'),
+  },
   '/api/auth.php': {
     target: 'http://localhost',
     bypass: require('./scripts/auth-dev-proxy.cjs'),

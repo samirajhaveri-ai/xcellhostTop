@@ -726,6 +726,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
 
 
 
+
+
       const detail = (event as CustomEvent<{
         payload: Record<string, unknown>;
         complete: (result: { ok: boolean; skipped: boolean; ref: string; fallbackUrl: string }) => void;
@@ -752,7 +754,11 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
 
 
 
+
         page: this.source === 'aws-services' ? '/vendor-partners/amazon-web-services' : aiFactory ? '/ai-factory' : acronisWarranty ? '/anti-ransomware-warranty' : azureServices ? '/vendor-partners/microsoft-azure' : workflowAutomation ? '/acronis-workflow-automation' : cyberSecurityAudit ? '/cyber-security-audit' : office365E1Nonprofit ? '/office-365-e1-nonprofit' : teamsFrontline ? '/teams-essentials-frontline' : office365E5 ? '/office-365-e5' : emailSecurity ? '/email-security-enterprise' : redHat ? '/vendor-partners/red-hat' : '/acronis-ot',
+
+
+        page: awsServices ? '/vendor-partners/amazon-web-services' : aiFactory ? '/ai-factory' : acronisWarranty ? '/anti-ransomware-warranty' : azureServices ? '/vendor-partners/microsoft-azure' : workflowAutomation ? '/acronis-workflow-automation' : cyberSecurityAudit ? '/cyber-security-audit' : office365E1Nonprofit ? '/office-365-e1-nonprofit' : teamsFrontline ? '/teams-essentials-frontline' : office365E5 ? '/office-365-e5' : emailSecurity ? '/email-security-enterprise' : redHat ? '/vendor-partners/red-hat' : '/acronis-ot',
 
 
 
