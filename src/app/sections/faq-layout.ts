@@ -1,3 +1,5 @@
+import { ensureFaqCustomerTestimonials } from './faq-customer-testimonials';
+
 const stylesheet = '/assets/styles/faq-layout.css';
 type FaqRoot = Document | ShadowRoot;
 const installations = new WeakMap<FaqRoot, () => void>();
@@ -27,6 +29,7 @@ export function installFaqLayout(document: FaqRoot): () => void {
   let pending = 0;
   const scan = (): void => {
     pending = 0;
+    ensureFaqCustomerTestimonials(document);
     shadows.forEach((cleanup, root) => {
       if (!root.host.isConnected) { cleanup(); shadows.delete(root); }
     });
@@ -88,10 +91,10 @@ export function installFaqLayout(document: FaqRoot): () => void {
   const observer = new MutationObserver(records => {
     const rootsChanged = records.some(record =>
       [...Array.from(record.addedNodes), ...Array.from(record.removedNodes)].some(node =>
-        node.nodeType === 1 && ((node as Element).matches('iframe') ||
+        node.nodeType === 1 && ((node as Element).matches('iframe,h1,h2,h3,h4,.pp-sec,section') ||
           (node as Element).tagName.includes('-') ||
           Array.from((node as Element).querySelectorAll('*')).some(element =>
-            element.tagName === 'IFRAME' || element.tagName.includes('-'))),
+            element.matches('iframe,h1,h2,h3,h4,.pp-sec,section') || element.tagName.includes('-'))),
       ),
     );
     if (rootsChanged && !pending) pending = win.requestAnimationFrame(scan);

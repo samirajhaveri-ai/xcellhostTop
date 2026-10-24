@@ -6,9 +6,11 @@ import { LeadService } from '../core/lead.service';
 import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { useScrollingSectionNavigation } from './section-navigation-flow';
+import { installImportedJourneyLayout } from './imported-journey-layout';
 import { IDENTITY_SECURITY_PAGES, IdentitySecuritySource } from '../data/identity-security-pages.data';
 
 type InteractiveContentSource =
+  | 'smb-cloud-desktop'
 
   | 'ai-factory'
 
@@ -210,6 +212,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'red-team-assessment': '/imported-red-team-assessment.html',
     'cloud-security-assessment': '/imported-cloud-security-assessment.html',
     'acronis-ai-solution': '/imported-acronis-ai-solution.html',
+    'smb-cloud-desktop': '/imported-smb-cloud-desktop.html',
     'ai-factory': '/imported-ai-factory.html',
     'acronis-cyberfit-score': '/imported-acronis-cyberfit-score.html',
     'acronis-ransomware-warranty': '/imported-acronis-ransomware-warranty.html',
@@ -369,6 +372,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
 
 
     'acronis-ai-solution': 'Acronis AI platform, animated agent operations, product orbit, capability demos, agent simulator, MSP calculator, pricing, FAQs and related services',
+    'smb-cloud-desktop': 'SMB Cloud Desktop, animated desktop scenes, applications, access, security, pricing, cost calculator, plan picker and getting-started steps',
     'ai-factory': 'AI Factory, animated control room, GPU sizing, inference simulator, configurator, readiness check, FAQs and related services',
     'acronis-cyberfit-score': 'Acronis CyberFit Score, five animated score scenes, scoring estimator, priority planner, pricing, FAQs and related services',
     'acronis-ransomware-warranty': 'Acronis Anti-Ransomware Warranty, five animated recovery scenes, eligibility checker, downtime calculator, pricing, quotation form, FAQs and related services',
@@ -612,6 +616,10 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     const main = doc?.querySelector('main');
     if (doc && this.source !== 'sql-server-comparison' && this.source !== 'windows-server-comparison') useScrollingSectionNavigation(doc);
     if (!frame || !doc || !main) return;
+    // These three documents already have their own viewport-aware journey layout.
+    if (!['genian-nac', 'cybird', 'veritas'].includes(this.source)) {
+      this.cleanup.push(installImportedJourneyLayout(frame));
+    }
     const resize = () => {
 
       if (this.source === 'cybird' || this.source === 'cybird-sections') doc.documentElement.style.setProperty('--cybird-vh', `${window.innerHeight / 100}px`);
@@ -656,7 +664,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
         this.overlay.open('trial');
         return;
       }
-      const scopeTitle = this.source === 'ai-factory' ? 'AI Factory'
+      const scopeTitle = this.source === 'smb-cloud-desktop' ? 'SMB Cloud Desktop'
+        : this.source === 'ai-factory' ? 'AI Factory'
         : this.source === 'microsoft-defender' ? 'Microsoft Defender'
         : this.source in IDENTITY_SECURITY_PAGES ? this.sourceTitles[this.source]
         : ['acronis-cyber-intelligence', 'acronis-cyber-frame', 'acronis-workflow-automation'].includes(this.source) ? this.sourceTitles[this.source]
