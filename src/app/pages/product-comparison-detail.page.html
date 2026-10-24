@@ -1,69 +1,67 @@
-<main class="comparison-detail">
-  <header class="detail-bar">
-    <div class="detail-wrap detail-bar-inner">
-      <div>
-        <span>{{ definition.category }}</span>
-        <h1>{{ title }}</h1>
+﻿<main class="comparison-detail">
+  <header class="comparison-hero" data-banner-actions="off">
+    <div class="detail-wrap">
+      <a class="back-link" routerLink="/compare-products"><span aria-hidden="true">←</span> All product comparisons</a>
+      <div class="hero-layout">
+        <div class="hero-copy">
+          <span class="eyebrow"><span></span> {{ definition.category }} · Product comparison</span>
+          <h1><span>{{ left.displayName }}</span><em>vs</em><span>{{ right.displayName }}</span></h1>
+          <p class="detail-intro">{{ definition.summary }}</p>
+          <div class="hero-actions">
+            <a class="comparison-button primary-button" href="#feature-comparison-title">Compare features <span aria-hidden="true">↓</span></a>
+            <button class="comparison-button outline-button" type="button" (click)="requestConsultation()">Talk to an expert <span aria-hidden="true">↗</span></button>
+          </div>
+        </div>
+        <div class="matchup" aria-label="Products in this comparison">
+          <div class="matchup-product"><span class="product-number">01</span><strong>{{ left.displayName }}</strong><small>{{ left.entry.group }}</small><span class="matchup-line"></span></div>
+          <span class="versus" aria-hidden="true">VS</span>
+          <div class="matchup-product alternate"><span class="product-number">02</span><strong>{{ right.displayName }}</strong><small>{{ right.entry.group }}</small><span class="matchup-line"></span></div>
+          <div class="matchup-caption"><span aria-hidden="true">✓</span> Capabilities. Costs. The right fit.</div>
+        </div>
       </div>
-      <a routerLink="/compare-products" aria-label="Back to all product comparisons">×</a>
+      <div class="hero-footer"><span><i aria-hidden="true">✓</i> Side-by-side capabilities</span><span><i aria-hidden="true">✓</i> Strengths &amp; considerations</span><span><i aria-hidden="true">✓</i> Guidance from XcellHost</span></div>
     </div>
   </header>
 
   <div class="detail-wrap detail-content">
-    <p class="detail-intro">{{ definition.summary }}</p>
-
+    <div class="section-heading"><div><span class="section-kicker">THE BIG PICTURE</span><h2>Two solutions. Your priorities.</h2></div><p>Start with the fit. Then look at the details.</p></div>
     <section class="product-summary-grid" aria-label="Product summaries">
-      <article class="product-summary product-summary-featured">
-        <header><h2>{{ left.displayName }}</h2><span>{{ left.entry.group }}</span></header>
-        <div class="product-summary-body">
-          <div class="summary-field"><span>Best for</span><p>{{ left.entry.desc }}</p></div>
-          <div class="summary-field"><span>Pricing</span><strong>{{ left.price }}</strong></div>
-          <div class="summary-list strengths"><h3><i aria-hidden="true">✓</i> Strengths</h3><ul>@for (item of left.strengths; track item) { <li><i aria-hidden="true">✓</i>{{ item }}</li> }</ul></div>
-          <div class="summary-list considerations"><h3>Planning considerations</h3><ul>@for (item of left.considerations; track item) { <li><i aria-hidden="true">!</i>{{ item }}</li> }</ul></div>
-          <a [routerLink]="['/', left.slug]">View {{ left.displayName }} details →</a>
-        </div>
-      </article>
-
-      <article class="product-summary">
-        <header><h2>{{ right.displayName }}</h2><span>{{ right.entry.group }}</span></header>
-        <div class="product-summary-body">
-          <div class="summary-field"><span>Best for</span><p>{{ right.entry.desc }}</p></div>
-          <div class="summary-field"><span>Pricing</span><strong>{{ right.price }}</strong></div>
-          <div class="summary-list strengths"><h3><i aria-hidden="true">✓</i> Strengths</h3><ul>@for (item of right.strengths; track item) { <li><i aria-hidden="true">✓</i>{{ item }}</li> }</ul></div>
-          <div class="summary-list considerations"><h3>Planning considerations</h3><ul>@for (item of right.considerations; track item) { <li><i aria-hidden="true">!</i>{{ item }}</li> }</ul></div>
-          <a [routerLink]="['/', right.slug]">View {{ right.displayName }} details →</a>
-        </div>
-      </article>
+      @for (product of [left, right]; track $index; let index = $index) {
+        <article class="product-summary" [class.product-summary-alternate]="index === 1">
+          <header>
+            <div class="summary-heading"><span class="summary-product-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6l-8-3Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg></span><span class="summary-option">OPTION 0{{ index + 1 }}</span></div>
+            <div><span class="product-category">{{ product.entry.group }}</span><h2>{{ product.displayName }}</h2></div>
+          </header>
+          <div class="product-summary-body">
+            @if (product.entry.desc) {
+              <div class="summary-field fit-field"><span>AT A GLANCE</span><p>{{ product.entry.desc }}</p></div>
+            }
+            <div class="summary-field price-field"><div><span>STARTING PRICE</span><strong>{{ product.price }}</strong></div><button type="button" (click)="requestConsultation()" [attr.aria-label]="'Discuss pricing for ' + product.displayName">Discuss pricing <span aria-hidden="true">↗</span></button></div>
+            <div class="summary-list strengths"><h3><i aria-hidden="true">✓</i> Strengths</h3><ul>@for (item of product.strengths; track item) { <li><i aria-hidden="true">✓</i>{{ item }}</li> }</ul></div>
+            <div class="summary-list considerations"><h3><i aria-hidden="true">!</i> Before you decide</h3><ul>@for (item of product.considerations; track item) { <li>{{ item }}</li> }</ul></div>
+            <a class="product-detail-link" [routerLink]="['/', product.slug]">Explore {{ product.displayName }} <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+      }
     </section>
 
     <section class="feature-card" aria-labelledby="feature-comparison-title">
-      <header><h2 id="feature-comparison-title">Feature Comparison</h2></header>
+      <header><div><span class="section-kicker">SIDE BY SIDE</span><h2 id="feature-comparison-title">The details that make a difference</h2></div><span class="feature-count">{{ rows.length }} comparison points</span></header>
       <div class="feature-table-scroll" tabindex="0" aria-label="Scrollable product feature comparison">
         <table>
-          <thead><tr><th scope="col">Feature</th><th scope="col">{{ left.displayName }}</th><th scope="col">{{ right.displayName }}</th></tr></thead>
-          <tbody>
-            @for (row of rows; track row.feature) {
-              <tr><th scope="row">{{ row.feature }}</th><td>{{ row.left }}</td><td>{{ row.right }}</td></tr>
-            }
-          </tbody>
+          <caption class="visually-hidden">{{ title }}: features, pricing and support</caption>
+          <thead><tr><th scope="col">What matters</th><th scope="col"><span class="table-dot"></span>{{ left.displayName }}</th><th scope="col"><span class="table-dot alternate-dot"></span>{{ right.displayName }}</th></tr></thead>
+          <tbody>@for (row of rows; track row.feature; let index = $index) { <tr><th scope="row"><span class="row-number">{{ index + 1 < 10 ? '0' : '' }}{{ index + 1 }}</span>{{ row.feature }}</th><td>{{ row.left }}</td><td>{{ row.right }}</td></tr> }</tbody>
         </table>
       </div>
+      <div class="table-note"><span aria-hidden="true">ⓘ</span> Final scope, sizing and commercial terms are confirmed during a solution assessment.</div>
     </section>
 
     <section class="expert-insight" aria-labelledby="expert-insight-title">
-      <span aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M12 3v18M7 6h10M5 6l-3 6h6L5 6Zm14 0-3 6h6l-3-6ZM2 12c.4 2 1.4 3 3 3s2.6-1 3-3m8 0c.4 2 1.4 3 3 3s2.6-1 3-3M8 21h8" /></svg>
-      </span>
-      <div>
-        <h2 id="expert-insight-title">XcellHost Expert Insight</h2>
-        <p>{{ definition.summary }} The deciding factors are usually workload fit, migration effort, integrations, support ownership and the total operating cost—not the longest feature list.</p>
-        <button class="btn btn-primary" type="button" (click)="requestConsultation()">Get expert consultation →</button>
-      </div>
+      <div class="expert-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M7 6h10M5 6l-3 6h6L5 6Zm14 0-3 6h6l-3-6ZM2 12c.4 2 1.4 3 3 3s2.6-1 3-3m8 0c.4 2 1.4 3 3 3s2.6-1 3-3M8 21h8"/></svg></div>
+      <div class="expert-copy"><span class="section-kicker">XCELLHOST EXPERT INSIGHT</span><h2 id="expert-insight-title">Choose for your workload.</h2><p>The deciding factors are workload fit, migration effort, integrations, support ownership and total operating cost. Talk through your requirements with our team.</p></div>
+      <button class="comparison-button primary-button" type="button" (click)="requestConsultation()">Get expert consultation <span aria-hidden="true">↗</span></button>
     </section>
-
-    <div class="detail-actions">
-      <a class="btn btn-ghost" routerLink="/compare-products">← Back to all comparisons</a>
-      <a class="btn btn-ghost" routerLink="/compare" [queryParams]="{ s: left.slug + ',' + right.slug }">Open custom comparison table</a>
-    </div>
+    <div class="detail-actions"><a routerLink="/compare-products"><span aria-hidden="true">←</span> Back to all comparisons</a><a routerLink="/compare" [queryParams]="{ s: left.slug + ',' + right.slug }">Build a custom comparison <span aria-hidden="true">↗</span></a></div>
   </div>
 </main>
