@@ -44,7 +44,9 @@ const TEAM_AUTHOR_PHOTOS = Object.fromEntries(HUMAN_TEAM_MEMBERS.map(member => [
   normaliseAuthorName(member.name), encodeURI(`/${member.image.replace(/^\/+/, '')}`),
 ]));
 const TEAM_AUTHOR_BIOS = Object.fromEntries(HUMAN_TEAM_MEMBERS.map(member => [
-  normaliseAuthorName(member.name), `${member.name.trim()} is ${member.role.trim()} at XcellHost.`,
+  normaliseAuthorName(member.name), member.role.trim()
+    ? `${member.name.trim()} is ${member.role.trim()} at XcellHost.`
+    : `${member.name.trim()} is a member of the XcellHost team.`,
 ]));
 const AUTHOR_PHOTOS: Readonly<Record<string, string>> = {
   ...TEAM_AUTHOR_PHOTOS,
