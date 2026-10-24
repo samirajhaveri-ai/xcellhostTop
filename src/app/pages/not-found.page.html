@@ -1,0 +1,65 @@
+<main aria-labelledby="not-found-title">
+<section class="nf" id="top">
+  <canvas class="nf-cv" xhNotFoundStars aria-hidden="true"></canvas>
+  <div class="nf-glow" aria-hidden="true"></div>
+  <div class="wrap nf-in">
+    <div class="nf-art" aria-hidden="true">
+      <svg class="nf-num" viewBox="0 0 900 360" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="nfFace" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2a52"/><stop offset="1" stop-color="#0f1a38"/></linearGradient>
+          <filter id="nfBlur"><feGaussianBlur stdDeviation="6"/></filter>
+        </defs>
+        <text x="450" y="318" text-anchor="middle" class="nf-txt">404</text>
+        <!-- server rack inside the 0 -->
+        <g class="nf-rack" transform="translate(422 92)">
+          <rect x="0" y="0" width="56" height="176" rx="6"/>
+          <rect class="u" x="7" y="10" width="42" height="24" rx="3"/>
+          <rect class="u" x="7" y="42" width="42" height="24" rx="3"/>
+          <rect class="u" x="7" y="74" width="42" height="24" rx="3"/>
+          <rect class="u" x="7" y="106" width="42" height="24" rx="3"/>
+          <rect class="u" x="7" y="138" width="42" height="24" rx="3"/>
+          <circle class="led l1" cx="42" cy="22" r="2.4"/><circle class="led l2" cx="42" cy="54" r="2.4"/><circle class="led l3 off" cx="42" cy="86" r="2.4"/><circle class="led l4" cx="42" cy="118" r="2.4"/><circle class="led l5" cx="42" cy="150" r="2.4"/>
+        </g>
+        <!-- cable from left into the plug -->
+        <path id="nfCableL" class="nf-cable" d="M110 172 C 260 172, 300 172, 360 176 S 420 186, 432 180"/>
+        <circle class="nf-pulse" r="3.5"><animateMotion dur="2.4s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#nfCableL"/></animateMotion></circle>
+        <g class="nf-plug" transform="translate(432 180)">
+          <rect x="0" y="-9" width="16" height="18" rx="3"/>
+          <rect class="pin" x="16" y="-6" width="7" height="3" rx="1"/><rect class="pin" x="16" y="3" width="7" height="3" rx="1"/>
+        </g>
+        <!-- socket side -->
+        <g class="nf-sock" transform="translate(478 180)">
+          <rect x="-4" y="-11" width="14" height="22" rx="3"/>
+        </g>
+        <path class="nf-cable nf-cr" d="M488 180 C 560 180, 600 172, 660 172 S 760 172, 790 172"/>
+        <circle class="nf-end" cx="790" cy="172" r="4"/>
+        <!-- sparks -->
+        <g class="nf-spark" transform="translate(462 180)">
+          <line x1="0" y1="-8" x2="0" y2="-22"/><line x1="6" y1="-6" x2="16" y2="-16"/><line x1="-6" y1="-6" x2="-16" y2="-16"/>
+          <line x1="0" y1="8" x2="0" y2="22"/><line x1="6" y1="6" x2="16" y2="16"/><line x1="-6" y1="6" x2="-16" y2="16"/>
+        </g>
+      </svg>
+    </div>
+    <h1 class="nf-h" id="not-found-title">This page is out of reach</h1>
+    <p class="nf-lead">The page may have moved, or the link is incorrect.</p>
+    <div class="nf-cta">
+      <a class="nf-b nf-p" routerLink="/" (click)="closeServices()">Back to Home <span aria-hidden="true">→</span></a>
+      <div class="nf-dd" [class.open]="servicesOpen()" (click)="$event.stopPropagation()">
+        <button type="button" class="nf-b nf-g" id="nfDd" [attr.aria-expanded]="servicesOpen()" aria-controls="nfMenu" (click)="toggleServices()">Explore Services <span class="nf-ch" aria-hidden="true">⌄</span></button>
+        <div class="nf-menu" id="nfMenu">
+          <a routerLink="/hybrid-cloud" (click)="closeServices()">Cloud</a>
+          <a routerLink="/vps-hosting" (click)="closeServices()">VPS &amp; Servers</a>
+          <a routerLink="/microsoft-365-smb" (click)="closeServices()">Microsoft 365</a>
+          <a routerLink="/vortex-soc" (click)="closeServices()">Security &amp; SOC</a>
+          <a routerLink="/cloud-backup" (click)="closeServices()">Backup &amp; DR</a>
+          <a routerLink="/sectigo-ssl-certificates" (click)="closeServices()">SSL Certificates</a>
+        </div>
+      </div>
+    </div>
+    <nav class="nf-links" aria-label="Popular pages">
+      <a routerLink="/hybrid-cloud" (click)="closeServices()">Cloud</a><a routerLink="/vps-hosting" (click)="closeServices()">VPS</a><a routerLink="/microsoft-365-smb" (click)="closeServices()">Microsoft 365</a><a routerLink="/vortex-soc" (click)="closeServices()">Security</a><a href="https://supportdesk.xcellhost.cloud" target="_blank" rel="noopener">Support</a>
+    </nav>
+  </div>
+</section>
+
+</main>

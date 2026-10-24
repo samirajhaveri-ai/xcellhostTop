@@ -1004,10 +1004,16 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "SQL-Server Comparision",
+                "title": "Microsoft SQL-Server Comparision",
                 "pill": null,
                 "desc": null,
                 "href": "/sql-server-comparision"
+              },
+              {
+                "title": "Windows-Server Comparision",
+                "pill": null,
+                "desc": null,
+                "href": "/windows-server-comparision"
               },
               
 
@@ -2613,7 +2619,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Digicert VMC ",
+                "title": "Dimake icert VMC ",
                 "pill": null,
                 "desc": null
               },
@@ -3567,7 +3573,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Detect issues and automate routine IT operations with AI"
               },
               {
-                "title": "Agent Studio",
+                "title": "AI Agent Studio",
                 "pill": null,
                 "desc": "Build and manage AI agents for business workflows"
               },
@@ -5259,6 +5265,7 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Global Data Centers",
+                "href": "/company/data-centers-global",
                 "pill": null,
                 "desc": "Global locations for resilient workloads"
               },
@@ -5380,7 +5387,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": "Support contacts and escalation levels"
               },
               {
-                "title": "Status",
+                "title": "Services Status",
                 "pill": null,
                 "desc": "Support contacts and escalation levels"
               },
@@ -5435,8 +5442,9 @@ export const MEGA_MENU: MenuTop[] = [
               },
               {
                 "title": "Partner Contact Matrix",
+                "href": "/partner-matrix",
                 "pill": null,
-                "desc": "Introduce customers to XcellHost services"
+                "desc": "Connect with channel sales, pre-sales, support and billing teams"
               },
               {
                 "title": "Partner/Signup ",

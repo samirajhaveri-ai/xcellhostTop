@@ -9,7 +9,9 @@
 <router-outlet />
 
 @if (!hasStandaloneShell()) {
-  <xh-contact-options />
+  @if (showContactOptions()) {
+    <xh-contact-options />
+  }
   <xh-footer />
 }
 

@@ -15,6 +15,7 @@ import { Router, RouterLink } from '@angular/router';
 
 import { slugify } from '../core/catalog.service';
 import { OverlayService } from '../core/overlay.service';
+import { SearchLaunchService } from '../core/search-launch.service';
 import { SiteSearchResult, SiteSearchService } from '../core/site-search.service';
 import { AiAssistantComponent } from './ai-assistant.component';
 import { AlgoliaSearchComponent } from './algolia-search.component';
@@ -46,6 +47,7 @@ export class SearchDialogComponent {
   private readonly search = inject(SiteSearchService);
   private readonly router = inject(Router);
   readonly overlay = inject(OverlayService);
+  readonly searchLaunch = inject(SearchLaunchService);
   readonly websiteSearch = signal(true);
 
   private readonly inputRef = viewChild<ElementRef<HTMLInputElement>>('srchI');
@@ -123,9 +125,10 @@ export class SearchDialogComponent {
     effect(() => {
       if (!this.overlay.isOpen('search')) {
         untracked(() => {
-          // The header search icon should always start with the website search.
-          // Visitors can still switch to Ask AI from the open dialog.
+          // The header search icon and keyboard shortcut keep the original
+          // website-search panel as their default view.
           this.websiteSearch.set(true);
+          this.searchLaunch.reset();
           this.aiMode.set(false);
           this.resetAnswer();
           if (this.timer) clearTimeout(this.timer);
@@ -136,6 +139,7 @@ export class SearchDialogComponent {
         return;
       }
       untracked(() => {
+        this.websiteSearch.set(this.searchLaunch.mode() !== 'ask-ai');
         this.previousFocus = this.inputRef()?.nativeElement.ownerDocument.activeElement as HTMLElement | null;
         this.resetAnswer();
         this.aiMode.set(false);
@@ -238,7 +242,7 @@ export class SearchDialogComponent {
       const tag = (ev.target as HTMLElement | null)?.tagName ?? '';
       if ((ev.key === '/' || ((ev.ctrlKey || ev.metaKey) && ev.key.toLowerCase() === 'k')) && !/^(INPUT|TEXTAREA|SELECT)$/.test(tag) && !(ev.target as HTMLElement | null)?.isContentEditable) {
         ev.preventDefault();
-        this.overlay.open('search');
+        this.searchLaunch.open('search');
       }
       return;
     }
@@ -289,6 +293,11 @@ export class SearchDialogComponent {
     this.aiMode.set(false);
     this.overlay.close('search');
     this.previousFocus?.focus();
+  }
+
+  openAlgoliaAskAi(): void {
+    this.searchLaunch.select('ask-ai');
+    this.websiteSearch.set(false);
   }
 
   go(hit: SiteSearchResult): void {

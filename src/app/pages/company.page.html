@@ -1382,6 +1382,47 @@
         </div>
       </section>
     } @else {
+    @if (slug() === 'data-centers-global') {
+    <section class="dc-hero" aria-labelledby="dcHeroTitle">
+      <div class="dc-hero-map" [innerHTML]="worldMap" aria-hidden="true"></div>
+      <div class="dc-hero-grid" aria-hidden="true"></div>
+      <canvas class="dc-hero-net" xhHeroNet aria-hidden="true"></canvas>
+      <div class="wrap dc-hero-inner">
+        <div class="dc-hero-copy">
+          <div class="pp-crumb">Home › Company › About</div>
+          <span class="company-kicker">Global infrastructure</span>
+          <h1 id="dcHeroTitle">{{ page.title }}</h1>
+          <p>{{ page.tagline }}</p>
+          <div class="dc-hero-features"><span>Global reach</span><span>Resilient infrastructure</span><span>Data residency</span></div>
+        </div>
+        <div class="dc-hero-art" aria-hidden="true">
+          <svg viewBox="0 0 540 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="dcGlobeFill"><stop stop-color="#124c87"/><stop offset="1" stop-color="#072349"/></radialGradient>
+              <linearGradient id="dcRackFill" x2="1" y2="1"><stop stop-color="#19477c"/><stop offset="1" stop-color="#081d3c"/></linearGradient>
+            </defs>
+            <circle cx="280" cy="170" r="128" fill="url(#dcGlobeFill)" stroke="#459bd7" stroke-opacity=".6"/>
+            <g stroke="#55b6f3" stroke-opacity=".35">
+              <ellipse cx="280" cy="170" rx="80" ry="128"/><ellipse cx="280" cy="170" rx="34" ry="128"/>
+              <ellipse cx="280" cy="170" rx="128" ry="48"/><ellipse cx="280" cy="170" rx="118" ry="88"/>
+              <path d="M152 170H408M280 42V298"/>
+            </g>
+            <g class="dc-globe-orbit"><ellipse cx="280" cy="170" rx="166" ry="150" stroke="#60baff" stroke-opacity=".5" stroke-dasharray="5 10"/><circle cx="446" cy="170" r="5" fill="#ff8c1a"/></g>
+            <g stroke="#58d5ed" stroke-width="2" stroke-dasharray="5 7" class="dc-network-links"><path d="M100 220L235 115L350 190L455 250M235 115L280 260L350 190"/></g>
+            <g fill="#37dfa0" class="dc-location-lights"><circle cx="235" cy="115" r="6"/><circle cx="350" cy="190" r="6"/><circle cx="280" cy="260" r="6"/></g>
+            <g class="dc-rack-float">
+              <rect x="40" y="140" width="115" height="150" rx="12" fill="url(#dcRackFill)" stroke="#4c8bc6"/>
+              @for (y of [156, 188, 220, 252]; track y) {
+                <rect x="51" [attr.y]="y" width="93" height="23" rx="4" fill="#0b284c" stroke="#2b5685"/>
+                <circle cx="63" [attr.cy]="y + 11" r="3" fill="#37dfa0"/><path [attr.d]="'M77 ' + (y + 11) + 'h54'" stroke="#4384be" stroke-width="3"/>
+              }
+            </g>
+            <g class="dc-network-label"><rect x="345" y="253" width="159" height="57" rx="10" fill="#0b2446" stroke="#458cca"/><circle cx="363" cy="273" r="4" fill="#37dfa0"/><text x="376" y="277" fill="#b5d7f6" font-size="10" font-family="monospace">GLOBAL NETWORK</text><text x="360" y="296" fill="white" font-size="12" font-family="sans-serif" font-weight="700">Connected. Resilient.</text></g>
+          </svg>
+        </div>
+      </div>
+    </section>
+    } @else {
     <section class="pp-hero company-hero">
       <span class="company-orb company-orb-one"></span>
       <span class="company-orb company-orb-two"></span>
@@ -1392,6 +1433,7 @@
         <p class="pp-tagline">{{ page.tagline }}</p>
       </div>
     </section>
+    }
     }
     }
     }
@@ -1425,6 +1467,10 @@
           </div>
         </div>
       </section>
+    }
+
+    @if (slug() === 'data-centers-global') {
+      <xh-global-infrastructure />
     }
 
     <section class="company-body" [id]="slug() === 'partner-overview' ? 'partner-overview-content' : null">
@@ -1775,6 +1821,22 @@
             </div>
           </div>
           <a class="pp-cta-buddha-link" routerLink="/company/support-overview" aria-label="Visit XcellHost customer support">
+            <img class="pp-cta-buddha" src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost Laughing Buddha" width="104" height="104" loading="lazy" />
+          </a>
+        </section>
+        } @else if (slug() === 'data-centers-global') {
+        <section class="pp-cta certification-buddha-strip" aria-labelledby="data-centers-cta-title">
+          <div>
+            <h2 id="data-centers-cta-title">Plan your global deployment with XcellHost</h2>
+            <p>FREE Consultation &middot; FREE Demo &middot; FREE Trial &middot; 24&times;7 support in English &amp; Hindi</p>
+            <div class="certification-buddha-actions">
+              <button class="btn btn-primary" type="button" data-cbtopic="Global Data Centers">Let's Talk</button>
+              <a class="btn btn-ghost" routerLink="/contact">Contact team</a>
+              <a class="btn btn-ghost" href="https://wa.me/918657032540" target="_blank" rel="noopener noreferrer">Talk on WhatsApp</a>
+              <a class="btn btn-ghost" href="mailto:sales@xcellhost.com?subject=Global%20Data%20Centers%20enquiry">Email Us</a>
+            </div>
+          </div>
+          <a class="pp-cta-buddha-link" routerLink="/support-overview" aria-label="Visit XcellHost customer support">
             <img class="pp-cta-buddha" src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost Laughing Buddha" width="104" height="104" loading="lazy" />
           </a>
         </section>
