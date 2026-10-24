@@ -5773,14 +5773,14 @@
 
           @if (v.name !== 'Tally on Cloud' && slug() !== 'bio-link-digital-visiting-card' && slug() !== 'general-compute' && slug() !== 'wordpress-vps') {
           @if (slug() === 'windows-servers' || slug() === 'linux-servers') {
-            <xh-global-infrastructure-globe />
+            <xh-global-infrastructure-globe variant="global-cloud" />
           }
           @if (
             slug() === 'bare-metal-servers' ||
             slug() === 'performance-cloud' ||
             slug() === 'gpu-servers'
           ) {
-            <xh-global-infrastructure-globe />
+            <xh-global-infrastructure-globe variant="global-cloud" />
             <xh-bare-metal-content [dataCenterOnly]="true" />
           }
             @if (slug() === 'rtx-8000') {

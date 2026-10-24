@@ -614,6 +614,13 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     const frame = (event?.currentTarget as HTMLIFrameElement | null) ?? this.frame?.nativeElement;
     const doc = frame?.contentDocument;
     const main = doc?.querySelector('main');
+    if (doc?.head && !doc.getElementById('xh-pricing-card-styles')) {
+      const pricingStyles = doc.createElement('link');
+      pricingStyles.id = 'xh-pricing-card-styles';
+      pricingStyles.rel = 'stylesheet';
+      pricingStyles.href = '/assets/styles/pricing-cards.css';
+      doc.head.append(pricingStyles);
+    }
     if (doc && this.source !== 'sql-server-comparison' && this.source !== 'windows-server-comparison') useScrollingSectionNavigation(doc);
     if (!frame || !doc || !main) return;
     // These three documents already have their own viewport-aware journey layout.
