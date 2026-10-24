@@ -147,7 +147,19 @@ export class CompanyPage {
       'Our approach is simple: give customers practical guidance, deliver what was promised and stay accountable after go-live.',
   } as const;
 
+
   readonly managementTeam = COMPANY_TEAM.managementTeam;
+
+  readonly managementTeam = [
+    { initials: 'YT', name: 'Yogesh Trivedi', role: 'Africa Director', image: '/assets/images/Yogesh Trivedi.png' },
+    { initials: 'YJ', name: 'Yogendra Jagger', role: 'Regional Director - EMEA Middle East & Africa', image: '/assets/images/TEAMS PHOTO/Yogendra.png' },
+    { initials: 'JS', name: 'James Soosai', role: '', image: '/assets/images/WhatsApp Image 2026-10-23 at 4.17.01 PM.jpeg' },
+    { initials: 'AN', name: 'Abhishek Nimbalkar', role: 'Chief AI Officer', image: '/assets/images/TEAMS PHOTO/Abhishek.png' },
+    { initials: 'PN', name: 'Prashant N.V', role: 'Service Delivery Director', image: '/assets/images/TEAMS PHOTO/Prashant.png' },
+    { initials: 'T', name: 'AI Management Intelligence Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
+    
+  ] as const;
+
 
   readonly advisoryTeam = COMPANY_TEAM.advisoryTeam;
 
