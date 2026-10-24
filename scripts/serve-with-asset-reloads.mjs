@@ -70,7 +70,7 @@ const assetWatchers = assetRoots.map((root) =>
   }),
 );
 
-const proxyFiles = ['proxy.conf.cjs', 'proxy.conf.json', 'scripts/ai-dev-proxy.cjs', 'scripts/auth-dev-proxy.cjs'];
+const proxyFiles = ['proxy.conf.cjs', 'proxy.conf.json', 'scripts/ai-dev-proxy.cjs', 'scripts/auth-dev-proxy.cjs', 'scripts/blog-rss-dev-proxy.cjs'];
 const proxyContents = new Map(proxyFiles.map(file => [file, readFileSync(join(projectRoot, file), 'utf8')]));
 const proxyWatchers = proxyFiles.map(file =>
   watch(join(projectRoot, file), () => {

@@ -102,6 +102,23 @@
 
           <xh-contact-options [sidebar]="true" />
 
+          @if (!isUseCase) {
+            <section class="article-side-card article-rss-card" aria-labelledby="articleRssTitle">
+              <h3 id="articleRssTitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="5" cy="19" r="1" fill="currentColor"/><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/></svg>Subscribe via RSS</h3>
+              <p>Follow our blog and get new posts in your feed reader.</p>
+              <button class="btn btn-primary article-rss-subscribe" type="button" (click)="subscribeRss()" [disabled]="rssChecking()" [attr.aria-busy]="rssChecking()">{{ rssChecking() ? 'Checking availability…' : 'Subscribe to blog' }}</button>
+              @if (rssSubscriptionError()) { <p class="article-rss-status" role="alert">{{ rssSubscriptionError() }}</p> }
+              <p class="article-rss-note">Opens Feedly. Sign in and choose Follow to subscribe.</p>
+              <details class="article-rss-alternative">
+                <summary>Use another RSS app</summary>
+                <label for="articleRssUrl">Copy this link into your RSS reader</label>
+                <input id="articleRssUrl" #rssUrl type="url" [value]="rssFeedUrl" readonly (click)="rssUrl.select()" />
+                <button class="btn btn-ghost" type="button" (click)="copyRssFeed()">Copy feed link</button>
+                @if (rssCopyStatus()) { <p class="article-rss-status" role="status">{{ rssCopyStatus() }}</p> }
+              </details>
+            </section>
+          }
+
           @if (showTallyBanner()) {
             <a
               class="article-tally-banner"

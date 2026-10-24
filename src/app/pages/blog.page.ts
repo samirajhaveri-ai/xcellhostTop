@@ -14,6 +14,7 @@ import { SITE } from '../data/site.data';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { selectBlogSpeechVoice } from '../core/blog-speech-voice';
 import { ContactOptionsComponent } from '../layout/contact-options.component';
+import { BLOG_RSS_URL, BLOG_RSS_SUBSCRIBE_URL, blogRssIsAvailable } from '../core/blog-rss-subscription';
 
 interface BodyBlock {
   readonly kind: 'p' | 'h' | 'ul' | 'img';
@@ -60,6 +61,35 @@ const AUTHOR_BIOS: Readonly<Record<string, string>> = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BlogPage implements OnDestroy {
+  readonly rssFeedUrl = BLOG_RSS_URL;
+  readonly rssChecking = signal(false);
+  readonly rssSubscriptionError = signal('');
+  readonly rssCopyStatus = signal('');
+
+  async subscribeRss(): Promise<void> {
+    if (this.rssChecking()) return;
+    this.rssChecking.set(true);
+    this.rssSubscriptionError.set('');
+    const available = await blogRssIsAvailable();
+    this.rssChecking.set(false);
+    if (!available) {
+      this.rssSubscriptionError.set('RSS subscriptions are temporarily unavailable. Please try again later, or subscribe by email above.');
+      return;
+    }
+    this.doc.defaultView?.location.assign(BLOG_RSS_SUBSCRIBE_URL);
+  }
+
+  async copyRssFeed(): Promise<void> {
+    try {
+      const clipboard = this.doc.defaultView?.navigator.clipboard;
+      if (!clipboard) throw new Error('Clipboard unavailable');
+      await clipboard.writeText(this.rssFeedUrl);
+      this.rssCopyStatus.set('Feed link copied. Paste it into your RSS reader.');
+    } catch {
+      this.rssCopyStatus.set('Select and copy the feed link above, then add it to your RSS reader.');
+    }
+  }
+
   private readonly topics = inject(CallbackTopicService);
   private readonly route = inject(ActivatedRoute);
   private readonly overlay = inject(OverlayService);

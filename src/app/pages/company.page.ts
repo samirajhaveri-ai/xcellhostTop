@@ -148,8 +148,8 @@ export class CompanyPage {
 
   readonly managementTeam = [
     { initials: 'YT', name: 'Yogesh Trivedi', role: 'Africa Director', image: '/assets/images/Yogesh Trivedi.png' },
-    { initials: 'YJ', name: 'Yogendra Jagger', role: 'Regional Director - EMEA Middle East & Africa', image: '/assets/images/TEAMS PHOTO/Yogendra.png' },
-    { initials: 'JS', name: 'James Soosai', role: '', image: '/assets/images/WhatsApp Image 2026-10-23 at 4.17.01 PM.jpeg' },
+    { initials: 'YJ', name: 'Yogendra Jagger', role: 'Regional Director - EMEA Middle East', image: '/assets/images/TEAMS PHOTO/Yogendra.png' },
+    { initials: 'JS', name: 'James Soosai', role: 'Chief Financial Officer', image: '/assets/images/WhatsApp Image 2026-10-23 at 4.17.01 PM.jpeg' },
     { initials: 'AN', name: 'Abhishek Nimbalkar', role: 'Chief AI Officer', image: '/assets/images/TEAMS PHOTO/Abhishek.png' },
     { initials: 'PN', name: 'Prashant N.V', role: 'Service Delivery Director', image: '/assets/images/TEAMS PHOTO/Prashant.png' },
     { initials: 'T', name: 'AI Management Intelligence Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
