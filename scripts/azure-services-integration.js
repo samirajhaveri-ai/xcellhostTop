@@ -11,7 +11,9 @@
     frame = 0;
     const top = frameElement.getBoundingClientRect().top;
     const offset = inset();
-    [[bar, offset, catalog], [rail, offset + bar.clientHeight + 16, rail.parentElement]].forEach(([element, target, container]) => {
+    const pins = [[bar, offset, catalog]];
+    if (rail) pins.push([rail, offset + bar.clientHeight + 16, rail.parentElement]);
+    pins.forEach(([element, target, container]) => {
       if (!element || !element.getClientRects().length) return;
       const natural = element.getBoundingClientRect().top - (shifts.get(element) || 0);
       const limit = Math.max(0, container.getBoundingClientRect().bottom - natural - element.clientHeight);
@@ -23,8 +25,10 @@
   function schedule() { if (!frame) frame = requestAnimationFrame(update); }
   bar.style.position = 'relative';
   bar.style.top = '0';
-  rail.style.position = 'relative';
-  rail.style.top = '0';
+  if (rail) {
+    rail.style.position = 'relative';
+    rail.style.top = '0';
+  }
   const resize = new ResizeObserver(schedule);
   resize.observe(main);
   outer.addEventListener('scroll', schedule, { passive: true });
@@ -41,17 +45,19 @@
   links.observe(main, { childList: true, subtree: true });
   linkTargets(main);
   function loadService(hash) {
-    if (!hash.startsWith('#svc-')) return;
+    if (!hash.startsWith('#svc-') && !hash.startsWith('#cat-')) return;
     history.replaceState(null, '', hash);
     window.XH.azDeep?.();
   }
   document.addEventListener('click', function (event) {
-    const category = event.target.closest('#azRail a[href^="#cat-"]');
+    const category = event.target.closest('#azRail a[href^="#cat-"], #azJump a[href^="#cat-"]');
     if (category) {
       const section = document.getElementById(category.hash.slice(1));
       if (!section || section.hidden) return;
       event.preventDefault();
       event.stopImmediatePropagation();
+      outer.history.replaceState(null, '', outer.location.pathname + outer.location.search + category.hash);
+      history.replaceState(null, '', category.hash);
       outer.scrollTo({
         top: outer.scrollY + frameElement.getBoundingClientRect().top + section.getBoundingClientRect().top - inset() - bar.clientHeight - 8,
         behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',

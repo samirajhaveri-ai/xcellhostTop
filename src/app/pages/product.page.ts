@@ -5283,6 +5283,14 @@ class ProductPageComponent {
     this.overlay.open('callback');
   }
 
+  requestB300Reservation(configuration: string): void {
+    this.topics.ask('NVIDIA B300 Reservation', {
+      firstName: '', lastName: '', company: '', email: '',
+      help: 'Request a CallBack', details: configuration,
+    });
+    this.overlay.open('callback');
+  }
+
   requestAiChatbot(request: string): void {
     this.topics.ask(`AI Chat Bot - ${request}`);
     this.overlay.open('callback');

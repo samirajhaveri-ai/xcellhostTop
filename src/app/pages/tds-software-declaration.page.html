@@ -1,0 +1,25 @@
+﻿<iframe #frame src="/tds-software-declaration-content.html" title="No TDS on Software Purchases — Invoice Declaration" scrolling="no" (load)="onLoad()"></iframe>
+<div class="ppage as-page tds-closing">
+  <div class="wrap">
+    <div class="pp-sec" id="tdsInsights">Insights</div>
+    <xh-insights-section pageSlug="tds-software-declaration" [showVideos]="false" />
+    <section class="pp-cta" id="tdsSupport" aria-labelledby="tdsSupportTitle">
+      <div>
+        <h3 id="tdsSupportTitle">Need Help With Your Software Invoice?</h3>
+        <p>Invoice clarification &middot; Declaration requests &middot; 24&times;7 support in English &amp; Hindi</p>
+      </div>
+      <div class="tds-actions">
+        <button class="btn btn-primary" type="button" (click)="openBilling(true)">Request Declaration Letter</button>
+        <button class="btn btn-ghost" type="button" (click)="openBilling()">Talk To Billing</button>
+        <a class="btn btn-ghost" href="https://wa.me/918657032540" target="_blank" rel="noopener">Talk On WhatsApp</a>
+        <a class="btn btn-ghost" href="mailto:support@xcellhost.cloud">Email Us</a>
+      </div>
+      <a class="pp-cta-buddha-link" routerLink="/company/support-overview" aria-label="Visit XcellHost customer support">
+        <img class="pp-cta-buddha" src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost customer support" />
+      </a>
+    </section>
+    <div class="pp-proof" aria-label="XcellHost credentials">
+      <span>ISO 27001</span><span>ISO 20000-1</span><span>Microsoft Gold Partner</span><span>Since 1999</span><span>Secure Payments — UPI &middot; Cards &middot; NetBanking</span>
+    </div>
+  </div>
+</div>

@@ -56,22 +56,26 @@
   gap: 40px;
   align-items: center;
 }
+.xts-copy {
+  min-width: 0;
+}
 .xts h1 {
   margin: 0 0 16px;
   color: #fff;
-  font: 800 clamp(34px, 4.4vw, 54px)/1.05 var(--disp, Sora, sans-serif);
+  font: 800 var(--banner-title-size, clamp(24px, 4.4vw, 54px))/1.05 var(--disp, Sora, sans-serif);
   letter-spacing: -0.035em;
+  white-space: nowrap;
 }
 .xts h1 .x {
   color: #c73b2d;
 }
 .xts h1 .divider {
-  margin: 0 8px;
+  margin: 0 0.15em;
   color: var(--orange);
   font-weight: 600;
 }
 .xts h1 .name {
-  display: block;
+  display: inline;
 }
 .xts-lead {
   margin: 0 0 10px;
@@ -752,7 +756,7 @@
 }
 @media (max-width: 1060px) {
   .xts-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .xts-stage {
     width: 100%;
@@ -815,9 +819,6 @@
   }
   .xts-tabs button {
     font-size: 8px;
-  }
-  .xts h1 {
-    font-size: 34px;
   }
 }
 @media (prefers-reduced-motion: reduce) {

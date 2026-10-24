@@ -1,14 +1,15 @@
 import {
   ChangeDetectionStrategy, Component, ElementRef, HostListener, NgZone,
-  OnDestroy, ViewChild, inject, output, signal,
+  OnDestroy, ViewChild, computed, inject, input, output, signal,
 } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 /** Requested B300 source sections retain their isolated styles and interactive runtime. */
 @Component({
   selector: 'xh-nvidia-b300-overview',
   standalone: true,
   template: `<iframe #contentFrame
-    src="/assets/animations/nvidia-b300-overview.html"
+    [src]="frameSource()"
     title="NVIDIA B300 overview, pricing, specifications, software stack and deployment options"
     scrolling="no" [style.height.px]="height()" (load)="syncContent()"
   ></iframe>`,
@@ -16,6 +17,11 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NvidiaB300OverviewComponent implements OnDestroy {
+  readonly hero = input(false);
+  readonly details = input(false);
+  private readonly sanitizer = inject(DomSanitizer);
+  readonly frameSource = computed(() => this.sanitizer.bypassSecurityTrustResourceUrl(
+    this.hero() ? '/assets/animations/nvidia-b300-banner.html' : this.details() ? '/assets/animations/nvidia-b300-details.html' : '/assets/animations/nvidia-b300-overview.html'));
   readonly quoteRequested = output<{ event: Event; configuration: string }>();
   readonly height = signal(3200);
   @ViewChild('contentFrame') private frame?: ElementRef<HTMLIFrameElement>;
@@ -51,10 +57,12 @@ export class NvidiaB300OverviewComponent implements OnDestroy {
     const data = event.data;
     if (data?.type === 'b300-enquiry' && typeof data.configuration === 'string') {
       this.quoteRequested.emit({ event: new Event('click'), configuration: data.configuration });
-    } else if (data?.type === 'b300-scroll' && data.target === 'qx') {
-      const target = frame?.contentDocument?.getElementById('qx');
-      if (frame && target) window.scrollTo({
-        top: window.scrollY + frame.getBoundingClientRect().top + target.getBoundingClientRect().top - 110,
+    } else if (data?.type === 'b300-scroll' && typeof data.target === 'string') {
+      const targetFrame = Array.from(document.querySelectorAll<HTMLIFrameElement>('xh-nvidia-b300-overview iframe'))
+        .find(candidate => !!candidate.contentDocument?.getElementById(data.target));
+      const target = targetFrame?.contentDocument?.getElementById(data.target);
+      if (targetFrame && target) window.scrollTo({
+        top: window.scrollY + targetFrame.getBoundingClientRect().top + target.getBoundingClientRect().top - 110,
         behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
       });
     }

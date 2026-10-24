@@ -7,7 +7,15 @@ const source = fs.readFileSync(process.argv[2], 'utf8');
 const originalMain = source.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1];
 const boundary = originalMain.search(/<section\b[^>]*id="faq"/);
 if (boundary < 0) throw new Error('The supplied Microsoft Azure Services page must contain its FAQ boundary.');
-// Include the FAQ, contact call-to-action and related links after Partners & ecosystem.
+const output = path.join(root, 'public/imported-azure-services.html');
+let pageMain = originalMain;
+// Refresh the requested range while keeping the existing FAQ and lower content.
+if (process.argv.includes('--preserve-tail')) {
+  const currentMain = fs.readFileSync(output, 'utf8').match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1];
+  const currentBoundary = currentMain.search(/<section\b[^>]*id="faq"/);
+  if (currentBoundary < 0) throw new Error('The existing Azure FAQ could not be preserved.');
+  pageMain = originalMain.slice(0, boundary) + currentMain.slice(currentBoundary);
+}
 const destinations = {
   'microsoft-azure': '/vendor-partners/microsoft-azure',
   'microsoft-365': '/vendor-partners/microsoft-365',
@@ -29,7 +37,7 @@ function localLinks(html) {
     return attribute;
   });
 }
-const content = localLinks(originalMain)
+const content = localLinks(pageMain)
   .replace('href="#">Vendors', 'href="/category/marketplace" target="_top">Vendors');
 const styles = [...source.matchAll(/<style\b[^>]*>[\s\S]*?<\/style>/g)].map(m => m[0]).join('\n')
   .replace(/(\d*\.?\d+)vh\b/g, (_, value) => 'calc(var(--page-vh,1vh) * ' + value + ')');
@@ -47,7 +55,11 @@ const runtime = localLinks([...source.matchAll(/<script\b[^>]*>[\s\S]*?<\/script
   .replace("TOP=hdr?Math.round(hdr.getBoundingClientRect().height):0", "TOP=Math.round(parent.document.querySelector('.xh-header')?.getBoundingClientRect().height||80)+16")
   .replace('return r.bottom>-80&&r.top<parent.innerHeight+80;', 'var ft=window.frameElement?frameElement.getBoundingClientRect().top:0;return r.bottom+ft>-80&&r.top+ft<parent.innerHeight+80;')
   .replace('if(s.getBoundingClientRect().top<=m)', 'if(s.getBoundingClientRect().top+(window.frameElement?frameElement.getBoundingClientRect().top:0)<=m)')
-  .replace("c.scrollIntoView({block:'nearest',inline:'center',behavior:R?'auto':'smooth'})", "c.parentNode.scrollTo({left:c.offsetLeft-c.parentNode.clientWidth/2+c.clientWidth/2,behavior:R?'auto':'smooth'})");
+  .replace('if(el.getBoundingClientRect().top<=m)', 'if(el.getBoundingClientRect().top+(window.frameElement?frameElement.getBoundingClientRect().top:0)<=m)')
+  .replace("c.scrollIntoView({block:'nearest',inline:'center',behavior:R?'auto':'smooth'})", "c.parentNode.scrollTo({left:c.offsetLeft-c.parentNode.clientWidth/2+c.clientWidth/2,behavior:R?'auto':'smooth'})")
+  .replace("el3.scrollIntoView({block:'nearest',behavior:R?'auto':'smooth'})", 'window.hostingJumpTo(el3.id)')
+  .replace(/<button type="button" class="az-aq"[\s\S]*?<\/button>/, '')
+  .replace(/^    if\(\(b=t\.closest\('\.az-aq'\)\)\)\{[^\n]*\}\}\);/m, '  });');
 const bridge = `<script>
   document.addEventListener('submit',function(event){
     var form=event.target;if(!form.matches('form[data-xhform="azure-stack"]'))return;
@@ -66,6 +78,7 @@ const bridge = `<script>
 </script>`;
 const integration = fs.readFileSync(path.join(root, 'scripts/azure-services-integration.js'), 'utf8');
 const html = '<!doctype html><html lang="en-IN" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Microsoft Azure Services | XcellHost</title>' + fonts + styles + titleStyles + '<link rel="stylesheet" href="/assets/styles/hero-ask-ai.css"><link rel="stylesheet" href="/assets/styles/faq-layout.css"></head><body><main id="main">' + content + '</main><script src="/assets/scripts/hosting-tools-viewport.js"></script>' + core + bridge + visuals + runtime + '<script>' + integration + '</script><script src="/assets/scripts/hero-ask-ai.js"></script></body></html>';
-fs.writeFileSync(path.join(root, 'public/imported-azure-services.html'), html);
-console.log('Imported Microsoft Azure Services with the catalogue, partner ecosystem, two-column FAQ, contact call-to-action and related links.');
+for (const script of html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)) new Function(script[1]);
+fs.writeFileSync(output, html);
+console.log('Imported Microsoft Azure Services with the new catalogue, partner ecosystem, certification cards, two-column FAQ and lower content.');
 

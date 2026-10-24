@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
 import { CatalogService, slugify } from '../core/catalog.service';
@@ -35,6 +35,7 @@ interface ComparisonRow {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductComparisonDetailPage {
+  readonly animationPaused = signal(false);
   private readonly catalog = inject(CatalogService);
   private readonly route = inject(ActivatedRoute);
   private readonly overlay = inject(OverlayService);

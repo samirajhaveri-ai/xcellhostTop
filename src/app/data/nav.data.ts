@@ -2766,6 +2766,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "Mobile App Security",
+                "href": "/mobile-app-security",
+                "pill": null,
+                "desc": "Protect Android and iOS apps with runtime security, device binding and fraud controls."
+              },
               
             ]
           }
@@ -5613,6 +5619,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "AI Use Policy",
                 "pill": null,
                 "desc": "How XcellHost uses AI with human oversight and client data protections"
+              },
+              {
+                "title": "No TDS on Software Purchases",
+                "href": "/tds-software-declaration",
+                "pill": null,
+                "desc": "Understand your software invoice declaration and request a letter from billing"
               },
 
             ]
