@@ -1,4 +1,5 @@
-import { InsightsSectionComponent } from '../sections/insights-section.component';
+import { InsightVideo, InsightsSectionComponent } from '../sections/insights-section.component';
+import { DomSanitizer } from '@angular/platform-browser';
 import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, ViewChild, inject } from '@angular/core';
@@ -39,6 +40,17 @@ export class AcronisPartnerPage implements OnDestroy {
   private readonly overlay = inject(OverlayService);
   private readonly topics = inject(CallbackTopicService);
   private readonly seo = inject(SeoService);
+  private readonly sanitizer = inject(DomSanitizer);
+  readonly videos: readonly InsightVideo[] = [
+    {
+      title: 'Acronis Advanced Endpoint Security (EDR) — Product Intro',
+      src: this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube-nocookie.com/embed/iaHAyNSXCPc?rel=0&playsinline=1'),
+    },
+    {
+      title: 'Acronis Advanced Endpoint Security (EDR) — Use Cases',
+      src: this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube-nocookie.com/embed/2PZzQIUxpMo?rel=0&playsinline=1'),
+    },
+  ];
   private observer?: ResizeObserver;
   private frameDocument?: Document;
   private clickListener?: (event: MouseEvent) => void;

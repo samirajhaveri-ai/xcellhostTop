@@ -6,6 +6,7 @@ import { LeadService } from '../core/lead.service';
 import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { useScrollingSectionNavigation } from './section-navigation-flow';
+import { installImportedJourneyLayout } from './imported-journey-layout';
 import { IDENTITY_SECURITY_PAGES, IdentitySecuritySource } from '../data/identity-security-pages.data';
 
 type InteractiveContentSource =
@@ -615,6 +616,10 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     const main = doc?.querySelector('main');
     if (doc && this.source !== 'sql-server-comparison' && this.source !== 'windows-server-comparison') useScrollingSectionNavigation(doc);
     if (!frame || !doc || !main) return;
+    // These three documents already have their own viewport-aware journey layout.
+    if (!['genian-nac', 'cybird', 'veritas'].includes(this.source)) {
+      this.cleanup.push(installImportedJourneyLayout(frame));
+    }
     const resize = () => {
 
       if (this.source === 'cybird' || this.source === 'cybird-sections') doc.documentElement.style.setProperty('--cybird-vh', `${window.innerHeight / 100}px`);

@@ -1083,8 +1083,8 @@ html[data-theme="dark"] .gn-ft .ft u{color:#7fb0ff}
 
 /* ===================== JOURNEY (sticky) ===================== */
 .gn-jr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.18fr);gap:34px;align-items:start}
-.jr-st{list-style:none;display:flex;flex-direction:column;padding:calc(var(--page-vh, 1vh) * 8) 0 calc(var(--page-vh, 1vh) * 14)}
-.jr-st li{position:relative;min-height:calc(var(--page-vh, 1vh) * 54);display:flex;flex-direction:column;justify-content:center;padding:18px 0 18px 60px;opacity:.36;transition:opacity .45s}
+.jr-st{list-style:none;display:flex;flex-direction:column;margin:0;padding:0}
+.jr-st li{position:relative;min-height:clamp(340px,calc(var(--page-vh, 1vh) * 100 - 170px),460px);display:flex;flex-direction:column;justify-content:center;padding:18px 0 18px 60px;opacity:.36;transition:opacity .45s}
 .jr-st li.on{opacity:1}
 .jr-st li .n{position:absolute;left:0;top:50%;margin-top:-22px;width:44px;height:44px;border-radius:13px;display:grid;place-items:center;font:700 14px var(--f-mono);background:var(--surface-2);border:1.5px solid var(--line-2);color:var(--muted);transition:background .4s,color .4s,border-color .4s,transform .5s cubic-bezier(.3,1.6,.5,1)}
 .jr-st li.on .n{background:#1565D8;border-color:#1565D8;color:#fff;transform:scale(1.08)}
@@ -1097,8 +1097,8 @@ html[data-theme="dark"] .jr-st small{color:#FFB15C}
 html[data-theme="dark"] .jr-st em{color:#7fb0ff}
 .jr-st em svg{width:13px;height:13px}
 .jr-mc{display:none}
-.jr-v{position:sticky;top:96px;display:grid;grid-template-columns:116px minmax(0,1fr);gap:14px}
-.jr-rail{position:relative;height:min(520px,calc(calc(var(--page-vh, 1vh) * 100) - 130px));display:flex;flex-direction:column;justify-content:space-between;padding:26px 0}
+.jr-v{position:relative;align-self:start;display:grid;grid-template-columns:116px minmax(0,1fr);gap:14px}
+.jr-rail{position:relative;height:clamp(340px,calc(var(--page-vh, 1vh) * 100 - 170px),460px);display:flex;flex-direction:column;justify-content:space-between;padding:26px 0}
 .jr-rail .tk{position:absolute;left:9px;top:32px;bottom:32px;width:3px;border-radius:3px;background:var(--line)}
 .jr-rail .tk i{position:absolute;inset:0;border-radius:3px;background:#1565D8;transform-origin:top;transform:scaleY(0)}
 .jr-rail b{position:relative;display:flex;align-items:center;gap:10px;font:600 10.5px var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);transition:color .35s}
@@ -1108,7 +1108,7 @@ html[data-theme="dark"] .jr-st em{color:#7fb0ff}
 .jr-rail b.hot{color:#1565D8}
 html[data-theme="dark"] .jr-rail b.hot{color:#7fb0ff}
 .jr-rail b.hot:before{transform:scale(1.25);box-shadow:0 0 0 5px rgba(21,101,216,.18)}
-.jr-in{position:relative;height:min(520px,calc(calc(var(--page-vh, 1vh) * 100) - 130px));border-radius:22px;background:#041E42;border:1px solid rgba(127,176,255,.2);box-shadow:var(--sh-l);overflow:hidden}
+.jr-in{position:relative;height:clamp(340px,calc(var(--page-vh, 1vh) * 100 - 170px),460px);border-radius:22px;background:#041E42;border:1px solid rgba(127,176,255,.2);box-shadow:var(--sh-l);overflow:hidden}
 html[data-theme="dark"] .jr-in{background:#050d22}
 .jr-in:before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(127,176,255,.16) 1px,transparent 1.2px);background-size:18px 18px;opacity:.55}
 .jr-in canvas{position:absolute;inset:0;width:100%;height:100%}
@@ -2929,7 +2929,16 @@ html[data-theme="dark"] .gn-xs .xa{color:#7fb0ff}
       c.globalAlpha=1;
     }
     var pT=0,pS=0,kr=-1,W=0,H=0,mini=$$('.jr-mc',st).map(function(m,k){var o={el:m,k:k,vis:false,ctx:m.getContext('2d'),W:0,H:0};XH.whenVisible(m,function(v){o.vis=v;});return o;});
-    function measure(){var vh=parent.innerHeight,y=scrollY+vh*.5-(frameElement ? frameElement.getBoundingClientRect().top : 0),cs=lis.map(function(l){var rc=l.getBoundingClientRect();return rc.top+scrollY+rc.height/2;}),n=NL-1;
+    function measure(){
+      // The document expands to its full height inside an iframe. Follow the
+      // outer page viewport instead of relying on the iframe's sticky scrollport.
+      var vh=parent.innerHeight,frameTop=frameElement?frameElement.getBoundingClientRect().top:0;
+      var desktop=matchMedia('(min-width:901px)').matches,shift=0;
+      if(desktop){var top=jr.getBoundingClientRect().top+frameTop;
+        shift=clamp(96-top,0,Math.max(0,jr.offsetHeight-jv.offsetHeight));}
+      jv.style.transform=shift?'translateY('+shift+'px)':'';
+      var y=desktop?jv.getBoundingClientRect().top+scrollY+jv.offsetHeight/2:scrollY+vh*.5-frameTop;
+      var cs=lis.map(function(l){var rc=l.getBoundingClientRect();return rc.top+scrollY+rc.height/2;}),n=NL-1;
       if(y<=cs[0])pT=0;else if(y>=cs[n])pT=n;else for(var k=0;k<n;k++){if(y>=cs[k]&&y<cs[k+1]){pT=k+(y-cs[k])/(cs[k+1]-cs[k]);break;}}}
     function sizeBig(){W=cv.clientWidth;H=cv.clientHeight;if(!W)return;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
     function sizeMini(o){var w=o.el.clientWidth,h=o.el.clientHeight;if(w!==o.W||h!==o.H){o.W=w;o.H=h;o.el.width=Math.round(w*DPR);o.el.height=Math.round(h*DPR);}}
@@ -2947,7 +2956,10 @@ html[data-theme="dark"] .gn-xs .xa{color:#7fb0ff}
       mini.forEach(function(o){if(!o.vis||!o.el.offsetParent)return;sizeMini(o);if(o.W)draw(o.ctx,o.W,o.H,o.k,t,o.H*.12,o.H*.92,true);});
     }
     addEventListener('scroll',measure,{passive:true});addEventListener('resize',function(){measure();sizeBig();});
+    if(frameElement){parent.addEventListener('resize',measure,{passive:true});addEventListener('pagehide',function(){parent.removeEventListener('resize',measure);});}
+    if(window.ResizeObserver)new ResizeObserver(measure).observe(jr);
     measure();pS=pT;sizeBig();steps(clamp(Math.round(pS),0,NL-1));
+    if(W)draw(ctx,W,H,pS,0,H*.16,H*.8,false);
     if(R){var stat=function(){measure();pS=Math.round(pT);steps(pS);sizeBig();if(W)draw(ctx,W,H,pS,0,H*.16,H*.8,false);rf.style.transform='scaleY('+(pS/(NL-1))+')';mini.forEach(function(o){sizeMini(o);if(o.W)draw(o.ctx,o.W,o.H,o.k,0,o.H*.12,o.H*.92,true);});};
       addEventListener('scroll',stat,{passive:true});addEventListener('resize',stat);stat();return;}
     var on=loop(tick);XH.whenVisible(jr,function(v){bigVis=v;on(v);});
