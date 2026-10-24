@@ -718,7 +718,6 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     };
     const enquiry = async (event: Event) => {
 
-
       if (this.source !== 'ai-factory' && this.source !== 'acronis-workflow-automation' && this.source !== 'acronis-ot' && this.source !== 'red-hat' && this.source !== 'email-security-enterprise' && this.source !== 'office-365-e5' && this.source !== 'teams-essentials-frontline' && this.source !== 'office-365-e1-nonprofit' && this.source !== 'cyber-security-audit' && this.source !== 'azure-services' && this.source !== 'acronis-ransomware-warranty') return;
 
       const detail = (event as CustomEvent<{
@@ -734,8 +733,6 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
       const acronisWarranty = this.source === 'acronis-ransomware-warranty';
       const azureServices = this.source === 'azure-services';
       const cyberSecurityAudit = this.source === 'cyber-security-audit';
-
-
       const workflowAutomation = this.source === 'acronis-workflow-automation';
       const hasSummary = aiFactory || workflowAutomation || emailSecurity || office365E5 || teamsFrontline || office365E1Nonprofit || cyberSecurityAudit || azureServices || acronisWarranty;
       const topic = aiFactory ? 'AI Factory quotation' : acronisWarranty ? 'Acronis Anti-Ransomware Warranty quotation' : azureServices ? 'Microsoft Azure services quotation' : workflowAutomation ? 'Acronis Workflow Automation quotation' : cyberSecurityAudit ? 'Cyber Security Audit quotation' : office365E1Nonprofit ? 'Office 365 E1 Nonprofit quotation' : teamsFrontline ? 'Teams Essentials for Frontline quotation' : office365E5 ? 'Office 365 E5 quotation' : emailSecurity ? 'Email Security Enterprise quotation' : redHat ? 'Red Hat quotation' : 'Acronis OT quotation';
@@ -745,7 +742,6 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
         ...detail.payload,
         message: hasSummary ? detail.payload['summary'] : redHat ? detail.payload['services'] : detail.payload['sizing'],
         topic,
-
 
         page: aiFactory ? '/ai-factory' : acronisWarranty ? '/anti-ransomware-warranty' : azureServices ? '/vendor-partners/microsoft-azure' : workflowAutomation ? '/acronis-workflow-automation' : cyberSecurityAudit ? '/cyber-security-audit' : office365E1Nonprofit ? '/office-365-e1-nonprofit' : teamsFrontline ? '/teams-essentials-frontline' : office365E5 ? '/office-365-e5' : emailSecurity ? '/email-security-enterprise' : redHat ? '/vendor-partners/red-hat' : '/acronis-ot',
 
