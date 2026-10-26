@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, HostListener, inject, NgZone, OnDestroy, Output, ViewChild } from '@angular/core';
 import { useScrollingSectionNavigation } from './section-navigation-flow';
+import { OverlayService } from '../core/overlay.service';
 
 @Component({
   selector: 'xh-gpu-servers-content',
@@ -16,6 +17,7 @@ import { useScrollingSectionNavigation } from './section-navigation-flow';
 })
 export class GpuServersContentComponent implements OnDestroy {
   private readonly zone = inject(NgZone);
+  private readonly overlay = inject(OverlayService);
   @ViewChild('contentFrame') frame?: ElementRef<HTMLIFrameElement>;
   @Output() callbackRequest = new EventEmitter<string>();
   frameHeight = 7600;
@@ -36,6 +38,10 @@ export class GpuServersContentComponent implements OnDestroy {
       if (!callback) return;
       event.preventDefault();
       event.stopImmediatePropagation();
+      if (callback.dataset['bannerExistingAction'] === 'trial' || /free\s*trial/i.test(callback.textContent || '')) {
+        this.zone.run(() => this.overlay.open('trial', 'GPU Servers'));
+        return;
+      }
       const request = callback.textContent?.trim().replace(/\s+/g, ' ') || "Let's Talk";
       this.zone.run(() => this.callbackRequest.emit(request));
     };

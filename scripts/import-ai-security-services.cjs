@@ -31,7 +31,7 @@ for (const [slug, title, prefix, copyClass] of pages) {
   main = main.replace(/<section\b[^>]*id="(?:watch|contact|family|related)"[^>]*>[\s\S]*?<\/section>/g, '');
   main = main.replace(/<div class="lh-powered\b[^>]*>[\s\S]*?<\/div>/g, '');
   main = main.replace(/class="lh-ask([^"]*)"/g, 'class="lh-ask$1 xh-developer-ask"');
-  main = main.replace(/(<div class="lh-ask\b[^>]*>[\s\S]*?<\/div>)/, '$1<div class="managed-powered"><span>Powered by</span><span aria-hidden="true">|</span><span class="ai-security-vendor"><img src="/assets/images/xcellhost-login-logo.png" alt="XcellHost" width="106" height="44"><span>' + (prefix === 'ap' ? 'AI Security Platform' : 'AI Security Lab') + '</span></span></div>');
+  main = main.replace(/(<div class="lh-ask\b[^>]*>[\s\S]*?<\/div>)/, '$1<div class="managed-powered"><span>Powered by</span><span aria-hidden="true">|</span><span class="ai-security-vendor"><span>' + (prefix === 'ap' ? 'AI Security Platform' : 'AI Security Lab') + '</span></span></div>');
   main = main.replace(/<section\b[^>]*class="hero[^>]*>[\s\S]*?<\/section>/, hero => {
     const wrap = div(hero, 'wrap');
     let copy = inner(div(hero, copyClass));

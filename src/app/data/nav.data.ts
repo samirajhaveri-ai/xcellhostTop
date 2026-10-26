@@ -1739,6 +1739,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "Microsoft Agent 365",
+                "href": "/microsoft-agent-365",
+                "pill": null,
+                "desc": "Discover, govern and secure your AI agents with XcellHost"
+              },
             ]
           }
         ]
@@ -3655,6 +3661,7 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Synapsem-AI Training Integrated Program",
                 "pill": null,
+                "href": "/synapsem-ai-training-integrated-program",
                 "desc": "Build practical AI skills through a structured training program"
               },
               {
@@ -3665,6 +3672,7 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "AI Training for Medical Doctors",
                 "pill": null,
+                "href": "/ai-training-for-medical-doctors",
                 "desc": "Explore practical AI tools for clinical workflows"
               },
               {
@@ -3675,7 +3683,14 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "AI Training for Insurance Professionals",
                 "pill": null,
+                "href": "/ai-training-for-insurance-professionals",
                 "desc": "Apply AI to insurance workflows and customer service"
+              },
+              {
+                "title": "AI Training for Chartered Accountants",
+                "pill": null,
+                "href": "/ai-training-for-chartered-accountants",
+                "desc": "Apply AI to GST, audit, tax and Excel with professional review"
               },
             ]
           }

@@ -5,11 +5,25 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+
   {
     path: 'ai-adoption-framework', title: 'AI Adoption Framework India | XcellHost',
     data: { searchTitle: 'AI Adoption Framework', searchDescription: 'A six-stage programme for AI strategy, readiness, governance, pilots and production operations.' },
     loadComponent: () => import('./pages/ai-adoption-framework.page').then(m => m.AiAdoptionFrameworkPage),
   },
+
+  { path: 'microsoft-agent-365', title: 'Microsoft Agent 365 | XcellHost', loadComponent: () => import('./pages/microsoft-agent-365.page').then(m => m.MicrosoftAgent365Page) },
+  ...[
+
+    ['synapsem-ai-training-integrated-program', 'integrated', 'Integrated AI Training Program'],
+    ['ai-training-for-medical-doctors', 'medical', 'AI Training For Medical Doctors'],
+    ['ai-training-for-insurance-professionals', 'insurance', 'AI Training For Insurance Professionals'],
+    ['ai-training-for-chartered-accountants', 'accountants', 'AI Training For Chartered Accountants'],
+  ].map(([path, training, title]) => ({path, title: title + ' | XcellHost', data: {training}, loadComponent: () => import('./pages/ai-training.page').then(m => m.AiTrainingPage)})),
+  { path: 'ca-cloud', title: 'CA Cloud | XcellHost', loadComponent: () => import('./pages/ca-cloud.page').then(m => m.CaCloudPage) },
+  { path: 'entra-id-backup', title: 'Entra ID Backup | XcellHost', loadComponent: () => import('./pages/entra-id-backup.page').then(m => m.EntraIdBackupPage) },
+
+
   ...[
     ['asset-tokenization-platform', 'Asset Tokenization Platform'],
     ['fractional-chief-ai-officer', 'Fractional Chief AI Officer'],
@@ -18,6 +32,7 @@ export const routes: Routes = [
     data: { softwareMarketplaceSource: path, searchTitle: name },
     loadComponent: () => import('./pages/software-marketplace-imported.page').then(m => m.SoftwareMarketplaceImportedPage),
   })),
+
   { path: 'geotrust', redirectTo: 'geotrust-ssl-certificates', pathMatch: 'full' },
   { path: 'tds-software-declaration', title: 'No TDS on Software Purchases | XcellHost', loadComponent: () => import('./pages/tds-software-declaration.page').then(m => m.TdsSoftwareDeclarationPage) },
   { path: 'mobile-app-security', title: 'Mobile App Security | XcellHost', loadComponent: () => import('./pages/mobile-app-security.page').then(m => m.MobileAppSecurityPage) },
