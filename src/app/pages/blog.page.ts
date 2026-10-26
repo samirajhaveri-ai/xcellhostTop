@@ -5,6 +5,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { distinctUntilChanged, map, Observable, switchMap, tap } from 'rxjs';
 
 import { BlogApiService, CmsArticle, findBlogBySlug } from '../core/blog-api.service';
+import { getBlogAdvertisements } from '../core/blog-advertisement';
 import { DocRequestService } from '../core/doc-request.service';
 import { LeadService } from '../core/lead.service';
 import { OverlayService } from '../core/overlay.service';
@@ -213,13 +214,10 @@ export class BlogPage implements OnDestroy {
       `Hi XcellHost, I have just read "${this.post()?.title ?? 'your insights'}" and would like to talk.`
     )
   );
-  readonly showTallyBanner = computed(() => {
-    if (this.isUseCase) return false;
+  readonly blogAdvertisements = computed(() => {
+    if (this.isUseCase) return [];
     const post = this.post();
-    if (!post) return false;
-    return [post.slug, post.title, post.product, post.relatedPages]
-      .filter((value): value is string => Boolean(value))
-      .some((value) => /tally(?:-|\s|%20)*on(?:-|\s|%20)*cloud|tally-cloud|tally-vs/i.test(value));
+    return post ? getBlogAdvertisements(post) : [];
   });
   readonly tallyInfosheet = PRODUCT_INFOSHEETS['Tally on Cloud'];
   readonly mailHref = computed(() => this.leads.mailtoLink(
@@ -490,6 +488,21 @@ export class BlogPage implements OnDestroy {
     if (image.src.endsWith(DEFAULT_AUTHOR_PHOTO)) return;
     image.src = DEFAULT_AUTHOR_PHOTO;
     image.classList.add('is-fallback');
+  }
+
+  useBlogCoverFallback(event: Event): void {
+    const image = event.target as HTMLImageElement;
+    const fallback = '/assets/images/hero-tally-on-cloud.png';
+    if (image.getAttribute('src') === fallback) return;
+    image.src = fallback;
+    image.classList.add('is-fallback');
+  }
+
+  useBlogAdvertisementFallback(event: Event): void {
+    const image = event.target as HTMLImageElement;
+    const fallback = '/assets/images/menu-solutions-cloud-infrastructure-v1.png';
+    if (image.getAttribute('src') === fallback) return;
+    image.src = fallback;
   }
 
   socialShareUrl(network: ShareNetwork, post: CmsArticle): string {

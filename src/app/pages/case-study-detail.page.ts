@@ -262,6 +262,16 @@ export class CaseStudyDetailPage implements OnDestroy {
     this.overlay.open('callback');
   }
 
+  useCaseStudyImageFallback(
+    event: Event,
+    study: { readonly id: string; readonly industry: string; readonly headline?: string },
+  ): void {
+    const image = event.target as HTMLImageElement;
+    const fallback = getCaseStudyImage(study).src;
+    if (image.getAttribute('src') === fallback) return;
+    image.src = fallback;
+  }
+
   ngOnDestroy(): void {
     this.doc.defaultView?.speechSynthesis?.cancel();
   }
