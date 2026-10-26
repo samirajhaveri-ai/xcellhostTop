@@ -20,7 +20,8 @@
     event.stopImmediatePropagation();
     if (!form.reportValidity() || form.dataset.submitting) return;
     const payload = Object.fromEntries(new FormData(form));
-    payload.summary = [payload.need, payload.message].filter(Boolean).join('\n');
+    payload.summary = [payload.need, payload.size && 'Organisation size: ' + payload.size,
+      payload.stage && 'Current stage: ' + payload.stage, payload.message].filter(Boolean).join('\n');
     const button = form.querySelector('button[type="submit"]');
     let status = form.querySelector('.marketplace-form-status');
     if (!status) {

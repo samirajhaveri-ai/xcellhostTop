@@ -10,6 +10,9 @@ import { installImportedJourneyLayout } from './imported-journey-layout';
 import { IDENTITY_SECURITY_PAGES, IdentitySecuritySource } from '../data/identity-security-pages.data';
 
 type InteractiveContentSource =
+  | 'ai-training-live-online'
+  | 'ai-training-educators'
+  | 'ai-adoption-framework'
   | 'asset-tokenization-platform' | 'fractional-chief-ai-officer'
   | 'smb-cloud-desktop'
 
@@ -168,6 +171,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page' | 'sectigo-detail' | 'sectigo-supplied' | 'inference-page' | 'developer-page'>,
     string
   > = {
+    'ai-training-live-online': '/imported-ai-training-live-online.html',
+    'ai-training-educators': '/imported-ai-training-educators.html',
+    'ai-adoption-framework': '/imported-ai-adoption-framework.html',
     'asset-tokenization-platform': '/imported-asset-tokenization-platform.html',
     'fractional-chief-ai-officer': '/imported-fractional-chief-ai-officer.html',
     'office-365-e1-nonprofit': '/imported-office-365-e1-nonprofit.html',
@@ -356,6 +362,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+    'ai-training-live-online': 'Live Online AI Training',
+    'ai-training-educators': 'AI Training for Educators',
+    'ai-adoption-framework': 'AI Adoption Framework',
     'asset-tokenization-platform': 'Asset Tokenization Platform',
     'fractional-chief-ai-officer': 'Fractional Chief AI Officer',
 
@@ -820,14 +829,16 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
         Object.entries(detail.payload).map(([key, value]) => `${key}: ${String(value ?? '')}`).join('\n')) });
     };
     const marketplaceEnquiry = async (event: Event) => {
-      if (this.source !== 'asset-tokenization-platform' && this.source !== 'fractional-chief-ai-officer') return;
+      if (this.source !== 'asset-tokenization-platform' && this.source !== 'fractional-chief-ai-officer' && this.source !== 'ai-adoption-framework' && this.source !== 'ai-training-educators' && this.source !== 'ai-training-live-online') return;
       const detail = (event as CustomEvent<{
         payload: Record<string, unknown>;
         complete: (result: { ok: boolean; skipped: boolean; ref: string; fallbackUrl: string }) => void;
       }>).detail;
       const topic = this.sourceTitles[this.source] + ' enquiry';
+      const page = this.source === 'ai-training-educators' ? '/ai-training-for-educators'
+        : this.source === 'ai-training-live-online' ? '/synapsem-ai-training-live-online' : '/' + this.source;
       const result = await this.leads.submit('callback', {
-        ...detail.payload, topic, page: '/' + this.source, message: detail.payload['summary'],
+        ...detail.payload, topic, page, message: detail.payload['summary'],
       });
       detail.complete({ ...result, fallbackUrl: this.leads.mailtoLink(topic,
         Object.entries(detail.payload).map(([key, value]) => `${key}: ${String(value ?? '')}`).join('\n')) });

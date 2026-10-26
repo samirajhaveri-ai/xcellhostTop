@@ -5,6 +5,11 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  {
+    path: 'ai-adoption-framework', title: 'AI Adoption Framework India | XcellHost',
+    data: { searchTitle: 'AI Adoption Framework', searchDescription: 'A six-stage programme for AI strategy, readiness, governance, pilots and production operations.' },
+    loadComponent: () => import('./pages/ai-adoption-framework.page').then(m => m.AiAdoptionFrameworkPage),
+  },
   ...[
     ['asset-tokenization-platform', 'Asset Tokenization Platform'],
     ['fractional-chief-ai-officer', 'Fractional Chief AI Officer'],

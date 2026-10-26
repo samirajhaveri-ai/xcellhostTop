@@ -3802,6 +3802,12 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "AI Governance",
             "items": [
               {
+                "title": "AI Adoption Framework",
+                "href": "/ai-adoption-framework",
+                "pill": null,
+                "desc": "Plan AI adoption across strategy, readiness, governance, pilots and scale."
+              },
+              {
                 "title": "AI Factory",
                 "href": "/ai-factory",
                 "pill": null,
