@@ -839,16 +839,11 @@ export class InsightsPage implements AfterViewInit, OnDestroy {
   }
 
   onCoverError(event: Event, item: InsightItem): void {
+    if (item.kind !== 'case-study') return;
     const image = event.target as HTMLImageElement;
+    const study = this.caseStudies().find(study => study.id === item.slug);
+    const fallback = getCaseStudyImage({ id: item.slug, industry: item.category, mainCategory: study?.mainCategory }).src;
     const generic = '/assets/images/hero-performance-cloud-v2.png';
-    const study = item.kind === 'case-study'
-      ? this.caseStudies().find(study => study.id === item.slug)
-      : null;
-    const fallback = study
-      ? getCaseStudyImage({ id: item.slug, industry: item.category, mainCategory: study.mainCategory }).src
-      : item.kind === 'case-study'
-        ? generic
-        : '/assets/images/hero-tally-on-cloud.png';
     const current = image.getAttribute('src');
     if (current === generic) return;
     image.src = current === fallback ? generic : fallback;

@@ -265,7 +265,6 @@ export class BlogApiService {
 
   private normalise(post: CmsBlogPost): CmsBlogPost {
     const url = post.coverImage?.url;
-    const fallback = this.fallbackCover(post.category);
     return {
       ...post,
       mainCategory: post.mainCategory?.trim() || this.parentCategory(post.category),
@@ -273,8 +272,8 @@ export class BlogApiService {
       coverImageUrl: url
         ? url.startsWith('http')
           ? url
-          : this.baseUrl ? `${this.baseUrl}${url}` : fallback
-        : fallback,
+          : `${this.baseUrl}${url}`
+        : this.fallbackCover(post.category),
     };
   }
 
@@ -286,7 +285,6 @@ export class BlogApiService {
   private normaliseResource(item: RawCmsInsightResource, kind: CmsResourceKind): CmsInsightResource {
     const imageUrl = item.coverImage?.url;
     const category = item.category ?? (kind === 'video' ? 'Videos' : kind === 'use-case' ? 'Use Cases' : 'General');
-    const fallback = this.fallbackCover(category);
     return {
       id: item.id ?? 0,
       documentId: item.documentId ?? `${kind}-${item.slug ?? item.title ?? 'item'}`,
@@ -312,8 +310,8 @@ export class BlogApiService {
       coverImageUrl: imageUrl
         ? imageUrl.startsWith('http')
           ? imageUrl
-          : this.baseUrl ? `${this.baseUrl}${imageUrl}` : fallback
-        : fallback,
+          : `${this.baseUrl}${imageUrl}`
+        : this.fallbackCover(item.category ?? kind),
     };
   }
 

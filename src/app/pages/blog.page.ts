@@ -490,14 +490,6 @@ export class BlogPage implements OnDestroy {
     image.classList.add('is-fallback');
   }
 
-  useBlogCoverFallback(event: Event): void {
-    const image = event.target as HTMLImageElement;
-    const fallback = '/assets/images/hero-tally-on-cloud.png';
-    if (image.getAttribute('src') === fallback) return;
-    image.src = fallback;
-    image.classList.add('is-fallback');
-  }
-
   useBlogAdvertisementFallback(event: Event): void {
     const image = event.target as HTMLImageElement;
     const fallback = '/assets/images/menu-solutions-cloud-infrastructure-v1.png';
