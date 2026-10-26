@@ -4,16 +4,18 @@ const vm = require('node:vm');
 const { parse } = require('parse5');
 const root = path.resolve(__dirname, '..');
 const directory = process.argv[2];
-if (!directory) throw Error('Pass the directory containing the three supplied training HTML files.');
+if (!directory) throw Error('Pass the directory containing the supplied training HTML files.');
 const pages = [
   ['integrated-program', 'synapsem-ai-training-integrated-program', 'Integrated AI Training Program'],
   ['medical-doctors', 'ai-training-for-medical-doctors', 'AI Training For Medical Doctors'],
   ['insurance-professionals', 'ai-training-for-insurance-professionals', 'AI Training For Insurance Professionals'],
+  ['chartered-accountants', 'ai-training-for-chartered-accountants', 'AI Training For Chartered Accountants'],
 ];
 const links = Object.fromEntries(pages.map(([file, route]) => ['ai-training-' + file, route]));
 Object.assign(links, {'ai-training-live-online': 'synapsem-ai-training-live-online', 'ai-training-educators': 'ai-training-for-educators', 'xcellhost-iso-42001': 'iso-42001ai-risk'});
 const core = fs.readFileSync(path.join(root, 'public/imported-digicert-standard-ssl.html'), 'utf8').match(/<script\b[^>]*>[\s\S]*?<\/script>/)[0];
 for (const [key, route, title] of pages) {
+  if (process.argv[3] && process.argv[3] !== key) continue;
   const source = fs.readFileSync(path.join(directory, 'ai-training-' + key + '.html'), 'utf8');
   const nodes = [];
   function walk(node) { nodes.push(node); (node.childNodes || []).forEach(walk); }
@@ -30,7 +32,7 @@ for (const [key, route, title] of pages) {
   const faqHtml = '<section class="sec" id="faq"><div class="wrap"><div class="sh"><h2>Frequently Asked Questions</h2></div><div class="faq">' + [items.slice(0, half), items.slice(half)].map(col => '<div class="hosting-faq-column">' + col.join('') + '</div>').join('') + '</div></div></section>';
   const cards = values => '<div class="training-cards">' + values.map(([heading, text]) => '<article><h3>' + heading + '</h3><p>' + text + '</p></article>').join('') + '</div>';
   const security = '<section class="sec alt" id="security"><div class="wrap"><div class="sh"><h2>SECURITY &amp; COMPLIANCE</h2><p>Responsible AI is part of the course and every practical exercise. Use the supplied training material, protect confidential information and review AI output before using it.</p></div>' + cards([
-    ['Training Data', key === 'medical-doctors' ? 'Practise on synthetic cases; do not upload real patient records.' : key === 'insurance-professionals' ? 'Work with synthetic policy and claim files rather than policyholder records.' : 'Use sample or synthetic material in labs rather than customer or confidential business data.'],
+    ['Training Data', key === 'chartered-accountants' ? 'Practise on synthetic ledgers, returns and notices. Keep real client files out of training prompts.' : key === 'medical-doctors' ? 'Practise on synthetic cases; do not upload real patient records.' : key === 'insurance-professionals' ? 'Work with synthetic policy and claim files rather than policyholder records.' : 'Use sample or synthetic material in labs rather than customer or confidential business data.'],
     ['Human Review', 'Check accuracy, omissions and source material before accepting an AI-generated draft.'],
     ['Approved Tools', 'Use approved accounts and follow your organisation\'s AI and information-security policies.'],
     ['Prompt Privacy', 'Keep personal identifiers and confidential information out of public AI prompts.'],
@@ -40,7 +42,7 @@ for (const [key, route, title] of pages) {
   const why = '<section class="sec" id="why-xcellhost"><div class="wrap"><div class="sh"><h2>Why XcellHost For ' + title + '</h2></div>' + cards([
     ['XcellAI Academy', 'Training delivered by XcellHost\'s AI practice in Mumbai.'],
     ['Hands-On Learning', 'Practise course concepts in guided labs with sample material.'],
-    ['Workplace Context', key === 'medical-doctors' ? 'Exercises for documentation, reading and communication in medical practice.' : key === 'insurance-professionals' ? 'Exercises for claims, underwriting and customer-service teams.' : 'Build practical AI skills through lessons, labs and a capstone project.'],
+    ['Workplace Context', key === 'chartered-accountants' ? 'Exercises for GST reconciliation, audit working papers, tax research and Excel workflows, with professional review.' : key === 'medical-doctors' ? 'Exercises for documentation, reading and communication in medical practice.' : key === 'insurance-professionals' ? 'Exercises for claims, underwriting and customer-service teams.' : 'Build practical AI skills through lessons, labs and a capstone project.'],
     ['Flexible Formats', 'Choose from the delivery formats listed for your course or ask about a private cohort.'],
     ['Clear Pricing', 'Review seat pricing, options and GST in the course configurator before requesting a quote.'],
     ['Responsible AI', 'Data privacy, verification and human oversight are taught alongside practical skills.'],
@@ -53,6 +55,7 @@ for (const [key, route, title] of pages) {
   const ask = nodes.find(n => has(n, 'lh-ask'));
   main = main.replace(html(ask), html(ask) + '<div class="training-powered"><span>Powered by</span><span aria-hidden="true">|</span><strong>XcellAI Academy</strong></div>');
   main = main.replace('<main', '<main data-customer-testimonials="off"');
+  if (key === 'chartered-accountants') main = main.replace(/firm cohort quotation/g, 'quotation');
   main = main.replace(/href="([a-z0-9-]+)\.html"/g, (_, slug) => 'href="/' + (links[slug] || slug) + '" target="_top"');
   // Keep course forms, but let the visitor review and send through the real site enquiry flow.
   main = main.replace(/(<button\b[^>]*type="submit"[^>]*>)[\s\S]*?(<\/button>)/g, '$1Continue To Enquiry &rarr;$2');
@@ -62,10 +65,11 @@ for (const [key, route, title] of pages) {
   let runtime = [...source.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].at(-1)[1];
   runtime = runtime.replace(/(\b\w+)\.scrollIntoView\(\{[^}]*\}\)/g, 'window.hostingJumpTo($1.id)');
   runtime = runtime.replace("scrollTo({top:r.top+scrollY-110,behavior:R?'auto':'smooth'})", 'window.hostingJumpTo(el.id)');
+  runtime = runtime.replace(/\$id\('configure'\)\.scrollIntoView\(\{[^}]*\}\)/g, "window.hostingJumpTo('configure')");
   const bridge = String.raw`<script>(function(){
     const title=${JSON.stringify(title)},route=${JSON.stringify(route)};
     const originalOpen=XH.open;
-    XH.open=function(id,options){if(id==='xhCallback'){let topic=options?.topic||'Course enquiry';if(/quote|quotation/i.test(topic)){const configurator=document.getElementById('configure');topic+='\nSeats: '+configurator.querySelector('input[type=number]').value+'\nFormat: '+Array.from(configurator.querySelectorAll('.seg button.on')).map(e=>e.textContent.trim()).join(', ');const extras=Array.from(configurator.querySelectorAll('input[type=checkbox]:checked')).map(e=>e.closest('label')?.textContent.trim()||e.value);if(extras.length)topic+='\nOptions: '+extras.join('; ');topic+='\nSubtotal: '+document.getElementById('cfSub').textContent+'\nGST (18%): '+document.getElementById('cfGst').textContent+'\nTotal: '+document.getElementById('cfTot').textContent;}document.dispatchEvent(new CustomEvent('import-callback',{detail:title+': '+topic}));return;}originalOpen(id,options);};
+    XH.open=function(id,options){if(id==='xhCallback'){let topic=options?.topic||'Course enquiry';if(/quote|quotation/i.test(topic)){const configurator=document.getElementById('configure');topic+='\nSeats: '+configurator.querySelector('input[type=number]').value+'\nFormat: '+Array.from(configurator.querySelectorAll('.seg button.on')).map(e=>e.textContent.trim()).join(', ');const extras=Array.from(configurator.querySelectorAll('input[type=checkbox]:checked')).map(e=>e.closest('label')?.textContent.trim()||e.value);if(extras.length)topic+='\nOptions: '+extras.join('; ');topic+='\nSubtotal: '+document.getElementById('cfSub').textContent+'\nGST (18%): '+document.getElementById('cfGst').textContent+'\nTotal: '+document.getElementById('cfTot').textContent;const lines=document.getElementById('cfList');if(lines){topic+='\nItems:\n'+Array.from(lines.children).map(li=>Array.from(li.children).map(el=>el.textContent).join(': ')).join('\n');const note=document.getElementById('cfQ');if(note?.textContent)topic+='\n'+note.textContent;}}document.dispatchEvent(new CustomEvent('import-callback',{detail:title+': '+topic}));return;}originalOpen(id,options);};
     const providers={chatgpt:'https://chatgpt.com/?q=',claude:'https://claude.ai/new?q=',perplexity:'https://www.perplexity.ai/search/new?q=',google:'https://www.google.com/search?udm=50&q=',copilot:'https://copilot.microsoft.com/?q='};
     document.querySelectorAll('.lh-ask').forEach(box=>box.querySelectorAll('[data-ai]').forEach(a=>{a.href=providers[a.dataset.ai]+encodeURIComponent(box.dataset.q);a.target='_blank';a.rel='noopener noreferrer';}));
     document.addEventListener('submit',e=>{const form=e.target.closest('form[data-xhform]');if(!form)return;e.preventDefault();e.stopImmediatePropagation();if(!form.reportValidity())return;document.dispatchEvent(new CustomEvent('import-training-enquiry',{detail:Object.fromEntries(new FormData(form))}));},true);

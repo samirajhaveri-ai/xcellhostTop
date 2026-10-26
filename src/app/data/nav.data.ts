@@ -1739,6 +1739,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "Microsoft Agent 365",
+                "href": "/microsoft-agent-365",
+                "pill": null,
+                "desc": "Discover, govern and secure your AI agents with XcellHost"
+              },
             ]
           }
         ]
@@ -3679,6 +3685,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "href": "/ai-training-for-insurance-professionals",
                 "desc": "Apply AI to insurance workflows and customer service"
+              },
+              {
+                "title": "AI Training for Chartered Accountants",
+                "pill": null,
+                "href": "/ai-training-for-chartered-accountants",
+                "desc": "Apply AI to GST, audit, tax and Excel with professional review"
               },
             ]
           }

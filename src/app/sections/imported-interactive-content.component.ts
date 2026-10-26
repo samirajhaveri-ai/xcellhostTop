@@ -21,7 +21,9 @@ type InteractiveContentSource =
   | 'mobile-app-security'
   | 'entra-id-backup'
   | 'ca-cloud'
+  | 'microsoft-agent-365'
   | 'ai-training-integrated-program' | 'ai-training-medical-doctors' | 'ai-training-insurance-professionals'
+  | 'ai-training-chartered-accountants'
 
   | 'acronis-ai-solution' | 'acronis-cyberfit-score' | 'acronis-ransomware-warranty'
   | 'azure-services' | 'aws-services'
@@ -194,7 +196,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'mobile-app-security': '/imported-mobile-app-security.html',
     'entra-id-backup': '/imported-entra-id-backup.html',
     'ca-cloud': '/imported-ca-cloud.html',
+    'microsoft-agent-365': '/imported-microsoft-agent-365.html',
     'ai-training-integrated-program': '/imported-ai-training-integrated-program.html',
+    'ai-training-chartered-accountants': '/imported-ai-training-chartered-accountants.html',
     'ai-training-medical-doctors': '/imported-ai-training-medical-doctors.html',
     'ai-training-insurance-professionals': '/imported-ai-training-insurance-professionals.html',
     'multi-factor-authentication': '/imported-multi-factor-authentication.html',
@@ -371,7 +375,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'mobile-app-security': 'Mobile App Security: Runtime Protection, SDK Integration, Risk Assessment And FAQs',
     'entra-id-backup': 'Entra ID Backup: Identity Protection, Recovery, Pricing And FAQs',
     'ca-cloud': 'CA Cloud',
+    'microsoft-agent-365': 'Microsoft Agent 365',
     'ai-training-integrated-program': 'Integrated AI Training Program',
+    'ai-training-chartered-accountants': 'AI Training For Chartered Accountants',
     'ai-training-medical-doctors': 'AI Training For Medical Doctors',
     'ai-training-insurance-professionals': 'AI Training For Insurance Professionals',
     'multi-factor-authentication': 'Multi-Factor Authentication',
@@ -699,6 +705,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
         : this.source === 'mobile-app-security' ? 'Mobile App Security'
         : this.source === 'entra-id-backup' ? 'Entra ID Backup'
         : this.source === 'ca-cloud' ? 'CA Cloud'
+        : this.source === 'microsoft-agent-365' ? 'Microsoft Agent 365'
         : this.source.startsWith('ai-training-') ? this.sourceTitles[this.source]
         : this.source === 'microsoft-defender' ? 'Microsoft Defender'
         : this.source in IDENTITY_SECURITY_PAGES ? this.sourceTitles[this.source]
@@ -821,6 +828,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
       if (this.source === 'microsoft-defender') this.overlay.open('trial', 'Microsoft Defender');
       else if (this.source === 'entra-id-backup') this.overlay.open('trial', 'Entra ID Backup');
       else if (this.source === 'ca-cloud') this.overlay.open('trial', 'CA Cloud');
+      else if (this.source === 'microsoft-agent-365') this.overlay.open('trial', 'Microsoft Agent 365');
       else if (this.source.startsWith('ai-training-')) this.overlay.open('trial', this.sourceTitles[this.source]);
       else if (this.source in IDENTITY_SECURITY_PAGES) this.overlay.open('trial', this.sourceTitles[this.source]);
       else if (['acronis-cyber-intelligence', 'acronis-cyber-frame', 'acronis-workflow-automation'].includes(this.source)) this.overlay.open('trial', this.sourceTitles[this.source]);

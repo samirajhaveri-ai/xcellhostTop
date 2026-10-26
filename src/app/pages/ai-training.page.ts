@@ -10,6 +10,7 @@ const COURSES = {
   integrated: {source: 'ai-training-integrated-program', title: 'Integrated AI Training Program', route: 'synapsem-ai-training-integrated-program'},
   medical: {source: 'ai-training-medical-doctors', title: 'AI Training For Medical Doctors', route: 'ai-training-for-medical-doctors'},
   insurance: {source: 'ai-training-insurance-professionals', title: 'AI Training For Insurance Professionals', route: 'ai-training-for-insurance-professionals'},
+  accountants: {source: 'ai-training-chartered-accountants', title: 'AI Training For Chartered Accountants', route: 'ai-training-for-chartered-accountants'},
 } as const;
 
 @Component({
