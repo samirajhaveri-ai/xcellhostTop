@@ -13,7 +13,11 @@
     <a class="btn primary" routerLink="/insights">Browse insights</a>
   </div></div></div>
 } @else if (post(); as p) {
-  <div class="bpage as-page xh-blog-article" id="bpage">
+  <div
+    class="bpage as-page xh-blog-article"
+    id="bpage"
+    [attr.data-customer-testimonials]="isUseCase ? null : 'off'"
+  >
     <div class="bp-bar">
       <div class="wrap">
         <div class="bp-bar-brand">

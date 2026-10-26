@@ -30,8 +30,6 @@ const INDUSTRY_CARDS: readonly IndustryCard[] = [
   { icon: 'business', label: 'Pharmaceutical Cloud', blurb: 'Explore Pharmaceutical Cloud services, features and solutions.', service: 'Pharmaceutical Cloud' },
   { icon: 'business', label: 'Construction Cloud', blurb: 'Explore Construction Cloud services, features and solutions.', service: 'Construction Cloud' },
 
-  { icon: 'business', label: ' Hospitality Cloud', blurb: 'Technology designed for food and beverage operations', service: 'Food & Beverage' },
-
   { icon: 'business', label: 'Hospitality Cloud', blurb: 'Cloud solutions for hotels, restaurants and hospitality operations', service: 'Hospitality Cloud' },
 
   { icon: 'logistics', label: 'Logistics Cloud', blurb: 'Explore Logistics Cloud services, features and solutions.', service: 'Logistics Cloud' },

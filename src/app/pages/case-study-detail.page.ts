@@ -5,6 +5,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 
 import { OverlayService } from '../core/overlay.service';
 import { CaseStudiesApiService } from '../core/case-studies-api.service';
+import { getBlogAdvertisements } from '../core/blog-advertisement';
 import { SeoService } from '../core/seo.service';
 import { CASE_STUDIES, CaseStudy } from '../data/case-studies.data';
 import { getCaseStudyImage } from '../core/case-study-images';
@@ -213,6 +214,20 @@ export class CaseStudyDetailPage implements OnDestroy {
     return cmsStudy ? this.toDetail(cmsStudy) : undefined;
   });
 
+  readonly caseStudyAdvertisements = computed(() => {
+    const study = this.study();
+    if (!study) return [];
+    return getBlogAdvertisements({
+      slug: study.id,
+      title: study.headline,
+      category: study.industry,
+      mainCategory: study.services.join(' '),
+      subCategory: study.profile,
+      product: study.services.join(' '),
+      relatedPages: study.services.join(','),
+    });
+  });
+
   readonly summaryPrompt = computed(() => {
     const study = this.study();
     if (!study) return '';
@@ -260,6 +275,13 @@ export class CaseStudyDetailPage implements OnDestroy {
 
   openCallback(): void {
     this.overlay.open('callback');
+  }
+
+  useBlogAdvertisementFallback(event: Event): void {
+    const image = event.target as HTMLImageElement;
+    const fallback = '/assets/images/menu-solutions-cloud-infrastructure-v1.png';
+    if (image.getAttribute('src') === fallback) return;
+    image.src = fallback;
   }
 
   ngOnDestroy(): void {
