@@ -3655,6 +3655,7 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Synapsem-AI Training Integrated Program",
                 "pill": null,
+                "href": "/synapsem-ai-training-integrated-program",
                 "desc": "Build practical AI skills through a structured training program"
               },
               {
@@ -3665,6 +3666,7 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "AI Training for Medical Doctors",
                 "pill": null,
+                "href": "/ai-training-for-medical-doctors",
                 "desc": "Explore practical AI tools for clinical workflows"
               },
               {
@@ -3675,6 +3677,7 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "AI Training for Insurance Professionals",
                 "pill": null,
+                "href": "/ai-training-for-insurance-professionals",
                 "desc": "Apply AI to insurance workflows and customer service"
               },
             ]
