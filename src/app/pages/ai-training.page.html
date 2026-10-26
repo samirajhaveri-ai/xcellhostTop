@@ -1,0 +1,16 @@
+<xh-imported-interactive-content [source]="course.source" />
+<div class="ppage as-page training-closing" data-customer-testimonials="off"><div class="wrap">
+  <div class="pp-sec">Insights</div>
+  <xh-insights-section [pageSlug]="course.route" [showVideos]="false" />
+  <section class="pp-cta" aria-labelledby="trainingSupportTitle">
+    <div><h3 id="trainingSupportTitle">Plan Your AI Training With XcellHost</h3><p>Discuss course formats, upcoming batches and a cohort for your team.</p></div>
+    <div class="training-actions">
+      <button type="button" class="btn btn-primary" (click)="request()">Discuss Your Training &rarr;</button>
+      <button type="button" class="btn btn-ghost" (click)="request()">Request A Callback</button>
+      <a class="btn btn-ghost" href="https://wa.me/918657032540" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn btn-ghost" [href]="'mailto:sales@xcellhost.cloud?subject=' + course.title">Email Us</a>
+    </div>
+    <a class="pp-cta-buddha-link" routerLink="/company/support-overview" aria-label="Visit XcellHost support"><img class="pp-cta-buddha" src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost customer support" /></a>
+  </section>
+  <div class="pp-proof"><span>ISO 27001</span><span>ISO 20000-1</span><span>Microsoft Gold Partner</span><span>Since 1999</span><span>Secure Payments &middot; UPI &middot; Cards &middot; NetBanking</span></div>
+</div></div>
