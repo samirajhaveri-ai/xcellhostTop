@@ -2,26 +2,7 @@ const { execFile } = require('node:child_process');
 const path = require('node:path');
 const existing = require('./proxy.conf.json');
 
-const cmsCollectionPath = /^\/api\/(blogs|case-studies|use-cases|data-sheets|cheat-sheets|whitepapers|guides|ebooks|checklists)(?=\?|$)/;
-
-function rewriteCmsRequest(requestPath) {
-  const match = requestPath.match(cmsCollectionPath);
-  if (!match) return requestPath;
-  const queryIndex = requestPath.indexOf('?');
-  const query = queryIndex >= 0 ? requestPath.slice(queryIndex + 1) : '';
-  return `/api/cms.php?collection=${encodeURIComponent(match[1])}${query ? `&${query}` : ''}`;
-}
-
 module.exports = {
-  // Direct development connections to the Strapi host can be blocked or time
-  // out. Route every public content collection through the same allow-listed
-  // CMS gateway as production while preserving the frontend's /api/* URLs.
-  [cmsCollectionPath.source]: {
-    target: 'https://xcellhost.cloud',
-    secure: true,
-    changeOrigin: true,
-    rewrite: rewriteCmsRequest,
-  },
   // Angular rewrites public PHP assets to /@fs/... before Vite's proxy runs.
   // Use an extensionless feed URL, and also handle the legacy PHP asset URL.
   '^/(?:feeds/blog/?|feeds/blog[.]php|@fs/.*[/]public[/]feeds[/]blog[.]php)(?:[?].*)?$': {

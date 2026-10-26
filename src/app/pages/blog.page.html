@@ -58,7 +58,6 @@
               class="bp-cover article-cover"
               [src]="p.coverImageUrl"
               [alt]="p.coverImage?.alternativeText || p.title"
-              (error)="useBlogCoverFallback($event)"
             />
           </div>
         }
