@@ -10,6 +10,7 @@ import { installImportedJourneyLayout } from './imported-journey-layout';
 import { IDENTITY_SECURITY_PAGES, IdentitySecuritySource } from '../data/identity-security-pages.data';
 
 type InteractiveContentSource =
+  | 'asset-tokenization-platform' | 'fractional-chief-ai-officer'
   | 'smb-cloud-desktop'
 
   | 'ai-factory'
@@ -170,6 +171,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page' | 'sectigo-detail' | 'sectigo-supplied' | 'inference-page' | 'developer-page'>,
     string
   > = {
+    'asset-tokenization-platform': '/imported-asset-tokenization-platform.html',
+    'fractional-chief-ai-officer': '/imported-fractional-chief-ai-officer.html',
     'office-365-e1-nonprofit': '/imported-office-365-e1-nonprofit.html',
     'teams-essentials-frontline': '/imported-teams-essentials-frontline.html',
     'office-365-e5': '/imported-office-365-e5.html',
@@ -361,6 +364,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+    'asset-tokenization-platform': 'Asset Tokenization Platform',
+    'fractional-chief-ai-officer': 'Fractional Chief AI Officer',
 
     'microsoft-defender': 'Microsoft Defender: Products, Coverage, Pricing, Security And FAQs',
     'mobile-app-security': 'Mobile App Security: Runtime Protection, SDK Integration, Risk Assessment And FAQs',
@@ -833,6 +838,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
       detail.complete({ ...result, fallbackUrl: this.leads.mailtoLink(topic,
         Object.entries(detail.payload).map(([key, value]) => `${key}: ${String(value ?? '')}`).join('\n')) });
     };
+
     const trainingEnquiry = (event: Event) => {
       if (!this.source.startsWith('ai-training-')) return;
       const values = (event as CustomEvent<Record<string, string>>).detail;
@@ -845,6 +851,22 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
       this.overlay.open('callback');
     };
     doc.addEventListener('import-training-enquiry', trainingEnquiry);
+
+    const marketplaceEnquiry = async (event: Event) => {
+      if (this.source !== 'asset-tokenization-platform' && this.source !== 'fractional-chief-ai-officer') return;
+      const detail = (event as CustomEvent<{
+        payload: Record<string, unknown>;
+        complete: (result: { ok: boolean; skipped: boolean; ref: string; fallbackUrl: string }) => void;
+      }>).detail;
+      const topic = this.sourceTitles[this.source] + ' enquiry';
+      const result = await this.leads.submit('callback', {
+        ...detail.payload, topic, page: '/' + this.source, message: detail.payload['summary'],
+      });
+      detail.complete({ ...result, fallbackUrl: this.leads.mailtoLink(topic,
+        Object.entries(detail.payload).map(([key, value]) => `${key}: ${String(value ?? '')}`).join('\n')) });
+    };
+    doc.addEventListener('import-marketplace-enquiry', marketplaceEnquiry);
+
     doc.addEventListener('import-identity-enquiry', identityEnquiry);
     doc.addEventListener('import-trial', trial);
     doc.addEventListener('import-callback', callback);
@@ -858,6 +880,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
       () => doc.removeEventListener('import-trial', trial),
       () => doc.removeEventListener('import-training-enquiry', trainingEnquiry),
       () => doc.removeEventListener('import-identity-enquiry', identityEnquiry),
+      () => doc.removeEventListener('import-marketplace-enquiry', marketplaceEnquiry),
       () => doc.removeEventListener('import-callback', callback),
       () => doc.removeEventListener('import-cart', add),
       () => doc.removeEventListener('import-newsletter', newsletter),

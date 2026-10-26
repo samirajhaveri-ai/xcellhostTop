@@ -220,9 +220,7 @@ export class CaseStudiesApiService {
     const alt = image?.alternativeText ?? image?.attributes?.alternativeText ?? null;
     if (!url?.trim()) return { url: null, alt };
     return {
-      // Relative Strapi uploads are not reachable from localhost when the CMS
-      // host is firewalled. Returning null selects the bundled case-study art.
-      url: url.startsWith('http') ? url : this.baseUrl ? `${this.baseUrl}${url}` : null,
+      url: url.startsWith('http') ? url : `${this.baseUrl}${url}`,
       alt,
     };
   }

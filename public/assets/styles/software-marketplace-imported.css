@@ -1,0 +1,19 @@
+/* The application shell owns the mobile contact controls and page scrolling. */
+.ux-mb { display: none !important; }
+body.ux-mbon { padding-bottom: 0 !important; }
+.ux-nav { opacity: 1 !important; visibility: visible !important; }
+.crumb a[href="#"] { pointer-events: none; }
+.marketplace-form-status { margin-top: 12px; }
+.marketplace-form-status a { color: var(--blue); text-decoration: underline; }
+.hero-grid > * { min-width: 0; }
+#compare .tbl th,
+#compare .tbl td { text-align: center; vertical-align: middle; }
+#compare .tbl .ux-y:last-child { margin-right: 0; }
+@media (max-width: 600px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr); }
+  .lh-badge { max-width: 100%; }
+  .lh-badge > b, .lh-badge > svg { flex-shrink: 0; }
+  main .lh-title { overflow-wrap: anywhere; }
+  .lcta .row { flex-wrap: wrap; }
+  .lcta .row .btn { white-space: normal; }
+}
