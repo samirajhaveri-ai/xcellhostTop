@@ -58,6 +58,7 @@
               class="bp-cover article-cover"
               [src]="p.coverImageUrl"
               [alt]="p.coverImage?.alternativeText || p.title"
+              (error)="useBlogCoverFallback($event)"
             />
           </div>
         }
@@ -119,20 +120,44 @@
             </section>
           }
 
-          @if (showTallyBanner()) {
-            <a
-              class="article-tally-banner"
-              routerLink="/tally-on-cloud"
-              aria-label="Start with Tally on Cloud from XcellHost"
-            >
-              <img
-                src="/assets/images/tally-on-cloud-blog-banner.jpg"
-                alt="Tally on Cloud from XcellHost — access your Tally anywhere, from ₹499 per user per month plus GST"
-                width="600"
-                height="500"
-                loading="lazy"
-              />
-            </a>
+          @if (blogAdvertisements().length) {
+            <div class="article-blog-ad-stack" aria-label="Related XcellHost solutions">
+              @for (advertisement of blogAdvertisements(); track advertisement.href) {
+                <a
+                  class="article-blog-ad"
+                  [class.article-blog-ad-image-only]="advertisement.imageOnly"
+                  [class.article-blog-ad--feature]="advertisement.format === 'feature'"
+                  [class.article-blog-ad--light]="advertisement.format === 'light'"
+                  [class.article-blog-ad--compact]="advertisement.format === 'compact'"
+                  [class.article-blog-ad--poster]="advertisement.format === 'poster'"
+                  [style.--article-ad-accent]="advertisement.accent"
+                  [routerLink]="advertisement.href"
+                  [attr.aria-label]="advertisement.cta + ': ' + advertisement.title"
+                >
+                  @if (!advertisement.imageOnly) {
+                    <span class="article-blog-ad-label">{{ advertisement.label }}</span>
+                  }
+                  <span class="article-blog-ad-art">
+                    <img
+                      [src]="advertisement.image"
+                      [alt]="advertisement.imageAlt"
+                      width="600"
+                      height="500"
+                      loading="lazy"
+                      (error)="useBlogAdvertisementFallback($event)"
+                    />
+                  </span>
+                  @if (!advertisement.imageOnly) {
+                    <span class="article-blog-ad-copy">
+                      <small>{{ advertisement.eyebrow }}</small>
+                      <strong>{{ advertisement.title }}</strong>
+                      <span>{{ advertisement.description }}</span>
+                      <b>{{ advertisement.cta }} <i aria-hidden="true">&rarr;</i></b>
+                    </span>
+                  }
+                </a>
+              }
+            </div>
           }
         </aside>
 

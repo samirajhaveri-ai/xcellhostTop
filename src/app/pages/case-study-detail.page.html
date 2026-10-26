@@ -20,7 +20,7 @@
           </div>
         </div>
         @if (heroImage(); as image) {
-          <div class="article-hero-media"><img class="bp-cover article-cover" [src]="image.src" [alt]="image.alt" /></div>
+          <div class="article-hero-media"><img class="bp-cover article-cover" [src]="image.src" [alt]="image.alt" (error)="useCaseStudyImageFallback($event, study)" /></div>
         }
       </div>
     </div>
@@ -93,7 +93,7 @@
 
     @if (relatedStudies().length) {
       <div class="bp-more article-more"><div class="wrap"><section class="article-related" aria-labelledby="related-case-studies-heading"><div class="article-related-head"><h2 id="related-case-studies-heading">Related Case Studies</h2><a class="bp-bar-link" routerLink="/case-studies">Explore all case studies</a></div><div class="article-related-grid case-study-related-grid">
-        @for (item of relatedStudies(); track item.id) { <a class="article-related-card" [routerLink]="['/case-studies', item.id]"><img class="article-related-cover" [src]="caseStudyImage(item).src" [alt]="caseStudyImage(item).alt" loading="lazy" decoding="async" /><span>{{ item.industry }}</span><h3>{{ item.headline }}</h3><p class="article-related-description">{{ item.visualTitle }}</p><small>{{ item.profile }}</small></a> }
+        @for (item of relatedStudies(); track item.id) { <a class="article-related-card" [routerLink]="['/case-studies', item.id]"><img class="article-related-cover" [src]="caseStudyImage(item).src" [alt]="caseStudyImage(item).alt" loading="lazy" decoding="async" (error)="useCaseStudyImageFallback($event, item)" /><span>{{ item.industry }}</span><h3>{{ item.headline }}</h3><p class="article-related-description">{{ item.visualTitle }}</p><small>{{ item.profile }}</small></a> }
       </div></section></div></div>
     }
   </div>

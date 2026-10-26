@@ -55,7 +55,9 @@ describe('CaseStudiesApiService', () => {
     http.expectOne((request) => request.url.endsWith('/api/blogs')).flush({ data: [] });
     expect(count).toBe(CASE_STUDIES.length + 1);
     expect(category).toBe('Cybersecurity');
-    expect(coverUrl).toContain('/uploads/secure-retail.jpg');
+    // Local development cannot reach relative Strapi uploads, so the UI uses
+    // its bundled case-study artwork rather than rendering a broken image.
+    expect(coverUrl).toBe('');
     subscription.unsubscribe();
     http.verify();
   }));
@@ -95,7 +97,7 @@ describe('CaseStudiesApiService', () => {
     expect(selected?.customer).toBe('Aegis Finance');
     expect(selected?.challenge).toBe('Evidence was spread across trackers.');
     expect(selected?.impact).toEqual(['Owners were assigned', 'Evidence became searchable']);
-    expect(selected?.coverImageUrl).toContain('/uploads/aegis.jpg');
+    expect(selected?.coverImageUrl).toBeNull();
     subscription.unsubscribe();
     http.verify();
   }));
