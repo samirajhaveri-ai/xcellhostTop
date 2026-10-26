@@ -61,9 +61,10 @@ describe('Blog API pagination', () => {
     expect(service.postsStatus()).toBe('error');
     tick(30_000);
     http.expectOne(req => req.url.endsWith('/api/blogs')).flush({ data: [
-      { slug: 'cloud', title: 'Cloud', content: 'Article', category: 'Cloud' },
+      { slug: 'cloud', title: 'Cloud', content: 'Article', category: 'Cloud', coverImage: { url: '/uploads/cloud.png' } },
     ] });
     expect(received.length).toBe(1);
+    expect(received[0].coverImageUrl).toBe('/assets/images/hero-tally-on-cloud.png');
     expect(service.postsStatus()).toBe('ready');
     tick(30_000);
     http.expectOne(req => req.url.endsWith('/api/blogs')).flush({}, { status: 503, statusText: 'Unavailable' });

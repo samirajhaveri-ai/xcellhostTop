@@ -135,4 +135,15 @@ export class CaseStudiesPage {
   searchStudies(event: Event): void {
     this.searchQuery.set((event.target as HTMLInputElement).value);
   }
+
+  useCaseStudyImageFallback(event: Event, study: CaseStudy): void {
+    const image = event.target as HTMLImageElement;
+    const fallback = getCaseStudyImage({
+      id: study.id,
+      industry: study.industry,
+      mainCategory: study.mainCategory,
+    }).src;
+    if (image.getAttribute('src') === fallback) return;
+    image.src = fallback;
+  }
 }

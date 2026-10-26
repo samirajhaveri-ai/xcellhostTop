@@ -33,7 +33,8 @@
         @if (featuredStudy(); as featured) {
           <a class="case-featured" [routerLink]="['/case-studies', featured.id]">
             <div class="case-featured-image">
-              <img [src]="caseStudyImage(featured).src" [alt]="caseStudyImage(featured).alt" />
+              <img [src]="caseStudyImage(featured).src" [alt]="caseStudyImage(featured).alt"
+                (error)="useCaseStudyImageFallback($event, featured)" />
               <span>Featured story</span>
             </div>
             <div class="case-featured-body">
@@ -118,7 +119,8 @@
           <a class="case-story-card" [class.case-story-wide]="index === 0 && !selectedMain() && !searchQuery()"
             [routerLink]="['/case-studies', study.id]">
             <div class="case-story-image">
-              <img [src]="caseStudyImage(study).src" [alt]="caseStudyImage(study).alt" loading="lazy" decoding="async" />
+              <img [src]="caseStudyImage(study).src" [alt]="caseStudyImage(study).alt" loading="lazy" decoding="async"
+                (error)="useCaseStudyImageFallback($event, study)" />
               <span>{{ study.mainCategory }}</span>
             </div>
             <div class="case-story-content">
