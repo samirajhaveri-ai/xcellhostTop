@@ -4568,9 +4568,16 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Software Marketplace",
             "items": [
               {
-                "title": "No Data",
+                "title": "Asset Tokenization Platform",
+                "href": "/asset-tokenization-platform",
                 "pill": null,
-                "desc": null
+                "desc": "Tokenize and trace real-world assets with a managed Hyperledger Fabric network."
+              },
+              {
+                "title": "Fractional Chief AI Officer",
+                "href": "/fractional-chief-ai-officer",
+                "pill": null,
+                "desc": "Give your AI programme a senior owner for strategy, governance and board reporting."
               },
             ]
           }

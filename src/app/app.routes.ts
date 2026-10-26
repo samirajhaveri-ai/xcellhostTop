@@ -5,6 +5,14 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 
 
 export const routes: Routes = [
+  ...[
+    ['asset-tokenization-platform', 'Asset Tokenization Platform'],
+    ['fractional-chief-ai-officer', 'Fractional Chief AI Officer'],
+  ].map(([path, name]) => ({
+    path, title: `${name} | XcellHost`,
+    data: { softwareMarketplaceSource: path, searchTitle: name },
+    loadComponent: () => import('./pages/software-marketplace-imported.page').then(m => m.SoftwareMarketplaceImportedPage),
+  })),
   { path: 'geotrust', redirectTo: 'geotrust-ssl-certificates', pathMatch: 'full' },
   { path: 'tds-software-declaration', title: 'No TDS on Software Purchases | XcellHost', loadComponent: () => import('./pages/tds-software-declaration.page').then(m => m.TdsSoftwareDeclarationPage) },
   { path: 'mobile-app-security', title: 'Mobile App Security | XcellHost', loadComponent: () => import('./pages/mobile-app-security.page').then(m => m.MobileAppSecurityPage) },
