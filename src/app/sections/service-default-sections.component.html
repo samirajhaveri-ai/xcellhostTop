@@ -1,0 +1,51 @@
+<div class="ppage as-page default-sections" data-customer-testimonials="off" data-preserve-copy>
+  <div class="wrap">
+    <section id="defaultSecurity" aria-labelledby="defaultSecurityTitle">
+      <h2 class="pp-sec" id="defaultSecurityTitle">Security &amp; compliance — {{ name() }}</h2>
+      <p class="pp-ov">{{ training() ? 'Build practical AI skills with responsible use, data privacy and human review throughout your training.' : platform() ? 'Plan identity, network security and data protection alongside your Google Cloud workloads.' : 'Plan security, access and operational responsibilities alongside your connectivity design.' }}</p>
+      <div class="pp-secrows">
+        @for (row of security(); track row[0]) {
+          <div class="psrow"><span class="psk">{{ row[0] }}</span><span class="psv">{{ row[1] }}</span></div>
+        }
+      </div>
+      <p class="pp-secfoot">XcellHost is ISO 27001 and ISO 20000-1 certified. Confirm the controls and service scope applicable to your requirements.</p>
+    </section>
+    <section id="defaultWhy" aria-labelledby="defaultWhyTitle">
+      <h2 class="pp-sec" id="defaultWhyTitle">Why XcellHost for {{ name() }}</h2>
+      <div class="pp-why performance-why">
+        @for (item of why; track item.title) {
+          <div class="pw"><span class="pw-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path [attr.d]="item.icon" /></svg></span><b [innerHTML]="item.title"></b><span [innerHTML]="item.body"></span></div>
+        }
+      </div>
+    </section>
+    <section id="defaultReviews" aria-labelledby="defaultReviewsTitle">
+      <h2 class="pp-sec" id="defaultReviewsTitle">What customers say</h2>
+      @if (attributedReviews()) { <p class="review-attribution">Feedback from XcellHost endpoint-security customers.</p> }
+      <div class="pp-revs">
+        @for (review of reviews(); track review.name) {
+          <div class="prv"><div class="stars" [attr.aria-label]="(review.rating || 5) + ' out of 5 stars'">@for (star of stars; track star) { <span [class.off]="star > (review.rating || 5)">★</span> }</div><p>“{{ review.quote }}”</p><cite><span class="rav">{{ initials(review.name) }}</span><span><b>{{ review.name }}</b>{{ review.role }}</span></cite></div>
+        }
+      </div>
+    </section>
+    <section id="defaultFaq" aria-labelledby="defaultFaqTitle">
+      <h2 class="pp-sec" id="defaultFaqTitle">Frequently asked questions</h2>
+      <div class="pp-faq"><xh-product-faq [faqs]="faqs()" idPrefix="serviceDefaultFaqAnswer" /></div>
+    </section>
+  </div>
+  <div id="defaultInsights"><xh-insights-section [pageSlug]="pageSlug()" /></div>
+  <div class="wrap">
+    <section class="pp-cta" id="defaultStart" aria-labelledby="defaultStartTitle">
+      <div><h3 id="defaultStartTitle">Ready to start with {{ name() }}?</h3><p>{{ training() ? 'Discuss course formats, upcoming batches and a cohort for your team.' : 'FREE Consultation · Discuss your design and deployment with XcellHost.' }}</p></div>
+      <div class="default-actions">
+        <button class="btn btn-primary" type="button" (click)="request()">Request a callback</button>
+        <button class="btn btn-ghost" type="button" (click)="request(true)">⚡ Buy Now</button>
+        <button class="btn btn-ghost" type="button" (click)="document('infosheet')">↓ Infosheet</button>
+        <button class="btn btn-ghost" type="button" (click)="document('presentation')">▣ Presentation</button>
+        <a class="btn btn-ghost" [href]="whatsapp()" target="_blank" rel="noopener noreferrer">Talk on WhatsApp</a>
+        <a class="btn btn-ghost" [href]="email()">Email Us</a>
+      </div>
+      <a class="pp-cta-buddha-link" routerLink="/company/support-overview" aria-label="Visit XcellHost customer support"><img class="pp-cta-buddha" src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost customer support" width="104" height="104" loading="lazy" /></a>
+    </section>
+    <div class="pp-proof"><span>ISO 27001</span><span>ISO 20000-1</span><span>Since 1999</span><span>INR billing · GST invoices</span></div>
+  </div>
+</div>

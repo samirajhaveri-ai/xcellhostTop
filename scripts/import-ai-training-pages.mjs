@@ -33,6 +33,7 @@ for (const [slug, name] of Object.entries(names)) {
     }
   });
   if (!head || !main || scripts.length !== 2) throw new Error(`Unexpected page structure: ${slug}`);
+  main.attrs.push({ name: 'data-customer-testimonials', value: 'off' });
   const title = head.childNodes.find((node) => node.tagName === 'title').childNodes.map((node) => node.value ?? '').join('');
   const description = attribute(head.childNodes.find((node) => attribute(node, 'name') === 'description'), 'content');
   main.childNodes = main.childNodes.filter((node) => !['enrol', 'faq', 'contact', 'related'].includes(attribute(node, 'id')));
@@ -65,7 +66,7 @@ document.addEventListener('click', function(event) {
 });
 </script>`;
   fs.writeFileSync(path.join(destination, `${slug}.html`), `<!doctype html>\n<html lang="en-IN" data-theme="light">\n<head>${serialize(head)}
-<style>html,body{height:auto;min-height:0}body{overflow:hidden}.rv{opacity:1;transform:none}</style></head>
+<style>html,body{height:auto;min-height:0}body{overflow:hidden}.rv{opacity:1;transform:none}</style><link rel="stylesheet" href="/assets/styles/ai-training-layout.css"></head>
 <body>${serializeOuter(main)}\n${scripts.join('\n')}\n${bridge}\n</body></html>\n`);
   pages.push({ slug, name, title, description });
 }

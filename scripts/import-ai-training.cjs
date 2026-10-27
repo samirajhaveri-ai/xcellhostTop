@@ -47,8 +47,8 @@ for (const [key, route, title] of pages) {
     ['Clear Pricing', 'Review seat pricing, options and GST in the course configurator before requesting a quote.'],
     ['Responsible AI', 'Data privacy, verification and human oversight are taught alongside practical skills.'],
   ]) + '</div></section>';
-  main = main.replace(html(faq), security + why + faqHtml);
-  main = main.slice(0, main.indexOf(faqHtml) + faqHtml.length) + '</main>';
+  // Shared Angular default sections supply security, why, reviews and FAQs.
+  main = main.slice(0, main.indexOf(html(faq))) + '</main>';
   for (const node of nodes.filter(n => has(n, 'crumb'))) main = main.replace(html(node), '');
   const powered = nodes.find(n => has(n, 'lh-powered'));
   if (powered) main = main.replace(html(powered), '');

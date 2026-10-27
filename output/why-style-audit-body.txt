@@ -1,0 +1,20 @@
+const assert=require('node:assert/strict'),pause=ms=>new Promise(r=>setTimeout(r,ms));
+const slugs=['ai-training-integrated-program','ai-training-live-online','ai-training-educators','ai-training-insurance-professionals','ai-training-medical-doctors','cloud-connectivity','cloud-router','private-connect','ip-transit','virtual-edge','managed-wifi','managed-sd-wan','edge-network','synapsem-ai-training-integrated-program','ai-training-for-medical-doctors','ai-training-for-insurance-professionals','ai-training-for-chartered-accountants'];
+const snapshot=selector=>'('+((selector)=>{const panel=document.querySelector(selector);if(!panel)return null;const props=['background','color','fontFamily','fontSize','fontWeight','lineHeight','letterSpacing','textTransform','padding','borderRadius','borderTop','borderRight','borderBottom','boxShadow','fill','stroke','strokeWidth','width','height'];const pick=(e,geometry=false)=>{const css=getComputedStyle(e);return Object.fromEntries(props.filter(p=>geometry||!['width','height'].includes(p)).map(p=>[p,css[p]]));};return {panel:pick(panel),columns:getComputedStyle(panel).gridTemplateColumns.split(' ').length,cards:[...panel.querySelectorAll('.pw')].map(c=>({card:pick(c),icon:pick(c.querySelector('.pw-ic'),true),svg:pick(c.querySelector('svg'),true),path:c.querySelector('path').getAttribute('d'),title:pick(c.querySelector('b')),body:pick(c.querySelector('span:last-child')),text:c.innerText}))}}).toString()+')('+JSON.stringify(selector)+')';
+const results=[];
+for(const width of [1440,980,390]){
+await send('Emulation.setDeviceMetricsOverride',{width,height:1000,deviceScaleFactor:1,mobile:width<700});
+await send('Page.navigate',{url:'http://127.0.0.1:4200/performance-cloud'});
+for(let i=0;i<60;i++){if(await evaluate('!!document.querySelector("#ppWhy")'))break;await pause(250);}
+await pause(1000);await evaluate('document.fonts.ready');
+const reference=await evaluate(snapshot('#ppWhy'));assert(reference,'reference missing');
+for(const slug of width===980?['ai-training-integrated-program','cloud-router']:slugs){
+await send('Page.navigate',{url:'http://127.0.0.1:4200/'+slug});
+for(let i=0;i<50;i++){if(await evaluate('!!document.querySelector(".performance-why")'))break;await pause(250);}
+await pause(350);await evaluate('document.fonts.ready');
+const actual=await evaluate(snapshot('.performance-why'));assert.deepEqual(actual,reference,slug+' '+width);console.log(slug,width,'exact styles PASS');results.push({slug,width,matched:true});
+if(slug==='cloud-router'&&width!==980){await evaluate('document.querySelector("#introv")?.click();window.scrollTo({top:document.querySelector(".performance-why").getBoundingClientRect().top+scrollY-120,behavior:"instant"})');await pause(250);fs.writeFileSync('output/why-exact-'+width+'.png',Buffer.from((await send('Page.captureScreenshot',{format:'png'})).data,'base64'));}
+}
+}
+fs.writeFileSync('output/why-style-audit.json',JSON.stringify(results,null,2));
+}finally{ws?.close();chrome?.kill();}})().catch(e=>{console.error(e);process.exitCode=1;});

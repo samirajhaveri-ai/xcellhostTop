@@ -3837,15 +3837,15 @@ body.xh-locked{overflow:hidden}
 #ppage .pp-timeline b{display:block;margin:1px 0 7px;color:var(--navy);font-size:17px;font-weight:750;line-height:1.3}#ppage .pp-timeline p{max-width:none;margin:0;color:var(--slate);font-size:14px;line-height:1.58}
 
 /* Why XcellHost: one unified premium panel, not six separate cards. */
-#ppage .pp-why{counter-reset:why-item;position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;padding:12px 16px;overflow:hidden;border:0;border-radius:22px;background:linear-gradient(105deg,var(--blue),#0c3e8f);box-shadow:0 18px 42px rgba(21,101,216,.14)}
-#ppage .pp-why .pw{--why-accent:#b2d4ff;counter-increment:why-item;position:relative;display:grid;grid-template-columns:52px minmax(0,1fr);grid-template-rows:auto auto;column-gap:16px;align-items:start;min-width:0;padding:25px 24px;border:0;border-radius:0;background:transparent;transition:background .22s ease}
-#ppage .pp-why .pw:nth-child(3n+2){--why-accent:#d4c3ff}#ppage .pp-why .pw:nth-child(3n+3){--why-accent:#90f2dd}
-#ppage .pp-why .pw:not(:nth-child(3n)){border-right:1px solid rgba(194,216,247,.18)}#ppage .pp-why .pw:nth-child(-n+3){border-bottom:1px solid rgba(194,216,247,.18)}
-#ppage .pp-why .pw:hover{background:rgba(255,255,255,.055)}
-#ppage .pp-why .pw::after{content:"0" counter(why-item);position:absolute;right:17px;bottom:7px;color:#fff;font-size:34px;font-weight:800;line-height:1;letter-spacing:-.08em;opacity:.055}
-#ppage .pp-why .pw .pw-ic{grid-row:1/3;display:grid;width:48px;height:48px;margin:0;place-items:center;border:1px solid color-mix(in srgb,var(--why-accent) 38%,transparent);border-radius:50%;background:color-mix(in srgb,var(--why-accent) 14%,transparent);color:var(--why-accent)}
-#ppage .pp-why .pw .pw-ic svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-#ppage .pp-why .pw b{grid-column:2;display:block;margin:2px 0 5px;color:#fff;font-size:15.5px;font-weight:750;line-height:1.3}#ppage .pp-why .pw>span:last-child{grid-column:2;display:block;color:#edf4ff;font-size:13px;line-height:1.55}
+:is(#ppage .pp-why, .performance-why){counter-reset:why-item;position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;padding:12px 16px;overflow:hidden;border:0;border-radius:22px;background:linear-gradient(105deg,var(--blue),#0c3e8f);box-shadow:0 18px 42px rgba(21,101,216,.14)}
+:is(#ppage .pp-why, .performance-why) .pw{--why-accent:#b2d4ff;counter-increment:why-item;position:relative;display:grid;grid-template-columns:52px minmax(0,1fr);grid-template-rows:auto auto;column-gap:16px;align-items:start;min-width:0;padding:25px 24px;border:0;border-radius:0;background:transparent;transition:background .22s ease}
+:is(#ppage .pp-why, .performance-why) .pw:nth-child(3n+2){--why-accent:#d4c3ff}:is(#ppage .pp-why, .performance-why) .pw:nth-child(3n+3){--why-accent:#90f2dd}
+:is(#ppage .pp-why, .performance-why) .pw:not(:nth-child(3n)){border-right:1px solid rgba(194,216,247,.18)}:is(#ppage .pp-why, .performance-why) .pw:nth-child(-n+3){border-bottom:1px solid rgba(194,216,247,.18)}
+:is(#ppage .pp-why, .performance-why) .pw:hover{background:rgba(255,255,255,.055)}
+:is(#ppage .pp-why, .performance-why) .pw::after{content:"0" counter(why-item);position:absolute;right:17px;bottom:7px;color:#fff;font-size:34px;font-weight:800;line-height:1;letter-spacing:-.08em;opacity:.055}
+:is(#ppage .pp-why, .performance-why) .pw .pw-ic{grid-row:1/3;display:grid;width:48px;height:48px;margin:0;place-items:center;border:1px solid color-mix(in srgb,var(--why-accent) 38%,transparent);border-radius:50%;background:color-mix(in srgb,var(--why-accent) 14%,transparent);color:var(--why-accent)}
+:is(#ppage .pp-why, .performance-why) .pw .pw-ic svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+:is(#ppage .pp-why, .performance-why) .pw b{grid-column:2;display:block;margin:2px 0 5px;color:#fff;font-size:15.5px;font-weight:750;line-height:1.3}:is(#ppage .pp-why, .performance-why) .pw>span:last-child{grid-column:2;display:block;color:#edf4ff;font-size:13px;line-height:1.55}
 
 /* One typography family throughout the EDR route. */
 #ppage.edr-page{font-family:var(--body)}
@@ -3876,18 +3876,18 @@ body.mnav-lock .live-chat-launcher{visibility:hidden}
   #ppage .edr-selected-summary{grid-template-columns:1fr}
   #ppage .edr-plan-purchase{border-top:1px solid #e2e9f3;border-left:0}
   #ppage .edr-compare-lines{grid-template-columns:1fr}
-  #ppage .pp-why{grid-template-columns:repeat(2,minmax(0,1fr))}
-  #ppage .pp-why .pw{border-right:0;border-bottom:0}
-  #ppage .pp-why .pw:nth-child(odd){border-right:1px solid rgba(194,216,247,.18)}
-  #ppage .pp-why .pw:nth-child(-n+4){border-bottom:1px solid rgba(194,216,247,.18)}
+  :is(#ppage .pp-why, .performance-why){grid-template-columns:repeat(2,minmax(0,1fr))}
+  :is(#ppage .pp-why, .performance-why) .pw{border-right:0;border-bottom:0}
+  :is(#ppage .pp-why, .performance-why) .pw:nth-child(odd){border-right:1px solid rgba(194,216,247,.18)}
+  :is(#ppage .pp-why, .performance-why) .pw:nth-child(-n+4){border-bottom:1px solid rgba(194,216,247,.18)}
 }
 @media(max-width:760px){
   #ppage .pp-timeline{grid-template-columns:1fr;grid-template-rows:none;grid-auto-flow:row;gap:14px}
   #ppage .pp-timeline li{min-height:0;padding:20px 18px 20px 68px}
   #ppage #ppTimeline,#ppage #ppCompare{margin-top:32px}
-  #ppage .pp-why{grid-template-columns:1fr;padding:8px 16px;border-radius:18px}
-  #ppage .pp-why .pw{padding:22px 4px;border-right:0!important;border-bottom:1px solid rgba(194,216,247,.18)}
-  #ppage .pp-why .pw:last-child{border-bottom:0}
+  :is(#ppage .pp-why, .performance-why){grid-template-columns:1fr;padding:8px 16px;border-radius:18px}
+  :is(#ppage .pp-why, .performance-why) .pw{padding:22px 4px;border-right:0!important;border-bottom:1px solid rgba(194,216,247,.18)}
+  :is(#ppage .pp-why, .performance-why) .pw:last-child{border-bottom:0}
   #ppage .pp-bens .pb{min-height:0;padding:21px;gap:16px}
 }
 @media(max-width:620px){

@@ -1,0 +1,30 @@
+html, body { height: auto; min-height: 0; }
+body { overflow: hidden; }
+.rv { opacity: 1; transform: none; }
+/* The Google Cloud source has a light hero; preserve readable banner controls. */
+.gc-hero .xh-service-banner-actions > button:not([data-banner-action="callback"]) {
+  background: #15314e;
+  border-color: #8aafd8;
+}
+.gc-hero .xh-service-banner-ai { background: #081f44; }
+@media (max-width: 760px) {
+  .hero.lh .lh-ctas.xh-banner-actions-line {
+    flex-wrap: wrap !important;
+    overflow: visible;
+  }
+  .hero.lh .lh-ask.xh-banner-ai-nowrap {
+    flex-wrap: wrap !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    min-width: 0;
+  }
+  .hero.lh .lh-ask.xh-banner-ai-nowrap .k,
+  .hero.lh .lh-ask.xh-banner-ai-nowrap .chips {
+    flex-shrink: 1 !important;
+    white-space: normal !important;
+    min-width: 0;
+    max-width: 100%;
+  }
+  .hero.lh .lh-ask.xh-banner-ai-nowrap .chips { flex-wrap: wrap !important; }
+  .lh-trust > .wrap { flex-wrap: wrap; justify-content: center; gap: 12px 20px; }
+}

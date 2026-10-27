@@ -1091,6 +1091,7 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Managed Google Cloud (GCP)",
                 "pill": null,
+                "href": "/vendor-partners/google-cloud",
                 "desc": null
               },
               {
@@ -4430,41 +4431,49 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Cloud Connectivity",
                 "pill": null,
+                "href": "/cloud-connectivity",
                 "desc": null
               },
               {
                 "title": "Cloud Router",
                 "pill": null,
+                "href": "/cloud-router",
                 "desc": null
               },
               {
                 "title": "Private Connect",
                 "pill": null,
+                "href": "/private-connect",
                 "desc": null
               },
               {
                 "title": "IP Transit",
                 "pill": null,
+                "href": "/ip-transit",
                 "desc": null
               },
               {
                 "title": "Virtual Edge",
                 "pill": null,
+                "href": "/virtual-edge",
                 "desc": null
               },
               {
                 "title": "Managed Wi-Fi",
                 "pill": null,
+                "href": "/managed-wifi",
                 "desc": null
               },
               {
                 "title": "Managed SD WAN",
                 "pill": null,
+                "href": "/managed-sd-wan",
                 "desc": null
               },
               {
                 "title": "Edge Network",
                 "pill": null,
+                "href": "/edge-network",
                 "desc": null
               },
             ]

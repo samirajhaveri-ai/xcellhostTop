@@ -7,12 +7,14 @@ import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { DocRequestService } from '../core/doc-request.service';
 import { AI_TRAINING_PAGES } from '../data/ai-training-pages.data';
+import { ServiceDefaultSectionsComponent } from '../sections/service-default-sections.component';
 
 /** Isolates supplied course styling while the app provides navigation and footer. */
 @Component({
   selector: 'xh-ai-training-page',
   standalone: true,
-  template: `<iframe #frame [src]="pageUrl" [title]="page.title" scrolling="no" (load)="onLoad()"></iframe>`,
+  imports: [ServiceDefaultSectionsComponent],
+  template: `<iframe #frame [src]="pageUrl" [title]="page.title" scrolling="no" (load)="onLoad()"></iframe><xh-service-default-sections [name]="page.name" [pageSlug]="page.slug" [training]="true" />`,
   styles: `:host{display:block}iframe{display:block;width:100%;min-height:700px;border:0}`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

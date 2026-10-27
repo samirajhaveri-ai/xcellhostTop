@@ -3,9 +3,24 @@ import { Routes } from '@angular/router';
 import { MENU_SERVICE_PAGES } from './data/menu-service-pages.data';
 import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 import { AI_TRAINING_PAGES } from './data/ai-training-pages.data';
+import { CLOUD_CONNECTIVITY_PAGES } from './data/cloud-connectivity-pages.data';
+import { GCP_SERVICE_PAGE } from './data/gcp-services.data';
 
 
 export const routes: Routes = [
+  {
+    path: GCP_SERVICE_PAGE.slug,
+    title: GCP_SERVICE_PAGE.title,
+    data: { connectivityPage: GCP_SERVICE_PAGE, searchTitle: GCP_SERVICE_PAGE.name, searchDescription: GCP_SERVICE_PAGE.description },
+    loadComponent: () => import('./pages/cloud-connectivity.page').then(m => m.CloudConnectivityPage),
+  },
+  ...['google-cloud', 'gcp-services', 'managed-google-cloud', 'managed-google-cloud-gcp'].map(path => ({ path, redirectTo: GCP_SERVICE_PAGE.slug, pathMatch: 'full' as const })),
+  ...CLOUD_CONNECTIVITY_PAGES.map(page => ({
+    path: page.slug,
+    title: page.title,
+    data: { connectivityPage: page, searchTitle: page.name, searchDescription: page.description },
+    loadComponent: () => import('./pages/cloud-connectivity.page').then(m => m.CloudConnectivityPage),
+  })),
   ...AI_TRAINING_PAGES.map((page) => ({
     path: page.slug,
     data: { trainingPage: page },

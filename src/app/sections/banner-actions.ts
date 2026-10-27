@@ -40,6 +40,50 @@ export function installBannerActions(root: Root, handle: Handler): () => void {
   const callbacks = new Map<HTMLElement, EventListener>();
   let timer = 0, disposed = false;
 
+  function serviceBanner(hero: HTMLElement, copy: HTMLElement, product: string): void {
+    if (hero.dataset['serviceBanner'] === product) return;
+    const oldActions = copy.querySelector('.lh-ctas');
+    const oldAi = hero.querySelector<HTMLElement>('.lh-ask');
+    const prompt = oldAi?.dataset['q'] || 'Explain ' + product + ' from XcellHost. What are its features, pricing options and questions to ask before choosing it?';
+    const actions = doc.createElement('div');
+    actions.className = 'xh-service-banner-actions';
+    actions.setAttribute('role', 'group');
+    actions.setAttribute('aria-label', product + ' actions');
+    for (const [action, label] of [['tour', 'Screenshot Tour'], ['trial', "7 Day's Free Trial"], ['callback', "Let's Talk"]] as const) {
+      const button = doc.createElement('button');
+      button.type = 'button'; button.textContent = label;
+      button.dataset['bannerAction'] = action;
+      actions.append(button);
+    }
+    const ai = doc.createElement('div');
+    ai.className = 'xh-service-banner-ai';
+    ai.setAttribute('role', 'group');
+    ai.setAttribute('aria-label', 'Ask AI about ' + product);
+    const label = doc.createElement('span');
+    label.className = 'xh-service-banner-ai-label';
+    label.textContent = '✦ Ask AI About ' + product + ' from XcellHost';
+    const links = doc.createElement('div');
+    links.className = 'xh-service-banner-ai-links';
+    for (const [name, domain, url] of providers) {
+      const anchor = doc.createElement('a');
+      anchor.href = url + encodeURIComponent(prompt); anchor.target = '_blank'; anchor.rel = 'noopener noreferrer';
+      anchor.setAttribute('aria-label', name); anchor.title = name;
+      const icon = doc.createElement('img');
+      icon.src = 'https://www.google.com/s2/favicons?domain=' + domain + '&sz=64';
+      icon.alt = ''; icon.width = 24; icon.height = 24;
+      anchor.append(icon); links.append(anchor);
+    }
+    ai.append(label, links);
+    if (oldActions) oldActions.replaceWith(actions);
+    else if (oldAi) oldAi.before(actions);
+    else copy.append(actions);
+    oldAi?.remove();
+    actions.after(ai);
+    hero.dataset['serviceBanner'] = product;
+    hero.dataset['bannerProduct'] = product;
+    hero.dataset['bannerReady'] = 'true';
+  }
+
   function enhance(hero: HTMLElement, heading: HTMLElement): void {
     if (hero.closest('[data-banner-actions="off"],dialog,[role="dialog"],nav,footer')) return;
     let copy = heading.parentElement!;
@@ -47,6 +91,10 @@ export function installBannerActions(root: Root, handle: Handler): () => void {
     if (copy.matches('hgroup,.hero-title,.title-wrap,.hero-heading') && copy.parentElement) copy = copy.parentElement;
     const product = clean(hero.dataset['product'] || heading.querySelector('.nm')?.textContent || heading.textContent)
       .replace(/^Xcell\w*\s*\|\s*/i, '') || 'XcellHost Cloud Services';
+    if (/^\/(?:assets\/(?:ai-training|cloud-connectivity|cloud-platforms)\/|imported-ai-training-)/.test(doc.location?.pathname || '')) {
+      serviceBanner(hero, copy, clean(heading.querySelector('.nm')?.textContent) || product);
+      return;
+    }
     if (hero.dataset['bannerProduct'] && hero.dataset['bannerProduct'] !== product) {
       hero.querySelector('[data-banner-added-actions]')?.remove();
       hero.querySelector('[data-banner-ai]')?.remove();

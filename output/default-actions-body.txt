@@ -1,0 +1,14 @@
+const assert=require('node:assert/strict'),pause=ms=>new Promise(r=>setTimeout(r,ms));
+await send('Page.navigate',{url:'http://127.0.0.1:4200/cloud-router'});await pause(4000);
+for(const [index,selector] of [[0,'#callback.open'],[1,'#callback.open'],[2,'.xhf-layer[role="dialog"]'],[3,'.xhf-layer[role="dialog"]']]){
+await evaluate(`document.querySelectorAll('#defaultStart button')[${index}].click()`);await pause(150);
+assert(await evaluate('!!document.querySelector('+JSON.stringify(selector)+')'),'CTA button '+index);
+await evaluate('document.querySelector("#cbX")?.click(); document.querySelector(".xhf-backdrop")?.click()');await pause(150);
+}
+for(const width of [1440,390]){
+await send('Emulation.setDeviceMetricsOverride',{width,height:1000,deviceScaleFactor:1,mobile:width<700});await pause(1200);
+await evaluate('window.scrollTo({top:document.querySelector("#defaultSecurity").getBoundingClientRect().top+scrollY-100,behavior:"instant"})');await pause(300);
+fs.writeFileSync('output/default-sections-final-'+width+'.png',Buffer.from((await send('Page.captureScreenshot',{format:'png'})).data,'base64'));
+}
+console.log('Callback, Buy Now, Infosheet and Presentation actions: PASS');
+}finally{ws?.close();chrome?.kill();}})().catch(e=>{console.error(e);process.exitCode=1;});
