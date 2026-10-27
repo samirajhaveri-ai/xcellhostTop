@@ -1,9 +1,11 @@
+import { QuantityInputDirective } from '../core/quantity-input.directive';
 import { ChangeDetectionStrategy, Component, ElementRef, ViewChild, computed, inject, input, signal } from '@angular/core';
 import { CartService } from '../core/cart.service';
 
 @Component({
   selector: 'xh-business-email-content',
   standalone: true,
+  imports: [QuantityInputDirective],
   templateUrl: './business-email-content.component.html',
   styleUrl: './business-email-content.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

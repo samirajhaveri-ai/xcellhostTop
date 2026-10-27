@@ -46,9 +46,21 @@ testem.log
 __screenshots__/
 
 # Local page checks, screenshots, helper scripts, and browser profiles
+/output/blog-toolbar-check/
 /output/ai-lab/
 /output/events/
+/output/*-browser/
 
 # System files
 .DS_Store
 Thumbs.db
+
+# Private AI server configuration
+/xcellhost-ai-config.php
+.env
+.env.*
+!.env.example
+
+# Private local RAG database and compiled AI service
+/server/data/
+/server/dist/

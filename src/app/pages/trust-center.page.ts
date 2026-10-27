@@ -6,6 +6,7 @@ import {
   ViewChild,
   inject,
 } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { SeoService } from '../core/seo.service';
 import { InsightsSectionComponent } from '../sections/insights-section.component';
 import { ProductFaqComponent } from '../sections/product/product-faq.component';
@@ -21,7 +22,18 @@ import { Faq } from '../data/models';
 })
 export class TrustCenterPage implements OnDestroy {
   private readonly seo = inject(SeoService);
+  private readonly sanitizer = inject(DomSanitizer);
   private frameObserver?: ResizeObserver;
+
+  readonly insightVideos = [
+    { title: 'Data protection & compliance', id: 's1Rxs7rWd2I' },
+    { title: 'Vulnerability assessment', id: 'oE8P7XnPGbI' },
+  ].map(video => ({
+    title: video.title,
+    src: this.sanitizer.bypassSecurityTrustResourceUrl(
+      `https://www.youtube-nocookie.com/embed/${video.id}?rel=0&playsinline=1`,
+    ),
+  }));
 
   @ViewChild('trustFrame') private trustFrame?: ElementRef<HTMLIFrameElement>;
 

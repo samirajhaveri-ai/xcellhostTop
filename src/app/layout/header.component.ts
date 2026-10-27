@@ -1,3 +1,4 @@
+import { menuItemLink } from '../core/menu-link';
 import { DOCUMENT, NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -12,6 +13,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CartService } from '../core/cart.service';
 import { CatalogService, slugify } from '../core/catalog.service';
 import { OverlayService } from '../core/overlay.service';
+import { SearchLaunchService } from '../core/search-launch.service';
 import { MEGA_MENU } from '../data/nav.data';
 import { MenuFeatureCard } from '../data/models';
 
@@ -95,7 +97,7 @@ function menuIconPath(title: string, identity: string): string {
   else if (/monitor|analytics|visualization|insight|report|score|assessment/.test(value)) path = MENU_ICON_PATHS.chart;
   else if (/network|dns|connect|sd-wan|iot|telecom/.test(value)) path = MENU_ICON_PATHS.network;
   else if (/code|api|developer|software|application|app |wordpress/.test(value)) path = MENU_ICON_PATHS.code;
-  else if (/desktop|workspace|device|remote access/.test(value)) path = MENU_ICON_PATHS.monitor;
+  else if (/desktop|workspace|device|remote access|anydesk/.test(value)) path = MENU_ICON_PATHS.monitor;
   else if (/partner|team|customer|identity|employee|career|job/.test(value)) path = MENU_ICON_PATHS.users;
   else if (/blog|case stud|whitepaper|ebook|catalog|document|policy|terms|guide|knowledge|glossary/.test(value)) path = MENU_ICON_PATHS.file;
   else if (/cloud|azure|aws|google|microsoft 365|tally/.test(value)) path = MENU_ICON_PATHS.cloud;
@@ -193,10 +195,16 @@ const MENU_FEATURE_CARDS: Readonly<Record<string, readonly NavFeatureCardVm[]>> 
       link: '/geotrust', fresh: true,
     },
     {
-      label: 'Email trust', title: 'Secure DMARC',
+      label: 'Certificate automation', title: 'ACME Certificates',
+      body: 'Issue, install and renew Sectigo DV and OV certificates automatically.',
+      image: '/assets/images/vendor-partners/23-sectigo.png',
+      link: '/acme-enabled-ssl-certificates', fresh: true,
+    },
+    {
+      label: 'Email trust', title: 'Enterprise DMARC',
       body: 'Stop domain spoofing with managed SPF, DKIM and DMARC.',
       image: '/assets/images/product-intros/reference-5728a592b032.png',
-      link: '/secure-dmarc',
+      link: '/enterprise-dmarc',
     },
   ],
   Security: [
@@ -288,7 +296,7 @@ const MENU_DESCRIPTIONS: Record<string, string> = {
   'DigiCert EV Code Signing': 'High-assurance signing with verified publisher identity 🌟',
   'DigiCert S/MIME Class 1': 'Validate the certificate holder’s email address 📧',
   'DigiCert S/MIME (OV)': 'Stronger authentication of the certificate holder’s identity 💪',
-  'Comodo Enterprise / Pro / Basic PA': 'Personal authentication certificates for secure identity 👤',
+  'Comodo Personal Authentication': 'Personal authentication certificates for secure identity 👤',
   'Continuous Threat Exposure (CTEM)': 'Find and fix vulnerabilities continuously and in real time 🔍',
   'Managed Detection & Response (MDR)': 'Continuous threat monitoring with rapid expert response 🔍',
   'Third-Party Risk Mgmt (TPRM)': 'Identify and manage risks across third-party relationships 🤝',
@@ -337,13 +345,16 @@ const MENU_DESCRIPTIONS: Record<string, string> = {
  * Destinations for the Insights and Company menus. Add an entry here when the
  * matching page is built; missing destinations use the shared construction page.
  */
+
 const CONTENT_LINKS: Record<string, string> = {
   'Microsoft Copilot ': '/microsoft-copilot',
   'Escalation Matrix': '/escalation-matrix',
   'Partner Matrix': '/partner-matrix',
+  'Partner Contact Matrix': '/partner-matrix',
   'WhatsApp For Business': '/whatsapp-smb',
   'Digicert VMC ': '/digicert-vmc',
   'Digicert CMC': '/digicert-cmc',
+  'ACME Certificates': '/acme-enabled-ssl-certificates',
   'Acronis Advanced EDR SLA': '/acronis-advanced-edr-sla',
   'Acronis Advanced MDR SLA': '/acronis-advanced-mdr-sla',
   'Acronis Advanced XDR SLA': '/acronis-advanced-xdr-sla',
@@ -374,6 +385,7 @@ const CONTENT_LINKS: Record<string, string> = {
   'Associations': '/associations',
   'Associations ': '/associations',
   'Data Centers (Global)': '/company/data-centers-global',
+  'Global Data Centers': '/company/data-centers-global',
   'Vendor Partners': '/company/vendor-partners',
   'Contact Us': '/contact',
   'Contact': '/contact',
@@ -391,6 +403,7 @@ const CONTENT_LINKS: Record<string, string> = {
   'Customer Support': '/support-overview',
   'Submit a Ticket': '/company/submit-a-ticket',
   'Knowledge Base': '/company/knowledge-base',
+  'Knowledgebase': 'https://supportdesk.xcellhost.cloud/portal/en/kb',
   'Remote Assist': '/company/remote-assist',
   'Privacy Policy': '/company/privacy-policy',
   'Terms of Services': '/company/terms-of-service',
@@ -400,6 +413,7 @@ const CONTENT_LINKS: Record<string, string> = {
   'Infrastructure': '/infrastructure',
   'Pricing': '/pricing',
 };
+
 
 interface NavTopVm {
   label: string;
@@ -425,8 +439,88 @@ function defaultFeatureCards(
     label: topLabel,
     title: item.title,
     body: item.desc ?? 'Explore this service and its key business use cases.',
-    image: index === 0 ? fallbackImage : fallbackSecondImage,
-    imagePosition: index === 0 ? fallbackPosition : fallbackSecondPosition,
+    image: item.title === 'Cloud Backup'
+      ? '/assets/images/menu-cloud-backup.png'
+      : item.title === 'Register a Domain Name'
+        ? '/assets/images/menu-register-domain.png'
+      : item.title === 'Transfer Your Domain'
+        ? '/assets/images/menu-transfer-domain.png'
+      : item.title === 'Windows Hosting'
+        ? '/assets/images/menu-windows-hosting.png'
+      : item.title === 'Linux Hosting'
+        ? '/assets/images/menu-linux-hosting.png'
+      : item.title === 'cPanel Control Panel'
+        ? '/assets/images/menu-cpanel.png'
+      : item.title === 'Plesk Control Panel'
+        ? '/assets/images/menu-plesk.png'
+      : item.title === 'Web Security (SiteLock)'
+        ? '/assets/images/menu-sitelock.png'
+      : item.title === 'Web Security (cWatch)'
+        ? '/assets/images/menu-cwatch.png'
+      : item.title === 'Web Design for CA, CS & Lawyers'
+        ? '/assets/images/menu-web-design-ca.png'
+      : item.title === 'Web Design for SMB'
+        ? '/assets/images/menu-web-design-smb.png'
+      : item.title === 'WhatsApp For Business'
+        ? '/assets/images/menu-whatsapp-smb.png'
+      : item.title === 'WhatsApp Broadcasting'
+        ? '/assets/images/menu-whatsapp-broadcasting.png'
+      : item.title === 'Explore VPS'
+        ? '/assets/images/menu-explore-vps.png'
+      : item.title === 'VPS India'
+        ? '/assets/images/menu-vps-india.png'
+      : item.title === 'Bio Link + Digital Visiting Card'
+        ? '/assets/images/menu-bio-link.png'
+      : item.title === 'Smart QR & NFC Automation'
+        ? '/assets/images/menu-smart-qr.png'
+      : item.title === 'Performance Cloud'
+        ? '/assets/images/menu-performance-cloud.png'
+      : item.title === 'Bare Metal Servers'
+        ? '/assets/images/menu-bare-metal-servers.png'
+      : item.title === 'Explore Cloud Servers'
+        ? '/assets/images/menu-explore-cloud-servers.png'
+      : item.title === 'General Compute'
+        ? '/assets/images/menu-general-compute.png'
+      : item.title === 'Explore Bare Metal Servers'
+        ? '/assets/images/menu-explore-bare-metal-servers.png'
+      : item.title === 'Windows Servers'
+        ? '/assets/images/menu-windows-servers.png'
+      : item.title === 'NVIDIA L40S'
+        ? '/assets/images/menu-nvidia-l40s.png'
+      : item.title === 'NVIDIA L4'
+        ? '/assets/images/menu-nvidia-l4.png'
+      : item.title === 'Serverless Inference'
+        ? '/assets/images/menu-serverless-inference.png'
+      : item.title === 'Dedicated Inference'
+        ? '/assets/images/menu-dedicated-inference.png'
+      : item.title === 'Kubernetes as a Services'
+        ? '/assets/images/menu-kubernetes-as-a-service.png'
+      : item.title === 'Docker as a Services'
+        ? '/assets/images/menu-docker-as-a-service.png'
+      : item.title === 'Managed Microsoft SQL'
+        ? '/assets/images/menu-managed-microsoft-sql.png'
+      : item.title === 'Managed PostgreSQL'
+        ? '/assets/images/menu-managed-postgresql.png?v=2'
+      : item.title === 'Resilience Operations'
+        ? '/assets/images/menu-resilience-operations.png'
+      : item.title === 'Cloud Operations'
+        ? '/assets/images/menu-cloud-operations.png'
+      : item.title === 'Managed AWS'
+        ? '/assets/images/menu-managed-aws.png'
+      : item.title === 'Managed Azure'
+        ? '/assets/images/menu-managed-azure.png'
+      : item.title === 'Cloud DevOps Services'
+        ? '/assets/images/menu-cloud-devops-services.png'
+      : item.title === 'AWS DevOps'
+        ? '/assets/images/menu-aws-devops.png'
+      : item.title === 'Cloud Monitoring'
+        ? '/assets/images/menu-cloud-monitoring.png'
+      : item.title === 'Cloud Observability'
+        ? '/assets/images/menu-cloud-observability.png'
+      : index === 0 ? fallbackImage : fallbackSecondImage,
+    imagePosition: item.title === 'Cloud Backup'
+      ? 'center 35%'
+      : index === 0 ? fallbackPosition : fallbackSecondPosition,
     link: item.link ?? '#',
   }));
 }
@@ -486,6 +580,7 @@ export class HeaderComponent {
   private readonly doc = inject(DOCUMENT);
   private readonly catalog = inject(CatalogService);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly searchLaunch = inject(SearchLaunchService);
   readonly overlay = inject(OverlayService);
   readonly cart = inject(CartService);
   /** The whole menu, pre-resolved once: no per-render slug lookups. */
@@ -687,7 +782,12 @@ export class HeaderComponent {
 
   openSearch(): void {
     this.loginMenuOpen.set(false);
-    this.overlay.open('search');
+    this.searchLaunch.open('search');
+  }
+
+  openAskAi(): void {
+    this.loginMenuOpen.set(false);
+    this.searchLaunch.open('ask-ai');
   }
 
   toggleLoginMenu(event: Event): void {
@@ -706,12 +806,7 @@ export class HeaderComponent {
    * rather than routing to a page that would 404.
    */
   private serviceLink(title: string, menu: string, explicitLink?: string): string {
-    if (explicitLink) return explicitLink;
-    if (CONTENT_LINKS[title]) return CONTENT_LINKS[title];
-    if (menu === 'Insights' || menu === 'Company') return `/under-construction/${slugify(title)}`;
-    const entry = this.catalog.findInDirectory(title);
-    const slug = slugify(entry ? entry.name : title);
-    return this.catalog.entryBySlug(slug) ? `/${slug}` : `/under-construction/${slugify(title)}`;
+    return menuItemLink(title, menu, this.catalog, explicitLink);
   }
 
   /** Every visible menu card gets concise supporting copy. */

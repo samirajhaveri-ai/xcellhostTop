@@ -1,0 +1,23 @@
+:host { display: block; width: 100%; min-width: 0; color: #fff; --mono: 'IBM Plex Mono', monospace; --disp: 'Sora', sans-serif; --pop: 'Poppins', sans-serif; }
+* { box-sizing: border-box; }
+.glass { background: rgba(9,24,52,.85); backdrop-filter: blur(10px); border: 1px solid rgba(156,200,255,.22); border-radius: 20px; padding: 18px; box-shadow: 0 30px 70px rgba(0,0,0,.4); }
+.glass-h { display: flex; justify-content: space-between; align-items: center; gap: 12px; font: 700 11.5px/1.5 var(--mono); letter-spacing: .1em; color: #9cc8ff; margin-bottom: 12px; }
+.glass-h b { color: #4ade80; white-space: nowrap; }
+.wl-k { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; }
+.wl-k div { border-radius: 12px; padding: 10px 12px; background: rgba(255,255,255,.06); }
+.wl-k b { display: block; font: 800 20px/1.5 var(--disp); color: #fff; }
+.wl-k span { display: block; font: 400 11.5px/1.55 'IBM Plex Sans', sans-serif; color: #9fb8d8; }
+.wl-body { display: grid; gap: 10px; margin-top: 10px; }
+.wl-body.ph { grid-template-columns: 170px minmax(0,1fr); align-items: start; }
+.wl-ph { border-radius: 22px; border: 3px solid #22324f; background: #fff; padding: 10px 9px; box-shadow: 0 14px 30px rgba(0,0,0,.35); }
+.wl-ph b { display: block; font: 700 12px/1.55 var(--pop); color: #041e42; text-align: center; margin: 2px 0 8px; }
+.wl-ph div { font: 500 11px/1.55 var(--pop); color: #041e42; padding: 7px 8px; border-radius: 9px; background: #f2f6fc; margin-bottom: 5px; border: 1px solid #dce5f2; transition: .3s; }
+.wl-ph div.on { background: #7c3aed; color: #fff; border-color: #7c3aed; transform: scale(1.03); }
+.wl-fd { background: #061329; border-radius: 12px; padding: 10px 12px; font: 500 12px/1.75 var(--mono); color: #c7d5ec; min-height: 150px; min-width: 0; overflow: hidden; }
+.wl-fd div { display: flex; gap: 8px; animation: fi .35s ease both; white-space: nowrap; overflow: hidden; }
+.wl-fd span { color: #4ade80; flex: none; }
+.wl-fd em { font-style: normal; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+@keyframes fi { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (max-width: 760px) { .wl-body.ph { grid-template-columns: 1fr; } .wl-ph { width: 100%; max-width: 220px; } }
+@media (max-width: 520px) { .glass-h { font-size: 10px; letter-spacing: .04em; flex-wrap: wrap; } .wl-k b { font-size: 16px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }

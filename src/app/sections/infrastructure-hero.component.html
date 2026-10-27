@@ -1,0 +1,47 @@
+<section class="infra-new-hero" aria-labelledby="infraHeroTitle">
+  <div class="wrap infra-new-grid">
+    <div class="infra-new-copy">
+      <nav aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><span>Infrastructure</span></nav>
+      <div class="infra-eyebrow">THE FOUNDATION FOR WHAT'S NEXT</div>
+      <h1 id="infraHeroTitle">Built for your business.<br /><em>Ready for tomorrow.</em></h1>
+      <p>Cloud infrastructure that brings compute, connectivity, security and recovery together. Explore the architecture behind your business-critical workloads.</p>
+      <div class="infra-hero-tags"><span>Resilient by design</span><span>Layered security</span><span>Managed operations</span></div>
+      <div class="infra-new-actions"><button class="btn btn-primary" type="button" (click)="talkRequested.emit($event)">Let's talk <span aria-hidden="true">→</span></button><button class="btn btn-ghost" type="button" (click)="trialRequested.emit($event)">7 Day's Free Trial</button><button class="infra-tour-link" type="button" (click)="tourRequested.emit()">Screenshot tour <span aria-hidden="true">↗</span></button></div>
+      <a class="infra-architecture-link" href="#infra-architecture">Explore our architecture <span aria-hidden="true">↓</span></a>
+    </div>
+    <div class="infra-network" aria-hidden="true">
+      <div class="infra-network-heading"><span>XCELLHOST INFRASTRUCTURE</span><span class="infra-system-label"><i></i> CONNECTED</span></div>
+      <svg viewBox="0 0 560 390" fill="none">
+        <defs>
+          <linearGradient id="infraRackFill" x2="1" y2="1"><stop stop-color="#286699"/><stop offset="1" stop-color="#0a2c50"/></linearGradient>
+          <linearGradient id="infraCloudFill" x2="1" y2="1"><stop stop-color="#2a94db"/><stop offset="1" stop-color="#124176"/></linearGradient>
+          <radialGradient id="infraNetworkGlow"><stop stop-color="#169dff" stop-opacity=".28"/><stop offset="1" stop-color="#169dff" stop-opacity="0"/></radialGradient>
+          <g id="infraRack">
+            <path d="M0 0L25 -13H93L68 0Z" fill="#4c94c5" stroke="#7ec4ef"/>
+            <path d="M68 0L93 -13V130L68 144Z" fill="#092642" stroke="#4c85ae"/>
+            <rect width="68" height="144" rx="5" fill="url(#infraRackFill)" stroke="#81bfe9"/>
+            <g fill="#092543" stroke="#4487b3"><rect x="8" y="12" width="52" height="24" rx="3"/><rect x="8" y="44" width="52" height="24" rx="3"/><rect x="8" y="76" width="52" height="24" rx="3"/><rect x="8" y="108" width="52" height="24" rx="3"/></g>
+            <path d="M15 20H33M15 27H26M15 52H33M15 59H26M15 84H33M15 91H26M15 116H33M15 123H26" stroke="#66b6e7" stroke-width="2" stroke-linecap="round"/>
+            <g class="infra-server-lights" fill="#50e0b0"><circle cx="50" cy="24" r="3"/><circle cx="50" cy="56" r="3"/><circle cx="50" cy="88" r="3"/><circle cx="50" cy="120" r="3"/></g>
+          </g>
+        </defs>
+        <ellipse cx="280" cy="213" rx="260" ry="166" fill="url(#infraNetworkGlow)"/>
+        <path d="M36 294L275 169L529 294L283 362Z" fill="#0b3255" stroke="#3c7da5"/>
+        <path d="M36 294V306L283 374L529 306V294L283 362Z" fill="#06233f" stroke="#285476"/>
+        <g class="infra-links" stroke="#6abffc" stroke-width="2" stroke-dasharray="5 8"><path d="M140 272L281 314L431 270M281 314V157M140 272L280 218L431 270"/></g>
+        <g transform="translate(92 129)"><use href="#infraRack"/></g>
+        <g transform="translate(249 190)"><use href="#infraRack"/></g>
+        <g transform="translate(403 128)"><use href="#infraRack"/></g>
+        <g class="infra-cloud-float">
+          <path d="M222 131C179 128 186 82 212 78C208 38 262 26 280 60C315 38 351 77 333 104C367 121 345 152 316 151H229Z" fill="url(#infraCloudFill)" stroke="#80d4ff" stroke-width="2"/>
+          <path d="M256 98L270 112L296 85" stroke="#a5efff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="269" y="137" class="infra-cloud-title" text-anchor="middle">XCELL CLOUD</text>
+        </g>
+        <g class="infra-security-badge"><rect x="30" y="46" width="136" height="55" rx="12" fill="#10395c" stroke="#4287bb"/><path d="M47 60L56 56L65 60V70Q65 79 56 82Q47 79 47 70ZM51 69L55 73L61 65" stroke="#54e0b6" stroke-width="2" stroke-linejoin="round"/><text x="76" y="69" class="infra-node-title">Protected</text><text x="76" y="84" class="infra-node-detail">Layered security</text></g>
+        <g class="infra-recovery-badge"><rect x="382" y="46" width="148" height="55" rx="12" fill="#10395c" stroke="#4287bb"/><path d="M400 63A10 10 0 1 1 398 75M400 57V64H407" stroke="#ffb45e" stroke-width="2"/><text x="424" y="69" class="infra-node-title">Recovery ready</text><text x="424" y="84" class="infra-node-detail">Backup &amp; continuity</text></g>
+        <text x="124" y="299" class="infra-rack-label">COMPUTE</text><text x="273" y="352" class="infra-rack-label">CONNECTIVITY</text><text x="426" y="300" class="infra-rack-label">STORAGE</text>
+      </svg>
+      <div class="infra-network-footer"><span>Compute</span><i></i><span>Connect</span><i></i><span>Protect</span><i></i><span>Recover</span></div>
+    </div>
+  </div>
+</section>

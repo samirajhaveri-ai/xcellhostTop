@@ -71,8 +71,9 @@ export class SigninModalComponent {
     this.busy.set(true);
     const value = this.form.getRawValue();
     try {
-      const response = await fetch('/api/auth/signin', {
+      const response = await fetch('/api/auth.php?action=signin', {
         method: 'POST',
+        credentials: 'same-origin',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email: value.email.trim().toLowerCase(),

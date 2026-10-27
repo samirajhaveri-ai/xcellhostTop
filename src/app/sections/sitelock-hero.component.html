@@ -1,0 +1,24 @@
+<div class="xsl" aria-label="Live illustration: SiteLock scanning, removing malware and blocking attacks on a website">
+
+ <div class="glow"></div>
+ <div class="fs" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></div>
+ <div class="card">
+  <div class="hd"><span>SITELOCK · LIVE PROTECTION</span><span class="pill" [class.bad]="scanState() === 'threat'" id="xslPill"><i></i><span id="xslPillT">{{ statusLabel() }}</span></span></div>
+  <div class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span><b>https://</b><span id="xslSite">www.yourbusiness.in</span></span><em>WAF + CDN ON</em></div>
+  <div class="row">
+   <div class="pn"><h4>DAILY MALWARE SCAN</h4>
+    <div class="rad"><i class="dot" [class.on]="scanState() !== 'scanning'" [class.ok]="scanState() === 'clean'" id="xslDot" style="left:68%;top:30%"></i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+    <div class="sc" [class.bad]="scanState() === 'threat'" [class.ok]="scanState() === 'clean'" id="xslSc"><b>{{ scanLabel() }}</b><span id="xslScT">{{ scanDetail() }}</span></div>
+   </div>
+   <div class="pn"><h4>WEB APPLICATION FIREWALL</h4>
+    <ul class="wf" id="xslWf">@for (attack of feed(); track attack.id) { <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m5.6 5.6 12.8 12.8"/></svg><span>{{ attack.name }}<small>{{ attack.ip }}</small></span><em>BLOCKED</em></li> }</ul>
+    <div class="cnt"><span>Attacks blocked today</span><b id="xslCnt">{{ format(blocked()) }}</b></div>
+   </div>
+  </div>
+  <div class="st">
+   <div class="pn"><h4>CDN SPEED</h4><b>1.2s <span class="up">↓43%</span></b><small>Page load time</small><div class="bar"><i id="xslBar1" style="width:78%"></i></div></div>
+   <div class="pn"><h4>VULNERABILITIES</h4><b>0 <span class="up" style="font-size:12px">open</span></b><small id="xslVuln">3 patched this week</small><div class="bar"><i id="xslBar2" style="width:100%"></i></div></div>
+   <div class="pn"><h4>TRUST SEAL</h4><div class="seal"><svg viewBox="0 0 24 24"><path fill="#22c55e" d="M12 2 4 5v6c0 5.2 3.4 9.4 8 11 4.6-1.6 8-5.8 8-11V5z"/><path d="m8.5 12 2.4 2.4 4.8-4.8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>Verified</b><small id="xslSeal">Scanned today</small></div></div></div>
+  </div>
+ </div>
+</div>

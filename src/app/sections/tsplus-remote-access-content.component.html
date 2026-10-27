@@ -129,8 +129,7 @@
             (click)="changeSubscriptionUsers(-1)"
           >
             −</button
-          ><output>{{ subscriptionUsers() }}</output
-          ><button type="button" aria-label="Increase users" (click)="changeSubscriptionUsers(1)">
+          ><input xhQuantityInput aria-label="Quantity for users" [quantityValue]="subscriptionUsers()" (quantityChange)="changeSubscriptionUsers($event - (subscriptionUsers()))" /><button type="button" aria-label="Increase users" (click)="changeSubscriptionUsers(1)">
             +
           </button>
         </div>

@@ -46,6 +46,18 @@ export const DIRECTORY_CATEGORIES: DirectoryCategory[] = [
 
 export const DIRECTORY: DirectoryEntry[] = [
   {
+    name: 'Mobile App Security',
+    desc: 'Android and iOS runtime protection, device and SIM binding, mobile API security and SDK integration.',
+    cat: 'Security',
+    group: 'EndPoint Security',
+  },
+  {
+    name: 'Microsoft 365 To Google Workspace Migration',
+    desc: 'Migrate Microsoft 365 (M365 / Office 365) email, OneDrive, SharePoint and Teams to Google Workspace, Gmail and Google Drive.',
+    cat: 'Cloud',
+    group: 'Managed Migration',
+  },
+  {
     name: 'Cloud Migration',
     desc: 'Plan, migrate and validate your cloud workloads',
     cat: 'Cloud',
@@ -362,7 +374,7 @@ export const DIRECTORY: DirectoryEntry[] = [
     "group": "Cloud Data Protect"
   },
   {
-    "name": "Vortex SOC",
+    "name": "XcellSOC",
     "desc": "Unified SIEM, SOAR, UEBA and security operations suite",
     "cat": "Cloud",
     "group": "Cloud Data Protect"
@@ -380,12 +392,6 @@ export const DIRECTORY: DirectoryEntry[] = [
     "group": "Cloud Productivity"
   },
   {
-    "name": "Microsoft 365",
-    "desc": "Cloud-based productivity tools — from ₹135/user/mo",
-    "cat": "Cloud",
-    "group": "Cloud Productivity"
-  },
-  {
     "name": "Google Workspace",
     "desc": "Integrated tools for business collaboration",
     "cat": "Cloud",
@@ -394,12 +400,6 @@ export const DIRECTORY: DirectoryEntry[] = [
   {
     "name": "Advanced Email Security",
     "desc": "Enhanced protection for M365 + Google Workspace",
-    "cat": "Cloud",
-    "group": "Cloud Productivity"
-  },
-  {
-    "name": "Secure DMARC",
-    "desc": "Prevent email spoofing and phishing attacks — best seller",
     "cat": "Cloud",
     "group": "Cloud Productivity"
   },
@@ -897,7 +897,7 @@ export const DIRECTORY: DirectoryEntry[] = [
     "group": "Consulting & Compliance"
   },
   {
-    "name": "vCISO-as-a-Service",
+    "name": "vCISO-As-A-Service",
     "desc": "Virtual Chief Information Security Officer",
     "cat": "Security",
     "group": "Consulting & Compliance"
@@ -1121,6 +1121,36 @@ export const DIRECTORY: DirectoryEntry[] = [
   {
     "name": "Private CA",
     "desc": "Create and manage a private CA without the hassle",
+    "cat": "Digital Trust",
+    "group": "Managed PKI & Cert Mgmt"
+  },
+  {
+    "name": "IoT PKI",
+    "desc": "Unique device identities, secure provisioning and lifecycle management",
+    "cat": "Digital Trust",
+    "group": "Managed PKI & Cert Mgmt"
+  },
+  {
+    "name": "IoT Device Certificates",
+    "desc": "Unique X.509 identities for devices, automated renewal and revocation",
+    "cat": "Digital Trust",
+    "group": "Managed PKI & Cert Mgmt"
+  },
+  {
+    "name": "Cloud Code Signing",
+    "desc": "Sign builds from CI/CD with HSM-protected keys, policies and approvals",
+    "cat": "Digital Trust",
+    "group": "Managed PKI & Cert Mgmt"
+  },
+  {
+    "name": "Matter DAC",
+    "desc": "Matter Device Attestation Certificates for trusted smart-home devices",
+    "cat": "Digital Trust",
+    "group": "Managed PKI & Cert Mgmt"
+  },
+  {
+    "name": "PKI Software",
+    "desc": "Compare PKI platforms and deploy CA, RA, OCSP and HSM infrastructure",
     "cat": "Digital Trust",
     "group": "Managed PKI & Cert Mgmt"
   },

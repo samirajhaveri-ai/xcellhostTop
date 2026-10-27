@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { ChangeDetectionStrategy, Component, DestroyRef, computed, inject, input, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-
-import { LeadService } from '../core/lead.service';
 
 /** Global newsletter banner displayed immediately above the site footer. */
 @Component({
@@ -11,7 +10,7 @@ import { LeadService } from '../core/lead.service';
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <section class="newsletter" aria-labelledby="newsletter-title">
+    <section class="newsletter" [class.newsletter-sidebar]="sidebar()" [attr.aria-labelledby]="idPrefix() + '-title'">
       <div class="wrap newsletter-inner">
         <div class="newsletter-copy">
           <p class="newsletter-label">
@@ -21,35 +20,46 @@ import { LeadService } from '../core/lead.service';
             </svg>
             XcellHost Newsletter
           </p>
-          <h2 id="newsletter-title">
+          <h2 [id]="idPrefix() + '-title'">
             Get the latest updates on Blog Posts, Industry News, Products, and Guidance on Cloud,
             Cyber Security, AI &amp; Digital Transformation.
           </h2>
         </div>
 
-        <form class="newsletter-form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
-          <label class="sr-only" for="newsletter-email">Email address</label>
+        <form #newsletterForm class="newsletter-form" [formGroup]="form" (ngSubmit)="submit(newsletterForm)"
+          action="https://forms.zohopublic.in/xcellhostcloudservicespvtltd1/form/NewsletterSubscriptionForm/formperma/ZFO74kn3xfRonRDRy3zFBSIcG82fsKdLTBd2toT0wPM/htmlRecords/submit"
+          method="POST" enctype="multipart/form-data" accept-charset="UTF-8" [target]="idPrefix() + '-response'" [attr.aria-busy]="sending()" novalidate>
+          <input type="hidden" name="zf_referrer_name" />
+          <input type="hidden" name="zf_redirect_url" value="" />
+          <input type="hidden" name="zc_gad" />
+          <label class="sr-only" [for]="idPrefix() + '-email'">Email address</label>
           <input
-            id="newsletter-email"
+            [id]="idPrefix() + '-email'"
             type="email"
+            name="Email"
+            maxlength="255"
+            required
             formControlName="email"
+            [readOnly]="sending()"
             autocomplete="email"
             placeholder="Enter your email"
             [attr.aria-invalid]="emailInvalid()"
-            aria-describedby="newsletter-message"
+            [attr.aria-describedby]="idPrefix() + '-message'"
           />
-          <button type="submit" [disabled]="busy()">{{ buttonLabel() }}</button>
+          <button type="submit" [disabled]="sending()">{{ sending() ? 'Sending...' : 'Subscribe' }}</button>
         </form>
 
         <p
-          id="newsletter-message"
+          [id]="idPrefix() + '-message'"
           class="form-message"
           [class.success]="done()"
+          [class.error]="message() && !sending() && !done()"
           role="status"
           aria-live="polite"
         >
           {{ message() }}
         </p>
+        @if (!sidebar()) {
         <nav class="newsletter-socials" aria-label="Follow XcellHost updates">
           <a class="newsletter-social newsletter-whatsapp"
             href="https://www.whatsapp.com/channel/0029Vais2U4ICVffW7i82V1z"
@@ -71,7 +81,17 @@ import { LeadService } from '../core/lead.service';
             Subscribe to LinkedIn Newsletter
           </a>
         </nav>
+        }
       </div>
+      <!-- A static name registers the browsing context before the form targets it.
+           Binding iframe.name later can leave window.name empty in Chrome. -->
+      @if (sidebar()) {
+        <iframe #newsletterResponse name="sidebar-newsletter-response" title="Newsletter submission response" hidden
+          sandbox="allow-forms allow-scripts allow-same-origin" (load)="checkSubmission(newsletterResponse)"></iframe>
+      } @else {
+        <iframe #newsletterResponse name="newsletter-response" title="Newsletter submission response" hidden
+          sandbox="allow-forms allow-scripts allow-same-origin" (load)="checkSubmission(newsletterResponse)"></iframe>
+      }
     </section>
   `,
   styles: `
@@ -87,12 +107,11 @@ import { LeadService } from '../core/lead.service';
       position: relative;
       display: grid;
       grid-template-columns: 1fr;
-      gap: 14px;
       align-items: stretch;
       width: min(850px, 100%);
       max-width: none;
       margin-inline: auto;
-      padding: 32px;
+      padding: 25px;
       border: 1px solid var(--line);
       border-radius: 12px;
       background: linear-gradient(135deg, var(--blue-soft) 0%, #dcecff 62%, #fff0de 100%);
@@ -128,15 +147,16 @@ import { LeadService } from '../core/lead.service';
       margin: 0 auto;
       color: var(--ink);
       text-align: center;
-      font: 600 15px / 1.5 var(--body);
+      font: 600 13px / 1.5 var(--body);
       letter-spacing: 0;
+      padding: 10px;
     }
 
     .newsletter-form {
       position: relative;
       z-index: 1;
       display: grid;
-      min-height: 52px;
+      min-height: 32px;
       grid-template-columns: minmax(0, 1fr) 124px;
       gap: 8px;
       align-items: center;
@@ -144,7 +164,7 @@ import { LeadService } from '../core/lead.service';
 
     .newsletter-form input {
       min-width: 0;
-      min-height: 52px;
+      min-height: 42px;
       padding: 0 18px;
       border: 1px solid var(--line);
       border-radius: 8px;
@@ -167,8 +187,8 @@ import { LeadService } from '../core/lead.service';
 
     .newsletter-form button {
       min-width: 0;
-      min-height: 50px;
-      padding: 13px 22px;
+      min-height: 30px;
+      padding:  10px;
       border: 0; 
       border-radius: 8px;
       background: var(--blue);
@@ -198,14 +218,13 @@ import { LeadService } from '../core/lead.service';
 
     .form-message {
       margin: 0;
-      color: #b91c1c;
+      min-height: 20px;
+      color: var(--slate);
       font-size: 13px;
+      line-height: 1.5;
     }
 
-    .form-message:empty {
-      display: none;
-    }
-
+    .form-message.error { color: #b91c1c; }
     .form-message.success {
       color: #166534;
     }
@@ -295,27 +314,53 @@ import { LeadService } from '../core/lead.service';
         transition: none;
       }
     }
+    .newsletter-sidebar { padding: 0; background: none; color: var(--ink); overflow: visible; }
+    .newsletter-sidebar .newsletter-inner {
+      width: 100%; margin: 0; padding: 18px; gap: 12px; border-radius: 16px;
+      box-shadow: 0 12px 30px rgba(5, 38, 84, .05);
+    }
+    .newsletter-sidebar .newsletter-label { font-size: 16px; text-align: left; justify-content: flex-start; }
+    .newsletter-sidebar .newsletter-icon { width: 22px; height: 22px; }
+    .newsletter-sidebar .newsletter-copy h2 { padding: 0; font-size: 12px; font-weight: 400; line-height: 1.7; text-align: left; }
+    .newsletter-sidebar .newsletter-form { grid-template-columns: minmax(0, 1fr); width: 100%; }
+    .newsletter-sidebar .newsletter-form input { width: 100%; padding: 10px 12px; font-size: 13px; }
+    .newsletter-sidebar .newsletter-form button { width: 100%; min-height: 42px; font-size: 13px; }
+    .newsletter-sidebar .form-message { min-height: 0; font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
+    .newsletter-sidebar .form-message:empty { display: none; }
   `,
 })
 export class ContactOptionsComponent {
+  readonly sidebar = input(false);
+  readonly idPrefix = computed(() => this.sidebar() ? 'sidebar-newsletter' : 'newsletter');
   private readonly fb = inject(FormBuilder);
-  private readonly leads = inject(LeadService);
+  private readonly document = inject(DOCUMENT);
+  private readonly destroyRef = inject(DestroyRef);
+  private confirmationUrl = '';
+  private submittedEmail = '';
+  private readonly subscriptionStorageKey = 'xcellhost.newsletter.confirmed-emails.v1';
+  private readonly confirmedEmails = new Set<string>();
+  private submissionTimer?: ReturnType<typeof setTimeout>;
 
   readonly form = this.fb.nonNullable.group({
-    email: ['', [Validators.required, Validators.email]],
+    email: ['', [Validators.required, Validators.email, Validators.maxLength(255)]],
   });
 
-  readonly busy = signal(false);
   readonly done = signal(false);
   readonly message = signal('');
-  readonly buttonLabel = computed(() => (this.busy() ? 'Subscribing…' : 'Subscribe '));
+  readonly sending = signal(false);
+
+  constructor() {
+    this.destroyRef.onDestroy(() => clearTimeout(this.submissionTimer));
+  }
 
   emailInvalid(): boolean {
     return this.form.controls.email.invalid && this.form.controls.email.touched;
   }
 
-  async submit(): Promise<void> {
-    if (this.busy()) return;
+  submit(formElement: HTMLFormElement): void {
+    if (this.sending()) return;
+    this.done.set(false);
+    this.form.controls.email.setValue(this.form.controls.email.value.trim());
     if (this.form.invalid) {
       this.form.controls.email.markAsTouched();
       this.done.set(false);
@@ -323,31 +368,90 @@ export class ContactOptionsComponent {
       return;
     }
 
-    this.busy.set(true);
-    this.message.set('');
-    const email = this.form.controls.email.value.trim();
-    const result = await this.leads.submit('newsletter', { email });
-    this.busy.set(false);
-
-    if (!result.ok && !result.skipped) {
-      this.done.set(false);
-      this.message.set('We could not subscribe you right now. Please try again.');
+    const email = this.form.controls.email.value.toLowerCase();
+    if (this.hasSubscribed(email)) {
+      this.message.set('This email address is already subscribed.');
       return;
     }
+    this.submittedEmail = email;
 
-    if (result.skipped) {
-      window.location.href = this.leads.mailtoLink(
-        'XcellHost newsletter subscription',
-        `Please subscribe ${email} to the XcellHost newsletter.`,
-      );
+    const referrer = formElement.elements.namedItem('zf_referrer_name') as HTMLInputElement;
+    const adClick = formElement.elements.namedItem('zc_gad') as HTMLInputElement;
+    const redirect = formElement.elements.namedItem('zf_redirect_url') as HTMLInputElement;
+    referrer.value = this.document.location.href;
+    adClick.value = new URL(this.document.location.href).searchParams.get('gclid') ?? '';
+    const callback = new URL('newsletter-subscription-success.html', this.document.baseURI);
+    callback.searchParams.set('submission', `${Date.now()}-${Math.random().toString(36).slice(2)}`);
+    this.confirmationUrl = callback.href;
+    redirect.value = this.confirmationUrl;
+
+    // Zoho redirects only the hidden frame after accepting the submission.
+    // A generic cross-origin frame load must never count as success.
+    this.sending.set(true);
+    this.message.set('Submitting your subscription...');
+    this.submissionTimer = setTimeout(() => {
+      this.sending.set(false);
+      this.confirmationUrl = '';
+      this.message.set('We could not confirm your subscription. Please try again later.');
+    }, 30000);
+    try {
+      formElement.submit();
+    } catch {
+      clearTimeout(this.submissionTimer);
+      this.sending.set(false);
+      this.confirmationUrl = '';
+      this.message.set('We could not send your subscription. Please try again.');
     }
+  }
 
-    this.form.reset();
+  checkSubmission(frame: HTMLIFrameElement): void {
+    if (!this.sending() || !this.confirmationUrl) return;
+    try {
+      if (frame.contentWindow?.location.href !== this.confirmationUrl) return;
+    } catch {
+      // Zoho's loading, validation and error pages are on another origin.
+      return;
+    }
+    clearTimeout(this.submissionTimer);
+    this.confirmationUrl = '';
+    this.sending.set(false);
+    this.rememberSubscription(this.submittedEmail);
+    this.submittedEmail = '';
     this.done.set(true);
-    this.message.set(
-      result.skipped
-        ? 'Your email app is ready to complete the subscription.'
-        : 'Thank you — you are subscribed!',
-    );
+    this.message.set('Thank you for subscribing!');
+    this.form.reset();
+  }
+
+  // Only Zoho-confirmed submissions belong in this browser's cache. Zoho's
+  // Email field must also enforce No Duplicates for records across devices.
+  private readConfirmedEmails(): string[] {
+    try {
+      const stored: unknown = JSON.parse(
+        this.document.defaultView?.localStorage.getItem(this.subscriptionStorageKey) ?? '[]',
+      );
+      return Array.isArray(stored)
+        ? stored.filter((email): email is string => typeof email === 'string')
+        : [];
+    } catch {
+      // Storage may be blocked, full or contain invalid data.
+      return [];
+    }
+  }
+
+  private hasSubscribed(email: string): boolean {
+    return this.confirmedEmails.has(email) || this.readConfirmedEmails().includes(email);
+  }
+
+  private rememberSubscription(email: string): void {
+    if (!email) return;
+    this.confirmedEmails.add(email);
+    try {
+      const emails = new Set([...this.readConfirmedEmails(), ...this.confirmedEmails]);
+      this.document.defaultView?.localStorage.setItem(
+        this.subscriptionStorageKey, JSON.stringify([...emails]),
+      );
+    } catch {
+      // The in-memory cache still prevents repeats during this component's lifetime.
+    }
   }
 }

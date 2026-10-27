@@ -1,3 +1,115 @@
+import { CustomerTestimonialsComponent } from '../sections/customer-testimonials.component';
+
+import { AntiRansomwareWarrantyComponent } from '../sections/anti-ransomware-warranty.component';
+import { ContainerRegistryHeroComponent } from '../sections/container-registry-hero.component';
+import { CybirdOverviewComponent } from '../sections/cybird-overview.component';
+import { ContainerServiceHeroComponent } from '../sections/container-service-hero.component';
+import { ContainerRegistryContentComponent } from '../sections/container-registry-content.component';
+
+import { ImportedInteractiveContentComponent } from '../sections/imported-interactive-content.component';
+import { ZoomConferenceingSourceComponent } from '../sections/zoom-conferenceing-source.component';
+import { ZOOM_CONFERENCEING_FAQS } from '../data/zoom-conferenceing-faq.data';
+import { WORDPRESS_VPS_FAQS } from '../data/wordpress-vps-faq.data';
+import { MANAGED_PKI_FAQS } from '../data/managed-pki-faq.data';
+import { PRIVATE_CA_FAQS } from '../data/private-ca-faq.data';
+import { IOT_PKI_FAQS } from '../data/iot-pki-faq.data';
+import { IOT_DEVICE_CERTIFICATES_FAQS } from '../data/iot-device-certificates-faq.data';
+import { CLOUD_CODE_SIGNING_FAQS } from '../data/cloud-code-signing-faq.data';
+import { CLM_SOLUTIONS_FAQS } from '../data/clm-solutions-faq.data';
+import { MATTER_DAC_FAQS } from '../data/matter-dac-faq.data';
+import { PKI_SOFTWARE_FAQS } from '../data/pki-software-faq.data';
+import { WINDOWS_365_FAQS } from '../data/windows-365-faq.data';
+import { MANAGED_KUBERNETES_FAQS } from '../data/managed-kubernetes-faq.data';
+
+
+import { QuantityInputDirective } from '../core/quantity-input.directive';
+
+import { BoxMigrationContentComponent } from '../sections/box-migration-content.component';
+import { BOX_MIGRATION_FAQS } from '../data/box-migration-faq.data';
+import { DropboxMigrationContentComponent } from '../sections/dropbox-migration-content.component';
+import { DROPBOX_MIGRATION_FAQS } from '../data/dropbox-migration-faq.data';
+import { ManagedMicrosoftSqlContentComponent } from '../sections/managed-microsoft-sql-content.component';
+import { MANAGED_SQL_FAQS } from '../data/managed-microsoft-sql-faq.data';
+
+import { FRAMEWORK_DETAILS } from '../data/framework-details.data';
+import { NistCsfContentComponent } from '../sections/nist-csf-content.component';
+
+import { DomainHeroMediaComponent } from '../sections/domain-hero-media.component';
+import { HOSTING_BANNER_PAGES, HostingHeroMediaComponent } from '../sections/hosting-hero-media.component';
+import { ManagedMongodbHeroComponent } from '../sections/managed-mongodb-hero.component';
+import { AiReceptionistHeroComponent } from '../sections/ai-receptionist-hero.component';
+import { CpuOptimizedHeroComponent } from '../sections/cpu-optimized-hero.component';
+import { CpuOptimizedContentComponent } from '../sections/cpu-optimized-content.component';
+import { MemoryOptimizedContentComponent } from '../sections/memory-optimized-content.component';
+import { VsaasHeroComponent } from '../sections/vsaas-hero.component';
+// Source overview, demo and interactive pricing for the AI Receptionist page.
+import { AiReceptionistContentComponent } from '../sections/ai-receptionist-content.component';
+import { RECEPTIONIST_FAQS, RECEPTIONIST_WHY } from '../sections/ai-receptionist-content.data';
+import { buildContextualProductReviews } from '../data/product-reviews.data';
+import { FitBannerTitleDirective } from '../shared/fit-banner-title.directive';
+import { EmptySongBarComponent } from '../shared/empty-song-bar.component';
+
+
+import { ComodoPaContentComponent, ComodoPaHeroComponent, ComodoPaFaqComponent, ComodoPaRelatedComponent } from '../sections/comodo-pa.components';
+
+
+import { WorkspaceMigrationContentComponent } from '../sections/microsoft-365-to-google-workspace-migration-content.component';
+import { WORKSPACE_MIGRATION_FAQS } from '../data/microsoft-365-to-google-workspace-migration-faqs.data';
+
+import { SectigoSslContentComponent } from '../sections/sectigo-ssl-certificates-content.component';
+import { SECTIGO_FAQS } from '../data/sectigo-ssl-certificates-faqs.data';
+import { EmailBackupContentComponent } from '../sections/email-backup-content.component';
+import { EMAIL_BACKUP_FAQS } from '../data/email-backup-faqs.data';
+import { OdooHostingContentComponent } from '../sections/odoo-hosting-content.component';
+import { ODOO_HOSTING_FAQS } from '../data/odoo-hosting-faqs.data';
+import { ErpNextHostingContentComponent } from '../sections/erp-next-hosting-content.component';
+import { ERPNEXT_FAQS } from '../data/erp-next-hosting-faqs.data';
+import { DigicertSmimeContentComponent } from '../sections/digicert-smime-content.component';
+import { DigicertSmimeFaqComponent } from '../sections/digicert-smime-faq.component';
+import { DigicertSmimeRelatedComponent } from '../sections/digicert-smime-related.component';
+import { DigicertSmimeHeroComponent } from '../sections/digicert-smime-hero.component';
+import { ThawteSslHeroComponent } from '../sections/thawte-ssl-hero.component';
+import { ComodoEvCodeSigningHeroComponent } from '../sections/comodo-ev-code-signing-hero.component';
+import { CodeSigningHeroComponent } from '../sections/code-signing-hero.component';
+import { VdpoHeroComponent } from '../sections/vdpo-hero.component';
+import { VcisoHeroComponent } from '../sections/vciso-hero.component';
+import { GeotrustSslHeroComponent } from '../sections/geotrust-ssl-hero.component';
+import { VcisoContentComponent } from '../sections/vciso-content.component';
+import { VdpoContentComponent } from '../sections/vdpo-content.component';
+import { CodeSigningContentComponent } from '../sections/code-signing-content.component';
+import { ComodoEvCodeSigningContentComponent } from '../sections/comodo-ev-code-signing-content.component';
+import { ThawteSslContentComponent } from '../sections/thawte-ssl-content.component';
+import { NvidiaB300HeroComponent } from '../sections/nvidia-b300-hero.component';
+import { NvidiaB300OverviewComponent } from '../sections/nvidia-b300-overview.component';
+
+import { VeraRubinContentComponent } from '../sections/nvidia-vera-rubin-content.component';
+import { VERA_RUBIN_FAQS } from '../data/nvidia-vera-rubin-faqs.data';
+import { StorageContentComponent } from '../sections/storage-servers-content.component';
+import { STORAGE_FAQS } from '../data/storage-servers-faqs.data';
+import { GamingContentComponent } from '../sections/gaming-servers-content.component';
+import { RpcNodesSourceComponent } from '../sections/rpc-nodes-source.component';
+import { DocusignSourceComponent } from '../sections/docusign-source.component';
+import { GAMING_FAQS } from '../data/gaming-servers-faqs.data';
+import { VirtualizationContentComponent } from '../sections/virtualization-servers-content.component';
+import { VIRTUALIZATION_FAQS } from '../data/virtualization-servers-faqs.data';
+import { SmartQrContentComponent } from '../sections/smart-qr-and-nfc-automation-content.component';
+import { MailboxMigrationHeroComponent } from '../sections/mailbox-migration-hero.component';
+import { AnthropicManagedServicesHeroComponent } from '../sections/anthropic-managed-services-hero.component';
+import { AnthropicManagedServicesContentComponent } from '../sections/anthropic-managed-services-content.component';
+import { ANTHROPIC_MANAGED_SERVICES_FAQS } from '../data/anthropic-managed-services-faqs.data';
+import { MailboxMigrationContentComponent } from '../sections/mailbox-migration-content.component';
+import { MAILBOX_MIGRATION_FAQS } from '../data/mailbox-migration-faqs.data';
+import { PleskServersHeroComponent } from '../sections/plesk-servers-hero.component';
+import { CpanelServersHeroComponent } from '../sections/cpanel-servers-hero.component';
+import { CpanelServersOverviewComponent } from '../sections/cpanel-servers-overview.component';
+import { PleskServersOverviewComponent } from '../sections/plesk-servers-overview.component';
+import { SMART_QR_FAQS } from '../data/smart-qr-and-nfc-automation-faqs.data';
+import { AgentStudioContentComponent } from '../sections/agent-studio-content.component';
+import { AGENT_STUDIO_FAQS } from '../data/agent-studio-faqs.data';
+import { AiopsContentComponent } from '../sections/aiops-content.component';
+import { AIOPS_FAQS } from '../data/aiops-faqs.data';
+import { LeadCrmContentComponent } from '../sections/lead-generation-and-pipeline-crm-content.component';
+import { LEAD_CRM_FAQS } from '../data/lead-generation-and-pipeline-crm-faqs.data';
 
 
 import { HigherEducationHeroAction, HigherEducationHeroCopyComponent } from '../sections/higher-education-hero-copy.component';
@@ -19,15 +131,27 @@ import { GOOGLE_BUSINESS_FAQS } from '../data/google-business-faqs.data';
 
 
 import { DisasterRecoverySimulatorComponent } from '../sections/disaster-recovery-simulator.component';
+// Digital menu sections adapted from the supplied HTML reference.
+import { DigitalMenuHeroComponent } from '../sections/digital-menu-hero.component';
+import { DigitalMenuOverviewComponent } from '../sections/digital-menu-overview.component';
+import { DigitalMenuTailComponent } from '../sections/digital-menu-tail.component';
 import { AiReviewMagicqrHeroComponent } from '../sections/ai-review-magicqr-hero.component';
 import { AiReviewMagicqrOverviewComponent } from '../sections/ai-review-magicqr-overview.component';
 import { AiReviewMagicqrTailComponent } from '../sections/ai-review-magicqr-tail.component';
+import { BillingSoftwareHeroComponent } from '../sections/billing-software-hero.component';
+import { BillingSoftwareOverviewComponent } from '../sections/billing-software-overview.component';
+import { BillingSoftwareTailComponent } from '../sections/billing-software-tail.component';
 import { EnterpriseDrOverviewComponent } from '../sections/enterprise-dr-overview.component';
 import { EnterpriseDrDetailsComponent } from '../sections/enterprise-dr-details.component';
 
 
 import { AiLabContentComponent } from '../sections/ai-lab-content.component';
 import { AI_LAB_FAQS } from '../data/ai-lab-faqs.data';
+import { ACRONIS_AI_FAQS } from '../data/acronis-ai-faqs.data';
+import { DRUVA_FAQS } from '../data/druva-faqs.data';
+import { DRUVA_WHY } from '../data/druva-why.data';
+import { DIRECT_BACKUP_FAQS } from '../data/acronis-direct-backup-faqs.data';
+import { DIRECT_BACKUP_WHY } from '../data/acronis-direct-backup-why.data';
 import { AcronisMdrContentComponent } from '../sections/acronis-mdr-content.component';
 import { AcronisMdrHeroComponent } from '../sections/acronis-mdr-hero.component';
 import { MicrosoftDefenderHeroComponent } from '../sections/microsoft-defender-hero.component';
@@ -73,23 +197,37 @@ import { AGENTIC_AI_SAMPLE_FAQS, AGENTIC_AI_SAMPLE_WHY } from '../data/agentic-a
 import { EnterpriseDmarcContentComponent } from '../sections/enterprise-dmarc-content.component';
 import { BusinessEmailContentComponent } from '../sections/business-email-content.component';
 import { InsightsSectionComponent } from '../sections/insights-section.component';
+import { SmbSectionNavComponent } from '../sections/smb-section-nav.component';
 import { IdentityResilienceContentComponent } from '../sections/identity-resilience-content.component';
 import { EdiscoveryComplianceContentComponent } from '../sections/ediscovery-compliance-content.component';
 import { PerformanceCloudContentComponent } from '../sections/performance-cloud-content.component';
+import { GpuServersContentComponent } from '../sections/gpu-servers-content.component';
+import { GpuLeadHeroComponent } from '../sections/gpu-lead-hero.component';
 import { DomainWhoisContentComponent } from '../sections/domain-whois-content.component';
 import { DomainWhoisFaqComponent } from '../sections/domain-whois-faq.component';
-import { ManagedOracleContentComponent } from '../sections/managed-oracle-content.component';
+import { OpenAiManagedSourceComponent } from '../sections/openai-managed-source.component';
+import { OPENAI_MANAGED_SERVICES_FAQS } from '../data/openai-managed-services-faq.data';
+import { VortexSocSourceComponent } from '../sections/vortex-soc-source.component';
+import { VortexSegSourceComponent } from '../sections/vortex-seg-source.component';
+import { DfirSourceComponent } from '../sections/dfir-source.component';
+import { ManagedOracleSourceComponent } from '../sections/managed-oracle-source.component';
+import { ManagedRedisContentComponent } from '../sections/managed-redis-content.component';
+import { ManagedRedisHeroComponent } from '../sections/managed-redis-hero.component';
+import { ManagedMongoDbContentComponent } from '../sections/managed-mongodb-content.component';
 import { ManagedOracleFaqComponent } from '../sections/managed-oracle-faq.component';
 import { AiVoicebotContentComponent } from '../sections/ai-voicebot-content.component';
 import { AiVoicebotFaqComponent } from '../sections/ai-voicebot-faq.component';
 import { PERFORMANCE_CLOUD_FAQS } from '../data/performance-cloud-faqs.data';
+import { ACRONIS_EDR_FAQS, SCRUTINY_EDR_FAQS } from '../data/edr-seo.data';
+import { CLOUD_DRIVE_SEO_FAQS } from '../data/cloud-drive-seo.data';
 import { TSPLUS_REMOTE_ACCESS_EXPERIENCES } from '../data/tsplus-demo.data';
 import { EmailSignatureContentComponent } from '../sections/email-signature-content.component';
 import { EmailSignatureHeroComponent } from '../sections/email-signature-hero.component';
-import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, computed, effect, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { NotFoundPage } from './not-found.page';
 import { map } from 'rxjs';
 
 import { CartService } from '../core/cart.service';
@@ -107,6 +245,7 @@ import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { CloudCctvContentComponent } from '../sections/cloud-cctv-content.component';
 import { AcronisTrueImageContentComponent } from '../sections/acronis-true-image-content.component';
 import { SiteLockContentComponent } from '../sections/sitelock-content.component';
+import { SiteLockHeroComponent } from '../sections/sitelock-hero.component';
 import { VmcContentComponent } from '../sections/vmc-content.component';
 import { CmcContentComponent } from '../sections/cmc-content.component';
 import { TsplusServerMonitoringContentComponent } from '../sections/tsplus-server-monitoring-content.component';
@@ -119,11 +258,14 @@ import { TsplusRemoteAccessHeroComponent } from '../sections/tsplus-remote-acces
 import { ResellerProgramContentComponent } from '../sections/reseller-program-content.component';
 import { SovereignPerformanceComponent } from '../sections/sovereign-performance.component';
 import { ScrutinyEdrContentComponent } from '../sections/scrutiny-edr-content.component';
+import { EdrSeoContentComponent } from '../sections/edr-seo-content.component';
 import { ScrutinyDlpContentComponent } from './scrutiny-dlp-content.component';
 import { VortexSocContentComponent } from './vortex-soc-content.component';
 import { VortexSegContentComponent } from './vortex-seg-content.component';
 import { InfrastructureContentComponent } from '../sections/infrastructure-content.component';
+import { InfrastructureHeroComponent } from '../sections/infrastructure-hero.component';
 import { ColocationContentComponent } from '../sections/colocation-content.component';
+import { DataCenterInfrastructureComponent } from '../sections/data-center-infrastructure.component';
 import { MarketplaceContentComponent } from '../sections/marketplace-content.component';
 import { WhatsAppSmbContentComponent } from '../sections/whatsapp-smb-content.component';
 
@@ -198,6 +340,10 @@ const EDISCOVERY_COMPLIANCE_FAQS: Faq[] = [
 ];
 
 import { ManagedAwsContentComponent } from '../sections/managed-aws-content.component';
+import { ManagedAwsHeroComponent } from '../sections/managed-aws-hero.component';
+import { ManagedAwsSourceComponent } from '../sections/managed-aws-source.component';
+import { ManagedAzureSourceComponent } from '../sections/managed-azure-source.component';
+import { ManagedGcpSourceComponent } from '../sections/managed-gcp-source.component';
 
 import { ManagedMicrosoft365ContentComponent } from '../sections/managed-microsoft-365-content.component';
 import { Microsoft365BackupContentComponent } from '../sections/microsoft-365-backup-content.component';
@@ -217,10 +363,29 @@ import { CopilotStudioContentComponent } from '../sections/copilot-studio-conten
 import { CloudObjectStorageContentComponent } from '../sections/cloud-object-storage-content.component';
 import { ZohoWorkspaceContentComponent } from '../sections/zoho-workspace-content.component';
 import { EntraIdContentComponent } from '../sections/entra-id-content.component';
+import { EntraWorkloadIdComponent } from '../sections/entra-workload-id.component';
+import { WORKLOAD_FAQS } from '../sections/entra-workload-id.data';
+import { EntraInternetAccessComponent } from '../sections/entra-internet-access.component';
+import { INTERNET_FAQS } from '../sections/entra-internet-access.data';
+import { EntraPrivateAccessComponent } from '../sections/entra-private-access.component';
+import { PRIVATE_FAQS } from '../sections/entra-private-access.data';
+import { EntraIdGovernanceComponent } from '../sections/entra-id-governance.component';
+import { GOVERNANCE_FAQS } from '../sections/entra-id-governance.data';
+import { EntraIdP1Component } from '../sections/entra-id-p1.component';
+import { P1_FAQS } from '../sections/entra-id-p1.data';
+import { EntraIdP2Component } from '../sections/entra-id-p2.component';
+import { P2_FAQS } from '../sections/entra-id-p2.data';
+import { EntraSuiteComponent } from '../sections/entra-suite.component';
+import { SUITE_FAQS } from '../sections/entra-suite.data';
 import { EntraIdHeroComponent } from '../sections/entra-id-hero.component';
 import { EntraIdBackupContentComponent } from '../sections/entra-id-backup-content.component';
 import { EntraIdBackupHeroComponent } from '../sections/entra-id-backup-hero.component';
 import { DigicertContentComponent } from '../sections/digicert-content.component';
+import { DigicertHeroComponent } from '../sections/digicert-hero.component';
+import { DigicertSmimeOvHeroComponent } from '../sections/digicert-smime-ov-hero.component';
+import { DigicertSmimeOvContentComponent } from '../sections/digicert-smime-ov-content.component';
+import { ClaudeBackupHeroComponent } from '../sections/claude-backup-hero.component';
+import { ClaudeBackupContentComponent } from '../sections/claude-backup-content.component';
 import { AutonomousThreatManagementContentComponent } from '../sections/autonomous-threat-management-content.component';
 import { AutonomousThreatManagementHeroComponent } from '../sections/autonomous-threat-management-hero.component';
 import { AutonomousThreatSolutionDetailComponent } from '../sections/autonomous-threat-solution-detail.component';
@@ -228,6 +393,7 @@ import { ATM_SOLUTION_DETAILS } from '../data/atm-solution-detail.data';
 import { OurPlatformReferenceComponent } from '../sections/our-platform-reference.component';
 import { WatchtowerReferenceComponent } from '../sections/watchtower-reference.component';
 import { BareMetalContentComponent } from '../sections/bare-metal-content.component';
+import { GlobalInfrastructureGlobeComponent } from '../sections/global-infrastructure-globe.component';
 import { GenaiProtectionContentComponent } from '../sections/genai-protection-content.component';
 import { CloudMigrationAdvantageComponent } from '../sections/cloud-migration-advantage.component';
 import { AcronisBackupAdvancedContentComponent } from '../sections/acronis-backup-advanced-content.component';
@@ -316,7 +482,39 @@ interface ProductTourSlide {
 @Component({
   selector: 'xh-product-page',
   standalone: true,
-  imports: [
+
+  imports: [NotFoundPage, CustomerTestimonialsComponent, QuantityInputDirective, DataCenterInfrastructureComponent,
+
+    ZoomConferenceingSourceComponent,
+    ManagedMongodbHeroComponent,
+    AiReceptionistHeroComponent,
+    CpuOptimizedHeroComponent,
+    ContainerRegistryHeroComponent,
+    ContainerServiceHeroComponent,
+    ContainerRegistryContentComponent,
+    CpuOptimizedContentComponent,
+    MemoryOptimizedContentComponent,
+    VsaasHeroComponent,
+    AiReceptionistContentComponent,
+    FitBannerTitleDirective,
+    ComodoPaContentComponent, ComodoPaHeroComponent, ComodoPaFaqComponent, ComodoPaRelatedComponent,
+    DigicertSmimeContentComponent,
+    DigicertSmimeFaqComponent,
+    DigicertSmimeRelatedComponent,
+    DigicertSmimeHeroComponent,
+    ThawteSslHeroComponent,
+    ComodoEvCodeSigningHeroComponent,
+    CodeSigningHeroComponent,
+    VdpoHeroComponent,
+    VcisoHeroComponent,
+    GeotrustSslHeroComponent,
+    VcisoContentComponent,
+    VdpoContentComponent,
+    CodeSigningContentComponent,
+    ComodoEvCodeSigningContentComponent,
+    ThawteSslContentComponent,
+    NvidiaB300HeroComponent,
+    NvidiaB300OverviewComponent,
 
     HigherEducationHeroCopyComponent,
     HigherEducationContentComponent,
@@ -324,10 +522,17 @@ interface ProductTourSlide {
 
 
     DisasterRecoverySimulatorComponent,
+    DigitalMenuHeroComponent,
+    DigitalMenuOverviewComponent,
+    DigitalMenuTailComponent,
     AiReviewMagicqrHeroComponent,
     AiReviewMagicqrOverviewComponent,
     AiReviewMagicqrTailComponent,
+    BillingSoftwareHeroComponent,
+    BillingSoftwareOverviewComponent,
+    BillingSoftwareTailComponent,
     EnterpriseDrOverviewComponent,
+    CybirdOverviewComponent,
     EnterpriseDrDetailsComponent,
 
     LinuxServersContentComponent,
@@ -335,18 +540,55 @@ interface ProductTourSlide {
     EnterpriseDmarcContentComponent,
     BusinessEmailContentComponent,
     InsightsSectionComponent,
+    SmbSectionNavComponent,
     IdentityResilienceContentComponent,
     EdiscoveryComplianceContentComponent,
     PerformanceCloudContentComponent,
+    GpuServersContentComponent,
+    GpuLeadHeroComponent,
     DomainWhoisContentComponent,
     DomainWhoisFaqComponent,
-    ManagedOracleContentComponent,
+    ManagedOracleSourceComponent,
+    DfirSourceComponent,
+    VortexSegSourceComponent,
+    VortexSocSourceComponent,
+    OpenAiManagedSourceComponent,
+    ManagedMongoDbContentComponent,
+    ManagedMicrosoftSqlContentComponent,
+    DropboxMigrationContentComponent,
+    ImportedInteractiveContentComponent,
+    BoxMigrationContentComponent,
+    ManagedRedisContentComponent,
+    ManagedRedisHeroComponent,
     ManagedOracleFaqComponent,
     AiLabContentComponent,
     GoogleBusinessContentComponent,
     HrmAttendanceContentComponent,
     InstagramAutomationContentComponent,
     InstantWebsiteContentComponent,
+    LeadCrmContentComponent,
+    VeraRubinContentComponent,
+    WorkspaceMigrationContentComponent,
+    DomainHeroMediaComponent,
+    HostingHeroMediaComponent,
+    EmptySongBarComponent,
+    SectigoSslContentComponent,
+    EmailBackupContentComponent,
+    OdooHostingContentComponent,
+    ErpNextHostingContentComponent,
+    NistCsfContentComponent,
+    StorageContentComponent,
+    GamingContentComponent,
+    RpcNodesSourceComponent,
+    DocusignSourceComponent,
+    VirtualizationContentComponent,
+    AgentStudioContentComponent,
+    SmartQrContentComponent,
+    MailboxMigrationHeroComponent,
+    AnthropicManagedServicesHeroComponent,
+    AnthropicManagedServicesContentComponent,
+    MailboxMigrationContentComponent,
+    AiopsContentComponent,
     AiVoicebotContentComponent,
     AiVoicebotFaqComponent,
     RouterLink,
@@ -355,6 +597,7 @@ interface ProductTourSlide {
     CloudCctvContentComponent,
     AcronisTrueImageContentComponent,
     SiteLockContentComponent,
+    SiteLockHeroComponent,
     VmcContentComponent,
     CmcContentComponent,
     TsplusServerMonitoringContentComponent,
@@ -367,15 +610,21 @@ interface ProductTourSlide {
     ResellerProgramContentComponent,
     SovereignPerformanceComponent,
     ScrutinyEdrContentComponent,
+    EdrSeoContentComponent,
     ScrutinyDlpContentComponent,
     VortexSocContentComponent,
     VortexSegContentComponent,
     InfrastructureContentComponent,
+    InfrastructureHeroComponent,
     ColocationContentComponent,
     MarketplaceContentComponent,
     WhatsAppSmbContentComponent,
 
     ManagedAwsContentComponent,
+    ManagedAwsHeroComponent,
+    ManagedAwsSourceComponent,
+    ManagedAzureSourceComponent,
+    ManagedGcpSourceComponent,
 
     ManagedMicrosoft365ContentComponent,
     Microsoft365BackupContentComponent,
@@ -430,10 +679,22 @@ interface ProductTourSlide {
     RtxA6000HeroComponent,
     ZohoWorkspaceContentComponent,
     EntraIdContentComponent,
+    EntraWorkloadIdComponent,
+    EntraInternetAccessComponent,
+    EntraPrivateAccessComponent,
+    EntraIdGovernanceComponent,
+    EntraIdP1Component,
+    EntraIdP2Component,
+    EntraSuiteComponent,
     EntraIdHeroComponent,
     EntraIdBackupContentComponent,
     EntraIdBackupHeroComponent,
     DigicertContentComponent,
+    DigicertHeroComponent,
+    DigicertSmimeOvHeroComponent,
+    DigicertSmimeOvContentComponent,
+    ClaudeBackupHeroComponent,
+    ClaudeBackupContentComponent,
 
     AutonomousThreatManagementContentComponent,
     AutonomousThreatManagementHeroComponent,
@@ -441,6 +702,7 @@ interface ProductTourSlide {
     OurPlatformReferenceComponent,
     WatchtowerReferenceComponent,
     BareMetalContentComponent,
+    GlobalInfrastructureGlobeComponent,
     GenaiProtectionContentComponent,
     CloudMigrationAdvantageComponent,
     AcronisBackupAdvancedContentComponent,
@@ -463,9 +725,119 @@ interface ProductTourSlide {
 
     EmailSignatureContentComponent,
     EmailSignatureHeroComponent,
+    PleskServersHeroComponent,
+    CpanelServersHeroComponent,
+    CpanelServersOverviewComponent,
+    PleskServersOverviewComponent,
+    AntiRansomwareWarrantyComponent,
   ],
   templateUrl: './product.page.html',
   styles: [`
+    #ppage.ppage > .pp-hero:has(.container-registry-hero-art) {
+      display: grid; grid-template-columns: minmax(0, 620px) minmax(0, 480px);
+      justify-content: center; align-items: center; gap: 40px; padding: 40px 24px;
+      height: auto; min-height: 620px; max-height: none;
+    }
+    #ppage.ppage > .pp-hero:has(.container-registry-hero-art) > .wrap {
+      grid-column: 1; grid-row: 1; width: 100%; margin: 0; padding: 0;
+    }
+    #ppage.ppage > .pp-hero:has(.container-registry-hero-art) > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) {
+      max-width: 100%;
+    }
+    #ppage.ppage > .pp-hero:has(.container-registry-hero-art) > .pph-scene.container-registry-hero-art {
+      position: relative; inset: auto; grid-column: 2; grid-row: 1;
+      width: 100%; max-width: 480px; height: auto; max-height: none;
+      margin: 0; padding: 0; opacity: 1; mask-image: none; transform: none; z-index: 4;
+    }
+    @media(max-width:1000px) {
+      #ppage.ppage > .pp-hero:has(.container-registry-hero-art) {
+        display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; min-height: 0;
+      }
+      #ppage.ppage > .pp-hero:has(.container-registry-hero-art) > .pph-scene.container-registry-hero-art {
+        grid-column: 1; grid-row: 2; justify-self: center;
+      }
+    }
+    #ppage .database-reference-hero-visual { right: 2%; width: 38%; padding: 20px; opacity: 1; mask-image: none; }
+    #ppage.managed-database-reference-page .pp-hero #ppTitle,
+    #ppage.managed-database-reference-page .pp-hero .database-reference-hero-summary { width: 100%; max-width: 100%; white-space: normal; text-wrap: wrap; overflow-wrap: normal; text-align: left; }
+    #ppage.managed-database-reference-page .pp-hero > .wrap { container-type: inline-size; }
+    #ppage.managed-database-reference-page .pp-hero #ppTitle { display: flex; flex-wrap: nowrap; white-space: nowrap; font-size: clamp(12px, 5.4cqi, 36px) !important; }
+    #ppage.managed-database-reference-page .pp-hero #ppTitle .pp-brand-xcell { width: auto; }
+    #ppage.managed-database-reference-page .pp-hero #ppTitle .pp-title-name { display: inline; flex-basis: auto; min-width: 0; white-space: nowrap; }
+    #ppage.managed-database-reference-page .pp-hero .pp-typewriter { width: 100%; max-width: 100%; white-space: nowrap; overflow-wrap: normal; }
+    #ppage.managed-database-reference-page .pp-typewriter i { flex-shrink: 0; }
+    @media (max-width: 600px) {
+      #ppage.managed-database-reference-page .pp-hero .pp-typewriter { font-size: clamp(11px, 3.4vw, 18px); }
+    }
+    @media (min-width: 901px) {
+      #ppage.managed-database-reference-page > .pp-hero { display: grid; grid-template-columns: minmax(0, 620px) minmax(0, 450px); justify-content: center; gap: 48px; padding-inline: 24px; }
+      #ppage.managed-database-reference-page > .pp-hero > .wrap { grid-column: 1; grid-row: 1; min-width: 0; width: 100%; max-width: none; margin: 0; padding: 0; }
+      #ppage.managed-database-reference-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-hero-grid) { width: 100%; max-width: 100%; }
+      #ppage.ppage.managed-database-reference-page > .pp-hero > .pph-scene.database-reference-hero-visual { position: relative; grid-column: 2; grid-row: 1; inset: auto; width: 100%; max-width: none; min-width: 0; padding: 0; }
+    }
+    @media (max-width: 900px) {
+      #ppage.managed-database-reference-page .pp-hero #ppTitle,
+      #ppage.managed-database-reference-page .pp-hero .database-reference-hero-summary { width: 100%; max-width: 100%; }
+      #ppage .database-reference-hero-visual { position: relative; inset: auto; width: 100%; max-width: 600px; margin: 24px auto; }
+      #ppage .pp-hero:has(.database-reference-hero-visual) { display: flex; flex-direction: column; }
+      #ppage .pp-hero:has(.database-reference-hero-visual) > .wrap { order: -1; width: 100%; }
+    }
+
+    .colocation-body { container-type: inline-size; }
+    .colocation-body > .wrap > .pp-sec,
+    .colocation-body #ppBlog { margin-top: 48px; }
+    @media (max-width: 600px) {
+      .colocation-body > .wrap > .pp-sec,
+      .colocation-body #ppBlog { margin-top: 32px; }
+    }
+
+    #ppage .pp-hero.sitelock-hero {
+      width: 100%; margin: 0;
+      padding: 36px 0; border-radius: 0;
+      background: radial-gradient(ellipse at 85% 20%, #103d7b, transparent 65%), #041e42;
+    }
+    #ppage .pp-hero.sitelock-hero::before { display: none; }
+    #ppage .sitelock-hero > .wrap.sitelock-hero-layout {
+      display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: center; gap: 36px; width: min(1200px, calc(100% - 48px)); max-width: none; padding: 0;
+    }
+    #ppage .sitelock-hero .sitelock-copy { width: 100%; min-width: 0; text-align: left; }
+    #ppage .sitelock-hero .sitelock-copy h1 {
+      display: block; white-space: normal; font-size: clamp(28px, 2.7vw, 38px); line-height: 1.2;
+    }
+    #ppage .sitelock-hero .pp-title-brand { display: inline-flex; }
+    #ppage .sitelock-hero .pp-title-divider { display: none; }
+    #ppage .sitelock-hero .pp-title-name { display: block; margin: 8px 0 0; }
+    #ppage .sitelock-hero .sitelock-eyebrow { font-size: 10px; line-height: 1.5; }
+    #ppage .sitelock-hero .sitelock-checks { gap: 10px 12px; }
+    #ppage .sitelock-hero .sitelock-ctas { width: 100%; flex-wrap: wrap; gap: 10px; overflow: visible; }
+    #ppage .sitelock-hero .sitelock-ctas .btn { min-height: 42px; padding: 10px 14px; font-size: 12px; }
+    #ppage .sitelock-live-visual { display: block; width: 100%; min-width: 0; }
+    @media (max-width: 1000px) {
+      #ppage .sitelock-hero > .wrap.sitelock-hero-layout { grid-template-columns: minmax(0, 1fr); gap: 48px; }
+      #ppage .sitelock-live-visual { max-width: 560px; margin: 0 auto; }
+    }
+    @media (max-width: 720px) {
+      #ppage .pp-hero.sitelock-hero { padding: 28px 0; }
+      #ppage .sitelock-hero > .wrap.sitelock-hero-layout { width: calc(100% - 32px); }
+      #ppage .sitelock-hero .sitelock-checks { grid-template-columns: minmax(0, 1fr); }
+      #ppage .sitelock-hero .pp-title-name { margin-left: 0; }
+    }
+
+    #ppage .pph-scene.plesk-hero-art {
+      right: max(24px, calc((100% - 1192px) / 2)); width: min(40%, 480px);
+      top: 50%; bottom: auto; transform: translateY(-50%); opacity: 1;
+      mask-image: none; overflow: visible; pointer-events: auto; z-index: 4;
+    }
+    .plesk-hero-art xh-plesk-servers-hero { display: block; width: 100%; }
+    @media(max-width:900px) {
+      #ppage .pph-scene.plesk-hero-art {
+        position: relative; inset: auto; transform: none; width: calc(100% - 32px);
+        max-width: 550px; margin: 24px auto; order: 1;
+      }
+      #ppage.plesk-servers-page .pp-hero { display: flex; flex-direction: column; }
+      #ppage.plesk-servers-page .pp-hero > .wrap { width: 100%; order: 0; }
+    }
 
     #ppage .pp-hero > .wrap.higher-education-hero-layout {
       display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
@@ -523,6 +895,12 @@ interface ProductTourSlide {
       background: radial-gradient(ellipse at 90% 40%, #0c494e 0%, #08244a 45%, #041e42 80%);
     }
     #ppage.enterprise-dr-page .pp-hero > .wrap { order: 1; width: 100%; max-width: none; min-width: 0; padding: 0; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered { display: inline-flex; align-items: center; gap: 10px; padding: 7px 14px; border-radius: 999px; background: rgba(255,255,255,.95); margin-bottom: 14px; text-decoration: none; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered span { font: 700 10px/1.5 'IBM Plex Mono', monospace; letter-spacing: .12em; color: #51607a; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered b { font: 800 17px/1.5 'Sora', sans-serif; color: #0b1d3d; letter-spacing: -.01em; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered sup { font-size: .6em; line-height: 0; vertical-align: super; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered em { font: 600 13px/1.5 'Poppins', sans-serif; font-style: normal; color: #0b1d3d; }
+    #ppage.enterprise-dr-page .enterprise-dr-powered:focus-visible { outline: 3px solid #9cc8ff; outline-offset: 4px; }
     #ppage.enterprise-dr-page .enterprise-dr-simulator { position: relative; z-index: 4; order: 2; width: 100%; }
     #ppage.enterprise-dr-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) { width: 100% !important; max-width: 100% !important; }
     #ppage.enterprise-dr-page .pp-hero h1 { display: block; text-align: left; white-space: normal; font-size: clamp(28px, 2.6vw, 42px); line-height: 1.2; }
@@ -538,6 +916,23 @@ interface ProductTourSlide {
       #ppage.enterprise-dr-page .enterprise-dr-simulator { max-width: 540px; justify-self: center; }
     }
     @media(max-width:560px) { #ppage.enterprise-dr-page > .pp-hero { padding: 32px 16px; gap: 24px; } }
+    #ppage.digital-menu-page > .pp-hero { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,550px); align-items: center; gap: 48px; padding: 58px max(24px,calc((100% - 1192px)/2)); }
+    #ppage.digital-menu-page .pp-hero > .wrap { order: 1; width: 100%; max-width: none; min-width: 0; padding: 0; }
+    #ppage.digital-menu-page .digital-menu-dashboard { position: relative; z-index: 4; order: 2; width: 100%; }
+    #ppage.digital-menu-page .pp-hero > .wrap > :is(h1,.pp-tagline,.pp-tagline-support,.pp-typewriter,.pp-hero-grid) { width: 100% !important; max-width: 100% !important; }
+    #ppage.digital-menu-page .pp-hero h1 { display: block; text-align: left; white-space: normal; font-size: clamp(28px,2.6vw,42px); line-height: 1.2; }
+    #ppage.digital-menu-page .pp-hero h1 .pp-title-name { display: inline; margin-left: 0; }
+    #ppage.digital-menu-page .pp-typewriter { white-space: normal; min-height: 2.8em; }
+    #ppage.digital-menu-page .product-hero-ctas { width: 100%; max-width: 100%; flex-wrap: wrap; }
+    #ppage.digital-menu-page .product-hero-ctas .btn { flex: 0 1 auto; }
+    #ppage.digital-menu-page .pp-ask-ai { width: 100%; }
+    #ppage.digital-menu-page .pp-ask-ai-copy { flex: 1 1 320px; }
+    #ppage.digital-menu-page .pp-ask-ai-actions { flex: 0 0 auto; }
+    @media(max-width:1100px) {
+      #ppage.digital-menu-page > .pp-hero { grid-template-columns: minmax(0,1fr); gap: 32px; padding: 40px 24px; }
+      #ppage.digital-menu-page .digital-menu-dashboard { max-width: 550px; justify-self: center; }
+    }
+    @media(max-width:560px) { #ppage.digital-menu-page > .pp-hero { padding: 32px 16px; gap: 24px; } }
     #ppage.magicqr-page > .pp-hero {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(0, 550px);
@@ -563,6 +958,31 @@ interface ProductTourSlide {
     }
     @media(max-width:560px) { #ppage.magicqr-page > .pp-hero { padding: 32px 16px; gap: 24px; } }
 
+    #ppage.billing-software-page > .pp-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 550px);
+      align-items: center;
+      gap: 48px;
+      padding: 58px max(24px, calc((100% - 1192px) / 2));
+      background: radial-gradient(ellipse at 88% 34%, #30216e 0%, #102451 46%, #041e42 82%);
+    }
+    #ppage.billing-software-page .pp-hero > .wrap { order: 1; width: 100%; max-width: none; min-width: 0; padding: 0; }
+    #ppage.billing-software-page .billing-software-dashboard { position: relative; z-index: 4; order: 2; width: 100%; }
+    #ppage.billing-software-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) { width: 100% !important; max-width: 100% !important; }
+    #ppage.billing-software-page .pp-hero h1 { display: block; width: 100%; text-align: left; white-space: normal; font-size: clamp(28px, 2.6vw, 42px); line-height: 1.2; }
+    #ppage.billing-software-page .pp-hero h1 .pp-title-name { display: inline; margin-left: 0; }
+    #ppage.billing-software-page .pp-typewriter { width: 100%; min-height: 2.8em; white-space: normal; }
+    #ppage.billing-software-page .product-hero-ctas { width: 100%; max-width: 100%; flex-wrap: wrap; }
+    #ppage.billing-software-page .product-hero-ctas .btn { flex: 0 1 auto; }
+    #ppage.billing-software-page .pp-ask-ai { width: 100%; }
+    #ppage.billing-software-page .pp-ask-ai-copy { flex: 1 1 310px; }
+    #ppage.billing-software-page .pp-ask-ai-actions { flex: 0 0 auto; }
+    @media(max-width:1100px) {
+      #ppage.billing-software-page > .pp-hero { grid-template-columns: minmax(0, 1fr); gap: 32px; padding: 40px 24px; }
+      #ppage.billing-software-page .billing-software-dashboard { max-width: 550px; justify-self: center; }
+    }
+    @media(max-width:560px) { #ppage.billing-software-page > .pp-hero { padding: 32px 16px; gap: 24px; } }
+
     #ppage.managed-oracle-page .pp-hero {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(0, 480px);
@@ -580,9 +1000,10 @@ interface ProductTourSlide {
     #ppage.managed-oracle-page .pp-hero > .wrap > :is(h1, .pp-crumb, .pp-tagline, .pp-typewriter, .pp-hero-grid) {
       width: 100%; max-width: 100%; min-width: 0; white-space: normal;
     }
-    #ppage.managed-oracle-page .pp-hero > .wrap > h1 {
-      display: flex; flex-wrap: wrap; align-items: baseline;
-      white-space: normal; overflow-wrap: normal; gap: 4px 0;
+    #ppage.managed-oracle-page .pp-hero > .wrap > h1#ppTitle {
+      display: flex !important; flex-wrap: nowrap !important; align-items: baseline;
+      white-space: nowrap !important; overflow-wrap: normal; gap: .12em;
+      font-size: clamp(15px, 1.85vw, 28px) !important;
     }
     #ppage.managed-oracle-page #ppTitle .pp-title-brand {
       flex: 0 0 auto; white-space: nowrap;
@@ -591,14 +1012,19 @@ interface ProductTourSlide {
       width: auto; white-space: nowrap;
     }
     #ppage.managed-oracle-page #ppTitle .pp-title-name {
-      flex-basis: 100%; margin-left: 0; white-space: normal; text-wrap: balance;
+      flex: 0 0 auto; margin-left: 0; white-space: nowrap; font-size: inherit;
     }
     #ppage.managed-oracle-page .pp-hero > .wrap > .oracle-hero-summary {
       display: block; white-space: normal; overflow-wrap: break-word;
       font-size: 17px; font-weight: 400; line-height: 1.6; margin-bottom: 20px;
     }
-    #ppage.managed-oracle-page .product-hero-ctas {
-      width: 100%; max-width: 100%; flex-wrap: wrap;
+    #ppage.managed-oracle-page .pp-hero .product-hero-ctas {
+      width: 100%; max-width: 100%; flex-wrap: nowrap !important;
+      gap: 8px; overflow-x: auto !important; padding-bottom: 8px;
+    }
+    #ppage.managed-oracle-page .pp-hero .product-hero-ctas .btn {
+      flex: 0 0 auto !important; white-space: nowrap !important;
+      font-size: 11px; padding: 10px 12px; min-height: 44px;
     }
     @media(max-width:1100px) {
       #ppage.managed-oracle-page .pp-hero { grid-template-columns: minmax(0, 1fr); }
@@ -680,6 +1106,74 @@ interface ProductTourSlide {
       #ppage.acronis-ot-page .pph-scene.has-illus.standalone-illus { position: relative; right: auto; width: min(100%, 600px); top: auto; bottom: auto; margin: 18px auto 0; opacity: 1; }
       #ppage.acronis-ot-page .pph-scene.has-illus.standalone-illus .pph-illus { height: auto; }
       #ppage.acronis-ot-page .pph-scene.has-illus.standalone-illus .pph-illus-img { width: 100%; max-width: 560px; max-height: none; }
+    }
+    #ppage .pph-scene.anthropic-managed-hero-art {
+      right: 2%; width: 44%; opacity: 1; pointer-events: auto;
+      mask-image: none; -webkit-mask-image: none; z-index: 5;
+    }
+    @media (min-width: 1001px) {
+      #ppage.anthropic-managed-page > .pp-hero {
+        display: grid; grid-template-columns: minmax(0, 640px) minmax(0, 600px);
+        gap: 24px; align-items: center; justify-content: center; padding: 40px 24px;
+      }
+      #ppage.anthropic-managed-page .pp-hero > .wrap {
+        grid-column: 1; grid-row: 1; width: 100%; max-width: none; padding-inline: 0;
+      }
+      #ppage.anthropic-managed-page .pp-hero > .wrap > * { max-width: 100% !important; }
+      #ppage.anthropic-managed-page .pp-hero #ppTitle {
+        flex-wrap: wrap; white-space: normal; font-size: clamp(28px, 2.8vw, 40px);
+      }
+      #ppage.anthropic-managed-page .pp-hero-grid { grid-template-columns: minmax(0, 1fr); }
+      #ppage.anthropic-managed-page .pp-hero-l { min-width: 0; }
+      #ppage.anthropic-managed-page .product-hero-ctas {
+        width: 100%; max-width: 100%; flex-wrap: wrap !important;
+      }
+      #ppage.anthropic-managed-page > .pp-hero > .pph-scene.anthropic-managed-hero-art {
+        position: relative; inset: auto !important; width: 100% !important;
+        max-width: none; max-height: none; grid-column: 2; grid-row: 1;
+      }
+    }
+    @media (max-width: 1000px) {
+      #ppage.anthropic-managed-page .pp-hero { display: flex; flex-direction: column; }
+      #ppage.anthropic-managed-page .pp-hero > .wrap { order: 1; width: 100%; }
+      #ppage .pph-scene.anthropic-managed-hero-art {
+        position: relative; inset: auto !important; width: 100% !important; max-width: 620px !important;
+        margin: 18px auto 0; order: 2; flex: none;
+      }
+    }
+    #ppage .pph-scene.mailbox-migration-hero-art {
+      right: 2%; width: 44%; opacity: 1; pointer-events: auto;
+      mask-image: none; -webkit-mask-image: none; z-index: 5;
+    }
+    @media (min-width: 1001px) {
+      #ppage.mailbox-migration-page > .pp-hero {
+        display: grid; grid-template-columns: minmax(0, 640px) minmax(0, 600px);
+        gap: 24px; align-items: center; justify-content: center; padding: 40px 24px;
+      }
+      #ppage.mailbox-migration-page .pp-hero > .wrap {
+        grid-column: 1; grid-row: 1; width: 100%; max-width: none; padding-inline: 0;
+      }
+      #ppage.mailbox-migration-page .pp-hero > .wrap > * { max-width: 100% !important; }
+      #ppage.mailbox-migration-page .pp-hero #ppTitle {
+        flex-wrap: wrap; white-space: normal; font-size: clamp(28px, 2.8vw, 40px);
+      }
+      #ppage.mailbox-migration-page .pp-hero-grid { grid-template-columns: minmax(0, 1fr); }
+      #ppage.mailbox-migration-page .pp-hero-l { min-width: 0; }
+      #ppage.mailbox-migration-page .product-hero-ctas {
+        width: 100%; max-width: 100%; flex-wrap: wrap !important;
+      }
+      #ppage.mailbox-migration-page > .pp-hero > .pph-scene.mailbox-migration-hero-art {
+        position: relative; inset: auto !important; width: 100% !important;
+        max-width: none; max-height: none; grid-column: 2; grid-row: 1;
+      }
+    }
+    @media (max-width: 1000px) {
+      #ppage.mailbox-migration-page .pp-hero { display: flex; flex-direction: column; }
+      #ppage.mailbox-migration-page .pp-hero > .wrap { order: 1; width: 100%; }
+      #ppage .pph-scene.mailbox-migration-hero-art {
+        position: relative; inset: auto !important; width: 100% !important; max-width: 620px !important;
+        margin: 18px auto 0; order: 2; flex: none;
+      }
     }
     #ppage .migration-capabilities { padding: 52px 0 58px; }
     #ppage .migration-capabilities-heading { max-width: 780px; margin: 0 auto 50px; text-align: center; }
@@ -932,12 +1426,27 @@ interface ProductTourSlide {
       align-items: center; justify-content: center; opacity: 1; overflow: visible;
       mask-image: none;
     }
+    #ppage .pph-scene.pph-workload-id { width: 44%; max-width: 540px; right: 2%; opacity: 1; mask-image: none; overflow: visible; }
+    #ppage.entra-detail-page .pp-hero h1 { max-width: 54%; flex-wrap: wrap; white-space: normal; font-size: clamp(28px, 2.5vw, 36px); }
+    #ppage.entra-detail-page .pp-title-name { flex-basis: 100%; margin: 8px 0 0; }
+    #ppage.entra-detail-page .pp-hero > .wrap > .pp-tagline, #ppage.entra-detail-page .pp-hero > .wrap > .pp-tagline-support { max-width: 52%; white-space: normal; }
+    #ppage.entra-detail-page p.pp-tagline-support { width: min(620px, 52vw) !important; max-width: 52% !important; white-space: normal !important; }
+    @media(max-width:900px) { #ppage.entra-detail-page p.pp-tagline-support { width: 100% !important; max-width: 100% !important; } }
+    @media(max-width:900px) { #ppage.entra-detail-page .pp-hero h1, #ppage.entra-detail-page .pp-hero > .wrap > .pp-tagline, #ppage.entra-detail-page .pp-hero > .wrap > .pp-tagline-support { max-width: 100%; } }
+    @media(max-width:900px) { #ppage .pph-scene.pph-workload-id { position: relative; width: 100%; max-width: 540px; right: auto; top: auto; bottom: auto; margin: 12px auto 0; } }
     #ppage .pph-scene.pph-entra-id-backup {
       top: 1%; right: 1%; bottom: auto; width: 48%; height: 96%; display: flex;
       align-items: center; justify-content: center; opacity: 1; overflow: visible;
       mask-image: none;
     }
     #ppage .pph-scene.pph-entra-id-backup xh-entra-id-backup-hero { width: 100%; }
+    #ppage .pph-scene.pph-managed-aws {
+      top: 0; right: 3%; bottom: auto; width: 42%; height: 100%; display: flex;
+      align-items: center; justify-content: center; opacity: 1; mask-image: none;
+    }
+    @media (max-width: 900px) {
+      #ppage .pph-scene.pph-managed-aws { position: relative; inset: auto; width: calc(100% - 40px); height: auto; max-width: 560px; margin: 24px auto; }
+    }
     #ppage .entra-backup-hero-summary { max-width: 54ch; }
     #ppage .pph-scene.pph-bare-metal {
       top: 1%; right: 1%; bottom: auto; width: 48%; height: 96%; display: flex;
@@ -1058,10 +1567,98 @@ interface ProductTourSlide {
     #ppage .atm-default-overview .pp-ov {
       width: 100%; max-width: 100%; margin-top: 10px; margin-bottom: 0;
     }
-    #ppage .pph-digicert-brand strong {
-      color: #0f5b9e; font: 700 22px/1 var(--disp); letter-spacing: -.03em;
+    #ppage.claude-backup-page .pp-hero { min-height: 620px; }
+    #ppage.claude-backup-page .pp-hero #ppTitle { display: block; text-align: left; white-space: normal; }
+    #ppage.claude-backup-page .pp-hero #ppTitle .pp-title-divider { margin-right: .18em; }
+    #ppage.claude-backup-page .pp-hero #ppTitle .pp-title-name { display: inline; margin-left: 0; }
+    #ppage.claude-backup-page .product-hero-ctas { width: 100%; max-width: 100%; flex-wrap: wrap; }
+    #ppage.claude-backup-page .claude-backup-hero-footer { max-width: 51%; margin-top: 18px; }
+    #ppage.claude-backup-page .claude-backup-song { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 0; color: #fff; }
+    #ppage.claude-backup-page .claude-backup-song-label { display: flex; align-items: center; gap: 8px; flex: 1 1 280px; font: 700 17px/1.4 'IBM Plex Sans', sans-serif; }
+    #ppage.claude-backup-page .claude-backup-song-bars { display: inline-flex; align-items: flex-end; gap: 2px; height: 16px; flex-shrink: 0; }
+    #ppage.claude-backup-page .claude-backup-song-bars i { display: block; width: 3px; height: 5px; background: #ff8c1a; border-radius: 2px; }
+    #ppage.claude-backup-page .claude-backup-song-bars i:nth-child(2) { height: 11px; }
+    #ppage.claude-backup-page .claude-backup-song-bars i:nth-child(3) { height: 16px; }
+    #ppage.claude-backup-page .claude-backup-song audio { display: block; width: 300px; max-width: 100%; height: 44px; flex: 1 1 260px; border-radius: 999px; }
+    #ppage.claude-backup-page .claude-backup-powered { display: flex; align-items: center; gap: 10px; margin-top: 16px; }
+    #ppage.claude-backup-page .claude-backup-powered span { color: #9fb8d8; font: 700 11.5px/1 'IBM Plex Mono', monospace; letter-spacing: .1em; }
+    #ppage.claude-backup-page .claude-backup-druva-logo { display: block; width: 92px; height: auto; padding: 4px 8px; border-radius: 6px; background: #fff; object-fit: contain; }
+    #ppage.ppage.claude-backup-page > .pp-hero > .pph-scene.pph-claude-backup {
+      top: 0; bottom: 0; right: max(24px, calc((100% - 1240px) / 2 + 24px));
+      width: min(44%, 550px); padding: 32px 0; max-height: none; z-index: 4; pointer-events: auto;
+      opacity: 1; overflow: visible; mask-image: none; -webkit-mask-image: none;
     }
-    #ppage .pph-digicert-brand sup { font-size: 9px; vertical-align: super; }
+    @media (min-width: 1301px) {
+      #ppage.claude-backup-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) { max-width: 51%; }
+      #ppage.claude-backup-page .pp-hero #ppTitle { max-width: 51%; }
+    }
+    @media (max-width: 1300px) {
+      #ppage.claude-backup-page .pp-hero { display: flex; flex-direction: column; padding-bottom: 32px; }
+      #ppage.claude-backup-page .pp-hero > .wrap { order: 1; width: 92%; }
+      #ppage.claude-backup-page .claude-backup-hero-footer { max-width: 100%; }
+      #ppage.claude-backup-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) { width: 100%; max-width: 100%; }
+      #ppage.ppage.claude-backup-page > .pp-hero > .pph-scene.pph-claude-backup {
+        position: relative; inset: auto; width: min(550px, 92%); margin: 24px auto 0; padding: 16px 0;
+        order: 2; transform: none;
+      }
+    }
+    #ppage.smime-ov-page .pp-hero { min-height: 640px; }
+    #ppage.smime-ov-page .pp-body { padding-top: 0; }
+    #ppage.smime-ov-page .pp-hero #ppTitle { display: block; text-align: left; white-space: normal; }
+    #ppage.smime-ov-page .pp-hero #ppTitle .pp-title-divider { margin-right: .18em; }
+    #ppage.smime-ov-page .pp-hero #ppTitle .pp-title-name { display: inline; margin-left: 0; }
+    #ppage.smime-ov-page .product-hero-ctas { width: 100%; max-width: 100%; flex-wrap: wrap; }
+    #ppage.ppage.smime-ov-page > .pp-hero > .pph-scene.pph-smime-ov {
+      top: 0; bottom: 0; right: max(24px, calc((100% - 1240px) / 2 + 24px));
+      width: min(44%, 560px); padding: 32px 0; max-height: none;
+      opacity: 1; overflow: visible; mask-image: none; -webkit-mask-image: none;
+    }
+    @media (min-width: 1301px) {
+      #ppage.smime-ov-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) {
+        max-width: 51%;
+      }
+      #ppage.smime-ov-page .pp-hero #ppTitle { max-width: 51%; }
+    }
+    @media (max-width: 1300px) {
+      #ppage.smime-ov-page .pp-hero { display: flex; flex-direction: column; padding-bottom: 32px; }
+      #ppage.smime-ov-page .pp-hero > .wrap { order: 1; width: 92%; }
+      #ppage.smime-ov-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) {
+        width: 100%; max-width: 100%;
+      }
+      #ppage.ppage.smime-ov-page > .pp-hero > .pph-scene.pph-smime-ov {
+        position: relative; inset: auto; width: min(560px, 92%); margin: 24px auto 0; padding: 16px 0;
+        order: 2; transform: none;
+      }
+    }
+    #ppage.digicert-page .pp-hero { min-height: 640px; }
+    #ppage.digicert-page .pp-body { padding-top: 0; }
+    #ppage.digicert-page .pp-hero #ppTitle { display: block; text-align: left; }
+    #ppage.digicert-page .pp-hero #ppTitle .pp-title-divider { margin-right: .18em; }
+    #ppage.digicert-page .pp-hero #ppTitle .pp-title-name { display: inline; margin-left: 0; }
+    #ppage.digicert-page .product-hero-ctas { width: 100%; max-width: 100%; flex-wrap: wrap; }
+    #ppage.ppage.digicert-page > .pp-hero > .pph-scene.pph-digicert {
+      top: 0; bottom: 0; right: max(24px, calc((100% - 1240px) / 2 + 24px));
+      width: min(44%, 560px); padding: 32px 0; max-height: none;
+      opacity: 1; overflow: visible; mask-image: none; -webkit-mask-image: none;
+    }
+    @media (min-width: 1301px) {
+      #ppage.digicert-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) {
+        max-width: 51%;
+      }
+      #ppage.digicert-page .pp-hero #ppTitle { max-width: 51%; white-space: normal; }
+    }
+    @media (max-width: 1300px) {
+      #ppage.digicert-page .pp-hero { display: flex; flex-direction: column; padding-bottom: 32px; }
+      #ppage.digicert-page .pp-hero > .wrap { order: 1; width: 92%; }
+      #ppage.digicert-page .pp-hero #ppTitle { max-width: 100%; }
+      #ppage.digicert-page .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) {
+        width: 100%; max-width: 100%;
+      }
+      #ppage.ppage.digicert-page > .pp-hero > .pph-scene.pph-digicert {
+        position: relative; inset: auto; width: min(560px, 92%); margin: 24px auto 0; padding: 16px 0;
+        order: 2; transform: none;
+      }
+    }
     @media (max-width: 900px) {
       #ppage .copilot-hero-copy { max-width: none; padding: 68px 0 410px; }
       #ppage .copilot-hero-art { top: auto; right: 8%; bottom: 35px; width: 84%; }
@@ -1207,7 +1804,7 @@ interface ProductTourSlide {
 
     /* Keep hero artwork inside the same 1240px container as the sections below. */
     @media (min-width: 901px) {
-      #ppage.ppage > .pp-hero > .pph-scene:not(.oracle-hero-visual) {
+      #ppage.ppage > .pp-hero > .pph-scene:not(.oracle-hero-visual):not(.openclaw-hero-art) {
         right: max(24px, calc((100% - 1240px) / 2 + 24px));
         width: min(calc((100% - 48px) * .34), 405px);
         max-width: none;
@@ -1244,7 +1841,7 @@ interface ProductTourSlide {
       }
     }
     @media (min-width: 901px) and (max-width: 1180px) {
-      #ppage.ppage > .pp-hero > .pph-scene:not(.oracle-hero-visual) {
+      #ppage.ppage > .pp-hero > .pph-scene:not(.oracle-hero-visual):not(.openclaw-hero-art) {
         right: 28px;
         width: calc((100% - 56px) * .38);
       }
@@ -1254,10 +1851,336 @@ interface ProductTourSlide {
         max-width: 56%;
       }
     }
+
+    @media (min-width: 901px) {
+      #ppage.ppage > .pp-hero > .pph-scene.pph-managed-aws {
+        right: max(24px, calc((100% - 1240px) / 2 + 24px));
+        width: min(calc((100% - 48px) * .46 - 32px), 548px);
+        max-height: none;
+      }
+    }
+
+    #ppage.ppage > .pp-hero > .pph-scene.cpanel-hero-art {
+      right: max(24px, calc((100% - 1240px) / 2 + 24px)); width: min(40%, 550px);
+      top: 50%; bottom: auto; transform: translateY(-50%); opacity: 1;
+      mask-image: none; overflow: visible; pointer-events: auto; z-index: 4;
+    }
+    .cpanel-hero-art xh-cpanel-servers-hero { display: block; width: 100%; }
+    #ppage.cpanel-servers-page .product-hero-ctas { width: 100%; max-width: 100%; flex-wrap: wrap; }
+    @media(min-width:901px) {
+      #ppage.cpanel-servers-page .pp-hero #ppTitle,
+      #ppage.cpanel-servers-page .pp-hero > .wrap > .pp-tagline,
+      #ppage.cpanel-servers-page .pp-hero > .wrap > .pp-tagline-support,
+      #ppage.cpanel-servers-page .pp-hero > .wrap > .pp-hero-grid { max-width: 52%; }
+    }
+    @media(max-width:900px) {
+      #ppage.ppage > .pp-hero > .pph-scene.cpanel-hero-art {
+        position: relative; inset: auto; transform: none; width: calc(100% - 32px);
+        max-width: 550px; max-height: none; margin: 24px auto; order: 1;
+      }
+      #ppage.cpanel-servers-page .pp-hero { display: flex; flex-direction: column; }
+      #ppage.cpanel-servers-page .pp-hero > .wrap { width: 100%; order: 0; }
+    }
+
+    /* Keep the camera dashboard beside the surveillance copy and stack it on phones. */
+    #ppage.vsaas-page > .pp-hero {
+      display: grid; overflow: clip;
+      grid-template-columns: minmax(0, 620px) minmax(0, 550px);
+      justify-content: center; align-items: center; gap: 24px; padding-inline: 24px;
+    }
+    #ppage.vsaas-page > .pp-hero > .wrap {
+      grid-column: 1; grid-row: 1; width: 100%; margin: 0; padding: 0;
+    }
+    #ppage.vsaas-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 100%; }
+    #ppage.vsaas-page .pp-hero #ppTitle { display: block; text-align: left; white-space: normal; }
+    #ppage.vsaas-page #ppTitle .pp-title-name { display: inline; margin-left: 0; }
+    #ppage.vsaas-page .vsaas-powered { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    #ppage.vsaas-page .vsaas-powered small { color: #9fb8d8; font: 700 10.5px/1.5 'IBM Plex Mono', monospace; letter-spacing: .12em; }
+    #ppage.vsaas-page .vsaas-powered > span { display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border-radius: 10px; background: #fff; box-shadow: 0 1px 0 rgba(4,30,66,.08); }
+    #ppage.vsaas-page .vsaas-powered b { color: #0b1b33; font: 800 16px/1.5 'Sora', sans-serif; letter-spacing: -.01em; }
+    #ppage.vsaas-page .pp-ask-ai { margin-top: 12px; }
+    #ppage.ppage.vsaas-page > .pp-hero > .pph-scene.vsaas-hero-art {
+      position: relative; inset: auto; grid-column: 2; grid-row: 1;
+      display: block; width: 100%; max-width: 550px; height: auto; max-height: none;
+      margin: 0; padding: 0; opacity: 1; mask-image: none; transform: none; z-index: 4;
+    }
+    @media (max-width: 1000px) {
+      #ppage.vsaas-page > .pp-hero { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+      #ppage.ppage.vsaas-page > .pp-hero > .pph-scene.vsaas-hero-art {
+        grid-column: 1; grid-row: 2; justify-self: center;
+      }
+    }
+
+    /* Keep the supplied compute instance launchers alongside each page's hero copy. */
+    #ppage:is(.cpu-optimized-page, .memory-optimized-page) > .pp-hero {
+      display: grid; overflow: clip;
+      grid-template-columns: minmax(0, 620px) minmax(0, 550px);
+      justify-content: center; align-items: center; gap: 24px; padding-inline: 24px;
+    }
+    #ppage:is(.cpu-optimized-page, .memory-optimized-page) > .pp-hero > .wrap {
+      grid-column: 1; grid-row: 1; width: 100%; margin: 0; padding: 0;
+    }
+    #ppage:is(.cpu-optimized-page, .memory-optimized-page) > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 100%; }
+    #ppage.memory-optimized-page .pp-hero #ppTitle { display: block; text-align: left; white-space: normal; }
+    #ppage.memory-optimized-page .pp-hero #ppTitle .pp-title-name { display: inline; margin-left: 0; white-space: normal; }
+    #ppage.ppage:is(.cpu-optimized-page, .memory-optimized-page) > .pp-hero > .pph-scene:is(.cpu-optimized-hero-art, .memory-optimized-hero-art) {
+      position: relative; inset: auto; grid-column: 2; grid-row: 1;
+      display: block; width: 100%; max-width: 550px; height: auto; max-height: none;
+      margin: 0; padding: 0; opacity: 1; mask-image: none; transform: none; z-index: 4; pointer-events: auto;
+    }
+    @media (max-width: 1000px) {
+      #ppage:is(.cpu-optimized-page, .memory-optimized-page) > .pp-hero { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+      #ppage.ppage:is(.cpu-optimized-page, .memory-optimized-page) > .pp-hero > .pph-scene:is(.cpu-optimized-hero-art, .memory-optimized-hero-art) {
+        grid-column: 1; grid-row: 2; justify-self: center;
+      }
+    }
+
+    /* Keep the live-call panel beside the AI Receptionist copy, and stack it on phones. */
+    #ppage.ai-receptionist-page > .pp-hero {
+      display: grid; overflow: clip;
+      grid-template-columns: minmax(0, 620px) minmax(0, 550px);
+      justify-content: center; align-items: center; gap: 24px; padding-inline: 24px;
+    }
+    #ppage.ai-receptionist-page > .pp-hero > .wrap {
+      grid-column: 1; grid-row: 1; width: 100%; margin: 0; padding: 0;
+    }
+    #ppage.ai-receptionist-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 100%; }
+    #ppage.ppage.ai-receptionist-page > .pp-hero > .pph-scene.ai-receptionist-hero-art {
+      position: relative; inset: auto; grid-column: 2; grid-row: 1;
+      display: block; width: 100%; max-width: 550px; height: auto; max-height: none;
+      margin: 0; padding: 0; opacity: 1; mask-image: none; transform: none; z-index: 4;
+    }
+    @media (max-width: 1000px) {
+      #ppage.ai-receptionist-page > .pp-hero { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+      #ppage.ppage.ai-receptionist-page > .pp-hero > .pph-scene.ai-receptionist-hero-art {
+        grid-column: 1; grid-row: 2; justify-self: center;
+      }
+    }
+    #ppage.managed-mongodb-page > .pp-hero {
+      display: grid;
+      overflow: clip;
+      grid-template-columns: minmax(0, 620px) minmax(0, 520px);
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      padding-inline: 24px;
+    }
+    #ppage.managed-mongodb-page > .pp-hero > .wrap {
+      grid-column: 1; grid-row: 1;
+      width: 100%; margin: 0; padding: 0;
+    }
+    #ppage.managed-mongodb-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 100%; }
+    #ppage.managed-mongodb-page .pp-hero #ppTitle.mongodb-hero-title { display: block; text-align: left; }
+    #ppage.managed-mongodb-page .mongodb-title-line { display: block; }
+    #ppage.managed-mongodb-page .mongodb-title-line:first-child { display: flex; align-items: baseline; flex-wrap: wrap; gap: .12em; }
+    #ppage.managed-mongodb-page .mongodb-title-line .pp-title-divider { margin: 0; }
+    #ppage.managed-mongodb-page .mongodb-powered { display: flex; align-items: center; gap: 10px; margin-top: 14px; }
+    #ppage.managed-mongodb-page .mongodb-powered small { font: 700 10.5px ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .12em; color: #9fb8d8; }
+    #ppage.managed-mongodb-page .mongodb-powered > span { display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 16px; border-radius: 10px; background: #fff; box-shadow: 0 1px 0 rgba(4, 30, 66, .08); }
+    #ppage.managed-mongodb-page .mongodb-powered img { display: block; width: 22px; height: 22px; }
+    #ppage.ppage.managed-mongodb-page > .pp-hero > .pph-scene.mongodb-hero-art {
+      position: relative; inset: auto; grid-column: 2; grid-row: 1;
+      display: block; width: 100%; max-width: 520px; height: auto; max-height: none;
+      margin: 0; padding: 0; opacity: 1; mask-image: none; transform: none;
+      z-index: 4;
+    }
+    @media (max-width: 1000px) {
+      #ppage.managed-mongodb-page > .pp-hero { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+      #ppage.ppage.managed-mongodb-page > .pp-hero > .pph-scene.mongodb-hero-art {
+        grid-column: 1; grid-row: 2; justify-self: center;
+      }
+    }
+    #ppage.ppage.b300-hero-page > .pp-hero > .pph-scene.b300-hero-art {
+      right: max(24px, calc((100% - 1240px) / 2 + 24px));
+      width: min(calc((100% - 48px) * .43), 550px);
+      top: 50%; bottom: auto; transform: translateY(-50%);
+      max-height: none; opacity: 1; mask-image: none; overflow: visible;
+      pointer-events: auto; z-index: 4;
+    }
+    #ppage.ppage.b300-hero-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) { max-width: 53% !important; }
+    #ppage.b300-hero-page .pp-hero #ppTitle { display: block; white-space: normal; text-align: left; }
+    #ppage.b300-hero-page .pp-hero #ppTitle .pp-title-name { display: inline; white-space: normal; margin-left: 0; }
+    #ppage.b300-hero-page .pp-hero #ppTag { margin-bottom: 10px; font-weight: 700; }
+    #ppage.b300-hero-page .pp-hero .b300-hero-summary { color: #c7d5ec; font: 400 16px/1.6 var(--body); white-space: normal !important; text-wrap: pretty; }
+    #ppage.b300-hero-page .b300-powered { display: flex; align-items: center; gap: 10px; margin-top: 16px; }
+    #ppage.b300-hero-page .b300-powered small { color: #9fb8d8; font: 700 10.5px var(--mono); letter-spacing: .12em; }
+    #ppage.b300-hero-page .b300-powered > span { display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 16px; border-radius: 10px; background: #fff; }
+    #ppage.b300-hero-page .b300-powered img { display: block; width: 22px; height: 22px; }
+    @media (max-width: 900px) {
+      #ppage.ppage.b300-hero-page > .pp-hero { display: flex; flex-direction: column; }
+      #ppage.ppage.b300-hero-page > .pp-hero > .wrap { order: -1; width: 100%; }
+      #ppage.ppage.b300-hero-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-hero-grid) { max-width: 100% !important; }
+      #ppage.ppage.b300-hero-page > .pp-hero > .pph-scene.b300-hero-art {
+        position: relative; inset: auto; transform: none;
+        width: calc(100% - 40px); max-width: 550px; margin: 24px auto 0;
+      }
+    }
+    #ppage > .pp-trust.reference-trust > .wrap { padding-block: 10px; }
+    #ppage.ppage.vdpo-page > .pp-hero { min-height: 720px; }
+    #ppage.vdpo-page > .pp-body { padding-top: 0; }
+    #ppage.vdpo-page .pp-hero #ppTitle { display: block; white-space: normal; text-align: left; }
+    #ppage.vdpo-page .pp-hero #ppTitle .pp-title-name { display: inline; white-space: normal; margin-left: 0; }
+    #ppage.ppage.vdpo-page > .pp-hero > .wrap > .pp-tagline { color: #fff; font: 700 16.5px/1.45 var(--disp); margin-bottom: 4px; white-space: normal; text-wrap: pretty; }
+    #ppage.ppage.vdpo-page > .pp-hero > .wrap > .pp-tagline-support { color: #dbe7fb; font: 600 15.5px/1.55 var(--disp); white-space: normal; text-wrap: pretty; }
+    @media (min-width: 1301px) {
+      #ppage.ppage.vdpo-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 51% !important; }
+    }
+    #ppage.ppage.vdpo-page > .pp-hero > .pph-scene.vdpo-hero-art {
+      right: max(16px, calc((100% - 1240px) / 2));
+      width: min(46%, 620px); top: 50%; bottom: auto; transform: translateY(-50%);
+      max-height: none; opacity: 1; mask-image: none; -webkit-mask-image: none;
+      overflow: visible; pointer-events: auto; z-index: 4;
+    }
+    @media (max-width: 1300px) {
+      #ppage.ppage.vdpo-page > .pp-hero { display: flex; flex-direction: column; }
+      #ppage.ppage.vdpo-page > .pp-hero > .wrap { order: -1; width: 100%; }
+      #ppage.ppage.vdpo-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 100% !important; }
+      #ppage.ppage.vdpo-page > .pp-hero > .pph-scene.vdpo-hero-art {
+        position: relative; inset: auto; transform: none; width: calc(100% - 24px);
+        max-width: 620px; margin: 12px auto 0;
+      }
+    }
+    #ppage.ppage.geotrust-hero-page > .pp-hero { min-height: 660px; }
+    #ppage.geotrust-hero-page .pp-hero #ppTitle { display: block; white-space: normal; text-align: left; }
+    #ppage.geotrust-hero-page .pp-hero #ppTitle .pp-title-name { display: inline; white-space: normal; margin-left: 0; }
+    @media (min-width: 1301px) {
+      #ppage.ppage.geotrust-hero-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 49% !important; }
+    }
+    #ppage.ppage.geotrust-hero-page > .pp-hero > .pph-scene.geotrust-hero-art {
+      right: max(16px, calc((100% - 1240px) / 2));
+      width: min(46%, 620px); top: 50%; bottom: auto; transform: translateY(-50%);
+      max-height: none; opacity: 1; mask-image: none; -webkit-mask-image: none;
+      overflow: visible; pointer-events: auto; z-index: 4;
+    }
+    @media (max-width: 1300px) {
+      #ppage.ppage.geotrust-hero-page > .pp-hero { display: flex; flex-direction: column; }
+      #ppage.ppage.geotrust-hero-page > .pp-hero > .wrap { order: -1; width: 100%; }
+      #ppage.ppage.geotrust-hero-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 100% !important; }
+      #ppage.ppage.geotrust-hero-page > .pp-hero > .pph-scene.geotrust-hero-art {
+        position: relative; inset: auto; transform: none; width: calc(100% - 24px);
+        max-width: 620px; margin: 12px auto 0;
+      }
+    }
+    #ppage.ppage.vciso-page > .pp-hero { min-height: 660px; }
+    #ppage.vciso-page > .pp-body { padding-top: 0; }
+    #ppage.vciso-page .pp-hero #ppTitle { display: block; white-space: normal; text-align: left; }
+    #ppage.vciso-page .pp-hero #ppTitle .pp-title-name { display: inline; white-space: normal; margin-left: 0; }
+    @media (min-width: 1301px) {
+      #ppage.ppage.vciso-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 51% !important; }
+    }
+    #ppage.ppage.vciso-page > .pp-hero > .pph-scene.vciso-hero-art {
+      right: max(16px, calc((100% - 1240px) / 2));
+      width: min(46%, 620px); top: 50%; bottom: auto; transform: translateY(-50%);
+      max-height: none; opacity: 1; mask-image: none; -webkit-mask-image: none;
+      overflow: visible; pointer-events: auto; z-index: 4;
+    }
+    @media (max-width: 1300px) {
+      #ppage.ppage.vciso-page > .pp-hero { display: flex; flex-direction: column; }
+      #ppage.ppage.vciso-page > .pp-hero > .wrap { order: -1; width: 100%; }
+      #ppage.ppage.vciso-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 100% !important; }
+      #ppage.ppage.vciso-page > .pp-hero > .pph-scene.vciso-hero-art {
+        position: relative; inset: auto; transform: none; width: calc(100% - 24px);
+        max-width: 620px; margin: 12px auto 0;
+      }
+    }
+    #ppage.ppage.code-signing-page > .pp-hero { min-height: 660px; }
+    #ppage.code-signing-page > .pp-body { padding-top: 0; }
+    #ppage.code-signing-page .pp-hero #ppTitle { display: block; white-space: normal; text-align: left; }
+    #ppage.code-signing-page .pp-hero #ppTitle .pp-title-name { display: inline; white-space: normal; margin-left: 0; }
+    #ppage.ppage.code-signing-page > .pp-hero > .wrap > .pp-tagline { color: #fff; font: 700 17px/1.55 var(--body); margin-bottom: 4px; white-space: normal; text-wrap: pretty; }
+    #ppage.ppage.code-signing-page > .pp-hero > .wrap > .pp-tagline-support { color: #c7d5ec; font: 700 17px/1.55 var(--body); white-space: normal; text-wrap: pretty; }
+    @media (min-width: 1301px) {
+      #ppage.ppage.code-signing-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 53% !important; }
+    }
+    #ppage.ppage.code-signing-page > .pp-hero > .pph-scene.code-signing-hero-art {
+      right: max(16px, calc((100% - 1240px) / 2));
+      width: min(46%, 620px); top: 50%; bottom: auto; transform: translateY(-50%);
+      max-height: none; opacity: 1; mask-image: none; -webkit-mask-image: none;
+      overflow: visible; pointer-events: auto; z-index: 4;
+    }
+    @media (max-width: 1300px) {
+      #ppage.ppage.code-signing-page > .pp-hero { display: flex; flex-direction: column; }
+      #ppage.ppage.code-signing-page > .pp-hero > .wrap { order: -1; width: 100%; }
+      #ppage.ppage.code-signing-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 100% !important; }
+      #ppage.ppage.code-signing-page > .pp-hero > .pph-scene.code-signing-hero-art {
+        position: relative; inset: auto; transform: none; width: calc(100% - 24px);
+        max-width: 620px; margin: 12px auto 0;
+      }
+    }
+    #ppage.ppage.comodo-ev-page > .pp-hero { min-height: 700px; }
+    #ppage.ppage.comodo-ev-page > .pp-hero > .pph-scene.comodo-ev-hero-art {
+      right: max(24px, calc((100% - 1240px) / 2 + 24px));
+      width: min(calc((100% - 48px) * .43), 550px);
+      top: 50%; bottom: auto; transform: translateY(-50%);
+      max-height: none; opacity: 1; mask-image: none; overflow: visible;
+      pointer-events: auto; z-index: 4;
+    }
+    #ppage.ppage.comodo-ev-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 53% !important; }
+    #ppage.comodo-ev-page .pp-hero #ppTitle { display: block; white-space: normal; text-align: left; }
+    #ppage.comodo-ev-page .pp-hero #ppTitle .pp-title-name { display: inline; white-space: normal; margin-left: 0; }
+    #ppage.comodo-ev-page .pp-hero #ppTag { margin-bottom: 10px; color: #c7d5ec; font: 700 16.5px/1.45 var(--disp); white-space: normal !important; text-wrap: pretty; }
+    #ppage.comodo-ev-page .pp-hero .pp-tagline-support { color: #dbe7fb; font: 500 15.5px/1.6 var(--body); white-space: normal !important; text-wrap: pretty; }
+    #ppage.comodo-ev-page .pp-hero .pp-hpoints { grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; gap: 10px 16px; margin: 8px 0 24px; }
+    #ppage.comodo-ev-page .pp-hero .pp-hpoint { min-width: 0; align-items: flex-start; color: #dbe7fb; font-size: 13px; line-height: 1.45; }
+    #ppage.comodo-ev-page .pp-hero .pp-hpoint .tick { flex: none; border-radius: 5px; box-shadow: 0 0 0 3px rgba(21,101,216,.25); }
+    @media (max-width: 600px) { #ppage.comodo-ev-page .pp-hero .pp-hpoints { grid-template-columns: minmax(0,1fr); } }
+    @media (max-width: 900px) {
+      #ppage.ppage.comodo-ev-page > .pp-hero { display: flex; flex-direction: column; min-height: 0; }
+      #ppage.ppage.comodo-ev-page > .pp-hero > .wrap { order: -1; width: 100%; }
+      #ppage.ppage.comodo-ev-page > .pp-hero > .wrap > :is(h1, .pp-tagline, .pp-tagline-support, .pp-typewriter, .pp-chips, .pp-hero-grid) { max-width: 100% !important; }
+      #ppage.ppage.comodo-ev-page > .pp-hero > .pph-scene.comodo-ev-hero-art {
+        position: relative; inset: auto; transform: none;
+        width: calc(100% - 32px); max-width: 550px; margin: 12px auto 0;
+      }
+    }
+    #ppage.ppage.thawte-page > .pp-hero { min-height: 620px; }
+    #ppage.thawte-page .pp-hero #ppTitle { display: block; max-width: 53%; white-space: normal; text-align: left; }
+    #ppage.thawte-page .pp-hero #ppTitle .pp-title-name { display: inline; white-space: normal; margin-left: 0; }
+    #ppage.ppage.thawte-page > .pp-hero > .wrap > .thawte-hero-tagline { width: 53% !important; max-width: 53% !important; margin-bottom: 2px; color: #fff; font: 700 16.5px/1.45 var(--disp); text-wrap: wrap; }
+    #ppage.ppage.thawte-page > .pp-hero > .wrap > .thawte-hero-summary { width: 53% !important; max-width: 53% !important; margin-bottom: 16px; color: #dbe7fb; font: 600 15.5px/1.6 var(--disp); text-wrap: wrap; }
+    #ppage.thawte-page .thawte-hero-points { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 20px; width: 53%; max-width: 520px; margin: 0 0 24px; padding: 0; list-style: none; }
+    #ppage.thawte-page .thawte-hero-points li { display: flex; align-items: center; gap: 10px; min-width: 0; font-size: 14px; color: #eaf2ff; }
+    #ppage.thawte-page .thawte-hero-tick { display: grid; place-items: center; flex-shrink: 0; width: 20px; height: 20px; border-radius: 5px; background: #1565d8; box-shadow: 0 0 0 3px rgba(21,101,216,.25); }
+    #ppage.thawte-page .thawte-hero-tick svg { width: 11px; height: 11px; color: #fff; }
+    #ppage.thawte-page .pp-typewriter { max-width: 53%; }
+    #ppage.thawte-page .pp-typewriter span { min-width: 0; }
+    #ppage.thawte-page .pp-typewriter i { flex-shrink: 0; }
+    #ppage.ppage.thawte-page > .pp-hero > .pph-scene.thawte-hero-art {
+      right: max(24px, calc((100% - 1240px) / 2 + 24px));
+      width: min(calc((100% - 48px) * .43), 520px);
+      top: 50%; bottom: auto; transform: translateY(-50%);
+      max-height: none; opacity: 1; mask-image: none; overflow: visible;
+      pointer-events: auto;
+    }
+    #ppage.ppage.thawte-page > .pp-hero > .wrap > h1,
+    #ppage.ppage.thawte-page > .pp-hero > .wrap > .pp-tagline,
+    #ppage.ppage.thawte-page > .pp-hero > .wrap > .pp-tagline-support,
+    #ppage.ppage.thawte-page > .pp-hero > .wrap > .pp-chips,
+    #ppage.ppage.thawte-page > .pp-hero > .wrap > .pp-hero-grid { max-width: 53%; }
+    @media (max-width: 900px) {
+      #ppage.ppage.thawte-page > .pp-hero { display: flex; flex-direction: column; min-height: 0; }
+      #ppage.thawte-page .pp-hero #ppTitle { max-width: 100%; }
+      #ppage.ppage.thawte-page > .pp-hero > .wrap > :is(.thawte-hero-tagline, .thawte-hero-summary) { width: 100% !important; max-width: 100% !important; }
+      #ppage.thawte-page .thawte-hero-points { width: 100%; }
+      #ppage.thawte-page .pp-typewriter { max-width: 100%; }
+      #ppage.ppage.thawte-page > .pp-hero > .wrap { order: -1; width: 100%; }
+      #ppage.ppage.thawte-page > .pp-hero > .wrap > h1,
+      #ppage.ppage.thawte-page > .pp-hero > .wrap > .pp-tagline,
+      #ppage.ppage.thawte-page > .pp-hero > .wrap > .pp-tagline-support,
+      #ppage.ppage.thawte-page > .pp-hero > .wrap > .pp-chips,
+      #ppage.ppage.thawte-page > .pp-hero > .wrap > .pp-hero-grid { max-width: 100%; }
+      #ppage.ppage.thawte-page > .pp-hero > .pph-scene.thawte-hero-art {
+        position: relative; inset: auto; transform: none;
+        width: calc(100% - 32px); max-width: 520px; margin: 24px auto 0;
+      }
+    }
+    @media (max-width: 560px) {
+      #ppage.thawte-page .thawte-hero-points { grid-template-columns: 1fr; }
+    }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductPage {
+class ProductPageComponent {
   private readonly topics = inject(CallbackTopicService);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
@@ -1448,6 +2371,12 @@ export class ProductPage {
 
   readonly selectedEdrPlanIndex = signal(0);
   readonly edrQuantity = signal(1);
+  readonly smbDesktopQuantities = signal<Record<string, number>>({
+    Starter: 1,
+    Business: 1,
+    Professional: 1,
+    Enterprise: 1,
+  });
   readonly cdrQuantity = signal(1);
   readonly cloudDriveQuantity = signal(1);
   readonly activeCdrTourSlide = signal(0);
@@ -1590,6 +2519,23 @@ export class ProductPage {
       image: '/assets/images/vmc-tour-verified-mark.png',
     },
   ];
+  readonly cmcTourSlides: readonly ProductTourSlide[] = [
+    {
+      title: 'Display your brand logo in the inbox',
+      description: 'See how a Common Mark Certificate replaces the generic sender avatar with a recognisable brand logo.',
+      image: '/assets/images/cmc-tour-logo-display.png',
+    },
+    {
+      title: 'Unverified inbox compared with CMC',
+      description: 'Compare an unverified inbox with the branded sender experience enabled by a Common Mark Certificate.',
+      image: '/assets/images/cmc-tour-unverified-vs-cmc.png',
+    },
+    {
+      title: 'Before and after CMC activation',
+      description: 'See the visual difference when authenticated brand logos appear beside messages in supported inboxes.',
+      image: '/assets/images/cmc-tour-before-after.png',
+    },
+  ];
   readonly tsplusServerMonitoringTourSlides: readonly ProductTourSlide[] = [
     {
       title: 'Real-time server dashboard',
@@ -1711,6 +2657,7 @@ export class ProductPage {
     if (view.name === 'Acronis True Image') return this.acronisTrueImageTourSlides;
     if (view.name === 'Microsoft 365 Backup') return this.microsoft365BackupTourSlides;
     if (this.isVmc()) return this.vmcTourSlides;
+    if (this.isCmc()) return this.cmcTourSlides;
     if (this.isTsplusServerMonitoring()) return this.tsplusServerMonitoringTourSlides;
     if (this.isTsplusRemoteSupport()) return this.tsplusRemoteSupportTourSlides;
     if (this.isTsplusAdvancedSecurity()) return this.tsplusAdvancedSecurityTourSlides;
@@ -1756,6 +2703,26 @@ export class ProductPage {
     this.edrQuantity.update((quantity) => Math.max(1, quantity + change));
   }
 
+  smbDesktopQuantity(plan: TallyPlan): number {
+    return this.smbDesktopQuantities()[plan.edition] ?? this.smbDesktopBounds(plan).min;
+  }
+
+  smbDesktopBounds(plan: TallyPlan): { min: number; max: number } {
+    const values = plan.users.match(/\d+/g)?.map(Number) ?? [1];
+    return { min: 1, max: values[1] ?? values[0] };
+  }
+
+  changeSmbDesktopQuantity(plan: TallyPlan, change: number): void {
+    const bounds = this.smbDesktopBounds(plan);
+    this.smbDesktopQuantities.update((quantities) => ({
+      ...quantities,
+      [plan.edition]: Math.max(
+        bounds.min,
+        Math.min(bounds.max, this.smbDesktopQuantity(plan) + change),
+      ),
+    }));
+  }
+
   changeCdrQuantity(change: number): void {
     this.cdrQuantity.update((quantity) => Math.max(1, quantity + change));
   }
@@ -1770,13 +2737,8 @@ export class ProductPage {
 
   buyCdrPlan(ev: Event): void {
     ev.preventDefault();
-    const quantity = this.cdrQuantity();
-    this.cart.add(
-      'Cloud Disaster Recovery SMB',
-      '₹9,999/server/month',
-      quantity,
-    );
-    this.cart.open();
+    const params = new URLSearchParams({ qty: String(this.cdrQuantity()) });
+    window.location.assign(`/cloud-disaster-recovery-smb-checkout?${params.toString()}`);
   }
 
   openCdrTour(): void {
@@ -1978,39 +2940,39 @@ export class ProductPage {
       unit: 'per customer',
       qty: 1,
       prices: { monthly: 2499, '3m': 7122.15, '6m': 13869.45, '1y': 26989.2 },
-      comments: 'Enterprise File & Sync with 250 GB Storage | Unlimited Users',
+      comments: 'File & Sync with 250 GB Storage',
     },
     {
       storage: '500 GB',
       unit: 'per customer',
       qty: 1,
       prices: { monthly: 4999, '3m': 14247.15, '6m': 27744.45, '1y': 53989.2 },
-      comments: 'Enterprise File & Sync with 500 GB Storage | Unlimited Users',
+      comments: 'File & Sync with 500 GB Storage',
     },
     {
       storage: '1 TB',
       unit: 'per customer',
       qty: 1,
       prices: { monthly: 9999, '3m': 28497.15, '6m': 55494.45, '1y': 107989.2 },
-      comments: 'Enterprise File & Sync with 1 TB Storage | Unlimited Users',
+      comments: 'File & Sync with 1 TB Storage',
     },
     {
       storage: '2 TB',
       unit: 'per customer',
       qty: 1,
       prices: { monthly: 19000, '3m': 54150, '6m': 105450, '1y': 205200 },
-      comments: 'Enterprise File & Sync with 2 TB Storage | Unlimited Users',
+      comments: 'File & Sync with 2 TB Storage',
     },
     {
       storage: '5 TB',
       unit: 'per customer',
       qty: 1,
       prices: { monthly: 35625, '3m': 101531.25, '6m': 197718.75, '1y': 384750 },
-      comments: 'Enterprise File & Sync with 5 TB Storage | Unlimited Users',
+      comments: 'File & Sync with 5 TB Storage',
     },
   ];
 
-  readonly selectedCloudDriveTerm = signal<CloudDriveTerm>('1y');
+  readonly selectedCloudDriveTerm = signal<CloudDriveTerm>('monthly');
 
   readonly activeCloudDriveTerm = computed(
     () => this.cloudDriveTerms.find((term) => term.key === this.selectedCloudDriveTerm()) ?? this.cloudDriveTerms[0]
@@ -2029,11 +2991,46 @@ export class ProductPage {
     ...new Set([...Object.keys(DEEP_CONTENT), ...Object.keys(RICH_PRODUCTS)]),
   ];
 
+  readonly frameworkDetail = computed(() => FRAMEWORK_DETAILS[this.slug()] ?? null);
+  readonly isFrameworkDetail = computed(() => !!this.frameworkDetail());
   readonly slug = toSignal(this.route.paramMap.pipe(
     map((p) => p.get('slug') ?? this.route.snapshot.data['productSlug'] ?? ''),
   ), {
     initialValue: '',
   });
+
+  readonly isEmailSecurityEnterprise = computed(() =>
+    this.slug() === 'vortex-seg' && this.route.snapshot.data['productDisplayName'] === 'Email Security Enterprise',
+  );
+
+  readonly isVortexSegSource = computed(() =>
+    this.slug() === 'vortex-seg' && this.route.snapshot.paramMap.get('slug') === 'vortex-seg',
+  );
+
+  readonly usesVpsPageTemplate = computed(() =>
+    this.slug() === 'openclaw-vps' || this.slug() === 'cpanel-vps',
+  );
+
+  readonly usesContainerRegistryTemplate = computed(() =>
+    this.slug() === 'container-registry' || this.slug() === 'container-as-a-service',
+  );
+
+  private static readonly SUPPLIED_SMB_HERO_SLUGS = new Set([
+    'advanced-endpoint-security-edr',
+    'cloud-drive',
+    'cloud-disaster-recovery-smb',
+    'cloud-backup',
+    'acronis-genai-protection',
+    'workforce-analytics',
+    'smb-cloud-desktop',
+    'smb-cyber-security-appliance',
+    'remote-monitoring-and-mgmt-rmm',
+    'tally-on-cloud',
+  ]);
+
+  usesSuppliedSmbHero(): boolean {
+    return ProductPageComponent.SUPPLIED_SMB_HERO_SLUGS.has(this.slug());
+  }
 
   readonly isMicrosoftEnterprisePage = computed(() =>
     this.slug() === 'microsoft-365-enterprise' ||
@@ -2047,16 +3044,543 @@ export class ProductPage {
   readonly view = computed<ProductView | null>(() => {
     const slug = this.slug();
     const view = this.resolve(slug);
+    if (slug === 'microsoft-entra-id' && view) return {
+      ...view,
+      videos: [],
+      security: {
+        head: 'SECURITY & COMPLIANCE',
+        intro: 'Agree identity access policies, administrator roles and recovery procedures before rollout. XcellHost helps scope your Microsoft Entra ID deployment around your users, applications and review requirements. Available capabilities depend on the selected licences.',
+        rows: [
+          ['Access Policies', 'Pilot authentication and Conditional Access policies before enforcement.'],
+          ['Administrator Roles', 'Define least-privilege roles and named owners.'],
+          ['Emergency Access', 'Document emergency account access and monitoring.'],
+          ['Identity Lifecycle', 'Agree provisioning, access changes and removal responsibilities.'],
+          ['Audit Evidence', 'Review sign-in and administrative activity with agreed retention.'],
+          ['Deployment Scope', 'Confirm licensing, integrations and operational responsibilities.'],
+        ],
+      },
+    };
     if (!view) return null;
+
+    if (slug === 'open-ai-managed-services') {
+      return { ...view, faqs: OPENAI_MANAGED_SERVICES_FAQS };
+    }
+
+    if (slug === 'email-signature') return { ...view, brandSuffix: 'Office' };
+    if (slug === 'zoom-conferenceing') return { ...view, brandSuffix: 'Office', faqs: ZOOM_CONFERENCEING_FAQS, reviews: [] };
+    if (slug === 'docusign') return {
+      ...view, brandSuffix: 'Sign',
+      heroMessages: ['From ₹999* a month, billed in INR', 'Templates, bulk send & web forms',
+        'Tamper-evident audit trail on every envelope', 'Agreements managed with Docusign IAM'],
+    };
+    if (slug === 'rpc-nodes') return {
+      ...view, brandSuffix: 'Node',
+      heroMessages: ['Full, archive and validator builds', 'HTTPS + WSS on your own endpoint',
+        'Snapshot-synced — not days of catch-up', 'Mumbai bare metal, run by XcellHost'],
+    };
+    if (slug === 'bio-link-digital-visiting-card') return { ...view, brandSuffix: 'Card' };
+    if (slug === 'wordpress-vps') return { ...view, brandSuffix: 'Cloud', faqs: WORDPRESS_VPS_FAQS };
+    if (slug === 'general-compute') return {
+      ...view,
+      brandSuffix: 'Cloud',
+      tagline: 'Balanced cloud VMs, running in about a minute.',
+      heroHighlight: "Simplify deployments with instances that balance vCPU, memory and network at a 1:4 ratio — 1 to 64 vCPU in XcellHost's Mumbai cloud, billed by the hour, the month or a reserved term, in rupees.",
+      heroMessages: [],
+    };
+
+
+    if (slug === '47-days-ssl') return {
+      ...view,
+      tagline: "Certificate lifetimes are shrinking. Spreadsheets and calendar reminders won't keep up.",
+      heroHighlight: 'Public SSL/TLS certificates now last at most 200 days, 100 days from March 2027 and 47 days from March 2029. XcellHost sets up Sectigo Certificate Manager with ACME so every renewal happens on its own — and watches it 24×7 from Mumbai.',
+      heroMessages: [
+        'Renewals eight times a year, zero tickets',
+        'Find every certificate before it expires',
+        'ACME renews, installs and reloads for you',
+        'Ready for 100 days in 2027 and 47 in 2029',
+      ],
+    };
+
+    if (slug === 'acronis-direct-cloud-backup') return {
+      ...view,
+      faqs: DIRECT_BACKUP_FAQS,
+      why: DIRECT_BACKUP_WHY,
+      tagline: 'Back up straight into the cloud storage you choose.',
+      heroHighlight: 'XcellHost sets up and runs Acronis backup that writes directly to your own S3-compatible bucket — AWS Mumbai, Hyderabad or any S3 store — with Object Lock immutability, AES-256 encryption and no gateway in between.',
+      heroMessages: [
+        'Your bucket, your bill, your keys',
+        'Object Lock: ransomware cannot delete it',
+        'AWS Mumbai today, Hyderabad as a second copy',
+        'One console for every server, VM, laptop and mailbox',
+      ],
+      heroPoints: [
+        'Direct to S3 — no gateway box',
+        'Object Lock immutable copies',
+        'AES-256 at rest & in transit',
+        'AWS Mumbai · Hyderabad regions',
+      ],
+    };
+
+    if (slug === 'explore-druva-platform') return {
+      ...view,
+      faqs: DRUVA_FAQS,
+      why: DRUVA_WHY,
+      tagline: 'The Resilience Cloud for the AI enterprise.',
+      heroHighlight: 'Ransomware. Compromised identity. Rogue AI. Resilience as a service that gets you through your worst day — set up, monitored and billed in rupees by XcellHost.',
+      heroMessages: [
+        'Ransomware locks the file server at 2 a.m.',
+        'A phished admin starts deleting mailboxes',
+        'An AI agent rewrites 1,240 shared files',
+        'The only copy leaves on a stolen laptop',
+      ],
+      heroPoints: [
+        'Clean recovery from ransomware',
+        'Entra ID, Active Directory & Okta',
+        'Undo what AI agents change',
+        'M365, laptops, VMs & cloud',
+      ],
+    };
+
+    if (slug === 'cpanel-vps') return {
+      ...view,
+      brandSuffix: 'VPS',
+      faqs: [
+        ['What is cPanel VPS?', 'A virtual private server with cPanel & WHM for managing websites, domains, email, databases and hosting accounts from a control panel.'],
+        ['Is the cPanel licence included in the server price?', 'The VPS and cPanel licence are shown separately in the builder. Select Admin, Pro or Premier to see the combined estimate. Prices are indicative until confirmed in your quotation.'],
+        ['Which operating system can I choose?', 'These plans use AlmaLinux, with CloudLinux available on request. Choose the AlmaLinux configuration in the builder and contact our team for other requirements.'],
+        ['Can you help migrate my existing websites?', 'Contact the XcellHost team to discuss moving your websites, email and databases and to agree the migration scope.'],
+        ['Can I add backups and managed support?', 'Yes. Select daily backups or managed support in the server builder to include them in your estimate and quotation.'],
+      ],
+
+    };
+
+    if (slug === 'acronis-ai') return {
+      ...view,
+      faqs: ACRONIS_AI_FAQS,
+      tagline: 'The AI-native platform to protect, manage and automate IT.',
+      heroHighlight: 'A new generation of cyber products for a world where agents do the work — one data model, agentic workflows, and a human approval wherever it matters. Deployed and supported in India by XcellHost.',
+      heroMessages: [
+        'An alert comes in. A ticket, root cause and fix go out.',
+        'Agents patch, back up and remediate — you approve',
+        'Stop PAN and Aadhaar numbers leaking into AI prompts',
+        'One console for your technicians and their AI agents',
+      ],
+      heroPoints: ['AI-native Cyber Console', 'Agentic workflows + approvals', 'Backup, EDR & RMM in one', 'GenAI prompt DLP'],
+      videos: ['s1Rxs7rWd2I', ''],
+      videoLabels: ['Acronis AI overview'],
+
+    };
+
+    if (slug === 'ai-receptionist') return {
+      ...view,
+      why: RECEPTIONIST_WHY,
+      faqs: RECEPTIONIST_FAQS,
+      reviews: buildContextualProductReviews('AI Receptionist', 'Cloud', [
+        '24×7 call answering', 'appointment booking and call routing', 'email summaries after every call',
+      ]),
+    };
+
+    if (slug === 'comodo-personal-authentication') return {
+      ...view,
+      heroPoints: [
+        'Email Signing & Encryption',
+        'Document Signing (Pro+)',
+        'Two-Factor Client Auth (Pro+)',
+        'Organisation Validated (Ent.)',
+      ],
+    };
 
     if (slug === 'higher-education-cloud') return {
       ...view,
       heroImage: '/assets/images/higher-education/hero.svg',
       heroBrand: { ...view.heroBrand, logoImage: '/assets/images/higher-education/logo.png' },
     };
+    if (slug === 'anthropic-managed-services') return {
+      ...view,
+      tagline: 'Managed rollout for Claude, Claude Code and Cowork',
+      heroHighlight: 'SSO, data controls and L1–L3 end-user support',
+      heroMessages: ['Use-case engineering on the Claude API'],
+      faqs: ANTHROPIC_MANAGED_SERVICES_FAQS,
+    };
+    if (slug === 'mailbox-migration') return {
+      ...view,
+      tagline: 'Enterprise email migration — mailbox migration made simple',
+      faqs: MAILBOX_MIGRATION_FAQS,
+    };
+    if (slug === 'managed-kubernetes') return { ...view, faqs: MANAGED_KUBERNETES_FAQS, security: {
+      head: 'SECURITY & COMPLIANCE - MANAGED KUBERNETES',
+      intro: 'Keep Kubernetes workloads in Indian data centres with encrypted traffic and storage, role-based access, network policies and audit logs. XcellHost manages platform upgrades, patching and monitoring while your team controls application deployments and access policies.',
+      rows: [['Data Residency', 'Indian Data Centres'], ['Encryption', 'In Transit And At Rest'], ['Access Control', 'RBAC And Private API Endpoints'], ['Network Isolation', 'Network Policies And Namespaces'], ['Recovery', 'Backups And Restore Planning'], ['Monitoring', '24x7 NOC And SOC']],
+    }};
+    if (slug === 'box-migration') return { ...view, faqs: BOX_MIGRATION_FAQS };
+    if (slug === 'dropbox-migration') return { ...view, faqs: DROPBOX_MIGRATION_FAQS };
+    if (slug === 'managed-microsoft-sql') return { ...view, faqs: MANAGED_SQL_FAQS };
     if (slug === 'linux-servers') return { ...view, faqs: LINUX_SERVERS_FAQS };
     if (slug === 'windows-servers') return { ...view, faqs: WINDOWS_SERVERS_FAQS };
 
+    if (slug === 'aiops') return {
+      ...view, faqs: AIOPS_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — AIOps Platform',
+        intro: 'Connect monitoring and automation with scoped access to your cloud estate. Use configuration history to investigate changes, review remediation runbooks before enabling automation, and align telemetry access and retention with your organisation’s requirements.',
+        rows: [
+          ['Access Controls', 'Scope Monitoring And Automation Permissions'],
+          ['Configuration Tracking', 'AWS Config Rules And Change History'],
+          ['Infrastructure Changes', 'CloudFormation Stack And Drift Monitoring'],
+          ['Incident Management', 'Correlated Alerts And Investigation Context'],
+          ['Remediation', 'Review And Approve Automated Runbooks'],
+          ['Coverage', 'AWS And Hybrid Cloud Operations'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'AWS And Hybrid Coverage', body: 'Bring cloud and on-premise operations into one monitoring approach.' },
+        { ...view.why[2], title: 'Guided Implementation', body: 'Assessment, AI/ML integration and continuous optimisation.' },
+        { ...view.why[3], title: 'Proactive Operations', body: 'Correlate alerts and identify unusual behaviour earlier.' },
+        { ...view.why[4], title: '24×7 NOC', body: 'Engineers support incident investigation and operational response.' },
+        { ...view.why[5], title: 'One Partner', body: 'Monitoring, automation and operational support together.' },
+      ],
+    };
+    if (slug === 'agent-studio') return {
+      ...view, faqs: AGENT_STUDIO_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — Agent Studio',
+        intro: 'Agent Studio combines zero-trust access with identity controls, encryption and agent-level observability. Apply SSO, MFA and role-based permissions, use PII redaction and prompt-injection defences, and retain human approval for sensitive workflows. Choose cloud, private cloud or on-premise deployment to suit your data requirements.',
+        rows: [
+          ['Access Controls', 'SSO, MFA And Role-Based Permissions'],
+          ['Encryption', 'TLS 1.3 And AES-256'],
+          ['Key Management', 'BYOK And HSM Support'],
+          ['Data Protection', 'PII Redaction And Data Loss Prevention'],
+          ['Agent Governance', 'Tracing, Audit Trails And Human Approval'],
+          ['Deployment', 'Cloud, Private Cloud, On-Premise And Hybrid'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Flexible Deployment', body: 'Deploy on cloud, private infrastructure, on-premise or hybrid environments.' },
+        { ...view.why[2], title: 'Guided Implementation', body: 'Foundation, enterprise integration and production rollout.' },
+        { ...view.why[3], title: 'Governed AI', body: 'Control agent access, trace activity and keep humans in the loop.' },
+        { ...view.why[4], title: '24×7 Enterprise Support', body: 'Technical support and a dedicated customer success manager.' },
+        { ...view.why[5], title: 'One Partner', body: 'Agents, models, enterprise integration and support together.' },
+      ],
+    };
+    if (slug === 'virtualization-servers') return {
+      ...view, faqs: VIRTUALIZATION_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — Virtualization Servers',
+        intro: 'Dedicated single-tenant hardware gives you control over hypervisor access, network isolation and workload configuration. Use private VLANs, DDoS protection and secure root and IPMI access, with managed patching and monitoring available. Plan backups and disaster recovery around your workload requirements.',
+        rows: [
+          ['Access Controls', 'Root And IPMI Access'],
+          ['Workload Isolation', 'Dedicated Single-Tenant Hardware'],
+          ['Network Security', 'Private VLANs And DDoS Protection'],
+          ['Managed Support', 'Optional Patching And Monitoring'],
+          ['Data Protection', 'RAID, Backup And Disaster Recovery Options'],
+          ['Locations', 'Indian Tier IV Data Centres'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Dedicated Hardware', body: 'Single-tenant compute with your choice of hypervisor.' },
+        { ...view.why[2], title: 'Guided Implementation', body: 'Host sizing, provisioning and migration assistance.' },
+        { ...view.why[3], title: 'Full Stack Control', body: 'Manage CPU allocation, storage and private networking.' },
+        { ...view.why[4], title: '24×7 NOC', body: 'Engineers support incident investigation and operational response.' },
+        { ...view.why[5], title: 'One Partner', body: 'Hardware, networking, backup and support together.' },
+      ],
+    };
+    if (slug === 'gaming-servers') return {
+      ...view, faqs: GAMING_FAQS, videos: [],
+      tagline: 'No lag. No limits. Bare-metal game servers in Mumbai.',
+      heroHighlight: 'Single-tenant hardware for Minecraft, Rust, ARK, CS2 and game backends — DDoS-protected, watched 24×7.',
+      heroPoints: [
+        'High-clock Ryzen & EPYC CPUs',
+        'Always-on DDoS shield',
+        'Enterprise NVMe storage',
+        'Full root + KVM / IPMI',
+        'Mods, plugins & game panels',
+        'Low ping across India',
+      ],
+      security: {
+        head: 'Security & Compliance — Gaming Servers',
+        intro: 'Dedicated single-tenant hardware gives you control over server access, network isolation and workload configuration. Use private VLANs, DDoS protection and secure root and IPMI access, with managed patching and monitoring available. Plan backups and disaster recovery around your workload requirements.',
+        rows: [
+          ['Access Controls', 'Root And IPMI Access'],
+          ['Workload Isolation', 'Dedicated Single-Tenant Hardware'],
+          ['Network Security', 'Private VLANs And DDoS Protection'],
+          ['Managed Support', 'Optional Patching And Monitoring'],
+          ['Data Protection', 'RAID, Backup And Disaster Recovery Options'],
+          ['Locations', 'Indian Tier IV Data Centres'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Dedicated Hardware', body: 'Single-tenant compute with your choice of operating system and gaming panel.' },
+        { ...view.why[2], title: 'Guided Implementation', body: 'Host sizing, provisioning and migration assistance.' },
+        { ...view.why[3], title: 'Full Stack Control', body: 'Manage CPU allocation, storage and private networking.' },
+        { ...view.why[4], title: '24×7 NOC', body: 'Engineers support incident investigation and operational response.' },
+        { ...view.why[5], title: 'One Partner', body: 'Hardware, networking, backup and support together.' },
+      ],
+    };
+    if (slug === 'storage-servers') return {
+      ...view, faqs: STORAGE_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — Storage Servers',
+        intro: 'Dedicated single-tenant hardware gives you control over server access, network isolation and storage configuration. Use private VLANs, DDoS protection and secure root and IPMI access, with managed patching and monitoring available. Plan backups and disaster recovery around your workload requirements.',
+        rows: [
+          ['Access Controls', 'Root And IPMI Access'],
+          ['Workload Isolation', 'Dedicated Single-Tenant Hardware'],
+          ['Network Security', 'Private VLANs And DDoS Protection'],
+          ['Managed Support', 'Optional Patching And Monitoring'],
+          ['Data Protection', 'RAID, Backup And Disaster Recovery Options'],
+          ['Locations', 'Indian Tier IV Data Centres'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Dedicated Hardware', body: 'Single-tenant compute with your choice of operating system and storage platform.' },
+        { ...view.why[2], title: 'Guided Implementation', body: 'Host sizing, provisioning and migration assistance.' },
+        { ...view.why[3], title: 'Flexible Storage', body: 'Choose drive types, capacity, RAID and private networking.' },
+        { ...view.why[4], title: '24×7 NOC', body: 'Engineers support incident investigation and operational response.' },
+        { ...view.why[5], title: 'One Partner', body: 'Hardware, networking, backup and support together.' },
+      ],
+    };
+    if (FRAMEWORK_DETAILS[slug]) return {
+      ...view, brandSuffix: 'Secure', faqs: FRAMEWORK_DETAILS[slug].faqs, overview: FRAMEWORK_DETAILS[slug].overview, videos: [],
+      reviews: [{"initials":"AM","name":"Aakash Mehta","role":"IT Manager, Manufacturing Company","stars":5,"quote":"We have much better visibility across our employee devices now. Suspicious activity is easier to spot, and our team can respond quickly when something unusual occurs."},{"initials":"SK","name":"Sneha Kulkarni","role":"Head of IT, Logistics Company","stars":5,"quote":"Managing security across multiple endpoints has become much simpler. Centralized monitoring saves our team time, while clear alerts help us focus on important threats."},{"initials":"RA","name":"Rohit Agarwal","role":"Operations Director, Financial Services","stars":5,"quote":"The behavioral approach gives us more confidence than relying on traditional antivirus alone. We can identify unusual activity earlier and take action before it affects our operations."}],
+      tagline: FRAMEWORK_DETAILS[slug].tagline,
+      heroHighlight: FRAMEWORK_DETAILS[slug].highlight,
+      security: {
+        head: 'Security & Compliance — ' + FRAMEWORK_DETAILS[slug].name,
+        intro: FRAMEWORK_DETAILS[slug].overview,
+        rows: FRAMEWORK_DETAILS[slug].rows,
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: 'Experience supporting Indian businesses with cloud and security services.' },
+        { ...view.why[1], title: 'Indian Context', body: 'Consider applicable sector and customer requirements alongside your security programme.' },
+        { ...view.why[2], title: 'Practical Assessments', body: 'Assess your current controls and define the highest-priority gaps.' },
+        { ...view.why[3], title: 'Evidence And Reporting', body: 'Track ownership, controls and progress for management reviews.' },
+        { ...view.why[4], title: '24×7 Security Operations', body: 'Connect assessment findings with monitoring and response services.' },
+        { ...view.why[5], title: 'One Partner', body: 'Cloud, security and support under one roof.' },
+      ],
+    };
+    if (slug === 'erp-next-hosting') return {
+      ...view, brandSuffix: 'Cloud', faqs: ERPNEXT_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — ERPNext Hosting',
+        intro: 'Keep ERPNext access, backups and server maintenance aligned with your business requirements. Use role-based permissions for your team, SSL for each site and separate databases for multi-site deployments. Confirm backup retention, restore procedures and the scope of managed support before deployment.',
+        rows: [
+          ['Application Access', 'ERPNext Roles And Permissions'],
+          ['Site Protection', 'SSL For Each ERPNext Site'],
+          ['Data Separation', 'Separate Databases For Multi-Site Hosting'],
+          ['Recovery', 'Automated Backups And Restore Planning'],
+          ['Maintenance', 'Server Management According To Your Plan'],
+          ['Deployment', 'ERPNext On The Frappe Framework'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Dedicated Resources', body: 'Size CPU, RAM and storage for your ERPNext users and workloads.' },
+        { ...view.why[2], title: 'Free Migration', body: 'Deployment and migration support for your ERPNext environment.' },
+        { ...view.why[3], title: 'Flexible Plans', body: 'Choose self-managed or fully managed hosting and scale as you grow.' },
+        { ...view.why[4], title: '24×7 Support', body: 'Hosting support with Indian billing and GST invoices.' },
+        { ...view.why[5], title: 'One Partner', body: 'Cloud hosting, backups and managed operations together.' },
+      ],
+    };
+    if (slug === 'odoo-hosting') return {
+      ...view, brandSuffix: 'Cloud', faqs: ODOO_HOSTING_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — Odoo Hosting',
+        intro: 'Keep Odoo access, backups and server maintenance aligned with your business requirements. Use role-based permissions for your team, SSL for each site and database isolation for separate business deployments. Confirm backup retention, restore procedures and the scope of managed support before deployment.',
+        rows: [
+          ['Application Access', 'Odoo Roles And Permissions'],
+          ['Site Protection', 'SSL For Each Odoo Site'],
+          ['Data Separation', 'Separate Business Databases'],
+          ['Recovery', 'Automated Backups And Restore Planning'],
+          ['Maintenance', 'Server Management According To Your Plan'],
+          ['Deployment', 'Odoo With PostgreSQL'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Dedicated Resources', body: 'Size CPU, RAM and storage for your Odoo users and workloads.' },
+        { ...view.why[2], title: 'Free Migration', body: 'Deployment and migration support for your Odoo environment.' },
+        { ...view.why[3], title: 'Flexible Plans', body: 'Choose self-managed or fully managed hosting and scale as you grow.' },
+        { ...view.why[4], title: '24×7 Support', body: 'Hosting support with Indian billing and GST invoices.' },
+        { ...view.why[5], title: 'One Partner', body: 'Cloud hosting, backups and managed operations together.' },
+      ],
+    };
+    if (slug === 'email-backup') return {
+      ...view, faqs: EMAIL_BACKUP_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — Email Backup',
+        intro: 'Keep a separate, encrypted copy of mailbox data and control who can search, export and restore it. Authorise supported cloud tenants through secure API access, choose retention policies for your organisation and use legal hold and audit reporting where included in your plan.',
+        rows: [
+          ['Data Protection', 'Separate Encrypted Mailbox Copies'],
+          ['Tenant Connection', 'Secure API Authorisation'],
+          ['Recovery', 'Item-Level And Point-In-Time Restore'],
+          ['Retention', 'Policies Based On Your Selected Plan'],
+          ['Compliance Options', 'Legal Hold And Audit Reporting'],
+          ['Coverage', 'Microsoft 365, Google Workspace, Exchange And IMAP'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Platform Coverage', body: 'Protect mail across Microsoft 365, Google Workspace, Exchange and IMAP.' },
+        { ...view.why[2], title: 'Guided Setup', body: 'Connect your tenant and configure mailbox policies with support.' },
+        { ...view.why[3], title: 'Flexible Retention', body: 'Choose a plan that fits your recovery and compliance needs.' },
+        { ...view.why[4], title: 'Managed Support', body: 'Restore guidance and support according to your selected plan.' },
+        { ...view.why[5], title: 'One Partner', body: 'Mailbox backup, monitoring and recovery support together.' },
+      ],
+    };
+    if (slug === 'sectigo-ssl-certificates') return {
+      ...view, faqs: SECTIGO_FAQS, videos: [],
+      tagline: '',
+      heroHighlight: 'Protect your websites and applications with Sectigo SSL. Compare single-domain, wildcard and multi-domain certificates, choose the validation level you need, and get help with validation, installation and renewals.',
+      heroMessages: ['Single-Domain, Wildcard & Multi-Domain Options', 'DV, OV & EV Certificate Choices', 'INR Billing & Certificate Support'],
+      security: {
+        head: 'Security & Compliance — Sectigo SSL Certificates',
+        intro: 'Choose certificate validation and domain coverage for the services you operate. Complete the required validation, protect private keys and install the full certificate chain. Plan renewals and reissues, using ACME automation where supported by the selected product.',
+        rows: [
+          ['Validation', 'DV, OV And EV Options'],
+          ['Coverage', 'Single-Domain, Wildcard And Multi-Domain'],
+          ['Private Keys', 'Keep Keys Protected On Your Server'],
+          ['Installation', 'CSR And Certificate Chain Assistance'],
+          ['Renewals', 'ACME Automation Where Supported'],
+          ['Operations', 'Certificate Reissue And Renewal Planning'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Certificate Choice', body: 'Compare validation levels and domain coverage for your applications.' },
+        { ...view.why[2], title: 'Installation Help', body: 'CSR generation and certificate installation assistance.' },
+        { ...view.why[3], title: 'Renewal Planning', body: 'Support for reissues and automated renewal options.' },
+        { ...view.why[4], title: 'Local Support', body: 'Indian billing, GST invoices and certificate support.' },
+        { ...view.why[5], title: 'One Partner', body: 'Certificate selection, installation and ongoing support together.' },
+      ],
+    };
+    if (slug === 'microsoft-365-to-google-workspace-migration') return { ...view, ...{
+  "faqs": WORKSPACE_MIGRATION_FAQS,
+  "videos": [],
+  "reviews": [],
+  "tagline": "Move Mail, Files And Collaboration From Microsoft 365 To Google Workspace.",
+  "heroMessages": [
+    "Pre-Stage Data While Your Team Keeps Working",
+    "Plan Delta Sync And A Controlled Cutover"
+  ],
+  "heroPoints": [
+    "Exchange To Gmail",
+    "OneDrive To Google Drive",
+    "SharePoint To Shared Drives",
+    "Phased Migration And Coexistence"
+  ],
+  "chips": [],
+  "platforms": [
+    "Microsoft 365",
+    "Google Workspace"
+  ],
+  "security": {
+    "head": "Security & Compliance — Microsoft 365 To Google Workspace Migration",
+    "intro": "Connect both platforms through approved APIs and OAuth consent without collecting user passwords. Encrypt data in transit, map permissions and retain per-user migration logs. Review exceptions during a pilot and validate results before the final cutover.",
+    "rows": [
+      [
+        "Authorisation",
+        "OAuth 2.0 App Consent"
+      ],
+      [
+        "Data Transfer",
+        "Encrypted Connections Between Platforms"
+      ],
+      [
+        "Permissions",
+        "Sharing Permissions Mapped To Google Drive"
+      ],
+      [
+        "Audit Trail",
+        "Per-User Logs And Migration Reports"
+      ],
+      [
+        "Cutover",
+        "Pre-Staging And Delta Sync"
+      ],
+      [
+        "Validation",
+        "Pilot Testing And Post-Migration Review"
+      ]
+    ]
+  }
+}, why: [["Since 1999","27 years serving Indian businesses."],["Both Platforms","Engineers familiar with Microsoft 365 and Google Workspace."],["Migration Planning","Discovery, mapping and a pilot before production cutover."],["Phased Delivery","Pre-staging and coexistence for department-by-department moves."],["Cutover Support","Support through cutover and post-migration hypercare."],["One Partner","Assessment, migration and validation together."]].map((item,i)=>({...view.why[i],title:item[0],body:item[1]})) };
+    if (slug === 'nvidia-vera-rubin') return {
+      ...view, faqs: VERA_RUBIN_FAQS, videos: [],
+      security: {
+        head: 'Security & Compliance — NVIDIA Vera Rubin',
+        intro: 'Scope GPU access, cluster networking and data handling around your workloads. XcellHost helps plan the hosting location, software stack and operational support, with capacity and cooling requirements confirmed during deployment scoping. Agree access permissions, data retention and backup policies before moving production workloads.',
+        rows: [
+          ['Access Controls', 'Workload And Cluster Permissions'],
+          ['Deployment Planning', 'Capacity And Facility Validation'],
+          ['Software Stack', 'Validated Before Handover'],
+          ['Operations', '24×7 GPU Engineering Support'],
+          ['Data Handling', 'Agree Retention And Backup Requirements'],
+          ['Hosting', 'Indian Data Centre Deployment Planning'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Workload Sizing', body: 'Plan NVL8 servers, NVL72 racks or multi-rack capacity.' },
+        { ...view.why[2], title: 'Guided Implementation', body: 'Cluster configuration, fabric validation and software provisioning.' },
+        { ...view.why[3], title: 'NVIDIA Software Stack', body: 'Tools for distributed training and inference, validated before handover.' },
+        { ...view.why[4], title: '24×7 GPU Engineers', body: 'GPU and distributed-workload specialists in English and Hindi.' },
+        { ...view.why[5], title: 'One Partner', body: 'Compute, networking, software and support together.' },
+      ],
+    };
+    if (slug === 'lead-generation-and-pipeline-crm') return {
+      ...view,
+      faqs: LEAD_CRM_FAQS,
+      videos: [],
+      security: {
+        head: 'Security & Compliance — Lead Generation & Pipeline CRM',
+        intro: 'Keep lead management accountable with team roles, permissions and a complete activity trail. Capture only the contact details your team needs, review access when responsibilities change, and use consent-based welcome messages and follow-ups. XcellHost helps configure your lead sources and pipeline for your business.',
+        rows: [
+          ['Team Access', 'Roles And Permissions'],
+          ['Activity History', 'Complete Lead Activity Trail'],
+          ['Lead Sources', 'QR Codes, Forms And Social DMs'],
+          ['Follow-Up Controls', 'Reminders And Automated Welcome Messages'],
+          ['Pipeline Visibility', 'Track Each Lead From New To Won'],
+          ['Data Handling', 'Review Contact Access And Messaging Consent'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Guided Setup', body: 'Lead source connections, pipeline setup and onboarding by XcellHost.' },
+        { ...view.why[2], title: 'One Dashboard', body: 'Manage leads, enquiries, follow-ups and pipeline stages together.' },
+        { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
+        { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
+        { ...view.why[5], title: 'White-Label For Consumer', body: 'Your brand, colours and domain, with partner pricing.' },
+      ],
+    };
+    if (slug === 'smart-qr-and-nfc-automation') return {
+      ...view,
+      faqs: SMART_QR_FAQS,
+      videos: [],
+      security: {
+        head: 'Security & Compliance — Smart QR & NFC Automation',
+        intro: 'Manage digital cards with team roles and permissions. Keep shared contact details and QR destinations current, publish only information intended for your customers, and review access when team members change. Central management helps maintain consistent card content across your business.',
+        rows: [
+          ['Team Access', 'Roles And Permissions'],
+          ['Card Management', 'Centrally Managed Team Profiles'],
+          ['Dynamic QR', 'Update Details Without Reprinting'],
+          ['Contact Sharing', 'QR Scan, NFC Tap And Shareable Link'],
+          ['Brand Control', 'Themes And Custom Domain'],
+          ['Analytics', 'Views, Saves, Clicks And Scans'],
+        ],
+      },
+      why: [
+        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { ...view.why[1], title: 'Guided Setup', body: 'Digital card setup, QR configuration and onboarding by XcellHost.' },
+        { ...view.why[2], title: 'One Dashboard', body: 'Manage team cards, contact links, themes and analytics together.' },
+        { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
+        { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
+        { ...view.why[5], title: 'White-Label For Consumer', body: 'Your brand, colours and domain, with partner pricing.' },
+      ],
+    };
     if (slug === 'instant-website') return {
       ...view,
       faqs: INSTANT_WEBSITE_FAQS,
@@ -2079,7 +3603,7 @@ export class ProductPage {
         { ...view.why[2], title: 'One Dashboard', body: 'Manage your website, bio link, themes and contact buttons together.' },
         { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
         { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
-        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+        { ...view.why[5], title: 'White-Label For Consumer', body: 'Your brand, colours and domain, with partner pricing.' },
       ],
     };
     if (slug === 'instagram-automation') return {
@@ -2104,7 +3628,7 @@ export class ProductPage {
         { ...view.why[2], title: 'One Dashboard', body: 'Manage Reels, posts, DMs and insights together.' },
         { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
         { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
-        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+        { ...view.why[5], title: 'White-Label For Consumer', body: 'Your brand, colours and domain, with partner pricing.' },
       ],
     };
     if (slug === 'hrm-attendance') return {
@@ -2129,7 +3653,7 @@ export class ProductPage {
         { ...view.why[2], title: 'One Dashboard', body: 'Manage attendance, leave, shifts and payroll together.' },
         { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
         { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
-        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+        { ...view.why[5], title: 'White-Label For Consumer', body: 'Your brand, colours and domain, with partner pricing.' },
       ],
     };
     if (slug === 'google-my-business') return {
@@ -2153,7 +3677,150 @@ export class ProductPage {
         { ...view.why[2], title: 'One Dashboard', body: 'Manage reviews, posts and multiple locations together.' },
         { ...view.why[3], title: 'INR Billing With GST', body: 'Growth Suite plans billed in rupees with GST invoices.' },
         { ...view.why[4], title: '24×7 Human Support', body: 'Phone, WhatsApp and ticket support in English and Hindi.' },
-        { ...view.why[5], title: 'White-Label For Agencies', body: 'Your brand, colours and domain, with partner pricing.' },
+        { ...view.why[5], title: 'White-Label For Consumer', body: 'Your brand, colours and domain, with partner pricing.' },
+      ],
+    };
+
+    if (slug === 'managed-pki') return {
+      ...view,
+      faqs: MANAGED_PKI_FAQS,
+      brandSuffix: 'Trust',
+      tagline: 'Your own private PKI — without building one.',
+      heroHighlight: 'An offline root, HSM-backed issuing CAs and certificates for every user, device and server — designed, hosted and operated for you by XcellHost on DigiCert or Sectigo, billed yearly in rupees.',
+      heroMessages: ['Wi-Fi, VPN and S/MIME certificates auto-enrolled'],
+      heroPoints: [
+        'Offline root & HSM-protected keys',
+        'Issuing CAs designed for you',
+        'ACME, SCEP & EST automation',
+        'Active Directory & MDM enrolment',
+      ],
+    };
+
+    if (slug === 'windows-365') return {
+      ...view,
+      name: 'Windows 365 Cloud PC',
+      faqs: WINDOWS_365_FAQS,
+      brandSuffix: 'Desktop',
+      tagline: "Your own Windows PC, in Microsoft's cloud, on every device.",
+      heroHighlight: 'Microsoft Windows 365 Cloud PCs, licensed, set up, secured and supported by XcellHost — each user gets a personal Windows Cloud PC with Entra ID sign-in and Intune management, at a fixed per-user price in rupees.',
+      heroMessages: ['Tally and Office on any device, from anywhere', 'A personal Windows Cloud PC for every user', 'Lose the laptop, keep the data', 'Add a Cloud PC for a new joiner the same day'],
+      heroPoints: ['Windows Cloud PC on any device', 'Tally, Office & Teams ready', 'Entra ID sign-in with MFA', 'Intune-managed & patched'],
+      videos: ['s1Rxs7rWd2I', ''],
+      videoLabels: ['Windows 365 Cloud PC'],
+      why: [
+        { icon: 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z', title: 'Cloud PC Licensing', body: 'Choose a Windows 365 plan that fits your team and daily workloads.' },
+        { icon: 'M3 4h18v13H3zM8 21h8M12 17v4', title: 'Guided Setup', body: 'Get help with user accounts, Cloud PC provisioning and initial configuration.' },
+        { icon: 'M2 4h14v10H2zM6 18h6M9 14v4M18 8h4v12h-4z', title: 'Work Across Devices', body: 'Access your personal Windows desktop from a laptop, tablet or supported browser.' },
+        { icon: 'M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5zM8 12l3 3 5-6', title: 'Security Management', body: 'Keep sign-in policies, device management and Windows updates organised.' },
+        { icon: 'M3 3h18v18H3zM3 8h18M8 8v13M12 12h5M12 16h5', title: 'Business Apps Ready', body: 'Set up the applications your team uses, including Office, Teams and Tally.' },
+        { icon: 'M4 14v-2a8 8 0 0116 0v2M3 14h4v6H3zM17 14h4v6h-4zM17 20c0 2-2 2-5 2', title: 'Helpful Support', body: 'Get assistance with onboarding, configuration and everyday Cloud PC questions.' },
+      ],
+    };
+
+    if (slug === 'pki-software') return {
+      ...view,
+      faqs: PKI_SOFTWARE_FAQS,
+      brandSuffix: 'Trust',
+      tagline: 'The right PKI platform — chosen, deployed and run for you.',
+      heroHighlight: 'We weigh DigiCert, Sectigo, Keyfactor, AppViewX, KeyTalk, Venafi and ManageEngine against your stack, then stand up the CA, RA, OCSP, HSM and certificate automation on-prem, in the cloud or hybrid — and operate it 24×7 from Mumbai.',
+      heroMessages: ['Seven PKI platforms, one honest shortlist', 'CA, RA, OCSP and HSM — wired and tested', 'On-prem, cloud or hybrid — your call', 'ACME, SCEP and EST automation from day one'],
+      heroPoints: ['Vendor-neutral shortlist', 'CA · RA · OCSP · HSM deployed', 'On-prem, cloud or hybrid', 'ACME, SCEP & EST automation'],
+      videos: ['s1Rxs7rWd2I', ''],
+      videoLabels: ['PKI Software'],
+    };
+
+    if (slug === 'matter-dac') return {
+      ...view,
+      name: 'Matter Device Attestation Certificates',
+      faqs: MATTER_DAC_FAQS,
+      brandSuffix: 'Trust',
+      tagline: 'Ship Matter devices that every smart home trusts on first scan.',
+      heroHighlight: 'A Matter-compliant certificate for every unit you build — issued under your own Product Attestation Intermediate, injected on your line and checked against the CSA ledger the moment a customer scans the QR code. Powered by DigiCert, delivered by XcellHost from Mumbai.',
+      heroMessages: ['Scan. Prove the device. Join the home.', 'A DAC for every unit you build', 'Your PAI under a Matter-trusted root', 'Counterfeits fail attestation'],
+      heroPoints: ['Matter-compliant DACs', 'Your own PAI, in about a week', 'Factory injection, batch issuance', 'REST · EST · SCEP · CMPv2'],
+      videos: ['s1Rxs7rWd2I', ''],
+      videoLabels: ['Matter Device Attestation Certificates'],
+    };
+
+    if (slug === 'certificate-mgmt-solutions') return {
+      ...view,
+      name: 'Certificate Management Solutions',
+      faqs: CLM_SOLUTIONS_FAQS,
+      brandSuffix: 'Trust',
+      tagline: 'The right CLM platform, chosen on facts, then run for you.',
+      heroHighlight: 'We compare the leading certificate lifecycle management platforms side by side, help you buy the one that fits, and run discovery, renewals and automation from Mumbai, billed in rupees.',
+      heroMessages: ['Compare 7 CLM platforms side by side', 'See every certificate from every CA', 'Renew 47-day certificates on autopilot', 'Public and private PKI in one console'],
+      heroPoints: ['Vendor-neutral comparison', 'Discovery across every CA', 'ACME, agents & integrations', 'Public & private PKI'],
+      videos: ['s1Rxs7rWd2I', ''],
+      videoLabels: ['Certificate Management Solutions'],
+    };
+
+    if (slug === 'cloud-code-signing') return {
+      ...view,
+      faqs: CLOUD_CODE_SIGNING_FAQS,
+      brandSuffix: 'Trust',
+      tagline: 'Sign every build from your pipeline. Keep the key in a cloud HSM.',
+      heroHighlight: 'Code signing as a service on DigiCert or Sectigo: private keys stay in certified hardware, policies and approvals decide who may sign what, and every signature is logged — set up, wired into your CI and supported by XcellHost, billed yearly in rupees.',
+      heroMessages: ['No USB tokens to courier, share or lose', 'GitHub, GitLab, Jenkins and Azure DevOps', 'An MFA approval before every release signature', 'Every signature logged — success or failure'],
+      heroPoints: ['Keys held in a FIPS 140-2 L2+ HSM', 'Signs straight from CI/CD', 'Role-based access + MFA', 'Release windows & approvals'],
+      videos: ['s1Rxs7rWd2I', ''],
+      videoLabels: ['Cloud Code Signing'],
+    };
+
+    if (slug === 'iot-device-certificates') return {
+      ...view,
+      faqs: IOT_DEVICE_CERTIFICATES_FAQS,
+      brandSuffix: 'Trust',
+      tagline: 'A certificate on every device — renewed, revoked and audited for you.',
+      heroHighlight: 'Unique X.509 identities for meters, sensors, gateways and vehicles — used for mutual TLS to your cloud and renewed automatically. Powered by DigiCert and Sectigo, run 24×7 from Mumbai.',
+      heroMessages: ['Birth certificates at the factory, operational in the field', 'Mutual TLS to AWS IoT Core, Azure IoT Hub or MQTT', 'Expiring certificates renew themselves over EST', 'One device compromised? Revoke it. The fleet keeps running.'],
+      heroPoints: ['A unique X.509 identity per device', 'ECC & RSA · SHA-2 / SHA-3', 'EST · SCEP · ACME · CMPv2', 'mTLS to cloud brokers'],
+      videos: PRODUCT_VIDEOS['IoT Certificates'],
+      videoLabels: ['Product Intro', 'Use Cases'],
+    };
+
+    if (slug === 'iot-pki') return {
+      ...view,
+      faqs: IOT_PKI_FAQS,
+      brandSuffix: 'Trust',
+      tagline: 'Every device born with an identity no one can copy.',
+      heroHighlight: 'A unique X.509 certificate for each device — injected on the chip, on your production line or in the field — so only genuine hardware connects to your cloud. Powered by DigiCert and Sectigo, delivered and run by XcellHost from Mumbai.',
+      heroMessages: ['A birth certificate for every device off the line', 'Mutual TLS: only genuine devices connect', 'Renew, revoke and update millions in the field', 'Long-life certificates with a post-quantum path'],
+      heroPoints: ['Unique identity per device', 'Factory & field provisioning', 'EST · SCEP · ACME · CMPv2', 'Mutual-TLS onboarding'],
+      videos: PRODUCT_VIDEOS['IoT Certificates'],
+      videoLabels: ['Product Intro', 'Use Cases'],
+    };
+
+    if (slug === 'private-ca') return {
+      ...view,
+      faqs: PRIVATE_CA_FAQS,
+      brandSuffix: 'Trust',
+      tagline: 'Your own certificate authority — without running one.',
+      heroHighlight: 'A private root and issuing CA on audited DigiCert or Sectigo infrastructure, issuing certificates that only your devices trust. XcellHost designs the hierarchy, runs enrolment and renewals, and bills you in rupees.',
+      heroMessages: [
+        'Certificates for intranet, VPN and Wi-Fi',
+        'Your root key, kept offline in an HSM',
+        'Custom key usages, key types and lifetimes',
+        'No more self-signed warnings on internal apps',
+      ],
+      heroPoints: [
+        'Hosted root + issuing CA',
+        'HSM-protected root key',
+        'Custom certificate profiles',
+        'ACME, SCEP & EST enrolment',
+      ],
+      videos: PRODUCT_VIDEOS['Private CA (Certificate Authority)'],
+      videoLabels: ['Product Intro', 'Use Cases'],
+    };
+
+    if (slug === 'co-location-services') return {
+      ...view,
+      tagline: 'Your servers. Our Tier-4 datacenters.',
+      heroHighlight: 'Secure rack space, redundant power and cooling, with carrier-neutral connectivity.',
+      heroMessages: [
+        'Keep full control of your hardware',
+        'Scale from a single server to full racks',
+        'Get on-site support with remote hands',
       ],
     };
 
@@ -2223,6 +3890,43 @@ export class ProductPage {
     if (slug === 'performance-cloud') {
       return { ...view, faqs: PERFORMANCE_CLOUD_FAQS };
     }
+    if (slug === 'nvidia-b300') {
+      return {
+        ...view,
+        tagline: 'NVIDIA B300 GPU servers',
+        heroHighlight: 'Blackwell Ultra for frontier training, long-context reasoning and high-volume inference. 288 GB of HBM3e per GPU, 8 TB/s of bandwidth and 1.5× the FP4 compute of B200 — from a single GPU to a full 8-GPU HGX B300 server, hosted in India.',
+      };
+    }
+    if (slug === 'digicert-code-signing') {
+      return {
+        ...view,
+        tagline: 'Your name on the installer. Proof nobody touched it since.',
+        heroHighlight: 'Sectigo and Comodo OV & EV code signing — validated with your Indian company documents, shipped on a FIPS token or set up on your HSM, and billed in rupees by XcellHost.',
+        heroMessages: [],
+      };
+    }
+    if (slug === 'vdpo-as-a-service') {
+      return {
+        ...view,
+        tagline: "A Data Protection Officer for India's DPDP Act — without the full-time hire.",
+        heroHighlight: "XcellHost's privacy team maps your personal data, writes your notices, answers data-principal requests, runs impact assessments and leads breach response — for a fixed monthly fee, billed in rupees.",
+      };
+    }
+    if (slug === 'comodo-ev-code-signing') {
+      return {
+        ...view,
+        tagline: 'Your company name on the install prompt — not "Unknown publisher".',
+        heroHighlight: 'Extended Validation code signing from Comodo, now issued by Sectigo — vetted with your MCA records, delivered on a hardware token and supported in India by XcellHost.',
+        heroPoints: [
+          'EV · organisations only',
+          'Key on FIPS 140-2 Level 2 token',
+          '3072-bit RSA · SHA-256',
+          'RFC 3161 timestamping',
+          'Windows, Java, Adobe AIR, Mozilla',
+          'Eligible for kernel-mode drivers',
+        ],
+      };
+    }
     if (slug === 'n8n-vps') {
       return {
         ...view,
@@ -2261,6 +3965,7 @@ export class ProductPage {
     if (view && this.slug() === 'microsoft-365-training') {
       return {
         ...view,
+        brandSuffix: 'Office',
         heroPoints: ['Role-based training', 'Hands-on learning', 'Certification preparation', 'Microsoft 365 Copilot'],
         why: MICROSOFT_TRAINING_SAMPLE_WHY,
         faqs: MICROSOFT_TRAINING_SAMPLE_FAQS,
@@ -2396,6 +4101,22 @@ export class ProductPage {
 
   /** Current portion of an optional rotating product hero message. */
   readonly typedHeroText = signal('');
+  readonly managedPkiFaqs = MANAGED_PKI_FAQS;
+  readonly privateCaFaqs = PRIVATE_CA_FAQS;
+  readonly iotPkiFaqs = IOT_PKI_FAQS;
+  readonly iotDeviceCertificatesFaqs = IOT_DEVICE_CERTIFICATES_FAQS;
+  readonly cloudCodeSigningFaqs = CLOUD_CODE_SIGNING_FAQS;
+  readonly isCloudCodeSigning = computed(() => this.slug() === 'cloud-code-signing');
+  readonly clmSolutionsFaqs = CLM_SOLUTIONS_FAQS;
+  readonly isClmSolutions = computed(() => this.slug() === 'certificate-mgmt-solutions');
+  // The imported CLM content belongs to the existing certificate-management page.
+  readonly matterDacFaqs = MATTER_DAC_FAQS;
+  readonly isMatterDac = computed(() => this.slug() === 'matter-dac');
+  readonly pkiSoftwareFaqs = PKI_SOFTWARE_FAQS;
+  readonly isPkiSoftware = computed(() => this.slug() === 'pki-software');
+  readonly windows365Faqs = WINDOWS_365_FAQS;
+  readonly isWindows365 = computed(() => this.slug() === 'windows-365');
+  readonly isPkiDetailPage = computed(() => ['managed-pki', 'private-ca', 'iot-pki', 'iot-device-certificates', 'cloud-code-signing', 'certificate-mgmt-solutions', 'matter-dac', 'pki-software'].includes(this.slug()));
 
   /** The animated hero SVG, injected verbatim because it is our own data file. */
   /** The dotted world map behind the hero. Static markup from our own data file. */
@@ -2407,6 +4128,7 @@ export class ProductPage {
 
   /** Every resolved product gets a localized or category-level hero illustration. */
   readonly isFlagship = computed(() => !!this.view()?.heroImage);
+  readonly isWebHostingBanner = computed(() => HOSTING_BANNER_PAGES.has(this.slug()));
 
   readonly showAiPoweredBadge = computed(() => {
     const name = this.view()?.name.trim() ?? '';
@@ -2428,6 +4150,12 @@ export class ProductPage {
   );
 
   readonly isScrutinyEdr = computed(() => this.view()?.name === 'Scrutiny EDR');
+
+  readonly edrFaqs = computed(() =>
+    this.isAdvancedEdr() ? ACRONIS_EDR_FAQS : SCRUTINY_EDR_FAQS
+  );
+
+  readonly cloudDriveFaqs = CLOUD_DRIVE_SEO_FAQS;
 
   readonly isCloudObjectStorage = computed(() => this.view()?.name === 'Cloud Object Storage');
 
@@ -2496,6 +4224,263 @@ export class ProductPage {
 
   readonly isTally = computed(() => this.view()?.name === 'Tally on Cloud');
 
+
+  readonly referenceSectionNav = computed(() => {
+    if (this.slug() === 'docusign') {
+      return {
+        frameSelector: 'xh-docusign-source iframe[src="/docusign-content.html"]',
+        links: [
+          { label: 'Overview', target: 'overview' },
+          { label: 'Every Plan Includes', target: 'included' },
+          { label: 'Features', target: 'features' },
+          { label: 'eSignature vs IAM', target: 'iam' },
+          { label: 'Paper vs Docusign', target: 'vs' },
+          { label: 'India & Legal', target: 'india' },
+          { label: 'Security', target: 'security' },
+          { label: 'Pricing', target: 'pricing' },
+          { label: 'Add-ons', target: 'addons' },
+          { label: 'Configurator', target: 'configure' },
+          { label: 'Use Cases', target: 'usecases' },
+          { label: 'How It Works', target: 'how' },
+          { label: 'Integrations', target: 'integrations' },
+          { label: 'Tools', target: 'tools' },
+          { label: 'FAQs', target: 'ppFaq' },
+        ],
+      };
+    }
+    if (this.slug() === 'rpc-nodes') {
+      return {
+        frameSelector: 'xh-rpc-nodes-source iframe[src="/rpc-nodes-content.html"]',
+        links: [
+          { label: 'Overview', target: 'overview' },
+          { label: 'Pricing', target: 'pricing' },
+          { label: 'Configurator', target: 'configure' },
+          { label: 'Node types', target: 'nodes' },
+          { label: 'What you get', target: 'features' },
+          { label: 'Shared vs Dedicated', target: 'vs' },
+          { label: 'How it works', target: 'steps' },
+          { label: 'Node sizing', target: 'sizing' },
+          { label: 'Cost calculator', target: 'cost' },
+          { label: 'Endpoint', target: 'endpoint' },
+          { label: 'Use cases', target: 'usecases' },
+          { label: 'Locations', target: 'locations' },
+          { label: 'Chains', target: 'chains' },
+          { label: 'Why XcellHost', target: 'why' },
+          { label: 'Request a node', target: 'request' },
+          { label: 'FAQs', target: 'ppFaq' },
+        ],
+      };
+    }
+    if (this.slug() === 'gaming-servers') {
+      return {
+        frameSelector: 'xh-gaming-servers-content iframe[src="/gaming-servers-content.html"]',
+        links: [
+          { label: 'Overview', target: 'overview' },
+          { label: 'Servers & Pricing', target: 'servers' },
+          { label: 'Configurator', target: 'configure' },
+          { label: 'Why to Choose', target: 'why' },
+          { label: 'Ping Map', target: 'ping' },
+          { label: 'DDoS Shield', target: 'ddos' },
+          { label: 'Sizing', target: 'sizing' },
+          { label: 'OS & Mods', target: 'stack' },
+          { label: 'Use Cases', target: 'usecases' },
+          { label: 'Comparison', target: 'vs' },
+          { label: '5 Easy Steps', target: 'steps' },
+          { label: 'FAQs', target: 'ppFaq' },
+        ],
+      };
+    }
+    if (this.slug() === 'zoom-conferenceing') {
+      return {
+        frameSelector: 'xh-zoom-conferenceing-source iframe[src="/zoom-conferenceing-content.html"]',
+        links: [
+          { label: 'Overview', target: 'overview' },
+          { label: 'Zoom Workplace', target: 'workplace' },
+          { label: 'Pricing', target: 'pricing' },
+          { label: 'Configurator', target: 'configure' },
+          { label: 'Features', target: 'features' },
+          { label: 'Plan finder', target: 'finder' },
+          { label: 'Zoom Phone', target: 'phone' },
+          { label: 'Webinars & Events', target: 'webinars' },
+          { label: 'Contact Center', target: 'cc' },
+          { label: 'Savings', target: 'consolidate' },
+          { label: 'Use cases', target: 'usecases' },
+        ],
+      };
+    }
+    const pages: Record<string, { frame: string; overview: string; features: string; uses: string; specifications: string }> = {
+      'managed-pki': { frame: 'xh-imported-interactive-content.managed-pki-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'compare' },
+      'private-ca': { frame: 'xh-imported-interactive-content.private-ca-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'compare' },
+      'iot-pki': { frame: 'xh-imported-interactive-content.iot-pki-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'vendors' },
+      'iot-device-certificates': { frame: 'xh-imported-interactive-content.iot-device-certificates-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'compare' },
+      'cloud-code-signing': { frame: 'xh-imported-interactive-content.cloud-code-signing-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'compare' },
+      'certificate-mgmt-solutions': { frame: 'xh-imported-interactive-content.clm-solutions-source-content', overview: 'overview', features: 'features', uses: 'types', specifications: 'compare' },
+      'matter-dac': { frame: 'xh-imported-interactive-content.matter-dac-source-content', overview: 'overview', features: 'benefits', uses: 'start', specifications: 'compare' },
+      'pki-software': { frame: 'xh-imported-interactive-content.pki-software-source-content', overview: 'overview', features: 'products', uses: 'fit', specifications: 'grid' },
+      'windows-365': { frame: 'xh-imported-interactive-content.windows-365-source-content', overview: 'pricing', features: 'apps', uses: 'uses', specifications: 'configure' },
+      'thawte-ssl-certificates': { frame: 'xh-thawte-ssl-content', overview: 'overview', features: 'how', uses: 'products', specifications: 'compare' },
+      'nvidia-b300': { frame: 'xh-nvidia-b300-overview', overview: 'answer', features: 'b300SoftwareStack', uses: 'b300Deployment', specifications: 'itb' },
+      'comodo-ev-code-signing': { frame: 'xh-comodo-ev-code-signing-content', overview: 'overview', features: 'features', uses: 'sign', specifications: 'compare' },
+      'digicert-code-signing': { frame: 'xh-code-signing-content', overview: 'overview', features: 'how', uses: 'platforms', specifications: 'products' },
+      'vdpo-as-a-service': { frame: 'xh-vdpo-content', overview: 'overview', features: 'what', uses: 'who', specifications: 'compare' },
+    };
+    const page = pages[this.slug()];
+    if (!page) return null;
+    return {
+      frameSelector: `${page.frame} iframe`,
+      links: [
+        { label: 'Overview', target: page.overview },
+        { label: 'Pricing', target: 'pricing' },
+        { label: 'Features', target: page.features },
+        { label: 'Use Cases', target: page.uses },
+        { label: 'Specifications', target: page.specifications },
+        { label: 'Security', target: 'ppSecHead' },
+        { label: 'Why to Choose', target: 'ppWhyHead' },
+        { label: 'Customer Testimonials', target: 'ppRevs' },
+        { label: 'FAQs', target: 'ppFaq' },
+        { label: 'Insights', target: 'ppBlog' },
+      ],
+    };
+  });
+
+  readonly containerRegistrySectionNavLinks = [
+    { label: 'Overview', target: 'registryOverview' },
+    { label: 'Pricing', target: 'pricing' },
+    { label: 'Features', target: 'features' },
+    { label: 'Use Cases', target: 'uses' },
+    { label: 'Specifications', target: 'commands' },
+    { label: 'Security', target: 'security' },
+    { label: 'Why to Choose', target: 'ppWhyHead' },
+    { label: 'Customer Testimonials', target: 'registryTestimonials' },
+    { label: 'FAQs', target: 'registryFaq' },
+    { label: 'Insights', target: 'ppBlog' },
+  ] as const;
+
+  readonly containerServiceSectionNavLinks = this.containerRegistrySectionNavLinks.map(link =>
+    link.label === 'Specifications' ? { ...link, target: 'caasSpecifications' }
+      : link.label === 'Pricing' ? { ...link, target: 'caas-pricing' }
+      : link.label === 'Use Cases' ? { ...link, target: 'caas-uses' }
+      : link,
+  );
+
+  readonly cpuSectionNavLinks = [
+    { label: 'Overview', target: 'answer' },
+    { label: 'Pricing', target: 'pricing' },
+    { label: 'Features', target: 'cpuFeatures' },
+    { label: 'Use Cases', target: 'cpuUseCases' },
+    { label: 'Specifications', target: 'cpuSpecifications' },
+    { label: 'Security', target: 'ppSecHead' },
+    { label: 'Why to Choose', target: 'ppWhyHead' },
+    { label: 'Customer Testimonials', target: 'cpuTestimonials' },
+    { label: 'FAQs', target: 'cpuFaq' },
+    { label: 'Insights', target: 'ppBlog' },
+  ] as const;
+
+
+  readonly memorySectionNavLinks = [
+    { label: 'Overview', target: 'answer' },
+    { label: 'Pricing', target: 'pricing' },
+    { label: 'Features', target: 'memoryFeatures' },
+    { label: 'Use Cases', target: 'memoryUseCases' },
+    { label: 'Specifications', target: 'memorySpecifications' },
+    { label: 'Security', target: 'ppSecHead' },
+    { label: 'Why to Choose', target: 'ppWhyHead' },
+    { label: 'Customer Testimonials', target: 'memoryTestimonials' },
+    { label: 'FAQs', target: 'memoryFaq' },
+    { label: 'Insights', target: 'ppBlog' },
+  ] as const;
+
+  readonly frameworkSectionNavLinks = [
+    { label: 'Overview', target: 'answer' },
+    { label: 'Framework Structure', target: 'structure' },
+    { label: 'India Context', target: 'india' },
+    { label: 'Services', target: 'services' },
+    { label: 'Security', target: 'ppSecHead' },
+    { label: 'Why to Choose', target: 'ppWhyHead' },
+    { label: 'Use Cases', target: 'nistDemoTitle' },
+    { label: 'Customer Testimonials', target: 'ppRevs' },
+    { label: 'FAQs', target: 'ppFaq' },
+    { label: 'Insights', target: 'ppBlog' },
+  ];
+
+  readonly frameworkContentSelector = computed(() =>
+    `xh-nist-csf-2-0-content iframe[src="/${this.slug()}-content.html"]`,
+  );
+
+  readonly dropboxSectionNavLinks = [
+    { label: 'Overview', target: 'answer' },
+    { label: 'Pricing Estimate', target: 'estimate' },
+    { label: 'Security', target: 'dropboxSecurity' },
+    { label: 'Why to Choose', target: 'dropboxWhy' },
+    { label: 'Migration Process', target: 'dropboxProcess' },
+    { label: 'Workloads', target: 'dropboxWorkloads' },
+    { label: 'Destination Mapping', target: 'dropboxMapping' },
+    { label: 'Customer Testimonials', target: 'dropboxReviews' },
+    { label: 'FAQs', target: 'ppFaq' },
+    { label: 'Insights', target: 'ppBlog' },
+  ];
+
+  readonly boxSectionNavLinks = [
+    { label: 'Overview', target: 'answer' },
+    { label: 'Pricing Estimate', target: 'estimate' },
+    { label: 'Security', target: 'boxSecurity' },
+    { label: 'Why to Choose', target: 'boxWhy' },
+    { label: 'Migration Process', target: 'boxProcess' },
+    { label: 'Workloads', target: 'boxWorkloads' },
+    { label: 'Destination Mapping', target: 'boxMapping' },
+    { label: 'Customer Testimonials', target: 'boxReviews' },
+    { label: 'FAQs', target: 'ppFaq' },
+    { label: 'Insights', target: 'ppBlog' },
+  ];
+
+  readonly sqlSectionNavLinks = [
+    { label: 'Overview', target: 'answer' },
+    { label: 'Pricing', target: 'pricing' },
+    { label: 'Security', target: 'sqlSecurity' },
+    { label: 'Why to Choose', target: 'sqlWhy' },
+    { label: 'Migration Steps', target: 'sqlMigration' },
+    { label: 'Features', target: 'sqlFeatures' },
+    { label: 'Editions', target: 'sqlEditions' },
+    { label: 'Workloads', target: 'sqlWorkloads' },
+    { label: 'Customer Testimonials', target: 'sqlReviews' },
+    { label: 'FAQs', target: 'ppFaq' },
+    { label: 'Insights', target: 'ppBlog' },
+  ];
+
+
+  readonly consultingSectionNavLinks = computed(() => this.smbSectionNavLinks().filter(link => link.target !== 'showcaseVideosTitle'));
+
+
+  readonly smbSectionNavLinks = computed(() =>
+    this.isTally()
+      ? [
+          { label: 'Overview', target: 'tallyOverview' },
+          { label: 'Pricing', target: 'tallyPricing' },
+          { label: 'Security', target: 'tallySecurity' },
+          { label: 'Why to Choose', target: 'tallyWhyChoose' },
+          { label: 'Cloud Savings', target: 'tallySavings' },
+          { label: '5 Easy Steps', target: 'tallyEasySteps' },
+          { label: 'Features', target: 'tallyFeatures' },
+          { label: 'Platforms & workloads', target: 'tallyPlatforms' },
+          { label: 'Customer Testimonials', target: 'tallyTestimonials' },
+          { label: 'FAQs', target: 'tallyFaq' },
+          { label: 'Insights', target: 'tallyInsights' },
+        ]
+      : [
+          { label: 'Overview', target: 'ppOv' },
+          { label: 'Pricing', target: 'ppPlans' },
+          { label: 'Security', target: 'ppSecHead' },
+          { label: 'Why to Choose', target: 'ppWhyHead' },
+          { label: 'Features', target: 'ppFeats' },
+          ...(!this.videosInInsights()
+            ? [{ label: 'Watch it in action', target: 'showcaseVideosTitle' }]
+            : []),
+          { label: 'Customer Testimonials', target: 'ppRevs' },
+          { label: 'FAQs', target: 'ppFaq' },
+          { label: 'Insights', target: 'ppBlog' },
+        ],
+  );
+
   readonly isSmbCloudDesktop = computed(() => this.view()?.name === 'SMB Cloud Desktop');
 
   readonly isAcronisTrueImage = computed(() => this.view()?.name === 'Acronis True Image');
@@ -2543,6 +4528,28 @@ export class ProductPage {
 
   readonly isInfrastructure = computed(() => this.view()?.name === 'Infrastructure');
 
+  readonly isGpuServerPage = computed(() => new Set([
+    'nvidia-l40s',
+    'nvidia-l4',
+    'nvidia-a30',
+    'nvidia-a2',
+    'nvidia-h100',
+    'nvidia-a100',
+    'rtx-pro-6000',
+    'nvidia-rtx-6000-ada',
+    'rtx-a6000',
+    'rtx-8000',
+    'gpu-clusters',
+    'nvidia-vera-rubin',
+  ]).has(this.slug()));
+
+  readonly isIframeGpuPage = computed(() => new Set([
+    'nvidia-l40s',
+    'nvidia-l4',
+    'nvidia-a30',
+    'nvidia-a2',
+  ]).has(this.slug()));
+
   readonly isWhatsAppSmb = computed(() => this.view()?.name === 'WhatsApp SMB');
 
   /** Every product's available videos, shown together immediately before reviews. */
@@ -2575,6 +4582,40 @@ export class ProductPage {
       }];
     });
   });
+
+  readonly productInsightVideos = computed(() => {
+    const additional: Record<string, readonly { title: string; source: string }[]> = {
+      '47-days-ssl': [{ title: '47-Days-SSL overview', source: 'https://www.youtube-nocookie.com/embed/s1Rxs7rWd2I?rel=0&playsinline=1' }],
+      'acronis-direct-cloud-backup': [{ title: 'Acronis Direct Cloud Backup overview', source: 'https://www.youtube-nocookie.com/embed/s1Rxs7rWd2I?rel=0&playsinline=1' }],
+      'explore-druva-platform': [{ title: 'Explore Druva Platform overview', source: 'https://www.youtube-nocookie.com/embed/s1Rxs7rWd2I?rel=0&playsinline=1' }],
+      'vortex-seg': [{ title: 'Elevate your email security with Vortex SEG', source: 'https://www.youtube-nocookie.com/embed/OQAmgvXsfyI?rel=0&playsinline=1' }],
+      'vortex-soc': [{ title: 'XcellSOC security operations', source: 'https://www.youtube-nocookie.com/embed/0tdN-nnDMHk?rel=0&playsinline=1' }],
+      'scrutiny-dlp': [{ title: 'Scrutiny DLP - Product Intro', source: 'https://www.youtube-nocookie.com/embed/xpKcsUPT0ZA?rel=0&playsinline=1' }],
+      'ediscovery-and-compliance': [{ title: 'Federated search and legal hold', source: '/assets/animations/ediscovery-compliance-animation.html' }],
+      'tsplus-remote-support': [
+        { title: 'TSplus Remote Support - Introduction', source: 'https://www.youtube-nocookie.com/embed/Wz1Po60yZAE?rel=0&playsinline=1' },
+        { title: 'TSplus Remote Support - Use cases', source: 'https://www.youtube-nocookie.com/embed/IVOcO7vpFvE?rel=0&playsinline=1' },
+      ],
+      'tsplus-advanced-security': [{ title: 'TSplus Advanced Security', source: 'https://assets.tsplus.net/f/1020006/x/0af48cc30d/tsplus-advanced-security-protect-windows-rdp-servers.webm' }],
+      'tsplus-remote-access': [
+        { title: 'TSplus Remote Access - Introduction', source: 'https://www.youtube-nocookie.com/embed/bYb3kxj4wsM?rel=0&playsinline=1' },
+        { title: 'TSplus Remote Access - Use cases', source: 'https://www.youtube-nocookie.com/embed/kcWVIAJK2Qs?rel=0&playsinline=1' },
+      ],
+      'tsplus-server-monitoring': [{ title: 'TSplus Server Monitoring', source: 'https://assets.tsplus.net/f/1020006/x/c952d2bf01/server-monitoring.mp4' }],
+    };
+    const videos = [
+      ...this.showcaseVideos().map(video => ({ title: video.label, src: video.url })),
+      ...(additional[this.slug()] ?? []).map(video => ({
+        title: video.title,
+        src: this.sanitizer.bypassSecurityTrustResourceUrl(video.source),
+      })),
+    ];
+    return videos.length ? videos : null;
+  });
+
+  /** Product videos live in the shared Insights > Videos tab, not in a
+   * second standalone "Watch it in action" section on the same page. */
+  readonly videosInInsights = computed(() => !!this.productInsightVideos()?.length);
 
   readonly isRmm = computed(
     () => this.view()?.name === 'Remote Monitoring & Mgmt (RMM)'
@@ -2658,18 +4699,37 @@ export class ProductPage {
     effect(() => {
       const v = this.view();
       if (!v) {
-        void this.router.navigate(['/']);
         return;
       }
       const slug = this.slug();
-      this.seo.set(`${v.name} — XcellHost`, v.overview.slice(0, 160), `/${slug}/`);
+      const isAcronisEdr = slug === 'advanced-endpoint-security-edr';
+      const isScrutinyEdr = slug === 'scrutiny-edr';
+      const isCloudDrive = slug === 'cloud-drive';
+      this.seo.set(
+        isCloudDrive
+          ? 'Business Cloud Drive India — Secure File Sharing | XcellHost'
+          : isAcronisEdr
+          ? 'Managed EDR India: Endpoint Detection & Response | XcellHost'
+          : isScrutinyEdr
+            ? 'Scrutiny EDR India: Managed Endpoint Security | XcellHost'
+            : `${v.name} — XcellHost`,
+        isCloudDrive
+          ? 'Secure business Cloud Drive for Indian teams with pooled storage, file sync, controlled sharing and Indian data residency. Compare plans or request migration.'
+          : isAcronisEdr
+          ? 'Managed Acronis EDR in India from ₹999/user/year. Detect, investigate, contain and recover endpoint threats with 24×7 XcellHost support. GST extra.'
+          : isScrutinyEdr
+            ? 'Scrutiny EDR for Windows, macOS and Linux with behavioural detection, investigation, response and optional 24×7 monitoring from XcellHost India.'
+            : v.overview.slice(0, 160),
+        FRAMEWORK_DETAILS[slug] ? '/cybersecurity-frameworks/' + slug + '/' : `/${slug}/`,
+        this.socialPreviewImage(slug, v),
+      );
       this.seo.setJsonLd('product', this.jsonLd(v, slug));
     });
 
     effect((onCleanup) => {
       const messages = this.view()?.heroMessages ?? [];
       this.typedHeroText.set('');
-      if (!messages.length) return;
+      if (!messages.length || this.slug() === 'sectigo-ssl-certificates') return;
 
       let messageIndex = 0;
       let characterIndex = 0;
@@ -2698,14 +4758,234 @@ export class ProductPage {
     });
   }
 
+  private socialPreviewImage(slug: string, view: ProductView): string {
+    const overrides: Record<string, string> = {
+      'acronis-genai-protection': '/assets/images/acronis-genai-protection.png',
+      'advanced-endpoint-security-edr': '/assets/images/hero-acronis-edr-v2.png',
+      'cloud-backup': '/assets/images/hero-cloud-backup-acronis.png',
+      'cloud-drive': '/assets/images/cloud-drive-tour-dashboard.jpg',
+      'performance-cloud': '/assets/images/hero-performance-cloud-v2.png',
+      'remote-monitoring-and-mgmt-rmm': '/assets/images/hero-rmm.png',
+      'tally-on-cloud': '/assets/images/hero-tally-on-cloud.png',
+    };
+    const image = overrides[slug] ?? view.heroImage;
+    return image && !image.toLowerCase().endsWith('.svg')
+      ? image
+      : '/assets/images/xcellhost-logo.png';
+  }
+
   /* -------------------------------------------------------------- routing */
 
   /**
    * 1. the directory, 2. the hand-written product content (so `Acronis EDR`,
    * which never appears in the directory, still resolves), 3. give up.
    */
+  scrollToMigrationEstimate(event: Event): void {
+    event.preventDefault();
+    const frame = document.querySelector<HTMLIFrameElement>('iframe[src="/microsoft-365-to-google-workspace-migration-content.html"]');
+    const target = frame?.contentDocument?.getElementById('estimate');
+    if (frame && target) window.scrollTo({top:window.scrollY+frame.getBoundingClientRect().top+target.getBoundingClientRect().top-24,behavior:'smooth'});
+  }
+
   private resolve(slug: string): ProductView | null {
     if (!slug) return null;
+    if (slug === 'microsoft-entra-suite') {
+      const base = this.products.build({ name: 'Microsoft Entra ID', cat: 'Security', crumb: 'Security › Microsoft Entra' });
+      return {
+        ...base,
+        name: 'Microsoft Entra Suite',
+        tagline: 'One policy. Identity and network access together.',
+        heroHighlight: 'Bring Private Access, Internet Access, ID Governance, ID Protection and Verified ID with Face Check together — with rollout and support from XcellHost. Requires Entra ID P1.',
+        heroMessages: ['Replace the VPN with per-app access', 'Control access to web, SaaS and AI apps', 'Automate employee access through their lifecycle', 'Verify identities remotely with Face Check'],
+        heroPoints: ['Private Access', 'Internet Access', 'ID Governance', 'ID Protection', 'Verified ID with Face Check', 'Requires Entra ID P1'],
+        chips: [{ label: '₹910 / user / month', kind: 'price' }],
+        plans: [
+          { term: 'Monthly', amount: '₹910', unit: '/ user / month', cartName: 'Microsoft Entra Suite — Monthly', cartPrice: '₹910 / user / month excl. GST' },
+          { term: 'Yearly', amount: '₹10,560', unit: '/ user / year', cartName: 'Microsoft Entra Suite — Yearly', cartPrice: '₹10,560 / user / year excl. GST' },
+        ],
+        faqs: SUITE_FAQS,
+        security: {
+          head: 'Security & compliance',
+          intro: 'Bring identity and network access policies together. XcellHost helps plan private app access, internet filtering, lifecycle governance and identity verification, then test them in stages with your existing Entra ID P1 policies.',
+          rows: [['Private apps', 'Per-app access through Private Access'], ['Internet access', 'Identity-aware web and SaaS policies'], ['Access lifecycle', 'ID Governance workflows and reviews'], ['Identity risk', 'ID Protection risk signals and response'], ['Identity verification', 'Verified ID with Face Check'], ['Policy foundation', 'Entra ID P1 as the prerequisite']],
+        },
+        why: [
+          { ...base.why[0], title: 'Genuine Microsoft licences', body: 'Local INR billing and GST invoices, with help checking your P1 prerequisite and Suite licensing needs.' },
+          { ...base.why[1], title: 'Identity and network planning', body: 'Map users, private apps, internet policies and identity controls before rollout.' },
+          { ...base.why[2], title: 'Phased Suite rollout', body: 'Pilot the products your teams need, then expand governance and verification in stages.' },
+          { ...base.why[3], title: 'Local support', body: 'Get 24×7 support from XcellHost engineers in Mumbai.' },
+        ],
+      };
+    }
+    if (slug === 'microsoft-entra-id-p2') {
+      const base = this.products.build({ name: 'Microsoft Entra ID', cat: 'Security', crumb: 'Security › Microsoft Entra' });
+      return {
+        ...base,
+        name: 'Microsoft Entra ID P2',
+        tagline: 'Detect identity risk. Limit privileged access.',
+        heroHighlight: 'Add Identity Protection, risk-based Conditional Access, just-in-time admin roles and access reviews — with setup, local billing and support from XcellHost.',
+        heroMessages: ['Detect risky sign-ins and compromised accounts', 'Respond to risk with MFA and password changes', 'Activate admin roles only when needed', 'Review access and remove permissions no longer needed'],
+        heroPoints: ['Everything in Entra ID P1', 'Identity Protection', 'Risk-based Conditional Access', 'Privileged Identity Management', 'Access reviews and entitlement management', 'INR billing and GST invoices'],
+        chips: [{ label: '₹755 / user / month', kind: 'price' }],
+        plans: [
+          { term: 'Monthly', amount: '₹755', unit: '/ user / month', cartName: 'Microsoft Entra ID P2 — Monthly', cartPrice: '₹755 / user / month excl. GST' },
+          { term: 'Yearly', amount: '₹8,765', unit: '/ user / year', cartName: 'Microsoft Entra ID P2 — Yearly', cartPrice: '₹8,765 / user / year excl. GST' },
+        ],
+        faqs: P2_FAQS,
+        security: {
+          head: 'Security & compliance',
+          intro: 'Detect identity risk and limit standing administrative access. XcellHost helps configure risk policies, eligible roles, approvals and reviews, then test them with a pilot group before rollout.',
+          rows: [['Identity risk', 'Risky sign-ins and users surfaced by Identity Protection'], ['Risk response', 'MFA, secure password change and block policies'], ['Privileged access', 'Eligible roles with time-bound activation through PIM'], ['Approval controls', 'MFA, justification and approval for role activation'], ['Access governance', 'Core access reviews and entitlement management'], ['Audit evidence', 'Risk reports, activation history and review decisions']],
+        },
+        why: [
+          { ...base.why[0], title: 'Genuine Microsoft licences', body: 'Local INR billing and GST invoices, with a check for P2 licences already included in your Microsoft plan.' },
+          { ...base.why[1], title: 'Risk policy setup', body: 'Scope user and sign-in risk policies to licensed groups and test before enforcement.' },
+          { ...base.why[2], title: 'PIM and access reviews', body: 'Configure eligible roles, approval requirements and periodic access reviews.' },
+          { ...base.why[3], title: 'Local support', body: 'Get 24×7 support from XcellHost engineers in Mumbai.' },
+        ],
+      };
+    }
+    if (slug === 'microsoft-entra-id-p1') {
+      const base = this.products.build({ name: 'Microsoft Entra ID', cat: 'Security', crumb: 'Security › Microsoft Entra' });
+      return {
+        ...base,
+        name: 'Microsoft Entra ID P1',
+        tagline: 'Decide who gets in, and under what conditions.',
+        heroHighlight: 'Secure sign-ins with Conditional Access, MFA and self-service password reset — with policy setup, local billing and support from XcellHost.',
+        heroMessages: ['Require MFA when your policies call for it', 'Block legacy authentication', 'Check devices, locations and apps at sign-in', 'Let users reset passwords without a helpdesk ticket'],
+        heroPoints: ['Conditional Access', 'Multifactor authentication', 'Self-service password reset', 'Hybrid identity', 'Group-based access and licensing', 'INR billing and GST invoices'],
+        chips: [{ label: '₹528 / user / month', kind: 'price' }],
+        plans: [
+          { term: 'Monthly', amount: '₹528', unit: '/ user / month', cartName: 'Microsoft Entra ID P1 — Monthly', cartPrice: '₹528 / user / month excl. GST' },
+          { term: 'Yearly', amount: '₹6,125', unit: '/ user / year', cartName: 'Microsoft Entra ID P1 — Yearly', cartPrice: '₹6,125 / user / year excl. GST' },
+        ],
+        faqs: P1_FAQS,
+        security: {
+          head: 'Security & compliance',
+          intro: 'Define sign-in policies for your users and apps, require stronger verification, and review results before enforcing changes. XcellHost helps configure Conditional Access and password-reset policies around your access requirements.',
+          rows: [['Sign-in controls', 'Conditional Access by user, app, device and location'], ['Authentication', 'MFA and authentication-method policies'], ['Legacy access', 'Policies to block legacy authentication clients'], ['Password recovery', 'Self-service password reset and hybrid writeback'], ['Policy rollout', 'Report-only testing and emergency access exclusions'], ['Audit evidence', 'Sign-in logs and policy results']],
+        },
+        why: [
+          { ...base.why[0], title: 'Genuine Microsoft licences', body: 'Local INR billing and GST invoices, with a check for P1 licences already included in your Microsoft plan.' },
+          { ...base.why[1], title: 'Conditional Access setup', body: 'Design policies for users, apps and devices, then test in report-only mode before enforcement.' },
+          { ...base.why[2], title: 'MFA and password-reset rollout', body: 'Help users register authentication methods and configure self-service password reset.' },
+          { ...base.why[3], title: 'Local support', body: 'Get 24×7 support from XcellHost engineers in Mumbai.' },
+        ],
+      };
+    }
+    if (slug === 'microsoft-entra-id-governance') {
+      const base = this.products.build({ name: 'Microsoft Entra ID', cat: 'Security', crumb: 'Security › Microsoft Entra' });
+      return {
+        ...base,
+        name: 'Microsoft Entra ID Governance',
+        tagline: 'The right access, from the first day to the last.',
+        heroHighlight: 'Automate joiners, movers and leavers, simplify access reviews, and connect HR to your apps — with setup and support from XcellHost.',
+        heroMessages: ['Give new hires the access they need on day one', 'Update access when roles and departments change', 'Remove access when employees and contractors leave', 'Help reviewers focus on access exceptions'],
+        heroPoints: ['Lifecycle workflows', 'HR-driven provisioning', 'Access packages', 'ML-assisted access reviews', 'Privileged access management', 'INR billing and GST invoices'],
+        chips: [{ label: '₹528 / user / month', kind: 'price' }],
+        plans: [
+          { term: 'Monthly', amount: '₹528', unit: '/ user / month', cartName: 'Microsoft Entra ID Governance — Monthly', cartPrice: '₹528 / user / month excl. GST' },
+          { term: 'Yearly', amount: '₹6,125', unit: '/ user / year', cartName: 'Microsoft Entra ID Governance — Yearly', cartPrice: '₹6,125 / user / year excl. GST' },
+        ],
+        faqs: GOVERNANCE_FAQS,
+        security: {
+          head: 'Security & compliance',
+          intro: 'Keep access aligned with each person’s role throughout their lifecycle. XcellHost helps configure workflows, reviews and privileged access controls, and collect evidence for your internal access policies and audits.',
+          rows: [['Lifecycle controls', 'Joiner, mover and leaver workflows'], ['Least privilege', 'Role-based access packages and expiry'], ['Access reviews', 'Periodic reviews with recommendations and reviewer decisions'], ['Privileged access', 'Time-bound roles and approval through PIM'], ['Provisioning', 'HR attributes mapped to connected applications'], ['Audit evidence', 'Workflow history, review decisions and access reports']],
+        },
+        why: [
+          { ...base.why[0], title: 'Genuine Microsoft licences', body: 'Local INR billing and GST invoices, with help sizing governed users, reviewers and approvers.' },
+          { ...base.why[1], title: 'HR and app integration', body: 'Map HR records, departments and roles to access packages and connected apps.' },
+          { ...base.why[2], title: 'Workflow and review rollout', body: 'Pilot lifecycle workflows and access reviews before extending governance across the organisation.' },
+          { ...base.why[3], title: 'Local support', body: 'Get 24×7 support from XcellHost engineers in Mumbai.' },
+        ],
+      };
+    }
+    if (slug === 'microsoft-entra-private-access') {
+      const base = this.products.build({ name: 'Microsoft Entra ID', cat: 'Security', crumb: 'Security › Microsoft Entra' });
+      return {
+        ...base,
+        name: 'Microsoft Entra Private Access',
+        tagline: 'Replace your VPN with access to the app, not the network.',
+        heroHighlight: 'Identity-centric access to on-premises and multicloud apps — per-app policies, MFA and outbound-only connectors, with setup and VPN migration from XcellHost.',
+        heroMessages: ['Give users access only to the apps they need', 'Apply MFA and Conditional Access to legacy apps', 'Connect private networks without inbound ports', 'Pilot per-app access before retiring your VPN'],
+        heroPoints: ['Per-app Zero Trust access', 'MFA and Conditional Access', 'Outbound-only connectors', 'On-premises and multicloud apps', 'VPN migration support', 'INR billing and GST invoices'],
+        chips: [{ label: '₹378 / user / month', kind: 'price' }],
+        plans: [
+          { term: 'Monthly', amount: '₹378', unit: '/ user / month', cartName: 'Microsoft Entra Private Access — Monthly', cartPrice: '₹378 / user / month excl. GST' },
+          { term: 'Yearly', amount: '₹4,382', unit: '/ user / year', cartName: 'Microsoft Entra Private Access — Yearly', cartPrice: '₹4,382 / user / year excl. GST' },
+        ],
+        faqs: PRIVATE_FAQS,
+        security: {
+          head: 'Security & compliance',
+          intro: 'Scope private access to the apps each group needs, then check identity, device and policy before granting a session. XcellHost helps plan app segments, connector groups and Conditional Access policies before migrating away from broad VPN access.',
+          rows: [['Access scope', 'Per-app segments and group assignments'], ['Identity controls', 'MFA and Conditional Access for private apps'], ['Network exposure', 'Outbound-only private network connectors'], ['Availability', 'Multiple connectors in each site’s connector group'], ['Administrative access', 'Separate RDP, SSH and database app policies'], ['Review evidence', 'Traffic logs and pilot access checks']],
+        },
+        why: [
+          { ...base.why[0], title: 'Genuine Microsoft licences', body: 'Local INR billing and GST invoices for Private Access licensing.' },
+          { ...base.why[1], title: 'App and connector planning', body: 'Map private apps, groups, sites and connector requirements before rollout.' },
+          { ...base.why[2], title: 'VPN migration', body: 'Pilot per-app access, review traffic and migrate groups before retiring the VPN.' },
+          { ...base.why[3], title: 'Local support', body: 'Get 24×7 support from XcellHost engineers in Mumbai.' },
+        ],
+      };
+    }
+    if (slug === 'microsoft-entra-internet-access') {
+      const base = this.products.build({ name: 'Microsoft Entra ID', cat: 'Security', crumb: 'Security › Microsoft Entra' });
+      return {
+        ...base,
+        name: 'Microsoft Entra Internet Access',
+        tagline: 'A secure web gateway that knows who is browsing.',
+        heroHighlight: 'Web and AI app filtering, TLS inspection and Conditional Access on Microsoft’s global edge — with policy design, rollout and support from XcellHost.',
+        heroMessages: ['Filter web traffic by identity and policy', 'Discover and control unsanctioned AI apps', 'Protect users wherever they work', 'Replace your on-premises web proxy'],
+        heroPoints: ['Identity-centric web filtering', 'AI app controls', 'TLS inspection', 'Threat intelligence', 'Conditional Access', 'INR billing and GST invoices'],
+        chips: [{ label: '₹378 / user / month', kind: 'price' }],
+        plans: [
+          { term: 'Monthly', amount: '₹378', unit: '/ user / month', cartName: 'Microsoft Entra Internet Access — Monthly', cartPrice: '₹378 / user / month excl. GST' },
+          { term: 'Yearly', amount: '₹4,382', unit: '/ user / year', cartName: 'Microsoft Entra Internet Access — Yearly', cartPrice: '₹4,382 / user / year excl. GST' },
+        ],
+        faqs: INTERNET_FAQS,
+        security: {
+          head: 'Security & compliance',
+          intro: 'Apply identity and device controls to internet traffic, filter risky destinations and review web access policies. XcellHost helps plan traffic forwarding, test filtering rules and roll out policies for your users and branches.',
+          rows: [['Identity controls', 'Conditional Access and group-based security profiles'], ['Web filtering', 'Category and FQDN rules with policy priorities'], ['Encrypted traffic', 'TLS inspection with planned exclusions'], ['Threat protection', 'Threat intelligence and malicious-site blocking'], ['AI access', 'Controls for sanctioned and unsanctioned AI apps'], ['Policy evidence', 'Traffic logs and gateway decisions for review']],
+        },
+        why: [
+          { ...base.why[0], title: 'Genuine Microsoft licences', body: 'Local INR billing and GST invoices for your Internet Access licences.' },
+          { ...base.why[1], title: 'Policy design', body: 'Map groups, categories, FQDN rules and inspection exclusions to your business needs.' },
+          { ...base.why[2], title: 'Managed rollout', body: 'Pilot traffic forwarding for devices and branches before expanding coverage.' },
+          { ...base.why[3], title: 'Local support', body: 'Get 24×7 support from XcellHost engineers in Mumbai.' },
+        ],
+      };
+    }
+    if (slug === 'microsoft-entra-workload-id') {
+      const base = this.products.build({ name: 'Microsoft Entra ID', cat: 'Security', crumb: 'Security › Microsoft Entra' });
+      return {
+        ...base,
+        name: 'Microsoft Entra Workload ID',
+        tagline: 'Your apps sign in too. Guard them like people.',
+        heroHighlight: 'Policy, risk detection and access reviews for service principals and pipelines — billed in rupees, set up by our engineers.',
+        heroMessages: ['Block service principals outside your IP ranges', 'Catch client secrets leaked in public code', 'Review every app that holds a privileged role', 'Deploy from GitHub Actions with no stored secret'],
+        heroPoints: ['Conditional Access for apps', 'Leaked-credential detection', 'Continuous access evaluation', 'Reviews of privileged apps', 'App health recommendations', 'Custom security attributes'],
+        chips: [{ label: '₹228 / identity / month', kind: 'price' }],
+        plans: [
+          { term: 'Monthly', amount: '₹228', unit: '/ workload identity / month', cartName: 'Microsoft Entra Workload ID — Monthly', cartPrice: '₹228 / identity / month excl. GST' },
+          { term: 'Yearly', amount: '₹2,640', unit: '/ workload identity / year', cartName: 'Microsoft Entra Workload ID — Yearly', cartPrice: '₹2,640 / identity / year excl. GST' },
+        ],
+        faqs: WORKLOAD_FAQS,
+        security: {
+          head: 'Security & compliance',
+          intro: 'Protect software identities with policies, risk detection and reviews. XcellHost helps inventory your apps, test policies in report-only mode, move pipelines to federation and review privileged service principals.',
+          rows: [['Access policies', 'Named locations and trusted IP ranges'], ['Credential risk', 'Leaked-credential detection and suspicious sign-in alerts'], ['Privileged access', 'Recurring reviews of service principal roles'], ['Secretless sign-in', 'Federation for CI/CD and managed identities for Azure'], ['Audit evidence', 'Workload sign-in logs and risk reports']],
+        },
+        why: [
+          { ...base.why[0], title: 'Genuine Microsoft licences', body: 'Workload identity licensing with local INR billing and GST invoices.' },
+          { ...base.why[1], title: 'Policy rollout', body: 'Inventory your apps and test policies in report-only mode before enforcement.' },
+          { ...base.why[2], title: 'Secretless pipelines', body: 'Get help migrating CI/CD pipelines to workload identity federation.' },
+          { ...base.why[3], title: 'Local support', body: 'Get help from XcellHost engineers in Mumbai, 24×7.' },
+        ],
+      };
+    }
+    if (slug === 'microsoft-365-to-google-workspace-migration') return this.products.build({name: 'Microsoft 365 To Google Workspace Migration',cat: 'Cloud',crumb: 'Productivity › Migrations'});
     const enterpriseVariants: Record<string, string> = {
       'microsoft-365-enterprise-office365': 'Office 365 Enterprise',
       'microsoft-365-enterprise-frontline': 'Microsoft 365 Frontline',
@@ -2825,6 +5105,7 @@ export class ProductPage {
       });
     }
 
+    if (FRAMEWORK_DETAILS[slug]) return this.products.build({ name: FRAMEWORK_DETAILS[slug].name, cat: 'Security', tag: FRAMEWORK_DETAILS[slug].highlight, crumb: 'Security › Cybersecurity Frameworks' });
     const entry = this.catalog.entryBySlug(slug);
     if (entry) {
       return this.products.build({
@@ -2835,7 +5116,7 @@ export class ProductPage {
       });
     }
 
-    const name = ProductPage.EXTRA_NAMES.find((k) => slugify(k) === slug);
+    const name = ProductPageComponent.EXTRA_NAMES.find((k) => slugify(k) === slug);
     return name ? this.products.build({ name }) : null;
   }
 
@@ -2864,12 +5145,16 @@ export class ProductPage {
     this.addPlanQuantity(plan);
   }
 
-  /** RMM "View Plan" keeps the visitor on-page and opens the selected plan in the cart. */
+  /** Open the RMM checkout with the selected term and device quantity. */
   viewRmmPlan(plan: PricingPlan, ev: Event): void {
     ev.preventDefault();
-    const quantity = this.edrQuantity();
-    this.cart.add(plan.cartName, plan.cartPrice, quantity);
-    this.cart.open();
+    const years = Math.max(1, Number.parseInt(plan.term, 10) || 1);
+    void this.router.navigate(['/rmm-checkout'], {
+      queryParams: {
+        term: `${years}y`,
+        quantity: this.edrQuantity(),
+      },
+    });
   }
 
   /** `.pl-buy` and the hero Buy Now — add, open the drawer, go straight to checkout. */
@@ -2894,20 +5179,75 @@ export class ProductPage {
 
   buyEdrPlan(plan: PricingPlan, ev: Event): void {
     ev.preventDefault();
-    const quantity = this.edrQuantity();
-    this.cart.add(plan.cartName, plan.cartPrice, quantity);
-    this.cart.open();
-    this.cart.toCheckout();
+    const years = Math.max(1, Number.parseInt(plan.term, 10) || 1);
+    const params = new URLSearchParams({
+      product: 'acronis-edr',
+      billing: `${years}-year`,
+      quantity: String(this.edrQuantity()),
+    });
+    window.location.assign(`/edr-checkout?${params.toString()}`);
   }
 
   /** Hero "Buy Now" buys the entry-level term, which is what the ladder starts at. */
   buyNow(ev: Event): void {
+    if (this.isTally()) {
+      ev.preventDefault();
+      window.location.assign('/tally-on-cloud/checkout?package=LITE&term=MON&quantity=1');
+      return;
+    }
     const plan = this.view()?.plans[0];
     if (!plan) {
       ev.preventDefault();
       return;
     }
+    if (this.isAdvancedEdr()) {
+      this.buyEdrPlan(plan, ev);
+      return;
+    }
+    if (this.isRmm()) {
+      this.viewRmmPlan(plan, ev);
+      return;
+    }
     this.buyPlan(plan, ev);
+  }
+
+  /** Keep the existing dialogs available from every standalone embedded hero. */
+  @HostListener('window:message', ['$event'])
+  onSuppliedSmbHeroMessage(event: MessageEvent<unknown>): void {
+    if (
+      (!this.usesSuppliedSmbHero() && !this.isVmc() && !this.isCmc()) ||
+      event.origin !== window.location.origin
+    ) return;
+    const frame = Array.from(
+      document.querySelectorAll<HTMLIFrameElement>('iframe.supplied-smb-hero-frame'),
+    ).find((candidate) => candidate.contentWindow === event.source);
+    if (!frame) return;
+
+    const message = event.data as { type?: unknown; action?: unknown; height?: unknown } | null;
+    if (this.isCmc() && message?.type === 'xcellhost:hero-size') {
+      const height = message.height;
+      if (typeof height === 'number' && Number.isFinite(height) && height > 0 && height <= 3000) {
+        frame.style.height = `${Math.ceil(height)}px`;
+      }
+      return;
+    }
+    if (message?.type !== 'xcellhost:hero-action') return;
+
+    const click = new Event('click');
+    switch (message.action) {
+      case 'presentation':
+        this.requestDoc('presentation', click);
+        break;
+      case 'tour':
+        this.openProductScreenshotTour();
+        break;
+      case 'trial':
+        this.openTrial(click);
+        break;
+      case 'callback':
+        this.openCallback(click);
+        break;
+    }
   }
 
   requestDoc(kind: DocKind, ev: Event): void {
@@ -2923,8 +5263,31 @@ export class ProductPage {
     this.overlay.open('trial');
   }
 
+  onMicrosoft365HeroAction(action: 'tour' | 'trial' | 'callback'): void {
+    if (action === 'tour') this.openProductScreenshotTour();
+    else if (action === 'trial') this.openTrial(new Event('click'));
+    else this.openCallback(new Event('click'));
+  }
+
   requestGpuCluster(configuration: string): void {
     this.topics.ask(`GPU Clusters - ${configuration}`);
+    this.overlay.open('callback');
+  }
+
+  requestGpuServersCallback(request: string): void {
+    this.topics.ask('GPU Servers', {
+      firstName: '', lastName: '', company: '', email: '',
+      help: /trial/i.test(request) ? 'Ask For FREE Trial' : 'Request a CallBack',
+      details: `GPU Servers - ${request}`,
+    });
+    this.overlay.open('callback');
+  }
+
+  requestB300Reservation(configuration: string): void {
+    this.topics.ask('NVIDIA B300 Reservation', {
+      firstName: '', lastName: '', company: '', email: '',
+      help: 'Request a CallBack', details: configuration,
+    });
     this.overlay.open('callback');
   }
 
@@ -2949,6 +5312,11 @@ export class ProductPage {
 
   requestMicrosoftDefenderQuote(request: string): void {
     this.topics.ask(`Microsoft Defender for Business - ${request}`);
+    this.overlay.open('callback');
+  }
+
+  requestManagedDatabaseQuote(request: string): void {
+    this.topics.ask(request);
     this.overlay.open('callback');
   }
 
@@ -3021,8 +5389,29 @@ export class ProductPage {
 
   selectCybirdPlan(plan: CybirdPlan, ev: Event): void {
     ev.preventDefault();
-    this.topics.ask(`Cybird ${plan.name} - ${this.activeCybirdTerm().label}`);
-    this.overlay.open('callback');
+    const packageId = plan.name.toLowerCase();
+    const termId = this.selectedCybirdTerm();
+
+    try {
+      const stored = JSON.parse(window.localStorage.getItem('xcellhost_cybird_cart') || '{}');
+      window.localStorage.setItem(
+        'xcellhost_cybird_cart',
+        JSON.stringify({
+          ...stored,
+          packageId,
+          termId,
+          quantity: 1,
+          inCart: false,
+        }),
+      );
+    } catch {
+      window.localStorage.setItem(
+        'xcellhost_cybird_cart',
+        JSON.stringify({ packageId, termId, quantity: 1, inCart: false }),
+      );
+    }
+
+    window.location.assign('/cybird-checkout');
   }
 
   selectTallyTerm(term: TallyTerm): void {
@@ -3031,12 +5420,32 @@ export class ProductPage {
 
   selectTallyPlan(plan: TallyPlan, ev: Event): void {
     ev.preventDefault();
-    if (plan.edition === 'Cloud Lite' && this.selectedTallyTerm() === 'monthly') {
-      window.location.assign('/assets/xcellhost-checkout.html?product=tally-private-cloud-lite&billing=monthly');
-      return;
-    }
-    this.topics.ask(`${plan.name} (${plan.edition}) - ${plan.users} users - ${this.activeTallyTerm().label}`);
-    this.overlay.open('callback');
+    const packageId = this.tallyPackageId(plan);
+    const termId: Record<TallyTerm, string> = {
+      monthly: 'MON',
+      '3m': 'QUA',
+      '6m': 'SEM',
+      '1y': 'YEA',
+    };
+    const params = new URLSearchParams({
+      package: packageId,
+      term: termId[this.selectedTallyTerm()],
+      quantity: '1',
+    });
+    window.location.assign(`/tally-on-cloud/checkout?${params.toString()}`);
+  }
+
+  private tallyPackageId(plan: TallyPlan): string {
+    if (plan.users === '51+ to 75') return 'XXXXL';
+    return ({
+      'Cloud Lite': 'LITE',
+      'Cloud X Small': 'XS',
+      'Cloud Small': 'S',
+      'Cloud Medium': 'M',
+      'Cloud X Large': 'XL',
+      'Cloud XX Large': 'XXL',
+      'Cloud XXX Large': 'XXXL',
+    } as Record<string, string>)[plan.edition] || 'LITE';
   }
 
   requestPerformanceCloudPlan(plan: string): void {
@@ -3044,14 +5453,29 @@ export class ProductPage {
     this.overlay.open('callback');
   }
 
-  selectSmbDesktopPlan(plan: TallyPlan, ev: Event): void {
-    ev.preventDefault();
-    this.topics.ask(`${plan.name} (${plan.edition}) - ${plan.users} users - ${this.activeTallyTerm().label}`);
+  requestCpuOptimizedPlan(plan: string): void {
+    this.topics.ask(`CPU Optimized - ${plan}`);
     this.overlay.open('callback');
   }
 
+  requestMemoryOptimizedPlan(plan: string): void {
+    this.topics.ask(`Memory Optimized - ${plan}`);
+    this.overlay.open('callback');
+  }
+
+  selectSmbDesktopPlan(plan: TallyPlan, ev: Event): void {
+    ev.preventDefault();
+    const planKey = plan.edition.toLowerCase();
+    const termKey = this.selectedTallyTerm();
+    window.location.assign(
+      `/smb-cloud-desktop/checkout?plan=${encodeURIComponent(planKey)}&term=${encodeURIComponent(termKey)}&quantity=${this.smbDesktopQuantity(plan)}`,
+    );
+  }
+
   smbDesktopPrice(plan: TallyPlan): number {
-    return plan.prices[this.selectedTallyTerm()];
+    const maximumUsers = this.smbDesktopBounds(plan).max;
+    const perUserPrice = plan.prices[this.selectedTallyTerm()] / maximumUsers;
+    return perUserPrice * this.smbDesktopQuantity(plan);
   }
 
   selectCloudDriveTerm(term: CloudDriveTerm): void {
@@ -3060,12 +5484,23 @@ export class ProductPage {
 
   selectCloudDrivePlan(plan: CloudDrivePlan, ev: Event): void {
     ev.preventDefault();
-    this.topics.ask(`Cloud Drive ${plan.storage} - ${this.activeCloudDriveTerm().label} - ${this.cloudDriveQuantity()} users`);
-    this.overlay.open('callback');
+    const storage = plan.storage.toLowerCase().replace(/\s+/g, '');
+    const term: Record<CloudDriveTerm, string> = {
+      monthly: 'mon',
+      '3m': '3mon',
+      '6m': '6mon',
+      '1y': '1y',
+    };
+    const params = new URLSearchParams({
+      storage,
+      term: term[this.selectedCloudDriveTerm()],
+      quantity: String(this.cloudDriveQuantity()),
+    });
+    window.location.assign(`/cloud-drive/checkout?${params.toString()}`);
   }
 
   readonly cloudBackupTerms: readonly { key: CloudBackupTerm; label: string; saving: string }[] = [
-    { key: 'monthly', label: 'Monthly', saving: '' },
+    { key: 'monthly', label: 'Monthly', saving: 'No Saving' },
     { key: 'quarterly', label: 'Quarterly', saving: 'Save 5%' },
     { key: '6m', label: '6 Months', saving: 'Save 7.5%' },
     { key: 'yearly', label: 'Yearly', saving: 'Save 10%' },
@@ -3158,6 +5593,160 @@ export class ProductPage {
   /* ----------------------------------------------------------------- seo */
 
   private jsonLd(v: ProductView, slug: string): Record<string, unknown> {
+    if (slug === 'cloud-drive') {
+      const pageUrl = SITE.siteUrl.replace(/\/$/, '') + '/cloud-drive/';
+      const organizationId = SITE.siteUrl.replace(/\/$/, '') + '/#organization';
+      return {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'Organization',
+            '@id': organizationId,
+            name: SITE.company,
+            url: SITE.siteUrl,
+            foundingDate: '1999',
+            telephone: SITE.phone,
+            email: SITE.email,
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: SITE.city,
+              addressRegion: SITE.region,
+              addressCountry: SITE.country,
+            },
+            sameAs: [
+              'https://www.youtube.com/@XcellHostCloudServices',
+              'https://www.instagram.com/xcellhost_cloud/',
+              'https://www.facebook.com/XcellHost.Cloud.Pvt.Ltd',
+              'https://x.com/xcellcloud',
+            ],
+          },
+          {
+            '@type': 'BreadcrumbList',
+            '@id': pageUrl + '#breadcrumb',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.siteUrl },
+              { '@type': 'ListItem', position: 2, name: 'Cloud', item: SITE.siteUrl.replace(/\/$/, '') + '/category/cloud/' },
+              { '@type': 'ListItem', position: 3, name: 'Cloud Drive', item: pageUrl },
+            ],
+          },
+          {
+            '@type': 'Service',
+            '@id': pageUrl + '#service',
+            name: 'XcellHost Business Cloud Drive',
+            description: 'Secure business file storage, synchronization and controlled sharing with pooled storage, unlimited users and Indian data residency.',
+            serviceType: 'Business Cloud File Storage and Sharing',
+            areaServed: { '@type': 'Country', name: 'India' },
+            provider: { '@id': organizationId },
+            offers: {
+              '@type': 'AggregateOffer',
+              url: pageUrl + '#ppPlans',
+              priceCurrency: 'INR',
+              lowPrice: '2499',
+              highPrice: '35625',
+              offerCount: '5',
+              availability: 'https://schema.org/InStock',
+              seller: { '@id': organizationId },
+            },
+            additionalProperty: [
+              { '@type': 'PropertyValue', name: 'Storage', value: '250 GB to 5 TB pooled per customer' },
+              { '@type': 'PropertyValue', name: 'Users', value: 'Unlimited users on published plans' },
+              { '@type': 'PropertyValue', name: 'Encryption at rest', value: 'AES-256' },
+              { '@type': 'PropertyValue', name: 'Encryption in transit', value: 'TLS 1.2/1.3' },
+              { '@type': 'PropertyValue', name: 'Data location', value: 'Indian data centres' },
+              { '@type': 'PropertyValue', name: 'Platform uptime SLA', value: '99.9%' },
+            ],
+          },
+          {
+            '@type': 'FAQPage',
+            '@id': pageUrl + '#faq',
+            mainEntity: CLOUD_DRIVE_SEO_FAQS.map(([question, answer]) => ({
+              '@type': 'Question',
+              name: question,
+              acceptedAnswer: { '@type': 'Answer', text: answer },
+            })),
+          },
+        ],
+      };
+    }
+
+    if (slug === 'advanced-endpoint-security-edr' || slug === 'scrutiny-edr') {
+      const isAcronis = slug === 'advanced-endpoint-security-edr';
+      const pageUrl = SITE.siteUrl.replace(/\/$/, '') + '/' + slug + '/';
+      const faqs = isAcronis ? ACRONIS_EDR_FAQS : SCRUTINY_EDR_FAQS;
+      const organization = {
+        '@type': 'Organization',
+        '@id': SITE.siteUrl.replace(/\/$/, '') + '/#organization',
+        name: SITE.company,
+        url: SITE.siteUrl,
+        telephone: SITE.phone,
+        email: SITE.email,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: SITE.city,
+          addressRegion: SITE.region,
+          addressCountry: SITE.country,
+        },
+      };
+
+      return {
+        '@context': 'https://schema.org',
+        '@graph': [
+          organization,
+          {
+            '@type': 'BreadcrumbList',
+            '@id': pageUrl + '#breadcrumb',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.siteUrl },
+              { '@type': 'ListItem', position: 2, name: 'Cybersecurity', item: SITE.siteUrl.replace(/\/$/, '') + '/cybersecurity/' },
+              { '@type': 'ListItem', position: 3, name: v.name, item: pageUrl },
+            ],
+          },
+          {
+            '@type': 'Service',
+            '@id': pageUrl + '#service',
+            name: isAcronis
+              ? 'Managed Acronis Endpoint Detection and Response (EDR)'
+              : 'Managed Scrutiny Endpoint Detection and Response (EDR)',
+            description: isAcronis
+              ? 'Managed endpoint detection and response in India with Acronis protection, investigation, containment, recovery assistance and XcellHost support.'
+              : 'Managed endpoint detection and response in India with Scrutiny behavioural detection, investigation, containment and optional 24×7 monitoring.',
+            serviceType: 'Managed Endpoint Detection and Response',
+            areaServed: { '@type': 'Country', name: 'India' },
+            provider: { '@id': organization['@id'] },
+            ...(isAcronis
+              ? {
+                  brand: { '@type': 'Brand', name: 'Acronis' },
+                  offers: {
+                    '@type': 'Offer',
+                    url: pageUrl + '#ppPlans',
+                    price: '999',
+                    priceCurrency: 'INR',
+                    availability: 'https://schema.org/InStock',
+                    seller: { '@id': organization['@id'] },
+                    priceSpecification: {
+                      '@type': 'UnitPriceSpecification',
+                      price: '999',
+                      priceCurrency: 'INR',
+                      unitText: 'user per year',
+                      valueAddedTaxIncluded: false,
+                    },
+                  },
+                }
+              : {}),
+          },
+          {
+            '@type': 'FAQPage',
+            '@id': pageUrl + '#faq',
+            mainEntity: faqs.map(([question, answer]) => ({
+              '@type': 'Question',
+              name: question,
+              acceptedAnswer: { '@type': 'Answer', text: answer },
+            })),
+          },
+        ],
+      };
+    }
+
     const price = v.chips.find((c) => c.kind === 'price')?.label ?? '';
     const amount = /₹\s*([\d,]+)/.exec(price)?.[1]?.replace(/,/g, '');
     return {
@@ -3189,3 +5778,6 @@ export class ProductPage {
     };
   }
 }
+
+export { ProductPageComponent as ProductPage };
+

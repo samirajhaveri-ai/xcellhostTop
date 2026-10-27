@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, HostListener, signal } from '@angular/core';
 
 interface ArchitectureTab {
-  key: 'security' | 'cloud' | 'data-center' | 'managed-security' | 'support-escalation' | 'observability' | 'backup';
+  key: 'security' | 'cloud' | 'email' | 'data-center' | 'managed-security' | 'observability' | 'backup';
   label: string;
   title: string;
   description: string;
@@ -12,8 +12,14 @@ interface ArchitectureTab {
 @Component({
   selector: 'xh-infrastructure-content',
   standalone: true,
+  styleUrl: './infrastructure-content.component.css',
   template: `
-    <section class="infra-architecture" aria-labelledby="infraArchitectureTitle">
+    <div class="infra-foundations">
+      <article><span class="material-symbols-outlined" aria-hidden="true">dns</span><h3>A connected foundation</h3><p>Compute, storage and networking work together to support your cloud workloads.</p></article>
+      <article><span class="material-symbols-outlined" aria-hidden="true">verified_user</span><h3>Protection at every layer</h3><p>Explore the security controls across your network, applications and operations.</p></article>
+      <article><span class="material-symbols-outlined" aria-hidden="true">settings_backup_restore</span><h3>Plan for continuity</h3><p>Bring backup, recovery and observability into your infrastructure architecture.</p></article>
+    </div>
+    <section class="infra-architecture" id="infra-architecture" aria-labelledby="infraArchitectureTitle">
       <div class="infra-architecture-heading">
         <div class="pp-sec">Infrastructure architecture</div>
         <h2 id="infraArchitectureTitle">Built for secure, reliable cloud workloads</h2>
@@ -86,14 +92,6 @@ export class InfrastructureContentComponent {
   readonly zoomedTab = signal<ArchitectureTab | null>(null);
   readonly tabs: readonly ArchitectureTab[] = [
     {
-      key: 'support-escalation',
-      label: 'Cloud Support Escalation',
-      title: 'A clear path from ticket to resolution',
-      description: 'Our cloud support escalation process connects every issue with the right team, from initial triage and advanced troubleshooting to specialist, manager and vendor support. Severity-based prioritisation, proactive communication and documented resolution keep customers informed through closure and review.',
-      image: '/assets/images/infrastructure-support-escalation.jpg',
-      alt: 'Cloud support escalation process showing eight stages from ticket creation to closure, support responsibilities, example severity matrix and communication channels',
-    },
-    {
       key: 'data-center',
       label: 'Data Center Architecture',
       title: 'Data Center Architecture',
@@ -116,6 +114,14 @@ export class InfrastructureContentComponent {
       description: 'Flexible compute, resilient storage and secure networking work together across our cloud platform so you can launch quickly, scale on demand and keep workloads available.',
       image: '/assets/images/infrastructure-cloud-architecture.jpg',
       alt: 'XcellHost cloud architecture diagram',
+    },
+    {
+      key: 'email',
+      label: 'Email Architecture',
+      title: 'XcellWorkspace Email Architecture',
+      description: 'See how XcellWorkspace combines secure email gateways, multi-zone mail services, replicated storage, disaster recovery and central management to deliver a secure, highly available and scalable email platform.',
+      image: '/assets/images/infrastructure-email-architecture.jpg',
+      alt: 'XcellWorkspace secure and highly available email architecture diagram',
     },
     {
       key: 'backup',

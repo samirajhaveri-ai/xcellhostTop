@@ -1,110 +1,144 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { CartService } from '../core/cart.service';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
-type CertificateGroupId = 'pro' | 'biz' | 'basic' | 'other';
-
-interface CertificateGroup {
-  id: CertificateGroupId;
-  label: string;
-  blurb: string;
-}
-
-interface Certificate {
-  group: CertificateGroupId;
-  name: string;
-  price: number;
-  save: number;
-  warranty: string;
-  validation: string;
-  sans: boolean;
-}
-
+/** DigiCert certificates with quantity-based annual totals and detail-page links. */
 @Component({
   selector: 'xh-digicert-content',
   standalone: true,
+  imports: [RouterLink],
   templateUrl: './digicert-content.component.html',
   styleUrl: './digicert-content.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DigicertContentComponent {
-  private readonly cart = inject(CartService);
-  private readonly usdToInrRate = 95.65;
-  readonly activeGroup = signal<'all' | CertificateGroupId>('all');
-  readonly quantities = signal<Record<string, number>>({});
-
-  quantity(certificate: Certificate): number {
-    return this.quantities()[certificate.name] ?? 1;
+  readonly certificates = [
+  {
+    "name": "Standard SSL",
+    "href": "/digicert-standard-ssl",
+    "validation": "OV",
+    "range": "Basic",
+    "covers": "1 domain (+www)",
+    "warranty": "$1M",
+    "price": "₹12,999",
+    "order": "https://wa.me/918657032540?text=Hi%2C%20I%20would%20like%20to%20order%20DigiCert%20SSL%20Certificates%20%E2%80%94%20Standard%20SSL.",
+    "quantity": 1
+  },
+  {
+    "name": "Extended Validation SSL",
+    "href": "/digicert-ev-ssl",
+    "validation": "EV",
+    "range": "Basic",
+    "covers": "1 domain",
+    "warranty": "$1M",
+    "price": "₹19,299",
+    "order": "https://wa.me/918657032540?text=Hi%2C%20I%20would%20like%20to%20order%20DigiCert%20SSL%20Certificates%20%E2%80%94%20Extended%20Validation%20SSL.",
+    "quantity": 1
+  },
+  {
+    "name": "Multi-Domain SSL",
+    "href": "/digicert-multi-domain-ssl",
+    "validation": "OV",
+    "range": "Basic",
+    "covers": "Multiple domains",
+    "warranty": "$1M",
+    "price": "₹38,799",
+    "order": "https://wa.me/918657032540?text=Hi%2C%20I%20would%20like%20to%20order%20DigiCert%20SSL%20Certificates%20%E2%80%94%20Multi-Domain%20SSL.",
+    "quantity": 1
+  },
+  {
+    "name": "EV Multi-Domain SSL",
+    "href": "/digicert-ev-multi-domain-ssl",
+    "validation": "EV",
+    "range": "Basic",
+    "covers": "Multiple domains",
+    "warranty": "$1M",
+    "price": "₹35,799",
+    "order": "https://wa.me/918657032540?text=Hi%2C%20I%20would%20like%20to%20order%20DigiCert%20SSL%20Certificates%20%E2%80%94%20EV%20Multi-Domain%20SSL.",
+    "quantity": 1
+  },
+  {
+    "name": "Wildcard SSL",
+    "href": "/digicert-wildcard-ssl",
+    "validation": "OV",
+    "range": "Basic",
+    "covers": "Domain + all subdomains",
+    "warranty": "$1M",
+    "price": "₹41,099",
+    "order": "https://wa.me/918657032540?text=Hi%2C%20I%20would%20like%20to%20order%20DigiCert%20SSL%20Certificates%20%E2%80%94%20Wildcard%20SSL.",
+    "quantity": 1
+  },
+  {
+    "name": "Secure Site SSL",
+    "href": null,
+    "validation": "OV",
+    "range": "Secure Site",
+    "covers": "1 domain (+www)",
+    "warranty": "$1.75M",
+    "price": "₹21,399",
+    "order": "https://wa.me/918657032540?text=Hi%2C%20I%20would%20like%20to%20order%20DigiCert%20SSL%20Certificates%20%E2%80%94%20Secure%20Site%20SSL.",
+    "quantity": 1
+  },
+  {
+    "name": "Secure Site EV SSL",
+    "href": "/digicert-secure-site-ev-ssl",
+    "validation": "EV",
+    "range": "Secure Site",
+    "covers": "1 domain",
+    "warranty": "$1.75M",
+    "price": "₹49,299",
+    "order": "https://wa.me/918657032540?text=Hi%2C%20I%20would%20like%20to%20order%20DigiCert%20SSL%20Certificates%20%E2%80%94%20Secure%20Site%20EV%20SSL.",
+    "quantity": 1
+  },
+  {
+    "name": "Secure Site Multi-Domain",
+    "href": "/digicert-secure-site-multi-domain-ssl",
+    "validation": "OV",
+    "range": "Secure Site",
+    "covers": "Multiple domains",
+    "warranty": "$1.75M",
+    "price": "₹69,699",
+    "order": "https://wa.me/918657032540?text=Hi%2C%20I%20would%20like%20to%20order%20DigiCert%20SSL%20Certificates%20%E2%80%94%20Secure%20Site%20Multi-Domain.",
+    "quantity": 1
+  },
+  {
+    "name": "Secure Site Wildcard",
+    "href": "/digicert-secure-site-wildcard-ssl",
+    "validation": "OV",
+    "range": "Secure Site",
+    "covers": "Domain + all subdomains",
+    "warranty": "$1.75M",
+    "price": "₹1,01,699",
+    "order": "https://wa.me/918657032540?text=Hi%2C%20I%20would%20like%20to%20order%20DigiCert%20SSL%20Certificates%20%E2%80%94%20Secure%20Site%20Wildcard.",
+    "quantity": 1
+  },
+  {
+    "name": "Secure Site Pro SSL",
+    "href": "/digicert-secure-site-pro-ssl",
+    "validation": "OV",
+    "range": "Pro",
+    "covers": "1 domain + scanning",
+    "warranty": "$2M",
+    "price": "₹53,199",
+    "order": "https://wa.me/918657032540?text=Hi%2C%20I%20would%20like%20to%20order%20DigiCert%20SSL%20Certificates%20%E2%80%94%20Secure%20Site%20Pro%20SSL.",
+    "quantity": 1
+  },
+  {
+    "name": "Secure Site Pro EV SSL",
+    "href": "/digicert-secure-site-pro-ev-ssl",
+    "validation": "EV",
+    "range": "Pro",
+    "covers": "1 domain + scanning",
+    "warranty": "$2M",
+    "price": "₹76,099",
+    "order": "https://wa.me/918657032540?text=Hi%2C%20I%20would%20like%20to%20order%20DigiCert%20SSL%20Certificates%20%E2%80%94%20Secure%20Site%20Pro%20EV%20SSL.",
+    "quantity": 1
   }
-
-  changeQuantity(certificate: Certificate, change: number): void {
-    this.quantities.update(quantities => ({
-      ...quantities,
-      [certificate.name]: Math.max(1, Math.min(99, this.quantity(certificate) + change)),
-    }));
+];
+  totalPrice(certificate: (typeof this.certificates)[number]): string {
+    const unitPrice = Number(certificate.price.replace(/[^0-9]/g, ''));
+    return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(unitPrice * certificate.quantity);
   }
-
-  addToCart(certificate: Certificate): void {
-    const name = certificate.name;
-    this.cart.add(name, `${this.formatInr(certificate.price)} / year · 3-year term`, this.quantity(certificate));
-    this.cart.open();
-  }
-
-  readonly groups: readonly CertificateGroup[] = [
-    { id: 'pro', label: 'Professional SSL/TLS', blurb: 'All-in-one comprehensive security beyond encryption.' },
-    { id: 'biz', label: 'Business SSL/TLS', blurb: 'The industry’s leading certificate, now on DigiCert roots.' },
-    { id: 'basic', label: 'Basic SSL/TLS', blurb: 'Standard encryption backed by great support.' },
-    { id: 'other', label: 'Other Certificates', blurb: 'Digital certificates for every need.' },
-  ];
-
-  readonly certificates: readonly Certificate[] = [
-    { group: 'pro', name: 'DigiCert Secure Site Pro EV (FLEX)', price: 1406.78, save: 864.41, warranty: '$2MM', validation: 'Domain + Full Business', sans: true },
-    { group: 'pro', name: 'DigiCert Secure Site Pro SSL (FLEX)', price: 982.24, save: 603.54, warranty: '$2MM', validation: 'Domain + Basic Business', sans: true },
-    { group: 'pro', name: 'DigiCert Secure Site Pro SSL', price: 982.24, save: 603.54, warranty: '$2MM', validation: 'Domain + Basic Business', sans: true },
-    { group: 'pro', name: 'DigiCert Secure Site Pro EV SSL', price: 1406.78, save: 864.41, warranty: '$2MM', validation: 'Domain + Full Business', sans: true },
-    { group: 'biz', name: 'DigiCert Secure Site EV (FLEX)', price: 910.72, save: 559.60, warranty: '$1.75MM', validation: 'Domain + Full Business', sans: true },
-    { group: 'biz', name: 'DigiCert Secure Site OV (FLEX)', price: 394.11, save: 242.16, warranty: '$1.75MM', validation: 'Domain + Basic Business', sans: true },
-    { group: 'biz', name: 'DigiCert Secure Site SSL', price: 394.11, save: 242.16, warranty: '$1.75MM', validation: 'Domain + Basic Business', sans: false },
-    { group: 'biz', name: 'DigiCert Secure Site Multi-Domain SSL', price: 1288.85, save: 791.94, warranty: '$1.75MM', validation: 'Domain + Basic Business', sans: true },
-    { group: 'biz', name: 'DigiCert Secure Site Wildcard SSL', price: 1879.26, save: 1154.72, warranty: '$1.75MM', validation: 'Domain + Basic Business', sans: false },
-    { group: 'biz', name: 'DigiCert Secure Site EV SSL', price: 910.72, save: 559.60, warranty: '$1.75MM', validation: 'Domain + Full Business', sans: false },
-    { group: 'biz', name: 'DigiCert Secure Site EV Multi-Domain SSL', price: 2554.12, save: 1569.40, warranty: '$1.75MM', validation: 'Domain + Full Business', sans: true },
-    { group: 'basic', name: 'Basic EV (FLEX)', price: 356.35, save: 218.96, warranty: '$1.75MM', validation: 'Domain + Full Business', sans: true },
-    { group: 'basic', name: 'Basic OV (FLEX)', price: 239.37, save: 147.08, warranty: '$1.25MM', validation: 'Domain + Basic Business', sans: true },
-    { group: 'basic', name: 'Standard SSL', price: 239.37, save: 147.08, warranty: '$1MM', validation: 'Domain + Basic Business', sans: false },
-    { group: 'basic', name: 'Extended Validation SSL', price: 356.35, save: 218.96, warranty: '$1MM', validation: 'Domain + Full Business', sans: false },
-    { group: 'basic', name: 'Multi-Domain SSL', price: 715.79, save: 439.82, warranty: '$1MM', validation: 'Domain + Basic Business', sans: true },
-    { group: 'basic', name: 'EV Multi-Domain SSL', price: 715.79, save: 406.22, warranty: '$1MM', validation: 'Domain + Full Business', sans: true },
-    { group: 'basic', name: 'Wildcard SSL', price: 759.17, save: 466.48, warranty: '$1MM', validation: 'Domain + Basic Business', sans: false },
-    { group: 'other', name: 'DigiCert Code Signing Certificate', price: 438.24, save: 89.76, warranty: 'N/A', validation: 'Domain + Basic Business', sans: false },
-    { group: 'other', name: 'DigiCert EV Code Signing Certificate', price: 617.52, save: 126.48, warranty: 'N/A', validation: 'Domain + Full Business', sans: false },
-    { group: 'other', name: 'DigiCert Secure Email for Business (Premium)', price: 36.10, save: 133.00, warranty: 'N/A', validation: 'Organization-Validated', sans: false },
-    { group: 'other', name: 'DigiCert Secure Email Certificate for Individuals (S/MIME Class 1)', price: 18.05, save: 55.10, warranty: 'N/A', validation: 'Mailbox-Validated', sans: false },
-    { group: 'other', name: 'DigiCert Document Signing Certificate', price: 307.75, save: 137.96, warranty: '$500K', validation: 'Photo ID + Call', sans: false },
-    { group: 'other', name: 'DigiCert Verified Mark Certificate', price: 1425.76, save: 978.72, warranty: 'N/A', validation: 'Domain + Full Business', sans: false },
-    { group: 'other', name: 'DigiCert Common Mark Certificate', price: 1052.80, save: 1089.60, warranty: 'N/A', validation: 'Domain + Full Business', sans: false },
-  ];
-
-  selectGroup(group: 'all' | CertificateGroupId): void {
-    this.activeGroup.set(group);
-  }
-
-  groupCount(group: CertificateGroupId): number {
-    return this.certificates.filter((certificate) => certificate.group === group).length;
-  }
-
-  certificatesFor(group: CertificateGroupId): readonly Certificate[] {
-    return this.certificates.filter((certificate) => certificate.group === group);
-  }
-
-  showGroup(group: CertificateGroupId): boolean {
-    return this.activeGroup() === 'all' || this.activeGroup() === group;
-  }
-
-  formatInr(usdAmount: number): string {
-    return new Intl.NumberFormat('en-IN', {
-      style: 'currency',
-      currency: 'INR',
-      maximumFractionDigits: 0,
-    }).format(Math.round(usdAmount * this.usdToInrRate));
-  }
+  changeQuantity(certificate: (typeof this.certificates)[number], delta: number): void { certificate.quantity = Math.max(1, Math.min(999, certificate.quantity + delta)); }
+  setQuantity(certificate: (typeof this.certificates)[number], event: Event): void { const input = event.target as HTMLInputElement; certificate.quantity = Math.max(1, Math.min(999, Math.round(Number(input.value) || 1))); input.value = String(certificate.quantity); }
+  orderLink(certificate: (typeof this.certificates)[number]): string { const url = new URL(certificate.order); if (certificate.quantity > 1) url.searchParams.set('text', (url.searchParams.get('text') || '') + ' Quantity: ' + certificate.quantity + '.'); return url.toString(); }
 }

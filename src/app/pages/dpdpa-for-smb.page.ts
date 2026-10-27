@@ -8,20 +8,38 @@ import {
 } from '@angular/core';
 
 import { SeoService } from '../core/seo.service';
+import { DPDPA_SMB_REVIEWS } from '../data/smb-page-testimonials.data';
+import { OverlayService } from '../core/overlay.service';
+import { CallbackTopicService } from '../overlays/callback-topic.service';
+import { DocKind, DocRequestService } from '../core/doc-request.service';
+import { SmbSectionNavComponent } from '../sections/smb-section-nav.component';
 
 @Component({
   selector: 'xh-dpdpa-for-smb-page',
   standalone: true,
-  imports: [],
+  imports: [SmbSectionNavComponent],
   templateUrl: './dpdpa-for-smb.page.html',
   styleUrl: './dpdpa-for-smb.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DpdpaForSmbPage implements AfterViewInit, OnDestroy {
+  readonly testimonials = DPDPA_SMB_REVIEWS;
   private readonly seo = inject(SeoService);
+  private readonly overlay = inject(OverlayService);
+  private readonly topics = inject(CallbackTopicService);
+  private readonly docs = inject(DocRequestService);
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly cleanups: Array<() => void> = [];
   private revealObserver?: IntersectionObserver;
+  readonly sectionNavLinks = [
+    { label: 'Overview', target: 'dpdpaOverview' },
+    { label: 'Pricing', target: 'pricing' },
+    { label: 'Features', target: 'modules' },
+    { label: 'How it works', target: 'dpdpaWatch' },
+    { label: 'Customer Testimonials', target: 'dpdpaTestimonials' },
+    { label: 'FAQs', target: 'dpdpaFaq' },
+    { label: 'Contact', target: 'contact' },
+  ] as const;
 
   constructor() {
     this.seo.set(
@@ -71,11 +89,17 @@ export class DpdpaForSmbPage implements AfterViewInit, OnDestroy {
     });
   }
 
-  submitForm(event: SubmitEvent): void {
+  requestDoc(kind: DocKind, event: Event): void {
     event.preventDefault();
-    (event.currentTarget as HTMLFormElement).reset();
-    const message = this.host.nativeElement.querySelector<HTMLElement>('#fmsg');
-    if (message) message.textContent = 'Thanks — our DPDP team will be in touch within one business day.';
+    this.docs.ask(kind, 'DPDPA for SMB');
+    this.overlay.open('doc');
+  }
+
+  openContact(event: Event): void {
+    event.preventDefault();
+    const action = (event.currentTarget as HTMLElement).textContent?.trim() || 'Assessment';
+    this.topics.ask(`DPDPA for SMB — ${action}`);
+    this.overlay.open('callback');
   }
 
   ngOnDestroy(): void {

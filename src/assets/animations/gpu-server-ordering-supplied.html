@@ -1,0 +1,1577 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XcellHost GPU Servers &mdash; NVIDIA L4 (16 vCPU)</title>
+<meta name="description" content="NVIDIA L4 GPU server (16 vCPU, 64 GB RAM, 24 GB VRAM): configure NVMe storage and add-ons, then complete the 4-step checkout in one page. XcellHost India DC, monthly billing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<style>
+/* ===== shared base (nav / footer / toast / colour tokens) ===== */
+:root{--bl:#0066FF;--bl-d:#0052cc;--nv:#041E42;--nv2:#0B132B;--or:#FF8A00;--or-d:#e67e00;--gn:#16a34a;
+  --ink:#0f172a;--muted:#64748b;--line:#e6ebf2;--bg:#f4f7fb;}
+*{box-sizing:border-box}html,body{margin:0}
+body{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+.nav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:40}
+.nav-in{max-width:1180px;margin:0 auto;padding:13px 24px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:800;font-size:1.15rem;letter-spacing:-.02em;color:var(--nv);text-decoration:none}.logo span{color:var(--bl)}
+.nav-secure{font-size:.82rem;font-weight:600;color:var(--muted)}
+.foot{max-width:1180px;margin:0 auto;padding:20px 24px 40px;color:var(--muted);font-size:.8rem;text-align:center}
+.foot .line{border-top:1px solid var(--line);padding-top:16px}.foot a{color:var(--bl);text-decoration:none}.foot a:hover{text-decoration:underline}
+#toastWrap{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:50;display:flex;flex-direction:column;gap:8px}
+.toast{background:var(--nv);color:#fff;padding:11px 18px;border-radius:10px;font-size:.86rem;box-shadow:0 10px 24px rgba(4,30,66,.28);transition:opacity .3s}
+
+/* per-view scope so each keeps its original radius/shadow/line-height */
+#viewCart{--radius:14px;--shadow:0 1px 2px rgba(4,30,66,.04),0 8px 22px rgba(4,30,66,.05);line-height:1.45;display:block}
+#viewCheckout{--radius:16px;--shadow:0 1px 2px rgba(4,30,66,.04),0 10px 26px rgba(4,30,66,.06)}
+
+/* ===== CONFIGURE + CART (view 1) ===== */
+.wrap{max-width:1180px;margin:0 auto;padding:26px 24px 44px}
+.page-eyebrow{font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--bl)}
+.page-title{font-size:1.4rem;font-weight:800;letter-spacing:-.02em;color:var(--nv);margin:5px 0 2px}
+.page-sub{color:var(--muted);font-size:.9rem;margin:0 0 20px}
+.catalog-intro{text-align:center;margin:0 auto 20px}.catalog-intro .page-title{font-size:1.8rem;letter-spacing:-.035em}.catalog-intro .page-title em{color:var(--bl);font-style:normal}.catalog-intro .page-sub{max-width:720px;margin:10px auto 0;font-size:.95rem}
+.gpu-catalog-controls{display:grid;grid-template-columns:minmax(0,2fr) minmax(150px,.7fr) minmax(150px,.7fr);gap:18px;align-items:end;margin-bottom:16px;padding:16px 18px;border:1px solid #d7e0ee;border-radius:16px;background:#fff}
+.gpu-control{display:grid;gap:6px;min-width:0}.gpu-control-label{color:#41516d;font:800 .65rem ui-monospace,Menlo,Consolas,monospace;letter-spacing:.09em;text-align:center;text-transform:uppercase}
+.gpu-family-tabs{display:flex;min-height:48px;gap:3px;padding:4px;border:1px solid var(--line);border-radius:11px;background:#f3f4f6;overflow-x:auto}.gpu-family-tabs button{min-width:max-content;flex:1;border:0;border-radius:8px;padding:8px 10px;background:transparent;color:var(--muted);font-family:inherit;font-size:.78rem;font-weight:800;cursor:pointer}.gpu-family-tabs button.active{background:#fff;color:var(--nv);box-shadow:0 1px 5px rgba(4,30,66,.12)}
+.gpu-static{display:flex;min-height:48px;align-items:center;justify-content:center;gap:8px;padding:10px 14px;border:1px solid var(--line);border-radius:11px;background:#f3f6fb;color:var(--nv);font-size:.84rem;font-weight:800}.gpu-static.active{background:var(--nv);color:#fff}
+.gpu-family-band{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:16px;padding:17px 20px;border-radius:16px;background:linear-gradient(120deg,#041e42,#0c3e8f 60%,#3b2a8a);color:#dce7f8}.gpu-family-band h2{margin:0;color:#fff;font-size:1.18rem}.gpu-family-band p{margin:3px 0 0;color:#c7d5ec;font-size:.8rem}.gpu-family-band b{padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.12);font:700 .68rem ui-monospace,Menlo,Consolas,monospace;white-space:nowrap}
+@media(max-width:800px){.gpu-catalog-controls{grid-template-columns:1fr}.gpu-family-band{align-items:flex-start;flex-direction:column}}
+
+/* overflow:visible so the NVMe dropdown can extend below the row/table without being clipped;
+   header top-corners are rounded explicitly to keep the rounded-card look. */
+.gpu-table{background:transparent;border:0;border-radius:0;box-shadow:none;overflow:visible}
+.gcols{display:grid;grid-template-columns:minmax(196px,2.1fr) 68px 78px 68px minmax(146px,1.45fr) minmax(168px,1.6fr) minmax(112px,1fr) auto;gap:14px;align-items:center}
+.gpu-head{display:none}
+.gpu-head .h{font-size:.62rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.gpu-head .h.right{text-align:right}
+#gpuRows{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.gpu-row.gcols{position:relative;display:grid;min-width:0;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:18px;border:1.5px solid var(--line);border-radius:18px;background:#fff;box-shadow:none;transition:transform .25s,box-shadow .25s,border-color .25s}
+.gpu-row.gcols:hover{transform:translateY(-4px);border-color:#1565d8;box-shadow:0 18px 40px rgba(21,101,216,.14)}
+.gpu-row .c-name,.gpu-row .c-nvme,.gpu-row .c-uses,.gpu-row .c-price,.gpu-row .c-add,.gpu-row .nvme-custom{grid-column:1/-1}
+.c-name .nm{font-size:1.02rem;font-weight:800;color:var(--nv);letter-spacing:-.01em}
+.c-name .meta{font-size:.72rem;color:var(--muted);margin-top:3px;line-height:1.4}
+.c-name .avail{display:inline-flex;align-items:center;gap:6px;margin-top:7px;font-size:.7rem;font-weight:800;color:#0f7a3d;background:#dcfce7;border:1px solid #bbf7d0;padding:3px 9px;border-radius:999px}
+.c-name .avail .dot{width:7px;height:7px;border-radius:50%;background:var(--gn)}
+.spec{padding:9px 7px;border-radius:10px;background:#f6f8fc;text-align:center}
+.spec .v{font-size:.9rem;font-weight:800;color:var(--nv)}
+.spec .k{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-top:1px}
+.nvme{position:relative}
+.nvme-btn{display:flex;align-items:center;gap:8px;width:100%;background:#fff;border:1px solid #d5deea;border-radius:9px;padding:9px 11px;font:inherit;font-size:.86rem;font-weight:800;color:var(--nv);cursor:pointer;text-align:left}
+.nvme-btn:hover{border-color:#b9c7dc}
+.nvme-btn:focus-visible{outline:none;border-color:var(--bl);box-shadow:0 0 0 3px rgba(0,102,255,.12)}
+.nvme-ico{color:var(--bl);font-size:.95rem;line-height:1}
+.nvme-val{flex:1;white-space:nowrap}
+.nvme-chev{color:var(--muted);font-size:.8rem;transition:transform .15s}
+.nvme.open .nvme-chev{transform:rotate(180deg)}
+/* NVMe quick-select popover (compact; 2-column size grid + custom input + rate footer) */
+.nvme-menu{position:absolute;top:calc(100% + 5px);left:0;width:238px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 14px 34px rgba(4,30,66,.16);padding:12px;z-index:45;display:none}
+.nvme.open .nvme-menu{display:block}
+.nvme-menu .dd-lbl{font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin:0 0 7px}
+.nvme-menu .dd-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:12px}
+.nvme-menu .dd-grid button{display:block;width:100%;background:#fff;border:1.5px solid #d5deea;border-radius:9px;padding:9px 6px;font:inherit;font-size:.85rem;font-weight:800;color:var(--nv);cursor:pointer;text-align:center;transition:border-color .12s,background .12s}
+.nvme-menu .dd-grid button:hover{border-color:#9db7e8}
+.nvme-menu .dd-grid button.sel{border-color:var(--bl);background:#eaf1ff;color:var(--bl);box-shadow:0 0 0 2px rgba(0,102,255,.14)}
+.nvme-menu .dd-custom{display:flex;gap:7px;margin-bottom:10px}
+.nvme-menu .dd-custom input{flex:1;min-width:0;padding:8px 10px;border:1px solid #d5deea;border-radius:8px;font:inherit;font-size:.84rem;font-weight:700;color:var(--nv);background:#fff}
+.nvme-menu .dd-custom input:focus{outline:none;border-color:var(--bl);box-shadow:0 0 0 3px rgba(0,102,255,.12)}
+.nvme-menu .dd-custom button{flex:0 0 auto;padding:8px 14px;border:none;border-radius:8px;background:var(--nv);color:#fff;font:inherit;font-weight:800;font-size:.82rem;cursor:pointer}
+.nvme-menu .dd-custom button:hover{background:#0a2a5e}
+.nvme-menu .dd-rate{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:.76rem;font-weight:700;color:var(--muted);border-top:1px solid var(--line);padding-top:9px}
+.nvme-menu .dd-rate b{color:var(--nv);white-space:nowrap}
+.nvme-custom{margin:12px 18px 2px;background:#fff7ed;border:1px solid #fed7aa;border-radius:11px;padding:12px 14px}
+.nvme-custom label{display:block;font-size:.74rem;font-weight:800;color:#9a3412;margin-bottom:6px}
+.nvme-custom input{width:150px;max-width:100%;padding:9px 11px;border:1px solid #fed7aa;border-radius:9px;font:inherit;font-size:.88rem;background:#fff}
+.nvme-custom input:focus{outline:none;border-color:var(--or);box-shadow:0 0 0 3px rgba(255,138,0,.15)}
+.nvme-custom .note{font-size:.76rem;color:#b45309;margin-top:7px;line-height:1.45}
+.nvme-custom .btn-sales{margin-top:11px;display:inline-flex;align-items:center;gap:6px;background:var(--or);color:#fff;border:none;cursor:pointer;font:inherit;font-weight:800;font-size:.82rem;padding:9px 13px;border-radius:9px}
+.nvme-custom .btn-sales:hover{background:var(--or-d)}
+.c-uses{display:flex;flex-wrap:wrap;gap:5px}
+.tag{font-size:.66rem;font-weight:700;color:#334155;background:#f1f5fb;border:1px solid #e2e8f3;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.c-price{display:flex;align-items:baseline;gap:5px;padding-top:12px;border-top:1px dashed var(--line);text-align:left}
+.c-price .price{font-size:1.55rem;font-weight:800;color:var(--nv);letter-spacing:-.02em;white-space:nowrap}
+.c-price .price .mo{font-size:.76rem;font-weight:700;color:var(--muted)}
+.c-price .price.tbc{font-size:.9rem;color:var(--or)}
+.c-price .note{font-size:.66rem;color:var(--muted);margin-top:2px}
+.btn-add{display:inline-flex;width:100%;align-items:center;justify-content:center;gap:6px;background:var(--or);color:#fff;border:none;cursor:pointer;font:inherit;font-weight:800;font-size:.86rem;padding:11px 15px;border-radius:10px;white-space:nowrap;box-shadow:0 5px 13px rgba(255,138,0,.28);transition:background .15s,transform .05s}
+.btn-add:hover{background:var(--or-d)}.btn-add:active{transform:translateY(1px)}
+.btn-add:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+.cartbar{margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 18px}
+.cartbar .empty{color:var(--muted);font-size:.86rem}
+.cartbar-in{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.cb-info{flex:1;min-width:220px}
+.cb-name{font-size:.98rem;font-weight:800;color:var(--nv)}
+.cb-spec{font-size:.8rem;color:var(--muted);margin-top:2px}
+.cb-spec b{color:var(--nv)}
+.cb-qty{display:flex;align-items:center;gap:9px}
+.cb-qty .lab{font-size:.74rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.qtyc{display:inline-flex;align-items:center;border:1px solid #d5deea;border-radius:9px;overflow:hidden}
+.qtyc button{width:34px;height:36px;border:none;background:#f3f6fb;color:var(--nv);font-size:1.1rem;font-weight:800;cursor:pointer;line-height:1}
+.qtyc button:hover:not(:disabled){background:#e7eefb}.qtyc button:disabled{opacity:.4;cursor:not-allowed}
+.qtyc input{width:44px;height:36px;border:none;border-left:1px solid #e6ebf2;border-right:1px solid #e6ebf2;text-align:center;font:inherit;font-size:.95rem;font-weight:800;color:var(--nv)}
+.qtyc input:focus{outline:none}
+.cb-sub{text-align:right}
+.cb-sub .lab{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.cb-sub .amt{font-size:1.1rem;font-weight:800;color:var(--nv)}.cb-sub .amt small{font-size:.72rem;font-weight:700;color:var(--muted)}
+.btn-proceed{display:inline-flex;align-items:center;justify-content:center;gap:7px;background:var(--bl);color:#fff;border:none;cursor:pointer;font:inherit;font-weight:800;font-size:.9rem;padding:12px 18px;border-radius:10px;white-space:nowrap;box-shadow:0 6px 15px rgba(0,102,255,.24);transition:background .15s,transform .05s}
+.btn-proceed:hover{background:var(--bl-d)}.btn-proceed:active{transform:translateY(1px)}
+.cart-note{font-size:.72rem;color:var(--muted);margin-top:10px}
+/* ---- cart layout (config + optional add-ons + totals) ---- */
+.cart-config{padding-bottom:12px;border-bottom:1px solid var(--line)}
+.cart-addons{margin-top:12px;background:#f6f9ff;border:1px solid #dbe8ff;border-radius:11px;padding:11px 14px}
+.addons-h{font-size:.6rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--bl);margin-bottom:8px}
+.addon-opt{display:flex;align-items:center;gap:11px;cursor:pointer}
+.addon-opt+.addon-opt{margin-top:8px;padding-top:8px;border-top:1px solid #e6eefb}
+.addon-opt input{width:17px;height:17px;accent-color:var(--bl);cursor:pointer;flex:none}
+.addon-main{flex:1;min-width:0}
+.addon-main b{font-size:.84rem;font-weight:800;color:var(--nv)}
+.addon-desc{display:block;font-size:.7rem;color:var(--muted);margin-top:1px}
+.addon-price{font-size:.82rem;font-weight:800;color:var(--nv);white-space:nowrap;text-align:right}.addon-price small{font-size:.66rem;font-weight:700;color:var(--muted)}
+.addon-sub-line{display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding-top:9px;border-top:1px solid #dde9fb;font-size:.82rem;font-weight:800;color:var(--nv)}
+/* ----- add-on category ACCORDIONS + two-column add-on CARD grid ----- */
+.addon-cat{border:1px solid var(--line);border-radius:12px;margin-bottom:10px;background:#fff;overflow:hidden}
+.addon-cat.open{border-color:#cfe0ff;box-shadow:0 2px 10px rgba(4,30,66,.05)}
+.addon-cat-h{display:flex;align-items:center;gap:12px;width:100%;background:#fff;border:none;cursor:pointer;font:inherit;padding:13px 15px;text-align:left}
+.addon-cat-h:hover{background:#f6f9ff}
+.addon-cat.open .addon-cat-h{background:#f3f7ff}
+.cat-ico{width:34px;height:34px;flex:none;border-radius:9px;background:#eaf1ff;color:var(--bl);display:flex;align-items:center;justify-content:center;font-size:1rem}
+.cat-main{flex:1;min-width:0}
+.cat-title{display:block;font-size:.9rem;font-weight:800;color:var(--nv);letter-spacing:-.01em}
+.cat-sub{display:block;font-size:.72rem;color:var(--muted);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cat-count{font-size:.64rem;font-weight:800;color:var(--muted);background:#eef3fb;border-radius:999px;padding:3px 9px}
+.cat-chev{color:var(--muted);font-size:1.1rem;font-weight:700;transition:transform .18s;margin-left:2px}
+.addon-cat.open .cat-chev{transform:rotate(90deg)}
+.addon-cat-body{display:none;border-top:1px solid var(--line);padding:12px 14px 14px}
+.addon-cat.open .addon-cat-body{display:block}
+.ac-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ac-card{border:1px solid var(--line);border-radius:11px;padding:12px 13px;display:flex;flex-direction:column;gap:9px;background:#fff;transition:border-color .12s,box-shadow .12s}
+.ac-card.selected{border-color:var(--bl);box-shadow:0 0 0 2px rgba(0,102,255,.12)}
+.ac-head{display:flex;align-items:flex-start;gap:9px;cursor:pointer}
+.ac-head input{width:17px;height:17px;accent-color:var(--bl);cursor:pointer;flex:none;margin-top:1px}
+.ac-name{min-width:0}
+.ac-name b{display:block;font-size:.82rem;font-weight:800;color:var(--nv);line-height:1.32}
+.ac-desc{display:block;font-size:.69rem;color:var(--muted);margin-top:2px;line-height:1.35}
+.ac-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:auto}
+.ac-price{font-size:.84rem;font-weight:800;color:var(--nv)}.ac-price small{font-size:.64rem;font-weight:700;color:var(--muted)}
+.ac-qty{display:flex;align-items:center;gap:7px}
+.ac-stepper{display:inline-flex;align-items:center;border:1px solid #d5deea;border-radius:8px;overflow:hidden}
+.ac-stepper button{width:30px;height:31px;border:none;background:#f3f6fb;color:var(--nv);font-size:1.05rem;font-weight:800;cursor:pointer;line-height:1}
+.ac-stepper button:hover{background:#e7eefb}
+.ac-stepper .qv{min-width:38px;text-align:center;font-size:.85rem;font-weight:800;color:var(--nv);padding:0 4px}
+.ac-qty .qu{font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.03em;color:var(--muted)}
+.po-req{font-size:.72rem;font-weight:800;color:var(--or-d);background:#fff7ed;border:1px solid #fed7aa;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.pay-addon-h{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:2px 0 6px}
+/* order-summary / payment add-on LINE ITEMS */
+.sum-addons{border-top:1px solid var(--line);margin-top:2px;padding-top:11px}
+.sum-sec-h{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:7px}
+/* NVMe selector — horizontal selectable cards in the right-hand Order Summary */
+.sum-nvme{padding:11px 0 2px;border-top:1px solid var(--line)}
+.nvme-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.nvme-card{border:1.5px solid #d5deea;border-radius:10px;padding:8px 5px;text-align:center;cursor:pointer;background:#fff;font:inherit;transition:border-color .12s,background .12s,box-shadow .12s;user-select:none}
+.nvme-card:hover{border-color:#9db7e8}
+.nvme-card .sz{display:block;font-size:.84rem;font-weight:800;color:var(--nv);line-height:1.1}
+.nvme-card .pr{display:block;font-size:.71rem;font-weight:700;color:var(--muted);margin-top:3px;white-space:nowrap}
+.nvme-card.sel{border-color:var(--bl);background:#f0f6ff;box-shadow:0 0 0 2.5px rgba(0,102,255,.14)}
+.nvme-card.sel .pr{color:var(--bl)}
+@media(max-width:560px){
+  .nvme-cards{display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:5px;scroll-snap-type:x mandatory}
+  .nvme-card{flex:0 0 auto;min-width:94px;scroll-snap-align:start}
+}
+.oi-empty{font-size:.9rem;font-weight:700;color:var(--nv);text-align:right}
+.oi{padding:7px 0;border-top:1px dashed #e4ebf4}
+.oi:first-child{border-top:none;padding-top:0}
+.oi-name{font-size:.8rem;font-weight:700;color:var(--nv);line-height:1.35}
+.oi-calc{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-top:2px;font-size:.76rem;color:var(--muted)}
+.oi-calc b{color:var(--nv);font-weight:800;white-space:nowrap}
+.oi-sub{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-top:9px;padding-top:9px;border-top:1px solid var(--line);font-size:.82rem;font-weight:800;color:var(--nv)}
+@media(max-width:560px){.ac-grid{grid-template-columns:1fr}}
+.cart-foot{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:14px}
+/* Service step: quantity + totals */
+.svc-qty{display:flex;align-items:center;gap:12px;margin-top:16px}
+.svc-qty .lab{font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.svc-totals{margin-top:14px;border-top:1px solid var(--line);padding-top:10px}
+.svc-totals .trow{display:flex;justify-content:space-between;align-items:center;padding:5px 0;font-size:.9rem;color:#334155}
+.svc-totals .trow b{color:var(--nv)}
+.svc-totals .trow.subt{border-top:1px solid var(--line);margin-top:2px;padding-top:9px;font-weight:700}
+.svc-totals .trow.disc b{color:var(--gn)}
+.svc-totals .trow.disc small{font-weight:700;color:var(--gn);font-size:.74rem}
+.svc-totals .trow.grand{border-top:1px solid var(--line);margin-top:4px;padding-top:10px;font-size:1.08rem;font-weight:800;color:var(--nv)}
+
+/* ===== 4-STEP CHECKOUT (view 2) ===== */
+.stepper-wrap{background:#fff;border-bottom:1px solid var(--line)}
+.stepper{max-width:1080px;margin:0 auto;padding:15px 24px;display:flex;align-items:center}
+.step{display:flex;align-items:center;gap:10px;cursor:pointer}
+.step-num{width:30px;height:30px;border-radius:50%;background:#eef2f7;color:#64748b;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:.85rem;border:1px solid var(--line)}
+.step.active .step-num{background:var(--bl);color:#fff;border-color:var(--bl)}
+.step.done .step-num{background:var(--gn);color:#fff;border-color:var(--gn)}
+.step-lab{font-size:.85rem;font-weight:700;color:#64748b}.step.active .step-lab{color:var(--nv)}
+.step-bar{flex:1;height:2px;background:var(--line);margin:0 12px;min-width:16px}.step-bar.filled{background:var(--gn)}
+.layout{max-width:1080px;margin:0 auto;padding:24px 24px 48px;display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start}
+.plan-hero{display:flex;align-items:center;justify-content:space-between;gap:16px;background:linear-gradient(135deg,var(--nv),#0a2a5e);color:#fff;border-radius:var(--radius);padding:18px 22px;margin-bottom:18px;flex-wrap:wrap}
+.ph-brand{font-size:.7rem;font-weight:700;letter-spacing:.1em;color:#9cc2ff}
+.ph-name{font-size:1.5rem;font-weight:800;margin:3px 0 10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ph-tag{font-size:.74rem;font-weight:700;color:#cfe0ff;background:rgba(255,255,255,.14);padding:3px 11px;border-radius:999px}
+.ph-badges{display:flex;gap:8px;flex-wrap:wrap}
+.badge{font-size:.64rem;font-weight:800;letter-spacing:.04em;color:#dbe8ff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:4px 9px;border-radius:999px}
+.badge.alt{color:#fff;background:var(--or);border-color:var(--or)}
+.ph-price{text-align:right}.ph-price .amt{font-size:1.8rem;font-weight:800;line-height:1}.ph-price .per{font-size:.76rem;color:#cfe0ff}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin-bottom:18px}
+.card-h{font-size:1.15rem;font-weight:800;color:var(--nv);letter-spacing:-.01em;margin-bottom:4px}
+.card-sub{color:var(--muted);font-size:.9rem;margin-bottom:16px}
+.cfg-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 22px;margin-top:4px}
+.cfg{display:flex;flex-direction:column;gap:2px}.cfg .k{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}.cfg .v{font-size:.95rem;font-weight:700;color:var(--nv)}
+.locknote{margin-top:16px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:12px 15px;font-size:.84rem;color:#1e40af;line-height:1.5}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{margin-bottom:14px;display:flex;flex-direction:column}.field label{font-size:.82rem;font-weight:700;color:var(--nv);margin-bottom:6px}
+.rq{color:#e11d48}
+.field input,.field select{padding:11px 12px;border:1px solid #d5deea;border-radius:10px;font:inherit;font-size:.92rem;color:var(--ink);background:#fff}
+.field input:focus,.field select:focus{outline:none;border-color:var(--bl);box-shadow:0 0 0 3px rgba(0,102,255,.12)}
+.field input.err,.field select.err{border-color:#e11d48}
+.ferr{display:none;color:#e11d48;font-size:.76rem;margin-top:5px}.ferr.show{display:block}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;cursor:pointer;font:inherit;font-weight:800;font-size:.95rem;padding:13px 20px;border-radius:12px;text-decoration:none;transition:background .15s,transform .05s}
+.btn-primary{background:var(--bl);color:#fff;box-shadow:0 7px 16px rgba(0,102,255,.26)}.btn-primary:hover{background:var(--bl-d)}.btn-primary:active{transform:translateY(1px)}
+.btn-ghost{background:#eef2f7;color:#334155}
+.row-btns{display:flex;gap:12px;margin-top:20px}.row-btns .btn-primary{flex:1}
+/* Account mode toggle (New Customer / Already Have an Account) — UI only */
+.acct-toggle{display:inline-flex;gap:4px;background:#eef2f7;border:1px solid var(--line);border-radius:12px;padding:4px;margin:2px 0 18px}
+.acct-tab{border:none;background:transparent;font:inherit;font-weight:700;font-size:.85rem;color:#334155;padding:9px 16px;border-radius:9px;cursor:pointer;transition:background .15s,color .15s}
+.acct-tab:hover{color:var(--nv)}
+.acct-tab.active{background:#fff;color:var(--bl);box-shadow:0 1px 3px rgba(4,30,66,.12)}
+@media(max-width:480px){.acct-toggle{display:flex;width:100%}.acct-tab{flex:1;text-align:center;padding:9px 8px}}
+.login-err{color:#e11d48;font-size:.82rem;font-weight:600;margin-top:12px;min-height:1em;display:none}
+.login-err.show{display:block}
+.secure-line{font-size:.74rem;color:var(--muted);text-align:center;margin-top:12px}
+.pending{display:none;margin-top:16px;background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:14px 16px;font-size:.88rem;color:#9a3412;line-height:1.5}
+.pending.show{display:block}
+/* ----- payment totals + promo code (Step 4 only) ----- */
+.pay-tot{margin-top:6px;border-top:1px solid var(--line);padding-top:8px}
+.ptrow{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:6px 0;font-size:.92rem;color:#334155}
+.ptrow b{font-weight:800;color:var(--nv);white-space:nowrap}
+.ptrow.subt{border-top:1px solid var(--line);margin-top:2px;padding-top:9px;font-weight:700}
+.ptrow.disc b{color:var(--gn)}
+.ptrow.disc small{font-weight:700;color:var(--gn);font-size:.74rem}
+.ptrow.promo-applied b{letter-spacing:.04em}
+.ptrow.grand{border-top:2px solid var(--line);margin-top:2px;padding-top:11px;font-size:1.1rem;font-weight:800;color:var(--nv)}
+.ptrow.grand small{font-weight:700;color:var(--muted);font-size:.72rem}
+.promo{margin:12px 0 2px;background:#f7faff;border:1px solid #dde9fb;border-radius:12px;padding:12px 13px}
+.promo-lab{display:block;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--nv);margin-bottom:7px}
+.promo-row{display:flex;gap:8px}
+.promo-row input{flex:1;min-width:0;padding:10px 12px;border:1px solid #d5deea;border-radius:10px;font:inherit;font-size:.9rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--nv);background:#fff}
+.promo-row input::placeholder{text-transform:none;font-weight:600;letter-spacing:normal;color:#94a3b8}
+.promo-row input:focus{outline:none;border-color:var(--bl);box-shadow:0 0 0 3px rgba(0,102,255,.12)}
+.promo-apply{flex:0 0 auto;padding:10px 18px;border:none;border-radius:10px;background:var(--nv);color:#fff;font:inherit;font-weight:800;font-size:.88rem;cursor:pointer}
+.promo-apply:hover{background:#0a2a5e}
+.promo-apply:disabled{opacity:.55;cursor:default}
+.promo-msg{display:none;margin-top:9px;font-size:.82rem;font-weight:700;line-height:1.45}
+.promo-msg.show{display:block}
+.promo-msg.ok{color:var(--gn)}
+.promo-msg.bad{color:#b91c1c}
+.promo-msg .rm{margin-left:8px;color:var(--bl);font-weight:800;cursor:pointer;text-decoration:underline;font-size:.78rem}
+.summary{position:sticky;top:84px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
+.sum-h{font-size:1rem;font-weight:800;color:var(--nv);margin-bottom:12px}
+.sum-prod{font-size:.95rem;color:var(--nv);font-weight:800;margin-bottom:8px}.sum-prod .term{display:block;color:var(--muted);font-weight:600;font-size:.84rem;margin-top:2px}
+.pline{display:flex;justify-content:space-between;align-items:center;padding:9px 0;font-size:.9rem;color:#334155;border-top:1px solid var(--line)}
+.pline .amt{font-weight:700;color:var(--nv)}
+.pline.total{border-top:2px solid var(--line);margin-top:2px;padding-top:12px;font-size:1.05rem;font-weight:800;color:var(--nv)}
+.tax-note{font-size:.74rem;color:var(--muted);margin-top:10px;line-height:1.5}
+.incl-mini{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
+.incl-mini .t{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:6px}
+.incl-mini ul{list-style:none;margin:0;padding:0}.incl-mini li{font-size:.82rem;color:#334155;padding-left:18px;position:relative;margin:4px 0}.incl-mini li:before{content:"\2713";position:absolute;left:0;color:var(--gn);font-weight:800}
+
+/* ===== responsive ===== */
+@media(max-width:960px){
+  .gpu-head{display:none}
+  .gpu-row{display:block;padding:16px}
+  .gpu-row .c-name{margin-bottom:12px}
+  .gpu-row .spec{display:inline-flex;align-items:baseline;gap:6px;margin:0 14px 10px 0}
+  .gpu-row .spec .v{font-size:.9rem}.gpu-row .spec .k{margin:0}
+  .gpu-row .c-nvme{margin:4px 0 12px;max-width:260px}
+  .gpu-row .c-uses{margin-bottom:14px}
+  .gpu-row .c-price{text-align:left;display:inline-block;margin-right:16px;vertical-align:middle}
+  .gpu-row .c-add{display:inline-block;vertical-align:middle}
+  .btn-add{padding:12px 18px}
+}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.summary{position:static}.step-lab{display:none}.step-bar{margin:0 8px}}
+@media(max-width:900px){#gpuRows{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){
+  #gpuRows{grid-template-columns:1fr}
+  .cart-foot{flex-direction:column;align-items:stretch;gap:12px}
+  .cb-sub{text-align:left}
+  .btn-proceed{width:100%}
+  .nvme-menu{left:0;right:auto;width:238px;max-width:calc(100vw - 48px)}
+  .frow{grid-template-columns:1fr}
+  .cfg-grid{grid-template-columns:1fr 1fr}
+  .plan-hero{flex-direction:column;align-items:flex-start}
+  .ph-price{text-align:left}
+}
+</style>
+<style>
+/* Embedded mode: use the website shell while preserving the supplied cart/checkout UI. */
+html,body{background:transparent}
+body{overflow-x:hidden}
+.nav,.foot{display:none!important}
+.wrap{width:100%;max-width:1180px;margin:0 auto;padding:24px 24px 0}
+#viewCheckout{padding-top:6px}
+@media(max-width:600px){.wrap{padding:18px 16px 0}}
+</style>
+</head>
+<body class="catalog-embed">
+<nav class="nav"><div class="nav-in">
+  <a class="logo" href="https://xcellhost.cloud">Xcell<span>Host</span></a>
+  <span class="nav-secure" id="navSecure">&#128274; GPU Servers</span>
+</div></nav>
+
+<!-- ============================================================
+     VIEW 1 — GPU CONFIGURATION + CART  (shown first)
+     ============================================================ -->
+<main class="wrap" id="viewCart">
+  <div class="catalog-intro">
+    <div class="page-eyebrow">GPU Servers &middot; India DC</div>
+    <h1 class="page-title">Build your <em>GPU server</em> &mdash; price it live</h1>
+    <p class="page-sub">Choose a GPU family, configure NVMe storage and add the server to your order. Monthly prices are in INR, excluding GST.</p>
+  </div>
+  <div class="gpu-catalog-controls">
+    <div class="gpu-control"><span class="gpu-control-label">GPU family</span><div class="gpu-family-tabs" id="gpuFamilyTabs"><button type="button" class="active" data-gpu-family="all" onclick="setGpuFamily('all')">All GPUs</button><button type="button" data-gpu-family="l4" onclick="setGpuFamily('l4')">NVIDIA L4</button><button type="button" data-gpu-family="rtx" onclick="setGpuFamily('rtx')">RTX Pro 6000</button><button type="button" data-gpu-family="h200" onclick="setGpuFamily('h200')">NVIDIA H200</button></div></div>
+    <div class="gpu-control"><span class="gpu-control-label">NVMe storage</span><span class="gpu-static">Choose per card</span></div>
+    <div class="gpu-control"><span class="gpu-control-label">Pricing interval</span><span class="gpu-static active">Monthly</span></div>
+  </div>
+  <div class="gpu-family-band"><div><h2 id="gpuFamilyTitle">All GPU configurations</h2><p id="gpuFamilyDescription">Dedicated NVIDIA GPU servers for AI, inference, visualisation and accelerated compute.</p></div><b id="gpuFamilyCount">5 configurations</b></div>
+
+  <!-- GPU LISTING TABLE — rows are rendered from the GPU_CATALOG (see script). -->
+  <div class="gpu-table">
+    <div class="gpu-head gcols">
+      <div class="h">GPU</div>
+      <div class="h">VRAM</div>
+      <div class="h">vCPU</div>
+      <div class="h">RAM</div>
+      <div class="h">NVMe Storage</div>
+      <div class="h">Key Use Cases</div>
+      <div class="h right">Price</div>
+      <div class="h"></div>
+    </div>
+    <div id="gpuRows"><!-- rendered by buildTable() from ACTIVE_GPUS --></div>
+  </div>
+
+  <p class="page-sub" style="margin:18px 0 0" id="addNote">Click <b>Configure &amp; Buy</b> to choose your storage, add-ons and complete checkout.</p>
+</main>
+
+<!-- ============================================================
+     VIEW 2 — 4-STEP CHECKOUT  (hidden until "Proceed to Checkout")
+     ============================================================ -->
+<div id="viewCheckout" style="display:none">
+  <div class="stepper-wrap"><div class="stepper" id="stepper">
+    <div class="step active" data-step="0"><div class="step-num">1</div><div class="step-lab">Service</div></div>
+    <div class="step-bar" data-bar="0"></div>
+    <div class="step" data-step="1"><div class="step-num">2</div><div class="step-lab">Account</div></div>
+    <div class="step-bar" data-bar="1"></div>
+    <div class="step" data-step="2"><div class="step-num">3</div><div class="step-lab">Profile</div></div>
+    <div class="step-bar" data-bar="2"></div>
+    <div class="step" data-step="3"><div class="step-num">4</div><div class="step-lab">Payment</div></div>
+  </div></div>
+
+  <div class="layout">
+  <div class="col-left">
+
+    <div class="plan-hero">
+      <div>
+        <div class="ph-brand">XCELLHOST GPU SERVER &middot; INDIA DC</div>
+        <div class="ph-name" id="heroName">NVIDIA L4 <span class="ph-tag">16 vCPU</span></div>
+        <div class="ph-badges"><span class="badge" id="heroVram">24 GB VRAM</span><span class="badge" id="heroRam">64 GB RAM</span><span class="badge alt">BILLED MONTHLY</span></div>
+      </div>
+      <div class="ph-price"><div class="amt" id="heroPrice">&#8377;30,080</div><div class="per" id="heroPer">/ server / month</div></div>
+    </div>
+
+    <!-- STEP 1: SERVICE (order configuration — quantity + optional add-ons) -->
+    <div class="card" id="cardService">
+      <div class="card-h">Your GPU Server</div>
+      <div class="card-sub">Confirm your configuration, set the number of servers, and choose any optional add-ons.</div>
+      <div class="cfg-grid">
+        <div class="cfg"><span class="k">GPU</span><span class="v" id="sGpu">NVIDIA L4</span></div>
+        <div class="cfg"><span class="k">Location</span><span class="v">India DC</span></div>
+        <div class="cfg"><span class="k">vCPU</span><span class="v" id="sVcpu">16 vCPU</span></div>
+        <div class="cfg"><span class="k">RAM</span><span class="v" id="sRam">64 GB</span></div>
+        <div class="cfg"><span class="k">VRAM</span><span class="v" id="sVram">24 GB</span></div>
+        <div class="cfg"><span class="k">GPU Price</span><span class="v" id="sPrice">&#8377;30,080 / server / month</span></div>
+        <div class="cfg"><span class="k">Billing</span><span class="v">Monthly &middot; cancel anytime</span></div>
+      </div>
+
+      <!-- quantity (number of servers) -->
+      <div class="svc-qty">
+        <span class="lab">Number of servers</span>
+        <span class="qtyc">
+          <button type="button" id="svcMinus" aria-label="Decrease quantity" onclick="changeSvcQty(-1)">&minus;</button>
+          <input id="svcQty" type="text" inputmode="numeric" value="1" aria-label="Number of servers" onchange="setSvcQty(this.value)">
+          <button type="button" aria-label="Increase quantity" onclick="changeSvcQty(1)">+</button>
+        </span>
+      </div>
+
+      <!-- OPTIONAL ADD-ONS (ALL add-ons, categorised + collapsible; multi-select) -->
+      <div class="cart-addons">
+        <div class="addons-h">Optional Add-ons</div>
+        <div id="svcAddonList"><!-- rendered by buildServiceAddons() --></div>
+        <div class="addon-sub-line"><span>Add-on subtotal</span><b id="svcAddonSub">&#8377;0</b> <span style="font-weight:600;color:var(--muted);font-size:.74rem">/ month</span></div>
+      </div>
+      <div class="cart-note" id="svcQuoteNote" style="display:none;color:#9a3412"><b>Note:</b> one or more selected add-ons are marked <b>&ldquo;price on request&rdquo;</b>. Your order will be completed with our sales team to confirm those prices &mdash; no part-payment is taken.</div>
+
+      <!-- service totals (promo code is entered in the right-hand Order Summary; discount reflected here) -->
+      <div class="svc-totals">
+        <div class="trow"><span>Base (<b id="svcQtyEcho">1</b> &times; <span id="svcBaseEach">&#8377;30,080</span>)</span><b id="svcBase">&#8377;30,080</b></div>
+        <div class="trow"><span>Add-ons</span><b id="svcAddonTotal">&#8377;0</b></div>
+        <div class="trow subt"><span>Subtotal</span><b id="svcSubtotal">&#8377;30,080</b></div>
+        <div class="trow disc" id="svcDiscRow" style="display:none"><span>Discount <small id="svcDiscCode"></small></span><b id="svcDisc">-&#8377;0</b></div>
+        <div class="trow grand"><span>Grand Total</span><b id="svcGrand">&#8377;30,080 / month</b></div>
+      </div>
+      <div class="cart-note" id="svcMultiNote" style="display:none;color:#9a3412"><b>Ordering 2+ servers?</b> Multi-server orders are finalized with our team at the payment step so every server is billed correctly &mdash; you are never charged for just one.</div>
+
+      <div class="row-btns">
+        <button type="button" class="btn btn-ghost" onclick="backToConfig()">&larr; Back to GPU Configuration</button>
+        <button type="button" class="btn btn-primary" onclick="goStep('account')">Continue to Account &rarr;</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: ACCOUNT -->
+    <div class="card" id="cardAccount" style="display:none">
+      <div class="card-h">Account Information</div>
+      <div class="card-sub">We'll use these details for your order and onboarding.</div>
+
+      <!-- Account mode toggle: New Customer vs Already Have an Account (UI only) -->
+      <div class="acct-toggle" role="tablist" aria-label="Account type">
+        <button type="button" class="acct-tab active" id="acctTabNew" role="tab" aria-selected="true" onclick="setAcctMode('new')">New Customer</button>
+        <button type="button" class="acct-tab" id="acctTabExisting" role="tab" aria-selected="false" onclick="setAcctMode('existing')">Already Have an Account</button>
+      </div>
+
+      <!-- New Customer form (unchanged) -->
+      <div id="acctNew">
+      <form autocomplete="on" onsubmit="return false">
+        <div class="frow">
+          <div class="field"><label for="firstName">First Name <span class="rq">*</span></label><input id="firstName" type="text" autocomplete="given-name"><div class="ferr">Please enter your first name.</div></div>
+          <div class="field"><label for="lastName">Last Name <span class="rq">*</span></label><input id="lastName" type="text" autocomplete="family-name"><div class="ferr">Please enter your last name.</div></div>
+        </div>
+        <div class="frow">
+          <div class="field"><label for="email">Work Email <span class="rq">*</span></label><input id="email" type="email" autocomplete="email"><div class="ferr">Enter a valid email address.</div></div>
+          <div class="field"><label for="mobile">Mobile / WhatsApp <span class="rq">*</span></label><input id="mobile" type="tel" autocomplete="tel"><div class="ferr">Enter a valid mobile number.</div></div>
+        </div>
+        <div class="field"><label for="company">Company Name <span class="rq">*</span></label><input id="company" type="text" autocomplete="organization"><div class="ferr">Please enter your company name.</div></div>
+      </form>
+      <div class="row-btns">
+        <button type="button" class="btn btn-ghost" onclick="goStep('service')">&larr; Back to Service</button>
+        <button type="button" class="btn btn-primary" onclick="goStep('profile')">Continue to Profile &rarr;</button>
+      </div>
+      </div><!-- /acctNew -->
+
+      <!-- Existing customer sign-in — Email + Password, verified server-side (no credentials in the frontend) -->
+      <div id="acctExisting" style="display:none">
+        <form autocomplete="on" onsubmit="return false">
+          <div class="field"><label for="loginEmail">Email <span class="rq">*</span></label><input id="loginEmail" type="email" autocomplete="username"><div class="ferr">Enter a valid email address.</div></div>
+          <div class="field"><label for="loginPassword">Password <span class="rq">*</span></label><input id="loginPassword" type="password" autocomplete="current-password"><div class="ferr">Please enter your password.</div></div>
+        </form>
+        <div class="login-err" id="loginErr" role="alert" aria-live="polite"></div>
+        <div class="row-btns">
+          <button type="button" class="btn btn-primary" id="signInBtn" onclick="existingSignIn()">Sign In &amp; Continue &rarr;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3: PROFILE -->
+    <div class="card" id="cardProfile" style="display:none">
+      <div class="card-h">Billing Profile</div>
+      <div class="card-sub">Required for your GST invoice and service agreement.</div>
+      <form onsubmit="return false">
+        <div class="field"><label for="legalName">Legal / Company Name <span class="rq">*</span></label><input id="legalName" type="text"><div class="ferr">Please enter your legal company name.</div></div>
+        <div class="field"><label for="street">Billing Address <span class="rq">*</span></label><input id="street" type="text"><div class="ferr">Please enter your billing address.</div></div>
+        <div class="field"><label for="address2">Address Line 2</label><input id="address2" type="text"></div>
+        <div class="frow">
+          <div class="field"><label for="city">City <span class="rq">*</span></label><input id="city" type="text"><div class="ferr">Please enter your city.</div></div>
+          <div class="field"><label for="state">State <span class="rq">*</span></label><input id="state" type="text"><div class="ferr">Please enter your state.</div></div>
+        </div>
+        <div class="frow">
+          <div class="field"><label for="pin">PIN Code <span class="rq">*</span></label><input id="pin" type="text" inputmode="numeric"><div class="ferr">Enter a valid 6-digit PIN code.</div></div>
+          <div class="field"><label for="country">Country <span class="rq">*</span></label><input id="country" type="text" value="India"><div class="ferr">Please enter your country.</div></div>
+        </div>
+        <div class="frow">
+          <div class="field"><label for="gstReg">GST Registered <span class="rq">*</span></label>
+            <select id="gstReg"><option value="">Select&hellip;</option><option value="yes">Yes</option><option value="no">No</option></select>
+            <div class="ferr">Please select an option.</div></div>
+          <div class="field" id="gstinField" style="display:none"><label for="gstin">GSTIN <span class="rq">*</span></label><input id="gstin" type="text" style="text-transform:uppercase"><div class="ferr">Enter a valid 15-character GSTIN.</div></div>
+        </div>
+      </form>
+      <div class="row-btns">
+        <button type="button" class="btn btn-ghost" onclick="goStep('account')">&larr; Back to Account</button>
+        <button type="button" class="btn btn-primary" onclick="goStep('payment')">Continue to Payment &rarr;</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: PAYMENT (wired to the NVMe-specific Zoho Hosted Payment Page) -->
+    <div class="card" id="cardPayment" style="display:none">
+      <div class="card-h">Secure Payment</div>
+      <div class="card-sub" id="payIntro">Review your order below, then continue to the secure payment page.</div>
+      <div class="cfg-grid" style="margin-bottom:12px">
+        <div class="cfg"><span class="k">GPU</span><span class="v" id="payGpu">NVIDIA L4</span></div>
+        <div class="cfg"><span class="k">vCPU / RAM / VRAM</span><span class="v" id="paySpec">16 vCPU &middot; 64 GB &middot; 24 GB</span></div>
+        <div class="cfg"><span class="k">NVMe Storage</span><span class="v" id="payNvme">30 GB</span></div>
+        <div class="cfg"><span class="k">Servers</span><span class="v" id="payQty">1</span></div>
+      </div>
+      <div id="payAddon" style="font-size:.86rem;color:#334155;margin-bottom:4px;display:none"></div>
+      <div class="pay-tot">
+        <div class="ptrow"><span>Base Total</span><b id="payBase">&#8377;30,080</b></div>
+        <div class="ptrow"><span>Add-ons</span><b id="payAddonSub">&#8377;0</b></div>
+        <div class="ptrow subt"><span>Subtotal</span><b id="paySubtotal">&#8377;30,080</b></div>
+        <div class="ptrow promo-applied" id="payPromoRow" style="display:none"><span>Promo Code</span><b id="payPromoCode">&mdash;</b></div>
+        <div class="ptrow disc" id="payDiscRow" style="display:none"><span>Discount <small id="payDiscCode"></small></span><b id="payDisc">-&#8377;0</b></div>
+        <div class="ptrow grand"><span>Total <small>(before GST)</small></span><b id="payTotal">&#8377;30,080 / mo</b></div>
+      </div>
+      <div style="font-size:.82rem;color:var(--muted);margin:6px 0 2px">The matching secure plan is verified before you are redirected.</div>
+      <div class="row-btns">
+        <button type="button" class="btn btn-ghost" onclick="goStep('profile')">&larr; Back to Profile</button>
+        <button type="button" class="btn btn-primary" id="payBtn" onclick="proceedToPayment()">Proceed to Secure Payment &rarr;</button>
+      </div>
+      <div class="pending" id="payNotice"></div>
+      <div class="secure-line" id="secureLine">&#128274; Secure payment via Zoho Billing &middot; XcellHost does not store your card details</div>
+    </div>
+
+  </div>
+
+  <!-- ORDER SUMMARY -->
+  <div class="col-right">
+    <div class="summary">
+      <div class="sum-h">Order Summary</div>
+      <div class="sum-prod"><span id="oProd">NVIDIA L4</span> GPU Server<span class="term">India DC &middot; Billed Monthly</span></div>
+      <!-- NVMe selector — horizontal selectable cards (six listed sizes) -->
+      <div class="sum-nvme">
+        <div class="sum-sec-h">NVMe Storage</div>
+        <div class="nvme-cards" id="oNvmeCards"><!-- rendered by buildSummaryNvme() --></div>
+      </div>
+      <div class="pline"><span>Price</span><span class="amt" id="oPrice">&#8377;30,080 / server</span></div>
+      <div class="pline"><span>Servers</span><span class="amt" id="oQty">1</span></div>
+      <div class="sum-addons"><div class="sum-sec-h">Add-ons</div><div id="oAddonItems"><div class="oi-empty">&#8377;0 / month</div></div></div>
+      <div class="pline"><span>Base Total</span><span class="amt" id="oBase">&#8377;30,080 / mo</span></div>
+      <div class="pline"><span>Add-ons</span><span class="amt" id="oAddon">&#8377;0 / mo</span></div>
+      <div class="pline"><span>Subtotal</span><span class="amt" id="oSub">&#8377;30,080 / mo</span></div>
+      <!-- Promo code — entered here in the Order Summary; shown only on the Service step -->
+      <div class="promo" id="summaryPromo">
+        <label class="promo-lab" for="svcCouponInput">Promo Code</label>
+        <div class="promo-row">
+          <input id="svcCouponInput" type="text" autocomplete="off" spellcheck="false" placeholder="Enter promo code" onkeydown="if(event.key==='Enter'){event.preventDefault();applyCoupon();}">
+          <button type="button" class="promo-apply" id="svcCouponBtn" onclick="applyCoupon()">Apply</button>
+        </div>
+        <div class="promo-msg" id="svcCouponMsg"></div>
+      </div>
+      <div class="pline" id="oDiscRow" style="display:none"><span>Discount <small id="oDiscCode" style="color:var(--gn);font-weight:700"></small></span><span class="amt" id="oDisc" style="color:var(--gn)">-&#8377;0 / mo</span></div>
+      <div class="pline total"><span>Grand Total</span><span class="amt" id="oSubtotal">&#8377;30,080 / mo</span></div>
+      <div class="tax-note">Choose your NVMe storage above &mdash; the price updates instantly. Subtotal is (GPU price + add-ons) &times; number of servers. GST is applied on the final invoice; no payment is taken on this page.</div>
+      <div class="incl-mini"><div class="t">Included</div><ul>
+        <li id="oInclGpu">NVIDIA L4 &middot; 24 GB VRAM</li>
+        <li id="oInclCpu">16 vCPU &middot; 64 GB RAM</li>
+        <li id="oNvmeMini">30 GB NVMe storage</li>
+        <li>India DC &middot; monthly, cancel anytime</li>
+      </ul></div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<div id="toastWrap"></div>
+
+<footer class="foot"><div class="line">
+  XcellHost GPU servers &middot; India DC &middot; billed monthly. Questions? <a href="mailto:support@xcellhost.cloud">support@xcellhost.cloud</a> &middot; <a href="tel:+912267111555">+91-22-67111555</a> &middot; XcellHost Cloud Services &mdash; managed cloud &amp; cybersecurity since 1999.
+</div></footer>
+
+<script>
+/* ============================================================================
+   XcellHost GPU Servers — NVIDIA L4 (16 vCPU)
+   SINGLE-PAGE: GPU configuration + cart + 4-step checkout in one HTML file.
+   Only the FINAL payment step redirects externally (to Zoho Billing).
+   ----------------------------------------------------------------------------
+   Everything is driven by GPU_CATALOG + ACTIVE_GPUS. The in-memory `cart`
+   carries the selection into the checkout (no page reload, no query params),
+   so the selected NVMe, price and the Zoho plan are always the same record.
+
+     Select NVMe -> dynamic price -> Add to cart -> Proceed to Checkout
+     -> Account -> Service -> Profile -> Payment -> correct Zoho plan.
+
+   PAYMENT RULES:
+     * selected NVMe determines the Zoho plan (never defaults to 30 GB),
+     * price is validated against the plan before redirect (mismatch => STOP),
+     * qty > 1 is routed to sales (never a single-server plan; CP1013-safe),
+     * Custom NVMe has no fixed plan => Contact Sales,
+     * quantity is NEVER appended to the Zoho URL.
+   Prices are exact, hardcoded values — never a formula.
+
+   >>> ADD ANOTHER GPU LATER: add an object to GPU_CATALOG (unique id, specs,
+       badges, nvme:[{key,label,price,plan}] and zohoBase) and push its id into
+       ACTIVE_GPUS. The row, dropdown, pricing, cart, quantity, checkout and
+       Zoho redirect all work for it — no per-GPU code.
+   ============================================================================ */
+
+var GPU_CATALOG = {
+  /* ----- The only GPU implemented right now: NVIDIA L4 — 16 vCPU ----- */
+  'l4-16vcpu': {
+    id:'l4-16vcpu',
+    name:'NVIDIA L4',
+    meta:'24 GB VRAM total · Ada Lovelace · India DC · instant',
+    dc:'India DC',
+    availability:'20 available',
+    vram:'24 GB',
+    vcpu:'16 vCPU',
+    ram:'64 GB',
+    badges:['AI Inference','Edge','Cloud','Virtualization'],
+    defaultNvme:'30GB',
+    allowCustom:true,
+    /* exact hardcoded prices — never a formula. Each size maps to its OWN Zoho plan. */
+    nvme:[
+      {key:'30GB',  label:'30 GB',  price:30080, plan:'GPU-L4-16VCPU-30GB'},
+      {key:'50GB',  label:'50 GB',  price:30204, plan:'GPU-L4-16VCPU-50GB'},
+      {key:'100GB', label:'100 GB', price:30514, plan:'GPU-L4-16VCPU-100GB'},
+      {key:'250GB', label:'250 GB', price:31444, plan:'GPU-L4-16VCPU-250GB'},
+      {key:'500GB', label:'500 GB', price:32994, plan:'GPU-L4-16VCPU-500GB'},
+      {key:'1TB',   label:'1 TB',   price:36243, plan:'GPU-L4-16VCPU-1TB'}
+    ],
+    /* dedicated Zoho Hosted Payment base — final URL = zohoBase + <plan> */
+    zohoBase:'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/'
+  },
+
+  /* ----------------------------------------------------------------------------
+     Other GPU configurations from the XcellHost GPU Servers catalogue.
+     Specs + base monthly price are the live-page values; each NVMe size price is
+     the live page's own figure (base + ₹6.20/GB/mo beyond the 30 GB included),
+     so these match xcellhost.top/gpu-servers exactly — nothing is estimated.
+     All of these plans now have a verified Zoho Hosted Payment Page: every
+     GPU + NVMe combination is mapped in GPU_PLAN_MAP and resolved via
+     planUrlFor(), so checkout self-serves to the exact Zoho page. The per-size
+     plan:null fields below are vestigial — routing is driven solely by
+     GPU_PLAN_MAP, never by rec.plan. (zohoPending:false for all.)
+     ---------------------------------------------------------------------------- */
+  'l4-8vcpu': {
+    id:'l4-8vcpu', name:'NVIDIA L4', meta:'24 GB VRAM total · Ada Lovelace · India DC · instant',
+    dc:'India DC', availability:'20 available', vram:'24 GB', vcpu:'8 vCPU', ram:'32 GB',
+    badges:['AI Inference','Edge','Cloud','Virtualization'], defaultNvme:'30GB', allowCustom:true,
+    zohoPending:false, zohoBase:'',
+    nvme:[
+      {key:'30GB',  label:'30 GB',  price:26180, plan:null},
+      {key:'50GB',  label:'50 GB',  price:26304, plan:null},
+      {key:'100GB', label:'100 GB', price:26614, plan:null},
+      {key:'250GB', label:'250 GB', price:27544, plan:null},
+      {key:'500GB', label:'500 GB', price:29094, plan:null},
+      {key:'1TB',   label:'1 TB',   price:32343, plan:null}
+    ]
+  },
+  'l4-24vcpu': {
+    id:'l4-24vcpu', name:'NVIDIA L4', meta:'24 GB VRAM total · Ada Lovelace · India DC · instant',
+    dc:'India DC', availability:'20 available', vram:'24 GB', vcpu:'24 vCPU', ram:'128 GB',
+    badges:['AI Inference','Edge','Cloud','Virtualization'], defaultNvme:'30GB', allowCustom:true,
+    zohoPending:false, zohoBase:'',
+    nvme:[
+      {key:'30GB',  label:'30 GB',  price:33980, plan:null},
+      {key:'50GB',  label:'50 GB',  price:34104, plan:null},
+      {key:'100GB', label:'100 GB', price:34414, plan:null},
+      {key:'250GB', label:'250 GB', price:35344, plan:null},
+      {key:'500GB', label:'500 GB', price:36894, plan:null},
+      {key:'1TB',   label:'1 TB',   price:40143, plan:null}
+    ]
+  },
+  'rtx-pro-6000': {
+    id:'rtx-pro-6000', name:'NVIDIA RTX Pro 6000', meta:'96 GB VRAM total · Blackwell · India DC · instant',
+    dc:'India DC', availability:'8 available', vram:'96 GB', vcpu:'64 vCPU', ram:'170 GB',
+    badges:['High-end AI','Data Science','Rendering'], defaultNvme:'30GB', allowCustom:true,
+    zohoPending:false, zohoBase:'',
+    nvme:[
+      {key:'30GB',  label:'30 GB',  price:133600, plan:null},
+      {key:'50GB',  label:'50 GB',  price:133724, plan:null},
+      {key:'100GB', label:'100 GB', price:134034, plan:null},
+      {key:'250GB', label:'250 GB', price:134964, plan:null},
+      {key:'500GB', label:'500 GB', price:136514, plan:null},
+      {key:'1TB',   label:'1 TB',   price:139763, plan:null}
+    ]
+  },
+  'h200': {
+    id:'h200', name:'NVIDIA H200', meta:'141 GB VRAM total · Hopper · India DC · instant',
+    dc:'India DC', availability:'18 available', vram:'141 GB', vcpu:'64 vCPU', ram:'240 GB',
+    badges:['Cutting-edge AI','Data Science','Research'], defaultNvme:'30GB', allowCustom:true,
+    zohoPending:false, zohoBase:'',
+    nvme:[
+      {key:'30GB',  label:'30 GB',  price:295200, plan:null},
+      {key:'50GB',  label:'50 GB',  price:295324, plan:null},
+      {key:'100GB', label:'100 GB', price:295634, plan:null},
+      {key:'250GB', label:'250 GB', price:296564, plan:null},
+      {key:'500GB', label:'500 GB', price:298114, plan:null},
+      {key:'1TB',   label:'1 TB',   price:301363, plan:null}
+    ]
+  }
+};
+
+/* GPUs rendered/sold on the page, in display order. All five share ONE checkout. */
+var ACTIVE_GPUS = ['l4-8vcpu','l4-16vcpu','l4-24vcpu','rtx-pro-6000','h200'];
+
+/* ============================================================================
+   GPU_PLAN_MAP — the ONE authoritative map from a GPU + NVMe size to its exact
+   Zoho Hosted Payment Page. This is the sole source of truth for online payment:
+     * a full URL  => redirect to that exact Hosted Payment Page,
+     * null        => NO Zoho mapping yet => route to Sales (never a wrong/invented URL).
+   >>> Only real, verified Hosted Payment Page URLs belong here. NEVER invent one. <<<
+   Supplied so far: the six NVIDIA L4 16 vCPU plans. The other configurations are
+   null until their Hosted Payment Page URLs are provided (then replace the null).
+   ============================================================================ */
+var ZOHO_HPP_BASE='https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/';
+var GPU_PLAN_MAP = {
+  'l4-16vcpu': {
+    '30GB':  ZOHO_HPP_BASE+'GPU-L4-16VCPU-30GB',
+    '50GB':  ZOHO_HPP_BASE+'GPU-L4-16VCPU-50GB',
+    '100GB': ZOHO_HPP_BASE+'GPU-L4-16VCPU-100GB',
+    '250GB': ZOHO_HPP_BASE+'GPU-L4-16VCPU-250GB',
+    '500GB': ZOHO_HPP_BASE+'GPU-L4-16VCPU-500GB',
+    '1TB':   ZOHO_HPP_BASE+'GPU-L4-16VCPU-1TB'
+  },
+  /* verified Hosted Payment Page URLs — exact URLs provided by XcellHost (verbatim; not derived) */
+  'l4-8vcpu': {
+    '30GB':   'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/GPU-L4-8VCPU-30GB',
+    '50GB':   'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/GPU-L4-8VCPU-50GB',
+    '100GB':  'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/GPU-L4-8VCPU-100GB',
+    '250GB':  'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/GPU-L4-8VCPU-250GB',
+    '500GB':  'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/GPU-L4-8VCPU-500GB',
+    '1TB':    'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/GPU-L4-8VCPU-1TB'
+  },
+  'l4-24vcpu': {
+    '30GB':   'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/GPU-L4-24VCPU-30GB',
+    '50GB':   'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/GPU-L4-24VCPU-50GB',
+    '100GB':  'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/GPU-L4-24VCPU-100GB',
+    '250GB':  'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/GPU-L4-24VCPU-250GB',
+    '500GB':  'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/GPU-L4-24VCPU-500GB',
+    '1TB':    'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/GPU-L4-24VCPU-1TB'
+  },
+  'rtx-pro-6000': {
+    '30GB':   'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/GPU-RTX-PRO-6000-30GB',
+    '50GB':   'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/GPU-RTX-PRO-6000-50GB',
+    '100GB':  'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/GPU-RTX-PRO-6000-100GB',
+    '250GB':  'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/GPU-RTX-PRO-6000-250GB',
+    '500GB':  'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/GPU-RTX-PRO-6000-500GB',
+    '1TB':    'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/GPU-RTX-PRO-6000-1TB'
+  },
+  'h200': {
+    '30GB':   'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/GPU-H200-30GB',
+    '50GB':   'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/GPU-H200-50GB',
+    '100GB':  'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/GPU-H200-100GB',
+    '250GB':  'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/GPU-H200-250GB',
+    '500GB':  'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/GPU-H200-500GB',
+    '1TB':    'https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/GPU-H200-1TB'
+  }
+};
+/* authoritative lookup: exact Hosted Payment Page URL for this GPU+NVMe, or null if not mapped */
+function planUrlFor(gpuId,nvmekey){ var m=GPU_PLAN_MAP[gpuId]; return (m && m[nvmekey]) ? m[nvmekey] : null; }
+
+/* ============================================================================
+   OPTIONAL GPU ADD-ONS  (reusable, data-driven — chosen in STEP 1: SERVICE).
+   Multiple may be ticked. A ticked add-on is appended to the SAME Zoho plan as
+   addon_code[i] / addon_quantity[i] — only when it has a CONFIRMED price + code.
+   ----------------------------------------------------------------------------
+   Each object: { cat, name, code, price, unit, interval, desc, qmode, dq, min,
+                  max, verify }
+     cat     : category key (see ADDON_CATS)
+     price   : exact confirmed price, or null when not yet confirmed
+     code    : exact Zoho add-on code, or null when not yet confirmed
+     unit    : server | GB | user | VM | instance | IP | tunnel | port | domain | license
+     qmode   : 'server' (quantity follows the number of servers) |
+               'var' (customer sets the add-on's own quantity)
+     dq/min/max : default / min / max quantity for 'var' add-ons
+     verify  : true  => price and/or Zoho code still need verification. Such an
+               add-on is shown and selectable, but it CANNOT be self-served
+               through Zoho — selecting it routes the whole order to Sales for a
+               quote (no invented price, no invented code is ever sent).
+   >>> Remove/hide any add-on later by deleting its object — nothing else changes. <<<
+   ============================================================================ */
+var ADDON_CATS=[
+  {key:'infra',   label:'Additional Cloud Infra', icon:'🗄', sub:'Backup Storage, Object Storage and more'},
+  {key:'os',      label:'Software + Operating System Licenses', icon:'⚙', sub:'Linux, Windows, TSPlus, LiteSpeed and more'},
+  {key:'panel',   label:'Control Panel Licenses', icon:'▣', sub:'cPanel, Plesk, Softaculous and more'},
+  {key:'security',label:'Security Services', icon:'🛡', sub:'Endpoint Security, Firewall, SIEM and more'},
+  {key:'managed', label:'Managed Services', icon:'👥', sub:'Silver, Gold, Platinum, Ultimate and more'},
+  {key:'db',      label:'Database & Software Licenses', icon:'◉', sub:'SQL Server, Microsoft 365, FTP and more'},
+  {key:'mail',    label:'Mail Server Licenses', icon:'✉', sub:'SmarterMail, Email Security and more'}
+];
+var GPU_ADDONS = [
+  /* ---- Storage & Cloud Infrastructure (official Zoho Billing — GPU Servers) ---- */
+  {cat:'infra', name:'Add: vBackup - Backup Storage', code:'GPU-ADD-ADD-VBACKUP-BACKUP-STORAGE', price:7.6, unit:'GB', interval:'month', qmode:'var', dq:100, min:1, desc:'Backup storage pool'},
+  {cat:'infra', name:'Add: Object Storage - S3 Compatible', code:'GPU-ADD-ADD-OBJECT-STORAGE-S3-COMPATIBLE', price:1.6, unit:'GB', interval:'month', qmode:'var', dq:100, min:1, desc:'S3-compatible object storage'},
+
+  /* ---- Software & Operating Systems (official Zoho Billing — GPU Servers) ---- */
+  {cat:'os', name:'TSPlus Enterprise Plus', code:'GPU-ADD-TSPLUS-ENTERPRISE-PLUS', price:285, unit:'user', interval:'month', qmode:'var', dq:5, min:1},
+  {cat:'os', name:'TSPlus Enterprise Plus - Unlimited Users', code:'GPU-ADD-TSPLUS-ENTERPRISE-PLUS-UNLIMITED-USERS', price:9500, unit:'VM', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'os', name:'CloudLinux OS Admin', code:'GPU-ADD-CLOUDLINUX-OS-ADMIN', price:2375, unit:'VM', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'os', name:'RedHat Linux Enterprise Server (upto 4 Core)', code:'GPU-ADD-REDHAT-LINUX-ENTERPRISE-SERVER-UPTO-4-CORE', price:4750, unit:'VM', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'os', name:'RedHat Linux Enterprise Server (above 4 Core)', code:'GPU-ADD-REDHAT-LINUX-ENTERPRISE-SERVER-ABOVE-4-CORE', price:9500, unit:'VM', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'os', name:'SUSE Linux Enterprise Server (upto 4 core)', code:'GPU-ADD-SUSE-LINUX-ENTERPRISE-SERVER-UPTO-4-CORE', price:4750, unit:'VM', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'os', name:'SUSE Linux Enterprise Server (above 4 core)', code:'GPU-ADD-SUSE-LINUX-ENTERPRISE-SERVER-ABOVE-4-CORE', price:9500, unit:'VM', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'os', name:'LiteSpeed SiteOwner Plus', code:'GPU-ADD-LITESPEED-SITEOWNER-PLUS', price:2375, unit:'VM', interval:'month', qmode:'var', dq:1, min:1},
+
+  /* ---- Control Panels (official Zoho Billing — GPU Servers) ---- */
+  {cat:'panel', name:'Plesk Obsidian - Web Admin Edition', code:'GPU-ADD-PLESK-OBSIDIAN-WEB-ADMIN-EDITION', price:1206, unit:'server', interval:'month', qmode:'server'},
+  {cat:'panel', name:'Plesk Obsidian - Web Pro Edition', code:'GPU-ADD-PLESK-OBSIDIAN-WEB-PRO-EDITION', price:1780, unit:'server', interval:'month', qmode:'server'},
+  {cat:'panel', name:'Plesk Obsidian - Web Host Edition', code:'GPU-ADD-PLESK-OBSIDIAN-WEB-HOST-EDITION', price:3857, unit:'server', interval:'month', qmode:'server'},
+  {cat:'panel', name:'cPanel for Linux Solo (1 Accounts)', code:'GPU-ADD-CPANEL-FOR-LINUX-SOLO-1-ACCOUNTS', price:1425, unit:'server', interval:'month', qmode:'server'},
+  {cat:'panel', name:'cPanel for Linux with Softaculous', code:'GPU-ADD-CPANEL-FOR-LINUX-WITH-SOFTACULOUS', price:2375, unit:'server', interval:'month', qmode:'server'},
+  {cat:'panel', name:'cPanel for Linux (Upto 30 Accounts)', code:'GPU-ADD-CPANEL-FOR-LINUX-UPTO-30-ACCOUNTS', price:2161, unit:'server', interval:'month', qmode:'server'},
+  {cat:'panel', name:'cPanel for Linux Upto 50 Accounts', code:'GPU-ADD-CPANEL-FOR-LINUX-UPTO-50-ACCOUNTS', price:3064, unit:'server', interval:'month', qmode:'server'},
+  {cat:'panel', name:'cPanel for Linux (Upto 100 Accounts)', code:'GPU-ADD-CPANEL-FOR-LINUX-UPTO-100-ACCOUNTS', price:3952, unit:'server', interval:'month', qmode:'server'},
+  {cat:'panel', name:'cPanel for Linux', code:'GPU-ADD-CPANEL-FOR-LINUX', price:5225, unit:'server', interval:'month', qmode:'server'},
+
+  /* ---- Security Services (official Zoho Billing — GPU Servers) ---- */
+  {cat:'security', name:'Endpoint Security Agent (with Advanced Detection & Response)', code:'GPU-ADD-ENDPOINT-SECURITY-AGENT-WITH-ADVANCED-DETECTI', price:380, unit:'server', interval:'month', qmode:'server'},
+  {cat:'security', name:'Shared Firewall Services', code:'GPU-ADD-SHARED-FIREWALL-SERVICES', price:2375, unit:'server', interval:'month', qmode:'server'},
+  {cat:'security', name:'Managed Firewall Services - Dedicated Virtual Fortinet VM01 Essentials', code:'GPU-ADD-MANAGED-FIREWALL-SERVICES-DEDICATED-VIRTUAL-F', price:16625, unit:'instance', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'security', name:'Advanced Security Monitoring Services (SIEM)', code:'GPU-ADD-ADVANCED-SECURITY-MONITORING-SERVICES-SIEM', price:2375, unit:'server', interval:'month', qmode:'server', desc:'SIEM | Log Analytics | Network Behaviour | with AI+ML'},
+  {cat:'security', name:'Vulnerability Scanning Tool', code:'GPU-ADD-VULNERABILITY-SCANNING-TOOL', price:475, unit:'IP', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'security', name:'IPv4 Address', code:'GPU-ADD-IPV4-ADDRESS', price:533, unit:'IP', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'security', name:'Email Defense Services', code:'GPU-ADD-EMAIL-DEFENSE-SERVICES', price:285, unit:'user', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'security', name:'SiteLock Enterprise', code:'GPU-ADD-SITELOCK-ENTERPRISE', price:1900, unit:'domain', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'security', name:'Site-to-Site VPN Tunnel', code:'GPU-ADD-SITE-TO-SITE-VPN-TUNNEL', price:1425, unit:'tunnel', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'security', name:'Add: SSL VPN Client (Fortinet)', code:'GPU-ADD-ADD-SSL-VPN-CLIENT-FORTINET', price:285, unit:'user', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'security', name:'Port Termination Charges (Direct Connect)', code:'GPU-ADD-PORT-TERMINATION-CHARGES-DIRECT-CONNECT', price:4750, unit:'port', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'security', name:'Shared Load Balancing Services', code:'GPU-ADD-SHARED-LOAD-BALANCING-SERVICES', price:2375, unit:'server', interval:'month', qmode:'server'},
+
+  /* ---- Managed Services (official Zoho Billing — GPU Servers) ---- */
+  {cat:'managed', name:'Managed Services - Silver Plan', code:'GPU-ADD-MANAGED-SERVICES-SILVER-PLAN', price:3325, unit:'instance', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'managed', name:'Managed Services - Gold Plan', code:'GPU-ADD-MANAGED-SERVICES-GOLD-PLAN', price:5700, unit:'instance', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'managed', name:'Managed Services - Platinum Plan', code:'GPU-ADD-MANAGED-SERVICES-PLATINUM-PLAN', price:9500, unit:'instance', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'managed', name:'Managed Services - Ultimate Plan', code:'GPU-ADD-MANAGED-SERVICES-ULTIMATE-PLAN', price:14250, unit:'instance', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'managed', name:'Cloud Disaster Recovery - Powered by Acronis Disaster Recovery Cloud', code:'GPU-ADD-CLOUD-DISASTER-RECOVERY-POWERED-BY-ACRONIS-DI', price:11875, unit:'instance', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'managed', name:'Security Monitoring Advanced Pack (SIEM)', code:'GPU-ADD-SECURITY-MONITORING-ADVANCED-PACK-SIEM', price:2375, unit:'instance', interval:'month', qmode:'var', dq:1, min:1},
+
+  /* ---- Database & Software Licenses (official Zoho Billing — GPU Servers) ---- */
+  {cat:'db', name:'Cloud Database SQL Server 2019 - 10 GB', code:'GPU-ADD-CLOUD-DATABASE-SQL-SERVER-2019-10-GB', price:2375, unit:'block', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'db', name:'Cloud Database SQL Server 2019 - 25 GB', code:'GPU-ADD-CLOUD-DATABASE-SQL-SERVER-2019-25-GB', price:3325, unit:'block', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'db', name:'Cloud Database SQL Server 2019 - 50 GB', code:'GPU-ADD-CLOUD-DATABASE-SQL-SERVER-2019-50-GB', price:4275, unit:'block', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'db', name:'Cloud Database SQL Server 2019 - 100 GB', code:'GPU-ADD-CLOUD-DATABASE-SQL-SERVER-2019-100-GB', price:5225, unit:'block', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'db', name:'Cloud Database SQL Server 2019 - 250 GB', code:'GPU-ADD-CLOUD-DATABASE-SQL-SERVER-2019-250-GB', price:6175, unit:'block', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'db', name:'Cloud Database SQL Server 2019 - 500 GB', code:'GPU-ADD-CLOUD-DATABASE-SQL-SERVER-2019-500-GB', price:7125, unit:'block', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'db', name:'Cloud Database SQL Server 2019 - 1 TB', code:'GPU-ADD-CLOUD-DATABASE-SQL-SERVER-2019-1-TB', price:14250, unit:'block', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'db', name:'Microsoft 365 Business (License Only)', code:'GPU-ADD-MICROSOFT-365-BUSINESS-LICENSE-ONLY', price:1805, unit:'user', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'db', name:'SQL Server 2016/2019 - Standard SAL', code:'GPU-ADD-SQL-SERVER-2016-2019-STANDARD-SAL', price:950, unit:'user', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'db', name:'Secure FTP Server Standard Edition', code:'GPU-ADD-SECURE-FTP-SERVER-STANDARD-EDITION', price:1900, unit:'server', interval:'month', qmode:'server'},
+  {cat:'db', name:'SQL Server 2019 - Web Edition', code:'GPU-ADD-SQL-SERVER-2019-WEB-EDITION', price:7125, unit:'2 core', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'db', name:'SQL Server 2016/2019 - Standard Edition', code:'GPU-ADD-SQL-SERVER-2016-2019-STANDARD-EDITION', price:14250, unit:'2 core', interval:'month', qmode:'var', dq:1, min:1},
+  {cat:'db', name:'SQL Server 2016/2019 - Enterprise Edition', code:'GPU-ADD-SQL-SERVER-2016-2019-ENTERPRISE-EDITION', price:55385, unit:'2 core', interval:'month', qmode:'var', dq:1, min:1},
+
+  /* ---- Mail Server Licenses (official Zoho Billing — GPU Servers) ---- */
+  {cat:'mail', name:'SmarterMail Server Enterprise - 250 Users License', code:'GPU-ADD-SMARTERMAIL-SERVER-ENTERPRISE-250-USERS-LICEN', price:5225, unit:'server', interval:'month', qmode:'server'},
+  {cat:'mail', name:'SmarterMail Server Enterprise - 500 Users License', code:'GPU-ADD-SMARTERMAIL-SERVER-ENTERPRISE-500-USERS-LICEN', price:11875, unit:'server', interval:'month', qmode:'server'},
+  {cat:'mail', name:'SmarterMail Server Enterprise - 1000 Users License', code:'GPU-ADD-SMARTERMAIL-SERVER-ENTERPRISE-1000-USERS-LICE', price:14250, unit:'server', interval:'month', qmode:'server'},
+  {cat:'mail', name:'SmarterMail Server Enterprise - 2000 Users License', code:'GPU-ADD-SMARTERMAIL-SERVER-ENTERPRISE-2000-USERS-LICE', price:9975, unit:'server', interval:'month', qmode:'server'},
+  {cat:'mail', name:'Cloud E-Mail Security (Anti-Spam, Anti-Virus, Anti-Ransomware)', code:'GPU-ADD-CLOUD-E-MAIL-SECURITY-ANTI-SPAM-ANTI-VIRUS-AN', price:38, unit:'user', interval:'month', qmode:'var', dq:1, min:1}
+];
+/* an add-on is self-serviceable through Zoho only when it has a confirmed price AND code AND is not flagged */
+function addonSellable(a){ return a && a.price!=null && !!a.code && !a.verify; }
+
+var SALES_EMAIL='sales@xcellhost.cloud';
+
+/* ---------------------------------------------------------------------------- */
+var selected = {};   /* selected[gpuId] = nvme key (per-GPU current choice) */
+var activeGpuFamily = 'all';
+/* the active ORDER — saved on "Add to cart", then edited on STEP 1: SERVICE
+   (quantity + add-ons) and carried through Account -> Profile -> Payment. */
+var cfg = {gpuId:null,gpu:'NVIDIA L4',vcpu:'16 vCPU',ram:'64 GB',vram:'24 GB',nvme:'30 GB',nvmekey:'30GB',price:null,qty:1,addons:[]};
+var addonSel = {};   /* addonSel[index] = true — add-ons ticked on the Service step */
+var addonQty = {};   /* addonQty[index] = quantity for a 'var' add-on (GB / user / VM / ...) */
+
+/* ---------- shared helpers (defined once) ---------- */
+function qs(id){return document.getElementById(id);}
+function val(id){var e=qs(id);return e?e.value.trim():"";}
+function enc(v){return encodeURIComponent(v);}
+function indian(n){n=String(n);if(n.length<=3)return n;var h=n.slice(0,-3),t=n.slice(-3),p=[];while(h.length>2){p.unshift(h.slice(-2));h=h.slice(0,-2);}if(h)p.unshift(h);return p.join(',')+','+t;}
+function rupee(n){return '₹'+indian(n);}
+/* money that keeps up to 2 decimals (add-on prices like ₹7.60/GB) and trims whole rupees */
+function money(n){n=Math.round((Number(n)||0)*100)/100;var i=Math.floor(n),f=Math.round((n-i)*100);var s='₹'+indian(i);if(f>0)s+='.'+(f<10?'0'+f:f);return s;}
+function nvmeOpt(g,key){ for(var i=0;i<g.nvme.length;i++){ if(g.nvme[i].key===key) return g.nvme[i]; } return null; }
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function toast(m){var t=document.createElement('div');t.className='toast';t.textContent=m;var w=qs('toastWrap');if(!w)return;w.appendChild(t);setTimeout(function(){t.style.opacity='0';setTimeout(function(){t.remove();},300);},3000);}
+
+/* ======================= VIEW 1: configurator + cart ======================= */
+function rowHtml(g){
+  /* Quick-select popover: 2-column grid of storage SIZES only (no price beside each) */
+  var grid='';
+  for(var i=0;i<g.nvme.length;i++){ var o=g.nvme[i];
+    grid+='<button type="button" role="option" data-key="'+o.key+'" onclick="selectNvme(\''+g.id+'\',\''+o.key+'\')">'+esc(o.label)+'</button>';
+  }
+  var opts='<div class="dd-lbl">Quick select</div><div class="dd-grid">'+grid+'</div>';
+  if(g.allowCustom){
+    opts+='<div class="dd-lbl">Custom NVMe storage</div>'
+       +  '<form class="dd-custom" onsubmit="applyCustomNvme(event,\''+g.id+'\')"><input id="ddCustom-'+g.id+'" type="text" inputmode="numeric" placeholder="e.g. 200" aria-label="Custom storage in GB"><button type="submit">Apply</button></form>';
+  }
+  /* rate footer: storage rate (left) + extra over the included 30 GB for the current size (right) */
+  opts+='<div class="dd-rate"><span>&#8377;6.20/GB/mo</span><b id="ddExtra-'+g.id+'">+&#8377;0/mo</b></div>';
+  var badges=''; for(var b=0;b<g.badges.length;b++){ badges+='<span class="tag">'+esc(g.badges[b])+'</span>'; }
+  return ''
+    +'<div class="gpu-row gcols" data-gpu="'+g.id+'">'
+    + '<div class="c-name"><div class="nm">'+esc(g.name)+'</div><div class="meta">'+g.meta+'</div><span class="avail"><span class="dot"></span>'+esc(g.availability)+'</span></div>'
+    + '<div class="spec"><div class="v">'+esc(g.vram)+'</div><div class="k">VRAM</div></div>'
+    + '<div class="spec"><div class="v">'+esc(g.vcpu)+'</div><div class="k">vCPU</div></div>'
+    + '<div class="spec"><div class="v">'+esc(g.ram)+'</div><div class="k">RAM</div></div>'
+    + '<div class="c-nvme"><div class="nvme" id="nvme-'+g.id+'">'
+    +   '<button type="button" class="nvme-btn" id="nvmeBtn-'+g.id+'" aria-haspopup="listbox" aria-expanded="false" onclick="toggleMenu(event,\''+g.id+'\')"><span class="nvme-ico">☰</span><span class="nvme-val" id="nvmeVal-'+g.id+'"></span><span class="nvme-chev">▾</span></button>'
+    +   '<div class="nvme-menu" id="nvmeMenu-'+g.id+'" role="listbox" aria-label="NVMe storage">'+opts+'</div>'
+    + '</div></div>'
+    + '<div class="c-uses">'+badges+'</div>'
+    + '<div class="c-price"><div class="price" id="price-'+g.id+'"></div><div class="note" id="priceNote-'+g.id+'">monthly · cancel anytime</div></div>'
+    + '<div class="c-add"><button type="button" class="btn-add" id="addBtn-'+g.id+'" onclick="addToCart(\''+g.id+'\')">Configure &amp; Buy</button></div>'
+    + '<div class="nvme-custom" id="nvmeCustom-'+g.id+'" style="display:none"><label for="customGB-'+g.id+'">Custom NVMe size (GB)</label><input id="customGB-'+g.id+'" type="text" inputmode="numeric" placeholder="e.g. 750"><div class="note">Custom NVMe pricing is configured by XcellHost &mdash; the price for a custom size is not set on this page and is never sent to a listed plan. Pick a listed size above, or contact sales and our team will confirm your custom price. <b>(Pricing logic requires configuration.)</b></div><button type="button" class="btn-sales" onclick="contactSalesCustom(\''+g.id+'\')">Custom NVMe pricing &mdash; Contact Sales &rarr;</button></div>'
+    +'</div>';
+}
+function buildTable(){
+  var familyDescriptions={
+    all:['All GPU configurations','Dedicated NVIDIA GPU servers for AI, inference, visualisation and accelerated compute.'],
+    l4:['NVIDIA L4','Efficient inference, video analytics and virtual workstation configurations.'],
+    rtx:['NVIDIA RTX Pro 6000','High-memory professional graphics, digital twins and AI content creation.'],
+    h200:['NVIDIA H200','HBM3e acceleration for large-model training, fine-tuning and high-throughput inference.']
+  };
+  var visibleIds=ACTIVE_GPUS.filter(function(id){return activeGpuFamily==='all'||id.indexOf(activeGpuFamily)===0;});
+  var html='';
+  for(var i=0;i<visibleIds.length;i++){ var g=GPU_CATALOG[visibleIds[i]]; if(g) html+=rowHtml(g); }
+  qs('gpuRows').innerHTML=html;
+  for(var j=0;j<visibleIds.length;j++){ var gid=visibleIds[j], gg=GPU_CATALOG[gid]; if(gg) selectNvme(gid, selected[gid]||gg.defaultNvme); }
+  var copy=familyDescriptions[activeGpuFamily]||familyDescriptions.all;
+  qs('gpuFamilyTitle').textContent=copy[0]; qs('gpuFamilyDescription').textContent=copy[1];
+  qs('gpuFamilyCount').textContent=visibleIds.length+' configuration'+(visibleIds.length===1?'':'s');
+}
+function setGpuFamily(family){
+  activeGpuFamily=family;
+  var buttons=document.querySelectorAll('[data-gpu-family]');
+  for(var i=0;i<buttons.length;i++) buttons[i].classList.toggle('active',buttons[i].getAttribute('data-gpu-family')===family);
+  buildTable();
+}
+function toggleMenu(e,gpuId){ if(e){e.stopPropagation();} var el=qs('nvme-'+gpuId); var willOpen=!el.classList.contains('open'); closeAllMenus(); if(willOpen){ el.classList.add('open'); qs('nvmeBtn-'+gpuId).setAttribute('aria-expanded','true'); } }
+function closeAllMenus(){ var ms=document.querySelectorAll('.nvme.open'); for(var i=0;i<ms.length;i++){ ms[i].classList.remove('open'); var btn=ms[i].querySelector('.nvme-btn'); if(btn) btn.setAttribute('aria-expanded','false'); } }
+function selectNvme(gpuId,key){
+  var g=GPU_CATALOG[gpuId]; if(!g)return;
+  selected[gpuId]=key;
+  var menuBtns=qs('nvmeMenu-'+gpuId).querySelectorAll('.dd-grid button[data-key]');
+  for(var i=0;i<menuBtns.length;i++){ menuBtns[i].classList.toggle('sel', menuBtns[i].getAttribute('data-key')===key); }
+  /* rate-footer: "+₹X/mo" = this size's price minus the 30 GB (included) price — exact catalog prices, no new maths */
+  var ddx=qs('ddExtra-'+gpuId);
+  if(ddx){
+    var base30=(g.nvme[0]||{}).price||0;
+    var extra=(key==='custom')?0:Math.max(0, ((nvmeOpt(g,key)||g.nvme[0]).price||0)-base30);
+    ddx.innerHTML='+'+rupee(extra)+'/mo';
+  }
+  if(key==='custom'){
+    qs('nvmeVal-'+gpuId).textContent='Custom NVMe Storage';
+    qs('nvmeCustom-'+gpuId).style.display='';
+  }else{
+    var o=nvmeOpt(g,key)||g.nvme[0];
+    qs('nvmeVal-'+gpuId).textContent=o.label;
+    qs('nvmeCustom-'+gpuId).style.display='none';
+  }
+  renderRowPrice(gpuId);   /* GPU row price = NVMe base price only (add-ons are chosen in the cart) */
+  closeAllMenus();
+}
+/* Custom NVMe from the popover — mirrors the typed size into the existing custom input and
+   runs the EXISTING custom-storage logic (no on-page price; routes to Contact Sales). */
+function applyCustomNvme(e,gpuId){
+  if(e && e.preventDefault) e.preventDefault();
+  var inp=qs('ddCustom-'+gpuId), gb=inp?inp.value.trim():'';
+  var cg=qs('customGB-'+gpuId); if(cg) cg.value=gb;
+  selectNvme(gpuId,'custom');
+}
+/* row price = NVMe base price (no add-ons here — those live in the cart). */
+function renderRowPrice(gpuId){
+  var g=GPU_CATALOG[gpuId]; if(!g)return;
+  var key=selected[gpuId];
+  var priceEl=qs('price-'+gpuId), addEl=qs('addBtn-'+gpuId);
+  if(!priceEl||!addEl)return;
+  if(key==='custom'){
+    priceEl.innerHTML='To be configured'; priceEl.classList.add('tbc');
+    addEl.disabled=true; addEl.title='Custom NVMe pricing requires configuration';
+    return;
+  }
+  var o=nvmeOpt(g,key)||g.nvme[0];
+  priceEl.classList.remove('tbc');
+  priceEl.innerHTML=rupee(o.price)+'<span class="mo">/mo</span>';
+  var noteEl=qs('priceNote-'+gpuId); if(noteEl) noteEl.textContent='monthly · cancel anytime';
+  addEl.disabled=false; addEl.title='';
+}
+
+/* ---- OPTIONAL ADD-ONS live on STEP 1: SERVICE (ALL add-ons, categorised, multi-select) ---- */
+function catCount(key){ var n=0; for(var i=0;i<GPU_ADDONS.length;i++){ if(GPU_ADDONS[i].cat===key)n++; } return n; }
+function buildServiceAddons(){
+  var host=qs('svcAddonList'); if(!host)return;
+  var html='';
+  for(var c=0;c<ADDON_CATS.length;c++){ var cat=ADDON_CATS[c], cards='';
+    for(var i=0;i<GPU_ADDONS.length;i++){ var a=GPU_ADDONS[i]; if(a.cat!==cat.key) continue;
+      var price = (a.price!=null)
+        ? '<div class="ac-price">'+money(a.price)+' <small>/ '+esc(a.unit)+' / '+esc(a.interval||'month')+'</small></div>'
+        : '<div class="ac-price"><span class="po-req">Price on request</span></div>';
+      var qty = (a.qmode==='var')
+        ? '<div class="ac-qty"><span class="ac-stepper"><button type="button" aria-label="decrease" onclick="stepAddonQty('+i+',-1)">−</button><span class="qv" id="svcAddonQtyVal-'+i+'">'+(a.dq||1)+'</span><button type="button" aria-label="increase" onclick="stepAddonQty('+i+',1)">+</button></span><span class="qu">'+esc(a.unit)+'</span></div>'
+        : '';
+      cards+='<div class="ac-card" id="acCard-'+i+'">'
+        + '<label class="ac-head"><input type="checkbox" id="svcAddon-'+i+'" onchange="toggleServiceAddon('+i+')"><span class="ac-name"><b>'+esc(a.name)+'</b>'+(a.desc?'<span class="ac-desc">'+esc(a.desc)+'</span>':'')+'</span></label>'
+        + '<div class="ac-foot">'+price+qty+'</div>'
+        + '</div>';
+    }
+    html+='<div class="addon-cat'+(c===0?' open':'')+'" id="addonCat-'+cat.key+'">'
+      + '<button type="button" class="addon-cat-h" onclick="toggleCat(\''+cat.key+'\')"><span class="cat-ico">'+cat.icon+'</span><span class="cat-main"><span class="cat-title">'+esc(cat.label)+'</span><span class="cat-sub">'+esc(cat.sub)+'</span></span><span class="cat-count">'+catCount(cat.key)+'</span><span class="cat-chev">›</span></button>'
+      + '<div class="addon-cat-body"><div class="ac-grid">'+cards+'</div></div>'
+      + '</div>';
+  }
+  host.innerHTML=html;
+}
+/* accordion: open the clicked category and close the others */
+function toggleCat(key){
+  var tgt=qs('addonCat-'+key); if(!tgt)return;
+  var willOpen=!tgt.classList.contains('open');
+  var cats=document.querySelectorAll('#svcAddonList .addon-cat');
+  for(var i=0;i<cats.length;i++) cats[i].classList.remove('open');
+  if(willOpen) tgt.classList.add('open');
+}
+function toggleServiceAddon(i){
+  var cb=qs('svcAddon-'+i); if(!cb)return;
+  addonSel[i]=cb.checked;
+  var card=qs('acCard-'+i); if(card) card.classList.toggle('selected', cb.checked);
+  if(cb.checked && !addonQty[i]){ addonQty[i]=GPU_ADDONS[i].dq||1; }
+  syncAddons(); renderService();
+}
+/* [-] n [+] quantity stepper for a 'var' add-on */
+function stepAddonQty(i,delta){
+  var a=GPU_ADDONS[i], mn=a.min||1, cur=addonQty[i]||a.dq||mn, q=cur+delta; if(q<mn)q=mn;
+  addonQty[i]=q;
+  var el=qs('svcAddonQtyVal-'+i); if(el) el.textContent=String(q);
+  syncAddons(); renderService();
+}
+/* rebuild cfg.addons from the ticked boxes (carries code, price, unit, qmode, verify, qty) */
+function syncAddons(){
+  var out=[];
+  for(var i=0;i<GPU_ADDONS.length;i++){ if(addonSel[i]){ var a=GPU_ADDONS[i];
+    out.push({idx:i, code:a.code, name:a.name, price:a.price, unit:a.unit, interval:a.interval,
+              qmode:a.qmode, verify:!!a.verify, qty:(a.qmode==='var'?(addonQty[i]||a.dq||1):1)});
+  }}
+  cfg.addons=out;
+}
+/* effective quantity used for pricing/Zoho: per-server add-ons follow the server count; others use their own qty */
+function addonEffQty(a){ return a.qmode==='server' ? (cfg.qty||1) : (a.qty||1); }
+function addonLine(a){ return (a.price!=null) ? a.price*addonEffQty(a) : 0; }
+function addonSubtotal(){ var s=0; (cfg.addons||[]).forEach(function(a){ s+=addonLine(a); }); return s; }
+function addonSellableEntry(a){ return a && a.price!=null && !!a.code && !a.verify; }
+function anyQuoteNeeded(){ return (cfg.addons||[]).some(function(a){ return !addonSellableEntry(a); }); }
+/* pre-GST order subtotal = (GPU base price × servers) + add-on subtotal */
+function orderSubtotal(){ var r=resolveRec(); var base=r?r.price:(cfg.price||0); return base*(cfg.qty||1)+addonSubtotal(); }
+
+/* ===== Promo / coupon — PAYMENT STEP ONLY ==================================
+   Each code here is validated on THIS page for an instant preview; the accepted
+   code is ALSO passed to Zoho Billing as coupon_code, where Zoho applies the
+   real discount on the invoice (after GPU + add-ons, before GST). This list
+   MUST mirror the coupons configured in Zoho Billing — a code that is not a
+   real Zoho coupon will be rejected on the Zoho page even if listed here, and a
+   real Zoho coupon that is missing here simply gets no on-page preview. Add
+   real codes only. type:'pct' = % off the subtotal; type:'flat' = ₹ off. */
+var COUPONS={
+  /* Real, activated Zoho Billing coupon — "GPU Cart 10 Percent": GPU Servers, 10%,
+     one-time, max 100 redemptions. The on-page figure is a PREVIEW only; the code is
+     sent to Zoho as coupon_code and Zoho is the final authority on validity/application. */
+  'XCELGS10':{type:'pct',value:10,label:'10% off GPU Servers (before GST)'}
+};
+var COUPON={code:'',type:null,value:0,label:''};   /* the currently accepted coupon, or none */
+/* discount for the accepted coupon against a given pre-GST subtotal */
+function couponDiscount(subtotal){
+  if(!COUPON.code) return 0;
+  var d=(COUPON.type==='pct') ? subtotal*(Number(COUPON.value)/100) : Number(COUPON.value);
+  d=Math.round(d*100)/100;
+  if(d>subtotal) d=subtotal; if(d<0) d=0;
+  return d;
+}
+/* re-render the whole checkout (Service totals + right summary + Payment) after a coupon change */
+function rerenderCheckout(){ if(typeof renderService==='function'){ renderService(); } else { renderOrder(); } }
+function couponMsg(html,kind){ var m=qs('svcCouponMsg'); if(!m)return; m.innerHTML=html; m.className='promo-msg show'+(kind?(' '+kind):''); }
+/* validate the entered code (Service step) against the known list, accept or reject, then re-render totals */
+function applyCoupon(){
+  var inp=qs('svcCouponInput'); if(!inp) return;
+  var raw=inp.value.trim();
+  if(!raw){ COUPON={code:'',type:null,value:0,label:''}; couponMsg('Please enter a promo code.',''); rerenderCheckout(); return; }
+  var key=raw.toUpperCase().replace(/\s+/g,'');
+  var c=COUPONS[key];
+  if(!c){ COUPON={code:'',type:null,value:0,label:''}; couponMsg('Invalid or expired promo code.','bad'); rerenderCheckout(); return; }
+  COUPON={code:key,type:c.type,value:c.value,label:c.label||''};
+  inp.value=key;
+  rerenderCheckout();
+  var disc=couponDiscount(orderSubtotal());
+  couponMsg('&#10003; Promo code applied. You save '+money(disc)+(COUPON.label?' &middot; '+COUPON.label:'')+'. <span class="rm" onclick="removeCoupon()">Remove</span>','ok');
+}
+function removeCoupon(){
+  COUPON={code:'',type:null,value:0,label:''};
+  var inp=qs('svcCouponInput'); if(inp) inp.value='';
+  var m=qs('svcCouponMsg'); if(m){ m.className='promo-msg'; m.innerHTML=''; }
+  rerenderCheckout();
+}
+
+/* "+ Add to cart" -> save the GPU config, open the 4-step checkout, land on SERVICE. */
+function addToCart(gpuId){
+  var g=GPU_CATALOG[gpuId]; if(!g)return;
+  var key=selected[gpuId];
+  if(key==='custom'){ toast('Custom NVMe pricing isn’t configured yet — pick a listed size.'); return; }
+  var o=nvmeOpt(g,key); if(!o)return;
+  /* Keep checkout on its own Angular page so the standard site header and
+     footer wrap the supplied checkout steps. */
+  if(new URLSearchParams(window.location.search).get('checkout')!=='1'){
+    var checkoutUrl='/gpu-servers/checkout?gpu='+enc(gpuId)+'&nvme='+enc(key);
+    window.top.location.assign(checkoutUrl);
+    return;
+  }
+  /* 1-3. save selected GPU configuration, NVMe and a fresh quantity */
+  cfg.gpuId=gpuId; cfg.gpu=g.name; cfg.vcpu=g.vcpu; cfg.ram=g.ram; cfg.vram=g.vram;
+  cfg.nvme=o.label; cfg.nvmekey=key; cfg.price=o.price; cfg.qty=1; cfg.addons=[];
+  /* fresh add-on selection (all unticked, quantities back to default) */
+  addonSel={}; addonQty={};
+  for(var i=0;i<GPU_ADDONS.length;i++){ var cb=qs('svcAddon-'+i); if(cb) cb.checked=false; var card=qs('acCard-'+i); if(card) card.classList.remove('selected'); var qv=qs('svcAddonQtyVal-'+i); if(qv) qv.textContent=String(GPU_ADDONS[i].dq||1); }
+  /* reset the accordion so only the first category is open */
+  var cats=document.querySelectorAll('#svcAddonList .addon-cat'); for(var ci=0;ci<cats.length;ci++) cats[ci].classList.toggle('open', ci===0);
+  /* reset any prior payment-step state */
+  var pn=qs('payNotice'); if(pn){ pn.className='pending'; pn.innerHTML=''; pn.removeAttribute('style'); }
+  var pb=qs('payBtn'); if(pb){ pb.disabled=false; }
+  /* 4-5. open the checkout and activate STEP 1: SERVICE */
+  renderService();
+  showCheckout();
+  goStep('service');
+}
+
+/* STEP 1: SERVICE — order configuration (quantity + add-ons + live totals). */
+function setSvcQty(v){ var q=parseInt(v,10); if(isNaN(q)||q<1)q=1; cfg.qty=q; renderService(); }
+function changeSvcQty(d){ setSvcQty((cfg.qty||1)+d); }
+function renderService(){
+  var g=GPU_CATALOG[cfg.gpuId]; if(!g)return;
+  var base=cfg.price||0, qty=cfg.qty||1, addSub=addonSubtotal(), quote=anyQuoteNeeded();
+  qs('sGpu').textContent=cfg.gpu; qs('sVcpu').textContent=cfg.vcpu; qs('sRam').textContent=cfg.ram; qs('sVram').textContent=cfg.vram;
+  var sN=qs('sNvme'); if(sN) sN.textContent=cfg.nvme; qs('sPrice').innerHTML=money(base)+' / server / month';
+  qs('svcQty').value=String(qty);
+  qs('svcMinus').disabled=(qty<=1);
+  qs('svcAddonSub').innerHTML=money(addSub);
+  qs('svcQtyEcho').textContent=String(qty);
+  qs('svcBaseEach').innerHTML=money(base);
+  qs('svcBase').innerHTML=money(base*qty);
+  qs('svcAddonTotal').innerHTML=money(addSub);
+  var sub=base*qty+addSub;
+  qs('svcSubtotal').innerHTML=money(sub);
+  /* promo discount — applied AFTER (GPU price + add-ons), BEFORE GST; prices never modified */
+  var disc=couponDiscount(sub), sdr=qs('svcDiscRow');
+  if(COUPON.code && disc>0){ if(sdr)sdr.style.display=''; var sdc=qs('svcDiscCode'); if(sdc)sdc.textContent='('+COUPON.code+')'; qs('svcDisc').innerHTML='-'+money(disc); }
+  else { if(sdr)sdr.style.display='none'; }
+  qs('svcGrand').innerHTML=money(sub-disc)+' / month';
+  var mn=qs('svcMultiNote'); if(mn) mn.style.display=(qty>1)?'':'none';
+  var qn=qs('svcQuoteNote'); if(qn) qn.style.display=quote?'':'none';
+  renderOrder();   /* keep hero, order summary and payment in sync */
+}
+/* Custom NVMe has no fixed Zoho plan — route to sales (never to a listed plan). */
+function contactSalesCustom(gpuId){
+  var g=GPU_CATALOG[gpuId]; if(!g)return;
+  var gb=''; var inp=qs('customGB-'+gpuId); if(inp) gb=inp.value.trim();
+  var subject='Custom NVMe pricing — '+g.name+' ('+g.vcpu+')';
+  var body=['Custom NVMe pricing request:','',
+    'GPU: '+g.name+' ('+g.vcpu+', '+g.ram+' RAM, '+g.vram+' VRAM)',
+    'Custom NVMe size: '+(gb?gb+' GB':'(to be advised)'),
+    'Location: '+g.dc,'',
+    'Please confirm pricing for this custom configuration.'].join('\n');
+  window.location.href='mailto:'+SALES_EMAIL+'?subject='+enc(subject)+'&body='+enc(body);
+}
+
+/* ======================= view switching (no page reload) ======================= */
+function showCheckout(){
+  qs('viewCart').style.display='none';
+  qs('viewCheckout').style.display='';
+  var ns=qs('navSecure'); if(ns) ns.innerHTML='&#128274; Secure Checkout';
+  try{window.scrollTo({top:0,behavior:'smooth'});}catch(e){}
+}
+/* Back to the GPU configuration page (no separate cart — Service IS the order step). */
+function showConfig(){
+  qs('viewCheckout').style.display='none';
+  qs('viewCart').style.display='';
+  var ns=qs('navSecure'); if(ns) ns.innerHTML='&#128274; GPU Servers';
+  try{window.scrollTo({top:0,behavior:'smooth'});}catch(e){}
+}
+function backToConfig(){
+  if(new URLSearchParams(window.location.search).get('checkout')==='1'){
+    window.top.location.assign('/gpu-servers#pricing');
+    return;
+  }
+  showConfig();
+}
+
+/* ======================= VIEW 2: 4-step checkout ======================= */
+/* resolve the authoritative plan record for the selected GPU + NVMe key
+   (fallback: by label). Returns null for custom/unknown (no fixed plan). */
+function resolveRec(){
+  var g=GPU_CATALOG[cfg.gpuId]; if(!g) return null;
+  if(cfg.nvmekey){ for(var i=0;i<g.nvme.length;i++){ if(g.nvme[i].key===cfg.nvmekey) return g.nvme[i]; } }
+  for(var j=0;j<g.nvme.length;j++){ if(g.nvme[j].label===cfg.nvme) return g.nvme[j]; }
+  return null;
+}
+/* a compact HTML list of the selected add-ons with quantities + line totals */
+function unitPlural(unit,q){
+  if(q<=1) return unit;
+  var map={server:'servers',user:'users',instance:'instances',tunnel:'tunnels',port:'ports',domain:'domains',license:'licenses','VM':'VMs','IP':'IPs',block:'blocks'};
+  return map[unit]||unit;
+}
+/* one line item per selected add-on: full name, "<qty> <unit> × <unit price>", line amount.
+   includeSub=true appends an "Add-on Subtotal" row (order-summary); empty => "₹0 / month". */
+function addonSummaryHtml(includeSub){
+  var items=cfg.addons||[];
+  if(!items.length) return '<div class="oi-empty">&#8377;0 / month</div>';
+  var html='';
+  items.forEach(function(a){
+    var q=addonEffQty(a), ulbl=unitPlural(a.unit,q), calc, amt;
+    if(a.price!=null){ calc=q+' '+ulbl+' × '+money(a.price); amt=money(addonLine(a)); }
+    else { calc=q+' '+ulbl+' · price on request'; amt='<span class="po-req">quote</span>'; }
+    html+='<div class="oi"><div class="oi-name">'+esc(a.name)+'</div><div class="oi-calc"><span>'+calc+'</span><b>'+amt+'</b></div></div>';
+  });
+  if(includeSub) html+='<div class="oi-sub"><span>Add-on Subtotal</span><b>'+money(addonSubtotal())+' / month</b></div>';
+  return html;
+}
+/* NVMe selector — six horizontal selectable cards in the right-hand Order Summary.
+   Prices come straight from GPU_CATALOG (unchanged); the selected card is marked from cfg.nvmekey. */
+function buildSummaryNvme(){
+  var host=qs('oNvmeCards'); if(!host) return;
+  var g=GPU_CATALOG[cfg.gpuId]; if(!g){ host.innerHTML=''; return; }
+  var html='';
+  for(var i=0;i<g.nvme.length;i++){ var o=g.nvme[i], sel=(o.key===cfg.nvmekey);
+    html+='<button type="button" class="nvme-card'+(sel?' sel':'')+'" data-key="'+o.key+'" aria-pressed="'+(sel?'true':'false')+'" onclick="selectSummaryNvme(\''+o.key+'\')">'
+        + '<span class="sz">'+esc(o.label)+'</span><span class="pr">'+money(o.price)+'</span></button>';
+  }
+  host.innerHTML=html;
+}
+/* choose an NVMe size from the right-hand cards; updates the base price everywhere,
+   and keeps the landing catalog selector in sync (same key, same price). */
+function selectSummaryNvme(key){
+  var g=GPU_CATALOG[cfg.gpuId]; if(!g) return;
+  var o=nvmeOpt(g,key); if(!o) return;
+  cfg.nvme=o.label; cfg.nvmekey=key; cfg.price=o.price;
+  selected[cfg.gpuId]=key;
+  var lv=qs('nvmeVal-'+cfg.gpuId); if(lv) lv.textContent=o.label;
+  var menu=qs('nvmeMenu-'+cfg.gpuId);
+  if(menu){ var mb=menu.querySelectorAll('button[data-key]'); for(var i=0;i<mb.length;i++){ mb[i].classList.toggle('sel', mb[i].getAttribute('data-key')===key); } }
+  renderRowPrice(cfg.gpuId);
+  renderService();   /* recompute Service totals + right summary + payment; re-marks the cards */
+}
+/* keep the hero, order-summary sidebar and Payment step in sync with cfg. */
+function renderOrder(){
+  var rec=resolveRec();
+  var base=rec?rec.price:(cfg.price||0);
+  var nvmeLabel=rec?rec.label:cfg.nvme;
+  var addSub=addonSubtotal(), n=(cfg.addons||[]).length, qty=cfg.qty||1;
+  var grand=base*qty+addSub;
+  /* hero (GPU base price per server) */
+  qs('heroName').innerHTML=esc(cfg.gpu)+' <span class="ph-tag">'+esc(cfg.vcpu)+'</span>';
+  qs('heroPrice').innerHTML=money(base);
+  qs('heroPer').innerHTML='/ server / month';
+  /* GPU-specific hero badges, product name and Included list (data-driven for every GPU) */
+  var hv=qs('heroVram'); if(hv) hv.textContent=cfg.vram+' VRAM';
+  var hr=qs('heroRam'); if(hr) hr.textContent=cfg.ram+' RAM';
+  var op=qs('oProd'); if(op) op.textContent=cfg.gpu;
+  var ig=qs('oInclGpu'); if(ig) ig.innerHTML=esc(cfg.gpu)+' &middot; '+esc(cfg.vram)+' VRAM';
+  var ic=qs('oInclCpu'); if(ic) ic.innerHTML=esc(cfg.vcpu)+' &middot; '+esc(cfg.ram)+' RAM';
+  /* order summary — per-add-on LINE ITEMS + Base Total / Add-ons / Grand Total */
+  buildSummaryNvme();   /* NVMe selectable cards (re-marks the selected size) */
+  qs('oPrice').innerHTML=money(base)+' / server';
+  qs('oQty').textContent=String(qty);
+  var oi=qs('oAddonItems'); if(oi) oi.innerHTML=addonSummaryHtml(true);
+  qs('oBase').innerHTML=money(base*qty)+' / mo';
+  qs('oAddon').innerHTML=money(addSub)+' / mo';
+  var oSub=qs('oSub'); if(oSub) oSub.innerHTML=money(grand)+' / mo';
+  /* promo discount — applied AFTER (GPU price + add-ons), BEFORE GST. Base/add-on prices are never modified.
+     Entered on the Service step; carried unchanged through Account, Profile and Payment. */
+  var disc=couponDiscount(grand);
+  var odr=qs('oDiscRow');
+  if(COUPON.code && disc>0){ if(odr)odr.style.display=''; var odc=qs('oDiscCode'); if(odc)odc.textContent='('+COUPON.code+')'; qs('oDisc').innerHTML='-'+money(disc)+' / mo'; }
+  else { if(odr)odr.style.display='none'; }
+  qs('oSubtotal').innerHTML=money(grand-disc)+' / mo';
+  qs('oNvmeMini').textContent=nvmeLabel+' NVMe storage';
+  /* payment step — same line items + the applied coupon shown read-only (no second input) */
+  var pg=qs('payGpu'); if(pg) pg.textContent=cfg.gpu;
+  var psp=qs('paySpec'); if(psp) psp.innerHTML=esc(cfg.vcpu)+' &middot; '+esc(cfg.ram)+' &middot; '+esc(cfg.vram);
+  qs('payQty').textContent=String(qty);
+  qs('payNvme').textContent=nvmeLabel;
+  var pa=qs('payAddon'); if(pa){ if(n>0){ pa.style.display=''; pa.innerHTML='<div class="pay-addon-h">Add-ons ('+n+')</div>'+addonSummaryHtml(false); } else { pa.style.display='none'; } }
+  qs('payBase').innerHTML=money(base*qty);
+  qs('payAddonSub').innerHTML=money(addSub);
+  qs('paySubtotal').innerHTML=money(grand);
+  var ppr=qs('payPromoRow'), dr=qs('payDiscRow');
+  if(COUPON.code && disc>0){
+    if(ppr)ppr.style.display=''; var ppc=qs('payPromoCode'); if(ppc)ppc.textContent=COUPON.code;
+    if(dr)dr.style.display=''; qs('payDiscCode').textContent='('+COUPON.code+')'; qs('payDisc').innerHTML='-'+money(disc);
+  } else {
+    if(ppr)ppr.style.display='none'; if(dr)dr.style.display='none';
+  }
+  qs('payTotal').innerHTML=money(grand-disc)+' / mo';
+  renderPayMode(rec);
+}
+/* Set the Payment step's intent + button per the resolved plan, quantity and add-on mix. */
+function renderPayMode(rec){
+  var intro=qs('payIntro'), btn=qs('payBtn'), sec=qs('secureLine');
+  if(!rec){
+    intro.innerHTML='This storage size needs a custom quote. We’ll open a pre-filled email to our team to confirm your price.';
+    btn.innerHTML='Custom NVMe pricing &mdash; Contact Sales &rarr;';
+    sec.innerHTML='No fixed plan for a custom size &middot; no payment is taken here';
+  }else if(cfg.qty>1){
+    intro.innerHTML='You’re ordering <b>'+cfg.qty+' servers</b>. So every server is billed correctly, multi-server orders are finalized with our team &mdash; the button opens a pre-filled order email to sales.';
+    btn.innerHTML='Request '+cfg.qty+'-server order from Sales &rarr;';
+    sec.innerHTML='Multi-server orders are completed with XcellHost sales &middot; you are never charged for only one server';
+  }else if(anyQuoteNeeded()){
+    intro.innerHTML='One or more selected add-ons are <b>quoted by our team</b> (price/plan to be confirmed), so this order is finalized with sales &mdash; the button opens a pre-filled order email.';
+    btn.innerHTML='Request order from Sales &rarr;';
+    sec.innerHTML='Add-ons marked &ldquo;price on request&rdquo; are confirmed by XcellHost sales &middot; no part-payment is taken';
+  }else if(!planUrlFor(cfg.gpuId, cfg.nvmekey)){
+    intro.innerHTML='<b>Online payment is not yet available for this configuration. Please contact Sales.</b> Pricing for <b>'+esc(cfg.gpu)+'</b> ('+esc(cfg.nvme)+') is confirmed; the button opens a pre-filled order email so our team can confirm and invoice your order.';
+    btn.innerHTML='Request order from Sales &rarr;';
+    sec.innerHTML='Online payment for this configuration is coming soon &middot; your order is completed with XcellHost sales &middot; no payment is taken here';
+  }else{
+    intro.textContent='Review your order below, then continue to the secure payment page.';
+    btn.innerHTML='Proceed to Secure Payment &rarr;';
+    sec.innerHTML='&#128274; Secure payment via Zoho Billing &middot; XcellHost does not store your card details';
+  }
+}
+
+/* ---- India state / country -> code (for Zoho billing_state_code / country_code) ---- */
+var STATE_MAP={'andhra pradesh':'AP','arunachal pradesh':'AR','assam':'AS','bihar':'BR','chhattisgarh':'CG','chattisgarh':'CG','goa':'GA','gujarat':'GJ','haryana':'HR','himachal pradesh':'HP','jharkhand':'JH','karnataka':'KA','kerala':'KL','madhya pradesh':'MP','maharashtra':'MH','manipur':'MN','meghalaya':'ML','mizoram':'MZ','nagaland':'NL','odisha':'OD','orissa':'OD','punjab':'PB','rajasthan':'RJ','sikkim':'SK','tamil nadu':'TN','tamilnadu':'TN','telangana':'TS','tripura':'TR','uttar pradesh':'UP','uttarakhand':'UK','uttaranchal':'UK','west bengal':'WB','delhi':'DL','new delhi':'DL','nct of delhi':'DL','jammu and kashmir':'JK','jammu & kashmir':'JK','ladakh':'LA','puducherry':'PY','pondicherry':'PY','chandigarh':'CH','andaman and nicobar islands':'AN','andaman & nicobar islands':'AN','dadra and nagar haveli and daman and diu':'DN','daman and diu':'DN','dadra and nagar haveli':'DN','lakshadweep':'LD'};
+function stateCode(s){var k=String(s||'').trim().toLowerCase();if(STATE_MAP[k])return STATE_MAP[k];if(/^[a-z]{2}$/.test(k))return k.toUpperCase();return '';}
+function countryCode(s){var k=String(s||'').trim().toLowerCase();if(k==='india'||k==='bharat')return 'IN';if(/^[a-z]{2}$/.test(k))return k.toUpperCase();return '';}
+
+/* ---- Build the Zoho prefill query string (per-value encoded; NO quantity) ---- */
+function addParam(parts,k,v){ if(v!=null && String(v).trim()!=='') parts.push(k+'='+enc(String(v).trim())); }
+function buildPrefill(){
+  var parts=[];
+  addParam(parts,'first_name',val('firstName'));
+  addParam(parts,'last_name',val('lastName'));
+  addParam(parts,'email',val('email'));
+  addParam(parts,'company_name',val('legalName')||val('company'));
+  addParam(parts,'mobile',val('mobile'));
+  addParam(parts,'billing_street',val('street'));
+  addParam(parts,'billing_street2',val('address2'));
+  addParam(parts,'billing_city',val('city'));
+  addParam(parts,'billing_zip',val('pin'));
+  addParam(parts,'billing_state_code',stateCode(val('state')));
+  addParam(parts,'billing_country_code',countryCode(val('country')));
+  if(val('gstReg')==='yes') addParam(parts,'tax_reg_no',val('gstin'));
+  return parts.join('&');
+}
+function salesMailto(rec,reason){
+  /* reason: 'custom' | 'multi' | 'quote' | 'pending' */
+  var addSub=addonSubtotal(), addonLines=[];
+  (cfg.addons||[]).forEach(function(a){
+    var q=addonEffQty(a), qlbl=(a.qmode==='server'?q+' server'+(q>1?'s':''):q+' '+a.unit);
+    if(a.price!=null){ addonLines.push('Add-on: '+a.name+(a.code?' ('+a.code+')':'')+' — '+qlbl+' × '+money(a.price)+' = '+money(addonLine(a))+' / month'+(a.verify?'  [verify code/price before billing]':'')); }
+    else { addonLines.push('Add-on: '+a.name+' — '+qlbl+' — PRICE ON REQUEST'); }
+  });
+  var planLine=rec?('NVMe storage: '+rec.label+'  ('+(rec.plan?rec.plan:'Zoho Hosted Payment Page URL pending')+')'):'NVMe storage: Custom (pricing to be confirmed)';
+  var priceLine=rec?('GPU base price: '+money(rec.price)+' / server / month'):'GPU base price: to be advised';
+  var grand=rec?('Estimated monthly subtotal (priced items, before GST): '+money(rec.price*cfg.qty+addSub)):'';
+  var head=reason==='custom'?'Custom NVMe pricing request:'
+          :reason==='multi'?'Multi-server GPU order (to be billed for all '+cfg.qty+' servers by sales):'
+          :reason==='pending'?'GPU order — online payment page pending (please confirm and invoice):'
+          :'GPU order with add-ons that require a sales quote:';
+  var subject=(reason==='custom'?'Custom NVMe pricing — ':reason==='multi'?'Multi-server order — ':reason==='pending'?'GPU order (Zoho URL pending) — ':'GPU order (quote) — ')+cfg.gpu+' ('+cfg.vcpu+')'+(reason==='multi'?' × '+cfg.qty+' servers':'');
+  var lines=[head,'',
+    'GPU: '+cfg.gpu+' ('+cfg.vcpu+', '+cfg.ram+' RAM, '+cfg.vram+' VRAM)',
+    planLine, priceLine, 'Quantity: '+cfg.qty+' server'+(cfg.qty>1?'s':''),'',
+    'Selected add-ons:']
+    .concat(addonLines.length?addonLines:['(none)'])
+    .concat(['', grand,'',
+    '--- Customer ---',
+    'Name: '+val('firstName')+' '+val('lastName'),
+    'Email: '+val('email'),
+    'Mobile: '+val('mobile'),
+    'Company: '+(val('legalName')||val('company')),
+    'Billing: '+val('street')+(val('address2')?', '+val('address2'):'')+', '+val('city')+', '+val('state')+' '+val('pin')+', '+val('country'),
+    'GST: '+(val('gstReg')==='yes'?val('gstin'):'Not registered'),
+    (COUPON.code?'Promo code requested: '+COUPON.code+(COUPON.label?' ('+COUPON.label+')':'')+' — to be applied on the Zoho invoice':'')]);
+  var body=lines.filter(function(x){return x!=='';}).join('\n');
+  return 'mailto:'+SALES_EMAIL+'?subject='+enc(subject)+'&body='+enc(body);
+}
+/* Zoho add-on params — addon_code[k]/addon_quantity[k], ONLY for sellable (confirmed) ticked add-ons. */
+function addonParams(){
+  var list=cfg.addons||[], parts=[], k=0;
+  for(var i=0;i<list.length;i++){ var a=list[i]; if(addonSellableEntry(a)){
+    parts.push('addon_code%5B'+k+'%5D='+enc(a.code));
+    parts.push('addon_quantity%5B'+k+'%5D='+enc(String(addonEffQty(a))));
+    k++;
+  }}
+  return parts.join('&');
+}
+
+var STEP=['service','account','profile','payment'];
+var CARD={service:'cardService',account:'cardAccount',profile:'cardProfile',payment:'cardPayment'};
+var reEmail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/, reMobile=/^[+\d][\d\s-]{7,}$/, rePin=/^\d{6}$/;
+function setErr(id,bad){var e=qs(id);if(!e)return;e.classList.toggle('err',bad);var f=e.parentElement.querySelector('.ferr');if(f)f.classList.toggle('show',bad);}
+function validAccount(){var ok=true;[['firstName',function(v){return v.length>=1;}],['lastName',function(v){return v.length>=1;}],['email',function(v){return reEmail.test(v);}],['mobile',function(v){return reMobile.test(v);}],['company',function(v){return v.length>=1;}]].forEach(function(c){var bad=!c[1](val(c[0]));setErr(c[0],bad);if(bad)ok=false;});return ok;}
+/* Account mode toggle — UI only. Switches between the New Customer form and the
+   Already-Have-an-Account sign-in panel. Does NOT touch validation or any other step. */
+function setAcctMode(mode){
+  var isNew = (mode!=='existing');
+  var n=qs('acctNew'), e=qs('acctExisting'), tn=qs('acctTabNew'), te=qs('acctTabExisting');
+  if(n) n.style.display = isNew ? '' : 'none';
+  if(e) e.style.display = isNew ? 'none' : '';
+  if(tn){ tn.classList.toggle('active', isNew); tn.setAttribute('aria-selected', isNew?'true':'false'); }
+  if(te){ te.classList.toggle('active', !isNew); te.setAttribute('aria-selected', !isNew?'true':'false'); }
+}
+/* =========================================================================
+   EXISTING-CUSTOMER AUTHENTICATION — Email + Password (verified server-side)
+   The Sign In form posts { email, password } to the backend, which verifies the
+   credentials against the server-side identity store and, on success, sets an
+   httpOnly, Secure, SameSite=Strict session cookie (xh_sid) + a readable xh_csrf
+   cookie. The browser never receives or stores a token; the password is sent
+   once over HTTPS and then discarded. NO credentials are hard-coded or stored in
+   this frontend. This is a same-page fetch (no redirect), so the selected GPU,
+   NVMe, quantity, add-ons and coupon are preserved in memory.
+
+   TEST PHASE: the three cloudnanny.support accounts are seeded in the backend
+   (AUTH_TEST_MODE=on) with their passwords held server-side only.
+
+   AUTH_API_BASE: leave '' when this cart is served from the SAME origin as the
+   backend (recommended). Set it to the API origin only if the cart is hosted on
+   a different domain; the backend must then allow that origin for CORS with
+   credentials. */
+var AUTH_API_BASE = '';
+var _signingIn = false;
+function setLoginErr(msg){ var e=qs('loginErr'); if(!e)return; e.innerHTML=msg||''; e.classList.toggle('show', !!msg); }
+async function existingSignIn(){
+  if(_signingIn) return;
+  var emailEl=qs('loginEmail'), passEl=qs('loginPassword'), btn=qs('signInBtn');
+  var email=((emailEl&&emailEl.value)||'').trim();
+  var password=((passEl&&passEl.value)||'');
+  setLoginErr('');
+  /* presence/format check only — NOT authentication (the backend decides) */
+  if(!reEmail.test(email)){ setLoginErr('Enter a valid email address.'); if(emailEl)emailEl.focus(); return; }
+  if(!password){ setLoginErr('Please enter your password.'); if(passEl)passEl.focus(); return; }
+
+  _signingIn=true;
+  if(btn){ btn.disabled=true; btn.dataset.lbl=btn.innerHTML; btn.textContent='Signing in…'; }
+  var sameOrigin = !AUTH_API_BASE;
+  try{
+    var res=await fetch((AUTH_API_BASE||'')+'/api/auth/login', {
+      method:'POST',
+      credentials: sameOrigin ? 'same-origin' : 'include',
+      headers:{ 'Content-Type':'application/json' },
+      body: JSON.stringify({ email: email, password: password })
+    });
+    /* discard the password immediately — never stored anywhere */
+    password=''; if(passEl) passEl.value='';
+    if(res && res.ok){
+      /* Authenticated. The secure session lives in the httpOnly cookie set by the
+         backend; nothing secret is kept in JS or web storage. Cart is preserved
+         (same-page — no navigation), so we go straight to Payment. */
+      cfg.existingAuthed=true;
+      cfg.customerEmail=email;                 /* non-secret, display only */
+      toast('Signed in. Taking you to payment…');
+      goStep('payment');                       /* skip the New Customer form; authed route */
+    } else {
+      if(res && res.status===429) setLoginErr('Too many attempts. Please wait a few minutes and try again.');
+      else setLoginErr('Invalid email or password.');
+    }
+  }catch(err){
+    setLoginErr('We couldn’t reach the sign-in service. Please try again.');
+  }finally{
+    _signingIn=false;
+    if(btn){ btn.disabled=false; if(btn.dataset.lbl){ btn.innerHTML=btn.dataset.lbl; delete btn.dataset.lbl; } }
+  }
+}
+function validProfile(){var ok=true;[['legalName',function(v){return v.length>=1;}],['street',function(v){return v.length>=1;}],['city',function(v){return v.length>=1;}],['state',function(v){return v.length>=1;}],['pin',function(v){return rePin.test(v);}],['country',function(v){return v.length>=1;}]].forEach(function(c){var bad=!c[1](val(c[0]));setErr(c[0],bad);if(bad)ok=false;});var g=val('gstReg');var gb=(g==='');setErr('gstReg',gb);if(gb)ok=false;if(g==='yes'){var bad=val('gstin').length!==15;setErr('gstin',bad);if(bad)ok=false;}return ok;}
+function toggleGstin(){var f=qs('gstinField');if(f)f.style.display=val('gstReg')==='yes'?'':'none';}
+function goStep(name){
+  /* Service (1) and Account (2) are freely navigable; Profile needs Account; Payment needs both. */
+  if(name==='profile' && !validAccount()){goStep('account');toast('Please complete your account details.');return;}
+  /* Authenticated existing customers skip the New Customer account/profile gate. */
+  if(name==='payment' && !(cfg&&cfg.existingAuthed)){ if(!validAccount()){goStep('account');toast('Please complete your account details.');return;} if(!validProfile()){goStep('profile');toast('Please complete your billing profile.');return;} }
+  for(var k in CARD){var c=qs(CARD[k]);if(c)c.style.display=(k===name)?'':'none';}
+  /* the promo-code input lives in the Order Summary but is offered only on the Service step */
+  var sp=qs('summaryPromo'); if(sp) sp.style.display=(name==='service')?'':'none';
+  var idx=STEP.indexOf(name);
+  var steps=document.querySelectorAll('#stepper .step');
+  for(var i=0;i<steps.length;i++){var si=+steps[i].getAttribute('data-step');steps[i].classList.toggle('active',si===idx);steps[i].classList.toggle('done',si<idx);}
+  var bars=document.querySelectorAll('#stepper .step-bar');
+  for(var j=0;j<bars.length;j++){bars[j].classList.toggle('filled',(+bars[j].getAttribute('data-bar'))<idx);}
+  try{window.scrollTo({top:0,behavior:'smooth'});}catch(e){}
+}
+function showNotice(html,kind){
+  var el=qs('payNotice'); if(!el)return;
+  el.innerHTML=html; el.classList.add('show');
+  var c={err:['#fef2f2','#fecaca','#b91c1c'],sales:['#fff7ed','#fed7aa','#9a3412'],info:['#eff6ff','#bfdbfe','#1e40af']}[kind]||['#fff7ed','#fed7aa','#9a3412'];
+  el.style.background=c[0]; el.style.borderColor=c[1]; el.style.color=c[2];
+}
+/* Validate the configuration, then route: Zoho (qty 1) / sales (qty>1 or custom). */
+function proceedToPayment(){
+  if(!validAccount()){goStep('account');toast('Please complete your account details.');return;}
+  if(!validProfile()){goStep('profile');toast('Please complete your billing profile.');return;}
+  var g=GPU_CATALOG[cfg.gpuId];
+  var rec=resolveRec();
+  /* Custom / unknown size — no fixed Zoho plan. Never send to the 30 GB plan. */
+  if(!g || !rec){
+    showNotice('<b>Custom NVMe pricing.</b> There is no fixed plan for this size, so we’ve opened a pre-filled email to <b>'+SALES_EMAIL+'</b>. Our team will confirm your price. No payment has been taken.','sales');
+    window.location.href=salesMailto(null,'custom'); return;
+  }
+  /* PRICE VALIDATION — selected config must match the plan. Mismatch => STOP. */
+  if(cfg.price!=null && cfg.price!==rec.price){
+    showNotice('<b>Configuration mismatch — checkout stopped.</b> The selected storage ('+rec.label+') does not match the submitted price. For your safety you have NOT been redirected or charged. Please go back to the Service step and re-add the server.','err');
+    toast('Checkout stopped: configuration mismatch.'); return;
+  }
+  /* QUANTITY SAFETY — qty>1 must NOT use the single-server Zoho plan. */
+  if(cfg.qty>1){
+    showNotice('<b>Multi-server order ('+cfg.qty+' servers).</b> To ensure all '+cfg.qty+' servers are billed, we’ve opened a pre-filled order email to <b>'+SALES_EMAIL+'</b>. Our team will confirm and invoice your order &mdash; you are never charged for only one server.','sales');
+    window.location.href=salesMailto(rec,'multi'); return;
+  }
+  /* ADD-ON SAFETY — if any selected add-on has no confirmed price/code, it can't be self-served. */
+  if(anyQuoteNeeded()){
+    showNotice('<b>Add-on quote required.</b> One or more selected add-ons need a confirmed price/plan, so we’ve opened a pre-filled order email to <b>'+SALES_EMAIL+'</b>. Our team will confirm and invoice your order. No payment has been taken.','sales');
+    window.location.href=salesMailto(rec,'quote'); return;
+  }
+  /* AUTHORITATIVE Zoho mapping (GPU_PLAN_MAP). No mapping => Contact Sales; never a wrong/invented URL. */
+  var planUrl=planUrlFor(cfg.gpuId, cfg.nvmekey);
+  if(!planUrl){
+    showNotice('<b>Online payment is not yet available for this configuration. Please contact Sales.</b> Pricing for '+esc(cfg.gpu)+' ('+esc(rec.label)+') is confirmed; we’ve opened a pre-filled order email to <b>'+SALES_EMAIL+'</b> so our team can confirm and invoice your order. No payment has been taken.','sales');
+    window.location.href=salesMailto(rec,'pending'); return;
+  }
+  /* qty === 1, all add-ons confirmed — redirect to the exact Zoho Hosted Payment Page.
+     Only prefill + selected addon_code[k]/addon_quantity[k] + coupon_code are appended.
+     The plan and add-on PRICES are set by Zoho from the plan/add-on codes — never passed
+     as a URL parameter — so the customer cannot alter the payable amount via the URL. */
+  var pf=buildPrefill();
+  var ap=addonParams();
+  /* coupon_code — ONLY when the customer entered and accepted a valid code (URL-encoded). */
+  var cp=COUPON.code ? ('coupon_code='+enc(COUPON.code)) : '';
+  var query=[pf,ap,cp].filter(function(x){return x;}).join('&');
+  var url=planUrl+(query?'?'+query:'');
+  var nAdd=(cfg.addons&&cfg.addons.length)||0;
+  showNotice('Taking you to the secure Zoho payment page for <b>'+rec.label+'</b> ('+rec.plan+')'+(nAdd?' with <b>'+nAdd+' add-on'+(nAdd>1?'s':'')+'</b>':'')+(COUPON.code?' &middot; promo <b>'+esc(COUPON.code)+'</b>':'')+'…','info');
+  qs('payBtn').disabled=true; qs('payBtn').innerHTML='Redirecting…';
+  window.location.href=url;
+}
+
+/* ---------- init ---------- */
+document.addEventListener('DOMContentLoaded',function(){
+  buildTable();                                  /* render the GPU configurator row(s) */
+  buildServiceAddons();                          /* render the Service step's optional add-on checkboxes */
+  var params=new URLSearchParams(window.location.search);
+  if(params.get('checkout')==='1'){
+    var gpuId=params.get('gpu')||'l4-16vcpu';
+    var gpu=GPU_CATALOG[gpuId]||GPU_CATALOG['l4-16vcpu'];
+    var nvme=params.get('nvme')||gpu.defaultNvme;
+    if(!nvmeOpt(gpu,nvme)) nvme=gpu.defaultNvme;
+    selectNvme(gpu.id,nvme);
+    addToCart(gpu.id);
+  }
+  var g=qs('gstReg'); if(g) g.addEventListener('change',toggleGstin);
+  var steps=document.querySelectorAll('#stepper .step');
+  for(var i=0;i<steps.length;i++){ steps[i].addEventListener('click',function(){ goStep(STEP[+this.getAttribute('data-step')]); }); }
+  document.addEventListener('click',function(e){ if(!e.target.closest || !e.target.closest('.nvme')) closeAllMenus(); });
+});
+
+/* Keep each host iframe aligned as the cart and checkout views change height. */
+(function(){
+  function reportHeight(){
+    var content=qs('viewCheckout').style.display!=='none'?qs('viewCheckout'):qs('viewCart');
+    var h=content?content.getBoundingClientRect().height:document.body.getBoundingClientRect().height;
+    if(window.parent!==window) window.parent.postMessage({type:'xh-gpu-ordering-height',height:h},window.location.origin);
+  }
+  window.addEventListener('load',reportHeight);
+  window.addEventListener('resize',reportHeight);
+  document.addEventListener('click',function(){setTimeout(reportHeight,50);setTimeout(reportHeight,350);});
+  if(window.ResizeObserver){new ResizeObserver(reportHeight).observe(document.body);}
+})();
+</script>
+</body>
+</html>
+
+

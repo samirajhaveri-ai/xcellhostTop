@@ -280,6 +280,23 @@
   .association-card img { height: 92px; }
 }
 
+.associations-hero{padding:50px 0;background:radial-gradient(ellipse at 83% 43%,#155f9b66,transparent 50%),linear-gradient(120deg,#061c3e,#0b325e)}
+.associations-hero h1{font-size:clamp(34px,3.9vw,52px);line-height:1.12}.associations-hero p{font-size:15px;line-height:1.8;color:#bed3e9}
+.association-explore{display:inline-flex;align-items:center;gap:26px;margin-top:26px;padding:13px 20px;border-radius:9px;background:linear-gradient(110deg,#ff9744,#ff7900);color:#fff;text-decoration:none;font-weight:700;font-size:12px;box-shadow:0 8px 24px #ff880020}.association-explore:focus-visible{outline:3px solid #8ed4ff;outline-offset:4px}
+#association-groups-title{scroll-margin-top:100px}
+.association-network-animation{position:relative;width:100%;max-width:620px;margin:auto;filter:drop-shadow(0 18px 24px #00132d44)}
+.association-network-animation svg{display:block;width:100%;height:auto;overflow:visible}.association-animation-caption{fill:#b7d7ed;font:10px system-ui,sans-serif;letter-spacing:.4px}
+.association-icon-bubble{animation:association-bubble-drift 6s ease-in-out infinite;filter:drop-shadow(0 8px 14px #129df044)}.bubble-world{animation-delay:-2s}.bubble-growth{animation-delay:-3.5s}.bubble-connect{animation-delay:-1s}.bubble-technology{animation-delay:-4s}
+.association-route-packets{animation:association-packet-flow 7s linear infinite;filter:drop-shadow(0 0 3px #a0e8ff)}
+.association-node-rings circle{transform-box:fill-box;transform-origin:center;animation:association-node-pulse 4s ease-out infinite}.association-node-rings circle:nth-child(even){animation-delay:-2s}
+.association-building-lights{animation:association-light-pulse 5s ease-in-out infinite}.association-ambient-particles{animation:association-light-pulse 4s ease-in-out infinite}
+@keyframes association-packet-flow{to{stroke-dashoffset:-296}}@keyframes association-node-pulse{0%{transform:scale(.6);opacity:0}30%{opacity:.8}100%{transform:scale(1.7);opacity:0}}
+.association-globe-routes,.association-outer-orbit{animation:association-route-flow 16s linear infinite}.association-globe-halo{animation:association-globe-pulse 5s ease-in-out infinite;transform-origin:290px 190px}.association-city-nodes{animation:association-light-pulse 3s ease-in-out infinite}.association-handshake{animation:association-handshake-drift 7s ease-in-out infinite}
+.associations-tabs{padding:10px;border:1px solid #dbe6f3;background:#eaf1fa;border-radius:17px;gap:7px}.associations-tabs button{font-size:13px;border:1px solid transparent;padding:16px;border-radius:10px}.associations-tabs button.is-active{background:#fff;border-color:#cbdff5;color:#1665c6;box-shadow:0 5px 15px #0a29570a}.associations-tabs button.is-active::after{display:none}
+.associations-panel{border-color:#dde7f4;box-shadow:0 14px 36px #0a295708}.association-card{box-shadow:0 8px 24px #0a295708;background:linear-gradient(145deg,#fff,#f5f9ff)}
+@keyframes association-bubble-drift{50%{transform:translateY(-8px)}}@keyframes association-route-flow{to{stroke-dashoffset:-240}}@keyframes association-globe-pulse{50%{opacity:.5;transform:scale(1.035)}}@keyframes association-light-pulse{50%{opacity:.35}}@keyframes association-handshake-drift{50%{transform:translateY(-2px)}}
+@media(max-width:680px){.associations-hero{padding:32px 0}.associations-hero h1{font-size:36px}.association-network-animation{max-width:520px}.associations-tabs{padding:8px}.associations-tabs button{min-width:140px}}
 @media (prefers-reduced-motion: reduce) {
+  .association-network-animation *{animation:none!important}
   .association-card { transition: none; }
 }

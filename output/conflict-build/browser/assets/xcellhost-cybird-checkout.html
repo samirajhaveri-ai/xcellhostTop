@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#041E42">
+<title>Complete Your Order — Cybird SMB Cyber Security Appliance | XcellHost Cloud Services</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<!-- ============================================================================
+     XcellHost — CYBIRD SMB CYBER SECURITY APPLIANCE · STANDALONE CHECKOUT
+     Same proven architecture/visual structure as the XcellHost XcellDrive checkout.
+     A SEPARATE, single-product Cybird checkout: no shared/multi-product cart, no
+     Zoho APIs, no credentials, no fake auth, no fake payment confirmation.
+     Flow: Account -> Service (package + term + quantity) -> Profile -> Payment.
+     Plan prices are EXACT Security Bundle-only prices; the ₹16,999 Hardware Appliance
+     is a real Zoho one-time addon (CYB-HARDWARE-16999, qty always 1) added on top of
+     the bundle in subtotal/GST/total and appended to the Zoho payment URL. GST 18% is
+     shown as CGST 9% + SGST 9% in the order summary.
+     Each package+term maps to its exact Zoho Hosted Payment Page URL (hardcoded
+     mapping); base URLs are never modified, regenerated or guessed.
+     ============================================================================ -->
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bl:#0066FF;--nv:#041E42;--nv2:#0B132B;--or:#FF8A00;--gn:#22c55e;--red:#ef4444;--ink:#0f172a;--muted:#64748b;--line:#e2e8f0;--bg:#f6f9fc;--f:'DM Sans',system-ui,sans-serif}
+html{scroll-behavior:smooth}body{font-family:var(--f);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;font-size:16px}
+a{text-decoration:none;color:inherit}
+button{font-family:var(--f)}
+
+/* ═══ STEPPER ═══ */
+.stepper-wrap{background:#fff;border-bottom:1px solid var(--line)}
+.stepper{max-width:1240px;margin:0 auto;padding:22px 24px;display:flex;align-items:center;justify-content:center;gap:0}
+.step{display:flex;align-items:center;gap:10px}
+.step-num{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:800;background:#eef2f7;color:var(--muted);border:2px solid var(--line);transition:all .4s}
+.step-lab{font-size:.8rem;font-weight:700;color:var(--muted);transition:color .4s}
+.step.active .step-num{background:var(--bl);color:#fff;border-color:var(--bl);box-shadow:0 0 0 4px rgba(0,102,255,.15)}
+.step.active .step-lab{color:var(--ink)}
+.step.done .step-num{background:var(--gn);color:#fff;border-color:var(--gn)}
+.step.done .step-lab{color:var(--ink)}
+.step-bar{width:60px;height:2px;background:var(--line);margin:0 14px;position:relative;overflow:hidden}
+.step-bar::after{content:'';position:absolute;inset:0;width:0;background:var(--gn);transition:width .5s}
+.step-bar.filled::after{width:100%}
+
+/* ═══ PAGE ═══ */
+.page{max-width:1240px;margin:0 auto;padding:32px 24px 60px}
+.page-title{font-size:1.7rem;font-weight:800;letter-spacing:-.02em;margin-bottom:4px}
+.page-sub{color:var(--muted);font-size:.92rem;margin-bottom:28px}
+.layout{display:grid;grid-template-columns:65% 35%;gap:28px;align-items:start}
+
+/* cards */
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px;box-shadow:0 4px 20px rgba(15,23,42,.04);margin-bottom:20px;animation:fadeUp .5s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.card-h{font-size:1.1rem;font-weight:800;margin-bottom:3px}
+.card-sub{color:var(--muted);font-size:.82rem;margin-bottom:20px}
+
+/* account type toggle */
+.acct-toggle{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px}
+.acct-opt{border:2px solid var(--line);border-radius:12px;padding:16px;cursor:pointer;transition:all .25s;display:flex;align-items:center;gap:12px;background:#fff}
+.acct-opt:hover{border-color:#bcd4ff}
+.acct-opt.sel{border-color:var(--bl);background:rgba(0,102,255,.04)}
+.acct-radio{width:20px;height:20px;border-radius:50%;border:2px solid var(--line);flex-shrink:0;position:relative;transition:border-color .25s}
+.acct-opt.sel .acct-radio{border-color:var(--bl)}
+.acct-opt.sel .acct-radio::after{content:'';position:absolute;inset:3px;border-radius:50%;background:var(--bl)}
+.acct-opt .t{font-size:.88rem;font-weight:700}.acct-opt .s{font-size:.68rem;color:var(--muted);margin-top:1px}
+
+/* form */
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:.76rem;font-weight:600;color:#475569;margin-bottom:6px}
+.field label .rq{color:var(--red)}
+.field input{width:100%;padding:12px 14px;border:2px solid #d5dde7;border-radius:10px;font-size:.9rem;font-family:var(--f);color:var(--ink);outline:none;transition:border-color .2s,box-shadow .2s}
+.field input::placeholder{color:#aab4c0}
+.field input:focus{border-color:var(--bl);box-shadow:0 0 0 3px rgba(0,102,255,.15)}
+.field input.err{border-color:var(--red)}.field input.ok{border-color:var(--gn)}
+.field select{width:100%;padding:12px 14px;border:2px solid #d5dde7;border-radius:10px;font-size:.9rem;font-family:var(--f);color:var(--ink);outline:none;background:#fff;cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.field select:focus{border-color:var(--bl);box-shadow:0 0 0 3px rgba(0,102,255,.15)}
+.ferr{font-size:.7rem;color:var(--red);margin-top:5px;display:none}.ferr.show{display:block}
+
+/* existing login prototype */
+.login-proto{display:none}.login-proto.show{display:block;animation:fadeUp .4s ease}
+.proto-note{font-size:.7rem;color:var(--or);background:rgba(255,138,0,.08);border:1px solid rgba(255,138,0,.2);border-radius:8px;padding:8px 12px;margin-bottom:16px}
+
+/* service spec grid */
+.spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.spec{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--bg);border:1px solid var(--line);border-radius:10px}
+.spec-ico{width:34px;height:34px;border-radius:9px;background:rgba(0,102,255,.08);border:1px solid rgba(0,102,255,.16);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.spec .k{font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.spec .v{font-size:.82rem;font-weight:700}
+.svc-head{display:flex;align-items:center;gap:14px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.svc-badge{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--bl),#0047b3);display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;color:#fff}
+.svc-name{font-size:1.1rem;font-weight:800}.svc-pkg{font-size:.8rem;color:var(--bl);font-weight:700;margin-top:2px}.svc-users{font-size:.72rem;color:var(--muted);margin-top:2px}
+
+/* ═══ term selector + quantity (Tally-styled) ═══ */
+.terms{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:4px 0 6px}
+/* Cybird package cards */
+.pkg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:4px 0 6px}
+.pkg-opt{position:relative;border:2px solid var(--line);border-radius:14px;padding:18px 14px;cursor:pointer;transition:all .25s;background:#fff;display:flex;flex-direction:column}
+.pkg-opt:hover{border-color:#bcd4ff}
+.pkg-opt.sel{border-color:var(--bl);background:rgba(0,102,255,.04);box-shadow:0 6px 20px rgba(0,102,255,.12)}
+.pkg-opt.sel::after{content:'\2713';position:absolute;top:10px;right:12px;width:20px;height:20px;border-radius:50%;background:var(--bl);color:#fff;font-size:.66rem;font-weight:800;display:flex;align-items:center;justify-content:center}
+.pkg-name{font-size:.98rem;font-weight:800;color:var(--nv)}
+.pkg-cap{font-size:.66rem;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:.03em}
+.pkg-term{font-size:.64rem;color:var(--bl);font-weight:700;margin-top:12px}
+.pkg-price{font-size:1.2rem;font-weight:800;color:var(--ink);margin-top:2px}
+.pkg-price .u{font-size:.58rem;font-weight:600;color:var(--muted)}
+.pkg-order{margin-top:auto;padding:10px;border:none;border-radius:9px;background:var(--bl);color:#fff;font-weight:800;font-size:.8rem;cursor:pointer;transition:background .2s}
+.pkg-order:hover{background:#0047b3}
+.pkg-opt.sel .pkg-order{background:var(--or)}
+.pkg-opt.sel .pkg-order:hover{background:#e67a00}
+.pkg-order:focus-visible{outline:2px solid var(--nv);outline-offset:2px}
+.hw-note{display:flex;align-items:center;gap:10px;margin-top:14px;padding:12px 14px;background:var(--bg);border:1px dashed var(--line);border-radius:10px;font-size:.74rem;color:var(--muted)}
+.hw-note b{color:var(--ink)}
+/* Cybird hardware appliance card (mandatory one-time addon — included in totals and sent to Zoho) */
+.hw-card{display:flex;align-items:center;gap:16px;background:#fff;border:1.5px solid var(--line);border-left:4px solid var(--bl);border-radius:14px;padding:18px 20px;box-shadow:0 4px 16px rgba(15,23,42,.04);flex-wrap:wrap}
+.hw-ico{width:48px;height:48px;border-radius:12px;background:rgba(0,102,255,.08);border:1px solid rgba(0,102,255,.16);color:var(--bl);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hw-ico svg{width:26px;height:26px}
+.hw-info{flex:1;min-width:180px}
+.hw-title{font-size:.92rem;font-weight:800;color:var(--nv)}
+.hw-tag{display:inline-block;margin-top:6px;font-size:.6rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--bl);background:rgba(0,102,255,.08);border-radius:20px;padding:3px 10px}
+.hw-right{text-align:right;margin-left:auto}
+.hw-price{font-size:1.4rem;font-weight:800;color:var(--ink);line-height:1}
+.hw-once{font-size:.62rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--or);margin-top:4px}
+.hw-hint{font-size:.66rem;color:#94a3b8;margin-top:10px;line-height:1.5}
+.hw-flags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.hw-flag{font-size:.6rem;font-weight:800;letter-spacing:.02em;color:#067a47;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);border-radius:20px;padding:3px 10px}
+/* order-summary line labels + divider */
+.sum-line{display:flex;align-items:center;justify-content:space-between;margin-top:2px}
+.sum-lab{font-size:.6rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--bl)}
+.sum-div{height:1px;background:var(--line);margin:14px 0}
+/* Optional Support Charges (informational / lead-gen only — never added to totals) */
+.sup-card{background:#fff;border:1.5px solid var(--line);border-radius:14px;box-shadow:0 4px 16px rgba(15,23,42,.04);overflow:hidden}
+.sup-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--line)}
+.sup-row:last-child{border-bottom:none}
+.sup-row.head{background:var(--bg);font-size:.62rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.sup-emp{font-size:.85rem;font-weight:700;color:var(--ink)}
+.sup-price{font-size:.9rem;font-weight:800;color:var(--bl);white-space:nowrap}
+.sup-foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-top:14px}
+.sup-tax{font-size:.74rem;color:var(--muted);font-weight:700}
+.sup-cta{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:10px;background:var(--or);color:#fff;font-weight:800;font-size:.82rem;transition:background .2s,transform .12s}
+.sup-cta:hover{background:#e67a00;transform:translateY(-1px)}
+.sup-cta:focus-visible{outline:2px solid var(--nv);outline-offset:2px}
+@media(max-width:560px){.hw-card{gap:12px}.hw-right{text-align:left;margin-left:0;width:100%}}
+.term-opt{position:relative;border:2px solid var(--line);border-radius:12px;padding:18px 12px 14px;cursor:pointer;transition:all .25s;text-align:center;background:#fff}
+.term-opt:hover{border-color:#bcd4ff}
+.term-opt.sel{border-color:var(--bl);background:rgba(0,102,255,.04)}
+.term-opt.sel::after{content:'✓';position:absolute;top:8px;right:10px;width:20px;height:20px;border-radius:50%;background:var(--bl);color:#fff;font-size:.68rem;font-weight:800;display:flex;align-items:center;justify-content:center}
+.term-opt .to-dur{font-size:1.02rem;font-weight:800}
+.term-opt .to-off{display:inline-block;margin-top:8px;font-size:.58rem;font-weight:800;letter-spacing:.02em;color:#fff;background:var(--or);border-radius:20px;padding:3px 9px}
+.term-opt .to-sub{font-size:.64rem;color:var(--muted);margin-top:8px}
+.term-detail{margin-top:16px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.term-detail .td-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px}
+.term-detail .td-name{font-size:.95rem;font-weight:800;color:var(--nv)}
+.term-detail .td-cov{font-size:.74rem;font-weight:700;color:var(--gn);background:rgba(34,197,94,.1);border-radius:20px;padding:3px 10px}
+.term-detail .td-price{margin-left:auto;font-size:1.15rem;font-weight:800;color:var(--bl)}
+.term-detail .td-price .u{font-size:.66rem;font-weight:600;color:var(--muted)}
+.term-detail .td-tbc{margin-left:auto;font-size:.82rem;font-weight:700;color:var(--or)}
+.term-detail .td-note{font-size:.7rem;color:var(--muted);margin-top:10px;line-height:1.5}
+.qty-wrap{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:6px}
+.qty{display:inline-flex;align-items:center;border:2px solid #d5dde7;border-radius:10px;overflow:hidden}
+.qty button{width:44px;height:44px;background:var(--bg);font-size:1.25rem;font-weight:800;color:var(--bl);cursor:pointer;border:none;line-height:1}
+.qty button:hover{background:rgba(0,102,255,.08)}
+.qty input{width:58px;height:44px;border:none;border-left:2px solid #d5dde7;border-right:2px solid #d5dde7;text-align:center;font-weight:800;font-size:1.02rem;font-family:var(--f);outline:none}
+.qty-lab{font-size:.8rem;color:var(--muted);font-weight:600}
+.svc-feats{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:4px}
+.svc-feats li{display:flex;align-items:flex-start;gap:9px;font-size:.82rem;color:#334155;font-weight:600}
+.svc-feats li::before{content:'✓';color:var(--gn);font-weight:800;flex-shrink:0}
+.whyc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:4px}
+.whyc{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px}
+.whyc .wc-ico{width:36px;height:36px;border-radius:9px;background:rgba(0,102,255,.08);border:1px solid rgba(0,102,255,.16);display:flex;align-items:center;justify-content:center;font-size:1.05rem;margin-bottom:10px}
+.whyc h4{font-size:.86rem;font-weight:800}
+.whyc p{font-size:.72rem;color:var(--muted);margin-top:4px;line-height:1.5}
+.trust-pts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+.trust-pt{display:flex;align-items:center;gap:10px;padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:.82rem;font-weight:700}
+.trust-pt .tp-ck{color:var(--gn);font-weight:800;flex-shrink:0}
+@media(max-width:860px){.whyc-grid{grid-template-columns:1fr 1fr}}
+
+/* upcoming steps */
+.upcoming{display:flex;align-items:center;gap:12px;padding:18px;border:1px dashed var(--line);border-radius:12px;color:var(--muted);margin-bottom:12px}
+.upcoming .u-ico{width:38px;height:38px;border-radius:10px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:1.1rem;opacity:.6}
+.upcoming .u-t{font-size:.86rem;font-weight:700;color:#94a3b8}.upcoming .u-s{font-size:.7rem}
+
+/* ═══ ORDER SUMMARY ═══ */
+.summary{position:sticky;top:80px;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(15,23,42,.06)}
+.sum-head{background:var(--nv);color:#fff;padding:20px 24px}
+.sum-head h3{font-size:1rem;font-weight:800}
+.sum-prod{padding:20px 24px;border-bottom:1px solid var(--line)}
+.sum-prod .p{font-size:.95rem;font-weight:800}.sum-prod .pk{font-size:.78rem;color:var(--bl);font-weight:700;margin-top:2px}.sum-prod .u{font-size:.72rem;color:var(--muted);margin-top:2px}
+.sum-prod .pr{font-size:.95rem;font-weight:800;margin-top:8px}
+.sum-prod .pr .tbc{color:var(--or)}
+.incl{padding:18px 24px;border-bottom:1px solid var(--line)}
+.incl-t{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:12px}
+.incl li{list-style:none;font-size:.78rem;color:#475569;padding:4px 0;display:flex;align-items:center;gap:8px}
+.incl li::before{content:'✓';color:var(--gn);font-weight:800;flex-shrink:0}
+.coupon-msg{font-size:.7rem;margin-top:8px;display:none}.coupon-msg.show{display:block}
+.coupon-msg.ok{color:var(--gn)}.coupon-msg.no{color:var(--red)}
+.tax-note{font-size:.62rem;color:#94a3b8;margin-top:12px;line-height:1.5}
+.pricing{padding:18px 24px}
+.pline{display:flex;justify-content:space-between;font-size:.82rem;color:#475569;padding:6px 0}
+.pline .discount{color:var(--gn)}
+.pline.total{border-top:2px solid var(--line);margin-top:8px;padding-top:14px;font-size:1.15rem;font-weight:800;color:var(--ink)}
+.pline .amt{font-weight:700;transition:color .3s}
+.amt.flash{color:var(--or)}
+.amt.tbc{color:var(--or)}
+
+/* continue button */
+.continue{width:100%;padding:15px;border:none;border-radius:12px;background:var(--bl);color:#fff;font-size:.95rem;font-weight:800;cursor:pointer;position:relative;overflow:hidden;transition:transform .12s,box-shadow .2s;margin-top:6px}
+.continue:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,102,255,.3)}
+.continue:active{transform:translateY(0)}
+.continue::after{content:'';position:absolute;top:0;left:-120%;width:70%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);transform:skewX(-20deg);animation:shine 3.5s ease-in-out infinite}
+@keyframes shine{0%,55%{left:-120%}100%{left:150%}}
+.secure-line{text-align:center;font-size:.66rem;color:var(--muted);margin-top:12px;display:flex;align-items:center;justify-content:center;gap:5px}
+/* Accessibility: visible keyboard focus */
+.term-opt:focus-visible,.pkg-opt:focus-visible,.acct-opt:focus-visible{outline:2px solid var(--bl);outline-offset:2px}
+.continue:focus-visible{outline:2px solid #fff;outline-offset:-5px;box-shadow:0 0 0 3px var(--bl)}
+.qty button:focus-visible{outline:2px solid var(--bl);outline-offset:-2px}
+.nav-menu a:focus-visible,.ft-col a:focus-visible,.top a:focus-visible{outline:2px solid var(--bl);outline-offset:2px;border-radius:3px}
+
+/* right column trust card */
+.why-xcell{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 4px 20px rgba(15,23,42,.04);margin-top:20px}
+.why-xcell .wx-t{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:12px}
+.why-list{list-style:none;padding:0;margin:0;display:grid;gap:9px}
+.why-list li{display:flex;align-items:flex-start;gap:9px;font-size:.8rem;font-weight:600;color:var(--ink)}
+.why-list li .wx-ck{color:var(--gn);font-weight:800;flex-shrink:0}
+.sec-note{margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+.sec-note .sn-h{display:flex;align-items:center;gap:6px;font-size:.78rem;font-weight:800;color:var(--nv);margin-bottom:4px}
+.sec-note .sn-b{font-size:.7rem;line-height:1.5;color:var(--muted)}
+
+/* ═══ RESPONSIVE (matches Tally) ═══ */
+@media(max-width:980px){.layout{grid-template-columns:1fr}.summary{position:static}.nav-menu{display:none}.hamb{display:flex}.ft-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:860px){.pkg-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.terms{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.frow,.acct-toggle,.spec-grid{grid-template-columns:1fr}.terms{grid-template-columns:1fr 1fr}.pkg-grid{grid-template-columns:1fr}.svc-feats{grid-template-columns:1fr}.whyc-grid{grid-template-columns:1fr}.trust-pts{grid-template-columns:1fr}.stepper{gap:0;overflow-x:auto}.step-lab{display:none}.step-bar{width:30px;margin:0 6px}.ft-grid{grid-template-columns:1fr}.page-title{font-size:1.35rem}}
+
+/* toast */
+.toast-wrap{position:fixed;bottom:22px;right:22px;z-index:200;display:flex;flex-direction:column;gap:10px}
+.toast{background:var(--nv);color:#fff;padding:13px 16px;border-radius:12px;box-shadow:0 12px 30px rgba(4,12,28,.3);font-size:.84rem;max-width:340px;animation:fadeUp .3s ease}
+</style>
+</head>
+<body>
+
+<!-- STEPPER -->
+<div class="stepper-wrap"><div class="stepper" id="stepper">
+<div class="step active" data-step="0"><div class="step-num">1</div><div class="step-lab">Account</div></div>
+<div class="step-bar" data-bar="0"></div>
+<div class="step" data-step="1"><div class="step-num">2</div><div class="step-lab">Service</div></div>
+<div class="step-bar" data-bar="1"></div>
+<div class="step" data-step="2"><div class="step-num">3</div><div class="step-lab">Profile</div></div>
+<div class="step-bar" data-bar="2"></div>
+<div class="step" data-step="3"><div class="step-num">4</div><div class="step-lab">Payment</div></div>
+</div></div>
+
+<!-- PAGE -->
+<div class="page">
+<h1 class="page-title">Complete Your Order</h1>
+<p class="page-sub">Complete your Cybird SMB Cyber Security Appliance order securely. Choose your package, billing term and quantity, provide your details, and continue to payment.</p>
+
+<div class="layout">
+<!-- LEFT -->
+<div class="col-left">
+
+  <!-- STEP 1: ACCOUNT -->
+  <div class="card" id="cardAccount">
+    <div class="card-h">Your Account</div>
+    <div class="card-sub">Start your Cybird SMB Cyber Security Appliance order. We'll use these details for your order and onboarding.</div>
+    <div class="acct-toggle">
+      <div class="acct-opt sel" id="optNew"><div class="acct-radio"></div><div><div class="t">New Customer</div><div class="s">Create your order</div></div></div>
+      <div class="acct-opt" id="optExisting"><div class="acct-radio"></div><div><div class="t">Existing Customer</div><div class="s">Use your account details</div></div></div>
+    </div>
+
+    <form id="formNew" autocomplete="on">
+      <div class="frow">
+        <div class="field"><label for="firstName">First Name <span class="rq">*</span></label><input id="firstName" type="text"><div class="ferr">Please enter your first name.</div></div>
+        <div class="field"><label for="lastName">Last Name <span class="rq">*</span></label><input id="lastName" type="text"><div class="ferr">Please enter your last name.</div></div>
+      </div>
+      <div class="frow">
+        <div class="field"><label for="email">Work Email <span class="rq">*</span></label><input id="email" type="email"><div class="ferr">Enter a valid email address.</div></div>
+        <div class="field"><label for="mobile">Mobile / WhatsApp <span class="rq">*</span></label><input id="mobile" type="tel"><div class="ferr">Enter a valid mobile number.</div></div>
+      </div>
+      <div class="field"><label for="company">Company Name <span class="rq">*</span></label><input id="company" type="text"><div class="ferr">Please enter your company name.</div></div>
+    </form>
+
+    <div class="login-proto" id="formExisting">
+      <div class="proto-note">&#128274; No password required here. These details help us locate your XcellHost account for this order; secure sign-in happens on XcellHost's authenticated systems.</div>
+      <div class="frow">
+        <div class="field"><label for="exEmail">Registered Email <span class="rq">*</span></label><input id="exEmail" type="email" autocomplete="email"><div class="ferr">Enter a valid email address.</div></div>
+        <div class="field"><label for="exCompany">Customer / Company Name <span class="rq">*</span></label><input id="exCompany" type="text" autocomplete="organization"><div class="ferr">Please enter your customer or company name.</div></div>
+      </div>
+      <div class="frow">
+        <div class="field"><label for="exMobile">Mobile / WhatsApp <span class="rq">*</span></label><input id="exMobile" type="tel" autocomplete="tel"><div class="ferr">Enter a valid mobile number.</div></div>
+        <div class="field"><label for="exAcct">Customer ID / Account Number <span style="color:var(--muted);font-weight:600">(optional)</span></label><input id="exAcct" type="text"></div>
+      </div>
+    </div>
+
+    <button type="button" class="continue" onclick="continueFromAccount()"><span class="ctxt">Continue to Service</span></button>
+    <div class="secure-line">&#128274; Your information is encrypted and secure</div>
+  </div>
+
+  <!-- STEP 2: SERVICE (Cybird — package + term + quantity) -->
+  <div class="card" id="cardService" style="display:none">
+    <div class="svc-head">
+      <div class="svc-badge">&#128272;</div>
+      <div><div class="svc-name">Cybird SMB Cyber Security Appliance</div><div class="svc-pkg">XcellHost Cybird</div><div class="svc-users">Cybird is an SMB-focused cybersecurity appliance combining secure Wi-Fi, firewall protection and Secure Web Gateway capabilities in a centrally managed platform.</div></div>
+    </div>
+
+    <!-- CYBIRD HARDWARE APPLIANCE — mandatory one-time Zoho addon (CYB-HARDWARE-16999,
+         qty always 1). Included in subtotal/GST/total and appended to the Zoho payment
+         URL. Not selectable and cannot be removed. -->
+    <div style="margin-top:22px">
+      <div class="card-h" style="font-size:1rem">Cybird Hardware Appliance</div>
+      <div class="card-sub">The Cybird offering has two components &mdash; a one-time hardware appliance, plus the term-based security bundle you select below.</div>
+      <div class="hw-card">
+        <div class="hw-ico"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="13" width="18" height="7" rx="2" stroke="currentColor" stroke-width="1.7"/><circle cx="7" cy="16.5" r="1.1" fill="currentColor"/><path d="M12 13V9M12 9l-3.2-3.2M12 9l3.2-3.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+        <div class="hw-info">
+          <div class="hw-title">Cybird Cyber Security Customer Hardware Appliance</div>
+          <div class="hw-flags"><span class="hw-flag">&#10003; Included automatically</span><span class="hw-flag">&#10003; One-time hardware charge</span></div>
+        </div>
+        <div class="hw-right">
+          <div class="hw-price">&#8377;16,999</div>
+          <div class="hw-once">One-Time Purchase</div>
+        </div>
+      </div>
+      <div class="hw-hint">Included automatically with every Cybird order as a one-time charge (quantity 1). It appears as a separate line in your order summary and on the Zoho Billing payment page.</div>
+    </div>
+
+    <div style="margin-top:22px">
+      <div class="card-h" style="font-size:1rem">Billing Term</div>
+      <div class="card-sub">Choose how long you'd like Cybird coverage. The price on each package updates instantly.</div>
+      <div class="terms" id="terms"><!-- rendered: renderTerms() --></div>
+    </div>
+
+    <div style="margin-top:22px">
+      <div class="card-h" style="font-size:1rem">Choose Your Cybird Package</div>
+      <div class="card-sub">Select one package by user capacity. Prices shown are the Security Bundle price for the selected billing term; the one-time Hardware Appliance (&#8377;16,999) is added in your order summary.</div>
+      <div class="pkg-grid" id="pkgGrid"><!-- rendered: renderPackages() --></div>
+      <div class="term-detail" id="termDetail"><!-- rendered: renderTermDetail() --></div>
+      <div class="hw-note">&#128230; Your order is the <b>Hardware Appliance (&#8377;16,999, one-time) + the selected Security Bundle</b>. Both appear as separate lines in your order summary and on the Zoho payment page.</div>
+    </div>
+
+    <!-- OPTIONAL SUPPORT CHARGES — informational / lead-generation only. NOT selectable,
+         NOT added to the subtotal, GST, total or the Zoho payment amount. -->
+    <div style="margin-top:22px">
+      <div class="card-h" style="font-size:1rem">Optional Support Charges</div>
+      <div class="card-sub">Optional managed support is available based on the number of employees. This is optional and is not added to your checkout total.</div>
+      <div class="sup-card">
+        <div class="sup-row head"><span>Employee Range</span><span>Monthly Support</span></div>
+        <div class="sup-row"><span class="sup-emp">1&ndash;10 Employees</span><span class="sup-price">&#8377;999 / month</span></div>
+        <div class="sup-row"><span class="sup-emp">10&ndash;24 Employees</span><span class="sup-price">&#8377;1,499 / month</span></div>
+        <div class="sup-row"><span class="sup-emp">24&ndash;50 Employees</span><span class="sup-price">&#8377;1,999 / month</span></div>
+        <div class="sup-row"><span class="sup-emp">50&ndash;100 Employees</span><span class="sup-price">&#8377;3,999 / month</span></div>
+      </div>
+      <div class="sup-foot">
+        <span class="sup-tax">+ Plus taxes extra</span>
+        <a class="sup-cta" href="mailto:sales@xcellhost.cloud?subject=Cybird%20Free%20Trial%20%2F%201%3A1%20Demo">Ask for a FREE Trial | Schedule 1:1 DEMO</a>
+      </div>
+    </div>
+
+    <div style="margin-top:22px">
+      <div class="card-h" style="font-size:1rem">Quantity</div>
+      <div class="card-sub">Number of complete Cybird packages. Pricing updates instantly &mdash; 1 package = 1 Cybird appliance bundle (not per user).</div>
+      <div class="qty-wrap">
+        <div class="qty">
+          <button type="button" aria-label="Decrease quantity" onclick="changeQty(-1)">&minus;</button>
+          <input id="qty" type="text" inputmode="numeric" value="1" aria-label="Quantity" onchange="setQty(this.value)">
+          <button type="button" aria-label="Increase quantity" onclick="changeQty(1)">+</button>
+        </div>
+        <span class="qty-lab">packages</span>
+      </div>
+    </div>
+
+    <div style="margin-top:22px">
+      <div class="card-h" style="font-size:1rem">What's included</div>
+      <ul class="svc-feats">
+        <li>Secure Wi-Fi</li>
+        <li>Firewall protection</li>
+        <li>Secure Web Gateway</li>
+        <li>Web filtering</li>
+        <li>Access control</li>
+        <li>Threat protection</li>
+        <li>Device visibility</li>
+        <li>Centralized management</li>
+        <li>Multi-site management</li>
+        <li>Guest Wi-Fi</li>
+        <li>Application control</li>
+        <li>Secure connectivity</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:22px">
+      <div class="card-h" style="font-size:1rem">Why Choose Cybird?</div>
+      <div class="card-sub">SMB-focused security in a single, centrally managed appliance, backed by XcellHost.</div>
+      <div class="whyc-grid">
+        <div class="whyc"><div class="wc-ico">&#128246;</div><h4>Secure Wi-Fi</h4><p>Business Wi-Fi with guest access and secure connectivity built in.</p></div>
+        <div class="whyc"><div class="wc-ico">&#128293;</div><h4>Firewall</h4><p>Firewall protection and threat protection at the network edge.</p></div>
+        <div class="whyc"><div class="wc-ico">&#127760;</div><h4>Secure Web Gateway</h4><p>Web filtering, application control and access control.</p></div>
+        <div class="whyc"><div class="wc-ico">&#128202;</div><h4>Device Visibility</h4><p>See and manage the devices on your network.</p></div>
+        <div class="whyc"><div class="wc-ico">&#9729;&#65039;</div><h4>Central Management</h4><p>Centralized, multi-site management from the cloud.</p></div>
+        <div class="whyc"><div class="wc-ico">&#128737;&#65039;</div><h4>XcellHost Support</h4><p>Backed by XcellHost managed cloud and security.</p></div>
+      </div>
+    </div>
+
+    <div style="margin-top:22px">
+      <div class="card-h" style="font-size:1rem">Why Businesses Trust XcellHost</div>
+      <div class="card-sub">Managed cloud and cybersecurity services since 1999.</div>
+      <!-- CONTENT TEAM: Replace with verified Google Business reviews when approved. No reviews/ratings are invented here. -->
+      <div class="trust-pts">
+        <div class="trust-pt"><span class="tp-ck">&#10003;</span> Hardware appliance + security bundle</div>
+        <div class="trust-pt"><span class="tp-ck">&#10003;</span> Centrally managed SMB security</div>
+        <div class="trust-pt"><span class="tp-ck">&#10003;</span> 24&#215;7 support</div>
+        <div class="trust-pt"><span class="tp-ck">&#10003;</span> Managed cloud &amp; cybersecurity since 1999</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;margin-top:22px">
+      <button type="button" class="continue" onclick="goStep('account')" style="background:#eef2f7;color:#334155;flex:0 0 auto;max-width:160px"><span class="ctxt">&larr; Back</span></button>
+      <button type="button" class="continue" onclick="continueFromService()" style="flex:1"><span class="ctxt">Continue to Profile</span></button>
+    </div>
+  </div>
+
+  <!-- STEP 3: PROFILE -->
+  <div class="card" id="cardProfile" style="display:none">
+    <div class="card-h">Billing Profile</div>
+    <div class="card-sub">Required for your GST invoice and service agreement.</div>
+
+    <div class="acct-toggle">
+      <div class="acct-opt sel" id="optIndividual"><div class="acct-radio"></div><div><div class="t">Individual</div><div class="s">Personal billing</div></div></div>
+      <div class="acct-opt" id="optBusiness"><div class="acct-radio"></div><div><div class="t">Business</div><div class="s">Company billing</div></div></div>
+    </div>
+
+    <form id="formProfile">
+      <div class="field"><label for="legalName">Company / Legal Name <span class="rq">*</span></label><input id="legalName" type="text"><div class="ferr">Please enter your company or legal name.</div></div>
+      <div class="field"><label for="street">Billing Street <span class="rq">*</span></label><input id="street" type="text"><div class="ferr">Please enter your billing street.</div></div>
+      <div class="field"><label for="address2">Address (line 2)</label><input id="address2" type="text"></div>
+      <div class="frow">
+        <div class="field"><label for="city">City <span class="rq">*</span></label><input id="city" type="text"><div class="ferr">Please enter your city.</div></div>
+        <div class="field"><label for="state">State <span class="rq">*</span></label><input id="state" type="text"><div class="ferr">Please enter your state.</div></div>
+      </div>
+      <div class="frow">
+        <div class="field"><label for="pin">PIN Code <span class="rq">*</span></label><input id="pin" type="text" inputmode="numeric"><div class="ferr">Enter a valid 6-digit PIN code.</div></div>
+        <div class="field"><label for="country">Country <span class="rq">*</span></label><input id="country" type="text" value="India"><div class="ferr">Please enter your country.</div></div>
+      </div>
+      <div class="frow">
+        <div class="field"><label for="gstReg">GST Registered <span class="rq">*</span></label>
+          <select id="gstReg" onchange="toggleGstin()"><option value="">Select…</option><option value="yes">Yes</option><option value="no">No</option></select>
+          <div class="ferr">Please select an option.</div></div>
+        <div class="field" id="gstinField" style="display:none"><label for="gstin">GSTIN <span class="rq">*</span></label><input id="gstin" type="text" style="text-transform:uppercase"><div class="ferr">Enter a valid 15-character GSTIN.</div></div>
+      </div>
+    </form>
+
+    <div style="display:flex;gap:12px;margin-top:6px">
+      <button type="button" class="continue" onclick="goStep('service')" style="background:#eef2f7;color:#334155;flex:0 0 auto;max-width:160px"><span class="ctxt">&larr; Back</span></button>
+      <button type="button" class="continue" onclick="continueFromProfile()" style="flex:1"><span class="ctxt">Continue to Payment</span></button>
+    </div>
+  </div>
+
+  <!-- STEP 4: PAYMENT -->
+  <div class="card" id="cardPayment" style="display:none">
+    <div class="card-h">Secure Payment</div>
+    <div class="card-sub">You'll be redirected to XcellHost's secure Zoho Billing payment page to complete your order.</div>
+    <div class="spec" style="align-items:flex-start;margin-bottom:18px">
+      <div class="spec-ico">&#128274;</div>
+      <div><div class="v" style="margin-bottom:2px">Payments handled securely by Zoho Billing</div><div class="k" style="text-transform:none;letter-spacing:0;color:var(--muted)">Card, UPI and netbanking are processed on Zoho's PCI-DSS compliant hosted page via Razorpay. XcellHost never stores your card details.</div></div>
+    </div>
+
+    <div id="payRecap" style="margin-bottom:16px"><!-- rendered: renderPayRecap() --></div>
+    <div class="coupon-msg" id="payMsg" role="status" aria-live="polite" style="margin-bottom:14px"></div>
+
+    <div style="display:flex;gap:12px">
+      <button type="button" class="continue" onclick="goStep('profile')" style="background:#eef2f7;color:#334155;flex:0 0 auto;max-width:180px"><span class="ctxt">&larr; Back to Profile</span></button>
+      <button type="button" class="continue" id="payBtn" onclick="proceedToPayment()" style="flex:1"><span class="ctxt">Proceed to Secure Payment</span></button>
+    </div>
+    <div class="secure-line">&#128274; Redirects to Zoho Billing &middot; secured by Razorpay</div>
+  </div>
+
+</div>
+
+<!-- RIGHT: ORDER SUMMARY (Tally-style) -->
+<div class="col-right">
+  <div class="summary">
+    <div class="pricing">
+      <div class="pline"><span>Security Bundle</span><span class="amt" id="bundleAmt">&mdash;</span></div>
+      <div class="pline"><span>Hardware Appliance <span style="color:var(--muted);font-weight:600">&times; 1</span></span><span class="amt" id="hwAmt">&mdash;</span></div>
+      <div class="pline"><span>Subtotal</span><span class="amt" id="subtotalLine">&mdash;</span></div>
+      <div class="pline"><span>CGST (9%)</span><span class="amt" id="cgst">&mdash;</span></div>
+      <div class="pline"><span>SGST (9%)</span><span class="amt" id="sgst">&mdash;</span></div>
+      <div class="pline total"><span>Total</span><span class="amt" id="total">&mdash;</span></div>
+      <div class="tax-note">Subtotal and total include the one-time Hardware Appliance (&#8377;16,999 &times; 1) and the selected Security Bundle. Taxes shown are an estimate; final billing and payment are completed securely on Zoho Billing.</div>
+    </div>
+
+    <div class="sum-head"><h3>Order Summary</h3></div>
+    <div class="sum-prod" id="sumProd"><!-- rendered: renderSummary() --></div>
+    <div class="incl">
+      <div class="incl-t">Included</div>
+      <ul>
+        <li>Hardware appliance + security bundle</li>
+        <li>Secure Wi-Fi &amp; firewall</li>
+        <li>Secure Web Gateway &amp; web filtering</li>
+        <li>Threat protection &amp; access control</li>
+        <li>Centralized multi-site management</li>
+        <li>XcellHost support</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- TRUST CARD (matches Tally) -->
+  <div class="why-xcell">
+    <div class="wx-t">Why XcellHost?</div>
+    <ul class="why-list">
+      <li><span class="wx-ck">&#10003;</span> Hardware appliance + security bundle</li>
+      <li><span class="wx-ck">&#10003;</span> Secure Wi-Fi, firewall &amp; SWG</li>
+      <li><span class="wx-ck">&#10003;</span> 24&#215;7 support</li>
+      <li><span class="wx-ck">&#10003;</span> Managed cloud &amp; cybersecurity</li>
+    </ul>
+    <div class="sec-note">
+      <div class="sn-h">&#128274; Secure Checkout</div>
+      <div class="sn-b">Your payment is securely processed through Zoho Billing and the configured payment gateway.</div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="toast-wrap" id="toastWrap" role="status" aria-live="polite"></div>
+
+<script>
+/* ============================================================================
+   CYBIRD CHECKOUT — CONFIG & DATA (standalone; not connected to any other cart)
+   ============================================================================ */
+const CGST_RATE = 0.09, SGST_RATE = 0.09;   // GST 18% shown as CGST 9% + SGST 9%
+const PRODUCT_NAME = "Cybird SMB Cyber Security Appliance";
+
+/* Four Cybird packages (select ONE). Price is the SECURITY BUNDLE price for the
+   selected term (hardware NOT included here) — never per user. The ₹16,999 Hardware
+   Appliance is a separate Zoho addon (see HARDWARE), added once on top. */
+const CYB_PACKAGES = {
+  "essentials": { id:"essentials", name:"Cybird Essentials", code:"ESSENTIALS", cap:"Up to 10 Users"  },
+  "plus":       { id:"plus",       name:"Cybird Plus",       code:"PLUS",       cap:"Up to 25 Users"  },
+  "pro":        { id:"pro",        name:"Cybird Pro",        code:"PRO",        cap:"Up to 50 Users"  },
+  "max":        { id:"max",        name:"Cybird Max",        code:"MAX",        cap:"Up to 100 Users" }
+};
+/* Billing terms with the website's PRESENTATION-ONLY savings badges (fixed text,
+   supplied by XcellHost — never recomputed from a percentage). */
+const CYB_TERMS = {
+  "1y": { id:"1y", name:"1 Year",  suffix:"1Y", badge:"" },
+  "2y": { id:"2y", name:"2 Years", suffix:"2Y", badge:"Save 10%" },
+  "3y": { id:"3y", name:"3 Years", suffix:"3Y", badge:"Save 15%" },
+  "5y": { id:"5y", name:"5 Years", suffix:"5Y", badge:"Save 20%" }
+};
+
+/* EXACT Security Bundle prices (INR), GST-exclusive. These are the NEW Zoho plan
+   prices with hardware REMOVED — the ₹16,999 hardware is a separate Zoho addon
+   (see HARDWARE) added on top. Do not recalculate. */
+const CYB_PRICES = {
+  "essentials": { "1y":14999, "2y":26999,  "3y":37999,  "5y":71999  },
+  "plus":       { "1y":24999, "2y":44999,  "3y":63999,  "5y":99999  },
+  "pro":        { "1y":44999, "2y":80999,  "3y":114999, "5y":179999 },
+  "max":        { "1y":94999, "2y":170999, "3y":241999, "5y":379999 }
+};
+
+/* ── Zoho Billing Hosted Payment Page URLs — HARDCODED MAPPING (exact) ────────
+   One entry per package+term. Used verbatim; never modified, regenerated or
+   guessed. (CYB-MAX-3Y uses the corrected full-token URL supplied by XcellHost.) */
+const CYBIRD_PAYMENT_URLS = {
+  "ESSENTIALS-1Y": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/CYB-ESSENTIALS-1Y",
+  "ESSENTIALS-2Y": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/CYB-ESSENTIALS-2Y",
+  "ESSENTIALS-3Y": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/CYB-ESSENTIALS-3Y",
+  "ESSENTIALS-5Y": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/CYB-ESSENTIALS-5Y",
+  "PLUS-1Y": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/CYB-PLUS-1Y",
+  "PLUS-2Y": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/CYB-PLUS-2Y",
+  "PLUS-3Y": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/CYB-PLUS-3Y",
+  "PLUS-5Y": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/CYB-PLUS-5Y",
+  "PRO-1Y": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/CYB-PRO-1Y",
+  "PRO-2Y": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/CYB-PRO-2Y",
+  "PRO-3Y": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/CYB-PRO-3Y",
+  "PRO-5Y": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/CYB-PRO-5Y",
+  "MAX-1Y": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/CYB-MAX-1Y",
+  "MAX-2Y": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/CYB-MAX-2Y",
+  "MAX-3Y": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/CYB-MAX-3Y",
+  "MAX-5Y": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/CYB-MAX-5Y"
+};
+
+/* ── STATE (standalone Cybird cart in localStorage; passwords NEVER persisted) ── */
+const CART_KEY = "xcellhost_cybird_cart";
+let state = { step:"account", custType:"new", entity:"business", packageId:"essentials", termId:"1y", quantity:1, inCart:false, account:{}, profile:{} };
+
+/* Cybird Hardware Appliance — a REAL Zoho Billing one-time addon, mandatory and
+   always quantity 1 (never multiplied by the package quantity). Its price is part
+   of the subtotal/GST/total and the addon is sent to the Zoho Hosted Payment Page. */
+const HARDWARE = { code:"CYB-HARDWARE-16999", name:"Cybird Cyber Security Customer Hardware Appliance", price:16999, qty:1 };
+
+/* helpers */
+const $ = s => document.querySelector(s);
+const fmt  = n => "₹" + Number(n).toLocaleString("en-IN");
+const fmt2 = n => "₹" + Number(n).toLocaleString("en-IN", { minimumFractionDigits:2, maximumFractionDigits:2 });
+const round2 = n => Math.round(n*100)/100;
+function pkg(){ return CYB_PACKAGES[state.packageId]; }
+function term(){ return CYB_TERMS[state.termId]; }
+function unitPrice(){ const r=CYB_PRICES[state.packageId]; return r ? (r[state.termId]!=null?r[state.termId]:null) : null; }
+function priceReady(){ return unitPrice()!=null; }
+function bundleAmt(){ const u=unitPrice(); return u==null?null:u*state.quantity; }   // Security Bundle × package quantity
+function hardwareAmt(){ return HARDWARE.price * HARDWARE.qty; }                        // hardware ALWAYS × 1
+function subtotalAmt(){ const b=bundleAmt(); return b==null?null:b+hardwareAmt(); }    // bundle + hardware
+function cgstAmt(){ const b=subtotalAmt(); return b==null?null:round2(b*CGST_RATE); }
+function sgstAmt(){ const b=subtotalAmt(); return b==null?null:round2(b*SGST_RATE); }
+function gstAmt(){ const c=cgstAmt(); return c==null?null:round2(c+sgstAmt()); }
+function grandTotal(){ const b=subtotalAmt(); return b==null?null:round2(b+cgstAmt()+sgstAmt()); }
+function planKey(pkgId, termId){ return CYB_PACKAGES[pkgId].code + "-" + CYB_TERMS[termId].suffix; }
+function paymentUrlFor(pkgId, termId){ return CYBIRD_PAYMENT_URLS[planKey(pkgId, termId)] || ""; }
+
+/* ── PERSISTENCE (never writes passwords — none are collected) ── */
+function saveCart(){
+  try{
+    const acc={...state.account}; delete acc.password;
+    localStorage.setItem(CART_KEY, JSON.stringify({ packageId:state.packageId, termId:state.termId, quantity:state.quantity, inCart:state.inCart, custType:state.custType, entity:state.entity, account:acc, profile:state.profile }));
+  }catch(e){}
+}
+function loadCart(){
+  try{
+    const d=JSON.parse(localStorage.getItem(CART_KEY)||"null"); if(!d) return;
+    if(d.packageId && CYB_PACKAGES[d.packageId]) state.packageId=d.packageId;
+    if(d.termId && CYB_TERMS[d.termId]) state.termId=d.termId;
+    if(d.quantity) state.quantity=Math.max(1, parseInt(d.quantity)||1);
+    state.inCart=!!d.inCart;
+    if(d.custType) state.custType=d.custType;
+    if(d.entity) state.entity=d.entity;
+    if(d.account) state.account=d.account;   // never contains password
+    if(d.profile) state.profile=d.profile;
+  }catch(e){}
+}
+
+/* ============================================================================
+   RENDERERS
+   ============================================================================ */
+function renderTerms(){
+  $("#terms").innerHTML = Object.keys(CYB_TERMS).map(k=>{
+    const t=CYB_TERMS[k], sel=k===state.termId?"sel":"";
+    const badge = t.badge
+      ? `<div class="to-off">${t.badge.toUpperCase()}</div>`
+      : `<div class="to-off" style="background:#e2e8f0;color:#64748b">STANDARD</div>`;
+    return `<div class="term-opt ${sel}" data-term="${k}" role="button" tabindex="0" aria-pressed="${k===state.termId}" aria-label="${t.name}${t.badge?' — '+t.badge:''}" onclick="selectTerm('${k}')">
+       <div class="to-dur">${t.name}</div>
+       ${badge}
+     </div>`;
+  }).join("");
+}
+function renderPackages(){
+  $("#pkgGrid").innerHTML = Object.keys(CYB_PACKAGES).map(k=>{
+    const pk=CYB_PACKAGES[k], sel=k===state.packageId?"sel":"";
+    const pr=CYB_PRICES[k][state.termId];
+    const price = pr!=null ? fmt(pr) : "—";
+    return `<div class="pkg-opt ${sel}" data-pkg="${k}" role="button" tabindex="0" aria-pressed="${k===state.packageId}" aria-label="${pk.name}, ${pk.cap}, ${price} for ${term().name}" onclick="selectPackage('${k}')">
+       <div class="pkg-name">${pk.name}</div>
+       <div class="pkg-cap">${pk.cap}</div>
+       <div class="pkg-term">${term().name}</div>
+       <div class="pkg-price">${price}</div>
+       <button type="button" class="pkg-order" onclick="event.stopPropagation();orderPackage('${k}')">Order Now</button>
+     </div>`;
+  }).join("");
+}
+function renderTermDetail(){
+  const pk=pkg(), t=term(), pr=unitPrice();
+  const price = pr!=null
+    ? `<div class="td-price">${fmt(pr)}<span class="u"> / ${t.name}</span></div>`
+    : `<div class="td-tbc">Price to be configured</div>`;
+  const save = t.badge ? `<div class="td-cov">${t.badge} (website offer)</div>` : "";
+  $("#termDetail").innerHTML = `
+    <div class="td-top">
+      <div class="td-name">${pk.name} &middot; ${pk.cap} &middot; ${t.name}</div>
+      ${save}
+      ${price}
+    </div>
+    <div class="td-note">Security Bundle price for the selected term. The one-time Hardware Appliance (&#8377;16,999 &times; 1) and GST (CGST 9% + SGST 9%) are added in the order summary. Quantity multiplies the Security Bundle only &mdash; the hardware is always &times; 1.</div>`;
+}
+function renderSummary(){
+  const pk=pkg(), t=term(), ready=priceReady();
+  const bprice = ready ? fmt(bundleAmt()) : `<span class="tbc">To be configured</span>`;
+  $("#sumProd").innerHTML = `
+    <div class="sum-line"><div class="sum-lab">Security Bundle</div></div>
+    <div class="p">${pk.name} &middot; ${t.name}</div>
+    <div class="u">${pk.cap} &middot; Packages &times; ${state.quantity}</div>
+    <div class="pr">${bprice}</div>
+    <div class="sum-div"></div>
+    <div class="sum-line"><div class="sum-lab">Hardware Appliance</div></div>
+    <div class="u">${HARDWARE.name}</div>
+    <div class="u">Quantity: 1 &middot; one-time</div>
+    <div class="pr">${fmt(hardwareAmt())}</div>`;
+}
+function renderPricing(){
+  const ready=priceReady();
+  $("#bundleAmt").innerHTML = ready?fmt(bundleAmt()):`<span class="tbc">—</span>`;
+  $("#hwAmt").innerHTML = fmt(hardwareAmt());
+  $("#subtotalLine").innerHTML = ready?fmt(subtotalAmt()):`<span class="tbc">—</span>`;
+  $("#cgst").innerHTML = ready?fmt2(cgstAmt()):`<span class="tbc">—</span>`;
+  $("#sgst").innerHTML = ready?fmt2(sgstAmt()):`<span class="tbc">—</span>`;
+  $("#total").innerHTML = ready?fmt2(grandTotal()):`<span class="tbc">To be configured</span>`;
+}
+function renderPayRecap(){
+  const pk=pkg(), t=term(), ready=priceReady();
+  $("#payRecap").innerHTML = `
+    <div class="spec" style="flex-direction:column;align-items:flex-start;gap:10px">
+      <div style="font-weight:800;font-size:.95rem">${PRODUCT_NAME}</div>
+      <div style="display:flex;justify-content:space-between;width:100%;font-size:.84rem"><span style="color:var(--muted)">Security Bundle</span><b>${pk.name} &middot; ${t.name}</b></div>
+      <div style="display:flex;justify-content:space-between;width:100%;font-size:.84rem"><span style="color:var(--muted)">Users</span><b>${pk.cap}</b></div>
+      <div style="display:flex;justify-content:space-between;width:100%;font-size:.84rem"><span style="color:var(--muted)">Packages</span><b>${state.quantity}</b></div>
+      <div style="display:flex;justify-content:space-between;width:100%;font-size:.84rem"><span style="color:var(--muted)">Security Bundle amount</span><b>${ready?fmt(bundleAmt()):'To be configured'}</b></div>
+      <div style="display:flex;justify-content:space-between;width:100%;font-size:.84rem"><span style="color:var(--muted)">Hardware Appliance &times; 1</span><b>${fmt(hardwareAmt())}</b></div>
+      <div style="display:flex;justify-content:space-between;width:100%;font-size:.84rem"><span style="color:var(--muted)">Subtotal</span><b>${ready?fmt(subtotalAmt()):'—'}</b></div>
+      <div style="display:flex;justify-content:space-between;width:100%;font-size:.84rem"><span style="color:var(--muted)">CGST (9%)</span><b>${ready?fmt2(cgstAmt()):'—'}</b></div>
+      <div style="display:flex;justify-content:space-between;width:100%;font-size:.84rem"><span style="color:var(--muted)">SGST (9%)</span><b>${ready?fmt2(sgstAmt()):'—'}</b></div>
+      <div style="display:flex;justify-content:space-between;width:100%;font-size:1.05rem;font-weight:800;border-top:1px solid var(--line);padding-top:10px"><span>Total</span><span style="color:var(--nv)">${ready?fmt2(grandTotal()):'To be configured'}</span></div>
+    </div>`;
+}
+function renderAll(){ renderTerms(); renderPackages(); renderTermDetail(); renderPricing(); renderSummary(); }
+
+/* ============================================================================
+   SERVICE INTERACTIONS
+   ============================================================================ */
+function selectPackage(k){ if(!CYB_PACKAGES[k])return; state.packageId=k; saveCart(); renderAll(); }
+function selectTerm(k){ if(!CYB_TERMS[k])return; state.termId=k; saveCart(); renderAll(); }
+function orderPackage(k){ selectPackage(k); continueFromService(); }   // "Order Now" selects + advances
+function setQty(v){ let q=parseInt(v,10); if(isNaN(q)||q<1)q=1; if(q>9999)q=9999; state.quantity=q; $("#qty").value=q; saveCart(); renderAll(); }
+function changeQty(d){ setQty(state.quantity+d); }
+
+/* ============================================================================
+   VALIDATION + STEP NAV
+   ============================================================================ */
+function setErr(id,show){ const i=$("#"+id); if(!i)return; i.classList.toggle("err",show); const e=i.parentElement.querySelector(".ferr"); if(e)e.classList.toggle("show",show); }
+const reEmail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/, reMobile=/^[+\d][\d\s-]{7,}$/, rePin=/^\d{6}$/;
+
+function validateAccount(){
+  let ok=true;
+  if(state.custType==="new"){
+    [["firstName",v=>v.trim().length>=1],["lastName",v=>v.trim().length>=1],["email",v=>reEmail.test(v.trim())],["mobile",v=>reMobile.test(v.trim())],["company",v=>v.trim().length>=1]]
+      .forEach(([id,t])=>{ const bad=!t($("#"+id).value); setErr(id,bad); if(bad)ok=false; });
+  }else{
+    [["exEmail",v=>reEmail.test(v.trim())],["exCompany",v=>v.trim().length>=1],["exMobile",v=>reMobile.test(v.trim())]]
+      .forEach(([id,t])=>{ const bad=!t($("#"+id).value); setErr(id,bad); if(bad)ok=false; });
+  }
+  return ok;
+}
+function captureAccount(){
+  if(state.custType==="new"){
+    state.account={ firstName:$("#firstName").value.trim(), lastName:$("#lastName").value.trim(), email:$("#email").value.trim(), mobile:$("#mobile").value.trim(), company:$("#company").value.trim() };
+  }else{
+    state.account={ email:$("#exEmail").value.trim(), company:$("#exCompany").value.trim(), mobile:$("#exMobile").value.trim(), acct:$("#exAcct").value.trim() };  // no password collected or stored
+  }
+  if(!$("#legalName").value) $("#legalName").value=state.account.company||"";
+  saveCart();
+}
+function continueFromAccount(){ if(!validateAccount()){ toast("Please complete the required account fields."); return; } captureAccount(); goStep("service"); }
+
+function continueFromService(){
+  if(!priceReady()){ toast("Please choose a package and term, or contact XcellHost."); return; }
+  if(!state.inCart){ state.inCart=true; saveCart(); renderSummary(); }
+  goStep("profile");
+}
+
+function toggleGstin(){ $("#gstinField").style.display = $("#gstReg").value==="yes" ? "" : "none"; }
+function validateProfile(){
+  let ok=true;
+  [["legalName",v=>v.trim().length>=1],["street",v=>v.trim().length>=1],["city",v=>v.trim().length>=1],["state",v=>v.trim().length>=1],["pin",v=>rePin.test(v.trim())],["country",v=>v.trim().length>=1]]
+    .forEach(([id,t])=>{ const bad=!t($("#"+id).value); setErr(id,bad); if(bad)ok=false; });
+  const g=$("#gstReg").value; const gb=!g; setErr("gstReg",gb); if(gb)ok=false;
+  if(g==="yes"){ const bad=$("#gstin").value.trim().length!==15; setErr("gstin",bad); if(bad)ok=false; }
+  return ok;
+}
+function captureProfile(){
+  state.profile={ entity:state.entity, legalName:$("#legalName").value.trim(), street:$("#street").value.trim(), address2:$("#address2").value.trim(), city:$("#city").value.trim(), state:$("#state").value.trim(), pin:$("#pin").value.trim(), country:$("#country").value.trim(), gstRegistered:$("#gstReg").value, gstin:$("#gstReg").value==="yes"?$("#gstin").value.trim().toUpperCase():"" };
+  saveCart();
+}
+function continueFromProfile(){ if(!validateProfile()){ toast("Please complete the required profile fields."); return; } captureProfile(); goStep("payment"); }
+
+const STEP_ORDER=["account","service","profile","payment"];
+const CARD={account:"#cardAccount",service:"#cardService",profile:"#cardProfile",payment:"#cardPayment"};
+function goStep(name){
+  if(name==="service" && !validateAccount()){ goStep("account"); toast("Complete your account first."); return; }
+  if(name==="profile" && !priceReady()){ toast("Please choose a package and term."); return; }
+  if(name==="payment" && !validateProfile()){ goStep("profile"); toast("Complete your billing profile first."); return; }
+  state.step=name;
+  Object.keys(CARD).forEach(k=>{ $(CARD[k]).style.display = k===name?"":"none"; });
+  const idx=STEP_ORDER.indexOf(name);
+  document.querySelectorAll("#stepper .step").forEach(st=>{ const si=+st.dataset.step; st.classList.toggle("active",si===idx); st.classList.toggle("done",si<idx); });
+  document.querySelectorAll("#stepper .step-bar").forEach(b=>{ b.classList.toggle("filled",+b.dataset.bar<idx); });
+  if(name==="payment") renderPayRecap();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* ============================================================================
+   PAYMENT HANDOFF — exact per package+term Zoho Hosted Payment Page
+   Top-level browser navigation (NOT an iframe, NOT fetched, NOT in a modal).
+   ============================================================================ */
+function cybNavigate(url){ window.location.assign(url); }   // top-level, same-tab redirect
+
+const IN_STATE_CODES = {
+  "maharashtra":"MH","gujarat":"GJ","delhi":"DL","karnataka":"KA","tamil nadu":"TN",
+  "telangana":"TS","west bengal":"WB","rajasthan":"RJ","uttar pradesh":"UP","madhya pradesh":"MP",
+  "kerala":"KL","punjab":"PB","haryana":"HR","bihar":"BR","andhra pradesh":"AP","odisha":"OD"
+};
+function indiaStateCode(s){
+  if(!s) return "";
+  const k=String(s).trim().toLowerCase();
+  if(IN_STATE_CODES[k]) return IN_STATE_CODES[k];
+  if(/^[A-Za-z]{2}$/.test(String(s).trim())) return String(s).trim().toUpperCase();
+  return "";
+}
+function countryCode(c){
+  const k=String(c||"").trim().toLowerCase();
+  if(k===""||k==="india"||k==="bharat"||k==="in") return "IN";
+  if(/^[A-Za-z]{2}$/.test(String(c).trim())) return String(c).trim().toUpperCase();
+  return "";
+}
+
+/* Build the final Zoho URL for the selected package+term, appending Zoho's
+   supported PREFILL params (from state.account / state.profile), the plan
+   `quantity`, and the MANDATORY one-time Hardware Appliance addon (always qty 1).
+   URL-encoded via URL / URLSearchParams — the bracket keys serialize to
+   addon_code%5B0%5D / addon_quantity%5B0%5D. Base URL/token/plan code never
+   modified; empty values omitted; no password is ever included. */
+function buildPaymentUrl(pkgId, termId, qty){
+  const base=(paymentUrlFor(pkgId, termId)||"").trim();
+  if(base==="") return "";
+  const a=state.account||{}, p=state.profile||{};
+  const params={
+    first_name:           a.firstName,
+    last_name:            a.lastName,
+    email:                a.email,
+    company_name:         a.company || p.legalName,
+    mobile:               a.mobile,
+    billing_street:       p.street,
+    billing_street2:      p.address2,
+    billing_city:         p.city,
+    billing_zip:          p.pin,
+    billing_state_code:   indiaStateCode(p.state),
+    billing_country_code: countryCode(p.country)
+  };
+  if(p.gstRegistered==="yes" && p.gstin) params.tax_reg_no = p.gstin;  // only when GSTIN supplied
+  params.quantity = String(qty);                      // Security Bundle (plan) quantity — customer controlled
+  params["addon_code[0]"] = HARDWARE.code;            // CYB-HARDWARE-16999
+  params["addon_quantity[0]"] = String(HARDWARE.qty); // hardware ALWAYS 1 (never multiplied by package qty)
+
+  const add=(usp)=>Object.keys(params).forEach(k=>{
+    const v=params[k];
+    if(v!=null && String(v).trim()!=="") usp.set(k, String(v).trim());
+  });
+  try{
+    const u=new URL(base); add(u.searchParams); return u.toString();
+  }catch(e){
+    const usp=new URLSearchParams(); add(usp);
+    const sep = base.indexOf("?")===-1 ? "?" : "&";
+    return base + sep + usp.toString();
+  }
+}
+
+function proceedToPayment(){
+  const msg=$("#payMsg"); msg.className="coupon-msg show";
+  if(!priceReady()){ msg.classList.add("no"); msg.textContent="Pricing for this selection is not configured yet. Please contact XcellHost support."; return; }
+  const url=buildPaymentUrl(state.packageId, state.termId, state.quantity);
+  if(url!==""){
+    cybNavigate(url);   // opens the exact per package+term Zoho Hosted Payment Page (top-level)
+  }else{
+    msg.classList.add("no"); msg.textContent="Payment integration is pending for this selection. Please contact XcellHost support.";
+  }
+}
+
+/* ============================================================================
+   UI plumbing
+   ============================================================================ */
+function toast(m){ const t=document.createElement("div"); t.className="toast"; t.textContent=m; $("#toastWrap").appendChild(t); setTimeout(()=>{ t.style.transition="opacity .3s,transform .3s"; t.style.opacity="0"; t.style.transform="translateY(10px)"; setTimeout(()=>t.remove(),300); },3200); }
+
+function setLegalLabel(){
+  const l=document.querySelector('label[for="legalName"]');
+  if(l) l.innerHTML = (state.entity==="individual" ? "Full / Legal Name" : "Company / Legal Name") + ' <span class="rq">*</span>';
+}
+
+function init(){
+  loadCart();
+  $("#qty").value=state.quantity;
+
+  function setCust(ct){ state.custType=ct; $("#optNew").classList.toggle("sel",ct==="new"); $("#optExisting").classList.toggle("sel",ct==="existing"); $("#formNew").style.display=ct==="new"?"":"none"; $("#formExisting").classList.toggle("show",ct==="existing"); saveCart(); }
+  $("#optNew").addEventListener("click",()=>setCust("new"));
+  $("#optExisting").addEventListener("click",()=>setCust("existing"));
+  setCust(state.custType);
+
+  function setEntity(en){ state.entity=en; $("#optIndividual").classList.toggle("sel",en==="individual"); $("#optBusiness").classList.toggle("sel",en==="business"); setLegalLabel(); saveCart(); }
+  $("#optIndividual").addEventListener("click",()=>setEntity("individual"));
+  $("#optBusiness").addEventListener("click",()=>setEntity("business"));
+  setEntity(state.entity);
+
+  // prefill non-sensitive fields
+  const a=state.account||{};
+  if(a.firstName)$("#firstName").value=a.firstName; if(a.lastName)$("#lastName").value=a.lastName;
+  if(a.email){ $("#email").value=a.email; $("#exEmail").value=a.email; }
+  if(a.mobile){ $("#mobile").value=a.mobile; $("#exMobile").value=a.mobile; }
+  if(a.company){ $("#company").value=a.company; $("#exCompany").value=a.company; }
+  if(a.acct)$("#exAcct").value=a.acct;
+  const pr=state.profile||{};
+  ["legalName","street","city","country","gstin"].forEach(k=>{ if(pr[k]){ const el=$("#"+k); if(el)el.value=pr[k]; } });
+  if(pr.address2)$("#address2").value=pr.address2; if(pr.state)$("#state").value=pr.state; if(pr.pin)$("#pin").value=pr.pin;
+  if(pr.gstRegistered){ $("#gstReg").value=pr.gstRegistered; toggleGstin(); }
+
+  document.querySelectorAll("#stepper .step").forEach(st=>{ st.addEventListener("click",()=>{ const names=["account","service","profile","payment"]; goStep(names[+st.dataset.step]); }); });
+
+  // Keyboard activation for package/term cards (Enter / Space); let native buttons handle themselves
+  ["#pkgGrid","#terms"].forEach(sel=>{ const c=$(sel); if(c) c.addEventListener("keydown",e=>{ if((e.key==="Enter"||e.key===" ") && e.target.tagName!=="BUTTON"){ const opt=e.target.closest("[data-pkg],[data-term]"); if(opt){ e.preventDefault(); opt.click(); } } }); });
+
+  renderAll();
+  goStep("account");
+}
+document.addEventListener("DOMContentLoaded", init);
+</script>
+</body>
+</html>

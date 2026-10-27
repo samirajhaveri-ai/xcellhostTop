@@ -5,7 +5,7 @@ export type OverlayId =
   | 'product' | 'category' | 'blog' | 'dpdpa' | 'dpdpaModule' | 'simple' | 'compare'
   | 'cart' | 'trial' | 'auth' | 'signin' | 'partner' | 'callback' | 'doc' | 'search' | 'chat' | 'mobileNav'
   | 'intro' | 'screenshotTour' | 'genAiScreenshotTour' | 'rmmScreenshotTour' | 'edrScreenshotTour'
-  | 'productScreenshotTour' | 'sitelockConfigurator';
+  | 'productScreenshotTour' | 'bannerScreenshotTour' | 'sitelockConfigurator';
 
 /**
  * One owner for "is something covering the page".
@@ -20,12 +20,14 @@ export class OverlayService {
   private readonly _stack = signal<OverlayId[]>([]);
 
   readonly stack = this._stack.asReadonly();
+  readonly trialProduct = signal('');
   readonly top = computed(() => this._stack()[this._stack().length - 1] ?? null);
 
   isOpen(id: OverlayId): boolean { return this._stack().includes(id); }
 
-  open(id: OverlayId): void {
+  open(id: OverlayId, product?: string): void {
     if (this.isOpen(id)) return;
+    if (id === 'trial') this.trialProduct.set(product || '');
     this._stack.update((s) => [...s, id]);
     this.sync();
   }

@@ -1,0 +1,76 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Poppins:wght@400;500;600;700&amp;family=Sora:wght@600;700;800&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/animations/performance-cloud-content.css"><style>html,body{height:100%;overflow:hidden;background:transparent}body{display:flex;align-items:center;justify-content:center}.pp-stage{width:min(100%,480px);height:min(100%,480px);max-height:none}.pp-stage__tag{color:#dce7f8}.hero-logo{position:absolute;right:18px;bottom:40px;width:105px;background:#fff;border-radius:8px;padding:5px;z-index:3}</style></head><body>
+  <div class="pp-stage" id="xgStage">
+   <canvas id="xgHero" aria-hidden="true"></canvas>
+   <div class="con-stage"><div class="gc-tilt" id="xgTilt"><div class="con-float">
+    <div class="con" aria-hidden="true">
+     <div class="con-hd"><span class="con-dots"><i></i><i></i><i></i></span><b>xh-perf-d8</b><span class="con-pill live">Running</span></div>
+     <div class="con-plan"><span id="cPlan">PC-D8</span><small id="cSpec">8 vCPU · 32 GB · 400 GB NVMe · Mumbai</small></div>
+     <div class="con-grid">
+      <div class="con-m"><span>CPU</span><b id="cCpu">24%</b><svg viewBox="0 0 120 30" preserveAspectRatio="none"><polyline id="cSpark" fill="none" stroke="#69B6FF" stroke-width="2" points=""/></svg></div>
+      <div class="con-m"><span>Memory</span><b id="cMem">12.4 GB</b><div class="con-bar"><i id="cMemB" style="width:39%"></i></div></div>
+      <div class="con-m"><span>Disk I/O</span><b id="cIo">NVMe</b><div class="con-bar or"><i id="cIoB" style="width:30%"></i></div></div>
+      <div class="con-m"><span>Network</span><b id="cNet">— Mbps</b><div class="con-bar gr"><i id="cNetB" style="width:22%"></i></div></div>
+     </div>
+     <div class="con-log" id="cLog"></div>
+    </div>
+   </div></div><div class="gc-floor"></div></div>
+   <div class="pp-stage__tag"><span>PERFORMANCE CLOUD</span><span class="live">Live in India</span></div>
+  </div>
+<img class="hero-logo" src="/assets/images/xcellhost-logo.png" alt="">
+<script>(function(){
+var cv=document.getElementById("xgHero");if(!cv)return;
+var cx=cv.getContext("2d"),W2,H2,DPR=Math.min(window.devicePixelRatio||1,2),RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
+var BLUE="#1565D8",OR="#FF8C1A",WH="#FFFFFF",W,H;
+function size(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=W*DPR;cv.height=H*DPR;cx.setTransform(DPR,0,0,DPR,0,0);if(window.xgInit)xgInit()}
+
+var N=7,B=[],P=[];
+window.xgInit=function(){B=[];P=[];for(var x=0;x<N;x++)for(var y=0;y<N;y++){B.push({x:x-(N-1)/2,y:y-(N-1)/2,h:.35+Math.random()*.55,ph:Math.random()*6.283,sp:.35+Math.random()*.5})}
+ for(var i=0;i<12;i++)P.push(np())};
+function np(){var ax=Math.random()<.5,l=Math.floor(Math.random()*N)-(N-1)/2+.5;return {ax:ax,l:l,s:-(N/2)-Math.random()*3,v:.9+Math.random()*1.4}}
+function xgDraw(t){cx.clearRect(0,0,W,H);
+ var s=Math.min(W,H)*.068,ox=W/2,oy=H*.75;
+ function iso(x,y,z){return [ox+(x-y)*s*.866,oy+(x+y)*s*.5-z*s]}
+ // floor grid
+ cx.lineWidth=1;cx.strokeStyle="rgba(90,150,255,.16)";
+ for(var i=0;i<=N;i++){var k=i-N/2,a=iso(k,-N/2,0),b=iso(k,N/2,0),c=iso(-N/2,k,0),d=iso(N/2,k,0);cx.beginPath();cx.moveTo(a[0],a[1]);cx.lineTo(b[0],b[1]);cx.moveTo(c[0],c[1]);cx.lineTo(d[0],d[1]);cx.stroke()}
+ // packets on the floor lanes
+ P.forEach(function(p,i){p.s+=p.v*.016;if(p.s>N/2+1)P[i]=np();var q=p.ax?iso(p.s,p.l,0):iso(p.l,p.s,0),tail=p.ax?iso(p.s-.6,p.l,0):iso(p.l,p.s-.6,0);
+  var g=cx.createLinearGradient(tail[0],tail[1],q[0],q[1]);g.addColorStop(0,"rgba(255,140,26,0)");g.addColorStop(1,"rgba(255,140,26,.95)");
+  cx.strokeStyle=g;cx.lineWidth=2.2;cx.beginPath();cx.moveTo(tail[0],tail[1]);cx.lineTo(q[0],q[1]);cx.stroke();cx.fillStyle=OR;cx.beginPath();cx.arc(q[0],q[1],2.4,0,6.283);cx.fill()});
+ // host blocks, back to front
+ B.slice().sort(function(a,b){return (a.x+a.y)-(b.x+b.y)}).forEach(function(b){
+  var w=.34,h=b.h*(1+.08*Math.sin(t*b.sp+b.ph)),lit=Math.sin(t*b.sp*.7+b.ph)>.35,x=b.x,y=b.y;
+  var t1=iso(x-w,y-w,h),t2=iso(x+w,y-w,h),t3=iso(x+w,y+w,h),t4=iso(x-w,y+w,h),b2=iso(x+w,y-w,0),b3=iso(x+w,y+w,0),b4=iso(x-w,y+w,0);
+  cx.fillStyle=lit?"rgba(12,62,143,.95)":"rgba(10,30,66,.9)";cx.beginPath();cx.moveTo(t2[0],t2[1]);cx.lineTo(t3[0],t3[1]);cx.lineTo(b3[0],b3[1]);cx.lineTo(b2[0],b2[1]);cx.closePath();cx.fill();
+  cx.fillStyle=lit?"rgba(9,45,110,.95)":"rgba(7,22,50,.92)";cx.beginPath();cx.moveTo(t4[0],t4[1]);cx.lineTo(t3[0],t3[1]);cx.lineTo(b3[0],b3[1]);cx.lineTo(b4[0],b4[1]);cx.closePath();cx.fill();
+  cx.fillStyle=lit?BLUE:"rgba(60,110,190,.35)";cx.strokeStyle=lit?"rgba(150,200,255,.9)":"rgba(127,178,255,.25)";cx.lineWidth=1;
+  cx.beginPath();cx.moveTo(t1[0],t1[1]);cx.lineTo(t2[0],t2[1]);cx.lineTo(t3[0],t3[1]);cx.lineTo(t4[0],t4[1]);cx.closePath();cx.fill();cx.stroke();
+  if(lit){var c0=iso(x,y,h);cx.fillStyle="rgba(105,182,255,.9)";cx.beginPath();cx.arc(c0[0],c0[1],2,0,6.283);cx.fill();
+   // LED strip on the front face
+   var l1=iso(x+w,y-w*.4,h*.55),l2=iso(x+w,y+w*.4,h*.55);cx.strokeStyle="rgba(46,204,113,.9)";cx.lineWidth=1.6;cx.beginPath();cx.moveTo(l1[0],l1[1]);cx.lineTo(l2[0],l2[1]);cx.stroke()}
+ });
+ // HUD
+ cx.font="600 10.5px IBM Plex Mono, monospace";cx.fillStyle="rgba(199,213,236,.55)";cx.textAlign="left";cx.fillText("REGION · IN-WEST · MUMBAI",14,H-44);
+ cx.textAlign="right";cx.fillText("NVMe · KVM · ANTI-DDoS",W-14,H-44);cx.textAlign="left";
+}
+
+size();addEventListener("resize",size);
+var vis=true;if("IntersectionObserver" in window)new IntersectionObserver(function(e){vis=e[0].isIntersecting}).observe(cv);
+function loop(t){if(vis)xgDraw(t/1000);if(!RM)requestAnimationFrame(loop)}requestAnimationFrame(loop);
+})();</script>
+<script>(function(){function $(s){return document.querySelector(s)}function $$(s){return document.querySelectorAll(s)}
+/* hero tilt */
+var st=$("#xgStage"),tl=$("#xgTilt"),RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
+if(!RM){st.addEventListener("pointermove",function(e){var r=st.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;tl.style.transform="rotateY("+(x*16)+"deg) rotateX("+(-y*12)+"deg)"});st.addEventListener("pointerleave",function(){tl.style.transform=""})}
+/* hero live console */
+var SP=[],cpu=24,t0=0,LOG=["▸ Deploying PC-D8 in Mumbai","✓ NVMe volume attached · 400 GB","✓ Private network joined","✓ Firewall rules applied","✓ Server ready · 4m 12s","▸ Resize requested: 8 → 16 vCPU","✓ Resized · no rebuild needed","✓ Snapshot saved · pre-deploy","✓ Acronis backup complete"],li=0,SZ=[["PC-D8","8 vCPU · 32 GB · 400 GB NVMe · Mumbai"],["PC-D16","16 vCPU · 64 GB · 800 GB NVMe · Mumbai"]];
+for(var i=0;i<30;i++)SP.push(20+Math.random()*10);
+function tick(){cpu=Math.max(8,Math.min(92,cpu+(Math.random()-.45)*14));SP.push(cpu);SP.shift();
+ $("#cSpark").setAttribute("points",SP.map(function(v,i){return (i*120/29).toFixed(1)+","+(30-v*.3).toFixed(1)}).join(" "));
+ $("#cCpu").textContent=Math.round(cpu)+"%";var mem=11+cpu/12;$("#cMem").textContent=mem.toFixed(1)+" GB";$("#cMemB").style.width=(mem/ (li>6?64:32)*100).toFixed(0)+"%";
+ var io=20+Math.random()*60;$("#cIoB").style.width=io.toFixed(0)+"%";$("#cIo").textContent=(io*1.9).toFixed(0)+"k IOPS";
+ var nt=15+Math.random()*50;$("#cNetB").style.width=nt.toFixed(0)+"%";$("#cNet").textContent=Math.round(nt*9.4)+" Mbps"}
+function logTick(){var el=$("#cLog"),line=document.createElement("div");line.textContent=LOG[li];line.className=LOG[li][0]==="✓"?"ok":"go";el.appendChild(line);while(el.children.length>3)el.removeChild(el.firstChild);
+ if(li===6){$("#cPlan").textContent=SZ[1][0];$("#cSpec").textContent=SZ[1][1]}if(li===0){$("#cPlan").textContent=SZ[0][0];$("#cSpec").textContent=SZ[0][1]}li=(li+1)%LOG.length}
+tick();logTick();logTick();if(!RM){setInterval(tick,900);setInterval(logTick,1700)}
+})();</script></body></html>

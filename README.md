@@ -9,6 +9,8 @@ you can edit without touching any markup.
 
 ## Quick start
 
+For the **XcellGenie / Ask XcellHost AI** widget, backend, knowledge index and production setup, see [server/README.md](server/README.md). Use `npm run dev` to run the frontend and AI backend together after configuring private `server/.env` and running `npm run ai:index`.
+
 You need **Node.js 20.19 or newer**. Check with `node -v`.
 
 ```bash
@@ -33,14 +35,14 @@ npm run package    # builds, then writes release/xcellhost-site.zip
 
 ---
 
-## Deploying to Plesk (xcellhost.top)
+## Deploying to Plesk (xcellhost.cloud)
 
 1. Run `npm run package`. You get **`release/xcellhost-site.zip`**.
 2. In Plesk open **Files** → go into **httpdocs**.
 3. Delete what is already there (or move it aside), then **Upload** the zip.
 4. Right-click the zip → **Extract Files**. Delete the zip afterwards.
 5. Open the site. Every page, including deep links like
-   `xcellhost.top/tally-on-cloud/`, should work.
+   `xcellhost.cloud/tally-on-cloud/`, should work.
 
 **The `.htaccess` file matters.** It is inside the zip and must sit next to
 `index.html`. Without it the home page works but refreshing any other page shows
@@ -50,7 +52,7 @@ confirm it is there.
 
 Running on Windows/IIS instead? `web.config` (also in the zip) does the same job.
 Running nginx? Copy the contents of `release/nginx.conf` into
-**Domains → xcellhost.top → Apache & nginx Settings → Additional nginx directives**.
+**Domains → xcellhost.cloud → Apache & nginx Settings → Additional nginx directives**.
 
 ### Serving from a subfolder
 
@@ -81,7 +83,7 @@ has comments explaining the shape.
 | `blog.data.ts` | Insight articles. The key is the URL slug. |
 | `dpdpa.data.ts` | The nine SecureSetu DPDPA modules. |
 | `usecases.data.ts` | Source material for the auto-generated use-case and security sections. |
-| `chat.data.ts` | The website assistant's canned answers and scope rules. |
+| `chat.data.ts` | Legacy canned copy; the active assistant uses the private API described in `server/README.md`. |
 | `models.ts` | The type definitions. Read this if you are unsure what shape something should be. |
 
 ### Worked examples
@@ -123,7 +125,7 @@ trialWebhook:    'https://your-endpoint/trial',
 callbackWebhook: 'https://your-endpoint/callback',
 docWebhook:      'https://your-endpoint/download',
 partnerWebhook:  'https://your-endpoint/partner',
-chatEndpoint:    '',   // a chat API; empty means canned answers only
+chatEndpoint:    '/api/ai/chat', // private backend; see server/README.md
 faqApi:          '',   // optional live answers on product FAQ blocks
 ```
 
@@ -188,4 +190,4 @@ These match the original site, so nothing already indexed by Google breaks.
   (Webinars, Glossary, Careers and similar). They render as inert, exactly as in
   the draft. To turn one on, add it to `CONTENT_LINKS` near the top of
   `src/app/layout/header.component.ts`.
-- **`npm test`** is wired up but no tests are written yet.
+- **`npm test`** runs Angular tests. **`npm run test:ai`** runs the backend and retrieval tests without API credentials.

@@ -30,13 +30,12 @@ const INDUSTRY_CARDS: readonly IndustryCard[] = [
   { icon: 'business', label: 'Pharmaceutical Cloud', blurb: 'Explore Pharmaceutical Cloud services, features and solutions.', service: 'Pharmaceutical Cloud' },
   { icon: 'business', label: 'Construction Cloud', blurb: 'Explore Construction Cloud services, features and solutions.', service: 'Construction Cloud' },
 
-  { icon: 'business', label: ' Hospitality Cloud', blurb: 'Technology designed for food and beverage operations', service: 'Food & Beverage' },
-
   { icon: 'business', label: 'Hospitality Cloud', blurb: 'Cloud solutions for hotels, restaurants and hospitality operations', service: 'Hospitality Cloud' },
 
   { icon: 'logistics', label: 'Logistics Cloud', blurb: 'Explore Logistics Cloud services, features and solutions.', service: 'Logistics Cloud' },
   { icon: 'healthcare', label: 'HealthCare Cloud', blurb: 'Explore HealthCare Cloud services, features and solutions.', service: 'HealthCare Cloud' },
   { icon: 'retail', label: 'Retail Cloud', blurb: 'Explore Retail Cloud services, features and solutions.', service: 'Retail Cloud' },
+  { icon: 'business', label: 'GCC Cloud', blurb: 'Managed cloud infrastructure, security and support for GCC teams.', service: 'GCC Cloud' },
 ]; 
 
 const INDUSTRY_ICON_PATHS: Readonly<Record<string, string>> = {

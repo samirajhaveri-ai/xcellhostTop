@@ -1,3 +1,4 @@
+import { getCaseStudyImage } from '../core/case-study-images';
 import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, afterNextRender, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -25,6 +26,7 @@ interface CaseCategoryBranch {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CaseStudiesPage {
+  readonly caseStudyImage = getCaseStudyImage;
   private readonly overlay = inject(OverlayService);
   private readonly seo = inject(SeoService);
   private readonly route = inject(ActivatedRoute);
@@ -36,6 +38,7 @@ export class CaseStudiesPage {
   readonly selectedSub = signal('');
   readonly expandedMain = signal<string | null>(null);
   readonly searchQuery = signal('');
+  readonly featuredStudy = computed(() => this.studies()[0] ?? null);
 
   readonly categoryTree = computed<readonly CaseCategoryBranch[]>(() => {
     const branches = new Map<string, Map<string, number>>();
@@ -74,6 +77,10 @@ export class CaseStudiesPage {
     });
   });
 
+  readonly activeCategory = computed(() =>
+    this.categoryTree().find((branch) => branch.name === this.selectedMain()) ?? null,
+  );
+
   constructor() {
     this.seo.set(
       'Customer Case Studies - XcellHost',
@@ -104,6 +111,11 @@ export class CaseStudiesPage {
     this.expandedMain.set(null);
   }
 
+  clearFilters(): void {
+    this.selectAllCategories();
+    this.searchQuery.set('');
+  }
+
   selectMainCategory(category: string): void {
     this.selectedMain.set(category);
     this.selectedSub.set('');
@@ -123,4 +135,5 @@ export class CaseStudiesPage {
   searchStudies(event: Event): void {
     this.searchQuery.set((event.target as HTMLInputElement).value);
   }
+
 }

@@ -1,0 +1,28 @@
+<div class="glass" role="group" [attr.aria-label]="family() === 'memory' ? 'Illustration: launching a RAM-Intensive instance' : 'Illustration: launching a CPU-Intensive instance'">
+  <div class="glass-h"><span>LAUNCH AN INSTANCE</span><b role="status">{{ running() ? '● RUNNING' : 'PROVISIONING' }}</b></div>
+  <div class="ln">
+    <div class="ln-h">
+      <i [class.is-complete]="running()" aria-hidden="true"></i>
+      <span>{{ selected().code }} · ubuntu-24-04</span>
+      <button type="button" aria-label="Replay the instance launch illustration" (click)="launch()">Launch ▸</button>
+    </div>
+    <div class="ln-b">
+      <div class="ln-sz" role="group" aria-label="Choose an illustrative instance size">
+        @for (size of sizes(); track size.code; let i = $index) {
+          <button type="button" [attr.aria-pressed]="selectedIndex() === i" (click)="selectSize(i)">{{ size.vcpu }} vCPU<small>{{ size.ram }} GB RAM</small></button>
+        }
+      </div>
+      <ul class="ln-st" aria-label="Instance launch steps">
+        @for (step of steps; track step; let i = $index) {
+          <li [class.is-complete]="stage() > i || running()" [class.run]="stage() === i && !running()"><b aria-hidden="true"></b>{{ step }}</li>
+        }
+      </ul>
+      <div class="ln-m" aria-label="Illustrative resource usage">
+        @for (metric of metrics(); track metric.label) {
+          <div><span>{{ metric.label }}<em>{{ metric.value }}%</em></span><i aria-hidden="true"><b [style.width.%]="metric.value"></b></i></div>
+        }
+      </div>
+      <div class="ln-f"><span>IPv4 · {{ ip() }}</span><span><b>{{ money(selected().price) }}</b>/mo</span></div>
+    </div>
+  </div>
+</div>

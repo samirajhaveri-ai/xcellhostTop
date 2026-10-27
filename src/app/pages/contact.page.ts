@@ -1,6 +1,6 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, inject, signal } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 import { OverlayService } from '../core/overlay.service';
 import { SeoService } from '../core/seo.service';
@@ -29,6 +29,7 @@ interface ContactOffice {
 })
 export class ContactPage implements AfterViewInit, OnDestroy {
   private readonly overlay = inject(OverlayService);
+  private readonly route = inject(ActivatedRoute);
   private readonly seo = inject(SeoService);
   private readonly sanitizer = inject(DomSanitizer);
   private readonly timers: number[] = [];
@@ -196,6 +197,8 @@ export class ContactPage implements AfterViewInit, OnDestroy {
     };
 
     const getProductName = () => {
+      const requestedService = this.route.snapshot.queryParamMap.get('service')?.trim();
+      if (requestedService) return requestedService;
       const pageTitle = document.title ? document.title.trim() : '';
       const genericTitles = [
         '',
@@ -218,7 +221,9 @@ export class ContactPage implements AfterViewInit, OnDestroy {
       if (productField) productField.value = productName;
       if (serviceField) serviceField.value = productName;
       if (customText && productName !== 'Website Enquiry') {
-        customText.innerHTML = `Our sales team can answer questions about <strong>${productName}</strong> and recommend the right solution.`;
+        const serviceName = document.createElement('strong');
+        serviceName.textContent = productName;
+        customText.replaceChildren('Our sales team can answer questions about ', serviceName, ' and recommend the right solution.');
       }
     };
 

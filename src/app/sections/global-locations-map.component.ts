@@ -77,15 +77,13 @@ const ACRONIS_REGIONS = [
         @if (activeView() === 'xcellhost') {
         <div id="xcellhost-dcs" class="dc-tab-panel" role="tabpanel" aria-label="XcellHost data centers">
         <div class="map-stage">
-          <img
-            class="global-dc-map"
-            src="/assets/images/xcellhost-global-locations-map.png"
-            width="1146"
-            height="540"
+          <iframe
+            class="global-dc-globe"
+            src="/assets/animations/xcellhost-globe.html?mode=globe"
+            title="Interactive globe showing XcellHost data center locations"
+            scrolling="no"
             loading="eager"
-            decoding="sync"
-            alt="World map showing XcellHost datacenter locations across North America, Europe, Asia and Australia"
-          />
+          ></iframe>
         </div>
 
         <div class="location-marquee" aria-label="Datacenter regions" xhReveal>
@@ -233,18 +231,16 @@ const ACRONIS_REGIONS = [
       text-transform: uppercase;
     }
 
-    .map-stage .global-dc-map {
+    .map-stage .global-dc-globe {
       position: relative;
       z-index: 1;
-      display: block !important;
-      width: min(100%, 1146px);
-      height: auto;
+      display: block;
+      width: min(100%, 720px);
+      height: clamp(430px, 65vw, 720px);
       margin: 0 auto;
-      object-fit: contain;
-      opacity: 1 !important;
-      visibility: visible !important;
-      filter: none !important;
-      mix-blend-mode: normal !important;
+      border: 0;
+      overflow: hidden;
+      background: transparent;
     }
 
     .location-marquee {

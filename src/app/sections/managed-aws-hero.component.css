@@ -1,0 +1,28 @@
+:host{display:block;width:100%;max-width:600px;margin:auto}
+.aws-stage{padding:18px 14px 8px;border:1px solid rgba(133,190,255,.22);border-radius:22px;background:linear-gradient(145deg,rgba(15,49,87,.94),rgba(3,21,43,.94));box-shadow:0 24px 65px #00102555}
+.stage-heading{display:flex;align-items:center;gap:8px;padding:0 10px 4px;color:#a8c9eb;font:600 9px/1.5 ui-monospace,monospace;letter-spacing:1.2px}
+.live-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;box-shadow:0 0 10px #4ade8099;animation:aws-status 3s ease-in-out infinite}
+.live-label{margin-left:auto;color:#4ade80;font-size:8px}
+.aws-stage svg{display:block;width:100%;height:auto;max-height:none}
+.node rect:first-child{fill:#0c2746;stroke:#477eae;stroke-opacity:.65}
+.node-title{fill:#edf6ff;font:600 12px system-ui,sans-serif}
+.node-detail{fill:#9fbad7;font:10px system-ui,sans-serif}
+.icon{stroke:#ffb347;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.aws-wordmark{fill:#fff;font:700 43px system-ui,sans-serif;letter-spacing:-2px}
+.hub-caption{fill:#ffd297;font:600 8px ui-monospace,monospace;letter-spacing:1px}
+.bottom-caption{fill:#86a9cb;font:10px system-ui,sans-serif;letter-spacing:.4px}
+.status-dot{fill:#4ade80;animation:aws-status 3s ease-in-out infinite}
+.security .status-dot{animation-delay:1s}.monitoring .status-dot{animation-delay:2s}
+.orbit{transform-origin:280px 163px;animation:aws-orbit 60s linear infinite}
+.pulse-ring{transform-origin:280px 163px;animation:aws-pulse 4s ease-out infinite}
+.traffic{animation:aws-flow 5s linear infinite}.traffic path:nth-child(even){animation:aws-flow 5s linear infinite reverse}
+.spark{stroke:#6cb6ff;stroke-width:1.5;stroke-dasharray:180;animation:aws-trace 5s ease-in-out infinite}
+.security-track{fill:#203e5d}.security-scan{fill:#4ade80;transform-box:fill-box;transform-origin:left;animation:aws-scan 5s ease-in-out infinite}
+.savings{stroke-dasharray:150;animation:aws-trace 5s ease-in-out infinite 1s}
+@keyframes aws-flow{to{stroke-dashoffset:-204}}
+@keyframes aws-orbit{to{transform:rotate(360deg)}}
+@keyframes aws-pulse{0%{transform:scale(.9);opacity:0}30%{opacity:.6}100%{transform:scale(1.65);opacity:0}}
+@keyframes aws-status{50%{opacity:.45}}
+@keyframes aws-trace{0%{stroke-dashoffset:180;opacity:.3}45%,85%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:.3}}
+@keyframes aws-scan{0%,100%{transform:scaleX(.25);opacity:.5}65%,85%{transform:scaleX(1);opacity:1}}
+@media(prefers-reduced-motion:reduce){.aws-stage *{animation:none!important}}

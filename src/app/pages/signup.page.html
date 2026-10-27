@@ -6,10 +6,11 @@
     <svg class="fi fi-3" viewBox="0 0 70 55" fill="none" aria-hidden="true"><path d="M10 40Q30 15 50 30Q70 40 50 48Q30 55 10 40Z" stroke="rgba(255,255,255,.06)" stroke-width="1.5" /></svg>
     <svg class="fi fi-4" viewBox="0 0 50 40" fill="none" aria-hidden="true"><rect x="8" y="5" width="34" height="30" rx="2" stroke="rgba(255,255,255,.06)" stroke-width="1.5" /></svg>
 
+    <a class="logo" routerLink="/" aria-label="XcellHost home">
+      <img src="/assets/images/xcellhost-login-logo.png" alt="XcellHost — Cloud, Security and AI" width="520" height="269" />
+    </a>
+
     <div class="lc">
-      <div class="signup-brand-strip">
-        <img src="/assets/images/XcellHost-main-logo-baba-1.png" alt="XcellHost secure cloud services since 1999, with 24×7 support" width="3508" height="415" />
-      </div>
       <h1>Enterprise cloud infrastructure</h1>
       <p class="sub">Managed cloud, cybersecurity and digital trust for 10,000+ businesses across India. ISO 27001 certified since 1999.</p>
 
@@ -22,7 +23,7 @@
           </div>
         </div>
         <div class="slides">
-          <article class="slide on">
+          <article class="slide">
             <span class="s-ey">{{ serviceSlides[activeService()].eyebrow }}</span>
             <h2 class="s-t">{{ serviceSlides[activeService()].title }}</h2>
             <p class="s-d">{{ serviceSlides[activeService()].description }}</p>
@@ -44,49 +45,111 @@
     </div>
 
     <div class="lf" aria-label="Customer benefits">
-      <span class="lfi">&#10003; Expert Support</span><span class="lfi">&#10003; Knowledge Base</span><span class="lfi">&#10003; Easy Onboarding</span>
+      <span class="lfi">&#10003; Expert Support</span>
+      <span class="lfi">&#10003; Knowledge Base</span>
+      <span class="lfi">&#10003; Easy Onboarding</span>
     </div>
   </section>
 
   <section class="right">
-    <div class="fw">
+    <div class="fw crmWebToEntityForm" id="crmWebToEntityForm">
       @if (!submitted()) {
         <header class="fh"><h1>Create your account</h1><p>Get started with XcellHost cloud services.</p></header>
 
-        <div class="socials" aria-label="Social sign-up options">
-          <button type="button" class="soc-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h5.9a5 5 0 0 1-2.2 3.3v2.8h3.6c2.1-2 3.3-4.8 3.3-8.1Z" fill="#4285F4"/><path d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.7c-1 .7-2.2 1-3.7 1-2.9 0-5.3-1.9-6.2-4.5H2.2V17C4 20.5 7.7 23 12 23Z" fill="#34A853"/><path d="M5.8 14.1a6 6 0 0 1 0-4.2V7.1H2.2A11 11 0 0 0 1 12c0 1.8.4 3.5 1.2 4.9l3.6-2.8Z" fill="#FBBC05"/><path d="M12 5.4c1.6 0 3.1.5 4.2 1.6l3.2-3.1A10.7 10.7 0 0 0 2.2 7.1l3.6 2.8c.9-2.6 3.3-4.5 6.2-4.5Z" fill="#EA4335"/></svg>Google</button>
-          <button type="button" class="soc-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 0 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.3-1.1.6-1.4-2.2-.2-4.6-1.1-4.6-4.9 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .9-.2 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.2 2.7-1 2.7-1 .6 1.4.2 2.4.1 2.7.7.7 1.1 1.6 1.1 2.7 0 3.8-2.4 4.7-4.6 4.9.4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2Z" fill="#333"/></svg>GitHub</button>
-          <button type="button" class="soc-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12A10 10 0 1 0 10.4 22v-7.1H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9l2.2.2v2.5h-1.2c-1.3 0-1.7.7-1.7 1.5V12h2.8l-.4 2.9h-2.4V22A10 10 0 0 0 22 12Z" fill="#1877F2"/></svg>Facebook</button>
+        <div class="socials" aria-label="Social signup options">
+          <button type="button" class="soc-btn" disabled title="Google signup is coming soon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.8 12.2c0-.7-.1-1.5-.2-2.2H12v4.1h5.5a4.7 4.7 0 0 1-2 3v2.6h3.3c1.9-1.8 3-4.4 3-7.5z" fill="#4285F4"/><path d="M12 22c2.7 0 5-.9 6.8-2.3l-3.3-2.6c-.9.6-2.1 1-3.5 1-2.6 0-4.8-1.8-5.6-4.1H3v2.7A10 10 0 0 0 12 22z" fill="#34A853"/><path d="M6.4 14a6 6 0 0 1 0-3.9V7.3H3A10 10 0 0 0 3 16.7L6.4 14z" fill="#FBBC05"/><path d="M12 5.9c1.5 0 2.8.5 3.8 1.5l2.9-2.8A9.7 9.7 0 0 0 3 7.3l3.4 2.8A6 6 0 0 1 12 5.9z" fill="#EA4335"/></svg>Google</button>
+          <button type="button" class="soc-btn" disabled title="GitHub signup is coming soon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.2 19.5v-2.2c-2.7.6-3.3-1.1-3.3-1.1-.4-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 0 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.8.8.1-.6.4-1.1.6-1.3-2.1-.2-4.4-1.1-4.4-4.8 0-1.1.4-1.9 1-2.6-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 4.9 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.5 1 2.6 0 3.8-2.3 4.6-4.4 4.8.4.3.7.9.7 1.7v3.1A10 10 0 0 0 12 2z" fill="#181717"/></svg>GitHub</button>
+          <button type="button" class="soc-btn" disabled title="Facebook signup is coming soon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12A10 10 0 1 0 10.4 22v-7H7.9v-3h2.5V9.7c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.3 0-1.7.8-1.7 1.6V12h2.8l-.5 3h-2.3v7A10 10 0 0 0 22 12z" fill="#1877F2"/></svg>Facebook</button>
         </div>
         <div class="divider">or sign up with email</div>
 
-        <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <form #signupForm [id]="zoho.id" [attr.name]="zoho.name" [action]="zoho.endpoint" target="zohoFrame" method="POST" accept-charset="UTF-8" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+          <input type="hidden" name="xnQsjsdp" [value]="zoho.xnQsjsdp" />
+          <input type="hidden" id="zc_gad" name="zc_gad" value="" />
+          <input type="hidden" name="xmIwtLD" [value]="zoho.xmIwtLD" />
+          <input type="hidden" name="actionType" [value]="zoho.actionType" />
+          <input type="hidden" name="returnURL" [value]="zoho.returnURL" />
+          <input type="hidden" name="aG9uZXlwb3Q" value="" />
+          <input type="hidden" name="LEADCF21" value="Customer C" />
+          <input type="hidden" name="Lead Source" value="Website" />
+          @if (smartUrlService) { <input type="hidden" name="service" [value]="smartUrlService" /> }
+
           <div class="fr">
-            <div class="fg"><label>First Name <span class="rq">*</span></label><input type="text" formControlName="firstName" autocomplete="given-name" placeholder="Rajesh" />@if(form.controls.firstName.touched&&form.controls.firstName.invalid){<small class="fe sh">Enter at least two characters.</small>}</div>
-            <div class="fg"><label>Last Name <span class="rq">*</span></label><input type="text" formControlName="lastName" autocomplete="family-name" placeholder="Kumar" />@if(form.controls.lastName.touched&&form.controls.lastName.invalid){<small class="fe sh">Last name is required.</small>}</div>
+            <div class="fg">
+              <label for="First_Name">First Name <span class="rq">*</span></label>
+              <input id="First_Name" name="First Name" type="text" formControlName="firstName" autocomplete="given-name" placeholder="Rajesh" maxlength="40" />
+              @if (form.controls.firstName.touched && form.controls.firstName.invalid) { <small class="fe sh">Enter your first name.</small> }
+            </div>
+            <div class="fg">
+              <label for="Last_Name">Last Name <span class="rq">*</span></label>
+              <input id="Last_Name" name="Last Name" type="text" formControlName="lastName" autocomplete="family-name" placeholder="Kumar" maxlength="80" />
+              @if (form.controls.lastName.touched && form.controls.lastName.invalid) { <small class="fe sh">Enter your last name.</small> }
+            </div>
           </div>
-          <div class="fg"><label>Work Email <span class="rq">*</span></label><input type="email" formControlName="email" autocomplete="email" placeholder="you@company.com" />@if(form.controls.email.touched&&form.controls.email.invalid){<small class="fe sh">Enter a valid email.</small>}</div>
-          <div class="fr">
-            <div class="fg"><label>Mobile / WhatsApp <span class="rq">*</span></label><input type="tel" formControlName="phone" autocomplete="tel" placeholder="+91 98765 43210" />@if(form.controls.phone.touched&&form.controls.phone.invalid){<small class="fe sh">Enter a valid number.</small>}</div>
-            <div class="fg"><label>Company Name <span class="rq">*</span></label><input type="text" formControlName="company" autocomplete="organization" placeholder="Company Pvt. Ltd." />@if(form.controls.company.touched&&form.controls.company.invalid){<small class="fe sh">Company name is required.</small>}</div>
+          <div class="fg">
+            <label for="Email">Work Email <span class="rq">*</span></label>
+            <input id="Email" name="Email" type="email" formControlName="email" autocomplete="email" placeholder="you@company.com" maxlength="100" />
+            @if (form.controls.email.touched && form.controls.email.invalid) { <small class="fe sh">Enter a valid work email.</small> }
           </div>
-          <div class="fg"><label>City</label><input type="text" formControlName="city" autocomplete="address-level2" placeholder="Mumbai" /></div>
+          <div class="fg">
+            <label for="Mobile">Mobile / WhatsApp <span class="rq">*</span></label>
+            <div class="phone">
+              <div class="cc" [class.open]="countryMenuOpen()" (click)="$event.stopPropagation()">
+                <button class="cc-btn" type="button" aria-label="Country code" aria-haspopup="listbox" [attr.aria-expanded]="countryMenuOpen()" (click)="toggleCountryMenu()">
+                  <span class="cc-flag" aria-hidden="true"><img class="cc-img" [src]="countryFlagUrl(selectedCountry().code)" alt="" /></span>
+                  <span>+{{ selectedCountry().dial }}</span><span class="cc-chev">&#9662;</span>
+                </button>
+                <div class="cc-menu">
+                  <input class="cc-search" type="text" autocomplete="off" placeholder="Search country or code" [value]="countrySearch()" (input)="updateCountrySearch($event)" (keydown.escape)="closeCountryMenu()" />
+                  <ul class="cc-list" role="listbox" aria-label="Country codes">
+                    @for (country of filteredCountries(); track country.code) {
+                      <li><button type="button" class="cc-item" role="option" [attr.aria-selected]="selectedCountry().code === country.code" (click)="selectCountry(country)"><span class="cc-fl" aria-hidden="true"><img class="cc-img" [src]="countryFlagUrl(country.code)" alt="" loading="lazy" /></span><span class="cc-nm">{{ country.name }}</span><span class="cc-dl">+{{ country.dial }}</span></button></li>
+                    } @empty { <li class="cc-empty">No match</li> }
+                  </ul>
+                </div>
+              </div>
+              <input id="Mobile" type="tel" formControlName="phone" autocomplete="tel-national" placeholder="98765 43210" maxlength="30" />
+              <input type="hidden" name="Mobile" [value]="fullMobile()" />
+            </div>
+            @if (form.controls.phone.touched && form.controls.phone.invalid) { <small class="fe sh">Enter a valid mobile number.</small> }
+          </div>
+          <div class="fg">
+            <label for="Company">Company Name <span class="rq">*</span></label>
+            <input id="Company" name="Company" type="text" formControlName="company" autocomplete="organization" placeholder="Company Pvt. Ltd." maxlength="200" />
+            @if (form.controls.company.touched && form.controls.company.invalid) { <small class="fe sh">Enter your company name.</small> }
+          </div>
+          <div class="fg">
+            <label for="City">City</label>
+            <input id="City" name="City" type="text" formControlName="city" autocomplete="address-level2" placeholder="Mumbai" maxlength="100" />
+          </div>
           <div class="fr">
-            <div class="fg"><label>Password <span class="rq">*</span></label><div class="pw"><input [type]="showPassword()?'text':'password'" formControlName="password" autocomplete="new-password" placeholder="Min. 8 characters" /><button type="button" [attr.aria-label]="showPassword()?'Hide password':'Show password'" (click)="togglePassword()">{{showPassword()?'🙈':'👁'}}</button></div>@if(form.controls.password.touched&&form.controls.password.invalid){<small class="fe sh">Use 8+ characters with an uppercase letter and number.</small>}</div>
-            <div class="fg"><label>Confirm Password <span class="rq">*</span></label><div class="pw"><input [type]="showConfirmation()?'text':'password'" formControlName="confirmPassword" autocomplete="new-password" placeholder="Re-enter" /><button type="button" [attr.aria-label]="showConfirmation()?'Hide confirmation':'Show confirmation'" (click)="toggleConfirmation()">{{showConfirmation()?'🙈':'👁'}}</button></div>@if(form.controls.confirmPassword.touched&&(form.controls.confirmPassword.invalid||form.hasError('passwordMismatch'))){<small class="fe sh">{{form.hasError('passwordMismatch')?'Passwords do not match.':'Please confirm your password.'}}</small>}</div>
+            <div class="fg">
+              <label for="signup-password">Password <span class="rq">*</span></label>
+              <div class="pw"><input id="signup-password" [type]="showPassword() ? 'text' : 'password'" formControlName="password" autocomplete="new-password" placeholder="Min. 8 characters" /><button type="button" (click)="showPassword.set(!showPassword())" [attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'">{{ showPassword() ? '🙈' : '👁' }}</button></div>
+              @if (form.controls.password.touched && form.controls.password.invalid) { <small class="fe sh">Use 8+ characters with an uppercase letter and number.</small> }
+            </div>
+            <div class="fg">
+              <label for="signup-confirm-password">Confirm Password <span class="rq">*</span></label>
+              <div class="pw"><input id="signup-confirm-password" [type]="showConfirmation() ? 'text' : 'password'" formControlName="confirmPassword" autocomplete="new-password" placeholder="Re-enter" /><button type="button" (click)="showConfirmation.set(!showConfirmation())" [attr.aria-label]="showConfirmation() ? 'Hide confirmation password' : 'Show confirmation password'">{{ showConfirmation() ? '🙈' : '👁' }}</button></div>
+              @if (form.controls.confirmPassword.touched && (form.controls.confirmPassword.invalid || form.hasError('passwordMismatch'))) { <small class="fe sh">Passwords must match.</small> }
+            </div>
           </div>
           <label class="fc"><input type="checkbox" formControlName="terms" /><span>I agree to the <a routerLink="/company/terms-of-service">Terms of Service</a> and <a routerLink="/company/privacy-policy">Privacy Policy</a>.</span></label>
-          @if(form.controls.terms.touched&&form.controls.terms.invalid){<small class="ce sh">You must accept the terms to continue.</small>}
+          @if (form.controls.terms.touched && form.controls.terms.invalid) { <small class="ce sh">You must accept the terms to continue.</small> }
           <p class="form-error" role="alert">{{ error() }}</p>
           <button type="submit" class="bs" [class.ld]="busy()" [disabled]="busy()"><span class="bt">Create Account</span><span class="sp"></span></button>
         </form>
         <p class="ff">Already have an account? <a routerLink="/customer-login">Sign In</a></p>
       } @else {
-        <section class="su sh" aria-live="polite"><span class="ck">&#10003;</span><h2>Signup request submitted</h2><p>Your signup request has been submitted successfully.</p><p class="su-note">Your customer portal access will be activated through the XcellHost customer onboarding process.</p></section>
+        <div class="su sh" role="status">
+          <div class="ck">&#10003;</div>
+          <h2>Signup request submitted</h2>
+          <p>Your signup request has been submitted successfully.</p>
+          <p class="su-note">Your customer portal access will be activated through the XcellHost customer onboarding process.</p>
+        </div>
       }
     </div>
 
-    <footer class="rf"><a routerLink="/company/terms-of-service">Terms &amp; Conditions</a> | <a routerLink="/company/privacy-policy">Privacy Policy</a> | <a href="mailto:support@xcellhost.cloud">Get Support</a><div class="cp">&copy; 2026 XcellHost Cloud Services Pvt. Ltd. All rights reserved.</div></footer>
-    <iframe name="zohoFrame" class="zoho-frame" title="Signup submission" aria-hidden="true" (load)="onZohoLoad()"></iframe>
+    <iframe class="zoho-frame" name="zohoFrame" title="Signup submission response" (load)="completeSubmission()"></iframe>
   </section>
 </main>

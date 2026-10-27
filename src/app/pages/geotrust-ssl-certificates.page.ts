@@ -1,9 +1,11 @@
+import { QuantityInputDirective } from '../core/quantity-input.directive';
 import { InsightsSectionComponent } from '../sections/insights-section.component';
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
 import { SeoService } from '../core/seo.service';
 import { ProductPage } from './product.page';
+import { Router, RouterLink } from '@angular/router';
 
 type CertificateTier = 'DV' | 'OV' | 'EV';
 type CertificateFilter = 'all' | CertificateTier | 'Wildcard' | 'Multi';
@@ -23,7 +25,7 @@ interface GeoTrustProduct {
 @Component({
   selector: 'xh-geotrust-ssl-certificates-page',
   standalone: true,
-  imports: [InsightsSectionComponent, ProductPage],
+  imports: [QuantityInputDirective, InsightsSectionComponent, ProductPage, RouterLink],
   templateUrl: './geotrust-ssl-certificates.page.html',
   styleUrl: './geotrust-ssl-certificates.page.css',
   host: { class: 'geotrust-page' },
@@ -33,6 +35,7 @@ export class GeoTrustSslCertificatesPage {
   private readonly seo = inject(SeoService);
   private readonly overlay = inject(OverlayService);
   private readonly topics = inject(CallbackTopicService);
+  private readonly router = inject(Router);
 
   readonly filter = signal<CertificateFilter>('all');
   readonly quantities = signal<Record<string, number>>({});
@@ -41,10 +44,14 @@ export class GeoTrustSslCertificatesPage {
     return this.quantities()[product.id] ?? 1;
   }
 
+  quantityMax(product: GeoTrustProduct): number {
+    return product.id === 'tb-ov-flex' ? 99 : 9999;
+  }
+
   adjustQuantity(product: GeoTrustProduct, change: number): void {
     this.quantities.update(values => ({
       ...values,
-      [product.id]: Math.max(1, Math.min(9999, (values[product.id] ?? 1) + change)),
+      [product.id]: Math.max(1, Math.min(this.quantityMax(product), (values[product.id] ?? 1) + change)),
     }));
   }
   readonly filters: Array<{ value: CertificateFilter; label: string }> = [
@@ -89,13 +96,27 @@ export class GeoTrustSslCertificatesPage {
   }
 
   configure(product: GeoTrustProduct): void {
+    const checkoutPaths: Record<string, string> = {
+      'dv-flex': '/geotrust-dv-ssl-flex/checkout',
+      'quick-san': '/geotrust-quickssl-premium-san/checkout',
+      'quick-premium': '/geotrust-quickssl-premium/checkout',
+      'quick-wild': '/geotrust-quickssl-premium-wildcard/checkout',
+      'tb-ov-flex': '/geotrust-true-businessid-ov/checkout',
+      'tb-id': '/geotrust-true-businessid/checkout',
+      'tb-md': '/geotrust-true-businessid-multi-domain/checkout',
+      'tb-wild': '/geotrust-true-businessid-wildcard/checkout',
+      'tb-ev-flex': '/geotrust-true-businessid-ev-flex/checkout',
+      'tb-ev': '/geotrust-true-businessid-ev/checkout',
+      'tb-ev-md': '/geotrust-true-businessid-ev-multi-domain/checkout',
+    };
+    const checkoutPath = checkoutPaths[product.id];
+    if (checkoutPath) {
+      void this.router.navigate([checkoutPath], {
+        queryParams: { quantity: this.quantity(product) },
+      });
+      return;
+    }
     this.topics.ask(`${product.name} - ${this.quantity(product)} certificate(s)`);
-    this.overlay.open('callback');
-  }
-
-  requestCallback(event: Event): void {
-    event.preventDefault();
-    this.topics.ask('GeoTrust SSL certificate');
     this.overlay.open('callback');
   }
 

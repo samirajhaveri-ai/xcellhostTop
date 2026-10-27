@@ -1,3 +1,4 @@
+import { QuantityInputDirective } from '../core/quantity-input.directive';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { OverlayService } from '../core/overlay.service';
 import { CallbackTopicService } from '../overlays/callback-topic.service';
@@ -16,6 +17,7 @@ const formatPrice = new Intl.NumberFormat('en-IN');
 @Component({
   selector: 'xh-acronis-backup-advanced-content',
   standalone: true,
+  imports: [QuantityInputDirective],
   templateUrl: './acronis-backup-advanced-content.component.html',
   styleUrl: './acronis-backup-advanced-content.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

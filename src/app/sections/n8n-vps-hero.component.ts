@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, output } from '@angular/core';
+import { VPS_PRODUCT_COPY } from '../data/vps-product-copy.data';
 
 @Component({
   selector: 'xh-n8n-vps-hero',
@@ -8,6 +9,7 @@ import { ChangeDetectionStrategy, Component, output } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class N8nVpsHeroComponent {
+  readonly heroCopy = VPS_PRODUCT_COPY['n8n VPS'];
   readonly infosheetRequested = output<Event>();
   readonly presentationRequested = output<Event>();
   readonly tourRequested = output<void>();

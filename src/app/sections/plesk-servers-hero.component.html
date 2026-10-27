@@ -1,0 +1,11 @@
+<div class="glass" aria-label="Illustration: Plesk control panel">
+   <div class="glass-h"><span>PLESK CONTROL PANEL</span><b>● ALL SITES UP</b></div>
+   <div class="pc2">
+    <div class="pc2-h"><img class="lg" src="/assets/images/plesk-servers/reference-2.svg" alt="Plesk logo" width="22" height="22"><span>Plesk · Websites &amp; Domains</span><button type="button" id="pcAdd" (click)="addDomain()">+ Add domain</button></div>
+    <div class="pc2-b">
+     <div class="pc2-m"><div><span>CPU<em style="font-style:normal" data-v="28">28%</em></span><i><b style="width:28%"></b></i></div><div><span>RAM<em style="font-style:normal" data-v="46">46%</em></span><i><b style="width:46%"></b></i></div><div><span>Disk<em style="font-style:normal" data-v="37">37%</em></span><i><b style="width:37%"></b></i></div></div>
+     <ul class="pc2-l" id="pcL">@if (domainAdded()) { <li class="new"><img class="lg" src="/assets/images/plesk-servers/reference-3.svg" alt="WordPress logo" width="18" height="18"><span>newsite.in</span><em>SSL ✓</em><small>WP 6.x</small></li> }<li class="domain-row"><img class="lg" src="/assets/images/plesk-servers/reference-3.svg" alt="WordPress logo" width="18" height="18"><span>yourcompany.in</span><em>SSL ✓</em><small>WP 6.x</small></li><li class="domain-row"><img class="lg" src="/assets/images/plesk-servers/reference-9.svg" alt="Laravel logo" width="18" height="18"><span>portal.clientone.in</span><em>SSL ✓</em><small>PHP 8.3</small></li><li class="domain-row"><img class="lg" src="/assets/images/plesk-servers/reference-10.svg" alt="Node.js logo" width="18" height="18"><span>api.clienttwo.com</span><em>SSL ✓</em><small>Node 22</small></li><li class="domain-row"><img class="lg" src="/assets/images/plesk-servers/reference-8.svg" alt="Git logo" width="18" height="18"><span>docs.agency.in</span><em>SSL ✓</em><small>Git deploy</small></li><li class="domain-row"><img class="lg" src="/assets/images/plesk-servers/reference-3.svg" alt="WordPress logo" width="18" height="18"><span>store.brand.in</span><em>SSL ✓</em><small>WooCommerce</small></li></ul>
+     <div class="pc2-s" id="pcS" aria-live="polite">{{ domainStatus() }}</div>
+    </div>
+   </div>
+  </div>

@@ -21,6 +21,7 @@ import {
 import { EDR_COMPARE, EDR_PRODUCTS, EDR_TIMELINE, HERO_SCENES } from '../data/site.data';
 import { BlogCard, Category, Faq, IconItem, Pair, RichProduct } from '../data/models';
 import { buildContextualProductReviews } from '../data/product-reviews.data';
+import { VPS_PRODUCT_COPY } from '../data/vps-product-copy.data';
 import { ATM_SOLUTION_DETAILS } from '../data/atm-solution-detail.data';
 import {
   CATEGORY_HERO_IMAGES,
@@ -242,6 +243,15 @@ function hash(s: string): number {
   return Math.abs(h);
 }
 
+/** Compare hero copy without differences in casing, spacing or trailing punctuation. */
+function normalizeHeroCopy(value: string | null | undefined): string {
+  return (value ?? '')
+    .trim()
+    .replace(/\s+/g, ' ')
+    .replace(/[.!?]+$/g, '')
+    .toLocaleLowerCase('en-IN');
+}
+
 /** Seeded Fisher–Yates, matching the original LCG. */
 function pick<T>(pool: T[], seed: number, n: number): T[] {
   const a = pool.slice();
@@ -262,6 +272,16 @@ const PLAN_DISCOUNTS = [
 
 /** Product-specific commercial offers that must not affect the generic pricing ladder. */
 const PRODUCT_PLAN_OVERRIDES: Record<string, PricingPlan[]> = {
+  'Entra ID Backup': [
+    {
+      term: 'Monthly',
+      amount: '₹125',
+      unit: '/user/month',
+      tag: 'Entra ID Backup',
+      cartName: 'Entra ID Backup — Monthly Plan',
+      cartPrice: '₹125/user/month',
+    },
+  ],
   'WhatsApp SMB': [
     {
       term: 'Starter',
@@ -505,6 +525,58 @@ const CLOUD_DISASTER_RECOVERY_SMB_BENEFITS: IconItem[] = [
   ['🌐', 'Broad Choice of Recovery Options', ''],
 ];
 
+/** Two distinct lines of banner copy for pages sharing the visibility message. */
+const VISIBILITY_BANNER_COPY: Record<string, readonly [string, string]> = {
+  'Instagram Automation': [
+    'Turn Instagram conversations into customer connections.',
+    'Manage replies and enquiries with less manual work.',
+  ],
+  'Smart QR & NFC Automation': [
+    'Connect customers to your business with a scan or tap.',
+    'Share useful links through QR codes and NFC touchpoints.',
+  ],
+  'AI Review MagicQR': [
+    'Make it easier for customers to share their feedback.',
+    'Collect reviews through QR codes and manage your responses.',
+  ],
+  'Digital Menu & Catalog Management': [
+    'Put your menu and product catalog within easy reach.',
+    'Keep prices and listings updated in one digital space.',
+  ],
+  'Lead Generation & Pipeline CRM': [
+    'Keep every lead and sales opportunity in view.',
+    'Organise enquiries, follow-ups and your sales pipeline.',
+  ],
+  'Billing Software': [
+    'Make everyday invoicing and billing easier to manage.',
+    'Organise customer bills and keep track of payments.',
+  ],
+  'HRM + Attendance': [
+    'Bring employee records and attendance together.',
+    'Simplify daily HR tasks and keep your team organised.',
+  ],
+  'Instant Website': [
+    'Give your business a home online.',
+    'Showcase your services and help visitors get in touch.',
+  ],
+  'Bio Link + Digital Visiting Card': [
+    'Share your business details through one simple link.',
+    'Bring your contacts, social profiles and services together.',
+  ],
+  'WhatsApp Broadcasting': [
+    'Keep your audience informed through WhatsApp.',
+    'Share relevant updates with customers who opt in.',
+  ],
+  'Website SEO': [
+    'Help customers discover your website in search.',
+    'Improve your content and site structure for better visibility.',
+  ],
+  'Transactional Emails': [
+    'Keep customers informed at every important step.',
+    'Send timely confirmations, notifications and account updates.',
+  ],
+};
+
 @Injectable({ providedIn: 'root' })
 export class ProductPageService {
   private catalog = inject(CatalogService);
@@ -518,8 +590,10 @@ export class ProductPageService {
     const tag = req.tag ?? dirEntry?.desc ?? '';
     const deep = DEEP_CONTENT[name];
     const product: RichProduct | undefined = RICH_PRODUCTS[name];
+    const vpsCopy = VPS_PRODUCT_COPY[name];
     const seed = hash(name);
     const heroTagline =
+      vpsCopy?.tagline ||
       atmDetail?.tagline ||
       (name === 'AI Chat Bot'
         ? 'Engage every visitor instantly with human-like conversations and 24×7 support — live chat plus a no-code AI bot trained on your content. On your website, WhatsApp and apps, hosted by XcellHost in India.'
@@ -536,7 +610,8 @@ export class ProductPageService {
           : name === 'SMB Cyber Security Appliance'
             ? 'Allow organizations to manage complex defenses through a unified interface.'
             : product?.tagline || tag || `${name} from XcellHost`);
-    const heroHighlight =
+    const rawHeroHighlight =
+      vpsCopy?.highlight ||
       atmDetail?.summary ||
       (name === 'AI Chat Bot'
         ? null
@@ -553,8 +628,14 @@ export class ProductPageService {
             : name === 'Remote Monitoring & Mgmt (RMM)'
               ? null
               : product?.highlight || rich?.f?.[0]?.[1] || tag || null);
-    const heroMessages =
-      name === 'Scrutiny DLP'
+    const heroHighlight =
+      normalizeHeroCopy(rawHeroHighlight) === normalizeHeroCopy(heroTagline)
+        ? null
+        : rawHeroHighlight;
+    const rawHeroMessages =
+      vpsCopy
+        ? [vpsCopy.heroMessage]
+        : name === 'Scrutiny DLP'
         ? []
         : name === 'Scrutiny EDR'
         ? ['Self-learning behavioural analytics', 'Real-time isolation', 'MITRE ATT&CK mapped investigations', '24×7 managed security']
@@ -581,6 +662,15 @@ export class ProductPageService {
                   : deep?.heroPoints?.length
                     ? deep.heroPoints
                     : [tag || `${name} services from XcellHost`];
+    const usedHeroCopy = new Set(
+      [heroTagline, heroHighlight].map(normalizeHeroCopy).filter(Boolean),
+    );
+    const heroMessages = rawHeroMessages.filter((message) => {
+      const normalized = normalizeHeroCopy(message);
+      if (!normalized || usedHeroCopy.has(normalized)) return false;
+      usedHeroCopy.add(normalized);
+      return true;
+    });
 
     /* -------- chips -------- */
     const chips: ProductView['chips'] = [];
@@ -601,7 +691,7 @@ export class ProductPageService {
       (name === 'Microsoft Copilot'
         ? 'Copilot for Microsoft 365 is an AI assistant built into Word, Excel, PowerPoint, Outlook and Teams, grounded in your organisation’s work data and protected by enterprise-grade Microsoft 365 security.'
         : name === 'SMB Cyber Security Appliance'
-        ? 'The XcellSecure SMB Cyber Security Appliance is an affordable, cloud-managed security gateway designed for businesses with up to 50 users. It combines secure business Wi-Fi, advanced firewall protection, and web & DNS security in one platform. Application controls and bandwidth management help businesses maintain secure and efficient network usage. Get real-time visibility into network activity with centralized cloud management. Automatic security updates help keep your environment protected against evolving threats. Enjoy enterprise-grade security without the cost and complexity of a traditional security stack.'
+        ? 'XcellSecure SMB Cyber Security Appliance is an affordable, cloud-managed security gateway designed for businesses with up to 50 users. It combines secure business Wi-Fi, advanced firewall protection, and web & DNS security in one platform. Application controls and bandwidth management help businesses maintain secure and efficient network usage. Get real-time visibility into network activity with centralized cloud management. Automatic security updates help keep your environment protected against evolving threats. Enjoy enterprise-grade security without the cost and complexity of a traditional security stack.'
         : name === 'Advanced Endpoint Security (EDR)'
         ? 'Acronis Advanced Endpoint Security (EDR) helps organizations identify, protect, detect, respond to, and recover from endpoint threats. It provides continuous security monitoring to detect suspicious activity and potential threats. Endpoints are protected with advanced security capabilities designed to reduce cyber risks. Delivered from secure Indian Tier-4 datacenters, the solution provides reliable and centralized protection. Your environment is monitored 24×7 by experienced security professionals. Get direct assistance from real engineers whenever you need support.'
         : name === 'Remote Monitoring & Mgmt (RMM)'
@@ -819,13 +909,18 @@ export class ProductPageService {
         ? CLOUD_DRIVE_WHY
         : (CATEGORY_WHY[cat] ?? []);
 
+    const isVisibilityHero = /^maximise online visibility/i.test(heroTagline);
+    const visibilityCopy = isVisibilityHero ? VISIBILITY_BANNER_COPY[name] : undefined;
+    const repeatsVisibilityTagline = (copy: string) =>
+      isVisibilityHero && normalizeHeroCopy(copy) === normalizeHeroCopy(heroTagline);
+
     return {
       name,
       brandSuffix,
       crumb: 'Home › ' + (req.crumb || (dirEntry ? `${dirEntry.cat} › ${dirEntry.group}` : 'Services')),
       cat,
-      tagline: heroTagline,
-      heroHighlight,
+      tagline: visibilityCopy?.[0] ?? heroTagline,
+      heroHighlight: visibilityCopy?.[1] ?? (heroHighlight && repeatsVisibilityTagline(heroHighlight) ? null : heroHighlight),
       chips,
       overview,
       features,
@@ -858,7 +953,7 @@ export class ProductPageService {
         visibleReferenceHeroImage ??
         CATEGORY_HERO_IMAGES[cat] ??
         null,
-      heroMessages,
+      heroMessages: isVisibilityHero ? [heroTagline] : heroMessages,
       heroPoints:
         name === 'Business E-Mail'
           ? [
@@ -926,9 +1021,9 @@ function resolveHeroBrand(
     };
   }
 
-  if (/^Vortex SOC$/i.test(name)) {
+  if (/^XcellSOC$/i.test(name)) {
     return {
-      name: 'Vortex SOC', subtitle: 'Delivered & managed by XcellHost', kind: 'vendor',
+      name: 'XcellSOC', subtitle: 'Delivered & managed by XcellHost', kind: 'vendor',
       logoImage: '/assets/images/vortex-soc-logo.svg',
     };
   }

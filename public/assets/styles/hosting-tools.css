@@ -1,0 +1,33 @@
+/* Shared integration for the six supplied hosting-tool documents. */
+html,body{height:auto;min-height:0;margin:0;max-width:100%;overflow-x:clip}
+main{display:flow-root}
+main h2,main h3,main h4{text-transform:capitalize}
+main h2 .acc{text-decoration:none}
+#security h2{text-transform:uppercase}
+.hero-grid>*{min-width:0}
+.hero.lh .lh-title{font-size:var(--hosting-title-size,30px)!important;white-space:nowrap}
+.hero.lh .lh-title .nm{display:inline;font-size:1em!important}
+.hero.lh .crumb{margin-bottom:14px}
+.hero .lh-ask.xh-icon-ask.xh-developer-ask{flex-wrap:nowrap;max-width:100%;overflow-x:auto;scrollbar-width:thin}
+.hero .lh-ask.xh-icon-ask.xh-developer-ask .k{flex:0 0 auto;white-space:nowrap;font-size:10px}
+.hosting-powered{display:flex;align-items:center;flex-wrap:nowrap;gap:10px;margin-top:16px;color:#c7d5ec;font:400 13px/1.4 var(--f-body)}
+.hosting-powered .hosting-powered-label{font-size:18px;font-weight:600;line-height:1.4;color:#fff;white-space:nowrap}
+.hosting-powered img{display:block;flex:0 0 auto;width:140px;height:38px;object-fit:contain;padding:6px 10px;background:#fff;border-radius:4px}
+.hosting-powered img.hosting-supplied-plesk{width:100px;height:52px;object-fit:cover;padding:0}
+[data-hosting-tool="cloudlinux"] .hosting-powered img.hosting-supplied-linux{width:72px;height:72px;object-fit:contain;padding:4px;background:#fff;border:0}
+[data-hosting-tool="cloudlinux"] .hosting-powered img{background:#0b132b;border:1px solid #33425c}
+#cpHero .hosting-powered{color:#465774}
+#cpHero .lh-ask.xh-icon-ask.xh-developer-ask{background:#fff;border-color:#d5e2f7}
+#cpHero .lh-ask.xh-icon-ask.xh-developer-ask .k{color:#041e42}
+#cpHero .lh-ask.xh-icon-ask.xh-developer-ask .chips a{background:#e9eff9!important}
+.hosting-reasons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.hosting-reasons article{padding:24px;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
+.hosting-reasons h3{font-size:17px;margin-bottom:10px}
+.hosting-reasons p{font-size:14px;color:var(--muted)}
+.hosting-faq-column{display:flex;flex-direction:column;gap:14px;min-width:0}
+#faq .sh h2{font:700 14px/1.4 var(--f-mono)!important;letter-spacing:.18em!important;color:#0664ff!important;margin:0!important}
+.hosting-section-intro{font-size:17px;font-weight:600}
+/* A calculator reached from a picker must land below the site header. */
+#configure.rv{opacity:1;transform:none}
+.hosting-outer-pin{position:relative!important;top:auto!important;translate:0 var(--hosting-pin-offset,0px)}
+@media(max-width:760px){.hosting-reasons{grid-template-columns:1fr}}

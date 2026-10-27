@@ -1,7 +1,18 @@
 <div id="ppage" class="ppage as-page">
 
+  <section class="supplied-smb-hero-shell" aria-label="Microsoft 365 SMB hero">
+    <iframe
+      class="supplied-smb-hero-frame"
+      src="/assets/heroes/microsoft-365-smb-hero.html"
+      title="Microsoft 365 for SMB interactive overview"
+      sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+      referrerpolicy="strict-origin-when-cross-origin"
+      scrolling="no"
+    ></iframe>
+  </section>
+
   <!-- ---------- HERO ---------- -->
-  <section class="pp-hero">
+  <section class="pp-hero legacy-smb-hero">
     <div class="pph-map"><div class="wm-ring"></div><div class="wm-ring r2"></div></div>
     <span class="pph-grid"></span>
     <span class="pph-aur pph-a1"></span>
@@ -47,16 +58,8 @@
             <div class="pp-hpoint"><span class="tick"></span>Teams, DNS &amp; DMARC set up by us</div>
           </div>
           <div class="hero-ctas">
-            <a
-              class="btn ppd-info"
-              href="https://flipbooks.officeinfra.com/books/Microsoft-365-Platfrom/"
-              target="_blank"
-              rel="noopener noreferrer"
-              ><span class="ppd-ic">&#11015;</span> Infosheet</a
-            >
-            <a class="btn ppd-pres" href="#" (click)="requestPresentation($event)"
-              ><span class="ppd-ic">&#128214;</span> Presentation</a
-            >
+            
+            
             <button class="btn btn-ghost" type="button">7 Day's Free Trial</button>
             <a class="btn btn-primary" href="#" (click)="openCallback($event)">Let's Talk</a>
           </div>
@@ -72,16 +75,22 @@
       <span><b>Microsoft</b> Gold Partner</span>
       <span><b>10,000+</b> customers</span>
       <span><b>Since 1999</b></span>
+      <span><b>99.95% uptime SLA</b></span>
       <span><b>24&times;7</b> NOC + SOC</span>
     </div>
   </div>
 
   <!-- ---------- BODY ---------- -->
+  <xh-smb-section-nav
+    label="Microsoft 365 SMB page sections"
+    [links]="sectionNavLinks"
+  />
+
   <div class="pp-body">
     <div class="wrap">
 
       <!-- OVERVIEW -->
-      <div class="pp-sec">Overview &mdash; What is Microsoft 365?</div>
+      <div class="pp-sec" id="m365Overview">Overview &mdash; What is Microsoft 365?</div>
       <p class="pp-ov m365-overview-copy">
         Microsoft 365 (formerly Office 365) is Microsoft's cloud-based productivity platform, trusted by over
         345 million users worldwide. It bundles your team's email, calendar, video meetings, document collaboration
@@ -116,7 +125,7 @@
 
       <!-- PRICING -->
       <div class="pp-sec" id="pricing">Microsoft 365 pricing in India</div>
-      <p class="pp-ov" style="margin-bottom:18px">All plans billed annually per user in INR, excluding GST. GST invoice included on every purchase.</p>
+      <p class="pp-ov" style="margin-bottom:18px">Choose annual upfront or a flexible monthly term. Use each card's toggle to show INR prices with or without 18% GST.</p>
       <div class="pp-toggle-wrap">
         <div class="pp-toggle" role="group" aria-label="Choose Microsoft 365 plans with or without Teams">
           <button
@@ -136,42 +145,141 @@
       <div class="pp-plans">
         <div class="ppl">
           <span class="tag">Entry</span>
-          <h4>Business Basic</h4>
+          <h4>@if (includesTeams()) {<a class="business-basic-detail-link" routerLink="/microsoft-365-business-basic">Business Basic</a>} @else {<a class="business-basic-detail-link" routerLink="/microsoft-365-business-basic-no-teams">Business Basic</a>}</h4>
           <div class="sub">Email, {{ includesTeams() ? 'Teams & ' : '' }}cloud apps</div>
-          <div class="amt"><b>&#8377;{{ (includesTeams() ? 1740 : 1260) * quoteQuantities()['basic'] | number:'1.0-0' }}</b><span>{{ quoteQuantities()['basic'] === 1 ? 'per user' : 'for ' + quoteQuantities()['basic'] + ' users' }} / year + GST</span></div>
-          <span class="save">Web &amp; mobile apps</span>
+          @if (includesTeams()) {
+            <p class="billing-list-price">MS list <s>&#8377;{{ displayPrice('basic', basicTeamsListMonthly) | number:'1.0-2' }}</s> /user/mo</p>
+          }
+          <div class="billing-gst-row">
+            <span>Show prices</span>
+            <div class="billing-gst-toggle" role="group" aria-label="Business Basic GST display">
+              <button type="button" [class.active]="!includesGst()['basic']" [attr.aria-pressed]="!includesGst()['basic']" (click)="setGstOption('basic', false)">Excl. GST</button>
+              <button type="button" [class.active]="includesGst()['basic']" [attr.aria-pressed]="includesGst()['basic']" (click)="setGstOption('basic', true)">Incl. GST</button>
+            </div>
+          </div>
+          <div class="billing-choices" role="group" aria-label="Business Basic payment frequency">
+            @for (option of billingOptions; track option.id) {
+              <button type="button" class="billing-choice" [class.chosen]="billingTerms()['basic'] === option.id" [class.upfront]="option.id === 'upfront'" [attr.aria-pressed]="billingTerms()['basic'] === option.id" (click)="setBillingTerm('basic', option.id)">
+                <span class="billing-choice-heading"><span>{{ option.label }}</span><span class="billing-choice-status">@if (includesTeams() && option.id === 'upfront') {<span class="billing-discount-badge">Save {{ basicTeamsUpfrontDiscount }}%</span>}<span class="billing-indicator" aria-hidden="true">@if (billingTerms()['basic'] === option.id) {&#10003;}</span></span></span>
+                @if (displayPrice('basic', monthlyRate('basic', option.id)); as rate) {
+                  <span class="billing-unit-price"><b>&#8377;{{ rate | number:'1.0-0' }}</b> /user/mo</span>
+                  @if (option.id !== 'monthly') {<span class="billing-annual-price">&#8377;{{ displayPrice('basic', annualRate('basic', option.id)) | number:'1.0-0' }} /user/year</span>}
+                } @else {<span class="billing-unit-price"><b>Quote on request</b></span>}
+                <span class="billing-note">{{ option.note }}</span>
+                <span class="billing-tax-note">{{ includesGst()['basic'] ? 'Includes GST 18%' : 'Excludes GST 18% (added at billing)' }}</span>
+                <span class="billing-seat-total" aria-live="polite">
+                  <span>&times; {{ quoteQuantities()['basic'] }} {{ quoteQuantities()['basic'] === 1 ? 'user' : 'users' }}</span>
+                  @if (displayPrice('basic', billingTotal('basic', option.id)); as total) {
+                    <span class="billing-seat-amount"><b>&#8377;{{ total | number:'1.0-2' }} /mo</b><b>&#8377;{{ displayPrice('basic', billingTotal('basic', option.id, true)) | number:'1.0-0' }} /year{{ option.id === 'monthly' ? ' equivalent' : '' }}</b></span>
+                  } @else {<span class="billing-seat-amount">Quote for {{ quoteQuantities()['basic'] }} users</span>}
+                </span>
+              </button>
+            }
+          </div>
           <ul>
             <li>Outlook email on @yourcompany.com</li>
             <li>1 TB OneDrive storage per user</li>
             <li>Web &amp; mobile Office apps</li>
             <li>50 GB Exchange mailbox</li>
-            <li>SharePoint{{ includesTeams() ? ' & Teams included' : ' included; Teams excluded' }}</li>
+            <li>SharePoint{{ includesTeams() ? ' & Teams' : '' }} included</li>
           </ul>
-          <div class="btns"><div class="quote-quantity" role="group" aria-label="Business Basic quantity"><button type="button" aria-label="Decrease Business Basic quantity" (click)="adjustQuantity('basic', -1)">−</button><output>{{ quoteQuantities()['basic'] }}</output><button type="button" aria-label="Increase Business Basic quantity" (click)="adjustQuantity('basic', 1)">+</button></div><a class="btn btn-ghost" [href]="includesTeams() ? basicTeamsCheckoutUrl : basicNoTeamsCheckoutUrl" target="_blank" rel="noopener noreferrer">Buy Now</a></div>
+          <div class="btns">
+            <label class="quantity-label">No. of users / licences</label>
+            <div class="quote-quantity" role="group" aria-label="Business Basic quantity">
+              <button type="button" aria-label="Decrease Business Basic quantity" [disabled]="quoteQuantities()['basic'] <= 1" (click)="adjustQuantity('basic', -1)">&minus;</button>
+              <input xhQuantityInput aria-label="Quantity for Business Basic quantity" [quantityValue]="quoteQuantities()['basic']" [quantityMax]="300" (quantityChange)="adjustQuantity('basic', $event - (quoteQuantities()['basic']))" />
+              <button type="button" aria-label="Increase Business Basic quantity" [disabled]="quoteQuantities()['basic'] >= 300" (click)="adjustQuantity('basic', 1)">+</button>
+            </div>
+            <a class="btn btn-primary" [href]="checkoutUrl('basic')" target="_blank" rel="noopener noreferrer">Buy Now &#8599;</a>
+            @if (billingTerms()['basic'] !== 'upfront') {<span class="checkout-term-note">Online checkout uses annual upfront billing.</span>}
+          </div>
         </div>
 
         <div class="ppl hot">
           <span class="tag">Most Popular</span>
-          <h4>Business Standard</h4>
+          <h4>@if (includesTeams()) {<a class="business-basic-detail-link" routerLink="/microsoft-365-business-standard">Business Standard</a>} @else {<a class="business-basic-detail-link" routerLink="/microsoft-365-business-standard-no-teams">Business Standard</a>}</h4>
           <div class="sub">Full desktop apps{{ includesTeams() ? ' + Teams' : '' }}</div>
-          <div class="amt"><b>&#8377;{{ (includesTeams() ? 9240 : 6840) * quoteQuantities()['standard'] | number:'1.0-0' }}</b><span>{{ quoteQuantities()['standard'] === 1 ? 'per user' : 'for ' + quoteQuantities()['standard'] + ' users' }} / year + GST</span></div>
-          <span class="save">BEST VALUE</span>
+          @if (includesTeams()) {
+            <p class="billing-list-price">MS list <s>&#8377;{{ displayPrice('standard', standardTeamsListMonthly) | number:'1.0-2' }}</s> /user/mo</p>
+          }
+          <div class="billing-gst-row">
+            <span>Show prices</span>
+            <div class="billing-gst-toggle" role="group" aria-label="Business Standard GST display">
+              <button type="button" [class.active]="!includesGst()['standard']" [attr.aria-pressed]="!includesGst()['standard']" (click)="setGstOption('standard', false)">Excl. GST</button>
+              <button type="button" [class.active]="includesGst()['standard']" [attr.aria-pressed]="includesGst()['standard']" (click)="setGstOption('standard', true)">Incl. GST</button>
+            </div>
+          </div>
+          <div class="billing-choices" role="group" aria-label="Business Standard payment frequency">
+            @for (option of billingOptions; track option.id) {
+              <button type="button" class="billing-choice" [class.chosen]="billingTerms()['standard'] === option.id" [class.upfront]="option.id === 'upfront'" [attr.aria-pressed]="billingTerms()['standard'] === option.id" (click)="setBillingTerm('standard', option.id)">
+                <span class="billing-choice-heading"><span>{{ option.label }}</span><span class="billing-choice-status">@if (includesTeams() && option.id === 'upfront') {<span class="billing-discount-badge">Save {{ standardTeamsUpfrontDiscount }}%</span>}<span class="billing-indicator" aria-hidden="true">@if (billingTerms()['standard'] === option.id) {&#10003;}</span></span></span>
+                @if (displayPrice('standard', monthlyRate('standard', option.id)); as rate) {
+                  <span class="billing-unit-price"><b>&#8377;{{ rate | number:'1.0-0' }}</b> /user/mo</span>
+                  @if (option.id !== 'monthly') {<span class="billing-annual-price">&#8377;{{ displayPrice('standard', annualRate('standard', option.id)) | number:'1.0-0' }} /user/year</span>}
+                } @else {<span class="billing-unit-price"><b>Quote on request</b></span>}
+                <span class="billing-note">{{ option.note }}</span>
+                <span class="billing-tax-note">{{ includesGst()['standard'] ? 'Includes GST 18%' : 'Excludes GST 18% (added at billing)' }}</span>
+                <span class="billing-seat-total" aria-live="polite">
+                  <span>&times; {{ quoteQuantities()['standard'] }} {{ quoteQuantities()['standard'] === 1 ? 'user' : 'users' }}</span>
+                  @if (displayPrice('standard', billingTotal('standard', option.id)); as total) {
+                    <span class="billing-seat-amount"><b>&#8377;{{ total | number:'1.0-2' }} /mo</b><b>&#8377;{{ displayPrice('standard', billingTotal('standard', option.id, true)) | number:'1.0-0' }} /year{{ option.id === 'monthly' ? ' equivalent' : '' }}</b></span>
+                  } @else {<span class="billing-seat-amount">Quote for {{ quoteQuantities()['standard'] }} users</span>}
+                </span>
+              </button>
+            }
+          </div>
           <ul>
             <li>Everything in Business Basic</li>
             <li>Full desktop Word, Excel &amp; PowerPoint</li>
             <li>Install on 5 PCs/Macs + 5 mobile devices</li>
-            <li>{{ includesTeams() ? 'Teams webinars & meeting recordings' : 'Microsoft Teams not included' }}</li>
+            @if (includesTeams()) {<li>Teams webinars &amp; meeting recordings</li>}
             <li>Bookings &amp; Clipchamp included</li>
           </ul>
-          <div class="btns"><div class="quote-quantity" role="group" aria-label="Business Standard quantity"><button type="button" aria-label="Decrease Business Standard quantity" (click)="adjustQuantity('standard', -1)">−</button><output>{{ quoteQuantities()['standard'] }}</output><button type="button" aria-label="Increase Business Standard quantity" (click)="adjustQuantity('standard', 1)">+</button></div><a class="btn btn-ghost" [href]="includesTeams() ? standardTeamsCheckoutUrl : standardNoTeamsCheckoutUrl" target="_blank" rel="noopener noreferrer">Buy Now</a></div>
+          <div class="btns">
+            <label class="quantity-label">No. of users / licences</label>
+            <div class="quote-quantity" role="group" aria-label="Business Standard quantity">
+              <button type="button" aria-label="Decrease Business Standard quantity" [disabled]="quoteQuantities()['standard'] <= 1" (click)="adjustQuantity('standard', -1)">&minus;</button>
+              <input xhQuantityInput aria-label="Quantity for Business Standard quantity" [quantityValue]="quoteQuantities()['standard']" [quantityMax]="300" (quantityChange)="adjustQuantity('standard', $event - (quoteQuantities()['standard']))" />
+              <button type="button" aria-label="Increase Business Standard quantity" [disabled]="quoteQuantities()['standard'] >= 300" (click)="adjustQuantity('standard', 1)">+</button>
+            </div>
+            <a class="btn btn-primary" [href]="checkoutUrl('standard')" target="_blank" rel="noopener noreferrer">Buy Now &#8599;</a>
+            @if (billingTerms()['standard'] !== 'upfront') {<span class="checkout-term-note">Online checkout uses annual upfront billing.</span>}
+          </div>
         </div>
 
         <div class="ppl">
           <span class="tag">Security Ready</span>
-          <h4>Business Premium</h4>
+          <h4>@if (includesTeams()) {<a class="business-basic-detail-link" routerLink="/microsoft-365-business-premium">Business Premium</a>} @else {<a class="business-basic-detail-link" routerLink="/microsoft-365-business-premium-no-teams">Business Premium</a>}</h4>
           <div class="sub">Standard + enterprise security</div>
-          <div class="amt"><b>&#8377;{{ (includesTeams() ? 21960 : 18780) * quoteQuantities()['premium'] | number:'1.0-0' }}</b><span>{{ quoteQuantities()['premium'] === 1 ? 'per user' : 'for ' + quoteQuantities()['premium'] + ' users' }} / year + GST</span></div>
-          <span class="save">Defender + Intune</span>
+          @if (includesTeams()) {
+            <p class="billing-list-price">MS list <s>&#8377;{{ displayPrice('premium', premiumTeamsListMonthly) | number:'1.0-2' }}</s> /user/mo</p>
+          }
+          <div class="billing-gst-row">
+            <span>Show prices</span>
+            <div class="billing-gst-toggle" role="group" aria-label="Business Premium GST display">
+              <button type="button" [class.active]="!includesGst()['premium']" [attr.aria-pressed]="!includesGst()['premium']" (click)="setGstOption('premium', false)">Excl. GST</button>
+              <button type="button" [class.active]="includesGst()['premium']" [attr.aria-pressed]="includesGst()['premium']" (click)="setGstOption('premium', true)">Incl. GST</button>
+            </div>
+          </div>
+          <div class="billing-choices" role="group" aria-label="Business Premium payment frequency">
+            @for (option of billingOptions; track option.id) {
+              <button type="button" class="billing-choice" [class.chosen]="billingTerms()['premium'] === option.id" [class.upfront]="option.id === 'upfront'" [attr.aria-pressed]="billingTerms()['premium'] === option.id" (click)="setBillingTerm('premium', option.id)">
+                <span class="billing-choice-heading"><span>{{ option.label }}</span><span class="billing-choice-status">@if (includesTeams() && option.id === 'upfront') {<span class="billing-discount-badge">Save {{ premiumTeamsUpfrontDiscount }}%</span>}<span class="billing-indicator" aria-hidden="true">@if (billingTerms()['premium'] === option.id) {&#10003;}</span></span></span>
+                @if (displayPrice('premium', monthlyRate('premium', option.id)); as rate) {
+                  <span class="billing-unit-price"><b>&#8377;{{ rate | number:'1.0-0' }}</b> /user/mo</span>
+                  @if (option.id !== 'monthly') {<span class="billing-annual-price">&#8377;{{ displayPrice('premium', annualRate('premium', option.id)) | number:'1.0-0' }} /user/year</span>}
+                } @else {<span class="billing-unit-price"><b>Quote on request</b></span>}
+                <span class="billing-note">{{ option.note }}</span>
+                <span class="billing-tax-note">{{ includesGst()['premium'] ? 'Includes GST 18%' : 'Excludes GST 18% (added at billing)' }}</span>
+                <span class="billing-seat-total" aria-live="polite">
+                  <span>&times; {{ quoteQuantities()['premium'] }} {{ quoteQuantities()['premium'] === 1 ? 'user' : 'users' }}</span>
+                  @if (displayPrice('premium', billingTotal('premium', option.id)); as total) {
+                    <span class="billing-seat-amount"><b>&#8377;{{ total | number:'1.0-2' }} /mo</b><b>&#8377;{{ displayPrice('premium', billingTotal('premium', option.id, true)) | number:'1.0-0' }} /year{{ option.id === 'monthly' ? ' equivalent' : '' }}</b></span>
+                  } @else {<span class="billing-seat-amount">Quote for {{ quoteQuantities()['premium'] }} users</span>}
+                </span>
+              </button>
+            }
+          </div>
           <ul>
             <li>Everything in Business Standard</li>
             <li>Microsoft Defender for Business</li>
@@ -179,10 +287,20 @@
             <li>Entra ID Premium &mdash; MFA &amp; SSO</li>
             <li>Microsoft Purview &mdash; DLP &amp; compliance</li>
           </ul>
-          <div class="btns"><div class="quote-quantity" role="group" aria-label="Business Premium quantity"><button type="button" aria-label="Decrease Business Premium quantity" (click)="adjustQuantity('premium', -1)">−</button><output>{{ quoteQuantities()['premium'] }}</output><button type="button" aria-label="Increase Business Premium quantity" (click)="adjustQuantity('premium', 1)">+</button></div><a class="btn btn-ghost" [href]="includesTeams() ? premiumTeamsCheckoutUrl : premiumNoTeamsCheckoutUrl" target="_blank" rel="noopener noreferrer">Buy Now</a></div>
+          <div class="btns">
+            <label class="quantity-label">No. of users / licences</label>
+            <div class="quote-quantity" role="group" aria-label="Business Premium quantity">
+              <button type="button" aria-label="Decrease Business Premium quantity" [disabled]="quoteQuantities()['premium'] <= 1" (click)="adjustQuantity('premium', -1)">&minus;</button>
+              <input xhQuantityInput aria-label="Quantity for Business Premium quantity" [quantityValue]="quoteQuantities()['premium']" [quantityMax]="300" (quantityChange)="adjustQuantity('premium', $event - (quoteQuantities()['premium']))" />
+              <button type="button" aria-label="Increase Business Premium quantity" [disabled]="quoteQuantities()['premium'] >= 300" (click)="adjustQuantity('premium', 1)">+</button>
+            </div>
+            <a class="btn btn-primary" [href]="checkoutUrl('premium')" target="_blank" rel="noopener noreferrer">Buy Now &#8599;</a>
+            @if (billingTerms()['premium'] !== 'upfront') {<span class="checkout-term-note">Online checkout uses annual upfront billing.</span>}
+          </div>
         </div>
       </div>
 
+      <p class="billing-footnote">Buy Now opens the existing annual upfront checkout; select your user quantity again there. For other billing terms, contact our team. Monthly rates shown are indicative; your checkout or quote confirms the final amount.</p>
       <div class="pp-plans2">
         <div class="ppl2">
           <div><b>Apps for Business</b><span>Desktop Office apps + 1 TB OneDrive &mdash; no email or Teams</span></div>
@@ -200,22 +318,6 @@
           <span>Add Copilot to any Business plan &mdash; GPT-powered AI across Word, Excel, Teams and Outlook</span>
         </div>
         <a class="btn btn-primary" href="#contact" (click)="openCallback($event)">Ask about Copilot</a>
-      </div>
-
-      <!-- ENTERPRISE TABLE -->
-      <div class="pp-sec">Enterprise &amp; frontline plans</div>
-      <p class="pp-ov" style="margin-bottom:6px">For large organisations &mdash; advanced compliance, security and analytics included.</p>
-      <div class="pp-tablewrap">
-        <table class="pp-table">
-          <thead>
-            <tr><th>Plan</th><th>With Teams</th><th>Without Teams</th><th></th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Microsoft 365 E3</td><td>&#8377;2,995 /user/mo</td><td>&#8377;2,285 /user/mo</td><td><a class="btn btn-ghost btn-sm" href="#contact" (click)="openCallback($event)">Quote &rarr;</a></td></tr>
-            <tr><td>Microsoft 365 E5</td><td>&#8377;4,740 /user/mo</td><td>&#8377;4,030 /user/mo</td><td><a class="btn btn-ghost btn-sm" href="#contact" (click)="openCallback($event)">Quote &rarr;</a></td></tr>
-            <tr><td>Microsoft 365 F3 (Frontline)</td><td>&#8377;665 /user/mo</td><td>&#8377;575 /user/mo</td><td><a class="btn btn-ghost btn-sm" href="#contact" (click)="openCallback($event)">Quote &rarr;</a></td></tr>
-          </tbody>
-        </table>
       </div>
 
       <div class="pp-planstrip">
@@ -242,7 +344,7 @@
       <p class="pv-note">&#128179; All prices per user/month, annual commitment, approximate INR excluding GST. Pay online via UPI &middot; Cards &middot; NetBanking. Contact XcellHost for exact pricing, volume discounts and multi-year deals.</p>
 
       <!-- KEY FEATURES -->
-      <div class="pp-sec">Everything in Microsoft 365</div>
+      <div class="pp-sec" id="m365Features">Everything in Microsoft 365</div>
       <p class="pp-ov" style="margin-bottom:20px">Email, meetings, collaboration, storage, security and AI &mdash; one integrated platform built for modern businesses.</p>
       <div class="pp-feats">
         <div class="pp-feat">
@@ -361,9 +463,7 @@
         aria-labelledby="microsoft-365-protection-title"
       >
         <div class="cloud-backup-protection-copy">
-          <h2 id="microsoft-365-protection-title">
-            Protect your Microsoft 365 data with Acronis today!
-          </h2>
+          <h2 id="microsoft-365-protection-title">We are Acronis Certified, delivering trusted and certified solutions for reliable data protection and cybersecurity.</h2>
           <p>
             Protect Exchange Online, OneDrive, SharePoint and Teams data from accidental deletion,
             ransomware and retention gaps. Acronis Microsoft 365 Backup provides automated cloud
@@ -371,10 +471,7 @@
             specialists help configure protection policies, retention and recovery workflows so
             your collaboration data remains available whenever your business needs it.
           </p>
-          <div class="cloud-backup-protection-actions">
-            <a class="btn btn-primary" href="#pricing">View pricing</a>
-            <a class="btn cloud-backup-talk-btn" href="#contact" (click)="openCallback($event)">Let's Talk</a>
-          </div>
+          <img class="acronis-platinum-partner" src="/assets/images/acronis-platinum-service-provider.png" alt="Acronis Platinum Service Provider" width="230" height="47" loading="lazy" decoding="async" />
         </div>
         <img
           class="backup-protection-badges backup-protection-badges-compact"
@@ -399,7 +496,7 @@
       </div>
 
       <!-- SECURITY -->
-      <div class="pp-sec">Security &amp; compliance &mdash; Microsoft 365</div>
+      <div class="pp-sec" id="m365Security">Security &amp; compliance &mdash; Microsoft 365</div>
       <p class="pp-ov">
         The threat model for Microsoft 365 is identity-first &mdash; token theft, business email compromise, consent
         phishing and unmanaged devices. The controls are chosen to match it: MFA and conditional access before
@@ -418,7 +515,7 @@
       <p class="pp-secfoot">XcellHost is ISO 27001 and ISO 20000-1 certified &middot; Indian Tier-4 datacenters &middot; DPDPA and RBI aligned &middot; 24&times;7 NOC and SOC.</p>
 
       <!-- WHY XCELLHOST -->
-      <div class="pp-sec">Why buy Microsoft 365 from XcellHost?</div>
+      <div class="pp-sec" id="m365WhyChoose">Why buy Microsoft 365 from XcellHost?</div>
       <p class="pp-ov" style="margin-bottom:20px">Any reseller sells a licence. XcellHost delivers the full deployment &mdash; configured, migrated and running on day one.</p>
       <div class="pp-why">
         <div class="pw"><span class="pw-ic">&#129309;</span><b>Authorised Microsoft Partner</b><span>Genuine Microsoft 365 licences with a direct Microsoft escalation path and partner-level support.</span></div>
@@ -446,67 +543,23 @@
         </div>
       </div>
 
-      <!-- VIDEO -->
-      <div class="pp-videos m365-video-grid">
-        <div class="pv-item">
-          <h4><span>Product Intro</span></h4>
-          <div class="pv-frame">
-            <iframe
-              src="https://www.youtube.com/embed/OMJo7BpTzmM"
-              title="Microsoft 365 product introduction"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen
-            ></iframe>
-          </div>
-        </div>
-        <div class="pv-item">
-          <h4><span>Use Cases</span></h4>
-          <div class="pv-frame">
-            <iframe
-              src="https://www.youtube.com/embed/OMJo7BpTzmM"
-              title="Microsoft 365 use cases"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen
-            ></iframe>
-          </div>
-        </div>
-      </div>
-
       <!-- TESTIMONIALS -->
-      <div class="pp-sec">What customers say</div>
+      <div class="pp-sec" id="m365Testimonials">What customers say</div>
       <div class="pp-tcards">
-        <div class="tcard">
-          <div class="quote-badge">&rdquo;</div>
-          <div class="tav">RM</div>
-          <div class="tname">Rakesh Choudhary</div>
-          <div class="trole">IT Manager, Trading Company</div>
-          <div class="tstars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p>Moving our business email and Office applications to Microsoft 365 made things much easier to manage. Our team can work on documents from different locations, and everything stays connected through one platform.</p>
-        </div>
-        <div class="tcard">
-          <div class="quote-badge">&rdquo;</div>
-          <div class="tav">MJ</div>
-          <div class="tname">Meenal Joshi</div>
-          <div class="trole">HR &amp; Operations Manager, Manufacturing Firm</div>
-          <div class="tstars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p>Teams has made communication between our teams much smoother. We can quickly share files, schedule meetings, and collaborate without switching between different tools throughout the day.</p>
-        </div>
-        <div class="tcard">
-          <div class="quote-badge">&rdquo;</div>
-          <div class="tav">SM</div>
-          <div class="tname">Saurabh Mehta</div>
-          <div class="trole">Managing Director, Consulting Firm</div>
-          <div class="tstars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p>We wanted a reliable setup for email, documents, and collaboration as our team grew. Microsoft 365 gave us the flexibility we needed, while making user and account management much more straightforward.</p>
-        </div>
+        @for (review of testimonials; track review.name) {
+          <div class="tcard">
+            <div class="quote-badge" aria-hidden="true">&rdquo;</div>
+            <div class="tav">{{ review.initials }}</div>
+            <div class="tname">{{ review.name }}</div>
+            <div class="trole">{{ review.role }}</div>
+            <div class="tstars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>{{ review.quote }}</p>
+          </div>
+        }
       </div>
 
       <!-- FAQ -->
-      <div class="pp-sec">Frequently asked questions</div>
+      <div class="pp-sec" id="m365Faq">Frequently asked questions</div>
       <div class="pp-faq">
         <div class="faq2" [class.open]="openFaq() === 0">
           <button class="faq2-q" type="button" (click)="toggleFaq(0)">What is Microsoft 365?<span class="faq2-ic">+</span></button>
@@ -542,12 +595,12 @@
         </div>
       </div>
 
-      <xh-insights-section pageSlug="microsoft-365-smb" />
+      <div id="m365Insights"><xh-insights-section pageSlug="microsoft-365-smb" [videos]="insightVideos" /></div>
 
       <!-- Standard product CTA -->
       <div class="pp-cta" id="contact">
         <div class="pp-cta-copy">
-          <h3>Ready to start with Microsoft 365?</h3>
+          <h3>Ready to start with Microsoft 365 SMB?</h3>
           <p>FREE Consultation &middot; FREE Demo &middot; FREE Trial &middot; 24&times;7 support in English &amp; Hindi</p>
         </div>
         <div class="pp-ctabtns">

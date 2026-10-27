@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { ChangeDetectionStrategy, Component, ElementRef, HostListener, ViewChild, inject, input, signal } from '@angular/core';
+import { OverlayService } from '../core/overlay.service';
+import { CallbackTopicService } from '../overlays/callback-topic.service';
+
 
 interface BareMetalPlan {
   processor: string; cores: string; memory: string; storage: string; bandwidth: string; oldPrice: string; price: string;
@@ -10,15 +12,91 @@ interface Panel {
   metrics: readonly { label: string; value: string }[];
 }
 
+interface DataCenter {
+  readonly name: string;
+  readonly image: string;
+  readonly alt: string;
+  readonly points: readonly string[];
+}
+
 @Component({
-  selector: 'xh-bare-metal-content', standalone: true, imports: [RouterLink],
+  selector: 'xh-bare-metal-content', standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './bare-metal-content.component.html', styleUrl: './bare-metal-content.component.css',
 })
 export class BareMetalContentComponent {
+  private readonly overlay = inject(OverlayService);
+  private readonly topics = inject(CallbackTopicService);
+  @ViewChild('bareMetalFrame') private bareMetalFrame?: ElementRef<HTMLIFrameElement>;
   readonly heroOnly = input(false);
+  readonly dataCenterOnly = input(false);
+  catalogueFrameHeight = 510;
   readonly selectedFamily = signal<'ryzen' | 'intel' | 'epyc' | 'legacy'>('ryzen');
   readonly selectedPanel = signal(0);
+  readonly selectedDataCenter = signal(2);
+
+  @HostListener('window:message', ['$event'])
+  onCatalogueMessage(event: MessageEvent): void {
+    const frame = this.bareMetalFrame?.nativeElement;
+    if (
+      !frame ||
+      event.source !== frame.contentWindow ||
+      event.origin !== window.location.origin ||
+      !event.data
+    ) return;
+
+    if (event.data.type === 'xh-bare-metal-quote') {
+      if (![3, 6, 12].includes(event.data.months) || typeof event.data.details !== 'string') return;
+      this.topics.ask(`Bare Metal Server - ${event.data.months} Month Quote`, {
+        firstName: '', lastName: '', company: '', email: '', help: 'Request a CallBack',
+        details: event.data.details,
+      });
+      this.overlay.open('callback');
+      return;
+    }
+    if (event.data.type !== 'xh-bare-metal-height') return;
+    const height = Number(event.data.height);
+    if (Number.isFinite(height)) this.catalogueFrameHeight = Math.max(420, Math.ceil(height));
+  }
+
+  readonly dataCenters: readonly DataCenter[] = [
+    {
+      name: 'Mumbai DC-1',
+      image: '/assets/images/performance-cloud/data-center-mumbai.webp',
+      alt: 'Mumbai DC-1 data center infrastructure',
+      points: [
+        'Tier IV designed infrastructure',
+        '2N utility power with N+1 generators',
+        'Carrier-neutral network and IX peering',
+        'Six-layer physical security',
+        'ISO certified infrastructure',
+      ],
+    },
+    {
+      name: 'Delhi DC-2',
+      image: '/assets/images/performance-cloud/data-center-delhi.webp',
+      alt: 'Delhi DC-2 data center infrastructure',
+      points: [
+        'Tier IV designed infrastructure',
+        'Redundant power and precision cooling',
+        'Low-latency multi-carrier connectivity',
+        '24×7 NOC, SOC and smart hands',
+        'ISO certified infrastructure',
+      ],
+    },
+    {
+      name: 'Pune DC-3',
+      image: '/assets/images/performance-cloud/data-center-pune.webp',
+      alt: 'Pune DC-3 data center infrastructure',
+      points: [
+        'DC space: 35,000 sq. ft.',
+        'Rack space: 500 racks',
+        'Power capacity: 5 MW',
+        'Security level: 6 layers',
+        'ISO certified infrastructure',
+      ],
+    },
+  ];
 
   readonly plans: Record<string, readonly BareMetalPlan[]> = {
     ryzen: [

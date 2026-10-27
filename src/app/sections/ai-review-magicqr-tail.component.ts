@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, OnDestroy, Output, computed, signal } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { AfterViewInit, Component, ElementRef, EventEmitter, OnDestroy, Output, computed, inject, signal } from '@angular/core';
 
 export type MagicqrQuoteRequest = { event: Event; plan: string };
 
@@ -9,6 +10,7 @@ export type MagicqrQuoteRequest = { event: Event; plan: string };
   styleUrl: './ai-review-magicqr-tail.component.css',
 })
 export class AiReviewMagicqrTailComponent implements AfterViewInit, OnDestroy {
+  private readonly document = inject(DOCUMENT);
   @Output() readonly quoteRequested = new EventEmitter<MagicqrQuoteRequest>();
 
   readonly agencyName = signal('Your Agency');
@@ -68,6 +70,17 @@ export class AiReviewMagicqrTailComponent implements AfterViewInit, OnDestroy {
 
   updateAgencyName(event: Event): void {
     this.agencyName.set((event.target as HTMLInputElement).value || 'Your Agency');
+  }
+
+  scrollToSection(event: Event, id: string): void {
+    const target = this.document.getElementById(id);
+    const view = this.document.defaultView;
+    if (!target || !view) return;
+    event.preventDefault();
+    view.scrollTo({
+      top: view.scrollY + target.getBoundingClientRect().top - 100,
+      behavior: view.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+    });
   }
 
   requestQuote(event: Event, plan: string): void {

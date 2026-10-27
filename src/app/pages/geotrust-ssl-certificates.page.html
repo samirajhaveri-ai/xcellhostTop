@@ -37,15 +37,42 @@
         <div class="ptop">
           <span class="tierbadge" [class.dv]="product.tier === 'DV'" [class.ov]="product.tier === 'OV'" [class.ev]="product.tier === 'EV'">{{ product.tier }}</span>
           @for (tag of product.tags; track tag) { <span class="tagchip">{{ tag === 'Multi' ? 'Multi-Domain' : tag }}</span> }
+          <img class="geotrust-card-logo" src="/assets/images/geotrust.svg" alt="GeoTrust" width="90" height="26">
         </div>
-        <h3>{{ product.name }}</h3><p class="pdesc">{{ product.desc }}</p>
+        <h3>
+          @if (product.id === 'tb-ev-flex') {
+            <a class="product-detail-link" routerLink="/geotrust-true-businessid-ev-flex">{{ product.name }}</a>
+          } @else if (product.id === 'tb-ov-flex') {
+            <a class="product-detail-link" routerLink="/geotrust-true-businessid-ov" [queryParams]="quantity(product) > 1 ? { quantity: quantity(product) } : null">{{ product.name }}</a>
+          } @else if (product.id === 'dv-flex') {
+            <a class="product-detail-link" routerLink="/geotrust-dv-ssl-flex">{{ product.name }}</a>
+          } @else if (product.id === 'quick-san') {
+            <a class="product-detail-link" routerLink="/geotrust-quickssl-premium-san">{{ product.name }}</a>
+          } @else if (product.id === 'quick-premium') {
+            <a class="product-detail-link" routerLink="/geotrust-quickssl-premium">{{ product.name }}</a>
+          } @else if (product.id === 'quick-wild') {
+            <a class="product-detail-link" routerLink="/geotrust-quickssl-premium-wildcard">{{ product.name }}</a>
+          } @else if (product.id === 'tb-id') {
+            <a class="product-detail-link" routerLink="/geotrust-true-businessid">{{ product.name }}</a>
+          } @else if (product.id === 'tb-md') {
+            <a class="product-detail-link" routerLink="/geotrust-true-businessid-multi-domain">{{ product.name }}</a>
+          } @else if (product.id === 'tb-ev-md') {
+            <a class="product-detail-link" routerLink="/geotrust-true-businessid-ev-multi-domain">{{ product.name }}</a>
+          } @else if (product.id === 'tb-ev') {
+            <a class="product-detail-link" routerLink="/geotrust-true-businessid-ev" [queryParams]="quantity(product) > 1 ? { quantity: quantity(product) } : null">{{ product.name }}</a>
+          } @else if (product.id === 'tb-wild') {
+            <a class="product-detail-link" routerLink="/geotrust-true-businessid-wildcard">{{ product.name }}</a>
+          } @else {
+            {{ product.name }}
+          }
+        </h3><p class="pdesc">{{ product.desc }}</p>
         <div class="pmeta"><div><span>Warranty</span><b>{{ product.warranty }}</b></div><div><span>Issued</span><b>{{ product.issue }}</b></div></div>
         <ul class="pfeat">@for (feature of product.features; track feature) { <li><span class="ck">✓</span>{{ feature }}</li> }</ul>
         <div class="pprice"><div><span class="from">From</span><span class="amt">{{ inr(product.prices[2]) }}</span><span class="yr">/year</span></div><span class="save">Save up to 84%</span></div>
         <div class="certificate-quantity" role="group" [attr.aria-label]="product.name + ' quantity'">
           <button type="button" (click)="adjustQuantity(product, -1)" [disabled]="quantity(product) === 1" [attr.aria-label]="'Decrease ' + product.name + ' quantity'">&minus;</button>
-          <output aria-live="polite">{{ quantity(product) }}</output>
-          <button type="button" (click)="adjustQuantity(product, 1)" [disabled]="quantity(product) === 9999" [attr.aria-label]="'Increase ' + product.name + ' quantity'">+</button>
+          <input xhQuantityInput [attr.aria-label]="'Quantity for ' + product.name + ' quantity'" [quantityValue]="quantity(product)" [quantityMax]="quantityMax(product)" (quantityChange)="adjustQuantity(product, $event - (quantity(product)))" />
+          <button type="button" (click)="adjustQuantity(product, 1)" [disabled]="quantity(product) === quantityMax(product)" [attr.aria-label]="'Increase ' + product.name + ' quantity'">+</button>
         </div>
         <button class="btn btn-orange" type="button" (click)="configure(product)">Buy Now <span class="ar">→</span></button>
       </article>
@@ -69,7 +96,8 @@
     </tbody>
   </table></div>
 
-  <!-- VIDEO -->
+  <!-- Product videos are shown only in the Insights > Videos tab. -->
+  @if (false) {
   <section class="tally-videos geotrust-videos" aria-labelledby="geotrustVideosTitle">
     <div class="pp-sec" id="geotrustVideosTitle">See GeoTrust SSL in action</div>
     <div class="tally-video-grid">
@@ -96,6 +124,7 @@
       </article>
     </div>
   </section>
+  }
 
   <!-- ADD-ONS -->
   <div class="pp-sec">Add-ons &amp; managed services</div>
@@ -205,36 +234,6 @@
   </div>
 
   <xh-insights-section pageSlug="geotrust-ssl-certificates" />
-
-  <!-- CONTACT -->
-  <div class="pp-sec" id="contact">Get a GeoTrust SSL certificate — transparent INR pricing</div>
-  <div class="pp-contact">
-    <div class="pp-ccard">
-      <h3>SSL Consultation</h3>
-      <p>Not sure which certificate fits? We'll recommend the right validation, issue it, install it and keep it renewed — GST invoice same day.</p>
-      <ul class="pp-clist">
-        <li><a href="tel:+912267111555"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg></span><span><b>Call us</b><span>+91 22 6711 1555</span></span></a></li>
-        <li><a href="https://wa.me/918657032540"><span class="ci"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.8-1.4A10 10 0 1012 2z"/></svg></span><span><b>WhatsApp</b><span>+91 86570 32540</span></span></a></li>
-        <li><a href="mailto:sales&#64;xcellhost.cloud"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></svg></span><span><b>Email</b><span>sales&#64;xcellhost.cloud</span></span></a></li>
-      </ul>
-    </div>
-    <form class="pp-form" (submit)="requestCallback($event)">
-      <h3>Request a Callback</h3>
-      <div class="row"><div class="fg"><input type="text" placeholder="Full name" required></div><div class="fg"><input type="text" placeholder="Company" required></div></div>
-      <div class="row"><div class="fg"><input type="email" placeholder="Work email" required></div><div class="fg"><input type="tel" placeholder="Phone" required></div></div>
-      <div class="fg"><select><option value="">Which certificate?</option><option>DV SSL</option><option>OV SSL</option><option>EV SSL</option><option>Wildcard</option><option>Multi-Domain (SAN)</option><option>Not sure — advise me</option></select></div>
-      <div class="fg"><textarea rows="3" placeholder="Tell us about your website / domains"></textarea></div>
-      <button type="submit" class="btn btn-primary">Request Callback <span class="ar">→</span></button>
-      <p class="fnote">GST invoice included · UPI · Cards · NetBanking</p>
-    </form>
-  </div>
-
-  <!-- CTA -->
-  <div class="pp-cta">
-    <div class="cl"><h3>Ready to secure your website?</h3><p>Pick a certificate above, or talk to our SSL experts — we'll handle issuance, installation and renewals for you.</p></div>
-    <div class="cr"><a href="#products" class="btn btn-primary mag">Browse Certificates <span class="ar">→</span></a><a href="https://wa.me/918657032540" class="btn btn-outline mag">Chat on WhatsApp</a>
-</div>
-  </div>
 
 </div></div>
 

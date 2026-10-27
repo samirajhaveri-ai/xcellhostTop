@@ -1,4 +1,32 @@
-@if (heroOnly()) {
+@if (dataCenterOnly()) {
+  <section class="bm-section bm-dc-section" aria-labelledby="bmDcTitle">
+    <h2 class="bm-dc-title" id="bmDcTitle">Tier 4 Certified Data Center Infrastructure</h2>
+    <div class="bm-dc-tabs" role="tablist" aria-label="Data center locations">
+      @for (dataCenter of dataCenters; track dataCenter.name; let i = $index) {
+        <button type="button" role="tab" [attr.aria-selected]="selectedDataCenter() === i" [class.active]="selectedDataCenter() === i" (click)="selectedDataCenter.set(i)">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 29h24M6 29V12h20v17M5 12h22l-2-4H7zM10 8V5h12v3M9 16h3M9 20h3M9 24h3M20 16h3M20 20h3M20 24h3M14 29v-6a2 2 0 014 0v6" /></svg>
+          {{ dataCenter.name }}
+        </button>
+      }
+    </div>
+    <div class="bm-dc-panel" role="tabpanel">
+      <div class="bm-dc-details">
+        <div class="bm-dc-heading">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 29h24M6 29V12h20v17M5 12h22l-2-4H7zM10 8V5h12v3M9 16h3M9 20h3M9 24h3M20 16h3M20 20h3M20 24h3M14 29v-6a2 2 0 014 0v6" /></svg>
+          <h3>{{ dataCenters[selectedDataCenter()].name }}</h3>
+        </div>
+        <ul>
+          @for (point of dataCenters[selectedDataCenter()].points; track point) {
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="m8 12 2.5 2.5L16 9" /></svg>{{ point }}</li>
+          }
+        </ul>
+      </div>
+      <div class="bm-dc-visual">
+        <img [src]="dataCenters[selectedDataCenter()].image" [alt]="dataCenters[selectedDataCenter()].alt" loading="lazy" />
+      </div>
+    </div>
+  </section>
+} @else if (heroOnly()) {
   <div class="bm-hero-art">
     <span class="bm-orbit"></span>
     <div class="bm-hero-badge bm-hero-badge-metal">
@@ -58,33 +86,23 @@
     </div>
   </section>
 
-  <section class="bm-section" aria-labelledby="bmServersVideoTitle">
+  <!-- <section class="bm-section" aria-labelledby="bmServersVideoTitle">
     <div class="pp-sec" id="bmServersVideoTitle">See our dedicated servers</div>
     <div class="bm-video-tabs" role="tablist" aria-label="Dedicated server videos"><button class="active" type="button" role="tab" aria-selected="true">▶ Data centre tour</button><button type="button" role="tab" aria-selected="false">▶ Deploy a server</button><button type="button" role="tab" aria-selected="false">▶ The control panel</button></div>
     <div class="bm-video" role="img" aria-label="XcellHost dedicated server data centre tour preview">
       <span class="bm-video-grid"></span><span class="bm-play">▶</span><p>Inside the XcellHost data centre and how we deploy your dedicated server</p>
     </div>
-  </section>
+  </section> -->
 
-  <section class="bm-section" id="products" aria-labelledby="bmPlansTitle">
-    <div class="pp-sec" id="bmPlansTitle">Dedicated server plans (INR)</div>
-    <p class="bm-lead">Full bare-metal servers hosted in Mumbai, India. Every server includes full root access, free DDoS protection and a 99.99% uptime SLA.</p>
-    <div class="bm-tabs" role="tablist" aria-label="Processor families">
-      <button type="button" [class.active]="selectedFamily() === 'ryzen'" (click)="selectedFamily.set('ryzen')"><span class="bm-tab-icon ryzen" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" stroke-linejoin="round"/></svg></span>Ryzen</button>
-      <button type="button" [class.active]="selectedFamily() === 'intel'" (click)="selectedFamily.set('intel')"><span class="bm-tab-icon intel" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 1v5M15 1v5M9 18v5M15 18v5M1 9h5M1 15h5M18 9h5M18 15h5" stroke-linecap="round"/></svg></span>Intel Gold</button>
-      <button type="button" [class.active]="selectedFamily() === 'epyc'" (click)="selectedFamily.set('epyc')"><span class="bm-tab-icon epyc" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 8h3v3H8zM13 8h3v3h-3zM8 13h3v3H8zM13 13h3v3h-3z"/></svg></span>AMD EPYC</button>
-      <button type="button" [class.active]="selectedFamily() === 'legacy'" (click)="selectedFamily.set('legacy')"><span class="bm-tab-icon legacy" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2M7 3L4 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Legacy</button>
-    </div>
-    <div class="bm-table-wrap">
-      <table>
-        <thead><tr><th>Processor</th><th>Cores / Threads</th><th>Memory</th><th>Storage</th><th>Bandwidth</th><th>Monthly INR</th><th></th></tr></thead>
-        <tbody>
-          @for (plan of plans[selectedFamily()]; track plan.processor) {
-            <tr><td data-label="Processor"><b>{{ plan.processor }}</b></td><td data-label="Cores / Threads">{{ plan.cores }}</td><td data-label="Memory">{{ plan.memory }}</td><td data-label="Storage">{{ plan.storage }}</td><td data-label="Bandwidth">{{ plan.bandwidth }}</td><td data-label="Monthly INR"><del>{{ plan.oldPrice }}</del><strong>{{ plan.price }}</strong></td><td><a routerLink="/contact">Buy now</a></td></tr>
-          }
-        </tbody>
-      </table>
-    </div>
+  <section class="bm-section bm-supplied-catalogue" id="products" aria-label="Bare metal server catalogue">
+    <iframe
+      #bareMetalFrame
+      class="bm-supplied-catalogue-frame"
+      src="/assets/animations/bare-metal-ordering-supplied.html?cart=20261016"
+      title="Configure and order an XcellHost bare metal server"
+      scrolling="no"
+      [style.height.px]="catalogueFrameHeight"
+    ></iframe>
   </section>
 
   <section class="bm-section" aria-labelledby="bmAddonsTitle">

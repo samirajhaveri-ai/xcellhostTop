@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/overlays/callback-topic.service.ts"],
+  "sourcesContent": ["import { Injectable, signal } from '@angular/core';\r\n\r\n/**\r\n * What the callback modal should open pre-filled with.\r\n *\r\n * The original resolved the topic at click time by sniffing which overlay page\r\n * happened to carry `.open`, or by reading `[data-cbtopic]` off the element\r\n * that was clicked. Neither survives a routed port, so the caller states the\r\n * subject explicitly — the same split `DocRequestService` uses for the\r\n * document gate: record the request, then open the `callback` layer.\r\n */\r\n@Injectable({ providedIn: 'root' })\r\nexport class CallbackTopicService {\r\n  private readonly _topic = signal('');\r\n\r\n  readonly topic = this._topic.asReadonly();\r\n\r\n  /** Record the subject the visitor wants to be called about. */\r\n  ask(topic: string): void {\r\n    this._topic.set(topic);\r\n  }\r\n\r\n  /** Dropped when the modal closes, so the next opening starts blank. */\r\n  clear(): void {\r\n    this._topic.set('');\r\n  }\r\n}\r\n"],
+  "mappings": ";;;;;;;;AAYM,IAAO,uBAAP,MAAO,sBAAoB;EACd,SAAS,OAAO,IAAE,GAAA,YAAA,CAAA,EAAA,WAAA,SAAA,CAAA,IAAA,CAAA,CAAA;EAE1B,QAAQ,KAAK,OAAO,WAAU;;EAGvC,IAAI,OAAa;AACf,SAAK,OAAO,IAAI,KAAK;EACvB;;EAGA,QAAK;AACH,SAAK,OAAO,IAAI,EAAE;EACpB;;qCAbW,uBAAoB;EAAA;4EAApB,uBAAoB,SAApB,sBAAoB,WAAA,YADP,OAAM,CAAA;;;sEACnB,sBAAoB,CAAA;UADhC;WAAW,EAAE,YAAY,OAAM,CAAE;;;",
+  "names": []
+}

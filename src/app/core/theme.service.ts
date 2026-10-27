@@ -43,9 +43,10 @@ export class ThemeService {
 
   private apply(theme: ColorTheme): void {
     const root = this.doc.documentElement;
+    if (!root) return;
     root.classList.toggle('dark-mode', theme === 'dark');
-    root.style.colorScheme = theme;
-    root.dataset['theme'] = theme;
+    root.style?.setProperty('color-scheme', theme);
+    root.setAttribute('data-theme', theme);
 
     this.doc
       .querySelector<HTMLMetaElement>('meta[name="theme-color"]')

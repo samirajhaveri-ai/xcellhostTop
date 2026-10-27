@@ -21,9 +21,62 @@ describe('Blog slug resolution', () => {
     expect(findBlogBySlug(posts, posts[0].slug)).toBe(posts[0]);
     expect(findBlogBySlug(posts, 'missing-article')).toBeNull();
   });
+
+  it('resolves the shared Acronis alias to the newest publication regardless of list order', () => {
+    const older = {
+      slug: 'acronis-gen-ai-protection-is-now-live-secure-the-ai-era',
+      relatedPages: 'acronis-genai-protection', publishedAt: '2026-09-22T10:00:00Z',
+    } as CmsBlogPost;
+    const newer = {
+      slug: 'acronis-gen-ai-protection-secure-generative-ai-usage-across-your-business-1',
+      relatedPages: 'acronis-genai-protection', publishedAt: '2026-09-23T10:00:00Z',
+    } as CmsBlogPost;
+    expect(findBlogBySlug([older, newer], '/ACRONIS-GENAI-PROTECTION/')).toBe(newer);
+    expect(findBlogBySlug([newer, older], 'acronis-genai-protection')).toBe(newer);
+    expect(findBlogBySlug([older, newer], older.slug)).toBe(older);
+    expect(findBlogBySlug([older, newer], newer.slug)).toBe(newer);
+    const exact = { ...older, slug: 'acronis-genai-protection' };
+    expect(findBlogBySlug([newer, exact], exact.slug)).toBe(exact);
+  });
+
+  it('keeps a shared alias usable when publication dates are missing', () => {
+    const articles = [
+      { slug: 'first-cloud-guide', relatedPages: 'cloud' },
+      { slug: 'second-cloud-guide', relatedPages: 'cloud', publishedAt: 'invalid' },
+    ] as CmsBlogPost[];
+    expect(findBlogBySlug(articles, 'cloud')).toBe(articles[0]);
+    expect(findBlogBySlug(articles, 'unrelated-product')).toBeNull();
+  });
 });
 
 describe('Blog API pagination', () => {
+  it('recovers after an initial outage and retains loaded blogs during later outages', fakeAsync(() => {
+    TestBed.configureTestingModule({ providers: [provideHttpClient(), provideHttpClientTesting()] });
+    const http = TestBed.inject(HttpTestingController);
+    const service = TestBed.inject(BlogApiService);
+    let received: readonly CmsBlogPost[] = [];
+    const subscription = service.posts$.subscribe(posts => received = posts);
+    tick(0);
+    http.expectOne(req => req.url.endsWith('/api/blogs')).flush({}, { status: 502, statusText: 'Bad Gateway' });
+    expect(service.postsStatus()).toBe('error');
+    tick(30_000);
+    http.expectOne(req => req.url.endsWith('/api/blogs')).flush({ data: [
+      { slug: 'cloud', title: 'Cloud', content: 'Article', category: 'Cloud' },
+    ] });
+    expect(received.length).toBe(1);
+    expect(service.postsStatus()).toBe('ready');
+    tick(30_000);
+    http.expectOne(req => req.url.endsWith('/api/blogs')).flush({}, { status: 503, statusText: 'Unavailable' });
+    expect(received[0].slug).toBe('cloud');
+    expect(service.postsStatus()).toBe('error');
+    tick(30_000);
+    http.expectOne(req => req.url.endsWith('/api/blogs')).flush({ data: [] });
+    expect(received).toEqual([]);
+    expect(service.postsStatus()).toBe('ready');
+    subscription.unsubscribe();
+    http.verify();
+  }));
+
   it('loads document collections independently and excludes unusable download links', fakeAsync(() => {
     TestBed.configureTestingModule({ providers: [provideHttpClient(), provideHttpClientTesting()] });
     const http = TestBed.inject(HttpTestingController);

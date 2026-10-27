@@ -1,0 +1,1754 @@
+<!DOCTYPE html>
+<html lang="en-IN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Managed Oracle Cloud — XcellHost</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600;1,9..144,700&family=Sora:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* =====================================================================
+   XcellHost v2 core — xcellhost.top design system
+   Brand: #0066FF blue · #0B132B navy · #FF8A00 orange · #c0392b "Host" red
+   Rule: exact brand colours, solid fills, no gradients.
+   ===================================================================== */
+:root{
+  --blue:#0066FF;--navy:#0B132B;--orange:#FF8A00;--red:#c0392b;--white:#fff;
+  --green:#16a34a;--wa:#25D366;
+  --bg:#ffffff;--surface:#ffffff;--surface-2:#F4F7FC;--ink:#0B132B;--text:#2A3550;--muted:#5B6782;
+  --line:#E2E8F2;--line-2:#D3DCEB;--chip:#EEF4FF;
+  --hero:#0B132B;--hero-ink:#ffffff;--hero-muted:#B6C2DA;--hero-line:rgba(255,255,255,.12);
+  --f-serif:"Fraunces",Georgia,serif;--f-disp:"Sora",system-ui,sans-serif;--f-body:"IBM Plex Sans",system-ui,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,monospace;
+  --r-s:10px;--r:14px;--r-l:20px;
+  --sh-s:0 4px 14px rgba(11,19,43,.06);--sh:0 14px 40px rgba(11,19,43,.10);--sh-l:0 30px 70px -24px rgba(11,19,43,.35);
+  --maxw:1200px;--ease:cubic-bezier(.22,.7,.2,1);--ease-o:cubic-bezier(.16,1,.3,1);
+}
+html[data-theme="dark"]{
+  --bg:#070C1C;--surface:#0E1630;--surface-2:#0B132B;--ink:#F2F5FB;--text:#C9D3E6;--muted:#8F9BB6;
+  --line:#1E2A49;--line-2:#27355A;--chip:#14204A;
+  --hero:#050916;--sh-s:0 4px 14px rgba(0,0,0,.3);--sh:0 14px 40px rgba(0,0,0,.4);--sh-l:0 30px 70px -24px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--f-body);color:var(--text);background:var(--bg);line-height:1.6;overflow-x:hidden;overflow-x:clip;-webkit-font-smoothing:antialiased;transition:background .35s,color .35s}
+body.lock{overflow:hidden}
+h1,h2,h3,h4{font-family:var(--f-disp);color:var(--ink);line-height:1.15;letter-spacing:-.02em;font-weight:700}
+a{color:inherit;text-decoration:none}img,svg{display:block}button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.mono{font-family:var(--f-mono)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px}
+#xhProgress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--orange);z-index:300}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:14.5px;line-height:1;padding:13px 22px;border-radius:12px;border:1.5px solid transparent;cursor:pointer;white-space:nowrap;transition:transform .2s var(--ease),background .2s,color .2s,border-color .2s,box-shadow .25s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn svg{width:16px;height:16px}
+.btn .ar{transition:transform .25s var(--ease)}.btn:hover .ar{transform:translateX(3px)}
+.btn-orange{background:var(--orange);color:#fff;box-shadow:0 10px 24px -12px rgba(255,138,0,.9)}
+.btn-orange:hover{box-shadow:0 14px 30px -12px rgba(255,138,0,1)}
+.btn-blue{background:var(--blue);color:#fff;box-shadow:0 10px 24px -12px rgba(0,102,255,.9)}
+.btn-ghost{background:var(--surface);color:var(--ink);border-color:var(--line-2)}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
+.btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
+.btn-line:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+.btn-wa{background:var(--wa);color:#fff}
+.btn-sm{padding:9px 15px;font-size:13px;border-radius:10px}
+.btn-block{width:100%}
+.btn[disabled]{opacity:.5;pointer-events:none}
+
+/* ---------- utility bar ---------- */
+.ubar{background:var(--navy);color:#B6C2DA;font-size:12.5px;position:relative;z-index:60}
+html[data-theme="dark"] .ubar{background:#050916}
+.ubar .wrap{display:flex;align-items:center;gap:16px;min-height:38px;white-space:nowrap;max-width:1360px}
+.ubar .wrap::-webkit-scrollbar{display:none}
+.ubar a:hover{color:#fff}
+.ubar .ul{display:flex;gap:16px;align-items:center;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,#000 92%,transparent);mask-image:linear-gradient(90deg,#000 92%,transparent)}
+.ubar .ul::-webkit-scrollbar{display:none}
+.ubar .ur{display:flex;gap:12px;align-items:center;margin-left:auto;padding-left:14px;border-left:1px solid rgba(255,255,255,.14);flex-shrink:0}
+@media(max-width:760px){.ubar .ur .uwa,.ubar .ur .lang{display:none}}
+.ubar .ph{font-family:var(--f-mono);color:#fff;font-weight:600}
+.ubar .uwa{color:#5FE08D;font-weight:600}
+.ubar .wa-ch{color:#5FE08D}
+.theme-tg{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:99px;padding:3px 9px 3px 4px;cursor:pointer;color:#dfe6f5;font-size:11.5px}
+.theme-tg .k{width:18px;height:18px;border-radius:50%;background:var(--orange);display:grid;place-items:center;transition:transform .35s var(--ease-o)}
+.theme-tg .k svg{width:11px;height:11px;color:#fff}
+html[data-theme="dark"] .theme-tg .k{transform:rotate(-180deg);background:var(--blue)}
+.lang{font-family:var(--f-mono);font-size:11px;border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:2px 6px;color:#dfe6f5}
+
+/* ---------- promo ---------- */
+.promo{background:var(--blue);color:#fff;font-size:13px;line-height:1.5;text-align:center;padding:8px 16px;position:relative;z-index:59}
+.promo b{font-weight:700}
+.promo .tag{display:inline-block;font-family:var(--f-mono);font-size:10.5px;font-weight:600;letter-spacing:.08em;background:#fff;color:var(--blue);border-radius:6px;padding:2px 7px;margin:0 6px}
+.promo a{font-weight:700;text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- header ---------- */
+.hdr{position:sticky;top:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--line);transition:box-shadow .3s,background .35s}
+.hdr.scrolled{box-shadow:0 8px 28px -18px rgba(11,19,43,.35)}
+.hdr .wrap{display:flex;align-items:center;gap:14px;height:70px;max-width:1360px}
+.logo{display:flex;flex-direction:column;flex-shrink:0;line-height:1}
+.logo .lw{font-family:var(--f-disp);font-weight:800;font-size:22px;letter-spacing:-.02em;color:var(--ink);display:flex;align-items:baseline}
+.logo .lw .host{position:relative;color:var(--red);padding:0 2px;margin-left:1px}
+.logo .lw .host{z-index:0}
+.logo .lw .host svg{position:absolute;left:-7px;top:-9px;width:calc(100% + 14px);height:34px;z-index:-1;color:var(--blue);opacity:.13}
+.logo .lw sup{font-size:9px;color:var(--muted);margin-left:1px;align-self:flex-start;margin-top:2px}
+.logo .lt{font-family:var(--f-mono);font-size:9px;letter-spacing:.16em;color:var(--muted);margin-top:4px;text-transform:uppercase;white-space:nowrap}
+.nav{display:flex;align-items:center;gap:0;margin-left:4px}
+.nav>.ni{position:static}
+.nav>.ni>button{background:none;border:0;cursor:pointer;display:flex;align-items:center;gap:3px;font-size:13.5px;font-weight:500;color:var(--text);padding:9px 8px;border-radius:8px;white-space:nowrap;transition:color .2s,background .2s}
+.nav>.ni>button svg{width:10px;height:10px;transition:transform .25s}
+.nav>.ni:hover>button,.nav>.ni.open>button{color:var(--blue);background:var(--chip)}
+.nav>.ni.open>button svg{transform:rotate(180deg)}
+.mega{position:absolute;left:0;right:0;top:100%;background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);box-shadow:var(--sh);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .22s,transform .25s var(--ease-o),visibility 0s .25s}
+.ni.open .mega{opacity:1;visibility:visible;transform:none;transition:opacity .22s,transform .3s var(--ease-o)}
+.mega .wrap{display:grid;grid-template-columns:260px 1fr;gap:28px;height:auto;padding:26px 24px;max-width:var(--maxw)}
+.mega .mintro b{font-family:var(--f-serif);font-size:22px;color:var(--ink);display:block;margin-bottom:6px}
+.mega .mintro p{font-size:13px;color:var(--muted)}
+.mega .mlist{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.mega .mlist a{display:flex;gap:11px;align-items:flex-start;padding:10px 12px;border-radius:10px;transition:background .2s}
+.mega .mlist a:hover{background:var(--chip)}
+.mega .mlist a i{width:30px;height:30px;border-radius:8px;background:var(--chip);color:var(--blue);display:grid;place-items:center;flex-shrink:0}
+.mega .mlist a i svg{width:15px;height:15px}
+.mega .mlist a b{display:block;font-size:13.5px;color:var(--ink);font-weight:600}
+.mega .mlist a span{font-size:11.5px;color:var(--muted)}
+.mega .mlist a.cur{background:var(--chip)}.mega .mlist a.cur b{color:var(--blue)}
+.hdr-r{display:flex;align-items:center;gap:8px;margin-left:auto}
+.ibtn{width:40px;height:40px;border-radius:11px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;cursor:pointer;color:var(--ink);position:relative;transition:border-color .2s,color .2s,transform .2s}
+.ibtn:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-1px)}
+.ibtn svg{width:18px;height:18px}
+.ibtn .cnt{position:absolute;top:-6px;right:-6px;min-width:18px;height:18px;padding:0 5px;border-radius:99px;background:var(--orange);color:#fff;font-family:var(--f-mono);font-size:10.5px;font-weight:600;display:grid;place-items:center;transform:scale(0);transition:transform .3s var(--ease-o)}
+.ibtn .cnt.on{transform:scale(1)}
+.ibtn .cnt.bump{animation:bump .45s var(--ease-o)}
+@keyframes bump{40%{transform:scale(1.4)}}
+.burger{display:none}
+@media(max-width:1780px){.hdr-r .lg{display:none}}
+@media(max-width:1580px){.nav>.ni>button{padding:9px 6px;font-size:13px;gap:2px}.nav>.ni>button svg{width:8px;height:8px}}
+@media(max-width:1460px){.nav>.ni>button svg{display:none}.nav>.ni>button{padding:9px 5px;font-size:12.5px}.logo .lw{font-size:20px}.hdr .wrap{gap:10px}}
+@media(max-width:1320px){.nav,.hdr-r .desk{display:none}.burger{display:grid}}
+/* mobile drawer */
+.mnav{position:fixed;inset:0;z-index:250;pointer-events:none}
+.mnav .sc{position:absolute;inset:0;background:rgba(11,19,43,.5);opacity:0;transition:opacity .3s}
+.mnav .pn{position:absolute;top:0;right:0;bottom:0;width:min(360px,88vw);background:var(--surface);transform:translateX(100%);transition:transform .38s var(--ease-o);overflow-y:auto;padding:18px 18px 40px}
+.mnav.open{pointer-events:auto}.mnav.open .sc{opacity:1}.mnav.open .pn{transform:none}
+.mnav details{border-bottom:1px solid var(--line)}
+.mnav summary{list-style:none;cursor:pointer;padding:14px 4px;font-weight:600;color:var(--ink);display:flex;justify-content:space-between}
+.mnav summary::-webkit-details-marker{display:none}
+.mnav details a{display:block;padding:8px 10px;font-size:14px;color:var(--text);border-radius:8px}
+.mnav details a:hover{background:var(--chip)}
+.mnav .mh{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+
+/* ---------- search overlay ---------- */
+.srch{position:fixed;inset:0;z-index:260;display:none;align-items:flex-start;justify-content:center;padding:90px 16px 20px;background:rgba(11,19,43,.55)}
+.srch.open{display:flex;animation:fadeIn .2s}
+.srch .box{width:min(640px,100%);background:var(--surface);border-radius:var(--r-l);box-shadow:var(--sh-l);overflow:hidden;animation:popIn .3s var(--ease-o)}
+.srch .sin{display:flex;align-items:center;gap:10px;padding:16px 18px;border-bottom:1px solid var(--line)}
+.srch .sin svg{width:18px;height:18px;color:var(--muted)}
+.srch input{flex:1;border:0;outline:0;background:none;font-size:16px;color:var(--ink)}
+.srch kbd{font-family:var(--f-mono);font-size:11px;border:1px solid var(--line-2);border-radius:5px;padding:2px 6px;color:var(--muted)}
+.srch .res{max-height:min(420px,60vh);overflow-y:auto;padding:8px}
+.srch .res a{display:flex;justify-content:space-between;gap:12px;padding:11px 12px;border-radius:10px}
+.srch .res a:hover,.srch .res a.hl{background:var(--chip)}
+.srch .res b{color:var(--ink);font-size:14px;font-weight:600}
+.srch .res span{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.srch .none{padding:26px;text-align:center;color:var(--muted);font-size:14px}
+@keyframes fadeIn{from{opacity:0}}
+@keyframes popIn{from{opacity:0;transform:translateY(-10px) scale(.98)}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;background:var(--hero);color:var(--hero-ink);padding:54px 0 0}
+.hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.hero .wrap{position:relative;z-index:2}
+.crumb{font-family:var(--f-mono);font-size:12px;color:var(--hero-muted);margin-bottom:26px}
+.crumb a:hover{color:#fff}.crumb .c{color:#fff}
+.hero-grid{display:grid;grid-template-columns:1.02fr 1fr;gap:48px;align-items:center;padding-bottom:40px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--f-mono);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--orange)}
+.eyebrow:before{content:"";width:22px;height:2px;background:var(--orange)}
+.hero h1{font-family:var(--f-serif);font-weight:700;color:#fff;font-size:clamp(34px,4.4vw,56px);line-height:1.04;letter-spacing:-.025em;margin:16px 0 18px}
+.hero h1 .acc{color:var(--orange);font-style:italic}
+.hero .lead{font-size:17px;color:var(--hero-muted);max-width:540px;margin-bottom:24px}
+.hero .lead b{color:#fff;font-weight:600}
+.powered{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--navy);border-radius:12px;padding:7px 14px 7px 8px;margin-bottom:26px;box-shadow:0 10px 26px -14px rgba(0,0,0,.6)}
+.powered .pv-l{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;flex-shrink:0}
+.powered .pv-l svg{width:18px;height:18px}
+.powered small{display:block;font-family:var(--f-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#5B6782;line-height:1}
+.powered b{font-family:var(--f-disp);font-size:14.5px;font-weight:700;line-height:1.2;color:var(--navy)}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero-stats{position:relative;z-index:2;display:flex;flex-wrap:nowrap;border-top:1px solid var(--hero-line);overflow-x:auto;scrollbar-width:none}
+.hero-stats::-webkit-scrollbar{display:none}
+.hero-stats .hs{flex:1 0 auto;padding:20px 24px 22px;border-right:1px solid var(--hero-line);white-space:nowrap}
+.hero-stats .hs:first-child{padding-left:0}.hero-stats .hs:last-child{border-right:0}
+.hero-stats b{display:block;font-family:var(--f-disp);font-weight:800;font-size:24px;color:#fff;line-height:1;letter-spacing:-.02em}
+.hero-stats b em{font-style:normal;color:var(--orange)}
+.hero-stats span{display:block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--hero-muted);margin-top:8px}
+.stage{position:relative;min-height:420px;display:grid;place-items:center}
+@media(max-width:980px){.hero-grid{grid-template-columns:1fr;gap:34px}.stage{min-height:0}}
+@media(max-width:560px){.hero{padding-top:36px}.hero-stats .hs{padding:16px 18px}.hero-stats b{font-size:20px}}
+
+/* hero entrance */
+.hero [data-in]{opacity:0;transform:translateY(16px);animation:heroIn .9s var(--ease-o) forwards}
+.hero [data-in="1"]{animation-delay:.05s}.hero [data-in="2"]{animation-delay:.15s}.hero [data-in="3"]{animation-delay:.25s}.hero [data-in="4"]{animation-delay:.35s}.hero [data-in="5"]{animation-delay:.45s}.hero [data-in="6"]{animation-delay:.6s}
+@keyframes heroIn{to{opacity:1;transform:none}}
+
+/* ---------- sections ---------- */
+.sec{padding:84px 0;position:relative}
+.sec.alt{background:var(--surface-2)}
+.sec.tight{padding:56px 0}
+.sh{max-width:760px;margin-bottom:40px}
+.sh.c{text-align:center;margin-left:auto;margin-right:auto}
+.sh .eyebrow{color:var(--orange)}
+.sh h2{font-family:var(--f-serif);font-weight:700;font-size:clamp(28px,3.2vw,40px);letter-spacing:-.02em;margin:12px 0 12px;line-height:1.1}
+.sh h2 .acc{color:var(--blue);font-style:italic}
+.sh p{font-size:16.5px;color:var(--muted)}
+.note-ind{font-family:var(--f-mono);font-size:11.5px;color:var(--muted);margin-top:14px}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease-o),transform .8s var(--ease-o)}
+.rv.in{opacity:1;transform:none}
+.rv[data-d="1"]{transition-delay:.06s}.rv[data-d="2"]{transition-delay:.12s}.rv[data-d="3"]{transition-delay:.18s}.rv[data-d="4"]{transition-delay:.24s}.rv[data-d="5"]{transition-delay:.3s}.rv[data-d="6"]{transition-delay:.36s}
+
+/* ---------- grids & cards ---------- */
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:960px){.g3,.g4{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-l);padding:24px;transition:transform .35s var(--ease-o),box-shadow .35s,border-color .3s}
+.card:hover{transform:translateY(-5px);box-shadow:var(--sh);border-color:var(--line-2)}
+.ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;color:#fff;background:var(--blue);margin-bottom:16px;flex-shrink:0}
+.ico svg{width:22px;height:22px}
+.ico.o{background:var(--orange)}.ico.n{background:var(--navy)}.ico.g{background:var(--green)}.ico.r{background:var(--red)}
+html[data-theme="dark"] .ico.n{background:#1E2A49}
+.ico.soft{background:var(--chip);color:var(--blue)}
+.card h3{font-size:17px;margin-bottom:8px}
+.card p{font-size:14px;color:var(--muted);line-height:1.6}
+.card .more{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-weight:600;font-size:13.5px;color:var(--blue)}
+
+/* chip rows with per-item icons */
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{display:inline-flex;align-items:center;gap:9px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 14px 8px 8px;font-size:13.5px;font-weight:600;color:var(--ink);transition:border-color .2s,transform .2s}
+.chip:hover{border-color:var(--blue);transform:translateY(-2px)}
+.chip i{width:26px;height:26px;border-radius:7px;display:grid;place-items:center;color:#fff;background:var(--blue);flex-shrink:0}
+.chip i svg{width:14px;height:14px}
+
+/* icon list (per-item icons, never generic ticks) */
+.ilist{list-style:none;display:flex;flex-direction:column;gap:11px}
+.ilist li{display:flex;gap:11px;align-items:flex-start;font-size:14px;color:var(--text)}
+.ilist li i{width:24px;height:24px;border-radius:7px;background:var(--chip);color:var(--blue);display:grid;place-items:center;flex-shrink:0;margin-top:-1px}
+.ilist li i svg{width:13px;height:13px}
+.ilist li b{color:var(--ink)}
+
+/* steps */
+.steps{display:grid;gap:14px;counter-reset:st}
+.steps.h{grid-template-columns:repeat(var(--n,4),1fr)}
+@media(max-width:960px){.steps.h{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.steps.h{grid-template-columns:1fr}}
+.step{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px 20px 20px;overflow:hidden}
+.step:before{counter-increment:st;content:counter(st,decimal-leading-zero);font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--orange);display:block;margin-bottom:12px;letter-spacing:.1em}
+.step h4{font-size:15.5px;margin-bottom:6px}
+.step p{font-size:13.5px;color:var(--muted)}
+.step .bar{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--blue);transition:width 1.2s var(--ease-o)}
+.step.in .bar,.rv.in .step .bar{width:100%}
+
+/* table */
+.tbl-w{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+.tbl{width:100%;border-collapse:collapse;min-width:620px}
+.tbl th{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;padding:15px 18px;background:var(--surface-2);border-bottom:1px solid var(--line)}
+.tbl td{padding:14px 18px;border-bottom:1px solid var(--line);font-size:14px;color:var(--text);vertical-align:top}
+.tbl tr:last-child td{border-bottom:0}
+.tbl td:first-child{font-weight:600;color:var(--ink)}
+.tbl .hl{background:var(--chip)}
+.tbl th.hl{color:var(--blue)}
+.yes{color:var(--green);font-weight:700}.no{color:var(--red);font-weight:700}
+
+/* plans */
+.plans{display:grid;grid-template-columns:repeat(var(--n,3),1fr);gap:18px;align-items:stretch}
+@media(max-width:960px){.plans{grid-template-columns:1fr}}
+.plan{position:relative;background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r-l);padding:26px;display:flex;flex-direction:column;transition:transform .35s var(--ease-o),box-shadow .35s,border-color .3s}
+.plan:hover{transform:translateY(-6px);box-shadow:var(--sh)}
+.plan.pop{border-color:var(--orange)}
+.plan .flag{position:absolute;top:-12px;left:24px;background:var(--orange);color:#fff;font-family:var(--f-mono);font-size:10.5px;font-weight:600;letter-spacing:.1em;padding:4px 10px;border-radius:99px}
+.plan .pk{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:600}
+.plan h3{font-size:20px;margin:6px 0 8px}
+.plan .pd{font-size:13.5px;color:var(--muted);margin-bottom:18px;min-height:42px}
+.plan .pr{display:flex;align-items:baseline;gap:6px;margin-bottom:4px}
+.plan .pr b{font-family:var(--f-disp);font-weight:800;font-size:34px;color:var(--ink);letter-spacing:-.03em}
+.plan .pr span{font-size:13px;color:var(--muted)}
+.plan .pr s{font-size:14px;color:var(--muted)}
+.plan .gst{font-family:var(--f-mono);font-size:11px;color:var(--muted);margin-bottom:18px}
+.plan .ilist{margin-bottom:22px}
+.plan .act{margin-top:auto;display:flex;flex-direction:column;gap:8px}
+
+/* calculator */
+.calc{display:grid;grid-template-columns:1.25fr 1fr;border:1px solid var(--line);border-radius:var(--r-l);overflow:hidden;background:var(--surface);box-shadow:var(--sh-s)}
+@media(max-width:900px){.calc{grid-template-columns:1fr}}
+.calc .cin{padding:28px;display:flex;flex-direction:column;gap:22px}
+.calc .cout{background:var(--navy);color:#fff;padding:28px;display:flex;flex-direction:column}
+html[data-theme="dark"] .calc .cout{background:#050916}
+.fld>label,.fld>.lb{display:flex;justify-content:space-between;align-items:baseline;font-weight:600;font-size:14px;color:var(--ink);margin-bottom:10px}
+.fld>label small,.fld>.lb small{font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--blue)}
+.fld .hint{font-size:12px;color:var(--muted);margin-top:7px}
+.seg{display:flex;flex-wrap:wrap;gap:6px;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:4px}
+.seg button{flex:1 1 auto;border:0;background:none;cursor:pointer;padding:10px 12px;border-radius:9px;font-size:13px;font-weight:600;color:var(--muted);transition:background .2s,color .2s,box-shadow .2s;white-space:nowrap}
+.seg button small{display:block;font-family:var(--f-mono);font-size:10px;font-weight:500;margin-top:2px}
+.seg button.on{background:var(--surface);color:var(--blue);box-shadow:var(--sh-s)}
+.seg button:hover:not(.on){color:var(--ink)}
+input[type=range].rng{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:99px;background:var(--line-2);outline:none;cursor:pointer;background-image:linear-gradient(var(--blue),var(--blue));background-size:var(--p,0%) 100%;background-repeat:no-repeat}
+input[type=range].rng::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#fff;border:3px solid var(--blue);box-shadow:0 4px 10px rgba(0,102,255,.35);transition:transform .15s}
+input[type=range].rng::-webkit-slider-thumb:hover{transform:scale(1.12)}
+input[type=range].rng::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid var(--blue)}
+.stp{display:inline-flex;align-items:center;border:1px solid var(--line-2);border-radius:11px;overflow:hidden;background:var(--surface)}
+.stp button{width:40px;height:40px;border:0;background:none;cursor:pointer;font-size:18px;color:var(--ink)}
+.stp button:hover{background:var(--chip);color:var(--blue)}
+.stp input{width:64px;height:40px;border:0;border-left:1px solid var(--line);border-right:1px solid var(--line);text-align:center;font-family:var(--f-mono);font-weight:600;background:none;color:var(--ink)}
+.tgl{display:flex;align-items:center;gap:11px;cursor:pointer;font-size:14px;font-weight:600;color:var(--ink)}
+.tgl input{display:none}
+.tgl .sw{width:42px;height:24px;border-radius:99px;background:var(--line-2);position:relative;transition:background .25s;flex-shrink:0}
+.tgl .sw:after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:transform .3s var(--ease-o);box-shadow:0 2px 5px rgba(0,0,0,.2)}
+.tgl input:checked+.sw{background:var(--blue)}
+.tgl input:checked+.sw:after{transform:translateX(18px)}
+.tgl small{display:block;font-weight:400;font-size:12px;color:var(--muted)}
+.cout .ck{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B6C2DA}
+.cout .ctot{font-family:var(--f-disp);font-weight:800;font-size:42px;letter-spacing:-.03em;line-height:1;margin:10px 0 4px;font-variant-numeric:tabular-nums}
+.cout .csub{font-size:13px;color:#B6C2DA;margin-bottom:20px}
+.cout .crows{display:flex;flex-direction:column;gap:9px;padding:16px 0;border-top:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12);margin-bottom:20px}
+.cout .crow{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;color:#dfe6f5}
+.cout .crow b{font-family:var(--f-mono);font-weight:600;color:#fff;white-space:nowrap}
+.cout .crow.save b{color:#5FE08D}
+.cout .cact{margin-top:auto;display:flex;flex-direction:column;gap:9px}
+.cout .cfine{font-family:var(--f-mono);font-size:10.5px;color:#8F9BB6;margin-top:12px}
+.flash{animation:flash .5s var(--ease-o)}
+@keyframes flash{0%{opacity:.35;transform:translateY(-4px)}}
+
+/* tabs */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:22px}
+.tabs button{border:1px solid var(--line);background:var(--surface);cursor:pointer;padding:10px 16px;border-radius:99px;font-size:13.5px;font-weight:600;color:var(--muted);transition:all .2s}
+.tabs button:hover{color:var(--ink);border-color:var(--line-2)}
+.tabs button.on{background:var(--blue);border-color:var(--blue);color:#fff}
+[data-panel]{display:none}[data-panel].on{display:block;animation:panelIn .45s var(--ease-o)}
+@keyframes panelIn{from{opacity:0;transform:translateY(8px)}}
+
+/* faq */
+.faq{display:flex;flex-direction:column;gap:10px;max-width:880px}
+.fq{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);transition:border-color .2s}
+.fq.open{border-color:var(--line-2)}
+.fq button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;background:none;border:0;cursor:pointer;text-align:left;padding:18px 20px;font-weight:600;font-size:15px;color:var(--ink)}
+.fq button i{width:26px;height:26px;border-radius:50%;background:var(--chip);color:var(--blue);display:grid;place-items:center;flex-shrink:0;transition:transform .35s var(--ease-o),background .2s}
+.fq button i svg{width:12px;height:12px}
+.fq.open button i{transform:rotate(45deg);background:var(--blue);color:#fff}
+.fq .fa{max-height:0;overflow:hidden;transition:max-height .45s var(--ease-o)}
+.fq .fa p{padding:0 20px 20px;font-size:14.5px;color:var(--muted);line-height:1.7}
+
+/* CTA band */
+.cta{background:var(--blue);color:#fff;border-radius:24px;padding:44px;display:grid;grid-template-columns:1.4fr 1fr;gap:30px;align-items:center;position:relative;overflow:hidden}
+.cta h2{font-family:var(--f-serif);color:#fff;font-size:clamp(26px,3vw,36px);margin-bottom:10px}
+.cta p{color:#dbe6ff;font-size:15.5px}
+.cta .ca{display:flex;flex-direction:column;gap:10px;align-items:flex-start;position:relative;z-index:2}
+.cta .ring{position:absolute;right:-80px;top:-80px;width:280px;height:280px;border:2px solid rgba(255,255,255,.15);border-radius:50%;animation:ringP 6s var(--ease) infinite}
+.cta .ring.r2{width:420px;height:420px;right:-150px;top:-150px;animation-delay:1.5s}
+@keyframes ringP{50%{transform:scale(1.06);opacity:.6}}
+@media(max-width:820px){.cta{grid-template-columns:1fr;padding:32px}}
+
+/* ---------- forms + modal ---------- */
+.modal{position:fixed;inset:0;z-index:270;display:none;align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex}
+.modal .sc{position:absolute;inset:0;background:rgba(11,19,43,.6);animation:fadeIn .25s}
+.modal .mb{position:relative;width:min(520px,100%);max-height:calc(100vh - 40px);overflow-y:auto;background:var(--surface);border-radius:var(--r-l);box-shadow:var(--sh-l);animation:popIn .35s var(--ease-o)}
+.modal .mb.wide{width:min(720px,100%)}
+.modal .mh{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;padding:22px 24px 6px}
+.modal .mh h3{font-family:var(--f-serif);font-size:24px}
+.modal .mh p{font-size:13.5px;color:var(--muted);margin-top:4px}
+.modal .x{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--surface);cursor:pointer;display:grid;place-items:center;flex-shrink:0;color:var(--ink)}
+.modal .x svg{width:16px;height:16px}
+.modal .mc{padding:16px 24px 24px}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form .full{grid-column:1/-1}
+@media(max-width:520px){.form{grid-template-columns:1fr}}
+.fi label{display:block;font-size:12.5px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.fi input,.fi select,.fi textarea{width:100%;border:1.5px solid var(--line-2);background:var(--surface);border-radius:11px;padding:11px 13px;font-size:14px;color:var(--ink);outline:0;transition:border-color .2s,box-shadow .2s}
+.fi textarea{min-height:90px;resize:vertical}
+.fi input:focus,.fi select:focus,.fi textarea:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(0,102,255,.12)}
+.fi.err input,.fi.err select,.fi.err textarea{border-color:var(--red)}
+.fi .em{display:none;font-size:11.5px;color:var(--red);margin-top:5px}
+.fi.err .em{display:block}
+.form .fine{font-size:11.5px;color:var(--muted)}
+.done{text-align:center;padding:10px 0 6px}
+.done .dk{width:64px;height:64px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;margin:0 auto 14px;animation:popIn .5s var(--ease-o)}
+.done .dk svg{width:30px;height:30px}
+.done h4{font-family:var(--f-serif);font-size:22px;margin-bottom:6px}
+.done p{font-size:14px;color:var(--muted)}
+
+/* ---------- cart drawer ---------- */
+.cart{position:fixed;inset:0;z-index:265;pointer-events:none}
+.cart .sc{position:absolute;inset:0;background:rgba(11,19,43,.5);opacity:0;transition:opacity .3s}
+.cart .pn{position:absolute;top:0;right:0;bottom:0;width:min(420px,100vw);background:var(--surface);transform:translateX(100%);transition:transform .4s var(--ease-o);display:flex;flex-direction:column}
+.cart.open{pointer-events:auto}.cart.open .sc{opacity:1}.cart.open .pn{transform:none}
+.cart .ch{display:flex;justify-content:space-between;align-items:center;padding:20px 22px;border-bottom:1px solid var(--line)}
+.cart .ch h3{font-size:18px}.cart .ch span{font-family:var(--f-mono);font-size:11.5px;color:var(--muted)}
+.cart .ci{flex:1;overflow-y:auto;padding:16px 22px;display:flex;flex-direction:column;gap:12px}
+.cart .it{border:1px solid var(--line);border-radius:var(--r);padding:14px;animation:panelIn .35s var(--ease-o)}
+.cart .it .t{display:flex;justify-content:space-between;gap:10px}
+.cart .it b{font-size:14px;color:var(--ink)}
+.cart .it small{display:block;font-size:12px;color:var(--muted);margin-top:3px}
+.cart .it .rm{background:none;border:0;cursor:pointer;color:var(--muted);width:28px;height:28px;border-radius:8px;display:grid;place-items:center}
+.cart .it .rm:hover{background:var(--chip);color:var(--red)}
+.cart .it .rm svg{width:15px;height:15px}
+.cart .it .bt{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.cart .it .q{display:inline-flex;border:1px solid var(--line-2);border-radius:9px;overflow:hidden}
+.cart .it .q button{width:30px;height:30px;border:0;background:none;cursor:pointer;color:var(--ink)}
+.cart .it .q span{min-width:32px;display:grid;place-items:center;font-family:var(--f-mono);font-size:13px;border-left:1px solid var(--line);border-right:1px solid var(--line)}
+.cart .it .pz{font-family:var(--f-mono);font-weight:600;color:var(--ink)}
+.cart .empty{text-align:center;color:var(--muted);padding:50px 10px;font-size:14px}
+.cart .empty svg{width:46px;height:46px;margin:0 auto 12px;color:var(--line-2)}
+.cart .cf{padding:18px 22px 22px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.cart .cf .r{display:flex;justify-content:space-between;font-size:14px;color:var(--muted)}
+.cart .cf .r b{font-family:var(--f-mono);color:var(--ink)}
+.cart .cf .tt{font-size:16px;color:var(--ink);font-weight:700;padding-top:8px;border-top:1px dashed var(--line-2)}
+.cart .cf .tt b{font-size:18px}
+.cart .cf .btn{margin-top:6px}
+
+/* ---------- toast ---------- */
+.toast{position:fixed;left:50%;bottom:26px;z-index:400;transform:translate(-50%,30px);opacity:0;pointer-events:none;background:var(--navy);color:#fff;border-radius:12px;padding:12px 18px 12px 12px;display:flex;align-items:center;gap:10px;font-size:14px;box-shadow:var(--sh-l);transition:transform .4s var(--ease-o),opacity .3s}
+html[data-theme="dark"] .toast{background:#1E2A49}
+.toast.on{transform:translate(-50%,0);opacity:1}
+.toast i{width:26px;height:26px;border-radius:50%;background:var(--green);display:grid;place-items:center}
+.toast i svg{width:14px;height:14px}
+
+/* ---------- floating ---------- */
+.fab-wa{position:fixed;right:22px;bottom:22px;z-index:90;width:56px;height:56px;border-radius:50%;background:var(--wa);color:#fff;display:grid;place-items:center;box-shadow:0 14px 30px -10px rgba(37,211,102,.8);transition:transform .25s var(--ease-o)}
+.fab-wa:hover{transform:scale(1.08)}
+.fab-wa svg{width:28px;height:28px}
+.fab-wa:after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--wa);animation:waP 2.4s var(--ease) infinite}
+@keyframes waP{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.6);opacity:0}}
+.side-cb{position:fixed;right:0;top:50%;z-index:90;transform:translateY(-50%);writing-mode:vertical-rl;background:var(--orange);color:#fff;border:0;cursor:pointer;font-weight:700;font-size:13px;letter-spacing:.04em;padding:16px 9px;border-radius:12px 0 0 12px;box-shadow:-6px 10px 24px -12px rgba(255,138,0,.9);transition:padding .25s var(--ease-o)}
+.side-cb:hover{padding-right:13px}
+@media(max-width:620px){.side-cb{display:none}}
+
+/* ---------- footer (royal blue) ---------- */
+.ftr{background:var(--blue);color:#dbe6ff;padding:56px 0 26px;margin-top:0}
+html[data-theme="dark"] .ftr{background:#0047B3}
+.ftr a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.nl{background:#fff;color:var(--navy);border-radius:var(--r-l);padding:26px 28px;display:grid;grid-template-columns:1.2fr 1fr;gap:22px;align-items:center;margin-bottom:40px}
+.nl h3{font-family:var(--f-serif);font-size:23px;color:var(--navy)}
+.nl p{font-size:13.5px;color:#5B6782;margin-top:4px}
+.nl form{display:flex;gap:8px}
+.nl input{flex:1;min-width:0;border:1.5px solid #D3DCEB;border-radius:11px;padding:12px 14px;font-size:14px;outline:0;color:var(--navy);background:#fff}
+.nl input:focus{border-color:var(--blue)}
+@media(max-width:820px){.nl{grid-template-columns:1fr}}
+.ft-top{display:grid;grid-template-columns:330px 1fr;gap:36px;margin-bottom:34px}
+@media(max-width:960px){.ft-top{grid-template-columns:1fr}}
+.ft-brand .lgc{background:#fff;border-radius:var(--r);padding:16px 18px;display:inline-flex;margin-bottom:14px}
+.ft-brand .lgc .lw{color:var(--navy)}
+.ft-brand .tg{font-weight:600;color:#fff;font-size:14px;margin-bottom:4px}
+.ft-brand .tg2{font-family:var(--f-mono);font-size:11px;color:#c7d8ff;margin-bottom:12px}
+.ft-brand .sup24{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:7px 12px;font-size:12.5px;font-weight:600;color:#fff;margin-bottom:14px}
+.ft-brand .sup24 i{width:8px;height:8px;border-radius:50%;background:#5FE08D;animation:waP 2s infinite;position:relative}
+.ft-brand p{font-size:12.5px;line-height:1.7;color:#dbe6ff;margin-bottom:16px}
+.soc{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.soc a{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.14);display:grid;place-items:center;color:#fff;transition:background .2s,transform .2s}
+.soc a:hover{background:#fff;color:var(--blue);transform:translateY(-2px);text-decoration:none}
+.soc svg{width:16px;height:16px}
+.cvid{display:flex;gap:12px;align-items:center;background:rgba(11,19,43,.25);border-radius:12px;padding:10px;cursor:pointer;border:0;color:#fff;text-align:left;width:100%}
+.cvid .th{width:76px;height:46px;border-radius:8px;background:var(--navy);display:grid;place-items:center;flex-shrink:0}
+.cvid .th svg{width:20px;height:20px;color:#FF0000}
+.cvid b{font-size:13px;display:block}.cvid span{font-size:11.5px;color:#c7d8ff}
+.ft-rows{display:flex;flex-direction:column;gap:14px}
+.ft-row{display:grid;grid-template-columns:110px 1fr;gap:14px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.16)}
+.ft-row .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#fff;font-weight:600;padding-top:2px}
+.ft-row .v{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px}
+.ft-row .v a.hire{color:#fff;background:var(--red);padding:1px 8px;border-radius:6px;font-weight:600}
+@media(max-width:560px){.ft-row{grid-template-columns:1fr;gap:6px}}
+.ft-strip{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:center;padding:16px 0;border-top:1px solid rgba(255,255,255,.16)}
+.ft-strip .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#fff;font-weight:600}
+@media(max-width:700px){.ft-strip{grid-template-columns:1fr}}
+.tiles{display:flex;flex-wrap:wrap;gap:8px}
+.tile{background:#fff;color:var(--navy);border-radius:9px;padding:6px 10px;text-align:center;line-height:1.1;min-width:64px}
+.tile small{display:block;font-family:var(--f-mono);font-size:8.5px;letter-spacing:.1em;color:#5B6782}
+.tile b{font-family:var(--f-disp);font-size:13px;font-weight:800;color:var(--navy)}
+.tile.w{display:flex;align-items:center;gap:7px;font-weight:700;font-size:12.5px;padding:8px 12px}
+.tile .st{color:#f5a623;letter-spacing:1px}
+.partner{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;background:var(--navy);border-radius:var(--r-l);padding:24px 28px;margin:24px 0}
+.partner h3{color:#fff;font-family:var(--f-serif);font-size:22px}
+.partner p{font-size:13.5px;color:#B6C2DA;margin-top:3px}
+.ft-bot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:12px;color:#c7d8ff;padding-top:8px}
+.ft-bot .ids{display:flex;flex-wrap:wrap;gap:4px 14px;font-family:var(--f-mono);font-size:11px}
+
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}.hero [data-in]{opacity:1;transform:none}}
+
+@media(max-width:620px){.promo{font-size:12px}.promo .opt{display:none}}
+/* dark mode: keep navy icon tiles visible on dark surfaces */
+html[data-theme="dark"] [style*="background:#0B132B"],html[data-theme="dark"] [style*="background: #0B132B"]{background:#27355A!important}
+html[data-theme="dark"] .ft-brand .lgc .lw{color:#0B132B}
+
+/* =====================================================================
+   LIVE THEME — matches www.xcellhost.top product pages (xh-product-page)
+   Palette/type measured from the live Microsoft Entra ID page.
+   ===================================================================== */
+:root{
+  --blue:#1565D8;--blue-d:#0C3E8F;--navy:#041E42;--navy-2:#0A2A57;--orange:#FF8C1A;--orange-d:#F57C00;--red:#FF3B3B;
+  --green:#16a34a;--ok:#2ECC71;
+  --bg:#ffffff;--surface:#ffffff;--surface-2:#F2F6FC;--ink:#041E42;--text:#1C2A3A;--muted:#51607A;
+  --line:#DCE5F2;--line-2:#C9D8EE;--chip:#E8F0FD;
+  --hero:#041E42;--hero-muted:#c9d8f2;
+  --f-serif:"Sora",system-ui,sans-serif;--f-disp:"Sora",system-ui,sans-serif;--f-body:"IBM Plex Sans",system-ui,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,monospace;
+  --sh-s:0 6px 18px rgba(4,30,66,.06);--sh:0 18px 50px rgba(4,30,66,.10);--sh-l:0 34px 80px -20px rgba(4,30,66,.34);
+  --maxw:1240px;
+}
+html[data-theme="dark"]{--bg:#06122A;--surface:#0B1A38;--surface-2:#081630;--ink:#EAF1FF;--text:#C9D6EE;--muted:#93A4C4;--line:#1B2D52;--line-2:#243A66;--chip:#10244A}
+body{font-size:15px}
+h1,h2,h3,h4{color:var(--ink)}
+#xhProgress{background:linear-gradient(90deg,#1565D8,#FF8C1A);box-shadow:0 0 12px rgba(21,101,216,.6)}
+
+/* ---------- buttons (live: 8px radius) ---------- */
+.btn{border-radius:8px;font-size:14px;padding:11px 20px}
+.btn-sm{border-radius:8px}
+.btn-orange{background:#FF8C1A;box-shadow:0 10px 26px -10px rgba(255,140,26,.7)}
+.btn-orange:hover{background:#e97a08}
+.btn-blue{background:linear-gradient(135deg,#1565D8,#0C3E8F);box-shadow:0 14px 28px -12px rgba(21,101,216,.75)}
+.btn-line{border-color:rgba(255,255,255,.35);background:rgba(255,255,255,.08)}
+.btn-ghost{border-color:var(--line)}
+
+/* ---------- section headings → live mono labels ---------- */
+.sec{padding:30px 0}
+.sec.alt{background:transparent}
+.sec.tight{padding:26px 0}
+main > .sec:first-of-type{padding-top:44px}
+.sh{max-width:none;margin-bottom:18px}
+.sh .eyebrow{display:block;font:700 13px/1.35 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 10px;padding:0;background:none;border:0}
+.sh .eyebrow:before{content:none}
+.sh h2{font-family:var(--f-disp)!important;font-weight:800!important;font-size:clamp(24px,2.4vw,30px)!important;line-height:1.22!important;letter-spacing:-.02em!important;color:var(--ink)!important;margin:0 0 10px!important}
+.sh h2 .acc{color:var(--blue)!important;font-style:normal!important}
+.sh p{font-size:16px;color:var(--text);max-width:none;line-height:1.75}
+.sh.c{text-align:left}
+
+/* ---------- cards & icon tiles (live soft tiles) ---------- */
+.card{border-radius:18px;box-shadow:var(--sh-s)}
+.card:hover{box-shadow:var(--sh);border-color:#c9dcfb}
+.ico{width:40px;height:40px;border-radius:11px;background:var(--chip)!important;color:var(--blue)!important}
+.ico svg{width:20px;height:20px}
+.ico.o{background:#fff3e0!important;color:#F57C00!important}.ico.n{background:#eaeff9!important;color:#0A2A57!important}.ico.g{background:#e4f7ec!important;color:#16a34a!important}.ico.r{background:#fdecec!important;color:#d92d20!important}
+html[data-theme="dark"] .ico.o,html[data-theme="dark"] .ico.n,html[data-theme="dark"] .ico.g,html[data-theme="dark"] .ico.r{background:var(--chip)!important}
+.chip i{background:var(--blue)}
+.plan{border-radius:18px}
+.calc{border-radius:18px}
+.calc .cout{background:linear-gradient(160deg,#061634,#0c2b63 60%,#12408f)}
+.cta{background:linear-gradient(120deg,#041E42,#123776 60%,#1565D8)}
+.tbl th{font-size:11px}
+
+/* =========================== CHROME =========================== */
+/* utility bar */
+.ubar{background:#041E42}
+.ubar .ur .stat{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.08);display:grid;place-items:center;color:#5FE08D}
+.ubar .ur .stat svg{width:14px;height:14px}
+.ubar .lang-sel{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:99px;padding:3px 10px;color:#fff;font-size:12px;cursor:pointer}
+.ubar .lang-sel svg{width:13px;height:13px}
+.ubar .ph b{color:#9fb6de;font-weight:500;margin-right:6px}
+/* promo */
+.promo{background:linear-gradient(90deg,#1565D8,#0E4CAB);font-size:13px}
+.promo .tick{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:4px;background:#2ECC71;color:#fff;margin-right:6px;vertical-align:-3px}
+.promo .tick svg{width:11px;height:11px}
+.promo .tag{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);font-family:var(--f-mono)}
+/* header with image logo */
+.hdr{background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px)}
+html[data-theme="dark"] .hdr{background:rgba(6,18,42,.92)}
+.hdr .wrap{height:80px;max-width:1360px}
+.logo-img{display:block;flex-shrink:0;line-height:0}
+.logo-img img{height:64px;width:auto;display:block}
+.logo-img .alt{display:none;font-family:var(--f-disp);font-weight:800;font-size:22px;color:var(--ink)}
+.logo-img.noimg img{display:none}.logo-img.noimg .alt{display:block}
+html[data-theme="dark"] .logo-img img{background:#fff;border-radius:10px;padding:2px 6px}
+.nav>.ni>button{font-weight:500;color:var(--text)}
+.nav>.ni>button svg{width:9px;height:9px;opacity:.6}
+
+/* left contact stack (live) */
+.lfab{position:fixed;left:22px;bottom:22px;z-index:95;display:flex;flex-direction:column;gap:14px}
+.lfab a,.lfab button{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;color:#fff;border:0;cursor:pointer;box-shadow:0 12px 26px -10px rgba(4,30,66,.55);transition:transform .25s var(--ease-o)}
+.lfab a:hover,.lfab button:hover{transform:scale(1.08)}
+.lfab svg{width:26px;height:26px}
+.lfab .lf-call{background:linear-gradient(135deg,#1565D8,#0C3E8F)}
+.lfab .lf-cal{background:linear-gradient(135deg,#FF8C1A,#F57C00)}
+.lfab .lf-wa{background:#25D366}
+.fab-wa{display:none!important}
+/* right bottom: cart + bot */
+.rfab{position:fixed;right:22px;bottom:22px;z-index:95;display:flex;flex-direction:column;gap:14px;align-items:center}
+.rfab button{position:relative;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;color:#fff;border:0;cursor:pointer;box-shadow:0 12px 26px -10px rgba(4,30,66,.55);transition:transform .25s var(--ease-o)}
+.rfab button:hover{transform:scale(1.08)}
+.rfab svg{width:24px;height:24px}
+.rfab .rf-cart{background:linear-gradient(135deg,#1565D8,#0C3E8F)}
+.rfab .rf-bot{background:#0A2A57}
+.rfab .rf-bot .on{position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:50%;background:#2ECC71;border:2px solid #fff}
+.rfab .cnt{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;padding:0 5px;border-radius:99px;background:#FF8C1A;color:#fff;font:600 11px var(--f-mono);display:grid;place-items:center;transform:scale(0);transition:transform .3s var(--ease-o)}
+.rfab .cnt.on{transform:scale(1)}
+/* callback side tab (live gradient + phone) */
+.side-cb{background:linear-gradient(180deg,#FF8C1A,#F57C00);display:flex;align-items:center;gap:8px;padding:18px 10px}
+.side-cb svg{width:15px;height:15px;transform:rotate(90deg)}
+/* chatbot panel */
+.xbot{position:fixed;right:22px;bottom:150px;z-index:260;width:min(360px,calc(100vw - 32px));background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--sh-l);overflow:hidden;opacity:0;transform:translateY(12px) scale(.98);pointer-events:none;transition:opacity .25s,transform .35s var(--ease-o)}
+.xbot.open{opacity:1;transform:none;pointer-events:auto}
+.xbot .bh{background:linear-gradient(120deg,#041E42,#1565D8);color:#fff;padding:14px 16px;display:flex;align-items:center;gap:10px}
+.xbot .bh b{font-family:var(--f-disp);font-size:14px;display:block}.xbot .bh span{font-size:11.5px;color:#c9d8f2}
+.xbot .bh .x{margin-left:auto;background:rgba(255,255,255,.12);border:0;color:#fff;width:30px;height:30px;border-radius:8px;cursor:pointer}
+.xbot .bm{padding:14px 16px;display:flex;flex-direction:column;gap:10px;max-height:300px;overflow-y:auto}
+.xbot .msg{background:var(--surface-2);border:1px solid var(--line);border-radius:12px 12px 12px 4px;padding:10px 12px;font-size:13.5px;color:var(--text);max-width:88%}
+.xbot .msg.me{align-self:flex-end;background:#1565D8;color:#fff;border-color:#1565D8;border-radius:12px 12px 4px 12px}
+.xbot .qr{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 14px}
+.xbot .qr button,.xbot .qr a{font-size:12.5px;font-weight:600;border:1px solid var(--line-2);background:var(--surface);color:var(--blue);border-radius:99px;padding:7px 12px;cursor:pointer}
+.xbot .qr button:hover,.xbot .qr a:hover{border-color:var(--blue)}
+@media(max-width:620px){.lfab{left:12px;bottom:12px;gap:10px}.lfab a,.lfab button,.rfab button{width:48px;height:48px}.rfab{right:12px;bottom:12px}}
+
+/* =========================== LIVE HERO =========================== */
+.hero.lh{background:radial-gradient(900px 420px at 80% -20%,#0E3A78 0%,#041E42 60%);padding:50px 0 54px;min-height:510px}
+html[data-theme="dark"] .hero.lh{background:radial-gradient(900px 420px at 80% -20%,#0a2a5a 0%,#020b1f 60%)}
+.hero.lh .hero-bg .lh-grid{position:absolute;inset:0;opacity:.5;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:radial-gradient(760px 560px at 75% 30%,#000,transparent 72%);mask-image:radial-gradient(760px 560px at 75% 30%,#000,transparent 72%);animation:lhGrid 32s linear infinite}
+@keyframes lhGrid{to{background-position:48px 48px}}
+.hero.lh .hero-bg .lh-dots{position:absolute;inset:0;opacity:.55;background-image:radial-gradient(rgba(127,176,255,.55) 1.2px,transparent 1.3px);background-size:14px 14px;-webkit-mask-image:radial-gradient(520px 300px at 30% 45%,#000 20%,transparent 75%);mask-image:radial-gradient(520px 300px at 30% 45%,#000 20%,transparent 75%)}
+.hero.lh .hero-bg .lh-aur{position:absolute;border-radius:50%;filter:blur(70px);opacity:.38}
+.hero.lh .hero-bg .lh-aur.a1{width:420px;height:420px;background:radial-gradient(circle,#2f6bff,transparent 65%);top:-110px;right:6%;animation:lhA1 12s ease-in-out infinite}
+.hero.lh .hero-bg .lh-aur.a2{width:340px;height:340px;background:radial-gradient(circle,#ff8c1a,transparent 65%);bottom:-80px;right:28%;animation:lhA2 14s ease-in-out infinite}
+@keyframes lhA1{50%{transform:translate(-30px,24px) scale(1.12)}}
+@keyframes lhA2{50%{transform:translate(26px,-20px) scale(1.15)}}
+.hero.lh .hero-bg .lh-scan{position:absolute;left:0;right:0;height:120px;background:linear-gradient(180deg,transparent,rgba(90,150,255,.10),transparent);animation:lhScan 7s var(--ease) infinite}
+@keyframes lhScan{0%{top:-120px}100%{top:100%}}
+.hero.lh .crumb{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#7fb0ff;margin-bottom:14px}
+.hero.lh .crumb a:hover{color:#fff}.hero.lh .crumb .sep{margin:0 6px;color:#5a7db3}.hero.lh .crumb .c{color:#7fb0ff}
+.hero.lh .hero-grid{grid-template-columns:1.08fr 1fr;gap:40px;padding-bottom:0;align-items:center}
+.lh-title{font-family:var(--f-disp)!important;font-weight:800!important;font-size:clamp(30px,3.4vw,44px)!important;line-height:1.14!important;letter-spacing:-.025em!important;color:#fff!important;margin:0 0 14px!important;display:block}
+.lh-title .x{color:#FF3B3B}
+.lh-title .brd{color:#fff}
+.lh-title .dv{color:#7fb0ff;margin:0 .22em;font-weight:500}
+.lh-title .nm{color:#fff;display:block}
+.lh-tag{font-family:var(--f-disp);font-weight:700;font-size:16.5px;color:#fff;line-height:1.45;margin-bottom:2px}
+.lh-tag2{font-family:var(--f-disp);font-weight:600;font-size:15.5px;color:#dbe7fb;margin-bottom:16px}
+.lh-type{font-family:var(--f-disp);font-weight:700;font-size:16px;color:#9cc3ff;min-height:24px;margin-bottom:18px}
+.lh-type .cur{display:inline-block;width:2px;height:18px;background:#9cc3ff;margin-left:2px;vertical-align:-3px;animation:lhBlink 1s steps(2) infinite}
+@keyframes lhBlink{50%{opacity:0}}
+.lh-points{display:grid;grid-template-columns:1fr 1fr;gap:12px 20px;max-width:520px;margin-bottom:24px}
+.lh-points div{display:flex;align-items:center;gap:10px;font-size:14px;color:#eaf2ff}
+.lh-points .tk{width:20px;height:20px;border-radius:5px;background:#1565D8;display:grid;place-items:center;flex-shrink:0;box-shadow:0 0 0 3px rgba(21,101,216,.25)}
+.lh-points .tk svg{width:11px;height:11px;color:#fff}
+.lh-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.lh-ctas .btn-gl{background:rgba(255,255,255,.08);color:#fff;border:1.5px solid rgba(255,255,255,.35)}
+.lh-ctas .btn-gl:hover{background:rgba(255,255,255,.16);border-color:#fff}
+.lh-ask{display:inline-flex;align-items:center;gap:12px;flex-wrap:wrap;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:8px 10px 8px 14px}
+.lh-ask .k{font-family:var(--f-mono);font-size:11px;font-weight:600;letter-spacing:.06em;color:#fff}
+.lh-ask .k b{color:#FF8C1A;margin-right:4px}
+.lh-ask .chips{display:flex;gap:6px}
+.lh-ask a{width:30px;height:30px;border-radius:8px;background:#fff;display:grid;place-items:center;transition:transform .2s var(--ease-o),box-shadow .2s}
+.lh-ask a:hover{transform:translateY(-2px);box-shadow:0 8px 18px -8px rgba(0,0,0,.6)}
+.lh-ask a svg{width:18px;height:18px}
+.hero.lh .stage{min-height:400px}
+.lh-powered{position:absolute;left:4%;bottom:-8px;z-index:6;background:#0A1A3A;border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:8px 14px 9px;box-shadow:0 14px 30px -12px rgba(0,0,0,.7)}
+.lh-powered small{display:block;font-family:var(--f-mono);font-size:8.5px;letter-spacing:.16em;color:#9fb6de;text-transform:uppercase;margin-bottom:4px}
+.lh-powered>span{display:flex;align-items:center;gap:8px;font-family:var(--f-disp);font-weight:700;font-size:16px;color:#fff}
+.lh-powered .msq{display:grid;grid-template-columns:1fr 1fr;gap:2px;width:18px;height:18px}
+.lh-powered .msq i{display:block}
+@media(max-width:980px){.hero.lh .hero-grid{grid-template-columns:1fr}.hero.lh .stage{min-height:0;margin-top:18px}.lh-powered{position:relative;left:auto;bottom:auto;display:inline-block;margin-top:14px}}
+@media(max-width:560px){.lh-points{grid-template-columns:1fr}.lh-ctas .btn{flex:1 1 auto}.lh-ask{border-radius:12px}}
+
+/* trust strip (live) */
+.lh-trust{background:var(--surface-2);border-bottom:1px solid var(--line)}
+.lh-trust .wrap{display:flex;justify-content:space-between;gap:12px 22px;flex-wrap:wrap;padding:14px 24px;font-size:12.5px;color:var(--muted)}
+.lh-trust b{font-family:var(--f-mono);color:var(--ink);font-weight:600}
+@media(max-width:760px){.lh-trust .wrap{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;white-space:nowrap}}
+
+/* live body primitives */
+.pp-sec{font:700 15px/1.35 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 14px}
+.pp-ov{font-size:16px;color:var(--text);line-height:1.75}
+.pp-ov b{color:var(--ink)}
+.pp-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px 46px}
+@media(max-width:820px){.pp-cols{grid-template-columns:1fr}}
+.prov-strip{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:22px}
+.prov-lbl{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+.prov{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-disp);font-weight:700;font-size:13.5px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:7px 15px 7px 8px;box-shadow:0 4px 12px -8px rgba(4,18,42,.4)}
+.prov .pl{width:24px;height:24px;border-radius:6px;display:grid;place-items:center;color:#fff;flex-shrink:0}
+.prov .pl svg{width:14px;height:14px}
+.prov .pl .msq{display:grid;grid-template-columns:1fr 1fr;gap:1.5px;width:14px;height:14px}.prov .pl .msq i{display:block}
+/* 3-card explainer (live vcard) */
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:900px){.vgrid{grid-template-columns:1fr}}
+.vcard{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:var(--sh-s);transition:transform .35s var(--ease-o),box-shadow .35s,border-color .3s}
+.vcard:hover{transform:translateY(-6px);box-shadow:var(--sh);border-color:#c9dcfb}
+.vcard .vb{display:inline-flex;align-items:center;gap:7px;font-family:var(--f-mono);font-size:12px;font-weight:600;padding:6px 12px;border-radius:99px;margin-bottom:16px;background:var(--chip);color:var(--blue)}
+.vcard .vb svg{width:13px;height:13px}
+.vcard.b2 .vb{background:#eaeff9;color:#2b4a8f}.vcard.b3 .vb{background:#fff3e0;color:#F57C00}
+.vcard h3{font-size:18px;margin-bottom:8px}
+.vcard p{font-size:13.5px;color:var(--muted);margin-bottom:18px;line-height:1.6}
+.vcard ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.vcard li{display:flex;gap:9px;align-items:flex-start;font-size:13px;color:var(--text)}
+.vcard li i{width:18px;height:18px;border-radius:50%;background:#e4f7ec;color:#16a34a;display:grid;place-items:center;flex-shrink:0;margin-top:1px}
+.vcard li i svg{width:10px;height:10px}
+
+/* dark Microsoft plan card (live ez-card) */
+.ez-wrap{display:grid;grid-template-columns:minmax(0,380px) 1fr;gap:26px;align-items:start}
+@media(max-width:900px){.ez-wrap{grid-template-columns:1fr}}
+.ez-card{position:relative;background:#0B1730;border:1px solid #1e2e52;border-radius:16px;padding:22px 20px 20px;color:#fff;box-shadow:0 24px 50px -24px rgba(4,30,66,.8);overflow:hidden}
+.ez-card .ez-off{position:absolute;top:0;right:0;background:#FF8C1A;color:#fff;font:700 10px var(--f-mono);letter-spacing:.08em;padding:5px 12px;border-radius:0 16px 0 10px}
+.ez-card .ez-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.ez-card .ez-ms{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-disp);font-weight:700;font-size:15px}
+.ez-card .ez-ms .msq{display:grid;grid-template-columns:1fr 1fr;gap:2px;width:18px;height:18px}.ez-card .ez-ms .msq i{display:block}
+.ez-card .ez-ext{color:#7fb0ff}.ez-card .ez-ext svg{width:15px;height:15px}
+.ez-card .ez-fam{font:600 10.5px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:#7fb0ff}
+.ez-card h3{color:#fff;font-size:18px;margin:6px 0 4px}
+.ez-card .ez-sku{font:400 10.5px var(--f-mono);color:#7d8fb3;margin-bottom:16px}
+.ez-card .ez-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#b9c9e2;padding:8px 0}
+.ez-card .ez-row s{font-family:var(--f-mono);color:#8ea2c6}
+.ez-card .ez-gst{text-align:right;font:400 10px var(--f-mono);color:#7d8fb3;margin:-6px 0 8px}
+.ez-card .ez-pr{display:flex;justify-content:space-between;align-items:center;padding:7px 0}
+.ez-card .ez-tag{font:700 9.5px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:6px}
+.ez-card .ez-tag.m{background:#1565D8;color:#fff}.ez-card .ez-tag.y{background:#FF8C1A;color:#fff}
+.ez-card .ez-amt{font-family:var(--f-disp);font-weight:800;font-size:24px;color:#fff;letter-spacing:-.02em}
+.ez-card .ez-save{display:flex;justify-content:space-between;align-items:center;background:rgba(46,204,113,.08);border:1px solid rgba(46,204,113,.35);border-radius:10px;padding:10px 12px;margin:14px 0 16px;font-size:12px;color:#b9c9e2}
+.ez-card .ez-save b{color:#5FE08D;font-family:var(--f-mono);font-size:11.5px}
+.ez-card .ez-q{display:flex;align-items:center;background:#fff;border-radius:8px;overflow:hidden;margin-bottom:12px}
+.ez-card .ez-q button{width:44px;height:38px;border:0;background:#1565D8;color:#fff;font-size:18px;cursor:pointer}
+.ez-card .ez-q button:first-child{background:#51607A}
+.ez-card .ez-q input{flex:1;height:38px;border:0;text-align:center;font:600 14px var(--f-mono);color:#041E42;background:#fff;outline:0}
+.ez-card .ez-cta{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;margin-bottom:12px}
+.ez-card .ez-cta a{display:inline-flex;align-items:center;gap:6px;color:#dbe7fb;font-weight:600}
+.ez-card .ez-cta a.q{color:#7fb0ff}
+.ez-card .ez-cta svg{width:13px;height:13px}
+.ez-card .ez-buy{width:100%;border:0;cursor:pointer;background:linear-gradient(135deg,#1565D8,#0C3E8F);color:#fff;font-weight:700;font-size:14px;padding:12px;border-radius:9px;box-shadow:0 12px 24px -12px rgba(21,101,216,.9);transition:transform .2s}
+.ez-card .ez-buy:hover{transform:translateY(-2px)}
+.ez-note{font:400 11.5px var(--f-mono);color:var(--muted);margin-top:14px}
+
+/* dark proof band (live "certified team" band) */
+.dband{background:linear-gradient(120deg,#041E42,#0E2F66 60%,#1350B0);border-radius:20px;padding:30px;display:grid;grid-template-columns:repeat(3,1fr);gap:0;color:#fff;position:relative;overflow:hidden;box-shadow:var(--sh-l)}
+.dband>div{display:flex;gap:14px;align-items:flex-start;padding:16px 20px;border-right:1px solid rgba(255,255,255,.12);position:relative}
+.dband>div:nth-child(3n){border-right:0}
+.dband>div:nth-child(n+4){border-top:1px solid rgba(255,255,255,.12)}
+.dband i{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center;flex-shrink:0;color:#9cc3ff}
+.dband i svg{width:20px;height:20px}
+.dband b{display:block;font-family:var(--f-disp);font-size:15px;color:#fff;margin-bottom:4px}
+.dband p{font-size:12.5px;color:#c9d8f2;line-height:1.55}
+.dband .n{position:absolute;right:14px;top:10px;font-family:var(--f-mono);font-weight:600;font-size:11px;color:rgba(255,255,255,.35)}
+@media(max-width:860px){.dband{grid-template-columns:1fr}.dband>div{border-right:0;border-top:1px solid rgba(255,255,255,.12)}.dband>div:first-child{border-top:0}}
+
+/* video (live "watch it in action") */
+.lvid{max-width:640px;margin:0 auto;text-align:center}
+.lvid .lbl{display:inline-block;font:600 12px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);border-radius:99px;padding:8px 16px;margin-bottom:16px;color:var(--ink);background:var(--surface)}
+.lvid .fr{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#0B1730;box-shadow:var(--sh-l);cursor:pointer;display:grid;place-items:center}
+.lvid .fr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.lvid .fr .pb{position:relative;width:68px;height:48px;border-radius:12px;background:#FF0000;display:grid;place-items:center;transition:transform .2s}
+.lvid .fr:hover .pb{transform:scale(1.08)}
+.lvid .fr .pb svg{width:22px;height:22px;color:#fff}
+.lvid .fr .cap{position:absolute;left:14px;right:14px;top:12px;text-align:left;color:#fff;font-family:var(--f-disp);font-weight:700;font-size:15px;text-shadow:0 2px 8px rgba(0,0,0,.6)}
+.lvid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* live CTA + proof strip */
+.lcta{background:linear-gradient(120deg,#0E3A8F,#1565D8 55%,#2a7bf0);border-radius:20px;padding:30px 34px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;color:#fff;box-shadow:var(--sh-l);position:relative;overflow:hidden}
+.lcta h2{color:#fff!important;font-family:var(--f-disp)!important;font-size:24px!important;margin-bottom:6px!important;text-transform:none!important;letter-spacing:-.01em!important}
+.lcta .sub{font-size:13.5px;color:#dbe7fb;margin-bottom:18px}
+.lcta .row{display:flex;flex-wrap:wrap;gap:10px}
+.lcta .row .btn{padding:10px 16px;font-size:13px}
+.lcta .row .b-w{background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.35);color:#fff}
+.lcta .row .b-w:hover{background:rgba(255,255,255,.22)}
+.lcta .seal{width:120px;height:120px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 0 0 6px rgba(255,255,255,.18);overflow:hidden}
+.lcta .seal img{width:100%;height:100%;object-fit:cover}
+.lcta .seal .sl{font:700 10px var(--f-mono);color:#1565D8;text-align:center;padding:10px;display:none}
+.lcta .seal.noimg img{display:none}.lcta .seal.noimg .sl{display:block}
+@media(max-width:760px){.lcta{grid-template-columns:1fr}.lcta .seal{display:none}}
+.proof{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:18px}
+.proof span{font:600 11.5px var(--f-mono);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:7px 14px}
+
+/* ============================ LIVE FOOTER ============================ */
+.lnl{position:relative;z-index:2;max-width:860px;margin:30px auto -110px;background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--sh-l);padding:24px 26px;text-align:center}
+.lnl h3{display:flex;align-items:center;justify-content:center;gap:10px;font-size:17px;margin-bottom:8px}
+.lnl h3 svg{width:20px;height:20px;color:#F57C00}
+.lnl p{font-size:13px;color:var(--muted);margin-bottom:16px}
+.lnl form{display:flex;gap:10px;margin-bottom:22px}
+.lnl input{flex:1;min-width:0;border:1.5px solid var(--line-2);border-radius:10px;padding:12px 14px;font-size:14px;background:var(--surface);color:var(--ink);outline:0}
+.lnl input:focus{border-color:#1565D8}
+.lnl .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.lnl .two a{display:flex;align-items:center;justify-content:center;gap:8px;color:#fff;font-weight:600;font-size:13.5px;border-radius:10px;padding:12px}
+.lnl .two a svg{width:17px;height:17px}
+.lnl .two .w{background:#25D366}.lnl .two .l{background:#1565D8}
+@media(max-width:620px){.lnl{margin:30px 16px -110px}.lnl form{flex-direction:column}.lnl .two{grid-template-columns:1fr}}
+.lft{background:linear-gradient(160deg,#1350C8 0%,#1565D8 45%,#1d74ee 100%);color:#e6efff;padding:150px 0 30px}
+html[data-theme="dark"] .lft{background:linear-gradient(160deg,#0a2f7a,#0f4bb0)}
+.lft a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.lft .top{display:grid;grid-template-columns:1.35fr 1fr;gap:26px;margin-bottom:26px}
+@media(max-width:900px){.lft .top{grid-template-columns:1fr}}
+.lft .bnr{background:#fff;border-radius:14px;padding:10px 14px;display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.lft .bnr img.lg{height:56px;width:auto}
+.lft .bnr .tx{flex:1;color:#041E42;font-size:12.5px;line-height:1.5}
+.lft .bnr .tx b{display:block;font-size:13px}
+.lft .bnr .tx em{font-style:normal;color:#1565D8;font-weight:700}
+.lft .bnr img.bd{width:58px;height:58px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.lft .co{font-size:12.5px;line-height:1.75;color:#e6efff}
+.lft .co b{color:#fff}
+.lft .soc{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.lft .soc a{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.16);display:grid;place-items:center;color:#fff}
+.lft .soc a:hover{background:#fff;color:#1565D8;text-decoration:none}
+.lft .soc svg{width:16px;height:16px}
+.lft .cv h3{font-family:var(--f-disp);color:#fff;font-size:24px;margin-bottom:12px}
+.lft .cv .fr{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#0B1730;cursor:pointer;display:grid;place-items:center}
+.lft .cv .fr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.lft .cv .fr .pb{position:relative;width:60px;height:42px;border-radius:10px;background:#FF0000;display:grid;place-items:center}
+.lft .cv .fr .pb svg{width:20px;height:20px;color:#fff}
+.lft .cv iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.lft .rows{display:flex;flex-direction:column;gap:10px;margin-bottom:22px}
+.lft .row{display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:baseline}
+.lft .row .k{font-family:var(--f-disp);font-weight:700;color:#fff;font-size:14px}
+.lft .row .v{display:flex;flex-wrap:wrap;gap:4px 18px;font-size:12.5px}
+.lft .row .v a:before{content:"›";margin-right:6px;opacity:.7}
+.lft .row .v a.hire{background:#e5383b;color:#fff;border-radius:6px;padding:2px 10px;font-weight:700}
+.lft .row .v a.hire:before{content:none}
+@media(max-width:620px){.lft .row{grid-template-columns:1fr;gap:4px}}
+.lft .strip{display:grid;grid-template-columns:140px 1fr;gap:14px;align-items:center;padding:12px 0}
+.lft .strip .k{font-family:var(--f-disp);font-weight:700;color:#fff;font-size:14px}
+@media(max-width:700px){.lft .strip{grid-template-columns:1fr}}
+.lft .tiles{display:flex;flex-wrap:wrap;gap:8px}
+.lft .tl{background:#fff;color:#041E42;border-radius:8px;min-width:64px;padding:0 7px;height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;line-height:1.05;box-shadow:0 6px 14px -8px rgba(0,0,0,.35)}
+.lft .tl small{font:600 7.5px var(--f-mono);letter-spacing:.1em;color:#51607A}
+.lft .tl b{font-family:var(--f-disp);font-weight:800;font-size:12px;color:#041E42}
+.lft .tl em{font:600 6.5px var(--f-mono);letter-spacing:.08em;color:#8a98b2;font-style:normal;text-transform:uppercase}
+.lft .pay{background:#fff;border-radius:7px;padding:6px 10px;font:800 11px var(--f-disp);color:#041E42;min-width:64px;text-align:center}
+.lft .prot{background:#fff;border-radius:8px;height:46px;padding:4px 8px;display:flex;align-items:center}
+.lft .prot img{height:36px;width:auto}
+.lft .prot .pt{font:800 11px var(--f-disp);color:#041E42}
+.lft .rev{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:760px){.lft .rev{grid-template-columns:1fr}}
+.lft .rev div{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:10px 14px;display:flex;gap:10px;align-items:center}
+.lft .rev i{width:30px;height:30px;border-radius:7px;display:grid;place-items:center;color:#fff;font-style:normal;font-weight:800;font-size:13px;flex-shrink:0}
+.lft .rev b{display:block;color:#fff;font-size:13px}
+.lft .rev span>span{font:500 10.5px var(--f-mono);color:#ffd27a}
+.lft .grow{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;background:rgba(4,30,66,.35);border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:18px 22px;margin:22px 0}
+.lft .grow b{font-family:var(--f-disp);font-size:18px;color:#fff}
+.lft .grow span{display:block;font-size:12.5px;color:#c9d8f2}
+.lft .bot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12px;color:#c9d8f2;border-top:1px solid rgba(255,255,255,.18);padding-top:16px}
+.lft .bot .ids{font-family:var(--f-mono);font-size:11px}
+.lft img.broken{display:none}
+.lnl-wrap{position:relative;z-index:2;padding:0 16px}
+.lnl .fi input{width:100%}
+.lnl .fi{margin:0}
+.lh-ask .chips{flex-wrap:wrap}
+.lh-ask a{width:auto;height:28px;padding:0 10px;border-radius:7px;font:700 11.5px var(--f-disp);color:#041E42;gap:6px;display:inline-flex;align-items:center}
+.lh-ask a i{width:8px;height:8px;border-radius:50%;display:block}
+.lh-ask a[data-ai=chatgpt] i{background:#10a37f}.lh-ask a[data-ai=claude] i{background:#d97757}.lh-ask a[data-ai=perplexity] i{background:#20808d}.lh-ask a[data-ai=google] i{background:#4285f4}.lh-ask a[data-ai=copilot] i{background:#7b61ff}
+
+/* hyper-motion layer for live hero */
+.hero.lh .hero-bg canvas.lh-net{position:absolute;inset:0;width:100%;height:100%;opacity:.9}
+.hero.lh .stage{position:relative;perspective:1200px}
+.hero.lh .stage>.lh-tilt{transform-style:preserve-3d;transition:transform .5s var(--ease-o);will-change:transform}
+.lh-orbit{position:absolute;left:50%;top:50%;width:560px;height:560px;margin:-280px 0 0 -280px;border-radius:50%;border:1px dashed rgba(127,176,255,.22);pointer-events:none;animation:lhSpin 60s linear infinite}
+.lh-orbit.o2{width:440px;height:440px;margin:-220px 0 0 -220px;border-style:solid;border-color:rgba(255,140,26,.14);animation-duration:38s;animation-direction:reverse}
+.lh-orbit:before,.lh-orbit:after{content:"";position:absolute;width:10px;height:10px;border-radius:50%;background:#7fb0ff;box-shadow:0 0 14px 4px rgba(127,176,255,.6);top:-5px;left:50%}
+.lh-orbit:after{top:auto;bottom:-5px;background:#FF8C1A;box-shadow:0 0 14px 4px rgba(255,140,26,.55)}
+.lh-orbit.o2:before{background:#5FE08D;box-shadow:0 0 12px 3px rgba(95,224,141,.5)}
+@keyframes lhSpin{to{transform:rotate(360deg)}}
+.lh-chip{position:absolute;z-index:5;display:flex;align-items:center;gap:8px;background:rgba(10,26,58,.88);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(8px);color:#fff;border-radius:12px;padding:8px 12px;font:600 12px var(--f-disp);box-shadow:0 16px 30px -14px rgba(0,0,0,.7);animation:lhFloat 6s ease-in-out infinite}
+.lh-chip i{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;background:#1565D8}
+.lh-chip i svg{width:13px;height:13px}
+.lh-chip small{display:block;font:500 10px var(--f-mono);color:#9fb6de}
+.lh-chip.c2{animation-delay:-3s}.lh-chip.c2 i{background:#FF8C1A}
+@keyframes lhFloat{50%{transform:translateY(-10px)}}
+@media(max-width:1100px){.lh-chip{display:none}}
+@media(max-width:980px){.lh-orbit{display:none}}
+.rfab .rf-cart{box-shadow:0 0 0 3px rgba(255,255,255,.85),0 12px 26px -10px rgba(4,30,66,.55)}
+@media(max-width:760px){.ubar .ur .stat,.ubar .lang-sel,.ubar .ph b{display:none}}
+.hero.lh .stage{padding-bottom:62px}@media(max-width:980px){.hero.lh .stage{padding-bottom:0}}
+/* dark-mode fixes for live primitives */
+html[data-theme="dark"] .ico.n{color:#9cc3ff!important}html[data-theme="dark"] .ico.o{color:#FFB15C!important}html[data-theme="dark"] .ico.g{color:#5FE08D!important}html[data-theme="dark"] .ico.r{color:#ff8a80!important}html[data-theme="dark"] .ico{color:#7fb0ff!important}
+html[data-theme="dark"] .vcard .vb{background:#10244A;color:#9cc3ff}html[data-theme="dark"] .vcard.b2 .vb{background:#14264a;color:#b9c9e2}html[data-theme="dark"] .vcard.b3 .vb{background:rgba(255,140,26,.14);color:#FFB15C}
+html[data-theme="dark"] .vcard li i{background:rgba(46,204,113,.14);color:#5FE08D}
+html[data-theme="dark"] .vcard:hover{border-color:#2b4d8a}
+.ez-card .ez-save{gap:10px}.ez-card .ez-save b{white-space:nowrap;flex-shrink:0}.ez-card .ez-save>span{min-width:0}
+/* perf: composite hero bg layers instead of repainting every frame */
+.hero.lh .hero-bg .lh-grid{background-image:none!important;animation:none!important;overflow:hidden}
+.hero.lh .hero-bg .lh-grid:before{content:"";position:absolute;inset:-48px 0 0 -48px;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:48px 48px;animation:lhGridT 32s linear infinite;will-change:transform}
+@keyframes lhGridT{to{transform:translate3d(48px,48px,0)}}
+.hero.lh .hero-bg .lh-aur{will-change:transform;transform:translateZ(0)}
+.hero.lh .hero-bg .lh-scan{will-change:transform;top:0!important;animation:lhScanT 7s var(--ease) infinite}
+@keyframes lhScanT{0%{transform:translateY(-120px)}100%{transform:translateY(700px)}}
+@media(prefers-reduced-motion:reduce){.hero.lh .hero-bg .lh-grid:before{animation:none}}
+.hero.lh .hero-bg .lh-aur{filter:none!important;opacity:.3}
+.hero.lh .hero-bg .lh-aur.a1{background:radial-gradient(circle,rgba(47,107,255,.9),rgba(47,107,255,.25) 40%,transparent 70%)!important}
+.hero.lh .hero-bg .lh-aur.a2{background:radial-gradient(circle,rgba(255,140,26,.85),rgba(255,140,26,.2) 40%,transparent 70%)!important}
+
+/* ===== page ===== */
+/* ===== Managed Oracle Cloud — premium charcoal / deep-red enterprise direction ===== */
+:root{--oc-ch:#17110F;--oc-ch2:#211815;--oc-ch3:#2C201C;--oc-rd:#C74634;--oc-rd2:#E86A55;--oc-rdd:#8E2A1E;--oc-iv:#F7F1EA;--oc-iv2:#EFE6DC;--oc-am:#FFB15C;--oc-gn:#5FD08D;--oc-tx:#E9DFD6;--oc-mu:#B3A59A;--oc-ln:rgba(255,236,220,.12);--oc-wl:#E8DDD2}
+html[data-theme="dark"]{--oc-iv:#0E1A33;--oc-iv2:#0B162C;--oc-wl:#1E2F52}
+.oc-eb{display:inline-flex;align-items:center;gap:10px;font:700 12.5px/1.3 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--oc-rd);margin-bottom:12px}
+.oc-eb:before{content:"";width:26px;height:2px;background:var(--oc-rd);border-radius:2px}
+.oc-h2{font-family:var(--f-disp);font-weight:800;font-size:clamp(25px,2.7vw,36px);line-height:1.16;letter-spacing:-.025em;color:var(--ink);margin:0 0 12px;max-width:860px}
+.oc-h2 em{font-family:Fraunces,Georgia,serif;font-style:italic;font-weight:600;color:var(--oc-rd);letter-spacing:-.01em}
+.oc-shd{margin-bottom:26px}
+.oc-shd p{font-size:16px;line-height:1.7;color:var(--text);max-width:760px}
+.oc-fine{font:500 11.5px/1.5 var(--f-mono);color:var(--muted);margin-top:12px}
+html[data-theme="dark"] .oc-eb{color:var(--oc-rd2)}html[data-theme="dark"] .oc-eb:before{background:var(--oc-rd2)}html[data-theme="dark"] .oc-h2 em{color:var(--oc-rd2)}
+
+/* dark charcoal full-bleed sections */
+.sec.oc-dk{background:var(--oc-ch);position:relative;padding:64px 0}
+.sec.oc-dk:before{content:"";position:absolute;inset:0;background:radial-gradient(700px 300px at 85% 0%,rgba(199,70,52,.20),transparent 70%);pointer-events:none}
+.sec.oc-dk .wrap{position:relative}
+.sec.oc-dk .oc-h2{color:#fff}.sec.oc-dk .oc-h2 em{color:var(--oc-rd2)}.sec.oc-dk .oc-eb{color:var(--oc-rd2)}.sec.oc-dk .oc-eb:before{background:var(--oc-rd2)}
+.sec.oc-dk .oc-shd p,.sec.oc-dk p{color:var(--oc-tx)}.sec.oc-dk .oc-fine{color:var(--oc-mu)}
+html[data-theme="dark"] .sec.oc-dk{background:#0D0A10}
+#overview,#manage,#ops,#security,#billing,#pricing,#configure,#runway,#landing,#vs,#faq{padding:56px 0}
+
+/* ---------------- HERO ---------------- */
+.hero.lh.oc-hero{background:radial-gradient(760px 420px at 78% 8%,rgba(199,70,52,.42),transparent 62%),radial-gradient(600px 380px at 8% 100%,rgba(142,42,30,.38),transparent 70%),#140E0C;padding:40px 0 60px;overflow:hidden}
+html[data-theme="dark"] .hero.lh.oc-hero{background:radial-gradient(760px 420px at 78% 8%,rgba(199,70,52,.34),transparent 62%),radial-gradient(600px 380px at 8% 100%,rgba(142,42,30,.30),transparent 70%),#0C0807}
+.oc-hero .hero-bg .lh-grid{opacity:.28}
+.oc-hero .hero-bg .lh-aur.a1{background:radial-gradient(circle,#c74634,transparent 65%);opacity:.28}
+.oc-hero .hero-bg .lh-aur.a2{opacity:.22}
+.oc-hero .hero-bg canvas.lh-net{opacity:.35}
+.oc-hero .oc-bg{position:absolute;inset:0;width:100%;height:100%}
+.oc-rid{position:absolute;right:-6px;top:50%;transform:translateY(-50%) rotate(90deg);transform-origin:center;font:600 11px var(--f-mono);letter-spacing:.42em;color:rgba(255,220,200,.16);white-space:nowrap;right:-120px}
+.oc-hero .crumb{color:#f0a493}.oc-hero .crumb .c{color:#f0a493}.oc-hero .crumb .sep{color:#8d5e52}
+.oc-hg{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:40px;align-items:start;position:relative}
+.oc-hero .lh-title{font-size:clamp(12px,3.4vw,44px)!important;white-space:nowrap}
+.oc-hero .lh-title .nm{display:inline}
+.oc-hero .lh-title .dv{color:#E86A55}
+.oc-hero .lh-tag2{color:#eadbd2}
+.oc-hero .lh-type{color:#ffb7a6}.oc-hero .lh-type .cur{background:#ffb7a6}
+.oc-pts{list-style:none;padding:0;margin:0 0 22px;display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;max-width:560px}
+.oc-pts li{display:flex;align-items:flex-start;gap:10px;color:#f6ebe4}
+.oc-pts li>i{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;flex-shrink:0;background:rgba(199,70,52,.18);border:1px solid rgba(232,106,85,.45);color:#ffb7a6}
+.oc-pts li>i svg{width:15px;height:15px}
+.oc-pts span{font-size:12.5px;line-height:1.35;color:#cdbdb3}
+.oc-pts b{display:block;font:700 13.5px/1.3 var(--f-disp);color:#fff}
+.oc-hero .lh-ask{background:rgba(255,240,230,.05);border-color:rgba(255,220,200,.16);margin-bottom:16px}
+.oc-pw{position:relative!important;left:auto!important;bottom:auto!important;display:inline-block;background:#1E1512!important;border-color:rgba(232,106,85,.4)!important}
+.oc-pw em{display:block;font:500 10.5px var(--f-mono);color:#c9b2a7;margin-top:4px;font-style:normal}
+.oc-pt{width:22px;height:22px;border-radius:7px;background:#C74634;display:grid;place-items:center;color:#fff}.oc-pt svg{width:13px;height:13px}
+
+.hero.lh .oc-stage{position:relative;display:block;min-height:0;padding:14px 0 26px 14px;perspective:1200px}
+.oc-slab{position:absolute;right:-30px;top:-10px;width:62%;height:78%;border-radius:26px;background:linear-gradient(150deg,rgba(199,70,52,.55),rgba(142,42,30,.15));transform:rotate(-5deg);pointer-events:none}
+.oc-from{position:absolute;right:22px;bottom:-6px;z-index:6;background:var(--orange);color:#fff;border-radius:12px;padding:8px 13px 9px;box-shadow:0 14px 30px -12px rgba(255,140,26,.8);transition:transform .3s var(--ease-o)}
+.oc-from:hover{transform:translateY(-3px)}
+.oc-from small{display:block;font:600 9.5px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;opacity:.9}
+.oc-from b{font:800 18px var(--f-disp)}.oc-from em{font:500 11px var(--f-mono);font-style:normal;margin-left:3px}
+.oc-th{position:relative;z-index:2;width:100%;background:rgba(22,15,13,.9);border:1px solid rgba(255,225,210,.14);border-radius:20px;padding:14px;box-shadow:0 40px 80px -30px rgba(0,0,0,.85),inset 0 1px 0 rgba(255,255,255,.06);transition:transform .5s var(--ease-o);transform-style:preserve-3d}
+.oc-thh{display:flex;justify-content:space-between;align-items:center;margin:2px 4px 12px}
+.oc-thh span{display:flex;align-items:center;gap:8px;font:700 13.5px var(--f-disp);color:#fff}
+.oc-thh span i{width:24px;height:24px;border-radius:7px;background:#C74634;display:grid;place-items:center}.oc-thh span i svg{width:13px;height:13px;color:#fff}
+.oc-thh em{font:600 10px var(--f-mono);letter-spacing:.12em;color:#7fe0a6;font-style:normal;display:flex;align-items:center;gap:6px}
+.oc-thh em i{width:7px;height:7px;border-radius:50%;background:#5FD08D;box-shadow:0 0 0 0 rgba(95,208,141,.6);animation:ocPulse 1.8s infinite}
+@keyframes ocPulse{70%{box-shadow:0 0 0 8px rgba(95,208,141,0)}100%{box-shadow:0 0 0 0 rgba(95,208,141,0)}}
+.oc-thb{display:grid;grid-template-columns:172px minmax(0,1fr);gap:12px;align-items:stretch}
+.oc-tl{list-style:none;margin:0;padding:0 0 0 14px;position:relative;display:flex;flex-direction:column;gap:4px}
+.oc-tl:before{content:"";position:absolute;left:4px;top:8px;bottom:8px;width:2px;background:rgba(255,220,200,.14);border-radius:2px}
+.oc-tl button{position:relative;width:100%;text-align:left;background:transparent;border:1px solid transparent;border-radius:10px;padding:7px 9px 9px;cursor:pointer;color:#cdbdb3;transition:background .3s,border-color .3s,color .3s;overflow:hidden}
+.oc-tl button:before{content:"";position:absolute;left:-15px;top:13px;width:10px;height:10px;border-radius:50%;background:#3a2a25;border:2px solid #6c4b42;transition:background .3s,border-color .3s,transform .3s var(--ease-o)}
+.oc-tl button:hover{background:rgba(255,240,230,.05)}
+.oc-tl button.on{background:rgba(199,70,52,.16);border-color:rgba(232,106,85,.4);color:#fff}
+.oc-tl button.on:before{background:#E86A55;border-color:#ffb7a6;transform:scale(1.15)}
+.oc-tl time{display:block;font:600 10px var(--f-mono);letter-spacing:.08em;color:#E86A55}
+.oc-tl b{display:block;font:700 12px/1.25 var(--f-disp);color:inherit;margin:1px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.oc-tl small{display:block;font-size:10.5px;line-height:1.3;color:#a8968c;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.oc-tl s{position:absolute;left:0;bottom:0;height:2px;width:100%;background:#E86A55;transform-origin:left;transform:scaleX(var(--p,0));opacity:0}
+.oc-tl button.on s{opacity:1}
+.oc-scr{position:relative;border-radius:14px;overflow:hidden;background:#100B0A;min-height:310px;border:1px solid rgba(255,225,210,.1);touch-action:pan-y}
+.oc-sc{position:absolute;inset:0 0 34px 0;opacity:0;transform:scale(1.07);transition:opacity .9s var(--ease-o),transform 1.2s var(--ease-o)}
+.oc-sc.on{opacity:1;transform:none;z-index:2}
+.oc-sc.out{opacity:0;transform:scale(.93) translateY(6px);z-index:1}
+.oc-sc canvas{width:100%;height:100%;display:block}
+.oc-cap{position:absolute;left:8px;bottom:6px;z-index:4;display:flex;align-items:center;gap:8px;background:rgba(14,9,8,.78);border:1px solid rgba(255,225,210,.14);border-radius:99px;padding:5px 12px 5px 6px;font:600 11px var(--f-mono);color:#f3e6de;max-width:calc(100% - 20px)}
+.oc-cap b{background:#C74634;color:#fff;border-radius:99px;padding:2px 7px;font-size:10px}
+.oc-cap span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.oc-ps{position:absolute;right:10px;top:10px;z-index:4;display:flex;align-items:center;gap:5px;font:600 10px var(--f-mono);color:#fff;background:rgba(14,9,8,.75);border-radius:99px;padding:4px 9px;opacity:0;transition:opacity .25s}
+.oc-ps svg{width:11px;height:11px}
+.oc-stage.paused .oc-ps{opacity:1}
+.oc-dots{display:none;justify-content:center;gap:8px;margin:10px 0 2px}
+.oc-dots i{width:8px;height:8px;border-radius:99px;background:rgba(255,220,200,.25);cursor:pointer;transition:width .35s var(--ease-o),background .3s}
+.oc-dots i.on{width:24px;background:#E86A55}
+.oc-kp{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.oc-kp div{background:rgba(255,240,230,.04);border:1px solid rgba(255,225,210,.1);border-radius:10px;padding:8px 10px}
+.oc-kp small{display:block;font:600 9.5px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:#a8968c}
+.oc-kp b{display:block;font:800 17px var(--f-disp);color:#fff;font-variant-numeric:tabular-nums;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.oc-kp b.bump{animation:ocBump .5s var(--ease-o)}
+@keyframes ocBump{40%{transform:translateY(-3px);color:#ffb7a6}}
+.oc-log{list-style:none;margin:10px 0 0;padding:8px 10px;border-radius:10px;background:rgba(0,0,0,.28);border:1px solid rgba(255,225,210,.08);min-height:78px}
+.oc-log li{display:flex;gap:9px;align-items:baseline;font:500 11px/1.75 var(--f-mono);color:#d8c9bf;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;animation:ocLog .5s var(--ease-o) both}
+.oc-log li time{color:#E86A55;flex-shrink:0}
+.oc-log li em{font-style:normal;flex-shrink:0;font-size:9.5px;padding:0 6px;border-radius:5px;background:rgba(95,208,141,.14);color:#7fe0a6}
+.oc-log li em.w{background:rgba(255,177,92,.14);color:#ffc98a}.oc-log li em.r{background:rgba(232,106,85,.18);color:#ffb7a6}
+@keyframes ocLog{from{opacity:0;transform:translateX(-8px)}}
+.oc-proof{background:#1C1412!important;border-top:1px solid rgba(255,225,210,.08)}
+.oc-proof span{color:#d9c8be!important}.oc-proof b{color:#fff!important}
+.oc-proof .wrap{justify-content:space-between}
+@media(max-width:1280px){.oc-tl small{display:none}}@media(max-width:1100px){.oc-thb{grid-template-columns:140px minmax(0,1fr)}}
+@media(max-width:980px){.oc-hg{grid-template-columns:1fr;gap:28px}.oc-stage{max-width:680px}.oc-slab{right:-14px}}
+@media(max-width:640px){.hero.lh .oc-stage{padding:8px 0 0}.oc-scr{min-height:0;aspect-ratio:4/3.5}.oc-thb{grid-template-columns:1fr}.oc-tl{display:none}.oc-dots{display:flex}.oc-pts{grid-template-columns:1fr}.oc-stage{padding:8px 0 0}.oc-from{position:relative;right:auto;bottom:auto;display:inline-block;margin-top:12px}.oc-thh span b{font-size:12.5px}.oc-thh em{white-space:nowrap;font-size:9px}.oc-slab{display:none}.oc-th{padding:10px}.oc-kp b{font-size:15px}.oc-log li:nth-child(n+3){display:none}.oc-log{min-height:56px}.oc-rid{display:none}}
+
+/* magnetic */
+.oc-mag{will-change:transform}
+
+/* ---------------- sticky sub-nav ---------------- */
+.oc-sub{position:sticky;top:var(--oc-hh,78px);z-index:60;background:var(--surface);border-bottom:1px solid var(--line);box-shadow:0 8px 20px -18px rgba(0,0,0,.4)}
+.oc-subt{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding:8px 0}
+.oc-subt::-webkit-scrollbar{display:none}
+.oc-subt a{flex-shrink:0;font:600 12.5px var(--f-disp);color:var(--muted);padding:7px 12px;border-radius:99px;transition:color .2s,background .2s}
+.oc-subt a:hover{color:var(--ink)}
+.oc-subt a.on{color:#fff;background:var(--oc-rd)}
+
+/* ---------------- overview ---------------- */
+.oc-ov{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:48px;align-items:start}
+.oc-lede{font-family:Fraunces,Georgia,serif;font-size:20px;line-height:1.55;color:var(--ink);margin:4px 0 14px}
+.oc-lede:first-letter{float:left;font-size:58px;line-height:.9;margin:6px 10px 0 0;color:var(--oc-rd);font-weight:700}
+.oc-ovl>p:not(.oc-lede){font-size:15.5px;line-height:1.75;color:var(--text)}
+.oc-srm{background:var(--oc-iv);border:1px solid var(--oc-wl);border-radius:20px;padding:24px;position:relative;overflow:hidden}
+.oc-srm:after{content:"";position:absolute;right:-40px;top:-40px;width:140px;height:140px;border-radius:50%;border:18px solid rgba(199,70,52,.08)}
+.oc-srmh{display:block;font:700 12px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.oc-srr{display:grid;grid-template-columns:110px 1fr;gap:6px 14px;align-items:center;padding:12px 0;border-top:1px dashed var(--oc-wl)}
+.oc-srr .who{display:flex;align-items:center;gap:8px;grid-row:span 2}
+.oc-srr .who svg{width:18px;height:18px;color:var(--oc-rd)}
+.oc-srr .who b{font:700 14px var(--f-disp);color:var(--ink)}
+.oc-srr .bar{height:8px;border-radius:99px;background:var(--oc-wl);overflow:hidden}
+.oc-srr .bar i{display:block;height:100%;width:var(--w);border-radius:99px;background:#9a8a80;transform:scaleX(0);transform-origin:left;transition:transform 1.3s var(--ease-o)}
+.oc-srr.x .bar i{background:var(--oc-rd)}.oc-srr.y .bar i{background:var(--blue)}
+.oc-srm.in .bar i{transform:none}.oc-srm.in .oc-srr.x .bar i{transition-delay:.2s}.oc-srm.in .oc-srr.y .bar i{transition-delay:.4s}
+.oc-srr .what{font-size:13px;line-height:1.45;color:var(--text)}
+
+/* ---------------- what we manage ---------------- */
+.oc-fam{position:relative;display:flex;flex-wrap:wrap;gap:4px;padding:5px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line);margin-bottom:22px;width:max-content;max-width:100%}
+.oc-fam button{position:relative;z-index:1;display:flex;align-items:center;gap:6px;border:0;background:none;cursor:pointer;padding:9px 14px;border-radius:10px;font:600 13px var(--f-disp);color:var(--muted);transition:color .25s}
+.oc-fam button svg{width:14px;height:14px}
+.oc-fam button.on{color:#fff}
+.oc-famu{position:absolute;z-index:0;top:5px;left:5px;height:calc(100% - 10px);border-radius:10px;background:var(--oc-rd);transition:transform .45s var(--ease-o),width .45s var(--ease-o);box-shadow:0 8px 18px -10px rgba(199,70,52,.9)}
+.oc-tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;grid-auto-flow:dense}
+.oc-tile{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 18px 20px;transition:transform .45s var(--ease-o),box-shadow .35s,border-color .3s,opacity .4s;transform-style:preserve-3d}
+.oc-tile:before{content:"";position:absolute;left:18px;right:18px;top:0;height:3px;border-radius:0 0 3px 3px;background:var(--oc-rd);transform:scaleX(.18);transform-origin:left;transition:transform .5s var(--ease-o)}
+.oc-tile:hover{box-shadow:0 22px 44px -26px rgba(60,20,10,.45);border-color:rgba(199,70,52,.35)}
+.oc-tile:hover:before{transform:none}
+.oc-tile.big{grid-column:span 2;background:var(--oc-iv);border-color:var(--oc-wl)}
+.oc-tag{display:inline-block;font:600 10px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--oc-rd);margin-bottom:8px}
+.oc-tile h3{font:700 16px/1.3 var(--f-disp);color:var(--ink);margin:0 0 6px}
+.oc-tile p{font-size:13.5px;line-height:1.6;color:var(--text);margin:0}
+.oc-tile ul{list-style:none;padding:0;margin:12px 0 0;display:flex;flex-wrap:wrap;gap:6px 14px}
+.oc-tile li{display:flex;align-items:center;gap:6px;font:600 12.5px var(--f-disp);color:var(--ink)}
+.oc-tile li svg{width:14px;height:14px;color:var(--oc-rd)}
+.oc-tile.hide{display:none}
+.oc-tile.pop{animation:ocTile .55s var(--ease-o) both}
+@keyframes ocTile{from{opacity:0;transform:translateY(14px) rotateX(-8deg)}}
+html[data-theme="dark"] .oc-tag,html[data-theme="dark"] .oc-tile li svg{color:var(--oc-rd2)}
+
+/* ---------------- lifecycle ---------------- */
+.oc-lc{position:relative;padding-top:34px}
+.oc-lcr{position:absolute;left:0;right:0;top:52px;height:4px}
+.oc-lcr .tr{position:absolute;inset:0;border-radius:4px;background:rgba(255,225,210,.12)}
+.oc-lcr .fl{position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:4px;background:linear-gradient(90deg,#8E2A1E,#E86A55 70%,#FFB15C);transform-origin:left;transform:scaleX(var(--p,0))}
+.oc-lcs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;position:relative}
+.oc-lci{position:relative;padding-top:44px;opacity:.38;transform:translateY(10px);transition:opacity .6s var(--ease-o),transform .6s var(--ease-o)}
+.oc-lci.on{opacity:1;transform:none}
+.oc-lci .dot{position:absolute;top:0;left:0;width:40px;height:40px;border-radius:50%;background:#2a1d19;border:2px solid #6c4b42;display:grid;place-items:center;color:#ffb7a6;transition:background .5s,border-color .5s,transform .5s var(--ease-o)}
+.oc-lci .dot svg{width:18px;height:18px}
+.oc-lci.on .dot{background:#C74634;border-color:#ffb7a6;color:#fff;transform:scale(1.08);box-shadow:0 0 0 8px rgba(199,70,52,.18)}
+.oc-lci time{display:block;font:600 11px var(--f-mono);letter-spacing:.1em;color:var(--oc-am);margin-bottom:4px}
+.oc-lci h3{font:800 20px var(--f-disp);color:#fff;margin:0 0 6px}
+.oc-lci p{font-size:13.5px;line-height:1.6;margin:0 0 10px}
+.oc-lci ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px}
+.oc-lci li{font:500 12px var(--f-mono);color:#d4c3b9;padding-left:14px;position:relative}
+.oc-lci li:before{content:"";position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:2px;background:#E86A55}
+@media(max-width:900px){.oc-lcr{left:19px;right:auto;width:4px;top:34px;bottom:0;height:auto}.oc-lcr .fl{transform-origin:top;transform:scaleY(var(--p,0));background:linear-gradient(180deg,#8E2A1E,#E86A55 70%,#FFB15C)}.oc-lcs{grid-template-columns:1fr;gap:22px}.oc-lci{padding:0 0 0 60px;min-height:44px}}
+
+/* ---------------- ops ---------------- */
+.oc-ops{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:40px;align-items:center}
+.oc-clk{position:relative;aspect-ratio:1;max-width:440px;width:100%;margin:0 auto}
+.oc-clk canvas{width:100%;height:100%;display:block}
+.oc-clkc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none}
+.oc-clkc small{font:600 10.5px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.oc-clkc b{font:800 44px var(--f-disp);color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1.1}
+.oc-clkc span{font:600 13px var(--f-disp);color:var(--oc-rd);max-width:150px}
+html[data-theme="dark"] .oc-clkc span{color:var(--oc-rd2)}
+.oc-clkl{position:absolute;left:0;right:0;bottom:-34px;display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px}.oc-clkl span{display:flex;align-items:center;gap:6px;font:600 11px var(--f-mono);color:var(--muted)}.oc-clkl i{width:10px;height:10px;border-radius:3px}
+.oc-clk{margin-bottom:40px!important}
+.oc-opl{display:flex;flex-direction:column;gap:12px}
+.oc-opc{display:flex;gap:14px;padding:16px 18px;border-radius:16px;border:1px solid var(--line);background:var(--surface);transition:border-color .35s,box-shadow .35s,transform .35s var(--ease-o)}
+.oc-opc>i{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;flex-shrink:0;background:var(--oc-iv);color:var(--oc-rd);transition:background .35s,color .35s}
+.oc-opc>i svg{width:19px;height:19px}
+.oc-opc time{font:600 10.5px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.oc-opc h3{font:700 16px var(--f-disp);color:var(--ink);margin:2px 0 4px}
+.oc-opc p{font-size:13.5px;line-height:1.6;color:var(--text);margin:0}
+.oc-opc.hot{border-color:rgba(199,70,52,.5);box-shadow:0 18px 40px -26px rgba(199,70,52,.7);transform:translateX(6px)}
+.oc-opc.hot>i{background:var(--oc-rd);color:#fff}
+
+/* ---------------- security ---------------- */
+.oc-sg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.oc-sgc{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;transition:transform .4s var(--ease-o),box-shadow .35s}
+.oc-sgc:hover{transform:translateY(-4px);box-shadow:0 22px 44px -28px rgba(60,20,10,.5)}
+.oc-sgc .k{width:44px;height:44px;border-radius:13px;background:var(--oc-iv);color:var(--oc-rd);display:grid;place-items:center;margin-bottom:12px}
+.oc-sgc .k svg{width:20px;height:20px}
+.oc-sgc h3{font:700 17px var(--f-disp);color:var(--ink);margin:0 0 6px}
+.oc-sgc p{font-size:13.5px;line-height:1.6;color:var(--text);margin:0 0 14px}
+.oc-sgc .ctl{margin-top:auto;font:600 11px var(--f-mono);color:var(--oc-rd);border-top:1px dashed var(--line-2);padding-top:10px}
+html[data-theme="dark"] .oc-sgc .ctl,html[data-theme="dark"] .oc-sgc .k{color:var(--oc-rd2)}
+.oc-sgk{grid-column:span 2;background:var(--oc-ch);color:#fff;border-radius:18px;padding:24px 26px;display:grid;grid-template-columns:auto 1fr;gap:4px 18px;align-items:baseline;position:relative;overflow:hidden}
+.oc-sgk:after{content:"";position:absolute;right:-60px;bottom:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(199,70,52,.45),transparent 70%)}
+.oc-sgk small{grid-column:1/-1;font:600 11px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:#E86A55;margin-bottom:6px}
+.oc-sgk b{font:800 34px var(--f-disp);letter-spacing:-.02em}
+.oc-sgk>span{font-size:14px;color:#e2d3ca}
+.oc-sgk em{grid-column:1/-1;font:500 11px var(--f-mono);font-style:normal;color:#a8968c;margin-top:8px;position:relative;z-index:1}
+@media(max-width:900px){.oc-sg{grid-template-columns:1fr 1fr}.oc-sgk{grid-column:span 2}}
+@media(max-width:600px){.oc-sg{grid-template-columns:1fr}.oc-sgk{grid-column:auto}.oc-sgk b{font-size:28px}}
+
+/* ---------------- finops ---------------- */
+.oc-fo{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:30px;align-items:start}
+.oc-fol{display:flex;flex-direction:column;gap:10px}
+.oc-lv{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;border:1px solid rgba(255,225,210,.12);background:rgba(255,240,230,.03);cursor:pointer;transition:border-color .3s,background .3s}
+.oc-lv:hover{border-color:rgba(232,106,85,.45)}
+.oc-lv input{display:none}
+.oc-lv .sw{width:40px;height:22px;border-radius:99px;background:#4a3832;position:relative;flex-shrink:0;transition:background .25s}
+.oc-lv .sw:after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .3s var(--ease-o)}
+.oc-lv input:checked+.sw{background:#C74634}.oc-lv input:checked+.sw:after{transform:translateX(18px)}
+.oc-lv b{display:block;font:700 14px var(--f-disp);color:#fff}
+.oc-lv small{font-size:12.5px;color:#bba99e}
+.oc-fon{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:8px}
+.oc-fon li{display:flex;gap:9px;font-size:13px;line-height:1.5;color:#d8c9bf}
+.oc-fon li svg{width:15px;height:15px;color:#FFB15C;flex-shrink:0;margin-top:2px}
+.oc-wf{background:rgba(255,240,230,.04);border:1px solid rgba(255,225,210,.12);border-radius:20px;padding:20px}
+.oc-wfh{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.oc-wfh span{font:600 11px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:#bba99e;flex:1 1 100%}
+.oc-wfh b{font:800 34px var(--f-disp);color:#fff;font-variant-numeric:tabular-nums}
+.oc-wfh em{font:700 14px var(--f-mono);font-style:normal;color:#7fe0a6;background:rgba(95,208,141,.12);padding:3px 9px;border-radius:99px}
+.oc-wfs{width:100%;height:auto;display:block;overflow:visible}
+.oc-wfs .lbl2{font:600 10.5px var(--f-mono);fill:#bba99e}
+.oc-wfs .val{font:700 11px var(--f-mono);fill:#fff}
+.oc-wfs rect{transition:y .7s var(--ease-o),height .7s var(--ease-o),opacity .4s}
+.oc-wfs line{stroke:rgba(255,225,210,.18);stroke-dasharray:3 4}
+@media(max-width:900px){.oc-fo{grid-template-columns:1fr}}
+
+/* ---------------- billing ---------------- */
+.oc-bl{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:44px;align-items:center}
+.oc-bl p{font-size:15.5px;line-height:1.7;color:var(--text)}
+.oc-bll{list-style:none;padding:0;margin:18px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.oc-bll li{display:flex;gap:10px;font-size:13px;line-height:1.5;color:var(--text)}
+.oc-bll li>svg{width:18px;height:18px;color:var(--oc-rd);flex-shrink:0;margin-top:2px}
+.oc-bll b{display:block;font:700 14px var(--f-disp);color:var(--ink)}
+.oc-inv{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 30px 60px -36px rgba(60,20,10,.55);position:relative;transform:rotate(1.2deg);transition:transform .5s var(--ease-o)}
+.oc-inv:hover{transform:none}
+.oc-inv:before{content:"";position:absolute;left:0;right:0;top:0;height:6px;border-radius:18px 18px 0 0;background:repeating-linear-gradient(90deg,var(--oc-rd) 0 18px,transparent 18px 26px)}
+.oc-inv .ih{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:6px}
+.oc-inv .ih b{display:block;font:700 14px var(--f-disp);color:var(--ink)}
+.oc-inv .ih small{font:600 10.5px var(--f-mono);color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.oc-inv .ih em{font:700 12px var(--f-mono);font-style:normal;color:#fff;background:var(--oc-rd);border-radius:6px;padding:3px 8px}
+.oc-inv .ir{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px dashed var(--line);font-size:13px;color:var(--text)}
+.oc-inv .ir b{font:600 12.5px var(--f-mono);color:var(--ink);white-space:nowrap}
+.oc-inv .ir b.u{color:var(--oc-rd)}
+.oc-inv .ir.t{border-bottom:0;font-weight:600}
+.oc-inv .is{display:flex;align-items:center;gap:8px;margin-top:10px;font:600 12px var(--f-mono);color:#16a34a}
+.oc-inv .is svg{width:15px;height:15px}
+html[data-theme="dark"] .oc-inv .ir b.u{color:var(--oc-rd2)}
+@media(max-width:900px){.oc-bl{grid-template-columns:1fr}.oc-inv{transform:none}}
+@media(max-width:560px){.oc-bll{grid-template-columns:1fr}}
+
+/* ---------------- plans ---------------- */
+.oc-pm{position:relative;display:inline-flex;gap:4px;padding:5px;border-radius:99px;background:var(--surface-2);border:1px solid var(--line);margin-bottom:22px}
+.oc-pm button{position:relative;z-index:1;border:0;background:none;cursor:pointer;padding:9px 16px;border-radius:99px;font:600 13px var(--f-disp);color:var(--muted);transition:color .25s}
+.oc-pm button.on{color:#fff}
+.oc-pm .u{position:absolute;z-index:0;top:5px;left:5px;height:calc(100% - 10px);border-radius:99px;background:var(--ink);transition:transform .45s var(--ease-o),width .45s var(--ease-o)}
+html[data-theme="dark"] .oc-pm .u{background:var(--oc-rd)}
+.oc-plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch}
+.oc-plan{position:relative;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:26px 24px 24px;transition:transform .45s var(--ease-o),box-shadow .35s}
+.oc-plan:before{content:"";position:absolute;left:24px;top:0;width:48px;height:4px;border-radius:0 0 4px 4px;background:var(--oc-rd)}
+.oc-plan:hover{transform:translateY(-5px);box-shadow:0 30px 60px -36px rgba(60,20,10,.55)}
+.oc-plan.pop{background:var(--oc-ch);border-color:var(--oc-ch);color:#fff;box-shadow:0 34px 70px -34px rgba(60,20,10,.85)}
+.oc-plan.pop:before{width:calc(100% - 48px);background:linear-gradient(90deg,#C74634,#FFB15C)}
+.oc-plan .flag2{position:absolute;right:20px;top:-12px;background:var(--orange);color:#fff;font:700 10.5px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:99px}
+.oc-plan .nm2{font:800 22px var(--f-disp);color:var(--ink)}
+.oc-plan .for{font-family:Fraunces,Georgia,serif;font-style:italic;font-size:15px;color:var(--oc-rd);margin:2px 0 16px}
+.oc-plan .pr{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;min-height:46px}
+.oc-plan .pr b{font:800 36px var(--f-disp);letter-spacing:-.03em;color:var(--ink);font-variant-numeric:tabular-nums}
+.oc-plan .pr .pct{display:none;font:800 30px var(--f-disp);letter-spacing:-.02em;color:var(--ink)}
+.oc-plan .pr .pct small{display:block;font:600 11px var(--f-mono);color:var(--muted);letter-spacing:0}
+.oc-plan .pr em{font:500 12px var(--f-mono);font-style:normal;color:var(--muted)}
+#pricing.pct .oc-plan .pr b{display:none}#pricing.pct .oc-plan .pr .pct{display:block}
+.oc-plan .inc{font-size:13px;color:var(--muted);margin:6px 0 16px;padding-bottom:16px;border-bottom:1px dashed var(--line-2)}
+.oc-plan .inc b{color:var(--ink)}
+.oc-plan ul{list-style:none;padding:0;margin:0 0 22px;display:flex;flex-direction:column;gap:10px;flex:1}
+.oc-plan li{display:flex;gap:9px;align-items:center;font-size:14px;color:var(--text)}
+.oc-plan li svg{width:16px;height:16px;color:var(--oc-rd);flex-shrink:0}
+.oc-plan.pop .nm2,.oc-plan.pop .pr b,.oc-plan.pop .pr .pct,.oc-plan.pop .inc b{color:#fff}
+.oc-plan.pop .for{color:#ffb7a6}.oc-plan.pop li{color:#eadbd2}.oc-plan.pop li svg{color:#ffb7a6}.oc-plan.pop .inc,.oc-plan.pop .pr em,.oc-plan.pop .pr .pct small{color:#bba99e}.oc-plan.pop .inc{border-color:rgba(255,225,210,.18)}
+html[data-theme="dark"] .oc-plan .for,html[data-theme="dark"] .oc-plan li svg{color:var(--oc-rd2)}
+.oc-one{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
+.oc-one>div{display:grid;grid-template-columns:38px minmax(0,1fr) auto;gap:6px 12px;align-items:center;padding:14px 16px;border-radius:16px;background:var(--oc-iv);border:1px solid var(--oc-wl)}
+.oc-one i{grid-row:span 2;width:38px;height:38px;border-radius:11px;background:var(--surface);color:var(--oc-rd);display:grid;place-items:center;flex-shrink:0}
+.oc-one i svg{width:17px;height:17px}
+.oc-one span{grid-column:2/4;min-width:0}
+.oc-one b{display:block;font:700 14px var(--f-disp);color:var(--ink)}
+.oc-one small{font-size:12px;color:var(--muted)}
+.oc-one em{font:700 14px var(--f-mono);font-style:normal;color:var(--ink);white-space:nowrap}
+@media(max-width:980px){.oc-plans,.oc-one{grid-template-columns:1fr}.oc-plans{max-width:520px}}
+
+/* ---------------- configurator ---------------- */
+.oc-calc .cout{background:linear-gradient(165deg,#1d1311,#2c1a15 55%,#4a1d14)!important}
+.oc-calc .cout .crow.sv b{color:#7fe0a6}
+.oc-seg5 button{padding:10px 8px}
+.oc-ad{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.oc-ad .tgl{align-items:flex-start;font-size:13.5px}
+.oc-ad .tgl small{display:block;font-weight:500;font-size:12px;color:var(--muted);margin-top:2px}
+.oc-ad .tgl input:checked+.sw{background:var(--oc-rd)}
+.oc-tip{font-size:12.5px;line-height:1.5;color:#ffd7c9;background:rgba(255,240,230,.06);border:1px solid rgba(255,225,210,.14);border-radius:10px;padding:9px 11px;margin:0 0 16px;min-height:20px}
+.oc-tip:empty{display:none}
+@media(max-width:620px){.oc-ad{grid-template-columns:1fr}}
+
+/* ---------------- fit checker ---------------- */
+.oc-fit{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:26px;align-items:start}
+.oc-fiti{display:flex;flex-direction:column;gap:10px}
+.oc-fiti .lb{font:600 11px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:#bba99e;margin-top:6px}
+.oc-fiti .seg{background:rgba(255,240,230,.04);border-color:rgba(255,225,210,.12)}
+.oc-fiti .seg button{color:#cdbdb3}.oc-fiti .seg button.on{background:#C74634;color:#fff;box-shadow:none}.oc-fiti .seg button:hover:not(.on){color:#fff}
+.oc-wk{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.oc-wk button{display:flex;flex-direction:column;align-items:flex-start;gap:8px;text-align:left;padding:12px;border-radius:14px;border:1px solid rgba(255,225,210,.12);background:rgba(255,240,230,.03);color:#e6d7cd;font:600 12.5px/1.3 var(--f-disp);cursor:pointer;transition:border-color .3s,background .3s,transform .3s var(--ease-o)}
+.oc-wk button svg{width:18px;height:18px;color:#E86A55}
+.oc-wk button:hover{transform:translateY(-2px);border-color:rgba(232,106,85,.45)}
+.oc-wk button.on{background:rgba(199,70,52,.2);border-color:#E86A55;color:#fff}
+.oc-fito{background:rgba(255,240,230,.04);border:1px solid rgba(255,225,210,.12);border-radius:20px;padding:20px;display:grid;grid-template-columns:150px 1fr;gap:18px}
+.oc-stk{width:100%;height:auto}
+.oc-stk rect,.oc-stk text{transition:transform .6s var(--ease-o),opacity .5s,fill .5s}
+.oc-fitr small{display:block;font:600 10px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:#a8968c;margin-top:10px}
+.oc-fitr small:first-child{margin-top:0}
+.oc-fitr b{display:block;font:700 15px/1.35 var(--f-disp);color:#fff}
+.oc-fitr p{font-size:12.5px;line-height:1.55;color:#e2d3ca;margin:2px 0 0}
+.oc-fitr .fl{animation:ocFl .6s var(--ease-o)}
+@keyframes ocFl{from{opacity:0;transform:translateY(6px)}}
+@media(max-width:980px){.oc-fit{grid-template-columns:1fr}.oc-wk{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.oc-fito{grid-template-columns:1fr}.oc-stk{max-width:220px;margin:0 auto}}
+
+/* ---------------- runway ---------------- */
+.oc-rw{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:0;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:var(--surface)}
+.oc-rwi{padding:26px;display:flex;flex-direction:column;gap:20px;border-right:1px solid var(--line)}
+.oc-rwi .fld>label small,.oc-rwi .fld>.lb small{color:var(--oc-rd)}
+.oc-rwi .seg button.on{color:var(--oc-rd)}
+html[data-theme="dark"] .oc-rwi .seg button.on,html[data-theme="dark"] .oc-rwi .fld small{color:var(--oc-rd2)}
+.oc-rwo{padding:26px;background:var(--oc-iv)}
+.oc-rwk{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:18px}.oc-rwk div:first-child{grid-column:1/-1}
+.oc-rwk div{background:var(--surface);border:1px solid var(--oc-wl);border-radius:12px;padding:10px 12px}
+.oc-rwk small{display:block;font:600 10px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.oc-rwk b{display:block;font:800 15px/1.3 var(--f-disp);color:var(--ink);margin-top:3px}
+.oc-gt{position:relative;display:flex;flex-direction:column;gap:7px;padding-top:24px}
+.oc-gt .ax{position:absolute;left:120px;right:0;top:0;height:18px;display:flex;justify-content:space-between;font:600 10px var(--f-mono);color:var(--muted)}
+.oc-gt .ax:after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--oc-wl)}
+.oc-gr{display:grid;grid-template-columns:110px 1fr;gap:10px;align-items:center}
+.oc-gr span{font:600 12px var(--f-disp);color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.oc-gr .tk{position:relative;height:22px;border-radius:7px;background:repeating-linear-gradient(90deg,transparent 0 calc(10% - 1px),var(--oc-wl) calc(10% - 1px) 10%)}
+.oc-gr .tk i{position:absolute;top:0;bottom:0;border-radius:7px;background:var(--oc-rd);transform-origin:left;transform:scaleX(0);transition:transform .8s var(--ease-o),left .6s var(--ease-o),width .6s var(--ease-o);display:flex;align-items:center;padding-left:8px;font:600 10px var(--f-mono);color:#fff;font-style:normal;white-space:nowrap;overflow:hidden}
+.oc-gr.c .tk i{background:var(--orange)}.oc-gr.h .tk i{background:#16a34a}.oc-gr.p .tk i{background:var(--ink)}
+.oc-gt.go .oc-gr .tk i{transform:none}
+@media(max-width:980px){.oc-rw{grid-template-columns:1fr}.oc-rwi{border-right:0;border-bottom:1px solid var(--line)}}
+@media(max-width:560px){.oc-rwk{grid-template-columns:1fr 1fr}.oc-rwk div:first-child{grid-column:1/-1}.oc-gr{grid-template-columns:78px 1fr}.oc-gt .ax{left:88px}.oc-rwi,.oc-rwo{padding:18px}}
+
+/* ---------------- landing zone ---------------- */
+.oc-lz{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:44px;align-items:center}
+.oc-lz p{font-size:15.5px;line-height:1.7;color:var(--text)}
+.oc-lzl{list-style:none;counter-reset:lz;padding:0;margin:18px 0 0;display:flex;flex-direction:column;gap:12px}
+.oc-lzl li{counter-increment:lz;position:relative;padding-left:46px;font-size:13.5px;line-height:1.55;color:var(--text)}
+.oc-lzl li:before{content:counter(lz,decimal-leading-zero);position:absolute;left:0;top:0;width:32px;height:32px;border-radius:10px;background:var(--oc-iv);border:1px solid var(--oc-wl);display:grid;place-items:center;font:700 11px var(--f-mono);color:var(--oc-rd)}
+.oc-lzl b{display:block;font:700 14.5px var(--f-disp);color:var(--ink)}
+.oc-lzd{background:var(--oc-ch);border-radius:22px;padding:14px;box-shadow:0 30px 60px -36px rgba(60,20,10,.7)}
+.oc-lzd svg{width:100%;height:auto;display:block}
+.oc-lzd .ar rect{fill:none;stroke:rgba(255,225,210,.18);stroke-dasharray:6 6}
+.oc-lzd .t1{font:600 11px var(--f-mono);letter-spacing:.12em;fill:#E86A55}
+.oc-lzd .bx rect{fill:#2a1d19;stroke:#6c4b42;stroke-width:1.5}
+.oc-lzd .bx.hub rect{fill:#3a1f18;stroke:#E86A55}
+.oc-lzd .bx.op rect{fill:#1a2236;stroke:#5a7db3}
+.oc-lzd .bx text{font:700 13px var(--f-disp);fill:#fff;text-anchor:middle}
+.oc-lzd .bx text.s{font:500 10.5px var(--f-mono);fill:#c9b2a7}
+.oc-lzd .gd rect{fill:rgba(255,177,92,.1);stroke:rgba(255,177,92,.5)}
+.oc-lzd .gd text{font:600 11px var(--f-mono);fill:#ffc98a;text-anchor:middle}
+.oc-lzd .ln path{fill:none;stroke:#E86A55;stroke-width:2;stroke-dasharray:240;stroke-dashoffset:240}
+.oc-lzd .pk{fill:#FFB15C}
+.oc-lzd .bx,.oc-lzd .gd{opacity:0;transform:translateY(8px);transition:opacity .6s var(--ease-o),transform .6s var(--ease-o)}
+.oc-lzd.in .bx,.oc-lzd.in .gd{opacity:1;transform:none}
+.oc-lzd.in .ln path{animation:ocDraw 1.4s .5s var(--ease-o) forwards}
+@keyframes ocDraw{to{stroke-dashoffset:0}}
+.oc-lzd.in .bx:nth-of-type(2){transition-delay:.1s}.oc-lzd.in .bx:nth-of-type(3){transition-delay:.25s}.oc-lzd.in .bx:nth-of-type(4){transition-delay:.4s}.oc-lzd.in .bx:nth-of-type(5){transition-delay:.55s}.oc-lzd.in .bx:nth-of-type(6){transition-delay:.7s}
+.oc-lzd.in .gd{transition-delay:.9s}
+@media(max-width:900px){.oc-lz{grid-template-columns:1fr}}
+
+/* ---------------- compare ---------------- */
+.oc-vs{border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--surface)}
+.oc-vsh,.oc-vsr{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1fr) minmax(0,1fr)}
+.oc-vsh>*{padding:14px 18px;font:700 14px var(--f-disp);color:var(--ink)}
+.oc-vsh .me{background:var(--oc-ch);color:#fff}
+.oc-vsr{border-top:1px solid var(--line)}
+.oc-vsr>*{padding:13px 18px;margin:0;font-size:13.5px;line-height:1.5}
+.oc-vsr span{font:600 13.5px var(--f-disp);color:var(--ink)}
+.oc-vsr .no{color:var(--muted)}
+.oc-vsr .yes{background:var(--oc-iv);color:var(--ink);font-weight:600;position:relative;padding-left:40px}
+.oc-vsr .yes:before{content:"";position:absolute;left:18px;top:19px;width:10px;height:6px;border-left:2px solid var(--oc-rd);border-bottom:2px solid var(--oc-rd);transform:rotate(-45deg)}
+@media(max-width:640px){.oc-vsh{display:none}.oc-vsr{grid-template-columns:1fr 1fr}.oc-vsr span{grid-column:1/-1;padding-bottom:0}.oc-vsr .no:before{content:"Self-managed · ";font-weight:600}}
+
+/* ---------------- steps ---------------- */
+.oc-st{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;counter-reset:s}
+.oc-st li{position:relative;padding:20px 18px;border-radius:18px;background:rgba(255,240,230,.04);border:1px solid rgba(255,225,210,.12);transition:transform .4s var(--ease-o),border-color .3s}
+.oc-st li:hover{transform:translateY(-4px);border-color:rgba(232,106,85,.5)}
+.oc-st li span{font:800 30px var(--f-disp);color:transparent;-webkit-text-stroke:1.2px #E86A55;display:block;margin-bottom:8px}
+.oc-st li b{font:700 17px var(--f-disp);color:#fff;display:block;margin-bottom:4px}
+.oc-st li p{font-size:13px;line-height:1.5;margin:0}
+.oc-st li:not(:last-child):after{content:"";position:absolute;right:-12px;top:36px;width:12px;height:2px;background:#E86A55}
+@media(max-width:900px){.oc-st{grid-template-columns:1fr 1fr}.oc-st li:after{display:none}}
+@media(max-width:480px){.oc-st{grid-template-columns:1fr}}
+
+/* ---------------- faq / cta / family ---------------- */
+.oc-faq .fq.open{border-color:rgba(199,70,52,.45)}
+.oc-faq .fq button i{color:var(--oc-rd)}
+.oc-cta{background:linear-gradient(120deg,#1b1210,#3a1a13 50%,#7a2418)!important}
+.oc-seal{width:120px;height:120px;border-radius:50%;border:2px solid rgba(255,225,210,.35);display:grid;place-items:center;align-content:center;text-align:center;box-shadow:0 0 0 8px rgba(255,255,255,.06);animation:ocSeal 18s linear infinite}
+.oc-seal span{font:800 28px var(--f-disp);color:#fff;letter-spacing:.04em}
+.oc-seal small{font:600 9.5px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:#f0c3b6}
+@keyframes ocSeal{50%{box-shadow:0 0 0 14px rgba(232,106,85,.12)}}
+.oc-xl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.oc-xl a{position:relative;display:block;padding:18px 44px 18px 18px;border-radius:16px;border:1px solid var(--line);background:var(--surface);transition:transform .35s var(--ease-o),border-color .3s,box-shadow .3s}
+.oc-xl a:hover{transform:translateY(-3px);border-color:rgba(199,70,52,.45);box-shadow:0 20px 40px -28px rgba(60,20,10,.5)}
+.oc-xl small{display:block;font:600 10px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--oc-rd)}
+.oc-xl b{font:700 15px var(--f-disp);color:var(--ink)}
+.oc-xl a>span{position:absolute;right:16px;top:50%;transform:translateY(-50%);font:700 18px var(--f-disp);color:var(--oc-rd);transition:transform .3s var(--ease-o)}
+.oc-xl a:hover>span{transform:translate(4px,-50%)}
+html[data-theme="dark"] .oc-xl small,html[data-theme="dark"] .oc-xl a>span{color:var(--oc-rd2)}
+@media(max-width:900px){.oc-xl{grid-template-columns:1fr 1fr}.oc-ov{grid-template-columns:1fr;gap:28px}.oc-ops{grid-template-columns:1fr}.oc-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.oc-xl{grid-template-columns:1fr}.oc-tiles{grid-template-columns:1fr}.oc-tile.big{grid-column:auto}.oc-lede{font-size:18px}.oc-srr{grid-template-columns:90px 1fr}.oc-fam button{padding:8px 10px;font-size:12px}}
+
+@media(prefers-reduced-motion:reduce){.oc-sc,.oc-lci,.oc-tile,.oc-srr .bar i,.oc-lzd .bx,.oc-lzd .gd{transition:none!important;animation:none!important}.oc-lzd .ln path{stroke-dashoffset:0}.oc-seal,.oc-thh em i{animation:none}}
+
+
+/* The existing Angular shell owns the header, footer and page scroll. */
+html,body{height:auto;min-height:0}
+#ocSub{position:relative;top:auto}
+#oracleToast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);max-width:calc(100% - 32px);padding:12px 20px;border-radius:12px;background:var(--navy);color:#fff;z-index:1000;box-shadow:var(--sh)}
+</style>
+</head>
+<body>
+<main id="main">
+<section class="hero lh oc-hero" id="ocHero" data-product="Managed Oracle Cloud">
+  <div class="hero-bg" aria-hidden="true"><div class="lh-grid"></div><span class="lh-aur a1"></span><span class="lh-aur a2"></span><canvas class="oc-bg" id="ocBg"></canvas><canvas class="lh-net"></canvas><span class="oc-rid">ap-mumbai-1 · ap-hyderabad-1</span></div>
+  <div class="wrap">
+    <div class="crumb" data-in="1"><a href="https://www.xcellhost.top/">Home</a><span class="sep">›</span><a href="#">Cloud</a><span class="sep">›</span><a href="#">Managed Public Cloud</a><span class="sep">›</span><span class="c">Managed Oracle Cloud</span></div>
+    <h1 class="lh-title" data-in="1"><span class="x">Xcell</span><span class="brd"> Managed</span><span class="dv">|</span><span class="nm">Managed Oracle Cloud</span></h1>
+    <div class="oc-hg">
+      <div class="oc-hl">
+        <p class="lh-tag" data-in="2">Expert management for Oracle Cloud Infrastructure — database first, 24×7.</p>
+        <p class="lh-tag2" data-in="2">XcellHost plans, migrates and runs your OCI estate in Mumbai and Hyderabad: Oracle Database, Exadata, E-Business Suite and JD Edwards included, on one INR invoice.</p>
+        <div class="lh-type" data-in="3" data-words='["Autonomous Database, watched 24×7","Exadata and RAC failover, rehearsed","E-Business Suite moved to OCI Mumbai","Data Guard DR to Hyderabad"]'><span class="tw"></span><span class="cur"></span></div>
+        <ul class="oc-pts" data-in="3">
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></i><span><b>Database-first ops</b>Autonomous · Exadata · Base DB</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6 7-12a7 7 0 00-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></i><span><b>India regions</b>Mumbai &amp; Hyderabad</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v5M5 17v-3h14v3"/></svg></i><span><b>FastConnect &amp; landing zone</b>Built to the CIS benchmark</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></i><span><b>Patching &amp; DR drills</b>Planned, logged, reported</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14l4-4"/><path d="M3.3 17a9 9 0 1117.4 0"/></svg></i><span><b>FinOps for OCI</b>Credits, BYOL, rightsizing</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12M6 9h12M15 20L8 13h2a4 4 0 000-8"/></svg></i><span><b>One INR invoice</b>GST-ready, OCI at actuals*</span></li>
+        </ul>
+        <div class="lh-ctas" data-in="4">
+          <a href="#pricing" class="btn btn-orange oc-mag">View plans <span class="ar">→</span></a>
+          <a href="#fit" class="btn btn-gl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg> Check OCI fit</a>
+          <a href="https://wa.me/918657032540" target="_blank" rel="noopener" class="btn btn-gl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.2 1.4 2.5 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg> WhatsApp</a>
+        </div>
+        <div class="lh-ask" data-in="5" data-q="Explain managed Oracle Cloud Infrastructure (OCI) services from XcellHost (xcellhost.top/managed-oracle-cloud). XcellHost is a Mumbai-based managed cloud and security company operating since 1999 with a 24x7 NOC/SOC. It assesses, migrates and runs OCI workloads in the India West (Mumbai) and India South (Hyderabad) regions — Oracle Autonomous Database, Exadata Database Service, Oracle Database on VMs, E-Business Suite, JD Edwards and PeopleSoft — with 24x7 monitoring, patching, backup and Data Guard DR, landing-zone setup, FastConnect, FinOps (Universal Credits, BYOL, rightsizing) and INR billing with GST. How does this help Indian businesses with the DPDP Act 2023, CERT-In directions and RBI/SEBI/IRDAI outsourcing expectations, and when is managed OCI better than running it yourself?"><span class="k"><b>✦</b>Ask AI about Managed Oracle Cloud from XcellHost</span><span class="chips">
+          <a data-ai="chatgpt" href="#" title="ChatGPT" aria-label="Ask ChatGPT"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.8"><circle cx="12" cy="12" r="7"/><path d="M12 5v14M5.9 8.5l12.2 7M5.9 15.5l12.2-7"/></svg></a>
+          <a data-ai="claude" href="#" title="Claude" aria-label="Ask Claude"><svg viewBox="0 0 24 24" fill="none" stroke="#d97757" stroke-width="2.4" stroke-linecap="round"><path d="M12 3v6M12 15v6M3 12h6M15 12h6M5.6 5.6l4 4M14.4 14.4l4 4M18.4 5.6l-4 4M9.6 14.4l-4 4"/></svg></a>
+          <a data-ai="perplexity" href="#" title="Perplexity" aria-label="Ask Perplexity"><svg viewBox="0 0 24 24" fill="none" stroke="#20808d" stroke-width="2"><path d="M12 3v18M4 7l16 10M20 7L4 17M6 5h12v14H6z"/></svg></a>
+          <a data-ai="google" href="#" title="Gemini / Google AI" aria-label="Ask Google AI"><svg viewBox="0 0 24 24"><path d="M12 2c.6 5.4 4.6 9.4 10 10-5.4.6-9.4 4.6-10 10-.6-5.4-4.6-9.4-10-10 5.4-.6 9.4-4.6 10-10z" fill="#4285f4"/></svg></a>
+          <a data-ai="copilot" href="#" title="Copilot" aria-label="Ask Copilot"><svg viewBox="0 0 24 24" fill="none" stroke="#7b61ff" stroke-width="2.2" stroke-linecap="round"><path d="M8 17a5 5 0 010-10h3M16 7a5 5 0 010 10h-3"/></svg></a>
+        </span></div>
+        <div class="lh-powered oc-pw" data-in="5"><small>Runs on</small><span><span class="oc-pt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a5 5 0 01-.6-10A6 6 0 0118 9a4.5 4.5 0 01-.5 9z"/></svg></span>Oracle Cloud Infrastructure</span><em>Managed by XcellHost · 24×7 Mumbai NOC/SOC</em></div>
+      </div>
+
+      <div class="stage oc-stage" id="ocStage" data-in="4">
+        <span class="oc-slab" aria-hidden="true"></span>
+        <a class="oc-from" href="#pricing"><small>Managed OCI from</small><b><span data-pr="ess">₹14,999</span><em>/month*</em></b></a>
+        <div class="oc-th lh-tilt">
+          <div class="oc-thh"><span><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></i><b>XcellHost OCI operations</b></span><em><i></i>LIVE · SAMPLE</em></div>
+          <div class="oc-thb">
+            <ol class="oc-tl" id="ocTl" role="tablist" aria-label="Hero scenes">
+              <li><button type="button" role="tab" class="on" aria-selected="true" data-k="0"><time>02:04</time><b>Autonomous tuning</b><small>ADB · self-tuning</small><s></s></button></li>
+              <li><button type="button" role="tab" aria-selected="false" data-k="1"><time>03:12</time><b>Exadata RAC failover</b><small>Node fault · sessions held</small><s></s></button></li>
+              <li><button type="button" role="tab" aria-selected="false" data-k="2"><time>09:30</time><b>FastConnect to Mumbai</b><small>Dual private circuits</small><s></s></button></li>
+              <li><button type="button" role="tab" aria-selected="false" data-k="3"><time>Sat 22:00</time><b>EBS / JDE tier move</b><small>Web · app · database</small><s></s></button></li>
+              <li><button type="button" role="tab" aria-selected="false" data-k="4"><time>Sun 06:00</time><b>Hyderabad DR</b><small>Data Guard drill</small><s></s></button></li>
+            </ol>
+            <div class="oc-scr" id="ocScr" role="img" aria-label="Rotating sample scenes of Oracle Cloud managed by XcellHost: an Autonomous Database tuning itself as a workload spikes; an Exadata rack where one RAC node fails and sessions continue on the other; two FastConnect circuits linking an on-premises data centre to OCI Mumbai; an E-Business Suite or JD Edwards web, application and database tier moving to OCI; and Data Guard replicating from Mumbai to Hyderabad during a disaster-recovery drill.">
+              <div class="oc-sc on" data-k="0"><canvas></canvas></div>
+              <div class="oc-sc" data-k="1"><canvas></canvas></div>
+              <div class="oc-sc" data-k="2"><canvas></canvas></div>
+              <div class="oc-sc" data-k="3"><canvas></canvas></div>
+              <div class="oc-sc" data-k="4"><canvas></canvas></div>
+              <span class="oc-cap"><b id="ocCapN">01</b><span id="ocCapT">Autonomous Database · India West (Mumbai)</span></span>
+              <span class="oc-ps" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>Paused</span>
+            </div>
+          </div>
+          <div class="oc-dots" id="ocDots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+          <div class="oc-kp" id="ocKp">
+            <div><small id="ocK0l">p95 latency</small><b id="ocK0">42 ms</b></div>
+            <div><small id="ocK1l">Auto-indexes</small><b id="ocK1">0</b></div>
+            <div><small id="ocK2l">OCPU</small><b id="ocK2">2</b></div>
+          </div>
+          <ol class="oc-log" id="ocLog" aria-live="off"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="lh-trust oc-proof"><div class="wrap"><span>From <b data-pr="ess">₹14,999</b>/month*</span><span><b>Mumbai</b> &amp; <b>Hyderabad</b> OCI regions</span><span>ISO <b>27001</b> &amp; <b>20000-1</b></span><span>Microsoft <b>Gold Partner</b></span><span><b>24×7</b> NOC + SOC</span><span><b>Since 1999</b> · Mumbai</span></div></div>
+
+<nav class="oc-sub" id="ocSub" aria-label="On this page"><div class="wrap"><div class="oc-subt">
+  <a href="#overview">Overview</a><a href="#manage">What we manage</a><a href="#lifecycle">Lifecycle</a><a href="#ops">24×7 ops</a><a href="#security">Security</a><a href="#finops">FinOps</a><a href="#billing">Billing</a><a href="#pricing">Plans</a><a href="#configure">Configure</a><a href="#fit">Fit checker</a><a href="#runway">Migration runway</a><a href="#landing">Landing zone</a><a href="#vs">Compare</a><a href="#faq">FAQ</a>
+</div></div></nav>
+
+<!-- ================= OVERVIEW ================= -->
+<section class="sec" id="overview">
+  <div class="wrap">
+    <div class="oc-ov">
+      <div class="oc-ovl rv">
+        <span class="oc-eb">Overview</span>
+        <h2 class="oc-h2">Oracle built the cloud around its database. <em>We run it around your business.</em></h2>
+        <p class="oc-lede">Oracle Cloud Infrastructure is where many Indian companies already running Oracle Database, E-Business Suite or JD Edwards end up — the licences carry over, the database services are native, and both OCI regions in India are live. What it does not come with is a team that watches it at 3 a.m.</p>
+        <p>XcellHost is that team. We assess what you run, design the tenancy, move the workloads and then operate them from our Mumbai NOC/SOC: monitoring, incidents, patching, backups, Data Guard, security posture and cost. You keep control of your OCI tenancy and your data; OCI usage is billed at actuals on one INR invoice with GST, and our management fee is fixed up front.</p>
+      </div>
+      <div class="oc-srm rv" data-d="1" aria-label="Who looks after what">
+        <span class="oc-srmh">Who looks after what</span>
+        <div class="oc-srr o"><span class="who"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a5 5 0 01-.6-10A6 6 0 0118 9a4.5 4.5 0 01-.5 9z"/></svg><b>Oracle</b></span><span class="bar"><i style="--w:38%"></i></span><span class="what">Data centres, hardware, hypervisor, Autonomous automation</span></div>
+        <div class="oc-srr x"><span class="who"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15v-3a8 8 0 0116 0v3"/><rect x="2" y="14" width="5" height="7" rx="2"/><rect x="17" y="14" width="5" height="7" rx="2"/></svg><b>XcellHost</b></span><span class="bar"><i style="--w:86%"></i></span><span class="what">Tenancy design, OS &amp; DB operations, patching, backup, DR, security posture, FinOps, billing</span></div>
+        <div class="oc-srr y"><span class="who"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></svg><b>You</b></span><span class="bar"><i style="--w:24%"></i></span><span class="what">Business decisions, application owners, data classification, approvals</span></div>
+        <p class="oc-fine">Indicative split. The exact responsibility matrix is agreed in your service schedule.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHAT WE MANAGE ================= -->
+<section class="sec" id="manage">
+  <div class="wrap">
+    <div class="oc-shd rv"><span class="oc-eb">What we manage</span><h2 class="oc-h2">Every layer of OCI, <em>with the database at the centre.</em></h2><p>Pick a family. Each tile is a service we design, run and report on.</p></div>
+    <div class="oc-fam rv" role="tablist" aria-label="Service families" id="ocFam">
+      <button type="button" class="on" data-f="all">All</button><button type="button" data-f="db"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Database</button><button type="button" data-f="cmp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg>Compute</button><button type="button" data-f="net"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v5M5 17v-3h14v3"/></svg>Network</button><button type="button" data-f="sto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3l5 3-5 3-5-3 5-3zM17 3l5 3-5 3-5-3 5-3zM12 12l5 3-5 3-5-3 5-3z"/><path d="M2 6v5l5 3M22 6v5l-5 3M7 15v4l5 3 5-3v-4"/></svg>Storage</button><button type="button" data-f="sec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Security</button><button type="button" data-f="app"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5M3 17.5l9 5 9-5"/></svg>Oracle apps</button><span class="oc-famu" aria-hidden="true"></span>
+    </div>
+    <div class="oc-tiles" id="ocTiles">
+      <article class="oc-tile big" data-f="db"><span class="oc-tag">Database</span><h3>Autonomous Database</h3><p>Serverless or dedicated. Oracle automates tuning, patching and scaling; we own the alerts, access, backups policy, Data Safe reviews and cost.</p><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14l4-6"/><circle cx="12" cy="14" r="8"/></svg>Auto-indexing &amp; autoscale watched</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>Data Safe &amp; Database Vault setup</li></ul></article>
+      <article class="oc-tile big" data-f="db"><span class="oc-tag">Database</span><h3>Exadata Database Service</h3><p>Dedicated Exadata infrastructure for heavy OLTP and consolidation — RAC, storage cells and patch cycles planned and run by our DBAs.</p><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg>RAC &amp; patching rounds</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4M3 11V9a3 3 0 013-3h15M7 22l-4-4 4-4M21 13v2a3 3 0 01-3 3H3"/></svg>Data Guard across regions</li></ul></article>
+      <article class="oc-tile" data-f="db"><span class="oc-tag">Database</span><h3>Base Database Service</h3><p>Oracle Database on VMs (SE2 / EE) for smaller estates and lift-and-shift.</p></article>
+      <article class="oc-tile" data-f="db"><span class="oc-tag">Database</span><h3>MySQL HeatWave &amp; PostgreSQL</h3><p>Managed open-source engines for web and analytics apps.</p></article>
+      <article class="oc-tile" data-f="cmp"><span class="oc-tag">Compute</span><h3>Flexible VMs</h3><p>AMD, Intel and Ampere Arm flex shapes sized by OCPU and memory — and resized when usage says so.</p></article>
+      <article class="oc-tile" data-f="cmp"><span class="oc-tag">Compute</span><h3>Bare metal &amp; GPU</h3><p>Dedicated hosts for licence-bound or latency-sensitive workloads.</p></article>
+      <article class="oc-tile" data-f="cmp"><span class="oc-tag">Compute</span><h3>Kubernetes (OKE)</h3><p>Cluster upgrades, node pools, ingress and image hygiene.</p></article>
+      <article class="oc-tile" data-f="net"><span class="oc-tag">Network</span><h3>VCN, DRG &amp; hub-spoke</h3><p>Subnets, route tables, security lists and NSGs designed once and kept tidy.</p></article>
+      <article class="oc-tile" data-f="net"><span class="oc-tag">Network</span><h3>FastConnect &amp; VPN</h3><p>Private circuits from your DC or office to Mumbai / Hyderabad, with failover tested.</p></article>
+      <article class="oc-tile" data-f="net"><span class="oc-tag">Network</span><h3>Load balancing &amp; WAF</h3><p>Public endpoints behind load balancers and a web application firewall.</p></article>
+      <article class="oc-tile" data-f="sto"><span class="oc-tag">Storage</span><h3>Block, File &amp; Object</h3><p>Volume backup policies, lifecycle rules and archive tiers that match your retention.</p></article>
+      <article class="oc-tile" data-f="sto"><span class="oc-tag">Storage</span><h3>Database backups</h3><p>RMAN and automatic backups, restore tests on a schedule — not just on paper.</p></article>
+      <article class="oc-tile" data-f="sec"><span class="oc-tag">Security</span><h3>Identity domains &amp; IAM</h3><p>Compartments, groups and least-privilege policies; MFA and federation with Entra ID or AD.</p></article>
+      <article class="oc-tile" data-f="sec"><span class="oc-tag">Security</span><h3>Cloud Guard &amp; Security Zones</h3><p>Misconfiguration detection, responder recipes and guard-rails on sensitive compartments.</p></article>
+      <article class="oc-tile" data-f="sec"><span class="oc-tag">Security</span><h3>Vault, Bastion &amp; logging</h3><p>Customer-managed keys, audited admin access and logs shipped to your SIEM.</p></article>
+      <article class="oc-tile big" data-f="app"><span class="oc-tag">Oracle apps</span><h3>E-Business Suite · JD Edwards · PeopleSoft</h3><p>Moved with Oracle's OCI tooling (EBS Cloud Manager, JD Edwards One-Click Provisioning, PeopleSoft Cloud Manager), then patched, cloned and monitored by us.</p><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4l-4 4 4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></svg>Lift-and-shift with customisations</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Test clones on demand</li></ul></article>
+      <article class="oc-tile" data-f="app"><span class="oc-tag">Oracle apps</span><h3>Hyperion EPM &amp; Siebel</h3><p>Planning and CRM stacks re-hosted on OCI and kept on supported versions.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LIFECYCLE (scroll-linked timeline) ================= -->
+<section class="sec oc-dk" id="lifecycle">
+  <div class="wrap">
+    <div class="oc-shd rv"><span class="oc-eb">Lifecycle</span><h2 class="oc-h2">Assess → Migrate → Operate → Optimise → Secure — <em>one timeline, one team.</em></h2><p>Typical timings for a mid-size Oracle estate. Your plan is dated in the assessment.</p></div>
+    <div class="oc-lc" id="ocLc">
+      <div class="oc-lcr" aria-hidden="true"><span class="tr"></span><span class="fl" id="ocLcF"></span></div>
+      <div class="oc-lcs">
+        <div class="oc-lci" data-i="0"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span><time>Weeks 1–3</time><h3>Assess</h3><p>Inventory of databases, apps, licences and dependencies; target OCI design; costed plan in rupees.</p><ul><li>AWR &amp; usage review</li><li>Licence position (BYOL vs included)</li><li>Readiness report</li></ul></div>
+        <div class="oc-lci" data-i="1"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4l-4 4 4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></svg></span><time>Weeks 3–10</time><h3>Migrate</h3><p>Landing zone, FastConnect or VPN, then waves: test, rehearse, cut over in an agreed window.</p><ul><li>Data Guard / Data Pump / GoldenGate</li><li>EBS / JDE cloud tooling</li><li>Rollback plan per wave</li></ul></div>
+        <div class="oc-lci" data-i="2"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span><time>Day 1 onward</time><h3>Operate</h3><p>24×7 monitoring and incident response from Mumbai, monthly patch rounds, backups and restore tests.</p><ul><li>Alarms to tickets in minutes</li><li>Monthly service report</li><li>Named engineer (Enterprise)</li></ul></div>
+        <div class="oc-lci" data-i="3"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14l4-4"/><path d="M3.3 17a9 9 0 1117.4 0"/></svg></span><time>Monthly</time><h3>Optimise</h3><p>Rightsizing, shape changes, storage tiers, Universal Credits use and idle clean-up.</p><ul><li>Cost review with actions</li><li>Budget alerts by compartment</li><li>Tagging hygiene</li></ul></div>
+        <div class="oc-lci" data-i="4"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span><time>Always</time><h3>Secure</h3><p>Cloud Guard findings worked, IAM reviewed, keys rotated, logs retained for audit.</p><ul><li>Quarterly access review</li><li>DR drill evidence</li><li>CERT-In-ready logging</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 24x7 OPS (shift clock) ================= -->
+<section class="sec" id="ops">
+  <div class="wrap">
+    <div class="oc-shd rv"><span class="oc-eb">24×7 operations</span><h2 class="oc-h2">A day on your tenancy, <em>as our NOC sees it.</em></h2><p>Monitoring, incidents, patching, backup and DR run on a clock. This is a sample schedule — yours is agreed at onboarding.</p></div>
+    <div class="oc-ops">
+      <div class="oc-clk rv" id="ocClk"><canvas id="ocClkC" aria-hidden="true"></canvas><div class="oc-clkc"><small>Sample · IST</small><b id="ocClkT">00:00</b><span id="ocClkE">Monitoring</span></div><div class="oc-clkl"><span><i style="background:#FFB15C"></i>Backups</span><span><i style="background:#E86A55"></i>Patch / incident</span><span><i style="background:#7FB0FF"></i>DR check</span><span><i style="background:#5FD08D"></i>Reports &amp; reviews</span></div></div>
+      <div class="oc-opl">
+        <div class="oc-opc rv" data-e="0"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></i><div><time>Always on</time><h3>Monitoring &amp; alarms</h3><p>OCI Monitoring alarms, database metrics and log rules feed our NOC console; thresholds are tuned per workload so pages mean something.</p></div></div>
+        <div class="oc-opc rv" data-d="1" data-e="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 16V11a6 6 0 00-12 0v5l-2 2h16zM10 20a2 2 0 004 0"/></svg></i><div><time>Within minutes</time><h3>Incident response</h3><p>Alarm → ticket → engineer. P1 database and network incidents get a call, a bridge and a written root-cause note.</p></div></div>
+        <div class="oc-opc rv" data-d="2" data-e="2"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></i><div><time>Monthly window</time><h3>Patching</h3><p>OS, Oracle Database release updates and Exadata patch rounds — staged on test, applied in your window, rolled back if needed.</p></div></div>
+        <div class="oc-opc rv" data-d="3" data-e="3"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a5 5 0 01-.6-10A6 6 0 0118 9a4.5 4.5 0 01-.5 9"/><path d="M12 12v8M9 15l3-3 3 3"/></svg></i><div><time>Nightly + continuous</time><h3>Backup &amp; DR</h3><p>Database and volume backups by policy, Data Guard to Hyderabad where you need it, and restore or switchover drills with evidence.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECURITY & COMPLIANCE (India) ================= -->
+<section class="sec" id="security">
+  <div class="wrap">
+    <div class="oc-shd rv"><span class="oc-eb">Security &amp; compliance · India</span><h2 class="oc-h2">Indian rules, mapped to <em>OCI controls.</em></h2><p>We design and run the controls and keep the evidence. Compliance decisions stay with you — this helps you meet them.</p></div>
+    <div class="oc-sg">
+      <div class="oc-sgc rv"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0114 0M16 11l2 2 4-4"/></svg></span><h3>DPDP Act 2023</h3><p>Personal data kept in Mumbai or Hyderabad, encrypted with keys in OCI Vault, access limited by compartment and logged — plus a breach-response runbook.</p><span class="ctl">Vault · IAM · Data Safe</span></div>
+      <div class="oc-sgc rv" data-d="1"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><h3>CERT-In directions</h3><p>Logs retained for 180 days in India and incident support aligned to the 6-hour reporting window; NTP and log sources documented.</p><span class="ctl">Logging · Connector Hub · SIEM</span></div>
+      <div class="oc-sgc rv" data-d="2"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span><h3>RBI · SEBI · IRDAI</h3><p>Outsourcing documentation, India data-localisation, audit access and DR evidence prepared for regulated entities' reviews.</p><span class="ctl">DR drills · audit trails</span></div>
+      <div class="oc-sgc rv" data-d="3"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span><h3>CIS OCI benchmark</h3><p>Landing zone aligned to the CIS OCI Foundations Benchmark; Cloud Guard and Security Zones catch drift before auditors do.</p><span class="ctl">Cloud Guard · Security Zones</span></div>
+      <div class="oc-sgk rv" data-d="2"><small>India logging baseline</small><b><span data-count="180">0</span> days</b><span>log retention in India</span><b><span data-count="6">0</span> hours</b><span>CERT-In incident reporting window</span><em>Per CERT-In directions (April 2022). Confirm applicability with your counsel.</em></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINOPS ================= -->
+<section class="sec oc-dk" id="finops">
+  <div class="wrap">
+    <div class="oc-shd rv"><span class="oc-eb">FinOps · cost optimisation</span><h2 class="oc-h2">OCI is priced to be simple. <em>We keep it that way.</em></h2><p>Switch levers on and watch an illustrative monthly bill fall. Real savings depend on your usage — we measure them in the assessment.</p></div>
+    <div class="oc-fo">
+      <div class="oc-fol rv">
+        <label class="oc-lv"><input type="checkbox" data-lv="right" checked><span class="sw"></span><span><b>Rightsize flex shapes</b><small>Match OCPU and memory to measured use</small></span></label>
+        <label class="oc-lv"><input type="checkbox" data-lv="cred" checked><span class="sw"></span><span><b>Annual Universal Credits</b><small>Commit to a yearly amount for better rates</small></span></label>
+        <label class="oc-lv"><input type="checkbox" data-lv="byol" checked><span class="sw"></span><span><b>Bring your own licence</b><small>Use existing Oracle DB licences where eligible</small></span></label>
+        <label class="oc-lv"><input type="checkbox" data-lv="sched"><span class="sw"></span><span><b>Stop non-prod at night</b><small>Dev / test off outside working hours</small></span></label>
+        <label class="oc-lv"><input type="checkbox" data-lv="tier"><span class="sw"></span><span><b>Storage tiers &amp; clean-up</b><small>Archive old backups, delete orphan volumes</small></span></label>
+        <ul class="oc-fon">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4L13.4 20.6a2 2 0 01-2.8 0L3 13V3h10l7.6 7.6a2 2 0 010 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>Tagging and budgets by compartment, with alerts before overruns</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg>Oracle states the first 10 TB of outbound data each month is free</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v9h14v-9M12 8v13M12 8S10 3 7.5 4.5 9 8 12 8zM12 8s2-5 4.5-3.5S15 8 12 8z"/></svg>Oracle Support Rewards can offset on-prem licence support — we track eligibility</li>
+        </ul>
+      </div>
+      <div class="oc-wf rv" data-d="1" id="ocWf">
+        <div class="oc-wfh"><span>Illustrative monthly OCI bill</span><b id="ocWfT">₹0</b><em id="ocWfS">−0%</em></div>
+        <svg class="oc-wfs" id="ocWfSvg" viewBox="0 0 560 280" aria-hidden="true"></svg>
+        <p class="oc-fine">Illustrative only: a ₹6,00,000/month starting bill with typical lever ranges. Not a quote.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BILLING ================= -->
+<section class="sec" id="billing">
+  <div class="wrap">
+    <div class="oc-bl">
+      <div class="rv">
+        <span class="oc-eb">Billing through XcellHost</span>
+        <h2 class="oc-h2">One invoice in rupees. <em>OCI at actuals, our fee fixed.</em></h2>
+        <p>Stop paying a dollar card bill and reconciling it every month. XcellHost bills your OCI consumption and our management fee together, in INR with GST, against your PO.</p>
+        <ul class="oc-bll">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12M6 9h12M15 20L8 13h2a4 4 0 000-8"/></svg><span><b>INR invoice with GST</b>Input credit ready, one vendor in your books</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5M3 17.5l9 5 9-5"/></svg><span><b>Consolidated billing</b>Several tenancies or compartments on one invoice, split by cost centre</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg><span><b>Usage at actuals*</b>OCI usage passed through at actuals; no mark-up surprises</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg><span><b>Monthly cost pack</b>Usage by service, compartment and tag, with the actions we took</span></li>
+        </ul>
+      </div>
+      <div class="oc-inv rv" data-d="1" aria-label="Sample invoice">
+        <div class="ih"><span><b>XcellHost Cloud Services Pvt. Ltd.</b><small>Tax invoice · SAMPLE</small></span><em>INR</em></div>
+        <div class="ir"><span>OCI usage · India West (Mumbai)</span><b class="u">at actuals*</b></div>
+        <div class="ir"><span>OCI usage · India South (Hyderabad, DR)</span><b class="u">at actuals*</b></div>
+        <div class="ir"><span>Managed Oracle Cloud · Professional</span><b data-pr="pro">₹39,999</b></div>
+        <div class="ir"><span>Managed Oracle DBA add-on</span><b data-pr="dba">₹24,999</b></div>
+        <div class="ir t"><span>GST @ 18%</span><b>on all lines</b></div>
+        <div class="is"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Paid by NEFT / RTGS against PO</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PLANS ================= -->
+<section class="sec" id="pricing">
+  <div class="wrap">
+    <div class="oc-shd rv"><span class="oc-eb">Plans</span><h2 class="oc-h2">Three plans, <em>priced in rupees.</em></h2><p>Indicative — confirm with XcellHost. Prices exclude 18% GST. OCI usage is billed separately at actuals*.</p></div>
+    <div class="oc-pm rv" role="group" aria-label="Pricing model"><button type="button" class="on" data-m="flat">Flat monthly fee</button><button type="button" data-m="pct">% of monthly cloud spend</button><span class="u" aria-hidden="true"></span></div>
+    <div class="oc-plans" id="ocPlans">
+      <article class="oc-plan rv">
+        <span class="nm2">Essential</span><p class="for">Watch and report</p>
+        <div class="pr"><b data-flat="ess">₹14,999</b><span class="pct">8% of spend<small>min <span data-pr="min">₹14,999</span></small></span><em>/month*</em></div>
+        <p class="inc">Up to <b>10 resources*</b></p>
+        <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>24×7 monitoring &amp; alerting</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 16V11a6 6 0 00-12 0v5l-2 2h16zM10 20a2 2 0 004 0"/></svg>Alert triage, business hours fix</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg>Monthly health &amp; cost report</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12M6 9h12M15 20L8 13h2a4 4 0 000-8"/></svg>INR billing with GST</li></ul>
+        <button class="btn btn-ghost btn-block" data-plan="ess" type="button">Configure Essential</button>
+      </article>
+      <article class="oc-plan pop rv" data-d="1">
+        <span class="flag2">Most popular</span>
+        <span class="nm2">Professional</span><p class="for">Run it for us</p>
+        <div class="pr"><b data-flat="pro">₹39,999</b><span class="pct">8% of spend<small>min <span data-pr="min">₹14,999</span></small></span><em>/month*</em></div>
+        <p class="inc">Up to <b>40 resources*</b></p>
+        <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Everything in Essential</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15v-3a8 8 0 0116 0v3"/><rect x="2" y="14" width="5" height="7" rx="2"/><rect x="17" y="14" width="5" height="7" rx="2"/></svg>24×7 incident response</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>OS &amp; database patching</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a5 5 0 01-.6-10A6 6 0 0118 9a4.5 4.5 0 01-.5 9"/><path d="M12 12v8M9 15l3-3 3 3"/></svg>Backup management &amp; restore tests</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14l4-4"/><path d="M3.3 17a9 9 0 1117.4 0"/></svg>Quarterly cost reviews</li></ul>
+        <button class="btn btn-orange btn-block oc-mag" data-plan="pro" type="button">Configure Professional</button>
+      </article>
+      <article class="oc-plan rv" data-d="2">
+        <span class="nm2">Enterprise</span><p class="for">Own the outcome</p>
+        <div class="pr"><b class="q">Quote</b><span class="pct">8% of spend<small>min <span data-pr="min">₹14,999</span></small></span><em>tailored</em></div>
+        <p class="inc"><b>Unlimited</b> resources, multi-tenancy</p>
+        <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Everything in Professional</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0114 0M16 11l2 2 4-4"/></svg>Named engineer</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>Security posture management</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4M3 11V9a3 3 0 013-3h15M7 22l-4-4 4-4M21 13v2a3 3 0 01-3 3H3"/></svg>DR drills with evidence</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>Monthly FinOps programme</li></ul>
+        <button class="btn btn-ghost btn-block" data-open="xhCallback" data-topic="Managed Oracle Cloud — Enterprise quotation" type="button">Get a quote</button>
+      </article>
+    </div>
+    <div class="oc-one rv">
+      <div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></i><span><b>Cloud readiness assessment</b><small>One-time · 2–3 weeks</small></span><em data-pr="assess">₹49,999</em><button class="btn btn-sm btn-ghost" type="button" data-add="assess"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.5"/><circle cx="18" cy="21" r="1.5"/><path d="M2 3h3l2.6 13.4a1.5 1.5 0 001.5 1.1h9.5a1.5 1.5 0 001.5-1.2L22 7H6"/></svg>Add</button></div>
+      <div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></i><span><b>OCI landing zone setup</b><small>One-time · CIS-aligned</small></span><em data-pr="lz">₹1,49,999</em><button class="btn btn-sm btn-ghost" type="button" data-add="lz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.5"/><circle cx="18" cy="21" r="1.5"/><path d="M2 3h3l2.6 13.4a1.5 1.5 0 001.5 1.1h9.5a1.5 1.5 0 001.5-1.2L22 7H6"/></svg>Add</button></div>
+      <div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4l-4 4 4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></svg></i><span><b>Migration</b><small>Per wave · scoped after assessment</small></span><em>Quote</em><button class="btn btn-sm btn-ghost" type="button" data-open="xhCallback" data-topic="Managed Oracle Cloud — migration quotation">Ask</button></div>
+    </div>
+    <p class="oc-fine">*Indicative placeholders — confirm with XcellHost. "Resource" = a VM, database, Exadata VM cluster node, load balancer or similar managed item. OCI consumption and Oracle licences billed at actuals.</p>
+  </div>
+</section>
+
+<!-- ================= CONFIGURATOR ================= -->
+<section class="sec" id="configure">
+  <div class="wrap">
+    <div class="oc-shd rv"><span class="oc-eb">Configurator</span><h2 class="oc-h2">Build your monthly fee — <em>see the GST total.</em></h2><p>Indicative · excl. 18% GST until the total line. OCI usage is not included and is billed at actuals.</p></div>
+    <div class="calc oc-calc rv" id="ocCalc">
+      <div class="cin">
+        <div class="fld"><span class="lb">Plan <small id="cPlL">Professional</small></span>
+          <div class="seg" id="cPl"><button data-v="ess">Essential</button><button data-v="pro" class="on">Professional</button><button data-v="ent">Enterprise</button></div></div>
+        <div class="fld"><span class="lb">Pricing model <small id="cMoL">Flat fee</small></span>
+          <div class="seg" id="cMo"><button data-v="flat" class="on">Flat fee</button><button data-v="pct">8% of spend</button></div></div>
+        <div class="fld"><label for="cRs">Managed resources / VMs <small id="cRsL">24 resources</small></label><div class="stp"><button type="button" data-step="-1" aria-label="Fewer">−</button><input type="number" id="cRs" min="1" max="400" value="24" aria-label="Managed resources"><button type="button" data-step="1" aria-label="More">+</button></div></div>
+        <div class="fld"><span class="lb">Monthly OCI spend <small id="cSpL">₹2–5 lakh</small></span>
+          <div class="seg oc-seg5" id="cSp"><button data-v="0">&lt; ₹2 L</button><button data-v="1" class="on">₹2–5 L</button><button data-v="2">₹5–15 L</button><button data-v="3">₹15–40 L</button><button data-v="4">₹40 L+</button></div></div>
+        <div class="fld"><span class="lb">Environments <small id="cEnL">Prod + Dev/Test</small></span>
+          <div class="seg" id="cEn"><button data-v="1">Prod</button><button data-v="2" class="on">+ Dev/Test</button><button data-v="3">+ DR</button><button data-v="4">+ UAT</button></div></div>
+        <div class="oc-ad">
+          <label class="tgl"><input type="checkbox" id="cA0"><span class="sw"></span><span>Managed Oracle DBA<small><span data-pr="dba">₹24,999</span>/month · tuning, RU patching, Data Guard</small></span></label>
+          <label class="tgl"><input type="checkbox" id="cA1"><span class="sw"></span><span>Security posture management<small><span data-pr="spm">₹9,999</span>/month · Cloud Guard findings worked</small></span></label>
+          <label class="tgl"><input type="checkbox" id="cA2"><span class="sw"></span><span>Quarterly DR drill<small><span data-pr="drd">₹7,999</span>/month · switchover + evidence pack</small></span></label>
+          <label class="tgl"><input type="checkbox" id="cA3"><span class="sw"></span><span>180-day log archive (CERT-In)<small><span data-pr="log">₹3,999</span>/month · plus storage at actuals</small></span></label>
+        </div>
+      </div>
+      <div class="cout" aria-live="polite">
+        <span class="ck">Your monthly fee · indicative</span>
+        <div class="crows" id="oRows"></div>
+        <div class="ctot" id="oTot">₹0</div>
+        <div class="csub">per month, excl. GST</div>
+        <div class="crows">
+          <div class="crow"><span>Subtotal</span><b id="oSub">₹0</b></div>
+          <div class="crow"><span>GST (18%)</span><b id="oGst">₹0</b></div>
+          <div class="crow"><span>Total incl. GST</span><b id="oPay">₹0</b></div>
+        </div>
+        <p class="oc-tip" id="oTip"></p>
+        <div class="cact"><button class="btn btn-orange btn-block oc-mag" id="oAdd" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.5"/><circle cx="18" cy="21" r="1.5"/><path d="M2 3h3l2.6 13.4a1.5 1.5 0 001.5 1.1h9.5a1.5 1.5 0 001.5-1.2L22 7H6"/></svg> Add to cart</button><button class="btn btn-line btn-block" id="oQuote" type="button" data-open="xhCallback" data-topic="Managed Oracle Cloud — quotation">Get quotation</button></div>
+        <div class="cfine">Indicative · excl. 18% GST · confirm with XcellHost. OCI consumption and Oracle licences billed at actuals.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TOOL 1 · OCI FIT CHECKER ================= -->
+<section class="sec oc-dk" id="fit">
+  <div class="wrap">
+    <div class="oc-shd rv"><span class="oc-eb">Tool · OCI fit checker</span><h2 class="oc-h2">What would your workload run on <em>in OCI?</em></h2><p>Choose a workload and a few facts. You get a suggested service and shape family, a DR pattern and a licensing note. Illustrative — we confirm in the assessment.</p></div>
+    <div class="oc-fit">
+      <div class="oc-fiti rv">
+        <span class="lb">Workload</span>
+        <div class="oc-wk" id="fWk">
+          <button type="button" data-v="oltp" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>Oracle DB · OLTP</button>
+          <button type="button" data-v="dw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg>Data warehouse</button>
+          <button type="button" data-v="ebs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5M3 17.5l9 5 9-5"/></svg>E-Business Suite</button>
+          <button type="button" data-v="jde"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3l5 3-5 3-5-3 5-3zM17 3l5 3-5 3-5-3 5-3zM12 12l5 3-5 3-5-3 5-3z"/><path d="M2 6v5l5 3M22 6v5l-5 3M7 15v4l5 3 5-3v-4"/></svg>JD Edwards</button>
+          <button type="button" data-v="psft"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2 20a7 7 0 0114 0M17 11a3 3 0 000-6M22 20a6 6 0 00-4-5.6"/></svg>PeopleSoft</button>
+          <button type="button" data-v="app"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg>Java / .NET apps</button>
+          <button type="button" data-v="k8s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8.5 5v10L12 22l-8.5-5V7z"/></svg>Containers</button>
+          <button type="button" data-v="win"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Windows &amp; SQL Server</button>
+        </div>
+        <span class="lb">Database size</span>
+        <div class="seg" id="fSz"><button data-v="0">&lt; 1 TB</button><button data-v="1" class="on">1–10 TB</button><button data-v="2">10–50 TB</button><button data-v="3">50 TB+</button></div>
+        <span class="lb">Availability need</span>
+        <div class="seg" id="fHa"><button data-v="0">Standard</button><button data-v="1" class="on">High (in-region)</button><button data-v="2">High + DR region</button></div>
+        <span class="lb">Oracle licences today</span>
+        <div class="seg" id="fLc"><button data-v="byol" class="on">Own licences + support</button><button data-v="li">None / want included</button><button data-v="na">Not sure</button></div>
+      </div>
+      <div class="oc-fito rv" data-d="1" aria-live="polite">
+        <svg class="oc-stk" id="fStk" viewBox="0 0 300 250" aria-hidden="true"></svg>
+        <div class="oc-fitr">
+          <small>Suggested service</small><b id="fSvc">—</b>
+          <small>Shape family</small><b id="fShp">—</b>
+          <small>DR pattern</small><b id="fDr">—</b>
+          <small>Licensing note</small><p id="fLic">—</p>
+          <small>XcellHost plan</small><b id="fPl">—</b>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TOOL 2 · MIGRATION RUNWAY ================= -->
+<section class="sec" id="runway">
+  <div class="wrap">
+    <div class="oc-shd rv"><span class="oc-eb">Tool · migration runway</span><h2 class="oc-h2">How long to land on OCI — <em>and how much downtime?</em></h2><p>Set the size of the move, your link and your downtime tolerance. The runway redraws with a suggested method. Illustrative estimate.</p></div>
+    <div class="oc-rw rv" id="ocRw">
+      <div class="oc-rwi">
+        <div class="fld"><label for="rTb">Data to move <small id="rTbL">8 TB</small></label><input class="rng" type="range" id="rTb" min="1" max="100" value="8"></div>
+        <div class="fld"><span class="lb">Network path <small id="rLkL">FastConnect 10 Gb/s</small></span>
+          <div class="seg" id="rLk"><button data-v="0.3">VPN 300 Mb/s</button><button data-v="1">FC 1 Gb/s</button><button data-v="10" class="on">FC 10 Gb/s</button></div></div>
+        <div class="fld"><span class="lb">Downtime you can accept <small id="rDtL">A weekend</small></span>
+          <div class="seg" id="rDt"><button data-v="0">Minutes</button><button data-v="1">A few hours</button><button data-v="2" class="on">A weekend</button></div></div>
+        <div class="fld"><span class="lb">Applications <small id="rApL">2 waves</small></span>
+          <div class="seg" id="rAp"><button data-v="1">1 wave</button><button data-v="2" class="on">2 waves</button><button data-v="3">3 waves</button><button data-v="4">4 waves</button></div></div>
+      </div>
+      <div class="oc-rwo">
+        <div class="oc-rwk"><div><small>Method</small><b id="rM">—</b></div><div><small>Initial copy</small><b id="rC">—</b></div><div><small>Cutover downtime</small><b id="rD">—</b></div><div><small>Programme</small><b id="rW">—</b></div></div>
+        <div class="oc-gt" id="rGt" aria-label="Migration runway timeline"></div>
+        <p class="oc-fine">Copy time assumes ~70% link efficiency. Real timings depend on change rate, versions and testing — confirmed in the assessment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LANDING ZONE ================= -->
+<section class="sec" id="landing">
+  <div class="wrap">
+    <div class="oc-lz">
+      <div class="rv">
+        <span class="oc-eb">Migration &amp; landing zone</span>
+        <h2 class="oc-h2">A tenancy built right <em>before the first workload lands.</em></h2>
+        <p>We deploy an OCI landing zone based on Oracle's reference design and the CIS OCI Foundations Benchmark, then adapt it to your teams and regulators.</p>
+        <ol class="oc-lzl">
+          <li><b>Compartments</b>Network, security, app, database and Exadata — each with its own admin group</li>
+          <li><b>Hub-and-spoke network</b>Hub VCN with DRG; spokes for three-tier apps, databases and OKE</li>
+          <li><b>Guard-rails</b>Cloud Guard, Security Zones, Vault, Bastion and vulnerability scanning on day one</li>
+          <li><b>Logging &amp; alerts</b>Audit and service logs, events and notifications to our NOC and your SIEM</li>
+          <li><b>Connectivity</b>FastConnect or site-to-site VPN to Mumbai, with Hyderabad as the paired region</li>
+        </ol>
+      </div>
+      <div class="oc-lzd rv" data-d="1" id="ocLz">
+        <svg viewBox="0 0 520 400" aria-hidden="true">
+          <g class="ar"><rect x="10" y="10" width="500" height="380" rx="18"/></g>
+          <text x="28" y="36" class="t1">OCI TENANCY · ap-mumbai-1</text>
+          <g class="ln"><path d="M120 200H200"/><path d="M320 200H400"/><path d="M260 140V96"/><path d="M260 260V304"/><path d="M60 200H120"/></g>
+          <circle class="pk" r="4"><animateMotion dur="3.2s" repeatCount="indefinite" path="M60 200H200 M200 200H320 M320 200H400"/></circle>
+          <g class="bx hub"><rect x="200" y="140" width="120" height="120" rx="14"/><text x="260" y="190">Hub VCN</text><text x="260" y="210" class="s">DRG · firewall</text></g>
+          <g class="bx"><rect x="400" y="160" width="100" height="80" rx="12"/><text x="450" y="196">App spoke</text><text x="450" y="214" class="s">3-tier · LB</text></g>
+          <g class="bx"><rect x="200" y="304" width="120" height="66" rx="12"/><text x="260" y="332">DB spoke</text><text x="260" y="350" class="s">Exadata · ADB</text></g>
+          <g class="bx"><rect x="200" y="40" width="120" height="56" rx="12"/><text x="260" y="66">OKE spoke</text><text x="260" y="82" class="s">containers</text></g>
+          <g class="bx op"><rect x="20" y="160" width="100" height="80" rx="12"/><text x="70" y="196">On-prem</text><text x="70" y="214" class="s">FastConnect</text></g>
+          <g class="gd"><rect x="352" y="52" width="148" height="30" rx="15"/><text x="426" y="72">Cloud Guard</text></g>
+          <g class="gd"><rect x="352" y="88" width="148" height="30" rx="15"/><text x="426" y="108">Security Zones</text></g>
+          <g class="gd"><rect x="352" y="282" width="148" height="30" rx="15"/><text x="426" y="302">Vault · keys</text></g>
+          <g class="gd"><rect x="352" y="318" width="148" height="30" rx="15"/><text x="426" y="338">Logging → SIEM</text></g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COMPARISON ================= -->
+<section class="sec" id="vs">
+  <div class="wrap">
+    <div class="oc-shd rv"><span class="oc-eb">Compare</span><h2 class="oc-h2">Self-managed OCI vs <em>managed by XcellHost.</em></h2></div>
+    <div class="oc-vs rv">
+      <div class="oc-vsh"><span></span><b>Self-managed</b><b class="me">Managed by XcellHost</b></div>
+      <div class="oc-vsr"><span>Night-time alarms</span><p class="no">Your on-call engineer, if any</p><p class="yes">Mumbai NOC/SOC, 24×7</p></div>
+      <div class="oc-vsr"><span>Database patching</span><p class="no">Ad hoc, often deferred</p><p class="yes">Monthly window, tested first</p></div>
+      <div class="oc-vsr"><span>DR</span><p class="no">Configured once, rarely tested</p><p class="yes">Drills with evidence (Enterprise / add-on)</p></div>
+      <div class="oc-vsr"><span>Security posture</span><p class="no">Cloud Guard findings pile up</p><p class="yes">Findings triaged and closed</p></div>
+      <div class="oc-vsr"><span>Cost control</span><p class="no">Seen at month end on a card</p><p class="yes">Budgets, rightsizing and reviews</p></div>
+      <div class="oc-vsr"><span>Billing</span><p class="no">USD card, forex and reconciliation</p><p class="yes">INR invoice with GST</p></div>
+      <div class="oc-vsr"><span>Hiring</span><p class="no">Oracle DBA + cloud engineer + SOC</p><p class="yes">One monthly fee</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STEPS ================= -->
+<section class="sec oc-dk" id="steps">
+  <div class="wrap">
+    <div class="oc-shd rv"><span class="oc-eb">Getting started</span><h2 class="oc-h2">Five steps <em>to a managed tenancy.</em></h2></div>
+    <ol class="oc-st">
+      <li class="rv"><span>01</span><b>Call</b><p>30 minutes on what you run and why OCI.</p></li>
+      <li class="rv" data-d="1"><span>02</span><b>Assess</b><p>Inventory, licences and a costed plan.</p></li>
+      <li class="rv" data-d="2"><span>03</span><b>Land</b><p>Landing zone, network and access.</p></li>
+      <li class="rv" data-d="3"><span>04</span><b>Move</b><p>Rehearsed waves and cutover.</p></li>
+      <li class="rv" data-d="4"><span>05</span><b>Run</b><p>24×7 operations and monthly reports.</p></li>
+    </ol>
+  </div>
+</section>
+
+
+</main>
+<div id="oracleToast" role="status" hidden></div>
+<script src="/assets/animations/managed-oracle-page.js"></script>
+</body>
+</html>

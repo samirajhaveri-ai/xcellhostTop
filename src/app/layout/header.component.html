@@ -33,7 +33,7 @@
             (click)="toggleTop(top.label)"
           >{{ top.label }} <span aria-hidden="true">⌄</span></button>
 
-          <div class="xh-mega" [id]="top.megaId">
+          <div class="xh-mega" [class.xh-mega-whatsapp]="activeFeatureCards(top)[0]?.image === '/assets/images/menu-whatsapp-smb.png'" [id]="top.megaId">
             <ng-template #categoryLinks let-tab>
                   @for (group of tab.groups; track $index) {
                     <div class="xh-link-group">
@@ -118,12 +118,40 @@
                 @for (feature of activeFeatureCards(top); track feature.title) {
                   <a class="xh-feature-card" [href]="feature.link" [attr.target]="feature.link.startsWith('http') ? '_blank' : null" [attr.rel]="feature.link.startsWith('http') ? 'noopener noreferrer' : null" (click)="onNavigate()">
                     @if (feature.fresh) { <span class="xh-feature-ribbon">New</span> }
-                    <span class="xh-feature-media">
+                    <span class="xh-feature-media" [class.xh-feature-media-monitoring]="feature.title === 'Cloud Monitoring' || feature.title === 'Cloud Observability'" [class.xh-feature-media-devops]="feature.title === 'Cloud DevOps Services' || feature.title === 'AWS DevOps'" [class.xh-feature-media-public-cloud]="feature.title === 'Managed AWS' || feature.title === 'Managed Azure'" [class.xh-feature-media-operations]="feature.title === 'Resilience Operations' || feature.title === 'Cloud Operations'" [class.xh-feature-media-postgresql]="feature.title === 'Managed PostgreSQL'" [class.xh-feature-media-vps]="feature.image === '/assets/images/menu-explore-vps.png' || feature.image === '/assets/images/menu-vps-india.png' || feature.image === '/assets/images/menu-bio-link.png' || feature.image === '/assets/images/menu-smart-qr.png' || feature.image === '/assets/images/menu-performance-cloud.png' || feature.image === '/assets/images/menu-bare-metal-servers.png' || feature.image === '/assets/images/menu-explore-cloud-servers.png' || feature.image === '/assets/images/menu-general-compute.png' || feature.image === '/assets/images/menu-explore-bare-metal-servers.png' || feature.image === '/assets/images/menu-windows-servers.png' || feature.image === '/assets/images/menu-nvidia-l40s.png' || feature.image === '/assets/images/menu-nvidia-l4.png' || feature.image === '/assets/images/menu-serverless-inference.png' || feature.image === '/assets/images/menu-dedicated-inference.png' || feature.image === '/assets/images/menu-kubernetes-as-a-service.png' || feature.image === '/assets/images/menu-docker-as-a-service.png' || feature.image === '/assets/images/menu-managed-microsoft-sql.png' || feature.image === '/assets/images/menu-managed-postgresql.png'" [class.xh-feature-media-whatsapp]="feature.image === '/assets/images/menu-whatsapp-smb.png' || feature.image === '/assets/images/menu-whatsapp-broadcasting.png'" [class.xh-feature-media-security]="feature.image === '/assets/images/menu-sitelock.png' || feature.image === '/assets/images/menu-cwatch.png'" [class.xh-feature-media-hosting]="feature.image === '/assets/images/menu-windows-hosting.png' || feature.image === '/assets/images/menu-linux-hosting.png'" [class.xh-feature-media-panel]="feature.image === '/assets/images/menu-cpanel.png' || feature.image === '/assets/images/menu-plesk.png'" [class.xh-feature-media-full]="feature.image === '/assets/images/menu-edr-labeled.png'" [class.xh-feature-media-illustration]="feature.image === '/assets/images/menu-cloud-backup.png' || feature.image === '/assets/images/menu-register-domain.png' || feature.image === '/assets/images/menu-transfer-domain.png'">
+                      @if (feature.title === 'Managed PostgreSQL' || feature.title === 'Resilience Operations' || feature.title === 'Cloud Operations' || feature.title === 'Managed AWS' || feature.title === 'Managed Azure' || feature.title === 'Cloud DevOps Services' || feature.title === 'AWS DevOps' || feature.title === 'Cloud Monitoring' || feature.title === 'Cloud Observability') {
+                        <img [src]="feature.image" [alt]="feature.title" width="1536" height="1024" />
+                      } @else if (feature.image === '/assets/images/menu-explore-vps.png' || feature.image === '/assets/images/menu-vps-india.png' || feature.image === '/assets/images/menu-bio-link.png' || feature.image === '/assets/images/menu-smart-qr.png' || feature.image === '/assets/images/menu-performance-cloud.png' || feature.image === '/assets/images/menu-bare-metal-servers.png' || feature.image === '/assets/images/menu-explore-cloud-servers.png' || feature.image === '/assets/images/menu-general-compute.png' || feature.image === '/assets/images/menu-explore-bare-metal-servers.png' || feature.image === '/assets/images/menu-windows-servers.png' || feature.image === '/assets/images/menu-nvidia-l40s.png' || feature.image === '/assets/images/menu-nvidia-l4.png' || feature.image === '/assets/images/menu-serverless-inference.png' || feature.image === '/assets/images/menu-dedicated-inference.png' || feature.image === '/assets/images/menu-kubernetes-as-a-service.png' || feature.image === '/assets/images/menu-docker-as-a-service.png' || feature.image === '/assets/images/menu-managed-microsoft-sql.png' || feature.image === '/assets/images/menu-managed-postgresql.png') {
+                        <img [src]="feature.image" [alt]="feature.title" />
+                      } @else if (feature.image === '/assets/images/menu-whatsapp-smb.png' || feature.image === '/assets/images/menu-whatsapp-broadcasting.png') {
+                        <svg class="xh-whatsapp-illustration" [attr.viewBox]="feature.image === '/assets/images/menu-whatsapp-smb.png' ? '36 36 1302 1070' : '0 0 1374 1145'" width="1374" height="1145" preserveAspectRatio="xMidYMid meet" role="img" [attr.aria-label]="feature.title">
+                          <image [attr.href]="feature.image" width="1374" height="1145" />
+                        </svg>
+                      } @else if (feature.image === '/assets/images/menu-web-design-ca.png' || feature.image === '/assets/images/menu-web-design-smb.png') {
+                        <svg class="xh-web-design-illustration" viewBox="40 40 1294 888" width="1294" height="888" preserveAspectRatio="xMidYMid meet" role="img" [attr.aria-label]="feature.title">
+                          <image [attr.href]="feature.image" width="1374" height="1145" />
+                        </svg>
+                      } @else if (feature.image === '/assets/images/menu-sitelock.png') {
+                        <svg viewBox="40 40 1294 870" width="1294" height="870" role="img" [attr.aria-label]="feature.title">
+                          <image [attr.href]="feature.image" width="1374" height="1145" />
+                        </svg>
+                      } @else if (feature.image === '/assets/images/menu-cwatch.png') {
+                        <img [src]="feature.image" [alt]="feature.title" />
+                      } @else if (feature.image === '/assets/images/menu-edr-labeled.png') {
+                        <img [src]="feature.image" [alt]="feature.title" width="1254" height="1254" />
+                      } @else if (feature.image === '/assets/images/menu-windows-hosting.png' || feature.image === '/assets/images/menu-linux-hosting.png' || feature.image === '/assets/images/menu-cpanel.png' || feature.image === '/assets/images/menu-plesk.png') {
+                        <img [src]="feature.image" [alt]="feature.title" width="1374" height="1145" />
+                      } @else if (feature.image === '/assets/images/menu-cloud-backup.png' || feature.image === '/assets/images/menu-register-domain.png' || feature.image === '/assets/images/menu-transfer-domain.png') {
+                        <svg class="xh-menu-illustration" viewBox="32 26 1310 830" width="1310" height="830" role="img" [attr.aria-label]="feature.title">
+                          <image [attr.href]="feature.image" x="0" y="0" width="1374" height="1145" />
+                        </svg>
+                      } @else {
                       <img
                         [src]="feature.image"
                         [alt]="feature.title"
                         [style.object-position]="feature.imagePosition ?? 'center'"
                       />
+                      }
                     </span>
                     <span class="xh-feature-copy">
                       <small>{{ feature.label }}</small>
@@ -155,7 +183,7 @@
                 <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 7h18M7 11h4v6H7zM14 11h3m-3 3h3m-3 3h3"/></svg>
                 <span>Insights</span>
               </a>
-              <button type="button" (click)="onNavigate(); overlay.open('chat')">
+              <button type="button" (click)="onNavigate(); openAskAi()">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H4l-3 3V11.5A8.5 8.5 0 0 1 9.5 3H13M18 2l1.2 3.8L23 7l-3.8 1.2L18 12l-1.2-3.8L13 7l3.8-1.2L18 2ZM6 12h8m-8 4h5"/></svg>
                 <span>Ask AI</span>
               </button>
@@ -167,9 +195,17 @@
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M8 6H3v12h5M16 6h5v12h-5M5 9l3 3-3 3m14-6-3 3 3 3"/></svg>
                 <span>Compare Providers</span>
               </a>
-              <a routerLink="/marketplace" (click)="onNavigate()">
+              <a routerLink="/compare-products" (click)="onNavigate()">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="7" height="16" rx="2"/><rect x="14" y="4" width="7" height="16" rx="2"/><path d="M5 9h3m-3 4h3m8-4h3m-3 4h3"/></svg>
+                <span>Compare Products</span>
+              </a>
+              <a routerLink="/explore-marketplace" (click)="onNavigate()">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l2-6h14l2 6M3 9h18v3a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0V9ZM5 15v6h14v-6M9 21v-5h6v5"/></svg>
                 <span>Marketplace</span>
+              </a>
+              <a class="xh-framework-label" routerLink="/cybersecurity-frameworks" (click)="onNavigate()">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6Z"/><path d="m8 12 3 3 5-6"/></svg>
+                <span>CyberSecurity Frameworks</span>
               </a>
               <div class="xh-menu-social" role="group" aria-label="Social media">
                 <a href="https://www.linkedin.com/in/samirjhaveri/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn" style="background:#0A66C2">in</a>
@@ -180,10 +216,6 @@
                 <a href="https://x.com/xcellcloud" target="_blank" rel="noopener noreferrer" aria-label="X" title="X" style="background:#000">X</a>
                 <span aria-label="Reddit (link coming soon)" title="Reddit — coming soon" style="background:#FF4500">r</span>
               </div>
-              <a class="xh-framework-label" routerLink="/cybersecurity-frameworks" (click)="onNavigate()">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6Z"/><path d="m8 12 3 3 5-6"/></svg>
-                <span>Cyber Security Framework</span>
-              </a>
             </nav>
           </div>
         </div>

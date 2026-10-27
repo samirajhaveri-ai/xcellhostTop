@@ -1,9 +1,11 @@
+import { QuantityInputDirective } from '../core/quantity-input.directive';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { CartService } from '../core/cart.service';
 
 @Component({
   selector: 'xh-zoho-workspace-content',
   standalone: true,
+  imports: [QuantityInputDirective],
   templateUrl: './zoho-workspace-content.component.html',
   styleUrls: ['./zoho-workspace-content.component.css', './zoho-workspace-cards.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,

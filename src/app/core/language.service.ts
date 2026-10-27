@@ -33,8 +33,13 @@ export class LanguageService {
   private readonly connected = new WeakSet<HTMLSelectElement>();
 
   private readLanguage(): string {
-    const cookie = this.doc.cookie.split('; ').find(value => value.startsWith('googtrans='));
-    return cookie ? decodeURIComponent(cookie.slice(10)).split('/').pop() || 'en' : 'en';
+    try {
+      const cookie = this.doc.cookie.split('; ').find(value => value.startsWith('googtrans='));
+      return cookie ? decodeURIComponent(cookie.slice(10)).split('/').pop() || 'en' : 'en';
+    } catch {
+      // The server document does not implement cookies; English is the source language.
+      return 'en';
+    }
   }
 
   choose(code: string): void {
@@ -77,7 +82,7 @@ export class LanguageService {
   initGoogleTranslate(hostId: string): void {
     const win = this.doc.defaultView as TranslateWindow | null;
     const host = this.doc.getElementById(hostId);
-    if (!win || !host || this.loading) return;
+    if (!win || !host || this.loading || typeof MutationObserver === 'undefined') return;
 
     const markReady = (): boolean => {
       const select = host.querySelector<HTMLSelectElement>('.goog-te-combo');

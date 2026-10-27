@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/pages/sectigo-detail.page.ts"],
+  "sourcesContent": ["import { Component, inject } from '@angular/core';\nimport { ActivatedRoute } from '@angular/router';\nimport { ImportedInteractiveContentComponent } from '../sections/imported-interactive-content.component';\nimport { InsightsSectionComponent } from '../sections/insights-section.component';\n\n@Component({\n  selector: 'xh-sectigo-detail-page',\n  standalone: true,\n  imports: [ImportedInteractiveContentComponent, InsightsSectionComponent],\n  template: `<xh-imported-interactive-content source=\"sectigo-detail\" [sectigoSlug]=\"slug\" /><xh-insights-section [pageSlug]=\"slug\" />`,\n})\nexport class SectigoDetailPage {\n  readonly slug = inject(ActivatedRoute).snapshot.data['sectigoSlug'] as string;\n}\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAWM,IAAO,oBAAP,MAAO,mBAAiB;EACnB,OAAO,OAAO,cAAc,EAAE,SAAS,KAAK,aAAa;;qCADvD,oBAAiB;EAAA;yEAAjB,oBAAiB,WAAA,CAAA,CAAA,wBAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,QAAA,CAAA,CAAA,UAAA,kBAAA,GAAA,aAAA,GAAA,CAAA,GAAA,UAAA,CAAA,GAAA,UAAA,SAAA,2BAAA,IAAA,KAAA;AAAA,QAAA,KAAA,GAAA;AAFjB,MAAA,oBAAA,GAAA,mCAAA,CAAA,EAAgF,GAAA,uBAAA,CAAA;;;AAAvB,MAAA,qBAAA,eAAA,IAAA,IAAA;AAA4C,MAAA,oBAAA;AAAA,MAAA,qBAAA,YAAA,IAAA,IAAA;;oBADtG,qCAAqC,wBAAwB,GAAA,eAAA,EAAA,CAAA;;;sEAG5D,mBAAiB,CAAA;UAN7B;WAAU;MACT,UAAU;MACV,YAAY;MACZ,SAAS,CAAC,qCAAqC,wBAAwB;MACvE,UAAU;KACX;;;;6EACY,mBAAiB,EAAA,WAAA,qBAAA,UAAA,wCAAA,YAAA,GAAA,CAAA;AAAA,GAAA;",
+  "names": []
+}

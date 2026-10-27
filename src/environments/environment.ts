@@ -22,13 +22,16 @@ export const environment = {
   /** POST target for the partner-programme form. */
   partnerWebhook: '',
 
-  /** Chat completion endpoint for the website assistant. Empty = canned replies only. */
-  chatEndpoint: '',
+  /** Same-origin PHP AI endpoint. Never put provider credentials in Angular. */
+  chatEndpoint: '/api/ai-assistant',
+  /** Search AI uses the same private backend as the floating widget. */
+  aiSearchEndpoint: '/api/ai-assistant',
   /** Optional live-answer endpoint for product FAQ blocks. */
   faqApi: '',
 
   /** Local development uses Angular's proxy.conf.json to avoid browser CORS blocking. */
   strapiUrl: '',
+  strapiApiUrl: '',
 
   /** Public Algolia search configuration. Use a read-only Search API key, never an Admin key. */
   algoliaAppId: 'GH7MDMKNPP',

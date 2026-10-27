@@ -6,17 +6,20 @@ import { map } from 'rxjs';
 
 import { SeoService } from '../core/seo.service';
 import { COMPANY_PAGES } from '../data/company.data';
+import { COMPANY_TEAM } from '../data/company-team.data';
 import { WORLD_MAP_HTML } from '../data/site.data';
 import { HeroNetDirective } from '../sections/product';
+import { DataCentersContentComponent } from '../sections/data-centers-content.component';
 import { ResellerProgramContentComponent } from '../sections/reseller-program-content.component';
 import { TeamStructureComponent } from '../sections/team-structure.component';
 import { WhyXcellhostReasonsComponent } from '../sections/why-xcellhost-reasons.component';
 import { ZohoJobListingComponent } from '../sections/zoho-job-listing.component';
+import { CareersOverviewSectionsComponent } from '../sections/careers-overview-sections.component';
 
 @Component({
   selector: 'xh-company-page',
   standalone: true,
-  imports: [RouterLink, HeroNetDirective, ResellerProgramContentComponent, TeamStructureComponent, WhyXcellhostReasonsComponent, ZohoJobListingComponent],
+  imports: [RouterLink, HeroNetDirective, DataCentersContentComponent, ResellerProgramContentComponent, TeamStructureComponent, WhyXcellhostReasonsComponent, ZohoJobListingComponent, CareersOverviewSectionsComponent],
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './company.page.html',
@@ -58,25 +61,27 @@ export class CompanyPage {
   ] as const;
   readonly activeCareerSlide = signal(0);
   readonly careerStories = [
-    { title: 'Growing through new challenges', text: 'Every new challenge is a chance to learn, take ownership and build confidence with support from the team.', name: 'Employee story', topic: 'Professional growth' },
-    { title: 'Finding strength in teamwork', text: 'Strong teamwork helps us solve difficult problems, share knowledge and keep moving forward together.', name: 'Employee story', topic: 'Teamwork' },
-    { title: 'Turning ideas into impact', text: 'Ideas are welcomed here. We explore improvements, put them into practice and focus on meaningful customer impact.', name: 'Employee story', topic: 'Ideas and innovation' },
-    { title: 'Learning something new', text: 'Learning happens through questions, practice and conversations with others. Use this space for an employee’s personal reflection on a skill they developed, a colleague who helped them and how that experience shaped their work.', name: 'Employee story', topic: 'Continuous learning' },
+    {
+      image: 'assets/images/career-testimonial-aanya.png',
+      name: 'Aanya Mehta',
+      role: 'Cloud Solutions Engineer',
+      text: 'Every project gives me a new technical challenge to solve. I get the freedom to explore ideas, learn from experienced teammates and turn that learning into better outcomes for customers.',
+    },
+    {
+      image: 'assets/images/career-testimonial-rohan.png',
+      name: 'Rohan Kulkarni',
+      role: 'Cybersecurity Analyst',
+      text: 'What stands out is how openly the team shares knowledge. Even on complex security work, there is always someone ready to review an approach, answer a question or help move an idea forward.',
+    },
+    {
+      image: 'assets/images/career-testimonial-nisha.png',
+      name: 'Nisha Verma',
+      role: 'Customer Experience Manager',
+      text: 'The work feels meaningful because we stay close to customer needs. Collaboration across teams helps us turn feedback into practical improvements that customers can genuinely feel.',
+    },
   ] as const;
 
-  readonly careerStoryCards = computed(() => {
-    const employees = [this.developers[0], this.developers[1], this.graphicDesignerTeam[1]];
-    return this.careerStories.slice(0, 3).map((story, index) => ({ story, employee: employees[index] }));
-  });
-
-  readonly activeCareerStory = signal(0);
-  readonly currentCareerStory = computed(() => this.careerStories[this.activeCareerStory()]);
-  readonly currentCareerStoryEmployee = computed(() =>
-    [this.developers[1], this.developers[2], this.graphicDesignerTeam[1], this.technicalSupportTeam[1]][this.activeCareerStory()],
-  );
-  moveCareerStory(direction: number): void {
-    this.activeCareerStory.update(index => (index + direction + this.careerStories.length) % this.careerStories.length);
-  }
+  readonly careerStoryCards = computed(() => this.careerStories);
 
   readonly careerCareTabs = [
     { id: 'learning', label: 'Learning & Development', intro: 'Build your skills, share your knowledge and explore the next step in your career.', cards: [
@@ -142,85 +147,26 @@ export class CompanyPage {
       'Our approach is simple: give customers practical guidance, deliver what was promised and stay accountable after go-live.',
   } as const;
 
-  readonly managementTeam = [
-    { initials: 'YJ', name: 'Yogendra Jagger', role: 'Regional Director - EMEA Middle East & Africa', image: '/assets/images/TEAMS PHOTO/Yogendra.png' },
-    { initials: 'AN', name: 'Abhishek Nimbalkar', role: 'Chief AI Officer', image: '/assets/images/TEAMS PHOTO/Abhishek.png' },
-    { initials: 'PN', name: 'Prashant N.V', role: 'Service Delivery Director', image: '/assets/images/TEAMS PHOTO/Prashant.png' },
-    { initials: 'T', name: 'AI Management Intelligence Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
-  ] as const;
 
-  readonly advisoryTeam = [
-    { initials: 'SJ', name: 'CA Suraj Jain', role: 'Financial Advisor', image: '/assets/images/TEAMS PHOTO/Suraj JAin.png' },
-    { initials: 'SM', name: 'CA Surendra Mehra', role: 'Chartered Accountant', image: '/assets/images/TEAMS PHOTO/Mehara.png' },
-     { initials: 'UJ', name: 'Upendra Joshi ', role: 'Chartered Accountant', image: '/assets/images/TEAMS PHOTO/Upendra.png' },
-  ] as const;
+  readonly managementTeam = COMPANY_TEAM.managementTeam;
 
-  readonly salesTeam = [
-    { initials: 'AP', name: 'Abhishek Pandey', role: 'Cloud Sales Manager', image: '/assets/images/TEAMS PHOTO/Abhishek Pandey.png' },
-    { initials: 'SK', name: 'Sushil Kumar', role: 'Cloud-PreSales Manager', image: 'assets/images/TEAMS PHOTO/Sudhil.png' },
-    { initials: 'RS', name: 'Rashed Syed', role: 'Cloud Advisor - PreSales', image: '/assets/images/TEAMS PHOTO/Rashed.png' },
-    { initials: 'MG', name: 'Mihir Ambokar ', role: 'Cloud Advisor - PreSales', image: '/assets/images/TEAMS PHOTO/Mihir.png' },
-    { initials: 'AG', name: 'Ajay Gupta', role: 'Cloud Advisor - PreSales', image: '/assets/images/TEAMS PHOTO/Ajay Gupta.png' },
-    { initials: 'AG', name: 'AI SDR Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
-    { initials: 'AG', name: 'AI Lead Qualification Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
-    { initials: 'VC', name: 'AI RFP/RFQ Response Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
-    { initials: 'VC', name: 'AI Proposal Generator Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
-    { initials: 'VC', name: 'AI Competitor Intelligence Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
-  ] as const;
+  readonly advisoryTeam = COMPANY_TEAM.advisoryTeam;
+
+  readonly salesTeam = COMPANY_TEAM.salesTeam;
   
-  readonly marketing = [
-    { initials: 'AN', name: 'Aryan Nair', role: 'Social Media Manager', image: '/assets/images/TEAMS PHOTO/Aryan.png' },
-    { initials: 'RS', name: 'Ravi Sharma', role: 'SEO+GTM Engineer', image: '/assets/images/TEAMS PHOTO/Ravi.png' },
-    { initials: 'RS', name: 'AI SEO/AEO/GEO Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
-    { initials: 'RS', name: 'AI Social Media Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
-    { initials: 'RS', name: 'AI Conversation Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
-  ] as const;
+  readonly marketing = COMPANY_TEAM.marketing;
 
-  readonly AITeams = [
-    { initials: 'AT', name: 'Advet Tambe', role: 'AI Engineer', image: '/assets/images/TEAMS PHOTO/Advet.png' },
-    { initials: 'VC', name: 'Vishal Chaubey', role: 'Automation Engineer', image: '/assets/images/TEAMS PHOTO/vishal.png' },
-    { initials: 'VC', name: 'AI Market Research Specialist', role: '', image: '/assets/images/Robot-enhanced.png' },
-    { initials: 'VC', name: 'AI Content Strategy& Copilot Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
-    { initials: 'VC', name: 'AI Paid Media& Ad Performance Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
-  ] as const;
+  readonly AITeams = COMPANY_TEAM.AITeams;
 
-  readonly developers: readonly { initials: string; name: string; role: string; image: string }[] = [
-    { initials: 'SV', name: 'Sujeet Vishwakarma', role: 'Senior Developer', image: '/assets/images/TEAMS PHOTO/Sujeet Vishwakarma.png' },
-    { initials: 'VG', name: 'Vaishnavi Ghaghare', role: 'Web Developer', image: '/assets/images/TEAMS PHOTO/Vaishnavi Ghaghare.png' },
-    { initials: 'DV', name: 'Divya Varma', role: 'Web Developer', image: '/assets/images/TEAMS PHOTO/Divya Varma.png' },
-    { initials: 'VT', name: 'Vibha Tiwari', role: 'Web Developer', image: '/assets/images/TEAMS PHOTO/Vibha Tiwari.png' },
-    { initials: 'AS', name: 'Adarsh Singh', role: 'Web Developer', image: '/assets/images/TEAMS PHOTO/Adarsh Singh.png' },
-  ];
+  readonly developers = COMPANY_TEAM.developers;
 
-  readonly accountantTeam = [
-    { initials: 'SJ', name: 'Sanjay Jade', role: 'Account Manager', image: '/assets/images/TEAMS PHOTO/Sanjay Jade.png' },
-    { initials: 'RB', name: 'Rutuja Bhoga', role: 'Account Assistance', image: '/assets/images/TEAMS PHOTO/Rutuja Bhoga.png' },
-    { initials: 'RB', name: 'AI Cashflow Forecast Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
-    { initials: 'RB', name: 'AI Payment Followup Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
-  ] as const;
+  readonly accountantTeam = COMPANY_TEAM.accountantTeam;
 
-  readonly graphicDesignerTeam = [
-    { initials: 'SP', name: 'Shantaram Palkar', role:'Graphic Designer Manager', image: '/assets/images/TEAMS PHOTO/Shantaram Palkar.png' },
-    { initials: 'NS', name: 'Nishant Shinde', role: 'Graphic Designer L2', image: '/assets/images/TEAMS PHOTO/Nishant Shinde.png' },
-   { initials: 'SV', name: 'Shakshita Vangade', role: 'Graphic Designer L1', image: '/assets/images/TEAMS PHOTO/Shakshita Vangade.png' },
-     { initials: 'NS', name: 'AI Generative Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
-  ] as const;
+  readonly graphicDesignerTeam = COMPANY_TEAM.graphicDesignerTeam;
 
-  readonly adminTeam = [
-    { initials: 'MS', name: 'Mayuri Shinde', role: 'Admin Manager', image: '/assets/images/TEAMS PHOTO/Mayuri Shinde.png' },
-      { initials: 'T', name: 'Tejas Nashiba', role: 'Admin Exceutive ', image: 'assets/images/TEAMS PHOTO/Tejas Nashiba.png' },
-    { initials: 'T', name: 'AI Command Center Orchestrator', role: '', image: '/assets/images/Robot-enhanced.png' },
-  ] as const;
+  readonly adminTeam = COMPANY_TEAM.adminTeam;
 
-  readonly technicalSupportTeam = [
-    { initials: 'RS', name: 'Rizwan Shaikh', role: 'Technical Manager', image: '/assets/images/TEAMS PHOTO/Rizwan.png' },
-    { initials: 'AY', name: 'Amit Yadav', role: 'Technical Support Executive- L3', image: '/assets/images/TEAMS PHOTO/Amit Yadav.png' },
-    { initials: 'SB', name: 'Santosh kumar Behera', role: 'Technical Support Executive - L2', image: '/assets/images/TEAMS PHOTO/Santosh.png' },
-     { initials: 'TM', name: 'Talha Mohammad', role: 'Technical Support Executive-L2', image: '/assets/images/TEAMS PHOTO/Talha.png' },
-     { initials: 'TM', name: 'Manisha Gupta', role: 'Technical Support Executive-L2', image: '/assets/images/TEAMS PHOTO/Manisha Gupta.png' },
-    { initials: 'PA', name: 'Purva Angre', role: 'Technical Support Executive-L1', image: '/assets/images/TEAMS PHOTO/Purva.png' },
-    { initials: 'TM', name: 'AI Customer Support-Service', role: '', image: '/assets/images/Robot-enhanced.png' }
-  ] as const;
+  readonly technicalSupportTeam = COMPANY_TEAM.technicalSupportTeam;
 
   readonly securityTeam = [
     'CISO / Head of Cybersecurity',
@@ -277,9 +223,24 @@ export class CompanyPage {
     ...this.adminTeam.map(member => ({ ...member, department: 'admin' })),
     
   ];
-  readonly visibleTeamMembers = computed(() => this.teamMembers.filter(member =>
-    this.activeTeamTab() === 'all' || member.department === this.activeTeamTab(),
-  ));
+  readonly visibleTeamMembers = computed(() => {
+    const members = this.teamMembers.filter(member =>
+      this.activeTeamTab() === 'all' || member.department === this.activeTeamTab() ||
+      (this.activeTeamTab() === 'management' && member.name === 'Rahul Sanghavi'),
+    ).map(member => this.activeTeamTab() === 'management' && member.name === 'Rahul Sanghavi'
+      ? { ...member, department: 'management' }
+      : member,
+    );
+    if (this.activeTeamTab() === 'management') {
+      const rahulIndex = members.findIndex(member => member.name === 'Rahul Sanghavi');
+      const prashantIndex = members.findIndex(member => member.name === 'Prashant N.V');
+      if (rahulIndex !== -1 && prashantIndex !== -1) {
+        const [rahul] = members.splice(rahulIndex, 1);
+        members.splice(prashantIndex + 1, 0, rahul);
+      }
+    }
+    return members;
+  });
 
   onTeamTabKeydown(event: KeyboardEvent, index: number): void {
     let next = index;
@@ -412,7 +373,17 @@ export class CompanyPage {
     this.awards.filter((award) => award.year === this.activeAwardYear()),
   );
 
-  readonly partnerCategories = [
+  readonly partnerCategories: readonly {
+    title: string;
+    description: string;
+    badges?: boolean;
+    partners: readonly (readonly [string, string])[];
+  }[] = [
+    { title: 'Cloud, virtualization & AI partnerships', description: 'Partner credentials across cloud solutions, virtualization and AI services.', badges: true, partners: [
+      ['Microsoft Solutions Partner', 'microsoft-logo-1.gif'],
+      ['Proxmox Authorized Reseller', 'Apps4Rent-proxmox-authorized-reseller.png'],
+      ['Claude Partner Network', 'apps4rent-claude-partner-network.webp'],
+    ] },
     { title: 'Strategic cloud & infrastructure', description: 'Cloud platforms, hyperscalers and datacentre infrastructure.', partners: [
       ['Microsoft Partner', '02-microsoft-partner.png'], ['Azure', '01-azure.png'], ['AWS', '21-aws.png'], ['Google Cloud Platform', '41-google-cloud-platform.png'], ['Oracle Cloud Infrastructure', '61-oracle-cloud-infrastructure.png'], ['Equinix', '42-equinix.png'],
     ] },
@@ -474,6 +445,18 @@ export class CompanyPage {
       ['Utimaco', '58-utimo.png'], ['Securaze', '78-securaze.png'],
     ] },
   ] as const;
+
+  readonly vendorQuery = signal('');
+  readonly vendorCount = this.partnerCategories.reduce((total, category) => total + category.partners.length, 0);
+  readonly filteredPartnerCategories = computed(() => {
+    const query = this.vendorQuery().trim().toLowerCase();
+    return this.partnerCategories.map(category => ({
+      ...category,
+      partners: category.title.toLowerCase().includes(query)
+        ? category.partners
+        : category.partners.filter(partner => partner[0].toLowerCase().includes(query)),
+    })).filter(category => category.partners.length);
+  });
 
   constructor() {
     effect(() => {

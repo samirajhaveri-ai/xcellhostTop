@@ -1,0 +1,38 @@
+  <section class="bm-section bm-dc-section" aria-labelledby="dataCenterInfrastructureTitle">
+    <h2 class="bm-dc-title" id="dataCenterInfrastructureTitle">Tier 4 Certified Data Center Infrastructure</h2>
+    <div class="bm-dc-tabs" role="tablist" aria-label="Data center locations">
+      @for (dataCenter of dataCenters; track dataCenter.name; let i = $index) {
+        <button
+          type="button"
+          role="tab"
+          [id]="'dataCenterTab' + i"
+          aria-controls="dataCenterPanel"
+          [attr.tabindex]="selectedDataCenter() === i ? 0 : -1"
+          [attr.aria-selected]="selectedDataCenter() === i"
+          [class.active]="selectedDataCenter() === i"
+          (click)="selectedDataCenter.set(i)"
+          (keydown)="onTabKeydown($event, i)"
+        >
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 29h24M6 29V12h20v17M5 12h22l-2-4H7zM10 8V5h12v3M9 16h3M9 20h3M9 24h3M20 16h3M20 20h3M20 24h3M14 29v-6a2 2 0 014 0v6" /></svg>
+          {{ dataCenter.name }}
+        </button>
+      }
+    </div>
+    <div class="bm-dc-panel" id="dataCenterPanel" role="tabpanel" [attr.aria-labelledby]="'dataCenterTab' + selectedDataCenter()">
+      <div class="bm-dc-details">
+        <div class="bm-dc-heading">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 29h24M6 29V12h20v17M5 12h22l-2-4H7zM10 8V5h12v3M9 16h3M9 20h3M9 24h3M20 16h3M20 20h3M20 24h3M14 29v-6a2 2 0 014 0v6" /></svg>
+          <h3>{{ dataCenters[selectedDataCenter()].name }}</h3>
+        </div>
+        <ul>
+          @for (point of dataCenters[selectedDataCenter()].points; track point) {
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="m8 12 2.5 2.5L16 9" /></svg>{{ point }}</li>
+          }
+        </ul>
+      </div>
+      <div class="bm-dc-visual">
+        <img [src]="dataCenters[selectedDataCenter()].image" [alt]="dataCenters[selectedDataCenter()].alt" loading="lazy" />
+      </div>
+    </div>
+  </section>
+

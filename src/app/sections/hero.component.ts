@@ -146,7 +146,7 @@ const HERO_CAROUSEL_SLIDES: readonly HeroCarouselSlide[] = [
     spotlight: 'Automated backups · granular recovery · expert support',
     primaryCta: 'Explore Cloud Backup',
     primaryHref: '/cloud-backup',
-    image: '',
+    image: 'assets/images/hero-bare-metal-ryzen.png',
     alt: 'Cloud Backup data protection',
   },
   {
@@ -159,7 +159,7 @@ const HERO_CAROUSEL_SLIDES: readonly HeroCarouselSlide[] = [
     spotlight: 'SMB network security · centralised protection · expert support',
     primaryCta: 'Explore SMB Cybird Security Appliance',
     primaryHref: '/smb-cyber-security-appliance',
-    image: '',
+    image: 'assets/images/hero-bare-metal-ryzen.png',
     alt: 'SMB Cybird cybersecurity appliance',
   },
 ];

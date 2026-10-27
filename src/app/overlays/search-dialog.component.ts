@@ -3,8 +3,7 @@ import {
   Component,
   DestroyRef,
   ElementRef,
-  Injector,
-  afterNextRender,
+  afterRenderEffect,
   computed,
   effect,
   inject,
@@ -15,9 +14,11 @@ import {
 import { Router, RouterLink } from '@angular/router';
 
 import { slugify } from '../core/catalog.service';
-import { AlgoliaSearchService } from '../core/algolia-search.service';
 import { OverlayService } from '../core/overlay.service';
+import { SearchLaunchService } from '../core/search-launch.service';
 import { SiteSearchResult, SiteSearchService } from '../core/site-search.service';
+import { AiAssistantComponent } from './ai-assistant.component';
+import { AlgoliaSearchComponent } from './algolia-search.component';
 
 const DEBOUNCE_MS = 120;
 const MAX_COMPARE = 4;
@@ -38,17 +39,19 @@ const MAX_COMPARE = 4;
     style: 'display: contents',
     '(document:keydown)': 'onDocumentKey($event)',
   },
-  imports: [RouterLink],
+  imports: [RouterLink, AiAssistantComponent, AlgoliaSearchComponent],
   templateUrl: './search.component.html',
+  styleUrl: './search.component.css',
 })
 export class SearchDialogComponent {
   private readonly search = inject(SiteSearchService);
-  private readonly algolia = inject(AlgoliaSearchService);
   private readonly router = inject(Router);
-  private readonly injector = inject(Injector);
   readonly overlay = inject(OverlayService);
+  readonly searchLaunch = inject(SearchLaunchService);
+  readonly websiteSearch = signal(true);
 
   private readonly inputRef = viewChild<ElementRef<HTMLInputElement>>('srchI');
+  private readonly boxRef = viewChild<ElementRef<HTMLElement>>('searchBox');
 
   /** Raw field value, repainted every keystroke. */
   readonly q = signal('');
@@ -58,30 +61,54 @@ export class SearchDialogComponent {
   readonly cur = signal(0);
   /** Service names ticked for comparison, capped at four. */
   readonly picked = signal<string[]>([]);
-  readonly loading = signal(false);
-  readonly remoteFailed = signal(false);
-  private readonly remoteResults = signal<SiteSearchResult[] | null>(null);
-  private requestId = 0;
+  readonly loading = computed(() => this.search.contentStatus() === 'loading');
+  readonly aiMode = signal(false);
+  readonly sources = signal<string[]>([]);
+  readonly categories = signal<string[]>([]);
+  readonly visibleLimit = signal(6);
+  readonly aiQuestion = signal('');
+  private previousFocus: HTMLElement | null = null;
+  readonly questions = [
+    { text: 'How can I protect my business from cyber threats?', query: 'security' },
+    { text: 'Which cloud solution is right for my business?', query: 'cloud' },
+    { text: 'How do I back up Microsoft 365 data?', query: 'Microsoft 365 Backup' },
+    { text: 'Can you help me manage and monitor my IT?', query: 'managed' },
+  ];
+  readonly suggestions = ['Cloud backup', 'Microsoft 365', 'Tally on Cloud', 'VAPT Services'];
 
   private timer: ReturnType<typeof setTimeout> | null = null;
 
-  private readonly featured = this.search.featured();
-
-  readonly results = computed<SiteSearchResult[]>(() => {
+  private readonly candidates = computed<SiteSearchResult[]>(() => {
     const s = this.query().trim();
-    if (!s) return this.featured;
-    const local = this.search.search(s);
-    const remote = this.remoteResults() ?? [];
-    const seen = new Set(remote.map((hit) => hit.url));
-    return [...remote, ...local.filter((hit) => !seen.has(hit.url))].slice(0, 16);
+    if (!s) {
+      const featured = this.search.featured();
+      const seen = new Set(featured.map((hit) => hit.url));
+      return [...featured, ...this.search.browse().filter((hit) => !seen.has(hit.url))];
+    }
+    return this.search.search(s, this.search.browse().length);
   });
 
+  readonly sourceOptions = computed(() => ['Product', 'Page', 'Blog'].map((value) => ({
+    value, label: value === 'Product' ? 'Products & services' : value === 'Page' ? 'Website pages' : 'Blog & insights',
+    count: this.candidates().filter((hit) => hit.kind === value && (!this.categories().length || this.categories().includes(hit.label))).length,
+  })));
+  readonly categoryOptions = computed(() => {
+    const items = this.candidates().filter((hit) => hit.kind === 'Product');
+    const labels = new Set(this.search.browse().filter((hit) => hit.kind === 'Product').map((hit) => hit.label));
+    return [...labels].sort().map((value) => ({ value, count: items.filter((hit) => hit.label === value && (!this.sources().length || this.sources().includes(hit.kind))).length }));
+  });
+  readonly filteredResults = computed(() => this.candidates().filter((hit) =>
+    (!this.sources().length || this.sources().includes(hit.kind)) &&
+    (!this.categories().length || this.categories().includes(hit.label))
+  ));
+  readonly results = computed(() => this.filteredResults().slice(0, this.visibleLimit()));
+  readonly hasFilters = computed(() => this.sources().length > 0 || this.categories().length > 0);
+
   readonly resultStatus = computed(() => {
-    if (!this.query().trim()) return 'Popular searches';
-    if (this.loading()) return 'Searching…';
-    if (this.remoteFailed()) return 'Live search unavailable · showing site results';
-    if (this.algolia.configured && this.remoteResults()?.length) return `${this.results().length} site results`;
-    return `${this.results().length} site results`;
+    if (!this.query().trim()) return this.hasFilters() ? `${this.filteredResults().length} results` : 'Explore products & resources';
+    if (this.search.contentStatus() === 'loading') return 'Loading published content...';
+    if (this.search.contentStatus() === 'error') return 'Some published content is unavailable; retrying automatically';
+    return `${this.filteredResults().length} site results`;
   });
 
   readonly countLabel = computed(() => {
@@ -96,20 +123,51 @@ export class SearchDialogComponent {
   constructor() {
     /* every open starts from a clean field with the caret in it */
     effect(() => {
-      if (!this.overlay.isOpen('search')) return;
+      if (!this.overlay.isOpen('search')) {
+        untracked(() => {
+          // The header search icon and keyboard shortcut keep the original
+          // website-search panel as their default view.
+          this.websiteSearch.set(true);
+          this.searchLaunch.reset();
+          this.aiMode.set(false);
+          this.resetAnswer();
+          if (this.timer) clearTimeout(this.timer);
+          if (this.focusTimer) clearTimeout(this.focusTimer);
+          this.previousFocus?.focus();
+          this.previousFocus = null;
+        });
+        return;
+      }
       untracked(() => {
+        this.websiteSearch.set(this.searchLaunch.mode() !== 'ask-ai');
+        this.previousFocus = this.inputRef()?.nativeElement.ownerDocument.activeElement as HTMLElement | null;
+        this.resetAnswer();
+        this.aiMode.set(false);
+        this.clearFilters();
         this.q.set('');
         this.query.set('');
         this.cur.set(0);
-        this.remoteResults.set(null);
-        this.remoteFailed.set(false);
-        this.loading.set(false);
-        this.requestId++;
       });
-      /* `.srch` transitions `visibility`, so the field is still hidden — and
-         therefore unfocusable — in the same task the class is applied. Defer
-         past the transition, exactly as the original did. */
-      this.focusTimer = setTimeout(() => this.inputRef()?.nativeElement.focus(), 140);
+    });
+
+    afterRenderEffect((onCleanup) => {
+      if (!this.overlay.isOpen('search') || !this.websiteSearch()) return;
+      untracked(() => {
+        const input = this.inputRef()?.nativeElement;
+        input?.focus({ preventScroll: true });
+        const window = input?.ownerDocument.defaultView;
+        if (!window) return;
+
+        // Paint the ready-to-use dialog before rebuilding the current inventory.
+        let refreshTimer: ReturnType<typeof setTimeout> | undefined;
+        const frame = window.requestAnimationFrame(() => {
+          refreshTimer = setTimeout(() => this.search.refreshInventory(), 0);
+        });
+        onCleanup(() => {
+          window.cancelAnimationFrame(frame);
+          if (refreshTimer !== undefined) clearTimeout(refreshTimer);
+        });
+      });
     });
 
     inject(DestroyRef).onDestroy(() => {
@@ -122,33 +180,56 @@ export class SearchDialogComponent {
 
   onInput(ev: Event): void {
     const v = (ev.target as HTMLInputElement).value;
+    this.setQuery(v);
+  }
+
+  setQuery(v: string): void {
     this.q.set(v);
-    this.requestId++;
-    this.remoteResults.set(null);
-    this.remoteFailed.set(false);
-    this.loading.set(false);
+    this.resetAnswer();
+    this.visibleLimit.set(6);
     if (this.timer) clearTimeout(this.timer);
     this.timer = setTimeout(() => {
       this.query.set(v);
       this.cur.set(0);
-      if (v.trim() && this.algolia.configured) void this.searchAlgolia(v.trim(), this.requestId);
     }, DEBOUNCE_MS);
   }
 
-  private async searchAlgolia(query: string, requestId: number): Promise<void> {
-    this.loading.set(true);
-    try {
-      const hits = await this.algolia.search(query);
-      if (requestId !== this.requestId || !this.overlay.isOpen('search')) return;
-      this.remoteResults.set(hits);
-      this.cur.set(0);
-    } catch {
-      if (requestId !== this.requestId || !this.overlay.isOpen('search')) return;
-      this.remoteFailed.set(true);
-    } finally {
-      if (requestId === this.requestId) this.loading.set(false);
-    }
+  toggleFilter(type: 'source' | 'category', value: string): void {
+    const selected = type === 'source' ? this.sources : this.categories;
+    selected.update((values) => values.includes(value) ? values.filter((item) => item !== value) : [...values, value]);
+    this.visibleLimit.set(6);
+    this.cur.set(0);
+    this.resetAnswer();
   }
+
+  clearFilters(): void {
+    this.sources.set([]);
+    this.categories.set([]);
+    this.cur.set(0);
+    this.visibleLimit.set(6);
+    this.resetAnswer();
+  }
+
+  showMore(): void { this.visibleLimit.update((limit) => limit + 10); }
+
+  focusSearch(): void { this.inputRef()?.nativeElement.focus(); }
+
+  toggleAi(): void {
+    const mode = !this.aiMode();
+    this.aiQuestion.set(mode ? this.q().trim() : '');
+    this.aiMode.set(mode);
+    if (!mode) this.focusTimer = setTimeout(() => this.inputRef()?.nativeElement.focus());
+  }
+
+  askQuestion(question: { text: string; query: string }): void {
+    this.aiQuestion.set(question.text);
+    this.aiMode.set(true);
+  }
+
+  private resetAnswer(): void {
+    this.aiQuestion.set('');
+  }
+
 
   /**
    * `/` opens the dialog from anywhere; the arrows and Enter drive the result
@@ -159,14 +240,25 @@ export class SearchDialogComponent {
 
     if (!open) {
       const tag = (ev.target as HTMLElement | null)?.tagName ?? '';
-      if (ev.key === '/' && !/^(INPUT|TEXTAREA|SELECT)$/.test(tag)) {
+      if ((ev.key === '/' || ((ev.ctrlKey || ev.metaKey) && ev.key.toLowerCase() === 'k')) && !/^(INPUT|TEXTAREA|SELECT)$/.test(tag) && !(ev.target as HTMLElement | null)?.isContentEditable) {
         ev.preventDefault();
-        this.overlay.open('search');
+        this.searchLaunch.open('search');
       }
       return;
     }
 
+    if (!this.websiteSearch()) return;
     const last = this.results().length - 1;
+    if (ev.key === 'Tab') {
+      const box = this.boxRef()?.nativeElement;
+      const focusable = Array.from(box?.querySelectorAll<HTMLElement>('input, textarea, button:not(:disabled), a[href]') ?? []);
+      const first = focusable[0];
+      const final = focusable[focusable.length - 1];
+      if (ev.shiftKey && ev.target === first) { ev.preventDefault(); final?.focus(); }
+      else if (!ev.shiftKey && ev.target === final) { ev.preventDefault(); first?.focus(); }
+      return;
+    }
+    if (ev.target !== this.inputRef()?.nativeElement) return;
     if (ev.key === 'ArrowDown') {
       ev.preventDefault();
       this.cur.update((i) => Math.min(i + 1, last));
@@ -180,6 +272,12 @@ export class SearchDialogComponent {
         this.go(hit);
       }
     }
+    if (ev.key === 'ArrowDown' || ev.key === 'ArrowUp') {
+      const input = this.inputRef()?.nativeElement;
+      input?.ownerDocument.defaultView?.requestAnimationFrame(() =>
+        input.closest('.srch-box')?.querySelector('.sr.on')?.scrollIntoView({ block: 'nearest' })
+      );
+    }
   }
 
   /* ----------------------------------------------------------- results */
@@ -190,9 +288,16 @@ export class SearchDialogComponent {
   }
 
   close(): void {
-    this.requestId++;
     if (this.timer) clearTimeout(this.timer);
+    this.resetAnswer();
+    this.aiMode.set(false);
     this.overlay.close('search');
+    this.previousFocus?.focus();
+  }
+
+  openAlgoliaAskAi(): void {
+    this.searchLaunch.select('ask-ai');
+    this.websiteSearch.set(false);
   }
 
   go(hit: SiteSearchResult): void {

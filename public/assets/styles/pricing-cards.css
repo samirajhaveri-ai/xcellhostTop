@@ -1,0 +1,238 @@
+/*
+ * Shared pricing-card system.
+ * New pricing sections should use .xh-pricing-grid and .xh-pricing-card.
+ * The legacy aliases keep existing product pages visually consistent.
+ */
+:root {
+  --xh-price-navy: #041e42;
+  --xh-price-blue: #1565d8;
+  --xh-price-green: #16a34a;
+  --xh-price-line: #d5e1f1;
+  --xh-price-muted: #5b6b85;
+  --xh-price-surface: #fff;
+  --xh-price-soft: #f3f7fd;
+  --xh-price-radius: 18px;
+  --xh-price-shadow: 0 8px 24px rgba(16, 43, 79, .06);
+  --xh-price-shadow-hover: 0 18px 40px rgba(21, 101, 216, .14);
+}
+
+.xh-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  align-items: stretch;
+}
+
+:is(
+  .xh-pricing-card,
+  :where(section[id*='pricing' i], [class*='pricing' i], [class$='-plans'], [class$='-plan-grid']) > :is(article, [class$='-plan'], [class$='-price-card']),
+  .pricing-card,
+  .price-card,
+  .pricing-plan,
+  .price-plan,
+  .tally-plan-card,
+  .cloud-backup-plan-card,
+  .smb-price-plan,
+  .wa-plan-card,
+  .edr-plan-card,
+  .rtx-plan-card,
+  .gpu-price-card,
+  .pp-plans > .ppl,
+  .pp-plans > .ppl2,
+  #pricing .hx-c,
+  #pricing .pk,
+  #pricing .plan
+) {
+  box-sizing: border-box;
+  position: relative;
+  min-width: 0;
+  overflow: visible;
+  border: 1.5px solid var(--xh-price-line) !important;
+  border-radius: var(--xh-price-radius) !important;
+  background: var(--xh-price-surface) !important;
+  box-shadow: var(--xh-price-shadow) !important;
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease !important;
+}
+
+:is(
+  .xh-pricing-card,
+  :where(section[id*='pricing' i], [class*='pricing' i], [class$='-plans'], [class$='-plan-grid']) > :is(article, [class$='-plan'], [class$='-price-card']),
+  .pricing-card,
+  .price-card,
+  .pricing-plan,
+  .price-plan,
+  .tally-plan-card,
+  .cloud-backup-plan-card,
+  .smb-price-plan,
+  .wa-plan-card,
+  .edr-plan-card,
+  .rtx-plan-card,
+  .gpu-price-card,
+  .pp-plans > .ppl,
+  .pp-plans > .ppl2,
+  #pricing .hx-c,
+  #pricing .pk,
+  #pricing .plan
+):hover {
+  z-index: 2;
+  border-color: var(--xh-price-blue) !important;
+  box-shadow: var(--xh-price-shadow-hover) !important;
+  transform: translateY(-4px);
+}
+
+:is(
+  .xh-pricing-card,
+  :where(section[id*='pricing' i], [class*='pricing' i], [class$='-plans'], [class$='-plan-grid']) > :is(article, [class$='-plan'], [class$='-price-card']),
+  .pricing-card,
+  .price-card,
+  .pricing-plan,
+  .price-plan,
+  .tally-plan-card,
+  .cloud-backup-plan-card,
+  .smb-price-plan,
+  .wa-plan-card,
+  .edr-plan-card,
+  .rtx-plan-card,
+  .gpu-price-card,
+  .pp-plans > .ppl,
+  .pp-plans > .ppl2,
+  #pricing .hx-c,
+  #pricing .pk,
+  #pricing .plan
+):is(.hot, .featured, .is-featured, .popular, [aria-checked='true']) {
+  border-color: var(--xh-price-blue) !important;
+  background: linear-gradient(180deg, rgba(21, 101, 216, .07), var(--xh-price-surface) 40%) !important;
+  box-shadow: 0 14px 34px rgba(21, 101, 216, .13) !important;
+}
+
+:is(
+  .xh-pricing-card,
+  :where(section[id*='pricing' i], [class*='pricing' i], [class$='-plans'], [class$='-plan-grid']) > :is(article, [class$='-plan'], [class$='-price-card']),
+  .pricing-card,
+  .price-card,
+  .pricing-plan,
+  .price-plan,
+  .tally-plan-card,
+  .cloud-backup-plan-card,
+  .smb-price-plan,
+  .wa-plan-card,
+  .edr-plan-card,
+  .pp-plans > .ppl,
+  .pp-plans > .ppl2,
+  #pricing .hx-c,
+  #pricing .pk,
+  #pricing .plan
+) :is(.rib, .ribbon, .popular-badge, .featured-badge, .tag) {
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: linear-gradient(90deg, #ff8c1a, #f472b6) !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+:is(
+  .xh-pricing-card,
+  :where(section[id*='pricing' i], [class*='pricing' i], [class$='-plans'], [class$='-plan-grid']) > :is(article, [class$='-plan'], [class$='-price-card']),
+  .pricing-card,
+  .price-card,
+  .pricing-plan,
+  .price-plan,
+  .tally-plan-card,
+  .cloud-backup-plan-card,
+  .smb-price-plan,
+  .wa-plan-card,
+  .edr-plan-card,
+  .pp-plans > .ppl,
+  .pp-plans > .ppl2,
+  #pricing .hx-c,
+  #pricing .pk,
+  #pricing .plan
+) :is(.price, .pr, .amt, .wa-price, .plan-price, [class*='price-value']) :is(b, strong),
+:is(.xh-pricing-card, .pricing-card, .price-card, .pricing-plan, .price-plan) > :is(.price, .amount) {
+  color: var(--xh-price-navy);
+  font-weight: 800;
+  letter-spacing: -.025em;
+}
+
+:is(
+  .xh-pricing-card,
+  :where(section[id*='pricing' i], [class*='pricing' i], [class$='-plans'], [class$='-plan-grid']) > :is(article, [class$='-plan'], [class$='-price-card']),
+  .pricing-card,
+  .price-card,
+  .pricing-plan,
+  .price-plan,
+  .tally-plan-card,
+  .cloud-backup-plan-card,
+  .smb-price-plan,
+  .wa-plan-card,
+  .edr-plan-card,
+  .pp-plans > .ppl,
+  .pp-plans > .ppl2,
+  #pricing .hx-c,
+  #pricing .pk,
+  #pricing .plan
+) :is(.hx-add, .edr-plan-cta, .pricing-cta, .plan-cta, .buy-button, .add-to-cart, .zoho-buy),
+.xh-pricing-card > :is(button, .button, .btn) {
+  border: 0 !important;
+  border-radius: 12px !important;
+  background: var(--xh-price-navy) !important;
+  color: #fff !important;
+  box-shadow: none !important;
+  font-weight: 700 !important;
+  transition: background .2s ease, transform .2s ease !important;
+}
+
+:is(
+  .xh-pricing-card,
+  :where(section[id*='pricing' i], [class*='pricing' i], [class$='-plans'], [class$='-plan-grid']) > :is(article, [class$='-plan'], [class$='-price-card']),
+  .pricing-card,
+  .price-card,
+  .pricing-plan,
+  .price-plan,
+  .tally-plan-card,
+  .cloud-backup-plan-card,
+  .smb-price-plan,
+  .wa-plan-card,
+  .edr-plan-card,
+  .pp-plans > .ppl,
+  .pp-plans > .ppl2,
+  #pricing .hx-c,
+  #pricing .pk,
+  #pricing .plan
+) :is(.hx-add, .edr-plan-cta, .pricing-cta, .plan-cta, .buy-button, .add-to-cart, .zoho-buy):hover,
+.xh-pricing-card > :is(button, .button, .btn):hover {
+  background: var(--xh-price-blue) !important;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 900px) {
+  .xh-pricing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 600px) {
+  .xh-pricing-grid { grid-template-columns: minmax(0, 1fr); }
+
+  :is(
+    .xh-pricing-card,
+    :where(section[id*='pricing' i], [class*='pricing' i], [class$='-plans'], [class$='-plan-grid']) > :is(article, [class$='-plan'], [class$='-price-card']),
+    .pricing-card,
+    .price-card,
+    .pricing-plan,
+    .price-plan,
+    .tally-plan-card,
+    .cloud-backup-plan-card,
+    .smb-price-plan,
+    .wa-plan-card,
+    .edr-plan-card,
+    .pp-plans > .ppl,
+    .pp-plans > .ppl2,
+    #pricing .hx-c,
+    #pricing .pk,
+    #pricing .plan
+  ) {
+    border-radius: 16px !important;
+  }
+}
+

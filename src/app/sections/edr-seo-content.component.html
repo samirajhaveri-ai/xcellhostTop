@@ -1,0 +1,70 @@
+<section class="edr-guide" aria-labelledby="edr-guide-title">
+  <header class="edr-guide-head">
+    <span>Endpoint security buyer&rsquo;s guide</span>
+    <h2 id="edr-guide-title">EDR vs antivirus: what changes?</h2>
+    <p>Antivirus is a prevention control. EDR adds the evidence and response tools needed after suspicious behaviour begins, so a security team can understand the attack path, contain affected devices and coordinate recovery.</p>
+  </header>
+
+  <div class="edr-table-wrap">
+    <table>
+      <thead><tr><th scope="col">Capability</th><th scope="col">Traditional antivirus</th><th scope="col">Managed EDR</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Primary job</th><td>Block known malware and suspicious files.</td><td>Detect, investigate, contain and help recover from endpoint attacks.</td></tr>
+        <tr><th scope="row">Detection context</th><td>Usually evaluates individual files or events.</td><td>Correlates processes, users, files and network activity into an incident timeline.</td></tr>
+        <tr><th scope="row">Response</th><td>Quarantine or remove a detected file.</td><td>Isolate endpoints, stop processes, quarantine artefacts and guide remediation.</td></tr>
+        <tr><th scope="row">Operations</th><td>Mostly automated prevention.</td><td>Continuous telemetry plus analyst triage and documented incident handling.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="edr-compare" aria-labelledby="edr-compare-title">
+    <div>
+      <span>Plain-English comparison</span>
+      <h2 id="edr-compare-title">EDR vs XDR vs MDR</h2>
+      <p>These terms describe different scopes. The right choice depends on which signals you need and who will operate the controls.</p>
+    </div>
+    <article><b>EDR</b><h3>Endpoint detection and response</h3><p>Technology focused on laptops, desktops and servers. It records endpoint activity and provides investigation and response actions.</p></article>
+    <article><b>XDR</b><h3>Extended detection and response</h3><p>Correlates endpoint data with signals from identity, email, network, cloud or other security tools for broader attack visibility.</p></article>
+    <article><b>MDR</b><h3>Managed detection and response</h3><p>A service in which security analysts monitor, investigate and coordinate response. MDR may operate EDR, XDR and other controls for you.</p></article>
+  </div>
+
+  <div class="edr-india" aria-labelledby="edr-india-title">
+    <div class="edr-india-copy">
+      <span>India operations</span>
+      <h2 id="edr-india-title">Evidence and response for Indian incident duties</h2>
+      <p>EDR telemetry can help establish when an incident was noticed, which endpoints were affected and what containment occurred. That evidence supports incident assessment, reporting and post-incident review; it does not replace your organisation&rsquo;s legal or regulatory judgement.</p>
+    </div>
+    <article>
+      <strong>6 hours</strong>
+      <h3>CERT-In reporting window</h3>
+      <p>CERT-In&rsquo;s directions require covered entities to report specified cyber incidents within six hours of noticing them. Its FAQ permits an initial report with the information then available, followed by additional information.</p>
+      <a href="https://www.cert-in.org.in/PDF/FAQs_on_CyberSecurityDirections_May2022.pdf" target="_blank" rel="noopener noreferrer">Read the CERT-In FAQ <span aria-hidden="true">&rarr;</span></a>
+    </article>
+    <article>
+      <strong>DPDPA</strong>
+      <h3>Security safeguards and breach evidence</h3>
+      <p>The DPDP Act addresses reasonable security safeguards and notice of a personal-data breach. Endpoint evidence can support those processes, but EDR alone does not establish compliance.</p>
+      <a href="https://www.meity.gov.in/static/uploads/2024/02/Digital-Personal-Data-Protection-Act-2023.pdf" target="_blank" rel="noopener noreferrer">Read the DPDP Act <span aria-hidden="true">&rarr;</span></a>
+    </article>
+    @if (variant() === 'acronis') {
+      <article>
+        <strong>15 min</strong>
+        <h3>Published P1 response target</h3>
+        <p>XcellHost&rsquo;s Acronis Advanced EDR SLA lists a 15-minute critical response target, two-hour initial containment target and 24&times;7 emergency support.</p>
+        <a href="/acronis-advanced-edr-sla">Review the EDR SLA <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article>
+        <strong>6 / 6 / 6</strong>
+        <h3>Independent AV-TEST result</h3>
+        <p>AV-TEST awarded Acronis Cyber Protect 26.3 six points each for protection, performance and usability in its June 2026 business Windows test. Results apply to the tested version and platform.</p>
+        <a href="https://www.av-test.org/en/antivirus/business-windows-client/manufacturer/acronis/" target="_blank" rel="noopener noreferrer">View independent results <span aria-hidden="true">&rarr;</span></a>
+      </article>
+    } @else {
+      <article>
+        <strong>24&times;7</strong>
+        <h3>Optional managed monitoring</h3>
+        <p>XcellHost can monitor, triage and coordinate incidents from its Mumbai SOC. Exact responsibilities and response targets are recorded in the selected service agreement.</p>
+      </article>
+    }
+  </div>
+</section>

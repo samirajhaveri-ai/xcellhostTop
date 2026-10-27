@@ -35,8 +35,8 @@ const names = {
   'smb-cloud': 'SMB Cloud',
 };
 const heroButtons = `<div class="xh-hero-actions" aria-label="Service actions">
-  <button type="button" class="xh-info" data-xh-action="infosheet">⬇ Infosheet</button>
-  <button type="button" data-xh-action="presentation">▣ Presentation</button>
+  
+  
   <button type="button" data-xh-action="tour">Screenshot Tour</button>
   <button type="button" data-xh-action="trial">7 Days Free Trial</button>
   <button type="button" class="xh-talk" data-xh-action="callback">Let's Talk</button>

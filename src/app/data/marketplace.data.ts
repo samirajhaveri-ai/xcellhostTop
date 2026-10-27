@@ -16,7 +16,7 @@ export interface MarketplaceListing {
   name: string; description: string; link: string; category: MarketplaceCategoryId;
   categoryName: string; group: string; icon: string; color: string; featured: boolean;
 }
-const FEATURED = ['performance-cloud', 'tally-on-cloud', 'microsoft-365', 'cloud-backup', 'gpu-servers', 'advanced-endpoint-security-edr', 'google-workspace', 'ai-chat-bot', 'bare-metal-servers', 'tsplus-remote-access', 'cloud-drive', 'cloud-migration'];
+const FEATURED = ['performance-cloud', 'tally-on-cloud', 'cloud-backup', 'gpu-servers', 'advanced-endpoint-security-edr', 'google-workspace', 'ai-chat-bot', 'bare-metal-servers', 'tsplus-remote-access', 'cloud-drive', 'cloud-migration'];
 
 /** Classify by the service offered, not by incidental words in its description. */
 export function classifyMarketplaceListing(name: string, group: string, source: string, link: string): MarketplaceCategoryId {

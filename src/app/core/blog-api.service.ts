@@ -1,8 +1,11 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 import { catchError, combineLatest, EMPTY, expand, map, Observable, of, reduce, shareReplay, switchMap, timer, timeout, tap } from 'rxjs';
 
 import { environment } from '../../environments/environment';
+import { migrateCmsDomains } from './domain-migration';
+import { cmsRequest } from './cms-request';
 
 export interface CmsArticle {
   readonly id: number;
@@ -41,14 +44,15 @@ export function findBlogBySlug(posts: readonly CmsBlogPost[], slug: string): Cms
   if (aliases.length === 1) return aliases[0];
   if (!aliases.length) return null;
 
-  // A product may have several articles. Prefer the article whose slug most
-  // closely matches the old URL, but do not guess if the match is ambiguous.
+  // A product may have several articles. Prefer the closest slug match, then
+  // the newest publication for a shared alias. Exact article URLs stay unique.
   const words = key.split('-').filter(Boolean);
   const ranked = aliases.map(post => ({
     post,
     score: words.filter(word => post.slug.toLowerCase().split('-').includes(word)).length,
-  })).sort((a, b) => b.score - a.score);
-  return ranked[0].score > ranked[1].score ? ranked[0].post : null;
+    publishedAt: Date.parse(post.publishedAt) || 0,
+  })).sort((a, b) => b.score - a.score || b.publishedAt - a.publishedAt);
+  return ranked[0].post;
 }
 
 export interface CmsImage {
@@ -115,20 +119,28 @@ interface YouTubeFeedItem {
 /** The single source of truth for blog content displayed by the Angular app. */
 @Injectable({ providedIn: 'root' })
 export class BlogApiService {
+  private readonly browser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly http = inject(HttpClient);
   private readonly baseUrl = environment.strapiUrl.replace(/\/$/, '');
-  private readonly endpoint = `${this.baseUrl}/api/blogs`;
+  readonly postsStatus = signal<'loading' | 'ready' | 'error'>('loading');
+  private lastPosts: readonly CmsBlogPost[] = [];
   readonly videoStatus = signal<'loading' | 'ready' | 'cached' | 'error'>('loading');
   private lastVideos: readonly CmsInsightResource[] = [];
 
   /** Refreshes in the background so CMS edits appear without rebuilding the UI. */
-  readonly posts$: Observable<readonly CmsBlogPost[]> = timer(0, 30_000).pipe(
-    switchMap(() => this.list()),
+  readonly posts$: Observable<readonly CmsBlogPost[]> = this.browser ? timer(0, 30_000).pipe(
+    switchMap(() => this.list().pipe(
+      tap(posts => { this.lastPosts = posts; this.postsStatus.set('ready'); }),
+      catchError(() => {
+        this.postsStatus.set('error');
+        return of(this.lastPosts);
+      }),
+    )),
     shareReplay({ bufferSize: 1, refCount: true })
-  );
+  ) : of([]);
 
   /** Latest channel uploads, with a saved channel snapshot during outages. */
-  readonly videos$ = timer(0, 15 * 60_000).pipe(
+  readonly videos$ = this.browser ? timer(0, 15 * 60_000).pipe(
     switchMap(() =>
       this.listYouTubeVideos().pipe(
         catchError(() => this.http.get<YouTubeFeedResponse>('/feeds/youtube-snapshot.json').pipe(
@@ -143,7 +155,7 @@ export class BlogApiService {
       )
     ),
     shareReplay({ bufferSize: 1, refCount: true })
-  );
+  ) : of([]);
 
   /** Strapi Use Case collection, presented alongside blogs in the Insights hub. */
   readonly useCases$ = this.resourceStream('use-cases', 'use-case');
@@ -197,10 +209,12 @@ export class BlogApiService {
       .set('pagination[page]', page)
       .set('pagination[pageSize]', '100');
 
-    return this.http.get<StrapiListResponse>(this.endpoint, { params });
+    return cmsRequest<StrapiListResponse>(this.http, 'blogs', params).pipe(map(migrateCmsDomains));
   }
 
   private resourceStream(endpoint: string, kind: CmsResourceKind): Observable<readonly CmsInsightResource[]> {
+    // Static page builds must not wait for live CMS pagination or periodic refreshes.
+    if (!this.browser) return of([]);
     return timer(0, 30_000).pipe(
       // These collections are optional while they are being created in Strapi.
       // Keep the timer alive after a 404 so newly published content appears later.
@@ -232,7 +246,7 @@ export class BlogApiService {
       .set('pagination[page]', page)
       .set('pagination[pageSize]', '100');
 
-    return this.http.get<StrapiResourceListResponse>(`${this.baseUrl}/api/${endpoint}`, { params });
+    return cmsRequest<StrapiResourceListResponse>(this.http, endpoint, params).pipe(map(migrateCmsDomains));
   }
 
   private listYouTubeVideos(): Observable<readonly CmsInsightResource[]> {
@@ -264,7 +278,8 @@ export class BlogApiService {
   }
 
   private isAvailableArticle(post: CmsBlogPost): boolean {
-    return Boolean(post.slug?.trim() && post.title?.trim() && post.content?.trim());
+    const isCaseStudy = /^case\s*stud(?:y|ies)$/i.test(post.category?.trim() ?? '');
+    return !isCaseStudy && Boolean(post.slug?.trim() && post.title?.trim() && post.content?.trim());
   }
 
   private normaliseResource(item: RawCmsInsightResource, kind: CmsResourceKind): CmsInsightResource {

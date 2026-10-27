@@ -11,7 +11,7 @@
 .zoho-quantity button { width:44px; height:40px; border:0; background:transparent; color:#1565d8; font-size:20px; cursor:pointer; }
 .zoho-quantity button:disabled { opacity:.4; cursor:not-allowed; }
 .zoho-quantity button:focus-visible { outline:2px solid #1565d8; outline-offset:-3px; }
-.zoho-quantity output { font-size:14px; font-weight:700; color:var(--navy); }
+.zoho-quantity :is(output,input[xhQuantityInput]) { font-size:14px; font-weight:700; color:var(--navy); }
 
 .pp-feats.zoho-feature-row {
   grid-template-columns: repeat(3, minmax(0, 1fr));

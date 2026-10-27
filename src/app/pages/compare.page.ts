@@ -1,3 +1,4 @@
+import { QuantityInputDirective } from '../core/quantity-input.directive';
 import { ChangeDetectionStrategy, Component, computed, effect, inject, linkedSignal, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -52,7 +53,7 @@ const MAX = 4;
   selector: 'xh-compare-page',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink],
+  imports: [QuantityInputDirective, RouterLink],
   templateUrl: './compare.page.html',
 })
 export class ComparePage {

@@ -1,7 +1,7 @@
 :host{display:block;--navy2:#0A2A57;--blue-d:#0C3E8F;--orange-d:#F57C00;--green:#2ECC71;--green-d:#128A42;--red:#E5484D;--amber:#F5A524;--purple:#7C3AED;--shadow-s:0 6px 18px rgba(4,30,66,.06);--shadow-m:0 18px 50px rgba(4,30,66,.10);--shadow-lg:0 34px 80px -20px rgba(4,30,66,.34);--maxw:1240px;--ease:cubic-bezier(.22,.7,.2,1)}
 /* ============================================================
    XcellHost — DPDP Act 2023 Compliance for SMBs
-   Live xcellhost.top tokens + chrome + shared motion kit
+   Live xcellhost.cloud tokens + chrome + shared motion kit
    ============================================================ */
 :root{
   --navy:#041E42; --navy2:#0A2A57;
@@ -81,6 +81,16 @@ img,svg{display:block}
   background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-18deg);transition:left .55s var(--ease)}
 .btn:hover:before{left:130%}
 .btn-primary{background:linear-gradient(135deg,var(--blue),var(--blue-d));color:#fff;box-shadow:0 14px 28px -12px rgba(21,101,216,.75)}
+.dpdpa-buddha-strip{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:24px;padding:32px 150px 32px 36px;background:linear-gradient(105deg,#1565d8,#0c3e8f);border-radius:16px;box-shadow:none}
+.dpdpa-buddha-strip h3{color:#fff;font-size:22px;line-height:1.3}
+.dpdpa-buddha-strip p{color:#cfe0fa;font-size:14.5px;margin-top:4px}
+.dpdpa-buddha-actions{display:flex;flex-wrap:wrap;gap:10px;width:100%}
+.dpdpa-buddha-actions .btn{font-size:14px;padding:10px 20px;border-radius:8px;line-height:1.4;border-width:1.5px;box-shadow:none}
+.dpdpa-buddha-actions .btn-orange{background:#ff8c1a}
+.dpdpa-buddha-actions .btn-orange:hover{background:#e97a08;box-shadow:none}
+.dpdpa-buddha-actions .btn-outline{background:transparent;border-color:rgba(255,255,255,.4);color:#fff}
+.dpdpa-buddha-actions .btn-outline:hover{background:rgba(255,255,255,.1);border-color:#fff}
+@media(max-width:760px){.dpdpa-buddha-strip{padding:28px 22px}.dpdpa-buddha-strip h3{font-size:19px}.dpdpa-buddha-actions .btn{white-space:normal}}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 20px 40px -14px rgba(21,101,216,.85)}
 .btn-orange{background:linear-gradient(135deg,var(--orange),var(--orange-d));color:#fff;box-shadow:0 14px 28px -12px rgba(255,140,26,.7)}
 .btn-orange:hover{transform:translateY(-2px);box-shadow:0 20px 40px -14px rgba(255,140,26,.85)}
@@ -96,7 +106,7 @@ img,svg{display:block}
 .btn-sm{padding:8px 16px;font-size:13px;border-radius:10px}
 
 /* ============================================================
-   REAL xcellhost.top CHROME
+   REAL xcellhost.cloud CHROME
    ============================================================ */
 .utility{background:var(--navy);color:#b9c9e2;font-size:13px;padding:8px 0;position:relative;z-index:52;overflow:hidden}
 .utility .wrap{display:flex;align-items:center;gap:14px 24px;min-height:38px;flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;scrollbar-width:none}

@@ -1,0 +1,26 @@
+:host{display:block;--navy:#041E42;--blue:#1565D8;--line:#DCE5F2;--slate:#51607A;--ice:#F2F6FC;--orange:#FF8C1A;color:var(--navy)}
+*{box-sizing:border-box}
+.followup-wrap{max-width:1240px;margin:auto;padding:26px 24px 0}
+section{margin-bottom:28px;scroll-margin-top:110px}
+.section-label{font:700 12px/1.5 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 14px}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.review-card{position:relative;min-width:0;border:1px solid var(--line);border-radius:16px;padding:24px;background:white;box-shadow:0 6px 18px rgba(4,30,66,.06);transition:transform .25s,box-shadow .25s}
+.review-card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(4,30,66,.1)}
+.quote-badge{position:absolute;top:14px;right:20px;width:56px;height:56px;border-radius:0 0 0 18px;background:linear-gradient(135deg,var(--blue),#0C3E8F);color:white;font:700 48px/1 'Sora',sans-serif;text-align:center;padding-top:3px}
+.review-avatar{width:42px;height:42px;border-radius:50%;margin:0 auto 12px;background:linear-gradient(135deg,var(--blue),#0C3E8F);display:grid;place-items:center;color:white;font:700 15px 'Sora',sans-serif}
+.review-card h3{font:700 14px/1.4 'Sora',sans-serif;text-align:center;margin:0 0 4px;color:var(--navy)}
+.review-product{font:500 11px/1.5 'IBM Plex Mono',monospace;text-align:center;color:var(--slate);margin:0 0 10px}
+.review-stars{color:var(--orange);letter-spacing:2px;text-align:center;font-size:13px;margin-bottom:14px}
+blockquote{font:400 13px/1.65 'IBM Plex Sans',sans-serif;color:var(--navy);text-align:justify;margin:0;overflow-wrap:anywhere}
+.faq-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:start}
+.faq-card{min-width:0;border:1.5px solid var(--line);border-radius:14px;overflow:hidden;background:white;transition:border-color .25s,box-shadow .25s}
+.faq-card.open{border-color:var(--blue);box-shadow:0 12px 30px rgba(21,101,216,.1)}
+.faq-card h3{margin:0}
+.faq-card button{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;padding:18px 20px;background:none;border:0;text-align:left;color:var(--navy);font:700 15px/1.5 'Sora',sans-serif;cursor:pointer}
+.faq-icon{flex:none;width:26px;height:26px;display:grid;place-items:center;border-radius:50%;background:var(--ice);color:var(--blue);font-size:18px;transition:transform .25s}
+.faq-card.open .faq-icon{background:var(--blue);color:white;transform:rotate(45deg)}
+.faq-answer{margin:0;padding:0 20px 18px;color:var(--slate);font:400 13.5px/1.65 'IBM Plex Sans',sans-serif}
+button:focus-visible{outline:2px solid var(--blue);outline-offset:-4px;border-radius:12px}
+:host-context(.dark-mode) .review-card,:host-context(.dark-mode) .faq-card,:host-context([data-theme="dark"]) .review-card,:host-context([data-theme="dark"]) .faq-card{background:#0E1630;border-color:#27355A;--navy:#F2F5FB;--slate:#B6C2DA;--ice:#14204A}
+@media(max-width:760px){.reviews-grid,.faq-grid{grid-template-columns:minmax(0,1fr)}}
+@media(prefers-reduced-motion:reduce){.review-card,.faq-card,.faq-icon{transition:none}.review-card:hover{transform:none}}

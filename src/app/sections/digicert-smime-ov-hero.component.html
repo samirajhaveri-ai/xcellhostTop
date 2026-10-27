@@ -1,0 +1,39 @@
+<div class="xt-viz" [class.reduced-motion]="reducedMotion()" aria-label="Illustrative dashboard: DigiCert S/MIME (OV) live activity">
+  <div class="xt-stars" aria-hidden="true">
+    @for (star of stars; track $index) {
+      <i [style.left.%]="star.left" [style.top.%]="star.top" [style.animation-delay.s]="star.delay"></i>
+    }
+  </div>
+   <div class="xt-map" aria-hidden="true"></div>
+   <div class="xt-ring r1" aria-hidden="true"></div><div class="xt-ring r2" aria-hidden="true"></div>
+   <svg class="xt-lines" [attr.viewBox]="viewBox()" aria-hidden="true">
+    @for (path of connections(); track $index) {
+      <path [attr.d]="path" />
+      @if (!reducedMotion()) {
+        <circle r="4" fill="#69b6ff">
+          <animateMotion [attr.path]="path" [attr.keyPoints]="$index % 2 ? '1;0' : null" [attr.keyTimes]="$index % 2 ? '0;1' : null" calcMode="linear" [attr.dur]="(2.2 + $index * .35) + 's'" repeatCount="indefinite" />
+        </circle>
+      }
+    }
+  </svg>
+
+   <div class="xt-bdg p"><span>From</span><b>₹3,199</b><span>/year</span></div>
+
+   <div class="xt-srv">
+    <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"/></svg>XcellMail · S/MIME OV<span class="xt-live">LIVE</span></h3>
+    <small>DIGICERT · ORG VALIDATED</small>
+    <div class="xt-hw"><div><b>{{ mailboxes() }}</b><span>MAILBOXES</span></div><div><b>OV</b><span>ORG VERIFIED</span></div><div><b>0–2 days</b><span>ISSUANCE</span></div><div><b>Docs</b><span>SIGNING</span></div></div>
+    <div class="xt-bars"><div><span>SIGNED</span><u><i [style.width.%]="signed()"></i></u><em>{{ signed() }}%</em></div><div><span>LOCKED</span><u><i [style.width.%]="locked()"></i></u><em>{{ locked() }}%</em></div></div>
+   </div>
+
+   <div class="xt-dev d1" [class.flash]="activeNode() === 0"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l3-2 3 2 3-2 3 2 3-2 1 1V2l-1 1-3-2-3 2-3-2-3 2-3-2z"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></div><div><b>Accounts</b><small>Invoices</small></div><span class="dot"></span></div>
+   <div class="xt-dev d2" [class.flash]="activeNode() === 1"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 21h14M5 7h14M5 7l-3 7a3.5 3.5 0 007 0L5 7zM19 7l-3 7a3.5 3.5 0 007 0l-4-7z"/></svg></div><div><b>Legal</b><small>Contracts</small></div><span class="dot"></span></div>
+   <div class="xt-dev d3" [class.flash]="activeNode() === 2"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><div><b>HR</b><small>Offers</small></div><span class="dot"></span></div>
+   <div class="xt-dev d4" [class.flash]="activeNode() === 3"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg></div><div><b>Office</b><small>Signing</small></div><span class="dot"></span></div>
+
+   <div class="xt-feed" aria-live="polite"><h4><span>LIVE SECURE EMAIL ACTIVITY</span><b>● ORG VERIFIED · SIGNED</b></h4><ul>
+      @for (item of feed(); track item.tag) {
+        <li><em [class]="item.tone">{{ item.tag }}</em><span>{{ item.message }}</span><b>{{ item.status }}</b></li>
+      }
+    </ul></div>
+  </div>

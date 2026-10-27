@@ -49,8 +49,12 @@ export class ExploreMarketplacePage {
       void this.router.navigate(['/company/vendor-partners']);
       return;
     }
-    if (category === 'professional' || category === 'accelerators') {
-      void this.router.navigate(['/contact'], { queryParams: { service: category === 'professional' ? 'Professional Services' : 'Accelerators' } });
+    if (category === 'accelerators') {
+      void this.router.navigate(['/about-us']);
+      return;
+    }
+    if (category === 'professional') {
+      void this.router.navigate(['/contact'], { queryParams: { service: 'Professional Services' } });
       return;
     }
     this.selectedCategory.set(category); this.query.set(''); this.limit.set(18);

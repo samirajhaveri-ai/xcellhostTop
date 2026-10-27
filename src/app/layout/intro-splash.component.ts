@@ -50,8 +50,9 @@ export class IntroSplashComponent {
     });
 
     const win = this.doc.defaultView;
-    const reduced = win?.matchMedia('(prefers-reduced-motion: reduce)').matches ?? true;
-    if (!win || reduced) return;
+    if (!win || typeof win.matchMedia !== 'function') return;
+    const reduced = win.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) return;
 
     this.visible.set(true);
     this.overlay.open('intro');

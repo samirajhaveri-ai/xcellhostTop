@@ -1,0 +1,34 @@
+/* Integration rules apply only inside the Mobile App Security document. */
+.hero.lh{padding:48px 0 40px!important}
+.hero.lh>.wrap,main>.sec>.wrap,.ma-sub>.wrap{width:100%;max-width:1240px;padding:0 24px;box-sizing:border-box}
+.ma-top>*{min-width:0}
+.hero.lh .lh-title{line-height:1.25;letter-spacing:-.04em}
+.hero.lh .lh-title .nm{display:inline!important}
+.hero.lh .lh-title .x:after,main h2 .acc:after{display:none!important}
+main h2 .acc{text-decoration:none!important}
+.hero.lh .lh-ctas{display:flex;flex-wrap:nowrap;gap:8px;max-width:100%;overflow-x:auto}
+.hero.lh .lh-ctas>.btn{flex:none;white-space:nowrap}
+#maHero .ma-base{grid-template-columns:minmax(0,1fr)}
+#maHero .ma-copy .lh-ask{width:fit-content;max-width:100%;min-width:0;margin-top:16px;gap:10px;flex-wrap:wrap!important;white-space:normal!important;overflow:visible!important}
+#maHero .ma-copy .lh-ask>.k{max-width:100%;white-space:normal!important}
+#maHero .ma-copy .lh-ask>.chips{display:flex;align-items:center;gap:6px;max-width:100%;min-width:0;flex-wrap:wrap!important;white-space:normal!important}
+#maHero .ma-copy .lh-ask .chips a{flex:none;white-space:nowrap}
+.mobile-powered{display:flex;align-items:center;gap:10px;margin-top:16px;color:#c7d5ec;font:400 13px/1.4 var(--f-body)}
+.mobile-powered>span{white-space:nowrap;flex:none}
+.mobile-powered img{display:block;object-fit:contain;background:#fff;border-radius:4px;width:112px;height:32px}
+.mobile-powered strong{font-size:20px;color:#fff;white-space:nowrap}
+.mobile-extra .sh{max-width:none;text-align:left;margin-bottom:24px}
+.mobile-extra .sh h2{font:700 28px/1.3 var(--f-disp)}
+#security h2{text-transform:uppercase}
+.mobile-certification{margin-top:20px;color:var(--muted);font-size:13px}
+#faq .sh{max-width:none;text-align:left}
+#faq .faq{max-width:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+#faq .fq>button{text-align:left;text-transform:capitalize}
+#mobileSecurityToast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);max-width:90%;padding:12px 18px;border-radius:10px;color:white;background:#041e42;z-index:1000}
+@media(max-width:760px){
+  .hero.lh{padding:32px 0!important}
+  .hero.lh>.wrap,main>.sec>.wrap,.ma-sub>.wrap{padding:0 16px}
+  #faq .faq{grid-template-columns:1fr}
+  .mobile-powered{gap:8px}.mobile-powered strong{font-size:18px}
+  .mobile-extra .sh h2{font-size:23px}
+}

@@ -5,19 +5,19 @@ import { Component, ElementRef, EventEmitter, HostListener, inject, NgZone, OnDe
   standalone: true,
   template: `<iframe #contentFrame
     class="performance-cloud-content-frame"
-    src="/assets/animations/performance-cloud-content.html"
-    title="Performance Cloud plans, server configurator and product details"
+    src="/assets/animations/performance-cloud-supplied.html"
+    title="Performance Cloud overview, plans, configurator and operating systems"
     scrolling="no"
     (load)="syncHeight()"
     [style.height.px]="frameHeight"
   ></iframe>`,
-  styles: [`:host{display:block}.performance-cloud-content-frame{display:block;width:100%;border:0;overflow:hidden;background:#fff}`],
+  styles: [`:host{display:block;width:100vw;margin-left:calc(50% - 50vw)}.performance-cloud-content-frame{display:block;width:100%;border:0;overflow:hidden;background:#fff}`],
 })
 export class PerformanceCloudContentComponent implements OnDestroy {
   private readonly zone = inject(NgZone);
   @ViewChild('contentFrame') frame?: ElementRef<HTMLIFrameElement>;
   @Output() planRequest = new EventEmitter<string>();
-  frameHeight = 1400;
+  frameHeight = 7600;
   private contentObserver?: ResizeObserver;
 
   syncHeight(): void {

@@ -1,0 +1,21 @@
+<div class="glass" [class.paused]="paused()" role="group" aria-label="Illustrative AI receptionist answering a customer call">
+  <div class="glass-h"><span>AI RECEPTIONIST · LIVE CALL</span><b>● ONLINE 24×7</b></div>
+  <div class="ph">
+    <div class="ph-call">
+      <span class="ph-av" [class.ring]="stage() === 0"><svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z" /></svg></span>
+      <span class="ph-details"><b>+91 98•• ••• 214</b><small>Incoming call · 2:14 am</small></span>
+      <em [class.on]="stage() > 0">{{ stage() > 0 ? 'ANSWERED · 0.6 s' : 'RINGING' }}</em>
+    </div>
+    <div class="ph-tx" aria-label="Sample call transcript">
+      @for (row of rows(); track $index) {
+        <div class="bb in" [class.ai]="row[0] === 'ai'" [class.c]="row[0] === 'c'">
+          <small>{{ row[0] === 'ai' ? 'AI RECEPTIONIST' : 'CALLER' }}</small>{{ row[1] }}
+        </div>
+      }
+    </div>
+    <div class="ph-mail" [class.in]="stage() === 7" [attr.aria-hidden]="stage() !== 7">
+      <svg class="xg-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg>
+      <span><b>Call summary sent</b> — Priya · plumbing quote · callback Mon 10 am</span>
+    </div>
+  </div>
+</div>

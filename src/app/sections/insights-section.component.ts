@@ -1,19 +1,38 @@
-import { ChangeDetectionStrategy, Component, computed, ElementRef, inject, input, signal, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, ElementRef, inject, input, signal, ViewChild } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { ResourceVideoComponent } from '../shared/resource-video.component';
 
-import { BlogApiService, CmsBlogPost } from '../core/blog-api.service';
+import { BlogApiService, CmsBlogPost, CmsInsightResource } from '../core/blog-api.service';
 import { RevealDirective } from '../shared/reveal.directive';
 import { CASE_STUDIES } from '../data/case-studies.data';
 import { CatalogService, slugify } from '../core/catalog.service';
 import { CaseStudiesApiService } from '../core/case-studies-api.service';
 import { caseStudiesForPage } from '../core/case-study-matching';
+import { productVideosForPage, youtubeVideoId } from '../core/product-video-matching';
+import { PRODUCT_VIDEOS } from '../data/products.data';
+
+export interface InsightVideo {
+  title: string;
+  src: SafeResourceUrl;
+  poster?: string;
+}
+
+export interface InsightArticle {
+  title: string;
+  description: string;
+  href: string;
+  image: string;
+  category: string;
+  author: string;
+}
 
 /** Shared Insights carousel; service pages show only their assigned CMS posts. */
 @Component({
   selector: 'xh-insights-section',
   standalone: true,
-  imports: [RouterLink, RevealDirective],
+  imports: [RouterLink, RevealDirective, ResourceVideoComponent],
   host: { style: 'display:contents' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -22,11 +41,13 @@ import { caseStudiesForPage } from '../core/case-study-matching';
         <div class="sec-head insights-heading" xhReveal>
           <div class="eyebrow">Insights</div>
           <div class="insights-heading-row">
-            <h2>{{ viewCopy[activeView()].heading }}</h2>
-            <p>{{ viewCopy[activeView()].description }}</p>
+            <h2 [attr.style]="activeView() === 'blogs' ? 'text-transform: none !important' : null">{{ activeView() === 'videos' && videoProduct() ? 'See ' + videoProduct()!.name + ' in action' : viewCopy[activeView()].heading }}</h2>
+            <p>{{ activeView() === 'videos' ? resolvedVideoDescription() : viewCopy[activeView()].description }}</p>
             <div class="insights-actions" role="group" aria-label="Insight resources">
               <button type="button" class="btn btn-ghost" [class.active]="activeView() === 'blogs'" [attr.aria-pressed]="activeView() === 'blogs'" aria-controls="insights-content" (click)="activeView.set('blogs')">Blogs</button>
-              <button type="button" class="btn btn-ghost" [class.active]="activeView() === 'videos'" [attr.aria-pressed]="activeView() === 'videos'" aria-controls="insights-content" (click)="activeView.set('videos')">Videos</button>
+              @if (showVideos()) {
+                <button type="button" class="btn btn-ghost" [class.active]="activeView() === 'videos'" [attr.aria-pressed]="activeView() === 'videos'" aria-controls="insights-content" (click)="activeView.set('videos')">Videos</button>
+              }
               @if (pageSlug() !== 'nvidia-h100' && pageSlug() !== 'acronis-xdr') {
                 <button type="button" class="btn btn-ghost" [class.active]="activeView() === 'cases'" [attr.aria-pressed]="activeView() === 'cases'" aria-controls="insights-content" (click)="activeView.set('cases')">Case Studies</button>
               }
@@ -58,6 +79,17 @@ import { caseStudiesForPage } from '../core/case-study-matching';
           </div>
           <button class="blog-nav blog-nav-next" type="button" aria-label="Next insights" (click)="scrollCarousel(1)">›</button>
         </div>
+        } @else if (articles().length) {
+          <div class="resource-articles">
+            @for (article of articles(); track article.href) {
+              <a class="bl" [href]="article.href" target="_blank" rel="noopener noreferrer">
+                <img class="blog-cover" [src]="article.image" alt="" loading="lazy" />
+                <span class="bl-k">{{ article.category }}</span>
+                <h3>{{ article.title }}</h3><p>{{ article.description }}</p>
+                <span class="bl-m">{{ article.author }} · Read guide ↗</span>
+              </a>
+            }
+          </div>
         } @else {
           <p class="insights-empty" role="status">{{ loading() ? 'Loading insights…' : 'New insights are on the way. Explore all insights for more guides and articles.' }}</p>
         }
@@ -94,6 +126,16 @@ import { caseStudiesForPage } from '../core/case-study-matching';
             </div>
           } @else {
           <div class="insights-video-grid">
+            @if (resolvedVideos(); as resources) {
+              @for (video of resources; track video.src) {
+                <article class="insights-video-card">
+                  <div class="insights-video">
+                    <xh-resource-video [src]="video.src" [title]="video.title" [poster]="video.poster || ''" />
+                  </div>
+                  <h3>{{ video.title }}</h3>
+                </article>
+              }
+            } @else {
             <article class="insights-video-card">
               <div class="insights-video">
                 <iframe src="https://www.youtube-nocookie.com/embed/eb8jyqFV6fM?rel=0&playsinline=1" title="Tally on Cloud video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -112,8 +154,18 @@ import { caseStudiesForPage } from '../core/case-study-matching';
               </div>
               <h3>Cloud Backup</h3>
             </article>
+            }
           </div>
-          <div class="blog-cta"><a class="btn btn-ghost" href="https://www.youtube.com/@XcellHostCloudServices">View all Videos →</a></div>
+          @if (resolvedVideos()?.length === 0) {
+            <div class="insights-empty" role="status">
+              <p>{{ videosLoading() ? 'Loading related videos…' : 'No videos are available for ' + (videoProduct()?.name || 'this page') + ' yet.' }}</p>
+              @if (!videosLoading()) {
+                <a class="btn btn-ghost" routerLink="/contact" [queryParams]="{ resource: 'demo', service: pageSlug() }">Request a demo</a>
+              }
+            </div>
+          } @else {
+            <div class="blog-cta"><a class="btn btn-ghost" [href]="videoLibraryUrl()">View all Videos →</a></div>
+          }
         }
           }
         </div>
@@ -121,6 +173,9 @@ import { caseStudiesForPage } from '../core/case-study-matching';
     </section>
   `,
   styles: `
+    .resource-articles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; max-width: 900px; margin: 0 auto; }
+    .resource-articles .bl { min-width: 0; color: inherit; text-decoration: none; }
+    @media (max-width: 640px) { .resource-articles { grid-template-columns: 1fr; } }
     .insights-empty { text-align: center; color: var(--slate); padding: 24px 16px; }
     .blog-grid .bl { color: inherit; text-decoration: none; }
     .insights-heading { max-width: none; text-align: center; }
@@ -151,11 +206,53 @@ import { caseStudiesForPage } from '../core/case-study-matching';
 export class InsightsSectionComponent {
   private readonly blogApi = inject(BlogApiService);
   private readonly catalog = inject(CatalogService);
+  private readonly sanitizer = inject(DomSanitizer);
   private readonly caseStudiesApi = inject(CaseStudiesApiService);
   private readonly allStudies = toSignal(this.caseStudiesApi.studies$, { initialValue: CASE_STUDIES });
   readonly pageSlug = input('');
+  readonly showVideos = input(true);
+  readonly videos = input<readonly InsightVideo[] | null>(null);
+  readonly articles = input<readonly InsightArticle[]>([]);
+  readonly videoDescription = input('');
+  readonly videoLibraryUrl = input('https://www.youtube.com/@XcellHostCloudServices');
   readonly pageAliases = input<readonly string[]>([]);
   readonly caseStudyLimit = input<number | null>(null);
+  readonly videoProduct = computed(() => {
+    const entry = this.catalog.entryBySlug(slugify(this.pageSlug()));
+    return entry ?? null;
+  });
+  private readonly channelVideos = signal<readonly CmsInsightResource[]>([]);
+  readonly videosLoading = signal(false);
+  readonly resolvedVideoDescription = computed(() => this.videoDescription() || (this.videoProduct()
+    ? `Watch walkthroughs and explainers for ${this.videoProduct()!.name}.`
+    : this.viewCopy.videos.description));
+  readonly resolvedVideos = computed<readonly InsightVideo[] | null>(() => {
+    const explicit = this.videos();
+    if (explicit !== null) return explicit;
+    const app = this.videoProduct();
+    if (!app) return null;
+    const sources = this.catalog.rich(app.name)?.v ?? PRODUCT_VIDEOS[app.name] ?? [];
+    const candidates = [
+      ...sources.map((source, index) => ({
+        title: `${app.name} — ${index === 0 ? 'Product Intro' : 'Use Cases'}`,
+        source, poster: '',
+      })),
+      ...productVideosForPage(this.channelVideos(), this.pageSlug(), app.name).map(video => ({
+        title: video.title, source: video.videoUrl || '', poster: video.coverImageUrl || '',
+      })),
+    ];
+    const seen = new Set<string>();
+    return candidates.flatMap(video => {
+      const id = youtubeVideoId(video.source);
+      if (!id || seen.has(id)) return [];
+      seen.add(id);
+      return [{
+        title: video.title,
+        src: this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube-nocookie.com/embed/${id}?rel=0&playsinline=1`),
+        poster: video.poster || `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
+      }];
+    });
+  });
   private readonly allPosts = signal<readonly CmsBlogPost[]>([]);
   readonly loading = signal(true);
   readonly encodeURIComponent = encodeURIComponent;
@@ -177,7 +274,7 @@ export class InsightsSectionComponent {
       description: 'Explore features, specifications and deployment requirements for XcellHost solutions.',
     },
     blogs: {
-      heading: 'Fresh perspectives for smarter IT decisions',
+      heading: 'Fresh Perspectives For Smarter IT Decisions',
       description: 'Explore practical guides and expert insights on cloud, cybersecurity and Indian compliance to help your business move forward.',
     },
     videos: {
@@ -203,6 +300,16 @@ export class InsightsSectionComponent {
   @ViewChild('blogGrid') private blogGrid?: ElementRef<HTMLElement>;
 
   constructor() {
+    // Fetch channel uploads only when an SMB Tools or VPS product's Videos view is opened.
+    effect(onCleanup => {
+      if (!this.videoProduct() || this.videos() !== null || !this.showVideos() || this.activeView() !== 'videos') return;
+      this.videosLoading.set(true);
+      const subscription = this.blogApi.videos$.subscribe({
+        next: videos => { this.channelVideos.set(videos); this.videosLoading.set(false); },
+        error: () => { this.channelVideos.set([]); this.videosLoading.set(false); },
+      });
+      onCleanup(() => { subscription.unsubscribe(); this.videosLoading.set(false); });
+    });
     this.blogApi.posts$.pipe(takeUntilDestroyed()).subscribe({
       next: (posts) => { this.allPosts.set(posts); this.loading.set(false); },
       error: () => { this.allPosts.set([]); this.loading.set(false); },

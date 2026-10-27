@@ -1,6 +1,12 @@
+import { QuantityInputDirective } from '../core/quantity-input.directive';
 import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angular/core';
 
 import { OverlayService } from '../core/overlay.service';
+
+type GenaiPlan = 'enforce';
+const GENAI_PLANS: Record<GenaiPlan, { name: string; price: number; max: number }> = {
+  enforce: { name: 'Enforce', price: 599, max: 100 },
+};
 
 interface ConsoleView {
   id: string;
@@ -16,12 +22,33 @@ interface ConsoleView {
 @Component({
   selector: 'xh-genai-protection-content',
   standalone: true,
+  imports: [QuantityInputDirective],
   templateUrl: './genai-protection-content.component.html',
   styleUrl: './genai-protection-content.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GenaiProtectionContentComponent {
   private readonly overlay = inject(OverlayService);
+  readonly quantities = signal<Record<GenaiPlan, number>>({ enforce: 1 });
+
+  quantity(plan: GenaiPlan): number {
+    return this.quantities()[plan];
+  }
+
+  maxQuantity(plan: GenaiPlan): number {
+    return GENAI_PLANS[plan].max;
+  }
+
+  changeQuantity(plan: GenaiPlan, delta: number): void {
+    this.quantities.update(values => ({
+      ...values,
+      [plan]: Math.max(1, Math.min(this.maxQuantity(plan), values[plan] + delta)),
+    }));
+  }
+
+  total(plan: GenaiPlan): string {
+    return new Intl.NumberFormat('en-IN').format(GENAI_PLANS[plan].price * this.quantity(plan));
+  }
 
   readonly heroOnly = input(false);
   readonly activeConsoleView = signal('reports');
@@ -87,7 +114,12 @@ export class GenaiProtectionContentComponent {
     return this.consoleViews.find((view) => view.id === this.activeConsoleView()) ?? this.consoleViews[0];
   }
 
-  configurePlan(): void {
+  configurePlan(plan?: GenaiPlan): void {
+    if (plan) {
+      const count = this.quantity(plan);
+      window.location.assign(`/acronis-genai-checkout?quantity=${count}`);
+      return;
+    }
     this.overlay.open('callback');
   }
 }

@@ -1,0 +1,160 @@
+const fs = require('fs');
+const path = require('path');
+const ts = require('typescript');
+
+const root = path.join(__dirname, '..');
+const dataDir = path.join(root, 'src', 'app', 'data');
+const output = path.join(root, 'public', 'assets', 'social-previews.json');
+const siteUrl = 'https://xcellhost.cloud';
+const defaultImage = '/assets/images/xcellhost-logo.png';
+
+function loadTypeScriptModule(filename) {
+  const source = fs.readFileSync(path.join(dataDir, filename), 'utf8');
+  const javascript = ts.transpileModule(source, {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 },
+  }).outputText;
+  const module = { exports: {} };
+  new Function('require', 'module', 'exports', javascript)(() => ({}), module, module.exports);
+  return module.exports;
+}
+
+function slugify(name) {
+  const normalized = name.toLowerCase().trim();
+  if (normalized === 'xcellsoc') return 'vortex-soc';
+  return normalized
+    .replace(/&/g, 'and')
+    .replace(/[().,/]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function isSocialImage(image) {
+  return typeof image === 'string' && /\.(?:png|jpe?g)$/i.test(image);
+}
+
+const { DIRECTORY } = loadTypeScriptModule('directory.data.ts');
+const { RICH_PRODUCTS } = loadTypeScriptModule('products.data.ts');
+const { PRODUCT_HERO_IMAGES, CATEGORY_HERO_IMAGES } = loadTypeScriptModule(
+  'product-hero-images.generated.ts',
+);
+
+const overrides = {
+  'acronis-genai-protection': '/assets/images/acronis-genai-protection.png',
+  'advanced-endpoint-security-edr': '/assets/images/hero-acronis-edr-v2.png',
+  'cloud-backup': '/assets/images/hero-cloud-backup-acronis.png',
+  'cloud-backup-acronis': '/assets/images/hero-cloud-backup-acronis.png',
+  'cloud-drive': '/assets/images/cloud-drive-tour-dashboard.jpg',
+  'gpu-clusters': '/assets/images/hero-gpu-cloud-v2.png',
+  'gpu-servers': '/assets/images/hero-gpu-cloud-v2.png',
+  'nvidia-a100': '/assets/images/hero-gpu-cloud-v2.png',
+  'nvidia-a30': '/assets/images/hero-gpu-cloud-v2.png',
+  'nvidia-a2': '/assets/images/hero-gpu-cloud-v2.png',
+  'nvidia-b300-nodes': '/assets/images/hero-gpu-cloud-v2.png',
+  'nvidia-h100': '/assets/images/hero-gpu-cloud-v2.png',
+  'nvidia-h200': '/assets/images/hero-gpu-cloud-v2.png',
+  'nvidia-l40s': '/assets/images/hero-gpu-cloud-v2.png',
+  'nvidia-l4': '/assets/images/hero-gpu-cloud-v2.png',
+  'nvidia-vera-rubin': '/assets/images/hero-gpu-cloud-v2.png',
+  'performance-cloud': '/assets/images/hero-performance-cloud-v2.png',
+  'remote-monitoring-and-mgmt-rmm': '/assets/images/hero-rmm.png',
+  'tally-on-cloud': '/assets/images/hero-tally-on-cloud.png',
+};
+
+const specialCopy = {
+  'acronis-genai-protection': {
+    title: 'Acronis GenAI Protection — XcellHost',
+    description: 'Discover and control GenAI use, reduce data leakage, and enforce safe AI policies across your business.',
+  },
+  'advanced-endpoint-security-edr': {
+    title: 'Advanced Endpoint Security (EDR) — XcellHost',
+    description: 'AI-powered endpoint detection, ransomware protection, investigation, containment, and recovery with expert support.',
+  },
+  'performance-cloud': {
+    title: 'Performance Cloud Servers in India — XcellHost',
+    description: 'High-performance NVMe cloud servers in India with hourly or monthly INR billing and 24×7 expert support.',
+  },
+  'gpu-clusters': {
+    title: 'NVIDIA GPU Clusters in India — XcellHost',
+    description: 'Build multi-node NVIDIA GPU clusters for distributed AI training, inference and HPC with expert support in India.',
+  },
+  'gpu-servers': {
+    title: 'NVIDIA GPU Cloud Servers in India — XcellHost',
+    description: 'Rent NVIDIA GPU servers for AI, machine learning, rendering and high-performance computing workloads.',
+  },
+};
+
+function imageMetadata(image) {
+  const relativePath = image.replace(/^\/assets\//, '');
+  const candidates = [
+    path.join(root, 'src', 'assets', relativePath),
+    path.join(root, 'public', 'assets', relativePath),
+  ];
+  const filename = candidates.find(fs.existsSync);
+  const extension = path.extname(image).toLowerCase();
+  const type = extension === '.png'
+    ? 'image/png'
+    : extension === '.jpg' || extension === '.jpeg'
+      ? 'image/jpeg'
+      : undefined;
+  if (!filename || !type) return {};
+
+  const buffer = fs.readFileSync(filename);
+  if (extension === '.png' && buffer.length >= 24 && buffer.toString('ascii', 1, 4) === 'PNG') {
+    return {
+      imageWidth: buffer.readUInt32BE(16),
+      imageHeight: buffer.readUInt32BE(20),
+      imageType: type,
+    };
+  }
+  return { imageType: type };
+}
+
+const routes = {};
+for (const entry of DIRECTORY) {
+  const slug = slugify(entry.name);
+  const rich = RICH_PRODUCTS[entry.name];
+  const candidates = [
+    overrides[slug],
+    rich?.heroImage,
+    entry.heroImage,
+    PRODUCT_HERO_IMAGES[entry.name],
+    CATEGORY_HERO_IMAGES[entry.cat],
+    defaultImage,
+  ];
+  const image = candidates.find(isSocialImage) || defaultImage;
+  routes[`/${slug}`] = {
+    title: `${entry.name} — XcellHost`,
+    description: (entry.desc || rich?.highlight || rich?.tagline || `Explore ${entry.name} from XcellHost.`)
+      .replace(/\s+/g, ' ')
+      .trim()
+      .slice(0, 180),
+    image: siteUrl + image,
+    ...imageMetadata(image),
+  };
+}
+
+for (const [slug, image] of Object.entries(overrides)) {
+  const key = `/${slug}`;
+  routes[key] = routes[key] || {
+    title: `${slug.split('-').map(word => word[0].toUpperCase() + word.slice(1)).join(' ')} — XcellHost`,
+    description: 'Managed cloud and cybersecurity services from XcellHost, backed by 24×7 expert support.',
+    image: siteUrl + image,
+  };
+  routes[key].image = siteUrl + image;
+  Object.assign(routes[key], imageMetadata(image));
+  if (specialCopy[slug]) Object.assign(routes[key], specialCopy[slug]);
+}
+
+const manifest = {
+  default: {
+    title: 'Managed Cloud & Cybersecurity Services India | XcellHost',
+    description: 'Managed cloud, cybersecurity and digital trust for Indian businesses since 1999.',
+    image: siteUrl + defaultImage,
+    ...imageMetadata(defaultImage),
+  },
+  routes,
+};
+
+fs.mkdirSync(path.dirname(output), { recursive: true });
+fs.writeFileSync(output, JSON.stringify(manifest, null, 2) + '\n');
+console.log(`Generated ${Object.keys(routes).length} social preview records.`);

@@ -1,0 +1,25 @@
+:host{display:block;width:100%;min-width:0;--mono:"IBM Plex Mono",monospace;--disp:"Sora",sans-serif}
+*,*:before,*:after{box-sizing:border-box}
+/* Original HGX console styling from nvidia-b300.html. */
+.glass{background:rgba(9,24,52,.85);backdrop-filter:blur(10px);border:1px solid rgba(156,200,255,.22);border-radius:20px;padding:18px;box-shadow:0 30px 70px rgba(0,0,0,.4)}
+.glass-h{display:flex;justify-content:space-between;gap:12px;font:700 11.5px var(--mono);letter-spacing:.1em;color:#9CC8FF;margin-bottom:12px}.glass-h b{color:#4ADE80}
+.hb{display:grid;gap:10px}
+.hb-g{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;position:relative}
+.hb-g>div{border-radius:10px;background:#050C18;border:1px solid #1E3352;padding:8px;display:grid;gap:5px;transition:border-color .3s,box-shadow .3s}
+.hb-g>div.on{border-color:#76B900;box-shadow:0 0 14px rgba(118,185,0,.35)}
+.hb-g small{font:700 9px var(--mono);color:#9FB8D8;display:flex;justify-content:space-between}.hb-g small b{color:#B7F06A}
+.hb-g i{display:block;height:6px;border-radius:9px;background:#12301C;overflow:hidden}.hb-g i u{display:block;height:100%;width:0;background:#76B900;transition:width .8s}
+.hb-g em{font-style:normal;font:600 8.5px var(--mono);color:#56708F}
+.hb-sw{display:flex;flex-wrap:nowrap;white-space:nowrap;align-items:center;justify-content:center;gap:8px;border-radius:10px;padding:7px;background:linear-gradient(90deg,#0B2A55,#13306A,#0B2A55);font:700 10px var(--mono);letter-spacing:.12em;color:#9FC3FF}
+.hb-sw b{width:8px;height:8px;border-radius:50%;background:#3B82F6;box-shadow:0 0 8px #3B82F6;animation:pl 1.2s infinite}
+@keyframes pl{50%{opacity:.3}}
+.hb-m{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.hb-m div{border-radius:10px;background:rgba(255,255,255,.06);padding:8px 10px}
+.hb-m small{display:block;font:700 9.5px var(--mono);letter-spacing:.1em;color:#9FB8D8}.hb-m b{font:800 17px var(--disp);color:#fff}
+.hb-f{display:flex;justify-content:space-between;gap:8px;font:600 11px var(--mono);color:#9FB8D8;border-top:1px dashed rgba(255,255,255,.14);padding-top:8px}.hb-f em{font-style:normal;color:#B7F06A}
+.hb-sel{display:flex;gap:6px}.hb-sel button{flex:1;min-width:0;border:1px solid rgba(255,255,255,.18);background:transparent;color:#DCE7F8;border-radius:9px;padding:6px;font:700 12px var(--mono);cursor:pointer}
+.hb-sel button[aria-pressed=true]{background:#76B900;border-color:#76B900;color:#06210F}
+.hb-sel button:focus-visible{outline:2px solid #9CC8FF;outline-offset:3px}
+:host(.paused) .hb-sw b{animation-play-state:paused}
+@media(max-width:560px){.hb-g{grid-template-columns:repeat(2,minmax(0,1fr))}.hb-f{flex-wrap:wrap}.hb-sw{font-size:9px;letter-spacing:.06em}}
+@media(max-width:400px){.glass{padding:14px}.glass-h{font-size:10px;gap:8px}.hb-m div{padding:8px 6px}.hb-m b{font-size:14px}.hb-m small{font-size:8px}.hb-sel button{font-size:10.5px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}

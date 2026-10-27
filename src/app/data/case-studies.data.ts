@@ -1,6 +1,9 @@
 export interface CaseStudy {
   readonly id: string;
   readonly documentId?: string;
+  readonly publishedAt?: string;
+  readonly coverImageUrl?: string | null;
+  readonly coverImageAlt?: string | null;
   readonly relatedPages?: readonly string[];
   readonly mainCategory: string;
   readonly subCategory: string;
@@ -560,7 +563,7 @@ export const CASE_STUDIES: readonly CaseStudy[] = [
       'Claude VPS',
       'Window 11 VPS',
       'Odoo Hosting',
-      'ERP Next Hosting',
+      'ERPNext Hosting',
       'Sage Hosting',
     ],
   },

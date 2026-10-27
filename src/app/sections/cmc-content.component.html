@@ -10,7 +10,11 @@
 
     <div class="prov-strip" aria-label="BIMI-supported mailbox providers">
       <span class="prov-lbl">Displays your logo in</span>
-      <span class="prov">Gmail</span><span class="prov">Apple Mail</span><span class="prov">Yahoo Mail</span><span class="prov">Fastmail</span><span class="prov">La Poste</span>
+      <span class="prov logo"><span class="pl gmail-logo" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 18.5V7.2L12 13.6l8.5-6.4v11.3" fill="none" stroke="#4285f4" stroke-width="3" stroke-linejoin="round"/><path d="M3.5 7.2 12 13.6l8.5-6.4" fill="none" stroke="#ea4335" stroke-width="3" stroke-linejoin="round"/><path d="M3.5 7.2v11.3" stroke="#34a853" stroke-width="3"/><path d="M20.5 7.2v11.3" stroke="#fbbc04" stroke-width="3"/></svg></span>Gmail</span>
+      <span class="prov logo"><span class="pl apple-logo" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M16.7 12.7c0-2.4 2-3.6 2.1-3.7a4.5 4.5 0 0 0-3.5-1.9c-1.5-.2-2.9.9-3.6.9-.7 0-1.8-.9-3-.9-1.5 0-3 .9-3.8 2.3-1.7 2.9-.4 7.2 1.2 9.5.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3.1-.7s1.9.7 3.1.7c1.3 0 2.1-1.2 2.9-2.3.9-1.3 1.3-2.6 1.3-2.7-.1 0-2.7-1-2.7-3.5ZM14.3 5.5c.7-.9 1.2-2.1 1-3.3-1 .1-2.3.7-3 1.6-.7.8-1.2 2-1.1 3.2 1.2.1 2.4-.6 3.1-1.5Z"/></svg></span>Apple Mail</span>
+      <span class="prov logo"><span class="pl yahoo-logo" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h4.2l3.7 5.1L15.5 5H20l-6.1 8.4V19H10v-5.6L4 5Zm12.7 9.1H20L19.4 19h-3.3l.6-4.9Z"/></svg></span>Yahoo Mail</span>
+      <span class="prov logo"><span class="pl fastmail-logo" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 5.2 12 2l9 3.2-9 5.2L3 5.2Z" fill="#5b43ff"/><path d="m3 8.2 9 5.2 9-5.2v4L12 17.4 3 12.2v-4Z" fill="#18b8f2"/><path d="m3 15.2 9 5.2 9-5.2V19l-9 3-9-3v-3.8Z" fill="#35d6a1"/></svg></span>Fastmail</span>
+      <span class="prov logo"><span class="pl laposte-logo" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z" fill="#ffd800"/><path d="M7 13.7c3.8-4.5 7.6-5.5 10.4-4.7-2.3.5-4.6 1.8-6.4 3.8 2.2-.8 4.1-.9 6-.5-3.5.5-6.3 1.8-8.7 4L7 13.7Z" fill="#0056a6"/></svg></span>La Poste</span>
     </div>
 
     <section aria-labelledby="cmc-how-title">
@@ -31,6 +35,28 @@
         <article class="pcard"><div class="ptop"><span class="tierbadge">CMC</span><span class="tagchip">3 Years</span></div><h3>Common Mark Certificate</h3><p class="pdesc">Longest term, lowest cost per year—set it and forget it for three years.</p><dl class="pmeta"><div><dt>Validity</dt><dd>3 years</dd></div><div><dt>Coverage</dt><dd>1 sending domain</dd></div></dl><ul class="pfeat"><li>Everything in 2-Year</li><li>Lowest price per year</li><li>Price locked for 3 years</li><li>Priority managed setup</li></ul><div class="pprice"><div><span>From</span><b>₹63,999</b><small>/year</small></div><em>Save up to 20%</em></div><button class="buy-btn" type="button" (click)="requestQuote('3 Years')">Configure &amp; Buy <span>→</span></button></article>
       </div>
       <p class="price-note">Approximate INR pricing, per year. No registered trademark needed. GST invoice on every order. Contact XcellHost for exact DigiCert pricing.</p>
+    </section>
+
+    <section class="cmc-workflow-explainer" aria-labelledby="cmc-workflow-title">
+      <div class="cmc-workflow-visual">
+        <img
+          src="/assets/images/how-cmc-works.svg"
+          width="477"
+          height="604"
+          loading="lazy"
+          alt="Flowchart showing the DMARC, BIMI DNS and Common Mark Certificate checks required before a verified logo is displayed"
+        />
+      </div>
+      <div class="cmc-workflow-copy">
+        <h2 id="cmc-workflow-title">How Common Mark Certificates (CMC) Work</h2>
+        <ul>
+          <li><b>Set up DMARC:</b> Before obtaining a CMC, your domain must use an enforced DMARC policy of either <code>p=quarantine</code> or <code>p=reject</code>.</li>
+          <li><b>CMC issuance:</b> A trusted Certificate Authority verifies the domain and a qualifying logo that has been in public use for at least 12 months before issuing the certificate.</li>
+          <li><b>DNS record setup:</b> The domain owner publishes a BIMI DNS record that links the CMC to the domain and tells supporting email services where to find the brand logo.</li>
+          <li><b>Email authentication:</b> The recipient's email service validates the message using DMARC, DKIM and SPF, then verifies the CMC to confirm the sender's legitimacy.</li>
+          <li><b>Brand logo display:</b> When every security check succeeds, the recipient's supported email client displays the authenticated brand logo beside the email.</li>
+        </ul>
+      </div>
     </section>
 
     <section aria-labelledby="cmc-addons-title"><h2 class="pp-sec" id="cmc-addons-title">Add-ons &amp; managed services</h2><div class="pp-addons">

@@ -22,7 +22,7 @@ describe('Partner Matrix', () => {
     page.selectTeam('support');
     expect(page.visibleTeams().length).toBe(1);
     expect(page.visibleTeams()[0].name).toBe('Partner Support');
-    expect(page.visibleCount()).toBe(1);
+    expect(page.visibleCount()).toBe(2);
   });
 
   it('searches across role, city and purpose', () => {

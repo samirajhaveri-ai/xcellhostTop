@@ -101,6 +101,6 @@ export class TrialModalComponent {
     this.done.set(false);
     this.busy.set(false);
     this.error.set('');
-    this.form.reset();
+    this.form.reset({product: this.overlay.trialProduct()});
   }
 }

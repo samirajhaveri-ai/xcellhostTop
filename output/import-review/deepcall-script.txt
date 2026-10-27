@@ -1,0 +1,334 @@
+
+(function(){
+  var XH=window.XH,$=XH.$,$$=XH.$$,reduce=XH.reduce;
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function setT(id,t){var e=document.getElementById(id);if(e)e.textContent=t;}
+
+  /* ================= 1. Hero background: flowing voice waves ================= */
+  var wv=$('#dcWaves'),hero=$('#dcHero');
+  if(wv){
+    var NS='http://www.w3.org/2000/svg';
+    var W=[ // wavelength, amplitude, baseline y, colour, stroke, opacity, speed(px/s), breathe(s)
+      [460,34,742,'b',1.6,.26,34,7],[380,22,770,'b',1.2,.18,26,9],[540,46,720,'o',1.8,.22,40,6],
+      [320,16,800,'b',1,.16,22,8],[600,28,690,'b',1.3,.12,30,10],[420,40,812,'o',1.2,.14,36,7.5]
+    ];
+    W.forEach(function(w,i){
+      var L=w[0],A=w[1],y0=w[2],ph=i*1.3,d='';
+      for(var x=-L;x<=1600+L;x+=8){var y=y0+A*Math.sin(2*Math.PI*x/L+ph);d+=(x===-L?'M':'L')+x+' '+y.toFixed(1);}
+      var g=document.createElementNS(NS,'g');g.setAttribute('class','wg');g.style.setProperty('--a',w[7]+'s');g.style.animationDelay=(-i*1.7)+'s';
+      var p=document.createElementNS(NS,'path');p.setAttribute('d',d);p.setAttribute('class','wl '+w[3]);
+      p.setAttribute('stroke-width',w[4]);p.setAttribute('stroke-opacity',w[5]);
+      p.style.setProperty('--w',(-L)+'px');p.style.setProperty('--d',(L/w[6]).toFixed(1)+'s');
+      g.appendChild(p);wv.appendChild(g);
+    });
+    if(hero)XH.whenVisible(hero,function(v){hero.classList.toggle('dc-paused',!v);});
+  }
+
+  /* ================= 2. Hero visual: live call flow ================= */
+  var IC={phone:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg>',pin:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6 7-12a7 7 0 00-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>',link:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007 0l3-3a5 5 0 00-7-7l-1 1M14 11a5 5 0 00-7 0l-3 3a5 5 0 007 7l1-1"/></svg>',globe:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg>',target:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>'};
+  var CALLERS=[
+    {n:'Vikram Mehta',a:'VM',num:'+91 98••• ••210',via:'1800 toll-free',vi:'phone',key:1,sk:'support',wait:6,lang:'English',say:'My order shows delivered, but nothing has reached me yet.',sent:.66,intent:'Delivery issue',next:['Reshipment raised','g']},
+    {n:'Sunita Rao',a:'SR',num:'+91 99••• ••873',via:'Google Ads number',vi:'target',key:0,sk:'sales',wait:4,lang:'English',say:'Can you share pricing for twenty more licences this month?',sent:.86,intent:'Upgrade enquiry',next:['Quote sent','g']},
+    {n:'Ramesh Yadav',a:'RY',num:'+91 94••• ••051',via:'1800 toll-free',vi:'phone',key:3,sk:'hindi',wait:9,lang:'Hindi',say:'Bill mein do baar charge ho gaya hai, refund chahiye.',sent:.3,intent:'Double charge',next:['Refund in 48 h','o']},
+    {n:'Neha Kapoor',a:'NK',num:'+91 97••• ••612',via:'Website click-to-call',vi:'globe',key:2,sk:'billing',wait:5,lang:'English',say:'I need a GST invoice copy for last month’s order.',sent:.74,intent:'Invoice copy',next:['Emailed on the call','g']}
+  ];
+  var dcv=$('#dcv');
+  if(dcv){
+    var stS=$$('#dcSt .s'),fl=$('#dcFl'),callEl=$('#dcCall'),irs=$$('#dcIvr .dk-ir'),ags=$$('#dcAg .dk-ag'),
+        keyEl=$('#dcKey'),qEl=$('#dcQ'),trEl=$('#dcTr'),mk=$('#dcMk'),sumEl=$('#dcSum'),langEl=$('#dcLang');
+    var ci=0,vis=true,timers=[],tick=null,secs=0,stat={n:0,w:0,p:0};
+    function later(fn,ms){var t=setTimeout(function run(){if(!vis){timers.push(setTimeout(run,300));return;}fn();},ms);timers.push(t);}
+    function step(i){stS.forEach(function(s,j){s.classList.toggle('dn',j<i);s.classList.toggle('on',j===i);});fl.style.transform='scaleX('+(Math.max(0,Math.min(3,i))/3)+')';}
+    function pill(cls,txt){var p=$('.dk-stp',callEl);if(p){p.className='dk-stp '+cls;p.textContent=txt;}}
+    function mmss(s){return Math.floor(s/60)+':'+('0'+s%60).slice(-2);}
+    function bump(id,txt){var el=document.getElementById(id);el.textContent=txt;el.classList.remove('bump');void el.offsetWidth;el.classList.add('bump');}
+    function sentLbl(s){return s>=.6?['Positive','g']:s>=.45?['Neutral','']:['Negative','o'];}
+    function pickAgent(c){
+      var cand=ags.filter(function(a){return a.getAttribute('data-sk').indexOf(c.sk)>-1;});
+      var t=cand[ci%cand.length]||ags[0];
+      ags.forEach(function(a){a.classList.remove('call','ring','busy');if(a!==t&&Math.random()<.5)a.classList.add('busy');});
+      return t;
+    }
+    function callerHTML(c){return '<div class="dk-cl"><span class="av">'+c.a+'</span><span class="wh"><b>'+c.n+'</b><small>'+IC[c.vi]+c.num+' · '+c.via+'</small></span><span class="dk-stp">Ringing</span></div>';}
+    function reset(){
+      irs.forEach(function(r){r.className='dk-ir';});ags.forEach(function(a){a.classList.remove('call','ring');});
+      keyEl.textContent='—';trEl.innerHTML='<span class="dm">Transcript appears once the agent answers</span>';
+      mk.style.transform='translateX(50%)';sumEl.innerHTML='';langEl.textContent='listening…';
+    }
+    function typeQ(el,txt,cb){
+      if(reduce){el.textContent=txt;el.classList.add('done');cb&&cb();return;}
+      var i=0;(function t(){if(!vis){timers.push(setTimeout(t,300));return;}i+=1;el.textContent=txt.slice(0,i);if(i<txt.length)timers.push(setTimeout(t,26));else{el.classList.add('done');cb&&cb();}})();
+    }
+    function chips(c){
+      var s=sentLbl(c.sent);
+      return '<span class="'+s[1]+'"><em>Sentiment</em> '+s[0]+'</span><span><em>Intent</em> '+c.intent+'</span><span class="'+c.next[1]+'"><em>Next</em> '+c.next[0]+'</span>';
+    }
+    function cycle(){
+      var c=CALLERS[ci%CALLERS.length];ci++;
+      reset();step(0);var agent=pickAgent(c);
+      qEl.textContent='queue '+(1+(ci%3));
+      callEl.innerHTML=callerHTML(c);var cl=$('.dk-cl',callEl);void cl.offsetWidth;cl.classList.add('in','ring');
+      later(function(){ // IVR
+        cl.classList.remove('ring');step(1);pill('ivr','In IVR');
+        var i=0;
+        (function scan(){
+          irs.forEach(function(r){r.classList.remove('scan');});
+          if(i<c.key){irs[i].classList.add('scan');i++;later(scan,260);return;}
+          var r=irs[c.key];r.classList.add('hit','press');keyEl.textContent='pressed '+(c.key+1);
+          irs.forEach(function(o){if(o!==r)o.classList.add('dim');});
+          later(function(){r.classList.remove('press');},220);
+          later(route,750);
+        })();
+      },1300);
+      function route(){
+        step(2);pill('','Connecting');agent.classList.remove('busy');agent.classList.add('ring');
+        later(function(){
+          agent.classList.remove('ring');agent.classList.add('call');qEl.textContent='queue 0';
+          secs=0;pill('live','On call '+mmss(secs));clearInterval(tick);tick=setInterval(function(){if(vis){secs++;pill('live','On call '+mmss(secs));}},1000);
+          later(ai,500);
+        },900);
+      }
+      function ai(){
+        step(3);langEl.textContent=c.lang+' · transcribing';
+        trEl.innerHTML='<q></q>';var q=$('q',trEl);
+        mk.style.transform='translateX('+(Math.max(.05,Math.min(.95,c.sent))*100)+'%)';
+        typeQ(q,c.say,function(){
+          langEl.textContent=c.lang+' · analysed';
+          sumEl.innerHTML=chips(c);
+          $$('span',sumEl).forEach(function(s,j){s.style.animationDelay=(j*.18)+'s';});
+          stat.n++;stat.w+=c.wait;if(sentLbl(c.sent)[0]==='Positive')stat.p++;
+          bump('ctA',stat.n.toLocaleString('en-IN'));bump('ctW',Math.round(stat.w/stat.n)+'s');bump('ctP',Math.round(stat.p/stat.n*100)+'%');
+          later(wrap,2300);
+        });
+      }
+      function wrap(){
+        clearInterval(tick);pill('end','Wrapped · '+mmss(Math.max(secs,1)));
+        stS.forEach(function(s){s.classList.remove('on');s.classList.add('dn');});fl.style.transform='scaleX(1)';
+        later(function(){cl.classList.add('out');later(cycle,450);},1000);
+      }
+    }
+    if(reduce){
+      var c0=CALLERS[0];callEl.innerHTML=callerHTML(c0);var cl0=$('.dk-cl',callEl);cl0.classList.add('in');
+      var p0=$('.dk-stp',cl0);p0.className='dk-stp live';p0.textContent='On call 0:42';
+      step(3);irs[c0.key].classList.add('hit');irs.forEach(function(o,j){if(j!==c0.key)o.classList.add('dim');});keyEl.textContent='pressed '+(c0.key+1);
+      ags[1].classList.add('call');trEl.innerHTML='<q class="done">'+c0.say+'</q>';mk.style.transform='translateX('+(c0.sent*100)+'%)';
+      sumEl.innerHTML=chips(c0);langEl.textContent=c0.lang+' · analysed';setT('ctA','1');setT('ctW',c0.wait+'s');setT('ctP','100%');
+    } else {
+      XH.whenVisible(dcv,function(v){vis=v;});
+      setTimeout(cycle,900);
+    }
+  }
+
+  /* ================= 3. Pause decorative CSS loops when sections are offscreen ================= */
+  ['#how','#suite','#uses'].forEach(function(s){var el=$(s);if(el)XH.whenVisible(el,function(v){el.classList.toggle('dc-off',!v);});});
+
+  /* ================= 4. IVR builder + call simulator ================= */
+  var DEST={sales:['Sales queue','<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2 20a7 7 0 0114 0M17 11a3 3 0 000-6M22 20a6 6 0 00-4-5.6"/></svg>'],support:['Support queue','<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15v-3a8 8 0 0116 0v3"/><rect x="2" y="14" width="5" height="7" rx="2"/><rect x="17" y="14" width="5" height="7" rx="2"/></svg>'],billing:['Billing queue','<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12M6 9h12M15 20L8 13h2a4 4 0 000-8"/></svg>'],desk:['Front desk','<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 7h.01M15 7h.01M9 11h.01M15 11h.01M9 15h.01M15 15h.01M10 21v-3h4v3"/></svg>'],
+            hindi:['Hindi desk','<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 01-11.6 7.1L3 21l1.9-6.4A8 8 0 1121 12z"/></svg>'],self:['Self-service lookup','<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="11" rx="2"/><path d="M12 4v4M9 13h.01M15 13h.01M9 17h6M2 13h3M19 13h3"/></svg>'],vm:['Voicemail','<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v4M8 22h8"/></svg>'],repeat:['Repeat menu','<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4M3 11V9a3 3 0 013-3h15M7 22l-4-4 4-4M21 13v2a3 3 0 01-3 3H3"/></svg>']};
+  var AFTER={vm:'Voicemail',sms:'SMS callback link',fwd:'On-call mobile'};
+  var LANG={en:'EN',hi:'HI',both:'EN · HI'};
+  var TPL={
+    shop:{g:'Thank you for calling Acme Traders.',lang:'both',hrs:'biz',o:[['Sales','sales'],['Support','support'],['Billing & invoices','billing'],['Order status','self']]},
+    clinic:{g:'Welcome to Sunrise Clinic, Pune.',lang:'both',hrs:'247',o:[['Book an appointment','desk'],['Lab reports','self'],['Billing','billing'],['Speak in Hindi','hindi'],['Leave a message','vm']]},
+    util:{g:'Namaste! Welcome to City Gas customer care.',lang:'both',hrs:'biz',o:[['New connection','sales'],['Payments & bills','billing'],['Complaints','support'],['Hindi mein baat karein','hindi'],['Hear this again','repeat']]}
+  };
+  var ivb=$('#ivb');
+  if(ivb){
+    var S={opts:TPL.shop.o.map(function(o){return {l:o[0],d:o[1]};})};
+    var optsEl=$('#ivOpts'),treeEl=$('#ivTree'),greet=$('#ivGreet'),segLang=$('#ivLang'),segHrs=$('#ivHrs'),segAfter=$('#ivAfter'),
+        kp=$('#ivKp'),scr=$('#ivScr'),cap=$('#ivCap'),res=$('#ivRes'),ah=$('#ivAh'),ahLbl=$('.ivah');
+    function destOpts(sel){return Object.keys(DEST).map(function(k){return '<option value="'+k+'"'+(k===sel?' selected':'')+'>'+DEST[k][0]+'</option>';}).join('');}
+    function renderOpts(newIdx){
+      optsEl.innerHTML=S.opts.map(function(o,i){return '<div class="ivr2"'+(i===newIdx?'':' style="animation:none"')+' data-i="'+i+'"><span class="kk">'+(i+1)+'</span><input type="text" maxlength="28" value="'+esc(o.l)+'" aria-label="Option '+(i+1)+' label"><select aria-label="Option '+(i+1)+' destination">'+destOpts(o.d)+'</select><button type="button" class="rm" aria-label="Remove option '+(i+1)+'"'+(S.opts.length<2?' disabled':'')+'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>';}).join('');
+      setT('ivCnt',S.opts.length+' of 6');$('#ivAdd').disabled=S.opts.length>=6;
+      renderTree(newIdx);
+    }
+    function renderTree(newIdx){
+      var hrs=segHrs.dataset.value,biz=hrs==='biz';
+      var h='<div class="tn2" data-n="in"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg></i><span class="gq" style="font-style:normal"><b>Incoming call</b> · 1800 toll-free</span><span class="lg">'+(biz?'MON–SAT 9–7':'24 × 7')+'</span></div><div class="vl"></div>'+
+        '<div class="tn2" data-n="gr"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v4M8 22h8"/></svg></i><span class="gq">“'+esc(greet.value.trim()||'Welcome message')+'”</span><span class="lg">'+LANG[segLang.dataset.value]+'</span></div><div class="vl"></div><div class="ivbr">'+
+        S.opts.map(function(o,i){var d=DEST[o.d];return '<div class="op'+(i===newIdx?' new':'')+'" data-k="'+(i+1)+'"><span class="kk">'+(i+1)+'</span><span class="ol">'+esc(o.l||'Option '+(i+1))+'</span><span class="ds">'+d[1]+d[0]+'</span></div>';}).join('')+
+        (biz?'<div class="op ah" data-k="ah"><span class="kk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span class="ol">After hours</span><span class="ds"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 19l9-7-9-7zM2 19l9-7-9-7z"/></svg>'+AFTER[segAfter.dataset.value]+'</span></div>':'')+'</div>';
+      treeEl.innerHTML=h;
+      $$('button',kp).forEach(function(b){var k=+b.getAttribute('data-k');b.classList.toggle('ok',k>=1&&k<=S.opts.length);});
+      $('#ivAfterF').style.display=biz?'':'none';ahLbl.classList.toggle('dis',!biz);if(!biz)ah.checked=false;
+      setT('ivGreetN',greet.value.length+' / 110');
+      var words=(greet.value.trim()||'Welcome').split(/\s+/).length+6,lg=segLang.dataset.value,gs=words/2.6*(lg==='both'?2:1),tt=Math.round(gs+S.opts.length*2.2);
+      setT('ivS1',S.opts.length);setT('ivS2','~'+tt+' s');setT('ivS3',LANG[lg]);
+      var hasRep=S.opts.some(function(o){return o.d==='repeat';}),tip;
+      if(S.opts.length>4)tip='Callers remember about four choices. Move the rarer ones into a sub-menu.';
+      else if(tt>20)tip='Over 20 seconds before the last option. Shorten the greeting or drop a language prompt.';
+      else if(!hasRep)tip='Add a “hear this again” option so callers who miss a choice don’t hang up.';
+      else tip='Short, clear menu. Most callers will reach a person in under '+tt+' seconds.';
+      $('#ivTip').innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0zM12 9v4M12 17h.01"/></svg><span>'+tip+'</span>';
+    }
+    function edited(){$$('#ivTpl button').forEach(function(b){b.classList.remove('on');});}
+    optsEl.addEventListener('input',function(e){var r=e.target.closest('.ivr2');if(!r||e.target.tagName!=='INPUT')return;S.opts[+r.getAttribute('data-i')].l=e.target.value;edited();simStop(true);renderTree();});
+    optsEl.addEventListener('change',function(e){var r=e.target.closest('.ivr2');if(!r||e.target.tagName!=='SELECT')return;S.opts[+r.getAttribute('data-i')].d=e.target.value;edited();simStop(true);renderTree();});
+    optsEl.addEventListener('click',function(e){var b=e.target.closest('.rm');if(!b)return;var i=+b.closest('.ivr2').getAttribute('data-i');S.opts.splice(i,1);edited();simStop(true);renderOpts();});
+    $('#ivAdd').addEventListener('click',function(){if(S.opts.length>=6)return;var used=S.opts.map(function(o){return o.d;});var d=['vm','hindi','desk','self','support','sales'].filter(function(x){return used.indexOf(x)<0;})[0]||'vm';
+      S.opts.push({l:DEST[d][0].replace(/ queue$/,''),d:d});edited();simStop(true);renderOpts(S.opts.length-1);var ins=$$('input',optsEl);ins[ins.length-1].focus();ins[ins.length-1].select();});
+    greet.addEventListener('input',function(){edited();renderTree();});
+    [segLang,segHrs,segAfter].forEach(function(s){s.addEventListener('change',function(){edited();simStop(true);renderTree();});});
+    function setSeg(s,v){var b=$('button[data-v="'+v+'"]',s);if(b&&!b.classList.contains('on'))b.click();}
+    $('#ivTpl').addEventListener('click',function(e){var b=e.target.closest('[data-tpl]');if(!b)return;var t=TPL[b.getAttribute('data-tpl')];
+      simStop(true);greet.value=t.g;S.opts=t.o.map(function(o){return {l:o[0],d:o[1]};});setSeg(segLang,t.lang);setSeg(segHrs,t.hrs);
+      $$('#ivTpl button').forEach(function(x){x.classList.toggle('on',x===b);});renderOpts();XH.toast('Template loaded — '+$('b',b).textContent);});
+
+    /* ---- simulator ---- */
+    var sim={on:false,await:false,tm:[],iv:null,secs:0,t0:0};
+    function T(fn,ms){sim.tm.push(setTimeout(fn,ms));}
+    function clearT(){sim.tm.forEach(clearTimeout);sim.tm=[];}
+    function hl(sel,cls){$$('.'+cls,treeEl).forEach(function(x){x.classList.remove(cls);});if(sel){var n=$(sel,treeEl);if(n)n.classList.add(cls);}}
+    function say(html,txt,cb){
+      cap.innerHTML=(html||'')+'<span class="say"></span>';var s=$('.say',cap);
+      if(reduce){s.textContent=txt;s.classList.add('done');if(cb)T(cb,400);return;}
+      var i=0;(function t(){i++;s.textContent=txt.slice(0,i);if(i<txt.length)sim.tm.push(setTimeout(t,22));else{s.classList.add('done');if(cb)T(cb,350);}})();
+    }
+    function status(cls,t){scr.className='ivscr '+(cls||'');setT('ivSt',t);}
+    function simStop(quiet){
+      clearT();clearInterval(sim.iv);sim.on=false;sim.await=false;kp.classList.add('idle');hl(null,'on');hl(null,'hit');
+      if(quiet){status('','Ready');setT('ivTm','00:00');cap.innerHTML='Press <b>Place a test call</b>, then use the keypad like a caller would.';res.innerHTML='';}
+      $('#ivCall').innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg> Place a test call';
+    }
+    function endCall(){clearInterval(sim.iv);sim.on=false;sim.await=false;kp.classList.add('idle');status('','Call ended');$('#ivCall').innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg> Call again';}
+    function menu(i){
+      if(!sim.on)return;sim.await=true;
+      if(i>=S.opts.length){
+        hl(null,'on');cap.innerHTML='<b>Waiting for a key…</b> Press a number on the keypad.';
+        T(function(){if(!sim.await)return;var k=1+Math.floor(Math.random()*S.opts.length);if(S.opts[k-1].d==='repeat')k=1;cap.innerHTML='<span class="bad">No key pressed.</span> Simulating a caller pressing '+k+'…';T(function(){press(String(k));},900);},3800);
+        return;
+      }
+      var o=S.opts[i];hl('.op[data-k="'+(i+1)+'"]','on');
+      say('','For '+(o.l||'option '+(i+1)).toLowerCase()+', press '+(i+1)+'.',function(){T(function(){menu(i+1);},250);});
+    }
+    function press(k){
+      var b=$('button[data-k="'+k+'"]',kp);if(b&&!reduce){b.classList.remove('pr');void b.offsetWidth;b.classList.add('pr');setTimeout(function(){b.classList.remove('pr');},220);}
+      if(!sim.on||!sim.await){if(!sim.on)cap.innerHTML='Press <b>Place a test call</b> first — then the keypad answers like a real IVR.';return;}
+      var n=+k;
+      if(!(n>=1&&n<=S.opts.length)){clearT();cap.innerHTML='<span class="bad">“'+esc(k)+'” isn’t on the menu.</span> Repeating the options…';T(function(){menu(0);},1300);return;}
+      clearT();sim.await=false;var o=S.opts[n-1],d=DEST[o.d];hl(null,'on');hl('.op[data-k="'+n+'"]','hit');
+      if(o.d==='repeat'){say('<b>'+n+'</b> · ','Repeating the menu.',function(){hl(null,'hit');menu(0);});return;}
+      var secs=Math.max(1,Math.round((Date.now()-sim.t0)/1000));
+      var line=o.d==='vm'?'Please leave your message after the tone.':o.d==='self'?'Please enter your 6-digit order or report number.':'Please hold while we connect you to the '+d[0].toLowerCase()+'.';
+      say('<b>Pressed '+n+'</b> · ',line,function(){
+        res.innerHTML='<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Routed '+n+' → '+esc(d[0])+' · '+secs+' s in IVR</span>';status('live',o.d==='vm'?'Recording':o.d==='self'?'Self-service':'Agent ringing');
+        T(endCall,2600);
+      });
+    }
+    $('#ivCall').addEventListener('click',function(){
+      if(sim.on){simStop(false);endCall();cap.innerHTML='Call ended. Press <b>Call again</b> to replay.';return;}
+      simStop(false);sim.on=true;sim.t0=Date.now();sim.secs=0;res.innerHTML='';kp.classList.remove('idle');
+      status('ringing','Ringing');setT('ivTm','00:00');cap.innerHTML='Calling <b>1800 toll-free</b>…';hl('.tn2[data-n="in"]','on');
+      $('#ivCall').innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg> Hang up';
+      sim.iv=setInterval(function(){sim.secs++;setT('ivTm','00:'+('0'+Math.min(59,sim.secs)).slice(-2));},1000);
+      var after=ah.checked&&segHrs.dataset.value==='biz';
+      T(function(){
+        status('live','Connected');
+        if(after){hl('.tn2[data-n="gr"]','on');say('','Thank you for calling. We’re closed right now — we’re open Monday to Saturday, 9 am to 7 pm.',function(){
+          hl(null,'on');hl('.op[data-k="ah"]','hit');res.innerHTML='<span class="w"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>After hours → '+AFTER[segAfter.dataset.value]+'</span>';T(endCall,2600);});return;}
+        hl('.tn2[data-n="gr"]','on');sim.await=true;
+        var g=greet.value.trim()||'Welcome.',lg=segLang.dataset.value;
+        say(lg==='hi'?'<b>[Hindi]</b> ':'',g+' Calls may be recorded for quality.',function(){
+          if(lg==='both'){cap.innerHTML='<b>[Hindi]</b> <i>Same greeting plays in Hindi…</i>';T(function(){menu(0);},1100);}else menu(0);
+        });
+      },1100);
+    });
+    kp.addEventListener('click',function(e){var b=e.target.closest('button[data-k]');if(b)press(b.getAttribute('data-k'));});
+    $('#ivDl').addEventListener('click',function(){
+      var flow={number:'1800 toll-free (to be provisioned)',greeting:greet.value.trim(),language:segLang.dataset.value,
+        hours:segHrs.dataset.value==='biz'?'Mon–Sat 09:00–19:00 IST':'24x7',afterHours:segHrs.dataset.value==='biz'?AFTER[segAfter.dataset.value]:null,
+        menu:S.opts.map(function(o,i){return {key:String(i+1),label:o.l,routeTo:DEST[o.d][0]};}),noInput:'repeat menu once, then route to key 1',platform:'DeepCall AI by Sarv · via XcellHost'};
+      XH.download('deepcall-ivr-call-flow.json',JSON.stringify(flow,null,2),'application/json');XH.toast('Call flow downloaded');
+    });
+    greet.value=TPL.shop.g;$('#ivTpl button[data-tpl="shop"]').classList.add('on');kp.classList.add('idle');
+    renderOpts();
+  }
+
+  /* ================= 5. Agent sizing (Erlang C) ================= */
+  var zC=$('#zCalls');
+  if(zC){
+    var zCN=$('#zCallsN'),zAht=$('#zAht'),zShr=$('#zShr'),zSl=$('#zSl'),zBars=$('#zBars'),shownZ=0,twZ=null,lastM=10;
+    function slAt(N,A,aht,T){if(N<=A)return 0;var B=1;for(var n=1;n<=N;n++)B=A*B/(n+A*B);var C=N*B/(N-A*(1-B));return {sl:Math.max(0,1-C*Math.exp(-(N-A)*T/aht)),asa:C*aht/(N-A)};}
+    function solve(A,aht,T,tgt){var B=1;for(var n=1;n<5000;n++){B=A*B/(n+A*B);if(n>A){var C=n*B/(n-A*(1-B)),s=1-C*Math.exp(-(n-A)*T/aht);if(s>=tgt)return n;}}return 5000;}
+    function tweenZ(el,to){if(reduce){el.textContent=to;shownZ=to;return;}var from=shownZ,t0=null;cancelAnimationFrame(twZ);(function f(t){t0=t0||t;var p=Math.min(1,(t-t0)/500),e=1-Math.pow(1-p,3);el.textContent=Math.round(from+(to-from)*e);if(p<1)twZ=requestAnimationFrame(f);else shownZ=to;})(performance.now());}
+    function zcalc(){
+      var calls=Math.max(10,Math.min(3000,Math.round(+zC.value||10))),aht=(+zAht.value)*60,shr=(+zShr.value)/100,sp=(zSl.dataset.value||'80-20').split('-'),tgt=+sp[0]/100,T=+sp[1];
+      var A=calls*aht/3600,N=solve(A,aht,T,tgt),r=slAt(N,A,aht,T),M=Math.ceil(N/(1-shr));lastM=M;
+      setT('zCallsL',calls.toLocaleString('en-IN')+' calls');setT('zAhtL',(+zAht.value)+' min');setT('zShrL',Math.round(shr*100)+'%');
+      setT('zA',A.toFixed(1)+' Erlangs');setT('zN',N.toLocaleString('en-IN'));setT('zSL',(r.sl*100).toFixed(1)+'%');setT('zAsa',Math.max(0,Math.round(r.asa))+' s');setT('zOcc',Math.round(A/N*100)+'%');
+      setT('zSub','to keep '+N.toLocaleString('en-IN')+' on the phones at peak, after '+Math.round(shr*100)+'% shrinkage');setT('zUseN',M.toLocaleString('en-IN'));setT('zTgt','target '+sp[0]+'% in '+T+' s');
+      tweenZ($('#zTot'),M);
+      // chart: N-3 … N+3
+      var html='<span class="tg" style="bottom:'+(22+tgt*108)+'px"></span>';
+      for(var k=-3;k<=3;k++){var n=N+k;if(n<1){html+='<div class="zb"></div>';continue;}var s=n<=A?0:slAt(n,A,aht,T).sl;
+        html+='<div class="zb'+(k===0?' me':s>=tgt?' ok':'')+'"><em style="bottom:calc('+(s*100).toFixed(1)+'% + 3px)">'+Math.round(s*100)+'%</em><i style="transform:scaleY('+Math.max(.02,s).toFixed(3)+')"></i><span>'+n+'</span></div>';}
+      if(zBars.children.length===8){ // update in place for smooth transitions
+        var tmp=document.createElement('div');tmp.innerHTML=html;var nb=tmp.children;
+        zBars.children[0].style.bottom=nb[0].style.bottom;
+        for(var j=1;j<8;j++){var o=zBars.children[j],nn=nb[j];o.className=nn.className;var oi=$('i',o),ni=$('i',nn);
+          if(oi&&ni){oi.style.transform=ni.style.transform;$('em',o).style.bottom=$('em',nn).style.bottom;$('em',o).textContent=$('em',nn).textContent;$('span',o).textContent=$('span',nn).textContent;}else o.innerHTML=nn.innerHTML;}
+      } else zBars.innerHTML=html;
+    }
+    zC.addEventListener('input',function(){zCN.value=zC.value;zcalc();});
+    zCN.addEventListener('input',function(){var v=Math.max(10,Math.min(3000,Math.round(+zCN.value||10)));if(zCN.value!==''&&+zCN.value>=10){zC.value=v;XH.fillRange(zC);zcalc();}});
+    zCN.addEventListener('blur',function(){var v=Math.max(10,Math.min(3000,Math.round(+zCN.value||10)));zCN.value=v;zC.value=v;XH.fillRange(zC);zcalc();});
+    [zAht,zShr].forEach(function(r){r.addEventListener('input',zcalc);});
+    zSl.addEventListener('change',zcalc);
+    zcalc();
+    $('#zUse').addEventListener('click',function(){
+      var v=Math.max(1,Math.min(500,lastM));sAg.value=v;sAgN.value=v;XH.fillRange(sAg);pcalc();
+      var t=$('#configure');window.scrollTo({top:t.getBoundingClientRect().top+scrollY-90,behavior:reduce?'auto':'smooth'});
+      setTimeout(function(){XH.flash($('#oTot'));},500);
+      XH.toast(lastM>500?'Set to 500 agents — ask us for volume pricing above that':'Configurator set to '+v+' agents');
+    });
+  }
+
+  /* ================= 6. Pricing: plan card, tiers, configurator ================= */
+  var TI={ess:{n:'Essential',m:799,y:699},pro:{n:'Pro',m:1299,y:1149},ai:{n:'AI',m:1899,y:1699}};
+  var NUM={tf:1499,vn:499},MIN={'0':0,'2500':1499,'5000':2799,'10000':4999};
+  var sAg=$('#sAg'),sAgN=$('#sAgN'),sPlan=$('#sPlan'),sBill=$('#sBill'),sTf=$('#sTf'),sVn=$('#sVn'),sMin=$('#sMin'),shown=0,tw=null,plan='pro';
+  function tween(el,to){if(reduce){el.textContent=XH.inr(to);shown=to;return;}var from=shown,t0=null;cancelAnimationFrame(tw);(function f(t){t0=t0||t;var p=Math.min(1,(t-t0)/450),e=1-Math.pow(1-p,3);el.textContent=XH.inr(Math.round(from+(to-from)*e));if(p<1)tw=requestAnimationFrame(f);else shown=to;})(performance.now());}
+  function setTier(t){
+    if(!TI[t])return;var ch=t!==plan;plan=t;var x=TI[t];
+    setT('pcName','DeepCall AI · '+x.n);setT('pcM',XH.inr(x.m));setT('pcY',XH.inr(x.y));setT('pcPill','Save '+XH.inr((x.m-x.y)*12)+' / agent / yr');
+    setT('sBillM',XH.inr(x.m)+' / agent / mo');setT('sBillY',XH.inr(x.y)+' / agent / mo · save '+Math.round((x.m-x.y)/x.m*100)+'%');
+    $$('#tiers .tier').forEach(function(b){var on=b.getAttribute('data-t')===t;b.classList.toggle('on',on);b.setAttribute('aria-checked',on);});
+    var sb=$('button[data-v="'+t+'"]',sPlan);if(sb&&!sb.classList.contains('on')){$$('button',sPlan).forEach(function(b){b.classList.toggle('on',b===sb);b.setAttribute('aria-pressed',b===sb);});sPlan.dataset.value=t;}
+    if(ch){XH.flash($('#pcM'));XH.flash($('#pcY'));XH.flash($('#pcName'));}
+    pcalc();
+  }
+  function pcalc(){
+    var n=Math.max(1,Math.min(500,Math.round(+sAg.value||1))),y=(sBill.dataset.value||'y')==='y',mo=y?12:1,x=TI[plan],r=y?x.y:x.m;
+    var tf=Math.max(0,Math.min(5,Math.round(+sTf.value||0))),vn=Math.max(0,Math.min(10,Math.round(+sVn.value||0))),mn=sMin.dataset.value||'0';
+    var aAmt=r*n*mo,nAmt=(tf*NUM.tf+vn*NUM.vn)*mo,mAmt=MIN[mn]*mo,tot=aAmt+nAmt+mAmt,gst=Math.round(tot*.18);
+    setT('sAgL',n+(n===1?' agent':' agents'));
+    setT('oAgL',n+(n===1?' agent':' agents')+' · '+x.n+' · '+XH.inr(r)+'/mo');setT('oAg',XH.inr(aAmt));
+    var nl=[];if(tf)nl.push(tf+' toll-free');if(vn)nl.push(vn+' virtual');setT('oNuL',nl.length?'Numbers · '+nl.join(' + '):'Numbers · none');setT('oNu',XH.inr(nAmt));
+    setT('oMiL',+mn?'Minutes · '+(+mn).toLocaleString('en-IN')+' / mo':'Minutes · bring your own');setT('oMi',XH.inr(mAmt));
+    setT('oGst',XH.inr(gst));setT('oPay',XH.inr(tot+gst));setT('oSub',(y?'for 12 months':'per month')+', excl. GST');setT('mxT',y?'for 12 months':'per month');
+    var bs=$$('#mxB i');if(tot>0&&bs.length){bs[0].style.width=(aAmt/tot*100)+'%';bs[1].style.width=(nAmt/tot*100)+'%';bs[2].style.width=(mAmt/tot*100)+'%';}
+    tween($('#oTot'),tot);
+    return {n:n,y:y,mo:mo,r:r,x:x,tf:tf,vn:vn,mn:mn,tot:tot};
+  }
+  if(sAg){
+    setT('pcFrom',XH.inr(TI.ess.y)+' / agent / mo');
+    sAg.addEventListener('input',function(){sAgN.value=sAg.value;pcalc();});
+    sAgN.addEventListener('input',function(){var v=Math.max(1,Math.min(500,Math.round(+sAgN.value||1)));if(sAgN.value!==''&&+sAgN.value>=1){sAg.value=v;XH.fillRange(sAg);pcalc();}});
+    sAgN.addEventListener('blur',function(){var v=Math.max(1,Math.min(500,Math.round(+sAgN.value||1)));sAgN.value=v;sAg.value=v;XH.fillRange(sAg);pcalc();});
+    [sTf,sVn].forEach(function(i){i.addEventListener('input',pcalc);});
+    sBill.addEventListener('change',function(){pcalc();XH.flash($('#oTot'));});
+    sMin.addEventListener('change',function(){pcalc();XH.flash($('#oTot'));});
+    sPlan.addEventListener('change',function(){setTier(sPlan.dataset.value);XH.flash($('#oTot'));});
+    $('#tiers').addEventListener('click',function(e){var b=e.target.closest('.tier');if(b)setTier(b.getAttribute('data-t'));});
+    setTier('pro');
+    $('#oAdd').addEventListener('click',function(){
+      var c=pcalc(),b=c.y?'y':'m',per=c.y?'Yearly · '+XH.inr(c.r)+'/mo × 12':'Monthly';
+      XH.cart.add({key:'deepcall-'+plan+'-'+b,name:'DeepCall AI '+c.x.n+' — agent licence',sub:per+' per agent',price:c.r*c.mo,qty:c.n});
+      if(c.tf)XH.cart.add({key:'deepcall-tf-'+b,name:'Toll-free 1800 number',sub:(c.y?'Yearly · ':'Monthly · ')+XH.inr(NUM.tf)+'/mo each',price:NUM.tf*c.mo,qty:c.tf});
+      if(c.vn)XH.cart.add({key:'deepcall-vn-'+b,name:'10-digit virtual number',sub:(c.y?'Yearly · ':'Monthly · ')+XH.inr(NUM.vn)+'/mo each',price:NUM.vn*c.mo,qty:c.vn});
+      if(+c.mn)XH.cart.add({key:'deepcall-min-'+c.mn+'-'+b,name:'Call minutes — '+(+c.mn).toLocaleString('en-IN')+' / month',sub:(c.y?'Yearly · ':'Monthly · ')+XH.inr(MIN[c.mn])+'/mo',price:MIN[c.mn]*c.mo,qty:1});
+    });
+  }
+})();
+

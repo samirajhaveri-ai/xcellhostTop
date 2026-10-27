@@ -1,11 +1,18 @@
-import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, ViewChild, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { SeoService } from '../core/seo.service';
+import { GpuLeadHeroComponent } from '../sections/gpu-lead-hero.component';
 
 @Component({
   selector: 'xh-nvidia-h200-page',
   standalone: true,
-  template: '<iframe #frame src="/nvidia-h200-content.html" title="NVIDIA H200 Cloud GPU details" scrolling="no" (load)="onLoad()"></iframe>',
+  imports: [GpuLeadHeroComponent],
+  template: `
+    <iframe src="/nvidia-h200-content.html" title="NVIDIA H200 Cloud GPU introduction" scrolling="no" (load)="onLoad($event, 'hero')"></iframe>
+    <iframe src="/nvidia-h200-content.html" title="NVIDIA H200 Cloud GPU overview" scrolling="no" (load)="onLoad($event, 'overview')"></iframe>
+    <xh-gpu-lead-hero slug="nvidia-h200" productName="NVIDIA H200" />
+    <iframe src="/nvidia-h200-content.html" title="NVIDIA H200 Cloud GPU details" scrolling="no" (load)="onLoad($event, 'details')"></iframe>
+  `,
   styles: [`
     :host { display: block; width: 100%; overflow: hidden; }
     iframe { display: block; width: 100%; min-height: 720px; border: 0; }
@@ -13,13 +20,11 @@ import { SeoService } from '../core/seo.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NvidiaH200Page implements OnDestroy {
-  @ViewChild('frame') private frame?: ElementRef<HTMLIFrameElement>;
-
   private readonly router = inject(Router);
   private readonly seo = inject(SeoService);
-  private observer?: ResizeObserver;
-  private frameDocument?: Document;
-  private clickListener?: (event: MouseEvent) => void;
+  private readonly observers = new Map<HTMLIFrameElement, ResizeObserver>();
+  private readonly clickListeners = new Map<Document, (event: MouseEvent) => void>();
+  private detailsFrame?: HTMLIFrameElement;
 
   constructor() {
     this.seo.set(
@@ -29,49 +34,79 @@ export class NvidiaH200Page implements OnDestroy {
     );
   }
 
-  onLoad(): void {
-    const frame = this.frame?.nativeElement;
+  onLoad(event: Event, view: 'hero' | 'overview' | 'details'): void {
+    const frame = event.currentTarget as HTMLIFrameElement | null;
     const document = frame?.contentDocument;
     if (!frame || !document) return;
+    frame.style.minHeight = '0';
+
+    if (view === 'hero') {
+      let sibling = document.querySelector('.pp-trust')?.nextElementSibling as HTMLElement | null;
+      while (sibling) {
+        sibling.style.display = 'none';
+        sibling = sibling.nextElementSibling as HTMLElement | null;
+      }
+    } else {
+      if (view === 'details') this.detailsFrame = frame;
+      document.querySelectorAll<HTMLElement>('.nav, .pp-hero, .pp-trust').forEach((element) => {
+        element.style.display = 'none';
+      });
+
+      const answer = document.getElementById('answer');
+      const overview = answer?.previousElementSibling as HTMLElement | null;
+      if (view === 'overview') {
+        document.querySelectorAll<HTMLElement>('.foot').forEach((element) => {
+          element.style.display = 'none';
+        });
+        const container = answer?.parentElement;
+        container?.querySelectorAll<HTMLElement>(':scope > *').forEach((element) => {
+          element.style.display = element === overview || element === answer ? '' : 'none';
+        });
+      } else {
+        if (overview) overview.style.display = 'none';
+        if (answer) answer.style.display = 'none';
+      }
+    }
 
     const resize = (): void => {
       frame.style.height = `${Math.max(document.documentElement.scrollHeight, document.body.scrollHeight)}px`;
     };
     resize();
-    this.observer?.disconnect();
+    this.observers.get(frame)?.disconnect();
     if (typeof ResizeObserver !== 'undefined') {
-      this.observer = new ResizeObserver(resize);
-      this.observer.observe(document.documentElement);
-      this.observer.observe(document.body);
+      const observer = new ResizeObserver(resize);
+      observer.observe(document.documentElement);
+      observer.observe(document.body);
+      this.observers.set(frame, observer);
     }
     document.fonts?.ready.then(resize);
 
-    if (this.frameDocument && this.clickListener) {
-      this.frameDocument.removeEventListener('click', this.clickListener);
-    }
-    this.frameDocument = document;
-    this.clickListener = (event: MouseEvent): void => {
-      const anchor = (event.target as Element).closest<HTMLAnchorElement>('a[href]');
+    const previousListener = this.clickListeners.get(document);
+    if (previousListener) document.removeEventListener('click', previousListener);
+    const clickListener = (clickEvent: MouseEvent): void => {
+      const anchor = (clickEvent.target as Element).closest<HTMLAnchorElement>('a[href]');
       if (!anchor) return;
       const href = anchor.getAttribute('href');
       if (href?.startsWith('#') && href.length > 1) {
-        const target = document.getElementById(href.slice(1));
+        const targetFrame = view === 'details' ? frame : this.detailsFrame ?? frame;
+        const target = targetFrame.contentDocument?.getElementById(href.slice(1));
         if (!target) return;
-        event.preventDefault();
-        const top = window.scrollY + frame.getBoundingClientRect().top + target.getBoundingClientRect().top;
+        clickEvent.preventDefault();
+        const top = window.scrollY + targetFrame.getBoundingClientRect().top + target.getBoundingClientRect().top;
         window.scrollTo({ top: top - 16, behavior: 'smooth' });
       } else if (href?.startsWith('/') && anchor.origin === window.location.origin) {
-        event.preventDefault();
+        clickEvent.preventDefault();
         void this.router.navigateByUrl(anchor.pathname + anchor.search + anchor.hash);
       }
     };
-    document.addEventListener('click', this.clickListener);
+    this.clickListeners.set(document, clickListener);
+    document.addEventListener('click', clickListener);
   }
 
   ngOnDestroy(): void {
-    this.observer?.disconnect();
-    if (this.frameDocument && this.clickListener) {
-      this.frameDocument.removeEventListener('click', this.clickListener);
+    for (const observer of this.observers.values()) observer.disconnect();
+    for (const [document, listener] of this.clickListeners) {
+      document.removeEventListener('click', listener);
     }
   }
 }

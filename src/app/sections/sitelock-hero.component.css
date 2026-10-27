@@ -1,0 +1,48 @@
+
+.xsl{--b:#0b1d44;--g1:#22c55e;--g2:#4ade80;--r:#f87171;--c:#60a5fa;--t:#dce7f8;--m:#9fb8d8;position:relative;width:100%;max-width:560px;margin:0 auto;font-family:Inter,"Segoe UI",system-ui,sans-serif;color:var(--t);box-sizing:border-box}
+.xsl *{box-sizing:border-box}
+.xsl .glow{position:absolute;inset:0;border-radius:20px;box-shadow:0 0 120px 30px rgba(59,130,246,.28);z-index:0;pointer-events:none}
+.xsl .card{position:relative;z-index:1;border-radius:20px;padding:16px;background:rgba(9,24,58,.78);border:1px solid rgba(156,200,255,.22);box-shadow:0 30px 70px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.06);backdrop-filter:blur(10px)}
+.xsl .hd{padding-right:50px;display:flex;align-items:center;justify-content:space-between;gap:10px;font:700 11px/1 ui-monospace,"JetBrains Mono",monospace;letter-spacing:.12em;color:#9cc8ff;margin-bottom:12px}
+.xsl .pill{white-space:nowrap;display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;background:rgba(34,197,94,.14);color:var(--g2);transition:.3s}
+.xsl .pill i{width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 0 0 currentColor;animation:xslp 1.6s infinite}
+.xsl .pill.bad{background:rgba(248,113,113,.15);color:var(--r)}
+@keyframes xslp{0%{box-shadow:0 0 0 0 rgba(74,222,128,.6)}100%{box-shadow:0 0 0 8px rgba(74,222,128,0)}}
+.xsl .url{display:flex;align-items:center;gap:8px;border-radius:999px;padding:8px 12px;background:#fff;color:#0f172a;font:600 12.5px ui-monospace,monospace;margin-bottom:12px;min-width:0}
+.xsl .url svg{width:14px;height:14px;flex:none;color:#16a34a}.xsl .url span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.xsl .url b{color:#16a34a}
+.xsl .url em{margin-left:auto;font:700 10px ui-monospace,monospace;font-style:normal;padding:3px 8px;border-radius:999px;background:#dcfce7;color:#166534;white-space:nowrap}
+.xsl .row{display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px;margin-bottom:12px}
+.xsl .pn{border-radius:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);padding:12px;min-width:0}
+.xsl .pn h4{margin:0 0 8px;font:700 10px/1 ui-monospace,monospace;letter-spacing:.12em;color:var(--m)}
+/* radar */
+.xsl .rad{position:relative;width:110px;height:110px;margin:4px auto 8px;border-radius:50%;background:radial-gradient(circle,rgba(96,165,250,.08) 0 30%,transparent 31%),repeating-radial-gradient(circle,rgba(96,165,250,.18) 0 1px,transparent 1px 18px);border:1px solid rgba(96,165,250,.35);overflow:hidden}
+.xsl .rad:before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,rgba(74,222,128,.55),transparent 70deg);animation:xslr 2.4s linear infinite}
+.xsl .rad .dot{position:absolute;width:8px;height:8px;border-radius:50%;background:var(--r);box-shadow:0 0 10px var(--r);opacity:0;transition:.4s}
+.xsl .rad .dot.on{opacity:1}.xsl .rad .dot.ok{background:var(--g2);box-shadow:0 0 10px var(--g2)}
+.xsl .rad svg{position:absolute;left:50%;top:50%;width:30px;height:30px;transform:translate(-50%,-50%);color:#9cc8ff}
+@keyframes xslr{to{transform:rotate(360deg)}}
+.xsl .sc{font:600 11.5px/1.35 Inter,system-ui,sans-serif;text-align:center;min-height:32px}.xsl .sc b{display:block;font:700 12.5px Inter,system-ui,sans-serif;color:#fff}
+.xsl .sc.bad b{color:var(--r)}.xsl .sc.ok b{color:var(--g2)}
+/* WAF feed */
+.xsl .wf{list-style:none;margin:0;padding:0;display:grid;gap:6px;height:150px;overflow:hidden;position:relative}
+.xsl .wf li{display:grid;grid-template-columns:18px minmax(0,1fr) auto;gap:8px;align-items:center;border-radius:10px;padding:7px 9px;background:rgba(255,255,255,.05);font:600 12px Inter,system-ui,sans-serif;animation:xsli .45s ease}
+.xsl .wf li svg{width:16px;height:16px;color:var(--r)}.xsl .wf li span{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.xsl .wf li span small{color:var(--m);font:600 10.5px ui-monospace,monospace;margin-left:6px}
+.xsl .wf li em{font-style:normal;font:700 10px ui-monospace,monospace;padding:2px 7px;border-radius:999px;background:rgba(248,113,113,.16);color:#fecaca;white-space:nowrap}
+@keyframes xsli{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+.xsl .cnt{display:flex;align-items:baseline;justify-content:space-between;margin-top:8px;font:600 11.5px Inter,system-ui,sans-serif;color:var(--m)}.xsl .cnt b{font:800 20px Inter,system-ui,sans-serif;color:#fff}
+/* bottom stats */
+.xsl .st{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.xsl .st .pn{display:grid;gap:4px}
+.xsl .st b{font:800 18px Inter,system-ui,sans-serif;color:#fff}.xsl .st small{font:600 11px Inter,system-ui,sans-serif;color:var(--m)}.xsl .st .up{color:var(--g2)}
+.xsl .bar{height:6px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden;margin-top:4px}.xsl .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#3b82f6,var(--g1));transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.xsl .seal{display:flex;align-items:center;gap:8px}.xsl .seal svg{width:30px;height:30px;flex:none}
+.xsl .seal div{display:grid}.xsl .seal b{font-size:13.5px}
+/* floating shield */
+.xsl .fs{position:absolute;z-index:2;right:-18px;top:-30px;width:64px;height:64px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(145deg,#22c55e,#15803d);box-shadow:0 14px 34px rgba(34,197,94,.45),inset 0 1px 0 rgba(255,255,255,.3);animation:xslf 4s ease-in-out infinite}
+.xsl .fs svg{width:34px;height:34px;color:#fff}
+@keyframes xslf{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-8px) rotate(3deg)}}
+@media (max-width:520px){.xsl .row{grid-template-columns:minmax(0,1fr)}.xsl .st{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.xsl .st .pn:last-child{grid-column:1/-1}.xsl .fs{left:auto;right:10px;bottom:auto;top:-24px;width:48px;height:48px}.xsl .fs svg{width:26px;height:26px}.xsl .hd{flex-wrap:wrap;padding-right:52px}.xsl .url em{display:none}}
+@media (prefers-reduced-motion:reduce){.xsl *,.xsl *:before{animation:none!important;transition:none!important}}
+
+:host { display: block; width: 100%; min-width: 0; }
+.xsl .demo-caption { margin: 12px 0 0; text-align: center; font: 500 11px/1.5 Inter, system-ui, sans-serif; color: #9fb8d8; }

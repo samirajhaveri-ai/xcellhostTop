@@ -1,262 +1,183 @@
 <main class="case-page">
   <section class="case-hero">
+    <div class="case-hero-glow case-hero-glow-one"></div>
+    <div class="case-hero-glow case-hero-glow-two"></div>
     <div class="wrap">
-      <h1>Case Studies</h1>
       <nav class="case-crumb" aria-label="Breadcrumb">
-        <a routerLink="/" aria-label="Home"><span aria-hidden="true">⌂</span></a>
-        <i aria-hidden="true"></i>
-        <a routerLink="/insights">Insights</a>
-        <i aria-hidden="true"></i>
-        <span>Case Studies</span>
+        <a routerLink="/">Home</a><span aria-hidden="true">/</span>
+        <a routerLink="/insights">Insights</a><span aria-hidden="true">/</span>
+        <span>Case studies</span>
       </nav>
-    </div>
-  </section>
 
-  <section class="case-intro">
-    <div class="wrap case-intro-grid">
-      <div class="case-hero-copy">
-        <span class="case-kicker">Customer outcomes</span>
-        <h2>Proof in the work.<br /><em>Progress in the numbers.</em></h2>
-        <p>
-          See how Indian businesses removed operational friction, recovered faster and turned
-          compliance into a working system with XcellHost.
-        </p>
-        <div class="case-hero-actions">
-          <a class="case-btn case-btn-primary" href="#stories">Explore the stories</a>
-          <button class="case-btn case-btn-ghost" type="button" (click)="openCallback()">
-            Discuss your challenge
-          </button>
-        </div>
-      </div>
-
-      <div class="case-scorecard" aria-label="Featured customer outcomes">
-        <div class="scorecard-head">
-          <span>Outcome snapshot</span>
-          <b>{{ studies().length }} customer stories</b>
-        </div>
-        <article>
-          <strong>0</strong>
-          <div><b>days reconciling</b><span>Previously two days every month</span></div>
-        </article>
-        <article>
-          <strong>10<small> min</small></strong>
-          <div><b>to resume work</b><span>After an office PC failure</span></div>
-        </article>
-        <article>
-          <strong>8<small> weeks</small></strong>
-          <div><b>to audit readiness</b><span>With privacy workflows operating</span></div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="case-trust" aria-label="XcellHost credentials">
-    <div class="wrap">
-      <span><b>ISO 27001</b> &amp; <b>20000-1</b> certified</span>
-      <span>Microsoft <b>Gold Partner</b></span>
-      <span><b>10,000+</b> customers</span>
-      <span><b>Since 1999</b></span>
-      <span><b>24x7</b> NOC + SOC</span>
-    </div>
-  </section>
-
-  <section class="case-overview" id="stories">
-    <div class="wrap">
-      <header class="case-section-head">
-        <span>Proof, not promises</span>
-        <h2>What changed for them</h2>
-        <p>Real operational outcomes from businesses that moved to XcellHost.</p>
-      </header>
-
-      <div class="case-filter-row">
-        <div class="case-filter-intro"><span>Explore by category</span><p>Open a main category to choose a more specific customer segment.</p></div>
-        <div class="case-search">
-          <label for="case-search">Search case studies</label>
-          <div class="case-search-field">
-            <input
-              id="case-search"
-              type="search"
-              placeholder="Search by outcome or service"
-              [value]="searchQuery()"
-              (input)="searchStudies($event)"
-            />
-            <span aria-hidden="true">⌕</span>
+      <div class="case-hero-grid">
+        <div class="case-hero-copy">
+          <span class="case-eyebrow"><i></i> Customer success stories</span>
+          <h1>Real challenges.<br /><em>Measurable change.</em></h1>
+          <p>
+            Explore how Indian businesses modernise infrastructure, strengthen security and turn
+            compliance plans into everyday operations with XcellHost.
+          </p>
+          <div class="case-hero-actions">
+            <a class="case-btn case-btn-primary" href="#customer-stories">Explore all stories</a>
+            <button class="case-btn case-btn-secondary" type="button" (click)="openCallback()">
+              Talk to an expert
+            </button>
+          </div>
+          <div class="case-hero-proof" aria-label="XcellHost credentials">
+            <span><b>25+</b> years in cloud</span>
+            <span><b>10,000+</b> customers</span>
+            <span><b>24x7</b> NOC + SOC</span>
           </div>
         </div>
-      </div>
 
-      <div class="case-library-layout">
-        <aside class="case-category-card" aria-label="Case study categories">
-          <span class="case-category-label">Browse customer stories</span>
-          <button type="button" class="case-category-all" [class.active]="!selectedMain()"
-            [attr.aria-pressed]="!selectedMain()" (click)="selectAllCategories()">
-            <span>All case studies</span><b>{{ studies().length }}</b>
-          </button>
-          @for (branch of categoryTree(); track branch.name) {
-            <div class="case-category-branch">
-              <button type="button" class="case-category-main"
-                [class.active]="selectedMain() === branch.name && !selectedSub()"
-                [class.has-selection]="selectedMain() === branch.name"
-                [attr.aria-expanded]="expandedMain() === branch.name"
-                [attr.aria-controls]="categoryPanelId(branch.name)"
-                (click)="selectMainCategory(branch.name)">
-                <span>{{ branch.name }}</span><b>{{ branch.count }}</b><i aria-hidden="true">&#8964;</i>
-              </button>
-              @if (expandedMain() === branch.name) {
-                <div class="case-subcategories" [id]="categoryPanelId(branch.name)">
-                  @for (child of branch.children; track child.name) {
-                    <button type="button" [class.active]="selectedSub() === child.name"
-                      [attr.aria-pressed]="selectedSub() === child.name"
-                      (click)="selectSubCategory(branch.name, child.name)">
-                      <span>{{ child.name }}</span><b>{{ child.count }}</b>
-                    </button>
-                  }
-                </div>
-              }
+        @if (featuredStudy(); as featured) {
+          <a class="case-featured" [routerLink]="['/case-studies', featured.id]">
+            <div class="case-featured-image">
+              <img [src]="caseStudyImage(featured).src" [alt]="caseStudyImage(featured).alt" />
+              <span>Featured story</span>
             </div>
-          }
-        </aside>
-
-        <div class="case-library-results">
-          <div class="case-results-head">
-            <div><span>Showing</span><h3>{{ selectedSub() || selectedMain() || 'All case studies' }}</h3></div>
-            <p role="status">{{ visibleStudies().length }} stor{{ visibleStudies().length === 1 ? 'y' : 'ies' }}</p>
-          </div>
-          <div class="case-overview-grid">
-        @for (study of visibleStudies(); track study.documentId || study.id) {
-          <a class="outcome-card" [routerLink]="['/case-studies', study.id]">
-            <div class="outcome-visual" [class]="'outcome-visual visual-' + study.id" aria-hidden="true">
-              @if (study.id === 'tally-cloud') {
-                <svg viewBox="0 0 360 190"><path d="M35 151h290M69 151V79h72v72M87 79V55h37v24M165 151V40h128v111M190 68h26m28 0h25m-79 29h26m28 0h25m-79 29h26m28 0h25"/><circle cx="266" cy="29" r="12"/></svg>
-              } @else if (study.id === 'ca-continuity') {
-                <svg viewBox="0 0 360 190"><rect x="55" y="38" width="250" height="114" rx="5"/><path d="M150 152v21m60-21v21m-91 0h122M82 65h196v61H82z"/><path class="accent" d="M145 96l23 22 49-51"/></svg>
-              } @else {
-                <svg viewBox="0 0 360 190"><path d="M180 28l92 34v47c0 42-35 65-92 78-57-13-92-36-92-78V62z"/><path class="accent" d="M142 104l25 25 53-55"/></svg>
-              }
-            </div>
-            <div class="outcome-body">
-              <div class="outcome-services">
-                @for (service of study.services; track service) {
-                  <span>{{ service }}</span>
-                }
-              </div>
-              <div class="outcome-tag">{{ study.industry }} <i></i> {{ study.profile }}</div>
-              <strong>{{ study.metric }}</strong>
-              <h3>{{ study.metricLabel }}</h3>
-              <p>{{ study.summary }}</p>
-              <b class="outcome-link">Read the outcome <span aria-hidden="true">→</span></b>
+            <div class="case-featured-body">
+              <div class="case-featured-meta">{{ featured.industry }} <i></i> {{ featured.profile }}</div>
+              <strong>{{ featured.metric }}</strong>
+              <h2>{{ featured.metricLabel }}</h2>
+              <p>{{ featured.summary }}</p>
+              <b>Read customer story <span aria-hidden="true">&rarr;</span></b>
             </div>
           </a>
-        } @empty {
-          <div class="case-empty">
-            <h3>No matching case studies</h3>
-            <p>Try another industry, outcome or service.</p>
-          </div>
         }
-          </div>
-        </div>
       </div>
-      <p class="case-privacy-note">
-        Customer identities are anonymised to protect operational and compliance information.
-      </p>
     </div>
   </section>
 
-  <section class="case-detail-section">
-    <div class="wrap">
-      @for (study of studies(); track study.documentId || study.id; let index = $index) {
-        <article class="case-detail" [class.case-detail-reverse]="index % 2 === 1" [id]="study.id">
-          <div class="detail-metric">
-            <span>{{ study.industry }} / {{ study.profile }}</span>
-            <strong>{{ study.metric }}</strong>
-            <p>{{ study.metricLabel }}</p>
-            <div class="detail-number">0{{ index + 1 }}</div>
-          </div>
-          <div class="detail-story">
-            <span class="detail-label">The challenge</span>
-            <h2>{{ study.metricLabel }}</h2>
-            <p>{{ study.challenge }}</p>
-            <div class="detail-solution">
-              <span class="detail-label">What XcellHost changed</span>
-              <p>{{ study.solution }}</p>
-            </div>
-            <div class="detail-impact">
-              <span class="detail-label">Business impact</span>
-              <ul>
-                @for (item of study.impact; track item) {
-                  <li><i aria-hidden="true">&#10003;</i>{{ item }}</li>
-                }
-              </ul>
-            </div>
-          </div>
-        </article>
+  <section class="case-impact" aria-label="Selected customer outcomes">
+    <div class="wrap case-impact-grid">
+      @for (study of studies().slice(0, 4); track study.documentId || study.id; let index = $index) {
+        <a [routerLink]="['/case-studies', study.id]">
+          <span>0{{ index + 1 }}</span>
+          <strong>{{ study.metric }}</strong>
+          <p>{{ study.metricLabel }}</p>
+        </a>
       }
     </div>
   </section>
 
-  <section class="case-guide" aria-labelledby="case-guide-title">
+  <section class="case-library" id="customer-stories">
     <div class="wrap">
-      <header class="case-guide-head">
-        <span>Understanding the stories</span>
-        <h2 id="case-guide-title">Questions about our case studies?</h2>
-        <p>
-          Each story connects a business constraint to the practical change that removed it and
-          the outcome the customer could measure afterwards.
-        </p>
+      <header class="case-section-heading">
+        <div>
+          <span class="case-eyebrow case-eyebrow-dark"><i></i> Customer story library</span>
+          <h2>Find a story that feels familiar.</h2>
+          <p>Browse by transformation area, customer segment or the outcome you want to achieve.</p>
+        </div>
+        <div class="case-search">
+          <label for="case-search">Search customer stories</label>
+          <div>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
+            <input id="case-search" type="search" placeholder="Try backup, retail or DPDPA"
+              [value]="searchQuery()" (input)="searchStudies($event)" />
+          </div>
+        </div>
       </header>
-      <div class="case-guide-grid">
-        <article>
-          <span>01</span>
-          <div>
-            <h3>How are our case studies created?</h3>
-            <p>
-              We begin with the customer’s operating challenge, document the technology and
-              transition work, and then validate the business result. Sensitive identities and
-              operational details remain anonymised where required.
-            </p>
-          </div>
-        </article>
-        <article>
-          <span>02</span>
-          <div>
-            <h3>Case study or use case?</h3>
-            <p>
-              A use case explains what a solution can do in a common scenario. A case study shows
-              what changed in a real engagement, including the starting problem, the implemented
-              approach and the resulting impact.
-            </p>
-          </div>
-        </article>
+
+      <div class="case-filter-bar" aria-label="Filter case studies">
+        <button type="button" [class.active]="!selectedMain()" (click)="selectAllCategories()">
+          All stories <b>{{ studies().length }}</b>
+        </button>
+        @for (branch of categoryTree(); track branch.name) {
+          <button type="button" [class.active]="selectedMain() === branch.name"
+            (click)="selectMainCategory(branch.name)">
+            {{ branch.name }} <b>{{ branch.count }}</b>
+          </button>
+        }
       </div>
+
+      @if (activeCategory(); as active) {
+        <div class="case-subfilter" aria-label="Filter by customer segment">
+          <span>Customer segment</span>
+          <button type="button" [class.active]="!selectedSub()"
+            (click)="selectMainCategory(active.name)">All {{ active.name }}</button>
+          @for (child of active.children; track child.name) {
+            <button type="button" [class.active]="selectedSub() === child.name"
+              (click)="selectSubCategory(active.name, child.name)">{{ child.name }}</button>
+          }
+        </div>
+      }
+
+      <div class="case-results-head">
+        <div>
+          <span>{{ selectedSub() || selectedMain() || 'All customer stories' }}</span>
+          <b>{{ visibleStudies().length }} result{{ visibleStudies().length === 1 ? '' : 's' }}</b>
+        </div>
+        @if (selectedMain() || searchQuery()) {
+          <button type="button" (click)="clearFilters()">Clear filters</button>
+        }
+      </div>
+
+      <div class="case-story-grid">
+        @for (study of visibleStudies(); track study.documentId || study.id; let index = $index) {
+          <a class="case-story-card" [class.case-story-wide]="index === 0 && !selectedMain() && !searchQuery()"
+            [routerLink]="['/case-studies', study.id]">
+            <div class="case-story-image">
+              <img [src]="caseStudyImage(study).src" [alt]="caseStudyImage(study).alt" loading="lazy" decoding="async" />
+              <span>{{ study.mainCategory }}</span>
+            </div>
+            <div class="case-story-content">
+              <div class="case-story-meta">{{ study.industry }} <i></i> {{ study.profile }}</div>
+              <strong>{{ study.metric }}</strong>
+              <h3>{{ study.metricLabel }}</h3>
+              <p>{{ study.summary }}</p>
+              <div class="case-story-services">
+                @for (service of study.services.slice(0, 3); track service) { <span>{{ service }}</span> }
+              </div>
+              <b class="case-story-link">Read the story <span aria-hidden="true">&rarr;</span></b>
+            </div>
+          </a>
+        } @empty {
+          <div class="case-empty">
+            <span aria-hidden="true">0 results</span>
+            <h3>No customer stories match that search.</h3>
+            <p>Try a broader service, industry or outcome.</p>
+            <button type="button" class="case-btn case-btn-primary" (click)="clearFilters()">View all stories</button>
+          </div>
+        }
+      </div>
+
+      <p class="case-privacy-note">
+        Customer identities are anonymised where needed to protect operational and compliance information.
+      </p>
     </div>
   </section>
 
-  <section class="case-method">
-    <div class="wrap">
-      <header class="case-section-head case-section-head-light">
-        <span>How we work</span>
-        <h2>From bottleneck to measurable outcome</h2>
-        <p>Technology matters, but a clear operating plan is what makes the improvement stick.</p>
-      </header>
-      <div class="method-grid">
-        <article><b>01</b><h3>Discover</h3><p>Map the workflow, risk and real cost of the current constraint.</p></article>
-        <article><b>02</b><h3>Design</h3><p>Build the right-sized cloud, security or compliance solution.</p></article>
-        <article><b>03</b><h3>Transition</h3><p>Migrate carefully, validate access and keep disruption controlled.</p></article>
-        <article><b>04</b><h3>Improve</h3><p>Monitor performance, protect continuity and optimise over time.</p></article>
+  <section class="case-approach">
+    <div class="wrap case-approach-grid">
+      <div class="case-approach-copy">
+        <span class="case-eyebrow"><i></i> How outcomes happen</span>
+        <h2>Technology is only useful when the operating change sticks.</h2>
+        <p>
+          Every engagement starts with the constraint, not a product. We design the smallest
+          practical change, move with control and stay accountable after go-live.
+        </p>
+        <button class="case-text-link" type="button" (click)="openCallback()">
+          Discuss your business challenge <span aria-hidden="true">&rarr;</span>
+        </button>
       </div>
+      <ol class="case-approach-steps">
+        <li><span>01</span><div><h3>Discover the constraint</h3><p>Map the workflow, risk and real cost of the current state.</p></div></li>
+        <li><span>02</span><div><h3>Design the right-sized change</h3><p>Align architecture, security and ownership to the business goal.</p></div></li>
+        <li><span>03</span><div><h3>Transition with control</h3><p>Migrate, validate and protect continuity throughout the move.</p></div></li>
+        <li><span>04</span><div><h3>Measure and improve</h3><p>Track the result, support the operation and optimise over time.</p></div></li>
+      </ol>
     </div>
   </section>
 
   <section class="case-cta">
-    <div class="wrap case-cta-inner">
+    <div class="wrap case-cta-card">
       <div>
-        <span>Have a similar challenge?</span>
-        <h2>Bring us the bottleneck.</h2>
-        <p>Tell us what is slowing the business down. We will help define a practical next step.</p>
+        <span>Start your own success story</span>
+        <h2>What would meaningful progress look like for your team?</h2>
+        <p>Share the challenge. Our cloud and security specialists will help define a practical next step.</p>
       </div>
-      <button class="case-btn case-btn-primary" type="button" (click)="openCallback()">
-        Request a callback
-      </button>
+      <button class="case-btn case-btn-light" type="button" (click)="openCallback()">Request a callback</button>
     </div>
   </section>
 </main>

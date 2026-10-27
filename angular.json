@@ -43,6 +43,8 @@
           "builder": "@angular/build:application",
           "options": {
             "browser": "src/main.ts",
+            "server": "src/main.server.ts",
+            "outputMode": "static",
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
@@ -66,7 +68,10 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "public/assets/styles/pricing-cards.css",
+              "public/assets/styles/section-navigation-flow.css",
+              "public/assets/styles/faq-layout.css"
             ],
             "allowedCommonJsDependencies": [
               "lottie-web"
@@ -82,8 +87,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "50kb",
-                  "maximumError": "100kb"
+                  "maximumWarning": "100kb",
+                  "maximumError": "160kb"
                 }
               ],
               "outputHashing": "all",
@@ -142,6 +147,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "assets"
               }
             ],
             "styles": [

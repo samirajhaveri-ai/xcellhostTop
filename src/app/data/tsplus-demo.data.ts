@@ -46,3 +46,148 @@ export const TSPLUS_REMOTE_ACCESS_EXPERIENCES = [
     video: '/assets/video/tsplus-ra-html5-web-portal.mp4',
   },
 ] as const;
+
+type TsplusReferenceVideo = readonly [
+  title: string,
+  video: string,
+  category: TsplusDemoCategory,
+];
+
+export type TsplusDemoCategory =
+  | 'Alternative comparison'
+  | 'Cybersecurity'
+  | 'Remote Access'
+  | 'Remote Support'
+  | 'Server Monitoring'
+  | 'Tutorial';
+
+export const TSPLUS_DEMO_FILTERS: readonly { label: string; category: TsplusDemoCategory }[] = [
+  { label: 'Alternative to...', category: 'Alternative comparison' },
+  { label: 'Cybersecurity', category: 'Cybersecurity' },
+  { label: 'Remote Access', category: 'Remote Access' },
+  { label: 'Remote Support', category: 'Remote Support' },
+  { label: 'Server Monitoring', category: 'Server Monitoring' },
+  { label: 'Tutorials', category: 'Tutorial' },
+];
+
+/**
+ * The unique videos published in the official TSplus video library.
+ *
+ * Some clips appear under more than one filter on tsplus.net (for example,
+ * comparisons also appear under Remote Access). Keeping one entry per media
+ * URL prevents duplicate cards when every category is displayed together.
+ */
+const TSPLUS_REFERENCE_VIDEOS: readonly TsplusReferenceVideo[] = [
+  ['TSplus Remote Access vs GoToMyPC', 'https://assets.tsplus.net/f/1020006/x/2b1ab7ddf7/tsplus-remote-access-vs-gotomypc.webm', 'Alternative comparison'],
+  ['TSplus vs Citrix - Smarter, Cheaper Remote Access', 'https://assets.tsplus.net/f/1020006/x/6a4acdaef1/tsplus-vs-citrix-smarter-cheaper-remote-access.webm', 'Alternative comparison'],
+  ['Remote Access vs Citrix - Español', 'https://assets.tsplus.net/f/1020006/x/1bb7748dee/remote-access-vs-citrix.mp4', 'Alternative comparison'],
+  ['Easy Citrix Alternative - Español', 'https://assets.tsplus.net/f/1020006/x/56802d4e4b/easy-citrix-alternative.mp4', 'Alternative comparison'],
+  ['Alternative to RDS - Español', 'https://assets.tsplus.net/f/1020006/x/30e1af9ac7/alternative-to-rds.mp4', 'Alternative comparison'],
+  ['Citrix Alternative - Español', 'https://assets.tsplus.net/f/1020006/x/caa28b5320/citrix-alternative.mp4', 'Alternative comparison'],
+  ['Remote Access vs Citrix - Português', 'https://assets.tsplus.net/f/1020006/x/dd322fa2db/remote-access-vs-citrix.mp4', 'Alternative comparison'],
+  ['Easy Citrix Alternative - Português', 'https://assets.tsplus.net/f/1020006/x/4b85313092/easy-citrix-alternative.mp4', 'Alternative comparison'],
+  ['Alternative to RDS - Português', 'https://assets.tsplus.net/f/1020006/x/72481cd943/alternative-to-rds.mp4', 'Alternative comparison'],
+  ['Citrix Alternative - Português', 'https://assets.tsplus.net/f/1020006/x/84a14f3347/citrix-alternative.mp4', 'Alternative comparison'],
+  ['Remote Access vs Citrix - Italiano', 'https://assets.tsplus.net/f/1020006/x/ecf81a26c9/remote-access-vs-citrix.mp4', 'Alternative comparison'],
+  ['Easy Citrix Alternative - Italiano', 'https://assets.tsplus.net/f/1020006/x/39c78ec0ba/easy-citrix-alternative.mp4', 'Alternative comparison'],
+  ['Alternative to RDS - Italiano', 'https://assets.tsplus.net/f/1020006/x/862f17a7ec/alternative-to-rds.mp4', 'Alternative comparison'],
+  ['Citrix Alternative - Italiano', 'https://assets.tsplus.net/f/1020006/x/91af188e01/citrix-alternative.mp4', 'Alternative comparison'],
+  ['Remote Access vs Citrix - Deutsch', 'https://assets.tsplus.net/f/1020006/x/547ae253fe/remote-access-vs-citrix.mp4', 'Alternative comparison'],
+  ['Citrix Alternative - Deutsch', 'https://assets.tsplus.net/f/1020006/x/85d728e561/citrix-alternative.mp4', 'Alternative comparison'],
+  ['Easy Citrix Alternative - Deutsch', 'https://assets.tsplus.net/f/1020006/x/ef5ab81bf7/easy-citrix-alternative.mp4', 'Alternative comparison'],
+  ['Alternative to RDS - Deutsch', 'https://assets.tsplus.net/f/1020006/x/dd77aa85f2/alternative-to-rds.mp4', 'Alternative comparison'],
+  ['Alternative to RDS - 简体中文', 'https://assets.tsplus.net/f/1020006/x/833e23fe1d/alternative-to-rds.mp4', 'Alternative comparison'],
+  ['Remote Access vs Citrix - 简体中文', 'https://assets.tsplus.net/f/1020006/x/3a00cdadf8/remote-access-vs-citrix.mp4', 'Alternative comparison'],
+  ['Easy Citrix Alternative - 简体中文', 'https://assets.tsplus.net/f/1020006/x/72c32333c7/easy-citrix-alternative.mp4', 'Alternative comparison'],
+  ['Citrix Alternative - 简体中文', 'https://assets.tsplus.net/f/1020006/x/50bc93d95a/citrix-alternative.mp4', 'Alternative comparison'],
+  ['Easy Citrix Alternative - Français', 'https://assets.tsplus.net/f/1020006/x/c373616a9a/easy-citrix-alternative.mp4', 'Alternative comparison'],
+  ['Alternative to RDS - Français', 'https://assets.tsplus.net/f/1020006/x/f40dc449e2/alternative-to-rds.mp4', 'Alternative comparison'],
+  ['Remote Access vs Citrix - Français', 'https://assets.tsplus.net/f/1020006/x/dee7049ba8/remote-access-vs-citrix.mp4', 'Alternative comparison'],
+  ['Citrix Alternative - Français', 'https://assets.tsplus.net/f/1020006/x/cba660934e/citrix-alternative.mp4', 'Alternative comparison'],
+  ['Alternative to Citrix - Français', 'https://assets.tsplus.net/f/1020006/x/94f9348fac/alternative-to-citrix.mp4', 'Alternative comparison'],
+  ['Alternative Microsoft RDS - Français', 'https://assets.tsplus.net/f/1020006/x/6010987a76/alternative-microsoft-rds.mp4', 'Alternative comparison'],
+  ['TSplus Remote Access vs Citrix', 'https://assets.tsplus.net/f/1020006/x/b6d6190a1a/remote-access-vs-citrix.mp4', 'Alternative comparison'],
+  ['Easy Citrix Alternative', 'https://assets.tsplus.net/f/1020006/x/94766b6ea0/easy-citrix-alternative.mp4', 'Alternative comparison'],
+  ['Citrix Alternative', 'https://assets.tsplus.net/f/1020006/x/4580be6d79/citrix-alternative.mp4', 'Alternative comparison'],
+  ['Alternative to RDS', 'https://assets.tsplus.net/f/1020006/x/615dfea632/alternative-to-rds.mp4', 'Alternative comparison'],
+  ['Alternative to Microsoft RDS', 'https://assets.tsplus.net/f/1020006/x/52860788bc/alternative-microsoft-rds.mp4', 'Alternative comparison'],
+  ['Alternative to Citrix', 'https://assets.tsplus.net/f/1020006/x/37b1ed3152/alternative-to-citrix.mp4', 'Alternative comparison'],
+
+  ['How to Secure Remote Desktop Protocol (RDP)', 'https://assets.tsplus.net/f/1020006/x/658f76991a/how-to-secure-microsoft-remote-desktop.webm', 'Cybersecurity'],
+  ['How to Secure Remote Access', 'https://assets.tsplus.net/f/1020006/x/dda1f20058/how-to-secure-remote-access.webm', 'Cybersecurity'],
+  ['TSplus Advanced Security: The Ultimate Tool to Protect Windows RDP Servers', 'https://assets.tsplus.net/f/1020006/x/0af48cc30d/tsplus-advanced-security-protect-windows-rdp-servers.webm', 'Cybersecurity'],
+  ['TSplus Advanced Security: Protect Your Remote Desktop', 'https://assets.tsplus.net/f/1020006/x/32721f0928/tsplus-advanced-security-protect-remote-desktop.webm', 'Cybersecurity'],
+  ['TSplus Advanced Security: La Solución de Protección Todo en Uno para Entornos de Escritorio Remoto', 'https://assets.tsplus.net/f/1020006/x/5358fcab3c/spanish-tsplus-advanced-security-7-1-presentation.webm', 'Cybersecurity'],
+  ['TSplus Advanced Security: A Solução Completa de Proteção para Ambientes de Desktop Remoto', 'https://assets.tsplus.net/f/1020006/x/5f2699d4a2/portuguese-tsplus-advanced-security-7-1-presentation.webm', 'Cybersecurity'],
+  ['TSplus Advanced Security : La solution de sécurité tout-en-un pour les bureaux à distance', 'https://assets.tsplus.net/f/1020006/x/cd6d4af8bc/french-tsplus-advanced-security-7-1-presentation.webm', 'Cybersecurity'],
+  ['TSplus Advanced Security: The All-in-One Protection Solution for Remote Desktop Environments', 'https://assets.tsplus.net/f/1020006/x/1b1241d46a/tsplus-advanced-security-protection-solution-remote-desktop.webm', 'Cybersecurity'],
+  ['Cybersecurity - Español', 'https://assets.tsplus.net/f/1020006/x/d894968b07/cyber-security.mp4', 'Cybersecurity'],
+  ['Cybersecurity - Português', 'https://assets.tsplus.net/f/1020006/x/cf6a5fbe27/cyber-security.mp4', 'Cybersecurity'],
+  ['Microsoft RDS Security - Italiano', 'https://assets.tsplus.net/f/1020006/x/a7e5965c75/microsoft-rds-security.mp4', 'Cybersecurity'],
+  ['Cybersecurity - Italiano', 'https://assets.tsplus.net/f/1020006/x/1f67610a33/cyber-security.mp4', 'Cybersecurity'],
+  ['Cyber Security - Deutsch', 'https://assets.tsplus.net/f/1020006/x/ba54f9aa61/cyber-security.mp4', 'Cybersecurity'],
+  ['Cybersecurity and TSplus - 简体中文', 'https://assets.tsplus.net/f/1020006/x/d71fd5c135/cybersecurity-and-tsplus.mp4', 'Cybersecurity'],
+  ['Microsoft RDS Security - Français', 'https://assets.tsplus.net/f/1020006/x/f8b9c164d5/microsoft-rds-security.mp4', 'Cybersecurity'],
+  ['Cybersecurity - Français', 'https://assets.tsplus.net/f/1020006/x/9d353258b3/cyber-security.mp4', 'Cybersecurity'],
+  ['Cybersecurity and TSplus - Français', 'https://assets.tsplus.net/f/1020006/x/672f6526de/cybersecurity-and-tsplus.mp4', 'Cybersecurity'],
+  ['Microsoft RDS Security', 'https://assets.tsplus.net/f/1020006/x/4ccac9ffe3/microsoft-rds-security.mp4', 'Cybersecurity'],
+  ['Cyber Security', 'https://assets.tsplus.net/f/1020006/x/531657d22a/cyber-security.mp4', 'Cybersecurity'],
+
+  ['How IT Teams Excel with TSplus Remote Access — The Smarter Citrix Alternative', 'https://assets.tsplus.net/f/1020006/x/635e57f1da/how-it-teams-excel-with-remote-access.webm', 'Remote Access'],
+  ['TSplus Remote Access vs Omnissa Horizon | Which Remote Solution is the Smartest Choice?', 'https://assets.tsplus.net/f/1020006/x/fef5cd53be/tsplus-remote-access-vs-omnissa-horizon.webm', 'Remote Access'],
+  ['Winning Remote Access Strategy for MSPs', 'https://assets.tsplus.net/f/1020006/x/159ce59d3d/winning-remote-access-strategies-msps.webm', 'Remote Access'],
+  ['TSplus Remote Access – Smarter Thin Client Solution', 'https://assets.tsplus.net/f/1020006/x/c672ed0530/tsplus-remote-access-smarter-thin-client-solution.webm', 'Remote Access'],
+  ['Why Your IT Is Holding You Back', 'https://assets.tsplus.net/f/1020006/x/528d587572/why-your-it-is-holding-you-back.webm', 'Remote Access'],
+  ['Centralized IT Management with TSplus Remote Access', 'https://assets.tsplus.net/f/1020006/x/dd0a8f2e99/centralized-it-management-with-tsplus-remote-access.webm', 'Remote Access'],
+  ['Application Delivery without Complexity', 'https://assets.tsplus.net/f/1020006/x/87e567e4fa/application-delivery-without-complexity.webm', 'Remote Access'],
+  ['How Remote Desktop Works', 'https://assets.tsplus.net/f/1020006/x/c292b0d050/how-remote-desktop-work.webm', 'Remote Access'],
+  ['What is Remote Desktop Protocol (RDP)', 'https://assets.tsplus.net/f/1020006/x/0b44f6dcf3/what-is-rdp.webm', 'Remote Access'],
+  ['What is Desktop Virtualization', 'https://assets.tsplus.net/f/1020006/x/92921d309a/what-is-desktop-virtualization.webm', 'Remote Access'],
+  ['RDP vs VPN — Why TSplus Is the Smarter Choice', 'https://assets.tsplus.net/f/1020006/x/98a7d8efd4/rdp-vs-vpn-tsplus-smartest-choice.webm', 'Remote Access'],
+  ['Run Windows Apps on Your Mac with TSplus Remote Access', 'https://assets.tsplus.net/f/1020006/x/74008e2d4c/run-windows-apps-mac-tsplus-remote-access.webm', 'Remote Access'],
+  ['Web-enable your Windows Applications with TSplus Remote Access', 'https://assets.tsplus.net/f/1020006/x/c45fbeb176/web-enable-windows-applications-tsplus.webm', 'Remote Access'],
+  ['Remote Access: How to set up Remote Printing', 'https://assets.tsplus.net/f/1020006/x/1c66bf9153/remote-access-remote-printing-setup.webm', 'Tutorial'],
+  ['Remote Access: How to Generate a Portable Client', 'https://assets.tsplus.net/f/1020006/x/2397d09c4a/remote-access-portable-client-generator.webm', 'Tutorial'],
+  ['Remote Access Presentation', 'https://assets.tsplus.net/f/1020006/x/6eb57ef9f6/remote-access-presentation.webm', 'Remote Access'],
+  ['Remote Access: How to Customize the Web Portal', 'https://assets.tsplus.net/f/1020006/x/baca9e71ce/remote-access-web-portal-customization.webm', 'Tutorial'],
+  ['Remote Access: How to Assign Applications to Users', 'https://assets.tsplus.net/f/1020006/x/1d51a641e4/application-assignment.webm', 'Tutorial'],
+  ['How to Install Remote Access', 'https://assets.tsplus.net/f/1020006/x/9cbc99a92d/remote-access-installation.webm', 'Tutorial'],
+  ['Customization Webportal - Español', 'https://assets.tsplus.net/f/1020006/x/bd05e65ad5/customization-web-portal.mp4', 'Tutorial'],
+  ['Create a user account - Español', 'https://assets.tsplus.net/f/1020006/x/67fa950702/create-a-user-account.mp4', 'Tutorial'],
+  ['Customization Webportal - Português', 'https://assets.tsplus.net/f/1020006/x/782dfa2199/customization-web-portal.mp4', 'Tutorial'],
+  ['Create a user account - Português', 'https://assets.tsplus.net/f/1020006/x/b87f027b5e/create-a-user-account.mp4', 'Tutorial'],
+  ['Customization Webportal - Italiano', 'https://assets.tsplus.net/f/1020006/x/995c5923d7/customizationwebportal.mp4', 'Tutorial'],
+  ['Create a user account - Italiano', 'https://assets.tsplus.net/f/1020006/x/df1bf0089c/create-a-user-account.mp4', 'Tutorial'],
+  ['Create a user account - Deutsch', 'https://assets.tsplus.net/f/1020006/x/73e18e12ec/create-a-user-account.mp4', 'Tutorial'],
+  ['Customization Webportal - Deutsch', 'https://assets.tsplus.net/f/1020006/x/af875c1fd9/customization-web-portal.mp4', 'Tutorial'],
+  ['Customization Webportal - 简体中文', 'https://assets.tsplus.net/f/1020006/x/57ac0c3c4f/customization-webportal.mp4', 'Tutorial'],
+  ['TSplus Remote Access - 简体中文', 'https://assets.tsplus.net/f/1020006/x/796680f4b0/tsplus-remote-access.mp4', 'Remote Access'],
+  ['Create a user account - 简体中文', 'https://assets.tsplus.net/f/1020006/x/2b0f182fac/create-a-user-account.mp4', 'Tutorial'],
+  ['Administrator User Account Creation', 'https://assets.tsplus.net/f/1020006/x/a5a455e20c/tuto-administrator-user-account-creation.webm', 'Tutorial'],
+
+  ['What is Remote Support', 'https://assets.tsplus.net/f/1020006/x/0684237c8e/what-is-remote-support.webm', 'Remote Support'],
+  ['TSplus Remote Support – The All-in-One Remote IT Tool', 'https://assets.tsplus.net/f/1020006/x/f7daa502d2/tsplus-remote-support-all-in-one-remote-it-tool.webm', 'Remote Support'],
+  ['Remote IT Support - Italiano', 'https://assets.tsplus.net/f/1020006/x/db1f45a104/remote-it-support.mp4', 'Remote Support'],
+  ['Remote IT Support - Français', 'https://assets.tsplus.net/f/1020006/x/d6915c89f4/remote-it-support.mp4', 'Remote Support'],
+  ['Remote IT Support', 'https://assets.tsplus.net/f/1020006/x/a24b88d494/remote-it-support.mp4', 'Remote Support'],
+
+  ['Optimize your server farm monitoring - Italiano', 'https://assets.tsplus.net/f/1020006/x/b4a133bc57/optimize-your-server-farm-monitoring.mp4', 'Server Monitoring'],
+  ['Optimize your server farm monitoring - Deutsch', 'https://assets.tsplus.net/f/1020006/x/02f9cc8b26/optimize-your-server-farm-monitoring.mp4', 'Server Monitoring'],
+  ['Server Monitoring - Français', 'https://assets.tsplus.net/f/1020006/x/b1d14a2c12/server-monitoring.mp4', 'Server Monitoring'],
+  ['Server Monitoring', 'https://assets.tsplus.net/f/1020006/x/c952d2bf01/server-monitoring.mp4', 'Server Monitoring'],
+];
+
+export const TSPLUS_OFFICIAL_VIDEOS = TSPLUS_REFERENCE_VIDEOS.map(([title, video, category]) => ({
+    title,
+    video,
+    category,
+    description: `${category} video from TSplus.`,
+  }));
+
+export const TSPLUS_DEMO_VIDEOS = [
+  ...TSPLUS_REMOTE_ACCESS_EXPERIENCES.map(experience => ({
+    ...experience,
+    category: 'Remote Access' as const,
+  })),
+  ...TSPLUS_OFFICIAL_VIDEOS,
+] as const;

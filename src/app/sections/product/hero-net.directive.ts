@@ -16,16 +16,27 @@ export class HeroNetDirective implements OnDestroy {
   private readonly el = inject<ElementRef<HTMLCanvasElement>>(ElementRef);
 
   private raf = 0;
+  private view: Window | null = null;
   private readonly onResize = () => this.size();
 
   constructor() {
-    // afterNextRender only fires in the browser, so there is no SSR guard to write.
+    // afterNextRender only fires in the browser. Cleanup still runs during SSR,
+    // so all browser APIs below are accessed through the document's window.
     afterNextRender(() => this.start());
   }
 
   ngOnDestroy(): void {
-    cancelAnimationFrame(this.raf);
-    removeEventListener('resize', this.onResize);
+    // Only clean up a window on which start() actually installed the animation.
+    // Angular's SSR DOM can expose a partial defaultView without animation APIs.
+    const win = this.view;
+    if (!win) return;
+    if (this.raf && typeof win.cancelAnimationFrame === 'function') {
+      win.cancelAnimationFrame(this.raf);
+    }
+    if (typeof win.removeEventListener === 'function') {
+      win.removeEventListener('resize', this.onResize);
+    }
+    this.view = null;
   }
 
   /** Match the canvas backing store to the hero box it sits in. */
@@ -38,13 +49,21 @@ export class HeroNetDirective implements OnDestroy {
   }
 
   private start(): void {
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
     const cv = this.el.nativeElement;
+    const win = cv.ownerDocument.defaultView;
+    if (
+      !win ||
+      typeof win.matchMedia !== 'function' ||
+      typeof win.requestAnimationFrame !== 'function' ||
+      typeof win.addEventListener !== 'function' ||
+      win.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) return;
+
     const ctx = cv.getContext('2d');
     if (!ctx || !cv.parentElement) return;
+    this.view = win;
 
-    const count = innerWidth < 700 ? 16 : 34;
+    const count = win.innerWidth < 700 ? 16 : 34;
     const points = Array.from({ length: count }, () => ({
       x: Math.random(),
       y: Math.random(),
@@ -53,7 +72,7 @@ export class HeroNetDirective implements OnDestroy {
     }));
 
     this.size();
-    addEventListener('resize', this.onResize);
+    win.addEventListener('resize', this.onResize);
 
     const frame = () => {
       // the hero may not be laid out on the very first frame
@@ -92,8 +111,8 @@ export class HeroNetDirective implements OnDestroy {
           ctx.fill();
         }
       }
-      this.raf = requestAnimationFrame(frame);
+      this.raf = win.requestAnimationFrame(frame);
     };
-    this.raf = requestAnimationFrame(frame);
+    this.raf = win.requestAnimationFrame(frame);
   }
 }

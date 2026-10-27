@@ -1,0 +1,50 @@
+:host { display: block; width: 100%; --acc: #d97757; --pop: 'Poppins', sans-serif; --mono: 'IBM Plex Mono', monospace; }
+* { box-sizing: border-box; }
+ul, ol { margin: 0; padding: 0; }
+.glass { background: rgba(9,24,52,.85); backdrop-filter: blur(10px); border: 1px solid rgba(156,200,255,.22); border-radius: 20px; padding: 18px; box-shadow: 0 30px 70px rgba(0,0,0,.4); }
+.glass-h { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px 10px; font: 700 11.5px var(--mono); letter-spacing: .1em; color: #9cc8ff; margin-bottom: 12px; }
+.glass-h b { color: #4ade80; }
+.kc { border-radius: 14px; overflow: hidden; background: #fff; color: #0b1b33; box-shadow: 0 20px 50px rgba(0,0,0,.4); }
+.kc-tb { display: flex; align-items: center; gap: 4px; padding: 8px; background: #f3eee8; }
+.kc-tb button { display: inline-flex; align-items: center; gap: 6px; border: 0; background: transparent; border-radius: 8px; padding: 6px 10px; font: 700 12px var(--pop); color: #57534e; cursor: pointer; white-space: nowrap; }
+.kc-tb button img { width: 16px; height: 16px; }
+.kc-tb button[aria-pressed=true] { background: #fff; color: #0b1b33; box-shadow: 0 2px 6px rgba(4,30,66,.12); }
+.kc-tb em { margin-left: auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; font: 700 10px var(--mono); font-style: normal; color: #78716c; white-space: nowrap; }
+.kc-b { padding: 12px 14px; display: grid; gap: 10px; }
+.kf { list-style: none; display: grid; gap: 5px; }
+.kf li { display: grid; grid-template-columns: 18px minmax(0,1fr) auto; gap: 8px; align-items: center; font: 600 12px var(--mono); border: 1px solid #e7e5e4; border-radius: 9px; padding: 7px 9px; transition: .35s; }
+.kf li svg { width: 16px; height: 16px; max-height: 16px; fill: none; stroke: currentColor; stroke-width: 1.7; color: #a8a29e; }
+.kf li span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #292524; }
+.kf li em { font-style: normal; font: 700 10px var(--mono); padding: 2px 7px; border-radius: 999px; background: #dcfce7; color: #166534; white-space: nowrap; }
+.kf li.bad { border-color: #fca5a5; background: #fef2f2; }
+.kf li.bad em { background: #fee2e2; color: #b91c1c; }
+.kf li.bad svg { color: #dc2626; }
+.kt { display: flex; align-items: center; gap: 6px; font: 700 10px var(--mono); color: #78716c; }
+.kt ol { flex: 1; display: flex; justify-content: space-between; list-style: none; position: relative; padding: 0 2px; }
+.kt ol:before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 2px; background: #e7e5e4; }
+.kt li { position: relative; display: flex; align-items: center; }
+.kt button { display: block; width: 12px; height: 12px; padding: 0; border-radius: 50%; background: var(--acc); border: 2px solid #fff; transition: .3s; cursor: pointer; }
+.kt button:disabled { cursor: default; opacity: 1; }
+.kt button.x { background: #dc2626; }
+.kt button.sel { background: #16a34a; transform: scale(1.35); }
+.kr { display: flex; align-items: center; gap: 10px; }
+.kr button { border: 0; border-radius: 9px; padding: 8px 12px; background: #0b3d91; color: #fff; font: 700 12px var(--pop); cursor: pointer; white-space: nowrap; }
+.kr button.warn { background: #dc2626; }
+.kr button:disabled { cursor: progress; }
+.kr .bar { flex: 1; min-width: 24px; height: 8px; border-radius: 99px; background: #e7e5e4; overflow: hidden; }
+.kr .bar i { display: block; height: 100%; background: linear-gradient(90deg,var(--acc),#16a34a); transition: width .2s; }
+.ks { font: 600 11.5px var(--pop); min-height: 16px; color: #166534; }
+.ks.r { color: #b91c1c; }
+button:focus-visible { outline: 2px solid #2563eb; outline-offset: 3px; }
+.reduced-motion *, .reduced-motion *:before { transition: none; }
+@media (max-width: 560px) { .kc-tb em { display: none; } }
+@media (max-width: 380px) {
+  .glass { padding: 12px; }
+  .kc-b { padding: 10px; }
+  .kc-tb button { padding: 6px; font-size: 11px; }
+  .kf li { padding: 7px 6px; gap: 5px; font-size: 10px; }
+  .kf li em { padding: 2px 5px; font-size: 9px; }
+  .kr { flex-wrap: wrap; }
+  .kr .bar { flex-basis: 100%; }
+}
+@media (prefers-reduced-motion: reduce) { *, *:before { transition: none !important; } }

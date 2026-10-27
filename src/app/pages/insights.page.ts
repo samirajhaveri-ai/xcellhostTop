@@ -1,3 +1,4 @@
+import { getCaseStudyImage } from '../core/case-study-images';
 import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnDestroy, ViewChild, computed, inject, linkedSignal, signal } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
@@ -59,7 +60,7 @@ interface InsightCategoryBranch {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="ppage as-page" id="ipage">
-      <div class="pp-hero insights-hero">
+      <div class="pp-hero insights-hero" data-banner-actions="off">
         <span class="orb orb-1"></span>
         <div class="wrap">
           <div class="pp-crumb">{{ page.c }}</div>
@@ -275,8 +276,11 @@ interface InsightCategoryBranch {
                       @if (lead.coverImageUrl) {
                         <img
                           class="insights-lead-cover"
+                          [class.case-study-cover]="lead.kind === 'case-study'"
                           [src]="lead.coverImageUrl"
+                          (error)="onCoverError($event, lead)"
                           [alt]="lead.coverImage?.alternativeText || lead.title"
+                          decoding="async"
                         />
                       }
                       @if (lead.kind === 'video') {
@@ -315,8 +319,12 @@ interface InsightCategoryBranch {
                       @if (post.coverImageUrl) {
                         <img
                           class="blog-cover"
+                          [class.case-study-cover]="post.kind === 'case-study'"
                           [src]="post.coverImageUrl"
+                          (error)="onCoverError($event, post)"
                           [alt]="post.coverImage?.alternativeText || post.title"
+                          loading="lazy"
+                          decoding="async"
                         />
                       }
                         @if (post.kind === 'video') {
@@ -344,7 +352,7 @@ interface InsightCategoryBranch {
                           <circle cx="21" cy="21" r="12"></circle>
                           <path d="m30 30 9 9M8 8l32 32"></path>
                         </svg>
-                        <h3>{{ activeTab() === 'Videos' && videoStatus() === 'loading' ? 'Loading channel videos...' : activeTab() === 'Videos' && videoStatus() === 'error' ? 'Videos temporarily unavailable' : 'No matching ' + activeTab().toLowerCase() }}</h3>
+                        <h3>{{ activeTab() === 'Blogs' && loading() ? 'Loading blogs...' : activeTab() === 'Blogs' && error() ? 'Blogs temporarily unavailable' : activeTab() === 'Videos' && videoStatus() === 'loading' ? 'Loading channel videos...' : activeTab() === 'Videos' && videoStatus() === 'error' ? 'Videos temporarily unavailable' : 'No matching ' + activeTab().toLowerCase() }}</h3>
                         <p>{{ emptyHelp() }}</p>
                       </div>
                     }
@@ -548,7 +556,7 @@ export class InsightsPage implements AfterViewInit, OnDestroy {
       next: (posts) => {
         this.posts.set(posts);
         this.loading.set(false);
-        this.error.set(false);
+        this.error.set(this.blogApi.postsStatus() === 'error');
         if (this.active() !== ALL && this.categoryCount(this.active()) === 0) this.selectAllCategories();
       },
       error: () => {
@@ -763,6 +771,8 @@ export class InsightsPage implements AfterViewInit, OnDestroy {
   }
 
   emptyHelp(): string {
+    if (this.activeTab() === 'Blogs' && this.loading()) return 'Fetching the latest published articles.';
+    if (this.activeTab() === 'Blogs' && this.error()) return 'The content service could not be reached. We will retry automatically shortly.';
     if (this.documentType() && !this.sourceItems().length) return 'Published ' + this.activeTab().toLowerCase() + ' will appear here. Browse another resource type in the meantime.';
     if (this.activeTab() === 'Videos' && this.videoStatus() === 'loading') return 'Fetching uploads from XcellHost Cloud Services.';
     if (this.activeTab() === 'Videos' && this.videoStatus() === 'error') return 'Please visit our YouTube channel or try again shortly.';
@@ -819,7 +829,7 @@ export class InsightsPage implements AfterViewInit, OnDestroy {
       subCategory: placement.subCategory,
       product: placement.product,
       coverImage: null,
-      coverImageUrl: this.caseStudyCover(study.id),
+      coverImageUrl: getCaseStudyImage(study).src,
       actionUrl: null,
       metric: study.metric,
       profile: study.profile,
@@ -828,31 +838,15 @@ export class InsightsPage implements AfterViewInit, OnDestroy {
     };
   }
 
-  private caseStudyCover(id: string): string {
-    if (id === 'tally-cloud') return '/assets/images/hero-tally-on-cloud.png';
-    if (id === 'ca-continuity') return '/assets/images/orb-smb-cloud-desktop.png';
-    if (id === 'cloud-drive-collaboration') return '/assets/images/orb-smb-cloud-desktop.png';
-    if (id === 'endpoint-security-response') return '/assets/images/hero-advanced-endpoint-security-edr.svg';
-    if (id === 'rmm-device-operations') return '/assets/images/hero-rmm.png';
-    if (id === 'smb-security-appliance') return '/assets/images/hero-smb-cyber-security-appliance.png';
-    if (id === 'microsoft-365-smb-collaboration') return '/assets/images/orb-microsoft-365.png';
-    if (id === 'acronis-genai-governance') return '/assets/images/acronis-genai-protection.png';
-    if (id === 'cloud-disaster-recovery-smb') return '/assets/images/acronis-disaster-recovery.png';
-    if (id === 'dpdpa-for-smb-readiness') return '/assets/images/security-glossary-hero.svg';
-    if (id === 'workforce-analytics-visibility') return '/assets/images/menu-data-analytics.svg';
-    if (id === 'domain-portfolio-control' || id === 'domain-extension-launch' || id === 'ai-domain-shortlist') {
-      return '/assets/images/domains/hero.svg';
-    }
-    if (id === 'managed-web-hosting' || id === 'ai-website-launch') return '/assets/images/domains/hero.svg';
-    if (id === 'website-migration-backup') return '/assets/images/cloud-migration-hero.svg';
-    if (id === 'hosting-control-panel-operations' || id === 'cloudlinux-account-isolation') {
-      return '/assets/images/cloud-migration-hero.svg';
-    }
-    if (id === 'website-security-trust') return '/assets/images/hero-web-security-sitelock-wide.png';
-    if (id === 'web-design-business-portfolios') return '/assets/images/website-photo-frame-samir-jhaveri-1.png';
-    if (id === 'web-marketing-customer-journey') return '/assets/images/contact-whatsapp.webp';
-    if (id === 'vps-workload-platform') return '/assets/images/orb-smb-cloud-desktop.png';
-    return '/assets/images/hero-cloud-backup-acronis.png';
+  onCoverError(event: Event, item: InsightItem): void {
+    if (item.kind !== 'case-study') return;
+    const image = event.target as HTMLImageElement;
+    const study = this.caseStudies().find(study => study.id === item.slug);
+    const fallback = getCaseStudyImage({ id: item.slug, industry: item.category, mainCategory: study?.mainCategory }).src;
+    const generic = '/assets/images/hero-performance-cloud-v2.png';
+    const current = image.getAttribute('src');
+    if (current === generic) return;
+    image.src = current === fallback ? generic : fallback;
   }
 
   private caseStudyPlacements(study: CaseStudy): readonly InsightPlacement[] {

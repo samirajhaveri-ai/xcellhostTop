@@ -1,99 +1,19 @@
-<button
-  class="bot-fab"
-  id="botFab"
-  type="button"
-  aria-label="Open Xcell Genie"
-  aria-controls="bot"
-  [attr.aria-expanded]="overlay.isOpen('chat')"
-  (click)="toggle()"
->
-  <svg
-    viewBox="0 0 24 24"
-    width="24"
-    height="24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="1.8"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    aria-hidden="true"
-  >
-    <rect x="4" y="8" width="16" height="12" rx="3" />
-    <path d="M12 8V5" />
-    <circle cx="12" cy="3.5" r="1.5" fill="currentColor" stroke="none" />
-    <circle cx="9" cy="14" r="1.2" fill="currentColor" stroke="none" />
-    <circle cx="15" cy="14" r="1.2" fill="currentColor" stroke="none" />
-    <path d="M9.5 17.2h5" />
-  </svg>
-  <span class="bot-ping"></span>
-  <span class="fab-tip">Ask Xcell Genie</span>
-</button>
-
-<div
-  class="bot"
-  id="bot"
-  aria-label="Xcell Genie"
-  [class.open]="overlay.isOpen('chat')"
-  [attr.aria-hidden]="overlay.isOpen('chat') ? null : 'true'"
->
-  <div class="bot-head">
-    <div class="bh-l">
-      <span class="bh-av">AI</span>
-      <div>
-        <b>Xcell Genie</b
-        ><span class="bh-st"><i></i> <span id="botStatus">{{ status() }}</span></span>
-      </div>
-    </div>
-    <button class="cart-x" id="botX" type="button" aria-label="Close" (click)="close()">✕</button>
-  </div>
-
-  <div class="bot-body" id="botBody" #botBody>
-    @for (m of bubbles(); track $index) {
-      <div class="msg" [class.bot]="m.role === 'bot'" [class.me]="m.role === 'user'" [innerHTML]="m.html"></div>
+<section class="bot xcell-genie" id="bot" role="dialog" aria-modal="false" aria-labelledby="genieTitle" [class.open]="overlay.isOpen('chat')" [attr.inert]="overlay.isOpen('chat') ? null : ''" [attr.aria-hidden]="overlay.isOpen('chat') ? null : 'true'" (keydown.escape)="onEscape($event)">
+  <header class="genie-head"><span class="genie-avatar" aria-hidden="true">AI</span><div><h2 id="genieTitle">XcellGenie</h2><p>XcellHost AI assistant</p></div><button type="button" aria-label="Clear chat" (click)="clear()">↻</button><button type="button" aria-label="Close XcellGenie" (click)="close()">×</button></header>
+  <div class="genie-thread" #botBody role="log" aria-label="Chat messages" aria-live="polite" aria-relevant="additions" [attr.aria-busy]="chat.busy()">
+    @if (!chat.messages().length) {
+      <div class="genie-welcome"><h3>How can I help your business?</h3><p>I’m XcellGenie. Ask me about XcellHost cloud, backup, productivity, security and compliance services.</p></div>
+      <div class="genie-starters" aria-label="Suggested questions">@for (question of starters; track question) { <button type="button" (click)="ask(question)">{{ question }} <span aria-hidden="true">→</span></button> }</div>
     }
-
-    @if (showQuick()) {
-      <div class="bot-quick">
-        <div class="bq-lbl">Quick questions</div>
-        <div class="bq-row">
-          @for (q of quick; track q.key) {
-            <button class="bq" type="button" (click)="askQuick(q.key)">{{ q.label }}</button>
-          }
-        </div>
-      </div>
+    @for (message of chat.messages(); track message.id) {
+      <article class="genie-message" [class.genie-user]="message.role === 'user'" [attr.aria-label]="message.role === 'user' ? 'Your message' : 'XcellGenie answer'">
+        <div class="genie-text" [innerHTML]="formatText(message.text)"></div>
+        @if (message.sources?.length) { <nav class="genie-sources" aria-label="Answer sources"><span>Sources</span>@for (source of message.sources; track source.url) { <a [href]="source.url" target="_blank" rel="noopener noreferrer">{{ source.title }} ↗</a> }</nav> }
+      </article>
     }
-
-    @if (chat.busy()) {
-      <div class="msg bot typing" aria-hidden="true"><i></i><i></i><i></i></div>
-    }
+    @if (chat.busy()) { <div class="genie-loading" role="status"><span aria-hidden="true">● ● ●</span> XcellGenie is checking the knowledge…</div> }
+    @if (chat.error()) { <div class="genie-error" role="alert"><p>{{ chat.error() }}</p><button type="button" [disabled]="chat.busy()" (click)="chat.retry()">Retry answer</button><a href="https://xcellhost.cloud/contact" target="_blank" rel="noopener noreferrer">Contact our team ↗</a></div> }
   </div>
-
-  <div class="bot-chips" id="botChips">
-    @for (c of chat.chips(); track c) {
-      <button class="bchip" type="button" [disabled]="chat.busy()" (click)="sendText(c)">{{ c }}</button>
-    }
-  </div>
-
-  <div class="bot-in">
-    <input
-      id="botInput"
-      #botInput
-      placeholder="Ask about any product…"
-      autocomplete="off"
-      aria-label="Ask about any product"
-      [value]="draft()"
-      [disabled]="chat.busy()"
-      (input)="onInput($event)"
-      (keydown.enter)="send()"
-    />
-    <button id="botSend" type="button" aria-label="Send" [disabled]="chat.busy()" (click)="send()">➤</button>
-  </div>
-
-  <div class="bot-foot">
-    <span class="bf-l">Need a human?</span>
-    <button class="bchip" type="button" (click)="openCallback()">Request a callback</button>
-    <a class="bot-esc" id="botEsc" [href]="escHref()" target="_blank" rel="noopener"
-      >Hand over to sales team on WhatsApp →</a
-    >
-  </div>
-</div>
+  <form class="genie-composer" (submit)="$event.preventDefault(); send()"><label class="genie-sr-only" for="botInput">Your question for XcellGenie</label><textarea id="botInput" #botInput rows="2" maxlength="2000" placeholder="Ask XcellHost AI…" autocomplete="off" [value]="draft()" (input)="onInput($event)" (keydown)="onKey($event)" aria-describedby="genieNotice"></textarea><button type="submit" aria-label="Send question" [disabled]="chat.busy() || !draft().trim()">↑</button></form>
+  <footer class="genie-foot"><p id="genieNotice">AI guidance from our knowledge snapshot. Confirm important details with a specialist. Please don’t share passwords or confidential data.</p><button type="button" (click)="openCallback()">Talk to an XcellHost specialist →</button></footer>
+</section>

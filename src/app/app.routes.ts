@@ -1,29 +1,606 @@
+import { FRAMEWORK_DETAILS } from './data/framework-details.data';
 import { Routes } from '@angular/router';
 import { MENU_SERVICE_PAGES } from './data/menu-service-pages.data';
 import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
 import { AI_TRAINING_PAGES } from './data/ai-training-pages.data';
 
-/**
- * URLs mirror the original site exactly, so nothing that is already indexed breaks:
- *   /                          home
- *   /<service-slug>/           a service page   (e.g. /tally-on-cloud/)
- *   /category/<name>/          a category landing page
- *   /insights/<slug>/          a blog article
- *   /use-cases/<slug>/         a use case
- *   /about|/contact|/pricing|/insights
- *   /compare/
- */
+
 export const routes: Routes = [
   ...AI_TRAINING_PAGES.map((page) => ({
     path: page.slug,
     data: { trainingPage: page },
     loadComponent: () => import('./pages/ai-training.page').then((m) => m.AiTrainingPage),
   })),
-  ...[...MENU_SERVICE_PAGES, ...INDUSTRY_CLOUD_PAGES].map((page) => ({
+  { path: 'synapsem-ai-training-live-online', redirectTo: 'ai-training-live-online', pathMatch: 'full' },
+
+  {
+    path: 'ai-adoption-framework', title: 'AI Adoption Framework India | XcellHost',
+    data: { searchTitle: 'AI Adoption Framework', searchDescription: 'A six-stage programme for AI strategy, readiness, governance, pilots and production operations.' },
+    loadComponent: () => import('./pages/ai-adoption-framework.page').then(m => m.AiAdoptionFrameworkPage),
+  },
+
+  { path: 'microsoft-agent-365', title: 'Microsoft Agent 365 | XcellHost', loadComponent: () => import('./pages/microsoft-agent-365.page').then(m => m.MicrosoftAgent365Page) },
+  ...[
+
+    ['synapsem-ai-training-integrated-program', 'integrated', 'Integrated AI Training Program'],
+    ['ai-training-for-medical-doctors', 'medical', 'AI Training For Medical Doctors'],
+    ['ai-training-for-insurance-professionals', 'insurance', 'AI Training For Insurance Professionals'],
+    ['ai-training-for-chartered-accountants', 'accountants', 'AI Training For Chartered Accountants'],
+  ].map(([path, training, title]) => ({path, title: title + ' | XcellHost', data: {training}, loadComponent: () => import('./pages/ai-academy-training.page').then(m => m.AiAcademyTrainingPage)})),
+  { path: 'ca-cloud', title: 'CA Cloud | XcellHost', loadComponent: () => import('./pages/ca-cloud.page').then(m => m.CaCloudPage) },
+  { path: 'entra-id-backup', title: 'Entra ID Backup | XcellHost', loadComponent: () => import('./pages/entra-id-backup.page').then(m => m.EntraIdBackupPage) },
+
+
+  ...[
+    ['asset-tokenization-platform', 'Asset Tokenization Platform'],
+    ['fractional-chief-ai-officer', 'Fractional Chief AI Officer'],
+  ].map(([path, name]) => ({
+    path, title: `${name} | XcellHost`,
+    data: { softwareMarketplaceSource: path, searchTitle: name },
+    loadComponent: () => import('./pages/software-marketplace-imported.page').then(m => m.SoftwareMarketplaceImportedPage),
+  })),
+
+  { path: 'geotrust', redirectTo: 'geotrust-ssl-certificates', pathMatch: 'full' },
+  { path: 'tds-software-declaration', title: 'No TDS on Software Purchases | XcellHost', loadComponent: () => import('./pages/tds-software-declaration.page').then(m => m.TdsSoftwareDeclarationPage) },
+  { path: 'mobile-app-security', title: 'Mobile App Security | XcellHost', loadComponent: () => import('./pages/mobile-app-security.page').then(m => m.MobileAppSecurityPage) },
+  { path: 'ai-factory', title: 'AI Factory India | XcellHost', loadComponent: () => import('./pages/ai-factory.page').then(m => m.AiFactoryPage) },
+  { path: 'sectigo-ssl-certificates', title: 'Sectigo SSL Certificates | XcellHost', loadComponent: () => import('./pages/sectigo-catalogue.page').then(m => m.SectigoCataloguePage) },
+  ...[
+    ['codeguard-backup', 'CodeGuard Backup'],
+    ['positivessl-acme-caas-dv', 'PositiveSSL ACME Certificate-as-a-Service (DV)'],
+    ['sectigo-acme-certificate-as-a-service', 'Sectigo ACME Certificate-as-a-Service (DV)'],
+    ['sectigo-ev-code-signing', 'Sectigo EV Code Signing Certificates'],
+    ['sectigo-ev-ssl-multi-domain-ucc', 'Sectigo EV Multi-Domain/UCC'],
+    ['hackerguardian-pci-compliance-scanning', 'Sectigo HackerGuardian'],
+    ['sectigo-ov-ssl', 'Sectigo OV SSL'],
+    ['sectigo-ov-ssl-multi-domain-ucc', 'Sectigo OV SSL Multi-Domain/UCC'],
+    ['sectigo-ov-ssl-multi-domain-wildcard', 'Sectigo OV SSL Multi-Domain Wildcard'],
+    ['sectigo-ov-ssl-wildcard', 'Sectigo OV Wildcard SSL'],
+    ['sectigo-ssl', 'Sectigo SSL'],
+    ['ssl-installation-service', 'SSL Installation Service'],
+    ['sectigo-ssl-multi-domain-ucc', 'Sectigo SSL Multi-Domain/UCC'],
+  ].map(([path, name]) => ({path, pathMatch: 'full' as const, title: `${name} | XcellHost`, data: {sectigoSlug: path}, loadComponent: () => import('./pages/sectigo-supplied.page').then(m => m.SectigoSuppliedPage)})),
+  ...[
+    ['sectigo-acme-caas-dv', 'sectigo-acme-certificate-as-a-service'],
+    ['sectigo-ev-code-signing-certificate', 'sectigo-ev-code-signing'],
+    ['sectigo-ev-multi-domain-ucc', 'sectigo-ev-ssl-multi-domain-ucc'],
+    ['sectigo-hackerguardian', 'hackerguardian-pci-compliance-scanning'],
+    ['sectigo-ov-wildcard-ssl', 'sectigo-ov-ssl-wildcard'],
+    ['sectigo-ssl-installation-service', 'ssl-installation-service'],
+  ].map(([path, redirectTo]) => ({path, redirectTo, pathMatch: 'full' as const})),
+  ...['resilience', 'cloud', 'database', 'network', 'security', 'workspace'].map(kind => ({
+    path: `${kind}-operations`, title: `${kind[0].toUpperCase() + kind.slice(1)} Operations | XcellHost`,
+    data: { operationsSource: `${kind}-operations` },
+    loadComponent: () => import('./pages/managed-operations.page').then(m => m.ManagedOperationsPage),
+  })),
+  { path: 'openai-managed-services', title: 'OpenAI Managed Services | XcellHost', loadComponent: () => import('./pages/openai-managed-services.page').then(m => m.OpenAiManagedServicesPage) },
+  { path: 'open-ai-managed-services', redirectTo: 'openai-managed-services', pathMatch: 'full' },
+  { path: 'digicert-content-trust-manager', redirectTo: 'document-security', pathMatch: 'full' },
+  ...[
+    { path: 'document-security', source: 'digicert-content-trust-manager', name: 'DigiCert Content Trust Manager' },
+    { path: 'digicert-ai-trust-manager', source: 'digicert-ai-trust-manager', name: 'DigiCert AI Trust Manager' },
+    { path: 'digicert-dns', source: 'digicert-dns', name: 'DigiCert DNS' },
+    { path: 'digicert-quantum-central', source: 'digicert-quantum-central', name: 'DigiCert Quantum Central' },
+  ].map(({ path, source, name }) => ({
+    path, title: `${name} | XcellHost`,
+    data: { digicertTrustSource: source, searchTitle: name },
+    loadComponent: () => import('./pages/digicert-trust.page').then(m => m.DigicertTrustPage),
+  })),
+  { path: 'breach-and-attack-simulation', title: 'Breach & Attack Simulation | XcellHost', loadComponent: () => import('./pages/breach-and-attack-simulation.page').then(m => m.BreachAndAttackSimulationPage) },
+  { path: 'purple-team-assessment', title: 'Purple Team Assessment | XcellHost', loadComponent: () => import('./pages/purple-team.page').then(m => m.PurpleTeamPage) },
+  { path: 'office-365-e1-nonprofit', title: 'Office 365 E1 Nonprofit | XcellHost', data: { microsoft365PlanSource: 'office-365-e1-nonprofit' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'teams-essentials-frontline', title: 'Teams Essentials for Frontline | XcellHost', data: { microsoft365PlanSource: 'teams-essentials-frontline' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'office-365-e5', title: 'Office 365 E5 | XcellHost', data: { microsoft365PlanSource: 'office-365-e5' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'microsoft-365-f1', title: 'Microsoft 365 F1 | XcellHost', data: { microsoft365PlanSource: 'microsoft-365-f1' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'microsoft-365-e5', title: 'Microsoft 365 E5 | XcellHost', data: { microsoft365PlanSource: 'microsoft-365-e5' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'microsoft-365-e3', title: 'Microsoft 365 E3 | XcellHost', data: { microsoft365PlanSource: 'microsoft-365-e3' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'office-365-e1', title: 'Office 365 E1 | XcellHost', data: { microsoft365PlanSource: 'office-365-e1' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'office-365-e3', title: 'Office 365 E3 | XcellHost', data: { microsoft365PlanSource: 'office-365-e3' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'office-365-f3', title: 'Office 365 F3 | XcellHost', data: { microsoft365PlanSource: 'office-365-f3' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'microsoft-365-f3', title: 'Microsoft 365 F3 | XcellHost', data: { microsoft365PlanSource: 'microsoft-365-f3' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'office-365-e3-nonprofit', title: 'Office 365 E3 Nonprofit | XcellHost', data: { microsoft365PlanSource: 'office-365-e3-nonprofit' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'microsoft-365-business-premium-nonprofit', title: 'Microsoft 365 Business Premium Nonprofit | XcellHost', data: { microsoft365PlanSource: 'microsoft-365-business-premium-nonprofit' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'microsoft-365-e3-nonprofit', title: 'Microsoft 365 E3 Nonprofit | XcellHost', data: { microsoft365PlanSource: 'microsoft-365-e3-nonprofit' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'microsoft-365-f3-nonprofit', title: 'Microsoft 365 F3 Nonprofit | XcellHost', data: { microsoft365PlanSource: 'microsoft-365-f3-nonprofit' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+  { path: 'microsoft-365-e5-nonprofit', title: 'Microsoft 365 E5 Nonprofit | XcellHost', data: { microsoft365PlanSource: 'microsoft-365-e5-nonprofit' }, loadComponent: () => import('./pages/microsoft-365-plan.page').then(m => m.Microsoft365PlanPage) },
+
+  { path: 'hybrid-cloud', title: 'Private Cloud | XcellHost', data: { cloudSource: 'hybrid-cloud' }, loadComponent: () => import('./pages/cloud-infrastructure.page').then(m => m.CloudInfrastructurePage) },
+  { path: 'global-cloudthe', redirectTo: 'global-cloud', pathMatch: 'full' },
+  { path: 'global-cloud', title: 'Global Cloud | XcellHost', data: { cloudSource: 'global-cloud' }, loadComponent: () => import('./pages/cloud-infrastructure.page').then(m => m.CloudInfrastructurePage) },
+  { path: 'co-location-services', title: 'Co-Location Services | XcellHost', data: { cloudSource: 'co-location-services' }, loadComponent: () => import('./pages/cloud-infrastructure.page').then(m => m.CloudInfrastructurePage) },
+
+  ...[
+    { path: 'microsoft-entra-workload-id', name: 'Microsoft Entra Workload ID', description: 'Secure workload identities, applications and service principals with Microsoft Entra.' },
+    { path: 'microsoft-entra-internet-access', name: 'Microsoft Entra Internet Access', description: 'Protect access to internet applications with identity-aware secure web access.' },
+    { path: 'microsoft-entra-private-access', name: 'Microsoft Entra Private Access', description: 'Connect users securely to private applications with Zero Trust access.' },
+    { path: 'microsoft-entra-id-governance', name: 'Microsoft Entra ID Governance', description: 'Manage identity lifecycles, access reviews and permissions across your organization.' },
+    { path: 'microsoft-entra-id-p1', name: 'Microsoft Entra ID P1', description: 'Enable single sign-on, Conditional Access and self-service password reset.' },
+    { path: 'microsoft-entra-id-p2', name: 'Microsoft Entra ID P2', description: 'Add risk-based Identity Protection and privileged identity management to Entra ID.' },
+    { path: 'microsoft-entra-suite', name: 'Microsoft Entra Suite', description: 'Unify identity protection, governance, internet access and private application access.' },
+  ].map(({ path, name, description }) => ({
+    path,
+    title: `${name} | XcellHost`,
+    data: { productSlug: path, searchTitle: name, searchDescription: description },
+    loadComponent: () => import('./pages/product.page').then(m => m.ProductPage),
+  })),
+
+  { path: 'accops-hyworks', title: 'Accops HyWorks | XcellHost', data: { accopsSource: 'accops-hyworks' }, loadComponent: () => import('./pages/accops-product.page').then(m => m.AccopsProductPage) },
+  { path: 'accops-hysecure', title: 'Accops HySecure | XcellHost', data: { accopsSource: 'accops-hysecure' }, loadComponent: () => import('./pages/accops-product.page').then(m => m.AccopsProductPage) },
+  { path: 'accops-hyid', title: 'Accops HyID | XcellHost', data: { accopsSource: 'accops-hyid' }, loadComponent: () => import('./pages/accops-product.page').then(m => m.AccopsProductPage) },
+  { path: 'accops-hylabs', title: 'Accops HyLabs | XcellHost', data: { accopsSource: 'accops-hylabs' }, loadComponent: () => import('./pages/accops-product.page').then(m => m.AccopsProductPage) },
+  { path: 'accops-hydesk', title: 'Accops HyDesk | XcellHost', data: { accopsSource: 'accops-hydesk' }, loadComponent: () => import('./pages/accops-product.page').then(m => m.AccopsProductPage) },
+  { path: 'more-from-accops', title: 'More From Accops | XcellHost', data: { accopsSource: 'more-from-accops' }, loadComponent: () => import('./pages/accops-product.page').then(m => m.AccopsProductPage) },
+
+
+  {
+    path: 'vendor-partners/red-hat',
+    title: 'Red Hat Partner India | XcellHost',
+    loadComponent: () => import('./pages/red-hat.page').then(m => m.RedHatPage),
+  },
+  { path: 'red-hat', redirectTo: 'vendor-partners/red-hat', pathMatch: 'full' },
+  {
+    path: 'ssl-installation-service',
+    title: 'SSL Installation Service | XcellHost',
+    loadComponent: () => import('./pages/ssl-installation-service.page').then(m => m.SslInstallationServicePage),
+  },
+  { path: 'under-construction/ssl-installation-service', redirectTo: 'ssl-installation-service', pathMatch: 'full' },
+
+  ...['ai-identity-security', 'ai-security-platform', 'ai-security-audit', 'ai-security-assessment', 'ai-red-teaming-services'].map(path => ({
+    path,
+    title: ({ 'ai-identity-security': 'AI Identity Security', 'ai-security-platform': 'AI Security Platform', 'ai-security-audit': 'AI Security Audit', 'ai-security-assessment': 'AI Security Assessment', 'ai-red-teaming-services': 'AI Red Teaming Services' } as Record<string, string>)[path] + ' | XcellHost',
+    data: { aiSecuritySource: path },
+    loadComponent: () => import('./pages/ai-security-imported.page').then(m => m.AiSecurityImportedPage),
+  })),
+  ...['managed-gws', 'managed-mdm', 'managed-intune-services', 'managed-phishing-simulation'].map(path => ({
+    path,
+    title: ({ 'managed-gws': 'Managed Google Workspace', 'managed-mdm': 'Managed MDM', 'managed-intune-services': 'Managed Intune Services', 'managed-phishing-simulation': 'Managed Phishing Simulation' } as Record<string, string>)[path] + ' | XcellHost',
+    data: { managedProductivitySource: path },
+    loadComponent: () => import('./pages/managed-productivity-imported.page').then(m => m.ManagedProductivityImportedPage),
+  })),
+  ...['power-pages', 'power-apps', 'power-automate', 'power-bi'].map(path => ({
+    path,
+    title: ({ 'power-pages': 'Microsoft Power Pages', 'power-apps': 'Microsoft Power Apps', 'power-automate': 'Microsoft Power Automate', 'power-bi': 'Microsoft Power BI' } as Record<string, string>)[path] + ' | XcellHost',
+    data: { powerPlatformSource: path },
+    loadComponent: () => import('./pages/power-platform-imported.page').then(m => m.PowerPlatformImportedPage),
+  })),
+  ...['cpanel-control-panel', 'plesk-control-panel', 'webuzo-control-panel', 'cloudlinux', 'plesk-servers', 'cpanel-servers'].map(path => ({
+    path,
+    title: ({ 'cpanel-control-panel': 'cPanel Control Panel', 'plesk-control-panel': 'Plesk Control Panel', 'webuzo-control-panel': 'Webuzo Control Panel', cloudlinux: 'CloudLinux OS Licence', 'plesk-servers': 'Plesk Servers', 'cpanel-servers': 'cPanel Servers' } as Record<string, string>)[path] + ' | XcellHost',
+    data: { hostingToolSource: path },
+    loadComponent: () => import('./pages/hosting-tools-imported.page').then(m => m.HostingToolsImportedPage),
+  })),
+  { path: 'managed-microsoft-sentinel', title: 'Managed Microsoft Sentinel | XcellHost', loadComponent: () => import('./pages/managed-microsoft-sentinel.page').then(m => m.ManagedMicrosoftSentinelPage) },
+  { path: 'under-construction/managed-microsoft-sentinel', redirectTo: '/managed-microsoft-sentinel', pathMatch: 'full' },
+
+  { path: 'dedicated-ai-servers', title: 'Dedicated AI Servers | XcellHost', loadComponent: () => import('./pages/dedicated-ai-servers.page').then(m => m.DedicatedAiServersPage) },
+
+  { path: 'sage-300-hosting', title: 'Sage 300 ERP Hosting | XcellHost', data: { sageSource: 'sage-300-hosting' }, loadComponent: () => import('./pages/sage-imported.page').then(m => m.SageImportedPage) },
+  { path: 'sage-x3-hosting', title: 'Sage X3 Hosting | XcellHost', data: { sageSource: 'sage-x3-hosting' }, loadComponent: () => import('./pages/sage-imported.page').then(m => m.SageImportedPage) },
+  { path: 'virtual-networks', title: 'Virtual Networks | XcellHost', data: { networkSource: 'virtual-networks' }, loadComponent: () => import('./pages/cloud-network-imported.page').then(m => m.CloudNetworkImportedPage) },
+  { path: 'virtual-firewalls', title: 'Virtual Firewalls | XcellHost', data: { networkSource: 'virtual-firewalls' }, loadComponent: () => import('./pages/cloud-network-imported.page').then(m => m.CloudNetworkImportedPage) },
+  { path: 'virtual-load-balancer', title: 'Virtual Load Balancer | XcellHost', data: { networkSource: 'virtual-load-balancer' }, loadComponent: () => import('./pages/cloud-network-imported.page').then(m => m.CloudNetworkImportedPage) },
+  { path: 'scrutiny-dlp', title: 'Scrutiny DLP | XcellHost', data: { scrutinySource: 'scrutiny-dlp' }, loadComponent: () => import('./pages/scrutiny-imported.page').then(m => m.ScrutinyImportedPage) },
+  { path: 'sap-on-aws', title: 'SAP on AWS | XcellHost', loadComponent: () => import('./pages/sap-on-aws.page').then(m => m.SapOnAwsPage) },
+  { path: 'sap-on-gcp', title: 'SAP on Google Cloud | XcellHost', loadComponent: () => import('./pages/sap-on-gcp.page').then(m => m.SapOnGcpPage) },
+  { path: 'sap-on-azure', title: 'SAP on Azure | XcellHost', loadComponent: () => import('./pages/sap-on-azure.page').then(m => m.SapOnAzurePage) },
+
+  { path: 'under-construction/openstack-api', redirectTo: '/openstack-api', pathMatch: 'full' },
+  { path: 'openstack-api', title: 'OpenStack API | XcellHost', data: { developerSlug: 'openstack-api' }, loadComponent: () => import('./pages/developer-imported.page').then(m => m.DeveloperImportedPage) },
+  { path: 'under-construction/terraform-provider', redirectTo: '/terraform-provider', pathMatch: 'full' },
+  { path: 'terraform-provider', title: 'Terraform Provider | XcellHost', data: { developerSlug: 'terraform-provider' }, loadComponent: () => import('./pages/developer-imported.page').then(m => m.DeveloperImportedPage) },
+  { path: 'under-construction/s3-object-storage-api', redirectTo: '/s3-object-storage-api', pathMatch: 'full' },
+  { path: 's3-object-storage-api', title: 'S3 Object Storage API | XcellHost', data: { developerSlug: 's3-object-storage-api' }, loadComponent: () => import('./pages/developer-imported.page').then(m => m.DeveloperImportedPage) },
+  { path: 'under-construction/openstack-cli', redirectTo: '/openstack-cli', pathMatch: 'full' },
+  { path: 'openstack-cli', title: 'OpenStack CLI | XcellHost', data: { developerSlug: 'openstack-cli' }, loadComponent: () => import('./pages/developer-imported.page').then(m => m.DeveloperImportedPage) },
+  { path: 'under-construction/openstack-credentials', redirectTo: '/openstack-credentials', pathMatch: 'full' },
+  { path: 'openstack-credentials', title: 'OpenStack Credentials | XcellHost', data: { developerSlug: 'openstack-credentials' }, loadComponent: () => import('./pages/developer-imported.page').then(m => m.DeveloperImportedPage) },
+  { path: 'under-construction/kubernetes-api', redirectTo: '/kubernetes-api', pathMatch: 'full' },
+  { path: 'kubernetes-api', title: 'Kubernetes API | XcellHost', data: { developerSlug: 'kubernetes-api' }, loadComponent: () => import('./pages/developer-imported.page').then(m => m.DeveloperImportedPage) },
+
+  { path: 'network-access-control-nac', title: 'Genian NAC | XcellHost', loadComponent: () => import('./pages/genian-nac.page').then(m => m.GenianNacPage) },
+
+  // Veritas renders the supplied page content inside the existing site shell.
+  { path: 'veritas', title: 'AI Visibility & SEO | XcellHost', loadComponent: () => import('./pages/veritas.page').then(m => m.VeritasPage) },
+
+  { path: 'genian-nac', title: 'Genian NAC | XcellHost', loadComponent: () => import('./pages/genian-nac.page').then(m => m.GenianNacPage) },
+  { path: 'bare-metal-servers/checkout', title: 'Complete Your Bare Metal Server Order | XcellHost', data: { checkoutProduct: 'bare-metal' }, loadComponent: () => import('./pages/checkout.page').then(m => m.CheckoutPage) },
+  { path: 'gpu-servers/checkout', title: 'Complete Your GPU Server Order | XcellHost', data: { checkoutProduct: 'gpu' }, loadComponent: () => import('./pages/checkout.page').then(m => m.CheckoutPage) },
+  { path: 'tally-on-cloud/checkout', data: { checkoutProduct: 'tally' }, loadComponent: () => import('./pages/checkout.page').then(m => m.CheckoutPage) },
+  { path: 'serverless-inference', data: { inferenceSlug: 'serverless-inference' }, loadComponent: () => import('./pages/inference-imported.page').then(m => m.InferenceImportedPage) },
+  { path: 'dedicated-inference', data: { inferenceSlug: 'dedicated-inference' }, loadComponent: () => import('./pages/inference-imported.page').then(m => m.InferenceImportedPage) },
+  { path: 'model-catalog', data: { inferenceSlug: 'model-catalog' }, loadComponent: () => import('./pages/inference-imported.page').then(m => m.InferenceImportedPage) },
+  { path: 'model-directory', data: { inferenceSlug: 'model-directory' }, loadComponent: () => import('./pages/inference-imported.page').then(m => m.InferenceImportedPage) },
+  {
+    path: 'sectigo-ssl/checkout',
+    title: 'Sectigo SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/sectigo-ssl-checkout.page').then(m => m.SectigoSslCheckoutPage),
+  },
+  { path: 'sectigo-ssl', data: { sectigoSlug: 'sectigo-ssl' }, loadComponent: () => import('./pages/sectigo-detail.page').then(m => m.SectigoDetailPage) },
+  {
+    path: 'sectigo-ov-ssl-wildcard/checkout',
+    title: 'Sectigo OV SSL Wildcard Checkout | XcellHost',
+    loadComponent: () => import('./pages/sectigo-ov-ssl-wildcard-checkout.page').then(m => m.SectigoOvSslWildcardCheckoutPage),
+  },
+  { path: 'sectigo-ov-ssl-wildcard', data: { sectigoSlug: 'sectigo-ov-ssl-wildcard' }, loadComponent: () => import('./pages/sectigo-detail.page').then(m => m.SectigoDetailPage) },
+  {
+    path: 'sectigo-ov-ssl/checkout',
+    title: 'Sectigo OV SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/sectigo-ov-ssl-checkout.page').then(m => m.SectigoOvSslCheckoutPage),
+  },
+  { path: 'sectigo-ov-ssl', data: { sectigoSlug: 'sectigo-ov-ssl' }, loadComponent: () => import('./pages/sectigo-detail.page').then(m => m.SectigoDetailPage) },
+  {
+    path: 'sectigo-acme-certificate-as-a-service/checkout',
+    title: 'Sectigo ACME Checkout | XcellHost',
+    loadComponent: () => import('./pages/sectigo-acme-checkout.page').then(m => m.SectigoAcmeCheckoutPage),
+  },
+  { path: 'sectigo-acme-certificate-as-a-service', data: { sectigoSlug: 'sectigo-acme-certificate-as-a-service' }, loadComponent: () => import('./pages/sectigo-detail.page').then(m => m.SectigoDetailPage) },
+  {
+    path: 'sectigo-ssl-wildcard/checkout',
+    title: 'Sectigo SSL Wildcard Checkout | XcellHost',
+    loadComponent: () => import('./pages/sectigo-ssl-wildcard-checkout.page').then(m => m.SectigoSslWildcardCheckoutPage),
+  },
+  { path: 'sectigo-ssl-wildcard', data: { sectigoSlug: 'sectigo-ssl-wildcard' }, loadComponent: () => import('./pages/sectigo-detail.page').then(m => m.SectigoDetailPage) },
+  {
+    path: 'sectigo-ssl-multi-domain-ucc/checkout',
+    title: 'Sectigo SSL Multi-Domain/UCC Checkout | XcellHost',
+    loadComponent: () => import('./pages/sectigo-ssl-multi-domain-ucc-checkout.page').then(m => m.SectigoSslMultiDomainUccCheckoutPage),
+  },
+  { path: 'sectigo-ssl-multi-domain-ucc', data: { sectigoSlug: 'sectigo-ssl-multi-domain-ucc' }, loadComponent: () => import('./pages/sectigo-detail.page').then(m => m.SectigoDetailPage) },
+  {
+    path: 'sectigo-multi-domain-wildcard/checkout',
+    title: 'Sectigo Multi-Domain Wildcard Checkout | XcellHost',
+    loadComponent: () => import('./pages/sectigo-multi-domain-wildcard-checkout.page').then(m => m.SectigoMultiDomainWildcardCheckoutPage),
+  },
+  {
+    path: 'sectigo-ov-ssl-multi-domain-wildcard/checkout',
+    title: 'Sectigo OV Multi-Domain Wildcard Checkout | XcellHost',
+    loadComponent: () => import('./pages/sectigo-ov-multi-domain-wildcard-checkout.page').then(m => m.SectigoOvMultiDomainWildcardCheckoutPage),
+  },
+  { path: 'sectigo-ov-ssl-multi-domain-wildcard', data: { sectigoSlug: 'sectigo-ov-ssl-multi-domain-wildcard' }, loadComponent: () => import('./pages/sectigo-detail.page').then(m => m.SectigoDetailPage) },
+  {
+    path: 'sectigo-ov-ssl-multi-domain-ucc/checkout',
+    title: 'Sectigo OV Multi-Domain/UCC Checkout | XcellHost',
+    loadComponent: () => import('./pages/sectigo-ov-multi-domain-ucc-checkout.page').then(m => m.SectigoOvMultiDomainUccCheckoutPage),
+  },
+  { path: 'sectigo-ov-ssl-multi-domain-ucc', data: { sectigoSlug: 'sectigo-ov-ssl-multi-domain-ucc' }, loadComponent: () => import('./pages/sectigo-detail.page').then(m => m.SectigoDetailPage) },
+  {
+    path: 'sectigo-ev-ssl-multi-domain-ucc/checkout',
+    title: 'Sectigo EV Multi-Domain/UCC Checkout | XcellHost',
+    loadComponent: () => import('./pages/sectigo-ev-multi-domain-ucc-checkout.page').then(m => m.SectigoEvMultiDomainUccCheckoutPage),
+  },
+  { path: 'sectigo-ev-ssl-multi-domain-ucc', data: { sectigoSlug: 'sectigo-ev-ssl-multi-domain-ucc' }, loadComponent: () => import('./pages/sectigo-detail.page').then(m => m.SectigoDetailPage) },
+  {
+    path: 'sectigo-ev-ssl/checkout',
+    title: 'Sectigo EV SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/sectigo-ev-ssl-checkout.page').then(m => m.SectigoEvSslCheckoutPage),
+  },
+  { path: 'sectigo-ev-ssl', data: { sectigoSlug: 'sectigo-ev-ssl' }, loadComponent: () => import('./pages/sectigo-detail.page').then(m => m.SectigoDetailPage) },
+  { path: 'explore-vps', redirectTo: 'vps-hosting', pathMatch: 'full' },
+  { path: 'wordpress-vps', data: { vpsSlug: 'wordpress-vps' }, loadComponent: () => import('./pages/vps-imported.page').then(m => m.VpsImportedPage) },
+  { path: 'windows-vps', data: { vpsSlug: 'windows-vps' }, loadComponent: () => import('./pages/vps-imported.page').then(m => m.VpsImportedPage) },
+  { path: 'vps-usa', data: { vpsSlug: 'vps-usa' }, loadComponent: () => import('./pages/vps-imported.page').then(m => m.VpsImportedPage) },
+  { path: 'vps-netherlands', data: { vpsSlug: 'vps-netherlands' }, loadComponent: () => import('./pages/vps-imported.page').then(m => m.VpsImportedPage) },
+  { path: 'vps-india', data: { vpsSlug: 'vps-india' }, loadComponent: () => import('./pages/vps-imported.page').then(m => m.VpsImportedPage) },
+  { path: 'vps-hosting', data: { vpsSlug: 'vps-hosting' }, loadComponent: () => import('./pages/vps-imported.page').then(m => m.VpsImportedPage) },
+  { path: 'openclaw-vps', data: { vpsSlug: 'openclaw-vps' }, loadComponent: () => import('./pages/vps-imported.page').then(m => m.VpsImportedPage) },
+  { path: 'n8n-vps', data: { vpsSlug: 'n8n-vps' }, loadComponent: () => import('./pages/vps-imported.page').then(m => m.VpsImportedPage) },
+  { path: 'cpanel-vps', data: { vpsSlug: 'cpanel-vps' }, loadComponent: () => import('./pages/vps-imported.page').then(m => m.VpsImportedPage) },
+  { path: 'microsoft-visio', title: 'Microsoft Visio | XcellHost', loadComponent: () => import('./pages/microsoft-visio.page').then(m => m.MicrosoftVisioPage) },
+  { path: 'microsoft-viva', title: 'Microsoft Viva | XcellHost', loadComponent: () => import('./pages/microsoft-viva.page').then(m => m.MicrosoftVivaPage) },
+  { path: 'mcrosoft-project-server', title: 'Microsoft Project Server | XcellHost', loadComponent: () => import('./pages/project-server.page').then(m => m.ProjectServerPage) },
+  { path: 'microsoft-project-server', redirectTo: 'mcrosoft-project-server', pathMatch: 'full' },
+  { path: 'acronis-ai', title: 'Acronis AI Platform | XcellHost', data: { productSlug: 'acronis-ai' }, loadComponent: () => import('./pages/acronis-ai-solution.page').then(m => m.AcronisAiSolutionPage) },
+  { path: 'cyberfit-score-tool', title: 'Acronis CyberFit Score | XcellHost', loadComponent: () => import('./pages/acronis-cyberfit-score.page').then(m => m.AcronisCyberfitScorePage) },
+
+
+  {
+    path: 'geotrust-true-businessid/checkout',
+    title: 'GeoTrust True BusinessID Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-truebusiness-id-checkout.page').then(m => m.GeoTrustTrueBusinessIdCheckoutPage),
+  },
+  {
+    path: 'geotrust-true-businessid', data: { businessIdVariant: 'single' },
+    loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
+  },
+  {
+    path: 'geotrust-true-businessid-multi-domain/checkout',
+    title: 'GeoTrust True BusinessID Multi-Domain Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-truebusiness-id-multi-domain-checkout.page').then(m => m.GeoTrustTrueBusinessIdMultiDomainCheckoutPage),
+  },
+  {
+    path: 'geotrust-true-businessid-multi-domain', data: { businessIdVariant: 'multi' },
+    loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
+  },
+  {
+    path: 'geotrust-true-businessid-ov/checkout',
+    title: 'GeoTrust TrueBusiness ID OV (FLEX) Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-truebusiness-id-ov-flex-checkout.page').then(m => m.GeoTrustTrueBusinessIdOvFlexCheckoutPage),
+  },
+  {
+    path: 'geotrust-true-businessid-ov',
+    title: 'GeoTrust TrueBusiness ID OV (FLEX) | XcellHost',
+    data: { businessIdVariant: 'ovFlex' },
+    loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
+  },
+  {
+    path: 'geotrust-true-businessid-ev/checkout',
+    title: 'GeoTrust True BusinessID with EV Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-truebusiness-id-with-ev-checkout.page').then(m => m.GeoTrustTrueBusinessIdWithEvCheckoutPage),
+  },
+  {
+    path: 'geotrust-true-businessid-ev',
+    title: 'GeoTrust True BusinessID with EV | XcellHost',
+    data: { businessIdVariant: 'ev' },
+    loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
+  },
+  {
+    path: 'geotrust-true-businessid-ev-multi-domain/checkout',
+    title: 'GeoTrust TrueBusiness ID w/ EV Multi-Domain Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-truebusiness-id-ev-multi-domain-checkout.page').then(m => m.GeoTrustTrueBusinessIdEvMultiDomainCheckoutPage),
+  },
+  {
+    path: 'geotrust-true-businessid-ev-multi-domain', data: { businessIdVariant: 'evMulti' },
+    loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
+  },
+  {
+    path: 'geotrust-true-businessid-wildcard/checkout',
+    title: 'GeoTrust True BusinessID Wildcard Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-truebusiness-id-wildcard-checkout.page').then(m => m.GeoTrustTrueBusinessIdWildcardCheckoutPage),
+  },
+  {
+    path: 'geotrust-true-businessid-wildcard', data: { businessIdVariant: 'wildcard' },
+    loadComponent: () => import('./pages/geotrust-businessid.page').then(m => m.GeoTrustBusinessIdPage),
+  },
+  {
+    path: 'geotrust-quickssl-premium-san/checkout',
+    title: 'GeoTrust QuickSSL Premium SAN Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-quickssl-premium-san-checkout.page').then(m => m.GeoTrustQuickSslPremiumSanCheckoutPage),
+  },
+  {
+    path: 'geotrust-quickssl-premium-san', data: { quickSslVariant: 'san' },
+    loadComponent: () => import('./pages/geotrust-quickssl.page').then(m => m.GeoTrustQuickSslPage),
+  },
+  {
+    path: 'geotrust-quickssl-premium/checkout',
+    title: 'GeoTrust QuickSSL Premium Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-quickssl-premium-checkout.page').then(m => m.GeoTrustQuickSslPremiumCheckoutPage),
+  },
+  {
+    path: 'geotrust-quickssl-premium', data: { quickSslVariant: 'single' },
+    loadComponent: () => import('./pages/geotrust-quickssl.page').then(m => m.GeoTrustQuickSslPage),
+  },
+  {
+    path: 'geotrust-quickssl-premium-wildcard/checkout',
+    title: 'GeoTrust QuickSSL Premium Wildcard Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-quickssl-premium-wildcard-checkout.page').then(m => m.GeoTrustQuickSslPremiumWildcardCheckoutPage),
+  },
+  {
+    path: 'geotrust-quickssl-premium-wildcard', data: { quickSslVariant: 'wildcard' },
+    loadComponent: () => import('./pages/geotrust-quickssl.page').then(m => m.GeoTrustQuickSslPage),
+  },
+  {
+    path: 'geotrust-dv-ssl-flex/checkout',
+    title: 'GeoTrust DV SSL (FLEX) Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-dv-ssl-flex-checkout.page').then(m => m.GeoTrustDvSslFlexCheckoutPage),
+  },
+  {
+    path: 'geotrust-dv-ssl-flex',
+    title: 'GeoTrust DV SSL (FLEX) | XcellHost',
+    loadComponent: () => import('./pages/geotrust-dv-ssl-flex.page').then(m => m.GeoTrustDvSslFlexPage),
+  },
+  {
+    path: 'geotrust-true-businessid-ev-flex/checkout',
+    title: 'GeoTrust TrueBusiness ID EV (FLEX) Checkout | XcellHost',
+    loadComponent: () => import('./pages/geotrust-truebusiness-id-ev-flex-checkout.page').then(m => m.GeoTrustTrueBusinessIdEvFlexCheckoutPage),
+  },
+  {
+    path: 'geotrust-true-businessid-ev-flex',
+    title: 'GeoTrust TrueBusiness ID EV (FLEX) | XcellHost',
+    loadComponent: () => import('./pages/geotrust-true-businessid-ev-flex.page').then(m => m.GeoTrustTrueBusinessIdEvFlexPage),
+  },
+
+  {
+    path: 'digicert-ev-multi-domain-ssl/checkout',
+    title: 'DigiCert EV Multi-Domain SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-ev-multi-domain-ssl-checkout.page').then(m => m.DigicertEvMultiDomainSslCheckoutPage),
+  },
+  {path:'digicert-ev-multi-domain-ssl',title:'DigiCert EV Multi-Domain SSL - XcellHost',data:{sslSlug:'digicert-ev-multi-domain-ssl'},loadComponent:()=>import('./pages/digicert-ssl-detail.page').then(m=>m.DigicertSslDetailPage)},
+  {
+    path: 'digicert-wildcard-ssl/checkout',
+    title: 'DigiCert Wildcard SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-wildcard-ssl-checkout.page').then(m => m.DigicertWildcardSslCheckoutPage),
+  },
+  {path:'digicert-wildcard-ssl',title:'DigiCert Wildcard SSL - XcellHost',data:{sslSlug:'digicert-wildcard-ssl'},loadComponent:()=>import('./pages/digicert-ssl-detail.page').then(m=>m.DigicertSslDetailPage)},
+  {
+    path: 'digicert-secure-site-ssl/checkout',
+    title: 'DigiCert Secure Site SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-secure-site-ssl-checkout.page').then(m => m.DigicertSecureSiteSslCheckoutPage),
+  },
+  {
+    path: 'digicert-secure-site-ev-ssl/checkout',
+    title: 'DigiCert Secure Site EV SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-secure-site-ev-ssl-checkout.page').then(m => m.DigicertSecureSiteEvSslCheckoutPage),
+  },
+  {path:'digicert-secure-site-ev-ssl',title:'DigiCert Secure Site EV SSL - XcellHost',data:{sslSlug:'digicert-secure-site-ev-ssl'},loadComponent:()=>import('./pages/digicert-ssl-detail.page').then(m=>m.DigicertSslDetailPage)},
+  {
+    path: 'digicert-secure-site-multi-domain-ssl/checkout',
+    title: 'DigiCert Secure Site Multi-Domain Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-secure-site-multi-domain-checkout.page').then(m => m.DigicertSecureSiteMultiDomainCheckoutPage),
+  },
+  {path:'digicert-secure-site-multi-domain-ssl',title:'DigiCert Secure Site Multi-Domain - XcellHost',data:{sslSlug:'digicert-secure-site-multi-domain-ssl'},loadComponent:()=>import('./pages/digicert-ssl-detail.page').then(m=>m.DigicertSslDetailPage)},
+  {
+    path: 'digicert-secure-site-wildcard-ssl/checkout',
+    title: 'DigiCert Secure Site Wildcard Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-secure-site-wildcard-checkout.page').then(m => m.DigicertSecureSiteWildcardCheckoutPage),
+  },
+  {path:'digicert-secure-site-wildcard-ssl',title:'DigiCert Secure Site Wildcard - XcellHost',data:{sslSlug:'digicert-secure-site-wildcard-ssl'},loadComponent:()=>import('./pages/digicert-ssl-detail.page').then(m=>m.DigicertSslDetailPage)},
+  {
+    path: 'digicert-secure-site-pro-ssl/checkout',
+    title: 'DigiCert Secure Site Pro SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-secure-site-pro-ssl-checkout.page').then(m => m.DigicertSecureSiteProSslCheckoutPage),
+  },
+  {path:'digicert-secure-site-pro-ssl',title:'DigiCert Secure Site Pro SSL - XcellHost',data:{sslSlug:'digicert-secure-site-pro-ssl'},loadComponent:()=>import('./pages/digicert-ssl-detail.page').then(m=>m.DigicertSslDetailPage)},
+  {
+    path: 'digicert-secure-site-pro-ev-ssl/checkout',
+    title: 'DigiCert Secure Site Pro EV SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-secure-site-pro-ev-ssl-checkout.page').then(m => m.DigicertSecureSiteProEvSslCheckoutPage),
+  },
+  {path:'digicert-secure-site-pro-ev-ssl',title:'DigiCert Secure Site Pro EV SSL - XcellHost',data:{sslSlug:'digicert-secure-site-pro-ev-ssl'},loadComponent:()=>import('./pages/digicert-ssl-detail.page').then(m=>m.DigicertSslDetailPage)},
+  {
+    path: 'digicert-multi-domain-ssl/checkout',
+    title: 'DigiCert Multi-Domain SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-multi-domain-ssl-checkout.page').then(m => m.DigicertMultiDomainSslCheckoutPage),
+  },
+  { path: 'digicert-multi-domain-ssl', title: 'DigiCert Multi-Domain SSL - XcellHost', loadComponent: () => import('./pages/digicert-multi-domain-ssl.page').then(m => m.DigicertMultiDomainSslPage) },
+  {
+    path: 'digicert-ev-ssl/checkout',
+    title: 'DigiCert Extended Validation SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-extended-validation-ssl-checkout.page').then(m => m.DigicertExtendedValidationSslCheckoutPage),
+  },
+  { path: 'digicert-ev-ssl', title: 'DigiCert EV SSL - XcellHost', loadComponent: () => import('./pages/digicert-ev-ssl.page').then(m => m.DigicertEvSslPage) },
+  {
+    path: 'digicert-standard-ssl/checkout',
+    title: 'DigiCert Standard SSL Checkout | XcellHost',
+    loadComponent: () => import('./pages/digicert-standard-ssl-checkout.page').then(m => m.DigicertStandardSslCheckoutPage),
+  },
+  { path: 'digicert-standard-ssl', title: 'DigiCert Standard SSL - XcellHost', loadComponent: () => import('./pages/digicert-standard-ssl.page').then(m => m.DigicertStandardSslPage) },
+
+  { path: 'managed-grc', title: 'Managed GRC - XcellHost', data: { consultingSlug: 'managed-grc' }, loadComponent: () => import('./pages/security-consulting.page').then(m => m.SecurityConsultingPage) },
+  { path: 'iso-27001-consulting', title: 'ISO 27001 Consulting - XcellHost', data: { consultingSlug: 'iso-27001-consulting' }, loadComponent: () => import('./pages/security-consulting.page').then(m => m.SecurityConsultingPage) },
+  { path: 'iso-20000-itsm', title: 'ISO 20000 (ITSM) - XcellHost', data: { consultingSlug: 'iso-20000-itsm' }, loadComponent: () => import('./pages/security-consulting.page').then(m => m.SecurityConsultingPage) },
+  { path: 'iso-27017-cloud-infosec', title: 'ISO 27017 Cloud Security - XcellHost', data: { consultingSlug: 'iso-27017-cloud-infosec' }, loadComponent: () => import('./pages/security-consulting.page').then(m => m.SecurityConsultingPage) },
+  { path: 'iso-22301-bmc', title: 'ISO 22301 Business Continuity - XcellHost', data: { consultingSlug: 'iso-22301-bmc' }, loadComponent: () => import('./pages/security-consulting.page').then(m => m.SecurityConsultingPage) },
+  { path: 'iso-27018-pii-public-cloud', title: 'ISO 27018 PII Protection - XcellHost', data: { consultingSlug: 'iso-27018-pii-public-cloud' }, loadComponent: () => import('./pages/security-consulting.page').then(m => m.SecurityConsultingPage) },
+  { path: 'iso-42001ai-risk', title: 'ISO 42001 AI Management - XcellHost', data: { consultingSlug: 'iso-42001ai-risk' }, loadComponent: () => import('./pages/security-consulting.page').then(m => m.SecurityConsultingPage) },
+  { path: 'soc-1-cunsulting', title: 'SOC 1 Consulting - XcellHost', data: { consultingSlug: 'soc-1-cunsulting' }, loadComponent: () => import('./pages/security-consulting.page').then(m => m.SecurityConsultingPage) },
+  { path: 'soc-2-cunsulting', title: 'SOC 2 Consulting - XcellHost', data: { consultingSlug: 'soc-2-cunsulting' }, loadComponent: () => import('./pages/security-consulting.page').then(m => m.SecurityConsultingPage) },
+  { path: 'pci-consulting', title: 'PCI DSS Consulting - XcellHost', data: { consultingSlug: 'pci-consulting' }, loadComponent: () => import('./pages/security-consulting.page').then(m => m.SecurityConsultingPage) },
+  { path: 'email-signing-certificates', title: 'Email Signing Certificates - XcellHost', loadComponent: () => import('./pages/email-signing-certificates.page').then(m => m.EmailSigningCertificatesPage) },
+  { path: 'code-signing-certificates', title: 'Code Signing Certificates - XcellHost', loadComponent: () => import('./pages/code-signing-certificates.page').then(m => m.CodeSigningCertificatesPage) },
+  { path: 'certificate-management', title: 'Certificate Management - XcellHost', loadComponent: () => import('./pages/certificate-management.page').then(m => m.CertificateManagementPage) },
+  { path: 'website-security-solutions', title: 'Website Security Solutions - XcellHost', loadComponent: () => import('./pages/website-security-solutions.page').then(m => m.WebsiteSecuritySolutionsPage) },
+  { path: 'mark-certificates', title: 'Mark Certificates - XcellHost', loadComponent: () => import('./pages/mark-certificates.page').then(m => m.MarkCertificatesPage) },
+  { path: 'sectigo-ev-code-signing', title: 'Sectigo EV Code Signing - XcellHost', loadComponent: () => import('./pages/sectigo-ev-code-signing.page').then(m => m.SectigoEvCodeSigningPage) },
+  { path: 'sectigo-code-signing', title: 'Sectigo Code Signing - XcellHost', loadComponent: () => import('./pages/sectigo-code-signing.page').then(m => m.SectigoCodeSigningPage) },
+  { path: 'rapidssl-ssl-certificates', title: 'RapidSSL Certificates - XcellHost', loadComponent: () => import('./pages/rapidssl.page').then(m => m.RapidsslPage) },
+  { path: 'sarv-workspace', redirectTo: 'xcellworkspace', pathMatch: 'full' },
+  { path: 'xcellworkspace', title: 'XcellWorkSpace - XcellHost', loadComponent: () => import('./pages/sarv-workspace.page').then(m => m.SarvWorkspacePage) },
+  { path: 'cloud-contact-center', title: 'Cloud Contact Center - XcellHost', loadComponent: () => import('./pages/cloud-contact-center.page').then(m => m.CloudContactCenterPage) },
+  { path: 'managed-kubernetes', title: 'Managed Kubernetes - XcellHost', loadComponent: () => import('./pages/managed-kubernetes.page').then(m => m.ManagedKubernetesPage) },
+  { path: 'under-construction/podcasts', title: 'The Cloud Podcast - XcellHost', loadComponent: () => import('./pages/podcasts.page').then(m => m.PodcastsPage) },
+
+  {
+    path: 'explore-cloud-servers',
+    data: { productSlug: 'performance-cloud' },
+    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+  },
+
+  {
+    path: 'compare-products',
+    title: 'Product Comparisons | XcellHost',
+    loadComponent: () => import('./pages/compare-products.page').then((m) => m.CompareProductsPage),
+  },
+  {
+    path: 'compare-products/:comparison',
+    loadComponent: () => import('./pages/product-comparison-detail.page').then((m) => m.ProductComparisonDetailPage),
+  },
+
+  {
+    path: 'microsoft-365-tenant-to-tenant-migration',
+    loadComponent: () => import('./pages/microsoft-365-tenant-to-tenant-migration.page').then((m) => m.Microsoft365TenantToTenantMigrationPage),
+  },
+  {
+    path: 'microsoft-365-e7',
+    title: 'Microsoft 365 E7 (Frontier Suite) | XcellHost',
+    loadComponent: () => import('./pages/microsoft-365-e7.page').then((m) => m.Microsoft365E7Page),
+  },
+
+  ...Object.keys(FRAMEWORK_DETAILS).map(slug => ({ path: 'cybersecurity-frameworks/' + slug, data: { productSlug: slug }, loadComponent: () => import('./pages/product.page').then(m => m.ProductPage) })),
+  {
+    path: 'microsoft-365-business-standard-no-teams',
+    loadComponent: () => import('./pages/microsoft-365-business-standard-no-teams.page').then((m) => m.Microsoft365BusinessStandardNoTeamsPage),
+  },
+  {
+    path: 'microsoft-365-business-basic-no-teams',
+    loadComponent: () => import('./pages/microsoft-365-business-basic-no-teams.page').then((m) => m.Microsoft365BusinessBasicNoTeamsPage),
+  },
+  {
+    path: 'microsoft-365-business-premium-no-teams',
+    loadComponent: () => import('./pages/microsoft-365-business-premium-no-teams.page').then((m) => m.Microsoft365BusinessPremiumNoTeamsPage),
+  },
+  {
+    path: 'microsoft-365-business-standard',
+    loadComponent: () => import('./pages/microsoft-365-business-standard.page').then((m) => m.Microsoft365BusinessStandardPage),
+  },
+  {
+    path: 'microsoft-365-business-premium',
+    loadComponent: () => import('./pages/microsoft-365-business-premium.page').then((m) => m.Microsoft365BusinessPremiumPage),
+  },
+  {
+    path: 'microsoft-365-business-basic',
+    loadComponent: () => import('./pages/microsoft-365-business-basic.page').then((m) => m.Microsoft365BusinessBasicPage),
+  },
+  {
+    path: 'edr-checkout',
+    data: { checkoutProduct: 'edr' },
+    loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
+  },
+  {
+    path: 'rmm-checkout',
+    data: { checkoutProduct: 'rmm' },
+    loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
+
+  },
+  {
+    path: 'acronis-genai-checkout',
+    data: { checkoutProduct: 'genai' },
+    loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
+  },
+  {
+    path: 'cybird-checkout',
+    data: { checkoutProduct: 'cybird' },
+    loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
+  },
+  {
+    path: 'smb-cloud-desktop/checkout',
+    data: { checkoutProduct: 'smb-desktop' },
+    loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
+  },
+  {
+    path: 'cloud-disaster-recovery-smb-checkout',
+    data: { checkoutProduct: 'cdr-smb' },
+    loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
+  },
+  {
+    path: 'dpdpa-for-smb/launch-checkout',
+    data: { checkoutProduct: 'dpdpa-launch' },
+    loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
+  },
+  {
+    path: 'dpdpa-for-smb/growth-checkout',
+    data: { checkoutProduct: 'dpdpa-growth' },
+    loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
+  },
+  {
+    path: 'dpdpa-for-smb/enterprise-enquiry',
+    data: { checkoutProduct: 'dpdpa-enterprise' },
+    loadComponent: () => import('./pages/checkout.page').then((m) => m.CheckoutPage),
+  },
+  {
+    path: 'managed-redis',
+    loadComponent: () => import('./pages/managed-redis.page').then((m) => m.ManagedRedisPage),
+  },
+  ...[...MENU_SERVICE_PAGES, ...INDUSTRY_CLOUD_PAGES].filter((page) => page.slug !== 'smart-qr-and-nfc-automation' && page.slug !== 'gcc-cloud').map((page) => ({
     path: page.slug,
     data: { servicePage: page },
     loadComponent: () => import('./pages/menu-service.page').then((m) => m.MenuServicePage),
   })),
+  {
+    path: 'gcc-cloud',
+    title: 'GCC Cloud | XcellHost',
+    data: { networkSource: 'gcc-cloud' },
+    loadComponent: () => import('./pages/cloud-network-imported.page').then((m) => m.CloudNetworkImportedPage),
+  },
   { path: 'mobile-application-penetration-testing', redirectTo: 'mobile-application-security-testing', pathMatch: 'full' },
   { path: 'aeo-geo-automation4', redirectTo: 'aeo-geo-automation', pathMatch: 'full' },
   { path: 'managed-365', redirectTo: 'managed-microsoft-365', pathMatch: 'full' },
@@ -71,7 +648,10 @@ export const routes: Routes = [
     data: { productSlug: 'microsoft-365-enterprise-additional' },
     loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
   },
-  { path: 'explore-marketplace', redirectTo: 'marketplace', pathMatch: 'full' },
+  { path: 'explore-marketplace', loadComponent: () => import('./pages/explore-marketplace.page').then(m => m.ExploreMarketplacePage) },
+  { path: 'customer-testimonials', loadComponent: () => import('./pages/customer-testimonials.page').then(m => m.CustomerTestimonialsPage) },
+  { path: 'under-construction/customer-testimonials', redirectTo: 'customer-testimonials', pathMatch: 'full' },
+  { path: 'company/customer-testimonials', redirectTo: 'customer-testimonials', pathMatch: 'full' },
   { path: 'under-construction/careers-overview', redirectTo: 'company/careers-overview', pathMatch: 'full' },
   { path: 'promo-offers', redirectTo: 'promotion-and-offers', pathMatch: 'full' },
   { path: 'under-construction/promotion-and-offers', redirectTo: 'promotion-and-offers', pathMatch: 'full' },
@@ -83,6 +663,7 @@ export const routes: Routes = [
   { path: 'company/our-team-our-story', redirectTo: 'about-us', pathMatch: 'full' },
   { path: 'about-us', data: { pageSlug: 'our-team-our-story' }, loadComponent: () => import('./pages/company.page').then((m) => m.CompanyPage) },
   { path: '', pathMatch: 'full', loadComponent: () => import('./pages/home.page').then((m) => m.HomePage) },
+  { path: 'sitemap', title: 'Sitemap | XcellHost', loadComponent: () => import('./pages/sitemap.page').then((m) => m.SitemapPage) },
   { path: 'compare', loadComponent: () => import('./pages/compare.page').then((m) => m.ComparePage) },
   { path: 'compare-providers', loadComponent: () => import('./pages/compare-providers.page').then((m) => m.CompareProvidersPage) },
   {
@@ -120,6 +701,8 @@ export const routes: Routes = [
   { path: 'under-construction/infrastructure', redirectTo: 'infrastructure', pathMatch: 'full' },
   { path: 'under-construction/escalation-matrix', redirectTo: 'escalation-matrix', pathMatch: 'full' },
   { path: 'under-construction/partner-matrix', redirectTo: 'partner-matrix', pathMatch: 'full' },
+  { path: 'under-construction/partner-contact-matrix', redirectTo: 'partner-matrix', pathMatch: 'full' },
+  { path: 'partner-contact-matrix', redirectTo: 'partner-matrix', pathMatch: 'full' },
   {
     path: 'under-construction/partner-overview',
     data: { pageSlug: 'partner-overview' },
@@ -182,9 +765,23 @@ export const routes: Routes = [
   { path: 'tsplus-demo-center', loadComponent: () => import('./pages/tsplus-demo-center.page').then((m) => m.TsplusDemoCenterPage) },
   { path: 'under-construction/acronis-demo-center', redirectTo: 'acronis-demo-center', pathMatch: 'full' },
   { path: 'acronis-demo-center', loadComponent: () => import('./pages/acronis-demo-center.page').then((m) => m.AcronisDemoCenterPage) },
+  { path: 'under-construction/druva-demo-center', redirectTo: 'druva-demo-center', pathMatch: 'full' },
+  { path: 'druva-demo-center', loadComponent: () => import('./pages/druva-demo-center.page').then((m) => m.DruvaDemoCenterPage) },
   { path: 'under-construction/xcellhost-demo-center', redirectTo: 'xcellhost-demo-center', pathMatch: 'full' },
   { path: 'xcellhost-demo-center', loadComponent: () => import('./pages/xcellhost-demo-center.page').then((m) => m.XcellhostDemoCenterPage) },
+  { path: 'under-construction/plesk-demo-center', redirectTo: 'plesk-demo-center', pathMatch: 'full' },
+  { path: 'plesk-demo-center', data: { controlPanel: 'plesk' }, loadComponent: () => import('./pages/control-panel-demo-center.page').then((m) => m.ControlPanelDemoCenterPage) },
+  {
+    path: 'tally-demo-center',
+    title: 'Tally Demo Center | XcellHost',
+    data: { searchDescription: 'Explore Tally on Cloud workspace walkthroughs and request a live demo.' },
+    loadComponent: () => import('./pages/tally-demo-center.page').then(m => m.TallyDemoCenterPage),
+  },
+  { path: 'under-construction/cpanel-demo-center', redirectTo: 'cpanel-demo-center', pathMatch: 'full' },
+  { path: 'cpanel-demo-center', data: { controlPanel: 'cpanel' }, loadComponent: () => import('./pages/control-panel-demo-center.page').then((m) => m.ControlPanelDemoCenterPage) },
   { path: 'under-construction/events-catalog', loadComponent: () => import('./pages/events-catalog.page').then((m) => m.EventsCatalogPage) },
+  { path: 'global-data-centers', redirectTo: 'company/data-centers-global', pathMatch: 'full' },
+  { path: 'under-construction/global-data-centers', redirectTo: 'company/data-centers-global', pathMatch: 'full' },
   { path: 'under-construction/:slug', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
   { path: 'under-construction', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
   {
@@ -288,6 +885,25 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/digicert-cmc.page').then((m) => m.DigicertCmcPage),
   },
   {
+    path: 'acme-enabled-ssl-certificates',
+    loadComponent: () => import('./pages/acme-certificate.page').then((m) => m.AcmeCertificatePage),
+  },
+  {
+    path: 'acme-certificate',
+    redirectTo: 'acme-enabled-ssl-certificates',
+    pathMatch: 'full',
+  },
+  {
+    path: 'acme-certificates',
+    redirectTo: 'acme-enabled-ssl-certificates',
+    pathMatch: 'full',
+  },
+  {
+    path: 'xcellhost-acme-certificate',
+    redirectTo: 'acme-enabled-ssl-certificates',
+    pathMatch: 'full',
+  },
+  {
     path: 'mobile-device-mgmt',
     data: { productSlug: 'cloud-mobile-device-mgmt' },
     loadComponent: () => import('./pages/cloud-mdm.page').then((m) => m.CloudMdmPage),
@@ -329,6 +945,20 @@ export const routes: Routes = [
   { path: 'customer-stories', redirectTo: 'company/customer-stories', pathMatch: 'full' },
   { path: 'category/:name', loadComponent: () => import('./pages/category.page').then((m) => m.CategoryPage) },
   { path: 'vendor-partners/acronis', loadComponent: () => import('./pages/acronis-partner.page').then((m) => m.AcronisPartnerPage) },
+  { path: 'vendor-partners/tsplus', loadComponent: () => import('./pages/tsplus-partner.page').then((m) => m.TsplusPartnerPage) },
+  {
+    path: 'vendor-partners/fortinet',
+    redirectTo: '/fortinet-fortigate',
+    pathMatch: 'full',
+  },
+  {
+    path: 'vendor-partners/microsoft-azure',
+    loadComponent: () => import('./pages/microsoft-azure-partner.page').then((m) => m.MicrosoftAzurePartnerPage),
+  },
+  {
+    path: 'vendor-partners/amazon-web-services',
+    loadComponent: () => import('./pages/amazon-web-services-partner.page').then((m) => m.AmazonWebServicesPartnerPage),
+  },
   {
     path: 'vendor-partners/:slug',
     loadComponent: () =>
@@ -408,11 +1038,22 @@ export const routes: Routes = [
       ),
   },
   { path: 'bare-metal-server', redirectTo: 'bare-metal-servers', pathMatch: 'full' },
+  {
+    path: 'explore-bare-metal-servers',
+    data: { productSlug: 'bare-metal-servers' },
+    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+  },
+  { path: 'nvidia-b300-nodes', loadComponent: () => import('./pages/nvidia-b300.page').then((m) => m.NvidiaB300Page) },
   { path: 'nvidia-h200', loadComponent: () => import('./pages/nvidia-h200.page').then((m) => m.NvidiaH200Page) },
   {
     path: 'cloud-devops-services',
     data: { productSlug: 'cloud-devops-services' },
     loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+  },
+  {
+    path: 'cloud-drive/checkout',
+    loadComponent: () =>
+      import('./pages/cloud-drive-checkout.page').then((m) => m.CloudDriveCheckoutPage),
   },
   { path: 'acronis-edr', redirectTo: '', pathMatch: 'full' },
   {
@@ -426,7 +1067,106 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
   },
   // service pages sit at the root, so this must stay last
+  { path: 'comodo-enterprise-pro-basic-pa', redirectTo: 'comodo-personal-authentication', pathMatch: 'full' },
   { path: 'co-location', redirectTo: 'co-location-services', pathMatch: 'full' },
+  {
+    path: 'advanced-endpoint-security-edr',
+    data: { productSlug: 'advanced-endpoint-security-edr' },
+    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+  },
+  {
+    path: 'scrutiny-edr',
+    title: 'Scrutiny EDR | XcellHost',
+    data: { scrutinySource: 'scrutiny-edr' },
+    loadComponent: () => import('./pages/scrutiny-imported.page').then((m) => m.ScrutinyImportedPage),
+  },
+  {
+    path: 'cloud-drive',
+    data: { productSlug: 'cloud-drive' },
+    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
+  },
+  { path: 'microsoft-365', redirectTo: 'microsoft-365-smb', pathMatch: 'full' },
+  { path: 'secure-dmarc', redirectTo: 'enterprise-dmarc', pathMatch: 'full' },
+  { path: 'clm-solutions', redirectTo: 'certificate-mgmt-solutions', pathMatch: 'full' },
+  { path: 'zoho-sign', loadComponent: () => import('./pages/zoho-sign.page').then((m) => m.ZohoSignPage) },
+  {
+    path: 'accops-digital-workspace',
+    loadComponent: () => import('./pages/accops-digital-workspace.page').then((m) => m.AccopsDigitalWorkspacePage),
+  },
+  {
+    path: 'cloud-desktop-enterprise-vdi',
+    loadComponent: () => import('./pages/cloud-desktop-enterprise-vdi.page').then((m) => m.CloudDesktopEnterpriseVdiPage),
+  },
+  {
+    path: 'sap-hosting',
+    loadComponent: () => import('./pages/sap-hosting.page').then((m) => m.SapHostingPage),
+  },
+  {
+    path: 'sap-b1-cloud',
+    loadComponent: () => import('./pages/sap-b1-cloud.page').then((m) => m.SapB1CloudPage),
+  },
+  {
+    path: 'sap-s4-hana-private-cloud',
+    loadComponent: () => import('./pages/sap-s4-hana-private-cloud.page').then((m) => m.SapS4HanaPrivateCloudPage),
+  },
+  {
+    path: 'anydesk',
+    loadComponent: () => import('./pages/anydesk.page').then((m) => m.AnydeskPage),
+  },
+  {
+    path: 'teamviewer',
+    loadComponent: () => import('./pages/teamviewer.page').then((m) => m.TeamviewerPage),
+  },
+  {
+    path: 'fortinet-fortigate',
+    loadComponent: () => import('./pages/fortinet-fortigate.page').then((m) => m.FortinetFortigatePage),
+  },
+  {
+    path: 'whats-new',
+    loadComponent: () => import('./pages/whats-new.page').then((m) => m.WhatsNewPage),
+  },
+  {
+    path: 'acronis-ot',
+    loadComponent: () => import('./pages/acronis-ot.page').then((m) => m.AcronisOtPage),
+  },
+  {
+    path: 'anti-ransomware-warranty',
+    loadComponent: () => import('./pages/anti-ransomware-warranty.page').then((m) => m.AntiRansomwareWarrantyPage),
+  },
+  ...(['acronis-cyber-intelligence', 'acronis-cyber-frame', 'acronis-workflow-automation'] as const).map(source => ({
+    path: source,
+    data: { source },
+    loadComponent: () => import('./pages/acronis-solutions.page').then(m => m.AcronisSolutionsPage),
+  })),
+  {
+    path: 'sql-server-comparision',
+    title: 'SQL Server Editions Comparison | XcellHost',
+    loadComponent: () => import('./pages/sql-server-editions-comparison.page').then((m) => m.SqlServerEditionsComparisonPage),
+  },
+  {
+    path: 'sql-server-editions-comparison',
+    redirectTo: 'sql-server-comparision',
+    pathMatch: 'full',
+  },
+  {
+    path: 'windows-server-comparision',
+    title: 'Windows Server 2025 Editions Comparison | XcellHost',
+    loadComponent: () => import('./pages/windows-server-editions-comparison.page').then((m) => m.WindowsServerEditionsComparisonPage),
+  },
+  {
+    path: 'windows-server-2025-editions-comparison',
+    redirectTo: 'windows-server-comparision',
+    pathMatch: 'full',
+  },
+  { path: '404', title: '404 - Page Not Found | XcellHost', loadComponent: () => import('./pages/not-found.page').then((m) => m.NotFoundPage) },
+
+  ...(['multi-factor-authentication', 'identity-and-access-management', 'privileged-access-management', 'privileged-identity-management', 'identity-governance-and-administration', 'iam-assessment', 'active-directory-assessment', 'security-hardware-token'] as const).map(source => ({
+    path: source,
+    data: { source },
+    loadComponent: () => import('./pages/identity-security.page').then(m => m.IdentitySecurityPage),
+  })),
+  { path: 'identity-access-management', redirectTo: 'identity-and-access-management', pathMatch: 'full' },
+  { path: 'identity-governance-administration', redirectTo: 'identity-governance-and-administration', pathMatch: 'full' },
   { path: ':slug', loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage) },
-  { path: '**', redirectTo: '' },
+  { path: '**', title: '404 - Page Not Found | XcellHost', loadComponent: () => import('./pages/not-found.page').then((m) => m.NotFoundPage) },
 ];

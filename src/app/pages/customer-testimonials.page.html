@@ -1,0 +1,137 @@
+<main class="testimonials-page">
+  <section class="testimonials-intro" data-product="XcellHost Customer Stories">
+    <div class="wrap testimonials-banner">
+      <div class="testimonials-banner-copy">
+      <nav aria-label="Breadcrumb"><a routerLink="/">Home</a><span aria-hidden="true"> / </span>Customer Testimonials</nav>
+      <span class="eyebrow">CUSTOMER STORIES</span>
+      <h1>Trusted by Businesses.<br />Loved by Customers.</h1>
+      <p>Discover why businesses trust our solutions to simplify their operations, strengthen their technology, and keep their business moving forward.</p>
+      </div>
+      <div class="testimonials-banner-art testimonials-animation" aria-hidden="true">
+        <svg viewBox="0 0 520 360" fill="none">
+          <defs>
+            <radialGradient id="testimonialGlow"><stop stop-color="#249bff" stop-opacity=".4"/><stop offset="1" stop-color="#249bff" stop-opacity="0"/></radialGradient>
+            <linearGradient id="testimonialPlatform"><stop stop-color="#ffce78"/><stop offset=".45" stop-color="#e8f4ff"/><stop offset="1" stop-color="#1687ff"/></linearGradient>
+            <linearGradient id="testimonialCard" x2="1" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#deecff"/></linearGradient>
+            <g id="testimonialReviewCard">
+              <rect width="220" height="134" rx="16" fill="url(#testimonialCard)" stroke="#abd4ff"/>
+              <circle cx="36" cy="36" r="20" fill="#d2e5fb"/>
+              <circle cx="36" cy="30" r="7" fill="#4683bf"/><path d="M23 49Q24 37 36 37Q48 37 49 49" fill="#4683bf"/>
+              <text x="67" y="29" class="review-quote">“</text>
+              <text x="67" y="54" class="review-stars">★★★★★</text>
+              <path d="M27 78H186M27 92H173M27 106H141" stroke="#b7cce9" stroke-width="6" stroke-linecap="round"/>
+            </g>
+          </defs>
+          <ellipse cx="267" cy="180" rx="244" ry="174" fill="url(#testimonialGlow)"/>
+          <ellipse class="review-orbit" cx="265" cy="174" rx="210" ry="108" transform="rotate(-18 265 174)" stroke="#64bbff" stroke-opacity=".6" stroke-dasharray="3 8"/>
+          <path class="review-ribbon" d="M65 252Q9 140 122 120Q200 106 292 244Q373 353 457 185" stroke="url(#testimonialPlatform)" stroke-width="10" stroke-opacity=".6"/>
+          <ellipse cx="263" cy="326" rx="163" ry="14" fill="#1ca0ff" opacity=".13"/>
+          <path d="M165 305V320Q263 349 361 320V305Z" fill="url(#testimonialPlatform)" stroke="#79caff"/>
+          <ellipse cx="263" cy="305" rx="98" ry="15" fill="#bce2ff" stroke="#69baff"/>
+          <g transform="translate(51 55) rotate(-12)"><g class="review-float review-small"><use href="#testimonialReviewCard" transform="scale(.57)"/></g></g>
+          <g transform="translate(360 49) rotate(9)"><g class="review-float review-small review-delay"><use href="#testimonialReviewCard" transform="scale(.58)"/></g></g>
+          <g transform="translate(40 218) rotate(-13)"><g class="review-float review-small review-delay"><use href="#testimonialReviewCard" transform="scale(.56)"/></g></g>
+          <g transform="translate(388 231) rotate(13)"><g class="review-float review-small"><use href="#testimonialReviewCard" transform="scale(.52)"/></g></g>
+          <g transform="translate(161 129) rotate(7)"><g class="review-float review-main"><use href="#testimonialReviewCard"/></g></g>
+          <g class="review-bubble">
+            <path d="M207 31H240Q251 31 251 42V62Q251 73 240 73H228L217 84V73H207Q196 73 196 62V42Q196 31 207 31Z" fill="#158df1" stroke="#72c6ff"/>
+            <g class="review-typing" fill="#fff"><circle cx="211" cy="52" r="3"/><circle cx="224" cy="52" r="3"/><circle cx="237" cy="52" r="3"/></g>
+          </g>
+          <g class="review-verified"><circle cx="357" cy="275" r="19" fill="#10bfa4" stroke="#75f0d7"/><path d="M348 275L355 281L367 268" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <g class="review-heart"><circle cx="439" cy="157" r="21" fill="#ff637f" stroke="#ffb7c4"/><path d="M439 169L428 157C419 147 435 141 439 151C443 141 459 147 450 157Z" fill="#fff"/></g>
+          <text x="288" y="83" class="review-spark">★</text><text x="92" y="185" class="review-spark spark-delay">★</text><text x="407" y="204" class="review-spark spark-delay">★</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+  <div class="wrap testimonials-layout">
+    <aside class="testimonials-sidebar" aria-label="Browse testimonials by menu and page">
+      <div class="sidebar-heading"><span class="material-symbols-outlined" aria-hidden="true">grid_view</span><div><h2>Explore by service</h2><p>Choose a category to get started</p></div></div>
+      <div class="menu-tabs" role="group" aria-label="Menu categories">
+        @for (menu of menus; track menu.id; let index = $index) {
+          <div class="menu-category">
+            <button class="menu-button" type="button" [class.active]="selectedMenuId() === menu.id"
+              [attr.aria-expanded]="expandedMenuId() === menu.id" [attr.aria-controls]="'pages-' + menu.id"
+              (click)="selectMenu(menu.id)">
+              <span class="menu-label"><span class="menu-number" aria-hidden="true">{{ index + 1 }}</span>{{ menu.label }}</span>
+              <span class="menu-chevron material-symbols-outlined" [class.expanded]="expandedMenuId() === menu.id" aria-hidden="true">chevron_right</span>
+            </button>
+            <div class="accordion-shell" [class.open]="expandedMenuId() === menu.id" [attr.inert]="expandedMenuId() === menu.id ? null : ''" [attr.aria-hidden]="expandedMenuId() !== menu.id">
+              <div class="accordion-inner">
+                <div class="subcategory-list" [id]="'pages-' + menu.id">
+                  @for (tab of menu.tabs; track tab.id) {
+                    <button class="subcategory-button" type="button" [class.active]="selectedMenuId() === menu.id && selectedTabId() === tab.id"
+                      [attr.aria-expanded]="expandedMenuId() === menu.id && expandedTabId() === tab.id" [attr.aria-controls]="'tab-pages-' + menu.id + '-' + tab.id"
+                      (click)="selectTab(tab.id)">{{ tab.label }}<span class="material-symbols-outlined" [class.expanded]="selectedMenuId() === menu.id && expandedTabId() === tab.id" aria-hidden="true">expand_more</span></button>
+                    <div class="accordion-shell" [class.open]="selectedMenuId() === menu.id && expandedTabId() === tab.id" [attr.inert]="selectedMenuId() === menu.id && expandedTabId() === tab.id ? null : ''" [attr.aria-hidden]="selectedMenuId() !== menu.id || expandedTabId() !== tab.id">
+                      <div class="accordion-inner" [id]="'tab-pages-' + menu.id + '-' + tab.id">
+                        @if (selectedMenuId() === menu.id && selectedTabId() === tab.id) {
+                          <div class="page-picker">
+                            <label for="testimonialSearch">Find a page in {{ tab.label }}</label>
+                            <div class="page-search"><span class="material-symbols-outlined" aria-hidden="true">search</span><input id="testimonialSearch" type="search" placeholder="Search pages..." [value]="query()" (input)="query.set($any($event.target).value)" /></div>
+                            <div class="page-list">
+                              @for (group of visibleGroups(); track group.title) {
+                                <h3>{{ group.title }}</h3>
+                                @for (page of group.pages; track page.id) {
+                                  <button type="button" [class.selected]="selectedPageId() === page.id" [attr.aria-pressed]="selectedPageId() === page.id" aria-controls="testimonial-results" (click)="selectPage(page.id)"><span>{{ page.title }}</span>@if (selectedPageId() === page.id) {<span class="material-symbols-outlined" aria-hidden="true">check_circle</span>}</button>
+                                }
+                              } @empty {
+                                <p class="no-pages">No matching pages.</p><button class="clear-search" type="button" (click)="query.set('')">Clear search</button>
+                              }
+                            </div>
+                          </div>
+                        }
+                      </div>
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </aside>
+    <section class="testimonials-results" id="testimonial-results" aria-labelledby="testimonialPageTitle" aria-live="polite">
+      @for (selection of [selectionKey()]; track selection) {
+      <div class="results-content">
+      <div class="results-heading">
+        <div>
+          <span class="eyebrow">{{ activeMenu()?.label }} / {{ activeTab()?.label }}</span>
+          <h2 id="testimonialPageTitle">{{ activePage()?.title || activeMenu()?.label }}</h2>
+          <p>Customer experiences with {{ activePage()?.title || activeMenu()?.label }}.</p>
+        </div>
+        @if (activePage()?.link; as link) {
+          <a class="service-link" [routerLink]="link">Explore this page <span aria-hidden="true">&#8599;</span></a>
+        }
+      </div>
+      <div class="testimonial-cards">
+        @for (review of reviews(); track $index; let index = $index) {
+          <article class="testimonial-card" [style.--card-delay]="index * 45 + 'ms'">
+            <span class="quote-mark" aria-hidden="true">&rdquo;</span>
+            <div class="review-avatar" aria-hidden="true">{{ review.initials }}</div>
+            <h3>{{ review.name }}</h3>
+            <p class="review-role">{{ review.role }}</p>
+            <div class="review-stars" [attr.aria-label]="review.stars + ' out of 5 stars'">
+              @for (star of stars; track star) {<span [class.dim]="star > review.stars" aria-hidden="true">&#9733;</span>}
+            </div>
+            <blockquote>{{ review.quote }}</blockquote>
+            <span class="review-service">{{ activePage()?.title }}</span>
+          </article>
+        } @empty {
+          <div class="testimonials-empty">
+            <span class="material-symbols-outlined" aria-hidden="true">format_quote</span>
+            <h3>No testimonials available for this page yet</h3>
+            <p>Select another service from the menu, or talk to our team about customer references.</p>
+            <a class="btn btn-primary" routerLink="/contact" [queryParams]="{ service: activePage()?.title }">Talk to our team</a>
+          </div>
+        }
+      </div>
+      <div class="testimonials-cta">
+        <div><h3>Find the right solution for your business</h3><p>Get advice from our cloud and security team.</p></div>
+        <a class="btn btn-primary" routerLink="/contact" [queryParams]="{ service: activePage()?.title }">Let’s talk <span aria-hidden="true">&#8594;</span></a>
+      </div>
+      </div>
+      }
+    </section>
+  </div>
+</main>

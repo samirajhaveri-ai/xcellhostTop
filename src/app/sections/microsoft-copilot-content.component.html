@@ -27,7 +27,7 @@
       <div class="price"><span>{{ quantity() === 1 ? 'From' : 'Total' }}</span><b>{{ formatPrice(totalPrice()) }}</b><small>{{ quantity() === 1 ? '/user/mo' : '/mo for ' + quantity() + ' users' }}</small></div>
       <div class="copilot-quantity" role="group" aria-label="Copilot licence quantity">
         <button type="button" aria-label="Decrease Copilot licences" [disabled]="quantity() === 1" (click)="changeQuantity(-1)">&minus;</button>
-        <output aria-live="polite">{{ quantity() }}</output>
+        <input xhQuantityInput aria-label="Quantity for Copilot licences" [quantityValue]="quantity()" [quantityMax]="9999" (quantityChange)="changeQuantity($event - (quantity()))" />
         <button type="button" aria-label="Increase Copilot licences" [disabled]="quantity() === 9999" (click)="changeQuantity(1)">+</button>
       </div>
       <button type="button" (click)="addCopilot()">Configure &amp; Buy <span>→</span></button>

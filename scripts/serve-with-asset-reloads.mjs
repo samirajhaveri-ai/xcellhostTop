@@ -1,5 +1,5 @@
 import { spawn } from 'node:child_process';
-import { watch, readdirSync } from 'node:fs';
+import { watch, readFileSync, readdirSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -25,6 +25,7 @@ function listFiles() {
 let knownFiles = listFiles();
 let server;
 let scanTimer;
+let proxyScanTimer;
 let restarting = false;
 let stopping = false;
 
@@ -46,28 +47,53 @@ function startServer(firstStart) {
   });
 }
 
+function restartServer(reason) {
+  if (restarting || stopping) return;
+  restarting = true;
+  console.log('\n' + reason + ' Restarting Angular...');
+  server?.kill();
+}
+
 function checkForNewAssets() {
   const currentFiles = listFiles();
   const added = [...currentFiles].some((path) => !knownFiles.has(path));
   knownFiles = currentFiles;
   if (!added || restarting || stopping) return;
 
-  restarting = true;
-  console.log('\nNew asset detected. Restarting Angular so it can serve the file...');
-  server.kill();
+  restartServer('New asset detected.');
 }
 
-const watchers = assetRoots.map((root) =>
+const assetWatchers = assetRoots.map((root) =>
   watch(root, { recursive: true }, () => {
     clearTimeout(scanTimer);
     scanTimer = setTimeout(checkForNewAssets, 500);
   }),
 );
 
+const proxyFiles = ['proxy.conf.cjs', 'proxy.conf.json', 'scripts/ai-dev-proxy.cjs', 'scripts/auth-dev-proxy.cjs', 'scripts/blog-rss-dev-proxy.cjs'];
+const proxyContents = new Map(proxyFiles.map(file => [file, readFileSync(join(projectRoot, file), 'utf8')]));
+const proxyWatchers = proxyFiles.map(file =>
+  watch(join(projectRoot, file), () => {
+    clearTimeout(proxyScanTimer);
+    proxyScanTimer = setTimeout(() => {
+      let changed = false;
+      for (const candidate of proxyFiles) {
+        const contents = readFileSync(join(projectRoot, candidate), 'utf8');
+        if (contents === proxyContents.get(candidate)) continue;
+        proxyContents.set(candidate, contents);
+        changed = true;
+      }
+      if (changed) restartServer('Proxy configuration changed.');
+    }, 500);
+  }),
+);
+const watchers = [...assetWatchers, ...proxyWatchers];
+
 for (const signal of ['SIGINT', 'SIGTERM']) {
   process.on(signal, () => {
     stopping = true;
     clearTimeout(scanTimer);
+    clearTimeout(proxyScanTimer);
     for (const watcher of watchers) watcher.close();
     server?.kill(signal);
   });

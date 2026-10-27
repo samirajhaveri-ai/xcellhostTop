@@ -1,0 +1,89 @@
+/* Match the shared navy hero palette. */
+.hx-hero {
+  background: radial-gradient(900px 420px at 80% -20%, #0e3a78 0%, #041e42 60%);
+}
+.hx-hero .hx-orb { background: #1565d8; opacity: .18; }
+.hx-hero .hx-orb.c { opacity: .12; }
+.hx-mq { background: #041e42; }
+
+/* Use the Laughing Buddha CTA strip colors for the pricing highlight. */
+.gband { background: linear-gradient(105deg, #1565d8, #0c3e8f); color: #fff; }
+.gband h2 { color: #fff; }
+.gband p, .gband .gstats span { color: #d8e7ff; }
+.gband-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px; margin-top: 12px; }
+.gband-compare {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 12px 22px;
+  border: 1px solid #ffb45c;
+  border-radius: 999px;
+  background: #ffb45c;
+  color: #041e42;
+  font: 700 14px var(--pop);
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .18);
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+}
+.gband-compare:hover { transform: translateY(-3px); background: #ffc880; box-shadow: 0 10px 24px rgba(0, 0, 0, .25); }
+.gband-compare:active { transform: translateY(0); }
+.gband-compare:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) {
+  .gband-compare { transition: none; }
+  .gband-compare:hover { transform: none; }
+}
+
+/* Place the animated console beside the hero copy on desktop. */
+@media (min-width: 1025px) {
+  .hx-hero { padding: 64px 0 48px; }
+  .hx-hero > .wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    align-items: center;
+    gap: 40px;
+  }
+  .hx-hero .hx-stage {
+    grid-column: 2;
+    grid-row: 1;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+  }
+  .hx-hero .hx-in {
+    grid-column: 1;
+    grid-row: 1;
+    min-width: 0;
+    margin: 0;
+    text-align: left;
+  }
+  .hx-hero h1 { font-size: clamp(34px, 3.5vw, 54px); }
+  .hx-hero .hx-sub { margin-inline: 0; }
+  .hx-hero .hx-ctas { justify-content: flex-start; }
+  .hx-hero .hx-stats { text-align: center; }
+}
+
+/* Plans use the full content width; the cart sits beside the workload recommendation. */
+.hx-pr .hx-lay { grid-template-columns: minmax(0, 1fr); }
+.hx-reco {
+  grid-template-columns: minmax(0, 1fr) minmax(300px, .65fr);
+  align-items: start;
+  gap: 24px;
+}
+.hx-reco .hx-chips { grid-column: 1 / -1; }
+.hx-reco .hx-rc { min-height: 280px; }
+.hx-reco .hx-cart {
+  position: static;
+  inset: auto;
+  width: 100%;
+  max-height: none;
+  border-radius: 20px;
+  transform: none;
+}
+.hx-reco .hx-it { max-height: 360px; }
+.hx-fab, .hx-ov, .hx-reco .hx-cx { display: none; }
+@media (max-width: 1180px) { body { padding-bottom: 0; } }
+@media (max-width: 760px) {
+  .hx-reco { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .hx-reco .hx-rc { min-height: 0; }
+}
