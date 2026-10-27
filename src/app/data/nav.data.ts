@@ -1306,6 +1306,65 @@ export const MEGA_MENU: MenuTop[] = [
             ]
           }
         ]
+      },
+      {
+        "g": "Managed IT",
+        "label": "Managed IT",
+        "on": false,
+        "featureCards": [
+          {
+            "label": "Cloud",
+            "title": "Virtual Networks",
+            "body": "Connect your cloud resources with secure virtual networks.",
+            "image": "/assets/images/menu-virtual-networks-v3.png",
+            "link": "/virtual-networks"
+          },
+          {
+            "label": "Cloud",
+            "title": "Virtual Firewalls",
+            "body": "Protect your cloud network with virtual firewall security.",
+            "image": "/assets/images/menu-virtual-firewalls-v3.png",
+            "link": "/virtual-firewalls"
+          }
+        ],
+        "groups": [
+          {
+            "heading": "Managed IT",
+            "items": [
+              {
+                "title": "VCIO as a Service",
+                "href": "/vcio-as-a-service",
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "VCTO as a Service",
+                
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "VDPO as a Service",
+                
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "VCAIO as a Service",
+                
+                "pill": null,
+                "desc": null
+              },
+              {
+                "title": "CISO as a Service",
+                
+                "pill": null,
+                "desc": null
+              },
+              
+            ]
+          }
+        ]
       }, 
     ]
   },
@@ -3623,6 +3682,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Develop and test AI projects in a dedicated workspace"
               },
+              {
+                "title": "AI Factory",
+                "pill": null,
+                "desc": "Develop and test AI projects in a dedicated workspace"
+              },
             ]
           }
         ]
@@ -3858,6 +3922,12 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "OpenAI Managed Services",
                 "href": "/openai-managed-services",
+                "pill": null,
+                "desc": "Get help deploying and managing OpenAI solutions"
+              },
+              {
+                "title": "Gemini Managed Services",
+                "href": "/gemini-managed-services",
                 "pill": null,
                 "desc": "Get help deploying and managing OpenAI solutions"
               },
