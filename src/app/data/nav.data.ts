@@ -2759,19 +2759,34 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "AI Training",
             "items": [
               {
-                "title": "AI App Builder",
+                "title": "Integrated AI Training Program",
                 "pill": null,
-                "desc": "Reliable AI App Builder hosting 💻"
+                "desc": "Hands-on AI foundations, tools and workflows",
+                "href": "/ai-training-integrated-program"
               },
               {
-                "title": "AI Website Builder",
+                "title": "Live Online AI Training",
                 "pill": null,
-                "desc": "Reliable AI Website Builder hosting 🐧"
+                "desc": "Instructor-led online sessions and practical labs",
+                "href": "/ai-training-live-online"
               },
               {
-                "title": "AI IDE Lab",
+                "title": "AI Training for Educators",
                 "pill": null,
-                "desc": "Optimized AI IDE Lab ⚡"
+                "desc": "AI for teaching, lesson planning and assessment",
+                "href": "/ai-training-educators"
+              },
+              {
+                "title": "AI Training for Insurance Professionals",
+                "pill": null,
+                "desc": "Practical AI skills for insurance workflows",
+                "href": "/ai-training-insurance-professionals"
+              },
+              {
+                "title": "AI Training for Medical Doctors",
+                "pill": null,
+                "desc": "AI for documentation, evidence and communication",
+                "href": "/ai-training-medical-doctors"
               },
             ]
           }

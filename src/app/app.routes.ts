@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { MENU_SERVICE_PAGES } from './data/menu-service-pages.data';
 import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
+import { AI_TRAINING_PAGES } from './data/ai-training-pages.data';
 
 /**
  * URLs mirror the original site exactly, so nothing that is already indexed breaks:
@@ -13,6 +14,11 @@ import { INDUSTRY_CLOUD_PAGES } from './data/industry-cloud-pages.data';
  *   /compare/
  */
 export const routes: Routes = [
+  ...AI_TRAINING_PAGES.map((page) => ({
+    path: page.slug,
+    data: { trainingPage: page },
+    loadComponent: () => import('./pages/ai-training.page').then((m) => m.AiTrainingPage),
+  })),
   ...[...MENU_SERVICE_PAGES, ...INDUSTRY_CLOUD_PAGES].map((page) => ({
     path: page.slug,
     data: { servicePage: page },
