@@ -1091,6 +1091,7 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Managed Google Cloud (GCP)",
                 "pill": null,
+                "href": "/vendor-partners/google-cloud",
                 "desc": null
               },
               {
@@ -1797,6 +1798,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Managed Phishing Simulation",
                 "pill": null,
                 "desc": null
+              },
+              {
+                "title": "Microsoft Agent 365",
+                "href": "/microsoft-agent-365",
+                "pill": null,
+                "desc": "Discover, govern and secure your AI agents with XcellHost"
               },
             ]
           }
@@ -3717,29 +3724,40 @@ export const MEGA_MENU: MenuTop[] = [
             "items": [
               
               {
-                "title": "Synapsem-AI Training Integrated Program",
+                "title": "Integrated AI Training Program",
                 "pill": null,
-                "desc": "Build practical AI skills through a structured training program"
+                "desc": "Hands-on AI foundations, tools and workflows",
+                "href": "/ai-training-integrated-program"
               },
               {
-                "title": "Synapsem-AI Training Live Online",
+                "title": "Live Online AI Training",
                 "pill": null,
-                "desc": "Learn AI through live, instructor-led online sessions"
-              },
-              {
-                "title": "AI Training for Medical Doctors",
-                "pill": null,
-                "desc": "Explore practical AI tools for clinical workflows"
+                "desc": "Instructor-led online sessions and practical labs",
+                "href": "/ai-training-live-online"
               },
               {
                 "title": "AI Training for Educators",
                 "pill": null,
-                "desc": "Use AI to support lesson planning and classroom learning"
+                "desc": "AI for teaching, lesson planning and assessment",
+                "href": "/ai-training-educators"
               },
               {
                 "title": "AI Training for Insurance Professionals",
                 "pill": null,
-                "desc": "Apply AI to insurance workflows and customer service"
+                "desc": "Practical AI skills for insurance workflows",
+                "href": "/ai-training-insurance-professionals"
+              },
+              {
+                "title": "AI Training for Medical Doctors",
+                "pill": null,
+                "desc": "AI for documentation, evidence and communication",
+                "href": "/ai-training-medical-doctors"
+              },
+              {
+                "title": "AI Training for Chartered Accountants",
+                "pill": null,
+                "href": "/ai-training-for-chartered-accountants",
+                "desc": "Apply AI to GST, audit, tax and Excel with professional review"
               },
             ]
           }
@@ -3865,6 +3883,12 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "AI Governance",
             "items": [
+              {
+                "title": "AI Adoption Framework",
+                "href": "/ai-adoption-framework",
+                "pill": null,
+                "desc": "Plan AI adoption across strategy, readiness, governance, pilots and scale."
+              },
               {
                 "title": "AI Factory",
                 "href": "/ai-factory",
@@ -4477,41 +4501,49 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Cloud Connectivity",
                 "pill": null,
+                "href": "/cloud-connectivity",
                 "desc": null
               },
               {
                 "title": "Cloud Router",
                 "pill": null,
+                "href": "/cloud-router",
                 "desc": null
               },
               {
                 "title": "Private Connect",
                 "pill": null,
+                "href": "/private-connect",
                 "desc": null
               },
               {
                 "title": "IP Transit",
                 "pill": null,
+                "href": "/ip-transit",
                 "desc": null
               },
               {
                 "title": "Virtual Edge",
                 "pill": null,
+                "href": "/virtual-edge",
                 "desc": null
               },
               {
                 "title": "Managed Wi-Fi",
                 "pill": null,
+                "href": "/managed-wifi",
                 "desc": null
               },
               {
                 "title": "Managed SD WAN",
                 "pill": null,
+                "href": "/managed-sd-wan",
                 "desc": null
               },
               {
                 "title": "Edge Network",
                 "pill": null,
+                "href": "/edge-network",
                 "desc": null
               },
             ]

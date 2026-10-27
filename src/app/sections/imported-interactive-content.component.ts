@@ -10,6 +10,9 @@ import { installImportedJourneyLayout } from './imported-journey-layout';
 import { IDENTITY_SECURITY_PAGES, IdentitySecuritySource } from '../data/identity-security-pages.data';
 
 type InteractiveContentSource =
+  | 'ai-training-live-online'
+  | 'ai-training-educators'
+  | 'ai-adoption-framework'
   | 'asset-tokenization-platform' | 'fractional-chief-ai-officer'
   | 'smb-cloud-desktop'
 
@@ -19,6 +22,11 @@ type InteractiveContentSource =
   | 'acronis-cyber-intelligence' | 'acronis-cyber-frame' | 'acronis-workflow-automation'
   | 'microsoft-defender'
   | 'mobile-app-security'
+  | 'entra-id-backup'
+  | 'ca-cloud'
+  | 'microsoft-agent-365'
+  | 'ai-training-integrated-program' | 'ai-training-medical-doctors' | 'ai-training-insurance-professionals'
+  | 'ai-training-chartered-accountants'
 
   | 'acronis-ai-solution' | 'acronis-cyberfit-score' | 'acronis-ransomware-warranty'
   | 'azure-services' | 'aws-services'
@@ -168,6 +176,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page' | 'sectigo-detail' | 'sectigo-supplied' | 'inference-page' | 'developer-page'>,
     string
   > = {
+    'ai-training-live-online': '/imported-ai-training-live-online.html',
+    'ai-training-educators': '/imported-ai-training-educators.html',
+    'ai-adoption-framework': '/imported-ai-adoption-framework.html',
     'asset-tokenization-platform': '/imported-asset-tokenization-platform.html',
     'fractional-chief-ai-officer': '/imported-fractional-chief-ai-officer.html',
     'office-365-e1-nonprofit': '/imported-office-365-e1-nonprofit.html',
@@ -189,6 +200,13 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'breach-and-attack-simulation': '/imported-breach-and-attack-simulation.html',
     'microsoft-defender': '/imported-microsoft-defender.html',
     'mobile-app-security': '/imported-mobile-app-security.html',
+    'entra-id-backup': '/imported-entra-id-backup.html',
+    'ca-cloud': '/imported-ca-cloud.html',
+    'microsoft-agent-365': '/imported-microsoft-agent-365.html',
+    'ai-training-integrated-program': '/imported-ai-training-integrated-program.html',
+    'ai-training-chartered-accountants': '/imported-ai-training-chartered-accountants.html',
+    'ai-training-medical-doctors': '/imported-ai-training-medical-doctors.html',
+    'ai-training-insurance-professionals': '/imported-ai-training-insurance-professionals.html',
     'multi-factor-authentication': '/imported-multi-factor-authentication.html',
     'identity-and-access-management': '/imported-identity-and-access-management.html',
     'privileged-access-management': '/imported-privileged-access-management.html',
@@ -356,11 +374,21 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'digicert-multi-domain-ssl': '/imported-digicert-multi-domain-ssl.html',
   };
   private readonly sourceTitles: Record<InteractiveContentSource, string> = {
+    'ai-training-live-online': 'Live Online AI Training',
+    'ai-training-educators': 'AI Training for Educators',
+    'ai-adoption-framework': 'AI Adoption Framework',
     'asset-tokenization-platform': 'Asset Tokenization Platform',
     'fractional-chief-ai-officer': 'Fractional Chief AI Officer',
 
     'microsoft-defender': 'Microsoft Defender: Products, Coverage, Pricing, Security And FAQs',
     'mobile-app-security': 'Mobile App Security: Runtime Protection, SDK Integration, Risk Assessment And FAQs',
+    'entra-id-backup': 'Entra ID Backup: Identity Protection, Recovery, Pricing And FAQs',
+    'ca-cloud': 'CA Cloud',
+    'microsoft-agent-365': 'Microsoft Agent 365',
+    'ai-training-integrated-program': 'Integrated AI Training Program',
+    'ai-training-chartered-accountants': 'AI Training For Chartered Accountants',
+    'ai-training-medical-doctors': 'AI Training For Medical Doctors',
+    'ai-training-insurance-professionals': 'AI Training For Insurance Professionals',
     'multi-factor-authentication': 'Multi-Factor Authentication',
     'identity-and-access-management': 'Identity & Access Management',
     'privileged-access-management': 'Privileged Access Management',
@@ -684,6 +712,10 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
       const scopeTitle = this.source === 'smb-cloud-desktop' ? 'SMB Cloud Desktop'
         : this.source === 'ai-factory' ? 'AI Factory'
         : this.source === 'mobile-app-security' ? 'Mobile App Security'
+        : this.source === 'entra-id-backup' ? 'Entra ID Backup'
+        : this.source === 'ca-cloud' ? 'CA Cloud'
+        : this.source === 'microsoft-agent-365' ? 'Microsoft Agent 365'
+        : this.source.startsWith('ai-training-') ? this.sourceTitles[this.source]
         : this.source === 'microsoft-defender' ? 'Microsoft Defender'
         : this.source in IDENTITY_SECURITY_PAGES ? this.sourceTitles[this.source]
         : ['acronis-cyber-intelligence', 'acronis-cyber-frame', 'acronis-workflow-automation'].includes(this.source) ? this.sourceTitles[this.source]
@@ -803,6 +835,10 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     };
     const trial = () => {
       if (this.source === 'microsoft-defender') this.overlay.open('trial', 'Microsoft Defender');
+      else if (this.source === 'entra-id-backup') this.overlay.open('trial', 'Entra ID Backup');
+      else if (this.source === 'ca-cloud') this.overlay.open('trial', 'CA Cloud');
+      else if (this.source === 'microsoft-agent-365') this.overlay.open('trial', 'Microsoft Agent 365');
+      else if (this.source.startsWith('ai-training-')) this.overlay.open('trial', this.sourceTitles[this.source]);
       else if (this.source in IDENTITY_SECURITY_PAGES) this.overlay.open('trial', this.sourceTitles[this.source]);
       else if (['acronis-cyber-intelligence', 'acronis-cyber-frame', 'acronis-workflow-automation'].includes(this.source)) this.overlay.open('trial', this.sourceTitles[this.source]);
     };
@@ -819,20 +855,37 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
       detail.complete({ ...result, fallbackUrl: this.leads.mailtoLink(topic,
         Object.entries(detail.payload).map(([key, value]) => `${key}: ${String(value ?? '')}`).join('\n')) });
     };
+
+    const trainingEnquiry = (event: Event) => {
+      if (!this.source.startsWith('ai-training-')) return;
+      const values = (event as CustomEvent<Record<string, string>>).detail;
+      const [firstName = '', ...lastName] = (values['name'] || '').trim().split(/\s+/);
+      this.topics.ask(this.sourceTitles[this.source], {
+        firstName, lastName: lastName.join(' '), company: values['company'] || values['org'] || '', email: values['email'] || '',
+        phone: values['phone'] || '', help: 'Request a CallBack',
+        details: 'Training enrolment request\n' + Object.entries(values).filter(([key]) => !['name', 'company', 'email', 'phone'].includes(key)).map(([key, value]) => key + ': ' + value).join('\n'),
+      });
+      this.overlay.open('callback');
+    };
+    doc.addEventListener('import-training-enquiry', trainingEnquiry);
+
     const marketplaceEnquiry = async (event: Event) => {
-      if (this.source !== 'asset-tokenization-platform' && this.source !== 'fractional-chief-ai-officer') return;
+      if (this.source !== 'asset-tokenization-platform' && this.source !== 'fractional-chief-ai-officer' && this.source !== 'ai-adoption-framework' && this.source !== 'ai-training-educators' && this.source !== 'ai-training-live-online') return;
       const detail = (event as CustomEvent<{
         payload: Record<string, unknown>;
         complete: (result: { ok: boolean; skipped: boolean; ref: string; fallbackUrl: string }) => void;
       }>).detail;
       const topic = this.sourceTitles[this.source] + ' enquiry';
+      const page = this.source === 'ai-training-educators' ? '/ai-training-for-educators'
+        : this.source === 'ai-training-live-online' ? '/synapsem-ai-training-live-online' : '/' + this.source;
       const result = await this.leads.submit('callback', {
-        ...detail.payload, topic, page: '/' + this.source, message: detail.payload['summary'],
+        ...detail.payload, topic, page, message: detail.payload['summary'],
       });
       detail.complete({ ...result, fallbackUrl: this.leads.mailtoLink(topic,
         Object.entries(detail.payload).map(([key, value]) => `${key}: ${String(value ?? '')}`).join('\n')) });
     };
     doc.addEventListener('import-marketplace-enquiry', marketplaceEnquiry);
+
     doc.addEventListener('import-identity-enquiry', identityEnquiry);
     doc.addEventListener('import-trial', trial);
     doc.addEventListener('import-callback', callback);
@@ -844,6 +897,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
       () => observer.disconnect(), () => cancelAnimationFrame(resizeFrame), () => mutations.disconnect(),
       () => window.removeEventListener('scroll', position),
       () => doc.removeEventListener('import-trial', trial),
+      () => doc.removeEventListener('import-training-enquiry', trainingEnquiry),
       () => doc.removeEventListener('import-identity-enquiry', identityEnquiry),
       () => doc.removeEventListener('import-marketplace-enquiry', marketplaceEnquiry),
       () => doc.removeEventListener('import-callback', callback),

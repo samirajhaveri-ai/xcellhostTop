@@ -235,7 +235,7 @@ export class App {
     const target = event.target as Element | null;
     const cta = target?.closest<HTMLElement>('a, button');
     if (!cta || cta.hasAttribute('disabled') || cta.dataset['ctaHandled'] === 'true') return;
-    if (cta.hasAttribute('data-banner-action')) return;
+    if (cta.hasAttribute('data-banner-action') || cta.hasAttribute('data-banner-existing-action')) return;
 
     const label = (cta.textContent ?? '').replace(/\s+/g, ' ').trim();
     if (/\binfosheet\b/i.test(label)) {

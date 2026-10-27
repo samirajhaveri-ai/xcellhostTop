@@ -1,0 +1,45 @@
+const fs = require('node:fs'), path = require('node:path'), vm = require('node:vm'), {parse} = require('parse5');
+const root = path.resolve(__dirname, '..');
+if (!process.argv[2]) throw Error('Pass the supplied CA Cloud HTML file.');
+const source = fs.readFileSync(process.argv[2], 'utf8'), nodes = [];
+function walk(n) { nodes.push(n); (n.childNodes || []).forEach(walk); }
+walk(parse(source, {sourceCodeLocationInfo: true}));
+const attr = (n, k) => n.attrs?.find(a => a.name === k)?.value || '';
+const has = (n, c) => attr(n, 'class').split(/\s+/).includes(c);
+const html = n => source.slice(n.sourceCodeLocation.startOffset, n.sourceCodeLocation.endOffset);
+const section = id => nodes.find(n => n.tagName === 'section' && attr(n, 'id') === id);
+let main = html(nodes.find(n => n.tagName === 'main'));
+for (const n of nodes.filter(n => has(n, 'crumb'))) main = main.replace(html(n), '');
+const faq = section('faq');
+const items = nodes.filter(n => has(n, 'fq') && n.sourceCodeLocation.startOffset > faq.sourceCodeLocation.startOffset && n.sourceCodeLocation.endOffset < faq.sourceCodeLocation.endOffset).map(n => html(n).replace('class="fq open"', 'class="fq"').replace('aria-expanded="true"', 'aria-expanded="false"'));
+if (items.length < 8) throw Error('Incomplete source FAQs');
+const half = Math.ceil(items.length / 2);
+const faqHtml = '<section class="sec ca-fq" id="faq"><div class="wrap"><div class="sh"><h2>Frequently Asked Questions</h2></div><div class="faq">' + [items.slice(0, half), items.slice(half)].map(col => '<div class="hosting-faq-column">' + col.join('') + '</div>').join('') + '</div></div></section>';
+const security = section('security'), why = section('why');
+main = main.replace(html(security), '').replace(html(why), '');
+main = main.replace(html(faq), html(security).replace(/<h2\b[^>]*>[\s\S]*?<\/h2>/, '<h2>SECURITY &amp; COMPLIANCE</h2>') + html(why).replace(/<h2\b[^>]*>[\s\S]*?<\/h2>/, '<h2>Why XcellHost For CA Cloud</h2>') + faqHtml);
+main = main.slice(0, main.indexOf(faqHtml) + faqHtml.length) + '</main>';
+main = main.replace('<main', '<main data-customer-testimonials="off"');
+const powered = nodes.find(n => has(n, 'lh-powered')), ask = nodes.find(n => has(n, 'lh-ask'));
+if (powered) main = main.replace(html(powered), '');
+main = main.replace(html(ask), html(ask) + '<div class="ca-powered"><span>Powered by</span><span aria-hidden="true">|</span><strong>XcellHost Cloud</strong></div>');
+main = main.replace(/href="(?:https:\/\/(?:www\.)?xcellhost\.top\/)?([a-z0-9-]+)\.html"/g, (_, slug) => 'href="/' + slug + '" target="_top"');
+const styles = nodes.filter(n => n.tagName === 'style').map(html).join('\n').replace(/(\d*\.?\d+)vh\b/g, (_, n) => 'calc(var(--page-vh,1vh) * ' + n + ')');
+const fonts = nodes.filter(n => n.tagName === 'link' && /fonts\.(googleapis|gstatic)/.test(attr(n, 'href'))).map(html).join('\n');
+const core = fs.readFileSync(path.join(root, 'public/imported-digicert-standard-ssl.html'), 'utf8').match(/<script\b[^>]*>[\s\S]*?<\/script>/)[0];
+let runtime = [...source.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].at(-1)[1];
+runtime = runtime.replace(/(\b\w+)\.scrollIntoView\(\{[^}]*\}\)/g, 'window.hostingJumpTo($1.id)');
+const bridge = String.raw`<script>(function(){
+ const originalOpen=XH.open;
+ XH.open=function(id,options){if(id==='xhCallback'){let topic=options?.topic||'Consultation';if(/quote|quotation/i.test(topic)){topic+='\n'+document.getElementById('cName').textContent+'\n'+Array.from(document.querySelectorAll('#cList li')).map(li=>Array.from(li.children).map(el=>el.textContent).join(': ')).join('\n')+'\nBilling: '+document.querySelector('#cTerm button.on').textContent+'\nSubtotal per month: '+document.getElementById('cSub').textContent+'\nGST: '+document.getElementById('cGst').textContent+'\nTotal: '+document.getElementById('cTot').textContent;}document.dispatchEvent(new CustomEvent('import-callback',{detail:'CA Cloud: '+topic}));return;}originalOpen(id,options);};
+ const providers={chatgpt:'https://chatgpt.com/?q=',claude:'https://claude.ai/new?q=',perplexity:'https://www.perplexity.ai/search/new?q=',google:'https://www.google.com/search?udm=50&q=',copilot:'https://copilot.microsoft.com/?q='};
+ document.querySelectorAll('.lh-ask').forEach(box=>box.querySelectorAll('[data-ai]').forEach(a=>{a.href=providers[a.dataset.ai]+encodeURIComponent(box.dataset.q);a.target='_blank';a.rel='noopener noreferrer';}));
+ document.addEventListener('click',e=>{const a=e.target.closest('a[href="#contact"]');if(a){e.preventDefault();XH.open('xhCallback',{topic:'Consultation'});}});
+ function fit(){const h=document.querySelector('#caHero h1');if(!h)return;h.style.setProperty('--ca-title-size','34px');const range=document.createRange();range.selectNodeContents(h);h.style.setProperty('--ca-title-size',Math.min(34,34*(h.clientWidth-2)/Math.max(1,range.getBoundingClientRect().width))+'px');}
+ document.fonts.ready.then(fit);window.addEventListener('resize',fit);fit();
+})();</script>`;
+const css = ['consulting-faq','faq-layout','hosting-tools','section-navigation-flow','ca-cloud-integration'].map(name => '<link rel="stylesheet" href="/assets/styles/' + name + '.css">').join('');
+const output = '<!doctype html><html lang="en-IN" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CA Cloud | XcellHost</title>' + fonts + styles + css + '</head><body>' + main + '<script src="/assets/scripts/hosting-tools-viewport.js"></script>' + core + bridge + '<script>' + runtime + '</script></body></html>';
+for (const m of output.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)) new vm.Script(m[1]);
+fs.writeFileSync(path.join(root, 'public/imported-ca-cloud.html'), output);
+console.log('Imported CA Cloud with ' + items.length + ' original FAQs and original tools.');

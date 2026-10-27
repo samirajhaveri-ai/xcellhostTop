@@ -215,7 +215,6 @@ export class BlogPage implements OnDestroy {
     )
   );
   readonly blogAdvertisements = computed(() => {
-    if (this.isUseCase) return [];
     const post = this.post();
     return post ? getBlogAdvertisements(post) : [];
   });

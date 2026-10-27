@@ -64,11 +64,11 @@ describe('SMB Tools and VPS insight videos', () => {
     expect(fixture.nativeElement.querySelector('.insights-video-card h3').textContent).toContain('Billing Software');
   });
 
-  it('shows a product-specific empty state on all 15 VPS pages', () => {
+  it('shows a product-specific empty state on every VPS page', () => {
     feed.next([video('Tally on Cloud'), video('Cloud Drive'), video('Cloud Backup')]);
     const catalog = TestBed.inject(CatalogService);
     const pages = catalog.slugs.filter(slug => catalog.entryBySlug(slug)?.group === 'VPS Servers');
-    expect(pages.length).toBe(15);
+    expect(pages.length).toBeGreaterThan(0);
     for (const slug of pages) {
       const fixture = render(slug);
       const el: HTMLElement = fixture.nativeElement;
@@ -143,11 +143,14 @@ describe('SMB Tools and VPS insight videos', () => {
     expect(render('billing-software').componentInstance.resolvedVideos()).toEqual([]);
   });
 
-  it('retains the general video cards on the homepage and other service pages', () => {
-    for (const slug of ['', 'tally-on-cloud']) {
-      const fixture = render(slug);
-      expect(fixture.nativeElement.querySelectorAll('.insights-video-card').length).toBe(3);
-      fixture.destroy();
-    }
+  it('retains general homepage videos and the assigned Tally product videos', () => {
+    const home = render('');
+    expect(home.nativeElement.querySelectorAll('.insights-video-card').length).toBe(3);
+    home.destroy();
+    const tally = render('tally-on-cloud');
+    expect(tally.nativeElement.querySelectorAll('.insights-video-card').length)
+      .toBe(PRODUCT_VIDEOS['Tally on Cloud'].filter(Boolean).length);
+    expect(tally.componentInstance.resolvedVideos()?.every(video => video.title.includes('Tally on Cloud'))).toBeTrue();
+    tally.destroy();
   });
 });

@@ -1,0 +1,17 @@
+const ts = require('typescript');
+const compiled = ts.transpileModule(fs.readFileSync('src/app/sections/faq-customer-testimonials.ts','utf8'), {compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;
+await send('Page.navigate',{url:'http://127.0.0.1:4200/ai-training-integrated-program'});
+const result = await evaluate(`(() => {
+  const exports = {};
+  const require = () => ({CUSTOMER_TESTIMONIALS:{},ENDPOINT_CUSTOMER_TESTIMONIALS:[{name:'Test Person',role:'Test role',quote:'Test review',rating:5}]});
+  ${compiled}
+  const check = (html) => {const doc=document.implementation.createHTMLDocument();doc.body.innerHTML=html;exports.ensureFaqCustomerTestimonials(doc);return doc;};
+  const lab=check('<main><section id="labs"><article><h3>FAQ assistant</h3><p>Build an assistant.</p></article></section></main>');
+  const mixed=check('<main><section id="labs"><article><h3>FAQ assistant</h3></article></section><section id="faq"><h2>Frequently Asked Questions</h2><details><summary>Question</summary>Answer</details></section></main>');
+  const actual=check('<main><section id="faq"><h2>FAQs</h2></section></main>');
+  const disabled=check('<main data-customer-testimonials="off"><section id="faq"><h2>FAQs</h2></section></main>');
+  return {labUnchanged:!lab.querySelector('[data-auto-customer-testimonials]'),correctPlacement:mixed.querySelector('[data-auto-customer-testimonials]')?.nextElementSibling?.id==='faq',realFaqSupported:actual.querySelectorAll('[data-auto-customer-testimonials]').length===1,optOutRespected:!disabled.querySelector('[data-auto-customer-testimonials]')};
+})()`);
+require('node:assert/strict').ok(Object.values(result).every(Boolean),JSON.stringify(result));
+console.log('FAQ regression checks:',result);
+}finally{ws?.close();chrome?.kill();}})().catch(e=>{console.error(e);process.exitCode=1;});

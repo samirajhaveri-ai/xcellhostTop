@@ -1,0 +1,14 @@
+const pause=ms=>new Promise(r=>setTimeout(r,ms));
+const results=[];
+for(const width of [1440,390]){
+await send('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<700});
+for(const slug of ['ai-training-integrated-program','ai-training-live-online','ai-training-educators','ai-training-insurance-professionals','ai-training-medical-doctors']){
+await send('Page.navigate',{url:'http://127.0.0.1:4200/'+slug});
+for(let attempt=0;attempt<60;attempt++){if(await evaluate('!!document.querySelector("xh-ai-training-page iframe")?.contentDocument?.querySelector("main")'))break;await pause(500);}
+await pause(1500);
+const result=await evaluate('('+(()=>{const f=document.querySelector('xh-ai-training-page iframe');const d=f?.contentDocument;if(!d?.querySelector('main'))return {missing:true};return {height:f.clientHeight,bodyHeight:d.body.getBoundingClientRect().height,overflow:d.documentElement.scrollWidth>d.documentElement.clientWidth,testimonials:[...d.querySelectorAll('[data-auto-customer-testimonials]')].map(e=>e.parentElement.outerHTML.slice(0,180)),oversized:[...d.querySelectorAll('article')].filter(e=>e.clientHeight>1000).map(e=>({class:e.className,height:e.clientHeight})),outside:[...d.querySelectorAll('main *')].filter(e=>{const r=e.getBoundingClientRect();return r.width>0&&(r.right>d.documentElement.clientWidth+2||r.left< -2)&&getComputedStyle(e).position!=='absolute'&&getComputedStyle(e).position!=='fixed'}).slice(0,12).map(e=>({tag:e.tagName,class:e.className,text:e.textContent.slice(0,55)})),sections:d.querySelectorAll('main>section').length}}).toString()+')()');
+results.push({slug,width,...result});console.log(JSON.stringify(results.at(-1)));
+if(slug==='ai-training-integrated-program'){await evaluate('window.scrollTo(0,document.querySelector("iframe").contentDocument.querySelector("#labs").getBoundingClientRect().top+window.scrollY+document.querySelector("iframe").getBoundingClientRect().top-100)');await pause(100);fs.writeFileSync('output/training-labs-'+width+'.png',Buffer.from((await send('Page.captureScreenshot',{format:'png'})).data,'base64'));}
+}}
+fs.writeFileSync('output/training-layout-audit.json',JSON.stringify(results,null,2));
+}finally{ws?.close();chrome?.kill();}})().catch(e=>{console.error(e);process.exitCode=1;});

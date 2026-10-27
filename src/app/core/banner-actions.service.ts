@@ -19,7 +19,8 @@ export class BannerActionsService {
   private trigger?: HTMLElement;
   private request = 0;
 
-  async act(action: BannerAction, product: string, hero: HTMLElement, trigger: HTMLElement): Promise<void> {
+  async act(action: BannerAction, product: string, hero: HTMLElement, trigger: HTMLElement, fallback = false): Promise<void> {
+    if (fallback && this.overlay.stack().some(id => /tour/i.test(id))) return;
     if (action === 'trial') { this.overlay.open('trial', product); return; }
     if (action === 'callback') { this.topics.ask(product); this.overlay.open('callback'); return; }
     this.trigger = trigger; this.title.set(product); this.index.set(0); this.slides.set([]); this.loading.set(true);

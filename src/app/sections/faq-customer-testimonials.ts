@@ -4,7 +4,8 @@ type ContentRoot = Document | ShadowRoot;
 const headings = 'h1,h2,h3,h4,.pp-sec,.sec-title';
 const reviewCards = '.prv,.tcard,.pp-revs,.pp-tcards,blockquote,[class*="testimonial"],[class*="review-card"],[class*="reviews"],[class*="testi-grid"],.hosting-testimonials';
 const faqContainers = '[id="faq" i],section[id*="faq" i],section[class*="-faq" i],section[class*="-fq" i],.faq-section,#ppFaq,section[aria-labelledby*="faq" i]';
-const isFaq = (text: string) => /^(?:frequently\s+asked\s+questions|faqs?)(?:\b|\s|[—–:])/i.test(text.trim());
+// Course titles such as "FAQ assistant" are content, not FAQ sections.
+const isFaq = (text: string) => /^(?:frequently\s+asked\s+questions|faqs?)(?:\s*[—–:(]|\s*$)/i.test(text.trim());
 const isReviewHeading = (text: string) => /^(?:what\s+(?:our\s+)?customers\s+say|customer\s+testimonials|customer\s+reviews)$/i.test(text.trim());
 
 function visible(element: Element): boolean {
