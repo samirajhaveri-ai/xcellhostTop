@@ -95,7 +95,8 @@ export function ensureFaqCustomerTestimonials(root: ContentRoot): void {
   try { slug = doc.defaultView?.top?.location.pathname.replace(/^\/+|\/+$/g, '') || ''; } catch { /* No product override. */ }
   const productReviews = CUSTOMER_TESTIMONIALS[slug];
   const reviews = productReviews?.length ? productReviews : ENDPOINT_CUSTOMER_TESTIMONIALS;
-  const tallyLayout = slug === 'company/data-centers-global' || slug === 'gemini-managed-services';
+  const catalogueServices = ['microsoft-services', 'vendor-partners/microsoft-services', 'digicert-services', 'vendor-partners/digicert', 'geotrust-services', 'vendor-partners/geotrust', 'sectigo-services', 'vendor-partners/sectigo', 'kaspersky-services', 'vendor-partners/kaspersky', 'sentinelone-services', 'vendor-partners/sentinelone', 'opentext-services', 'vendor-partners/opentext', 'cybird-services', 'vendor-partners/cybird', 'fortinet-services', 'vendor-partners/fortinet', 'hpe-services', 'vendor-partners/hpe', 'dell-services', 'vendor-partners/dell', 'oracle-cloud-services', 'vendor-partners/oracle-cloud', 'ibm-multicloud-services', 'vendor-partners/ibm-multicloud', 'dpo-genie365-services', 'vendor-partners/dpo-genie'].includes(slug);
+  const tallyLayout = slug === 'company/data-centers-global' || slug === 'gemini-managed-services' || catalogueServices;
   const section = doc.createElement('section');
   section.className = 'xh-customer-testimonials ' + (tallyLayout ? 'xh-testimonials-tally' : 'xh-testimonials-simple');
   section.setAttribute('data-auto-customer-testimonials', slug);
@@ -105,7 +106,7 @@ export function ensureFaqCustomerTestimonials(root: ContentRoot): void {
   const title = doc.createElement('h2');
   title.textContent = 'What Customers Say';
   wrap.append(title);
-  if (!productReviews?.length && slug !== 'company/data-centers-global') {
+  if (!productReviews?.length && slug !== 'company/data-centers-global' && !catalogueServices) {
     const attribution = doc.createElement('p');
     attribution.className = 'xh-testimonial-attribution';
     attribution.textContent = 'Feedback from XcellHost endpoint-security customers.';

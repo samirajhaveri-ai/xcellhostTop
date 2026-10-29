@@ -757,6 +757,16 @@ interface ProductTourSlide {
     #ppage .gemini-hero-features li { display:flex; align-items:center; gap:9px; }
     #ppage .gemini-hero-features li > span { display:grid; place-items:center; width:23px; height:23px; flex:none; border:1px solid #4298ff; border-radius:6px; background:#0066ff; box-shadow:0 0 0 3px rgba(0,102,255,.2); }
     #ppage .gemini-hero-features svg { width:15px; height:15px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
+    #ppage .aiops-hero-features { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 18px; font-size:12px; font-weight:500; }
+    #ppage .aiops-hero-features li { align-items:flex-start; }
+    #ppage.aiops-page.google-business-page .pp-hero { display:grid!important; grid-template-columns:minmax(0,600px) minmax(0,540px)!important; align-items:center; justify-content:center; gap:40px; padding:48px 24px!important; min-height:0; }
+    #ppage.aiops-page.google-business-page .pp-hero > .wrap { grid-column:1; grid-row:1; width:100%; max-width:none; margin:0; padding:0; }
+    #ppage.aiops-page.google-business-page .pp-hero > .wrap > :not(.pph-scene) { max-width:100%!important; }
+    #ppage.aiops-page.google-business-page .pp-hero > .pph-scene.google-business-dashboard { position:relative!important; inset:auto!important; grid-column:2; grid-row:1; width:100%!important; height:auto!important; max-width:none!important; min-width:0; margin:0; padding:0; align-self:center; }
+    @media(max-width:1000px) {
+      #ppage.aiops-page.google-business-page .pp-hero { display:grid!important; grid-template-columns:minmax(0,1fr)!important; gap:28px; padding:36px 24px!important; }
+      #ppage.aiops-page.google-business-page .pp-hero > .pph-scene.google-business-dashboard { grid-column:1; grid-row:2; max-width:600px!important; justify-self:center; }
+    }
     #ppage .pp-hero:has(.gemini-managed-hero-art) #ppTitle { flex-wrap:nowrap; white-space:nowrap; font-size:var(--banner-title-size,28px) !important; }
     #ppage .pp-hero:has(.gemini-managed-hero-art) #ppTitle .pp-title-name { flex:none; white-space:nowrap; }
     @media (max-width: 900px) {
@@ -3293,6 +3303,12 @@ class ProductPageComponent {
 
     if (slug === 'aiops') return {
       ...view, faqs: AIOPS_FAQS, videos: [],
+      name: 'AIOps',
+      brandSuffix: 'AI',
+      tagline: 'Fewer alerts. Faster fixes. Engineers who sleep.',
+      heroHighlight: 'XcellHost AIOps applies machine learning to your metrics, logs, traces and events — correlating alert storms into a handful of real incidents, spotting anomalies before thresholds fire, pointing at the root cause and running approved fixes. Operated 24×7 by our NOC in Mumbai.',
+      heroMessages: ['500 alerts become 3 incidents', 'Anomalies caught on the baseline', 'Root cause, not 40 symptoms', 'Fixes run after a human says yes'],
+      heroPoints: ['Event correlation & noise cut', 'Anomaly detection on baselines', 'Topology-aware root cause', 'Predictive capacity'],
       security: {
         head: 'Security & Compliance — AIOps Platform',
         intro: 'Connect monitoring and automation with scoped access to your cloud estate. Use configuration history to investigate changes, review remediation runbooks before enabling automation, and align telemetry access and retention with your organisation’s requirements.',

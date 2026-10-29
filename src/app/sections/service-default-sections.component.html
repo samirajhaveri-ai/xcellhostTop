@@ -1,4 +1,5 @@
-<div class="ppage as-page default-sections" data-customer-testimonials="off" data-preserve-copy>
+<div class="ppage as-page default-sections" [class.default-sections-closing-only]="closingOnly()" [attr.data-customer-testimonials]="closingOnly() ? null : 'off'" data-preserve-copy>
+  @if (!closingOnly()) {
   <div class="wrap">
     <section id="defaultSecurity" aria-labelledby="defaultSecurityTitle">
       <h2 class="pp-sec" id="defaultSecurityTitle">Security &amp; compliance — {{ name() }}</h2>
@@ -33,9 +34,10 @@
     </section>
   </div>
   <div id="defaultInsights"><xh-insights-section [pageSlug]="pageSlug()" /></div>
+  }
   <div class="wrap">
     <section class="pp-cta" id="defaultStart" aria-labelledby="defaultStartTitle">
-      <div><h3 id="defaultStartTitle">Ready to start with {{ name() }}?</h3><p>{{ training() ? 'Discuss course formats, upcoming batches and a cohort for your team.' : 'FREE Consultation · Discuss your design and deployment with XcellHost.' }}</p></div>
+      <div><h3 id="defaultStartTitle">Ready to start with {{ name() }}?</h3><p>{{ closingOnly() ? 'FREE Consultation · FREE Demo · FREE Trial · 24×7 support in English & Hindi' : training() ? 'Discuss course formats, upcoming batches and a cohort for your team.' : 'FREE Consultation · Discuss your design and deployment with XcellHost.' }}</p></div>
       <div class="default-actions">
         <button class="btn btn-primary" type="button" (click)="request()">Request a callback</button>
         <button class="btn btn-ghost" type="button" (click)="request(true)">⚡ Buy Now</button>
@@ -46,6 +48,10 @@
       </div>
       <a class="pp-cta-buddha-link" routerLink="/company/support-overview" aria-label="Visit XcellHost customer support"><img class="pp-cta-buddha" src="/assets/images/laughing-buddha-white-text-transparent.png" alt="XcellHost customer support" width="104" height="104" loading="lazy" /></a>
     </section>
-    <div class="pp-proof"><span>ISO 27001</span><span>ISO 20000-1</span><span>Since 1999</span><span>INR billing · GST invoices</span></div>
+    @if (closingOnly()) {
+      <div class="pp-proof"><span>🏅 ISO 27001</span><span>🏅 ISO 20000-1</span><span>🤝 Microsoft Gold Partner</span><span>🕰 Since 1999</span><span>🔒 Secure Payments — UPI · Cards · NetBanking</span></div>
+    } @else {
+      <div class="pp-proof"><span>ISO 27001</span><span>ISO 20000-1</span><span>Since 1999</span><span>INR billing · GST invoices</span></div>
+    }
   </div>
 </div>

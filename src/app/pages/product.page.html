@@ -84,6 +84,7 @@
     [class.acronis-backup-advanced-page]="slug() === 'acronis-backup-advanced'"
     [class.instagram-automation-page]="slug() === 'instagram-automation'"
     [class.smart-qr-page]="slug() === 'smart-qr-and-nfc-automation'"
+    [class.aiops-page]="slug() === 'aiops'"
     [class.mailbox-migration-page]="slug() === 'mailbox-migration'"
     [class.anthropic-managed-page]="slug() === 'anthropic-managed-services'"
     [class.virtualization-page]="slug() === 'virtualization-servers'"
@@ -1852,7 +1853,7 @@
               <h2
                 class="pp-tagline"
                 [class.pp-tagline-reference]="isAdvancedEdr() || v.name === 'Tally on Cloud'"
-                [attr.data-preserve-copy]="slug() === 'gemini-managed-services' || slug() === 'managed-pki' || slug() === 'private-ca' || slug() === 'iot-pki' || slug() === 'iot-device-certificates' || slug() === 'cloud-code-signing' || slug() === 'certificate-mgmt-solutions' || slug() === 'matter-dac' || slug() === 'pki-software' || slug() === 'windows-365' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || slug() === 'vdpo-as-a-service' ? '' : null"
+                [attr.data-preserve-copy]="slug() === 'aiops' || slug() === 'gemini-managed-services' || slug() === 'managed-pki' || slug() === 'private-ca' || slug() === 'iot-pki' || slug() === 'iot-device-certificates' || slug() === 'cloud-code-signing' || slug() === 'certificate-mgmt-solutions' || slug() === 'matter-dac' || slug() === 'pki-software' || slug() === 'windows-365' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || slug() === 'vdpo-as-a-service' ? '' : null"
                 id="ppTag"
               >
                 @if (slug() === 'memory-optimized') {
@@ -1864,7 +1865,7 @@
             }
 
             @if (slug() !== 'docusign' && v.heroHighlight && slug() !== 'rpc-nodes' && slug() !== 'gaming-servers' && slug() !== 'zoom-conferenceing' && slug() !== 'ai-voice-bot' && slug() !== 'managed-oracle-cloud' && slug() !== 'thawte-ssl-certificates') {
-              <p class="pp-tagline-support" [class.defender-hero-description]="slug() === 'microsoft-defender'" [class.b300-hero-summary]="slug() === 'nvidia-b300'" [attr.data-preserve-copy]="slug() === 'gemini-managed-services' || slug() === 'managed-pki' || slug() === 'private-ca' || slug() === 'iot-pki' || slug() === 'iot-device-certificates' || slug() === 'cloud-code-signing' || slug() === 'certificate-mgmt-solutions' || slug() === 'matter-dac' || slug() === 'pki-software' || slug() === 'windows-365' || slug() === 'general-compute' || slug() === 'nvidia-b300' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || slug() === 'vdpo-as-a-service' ? '' : null">{{ v.heroHighlight }}</p>
+              <p class="pp-tagline-support" [class.defender-hero-description]="slug() === 'microsoft-defender'" [class.b300-hero-summary]="slug() === 'nvidia-b300'" [attr.data-preserve-copy]="slug() === 'aiops' || slug() === 'gemini-managed-services' || slug() === 'managed-pki' || slug() === 'private-ca' || slug() === 'iot-pki' || slug() === 'iot-device-certificates' || slug() === 'cloud-code-signing' || slug() === 'certificate-mgmt-solutions' || slug() === 'matter-dac' || slug() === 'pki-software' || slug() === 'windows-365' || slug() === 'general-compute' || slug() === 'nvidia-b300' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || slug() === 'vdpo-as-a-service' ? '' : null">{{ v.heroHighlight }}</p>
             }
             @if (slug() === 'gemini-managed-services') {
               <div class="pp-typewriter gemini-hero-typewriter" aria-live="polite">
@@ -1937,8 +1938,23 @@
                     <div><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-2.5 0-3.5 2-3.5 5 0 2-2 4-3 7-.5 2 1 4 3 4h7c2 0 3.5-2 3-4-1-3-3-5-3-7 0-3-1-5-3.5-5z"/><path d="M10 8h.01M14 8h.01"/></svg></span>{{ slug() === 'cpanel-vps' ? 'AlmaLinux 9 ready' : 'Ubuntu LTS ready' }}</div>
                     <div><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>Root SSH · firewall</div>
                   </div>
+                } @else if (slug() === 'aiops') {
+                  <ul class="gemini-hero-features aiops-hero-features" aria-label="AIOps features" data-preserve-copy>
+                    @for (point of v.heroPoints; track point; let i = $index) {
+                      <li><span aria-hidden="true"><svg viewBox="0 0 24 24">
+                        @switch (i) {
+                          @case (0) { <path d="M6 3v6a6 6 0 0 0 6 6h6M15 12l3 3-3 3M6 21v-6"/> }
+                          @case (1) { <path d="M3 17c3-1 4-8 6-8s0 8 3 8 3-4 5-4 2 3 4 3M3 21h18"/> }
+                          @case (2) { <rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v5M5 17v-3h14v3"/> }
+                          @case (3) { <path d="m3 17 6-6 4 4 8-8M14 7h7v7"/> }
+                          @case (4) { <path d="M15 4V2M15 10V8M11 6h2M17 6h2M3 21 15 9"/> }
+                          @case (5) { <path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 17v4M17 19h4"/> }
+                        }
+                      </svg></span>{{ point }}</li>
+                    }
+                  </ul>
                 } @else if (v.heroPoints.length) {
-                  <div class="pp-hpoints" [class.comodo-hero-points]="slug() === 'comodo-personal-authentication'" [attr.data-preserve-copy]="slug() === 'gemini-managed-services' || slug() === 'managed-pki' || slug() === 'private-ca' || slug() === 'iot-pki' || slug() === 'iot-device-certificates' || slug() === 'cloud-code-signing' || slug() === 'certificate-mgmt-solutions' || slug() === 'matter-dac' || slug() === 'pki-software' || slug() === 'windows-365' || slug() === 'comodo-ev-code-signing' ? '' : null">
+                  <div class="pp-hpoints" [class.comodo-hero-points]="slug() === 'comodo-personal-authentication'" [attr.data-preserve-copy]="slug() === 'aiops' || slug() === 'gemini-managed-services' || slug() === 'managed-pki' || slug() === 'private-ca' || slug() === 'iot-pki' || slug() === 'iot-device-certificates' || slug() === 'cloud-code-signing' || slug() === 'certificate-mgmt-solutions' || slug() === 'matter-dac' || slug() === 'pki-software' || slug() === 'windows-365' || slug() === 'comodo-ev-code-signing' ? '' : null">
                     @for (p of v.heroPoints; track p; let i = $index) {
                       <div class="pp-hpoint">
                         @if (slug() === 'managed-pki' || slug() === 'private-ca') {

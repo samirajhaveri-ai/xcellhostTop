@@ -25,6 +25,7 @@ export class ServiceDefaultSectionsComponent {
   readonly contentSlug = input('');
   readonly training = input(false);
   readonly platform = input(false);
+  readonly closingOnly = input(false);
   private readonly products = inject(ProductPageService);
   private readonly overlay = inject(OverlayService);
   private readonly topics = inject(CallbackTopicService);

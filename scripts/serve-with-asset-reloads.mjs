@@ -54,19 +54,20 @@ function restartServer(reason) {
   server?.kill();
 }
 
-function checkForNewAssets() {
+function checkForAssetChanges() {
   const currentFiles = listFiles();
   const added = [...currentFiles].some((path) => !knownFiles.has(path));
+  const removed = [...knownFiles].some((path) => !currentFiles.has(path));
   knownFiles = currentFiles;
-  if (!added || restarting || stopping) return;
+  if ((!added && !removed) || restarting || stopping) return;
 
-  restartServer('New asset detected.');
+  restartServer(removed ? 'Asset removed or moved.' : 'New asset detected.');
 }
 
 const assetWatchers = assetRoots.map((root) =>
   watch(root, { recursive: true }, () => {
     clearTimeout(scanTimer);
-    scanTimer = setTimeout(checkForNewAssets, 500);
+    scanTimer = setTimeout(checkForAssetChanges, 500);
   }),
 );
 

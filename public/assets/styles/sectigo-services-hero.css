@@ -1,0 +1,52 @@
+/* Match the default dark product banner without changing the catalogue below. */
+#sgHero.hero.lh.sg-hero {
+  padding: 48px 0;
+  min-height: 0;
+  color: #fff;
+  background: radial-gradient(ellipse at 5% 15%, #104780 0, transparent 48%), linear-gradient(115deg, #06274e, #041e42 65%, #082e5d);
+}
+#sgHero > .wrap { width: 100%; max-width: 1240px; padding-inline: 24px; }
+#sgHero .hero-grid.sg-hg { grid-template-columns: minmax(0, 640px) minmax(0, 500px); gap: 48px; align-items: center; padding-bottom: 0; }
+#sgHero .sg-copy { container-type: inline-size; }
+#sgHero .crumb, #sgHero .crumb a, #sgHero .crumb .c { color: #8bb4eb; }
+#sgHero .crumb .sep { color: #6188b9; }
+#sgHero .lh-title { font-size: clamp(16px, 4.6cqi, 32px) !important; white-space: nowrap; margin-bottom: 16px !important; color: #fff !important; }
+#sgHero .lh-title :is(.brd, .nm, .dv) { color: #fff; }
+#sgHero .lh-title .x { color: #e60012; }
+#sgHero .sg-big { font: 700 16px/1.45 var(--f-disp); color: #fff; letter-spacing: 0; margin: 0 0 7px; }
+#sgHero .sg-big span { color: inherit; }
+#sgHero .sg-lead { max-width: 100%; color: #c7d8f0; font-size: 14px; font-weight: 600; line-height: 1.6; margin-bottom: 16px; }
+#sgHero .sg-lead b { color: inherit; }
+#sgHero .sg-hero-type { color: #91bfff; font-size: 15px; margin-bottom: 18px; }
+#sgHero .sg-hero-points { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 18px; margin-bottom: 20px; }
+#sgHero .sg-hero-points > div { display: flex; align-items: center; gap: 9px; color: #dae7fa; font-size: 12px; font-weight: 600; }
+#sgHero .sg-hero-points i { display: grid; place-items: center; flex: none; width: 23px; height: 23px; font-style: normal; color: #fff; border: 1px solid #4b9cff; border-radius: 6px; background: #0066ff; box-shadow: 0 0 0 3px #0066ff30; }
+#sgHero .xh-banner-actions { margin-top: 0; }
+#sgHero .xh-banner-ai { width: 100%; background: #041e42b8; }
+#sgHero .sg-vis { width: 100%; height: auto; max-height: 440px; aspect-ratio: 1; margin: 0; box-shadow: 0 24px 55px #0003; }
+#sgHero .hero-bg { position: absolute; inset: 0; pointer-events: none; }
+#sgHero .sg-grid { position: absolute; inset: 0; background-image: linear-gradient(#8fb8ff08 1px, transparent 1px), linear-gradient(90deg, #8fb8ff08 1px, transparent 1px); background-size: 40px 40px; }
+#sgHero .sg-world-map { position: absolute; inset: 0; overflow: hidden; }
+#sgHero .sg-world-map .wm { position: absolute; top: 50%; left: 52%; transform: translate(-50%, -50%); width: 96%; max-width: 1100px; opacity: .36; }
+#sgHero .sg-world-map .dot { fill: #8fb8ff; }
+#sgHero .sg-world-map .dot.lit { fill: #2ecc71; }
+#sgHero .wm-ring { position: absolute; top: 50%; left: 62%; width: 520px; height: 520px; transform: translate(-50%, -50%); border: 1px dashed #8fb8ff30; border-radius: 50%; }
+#sgHero .wm-ring.r2 { width: 340px; height: 340px; }
+.sg-catalog-stats { max-width: none; margin: 24px 0; }
+/* Override the supplied document's large, important section-heading rules. */
+#faq.sg-faq .sh h2 {
+  font: 700 13px/1.4 var(--f-mono) !important;
+  color: #0066ff !important;
+  letter-spacing: .14em !important;
+  text-transform: uppercase;
+  margin: 0 !important;
+}
+@media (max-width: 900px) {
+  #sgHero.hero.lh.sg-hero { padding: 36px 0; }
+  #sgHero .hero-grid.sg-hg { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  #sgHero .sg-vis { max-width: 500px; justify-self: center; }
+}
+@media (max-width: 560px) {
+  #sgHero .sg-hero-points { grid-template-columns: 1fr; }
+  #sgHero .sg-lead { font-size: 13px; }
+}
