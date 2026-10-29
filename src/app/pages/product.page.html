@@ -6118,7 +6118,7 @@
           }
           @if (
             !videosInInsights() && !['dpdpa-consulting', 'vdpo-as-a-service', 'vciso-as-a-service'].includes(slug()) && v.name !== 'Enterprise DMARC' &&
-            (showcaseVideos().length || slug() === 'gemini-managed-services' ||
+            (showcaseVideos().length ||
               isAutonomousThreatSolution() ||
               isOurPlatform() ||
               isWatchtower() ||
@@ -6126,6 +6126,7 @@
               slug() === 'digicert-smime-class-1' ||
               slug() === 'comodo-personal-authentication') &&
             slug() !== 'scrutiny-dlp' &&
+            slug() !== 'gemini-managed-services' &&
             !isTsplusRemoteSupport() &&
             !isTsplusAdvancedSecurity() &&
             !isTsplusRemoteAccess()
@@ -6133,12 +6134,6 @@
             <section class="tally-videos" [attr.aria-labelledby]="isTally() ? 'tallyWatch' : 'showcaseVideosTitle'">
               <div class="pp-sec" [attr.id]="isTally() ? 'tallyWatch' : 'showcaseVideosTitle'" [style.margin-top.px]="slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' ? 56 : null">Watch it in action</div>
               <div class="tally-video-grid" [class.single-video]="showcaseVideos().length === 1">
-                @if (slug() === 'gemini-managed-services' && !showcaseVideos().length) {
-                  <article class="tally-video-card">
-                    <h3><span>Google Gemini — managed by XcellHost</span></h3>
-                    <xh-gemini-managed-content [hero]="true" />
-                  </article>
-                }
                 @for (video of showcaseVideos(); track video.label) {
                   <article class="tally-video-card">
                     <h3>
@@ -6613,7 +6608,7 @@
               </div>
             </div>
           } @else {
-            <div class="pp-faq" id="ppFaq">
+            <div class="pp-faq" id="ppFaq" [attr.data-preserve-copy]="slug() === 'gemini-managed-services' ? '' : null">
               <xh-product-faq [faqs]="isCloudDrive() ? cloudDriveFaqs : isAdvancedEdr() || isScrutinyEdr() ? edrFaqs() : slug() === 'ai-chat-bot' ? aiChatbotFaqs : isWatchtower() ? watchtowerFaqs : isOurPlatform() ? ourPlatformFaqs : isZohoWorkspace() ? zohoWorkspaceFaqs : v.faqs" />
             </div>
           }
