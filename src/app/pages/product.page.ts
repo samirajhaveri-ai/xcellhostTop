@@ -7,6 +7,7 @@ import { ContainerServiceHeroComponent } from '../sections/container-service-her
 import { ContainerRegistryContentComponent } from '../sections/container-registry-content.component';
 
 import { ImportedInteractiveContentComponent } from '../sections/imported-interactive-content.component';
+import { GeminiManagedContentComponent } from '../sections/gemini-managed-content.component';
 import { ZoomConferenceingSourceComponent } from '../sections/zoom-conferenceing-source.component';
 import { ZOOM_CONFERENCEING_FAQS } from '../data/zoom-conferenceing-faq.data';
 import { WORDPRESS_VPS_FAQS } from '../data/wordpress-vps-faq.data';
@@ -557,6 +558,7 @@ interface ProductTourSlide {
     ManagedMicrosoftSqlContentComponent,
     DropboxMigrationContentComponent,
     ImportedInteractiveContentComponent,
+    GeminiManagedContentComponent,
     BoxMigrationContentComponent,
     ManagedRedisContentComponent,
     ManagedRedisHeroComponent,
@@ -733,6 +735,34 @@ interface ProductTourSlide {
   ],
   templateUrl: './product.page.html',
   styles: [`
+    #ppage .pp-hero:has(.gemini-managed-hero-art) .pp-tagline-support { color:#c6d5ed; font:600 15px/1.55 var(--body); white-space:normal !important; text-wrap:initial; margin:0 0 16px; }
+    #ppage.ppage > .pp-hero:has(.gemini-managed-hero-art) {
+      display:grid; grid-template-columns:minmax(0,640px) minmax(0,500px); gap:48px;
+      justify-content:center; align-items:center; padding:48px 24px; height:auto; min-height:0; max-height:none;
+    }
+    #ppage.ppage > .pp-hero:has(.gemini-managed-hero-art) > .wrap {
+      grid-column:1; grid-row:1; width:100%; max-width:none; min-width:0; margin:0; padding:0;
+    }
+    #ppage.ppage > .pp-hero:has(.gemini-managed-hero-art) > .wrap > :is(h1,.pp-tagline,.pp-tagline-support,.pp-typewriter,.pp-chips,.pp-hero-grid) {
+      width:100%; max-width:100% !important; min-width:0;
+    }
+    #ppage.ppage > .pp-hero:has(.gemini-managed-hero-art) .pp-tagline-support { overflow-wrap:break-word; }
+    #ppage.ppage > .pp-hero > .pph-scene.gemini-managed-hero-art {
+      position:relative; inset:auto; grid-column:2; grid-row:1; width:100%; max-width:500px;
+      height:auto; margin:0; padding:0; opacity:1; pointer-events:auto; mask-image:none; transform:none; z-index:4;
+    }
+    #ppage .pp-hero:has(.gemini-managed-hero-art) .gemini-hero-typewriter { color:#91bfff; font-size:16px; margin-bottom:14px; }
+    #ppage .gemini-hero-features { display:grid; grid-template-columns:repeat(2,max-content); gap:12px 26px; padding:0; margin:18px 0; list-style:none; color:#dce7fb; font-size:13px; font-weight:600; }
+    #ppage .gemini-hero-features li { display:flex; align-items:center; gap:9px; }
+    #ppage .gemini-hero-features li > span { display:grid; place-items:center; width:23px; height:23px; flex:none; border:1px solid #4298ff; border-radius:6px; background:#0066ff; box-shadow:0 0 0 3px rgba(0,102,255,.2); }
+    #ppage .gemini-hero-features svg { width:15px; height:15px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
+    #ppage .pp-hero:has(.gemini-managed-hero-art) #ppTitle { flex-wrap:nowrap; white-space:nowrap; font-size:var(--banner-title-size,28px) !important; }
+    #ppage .pp-hero:has(.gemini-managed-hero-art) #ppTitle .pp-title-name { flex:none; white-space:nowrap; }
+    @media (max-width: 900px) {
+      #ppage.ppage > .pp-hero:has(.gemini-managed-hero-art) { grid-template-columns:minmax(0,640px); gap:28px; padding:36px 24px; }
+      #ppage.ppage > .pp-hero > .pph-scene.gemini-managed-hero-art { grid-column:1; grid-row:2; justify-self:center; }
+    }
+    @media(max-width:560px) { #ppage .gemini-hero-features { grid-template-columns:1fr; } }
     #ppage.ppage > .pp-hero:has(.container-registry-hero-art) {
       display: grid; grid-template-columns: minmax(0, 620px) minmax(0, 480px);
       justify-content: center; align-items: center; gap: 40px; padding: 40px 24px;
@@ -1804,7 +1834,7 @@ interface ProductTourSlide {
 
     /* Keep hero artwork inside the same 1240px container as the sections below. */
     @media (min-width: 901px) {
-      #ppage.ppage > .pp-hero > .pph-scene:not(.oracle-hero-visual):not(.openclaw-hero-art) {
+      #ppage.ppage > .pp-hero > .pph-scene:not(.oracle-hero-visual):not(.openclaw-hero-art):not(.gemini-managed-hero-art) {
         right: max(24px, calc((100% - 1240px) / 2 + 24px));
         width: min(calc((100% - 48px) * .34), 405px);
         max-width: none;
@@ -1841,7 +1871,7 @@ interface ProductTourSlide {
       }
     }
     @media (min-width: 901px) and (max-width: 1180px) {
-      #ppage.ppage > .pp-hero > .pph-scene:not(.oracle-hero-visual):not(.openclaw-hero-art) {
+      #ppage.ppage > .pp-hero > .pph-scene:not(.oracle-hero-visual):not(.openclaw-hero-art):not(.gemini-managed-hero-art) {
         right: 28px;
         width: calc((100% - 56px) * .38);
       }
@@ -3044,6 +3074,14 @@ class ProductPageComponent {
   readonly view = computed<ProductView | null>(() => {
     const slug = this.slug();
     const view = this.resolve(slug);
+    if (slug === 'gemini-managed-services' && view) {
+      return {
+        ...view,
+        tagline: 'Google Gemini, switched on safely — and actually used.',
+        heroHighlight: 'XcellHost plans, licenses, governs and runs Gemini for Google Workspace, Gemini Enterprise and Gemini models on Google Cloud — with rupee billing and a 24×7 Mumbai team.',
+        heroMessages: ['A Gem that knows your SOPs'],
+      };
+    }
     if (slug === 'microsoft-entra-id' && view) return {
       ...view,
       videos: [],
