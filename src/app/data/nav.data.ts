@@ -1333,31 +1333,31 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "Managed IT",
             "items": [
               {
-                "title": "VCIO as a Service",
+                "title": "vCIO as a Service",
                 "href": "/vcio-as-a-service",
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "VCTO as a Service",
+                "title": "vCTO as a Service",
                 
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "VDPO as a Service",
+                "title": "vDPO as a Service",
                 
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "VCAIO as a Service",
+                "title": "vCFAIO as a Service",
                 
                 "pill": null,
                 "desc": null
               },
               {
-                "title": "CISO as a Service",
+                "title": "vCISO as a Service",
                 
                 "pill": null,
                 "desc": null
