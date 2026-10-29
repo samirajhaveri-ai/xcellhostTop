@@ -1373,6 +1373,10 @@
           <div class="pph-scene openclaw-hero-art">
             <xh-imported-interactive-content [source]="slug() === 'cpanel-vps' ? 'cpanel-hero' : 'openclaw-hero'" />
           </div>
+        } @else if (slug() === 'gemini-managed-services') {
+          <div class="pph-scene gemini-managed-hero-art">
+            <xh-gemini-managed-content [hero]="true" />
+          </div>
         } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
 
           <div class="pph-scene has-illus standalone-illus" id="pphScene" aria-hidden="true">
@@ -1748,8 +1752,8 @@
               </h1>
             } @else {
             <h1 id="ppTitle" [class.pp-title-compact]="compactHeroTitle()"
-              [xhFitBannerTitle]="slug() === 'acronis-ai' || slug() === 'docusign' || slug() === 'rpc-nodes' || slug() === 'zoom-conferenceing' || slug() === 'cpanel-vps' || isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || !!v.heroMessages[0]?.toLowerCase()?.startsWith('maximise online visibility')"
-              [bannerTitleMaxSize]="slug() === 'acronis-ai' || slug() === 'docusign' || slug() === 'rpc-nodes' || slug() === 'zoom-conferenceing' || slug() === 'cpanel-vps' || isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' ? 42 : 26">
+              [xhFitBannerTitle]="slug() === 'gemini-managed-services' || slug() === 'acronis-ai' || slug() === 'docusign' || slug() === 'rpc-nodes' || slug() === 'zoom-conferenceing' || slug() === 'cpanel-vps' || isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || !!v.heroMessages[0]?.toLowerCase()?.startsWith('maximise online visibility')"
+              [bannerTitleMaxSize]="slug() === 'gemini-managed-services' ? 36 : slug() === 'acronis-ai' || slug() === 'docusign' || slug() === 'rpc-nodes' || slug() === 'zoom-conferenceing' || slug() === 'cpanel-vps' || isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' ? 42 : 26">
               <span class="pp-title-brand" [attr.aria-label]="'Xcell' + v.brandSuffix">
                 <span class="pp-brand-xcell">Xcell</span
                 ><span class="pp-brand-family">{{ v.brandSuffix }}</span>
@@ -1848,7 +1852,7 @@
               <h2
                 class="pp-tagline"
                 [class.pp-tagline-reference]="isAdvancedEdr() || v.name === 'Tally on Cloud'"
-                [attr.data-preserve-copy]="slug() === 'managed-pki' || slug() === 'private-ca' || slug() === 'iot-pki' || slug() === 'iot-device-certificates' || slug() === 'cloud-code-signing' || slug() === 'certificate-mgmt-solutions' || slug() === 'matter-dac' || slug() === 'pki-software' || slug() === 'windows-365' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || slug() === 'vdpo-as-a-service' ? '' : null"
+                [attr.data-preserve-copy]="slug() === 'gemini-managed-services' || slug() === 'managed-pki' || slug() === 'private-ca' || slug() === 'iot-pki' || slug() === 'iot-device-certificates' || slug() === 'cloud-code-signing' || slug() === 'certificate-mgmt-solutions' || slug() === 'matter-dac' || slug() === 'pki-software' || slug() === 'windows-365' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || slug() === 'vdpo-as-a-service' ? '' : null"
                 id="ppTag"
               >
                 @if (slug() === 'memory-optimized') {
@@ -1860,9 +1864,20 @@
             }
 
             @if (slug() !== 'docusign' && v.heroHighlight && slug() !== 'rpc-nodes' && slug() !== 'gaming-servers' && slug() !== 'zoom-conferenceing' && slug() !== 'ai-voice-bot' && slug() !== 'managed-oracle-cloud' && slug() !== 'thawte-ssl-certificates') {
-              <p class="pp-tagline-support" [class.defender-hero-description]="slug() === 'microsoft-defender'" [class.b300-hero-summary]="slug() === 'nvidia-b300'" [attr.data-preserve-copy]="slug() === 'managed-pki' || slug() === 'private-ca' || slug() === 'iot-pki' || slug() === 'iot-device-certificates' || slug() === 'cloud-code-signing' || slug() === 'certificate-mgmt-solutions' || slug() === 'matter-dac' || slug() === 'pki-software' || slug() === 'windows-365' || slug() === 'general-compute' || slug() === 'nvidia-b300' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || slug() === 'vdpo-as-a-service' ? '' : null">{{ v.heroHighlight }}</p>
+              <p class="pp-tagline-support" [class.defender-hero-description]="slug() === 'microsoft-defender'" [class.b300-hero-summary]="slug() === 'nvidia-b300'" [attr.data-preserve-copy]="slug() === 'gemini-managed-services' || slug() === 'managed-pki' || slug() === 'private-ca' || slug() === 'iot-pki' || slug() === 'iot-device-certificates' || slug() === 'cloud-code-signing' || slug() === 'certificate-mgmt-solutions' || slug() === 'matter-dac' || slug() === 'pki-software' || slug() === 'windows-365' || slug() === 'general-compute' || slug() === 'nvidia-b300' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || slug() === 'vdpo-as-a-service' ? '' : null">{{ v.heroHighlight }}</p>
             }
-            @if (v.heroMessages.length) {
+            @if (slug() === 'gemini-managed-services') {
+              <div class="pp-typewriter gemini-hero-typewriter" aria-live="polite">
+                <span>{{ typedHeroText() }}</span><i aria-hidden="true"></i>
+              </div>
+              <ul class="gemini-hero-features" aria-label="Gemini managed service features">
+                <li><span aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M16 5a3 3 0 0 1 0 6M21 20v-2a6 6 0 0 0-4-5"/></svg></span>Rollout, champions, training</li>
+                <li><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m4 20 12-12 4 4L8 24M14 4V1M21 6h3M19 2l2-2M4 6V2M2 4h4"/></svg></span>Custom Gems &amp; agents</li>
+                <li><span aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></svg></span>RAG over Drive &amp; BigQuery</li>
+                <li><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 18a9 9 0 1 1 16 0M12 14l4-5"/><circle cx="12" cy="14" r="1"/></svg></span>LLMOps &amp; cost control</li>
+              </ul>
+            }
+            @if (v.heroMessages.length && slug() !== 'gemini-managed-services') {
               @if (slug() === 'sectigo-ssl-certificates') {
                 <div class="pp-typewriter"><span>{{ v.heroMessages[0] }}</span></div>
               } @else {
@@ -1923,7 +1938,7 @@
                     <div><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>Root SSH · firewall</div>
                   </div>
                 } @else if (v.heroPoints.length) {
-                  <div class="pp-hpoints" [class.comodo-hero-points]="slug() === 'comodo-personal-authentication'" [attr.data-preserve-copy]="slug() === 'managed-pki' || slug() === 'private-ca' || slug() === 'iot-pki' || slug() === 'iot-device-certificates' || slug() === 'cloud-code-signing' || slug() === 'certificate-mgmt-solutions' || slug() === 'matter-dac' || slug() === 'pki-software' || slug() === 'windows-365' || slug() === 'comodo-ev-code-signing' ? '' : null">
+                  <div class="pp-hpoints" [class.comodo-hero-points]="slug() === 'comodo-personal-authentication'" [attr.data-preserve-copy]="slug() === 'gemini-managed-services' || slug() === 'managed-pki' || slug() === 'private-ca' || slug() === 'iot-pki' || slug() === 'iot-device-certificates' || slug() === 'cloud-code-signing' || slug() === 'certificate-mgmt-solutions' || slug() === 'matter-dac' || slug() === 'pki-software' || slug() === 'windows-365' || slug() === 'comodo-ev-code-signing' ? '' : null">
                     @for (p of v.heroPoints; track p; let i = $index) {
                       <div class="pp-hpoint">
                         @if (slug() === 'managed-pki' || slug() === 'private-ca') {
@@ -2617,6 +2632,9 @@
         }
         <div class="wrap">
 
+          @if (slug() === 'gemini-managed-services') {
+            <xh-gemini-managed-content id="ppOv" />
+          }
           @if (slug() === 'claude-backup') {
             <xh-claude-backup-content (enquiry)="openCallback($event)" />
           }
@@ -2786,7 +2804,7 @@
           } @else if (slug() === 'wordpress-vps') {
             <xh-imported-interactive-content class="wordpress-vps-source-content" source="wordpress-vps" />
           }
-          @if (slug() !== 'synapsem-ai-training-live-online' && slug() !== 'ai-training-for-educators' && slug() !== 'smb-cloud-desktop' && slug() !== 'certificate-lifecycle-management-platforms' && slug() !== 'autoinstall-ssl-for-web-hosts' && slug() !== 'autoinstall-ssl-for-linux-and-windows' && slug() !== 'waap-as-a-service' && slug() !== 'threat-intelligence' && slug() !== 'cyber-security-audit' && slug() !== 'third-party-risk-management' && slug() !== 'managed-bug-bounty' && slug() !== 'ot-assessment' && slug() !== 'blue-team-assessment' && slug() !== 'red-team-assessment' && slug() !== 'cloud-security-assessment' && slug() !== 'digital-risk-monitoring' && slug() !== 'hybrid-cloud' && slug() !== 'edge-cloud' && slug() !== 'iot-cloud' && slug() !== 'cdn-cloud' && !isEmailSecurityEnterprise() && slug() !== 'open-ai-managed-services' && slug() !== 'vortex-soc' && !isVortexSegSource() && slug() !== 'dfir' && slug() !== 'managed-google-cloud-gcp' && slug() !== 'docusign' && slug() !== 'rpc-nodes' && slug() !== 'gaming-servers' && slug() !== 'zoom-conferenceing' && slug() !== 'managed-pki' && slug() !== 'private-ca' && slug() !== 'iot-pki' && slug() !== 'iot-device-certificates' && slug() !== 'cloud-code-signing' && slug() !== 'certificate-mgmt-solutions' && slug() !== 'matter-dac' && slug() !== 'pki-software' && slug() !== 'windows-365' && slug() !== 'bio-link-digital-visiting-card' && slug() !== 'general-compute' && slug() !== 'wordpress-vps' && slug() !== 'identity-resilience' && slug() !== 'ediscovery-and-compliance' && slug() !== 'cpu-optimized' && slug() !== 'memory-optimized' && slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && slug() !== 'gpu-clusters' && slug() !== 'ai-chat-bot') {
+          @if (slug() !== 'gemini-managed-services' && slug() !== 'synapsem-ai-training-live-online' && slug() !== 'ai-training-for-educators' && slug() !== 'smb-cloud-desktop' && slug() !== 'certificate-lifecycle-management-platforms' && slug() !== 'autoinstall-ssl-for-web-hosts' && slug() !== 'autoinstall-ssl-for-linux-and-windows' && slug() !== 'waap-as-a-service' && slug() !== 'threat-intelligence' && slug() !== 'cyber-security-audit' && slug() !== 'third-party-risk-management' && slug() !== 'managed-bug-bounty' && slug() !== 'ot-assessment' && slug() !== 'blue-team-assessment' && slug() !== 'red-team-assessment' && slug() !== 'cloud-security-assessment' && slug() !== 'digital-risk-monitoring' && slug() !== 'hybrid-cloud' && slug() !== 'edge-cloud' && slug() !== 'iot-cloud' && slug() !== 'cdn-cloud' && !isEmailSecurityEnterprise() && slug() !== 'open-ai-managed-services' && slug() !== 'vortex-soc' && !isVortexSegSource() && slug() !== 'dfir' && slug() !== 'managed-google-cloud-gcp' && slug() !== 'docusign' && slug() !== 'rpc-nodes' && slug() !== 'gaming-servers' && slug() !== 'zoom-conferenceing' && slug() !== 'managed-pki' && slug() !== 'private-ca' && slug() !== 'iot-pki' && slug() !== 'iot-device-certificates' && slug() !== 'cloud-code-signing' && slug() !== 'certificate-mgmt-solutions' && slug() !== 'matter-dac' && slug() !== 'pki-software' && slug() !== 'windows-365' && slug() !== 'bio-link-digital-visiting-card' && slug() !== 'general-compute' && slug() !== 'wordpress-vps' && slug() !== 'identity-resilience' && slug() !== 'ediscovery-and-compliance' && slug() !== 'cpu-optimized' && slug() !== 'memory-optimized' && slug() !== 'performance-cloud' && slug() !== 'gpu-servers' && slug() !== 'gpu-clusters' && slug() !== 'ai-chat-bot') {
           @if (slug() === 'marketplace') {
             <xh-marketplace-content />
           } @else {
@@ -5899,7 +5917,7 @@
 
 
 
-            @if (v.packages.length) {
+            @if (v.packages.length && slug() !== 'gemini-managed-services') {
               <div class="pp-sec">Included with {{ v.name }}</div>
               <div class="pp-pkg">
                 @for (item of v.packages; track item.title) {
@@ -5914,7 +5932,7 @@
                 }
               </div>
             }
-            @if (v.name !== 'Tally on Cloud') {
+            @if (v.name !== 'Tally on Cloud' && slug() !== 'gemini-managed-services') {
               @if (v.activeProtection; as ap) {
                 <div class="pp-active pp-active-noimg">
                   <div>
@@ -5924,7 +5942,7 @@
                 </div>
               }
             }
-            @if (platforms().length && slug() !== 'rtx-8000' && slug() !== 'claude-backup') {
+            @if (platforms().length && slug() !== 'rtx-8000' && slug() !== 'claude-backup' && slug() !== 'gemini-managed-services') {
               <div class="pp-sec" [attr.id]="isTally() ? 'tallyPlatforms' : null">Platforms &amp; workloads covered</div>
               <div class="pp-plat">
                 @for (p of platforms(); track p.name) {
@@ -6100,7 +6118,7 @@
           }
           @if (
             !videosInInsights() && !['dpdpa-consulting', 'vdpo-as-a-service', 'vciso-as-a-service'].includes(slug()) && v.name !== 'Enterprise DMARC' &&
-            (showcaseVideos().length ||
+            (showcaseVideos().length || slug() === 'gemini-managed-services' ||
               isAutonomousThreatSolution() ||
               isOurPlatform() ||
               isWatchtower() ||
@@ -6115,6 +6133,12 @@
             <section class="tally-videos" [attr.aria-labelledby]="isTally() ? 'tallyWatch' : 'showcaseVideosTitle'">
               <div class="pp-sec" [attr.id]="isTally() ? 'tallyWatch' : 'showcaseVideosTitle'" [style.margin-top.px]="slug() === 'managed-devops' || slug() === 'microsoft-365-training' || slug() === 'microsoft-copilot-training' ? 56 : null">Watch it in action</div>
               <div class="tally-video-grid" [class.single-video]="showcaseVideos().length === 1">
+                @if (slug() === 'gemini-managed-services' && !showcaseVideos().length) {
+                  <article class="tally-video-card">
+                    <h3><span>Google Gemini — managed by XcellHost</span></h3>
+                    <xh-gemini-managed-content [hero]="true" />
+                  </article>
+                }
                 @for (video of showcaseVideos(); track video.label) {
                   <article class="tally-video-card">
                     <h3>
