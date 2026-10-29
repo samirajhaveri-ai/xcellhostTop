@@ -7,7 +7,13 @@ const source = fs.readFileSync(input, 'utf8');
 const styles = source.match(/<style>([\s\S]*?)<\/style>/)[1];
 const interactions = [...source.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/g)].at(-1)[1]
   .replace("window.scrollTo({top:el.getBoundingClientRect().top+scrollY-140,behavior:R?'auto':'smooth'});", "document.dispatchEvent(new CustomEvent('gemini-scroll',{detail:el.id}));");
-const sections = ['overview', 'how', 'usecases', 'services', 'india', 'plans', 'configure', 'picker', 'roi', 'vs', 'steps', 'faq'];
+// Render the source questions through the site's shared FAQ section.
+const schema = JSON.parse(source.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+const faqSchema = schema['@graph'].find(item => item['@type'] === 'FAQPage');
+if (!faqSchema?.mainEntity?.length) throw new Error('Missing source FAQ questions');
+const faqs = faqSchema.mainEntity.map(item => [item.name, item.acceptedAnswer.text]);
+fs.writeFileSync('src/app/data/gemini-managed-faq.data.ts', `import { Faq } from './models';\n\n// Questions and answers from the supplied Managed Gemini Services document.\nexport const GEMINI_MANAGED_FAQS: Faq[] = ${JSON.stringify(faqs, null, 2)};\n`);
+const sections = ['overview', 'how', 'usecases', 'services', 'india', 'plans', 'configure', 'picker', 'roi', 'vs', 'steps'];
 const providerLogos = [
   [['gmail.png', 'Gmail'], ['docs.png', 'Google Docs'], ['sheets.png', 'Google Sheets'], ['meet.png', 'Google Meet']],
   [['/assets/images/veritas-integrations/gemini.png', 'Google Gemini']],

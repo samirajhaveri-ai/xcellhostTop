@@ -8,6 +8,7 @@ import { ContainerRegistryContentComponent } from '../sections/container-registr
 
 import { ImportedInteractiveContentComponent } from '../sections/imported-interactive-content.component';
 import { GeminiManagedContentComponent } from '../sections/gemini-managed-content.component';
+import { GEMINI_MANAGED_FAQS } from '../data/gemini-managed-faq.data';
 import { ZoomConferenceingSourceComponent } from '../sections/zoom-conferenceing-source.component';
 import { ZOOM_CONFERENCEING_FAQS } from '../data/zoom-conferenceing-faq.data';
 import { WORDPRESS_VPS_FAQS } from '../data/wordpress-vps-faq.data';
@@ -3080,6 +3081,40 @@ class ProductPageComponent {
         tagline: 'Google Gemini, switched on safely — and actually used.',
         heroHighlight: 'XcellHost plans, licenses, governs and runs Gemini for Google Workspace, Gemini Enterprise and Gemini models on Google Cloud — with rupee billing and a 24×7 Mumbai team.',
         heroMessages: ['A Gem that knows your SOPs'],
+        faqs: GEMINI_MANAGED_FAQS,
+        // Placeholder reasons for the Gemini service's shared Why section.
+        why: [
+          {
+            icon: 'M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z',
+            title: 'The right Gemini edition',
+            body: 'Choose Gemini to suit your teams and everyday workflows.',
+          },
+          {
+            icon: 'M12 2 4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5l-8-3zm-1 14-4-4 1.4-1.4 2.6 2.6 5.6-5.6L18 9l-7 7z',
+            title: 'Governance from day one',
+            body: 'Set permissions and data policies before your rollout.',
+          },
+          {
+            icon: 'M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5C15 14.17 10.33 13 8 13zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z',
+            title: 'A practical rollout',
+            body: 'Pilot Gemini and train teams on practical daily tasks.',
+          },
+          {
+            icon: 'm19 1-1.26 2.75L15 5l2.74 1.25L19 9l1.25-2.75L23 5l-2.75-1.25L19 1zM9 5l-2.5 5.5L1 13l5.5 2.5L9 21l2.5-5.5L17 13l-5.5-2.5L9 5z',
+            title: 'Gems for everyday work',
+            body: 'Build Gems around your knowledge and repeatable tasks.',
+          },
+          {
+            icon: 'M3 3v18h18v-2H5V3H3zm4 10h3v4H7v-4zm5-6h3v10h-3V7zm5 3h3v7h-3v-7z',
+            title: 'Visibility into adoption',
+            body: 'Track usage, feedback and costs to improve adoption.',
+          },
+          {
+            icon: 'M12 3a9 9 0 0 0-9 9v7a2 2 0 0 0 2 2h3v-9H5a7 7 0 0 1 14 0h-3v9h3v1h-7v2h7a2 2 0 0 0 2-2V12a9 9 0 0 0-9-9z',
+            title: 'One team to coordinate',
+            body: 'One contact for licensing, onboarding and service.',
+          },
+        ],
       };
     }
     if (slug === 'microsoft-entra-id' && view) return {

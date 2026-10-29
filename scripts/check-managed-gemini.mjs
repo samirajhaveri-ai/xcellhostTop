@@ -8,7 +8,8 @@ import http from 'node:http';
 const chrome = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 const checks = {
   content: `
-    assert(document.querySelectorAll('main > section').length===12,'section selection');
+    assert(document.querySelectorAll('main > section').length===11,'section selection');
+    assert(!document.getElementById('faq'),'FAQ moved out of imported body');
     assert(document.getElementById('cTot').textContent.includes('₹'),'configurator initial total');
     const before=document.getElementById('cTot').textContent;
     document.querySelector('#cPlan button[data-v="adopt"]').click();
@@ -27,8 +28,6 @@ const checks = {
     const old=document.getElementById('rVal').textContent;
     const range=document.getElementById('rU');range.value='200';range.dispatchEvent(new Event('input'));
     assert(document.getElementById('rVal').textContent!==old,'ROI input update');
-    const faq=document.querySelectorAll('.fq')[1];faq.querySelector('button').click();
-    assert(faq.classList.contains('open'),'FAQ expansion');
     let items=0;document.addEventListener('import-add',()=>items++);document.getElementById('oAdd').click();assert(items>0,'cart event');
     let quote=false;document.addEventListener('import-callback',()=>quote=true);document.getElementById('cQuote').click();assert(quote,'quote event');
   `,
@@ -63,7 +62,12 @@ if (process.argv.includes('--site')) {
     assert(document.getElementById('ppSecHead'),'shared security section');
     assert(document.getElementById('ppWhyHead'),'shared Why XcellHost section');
     assert(document.getElementById('ppBlog'),'shared blog section');
-    for(const title of ['Watch it in action','What customers say','Frequently asked questions','Ready to start with'])assert(text.toLowerCase().includes(title.toLowerCase()),title);
+    assert(!document.getElementById('showcaseVideosTitle'),'Watch it in action section removed');
+    for(const title of ['What customers say','Frequently asked questions','Ready to start with'])assert(text.toLowerCase().includes(title.toLowerCase()),title);
+    const faq=document.getElementById('ppFaq');
+    assert(faq.querySelectorAll('.faq2').length===12,'all Gemini questions under shared FAQ heading');
+    assert(faq.previousElementSibling?.classList.contains('pp-faq-heading'),'FAQ directly below heading');
+    assert(!frame.contentDocument.getElementById('faq'),'duplicate imported FAQ removed');
     assert(document.querySelectorAll('.gemini-hero-features li').length===4,'four left hero features');
     assert(text.includes('Google Gemini, switched on safely — and actually used.'),'Gemini hero tagline');
     assert(text.includes('with rupee billing and a 24×7 Mumbai team.'),'Gemini hero paragraph');
