@@ -4781,6 +4781,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
+                "title": "Smart Manufacturing",
+                "href": "/smart-manufacturing",
+                "pill": null,
+                "desc": "Industry 5.0, IIoT, digital twins and predictive maintenance"
+              },
+              {
                 "title": "Government Cloud",
                 "href": "/government-cloud",
                 "pill": null,

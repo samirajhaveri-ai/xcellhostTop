@@ -1,3 +1,4 @@
+import { SMART_MANUFACTURING_FAQS } from '../data/smart-manufacturing-faqs.data';
 import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ProductPageService } from '../core/product-page.service';
@@ -35,7 +36,14 @@ export class ServiceDefaultSectionsComponent {
     ...item,
     body: item.title === 'One partner' ? 'Cloud, security & support under one roof' : item.body,
   }));
-  readonly security = computed(() => this.training() ? [
+  readonly security = computed(() => this.contentSlug() === 'smart-manufacturing' ? [
+    ['IT/OT boundaries', 'Segment plant networks and control data flows between machines, edge systems and enterprise applications.'],
+    ['Access control', 'Scope operator, engineer and vendor access with approvals and audit trails.'],
+    ['Data protection', 'Agree encryption, backup and retention for telemetry, production and quality data.'],
+    ['Change approval', 'Test changes and retain human approval for actions affecting production or machinery.'],
+    ['Monitoring & response', 'Define alerting, escalation and incident response across plant and cloud systems.'],
+    ['Compliance scope', 'Map relevant IEC 62443 and Indian requirements to the agreed project scope.'],
+  ] : this.training() ? [
     ['Training data', 'Use sample or synthetic material in exercises; keep confidential and personal data out of prompts.'],
     ['Access control', 'Use approved accounts and apply your organisation’s permissions and sharing policies.'],
     ['Human review', 'Check AI-generated answers against source material before using or sharing them.'],
@@ -57,7 +65,7 @@ export class ServiceDefaultSectionsComponent {
     ['Logging & retention', 'Agree log collection, retention and access requirements for your environment.'],
     ['Service responsibilities', 'Review provider dependencies, support coverage and compliance requirements before deployment.'],
   ]);
-  readonly faqs = computed(() => (this.platform() ? GCP_SERVICE_FAQS : this.contentSlug() === 'ai-training-chartered-accountants' ? ACCOUNTANT_TRAINING_FAQS : SERVICE_DEFAULT_FAQS[this.contentSlug() || this.pageSlug()]) ?? [
+  readonly faqs = computed(() => (this.contentSlug() === 'smart-manufacturing' ? SMART_MANUFACTURING_FAQS : this.platform() ? GCP_SERVICE_FAQS : this.contentSlug() === 'ai-training-chartered-accountants' ? ACCOUNTANT_TRAINING_FAQS : SERVICE_DEFAULT_FAQS[this.contentSlug() || this.pageSlug()]) ?? [
     [`How do I get started with ${this.name()}?`, 'Request a consultation to discuss your requirements, available options and a quotation.'],
     ['How do I confirm pricing?', 'Review the options on this page and request a quotation from XcellHost. Confirm scope and applicable taxes before ordering.'],
   ]);

@@ -1,0 +1,30 @@
+import fs from 'node:fs';
+
+const source = fs.readFileSync(process.argv[2], 'utf8');
+const original = source.match(/<main\b[^>]*>[\s\S]*?<\/main>/)?.[0];
+const styles = source.match(/<style>([\s\S]*?)<\/style>/)?.[1];
+const scripts = [...source.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)];
+const core = scripts.find(m => m[2].includes('XcellHost v2 core runtime'))?.[2];
+const page = scripts.at(-1)?.[2];
+if (!original || !styles || !core || !page?.includes('i5Hero')) throw Error('Unexpected manufacturing source');
+const faqStart = original.indexOf('<section class="sec i5-fq"');
+if (faqStart < 0) throw Error('Missing source FAQ');
+let main = original.slice(0, faqStart) + '</main>';
+main = main.replace('data-product="Industry 5.0 & Smart Manufacturing"', 'data-product="Smart Manufacturing"');
+main = main.replace(/<div class="lh-ctas"[^>]*>[\s\S]*?<\/div>\s*<div class="lh-ask"[^>]*>[\s\S]*?<\/div>/, '<div class="xh-banner-actions" data-banner-added-actions></div>');
+if (!main.includes('data-banner-added-actions')) throw Error('Missing hero actions');
+const fonts = [...source.matchAll(/<link\b[^>]*>/g)].map(m => m[0]).filter(s => /fonts\.(googleapis|gstatic)\.com/.test(s)).join('');
+const bridge = `(function(){
+  const open=XH.open;
+  XH.open=function(id,options){if(id==='xhCallback'){document.dispatchEvent(new CustomEvent('import-callback',{detail:options?.topic||'Smart Manufacturing consultation'}));return;}open(id,options);};
+  XH.cart={add:item=>document.dispatchEvent(new CustomEvent('import-cart',{detail:item}))};
+  document.addEventListener('submit',event=>{const form=event.target;if(!form.closest('#quote'))return;event.preventDefault();event.stopImmediatePropagation();if(!form.reportValidity())return;document.dispatchEvent(new CustomEvent('import-training-enquiry',{detail:Object.fromEntries(new FormData(form))}));},true);
+  document.addEventListener('click',event=>{const a=event.target.closest('a[href]');if(!a||a.getAttribute('href').startsWith('#'))return;const url=new URL(a.href,location.href);if(url.origin===location.origin||/^(?:www\\.)?xcellhost\\.(?:cloud|top)$/.test(url.hostname)){a.href=url.pathname.replace(/\\.html$/,'')+url.search+url.hash;a.target='_top';}},true);
+})();`;
+const css = `html,body{margin:0;overflow-x:hidden}main{display:flow-root}.hero.lh{background:linear-gradient(110deg,#103f7b,#041e42 65%);padding:48px 0}.hero .wrap,.sec .wrap{max-width:1200px}.hero-grid{align-items:center;gap:40px}.lh-title{font-size:clamp(28px,3vw,40px)}.lh-tag{font-size:17px}.lh-tag2{font-size:14px;line-height:1.7}.lh-points{font-size:12px}.sec{padding:48px 0}.sh h2{font-size:clamp(24px,3vw,34px)}.rv{opacity:1;transform:none}`;
+fs.writeFileSync('public/imported-smart-manufacturing.html', `<!doctype html><html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Smart Manufacturing | XcellHost</title>${fonts}<style>${styles}\n${css}</style></head><body>${main}<script>${core}</script><script>${bridge}</script><script>${page}</script></body></html>`);
+const faq = original.slice(faqStart).match(/^<section\b[\s\S]*?<\/section>/)?.[0] || '';
+const clean = html => html.replace(/<[^>]+>/g,'').replace(/&amp;/g,'&').replace(/&#x27;|&#39;/g,"'").replace(/&quot;/g,'"').trim();
+const faqs = [...faq.matchAll(/<div class="fq(?: open)?"><button[^>]*>([\s\S]*?)<i>[\s\S]*?<div class="fa"><p>([\s\S]*?)<\/p>/g)].map(m => [clean(m[1]), clean(m[2])]);
+if (!faqs.length) throw Error('No manufacturing FAQs');
+fs.writeFileSync('src/app/data/smart-manufacturing-faqs.data.ts', `import { Faq } from './models';\nexport const SMART_MANUFACTURING_FAQS: Faq[] = ${JSON.stringify(faqs,null,2)};\n`);

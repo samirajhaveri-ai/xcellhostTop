@@ -8,6 +8,8 @@ import { GCP_SERVICE_PAGE } from './data/gcp-services.data';
 
 
 export const routes: Routes = [
+  { path: 'smart-manufacturing', title: 'Industry 5.0 & Smart Manufacturing | XcellHost', loadComponent: () => import('./pages/smart-manufacturing.page').then(m => m.SmartManufacturingPage) },
+  { path: 'industry-5-smart-manufacturing', redirectTo: 'smart-manufacturing', pathMatch: 'full' },
   { path: 'vendor-partners/ibm-multicloud', title: 'IBM Multicloud Products and Services | XcellHost', loadComponent: () => import('./pages/ibm-multicloud-services.page').then(m => m.IbmMulticloudServicesPage) },
   { path: 'ibm-multicloud-services', redirectTo: 'vendor-partners/ibm-multicloud', pathMatch: 'full' },
   { path: 'under-construction/ibm-multicloud-services', redirectTo: 'vendor-partners/ibm-multicloud', pathMatch: 'full' },

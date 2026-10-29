@@ -40,6 +40,7 @@ type InteractiveContentSource =
   | 'ibm-multicloud-services'
   | 'dpo-genie365-services'
   | 'ai-training-integrated-program' | 'ai-training-medical-doctors' | 'ai-training-insurance-professionals'
+  | 'smart-manufacturing'
   | 'ai-training-chartered-accountants'
 
   | 'acronis-ai-solution' | 'acronis-cyberfit-score' | 'acronis-ransomware-warranty'
@@ -230,6 +231,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'dell-services': '/imported-dell-services.html',
     'oracle-cloud-services': '/imported-oracle-cloud-services.html',
     'ibm-multicloud-services': '/imported-ibm-multicloud-services.html',
+    'smart-manufacturing': '/imported-smart-manufacturing.html',
     'dpo-genie365-services': '/imported-dpo-genie365-services.html',
     'ai-training-integrated-program': '/imported-ai-training-integrated-program.html',
     'ai-training-chartered-accountants': '/imported-ai-training-chartered-accountants.html',
@@ -426,6 +428,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'dell-services': 'Dell Products and Services',
     'oracle-cloud-services': 'Oracle Cloud Products and Services',
     'ibm-multicloud-services': 'IBM Multicloud Products and Services',
+    'smart-manufacturing': 'Industry 5.0 and Smart Manufacturing',
     'dpo-genie365-services': 'DPO Genie365 Products and Services',
     'ai-training-integrated-program': 'Integrated AI Training Program',
     'ai-training-chartered-accountants': 'AI Training For Chartered Accountants',
@@ -899,7 +902,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     };
 
     const trainingEnquiry = (event: Event) => {
-      const catalogue = this.source === 'microsoft-services' || this.source === 'digicert-services' || this.source === 'geotrust-services' || this.source === 'sectigo-services' || this.source === 'kaspersky-services' || this.source === 'sentinelone-services' || this.source === 'opentext-services' || this.source === 'cybird-services' || this.source === 'fortinet-services' || this.source === 'hpe-services' || this.source === 'dell-services' || this.source === 'oracle-cloud-services' || this.source === 'ibm-multicloud-services' || this.source === 'dpo-genie365-services';
+      const catalogue = this.source === 'smart-manufacturing' || this.source === 'microsoft-services' || this.source === 'digicert-services' || this.source === 'geotrust-services' || this.source === 'sectigo-services' || this.source === 'kaspersky-services' || this.source === 'sentinelone-services' || this.source === 'opentext-services' || this.source === 'cybird-services' || this.source === 'fortinet-services' || this.source === 'hpe-services' || this.source === 'dell-services' || this.source === 'oracle-cloud-services' || this.source === 'ibm-multicloud-services' || this.source === 'dpo-genie365-services';
       if (!catalogue && !this.source.startsWith('ai-training-')) return;
       const values = (event as CustomEvent<Record<string, string>>).detail;
       const [firstName = '', ...lastName] = (values['name'] || '').trim().split(/\s+/);

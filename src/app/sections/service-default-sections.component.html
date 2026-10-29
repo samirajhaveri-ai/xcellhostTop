@@ -3,7 +3,7 @@
   <div class="wrap">
     <section id="defaultSecurity" aria-labelledby="defaultSecurityTitle">
       <h2 class="pp-sec" id="defaultSecurityTitle">Security &amp; compliance — {{ name() }}</h2>
-      <p class="pp-ov">{{ training() ? 'Build practical AI skills with responsible use, data privacy and human review throughout your training.' : platform() ? 'Plan identity, network security and data protection alongside your Google Cloud workloads.' : 'Plan security, access and operational responsibilities alongside your connectivity design.' }}</p>
+      <p class="pp-ov">{{ contentSlug() === 'smart-manufacturing' ? 'Protect plant operations through scoped access, controlled IT/OT connections, monitored infrastructure and human approval for production changes.' : training() ? 'Build practical AI skills with responsible use, data privacy and human review throughout your training.' : platform() ? 'Plan identity, network security and data protection alongside your Google Cloud workloads.' : 'Plan security, access and operational responsibilities alongside your connectivity design.' }}</p>
       <div class="pp-secrows">
         @for (row of security(); track row[0]) {
           <div class="psrow"><span class="psk">{{ row[0] }}</span><span class="psv">{{ row[1] }}</span></div>
