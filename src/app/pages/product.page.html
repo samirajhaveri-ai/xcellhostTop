@@ -47,7 +47,7 @@
     [class.comodo-ev-page]="slug() === 'comodo-ev-code-signing'"
     [class.code-signing-page]="slug() === 'digicert-code-signing'"
     [class.vdpo-page]="slug() === 'vdpo-as-a-service'"
-    [class.vciso-page]="slug() === 'vciso-as-a-service'"
+    [class.vciso-imported-page]="slug() === 'vciso-as-a-service'"
     [class.b300-hero-page]="slug() === 'nvidia-b300'"
     [class.smime-ov-page]="slug() === 'digicert-smime-ov'"
     [class.claude-backup-page]="slug() === 'claude-backup'"
@@ -510,6 +510,7 @@
       @if (!isVmc() && !isCmc() && slug() !== 'performance-cloud' && slug() !== 'gpu-servers') {
       <div
         class="pp-hero"
+        [class.data-center-build-hero]="slug() === 'nvidia-server-gpu-comparison' || slug() === 'amd-epyc-cpu-comparison' || slug() === 'managed-identity-service' || slug() === 'data-center-build-services' || slug() === 'vcio-as-a-service' || slug() === 'vcto-as-a-service' || slug() === 'vciso-as-a-service' || slug() === 'vcaio-as-a-service'"
         [class.sitelock-hero]="v.name === 'Web Security (SiteLock)'"
         [class.tally-product-hero]="v.name === 'Tally on Cloud'"
       >
@@ -531,8 +532,8 @@
             <xh-geotrust-ssl-hero />
           </div>
         } @else if (slug() === 'vciso-as-a-service') {
-          <div class="pph-scene vciso-hero-art">
-            <xh-vciso-hero />
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/vciso-hero.html" title="Animated vCISO security strategy, risk treatment, audit readiness and incident leadership" scrolling="no"></iframe>
           </div>
         } @else if (slug() === 'vdpo-as-a-service') {
           <div class="pph-scene vdpo-hero-art">
@@ -1378,6 +1379,34 @@
           <div class="pph-scene gemini-managed-hero-art">
             <xh-gemini-managed-content [hero]="true" />
           </div>
+        } @else if (slug() === 'managed-identity-service') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/managed-identity-service-hero.html" title="Animated managed identity operations: lifecycle, access reviews, passkeys, privileged access and threat response" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'vcaio-as-a-service') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/vcaio-hero.html" title="Animated finance and AI leadership: forecasting, close, cloud spend and investment returns" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'amd-epyc-cpu-comparison') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/amd-epyc-hero.html" title="Animated AMD EPYC chiplets, memory channels, PCIe lanes and workload comparison" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'nvidia-server-gpu-comparison') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/nvidia-server-gpu-hero.html" title="Animated NVIDIA GPU architectures, memory, Tensor throughput and workload comparison" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'vcto-as-a-service') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/vcto-hero.html" title="Animated vCTO product architecture, engineering, cloud cost and board scorecard" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'vcio-as-a-service') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/vcio-hero.html" title="Animated vCIO IT command deck: roadmap, budget, vendors, risk and quarterly reviews" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'data-center-build-services') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/data-center-build-hero.html" title="Data center design, power, cooling, commissioning and NOC animation" scrolling="no"></iframe>
+          </div>
         } @else if (v.heroImage && v.name !== 'Web Security (SiteLock)') {
 
           <div class="pph-scene has-illus standalone-illus" id="pphScene" aria-hidden="true">
@@ -1753,7 +1782,7 @@
               </h1>
             } @else {
             <h1 id="ppTitle" [class.pp-title-compact]="compactHeroTitle()"
-              [xhFitBannerTitle]="slug() === 'gemini-managed-services' || slug() === 'acronis-ai' || slug() === 'docusign' || slug() === 'rpc-nodes' || slug() === 'zoom-conferenceing' || slug() === 'cpanel-vps' || isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || !!v.heroMessages[0]?.toLowerCase()?.startsWith('maximise online visibility')"
+              [xhFitBannerTitle]="slug() === 'managed-identity-service' || slug() === 'vcaio-as-a-service' || slug() === 'vciso-as-a-service' || slug() === 'vcto-as-a-service' || slug() === 'vcio-as-a-service' || slug() === 'data-center-build-services' || slug() === 'gemini-managed-services' || slug() === 'acronis-ai' || slug() === 'docusign' || slug() === 'rpc-nodes' || slug() === 'zoom-conferenceing' || slug() === 'cpanel-vps' || isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || !!v.heroMessages[0]?.toLowerCase()?.startsWith('maximise online visibility')"
               [bannerTitleMaxSize]="slug() === 'gemini-managed-services' ? 36 : slug() === 'acronis-ai' || slug() === 'docusign' || slug() === 'rpc-nodes' || slug() === 'zoom-conferenceing' || slug() === 'cpanel-vps' || isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' ? 42 : 26">
               <span class="pp-title-brand" [attr.aria-label]="'Xcell' + v.brandSuffix">
                 <span class="pp-brand-xcell">Xcell</span
@@ -2639,7 +2668,7 @@
           <xh-vdpo-content id="ppOv" (quoteRequested)="openCallback($event.event, $event.configuration)" />
         }
         @if (slug() === 'vciso-as-a-service') {
-          <xh-vciso-content id="ppOv" (quoteRequested)="openCallback($event.event, $event.configuration)" />
+          <xh-imported-interactive-content source="vciso-as-a-service" id="ppOv" />
         }
         @if (isDigiCert()) {
           <xh-digicert-content />
@@ -2667,6 +2696,20 @@
             <xh-digicert-smime-content />
           } @else if (slug() === 'comodo-personal-authentication') {
             <xh-comodo-pa-content />
+          } @else if (slug() === 'amd-epyc-cpu-comparison') {
+            <xh-imported-interactive-content class="amd-epyc-source-content" source="amd-epyc-cpu-comparison" />
+          } @else if (slug() === 'nvidia-server-gpu-comparison') {
+            <xh-imported-interactive-content class="nvidia-gpu-source-content" source="nvidia-server-gpu-comparison" />
+          } @else if (slug() === 'data-center-build-services') {
+            <xh-imported-interactive-content source="data-center-build-services" />
+          } @else if (slug() === 'vcio-as-a-service') {
+            <xh-imported-interactive-content source="vcio-as-a-service" />
+          } @else if (slug() === 'vcto-as-a-service') {
+            <xh-imported-interactive-content source="vcto-as-a-service" />
+          } @else if (slug() === 'vcaio-as-a-service') {
+            <xh-imported-interactive-content source="vcaio-as-a-service" />
+          } @else if (slug() === 'managed-identity-service') {
+            <xh-imported-interactive-content source="managed-identity-service" />
           } @else {
 
           @if (slug() === 'ai-chat-bot') {
@@ -5878,6 +5921,9 @@
 
           @if (
             slug() !== 'open-ai-managed-services' &&
+            slug() !== 'vcio-as-a-service' &&
+            slug() !== 'vcto-as-a-service' &&
+            slug() !== 'managed-identity-service' &&
             v.name !== 'Tally on Cloud' &&
             slug() !== 'zoom-conferenceing' &&
             slug() !== 'smb-cloud-desktop' &&
@@ -7107,3 +7153,8 @@
 @else {
   <xh-not-found-page />
 }
+
+
+
+
+

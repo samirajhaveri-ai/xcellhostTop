@@ -1,4 +1,12 @@
 import { CustomerTestimonialsComponent } from '../sections/customer-testimonials.component';
+import { DATA_CENTER_BUILD_FAQS } from '../data/data-center-build-faq.data';
+import { VCIO_FAQS } from '../data/vcio-faq.data';
+import { VCTO_FAQS } from '../data/vcto-faq.data';
+import { AMD_EPYC_FAQS } from '../data/amd-epyc-faq.data';
+import { NVIDIA_GPU_FAQS } from '../data/nvidia-server-gpu-faq.data';
+import { VCISO_FAQS } from '../data/vciso-faq.data';
+import { VCAIO_FAQS } from '../data/vcaio-faq.data';
+import { MANAGED_IDENTITY_FAQS } from '../data/managed-identity-service-faq.data';
 
 import { AntiRansomwareWarrantyComponent } from '../sections/anti-ransomware-warranty.component';
 import { ContainerRegistryHeroComponent } from '../sections/container-registry-hero.component';
@@ -74,9 +82,7 @@ import { ThawteSslHeroComponent } from '../sections/thawte-ssl-hero.component';
 import { ComodoEvCodeSigningHeroComponent } from '../sections/comodo-ev-code-signing-hero.component';
 import { CodeSigningHeroComponent } from '../sections/code-signing-hero.component';
 import { VdpoHeroComponent } from '../sections/vdpo-hero.component';
-import { VcisoHeroComponent } from '../sections/vciso-hero.component';
 import { GeotrustSslHeroComponent } from '../sections/geotrust-ssl-hero.component';
-import { VcisoContentComponent } from '../sections/vciso-content.component';
 import { VdpoContentComponent } from '../sections/vdpo-content.component';
 import { CodeSigningContentComponent } from '../sections/code-signing-content.component';
 import { ComodoEvCodeSigningContentComponent } from '../sections/comodo-ev-code-signing-content.component';
@@ -508,9 +514,7 @@ interface ProductTourSlide {
     ComodoEvCodeSigningHeroComponent,
     CodeSigningHeroComponent,
     VdpoHeroComponent,
-    VcisoHeroComponent,
     GeotrustSslHeroComponent,
-    VcisoContentComponent,
     VdpoContentComponent,
     CodeSigningContentComponent,
     ComodoEvCodeSigningContentComponent,
@@ -3088,6 +3092,24 @@ class ProductPageComponent {
   readonly view = computed<ProductView | null>(() => {
     const slug = this.slug();
     const view = this.resolve(slug);
+    if (slug === 'nvidia-server-gpu-comparison' && view) return {
+      ...view,
+      brandSuffix: 'AI',
+      tagline: "Every data-center GPU. One table. NVIDIA's own numbers.",
+      heroHighlight: 'Compare NVIDIA GPUs by memory, bandwidth, FP4 to FP64 Tensor throughput, power, NVLink and MIG. Sparse and dense figures are labelled separately. Size your model, shortlist four, and let XcellHost run the server in Mumbai.',
+      heroPoints: ['Sort, filter & search', 'Compare up to four GPUs', 'Workload finder', 'Model memory calculator'],
+      heroMessages: ['Will a 70B model fit on one GPU?', 'B300 or H200 for inference?', 'L4 for video AI at 72 W', 'FP4, FP8 or FP16 — what changes?'],
+      faqs: NVIDIA_GPU_FAQS,
+    };
+    if (slug === 'amd-epyc-cpu-comparison' && view) return {
+      ...view,
+      brandSuffix: 'Compute',
+      tagline: 'Every current EPYC. One table. Real AMD numbers.',
+      heroHighlight: 'Filter AMD EPYC server CPUs by cores, clocks, cache, power, sockets, memory and PCIe. Compare up to four side by side, match a CPU to your workload, then let XcellHost build and run the server in Mumbai.',
+      heroPoints: ['Sort, filter & search', 'Compare up to four CPUs', 'Workload finder', 'Per-core licence calculator'],
+      heroMessages: ['192 dense cores or 16 fast ones?', 'Which EPYC for SQL Server licences?', '3D V-Cache for CFD and EDA', 'A host CPU that keeps GPUs fed'],
+      faqs: AMD_EPYC_FAQS,
+    };
     if (slug === 'gemini-managed-services' && view) {
       return {
         ...view,
@@ -3147,6 +3169,66 @@ class ProductPageComponent {
       },
     };
     if (!view) return null;
+
+    if (slug === 'managed-identity-service') return {
+      ...view,
+      brandSuffix: 'Secure',
+      tagline: 'Your identity platform, run for you — every day, all night.',
+      heroHighlight: "XcellHost's identity team operates your Microsoft Entra estate and leading IAM, IGA and PAM platforms*: joiners and leavers, access reviews, MFA and passkeys, privileged access and risky sign-ins — with SLAs and a report every month.",
+      heroPoints: ['Joiner–mover–leaver ops', 'Access reviews & requests', 'MFA & passkey rollout', 'PIM & PAM operations'],
+      heroMessages: ['Leavers lose access on their last day', 'Access reviews closed on time', 'Passkeys rolled out team by team', 'Risky sign-ins contained 24×7'],
+      faqs: MANAGED_IDENTITY_FAQS,
+    };
+
+    if (slug === 'vcaio-as-a-service') return {
+      ...view,
+      name: 'vCFAIO as a Service',
+      brandSuffix: 'Lead',
+      tagline: 'Your finance office, rebuilt with AI — led part-time, billed monthly.',
+      heroHighlight: 'A virtual Chief Finance & AI Officer from XcellHost: AI forecasting for FP&A, a faster close with GST and TDS reconciliations matched by machines and checked by people, cloud and AI spend under control, and every AI rupee tracked to a return. Advisory only — your board and finance head still sign.',
+      heroPoints: ['FP&A with AI forecasting', 'AI-assisted close & recos', 'FinOps for cloud & AI tokens', 'AI investment ROI tracking'],
+      heroMessages: ['Forecasts you can defend', 'Close in days, not weeks', 'Cloud and AI spend on budget', 'Every AI rupee tracked to ROI'],
+      faqs: VCAIO_FAQS,
+    };
+
+    if (slug === 'vciso-as-a-service') return {
+      ...view,
+      name: 'vCISO as a Service',
+      brandSuffix: 'Lead',
+      tagline: 'A security chief for your board — by the hour, not by the crore.',
+      heroHighlight: "XcellHost's virtual CISO owns your security strategy, risk register and policies, gets you audit-ready for ISO 27001, SOC 2 or PCI DSS, leads incident drills and briefs your board every quarter. Backed by our 24×7 SOC in Mumbai, billed monthly in rupees.",
+      heroPoints: ['Security strategy & roadmap', 'Risk register & treatment', 'Board & audit-committee reports', 'ISO · SOC 2 · PCI readiness'],
+      heroMessages: ['A risk register the board can read', 'CERT-In 6-hour plan, rehearsed', 'Audit-ready, all year', 'One security roadmap, owned'],
+      faqs: VCISO_FAQS,
+    };
+
+    if (slug === 'vcto-as-a-service') return {
+      ...view,
+      brandSuffix: 'Lead',
+      tagline: 'Senior technology leadership for your product — without a full-time CTO hire.',
+      heroHighlight: 'A fractional CTO from XcellHost sets your architecture, leads engineering, keeps the cloud bill honest and gets you ready for investors. Monthly retainer in rupees, backed by our 24×7 NOC & SOC since 1999.',
+      heroPoints: ['Architecture & cloud blueprint', 'Team, hiring & vendor oversight', 'DevOps & DORA metrics', 'FinOps — cloud cost under control'],
+      heroMessages: ['Architecture that survives Series A', 'Ship every week, not every quarter', 'Cloud bill down, uptime up', 'Board-ready tech, every quarter'],
+      faqs: VCTO_FAQS,
+    };
+
+    if (slug === 'vcio-as-a-service') return {
+      ...view,
+      brandSuffix: 'Lead',
+      tagline: "A CIO's judgement on your IT — for a monthly fee, not a CXO salary.",
+      heroHighlight: "XcellHost's virtual CIO turns scattered vendors, licences, tickets and budget overruns into a 3-year IT roadmap, a budget your CFO trusts and a quarterly review your board can read. Delivered from Mumbai, billed in rupees.",
+      heroPoints: ['3-year IT roadmap', 'Annual IT budget & savings', 'Vendor & licence management', 'Security & compliance oversight'],
+      heroMessages: ['IT strategy tied to business goals', 'Licence and vendor sprawl, consolidated', 'A QBR your board actually reads'],
+      faqs: VCIO_FAQS,
+    };
+
+    if (slug === 'data-center-build-services') return {
+      ...view,
+      tagline: 'From an empty floor to a live, monitored data hall.',
+      heroHighlight: 'XcellHost plans, designs, builds and commissions server rooms, edge and micro sites, enterprise data centres, modular halls and AI-ready rooms, then hands them to our 24×7 NOC in Mumbai. One team, one programme, OEM-agnostic.',
+      heroPoints: ['Feasibility & site survey', 'Tier-aligned design', 'Power & cooling', 'L1–L5 commissioning'],
+      faqs: DATA_CENTER_BUILD_FAQS,
+    };
 
     if (slug === 'open-ai-managed-services') {
       return { ...view, faqs: OPENAI_MANAGED_SERVICES_FAQS };
@@ -4401,6 +4483,8 @@ class ProductPageComponent {
       };
     }
     const pages: Record<string, { frame: string; overview: string; features: string; uses: string; specifications: string }> = {
+      'amd-epyc-cpu-comparison': { frame: 'xh-imported-interactive-content.amd-epyc-source-content', overview: 'families', features: 'finder', uses: 'usecases', specifications: 'compare' },
+      'nvidia-server-gpu-comparison': { frame: 'xh-imported-interactive-content.nvidia-gpu-source-content', overview: 'families', features: 'finder', uses: 'usecases', specifications: 'compare' },
       'managed-pki': { frame: 'xh-imported-interactive-content.managed-pki-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'compare' },
       'private-ca': { frame: 'xh-imported-interactive-content.private-ca-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'compare' },
       'iot-pki': { frame: 'xh-imported-interactive-content.iot-pki-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'vendors' },
@@ -5198,6 +5282,18 @@ class ProductPageComponent {
     }
 
     if (FRAMEWORK_DETAILS[slug]) return this.products.build({ name: FRAMEWORK_DETAILS[slug].name, cat: 'Security', tag: FRAMEWORK_DETAILS[slug].highlight, crumb: 'Security › Cybersecurity Frameworks' });
+    if (slug === 'amd-epyc-cpu-comparison') return this.products.build({
+      name: 'AMD EPYC CPU Comparison',
+      cat: 'Cloud',
+      tag: 'Compare AMD EPYC processors for your server workload.',
+      crumb: 'Cloud › Bare Metal Servers',
+    });
+    if (slug === 'nvidia-server-gpu-comparison') return this.products.build({
+      name: 'NVIDIA Server GPU Comparison',
+      cat: 'Cloud',
+      tag: 'Compare NVIDIA data-center GPUs for your server workload.',
+      crumb: 'Cloud › Bare Metal Servers',
+    });
     const entry = this.catalog.entryBySlug(slug);
     if (entry) {
       return this.products.build({

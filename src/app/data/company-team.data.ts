@@ -8,9 +8,9 @@ export interface CompanyTeamMember {
 
 export const COMPANY_TEAM: Readonly<Record<'managementTeam' | 'advisoryTeam' | 'salesTeam' | 'marketing' | 'AITeams' | 'developers' | 'accountantTeam' | 'graphicDesignerTeam' | 'adminTeam' | 'technicalSupportTeam', readonly CompanyTeamMember[]>> = {
   managementTeam: [
-    { initials: 'YT', name: 'Yogesh Trivedi', role: 'Africa Director', image: '/assets/images/Yogesh Trivedi.png' },
+    { initials: 'YT', name: 'Yogesh Trivedi', role: 'Regional Director Africa ', image: '/assets/images/Yogesh Trivedi.png' },
     { initials: 'YJ', name: 'Yogendra Jagger', role: 'Regional Director - Middle East', image: '/assets/images/TEAMS PHOTO/Yogendra.png' },
-    { initials: 'JS', name: 'James Soosai', role: '', image: '/assets/images/TEAMS PHOTO/James Soosai.jpeg' },
+    
     { initials: 'AN', name: 'Abhishek Nimbalkar', role: 'Chief AI Officer', image: '/assets/images/TEAMS PHOTO/Abhishek.png' },
     { initials: 'PN', name: 'Prashant N.V', role: 'Service Delivery Director', image: '/assets/images/TEAMS PHOTO/Prashant.png' },
     { initials: 'T', name: 'AI Management Intelligence Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
@@ -18,7 +18,7 @@ export const COMPANY_TEAM: Readonly<Record<'managementTeam' | 'advisoryTeam' | '
   ],
 
   advisoryTeam: [
-    
+    { initials: 'JS', name: 'James Soosai', role: 'financial advisor', image: '/assets/images/TEAMS PHOTO/James Soosai.jpeg' },
     { initials: 'SM', name: 'CA Surendra Mehra', role: 'Chartered Accountant', image: '/assets/images/TEAMS PHOTO/Mehara.png' },
     { initials: 'UJ', name: 'Upendra Joshi ', role: 'International Alliances', image: '/assets/images/TEAMS PHOTO/Upendra.png' },
     { initials: 'CP', name: 'Christopher Pinto', role: 'Sales Consultant', image: '/assets/images/TEAMS PHOTO/cristopher.png' },
@@ -79,7 +79,6 @@ export const COMPANY_TEAM: Readonly<Record<'managementTeam' | 'advisoryTeam' | '
   ],
 
   adminTeam: [
-    { initials: 'MS', name: 'Mayuri Shinde', role: 'Admin Manager', image: '/assets/images/TEAMS PHOTO/Mayuri Shinde.png' },
       { initials: 'T', name: 'Tejas Nashiba', role: 'Admin Exceutive ', image: 'assets/images/TEAMS PHOTO/Tejas Nashiba.png' },
     { initials: 'T', name: 'AI Command Center Orchestrator', role: '', image: '/assets/images/Robot-enhanced.png' },
   ],

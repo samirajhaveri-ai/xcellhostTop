@@ -9,7 +9,7 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { CartService } from '../core/cart.service';
 import { CatalogService, slugify } from '../core/catalog.service';
 import { OverlayService } from '../core/overlay.service';
@@ -572,7 +572,7 @@ function smbSlaRank(title: string): number {
   selector: 'xh-header',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { style: 'display: contents' },
-  imports: [RouterLink, RouterLinkActive, NgTemplateOutlet],
+  imports: [RouterLink, NgTemplateOutlet],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })

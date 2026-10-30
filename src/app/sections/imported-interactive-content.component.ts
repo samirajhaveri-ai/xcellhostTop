@@ -10,6 +10,8 @@ import { installImportedJourneyLayout } from './imported-journey-layout';
 import { IDENTITY_SECURITY_PAGES, IdentitySecuritySource } from '../data/identity-security-pages.data';
 
 type InteractiveContentSource =
+  | 'amd-epyc-cpu-comparison'
+  | 'nvidia-server-gpu-comparison'
   | 'ai-training-live-online'
   | 'ai-training-educators'
   | 'ai-adoption-framework'
@@ -22,6 +24,13 @@ type InteractiveContentSource =
   | 'acronis-cyber-intelligence' | 'acronis-cyber-frame' | 'acronis-workflow-automation'
   | 'microsoft-defender'
   | 'mobile-app-security'
+  | 'data-center-build-services'
+  | 'vcio-as-a-service'
+  | 'vcto-as-a-service'
+  | 'vciso-as-a-service'
+  | 'vcaio-as-a-service'
+  | 'managed-identity-service'
+  | 'vcio-why'
   | 'entra-id-backup'
   | 'ca-cloud'
   | 'microsoft-agent-365'
@@ -215,6 +224,15 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'breach-and-attack-simulation': '/imported-breach-and-attack-simulation.html',
     'microsoft-defender': '/imported-microsoft-defender.html',
     'mobile-app-security': '/imported-mobile-app-security.html',
+    'data-center-build-services': '/imported-data-center-build-services.html',
+    'vcio-as-a-service': '/imported-vcio-as-a-service.html',
+    'vcto-as-a-service': '/imported-vcto-as-a-service.html',
+    'amd-epyc-cpu-comparison': '/imported-amd-epyc-cpu-comparison.html',
+    'nvidia-server-gpu-comparison': '/imported-nvidia-server-gpu-comparison.html',
+    'vciso-as-a-service': '/imported-vciso-as-a-service.html',
+    'vcaio-as-a-service': '/imported-vcaio-as-a-service.html',
+    'managed-identity-service': '/imported-managed-identity-service.html',
+    'vcio-why': '/imported-vcio-why.html',
     'entra-id-backup': '/imported-entra-id-backup.html',
     'ca-cloud': '/imported-ca-cloud.html',
     'microsoft-agent-365': '/imported-microsoft-agent-365.html',
@@ -412,6 +430,15 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
 
     'microsoft-defender': 'Microsoft Defender: Products, Coverage, Pricing, Security And FAQs',
     'mobile-app-security': 'Mobile App Security: Runtime Protection, SDK Integration, Risk Assessment And FAQs',
+    'data-center-build-services': 'Data Center Build Services',
+    'vcio-as-a-service': 'vCIO as a Service',
+    'vcto-as-a-service': 'vCTO as a Service',
+    'amd-epyc-cpu-comparison': 'AMD EPYC CPU comparison, workload finder and licensing calculator',
+    'nvidia-server-gpu-comparison': 'NVIDIA server GPU comparison, workload finder and model memory calculator',
+    'vciso-as-a-service': 'vCISO as a Service',
+    'vcaio-as-a-service': 'vCFAIO as a Service',
+    'managed-identity-service': 'Managed Identity Service',
+    'vcio-why': 'Why XcellHost for vCIO as a Service',
     'entra-id-backup': 'Entra ID Backup: Identity Protection, Recovery, Pricing And FAQs',
     'ca-cloud': 'CA Cloud',
     'microsoft-agent-365': 'Microsoft Agent 365',
@@ -757,6 +784,12 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
       const scopeTitle = this.source === 'smb-cloud-desktop' ? 'SMB Cloud Desktop'
         : this.source === 'ai-factory' ? 'AI Factory'
         : this.source === 'mobile-app-security' ? 'Mobile App Security'
+        : this.source === 'data-center-build-services' ? 'Data Center Build Services'
+        : this.source === 'vcio-as-a-service' ? 'vCIO as a Service'
+        : this.source === 'vcto-as-a-service' ? 'vCTO as a Service'
+        : this.source === 'vciso-as-a-service' ? 'vCISO as a Service'
+        : this.source === 'vcaio-as-a-service' ? 'vCFAIO as a Service'
+        : this.source === 'managed-identity-service' ? 'Managed Identity Service'
         : this.source === 'entra-id-backup' ? 'Entra ID Backup'
         : this.source === 'ca-cloud' ? 'CA Cloud'
         : this.source === 'microsoft-agent-365' ? 'Microsoft Agent 365'
