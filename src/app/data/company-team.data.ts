@@ -8,7 +8,11 @@ export interface CompanyTeamMember {
 
 export const COMPANY_TEAM: Readonly<Record<'managementTeam' | 'advisoryTeam' | 'salesTeam' | 'marketing' | 'AITeams' | 'developers' | 'accountantTeam' | 'graphicDesignerTeam' | 'adminTeam' | 'technicalSupportTeam', readonly CompanyTeamMember[]>> = {
   managementTeam: [
+
     { initials: 'YT', name: 'Yogesh Trivedi', role: 'Regional Director Africa ', image: '/assets/images/Yogesh Trivedi.png' },
+
+    { initials: 'YT', name: 'Yogesh Trivedi', role: 'Regional Director Africa', image: '/assets/images/Yogesh Trivedi.png' },
+
     { initials: 'YJ', name: 'Yogendra Jagger', role: 'Regional Director - Middle East', image: '/assets/images/TEAMS PHOTO/Yogendra.png' },
     
     { initials: 'AN', name: 'Abhishek Nimbalkar', role: 'Chief AI Officer', image: '/assets/images/TEAMS PHOTO/Abhishek.png' },
