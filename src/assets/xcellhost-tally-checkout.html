@@ -1,33 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#041E42">
-<script>
-// Direct asset visits return to the Angular route so the standard site header
-// and footer wrap the checkout. Embedded checkout frames remain on this file.
-if (window.top === window.self) {
-  window.location.replace('/tally-on-cloud/checkout' + window.location.search + window.location.hash);
-}
-</script>
-<title>Complete Your Order — Tally Private Cloud | XcellHost Cloud Services</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
-<!-- ============================================================================
-     XcellHost — TALLY PRIVATE CLOUD · STANDALONE CHECKOUT
-     Same proven architecture/visual structure as the XcellHost EDR/Tally checkout.
-     A separate Tally Private Cloud checkout: no shared/multi-product cart, no Zoho
-     APIs, no credentials, browser-only test login, no fake payment confirmation.
-     Flow: Account -> Service -> Profile -> Payment.
-     ============================================================================ -->
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><title>Tally on Cloud | XcellHost Checkout</title>
+<!-- Tally checkout content. The application supplies the website header and footer. -->
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{--bl:#0066FF;--nv:#041E42;--nv2:#0B132B;--or:#FF8A00;--gn:#22c55e;--red:#ef4444;--ink:#0f172a;--muted:#64748b;--line:#e2e8f0;--bg:#f6f9fc;--f:'DM Sans',system-ui,sans-serif}
 html{scroll-behavior:smooth}body{font-family:var(--f);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;font-size:16px}
 a{text-decoration:none;color:inherit}
 button{font-family:var(--f)}
-/* The Angular checkout route supplies the standard website header and footer. */
-body>.top,body>.nav,body>.ft,body>.foot{display:none!important}
 
 /* ═══ HEADER ═══ */
 .top{background:var(--nv);color:#fff;font-size:.7rem}
@@ -93,6 +72,7 @@ body>.top,body>.nav,body>.ft,body>.foot{display:none!important}
 
 /* existing login prototype */
 .login-proto{display:none}.login-proto.show{display:block;animation:fadeUp .4s ease}
+.proto-note{font-size:.7rem;color:var(--or);background:rgba(255,138,0,.08);border:1px solid rgba(255,138,0,.2);border-radius:8px;padding:8px 12px;margin-bottom:16px}
 
 /* service spec grid */
 .spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
@@ -223,549 +203,154 @@ body>.top,body>.nav,body>.ft,body>.foot{display:none!important}
 .continue:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
 @media(max-width:980px){.layout{grid-template-columns:1fr}}
 @media(max-width:560px){.terms{grid-template-columns:repeat(2,minmax(0,1fr))}.card{padding:20px}.page{padding:24px 16px 40px}.coupon-row input{min-width:0}.recap-row{font-size:.8rem}.nav-in{padding:0 16px}}
-</style>
-</head>
-<body>
 
-<!-- HEADER (matches Tally) -->
-<div class="top"><div class="top-in"><a href="mailto:support@xcellhost.cloud">support@xcellhost.cloud</a><a href="tel:+912267111555">+91-22-67111555</a><a href="#">Partner Login</a></div></div>
-<nav class="nav"><div class="nav-in">
-<a href="https://xcellhost.cloud" class="nav-logo"><img src="data:image/png;base64,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" alt="XcellHost — Cloud | Security | AI"></a>
-<div class="nav-menu">
-<a href="#">Web Presence</a><a href="#">Cloud</a><a href="#">Productivity</a><a href="#">Data Protection</a><a href="#">Digital Trust</a><a href="#">Security</a><a href="#">AI</a><a href="#">Marketplace</a><a href="#">Solutions</a><a href="#">Company</a>
-</div>
-<span class="nav-secure">&#128274; Secure Checkout</span>
-<button class="hamb" aria-label="Menu"><span></span><span></span><span></span></button>
-</div></nav>
+[hidden]{display:none!important}.embedded>.top,.embedded>.nav,.embedded>.ft{display:none}body{background:#f5f7fb}.step{cursor:pointer;border:0;background:transparent;font-family:inherit;text-align:left}.step[aria-current="step"] .step-num{background:var(--bl);color:#fff}.card[hidden]{display:none!important}.account-choices{display:flex;gap:10px;margin:0 0 22px}.choice{flex:1;border:2px solid #d5dde7;border-radius:10px;padding:14px;background:white;font:inherit;font-weight:700;cursor:pointer}.choice.selected{border-color:var(--bl);background:#eef5ff;color:var(--bl)}.field label{display:block}.error{color:#b42318;background:#fff1f0;border:1px solid #ffc9c4;padding:12px;border-radius:8px;margin:14px 0;line-height:1.6}.notice{font-size:.8rem;line-height:1.7;color:#52637b;margin:14px 0}.actions{display:flex;gap:12px;margin-top:22px}.back{background:#eef2f7;color:#334155;max-width:130px}.terms{display:grid}.term-opt{cursor:pointer}.submit-mask{position:fixed;inset:0;background:rgba(255,255,255,.92);z-index:10000;display:grid;place-items:center;font:700 18px Arial;color:#16324f}.summary p{line-height:1.6}.recap-row span:last-child{max-width:65%;text-align:right;overflow-wrap:anywhere}.step-num{flex-shrink:0}.step-lab{white-space:nowrap}.privacy{display:flex;align-items:flex-start;gap:9px;font-size:.8rem;line-height:1.6;margin-top:18px}.privacy input{margin-top:5px}.coupon-row{flex-wrap:wrap}.coupon-row input{min-width:100px}.page-sub{max-width:760px}.nav-in{justify-content:space-between}.nav-logo img{height:58px}.muted{color:#64748b}.billing-state{width:100%}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #2563eb;outline-offset:3px}@media(max-width:560px){.stepper{justify-content:space-between}.step{display:flex;flex-direction:column;gap:5px;flex:1}.step-lab{display:block;font-size:10px;white-space:normal;text-align:center}.step-bar{display:none}.account-choices{flex-direction:column}.nav-logo img{height:46px}.nav-secure{font-size:11px}}
+</style></head><body>
 
-<!-- STEPPER -->
-<div class="stepper-wrap"><div class="stepper" id="stepper">
-<div class="step active" data-step="0"><div class="step-num">1</div><div class="step-lab">Account</div></div>
-<div class="step-bar" data-bar="0"></div>
-<div class="step" data-step="1"><div class="step-num">2</div><div class="step-lab">Service</div></div>
-<div class="step-bar" data-bar="1"></div>
-<div class="step" data-step="2"><div class="step-num">3</div><div class="step-lab">Profile</div></div>
-<div class="step-bar" data-bar="2"></div>
-<div class="step" data-step="3"><div class="step-num">4</div><div class="step-lab">Payment</div></div>
-</div></div>
-
-<!-- PAGE -->
-<div class="page">
-<h1 class="page-title">Complete Your Order</h1>
-<p class="page-sub">Choose your Tally server package and billing period, provide your details, and continue to payment.</p>
-
-<div class="layout">
-<!-- LEFT -->
-<div class="col-left">
-
-  <!-- STEP 1: ACCOUNT -->
-  <div class="card" id="cardAccount">
-    <div class="card-h">Your Account</div>
-    <div class="card-sub">Start your Tally Private Cloud order. We'll use these details for your order and onboarding.</div>
-    <div class="acct-toggle">
-      <div class="acct-opt sel" id="optNew"><div class="acct-radio"></div><div><div class="t">New Customer</div><div class="s">Create your order</div></div></div>
-      <div class="acct-opt" id="optExisting"><div class="acct-radio"></div><div><div class="t">Existing Customer</div><div class="s">Sign in to continue</div></div></div>
-    </div>
-
-    <form id="formNew" autocomplete="on">
-      <div class="frow">
-        <div class="field"><label>First Name <span class="rq">*</span></label><input id="firstName" type="text"><div class="ferr">Please enter your first name.</div></div>
-        <div class="field"><label>Last Name <span class="rq">*</span></label><input id="lastName" type="text"><div class="ferr">Please enter your last name.</div></div>
-      </div>
-      <div class="frow">
-        <div class="field"><label>Work Email <span class="rq">*</span></label><input id="email" type="email"><div class="ferr">Enter a valid email address.</div></div>
-        <div class="field"><label>Mobile / WhatsApp <span class="rq">*</span></label><input id="mobile" type="tel"><div class="ferr">Enter a valid mobile number.</div></div>
-      </div>
-      <div class="field"><label>Company Name <span class="rq">*</span></label><input id="company" type="text"><div class="ferr">Please enter your company name.</div></div>
-    </form>
-
-    <div class="login-proto" id="formExisting">
-      <div class="frow">
-        <div class="field"><label>Email <span class="rq">*</span></label><input id="exEmail" type="email"><div class="ferr">Enter a valid email address.</div></div>
-        <div class="field"><label>Password <span class="rq">*</span></label><input id="exPass" type="password" autocomplete="current-password"><div class="ferr">Invalid email or password.</div></div>
-      </div>
-    </div>
-
-    <button id="accountContinue" type="button" class="continue" onclick="continueFromAccount()"><span class="ctxt">Continue to Service</span></button>
-    <div class="secure-line">&#128274; Your information is encrypted and secure</div>
-  </div>
-
-
-  <div class="card" id="cardService" style="display:none">
-    <div class="svc-head"><div class="svc-badge">T</div><div><div class="svc-name">Tally Private Cloud</div><div class="svc-pkg">Your Tally workspace, hosted in India</div><div class="svc-users">Choose the server package and billing period for your team.</div></div></div>
-    <div style="margin-top:22px" class="field"><label for="packageSelect">Choose your server package</label><select id="packageSelect" onchange="selectPackage(this.value)"></select></div>
-    <div class="card-h" style="font-size:1rem">Choose your billing period</div><div class="card-sub">Prices cover the complete server package.</div>
-    <div class="terms" id="terms"></div><div class="term-detail" id="termDetail"></div>
-    <div id="checkoutNotice" class="checkout-notice" hidden></div>
-    <div style="margin-top:22px"><div class="card-h" style="font-size:1rem">Number of servers</div><div class="card-sub">Each server includes the selected package's user capacity.</div><div class="qty-wrap"><div class="qty"><button type="button" aria-label="Decrease servers" onclick="changeQty(-1)">&minus;</button><input id="qty" type="text" inputmode="numeric" value="1" aria-label="Number of servers" onchange="setQty(this.value)"><button type="button" aria-label="Increase servers" onclick="changeQty(1)">+</button></div><span class="qty-lab">server packages</span></div></div>
-    <div style="margin-top:22px"><div class="card-h" style="font-size:1rem">What's included</div><ul class="svc-feats"><li>Dedicated virtual server</li><li>SSD storage</li><li>Unlimited data transfer</li><li>Backups every 8 hours</li><li>Acronis endpoint security</li><li>Fortinet firewall</li><li>Dedicated IP</li><li>24×7 support</li></ul></div>
-    <div style="margin-top:22px"><div class="card-h">Why XcellHost?</div><div class="whyc-grid"><div class="whyc"><h4>Access anywhere</h4><p>Connect to your cloud workspace from supported devices.</p></div><div class="whyc"><h4>Choose your capacity</h4><p>Eight server packages for teams of 3 to 75 users.</p></div><div class="whyc"><h4>Managed support</h4><p>XcellHost engineers support your cloud environment.</p></div></div></div>
-    <div style="display:flex;gap:12px;margin-top:22px"><button type="button" class="continue" onclick="goStep('account')" style="background:#eef2f7;color:#334155;flex:0 0 auto;max-width:160px">← Back</button><button type="button" class="continue" id="serviceContinue" onclick="continueFromService()" style="flex:1"><span class="ctxt">Continue to Profile</span></button></div>
-  </div>
-
-  <!-- STEP 3: PROFILE -->
-  <div class="card" id="cardProfile" style="display:none">
-    <div class="card-h">Billing Profile</div>
-    <div class="card-sub">Required for your GST invoice and service agreement.</div>
-
-    <div class="acct-toggle">
-      <div class="acct-opt sel" id="optIndividual"><div class="acct-radio"></div><div><div class="t">Individual</div><div class="s">Personal billing</div></div></div>
-      <div class="acct-opt" id="optBusiness"><div class="acct-radio"></div><div><div class="t">Business</div><div class="s">Company billing</div></div></div>
-    </div>
-
-    <form id="formProfile">
-      <div class="field"><label>Company / Legal Name <span class="rq">*</span></label><input id="legalName" type="text"><div class="ferr">Please enter your company or legal name.</div></div>
-      <div class="field"><label>Billing Street <span class="rq">*</span></label><input id="street" type="text"><div class="ferr">Please enter your billing street.</div></div>
-      <div class="field"><label>Address (line 2)</label><input id="address2" type="text"></div>
-      <div class="frow">
-        <div class="field"><label>City <span class="rq">*</span></label><input id="city" type="text"><div class="ferr">Please enter your city.</div></div>
-        <div class="field"><label>State <span class="rq">*</span></label><input id="state" type="text"><div class="ferr">Please enter your state.</div></div>
-      </div>
-      <div class="frow">
-        <div class="field"><label>PIN Code <span class="rq">*</span></label><input id="pin" type="text" inputmode="numeric"><div class="ferr">Enter a valid 6-digit PIN code.</div></div>
-        <div class="field"><label>Country <span class="rq">*</span></label><input id="country" type="text" value="India"><div class="ferr">Please enter your country.</div></div>
-      </div>
-      <div class="frow">
-        <div class="field"><label>GST Registered <span class="rq">*</span></label>
-          <select id="gstReg" onchange="toggleGstin()"><option value="">Select…</option><option value="yes">Yes</option><option value="no">No</option></select>
-          <div class="ferr">Please select an option.</div></div>
-        <div class="field" id="gstinField" style="display:none"><label>GSTIN <span class="rq">*</span></label><input id="gstin" type="text" style="text-transform:uppercase"><div class="ferr">Enter a valid 15-character GSTIN.</div></div>
-      </div>
-    </form>
-
-    <div style="display:flex;gap:12px;margin-top:6px">
-      <button type="button" class="continue" onclick="goStep('service')" style="background:#eef2f7;color:#334155;flex:0 0 auto;max-width:160px"><span class="ctxt">&larr; Back</span></button>
-      <button type="button" class="continue" onclick="continueFromProfile()" style="flex:1"><span class="ctxt">Continue to Payment</span></button>
-    </div>
-  </div>
-
-  <!-- STEP 4: PAYMENT -->
-  <div class="card" id="cardPayment" style="display:none">
-    <div class="card-h">Secure Payment</div>
-    <div class="card-sub">You'll be redirected to XcellHost's secure Zoho Billing payment page to complete your order.</div>
-    <div class="spec" style="align-items:flex-start;margin-bottom:18px">
-      <div class="spec-ico">&#128274;</div>
-      <div><div class="v" style="margin-bottom:2px">Payments handled securely by Zoho Billing</div><div class="k" style="text-transform:none;letter-spacing:0;color:var(--muted)">Choose from the payment methods available on the Zoho checkout page.</div></div>
-    </div>
-
-    <div id="payRecap" style="margin-bottom:16px"><!-- rendered: renderPayRecap() --></div>
-    <div class="coupon-msg" id="payMsg" style="margin-bottom:14px"></div>
-
-    <div style="display:flex;gap:12px">
-      <button type="button" class="continue" id="paymentBack" onclick="goStep(state.custType==='existing'?'service':'profile')" style="background:#eef2f7;color:#334155;flex:0 0 auto;max-width:180px"><span class="ctxt">&larr; Back to Profile</span></button>
-      <button type="button" class="continue" id="payBtn" onclick="proceedToPayment()" style="flex:1"><span class="ctxt">Proceed to Secure Payment</span></button>
-    </div>
-    <div class="secure-line">&#128274; Redirects to Zoho Billing</div>
-  </div>
-
-</div>
-
-<!-- RIGHT: ORDER SUMMARY (Tally-style) -->
-<div class="col-right">
-  <div class="summary">
-    <div class="coupon">
-      <div class="coupon-t">Have a coupon?</div>
-      <div class="coupon-row"><input type="text" id="couponInput" placeholder="Enter coupon"><button type="button" id="couponBtn" onclick="applyCoupon()">Apply</button></div>
-      <div class="coupon-msg" id="couponMsg"></div>
-    </div>
-    <div class="pricing">
-      <div class="pline"><span id="billLabel">Base Price</span><span class="amt" id="basePrice">₹1,776.00</span></div>
-      <div class="pline discount" id="discountLine" style="display:none"><span id="discountLabel">Discount</span><span class="amt" id="discountAmt">−₹0</span></div>
-      <div class="pline"><span>Subtotal</span><span class="amt" id="subtotal">₹1,776.00</span></div>
-      <div class="pline"><span>GST (18%)</span><span class="amt" id="gst">₹319.68</span></div>
-      <div class="pline total"><span>Total</span><span class="amt" id="total">₹2,095.68</span></div>
-    </div>
-    <div class="sum-head"><h3>Order Summary</h3></div>
-    <div class="sum-prod" id="sumProd"><!-- rendered: renderSummary() --></div>
-    <div class="incl"><div class="incl-t">Included</div><ul><li>Dedicated virtual server in India</li><li>SSD storage</li><li>Scheduled backups</li><li>Endpoint security and firewall</li><li>XcellHost support</li></ul></div>
-  </div>
-
-  <!-- TRUST CARD (matches Tally) -->
-  <div class="why-xcell">
-    <div class="wx-t">Why XcellHost?</div>
-    <ul class="why-list">
-      <li><span class="wx-ck">&#10003;</span> XcellHost engineer support</li>
-      <li><span class="wx-ck">&#10003;</span> Free deployment &amp; onboarding</li>
-      <li><span class="wx-ck">&#10003;</span> 24&#215;7 support</li>
-      <li><span class="wx-ck">&#10003;</span> Managed cloud &amp; cybersecurity</li>
-    </ul>
-    <div class="sec-note">
-      <div class="sn-h">&#128274; Secure Checkout</div>
-      <div class="sn-b">Your payment is securely processed through Zoho Billing and the configured payment gateway.</div>
-    </div>
-  </div>
-</div>
-
-</div>
-</div>
-
-<!-- FOOTER (matches Tally) -->
-<footer class="ft">
-<div class="ft-grid">
-<div><img src="data:image/png;base64,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" class="ft-logo" alt="XcellHost"><p class="ft-about">Managed cloud, cybersecurity and digital trust for 10,000+ businesses across India. ISO 27001 certified since 1999.</p></div>
-<div class="ft-col"><h4>Cloud</h4><a href="#">Tally on Cloud</a><a href="#">Performance Cloud</a><a href="#">Cloud Backup</a><a href="#">Cloud Desktop</a></div>
-<div class="ft-col"><h4>Security &amp; AI</h4><a href="#">Scrutiny EDR</a><a href="#">SecureSetu DPDPA</a><a href="#">GenAI Protection</a><a href="#">Cybird Appliance</a></div>
-<div class="ft-col"><h4>Company &amp; Support</h4><a href="#">About</a><a href="#">Contact</a><a href="#">Privacy Policy</a><a href="#">Terms &amp; Conditions</a></div>
-</div>
-<div class="ft-bottom">&copy; 2026 XcellHost Cloud Services Pvt. Ltd. &middot; Mumbai, India &middot; support@xcellhost.cloud &middot; +91-22-67111555 &middot; ISO 27001 &middot; Microsoft Gold Partner</div>
-</footer>
-
-<div class="toast-wrap" id="toastWrap"></div>
-
-<script>
-const GST_RATE=0.18;
-const PACKAGES={"LITE": {"name": "Cloud Lite", "users": "3–4", "cpu": 4, "ram": 6, "disk": 100, "prices": {"MON": 1776, "QUA": 5062, "SEM": 9857, "YEA": 19181}, "urls": {"MON": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-LITE-MON", "QUA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-LITE-QUA", "SEM": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-LITE-SEM", "YEA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-LITE-YEA"}, "blocked": {}}, "XS": {"name": "Cloud X Small", "users": "5", "cpu": 4, "ram": 8, "disk": 150, "prices": {"MON": 2616, "QUA": 7456, "SEM": 14519, "YEA": 28253}, "urls": {"MON": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XS-MON", "QUA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XS-QUA", "SEM": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XS-SEM", "YEA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XS-YEA"}, "blocked": {}}, "S": {"name": "Cloud Small", "users": "10", "cpu": 6, "ram": 12, "disk": 150, "prices": {"MON": 5520, "QUA": 15732, "SEM": 30636, "YEA": 59616}, "urls": {"MON": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-S-MON", "QUA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-S-QUA", "SEM": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-S-SEM", "YEA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-S-YEA"}, "blocked": {}}, "M": {"name": "Cloud Medium", "users": "11–15", "cpu": 8, "ram": 16, "disk": 200, "prices": {"MON": 7200, "QUA": 20520, "SEM": 39960, "YEA": 77760}, "urls": {"MON": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-M-MON", "QUA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-M-QUA", "SEM": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-M-SEM", "YEA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-M-YEA"}, "blocked": {}}, "XL": {"name": "Cloud X Large", "users": "16–20", "cpu": 12, "ram": 32, "disk": 300, "prices": {"MON": 11664, "QUA": 33242, "SEM": 64735, "YEA": 125971}, "urls": {"MON": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XL-MON", "QUA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XL-QUA", "SEM": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XL-SEM", "YEA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XL-YEA"}, "blocked": {}}, "XXL": {"name": "Cloud XX Large", "users": "21–30", "cpu": 16, "ram": 64, "disk": 400, "prices": {"MON": 21168, "QUA": 60329, "SEM": 117482, "YEA": 228614}, "urls": {"MON": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXL-MON", "QUA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXL-QUA", "SEM": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXL-SEM", "YEA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXL-YEA"}, "blocked": {}}, "XXXL": {"name": "Cloud XXX Large", "users": "31–50", "cpu": 20, "ram": 96, "disk": 500, "prices": {"MON": 26640, "QUA": 75924, "SEM": 147852, "YEA": 287712}, "urls": {"MON": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXXL-MON", "QUA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXXL-QUA", "SEM": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXXL-SEM", "YEA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXXL-YEA"}, "blocked": {}}, "XXXXL": {"name": "Cloud XXXX Large", "users": "51–75", "cpu": 24, "ram": 128, "disk": 750, "prices": {"MON": 48912, "QUA": 139399, "SEM": 271462, "YEA": 528250}, "urls": {"MON": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXXXL-MON", "QUA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXXXL-QUA", "SEM": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXXXL-SEM", "YEA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXXXL-YEA"}, "blocked": {}}};
-const TERMS={MON:{name:'Monthly',months:1},QUA:{name:'3 Months',months:3},SEM:{name:'6 Months',months:6},YEA:{name:'1 Year',months:12}};
-const PRODUCT_NAME='Tally Private Cloud';
-const COUPONS={XCELLTALLY10:{type:'pct',val:10,label:'10% off'}};
-const CART_KEY='xcellhost_tally_private_cart_v1';
-let state={step:'account',custType:'new',entity:'individual',packageId:'LITE',termId:'MON',quantity:1,inCart:false,coupon:null,authenticated:false,account:{},profile:{}};
-const $=s=>document.querySelector(s);
-const fmt=n=>'₹'+Number(n).toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});
-const roundMoney=n=>Math.round((n+Number.EPSILON)*100)/100;
-function pkg(){return PACKAGES[state.packageId];}
-function plan(){return TERMS[state.termId];}
-function unitPrice(){return pkg().prices[state.termId];}
-function priceReady(){return unitPrice()!=null;}
-function checkoutReady(){return !!pkg().urls[state.termId]&&!pkg().blocked[state.termId];}
-function basePrice(){return roundMoney(unitPrice()*state.quantity);}
-function discountAmt(){return state.coupon&&COUPONS[state.coupon]?roundMoney(basePrice()*COUPONS[state.coupon].val/100):0;}
-function subtotal(){return roundMoney(basePrice()-discountAmt());}
-function gstAmt(){
-  const region=state.custType==='existing'?'MH':(indiaStateCode(state.profile.state)||'MH');
-  return region==='MH'?roundMoney(roundMoney(subtotal()*0.09)*2):roundMoney(subtotal()*GST_RATE);
-}
-function grandTotal(){return roundMoney(subtotal()+gstAmt());}
-/* ── PERSISTENCE (never writes passwords) ── */
-function saveCart(){
-  try{
-    const acc={...state.account}; delete acc.password;
-    localStorage.setItem(CART_KEY, JSON.stringify({ packageId:state.packageId, termId:state.termId, quantity:state.quantity, inCart:state.inCart, custType:state.custType, entity:state.entity, account:acc, profile:state.profile }));
-  }catch(e){}
-}
-function loadCart(){
-  try{
-    const d=JSON.parse(localStorage.getItem(CART_KEY)||"null"); if(!d) return;
-    if(d.packageId && PACKAGES[d.packageId]) state.packageId=d.packageId;
-    if(d.termId && TERMS[d.termId]) state.termId=d.termId;
-    if(d.quantity) state.quantity=Math.min(99,Math.max(1, parseInt(d.quantity)||1));
-    state.inCart=!!d.inCart;
-    if(["new","existing"].includes(d.custType)) state.custType=d.custType;
-    if(["individual","business"].includes(d.entity)) state.entity=d.entity;
-    if(d.account) state.account=d.account;   // never contains password
-    if(d.profile) state.profile=d.profile;
-  }catch(e){}
-}
-
-/* ============================================================================
-   RENDERERS
-   ============================================================================ */
-
-function renderPackages(){
-  $('#packageSelect').innerHTML=Object.entries(PACKAGES).map(([id,p])=>`<option value="${id}">${p.name} · ${p.users} users</option>`).join('');
-  $('#packageSelect').value=state.packageId;
-}
-function renderTerms(){
-  $('#terms').innerHTML=Object.entries(TERMS).map(([id,t])=>`<button type="button" class="term-opt ${id===state.termId?'sel':''}" aria-pressed="${id===state.termId}" onclick="selectTerm('${id}')"><div class="to-dur">${t.name}</div><div class="to-sub">${fmt(pkg().prices[id])}<br>per server / ${t.name.toLowerCase()}</div></button>`).join('');
-}
-function renderTermDetail(){
-  const p=pkg();
-  $('#termDetail').innerHTML=`<div class="td-top"><div class="td-name">${p.name}</div><div class="td-cov">${p.users} users per server</div><div class="td-price">${fmt(unitPrice())}</div></div><div class="spec-grid"><div class="spec"><div><div class="k">Virtual CPU</div><div class="v">${p.cpu} vCPU</div></div></div><div class="spec"><div><div class="k">Memory</div><div class="v">${p.ram} GB RAM</div></div></div><div class="spec"><div><div class="k">SSD storage</div><div class="v">${p.disk} GB</div></div></div><div class="spec"><div><div class="k">Billing period</div><div class="v">${plan().name}</div></div></div></div><div class="td-note">Price covers one complete server package for the selected billing period. GST is additional.</div>`;
-  $('#checkoutNotice').hidden=checkoutReady();
-  $('#checkoutNotice').textContent=checkoutReady()?'':'Online checkout for this option is not available yet. Please contact XcellHost.';
-}
-function renderSummary(){
-  $('#sumProd').innerHTML=`<div class="p">${PRODUCT_NAME}</div><div class="pk">${pkg().name} · ${plan().name}</div><div class="u">${pkg().users} users per server · ${state.quantity} server${state.quantity===1?'':'s'}</div><div class="pr">Price: ${fmt(basePrice())}</div>`;
-}
-function renderPricing(){
-  $('#billLabel').textContent='Package Price';
-  $('#basePrice').textContent=fmt(basePrice());
-  $('#discountLine').style.display=discountAmt()>0?'flex':'none';
-  $('#discountLabel').textContent='Discount (10% off)';
-  $('#discountAmt').textContent='−'+fmt(discountAmt());
-  $('#subtotal').textContent=fmt(subtotal());
-  $('#gst').textContent=fmt(gstAmt());
-  $('#total').textContent=fmt(grandTotal());
-}
-function renderPayRecap(){
-  const line=(label,value)=>`<div class="recap-row"><span>${label}</span><b>${value}</b></div>`;
-  $('#payRecap').innerHTML=`<div class="term-detail"><div class="card-h">${PRODUCT_NAME} · ${pkg().name}</div>${line('Billing period',plan().name)}${line('Capacity per server',pkg().users+' users')}${line('Servers',state.quantity)}${line('Package Price',fmt(basePrice()))}${discountAmt()>0?line('Discount (10% off)','−'+fmt(discountAmt())):''}${line('GST (18%)',fmt(gstAmt()))}<div class="recap-total">${line('Total',fmt(grandTotal()))}</div><div class="td-note">Final tax is confirmed from your billing address at checkout.${state.custType==='existing'?' You can enter your billing address on the Zoho payment page.':''}</div></div>`;
-  $('#payBtn').disabled=!checkoutReady();
-  const msg=$('#payMsg');
-  msg.className=checkoutReady()?'coupon-msg':'coupon-msg show no';
-  msg.textContent=checkoutReady()?'':'Online checkout for this option is not available yet. Please contact XcellHost.';
-}
-function renderAll(){renderPackages();renderTerms();renderTermDetail();renderPricing();renderSummary();if(state.step==='payment')renderPayRecap();}
-function selectPackage(id){if(!PACKAGES[id])return;state.packageId=id;saveCart();renderAll();}
-function selectTerm(id){if(!TERMS[id])return;state.termId=id;saveCart();renderAll();}
-function setQty(v){state.quantity=Math.min(99,Math.max(1,parseInt(v,10)||1));$('#qty').value=state.quantity;saveCart();renderAll();}
-function changeQty(d){setQty(state.quantity+d);}
-
-function applyCoupon(){
-  const code=$("#couponInput").value.trim().toUpperCase();
-  const msg=$("#couponMsg"); msg.className="coupon-msg show";
-  if(!priceReady()){ state.coupon=null; msg.classList.add("no"); msg.textContent="Select a term with confirmed pricing first."; saveCart(); renderAll(); return; }
-  if(!code){ state.coupon=null; msg.classList.add("no"); msg.textContent="Please enter a coupon code."; saveCart(); renderAll(); return; }
-  if(COUPONS[code]){ state.coupon=code; msg.classList.add("ok"); msg.textContent="✓ Coupon applied: "+COUPONS[code].label; }
-  else { state.coupon=null; msg.classList.add("no"); msg.textContent="Invalid coupon code."; }
-  saveCart(); renderAll();
-}
-
-/* ============================================================================
-   VALIDATION + STEP NAV
-   ============================================================================ */
-function setErr(id,show){ const i=$("#"+id); if(!i)return; i.classList.toggle("err",show); const e=i.parentElement.querySelector(".ferr"); if(e)e.classList.toggle("show",show); }
-const reEmail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/, reMobile=/^[+\d][\d\s-]{7,}$/, rePin=/^\d{6}$/;
-
-function validateAccountFields(){
-  let ok=true;
-  if(state.custType==="new"){
-    [["firstName",v=>v.trim().length>=1],["lastName",v=>v.trim().length>=1],["email",v=>reEmail.test(v.trim())],["mobile",v=>reMobile.test(v.trim())],["company",v=>v.trim().length>=1]]
-      .forEach(([id,t])=>{ const bad=!t($("#"+id).value); setErr(id,bad); if(bad)ok=false; });
-  }else{
-    const eb=!reEmail.test($("#exEmail").value.trim()); setErr("exEmail",eb); if(eb)ok=false;
-    const pb=$("#exPass").value.length<1; setErr("exPass",pb); if(pb)ok=false;
-  }
-  return ok;
-}
-function validateAccount(){ return validateAccountFields() && (state.custType!=="existing" || state.authenticated); }
-function captureAccount(){
-  if(state.custType==="new"){
-    state.account={ firstName:$("#firstName").value.trim(), lastName:$("#lastName").value.trim(), email:$("#email").value.trim(), mobile:$("#mobile").value.trim(), company:$("#company").value.trim() };
-    if(!$("#legalName").value) $("#legalName").value=state.account.company||"";
-  }else{ state.account={...state.account,email:$("#exEmail").value.trim().toLowerCase()}; }  // never stores password
-  saveCart();
-}
-async function continueFromAccount(){
-  if(!validateAccountFields()){ toast("Please complete the required account fields."); return; }
-  if(state.custType!=="existing"){ captureAccount(); goStep("service"); return; }
-
-  const button=$("#accountContinue");
-  const label=button.querySelector(".ctxt");
-  button.disabled=true; label.textContent="Signing in...";
-  try{
-    const response=await fetch("/api/auth.php?action=signin",{
-      method:"POST",credentials:"same-origin",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({email:$("#exEmail").value.trim().toLowerCase(),password:$("#exPass").value,remember:false,loginType:"customer"})
-    });
-    const result=await response.json().catch(()=>({}));
-    if(!response.ok) throw new Error(result.message||"Invalid email or password.");
-    state.authenticated=true;
-    state.account={...(result.customer||{}),email:$("#exEmail").value.trim().toLowerCase()};
-    $("#exPass").value="";
-    setErr("exPass",false);
-    captureAccount();
-    goStep("service");
-  }catch(error){
-    state.authenticated=false;
-    setErr("exPass",true);
-    toast(error instanceof Error?error.message:"Unable to sign in. Please try again.");
-  }finally{
-    button.disabled=false; label.textContent="Continue to Service";
-  }
-}
-
-function continueFromService(){
-  if(!validateAccount()){goStep("account");toast("Complete your account first.");return;}
-  captureAccount();
-  if(!priceReady()){ toast("Please choose a term with confirmed pricing, or contact XcellHost."); return; }
-  if(!state.inCart){ state.inCart=true; saveCart(); renderSummary(); }   // adding happens on continue for this single-product checkout
-  goStep(state.custType==="existing"?"payment":"profile");
-}
-
-function toggleGstin(){ $("#gstinField").style.display = $("#gstReg").value==="yes" ? "" : "none"; }
-function validateProfile(){
-  let ok=true;
-  [["legalName",v=>v.trim().length>=1],["street",v=>v.trim().length>=1],["city",v=>v.trim().length>=1],["state",v=>v.trim().length>=1],["pin",v=>rePin.test(v.trim())],["country",v=>v.trim().length>=1]]
-    .forEach(([id,t])=>{ const bad=!t($("#"+id).value); setErr(id,bad); if(bad)ok=false; });
-  const g=$("#gstReg").value; const gb=!g; setErr("gstReg",gb); if(gb)ok=false;
-  if(g==="yes"){ const bad=$("#gstin").value.trim().length!==15; setErr("gstin",bad); if(bad)ok=false; }
-  return ok;
-}
-function captureProfile(){
-  state.profile={ entity:state.entity, legalName:$("#legalName").value.trim(), street:$("#street").value.trim(), address2:$("#address2").value.trim(), city:$("#city").value.trim(), state:$("#state").value.trim(), pin:$("#pin").value.trim(), country:$("#country").value.trim(), gstRegistered:$("#gstReg").value, gstin:$("#gstReg").value==="yes"?$("#gstin").value.trim().toUpperCase():"" };
-  saveCart();
-}
-function continueFromProfile(){ if(!validateProfile()){ toast("Please complete the required profile fields."); return; } captureProfile(); goStep("payment"); }
-
-const STEP_ORDER=["account","service","profile","payment"];
-const CARD={account:"#cardAccount",service:"#cardService",profile:"#cardProfile",payment:"#cardPayment"};
-function updateCustomerFlow(){
-  const existing=state.custType==="existing";
-  $("#serviceContinue .ctxt").textContent=existing?"Continue to Payment":"Continue to Profile";
-  $("#paymentBack .ctxt").textContent=existing?"← Back to Service":"← Back to Profile";
-  document.querySelector('#stepper .step[data-step="2"]').style.display=existing?"none":"";
-  document.querySelector('#stepper .step-bar[data-bar="2"]').style.display=existing?"none":"";
-  document.querySelector('#stepper .step[data-step="3"] .step-num').textContent=existing?"3":"4";
-}
-function goStep(name){
-  if(name==="profile" && state.custType==="existing") name="payment";
-  if(name==="payment" && state.custType==="existing"){
-    if(!validateAccount()){ goStep("account"); toast("Complete your account first."); return; }
-    if(!priceReady()){ toast("Please choose a term with confirmed pricing."); return; }
-    captureAccount();
-  }
-  if(name==="service" && !validateAccount()){ goStep("account"); toast("Complete your account first."); return; }
-  if(name!=="account" && !validateAccount()){goStep("account");toast("Complete your account first.");return;}
-  if(name==="profile" && !priceReady()){ toast("Please choose a term with confirmed pricing."); return; }
-  if(name==="payment" && state.custType!=="existing" && !validateProfile()){ goStep("profile"); toast("Complete your billing profile first."); return; }
-  state.step=name;
-  Object.keys(CARD).forEach(k=>{ $(CARD[k]).style.display = k===name?"":"none"; });
-  const idx=STEP_ORDER.indexOf(name);
-  document.querySelectorAll("#stepper .step").forEach(st=>{ const si=+st.dataset.step; st.classList.toggle("active",si===idx); st.classList.toggle("done",si<idx); });
-  document.querySelectorAll("#stepper .step-bar").forEach(b=>{ b.classList.toggle("filled",+b.dataset.bar<idx); });
-  if(name==="payment"){renderPricing();renderPayRecap();}
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-
-/* ============================================================================
-   PAYMENT HANDOFF — real per-term Zoho Hosted Payment Page
-   Top-level browser navigation (NOT an iframe). No fake form / no fake success.
-   ============================================================================ */
-function tallyNavigate(url){ window.location.assign(url); }   // top-level, same-tab redirect
-
-/* India state → 2-letter billing_state_code (Zoho). Extend as needed. */
-const IN_STATE_CODES={"andaman and nicobar islands":"AN","andhra pradesh":"AP","arunachal pradesh":"AR","assam":"AS","bihar":"BR","chandigarh":"CH","chhattisgarh":"CG","dadra and nagar haveli and daman and diu":"DN","delhi":"DL","goa":"GA","gujarat":"GJ","haryana":"HR","himachal pradesh":"HP","jammu and kashmir":"JK","jharkhand":"JH","karnataka":"KA","kerala":"KL","keralam":"KL","ladakh":"LA","lakshadweep":"LD","madhya pradesh":"MP","maharashtra":"MH","manipur":"MN","meghalaya":"ML","mizoram":"MZ","nagaland":"NL","odisha":"OD","puducherry":"PY","punjab":"PB","rajasthan":"RJ","sikkim":"SK","tamil nadu":"TN","telangana":"TS","tripura":"TR","uttar pradesh":"UP","uttarakhand":"UK","west bengal":"WB"};
-function indiaStateCode(s){
-  if(!s) return "";
-  const k=String(s).trim().toLowerCase();
-  if(IN_STATE_CODES[k]) return IN_STATE_CODES[k];
-  if(/^[A-Za-z]{2}$/.test(String(s).trim())) return String(s).trim().toUpperCase(); // already a 2-letter code
-  return ""; // omit rather than send the full state name
-}
-function countryCode(c){
-  const k=String(c||"").trim().toLowerCase();
-  if(k===""||k==="india"||k==="bharat"||k==="in") return "IN";   // India checkout
-  if(/^[A-Za-z]{2}$/.test(String(c).trim())) return String(c).trim().toUpperCase();
-  return ""; // omit unknown rather than send a full country name
-}
-
-/* Build the final Zoho Hosted Payment Page URL for the selected term and append
-   Zoho's supported PREFILL parameters (customer + billing details already captured
-   in state.account / state.profile), `quantity`, and any applied `coupon_code`. Everything is URL-encoded via
-   URL / URLSearchParams — values are never hand-concatenated. The base plan URL is
-   never modified, only unsupported params are excluded, empty values are omitted,
-   and the password is never included. */
-function buildPaymentUrl(termId, qty){
-  const selected=pkg();
-  if(!TERMS[termId] || selected.blocked[termId]) return "";
-  const base=(selected.urls[termId]||"").trim();
-  if(base==="") return "";
-  const a=state.account||{}, p=state.custType==="existing"?{}:(state.profile||{});
-
-  const params={
-    first_name:           a.firstName,
-    last_name:            a.lastName,
-    email:                a.email,
-    company_name:         a.company || p.legalName,
-    mobile:               a.mobile,
-    billing_street:       p.street,
-    billing_street2:      p.address2,
-    billing_city:         p.city,
-    billing_zip:          p.pin,
-    billing_state_code:   indiaStateCode(p.state),
-    billing_country_code: countryCode(p.country)
-  };
-  // GST number only when the customer is GST registered (never an empty tax_reg_no).
-  if(p.gstRegistered==="yes" && p.gstin) params.tax_reg_no = p.gstin;
-  params.quantity = String(qty);
-  if(state.coupon && COUPONS[state.coupon]) params.coupon_code = state.coupon;
-
-  const add=(usp)=>Object.keys(params).forEach(k=>{
-    const v=params[k];
-    if(v!=null && String(v).trim()!=="") usp.set(k, String(v).trim());  // safe URL-encoding
-  });
-  try{
-    const u=new URL(base); add(u.searchParams); return u.toString();
-  }catch(e){
-    const usp=new URLSearchParams(); add(usp);
-    const sep = base.indexOf("?")===-1 ? "?" : "&";
-    return base + sep + usp.toString();
-  }
-}
-
-function proceedToPayment(){
-  if(!validateAccount()){goStep("account");toast("Complete your account first.");return;}
-  captureAccount();
-  if(state.custType!=="existing"){if(!validateProfile()){goStep("profile");return;}captureProfile();}
-  if(!checkoutReady()){renderPayRecap();return;}
-  const msg=$("#payMsg"); msg.className="coupon-msg show";
-  if(!priceReady()){ msg.classList.add("no"); msg.textContent="Pricing for this term is not configured yet. Please contact XcellHost support."; return; }
-
-  /* PREFILL → ZOHO: the customer + billing details captured in Account/Profile and
-     the selected quantity are passed to the matching Zoho Hosted Payment Page via
-     Zoho's supported prefill parameters (see buildPaymentUrl). Zoho's page remains
-     the source of truth for the final quantity the customer confirms there. */
-  const url=buildPaymentUrl(state.termId, state.quantity);
-
-  if(url!==""){
-    tallyNavigate(url);   // opens the correct per-term Zoho Hosted Payment Page (top-level)
-  }else{
-    msg.classList.add("no"); msg.textContent="Payment integration is pending. Please contact XcellHost support.";
-  }
-}
-
-/* Developer-only helper: builds the SAME per-term + quantity URL as the payment
-   button and opens it in a NEW browser tab so it can be verified in a real
-   browser (the embedded preview may block external pages). Not the customer path.
-   This is a top-level new tab — the Zoho page is never iframed/embedded/fetched. */
-function devTestPayment(){
-  const msg=$("#payMsg"); msg.className="coupon-msg show";
-  if(!priceReady()){ msg.classList.add("no"); msg.textContent="Select a term with confirmed pricing first."; return; }
-  const url=buildPaymentUrl(state.termId, state.quantity);
-  if(url!==""){ window.open(url, "_blank", "noopener"); }
-  else { msg.classList.add("no"); msg.textContent="Payment integration is pending. Please contact XcellHost support."; }
-}
-
-/* ============================================================================
-   UI plumbing
-   ============================================================================ */
-function toast(m){ const t=document.createElement("div"); t.className="toast"; t.textContent=m; $("#toastWrap").appendChild(t); setTimeout(()=>{ t.style.transition="opacity .3s,transform .3s"; t.style.opacity="0"; t.style.transform="translateY(10px)"; setTimeout(()=>t.remove(),300); },3200); }
-
-function init(){
-  loadCart();
-  // A pricing-card selection takes precedence over an older saved checkout.
-  const checkoutParams=new URLSearchParams(window.location.search);
-  const requestedPackage=(checkoutParams.get('package')||'').toUpperCase();
-  const requestedTerm=(checkoutParams.get('term')||'').toUpperCase();
-  const requestedQuantity=parseInt(checkoutParams.get('quantity')||'',10);
-  if(PACKAGES[requestedPackage]) state.packageId=requestedPackage;
-  if(TERMS[requestedTerm]) state.termId=requestedTerm;
-  if(Number.isFinite(requestedQuantity)) state.quantity=Math.min(99,Math.max(1,requestedQuantity));
-  state.inCart=false;
-  saveCart();
-  $("#qty").value=state.quantity;
-  // Coupons must be entered by the customer on each page load.
-  state.coupon=null;
-  $("#couponInput").value="";
-
-  // account type toggle
-  function setCust(ct){ if(state.custType!==ct) state.authenticated=false; state.custType=ct; $("#optNew").classList.toggle("sel",ct==="new"); $("#optExisting").classList.toggle("sel",ct==="existing"); $("#formNew").style.display=ct==="new"?"":"none"; $("#formExisting").classList.toggle("show",ct==="existing"); updateCustomerFlow(); saveCart(); }
-  $("#optNew").addEventListener("click",()=>setCust("new"));
-  $("#optExisting").addEventListener("click",()=>setCust("existing"));
-  setCust(state.custType);
-
-  // entity toggle
-  function setEntity(en){ state.entity=en; $("#optIndividual").classList.toggle("sel",en==="individual"); $("#optBusiness").classList.toggle("sel",en==="business"); saveCart(); }
-  $("#optIndividual").addEventListener("click",()=>setEntity("individual"));
-  $("#optBusiness").addEventListener("click",()=>setEntity("business"));
-  setEntity(state.entity);
-
-  // prefill non-sensitive fields
-  const a=state.account||{};
-  if(a.firstName)$("#firstName").value=a.firstName; if(a.lastName)$("#lastName").value=a.lastName;
-  if(a.email){ $("#email").value=a.email; $("#exEmail").value=a.email; } if(a.mobile)$("#mobile").value=a.mobile; if(a.company)$("#company").value=a.company;
-  const pr=state.profile||{};
-  ["legalName","street","city","country","gstin"].forEach(k=>{ if(pr[k]){ const el=$("#"+k); if(el)el.value=pr[k]; } });
-  if(pr.address2)$("#address2").value=pr.address2; if(pr.state)$("#state").value=pr.state; if(pr.pin)$("#pin").value=pr.pin;
-  if(pr.gstRegistered){ $("#gstReg").value=pr.gstRegistered; toggleGstin(); }
-
-  document.querySelectorAll("#stepper .step").forEach(st=>{ st.addEventListener("click",()=>{ const names=["account","service","profile","payment"]; goStep(names[+st.dataset.step]); }); });
-
-  renderAll();
-  goStep("account");
-}
-document.addEventListener("DOMContentLoaded", init);
+<div class="stepper-wrap"><div class="stepper" id="stepper"><button type="button" class="step active" data-step="0"><span class="step-num">1</span><span class="step-lab">Service</span></button><div class="step-bar"></div><button type="button" class="step" data-step="1"><span class="step-num">2</span><span class="step-lab">Customer Information</span></button><div class="step-bar"></div><button type="button" class="step" data-step="2"><span class="step-num">3</span><span class="step-lab">Billing Information</span></button><div class="step-bar"></div><button type="button" class="step" data-step="3"><span class="step-num">4</span><span class="step-lab">Payment</span></button></div></div>
+<main class="page"><h1 class="page-title">Complete Your Tally on Cloud Order</h1><p class="page-sub">Choose your service, enter your details, and complete your payment securely through Zoho Billing.</p>
+<div class="layout"><div class="col-left">
+<div id="formError" class="error" role="alert" hidden></div>
+<form id="webform667555000020578022" name="WebToLeads667555000020578022" accept-charset="UTF-8" action="https://crm.zoho.in/crm/WebToLeadForm" method="POST" novalidate>
+<!-- Do not remove this code: Zoho CRM public webform identifiers. -->
+<div hidden><input name="xnQsjsdp" style="display:none;" type="text" value="70ebc94417bf7b1ba03e450fffdf7f171eeda779bf9297623f18881ce968ab68"/>
+<input id="zc_gad" name="zc_gad" type="hidden" value=""/>
+<input name="xmIwtLD" style="display:none;" type="text" value="f837d184ad7829b998017725d197e4feb2030ece8e259cb48843551acc77391da8f59fe9d404dbaec7c6525ee023c21c"/>
+<input name="actionType" style="display:none;" type="text" value="TGVhZHM="/>
+<input name="returnURL" style="display:none;" type="text" value="null"/>
+<input name="aG9uZXlwb3Q" style="display: none;" type="hidden" value=""/><input type="hidden" name="LEADCF21" value="Customer C"><textarea name="Description" id="Description"></textarea></div>
+<section class="card" data-panel="0" id="servicePanel"><h2 class="card-h">1. Select Your Service</h2><p class="card-sub">Tally Private Cloud · Choose the capacity and billing period for your team.</p>
+<div class="field"><label for="packageSelect">Server package</label><select id="packageSelect"></select></div><div class="terms" id="terms"></div><div class="term-detail" id="termDetail"></div>
+<div style="margin-top:22px"><h3 class="card-h" style="font-size:1rem">Number of servers</h3><p class="card-sub">Each server includes the selected package’s user capacity.</p><div class="qty-wrap"><div class="qty"><button type="button" id="qtyDown" aria-label="Decrease servers">−</button><input id="qty" type="number" min="1" max="99" step="1" value="1" aria-label="Number of servers"><button type="button" id="qtyUp" aria-label="Increase servers">+</button></div><span class="qty-lab">server packages</span></div></div>
+<div class="actions"><button type="button" class="continue" id="serviceContinue">Continue to Customer Information</button></div></section>
+<section class="card" data-panel="1" id="customerPanel" hidden><h2 class="card-h">2. Customer Information</h2><p class="card-sub">Use your contact details for your order and onboarding.</p>
+<div class="account-choices"><button type="button" class="choice selected" id="newCustomer" aria-pressed="true">Create an Account</button><button type="button" class="choice" id="existingCustomer" aria-pressed="false">Already Have an Account?</button></div>
+<div id="newFields"><div class="frow"><div class="field"><label for="firstName">First Name <span class="rq">*</span></label><input id="firstName" name="First Name" type="text" maxlength="40" required autocomplete="given-name"></div><div class="field"><label for="lastName">Last Name <span class="rq">*</span></label><input id="lastName" name="Last Name" type="text" maxlength="80" required autocomplete="family-name"></div></div><div class="frow"><div class="field"><label for="email">Email <span class="rq">*</span></label><input id="email" name="Email" type="email" maxlength="100" required autocomplete="email"></div><div class="field"><label for="mobile">Mobile / WhatsApp <span class="rq">*</span></label><input id="mobile" name="Mobile" type="tel" maxlength="30" required pattern="[+0-9][0-9 +()-]{7,29}" autocomplete="tel" placeholder="+91"></div></div><div class="field"><label for="company">Company / Billing Name <span class="rq">*</span></label><input id="company" name="Company" type="text" maxlength="200" required autocomplete="organization"></div>
+<p class="notice">Your Billing portal account is managed by Zoho Billing. If portal invitations are enabled, you’ll receive an invitation after your subscription payment.</p>
+<div class="actions"><button type="button" class="continue back" data-back="0">← Back</button><button type="button" class="continue" id="customerContinue">Continue to Billing Information</button></div></div>
+<div id="existingFields" hidden><p class="notice">Sign in on the XcellHost Billing portal using your existing portal email and password. If you’re already signed in, continue there with your billing account.</p><a class="continue" id="portalLink" style="display:block;text-align:center" href="https://billing.zohosecure.in/portal/xcellhostcloudservicespvtltd/index#/tabs?tab_id=1818279000018410001" target="_top">Continue in Billing Portal</a><div class="actions"><button type="button" class="continue back" data-back="0">← Back</button></div></div></section>
+<section class="card" data-panel="2" id="billingPanel" hidden><h2 class="card-h">3. Billing Information</h2><p class="card-sub">Enter the address and GST details for your invoice.</p>
+<div class="field"><label for="street">Billing Street <span class="rq">*</span></label><input id="street" name="Street" type="text" maxlength="250" required autocomplete="address-line1"></div><div class="field"><label for="address2">Address Line 2</label><input id="address2" type="text" maxlength="200" autocomplete="address-line2"></div><div class="frow"><div class="field"><label for="city">City <span class="rq">*</span></label><input id="city" name="City" type="text" maxlength="100" required autocomplete="address-level2"></div><div class="field"><label for="billingState">State <span class="rq">*</span></label><select id="billingState" name="State" required class="billing-state"><option value="">Select your state</option><option>Andaman and Nicobar Islands</option><option>Andhra Pradesh</option><option>Arunachal Pradesh</option><option>Assam</option><option>Bihar</option><option>Chandigarh</option><option>Chhattisgarh</option><option>Dadra and Nagar Haveli and Daman and Diu</option><option>Delhi</option><option>Goa</option><option>Gujarat</option><option>Haryana</option><option>Himachal Pradesh</option><option>Jammu and Kashmir</option><option>Jharkhand</option><option>Karnataka</option><option>Kerala</option><option>Ladakh</option><option>Lakshadweep</option><option>Madhya Pradesh</option><option>Maharashtra</option><option>Manipur</option><option>Meghalaya</option><option>Mizoram</option><option>Nagaland</option><option>Odisha</option><option>Puducherry</option><option>Punjab</option><option>Rajasthan</option><option>Sikkim</option><option>Tamil Nadu</option><option>Telangana</option><option>Tripura</option><option>Uttar Pradesh</option><option>Uttarakhand</option><option>West Bengal</option></select></div></div>
+<div class="frow"><div class="field"><label for="pin">PIN Code <span class="rq">*</span></label><input id="pin" name="Zip Code" type="text" maxlength="6" required pattern="[1-9][0-9]{5}" inputmode="numeric" autocomplete="postal-code"></div><div class="field"><label for="country">Country <span class="rq">*</span></label><input id="country" name="Country" type="text" maxlength="100" required value="India" readonly autocomplete="country-name"></div></div><div class="frow"><div class="field"><label for="gstRegistered">GST Registered <span class="rq">*</span></label><select id="gstRegistered" name="LEADCF37" required><option value="">Select…</option><option value="YES">Yes</option><option value="NO">No</option></select></div><div class="field" id="gstinField" hidden><label for="gstin">GSTIN <span class="rq">*</span></label><input id="gstin" name="LEADCF36" maxlength="15" pattern="[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][1-9A-Z]Z[0-9A-Z]" autocapitalize="characters" style="text-transform:uppercase"></div></div>
+<label class="privacy"><input type="checkbox" id="consent" required><span>I agree that XcellHost may use these details to process and contact me about this order. </span></label>
+<div class="actions"><button type="button" class="continue back" data-back="1">← Back</button><button type="submit" class="continue" id="saveDetails">Save Details &amp; Continue to Payment</button></div></section>
+<section class="card" data-panel="3" id="paymentPanel" hidden><h2 class="card-h" tabindex="-1">4. Payment</h2><p class="card-sub">Your details have been submitted. Review your order, then continue to Zoho Billing.</p><div id="paymentRecap"></div><p class="notice">Check the final quantity, discount and tax on the Zoho payment page before paying.</p><button type="button" id="payButton" class="continue">Continue to Secure Payment</button><p class="notice">Payments and invoices are handled by Zoho Billing.</p><div class="actions"><button type="button" class="continue back" data-back="2">← Back</button></div></section>
+<!-- Do not remove this code: Analytics Tracking code from supplied CRM form. -->
+<script id="wf_anal" src="https://crm.zohopublic.in/crm/WebFormAnalyticsServeServlet?rid=96419e51010cf6efd35a2894ecf15ce15af1f0cf3b2f1690c2bca840be38bded575debe250e9cce9055ed9815f3b1d32gid980011712e7faf5a55c3e3f21e75a2ffe0eed0511d15e58ded356f2451e1e60agidaa91f7cbbf1b49b7e77e4a45af14a4c5ed07fb7bf6e26b1cdf52b11bfa216898gidbaf36df09664024db2d09b9600df2f9afadd898985b4153599e32742a19e253c&amp;tw=fd493a5126628ed5cd9b7e65b2d9bec1f35c6ec0d3290ab9628195deb7c80834&amp;version=v2">
 </script>
-</body>
-</html>
+</form></div>
+<aside><div class="summary"><div class="sum-head"><h3>Order Summary</h3></div><div class="sum-prod" id="sumProd"></div><div class="coupon"><label class="coupon-t" for="couponInput">Have a coupon code?</label><div class="coupon-row"><input id="couponInput" type="text" autocomplete="off" maxlength="30"><button type="button" id="applyCoupon">Apply</button></div><p id="couponMessage" class="notice" role="status" aria-live="polite"></p></div><div class="pricing"><div class="pline"><span>Package price</span><strong id="basePrice"></strong></div><div class="pline" id="discountLine" hidden><span>Discount (10%)</span><strong id="discount"></strong></div><div class="pline"><span>Subtotal</span><strong id="subtotal"></strong></div><div class="pline"><span>Estimated GST (18%)</span><strong id="gst"></strong></div><div class="pline total"><span>Total</span><strong id="total"></strong></div><p class="notice">Final charges are confirmed by Zoho Billing.</p></div></div><div class="why-xcell"><div class="wx-t">Your Cloud Workspace</div><ul class="why-list"><li>✓ Dedicated virtual server in India</li><li>✓ SSD storage</li><li>✓ Scheduled backups</li><li>✓ Endpoint security and firewall</li><li>✓ XcellHost support</li></ul></div></aside>
+</div></main>
+<script>
+'use strict';
+const PACKAGES={"LITE": {"name": "Cloud Lite", "users": "3–4", "cpu": 4, "ram": 6, "disk": 100, "prices": {"MON": 1776, "QUA": 5062, "SEM": 9857, "YEA": 19181}, "urls": {"MON": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-LITE-MON", "QUA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-LITE-QUA", "SEM": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-LITE-SEM", "YEA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-LITE-YEA"}, "blocked": {}}, "XS": {"name": "Cloud X Small", "users": "5", "cpu": 4, "ram": 8, "disk": 150, "prices": {"MON": 2616, "QUA": 7456, "SEM": 14519, "YEA": 28253}, "urls": {"MON": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XS-MON", "QUA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XS-QUA", "SEM": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XS-SEM", "YEA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XS-YEA"}, "blocked": {}}, "S": {"name": "Cloud Small", "users": "10", "cpu": 6, "ram": 12, "disk": 150, "prices": {"MON": 5520, "QUA": 15732, "SEM": 30636, "YEA": 59616}, "urls": {"MON": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-S-MON", "QUA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-S-QUA", "SEM": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-S-SEM", "YEA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-S-YEA"}, "blocked": {}}, "M": {"name": "Cloud Medium", "users": "11–15", "cpu": 8, "ram": 16, "disk": 200, "prices": {"MON": 7200, "QUA": 20520, "SEM": 39960, "YEA": 77760}, "urls": {"MON": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-M-MON", "QUA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-M-QUA", "SEM": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-M-SEM", "YEA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-M-YEA"}, "blocked": {}}, "XL": {"name": "Cloud X Large", "users": "16–20", "cpu": 12, "ram": 32, "disk": 300, "prices": {"MON": 11664, "QUA": 33242, "SEM": 64735, "YEA": 125971}, "urls": {"MON": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XL-MON", "QUA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XL-QUA", "SEM": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XL-SEM", "YEA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XL-YEA"}, "blocked": {}}, "XXL": {"name": "Cloud XX Large", "users": "21–30", "cpu": 16, "ram": 64, "disk": 400, "prices": {"MON": 21168, "QUA": 60329, "SEM": 117482, "YEA": 228614}, "urls": {"MON": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXL-MON", "QUA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXL-QUA", "SEM": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXL-SEM", "YEA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXL-YEA"}, "blocked": {}}, "XXXL": {"name": "Cloud XXX Large", "users": "31–50", "cpu": 20, "ram": 96, "disk": 500, "prices": {"MON": 26640, "QUA": 75924, "SEM": 147852, "YEA": 287712}, "urls": {"MON": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXXL-MON", "QUA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXXL-QUA", "SEM": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXXL-SEM", "YEA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXXL-YEA"}, "blocked": {}}, "XXXXL": {"name": "Cloud XXXX Large", "users": "51–75", "cpu": 24, "ram": 128, "disk": 750, "prices": {"MON": 48912, "QUA": 139399, "SEM": 271462, "YEA": 528250}, "urls": {"MON": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXXXL-MON", "QUA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXXXL-QUA", "SEM": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXXXL-SEM", "YEA": "https://billing.zohosecure.in/subscribe/a5af34fbd3854095ef10068ebf1be54fa93d93bb4f5a3d3ddbde1ccf1c7a189d/XLCS-TALLY-PVT-XXXXL-YEA"}, "blocked": {}}};
+const TERMS={MON:'Monthly',QUA:'Quarterly',SEM:'Half-yearly',YEA:'Annual'};
+const STATE_CODES={"andaman and nicobar islands": "AN", "andhra pradesh": "AP", "arunachal pradesh": "AR", "assam": "AS", "bihar": "BR", "chandigarh": "CH", "chhattisgarh": "CG", "dadra and nagar haveli and daman and diu": "DN", "delhi": "DL", "goa": "GA", "gujarat": "GJ", "haryana": "HR", "himachal pradesh": "HP", "jammu and kashmir": "JK", "jharkhand": "JH", "karnataka": "KA", "kerala": "KL", "keralam": "KL", "ladakh": "LA", "lakshadweep": "LD", "madhya pradesh": "MP", "maharashtra": "MH", "manipur": "MN", "meghalaya": "ML", "mizoram": "MZ", "nagaland": "NL", "odisha": "OD", "puducherry": "PY", "punjab": "PB", "rajasthan": "RJ", "sikkim": "SK", "tamil nadu": "TN", "telangana": "TS", "tripura": "TR", "uttar pradesh": "UP", "uttarakhand": "UK", "west bengal": "WB"};
+const PORTAL_URL='https://billing.zohosecure.in/portal/xcellhostcloudservicespvtltd/index#/tabs?tab_id=1818279000018410001';
+const $=id=>document.getElementById(id);
+let currentStep=0, customerType='new', coupon='', busy=false, acknowledged='';
+let selection={package:'LITE',term:'MON',quantity:1};
+const form=$('webform667555000020578022');
+const money=n=>'₹'+n.toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});
+const round=n=>Math.round((n+Number.EPSILON)*100)/100;
+function error(message){$('formError').textContent=message;$('formError').hidden=false;$('formError').scrollIntoView({block:'center',behavior:'smooth'});}
+function clearError(){$('formError').hidden=true;$('formError').textContent='';}
+function counts(){const base=round(PACKAGES[selection.package].prices[selection.term]*selection.quantity),discount=coupon?round(base*.1):0,subtotal=round(base-discount),gst=round(round(subtotal*.09)*2);return {base,discount,subtotal,gst,total:round(subtotal+gst)};}
+function remember(){try{localStorage.setItem('xh_tally_simple_selection',JSON.stringify(selection));}catch(e){}}
+function render(){
+ const p=PACKAGES[selection.package], c=counts();$('packageSelect').value=selection.package;$('qty').value=selection.quantity;
+ $('terms').replaceChildren(...Object.entries(TERMS).map(([id,label])=>{const b=document.createElement('button');b.type='button';b.className='term-opt'+(id===selection.term?' sel':'');b.setAttribute('aria-pressed',id===selection.term?'true':'false');const t=document.createElement('div');t.className='to-dur';t.textContent=label;const v=document.createElement('div');v.className='to-sub';v.textContent=money(p.prices[id])+' / server';b.append(t,v);b.onclick=()=>{if(busy)return;selection.term=id;changed();};return b;}));
+ $('termDetail').innerHTML='<div class="td-top"><div class="td-name">'+p.name+'</div><div class="td-cov">'+p.users+' users per server</div></div><div class="spec-grid"><div class="spec">'+p.cpu+' vCPU</div><div class="spec">'+p.ram+' GB RAM</div><div class="spec">'+p.disk+' GB SSD</div><div class="spec">'+TERMS[selection.term]+'</div></div>';
+ $('sumProd').innerHTML='<div class="p">Tally Private Cloud</div><div class="pk">'+p.name+' · '+TERMS[selection.term]+'</div><div class="u">'+p.users+' users per server · '+selection.quantity+' server'+(selection.quantity===1?'':'s')+'</div>';
+ for(const k of ['base','discount','subtotal','gst','total'])$(k==='base'?'basePrice':k).textContent=(k==='discount'?'−':'')+money(c[k]);$('discountLine').hidden=!coupon;
+ if(currentStep===3)renderRecap();
+}
+function changed(){acknowledged='';remember();render();}
+function fieldsValid(ids){for(const id of ids){const el=$(id);if(el.type!=='checkbox')el.value=el.value.trim();if(!el.reportValidity())return false;}return true;}
+function serviceValid(){if(!Number.isInteger(Number($('qty').value))||Number($('qty').value)<1||Number($('qty').value)>99){error('Choose between 1 and 99 servers.');return false;}selection.quantity=Number($('qty').value);return true;}
+function contactValid(){return fieldsValid(['firstName','lastName','email','mobile','company']);}
+function profileValid(){return fieldsValid(['street','address2','city','billingState','pin','country','gstRegistered',...($('gstRegistered').value==='YES'?['gstin']:[]),'consent']);}
+function go(step){
+ if(busy)return;clearError();
+ if(step>0&&!serviceValid()){step=0;}
+ if(step>1&&(customerType!=='new'||!contactValid()))step=1;
+ if(step===3&&(!acknowledged||acknowledged!==fingerprint())){error('Please save your billing details before continuing to payment.');return;}
+ currentStep=step;document.querySelectorAll('[data-panel]').forEach(el=>el.hidden=Number(el.dataset.panel)!==step);
+ document.querySelectorAll('#stepper .step').forEach((el,i)=>{el.classList.toggle('active',i===step);el.classList.toggle('done',i<step);if(i===step)el.setAttribute('aria-current','step');else el.removeAttribute('aria-current');});
+ document.querySelectorAll('#stepper .step-bar').forEach((el,i)=>el.classList.toggle('filled',i<step));
+ if(step===3)renderRecap();window.scrollTo({top:0,behavior:'smooth'});
+}
+function formSnapshot(){const result={};for(const k of ['First Name','Last Name','Email','Mobile','Company','Street','City','State','Zip Code','Country','LEADCF37','LEADCF36'])result[k]=String(new FormData(form).get(k)||'').trim();result.address2=$('address2').value.trim();result.consent=$('consent').checked;return result;}
+function fingerprint(){return JSON.stringify([selection,coupon,formSnapshot()]);}
+function prepareSubmission(){
+ const p=PACKAGES[selection.package],c=counts();
+ $('Description').value=['Website checkout: Tally on Cloud','Package: '+p.name,'Plan code: XLCS-TALLY-PVT-'+selection.package+'-'+selection.term,'Billing period: '+TERMS[selection.term],'Server quantity: '+selection.quantity,'Coupon entered: '+(coupon||'None'),'Estimated total (INR, including GST): '+c.total.toFixed(2),'Address line 2: '+$('address2').value.trim(),'Payment: Pending / not confirmed','Customer agreed to order processing and contact.','Source: '+location.origin+location.pathname].join('\n');
+ const data=new FormData(form);
+ data.set('Street',[$('street').value.trim(),$('address2').value.trim()].filter(Boolean).join(', '));
+ if(data.get('Street').length>250)throw new Error('Please keep the combined street address within 250 characters.');
+ if($('gstRegistered').value!=='YES')data.set('LEADCF36','');
+ return data;
+}
+function acceptedReply(data){
+ if(!data||typeof data!=='object'||Array.isArray(data))return false;
+ if(data.invalidCaptcha===true||data.invalidCaptcha==='true'||data.success===false||data.success==='false'||data.error||data.errors)return false;
+ if(['error_msg','captcha_error','add_hash'].includes(data.actionsubmit))return false;
+ const positive=data.success===true||data.success==='true';
+ if(['redirect_url','parent_redirect','thankyou_page'].includes(data.actionsubmit))return positive;
+ // The supplied Zoho source treats Splash Message as its accepted-submission branch.
+ return data.actionsubmit==='Splash Message'&&typeof data.actionvalue==='string'&&data.actionvalue.trim().length>0;
+}
+async function submitCRM(event){
+ event.preventDefault();if(busy)return;
+ if(!serviceValid()){go(0);return;}if(!contactValid()){go(1);return;}if(!profileValid())return;
+ clearError();const key=fingerprint();if(acknowledged===key){go(3);return;}
+ if(!['https:','http:'].includes(location.protocol)){error('Please open this checkout on the XcellHost website to submit your details.');return;}
+ let data;try{data=prepareSubmission();}catch(e){error(e.message);return;}
+ busy=true;const mask=document.createElement('div');mask.className='submit-mask';mask.setAttribute('role','status');mask.textContent='Submitting your details…';document.body.appendChild(mask);$('saveDetails').disabled=true;
+ const controller=new AbortController(), timer=setTimeout(()=>controller.abort(),30000);
+ try{
+  if(typeof window._wfa_track!=='undefined'&&typeof window._wfa_track.wfa_submit==='function'){try{window._wfa_track.wfa_submit(event);}catch(e){}}
+  const response=await fetch('https://crm.zoho.in/crm/WebToLeadForm',{method:'POST',body:data,cache:'no-cache',signal:controller.signal});
+  if(!response.ok)throw new Error('CRM could not confirm your submission. Please contact support before retrying.');
+  const type=response.headers.get('Content-Type')||'';if(!type.includes('application/json'))throw new Error('CRM returned an unexpected response. Please contact support before retrying.');
+  const reply=await response.json();
+  if(!acceptedReply(reply))throw new Error(typeof reply.message==='string'?reply.message:'CRM did not confirm acceptance. Please check your details or contact support.');
+  acknowledged=key;
+  if(typeof window._wfa_track!=='undefined'&&typeof window._wfa_track.wfa_post_submit==='function'){try{window._wfa_track.wfa_post_submit(event);}catch(e){}}
+ }catch(e){error(e.name==='AbortError'?'Submission confirmation timed out. Your details may have reached us; please contact support before retrying.':e.message||'Unable to confirm submission. Please contact support before retrying.');}
+ finally{clearTimeout(timer);busy=false;mask.remove();$('saveDetails').disabled=false;}
+ if(acknowledged===key)go(3);
+}
+function renderRecap(){
+ const p=PACKAGES[selection.package], rows=[['Package',p.name],['Billing period',TERMS[selection.term]],['Servers',String(selection.quantity)],['Customer',[$('firstName').value,$('lastName').value].join(' ')],['Email',$('email').value],['Estimated total',money(counts().total)]];
+ $('paymentRecap').replaceChildren(...rows.map(([label,value])=>{const row=document.createElement('div');row.className='recap-row';const a=document.createElement('span'),b=document.createElement('span');a.textContent=label;b.textContent=value;row.append(a,b);return row;}));
+}
+function buildPaymentUrl(){
+ const url=new URL(PACKAGES[selection.package].urls[selection.term]);
+ if(url.protocol!=='https:'||url.hostname!=='billing.zohosecure.in'||!url.pathname.startsWith('/subscribe/'))throw new Error('The selected payment link is unavailable.');
+ const data={'quantity':selection.quantity,'first_name':$('firstName').value.trim(),'last_name':$('lastName').value.trim(),'email':$('email').value.trim(),'company_name':$('company').value.trim(),'mobile':$('mobile').value.trim(),'billing_street':[$('street').value.trim(),$('address2').value.trim()].filter(Boolean).join(', '),'billing_city':$('city').value.trim(),'billing_zip':$('pin').value.trim(),'billing_state_code':STATE_CODES[$('billingState').value.toLowerCase()],'billing_country_code':'IN'};
+ if(coupon)data.coupon_code=coupon;if($('gstRegistered').value==='YES')data.tax_reg_no=$('gstin').value.trim();
+ for(const [k,v]of Object.entries(data))if(v!==undefined&&String(v)!=='')url.searchParams.set(k,String(v));return url.toString();
+}
+function navigate(url){if(window.top===window)window.location.assign(url);else window.top.location.href=url;}
+function pay(){if(busy)return;if(!acknowledged||acknowledged!==fingerprint()){go(2);error('Please save your details before opening payment.');return;}try{navigate(buildPaymentUrl());}catch(e){error('Unable to open the payment page. Please open this checkout directly in your browser or contact support.');}}
+function setType(type){customerType=type;$('newCustomer').classList.toggle('selected',type==='new');$('existingCustomer').classList.toggle('selected',type==='existing');$('newCustomer').setAttribute('aria-pressed',type==='new');$('existingCustomer').setAttribute('aria-pressed',type==='existing');$('newFields').hidden=type!=='new';$('existingFields').hidden=type!=='existing';}
+function init(){
+ for(const [id,p]of Object.entries(PACKAGES)){const option=document.createElement('option');option.value=id;option.textContent=p.name+' · '+p.users+' users';$('packageSelect').appendChild(option);}
+ try{const saved=JSON.parse(localStorage.getItem('xh_tally_simple_selection')||'null');if(saved){if(PACKAGES[saved.package])selection.package=saved.package;if(TERMS[saved.term])selection.term=saved.term;if(Number.isInteger(saved.quantity)&&saved.quantity>=1&&saved.quantity<=99)selection.quantity=saved.quantity;}}catch(e){}
+ const query=new URLSearchParams(location.search);if(query.get('embed')==='1')document.body.classList.add('embedded');if(PACKAGES[query.get('package')])selection.package=query.get('package');if(TERMS[query.get('term')])selection.term=query.get('term');if(/^[0-9]{1,2}$/.test(query.get('quantity')||'')&&Number(query.get('quantity'))>=1)selection.quantity=Number(query.get('quantity'));
+ $('packageSelect').onchange=()=>{selection.package=$('packageSelect').value;changed();};
+ const qty=delta=>{selection.quantity=Math.min(99,Math.max(1,selection.quantity+delta));changed();};$('qtyDown').onclick=()=>qty(-1);$('qtyUp').onclick=()=>qty(1);$('qty').onchange=()=>{if(serviceValid())changed();};
+ $('serviceContinue').onclick=()=>go(1);$('customerContinue').onclick=()=>{if(contactValid())go(2);};
+ $('newCustomer').onclick=()=>setType('new');$('existingCustomer').onclick=()=>setType('existing');
+ $('gstRegistered').onchange=()=>{const yes=$('gstRegistered').value==='YES';$('gstinField').hidden=!yes;$('gstin').required=yes;if(!yes)$('gstin').value='';acknowledged='';};$('gstin').oninput=()=>{$('gstin').value=$('gstin').value.toUpperCase();};
+ $('applyCoupon').onclick=()=>{const entered=$('couponInput').value.trim().toUpperCase();if(entered&&entered!=='XCELLTALLY10'){coupon='';acknowledged='';render();$('couponMessage').textContent='Please check the coupon code.';return;}const next=entered||'';if(next!==coupon){coupon=next;acknowledged='';}$('couponMessage').textContent=coupon?'Coupon applied.':'Coupon removed.';render();};
+ $('couponInput').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();$('applyCoupon').click();}};
+ document.querySelectorAll('[data-back]').forEach(b=>b.onclick=()=>go(Number(b.dataset.back)));document.querySelectorAll('#stepper .step').forEach((el,i)=>el.onclick=()=>{if(i<=currentStep)go(i);});
+ form.addEventListener('submit',e=>{if(currentStep!==2){e.preventDefault();if(currentStep===0)go(1);else if(currentStep===1&&customerType==='new'&&contactValid())go(2);return;}submitCRM(e);});
+ form.addEventListener('input',()=>{acknowledged='';});form.addEventListener('change',()=>{acknowledged='';});$('payButton').onclick=pay;
+ window._wfa_fstprtcken=window._wfa_fstprtcken||{};window._wfa_fstprtcken[667555000020578022]=true;
+ remember();render();go(0);
+}
+document.addEventListener('DOMContentLoaded',init);
+</script></body></html>
