@@ -25,7 +25,22 @@ type InteractiveContentSource =
   | 'entra-id-backup'
   | 'ca-cloud'
   | 'microsoft-agent-365'
+  | 'microsoft-services'
+  | 'digicert-services'
+  | 'geotrust-services'
+  | 'sectigo-services'
+  | 'kaspersky-services'
+  | 'sentinelone-services'
+  | 'opentext-services'
+  | 'cybird-services'
+  | 'fortinet-services'
+  | 'hpe-services'
+  | 'dell-services'
+  | 'oracle-cloud-services'
+  | 'ibm-multicloud-services'
+  | 'dpo-genie365-services'
   | 'ai-training-integrated-program' | 'ai-training-medical-doctors' | 'ai-training-insurance-professionals'
+  | 'smart-manufacturing'
   | 'ai-training-chartered-accountants'
 
   | 'acronis-ai-solution' | 'acronis-cyberfit-score' | 'acronis-ransomware-warranty'
@@ -203,6 +218,21 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'entra-id-backup': '/imported-entra-id-backup.html',
     'ca-cloud': '/imported-ca-cloud.html',
     'microsoft-agent-365': '/imported-microsoft-agent-365.html',
+    'microsoft-services': '/imported-microsoft-services.html',
+    'digicert-services': '/imported-digicert-services.html',
+    'geotrust-services': '/imported-geotrust-services.html',
+    'sectigo-services': '/imported-sectigo-services.html',
+    'kaspersky-services': '/imported-kaspersky-services.html',
+    'sentinelone-services': '/imported-sentinelone-services.html',
+    'opentext-services': '/imported-opentext-services.html',
+    'cybird-services': '/imported-cybird-services.html',
+    'fortinet-services': '/imported-fortinet-services.html',
+    'hpe-services': '/imported-hpe-services.html',
+    'dell-services': '/imported-dell-services.html',
+    'oracle-cloud-services': '/imported-oracle-cloud-services.html',
+    'ibm-multicloud-services': '/imported-ibm-multicloud-services.html',
+    'smart-manufacturing': '/imported-smart-manufacturing.html',
+    'dpo-genie365-services': '/imported-dpo-genie365-services.html',
     'ai-training-integrated-program': '/imported-ai-training-integrated-program.html',
     'ai-training-chartered-accountants': '/imported-ai-training-chartered-accountants.html',
     'ai-training-medical-doctors': '/imported-ai-training-medical-doctors.html',
@@ -385,6 +415,21 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'entra-id-backup': 'Entra ID Backup: Identity Protection, Recovery, Pricing And FAQs',
     'ca-cloud': 'CA Cloud',
     'microsoft-agent-365': 'Microsoft Agent 365',
+    'microsoft-services': 'Microsoft Products and Services',
+    'digicert-services': 'DigiCert Products and Services',
+    'geotrust-services': 'GeoTrust Products and Services',
+    'sectigo-services': 'Sectigo Products and Services',
+    'kaspersky-services': 'Kaspersky Products and Services',
+    'sentinelone-services': 'SentinelOne Products and Services',
+    'opentext-services': 'OpenText Products and Services',
+    'cybird-services': 'Cybird Products and Services',
+    'fortinet-services': 'Fortinet Products and Services',
+    'hpe-services': 'HPE Products and Services',
+    'dell-services': 'Dell Products and Services',
+    'oracle-cloud-services': 'Oracle Cloud Products and Services',
+    'ibm-multicloud-services': 'IBM Multicloud Products and Services',
+    'smart-manufacturing': 'Industry 5.0 and Smart Manufacturing',
+    'dpo-genie365-services': 'DPO Genie365 Products and Services',
     'ai-training-integrated-program': 'Integrated AI Training Program',
     'ai-training-chartered-accountants': 'AI Training For Chartered Accountants',
     'ai-training-medical-doctors': 'AI Training For Medical Doctors',
@@ -857,13 +902,14 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     };
 
     const trainingEnquiry = (event: Event) => {
-      if (!this.source.startsWith('ai-training-')) return;
+      const catalogue = this.source === 'smart-manufacturing' || this.source === 'microsoft-services' || this.source === 'digicert-services' || this.source === 'geotrust-services' || this.source === 'sectigo-services' || this.source === 'kaspersky-services' || this.source === 'sentinelone-services' || this.source === 'opentext-services' || this.source === 'cybird-services' || this.source === 'fortinet-services' || this.source === 'hpe-services' || this.source === 'dell-services' || this.source === 'oracle-cloud-services' || this.source === 'ibm-multicloud-services' || this.source === 'dpo-genie365-services';
+      if (!catalogue && !this.source.startsWith('ai-training-')) return;
       const values = (event as CustomEvent<Record<string, string>>).detail;
       const [firstName = '', ...lastName] = (values['name'] || '').trim().split(/\s+/);
       this.topics.ask(this.sourceTitles[this.source], {
         firstName, lastName: lastName.join(' '), company: values['company'] || values['org'] || '', email: values['email'] || '',
         phone: values['phone'] || '', help: 'Request a CallBack',
-        details: 'Training enrolment request\n' + Object.entries(values).filter(([key]) => !['name', 'company', 'email', 'phone'].includes(key)).map(([key, value]) => key + ': ' + value).join('\n'),
+        details: (catalogue ? this.sourceTitles[this.source] + ' quotation\n' : 'Training enrolment request\n') + Object.entries(values).filter(([key]) => !['name', 'company', 'email', 'phone'].includes(key)).map(([key, value]) => key + ': ' + value).join('\n'),
       });
       this.overlay.open('callback');
     };

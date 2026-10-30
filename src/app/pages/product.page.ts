@@ -757,6 +757,19 @@ interface ProductTourSlide {
     #ppage .gemini-hero-features li { display:flex; align-items:center; gap:9px; }
     #ppage .gemini-hero-features li > span { display:grid; place-items:center; width:23px; height:23px; flex:none; border:1px solid #4298ff; border-radius:6px; background:#0066ff; box-shadow:0 0 0 3px rgba(0,102,255,.2); }
     #ppage .gemini-hero-features svg { width:15px; height:15px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
+    #ppage .aiops-hero-features { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 18px; font-size:12px; font-weight:500; }
+    #ppage .aiops-hero-features li { align-items:flex-start; }
+    #ppage.aiops-page #ppSecHead { margin-bottom:56px; }
+    #ppage.aiops-page #ppWhyHead { margin-top:56px; }
+    #ppage.aiops-page .xh-customer-testimonials { margin-top:56px; }
+    #ppage.aiops-page.google-business-page .pp-hero { display:grid!important; grid-template-columns:minmax(0,600px) minmax(0,540px)!important; align-items:center; justify-content:center; gap:40px; padding:48px 24px!important; min-height:0; }
+    #ppage.aiops-page.google-business-page .pp-hero > .wrap { grid-column:1; grid-row:1; width:100%; max-width:none; margin:0; padding:0; }
+    #ppage.aiops-page.google-business-page .pp-hero > .wrap > :not(.pph-scene) { max-width:100%!important; }
+    #ppage.aiops-page.google-business-page .pp-hero > .pph-scene.google-business-dashboard { position:relative!important; inset:auto!important; grid-column:2; grid-row:1; width:100%!important; height:auto!important; max-width:none!important; min-width:0; margin:0; padding:0; align-self:center; }
+    @media(max-width:1000px) {
+      #ppage.aiops-page.google-business-page .pp-hero { display:grid!important; grid-template-columns:minmax(0,1fr)!important; gap:28px; padding:36px 24px!important; }
+      #ppage.aiops-page.google-business-page .pp-hero > .pph-scene.google-business-dashboard { grid-column:1; grid-row:2; max-width:600px!important; justify-self:center; }
+    }
     #ppage .pp-hero:has(.gemini-managed-hero-art) #ppTitle { flex-wrap:nowrap; white-space:nowrap; font-size:var(--banner-title-size,28px) !important; }
     #ppage .pp-hero:has(.gemini-managed-hero-art) #ppTitle .pp-title-name { flex:none; white-space:nowrap; }
     @media (max-width: 900px) {
@@ -3293,6 +3306,12 @@ class ProductPageComponent {
 
     if (slug === 'aiops') return {
       ...view, faqs: AIOPS_FAQS, videos: [],
+      name: 'AIOps',
+      brandSuffix: 'AI',
+      tagline: 'Fewer alerts. Faster fixes. Engineers who sleep.',
+      heroHighlight: 'XcellHost AIOps applies machine learning to your metrics, logs, traces and events — correlating alert storms into a handful of real incidents, spotting anomalies before thresholds fire, pointing at the root cause and running approved fixes. Operated 24×7 by our NOC in Mumbai.',
+      heroMessages: ['500 alerts become 3 incidents', 'Anomalies caught on the baseline', 'Root cause, not 40 symptoms', 'Fixes run after a human says yes'],
+      heroPoints: ['Event correlation & noise cut', 'Anomaly detection on baselines', 'Topology-aware root cause', 'Predictive capacity'],
       security: {
         head: 'Security & Compliance — AIOps Platform',
         intro: 'Connect monitoring and automation with scoped access to your cloud estate. Use configuration history to investigate changes, review remediation runbooks before enabling automation, and align telemetry access and retention with your organisation’s requirements.',
@@ -3306,12 +3325,12 @@ class ProductPageComponent {
         ],
       },
       why: [
-        { ...view.why[0], title: 'Since 1999', body: '27 years serving Indian businesses.' },
-        { ...view.why[1], title: 'AWS And Hybrid Coverage', body: 'Bring cloud and on-premise operations into one monitoring approach.' },
-        { ...view.why[2], title: 'Guided Implementation', body: 'Assessment, AI/ML integration and continuous optimisation.' },
-        { ...view.why[3], title: 'Proactive Operations', body: 'Correlate alerts and identify unusual behaviour earlier.' },
-        { ...view.why[4], title: '24×7 NOC', body: 'Engineers support incident investigation and operational response.' },
-        { ...view.why[5], title: 'One Partner', body: 'Monitoring, automation and operational support together.' },
+        { icon: 'M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z', title: 'Since 1999', body: '27 years serving Indian businesses.' },
+        { icon: 'M12 2 4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5l-8-3zm-1 14-4-4 1.4-1.4 2.6 2.6 5.6-5.6L18 9l-7 7z', title: 'AWS And Hybrid Coverage', body: 'Bring cloud and on-premise operations into one monitoring approach.' },
+        { icon: 'M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5C15 14.17 10.33 13 8 13zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z', title: 'Guided Implementation', body: 'Assessment, AI/ML integration and continuous optimisation.' },
+        { icon: 'm19 1-1.26 2.75L15 5l2.74 1.25L19 9l1.25-2.75L23 5l-2.75-1.25L19 1zM9 5l-2.5 5.5L1 13l5.5 2.5L9 21l2.5-5.5L17 13l-5.5-2.5L9 5z', title: 'Proactive Operations', body: 'Correlate alerts and identify unusual behaviour earlier.' },
+        { icon: 'M3 3v18h18v-2H5V3H3zm4 10h3v4H7v-4zm5-6h3v10h-3V7zm5 3h3v7h-3v-7z', title: '24×7 NOC', body: 'Engineers support incident investigation and operational response.' },
+        { icon: 'M12 3a9 9 0 0 0-9 9v7a2 2 0 0 0 2 2h3v-9H5a7 7 0 0 1 14 0h-3v9h3v1h-7v2h7a2 2 0 0 0 2-2V12a9 9 0 0 0-9-9z', title: 'One Partner', body: 'Monitoring, automation and operational support together.' },
       ],
     };
     if (slug === 'agent-studio') return {

@@ -4787,6 +4787,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
+                "title": "Smart Manufacturing",
+                "href": "/smart-manufacturing",
+                "pill": null,
+                "desc": "Industry 5.0, IIoT, digital twins and predictive maintenance"
+              },
+              {
                 "title": "Government Cloud",
                 "href": "/government-cloud",
                 "pill": null,
@@ -4984,7 +4990,7 @@ export const MEGA_MENU: MenuTop[] = [
             "title": "Microsoft",
             "body": "Productivity, collaboration and business applications",
             "image": "/assets/images/menu-solutions-microsoft-v1.png",
-            "link": "/vendor-partners/microsoft-365"
+            "link": "/vendor-partners/microsoft-services"
           }
         ],
         "groups": [
@@ -5001,7 +5007,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Microsoft",
                 "pill": null,
                 "desc": "Productivity, collaboration and business applications",
-                "href": "/vendor-partners/microsoft-365"
+                "href": "/vendor-partners/microsoft-services"
               },
               {
                 "title": "TSplus",
@@ -5030,8 +5036,8 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Oracle Cloud",
                 "pill": null,
-                "desc": "Cybersecurity solutions, protection services and digital resilience",
-                "href": "/vendor-partners/cybird"
+                "desc": "Oracle Cloud Infrastructure, databases and multicloud services",
+                "href": "/vendor-partners/oracle-cloud"
               },
               {
                 "title": "IBM Multicloud",
@@ -5056,7 +5062,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "GeoTrust",
                 "pill": null,
                 "desc": "Enterprise certificates, PKI and digital trust",
-                "href": "/vendor-partners/digicert"
+                "href": "/vendor-partners/geotrust"
               },
               {
                 "title": "Sectigo",

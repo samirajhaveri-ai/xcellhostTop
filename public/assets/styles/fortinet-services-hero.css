@@ -1,0 +1,52 @@
+/* Match the default dark product banner without changing the catalogue below. */
+#fzHero.hero.lh.fz-hero {
+  padding: 48px 0;
+  min-height: 0;
+  color: #fff;
+  background: radial-gradient(ellipse at 5% 15%, #104780 0, transparent 48%), linear-gradient(115deg, #06274e, #041e42 65%, #082e5d);
+}
+#fzHero > .wrap { width: 100%; max-width: 1240px; padding-inline: 24px; }
+#fzHero .hero-grid.fz-hg { grid-template-columns: minmax(0, 640px) minmax(0, 500px); gap: 48px; align-items: center; padding-bottom: 0; }
+#fzHero .fz-copy { container-type: inline-size; }
+#fzHero .crumb, #fzHero .crumb a, #fzHero .crumb .c { color: #8bb4eb; }
+#fzHero .crumb .sep { color: #6188b9; }
+#fzHero .lh-title { font-size: clamp(16px, 4.6cqi, 32px) !important; white-space: nowrap; margin-bottom: 16px !important; color: #fff !important; }
+#fzHero .lh-title :is(.brd, .nm, .dv) { color: #fff; }
+#fzHero .lh-title .x { color: #e60012; }
+#fzHero .fz-big { font: 700 16px/1.45 var(--f-disp); color: #fff; letter-spacing: 0; margin: 0 0 7px; }
+#fzHero .fz-big span { color: inherit; }
+#fzHero .fz-lead { max-width: 100%; color: #c7d8f0; font-size: 14px; font-weight: 600; line-height: 1.6; margin-bottom: 16px; }
+#fzHero .fz-lead b { color: inherit; }
+#fzHero .fz-hero-type { color: #91bfff; font-size: 15px; margin-bottom: 18px; }
+#fzHero .fz-hero-points { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 18px; margin-bottom: 20px; }
+#fzHero .fz-hero-points > div { display: flex; align-items: center; gap: 9px; color: #dae7fa; font-size: 12px; font-weight: 600; }
+#fzHero .fz-hero-points i { display: grid; place-items: center; flex: none; width: 23px; height: 23px; font-style: normal; color: #fff; border: 1px solid #4b9cff; border-radius: 6px; background: #0066ff; box-shadow: 0 0 0 3px #0066ff30; }
+#fzHero .xh-banner-actions { margin-top: 0; }
+#fzHero .xh-banner-ai { width: 100%; background: #041e42b8; }
+#fzHero .fz-vis { width: 100%; height: auto; max-height: 440px; aspect-ratio: 1; margin: 0; box-shadow: 0 24px 55px #0003; }
+#fzHero .hero-bg { position: absolute; inset: 0; pointer-events: none; }
+#fzHero .fz-grid { position: absolute; inset: 0; background-image: linear-gradient(#8fb8ff08 1px, transparent 1px), linear-gradient(90deg, #8fb8ff08 1px, transparent 1px); background-size: 40px 40px; }
+#fzHero .fz-world-map { position: absolute; inset: 0; overflow: hidden; }
+#fzHero .fz-world-map .wm { position: absolute; top: 50%; left: 52%; transform: translate(-50%, -50%); width: 96%; max-width: 1100px; opacity: .36; }
+#fzHero .fz-world-map .dot { fill: #8fb8ff; }
+#fzHero .fz-world-map .dot.lit { fill: #2ecc71; }
+#fzHero .wm-ring { position: absolute; top: 50%; left: 62%; width: 520px; height: 520px; transform: translate(-50%, -50%); border: 1px dashed #8fb8ff30; border-radius: 50%; }
+#fzHero .wm-ring.r2 { width: 340px; height: 340px; }
+.fz-catalog-stats { max-width: none; margin: 24px 0; }
+/* Override the supplied document's large, important section-heading rules. */
+#faq.fz-faq .sh h2 {
+  font: 700 13px/1.4 var(--f-mono) !important;
+  color: #0066ff !important;
+  letter-spacing: .14em !important;
+  text-transform: uppercase;
+  margin: 0 !important;
+}
+@media (max-width: 900px) {
+  #fzHero.hero.lh.fz-hero { padding: 36px 0; }
+  #fzHero .hero-grid.fz-hg { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  #fzHero .fz-vis { max-width: 500px; justify-self: center; }
+}
+@media (max-width: 560px) {
+  #fzHero .fz-hero-points { grid-template-columns: 1fr; }
+  #fzHero .fz-lead { font-size: 13px; }
+}
