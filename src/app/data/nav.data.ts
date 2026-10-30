@@ -3639,11 +3639,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Experiment with AI models in a managed lab environment"
               },
-              {
-                "title": "AIops",
-                "pill": null,
-                "desc": "Detect issues and automate routine IT operations with AI"
-              },
+         
               {
                 "title": "AI Agent Studio",
                 "pill": null,
@@ -3757,6 +3753,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "AI Training for Chartered Accountants",
                 "pill": null,
                 "href": "/ai-training-for-chartered-accountants",
+                "desc": "Apply AI to GST, audit, tax and Excel with professional review"
+              },
+              {
+                "title": "AI Training for Lawyer",
+                "pill": null,
                 "desc": "Apply AI to GST, audit, tax and Excel with professional review"
               },
             ]
@@ -3954,6 +3955,11 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/gemini-managed-services",
                 "pill": null,
                 "desc": "Get help deploying and managing OpenAI solutions"
+              },
+                   {
+                "title": "AIOps-as-a-Service",
+                "pill": null,
+                "desc": "Detect issues and automate routine IT operations with AI"
               },
               
             ]
