@@ -3872,21 +3872,7 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Sovereign GPU infrastructure, training and inference in India"
               },
-              {
-                "title": "AI App Builder",
-                "pill": null,
-                "desc": "Create AI-powered applications for your business"
-              },
-              {
-                "title": "AI Website Builder",
-                "pill": null,
-                "desc": "Create business websites with AI-assisted design tools"
-              },
-              {
-                "title": "AI IDE Lab",
-                "pill": null,
-                "desc": "Develop and test AI projects in a dedicated workspace"
-              },
+       
             ]
           }
         ]

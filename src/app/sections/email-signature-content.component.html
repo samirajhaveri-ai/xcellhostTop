@@ -157,18 +157,37 @@
 
   <!-- VIDEO -->
   <div class="pp-sec">See email signatures in action</div>
+  <div class="signature-video-intro">
+    <div><h2>Crossware video demos</h2><p>Explore the portal, build your signature and learn how to manage it across your team.</p></div>
+    <a href="https://www.youtube.com/@TeamCrossware/videos" target="_blank" rel="noopener noreferrer">View Crossware channel &nearr;</a>
+  </div>
+  <div class="signature-video-filters">
+    <label>Search videos<input type="search" placeholder="Search by feature or topic" [value]="videoSearch()" (input)="setVideoSearch($any($event.target).value)" /></label>
+    <label>Topic<select [value]="videoTopic()" (change)="setVideoTopic($any($event.target).value)"><option value="">All topics</option>@for (topic of videoTopics; track topic) {<option [value]="topic">{{ topic }}</option>}</select></label>
+    @if (videoSearch() || videoTopic()) {<button type="button" (click)="clearVideoFilters()">Clear filters</button>}
+  </div>
+  <p class="signature-video-count" role="status">{{ filteredVideos().length }} videos @if (videoTopic()) {in {{ videoTopic() }}}</p>
   <div class="signature-video-grid">
-    @for (video of videoPreviews; track video.title) {
+    @for (video of visibleVideos(); track video.videoId) {
       <article class="signature-video-card">
-        <h3><span>{{ video.title }}</span></h3>
-        <div class="pv-frame">
-          <div class="grid" aria-hidden="true"></div>
-          <span class="video-status">Video coming soon</span>
-          <div class="pv-cap">{{ video.caption }}</div>
+        <div class="signature-video-media">
+          @if (activeVideoId() === video.videoId) {
+            <iframe [src]="video.embedUrl" [title]="video.title" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          } @else {
+            <button type="button" (click)="activeVideoId.set(video.videoId)" [attr.aria-label]="'Play ' + video.title">
+              <img [src]="video.thumbnailUrl" alt="" loading="lazy" width="480" height="360" />
+              <span class="signature-video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m9 5 11 7-11 7z" /></svg></span>
+              <span class="signature-video-duration">{{ video.duration }}</span>
+            </button>
+          }
         </div>
+        <div class="signature-video-copy"><span class="signature-video-topic">{{ video.topic }}</span><h3>{{ video.title }}</h3><a [href]="video.watchUrl" target="_blank" rel="noopener noreferrer" [attr.aria-label]="'Watch ' + video.title + ' on YouTube'">Watch on YouTube &nearr;</a></div>
       </article>
+    } @empty {
+      <div class="signature-video-empty"><h3>No videos match your search</h3><p>Try another keyword or choose a different topic.</p><button type="button" (click)="clearVideoFilters()">Reset filters</button></div>
     }
   </div>
+  @if (visibleVideos().length < filteredVideos().length) {<div class="signature-video-more"><button type="button" (click)="showMoreVideos()">Show more videos <span>{{ visibleVideos().length }} of {{ filteredVideos().length }}</span></button></div>}
 
   <!-- BENEFITS -->
   <div class="pp-sec">Benefits for your business</div>
