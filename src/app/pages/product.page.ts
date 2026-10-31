@@ -9,6 +9,14 @@ import { AI_TRAINING_LAWYER_FAQS } from '../data/ai-training-for-lawyer-faq.data
 import { AIOPS_SERVICE_FAQS } from '../data/aiops-as-a-service-faq.data';
 import { HARDWARE_SECURITY_MODULE_FAQS } from '../data/hardware-security-module-faq.data';
 import { CLOUD_HSM_FAQS } from '../data/cloud-hardware-security-module-faq.data';
+import { CYBER_RANGE_FAQS } from '../data/cyber-range-as-a-service-faq.data';
+import { AMD_MI300_FAQS } from '../data/amd-mi300-faq.data';
+import { AI_VECTOR_DATABASE_FAQS } from '../data/ai-vector-database-faq.data';
+import { APPLIED_BLOCKCHAIN_FAQS } from '../data/applied-blockchain-security-faq.data';
+import { ENTERPRISE_RAG_FAQS } from '../data/enterprise-rag-as-a-service-faq.data';
+import { BFSI_CLOUD_FAQS } from '../data/bfsi-cloud-faq.data';
+import { INDUSTRIAL_PARK_FAQS } from '../data/industrial-park-digital-transformation-faq.data';
+import { STAFF_AUGMENTATION_FAQS } from '../data/staff-augmentation-faq.data';
 import { NVIDIA_GPU_FAQS } from '../data/nvidia-server-gpu-faq.data';
 import { VCISO_FAQS } from '../data/vciso-faq.data';
 import { VCAIO_FAQS } from '../data/vcaio-faq.data';
@@ -3098,6 +3106,79 @@ class ProductPageComponent {
   readonly view = computed<ProductView | null>(() => {
     const slug = this.slug();
     const view = this.resolve(slug);
+    if (slug === 'industrial-park-digital-transformation' && view) return {
+      ...view,
+      brandSuffix: 'Cloud',
+      tagline: 'One digital backbone for the whole park — and a service catalogue for every tenant in it.',
+      heroHighlight: 'For industrial development corporations, private and logistics parks, SEZs and their tenant manufacturers: connectivity, IoT metering, effluent and safety monitoring, a digital-twin command centre, OT security and AI — designed, run 24×7 and billed by XcellHost.',
+      heroPoints: ['Fibre ring, Wi-Fi, SD-WAN, 5G-ready', 'Power, water, gas & AQI metering', 'Video analytics & gate automation', 'IEC 62443-aligned OT security', 'Tenant services, billed per tenant', 'AI for energy, safety & upkeep'],
+      heroMessages: ['One managed digital backbone for your park', 'Live utility and environmental monitoring', 'OT security and tenant services, run 24×7'],
+      faqs: INDUSTRIAL_PARK_FAQS,
+    };
+    if (slug === 'staff-augmentation' && view) return {
+      ...view,
+      brandSuffix: 'Talent',
+      tagline: 'Cloud, security and AI engineers on contract. Billed monthly, in rupees.',
+      heroHighlight: 'XcellTalent puts skilled engineers into your team for as long as you need them: an architect for a migration, SOC analysts for night shifts, an ML engineer for an AI pilot. XcellHost handles payroll, statutory compliance, NDAs, background checks and backup cover; you direct the work.',
+      heroPoints: ['Azure, AWS, GCP, DevOps, K8s, FinOps', 'SOC L1–L3, VAPT, GRC, IAM, vCISO', 'ML, data, RAG / LLM, MLOps engineers', '24×7 shift cover and backup resources', 'NDA, background checks, replacement SLA*', 'Monthly INR invoice with 18% GST'],
+      heroMessages: ['A Kubernetes engineer from next month', 'SOC analysts on three shifts, 24×7', 'An ML engineer for your RAG pilot', 'Contract-to-hire for your next cloud lead'],
+      faqs: STAFF_AUGMENTATION_FAQS,
+    };
+    if (slug === 'bfsi-cloud' && view) return {
+      ...view,
+      brandSuffix: 'Cloud',
+      tagline: 'Cloud your regulator can audit. Data that never leaves India.',
+      heroHighlight: 'XcellCloud BFSI Cloud runs banking, lending, insurance, broking and payment workloads in our Mumbai Tier IV data centre, with DR at a partner data centre in India*. It is built around what RBI, SEBI and IRDAI ask of a cloud provider: audit rights, tested DR, named sub-contractors, keys under your control and a written exit plan.',
+      heroPoints: ['India-only regions · Mumbai + DR*', 'DC-DR with measured RPO / RTO', 'Cloud HSM, keys under your quorum', '24×7 SOC, SIEM, WAF & DDoS', 'Right to audit for you and regulators', 'Outsourcing due-diligence pack'],
+      heroMessages: ['Data stored in India, DR in India', 'RBI and SEBI audit rights written into the contract', 'DR drills with RPO and RTO on record', 'SOC watching 24×7, CERT-In report inside 6 hours'],
+      faqs: BFSI_CLOUD_FAQS,
+    };
+    if (slug === 'enterprise-rag-as-a-service' && view) return {
+      ...view,
+      brandSuffix: 'AI',
+      tagline: 'Private AI answers on your data — only what each user is allowed to see.',
+      heroHighlight: "Built on Sarv's Knowledge & RAG platform and delivered by XcellHost for regulated Indian enterprises: single sign-on, permission-aware retrieval, connectors, PII redaction, audit trails and private deployment in our Mumbai Tier IV data centre — with a 99.95% SLA and a 24×7 NOC + SOC.",
+      heroPoints: ['SSO via SAML / OIDC & Entra ID*', 'Permission-aware retrieval*', 'Connectors for enterprise systems*', 'PII redaction & guardrails*', 'Audit logs & customer-managed keys*', 'Private cloud in Mumbai or your VPC*'],
+      heroMessages: ['Answers that respect your permissions', 'Private deployment in Mumbai', 'PII redacted before the model sees it', 'Every question on the audit trail'],
+      faqs: ENTERPRISE_RAG_FAQS,
+    };
+    if (slug === 'applied-blockchain-security' && view) return {
+      ...view,
+      brandSuffix: 'Secure',
+      tagline: 'Code reviewed, keys guarded, chain watched.',
+      heroHighlight: 'XcellHost audits your smart contracts, reviews how your keys are held and signed, hardens your validator and RPC nodes, and watches your contracts on-chain with a tested pause plan. For Indian exchanges, Web3 teams and enterprise ledgers — billed in rupees, run from our Mumbai SOC.',
+      heroPoints: ['Smart contract audits', 'MPC · multisig · HSM review', 'Validator & RPC hardening', 'Wallet & dApp testing', 'On-chain monitoring', 'FIU-IND · CERT-In · Travel Rule'],
+      heroMessages: ['Findings fixed, then re-verified', 'k-of-n signing, no single key', 'Anomaly seen, contract paused', 'Validators hardened and watched'],
+      faqs: APPLIED_BLOCKCHAIN_FAQS,
+    };
+    if (slug === 'ai-vector-database' && view) return {
+      ...view,
+      brandSuffix: 'AI',
+      tagline: 'Your data, searchable by meaning. Hosted in India.',
+      heroHighlight: 'XcellHost runs a managed vector database for RAG chatbots, semantic search and recommendations — engine chosen to fit, indexes tuned, hybrid search and filters set up, secured, backed up and watched 24×7 from our Mumbai Tier IV data centre and partner DCs*.',
+      heroPoints: ['Similarity search in milliseconds*', 'Hybrid BM25 + vector search', 'Metadata filters & multi-tenancy', 'HNSW, IVF & DiskANN indexes', 'RBAC, encryption & backups', 'Data residency in India'],
+      heroMessages: ['Search by meaning, not keywords', 'Answers with sources for your LLM', 'Keyword + vector, fused', 'Embeddings that stay in India'],
+      faqs: AI_VECTOR_DATABASE_FAQS,
+    };
+    if (slug === 'amd-mi300' && view) return {
+      ...view,
+      name: 'AMD Instinct MI300X GPU',
+      brandSuffix: 'AI',
+      tagline: '192 GB of HBM3 on every GPU, so big models fit on fewer cards.',
+      heroHighlight: 'Rent AMD Instinct MI300X capacity for LLM inference, fine-tuning, training and HPC, on the open ROCm software stack. XcellHost sizes it, sets it up and runs it 24×7 from Mumbai, and bills you monthly in rupees. Availability and pricing are confirmed in your quotation.',
+      heroPoints: ['192 GB HBM3 · 5.3 TB/s', 'Infinity Fabric · 8-GPU nodes', 'Open ROCm software stack', 'Monthly or reserved terms', '24×7 NOC & SOC, Mumbai', 'INR invoice + GST · price on quote'],
+      heroMessages: ['Fit a 70B model at FP16 on one GPU', '1.5 TB of HBM3 in an 8-GPU node', 'PyTorch, JAX and vLLM on ROCm', 'Sized, run and billed in India'],
+      faqs: AMD_MI300_FAQS,
+    };
+    if (slug === 'cyber-range-as-a-service' && view) return {
+      ...view,
+      brandSuffix: 'Secure',
+      tagline: 'Practise the bad day before it happens.',
+      heroHighlight: 'XcellHost builds isolated copies of real enterprise networks — IT, OT and cloud — and runs live-fire exercises in them for your SOC, incident responders and leadership. Every scenario is mapped to MITRE ATT&CK, scored, and debriefed. Hosted in Mumbai, billed in rupees.',
+      heroPoints: ['IT, OT/ICS & cloud ranges', 'SOC live-fire training', 'Red vs blue · purple drills', 'CTF-style challenges', 'Executive crisis tabletops', 'ATT&CK v19 · NICE mapped'],
+      heroMessages: ['Alerts triaged, not just read', 'IT and OT segments in one range', 'Every scenario mapped to ATT&CK', 'CERT-In clock running in the drill'],
+      faqs: CYBER_RANGE_FAQS,
+    };
     if (slug === 'cloud-hardware-security-module' && view) return {
       ...view,
       brandSuffix: 'Trust',
@@ -4547,6 +4628,14 @@ class ProductPageComponent {
       'aiops-as-a-service': { frame: 'xh-imported-interactive-content.aiops-service-source-content', overview: 'overview', features: 'how', uses: 'usecases', specifications: 'vs' },
       'hardware-security-module': { frame: 'xh-imported-interactive-content.hsm-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'platform' },
       'cloud-hardware-security-module': { frame: 'xh-imported-interactive-content.cloud-hsm-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'compare' },
+      'cyber-range-as-a-service': { frame: 'xh-imported-interactive-content.cyber-range-source-content', overview: 'overview', features: 'exercises', uses: 'use', specifications: 'attack' },
+      'amd-mi300': { frame: 'xh-imported-interactive-content.amd-mi300-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'specs' },
+      'ai-vector-database': { frame: 'xh-imported-interactive-content.vector-database-source-content', overview: 'overview', features: 'benefits', uses: 'usecases', specifications: 'indexes' },
+      'applied-blockchain-security': { frame: 'xh-imported-interactive-content.blockchain-source-content', overview: 'overview', features: 'pillars', uses: 'who', specifications: 'method' },
+      'enterprise-rag-as-a-service': { frame: 'xh-imported-interactive-content.enterprise-rag-source-content', overview: 'overview', features: 'governance', uses: 'usecases', specifications: 'deploy' },
+      'bfsi-cloud': { frame: 'xh-imported-interactive-content.bfsi-cloud-source-content', overview: 'overview', features: 'security', uses: 'workloads', specifications: 'architecture' },
+      'industrial-park-digital-transformation': { frame: 'xh-imported-interactive-content.industrial-park-source-content', overview: 'overview', features: 'capabilities', uses: 'usecases', specifications: 'architecture' },
+      'staff-augmentation': { frame: 'xh-imported-interactive-content.staff-augmentation-source-content', overview: 'overview', features: 'capabilities', uses: 'usecases', specifications: 'skills' },
       'amd-epyc-cpu-comparison': { frame: 'xh-imported-interactive-content.amd-epyc-source-content', overview: 'families', features: 'finder', uses: 'usecases', specifications: 'compare' },
       'nvidia-server-gpu-comparison': { frame: 'xh-imported-interactive-content.nvidia-gpu-source-content', overview: 'families', features: 'finder', uses: 'usecases', specifications: 'compare' },
       'managed-pki': { frame: 'xh-imported-interactive-content.managed-pki-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'compare' },

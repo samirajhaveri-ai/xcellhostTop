@@ -650,7 +650,7 @@ export const routes: Routes = [
     path: 'managed-redis',
     loadComponent: () => import('./pages/managed-redis.page').then((m) => m.ManagedRedisPage),
   },
-  ...[...MENU_SERVICE_PAGES, ...INDUSTRY_CLOUD_PAGES].filter((page) => page.slug !== 'smart-qr-and-nfc-automation' && page.slug !== 'gcc-cloud').map((page) => ({
+  ...[...MENU_SERVICE_PAGES, ...INDUSTRY_CLOUD_PAGES].filter((page) => page.slug !== 'smart-qr-and-nfc-automation' && page.slug !== 'gcc-cloud' && page.slug !== 'bfsi-cloud').map((page) => ({
     path: page.slug,
     data: { servicePage: page },
     loadComponent: () => import('./pages/menu-service.page').then((m) => m.MenuServicePage),
