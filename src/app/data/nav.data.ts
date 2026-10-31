@@ -855,6 +855,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "AMD-MI300",
+                "href": "/amd-mi300",
+                "pill": null,
+                "desc": "AMD Instinct MI300X GPU rental with 192 GB HBM3 and ROCm."
+              },
             ]
           }
         ]
@@ -1337,6 +1343,12 @@ export const MEGA_MENU: MenuTop[] = [
                 
                 "pill": null,
                 "desc": null
+              },
+              {
+                "title": "Staff Augmentation",
+                "href": "/staff-augmentation",
+                "pill": null,
+                "desc": "Cloud, security and AI engineers on contract with monthly INR billing."
               },
               
             ]
@@ -2863,6 +2875,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": "Free trial",
                 "desc": null
               },
+              {
+                "title": "Applied Blockchain Security",
+                "href": "/applied-blockchain-security",
+                "pill": null,
+                "desc": "Smart contract audits, key-custody reviews and on-chain monitoring."
+              },
             ]
           }
         ]
@@ -3353,6 +3371,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
+                "title": "Enterprise RAG as a Service",
+                "href": "/enterprise-rag-as-a-service",
+                "pill": null,
+                "desc": "Permission-aware AI answers, enterprise connectors and private deployment."
+              },
+              {
                 "title": "Patch Mgmt-as-a-Service",
                 "pill": null,
                 "desc": null
@@ -3558,7 +3582,28 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      
+      {
+        "g": "12",
+        "label": "Security Hardware",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Security Hardware",
+            "items": [
+               {
+                "title": "Hardware Security Module",
+                "pill": "In focus",
+                "desc": null
+              },
+              {
+                "title": "Cloud Hardware Security Module",
+                "pill": "In focus",
+                "desc": null
+              },
+            ]
+          }
+        ]
+      }
     ]
   },
   {
@@ -3620,6 +3665,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "AI Agent Studio",
                 "pill": null,
                 "desc": "Build and manage AI agents for business workflows"
+              },
+              {
+                "title": "AI Vector Database",
+                "href": "/ai-vector-database",
+                "pill": null,
+                "desc": "Managed vector search for RAG, semantic search and recommendations."
               },
               
               
@@ -4807,6 +4858,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/gcc-cloud",
                 "pill": null,
                 "desc": "Managed cloud infrastructure, security and support for GCC teams."
+              },
+              {
+                "title": "Industrial Park Digital Transformation",
+                "href": "/industrial-park-digital-transformation",
+                "pill": null,
+                "desc": "Managed connectivity, IoT, OT security and AI for industrial parks and tenants."
               },
               {
                 "title": "Food and Beverage Cloud",

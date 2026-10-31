@@ -7,7 +7,7 @@ import { CUSTOMER_TESTIMONIALS } from '../data/customer-testimonials.data';
   styleUrl: '../../../public/assets/styles/customer-testimonials.css',
   template: `
     @if (reviews.length) {
-      <section class="xh-customer-testimonials" [attr.id]="sectionId" aria-label="Customer testimonials">
+      <section class="xh-customer-testimonials xh-testimonials-tally" [attr.id]="sectionId" aria-label="Customer testimonials">
         <div class="xh-testimonial-wrap">
           <h2>What Customers Say</h2>
           <div class="xh-testimonial-grid">

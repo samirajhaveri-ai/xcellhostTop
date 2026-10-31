@@ -510,7 +510,8 @@
       @if (!isVmc() && !isCmc() && slug() !== 'performance-cloud' && slug() !== 'gpu-servers') {
       <div
         class="pp-hero"
-        [class.data-center-build-hero]="slug() === 'nvidia-server-gpu-comparison' || slug() === 'amd-epyc-cpu-comparison' || slug() === 'managed-identity-service' || slug() === 'data-center-build-services' || slug() === 'vcio-as-a-service' || slug() === 'vcto-as-a-service' || slug() === 'vciso-as-a-service' || slug() === 'vcaio-as-a-service'"
+        [class.email-signature-centered-hero]="slug() === 'email-signature'"
+        [class.data-center-build-hero]="slug() === 'industrial-park-digital-transformation' || slug() === 'staff-augmentation' || slug() === 'bfsi-cloud' || slug() === 'enterprise-rag-as-a-service' || slug() === 'applied-blockchain-security' || slug() === 'ai-vector-database' || slug() === 'amd-mi300' || slug() === 'cyber-range-as-a-service' || slug() === 'cloud-hardware-security-module' || slug() === 'hardware-security-module' || slug() === 'aiops-as-a-service' || slug() === 'ai-training-for-lawyer' || slug() === 'ai-ide-lab' || slug() === 'ai-app-builder' || slug() === 'nvidia-server-gpu-comparison' || slug() === 'amd-epyc-cpu-comparison' || slug() === 'managed-identity-service' || slug() === 'data-center-build-services' || slug() === 'vcio-as-a-service' || slug() === 'vcto-as-a-service' || slug() === 'vciso-as-a-service' || slug() === 'vcaio-as-a-service'"
         [class.sitelock-hero]="v.name === 'Web Security (SiteLock)'"
         [class.tally-product-hero]="v.name === 'Tally on Cloud'"
       >
@@ -1149,7 +1150,7 @@
             <xh-claude-backup-hero />
           </div>
         } @else if (slug() === 'email-signature') {
-          <div class="pph-scene pph-email-signature" aria-hidden="true">
+          <div class="pph-scene pph-email-signature email-signature-visual" aria-hidden="true">
             <xh-email-signature-hero />
           </div>
         } @else if (slug() === 'bare-metal-servers') {
@@ -1386,6 +1387,62 @@
         } @else if (slug() === 'vcaio-as-a-service') {
           <div class="pph-scene data-center-build-visual">
             <iframe src="/vcaio-hero.html" title="Animated finance and AI leadership: forecasting, close, cloud spend and investment returns" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'ai-app-builder') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/ai-app-builder-hero.html" title="Animated AI app canvas, retrieval, guardrails, testing and publishing" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'ai-ide-lab') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/ai-ide-lab-hero.html" title="AI IDE Lab preview: animated notebooks, GPU workloads, team projects, idle shutdown and classrooms" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'ai-training-for-lawyer') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/ai-training-for-lawyer-hero.html" title="Animated legal training: citation verification, contract review, drafting, due diligence and translation" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'aiops-as-a-service') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/aiops-as-a-service-hero.html" title="AIOps preview: animated alert correlation, anomalies, root causes, capacity and approved remediation" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'hardware-security-module') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/hardware-security-module-hero.html" title="Animated HSM preview: key generation, signing, payment cryptography, quorum and failover" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'cloud-hardware-security-module') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/cloud-hardware-security-module-hero.html" title="Cloud HSM preview: animated multicloud connectivity, isolated partitions, BYOK, HYOK and recovery" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'cyber-range-as-a-service') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/cyber-range-as-a-service-hero.html" title="Cyber Range preview: animated training networks, SOC response, team exercises and scorecards" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'amd-mi300') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/amd-mi300-hero.html" title="Animated AMD MI300X console: GPU interconnects, model memory fit, ROCm and workload performance" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'ai-vector-database') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/ai-vector-database-hero.html" title="AI Vector Database preview: animated embeddings, similarity search, retrieval, filters and hybrid search" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'applied-blockchain-security') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/applied-blockchain-security-hero.html" title="Applied Blockchain Security preview: contract audits, signing controls, node hardening and on-chain response" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'enterprise-rag-as-a-service') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/enterprise-rag-as-a-service-hero.html" title="Enterprise RAG animated preview: permission-aware retrieval, identity, redaction and private deployment" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'bfsi-cloud') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/bfsi-cloud-hero.html" title="BFSI Cloud animated preview: India data residency, security zones, key custody, recovery and audit evidence" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'industrial-park-digital-transformation') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/industrial-park-digital-transformation-hero.html" title="Industrial Park Digital Transformation: animated park map, utilities, OT security, AI and tenant services" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'staff-augmentation') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/staff-augmentation-hero.html" title="Staff Augmentation animated preview: role matching, skills screening, team onboarding and shift coverage" scrolling="no"></iframe>
           </div>
         } @else if (slug() === 'amd-epyc-cpu-comparison') {
           <div class="pph-scene data-center-build-visual">
@@ -1782,7 +1839,7 @@
               </h1>
             } @else {
             <h1 id="ppTitle" [class.pp-title-compact]="compactHeroTitle()"
-              [xhFitBannerTitle]="slug() === 'managed-identity-service' || slug() === 'vcaio-as-a-service' || slug() === 'vciso-as-a-service' || slug() === 'vcto-as-a-service' || slug() === 'vcio-as-a-service' || slug() === 'data-center-build-services' || slug() === 'gemini-managed-services' || slug() === 'acronis-ai' || slug() === 'docusign' || slug() === 'rpc-nodes' || slug() === 'zoom-conferenceing' || slug() === 'cpanel-vps' || isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || !!v.heroMessages[0]?.toLowerCase()?.startsWith('maximise online visibility')"
+              [xhFitBannerTitle]="slug() === 'industrial-park-digital-transformation' || slug() === 'staff-augmentation' || slug() === 'enterprise-rag-as-a-service' || slug() === 'applied-blockchain-security' || slug() === 'amd-mi300' || slug() === 'cyber-range-as-a-service' || slug() === 'cloud-hardware-security-module' || slug() === 'hardware-security-module' || slug() === 'aiops-as-a-service' || slug() === 'ai-training-for-lawyer' || slug() === 'managed-identity-service' || slug() === 'vcaio-as-a-service' || slug() === 'vciso-as-a-service' || slug() === 'vcto-as-a-service' || slug() === 'vcio-as-a-service' || slug() === 'data-center-build-services' || slug() === 'gemini-managed-services' || slug() === 'acronis-ai' || slug() === 'docusign' || slug() === 'rpc-nodes' || slug() === 'zoom-conferenceing' || slug() === 'cpanel-vps' || isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || !!v.heroMessages[0]?.toLowerCase()?.startsWith('maximise online visibility')"
               [bannerTitleMaxSize]="slug() === 'gemini-managed-services' ? 36 : slug() === 'acronis-ai' || slug() === 'docusign' || slug() === 'rpc-nodes' || slug() === 'zoom-conferenceing' || slug() === 'cpanel-vps' || isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' ? 42 : 26">
               <span class="pp-title-brand" [attr.aria-label]="'Xcell' + v.brandSuffix">
                 <span class="pp-brand-xcell">Xcell</span
@@ -2696,6 +2753,34 @@
             <xh-digicert-smime-content />
           } @else if (slug() === 'comodo-personal-authentication') {
             <xh-comodo-pa-content />
+          } @else if (slug() === 'ai-app-builder') {
+            <xh-imported-interactive-content class="ai-app-builder-source-content" source="ai-app-builder" />
+          } @else if (slug() === 'ai-ide-lab') {
+            <xh-imported-interactive-content class="ai-ide-lab-source-content" source="ai-ide-lab" />
+          } @else if (slug() === 'ai-training-for-lawyer') {
+            <xh-imported-interactive-content class="ai-training-lawyer-source-content" source="ai-training-for-lawyer" />
+          } @else if (slug() === 'aiops-as-a-service') {
+            <xh-imported-interactive-content class="aiops-service-source-content" source="aiops-as-a-service" />
+          } @else if (slug() === 'hardware-security-module') {
+            <xh-imported-interactive-content class="hsm-source-content" source="hardware-security-module" />
+          } @else if (slug() === 'cloud-hardware-security-module') {
+            <xh-imported-interactive-content class="cloud-hsm-source-content" source="cloud-hardware-security-module" />
+          } @else if (slug() === 'cyber-range-as-a-service') {
+            <xh-imported-interactive-content class="cyber-range-source-content" source="cyber-range-as-a-service" />
+          } @else if (slug() === 'amd-mi300') {
+            <xh-imported-interactive-content class="amd-mi300-source-content" source="amd-mi300" />
+          } @else if (slug() === 'ai-vector-database') {
+            <xh-imported-interactive-content class="vector-database-source-content" source="ai-vector-database" />
+          } @else if (slug() === 'applied-blockchain-security') {
+            <xh-imported-interactive-content class="blockchain-source-content" source="applied-blockchain-security" />
+          } @else if (slug() === 'enterprise-rag-as-a-service') {
+            <xh-imported-interactive-content class="enterprise-rag-source-content" source="enterprise-rag-as-a-service" />
+          } @else if (slug() === 'bfsi-cloud') {
+            <xh-imported-interactive-content class="bfsi-cloud-source-content" source="bfsi-cloud" />
+          } @else if (slug() === 'industrial-park-digital-transformation') {
+            <xh-imported-interactive-content class="industrial-park-source-content" source="industrial-park-digital-transformation" />
+          } @else if (slug() === 'staff-augmentation') {
+            <xh-imported-interactive-content class="staff-augmentation-source-content" source="staff-augmentation" />
           } @else if (slug() === 'amd-epyc-cpu-comparison') {
             <xh-imported-interactive-content class="amd-epyc-source-content" source="amd-epyc-cpu-comparison" />
           } @else if (slug() === 'nvidia-server-gpu-comparison') {
@@ -7153,6 +7238,7 @@
 @else {
   <xh-not-found-page />
 }
+
 
 
 

@@ -10,6 +10,20 @@ import { installImportedJourneyLayout } from './imported-journey-layout';
 import { IDENTITY_SECURITY_PAGES, IdentitySecuritySource } from '../data/identity-security-pages.data';
 
 type InteractiveContentSource =
+  | 'ai-app-builder'
+  | 'ai-ide-lab'
+  | 'ai-training-for-lawyer'
+  | 'aiops-as-a-service'
+  | 'hardware-security-module'
+  | 'cloud-hardware-security-module'
+  | 'cyber-range-as-a-service'
+  | 'amd-mi300'
+  | 'ai-vector-database'
+  | 'applied-blockchain-security'
+  | 'enterprise-rag-as-a-service'
+  | 'bfsi-cloud'
+  | 'industrial-park-digital-transformation'
+  | 'staff-augmentation'
   | 'amd-epyc-cpu-comparison'
   | 'nvidia-server-gpu-comparison'
   | 'ai-training-live-online'
@@ -227,6 +241,20 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'data-center-build-services': '/imported-data-center-build-services.html',
     'vcio-as-a-service': '/imported-vcio-as-a-service.html',
     'vcto-as-a-service': '/imported-vcto-as-a-service.html',
+    'ai-app-builder': '/imported-ai-app-builder.html',
+    'ai-ide-lab': '/imported-ai-ide-lab.html',
+    'ai-training-for-lawyer': '/imported-ai-training-for-lawyer.html',
+    'aiops-as-a-service': '/imported-aiops-as-a-service.html',
+    'hardware-security-module': '/imported-hardware-security-module.html',
+    'cloud-hardware-security-module': '/imported-cloud-hardware-security-module.html',
+    'cyber-range-as-a-service': '/imported-cyber-range-as-a-service.html',
+    'amd-mi300': '/imported-amd-mi300.html',
+    'ai-vector-database': '/imported-ai-vector-database.html',
+    'applied-blockchain-security': '/imported-applied-blockchain-security.html',
+    'enterprise-rag-as-a-service': '/imported-enterprise-rag-as-a-service.html',
+    'bfsi-cloud': '/imported-bfsi-cloud.html',
+    'industrial-park-digital-transformation': '/imported-industrial-park-digital-transformation.html',
+    'staff-augmentation': '/imported-staff-augmentation.html',
     'amd-epyc-cpu-comparison': '/imported-amd-epyc-cpu-comparison.html',
     'nvidia-server-gpu-comparison': '/imported-nvidia-server-gpu-comparison.html',
     'vciso-as-a-service': '/imported-vciso-as-a-service.html',
@@ -433,6 +461,20 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'data-center-build-services': 'Data Center Build Services',
     'vcio-as-a-service': 'vCIO as a Service',
     'vcto-as-a-service': 'vCTO as a Service',
+    'ai-app-builder': 'AI Apps Builder: building blocks, plans, template matcher and token-cost estimator',
+    'ai-ide-lab': 'AI IDE Lab: environments, classroom tools, lab configurator, sizing estimator and stack picker',
+    'ai-training-for-lawyer': 'AI Training for Lawyers: curriculum, practical labs, skills assessment and enrolment',
+    'aiops-as-a-service': 'AIOps as a Service: operations workflow, plans, configurator, savings estimator and maturity quiz',
+    'hardware-security-module': 'Hardware Security Module: features, deployments, configurator, sizing estimator and HSM finder',
+    'cloud-hardware-security-module': 'Cloud HSM: features, deployment models, configurator, three-year TCO and key-control finder',
+    'cyber-range-as-a-service': 'Cyber Range: exercise catalogue, ATT&CK coverage, programme configurator, sizing estimator and readiness quiz',
+    'amd-mi300': 'AMD Instinct MI300X GPU rental',
+    'ai-vector-database': 'AI Vector Database: features, configurator, memory sizing and engine picker',
+    'applied-blockchain-security': 'Applied Blockchain Security: service pillars, audit scope estimator, engagement configurator and readiness quiz',
+    'enterprise-rag-as-a-service': 'Enterprise RAG: deployment options, enterprise controls, configurator, sizing estimator and deployment finder',
+    'bfsi-cloud': 'BFSI Cloud: regulatory mapping, architecture, due diligence, configurator, readiness checker and DR estimator',
+    'industrial-park-digital-transformation': 'Industrial Park Digital Transformation: architecture, plans, configurator, maturity assessment and sizing',
+    'staff-augmentation': 'Staff Augmentation: roles, skills matrix, pricing configurator, team builder and hiring comparison',
     'amd-epyc-cpu-comparison': 'AMD EPYC CPU comparison, workload finder and licensing calculator',
     'nvidia-server-gpu-comparison': 'NVIDIA server GPU comparison, workload finder and model memory calculator',
     'vciso-as-a-service': 'vCISO as a Service',
@@ -949,7 +991,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     doc.addEventListener('import-training-enquiry', trainingEnquiry);
 
     const marketplaceEnquiry = async (event: Event) => {
-      if (this.source !== 'asset-tokenization-platform' && this.source !== 'fractional-chief-ai-officer' && this.source !== 'ai-adoption-framework' && this.source !== 'ai-training-educators' && this.source !== 'ai-training-live-online') return;
+      if (this.source !== 'amd-mi300' && this.source !== 'asset-tokenization-platform' && this.source !== 'fractional-chief-ai-officer' && this.source !== 'ai-adoption-framework' && this.source !== 'ai-training-educators' && this.source !== 'ai-training-live-online') return;
       const detail = (event as CustomEvent<{
         payload: Record<string, unknown>;
         complete: (result: { ok: boolean; skipped: boolean; ref: string; fallbackUrl: string }) => void;

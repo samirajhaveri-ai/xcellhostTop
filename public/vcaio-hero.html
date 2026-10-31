@@ -860,7 +860,7 @@ html[data-theme="dark"] .vcard:hover{border-color:#2b4d8a}
 .hero.lh .hero-bg .lh-aur.a2{background:radial-gradient(circle,rgba(255,140,26,.85),rgba(255,140,26,.2) 40%,transparent 70%)!important}
 
 /* ===== page ===== */
-/* ===== XcellLead | vCFAIO · XcellHost palette (#0066FF / #0B132B / #FF8A00) ===== */
+/* ===== XcellConsult | vCFAIO · XcellHost palette (#0066FF / #0B132B / #FF8A00) ===== */
 :root{--cf-hh:80px}
 #main{--blue:#0066FF;--navy:#0B132B;--orange:#FF8A00;--cf-card:#fff;--cf-bs:rgba(0,102,255,.10);--cf-ot:#C46A00;--cf-g:#16a34a;--cf-bl:#0066FF}
 html:not([data-theme="dark"]) #main{--ink:#0B132B}
@@ -1388,7 +1388,7 @@ html[data-theme="dark"] .cf-x i{color:#9CC2FF}
           <div class="cf-jr" aria-live="off"><div class="cf-jrh"><span><i></i><b id="cfLogT">JOURNAL · FP&amp;A</b></span><em>sample</em></div><ol id="cfLog"></ol></div>
           <div class="lh-powered cf-pw">
             <small>Powered by</small>
-            <span><span class="cf-tile" aria-hidden="true">X</span>XcellLead · XcellHost Advisory · Mumbai</span>
+            <span><span class="cf-tile" aria-hidden="true">X</span>XcellConsult · XcellHost Advisory · Mumbai</span>
             <em>Finance + AI leadership, part-time</em>
           </div>
         </div>
@@ -1752,7 +1752,7 @@ html[data-theme="dark"] .cf-x i{color:#9CC2FF}
   var PL={launch:{n:'Launch',p:69999,h:16},scale:{n:'Scale',p:129999,h:32},board:{n:'Board',p:229999,h:60}};
   var HR=4999,AD={ready:{n:'AI-in-finance readiness sprint',p:149999},finops:{n:'Cloud & AI spend audit',p:79999},close:{n:'Close-automation pilot',p:199999}};
   function cfg(){var plan=segV($id('cPlan'))||'scale',P=PL[plan],hrs=clamp(Math.round(+$id('cHrs').value||0),0,40),L=[];
-    L.push({key:'vcfaio-'+plan,name:'XcellLead vCFAIO — '+P.n,sub:P.h+' h / month · indicative',price:P.p,qty:1,m:true});
+    L.push({key:'vcfaio-'+plan,name:'XcellConsult vCFAIO — '+P.n,sub:P.h+' h / month · indicative',price:P.p,qty:1,m:true});
     if(hrs)L.push({key:'vcfaio-hours',name:'Extra vCFAIO hours',sub:'per hour / month · indicative',price:HR,qty:hrs,m:true});
     $$('#cAdds input[type=checkbox]').forEach(function(cb){cb.closest('label').classList.toggle('ck',cb.checked);if(!cb.checked)return;var a=AD[cb.value];L.push({key:'vcfaio-'+cb.value,name:a.n,sub:'one-time · indicative',price:a.p,qty:1,m:false});});
     var mon=0,one=0;L.forEach(function(l){if(l.m)mon+=l.price*l.qty;else one+=l.price*l.qty;});

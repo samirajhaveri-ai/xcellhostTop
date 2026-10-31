@@ -650,7 +650,7 @@ export const routes: Routes = [
     path: 'managed-redis',
     loadComponent: () => import('./pages/managed-redis.page').then((m) => m.ManagedRedisPage),
   },
-  ...[...MENU_SERVICE_PAGES, ...INDUSTRY_CLOUD_PAGES].filter((page) => page.slug !== 'smart-qr-and-nfc-automation' && page.slug !== 'gcc-cloud').map((page) => ({
+  ...[...MENU_SERVICE_PAGES, ...INDUSTRY_CLOUD_PAGES].filter((page) => page.slug !== 'smart-qr-and-nfc-automation' && page.slug !== 'gcc-cloud' && page.slug !== 'bfsi-cloud').map((page) => ({
     path: page.slug,
     data: { servicePage: page },
     loadComponent: () => import('./pages/menu-service.page').then((m) => m.MenuServicePage),
@@ -660,6 +660,11 @@ export const routes: Routes = [
     title: 'GCC Cloud | XcellHost',
     data: { networkSource: 'gcc-cloud' },
     loadComponent: () => import('./pages/cloud-network-imported.page').then((m) => m.CloudNetworkImportedPage),
+  },
+  {
+    path: 'media-and-entertainment',
+    title: 'Media & Entertainment | XcellHost',
+    loadComponent: () => import('./pages/media-entertainment.page').then((m) => m.MediaEntertainmentPage),
   },
   { path: 'mobile-application-penetration-testing', redirectTo: 'mobile-application-security-testing', pathMatch: 'full' },
   { path: 'aeo-geo-automation4', redirectTo: 'aeo-geo-automation', pathMatch: 'full' },

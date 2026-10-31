@@ -96,9 +96,9 @@ export function ensureFaqCustomerTestimonials(root: ContentRoot): void {
   const productReviews = CUSTOMER_TESTIMONIALS[slug];
   const reviews = productReviews?.length ? productReviews : ENDPOINT_CUSTOMER_TESTIMONIALS;
   const catalogueServices = ['microsoft-services', 'vendor-partners/microsoft-services', 'digicert-services', 'vendor-partners/digicert', 'geotrust-services', 'vendor-partners/geotrust', 'sectigo-services', 'vendor-partners/sectigo', 'kaspersky-services', 'vendor-partners/kaspersky', 'sentinelone-services', 'vendor-partners/sentinelone', 'opentext-services', 'vendor-partners/opentext', 'cybird-services', 'vendor-partners/cybird', 'fortinet-services', 'vendor-partners/fortinet', 'hpe-services', 'vendor-partners/hpe', 'dell-services', 'vendor-partners/dell', 'oracle-cloud-services', 'vendor-partners/oracle-cloud', 'ibm-multicloud-services', 'vendor-partners/ibm-multicloud', 'dpo-genie365-services', 'vendor-partners/dpo-genie'].includes(slug);
-  const tallyLayout = slug === 'managed-identity-service' || slug === 'vcaio-as-a-service' || slug === 'vciso-as-a-service' || slug === 'vcto-as-a-service' || slug === 'vcio-as-a-service' || slug === 'data-center-build-services' || slug === 'company/data-centers-global' || slug === 'gemini-managed-services' || catalogueServices;
   const section = doc.createElement('section');
-  section.className = 'xh-customer-testimonials ' + (tallyLayout ? 'xh-testimonials-tally' : 'xh-testimonials-simple');
+  // Use the requested centered avatars and quote corners on every new page.
+  section.className = 'xh-customer-testimonials xh-testimonials-tally';
   section.setAttribute('data-auto-customer-testimonials', slug);
   section.setAttribute('aria-label', 'What Customers Say');
   const wrap = doc.createElement('div');
@@ -143,14 +143,12 @@ export function ensureFaqCustomerTestimonials(root: ContentRoot): void {
     identity.append(name, role);
     author.append(avatar, identity);
     card.append(quote, author);
-    if (tallyLayout) {
-      card.prepend(author);
-      const badge = doc.createElement('span');
-      badge.className = 'xh-quote-badge';
-      badge.setAttribute('aria-hidden', 'true');
-      badge.textContent = '\u201d';
-      card.append(badge);
-    }
+    card.prepend(author);
+    const badge = doc.createElement('span');
+    badge.className = 'xh-quote-badge';
+    badge.setAttribute('aria-hidden', 'true');
+    badge.textContent = '\u201d';
+    card.append(badge);
     grid.append(card);
   }
   wrap.append(grid);

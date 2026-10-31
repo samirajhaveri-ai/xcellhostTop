@@ -860,7 +860,7 @@ html[data-theme="dark"] .vcard:hover{border-color:#2b4d8a}
 .hero.lh .hero-bg .lh-aur.a2{background:radial-gradient(circle,rgba(255,140,26,.85),rgba(255,140,26,.2) 40%,transparent 70%)!important}
 
 /* ===== page ===== */
-/* ===== XcellLead | vCISO as a Service · XcellHost palette (#0066FF / #0B132B / #FF8A00) ===== */
+/* ===== XcellConsult | vCISO as a Service · XcellHost palette (#0066FF / #0B132B / #FF8A00) ===== */
 :root{--vc-hh:80px}
 #main{--blue:#0066FF;--navy:#0B132B;--orange:#FF8A00;--vc-card:#fff;--vc-bs:rgba(0,102,255,.10);--vc-ot:#C46A00;--vc-g:#16a34a;--vc-bl:#0066FF;--vc-rd:#c0392b}
 html:not([data-theme="dark"]) #main{--ink:#0B132B}
@@ -1346,7 +1346,7 @@ html[data-theme="dark"] .vc-x i{color:#9CC2FF}
         <div class="vc-log" aria-live="off"><span class="vc-logh"><i></i><b id="vcLogT">CISO DESK</b></span><ol id="vcLog"></ol></div>
         <div class="lh-powered vc-pw">
           <small>Powered by</small>
-          <span><span class="vc-tile" aria-hidden="true">X</span>XcellLead · XcellHost Advisory · Mumbai</span>
+          <span><span class="vc-tile" aria-hidden="true">X</span>XcellConsult · XcellHost Advisory · Mumbai</span>
         </div>
       </div></section><script>
 /* XcellHost v2 core runtime — exposes window.XH */
@@ -1733,7 +1733,7 @@ html[data-theme="dark"] .vc-x i{color:#9CC2FF}
   var AD={dpdp:{n:'DPDP privacy programme',p:19999,m:true},ttx:{n:'Incident tabletop exercise',p:49999,m:false},vrs:{n:'Vendor risk sprint (up to 20 vendors)',p:39999,m:false},rmp:{n:'Security strategy & roadmap sprint',p:99999,m:false}};
   var lastTier='pro';
   function cfg(){var tier=segV($id('cTier'))||'pro',P=TR[tier],x=clamp(Math.round(+$id('cHrs').value||0),0,80),L=[];
-    L.push({key:'vciso-'+tier,name:'XcellLead vCISO — '+P.n,sub:P.h+' vCISO hours / month · indicative',price:P.p,qty:1,m:true});
+    L.push({key:'vciso-'+tier,name:'XcellConsult vCISO — '+P.n,sub:P.h+' vCISO hours / month · indicative',price:P.p,qty:1,m:true});
     if(x)L.push({key:'vciso-extra-hours',name:'Extra vCISO hours',sub:'per hour / month · indicative',price:HR,qty:x,m:true});
     $$('#cAdds input[type=checkbox]').forEach(function(cb){cb.closest('label').classList.toggle('ck',cb.checked);if(!cb.checked)return;var a=AD[cb.value];
       L.push({key:'vciso-'+cb.value,name:a.n,sub:(a.m?'per month':'one-time')+' · indicative',price:a.p,qty:1,m:a.m});});

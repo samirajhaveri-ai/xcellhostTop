@@ -4,7 +4,7 @@ const vm = require('node:vm');
 const { parse } = require('parse5');
 const root = path.resolve(__dirname, '..');
 if (!process.argv[2]) throw new Error('Pass the supplied xcellhost-vcio.html file.');
-const source = fs.readFileSync(process.argv[2], 'utf8');
+const source = fs.readFileSync(process.argv[2], 'utf8').replace(/XcellLead/gi, 'XcellConsult');
 const nodes = [];
 function walk(n) { nodes.push(n); (n.childNodes || []).forEach(walk); }
 walk(parse(source, { sourceCodeLocationInfo: true }));
