@@ -36,9 +36,11 @@ const INDUSTRY_CARDS: readonly IndustryCard[] = [
   { icon: 'healthcare', label: 'HealthCare Cloud', blurb: 'Explore HealthCare Cloud services, features and solutions.', service: 'HealthCare Cloud' },
   { icon: 'retail', label: 'Retail Cloud', blurb: 'Explore Retail Cloud services, features and solutions.', service: 'Retail Cloud' },
   { icon: 'business', label: 'GCC Cloud', blurb: 'Managed cloud infrastructure, security and support for GCC teams.', service: 'GCC Cloud' },
+  { icon: 'media', label: 'Media & Entertainment', blurb: 'Cloud infrastructure for production, collaboration and digital media.', service: 'Media & Entertainment' },
 ]; 
 
 const INDUSTRY_ICON_PATHS: Readonly<Record<string, string>> = {
+  media: 'M3 5h18v14H3V5Zm0 4h18M7 5v4m5-4v4m5-4v4m-7 3 5 3-5 3v-6Z',
   bank: 'M3 10h18M5 10v8m4-8v8m6-8v8m4-8v8M3 21h18M12 3 3 8h18l-9-5Z',
   factory: 'M3 21V9l6 4V9l6 4V6h6v15H3Zm3-3h2m3 0h2m3 0h2M18 6V3h3v3',
   accounting: 'M4 3h16v18H4V3Zm4 4h8M8 11h2m4 0h2m-8 4h2m4 0h2m-8 4h8',

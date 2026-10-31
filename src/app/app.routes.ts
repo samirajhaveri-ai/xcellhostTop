@@ -661,6 +661,11 @@ export const routes: Routes = [
     data: { networkSource: 'gcc-cloud' },
     loadComponent: () => import('./pages/cloud-network-imported.page').then((m) => m.CloudNetworkImportedPage),
   },
+  {
+    path: 'media-and-entertainment',
+    title: 'Media & Entertainment | XcellHost',
+    loadComponent: () => import('./pages/media-entertainment.page').then((m) => m.MediaEntertainmentPage),
+  },
   { path: 'mobile-application-penetration-testing', redirectTo: 'mobile-application-security-testing', pathMatch: 'full' },
   { path: 'aeo-geo-automation4', redirectTo: 'aeo-geo-automation', pathMatch: 'full' },
   { path: 'managed-365', redirectTo: 'managed-microsoft-365', pathMatch: 'full' },

@@ -3599,7 +3599,28 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
-      
+      {
+        "g": "12",
+        "label": "Security Hardware",
+        "on": false,
+        "groups": [
+          {
+            "heading": "Security Hardware",
+            "items": [
+               {
+                "title": "Hardware Security Module",
+                "pill": "In focus",
+                "desc": null
+              },
+              {
+                "title": "Cloud Hardware Security Module",
+                "pill": "In focus",
+                "desc": null
+              },
+            ]
+          }
+        ]
+      }
     ]
   },
   {

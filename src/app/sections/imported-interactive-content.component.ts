@@ -10,6 +10,12 @@ import { installImportedJourneyLayout } from './imported-journey-layout';
 import { IDENTITY_SECURITY_PAGES, IdentitySecuritySource } from '../data/identity-security-pages.data';
 
 type InteractiveContentSource =
+  | 'ai-app-builder'
+  | 'ai-ide-lab'
+  | 'ai-training-for-lawyer'
+  | 'aiops-as-a-service'
+  | 'hardware-security-module'
+  | 'cloud-hardware-security-module'
   | 'amd-epyc-cpu-comparison'
   | 'nvidia-server-gpu-comparison'
   | 'ai-training-live-online'
@@ -227,6 +233,12 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'data-center-build-services': '/imported-data-center-build-services.html',
     'vcio-as-a-service': '/imported-vcio-as-a-service.html',
     'vcto-as-a-service': '/imported-vcto-as-a-service.html',
+    'ai-app-builder': '/imported-ai-app-builder.html',
+    'ai-ide-lab': '/imported-ai-ide-lab.html',
+    'ai-training-for-lawyer': '/imported-ai-training-for-lawyer.html',
+    'aiops-as-a-service': '/imported-aiops-as-a-service.html',
+    'hardware-security-module': '/imported-hardware-security-module.html',
+    'cloud-hardware-security-module': '/imported-cloud-hardware-security-module.html',
     'amd-epyc-cpu-comparison': '/imported-amd-epyc-cpu-comparison.html',
     'nvidia-server-gpu-comparison': '/imported-nvidia-server-gpu-comparison.html',
     'vciso-as-a-service': '/imported-vciso-as-a-service.html',
@@ -433,6 +445,12 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'data-center-build-services': 'Data Center Build Services',
     'vcio-as-a-service': 'vCIO as a Service',
     'vcto-as-a-service': 'vCTO as a Service',
+    'ai-app-builder': 'AI Apps Builder: building blocks, plans, template matcher and token-cost estimator',
+    'ai-ide-lab': 'AI IDE Lab: environments, classroom tools, lab configurator, sizing estimator and stack picker',
+    'ai-training-for-lawyer': 'AI Training for Lawyers: curriculum, practical labs, skills assessment and enrolment',
+    'aiops-as-a-service': 'AIOps as a Service: operations workflow, plans, configurator, savings estimator and maturity quiz',
+    'hardware-security-module': 'Hardware Security Module: features, deployments, configurator, sizing estimator and HSM finder',
+    'cloud-hardware-security-module': 'Cloud HSM: features, deployment models, configurator, three-year TCO and key-control finder',
     'amd-epyc-cpu-comparison': 'AMD EPYC CPU comparison, workload finder and licensing calculator',
     'nvidia-server-gpu-comparison': 'NVIDIA server GPU comparison, workload finder and model memory calculator',
     'vciso-as-a-service': 'vCISO as a Service',
