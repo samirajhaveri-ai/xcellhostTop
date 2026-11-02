@@ -8,6 +8,8 @@ import { GCP_SERVICE_PAGE } from './data/gcp-services.data';
 
 
 export const routes: Routes = [
+  { path: 'email-encryptionu', redirectTo: 'email-encryption', pathMatch: 'full' },
+  { path: 'google-security-assessmentupload', redirectTo: 'google-security-assessment', pathMatch: 'full' },
   { path: 'smart-manufacturing', title: 'Industry 5.0 & Smart Manufacturing | XcellHost', loadComponent: () => import('./pages/smart-manufacturing.page').then(m => m.SmartManufacturingPage) },
   { path: 'industry-5-smart-manufacturing', redirectTo: 'smart-manufacturing', pathMatch: 'full' },
   { path: 'vendor-partners/ibm-multicloud', title: 'IBM Multicloud Products and Services | XcellHost', loadComponent: () => import('./pages/ibm-multicloud-services.page').then(m => m.IbmMulticloudServicesPage) },
@@ -650,7 +652,7 @@ export const routes: Routes = [
     path: 'managed-redis',
     loadComponent: () => import('./pages/managed-redis.page').then((m) => m.ManagedRedisPage),
   },
-  ...[...MENU_SERVICE_PAGES, ...INDUSTRY_CLOUD_PAGES].filter((page) => page.slug !== 'smart-qr-and-nfc-automation' && page.slug !== 'gcc-cloud' && page.slug !== 'bfsi-cloud').map((page) => ({
+  ...[...MENU_SERVICE_PAGES, ...INDUSTRY_CLOUD_PAGES].filter((page) => page.slug !== 'smart-qr-and-nfc-automation' && page.slug !== 'gcc-cloud' && page.slug !== 'bfsi-cloud' && page.slug !== 'retail-cloud' && page.slug !== 'healthcare-cloud' && page.slug !== 'government-cloud' && page.slug !== 'higher-education-cloud' && page.slug !== 'construction-cloud').map((page) => ({
     path: page.slug,
     data: { servicePage: page },
     loadComponent: () => import('./pages/menu-service.page').then((m) => m.MenuServicePage),
@@ -664,7 +666,8 @@ export const routes: Routes = [
   {
     path: 'media-and-entertainment',
     title: 'Media & Entertainment | XcellHost',
-    loadComponent: () => import('./pages/media-entertainment.page').then((m) => m.MediaEntertainmentPage),
+    data: { productSlug: 'media-and-entertainment' },
+    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
   },
   { path: 'mobile-application-penetration-testing', redirectTo: 'mobile-application-security-testing', pathMatch: 'full' },
   { path: 'aeo-geo-automation4', redirectTo: 'aeo-geo-automation', pathMatch: 'full' },
@@ -1118,7 +1121,7 @@ export const routes: Routes = [
   { path: 'acronis-edr', redirectTo: '', pathMatch: 'full' },
   {
     path: 'email-security-smb',
-    data: { productSlug: 'vortex-seg', productDisplayName: 'Email Security SMB' },
+    data: { productSlug: 'email-security-smb', productDisplayName: 'Email Security SMB' },
     loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
   },
   {

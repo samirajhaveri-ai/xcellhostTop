@@ -23,6 +23,17 @@ type InteractiveContentSource =
   | 'enterprise-rag-as-a-service'
   | 'bfsi-cloud'
   | 'industrial-park-digital-transformation'
+  | 'microsoft-365-security-assessment'
+  | 'google-security-assessment'
+  | 'email-encryption'
+  | 'enterprise-dmarc'
+  | 'email-security-smb'
+  | 'media-and-entertainment'
+  | 'retail-cloud'
+  | 'healthcare-cloud'
+  | 'government-cloud'
+  | 'higher-education-cloud'
+  | 'construction-cloud'
   | 'staff-augmentation'
   | 'amd-epyc-cpu-comparison'
   | 'nvidia-server-gpu-comparison'
@@ -254,6 +265,17 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'enterprise-rag-as-a-service': '/imported-enterprise-rag-as-a-service.html',
     'bfsi-cloud': '/imported-bfsi-cloud.html',
     'industrial-park-digital-transformation': '/imported-industrial-park-digital-transformation.html',
+    'microsoft-365-security-assessment': '/imported-microsoft-365-security-assessment.html',
+    'google-security-assessment': '/imported-google-security-assessment.html',
+    'email-encryption': '/imported-email-encryption.html',
+    'enterprise-dmarc': '/imported-enterprise-dmarc.html',
+    'email-security-smb': '/imported-email-security-smb.html',
+    'media-and-entertainment': '/imported-media-and-entertainment.html',
+    'retail-cloud': '/imported-retail-cloud.html',
+    'healthcare-cloud': '/imported-healthcare-cloud.html',
+    'government-cloud': '/imported-government-cloud.html',
+    'higher-education-cloud': '/imported-higher-education-cloud.html',
+    'construction-cloud': '/imported-construction-cloud.html',
     'staff-augmentation': '/imported-staff-augmentation.html',
     'amd-epyc-cpu-comparison': '/imported-amd-epyc-cpu-comparison.html',
     'nvidia-server-gpu-comparison': '/imported-nvidia-server-gpu-comparison.html',
@@ -474,6 +496,17 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'enterprise-rag-as-a-service': 'Enterprise RAG: deployment options, enterprise controls, configurator, sizing estimator and deployment finder',
     'bfsi-cloud': 'BFSI Cloud: regulatory mapping, architecture, due diligence, configurator, readiness checker and DR estimator',
     'industrial-park-digital-transformation': 'Industrial Park Digital Transformation: architecture, plans, configurator, maturity assessment and sizing',
+    'microsoft-365-security-assessment': 'Microsoft 365 Security Assessment: workloads, packages, readiness quiz and scope estimator',
+    'google-security-assessment': 'Google Security Assessment: workloads, packages, readiness quiz and scope estimator',
+    'email-encryption': 'Email Encryption: encryption methods, plans, configurator, method picker and licensing',
+    'enterprise-dmarc': 'Enterprise DMARC: pricing, configurator, DNS-record builder and enforcement journey planner',
+    'email-security-smb': 'Email Security SMB: plans, mailbox configurator, phishing-risk quiz and cost calculator',
+    'media-and-entertainment': 'Media & Entertainment Cloud: media workflows, plans, readiness assessment and render-hours estimator',
+    'retail-cloud': 'Retail Cloud: retail stack, plans, readiness assessment and peak-season calculator',
+    'healthcare-cloud': 'HealthCare Cloud: healthcare stack, plans, readiness assessment and PACS storage calculator',
+    'government-cloud': 'Government Cloud: government workloads, plans, readiness assessment and portal-surge calculator',
+    'higher-education-cloud': 'Higher Education Cloud: academic workflows, plans, readiness assessment and exam-day calculator',
+    'construction-cloud': 'Construction Cloud: construction workflows, plans, readiness assessment and site-storage calculator',
     'staff-augmentation': 'Staff Augmentation: roles, skills matrix, pricing configurator, team builder and hiring comparison',
     'amd-epyc-cpu-comparison': 'AMD EPYC CPU comparison, workload finder and licensing calculator',
     'nvidia-server-gpu-comparison': 'NVIDIA server GPU comparison, workload finder and model memory calculator',
