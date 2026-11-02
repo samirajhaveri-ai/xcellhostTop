@@ -23,14 +23,6 @@ export const ESCALATION_DEPARTMENTS: readonly EscalationDepartment[] = [
                              "mobile":  ""
                          },
                          {
-                             "level":  "Level 1",
-                             "role":  "Cloud Executive",
-                             "name":  "Saurav Yadav",
-                             "email":  "sauravy@xcellhost.cloud",
-                             "phone":  "+912267111555",
-                             "mobile":  "+918657032534"
-                         },
-                         {
                              "level":  "Level 2",
                              "role":  "Team Lead  - Cloud Server",
                              "name":  "Santosh Behera",
@@ -221,14 +213,6 @@ export const ESCALATION_DEPARTMENTS: readonly EscalationDepartment[] = [
                              "email":  "support@xcellhost.cloud",
                              "phone":  "+912267111555",
                              "mobile":  ""
-                         },
-                         {
-                             "level":  "Level 1",
-                             "role":  "Cloud Backup Engineer",
-                             "name":  "Saurav Yadav",
-                             "email":  "sauravy@xcellhost.cloud",
-                             "phone":  "+912267111555",
-                             "mobile":  "+918657032534"
                          },
                          {
                              "level":  "Level 2",
