@@ -5365,6 +5365,45 @@ export const MEGA_MENU: MenuTop[] = [
           }
         ]
       },
+      {
+        "g": "14",
+        "label": "Licencing Guide",
+        "on": false,
+        "featureCards": [
+          {
+            "label": "Solutions",
+            "title": "Licencing Guide",
+            "body": "Compare Acronis and Microsoft licensing, plans and subscription terms.",
+            "image": "/assets/images/menu-solutions-microsoft-v1.png",
+            "link": "/microsoft-365-licensing-guide"
+          }
+        ],
+        "groups": [
+          {
+            "heading": "Licencing Guide",
+            "items": [
+              {
+                "title": "Acronis Licencing Guide",
+                "href": "/acronis-licensing-guide",
+                "pill": "In focus",
+                "desc": null
+              },
+              {
+                "title": "Microsoft CSP Licencing Guide",
+                "href": "/microsoft-csp-licensing-guide",
+                "pill": "In focus",
+                "desc": null
+              },
+              {
+                "title": "Microsoft 365 Licencing Guide",
+                "href": "/microsoft-365-licensing-guide",
+                "pill": "In focus",
+                "desc": null
+              }
+            ]
+          }
+        ]
+      },
       
 
     ]

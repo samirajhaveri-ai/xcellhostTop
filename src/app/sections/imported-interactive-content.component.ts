@@ -10,6 +10,9 @@ import { installImportedJourneyLayout } from './imported-journey-layout';
 import { IDENTITY_SECURITY_PAGES, IdentitySecuritySource } from '../data/identity-security-pages.data';
 
 type InteractiveContentSource =
+  | 'acronis-licensing-guide'
+  | 'microsoft-csp-licensing-guide'
+  | 'microsoft-365-licensing-guide'
   | 'ai-app-builder'
   | 'ai-ide-lab'
   | 'ai-training-for-lawyer'
@@ -225,6 +228,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     Exclude<InteractiveContentSource, 'consulting' | 'ssl-detail' | 'vps-page' | 'sectigo-detail' | 'sectigo-supplied' | 'inference-page' | 'developer-page'>,
     string
   > = {
+    'acronis-licensing-guide': '/imported-acronis-licensing-guide.html',
+    'microsoft-csp-licensing-guide': '/imported-microsoft-csp-licensing-guide.html',
+    'microsoft-365-licensing-guide': '/imported-microsoft-365-licensing-guide.html',
     'ai-training-live-online': '/imported-ai-training-live-online.html',
     'ai-training-educators': '/imported-ai-training-educators.html',
     'ai-adoption-framework': '/imported-ai-adoption-framework.html',
@@ -516,6 +522,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'vcio-why': 'Why XcellHost for vCIO as a Service',
     'entra-id-backup': 'Entra ID Backup: Identity Protection, Recovery, Pricing And FAQs',
     'ca-cloud': 'CA Cloud',
+    'acronis-licensing-guide': 'Acronis Licensing Guide',
+    'microsoft-csp-licensing-guide': 'Microsoft CSP Licensing Guide',
+    'microsoft-365-licensing-guide': 'Microsoft 365 Licensing Guide',
     'microsoft-agent-365': 'Microsoft Agent 365',
     'microsoft-services': 'Microsoft Products and Services',
     'digicert-services': 'DigiCert Products and Services',
@@ -1010,7 +1019,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     };
 
     const trainingEnquiry = (event: Event) => {
-      const catalogue = this.source === 'smart-manufacturing' || this.source === 'microsoft-services' || this.source === 'digicert-services' || this.source === 'geotrust-services' || this.source === 'sectigo-services' || this.source === 'kaspersky-services' || this.source === 'sentinelone-services' || this.source === 'opentext-services' || this.source === 'cybird-services' || this.source === 'fortinet-services' || this.source === 'hpe-services' || this.source === 'dell-services' || this.source === 'oracle-cloud-services' || this.source === 'ibm-multicloud-services' || this.source === 'dpo-genie365-services';
+      const catalogue = this.source.endsWith('-licensing-guide') || this.source === 'smart-manufacturing' || this.source === 'microsoft-services' || this.source === 'digicert-services' || this.source === 'geotrust-services' || this.source === 'sectigo-services' || this.source === 'kaspersky-services' || this.source === 'sentinelone-services' || this.source === 'opentext-services' || this.source === 'cybird-services' || this.source === 'fortinet-services' || this.source === 'hpe-services' || this.source === 'dell-services' || this.source === 'oracle-cloud-services' || this.source === 'ibm-multicloud-services' || this.source === 'dpo-genie365-services';
       if (!catalogue && !this.source.startsWith('ai-training-')) return;
       const values = (event as CustomEvent<Record<string, string>>).detail;
       const [firstName = '', ...lastName] = (values['name'] || '').trim().split(/\s+/);

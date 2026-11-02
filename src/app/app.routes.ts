@@ -8,8 +8,17 @@ import { GCP_SERVICE_PAGE } from './data/gcp-services.data';
 
 
 export const routes: Routes = [
+
   { path: 'email-encryptionu', redirectTo: 'email-encryption', pathMatch: 'full' },
   { path: 'google-security-assessmentupload', redirectTo: 'google-security-assessment', pathMatch: 'full' },
+
+  { path: 'acronis-licensing-guide', title: 'Acronis Licensing Guide | XcellHost', data: { searchTitle: 'Acronis Licensing Guide', searchDescription: 'Explore Acronis licensing models, workloads, storage, pricing calculators and FAQs for India.' }, loadComponent: () => import('./pages/licensing-guide.page').then(m => m.LicensingGuidePage) },
+  { path: 'acronis-licencing-guide', redirectTo: 'acronis-licensing-guide', pathMatch: 'full' },
+  { path: 'microsoft-csp-licensing-guide', title: 'Microsoft CSP Licensing Guide | XcellHost', data: { searchTitle: 'Microsoft CSP Licensing Guide', searchDescription: 'Understand Microsoft CSP subscriptions, NCE terms, billing, renewals and licensing tools for India.' }, loadComponent: () => import('./pages/licensing-guide.page').then(m => m.LicensingGuidePage) },
+  { path: 'microsoft-csp-licencing-guide', redirectTo: 'microsoft-csp-licensing-guide', pathMatch: 'full' },
+  { path: 'microsoft-365-licensing-guide', title: 'Microsoft 365 Licensing Guide | XcellHost', data: { searchTitle: 'Microsoft 365 Licensing Guide', searchDescription: 'Compare Microsoft 365 plans, licensing rules, pricing and interactive tools for Indian businesses.' }, loadComponent: () => import('./pages/licensing-guide.page').then(m => m.LicensingGuidePage) },
+  { path: 'microsoft-365-licencing-guide', redirectTo: 'microsoft-365-licensing-guide', pathMatch: 'full' },
+
   { path: 'smart-manufacturing', title: 'Industry 5.0 & Smart Manufacturing | XcellHost', loadComponent: () => import('./pages/smart-manufacturing.page').then(m => m.SmartManufacturingPage) },
   { path: 'industry-5-smart-manufacturing', redirectTo: 'smart-manufacturing', pathMatch: 'full' },
   { path: 'vendor-partners/ibm-multicloud', title: 'IBM Multicloud Products and Services | XcellHost', loadComponent: () => import('./pages/ibm-multicloud-services.page').then(m => m.IbmMulticloudServicesPage) },
