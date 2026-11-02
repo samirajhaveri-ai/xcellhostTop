@@ -1,6 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, ViewEncapsulation, computed, inject, signal } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { EMAIL_SIGNATURE_VIDEOS } from '../data/email-signature-videos.data';
+import { ChangeDetectionStrategy, Component, ElementRef, ViewEncapsulation, inject, signal } from '@angular/core';
 import { LeadService } from '../core/lead.service';
 
 @Component({
@@ -14,58 +12,10 @@ import { LeadService } from '../core/lead.service';
 export class EmailSignatureContentComponent {
   private readonly host = inject(ElementRef<HTMLElement>);
   private readonly leads = inject(LeadService);
-  private readonly sanitizer = inject(DomSanitizer);
   readonly activeTab = signal(0);
 
   readonly submitting = signal(false);
   readonly status = signal('');
-  readonly videoSearch = signal('');
-  readonly videoTopic = signal('');
-  readonly visibleVideoCount = signal(6);
-  readonly activeVideoId = signal<string | null>(null);
-  readonly videoTopics = [...new Set(EMAIL_SIGNATURE_VIDEOS.map(video => video.topic))];
-  readonly videos = EMAIL_SIGNATURE_VIDEOS.map(video => ({
-    ...video,
-    thumbnailUrl: `https://i.ytimg.com/vi/${video.videoId}/hqdefault.jpg`,
-    watchUrl: `https://www.youtube.com/watch?v=${video.videoId}`,
-    embedUrl: this.sanitizer.bypassSecurityTrustResourceUrl(
-      `https://www.youtube-nocookie.com/embed/${video.videoId}?autoplay=1&rel=0&playsinline=1`,
-    ),
-  }));
-  readonly filteredVideos = computed(() => {
-    const search = this.videoSearch().trim().toLowerCase();
-    return this.videos.filter(video =>
-      (!this.videoTopic() || video.topic === this.videoTopic()) &&
-      (!search || `${video.title} ${video.topic}`.toLowerCase().includes(search)),
-    );
-  });
-  readonly visibleVideos = computed(() => this.filteredVideos().slice(0, this.visibleVideoCount()));
-
-  setVideoSearch(value: string): void {
-    this.videoSearch.set(value);
-    this.resetVideoResults();
-  }
-
-  setVideoTopic(value: string): void {
-    this.videoTopic.set(value);
-    this.resetVideoResults();
-  }
-
-  clearVideoFilters(): void {
-    this.videoSearch.set('');
-    this.videoTopic.set('');
-    this.resetVideoResults();
-  }
-
-  showMoreVideos(): void {
-    this.visibleVideoCount.update(count => count + 6);
-  }
-
-  private resetVideoResults(): void {
-    this.visibleVideoCount.set(6);
-    this.activeVideoId.set(null);
-  }
-
   scrollToContact(event: Event): void {
     event.preventDefault();
     this.host.nativeElement.shadowRoot?.getElementById('email-signature-contact')?.scrollIntoView({ behavior: 'smooth' });

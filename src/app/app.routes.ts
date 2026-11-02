@@ -859,6 +859,7 @@ export const routes: Routes = [
   { path: 'under-construction/events-catalog', loadComponent: () => import('./pages/events-catalog.page').then((m) => m.EventsCatalogPage) },
   { path: 'global-data-centers', redirectTo: 'company/data-centers-global', pathMatch: 'full' },
   { path: 'under-construction/global-data-centers', redirectTo: 'company/data-centers-global', pathMatch: 'full' },
+  { path: 'email-signature-demo', loadComponent: () => import('./pages/email-signature-demo.page').then((m) => m.EmailSignatureDemoPage) },
   { path: 'under-construction/:slug', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
   { path: 'under-construction', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
   {
