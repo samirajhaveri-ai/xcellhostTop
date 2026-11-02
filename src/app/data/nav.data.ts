@@ -680,6 +680,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Managed device connectivity, edge processing and IoT platforms"
               },
+              {
+                "title": "Web3 & Blockchain Infrastructure",
+                "href": "/web3-blockchain-infrastructure",
+                "pill": null,
+                "desc": "Managed RPC endpoints, full, archive and validator nodes with monitoring and failover."
+              },
               
             ]
           }
@@ -1491,7 +1497,19 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "Microsoft Security Posture Management",
                 "pill": null,
                 "desc": null
-              },   
+              },
+              {
+                "title": "Phishing Incident Response",
+                "href": "/phishing-incident-response",
+                "pill": null,
+                "desc": "Report, analyse and quarantine phishing messages with SOC triage and response playbooks."
+              },
+              {
+                "title": "Security Awareness LMS",
+                "href": "/security-awareness-lms",
+                "pill": null,
+                "desc": "Managed awareness training with short lessons, role-based paths, quizzes, certificates and completion reports."
+              },
             ]
           }
         ]

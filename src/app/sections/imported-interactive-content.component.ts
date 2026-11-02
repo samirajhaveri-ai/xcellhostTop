@@ -43,6 +43,9 @@ type InteractiveContentSource =
   | 'manufacturing-cloud'
   | 'insurance-cloud'
   | 'smb-cloud'
+  | 'web3-blockchain-infrastructure'
+  | 'phishing-incident-response'
+  | 'security-awareness-lms'
   | 'staff-augmentation'
   | 'amd-epyc-cpu-comparison'
   | 'nvidia-server-gpu-comparison'
@@ -294,6 +297,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'manufacturing-cloud': '/imported-manufacturing-cloud.html',
     'insurance-cloud': '/imported-insurance-cloud.html',
     'smb-cloud': '/imported-smb-cloud.html',
+    'web3-blockchain-infrastructure': '/imported-web3-blockchain-infrastructure.html',
+    'phishing-incident-response': '/imported-phishing-incident-response.html',
+    'security-awareness-lms': '/imported-security-awareness-lms.html',
     'staff-augmentation': '/imported-staff-augmentation.html',
     'amd-epyc-cpu-comparison': '/imported-amd-epyc-cpu-comparison.html',
     'nvidia-server-gpu-comparison': '/imported-nvidia-server-gpu-comparison.html',
@@ -531,6 +537,9 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'manufacturing-cloud': 'Manufacturing Cloud: manufacturing workloads, plans, readiness assessment and IIoT sizing',
     'insurance-cloud': 'Insurance Cloud: insurance workloads, plans, readiness assessment and claims calculator',
     'smb-cloud': 'SMB Cloud: business bundles, plans, IT health check and cost calculator',
+    'web3-blockchain-infrastructure': 'Web3 & Blockchain Infrastructure: blockchain products, chains, APIs, plans, capacity estimator and node finder',
+    'phishing-incident-response': 'Phishing Incident Response: response workflow, plans, configurator, time-saved estimator and readiness quiz',
+    'security-awareness-lms': 'Security Awareness LMS: course library, plans, configurator, ROI estimator and learning-path builder',
     'staff-augmentation': 'Staff Augmentation: roles, skills matrix, pricing configurator, team builder and hiring comparison',
     'amd-epyc-cpu-comparison': 'AMD EPYC CPU comparison, workload finder and licensing calculator',
     'nvidia-server-gpu-comparison': 'NVIDIA server GPU comparison, workload finder and model memory calculator',

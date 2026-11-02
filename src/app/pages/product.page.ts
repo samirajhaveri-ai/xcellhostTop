@@ -33,6 +33,9 @@ import { HOSPITALITY_CLOUD_FAQS } from '../data/hospitality-cloud-faq.data';
 import { MANUFACTURING_CLOUD_FAQS } from '../data/manufacturing-cloud-faq.data';
 import { INSURANCE_CLOUD_FAQS } from '../data/insurance-cloud-faq.data';
 import { SMB_CLOUD_FAQS } from '../data/smb-cloud-faq.data';
+import { WEB3_INFRASTRUCTURE_FAQS } from '../data/web3-blockchain-infrastructure-faq.data';
+import { PHISHING_INCIDENT_RESPONSE_FAQS } from '../data/phishing-incident-response-faq.data';
+import { SECURITY_AWARENESS_LMS_FAQS } from '../data/security-awareness-lms-faq.data';
 import { STAFF_AUGMENTATION_FAQS } from '../data/staff-augmentation-faq.data';
 import { NVIDIA_GPU_FAQS } from '../data/nvidia-server-gpu-faq.data';
 import { VCISO_FAQS } from '../data/vciso-faq.data';
@@ -3284,6 +3287,33 @@ class ProductPageComponent {
       heroMessages: ['Bring business IT under one managed service', 'Protect mail, devices and critical workloads', 'One team, one support desk and one invoice'],
       faqs: SMB_CLOUD_FAQS,
     };
+    if (slug === 'web3-blockchain-infrastructure' && view) return {
+      ...view,
+      brandSuffix: 'Cloud',
+      tagline: 'Ready to scale? Your chain, our nodes, one rupee bill.',
+      heroHighlight: "XcellHost runs the blockchain plumbing your product depends on — elastic RPC endpoints, dedicated full, archive and validator nodes, WebSockets, trace and archive data — load-balanced, monitored 24×7 and hosted in our Mumbai Tier IV data centre, close to Indian users.",
+      heroPoints: ['Elastic & dedicated RPC', 'Full · archive · validator', 'HTTPS, WSS, trace & debug', 'Load balancing & failover', 'Mumbai Tier IV · India-hosted', 'Besu · Fabric · Corda networks'],
+      heroMessages: ['Scale RPC endpoints and dedicated nodes together', 'Keep blockchain infrastructure close to Indian users', 'Managed nodes with monitoring and failover'],
+      faqs: WEB3_INFRASTRUCTURE_FAQS,
+    };
+    if (slug === 'phishing-incident-response' && view) return {
+      ...view,
+      brandSuffix: 'Secure',
+      tagline: 'One click from an employee. Every copy gone in minutes.',
+      heroHighlight: "Your staff already spot suspicious mail. Give them a Report Phish button in Outlook and Gmail, let automation read the headers, links and attachments, and let XcellHost's SOC pull every matching message out of every inbox — then tell the reporter what they caught.",
+      heroPoints: ['Report button, Outlook & Gmail', 'Header, URL & file analysis', 'Threat-intel enrichment', 'Inbox-wide quarantine', 'SOC triage & playbooks', 'Report-rate & MTTR metrics'],
+      heroMessages: ['Turn employee reports into a coordinated response', 'Analyse suspicious mail and quarantine matching copies', 'Track reporting rates and response times'],
+      faqs: PHISHING_INCIDENT_RESPONSE_FAQS,
+    };
+    if (slug === 'security-awareness-lms' && view) return {
+      ...view,
+      brandSuffix: 'Secure',
+      tagline: 'Five minutes a month. Habits that hold up on a busy Monday.',
+      heroHighlight: "A managed learning platform for cyber awareness: short videos, comics and micro-lessons in English and Indian languages, learning paths by role, quizzes with certificates, and reports your auditor can file. XcellHost sets it up, runs the campaigns and chases completion. Billed in rupees.",
+      heroPoints: ['Videos, comics & micro-lessons', 'Multiple Indian languages*', 'Learning paths by role', 'Quizzes & certificates', 'Leaderboards & badges', 'SCORM / xAPI · Entra ID sync'],
+      heroMessages: ['Build security habits through short regular lessons', 'Assign learning paths by role and language', 'Track completions, quizzes and audit-ready reports'],
+      faqs: SECURITY_AWARENESS_LMS_FAQS,
+    };
     if (slug === 'staff-augmentation' && view) return {
       ...view,
       brandSuffix: 'Talent',
@@ -4821,6 +4851,9 @@ class ProductPageComponent {
       'manufacturing-cloud': { frame: 'xh-imported-interactive-content.manufacturing-cloud-source-content', overview: 'overview', features: 'stack', uses: 'usecases', specifications: 'architecture' },
       'insurance-cloud': { frame: 'xh-imported-interactive-content.insurance-cloud-source-content', overview: 'overview', features: 'stack', uses: 'usecases', specifications: 'architecture' },
       'smb-cloud': { frame: 'xh-imported-interactive-content.smb-cloud-source-content', overview: 'overview', features: 'stack', uses: 'usecases', specifications: 'architecture' },
+      'web3-blockchain-infrastructure': { frame: 'xh-imported-interactive-content.web3-blockchain-infrastructure-source-content', overview: 'overview', features: 'products', uses: 'usecases', specifications: 'platform' },
+      'phishing-incident-response': { frame: 'xh-imported-interactive-content.phishing-incident-response-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'how' },
+      'security-awareness-lms': { frame: 'xh-imported-interactive-content.security-awareness-lms-source-content', overview: 'overview', features: 'features', uses: 'use', specifications: 'how' },
       'staff-augmentation': { frame: 'xh-imported-interactive-content.staff-augmentation-source-content', overview: 'overview', features: 'capabilities', uses: 'usecases', specifications: 'skills' },
       'amd-epyc-cpu-comparison': { frame: 'xh-imported-interactive-content.amd-epyc-source-content', overview: 'families', features: 'finder', uses: 'usecases', specifications: 'compare' },
       'nvidia-server-gpu-comparison': { frame: 'xh-imported-interactive-content.nvidia-gpu-source-content', overview: 'families', features: 'finder', uses: 'usecases', specifications: 'compare' },
@@ -5303,6 +5336,9 @@ class ProductPageComponent {
   }
 
   private resolve(slug: string): ProductView | null {
+    if (slug === 'web3-blockchain-infrastructure') {
+      return this.products.build({ name: 'Web3 & Blockchain Infrastructure', cat: 'Cloud', crumb: 'Cloud › Cloud Infra' });
+    }
     if (slug === 'media-and-entertainment') {
       return this.products.build({ name: 'Media & Entertainment Cloud', cat: 'Solutions', crumb: 'Solutions › Industry Cloud' });
     }
