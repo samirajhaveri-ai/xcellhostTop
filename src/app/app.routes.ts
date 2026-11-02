@@ -661,7 +661,7 @@ export const routes: Routes = [
     path: 'managed-redis',
     loadComponent: () => import('./pages/managed-redis.page').then((m) => m.ManagedRedisPage),
   },
-  ...[...MENU_SERVICE_PAGES, ...INDUSTRY_CLOUD_PAGES].filter((page) => page.slug !== 'smart-qr-and-nfc-automation' && page.slug !== 'gcc-cloud' && page.slug !== 'bfsi-cloud' && page.slug !== 'retail-cloud' && page.slug !== 'healthcare-cloud' && page.slug !== 'government-cloud' && page.slug !== 'higher-education-cloud' && page.slug !== 'construction-cloud').map((page) => ({
+  ...[...MENU_SERVICE_PAGES, ...INDUSTRY_CLOUD_PAGES].filter((page) => page.slug !== 'smart-qr-and-nfc-automation' && page.slug !== 'gcc-cloud' && page.slug !== 'bfsi-cloud' && page.slug !== 'retail-cloud' && page.slug !== 'healthcare-cloud' && page.slug !== 'government-cloud' && page.slug !== 'higher-education-cloud' && page.slug !== 'construction-cloud' && page.slug !== 'pharmaceutical-cloud' && page.slug !== 'logistics-cloud' && page.slug !== 'hospitality-cloud' && page.slug !== 'manufacturing-cloud' && page.slug !== 'insurance-cloud' && page.slug !== 'smb-cloud').map((page) => ({
     path: page.slug,
     data: { servicePage: page },
     loadComponent: () => import('./pages/menu-service.page').then((m) => m.MenuServicePage),

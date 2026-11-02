@@ -27,6 +27,12 @@ import { HEALTHCARE_CLOUD_FAQS } from '../data/healthcare-cloud-faq.data';
 import { GOVERNMENT_CLOUD_FAQS } from '../data/government-cloud-faq.data';
 import { HIGHER_EDUCATION_CLOUD_FAQS } from '../data/higher-education-cloud-faq.data';
 import { CONSTRUCTION_CLOUD_FAQS } from '../data/construction-cloud-faq.data';
+import { PHARMACEUTICAL_CLOUD_FAQS } from '../data/pharmaceutical-cloud-faq.data';
+import { LOGISTICS_CLOUD_FAQS } from '../data/logistics-cloud-faq.data';
+import { HOSPITALITY_CLOUD_FAQS } from '../data/hospitality-cloud-faq.data';
+import { MANUFACTURING_CLOUD_FAQS } from '../data/manufacturing-cloud-faq.data';
+import { INSURANCE_CLOUD_FAQS } from '../data/insurance-cloud-faq.data';
+import { SMB_CLOUD_FAQS } from '../data/smb-cloud-faq.data';
 import { STAFF_AUGMENTATION_FAQS } from '../data/staff-augmentation-faq.data';
 import { NVIDIA_GPU_FAQS } from '../data/nvidia-server-gpu-faq.data';
 import { VCISO_FAQS } from '../data/vciso-faq.data';
@@ -3224,6 +3230,60 @@ class ProductPageComponent {
       heroMessages: ['Keep every site working from the current drawing set', 'Run BIM and CAD through GPU cloud desktops', 'Connect offices and sites with managed failover'],
       faqs: CONSTRUCTION_CLOUD_FAQS,
     };
+    if (slug === 'pharmaceutical-cloud' && view) return {
+      ...view,
+      brandSuffix: 'Cloud',
+      tagline: 'GxP-ready cloud for the records an inspector will ask to see.',
+      heroHighlight: "XcellCloud Pharmaceutical Cloud hosts LIMS, QMS, MES, chromatography data, ERP/SAP and clinical systems in our Mumbai Tier IV data centre on qualified infrastructure — with audit trails, synchronised clocks, immutable backups, DR in India* and validation support* for your IQ, OQ and PQ.",
+      heroPoints: ['Infrastructure IQ / OQ pack*', 'Part 11 / Annex 11-aware hosting', 'NTP-synced, tamper-evident logs', 'Immutable backups, restore-tested', 'LIMS, QMS, MES, SAP hosting', 'Supplier audit access for you'],
+      heroMessages: ['Keep regulated records available for inspection', 'Host critical workloads on qualified infrastructure', 'Support validation with documented evidence'],
+      faqs: PHARMACEUTICAL_CLOUD_FAQS,
+    };
+    if (slug === 'logistics-cloud' && view) return {
+      ...view,
+      brandSuffix: 'Cloud',
+      tagline: 'Every truck, every pallet, every e-way bill — on one cloud.',
+      heroHighlight: "XcellCloud Logistics Cloud hosts your TMS, WMS and ERP in our Mumbai Tier IV data centre, connects fleets through a managed IoT platform, links e-way bill and e-invoice systems, keeps warehouses scanning on edge nodes when the link drops, and plans routes with AI — watched 24×7 by our NOC and SOC.",
+      heroPoints: ['TMS, WMS & ERP hosted in India', 'Fleet telematics on IoT Cloud', 'E-way bill & e-invoice integrations', 'Edge nodes for hubs', 'Warehouse Wi-Fi & SD-WAN', 'AI route optimisation'],
+      heroMessages: ['Connect every truck, warehouse and branch', 'Keep fleet and shipment data in one view', 'Run logistics workloads from a managed cloud in India'],
+      faqs: LOGISTICS_CLOUD_FAQS,
+    };
+    if (slug === 'hospitality-cloud' && view) return {
+      ...view,
+      brandSuffix: 'Cloud',
+      tagline: 'Every guest online, every booking in sync, no card number on file.',
+      heroHighlight: "XcellCloud Hospitality Cloud hosts your PMS, POS and central reservations in our Mumbai Tier IV data centre, runs guest Wi-Fi with OTP login and one-year records, keeps card payments in a small PCI-ready segment and guest data under consent — for one hotel or a whole chain, watched 24×7.",
+      heroPoints: ['PMS, POS & CRS hosted in India', 'Guest Wi-Fi with OTP login', 'PCI DSS v4.0.1 readiness', 'Consent-aware guest data', 'Lobby & back-office CCTV*', '24×7 NOC + SOC from Mumbai'],
+      heroMessages: ['Keep guest connectivity and reservations running', 'Connect front desk, back office and every property', 'Manage hospitality workloads from a cloud in India'],
+      faqs: HOSPITALITY_CLOUD_FAQS,
+    };
+    if (slug === 'manufacturing-cloud' && view) return {
+      ...view,
+      brandSuffix: 'Cloud',
+      tagline: 'From machine to ERP — connected, protected and recoverable.',
+      heroHighlight: "XcellCloud Manufacturing Cloud hosts SAP and ERP, MES, PLM and CAD desktops, and the IIoT platform your plants report into — with edge nodes on the shop floor, OT security between the lines and the office, and DR so dispatch never stops. Run 24×7 from our Mumbai Tier IV data centre.",
+      heroPoints: ['SAP & ERP on cloud or private cluster', 'IIoT from ₹49/device · edge nodes', 'PLM & CAD on cloud desktops', 'OT assessment & monitoring', 'SD-WAN between plants', 'Plant DR with drills'],
+      heroMessages: ['Connect shop-floor data to enterprise systems', 'Keep plant workloads protected and recoverable', 'Manage ERP, IIoT and plant connectivity together'],
+      faqs: MANUFACTURING_CLOUD_FAQS,
+    };
+    if (slug === 'insurance-cloud' && view) return {
+      ...view,
+      brandSuffix: 'Cloud',
+      tagline: 'Claims that settle faster. Records that stay in India. Controls IRDAI can inspect.',
+      heroHighlight: "XcellCloud Insurance Cloud runs policy administration, claims, core insurance platforms, customer portals and fraud analytics for insurers, brokers, TPAs and web aggregators — in our Mumbai Tier IV data centre, with DR in India*, a 24×7 SOC and the outsourcing paperwork your board will ask for.",
+      heroPoints: ['Mumbai Tier IV · DR in India*', 'Policy admin & claims hosting', 'Fraud analytics on India-held data', 'SOC, WAF, PAM & Cloud HSM', 'IRDAI inspection access in contract', 'DR drills with evidence'],
+      heroMessages: ['Run policy and claims systems on one managed cloud', 'Keep policyholder records hosted in India', 'Prepare recovery drills and inspection evidence'],
+      faqs: INSURANCE_CLOUD_FAQS,
+    };
+    if (slug === 'smb-cloud' && view) return {
+      ...view,
+      brandSuffix: 'Cloud',
+      tagline: 'Simplify operations. Mitigate risk. One team, one invoice.',
+      heroHighlight: "XcellCloud SMB Cloud bundles cloud servers, Microsoft 365 or Google Workspace, backup, endpoint and email security, firewall and Wi-Fi for firms with 10 to 250 people — set up, watched 24×7 and billed in rupees from our Mumbai Tier IV data centre.",
+      heroPoints: ['Cloud servers & desktops in Mumbai', 'Microsoft 365 or Google Workspace, managed', 'Backup for mail, PCs and servers', 'Endpoint & email security', 'Firewall & Wi-Fi, managed', 'One GST invoice, from ₹696/user*'],
+      heroMessages: ['Bring business IT under one managed service', 'Protect mail, devices and critical workloads', 'One team, one support desk and one invoice'],
+      faqs: SMB_CLOUD_FAQS,
+    };
     if (slug === 'staff-augmentation' && view) return {
       ...view,
       brandSuffix: 'Talent',
@@ -4755,6 +4815,12 @@ class ProductPageComponent {
       'government-cloud': { frame: 'xh-imported-interactive-content.government-cloud-source-content', overview: 'overview', features: 'stack', uses: 'usecases', specifications: 'architecture' },
       'higher-education-cloud': { frame: 'xh-imported-interactive-content.higher-education-cloud-source-content', overview: 'overview', features: 'stack', uses: 'usecases', specifications: 'architecture' },
       'construction-cloud': { frame: 'xh-imported-interactive-content.construction-cloud-source-content', overview: 'overview', features: 'stack', uses: 'usecases', specifications: 'architecture' },
+      'pharmaceutical-cloud': { frame: 'xh-imported-interactive-content.pharmaceutical-cloud-source-content', overview: 'overview', features: 'stack', uses: 'usecases', specifications: 'architecture' },
+      'logistics-cloud': { frame: 'xh-imported-interactive-content.logistics-cloud-source-content', overview: 'overview', features: 'stack', uses: 'usecases', specifications: 'architecture' },
+      'hospitality-cloud': { frame: 'xh-imported-interactive-content.hospitality-cloud-source-content', overview: 'overview', features: 'stack', uses: 'usecases', specifications: 'architecture' },
+      'manufacturing-cloud': { frame: 'xh-imported-interactive-content.manufacturing-cloud-source-content', overview: 'overview', features: 'stack', uses: 'usecases', specifications: 'architecture' },
+      'insurance-cloud': { frame: 'xh-imported-interactive-content.insurance-cloud-source-content', overview: 'overview', features: 'stack', uses: 'usecases', specifications: 'architecture' },
+      'smb-cloud': { frame: 'xh-imported-interactive-content.smb-cloud-source-content', overview: 'overview', features: 'stack', uses: 'usecases', specifications: 'architecture' },
       'staff-augmentation': { frame: 'xh-imported-interactive-content.staff-augmentation-source-content', overview: 'overview', features: 'capabilities', uses: 'usecases', specifications: 'skills' },
       'amd-epyc-cpu-comparison': { frame: 'xh-imported-interactive-content.amd-epyc-source-content', overview: 'families', features: 'finder', uses: 'usecases', specifications: 'compare' },
       'nvidia-server-gpu-comparison': { frame: 'xh-imported-interactive-content.nvidia-gpu-source-content', overview: 'families', features: 'finder', uses: 'usecases', specifications: 'compare' },
