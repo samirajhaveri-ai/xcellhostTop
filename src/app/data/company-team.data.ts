@@ -19,7 +19,7 @@ export const COMPANY_TEAM: Readonly<Record<'managementTeam' | 'advisoryTeam' | '
   ],
 
   advisoryTeam: [
-    { initials: 'JS', name: 'James Soosai', role: 'financial advisor', image: '/assets/images/TEAMS PHOTO/James Soosai.jpeg' },
+    { initials: 'JS', name: 'James Soosai', role: 'Financial Advisor', image: '/assets/images/TEAMS PHOTO/James Soosai.jpeg' },
     { initials: 'SM', name: 'CA Surendra Mehra', role: 'Chartered Accountant', image: '/assets/images/TEAMS PHOTO/Mehara.png' },
     { initials: 'UJ', name: 'Upendra Joshi ', role: 'International Alliances', image: '/assets/images/TEAMS PHOTO/Upendra.png' },
     { initials: 'CP', name: 'Christopher Pinto', role: 'Sales Consultant', image: '/assets/images/TEAMS PHOTO/cristopher.png' },
@@ -29,8 +29,8 @@ export const COMPANY_TEAM: Readonly<Record<'managementTeam' | 'advisoryTeam' | '
     { initials: 'RS', name: 'Rahul Sanghavi', role: 'Cloud Sales Head', image: '/assets/images/TEAMS PHOTO/Rahul Sanghavi.png' },
     { initials: 'AP', name: 'Abhishek Pandey', role: 'Cloud Sales Manager', image: '/assets/images/TEAMS PHOTO/Abhishek Pandey.png' },
     { initials: 'SK', name: 'Sushil Kumar', role: 'Cloud-PreSales Manager', image: 'assets/images/TEAMS PHOTO/Sudhil.png' },
-    { initials: 'RS', name: 'Rashed Syed', role: 'Cloud Advisor - PreSales', image: '/assets/images/TEAMS PHOTO/Rashed.png' },
-    { initials: 'MG', name: 'Mihir Ambokar ', role: 'Cloud Advisor - PreSales', image: '/assets/images/TEAMS PHOTO/Mihir.png' },
+    { initials: 'RS', name: 'Rashed Syed', role: 'Cloud Advisor', image: '/assets/images/TEAMS PHOTO/Rashed.png' },
+    { initials: 'MG', name: 'Mihir Ambokar ', role: 'Cloud Advisor', image: '/assets/images/TEAMS PHOTO/Mihir.png' },
     { initials: 'AG', name: 'Ajay Gupta', role: 'Cloud Advisor - PreSales', image: '/assets/images/TEAMS PHOTO/Ajay Gupta.png' },
     
     { initials: 'AG', name: 'AI SDR Agent', role: '', image: '/assets/images/Robot-enhanced.png' },
