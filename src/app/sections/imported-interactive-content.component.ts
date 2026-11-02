@@ -37,6 +37,12 @@ type InteractiveContentSource =
   | 'government-cloud'
   | 'higher-education-cloud'
   | 'construction-cloud'
+  | 'pharmaceutical-cloud'
+  | 'logistics-cloud'
+  | 'hospitality-cloud'
+  | 'manufacturing-cloud'
+  | 'insurance-cloud'
+  | 'smb-cloud'
   | 'staff-augmentation'
   | 'amd-epyc-cpu-comparison'
   | 'nvidia-server-gpu-comparison'
@@ -282,6 +288,12 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'government-cloud': '/imported-government-cloud.html',
     'higher-education-cloud': '/imported-higher-education-cloud.html',
     'construction-cloud': '/imported-construction-cloud.html',
+    'pharmaceutical-cloud': '/imported-pharmaceutical-cloud.html',
+    'logistics-cloud': '/imported-logistics-cloud.html',
+    'hospitality-cloud': '/imported-hospitality-cloud.html',
+    'manufacturing-cloud': '/imported-manufacturing-cloud.html',
+    'insurance-cloud': '/imported-insurance-cloud.html',
+    'smb-cloud': '/imported-smb-cloud.html',
     'staff-augmentation': '/imported-staff-augmentation.html',
     'amd-epyc-cpu-comparison': '/imported-amd-epyc-cpu-comparison.html',
     'nvidia-server-gpu-comparison': '/imported-nvidia-server-gpu-comparison.html',
@@ -513,6 +525,12 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'government-cloud': 'Government Cloud: government workloads, plans, readiness assessment and portal-surge calculator',
     'higher-education-cloud': 'Higher Education Cloud: academic workflows, plans, readiness assessment and exam-day calculator',
     'construction-cloud': 'Construction Cloud: construction workflows, plans, readiness assessment and site-storage calculator',
+    'pharmaceutical-cloud': 'Pharmaceutical Cloud: pharmaceutical workloads, plans, readiness assessment and validation-effort calculator',
+    'logistics-cloud': 'Logistics Cloud: logistics workloads, plans, readiness assessment and fleet-IoT sizing',
+    'hospitality-cloud': 'Hospitality Cloud: hospitality workloads, plans, readiness assessment and guest Wi-Fi sizing',
+    'manufacturing-cloud': 'Manufacturing Cloud: manufacturing workloads, plans, readiness assessment and IIoT sizing',
+    'insurance-cloud': 'Insurance Cloud: insurance workloads, plans, readiness assessment and claims calculator',
+    'smb-cloud': 'SMB Cloud: business bundles, plans, IT health check and cost calculator',
     'staff-augmentation': 'Staff Augmentation: roles, skills matrix, pricing configurator, team builder and hiring comparison',
     'amd-epyc-cpu-comparison': 'AMD EPYC CPU comparison, workload finder and licensing calculator',
     'nvidia-server-gpu-comparison': 'NVIDIA server GPU comparison, workload finder and model memory calculator',
