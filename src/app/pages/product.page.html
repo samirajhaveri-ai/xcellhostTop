@@ -511,7 +511,7 @@
       <div
         class="pp-hero"
         [class.email-signature-centered-hero]="slug() === 'email-signature'"
-        [class.data-center-build-hero]="slug() === 'industrial-park-digital-transformation' || slug() === 'staff-augmentation' || slug() === 'bfsi-cloud' || slug() === 'enterprise-rag-as-a-service' || slug() === 'applied-blockchain-security' || slug() === 'ai-vector-database' || slug() === 'amd-mi300' || slug() === 'cyber-range-as-a-service' || slug() === 'cloud-hardware-security-module' || slug() === 'hardware-security-module' || slug() === 'aiops-as-a-service' || slug() === 'ai-training-for-lawyer' || slug() === 'ai-ide-lab' || slug() === 'ai-app-builder' || slug() === 'nvidia-server-gpu-comparison' || slug() === 'amd-epyc-cpu-comparison' || slug() === 'managed-identity-service' || slug() === 'data-center-build-services' || slug() === 'vcio-as-a-service' || slug() === 'vcto-as-a-service' || slug() === 'vciso-as-a-service' || slug() === 'vcaio-as-a-service'"
+        [class.data-center-build-hero]="slug() === 'smb-cloud' || slug() === 'insurance-cloud' || slug() === 'manufacturing-cloud' || slug() === 'hospitality-cloud' || slug() === 'logistics-cloud' || slug() === 'pharmaceutical-cloud' || slug() === 'construction-cloud' || slug() === 'higher-education-cloud' || slug() === 'government-cloud' || slug() === 'healthcare-cloud' || slug() === 'retail-cloud' || slug() === 'media-and-entertainment' || slug() === 'email-security-smb' || slug() === 'enterprise-dmarc' || slug() === 'email-encryption' || slug() === 'google-security-assessment' || slug() === 'microsoft-365-security-assessment' || slug() === 'industrial-park-digital-transformation' || slug() === 'staff-augmentation' || slug() === 'bfsi-cloud' || slug() === 'enterprise-rag-as-a-service' || slug() === 'applied-blockchain-security' || slug() === 'ai-vector-database' || slug() === 'amd-mi300' || slug() === 'cyber-range-as-a-service' || slug() === 'cloud-hardware-security-module' || slug() === 'hardware-security-module' || slug() === 'aiops-as-a-service' || slug() === 'ai-training-for-lawyer' || slug() === 'ai-ide-lab' || slug() === 'ai-app-builder' || slug() === 'nvidia-server-gpu-comparison' || slug() === 'amd-epyc-cpu-comparison' || slug() === 'managed-identity-service' || slug() === 'data-center-build-services' || slug() === 'vcio-as-a-service' || slug() === 'vcto-as-a-service' || slug() === 'vciso-as-a-service' || slug() === 'vcaio-as-a-service'"
         [class.sitelock-hero]="v.name === 'Web Security (SiteLock)'"
         [class.tally-product-hero]="v.name === 'Tally on Cloud'"
       >
@@ -746,8 +746,8 @@
             <div class="archive-stage-tags"><span>EMAIL ARCHIVE</span><span><i></i> Managed from India</span></div>
           </div>
         } @else if (slug() === 'enterprise-dmarc') {
-          <div class="pph-scene dmarc-hero-art" aria-hidden="true">
-            <xh-enterprise-dmarc-content [heroOnly]="true" />
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/enterprise-dmarc-hero.html" title="Enterprise DMARC animated dashboard: enforcement, DNS records, reports, spoof testing and BIMI" scrolling="no"></iframe>
           </div>
         } @else if (slug() === 'business-e-mail') {
           <div class="pph-scene bizmail-hero-art" aria-hidden="true">
@@ -1440,6 +1440,70 @@
           <div class="pph-scene data-center-build-visual">
             <iframe src="/industrial-park-digital-transformation-hero.html" title="Industrial Park Digital Transformation: animated park map, utilities, OT security, AI and tenant services" scrolling="no"></iframe>
           </div>
+        } @else if (slug() === 'microsoft-365-security-assessment') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/microsoft-365-security-assessment-hero.html" title="Microsoft 365 Security Assessment animated preview: scan, score, identity, mail and roadmap" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'google-security-assessment') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/google-security-assessment-hero.html" title="Google Workspace security assessment: animated audit, 2SV, OAuth, Drive and benchmark preview" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'email-encryption') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/email-encryption-hero.html" title="Email Encryption animated preview: TLS, policy, secure portal, S/MIME and protected keys" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'email-security-smb') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/email-security-smb-hero.html" title="Email Security SMB animated gateway: inbound threats, DLP, archive, quarantine digest and reports" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'media-and-entertainment') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/media-and-entertainment-hero.html" title="Media and Entertainment Cloud animated preview: render, edit, transcode, protect and launch" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'retail-cloud') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/retail-cloud-hero.html" title="Retail Cloud animated preview: sale-day autoscaling, inventory, payments, store connectivity and AI" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'healthcare-cloud') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/healthcare-cloud-hero.html" title="HealthCare Cloud animated clinical workflows: PACS imaging, ABHA, backup recovery, telemedicine and devices" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'government-cloud') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/government-cloud-hero.html" title="Government Cloud animated workflows: India data boundary, accessible portal, peak traffic, SOC and audit" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'higher-education-cloud') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/higher-education-cloud-hero.html" title="Higher Education Cloud animated academic workflows: exams, credits, research, Wi-Fi and student records" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'construction-cloud') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/construction-cloud-hero.html" title="Construction Cloud animated site preview: BIM sessions, drawing revisions, connectivity, drone footage and CCTV" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'pharmaceutical-cloud') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/pharmaceutical-cloud-hero.html" title="Pharmaceutical Cloud animated preview: batch audit trails, qualification, lab interfaces, inspection and clinical recovery" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'logistics-cloud') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/logistics-cloud-hero.html" title="Logistics Cloud animated control tower: fleet telemetry, e-way bills, warehouse scanning, AI routes and shipment visibility" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'hospitality-cloud') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/hospitality-cloud-hero.html" title="Hospitality Cloud animated guest journey: Wi-Fi login, reservations, payments, guest data and night monitoring" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'manufacturing-cloud') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/manufacturing-cloud-hero.html" title="Manufacturing Cloud animated plant preview: machine telemetry, ERP and MES, OT protection, recovery and BRSR data" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'insurance-cloud') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/insurance-cloud-hero.html" title="Insurance Cloud animated preview: claim settlement, peak demand, fraud analytics, controls and customer access" scrolling="no"></iframe>
+          </div>
+        } @else if (slug() === 'smb-cloud') {
+          <div class="pph-scene data-center-build-visual">
+            <iframe src="/smb-cloud-hero.html" title="SMB Cloud animated office preview: one invoice, recovery, e-invoicing, staff onboarding and data protection" scrolling="no"></iframe>
+          </div>
         } @else if (slug() === 'staff-augmentation') {
           <div class="pph-scene data-center-build-visual">
             <iframe src="/staff-augmentation-hero.html" title="Staff Augmentation animated preview: role matching, skills screening, team onboarding and shift coverage" scrolling="no"></iframe>
@@ -1511,7 +1575,7 @@
         <canvas class="pph-net" xhHeroNet aria-hidden="true"></canvas>
         <span class="orb orb-1" aria-hidden="true"></span>
 
-        <div class="wrap" [class.higher-education-hero-layout]="slug() === 'higher-education-cloud'" [class.sitelock-hero-layout]="isSiteLock()">
+        <div class="wrap" [class.sitelock-hero-layout]="isSiteLock()">
           @if (v.name === 'Web Security (SiteLock)') {
             <div class="sitelock-copy">
               <div class="pp-crumb" id="ppCrumb">Home › Security › Website Security › SiteLock</div>
@@ -1753,77 +1817,6 @@
             <div class="pph-scene linux-servers-hero-art">
               <xh-linux-servers-content [heroOnly]="true" />
             </div>
-          } @else if (slug() === 'higher-education-cloud') {
-            <xh-higher-education-hero-copy [infosheetUrl]="v.infosheetUrl" (actionRequested)="onHigherEducationHeroAction($event)">
-<section class="pp-ask-ai" aria-labelledby="ppAskAiTitle">
-                  <div class="pp-ask-ai-copy">
-                    <span class="pp-ask-ai-kicker" id="ppAskAiTitle"
-                      >Ask AI About {{ slug() === 'sectigo-ssl-certificates' ? 'Sectigo SSL' : isResellerProgram() ? 'Cloud Channel Partner Program' : isSmbCyber() ? 'Cybird SMB Cyber Security Appliance' : isCloudBackup() ? 'Acronis Cloud Backup' : isAdvancedEdr() ? 'Acronis Advanced Endpoint Security (EDR)' : slug() === 'acronis-mdr' ? 'MDR' : slug() === 'rtx-8000' ? 'RTX 8000 Cloud GPU' : slug() === 'rtx-pro-6000' ? 'RTX PRO 6000 Cloud GPU' : slug() === 'nvidia-rtx-6000-ada' ? 'RTX 6000 Ada Cloud GPU' : v.name }} from
-                      XcellHost</span
-                    >
-                  </div>
-                  <div class="pp-ask-ai-actions">
-                    <a
-                      class="pp-ask-ai-chip"
-                      aria-label="ChatGPT"
-                      [href]="askAiHref('chatgpt')"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      ><img
-                        src="https://www.google.com/s2/favicons?domain=chatgpt.com&amp;sz=64"
-                        alt=""
-                        aria-hidden="true"
-                    /></a>
-                    <a
-                      class="pp-ask-ai-chip"
-                      aria-label="Perplexity"
-                      [href]="askAiHref('perplexity')"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      ><img
-                        src="https://www.google.com/s2/favicons?domain=perplexity.ai&amp;sz=64"
-                        alt=""
-                        aria-hidden="true"
-                    /></a>
-                    <a
-                      class="pp-ask-ai-chip"
-                      aria-label="Claude"
-                      [href]="askAiHref('claude')"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      ><img
-                        src="https://www.google.com/s2/favicons?domain=claude.ai&amp;sz=64"
-                        alt=""
-                        aria-hidden="true"
-                    /></a>
-                    <a
-                      class="pp-ask-ai-chip"
-                      aria-label="Google AI"
-                      [href]="askAiHref('google')"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      ><img
-                        src="https://www.google.com/s2/favicons?domain=gemini.google.com&amp;sz=64"
-                        alt=""
-                        aria-hidden="true"
-                    /></a>
-                    <a
-                      class="pp-ask-ai-chip"
-                      aria-label="Grok"
-                      [href]="askAiHref('grok')"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      ><img
-                        src="https://www.google.com/s2/favicons?domain=grok.com&amp;sz=64"
-                        alt=""
-                        aria-hidden="true"
-                    /></a>
-                  </div>
-                </section>
-</xh-higher-education-hero-copy>
-            <div class="pph-scene has-illus standalone-illus higher-education-hero-art" aria-hidden="true">
-              <div class="pph-illus"><img class="pph-illus-img" [src]="v.heroImage" alt="Higher Education Cloud campus workloads" /></div>
-            </div>
           } @else {
             <div class="pp-crumb" id="ppCrumb">{{ v.crumb }}</div>
             @if (slug() === 'cloud-disaster-recovery-for-enterprise') {
@@ -1839,7 +1832,7 @@
               </h1>
             } @else {
             <h1 id="ppTitle" [class.pp-title-compact]="compactHeroTitle()"
-              [xhFitBannerTitle]="slug() === 'industrial-park-digital-transformation' || slug() === 'staff-augmentation' || slug() === 'enterprise-rag-as-a-service' || slug() === 'applied-blockchain-security' || slug() === 'amd-mi300' || slug() === 'cyber-range-as-a-service' || slug() === 'cloud-hardware-security-module' || slug() === 'hardware-security-module' || slug() === 'aiops-as-a-service' || slug() === 'ai-training-for-lawyer' || slug() === 'managed-identity-service' || slug() === 'vcaio-as-a-service' || slug() === 'vciso-as-a-service' || slug() === 'vcto-as-a-service' || slug() === 'vcio-as-a-service' || slug() === 'data-center-build-services' || slug() === 'gemini-managed-services' || slug() === 'acronis-ai' || slug() === 'docusign' || slug() === 'rpc-nodes' || slug() === 'zoom-conferenceing' || slug() === 'cpanel-vps' || isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || !!v.heroMessages[0]?.toLowerCase()?.startsWith('maximise online visibility')"
+              [xhFitBannerTitle]="slug() === 'smb-cloud' || slug() === 'insurance-cloud' || slug() === 'manufacturing-cloud' || slug() === 'hospitality-cloud' || slug() === 'logistics-cloud' || slug() === 'pharmaceutical-cloud' || slug() === 'construction-cloud' || slug() === 'higher-education-cloud' || slug() === 'government-cloud' || slug() === 'healthcare-cloud' || slug() === 'retail-cloud' || slug() === 'media-and-entertainment' || slug() === 'email-security-smb' || slug() === 'enterprise-dmarc' || slug() === 'email-encryption' || slug() === 'google-security-assessment' || slug() === 'microsoft-365-security-assessment' || slug() === 'industrial-park-digital-transformation' || slug() === 'staff-augmentation' || slug() === 'enterprise-rag-as-a-service' || slug() === 'applied-blockchain-security' || slug() === 'amd-mi300' || slug() === 'cyber-range-as-a-service' || slug() === 'cloud-hardware-security-module' || slug() === 'hardware-security-module' || slug() === 'aiops-as-a-service' || slug() === 'ai-training-for-lawyer' || slug() === 'managed-identity-service' || slug() === 'vcaio-as-a-service' || slug() === 'vciso-as-a-service' || slug() === 'vcto-as-a-service' || slug() === 'vcio-as-a-service' || slug() === 'data-center-build-services' || slug() === 'gemini-managed-services' || slug() === 'acronis-ai' || slug() === 'docusign' || slug() === 'rpc-nodes' || slug() === 'zoom-conferenceing' || slug() === 'cpanel-vps' || isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || !!v.heroMessages[0]?.toLowerCase()?.startsWith('maximise online visibility')"
               [bannerTitleMaxSize]="slug() === 'gemini-managed-services' ? 36 : slug() === 'acronis-ai' || slug() === 'docusign' || slug() === 'rpc-nodes' || slug() === 'zoom-conferenceing' || slug() === 'cpanel-vps' || isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' ? 42 : 26">
               <span class="pp-title-brand" [attr.aria-label]="'Xcell' + v.brandSuffix">
                 <span class="pp-brand-xcell">Xcell</span
@@ -2779,6 +2772,40 @@
             <xh-imported-interactive-content class="bfsi-cloud-source-content" source="bfsi-cloud" />
           } @else if (slug() === 'industrial-park-digital-transformation') {
             <xh-imported-interactive-content class="industrial-park-source-content" source="industrial-park-digital-transformation" />
+          } @else if (slug() === 'microsoft-365-security-assessment') {
+            <xh-imported-interactive-content class="m365-security-assessment-source-content" source="microsoft-365-security-assessment" />
+          } @else if (slug() === 'google-security-assessment') {
+            <xh-imported-interactive-content class="google-security-assessment-source-content" source="google-security-assessment" />
+          } @else if (slug() === 'email-encryption') {
+            <xh-imported-interactive-content class="email-encryption-source-content" source="email-encryption" />
+          } @else if (slug() === 'enterprise-dmarc') {
+            <xh-imported-interactive-content class="enterprise-dmarc-source-content" source="enterprise-dmarc" />
+          } @else if (slug() === 'email-security-smb') {
+            <xh-imported-interactive-content class="email-security-smb-source-content" source="email-security-smb" />
+          } @else if (slug() === 'media-and-entertainment') {
+            <xh-imported-interactive-content class="media-and-entertainment-source-content" source="media-and-entertainment" />
+          } @else if (slug() === 'retail-cloud') {
+            <xh-imported-interactive-content class="retail-cloud-source-content" source="retail-cloud" />
+          } @else if (slug() === 'healthcare-cloud') {
+            <xh-imported-interactive-content class="healthcare-cloud-source-content" source="healthcare-cloud" />
+          } @else if (slug() === 'government-cloud') {
+            <xh-imported-interactive-content class="government-cloud-source-content" source="government-cloud" />
+          } @else if (slug() === 'higher-education-cloud') {
+            <xh-imported-interactive-content class="higher-education-cloud-source-content" source="higher-education-cloud" />
+          } @else if (slug() === 'construction-cloud') {
+            <xh-imported-interactive-content class="construction-cloud-source-content" source="construction-cloud" />
+          } @else if (slug() === 'pharmaceutical-cloud') {
+            <xh-imported-interactive-content class="pharmaceutical-cloud-source-content" source="pharmaceutical-cloud" />
+          } @else if (slug() === 'logistics-cloud') {
+            <xh-imported-interactive-content class="logistics-cloud-source-content" source="logistics-cloud" />
+          } @else if (slug() === 'hospitality-cloud') {
+            <xh-imported-interactive-content class="hospitality-cloud-source-content" source="hospitality-cloud" />
+          } @else if (slug() === 'manufacturing-cloud') {
+            <xh-imported-interactive-content class="manufacturing-cloud-source-content" source="manufacturing-cloud" />
+          } @else if (slug() === 'insurance-cloud') {
+            <xh-imported-interactive-content class="insurance-cloud-source-content" source="insurance-cloud" />
+          } @else if (slug() === 'smb-cloud') {
+            <xh-imported-interactive-content class="smb-cloud-source-content" source="smb-cloud" />
           } @else if (slug() === 'staff-augmentation') {
             <xh-imported-interactive-content class="staff-augmentation-source-content" source="staff-augmentation" />
           } @else if (slug() === 'amd-epyc-cpu-comparison') {

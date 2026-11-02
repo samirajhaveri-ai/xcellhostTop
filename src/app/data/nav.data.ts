@@ -6193,6 +6193,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": null
               },
+              {
+                "title": "Email Signature Demo",
+                "pill": null,
+                "desc": "Crossware email signature video demos",
+                "href": "email-signature-demo"
+              },
             ]
           }
         ]

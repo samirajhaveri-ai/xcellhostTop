@@ -16,6 +16,23 @@ import { APPLIED_BLOCKCHAIN_FAQS } from '../data/applied-blockchain-security-faq
 import { ENTERPRISE_RAG_FAQS } from '../data/enterprise-rag-as-a-service-faq.data';
 import { BFSI_CLOUD_FAQS } from '../data/bfsi-cloud-faq.data';
 import { INDUSTRIAL_PARK_FAQS } from '../data/industrial-park-digital-transformation-faq.data';
+import { M365_SECURITY_ASSESSMENT_FAQS } from '../data/microsoft-365-security-assessment-faq.data';
+import { GOOGLE_SECURITY_ASSESSMENT_FAQS } from '../data/google-security-assessment-faq.data';
+import { EMAIL_ENCRYPTION_FAQS } from '../data/email-encryption-faq.data';
+import { ENTERPRISE_DMARC_FAQS } from '../data/enterprise-dmarc-faq.data';
+import { EMAIL_SECURITY_SMB_FAQS } from '../data/email-security-smb-faq.data';
+import { MEDIA_ENTERTAINMENT_FAQS } from '../data/media-and-entertainment-faq.data';
+import { RETAIL_CLOUD_FAQS } from '../data/retail-cloud-faq.data';
+import { HEALTHCARE_CLOUD_FAQS } from '../data/healthcare-cloud-faq.data';
+import { GOVERNMENT_CLOUD_FAQS } from '../data/government-cloud-faq.data';
+import { HIGHER_EDUCATION_CLOUD_FAQS } from '../data/higher-education-cloud-faq.data';
+import { CONSTRUCTION_CLOUD_FAQS } from '../data/construction-cloud-faq.data';
+import { PHARMACEUTICAL_CLOUD_FAQS } from '../data/pharmaceutical-cloud-faq.data';
+import { LOGISTICS_CLOUD_FAQS } from '../data/logistics-cloud-faq.data';
+import { HOSPITALITY_CLOUD_FAQS } from '../data/hospitality-cloud-faq.data';
+import { MANUFACTURING_CLOUD_FAQS } from '../data/manufacturing-cloud-faq.data';
+import { INSURANCE_CLOUD_FAQS } from '../data/insurance-cloud-faq.data';
+import { SMB_CLOUD_FAQS } from '../data/smb-cloud-faq.data';
 import { STAFF_AUGMENTATION_FAQS } from '../data/staff-augmentation-faq.data';
 import { NVIDIA_GPU_FAQS } from '../data/nvidia-server-gpu-faq.data';
 import { VCISO_FAQS } from '../data/vciso-faq.data';
@@ -134,7 +151,7 @@ import { LeadCrmContentComponent } from '../sections/lead-generation-and-pipelin
 import { LEAD_CRM_FAQS } from '../data/lead-generation-and-pipeline-crm-faqs.data';
 
 
-import { HigherEducationHeroAction, HigherEducationHeroCopyComponent } from '../sections/higher-education-hero-copy.component';
+import { HigherEducationHeroAction } from '../sections/higher-education-hero-copy.component';
 import { HigherEducationContentComponent } from '../sections/higher-education-content.component';
 import { WINDOWS_SERVERS_FAQS } from '../data/windows-servers-faqs.data';
 import { LINUX_SERVERS_FAQS } from '../data/linux-servers-faqs.data';
@@ -536,7 +553,6 @@ interface ProductTourSlide {
     NvidiaB300HeroComponent,
     NvidiaB300OverviewComponent,
 
-    HigherEducationHeroCopyComponent,
     HigherEducationContentComponent,
     WindowsServersContentComponent,
 
@@ -3115,6 +3131,159 @@ class ProductPageComponent {
       heroMessages: ['One managed digital backbone for your park', 'Live utility and environmental monitoring', 'OT security and tenant services, run 24×7'],
       faqs: INDUSTRIAL_PARK_FAQS,
     };
+    if (slug === 'microsoft-365-security-assessment' && view) return {
+      ...view,
+      brandSuffix: 'Secure',
+      tagline: 'Find the settings an attacker would find first — before they do.',
+      heroHighlight: "A fixed-scope, read-only review of your Microsoft 365 tenant: Secure Score, Entra ID, Exchange Online, SharePoint, OneDrive, Teams, Defender, Purview and Intune, checked against the CIS Microsoft 365 Foundations Benchmark and CISA's SCuBA baselines. You get rated findings, a 30-60-90-day roadmap and the quick wins fixed.",
+      heroPoints: ['Secure Score, explained', 'Entra ID, MFA & Conditional Access', 'Exchange, DKIM & DMARC', 'SharePoint, OneDrive & Teams', 'CIS v7.0.0 & CISA SCuBA mapped', 'Read-only access, no agents'],
+      heroMessages: ['A read-only review of your Microsoft 365 tenant', 'Rated findings and a 30-60-90-day roadmap', 'Identity, email, files and devices checked together'],
+      faqs: M365_SECURITY_ASSESSMENT_FAQS,
+    };
+    if (slug === 'google-security-assessment' && view) return {
+      ...view,
+      brandSuffix: 'Secure',
+      tagline: 'Your Google Workspace admin console has hundreds of switches. We check the ones that matter.',
+      heroHighlight: "A fixed-scope, read-only review of your Workspace tenant — 2-Step Verification, admin roles, OAuth apps, Drive sharing, Gmail safety, DMARC, context-aware access, DLP, Vault, alerts and Chrome — benchmarked against CIS and CISA. Add your Google Cloud projects if you have them. You get rated findings, a roadmap and the quick wins fixed.",
+      heroPoints: ['2SV, passkeys & admin roles', 'OAuth app access review', 'Drive sharing & exposure', 'Gmail safety & DMARC', 'CIS GWS v1.4.0 & SCuBA mapped', 'Optional Google Cloud review'],
+      heroMessages: ['A read-only review of your Google Workspace tenant', 'Rated findings and a 30-60-90-day roadmap', 'Workspace and optional Google Cloud projects reviewed'],
+      faqs: GOOGLE_SECURITY_ASSESSMENT_FAQS,
+    };
+    if (slug === 'email-encryption' && view) return {
+      ...view,
+      brandSuffix: 'Secure',
+      tagline: 'Sensitive mail, readable only by the person it was meant for.',
+      heroHighlight: "XcellHost sets up encryption at every layer of your mail — enforced TLS between servers, S/MIME for people, Microsoft Purview or Gmail encryption inside your tenant, a branded secure portal for customers on any inbox, and policies that encrypt PAN, Aadhaar and account data without anyone remembering to.",
+      heroPoints: ['Enforced TLS & MTA-STS', 'S/MIME sign + encrypt', 'Purview & Gmail encryption', 'Secure portal for any inbox', 'DLP rules that encrypt', 'Keys in an HSM in India'],
+      heroMessages: ['Encrypt mail in transit and protect each message', 'Secure portal access for customers on any inbox', 'Policies that encrypt sensitive data automatically'],
+      faqs: EMAIL_ENCRYPTION_FAQS,
+    };
+    if (slug === 'enterprise-dmarc' && view) return {
+      ...view,
+      brandSuffix: 'Secure',
+      tagline: 'Stop spoofing. Secure your domain. Get emails delivered.',
+      heroHighlight: "Anyone can send email that claims to be from your domain until you publish a DMARC policy that says otherwise. XcellHost finds every service that sends as you, aligns SPF and DKIM for each, and walks your domain from p=none to p=reject without blocking a single genuine email — then adds BIMI, MTA-STS and reports you can actually read.",
+      heroPoints: ['Stop spoofing & phishing', 'Better deliverability', 'DMARC · SPF · DKIM · BIMI', 'Clear RUA / RUF reporting', 'MTA-STS & TLS-RPT', 'Expert setup & support'],
+      heroMessages: ['Move from monitoring to enforced DMARC', 'Align every legitimate sender with SPF and DKIM', 'Protect your domains and improve deliverability'],
+      faqs: ENTERPRISE_DMARC_FAQS,
+    };
+    if (slug === 'email-security-smb' && view) return {
+      ...view,
+      brandSuffix: 'Secure',
+      tagline: 'Enterprise-grade mail protection, priced per mailbox.',
+      heroHighlight: "The same Vortex SEG engine that runs our enterprise estates, packaged for a business with 10 to a few hundred mailboxes. Phishing and malware stopped before the inbox, Aadhaar and PAN caught on the way out, every email archived and searchable — set up by XcellHost in a day, no mailbox migration.",
+      heroPoints: ['Anti-phishing & anti-spoofing', 'Multi-engine AV + sandbox', 'Email DLP with OCR', 'Encrypted delivery portal', 'Archival & search', 'M365 · Google · Zoho · SMTP'],
+      heroMessages: ['Threats stopped before they reach the inbox', 'Outbound DLP for sensitive business data', 'Searchable archives and clear monthly reports'],
+      faqs: EMAIL_SECURITY_SMB_FAQS,
+    };
+    if (slug === 'media-and-entertainment' && view) return {
+      ...view,
+      brandSuffix: 'Cloud',
+      tagline: 'Render faster, edit from anywhere, stream to millions — and keep the masters locked.',
+      heroHighlight: "XcellCloud Media & Entertainment Cloud gives studios, post houses, VFX teams, broadcasters and OTT platforms GPU render capacity, high-throughput shared storage, cloud edit workstations, transcoding, CDN and OTT origin hosting from our Mumbai Tier IV data centre — with DRM key protection, forensic-watermark workflows and a 24×7 SOC guarding unreleased content.",
+      heroPoints: ['GPU render farm · price on quote', 'High-throughput NVMe shared storage', 'Cloud edit and VFX workstations', 'Transcoding, OTT origin and CDN', 'DRM keys in Cloud HSM', 'Leak tracing and takedown support'],
+      heroMessages: ['Render, edit and deliver from one managed cloud', 'Protect unreleased content and master assets', 'Scale media workflows from creation to delivery'],
+      faqs: MEDIA_ENTERTAINMENT_FAQS,
+    };
+    if (slug === 'retail-cloud' && view) return {
+      ...view,
+      brandSuffix: 'Cloud',
+      tagline: 'Ready for the sale day. Every till, every store, every app.',
+      heroHighlight: "XcellCloud Retail Cloud runs POS back-ends, e-commerce, ERP, inventory and omnichannel order systems in our Mumbai Tier IV data centre — scaling up for festive peaks and back down after. Stores connect over managed SD-WAN with 4G / 5G failover, card flows are kept small for PCI DSS v4.0.1, and a 24×7 SOC watches the checkout.",
+      heroPoints: ['Peak-season autoscaling in India', 'POS, e-commerce, ERP, OMS hosting', 'Store SD-WAN with 4G / 5G failover', 'PCI DSS v4.0.1 readiness help', 'CDN + WAF for sale-day traffic', 'Recommendation and footfall AI'],
+      heroMessages: ['Scale for festive peaks and back down after', 'Connect every store to your managed cloud', 'Protect checkout and keep inventory in sync'],
+      faqs: RETAIL_CLOUD_FAQS,
+    };
+    if (slug === 'healthcare-cloud' && view) return {
+      ...view,
+      brandSuffix: 'Cloud',
+      tagline: 'Patient records that stay in India, stay available and stay yours.',
+      heroHighlight: "XcellCloud HealthCare Cloud hosts HIS, EMR, PACS, LIS and telemedicine platforms for hospitals, clinics and diagnostic centres in our Mumbai Tier IV data centre, with DR at a partner data centre in India*. It is designed around ABDM integration, the DPDP Act and CERT-In's six-hour rule — with a 24×7 SOC watching every login to a patient record.",
+      heroPoints: ['Health data hosted in India · Mumbai + DR*', 'HIS · EMR · PACS · LIS · RIS hosting', 'ABDM-ready: ABHA, HFR, HPR integrations', 'Immutable backups against ransomware', '24×7 SOC, WAF and privileged access', 'Device networks segmented and watched'],
+      heroMessages: ['Keep clinical workloads available around the clock', 'Protect patient records and imaging archives', 'India hosting with backup and disaster recovery'],
+      faqs: HEALTHCARE_CLOUD_FAQS,
+    };
+    if (slug === 'government-cloud' && view) return {
+      ...view,
+      brandSuffix: 'Cloud',
+      tagline: 'Citizen services on a cloud that stays in India — and stays open to every citizen.',
+      heroHighlight: "XcellCloud Government Cloud hosts portals, e-Office, scheme MIS, smart-city platforms and PSU systems in our Mumbai Tier IV data centre, with DR at a partner data centre in India*. XcellHost is MeitY empanelled, and every environment comes with a 24×7 SOC, CERT-In-ready logging, accessibility-aware hosting and a written exit plan.",
+      heroPoints: ['MeitY empanelled provider', 'Mumbai Tier IV + DR in India*', '24×7 SOC, WAF & DDoS', '180-day logs, 6-hour CERT-In support', 'Hosting for GIGW 3.0 portals', 'Exit plan, open-format export'],
+      heroMessages: ['Keep citizen services available during peak demand', 'Host government data and backups in India', 'Managed operations with logs and audit evidence'],
+      faqs: GOVERNMENT_CLOUD_FAQS,
+    };
+    if (slug === 'higher-education-cloud' && view) return {
+      ...view,
+      brandSuffix: 'Cloud',
+      tagline: 'One campus cloud for teaching, exams, research and records — run 24×7 from Mumbai.',
+      heroHighlight: "XcellCloud Higher Education Cloud hosts your LMS, ERP/SIS and exam platforms, gives researchers CPU and GPU on demand, runs AI and computer labs as cloud workspaces and keeps campus Wi-Fi monitored — with student data held in India and handled the way the DPDP Act expects.",
+      heroPoints: ['LMS & ERP/SIS hosting', 'Burst capacity for exams', 'Research HPC & GPU', 'AI IDE labs from ₹699/learner', 'Managed campus Wi-Fi', 'DPDP-aware student data'],
+      heroMessages: ['Prepare exam-day capacity before the bell', 'Support teaching, research and labs in one cloud', 'Keep student records hosted in India'],
+      faqs: HIGHER_EDUCATION_CLOUD_FAQS,
+    };
+    if (slug === 'construction-cloud' && view) return {
+      ...view,
+      brandSuffix: 'Cloud',
+      tagline: 'One model, one drawing set, every site — online.',
+      heroHighlight: "XcellCloud Construction Cloud runs BIM and CAD on GPU cloud desktops, keeps one drawing register for the architect, contractor and site, links site offices over SD-WAN with 4G/5G backup, and stores drone, photo and CCTV footage in India — all from our Mumbai Tier IV data centre, watched 24×7.",
+      heroPoints: ['GPU cloud desktops for BIM & CAD', 'One drawing register, every party', 'Site SD-WAN with 4G / 5G backup', 'Drone & photo archive in India', 'Site CCTV with PPE alerts*', '24×7 NOC + SOC from Mumbai'],
+      heroMessages: ['Keep every site working from the current drawing set', 'Run BIM and CAD through GPU cloud desktops', 'Connect offices and sites with managed failover'],
+      faqs: CONSTRUCTION_CLOUD_FAQS,
+    };
+    if (slug === 'pharmaceutical-cloud' && view) return {
+      ...view,
+      brandSuffix: 'Cloud',
+      tagline: 'GxP-ready cloud for the records an inspector will ask to see.',
+      heroHighlight: "XcellCloud Pharmaceutical Cloud hosts LIMS, QMS, MES, chromatography data, ERP/SAP and clinical systems in our Mumbai Tier IV data centre on qualified infrastructure — with audit trails, synchronised clocks, immutable backups, DR in India* and validation support* for your IQ, OQ and PQ.",
+      heroPoints: ['Infrastructure IQ / OQ pack*', 'Part 11 / Annex 11-aware hosting', 'NTP-synced, tamper-evident logs', 'Immutable backups, restore-tested', 'LIMS, QMS, MES, SAP hosting', 'Supplier audit access for you'],
+      heroMessages: ['Keep regulated records available for inspection', 'Host critical workloads on qualified infrastructure', 'Support validation with documented evidence'],
+      faqs: PHARMACEUTICAL_CLOUD_FAQS,
+    };
+    if (slug === 'logistics-cloud' && view) return {
+      ...view,
+      brandSuffix: 'Cloud',
+      tagline: 'Every truck, every pallet, every e-way bill — on one cloud.',
+      heroHighlight: "XcellCloud Logistics Cloud hosts your TMS, WMS and ERP in our Mumbai Tier IV data centre, connects fleets through a managed IoT platform, links e-way bill and e-invoice systems, keeps warehouses scanning on edge nodes when the link drops, and plans routes with AI — watched 24×7 by our NOC and SOC.",
+      heroPoints: ['TMS, WMS & ERP hosted in India', 'Fleet telematics on IoT Cloud', 'E-way bill & e-invoice integrations', 'Edge nodes for hubs', 'Warehouse Wi-Fi & SD-WAN', 'AI route optimisation'],
+      heroMessages: ['Connect every truck, warehouse and branch', 'Keep fleet and shipment data in one view', 'Run logistics workloads from a managed cloud in India'],
+      faqs: LOGISTICS_CLOUD_FAQS,
+    };
+    if (slug === 'hospitality-cloud' && view) return {
+      ...view,
+      brandSuffix: 'Cloud',
+      tagline: 'Every guest online, every booking in sync, no card number on file.',
+      heroHighlight: "XcellCloud Hospitality Cloud hosts your PMS, POS and central reservations in our Mumbai Tier IV data centre, runs guest Wi-Fi with OTP login and one-year records, keeps card payments in a small PCI-ready segment and guest data under consent — for one hotel or a whole chain, watched 24×7.",
+      heroPoints: ['PMS, POS & CRS hosted in India', 'Guest Wi-Fi with OTP login', 'PCI DSS v4.0.1 readiness', 'Consent-aware guest data', 'Lobby & back-office CCTV*', '24×7 NOC + SOC from Mumbai'],
+      heroMessages: ['Keep guest connectivity and reservations running', 'Connect front desk, back office and every property', 'Manage hospitality workloads from a cloud in India'],
+      faqs: HOSPITALITY_CLOUD_FAQS,
+    };
+    if (slug === 'manufacturing-cloud' && view) return {
+      ...view,
+      brandSuffix: 'Cloud',
+      tagline: 'From machine to ERP — connected, protected and recoverable.',
+      heroHighlight: "XcellCloud Manufacturing Cloud hosts SAP and ERP, MES, PLM and CAD desktops, and the IIoT platform your plants report into — with edge nodes on the shop floor, OT security between the lines and the office, and DR so dispatch never stops. Run 24×7 from our Mumbai Tier IV data centre.",
+      heroPoints: ['SAP & ERP on cloud or private cluster', 'IIoT from ₹49/device · edge nodes', 'PLM & CAD on cloud desktops', 'OT assessment & monitoring', 'SD-WAN between plants', 'Plant DR with drills'],
+      heroMessages: ['Connect shop-floor data to enterprise systems', 'Keep plant workloads protected and recoverable', 'Manage ERP, IIoT and plant connectivity together'],
+      faqs: MANUFACTURING_CLOUD_FAQS,
+    };
+    if (slug === 'insurance-cloud' && view) return {
+      ...view,
+      brandSuffix: 'Cloud',
+      tagline: 'Claims that settle faster. Records that stay in India. Controls IRDAI can inspect.',
+      heroHighlight: "XcellCloud Insurance Cloud runs policy administration, claims, core insurance platforms, customer portals and fraud analytics for insurers, brokers, TPAs and web aggregators — in our Mumbai Tier IV data centre, with DR in India*, a 24×7 SOC and the outsourcing paperwork your board will ask for.",
+      heroPoints: ['Mumbai Tier IV · DR in India*', 'Policy admin & claims hosting', 'Fraud analytics on India-held data', 'SOC, WAF, PAM & Cloud HSM', 'IRDAI inspection access in contract', 'DR drills with evidence'],
+      heroMessages: ['Run policy and claims systems on one managed cloud', 'Keep policyholder records hosted in India', 'Prepare recovery drills and inspection evidence'],
+      faqs: INSURANCE_CLOUD_FAQS,
+    };
+    if (slug === 'smb-cloud' && view) return {
+      ...view,
+      brandSuffix: 'Cloud',
+      tagline: 'Simplify operations. Mitigate risk. One team, one invoice.',
+      heroHighlight: "XcellCloud SMB Cloud bundles cloud servers, Microsoft 365 or Google Workspace, backup, endpoint and email security, firewall and Wi-Fi for firms with 10 to 250 people — set up, watched 24×7 and billed in rupees from our Mumbai Tier IV data centre.",
+      heroPoints: ['Cloud servers & desktops in Mumbai', 'Microsoft 365 or Google Workspace, managed', 'Backup for mail, PCs and servers', 'Endpoint & email security', 'Firewall & Wi-Fi, managed', 'One GST invoice, from ₹696/user*'],
+      heroMessages: ['Bring business IT under one managed service', 'Protect mail, devices and critical workloads', 'One team, one support desk and one invoice'],
+      faqs: SMB_CLOUD_FAQS,
+    };
     if (slug === 'staff-augmentation' && view) return {
       ...view,
       brandSuffix: 'Talent',
@@ -4635,6 +4804,23 @@ class ProductPageComponent {
       'enterprise-rag-as-a-service': { frame: 'xh-imported-interactive-content.enterprise-rag-source-content', overview: 'overview', features: 'governance', uses: 'usecases', specifications: 'deploy' },
       'bfsi-cloud': { frame: 'xh-imported-interactive-content.bfsi-cloud-source-content', overview: 'overview', features: 'security', uses: 'workloads', specifications: 'architecture' },
       'industrial-park-digital-transformation': { frame: 'xh-imported-interactive-content.industrial-park-source-content', overview: 'overview', features: 'capabilities', uses: 'usecases', specifications: 'architecture' },
+      'microsoft-365-security-assessment': { frame: 'xh-imported-interactive-content.m365-security-assessment-source-content', overview: 'overview', features: 'capabilities', uses: 'usecases', specifications: 'how' },
+      'google-security-assessment': { frame: 'xh-imported-interactive-content.google-security-assessment-source-content', overview: 'overview', features: 'capabilities', uses: 'usecases', specifications: 'how' },
+      'email-encryption': { frame: 'xh-imported-interactive-content.email-encryption-source-content', overview: 'overview', features: 'capabilities', uses: 'usecases', specifications: 'how' },
+      'enterprise-dmarc': { frame: 'xh-imported-interactive-content.enterprise-dmarc-source-content', overview: 'overview', features: 'capabilities', uses: 'usecases', specifications: 'how' },
+      'email-security-smb': { frame: 'xh-imported-interactive-content.email-security-smb-source-content', overview: 'overview', features: 'capabilities', uses: 'usecases', specifications: 'how' },
+      'media-and-entertainment': { frame: 'xh-imported-interactive-content.media-and-entertainment-source-content', overview: 'challenges', features: 'stack', uses: 'usecases', specifications: 'architecture' },
+      'retail-cloud': { frame: 'xh-imported-interactive-content.retail-cloud-source-content', overview: 'challenges', features: 'stack', uses: 'usecases', specifications: 'architecture' },
+      'healthcare-cloud': { frame: 'xh-imported-interactive-content.healthcare-cloud-source-content', overview: 'challenges', features: 'stack', uses: 'usecases', specifications: 'architecture' },
+      'government-cloud': { frame: 'xh-imported-interactive-content.government-cloud-source-content', overview: 'overview', features: 'stack', uses: 'usecases', specifications: 'architecture' },
+      'higher-education-cloud': { frame: 'xh-imported-interactive-content.higher-education-cloud-source-content', overview: 'overview', features: 'stack', uses: 'usecases', specifications: 'architecture' },
+      'construction-cloud': { frame: 'xh-imported-interactive-content.construction-cloud-source-content', overview: 'overview', features: 'stack', uses: 'usecases', specifications: 'architecture' },
+      'pharmaceutical-cloud': { frame: 'xh-imported-interactive-content.pharmaceutical-cloud-source-content', overview: 'overview', features: 'stack', uses: 'usecases', specifications: 'architecture' },
+      'logistics-cloud': { frame: 'xh-imported-interactive-content.logistics-cloud-source-content', overview: 'overview', features: 'stack', uses: 'usecases', specifications: 'architecture' },
+      'hospitality-cloud': { frame: 'xh-imported-interactive-content.hospitality-cloud-source-content', overview: 'overview', features: 'stack', uses: 'usecases', specifications: 'architecture' },
+      'manufacturing-cloud': { frame: 'xh-imported-interactive-content.manufacturing-cloud-source-content', overview: 'overview', features: 'stack', uses: 'usecases', specifications: 'architecture' },
+      'insurance-cloud': { frame: 'xh-imported-interactive-content.insurance-cloud-source-content', overview: 'overview', features: 'stack', uses: 'usecases', specifications: 'architecture' },
+      'smb-cloud': { frame: 'xh-imported-interactive-content.smb-cloud-source-content', overview: 'overview', features: 'stack', uses: 'usecases', specifications: 'architecture' },
       'staff-augmentation': { frame: 'xh-imported-interactive-content.staff-augmentation-source-content', overview: 'overview', features: 'capabilities', uses: 'usecases', specifications: 'skills' },
       'amd-epyc-cpu-comparison': { frame: 'xh-imported-interactive-content.amd-epyc-source-content', overview: 'families', features: 'finder', uses: 'usecases', specifications: 'compare' },
       'nvidia-server-gpu-comparison': { frame: 'xh-imported-interactive-content.nvidia-gpu-source-content', overview: 'families', features: 'finder', uses: 'usecases', specifications: 'compare' },
@@ -5117,6 +5303,9 @@ class ProductPageComponent {
   }
 
   private resolve(slug: string): ProductView | null {
+    if (slug === 'media-and-entertainment') {
+      return this.products.build({ name: 'Media & Entertainment Cloud', cat: 'Solutions', crumb: 'Solutions › Industry Cloud' });
+    }
     if (!slug) return null;
     if (slug === 'microsoft-entra-suite') {
       const base = this.products.build({ name: 'Microsoft Entra ID', cat: 'Security', crumb: 'Security › Microsoft Entra' });

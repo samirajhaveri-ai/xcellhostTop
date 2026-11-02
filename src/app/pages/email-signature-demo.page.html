@@ -1,0 +1,72 @@
+<main class="acronis-demo-page">
+  <div class="acronis-demo-wrap">
+    <nav class="acronis-demo-breadcrumb" aria-label="Breadcrumb">
+      <a routerLink="/">Home</a><span aria-hidden="true">/</span><span>Experience Center</span>
+      <span aria-hidden="true">/</span><span aria-current="page">Email Signature Demo</span>
+    </nav>
+
+    <section class="acronis-catalog" aria-labelledby="signature-demo-title">
+      <div class="acronis-catalog-toolbar">
+        <div>
+          <span class="acronis-demo-eyebrow">Videos &amp; product demos</span>
+          <h1 id="signature-demo-title">Email Signature Demo</h1>
+        </div>
+        <label class="acronis-sort">
+          <span>Sort by</span>
+          <select [value]="sortMode()" (change)="setSort($any($event.target).value)">
+            <option value="featured">Featured</option><option value="title">Title A–Z</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="acronis-filters signature-demo-filters">
+        <label class="acronis-search">
+          <span>Search videos</span>
+          <input type="search" placeholder="Search by feature or topic" [value]="searchTerm()" (input)="setSearch($any($event.target).value)" />
+        </label>
+        <label>
+          <span>Topic</span>
+          <select [value]="selectedTopic()" (change)="setTopic($any($event.target).value)">
+            <option value="">All topics</option>
+            @for (topic of topics; track topic) {<option [value]="topic">{{ topic }}</option>}
+          </select>
+        </label>
+      </div>
+      <div class="signature-demo-meta">
+        <span role="status">{{ filteredVideos().length }} videos</span>
+        @if (filtersAreActive()) {<button class="acronis-clear-filters" type="button" (click)="clearFilters()">Clear filters</button>}
+        <a href="https://www.youtube.com/@TeamCrossware/videos" target="_blank" rel="noopener noreferrer">View Crossware channel &nearr;</a>
+      </div>
+
+      @if (visibleVideos().length) {
+        <div class="acronis-video-grid">
+          @for (video of visibleVideos(); track video.videoId) {
+            <article class="acronis-video-card">
+              <div class="acronis-video-media signature-demo-media">
+                @if (activeVideoId() === video.videoId) {
+                  <iframe [src]="video.embedUrl" [title]="video.title" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                } @else {
+                  <button type="button" (click)="activeVideoId.set(video.videoId)" [attr.aria-label]="'Play ' + video.title">
+                    <img [src]="video.thumbnailUrl" alt="" width="480" height="360" loading="lazy" />
+                    <span class="acronis-play" aria-hidden="true"></span>
+                    <span class="signature-demo-duration">{{ video.duration }}</span>
+                  </button>
+                }
+              </div>
+              <div class="acronis-video-copy">
+                <div class="acronis-video-tags"><span>{{ video.topic }}</span><span>Crossware</span></div>
+                <h3>{{ video.title }}</h3>
+                <p><a [href]="video.watchUrl" target="_blank" rel="noopener noreferrer" [attr.aria-label]="'Watch ' + video.title + ' on YouTube'">Watch on YouTube &nearr;</a></p>
+              </div>
+            </article>
+          }
+        </div>
+        @if (visibleVideos().length < filteredVideos().length) {
+          <div class="acronis-show-more"><button type="button" (click)="showMore()">Show more videos <span>{{ visibleVideos().length }} of {{ filteredVideos().length }}</span></button></div>
+        }
+      } @else {
+        <div class="acronis-empty-state"><h3>No videos match these filters</h3><p>Try another keyword or choose a different topic.</p><button type="button" (click)="clearFilters()">Reset filters</button></div>
+      }
+    </section>
+  </div>
+</main>

@@ -8,12 +8,17 @@ import { GCP_SERVICE_PAGE } from './data/gcp-services.data';
 
 
 export const routes: Routes = [
+
+  { path: 'email-encryptionu', redirectTo: 'email-encryption', pathMatch: 'full' },
+  { path: 'google-security-assessmentupload', redirectTo: 'google-security-assessment', pathMatch: 'full' },
+
   { path: 'acronis-licensing-guide', title: 'Acronis Licensing Guide | XcellHost', data: { searchTitle: 'Acronis Licensing Guide', searchDescription: 'Explore Acronis licensing models, workloads, storage, pricing calculators and FAQs for India.' }, loadComponent: () => import('./pages/licensing-guide.page').then(m => m.LicensingGuidePage) },
   { path: 'acronis-licencing-guide', redirectTo: 'acronis-licensing-guide', pathMatch: 'full' },
   { path: 'microsoft-csp-licensing-guide', title: 'Microsoft CSP Licensing Guide | XcellHost', data: { searchTitle: 'Microsoft CSP Licensing Guide', searchDescription: 'Understand Microsoft CSP subscriptions, NCE terms, billing, renewals and licensing tools for India.' }, loadComponent: () => import('./pages/licensing-guide.page').then(m => m.LicensingGuidePage) },
   { path: 'microsoft-csp-licencing-guide', redirectTo: 'microsoft-csp-licensing-guide', pathMatch: 'full' },
   { path: 'microsoft-365-licensing-guide', title: 'Microsoft 365 Licensing Guide | XcellHost', data: { searchTitle: 'Microsoft 365 Licensing Guide', searchDescription: 'Compare Microsoft 365 plans, licensing rules, pricing and interactive tools for Indian businesses.' }, loadComponent: () => import('./pages/licensing-guide.page').then(m => m.LicensingGuidePage) },
   { path: 'microsoft-365-licencing-guide', redirectTo: 'microsoft-365-licensing-guide', pathMatch: 'full' },
+
   { path: 'smart-manufacturing', title: 'Industry 5.0 & Smart Manufacturing | XcellHost', loadComponent: () => import('./pages/smart-manufacturing.page').then(m => m.SmartManufacturingPage) },
   { path: 'industry-5-smart-manufacturing', redirectTo: 'smart-manufacturing', pathMatch: 'full' },
   { path: 'vendor-partners/ibm-multicloud', title: 'IBM Multicloud Products and Services | XcellHost', loadComponent: () => import('./pages/ibm-multicloud-services.page').then(m => m.IbmMulticloudServicesPage) },
@@ -656,7 +661,7 @@ export const routes: Routes = [
     path: 'managed-redis',
     loadComponent: () => import('./pages/managed-redis.page').then((m) => m.ManagedRedisPage),
   },
-  ...[...MENU_SERVICE_PAGES, ...INDUSTRY_CLOUD_PAGES].filter((page) => page.slug !== 'smart-qr-and-nfc-automation' && page.slug !== 'gcc-cloud' && page.slug !== 'bfsi-cloud').map((page) => ({
+  ...[...MENU_SERVICE_PAGES, ...INDUSTRY_CLOUD_PAGES].filter((page) => page.slug !== 'smart-qr-and-nfc-automation' && page.slug !== 'gcc-cloud' && page.slug !== 'bfsi-cloud' && page.slug !== 'retail-cloud' && page.slug !== 'healthcare-cloud' && page.slug !== 'government-cloud' && page.slug !== 'higher-education-cloud' && page.slug !== 'construction-cloud' && page.slug !== 'pharmaceutical-cloud' && page.slug !== 'logistics-cloud' && page.slug !== 'hospitality-cloud' && page.slug !== 'manufacturing-cloud' && page.slug !== 'insurance-cloud' && page.slug !== 'smb-cloud').map((page) => ({
     path: page.slug,
     data: { servicePage: page },
     loadComponent: () => import('./pages/menu-service.page').then((m) => m.MenuServicePage),
@@ -670,7 +675,8 @@ export const routes: Routes = [
   {
     path: 'media-and-entertainment',
     title: 'Media & Entertainment | XcellHost',
-    loadComponent: () => import('./pages/media-entertainment.page').then((m) => m.MediaEntertainmentPage),
+    data: { productSlug: 'media-and-entertainment' },
+    loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
   },
   { path: 'mobile-application-penetration-testing', redirectTo: 'mobile-application-security-testing', pathMatch: 'full' },
   { path: 'aeo-geo-automation4', redirectTo: 'aeo-geo-automation', pathMatch: 'full' },
@@ -853,6 +859,7 @@ export const routes: Routes = [
   { path: 'under-construction/events-catalog', loadComponent: () => import('./pages/events-catalog.page').then((m) => m.EventsCatalogPage) },
   { path: 'global-data-centers', redirectTo: 'company/data-centers-global', pathMatch: 'full' },
   { path: 'under-construction/global-data-centers', redirectTo: 'company/data-centers-global', pathMatch: 'full' },
+  { path: 'email-signature-demo', loadComponent: () => import('./pages/email-signature-demo.page').then((m) => m.EmailSignatureDemoPage) },
   { path: 'under-construction/:slug', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
   { path: 'under-construction', loadComponent: () => import('./pages/under-construction.page').then((m) => m.UnderConstructionPage) },
   {
@@ -1124,7 +1131,7 @@ export const routes: Routes = [
   { path: 'acronis-edr', redirectTo: '', pathMatch: 'full' },
   {
     path: 'email-security-smb',
-    data: { productSlug: 'vortex-seg', productDisplayName: 'Email Security SMB' },
+    data: { productSlug: 'email-security-smb', productDisplayName: 'Email Security SMB' },
     loadComponent: () => import('./pages/product.page').then((m) => m.ProductPage),
   },
   {
