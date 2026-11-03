@@ -5,13 +5,27 @@
       <div class="hero-layout">
         <div class="hero-copy">
           <span class="eyebrow"><span></span> {{ definition.category }} · Product comparison</span>
-          <h1><span>{{ left.displayName }}</span><em>vs</em><span>{{ right.displayName }}</span></h1>
+          @if (definition.kind === 'guide') {
+            <h1 class="guide-title"><span>{{ title }}</span></h1>
+          } @else {
+            <h1><span>{{ left.displayName }}</span><em>vs</em><span>{{ right.displayName }}</span></h1>
+          }
           <p class="detail-intro">{{ definition.summary }}</p>
           <div class="hero-actions">
-            <a class="comparison-button primary-button" href="#feature-comparison-title">Compare features <span aria-hidden="true">↓</span></a>
+            <a class="comparison-button primary-button" href="#feature-comparison-title">{{ definition.kind === 'guide' ? 'View comparison' : 'Compare features' }} <span aria-hidden="true">↓</span></a>
             <button class="comparison-button outline-button" type="button" (click)="requestConsultation()">Talk to an expert <span aria-hidden="true">↗</span></button>
           </div>
         </div>
+        @if (definition.kind === 'guide') {
+          <div class="comparison-animation guide-animation" role="img" [attr.aria-label]="title">
+            <div class="animation-toolbar"><span>FULL COMPARISON GUIDE</span></div>
+            <div class="guide-brand-panel">
+              <span class="guide-brand-logo"><img [src]="left.logo" [alt]="title + ' logo'" /></span>
+              <strong>{{ title }}</strong>
+              <small>Specifications · workload fit · sizing guidance</small>
+            </div>
+          </div>
+        } @else {
         <div class="comparison-animation" [class.is-paused]="animationPaused()" role="group" aria-label="Animated platform comparison">
           <div class="animation-toolbar"><span>PLATFORM COMPARISON</span><button type="button" (click)="animationPaused.set(!animationPaused())" [attr.aria-pressed]="animationPaused()">{{ animationPaused() ? '▶ Play' : 'Ⅱ Pause' }} animation</button></div>
           <div class="animation-stage">
@@ -29,8 +43,13 @@
           </div>
           <div class="animation-caption"><span aria-hidden="true">◇</span> Two platforms. One informed decision.</div>
         </div>
+        }
       </div>
-      <div class="hero-footer"><span><i aria-hidden="true">✓</i> Side-by-side capabilities</span><span><i aria-hidden="true">✓</i> Strengths &amp; considerations</span><span><i aria-hidden="true">✓</i> Guidance from XcellHost</span></div>
+      @if (definition.kind === 'guide') {
+        <div class="hero-footer"><span><i aria-hidden="true">✓</i> Full specifications</span><span><i aria-hidden="true">✓</i> Workload finder</span><span><i aria-hidden="true">✓</i> Sizing guidance</span></div>
+      } @else {
+        <div class="hero-footer"><span><i aria-hidden="true">✓</i> Side-by-side capabilities</span><span><i aria-hidden="true">✓</i> Strengths &amp; considerations</span><span><i aria-hidden="true">✓</i> Guidance from XcellHost</span></div>
+      }
     </div>
   </header>
 
@@ -40,7 +59,7 @@
       @for (product of [left, right]; track $index; let index = $index) {
         <article class="product-summary" [class.product-summary-alternate]="index === 1">
           <header>
-            <div class="summary-heading"><span class="summary-product-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6l-8-3Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg></span><span class="summary-option">OPTION 0{{ index + 1 }}</span></div>
+            <div class="summary-heading"><span class="summary-product-logo"><img [src]="product.logo" [alt]="product.displayName + ' logo'" /></span></div>
             <div><span class="product-category">{{ product.entry.group }}</span><h2>{{ product.displayName }}</h2></div>
           </header>
           <div class="product-summary-body">
@@ -50,7 +69,9 @@
             <div class="summary-field price-field"><div><span>STARTING PRICE</span><strong>{{ product.price }}</strong></div><button type="button" (click)="requestConsultation()" [attr.aria-label]="'Discuss pricing for ' + product.displayName">Discuss pricing <span aria-hidden="true">↗</span></button></div>
             <div class="summary-list strengths"><h3><i aria-hidden="true">✓</i> Strengths</h3><ul>@for (item of product.strengths; track item) { <li><i aria-hidden="true">✓</i>{{ item }}</li> }</ul></div>
             <div class="summary-list considerations"><h3><i aria-hidden="true">!</i> Before you decide</h3><ul>@for (item of product.considerations; track item) { <li>{{ item }}</li> }</ul></div>
-            <a class="product-detail-link" [routerLink]="['/', product.slug]">Explore {{ product.displayName }} <span aria-hidden="true">↗</span></a>
+            @if (definition.kind !== 'guide') {
+              <a class="product-detail-link" [routerLink]="['/', product.slug]">Explore {{ product.displayName }} <span aria-hidden="true">↗</span></a>
+            }
           </div>
         </article>
       }

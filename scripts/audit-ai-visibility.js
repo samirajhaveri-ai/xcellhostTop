@@ -118,6 +118,9 @@ if (!heroTemplate.includes('[attr.aria-hidden]="i !== activeVisualSlide()"') ||
 if (!bannerActionsSource.includes("'h1, .home-hero-slide .home-hero-slide-title'")) {
   failures.push('/: homepage carousel slides do not all receive shared banner actions');
 }
+if (!heroTemplate.includes('class="home-hero-slide" data-product="Cloud Services"')) {
+  failures.push('/: homepage carousel Ask-AI bars do not use the shared Cloud Services label');
+}
 
 console.log(`Checked ${routes.length} sitemap pages: ${counts.breadcrumbs} breadcrumbs, ${counts.services} services, ${counts.faqs} FAQ pages.`);
 if (failures.length) {

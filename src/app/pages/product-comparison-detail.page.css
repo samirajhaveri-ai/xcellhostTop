@@ -15,6 +15,7 @@
 h1{display:flex;flex-direction:row;align-items:baseline;gap:.3em;flex-wrap:nowrap;white-space:nowrap;margin:18px 0 20px;color:#fff;font:800 clamp(14px,5cqw,32px)/1.25 var(--disp,sans-serif);letter-spacing:-.04em}
 h1 em{font:600 .5em/1 var(--mono,monospace);letter-spacing:.02em;font-style:normal;color:#91b9ee;flex:none}
 h1 em::before,h1 em::after{content:none}
+.guide-title{white-space:normal;font-size:clamp(27px,5cqw,42px)}
 .detail-intro{margin:0;color:#b8c9e1;font-size:14px;line-height:1.8}
 .hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
 .comparison-button{display:inline-flex;align-items:center;justify-content:center;gap:18px;border:1px solid transparent;border-radius:9px;padding:13px 17px;font:600 12px/1.4 var(--body,sans-serif);text-decoration:none;cursor:pointer;transition:background .2s,box-shadow .2s}
@@ -59,6 +60,13 @@ h1 em::before,h1 em::after{content:none}
 .animation-caption{display:flex;justify-content:center;align-items:center;gap:8px;padding:14px 12px;border-top:1px solid #ffffff0d;color:#a9bfdc;font-size:10px;line-height:1.5}
 .animation-caption>span{color:#7fb5ff;font-size:15px}
 .comparison-animation.is-paused *,.comparison-animation.is-paused *::before{animation-play-state:paused!important}
+.guide-animation{min-height:310px}
+.guide-animation .animation-toolbar{justify-content:flex-start}
+.guide-brand-panel{display:flex;min-height:260px;align-items:center;justify-content:center;flex-direction:column;gap:12px;padding:34px;text-align:center;background-image:radial-gradient(#8fbcff16 1px,transparent 1px);background-size:16px 16px}
+.guide-brand-logo{position:relative;display:block;width:min(230px,80%);height:92px;overflow:hidden;border-radius:14px;background:#fff;box-shadow:0 14px 35px #0003}
+.guide-brand-logo img{position:absolute!important;inset:14px 20px!important;display:block!important;width:calc(100% - 40px)!important;height:calc(100% - 28px)!important;max-width:none!important;object-fit:contain!important;transform:none!important}
+.guide-brand-panel strong{color:#eef5ff;font:700 20px/1.35 var(--disp,sans-serif)}
+.guide-brand-panel small{color:#91aacc;font-size:11px}
 @keyframes comparison-signal{to{stroke-dashoffset:-444}}
 @keyframes comparison-orbit{to{transform:rotate(360deg)}}
 @keyframes comparison-ring{0%,100%{opacity:.18;scale:1}50%{opacity:.4;scale:1.045}}
@@ -79,13 +87,12 @@ h1 em::before,h1 em::after{content:none}
 .product-summary{--accent:#1565d8;--tint:#edf4ff;--header-glow:#1e57a4;display:flex;flex-direction:column;overflow:hidden;border:1px solid #d9e3f2;border-radius:20px;background:#fff;box-shadow:0 12px 36px #122e5a09;transition:box-shadow .2s,border-color .2s}
 .product-summary:hover{border-color:#b1c8e8;box-shadow:0 16px 42px #122e5a12}
 .product-summary-alternate{--accent:#7452c9;--tint:#f4f0ff;--header-glow:#5a438b}
-.product-summary>header{position:relative;display:flex;flex-direction:column;gap:22px;align-items:stretch;padding:26px 28px 28px;background:radial-gradient(ellipse at 100% 0,var(--header-glow),transparent 80%),#0b2446;border:0}
+.product-summary>header{position:relative;display:flex;flex-direction:column;gap:0;align-items:stretch;padding:26px 28px 28px;background:radial-gradient(ellipse at 100% 0,var(--header-glow),transparent 80%),#0b2446;border:0}
 .product-summary>header::after{content:'';position:absolute;width:130px;height:130px;border:1px solid #ffffff0c;border-radius:50%;right:-30px;top:-35px;pointer-events:none}
-.summary-heading{display:flex;align-items:center;justify-content:space-between}
-.summary-product-icon{display:grid;place-items:center;width:44px;height:44px;border-radius:13px;background:#ffffff10;border:1px solid #ffffff20;color:#c0daff}
-.product-summary-alternate .summary-product-icon{color:#e0d4ff}
-.summary-product-icon svg{width:26px;height:26px}
-.summary-option{padding:6px 10px;border:1px solid #ffffff20;border-radius:6px;color:#c7d8f2;font:500 9px var(--mono,monospace);letter-spacing:.12em}
+.product-summary>header>div:last-child{position:relative;z-index:1;min-height:72px;padding-right:min(220px,48%)}
+.summary-heading{position:absolute;z-index:1;top:26px;right:28px;display:block;width:min(190px,45%);height:72px}
+.summary-product-logo{position:relative;display:block;width:100%;height:72px;overflow:hidden;border:1px solid #ffffff20;border-radius:12px;background:#fff;box-shadow:0 10px 24px #020c1d30}
+.summary-product-logo img{position:absolute!important;inset:10px 14px!important;display:block!important;width:calc(100% - 28px)!important;height:calc(100% - 20px)!important;max-width:none!important;object-fit:contain!important;transform:none!important}
 .product-category{display:block;color:#abc8ef;font:600 9px/1.5 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
 .product-summary-alternate .product-category{color:#cec0ec}
 .product-summary h2{color:#fff;font:700 25px/1.25 var(--disp,sans-serif);margin:7px 0 0;letter-spacing:-.035em}
@@ -114,7 +121,7 @@ h1 em::before,h1 em::after{content:none}
 .product-detail-link>span{display:grid;place-items:center;width:25px;height:25px;border-radius:50%;background:#fff}
 .product-detail-link:hover{border-color:var(--accent)}
 @media(max-width:1000px) and (min-width:721px){.product-summary-body{padding:22px}.product-summary>header{padding:24px}.strengths ul{grid-template-columns:1fr}}
-@media(max-width:420px){.strengths ul{grid-template-columns:1fr}.product-summary h2{font-size:23px}}
+@media(max-width:420px){.strengths ul{grid-template-columns:1fr}.product-summary h2{font-size:21px}.product-summary>header>div:last-child{padding-right:46%}.summary-heading{top:20px;right:20px;width:42%}}
 @media(prefers-reduced-motion:reduce){.product-summary{transition:none}}
 
 .feature-card{overflow:hidden;margin-bottom:30px;border:1px solid #d9e3f2;border-radius:20px;background:#fff;box-shadow:0 12px 36px #122e5a08}
