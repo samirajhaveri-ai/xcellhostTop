@@ -103,6 +103,7 @@ if (!/class="[^"]*home-hero-slide[^"]*is-active[^"]*"/.test(home)) {
 const indexSource = fs.readFileSync(path.join(root, 'src', 'index.html'), 'utf8');
 const appTemplate = fs.readFileSync(path.join(root, 'src', 'app', 'app.html'), 'utf8');
 const heroTemplate = fs.readFileSync(path.join(root, 'src', 'app', 'sections', 'hero.component.html'), 'utf8');
+const bannerActionsSource = fs.readFileSync(path.join(root, 'src', 'app', 'sections', 'banner-actions.ts'), 'utf8');
 const globalStyles = fs.readFileSync(path.join(root, 'src', 'styles.css'), 'utf8');
 if (indexSource.includes('zps-page-screen') || /opacity:\s*0[^;]*!important;\s*visibility:\s*hidden/i.test(indexSource)) {
   failures.push('/: a third-party anti-flicker script hides the document');
@@ -113,6 +114,9 @@ if (appTemplate.includes('<xh-intro-splash')) {
 if (!heroTemplate.includes('[attr.aria-hidden]="i !== activeVisualSlide()"') ||
     !/\.home-hero-slide\.is-active\s*,\s*\.home-hero-slide\[aria-hidden=["']false["']\]\s*\{[^}]*display\s*:\s*grid/i.test(globalStyles)) {
   failures.push('/: homepage carousel can hide every hero slide after hydration');
+}
+if (!bannerActionsSource.includes("'h1, .home-hero-slide .home-hero-slide-title'")) {
+  failures.push('/: homepage carousel slides do not all receive shared banner actions');
 }
 
 console.log(`Checked ${routes.length} sitemap pages: ${counts.breadcrumbs} breadcrumbs, ${counts.services} services, ${counts.faqs} FAQ pages.`);
