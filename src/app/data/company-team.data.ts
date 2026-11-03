@@ -8,6 +8,7 @@ export interface CompanyTeamMember {
 
 export const COMPANY_TEAM: Readonly<Record<'managementTeam' | 'advisoryTeam' | 'salesTeam' | 'marketing' | 'AITeams' | 'developers' | 'accountantTeam' | 'graphicDesignerTeam' | 'adminTeam' | 'technicalSupportTeam', readonly CompanyTeamMember[]>> = {
   managementTeam: [
+    { initials: 'JS', name: 'James Soosai', role: 'Chief Business Strategist / CFO', image: '/assets/images/TEAMS PHOTO/James Soosai.jpeg' },
 
     { initials: 'YT', name: 'Yogesh Trivedi', role: 'Regional Director Africa ', image: '/assets/images/Yogesh Trivedi.png' },
     { initials: 'YJ', name: 'Yogendra Jagger', role: 'Regional Director - Middle East', image: '/assets/images/TEAMS PHOTO/Yogendra.png' },
@@ -19,7 +20,7 @@ export const COMPANY_TEAM: Readonly<Record<'managementTeam' | 'advisoryTeam' | '
   ],
 
   advisoryTeam: [
-    { initials: 'JS', name: 'James Soosai', role: 'Financial Advisor', image: '/assets/images/TEAMS PHOTO/James Soosai.jpeg' },
+    
     { initials: 'SM', name: 'CA Surendra Mehra', role: 'Chartered Accountant', image: '/assets/images/TEAMS PHOTO/Mehara.png' },
     { initials: 'UJ', name: 'Upendra Joshi ', role: 'International Alliances', image: '/assets/images/TEAMS PHOTO/Upendra.png' },
     { initials: 'CP', name: 'Christopher Pinto', role: 'Sales Consultant', image: '/assets/images/TEAMS PHOTO/cristopher.png' },
