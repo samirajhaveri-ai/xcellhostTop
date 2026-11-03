@@ -510,7 +510,7 @@
       @if (!isVmc() && !isCmc() && slug() !== 'performance-cloud' && slug() !== 'gpu-servers') {
       <div
         class="pp-hero"
-        [class.data-center-build-hero]="slug() === 'email-signature' || slug() === 'security-awareness-lms' || slug() === 'phishing-incident-response' || slug() === 'web3-blockchain-infrastructure' || slug() === 'smb-cloud' || slug() === 'insurance-cloud' || slug() === 'manufacturing-cloud' || slug() === 'hospitality-cloud' || slug() === 'logistics-cloud' || slug() === 'pharmaceutical-cloud' || slug() === 'construction-cloud' || slug() === 'higher-education-cloud' || slug() === 'government-cloud' || slug() === 'healthcare-cloud' || slug() === 'retail-cloud' || slug() === 'media-and-entertainment' || slug() === 'email-security-smb' || slug() === 'enterprise-dmarc' || slug() === 'email-encryption' || slug() === 'google-security-assessment' || slug() === 'microsoft-365-security-assessment' || slug() === 'industrial-park-digital-transformation' || slug() === 'staff-augmentation' || slug() === 'bfsi-cloud' || slug() === 'enterprise-rag-as-a-service' || slug() === 'applied-blockchain-security' || slug() === 'ai-vector-database' || slug() === 'amd-mi300' || slug() === 'cyber-range-as-a-service' || slug() === 'cloud-hardware-security-module' || slug() === 'hardware-security-module' || slug() === 'aiops-as-a-service' || slug() === 'ai-training-for-lawyer' || slug() === 'ai-ide-lab' || slug() === 'ai-app-builder' || slug() === 'nvidia-server-gpu-comparison' || slug() === 'amd-epyc-cpu-comparison' || slug() === 'managed-identity-service' || slug() === 'data-center-build-services' || slug() === 'vcio-as-a-service' || slug() === 'vcto-as-a-service' || slug() === 'vciso-as-a-service' || slug() === 'vcaio-as-a-service'"
+        [class.data-center-build-hero]="slug() === 'bare-metal-servers' || slug() === 'acronis-cyber-platform' || slug() === 'blockchain-as-a-service' || slug() === 'ai-as-a-service' || slug() === 'email-signature' || slug() === 'security-awareness-lms' || slug() === 'phishing-incident-response' || slug() === 'web3-blockchain-infrastructure' || slug() === 'smb-cloud' || slug() === 'insurance-cloud' || slug() === 'manufacturing-cloud' || slug() === 'hospitality-cloud' || slug() === 'logistics-cloud' || slug() === 'pharmaceutical-cloud' || slug() === 'construction-cloud' || slug() === 'higher-education-cloud' || slug() === 'government-cloud' || slug() === 'healthcare-cloud' || slug() === 'retail-cloud' || slug() === 'media-and-entertainment' || slug() === 'email-security-smb' || slug() === 'enterprise-dmarc' || slug() === 'email-encryption' || slug() === 'google-security-assessment' || slug() === 'microsoft-365-security-assessment' || slug() === 'industrial-park-digital-transformation' || slug() === 'staff-augmentation' || slug() === 'bfsi-cloud' || slug() === 'enterprise-rag-as-a-service' || slug() === 'applied-blockchain-security' || slug() === 'ai-vector-database' || slug() === 'amd-mi300' || slug() === 'cyber-range-as-a-service' || slug() === 'cloud-hardware-security-module' || slug() === 'hardware-security-module' || slug() === 'aiops-as-a-service' || slug() === 'ai-training-for-lawyer' || slug() === 'ai-ide-lab' || slug() === 'ai-app-builder' || slug() === 'nvidia-server-gpu-comparison' || slug() === 'amd-epyc-cpu-comparison' || slug() === 'managed-identity-service' || slug() === 'data-center-build-services' || slug() === 'vcio-as-a-service' || slug() === 'vcto-as-a-service' || slug() === 'vciso-as-a-service' || slug() === 'vcaio-as-a-service'"
         [class.sitelock-hero]="v.name === 'Web Security (SiteLock)'"
         [class.tally-product-hero]="v.name === 'Tally on Cloud'"
       >
@@ -1153,8 +1153,7 @@
             <iframe src="/email-signature-hero.html" title="Email Signature animated mail flow: automatic signatures, designer, rules, banners and legal footer" scrolling="no"></iframe>
           </div>
         } @else if (slug() === 'bare-metal-servers') {
-          <div class="pph-scene pph-bare-metal" aria-hidden="true">
-            <xh-bare-metal-content [heroOnly]="true" />
+          <div class="pph-scene data-center-build-visual"><iframe src="/bare-metal-servers-hero.html" title="Dedicated Servers: animated hardware, provisioning, performance and GPU configurations" scrolling="no"></iframe>
           </div>
         } @else if (slug() === 'acronis-genai-protection') {
           <div class="pph-scene genai-protection-hero-art" aria-hidden="true">
@@ -1385,7 +1384,7 @@
           </div>
         } @else if (slug() === 'vcaio-as-a-service') {
           <div class="pph-scene data-center-build-visual">
-            <iframe src="/vcaio-hero.html" title="Animated finance and AI leadership: forecasting, close, cloud spend and investment returns" scrolling="no"></iframe>
+            <iframe src="/vcaio-hero.html" title="Virtual Chief AI Officer: animated AI strategy, use cases, governance, costs and board reporting" scrolling="no"></iframe>
           </div>
         } @else if (slug() === 'ai-app-builder') {
           <div class="pph-scene data-center-build-visual">
@@ -1399,6 +1398,12 @@
           <div class="pph-scene data-center-build-visual">
             <iframe src="/ai-training-for-lawyer-hero.html" title="Animated legal training: citation verification, contract review, drafting, due diligence and translation" scrolling="no"></iframe>
           </div>
+        } @else if (slug() === 'acronis-cyber-platform') {
+          <div class="pph-scene data-center-build-visual"><iframe src="/acronis-cyber-platform-hero.html" title="Acronis Cyber Platform: animated protection, backup, recovery and multi-tenant management" scrolling="no"></iframe></div>
+        } @else if (slug() === 'blockchain-as-a-service') {
+          <div class="pph-scene data-center-build-visual"><iframe src="/blockchain-as-a-service-hero.html" title="Blockchain as a Service: animated ledgers, transactions, identity and consortium operations" scrolling="no"></iframe></div>
+        } @else if (slug() === 'ai-as-a-service') {
+          <div class="pph-scene data-center-build-visual"><iframe src="/ai-as-a-service-hero.html" title="AI as a Service: animated GPUs, inference, models, apps and governance" scrolling="no"></iframe></div>
         } @else if (slug() === 'aiops-as-a-service') {
           <div class="pph-scene data-center-build-visual">
             <iframe src="/aiops-as-a-service-hero.html" title="AIOps preview: animated alert correlation, anomalies, root causes, capacity and approved remediation" scrolling="no"></iframe>
@@ -1843,7 +1848,7 @@
               </h1>
             } @else {
             <h1 id="ppTitle" [class.pp-title-compact]="compactHeroTitle()"
-              [xhFitBannerTitle]="slug() === 'email-signature' || slug() === 'security-awareness-lms' || slug() === 'phishing-incident-response' || slug() === 'web3-blockchain-infrastructure' || slug() === 'smb-cloud' || slug() === 'insurance-cloud' || slug() === 'manufacturing-cloud' || slug() === 'hospitality-cloud' || slug() === 'logistics-cloud' || slug() === 'pharmaceutical-cloud' || slug() === 'construction-cloud' || slug() === 'higher-education-cloud' || slug() === 'government-cloud' || slug() === 'healthcare-cloud' || slug() === 'retail-cloud' || slug() === 'media-and-entertainment' || slug() === 'email-security-smb' || slug() === 'enterprise-dmarc' || slug() === 'email-encryption' || slug() === 'google-security-assessment' || slug() === 'microsoft-365-security-assessment' || slug() === 'industrial-park-digital-transformation' || slug() === 'staff-augmentation' || slug() === 'enterprise-rag-as-a-service' || slug() === 'applied-blockchain-security' || slug() === 'amd-mi300' || slug() === 'cyber-range-as-a-service' || slug() === 'cloud-hardware-security-module' || slug() === 'hardware-security-module' || slug() === 'aiops-as-a-service' || slug() === 'ai-training-for-lawyer' || slug() === 'managed-identity-service' || slug() === 'vcaio-as-a-service' || slug() === 'vciso-as-a-service' || slug() === 'vcto-as-a-service' || slug() === 'vcio-as-a-service' || slug() === 'data-center-build-services' || slug() === 'gemini-managed-services' || slug() === 'acronis-ai' || slug() === 'docusign' || slug() === 'rpc-nodes' || slug() === 'zoom-conferenceing' || slug() === 'cpanel-vps' || isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || !!v.heroMessages[0]?.toLowerCase()?.startsWith('maximise online visibility')"
+              [xhFitBannerTitle]="slug() === 'bare-metal-servers' || slug() === 'acronis-cyber-platform' || slug() === 'blockchain-as-a-service' || slug() === 'ai-as-a-service' || slug() === 'email-signature' || slug() === 'security-awareness-lms' || slug() === 'phishing-incident-response' || slug() === 'web3-blockchain-infrastructure' || slug() === 'smb-cloud' || slug() === 'insurance-cloud' || slug() === 'manufacturing-cloud' || slug() === 'hospitality-cloud' || slug() === 'logistics-cloud' || slug() === 'pharmaceutical-cloud' || slug() === 'construction-cloud' || slug() === 'higher-education-cloud' || slug() === 'government-cloud' || slug() === 'healthcare-cloud' || slug() === 'retail-cloud' || slug() === 'media-and-entertainment' || slug() === 'email-security-smb' || slug() === 'enterprise-dmarc' || slug() === 'email-encryption' || slug() === 'google-security-assessment' || slug() === 'microsoft-365-security-assessment' || slug() === 'industrial-park-digital-transformation' || slug() === 'staff-augmentation' || slug() === 'enterprise-rag-as-a-service' || slug() === 'applied-blockchain-security' || slug() === 'amd-mi300' || slug() === 'cyber-range-as-a-service' || slug() === 'cloud-hardware-security-module' || slug() === 'hardware-security-module' || slug() === 'aiops-as-a-service' || slug() === 'ai-training-for-lawyer' || slug() === 'managed-identity-service' || slug() === 'vcaio-as-a-service' || slug() === 'vciso-as-a-service' || slug() === 'vcto-as-a-service' || slug() === 'vcio-as-a-service' || slug() === 'data-center-build-services' || slug() === 'gemini-managed-services' || slug() === 'acronis-ai' || slug() === 'docusign' || slug() === 'rpc-nodes' || slug() === 'zoom-conferenceing' || slug() === 'cpanel-vps' || isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' || !!v.heroMessages[0]?.toLowerCase()?.startsWith('maximise online visibility')"
               [bannerTitleMaxSize]="slug() === 'gemini-managed-services' ? 36 : slug() === 'acronis-ai' || slug() === 'docusign' || slug() === 'rpc-nodes' || slug() === 'zoom-conferenceing' || slug() === 'cpanel-vps' || isDigiCert() || slug() === 'sectigo-ssl-certificates' || slug() === 'comodo-ev-code-signing' || slug() === 'digicert-code-signing' ? 42 : 26">
               <span class="pp-title-brand" [attr.aria-label]="'Xcell' + v.brandSuffix">
                 <span class="pp-brand-xcell">Xcell</span
@@ -1932,12 +1937,6 @@
                 Microsoft keeps Entra ID running &mdash; but under the Shared Responsibility Model,
                 protecting what&rsquo;s inside your directory is your job, and native recovery only
                 holds deleted objects for 30 days.
-              </p>
-            } @else if (slug() === 'bare-metal-servers') {
-              <p class="pp-tagline bare-metal-hero-summary" id="ppTag">
-                Get the raw power of a dedicated bare-metal machine &mdash; enterprise Intel Xeon CPUs,
-                DDR4 ECC RAM, blazing NVMe/SSD storage and high bandwidth &mdash; with full root access,
-                free DDoS protection and a 99.99% uptime SLA.
               </p>
             } @else if (slug() !== 'sectigo-ssl-certificates' && !v.tagline.toLowerCase().startsWith('maximise online visibility')) {
               <h2
@@ -2763,6 +2762,14 @@
             <xh-imported-interactive-content class="ai-ide-lab-source-content" source="ai-ide-lab" />
           } @else if (slug() === 'ai-training-for-lawyer') {
             <xh-imported-interactive-content class="ai-training-lawyer-source-content" source="ai-training-for-lawyer" />
+          } @else if (slug() === 'bare-metal-servers') {
+            <xh-imported-interactive-content class="dedicated-servers-source-content" source="bare-metal-servers" />
+          } @else if (slug() === 'acronis-cyber-platform') {
+            <xh-imported-interactive-content class="acronis-platform-source-content" source="acronis-cyber-platform" />
+          } @else if (slug() === 'blockchain-as-a-service') {
+            <xh-imported-interactive-content class="blockchain-service-source-content" source="blockchain-as-a-service" />
+          } @else if (slug() === 'ai-as-a-service') {
+            <xh-imported-interactive-content class="ai-as-service-source-content" source="ai-as-a-service" />
           } @else if (slug() === 'aiops-as-a-service') {
             <xh-imported-interactive-content class="aiops-service-source-content" source="aiops-as-a-service" />
           } @else if (slug() === 'hardware-security-module') {
@@ -2838,7 +2845,7 @@
           } @else if (slug() === 'vcto-as-a-service') {
             <xh-imported-interactive-content source="vcto-as-a-service" />
           } @else if (slug() === 'vcaio-as-a-service') {
-            <xh-imported-interactive-content source="vcaio-as-a-service" />
+            <xh-imported-interactive-content class="vcaio-source-content" source="vcaio-as-a-service" />
           } @else if (slug() === 'managed-identity-service') {
             <xh-imported-interactive-content source="managed-identity-service" />
           } @else {

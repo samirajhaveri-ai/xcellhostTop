@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, EventEmitter, OnDestroy, Output, computed, inject, signal } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { AfterViewInit, Component, ElementRef, EventEmitter, OnDestroy, Output, PLATFORM_ID, computed, inject, signal } from '@angular/core';
 
 export type MagicqrQuoteRequest = { event: Event; plan: string };
 
@@ -11,6 +11,7 @@ export type MagicqrQuoteRequest = { event: Event; plan: string };
 })
 export class AiReviewMagicqrTailComponent implements AfterViewInit, OnDestroy {
   private readonly document = inject(DOCUMENT);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   @Output() readonly quoteRequested = new EventEmitter<MagicqrQuoteRequest>();
 
   readonly agencyName = signal('Your Agency');
@@ -48,6 +49,7 @@ export class AiReviewMagicqrTailComponent implements AfterViewInit, OnDestroy {
   constructor(private readonly host: ElementRef<HTMLElement>) {}
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser) return;
     const nodes = this.host.nativeElement.querySelectorAll<HTMLElement>('[data-reveal]');
     if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
       nodes.forEach(node => node.classList.add('is-visible'));

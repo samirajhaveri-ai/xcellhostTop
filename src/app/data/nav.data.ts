@@ -3984,6 +3984,12 @@ export const MEGA_MENU: MenuTop[] = [
             "heading": "AI Managed Services",
             "items": [
               {
+                "title": "AI as a Service",
+                "href": "/ai-as-a-service",
+                "pill": null,
+                "desc": "GPUs, inference, RAG, AI apps and governance as one managed stack."
+              },
+              {
                 "title": "Anthropic Managed Services",
                 "pill": null,
                 "desc": "Get help deploying and managing Anthropic Claude solutions"
@@ -4260,7 +4266,8 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "All PaloAlto Products",
                 "pill": null,
-                "desc": null
+                "href": "/all-paloalto-products",
+                "desc": "Explore Palo Alto Networks firewalls, Prisma, Cortex and managed security."
               },
             ]
           }
@@ -5164,6 +5171,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/vendor-partners/sentinelone"
               },
               {
+                "title": "Veeam",
+                "pill": null,
+                "desc": "Backup, data protection, cloud recovery and cyber resilience",
+                "href": "/vendor-partners/veeam"
+              },
+              {
                 "title": "OpenText",
                 "pill": null,
                 "desc": "OpenText vendor partnership",
@@ -5249,8 +5262,8 @@ export const MEGA_MENU: MenuTop[] = [
               {
                 "title": "Blockchain as a Service",
                 "pill": null,
-                "desc": "Certificates, signing and trusted digital identity",
-                "href": "/digicert"
+                "desc": "Managed Fabric, Besu and Corda networks, smart contracts and consortium operations.",
+                  "href": "/blockchain-as-a-service"
               }
             ]
           }
@@ -5385,6 +5398,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "href": "/acronis-cyber-frame",
                 "pill": "In focus",
                 "desc": "Compute, storage and networking with built-in cyber protection"
+              },
+              {
+                "title": "Acronis Cyber Platform",
+                "href": "/acronis-cyber-platform",
+                "pill": "In focus",
+                "desc": "Backup, security, disaster recovery and IT management in one platform."
               },
               {
                 "title": "Acronis Workflow Automation",

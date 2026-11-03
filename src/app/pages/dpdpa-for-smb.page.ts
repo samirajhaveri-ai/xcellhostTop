@@ -4,8 +4,10 @@ import {
   Component,
   ElementRef,
   OnDestroy,
+  PLATFORM_ID,
   inject,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 import { SeoService } from '../core/seo.service';
 import { DPDPA_SMB_REVIEWS } from '../data/smb-page-testimonials.data';
@@ -29,6 +31,7 @@ export class DpdpaForSmbPage implements AfterViewInit, OnDestroy {
   private readonly topics = inject(CallbackTopicService);
   private readonly docs = inject(DocRequestService);
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly cleanups: Array<() => void> = [];
   private revealObserver?: IntersectionObserver;
   readonly sectionNavLinks = [
@@ -50,6 +53,7 @@ export class DpdpaForSmbPage implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser) return;
     this.revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {

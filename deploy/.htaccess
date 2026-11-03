@@ -39,11 +39,12 @@
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # Everything else is an Angular route. PHP injects route-specific Open Graph
-  # metadata before returning the same Angular index, so WhatsApp and other
-  # social crawlers receive the correct product image without running JavaScript.
-  RewriteRule ^ social-preview.php [L,QSA]
+  # Every valid application URL has a prerendered file or directory. Unknown
+  # paths must be genuine 404 responses rather than an Angular soft 404.
+  RewriteRule ^ - [R=404,L]
 </IfModule>
+
+ErrorDocument 404 /404.html
 
 # ------------------------------------------------------------- 2. cache rules
 <IfModule mod_headers.c>
@@ -63,6 +64,10 @@
     Header set Pragma "no-cache"
     Header set Expires "0"
   </FilesMatch>
+
+  <Files "llms.txt">
+    Header set Content-Type "text/plain; charset=utf-8"
+  </Files>
 
   # ------------------------------------------------------- 3. security headers
   Header always set X-Content-Type-Options "nosniff"
@@ -97,6 +102,7 @@
   AddType font/woff2                      .woff2
   AddType video/mp4                       .mp4
   AddType application/manifest+json       .webmanifest
+  AddType text/plain                      .txt
 </IfModule>
 
 # ------------------------------------------------------------------ 6. tidying

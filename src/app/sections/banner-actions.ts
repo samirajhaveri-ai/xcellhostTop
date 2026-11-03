@@ -229,8 +229,8 @@ export function installBannerActions(root: Root, handle: Handler): () => void {
     if (disposed) return;
     for (const [element, entry] of nested) if (!element.isConnected) { entry.dispose?.(); if (entry.load) element.removeEventListener('load', entry.load); nested.delete(element); }
     for (const [button, click] of callbacks) if (!button.isConnected) { button.removeEventListener('click', click); callbacks.delete(button); }
-    root.querySelectorAll<HTMLElement>('h1').forEach((heading, index) => {
-      // Only the opening banner, plus the homepage's individual carousel slides.
+    root.querySelectorAll<HTMLElement>('h1, .home-hero-slide .home-hero-slide-title').forEach((heading, index) => {
+      // Only the opening banner, plus every semantic homepage carousel heading.
       if (index > 0 && !heading.closest('.home-hero-slide')) return;
       const hero = heading.closest<HTMLElement>(heroSelector);
       if (hero) enhance(hero, heading);

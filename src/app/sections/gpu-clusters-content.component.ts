@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, ViewEncapsulation, inject, input, output } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { AfterViewInit, Component, ElementRef, PLATFORM_ID, ViewEncapsulation, inject, input, output } from '@angular/core';
 
 @Component({
   selector: 'xh-gpu-clusters-content',
@@ -11,11 +12,13 @@ export class GpuClustersContentComponent implements AfterViewInit {
   readonly hero = input(false);
   readonly enquiry = output<string>();
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private selected: HTMLElement[] = [];
   private configuration = '';
   private get root() { return this.host.nativeElement.shadowRoot!; }
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser) return;
     if (!this.hero()) this.updateBuilder();
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       this.root.querySelectorAll('animate, animateMotion').forEach(element => element.remove());

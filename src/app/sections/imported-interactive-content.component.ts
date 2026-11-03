@@ -16,6 +16,10 @@ type InteractiveContentSource =
   | 'ai-app-builder'
   | 'ai-ide-lab'
   | 'ai-training-for-lawyer'
+  | 'bare-metal-servers'
+  | 'acronis-cyber-platform'
+  | 'blockchain-as-a-service'
+  | 'ai-as-a-service'
   | 'aiops-as-a-service'
   | 'hardware-security-module'
   | 'cloud-hardware-security-module'
@@ -82,6 +86,8 @@ type InteractiveContentSource =
   | 'cybird-services'
   | 'fortinet-services'
   | 'hpe-services'
+  | 'all-paloalto-products'
+  | 'veeam-services'
   | 'dell-services'
   | 'oracle-cloud-services'
   | 'ibm-multicloud-services'
@@ -271,6 +277,10 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'ai-app-builder': '/imported-ai-app-builder.html',
     'ai-ide-lab': '/imported-ai-ide-lab.html',
     'ai-training-for-lawyer': '/imported-ai-training-for-lawyer.html',
+    'bare-metal-servers': '/imported-bare-metal-servers.html',
+    'acronis-cyber-platform': '/imported-acronis-cyber-platform.html',
+    'blockchain-as-a-service': '/imported-blockchain-as-a-service.html',
+    'ai-as-a-service': '/imported-ai-as-a-service.html',
     'aiops-as-a-service': '/imported-aiops-as-a-service.html',
     'hardware-security-module': '/imported-hardware-security-module.html',
     'cloud-hardware-security-module': '/imported-cloud-hardware-security-module.html',
@@ -322,6 +332,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'cybird-services': '/imported-cybird-services.html',
     'fortinet-services': '/imported-fortinet-services.html',
     'hpe-services': '/imported-hpe-services.html',
+    'all-paloalto-products': '/imported-all-paloalto-products.html',
+    'veeam-services': '/imported-veeam-services.html',
     'dell-services': '/imported-dell-services.html',
     'oracle-cloud-services': '/imported-oracle-cloud-services.html',
     'ibm-multicloud-services': '/imported-ibm-multicloud-services.html',
@@ -512,6 +524,10 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'ai-app-builder': 'AI Apps Builder: building blocks, plans, template matcher and token-cost estimator',
     'ai-ide-lab': 'AI IDE Lab: environments, classroom tools, lab configurator, sizing estimator and stack picker',
     'ai-training-for-lawyer': 'AI Training for Lawyers: curriculum, practical labs, skills assessment and enrolment',
+    'bare-metal-servers': 'Dedicated Servers: plans, configurator, server finder, cost comparison and locations',
+    'acronis-cyber-platform': 'Acronis Cyber Platform: services, plans, configurator, consolidation estimator and edition finder',
+    'blockchain-as-a-service': 'Blockchain as a Service: ledgers, network configuration, sizing and network finder',
+    'ai-as-a-service': 'AI as a Service: stack map, configurator, service finder and usage estimator',
     'aiops-as-a-service': 'AIOps as a Service: operations workflow, plans, configurator, savings estimator and maturity quiz',
     'hardware-security-module': 'Hardware Security Module: features, deployments, configurator, sizing estimator and HSM finder',
     'cloud-hardware-security-module': 'Cloud HSM: features, deployment models, configurator, three-year TCO and key-control finder',
@@ -547,7 +563,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'amd-epyc-cpu-comparison': 'AMD EPYC CPU comparison, workload finder and licensing calculator',
     'nvidia-server-gpu-comparison': 'NVIDIA server GPU comparison, workload finder and model memory calculator',
     'vciso-as-a-service': 'vCISO as a Service',
-    'vcaio-as-a-service': 'vCFAIO as a Service',
+    'vcaio-as-a-service': 'vCAIO as a Service',
     'managed-identity-service': 'Managed Identity Service',
     'vcio-why': 'Why XcellHost for vCIO as a Service',
     'entra-id-backup': 'Entra ID Backup: Identity Protection, Recovery, Pricing And FAQs',
@@ -566,6 +582,8 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'cybird-services': 'Cybird Products and Services',
     'fortinet-services': 'Fortinet Products and Services',
     'hpe-services': 'HPE Products and Services',
+    'all-paloalto-products': 'Palo Alto Networks Products and Services',
+    'veeam-services': 'Veeam Products and Services',
     'dell-services': 'Dell Products and Services',
     'oracle-cloud-services': 'Oracle Cloud Products and Services',
     'ibm-multicloud-services': 'IBM Multicloud Products and Services',
@@ -902,7 +920,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
         : this.source === 'vcio-as-a-service' ? 'vCIO as a Service'
         : this.source === 'vcto-as-a-service' ? 'vCTO as a Service'
         : this.source === 'vciso-as-a-service' ? 'vCISO as a Service'
-        : this.source === 'vcaio-as-a-service' ? 'vCFAIO as a Service'
+        : this.source === 'vcaio-as-a-service' ? 'vCAIO as a Service'
         : this.source === 'managed-identity-service' ? 'Managed Identity Service'
         : this.source === 'entra-id-backup' ? 'Entra ID Backup'
         : this.source === 'ca-cloud' ? 'CA Cloud'
@@ -1049,7 +1067,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     };
 
     const trainingEnquiry = (event: Event) => {
-      const catalogue = this.source.endsWith('-licensing-guide') || this.source === 'smart-manufacturing' || this.source === 'microsoft-services' || this.source === 'digicert-services' || this.source === 'geotrust-services' || this.source === 'sectigo-services' || this.source === 'kaspersky-services' || this.source === 'sentinelone-services' || this.source === 'opentext-services' || this.source === 'cybird-services' || this.source === 'fortinet-services' || this.source === 'hpe-services' || this.source === 'dell-services' || this.source === 'oracle-cloud-services' || this.source === 'ibm-multicloud-services' || this.source === 'dpo-genie365-services';
+      const catalogue = this.source.endsWith('-licensing-guide') || this.source === 'smart-manufacturing' || this.source === 'microsoft-services' || this.source === 'digicert-services' || this.source === 'geotrust-services' || this.source === 'sectigo-services' || this.source === 'kaspersky-services' || this.source === 'sentinelone-services' || this.source === 'opentext-services' || this.source === 'cybird-services' || this.source === 'fortinet-services' || this.source === 'hpe-services' || this.source === 'all-paloalto-products' || this.source === 'veeam-services' || this.source === 'dell-services' || this.source === 'oracle-cloud-services' || this.source === 'ibm-multicloud-services' || this.source === 'dpo-genie365-services';
       if (!catalogue && !this.source.startsWith('ai-training-')) return;
       const values = (event as CustomEvent<Record<string, string>>).detail;
       const [firstName = '', ...lastName] = (values['name'] || '').trim().split(/\s+/);

@@ -5,10 +5,12 @@ import {
   ElementRef,
   inject,
   OnDestroy,
+  PLATFORM_ID,
   computed,
   signal,
   viewChild,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 import { HERO_WORDS } from '../data/site.data';
 import { OverlayService } from '../core/overlay.service';
@@ -188,6 +190,7 @@ const CUBE_2_FACTOR = 0.1;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroComponent implements AfterViewInit, OnDestroy {
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly overlay = inject(OverlayService);
   private readonly canvas = viewChild.required<ElementRef<HTMLCanvasElement>>('netbg');
 
@@ -237,7 +240,7 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
   private readonly onScroll = () => this.queueParallax();
 
   ngAfterViewInit(): void {
-    if (this.reduced) {
+    if (!this.isBrowser || this.reduced) {
       this.counters.set(this.figures.map(finalCount));
       return;
     }
@@ -253,6 +256,7 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
     clearInterval(this.visualSlideTimer);
     clearTimeout(this.leaveTimer);
     this.cancelCount?.();
+    if (!this.isBrowser) return;
     cancelAnimationFrame(this.netRaf);
     cancelAnimationFrame(this.parallaxRaf);
     this.observer?.disconnect();

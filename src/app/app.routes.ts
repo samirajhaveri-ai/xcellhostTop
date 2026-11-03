@@ -8,6 +8,9 @@ import { GCP_SERVICE_PAGE } from './data/gcp-services.data';
 
 
 export const routes: Routes = [
+  { path: 'all-paloalto-products', title: 'All Palo Alto Networks Products | XcellHost', loadComponent: () => import('./pages/all-paloalto-products.page').then(m => m.AllPaloaltoProductsPage) },
+  { path: 'vendor-partners/veeam', title: 'Veeam Products and Services | XcellHost', loadComponent: () => import('./pages/veeam-services.page').then(m => m.VeeamServicesPage) },
+  { path: 'veeam-services', redirectTo: 'vendor-partners/veeam', pathMatch: 'full' },
 
   { path: 'email-encryptionu', redirectTo: 'email-encryption', pathMatch: 'full' },
   { path: 'google-security-assessmentupload', redirectTo: 'google-security-assessment', pathMatch: 'full' },

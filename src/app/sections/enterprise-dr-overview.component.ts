@@ -1,4 +1,5 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnDestroy, computed, inject, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnDestroy, PLATFORM_ID, computed, inject, signal } from '@angular/core';
 
 /** Overview markup and recovery tiers adapted from disaster-recovery2.html. */
 @Component({
@@ -28,6 +29,7 @@ export class EnterpriseDrOverviewComponent implements AfterViewInit, OnDestroy {
     return `${value.toFixed(unit ? 1 : 0)} ${units[unit]}`;
   });
   private readonly root = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private flowTimer?: ReturnType<typeof setInterval>;
   private bytesTimer?: ReturnType<typeof setInterval>;
   private observer?: IntersectionObserver;
@@ -41,6 +43,7 @@ export class EnterpriseDrOverviewComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser) return;
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     if (typeof IntersectionObserver === 'undefined') { this.startAnimations(); return; }
     this.observer = new IntersectionObserver(([entry]) => {

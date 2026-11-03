@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { afterNextRender, ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
+import { afterNextRender, ChangeDetectionStrategy, Component, DestroyRef, inject, PendingTasks, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRouteSnapshot, NavigationEnd, NavigationStart, Router, RouterOutlet } from '@angular/router';
 import { filter, map, startWith } from 'rxjs';
@@ -9,6 +9,7 @@ import { DocRequestService } from './core/doc-request.service';
 import { CallbackTopicService } from './overlays/callback-topic.service';
 import { SiteCopyService } from './core/site-copy.service';
 import { SeoService } from './core/seo.service';
+import sitemapPages from '../../public/sitemap-pages.json';
 import { installBookmarkScrolling } from './sections/bookmark-scroll';
 import { installFaqLayout } from './sections/faq-layout';
 import { installBannerActions } from './sections/banner-actions';
@@ -29,10 +30,56 @@ import {
   ContactOptionsComponent,
   FooterComponent,
   HeaderComponent,
-  IntroSplashComponent,
   PromoBarComponent,
   UtilityBarComponent,
 } from './layout';
+
+const SITEMAP_TITLES = sitemapPages as Record<string, string>;
+const normalizedSitemapTitle = (title: string): string =>
+  title.replace(/\s*[|\u2014\u2013-]\s*XcellHost.*$/i, '').trim();
+const SITEMAP_TITLE_COUNTS = Object.values(SITEMAP_TITLES).reduce((counts, title) => {
+  const normalized = normalizedSitemapTitle(title).toLocaleLowerCase();
+  counts.set(normalized, (counts.get(normalized) ?? 0) + 1);
+  return counts;
+}, new Map<string, number>());
+const MAIN_SERVICE_PATHS = new Set([
+  'acronis',
+  'aws-cloud-disaster-recovery',
+  'aws-migration',
+  'azure-cloud-disaster-recovery',
+  'azure-migration',
+  'backup-and-disaster-recovery',
+  'dpdpa-consulting',
+  'dpdpa-for-smb',
+  'gcp-cloud-disaster-recovery',
+  'gcp-cloud-services',
+  'gcp-migration',
+  'gpu-clusters',
+  'gpu-servers',
+  'iso-27001-consulting',
+  'managed-aws',
+  'managed-azure',
+  'managed-detection-and-response-mdr',
+  'managed-extended-detection-response-xdr',
+  'managed-google-cloud',
+  'managed-google-cloud-gcp',
+  'managed-grc',
+  'managed-gws',
+  'managed-kubernetes',
+  'managed-microsoft-365',
+  'managed-microsoft-sentinel',
+  'managed-multi-cloud',
+  'managed-oracle-cloud',
+  'managed-phishing-simulation',
+  'managed-xdr',
+  'tally-on-cloud',
+]);
+const SITE_ORIGIN = 'https://xcellhost.cloud';
+
+interface RouteSeoSummary {
+  readonly heading?: string;
+  readonly description: string;
+}
 
 /**
  * The application shell: the chrome that never changes (intro splash, utility
@@ -47,7 +94,6 @@ import {
   standalone: true,
   imports: [
     RouterOutlet,
-    IntroSplashComponent,
     UtilityBarComponent,
     PromoBarComponent,
     HeaderComponent,
@@ -81,7 +127,9 @@ export class App {
   private readonly topics = inject(CallbackTopicService);
   private readonly router = inject(Router);
   private readonly document = inject(DOCUMENT);
+  readonly routeSeoSummary = signal<RouteSeoSummary | null>(this.serverRouteSeoSummary());
   private readonly destroyRef = inject(DestroyRef);
+  private readonly pendingTasks = inject(PendingTasks);
   private readonly seo = inject(SeoService);
   private readonly banners = inject(BannerActionsService);
   readonly hasStandaloneShell = toSignal(
@@ -115,32 +163,239 @@ export class App {
   }
 
   /**
-   * Many legacy routes predate SeoService. Prevent them from inheriting the
-   * description of the page visited immediately before them. Explicit page SEO
-   * always wins; this runs only when a navigation did not call SeoService.set().
+   * Finalize every route after activation so prerendered HTML cannot inherit
+   * metadata from the base document or publish a canonical for another route.
    */
   private installRouteSeoFallback(): void {
-    let revisionAtNavigationStart = this.seo.revision;
+    let descriptionRevisionAtNavigationStart = this.seo.descriptionRevision;
     const subscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
-        revisionAtNavigationStart = this.seo.revision;
+        descriptionRevisionAtNavigationStart = this.seo.descriptionRevision;
+        this.routeSeoSummary.set(null);
         return;
       }
       if (!(event instanceof NavigationEnd)) return;
 
-      const expectedRevision = revisionAtNavigationStart;
-      queueMicrotask(() => {
-        if (this.seo.revision !== expectedRevision) return;
-
+      const expectedDescriptionRevision = descriptionRevisionAtNavigationStart;
+      this.pendingTasks.run(async () => {
+        await new Promise<void>((resolve) => setTimeout(resolve, 0));
         const leaf = this.leafRoute(this.router.routerState.snapshot.root);
         const routeDescription = this.routeDescription(leaf);
-        const pageDescription = routeDescription || this.descriptionFromPage();
-        const pageTitle = this.pageTitle(leaf);
         const canonicalPath = event.urlAfterRedirects.split(/[?#]/, 1)[0] || '/';
-        this.seo.set(pageTitle, pageDescription || this.genericDescription(pageTitle), canonicalPath);
+        const pageTitle = this.sitemapTitle(canonicalPath) || this.pageTitle(leaf);
+        const componentSetDescription = this.seo.descriptionRevision !== expectedDescriptionRevision;
+        const pageDescription = componentSetDescription
+          ? this.currentDescription()
+          : routeDescription || this.descriptionFromPage() || this.genericDescription(pageTitle);
+        const uniqueDescription = this.uniqueDescription(pageTitle, pageDescription);
+        this.seo.set(pageTitle, uniqueDescription, canonicalPath);
+        this.updateRouteSeoSummary(pageTitle, uniqueDescription);
+        this.updateStructuredData(canonicalPath, pageTitle, uniqueDescription);
       });
     });
     this.destroyRef.onDestroy(() => subscription.unsubscribe());
+  }
+
+  private sitemapTitle(pathname: string): string {
+    const key = '/' + pathname.replace(/^\/+|\/+$/g, '');
+    const source = SITEMAP_TITLES[key];
+    if (!source) return '';
+    let title = normalizedSitemapTitle(source);
+    if ((SITEMAP_TITLE_COUNTS.get(title.toLocaleLowerCase()) ?? 0) > 1) {
+      const segments = key.split('/').filter(Boolean);
+      const last = this.humanize(segments.at(-1) ?? 'home');
+      const context = segments.length > 1
+        ? `${this.humanize(segments[0])}: ${last}`
+        : `${last} Services`;
+      title += ` \u2014 ${context}`;
+    }
+    return /xcellhost/i.test(title) ? title : `${title} | XcellHost`;
+  }
+
+  private humanize(value: string): string {
+    return value.split('-').filter(Boolean)
+      .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+      .join(' ');
+  }
+
+  private currentDescription(): string {
+    return this.document.querySelector<HTMLMetaElement>('meta[name="description"]')?.content.trim() ?? '';
+  }
+
+  private uniqueDescription(pageTitle: string, description: string): string {
+    const subject = pageTitle.replace(/\s*[|\u2014\u2013-]\s*XcellHost.*$/i, '').trim();
+    const value = description.trim();
+    const candidate = value.toLocaleLowerCase().startsWith(subject.toLocaleLowerCase())
+      ? value
+      : `${subject}: ${value}`;
+    if (candidate.length <= 160) return candidate;
+
+    // Preserve the title's distinguishing tail when long, near-identical page
+    // names would otherwise become the same description after truncation.
+    const qualifier = subject.slice(-48).trimStart();
+    const suffix = `\u2026 ${qualifier}`;
+    return `${candidate.slice(0, 160 - suffix.length).trimEnd()}${suffix}`;
+  }
+
+  private updateRouteSeoSummary(pageTitle: string, description: string): void {
+    const nativeHeadings = this.document.querySelectorAll('h1:not(.route-seo-heading)');
+    const routedContent = this.document.querySelector('router-outlet + *');
+    const bodyText = routedContent?.textContent?.replace(/\s+/g, ' ').trim() ?? '';
+    if (nativeHeadings.length > 0 && bodyText.length >= 80) {
+      this.routeSeoSummary.set(null);
+      return;
+    }
+    this.routeSeoSummary.set({
+      heading: nativeHeadings.length === 0
+        ? pageTitle.replace(/\s*[|\u2014\u2013-]\s*XcellHost.*$/i, '').trim()
+        : undefined,
+      description,
+    });
+  }
+
+  private serverRouteSeoSummary(): RouteSeoSummary | null {
+    const summary = this.document.querySelector<HTMLElement>('[data-route-seo-summary]');
+    if (!summary) return null;
+    return {
+      heading: summary.querySelector('h1')?.textContent?.trim() || undefined,
+      description: summary.querySelector('p')?.textContent?.trim() || '',
+    };
+  }
+
+  private updateStructuredData(pathname: string, pageTitle: string, description: string): void {
+    const path = pathname.replace(/^\/+|\/+$/g, '');
+    this.updateBreadcrumbJsonLd(path, pageTitle);
+    this.updateServiceJsonLd(path, pageTitle, description);
+    this.updateFaqJsonLd();
+  }
+
+  private updateBreadcrumbJsonLd(path: string, pageTitle: string): void {
+    if (!path || path === '404') {
+      this.seo.removeJsonLd('breadcrumb');
+      return;
+    }
+
+    const segments = path.split('/');
+    const itemListElement: Record<string, unknown>[] = [{
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: `${SITE_ORIGIN}/`,
+    }];
+    for (let index = 0; index < segments.length; index += 1) {
+      const partialPath = '/' + segments.slice(0, index + 1).join('/');
+      const isCurrentPage = index === segments.length - 1;
+      itemListElement.push({
+        '@type': 'ListItem',
+        position: index + 2,
+        name: isCurrentPage
+          ? normalizedSitemapTitle(pageTitle)
+          : normalizedSitemapTitle(SITEMAP_TITLES[partialPath] || this.humanize(segments[index])),
+        item: `${SITE_ORIGIN}${partialPath}/`,
+      });
+    }
+    this.seo.setJsonLd('breadcrumb', {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement,
+    });
+  }
+
+  private updateServiceJsonLd(path: string, pageTitle: string, description: string): void {
+    if (!MAIN_SERVICE_PATHS.has(path)) {
+      this.seo.removeJsonLd('service');
+      return;
+    }
+
+    const url = `${SITE_ORIGIN}/${path}/`;
+    const service: Record<string, unknown> = {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      '@id': `${url}#service`,
+      name: normalizedSitemapTitle(pageTitle),
+      description,
+      url,
+      provider: {
+        '@type': 'Organization',
+        '@id': `${SITE_ORIGIN}/#organization`,
+        name: 'XcellHost Cloud Services Pvt. Ltd.',
+        url: `${SITE_ORIGIN}/`,
+      },
+      areaServed: {
+        '@type': 'Country',
+        name: 'India',
+        identifier: 'IN',
+      },
+    };
+    if (path === 'tally-on-cloud') {
+      service['offers'] = {
+        '@type': 'Offer',
+        price: 499,
+        priceCurrency: 'INR',
+        url,
+        description: 'Tally on Cloud from ₹499 per user',
+        priceSpecification: {
+          '@type': 'UnitPriceSpecification',
+          price: 499,
+          priceCurrency: 'INR',
+          unitText: 'per user',
+        },
+      };
+    }
+    this.seo.setJsonLd('service', service);
+  }
+
+  private updateFaqJsonLd(): void {
+    const root = this.document.querySelector<HTMLElement>('router-outlet + *');
+    const mainEntity = root ? this.faqEntries(root) : [];
+    if (!mainEntity.length) {
+      this.seo.removeJsonLd('faq');
+      return;
+    }
+    this.seo.setJsonLd('faq', {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity,
+    });
+  }
+
+  private faqEntries(root: HTMLElement): Record<string, unknown>[] {
+    const entries: Record<string, unknown>[] = [];
+    const seen = new Set<string>();
+    const add = (questionElement: Element | null, answerElement: Element | null): void => {
+      const question = this.semanticText(questionElement).replace(/[+−⌄]\s*$/, '').trim();
+      const answer = this.semanticText(answerElement);
+      const key = question.toLocaleLowerCase();
+      if (!question.endsWith('?') || answer.length < 20 || seen.has(key)) return;
+      seen.add(key);
+      entries.push({
+        '@type': 'Question',
+        name: question,
+        acceptedAnswer: { '@type': 'Answer', text: answer },
+      });
+    };
+
+    Array.from(root.querySelectorAll('details')).forEach((details) => {
+      const question = details.querySelector('summary');
+      const answer = details.cloneNode(true) as HTMLElement;
+      answer.querySelector('summary')?.remove();
+      add(question, answer);
+    });
+    Array.from(root.querySelectorAll('.faq2, .faq-card, .faq-item, .fq')).forEach((item) => {
+      add(
+        item.querySelector('summary, .faq2-q, .faq-question, button'),
+        item.querySelector('.faq2-a, .faq-answer, .ans, .fa, [class*="answer"]'),
+      );
+    });
+    return entries.slice(0, 50);
+  }
+
+  private semanticText(element: Element | null): string {
+    if (!element) return '';
+    const copy = element.cloneNode(true) as HTMLElement;
+    Array.from(copy.querySelectorAll('script, style, svg, .faq2-ic, .faq-icon, .material-symbols-outlined'))
+      .forEach((node) => node.remove());
+    return copy.textContent?.replace(/\s+/g, ' ').trim() ?? '';
   }
 
   private leafRoute(route: ActivatedRouteSnapshot): ActivatedRouteSnapshot {
@@ -187,7 +442,7 @@ export class App {
   }
 
   private genericDescription(pageTitle: string): string {
-    const subject = pageTitle.replace(/\s*[|—-]\s*XcellHost.*$/i, '').trim();
+    const subject = pageTitle.replace(/\s*[|\u2014\u2013-]\s*XcellHost.*$/i, '').trim();
     return this.trimDescription(
       `Explore ${subject} from XcellHost Cloud Services, with expert guidance, secure implementation and support for businesses in India.`,
     );

@@ -84,14 +84,15 @@
   /* Homepage hero: four complete slides, each with its own copy and visual. */
   .home-hero-carousel{position:relative!important;display:block!important}
   .home-hero-slide{display:none;grid-template-columns:minmax(0,1fr);justify-items:center;align-items:center;text-align:center}
-  .home-hero-slide.is-active{display:grid}
-  .home-hero-slide h1{max-width:50ch;margin-bottom:10px;color:#fff;font-family:Georgia,'Times New Roman',serif;font-size:clamp(42px,4.5vw,45px);font-weight:700;line-height:1.01;letter-spacing:-.035em}
-  .home-hero-slide h1 .shine{background:none;color:#ef955f;font-family:inherit;font-size:inherit;font-style:normal;font-weight:700;animation:none}
+  .home-hero-slide.is-active,.home-hero-slide[aria-hidden="false"]{display:grid}
+  .home-hero-slide :is(h1,.home-hero-slide-title){max-width:50ch;margin-bottom:10px;color:#fff;font-family:Georgia,'Times New Roman',serif;font-size:clamp(42px,4.5vw,45px);font-weight:700;line-height:1.01;letter-spacing:-.035em}
+  .home-hero-slide :is(h1,.home-hero-slide-title) .shine{background:none;color:#ef955f;font-family:inherit;font-size:inherit;font-style:normal;font-weight:700;animation:none}
+  .home-hero-slide-title{margin-top:0}
   .home-hero-copy{min-width:0}.home-hero-spotlight{position:static!important;display:inline!important;color:#ffb35b!important;font:700 13px/1.5 var(--body)!important;letter-spacing:0!important;white-space:normal!important;transform:none!important;opacity:1!important}
   .home-hero-copy{width:100%;max-width:1192px;margin-inline:auto}
-  @media(min-width:1025px){.home-hero-slide h1{font-size:clamp(32px,3.4vw,45px);white-space:nowrap}}
+  @media(min-width:1025px){.home-hero-slide :is(h1,.home-hero-slide-title){font-size:clamp(32px,3.4vw,45px);white-space:nowrap}}
   .home-hero-slide .hero-live{max-width:850px;margin-inline:auto}
-  .home-hero-slide h1,.home-hero-slide p.lead{margin-inline:auto}
+  .home-hero-slide :is(h1,.home-hero-slide-title),.home-hero-slide p.lead{margin-inline:auto}
   .home-hero-slide .hero-ctas,.home-hero-slide .stat-line,.home-hero-slide .hero-live,.home-hero-slide .home-hero-dots,.home-hero-slide .rot-line{justify-content:center}
   .home-hero-slide .stat-line .sl{align-items:center}
   .home-hero-slide .home-hero-nvidia{display:flex;align-items:center;align-self:center;justify-content:center;flex:0 0 auto;max-width:100%;padding:6px 12px;background:#fff;border-radius:6px}
@@ -127,7 +128,7 @@
   .home-hero-dots button{width:20px;height:7px;padding:0;border:0;border-radius:999px;background:rgba(151,172,206,.4);cursor:pointer;transition:width .24s ease,background .24s ease,box-shadow .24s ease}.home-hero-dots button:hover{background:rgba(203,222,248,.85)}.home-hero-dots button.is-active{width:46px;background:#1565D8;box-shadow:0 0 12px rgba(23, 87, 224, 0.8)}.home-hero-dots button:focus-visible{outline:2px solid #fff;outline-offset:px}
   @media(max-width:1024px){.home-hero-copy{padding-top:0}}
   @media(max-width:700px){.home-hero-slide .stat-line{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.home-hero-slide .hero-live{font-size:10px;white-space:normal}.home-hero-dots{margin-top:14px}}
-  @media(max-width:480px){.home-hero-slide h1{font-size:clamp(32px,10vw,42px)}}
+  @media(max-width:480px){.home-hero-slide :is(h1,.home-hero-slide-title){font-size:clamp(32px,10vw,42px)}}
 
   .console{background:#06182F;border:1px solid #17395F;border-radius:14px;box-shadow:0 24px 60px rgba(0,0,0,.4);overflow:hidden}
   .console .bar{display:flex;align-items:center;gap:8px;padding:11px 16px;border-bottom:1px solid #17395F;font:500 11px var(--mono);color:#7E96B8;letter-spacing:.08em}
@@ -6619,4 +6620,17 @@ html.dark-mode .cs-foot span { background: hsl(240 15% 18%) !important; }
   #ppage .data-center-build-hero>.wrap>.pp-typewriter,
   #ppage .data-center-build-hero>.wrap>.pp-hero-grid{max-width:100%}
   #ppage .pph-scene.data-center-build-visual{grid-column:1;grid-row:2;max-width:620px!important;height:620px;margin:0 auto}
+}
+/* Accessible semantic fallback for iframe-led routes whose visual hero lives in a child document. */
+.route-seo-summary {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }

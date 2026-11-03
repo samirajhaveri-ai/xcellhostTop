@@ -1,3 +1,7 @@
+import { DEDICATED_SERVERS_FAQS } from '../data/bare-metal-servers-faq.data';
+import { ACRONIS_CYBER_PLATFORM_FAQS } from '../data/acronis-cyber-platform-faq.data';
+import { BLOCKCHAIN_SERVICE_FAQS } from '../data/blockchain-as-a-service-faq.data';
+import { AI_AS_SERVICE_FAQS } from '../data/ai-as-a-service-faq.data';
 import { CustomerTestimonialsComponent } from '../sections/customer-testimonials.component';
 import { DATA_CENTER_BUILD_FAQS } from '../data/data-center-build-faq.data';
 import { VCIO_FAQS } from '../data/vcio-faq.data';
@@ -3404,6 +3408,38 @@ class ProductPageComponent {
       heroMessages: ['Keys generated inside, never exported', 'Sign 1,000s of times a second via PKCS#11', 'PIN blocks translated in hardware', '3-of-5 quorum before any root key'],
       faqs: HARDWARE_SECURITY_MODULE_FAQS,
     };
+    if (slug === 'bare-metal-servers' && view) return {
+      ...view, name: 'Dedicated Servers', brandSuffix: 'Dedicated',
+      tagline: 'Whole servers. Your root. Our 24×7 NOC.',
+      heroHighlight: "Rent a physical AMD EPYC, Intel Xeon, AMD Ryzen or NVIDIA GPU server — nobody else on the hardware. 22 priced configurations from ₹16,420.89 a month, run from XcellHost's Tier IV Mumbai data centre and partner sites in the USA and Europe*.",
+      heroPoints: ['AMD EPYC, Intel Xeon & Ryzen', 'NVIDIA GPU options', 'Full root access', 'Dedicated physical hardware', 'Mumbai & partner locations', '24×7 NOC support'],
+      heroMessages: ['128 cores on one bill?', 'Single-tenant for RBI and DPDP audits', 'Ryzen 5.7 GHz for game servers', 'Eight H200s, price on quote'],
+      faqs: DEDICATED_SERVERS_FAQS,
+    };
+    if (slug === 'acronis-cyber-platform' && view) return {
+      ...view, brandSuffix: 'Protect',
+      tagline: 'One agent. One policy. One console. Run by us from Mumbai.',
+      heroHighlight: 'Backup, disaster recovery, endpoint security, email protection, RMM and patching on a single platform, formerly Acronis Cyber Protect Cloud. XcellHost licenses it in rupees, rolls it out, stores your backups in Mumbai and watches it 24×7.',
+      heroPoints: ['Backup + security + RMM', 'One agent, policy & console', 'EDR/XDR & email protection', 'Multi-tenant management', 'Mumbai backup storage', '24×7 operations & INR billing'],
+      heroMessages: ['Replace five tools with one agent', 'Ransomware stopped, files rolled back', 'Every client in one multi-tenant console', 'Backups kept in Mumbai, India'],
+      faqs: ACRONIS_CYBER_PLATFORM_FAQS,
+    };
+    if (slug === 'blockchain-as-a-service' && view) return {
+      ...view, brandSuffix: 'Cloud',
+      tagline: 'A shared ledger for your consortium. Run by us, hosted in India.',
+      heroHighlight: 'XcellHost designs, deploys and operates permissioned blockchain networks on Hyperledger Fabric, Hyperledger Besu and Corda — identity and certificate authorities, smart-contract deployment, member onboarding, explorers and 24×7 monitoring — from our Mumbai Tier IV data centre, billed in rupees.',
+      heroPoints: ['Fabric · Besu · Corda', 'Smart-contract lifecycle', 'MSP, CAs & HSM keys', 'Consortium onboarding', 'Explorers & 24×7 monitoring', 'India hosting & INR billing'],
+      heroMessages: ['Fabric, Besu or Corda — run for you', 'New members onboarded in days, not months*', 'HSM-backed CAs and keys in India', 'Explorer and alerts from day one'],
+      faqs: BLOCKCHAIN_SERVICE_FAQS,
+    };
+    if (slug === 'ai-as-a-service' && view) return {
+      ...view, brandSuffix: 'AI',
+      tagline: 'Your whole AI stack, run as one service from Mumbai.',
+      heroHighlight: 'XcellAI brings GPUs, serverless and dedicated inference, open models, RAG, vector search, AI apps, managed Gemini, OpenAI and Microsoft Copilot, AIOps, AI security and ISO 42001 governance into one service — bought pay-as-you-go, reserved or fully managed, and billed in rupees.',
+      heroPoints: ['GPUs · L4, RTX PRO 6000, H200', 'Serverless & dedicated inference', 'RAG, vector DB & AI apps', 'Gemini, OpenAI & Copilot, managed', 'AIOps & AI security', 'ISO 42001 governance & training'],
+      heroMessages: ['GPUs to governance, one contract', 'Tokens by the million, billed in ₹', 'Prompts and data stay in India', 'A working pilot in weeks'],
+      faqs: AI_AS_SERVICE_FAQS,
+    };
     if (slug === 'aiops-as-a-service' && view) return {
       ...view,
       brandSuffix: 'AI',
@@ -3527,12 +3563,11 @@ class ProductPageComponent {
 
     if (slug === 'vcaio-as-a-service') return {
       ...view,
-      name: 'vCFAIO as a Service',
-      brandSuffix: 'Consult',
-      tagline: 'Your finance office, rebuilt with AI — led part-time, billed monthly.',
-      heroHighlight: 'A virtual Chief Finance & AI Officer from XcellHost: AI forecasting for FP&A, a faster close with GST and TDS reconciliations matched by machines and checked by people, cloud and AI spend under control, and every AI rupee tracked to a return. Advisory only — your board and finance head still sign.',
-      heroPoints: ['FP&A with AI forecasting', 'AI-assisted close & recos', 'FinOps for cloud & AI tokens', 'AI investment ROI tracking'],
-      heroMessages: ['Forecasts you can defend', 'Close in days, not weeks', 'Cloud and AI spend on budget', 'Every AI rupee tracked to ROI'],
+      name: 'vCAIO as a Service', brandSuffix: 'Consult',
+      tagline: 'One accountable owner for AI — part-time, from Mumbai, billed monthly.',
+      heroHighlight: 'A virtual Chief AI Officer from XcellHost sets your AI strategy, ranks use cases by value, picks models and vendors, keeps token and GPU spend on budget, runs responsible-AI governance and reports to your board. Advisory only — your management and board keep every decision and signature.',
+      heroPoints: ['AI strategy & roadmap', 'Use-case portfolio & delivery', 'Models, vendors & AI operating model', 'AI FinOps for tokens & GPUs', 'Responsible AI governance', 'Board reporting & oversight'],
+      heroMessages: ['One AI roadmap, tied to value', 'Use cases ranked, not guessed', 'Every model on an inventory', 'AI spend with a budget and an owner'],
       faqs: VCAIO_FAQS,
     };
 
@@ -4832,6 +4867,11 @@ class ProductPageComponent {
       'ai-app-builder': { frame: 'xh-imported-interactive-content.ai-app-builder-source-content', overview: 'overview', features: 'builder', uses: 'usecases', specifications: 'vs' },
       'ai-ide-lab': { frame: 'xh-imported-interactive-content.ai-ide-lab-source-content', overview: 'overview', features: 'highlights', uses: 'usecases', specifications: 'environments' },
       'ai-training-for-lawyer': { frame: 'xh-imported-interactive-content.ai-training-lawyer-source-content', overview: 'why', features: 'curriculum', uses: 'practice', specifications: 'formats' },
+      'vcaio-as-a-service': { frame: 'xh-imported-interactive-content.vcaio-source-content', overview: 'role', features: 'model', uses: 'deliver', specifications: 'vs' },
+      'bare-metal-servers': { frame: 'xh-imported-interactive-content.dedicated-servers-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'compare' },
+      'acronis-cyber-platform': { frame: 'xh-imported-interactive-content.acronis-platform-source-content', overview: 'overview', features: 'components', uses: 'usecases', specifications: 'vs' },
+      'blockchain-as-a-service': { frame: 'xh-imported-interactive-content.blockchain-service-source-content', overview: 'overview', features: 'platform', uses: 'usecases', specifications: 'vs' },
+      'ai-as-a-service': { frame: 'xh-imported-interactive-content.ai-as-service-source-content', overview: 'overview', features: 'map', uses: 'usecases', specifications: 'vs' },
       'aiops-as-a-service': { frame: 'xh-imported-interactive-content.aiops-service-source-content', overview: 'overview', features: 'how', uses: 'usecases', specifications: 'vs' },
       'hardware-security-module': { frame: 'xh-imported-interactive-content.hsm-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'platform' },
       'cloud-hardware-security-module': { frame: 'xh-imported-interactive-content.cloud-hsm-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'compare' },
