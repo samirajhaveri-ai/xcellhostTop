@@ -36,6 +36,7 @@ import { SMB_CLOUD_FAQS } from '../data/smb-cloud-faq.data';
 import { WEB3_INFRASTRUCTURE_FAQS } from '../data/web3-blockchain-infrastructure-faq.data';
 import { PHISHING_INCIDENT_RESPONSE_FAQS } from '../data/phishing-incident-response-faq.data';
 import { SECURITY_AWARENESS_LMS_FAQS } from '../data/security-awareness-lms-faq.data';
+import { EMAIL_SIGNATURE_FAQS } from '../data/email-signature-faq.data';
 import { STAFF_AUGMENTATION_FAQS } from '../data/staff-augmentation-faq.data';
 import { NVIDIA_GPU_FAQS } from '../data/nvidia-server-gpu-faq.data';
 import { VCISO_FAQS } from '../data/vciso-faq.data';
@@ -264,7 +265,6 @@ import { ACRONIS_EDR_FAQS, SCRUTINY_EDR_FAQS } from '../data/edr-seo.data';
 import { CLOUD_DRIVE_SEO_FAQS } from '../data/cloud-drive-seo.data';
 import { TSPLUS_REMOTE_ACCESS_EXPERIENCES } from '../data/tsplus-demo.data';
 import { EmailSignatureContentComponent } from '../sections/email-signature-content.component';
-import { EmailSignatureHeroComponent } from '../sections/email-signature-hero.component';
 import { ChangeDetectionStrategy, Component, HostListener, computed, effect, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
@@ -764,7 +764,6 @@ interface ProductTourSlide {
     NvidiaH100ContentComponent,
 
     EmailSignatureContentComponent,
-    EmailSignatureHeroComponent,
     PleskServersHeroComponent,
     CpanelServersHeroComponent,
     CpanelServersOverviewComponent,
@@ -3314,11 +3313,20 @@ class ProductPageComponent {
       heroMessages: ['Build security habits through short regular lessons', 'Assign learning paths by role and language', 'Track completions, quizzes and audit-ready reports'],
       faqs: SECURITY_AWARENESS_LMS_FAQS,
     };
+    if (slug === 'email-signature' && view) return {
+      ...view,
+      brandSuffix: 'Office',
+      tagline: 'One signature, set once, on every email your company sends.',
+      heroHighlight: "Design your signature centrally and let it apply itself to every mailbox on Microsoft 365, Outlook, Exchange and Google Workspace — desktop, web and phone. Names and titles come from your directory, each department gets its own template, banners change company-wide in one click, and the legal footer with your CIN is never missing.",
+      heroPoints: ['Microsoft 365 · Exchange · Google Workspace', 'Same signature on every device', 'Department and role rules', 'Scheduled banner campaigns', 'Banner click analytics', 'Legal disclaimers, auto-appended'],
+      heroMessages: ['Apply a consistent signature to every company email', 'Update company-wide banners from one place', 'Sync directory details across every device'],
+      faqs: EMAIL_SIGNATURE_FAQS,
+    };
     if (slug === 'staff-augmentation' && view) return {
       ...view,
-      brandSuffix: 'Talent',
+      brandSuffix: 'Consult',
       tagline: 'Cloud, security and AI engineers on contract. Billed monthly, in rupees.',
-      heroHighlight: 'XcellTalent puts skilled engineers into your team for as long as you need them: an architect for a migration, SOC analysts for night shifts, an ML engineer for an AI pilot. XcellHost handles payroll, statutory compliance, NDAs, background checks and backup cover; you direct the work.',
+      heroHighlight: 'XcellConsult puts skilled engineers into your team for as long as you need them: an architect for a migration, SOC analysts for night shifts, an ML engineer for an AI pilot. XcellHost handles payroll, statutory compliance, NDAs, background checks and backup cover; you direct the work.',
       heroPoints: ['Azure, AWS, GCP, DevOps, K8s, FinOps', 'SOC L1–L3, VAPT, GRC, IAM, vCISO', 'ML, data, RAG / LLM, MLOps engineers', '24×7 shift cover and backup resources', 'NDA, background checks, replacement SLA*', 'Monthly INR invoice with 18% GST'],
       heroMessages: ['A Kubernetes engineer from next month', 'SOC analysts on three shifts, 24×7', 'An ML engineer for your RAG pilot', 'Contract-to-hire for your next cloud lead'],
       faqs: STAFF_AUGMENTATION_FAQS,
@@ -4854,6 +4862,7 @@ class ProductPageComponent {
       'web3-blockchain-infrastructure': { frame: 'xh-imported-interactive-content.web3-blockchain-infrastructure-source-content', overview: 'overview', features: 'products', uses: 'usecases', specifications: 'platform' },
       'phishing-incident-response': { frame: 'xh-imported-interactive-content.phishing-incident-response-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'how' },
       'security-awareness-lms': { frame: 'xh-imported-interactive-content.security-awareness-lms-source-content', overview: 'overview', features: 'features', uses: 'use', specifications: 'how' },
+      'email-signature': { frame: 'xh-imported-interactive-content.email-signature-source-content', overview: 'overview', features: 'capabilities', uses: 'usecases', specifications: 'how' },
       'staff-augmentation': { frame: 'xh-imported-interactive-content.staff-augmentation-source-content', overview: 'overview', features: 'capabilities', uses: 'usecases', specifications: 'skills' },
       'amd-epyc-cpu-comparison': { frame: 'xh-imported-interactive-content.amd-epyc-source-content', overview: 'families', features: 'finder', uses: 'usecases', specifications: 'compare' },
       'nvidia-server-gpu-comparison': { frame: 'xh-imported-interactive-content.nvidia-gpu-source-content', overview: 'families', features: 'finder', uses: 'usecases', specifications: 'compare' },

@@ -46,6 +46,7 @@ type InteractiveContentSource =
   | 'web3-blockchain-infrastructure'
   | 'phishing-incident-response'
   | 'security-awareness-lms'
+  | 'email-signature'
   | 'staff-augmentation'
   | 'amd-epyc-cpu-comparison'
   | 'nvidia-server-gpu-comparison'
@@ -300,6 +301,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'web3-blockchain-infrastructure': '/imported-web3-blockchain-infrastructure.html',
     'phishing-incident-response': '/imported-phishing-incident-response.html',
     'security-awareness-lms': '/imported-security-awareness-lms.html',
+    'email-signature': '/imported-email-signature.html',
     'staff-augmentation': '/imported-staff-augmentation.html',
     'amd-epyc-cpu-comparison': '/imported-amd-epyc-cpu-comparison.html',
     'nvidia-server-gpu-comparison': '/imported-nvidia-server-gpu-comparison.html',
@@ -540,6 +542,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'web3-blockchain-infrastructure': 'Web3 & Blockchain Infrastructure: blockchain products, chains, APIs, plans, capacity estimator and node finder',
     'phishing-incident-response': 'Phishing Incident Response: response workflow, plans, configurator, time-saved estimator and readiness quiz',
     'security-awareness-lms': 'Security Awareness LMS: course library, plans, configurator, ROI estimator and learning-path builder',
+    'email-signature': 'Email Signature: signature workflows, plans, configurator, signature builder and cost calculator',
     'staff-augmentation': 'Staff Augmentation: roles, skills matrix, pricing configurator, team builder and hiring comparison',
     'amd-epyc-cpu-comparison': 'AMD EPYC CPU comparison, workload finder and licensing calculator',
     'nvidia-server-gpu-comparison': 'NVIDIA server GPU comparison, workload finder and model memory calculator',

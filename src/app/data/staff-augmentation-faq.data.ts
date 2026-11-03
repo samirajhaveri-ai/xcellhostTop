@@ -2,7 +2,7 @@
 export const STAFF_AUGMENTATION_FAQS: [string, string][] = [
   [
     "What is staff augmentation, and how is it different from outsourcing?",
-    "With staff augmentation you add contract engineers to your own team and direct their work day to day. With project outsourcing a vendor takes a fixed scope and manages delivery itself. XcellTalent is augmentation: you set priorities; XcellHost handles employment, payroll, compliance and backup cover."
+    "With staff augmentation you add contract engineers to your own team and direct their work day to day. With project outsourcing a vendor takes a fixed scope and manages delivery itself. XcellConsult is augmentation: you set priorities; XcellHost handles employment, payroll, compliance and backup cover."
   ],
   [
     "Which roles can XcellHost provide?",

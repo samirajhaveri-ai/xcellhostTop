@@ -778,6 +778,18 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Dedicated NVIDIA GPU servers in Mumbai for AI training, fine-tuning and inference."
               },
+              {
+                "title": "AMD EPYC CPU Comparison",
+                "href": "/amd-epyc-cpu-comparison",
+                "pill": null,
+                "desc": "Compare AMD EPYC processors by specifications, workload fit and per-core licensing."
+              },
+              {
+                "title": "NVIDIA Server GPU Comparison",
+                "href": "/nvidia-server-gpu-comparison",
+                "pill": null,
+                "desc": "Compare NVIDIA server GPUs by specifications, workload suitability and model memory requirements."
+              },
               
             ]
           }
@@ -956,6 +968,12 @@ export const MEGA_MENU: MenuTop[] = [
           {
             "heading": "Managed Databases",
             "items": [
+              {
+                "title": "AI Vector Database",
+                "href": "/ai-vector-database",
+                "pill": null,
+                "desc": "Managed vector search for RAG, semantic search and recommendations."
+              },
               {
                 "title": "Managed Microsoft SQL",
                 "pill": null,
@@ -3389,12 +3407,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "desc": null
               },
               {
-                "title": "Enterprise RAG as a Service",
-                "href": "/enterprise-rag-as-a-service",
-                "pill": null,
-                "desc": "Permission-aware AI answers, enterprise connectors and private deployment."
-              },
-              {
                 "title": "Patch Mgmt-as-a-Service",
                 "pill": null,
                 "desc": null
@@ -3684,12 +3696,6 @@ export const MEGA_MENU: MenuTop[] = [
                 "pill": null,
                 "desc": "Build and manage AI agents for business workflows"
               },
-              {
-                "title": "AI Vector Database",
-                "href": "/ai-vector-database",
-                "pill": null,
-                "desc": "Managed vector search for RAG, semantic search and recommendations."
-              },
               
               
             ]
@@ -3734,6 +3740,12 @@ export const MEGA_MENU: MenuTop[] = [
                 "title": "AI Factory",
                 "pill": null,
                 "desc": "Develop and test AI projects in a dedicated workspace"
+              },
+              {
+                "title": "Enterprise RAG as a Service",
+                "href": "/enterprise-rag-as-a-service",
+                "pill": null,
+                "desc": "Permission-aware AI answers, enterprise connectors and private deployment."
               },
             ]
           }
