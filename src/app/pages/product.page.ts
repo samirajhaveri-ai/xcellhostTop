@@ -1,3 +1,6 @@
+import { ACRONIS_CYBER_PLATFORM_FAQS } from '../data/acronis-cyber-platform-faq.data';
+import { BLOCKCHAIN_SERVICE_FAQS } from '../data/blockchain-as-a-service-faq.data';
+import { AI_AS_SERVICE_FAQS } from '../data/ai-as-a-service-faq.data';
 import { CustomerTestimonialsComponent } from '../sections/customer-testimonials.component';
 import { DATA_CENTER_BUILD_FAQS } from '../data/data-center-build-faq.data';
 import { VCIO_FAQS } from '../data/vcio-faq.data';
@@ -36,6 +39,7 @@ import { SMB_CLOUD_FAQS } from '../data/smb-cloud-faq.data';
 import { WEB3_INFRASTRUCTURE_FAQS } from '../data/web3-blockchain-infrastructure-faq.data';
 import { PHISHING_INCIDENT_RESPONSE_FAQS } from '../data/phishing-incident-response-faq.data';
 import { SECURITY_AWARENESS_LMS_FAQS } from '../data/security-awareness-lms-faq.data';
+import { EMAIL_SIGNATURE_FAQS } from '../data/email-signature-faq.data';
 import { STAFF_AUGMENTATION_FAQS } from '../data/staff-augmentation-faq.data';
 import { NVIDIA_GPU_FAQS } from '../data/nvidia-server-gpu-faq.data';
 import { VCISO_FAQS } from '../data/vciso-faq.data';
@@ -264,7 +268,6 @@ import { ACRONIS_EDR_FAQS, SCRUTINY_EDR_FAQS } from '../data/edr-seo.data';
 import { CLOUD_DRIVE_SEO_FAQS } from '../data/cloud-drive-seo.data';
 import { TSPLUS_REMOTE_ACCESS_EXPERIENCES } from '../data/tsplus-demo.data';
 import { EmailSignatureContentComponent } from '../sections/email-signature-content.component';
-import { EmailSignatureHeroComponent } from '../sections/email-signature-hero.component';
 import { ChangeDetectionStrategy, Component, HostListener, computed, effect, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
@@ -764,7 +767,6 @@ interface ProductTourSlide {
     NvidiaH100ContentComponent,
 
     EmailSignatureContentComponent,
-    EmailSignatureHeroComponent,
     PleskServersHeroComponent,
     CpanelServersHeroComponent,
     CpanelServersOverviewComponent,
@@ -3314,11 +3316,20 @@ class ProductPageComponent {
       heroMessages: ['Build security habits through short regular lessons', 'Assign learning paths by role and language', 'Track completions, quizzes and audit-ready reports'],
       faqs: SECURITY_AWARENESS_LMS_FAQS,
     };
+    if (slug === 'email-signature' && view) return {
+      ...view,
+      brandSuffix: 'Office',
+      tagline: 'One signature, set once, on every email your company sends.',
+      heroHighlight: "Design your signature centrally and let it apply itself to every mailbox on Microsoft 365, Outlook, Exchange and Google Workspace — desktop, web and phone. Names and titles come from your directory, each department gets its own template, banners change company-wide in one click, and the legal footer with your CIN is never missing.",
+      heroPoints: ['Microsoft 365 · Exchange · Google Workspace', 'Same signature on every device', 'Department and role rules', 'Scheduled banner campaigns', 'Banner click analytics', 'Legal disclaimers, auto-appended'],
+      heroMessages: ['Apply a consistent signature to every company email', 'Update company-wide banners from one place', 'Sync directory details across every device'],
+      faqs: EMAIL_SIGNATURE_FAQS,
+    };
     if (slug === 'staff-augmentation' && view) return {
       ...view,
-      brandSuffix: 'Talent',
+      brandSuffix: 'Consult',
       tagline: 'Cloud, security and AI engineers on contract. Billed monthly, in rupees.',
-      heroHighlight: 'XcellTalent puts skilled engineers into your team for as long as you need them: an architect for a migration, SOC analysts for night shifts, an ML engineer for an AI pilot. XcellHost handles payroll, statutory compliance, NDAs, background checks and backup cover; you direct the work.',
+      heroHighlight: 'XcellConsult puts skilled engineers into your team for as long as you need them: an architect for a migration, SOC analysts for night shifts, an ML engineer for an AI pilot. XcellHost handles payroll, statutory compliance, NDAs, background checks and backup cover; you direct the work.',
       heroPoints: ['Azure, AWS, GCP, DevOps, K8s, FinOps', 'SOC L1–L3, VAPT, GRC, IAM, vCISO', 'ML, data, RAG / LLM, MLOps engineers', '24×7 shift cover and backup resources', 'NDA, background checks, replacement SLA*', 'Monthly INR invoice with 18% GST'],
       heroMessages: ['A Kubernetes engineer from next month', 'SOC analysts on three shifts, 24×7', 'An ML engineer for your RAG pilot', 'Contract-to-hire for your next cloud lead'],
       faqs: STAFF_AUGMENTATION_FAQS,
@@ -3395,6 +3406,30 @@ class ProductPageComponent {
       heroPoints: ['Tamper-resistant key storage', 'FIPS 140-3 Level 3 models*', 'PKCS#11 · JCE · CNG · KMIP · REST', 'Payment HSMs for PIN & EMV', 'M-of-N key ceremonies', 'HA across Mumbai DC + DR'],
       heroMessages: ['Keys generated inside, never exported', 'Sign 1,000s of times a second via PKCS#11', 'PIN blocks translated in hardware', '3-of-5 quorum before any root key'],
       faqs: HARDWARE_SECURITY_MODULE_FAQS,
+    };
+    if (slug === 'acronis-cyber-platform' && view) return {
+      ...view, brandSuffix: 'Protect',
+      tagline: 'One agent. One policy. One console. Run by us from Mumbai.',
+      heroHighlight: 'Backup, disaster recovery, endpoint security, email protection, RMM and patching on a single platform, formerly Acronis Cyber Protect Cloud. XcellHost licenses it in rupees, rolls it out, stores your backups in Mumbai and watches it 24×7.',
+      heroPoints: ['Backup + security + RMM', 'One agent, policy & console', 'EDR/XDR & email protection', 'Multi-tenant management', 'Mumbai backup storage', '24×7 operations & INR billing'],
+      heroMessages: ['Replace five tools with one agent', 'Ransomware stopped, files rolled back', 'Every client in one multi-tenant console', 'Backups kept in Mumbai, India'],
+      faqs: ACRONIS_CYBER_PLATFORM_FAQS,
+    };
+    if (slug === 'blockchain-as-a-service' && view) return {
+      ...view, brandSuffix: 'Cloud',
+      tagline: 'A shared ledger for your consortium. Run by us, hosted in India.',
+      heroHighlight: 'XcellHost designs, deploys and operates permissioned blockchain networks on Hyperledger Fabric, Hyperledger Besu and Corda — identity and certificate authorities, smart-contract deployment, member onboarding, explorers and 24×7 monitoring — from our Mumbai Tier IV data centre, billed in rupees.',
+      heroPoints: ['Fabric · Besu · Corda', 'Smart-contract lifecycle', 'MSP, CAs & HSM keys', 'Consortium onboarding', 'Explorers & 24×7 monitoring', 'India hosting & INR billing'],
+      heroMessages: ['Fabric, Besu or Corda — run for you', 'New members onboarded in days, not months*', 'HSM-backed CAs and keys in India', 'Explorer and alerts from day one'],
+      faqs: BLOCKCHAIN_SERVICE_FAQS,
+    };
+    if (slug === 'ai-as-a-service' && view) return {
+      ...view, brandSuffix: 'AI',
+      tagline: 'Your whole AI stack, run as one service from Mumbai.',
+      heroHighlight: 'XcellAI brings GPUs, serverless and dedicated inference, open models, RAG, vector search, AI apps, managed Gemini, OpenAI and Microsoft Copilot, AIOps, AI security and ISO 42001 governance into one service — bought pay-as-you-go, reserved or fully managed, and billed in rupees.',
+      heroPoints: ['GPUs · L4, RTX PRO 6000, H200', 'Serverless & dedicated inference', 'RAG, vector DB & AI apps', 'Gemini, OpenAI & Copilot, managed', 'AIOps & AI security', 'ISO 42001 governance & training'],
+      heroMessages: ['GPUs to governance, one contract', 'Tokens by the million, billed in ₹', 'Prompts and data stay in India', 'A working pilot in weeks'],
+      faqs: AI_AS_SERVICE_FAQS,
     };
     if (slug === 'aiops-as-a-service' && view) return {
       ...view,
@@ -3519,12 +3554,11 @@ class ProductPageComponent {
 
     if (slug === 'vcaio-as-a-service') return {
       ...view,
-      name: 'vCFAIO as a Service',
-      brandSuffix: 'Consult',
-      tagline: 'Your finance office, rebuilt with AI — led part-time, billed monthly.',
-      heroHighlight: 'A virtual Chief Finance & AI Officer from XcellHost: AI forecasting for FP&A, a faster close with GST and TDS reconciliations matched by machines and checked by people, cloud and AI spend under control, and every AI rupee tracked to a return. Advisory only — your board and finance head still sign.',
-      heroPoints: ['FP&A with AI forecasting', 'AI-assisted close & recos', 'FinOps for cloud & AI tokens', 'AI investment ROI tracking'],
-      heroMessages: ['Forecasts you can defend', 'Close in days, not weeks', 'Cloud and AI spend on budget', 'Every AI rupee tracked to ROI'],
+      name: 'vCAIO as a Service', brandSuffix: 'Consult',
+      tagline: 'One accountable owner for AI — part-time, from Mumbai, billed monthly.',
+      heroHighlight: 'A virtual Chief AI Officer from XcellHost sets your AI strategy, ranks use cases by value, picks models and vendors, keeps token and GPU spend on budget, runs responsible-AI governance and reports to your board. Advisory only — your management and board keep every decision and signature.',
+      heroPoints: ['AI strategy & roadmap', 'Use-case portfolio & delivery', 'Models, vendors & AI operating model', 'AI FinOps for tokens & GPUs', 'Responsible AI governance', 'Board reporting & oversight'],
+      heroMessages: ['One AI roadmap, tied to value', 'Use cases ranked, not guessed', 'Every model on an inventory', 'AI spend with a budget and an owner'],
       faqs: VCAIO_FAQS,
     };
 
@@ -4824,6 +4858,10 @@ class ProductPageComponent {
       'ai-app-builder': { frame: 'xh-imported-interactive-content.ai-app-builder-source-content', overview: 'overview', features: 'builder', uses: 'usecases', specifications: 'vs' },
       'ai-ide-lab': { frame: 'xh-imported-interactive-content.ai-ide-lab-source-content', overview: 'overview', features: 'highlights', uses: 'usecases', specifications: 'environments' },
       'ai-training-for-lawyer': { frame: 'xh-imported-interactive-content.ai-training-lawyer-source-content', overview: 'why', features: 'curriculum', uses: 'practice', specifications: 'formats' },
+      'vcaio-as-a-service': { frame: 'xh-imported-interactive-content.vcaio-source-content', overview: 'role', features: 'model', uses: 'deliver', specifications: 'vs' },
+      'acronis-cyber-platform': { frame: 'xh-imported-interactive-content.acronis-platform-source-content', overview: 'overview', features: 'components', uses: 'usecases', specifications: 'vs' },
+      'blockchain-as-a-service': { frame: 'xh-imported-interactive-content.blockchain-service-source-content', overview: 'overview', features: 'platform', uses: 'usecases', specifications: 'vs' },
+      'ai-as-a-service': { frame: 'xh-imported-interactive-content.ai-as-service-source-content', overview: 'overview', features: 'map', uses: 'usecases', specifications: 'vs' },
       'aiops-as-a-service': { frame: 'xh-imported-interactive-content.aiops-service-source-content', overview: 'overview', features: 'how', uses: 'usecases', specifications: 'vs' },
       'hardware-security-module': { frame: 'xh-imported-interactive-content.hsm-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'platform' },
       'cloud-hardware-security-module': { frame: 'xh-imported-interactive-content.cloud-hsm-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'compare' },
@@ -4854,6 +4892,7 @@ class ProductPageComponent {
       'web3-blockchain-infrastructure': { frame: 'xh-imported-interactive-content.web3-blockchain-infrastructure-source-content', overview: 'overview', features: 'products', uses: 'usecases', specifications: 'platform' },
       'phishing-incident-response': { frame: 'xh-imported-interactive-content.phishing-incident-response-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'how' },
       'security-awareness-lms': { frame: 'xh-imported-interactive-content.security-awareness-lms-source-content', overview: 'overview', features: 'features', uses: 'use', specifications: 'how' },
+      'email-signature': { frame: 'xh-imported-interactive-content.email-signature-source-content', overview: 'overview', features: 'capabilities', uses: 'usecases', specifications: 'how' },
       'staff-augmentation': { frame: 'xh-imported-interactive-content.staff-augmentation-source-content', overview: 'overview', features: 'capabilities', uses: 'usecases', specifications: 'skills' },
       'amd-epyc-cpu-comparison': { frame: 'xh-imported-interactive-content.amd-epyc-source-content', overview: 'families', features: 'finder', uses: 'usecases', specifications: 'compare' },
       'nvidia-server-gpu-comparison': { frame: 'xh-imported-interactive-content.nvidia-gpu-source-content', overview: 'families', features: 'finder', uses: 'usecases', specifications: 'compare' },
