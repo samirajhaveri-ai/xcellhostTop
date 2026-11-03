@@ -10,10 +10,15 @@ export class SeoService {
   private meta = inject(Meta);
   private doc = inject(DOCUMENT);
   private updateRevision = 0;
+  private descriptionUpdateRevision = 0;
 
   /** Lets the app shell detect routes that did not provide page-specific SEO. */
   get revision(): number {
     return this.updateRevision;
+  }
+
+  get descriptionRevision(): number {
+    return this.descriptionUpdateRevision;
   }
 
   set(pageTitle: string, description?: string, canonicalPath?: string, imagePath?: string): void {
@@ -23,6 +28,7 @@ export class SeoService {
     // stale, unrelated keyword lists from the base document.
     this.meta.removeTag('name="keywords"');
     if (description) {
+      this.descriptionUpdateRevision += 1;
       this.meta.updateTag({ name: 'description', content: description });
       this.meta.updateTag({ property: 'og:description', content: description });
       this.meta.updateTag({ name: 'twitter:description', content: description });
@@ -30,7 +36,8 @@ export class SeoService {
     this.meta.updateTag({ property: 'og:title', content: pageTitle });
     this.meta.updateTag({ name: 'twitter:title', content: pageTitle });
     if (canonicalPath) {
-      const href = SITE.siteUrl.replace(/\/$/, '') + canonicalPath;
+      const pathname = canonicalPath.split(/[?#]/, 1)[0].replace(/^\/+|\/+$/g, '');
+      const href = SITE.siteUrl.replace(/\/$/, '') + '/' + (pathname ? pathname + '/' : '');
       let link = this.doc.querySelector<HTMLLinkElement>('link[rel="canonical"]');
       if (!link) {
         link = this.doc.createElement('link');
@@ -64,5 +71,9 @@ export class SeoService {
       this.doc.head.appendChild(el);
     }
     el.textContent = JSON.stringify(data);
+  }
+
+  removeJsonLd(id: string): void {
+    this.doc.getElementById('jsonld-' + id)?.remove();
   }
 }

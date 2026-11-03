@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "npm run dev -- --open",
     "build": "node scripts/generate-social-previews.js && node scripts/generate-sitemap.js && ng build",
+    "postbuild": "node scripts/finalize-static-output.js",
     "build:local": "ng build --base-href ./",
     "watch": "ng build --watch --configuration development",
     "package": "npm run build && node scripts/package-for-plesk.js",
@@ -18,6 +19,8 @@
     "test:ai": "npm run ai:build && node --test server/tests/*.test.mjs",
     "dev": "node scripts/serve-with-asset-reloads.mjs",
     "typecheck": "tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p server/tsconfig.json",
+    "seo:audit": "node scripts/audit-prerendered-seo.js",
+    "visibility:audit": "node scripts/audit-ai-visibility.js",
     "dev:node": "npm run ai:build && node scripts/dev-with-ai.cjs",
     "test:ai:php": "php scripts/test-ai-backend.php && php scripts/test-ai-handler.php && node --test scripts/test-ai-dev-proxy.cjs"
   },

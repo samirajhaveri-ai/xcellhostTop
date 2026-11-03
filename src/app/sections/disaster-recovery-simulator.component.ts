@@ -1,4 +1,5 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnDestroy, inject, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnDestroy, PLATFORM_ID, inject, signal } from '@angular/core';
 
 type RecoveryState = 'ok' | 'down' | 'fo' | 'dr' | 'fb';
 
@@ -13,6 +14,7 @@ type RecoveryState = 'ok' | 'down' | 'fo' | 'dr' | 'fb';
 export class DisasterRecoverySimulatorComponent implements AfterViewInit, OnDestroy {
   readonly entries = signal<{ time: string; message: string; kind: string }[]>([]);
   private readonly root = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private state: RecoveryState = 'ok';
   private automatic = true;
   private reducedMotion = false;
@@ -26,6 +28,7 @@ export class DisasterRecoverySimulatorComponent implements AfterViewInit, OnDest
   }
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser) return;
     this.reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
     this.setState('ok');
     this.log('Live', 'Replicating 4 servers to DR site', 'ok');

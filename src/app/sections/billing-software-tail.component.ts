@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, OnDestroy, Output, computed, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { AfterViewInit, Component, ElementRef, EventEmitter, inject, OnDestroy, Output, PLATFORM_ID, computed, signal } from '@angular/core';
 
 export type BillingSoftwareQuoteRequest = { event: Event; plan: string };
 
@@ -42,9 +43,11 @@ export class BillingSoftwareTailComponent implements AfterViewInit, OnDestroy {
   ];
 
   private observer?: IntersectionObserver;
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   constructor(private readonly host: ElementRef<HTMLElement>) {}
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser) return;
     const nodes = this.host.nativeElement.querySelectorAll<HTMLElement>('[data-reveal]');
     if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
       nodes.forEach(node => node.classList.add('is-visible'));
