@@ -16,6 +16,7 @@ type InteractiveContentSource =
   | 'ai-app-builder'
   | 'ai-ide-lab'
   | 'ai-training-for-lawyer'
+  | 'bare-metal-servers'
   | 'acronis-cyber-platform'
   | 'blockchain-as-a-service'
   | 'ai-as-a-service'
@@ -276,6 +277,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'ai-app-builder': '/imported-ai-app-builder.html',
     'ai-ide-lab': '/imported-ai-ide-lab.html',
     'ai-training-for-lawyer': '/imported-ai-training-for-lawyer.html',
+    'bare-metal-servers': '/imported-bare-metal-servers.html',
     'acronis-cyber-platform': '/imported-acronis-cyber-platform.html',
     'blockchain-as-a-service': '/imported-blockchain-as-a-service.html',
     'ai-as-a-service': '/imported-ai-as-a-service.html',
@@ -522,6 +524,7 @@ export class ImportedInteractiveContentComponent implements AfterViewInit, OnCha
     'ai-app-builder': 'AI Apps Builder: building blocks, plans, template matcher and token-cost estimator',
     'ai-ide-lab': 'AI IDE Lab: environments, classroom tools, lab configurator, sizing estimator and stack picker',
     'ai-training-for-lawyer': 'AI Training for Lawyers: curriculum, practical labs, skills assessment and enrolment',
+    'bare-metal-servers': 'Dedicated Servers: plans, configurator, server finder, cost comparison and locations',
     'acronis-cyber-platform': 'Acronis Cyber Platform: services, plans, configurator, consolidation estimator and edition finder',
     'blockchain-as-a-service': 'Blockchain as a Service: ledgers, network configuration, sizing and network finder',
     'ai-as-a-service': 'AI as a Service: stack map, configurator, service finder and usage estimator',

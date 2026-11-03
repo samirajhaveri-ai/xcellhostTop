@@ -1,3 +1,4 @@
+import { DEDICATED_SERVERS_FAQS } from '../data/bare-metal-servers-faq.data';
 import { ACRONIS_CYBER_PLATFORM_FAQS } from '../data/acronis-cyber-platform-faq.data';
 import { BLOCKCHAIN_SERVICE_FAQS } from '../data/blockchain-as-a-service-faq.data';
 import { AI_AS_SERVICE_FAQS } from '../data/ai-as-a-service-faq.data';
@@ -3407,6 +3408,14 @@ class ProductPageComponent {
       heroMessages: ['Keys generated inside, never exported', 'Sign 1,000s of times a second via PKCS#11', 'PIN blocks translated in hardware', '3-of-5 quorum before any root key'],
       faqs: HARDWARE_SECURITY_MODULE_FAQS,
     };
+    if (slug === 'bare-metal-servers' && view) return {
+      ...view, name: 'Dedicated Servers', brandSuffix: 'Dedicated',
+      tagline: 'Whole servers. Your root. Our 24×7 NOC.',
+      heroHighlight: "Rent a physical AMD EPYC, Intel Xeon, AMD Ryzen or NVIDIA GPU server — nobody else on the hardware. 22 priced configurations from ₹16,420.89 a month, run from XcellHost's Tier IV Mumbai data centre and partner sites in the USA and Europe*.",
+      heroPoints: ['AMD EPYC, Intel Xeon & Ryzen', 'NVIDIA GPU options', 'Full root access', 'Dedicated physical hardware', 'Mumbai & partner locations', '24×7 NOC support'],
+      heroMessages: ['128 cores on one bill?', 'Single-tenant for RBI and DPDP audits', 'Ryzen 5.7 GHz for game servers', 'Eight H200s, price on quote'],
+      faqs: DEDICATED_SERVERS_FAQS,
+    };
     if (slug === 'acronis-cyber-platform' && view) return {
       ...view, brandSuffix: 'Protect',
       tagline: 'One agent. One policy. One console. Run by us from Mumbai.',
@@ -4859,6 +4868,7 @@ class ProductPageComponent {
       'ai-ide-lab': { frame: 'xh-imported-interactive-content.ai-ide-lab-source-content', overview: 'overview', features: 'highlights', uses: 'usecases', specifications: 'environments' },
       'ai-training-for-lawyer': { frame: 'xh-imported-interactive-content.ai-training-lawyer-source-content', overview: 'why', features: 'curriculum', uses: 'practice', specifications: 'formats' },
       'vcaio-as-a-service': { frame: 'xh-imported-interactive-content.vcaio-source-content', overview: 'role', features: 'model', uses: 'deliver', specifications: 'vs' },
+      'bare-metal-servers': { frame: 'xh-imported-interactive-content.dedicated-servers-source-content', overview: 'overview', features: 'features', uses: 'usecases', specifications: 'compare' },
       'acronis-cyber-platform': { frame: 'xh-imported-interactive-content.acronis-platform-source-content', overview: 'overview', features: 'components', uses: 'usecases', specifications: 'vs' },
       'blockchain-as-a-service': { frame: 'xh-imported-interactive-content.blockchain-service-source-content', overview: 'overview', features: 'platform', uses: 'usecases', specifications: 'vs' },
       'ai-as-a-service': { frame: 'xh-imported-interactive-content.ai-as-service-source-content', overview: 'overview', features: 'map', uses: 'usecases', specifications: 'vs' },
