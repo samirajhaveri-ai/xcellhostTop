@@ -1,0 +1,43 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const vm = require('node:vm');
+const { parse } = require('parse5');
+const root = path.resolve(__dirname, '..');
+if (!process.argv[2]) throw Error('Pass the supplied Blockchain as a Service HTML file.');
+const source = fs.readFileSync(process.argv[2], 'utf8');
+const nodes = [];
+function walk(n) { nodes.push(n); (n.childNodes || []).forEach(walk); }
+walk(parse(source, { sourceCodeLocationInfo: true }));
+const attr = (n, k) => n.attrs?.find(a => a.name === k)?.value || '';
+const slice = n => source.slice(n.sourceCodeLocation.startOffset, n.sourceCodeLocation.endOffset);
+const text = n => n.value || (n.childNodes || []).map(text).join('');
+const descendants = n => [n, ...(n.childNodes || []).flatMap(descendants)];
+const byId = id => nodes.find(n => attr(n, 'id') === id);
+const has = (n, c) => attr(n, 'class').split(/\s+/).includes(c);
+const faqs = descendants(byId('faq')).filter(n => has(n, 'fq')).map(n => {
+  const children = descendants(n);
+  return [text(children.find(c => c.tagName === 'button')).trim(), text(children.find(c => has(c, 'fa'))).trim()];
+});
+if (!faqs.length || !byId('bsStage')) throw Error('Missing supplied FAQ or animated hero.');
+fs.writeFileSync(path.join(root, 'src/app/data/blockchain-as-a-service-faq.data.ts'), '// FAQs from the supplied Blockchain as a Service document.\nexport const BLOCKCHAIN_SERVICE_FAQS: [string, string][] = ' + JSON.stringify(faqs, null, 2) + ';\n');
+const localLinks = html => html.replace(/href="(?:https:\/\/(?:www\.)?xcellhost\.(?:top|cloud)\/)?([a-z0-9-]+)\.html(#[^"]*)?"/g, 'href="/$1$2" target="_top"');
+const styles = nodes.filter(n => n.tagName === 'style').map(slice).join('\n').replace(/(\d*\.?\d+)vh\b/g, (_, n) => 'calc(var(--page-vh,1vh) * ' + n + ')');
+const fonts = nodes.filter(n => n.tagName === 'link' && /^https:\/\/fonts\.(googleapis|gstatic)\.com/.test(attr(n, 'href'))).map(slice).join('\n');
+const core = fs.readFileSync(path.join(root, 'public/imported-digicert-standard-ssl.html'), 'utf8').match(/<script\b[^>]*>[\s\S]*?<\/script>/)[0];
+let runtime = nodes.filter(n => n.tagName === 'script' && !attr(n, 'type')).map(text).at(-1).replaceAll("$id('configure').scrollIntoView({behavior:R?'auto':'smooth'});", "window.hostingJumpTo('configure');");
+// Keep tool navigation in the parent page when the content is embedded.
+runtime = runtime.replace("function go2(id){var e=$id(id);if(e)e.scrollIntoView({behavior:R?'auto':'smooth'});}", "function go2(id){window.hostingJumpTo(id);}");
+runtime = runtime.replace("location.href='web3-blockchain-infrastructure.html'", "parent.location.href='/web3-blockchain-infrastructure'");
+const heroRuntime = runtime.slice(0, runtime.indexOf('  /*', runtime.indexOf('window.__bsHero'))) + '})();';
+const sections = nodes.filter(n => n.tagName === 'section' && ['overview','ledgers','platform','tokenisation','how','usecases','deliver','compliance','plans','configure','sizing','finder','vs','steps','related'].includes(attr(n, 'id')));
+if (sections.length !== 15) throw Error('Incomplete supplied content.');
+const head = '<!doctype html><html lang="en-IN" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Blockchain as a Service | XcellHost</title>' + fonts + styles;
+const bridge = `<script>XH.open=function(id,opts){if(id==='xhCallback')document.dispatchEvent(new CustomEvent('import-callback',{detail:'Blockchain as a Service: '+(opts&&opts.topic||'Consultation')+'; '+(document.getElementById('cName')?.textContent||'')}));};XH.toast=function(message){var e=document.getElementById('bsToast');e.textContent=message;e.hidden=false;clearTimeout(window.bsToastTimer);window.bsToastTimer=setTimeout(function(){e.hidden=true;},3500);};</script>`;
+const linkBridge = `<script>document.addEventListener('click',function(e){var a=e.target.closest('a[href]');if(!a)return;var u=new URL(a.href,location.href);if(u.origin!==location.origin&&!/^(www\\.)?xcellhost\\.(cloud|top)$/.test(u.hostname))return;var p=u.pathname.replace(/\\.html$/,'');var aliases={'/ai-apps-builder':'/ai-app-builder','/ai-ide-lab-as-a-service':'/ai-ide-lab','/aiops':'/aiops-as-a-service','/managed-gemini-services':'/gemini-managed-services','/ai-training-live-online':'/synapsem-ai-training-live-online','/xcellhost-iso-42001':'/iso-42001ai-risk','/rag-as-a-service':'/enterprise-rag-as-a-service'};p=aliases[p]||p;if(p.startsWith('/xcellhost-'))p='/'+p.slice(11);a.href=p+u.search+u.hash;if(p!==location.pathname)a.target='_top';},true);</script>`;
+const output = head + '<style>html,body{height:auto;min-height:0}body{overflow-x:clip}.sec{padding:48px 0}.rv{opacity:1;transform:none}[hidden]{display:none!important}#bsToast{position:fixed;bottom:20px;left:20px;z-index:100;background:#0b132b;color:white;padding:12px 20px;border-radius:10px;max-width:calc(100% - 40px)}</style></head><body><main id="main">' + localLinks(sections.map(slice).join('\n')) + '</main><div id="bsToast" role="status" hidden></div><script src="/assets/scripts/hosting-tools-viewport.js"></script>' + core + bridge + linkBridge + '<script>' + runtime + '</script></body></html>';
+const hero = head + '<style>html,body{margin:0;width:100%;height:100%;background:transparent;overflow:hidden}#bsHero{position:absolute;top:50%;left:50%;width:640px!important;padding:30px 18px!important;min-height:0;background:transparent;transform-origin:center;overflow:visible}#bsStage>.lh-tilt{width:100%!important;max-width:none!important}#bsStage{width:100%;min-width:0;margin:0;opacity:1;transform:none;animation:none}#bsHero .lh-tilt{width:100%;min-width:0}.lh-chip{max-width:48%}</style></head><body><main id="main"><section class="hero lh bs-hero" id="bsHero">' + slice(byId('bsStage')) + '</section></main>' + core + '<script>' + heroRuntime + '</script><script>(function(){var e=document.getElementById("bsHero");function fit(){e.style.transform="translate(-50%,-50%) scale("+Math.min(innerWidth/676,(innerHeight-16)/e.offsetHeight,1)+")";}new ResizeObserver(fit).observe(e);addEventListener("resize",fit);document.fonts.ready.then(fit);fit();})();</script></body></html>';
+for (const html of [output, hero]) for (const m of html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)) new vm.Script(m[1]);
+fs.writeFileSync(path.join(root, 'public/imported-blockchain-as-a-service.html'), output);
+const fittedHero = hero.replace('</head>', '<style>#bsStage{grid-template-columns:minmax(0,1fr) 148px!important}#bsStage>.lh-tilt{grid-column:1!important;grid-row:1!important}#bsStage>.bs-side{grid-column:2!important;grid-row:1!important;flex-direction:column!important;max-width:none!important}#bsStage>.bs-log{grid-column:1!important;grid-row:2!important;max-width:none!important}</style></head>');
+fs.writeFileSync(path.join(root, 'public/blockchain-as-a-service-hero.html'), fittedHero);
+console.log('Imported 15 sections, animated hero and ' + faqs.length + ' FAQs.');
